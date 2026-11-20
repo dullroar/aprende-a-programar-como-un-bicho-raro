@@ -25,13 +25,13 @@ def fixture(run, expect="I13", ident="x", item=1):
 
 class Catalog(unittest.TestCase):
     def test_every_item_of_plan_10_2_has_a_fixture(self):
-        self.assertEqual(sorted({f.item for f in CATALOG}), list(range(1, 12)))
+        self.assertEqual(sorted({f.item for f in CATALOG}), list(range(1, 13)))   # 12 = plan 5.6, the path invariants I17 to I20
 
     def test_ids_are_unique_and_every_fixture_names_its_check(self):
         ids = [f.id for f in CATALOG]
         self.assertEqual(len(ids), len(set(ids)))
         for f in CATALOG:
-            self.assertTrue(f.expect and f.title and f.kind in ("file", "lock", "tool"), f)
+            self.assertTrue(f.expect and f.title and f.kind in ("file", "lock", "tool", "path"), f)
 
     def test_the_named_cases_of_the_plan_are_present(self):
         ids = {f.id for f in CATALOG}

@@ -13,6 +13,7 @@ calls (so a green control and a red fixture prove the gate is armed):
   kind "file"   a synthetic English file and its hand-written Spanish version, turned into a PO and applied, then
                 verify.check_file(release=True): the per-file check of --release (I1 to I16);
   kind "lock"   a copy of a frozen file and a manifest row, then verify.check_lock (I13);
+  kind "path"   a tiny synthetic tree and its path map, then pathcheck (I17 to I20, plan 5.6);
   kind "tool"   the localized generator or linter named in the fixture, fed a mutated Spanish text.
 
 verify.run_release calls run_all() as the check "negative fixtures", so a gate that stops failing (a disarmed gate)
@@ -364,6 +365,54 @@ def text_ending_at(right, text="XXXX"):
     return draw
 
 
+# ------------------------------------------------------------------------------------------ the path invariants
+
+PATH_FILES = {
+    "README.md": "authored",
+    "CHALLENGE.md": "authored",
+    "docs/guide.md": "authored",
+    "lessons/README.md": "authored",
+    "lessons/intro.md": "authored",
+    "lessons/solutions/a.py": "frozen",
+    "src/x/main.py": "frozen",
+}
+PATH_NAMES = {"dirs": {}, "files": {"CHALLENGE.md": "RETO.md", "docs/guide.md": "guia.md",
+                                    "lessons/intro.md": "introduccion.md"}, "proper": []}
+PATH_TEXTS = {"lessons/solutions/a.py": "print('hi')\n", "src/x/main.py": "# nothing\n"}
+PATH_GLOSSARY = {"terms": [{"id": "challenge", "es": "reto"}, {"id": "guide", "es": "guía"},
+                           {"id": "intro", "es": "introducción"}],
+                 "path_words": [{"en": "guide", "es": "guía"}],
+                 "path_function_words": ["de", "y"], "path_proper_names": ["linq"]}
+
+
+def path_problems(mutate=None):
+    """The four path checks (I17 to I20) on a tiny synthetic tree and its computed map, after `mutate(t)` changed it.
+    t is a dict: files, texts, names, glossary, docs (working path -> (text, dir)), map_edit (a function that edits the
+    computed map in place: a hand-made or stale map)."""
+    import copy
+    import pathcheck
+    import pathmap
+    t = {"files": dict(PATH_FILES), "texts": dict(PATH_TEXTS), "names": copy.deepcopy(PATH_NAMES), "map_edit": None,
+         "glossary": copy.deepcopy(PATH_GLOSSARY),
+         "docs": {"RETO.md": ("See [the guide](docs/guia.md) and [the intro](lessons/introduccion.md).\n", "")}}
+    if mutate:
+        mutate(t)
+    res = pathmap.build(t["files"], lambda p: t["texts"].get(p), t["names"], None)
+    result = dict(res["map"])
+    if t.get("map_edit"):
+        t["map_edit"](result)
+    sources = ([(p, x) for p, x in sorted(t["texts"].items()) if t["files"].get(p) == "frozen"], [])
+    out = pathcheck.map_problems(t["files"], result, sources)
+    out += pathcheck.i18_problems(t["files"], res, t["glossary"])
+    present = set(result.values()) | {d for q in result.values() for d in pathmap.ancestors(q)}
+    out += pathcheck.i17_problems(t["docs"], lambda p: p in present, {p: q for p, q in result.items() if p != q})
+    return out
+
+
+def path_fixture(mutate):
+    return lambda: path_problems(mutate)
+
+
 # ------------------------------------------------------------------------------------------ the catalog
 
 def catalog():
@@ -493,6 +542,33 @@ def catalog():
     add(11, "card-category-in-prose", "a prose mention of the category Coding is translated", "file", "I2",
         file_fixture(en_edit=swap("Ask what", "The Coding cards come first. Ask what"),
                      es_edit=swap("Pregunta qué", "Las tarjetas de Programación van primero. Pregunta qué")))
+
+    # 12. Plan 5.6: the Spanish file names (invariants I17 to I20).
+    def stale_link(t):
+        t["docs"]["RETO.md"] = ("See [the guide](docs/guide.md).\n", "")          # still the old English name
+
+    def two_to_one(t):
+        t["map_edit"] = lambda m: m.update({"docs/guide.md": "RETO.md"})
+
+    def frozen_mention(t):
+        t["texts"]["lessons/solutions/a.py"] = "open('lessons/intro.md')\n"        # pins the path in the real rules
+        t["map_edit"] = lambda m: m.update({"lessons/intro.md": "lessons/introduccion.md"})
+
+    def readme_renamed(t):
+        t["map_edit"] = lambda m: m.update({"lessons/README.md": "lessons/LEEME.md"})
+
+    def english_word_kept(t):
+        t["names"]["files"]["docs/guide.md"] = "guide-and-patterns.md"
+
+    add(12, "path-link-old-english-name", "a link still points at the old English file name", "path", "I17",
+        path_fixture(stale_link))
+    add(12, "path-two-files-one-name", "two files are mapped to one Spanish name", "path", "I20",
+        path_fixture(two_to_one))
+    add(12, "path-frozen-file-mentions-renamed", "a path a frozen file mentions is renamed", "path", "I19",
+        path_fixture(frozen_mention))
+    add(12, "path-readme-renamed", "README.md is renamed", "path", "I20", path_fixture(readme_renamed))
+    add(12, "path-english-word-kept", "a renamed file keeps English words in its name", "path", "I18",
+        path_fixture(english_word_kept))
     return F
 
 
@@ -516,6 +592,7 @@ def control_problems():
     out += ["pdf apl: " + p for p in pdf_problems(draw_text(APL_LINE, font=DEJAVU), APL_LINE)]
     out += ["pdf margin: " + p for p in pdf_problems(text_ending_at(content_right() - 5))]
     out += ["lock: " + p for p in lock_problems(lambda path: None)]
+    out += ["paths: " + p for p in path_problems()]
     return out
 
 
@@ -527,7 +604,8 @@ def run_all():
         if err:
             out.append("fixture %s is broken: %s" % (fx.id, err))
         elif not problems:
-            out.append("fixture %s (plan 10.2 item %d: %s) did not fail: the gate is disarmed" % (fx.id, fx.item, fx.title))
+            out.append("fixture %s (plan %s item %d: %s) did not fail: the gate is disarmed"
+                       % (fx.id, "10.2" if fx.item <= 11 else "5.6", fx.item, fx.title))
         elif not any(fx.expect in p for p in problems):
             out.append("fixture %s failed, but not with %s: %s" % (fx.id, fx.expect, problems[0]))
     return out

@@ -446,6 +446,8 @@ def run_release(root=ROOT, gates=True):
     results = [timed("lock (manifest and English clone)", check_lock, root, True)]
     results.append(timed("inventory --check", lambda: run_cmd(["python3", "tools/inventory.py", "--check"])[0]))
     results.append(timed("file counts", check_counts, root))
+    import pathcheck
+    results.append(timed("path invariants I17 to I20", pathcheck.run, root))
     allow = load_allowlist(root)
     tooling = [p for p in inventory.list_files(root) if "tooling" in inventory.classify(p)]
     results.append(timed("tooling (%d file(s))" % len(tooling), env.tooling_problems, tooling, allow))

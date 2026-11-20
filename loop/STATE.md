@@ -1,8 +1,8 @@
 # loop/STATE.md (keep to 60 lines; refreshed by every iteration)
 
 - **Edition:** v4-es.0-rc1 (working)    **English SHA:** 48a4429c0a22b2aac628b256a50c07d1816bcb80
-- **Iteration:** 80    **Stage:** 3B (Spanish file names; bulk translation waits for the P3B-007 gate), next P3B-006    **Last result:** P3B-005 done (68 paths moved by a pure git mv commit b5cc07d, then references rewritten; paths.layout is now spanish; tools compare and write through enpath.remap_text)
-- **Tasks:** todo 82 (8 seed + 74 generated) | doing 0 | done 56 | blocked 0 | skipped 0
+- **Iteration:** 81    **Stage:** 3B (Spanish file names; bulk translation waits for the P3B-007 gate), next P3B-007    **Last result:** P3B-006 done (tools/pathcheck.py: I17 to I20 wired into verify --release, 5 path fixtures in negative.py item 12, test_pathcheck 18 tests)
+- **Tasks:** todo 81 (7 seed + 74 generated) | doing 0 | done 57 | blocked 0 | skipped 0
 - **Next task:** run `python3 tools/next_task.py` (PO files live at translation/po/<path>.po, written by tools/apply.py --init)
 - **Budget:** spent $0.00 of $100; iterations 0 of 300
 - **Translate progress:** segments accepted 836 / total 8827 (7394 prose + 1433 Mermaid labels) ; files done 12 / 212 (src/GoChallenge1, JavaChallenge1, KotlinChallenge1, LinqChallenge1, LinqChallenge2, ModernChallenge1, PythonChallenge1 READMEs, src/forth/README.md, lessons/cs-source/concepts/recursion.md, lessons/study-guides/languages/forth.md, docs/curriculum.md, lessons/study-guides/languages/apl.md)
