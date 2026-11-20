@@ -1,13 +1,13 @@
 # loop/STATE.md (keep to 60 lines; refreshed by every iteration)
 
 - **Edition:** v4-es.0-rc1 (working)    **English SHA:** 48a4429c0a22b2aac628b256a50c07d1816bcb80
-- **Iteration:** 57    **Stage:** 3 (pilot)    **Last result:** P3-009 done (resume test: STOP mid-task, restart with a different AGENT_CMD, resumed from HANDOFF.md and queue; translation/reviews/resume-test.md)
-- **Tasks:** todo 91 (14 seed + 77 generated) | doing 0 | done 47 | blocked 0 | skipped 0
+- **Iteration:** 58    **Stage:** 3 (pilot) gate passed, next P4-000    **Last result:** P3-010 done (Phase 3 gate: lock ok, fast verify on the 5 pilot files ok, curriculum --check ok; known pending: anchors link in generated lessons/languages/forth.md until P5-001)
+- **Tasks:** todo 90 (13 seed + 77 generated) | doing 0 | done 48 | blocked 0 | skipped 0
 - **Next task:** run `python3 tools/next_task.py` (PO files live at translation/po/<path>.po, written by tools/apply.py --init)
 - **Budget:** spent $0.00 of $100; iterations 0 of 300
 - **Translate progress:** segments accepted 411 / total 8827 (7394 prose + 1433 Mermaid labels) ; files done 5 / 212 (src/forth/README.md, lessons/cs-source/concepts/recursion.md, lessons/study-guides/languages/forth.md, docs/curriculum.md, lessons/study-guides/languages/apl.md)
 - **Last audit:** none    **Next audit due after:** 8 translate tasks
-- **Gates:** P0 passed (iter 17)  P1 passed (iter 23)  P2 passed (iter 47)  P3 -  P4 -  P5 -  P6 -  P7A -
+- **Gates:** P0 passed (iter 17)  P1 passed (iter 23)  P2 passed (iter 47)  P3 passed (iter 58)  P4 -  P5 -  P6 -  P7A -
 - **Open provisional decisions:** 5 (acronym BICHO; glossary choices; house style N=29 calibrated; schema/segment-id formats; same-tier reviewer kept after recall test)    **Blockers:** 0    **Source issues:** 0
 
 ## Traps to remember (details live in SIGNS.md)
