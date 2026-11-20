@@ -1,0 +1,10 @@
+{
+  "english_repo": "https://github.com/dullroar/learn-programming-the-weird-way",
+  "english_commit": "48a4429c0a22b2aac628b256a50c07d1816bcb80",
+  "english_tag": null,
+  "english_clone_path": "/home/lehmer/english-source",
+  "clone_mode": "read-only, detached HEAD at the pinned commit",
+  "verified_by": "loop iteration 1, P0-001: .git/HEAD of the clone equals english_commit",
+  "edition_label": "v4-es.0-rc1",
+  "language_tag": "es-419"
+}
