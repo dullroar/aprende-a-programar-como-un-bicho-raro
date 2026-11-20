@@ -43,11 +43,14 @@ SLEEP_SECS="${SLEEP_SECS:-$(cfg sleep_seconds_between_iterations 5)}"
 # Verified on Claude Code 2.1.319: no --max-turns flag exists; --max-budget-usd caps each iteration.
 # NOTE: the allowlist is a guard rail, not a sandbox (python3 can do anything). Real protection:
 # no credentials in the environment, no pushable remote, and a pre-push hook that refuses.
-DEFAULT_AGENT_CMD='claude -p --output-format json --model sonnet --max-budget-usd 6 --permission-mode dontAsk --allowedTools "Read,Edit,Write,Glob,Grep,Bash(git:*),Bash(python3:*),Bash(python:*),Bash(pandoc:*),Bash(node:*),Bash(npx:*),Bash(tools/*:*),Bash(ls:*),Bash(cat:*),Bash(head:*),Bash(tail:*),Bash(wc:*),Bash(grep:*),Bash(find:*),Bash(sed:*),Bash(sort:*),Bash(diff:*),Bash(cp:*),Bash(mv:*),Bash(mkdir:*),Bash(touch:*),Bash(chmod:*),Bash(date:*),Bash(sha256sum:*),Bash(zip:*),Bash(unzip:*),Bash(echo:*),Bash(printf:*),Bash(test:*),Bash(tar:*),Bash(rsync:*),Bash(rm:*),Bash(cd:*),Bash(awk:*),Bash(tr:*),Bash(cut:*),Bash(xargs:*),Bash(pwd:*),Bash(which:*),Bash(basename:*),Bash(dirname:*),Bash(stat:*),Bash(file:*),Bash(du:*),Bash(tee:*),Bash(uniq:*),Bash(comm:*),Bash(env:*),Bash(true:*),Bash(sleep:*),Bash(time:*)" --disallowedTools "Bash(git push:*)" "Bash(gh:*)" "Bash(curl:*)" "Bash(wget:*)" "Bash(ssh:*)"'
+DEFAULT_AGENT_CMD='claude -p --output-format json --model sonnet --max-budget-usd 6 --permission-mode dontAsk --allowedTools "Read,Edit,Write,Glob,Grep,Bash(git:*),Bash(python3:*),Bash(python:*),Bash(pandoc:*),Bash(node:*),Bash(npx:*),Bash(tools/*:*),Bash(ls:*),Bash(cat:*),Bash(head:*),Bash(tail:*),Bash(wc:*),Bash(grep:*),Bash(find:*),Bash(sed:*),Bash(sort:*),Bash(diff:*),Bash(cp:*),Bash(mv:*),Bash(mkdir:*),Bash(touch:*),Bash(chmod:*),Bash(date:*),Bash(sha256sum:*),Bash(zip:*),Bash(unzip:*),Bash(echo:*),Bash(printf:*),Bash(test:*),Bash(pip:*),Bash(pip3:*),Bash(npm:*),Bash(.venv/bin/*:*),Bash(pytest:*),Bash(tar:*),Bash(rsync:*),Bash(rm:*),Bash(cd:*),Bash(awk:*),Bash(tr:*),Bash(cut:*),Bash(xargs:*),Bash(pwd:*),Bash(which:*),Bash(basename:*),Bash(dirname:*),Bash(stat:*),Bash(file:*),Bash(du:*),Bash(tee:*),Bash(uniq:*),Bash(comm:*),Bash(env:*),Bash(true:*),Bash(sleep:*),Bash(time:*)" --disallowedTools "Bash(git push:*)" "Bash(gh:*)" "Bash(curl:*)" "Bash(wget:*)" "Bash(ssh:*)"'
 # The agent must be able to read the pinned English clone (outside the repo). --add-dir grants that.
 ENGLISH_DIR="$(cfg english_clone_path "")"
 [ -n "$ENGLISH_DIR" ] && [ -d "$ENGLISH_DIR" ] && DEFAULT_AGENT_CMD="$DEFAULT_AGENT_CMD --add-dir \"$ENGLISH_DIR\""
 AGENT_CMD="${AGENT_CMD:-$DEFAULT_AGENT_CMD}"
+
+# ---- project virtualenv first on PATH (never install into another project's venv) ----
+if [ -x "$ROOT/.venv/bin/python" ]; then export PATH="$ROOT/.venv/bin:$PATH"; export VIRTUAL_ENV="$ROOT/.venv"; fi
 
 # ---- safety: no credentials for the agent, no interactive git prompts ----
 unset GH_TOKEN GITHUB_TOKEN GITLAB_TOKEN

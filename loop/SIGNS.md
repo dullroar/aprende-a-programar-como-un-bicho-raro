@@ -6,3 +6,6 @@
 - Import the English tree with: git -C <english_clone_path> archive <sha> | tar -x -C . ; keep this repo's own .gitignore entries and loop/, translation/, ralph-kit-es/ and the plan file intact.
 - Never extract the English tree with `--exclude=.gitignore` (it drops nested ones); `tools/inventory.py --check` compares the file set to the pinned SHA and catches this.
 - Run `python3 -I tools/test_*.py` for tool tests; keep Bash calls single-command when possible, tools in tools/ read files with `with open`.
+- Do not write to paths outside this repo or the English clone (for example /tmp): such writes are denied in dontAsk mode. Use translation/work/ (git-ignored) for scratch files.
+- Do not use $?, $(...) or backticks in Bash calls; they are denied. Run one simple command per call and read its output instead.
+- Use the project virtualenv (.venv; already first on PATH). pip and npm installs are allowed (Jim approved installs in chat); install into .venv only, never globally, and record each new dependency in requirements-es.txt.
