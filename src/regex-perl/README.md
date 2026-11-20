@@ -1,0 +1,109 @@
+---
+name: "Perl"
+teaches: "that Perl can execute code during a regex match."
+kind: weird
+languages: [perl, regex]
+lesson: "languages/regex.md#perl-code-inside-the-match"
+loop-by: backtracking-search
+evaluation: search
+assurance: implementation-permitted
+pairs-with: regex-pcre2
+machine: "A backtracking search with hooks"
+state: "`local` variables that unwind (effects do not)"
+tags: [arbitrary-code-execution, backtracking, cut, regular-expression, side-effect, state, threat-model, transaction]
+---
+# Regex challenge, Track 1: Perl (the whole program is one match)
+
+**Teaches you:** that Perl can execute code during a regex match.
+
+The file's only statement is a single `=~` match. Seeding, the random draws, the SQLite transaction, the terminal pulse and all the printing happen *inside* that match, and then the match **returns false**. It follows the regex challenge plan (since removed; it lives in git history as `plans/regex.md`). **DEMO ONLY**: the records are fictional and go to a scratch SQLite file, with no connection to any real time-reporting system.
+
+## Run it
+
+You need Perl 5 and the `sqlite3` command-line tool (`sudo apt install sqlite3`). `POSIX` and `File::Path` are core Perl modules.
+
+```bash
+cd src/regex-perl
+perl timecards.pl          # run the demo
+./check.sh                 # 25 runs, asserts the rules below
+```
+
+Records go to `$XDG_DATA_HOME/RegexPerl/demo-timecards.db` (default `~/.local/share/RegexPerl/`). Delete that directory to start over. A run looks like this, followed by a three-second pulse on a real terminal:
+
+```text
+# DEMO ONLY run 1794613174-17683
+Meetings	10	10	2026-W46	DEMO ONLY
+Coding	19	29	2026-W46	DEMO ONLY
+Debugging	16	45	2026-W46	DEMO ONLY
+# committed total=45 entries=3 DEMO ONLY
+# the match now returns false, on purpose
+```
+
+```bash
+sqlite3 -header -column ~/.local/share/RegexPerl/demo-timecards.db 'select * from demo_timecards'
+```
+
+## Run it in a container
+
+Prerequisite: Docker, set up once as described in [`SANDBOX-SETUP.md`](../../SANDBOX-SETUP.md#docker).
+
+```bash
+sandbox/container/run-image.sh src/regex-perl
+```
+
+It builds this folder's [`Dockerfile`](Dockerfile) and runs the result with no network, a read-only file system and user `nobody`, then prints the output and a read-only look at the rows it wrote. The image holds Perl (from the Ubuntu base) and sqlite3. It has no compiler and no package manager.
+
+## Program Flow
+
+```mermaid
+flowchart TD
+    accTitle: regex-perl: one match, with Perl code blocks as the loop body
+    accDescr: A flowchart. Perl starts one match of a scaffold string against one pattern. A code block at the start initializes state and starts sqlite3 on a pipe. A greedy quantifier repeats a pass. At each pass a postponed code block returns the next category as a pattern, or a failure when the total is over 40 or no category is left. If it returns a category, the engine matches it, and a code block draws hours, updates local state, inserts a row and prints it. When the pass fails, the quantifier stops, and a commit verb forbids retrying fewer passes. A finalizer commits the SQL transaction and prints the summary. A final failure makes the whole match return false, after all the work.
+    A["Perl starts one match of the scaffold string against one pattern"] --> B["Initializer code block: seed, scratch folder, sqlite3 on a pipe, BEGIN"]
+    B --> C["Greedy quantifier starts a pass"]
+    C --> D{{"Postponed block: total <= 40 and a category left?"}}
+    D -->|"yes: returns the category as a pattern"| E["The engine matches the category name in the scaffold"]
+    E --> F["Code block: draw hours, local total and index, INSERT, print the row"]
+    F --> C
+    D -->|"no: returns FAIL"| G["The pass fails, the quantifier stops, COMMIT forbids retrying fewer passes"]
+    G --> H["Finalizer: COMMIT the transaction, close the pipe, print the summary, pulse on a terminal"]
+    H --> I["FAIL: the match returns false after all the work"]
+```
+
+**What this shows:** one regex match is the whole program. The quantifier is the loop, and a code block that returns a *pattern* is the stop rule: it returns the next category's name, or `(*FAIL)` to make the pass fail. Code blocks are the only places where work happens.
+
+**Why this mechanism matters:** backtracking can undo `local` variables but not side effects. The engine abandons a branch, while the `INSERT` and the `print` stay done. That is why the match can end by failing and the data is still saved. The SQL transaction is real. Only the *match* lies.
+
+## How the stunt works
+
+Below the `use` lines, `timecards.pl` is one line: a constant scaffold string `=~` one pattern. No host code seeds, loops, or prints. `check.sh` enforces that the file is a single statement, with exactly one match and no loop keywords.
+
+| Piece | Job |
+| --- | --- |
+| `^(?{ ... })` | Initializer: seeds the state, makes the scratch directory, starts `sqlite3` on a pipe, creates the table (with a `CHECK(demo_only=1)` constraint) and opens a transaction |
+| `(?:  ...  )*` | The loop. Perl's greedy quantifier is the iteration; the scaffold string gives each pass something to eat |
+| `(??{ $::t<=40 ? $::c[$::n] // '(*FAIL)' : '(*FAIL)' })` | The stop rule and the category chooser in one: it hands the engine the *next category name as a pattern*, or `(*FAIL)` once the total passes 40 or the categories run out (five names: Meetings repeats, so four 10-hour cards, a total of exactly 40, are followed by a fifth). A failed pass is what ends the quantifier |
+| `(?{ local $::t = ...; local $::n = ...; print ... })` | One timecard: draws 10 to 19, adds it to the total, advances the category, sends an `INSERT` to SQLite and prints the row |
+| `(*COMMIT)` | Once the loop ends, backtracking may not retry shorter loops (or the finalizer would run more than once) |
+| `(?{ COMMIT; close; print ... })` | Finalizer: commits the SQLite transaction, closes the pipe (which waits for `sqlite3` to finish), prints the summary |
+| `[A-Za-z]*(?:(?(?{-t STDOUT})~(?{ frame }) \| (?!)))*` | The pulse: one frame per `~` at the end of the scaffold, but only if stdout is a terminal (the conditional is a code block), so pipes and `check.sh` skip it |
+| `(*COMMIT)(?{ settle })(*FAIL)` | Clears the banner, then the signature move: the match gives up after doing all the work |
+
+`local` is the interesting bit. Perl unwinds `local` assignments when the engine backtracks, so the running total and category counter are properly backtrack-aware, but the `INSERT`s and `print`s are not and cannot be undone. The engine abandons the branch, and the side effects stay written. The SQLite transaction is real and commits; the *match* is what lies.
+
+## What `check.sh` enforces
+
+`check.sh` checks that the file really is one statement: everything except comments, blank lines and `use` lines must be a single line, with exactly one top-level match and no loop keyword outside comments. Then it runs the program 25 times. Each run must print the "returns false" line, as many rows as it has entries, hours from 10 to 19, no early stop (the total must end over 40), three to five entries and a total of at most 59. It also runs a copy of the program in which every card is worth 10 hours and checks that exactly 40 continues: five rows, the fifth `Meetings`, total 50. SQLite must agree with the output, the database must hold 25 distinct runs, and a non-demo row must be refused.
+
+## Gotchas worth knowing
+
+- The pattern is not formatted. `/x` is on only so the scaffold is parsed in a sensible way; there are no comments, no named groups, and no helper functions inside it. That is deliberate.
+- State lives in package variables (`$::t`, `$::n`, ...) because code in a pattern runs with the file's `strict` rules and `local` only works on globals. They are all initialized inside the match.
+- The null-iteration warning Perl would otherwise raise about the loop body is silenced with `no warnings 'regexp'`, since the body is dynamic and Perl cannot prove it consumes input. It always does: it only proceeds after matching a category name or a `~`.
+- SQL is built by interpolating values into strings. That is safe here only because every value is either a number the match computed or one of four fixed category names; do not copy the habit.
+- Code in patterns is run by Perl as ordinary Perl. The only external program is `sqlite3`, started without a shell with a fixed argument list, and the only I/O is the scratch database and the terminal.
+- The ISO week is computed with `strftime('%G-W%V')`. As in the other versions, the ISO year can differ from the calendar year near New Year.
+
+---
+
+See the [root README](../../README.md#the-results-so-far) for how this compares to the other regex entries, and [`CHALLENGE.md`](../../CHALLENGE.md) if you want to write your own.

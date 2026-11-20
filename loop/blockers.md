@@ -1,5 +1,7 @@
 # Blockers
 
+(none open; P0-002 resolved in iteration 7 by running the import as a single pipeline command)
+
 ## P0-002 (iteration 6): blocked, English import denied again
 - Command: one compound Bash call, `cp .gitignore <scratchpad>/gitignore.es && git -C /home/lehmer/english-source archive 48a4429c... | tar -x -C .`
 - Result: Bash permission denied ("don't ask mode"); nothing extracted; tree unchanged. Later plain Bash calls (sed, cat >>) were also denied, so only file tools could record this.

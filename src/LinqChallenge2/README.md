@@ -1,0 +1,117 @@
+---
+name: "LINQ"
+teaches: "that C# query syntax can express the computation and order its effects."
+kind: weird
+languages: [c-sharp, linq]
+lesson: "languages/csharp-linq-xaml.md#deferred-execution-and-the-void-to-value-trick"
+loop-by: lazy-demand
+evaluation: deferred
+assurance: guaranteed
+pairs-with: LinqChallenge1
+machine: "A lazy query that its closing `Single()` demands"
+state: "A prefix sum recomputed in each `where`, and the database; no accumulator variable"
+tags: [dataflow-programming, declarative-programming, deferred-execution, domain-specific-language, lazy-evaluation, side-effect, thread-safety]
+---
+# LINQ challenge, Variant B: one SQL-like query-expression statement
+
+**Teaches you:** that C# query syntax can express the computation and order its effects.
+
+> **Not the shared challenge.** Like Variant A, this entry draws no random hours: its work week is five fixed 8-hour days, capped so that the total is exactly 40.0 hours and no card crosses the line. It teaches deferred execution and query syntax, not the stop rule "keep the first card over 40".
+
+The same demo as [`src/LinqChallenge1`](../LinqChallenge1/README.md) - a fixed 40-hour timecard, tracked and saved through EF Core and SQLite, crossing the `IQueryable<T>` → `IEnumerable<T>` boundary, and a WPF **DEMO ONLY** terminal window that shows, pulses, and closes itself - but written so nearly every component, not just the headline data-shaping stage, is phrased as a C# query expression (`from` / `where` / `let` / `select`). Where a `let` has to turn a `void`-returning WPF/EF call into a value, the inline `Func<T>.Invoke()` wrapper is itself nested inside a throwaway one-row query. Turtles all the way down, on purpose.
+
+## Run it
+
+You need Windows and the .NET 10 SDK.
+
+```powershell
+cd src\LinqChallenge2
+dotnet restore
+dotnet run
+```
+
+Same behavior as Variant A: one terminal-styled window appears, pulses three times, and closes itself; the process exits on its own. Records land in `%LOCALAPPDATA%\LinqChallenge2\timecards.db`.
+
+```powershell
+.\check.ps1    # build, structural check (genuine query syntax at every layer), one end-to-end run
+```
+
+## Run it in Windows Sandbox
+
+Prerequisites: Windows Sandbox and this entry's toolchain on your machine, set up once as described in [`SANDBOX-SETUP.md`](../../SANDBOX-SETUP.md#windows-sandbox).
+
+```powershell
+sandbox\windows\run.ps1 src\LinqChallenge2
+```
+
+It runs the entry in a throwaway VM with networking off, screenshots the window, asks it to close, and prints what it saved. This entry has a `check.ps1`, so that is what runs.
+
+## Program Flow
+
+```mermaid
+flowchart TD
+    accTitle: LinqChallenge2: query syntax over the five fixed days, forced by one Single
+    accDescr: A flowchart. The first query ranges over the five fixed days. Its where clause recomputes the running total as a prefix sum, with no accumulator, and keeps a day only while the total is 40 or less. A let clause wraps the EF Core Add in a one-row query to get a value from a void call. SaveChanges follows. The second query ranges over the EF Core query for this run, crossing to objects with AsEnumerable. An Aggregate folds the saved rows into a report. Further let clauses, each a one-row query, build the window and the pulse. A final Single forces the lazy pipeline to run and returns its one value.
+    A["from day in WorkWeek: the five fixed days"] --> B["where: prefix sum of hours up to this day is 40 or less"]
+    B --> C["let tracked: a one-row query wraps ctx.Timecards.Add"]
+    C --> D["SaveChanges, after all days are tracked"]
+    D --> E["from persisted in the EF query, AsEnumerable: crossing to objects"]
+    E --> F["Aggregate: fold the saved rows into a report"]
+    F --> G["let window, let pulse: each a one-row query around a void WPF call"]
+    G --> H["Single: forces the lazy pipeline and returns its one value"]
+```
+
+**What this shows:** the same data path as [`LinqChallenge1`](../LinqChallenge1/README.md), written with query syntax. The `where` clause is the stop rule: it recomputes a prefix sum for each day instead of keeping a running total in a variable. Nothing runs until the closing `Single()`.
+
+**Why this mechanism matters:** query syntax is only a way to write method calls. The compiler turns `where`, `let` and `select` into the same `Where`, `Select` and `SelectMany` calls, so the execution engine does not change. The one-row query around each `void` call is a joke that proves how far the syntax reaches.
+
+## How the stunt works
+
+C# query syntax is syntactic sugar (a friendlier way to write the same thing) over the same `Select`/`SelectMany`/`Where` calls Variant A uses directly - it is not a different execution engine. [`Program.cs`](Program.cs) pushes that sugar as far as it goes, in two headline places and then everywhere else for good measure:
+
+**The two places query syntax genuinely carries the EF Core round trip:**
+
+```csharp
+from day in WorkWeek                                   // FROM the real five-row work week
+where (from d in WorkWeek.Take(Array.IndexOf(WorkWeek, day) + 1) select d.Hours).Sum() <= MaxWeeklyHours
+let tracked = /* ctx.Timecards.Add(...), wrapped to return the entity */
+select tracked
+```
+
+caps the week with a `where` clause that recomputes the running total as a prefix sum - no mutable accumulator - and
+
+```csharp
+from persisted in
+    (
+        from e in ctx.Timecards
+        where e.RunId == runId
+        orderby e.WorkDate
+        select new { e.WorkDate, e.Hours, e.Description }
+    ).AsEnumerable()
+```
+
+is a genuine second `from` clause crossing the `IQueryable<T>` → `IEnumerable<T>` boundary - exactly the shape the plan's own sketch calls for ("`from persisted item in DbContext.Timecards ...`"). The inner query is not a stand-in for a fluent `Where`/`OrderBy`/`Select` chain. The compiler lowers `where`/`orderby`/`select` to exactly those calls, so EF Core's SQLite provider translates it exactly as it would the fluent version. `AsEnumerable()` is still the one piece no query keyword replaces. It stays a trailing call, like `ToList`/`Sum`/`Single` elsewhere, and it marks the boundary explicitly.
+
+**Everywhere else, just for fun:** every `let` that needs a value back from a `void` WPF/EF call (`tracked`, `saved`, `line`, `window`, `pulse`) wraps its `new Func<T>(() => {...}).Invoke()` inside its own `from _x in Enumerable.Repeat(0, 1) select ....Invoke()` one-row query, then calls `.Single()` to pull the value back out. The window's text join (`string.Join("\n", from l in r.Lines select l)`) is the same idea applied to code that did not need it at all. None of this makes the program more correct; all of it makes the point that query syntax *can* reach into almost every corner, once you stop asking whether it should.
+
+The whole thing is two nested query expressions, ending in one `.Single()`. That call both forces the lazy pipeline to run and extracts the one value that the outer pseudo-row was always going to produce. The second query supplies the single already-folded report to the window/pulse `let`s. It is needed because `Aggregate` - folding many persisted rows into one report - has no query-syntax keyword, so it has to happen as a trailing method call in between.
+
+## Important language constraint
+
+Three things in this file cannot be query syntax, because the language simply has no keyword for them, and each is called out in a comment where it appears:
+
+- **`Aggregate`** - folding N persisted rows into one `(Lines, Total)` report. There is no `fold`/`reduce` query clause.
+- **`Enumerable.Repeat` / `.Take` / `.Sum` / `.ToList` / `.Single`** - every place a value needs to become a one-row sequence, be capped, be summed, be forced, or be pulled back out. Query syntax lowers to these same calls; it never replaces them.
+- **`ctx.Timecards.Add(...)`, `window.Show()`, `app.Run()`, `window.BeginAnimation(...)`, `app.Shutdown()`** - the actual WPF/EF Core side effects. No syntax, query or fluent, turns a `void` method into an expression; that is what every inline `Func<T>.Invoke()` wrapper is for, with or without a throwaway query around it.
+
+## What `check.ps1` enforces
+
+`check.ps1` does what the Variant A check does (no orchestration helper, a clean build, a run against a throwaway folder with a 15-second timeout, the 5-row 40.0h report and the database file). It also checks that the query syntax is real. `Program.cs` must contain a genuine `from day in WorkWeek ... where ... let tracked ... select tracked` expression. It must also contain a second query, `from persisted in (from e in ctx.Timecards ... orderby e.WorkDate ...)`, and no fluent `ctx.Timecards.Where(` or `.OrderBy(e =>` chain. Finally, it must have at least eight `from ... in` clauses, counting the throwaway one-row queries.
+
+## Gotchas worth knowing
+
+- The embedded one-row queries around `tracked`, `saved`, `line`, `window`, `pulse`, the `Lines` fold step, and the window's text join are gratuitous. Removing any of them and calling the wrapped expression directly would behave identically and read more plainly. They exist because the challenge asked for maximum, deliberate perversity - "twisted thinking is good thinking" - not because they improve the code. The EF phase's `where`/`orderby`/`select`, by contrast, is not gratuitous: it replaced an actual fluent `Where`/`OrderBy`/`Select` chain that was doing real work.
+- Same prefix-sum cap and mutation-in-place caveats from the earlier draft apply here; see [Variant A's README](../LinqChallenge1/README.md#gotchas-worth-knowing) for the shared ones (eager `SaveChanges()` timing, in-place list mutation inside `Aggregate`).
+- `Console.WriteLine` calls inside the `window` `let` exist purely so `check.ps1` can verify the persisted report from stdout.
+
+See [the root README](../../README.md#the-results-so-far) for how this compares to the other one-statement entries, and [`src/LinqChallenge1`](../LinqChallenge1/README.md) for the fluent-chain variant of the same idea.

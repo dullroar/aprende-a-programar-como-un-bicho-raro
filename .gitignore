@@ -8,3 +8,30 @@ __pycache__/
 loop/driver.out
 loop/ledger/
 loop/STOP
+
+# --- imported from English source ---
+bin/
+obj/
+.vs/
+.dotnet-cli/
+.nuget-packages/
+.appdata/
+.localappdata/
+*.user
+
+# Rust challenge build output and disposable demo records
+src/RustChallenge1/target/
+src/RustChallenge1/data/
+
+# XAML challenge disposable demo records
+src/xaml/data/
+
+# Root Gradle build for the Java/Kotlin/Python/Go ports
+/.gradle/
+/build/
+
+# GNU APL command history
+.apl.history
+
+# Book diagram renderer (Mermaid CLI, installed by `npm ci` in lessons/book/diagrams); rendered figures live in lessons/book/out/
+lessons/book/diagrams/node_modules/

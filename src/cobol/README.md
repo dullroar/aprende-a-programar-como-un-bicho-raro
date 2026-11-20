@@ -1,0 +1,111 @@
+---
+name: "COBOL"
+teaches: "that a stop rule can be declared as data, and that a number's picture can do your rounding."
+kind: idiomatic
+languages: [cobol]
+lesson: "languages/cobol.md"
+loop-by: loop-statement
+evaluation: eager
+assurance: guaranteed
+pairs-with: cobol-weird
+machine: "Ordinary: a structured `PERFORM ... UNTIL` loop that asks the data for the stop rule"
+state: "`WS-TOTAL` and its 88-level name `OVER-FORTY`"
+tags: [control-flow, declarative-programming, integrity-constraint, state-encoding]
+---
+# COBOL
+
+**Teaches you:** that a stop rule can be declared as data, and that a number's picture can do your rounding.
+
+> **DEMO ONLY.** Fictional timecards in a scratch SQLite file. No connection to any real time-reporting system.
+
+COBOL (1959) was built for exactly this kind of program: records, totals and a report. The challenge ("add 10 to 19 hour cards until the total passes 40") is one statement in the `PROCEDURE DIVISION`, `PERFORM DRAW-CARD UNTIL OVER-FORTY`. The rule itself isn't in the procedure code at all. `OVER-FORTY` is declared in the `DATA DIVISION`, on the total.
+
+## Run it
+
+You need GnuCOBOL (`cobc`, 3.1 or later; `sudo apt install gnucobol` on Ubuntu) and `sqlite3`.
+
+```bash
+cd src/cobol
+cobc -xj timecards.cob      # compile and run; leaves a ./timecards binary (git-ignored)
+./check.sh                  # set COBC=/path/to/cobc if it is not on your PATH
+```
+
+Records go to `$XDG_DATA_HOME/Cobol/demo-timecards.db` (default `~/.local/share/Cobol/`). A run looks like this:
+
+```text
+# DEMO ONLY run 2026111413594869-8051
+Meetings	11	11	2026-W46	DEMO ONLY
+Coding	11	22	2026-W46	DEMO ONLY
+Debugging	12	34	2026-W46	DEMO ONLY
+Learning	15	49	2026-W46	DEMO ONLY
+# committed total=49 entries=4 DEMO ONLY
+# PERFORM UNTIL an 88-level: the stop rule is declared in the DATA DIVISION
+```
+
+## Program Flow
+
+```mermaid
+flowchart TD
+    accTitle: cobol: PERFORM UNTIL with the stop rule declared as data
+    accDescr: A flowchart. Set-up and open-script run once. Then PERFORM DRAW-CARD repeats until the 88-level condition OVER-FORTY, declared on WS-TOTAL, is true. Each pass draws a card, adds its hours to the total, prints the row and writes an INSERT line. When OVER-FORTY is true the loop ends, the script is committed with sqlite3, and the run stops.
+    A["SET-UP, OPEN-SCRIPT: seed, ISO week, folder, SQL file"] --> B{{"OVER-FORTY? WS-TOTAL in 41 to 99"}}
+    B -->|No| C["DRAW-CARD: category from MOD of WS-ENTRIES, hours, ADD to WS-TOTAL"]
+    C --> D["DISPLAY the row, WRITE the INSERT line"]
+    D --> B
+    B -->|Yes| E["COMMIT-SCRIPT: run sqlite3"]
+    E --> F["DISPLAY summary, STOP RUN"]
+```
+
+**What this shows:** a conventional structured loop. `PERFORM DRAW-CARD UNTIL OVER-FORTY` tests the condition before every pass, so the test is a real node and the cycle is a real edge.
+
+**Why this mechanism matters:** the stop rule is data, not code. `OVER-FORTY` is an 88-level name for the values 41 to 99 of `WS-TOTAL`, so the loop asks the data whether to go on. The weird sibling [`cobol-weird`](../cobol-weird/README.md) has no such test.
+
+## How the stunt works
+
+A COBOL program has four *divisions*, always in the same order: `IDENTIFICATION` (its name), `ENVIRONMENT` (which files it uses), `DATA` (every variable, with its exact shape) and `PROCEDURE` (the code). Read [`timecards.cob`](timecards.cob) top to bottom with this beside it.
+
+1. **The stop rule is data.** In the `WORKING-STORAGE SECTION`:
+
+   ```cobol
+   01  WS-TOTAL                PIC 99 VALUE 0.
+       88  OVER-FORTY          VALUE 41 THRU 99.
+   ```
+
+   `PIC 99` ("picture") says the total is exactly two decimal digits. The `88` line under it is a *condition name*. It doesn't store anything. It names a range of `WS-TOTAL`'s values, and using `OVER-FORTY` anywhere asks whether the total is currently in that range. So the loop, `PERFORM DRAW-CARD UNTIL OVER-FORTY`, holds no comparison. Change the rule and you edit the data description, not the code.
+2. **The picture does the rounding.** `COMPUTE WS-HOURS = 10 + FUNCTION RANDOM * 10` produces something from 10.0 to 19.99. `WS-HOURS` is `PIC 99`, two digits with no decimal places, so storing into it simply drops the fraction. Nothing calls a floor function: the field's shape gives 10 to 19. COBOL arithmetic is decimal, not binary floating point, which is why money still runs on it.
+3. **One string, seen twice.** The four category names are four 9-character `FILLER`s in `CATEGORY-NAMES`. `CATEGORY-TABLE REDEFINES CATEGORY-NAMES` lays a second description over the same 36 bytes: `CATEGORY ... OCCURS 4 TIMES`, an array. `DRAW-CARD` picks `CATEGORY(MOD(entries, 4) + 1)`. COBOL subscripts start at 1.
+4. **The SQL is a record file.** `SELECT SQL-SCRIPT ASSIGN TO WS-SQL-PATH ORGANIZATION IS LINE SEQUENTIAL` declares a file whose name is in a variable, and `FD SQL-SCRIPT` describes its record: one 400-character line. The program `WRITE`s a `CREATE TABLE`, a `BEGIN`, one `INSERT` per card and a `COMMIT` to it, `CLOSE`s it, and only then hands the whole script to `sqlite3`. So every run lands in one transaction, or not at all.
+5. **The ISO week is arithmetic.** COBOL has date functions but no ISO week. `FUNCTION INTEGER-OF-DATE` counts days from 1601-01-01, which was a Monday, so `MOD(day - 1, 7)` is 0 on Mondays. An ISO week belongs to the year its Thursday falls in, and week 1 is the one holding that year's first Thursday. `WORK-OUT-WEEK` is those two facts in four `COMPUTE`s. It was checked against `date +%G-W%V` for every day from 2020 to 2030, including the week-53 years, and `check.sh` compares it again on every run.
+
+### Where the program reaches outside itself
+
+| Line | Why |
+| --- | --- |
+| `CALL "C$GETPID"` | The process id, added to the timestamp for the run id, so two runs in the same hundredth of a second still differ. Also mixed into the random seed |
+| `CALL "SYSTEM"` in `OPEN-SCRIPT` | Runs `mkdir -p` on the data folder before the script file is opened in it |
+| `CALL "SYSTEM"` in `COMMIT-SCRIPT` | Runs `sqlite3 -bail db < script && rm -f script`. The script is deleted only if `sqlite3` succeeded. Otherwise the program prints where it is and exits 1 |
+| `CHECK(demo_only=1)` | Makes a non-demo row unrepresentable in the table. `check.sh` tries to insert one and expects SQLite to refuse |
+
+## What `check.sh` enforces
+
+`check.sh` first checks the source. The file has the `DEMO ONLY` marker and no network-looking text, and no line goes past column 72 (fixed format). The stop rule must really be the 88-level `OVER-FORTY VALUE 41 THRU 99` on the total, and there must be exactly one `PERFORM DRAW-CARD UNTIL OVER-FORTY`. It builds the program once (binaries are never committed), then runs it 25 times with the same checks on every run: categories in order, hours from 10 to 19, running totals that add up, a stop exactly when the total passes 40, and an ISO week that agrees with `date(1)`. SQLite must agree with the printed rows, and the 25 runs must be 25 different runs with at least six different hour values. Last, it tries to insert a non-demo row and expects SQLite to refuse it, which proves that `CHECK(demo_only=1)` is real.
+
+## Gotchas worth knowing
+
+- **Columns matter.** This is *fixed format*, from punched cards: columns 1-6 were a sequence number, a `*` in column 7 makes a comment, division and paragraph names start in column 8 ("area A"), statements start in column 12 ("area B"), and **nothing past column 72 is read**. A long line is silently cut, not rejected. `check.sh` fails if any line is longer than 72. GnuCOBOL also accepts `cobc -free`, which drops all of this.
+- **`STRING` doesn't clear its target.** It writes from the left and leaves whatever was already to the right. That's why every reused buffer gets `MOVE SPACES` first.
+- **Some names are taken.** COBOL has hundreds of reserved words. `TAB` is one in GnuCOBOL, which is why the tab character is `WS-TAB`.
+- **`SYSTEM` returns the raw wait status.** An exit code of 3 comes back as 768 (3 × 256). This file only compares it with zero.
+- **`ACCEPT ... FROM ENVIRONMENT` blanks the field when the variable is unset.** It doesn't leave it alone, so the `IF` that falls back to `$HOME/.local/share` tests for spaces.
+- **Ubuntu's compiler prints a `_FORTIFY_SOURCE redefined` warning** on every compile. It comes from `cobc`'s C flags meeting Ubuntu's GCC defaults, and it's harmless.
+- **SQL by string building is a bad habit.** It's safe here only because every value is a number computed by the program or one of four fixed words. Don't copy it.
+
+## Run it in a container
+
+Prerequisite: Docker, set up once as described in [`SANDBOX-SETUP.md`](../../SANDBOX-SETUP.md#docker).
+
+```bash
+sandbox/container/run-image.sh src/cobol
+```
+
+It builds this folder's [`Dockerfile`](Dockerfile) and runs the result with no network, a read-only file system and user `nobody`, then prints the output and a read-only look at the rows it wrote. The image holds the compiled program, GnuCOBOL's runtime library (libcob) and sqlite3 on a minimal Ubuntu. It has no compiler and no package manager.

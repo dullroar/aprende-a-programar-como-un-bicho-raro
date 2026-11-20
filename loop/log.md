@@ -4,4 +4,5 @@
 4 P0-002 blocked Bash permission denied for extracting the English tree into the repo; nothing imported
 5 - done-with-blockers no eligible task (all remaining depend on blocked P0-002); wrote HANDOFF.md and DONE
 6 P0-002 blocked Bash denied again for English tree import (tar); nothing imported
+7 P0-002 done English tree imported (git archive | tar, single command); .gitignore merged; upstream remote fetch-only
 

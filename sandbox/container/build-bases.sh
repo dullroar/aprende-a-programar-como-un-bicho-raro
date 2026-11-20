@@ -1,0 +1,73 @@
+#!/usr/bin/env bash
+# Builds (or rebuilds) the trusted images the per-entry Dockerfiles start from:
+#   code-challenge-sandbox:local   the build toolchain (sandbox/linux/Dockerfile); build stages only
+#   cc-rt-<name>:local             the minimal runtime bases (sandbox/container/Dockerfile)
+# Needs network (apt, and the toolchain's pinned downloads). Run it yourself, from master.
+#
+#   sandbox/container/build-bases.sh            # whichever are missing
+#   sandbox/container/build-bases.sh --force    # rebuild all
+set -euo pipefail
+here=$(cd "$(dirname "$0")" && pwd)
+docker=${DOCKER:-docker}
+force=0; [[ ${1:-} == --force ]] && { force=1; shift; }
+only=" $* "   # optional: names of the bases to build, e.g. gforth haskell
+host_path() { if command -v cygpath >/dev/null; then cygpath -w "$1"; else printf '%s' "$1"; fi; }
+export MSYS_NO_PATHCONV=1
+
+# name|extra apt packages (sqlite3 is always included, for the inspect step)
+bases=(
+    'sqlite|'
+    'gforth|gforth'
+    'haskell|libgmp10 libffi8'
+    'pcre2|libpcre2-8-0'
+    'go|busybox-static'
+    'make|make'
+    'cmake|cmake'
+    'gtk|xvfb scrot libgtk-4-1 fonts-dejavu-core'
+    'pytk|xvfb scrot python3 python3-tk fonts-dejavu-core'
+    'java|xvfb scrot openjdk-25-jre fonts-dejavu-core'
+    'dotnet|dotnet-runtime-10.0 libicu74'
+    'apl|libpcre2-32-0 libstdc++6'
+    'cobol|libcob4t64'
+    'sbcl|sbcl'
+    'm4|m4'
+    'tcl|tcl8.6 tk8.6 libsqlite3-tcl xvfb scrot fonts-dejavu-core'
+    'awk|gawk'
+    'ed|ed'
+)
+
+if (( force )) || ! $docker image inspect code-challenge-sandbox:local >/dev/null 2>&1; then
+    echo "building code-challenge-sandbox:local (the build toolchain; slow the first time)"
+    $docker build -t code-challenge-sandbox:local "$(host_path "$here/../linux")"
+fi
+for b in "${bases[@]}"; do
+    name=${b%%|*} pkgs=${b#*|}
+    [[ $only == "  " || $only == *" $name "* ]] || continue
+    if (( force )) || ! $docker image inspect "cc-rt-$name:local" >/dev/null 2>&1; then
+        echo "building cc-rt-$name:local"
+        $docker build --target runtime -t "cc-rt-$name:local" --build-arg "PACKAGES=$pkgs" "$(host_path "$here")"
+    fi
+done
+# nvi needs a link for its recovery directory (see the Dockerfile), so it has its own target too.
+if [[ $only == "  " || $only == *" nvi "* ]]; then
+    if (( force )) || ! $docker image inspect cc-rt-nvi:local >/dev/null 2>&1; then
+        echo "building cc-rt-nvi:local"
+        $docker build --target runtime-nvi --build-arg PACKAGES=nvi -t cc-rt-nvi:local "$(host_path "$here")"
+    fi
+fi
+# node is not an apt package here (Ubuntu's is Node 18, without node:sqlite): its own target in the Dockerfile.
+if [[ $only == "  " || $only == *" node "* ]]; then
+    if (( force )) || ! $docker image inspect cc-rt-node:local >/dev/null 2>&1; then
+        echo "building cc-rt-node:local"
+        $docker build --target runtime-node -t cc-rt-node:local "$(host_path "$here")"
+    fi
+fi
+for t in go rust java; do   # build-only bases: a toolchain image that entries' build stages start from
+    if [[ $only == "  " || $only == *" build-$t "* ]]; then
+        if (( force )) || ! $docker image inspect "cc-build-$t:local" >/dev/null 2>&1; then
+            echo "building cc-build-$t:local"
+            $docker build --target "build-$t" -t "cc-build-$t:local" "$(host_path "$here")"
+        fi
+    fi
+done
+$docker images --format 'table {{.Repository}}:{{.Tag}}\t{{.Size}}' | grep -E '^(REPOSITORY|cc-rt-|cc-build-|code-challenge-sandbox)'
