@@ -392,6 +392,26 @@ class TestI11(Base):
         self.assertFires(inv.check_segment(first("**Hint** think twice."), "**Consejo** piensa dos veces.", ctx), "I11")
 
 
+class TestI7LeadIn(Base):
+    def ctx_with_lead_in(self):
+        en_cat = catalog.Catalog("en", {"hints.lead_in_a": "The loop part.", "acronym.word": "WEIRD"})
+        es_cat = catalog.Catalog("es", {"hints.lead_in_a": "La parte repetida.", "acronym.word": "BICHO"})
+        return make_ctx(lang_cat=en_cat, cat=es_cat)
+
+    def test_term_inside_a_catalog_lead_in_is_not_checked(self):
+        ctx = self.ctx_with_lead_in()
+        self.assertClean(inv.check_segment(first("**The loop part.** Stop now."), "**La parte repetida.** Detente ahora.", ctx))
+
+    def test_term_in_the_body_after_a_lead_in_is_still_checked(self):
+        ctx = self.ctx_with_lead_in()
+        self.assertFires(inv.check_segment(first("**The loop part.** The loop stops."),
+                                           "**La parte repetida.** La repetición se detiene.", ctx), "I7")
+
+    def test_bold_that_is_not_a_catalog_lead_in_is_still_checked(self):
+        ctx = self.ctx_with_lead_in()
+        self.assertFires(inv.check_segment(first("**The loop part two.** Stop now."), "**La parte dos.** Detente ahora.", ctx), "I7")
+
+
 class TestI12(Base):
     LONG = "one two three four five six seven eight nine ten eleven twelve."
 
@@ -407,6 +427,21 @@ class TestI12(Base):
     def test_placeholder_counts_as_one_word(self):
         ctx = make_ctx(tier_of=lambda rel: "T1", sentence_limit=3)
         self.assertEqual([], inv.i12(first("`x` y."), "Usa %s aquí." % ph("CODE", 1), "g.md", ctx))
+
+    def test_closing_emphasis_after_a_question_mark_ends_the_sentence(self):
+        ctx = make_ctx(tier_of=lambda rel: "T1", sentence_limit=5)
+        self.assertEqual([], inv.i12(first("a"), "uno dos tres *¿cuatro cinco?* seis siete ocho nueve.", "g.md", ctx))
+        self.assertTrue(inv.i12(first("a"), "uno dos tres *¿cuatro cinco seis siete ocho nueve?*", "g.md", ctx))
+
+    def test_table_cell_separator_ends_a_sentence(self):
+        ctx = make_ctx(tier_of=lambda rel: "T1", sentence_limit=5)
+        sep = ph("SEP", 1)
+        self.assertEqual([], inv.i12(first("a"), "uno dos tres %s cuatro cinco seis %s" % (sep, sep), "g.md", ctx))
+
+    def test_long_text_inside_one_cell_still_fails(self):
+        ctx = make_ctx(tier_of=lambda rel: "T1", sentence_limit=5)
+        sep = ph("SEP", 1)
+        self.assertTrue(inv.i12(first("a"), "%s uno dos tres cuatro cinco seis siete %s" % (sep, sep), "g.md", ctx))
 
     def test_fail_usted(self):
         self.assertFires(self.run_seg("Run it now.", "Ejecute usted el programa.", tier_of=lambda rel: "T1"), "I12")

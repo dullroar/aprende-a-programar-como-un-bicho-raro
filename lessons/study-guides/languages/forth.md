@@ -1,182 +1,182 @@
-# Forth study guide
+# Guía de estudio de Forth
 
-## What this guide is for
+## Para qué sirve esta guía
 
-This guide reads two Forth programs: [`src/forth`](../../../src/forth/README.md), which uses a normal `begin ... until` loop and two variables, and [`src/forth-weird`](../../../src/forth-weird/README.md), which has no loop word and no variable. Its loop is a line of source text that the interpreter reads again because a word moved the parse position backwards. The question is: **what can serve as a program counter, and what can serve as memory?**
+Esta guía lee dos programas en Forth. El primero, [`src/forth`](../../../src/forth/README.md), usa un bucle `begin ... until` normal y dos variables. El segundo, [`src/forth-weird`](../../../src/forth-weird/README.md), no tiene ninguna palabra de bucle ni ninguna variable. El bucle del segundo es una línea de texto fuente que el intérprete vuelve a leer, porque una palabra movió la posición de análisis hacia atrás. La pregunta es: **¿qué puede servir como contador de programa y qué puede servir como memoria?**
 
-When you finish, you should be able to:
+Cuando termines, deberías poder:
 
-1. Read a stack-effect comment and use it to trace what a word does to the data stack.
-2. Explain what `>in` is, and why changing it re-executes text that was already read.
-3. Trace the weird program through three cards, naming the stack contents and the value of `>in` at each step.
-4. Explain why the weird loop works only on an input line, and why moving the anchor changes the machine.
-5. Label each behavior as guaranteed, implementation-permitted or accidentally exploited.
+1. Lee un comentario de efecto de pila y úsalo para trazar qué hace una palabra a la pila de datos.
+2. Explica qué es `>in` y por qué cambiarlo vuelve a ejecutar texto que ya se leyó.
+3. Traza el programa raro a lo largo de tres tarjetas. Nombra el contenido de la pila y el valor de `>in` en cada paso.
+4. Explica por qué el bucle raro funciona solo en una línea de entrada de datos, y por qué mover el ancla cambia la máquina.
+5. Etiqueta cada comportamiento como garantizado, permitido por la implementación o aprovechado por accidente.
 
-**Scope limits.** This guide does not teach Forth syntax from scratch. You need to know that words pop their inputs from a data stack and push their results, and that a definition is written `: name ... ;`. It uses Gforth 0.7.3 or later. It does not cover the SQLite pipe or `random.fs` beyond what the trace needs.
+**Límites del alcance.** Esta guía no enseña la sintaxis de Forth desde cero. Necesitas saber que las palabras sacan sus entradas de datos de una pila de datos y apilan sus resultados, y que una definición se escribe `: name ... ;`. Usa Gforth 0.7.3 o posterior. No cubre la tubería de SQLite ni `random.fs` más allá de lo que la traza necesita.
 
-The book's page is [Forth](../../languages/forth.md). The ideas are in [What counts as a machine?](../../cs/02-what-counts-as-a-machine.md#stack-machines) and [The program counter](../../cs/03-control-flow-and-continuations.md#the-program-counter).
+La página del libro es [Forth](../../languages/forth.md). Las ideas están en [¿Qué cuenta como máquina?](../../cs/02-what-counts-as-a-machine.md#stack-machines) y [El contador de programa](../../cs/03-control-flow-and-continuations.md#the-program-counter).
 
-## Before you begin
+## Antes de empezar
 
-**Safety model.** Every entry writes fictional **DEMO ONLY** data. The Forth programs start a shell process that creates a folder and runs `sqlite3`. Read the source before you run it, and run it in the sandbox first:
+**Modelo de seguridad.** Cada entrada escribe datos ficticios de **DEMO ONLY**. Los programas de Forth inician un proceso de shell que crea una carpeta y ejecuta `sqlite3`. Lee el código fuente antes de ejecutarlo y ejecútalo primero en el entorno aislado (*sandbox*), un espacio separado donde un error no daña tu equipo:
 
 ```bash
 sandbox/container/run-image.sh src/forth
 sandbox/container/run-image.sh src/forth-weird
 ```
 
-Edit only copies ([Running things safely](../../exercises.md#running-things-safely)). Set `SANDBOX_TIMEOUT=30` for exercises where the loop might continue indefinitely. A run that exceeds that limit prints `TIMEOUT after 30s`.
+Edita solo copias ([Running things safely](../../exercises.md#running-things-safely)). Define `SANDBOX_TIMEOUT=30` en los ejercicios donde el bucle pueda continuar indefinidamente. Una ejecución que supere ese límite imprime `TIMEOUT after 30s`.
 
-**Prediction rule.** Write down the stack and the value of `>in` that you expect before each run. A trace you did not predict teaches little.
+**Regla de predicción.** Anota la pila y el valor de `>in` que esperas antes de cada ejecución. Una traza que no predijiste enseña poco.
 
-**Vocabulary.**
+**Vocabulario.**
 
-| Term | Meaning here |
+| Término | Significado aquí |
 | --- | --- |
-| Data stack | Where words take their inputs and leave their results. The weird program's only memory. |
-| Return stack | A second stack. A word may park a value there for a moment (`>r` and `r>`). |
-| Stack effect | A comment like `( n total -- n' total' )`: the stack before, then after. It is convention, not enforced. |
-| Text interpreter | The loop that reads a word, finds it and runs it (or compiles it). |
-| `>in` | A variable holding the text interpreter's current offset into the input line. |
+| Pila de datos | Donde las palabras toman sus entradas de datos y dejan sus resultados. La única memoria del programa raro. |
+| Pila de retorno | Una segunda pila. Una palabra puede guardar allí un valor por un momento (`>r` y `r>`). |
+| Efecto de pila | Un comentario como `( n total -- n' total' )`: la pila antes y después. Es una convención y no se impone. |
+| Intérprete de texto | El bucle que lee una palabra, la busca y la ejecuta (o la compila). |
+| `>in` | Una variable que guarda la posición actual del intérprete de texto dentro de la línea de entrada de datos. |
 
-## The shared challenge
+## El reto compartido
 
-The [challenge specification](../../intro.md#what-the-challenge-does) calls for cards with a category and 10 to 19 whole hours. Categories cycle through Meetings, Coding, Debugging and Learning. Add each card's hours to the running total. Stop when the total passes 40. Keep the **first card that takes the total over 40**. A total of exactly 40 continues. Four 10-hour cards need a fifth card, in the Meetings category. Conforming runs finish with 3 to 5 cards and a total of 41 to 59 hours.
+La [especificación del reto](../../intro.md#what-the-challenge-does) pide tarjetas con una categoría y de 10 a 19 horas enteras. Las categorías siguen este ciclo: Meetings, Coding, Debugging y Learning. Suma las horas de cada tarjeta al total acumulado. Detente cuando el total pase de 40. Conserva la **primera tarjeta que lleva el total a más de 40**. Un total de exactamente 40 continúa. Cuatro tarjetas de 10 horas necesitan una quinta tarjeta, de la categoría Meetings. Las ejecuciones conformes terminan así: de 3 a 5 tarjetas y un total de 41 a 59 horas.
 
-Both Forth entries save the cards in one SQLite transaction and print a summary. Forth writes the boundary in two different ways, and the difference is worth seeing. The plain program says `total @ 40 >` ([L105](../../../src/forth/timecards.fs#L105)): stop when the total is *over* 40. The weird program says `over 41 <` ([L93](../../../src/forth-weird/timecards.fs#L93)): *keep going* while the total is *below 41*. Both are the same rule. Exactly 40 is below 41, so the loop continues.
+Las dos entradas de Forth guardan las tarjetas en una sola transacción de SQLite e imprimen un resumen. Forth escribe el límite de dos maneras distintas, y vale la pena ver la diferencia. El programa simple dice `total @ 40 >` ([L105](../../../src/forth/timecards.fs#L105)): se detiene cuando el total *pasa de* 40. El programa raro dice `over 41 <` ([L93](../../../src/forth-weird/timecards.fs#L93)): *continúa* mientras el total sea *menor que 41*. Las dos son la misma regla. Un total de exactamente 40 es menor que 41, así que el bucle continúa.
 
-## The machine to identify
+## La máquina que hay que identificar
 
-**What repeats.** In `forth`, a `begin ... until` loop inside the word `run` ([L108](../../../src/forth/timecards.fs#L108)). In `forth-weird`, a *segment of source text*: the words `step rewind?` on one line, read repeatedly by the text interpreter ([L101](../../../src/forth-weird/timecards.fs#L101)).
+**Qué se repite.** En `forth`, un bucle `begin ... until` dentro de la palabra `run` ([L108](../../../src/forth/timecards.fs#L108)). En `forth-weird`, un *segmento de texto fuente*: las palabras `step rewind?` en una línea, que el intérprete de texto lee repetidamente ([L101](../../../src/forth-weird/timecards.fs#L101)).
 
-**Where state lives.** In `forth`, two variables, `total` and `cards`, and a few values. In `forth-weird`, the data stack, and only the data stack. The file contains no `variable` at all. Between passes, the stack holds three numbers: `( n total anchor )`, where `n` is the number of cards so far, `total` is the running total, and `anchor` is the `>in` value to return to.
+**Dónde vive el estado.** En `forth`, dos variables, `total` y `cards`, y unos pocos valores. En `forth-weird`, la pila de datos, y solo la pila de datos. El archivo no contiene ningún `variable`. Entre pasadas, la pila guarda tres números: `( n total anchor )`. Aquí `n` es el número de tarjetas hasta ahora, `total` es el total acumulado y `anchor` es el valor de `>in` al que se debe volver.
 
-**What advances the next step.** In `forth`, `until` consumes a flag that `over-40?` leaves on the stack, and either repeats or exits the loop. In `forth-weird`, the text interpreter simply reads the next word on the line. The loop exists because the word `rewind?` can move the interpreter's position *backwards*. The program counter is `>in`.
+**Qué hace avanzar el paso siguiente.** En `forth`, `until` consume una bandera que `over-40?` deja en la pila, y repite el bucle o sale de él. En `forth-weird`, el intérprete de texto simplemente lee la palabra siguiente de la línea. El bucle existe porque la palabra `rewind?` puede mover la posición del intérprete *hacia atrás*. El contador de programa es `>in`.
 
-**What stops it.** In `forth`, `until` receives a true flag. In `forth-weird`, `rewind?` computes the flag `-1` (true, all bits set) while the total is 40 or less and `0` otherwise, and uses it to mask the distance back to the anchor. When the flag is `0` the distance becomes `0`, `>in` does not move and the interpreter reads on to the next line.
+**Qué lo detiene.** En `forth`, `until` recibe una bandera verdadera. En `forth-weird`, `rewind?` calcula la bandera `-1` (verdadero, con todos los bits activados) mientras el total no pasa de 40, y `0` en caso contrario. Después usa esa bandera para enmascarar la distancia de regreso al ancla. Cuando la bandera es `0`, la distancia pasa a ser `0`, `>in` no se mueve y el intérprete sigue leyendo la línea siguiente.
 
-**What commits.** The same in both: `INSERT` text goes through a pipe to `sqlite3` as each card is made, between a `BEGIN` and a `COMMIT`, and the commit happens once after the last card. The rows printed on the terminal are separate and already visible. The weird program has no branch to skip the commit, because there is no `if`: it reaches the commit because it reaches the end of the loop line.
+**Qué confirma.** Es igual en ambos: el texto de `INSERT` pasa por una tubería a `sqlite3` cada vez que se crea una tarjeta, entre un `BEGIN` y un `COMMIT`. La confirmación ocurre una sola vez, después de la última tarjeta. Las filas impresas en la terminal son independientes y ya están visibles. El programa raro no tiene ninguna rama para omitir la confirmación, porque no hay `if`. Llega a la confirmación porque llega al final de la línea del bucle.
 
 <!-- diagram-source: src/forth/README.md#program-flow -->
 
 ```mermaid
 flowchart TD
-    accTitle: forth: one begin until loop over a word called card
-    accDescr: A flowchart. The word main sets up, which opens a pipe to sqlite3, and writes the schema. The word run is a begin until loop. Each pass runs card, which draws hours, adds them to the total variable, bumps the card count, prints the row, and sends the INSERT through the pipe. Then over-40 leaves a flag on the stack, and until consumes it. If the flag is false, the loop repeats. If it is true, run ends, and main commits, closes the pipe and reports.
-    A["main: open the pipe to sqlite3, write the schema"] --> B["run: begin"]
-    B --> C["card: draw hours, add to total, bump cards"]
-    C --> D["Print the row; send the INSERT through the pipe"]
-    D --> E{{"over-40? leaves a flag; until consumes it"}}
+    accTitle: forth: un solo bucle begin until sobre una palabra llamada card
+    accDescr: Un diagrama de flujo. La palabra main hace la preparación: abre una tubería a sqlite3 y escribe el esquema. La palabra run es un bucle begin until. Cada pasada ejecuta card. Esta palabra sortea las horas, las suma a la variable total, incrementa el conteo de tarjetas, imprime la fila y envía el INSERT por la tubería. Después over-40 deja una bandera en la pila, y until la consume. Si la bandera es falsa, el bucle se repite. Si es verdadera, run termina, y main confirma, cierra la tubería e informa.
+    A["main: abre la tubería a sqlite3, escribe el esquema"] --> B["run: begin"]
+    B --> C["card: saca horas, suma al total, incrementa tarjetas"]
+    C --> D["Imprime la fila; envía el INSERT por la tubería"]
+    D --> E{{"over-40? deja una bandera; until la consume"}}
     E -->|false| B
-    E -->|true| F["main: commit, close the pipe, report"]
+    E -->|true| F["main: confirma, cierra la tubería, informa"]
 ```
 
-The first diagram is a loop with a flag test. The flag is computed *after* the card, so the crossing card is kept.
+El primer diagrama es un bucle con una prueba de bandera. La bandera se calcula *después* de la tarjeta, así que se conserva la tarjeta que cruza el límite.
 
 <!-- diagram-source: src/forth-weird/README.md#program-flow -->
 
 ```mermaid
 flowchart TD
-    accTitle: forth-weird: the text interpreter reads the same words again
-    accDescr: A flowchart. The Forth text interpreter reads one line: zero zero, then at-in fetch, then step, then rewind-question. Zero zero pushes the card number and the total. At-in fetch pushes the parse position, which is the anchor. The word step runs one card with the anchor kept on the return stack. The word rewind-question makes a flag, minus one while the total is 40 or less, and zero otherwise. It combines the flag with the distance back to the anchor, and adds that to the parse position. If the flag was true, the parse position is back at the anchor, so the interpreter reads step again. If it was false, the parse position is unchanged, and the interpreter goes on to drop, commit and report.
-    A["Interpreter reads: 0 0 #gt;in @ — stack holds n, total and anchor"] --> B["Interpreter reads the word step: runs one card, anchor kept on the return stack"]
-    B --> C["Interpreter reads rewind?: flag is -1 while total <= 40, else 0"]
-    C --> D["Distance back to the anchor AND flag, added to the parse position #gt;in"]
-    D --> E{{"Is the parse position back at the anchor?"}}
-    E -->|"yes: flag was -1"| B
-    E -->|"no: flag was 0"| F["Interpreter reads on: drop the anchor, commit, report"]
+    accTitle: forth-weird: el intérprete de texto lee las mismas palabras otra vez
+    accDescr: Un diagrama de flujo. El intérprete de texto de Forth lee una línea: cero cero, luego at-in fetch, luego step, luego rewind-question. Cero cero apila el número de tarjeta y el total. At-in fetch apila la posición de análisis, que es el ancla. La palabra step ejecuta una tarjeta con el ancla guardada en la pila de retorno. La palabra rewind-question crea una bandera: menos uno mientras el total no pasa de 40, y cero en caso contrario. Combina la bandera con la distancia de vuelta al ancla y suma el resultado a la posición de análisis. Si la bandera era verdadera, la posición de análisis vuelve al ancla, así que el intérprete lee step otra vez. Si era falsa, la posición de análisis no cambia y el intérprete sigue con drop, commit y report.
+    A["El intérprete lee: 0 0 #gt;in @ — la pila contiene n, el total y el ancla"] --> B["El intérprete lee la palabra step: ejecuta una tarjeta, con el ancla guardada en la pila de retorno"]
+    B --> C["El intérprete lee rewind?: la bandera es -1 mientras el total no pasa de 40; en otro caso, es 0"]
+    C --> D["Distancia de regreso al ancla Y la bandera, sumada a la posición de análisis #gt;in"]
+    D --> E{{"¿Volvió la posición de análisis al ancla?"}}
+    E -->|"sí: la bandera era -1"| B
+    E -->|"no: la bandera era 0"| F["El intérprete sigue leyendo: descarta el ancla, confirma, informa"]
 ```
 
-The second has no test that chooses between two *statements*. The loop edge exists because `>in` is set back to the anchor. The only "decision" is arithmetic on the flag.
+El segundo no tiene ninguna prueba que elija entre dos *instrucciones*. La arista del bucle existe porque `>in` vuelve a fijarse en el ancla. La única "decisión" es aritmética sobre la bandera.
 
-## Trace one run
+## Traza una ejecución
 
-The programs draw random hours. Use hours **15, 19, 12** for the trace. To check it against real behavior, a scratch copy of `forth-weird` was run in the sandbox with the random-hours step replaced by a fixed table (15, 19, 12) and with three print statements added: the stack and `>in` after each `step`, and `>in` before and after `rewind?`. The values below are what it printed.
+Los programas eligen horas al azar. Usa las horas **15, 19, 12** para la traza. Para comprobar la traza con el comportamiento real, se ejecutó una copia de prueba de `forth-weird` en el entorno aislado (*sandbox*). Un entorno aislado es un espacio separado donde el código no afecta al resto del sistema. En esa copia, el paso de horas aleatorias se reemplazó por una tabla fija (15, 19, 12). Además, se añadieron tres instrucciones de impresión: la pila y `>in` después de cada `step`, y `>in` antes y después de `rewind?`. Los valores de abajo son lo que se imprimió.
 
-The line being interpreted is line 101: `0 0 >in @ step rewind?`. Offsets count characters from the start of that line.
+La línea que se interpreta es la línea 101: `0 0 >in @ step rewind?`. Los desfases cuentan caracteres desde el inicio de esa línea.
 
-| Moment | Data stack `( n total anchor )` | `>in` | What happened |
+| Momento | Pila de datos `( n total anchor )` | `>in` | Qué pasó |
 | --- | --- | ---: | --- |
-| After `0 0 >in @` | `0 0 10` | 10 | `>in @` pushed the offset just after `@`, which is where the word `step` begins. That value, 10, is the **anchor**. |
-| After `step`, pass 1 | `1 15 10` | 15 | `card` drew 15 hours, made total 15, printed the row and wrote the `INSERT`. The anchor rode on the return stack so `card` could not touch it. |
-| `rewind?`, pass 1 | flag is `-1` (15 < 41) | 23, then **10** | The distance 10 − 23 = −13 was kept (flag true) and added to `>in`. The text interpreter is back before `step`. |
-| After `step`, pass 2 | `2 34 10` | 15 | Coding, 19 hours, total 34. The `0 0` was *not* read again: the anchor is after them. |
-| `rewind?`, pass 2 | flag is `-1` (34 < 41) | 23, then **10** | Rewound again. |
-| After `step`, pass 3 | `3 46 10` | 15 | Debugging, 12 hours, total 46. |
-| `rewind?`, pass 3 | flag is `0` (46 is not below 41) | 23, then **23** | The distance is masked to 0. `>in` does not move. The interpreter reads on and runs `drop` on the next line. |
+| Después de `0 0 >in @` | `0 0 10` | 10 | `>in @` puso en la pila el desplazamiento justo después de `@`, que es donde empieza la palabra `step`. Ese valor, 10, es el **ancla**. |
+| Después de `step`, pasada 1 | `1 15 10` | 15 | `card` tomó 15 horas, dejó el total en 15, imprimió la fila y escribió el `INSERT`. El ancla viajó en la pila de retorno, así que `card` no pudo tocarla. |
+| `rewind?`, pasada 1 | la bandera es `-1` (15 < 41) | 23, luego **10** | La distancia 10 − 23 = −13 se conservó (bandera verdadera) y se sumó a `>in`. El intérprete de texto está de vuelta antes de `step`. |
+| Después de `step`, pasada 2 | `2 34 10` | 15 | Coding, 19 horas, total 34. Los `0 0` *no* se leyeron de nuevo: el ancla está después de ellos. |
+| `rewind?`, pasada 2 | la bandera es `-1` (34 < 41) | 23, luego **10** | Se rebobina otra vez. |
+| Después de `step`, pasada 3 | `3 46 10` | 15 | Debugging, 12 horas, total 46. |
+| `rewind?`, pasada 3 | la bandera es `0` (46 no es menor que 41) | 23, luego **23** | La distancia se enmascara a 0. `>in` no se mueve. El intérprete sigue leyendo y ejecuta `drop` en la línea siguiente. |
 
-The scratch run printed these cards: `Meetings 15 15`, `Coding 19 34`, `Debugging 12 46`, then `# committed total=46 entries=3 DEMO ONLY`.
+La ejecución de prueba imprimió estas tarjetas: `Meetings 15 15`, `Coding 19 34`, `Debugging 12 46` y después `# committed total=46 entries=3 DEMO ONLY`.
 
-Two things to notice. First, `>in` is 15 after every `step` and 23 at every `rewind?`. The text interpreter does not "know" it is in a loop: it reads the same characters in the same places each time. Second, the numbers 10, 15 and 23 are offsets into one specific line. Edit the spaces on line 101 and the offsets change, but the anchor, which is read at run time, follows. That is why the program survives reformatting and why it fails if you read the anchor *after* the state (see the exercise below).
+Fíjate en dos cosas. Primero, `>in` vale 15 después de cada `step` y 23 en cada `rewind?`. El intérprete de texto no "sabe" que está en un bucle: lee los mismos caracteres en los mismos lugares cada vez. Segundo, los números 10, 15 y 23 son desplazamientos dentro de una línea concreta. Edita los espacios de la línea 101 y los desplazamientos cambian, pero el ancla, que se lee en tiempo de ejecución, los sigue. Por eso el programa sobrevive al reformateo y por eso falla si lees el ancla *después* del estado (consulta el ejercicio de abajo).
 
-**The plain program for comparison.** `run` executes `card`, then `over-40?` leaves `total @ 40 >` as a flag, and `until` consumes it. With hours 15, 19, 12 the totals are 15, 34, 46, and the flags are false, false, true. The variables `total` and `cards` hold 46 and 3 at the end.
+**El programa simple para comparar.** `run` ejecuta `card`, luego `over-40?` deja `total @ 40 >` como bandera, y `until` la consume. Con las horas 15, 19 y 12, los totales son 15, 34 y 46, y las banderas son falso, falso y verdadero. Las variables `total` y `cards` contienen 46 y 3 al final.
 
-**Exactly 40.** With hours 10, 10, 10, 10 the totals are 10, 20, 30, 40. At 40 the weird flag is `-1` (40 < 41), so the interpreter rewinds and a fifth card is drawn. Predict the fifth card's category before you check: the category is chosen by `n` modulo 4 ([L29](../../../src/forth-weird/timecards.fs#L29)), and `n` is 4.
+**Exactamente 40.** Con las horas 10, 10, 10, 10, los totales son 10, 20, 30, 40. Con un total de 40, la bandera rara es `-1` (40 < 41), así que el intérprete retrocede y saca una quinta tarjeta. Predice la categoría de la quinta tarjeta antes de comprobarla: la categoría se elige con `n` módulo 4 ([L29](../../../src/forth-weird/timecards.fs#L29)), y `n` es 4.
 
-## Compare the ordinary and weird designs
+## Compara los diseños ordinarios y los raros
 
-| Dimension | `forth` | `forth-weird` |
+| Dimensión | `forth` | `forth-weird` |
 | --- | --- | --- |
-| **Representation** | State in two named variables. Loop is `begin ... until`. | State is three numbers on the data stack. Loop is a rewound parse position. |
-| **Observability** | Inspect `total @` and `cards @` at any time. | The state exists only as stack depth and order. `.s` prints it, but nothing has a name. A wrong stack effect shows up as garbage several words later. |
-| **Tests** | Call `over-40?` after setting `total`. | The rule is inside `rewind?`, which needs a stack and a live `>in`. You test the whole line, not the rule. |
-| **Debugging** | Standard: trace the variables. | The program counter is data. A debugger that shows the stack but not `>in` cannot say where it will read next. |
-| **Portability** | Standard Forth control words in a definition. | Depends on `>in` being writable and on the interpreter rereading the same line. The program works because input comes from a file line by line. |
-| **Cost** | Normal. | Each pass re-parses the words (a dictionary lookup per word). A typing mistake in the stack effects gives silent wrong data, not an error. |
+| **Representación** | El estado está en dos variables con nombre. El bucle es `begin ... until`. | El estado son tres números en la pila de datos. El bucle es una posición de análisis rebobinada. |
+| **Observabilidad** | Inspecciona `total @` y `cards @` en cualquier momento. | El estado existe solo como profundidad de la pila y orden. `.s` lo imprime, pero nada tiene nombre. Un efecto de pila incorrecto aparece como basura varias palabras después. |
+| **Pruebas** | Llama a `over-40?` después de establecer `total`. | La regla está dentro de `rewind?`, que necesita una pila y un `>in` activo. Pruebas la línea completa, no la regla. |
+| **Debugging** | Estándar: haz la traza de las variables. | El contador de programa es un dato. Un depurador que muestra la pila, pero no `>in`, no puede decir dónde leerá a continuación. |
+| **Portabilidad** | Palabras de control de Forth estándar dentro de una definición. | Depende de que `>in` se pueda escribir y de que el intérprete vuelva a leer la misma línea. El programa funciona porque la entrada de datos viene de un archivo, línea por línea. |
+| **Costo** | Normal. | Cada pasada vuelve a analizar las palabras (una búsqueda en el diccionario por palabra). Un error de tipos en los efectos de pila da datos incorrectos en silencio, sin producir un error. |
 
-Forth's standard says control words such as `begin` work only inside definitions, so the plain program must wrap its loop in `run`. The weird program goes the other way: it uses the *interpreter's* loop, which needs no definition.
+El estándar de Forth dice que las palabras de control como `begin` funcionan solo dentro de definiciones, así que el programa normal debe envolver su bucle en `run`. El programa raro hace lo contrario: usa el bucle del *intérprete*, que no necesita ninguna definición.
 
-## What the exercises demonstrate
+## Qué demuestran los ejercicios
 
-| Exercise | Predict first | What the evidence shows |
+| Ejercicio | Predice primero | Lo que muestra la evidencia |
 | --- | --- | --- |
-| [B3. Forth: move the anchor](../../exercises.md#b3-forth-move-the-anchor-verified), change (a) | Put `0 0` on its own line *before* `>in @ step rewind?`. Does anything break? | Harmless. The anchor is still read after the `0 0` are pushed, so rewinding never rereads them. |
-| B3, change (b) | Write the line as `>in @ 0 0 step rewind?`. What happens? | It does not stop. Rewinding to the anchor now rereads `0 0`, which pushes a fresh card count and total every pass, so the state resets each time. The book's check: no `# committed` line, hundreds of rows, and every row's total equals its own hours. **State must be created before the anchor.** |
-| B3, change (c) | Change `41 <` to `51 <`. What is the new stop rule? | The stop rule becomes "total passes 50" and `check-demo.sh out.txt 50` passes. The limit lives in one constant inside `rewind?`. |
-| [C2. Make the constraint real](../../exercises.md#c2-make-the-constraint-real-verified) | What would a check that bans loop words need to ignore? | The [reference checker](../../solutions/c2-forth-rule-check.sh) strips backslash line comments, parenthesized comments and `." strings"` before checking banned words. A constraint check is itself a small parser. |
-| [C1. Weird next to boring](../../exercises.md#c1-weird-next-to-boring-verified) | In which program can you name the loop's state? | `forth` names it (`total`, `cards`). `forth-weird` has three unnamed numbers and a parse position. |
+| [B3. Forth: mueve el ancla](../../exercises.md#b3-forth-move-the-anchor-verified), cambio (a) | Pon `0 0` en su propia línea *antes* de `>in @ step rewind?`. ¿Se rompe algo? | Es inofensivo. El ancla se sigue leyendo después de apilar los `0 0`, así que al rebobinar nunca se vuelven a leer. |
+| B3, cambio (b) | Escribe la línea como `>in @ 0 0 step rewind?`. ¿Qué pasa? | No se detiene. Ahora, rebobinar hasta el ancla vuelve a leer `0 0`. Esa línea apila un conteo de tarjetas y un total nuevos en cada pasada. Por eso el estado se reinicia cada vez. La comprobación del libro: no aparece ninguna línea `# committed`, salen cientos de filas y el total de cada fila es igual a sus propias horas. **Debes crear el estado antes del ancla.** |
+| B3, cambio (c) | Cambia `41 <` a `51 <`. ¿Cuál es la nueva regla de parada? | La regla de parada queda como "el total pasa de 50" y `check-demo.sh out.txt 50` pasa. El límite vive en una sola constante dentro de `rewind?`. |
+| [C2. Haz real la restricción](../../exercises.md#c2-make-the-constraint-real-verified) | ¿Qué debería ignorar una comprobación que prohíbe las palabras de bucle? | El [verificador de referencia](../../solutions/c2-forth-rule-check.sh) elimina los comentarios de línea con barra invertida, los comentarios entre paréntesis y `." strings"` antes de buscar las palabras prohibidas. Una comprobación de restricciones es en sí misma un pequeño analizador sintáctico. |
+| [C1. Lo raro junto a lo aburrido](../../exercises.md#c1-weird-next-to-boring-verified) | ¿En qué programa puedes nombrar el estado del bucle? | `forth` lo nombra (`total`, `cards`). `forth-weird` tiene tres números sin nombre y una posición de análisis. |
 
-The question the book asks about change (b) is the best test of understanding: *why does only (b) break the loop?* If your answer is not "because `>in @` captures the position after the state is pushed, and (b) moves the state to the other side of that position", read the trace table again.
+La pregunta que el libro hace sobre el cambio (b) es la mejor prueba de comprensión: *¿por qué solo (b) rompe el bucle?* Tu respuesta debería ser esta: "porque `>in @` captura la posición después de apilar el estado, y (b) mueve el estado al otro lado de esa posición". Si no lo es, lee otra vez la tabla de traza.
 
-## Failure modes, costs and boundaries
+## Modos de fallo, costos y límites
 
-| Behavior | Label | Why |
+| Comportamiento | Etiqueta | Por qué |
 | --- | --- | --- |
-| Words take inputs from and leave outputs on a data stack, per their stack effects | **guaranteed** | The core model of the language. |
-| `>in` holds an offset into the current input buffer, and writing it changes where the interpreter reads next | **guaranteed** that `>IN` exists, holds the parse offset and can be written | That is its documented purpose. Keeping the new value inside the current line is the program's own responsibility, and this program does. |
-| `-1` is true and `0` is false, so `AND` can mask a number with a flag | **guaranteed** | Forth flags are all-bits-set or zero. A word that returns `1` for true would break the trick. |
-| The input comes from a file one line at a time, so `>in` is relative to *that line* | **implementation-permitted** | How the line buffer is refilled is the system's business. The program has been checked with Gforth. |
-| After `>in @`, the stored value points just after the `@` and before `step` (here, 10) | **implementation-permitted** | The exact offset depends on whether the system consumes the delimiter after a word. It follows the tested system's parser. |
-| The ISO week comes from `date +%G-W%V` run through a pipe | **implementation-permitted** | A host command, not Forth. |
+| Las palabras toman entradas de datos de una pila de datos y dejan salidas en ella, según sus efectos en la pila | **garantizado** | El modelo central del lenguaje. |
+| `>in` contiene un desplazamiento dentro del búfer de entrada de datos actual, y escribir en él cambia dónde lee el intérprete a continuación | **garantizado** que `>IN` existe, contiene el desplazamiento de análisis y se puede escribir | Ese es su propósito documentado. Mantener el nuevo valor dentro de la línea actual es responsabilidad del propio programa, y este programa lo hace. |
+| `-1` es verdadero y `0` es falso, así que `AND` puede enmascarar un número con una bandera | **garantizado** | Las banderas de Forth tienen todos los bits activados o son cero. Una palabra que devuelva `1` para verdadero rompería el truco. |
+| La entrada de datos viene de un archivo, una línea a la vez, así que `>in` es relativo a *esa línea* | **permitido por la implementación** | El sistema decide cómo se vuelve a llenar el búfer de línea. Se comprobó el programa con Gforth. |
+| Después de `>in @`, el valor almacenado apunta justo después de `@` y antes de `step` (aquí, 10) | **permitido por la implementación** | El desplazamiento exacto depende de si el sistema consume el delimitador después de una palabra. Sigue el analizador sintáctico del sistema probado. |
+| La semana ISO viene de `date +%G-W%V` ejecutado a través de una tubería | **permitido por la implementación** | Un comando del anfitrión, no de Forth. |
 
-No behavior in the Forth entries is merely accidentally exploited. The closest is the dependence on the exact offset above: it is observable, tested and documented in the README, but a different Forth could place the anchor one character away. For this program that would be harmless, because rewinding to the delimiter or to the word start rereads the same text.
+Ningún comportamiento de las entradas de Forth es solo aprovechado por accidente. Lo más cercano es la dependencia del desplazamiento exacto de arriba. Ese desplazamiento es observable, está probado y está documentado en el README. Aun así, otro Forth podría colocar el ancla a un carácter de distancia. Para este programa eso sería inofensivo, porque retroceder hasta el delimitador o hasta el inicio de la palabra vuelve a leer el mismo texto.
 
-**Costs to state.**
+**Costos que debes declarar.**
 
-- **The same rewind inside a definition does not work.** Once a line is compiled into a word, the text interpreter is no longer reading it. The loop needs the *interpreter*. The book's note: this works because the words are read from an input line.
-- **Silent stack errors.** Stack effects are comments, and nothing enforces them. One word that leaves one extra number turns the next pass's total into the wrong number.
-- **The program counter can be corrupted by ordinary data.** `rewind?` adds a *computed number* to `>in`. A bug in that computation reads the wrong text, not an error message.
-- **Where the idea is legitimate.** A Forth implementer, a parsing word or a debugger may rewind `>in` on purpose. The stunt is that technique used for an application loop.
+- **El mismo retroceso dentro de una definición no funciona.** Una vez que una línea se compila en una palabra, el intérprete de texto ya no la lee. El bucle necesita el *intérprete*. La nota del libro: esto funciona porque las palabras se leen desde una línea de entrada de datos.
+- **Errores silenciosos de la pila.** Los efectos de pila son comentarios, y nada los hace cumplir. Una palabra que deja un número de más convierte el total del turno siguiente en un número equivocado.
+- **Datos comunes pueden corromper el contador de programa.** `rewind?` suma un *número calculado* a `>in`. Un bicho en ese cálculo lee el texto equivocado y no produce un mensaje de error.
+- **Dónde la idea es legítima.** Quien implementa Forth, una palabra de análisis sintáctico o un depurador puede retroceder `>in` a propósito. El truco consiste en usar esa técnica para un bucle de aplicación.
 
-## Connections across the repository
+## Conexiones a lo largo del repositorio
 
-- **Parse position as control state.** [COBOL](cobol.md) stores the next step in a jump target. [Make and CMake](make-and-cmake.md) store it in which files exist and in regex captures. [Tcl](tcl.md) stores it in a database trigger. The concept guide [State and control beyond variables](../concepts/state-and-control-beyond-variables.md) compares them with one worksheet.
-- **Memory that has no names.** [Haskell](haskell.md)'s weird program also keeps its running total somewhere nameless: inside the list of cards being built, where each card reads its predecessor.
-- **Text reread.** [m4](m4.md) reads its own expansions again (rescanning), which is the text-level cousin of "read the same text again". [ed and Ex](ed-and-ex.md) execute lines out of a buffer, so their program counter is data too.
-- **Concept guides.** [Reading adversarial programs](../concepts/reading-adversarial-programs.md) and [Comparative machine design](../concepts/comparative-machine-design.md).
-- **In the book.** [Forth](../../languages/forth.md), [Stack machines](../../cs/02-what-counts-as-a-machine.md#stack-machines) and [The stack as a data structure](../../cs/06-state-beyond-variables.md#the-stack-as-a-data-structure).
+- **La posición de análisis como estado de control.** [COBOL](cobol.md) guarda el siguiente paso en un destino de salto. [Make y CMake](make-and-cmake.md) lo guardan en qué archivos existen y en las capturas de regex. [Tcl](tcl.md) lo guarda en un disparador de base de datos. La guía de concepto [Estado y control más allá de las variables](../concepts/state-and-control-beyond-variables.md) los compara con una sola hoja de trabajo.
+- **Memoria sin nombres.** El programa raro de [Haskell](haskell.md) también guarda su total acumulado en un lugar sin nombre: dentro de la lista de tarjetas que construye. Allí cada tarjeta lee la anterior.
+- **Relectura del texto.** [m4](m4.md) vuelve a leer sus propias expansiones (reescaneo). Es el pariente, a nivel de texto, de "leer el mismo texto otra vez". [ed y Ex](ed-and-ex.md) ejecutan líneas desde un búfer, así que su contador de programa también es un dato.
+- **Guías de concepto.** [Cómo leer programas adversariales](../concepts/reading-adversarial-programs.md) y [Diseño comparado de máquinas](../concepts/comparative-machine-design.md).
+- **En el libro.** [Forth](../../languages/forth.md), [Máquinas de pila](../../cs/02-what-counts-as-a-machine.md#stack-machines) y [La pila como estructura de datos](../../cs/06-state-beyond-variables.md#the-stack-as-a-data-structure).
 
-## Self-check
+## Autoevaluación
 
-Answer each question in your own words before you read the italic text. Say what evidence would support each answer.
+Responde cada pregunta con tus propias palabras antes de leer el texto en cursiva. Di qué evidencia respaldaría cada respuesta.
 
-1. **Trace.** In the weird program, hours are 11, 11, 11, 11. Give the stack `( n total anchor )` after the fourth `step` and the flag from `rewind?`. Does the program draw a fifth card? *(Stack `4 44 10`. The flag is `0`, because 44 is not below 41. It draws no fifth card. The totals are 11, 22, 33, 44, and the fourth card is the crossing card.)*
-2. **Explain.** Why is the anchor kept on the return stack while `card` runs, and not on the data stack? *(`card` changes the depth of the data stack: it consumes the card number and the total and replaces them. Parking the anchor on the return stack keeps it out of the way, and `step` takes it back with `r>`.)*
-3. **Transfer.** The program counter of the weird machine is `>in`. Name the program counter, or the closest thing to one, of the COBOL weird entry and of the Make entry. *(COBOL: the current target of `NEXT-CARD`'s `GO TO`, plus the normal fall-through from paragraph to paragraph. Make: the set of `.tc-N.mk` files that exist, which decides whether Make restarts. The concept guide on state and control develops both.)*
-4. **Evidence.** A reviewer says, "The position of the anchor alone determines whether the loop stops." Design a test that could fail. Compare two edits. Predict which one prevents the loop from stopping. *(Move `0 0` after `>in @`: the state resets each pass and it does not stop. Move `0 0` to its own earlier line: it still passes. Run both with `SANDBOX_TIMEOUT=30`.)*
+1. **Traza.** En el programa raro, las horas son 11, 11, 11, 11. Da la pila `( n total anchor )` después de `step` por cuarta vez y la bandera de `rewind?`. ¿El programa saca una quinta tarjeta? *(Pila `4 44 10`. La bandera es `0`, porque 44 no es menor que 41. No saca una quinta tarjeta. Los totales son 11, 22, 33, 44, y la cuarta tarjeta es la tarjeta de cruce.)*
+2. **Explica.** ¿Por qué el ancla se mantiene en la pila de retorno mientras se ejecuta `card`, y no en la pila de datos? *(`card` cambia la profundidad de la pila de datos: consume el número de tarjeta y el total, y los reemplaza. Dejar el ancla en la pila de retorno la aparta del camino, y `step` la recupera con `r>`.)*
+3. **Transfiere.** El contador de programa de la máquina rara (*weird machine*: la máquina que el programa raro forma con sus propias piezas) es `>in`. Nombra el contador de programa, o lo más parecido a uno, de la entrada rara de COBOL y de la entrada de Make. *(COBOL: el destino actual de `GO TO` en `NEXT-CARD`, más el paso normal de un párrafo al siguiente. Make: el conjunto de archivos `.tc-N.mk` que existen, que decide si Make se reinicia. La guía de concepto sobre estado y control desarrolla ambos.)*
+4. **Evidencia.** Un revisor dice: "Solo la posición del ancla determina si el bucle se detiene". Diseña una prueba que pueda fallar. Compara dos ediciones. Predice cuál impide que el bucle se detenga. *(Mueve `0 0` después de `>in @`: el estado se reinicia en cada pasada y el bucle no se detiene. Mueve `0 0` a una línea propia anterior: sigue pasando. Ejecuta ambas con `SANDBOX_TIMEOUT=30`.)*
 
-## Further reading
+## Lecturas adicionales
 
-- [Forth (programming language)](https://en.wikipedia.org/wiki/Forth_(programming_language)) (Wikipedia): the language's history, the two stacks and the dictionary.
-- [Stack machine](https://en.wikipedia.org/wiki/Stack_machine) (Wikipedia): why a stack can be the whole memory of a program.
-- [Stack machines](../../cs/02-what-counts-as-a-machine.md#stack-machines) and [The program counter](../../cs/03-control-flow-and-continuations.md#the-program-counter) (this book): the two ideas this program puts together.
+- [Forth (lenguaje de programación)](https://en.wikipedia.org/wiki/Forth_(programming_language)) (Wikipedia): la historia del lenguaje, las dos pilas y el diccionario.
+- [Máquina de pila](https://en.wikipedia.org/wiki/Stack_machine) (Wikipedia): por qué una pila puede ser toda la memoria de un programa.
+- [Máquinas de pila](../../cs/02-what-counts-as-a-machine.md#stack-machines) y [El contador de programa](../../cs/03-control-flow-and-continuations.md#the-program-counter) (este libro): las dos ideas que este programa une.

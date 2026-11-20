@@ -83,7 +83,7 @@ BOLD_RE = re.compile(r"\*\*(?=\S)(.+?)(?<=\S)\*\*")
 LINK_RE = re.compile(r"\]\(\s*<?([^)\s>]+)>?(?:\s+\"[^\"]*\")?\s*\)")
 REFDEF_RE = re.compile(r"^ {0,3}\[[^\]\n]+\]:\s*(\S+)", re.M)
 FENCE_RE = re.compile(r"^ {0,3}(`{3,}|~{3,})")
-SENTENCE_END_RE = re.compile(r"(?<=[.!?…])\s+")
+SENTENCE_END_RE = re.compile(r"(?<=[.!?…])[*_\"')\]]*\s+")  # closing emphasis or quote may follow the stop
 BAD_QUOTES = "“”«»‘’"
 # unambiguous English function words (words that are also Spanish words, such as a, no, me, he, as, are left out)
 EN_STOP = frozenset("""the and of to is are was were that with for this you your not from it be can what which when
@@ -301,10 +301,25 @@ def form_variants(es):
     return variants
 
 
+LEAD_IN_RE = re.compile(r"^\s*\*\*(.+?)\*\*")
+
+
+def has_catalog_lead_in(src, ctx):
+    """True when the segment opens with a fixed catalog lead-in; I11 pins its exact Spanish, so I7 skips it."""
+    if ctx.lang_cat is None or ctx.cat is None:
+        return False
+    m = LEAD_IN_RE.match(src.text)
+    return bool(m) and any(("lead_in" in k or "leadin" in k) and ctx.lang_cat.get(k) == m.group(1)
+                           for k in ctx.lang_cat.keys())
+
+
 def i7(src, target, ctx):
     out = []
     src_words = prose(src.masked)
     low = prose(target).lower()
+    if has_catalog_lead_in(src, ctx):
+        src_words = LEAD_IN_RE.sub(" ", src_words, count=1)
+        low = LEAD_IN_RE.sub(" ", low, count=1)
     for rx, es, banned, tid in ctx.terms:
         if rx is not None and rx.search(src_words) and not any(v in low for v in form_variants(es)):
             out.append(Finding("I7", "", "glossary term %s must be rendered '%s'" % (tid, es)))
@@ -413,9 +428,12 @@ def i12(src, target, rel, ctx):
     return out
 
 
+SEP_RE = re.compile(r"⟦SEP_[0-9]{4}⟧")
+
+
 def strip_ph_keep_words(text):
-    """Placeholders count as one word each (they stand for code); everything else is left alone."""
-    return PLACEHOLDER_RE.sub("X", text)
+    """Placeholders count as one word each (they stand for code); a table-cell separator ends a sentence."""
+    return PLACEHOLDER_RE.sub("X", SEP_RE.sub(" . ", text))
 
 
 def i14(src, target, ctx, raw=None):

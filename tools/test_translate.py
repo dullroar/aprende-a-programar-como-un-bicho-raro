@@ -183,6 +183,14 @@ class TestTranslateFixture(Base):
         self.assertEqual(head["english_does"], "Dry office joke.")
         self.assertFalse(inp["playful"])
 
+    def test_catalog_lead_in_is_added_to_the_slice(self):
+        t = self.translator(Fake(self.answers))
+        rows = t.lead_in_rows("**What repeats.** In ⟦CODE_0001⟧, a loop.")
+        self.assertEqual([r["es"] for r in rows], ["**Qué se repite.**"])
+        self.assertEqual(rows[0]["en"], "**What repeats.**")
+        self.assertEqual(t.lead_in_rows("**Something else.** Text."), [])
+        self.assertEqual(t.lead_in_rows("No bold lead-in here."), [])
+
     def test_timecard_entry_added_when_forty_appears(self):
         t = self.translator(Fake(self.answers))
         inp = t.build_input(self.seg, 2, "doc.md")
@@ -257,6 +265,16 @@ class TestResume(Base):
         po.save(self.po)
         with self.assertRaises(tr.TranslateError):
             self.run_file(self.translator(Fake(self.answers)))
+
+    def test_orphan_po_entry_means_file_already_applied_and_is_refused(self):
+        self.run_file(self.translator(Fake(self.answers)), limit=1)
+        po = polib.pofile(self.po, wrapwidth=0)
+        po.append(polib.POEntry(msgctxt="s-000000000000-0000", msgid="Ya en español.", msgstr=""))
+        po.save(self.po)
+        fake = Fake(self.answers)
+        with self.assertRaises(tr.TranslateError):
+            self.run_file(self.translator(fake))
+        self.assertEqual(fake.asked, [])
 
     def test_missing_entry_is_added_to_an_existing_po(self):
         self.run_file(self.translator(Fake(self.answers)), limit=1)

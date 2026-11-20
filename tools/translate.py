@@ -267,6 +267,7 @@ class Translator:
         self.backend = backend
         self.ctx = ctx or invariants.load_context("es")
         self.cat = cat or catalog.load("es")
+        self._en_cat = None
         if glossary is None:
             with open(os.path.join(TR, "glossary.es.yaml"), encoding="utf-8") as f:
                 glossary = yaml.safe_load(f)
@@ -311,12 +312,27 @@ class Translator:
             f.write(json.dumps({"key": key, "output": output}, ensure_ascii=False) + "\n")
 
     # -- input
+    def lead_in_rows(self, masked):
+        """Fixed bold lead-ins (invariant I11) are catalog text; tell the translator the exact Spanish."""
+        m = re.match(r"\s*(?:[-*>] )?\*\*(?P<t>[^*]+?)\*\*", masked)
+        if not m:
+            return []
+        if self._en_cat is None:
+            self._en_cat = catalog.load("en")
+        want = m.group("t").strip()
+        rows = []
+        for key in sorted(self._en_cat.keys()):
+            if ".lead_in_" in key and self._en_cat.get(key) == want and key in self.cat.keys():
+                rows.append({"id": "lead-in:" + key, "en": "**%s**" % want, "es": "**%s**" % self.cat.get(key),
+                             "gloss": "Fixed lead-in from the catalog; write it exactly, bold, at the start."})
+        return rows
+
     def build_input(self, seg, index, rel):
         items = seg.segments()
         cur = items[index]
         inp = {"segment_id": cur.id, "file": rel, "tier": self.ctx.tier_of(rel),
                "english_masked": cur.masked, "placeholders": list(cur.mapping),
-               "glossary_slice": self.glossary.slice(cur.masked)}
+               "glossary_slice": self.glossary.slice(cur.masked) + self.lead_in_rows(cur.masked)}
         before = items[index - 1].masked if index > 0 else ""
         after = items[index + 1].masked if index + 1 < len(items) else ""
         if before:
@@ -419,6 +435,11 @@ class Translator:
             po = ap.new_po(seg, rel)
         items = seg.segments()
         by_id = {e.msgctxt: e for e in po}
+        known = {b.id for b in items}
+        orphans = [c for c in by_id if c not in known]
+        if orphans:  # the file was probably applied (already Spanish): never mix its segments into the PO
+            raise TranslateError("%s: %d PO entries match no segment of %s (is the file already applied? "
+                                 "run `git checkout -- %s` first)" % (po_path, len(orphans), rel, rel))
         for b in items:  # a PO written by an older run may lack entries; never overwrite stale ones
             e = by_id.get(b.id)
             if e is None:
