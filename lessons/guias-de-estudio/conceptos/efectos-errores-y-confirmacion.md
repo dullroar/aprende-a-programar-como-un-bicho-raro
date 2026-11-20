@@ -13,7 +13,7 @@ When you finish, you should be able to:
 5. Say what a failed callback, a failed match and a failed process each look like from outside.
 6. Label claims as guaranteed, implementation-permitted or accidentally exploited.
 
-**Scope limits.** The guide uses facts checked in the language guides and the exercises. It does not teach database internals or exception hierarchies. Its source chapter is [Effects, errors and commitment](../../cs/07-effects-errors-and-commitment.md).
+**Scope limits.** The guide uses facts checked in the language guides and the exercises. It does not teach database internals or exception hierarchies. Its source chapter is [Effects, errors and commitment](../../informatica/07-efectos-errores-y-confirmacion.md).
 
 ## Before you begin
 
@@ -34,7 +34,7 @@ When you finish, you should be able to:
 
 ## The shared challenge
 
-The [challenge specification](../../intro.md#what-the-challenge-does) calls for cards with a category and 10 to 19 whole hours. Categories cycle through Meetings, Coding, Debugging and Learning. Add each card's hours to the running total. Stop when the total passes 40. Keep the **first card that takes the total over 40**. A total of exactly 40 continues. Four 10-hour cards need a fifth card, in the Meetings category. Conforming runs finish with 3 to 5 cards and a total of 41 to 59 hours.
+The [challenge specification](../../introduccion.md#what-the-challenge-does) calls for cards with a category and 10 to 19 whole hours. Categories cycle through Meetings, Coding, Debugging and Learning. Add each card's hours to the running total. Stop when the total passes 40. Keep the **first card that takes the total over 40**. A total of exactly 40 continues. Four 10-hour cards need a fifth card, in the Meetings category. Conforming runs finish with 3 to 5 cards and a total of 41 to 59 hours.
 
 Check the *rows shown*, the *rows saved* and the *summary* separately. A SQLite table can enforce `CHECK(demo_only=1)`. A TSV writer applies its own rules. Some demos save in one transaction. pcre2grep saves in separate calls. .NET reports `captured` for the regex result. The summary is a claim about the run. This guide tests it against the effects.
 
@@ -151,11 +151,11 @@ The ordinary `haskell` entry builds the whole SQL script as a pure string, runs 
 
 ## Connections across the repository
 
-- **Language guides.** [Haskell](../languages/haskell.md), [Regex engines and sed](../languages/regex-engines-and-sed.md), [Make and CMake](../languages/make-and-cmake.md), [COBOL](../languages/cobol.md), [Tcl](../languages/tcl.md), [tar](../languages/tar.md), [JavaScript](../languages/javascript.md) and [ed and Ex](../languages/ed-and-ex.md) each have a failure case above.
-- **Demand.** [Evaluation, demand and laziness](evaluation-demand-and-laziness.md) is why lazy effects commit late.
-- **Authority.** [Reading adversarial programs](reading-adversarial-programs.md): the database's `CHECK` is data-level authority.
-- **Portability.** [Portability, abstraction and cost](portability-abstraction-and-cost.md) covers which failure semantics are promised.
-- **In the book.** [Side effects](../../cs/07-effects-errors-and-commitment.md#side-effects), [Exception handling](../../cs/07-effects-errors-and-commitment.md#exception-handling), [Exit status](../../cs/07-effects-errors-and-commitment.md#exit-status), [Integrity constraints](../../cs/07-effects-errors-and-commitment.md#integrity-constraints), [Backtracking](../../cs/07-effects-errors-and-commitment.md#backtracking), [The cut](../../cs/07-effects-errors-and-commitment.md#the-cut-committing-to-a-choice), [Transactions](../../cs/07-effects-errors-and-commitment.md#transactions) and [Idempotence](../../cs/07-effects-errors-and-commitment.md#idempotence).
+- **Language guides.** [Haskell](../lenguajes/haskell.md), [Regex engines and sed](../lenguajes/motores-de-regex-y-sed.md), [Make and CMake](../lenguajes/make-y-cmake.md), [COBOL](../lenguajes/cobol.md), [Tcl](../lenguajes/tcl.md), [tar](../lenguajes/tar.md), [JavaScript](../lenguajes/javascript.md) and [ed and Ex](../lenguajes/ed-y-ex.md) each have a failure case above.
+- **Demand.** [Evaluation, demand and laziness](evaluacion-demanda-y-pereza.md) is why lazy effects commit late.
+- **Authority.** [Reading adversarial programs](lectura-de-programas-adversariales.md): the database's `CHECK` is data-level authority.
+- **Portability.** [Portability, abstraction and cost](portabilidad-abstraccion-y-costo.md) covers which failure semantics are promised.
+- **In the book.** [Side effects](../../informatica/07-efectos-errores-y-confirmacion.md#side-effects), [Exception handling](../../informatica/07-efectos-errores-y-confirmacion.md#exception-handling), [Exit status](../../informatica/07-efectos-errores-y-confirmacion.md#exit-status), [Integrity constraints](../../informatica/07-efectos-errores-y-confirmacion.md#integrity-constraints), [Backtracking](../../informatica/07-efectos-errores-y-confirmacion.md#backtracking), [The cut](../../informatica/07-efectos-errores-y-confirmacion.md#the-cut-committing-to-a-choice), [Transactions](../../informatica/07-efectos-errores-y-confirmacion.md#transactions) and [Idempotence](../../informatica/07-efectos-errores-y-confirmacion.md#idempotence).
 
 ## Self-check
 

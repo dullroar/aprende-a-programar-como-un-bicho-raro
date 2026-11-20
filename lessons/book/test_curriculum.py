@@ -12,11 +12,22 @@ import importlib.util, os, re, sys, unittest
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 sys.dont_write_bytecode = True
-_spec = importlib.util.spec_from_file_location("curriculum_build", os.path.join(os.path.dirname(HERE), "curriculum", "build.py"))
-cb = importlib.util.module_from_spec(_spec)
-_spec.loader.exec_module(cb)
 sys.path.insert(0, os.path.join(HERE, "locale"))
 import catalog
+
+
+def _builder_path():
+    """lessons/curriculum/build.py where this checkout keeps it: the Spanish layout moves the folder (plan 5.6)."""
+    root = os.path.dirname(os.path.dirname(HERE))
+    for rel in (catalog.load("es").path("lessons/curriculum/build.py"), "lessons/curriculum/build.py"):
+        if os.path.isfile(os.path.join(root, *rel.split("/"))):
+            return os.path.join(root, *rel.split("/"))
+    raise FileNotFoundError("lessons/curriculum/build.py (or its Spanish-layout name)")
+
+
+_spec = importlib.util.spec_from_file_location("curriculum_build", _builder_path())
+cb = importlib.util.module_from_spec(_spec)
+_spec.loader.exec_module(cb)
 BOOK_LANG = os.environ.get("BOOK_LANG", "en")
 
 
@@ -130,14 +141,14 @@ def spanish_curriculum(**swap):
     cat = catalog.load("es")
     with open(os.path.join(HERE, "chapters.txt"), encoding="utf-8") as f:
         order = [l.strip() for l in f.read().splitlines() if l.strip() and not l.startswith("#")]
-    chapter = next(c for c in order if c.startswith("cs/"))
+    chapter = next(c for c in order if c.startswith(cat.lessons_path("cs") + "/"))      # entries are in the layout of the edition
     n = order.index(chapter) + 1
     parts = dict(
         gloss=cat.text("acronym.gloss") + " " + cat.text("acronym.phases_note"),
         label="Cap.", chapter=chapter, n=n, usted="Lee el texto antes de ejecutarlo.",
         sentence="Este curso enseña informática con lenguajes viejos y raros.",
         row_b="| | **B: Bicho raro** | | |", node_e='E["I: Interpreta, semanas 3 a 6<br/>¿Qué lo hace avanzar?"]',
-        week3="| 3 | ¿Dónde está el contador? | [Cap. @N@](../lessons/@CH@), **[guía](../lessons/study-guides/concepts/reading-adversarial-programs.md)** | [A1](../lessons/exercises.md) |",
+        week3="| 3 | ¿Dónde está el contador? | [Cap. @N@](../lessons/@CH@), **[guía](../" + cat.path("lessons/study-guides/concepts/reading-adversarial-programs.md") + ")** | [A1](../lessons/exercises.md) |",
     )
     parts.update(swap)
     rows = []
@@ -147,7 +158,7 @@ def spanish_curriculum(**swap):
         if w == 7: rows.append("| | **C: Camino indirecto** | | |")
         if w == 11: rows.append("| | **H: Hallazgos** | | |")
         if w == 14: rows.append("| | **O: Octetos** | | |")
-        rows.append(parts["week3"] if w == 3 else f"| {w} | ¿Qué hace avanzar el programa? | **[guía](../lessons/study-guides/concepts/reading-adversarial-programs.md)** | [A1](../lessons/exercises.md) |")
+        rows.append(parts["week3"] if w == 3 else f"| {w} | ¿Qué hace avanzar el programa? | **[guía](../{cat.path('lessons/study-guides/concepts/reading-adversarial-programs.md')})** | [A1](../lessons/exercises.md) |")
     table = "\n".join(["| Semana | Pregunta | Lee | Haz |", "|---|---|---|---|"] + rows)
     text = f"""# Plan de estudios
 

@@ -3,7 +3,7 @@ name: ".NET regex"
 teaches: "that a regex can use a stack to count."
 kind: weird
 languages: [c-sharp, regex]
-lesson: "languages/regex.md#net-balancing-groups"
+lesson: "lenguajes/regex.md#net-balancing-groups"
 loop-by: capture-search
 evaluation: search
 assurance: guaranteed
@@ -106,4 +106,4 @@ I checked the edges with a throwaway prototype (not in the repo, because the rea
 
 ---
 
-See the [root README](../../README.md#the-results-so-far) for how this compares to the other regex entries, and [`CHALLENGE.md`](../../CHALLENGE.md) if you want to write your own.
+See the [root README](../../README.md#the-results-so-far) for how this compares to the other regex entries, and [`RETO.md`](../../RETO.md) if you want to write your own.

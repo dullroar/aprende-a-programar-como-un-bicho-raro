@@ -13,7 +13,7 @@ When you finish, you should be able to:
 5. State an invariant for a program and say how its output could prove or refute it.
 6. Label claims as guaranteed, implementation-permitted or accidentally exploited.
 
-**Scope limits.** The guide uses facts verified in the language guides and does not repeat their traces. It does not cover concurrency or the event loop (see [Events, callbacks and reactive control](events-callbacks-and-reactive-control.md)). Its source chapters are [What counts as a machine?](../../cs/02-what-counts-as-a-machine.md), [Control flow and continuations](../../cs/03-control-flow-and-continuations.md) and [State beyond variables](../../cs/06-state-beyond-variables.md). `find` and AWK are cited here rather than given their own guide.
+**Scope limits.** The guide uses facts verified in the language guides and does not repeat their traces. It does not cover concurrency or the event loop (see [Events, callbacks and reactive control](eventos-retrollamadas-y-control-reactivo.md)). Its source chapters are [What counts as a machine?](../../informatica/02-que-cuenta-como-maquina.md), [Control flow and continuations](../../informatica/03-flujo-de-control-y-continuaciones.md) and [State beyond variables](../../informatica/06-estado-mas-alla-de-las-variables.md). `find` and AWK are cited here rather than given their own guide.
 
 ## Before you begin
 
@@ -33,7 +33,7 @@ When you finish, you should be able to:
 
 ## The shared challenge
 
-The [challenge specification](../../intro.md#what-the-challenge-does) calls for cards with a category and 10 to 19 whole hours. Categories cycle through Meetings, Coding, Debugging and Learning. Add each card's hours to the running total. Stop when the total passes 40. Keep the **first card that takes the total over 40**. A total of exactly 40 continues. Four 10-hour cards need a fifth card, in the Meetings category. Conforming runs finish with 3 to 5 cards and a total of 41 to 59 hours.
+The [challenge specification](../../introduccion.md#what-the-challenge-does) calls for cards with a category and 10 to 19 whole hours. Categories cycle through Meetings, Coding, Debugging and Learning. Add each card's hours to the running total. Stop when the total passes 40. Keep the **first card that takes the total over 40**. A total of exactly 40 continues. Four 10-hour cards need a fifth card, in the Meetings category. Conforming runs finish with 3 to 5 cards and a total of 41 to 59 hours.
 
 As a machine, the challenge has a small state: `(cards so far, total)`, plus the next category. One step takes a number of hours, adds it to the total, records the card and either continues or finishes. The *invariant* after each recorded card is "the total equals the sum of the recorded hours". For the weird COBOL variant there is a second invariant that holds only after each successful add: `WS-HEADROOM` equals 59 plus the total. The examples in this trace represent that machine in different ways. The fixed LINQ demos and the XAML ceiling show where the shared model needs an extra stopping condition.
 
@@ -47,16 +47,16 @@ Use this worksheet for every entry. The five answers in the first column were ch
 
 | Entry | Next step is stored in | Memory is stored in |
 | --- | --- | --- |
-| [`cobol-weird`](../languages/cobol.md) | the target of one `GO TO` (changed by `ALTER`) | `WS-TOTAL`, and `WS-HEADROOM` (59 plus the total) |
-| [`forth-weird`](../languages/forth.md) | the parse position `>in` | the data stack: `( n total anchor )` |
-| [`make-gnu`](../languages/make-and-cmake.md) | which `.tc-N.mk` files exist, and `MAKE_RESTARTS` | the same files, one card each |
-| [`cmake`](../languages/make-and-cmake.md) | the regex captures `CMAKE_MATCH_1`..`5`, rebuilt each pass | the same captures, as runs of `x` |
-| [`tcl-weird`](../languages/tcl.md) | SQLite's trigger firing again | table rows, and `count(*)` for the card number |
-| [`apl-weird`](../languages/apl.md) | the call chain of functions that were written at run time | genes: four lines of each function's source |
-| [`lisp-weird`](../languages/common-lisp.md) | the class precedence list | the `ledger` object |
-| [`ed-weird`](../languages/ed-and-ex.md) | the next line matched by one global command | marks (`x`) on each line, and a ledger line |
-| [`ex-weird`](../languages/ed-and-ex.md) | register `n`, copied from a tape line | the position of mark `t` on the tape: the total |
-| [`tar-gnu-weird`](../languages/tar.md) | tar's checkpoint callbacks | one `fsm` row in SQLite |
+| [`cobol-weird`](../lenguajes/cobol.md) | the target of one `GO TO` (changed by `ALTER`) | `WS-TOTAL`, and `WS-HEADROOM` (59 plus the total) |
+| [`forth-weird`](../lenguajes/forth.md) | the parse position `>in` | the data stack: `( n total anchor )` |
+| [`make-gnu`](../lenguajes/make-y-cmake.md) | which `.tc-N.mk` files exist, and `MAKE_RESTARTS` | the same files, one card each |
+| [`cmake`](../lenguajes/make-y-cmake.md) | the regex captures `CMAKE_MATCH_1`..`5`, rebuilt each pass | the same captures, as runs of `x` |
+| [`tcl-weird`](../lenguajes/tcl.md) | SQLite's trigger firing again | table rows, and `count(*)` for the card number |
+| [`apl-weird`](../lenguajes/apl.md) | the call chain of functions that were written at run time | genes: four lines of each function's source |
+| [`lisp-weird`](../lenguajes/common-lisp.md) | the class precedence list | the `ledger` object |
+| [`ed-weird`](../lenguajes/ed-y-ex.md) | the next line matched by one global command | marks (`x`) on each line, and a ledger line |
+| [`ex-weird`](../lenguajes/ed-y-ex.md) | register `n`, copied from a tape line | the position of mark `t` on the tape: the total |
+| [`tar-gnu-weird`](../lenguajes/tar.md) | tar's checkpoint callbacks | one `fsm` row in SQLite |
 | [`find-gnu`](../../../src/find-gnu/README.md) | the walk into the directory just made | the depth of the path: the total |
 | [`awk-weird`](../../../src/awk-weird/README.md) | awk's own record loop | the stream and the record separator `RS` |
 
@@ -96,7 +96,7 @@ Read across. Three different substances hold the same facts: a jump target and a
 
 **Look at the stopped state.** In COBOL, `WS-HEADROOM` held 93 *twice*: once after a successful add and once after a failed one. A field that holds the same value at two different moments with two different meanings is a sign that the program's state is partly elsewhere: here, in the jump target.
 
-**Exactly 40.** A conforming entry has a fifth card available even though there are four different category names. A supply of four slots makes that impossible, as in XAML and the original four-name implementations ([Comparative machine design](comparative-machine-design.md) traces the fixes). The machine's *representation* decides what boundary it can express.
+**Exactly 40.** A conforming entry has a fifth card available even though there are four different category names. A supply of four slots makes that impossible, as in XAML and the original four-name implementations ([Comparative machine design](diseno-comparativo-de-maquinas.md) traces the fixes). The machine's *representation* decides what boundary it can express.
 
 ## Compare the ordinary and weird designs
 
@@ -144,11 +144,11 @@ A language can hide control state from you in two ways. It can store it *in data
 
 ## Connections across the repository
 
-- **The language guides.** [COBOL](../languages/cobol.md), [Forth](../languages/forth.md), [Make and CMake](../languages/make-and-cmake.md), [Tcl](../languages/tcl.md), [APL](../languages/apl.md), [Common Lisp](../languages/common-lisp.md), [ed and Ex](../languages/ed-and-ex.md) and [tar](../languages/tar.md) each trace one of these machines.
-- **Demand and laziness.** [Evaluation, demand and laziness](evaluation-demand-and-laziness.md) asks *when* a step runs; this guide asks *where it is stored*. [Haskell](../languages/haskell.md) stores it in a data dependence.
-- **Events.** [Events, callbacks and reactive control](events-callbacks-and-reactive-control.md) asks who owns the next turn.
-- **Reading safely.** [Reading adversarial programs](reading-adversarial-programs.md) uses "where is the state?" as the first question.
-- **In the book.** [What counts as a machine?](../../cs/02-what-counts-as-a-machine.md), [The program counter](../../cs/03-control-flow-and-continuations.md#the-program-counter), [Self-modifying code](../../cs/03-control-flow-and-continuations.md#self-modifying-code), [State](../../cs/06-state-beyond-variables.md#state) and [Dependency graphs](../../cs/06-state-beyond-variables.md#dependency-graphs).
+- **The language guides.** [COBOL](../lenguajes/cobol.md), [Forth](../lenguajes/forth.md), [Make and CMake](../lenguajes/make-y-cmake.md), [Tcl](../lenguajes/tcl.md), [APL](../lenguajes/apl.md), [Common Lisp](../lenguajes/common-lisp.md), [ed and Ex](../lenguajes/ed-y-ex.md) and [tar](../lenguajes/tar.md) each trace one of these machines.
+- **Demand and laziness.** [Evaluation, demand and laziness](evaluacion-demanda-y-pereza.md) asks *when* a step runs; this guide asks *where it is stored*. [Haskell](../lenguajes/haskell.md) stores it in a data dependence.
+- **Events.** [Events, callbacks and reactive control](eventos-retrollamadas-y-control-reactivo.md) asks who owns the next turn.
+- **Reading safely.** [Reading adversarial programs](lectura-de-programas-adversariales.md) uses "where is the state?" as the first question.
+- **In the book.** [What counts as a machine?](../../informatica/02-que-cuenta-como-maquina.md), [The program counter](../../informatica/03-flujo-de-control-y-continuaciones.md#the-program-counter), [Self-modifying code](../../informatica/03-flujo-de-control-y-continuaciones.md#self-modifying-code), [State](../../informatica/06-estado-mas-alla-de-las-variables.md#state) and [Dependency graphs](../../informatica/06-estado-mas-alla-de-las-variables.md#dependency-graphs).
 
 ## Self-check
 

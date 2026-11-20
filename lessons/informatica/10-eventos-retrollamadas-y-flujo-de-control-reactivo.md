@@ -2,7 +2,7 @@
 
 # Events, callbacks and reactive control flow
 
-For an advanced reading path with traces and experiments, see the [events, callbacks and reactive control study guide](../study-guides/concepts/events-callbacks-and-reactive-control.md).
+For an advanced reading path with traces and experiments, see the [events, callbacks and reactive control study guide](../guias-de-estudio/conceptos/eventos-retrollamadas-y-control-reactivo.md).
 
 Every entry in this book answers one question: **who chooses what runs next?** In a `for` loop, the loop chooses. In a lazy pipeline, whoever asks for the next value chooses. In this chapter, something else chooses: an *event*. A program registers small functions, and something else calls them when something happens. The program does not say when.
 
@@ -72,19 +72,19 @@ The sources are the Node.js [`events` documentation](https://nodejs.org/api/even
 - **`emit()` is synchronous.** Listeners run in registration order, before `emit` returns. This is documented, so it is a promise and not an accident.
 - **The name `error` is special.** `emit('error', e)` with no listener *throws* `e`. Every other name with no listener does nothing.
 - **A copy of the listener list is made for each `emit`.** A listener that removes listeners (or adds some) changes the *next* emit, not the one in flight.
-- **Timers, immediates and microtasks have an order**, and it is not the order you might guess. After the current code finishes, Node runs `process.nextTick` callbacks, then promise callbacks (microtasks), and then goes round the event loop: expired timers, then I/O callbacks, then `setImmediate` callbacks and so on. When `setTimeout(fn, 0)` and `setImmediate(fn)` are called from the main module, which runs first is *not promised*: it depends on how fast the process started. Inside an I/O callback, `setImmediate` always runs first. This is implementation-dependent behavior of the kind that [Hyrum's law](08-abstraction-leaks-and-implementation-dependence.md#hyrums-law) describes, so [`javascript-events`](../../src/javascript-events/README.md) uses `setImmediate` alone and never depends on the order between two of them.
+- **Timers, immediates and microtasks have an order**, and it is not the order you might guess. After the current code finishes, Node runs `process.nextTick` callbacks, then promise callbacks (microtasks), and then goes round the event loop: expired timers, then I/O callbacks, then `setImmediate` callbacks and so on. When `setTimeout(fn, 0)` and `setImmediate(fn)` are called from the main module, which runs first is *not promised*: it depends on how fast the process started. Inside an I/O callback, `setImmediate` always runs first. This is implementation-dependent behavior of the kind that [Hyrum's law](08-fugas-de-abstraccion-y-dependencia-de-la-implementacion.md#hyrums-law) describes, so [`javascript-events`](../../src/javascript-events/README.md) uses `setImmediate` alone and never depends on the order between two of them.
 - **An `async` listener's failure is not caught by a `try` around `emit`.** The listener returns a promise, and `emit` has already returned. The option `captureRejections` turns such a rejection into an `error` event.
 - **Listeners need an owner.** A listener that nobody removes can keep a whole object alive. Node warns when one event has more than ten listeners, because that is usually a leak. A timer or an immediate left behind can keep the process from ending. [`javascript-events`](../../src/javascript-events/README.md) ends by removing every listener, and its lab checks that no timer or immediate is left.
 
 ## State machines, reentrancy and ending
 
-A program of listeners is a [Transition systems and state machines](02-what-counts-as-a-machine.md#transition-systems-and-state-machines): a state, and moves that events trigger. [`javascript-events`](../../src/javascript-events/README.md) keeps its state in one object that only listeners touch, and each listener is one transition. Two questions decide whether such a program is sound.
+A program of listeners is a [Transition systems and state machines](02-que-cuenta-como-maquina.md#transition-systems-and-state-machines): a state, and moves that events trigger. [`javascript-events`](../../src/javascript-events/README.md) keeps its state in one object that only listeners touch, and each listener is one transition. Two questions decide whether such a program is sound.
 
 **Can a listener be called again while it is still running?** That is *reentrancy*. A synchronous `emit` allows it: a listener emits an event whose listener emits the first event again. The synchronous column above is exactly that, and its price is the stack. The scheduled version cannot be re-entered, because the next card is a new turn.
 
 **Does it end?** A chain of events that never stops is a loop that nobody can see. The program must have one listener that does *not* announce the next step, and it must tidy up: roll back what was not committed, close the database, remove the listeners and stop the timers. In [`javascript-events`](../../src/javascript-events/README.md) that is `finished` (or `failed`), and then `done` removes everything.
 
-A listener cannot pause in the middle and be resumed, so a chain of listeners is not a [Coroutines](03-control-flow-and-continuations.md#coroutines). Each listener runs to its end and returns, and the next one starts fresh. State has to live outside them. The same is true for a [Closures and lexical environments](06-state-beyond-variables.md#closures-and-lexical-environments) used as a callback: it keeps variables, but not a *place* to resume.
+A listener cannot pause in the middle and be resumed, so a chain of listeners is not a [Coroutines](03-flujo-de-control-y-continuaciones.md#coroutines). Each listener runs to its end and returns, and the next one starts fresh. State has to live outside them. The same is true for a [Closures and lexical environments](06-estado-mas-alla-de-las-variables.md#closures-and-lexical-environments) used as a callback: it keeps variables, but not a *place* to resume.
 
 ## Backpressure, and when events are the wrong tool
 

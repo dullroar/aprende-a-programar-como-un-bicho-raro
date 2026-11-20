@@ -3,7 +3,7 @@ name: "Tcl"
 teaches: "that Tcl code is just strings, so it can live in a database and be fetched, defined and run on demand, with SQLite triggers as the control flow."
 kind: weird
 languages: [tcl, sqlite]
-lesson: "languages/tcl.md#sqlite-as-the-program"
+lesson: "lenguajes/tcl.md#sqlite-as-the-program"
 loop-by: dispatch-and-triggers
 evaluation: eager
 assurance: implementation-permitted

@@ -197,10 +197,11 @@ class Paths(Scratch):
             if k.startswith("paths.dirs."):
                 self.assertEqual(k[len("paths.dirs."):], v)
 
-    def test_spanish_stays_english_until_the_layout_switches(self):
+    def test_spanish_catalog_uses_the_spanish_layout(self):
         es = catalog.load("es")
-        self.assertEqual(es.flat["paths.layout"], "english")      # P3B-005 flips this in the rename commit
-        self.assertEqual(es.path("lessons/answers-key.md"), "lessons/answers-key.md")
+        self.assertEqual(es.flat["paths.layout"], "spanish")      # flipped by the P3B-005 rename commit
+        self.assertEqual(es.path("lessons/answers-key.md"), "lessons/respuestas.md")
+        self.assertEqual(es.path("README.md"), "README.md")
 
     def test_files_dirs_and_nested_paths_map(self):
         es = spanish_layout()

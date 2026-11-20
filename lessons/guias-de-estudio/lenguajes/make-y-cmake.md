@@ -14,7 +14,7 @@ When you finish, you should be able to:
 
 **Scope limits.** You need to read a Makefile and know that `$(...)` expands a function or variable. You need to know that CMake runs scripts with `cmake -P`. This guide does not teach the calendar arithmetic in the Make entry (which computes an ISO week without a shell), the animated glow or Windows Terminal support. It uses GNU Make and CMake 3.19 or later.
 
-The book's page is [Make and CMake](../../languages/make-cmake.md). For the ideas, see [Build automation](../../cs/05-formal-languages-as-computational-substrates.md#build-automation), [Dependency graphs](../../cs/06-state-beyond-variables.md#dependency-graphs) and [Fixed-point iteration](../../cs/03-control-flow-and-continuations.md#fixed-point-iteration).
+The book's page is [Make and CMake](../../lenguajes/make-cmake.md). For the ideas, see [Build automation](../../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#build-automation), [Dependency graphs](../../informatica/06-estado-mas-alla-de-las-variables.md#dependency-graphs) and [Fixed-point iteration](../../informatica/03-flujo-de-control-y-continuaciones.md#fixed-point-iteration).
 
 ## Before you begin
 
@@ -41,7 +41,7 @@ Work on a copy for any edit ([Running things safely](../../exercises.md#running-
 
 ## The shared challenge
 
-The [challenge specification](../../intro.md#what-the-challenge-does) calls for cards with a category and 10 to 19 whole hours. Categories cycle through Meetings, Coding, Debugging and Learning. Add each card's hours to the running total. Stop when the total passes 40. Keep the **first card that takes the total over 40**. A total of exactly 40 continues. Four 10-hour cards need a fifth card, in the Meetings category. Conforming runs finish with 3 to 5 cards and a total of 41 to 59 hours.
+The [challenge specification](../../introduccion.md#what-the-challenge-does) calls for cards with a category and 10 to 19 whole hours. Categories cycle through Meetings, Coding, Debugging and Learning. Add each card's hours to the running total. Stop when the total passes 40. Keep the **first card that takes the total over 40**. A total of exactly 40 continues. Four 10-hour cards need a fifth card, in the Meetings category. Conforming runs finish with 3 to 5 cards and a total of 41 to 59 hours.
 
 Both programs report a result from SQLite after the draw. The stop-rule probe is its own statement: its expected failure leaves the card rows in place. Both programs write numbers in unary, so the stop rule becomes a question about length, and the boundary is easy to get wrong by one. In Make the test is *"does a 41st word exist?"* (`$(word 41, ...)`, [L111](../../../src/make-gnu/Makefile#L111)). In CMake it is *"does the total match 41 `x` characters?"* ([L41](../../../src/cmake/timecards.cmake#L41)). A total of 40 has no 41st word and does not match 41 characters, so both continue.
 
@@ -204,11 +204,11 @@ The "ordinary" version of each is the program the authors threw away or wrote fi
 
 ## Connections across the repository
 
-- **Control state outside variables.** [COBOL](cobol.md) keeps it in a jump target and [Forth](forth.md) in a parse position. Make keeps it in files and CMake in captures. [Tcl](tcl.md) keeps it in a database trigger. The concept guide [State and control beyond variables](../concepts/state-and-control-beyond-variables.md) lines them up.
-- **Rewriting until nothing changes.** [m4](m4.md) rescans its output, and [sed](regex-engines-and-sed.md) can loop with a branch. Make's restart is the same fixed-point idea with files as the text.
-- **A regex that is the program.** [Regex engines and sed](regex-engines-and-sed.md) puts the loop inside a single match. CMake lets the loop re-expand a regex on every pass.
-- **Reproducibility.** [Portability, abstraction and cost](../concepts/portability-abstraction-and-cost.md) covers deterministic builds and what a fixed clock does and does not prove.
-- **In the book.** [Make and CMake](../../languages/make-cmake.md), [Build automation](../../cs/05-formal-languages-as-computational-substrates.md#build-automation) and [Dependency graphs](../../cs/06-state-beyond-variables.md#dependency-graphs).
+- **Control state outside variables.** [COBOL](cobol.md) keeps it in a jump target and [Forth](forth.md) in a parse position. Make keeps it in files and CMake in captures. [Tcl](tcl.md) keeps it in a database trigger. The concept guide [State and control beyond variables](../conceptos/estado-y-control-mas-alla-de-las-variables.md) lines them up.
+- **Rewriting until nothing changes.** [m4](m4.md) rescans its output, and [sed](motores-de-regex-y-sed.md) can loop with a branch. Make's restart is the same fixed-point idea with files as the text.
+- **A regex that is the program.** [Regex engines and sed](motores-de-regex-y-sed.md) puts the loop inside a single match. CMake lets the loop re-expand a regex on every pass.
+- **Reproducibility.** [Portability, abstraction and cost](../conceptos/portabilidad-abstraccion-y-costo.md) covers deterministic builds and what a fixed clock does and does not prove.
+- **In the book.** [Make and CMake](../../lenguajes/make-cmake.md), [Build automation](../../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#build-automation) and [Dependency graphs](../../informatica/06-estado-mas-alla-de-las-variables.md#dependency-graphs).
 
 ## Self-check
 
@@ -225,4 +225,4 @@ Answer each question in your own words before you read the italic text. Say what
 - [CMake](https://en.wikipedia.org/wiki/CMake) (Wikipedia): a broad orientation. The CMake manual describes `if()` and `while()` conditions, but its host is not on this book's allowlist, so read it from your installed copy with `cmake --help-command while`.
 - [Remaking Makefiles](https://www.gnu.org/software/make/manual/html_node/Remaking-Makefiles.html) (GNU Make manual): the official statement that Make re-executes itself after it remakes an included makefile. Everything in the Make entry rests on it.
 - [Reproducible builds](https://en.wikipedia.org/wiki/Reproducible_builds) (Wikipedia): why a build that reads the clock needs an override like `SOURCE_DATE_EPOCH`.
-- [Fixed-point iteration](../../cs/03-control-flow-and-continuations.md#fixed-point-iteration) and [Reproducibility and deterministic builds](../../cs/08-abstraction-leaks-and-implementation-dependence.md#reproducibility-and-deterministic-builds) (this book): the two ideas these programs lean on.
+- [Fixed-point iteration](../../informatica/03-flujo-de-control-y-continuaciones.md#fixed-point-iteration) and [Reproducibility and deterministic builds](../../informatica/08-fugas-de-abstraccion-y-dependencia-de-la-implementacion.md#reproducibility-and-deterministic-builds) (this book): the two ideas these programs lean on.

@@ -3,7 +3,7 @@ name: "Forth"
 teaches: "that the text interpreter's parse position is a program counter, if you let it be, and that the data stack can be a program's only memory."
 kind: weird
 languages: [forth]
-lesson: "languages/forth.md"
+lesson: "lenguajes/forth.md"
 loop-by: self-modifying-control
 evaluation: eager
 assurance: implementation-permitted

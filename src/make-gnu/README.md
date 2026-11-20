@@ -3,7 +3,7 @@ name: "GNU Make"
 teaches: "that GNU Make can do arithmetic and loop in its own syntax, without a shell for either."
 kind: weird
 languages: [make]
-lesson: "languages/make-cmake.md#gnu-make"
+lesson: "lenguajes/make-cmake.md#gnu-make"
 loop-by: rewrite-and-rescan
 evaluation: declarative
 assurance: accidentally-exploited
@@ -133,4 +133,4 @@ make clean    # remove leftover state after an interrupted run
 
 ---
 
-See the [root README](../../README.md#the-results-so-far) for how this compares to the other entries, and [`CHALLENGE.md`](../../CHALLENGE.md) if you want to write your own.
+See the [root README](../../README.md#the-results-so-far) for how this compares to the other entries, and [`RETO.md`](../../RETO.md) if you want to write your own.

@@ -41,7 +41,7 @@ class BaselineTests(unittest.TestCase):
     def test_gate_list_covers_ci_workflow_commands(self):
         cmds = [" ".join(c) for _, c, _ in baseline.GATES]
         for needle in ("lessons/book/build.py --check", "--check-diagrams", "test_pdf_lint.py",
-                       "lessons/curriculum/build.py --release", "test_repo_identity.py"):
+                       baseline.W("lessons/curriculum/build.py") + " --release", "test_repo_identity.py"):
             self.assertTrue(any(needle in c for c in cmds), needle)
 
 

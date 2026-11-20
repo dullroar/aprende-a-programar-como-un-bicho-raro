@@ -3,7 +3,7 @@ name: "POSIX find"
 teaches: "that a directory walk can be a loop and a program: find digs the tree it is walking, and the path to the current directory is the whole machine."
 kind: weird
 languages: [find, sqlite]
-lesson: "languages/find.md"
+lesson: "lenguajes/find.md"
 pairs-with: find-gnu
 loop-by: self-modifying-control
 evaluation: declarative
@@ -154,4 +154,4 @@ Then it forces the dice. A fake `mktemp`, first on `PATH`, hands out chosen name
 
 ---
 
-See the [root README](../../README.md#the-results-so-far) for how this compares to the other entries, and [`CHALLENGE.md`](../../CHALLENGE.md) if you want to write your own.
+See the [root README](../../README.md#the-results-so-far) for how this compares to the other entries, and [`RETO.md`](../../RETO.md) if you want to write your own.

@@ -3,7 +3,7 @@ name: "GNU tar"
 teaches: "that a tar archive can be a serialized program: tar reads the members in order, and only the command that the operator attaches gives them an effect."
 kind: idiomatic
 languages: [tar, sqlite]
-lesson: "languages/tar.md#a-program-that-is-an-archive"
+lesson: "lenguajes/tar.md#a-program-that-is-an-archive"
 loop-by: document-order
 evaluation: eager
 assurance: implementation-permitted
@@ -141,7 +141,7 @@ Three small programs use the same archive:
 
 ## It's just a tar file: serialization, deserialization, and execution
 
-A tar archive is a way to write files into one stream of bytes. It is not a program format. What turns this one into a program is a *consumer* that gives its members a meaning. This section separates the steps. See the concept page, [Serialization, deserialization and object pickling](../../lessons/cs/06-state-beyond-variables.md#serialization-deserialization-and-object-pickling), for the general ideas.
+A tar archive is a way to write files into one stream of bytes. It is not a program format. What turns this one into a program is a *consumer* that gives its members a meaning. This section separates the steps. See the concept page, [Serialization, deserialization and object pickling](../../lessons/informatica/06-estado-mas-alla-de-las-variables.md#serialization-deserialization-and-object-pickling), for the general ideas.
 
 1. **Encoding data.** A card is two lines in a member body: `category=Coding` and `hours=11`. The data is in the bytes of the member.
 2. **Encoding program instructions and interpretation context.** The instruction is in the member *name* (`010.card`), and the order of the members is the order of execution. The context is a promise between the writer and the reader: the format `tarprog/1`. Tar knows nothing about it. Two programs that agree on the promise can understand each other, and no other program can.
@@ -201,4 +201,4 @@ The replay is also **not idempotent**: running the same archive twice into one d
 
 ---
 
-See the [root README](../../README.md#the-results-so-far) for how this compares to the other entries, and [`CHALLENGE.md`](../../CHALLENGE.md) if you want to write your own.
+See the [root README](../../README.md#the-results-so-far) for how this compares to the other entries, and [`RETO.md`](../../RETO.md) if you want to write your own.

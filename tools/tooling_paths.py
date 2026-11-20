@@ -34,8 +34,12 @@ JOINERS = {"join"}
 
 def default_files():
     out = []
+    if HERE not in sys.path:
+        sys.path.insert(0, HERE)
+    import enpath
+    layer = enpath.load(ROOT)
     for pattern in ("lessons/book/*.py", "lessons/curriculum/build.py", "lessons/study-guides/build.py"):
-        out += glob.glob(os.path.join(ROOT, pattern))
+        out += glob.glob(os.path.join(ROOT, *layer.work(pattern).split("/")))    # the two builders move with their folder
     return sorted(f for f in out if not os.path.basename(f).startswith("test_"))
 
 

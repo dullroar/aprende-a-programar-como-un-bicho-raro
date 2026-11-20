@@ -144,10 +144,10 @@ def file_problems(es_source, en_text=EN, after=None, ctx=None, po_edit=None, rel
     try:
         finished, _ = apply_mod.apply_text(en_text, po, rel, e.cat, strict=False)
     except apply_mod.ApplyError as err:                  # the PO is refused before any file exists
-        return ["I2 PO cannot be applied: %s" % err] + verify.check_file(rel, en_text, None, po, ctx or e.ctx, True, e.cat)
+        return ["I2 PO cannot be applied: %s" % err] + verify.check_file(rel, en_text, None, po, ctx or e.ctx, True, e.cat, verify.layout_remap(rel, ROOT))
     if after:
         finished = after(finished)
-    return verify.check_file(rel, en_text, finished, po, ctx or e.ctx, True, e.cat)
+    return verify.check_file(rel, en_text, finished, po, ctx or e.ctx, True, e.cat, verify.layout_remap(rel, ROOT))
 
 
 def swap(old, new, count=1):

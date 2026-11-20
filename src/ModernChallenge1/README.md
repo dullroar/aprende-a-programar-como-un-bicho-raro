@@ -3,7 +3,7 @@ name: "C# `for`"
 teaches: "que una instrucción `for` sin cuerpo puede controlar XAML en tiempo de ejecución, LINQ to Objects, EF Core y la animación de WPF."
 kind: weird
 languages: [c-sharp]
-lesson: "languages/csharp-linq-xaml.md#the-original-modernchallenge1"
+lesson: "lenguajes/csharp-linq-xaml.md#the-original-modernchallenge1"
 loop-by: loop-statement
 evaluation: eager
 assurance: guaranteed
@@ -118,4 +118,4 @@ El porqué es simple: el original se construyó para mostrar las característica
 
 ---
 
-Consulta el [README raíz](../../README.md) para ver cómo se compara con las otras entradas, y [`CHALLENGE.md`](../../CHALLENGE.md) si quieres escribir la tuya.
+Consulta el [README raíz](../../README.md) para ver cómo se compara con las otras entradas, y [`RETO.md`](../../RETO.md) si quieres escribir la tuya.

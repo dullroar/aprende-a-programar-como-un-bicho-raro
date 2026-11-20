@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 """Build the study guides as their own document set: one HTML file, one EPUB and one PDF.
 
-    python lessons/study-guides/build.py            # writes <study guides stem>.pdf and .epub (identity.study_guides_stem in the locale catalog) in the repo root
-    python lessons/study-guides/build.py --release  # build and require PDF layout/content checks
-    python lessons/study-guides/build.py --check    # lint the guides, build the HTML and verify every internal link resolves
-    python lessons/study-guides/build.py --check-links   # (network) verify every external link in the guides loads
-    python lessons/study-guides/build.py --artifacts-dir DIR   # write the PDF and EPUB to DIR (used to test reproducibility)
+    python lessons/guias-de-estudio/build.py            # writes <study guides stem>.pdf and .epub (identity.study_guides_stem in the locale catalog) in the repo root
+    python lessons/guias-de-estudio/build.py --release  # build and require PDF layout/content checks
+    python lessons/guias-de-estudio/build.py --check    # lint the guides, build the HTML and verify every internal link resolves
+    python lessons/guias-de-estudio/build.py --check-links   # (network) verify every external link in the guides loads
+    python lessons/guias-de-estudio/build.py --artifacts-dir DIR   # write the PDF and EPUB to DIR (used to test reproducibility)
 
-The guides are hand-written Markdown (see lessons/study-guides/README.md). This script does not write prose. It only
+The guides are hand-written Markdown (see lessons/guias-de-estudio/README.md). This script does not write prose. It only
   * checks them with lessons/book/study_guides.py (the template, the diagrams, the links), and
   * gives them to the book's own pipeline, lessons/book/build.py, which does the link rewriting, the Mermaid rendering, the Pandoc call, the
     stylesheet and the reproducibility rule. Nothing is copied from that file; it is imported and called, so a fix there fixes both.

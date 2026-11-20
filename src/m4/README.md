@@ -3,7 +3,7 @@ name: "m4"
 teaches: "that a macro processor is a programming language: no loop statement and no variable, just text that gets scanned again."
 kind: weird
 languages: [m4]
-lesson: "languages/m4.md#a-loop-made-of-rescanning"
+lesson: "lenguajes/m4.md#a-loop-made-of-rescanning"
 loop-by: rewrite-and-rescan
 evaluation: rewriting
 assurance: implementation-permitted

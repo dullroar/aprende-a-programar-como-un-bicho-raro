@@ -14,7 +14,7 @@ Cuando termines, deberías poder:
 
 **Límites del alcance.** Esta guía no enseña la sintaxis de Forth desde cero. Necesitas saber que las palabras sacan sus entradas de datos de una pila de datos y apilan sus resultados, y que una definición se escribe `: name ... ;`. Usa Gforth 0.7.3 o posterior. No cubre la tubería de SQLite ni `random.fs` más allá de lo que la traza necesita.
 
-La página del libro es [Forth](../../languages/forth.md). Las ideas están en [¿Qué cuenta como máquina?](../../cs/02-what-counts-as-a-machine.md#stack-machines) y [El contador de programa](../../cs/03-control-flow-and-continuations.md#the-program-counter).
+La página del libro es [Forth](../../lenguajes/forth.md). Las ideas están en [¿Qué cuenta como máquina?](../../informatica/02-que-cuenta-como-maquina.md#stack-machines) y [El contador de programa](../../informatica/03-flujo-de-control-y-continuaciones.md#the-program-counter).
 
 ## Antes de empezar
 
@@ -41,7 +41,7 @@ Edita solo copias ([Running things safely](../../exercises.md#running-things-saf
 
 ## El reto compartido
 
-La [especificación del reto](../../intro.md#what-the-challenge-does) pide tarjetas con una categoría y de 10 a 19 horas enteras. Las categorías se repiten en ciclo: `Meetings`, `Coding`, `Debugging` y `Learning`. Suma las horas de cada tarjeta al total acumulado. Detente cuando el total pasa de 40. Conserva la **primera tarjeta con la que el total pasa de 40**. Un total de exactamente 40 continúa. Cuatro tarjetas de 10 horas necesitan una quinta tarjeta, de la categoría `Meetings`. Las ejecuciones conformes tienen de 3 a 5 tarjetas y un total de 41 a 59 horas.
+La [especificación del reto](../../introduccion.md#what-the-challenge-does) pide tarjetas con una categoría y de 10 a 19 horas enteras. Las categorías se repiten en ciclo: `Meetings`, `Coding`, `Debugging` y `Learning`. Suma las horas de cada tarjeta al total acumulado. Detente cuando el total pasa de 40. Conserva la **primera tarjeta con la que el total pasa de 40**. Un total de exactamente 40 continúa. Cuatro tarjetas de 10 horas necesitan una quinta tarjeta, de la categoría `Meetings`. Las ejecuciones conformes tienen de 3 a 5 tarjetas y un total de 41 a 59 horas.
 
 Las dos entradas de Forth guardan las tarjetas en una sola transacción de SQLite e imprimen un resumen. Forth escribe el límite de dos maneras distintas, y vale la pena ver la diferencia. El programa simple dice `total @ 40 >` ([L105](../../../src/forth/timecards.fs#L105)): se detiene cuando el total *pasa de* 40. El programa raro dice `over 41 <` ([L93](../../../src/forth-weird/timecards.fs#L93)): *continúa* mientras el total sea *menor que 41*. Las dos son la misma regla. Un total de exactamente 40 es menor que 41, así que el bucle continúa.
 
@@ -160,11 +160,11 @@ Ningún comportamiento de las entradas de Forth es solo aprovechado por accident
 
 ## Conexiones a lo largo del repositorio
 
-- **La posición de análisis como estado de control.** [COBOL](cobol.md) guarda el siguiente paso en un destino de salto. [Make y CMake](make-and-cmake.md) lo guardan en qué archivos existen y en las capturas de regex. [Tcl](tcl.md) lo guarda en un disparador de base de datos. La guía de concepto [Estado y control más allá de las variables](../concepts/state-and-control-beyond-variables.md) los compara con una sola hoja de trabajo.
+- **La posición de análisis como estado de control.** [COBOL](cobol.md) guarda el siguiente paso en un destino de salto. [Make y CMake](make-y-cmake.md) lo guardan en qué archivos existen y en las capturas de regex. [Tcl](tcl.md) lo guarda en un disparador de base de datos. La guía de concepto [Estado y control más allá de las variables](../conceptos/estado-y-control-mas-alla-de-las-variables.md) los compara con una sola hoja de trabajo.
 - **Memoria sin nombres.** El programa raro de [Haskell](haskell.md) también guarda su total acumulado en un lugar sin nombre: dentro de la lista de tarjetas que construye. Allí cada tarjeta lee la anterior.
-- **Relectura del texto.** [m4](m4.md) vuelve a leer sus propias expansiones (reescaneo). Es el pariente, a nivel de texto, de "leer el mismo texto otra vez". [ed y Ex](ed-and-ex.md) ejecutan líneas desde un búfer, así que su contador de programa también es un dato.
-- **Guías de concepto.** [Cómo leer programas adversariales](../concepts/reading-adversarial-programs.md) y [Diseño comparado de máquinas](../concepts/comparative-machine-design.md).
-- **En el libro.** [Forth](../../languages/forth.md), [Máquinas de pila](../../cs/02-what-counts-as-a-machine.md#stack-machines) y [La pila como estructura de datos](../../cs/06-state-beyond-variables.md#the-stack-as-a-data-structure).
+- **Relectura del texto.** [m4](m4.md) vuelve a leer sus propias expansiones (reescaneo). Es el pariente, a nivel de texto, de "leer el mismo texto otra vez". [ed y Ex](ed-y-ex.md) ejecutan líneas desde un búfer, así que su contador de programa también es un dato.
+- **Guías de concepto.** [Cómo leer programas adversariales](../conceptos/lectura-de-programas-adversariales.md) y [Diseño comparado de máquinas](../conceptos/diseno-comparativo-de-maquinas.md).
+- **En el libro.** [Forth](../../lenguajes/forth.md), [Máquinas de pila](../../informatica/02-que-cuenta-como-maquina.md#stack-machines) y [La pila como estructura de datos](../../informatica/06-estado-mas-alla-de-las-variables.md#the-stack-as-a-data-structure).
 
 ## Autoevaluación
 
@@ -179,4 +179,4 @@ Responde cada pregunta con tus propias palabras antes de leer el texto en cursiv
 
 - [Forth (lenguaje de programación)](https://en.wikipedia.org/wiki/Forth_(programming_language)) (Wikipedia): la historia del lenguaje, las dos pilas y el diccionario.
 - [Máquina de pila](https://en.wikipedia.org/wiki/Stack_machine) (Wikipedia): por qué una pila puede ser toda la memoria de un programa.
-- [Máquinas de pila](../../cs/02-what-counts-as-a-machine.md#stack-machines) y [El contador de programa](../../cs/03-control-flow-and-continuations.md#the-program-counter) (este libro): las dos ideas que este programa une.
+- [Máquinas de pila](../../informatica/02-que-cuenta-como-maquina.md#stack-machines) y [El contador de programa](../../informatica/03-flujo-de-control-y-continuaciones.md#the-program-counter) (este libro): las dos ideas que este programa une.

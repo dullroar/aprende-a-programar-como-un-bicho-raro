@@ -44,8 +44,8 @@ jobs:
       - name: Check book sources and study guides
         run: |
           python lessons/book/build.py --check
-          python lessons/study-guides/build.py --check
-          python lessons/curriculum/build.py --check
+          python lessons/guias-de-estudio/build.py --check
+          python lessons/plan-de-estudios/build.py --check
 
       - name: Run editorial regression checks
         run: |
@@ -67,8 +67,8 @@ jobs:
           artifacts=lessons/book/out/pdf-lint/ci-release
           status=0
           python lessons/book/build.py --release --artifacts-dir "$artifacts" || status=1
-          python lessons/study-guides/build.py --release --artifacts-dir "$artifacts" || status=1
-          python lessons/curriculum/build.py --release --artifacts-dir "$artifacts" || status=1
+          python lessons/guias-de-estudio/build.py --release --artifacts-dir "$artifacts" || status=1
+          python lessons/plan-de-estudios/build.py --release --artifacts-dir "$artifacts" || status=1
           exit "$status"
 
       - name: Upload PDF lint findings

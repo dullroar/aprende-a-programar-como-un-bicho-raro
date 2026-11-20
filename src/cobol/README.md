@@ -3,7 +3,7 @@ name: "COBOL"
 teaches: "that a stop rule can be declared as data, and that a number's picture can do your rounding."
 kind: idiomatic
 languages: [cobol]
-lesson: "languages/cobol.md"
+lesson: "lenguajes/cobol.md"
 loop-by: loop-statement
 evaluation: eager
 assurance: guaranteed

@@ -9,7 +9,7 @@ Each page covers what makes the language special, with pointers into the repo, t
 | [C#, LINQ, XAML](csharp-linq-xaml.md) | `ModernChallenge1`, `LinqChallenge1/2`, `xaml`, plus Java, Kotlin, Python, Go, Rust | Everything inside a bodiless `for`; database writes and WPF animation inside a query; a parser that runs methods | Deferred execution, provider boundaries, side effects, UI thread affinity |
 | [COBOL](cobol.md) | `cobol`, `cobol-weird` | `ALTER` changes a `GO TO` destination; an overflowing field is the stop rule | Mutable control flow, data-declared rules, historical runtime design |
 | [Common Lisp](lisp.md) | `lisp`, `lisp-weird` | A class hierarchy is the loop and `or` method combination is the stop rule | Method combination, the class precedence list, reader labels, dynamic binding, the metaobject protocol |
-| [ed and Ex](editors.md) | `ed-weird`, `ex-weird` | `ed`'s commands are a rewrite system (a failed `s` is an `if`); in Ex a register runs itself, and marks do the arithmetic | Text rewriting, code as text, state outside the text, standards versus implementations |
+| [ed and Ex](editores.md) | `ed-weird`, `ex-weird` | `ed`'s commands are a rewrite system (a failed `s` is an `if`); in Ex a register runs itself, and marks do the arithmetic | Text rewriting, code as text, state outside the text, standards versus implementations |
 | [find](find.md) | `find-posix`, `find-gnu` | The walk digs the directory it is walking; the path is the call stack and the names are the counters | Tree traversal as a loop, path patterns as lookup tables, what GNU's extras replace, what POSIX leaves unspecified |
 | [Forth](forth.md) | `forth`, `forth-weird` | The text interpreter's parse position is the program counter | The interpreter is a program you can reach into |
 | [Haskell](haskell.md) | `haskell`, `haskell-weird` | Evaluating a list element performs I/O | Laziness, evaluation order, referential transparency, unsafe operations |
@@ -20,4 +20,4 @@ Each page covers what makes the language special, with pointers into the repo, t
 | [tar](tar.md) | `tar-gnu`, `tar-gnu-weird` | An archive is the program (tar walks the members, and the operator's `--to-command` gives them meaning); and an archive's layout is a clock (every record written is one tick) | Serialization versus execution, trust boundaries, logical clocks, fail-closed interpreters |
 | [Tcl](tcl.md) | `tcl`, `tcl-weird` | The program is text in a SQLite table; a recursive trigger is the loop | Everything is a string command, `unknown` as a library path, code and data are one thing |
 
-Prefer to start from a mechanism instead? See [patterns](../patterns.md). Back to the [lessons index](../README.md).
+Prefer to start from a mechanism instead? See [patterns](../patrones.md). Back to the [lessons index](../README.md).

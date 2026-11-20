@@ -3,7 +3,7 @@ name: "ed"
 teaches: "that a line editor is a rewriting machine: lines are the data, addresses are the program, and a failed substitution inside a global command is an \"if\"."
 kind: weird
 languages: [ed, sqlite]
-lesson: "languages/editors.md#the-buffer-is-the-machine"
+lesson: "lenguajes/editores.md#the-buffer-is-the-machine"
 loop-by: rewrite-and-rescan
 evaluation: rewriting
 assurance: accidentally-exploited
@@ -143,4 +143,4 @@ The launcher, [`timecards.sh`](timecards.sh), has four jobs: five random digits 
 
 ---
 
-See the [root README](../../README.md#the-results-so-far) for how this compares to the other entries, and [`CHALLENGE.md`](../../CHALLENGE.md) if you want to write your own.
+See the [root README](../../README.md#the-results-so-far) for how this compares to the other entries, and [`RETO.md`](../../RETO.md) if you want to write your own.

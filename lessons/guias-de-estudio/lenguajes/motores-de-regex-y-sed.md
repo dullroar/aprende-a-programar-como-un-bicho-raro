@@ -13,7 +13,7 @@ When you finish, you should be able to:
 5. Explain how a finite supply of category names set a hidden ceiling of four cards, what that did to the "exactly 40 continues" rule, how the five-name fix and its test work and how a backtracking pattern becomes a denial-of-service risk.
 6. Label each behavior as guaranteed, implementation-permitted or accidentally exploited.
 
-**Scope limits.** You need to know what a capture group, a greedy quantifier and alternation are. The guide does not teach regex syntax from scratch, the SQL or the terminal "pulse" animation. It covers Perl 5, PCRE2 10.x, pcre2grep with callout scripts, .NET 10 and GNU sed. For the theory, see [Regular expressions](../../cs/05-formal-languages-as-computational-substrates.md#regular-expressions) and [Backtracking](../../cs/07-effects-errors-and-commitment.md#backtracking) in the book. The language page is [Regular expressions: five engines](../../languages/regex.md).
+**Scope limits.** You need to know what a capture group, a greedy quantifier and alternation are. The guide does not teach regex syntax from scratch, the SQL or the terminal "pulse" animation. It covers Perl 5, PCRE2 10.x, pcre2grep with callout scripts, .NET 10 and GNU sed. For the theory, see [Regular expressions](../../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#regular-expressions) and [Backtracking](../../informatica/07-efectos-errores-y-confirmacion.md#backtracking) in the book. The language page is [Regular expressions: five engines](../../lenguajes/regex.md).
 
 ## Before you begin
 
@@ -42,7 +42,7 @@ Edit only copies ([Running things safely](../../exercises.md#running-things-safe
 
 ## The shared challenge
 
-The [challenge specification](../../intro.md#what-the-challenge-does) calls for cards with a category and 10 to 19 whole hours. Categories cycle through Meetings, Coding, Debugging and Learning. Add each card's hours to the running total. Stop when the total passes 40. Keep the **first card that takes the total over 40**. A total of exactly 40 continues. Four 10-hour cards need a fifth card, in the Meetings category. Conforming runs finish with 3 to 5 cards and a total of 41 to 59 hours.
+The [challenge specification](../../introduccion.md#what-the-challenge-does) calls for cards with a category and 10 to 19 whole hours. Categories cycle through Meetings, Coding, Debugging and Learning. Add each card's hours to the running total. Stop when the total passes 40. Keep the **first card that takes the total over 40**. A total of exactly 40 continues. Four 10-hour cards need a fifth card, in the Meetings category. Conforming runs finish with 3 to 5 cards and a total of 41 to 59 hours.
 
 All five entries follow the numeric rule, with three storage paths worth distinguishing: the C and .NET tracks write TSV, pcre2grep saves through separate SQLite calls and Perl and sed send a transaction to SQLite. This family once could not obey the numeric rule, and the way it was found is instructive. Each regex entry walked a *finite list of four category names* (the subject string, the scaffold or sed's `cats:` list). When the four names ran out the loop ended, whatever the total was, so a run of four 10-hour cards ended at exactly 40 with four rows. That has probability one in 10,000 per run, so the entries passed their own checks, which accepted "four entries" as a legitimate stop. The shared checker `lessons/tools/check-demo.sh` rejects such a run, and running it with forced draws while writing this guide showed the problem (see Trace). It is now fixed: each entry has **five** names (`Meetings` repeats), and each `check.sh` builds a copy of the program whose every card is worth 10 hours and requires a fifth card, `Meetings`, ending at 50.
 
@@ -243,19 +243,19 @@ The B8 exercise asks for three sentences contrasting what survives a failed matc
 
 **Costs to state.**
 
-- **ReDoS is the same mechanism.** The sed entry uses catastrophic backtracking as a clock, and the CMake guide notes that a pattern for "at most 40" written as 40 optional groups would backtrack exponentially on failure. In a production service, a pattern like that on attacker-chosen input is a denial-of-service bug. See [Regular-expression denial of service](../../cs/08-abstraction-leaks-and-implementation-dependence.md#regular-expression-denial-of-service).
-- **A pattern that runs code is a program.** The book's threat-model example is exactly this entry: if your threat model only worries about a slow regex, update it ([Threat model](../../cs/01-reading-an-adversarial-program.md#threat-model)).
+- **ReDoS is the same mechanism.** The sed entry uses catastrophic backtracking as a clock, and the CMake guide notes that a pattern for "at most 40" written as 40 optional groups would backtrack exponentially on failure. In a production service, a pattern like that on attacker-chosen input is a denial-of-service bug. See [Regular-expression denial of service](../../informatica/08-fugas-de-abstraccion-y-dependencia-de-la-implementacion.md#regular-expression-denial-of-service).
+- **A pattern that runs code is a program.** The book's threat-model example is exactly this entry: if your threat model only worries about a slow regex, update it ([Threat model](../../informatica/01-lectura-de-un-programa-adversarial.md#threat-model)).
 - **Callouts that run programs are command execution.** The entry's `check.sh` allows only `/usr/bin/sqlite3`, `/usr/bin/test` and `/bin/sleep`.
 - **State rewinding differs by engine.** Code that is correct under Perl's `local` can be wrong in a language whose state does not unwind.
 - **A host that only reports is still a host.** .NET and CMake need a host to seed randomness and to write files, because a regex cannot do either.
 
 ## Connections across the repository
 
-- **The loop inside one match, in another tool.** [Make and CMake](make-and-cmake.md): CMake lets a `while()` re-expand a regex every pass, so its captures become registers.
-- **Rewriting until nothing changes.** [m4](m4.md) rescans its own output, and sed's `b` and `t` loop does the same on one line. The concept guide [Formal languages and weird machines](../concepts/formal-languages-and-weird-machines.md) puts string rewriting beside the Markov algorithm.
-- **A failed match as information.** [Effects, errors and commitment](../concepts/effects-errors-and-commitment.md) compares what survives failure here with transactions, exit status and the cut.
+- **The loop inside one match, in another tool.** [Make and CMake](make-y-cmake.md): CMake lets a `while()` re-expand a regex every pass, so its captures become registers.
+- **Rewriting until nothing changes.** [m4](m4.md) rescans its own output, and sed's `b` and `t` loop does the same on one line. The concept guide [Formal languages and weird machines](../conceptos/lenguajes-formales-y-maquinas-raras.md) puts string rewriting beside the Markov algorithm.
+- **A failed match as information.** [Effects, errors and commitment](../conceptos/efectos-errores-y-confirmacion.md) compares what survives failure here with transactions, exit status and the cut.
 - **Authority from the command, not the data.** [tar](tar.md) shows the same worry from another side: whether reading the data runs it.
-- **In the book.** [Regular expressions: five engines](../../languages/regex.md), [Regular expressions](../../cs/05-formal-languages-as-computational-substrates.md#regular-expressions), [Backtracking](../../cs/07-effects-errors-and-commitment.md#backtracking), [The cut](../../cs/07-effects-errors-and-commitment.md#the-cut-committing-to-a-choice) and [Markov algorithms](../../cs/02-what-counts-as-a-machine.md#markov-algorithms).
+- **In the book.** [Regular expressions: five engines](../../lenguajes/regex.md), [Regular expressions](../../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#regular-expressions), [Backtracking](../../informatica/07-efectos-errores-y-confirmacion.md#backtracking), [The cut](../../informatica/07-efectos-errores-y-confirmacion.md#the-cut-committing-to-a-choice) and [Markov algorithms](../../informatica/02-que-cuenta-como-maquina.md#markov-algorithms).
 
 ## Self-check
 

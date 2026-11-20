@@ -154,6 +154,14 @@ def identity_check(text, rel_path=""):
     return problems
 
 
+def source_text(rel, path):
+    """The text a PO is built on and applied to: the pinned English text of the file with English key `rel` (segment ids are
+    hashes of it; the working file of an untranslated page has its references remapped, so its ids would differ). A file
+    that has no pinned English text (a scratch file in a test) is read as it is."""
+    en = enpath.english_source(rel, ROOT)
+    return en if en is not None else segment.read_raw(path)
+
+
 def write_text(path, text):
     with open(path, "w", encoding="utf-8", newline="") as f:
         f.write(text)
@@ -213,7 +221,7 @@ def main(argv):
         print("expected exactly one FILE.md; see usage")
         return 2
     rp, src = enpath.locate(args[0], ROOT)
-    text = segment.read_raw(src)
+    text = source_text(rp, src)
     if flag_init:
         target = po_arg or po_path_for(rp)
         if os.path.exists(target):
@@ -235,6 +243,7 @@ def main(argv):
     except (ApplyError, catalog.CatalogError, OSError) as e:
         print("FAIL %s" % e)
         return 1
+    out = enpath.remap_text(out, rp)            # references to renamed paths are written in the layout of the checkout
     if flag_write:
         write_text(src, out)
     elif out_arg and out_arg != "-":

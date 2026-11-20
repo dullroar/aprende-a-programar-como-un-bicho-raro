@@ -3,7 +3,7 @@ name: "AWK"
 teaches: "that portable AWK can build records out of fields and stream its output through a pipe, with arrays and parameter-local variables for state."
 kind: idiomatic
 languages: [awk]
-lesson: "languages/awk.md"
+lesson: "lenguajes/awk.md"
 loop-by: input-driven
 evaluation: eager
 assurance: guaranteed

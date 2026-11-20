@@ -1,6 +1,6 @@
 # Exercises
 
-Step 5 of every lesson: *now break it yourself*. Each exercise has a goal, a safe way to run it, **acceptance criteria** a student (or their coding agent) can test and, where practical, a command that tests them. Worked solutions are in the [answer key](answers-key.md). **Every exercise marked "verified" has been run end to end against the real entries**, in Docker or Windows Sandbox, by [`verify-exercises.sh`](tools/verify-exercises.sh) and [`verify-windows.ps1`](tools/verify-windows.ps1); the ones that have not are labeled **open challenge**.
+Step 5 of every lesson: *now break it yourself*. Each exercise has a goal, a safe way to run it, **acceptance criteria** a student (or their coding agent) can test and, where practical, a command that tests them. Worked solutions are in the [answer key](respuestas.md). **Every exercise marked "verified" has been run end to end against the real entries**, in Docker or Windows Sandbox, by [`verify-exercises.sh`](tools/verify-exercises.sh) and [`verify-windows.ps1`](tools/verify-windows.ps1); the ones that have not are labeled **open challenge**.
 
 The rhythm for every exercise is **predict, run, compare**. Write your prediction down *before* you run anything. The check only tells you whether you got a result; the prediction tells you whether you understood.
 
@@ -33,7 +33,7 @@ Ground rules:
 
 ### The shared checker
 
-[`lessons/tools/check-demo.sh`](tools/check-demo.sh) checks a report that follows the [shared numeric rule](intro.md#what-the-challenge-does): a `DEMO ONLY` marker, every row's hours in 10 to 19, every running total equal to the previous total plus the hours, the run stopped on the first card whose total passed the limit (default 40) and the `# committed` (or `# captured`) line agrees with the rows. Exit 0 is PASS.
+[`lessons/tools/check-demo.sh`](tools/check-demo.sh) checks a report that follows the [shared numeric rule](introduccion.md#what-the-challenge-does): a `DEMO ONLY` marker, every row's hours in 10 to 19, every running total equal to the previous total plus the hours, the run stopped on the first card whose total passed the limit (default 40) and the `# committed` (or `# captured`) line agrees with the rows. Exit 0 is PASS.
 
 ```bash
 sandbox/container/run-image.sh src/cobol-weird > out.txt 2>&1
@@ -47,7 +47,7 @@ bash lessons/tools/check-demo.sh out.txt 50       # the same check against a lim
 
 **Goal:** tell, from the output alone, which card stopped the run and why that is not off by one.
 
-1. Choose three entries from different [languages](languages/README.md) that implement the crossing-card rule. See the [entry differences](intro.md#where-entries-differ) before picking. Run them and save each output.
+1. Choose three entries from different [languages](lenguajes/README.md) that implement the crossing-card rule. See the [entry differences](introduccion.md#where-entries-differ) before picking. Run them and save each output.
 2. For each, write down how many cards there were, which card crossed 40 and what the card *before* it totaled.
 3. Run a fourth (try `src/regex-dotnet`, whose rows have no running-total column) and predict its card count before looking.
 
@@ -61,7 +61,7 @@ Acceptance criteria:
 
 ### B1. COBOL: predict, then break `ALTER` (verified)
 
-**Lesson:** [COBOL / ALTER](languages/cobol.md#alter). **Entry:** a copy of `src/cobol-weird`.
+**Lesson:** [COBOL / ALTER](lenguajes/cobol.md#alter). **Entry:** a copy of `src/cobol-weird`.
 
 1. **Predict:** the headroom starts at 59 ([`timecards.cob` L44](../src/cobol-weird/timecards.cob#L44)). If it starts at 49 instead, above what total does the run stop?
 2. Change `59` to `49`. Run it with `run-image.sh`, then run the entry's own check with `sandbox/run.sh`.
@@ -75,7 +75,7 @@ Acceptance criteria:
 
 ### B2. Haskell: break the laziness (verified)
 
-**Lesson:** [Haskell](languages/haskell.md#lazy-io-as-control-flow). **Entry:** a copy of `src/haskell-weird`.
+**Lesson:** [Haskell](lenguajes/haskell.md#lazy-io-as-control-flow). **Entry:** a copy of `src/haskell-weird`.
 
 1. **Predict:** replace `entries <- evaluate (length cards)` ([L144](../src/haskell-weird/timecards.hs#L144)) with `let entries = length cards`. What happens?
 2. **Predict:** on a fresh copy, remove `unsafeInterleaveIO` from `lazily` by replacing `unsafeInterleaveIO $ case actions of` ([L64](../src/haskell-weird/timecards.hs#L64)) with `id $ case actions of`. What happens, and does it hang?
@@ -88,7 +88,7 @@ Acceptance criteria:
 
 ### B3. Forth: move the anchor (verified)
 
-**Lesson:** [Forth](languages/forth.md). **Entry:** a copy of `src/forth-weird`.
+**Lesson:** [Forth](lenguajes/forth.md). **Entry:** a copy of `src/forth-weird`.
 
 1. **Predict**, then test each change on a fresh copy:
    - (a) Put `0 0` on its own line before `>in @ step rewind?` ([L101](../src/forth-weird/timecards.fs#L101)).
@@ -104,7 +104,7 @@ Acceptance criteria:
 
 ### B4. Make: remove the no-op, and override the clock (verified)
 
-**Lesson:** [GNU Make](languages/make-cmake.md#gnu-make). **Entry:** a copy of `src/make-gnu`.
+**Lesson:** [GNU Make](lenguajes/make-cmake.md#gnu-make). **Entry:** a copy of `src/make-gnu`.
 
 1. **Predict:** delete the trailing `@:` from the recipe line ([`Makefile` L111](../src/make-gnu/Makefile#L111)): change `...,0))@:)` to `...,0)))`. What happens?
 2. On the *unmodified* entry, the Makefile already has a `NOW=<epoch>` override. Run `lessons/tools/run-in-sandbox.sh src/make-gnu make NOW=1700000000`.
@@ -116,7 +116,7 @@ Acceptance criteria:
 
 ### B5. CMake: mutate the literal (verified)
 
-**Lesson:** [CMake](languages/make-cmake.md#cmake). **Entry:** a copy of `src/cmake`.
+**Lesson:** [CMake](lenguajes/make-cmake.md#cmake). **Entry:** a copy of `src/cmake`.
 
 1. **Predict:** the stop test is a regex literal of 41 `x`s ([`timecards.cmake` L41](../src/cmake/timecards.cmake#L41)). Shorten it to 31. What is the new stop rule?
 2. Run it, then run the entry's own check.
@@ -129,7 +129,7 @@ Acceptance criteria:
 
 ### B6. APL: the off-by-one rewrite (verified)
 
-**Lesson:** [APL, self-modifying functions](languages/apl.md#self-modifying-functions-apl-weird). **Entry:** a copy of `src/apl-weird`.
+**Lesson:** [APL, self-modifying functions](lenguajes/apl.md#self-modifying-functions-apl-weird). **Entry:** a copy of `src/apl-weird`.
 
 1. **Predict:** change `,5↓⊂[1]` to `,4↓⊂[1]` on [L53](../src/apl-weird/timecards.apl#L53). What does each child keep from its parent?
 2. Run it with `SANDBOX_TIMEOUT=40`.
@@ -142,7 +142,7 @@ Acceptance criteria:
 
 ### B7. LINQ: enumerate twice (verified)
 
-**Lesson:** [C# and LINQ](languages/csharp-linq-xaml.md#deferred-execution-and-the-void-to-value-trick).
+**Lesson:** [C# and LINQ](lenguajes/csharp-linq-xaml.md#deferred-execution-and-the-void-to-value-trick).
 
 1. In a new empty folder, make a console project (`dotnet new console`, target `net10.0`) whose `Program.cs` builds
    `var q = Enumerable.Range(1, 3).Select(i => { Console.WriteLine($"effect {i}"); return i; });`
@@ -158,7 +158,7 @@ Acceptance criteria:
 
 ### B8. Regex: what survives a failed match (verified)
 
-**Lessons:** [Regex](languages/regex.md). **Entries:** copies of `src/regex-dotnet` and `src/regex-pcre2grep`.
+**Lessons:** [Regex](lenguajes/regex.md). **Entries:** copies of `src/regex-dotnet` and `src/regex-pcre2grep`.
 
 1. **.NET:** for a fixed witness, replace `Random.Shared.Next(10, 20)` in `Draw()` with `10`. Run once in a fresh scratch data directory. Then change the end of the pattern on [L13](../src/regex-dotnet/Program.cs#L13) from `)*");` to `)*(?!)");` and run in another fresh directory. Predict what the host can still read. Compare stdout, process exit status and the saved TSV.
 2. **pcre2grep:** in `timecards.sh`, change the first `(?C{/usr/bin/sqlite3` to `(?C{sqlite3`. Predict what happens.
@@ -171,7 +171,7 @@ Acceptance criteria:
 
 ### B9. sed: watch a computation (verified)
 
-**Lesson:** [GNU sed](languages/regex.md#gnu-sed). **Entry:** `src/regex-sed`.
+**Lesson:** [GNU sed](lenguajes/regex.md#gnu-sed). **Entry:** `src/regex-sed`.
 
 1. Run `lessons/tools/run-in-sandbox.sh -e TRACE=1 src/regex-sed ./timecards.sh 2> trace.txt`.
 2. **Predict** roughly how many state lines the program writes per card.
@@ -184,7 +184,7 @@ Acceptance criteria:
 
 ### B10. Lisp: swap the method combination (verified)
 
-**Lesson:** [Common Lisp](languages/lisp.md#method-combination-as-control-flow). **Entry:** copies of `src/lisp-weird`.
+**Lesson:** [Common Lisp](lenguajes/lisp.md#method-combination-as-control-flow). **Entry:** copies of `src/lisp-weird`.
 
 1. **Predict:** on a copy, replace `or` with `progn` in both places: `(:method-combination or)` ([L61](../src/lisp-weird/timecards.lisp#L61)) and `(defmethod punch or ...)` inside `defcard` ([L39](../src/lisp-weird/timecards.lisp#L39)). `progn` runs *every* method. How many cards will every run print?
 2. **Predict**, on a fresh copy: change *only* the generic function's `(:method-combination or)` to `progn` and leave the `or` qualifiers alone.
@@ -200,7 +200,7 @@ Acceptance criteria:
 
 ### B11. m4: quote the recursion (verified)
 
-**Lesson:** [m4](languages/m4.md#a-loop-made-of-rescanning). **Entry:** copies of `src/m4`.
+**Lesson:** [m4](lenguajes/m4.md#a-loop-made-of-rescanning). **Entry:** copies of `src/m4`.
 
 1. **Predict:** run `lessons/tools/run-in-sandbox.sh src/m4 m4 -Dtc_seed=12345 timecards.m4` twice. What differs between the runs, and what does not?
 2. **Predict:** on a copy, remove the brackets around the recursive call: change `[tc_card()]` at the end of `tc_card` ([L82](../src/m4/timecards.m4#L82)) to `tc_card()`. Run it with `SANDBOX_TIMEOUT=20`, then again as `m4 -L 50 -Dtc_seed=7 timecards.m4`. (`-L` limits nesting.)
@@ -214,7 +214,7 @@ Acceptance criteria:
 
 ### B12. Tcl: edit the program in the database (verified)
 
-**Lesson:** [Tcl](languages/tcl.md#sqlite-as-the-program). **Entry:** copies of `src/tcl-weird`.
+**Lesson:** [Tcl](lenguajes/tcl.md#sqlite-as-the-program). **Entry:** copies of `src/tcl-weird`.
 
 1. **Predict:** on a copy, change `PRAGMA recursive_triggers = ON;` ([L55](../src/tcl-weird/timecards.tcl#L55)) to `OFF`. How many card rows will be printed? How many will the summary count?
 2. **Predict:** on a fresh copy, change the body of the `hours` row ([L73](../src/tcl-weird/timecards.tcl#L73)) from `expr {10 + int(rand() * 10)}` to `expr {10}`. You are editing *text inside an SQL string*, not a Tcl proc.
@@ -228,7 +228,7 @@ Acceptance criteria:
 
 ### B13. AWK: the missing `RT` (verified)
 
-**Lesson:** [AWK](languages/awk.md#records-from-a-random-byte-stream-awk-weird). **Entry:** copies of `src/awk-weird`.
+**Lesson:** [AWK](lenguajes/awk.md#records-from-a-random-byte-stream-awk-weird). **Entry:** copies of `src/awk-weird`.
 
 1. **Predict:** on a copy, make a digit file `printf '1 2\n' > d.txt` in the copy's folder and run `lessons/tools/run-in-sandbox.sh <copy> gawk -f timecards.awk d.txt`. What are the cards? (Dice: `10 + RT`.)
 2. **Predict:** on a fresh copy, delete rule 1, the line `RT == "" { next }` ([L52](../src/awk-weird/timecards.awk#L52)), and run the same command.
@@ -239,12 +239,12 @@ Acceptance criteria:
 
 - Step 1: two cards, `Meetings 11 11` and `Coding 12 23` and `# committed total=23 entries=2`. The trailing newline of the file leaves an empty last record that rule 1 skips.
 - Step 2: **three** cards; the third is `Debugging 10 33` and the summary says `entries=3`. Explain why an empty `RT` counted as a 10-hour card (`10 + ""`).
-- Step 3: the header and `# committed total=0 entries=0`, no error, exit 0. Explain why: mawk has no `RT`, so `RT == ""` is true for every record and rule 1 skips them all. Say what this teaches about "portable-looking" code, and which [knowledge level](intro.md#three-kinds-of-knowledge) `RT` is.
+- Step 3: the header and `# committed total=0 entries=0`, no error, exit 0. Explain why: mawk has no `RT`, so `RT == ""` is true for every record and rule 1 skips them all. Say what this teaches about "portable-looking" code, and which [knowledge level](introduccion.md#three-kinds-of-knowledge) `RT` is.
 - Step 4: `check-demo.sh out.txt 80` passes.
 
 ### B14. find: rig the dice (verified)
 
-**Lesson:** [find](languages/find.md). **Entry:** a copy of `src/find-posix`.
+**Lesson:** [find](lenguajes/find.md). **Entry:** a copy of `src/find-posix`.
 
 1. In the copy, make a folder `bin` with an executable script `bin/mktemp` that always names the new directory `xxxxxS`:
 
@@ -265,7 +265,7 @@ Acceptance criteria:
 
 ### B15. GNU find: move the stop rule, read the profile (verified)
 
-**Lesson:** [find](languages/find.md). **Entry:** copies of `src/find-gnu`.
+**Lesson:** [find](lenguajes/find.md). **Entry:** copies of `src/find-gnu`.
 
 1. **Predict:** in a copy, change the stop test in `timecards.sh`, `-regex '([^/]*/){41}.*'`, to `{31}`. What is the new stop rule? Run it with `sandbox/container/run-image.sh`, then run the entry's own `check.sh` (`sandbox/run.sh <copy>`).
 2. On a *fresh* copy, run `lessons/tools/run-in-sandbox.sh -e FIND_D=rates <copy> sh ./timecards.sh`. Look at standard error.
@@ -277,7 +277,7 @@ Acceptance criteria:
 
 ### B16. tar: read the program, then run it (verified)
 
-**Lesson:** [tar](languages/tar.md). **Entry:** a copy of `src/tar-gnu`.
+**Lesson:** [tar](lenguajes/tar.md). **Entry:** a copy of `src/tar-gnu`.
 
 1. In the copy, write an archive with fixed hours and read it without running it: `sh build-archive.sh --seed 1 --hours "12 12 12 12 12" a.tar`, then `sh inspect.sh a.tar`. **Predict** how many cards will run, and which of the five card slots will be read and ignored. Then run it: `sh interpret.sh --execute a.tar`.
 2. Take the program apart with plain tar: `mkdir x && tar -C x -xf a.tar`. Open `x/021.stop-over` and change `limit=40` to `limit=20`. Pack it again **in the same order**: `tar --format=ustar -cf b.tar -C x 000.begin 010.card 011.stop-over 020.card 021.stop-over 030.card 031.stop-over 040.card 041.stop-over 050.card 051.stop-over 990.show`. **Predict** the rows, then run `b.tar`. Delete the old database first (`rm "$XDG_DATA_HOME/TarGnu/demo-timecards.db"`), so only this run is in it. Run it with the `trace` table in view: `sqlite3 "$XDG_DATA_HOME/TarGnu/demo-timecards.db" 'select * from trace'`.
@@ -292,7 +292,7 @@ Acceptance criteria:
 
 ### B17. tar, weirder: predict the clock (verified)
 
-**Lesson:** [tar](languages/tar.md#the-archive-is-the-clock). **Entry:** a copy of `src/tar-gnu-weird`.
+**Lesson:** [tar](lenguajes/tar.md#the-archive-is-the-clock). **Entry:** a copy of `src/tar-gnu-weird`.
 
 For seed 42 the cards are `Meetings 12`, `Coding 17`, `Debugging 17`, so the total reaches 12, 29 and 46 hours. The run needs 46 ticks.
 
@@ -310,7 +310,7 @@ Acceptance criteria:
 
 ### B18. ed: move the stop rule and break the cleanup (verified)
 
-**Lesson:** [ed and Ex](languages/editors.md#the-buffer-is-the-machine). **Entry:** a copy of `src/ed-weird`.
+**Lesson:** [ed and Ex](lenguajes/editores.md#the-buffer-is-the-machine). **Entry:** a copy of `src/ed-weird`.
 
 The launcher takes `DICE="a b c d e"`: five digits. Each card has 10 + its digit hours.
 
@@ -327,7 +327,7 @@ Acceptance criteria:
 
 ### B19. Ex: move the limit on the tape and cut the loop (verified)
 
-**Lesson:** [ed and Ex](languages/editors.md#a-program-you-can-edit). **Entry:** a copy of `src/ex-weird`.
+**Lesson:** [ed and Ex](lenguajes/editores.md#a-program-you-can-edit). **Entry:** a copy of `src/ex-weird`.
 
 The launcher takes `DICE="a b c d e"`: five digits. Each card has 10 + its digit hours.
 
@@ -345,7 +345,7 @@ Acceptance criteria:
 
 ### B20. JavaScript: read the clauses, move the limit and fail the structure check (verified)
 
-**Lesson:** [JavaScript](languages/javascript.md#the-bodiless-for-in-node). **Entry:** a copy of `src/javascript`.
+**Lesson:** [JavaScript](lenguajes/javascript.md#the-bodiless-for-in-node). **Entry:** a copy of `src/javascript`.
 
 1. **Predict**, then run: `SEED=42 node timecards.mjs`. Which card crosses 40? (The generator is Park-Miller, and the hours of the first three cards for this seed are 12, 17 and 17.)
 2. In the copy, change `<= 40` in the condition to `<= 20`. **Predict** the rows for `SEED=42`, then run them.
@@ -361,7 +361,7 @@ Acceptance criteria:
 
 ### B21. JavaScript, weirder: move the stop rule in a closure and watch the demand (verified)
 
-**Lesson:** [JavaScript](languages/javascript.md#closures-all-the-way-down). **Entry:** a copy of `src/javascript-weird`.
+**Lesson:** [JavaScript](lenguajes/javascript.md#closures-all-the-way-down). **Entry:** a copy of `src/javascript-weird`.
 
 1. Run the closure lab on the untouched copy: `node --expose-gc --test check.mjs`. How many tests pass?
 2. In `core.mjs`, change the stop rule `over = total > 40` to `over = total > 20`. **Predict** the rows for `SEED=42 node timecards.mjs` (the hours of the first cards are 12, 17 and 17). Then run the lab again. **Predict** whether it passes.
@@ -386,7 +386,7 @@ Acceptance criteria:
 
 ### B22. JavaScript, event-driven: predict the trace, then remove the boundary (verified)
 
-**Lesson:** [JavaScript](languages/javascript.md#listeners-all-the-way-down). **Chapter:** [Events, callbacks and reactive control flow](cs/10-events-callbacks-and-reactive-control-flow.md). **Entry:** a copy of `src/javascript-events`.
+**Lesson:** [JavaScript](lenguajes/javascript.md#listeners-all-the-way-down). **Chapter:** [Events, callbacks and reactive control flow](informatica/10-eventos-retrollamadas-y-flujo-de-control-reactivo.md). **Entry:** a copy of `src/javascript-events`.
 
 1. Run the event lab on the untouched copy: `node --test check.mjs`. How many tests pass?
 2. **Predict** the order of the three lines that this prints, then run it:
@@ -433,7 +433,7 @@ Acceptance criteria:
 
 ### C1. Weird next to boring (verified)
 
-**Lesson:** [Weird next to boring](intro.md#weird-next-to-boring). The repo has many ready-made pairs, among them `cobol`/`cobol-weird`, `haskell`/`haskell-weird`, `forth`/`forth-weird`, `apl`/`apl-weird`, `lisp`/`lisp-weird`, `tcl`/`tcl-weird`, `awk`/`awk-weird`, `tar-gnu`/`tar-gnu-weird`, `ed-weird`/`ex-weird` and `javascript`/`javascript-weird`.
+**Lesson:** [Weird next to boring](introduccion.md#weird-next-to-boring). The repo has many ready-made pairs, among them `cobol`/`cobol-weird`, `haskell`/`haskell-weird`, `forth`/`forth-weird`, `apl`/`apl-weird`, `lisp`/`lisp-weird`, `tcl`/`tcl-weird`, `awk`/`awk-weird`, `tar-gnu`/`tar-gnu-weird`, `ed-weird`/`ex-weird` and `javascript`/`javascript-weird`.
 
 Compare one pair. Run both, and count code lines (not comments) in each program.
 
@@ -445,7 +445,7 @@ Acceptance criteria:
 
 ### C2. Make the constraint real (verified)
 
-**Lesson:** [patterns](patterns.md). Every entry ships a `check.sh` that proves its rule (for example [`cobol-weird/check.sh`](../src/cobol-weird/check.sh) greps for banned words and counts `ALTER`s).
+**Lesson:** [patterns](patrones.md). Every entry ships a `check.sh` that proves its rule (for example [`cobol-weird/check.sh`](../src/cobol-weird/check.sh) greps for banned words and counts `ALTER`s).
 
 Write a check for `src/forth-weird`'s rule: *no loop or branch words, no variables and `>in @` is read at least twice.*
 
@@ -457,7 +457,7 @@ Acceptance criteria:
 
 ### C3. A loop whose state is not a variable (verified)
 
-**Lesson:** [Control state outside variables](patterns.md#control-state-outside-variables).
+**Lesson:** [Control state outside variables](patrones.md#control-state-outside-variables).
 
 In awk, with **no** `for`, `while`, `do`, `function`, recursion or `goto`, print the numbers 1 to N for N chosen by the *caller*. (Where can the loop's state live if not in your code?)
 
@@ -465,11 +465,11 @@ Acceptance criteria:
 
 - Output is `1` through `N` for N in 1, 3 and 10, run through the sandbox: `seq N | lessons/tools/run-in-sandbox.sh <folder> bash -c "awk '...'"`.
 - A `grep -Ew 'for|while|do|function|goto'` of your awk source finds nothing.
-- State which [knowledge level](intro.md#three-kinds-of-knowledge) your trick leans on.
+- State which [knowledge level](introduccion.md#three-kinds-of-knowledge) your trick leans on.
 
 ## D. Port the challenge (verified: reference answer in awk)
 
-**Goal:** implement the shared demo in a language not yet in the repo (Lua, Ruby, Prolog, a SQL recursive CTE, PowerShell, Scheme, Perl...). The repo has since gained Common Lisp, m4, Tcl and awk entries, so those are no longer open under the rules of [`CHALLENGE.md`](../CHALLENGE.md), and run it only in the sandbox.
+**Goal:** implement the shared demo in a language not yet in the repo (Lua, Ruby, Prolog, a SQL recursive CTE, PowerShell, Scheme, Perl...). The repo has since gained Common Lisp, m4, Tcl and awk entries, so those are no longer open under the rules of [`RETO.md`](../RETO.md), and run it only in the sandbox.
 
 Acceptance criteria:
 
@@ -487,7 +487,7 @@ for i in $(seq 25); do
 done
 ```
 
-See [`CONTRIBUTING.md`](../CONTRIBUTING.md) if you want to send it in. A reference answer lives in [`lessons/solutions/awk-port`](solutions/awk-port) (see the [answer key](answers-key.md#d-port-the-challenge)); try yours first. It was written before awk was in the repo and is a short third design (the caller pipes in five records and a pattern is the stop rule), distinct from [`src/awk`](../src/awk/README.md) (a `BEGIN` loop) and [`src/awk-weird`](../src/awk-weird/README.md) (gawk and `RS`/`RT`): compare all three.
+See [`CONTRIBUTING.md`](../CONTRIBUTING.md) if you want to send it in. A reference answer lives in [`lessons/solutions/awk-port`](solutions/awk-port) (see the [answer key](respuestas.md#d-port-the-challenge)); try yours first. It was written before awk was in the repo and is a short third design (the caller pipes in five records and a pattern is the stop rule), distinct from [`src/awk`](../src/awk/README.md) (a `BEGIN` loop) and [`src/awk-weird`](../src/awk-weird/README.md) (gawk and `RS`/`RT`): compare all three.
 
 ## E. Windows Sandbox track (verified on Windows 11 Pro)
 
@@ -524,7 +524,7 @@ Acceptance criteria:
 
 ### F1. Test a claim of your choice
 
-Every README has a "Gotchas" or "Walls" section. Pick **one claim** and write a test that would fail if it were false. A worked example is in the [answer key](answers-key.md#f-prove-a-readme-claim): "`takeWhile` is not enough" ([`src/haskell/README.md`](../src/haskell/README.md#gotchas-worth-knowing)).
+Every README has a "Gotchas" or "Walls" section. Pick **one claim** and write a test that would fail if it were false. A worked example is in the [answer key](respuestas.md#f-prove-a-readme-claim): "`takeWhile` is not enough" ([`src/haskell/README.md`](../src/haskell/README.md#gotchas-worth-knowing)).
 
 Other good claims: "`SYSTEM` returns the raw wait status (exit 3 comes back as 768)", "GnuCOBOL warns five times about `ALTER`", "pcre2grep does not search `PATH`".
 
@@ -536,7 +536,7 @@ Acceptance criteria:
 
 ### F2. Trojan Source: hide a character, then find it (verified)
 
-**Lesson:** [Trojan Source](cs/01-reading-an-adversarial-program.md#trojan-source-characters-you-cannot-see). **Entry:** none. No entry in this repository may contain an invisible character, so you make the file yourself, in a scratch folder, and you never commit it. The claim to prove is the one in [`CONTRIBUTING.md`](../CONTRIBUTING.md): "no invisible or direction-changing Unicode characters. APL glyphs and other visible Unicode are fine."
+**Lesson:** [Trojan Source](informatica/01-lectura-de-un-programa-adversarial.md#trojan-source-characters-you-cannot-see). **Entry:** none. No entry in this repository may contain an invisible character, so you make the file yourself, in a scratch folder, and you never commit it. The claim to prove is the one in [`CONTRIBUTING.md`](../CONTRIBUTING.md): "no invisible or direction-changing Unicode characters. APL glyphs and other visible Unicode are fine."
 
 1. In a scratch folder, make a program with a zero-width space (U+200B) after `admin` in the first line:
 
@@ -559,7 +559,7 @@ Acceptance criteria:
 
 ## G. Open challenges (not verified; may be impossible)
 
-These are the gaps from [blocking problems](blocking-problems.md). **Nobody has shown they can be closed**, and there is no answer key. That is the point: a well-documented wall is a good result ([`CHALLENGE.md`](../CHALLENGE.md)). If you solve one, send it in; if you cannot, write up exactly where it breaks.
+These are the gaps from [blocking problems](problemas-bloqueantes.md). **Nobody has shown they can be closed**, and there is no answer key. That is the point: a well-documented wall is a good result ([`RETO.md`](../RETO.md)). If you solve one, send it in; if you cannot, write up exactly where it breaks.
 
 | Blocker | Task | Success looks like |
 | --- | --- | --- |

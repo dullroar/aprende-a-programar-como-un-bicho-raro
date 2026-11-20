@@ -1,7 +1,7 @@
 ---
 title: "Formal languages as computational substrates"
 ---
-For an advanced reading path with traces and experiments, see the [formal languages and weird machines study guide](../study-guides/concepts/formal-languages-and-weird-machines.md).
+For an advanced reading path with traces and experiments, see the [formal languages and weird machines study guide](../guias-de-estudio/conceptos/lenguajes-formales-y-maquinas-raras.md).
 
 A formal language is a notation with strict rules that a machine can process. The recurring surprise of this repository is that a notation built for *one* job turns out to be a computer. Regular expressions were made to match text, and Perl, PCRE2 and .NET engines turn them into search machines, a stack and a counter. `sed` is a rewriting system. Make and CMake were made to order builds, and they became a restarting loop and a register machine. XAML was made to describe a user interface, and its parser runs methods.
 

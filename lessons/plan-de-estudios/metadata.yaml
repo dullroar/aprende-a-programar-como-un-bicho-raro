@@ -1,5 +1,5 @@
 ---
-# Metadatos de los documentos independientes del plan de estudios. Misma forma que lessons/book/metadata.yaml y lessons/study-guides/metadata.yaml.
+# Metadatos de los documentos independientes del plan de estudios. Misma forma que lessons/book/metadata.yaml y lessons/guias-de-estudio/metadata.yaml.
 # `companion-to` debe ser igual al título del libro: build.py falla cuando cambia la edición del libro, como recordatorio de revisar el plan.
 companion-to: "¡Aprende a programar como un bicho raro! v4"
 title: "¡Aprende a programar como un bicho raro! Plan de estudios"

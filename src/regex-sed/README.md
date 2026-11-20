@@ -3,7 +3,7 @@ name: "GNU sed"
 teaches: "that a program can be one line of text that substitutions rewrite until none applies: a Markov algorithm, with a catastrophic-backtracking regex as its clock."
 kind: weird
 languages: [sed, regex]
-lesson: "languages/regex.md#gnu-sed"
+lesson: "lenguajes/regex.md#gnu-sed"
 loop-by: rewrite-and-rescan
 evaluation: rewriting
 assurance: accidentally-exploited

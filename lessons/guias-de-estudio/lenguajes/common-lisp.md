@@ -13,7 +13,7 @@ When you finish, you should be able to:
 5. Say why five is the most cards the weird program can deal, and what you would change to raise that.
 6. Label each behavior as guaranteed, implementation-permitted or accidentally exploited.
 
-**Scope limits.** You need to read Lisp syntax and know what a class and a method are. The guide does not teach the whole of CLOS, the reader macros beyond the one circular list or the SQL. It uses SBCL 2.x (`sbcl --script`). The book's page is [Common Lisp](../../languages/lisp.md). For the ideas, see [Short-circuit evaluation](../../cs/04-evaluation-and-demand.md#short-circuit-evaluation) and [Control flow](../../cs/03-control-flow-and-continuations.md#control-flow).
+**Scope limits.** You need to read Lisp syntax and know what a class and a method are. The guide does not teach the whole of CLOS, the reader macros beyond the one circular list or the SQL. It uses SBCL 2.x (`sbcl --script`). The book's page is [Common Lisp](../../lenguajes/lisp.md). For the ideas, see [Short-circuit evaluation](../../informatica/04-evaluacion-y-demanda.md#short-circuit-evaluation) and [Control flow](../../informatica/03-flujo-de-control-y-continuaciones.md#control-flow).
 
 ## Before you begin
 
@@ -40,7 +40,7 @@ Edit only copies ([Running things safely](../../exercises.md#running-things-safe
 
 ## The shared challenge
 
-The [challenge specification](../../intro.md#what-the-challenge-does) calls for cards with a category and 10 to 19 whole hours. Categories cycle through Meetings, Coding, Debugging and Learning. Add each card's hours to the running total. Stop when the total passes 40. Keep the **first card that takes the total over 40**. A total of exactly 40 continues. Four 10-hour cards need a fifth card, in the Meetings category. Conforming runs finish with 3 to 5 cards and a total of 41 to 59 hours.
+The [challenge specification](../../introduccion.md#what-the-challenge-does) calls for cards with a category and 10 to 19 whole hours. Categories cycle through Meetings, Coding, Debugging and Learning. Add each card's hours to the running total. Stop when the total passes 40. Keep the **first card that takes the total over 40**. A total of exactly 40 continues. Four 10-hour cards need a fifth card, in the Meetings category. Conforming runs finish with 3 to 5 cards and a total of 41 to 59 hours.
 
 Both Lisp entries save the cards in one SQLite transaction and print a summary. Lisp writes the boundary as `(> total 40)`: false for 40. In the `LOOP` the test is `until (> total +limit+)` and comes *after* `collect`, which is why the crossing card is kept ([L39-46](../../../src/lisp/timecards.lisp#L39-L46)). In the weird program each method ends with `(> (total ledger) 40)`, and the method that returns true stops the chain ([L84](../../../src/lisp-weird/timecards.lisp#L84)).
 
@@ -180,11 +180,11 @@ No behavior is merely accidentally exploited here: the weird entry uses document
 
 ## Connections across the repository
 
-- **Control flow stored in a declaration.** The same idea appears in [COBOL](cobol.md), where a data declaration (`88 OVER-FORTY`) is the stop rule, and [Tcl](tcl.md), where database triggers fire the next step. The concept guide [State and control beyond variables](../concepts/state-and-control-beyond-variables.md) compares them.
+- **Control flow stored in a declaration.** The same idea appears in [COBOL](cobol.md), where a data declaration (`88 OVER-FORTY`) is the stop rule, and [Tcl](tcl.md), where database triggers fire the next step. The concept guide [State and control beyond variables](../conceptos/estado-y-control-mas-alla-de-las-variables.md) compares them.
 - **Short-circuit as the stop rule.** `or` stops on the first true result, as a lazy `span` stops reading in [Haskell](haskell.md). Both stop by *not asking for more*. Lisp does it by not calling the next method.
-- **Compile-time repetition.** [m4](m4.md) is a macro processor for text. Lisp macros transform code instead. The concept guide [Formal languages and weird machines](../concepts/formal-languages-and-weird-machines.md) places both.
-- **A chain with a fixed bound.** The regex entries in [Regex engines and sed](regex-engines-and-sed.md) are limited to four cards by the length of a subject. Lisp-weird is limited to five by the length of a class chain.
-- **In the book.** [Common Lisp](../../languages/lisp.md), [Short-circuit evaluation](../../cs/04-evaluation-and-demand.md#short-circuit-evaluation) and [Macros and text expansion](../../cs/05-formal-languages-as-computational-substrates.md#macros-and-text-expansion).
+- **Compile-time repetition.** [m4](m4.md) is a macro processor for text. Lisp macros transform code instead. The concept guide [Formal languages and weird machines](../conceptos/lenguajes-formales-y-maquinas-raras.md) places both.
+- **A chain with a fixed bound.** The regex entries in [Regex engines and sed](motores-de-regex-y-sed.md) are limited to four cards by the length of a subject. Lisp-weird is limited to five by the length of a class chain.
+- **In the book.** [Common Lisp](../../lenguajes/lisp.md), [Short-circuit evaluation](../../informatica/04-evaluacion-y-demanda.md#short-circuit-evaluation) and [Macros and text expansion](../../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#macros-and-text-expansion).
 
 ## Self-check
 
@@ -200,4 +200,4 @@ Answer each question in your own words before you read the italic text. Say what
 - [Common Lisp](https://en.wikipedia.org/wiki/Common_Lisp) (Wikipedia): the language and its standard.
 - [Common Lisp Object System](https://en.wikipedia.org/wiki/Common_Lisp_Object_System) (Wikipedia): generic functions, multiple dispatch and method combination.
 - [Short-circuit evaluation](https://en.wikipedia.org/wiki/Short-circuit_evaluation) (Wikipedia): the general idea behind `or`'s stop.
-- [Control flow](../../cs/03-control-flow-and-continuations.md#control-flow) and [Short-circuit evaluation](../../cs/04-evaluation-and-demand.md#short-circuit-evaluation) (this book): the surrounding concepts.
+- [Control flow](../../informatica/03-flujo-de-control-y-continuaciones.md#control-flow) and [Short-circuit evaluation](../../informatica/04-evaluacion-y-demanda.md#short-circuit-evaluation) (this book): the surrounding concepts.

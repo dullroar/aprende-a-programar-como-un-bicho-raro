@@ -436,7 +436,7 @@ class Translator:
     def run_file(self, path, po_path=None, start=1, limit=None, redo_fuzzy=False, dry_run=False, log=print):
         """Translate a file's segments into its PO. Returns a result dict; raises TranslateError on a bad run."""
         rel, path = enpath.locate(path, ROOT)
-        text = segment.read_raw(path)
+        text = ap.source_text(rel, path)            # the pinned English text: ids must match the PO that verify reads
         try:
             seg = segment.Segmentation(text, rel)
         except segment.SegmentError as e:
@@ -548,7 +548,7 @@ def main(argv):
         if show:
             tr = Translator(ReplayBackend(lambda i: None), task_id=task_id)
             rel, full = enpath.locate(path, ROOT)
-            seg = segment.Segmentation(segment.read_raw(full), rel)
+            seg = segment.Segmentation(ap.source_text(rel, full), rel)
             items = seg.segments()
             if not 1 <= start <= len(items):
                 print("segment %d is out of range 1..%d" % (start, len(items)))

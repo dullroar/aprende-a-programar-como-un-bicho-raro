@@ -2,7 +2,7 @@
 
 # Control flow and continuations
 
-For an advanced reading path with traces and experiments, see the [state and control beyond variables study guide](../study-guides/concepts/state-and-control-beyond-variables.md).
+For an advanced reading path with traces and experiments, see the [state and control beyond variables study guide](../guias-de-estudio/conceptos/estado-y-control-mas-alla-de-las-variables.md).
 
 "What runs next?" is one of the two basic questions about any program. (The other is "what does it remember?", in the chapter "State beyond variables".) Most languages answer it with a program counter and a call stack, and most programmers never think about it again. The entries in this book keep control somewhere else, so you can see it clearly.
 
@@ -104,7 +104,7 @@ flowchart LR
     DOWN --> UP
 ```
 
-On the way down, each call hands a smaller problem to the next call. The base case, `sum(0)`, is the only call that answers without calling again. Without it the calls never stop. On the way up, each call finishes the work it was waiting to do. [The call stack](06-state-beyond-variables.md#the-call-stack) shows where those waiting calls are kept.
+On the way down, each call hands a smaller problem to the next call. The base case, `sum(0)`, is the only call that answers without calling again. Without it the calls never stop. On the way up, each call finishes the work it was waiting to do. [The call stack](06-estado-mas-alla-de-las-variables.md#the-call-stack) shows where those waiting calls are kept.
 
 - **Use it when:** the data is nested, or the problem splits into smaller copies of itself.
 - **Avoid it when:** the depth is unbounded and the language does not remove tail calls. The stack can run out. Always know the stop rule, and know what happens if it never fires.
@@ -187,7 +187,7 @@ Control moves only when a coroutine yields, so only one routine runs at a time. 
 **Read more:**
 
 - [Coroutine](https://en.wikipedia.org/wiki/Coroutine) (Wikipedia)
-- [Iterators and generators](04-evaluation-and-demand.md#iterators-and-generators) in "Evaluation and demand"
+- [Iterators and generators](04-evaluacion-y-demanda.md#iterators-and-generators) in "Evaluation and demand"
 
 **In this repo:**
 

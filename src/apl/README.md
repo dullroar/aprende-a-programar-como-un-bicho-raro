@@ -3,7 +3,7 @@ name: "APL"
 teaches: "that five rolls and a take-while can replace a loop."
 kind: idiomatic
 languages: [apl]
-lesson: "languages/apl.md"
+lesson: "lenguajes/apl.md"
 loop-by: bulk-array
 evaluation: eager
 assurance: implementation-permitted

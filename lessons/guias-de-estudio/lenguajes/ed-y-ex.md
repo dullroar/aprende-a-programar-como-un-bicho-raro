@@ -13,7 +13,7 @@ When you finish, you should be able to:
 5. Explain why five dice are always enough, and how the launcher and the editor divide the work.
 6. Label each behavior as guaranteed, implementation-permitted or accidentally exploited.
 
-**Scope limits.** You need to read basic `ed` commands: `s/re/new/`, `g/re/cmd`, `a`, `d`, `j`, `t`, `p`. The guide does not teach every Ex command, the SQL or Vim. It uses POSIX `ed` and `ex` as shipped in the sandbox (nvi for Ex; Vim in Ex mode works with different flags). The book's page is [ed and Ex](../../languages/editors.md). For ideas, see [Computation versus orchestration](../../cs/02-what-counts-as-a-machine.md#computation-versus-orchestration), [Capability and authority](../../cs/01-reading-an-adversarial-program.md#capability-and-authority) and [Representing state](../../cs/02-what-counts-as-a-machine.md#representing-state).
+**Scope limits.** You need to read basic `ed` commands: `s/re/new/`, `g/re/cmd`, `a`, `d`, `j`, `t`, `p`. The guide does not teach every Ex command, the SQL or Vim. It uses POSIX `ed` and `ex` as shipped in the sandbox (nvi for Ex; Vim in Ex mode works with different flags). The book's page is [ed and Ex](../../lenguajes/editores.md). For ideas, see [Computation versus orchestration](../../informatica/02-que-cuenta-como-maquina.md#computation-versus-orchestration), [Capability and authority](../../informatica/01-lectura-de-un-programa-adversarial.md#capability-and-authority) and [Representing state](../../informatica/02-que-cuenta-como-maquina.md#representing-state).
 
 ## Before you begin
 
@@ -40,13 +40,13 @@ Edit only copies ([Running things safely](../../exercises.md#running-things-safe
 
 ## The shared challenge
 
-The [challenge specification](../../intro.md#what-the-challenge-does) calls for cards with a category and 10 to 19 whole hours. Categories cycle through Meetings, Coding, Debugging and Learning. Add each card's hours to the running total. Stop when the total passes 40. Keep the **first card that takes the total over 40**. A total of exactly 40 continues. Four 10-hour cards need a fifth card, in the Meetings category. Conforming runs finish with 3 to 5 cards and a total of 41 to 59 hours.
+The [challenge specification](../../introduccion.md#what-the-challenge-does) calls for cards with a category and 10 to 19 whole hours. Categories cycle through Meetings, Coding, Debugging and Learning. Add each card's hours to the running total. Stop when the total passes 40. Keep the **first card that takes the total over 40**. A total of exactly 40 continues. Four 10-hour cards need a fifth card, in the Meetings category. Conforming runs finish with 3 to 5 cards and a total of 41 to 59 hours.
 
 The launchers load the editor output into SQLite. Both scripts limit the input the same way: the launcher supplies **five** dice, because five cards of at least 10 hours always reach 50. The editor script decides how many of the five count. ed marks the first card whose marks reach 41 (`x\{41,\}`, [L46](../../../src/ed-weird/timecards.ed#L46)) and turns every later card into a "Dead" card. Ex reads a tape line for each new total: lines 0 to 40 say `@a` (go on), and lines 41 to 59 say `"` (a comment: do nothing) ([L53](../../../src/ex-weird/timecards.ex#L53)). A total of exactly 40 reads tape line 40, which says go on.
 
 ## The machine to identify
 
-The launcher draws five digits, loads the editor and afterwards stores the rows in SQLite. It is orchestration, not computing: "every card, total and stop decision is made by ed" (or Ex). See [Computation versus orchestration](../../cs/02-what-counts-as-a-machine.md#computation-versus-orchestration).
+The launcher draws five digits, loads the editor and afterwards stores the rows in SQLite. It is orchestration, not computing: "every card, total and stop decision is made by ed" (or Ex). See [Computation versus orchestration](../../informatica/02-que-cuenta-como-maquina.md#computation-versus-orchestration).
 
 **What repeats.** In `ed-weird`, one global command over the card lines, in buffer order: `g/^[A-Za-z]* [0-9][0-9] x*$/` ([L42-46](../../../src/ed-weird/timecards.ed#L42-L46)). The global command is ed's own loop. In `ex-weird`, `@n`: the register `n` runs the program again, so the program runs itself ([L91](../../../src/ex-weird/timecards.ex#L91)).
 
@@ -205,7 +205,7 @@ Most of this is documented features used as documented. The exception is the sil
 
 **Costs to state.**
 
-- **An editor script has the authority of its caller.** `!` runs a shell. The scripts avoid it, and the launcher is the only part that talks to SQLite. See [Capability and authority](../../cs/01-reading-an-adversarial-program.md#capability-and-authority).
+- **An editor script has the authority of its caller.** `!` runs a shell. The scripts avoid it, and the launcher is the only part that talks to SQLite. See [Capability and authority](../../informatica/01-lectura-de-un-programa-adversarial.md#capability-and-authority).
 - **A silent no-op is easy to write.** A failed `s` inside `g` does nothing without a message, so a typo in a pattern looks like a program that works and does nothing.
 - **The state is hard to see in Ex.** Marks and registers are not in the buffer. You must print them.
 - **A hard ceiling.** The ed script holds at most five cards and the Ex tape at most 59, which are the limits of the challenge. Raising the limit needs a longer tape and more dice (see the Lisp guide for the same shape).
@@ -213,11 +213,11 @@ Most of this is documented features used as documented. The exception is the sil
 
 ## Connections across the repository
 
-- **A data-driven program counter.** In Ex, the position on a tape *is* the total and the stop rule is a line of text. [COBOL](cobol.md) stores the next step in a jump target, [Forth](forth.md) in the parse position and [Make and CMake](make-and-cmake.md) in files and captures. The concept guide [State and control beyond variables](../concepts/state-and-control-beyond-variables.md) lines these up.
-- **Rewriting as arithmetic.** ed adds by writing marks side by side, as the sed entry in [Regex engines and sed](regex-engines-and-sed.md) does with `#`. Both are string-rewriting machines.
+- **A data-driven program counter.** In Ex, the position on a tape *is* the total and the stop rule is a line of text. [COBOL](cobol.md) stores the next step in a jump target, [Forth](forth.md) in the parse position and [Make and CMake](make-y-cmake.md) in files and captures. The concept guide [State and control beyond variables](../conceptos/estado-y-control-mas-alla-de-las-variables.md) lines these up.
+- **Rewriting as arithmetic.** ed adds by writing marks side by side, as the sed entry in [Regex engines and sed](motores-de-regex-y-sed.md) does with `#`. Both are string-rewriting machines.
 - **A failed match as an `if`.** The failed `s` inside `g` is the same move as the failed `MATCHES` in CMake and the failed pass in the regex entries, and like the CMake behavior it is accidentally exploited.
 - **Orchestration against computation.** The launcher is the same kind of host as the one in [tar](tar.md): the real work is the tool, and the shell glues it to SQLite.
-- **In the book.** [ed and Ex](../../languages/editors.md), [Markov algorithms](../../cs/02-what-counts-as-a-machine.md#markov-algorithms) and [Term and string rewriting](../../cs/05-formal-languages-as-computational-substrates.md#term-and-string-rewriting).
+- **In the book.** [ed and Ex](../../lenguajes/editores.md), [Markov algorithms](../../informatica/02-que-cuenta-como-maquina.md#markov-algorithms) and [Term and string rewriting](../../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#term-and-string-rewriting).
 
 ## Self-check
 
@@ -233,4 +233,4 @@ Answer each question in your own words before you read the italic text. Say what
 - [ed (text editor)](https://en.wikipedia.org/wiki/Ed_(text_editor)) (Wikipedia): the line editor, its history and why `g/re/p` became `grep`.
 - [Ex (text editor)](https://en.wikipedia.org/wiki/Ex_(text_editor)) (Wikipedia): the line editor under `vi`.
 - [Markov algorithm](https://en.wikipedia.org/wiki/Markov_algorithm) (Wikipedia): the model behind rewriting marks to add.
-- [Computation versus orchestration](../../cs/02-what-counts-as-a-machine.md#computation-versus-orchestration) (this book): where the line between editor and launcher falls.
+- [Computation versus orchestration](../../informatica/02-que-cuenta-como-maquina.md#computation-versus-orchestration) (this book): where the line between editor and launcher falls.

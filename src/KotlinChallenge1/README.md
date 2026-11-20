@@ -3,7 +3,7 @@ name: "Kotlin"
 teaches: "que Kotlin puede usar `generateSequence` como el bucle, y termina cuando el generador devuelve null."
 kind: port
 languages: [kotlin]
-lesson: "languages/csharp-linq-xaml.md#the-one-statement-ports-same-trick-different-machinery"
+lesson: "lenguajes/csharp-linq-xaml.md#the-one-statement-ports-same-trick-different-machinery"
 loop-by: lazy-demand
 evaluation: lazy
 assurance: guaranteed

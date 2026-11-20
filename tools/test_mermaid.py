@@ -7,6 +7,7 @@ import unittest
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
+import enpath  # noqa: E402
 import mermaid  # noqa: E402
 import segment  # noqa: E402
 
@@ -242,7 +243,7 @@ class RealDiagramTests(unittest.TestCase):
     def test_every_authored_mermaid_fence_extracts_and_round_trips(self):
         n = 0
         for path in segment.authored_files():
-            full = os.path.join(ROOT, path)
+            full = enpath.load(ROOT).full(path)      # `path` is the English key
             s = segment.Segmentation(segment.read_raw(full), path)
             for b in s.blocks:
                 if b.kind == "mermaid":

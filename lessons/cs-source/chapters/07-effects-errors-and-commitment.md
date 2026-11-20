@@ -1,7 +1,7 @@
 ---
 title: "Effects, errors and commitment"
 ---
-For an advanced reading path with traces and experiments, see the [effects, errors and commitment study guide](../study-guides/concepts/effects-errors-and-commitment.md).
+For an advanced reading path with traces and experiments, see the [effects, errors and commitment study guide](../guias-de-estudio/conceptos/efectos-errores-y-confirmacion.md).
 
 A program that does nothing outside itself is a very expensive heater. Useful programs change the world: they write files, print and insert rows. This chapter is about the three questions that follow. When does an effect happen (**side effects**)? What happens when something goes wrong (**errors**)? And at what point is a change final (**commitment**)?
 

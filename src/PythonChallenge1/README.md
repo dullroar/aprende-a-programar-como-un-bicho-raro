@@ -3,7 +3,7 @@ name: "Python"
 teaches: "que Python puede controlar un programa completo con `iter(step, False)`, que llama a `step` hasta que devuelve `False`."
 kind: port
 languages: [python]
-lesson: "languages/csharp-linq-xaml.md#the-one-statement-ports-same-trick-different-machinery"
+lesson: "lenguajes/csharp-linq-xaml.md#the-one-statement-ports-same-trick-different-machinery"
 loop-by: lazy-demand
 evaluation: lazy
 assurance: guaranteed

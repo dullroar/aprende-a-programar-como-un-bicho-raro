@@ -13,7 +13,7 @@ When you finish, you should be able to:
 5. Explain why reading the program next to its ordinary sibling shows the cost of the stunt.
 6. Label each claim you make about a program as guaranteed, implementation-permitted or accidentally exploited, and say what evidence supports it.
 
-**Scope limits.** This guide is about *reading and running safely*. It is not a security course: it does not teach exploit development, threat modeling in depth or sandbox internals. Its source chapter is [How to read an adversarial program](../../cs/01-reading-an-adversarial-program.md). For each entry's details, follow the links to the language guides.
+**Scope limits.** This guide is about *reading and running safely*. It is not a security course: it does not teach exploit development, threat modeling in depth or sandbox internals. Its source chapter is [How to read an adversarial program](../../informatica/01-lectura-de-un-programa-adversarial.md). For each entry's details, follow the links to the language guides.
 
 ## Before you begin
 
@@ -40,7 +40,7 @@ Work on a copy for any experiment. Output is random, so compare properties, not 
 
 ## The shared challenge
 
-The [challenge specification](../../intro.md#what-the-challenge-does) calls for cards with a category and 10 to 19 whole hours. Categories cycle through Meetings, Coding, Debugging and Learning. Add each card's hours to the running total. Stop when the total passes 40. Keep the **first card that takes the total over 40**. A total of exactly 40 continues. Four 10-hour cards need a fifth card, in the Meetings category. Conforming runs finish with 3 to 5 cards and a total of 41 to 59 hours.
+The [challenge specification](../../introduccion.md#what-the-challenge-does) calls for cards with a category and 10 to 19 whole hours. Categories cycle through Meetings, Coding, Debugging and Learning. Add each card's hours to the running total. Stop when the total passes 40. Keep the **first card that takes the total over 40**. A total of exactly 40 continues. Four 10-hour cards need a fifth card, in the Meetings category. Conforming runs finish with 3 to 5 cards and a total of 41 to 59 hours.
 
 The two LINQ demos use a fixed work week. XAML can reach 40 with no remaining pass. Storage and summaries differ by entry.
 
@@ -77,7 +77,7 @@ The tar column of the verified run: the inspector decoded 12 members (`# 12 memb
 
 **A trace of a mistake.** While this guide was prepared, a test harness ran the `regex-sed` script directly, from a checkout, without the wrapper that connects file descriptor 3. The script writes its SQL with `w /dev/fd/3`. With fd 3 closed, sed's own script file had taken that descriptor, so `w` opened the script file and overwrote it with SQL. The program's author had read the source and tested it through its wrapper. The failure came from running it a way the author did not intend. The script was restored from Git, and the sed README now carries a warning to run it only through its wrapper or with an explicit `3>` target. That is the whole subject in one incident: authority comes from how you run the program.
 
-**Exactly 40.** For reading, the boundary is another test of understanding. If a program claims "a total of exactly 40 continues", the *evidence* is a run in which it does. The former four-name regex and `for`-header implementations stopped too early. The repaired entries have a fifth name, with forced draws or a pinned source-level check for the boundary. XAML still has four passes (see the [comparative guide](comparative-machine-design.md)). A claim you cannot demonstrate is a claim you have only read.
+**Exactly 40.** For reading, the boundary is another test of understanding. If a program claims "a total of exactly 40 continues", the *evidence* is a run in which it does. The former four-name regex and `for`-header implementations stopped too early. The repaired entries have a fifth name, with forced draws or a pinned source-level check for the boundary. XAML still has four passes (see the [comparative guide](diseno-comparativo-de-maquinas.md)). A claim you cannot demonstrate is a claim you have only read.
 
 ## Compare the ordinary and weird designs
 
@@ -123,20 +123,20 @@ Read the weird program next to its ordinary sibling. The difference shows exactl
 
 **Costs to state.**
 
-- **A threat model that is not updated describes a system that no longer exists.** "It is just markup" and "it is just a regex" are both false here. See [Threat model](../../cs/01-reading-an-adversarial-program.md#threat-model).
-- **Code review does not scale to the unreadable.** `regex-perl`'s program is one very long line. The sandbox exists because "read every line first" is not enough ([Sandbox](../../cs/01-reading-an-adversarial-program.md#sandbox)).
-- **Invisible characters defeat reading.** [Trojan Source](../../cs/01-reading-an-adversarial-program.md#trojan-source-characters-you-cannot-see) is why the repository scans for them.
+- **A threat model that is not updated describes a system that no longer exists.** "It is just markup" and "it is just a regex" are both false here. See [Threat model](../../informatica/01-lectura-de-un-programa-adversarial.md#threat-model).
+- **Code review does not scale to the unreadable.** `regex-perl`'s program is one very long line. The sandbox exists because "read every line first" is not enough ([Sandbox](../../informatica/01-lectura-de-un-programa-adversarial.md#sandbox)).
+- **Invisible characters defeat reading.** [Trojan Source](../../informatica/01-lectura-de-un-programa-adversarial.md#trojan-source-characters-you-cannot-see) is why the repository scans for them.
 - **A hostile reader is also a risk.** A tool that parses a file format is an interpreter for that format. Treat it as one.
 - **Where this habit is legitimate everywhere.** It is the ordinary review habit applied to deserializers, templates, plugin loaders and `eval`.
 
 ## Connections across the repository
 
-- **Parsing as running.** [C#, LINQ, XAML and ports](../languages/csharp-linq-xaml-and-ports.md) shows the XAML case.
-- **Authority from the command.** [tar](../languages/tar.md) is the repository's cleanest example.
-- **Code in a table.** [Tcl](../languages/tcl.md) and [APL](../languages/apl.md) both store code as text.
-- **Code in a pattern.** [Regex engines and sed](../languages/regex-engines-and-sed.md) runs Perl and C inside a match, and includes the `/dev/fd/3` hazard.
-- **State and control, and the comparison.** [State and control beyond variables](state-and-control-beyond-variables.md), [Effects, errors and commitment](effects-errors-and-commitment.md) and [Comparative machine design](comparative-machine-design.md).
-- **In the book.** [How to read an adversarial program](../../cs/01-reading-an-adversarial-program.md), including [Arbitrary code execution](../../cs/01-reading-an-adversarial-program.md#arbitrary-code-execution), [Principle of least privilege](../../cs/01-reading-an-adversarial-program.md#principle-of-least-privilege) and [Capability and authority](../../cs/01-reading-an-adversarial-program.md#capability-and-authority).
+- **Parsing as running.** [C#, LINQ, XAML and ports](../lenguajes/csharp-linq-xaml-y-adaptaciones.md) shows the XAML case.
+- **Authority from the command.** [tar](../lenguajes/tar.md) is the repository's cleanest example.
+- **Code in a table.** [Tcl](../lenguajes/tcl.md) and [APL](../lenguajes/apl.md) both store code as text.
+- **Code in a pattern.** [Regex engines and sed](../lenguajes/motores-de-regex-y-sed.md) runs Perl and C inside a match, and includes the `/dev/fd/3` hazard.
+- **State and control, and the comparison.** [State and control beyond variables](estado-y-control-mas-alla-de-las-variables.md), [Effects, errors and commitment](efectos-errores-y-confirmacion.md) and [Comparative machine design](diseno-comparativo-de-maquinas.md).
+- **In the book.** [How to read an adversarial program](../../informatica/01-lectura-de-un-programa-adversarial.md), including [Arbitrary code execution](../../informatica/01-lectura-de-un-programa-adversarial.md#arbitrary-code-execution), [Principle of least privilege](../../informatica/01-lectura-de-un-programa-adversarial.md#principle-of-least-privilege) and [Capability and authority](../../informatica/01-lectura-de-un-programa-adversarial.md#capability-and-authority).
 
 ## Self-check
 

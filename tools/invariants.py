@@ -451,21 +451,26 @@ def shared_paragraph_masked(src, ctx):
     if len(dests) != 1 or len(dnts) != len(names):
         return None
     out = _norm_ws(es).replace("{anchor}", "\0")
-    out = re.sub(r"\(\.\./\.\./intro\.md#\0\)", "(" + dests[0] + ")", out)
+    out = re.sub(r"\(\.\./\.\./(?:intro|introduccion)\.md#\0\)", "(" + dests[0] + ")", out)
     for k in dnts:
         out = out.replace("`" + src.mapping[k] + "`", "`" + k + "`", 1)
     return out if "\0" not in out else None
 
 
-def i11_shared(src, tgt_text, ctx):
+def i11_shared(src, tgt_text, ctx, rel=""):
+    """`tgt_text` is restored from the English masks, so its link destination is in the English layout; the catalog text
+    is in the layout of the edition, so the destination is remapped for the file `rel` before the comparison."""
     es = shared_paragraph(src.text, ctx)
+    if es is not None and rel:
+        import enpath
+        tgt_text = enpath.remap_text(tgt_text, rel)
     if es is None or _template_regex(es).fullmatch(_norm_ws(tgt_text)):
         return []
     return [Finding("I11", "", "the standard shared-challenge paragraph must be the catalog text %s exactly" % SHARED_KEY)]
 
 
-def i11(src, target, tgt_text, ctx):
-    out = i11_shared(src, tgt_text, ctx) if getattr(src, "kind", "") != "mermaid_label" else []
+def i11(src, target, tgt_text, ctx, rel=""):
+    out = i11_shared(src, tgt_text, ctx, rel) if getattr(src, "kind", "") != "mermaid_label" else []
     a, b = bold_spans(src.masked), bold_spans(target)
     if len(a) != len(b):
         out.append(Finding("I11", "", "bold spans: %d in the source, %d in the target" % (len(a), len(b))))
@@ -584,7 +589,7 @@ def check_segment(src, target, ctx, rel="", raw=None):
     findings += i8(src.text, tgt_text, ctx)
     findings += i9(src, target)
     findings += i10(src, target, tgt_text)
-    findings += i11(src, target, tgt_text, ctx)
+    findings += i11(src, target, tgt_text, ctx, rel)
     findings += i12(src, target, rel, ctx)
     findings += i14(src, target, ctx, raw)
     findings += i15(src, tgt_text, ctx)

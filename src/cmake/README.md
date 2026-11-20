@@ -3,7 +3,7 @@ name: "CMake"
 teaches: "that `while()` and a regex can form a tiny register machine."
 kind: weird
 languages: [cmake]
-lesson: "languages/make-cmake.md#cmake"
+lesson: "lenguajes/make-cmake.md#cmake"
 loop-by: loop-statement
 evaluation: eager
 assurance: accidentally-exploited
@@ -124,7 +124,7 @@ Three more tests follow. A sweep of year boundaries (using `SOURCE_DATE_EPOCH`) 
 
 ---
 
-See the [root README](../../README.md#the-results-so-far) for how this compares to the other entries, and [`CHALLENGE.md`](../../CHALLENGE.md) if you want to write your own.
+See the [root README](../../README.md#the-results-so-far) for how this compares to the other entries, and [`RETO.md`](../../RETO.md) if you want to write your own.
 
 ## Run it in a container
 

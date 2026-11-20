@@ -3,7 +3,7 @@ name: "Common Lisp"
 teaches: "that Common Lisp `LOOP` can express a whole algorithm as clauses for counting, drawing, summing, collecting and stopping."
 kind: idiomatic
 languages: [common-lisp]
-lesson: "languages/lisp.md"
+lesson: "lenguajes/lisp.md"
 loop-by: loop-statement
 evaluation: eager
 assurance: guaranteed

@@ -13,7 +13,7 @@ When you finish, you should be able to:
 5. Predict what changes when a forcing point moves relative to a resource's lifetime.
 6. Label claims as guaranteed, implementation-permitted or accidentally exploited.
 
-**Scope limits.** The guide compares entries using facts verified in the language guides. It does not teach monads, category theory or the type systems involved. Its source chapter is [Evaluation and demand](../../cs/04-evaluation-and-demand.md). For events, a push-style cousin, see [Events, callbacks and reactive control](events-callbacks-and-reactive-control.md).
+**Scope limits.** The guide compares entries using facts verified in the language guides. It does not teach monads, category theory or the type systems involved. Its source chapter is [Evaluation and demand](../../informatica/04-evaluacion-y-demanda.md). For events, a push-style cousin, see [Events, callbacks and reactive control](eventos-retrollamadas-y-control-reactivo.md).
 
 ## Before you begin
 
@@ -33,7 +33,7 @@ When you finish, you should be able to:
 
 ## The shared challenge
 
-The [challenge specification](../../intro.md#what-the-challenge-does) calls for cards with a category and 10 to 19 whole hours. Categories cycle through Meetings, Coding, Debugging and Learning. Add each card's hours to the running total. Stop when the total passes 40. Keep the **first card that takes the total over 40**. A total of exactly 40 continues. Four 10-hour cards need a fifth card, in the Meetings category. Conforming runs finish with 3 to 5 cards and a total of 41 to 59 hours.
+The [challenge specification](../../introduccion.md#what-the-challenge-does) calls for cards with a category and 10 to 19 whole hours. Categories cycle through Meetings, Coding, Debugging and Learning. Add each card's hours to the running total. Stop when the total passes 40. Keep the **first card that takes the total over 40**. A total of exactly 40 continues. Four 10-hour cards need a fifth card, in the Meetings category. Conforming runs finish with 3 to 5 cards and a total of 41 to 59 hours.
 
 For implementations that follow the numeric rule, *the consumer wants cards until the total passes 40, and the crossing card must exist*. The two fixed-week LINQ entries instead end at 40 hours, so the generator in the trace below is a separate teaching experiment. The crossing card is the awkward one, because you only know a card crosses by building it. Every strategy has to answer "how many values did I produce to find out?" That count is the clearest measure of what each strategy costs.
 
@@ -92,7 +92,7 @@ Read the column by strategy. The Haskell implementations draw exactly what their
 
 **Remembered against rerun.** In the B7 experiment, `q.Sum()` then `q.ToList()` printed the effects six times (0, 3, 6, 3 lines for the four steps). A Haskell cell is forced at most once, so the same pair of demands would run its effects once.
 
-**Exactly 40.** In the challenged entries, a comparison that continues at 40 still needs another name or slot to draw from. XAML can run out of passes while the total is exactly 40 (see [Comparative machine design](comparative-machine-design.md)). The boundary shows a hidden dependency: the stop rule depends on a *supply* (names, dice) as well as a test.
+**Exactly 40.** In the challenged entries, a comparison that continues at 40 still needs another name or slot to draw from. XAML can run out of passes while the total is exactly 40 (see [Comparative machine design](diseno-comparativo-de-maquinas.md)). The boundary shows a hidden dependency: the stop rule depends on a *supply* (names, dice) as well as a test.
 
 ## Compare the ordinary and weird designs
 
@@ -142,11 +142,11 @@ The three non-eager strategies fail differently. A lazy value *remembers*, so a 
 
 ## Connections across the repository
 
-- **Language guides.** [Haskell](../languages/haskell.md), [C#, LINQ, XAML and ports](../languages/csharp-linq-xaml-and-ports.md), [JavaScript](../languages/javascript.md), [APL](../languages/apl.md), [Common Lisp](../languages/common-lisp.md), [m4](../languages/m4.md) and [Make and CMake](../languages/make-and-cmake.md) each trace one of these.
-- **State.** [State and control beyond variables](state-and-control-beyond-variables.md) asks where the next step is stored. Demand is one answer: a data dependence.
-- **Commit.** [Effects, errors and commitment](effects-errors-and-commitment.md) asks which effects survive.
-- **Events.** [Events, callbacks and reactive control](events-callbacks-and-reactive-control.md) is the push version of this question.
-- **In the book.** [Evaluation strategies](../../cs/04-evaluation-and-demand.md#evaluation-strategies), [Lazy evaluation](../../cs/04-evaluation-and-demand.md#lazy-evaluation), [Deferred execution](../../cs/04-evaluation-and-demand.md#deferred-execution), [Short-circuit evaluation](../../cs/04-evaluation-and-demand.md#short-circuit-evaluation) and [Referential transparency](../../cs/04-evaluation-and-demand.md#referential-transparency).
+- **Language guides.** [Haskell](../lenguajes/haskell.md), [C#, LINQ, XAML and ports](../lenguajes/csharp-linq-xaml-y-adaptaciones.md), [JavaScript](../lenguajes/javascript.md), [APL](../lenguajes/apl.md), [Common Lisp](../lenguajes/common-lisp.md), [m4](../lenguajes/m4.md) and [Make and CMake](../lenguajes/make-y-cmake.md) each trace one of these.
+- **State.** [State and control beyond variables](estado-y-control-mas-alla-de-las-variables.md) asks where the next step is stored. Demand is one answer: a data dependence.
+- **Commit.** [Effects, errors and commitment](efectos-errores-y-confirmacion.md) asks which effects survive.
+- **Events.** [Events, callbacks and reactive control](eventos-retrollamadas-y-control-reactivo.md) is the push version of this question.
+- **In the book.** [Evaluation strategies](../../informatica/04-evaluacion-y-demanda.md#evaluation-strategies), [Lazy evaluation](../../informatica/04-evaluacion-y-demanda.md#lazy-evaluation), [Deferred execution](../../informatica/04-evaluacion-y-demanda.md#deferred-execution), [Short-circuit evaluation](../../informatica/04-evaluacion-y-demanda.md#short-circuit-evaluation) and [Referential transparency](../../informatica/04-evaluacion-y-demanda.md#referential-transparency).
 
 ## Self-check
 

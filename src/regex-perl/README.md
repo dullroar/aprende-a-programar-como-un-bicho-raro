@@ -3,7 +3,7 @@ name: "Perl"
 teaches: "that Perl can execute code during a regex match."
 kind: weird
 languages: [perl, regex]
-lesson: "languages/regex.md#perl-code-inside-the-match"
+lesson: "lenguajes/regex.md#perl-code-inside-the-match"
 loop-by: backtracking-search
 evaluation: search
 assurance: implementation-permitted
@@ -106,4 +106,4 @@ Below the `use` lines, `timecards.pl` is one line: a constant scaffold string `=
 
 ---
 
-See the [root README](../../README.md#the-results-so-far) for how this compares to the other regex entries, and [`CHALLENGE.md`](../../CHALLENGE.md) if you want to write your own.
+See the [root README](../../README.md#the-results-so-far) for how this compares to the other regex entries, and [`RETO.md`](../../RETO.md) if you want to write your own.

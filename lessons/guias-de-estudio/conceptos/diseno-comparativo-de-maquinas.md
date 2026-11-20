@@ -13,7 +13,7 @@ When you finish, you should be able to:
 5. Choose, for a given need (testability, observability, portability), which design suits it, and say what it costs.
 6. Label claims as guaranteed, implementation-permitted or accidentally exploited.
 
-**Scope limits.** The guide compares; it does not re-teach each entry. It uses facts checked in the language guides and the concept guides. Its sources are [Comparative case studies](../../cs/09-comparative-case-studies.md) and [Solution patterns](../../patterns.md).
+**Scope limits.** The guide compares; it does not re-teach each entry. It uses facts checked in the language guides and the concept guides. Its sources are [Comparative case studies](../../informatica/09-casos-de-estudio-comparativos.md) and [Solution patterns](../../patrones.md).
 
 ## Before you begin
 
@@ -43,9 +43,9 @@ What evidence proves the claim?
 
 ## The shared challenge
 
-The [challenge specification](../../intro.md#what-the-challenge-does) calls for cards with a category and 10 to 19 whole hours. Categories cycle through Meetings, Coding, Debugging and Learning. Add each card's hours to the running total. Stop when the total passes 40. Keep the **first card that takes the total over 40**. A total of exactly 40 continues. Four 10-hour cards need a fifth card, in the Meetings category. Conforming runs finish with 3 to 5 cards and a total of 41 to 59 hours.
+The [challenge specification](../../introduccion.md#what-the-challenge-does) calls for cards with a category and 10 to 19 whole hours. Categories cycle through Meetings, Coding, Debugging and Learning. Add each card's hours to the running total. Stop when the total passes 40. Keep the **first card that takes the total over 40**. A total of exactly 40 continues. Four 10-hour cards need a fifth card, in the Meetings category. Conforming runs finish with 3 to 5 cards and a total of 41 to 59 hours.
 
-The book records [where entries differ](../../intro.md#where-entries-differ). The LINQ demos use five fixed 8-hour days, and XAML can run out of passes at 40. The regex entries still follow the numeric rule: the C and .NET examples use TSV, while pcre2grep saves cards in separate SQLite calls. A summary can appear in a terminal or a window. Ask which result the entry demonstrates before comparing the mechanism.
+The book records [where entries differ](../../introduccion.md#where-entries-differ). The LINQ demos use five fixed 8-hour days, and XAML can run out of passes at 40. The regex entries still follow the numeric rule: the C and .NET examples use TSV, while pcre2grep saves cards in separate SQLite calls. A summary can appear in a terminal or a window. Ask which result the entry demonstrates before comparing the mechanism.
 
 ## The machine to identify
 
@@ -206,12 +206,12 @@ The README `assurance` key summarizes the weakest dependency the mechanism needs
 
 ## Connections across the repository
 
-- **Every language guide** is one row of the worksheet: [COBOL](../languages/cobol.md), [Haskell](../languages/haskell.md), [Forth](../languages/forth.md), [Make and CMake](../languages/make-and-cmake.md), [Regex engines and sed](../languages/regex-engines-and-sed.md), [APL](../languages/apl.md), [JavaScript](../languages/javascript.md), [Common Lisp](../languages/common-lisp.md), [m4](../languages/m4.md), [Tcl](../languages/tcl.md), [ed and Ex](../languages/ed-and-ex.md), [tar](../languages/tar.md) and [C#, LINQ, XAML and ports](../languages/csharp-linq-xaml-and-ports.md).
-- **Where the next step is stored.** [State and control beyond variables](state-and-control-beyond-variables.md) develops the first diagram.
-- **Who demands work.** [Evaluation, demand and laziness](evaluation-demand-and-laziness.md) develops the "advances the next step" column.
-- **What commits.** [Effects, errors and commitment](effects-errors-and-commitment.md) develops the last columns.
-- **What is promised.** [Portability, abstraction and cost](portability-abstraction-and-cost.md) develops the labels.
-- **In the book.** [Comparative case studies](../../cs/09-comparative-case-studies.md), including the table of every entry at a glance, and [Solution patterns](../../patterns.md), in particular [Control state outside variables](../../patterns.md#control-state-outside-variables) and [Programs stored as data](../../patterns.md#programs-stored-as-data).
+- **Every language guide** is one row of the worksheet: [COBOL](../lenguajes/cobol.md), [Haskell](../lenguajes/haskell.md), [Forth](../lenguajes/forth.md), [Make and CMake](../lenguajes/make-y-cmake.md), [Regex engines and sed](../lenguajes/motores-de-regex-y-sed.md), [APL](../lenguajes/apl.md), [JavaScript](../lenguajes/javascript.md), [Common Lisp](../lenguajes/common-lisp.md), [m4](../lenguajes/m4.md), [Tcl](../lenguajes/tcl.md), [ed and Ex](../lenguajes/ed-y-ex.md), [tar](../lenguajes/tar.md) and [C#, LINQ, XAML and ports](../lenguajes/csharp-linq-xaml-y-adaptaciones.md).
+- **Where the next step is stored.** [State and control beyond variables](estado-y-control-mas-alla-de-las-variables.md) develops the first diagram.
+- **Who demands work.** [Evaluation, demand and laziness](evaluacion-demanda-y-pereza.md) develops the "advances the next step" column.
+- **What commits.** [Effects, errors and commitment](efectos-errores-y-confirmacion.md) develops the last columns.
+- **What is promised.** [Portability, abstraction and cost](portabilidad-abstraccion-y-costo.md) develops the labels.
+- **In the book.** [Comparative case studies](../../informatica/09-casos-de-estudio-comparativos.md), including the table of every entry at a glance, and [Solution patterns](../../patrones.md), in particular [Control state outside variables](../../patrones.md#control-state-outside-variables) and [Programs stored as data](../../patrones.md#programs-stored-as-data).
 
 ## Self-check
 
@@ -224,7 +224,7 @@ Answer each question in your own words before you read the italic text. Say what
 
 ## Further reading
 
-- [Comparative case studies](../../cs/09-comparative-case-studies.md) (this book): the role tables and the table of every entry at a glance.
-- [Solution patterns](../../patterns.md) (this book): mechanisms grouped across languages.
+- [Comparative case studies](../../informatica/09-casos-de-estudio-comparativos.md) (this book): the role tables and the table of every entry at a glance.
+- [Solution patterns](../../patrones.md) (this book): mechanisms grouped across languages.
 - [Turing completeness](https://en.wikipedia.org/wiki/Turing_completeness) (Wikipedia): what "can express any computation" means, and why many odd systems qualify.
 - [Transition system](https://en.wikipedia.org/wiki/Transition_system) (Wikipedia): the formal reading of "state plus allowed step".

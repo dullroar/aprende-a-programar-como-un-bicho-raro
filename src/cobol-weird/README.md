@@ -3,7 +3,7 @@ name: "COBOL"
 teaches: "that a program can rewrite its own control flow and that structured programming makes such changes easier to trace."
 kind: weird
 languages: [cobol]
-lesson: "languages/cobol.md#alter"
+lesson: "lenguajes/cobol.md#alter"
 loop-by: self-modifying-control
 evaluation: eager
 assurance: implementation-permitted

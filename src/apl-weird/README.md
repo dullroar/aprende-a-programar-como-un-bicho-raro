@@ -3,7 +3,7 @@ name: "APL"
 teaches: "that `⎕CR`, `⎕FX` and compress make \"if\" and \"loop\" optional, and that a function can be its own successor."
 kind: weird
 languages: [apl]
-lesson: "languages/apl.md#self-modifying-functions-apl-weird"
+lesson: "lenguajes/apl.md#self-modifying-functions-apl-weird"
 loop-by: self-modifying-control
 evaluation: eager
 assurance: implementation-permitted

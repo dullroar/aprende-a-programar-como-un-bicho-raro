@@ -2,7 +2,7 @@
 
 Entries: [`src/forth`](../../src/forth/README.md) (one `begin ... until`) and [`src/forth-weird`](../../src/forth-weird/README.md) (no loop word, no variable).
 
-For an advanced reading path with traces and experiments, see the [Forth study guide](../study-guides/languages/forth.md).
+For an advanced reading path with traces and experiments, see the [Forth study guide](../guias-de-estudio/lenguajes/forth.md).
 
 ## What makes Forth special
 
@@ -78,7 +78,7 @@ When you are writing the interpreter, a parsing word or a debugger. Rewinding th
 <!-- BEGIN GENERATED program-flow:languages/forth.md -->
 ## How each program runs
 
-Each picture below is the `## Program Flow` section of an entry's README, copied here by the build. It shows how that program makes the work happen: what the language, runtime or tool really does. [The introduction](../intro.md#what-the-challenge-does) shows what the challenge asks for and where entries differ.
+Each picture below is the `## Program Flow` section of an entry's README, copied here by the build. It shows how that program makes the work happen: what the language, runtime or tool really does. [The introduction](../introduccion.md#what-the-challenge-does) shows what the challenge asks for and where entries differ.
 
 ### Program flow of `forth`
 
@@ -124,5 +124,5 @@ flowchart TD
 ## Computer science behind this page
 
 <!-- BEGIN GENERATED concepts:languages/forth.md -->
-The computer-science ideas behind this page: [Stack machines](../cs/02-what-counts-as-a-machine.md#stack-machines), [Register machines and counter machines](../cs/02-what-counts-as-a-machine.md#register-machines-and-counter-machines), [Control flow](../cs/03-control-flow-and-continuations.md#control-flow), [The program counter](../cs/03-control-flow-and-continuations.md#the-program-counter), [Parsing](../cs/05-formal-languages-as-computational-substrates.md#parsing), [State](../cs/06-state-beyond-variables.md#state), [The stack as a data structure](../cs/06-state-beyond-variables.md#the-stack-as-a-data-structure), [Reflection and metaprogramming](../cs/06-state-beyond-variables.md#reflection-and-metaprogramming), [Transactions](../cs/07-effects-errors-and-commitment.md#transactions).
+The computer-science ideas behind this page: [Stack machines](../informatica/02-que-cuenta-como-maquina.md#stack-machines), [Register machines and counter machines](../informatica/02-que-cuenta-como-maquina.md#register-machines-and-counter-machines), [Control flow](../informatica/03-flujo-de-control-y-continuaciones.md#control-flow), [The program counter](../informatica/03-flujo-de-control-y-continuaciones.md#the-program-counter), [Parsing](../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#parsing), [State](../informatica/06-estado-mas-alla-de-las-variables.md#state), [The stack as a data structure](../informatica/06-estado-mas-alla-de-las-variables.md#the-stack-as-a-data-structure), [Reflection and metaprogramming](../informatica/06-estado-mas-alla-de-las-variables.md#reflection-and-metaprogramming), [Transactions](../informatica/07-efectos-errores-y-confirmacion.md#transactions).
 <!-- END GENERATED concepts:languages/forth.md -->

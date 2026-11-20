@@ -559,8 +559,3 @@ Folders below `src/`, `sandbox/` and `gradle/` are kept (frozen trees) and are n
 - word 'retrollamadas' in a Spanish path is not in the glossary (P3B-002 adds it): lessons/cs/10-events-callbacks-and-reactive-control-flow.md
 - word 'sustratos' in a Spanish path is not in the glossary (P3B-002 adds it): lessons/cs/05-formal-languages-as-computational-substrates.md
 - word 'variables' in a Spanish path is not in the glossary (P3B-002 adds it): lessons/cs/06-state-beyond-variables.md
-
-## Workflow references to rewrite in P3B-005
-
-- `.github/workflows/pdf-release-gate.yml` mentions `lessons/curriculum/build.py`
-- `.github/workflows/pdf-release-gate.yml` mentions `lessons/study-guides/build.py`

@@ -13,7 +13,7 @@ When you finish, you should be able to:
 5. Name the trust boundary in this design and explain why it holds here.
 6. Label each behavior as guaranteed, implementation-permitted or accidentally exploited.
 
-**Scope limits.** You need to read Tcl (braces group, brackets substitute, `$` reads a variable) and basic SQL. The guide does not teach Tk (the optional window is also built from table rows) or SQLite's query planner. It uses Tcl 8.6 with the `sqlite3` package. The book's page is [Tcl](../../languages/tcl.md). For ideas, see [Database triggers](../../cs/06-state-beyond-variables.md#database-triggers), [Arbitrary code execution](../../cs/01-reading-an-adversarial-program.md#arbitrary-code-execution) and [Homoiconicity: code as data](../../cs/06-state-beyond-variables.md#homoiconicity-code-as-data).
+**Scope limits.** You need to read Tcl (braces group, brackets substitute, `$` reads a variable) and basic SQL. The guide does not teach Tk (the optional window is also built from table rows) or SQLite's query planner. It uses Tcl 8.6 with the `sqlite3` package. The book's page is [Tcl](../../lenguajes/tcl.md). For ideas, see [Database triggers](../../informatica/06-estado-mas-alla-de-las-variables.md#database-triggers), [Arbitrary code execution](../../informatica/01-lectura-de-un-programa-adversarial.md#arbitrary-code-execution) and [Homoiconicity: code as data](../../informatica/06-estado-mas-alla-de-las-variables.md#homoiconicity-code-as-data).
 
 ## Before you begin
 
@@ -40,7 +40,7 @@ Edit only copies ([Running things safely](../../exercises.md#running-things-safe
 
 ## The shared challenge
 
-The [challenge specification](../../intro.md#what-the-challenge-does) calls for cards with a category and 10 to 19 whole hours. Categories cycle through Meetings, Coding, Debugging and Learning. Add each card's hours to the running total. Stop when the total passes 40. Keep the **first card that takes the total over 40**. A total of exactly 40 continues. Four 10-hour cards need a fifth card, in the Meetings category. Conforming runs finish with 3 to 5 cards and a total of 41 to 59 hours.
+The [challenge specification](../../introduccion.md#what-the-challenge-does) calls for cards with a category and 10 to 19 whole hours. Categories cycle through Meetings, Coding, Debugging and Learning. Add each card's hours to the running total. Stop when the total passes 40. Keep the **first card that takes the total over 40**. A total of exactly 40 continues. Four 10-hour cards need a fifth card, in the Meetings category. Conforming runs finish with 3 to 5 cards and a total of 41 to 59 hours.
 
 Both Tcl entries save the cards in one SQLite transaction and print a summary. Tcl writes the boundary two ways. In `tcl`, `while {$total <= $limit}` ([L40](../../../src/tcl/timecards.tcl#L40)): true for 40, so the loop repeats. In `tcl-weird`, the trigger inserts the next card `WHERE NEW.running_total <= 40` ([L113](../../../src/tcl-weird/timecards.tcl#L113)). A card is inserted only if the *previous* card's total was at most 40, so the crossing card is the last one inserted.
 
@@ -184,7 +184,7 @@ The difference to remember: `tcl` has *one* engine and `tcl-weird` has *two*, SQ
 | `INSERT INTO main.demo_timecards` is rejected inside a trigger, so the trigger body uses the bare name | **implementation-permitted** | SQLite's rule about qualified names in triggers. The `TEMP` trigger resolves the bare name to the one table in `main`. |
 | Tk keeps `tclsh` alive after the script ends | **implementation-permitted** | Why the script ends with `destroy .`. |
 
-**The trust boundary.** `unknown` runs whatever text is in the table. In `tcl-weird` the table is built by the program itself, in memory, in a `TEMP` table and filled from literals in the script. Nobody else can write to it. That is the entire defense. If the table were a normal table in the file on disk, anyone able to edit the database could make the program run their Tcl. This is the same lesson as the book's threat-model examples: treat anything that is read as code as code. See [Arbitrary code execution](../../cs/01-reading-an-adversarial-program.md#arbitrary-code-execution).
+**The trust boundary.** `unknown` runs whatever text is in the table. In `tcl-weird` the table is built by the program itself, in memory, in a `TEMP` table and filled from literals in the script. Nobody else can write to it. That is the entire defense. If the table were a normal table in the file on disk, anyone able to edit the database could make the program run their Tcl. This is the same lesson as the book's threat-model examples: treat anything that is read as code as code. See [Arbitrary code execution](../../informatica/01-lectura-de-un-programa-adversarial.md#arbitrary-code-execution).
 
 **Costs to state.**
 
@@ -195,11 +195,11 @@ The difference to remember: `tcl` has *one* engine and `tcl-weird` has *two*, SQ
 
 ## Connections across the repository
 
-- **A rule that fires the next step.** The trigger is the same idea as the `88`-level condition in [COBOL](cobol.md) and the `or` combination in [Common Lisp](common-lisp.md): the next step comes from a *declared rule*, not from a statement you can see in order. The concept guide [State and control beyond variables](../concepts/state-and-control-beyond-variables.md) compares them.
-- **Code as data, in other languages.** [APL](apl.md) writes its own functions as text with `⎕FX`. Tcl fetches them from a table. [XAML in the C# guide](csharp-linq-xaml-and-ports.md) runs methods while it parses markup.
-- **A boundary you must defend.** [Reading adversarial programs](../concepts/reading-adversarial-programs.md) uses this entry and the XAML and tar entries as its main examples of "data that is also code".
-- **Transactions and commit.** The whole trigger chain runs in one `db transaction`, as in [Effects, errors and commitment](../concepts/effects-errors-and-commitment.md), while the printing does not roll back.
-- **In the book.** [Tcl](../../languages/tcl.md), [Database triggers](../../cs/06-state-beyond-variables.md#database-triggers) and [Arbitrary code execution](../../cs/01-reading-an-adversarial-program.md#arbitrary-code-execution).
+- **A rule that fires the next step.** The trigger is the same idea as the `88`-level condition in [COBOL](cobol.md) and the `or` combination in [Common Lisp](common-lisp.md): the next step comes from a *declared rule*, not from a statement you can see in order. The concept guide [State and control beyond variables](../conceptos/estado-y-control-mas-alla-de-las-variables.md) compares them.
+- **Code as data, in other languages.** [APL](apl.md) writes its own functions as text with `⎕FX`. Tcl fetches them from a table. [XAML in the C# guide](csharp-linq-xaml-y-adaptaciones.md) runs methods while it parses markup.
+- **A boundary you must defend.** [Reading adversarial programs](../conceptos/lectura-de-programas-adversariales.md) uses this entry and the XAML and tar entries as its main examples of "data that is also code".
+- **Transactions and commit.** The whole trigger chain runs in one `db transaction`, as in [Effects, errors and commitment](../conceptos/efectos-errores-y-confirmacion.md), while the printing does not roll back.
+- **In the book.** [Tcl](../../lenguajes/tcl.md), [Database triggers](../../informatica/06-estado-mas-alla-de-las-variables.md#database-triggers) and [Arbitrary code execution](../../informatica/01-lectura-de-un-programa-adversarial.md#arbitrary-code-execution).
 
 ## Self-check
 
@@ -215,4 +215,4 @@ Answer each question in your own words before you read the italic text. Say what
 - [Tcl](https://en.wikipedia.org/wiki/Tcl) (Wikipedia): the language, and why "everything is a string" shapes it.
 - [Database trigger](https://en.wikipedia.org/wiki/Database_trigger) (Wikipedia): what triggers are for and where they cause surprises.
 - [Code injection](https://owasp.org/www-community/attacks/Code_Injection) (OWASP): the general risk when text becomes code, which `unknown` makes concrete.
-- [Database triggers](../../cs/06-state-beyond-variables.md#database-triggers) and [Arbitrary code execution](../../cs/01-reading-an-adversarial-program.md#arbitrary-code-execution) (this book): the concepts behind this entry.
+- [Database triggers](../../informatica/06-estado-mas-alla-de-las-variables.md#database-triggers) and [Arbitrary code execution](../../informatica/01-lectura-de-un-programa-adversarial.md#arbitrary-code-execution) (this book): the concepts behind this entry.

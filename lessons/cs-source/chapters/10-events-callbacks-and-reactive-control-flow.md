@@ -1,7 +1,7 @@
 ---
 title: "Events, callbacks and reactive control flow"
 ---
-For an advanced reading path with traces and experiments, see the [events, callbacks and reactive control study guide](../study-guides/concepts/events-callbacks-and-reactive-control.md).
+For an advanced reading path with traces and experiments, see the [events, callbacks and reactive control study guide](../guias-de-estudio/conceptos/eventos-retrollamadas-y-control-reactivo.md).
 
 Every entry in this book answers one question: **who chooses what runs next?** In a `for` loop, the loop chooses. In a lazy pipeline, whoever asks for the next value chooses. In this chapter, something else chooses: an *event*. A program registers small functions, and something else calls them when something happens. The program does not say when.
 

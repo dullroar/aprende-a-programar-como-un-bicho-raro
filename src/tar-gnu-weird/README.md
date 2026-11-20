@@ -3,7 +3,7 @@ name: "GNU tar"
 teaches: "that an archive's physical layout can set the pace of a program: tar's checkpoints are a clock, and each tick moves a state machine by one step."
 kind: weird
 languages: [tar, sqlite]
-lesson: "languages/tar.md#the-archive-is-the-clock"
+lesson: "lenguajes/tar.md#the-archive-is-the-clock"
 loop-by: dispatch-and-triggers
 evaluation: eager
 assurance: implementation-permitted
@@ -174,4 +174,4 @@ Checkpoints are a progress indicator. Nobody designed them as a scheduler. Using
 
 ---
 
-See the [root README](../../README.md#the-results-so-far) for how this compares to the other entries, and [`CHALLENGE.md`](../../CHALLENGE.md) if you want to write your own.
+See the [root README](../../README.md#the-results-so-far) for how this compares to the other entries, and [`RETO.md`](../../RETO.md) if you want to write your own.

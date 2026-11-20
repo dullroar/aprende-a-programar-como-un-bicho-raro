@@ -13,13 +13,13 @@ When you finish, you should be able to:
 5. Explain thread affinity: why WPF needs an STA thread and a dispatcher, and why the original guards EF Core's context with a mutex.
 6. Label each behavior as guaranteed, implementation-permitted or accidentally exploited, and say which claims were run and which were only read.
 
-**Scope limits.** You need to read C# 9 or later and know what LINQ is. The guide does not teach WPF layout, EF Core mapping, Swing or Tk. It uses .NET 10. The book's page is [C#, LINQ and XAML (plus the one-statement ports)](../../languages/csharp-linq-xaml.md). For ideas, see [Deferred execution](../../cs/04-evaluation-and-demand.md#deferred-execution), [Thread safety and thread affinity](../../cs/07-effects-errors-and-commitment.md#thread-safety-and-thread-affinity) and [Reading an adversarial program](../../cs/01-reading-an-adversarial-program.md).
+**Scope limits.** You need to read C# 9 or later and know what LINQ is. The guide does not teach WPF layout, EF Core mapping, Swing or Tk. It uses .NET 10. The book's page is [C#, LINQ and XAML (plus the one-statement ports)](../../lenguajes/csharp-linq-xaml.md). For ideas, see [Deferred execution](../../informatica/04-evaluacion-y-demanda.md#deferred-execution), [Thread safety and thread affinity](../../informatica/07-efectos-errores-y-confirmacion.md#thread-safety-and-thread-affinity) and [Reading an adversarial program](../../informatica/01-lectura-de-un-programa-adversarial.md).
 
 **What was run for this guide.** The WPF, EF Core, XAML, Swing, Tk and GTK parts need Windows or a display and were **not run here**. Their traces are read from the source and marked "read". Two things *were* run: a console reduction of the `for` header (WPF and EF removed, .NET 10), and the exercise-B7 deferred-execution experiment. Everything else is labeled.
 
 ## Before you begin
 
-**Safety model.** Every entry writes fictional **DEMO ONLY** data to a local database or file, and none connects to a real time-reporting system. The XAML entry is the dangerous one: it runs *methods during parsing*, and a markup file that does this is a program. The book's [threat-model example](../../cs/01-reading-an-adversarial-program.md#threat-model) and the repository's related project [xaml-write-and-run](https://github.com/dullroar/xaml-write-and-run) show what that makes possible. Read the source first, and run the WPF entries only in Windows Sandbox:
+**Safety model.** Every entry writes fictional **DEMO ONLY** data to a local database or file, and none connects to a real time-reporting system. The XAML entry is the dangerous one: it runs *methods during parsing*, and a markup file that does this is a program. The book's [threat-model example](../../informatica/01-lectura-de-un-programa-adversarial.md#threat-model) and the repository's related project [xaml-write-and-run](https://github.com/dullroar/xaml-write-and-run) show what that makes possible. Read the source first, and run the WPF entries only in Windows Sandbox:
 
 ```powershell
 sandbox\windows\run.ps1 src\LinqChallenge1
@@ -41,13 +41,13 @@ The ports for Go, Java, Kotlin, Python and Rust run in the Linux sandbox with `s
 
 ## The shared challenge
 
-The [challenge specification](../../intro.md#what-the-challenge-does) calls for cards with a category and 10 to 19 whole hours. Categories cycle through Meetings, Coding, Debugging and Learning. Add each card's hours to the running total. Stop when the total passes 40. Keep the **first card that takes the total over 40**. A total of exactly 40 continues. Four 10-hour cards need a fifth card, in the Meetings category. Conforming runs finish with 3 to 5 cards and a total of 41 to 59 hours.
+The [challenge specification](../../introduccion.md#what-the-challenge-does) calls for cards with a category and 10 to 19 whole hours. Categories cycle through Meetings, Coding, Debugging and Learning. Add each card's hours to the running total. Stop when the total passes 40. Keep the **first card that takes the total over 40**. A total of exactly 40 continues. Four 10-hour cards need a fifth card, in the Meetings category. Conforming runs finish with 3 to 5 cards and a total of 41 to 59 hours.
 
 The two LINQ demos and XAML depart from that contract. The older four-name headers explain how the same edge case used to affect the ports.
 
 1. **`LinqChallenge1` and `LinqChallenge2` do not draw random hours.** Their work week is five fixed 8-hour days, and they refuse any day that would push the total over 40. The result is exactly 40.0 hours over five rows, every run. They teach deferred execution, not the stop rule. Exercise E1 states this.
 2. **The `for`-header entries used to stop after four cards, and `xaml` still does.** The original and the Java, Go, Kotlin, Python and Rust ports test `total <= 40 && a category remains` and take each category once. In `ModernChallenge1` the condition is `Sum() <= 40d && i.categories.MoveNext()`, where `categories` is a one-pass enumerator. With four category names, a reduction of that header run in a console project with every card worth 10 hours stopped with `stop: total 40 after 4 cards`: one run in 10,000 for random hours, and a contradiction of "exactly 40 continues". The 2008 original had four names, and the entry READMEs described that faithfully. It is now fixed in `ModernChallenge1` and in all five ports by a fifth name (`Meetings` repeats). After the fix, the same reduction stops with `stop: total 50 after 5 cards`, the C# project builds, Rust's unit tests pass (they now assert that exactly 40 continues) and Go, Java and Kotlin compile. The XAML entry's four unrolled passes still have the ceiling: a fifth pass could not be tested without Windows, so it was not added. With the shipped seed (`Random(42)`: 16, 11, 11, 15) it deals four cards and ends at 53, so the case never arises unless you change the seed (exercise E2).
-3. **Storage depends on the XAML variant.** The EF Core variant has a SQLite trigger that deletes a row if the earlier rows already total over 40. The direct SQLite variant puts the equivalent test in the insert statement. Both keep the crossing card. The strict variant writes XML. See [where entries differ](../../intro.md#where-entries-differ).
+3. **Storage depends on the XAML variant.** The EF Core variant has a SQLite trigger that deletes a row if the earlier rows already total over 40. The direct SQLite variant puts the equivalent test in the insert statement. Both keep the crossing card. The strict variant writes XML. See [where entries differ](../../introduccion.md#where-entries-differ).
 
 ## The machine to identify
 
@@ -223,7 +223,7 @@ The ports show that the "bodiless loop" is a *shape*, not a C# feature. What car
 
 **Costs to state.**
 
-- **Thread affinity is part of the design.** The original saves on a background thread and guards EF Core's context with a mutex, because the context is not thread-safe. The window must be created and run on the STA thread. In the LINQ entries `Application.Run()` is called from inside a `Select` lambda, which is what pumps the dispatcher so the window paints. See [Thread safety and thread affinity](../../cs/07-effects-errors-and-commitment.md#thread-safety-and-thread-affinity).
+- **Thread affinity is part of the design.** The original saves on a background thread and guards EF Core's context with a mutex, because the context is not thread-safe. The window must be created and run on the STA thread. In the LINQ entries `Application.Run()` is called from inside a `Select` lambda, which is what pumps the dispatcher so the window paints. See [Thread safety and thread affinity](../../informatica/07-efectos-errores-y-confirmacion.md#thread-safety-and-thread-affinity).
 - **The provider boundary moves work.** A `where` that EF Core can translate runs in the database. The same `where` after `AsEnumerable()` runs in memory over every row.
 - **Hidden eagerness.** `SaveChanges()` runs at one specific moment in the one statement, not at the final enumeration. "All lazy" is not true even of the lazy entry.
 - **A parser that runs code.** Any program that loads XAML from a source it does not control is running that source. The XAML entry's own README says so.
@@ -231,11 +231,11 @@ The ports show that the "bodiless loop" is a *shape*, not a C# feature. What car
 
 ## Connections across the repository
 
-- **The same question as Haskell and JavaScript.** Deferred LINQ pipelines, lazy lists in [Haskell](haskell.md) and pull iteration in [JavaScript](javascript.md) all ask when a description runs. [Evaluation, demand and laziness](../concepts/evaluation-demand-and-laziness.md) compares them. The difference worth remembering: Haskell remembers a computed value, and LINQ reruns.
-- **Document order as the program.** The XAML entry, [tar](tar.md) and [Tcl](tcl.md) all make data into a program. The concept guide [Reading adversarial programs](../concepts/reading-adversarial-programs.md) takes them as one case.
-- **The same four-card ceiling, now fixed.** The regex entries in [Regex engines and sed](regex-engines-and-sed.md) had it too, and were fixed the same way. [Comparative machine design](../concepts/comparative-machine-design.md) lists which entries obey "exactly 40 continues".
-- **Threads and callbacks.** [Events, callbacks and reactive control](../concepts/events-callbacks-and-reactive-control.md) compares who owns the next turn, which is what the dispatcher decides here.
-- **In the book.** [C#, LINQ and XAML](../../languages/csharp-linq-xaml.md), [Deferred execution](../../cs/04-evaluation-and-demand.md#deferred-execution), [Domain-specific languages](../../cs/05-formal-languages-as-computational-substrates.md#domain-specific-languages) and [Arbitrary code execution](../../cs/01-reading-an-adversarial-program.md#arbitrary-code-execution).
+- **The same question as Haskell and JavaScript.** Deferred LINQ pipelines, lazy lists in [Haskell](haskell.md) and pull iteration in [JavaScript](javascript.md) all ask when a description runs. [Evaluation, demand and laziness](../conceptos/evaluacion-demanda-y-pereza.md) compares them. The difference worth remembering: Haskell remembers a computed value, and LINQ reruns.
+- **Document order as the program.** The XAML entry, [tar](tar.md) and [Tcl](tcl.md) all make data into a program. The concept guide [Reading adversarial programs](../conceptos/lectura-de-programas-adversariales.md) takes them as one case.
+- **The same four-card ceiling, now fixed.** The regex entries in [Regex engines and sed](motores-de-regex-y-sed.md) had it too, and were fixed the same way. [Comparative machine design](../conceptos/diseno-comparativo-de-maquinas.md) lists which entries obey "exactly 40 continues".
+- **Threads and callbacks.** [Events, callbacks and reactive control](../conceptos/eventos-retrollamadas-y-control-reactivo.md) compares who owns the next turn, which is what the dispatcher decides here.
+- **In the book.** [C#, LINQ and XAML](../../lenguajes/csharp-linq-xaml.md), [Deferred execution](../../informatica/04-evaluacion-y-demanda.md#deferred-execution), [Domain-specific languages](../../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#domain-specific-languages) and [Arbitrary code execution](../../informatica/01-lectura-de-un-programa-adversarial.md#arbitrary-code-execution).
 
 ## Self-check
 
@@ -251,4 +251,4 @@ Answer each question in your own words before you read the italic text. Say what
 - [Language Integrated Query](https://en.wikipedia.org/wiki/Language_Integrated_Query) (Wikipedia): LINQ and its query syntax.
 - [Lazy evaluation](https://en.wikipedia.org/wiki/Lazy_evaluation) (Wikipedia): the general idea behind deferred execution.
 - [XAML](https://en.wikipedia.org/wiki/Extensible_Application_Markup_Language) (Wikipedia): what XAML is for, and what its parser was never meant to be.
-- [Thread safety and thread affinity](../../cs/07-effects-errors-and-commitment.md#thread-safety-and-thread-affinity) and [Deferred execution](../../cs/04-evaluation-and-demand.md#deferred-execution) (this book): the two ideas that carry this family.
+- [Thread safety and thread affinity](../../informatica/07-efectos-errores-y-confirmacion.md#thread-safety-and-thread-affinity) and [Deferred execution](../../informatica/04-evaluacion-y-demanda.md#deferred-execution) (this book): the two ideas that carry this family.

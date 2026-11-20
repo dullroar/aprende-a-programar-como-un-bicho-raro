@@ -10,144 +10,144 @@ Three indexes, all built from the metadata at the top of each entry's README: th
 
 **A**
 
-- [Arbitrary code execution](cs/01-reading-an-adversarial-program.md#arbitrary-code-execution): [`regex-perl`](../src/regex-perl/README.md), [`tar-gnu`](../src/tar-gnu/README.md), [`tcl-weird`](../src/tcl-weird/README.md), [`xaml`](../src/xaml/README.md)
-- [Array programming](cs/04-evaluation-and-demand.md#array-programming): [`apl`](../src/apl/README.md), [`apl-weird`](../src/apl-weird/README.md)
+- [Arbitrary code execution](informatica/01-lectura-de-un-programa-adversarial.md#arbitrary-code-execution): [`regex-perl`](../src/regex-perl/README.md), [`tar-gnu`](../src/tar-gnu/README.md), [`tcl-weird`](../src/tcl-weird/README.md), [`xaml`](../src/xaml/README.md)
+- [Array programming](informatica/04-evaluacion-y-demanda.md#array-programming): [`apl`](../src/apl/README.md), [`apl-weird`](../src/apl-weird/README.md)
 
 **B**
 
-- [Backpressure](cs/10-events-callbacks-and-reactive-control-flow.md#backpressure): [`javascript-events`](../src/javascript-events/README.md) (counterexample), [`javascript-weird`](../src/javascript-weird/README.md) (analogy), [`tar-gnu-weird`](../src/tar-gnu-weird/README.md) (analogy)
-- [Backtracking](cs/07-effects-errors-and-commitment.md#backtracking): [`regex-dotnet`](../src/regex-dotnet/README.md), [`regex-pcre2`](../src/regex-pcre2/README.md), [`regex-pcre2grep`](../src/regex-pcre2grep/README.md), [`regex-perl`](../src/regex-perl/README.md)
-- [Build automation](cs/05-formal-languages-as-computational-substrates.md#build-automation): [`cmake`](../src/cmake/README.md), [`make-gnu`](../src/make-gnu/README.md)
+- [Backpressure](informatica/10-eventos-retrollamadas-y-flujo-de-control-reactivo.md#backpressure): [`javascript-events`](../src/javascript-events/README.md) (counterexample), [`javascript-weird`](../src/javascript-weird/README.md) (analogy), [`tar-gnu-weird`](../src/tar-gnu-weird/README.md) (analogy)
+- [Backtracking](informatica/07-efectos-errores-y-confirmacion.md#backtracking): [`regex-dotnet`](../src/regex-dotnet/README.md), [`regex-pcre2`](../src/regex-pcre2/README.md), [`regex-pcre2grep`](../src/regex-pcre2grep/README.md), [`regex-perl`](../src/regex-perl/README.md)
+- [Build automation](informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#build-automation): [`cmake`](../src/cmake/README.md), [`make-gnu`](../src/make-gnu/README.md)
 
 **C**
 
-- [Callbacks](cs/10-events-callbacks-and-reactive-control-flow.md#callbacks): [`javascript`](../src/javascript/README.md), [`javascript-events`](../src/javascript-events/README.md), [`javascript-weird`](../src/javascript-weird/README.md), [`regex-pcre2`](../src/regex-pcre2/README.md), [`regex-pcre2grep`](../src/regex-pcre2grep/README.md) (analogy), [`tar-gnu-weird`](../src/tar-gnu-weird/README.md), [`tcl-weird`](../src/tcl-weird/README.md)
-- [Capability and authority](cs/01-reading-an-adversarial-program.md#capability-and-authority): [`ed-weird`](../src/ed-weird/README.md), [`ex-weird`](../src/ex-weird/README.md), [`tar-gnu`](../src/tar-gnu/README.md)
-- [Category theory](cs/05-formal-languages-as-computational-substrates.md#category-theory): [`haskell`](../src/haskell/README.md) (analogy), [`javascript-weird`](../src/javascript-weird/README.md) (analogy), [`LinqChallenge1`](../src/LinqChallenge1/README.md) (analogy)
-- [Closures and lexical environments](cs/06-state-beyond-variables.md#closures-and-lexical-environments): [`JavaChallenge1`](../src/JavaChallenge1/README.md) (analogy), [`javascript`](../src/javascript/README.md), [`javascript-weird`](../src/javascript-weird/README.md), [`ModernChallenge1`](../src/ModernChallenge1/README.md), [`RustChallenge1`](../src/RustChallenge1/README.md)
-- [Code review](cs/01-reading-an-adversarial-program.md#code-review): all entries
-- [Computation versus orchestration](cs/02-what-counts-as-a-machine.md#computation-versus-orchestration): [`ed-weird`](../src/ed-weird/README.md), [`ex-weird`](../src/ex-weird/README.md), [`javascript-weird`](../src/javascript-weird/README.md), [`regex-pcre2`](../src/regex-pcre2/README.md), [`tar-gnu`](../src/tar-gnu/README.md), [`tar-gnu-weird`](../src/tar-gnu-weird/README.md), [`xaml`](../src/xaml/README.md)
-- [Continuations](cs/03-control-flow-and-continuations.md#continuations): [`cobol-weird`](../src/cobol-weird/README.md) (analogy), [`forth-weird`](../src/forth-weird/README.md) (analogy), [`javascript-weird`](../src/javascript-weird/README.md) (counterexample), [`make-gnu`](../src/make-gnu/README.md) (analogy), [`tar-gnu`](../src/tar-gnu/README.md) (counterexample)
-- [Control flow](cs/03-control-flow-and-continuations.md#control-flow): [`apl-weird`](../src/apl-weird/README.md), [`awk`](../src/awk/README.md), [`awk-weird`](../src/awk-weird/README.md), [`cmake`](../src/cmake/README.md), [`cobol`](../src/cobol/README.md), [`cobol-weird`](../src/cobol-weird/README.md), [`find-gnu`](../src/find-gnu/README.md), [`find-posix`](../src/find-posix/README.md), [`forth`](../src/forth/README.md), [`forth-weird`](../src/forth-weird/README.md), [`GoChallenge1`](../src/GoChallenge1/README.md), [`haskell-weird`](../src/haskell-weird/README.md), [`JavaChallenge1`](../src/JavaChallenge1/README.md), [`javascript`](../src/javascript/README.md), [`javascript-events`](../src/javascript-events/README.md), [`LinqChallenge1`](../src/LinqChallenge1/README.md), [`lisp`](../src/lisp/README.md), [`lisp-weird`](../src/lisp-weird/README.md), [`make-gnu`](../src/make-gnu/README.md), [`ModernChallenge1`](../src/ModernChallenge1/README.md), [`tcl-weird`](../src/tcl-weird/README.md)
-- [Coroutines](cs/03-control-flow-and-continuations.md#coroutines): [`javascript-events`](../src/javascript-events/README.md) (counterexample), [`javascript-weird`](../src/javascript-weird/README.md) (analogy), [`KotlinChallenge1`](../src/KotlinChallenge1/README.md) (analogy), [`PythonChallenge1`](../src/PythonChallenge1/README.md) (analogy), [`RustChallenge1`](../src/RustChallenge1/README.md) (analogy)
+- [Callbacks](informatica/10-eventos-retrollamadas-y-flujo-de-control-reactivo.md#callbacks): [`javascript`](../src/javascript/README.md), [`javascript-events`](../src/javascript-events/README.md), [`javascript-weird`](../src/javascript-weird/README.md), [`regex-pcre2`](../src/regex-pcre2/README.md), [`regex-pcre2grep`](../src/regex-pcre2grep/README.md) (analogy), [`tar-gnu-weird`](../src/tar-gnu-weird/README.md), [`tcl-weird`](../src/tcl-weird/README.md)
+- [Capability and authority](informatica/01-lectura-de-un-programa-adversarial.md#capability-and-authority): [`ed-weird`](../src/ed-weird/README.md), [`ex-weird`](../src/ex-weird/README.md), [`tar-gnu`](../src/tar-gnu/README.md)
+- [Category theory](informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#category-theory): [`haskell`](../src/haskell/README.md) (analogy), [`javascript-weird`](../src/javascript-weird/README.md) (analogy), [`LinqChallenge1`](../src/LinqChallenge1/README.md) (analogy)
+- [Closures and lexical environments](informatica/06-estado-mas-alla-de-las-variables.md#closures-and-lexical-environments): [`JavaChallenge1`](../src/JavaChallenge1/README.md) (analogy), [`javascript`](../src/javascript/README.md), [`javascript-weird`](../src/javascript-weird/README.md), [`ModernChallenge1`](../src/ModernChallenge1/README.md), [`RustChallenge1`](../src/RustChallenge1/README.md)
+- [Code review](informatica/01-lectura-de-un-programa-adversarial.md#code-review): all entries
+- [Computation versus orchestration](informatica/02-que-cuenta-como-maquina.md#computation-versus-orchestration): [`ed-weird`](../src/ed-weird/README.md), [`ex-weird`](../src/ex-weird/README.md), [`javascript-weird`](../src/javascript-weird/README.md), [`regex-pcre2`](../src/regex-pcre2/README.md), [`tar-gnu`](../src/tar-gnu/README.md), [`tar-gnu-weird`](../src/tar-gnu-weird/README.md), [`xaml`](../src/xaml/README.md)
+- [Continuations](informatica/03-flujo-de-control-y-continuaciones.md#continuations): [`cobol-weird`](../src/cobol-weird/README.md) (analogy), [`forth-weird`](../src/forth-weird/README.md) (analogy), [`javascript-weird`](../src/javascript-weird/README.md) (counterexample), [`make-gnu`](../src/make-gnu/README.md) (analogy), [`tar-gnu`](../src/tar-gnu/README.md) (counterexample)
+- [Control flow](informatica/03-flujo-de-control-y-continuaciones.md#control-flow): [`apl-weird`](../src/apl-weird/README.md), [`awk`](../src/awk/README.md), [`awk-weird`](../src/awk-weird/README.md), [`cmake`](../src/cmake/README.md), [`cobol`](../src/cobol/README.md), [`cobol-weird`](../src/cobol-weird/README.md), [`find-gnu`](../src/find-gnu/README.md), [`find-posix`](../src/find-posix/README.md), [`forth`](../src/forth/README.md), [`forth-weird`](../src/forth-weird/README.md), [`GoChallenge1`](../src/GoChallenge1/README.md), [`haskell-weird`](../src/haskell-weird/README.md), [`JavaChallenge1`](../src/JavaChallenge1/README.md), [`javascript`](../src/javascript/README.md), [`javascript-events`](../src/javascript-events/README.md), [`LinqChallenge1`](../src/LinqChallenge1/README.md), [`lisp`](../src/lisp/README.md), [`lisp-weird`](../src/lisp-weird/README.md), [`make-gnu`](../src/make-gnu/README.md), [`ModernChallenge1`](../src/ModernChallenge1/README.md), [`tcl-weird`](../src/tcl-weird/README.md)
+- [Coroutines](informatica/03-flujo-de-control-y-continuaciones.md#coroutines): [`javascript-events`](../src/javascript-events/README.md) (counterexample), [`javascript-weird`](../src/javascript-weird/README.md) (analogy), [`KotlinChallenge1`](../src/KotlinChallenge1/README.md) (analogy), [`PythonChallenge1`](../src/PythonChallenge1/README.md) (analogy), [`RustChallenge1`](../src/RustChallenge1/README.md) (analogy)
 
 **D**
 
-- [Database triggers](cs/06-state-beyond-variables.md#database-triggers): [`tcl-weird`](../src/tcl-weird/README.md)
-- [Dataflow programming](cs/04-evaluation-and-demand.md#dataflow-programming): [`javascript-weird`](../src/javascript-weird/README.md), [`LinqChallenge1`](../src/LinqChallenge1/README.md), [`LinqChallenge2`](../src/LinqChallenge2/README.md), [`make-gnu`](../src/make-gnu/README.md) (analogy)
-- [Declarative programming](cs/05-formal-languages-as-computational-substrates.md#declarative-programming): [`awk`](../src/awk/README.md), [`awk-weird`](../src/awk-weird/README.md), [`cobol`](../src/cobol/README.md), [`LinqChallenge2`](../src/LinqChallenge2/README.md), [`make-gnu`](../src/make-gnu/README.md), [`xaml`](../src/xaml/README.md)
-- [Deferred execution](cs/04-evaluation-and-demand.md#deferred-execution): [`javascript-events`](../src/javascript-events/README.md), [`javascript-weird`](../src/javascript-weird/README.md), [`LinqChallenge1`](../src/LinqChallenge1/README.md), [`LinqChallenge2`](../src/LinqChallenge2/README.md), [`ModernChallenge1`](../src/ModernChallenge1/README.md)
-- [Dependency graphs](cs/06-state-beyond-variables.md#dependency-graphs): [`make-gnu`](../src/make-gnu/README.md)
-- [Domain-specific languages](cs/05-formal-languages-as-computational-substrates.md#domain-specific-languages): [`awk`](../src/awk/README.md), [`cmake`](../src/cmake/README.md), [`find-gnu`](../src/find-gnu/README.md), [`find-posix`](../src/find-posix/README.md), [`LinqChallenge2`](../src/LinqChallenge2/README.md), [`lisp`](../src/lisp/README.md), [`regex-pcre2`](../src/regex-pcre2/README.md), [`tar-gnu`](../src/tar-gnu/README.md)
+- [Database triggers](informatica/06-estado-mas-alla-de-las-variables.md#database-triggers): [`tcl-weird`](../src/tcl-weird/README.md)
+- [Dataflow programming](informatica/04-evaluacion-y-demanda.md#dataflow-programming): [`javascript-weird`](../src/javascript-weird/README.md), [`LinqChallenge1`](../src/LinqChallenge1/README.md), [`LinqChallenge2`](../src/LinqChallenge2/README.md), [`make-gnu`](../src/make-gnu/README.md) (analogy)
+- [Declarative programming](informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#declarative-programming): [`awk`](../src/awk/README.md), [`awk-weird`](../src/awk-weird/README.md), [`cobol`](../src/cobol/README.md), [`LinqChallenge2`](../src/LinqChallenge2/README.md), [`make-gnu`](../src/make-gnu/README.md), [`xaml`](../src/xaml/README.md)
+- [Deferred execution](informatica/04-evaluacion-y-demanda.md#deferred-execution): [`javascript-events`](../src/javascript-events/README.md), [`javascript-weird`](../src/javascript-weird/README.md), [`LinqChallenge1`](../src/LinqChallenge1/README.md), [`LinqChallenge2`](../src/LinqChallenge2/README.md), [`ModernChallenge1`](../src/ModernChallenge1/README.md)
+- [Dependency graphs](informatica/06-estado-mas-alla-de-las-variables.md#dependency-graphs): [`make-gnu`](../src/make-gnu/README.md)
+- [Domain-specific languages](informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#domain-specific-languages): [`awk`](../src/awk/README.md), [`cmake`](../src/cmake/README.md), [`find-gnu`](../src/find-gnu/README.md), [`find-posix`](../src/find-posix/README.md), [`LinqChallenge2`](../src/LinqChallenge2/README.md), [`lisp`](../src/lisp/README.md), [`regex-pcre2`](../src/regex-pcre2/README.md), [`tar-gnu`](../src/tar-gnu/README.md)
 
 **E**
 
-- [Eager evaluation](cs/04-evaluation-and-demand.md#eager-evaluation): [`apl`](../src/apl/README.md), [`apl-weird`](../src/apl-weird/README.md), [`javascript`](../src/javascript/README.md), [`javascript-weird`](../src/javascript-weird/README.md), [`ModernChallenge1`](../src/ModernChallenge1/README.md)
-- [Evaluation strategies](cs/04-evaluation-and-demand.md#evaluation-strategies): [`haskell`](../src/haskell/README.md), [`haskell-weird`](../src/haskell-weird/README.md), [`PythonChallenge1`](../src/PythonChallenge1/README.md)
-- [Event-driven programming](cs/10-events-callbacks-and-reactive-control-flow.md#event-driven-programming): [`javascript`](../src/javascript/README.md), [`javascript-events`](../src/javascript-events/README.md), [`javascript-weird`](../src/javascript-weird/README.md), [`LinqChallenge1`](../src/LinqChallenge1/README.md) (counterexample), [`ModernChallenge1`](../src/ModernChallenge1/README.md) (counterexample), [`PythonChallenge1`](../src/PythonChallenge1/README.md) (counterexample), [`RustChallenge1`](../src/RustChallenge1/README.md) (counterexample), [`tar-gnu-weird`](../src/tar-gnu-weird/README.md), [`xaml`](../src/xaml/README.md) (counterexample)
-- [Exception handling](cs/07-effects-errors-and-commitment.md#exception-handling): [`cobol-weird`](../src/cobol-weird/README.md), [`javascript-events`](../src/javascript-events/README.md)
-- [Exit status](cs/07-effects-errors-and-commitment.md#exit-status): [`regex-pcre2grep`](../src/regex-pcre2grep/README.md), [`regex-sed`](../src/regex-sed/README.md), [`tar-gnu`](../src/tar-gnu/README.md), [`tar-gnu-weird`](../src/tar-gnu-weird/README.md)
+- [Eager evaluation](informatica/04-evaluacion-y-demanda.md#eager-evaluation): [`apl`](../src/apl/README.md), [`apl-weird`](../src/apl-weird/README.md), [`javascript`](../src/javascript/README.md), [`javascript-weird`](../src/javascript-weird/README.md), [`ModernChallenge1`](../src/ModernChallenge1/README.md)
+- [Evaluation strategies](informatica/04-evaluacion-y-demanda.md#evaluation-strategies): [`haskell`](../src/haskell/README.md), [`haskell-weird`](../src/haskell-weird/README.md), [`PythonChallenge1`](../src/PythonChallenge1/README.md)
+- [Event-driven programming](informatica/10-eventos-retrollamadas-y-flujo-de-control-reactivo.md#event-driven-programming): [`javascript`](../src/javascript/README.md), [`javascript-events`](../src/javascript-events/README.md), [`javascript-weird`](../src/javascript-weird/README.md), [`LinqChallenge1`](../src/LinqChallenge1/README.md) (counterexample), [`ModernChallenge1`](../src/ModernChallenge1/README.md) (counterexample), [`PythonChallenge1`](../src/PythonChallenge1/README.md) (counterexample), [`RustChallenge1`](../src/RustChallenge1/README.md) (counterexample), [`tar-gnu-weird`](../src/tar-gnu-weird/README.md), [`xaml`](../src/xaml/README.md) (counterexample)
+- [Exception handling](informatica/07-efectos-errores-y-confirmacion.md#exception-handling): [`cobol-weird`](../src/cobol-weird/README.md), [`javascript-events`](../src/javascript-events/README.md)
+- [Exit status](informatica/07-efectos-errores-y-confirmacion.md#exit-status): [`regex-pcre2grep`](../src/regex-pcre2grep/README.md), [`regex-sed`](../src/regex-sed/README.md), [`tar-gnu`](../src/tar-gnu/README.md), [`tar-gnu-weird`](../src/tar-gnu-weird/README.md)
 
 **F**
 
-- [First-class and higher-order functions](cs/04-evaluation-and-demand.md#first-class-and-higher-order-functions): [`haskell`](../src/haskell/README.md), [`javascript`](../src/javascript/README.md), [`javascript-weird`](../src/javascript-weird/README.md), [`LinqChallenge1`](../src/LinqChallenge1/README.md), [`RustChallenge1`](../src/RustChallenge1/README.md)
-- [Fixed-point iteration](cs/03-control-flow-and-continuations.md#fixed-point-iteration): [`m4`](../src/m4/README.md), [`make-gnu`](../src/make-gnu/README.md), [`regex-sed`](../src/regex-sed/README.md)
-- [Functors and mapping](cs/04-evaluation-and-demand.md#functors-and-mapping): [`javascript-weird`](../src/javascript-weird/README.md), [`LinqChallenge1`](../src/LinqChallenge1/README.md) (analogy)
+- [First-class and higher-order functions](informatica/04-evaluacion-y-demanda.md#first-class-and-higher-order-functions): [`haskell`](../src/haskell/README.md), [`javascript`](../src/javascript/README.md), [`javascript-weird`](../src/javascript-weird/README.md), [`LinqChallenge1`](../src/LinqChallenge1/README.md), [`RustChallenge1`](../src/RustChallenge1/README.md)
+- [Fixed-point iteration](informatica/03-flujo-de-control-y-continuaciones.md#fixed-point-iteration): [`m4`](../src/m4/README.md), [`make-gnu`](../src/make-gnu/README.md), [`regex-sed`](../src/regex-sed/README.md)
+- [Functors and mapping](informatica/04-evaluacion-y-demanda.md#functors-and-mapping): [`javascript-weird`](../src/javascript-weird/README.md), [`LinqChallenge1`](../src/LinqChallenge1/README.md) (analogy)
 
 **G**
 
-- [Goto and structured programming](cs/03-control-flow-and-continuations.md#goto-and-structured-programming): [`cobol-weird`](../src/cobol-weird/README.md)
+- [Goto and structured programming](informatica/03-flujo-de-control-y-continuaciones.md#goto-and-structured-programming): [`cobol-weird`](../src/cobol-weird/README.md)
 
 **H**
 
-- [Homoiconicity: code as data](cs/06-state-beyond-variables.md#homoiconicity-code-as-data): [`apl-weird`](../src/apl-weird/README.md), [`ex-weird`](../src/ex-weird/README.md), [`lisp`](../src/lisp/README.md), [`lisp-weird`](../src/lisp-weird/README.md), [`tcl-weird`](../src/tcl-weird/README.md)
-- [Hyrum's law](cs/08-abstraction-leaks-and-implementation-dependence.md#hyrums-law): [`cmake`](../src/cmake/README.md), [`ed-weird`](../src/ed-weird/README.md), [`find-gnu`](../src/find-gnu/README.md), [`find-posix`](../src/find-posix/README.md), [`make-gnu`](../src/make-gnu/README.md), [`tar-gnu-weird`](../src/tar-gnu-weird/README.md)
+- [Homoiconicity: code as data](informatica/06-estado-mas-alla-de-las-variables.md#homoiconicity-code-as-data): [`apl-weird`](../src/apl-weird/README.md), [`ex-weird`](../src/ex-weird/README.md), [`lisp`](../src/lisp/README.md), [`lisp-weird`](../src/lisp-weird/README.md), [`tcl-weird`](../src/tcl-weird/README.md)
+- [Hyrum's law](informatica/08-fugas-de-abstraccion-y-dependencia-de-la-implementacion.md#hyrums-law): [`cmake`](../src/cmake/README.md), [`ed-weird`](../src/ed-weird/README.md), [`find-gnu`](../src/find-gnu/README.md), [`find-posix`](../src/find-posix/README.md), [`make-gnu`](../src/make-gnu/README.md), [`tar-gnu-weird`](../src/tar-gnu-weird/README.md)
 
 **I**
 
-- [Idempotence](cs/07-effects-errors-and-commitment.md#idempotence): [`tar-gnu`](../src/tar-gnu/README.md)
-- [Integrity constraints](cs/07-effects-errors-and-commitment.md#integrity-constraints): [`cobol`](../src/cobol/README.md), [`find-gnu`](../src/find-gnu/README.md), [`find-posix`](../src/find-posix/README.md), [`javascript`](../src/javascript/README.md), [`javascript-events`](../src/javascript-events/README.md), [`regex-pcre2grep`](../src/regex-pcre2grep/README.md), [`tar-gnu`](../src/tar-gnu/README.md), [`tar-gnu-weird`](../src/tar-gnu-weird/README.md)
-- [Interpreters and virtual machines](cs/05-formal-languages-as-computational-substrates.md#interpreters-and-virtual-machines): [`ex-weird`](../src/ex-weird/README.md), [`regex-pcre2`](../src/regex-pcre2/README.md), [`tar-gnu`](../src/tar-gnu/README.md), [`tcl-weird`](../src/tcl-weird/README.md), [`xaml`](../src/xaml/README.md)
-- [Invariants](cs/02-what-counts-as-a-machine.md#invariants): [`javascript`](../src/javascript/README.md), [`javascript-events`](../src/javascript-events/README.md), [`javascript-weird`](../src/javascript-weird/README.md), [`tar-gnu-weird`](../src/tar-gnu-weird/README.md)
-- [Iterators and generators](cs/04-evaluation-and-demand.md#iterators-and-generators): [`haskell`](../src/haskell/README.md), [`javascript-weird`](../src/javascript-weird/README.md), [`KotlinChallenge1`](../src/KotlinChallenge1/README.md), [`PythonChallenge1`](../src/PythonChallenge1/README.md), [`RustChallenge1`](../src/RustChallenge1/README.md)
+- [Idempotence](informatica/07-efectos-errores-y-confirmacion.md#idempotence): [`tar-gnu`](../src/tar-gnu/README.md)
+- [Integrity constraints](informatica/07-efectos-errores-y-confirmacion.md#integrity-constraints): [`cobol`](../src/cobol/README.md), [`find-gnu`](../src/find-gnu/README.md), [`find-posix`](../src/find-posix/README.md), [`javascript`](../src/javascript/README.md), [`javascript-events`](../src/javascript-events/README.md), [`regex-pcre2grep`](../src/regex-pcre2grep/README.md), [`tar-gnu`](../src/tar-gnu/README.md), [`tar-gnu-weird`](../src/tar-gnu-weird/README.md)
+- [Interpreters and virtual machines](informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#interpreters-and-virtual-machines): [`ex-weird`](../src/ex-weird/README.md), [`regex-pcre2`](../src/regex-pcre2/README.md), [`tar-gnu`](../src/tar-gnu/README.md), [`tcl-weird`](../src/tcl-weird/README.md), [`xaml`](../src/xaml/README.md)
+- [Invariants](informatica/02-que-cuenta-como-maquina.md#invariants): [`javascript`](../src/javascript/README.md), [`javascript-events`](../src/javascript-events/README.md), [`javascript-weird`](../src/javascript-weird/README.md), [`tar-gnu-weird`](../src/tar-gnu-weird/README.md)
+- [Iterators and generators](informatica/04-evaluacion-y-demanda.md#iterators-and-generators): [`haskell`](../src/haskell/README.md), [`javascript-weird`](../src/javascript-weird/README.md), [`KotlinChallenge1`](../src/KotlinChallenge1/README.md), [`PythonChallenge1`](../src/PythonChallenge1/README.md), [`RustChallenge1`](../src/RustChallenge1/README.md)
 
 **L**
 
-- [Language-theoretic security](cs/05-formal-languages-as-computational-substrates.md#language-theoretic-security): [`tar-gnu`](../src/tar-gnu/README.md), [`xaml`](../src/xaml/README.md)
-- [Lazy evaluation](cs/04-evaluation-and-demand.md#lazy-evaluation): [`haskell`](../src/haskell/README.md), [`haskell-weird`](../src/haskell-weird/README.md), [`javascript-weird`](../src/javascript-weird/README.md), [`KotlinChallenge1`](../src/KotlinChallenge1/README.md), [`LinqChallenge1`](../src/LinqChallenge1/README.md), [`LinqChallenge2`](../src/LinqChallenge2/README.md), [`m4`](../src/m4/README.md), [`RustChallenge1`](../src/RustChallenge1/README.md)
-- [Leaky abstractions](cs/08-abstraction-leaks-and-implementation-dependence.md#leaky-abstractions): [`tar-gnu-weird`](../src/tar-gnu-weird/README.md)
-- [Logical clocks and event ordering](cs/03-control-flow-and-continuations.md#logical-clocks-and-event-ordering): [`make-gnu`](../src/make-gnu/README.md) (analogy), [`tar-gnu-weird`](../src/tar-gnu-weird/README.md)
+- [Language-theoretic security](informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#language-theoretic-security): [`tar-gnu`](../src/tar-gnu/README.md), [`xaml`](../src/xaml/README.md)
+- [Lazy evaluation](informatica/04-evaluacion-y-demanda.md#lazy-evaluation): [`haskell`](../src/haskell/README.md), [`haskell-weird`](../src/haskell-weird/README.md), [`javascript-weird`](../src/javascript-weird/README.md), [`KotlinChallenge1`](../src/KotlinChallenge1/README.md), [`LinqChallenge1`](../src/LinqChallenge1/README.md), [`LinqChallenge2`](../src/LinqChallenge2/README.md), [`m4`](../src/m4/README.md), [`RustChallenge1`](../src/RustChallenge1/README.md)
+- [Leaky abstractions](informatica/08-fugas-de-abstraccion-y-dependencia-de-la-implementacion.md#leaky-abstractions): [`tar-gnu-weird`](../src/tar-gnu-weird/README.md)
+- [Logical clocks and event ordering](informatica/03-flujo-de-control-y-continuaciones.md#logical-clocks-and-event-ordering): [`make-gnu`](../src/make-gnu/README.md) (analogy), [`tar-gnu-weird`](../src/tar-gnu-weird/README.md)
 
 **M**
 
-- [Macros and text expansion](cs/05-formal-languages-as-computational-substrates.md#macros-and-text-expansion): [`lisp`](../src/lisp/README.md), [`lisp-weird`](../src/lisp-weird/README.md), [`m4`](../src/m4/README.md)
-- [Markov algorithms](cs/02-what-counts-as-a-machine.md#markov-algorithms): [`ed-weird`](../src/ed-weird/README.md), [`regex-sed`](../src/regex-sed/README.md)
-- [Markup languages](cs/05-formal-languages-as-computational-substrates.md#markup-languages): [`ModernChallenge1`](../src/ModernChallenge1/README.md), [`xaml`](../src/xaml/README.md)
-- [Models of computation](cs/02-what-counts-as-a-machine.md#models-of-computation): every entry that names its machine
-- [Monads and effect systems](cs/07-effects-errors-and-commitment.md#monads-and-effect-systems): [`haskell-weird`](../src/haskell-weird/README.md)
-- [Monoids and folds](cs/04-evaluation-and-demand.md#monoids-and-folds): [`haskell`](../src/haskell/README.md), [`javascript`](../src/javascript/README.md), [`javascript-weird`](../src/javascript-weird/README.md), [`LinqChallenge1`](../src/LinqChallenge1/README.md), [`lisp`](../src/lisp/README.md) (analogy)
+- [Macros and text expansion](informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#macros-and-text-expansion): [`lisp`](../src/lisp/README.md), [`lisp-weird`](../src/lisp-weird/README.md), [`m4`](../src/m4/README.md)
+- [Markov algorithms](informatica/02-que-cuenta-como-maquina.md#markov-algorithms): [`ed-weird`](../src/ed-weird/README.md), [`regex-sed`](../src/regex-sed/README.md)
+- [Markup languages](informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#markup-languages): [`ModernChallenge1`](../src/ModernChallenge1/README.md), [`xaml`](../src/xaml/README.md)
+- [Models of computation](informatica/02-que-cuenta-como-maquina.md#models-of-computation): every entry that names its machine
+- [Monads and effect systems](informatica/07-efectos-errores-y-confirmacion.md#monads-and-effect-systems): [`haskell-weird`](../src/haskell-weird/README.md)
+- [Monoids and folds](informatica/04-evaluacion-y-demanda.md#monoids-and-folds): [`haskell`](../src/haskell/README.md), [`javascript`](../src/javascript/README.md), [`javascript-weird`](../src/javascript-weird/README.md), [`LinqChallenge1`](../src/LinqChallenge1/README.md), [`lisp`](../src/lisp/README.md) (analogy)
 
 **O**
 
-- [Observability](cs/02-what-counts-as-a-machine.md#observability): [`find-gnu`](../src/find-gnu/README.md), [`javascript-events`](../src/javascript-events/README.md), [`tar-gnu`](../src/tar-gnu/README.md), [`tar-gnu-weird`](../src/tar-gnu-weird/README.md)
-- [Operational semantics](cs/02-what-counts-as-a-machine.md#operational-semantics): [`ex-weird`](../src/ex-weird/README.md), [`javascript`](../src/javascript/README.md), [`tar-gnu-weird`](../src/tar-gnu-weird/README.md)
-- [Optimizers](cs/08-abstraction-leaks-and-implementation-dependence.md#optimizers): [`find-gnu`](../src/find-gnu/README.md), [`regex-pcre2`](../src/regex-pcre2/README.md)
+- [Observability](informatica/02-que-cuenta-como-maquina.md#observability): [`find-gnu`](../src/find-gnu/README.md), [`javascript-events`](../src/javascript-events/README.md), [`tar-gnu`](../src/tar-gnu/README.md), [`tar-gnu-weird`](../src/tar-gnu-weird/README.md)
+- [Operational semantics](informatica/02-que-cuenta-como-maquina.md#operational-semantics): [`ex-weird`](../src/ex-weird/README.md), [`javascript`](../src/javascript/README.md), [`tar-gnu-weird`](../src/tar-gnu-weird/README.md)
+- [Optimizers](informatica/08-fugas-de-abstraccion-y-dependencia-de-la-implementacion.md#optimizers): [`find-gnu`](../src/find-gnu/README.md), [`regex-pcre2`](../src/regex-pcre2/README.md)
 
 **P**
 
-- [Parsing](cs/05-formal-languages-as-computational-substrates.md#parsing): [`forth-weird`](../src/forth-weird/README.md), [`regex-dotnet`](../src/regex-dotnet/README.md), [`tar-gnu`](../src/tar-gnu/README.md), [`xaml`](../src/xaml/README.md)
-- [Performance cliffs and time complexity](cs/08-abstraction-leaks-and-implementation-dependence.md#performance-cliffs-and-time-complexity): [`regex-sed`](../src/regex-sed/README.md)
-- [Portability](cs/08-abstraction-leaks-and-implementation-dependence.md#portability): [`awk-weird`](../src/awk-weird/README.md), [`ed-weird`](../src/ed-weird/README.md), [`ex-weird`](../src/ex-weird/README.md), [`find-posix`](../src/find-posix/README.md), [`regex-pcre2grep`](../src/regex-pcre2grep/README.md), [`tar-gnu-weird`](../src/tar-gnu-weird/README.md)
-- [Principle of least privilege](cs/01-reading-an-adversarial-program.md#principle-of-least-privilege): [`tar-gnu`](../src/tar-gnu/README.md)
-- [Publish and subscribe](cs/10-events-callbacks-and-reactive-control-flow.md#publish-and-subscribe): [`javascript-events`](../src/javascript-events/README.md), [`tar-gnu-weird`](../src/tar-gnu-weird/README.md) (analogy), [`tcl-weird`](../src/tcl-weird/README.md) (analogy)
+- [Parsing](informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#parsing): [`forth-weird`](../src/forth-weird/README.md), [`regex-dotnet`](../src/regex-dotnet/README.md), [`tar-gnu`](../src/tar-gnu/README.md), [`xaml`](../src/xaml/README.md)
+- [Performance cliffs and time complexity](informatica/08-fugas-de-abstraccion-y-dependencia-de-la-implementacion.md#performance-cliffs-and-time-complexity): [`regex-sed`](../src/regex-sed/README.md)
+- [Portability](informatica/08-fugas-de-abstraccion-y-dependencia-de-la-implementacion.md#portability): [`awk-weird`](../src/awk-weird/README.md), [`ed-weird`](../src/ed-weird/README.md), [`ex-weird`](../src/ex-weird/README.md), [`find-posix`](../src/find-posix/README.md), [`regex-pcre2grep`](../src/regex-pcre2grep/README.md), [`tar-gnu-weird`](../src/tar-gnu-weird/README.md)
+- [Principle of least privilege](informatica/01-lectura-de-un-programa-adversarial.md#principle-of-least-privilege): [`tar-gnu`](../src/tar-gnu/README.md)
+- [Publish and subscribe](informatica/10-eventos-retrollamadas-y-flujo-de-control-reactivo.md#publish-and-subscribe): [`javascript-events`](../src/javascript-events/README.md), [`tar-gnu-weird`](../src/tar-gnu-weird/README.md) (analogy), [`tcl-weird`](../src/tcl-weird/README.md) (analogy)
 
 **R**
 
-- [Recursion](cs/03-control-flow-and-continuations.md#recursion): [`find-gnu`](../src/find-gnu/README.md), [`find-posix`](../src/find-posix/README.md), [`m4`](../src/m4/README.md), [`tcl-weird`](../src/tcl-weird/README.md)
-- [Referential transparency](cs/04-evaluation-and-demand.md#referential-transparency): [`apl`](../src/apl/README.md), [`haskell`](../src/haskell/README.md), [`haskell-weird`](../src/haskell-weird/README.md), [`javascript-weird`](../src/javascript-weird/README.md)
-- [Reflection and metaprogramming](cs/06-state-beyond-variables.md#reflection-and-metaprogramming): [`apl-weird`](../src/apl-weird/README.md), [`ex-weird`](../src/ex-weird/README.md), [`forth-weird`](../src/forth-weird/README.md), [`lisp-weird`](../src/lisp-weird/README.md), [`tcl`](../src/tcl/README.md), [`tcl-weird`](../src/tcl-weird/README.md), [`xaml`](../src/xaml/README.md)
-- [Register machines and counter machines](cs/02-what-counts-as-a-machine.md#register-machines-and-counter-machines): [`cmake`](../src/cmake/README.md), [`ex-weird`](../src/ex-weird/README.md), [`forth-weird`](../src/forth-weird/README.md), [`regex-dotnet`](../src/regex-dotnet/README.md)
-- [Regular expressions](cs/05-formal-languages-as-computational-substrates.md#regular-expressions): [`awk`](../src/awk/README.md), [`awk-weird`](../src/awk-weird/README.md), [`cmake`](../src/cmake/README.md), [`ed-weird`](../src/ed-weird/README.md), [`find-gnu`](../src/find-gnu/README.md), [`regex-dotnet`](../src/regex-dotnet/README.md), [`regex-pcre2`](../src/regex-pcre2/README.md), [`regex-pcre2grep`](../src/regex-pcre2grep/README.md), [`regex-perl`](../src/regex-perl/README.md), [`regex-sed`](../src/regex-sed/README.md)
-- [Regular-expression denial of service](cs/08-abstraction-leaks-and-implementation-dependence.md#regular-expression-denial-of-service): [`regex-sed`](../src/regex-sed/README.md)
-- [Representing state](cs/02-what-counts-as-a-machine.md#representing-state): [`cobol`](../src/cobol/README.md), [`ed-weird`](../src/ed-weird/README.md), [`ex-weird`](../src/ex-weird/README.md), [`find-gnu`](../src/find-gnu/README.md), [`find-posix`](../src/find-posix/README.md), [`regex-sed`](../src/regex-sed/README.md), [`tar-gnu`](../src/tar-gnu/README.md), [`tar-gnu-weird`](../src/tar-gnu-weird/README.md)
-- [Reproducibility and deterministic builds](cs/08-abstraction-leaks-and-implementation-dependence.md#reproducibility-and-deterministic-builds): [`javascript`](../src/javascript/README.md), [`javascript-events`](../src/javascript-events/README.md), [`javascript-weird`](../src/javascript-weird/README.md), [`tar-gnu`](../src/tar-gnu/README.md), [`tar-gnu-weird`](../src/tar-gnu-weird/README.md)
+- [Recursion](informatica/03-flujo-de-control-y-continuaciones.md#recursion): [`find-gnu`](../src/find-gnu/README.md), [`find-posix`](../src/find-posix/README.md), [`m4`](../src/m4/README.md), [`tcl-weird`](../src/tcl-weird/README.md)
+- [Referential transparency](informatica/04-evaluacion-y-demanda.md#referential-transparency): [`apl`](../src/apl/README.md), [`haskell`](../src/haskell/README.md), [`haskell-weird`](../src/haskell-weird/README.md), [`javascript-weird`](../src/javascript-weird/README.md)
+- [Reflection and metaprogramming](informatica/06-estado-mas-alla-de-las-variables.md#reflection-and-metaprogramming): [`apl-weird`](../src/apl-weird/README.md), [`ex-weird`](../src/ex-weird/README.md), [`forth-weird`](../src/forth-weird/README.md), [`lisp-weird`](../src/lisp-weird/README.md), [`tcl`](../src/tcl/README.md), [`tcl-weird`](../src/tcl-weird/README.md), [`xaml`](../src/xaml/README.md)
+- [Register machines and counter machines](informatica/02-que-cuenta-como-maquina.md#register-machines-and-counter-machines): [`cmake`](../src/cmake/README.md), [`ex-weird`](../src/ex-weird/README.md), [`forth-weird`](../src/forth-weird/README.md), [`regex-dotnet`](../src/regex-dotnet/README.md)
+- [Regular expressions](informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#regular-expressions): [`awk`](../src/awk/README.md), [`awk-weird`](../src/awk-weird/README.md), [`cmake`](../src/cmake/README.md), [`ed-weird`](../src/ed-weird/README.md), [`find-gnu`](../src/find-gnu/README.md), [`regex-dotnet`](../src/regex-dotnet/README.md), [`regex-pcre2`](../src/regex-pcre2/README.md), [`regex-pcre2grep`](../src/regex-pcre2grep/README.md), [`regex-perl`](../src/regex-perl/README.md), [`regex-sed`](../src/regex-sed/README.md)
+- [Regular-expression denial of service](informatica/08-fugas-de-abstraccion-y-dependencia-de-la-implementacion.md#regular-expression-denial-of-service): [`regex-sed`](../src/regex-sed/README.md)
+- [Representing state](informatica/02-que-cuenta-como-maquina.md#representing-state): [`cobol`](../src/cobol/README.md), [`ed-weird`](../src/ed-weird/README.md), [`ex-weird`](../src/ex-weird/README.md), [`find-gnu`](../src/find-gnu/README.md), [`find-posix`](../src/find-posix/README.md), [`regex-sed`](../src/regex-sed/README.md), [`tar-gnu`](../src/tar-gnu/README.md), [`tar-gnu-weird`](../src/tar-gnu-weird/README.md)
+- [Reproducibility and deterministic builds](informatica/08-fugas-de-abstraccion-y-dependencia-de-la-implementacion.md#reproducibility-and-deterministic-builds): [`javascript`](../src/javascript/README.md), [`javascript-events`](../src/javascript-events/README.md), [`javascript-weird`](../src/javascript-weird/README.md), [`tar-gnu`](../src/tar-gnu/README.md), [`tar-gnu-weird`](../src/tar-gnu-weird/README.md)
 
 **S**
 
-- [Sandbox](cs/01-reading-an-adversarial-program.md#sandbox): all entries
-- [Scope and binding](cs/06-state-beyond-variables.md#scope-and-binding): [`apl-weird`](../src/apl-weird/README.md), [`javascript`](../src/javascript/README.md), [`javascript-weird`](../src/javascript-weird/README.md), [`lisp-weird`](../src/lisp-weird/README.md), [`m4`](../src/m4/README.md), [`tcl`](../src/tcl/README.md), [`tcl-weird`](../src/tcl-weird/README.md)
-- [Self-modifying code](cs/03-control-flow-and-continuations.md#self-modifying-code): [`apl-weird`](../src/apl-weird/README.md), [`cobol-weird`](../src/cobol-weird/README.md), [`ex-weird`](../src/ex-weird/README.md)
-- [Serialization, deserialization and object pickling](cs/06-state-beyond-variables.md#serialization-deserialization-and-object-pickling): [`apl-weird`](../src/apl-weird/README.md), [`m4`](../src/m4/README.md) (analogy), [`regex-sed`](../src/regex-sed/README.md) (analogy), [`tar-gnu`](../src/tar-gnu/README.md), [`tcl-weird`](../src/tcl-weird/README.md), [`xaml`](../src/xaml/README.md)
-- [Short-circuit evaluation](cs/04-evaluation-and-demand.md#short-circuit-evaluation): [`find-gnu`](../src/find-gnu/README.md), [`find-posix`](../src/find-posix/README.md), [`javascript`](../src/javascript/README.md), [`javascript-weird`](../src/javascript-weird/README.md), [`lisp-weird`](../src/lisp-weird/README.md)
-- [Side effects](cs/07-effects-errors-and-commitment.md#side-effects): [`find-gnu`](../src/find-gnu/README.md), [`find-posix`](../src/find-posix/README.md), [`GoChallenge1`](../src/GoChallenge1/README.md), [`haskell-weird`](../src/haskell-weird/README.md), [`JavaChallenge1`](../src/JavaChallenge1/README.md), [`javascript`](../src/javascript/README.md), [`javascript-events`](../src/javascript-events/README.md), [`javascript-weird`](../src/javascript-weird/README.md), [`KotlinChallenge1`](../src/KotlinChallenge1/README.md), [`LinqChallenge1`](../src/LinqChallenge1/README.md), [`LinqChallenge2`](../src/LinqChallenge2/README.md), [`ModernChallenge1`](../src/ModernChallenge1/README.md), [`PythonChallenge1`](../src/PythonChallenge1/README.md), [`regex-pcre2`](../src/regex-pcre2/README.md), [`regex-pcre2grep`](../src/regex-pcre2grep/README.md), [`regex-perl`](../src/regex-perl/README.md), [`RustChallenge1`](../src/RustChallenge1/README.md), [`tar-gnu-weird`](../src/tar-gnu-weird/README.md), [`xaml`](../src/xaml/README.md)
-- [Specification versus implementation](cs/01-reading-an-adversarial-program.md#specification-versus-implementation): [`ed-weird`](../src/ed-weird/README.md), [`ex-weird`](../src/ex-weird/README.md)
-- [Stack machines](cs/02-what-counts-as-a-machine.md#stack-machines): [`forth`](../src/forth/README.md), [`forth-weird`](../src/forth-weird/README.md)
-- [State](cs/06-state-beyond-variables.md#state): [`apl-weird`](../src/apl-weird/README.md), [`awk-weird`](../src/awk-weird/README.md), [`cmake`](../src/cmake/README.md), [`cobol-weird`](../src/cobol-weird/README.md), [`ed-weird`](../src/ed-weird/README.md), [`ex-weird`](../src/ex-weird/README.md), [`forth-weird`](../src/forth-weird/README.md), [`haskell-weird`](../src/haskell-weird/README.md), [`javascript`](../src/javascript/README.md), [`javascript-events`](../src/javascript-events/README.md), [`javascript-weird`](../src/javascript-weird/README.md), [`lisp-weird`](../src/lisp-weird/README.md), [`m4`](../src/m4/README.md), [`make-gnu`](../src/make-gnu/README.md), [`regex-dotnet`](../src/regex-dotnet/README.md), [`regex-pcre2`](../src/regex-pcre2/README.md), [`regex-perl`](../src/regex-perl/README.md), [`regex-sed`](../src/regex-sed/README.md), [`tar-gnu-weird`](../src/tar-gnu-weird/README.md), [`tcl-weird`](../src/tcl-weird/README.md), [`xaml`](../src/xaml/README.md)
+- [Sandbox](informatica/01-lectura-de-un-programa-adversarial.md#sandbox): all entries
+- [Scope and binding](informatica/06-estado-mas-alla-de-las-variables.md#scope-and-binding): [`apl-weird`](../src/apl-weird/README.md), [`javascript`](../src/javascript/README.md), [`javascript-weird`](../src/javascript-weird/README.md), [`lisp-weird`](../src/lisp-weird/README.md), [`m4`](../src/m4/README.md), [`tcl`](../src/tcl/README.md), [`tcl-weird`](../src/tcl-weird/README.md)
+- [Self-modifying code](informatica/03-flujo-de-control-y-continuaciones.md#self-modifying-code): [`apl-weird`](../src/apl-weird/README.md), [`cobol-weird`](../src/cobol-weird/README.md), [`ex-weird`](../src/ex-weird/README.md)
+- [Serialization, deserialization and object pickling](informatica/06-estado-mas-alla-de-las-variables.md#serialization-deserialization-and-object-pickling): [`apl-weird`](../src/apl-weird/README.md), [`m4`](../src/m4/README.md) (analogy), [`regex-sed`](../src/regex-sed/README.md) (analogy), [`tar-gnu`](../src/tar-gnu/README.md), [`tcl-weird`](../src/tcl-weird/README.md), [`xaml`](../src/xaml/README.md)
+- [Short-circuit evaluation](informatica/04-evaluacion-y-demanda.md#short-circuit-evaluation): [`find-gnu`](../src/find-gnu/README.md), [`find-posix`](../src/find-posix/README.md), [`javascript`](../src/javascript/README.md), [`javascript-weird`](../src/javascript-weird/README.md), [`lisp-weird`](../src/lisp-weird/README.md)
+- [Side effects](informatica/07-efectos-errores-y-confirmacion.md#side-effects): [`find-gnu`](../src/find-gnu/README.md), [`find-posix`](../src/find-posix/README.md), [`GoChallenge1`](../src/GoChallenge1/README.md), [`haskell-weird`](../src/haskell-weird/README.md), [`JavaChallenge1`](../src/JavaChallenge1/README.md), [`javascript`](../src/javascript/README.md), [`javascript-events`](../src/javascript-events/README.md), [`javascript-weird`](../src/javascript-weird/README.md), [`KotlinChallenge1`](../src/KotlinChallenge1/README.md), [`LinqChallenge1`](../src/LinqChallenge1/README.md), [`LinqChallenge2`](../src/LinqChallenge2/README.md), [`ModernChallenge1`](../src/ModernChallenge1/README.md), [`PythonChallenge1`](../src/PythonChallenge1/README.md), [`regex-pcre2`](../src/regex-pcre2/README.md), [`regex-pcre2grep`](../src/regex-pcre2grep/README.md), [`regex-perl`](../src/regex-perl/README.md), [`RustChallenge1`](../src/RustChallenge1/README.md), [`tar-gnu-weird`](../src/tar-gnu-weird/README.md), [`xaml`](../src/xaml/README.md)
+- [Specification versus implementation](informatica/01-lectura-de-un-programa-adversarial.md#specification-versus-implementation): [`ed-weird`](../src/ed-weird/README.md), [`ex-weird`](../src/ex-weird/README.md)
+- [Stack machines](informatica/02-que-cuenta-como-maquina.md#stack-machines): [`forth`](../src/forth/README.md), [`forth-weird`](../src/forth-weird/README.md)
+- [State](informatica/06-estado-mas-alla-de-las-variables.md#state): [`apl-weird`](../src/apl-weird/README.md), [`awk-weird`](../src/awk-weird/README.md), [`cmake`](../src/cmake/README.md), [`cobol-weird`](../src/cobol-weird/README.md), [`ed-weird`](../src/ed-weird/README.md), [`ex-weird`](../src/ex-weird/README.md), [`forth-weird`](../src/forth-weird/README.md), [`haskell-weird`](../src/haskell-weird/README.md), [`javascript`](../src/javascript/README.md), [`javascript-events`](../src/javascript-events/README.md), [`javascript-weird`](../src/javascript-weird/README.md), [`lisp-weird`](../src/lisp-weird/README.md), [`m4`](../src/m4/README.md), [`make-gnu`](../src/make-gnu/README.md), [`regex-dotnet`](../src/regex-dotnet/README.md), [`regex-pcre2`](../src/regex-pcre2/README.md), [`regex-perl`](../src/regex-perl/README.md), [`regex-sed`](../src/regex-sed/README.md), [`tar-gnu-weird`](../src/tar-gnu-weird/README.md), [`tcl-weird`](../src/tcl-weird/README.md), [`xaml`](../src/xaml/README.md)
 
 **T**
 
-- [Term and string rewriting](cs/05-formal-languages-as-computational-substrates.md#term-and-string-rewriting): [`ed-weird`](../src/ed-weird/README.md), [`m4`](../src/m4/README.md), [`regex-sed`](../src/regex-sed/README.md)
-- [The call stack](cs/06-state-beyond-variables.md#the-call-stack): [`find-gnu`](../src/find-gnu/README.md), [`find-posix`](../src/find-posix/README.md), [`javascript-events`](../src/javascript-events/README.md)
-- [The Chomsky hierarchy](cs/05-formal-languages-as-computational-substrates.md#the-chomsky-hierarchy): [`regex-dotnet`](../src/regex-dotnet/README.md)
-- [The cut: committing to a choice](cs/07-effects-errors-and-commitment.md#the-cut-committing-to-a-choice): [`regex-pcre2`](../src/regex-pcre2/README.md), [`regex-pcre2grep`](../src/regex-pcre2grep/README.md), [`regex-perl`](../src/regex-perl/README.md)
-- [The event loop and scheduling turns](cs/10-events-callbacks-and-reactive-control-flow.md#the-event-loop-and-scheduling-turns): [`javascript`](../src/javascript/README.md), [`javascript-events`](../src/javascript-events/README.md), [`javascript-weird`](../src/javascript-weird/README.md), [`LinqChallenge1`](../src/LinqChallenge1/README.md), [`ModernChallenge1`](../src/ModernChallenge1/README.md), [`PythonChallenge1`](../src/PythonChallenge1/README.md), [`RustChallenge1`](../src/RustChallenge1/README.md)
-- [The program counter](cs/03-control-flow-and-continuations.md#the-program-counter): [`cobol-weird`](../src/cobol-weird/README.md), [`ex-weird`](../src/ex-weird/README.md), [`forth-weird`](../src/forth-weird/README.md)
-- [The stack as a data structure](cs/06-state-beyond-variables.md#the-stack-as-a-data-structure): [`forth`](../src/forth/README.md), [`forth-weird`](../src/forth-weird/README.md), [`regex-dotnet`](../src/regex-dotnet/README.md)
-- [Thread safety and thread affinity](cs/07-effects-errors-and-commitment.md#thread-safety-and-thread-affinity): [`GoChallenge1`](../src/GoChallenge1/README.md), [`JavaChallenge1`](../src/JavaChallenge1/README.md), [`KotlinChallenge1`](../src/KotlinChallenge1/README.md), [`LinqChallenge1`](../src/LinqChallenge1/README.md), [`LinqChallenge2`](../src/LinqChallenge2/README.md), [`ModernChallenge1`](../src/ModernChallenge1/README.md), [`PythonChallenge1`](../src/PythonChallenge1/README.md), [`RustChallenge1`](../src/RustChallenge1/README.md)
-- [Threat model](cs/01-reading-an-adversarial-program.md#threat-model): [`regex-perl`](../src/regex-perl/README.md), [`tar-gnu`](../src/tar-gnu/README.md), [`xaml`](../src/xaml/README.md)
-- [Transactions](cs/07-effects-errors-and-commitment.md#transactions): [`forth`](../src/forth/README.md), [`regex-perl`](../src/regex-perl/README.md), [`tcl`](../src/tcl/README.md)
-- [Transition systems and state machines](cs/02-what-counts-as-a-machine.md#transition-systems-and-state-machines): [`ed-weird`](../src/ed-weird/README.md), [`find-gnu`](../src/find-gnu/README.md), [`find-posix`](../src/find-posix/README.md), [`javascript-events`](../src/javascript-events/README.md), [`tar-gnu`](../src/tar-gnu/README.md), [`tar-gnu-weird`](../src/tar-gnu-weird/README.md)
-- [Trojan Source: characters you cannot see](cs/01-reading-an-adversarial-program.md#trojan-source-characters-you-cannot-see): an exercise
-- [Turing completeness](cs/02-what-counts-as-a-machine.md#turing-completeness): [`m4`](../src/m4/README.md), [`make-gnu`](../src/make-gnu/README.md), [`regex-sed`](../src/regex-sed/README.md)
-- [Turing machines](cs/02-what-counts-as-a-machine.md#turing-machines): [`m4`](../src/m4/README.md) (analogy), [`regex-sed`](../src/regex-sed/README.md) (analogy)
+- [Term and string rewriting](informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#term-and-string-rewriting): [`ed-weird`](../src/ed-weird/README.md), [`m4`](../src/m4/README.md), [`regex-sed`](../src/regex-sed/README.md)
+- [The call stack](informatica/06-estado-mas-alla-de-las-variables.md#the-call-stack): [`find-gnu`](../src/find-gnu/README.md), [`find-posix`](../src/find-posix/README.md), [`javascript-events`](../src/javascript-events/README.md)
+- [The Chomsky hierarchy](informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#the-chomsky-hierarchy): [`regex-dotnet`](../src/regex-dotnet/README.md)
+- [The cut: committing to a choice](informatica/07-efectos-errores-y-confirmacion.md#the-cut-committing-to-a-choice): [`regex-pcre2`](../src/regex-pcre2/README.md), [`regex-pcre2grep`](../src/regex-pcre2grep/README.md), [`regex-perl`](../src/regex-perl/README.md)
+- [The event loop and scheduling turns](informatica/10-eventos-retrollamadas-y-flujo-de-control-reactivo.md#the-event-loop-and-scheduling-turns): [`javascript`](../src/javascript/README.md), [`javascript-events`](../src/javascript-events/README.md), [`javascript-weird`](../src/javascript-weird/README.md), [`LinqChallenge1`](../src/LinqChallenge1/README.md), [`ModernChallenge1`](../src/ModernChallenge1/README.md), [`PythonChallenge1`](../src/PythonChallenge1/README.md), [`RustChallenge1`](../src/RustChallenge1/README.md)
+- [The program counter](informatica/03-flujo-de-control-y-continuaciones.md#the-program-counter): [`cobol-weird`](../src/cobol-weird/README.md), [`ex-weird`](../src/ex-weird/README.md), [`forth-weird`](../src/forth-weird/README.md)
+- [The stack as a data structure](informatica/06-estado-mas-alla-de-las-variables.md#the-stack-as-a-data-structure): [`forth`](../src/forth/README.md), [`forth-weird`](../src/forth-weird/README.md), [`regex-dotnet`](../src/regex-dotnet/README.md)
+- [Thread safety and thread affinity](informatica/07-efectos-errores-y-confirmacion.md#thread-safety-and-thread-affinity): [`GoChallenge1`](../src/GoChallenge1/README.md), [`JavaChallenge1`](../src/JavaChallenge1/README.md), [`KotlinChallenge1`](../src/KotlinChallenge1/README.md), [`LinqChallenge1`](../src/LinqChallenge1/README.md), [`LinqChallenge2`](../src/LinqChallenge2/README.md), [`ModernChallenge1`](../src/ModernChallenge1/README.md), [`PythonChallenge1`](../src/PythonChallenge1/README.md), [`RustChallenge1`](../src/RustChallenge1/README.md)
+- [Threat model](informatica/01-lectura-de-un-programa-adversarial.md#threat-model): [`regex-perl`](../src/regex-perl/README.md), [`tar-gnu`](../src/tar-gnu/README.md), [`xaml`](../src/xaml/README.md)
+- [Transactions](informatica/07-efectos-errores-y-confirmacion.md#transactions): [`forth`](../src/forth/README.md), [`regex-perl`](../src/regex-perl/README.md), [`tcl`](../src/tcl/README.md)
+- [Transition systems and state machines](informatica/02-que-cuenta-como-maquina.md#transition-systems-and-state-machines): [`ed-weird`](../src/ed-weird/README.md), [`find-gnu`](../src/find-gnu/README.md), [`find-posix`](../src/find-posix/README.md), [`javascript-events`](../src/javascript-events/README.md), [`tar-gnu`](../src/tar-gnu/README.md), [`tar-gnu-weird`](../src/tar-gnu-weird/README.md)
+- [Trojan Source: characters you cannot see](informatica/01-lectura-de-un-programa-adversarial.md#trojan-source-characters-you-cannot-see): an exercise
+- [Turing completeness](informatica/02-que-cuenta-como-maquina.md#turing-completeness): [`m4`](../src/m4/README.md), [`make-gnu`](../src/make-gnu/README.md), [`regex-sed`](../src/regex-sed/README.md)
+- [Turing machines](informatica/02-que-cuenta-como-maquina.md#turing-machines): [`m4`](../src/m4/README.md) (analogy), [`regex-sed`](../src/regex-sed/README.md) (analogy)
 
 **U**
 
-- [Undefined, unspecified and implementation-defined behavior](cs/08-abstraction-leaks-and-implementation-dependence.md#undefined-unspecified-and-implementation-defined-behavior): [`cobol-weird`](../src/cobol-weird/README.md), [`find-gnu`](../src/find-gnu/README.md), [`find-posix`](../src/find-posix/README.md)
+- [Undefined, unspecified and implementation-defined behavior](informatica/08-fugas-de-abstraccion-y-dependencia-de-la-implementacion.md#undefined-unspecified-and-implementation-defined-behavior): [`cobol-weird`](../src/cobol-weird/README.md), [`find-gnu`](../src/find-gnu/README.md), [`find-posix`](../src/find-posix/README.md)
 
 **W**
 
-- [Weird machines](cs/05-formal-languages-as-computational-substrates.md#weird-machines): [`ed-weird`](../src/ed-weird/README.md), [`ex-weird`](../src/ex-weird/README.md), [`find-gnu`](../src/find-gnu/README.md), [`find-posix`](../src/find-posix/README.md), [`xaml`](../src/xaml/README.md)
+- [Weird machines](informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#weird-machines): [`ed-weird`](../src/ed-weird/README.md), [`ex-weird`](../src/ex-weird/README.md), [`find-gnu`](../src/find-gnu/README.md), [`find-posix`](../src/find-posix/README.md), [`xaml`](../src/xaml/README.md)
 
 </div>
 
@@ -157,77 +157,77 @@ Three indexes, all built from the metadata at the top of each entry's README: th
 
 **A**
 
-- **APL**: lesson [APL](languages/apl.md); entries [`apl`](../src/apl/README.md), [`apl-weird`](../src/apl-weird/README.md)
-- **AWK**: lesson [AWK](languages/awk.md); entries [`awk`](../src/awk/README.md), [`awk-weird`](../src/awk-weird/README.md)
+- **APL**: lesson [APL](lenguajes/apl.md); entries [`apl`](../src/apl/README.md), [`apl-weird`](../src/apl-weird/README.md)
+- **AWK**: lesson [AWK](lenguajes/awk.md); entries [`awk`](../src/awk/README.md), [`awk-weird`](../src/awk-weird/README.md)
 
 **C**
 
-- **C**: lesson [Regular expressions: five engines, five personalities](languages/regex.md); entries [`regex-pcre2`](../src/regex-pcre2/README.md)
-- **C#**: lesson [C#, LINQ and XAML (plus the one-statement ports)](languages/csharp-linq-xaml.md), [Regular expressions: five engines, five personalities](languages/regex.md); entries [`LinqChallenge1`](../src/LinqChallenge1/README.md), [`LinqChallenge2`](../src/LinqChallenge2/README.md), [`ModernChallenge1`](../src/ModernChallenge1/README.md), [`regex-dotnet`](../src/regex-dotnet/README.md), [`xaml`](../src/xaml/README.md)
-- **CMake**: lesson [GNU Make and CMake](languages/make-cmake.md); entries [`cmake`](../src/cmake/README.md)
-- **COBOL**: lesson [COBOL](languages/cobol.md); entries [`cobol`](../src/cobol/README.md), [`cobol-weird`](../src/cobol-weird/README.md)
-- **Common Lisp**: lesson [Common Lisp](languages/lisp.md); entries [`lisp`](../src/lisp/README.md), [`lisp-weird`](../src/lisp-weird/README.md)
+- **C**: lesson [Regular expressions: five engines, five personalities](lenguajes/regex.md); entries [`regex-pcre2`](../src/regex-pcre2/README.md)
+- **C#**: lesson [C#, LINQ and XAML (plus the one-statement ports)](lenguajes/csharp-linq-xaml.md), [Regular expressions: five engines, five personalities](lenguajes/regex.md); entries [`LinqChallenge1`](../src/LinqChallenge1/README.md), [`LinqChallenge2`](../src/LinqChallenge2/README.md), [`ModernChallenge1`](../src/ModernChallenge1/README.md), [`regex-dotnet`](../src/regex-dotnet/README.md), [`xaml`](../src/xaml/README.md)
+- **CMake**: lesson [GNU Make and CMake](lenguajes/make-cmake.md); entries [`cmake`](../src/cmake/README.md)
+- **COBOL**: lesson [COBOL](lenguajes/cobol.md); entries [`cobol`](../src/cobol/README.md), [`cobol-weird`](../src/cobol-weird/README.md)
+- **Common Lisp**: lesson [Common Lisp](lenguajes/lisp.md); entries [`lisp`](../src/lisp/README.md), [`lisp-weird`](../src/lisp-weird/README.md)
 
 **E**
 
-- **ed**: lesson [ed and Ex](languages/editors.md); entries [`ed-weird`](../src/ed-weird/README.md)
-- **Ex**: lesson [ed and Ex](languages/editors.md); entries [`ex-weird`](../src/ex-weird/README.md)
+- **ed**: lesson [ed and Ex](lenguajes/editores.md); entries [`ed-weird`](../src/ed-weird/README.md)
+- **Ex**: lesson [ed and Ex](lenguajes/editores.md); entries [`ex-weird`](../src/ex-weird/README.md)
 
 **F**
 
-- **find**: lesson [find](languages/find.md); entries [`find-gnu`](../src/find-gnu/README.md), [`find-posix`](../src/find-posix/README.md)
-- **Forth**: lesson [Forth](languages/forth.md); entries [`forth`](../src/forth/README.md), [`forth-weird`](../src/forth-weird/README.md)
+- **find**: lesson [find](lenguajes/find.md); entries [`find-gnu`](../src/find-gnu/README.md), [`find-posix`](../src/find-posix/README.md)
+- **Forth**: lesson [Forth](lenguajes/forth.md); entries [`forth`](../src/forth/README.md), [`forth-weird`](../src/forth-weird/README.md)
 
 **G**
 
-- **GNU Make**: lesson [GNU Make and CMake](languages/make-cmake.md); entries [`make-gnu`](../src/make-gnu/README.md)
-- **GNU sed**: lesson [Regular expressions: five engines, five personalities](languages/regex.md); entries [`regex-sed`](../src/regex-sed/README.md)
-- **GNU tar**: lesson [tar](languages/tar.md); entries [`tar-gnu`](../src/tar-gnu/README.md), [`tar-gnu-weird`](../src/tar-gnu-weird/README.md)
-- **Go**: lesson [C#, LINQ and XAML (plus the one-statement ports)](languages/csharp-linq-xaml.md); entries [`GoChallenge1`](../src/GoChallenge1/README.md)
+- **GNU Make**: lesson [GNU Make and CMake](lenguajes/make-cmake.md); entries [`make-gnu`](../src/make-gnu/README.md)
+- **GNU sed**: lesson [Regular expressions: five engines, five personalities](lenguajes/regex.md); entries [`regex-sed`](../src/regex-sed/README.md)
+- **GNU tar**: lesson [tar](lenguajes/tar.md); entries [`tar-gnu`](../src/tar-gnu/README.md), [`tar-gnu-weird`](../src/tar-gnu-weird/README.md)
+- **Go**: lesson [C#, LINQ and XAML (plus the one-statement ports)](lenguajes/csharp-linq-xaml.md); entries [`GoChallenge1`](../src/GoChallenge1/README.md)
 
 **H**
 
-- **Haskell**: lesson [Haskell](languages/haskell.md); entries [`haskell`](../src/haskell/README.md), [`haskell-weird`](../src/haskell-weird/README.md)
+- **Haskell**: lesson [Haskell](lenguajes/haskell.md); entries [`haskell`](../src/haskell/README.md), [`haskell-weird`](../src/haskell-weird/README.md)
 
 **J**
 
-- **Java**: lesson [C#, LINQ and XAML (plus the one-statement ports)](languages/csharp-linq-xaml.md); entries [`JavaChallenge1`](../src/JavaChallenge1/README.md)
-- **JavaScript**: lesson [JavaScript](languages/javascript.md); entries [`javascript`](../src/javascript/README.md), [`javascript-events`](../src/javascript-events/README.md), [`javascript-weird`](../src/javascript-weird/README.md)
+- **Java**: lesson [C#, LINQ and XAML (plus the one-statement ports)](lenguajes/csharp-linq-xaml.md); entries [`JavaChallenge1`](../src/JavaChallenge1/README.md)
+- **JavaScript**: lesson [JavaScript](lenguajes/javascript.md); entries [`javascript`](../src/javascript/README.md), [`javascript-events`](../src/javascript-events/README.md), [`javascript-weird`](../src/javascript-weird/README.md)
 
 **K**
 
-- **Kotlin**: lesson [C#, LINQ and XAML (plus the one-statement ports)](languages/csharp-linq-xaml.md); entries [`KotlinChallenge1`](../src/KotlinChallenge1/README.md)
+- **Kotlin**: lesson [C#, LINQ and XAML (plus the one-statement ports)](lenguajes/csharp-linq-xaml.md); entries [`KotlinChallenge1`](../src/KotlinChallenge1/README.md)
 
 **L**
 
-- **LINQ**: lesson [C#, LINQ and XAML (plus the one-statement ports)](languages/csharp-linq-xaml.md); entries [`LinqChallenge1`](../src/LinqChallenge1/README.md), [`LinqChallenge2`](../src/LinqChallenge2/README.md)
+- **LINQ**: lesson [C#, LINQ and XAML (plus the one-statement ports)](lenguajes/csharp-linq-xaml.md); entries [`LinqChallenge1`](../src/LinqChallenge1/README.md), [`LinqChallenge2`](../src/LinqChallenge2/README.md)
 
 **M**
 
-- **m4**: lesson [m4](languages/m4.md); entries [`m4`](../src/m4/README.md)
+- **m4**: lesson [m4](lenguajes/m4.md); entries [`m4`](../src/m4/README.md)
 
 **P**
 
-- **PCRE2**: lesson [Regular expressions: five engines, five personalities](languages/regex.md); entries [`regex-pcre2`](../src/regex-pcre2/README.md), [`regex-pcre2grep`](../src/regex-pcre2grep/README.md)
-- **Perl**: lesson [Regular expressions: five engines, five personalities](languages/regex.md); entries [`regex-perl`](../src/regex-perl/README.md)
-- **Python**: lesson [C#, LINQ and XAML (plus the one-statement ports)](languages/csharp-linq-xaml.md); entries [`PythonChallenge1`](../src/PythonChallenge1/README.md)
+- **PCRE2**: lesson [Regular expressions: five engines, five personalities](lenguajes/regex.md); entries [`regex-pcre2`](../src/regex-pcre2/README.md), [`regex-pcre2grep`](../src/regex-pcre2grep/README.md)
+- **Perl**: lesson [Regular expressions: five engines, five personalities](lenguajes/regex.md); entries [`regex-perl`](../src/regex-perl/README.md)
+- **Python**: lesson [C#, LINQ and XAML (plus the one-statement ports)](lenguajes/csharp-linq-xaml.md); entries [`PythonChallenge1`](../src/PythonChallenge1/README.md)
 
 **R**
 
-- **Regular expressions**: lesson [Regular expressions: five engines, five personalities](languages/regex.md); entries [`regex-dotnet`](../src/regex-dotnet/README.md), [`regex-pcre2`](../src/regex-pcre2/README.md), [`regex-pcre2grep`](../src/regex-pcre2grep/README.md), [`regex-perl`](../src/regex-perl/README.md), [`regex-sed`](../src/regex-sed/README.md)
-- **Rust**: lesson [C#, LINQ and XAML (plus the one-statement ports)](languages/csharp-linq-xaml.md); entries [`RustChallenge1`](../src/RustChallenge1/README.md)
+- **Regular expressions**: lesson [Regular expressions: five engines, five personalities](lenguajes/regex.md); entries [`regex-dotnet`](../src/regex-dotnet/README.md), [`regex-pcre2`](../src/regex-pcre2/README.md), [`regex-pcre2grep`](../src/regex-pcre2grep/README.md), [`regex-perl`](../src/regex-perl/README.md), [`regex-sed`](../src/regex-sed/README.md)
+- **Rust**: lesson [C#, LINQ and XAML (plus the one-statement ports)](lenguajes/csharp-linq-xaml.md); entries [`RustChallenge1`](../src/RustChallenge1/README.md)
 
 **S**
 
-- **SQLite**: lesson [ed and Ex](languages/editors.md), [find](languages/find.md), [JavaScript](languages/javascript.md), [tar](languages/tar.md), [Tcl](languages/tcl.md); entries [`ed-weird`](../src/ed-weird/README.md), [`ex-weird`](../src/ex-weird/README.md), [`find-gnu`](../src/find-gnu/README.md), [`find-posix`](../src/find-posix/README.md), [`javascript`](../src/javascript/README.md), [`javascript-events`](../src/javascript-events/README.md), [`javascript-weird`](../src/javascript-weird/README.md), [`tar-gnu`](../src/tar-gnu/README.md), [`tar-gnu-weird`](../src/tar-gnu-weird/README.md), [`tcl-weird`](../src/tcl-weird/README.md)
+- **SQLite**: lesson [ed and Ex](lenguajes/editores.md), [find](lenguajes/find.md), [JavaScript](lenguajes/javascript.md), [tar](lenguajes/tar.md), [Tcl](lenguajes/tcl.md); entries [`ed-weird`](../src/ed-weird/README.md), [`ex-weird`](../src/ex-weird/README.md), [`find-gnu`](../src/find-gnu/README.md), [`find-posix`](../src/find-posix/README.md), [`javascript`](../src/javascript/README.md), [`javascript-events`](../src/javascript-events/README.md), [`javascript-weird`](../src/javascript-weird/README.md), [`tar-gnu`](../src/tar-gnu/README.md), [`tar-gnu-weird`](../src/tar-gnu-weird/README.md), [`tcl-weird`](../src/tcl-weird/README.md)
 
 **T**
 
-- **Tcl**: lesson [Tcl](languages/tcl.md); entries [`tcl`](../src/tcl/README.md), [`tcl-weird`](../src/tcl-weird/README.md)
+- **Tcl**: lesson [Tcl](lenguajes/tcl.md); entries [`tcl`](../src/tcl/README.md), [`tcl-weird`](../src/tcl-weird/README.md)
 
 **X**
 
-- **XAML**: lesson [C#, LINQ and XAML (plus the one-statement ports)](languages/csharp-linq-xaml.md); entries [`xaml`](../src/xaml/README.md)
+- **XAML**: lesson [C#, LINQ and XAML (plus the one-statement ports)](lenguajes/csharp-linq-xaml.md); entries [`xaml`](../src/xaml/README.md)
 
 </div>
 
@@ -237,85 +237,85 @@ Three indexes, all built from the metadata at the top of each entry's README: th
 
 **A**
 
-- [`apl`](../src/apl/README.md): APL; idiomatic; [Whole-array operations instead of steps](cs/09-comparative-case-studies.md#whole-array-operations-instead-of-steps)
-- [`apl-weird`](../src/apl-weird/README.md): APL; weird; [Control flow that rewrites itself](cs/09-comparative-case-studies.md#control-flow-that-rewrites-itself)
-- [`awk`](../src/awk/README.md): AWK; idiomatic; [The input is the loop](cs/09-comparative-case-studies.md#the-input-is-the-loop)
-- [`awk-weird`](../src/awk-weird/README.md): AWK; weird; [The input is the loop](cs/09-comparative-case-studies.md#the-input-is-the-loop)
+- [`apl`](../src/apl/README.md): APL; idiomatic; [Whole-array operations instead of steps](informatica/09-casos-de-estudio-comparativos.md#whole-array-operations-instead-of-steps)
+- [`apl-weird`](../src/apl-weird/README.md): APL; weird; [Control flow that rewrites itself](informatica/09-casos-de-estudio-comparativos.md#control-flow-that-rewrites-itself)
+- [`awk`](../src/awk/README.md): AWK; idiomatic; [The input is the loop](informatica/09-casos-de-estudio-comparativos.md#the-input-is-the-loop)
+- [`awk-weird`](../src/awk-weird/README.md): AWK; weird; [The input is the loop](informatica/09-casos-de-estudio-comparativos.md#the-input-is-the-loop)
 
 **C**
 
-- [`cmake`](../src/cmake/README.md): CMake; weird; [An ordinary loop, used in an unusual place](cs/09-comparative-case-studies.md#an-ordinary-loop-used-in-an-unusual-place)
-- [`cobol`](../src/cobol/README.md): COBOL; idiomatic; [An ordinary loop, used in an unusual place](cs/09-comparative-case-studies.md#an-ordinary-loop-used-in-an-unusual-place)
-- [`cobol-weird`](../src/cobol-weird/README.md): COBOL; weird; [Control flow that rewrites itself](cs/09-comparative-case-studies.md#control-flow-that-rewrites-itself)
+- [`cmake`](../src/cmake/README.md): CMake; weird; [An ordinary loop, used in an unusual place](informatica/09-casos-de-estudio-comparativos.md#an-ordinary-loop-used-in-an-unusual-place)
+- [`cobol`](../src/cobol/README.md): COBOL; idiomatic; [An ordinary loop, used in an unusual place](informatica/09-casos-de-estudio-comparativos.md#an-ordinary-loop-used-in-an-unusual-place)
+- [`cobol-weird`](../src/cobol-weird/README.md): COBOL; weird; [Control flow that rewrites itself](informatica/09-casos-de-estudio-comparativos.md#control-flow-that-rewrites-itself)
 
 **E**
 
-- [`ed-weird`](../src/ed-weird/README.md): ed, SQLite; weird; [Text that is rewritten and read again](cs/09-comparative-case-studies.md#text-that-is-rewritten-and-read-again)
-- [`ex-weird`](../src/ex-weird/README.md): Ex, SQLite; weird; [Control flow that rewrites itself](cs/09-comparative-case-studies.md#control-flow-that-rewrites-itself)
+- [`ed-weird`](../src/ed-weird/README.md): ed, SQLite; weird; [Text that is rewritten and read again](informatica/09-casos-de-estudio-comparativos.md#text-that-is-rewritten-and-read-again)
+- [`ex-weird`](../src/ex-weird/README.md): Ex, SQLite; weird; [Control flow that rewrites itself](informatica/09-casos-de-estudio-comparativos.md#control-flow-that-rewrites-itself)
 
 **F**
 
-- [`find-gnu`](../src/find-gnu/README.md): find, SQLite; weird; [Control flow that rewrites itself](cs/09-comparative-case-studies.md#control-flow-that-rewrites-itself)
-- [`find-posix`](../src/find-posix/README.md): find, SQLite; weird; [Control flow that rewrites itself](cs/09-comparative-case-studies.md#control-flow-that-rewrites-itself)
-- [`forth`](../src/forth/README.md): Forth; idiomatic; [An ordinary loop, used in an unusual place](cs/09-comparative-case-studies.md#an-ordinary-loop-used-in-an-unusual-place)
-- [`forth-weird`](../src/forth-weird/README.md): Forth; weird; [Control flow that rewrites itself](cs/09-comparative-case-studies.md#control-flow-that-rewrites-itself)
+- [`find-gnu`](../src/find-gnu/README.md): find, SQLite; weird; [Control flow that rewrites itself](informatica/09-casos-de-estudio-comparativos.md#control-flow-that-rewrites-itself)
+- [`find-posix`](../src/find-posix/README.md): find, SQLite; weird; [Control flow that rewrites itself](informatica/09-casos-de-estudio-comparativos.md#control-flow-that-rewrites-itself)
+- [`forth`](../src/forth/README.md): Forth; idiomatic; [An ordinary loop, used in an unusual place](informatica/09-casos-de-estudio-comparativos.md#an-ordinary-loop-used-in-an-unusual-place)
+- [`forth-weird`](../src/forth-weird/README.md): Forth; weird; [Control flow that rewrites itself](informatica/09-casos-de-estudio-comparativos.md#control-flow-that-rewrites-itself)
 
 **G**
 
-- [`GoChallenge1`](../src/GoChallenge1/README.md): Go; port; [An ordinary loop, used in an unusual place](cs/09-comparative-case-studies.md#an-ordinary-loop-used-in-an-unusual-place)
+- [`GoChallenge1`](../src/GoChallenge1/README.md): Go; port; [An ordinary loop, used in an unusual place](informatica/09-casos-de-estudio-comparativos.md#an-ordinary-loop-used-in-an-unusual-place)
 
 **H**
 
-- [`haskell`](../src/haskell/README.md): Haskell; idiomatic; [A lazy sequence that someone keeps asking for](cs/09-comparative-case-studies.md#a-lazy-sequence-that-someone-keeps-asking-for)
-- [`haskell-weird`](../src/haskell-weird/README.md): Haskell; weird; [A lazy sequence that someone keeps asking for](cs/09-comparative-case-studies.md#a-lazy-sequence-that-someone-keeps-asking-for)
+- [`haskell`](../src/haskell/README.md): Haskell; idiomatic; [A lazy sequence that someone keeps asking for](informatica/09-casos-de-estudio-comparativos.md#a-lazy-sequence-that-someone-keeps-asking-for)
+- [`haskell-weird`](../src/haskell-weird/README.md): Haskell; weird; [A lazy sequence that someone keeps asking for](informatica/09-casos-de-estudio-comparativos.md#a-lazy-sequence-that-someone-keeps-asking-for)
 
 **J**
 
-- [`JavaChallenge1`](../src/JavaChallenge1/README.md): Java; port; [An ordinary loop, used in an unusual place](cs/09-comparative-case-studies.md#an-ordinary-loop-used-in-an-unusual-place)
-- [`javascript`](../src/javascript/README.md): JavaScript, SQLite; port; [An ordinary loop, used in an unusual place](cs/09-comparative-case-studies.md#an-ordinary-loop-used-in-an-unusual-place)
-- [`javascript-events`](../src/javascript-events/README.md): JavaScript, SQLite; weird; [Dispatch and triggers: the rule fires the next step](cs/09-comparative-case-studies.md#dispatch-and-triggers-the-rule-fires-the-next-step)
-- [`javascript-weird`](../src/javascript-weird/README.md): JavaScript, SQLite; weird; [A lazy sequence that someone keeps asking for](cs/09-comparative-case-studies.md#a-lazy-sequence-that-someone-keeps-asking-for)
+- [`JavaChallenge1`](../src/JavaChallenge1/README.md): Java; port; [An ordinary loop, used in an unusual place](informatica/09-casos-de-estudio-comparativos.md#an-ordinary-loop-used-in-an-unusual-place)
+- [`javascript`](../src/javascript/README.md): JavaScript, SQLite; port; [An ordinary loop, used in an unusual place](informatica/09-casos-de-estudio-comparativos.md#an-ordinary-loop-used-in-an-unusual-place)
+- [`javascript-events`](../src/javascript-events/README.md): JavaScript, SQLite; weird; [Dispatch and triggers: the rule fires the next step](informatica/09-casos-de-estudio-comparativos.md#dispatch-and-triggers-the-rule-fires-the-next-step)
+- [`javascript-weird`](../src/javascript-weird/README.md): JavaScript, SQLite; weird; [A lazy sequence that someone keeps asking for](informatica/09-casos-de-estudio-comparativos.md#a-lazy-sequence-that-someone-keeps-asking-for)
 
 **K**
 
-- [`KotlinChallenge1`](../src/KotlinChallenge1/README.md): Kotlin; port; [A lazy sequence that someone keeps asking for](cs/09-comparative-case-studies.md#a-lazy-sequence-that-someone-keeps-asking-for)
+- [`KotlinChallenge1`](../src/KotlinChallenge1/README.md): Kotlin; port; [A lazy sequence that someone keeps asking for](informatica/09-casos-de-estudio-comparativos.md#a-lazy-sequence-that-someone-keeps-asking-for)
 
 **L**
 
-- [`LinqChallenge1`](../src/LinqChallenge1/README.md): C#, LINQ; weird; [A lazy sequence that someone keeps asking for](cs/09-comparative-case-studies.md#a-lazy-sequence-that-someone-keeps-asking-for)
-- [`LinqChallenge2`](../src/LinqChallenge2/README.md): C#, LINQ; weird; [A lazy sequence that someone keeps asking for](cs/09-comparative-case-studies.md#a-lazy-sequence-that-someone-keeps-asking-for)
-- [`lisp`](../src/lisp/README.md): Common Lisp; idiomatic; [An ordinary loop, used in an unusual place](cs/09-comparative-case-studies.md#an-ordinary-loop-used-in-an-unusual-place)
-- [`lisp-weird`](../src/lisp-weird/README.md): Common Lisp; weird; [Dispatch and triggers: the rule fires the next step](cs/09-comparative-case-studies.md#dispatch-and-triggers-the-rule-fires-the-next-step)
+- [`LinqChallenge1`](../src/LinqChallenge1/README.md): C#, LINQ; weird; [A lazy sequence that someone keeps asking for](informatica/09-casos-de-estudio-comparativos.md#a-lazy-sequence-that-someone-keeps-asking-for)
+- [`LinqChallenge2`](../src/LinqChallenge2/README.md): C#, LINQ; weird; [A lazy sequence that someone keeps asking for](informatica/09-casos-de-estudio-comparativos.md#a-lazy-sequence-that-someone-keeps-asking-for)
+- [`lisp`](../src/lisp/README.md): Common Lisp; idiomatic; [An ordinary loop, used in an unusual place](informatica/09-casos-de-estudio-comparativos.md#an-ordinary-loop-used-in-an-unusual-place)
+- [`lisp-weird`](../src/lisp-weird/README.md): Common Lisp; weird; [Dispatch and triggers: the rule fires the next step](informatica/09-casos-de-estudio-comparativos.md#dispatch-and-triggers-the-rule-fires-the-next-step)
 
 **M**
 
-- [`m4`](../src/m4/README.md): m4; weird; [Text that is rewritten and read again](cs/09-comparative-case-studies.md#text-that-is-rewritten-and-read-again)
-- [`make-gnu`](../src/make-gnu/README.md): GNU Make; weird; [Text that is rewritten and read again](cs/09-comparative-case-studies.md#text-that-is-rewritten-and-read-again)
-- [`ModernChallenge1`](../src/ModernChallenge1/README.md): C#; weird; [An ordinary loop, used in an unusual place](cs/09-comparative-case-studies.md#an-ordinary-loop-used-in-an-unusual-place)
+- [`m4`](../src/m4/README.md): m4; weird; [Text that is rewritten and read again](informatica/09-casos-de-estudio-comparativos.md#text-that-is-rewritten-and-read-again)
+- [`make-gnu`](../src/make-gnu/README.md): GNU Make; weird; [Text that is rewritten and read again](informatica/09-casos-de-estudio-comparativos.md#text-that-is-rewritten-and-read-again)
+- [`ModernChallenge1`](../src/ModernChallenge1/README.md): C#; weird; [An ordinary loop, used in an unusual place](informatica/09-casos-de-estudio-comparativos.md#an-ordinary-loop-used-in-an-unusual-place)
 
 **P**
 
-- [`PythonChallenge1`](../src/PythonChallenge1/README.md): Python; port; [A lazy sequence that someone keeps asking for](cs/09-comparative-case-studies.md#a-lazy-sequence-that-someone-keeps-asking-for)
+- [`PythonChallenge1`](../src/PythonChallenge1/README.md): Python; port; [A lazy sequence that someone keeps asking for](informatica/09-casos-de-estudio-comparativos.md#a-lazy-sequence-that-someone-keeps-asking-for)
 
 **R**
 
-- [`regex-dotnet`](../src/regex-dotnet/README.md): C#, Regular expressions; weird; [Regex search that returns captures](cs/09-comparative-case-studies.md#regex-search-that-returns-captures)
-- [`regex-pcre2`](../src/regex-pcre2/README.md): C, PCRE2, Regular expressions; weird; [Regex search with side effects and deliberate failure](cs/09-comparative-case-studies.md#regex-search-with-side-effects-and-deliberate-failure)
-- [`regex-pcre2grep`](../src/regex-pcre2grep/README.md): PCRE2, Regular expressions; weird; [Regex search with side effects and deliberate failure](cs/09-comparative-case-studies.md#regex-search-with-side-effects-and-deliberate-failure)
-- [`regex-perl`](../src/regex-perl/README.md): Perl, Regular expressions; weird; [Regex search with side effects and deliberate failure](cs/09-comparative-case-studies.md#regex-search-with-side-effects-and-deliberate-failure)
-- [`regex-sed`](../src/regex-sed/README.md): GNU sed, Regular expressions; weird; [Text that is rewritten and read again](cs/09-comparative-case-studies.md#text-that-is-rewritten-and-read-again)
-- [`RustChallenge1`](../src/RustChallenge1/README.md): Rust; port; [A lazy sequence that someone keeps asking for](cs/09-comparative-case-studies.md#a-lazy-sequence-that-someone-keeps-asking-for)
+- [`regex-dotnet`](../src/regex-dotnet/README.md): C#, Regular expressions; weird; [Regex search that returns captures](informatica/09-casos-de-estudio-comparativos.md#regex-search-that-returns-captures)
+- [`regex-pcre2`](../src/regex-pcre2/README.md): C, PCRE2, Regular expressions; weird; [Regex search with side effects and deliberate failure](informatica/09-casos-de-estudio-comparativos.md#regex-search-with-side-effects-and-deliberate-failure)
+- [`regex-pcre2grep`](../src/regex-pcre2grep/README.md): PCRE2, Regular expressions; weird; [Regex search with side effects and deliberate failure](informatica/09-casos-de-estudio-comparativos.md#regex-search-with-side-effects-and-deliberate-failure)
+- [`regex-perl`](../src/regex-perl/README.md): Perl, Regular expressions; weird; [Regex search with side effects and deliberate failure](informatica/09-casos-de-estudio-comparativos.md#regex-search-with-side-effects-and-deliberate-failure)
+- [`regex-sed`](../src/regex-sed/README.md): GNU sed, Regular expressions; weird; [Text that is rewritten and read again](informatica/09-casos-de-estudio-comparativos.md#text-that-is-rewritten-and-read-again)
+- [`RustChallenge1`](../src/RustChallenge1/README.md): Rust; port; [A lazy sequence that someone keeps asking for](informatica/09-casos-de-estudio-comparativos.md#a-lazy-sequence-that-someone-keeps-asking-for)
 
 **T**
 
-- [`tar-gnu`](../src/tar-gnu/README.md): GNU tar, SQLite; idiomatic; [Document order is the program](cs/09-comparative-case-studies.md#document-order-is-the-program)
-- [`tar-gnu-weird`](../src/tar-gnu-weird/README.md): GNU tar, SQLite; weird; [Dispatch and triggers: the rule fires the next step](cs/09-comparative-case-studies.md#dispatch-and-triggers-the-rule-fires-the-next-step)
-- [`tcl`](../src/tcl/README.md): Tcl; idiomatic; [An ordinary loop, used in an unusual place](cs/09-comparative-case-studies.md#an-ordinary-loop-used-in-an-unusual-place)
-- [`tcl-weird`](../src/tcl-weird/README.md): Tcl, SQLite; weird; [Dispatch and triggers: the rule fires the next step](cs/09-comparative-case-studies.md#dispatch-and-triggers-the-rule-fires-the-next-step)
+- [`tar-gnu`](../src/tar-gnu/README.md): GNU tar, SQLite; idiomatic; [Document order is the program](informatica/09-casos-de-estudio-comparativos.md#document-order-is-the-program)
+- [`tar-gnu-weird`](../src/tar-gnu-weird/README.md): GNU tar, SQLite; weird; [Dispatch and triggers: the rule fires the next step](informatica/09-casos-de-estudio-comparativos.md#dispatch-and-triggers-the-rule-fires-the-next-step)
+- [`tcl`](../src/tcl/README.md): Tcl; idiomatic; [An ordinary loop, used in an unusual place](informatica/09-casos-de-estudio-comparativos.md#an-ordinary-loop-used-in-an-unusual-place)
+- [`tcl-weird`](../src/tcl-weird/README.md): Tcl, SQLite; weird; [Dispatch and triggers: the rule fires the next step](informatica/09-casos-de-estudio-comparativos.md#dispatch-and-triggers-the-rule-fires-the-next-step)
 
 **X**
 
-- [`xaml`](../src/xaml/README.md): XAML, C#; weird; [Document order is the program](cs/09-comparative-case-studies.md#document-order-is-the-program)
+- [`xaml`](../src/xaml/README.md): XAML, C#; weird; [Document order is the program](informatica/09-casos-de-estudio-comparativos.md#document-order-is-the-program)
 
 </div>
 
@@ -325,61 +325,61 @@ Three indexes, all built from the metadata at the top of each entry's README: th
 
 **A**
 
-- [A lazy sequence that someone keeps asking for](cs/09-comparative-case-studies.md#a-lazy-sequence-that-someone-keeps-asking-for): [`haskell`](../src/haskell/README.md), [`haskell-weird`](../src/haskell-weird/README.md), [`javascript-weird`](../src/javascript-weird/README.md), [`KotlinChallenge1`](../src/KotlinChallenge1/README.md), [`LinqChallenge1`](../src/LinqChallenge1/README.md), [`LinqChallenge2`](../src/LinqChallenge2/README.md), [`PythonChallenge1`](../src/PythonChallenge1/README.md), [`RustChallenge1`](../src/RustChallenge1/README.md)
-- [An ordinary loop, used in an unusual place](cs/09-comparative-case-studies.md#an-ordinary-loop-used-in-an-unusual-place): [`cmake`](../src/cmake/README.md), [`cobol`](../src/cobol/README.md), [`forth`](../src/forth/README.md), [`GoChallenge1`](../src/GoChallenge1/README.md), [`JavaChallenge1`](../src/JavaChallenge1/README.md), [`javascript`](../src/javascript/README.md), [`lisp`](../src/lisp/README.md), [`ModernChallenge1`](../src/ModernChallenge1/README.md), [`tcl`](../src/tcl/README.md)
+- [A lazy sequence that someone keeps asking for](informatica/09-casos-de-estudio-comparativos.md#a-lazy-sequence-that-someone-keeps-asking-for): [`haskell`](../src/haskell/README.md), [`haskell-weird`](../src/haskell-weird/README.md), [`javascript-weird`](../src/javascript-weird/README.md), [`KotlinChallenge1`](../src/KotlinChallenge1/README.md), [`LinqChallenge1`](../src/LinqChallenge1/README.md), [`LinqChallenge2`](../src/LinqChallenge2/README.md), [`PythonChallenge1`](../src/PythonChallenge1/README.md), [`RustChallenge1`](../src/RustChallenge1/README.md)
+- [An ordinary loop, used in an unusual place](informatica/09-casos-de-estudio-comparativos.md#an-ordinary-loop-used-in-an-unusual-place): [`cmake`](../src/cmake/README.md), [`cobol`](../src/cobol/README.md), [`forth`](../src/forth/README.md), [`GoChallenge1`](../src/GoChallenge1/README.md), [`JavaChallenge1`](../src/JavaChallenge1/README.md), [`javascript`](../src/javascript/README.md), [`lisp`](../src/lisp/README.md), [`ModernChallenge1`](../src/ModernChallenge1/README.md), [`tcl`](../src/tcl/README.md)
 
 **C**
 
-- [Control flow that rewrites itself](cs/09-comparative-case-studies.md#control-flow-that-rewrites-itself): [`apl-weird`](../src/apl-weird/README.md), [`cobol-weird`](../src/cobol-weird/README.md), [`ex-weird`](../src/ex-weird/README.md), [`find-gnu`](../src/find-gnu/README.md), [`find-posix`](../src/find-posix/README.md), [`forth-weird`](../src/forth-weird/README.md)
+- [Control flow that rewrites itself](informatica/09-casos-de-estudio-comparativos.md#control-flow-that-rewrites-itself): [`apl-weird`](../src/apl-weird/README.md), [`cobol-weird`](../src/cobol-weird/README.md), [`ex-weird`](../src/ex-weird/README.md), [`find-gnu`](../src/find-gnu/README.md), [`find-posix`](../src/find-posix/README.md), [`forth-weird`](../src/forth-weird/README.md)
 
 **D**
 
-- [Dispatch and triggers: the rule fires the next step](cs/09-comparative-case-studies.md#dispatch-and-triggers-the-rule-fires-the-next-step): [`javascript-events`](../src/javascript-events/README.md), [`lisp-weird`](../src/lisp-weird/README.md), [`tar-gnu-weird`](../src/tar-gnu-weird/README.md), [`tcl-weird`](../src/tcl-weird/README.md)
-- [Document order is the program](cs/09-comparative-case-studies.md#document-order-is-the-program): [`tar-gnu`](../src/tar-gnu/README.md), [`xaml`](../src/xaml/README.md)
+- [Dispatch and triggers: the rule fires the next step](informatica/09-casos-de-estudio-comparativos.md#dispatch-and-triggers-the-rule-fires-the-next-step): [`javascript-events`](../src/javascript-events/README.md), [`lisp-weird`](../src/lisp-weird/README.md), [`tar-gnu-weird`](../src/tar-gnu-weird/README.md), [`tcl-weird`](../src/tcl-weird/README.md)
+- [Document order is the program](informatica/09-casos-de-estudio-comparativos.md#document-order-is-the-program): [`tar-gnu`](../src/tar-gnu/README.md), [`xaml`](../src/xaml/README.md)
 
 **R**
 
-- [Regex search that returns captures](cs/09-comparative-case-studies.md#regex-search-that-returns-captures): [`regex-dotnet`](../src/regex-dotnet/README.md)
-- [Regex search with side effects and deliberate failure](cs/09-comparative-case-studies.md#regex-search-with-side-effects-and-deliberate-failure): [`regex-pcre2`](../src/regex-pcre2/README.md), [`regex-pcre2grep`](../src/regex-pcre2grep/README.md), [`regex-perl`](../src/regex-perl/README.md)
+- [Regex search that returns captures](informatica/09-casos-de-estudio-comparativos.md#regex-search-that-returns-captures): [`regex-dotnet`](../src/regex-dotnet/README.md)
+- [Regex search with side effects and deliberate failure](informatica/09-casos-de-estudio-comparativos.md#regex-search-with-side-effects-and-deliberate-failure): [`regex-pcre2`](../src/regex-pcre2/README.md), [`regex-pcre2grep`](../src/regex-pcre2grep/README.md), [`regex-perl`](../src/regex-perl/README.md)
 
 **T**
 
-- [Text that is rewritten and read again](cs/09-comparative-case-studies.md#text-that-is-rewritten-and-read-again): [`ed-weird`](../src/ed-weird/README.md), [`m4`](../src/m4/README.md), [`make-gnu`](../src/make-gnu/README.md), [`regex-sed`](../src/regex-sed/README.md)
-- [The input is the loop](cs/09-comparative-case-studies.md#the-input-is-the-loop): [`awk`](../src/awk/README.md), [`awk-weird`](../src/awk-weird/README.md)
+- [Text that is rewritten and read again](informatica/09-casos-de-estudio-comparativos.md#text-that-is-rewritten-and-read-again): [`ed-weird`](../src/ed-weird/README.md), [`m4`](../src/m4/README.md), [`make-gnu`](../src/make-gnu/README.md), [`regex-sed`](../src/regex-sed/README.md)
+- [The input is the loop](informatica/09-casos-de-estudio-comparativos.md#the-input-is-the-loop): [`awk`](../src/awk/README.md), [`awk-weird`](../src/awk-weird/README.md)
 
 **W**
 
-- [Whole-array operations instead of steps](cs/09-comparative-case-studies.md#whole-array-operations-instead-of-steps): [`apl`](../src/apl/README.md)
+- [Whole-array operations instead of steps](informatica/09-casos-de-estudio-comparativos.md#whole-array-operations-instead-of-steps): [`apl`](../src/apl/README.md)
 
 </div>
 
 ## Study guides
 
-Hand-written guides for advanced readers: traces of a fixed run, predictions before execution, and evidence. They are a separate document from the book. See [the study guides](study-guides/README.md).
+Hand-written guides for advanced readers: traces of a fixed run, predictions before execution, and evidence. They are a separate document from the book. See [the study guides](guias-de-estudio/README.md).
 
 **Language families**
 
-- [C#, LINQ, XAML and ports study guide](study-guides/languages/csharp-linq-xaml-and-ports.md)
-- [COBOL study guide](study-guides/languages/cobol.md)
-- [Haskell study guide](study-guides/languages/haskell.md)
-- [Forth study guide](study-guides/languages/forth.md)
-- [Make and CMake study guide](study-guides/languages/make-and-cmake.md)
-- [Regex engines and sed study guide](study-guides/languages/regex-engines-and-sed.md)
-- [APL study guide](study-guides/languages/apl.md)
-- [JavaScript study guide](study-guides/languages/javascript.md)
-- [Common Lisp study guide](study-guides/languages/common-lisp.md)
-- [m4 study guide](study-guides/languages/m4.md)
-- [Tcl study guide](study-guides/languages/tcl.md)
-- [ed and Ex study guide](study-guides/languages/ed-and-ex.md)
-- [tar study guide](study-guides/languages/tar.md)
+- [C#, LINQ, XAML and ports study guide](guias-de-estudio/lenguajes/csharp-linq-xaml-y-adaptaciones.md)
+- [COBOL study guide](guias-de-estudio/lenguajes/cobol.md)
+- [Haskell study guide](guias-de-estudio/lenguajes/haskell.md)
+- [Forth study guide](guias-de-estudio/lenguajes/forth.md)
+- [Make and CMake study guide](guias-de-estudio/lenguajes/make-y-cmake.md)
+- [Regex engines and sed study guide](guias-de-estudio/lenguajes/motores-de-regex-y-sed.md)
+- [APL study guide](guias-de-estudio/lenguajes/apl.md)
+- [JavaScript study guide](guias-de-estudio/lenguajes/javascript.md)
+- [Common Lisp study guide](guias-de-estudio/lenguajes/common-lisp.md)
+- [m4 study guide](guias-de-estudio/lenguajes/m4.md)
+- [Tcl study guide](guias-de-estudio/lenguajes/tcl.md)
+- [ed and Ex study guide](guias-de-estudio/lenguajes/ed-y-ex.md)
+- [tar study guide](guias-de-estudio/lenguajes/tar.md)
 
 **Concepts**
 
-- [Reading adversarial programs study guide](study-guides/concepts/reading-adversarial-programs.md)
-- [State and control beyond variables study guide](study-guides/concepts/state-and-control-beyond-variables.md)
-- [Evaluation, demand and laziness study guide](study-guides/concepts/evaluation-demand-and-laziness.md)
-- [Formal languages and weird machines study guide](study-guides/concepts/formal-languages-and-weird-machines.md)
-- [Effects, errors and commitment study guide](study-guides/concepts/effects-errors-and-commitment.md)
-- [Portability, abstraction and cost study guide](study-guides/concepts/portability-abstraction-and-cost.md)
-- [Events, callbacks and reactive control study guide](study-guides/concepts/events-callbacks-and-reactive-control.md)
-- [Comparative machine design study guide](study-guides/concepts/comparative-machine-design.md)
+- [Reading adversarial programs study guide](guias-de-estudio/conceptos/lectura-de-programas-adversariales.md)
+- [State and control beyond variables study guide](guias-de-estudio/conceptos/estado-y-control-mas-alla-de-las-variables.md)
+- [Evaluation, demand and laziness study guide](guias-de-estudio/conceptos/evaluacion-demanda-y-pereza.md)
+- [Formal languages and weird machines study guide](guias-de-estudio/conceptos/lenguajes-formales-y-maquinas-raras.md)
+- [Effects, errors and commitment study guide](guias-de-estudio/conceptos/efectos-errores-y-confirmacion.md)
+- [Portability, abstraction and cost study guide](guias-de-estudio/conceptos/portabilidad-abstraccion-y-costo.md)
+- [Events, callbacks and reactive control study guide](guias-de-estudio/conceptos/eventos-retrollamadas-y-control-reactivo.md)
+- [Comparative machine design study guide](guias-de-estudio/conceptos/diseno-comparativo-de-maquinas.md)

@@ -2,7 +2,7 @@
 
 # Evaluation and demand
 
-For an advanced reading path with traces and experiments, see the [evaluation, demand and laziness study guide](../study-guides/concepts/evaluation-demand-and-laziness.md).
+For an advanced reading path with traces and experiments, see the [evaluation, demand and laziness study guide](../guias-de-estudio/conceptos/evaluacion-demanda-y-pereza.md).
 
 Is a value computed when you write it, when you first need it or each time you ask? That is the question of **evaluation strategy**, and the same-looking code answers it differently in different languages.
 
@@ -101,7 +101,7 @@ Eager evaluation computes a value as soon as the code asks for it. It is the def
 **Read more:**
 
 - [Eager evaluation](https://en.wikipedia.org/wiki/Eager_evaluation) (Wikipedia)
-- [Lazy evaluation](04-evaluation-and-demand.md#lazy-evaluation), the opposite idea
+- [Lazy evaluation](04-evaluacion-y-demanda.md#lazy-evaluation), the opposite idea
 
 **In this repo:**
 
@@ -135,7 +135,7 @@ flowchart TB
     end
 ```
 
-A thunk is a promise to compute a value. Demanding a cell runs its thunk once and stores the value, so a second demand for `A` costs nothing. Cell `C` is never demanded, so its work never happens. Storing the value is part of lazy evaluation in the strict sense. A pipeline that only delays work, such as a generator, may compute the same value again on each pass. See [Iterators and generators](04-evaluation-and-demand.md#iterators-and-generators).
+A thunk is a promise to compute a value. Demanding a cell runs its thunk once and stores the value, so a second demand for `A` costs nothing. Cell `C` is never demanded, so its work never happens. Storing the value is part of lazy evaluation in the strict sense. A pipeline that only delays work, such as a generator, may compute the same value again on each pass. See [Iterators and generators](04-evaluacion-y-demanda.md#iterators-and-generators).
 
 - **Use it when:** the code is pure (no effects), you want infinite sequences or some results may not be needed.
 - **Avoid it when:** effects are involved, or when memory matters. A pile of unevaluated thunks can use a lot of it (a *space leak*).
@@ -184,7 +184,7 @@ flowchart TB
     class x1,x2 skip
 ```
 
-In both panels the left operand settles the answer, so the right operand is skipped. Anything it would have done, such as a slow query, a write or a printed line, does not happen. That is why `x != null && x.length > 0` is safe. It also means that an effect in the right operand is not a promise. See [Side effects](07-effects-errors-and-commitment.md#side-effects).
+In both panels the left operand settles the answer, so the right operand is skipped. Anything it would have done, such as a slow query, a write or a printed line, does not happen. That is why `x != null && x.length > 0` is safe. It also means that an effect in the right operand is not a promise. See [Side effects](07-efectos-errores-y-confirmacion.md#side-effects).
 
 - **Use it when:** you guard a risky operation, or pick the first good answer.
 - **Avoid it when:** the second operand has an effect you expect to always happen. It silently will not.
@@ -250,7 +250,7 @@ sequenceDiagram
     Note right of G: internal state is kept between yields
 ```
 
-The consumer asks and the generator answers. This is *pull*: nothing runs until `next()` is called, and the generator does only enough work to reach its next `yield`. A push design, such as a callback, would draw the arrows the other way (see [Callbacks](10-events-callbacks-and-reactive-control-flow.md#callbacks)). The consumer can also stop early by not asking again.
+The consumer asks and the generator answers. This is *pull*: nothing runs until `next()` is called, and the generator does only enough work to reach its next `yield`. A push design, such as a callback, would draw the arrows the other way (see [Callbacks](10-eventos-retrollamadas-y-flujo-de-control-reactivo.md#callbacks)). The consumer can also stop early by not asking again.
 
 - **Use it when:** you stream data, or describe an unlimited series and take a prefix.
 - **Avoid it when:** the iterator has hidden effects or callers expect to reuse a one-shot iterator.
@@ -296,7 +296,7 @@ flowchart LR
     end
 ```
 
-The left side can be replaced by `5` anywhere. The right side cannot: the call's value depends on *when* it runs, and the times shown are only illustrative. This is about referential transparency, which is the same as repeatability here, and not about [Idempotence](07-effects-errors-and-commitment.md#idempotence). A function that reads the clock changes nothing, so it is not "non-idempotent". It is just not repeatable. [Idempotence](07-effects-errors-and-commitment.md#idempotence) is about what an operation does to state.
+The left side can be replaced by `5` anywhere. The right side cannot: the call's value depends on *when* it runs, and the times shown are only illustrative. This is about referential transparency, which is the same as repeatability here, and not about [Idempotence](07-efectos-errores-y-confirmacion.md#idempotence). A function that reads the clock changes nothing, so it is not "non-idempotent". It is just not repeatable. [Idempotence](07-efectos-errores-y-confirmacion.md#idempotence) is about what an operation does to state.
 
 - **Use it when:** as much as you can. Keep the pure core large and push effects to the edges.
 - **Avoid pretending:** random numbers, clocks, files and networks are not transparent.
@@ -448,7 +448,7 @@ flowchart TB
     S --> R(["rows"])
 ```
 
-Each arrow is a data dependency: the node at the head needs a value from the node at the tail. The `pair` node has two inputs, so it cannot fire until both have arrived. The picture does not say which node a program calls first. The arrival of values decides. [Dependency graphs](06-state-beyond-variables.md#dependency-graphs) also draws arrows between things, but there the arrows say what to redo after a change.
+Each arrow is a data dependency: the node at the head needs a value from the node at the tail. The `pair` node has two inputs, so it cannot fire until both have arrived. The picture does not say which node a program calls first. The arrival of values decides. [Dependency graphs](06-estado-mas-alla-de-las-variables.md#dependency-graphs) also draws arrows between things, but there the arrows say what to redo after a change.
 
 It matters here because several entries move control out of statements and into such a graph. In [`LinqChallenge1`](../../src/LinqChallenge1/README.md) and [`LinqChallenge2`](../../src/LinqChallenge2/README.md) a query describes the cards, and the final operator asks for them. In [`javascript-weird`](../../src/javascript-weird/README.md) the pipeline `Iterator.from(...).map(...).map(...).toArray()` is a chain of steps, and each card flows through all of them before the next one is asked for. [`make-gnu`](../../src/make-gnu/README.md) has a related shape: a dependency graph decides what runs and in what order. That is *dependency*, which is not the same as the flow of data, so it is an analogy here.
 

@@ -14,7 +14,7 @@ Cuando termines, deberías poder:
 
 **Límites del alcance.** Necesitas leer APL básico: `⍳`, `⍴`, `+\` (escaneo), `+/` (reducción), `/` (compresión) y `↑` (tomar). La guía no enseña el conjunto completo de glifos, las funciones de archivo `⎕FIO` de GNU APL más allá de lo que usan los programas, ni SQL. Si los símbolos de APL aparecen como cuadros vacíos, consulta [Cómo ver los glifos](../../../src/apl/README.md#seeing-the-glyphs).
 
-La página del libro es [APL](../../languages/apl.md). Las ideas están en [Programación con arreglos](../../cs/04-evaluation-and-demand.md#array-programming), [Homoiconicidad: código como datos](../../cs/06-state-beyond-variables.md#homoiconicity-code-as-data) y [Código automodificable](../../cs/03-control-flow-and-continuations.md#self-modifying-code).
+La página del libro es [APL](../../lenguajes/apl.md). Las ideas están en [Programación con arreglos](../../informatica/04-evaluacion-y-demanda.md#array-programming), [Homoiconicidad: código como datos](../../informatica/06-estado-mas-alla-de-las-variables.md#homoiconicity-code-as-data) y [Código automodificable](../../informatica/03-flujo-de-control-y-continuaciones.md#self-modifying-code).
 
 ## Antes de empezar
 
@@ -41,7 +41,7 @@ Edita solo copias ([Ejecutar cosas de forma segura](../../exercises.md#running-t
 
 ## El reto compartido
 
-La [especificación del reto](../../intro.md#what-the-challenge-does) pide tarjetas con una categoría y de 10 a 19 horas enteras. Las categorías se repiten en ciclo: `Meetings`, `Coding`, `Debugging` y `Learning`. Suma las horas de cada tarjeta al total acumulado. Detente cuando el total pasa de 40. Conserva la **primera tarjeta con la que el total pasa de 40**. Un total de exactamente 40 continúa. Cuatro tarjetas de 10 horas necesitan una quinta tarjeta, de la categoría `Meetings`. Las ejecuciones conformes tienen de 3 a 5 tarjetas y un total de 41 a 59 horas.
+La [especificación del reto](../../introduccion.md#what-the-challenge-does) pide tarjetas con una categoría y de 10 a 19 horas enteras. Las categorías se repiten en ciclo: `Meetings`, `Coding`, `Debugging` y `Learning`. Suma las horas de cada tarjeta al total acumulado. Detente cuando el total pasa de 40. Conserva la **primera tarjeta con la que el total pasa de 40**. Un total de exactamente 40 continúa. Cuatro tarjetas de 10 horas necesitan una quinta tarjeta, de la categoría `Meetings`. Las ejecuciones conformes tienen de 3 a 5 tarjetas y un total de 41 a 59 horas.
 
 APL expresa el límite en una sola comparación, `40≥`, "¿el total es como máximo 40?". Es verdadera para 40. El programa cuenta las tarjetas para las que es verdadera y después suma una, para incluir la tarjeta que cruza.
 
@@ -191,10 +191,10 @@ El resumen honesto: el primer programa desperdicia datos para evitar una decisi�
 ## Conexiones a lo largo del repositorio
 
 - **Código como datos en otros lenguajes.** [Tcl](tcl.md) guarda el texto de un programa en una fila de la base de datos y lo define cuando hace falta. [Common Lisp](common-lisp.md) puede construir y ejecutar formas. [COBOL](cobol.md) parchea un salto en lugar de texto.
-- **Evaluación ansiosa frente a perezosa.** `apl` calcula cinco valores y descarta dos. [Haskell](haskell.md) lee de una lista infinita solo lo que necesita. Las canalizaciones diferidas de LINQ en [C#, LINQ, XAML y ports](csharp-linq-xaml-and-ports.md) esperan a la enumeración. El encabezado separado `for` de C# enumera de forma ansiosa con `Sum()` cada vez que evalúa la condición. La guía de concepto [Evaluación, demanda y pereza](../concepts/evaluation-demand-and-laziness.md) pone estos tres casos uno junto a otro.
-- **Estado fuera de las variables.** `apl-weird` guarda su estado en líneas de código fuente, como [Make](make-and-cmake.md) lo guarda en archivos y [Forth](forth.md) en una posición de análisis. Consulta [Estado y control más allá de las variables](../concepts/state-and-control-beyond-variables.md).
-- **Reproducibilidad de "aleatorio".** Las entradas de APL reinician la semilla a partir del reloj. La entrada de sed en [Motores de expresiones regulares y sed](regex-engines-and-sed.md) usa un registro de desplazamiento con semilla y da las mismas tarjetas con la misma semilla.
-- **En el libro.** [APL](../../languages/apl.md), [Programación con arreglos](../../cs/04-evaluation-and-demand.md#array-programming), [Evaluación ansiosa](../../cs/04-evaluation-and-demand.md#eager-evaluation) y [Homoiconicidad: el código como datos](../../cs/06-state-beyond-variables.md#homoiconicity-code-as-data).
+- **Evaluación ansiosa frente a perezosa.** `apl` calcula cinco valores y descarta dos. [Haskell](haskell.md) lee de una lista infinita solo lo que necesita. Las canalizaciones diferidas de LINQ en [C#, LINQ, XAML y ports](csharp-linq-xaml-y-adaptaciones.md) esperan a la enumeración. El encabezado separado `for` de C# enumera de forma ansiosa con `Sum()` cada vez que evalúa la condición. La guía de concepto [Evaluación, demanda y pereza](../conceptos/evaluacion-demanda-y-pereza.md) pone estos tres casos uno junto a otro.
+- **Estado fuera de las variables.** `apl-weird` guarda su estado en líneas de código fuente, como [Make](make-y-cmake.md) lo guarda en archivos y [Forth](forth.md) en una posición de análisis. Consulta [Estado y control más allá de las variables](../conceptos/estado-y-control-mas-alla-de-las-variables.md).
+- **Reproducibilidad de "aleatorio".** Las entradas de APL reinician la semilla a partir del reloj. La entrada de sed en [Motores de expresiones regulares y sed](motores-de-regex-y-sed.md) usa un registro de desplazamiento con semilla y da las mismas tarjetas con la misma semilla.
+- **En el libro.** [APL](../../lenguajes/apl.md), [Programación con arreglos](../../informatica/04-evaluacion-y-demanda.md#array-programming), [Evaluación ansiosa](../../informatica/04-evaluacion-y-demanda.md#eager-evaluation) y [Homoiconicidad: el código como datos](../../informatica/06-estado-mas-alla-de-las-variables.md#homoiconicity-code-as-data).
 
 ## Autoevaluación
 

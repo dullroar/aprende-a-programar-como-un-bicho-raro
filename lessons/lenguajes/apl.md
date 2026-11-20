@@ -2,7 +2,7 @@
 
 Entries: [`src/apl`](../../src/apl/README.md) (five rolls and one take-while) and [`src/apl-weird`](../../src/apl-weird/README.md) (functions that write their successors).
 
-For an advanced reading path with traces and experiments, see the [APL study guide](../study-guides/languages/apl.md).
+For an advanced reading path with traces and experiments, see the [APL study guide](../guias-de-estudio/lenguajes/apl.md).
 
 APL gets a page to itself, because it is the odd one out in the whole repo. Every other language here was built to *run* programs. APL began as a way to *describe* them.
 
@@ -125,7 +125,7 @@ The first is not a terrible idea; it is how APL programmers actually think. The 
 <!-- BEGIN GENERATED program-flow:languages/apl.md -->
 ## How each program runs
 
-Each picture below is the `## Program Flow` section of an entry's README, copied here by the build. It shows how that program makes the work happen: what the language, runtime or tool really does. [The introduction](../intro.md#what-the-challenge-does) shows what the challenge asks for and where entries differ.
+Each picture below is the `## Program Flow` section of an entry's README, copied here by the build. It shows how that program makes the work happen: what the language, runtime or tool really does. [The introduction](../introduccion.md#what-the-challenge-does) shows what the challenge asks for and where entries differ.
 
 ### Program flow of `apl`
 
@@ -172,5 +172,5 @@ flowchart TD
 ## Computer science behind this page
 
 <!-- BEGIN GENERATED concepts:languages/apl.md -->
-The computer-science ideas behind this page: [Control flow](../cs/03-control-flow-and-continuations.md#control-flow), [Self-modifying code](../cs/03-control-flow-and-continuations.md#self-modifying-code), [Eager evaluation](../cs/04-evaluation-and-demand.md#eager-evaluation), [Referential transparency](../cs/04-evaluation-and-demand.md#referential-transparency), [Array programming](../cs/04-evaluation-and-demand.md#array-programming), [State](../cs/06-state-beyond-variables.md#state), [Scope and binding](../cs/06-state-beyond-variables.md#scope-and-binding), [Homoiconicity: code as data](../cs/06-state-beyond-variables.md#homoiconicity-code-as-data), [Reflection and metaprogramming](../cs/06-state-beyond-variables.md#reflection-and-metaprogramming), [Serialization, deserialization and object pickling](../cs/06-state-beyond-variables.md#serialization-deserialization-and-object-pickling).
+The computer-science ideas behind this page: [Control flow](../informatica/03-flujo-de-control-y-continuaciones.md#control-flow), [Self-modifying code](../informatica/03-flujo-de-control-y-continuaciones.md#self-modifying-code), [Eager evaluation](../informatica/04-evaluacion-y-demanda.md#eager-evaluation), [Referential transparency](../informatica/04-evaluacion-y-demanda.md#referential-transparency), [Array programming](../informatica/04-evaluacion-y-demanda.md#array-programming), [State](../informatica/06-estado-mas-alla-de-las-variables.md#state), [Scope and binding](../informatica/06-estado-mas-alla-de-las-variables.md#scope-and-binding), [Homoiconicity: code as data](../informatica/06-estado-mas-alla-de-las-variables.md#homoiconicity-code-as-data), [Reflection and metaprogramming](../informatica/06-estado-mas-alla-de-las-variables.md#reflection-and-metaprogramming), [Serialization, deserialization and object pickling](../informatica/06-estado-mas-alla-de-las-variables.md#serialization-deserialization-and-object-pickling).
 <!-- END GENERATED concepts:languages/apl.md -->

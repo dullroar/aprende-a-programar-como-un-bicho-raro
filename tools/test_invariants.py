@@ -419,12 +419,17 @@ class TestI11SharedParagraph(Base):
         text = self.msgstr()
         self.assertIsNotNone(text)
         self.assertIn("`" + ph("DNT", 2) + "`", text)
-        self.assertClean(inv.check_segment(first(self.EN), text, self.sctx()))
+        # the link destination is restored in the English layout; the catalog is in the layout of the edition (P3B-005)
+        self.assertClean(inv.check_segment(first(self.EN), text, self.sctx(), "lessons/study-guides/languages/apl.md"))
 
     def test_free_translation_fails(self):
         free = self.msgstr().replace("Detente cuando el total pasa de 40", "Detente cuando el total pase de 40")
         self.assertNotEqual(free, self.msgstr())
         self.assertFires(inv.check_segment(first(self.EN), free, self.sctx()), "I11")
+
+    def test_a_paragraph_that_links_elsewhere_is_not_the_standard_one(self):
+        other = self.EN.replace("../../intro.md#", "../../goals.md#")
+        self.assertIsNone(inv.shared_paragraph_masked(first(other), self.sctx()))
 
     def test_other_paragraphs_are_not_affected(self):
         self.assertIsNone(inv.shared_paragraph_masked(first("A different paragraph about cards."), self.sctx()))

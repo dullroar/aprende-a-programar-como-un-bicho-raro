@@ -2,7 +2,7 @@
 
 Entries: [`src/tcl`](../../src/tcl/README.md) (a `while` loop, dicts, an optional Tk window) and [`src/tcl-weird`](../../src/tcl-weird/README.md) (the program lives in SQLite).
 
-For an advanced reading path with traces and experiments, see the [Tcl study guide](../study-guides/languages/tcl.md).
+For an advanced reading path with traces and experiments, see the [Tcl study guide](../guias-de-estudio/lenguajes/tcl.md).
 
 ## What makes Tcl special
 
@@ -100,7 +100,7 @@ When your code genuinely belongs with your data: a rules engine where rules are 
 <!-- BEGIN GENERATED program-flow:languages/tcl.md -->
 ## How each program runs
 
-Each picture below is the `## Program Flow` section of an entry's README, copied here by the build. It shows how that program makes the work happen: what the language, runtime or tool really does. [The introduction](../intro.md#what-the-challenge-does) shows what the challenge asks for and where entries differ.
+Each picture below is the `## Program Flow` section of an entry's README, copied here by the build. It shows how that program makes the work happen: what the language, runtime or tool really does. [The introduction](../introduccion.md#what-the-challenge-does) shows what the challenge asks for and where entries differ.
 
 ### Program flow of `tcl`
 
@@ -155,5 +155,5 @@ sequenceDiagram
 ## Computer science behind this page
 
 <!-- BEGIN GENERATED concepts:languages/tcl.md -->
-The computer-science ideas behind this page: [Arbitrary code execution](../cs/01-reading-an-adversarial-program.md#arbitrary-code-execution), [Control flow](../cs/03-control-flow-and-continuations.md#control-flow), [Recursion](../cs/03-control-flow-and-continuations.md#recursion), [Interpreters and virtual machines](../cs/05-formal-languages-as-computational-substrates.md#interpreters-and-virtual-machines), [State](../cs/06-state-beyond-variables.md#state), [Scope and binding](../cs/06-state-beyond-variables.md#scope-and-binding), [Homoiconicity: code as data](../cs/06-state-beyond-variables.md#homoiconicity-code-as-data), [Reflection and metaprogramming](../cs/06-state-beyond-variables.md#reflection-and-metaprogramming), [Database triggers](../cs/06-state-beyond-variables.md#database-triggers), [Serialization, deserialization and object pickling](../cs/06-state-beyond-variables.md#serialization-deserialization-and-object-pickling), [Transactions](../cs/07-effects-errors-and-commitment.md#transactions), [Callbacks](../cs/10-events-callbacks-and-reactive-control-flow.md#callbacks).
+The computer-science ideas behind this page: [Arbitrary code execution](../informatica/01-lectura-de-un-programa-adversarial.md#arbitrary-code-execution), [Control flow](../informatica/03-flujo-de-control-y-continuaciones.md#control-flow), [Recursion](../informatica/03-flujo-de-control-y-continuaciones.md#recursion), [Interpreters and virtual machines](../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#interpreters-and-virtual-machines), [State](../informatica/06-estado-mas-alla-de-las-variables.md#state), [Scope and binding](../informatica/06-estado-mas-alla-de-las-variables.md#scope-and-binding), [Homoiconicity: code as data](../informatica/06-estado-mas-alla-de-las-variables.md#homoiconicity-code-as-data), [Reflection and metaprogramming](../informatica/06-estado-mas-alla-de-las-variables.md#reflection-and-metaprogramming), [Database triggers](../informatica/06-estado-mas-alla-de-las-variables.md#database-triggers), [Serialization, deserialization and object pickling](../informatica/06-estado-mas-alla-de-las-variables.md#serialization-deserialization-and-object-pickling), [Transactions](../informatica/07-efectos-errores-y-confirmacion.md#transactions), [Callbacks](../informatica/10-eventos-retrollamadas-y-flujo-de-control-reactivo.md#callbacks).
 <!-- END GENERATED concepts:languages/tcl.md -->

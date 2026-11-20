@@ -2,7 +2,7 @@
 
 Entries: [`src/lisp`](../../src/lisp/README.md) (one `LOOP` form) and [`src/lisp-weird`](../../src/lisp-weird/README.md) (no loop, no `if`: a class hierarchy and a method combination do the work).
 
-For an advanced reading path with traces and experiments, see the [Common Lisp study guide](../study-guides/languages/common-lisp.md).
+For an advanced reading path with traces and experiments, see the [Common Lisp study guide](../guias-de-estudio/lenguajes/common-lisp.md).
 
 ## What makes Common Lisp special
 
@@ -93,7 +93,7 @@ When the "loop" is really *a set of independently registered participants* (plug
 <!-- BEGIN GENERATED program-flow:languages/lisp.md -->
 ## How each program runs
 
-Each picture below is the `## Program Flow` section of an entry's README, copied here by the build. It shows how that program makes the work happen: what the language, runtime or tool really does. [The introduction](../intro.md#what-the-challenge-does) shows what the challenge asks for and where entries differ.
+Each picture below is the `## Program Flow` section of an entry's README, copied here by the build. It shows how that program makes the work happen: what the language, runtime or tool really does. [The introduction](../introduccion.md#what-the-challenge-does) shows what the challenge asks for and where entries differ.
 
 ### Program flow of `lisp`
 
@@ -149,5 +149,5 @@ sequenceDiagram
 ## Computer science behind this page
 
 <!-- BEGIN GENERATED concepts:languages/lisp.md -->
-The computer-science ideas behind this page: [Control flow](../cs/03-control-flow-and-continuations.md#control-flow), [Short-circuit evaluation](../cs/04-evaluation-and-demand.md#short-circuit-evaluation), [Macros and text expansion](../cs/05-formal-languages-as-computational-substrates.md#macros-and-text-expansion), [Domain-specific languages](../cs/05-formal-languages-as-computational-substrates.md#domain-specific-languages), [State](../cs/06-state-beyond-variables.md#state), [Scope and binding](../cs/06-state-beyond-variables.md#scope-and-binding), [Homoiconicity: code as data](../cs/06-state-beyond-variables.md#homoiconicity-code-as-data), [Reflection and metaprogramming](../cs/06-state-beyond-variables.md#reflection-and-metaprogramming).
+The computer-science ideas behind this page: [Control flow](../informatica/03-flujo-de-control-y-continuaciones.md#control-flow), [Short-circuit evaluation](../informatica/04-evaluacion-y-demanda.md#short-circuit-evaluation), [Macros and text expansion](../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#macros-and-text-expansion), [Domain-specific languages](../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#domain-specific-languages), [State](../informatica/06-estado-mas-alla-de-las-variables.md#state), [Scope and binding](../informatica/06-estado-mas-alla-de-las-variables.md#scope-and-binding), [Homoiconicity: code as data](../informatica/06-estado-mas-alla-de-las-variables.md#homoiconicity-code-as-data), [Reflection and metaprogramming](../informatica/06-estado-mas-alla-de-las-variables.md#reflection-and-metaprogramming).
 <!-- END GENERATED concepts:languages/lisp.md -->

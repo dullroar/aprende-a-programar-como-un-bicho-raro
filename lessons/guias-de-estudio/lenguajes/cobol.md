@@ -14,7 +14,7 @@ When you finish, you should be able to:
 4. Explain why a size error is a conditional, and what a field holding 99 can mean.
 5. Label each COBOL behavior in the programs as guaranteed, implementation-permitted or accidentally exploited, and say what evidence supports the label.
 
-**Scope limits.** This is not a COBOL tutorial: it does not teach divisions, files or the full `PICTURE` language. It covers GnuCOBOL 3.1 or later in fixed format. It does not teach the SQL, which both programs build as text and hand to `sqlite3`. For the general lesson, read [COBOL in the book](../../languages/cobol.md) first, or after.
+**Scope limits.** This is not a COBOL tutorial: it does not teach divisions, files or the full `PICTURE` language. It covers GnuCOBOL 3.1 or later in fixed format. It does not teach the SQL, which both programs build as text and hand to `sqlite3`. For the general lesson, read [COBOL in the book](../../lenguajes/cobol.md) first, or after.
 
 ## Before you begin
 
@@ -41,7 +41,7 @@ Work on a copy when an exercise asks you to edit (see [Running things safely](..
 
 ## The shared challenge
 
-The [challenge specification](../../intro.md#what-the-challenge-does) calls for cards with a category and 10 to 19 whole hours. Categories cycle through Meetings, Coding, Debugging and Learning. Add each card's hours to the running total. Stop when the total passes 40. Keep the **first card that takes the total over 40**. A total of exactly 40 continues. Four 10-hour cards need a fifth card, in the Meetings category. Conforming runs finish with 3 to 5 cards and a total of 41 to 59 hours.
+The [challenge specification](../../introduccion.md#what-the-challenge-does) calls for cards with a category and 10 to 19 whole hours. Categories cycle through Meetings, Coding, Debugging and Learning. Add each card's hours to the running total. Stop when the total passes 40. Keep the **first card that takes the total over 40**. A total of exactly 40 continues. Four 10-hour cards need a fifth card, in the Meetings category. Conforming runs finish with 3 to 5 cards and a total of 41 to 59 hours.
 
 Two cards reach at most 38 hours, so a conforming run needs at least three cards.
 
@@ -188,7 +188,7 @@ Two cautions from the book's answer key. In B1 part 1, a single random run can s
 
 ## Failure modes, costs and boundaries
 
-Label every behavior by the strength of its promise (see [Three kinds of knowledge](../../intro.md#three-kinds-of-knowledge)). The label changes what you may safely rely on.
+Label every behavior by the strength of its promise (see [Three kinds of knowledge](../../introduccion.md#three-kinds-of-knowledge)). The label changes what you may safely rely on.
 
 | Behavior | Label | Why |
 | --- | --- | --- |
@@ -201,7 +201,7 @@ Label every behavior by the strength of its promise (see [Three kinds of knowled
 | `ACCEPT ... FROM ENVIRONMENT` blanks the field when the variable is unset | **implementation-permitted** | This is how the tested runtime behaves. The weird program turns it into a table subscript on purpose (see below). |
 | The program needs `mkdir` and `sqlite3` on the host | **implementation-permitted** | These are host commands, not COBOL. |
 
-Nothing in the two COBOL entries is merely *accidentally exploited*. `ALTER` has a documented place in the compiler's history, which is not the same as an accident. The label exists for programs like the [Make entry](make-and-cmake.md), whose restart behavior nobody promised.
+Nothing in the two COBOL entries is merely *accidentally exploited*. `ALTER` has a documented place in the compiler's history, which is not the same as an accident. The label exists for programs like the [Make entry](make-y-cmake.md), whose restart behavior nobody promised.
 
 **Costs to be able to state.**
 
@@ -213,12 +213,12 @@ Nothing in the two COBOL entries is merely *accidentally exploited*. `ALTER` has
 
 ## Connections across the repository
 
-- **Control state outside variables.** `ALTER` is one of several ways in this repository to keep the next step somewhere other than a variable. [Forth](forth.md) keeps it in the parse position `>in`. [Make](make-and-cmake.md) keeps it in which files exist. CMake keeps it in regex captures. [Tcl](tcl.md) keeps it in a database trigger. The concept guide [State and control beyond variables](../concepts/state-and-control-beyond-variables.md) compares them directly.
+- **Control state outside variables.** `ALTER` is one of several ways in this repository to keep the next step somewhere other than a variable. [Forth](forth.md) keeps it in the parse position `>in`. [Make](make-y-cmake.md) keeps it in which files exist. CMake keeps it in regex captures. [Tcl](tcl.md) keeps it in a database trigger. The concept guide [State and control beyond variables](../conceptos/estado-y-control-mas-alla-de-las-variables.md) compares them directly.
 - **Self-modifying behavior.** [APL's `apl-weird`](apl.md) rewrites a function while it runs. The comparison with `ALTER` is useful because APL's rewrite is explicit text and COBOL's is a patched jump.
 - **Declarative stop rules.** The level-88 rule resembles the stop rules in [Haskell](haskell.md) (how much of a list you read) and the 41-character literal in CMake. In each, the rule is *data or structure* rather than a comparison in a loop.
-- **Arithmetic error as control flow.** The size-error trick is a cousin of the exception and exit-status ideas in [Effects, errors and commitment](../concepts/effects-errors-and-commitment.md).
-- **What the label means.** [Portability, abstraction and cost](../concepts/portability-abstraction-and-cost.md) explains the vocabulary of guaranteed and implementation-permitted behavior.
-- **In the book.** The concept chapters are [What counts as a machine?](../../cs/02-what-counts-as-a-machine.md), [Control flow and continuations](../../cs/03-control-flow-and-continuations.md), [Effects, errors and commitment](../../cs/07-effects-errors-and-commitment.md) and [Abstraction leaks and implementation dependence](../../cs/08-abstraction-leaks-and-implementation-dependence.md). The language page is [COBOL](../../languages/cobol.md).
+- **Arithmetic error as control flow.** The size-error trick is a cousin of the exception and exit-status ideas in [Effects, errors and commitment](../conceptos/efectos-errores-y-confirmacion.md).
+- **What the label means.** [Portability, abstraction and cost](../conceptos/portabilidad-abstraccion-y-costo.md) explains the vocabulary of guaranteed and implementation-permitted behavior.
+- **In the book.** The concept chapters are [What counts as a machine?](../../informatica/02-que-cuenta-como-maquina.md), [Control flow and continuations](../../informatica/03-flujo-de-control-y-continuaciones.md), [Effects, errors and commitment](../../informatica/07-efectos-errores-y-confirmacion.md) and [Abstraction leaks and implementation dependence](../../informatica/08-fugas-de-abstraccion-y-dependencia-de-la-implementacion.md). The language page is [COBOL](../../lenguajes/cobol.md).
 
 ## Self-check
 
@@ -232,6 +232,6 @@ Answer each question in your own words before you read the italic text. Say what
 ## Further reading
 
 - [COBOL](https://en.wikipedia.org/wiki/COBOL) (Wikipedia): a broad orientation, including the language's history and the standards that followed 1985.
-- [Goto and structured programming](../../cs/03-control-flow-and-continuations.md#goto-and-structured-programming) (this book): the argument that `ALTER` is exhibit A for.
+- [Goto and structured programming](../../informatica/03-flujo-de-control-y-continuaciones.md#goto-and-structured-programming) (this book): the argument that `ALTER` is exhibit A for.
 - [Self-modifying code](https://en.wikipedia.org/wiki/Self-modifying_code) (Wikipedia): where `ALTER` fits among other ways programs change themselves. `ALTER` changes a jump target, not instruction bytes, and the difference matters.
-- [Undefined, unspecified and implementation-defined behavior](../../cs/08-abstraction-leaks-and-implementation-dependence.md#undefined-unspecified-and-implementation-defined-behavior) (this book): the three standards terms behind the labels in this guide.
+- [Undefined, unspecified and implementation-defined behavior](../../informatica/08-fugas-de-abstraccion-y-dependencia-de-la-implementacion.md#undefined-unspecified-and-implementation-defined-behavior) (this book): the three standards terms behind the labels in this guide.

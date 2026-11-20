@@ -3,7 +3,7 @@ name: "JavaScript"
 teaches: "that a for statement is three expressions and an empty body, and that JavaScript's own evaluation order, truthiness and comma operator are enough to run a whole program from the three clauses."
 kind: port
 languages: [javascript, sqlite]
-lesson: "languages/javascript.md#the-bodiless-for-in-node"
+lesson: "lenguajes/javascript.md#the-bodiless-for-in-node"
 loop-by: loop-statement
 evaluation: eager
 assurance: guaranteed
@@ -157,4 +157,4 @@ The `for` statement is synchronous. All the cards are drawn, and the report is p
 
 ---
 
-See the [root README](../../README.md#the-results-so-far) for how this compares to the other entries, and [`CHALLENGE.md`](../../CHALLENGE.md) if you want to write your own.
+See the [root README](../../README.md#the-results-so-far) for how this compares to the other entries, and [`RETO.md`](../../RETO.md) if you want to write your own.

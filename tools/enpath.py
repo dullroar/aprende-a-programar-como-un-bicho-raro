@@ -39,12 +39,13 @@ def norm(p):
 
 
 class PathLayer:
-    def __init__(self, en_to_es=None, layout="english", root=ROOT):
+    def __init__(self, en_to_es=None, layout="english", root=ROOT, dirs=None):
         if layout not in LAYOUTS:
             raise PathLayerError("layout must be one of %s, not %r" % (LAYOUTS, layout))
         self.root = root
         self.layout = layout
         self.en_to_es = dict(en_to_es or {})
+        self.dirs = dict(dirs or {})
         self.es_to_en = {}
         for en, es in self.en_to_es.items():
             if es in self.es_to_en and self.es_to_en[es] != en:
@@ -77,6 +78,119 @@ class PathLayer:
 
     def renamed(self):
         return {en: es for en, es in self.en_to_es.items() if en != es}
+
+
+# ---------------------------------------------------------------------------------------- reference remapping
+# The pinned English text names other files in the English layout. In a Spanish-layout checkout every reference to a
+# renamed file or folder (Markdown link destinations, `lesson:` front matter, full repo-relative paths in prose and code
+# spans) must name the Spanish path. remap_text() is that one deterministic function: tools apply it to the English text
+# (or to the PO applied to it) and compare or write the result. It is never run on a file that is already remapped.
+
+_LINK = re.compile(r'(\]\(\s*<?)([^)\s>]+)|(^\[[^\]]+\]:\s*)(\S+)|((?:href|src)=")([^"]+)', re.M)
+_LESSON = re.compile(r'^(lesson:\s*")([^"]+)(")', re.M)
+_SCHEME = re.compile(r"^[A-Za-z][A-Za-z0-9+.-]*:")
+CS_SOURCE_PAGES = ("lessons/cs-source/chapters/", "lessons/cs-source/concepts/", "lessons/cs-source/roles/")
+CS_SOURCE_INDEX = "lessons/cs-source/index.md"
+CS_PAGE_DIR = "lessons/cs"          # cs-source bodies are written for pages that the generator puts here
+
+
+def read_dirs(root=ROOT):
+    """paths.dirs of the Spanish catalog: renamed folder -> Spanish folder (English key first)."""
+    path = os.path.join(root, *CATALOG_REL.split("/"))
+    if not os.path.isfile(path):
+        return {}
+    with open(path, encoding="utf-8") as fh:
+        text = fh.read()
+    m = re.search(r"^  dirs:\n((?:    \"[^\"]+\": \"[^\"]+\"\n)+)", text, re.M)
+    if not m:
+        return {}
+    return dict(re.findall(r'"([^"]+)": "([^"]+)"', m.group(1)))
+
+
+def map_path(layer, p):
+    """The Spanish form of any repository path, file or folder (exact file, else the longest renamed folder prefix)."""
+    p = norm(p)
+    if p in layer.en_to_es:
+        return layer.en_to_es[p]
+    best = None
+    for d in layer.dirs:
+        if (p == d or p.startswith(d + "/")) and (best is None or len(d) > len(best)):
+            best = d
+    return layer.dirs[best] + p[len(best):] if best else p
+
+
+def _virtual_dirs(layer, en_key):
+    """(English directory, Spanish directory) that relative links in this file are written against."""
+    if en_key.startswith(CS_SOURCE_PAGES) or en_key == CS_SOURCE_INDEX:
+        return CS_PAGE_DIR, map_path(layer, CS_PAGE_DIR)
+    en_dir = posixpath_dirname(en_key)
+    return en_dir, posixpath_dirname(layer.spanish(en_key))
+
+
+def posixpath_dirname(p):
+    return p.rsplit("/", 1)[0] if "/" in p else ""
+
+
+def _fix_dest(layer, en_key, dest):
+    import posixpath
+    if _SCHEME.match(dest) or dest.startswith(("#", "/")):
+        return dest
+    base, sep, frag = dest.partition("#")
+    if not base:
+        return dest
+    en_dir, es_dir = _virtual_dirs(layer, en_key)
+    target = posixpath.normpath(posixpath.join(en_dir, base))
+    new_base = posixpath.relpath(map_path(layer, target), es_dir or ".")
+    if base.endswith("/") and not new_base.endswith("/"):
+        new_base += "/"
+    return (new_base if new_base != base else base) + sep + frag
+
+
+def _full_regex(layer):
+    keys = sorted({k for k, v in layer.en_to_es.items() if k != v} | set(layer.dirs), key=len, reverse=True)
+    return re.compile(r"(?<![\w./-])(" + "|".join(re.escape(k) for k in keys) + r")(?![\w-]|\.\w)") if keys else None
+
+
+def remap_text(text, en_key, layer=None, root=ROOT):
+    """`text` (English layout) with every reference to a renamed path written in the Spanish layout. Identity when the
+    layer is not moved or the map renames nothing."""
+    layer = layer or load(root)
+    if not layer.moved or not layer.renamed():
+        return text
+    en_key = layer.english(en_key)
+    new = text
+    if en_key.endswith(".md"):
+        def sub(m):
+            if m.group(2) is not None:
+                return m.group(1) + _fix_dest(layer, en_key, m.group(2))
+            if m.group(4) is not None:
+                return m.group(3) + _fix_dest(layer, en_key, m.group(4))
+            return m.group(5) + _fix_dest(layer, en_key, m.group(6))
+        new = _LINK.sub(sub, new)
+
+        def lesson(m):
+            base, sep, frag = m.group(2).partition("#")
+            full = map_path(layer, "lessons/" + base)
+            return m.group(1) + (full[len("lessons/"):] if full.startswith("lessons/") else base) + sep + frag + m.group(3)
+        new = _LESSON.sub(lesson, new)
+    rx = _full_regex(layer)
+    if rx:
+        new = rx.sub(lambda m: map_path(layer, m.group(1)), new)
+    return new
+
+
+def english_source(rel, root=ROOT):
+    """The pinned English text of the file with English key `rel` (None when the clone or file is missing). Tools that
+    segment a file read this, never the working file: the working file of an untranslated page is the English text
+    with its references already remapped, and segment ids are hashes of the English text."""
+    import subprocess
+    import inventory
+    cfg = inventory.read_config(root)
+    clone, sha = cfg.get("english_clone_path"), cfg.get("english_commit")
+    if not clone or not sha or not os.path.isdir(clone):
+        return None
+    r = subprocess.run(["git", "-C", clone, "show", "%s:%s" % (sha, rel)], capture_output=True)
+    return r.stdout.decode("utf-8") if r.returncode == 0 else None
 
 
 def locate(arg, root=ROOT, layer=None):
@@ -125,7 +239,7 @@ def load(root=ROOT, layout=None):
     """The layer of `root` (cached per root and layout). `layout` overrides the catalog switch (tests, proofs)."""
     key = (os.path.abspath(root), layout)
     if key not in _CACHE:
-        _CACHE[key] = PathLayer(read_map(root), layout or read_layout(root), root)
+        _CACHE[key] = PathLayer(read_map(root), layout or read_layout(root), root, read_dirs(root))
     return _CACHE[key]
 
 

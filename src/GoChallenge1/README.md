@@ -3,7 +3,7 @@ name: "Go"
 teaches: "un solo `for` de tres partes con un cuerpo vacío puede ejecutar todo el programa en Go."
 kind: port
 languages: [go]
-lesson: "languages/csharp-linq-xaml.md#the-one-statement-ports-same-trick-different-machinery"
+lesson: "lenguajes/csharp-linq-xaml.md#the-one-statement-ports-same-trick-different-machinery"
 loop-by: loop-statement
 evaluation: eager
 assurance: guaranteed

@@ -3,7 +3,7 @@ name: "Forth"
 teaches: "que un lenguaje de pila necesita un `begin ... until` y una tubería para ser un programa completo."
 kind: idiomatic
 languages: [forth]
-lesson: "languages/forth.md"
+lesson: "lenguajes/forth.md"
 loop-by: loop-statement
 evaluation: eager
 assurance: guaranteed

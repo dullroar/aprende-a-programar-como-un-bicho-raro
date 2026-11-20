@@ -2,7 +2,7 @@
 
 Entries: [`src/make-gnu`](../../src/make-gnu/README.md) and [`src/cmake`](../../src/cmake/README.md). Both are build tools asked to behave like programming languages, in different ways.
 
-For an advanced reading path with traces and experiments, see the [Make and CMake study guide](../study-guides/languages/make-and-cmake.md).
+For an advanced reading path with traces and experiments, see the [Make and CMake study guide](../guias-de-estudio/lenguajes/make-y-cmake.md).
 
 ## GNU Make
 
@@ -120,7 +120,7 @@ Never as a loop. But "a build system that regenerates its own inputs and restart
 <!-- BEGIN GENERATED program-flow:languages/make-cmake.md -->
 ## How each program runs
 
-Each picture below is the `## Program Flow` section of an entry's README, copied here by the build. It shows how that program makes the work happen: what the language, runtime or tool really does. [The introduction](../intro.md#what-the-challenge-does) shows what the challenge asks for and where entries differ.
+Each picture below is the `## Program Flow` section of an entry's README, copied here by the build. It shows how that program makes the work happen: what the language, runtime or tool really does. [The introduction](../introduccion.md#what-the-challenge-does) shows what the challenge asks for and where entries differ.
 
 ### Program flow of `cmake`
 
@@ -168,5 +168,5 @@ flowchart TD
 ## Computer science behind this page
 
 <!-- BEGIN GENERATED concepts:languages/make-cmake.md -->
-The computer-science ideas behind this page: [Register machines and counter machines](../cs/02-what-counts-as-a-machine.md#register-machines-and-counter-machines), [Turing completeness](../cs/02-what-counts-as-a-machine.md#turing-completeness), [Control flow](../cs/03-control-flow-and-continuations.md#control-flow), [Fixed-point iteration](../cs/03-control-flow-and-continuations.md#fixed-point-iteration), [Regular expressions](../cs/05-formal-languages-as-computational-substrates.md#regular-expressions), [Declarative programming](../cs/05-formal-languages-as-computational-substrates.md#declarative-programming), [Domain-specific languages](../cs/05-formal-languages-as-computational-substrates.md#domain-specific-languages), [Build automation](../cs/05-formal-languages-as-computational-substrates.md#build-automation), [State](../cs/06-state-beyond-variables.md#state), [Dependency graphs](../cs/06-state-beyond-variables.md#dependency-graphs), [Hyrum's law](../cs/08-abstraction-leaks-and-implementation-dependence.md#hyrums-law).
+The computer-science ideas behind this page: [Register machines and counter machines](../informatica/02-que-cuenta-como-maquina.md#register-machines-and-counter-machines), [Turing completeness](../informatica/02-que-cuenta-como-maquina.md#turing-completeness), [Control flow](../informatica/03-flujo-de-control-y-continuaciones.md#control-flow), [Fixed-point iteration](../informatica/03-flujo-de-control-y-continuaciones.md#fixed-point-iteration), [Regular expressions](../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#regular-expressions), [Declarative programming](../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#declarative-programming), [Domain-specific languages](../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#domain-specific-languages), [Build automation](../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#build-automation), [State](../informatica/06-estado-mas-alla-de-las-variables.md#state), [Dependency graphs](../informatica/06-estado-mas-alla-de-las-variables.md#dependency-graphs), [Hyrum's law](../informatica/08-fugas-de-abstraccion-y-dependencia-de-la-implementacion.md#hyrums-law).
 <!-- END GENERATED concepts:languages/make-cmake.md -->

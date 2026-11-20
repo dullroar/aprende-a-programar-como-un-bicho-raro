@@ -92,11 +92,11 @@ Pair each weird program with the small, idiomatic version of the same behavior (
 
 ## Three ways in
 
-- **By computer science concept**, if you want the theory first: [cs/](cs/README.md). Each idea gets a short explanation of why it exists, why people use it, when it fits and when it does not, with links to Wikipedia and other long-lived, freely reusable sources.
-- **By language**, if you want to deepen the one you use: [languages/](languages/README.md).
-- **By mechanism**, if you want to explore an unfamiliar way of computing: [patterns](patterns.md). A reader who arrives for C# may meet Haskell's laziness and realize both raise the same question: *when does the computation actually run?* One who arrives for COBOL's `ALTER` meets Make's restart machinery and CMake's regex registers, which are other ways of keeping control state outside ordinary variables. That cross-pollination is the point.
+- **By computer science concept**, if you want the theory first: [cs/](informatica/README.md). Each idea gets a short explanation of why it exists, why people use it, when it fits and when it does not, with links to Wikipedia and other long-lived, freely reusable sources.
+- **By language**, if you want to deepen the one you use: [languages/](lenguajes/README.md).
+- **By mechanism**, if you want to explore an unfamiliar way of computing: [patterns](patrones.md). A reader who arrives for C# may meet Haskell's laziness and realize both raise the same question: *when does the computation actually run?* One who arrives for COBOL's `ALTER` meets Make's restart machinery and CMake's regex registers, which are other ways of keeping control state outside ordinary variables. That cross-pollination is the point.
 
-Then see [goals](goals.md), what was [overcome](problems-overcome.md), what is still [blocked](blocking-problems.md) and the [exercises](exercises.md).
+Then see [goals](objetivos.md), what was [overcome](problemas-superados.md), what is still [blocked](problemas-bloqueantes.md) and the [exercises](exercises.md).
 
 ## A word of caution
 

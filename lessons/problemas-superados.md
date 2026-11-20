@@ -134,4 +134,4 @@ A stunt is only a lesson if you can tell when it fails, and if a test can try to
 - **The host is allowed to be small, not absent.** Many entries need a little help (seed the random digits, create a directory, print the rows). The honest fine print in each README says exactly how much.
 - **Bugs in these entries are instructive.** The off-by-one in APL's rewrite, the lazy `let` in Haskell, the coarse timestamps in Make and the misleading `-1` in PCRE2 are the best material in the repo.
 
-What is *still* stuck: [blocking problems](blocking-problems.md).
+What is *still* stuck: [blocking problems](problemas-bloqueantes.md).

@@ -1,5 +1,5 @@
 <!--
-  Title page of the curriculum. Plain HTML on purpose, like lessons/front-matter.md: the build inserts it verbatim before the
+  Title page of the curriculum. Plain HTML on purpose, like lessons/preliminares.md: the build inserts it verbatim before the
   table of contents (Pandoc front matter), and the book's CSS (lessons/book/book.css) gives it its own sheet. It is not a chapter.
   The curriculum is short, so the copyright notice sits on the title page and the full MIT text stays in LICENSE.
 -->

@@ -3,7 +3,7 @@ name: "Ex"
 teaches: "that an editor's registers can hold a program: a line of text is copied into a register and run with @, and the editor's own marks and line addresses do the arithmetic."
 kind: weird
 languages: [ex, sqlite]
-lesson: "languages/editors.md#a-program-you-can-edit"
+lesson: "lenguajes/editores.md#a-program-you-can-edit"
 loop-by: self-modifying-control
 evaluation: eager
 assurance: implementation-permitted
@@ -177,4 +177,4 @@ Normally you use Ex by typing a command and looking at the result: you move arou
 
 ---
 
-See the [root README](../../README.md#the-results-so-far) for how this compares to the other entries, and [`CHALLENGE.md`](../../CHALLENGE.md) if you want to write your own.
+See the [root README](../../README.md#the-results-so-far) for how this compares to the other entries, and [`RETO.md`](../../RETO.md) if you want to write your own.

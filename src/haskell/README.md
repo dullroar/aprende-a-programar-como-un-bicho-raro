@@ -3,7 +3,7 @@ name: "Haskell"
 teaches: "that a lazy list and one `span` are the whole stop rule."
 kind: idiomatic
 languages: [haskell]
-lesson: "languages/haskell.md"
+lesson: "lenguajes/haskell.md"
 loop-by: lazy-demand
 evaluation: lazy
 assurance: guaranteed

@@ -3,7 +3,7 @@ name: "GNU find"
 teaches: "that the GNU extras to find (path depth, file times, regular expressions and a built-in profiler) can replace a whole table of branches, and that find's optimizer has nothing to reorder when every branch ends in a side effect."
 kind: weird
 languages: [find, sqlite]
-lesson: "languages/find.md"
+lesson: "lenguajes/find.md"
 loop-by: self-modifying-control
 evaluation: declarative
 assurance: accidentally-exploited
@@ -129,4 +129,4 @@ At every level it also forces the dice with a fake `mktemp` first on `PATH`: sev
 
 ---
 
-See the [root README](../../README.md#the-results-so-far) for how this compares to the other entries, and [`CHALLENGE.md`](../../CHALLENGE.md) if you want to write your own.
+See the [root README](../../README.md#the-results-so-far) for how this compares to the other entries, and [`RETO.md`](../../RETO.md) if you want to write your own.

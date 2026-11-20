@@ -3,7 +3,7 @@ name: "pcre2grep"
 teaches: "that program exit codes can steer control flow."
 kind: weird
 languages: [pcre2, regex]
-lesson: "languages/regex.md#pcre2grep-exit-codes-as-control-flow"
+lesson: "lenguajes/regex.md#pcre2grep-exit-codes-as-control-flow"
 loop-by: backtracking-search
 evaluation: search
 assurance: implementation-permitted
@@ -123,4 +123,4 @@ The exit code is the whole trick. SQLite's `random()` and arithmetic live in the
 
 ---
 
-See the [root README](../../README.md#the-results-so-far) for how this compares to the other regex entries, and [`CHALLENGE.md`](../../CHALLENGE.md) if you want to write your own.
+See the [root README](../../README.md#the-results-so-far) for how this compares to the other regex entries, and [`RETO.md`](../../RETO.md) if you want to write your own.

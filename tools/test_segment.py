@@ -9,6 +9,7 @@ from contextlib import redirect_stdout
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
+import enpath  # noqa: E402
 import mask  # noqa: E402
 import segment  # noqa: E402
 
@@ -49,7 +50,7 @@ class T0AllFiles(unittest.TestCase):
         self.assertGreaterEqual(len(files), 200)  # the pinned English tree has 212
         bad = {}
         for p in files:
-            probs = segment.check_roundtrip(segment.read_raw(os.path.join(ROOT, p)), p)
+            probs = segment.check_roundtrip(segment.read_raw(enpath.load(ROOT).full(p)), p)
             if probs:
                 bad[p] = probs
         self.assertEqual(bad, {})

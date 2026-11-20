@@ -193,18 +193,29 @@ def check_lock(root, full=False):
     return out
 
 
-def check_file(rel, en_text, es_text, po, ctx, release, cat=None):
+def layout_remap(rel, root=ROOT):
+    """The `remap` argument of check_file for the file with English key `rel` in the checkout `root`."""
+    import enpath
+    layer = enpath.load(root)
+    return lambda text: enpath.remap_text(text, rel, layer)
+
+
+def check_file(rel, en_text, es_text, po, ctx, release, cat=None, remap=None):
     """One authored file: its PO (or none) and the finished file against the English source.
-    `po` is a polib POFile or None. Returns problem strings."""
+    `po` is a polib POFile or None. `remap` (enpath.remap_text bound to the layer) writes the English text's references
+    to renamed paths in the checkout's layout; the file is compared with that form, the PO and ids with the original.
+    Returns problem strings."""
     import apply as apply_mod
     import invariants
     out = []
     if en_text is None:
         return ["I1 %s: no English source at the pinned commit (stale PO or wrong path)" % rel]
+    remap = remap or (lambda t: t)
+    en_view = remap(en_text)                    # the English text as it reads in this layout
     if po is None:
         if release:
             out.append("I16 %s: no PO file; the file is not translated" % rel)
-        if es_text is not None and es_text != en_text:
+        if es_text is not None and es_text != en_view:
             out.append("I16 %s: the file differs from the English source but has no PO file (hand edit)" % rel)
     else:
         found = invariants.check_po(en_text, po, rel, ctx)
@@ -217,10 +228,10 @@ def check_file(rel, en_text, es_text, po, ctx, release, cat=None):
             except (apply_mod.ApplyError, ValueError) as e:
                 out.append("I16 %s: PO cannot be applied: %s" % (rel, e))
             else:
-                if applied != es_text:
+                if remap(applied) != es_text:
                     out.append("I16 %s: the file is not the PO applied to the English source (stale or hand-edited)" % rel)
     if es_text is not None:
-        out += [fmt(f) for f in invariants.check_files(en_text, es_text, rel, ctx)]
+        out += [fmt(f) for f in invariants.check_files(en_view, es_text, rel, ctx)]
         for p in apply_mod.identity_check(en_text, rel) if release else []:
             out.append("I1 %s: %s" % (rel, p))
     return out
@@ -364,7 +375,8 @@ class Env:
             return []                                           # deleted, nothing left to check
         if es is None:
             return ["I16 %s: PO file exists but the Markdown file does not" % rel]
-        return check_file(rel, english_text(self.cfg, rel), es, po, self.ctx, release, self.cat)
+        return check_file(rel, english_text(self.cfg, rel), es, po, self.ctx, release, self.cat,
+                          layout_remap(rel, self.root))
 
     def tooling_problems(self, rels, allowlist):
         def es_of(r):

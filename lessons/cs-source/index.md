@@ -4,4 +4,4 @@ The ideas are grouped into eight groups that build on each other, from "what is 
 
 Links in each concept go to Wikipedia first. Other links go only to sources that are old, stable and free to reuse, such as IETF RFCs, OWASP and MDN. If you want to add to the book, tag your own entry: see [`CONTRIBUTING.md`](../../CONTRIBUTING.md).
 
-The next two parts read the same material from other directions: [By language](../languages/README.md) follows each language in turn, and [By solution patterns](../patterns.md) follows the mechanisms.
+The next two parts read the same material from other directions: [By language](../lenguajes/README.md) follows each language in turn, and [By solution patterns](../patrones.md) follows the mechanisms.

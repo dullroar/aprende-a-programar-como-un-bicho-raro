@@ -3,7 +3,7 @@ name: "Tcl"
 teaches: "that idiomatic Tcl uses procedures in a namespace, dicts for records, braced `expr` and `db eval` to bind Tcl variables into SQL."
 kind: idiomatic
 languages: [tcl]
-lesson: "languages/tcl.md"
+lesson: "lenguajes/tcl.md"
 loop-by: loop-statement
 evaluation: eager
 assurance: implementation-permitted

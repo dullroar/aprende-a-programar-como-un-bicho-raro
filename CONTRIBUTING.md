@@ -32,7 +32,7 @@ name: "Forth"
 teaches: "that a stack language needs one `begin ... until` and a pipe to be a whole program."
 kind: idiomatic
 languages: [forth]
-lesson: "languages/forth.md"
+lesson: "lenguajes/forth.md"
 loop-by: loop-statement
 evaluation: eager
 assurance: guaranteed
@@ -48,9 +48,9 @@ tags: [control-flow, stack-data-structure, stack-machine, transaction]
 | `kind` | yes | `idiomatic` (the ordinary way), `weird` (the stunt), or `port` (the same stunt in another language). |
 | `languages` | yes | A list of language ids, in lowercase, from [`lessons/cs-source/languages.txt`](lessons/cs-source/languages.txt): `[forth]`, `[c-sharp, linq]`. List every language the entry is written in or runs on (the host language, the query language, the regex flavor). The book's language index and tables are built from this. If yours is missing, use the nearest id and say so in your pull request. |
 | `lesson` | yes | The lesson page that covers it, relative to `lessons/`, with an optional `#anchor`: `"languages/forth.md"`. If there is no page for your language yet, use the closest one. A maintainer fixes it when they add yours. |
-| `loop-by` | yes | What plays the loop in your entry. Pick one file name from [`lessons/cs-source/roles/`](lessons/cs-source/roles/): for example `loop-statement`, `lazy-demand`, `rewrite-and-rescan`, `self-modifying-control`, `backtracking-search`, `dispatch-and-triggers`, `input-driven`, `document-order`, `bulk-array`. The [comparative chapter](lessons/cs/09-comparative-case-studies.md) shows what each one means. |
+| `loop-by` | yes | What plays the loop in your entry. Pick one file name from [`lessons/cs-source/roles/`](lessons/cs-source/roles/): for example `loop-statement`, `lazy-demand`, `rewrite-and-rescan`, `self-modifying-control`, `backtracking-search`, `dispatch-and-triggers`, `input-driven`, `document-order`, `bulk-array`. The [comparative chapter](lessons/informatica/09-casos-de-estudio-comparativos.md) shows what each one means. |
 | `evaluation` | yes | The strategy that drives the main computation: `eager`, `lazy`, `deferred`, `rewriting`, `search` or `declarative`. Describe embedded operations separately. |
-| `assurance` | yes | The *weakest necessary dependency* of the trick: `guaranteed` (a named specification or API documents the behavior), `implementation-permitted` (a particular implementation allows it) or `accidentally-exploited` (the trick requires an unpromised behavior). Explain what supports each individual claim, including the scope of a documented API guarantee. The [intro](lessons/intro.md#three-kinds-of-knowledge) explains the three. |
+| `assurance` | yes | The *weakest necessary dependency* of the trick: `guaranteed` (a named specification or API documents the behavior), `implementation-permitted` (a particular implementation allows it) or `accidentally-exploited` (the trick requires an unpromised behavior). Explain what supports each individual claim, including the scope of a documented API guarantee. The [intro](lessons/introduccion.md#three-kinds-of-knowledge) explains the three. |
 | `tags` | yes | A list of computer-science concepts. See below. |
 | `pairs-with` | no | Your closest sibling entry: the ordinary version of a weird one, or the other way round. |
 | `analogies`, `counterexamples` | no | Concept ids (the same vocabulary as `tags`). Use `tags` only for ideas your entry **demonstrates**. Use `analogies` for an idea your entry *resembles* without being an instance of it (a Kotlin `generateSequence` is not a coroutine, but it is a cousin). Use `counterexamples` for an idea your entry shows by *not* being it (a closure is not a continuation). An entry can relate to a concept in only one of the three ways. The concept's "In this repo" table says which. |
@@ -62,7 +62,7 @@ The block is a small, strict subset of YAML, so no parser library is needed: `ke
 
 Tags connect your entry to the book's concepts: control flow, lazy evaluation, backtracking, homoiconicity, transactions, and so on. **Use as many as honestly apply.** A rule of thumb: if you had to understand an idea to write the entry, or if the entry makes a good example of it, tag it.
 
-- The vocabulary is the list of file names in [`lessons/cs-source/concepts/`](lessons/cs-source/concepts/). The [concept index](lessons/cs/README.md#concept-index) shows each tag with its chapter and the entries that already use it. Your sibling entries are the best examples.
+- The vocabulary is the list of file names in [`lessons/cs-source/concepts/`](lessons/cs-source/concepts/). The [concept index](lessons/informatica/README.md#concept-index) shows each tag with its chapter and the entries that already use it. Your sibling entries are the best examples.
 - Spell a tag exactly like its file name, without `.md`: `reflection-and-metaprogramming`.
 - **Do not edit `lessons/`.** If you need a concept that does not exist, use the nearest tag and say in your pull request which concept is missing. A maintainer decides whether to add it. `scope-check.sh` only prints a note for an unknown tag, but the book build fails until a maintainer adds the concept or fixes the tag.
 - Languages work the same way, with one list: [`lessons/cs-source/languages.txt`](lessons/cs-source/languages.txt). A *language* says what the entry is written in or runs on. A *tag* says which computer-science idea it shows. The book's **Index** (the last chapter) is built from both, so an entry with the right languages and tags shows up everywhere a reader would look for it.
@@ -119,7 +119,7 @@ flowchart TD
 
 ### 4. Voice and tone
 
-Follow the [house style](house-style.md) for README prose, lesson text and study guides. Give readers a concrete example and keep the explanation clear for readers who use a translator.
+Follow the [house style](guia-de-estilo.md) for README prose, lesson text and study guides. Give readers a concrete example and keep the explanation clear for readers who use a translator.
 
 ### 5. Check it before you send it
 

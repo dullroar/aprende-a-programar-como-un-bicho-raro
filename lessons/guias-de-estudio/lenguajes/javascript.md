@@ -13,7 +13,7 @@ When you finish, you should be able to:
 5. Trace all three programs through the same three cards.
 6. Label each behavior as guaranteed, implementation-permitted or accidentally exploited.
 
-**Scope limits.** You need to read modern JavaScript: arrow functions, object literals, spread and the comma operator. The guide does not teach SQLite or the terminal pulse. It uses Node.js 24 with built-in `node:sqlite` and iterator helpers. The language page is [JavaScript](../../languages/javascript.md). For events in general, see the chapter [Events, callbacks and reactive control flow](../../cs/10-events-callbacks-and-reactive-control-flow.md).
+**Scope limits.** You need to read modern JavaScript: arrow functions, object literals, spread and the comma operator. The guide does not teach SQLite or the terminal pulse. It uses Node.js 24 with built-in `node:sqlite` and iterator helpers. The language page is [JavaScript](../../lenguajes/javascript.md). For events in general, see the chapter [Events, callbacks and reactive control flow](../../informatica/10-eventos-retrollamadas-y-flujo-de-control-reactivo.md).
 
 ## Before you begin
 
@@ -41,7 +41,7 @@ Edit only copies ([Running things safely](../../exercises.md#running-things-safe
 
 ## The shared challenge
 
-The [challenge specification](../../intro.md#what-the-challenge-does) calls for cards with a category and 10 to 19 whole hours. Categories cycle through Meetings, Coding, Debugging and Learning. Add each card's hours to the running total. Stop when the total passes 40. Keep the **first card that takes the total over 40**. A total of exactly 40 continues. Four 10-hour cards need a fifth card, in the Meetings category. Conforming runs finish with 3 to 5 cards and a total of 41 to 59 hours.
+The [challenge specification](../../introduccion.md#what-the-challenge-does) calls for cards with a category and 10 to 19 whole hours. Categories cycle through Meetings, Coding, Debugging and Learning. Add each card's hours to the running total. Stop when the total passes 40. Keep the **first card that takes the total over 40**. A total of exactly 40 continues. Four 10-hour cards need a fifth card, in the Meetings category. Conforming runs finish with 3 to 5 cards and a total of 41 to 59 hours.
 
 All three stop on the first crossing and print a summary, but their SQLite write boundaries differ. The first two insert as they go. The events version wraps the run in one transaction. Each style writes the stop test differently. In the `for`, the condition is `reduce(...) <= 40 ? true : (...show the result..., false)`: `<= 40` is true for 40, so the loop repeats ([L54](../../../src/javascript/timecards.mjs#L54)). In the weird program, `over = total > 40` is false for 40, so the machine keeps answering ([core.mjs L14](../../../src/javascript-weird/core.mjs#L14)). In the events program, `total > limit` is false for 40, so the next card is scheduled ([L115](../../../src/javascript-events/timecards.mjs#L115)).
 
@@ -49,7 +49,7 @@ All three stop on the first crossing and print a summary, but their SQLite write
 
 **What repeats.** In `javascript`, a `for` statement with an empty body: the *header's* three clauses repeat ([L10-67](../../../src/javascript/timecards.mjs#L10-L67)). In `javascript-weird`, a consumer asking an iterator for the next card, over and over: `.toArray()` ([L30](../../../src/javascript-weird/timecards.mjs#L30)). In `javascript-events`, a cycle of events: `generate` leads to `card-created`, `card-saved` and `total-updated`, and `total-updated` schedules the next `generate`.
 
-**Evaluation.** The three original entries seed via the global Web Crypto `crypto.getRandomValues` when `SEED` is absent. In the bodiless `for`, `reduce` sums the array immediately on every condition check. The [C# header](csharp-linq-xaml-and-ports.md) does the same work with `Sum()`, even though its inner LINQ projection is deferred until `Sum()` enumerates it. The pull iterator below uses a different driver.
+**Evaluation.** The three original entries seed via the global Web Crypto `crypto.getRandomValues` when `SEED` is absent. In the bodiless `for`, `reduce` sums the array immediately on every condition check. The [C# header](csharp-linq-xaml-y-adaptaciones.md) does the same work with `Sum()`, even though its inner LINQ projection is deferred until `Sum()` enumerates it. The pull iterator below uses a different driver.
 
 **Where state lives.** In `javascript`, the properties of one object literal that the `for` initializer builds: hours so far, the database, the random closure and the clock. In `javascript-weird`, three closures: a source of hours over one number, a card machine over `n`, `total` and `over` and an iterator wrapper. None of that state can be reached except by calling the function ([core.mjs](../../../src/javascript-weird/core.mjs)). In `javascript-events`, an object `s` (`n`, `total`, `db`, ...) shared by the listeners, plus the registrations on the emitter itself.
 
@@ -244,11 +244,11 @@ No JavaScript behavior here is merely accidentally exploited. The closest is tha
 
 ## Connections across the repository
 
-- **The same question as Haskell and LINQ.** Pull iteration in `javascript-weird` is the JavaScript form of [Haskell](haskell.md)'s lazy list and the deferred pipelines of [C#, LINQ, XAML and ports](csharp-linq-xaml-and-ports.md). The concept guide [Evaluation, demand and laziness](../concepts/evaluation-demand-and-laziness.md) puts them side by side.
+- **The same question as Haskell and LINQ.** Pull iteration in `javascript-weird` is the JavaScript form of [Haskell](haskell.md)'s lazy list and the deferred pipelines of [C#, LINQ, XAML and ports](csharp-linq-xaml-y-adaptaciones.md). The concept guide [Evaluation, demand and laziness](../conceptos/evaluacion-demanda-y-pereza.md) puts them side by side.
 - **The `for` header as the whole program.** Four other ports (C#, Java, Go and Kotlin) use the same bodiless-`for` shape. See the comparison in the C# guide.
-- **Turn boundaries and reentrancy.** [Events, callbacks and reactive control](../concepts/events-callbacks-and-reactive-control.md) generalizes B22. [XAML and thread affinity](csharp-linq-xaml-and-ports.md) is a related hazard: *where* a callback runs matters.
-- **Callbacks in other entries.** The PCRE2 callouts in [Regex engines and sed](regex-engines-and-sed.md) and the checkpoint actions in [tar](tar.md) are synchronous callbacks too, but the engine calls them, not an event loop.
-- **In the book.** [JavaScript](../../languages/javascript.md), [Iterators and generators](../../cs/04-evaluation-and-demand.md#iterators-and-generators), [Closures and lexical environments](../../cs/06-state-beyond-variables.md#closures-and-lexical-environments), [Callbacks](../../cs/10-events-callbacks-and-reactive-control-flow.md#callbacks) and [The event loop and scheduling turns](../../cs/10-events-callbacks-and-reactive-control-flow.md#the-event-loop-and-scheduling-turns).
+- **Turn boundaries and reentrancy.** [Events, callbacks and reactive control](../conceptos/eventos-retrollamadas-y-control-reactivo.md) generalizes B22. [XAML and thread affinity](csharp-linq-xaml-y-adaptaciones.md) is a related hazard: *where* a callback runs matters.
+- **Callbacks in other entries.** The PCRE2 callouts in [Regex engines and sed](motores-de-regex-y-sed.md) and the checkpoint actions in [tar](tar.md) are synchronous callbacks too, but the engine calls them, not an event loop.
+- **In the book.** [JavaScript](../../lenguajes/javascript.md), [Iterators and generators](../../informatica/04-evaluacion-y-demanda.md#iterators-and-generators), [Closures and lexical environments](../../informatica/06-estado-mas-alla-de-las-variables.md#closures-and-lexical-environments), [Callbacks](../../informatica/10-eventos-retrollamadas-y-flujo-de-control-reactivo.md#callbacks) and [The event loop and scheduling turns](../../informatica/10-eventos-retrollamadas-y-flujo-de-control-reactivo.md#the-event-loop-and-scheduling-turns).
 
 ## Self-check
 

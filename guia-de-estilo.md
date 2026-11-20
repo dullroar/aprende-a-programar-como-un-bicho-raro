@@ -30,10 +30,10 @@ Use this guide for entry READMEs, *Learn Programming the Weird Way!* and its stu
 ## Study guides
 
 - Use Simplified Technical English for advanced readers. Prefer literal verbs, one idea per sentence and at most 25 words in a descriptive sentence. Use a list or table for a long series.
-- Follow the [guide template](lessons/study-guides/README.md#how-every-guide-works). Start "The shared challenge" with the standard specification paragraph. Put entry-specific details and exceptions in the next paragraph.
+- Follow the [guide template](lessons/guias-de-estudio/README.md#how-every-guide-works). Start "The shared challenge" with the standard specification paragraph. Put entry-specific details and exceptions in the next paragraph.
 - Start an Evidence question with a named speaker and a concrete claim. Use this pattern: A reviewer says, "The total stays at 40." Design a test that could fail.
 - Keep build commands and contributor notes in [the build guide](lessons/book/README.md#building-the-study-guides).
 
 ## Source and publication
 
-Edit entry README prose and metadata under `src/`, concept sources under `lessons/cs-source/` and the hand-written lesson or guide Markdown. Regenerate `lessons/cs/` and the marked generated blocks. The [build guide](lessons/book/README.md) has the commands for checking and rebuilding both volumes from those sources.
+Edit entry README prose and metadata under `src/`, concept sources under `lessons/cs-source/` and the hand-written lesson or guide Markdown. Regenerate `lessons/informatica/` and the marked generated blocks. The [build guide](lessons/book/README.md) has the commands for checking and rebuilding both volumes from those sources.

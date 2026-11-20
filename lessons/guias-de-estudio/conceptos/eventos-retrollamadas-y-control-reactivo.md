@@ -13,7 +13,7 @@ When you finish, you should be able to:
 5. Tell a real event from a look-alike (a window's own loop, a trigger, a callout).
 6. Label claims as guaranteed, implementation-permitted or accidentally exploited.
 
-**Scope limits.** The guide uses Node.js's `EventEmitter` as the main example and compares it with other callback mechanisms in the entries. It does not teach GUI frameworks, async/await or reactive libraries. Its source chapter is [Events, callbacks and reactive control flow](../../cs/10-events-callbacks-and-reactive-control-flow.md).
+**Scope limits.** The guide uses Node.js's `EventEmitter` as the main example and compares it with other callback mechanisms in the entries. It does not teach GUI frameworks, async/await or reactive libraries. Its source chapter is [Events, callbacks and reactive control flow](../../informatica/10-eventos-retrollamadas-y-flujo-de-control-reactivo.md).
 
 ## Before you begin
 
@@ -34,7 +34,7 @@ When you finish, you should be able to:
 
 ## The shared challenge
 
-The [challenge specification](../../intro.md#what-the-challenge-does) calls for cards with a category and 10 to 19 whole hours. Categories cycle through Meetings, Coding, Debugging and Learning. Add each card's hours to the running total. Stop when the total passes 40. Keep the **first card that takes the total over 40**. A total of exactly 40 continues. Four 10-hour cards need a fifth card, in the Meetings category. Conforming runs finish with 3 to 5 cards and a total of 41 to 59 hours.
+The [challenge specification](../../introduccion.md#what-the-challenge-does) calls for cards with a category and 10 to 19 whole hours. Categories cycle through Meetings, Coding, Debugging and Learning. Add each card's hours to the running total. Stop when the total passes 40. Keep the **first card that takes the total over 40**. A total of exactly 40 continues. Four 10-hour cards need a fifth card, in the Meetings category. Conforming runs finish with 3 to 5 cards and a total of 41 to 59 hours.
 
 In the events program the rule is one line: `total-updated` emits `finished` when `total > limit` (so 40 is not over), and otherwise schedules `generate` for a later turn. The category of card *n* is `(n - 1) % 4`, so a fifth card is Meetings again. The program takes a `world` object (`rng`, `schedule`, `open`, ...) so a test can inject its own.
 
@@ -151,18 +151,18 @@ emit generate
 - **The trap in the middle.** A synchronous emitter *looks* like events and behaves like recursion. It is correct for the sizes you test and fails at a size you do not.
 - **Throws have no caller.** A throw inside a scheduled callback would end the process. Each listener catches it and emits `failed`.
 - **Hidden order.** Listener order is registration order. Reordering registrations changes the program.
-- **Backpressure.** A push has no brake: a producer announces whether or not anyone is ready. The events program is self-paced (one card per turn), and the pull program lets the consumer set the pace. See [Backpressure](../../cs/10-events-callbacks-and-reactive-control-flow.md#backpressure).
+- **Backpressure.** A push has no brake: a producer announces whether or not anyone is ready. The events program is self-paced (one card per turn), and the pull program lets the consumer set the pace. See [Backpressure](../../informatica/10-eventos-retrollamadas-y-flujo-de-control-reactivo.md#backpressure).
 - **Look-alikes.** A window's own loop (`Application.Run`, Tk, GTK) pumps a dispatcher, but nothing in the logic subscribes to anything. The XAML `Loaded` trigger only starts an animation. These are counterexamples in the book, not events.
 - **Where this is legitimate.** User interfaces, servers and pipelines are event-driven. Making a card generator out of an emitter is a stunt that shows how.
 
 ## Connections across the repository
 
-- **The JavaScript guide.** [JavaScript](../languages/javascript.md) traces all three styles. This guide generalizes B22.
-- **Callbacks that the engine owns.** [Regex engines and sed](../languages/regex-engines-and-sed.md) (PCRE2 callouts) and [tar](../languages/tar.md) (checkpoints) are synchronous callbacks from a host, not an event loop.
-- **Triggers as reentrancy.** [Tcl](../languages/tcl.md) uses a recursive trigger as a loop.
-- **Thread affinity.** [C#, LINQ, XAML and ports](../languages/csharp-linq-xaml-and-ports.md) covers the dispatcher and the STA thread.
-- **Demand and state.** [Evaluation, demand and laziness](evaluation-demand-and-laziness.md) is the pull version of this question, and [State and control beyond variables](state-and-control-beyond-variables.md) asks where each step is stored.
-- **In the book.** [Event-driven programming](../../cs/10-events-callbacks-and-reactive-control-flow.md#event-driven-programming), [Callbacks](../../cs/10-events-callbacks-and-reactive-control-flow.md#callbacks), [Publish and subscribe](../../cs/10-events-callbacks-and-reactive-control-flow.md#publish-and-subscribe), [The event loop and scheduling turns](../../cs/10-events-callbacks-and-reactive-control-flow.md#the-event-loop-and-scheduling-turns) and [Backpressure](../../cs/10-events-callbacks-and-reactive-control-flow.md#backpressure).
+- **The JavaScript guide.** [JavaScript](../lenguajes/javascript.md) traces all three styles. This guide generalizes B22.
+- **Callbacks that the engine owns.** [Regex engines and sed](../lenguajes/motores-de-regex-y-sed.md) (PCRE2 callouts) and [tar](../lenguajes/tar.md) (checkpoints) are synchronous callbacks from a host, not an event loop.
+- **Triggers as reentrancy.** [Tcl](../lenguajes/tcl.md) uses a recursive trigger as a loop.
+- **Thread affinity.** [C#, LINQ, XAML and ports](../lenguajes/csharp-linq-xaml-y-adaptaciones.md) covers the dispatcher and the STA thread.
+- **Demand and state.** [Evaluation, demand and laziness](evaluacion-demanda-y-pereza.md) is the pull version of this question, and [State and control beyond variables](estado-y-control-mas-alla-de-las-variables.md) asks where each step is stored.
+- **In the book.** [Event-driven programming](../../informatica/10-eventos-retrollamadas-y-flujo-de-control-reactivo.md#event-driven-programming), [Callbacks](../../informatica/10-eventos-retrollamadas-y-flujo-de-control-reactivo.md#callbacks), [Publish and subscribe](../../informatica/10-eventos-retrollamadas-y-flujo-de-control-reactivo.md#publish-and-subscribe), [The event loop and scheduling turns](../../informatica/10-eventos-retrollamadas-y-flujo-de-control-reactivo.md#the-event-loop-and-scheduling-turns) and [Backpressure](../../informatica/10-eventos-retrollamadas-y-flujo-de-control-reactivo.md#backpressure).
 
 ## Self-check
 

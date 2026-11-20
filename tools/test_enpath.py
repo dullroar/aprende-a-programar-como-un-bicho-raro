@@ -390,5 +390,97 @@ class Tools(unittest.TestCase):
         self.assertIn("docs/curriculum.md ->", out.getvalue())
 
 
+class RemapText(unittest.TestCase):
+    """enpath.remap_text: the English text with every reference to a renamed path in the layout of the checkout (P3B-005)."""
+
+    def layer(self, layout="spanish"):
+        enpath._CACHE.clear()
+        return enpath.PathLayer(MAP_REMAP, layout, ROOT, DIRS_REMAP)
+
+    def remap(self, text, key, layout="spanish"):
+        return enpath.remap_text(text, key, self.layer(layout))
+
+    def test_a_link_from_a_moved_file_to_a_moved_file(self):
+        got = self.remap("[g](../cs/01-x.md#a)", "lessons/languages/forth.md")
+        self.assertEqual(got, "[g](../informatica/01-equis.md#a)")
+
+    def test_a_link_from_a_kept_file_to_a_renamed_one(self):
+        self.assertEqual(self.remap("[c](docs/curriculum.md)", "README.md"), "[c](docs/plan-de-estudios.md)")
+
+    def test_a_link_to_a_kept_file_is_not_touched(self):
+        text = "[r](../../src/forth/README.md#program-flow) and [x](https://example.org/lessons/cs/) and [h](#top)"
+        self.assertEqual(self.remap(text, "lessons/study-guides/languages/forth.md"), text)
+
+    def test_depth_changes_follow_the_move(self):
+        # the guide moves from lessons/study-guides/languages/ to lessons/guias-de-estudio/lenguajes/ (same depth)
+        got = self.remap("[i](../../intro.md#x)", "lessons/study-guides/languages/forth.md")
+        self.assertEqual(got, "[i](../../introduccion.md#x)")
+
+    def test_cs_source_bodies_are_written_for_the_generated_chapter_pages(self):
+        got = self.remap("[g](../study-guides/concepts/a.md) [i](../intro.md)", "lessons/cs-source/chapters/01-x.md")
+        self.assertEqual(got, "[g](../guias-de-estudio/conceptos/a.md) [i](../introduccion.md)")
+
+    def test_lesson_front_matter_is_relative_to_lessons(self):
+        got = self.remap('---\nlesson: "languages/apl.md#x"\n---\n', "src/apl/README.md")
+        self.assertIn('lesson: "lenguajes/apl.md#x"', got)
+
+    def test_full_repository_paths_in_prose_and_code_spans(self):
+        got = self.remap("Run `python lessons/study-guides/build.py --check` and read CHALLENGE.md at docs/curriculum.md.", "CONTRIBUTING.md")
+        self.assertEqual(got, "Run `python lessons/guias-de-estudio/build.py --check` and read RETO.md at docs/plan-de-estudios.md.")
+
+    def test_a_longer_name_that_merely_starts_like_a_folder_is_not_touched(self):
+        text = "see lessons/cs-source/chapters/ and lessons/cs.md"
+        self.assertEqual(self.remap(text, "CONTRIBUTING.md"), text)
+
+    def test_the_english_layout_is_the_identity(self):
+        text = "[g](../cs/01-x.md) lessons/cs/ docs/curriculum.md"
+        self.assertEqual(self.remap(text, "lessons/languages/forth.md", "english"), text)
+
+    def test_a_wrong_remap_would_be_caught(self):
+        # negative: the result is not the input, and a hand edit to a different name is not what the function produces
+        got = self.remap("[c](docs/curriculum.md)", "README.md")
+        self.assertNotEqual(got, "[c](docs/curriculum.md)")
+        self.assertNotEqual(got, "[c](docs/plan.md)")
+
+
+class SourceText(unittest.TestCase):
+    def test_a_file_with_no_pinned_english_text_is_read_as_it_is(self):
+        os.makedirs(WORK, exist_ok=True)
+        with tempfile.TemporaryDirectory(dir=WORK) as d:
+            path = os.path.join(d, "x.md")
+            with open(path, "w", encoding="utf-8", newline="") as f:
+                f.write("# Hello\n")
+            self.assertEqual(ap.source_text(path, path), "# Hello\n")
+
+    def test_an_untranslated_page_is_segmented_from_the_pinned_text_so_the_ids_match(self):
+        key = "lessons/goals.md"
+        en = enpath.english_source(key, ROOT)
+        if en is None:
+            self.skipTest("no English clone here")
+        work = segment.read_raw(enpath.load(ROOT).full(key))
+        ids = lambda t: [b.id for b in segment.Segmentation(t, key).segments()]
+        self.assertEqual(ids(ap.source_text(key, enpath.load(ROOT).full(key))), ids(en))
+        if enpath.load(ROOT).moved:
+            self.assertNotEqual(ids(work), ids(en))      # why the pinned text is needed: the working file's ids differ
+
+
+MAP_REMAP = {
+    "CHALLENGE.md": "RETO.md",
+    "docs/curriculum.md": "docs/plan-de-estudios.md",
+    "lessons/intro.md": "lessons/introduccion.md",
+    "lessons/cs/01-x.md": "lessons/informatica/01-equis.md",
+    "lessons/study-guides/concepts/a.md": "lessons/guias-de-estudio/conceptos/a.md",
+    "lessons/study-guides/build.py": "lessons/guias-de-estudio/build.py",
+    "lessons/study-guides/languages/forth.md": "lessons/guias-de-estudio/lenguajes/forth.md",
+    "lessons/languages/forth.md": "lessons/lenguajes/forth.md",
+    "lessons/languages/apl.md": "lessons/lenguajes/apl.md",
+    "README.md": "README.md",
+}
+DIRS_REMAP = {"lessons/cs": "lessons/informatica", "lessons/languages": "lessons/lenguajes",
+              "lessons/study-guides": "lessons/guias-de-estudio",
+              "lessons/study-guides/concepts": "lessons/guias-de-estudio/conceptos",
+              "lessons/study-guides/languages": "lessons/guias-de-estudio/lenguajes"}
+
+
 if __name__ == "__main__":
     unittest.main()

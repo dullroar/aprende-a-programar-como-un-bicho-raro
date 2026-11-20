@@ -12,7 +12,8 @@ import polib
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 sys.path.insert(0, os.path.join(os.path.dirname(HERE), "lessons", "book", "locale"))
-import apply as ap  # noqa: E402
+import apply as ap
+import enpath  # noqa: E402
 import catalog  # noqa: E402
 import segment  # noqa: E402
 
@@ -60,7 +61,7 @@ class Identity(unittest.TestCase):
         self.assertGreaterEqual(len(files), 200)
         bad = {}
         for p in files:
-            probs = ap.identity_check(segment.read_raw(os.path.join(ROOT, p)), p)
+            probs = ap.identity_check(segment.read_raw(enpath.load(ROOT).full(p)), p)      # `p` is the English key
             if probs:
                 bad[p] = probs
         self.assertEqual(bad, {})

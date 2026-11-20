@@ -2,7 +2,7 @@
 
 # Abstraction leaks and implementation dependence
 
-For an advanced reading path with traces and experiments, see the [portability, abstraction and cost study guide](../study-guides/concepts/portability-abstraction-and-cost.md).
+For an advanced reading path with traces and experiments, see the [portability, abstraction and cost study guide](../guias-de-estudio/conceptos/portabilidad-abstraccion-y-costo.md).
 
 Every abstraction hides something, and sooner or later the hidden thing shows. This chapter is about those moments. A language standard promises some things, allows others and ignores the rest. An optimizer may skip code that the language says nobody can see. A regex that is fast on every test can take a year on one bad input. A feature that nobody promised can still be the one that everybody uses.
 
@@ -155,7 +155,7 @@ ReDoS (regular-expression denial of service) is an attack that sends an input on
 
 A result is **reproducible** if the same inputs give the same answer, every time and on every machine. A build is **deterministic** if the same sources give the same bytes. Both depend on writing down everything that is an input: the seed, the order of the items, the versions of the tools, the time. What you forget to write down is where the difference comes from.
 
-The book you are reading is built this way: every list is sorted, nothing reads the clock and the build date is fixed in a metadata file, so the same sources give the same bytes. The entries use the idea in four ways. [`tar-gnu`](../../src/tar-gnu/README.md) writes a tar archive in a fixed format with a fixed order, time and owner, so the same seed makes the same archive, byte for byte, which `cmp` checks. [`tar-gnu-weird`](../../src/tar-gnu-weird/README.md) makes a run a function of a seed and the archive's layout. [`javascript`](../../src/javascript/README.md) and [`javascript-weird`](../../src/javascript-weird/README.md) replay a run with `SEED=42`, because `Math.random` cannot be seeded and a small closure over a number can. Each one says what "the same" means: the bytes, the structure or the behavior (see [Serialization, deserialization and object pickling](06-state-beyond-variables.md#serialization-deserialization-and-object-pickling)).
+The book you are reading is built this way: every list is sorted, nothing reads the clock and the build date is fixed in a metadata file, so the same sources give the same bytes. The entries use the idea in four ways. [`tar-gnu`](../../src/tar-gnu/README.md) writes a tar archive in a fixed format with a fixed order, time and owner, so the same seed makes the same archive, byte for byte, which `cmp` checks. [`tar-gnu-weird`](../../src/tar-gnu-weird/README.md) makes a run a function of a seed and the archive's layout. [`javascript`](../../src/javascript/README.md) and [`javascript-weird`](../../src/javascript-weird/README.md) replay a run with `SEED=42`, because `Math.random` cannot be seeded and a small closure over a number can. Each one says what "the same" means: the bytes, the structure or the behavior (see [Serialization, deserialization and object pickling](06-estado-mas-alla-de-las-variables.md#serialization-deserialization-and-object-pickling)).
 
 - **Use it when:** you must debug, test or audit a result later. Make the inputs explicit, and record the seed.
 - **Avoid it when:** you confuse it with determinism of *everything*. A run is reproducible in the ways you named, and not in the ones you did not, such as the date in a week number near New Year.

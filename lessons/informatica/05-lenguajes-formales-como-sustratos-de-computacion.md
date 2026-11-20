@@ -2,7 +2,7 @@
 
 # Formal languages as computational substrates
 
-For an advanced reading path with traces and experiments, see the [formal languages and weird machines study guide](../study-guides/concepts/formal-languages-and-weird-machines.md).
+For an advanced reading path with traces and experiments, see the [formal languages and weird machines study guide](../guias-de-estudio/conceptos/lenguajes-formales-y-maquinas-raras.md).
 
 A formal language is a notation with strict rules that a machine can process. The recurring surprise of this repository is that a notation built for *one* job turns out to be a computer. Regular expressions were made to match text, and Perl, PCRE2 and .NET engines turn them into search machines, a stack and a counter. `sed` is a rewriting system. Make and CMake were made to order builds, and they became a restarting loop and a register machine. XAML was made to describe a user interface, and its parser runs methods.
 
@@ -29,10 +29,10 @@ In 1956 Noam Chomsky sorted formal languages into four classes by power: regular
 
 ## Regular expressions
 
-A regular expression is a compact pattern for a set of strings. Stephen Kleene described the idea in the 1950s. Ken Thompson put it into text editors, and from there it reached `grep`, `sed`, `awk` and every modern language. It exists because searching text is one of the most common jobs there is. Modern "regex" engines add features such as backreferences, lookaround and code callouts. Most of them work by *backtracking*: they try a path, and if it fails they go back and try another. That design makes the engine powerful, and it makes some patterns very slow. This repository uses five engines as five different computers. See [the regular-expression lesson](../languages/regex.md).
+A regular expression is a compact pattern for a set of strings. Stephen Kleene described the idea in the 1950s. Ken Thompson put it into text editors, and from there it reached `grep`, `sed`, `awk` and every modern language. It exists because searching text is one of the most common jobs there is. Modern "regex" engines add features such as backreferences, lookaround and code callouts. Most of them work by *backtracking*: they try a path, and if it fails they go back and try another. That design makes the engine powerful, and it makes some patterns very slow. This repository uses five engines as five different computers. See [the regular-expression lesson](../lenguajes/regex.md).
 
 - **Use it when:** you tokenize, validate a simple format or search logs.
-- **Avoid it when:** the data is nested, or when an attacker chooses the input and the engine backtracks (see [Regular-expression denial of service](08-abstraction-leaks-and-implementation-dependence.md#regular-expression-denial-of-service)).
+- **Avoid it when:** the data is nested, or when an attacker chooses the input and the engine backtracks (see [Regular-expression denial of service](08-fugas-de-abstraccion-y-dependencia-de-la-implementacion.md#regular-expression-denial-of-service)).
 
 **Read more:**
 
@@ -89,7 +89,7 @@ Rewriting means replacing parts of a structure according to rules, again and aga
 
 - [Rewriting](https://en.wikipedia.org/wiki/Rewriting) (Wikipedia)
 - [Confluence (abstract rewriting)](https://en.wikipedia.org/wiki/Confluence_(abstract_rewriting)) (Wikipedia)
-- [Markov algorithms](02-what-counts-as-a-machine.md#markov-algorithms) in "What counts as a machine?"
+- [Markov algorithms](02-que-cuenta-como-maquina.md#markov-algorithms) in "What counts as a machine?"
 
 **In this repo:**
 
@@ -218,7 +218,7 @@ flowchart TB
     class src changed
 ```
 
-The tool compares file dates along the arrows. `source.tc` is newer than `stage-1`, so `stage-1` is stale and is rebuilt. That makes it newer than `stage-2`, and so on down the chain. `config.mk` did not change, so it causes no work. The tool decides what to run and in what order. It does not pass values from step to step as [Dataflow programming](04-evaluation-and-demand.md#dataflow-programming) does. Some entries use this decision machinery as a loop: [`make-gnu`](../../src/make-gnu/README.md) remakes a generated makefile and then starts the walk again.
+The tool compares file dates along the arrows. `source.tc` is newer than `stage-1`, so `stage-1` is stale and is rebuilt. That makes it newer than `stage-2`, and so on down the chain. `config.mk` did not change, so it causes no work. The tool decides what to run and in what order. It does not pass values from step to step as [Dataflow programming](04-evaluacion-y-demanda.md#dataflow-programming) does. Some entries use this decision machinery as a loop: [`make-gnu`](../../src/make-gnu/README.md) remakes a generated makefile and then starts the walk again.
 
 - **Use it when:** you compile, package or generate files from other files.
 - **Avoid as a general computer.** Timestamps can be coarse (WSL and some file systems), and a build that depends on hidden state is not reproducible.
@@ -238,7 +238,7 @@ The tool compares file dates along the arrows. `source.tc` is newer than `stage-
 
 ## Language-theoretic security
 
-Language-theoretic security (LangSec) is a way of thinking about security. Every input format is a formal language, and the code that reads it is that language's recognizer. Many attacks work because two parsers read the same bytes differently, or because the input language is so powerful that no one can say what it will do. The advice follows from that: keep formats simple (see [Turing completeness](02-what-counts-as-a-machine.md#turing-completeness)), parse completely *before* acting and use one well-tested parser. It also criticizes the old "robustness principle", *be liberal in what you accept*, because being liberal creates more meanings for the same bytes. The IETF has revisited that principle too.
+Language-theoretic security (LangSec) is a way of thinking about security. Every input format is a formal language, and the code that reads it is that language's recognizer. Many attacks work because two parsers read the same bytes differently, or because the input language is so powerful that no one can say what it will do. The advice follows from that: keep formats simple (see [Turing completeness](02-que-cuenta-como-maquina.md#turing-completeness)), parse completely *before* acting and use one well-tested parser. It also criticizes the old "robustness principle", *be liberal in what you accept*, because being liberal creates more meanings for the same bytes. The IETF has revisited that principle too.
 
 - **Use it when:** you design a file format, a protocol or an API, or you review code that reads input.
 - **Avoid it when:** the design would require accepting "almost valid" input or mixing parsing with processing.
@@ -267,7 +267,7 @@ Language-theoretic security (LangSec) is a way of thinking about security. Every
 
 - [Weird machine](https://en.wikipedia.org/wiki/Weird_machine) (Wikipedia)
 - [Return-oriented programming](https://en.wikipedia.org/wiki/Return-oriented_programming) (Wikipedia)
-- [Language-theoretic security](05-formal-languages-as-computational-substrates.md#language-theoretic-security)
+- [Language-theoretic security](05-lenguajes-formales-como-sustratos-de-computacion.md#language-theoretic-security)
 
 **In this repo:**
 
@@ -304,9 +304,9 @@ Three honest warnings come with the vocabulary:
 
 - **It is a lens, not a label.** You can *describe* many pipelines as arrows between types. That does not make every LINQ operator, every `map` or every `INSERT ... SELECT` a formal part of a category. A claim such as "this is a functor" is a claim with laws, and the laws must hold.
 - **Syntax is not structure.** Two operations both called `map` can differ in laziness, in order of effects and in what they do to an empty input. Same name, same shape, different behavior. The laws decide, and the names do not.
-- **A round trip is not an isomorphism by default.** An *isomorphism* is a pair of arrows `f` and `g` with `g ∘ f = id` and `f ∘ g = id`. An encoder and a decoder (see [Serialization, deserialization and object pickling](06-state-beyond-variables.md#serialization-deserialization-and-object-pickling)) form one only if both laws hold. Many codecs keep the second law only on some values.
+- **A round trip is not an isomorphism by default.** An *isomorphism* is a pair of arrows `f` and `g` with `g ∘ f = id` and `f ∘ g = id`. An encoder and a decoder (see [Serialization, deserialization and object pickling](06-estado-mas-alla-de-las-variables.md#serialization-deserialization-and-object-pickling)) form one only if both laws hold. Many codecs keep the second law only on some values.
 
-This book uses the ideas where an entry gives them something real to hold. [`haskell`](../../src/haskell/README.md) composes small pure functions. [`LinqChallenge1`](../../src/LinqChallenge1/README.md) chains query operators. The next pages, [Functors and mapping](04-evaluation-and-demand.md#functors-and-mapping) and [Monoids and folds](04-evaluation-and-demand.md#monoids-and-folds), name two of the laws that make such chains safe to rearrange.
+This book uses the ideas where an entry gives them something real to hold. [`haskell`](../../src/haskell/README.md) composes small pure functions. [`LinqChallenge1`](../../src/LinqChallenge1/README.md) chains query operators. The next pages, [Functors and mapping](04-evaluacion-y-demanda.md#functors-and-mapping) and [Monoids and folds](04-evaluacion-y-demanda.md#monoids-and-folds), name two of the laws that make such chains safe to rearrange.
 
 - **Use it when:** you want to say precisely what a pipeline preserves, or when two designs look alike and you need to know if they behave alike.
 - **Avoid it when:** the vocabulary replaces the explanation. If a plain sentence says the same thing, write the sentence.

@@ -1,7 +1,7 @@
 ---
 title: "Evaluation and demand"
 ---
-For an advanced reading path with traces and experiments, see the [evaluation, demand and laziness study guide](../study-guides/concepts/evaluation-demand-and-laziness.md).
+For an advanced reading path with traces and experiments, see the [evaluation, demand and laziness study guide](../guias-de-estudio/conceptos/evaluacion-demanda-y-pereza.md).
 
 Is a value computed when you write it, when you first need it or each time you ask? That is the question of **evaluation strategy**, and the same-looking code answers it differently in different languages.
 

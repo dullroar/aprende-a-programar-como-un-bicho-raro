@@ -14,7 +14,7 @@ When you finish, you should be able to:
 
 **Scope limits.** You need to read Haskell type signatures and know what `map`, `zip` and `fix` do. The guide does not teach monads, the type classes in the source or the SQL. It uses GHC's `runghc`; the programs need only packages that ship with GHC.
 
-The matching book material is [Haskell](../../languages/haskell.md), and for the idea itself, [Evaluation and demand](../../cs/04-evaluation-and-demand.md).
+The matching book material is [Haskell](../../lenguajes/haskell.md), and for the idea itself, [Evaluation and demand](../../informatica/04-evaluacion-y-demanda.md).
 
 ## Before you begin
 
@@ -41,7 +41,7 @@ Work on a copy for any edit ([Running things safely](../../exercises.md#running-
 
 ## The shared challenge
 
-The [challenge specification](../../intro.md#what-the-challenge-does) calls for cards with a category and 10 to 19 whole hours. Categories cycle through Meetings, Coding, Debugging and Learning. Add each card's hours to the running total. Stop when the total passes 40. Keep the **first card that takes the total over 40**. A total of exactly 40 continues. Four 10-hour cards need a fifth card, in the Meetings category. Conforming runs finish with 3 to 5 cards and a total of 41 to 59 hours.
+The [challenge specification](../../introduccion.md#what-the-challenge-does) calls for cards with a category and 10 to 19 whole hours. Categories cycle through Meetings, Coding, Debugging and Learning. Add each card's hours to the running total. Stop when the total passes 40. Keep the **first card that takes the total over 40**. A total of exactly 40 continues. Four 10-hour cards need a fifth card, in the Meetings category. Conforming runs finish with 3 to 5 cards and a total of 41 to 59 hours.
 
 Both Haskell entries save the cards in one SQLite transaction and print a summary. In Haskell the rule appears as the predicate `(<= 40)` inside `span`. That detail matters. `<= 40` is true for exactly 40, so exactly 40 stays in the "under" half and the next card is read. The crossing card is the *first element of the other half*, which is why the program writes `under ++ take 1 over`.
 
@@ -211,12 +211,12 @@ No behavior here is *accidentally exploited* in the book's sense: nothing relies
 
 ## Connections across the repository
 
-- **The same question as LINQ.** [C#, LINQ, XAML and ports](csharp-linq-xaml-and-ports.md) asks "when does a description run?" with deferred execution. A LINQ pipeline reruns when enumerated again, while a Haskell cell is evaluated once and remembered.
+- **The same question as LINQ.** [C#, LINQ, XAML and ports](csharp-linq-xaml-y-adaptaciones.md) asks "when does a description run?" with deferred execution. A LINQ pipeline reruns when enumerated again, while a Haskell cell is evaluated once and remembered.
 - **Pull iteration in JavaScript.** [JavaScript](javascript.md)'s lazy iterator in `javascript-weird` is a consumer that pulls one card at a time. The mechanism differs and the shape of the stop rule is the same.
 - **Array languages go the other way.** [APL](apl.md) is eager: it builds more values than it needs and trims the result.
 - **A stop rule as structure.** [COBOL](cobol.md) declares the rule on the data. Haskell chooses it by how much it reads. CMake uses a literal 41 characters long. All three avoid a visible loop condition.
-- **Concept guides.** [Evaluation, demand and laziness](../concepts/evaluation-demand-and-laziness.md) puts Haskell, LINQ and JavaScript on one scale. [Effects, errors and commitment](../concepts/effects-errors-and-commitment.md) explains what survives a failure.
-- **In the book.** [Haskell](../../languages/haskell.md) and [Evaluation and demand](../../cs/04-evaluation-and-demand.md).
+- **Concept guides.** [Evaluation, demand and laziness](../conceptos/evaluacion-demanda-y-pereza.md) puts Haskell, LINQ and JavaScript on one scale. [Effects, errors and commitment](../conceptos/efectos-errores-y-confirmacion.md) explains what survives a failure.
+- **In the book.** [Haskell](../../lenguajes/haskell.md) and [Evaluation and demand](../../informatica/04-evaluacion-y-demanda.md).
 
 ## Self-check
 
@@ -231,5 +231,5 @@ Answer each question in your own words before you read the italic text. Say what
 
 - [Lazy evaluation](https://en.wikipedia.org/wiki/Lazy_evaluation) (Wikipedia): call-by-need, thunks and sharing, with the vocabulary used here.
 - [Referential transparency](https://en.wikipedia.org/wiki/Referential_transparency) (Wikipedia): the property `unsafeInterleaveIO` stops honoring.
-- [Evaluation and demand](../../cs/04-evaluation-and-demand.md) (this book): the same ideas across Haskell, LINQ, APL and JavaScript, with the table of every entry's strategy.
-- [Monads and effect systems](../../cs/07-effects-errors-and-commitment.md#monads-and-effect-systems) (this book): the usual, safe way Haskell keeps effects in order, which `unsafeInterleaveIO` deliberately steps around.
+- [Evaluation and demand](../../informatica/04-evaluacion-y-demanda.md) (this book): the same ideas across Haskell, LINQ, APL and JavaScript, with the table of every entry's strategy.
+- [Monads and effect systems](../../informatica/07-efectos-errores-y-confirmacion.md#monads-and-effect-systems) (this book): the usual, safe way Haskell keeps effects in order, which `unsafeInterleaveIO` deliberately steps around.

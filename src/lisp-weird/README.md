@@ -3,7 +3,7 @@ name: "Common Lisp"
 teaches: "that CLOS method combination is a control-flow construct: a class hierarchy is a loop, and `or` is a stop rule."
 kind: weird
 languages: [common-lisp]
-lesson: "languages/lisp.md#method-combination-as-control-flow"
+lesson: "lenguajes/lisp.md#method-combination-as-control-flow"
 loop-by: dispatch-and-triggers
 evaluation: eager
 assurance: implementation-permitted

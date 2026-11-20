@@ -2,7 +2,7 @@
 
 Entries: [`src/haskell`](../../src/haskell/README.md) (one pure function) and [`src/haskell-weird`](../../src/haskell-weird/README.md) ("Haskell on drugs": reading the list does the work).
 
-For an advanced reading path with traces and experiments, see the [Haskell study guide](../study-guides/languages/haskell.md).
+For an advanced reading path with traces and experiments, see the [Haskell study guide](../guias-de-estudio/lenguajes/haskell.md).
 
 ## What makes Haskell special
 
@@ -77,7 +77,7 @@ Inside a library that implements lazy streaming and has been carefully tested fo
 <!-- BEGIN GENERATED program-flow:languages/haskell.md -->
 ## How each program runs
 
-Each picture below is the `## Program Flow` section of an entry's README, copied here by the build. It shows how that program makes the work happen: what the language, runtime or tool really does. [The introduction](../intro.md#what-the-challenge-does) shows what the challenge asks for and where entries differ.
+Each picture below is the `## Program Flow` section of an entry's README, copied here by the build. It shows how that program makes the work happen: what the language, runtime or tool really does. [The introduction](../introduccion.md#what-the-challenge-does) shows what the challenge asks for and where entries differ.
 
 ### Program flow of `haskell`
 
@@ -132,5 +132,5 @@ sequenceDiagram
 ## Computer science behind this page
 
 <!-- BEGIN GENERATED concepts:languages/haskell.md -->
-The computer-science ideas behind this page: [Control flow](../cs/03-control-flow-and-continuations.md#control-flow), [Evaluation strategies](../cs/04-evaluation-and-demand.md#evaluation-strategies), [Lazy evaluation](../cs/04-evaluation-and-demand.md#lazy-evaluation), [Iterators and generators](../cs/04-evaluation-and-demand.md#iterators-and-generators), [Referential transparency](../cs/04-evaluation-and-demand.md#referential-transparency), [First-class and higher-order functions](../cs/04-evaluation-and-demand.md#first-class-and-higher-order-functions), [Monoids and folds](../cs/04-evaluation-and-demand.md#monoids-and-folds), [State](../cs/06-state-beyond-variables.md#state), [Side effects](../cs/07-effects-errors-and-commitment.md#side-effects), [Monads and effect systems](../cs/07-effects-errors-and-commitment.md#monads-and-effect-systems).
+The computer-science ideas behind this page: [Control flow](../informatica/03-flujo-de-control-y-continuaciones.md#control-flow), [Evaluation strategies](../informatica/04-evaluacion-y-demanda.md#evaluation-strategies), [Lazy evaluation](../informatica/04-evaluacion-y-demanda.md#lazy-evaluation), [Iterators and generators](../informatica/04-evaluacion-y-demanda.md#iterators-and-generators), [Referential transparency](../informatica/04-evaluacion-y-demanda.md#referential-transparency), [First-class and higher-order functions](../informatica/04-evaluacion-y-demanda.md#first-class-and-higher-order-functions), [Monoids and folds](../informatica/04-evaluacion-y-demanda.md#monoids-and-folds), [State](../informatica/06-estado-mas-alla-de-las-variables.md#state), [Side effects](../informatica/07-efectos-errores-y-confirmacion.md#side-effects), [Monads and effect systems](../informatica/07-efectos-errores-y-confirmacion.md#monads-and-effect-systems).
 <!-- END GENERATED concepts:languages/haskell.md -->

@@ -21,7 +21,7 @@ Debugging  12   46      <- crossing card: the total before it was 34, which is <
 ```
 
 - The card that crosses is the first whose running total is **over 40**; the total before it is always **at most 40** (otherwise the run would have stopped earlier). The totals can end anywhere from 41 to 59.
-- Exactly 40 continues under the challenge rule. Four 10-hour cards total exactly 40, so a conforming run keeps a fifth card. The former four-name ceiling in the regex and `for`-header entries has been fixed. See the [intro](intro.md#where-entries-differ) for the four-pass XAML ceiling and the fixed LINQ demos. [`regex-dotnet`](../src/regex-dotnet/README.md) prints no running-total column, so `check-demo.sh` adds the hours itself.
+- Exactly 40 continues under the challenge rule. Four 10-hour cards total exactly 40, so a conforming run keeps a fifth card. The former four-name ceiling in the regex and `for`-header entries has been fixed. See the [intro](introduccion.md#where-entries-differ) for the four-pass XAML ceiling and the fixed LINQ demos. [`regex-dotnet`](../src/regex-dotnet/README.md) prints no running-total column, so `check-demo.sh` adds the hours itself.
 
 ## B1. COBOL: predict, then break `ALTER`
 

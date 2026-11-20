@@ -13,7 +13,7 @@ When you finish, you should be able to:
 5. Explain what a reproducibility check can prove, and what it cannot.
 6. Apply Hyrum's law to a feature nobody promised and say what you would write down.
 
-**Scope limits.** The guide is about *claims*: how to word them and test them. It does not teach compiler internals or complexity theory. Its source chapter is [Abstraction leaks and implementation dependence](../../cs/08-abstraction-leaks-and-implementation-dependence.md).
+**Scope limits.** The guide is about *claims*: how to word them and test them. It does not teach compiler internals or complexity theory. Its source chapter is [Abstraction leaks and implementation dependence](../../informatica/08-fugas-de-abstraccion-y-dependencia-de-la-implementacion.md).
 
 ## Before you begin
 
@@ -33,7 +33,7 @@ When you finish, you should be able to:
 
 ## The shared challenge
 
-The [challenge specification](../../intro.md#what-the-challenge-does) calls for cards with a category and 10 to 19 whole hours. Categories cycle through Meetings, Coding, Debugging and Learning. Add each card's hours to the running total. Stop when the total passes 40. Keep the **first card that takes the total over 40**. A total of exactly 40 continues. Four 10-hour cards need a fifth card, in the Meetings category. Conforming runs finish with 3 to 5 cards and a total of 41 to 59 hours.
+The [challenge specification](../../introduccion.md#what-the-challenge-does) calls for cards with a category and 10 to 19 whole hours. Categories cycle through Meetings, Coding, Debugging and Learning. Add each card's hours to the running total. Stop when the total passes 40. Keep the **first card that takes the total over 40**. A total of exactly 40 continues. Four 10-hour cards need a fifth card, in the Meetings category. Conforming runs finish with 3 to 5 cards and a total of 41 to 59 hours.
 
 For a portability reader, the entries have host dependencies hiding in the clock, random source, storage and toolchain. Find which ones your entry actually uses. The fixed LINQ weeks need no random draws, and the C PCRE2 and .NET regex examples need a writable TSV path. The shared checker `lessons/tools/check-demo.sh` tests the numeric report for runs that implement the challenge.
 
@@ -126,18 +126,18 @@ An earlier version of `tcl-weird` depended on SQLite's evaluation order. The cur
 
 **Costs to state.**
 
-- **Performance cliffs.** A regex that is fast on every test can take a year on one bad input. The sed entry uses a catastrophic pattern as a 50 ms clock. CMake's regex has no counted repetition, so "at most 40" written as forty optional groups would backtrack exponentially on failure. LINQ re-enumeration multiplies effects. m4 copies its growing SQL script at each card. See [Regular-expression denial of service](../../cs/08-abstraction-leaks-and-implementation-dependence.md#regular-expression-denial-of-service) and [Performance cliffs and time complexity](../../cs/08-abstraction-leaks-and-implementation-dependence.md#performance-cliffs-and-time-complexity).
+- **Performance cliffs.** A regex that is fast on every test can take a year on one bad input. The sed entry uses a catastrophic pattern as a 50 ms clock. CMake's regex has no counted repetition, so "at most 40" written as forty optional groups would backtrack exponentially on failure. LINQ re-enumeration multiplies effects. m4 copies its growing SQL script at each card. See [Regular-expression denial of service](../../informatica/08-fugas-de-abstraccion-y-dependencia-de-la-implementacion.md#regular-expression-denial-of-service) and [Performance cliffs and time complexity](../../informatica/08-fugas-de-abstraccion-y-dependencia-de-la-implementacion.md#performance-cliffs-and-time-complexity).
 - **Reproducibility has limits.** A fixed clock and a fixed seed make a run repeatable. They prove nothing about a different host. Make's `NOW`, the JavaScript `NOW` and `SEED` and `SOURCE_DATE_EPOCH` for the book's build each fix one input. The book's PDF and EPUB are byte-reproducible for the same pandoc and WeasyPrint versions.
 - **Hyrum's law.** If the README does not say which behavior is promised, users will depend on the observed one. The READMEs name what they measured, and the labels are the discipline.
 - **Where this is legitimate.** Using an implementation's extension is ordinary engineering if you write down that you did. The risk is not the extension, it is the silence.
 
 ## Connections across the repository
 
-- **Language guides.** [COBOL](../languages/cobol.md), [Make and CMake](../languages/make-and-cmake.md), [Regex engines and sed](../languages/regex-engines-and-sed.md), [m4](../languages/m4.md), [tar](../languages/tar.md) and [ed and Ex](../languages/ed-and-ex.md) give the evidence behind each label.
-- **Reading safely.** [Reading adversarial programs](reading-adversarial-programs.md): a missing feature that fails silently is also a security question.
-- **Effects.** [Effects, errors and commitment](effects-errors-and-commitment.md) asks which failure semantics are promised.
-- **The comparison.** [Comparative machine design](comparative-machine-design.md) lists every entry with its label.
-- **In the book.** [Leaky abstractions](../../cs/08-abstraction-leaks-and-implementation-dependence.md#leaky-abstractions), [Undefined, unspecified and implementation-defined behavior](../../cs/08-abstraction-leaks-and-implementation-dependence.md#undefined-unspecified-and-implementation-defined-behavior), [Portability](../../cs/08-abstraction-leaks-and-implementation-dependence.md#portability), [Hyrum's law](../../cs/08-abstraction-leaks-and-implementation-dependence.md#hyrums-law) and [Reproducibility and deterministic builds](../../cs/08-abstraction-leaks-and-implementation-dependence.md#reproducibility-and-deterministic-builds).
+- **Language guides.** [COBOL](../lenguajes/cobol.md), [Make and CMake](../lenguajes/make-y-cmake.md), [Regex engines and sed](../lenguajes/motores-de-regex-y-sed.md), [m4](../lenguajes/m4.md), [tar](../lenguajes/tar.md) and [ed and Ex](../lenguajes/ed-y-ex.md) give the evidence behind each label.
+- **Reading safely.** [Reading adversarial programs](lectura-de-programas-adversariales.md): a missing feature that fails silently is also a security question.
+- **Effects.** [Effects, errors and commitment](efectos-errores-y-confirmacion.md) asks which failure semantics are promised.
+- **The comparison.** [Comparative machine design](diseno-comparativo-de-maquinas.md) lists every entry with its label.
+- **In the book.** [Leaky abstractions](../../informatica/08-fugas-de-abstraccion-y-dependencia-de-la-implementacion.md#leaky-abstractions), [Undefined, unspecified and implementation-defined behavior](../../informatica/08-fugas-de-abstraccion-y-dependencia-de-la-implementacion.md#undefined-unspecified-and-implementation-defined-behavior), [Portability](../../informatica/08-fugas-de-abstraccion-y-dependencia-de-la-implementacion.md#portability), [Hyrum's law](../../informatica/08-fugas-de-abstraccion-y-dependencia-de-la-implementacion.md#hyrums-law) and [Reproducibility and deterministic builds](../../informatica/08-fugas-de-abstraccion-y-dependencia-de-la-implementacion.md#reproducibility-and-deterministic-builds).
 
 ## Self-check
 

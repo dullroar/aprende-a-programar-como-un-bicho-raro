@@ -3,7 +3,7 @@ name: "JavaScript"
 teaches: "that a closure is a state machine: a function plus the variables it was made next to, pulled one step at a time by an iterator, with reduce as the one fold that cannot stop."
 kind: weird
 languages: [javascript, sqlite]
-lesson: "languages/javascript.md#closures-all-the-way-down"
+lesson: "lenguajes/javascript.md#closures-all-the-way-down"
 loop-by: lazy-demand
 evaluation: lazy
 assurance: guaranteed
@@ -196,4 +196,4 @@ The **lazy-versus-eager** question has the same shape as in two other entries. I
 
 ---
 
-See the [root README](../../README.md#the-results-so-far) for how this compares to the other entries, and [`CHALLENGE.md`](../../CHALLENGE.md) if you want to write your own.
+See the [root README](../../README.md#the-results-so-far) for how this compares to the other entries, and [`RETO.md`](../../RETO.md) if you want to write your own.

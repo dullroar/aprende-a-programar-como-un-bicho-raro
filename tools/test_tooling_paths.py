@@ -87,7 +87,8 @@ class RealTooling(unittest.TestCase):
     def test_the_default_set_covers_the_builders(self):
         names = {os.path.relpath(f, tp.ROOT) for f in tp.default_files()}
         for must in ("lessons/book/cs.py", "lessons/book/study_guides.py", "lessons/book/build.py",
-                     "lessons/curriculum/build.py", "lessons/study-guides/build.py", "lessons/book/guide_impact.py"):
+                     "lessons/plan-de-estudios/build.py", "lessons/guias-de-estudio/build.py",     # the builders move with their folder
+                     "lessons/book/guide_impact.py"):
             self.assertIn(must, names)
         self.assertFalse([n for n in names if os.path.basename(n).startswith("test_")])
 

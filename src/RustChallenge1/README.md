@@ -3,7 +3,7 @@ name: "Rust"
 teaches: "that iterators and closures can express the control flow of a whole Rust program."
 kind: port
 languages: [rust]
-lesson: "languages/csharp-linq-xaml.md#the-one-statement-ports-same-trick-different-machinery"
+lesson: "lenguajes/csharp-linq-xaml.md#the-one-statement-ports-same-trick-different-machinery"
 loop-by: lazy-demand
 evaluation: lazy
 assurance: guaranteed
@@ -118,4 +118,4 @@ Inspect the database with `sqlite3 data/demo-timecards.db 'select * from demo_ti
 
 ---
 
-See the [root README](../../README.md#the-results-so-far) for how this compares to the other entries, and [`CHALLENGE.md`](../../CHALLENGE.md) if you want to write your own.
+See the [root README](../../README.md#the-results-so-far) for how this compares to the other entries, and [`RETO.md`](../../RETO.md) if you want to write your own.

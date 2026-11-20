@@ -67,7 +67,7 @@ class Pilot:
 
     def check(self, rel, es, po, en=None):
         en = en if en is not None else self.verify.english_text(self.cfg, rel)
-        return self.verify.check_file(rel, en, es, po, self.env.ctx, True, self.env.cat)
+        return self.verify.check_file(rel, en, es, po, self.env.ctx, True, self.env.cat, self.verify.layout_remap(rel, ROOT))
 
 
 def msgstr_edit(old, new):
@@ -146,7 +146,7 @@ def catalog():
     add("anchor-fragment-translated", "d", "a link into exercises.md gets a Spanish fragment that no heading has",
         "anchors", FORTH, "I4", text_edit("exercises.md#running-things-safely", "exercises.md#ejecutar-cosas-de-forma-segura"))
     add("anchor-fragment-dropped", "d", "a link into the English guide loses its fragment", "anchors", APL, "I4",
-        text_edit("intro.md#what-the-challenge-does", "intro.md#el-reto"))
+        text_edit("introduccion.md#what-the-challenge-does", "introduccion.md#el-reto"))
     add("anchor-heading-renamed", "d", "a heading is renamed in the finished file only", "hand", FORTH, "I16",
         text_edit("## Traza una ejecución", "## Sigue una ejecución"))
     # e. an English phase letter survives (the step-7 repeat with W)

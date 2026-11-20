@@ -2,7 +2,7 @@
 
 # What counts as a machine?
 
-For an advanced reading path with traces and experiments, see the [state and control beyond variables study guide](../study-guides/concepts/state-and-control-beyond-variables.md).
+For an advanced reading path with traces and experiments, see the [state and control beyond variables study guide](../guias-de-estudio/conceptos/estado-y-control-mas-alla-de-las-variables.md).
 
 Before you can say that a regex engine, a build tool or a markup file "computes", you need to say what a machine is. The answer is smaller than you might think. A machine has a **state**, a set of allowed **steps**, a way to **represent** its values and some facts that stay true while it runs (**invariants**). If you can say what those four are, you have named the machine.
 
@@ -19,7 +19,7 @@ flowchart TB
 
 The picture shows the four parts without naming any hardware: the state and how it is represented, one allowed step and the invariant that holds before and after it. A regex engine's capture stack, a Make dependency graph and an editor buffer all fit this template. The template does not require finite states, explicit input and output or machine instructions.
 
-The first goal of this book is exactly that habit: *name the machine hiding inside the language*. A stack machine, a register machine and a rewriting system can all compute the same things, but they keep their memory in different places. The concepts here are the vocabulary for that: transition systems, operational semantics (state, and one step at a time), Turing machines, Markov algorithms and Turing completeness. One more question goes with them: which part of a design *computes*, and which part only decides what runs next ([Computation versus orchestration](02-what-counts-as-a-machine.md#computation-versus-orchestration))? The chapter "State beyond variables" then returns to the question that matters most for this repository: where does the state live?
+The first goal of this book is exactly that habit: *name the machine hiding inside the language*. A stack machine, a register machine and a rewriting system can all compute the same things, but they keep their memory in different places. The concepts here are the vocabulary for that: transition systems, operational semantics (state, and one step at a time), Turing machines, Markov algorithms and Turing completeness. One more question goes with them: which part of a design *computes*, and which part only decides what runs next ([Computation versus orchestration](02-que-cuenta-como-maquina.md#computation-versus-orchestration))? The chapter "State beyond variables" then returns to the question that matters most for this repository: where does the state live?
 
 ## Models of computation
 
@@ -36,14 +36,14 @@ A model of computation is a precise description of what "computing" means: what 
 
 **In this repo:**
 
-**Applies to every entry that names its machine** (40 of 40; see the [table of machines](../goals.md)). Each of these entries states, in its machine and state fields, what kind of machine it really is and where its state lives, which is the habit this concept teaches.
+**Applies to every entry that names its machine** (40 of 40; see the [table of machines](../objetivos.md)). Each of these entries states, in its machine and state fields, what kind of machine it really is and where its state lives, which is the habit this concept teaches.
 
 ## Transition systems and state machines
 
 A transition system is the simplest machine: a set of *states* and a set of allowed *moves* between them. A finite-state machine is the case with a fixed, small number of states. It exists because small machines can be checked completely: you can list every state and every move. Parsers, network protocols, user-interface flows and the insides of regex engines are all built this way. Every entry in this repository can be drawn as a transition system if you ask two questions: what is the state, and what is one step?
 
 - **Use it when:** behavior depends on history in a bounded way, such as "what did I see before?"
-- **Avoid it when:** the state is unbounded. A finite machine cannot count matching brackets of any depth. For that you need a stack (see [Stack machines](02-what-counts-as-a-machine.md#stack-machines)). Also beware of *state explosion*: the number of states can grow faster than you can draw them.
+- **Avoid it when:** the state is unbounded. A finite machine cannot count matching brackets of any depth. For that you need a stack (see [Stack machines](02-que-cuenta-como-maquina.md#stack-machines)). Also beware of *state explosion*: the number of states can grow faster than you can draw them.
 
 **Read more:**
 
@@ -248,7 +248,7 @@ flowchart TB
     RULES ~~~ S0
 ```
 
-The order of the rules decides, not the place in the text. `BAA` matches rules 1 and 2, and rule 1 wins because it is first. After each rewrite the search for a rule starts again at rule 1. The run ends when a terminal rule applies (rule 3 here) or when no rule matches. Other rewriting systems, such as those in [Term and string rewriting](05-formal-languages-as-computational-substrates.md#term-and-string-rewriting), do not all pick rules this way.
+The order of the rules decides, not the place in the text. `BAA` matches rules 1 and 2, and rule 1 wins because it is first. After each rewrite the search for a rule starts again at rule 1. The run ends when a terminal rule applies (rule 3 here) or when no rule matches. Other rewriting systems, such as those in [Term and string rewriting](05-lenguajes-formales-como-sustratos-de-computacion.md#term-and-string-rewriting), do not all pick rules this way.
 
 - **Use it when:** you transform or normalize text, or when you want to teach that a program can be "just rules".
 - **Avoid it for large programs:** rule order *is* the control flow, which is hard to reason about, and speed is hard to predict.
@@ -256,7 +256,7 @@ The order of the rules decides, not the place in the text. `BAA` matches rules 1
 **Read more:**
 
 - [Markov algorithm](https://en.wikipedia.org/wiki/Markov_algorithm) (Wikipedia)
-- [Term and string rewriting](05-formal-languages-as-computational-substrates.md#term-and-string-rewriting) in "Formal languages as computational substrates"
+- [Term and string rewriting](05-lenguajes-formales-como-sustratos-de-computacion.md#term-and-string-rewriting) in "Formal languages as computational substrates"
 
 **In this repo:**
 
@@ -267,7 +267,7 @@ The order of the rules decides, not the place in the text. `BAA` matches rules 1
 
 ## Turing completeness
 
-A system is Turing complete if it can simulate any Turing machine (given unlimited memory). In plain words: it can compute whatever a general-purpose computer can. People enjoy finding this property in surprising places: Make, sed, m4, spreadsheets, even slide software. That is the spirit of this repository. But the property has a price. If a notation is Turing complete, you cannot decide in general what its programs will do (Rice's theorem). That is why security people prefer inputs that are *not* powerful. See [Language-theoretic security](05-formal-languages-as-computational-substrates.md#language-theoretic-security). The web community calls this the *rule of least power*: choose the least powerful language that solves the problem.
+A system is Turing complete if it can simulate any Turing machine (given unlimited memory). In plain words: it can compute whatever a general-purpose computer can. People enjoy finding this property in surprising places: Make, sed, m4, spreadsheets, even slide software. That is the spirit of this repository. But the property has a price. If a notation is Turing complete, you cannot decide in general what its programs will do (Rice's theorem). That is why security people prefer inputs that are *not* powerful. See [Language-theoretic security](05-lenguajes-formales-como-sustratos-de-computacion.md#language-theoretic-security). The web community calls this the *rule of least power*: choose the least powerful language that solves the problem.
 
 - **Use it when:** you want to know the ceiling of a notation, or explain why a "configuration language" can run forever.
 - **Avoid it as praise:** "it is Turing complete" is a warning label as often as a compliment.

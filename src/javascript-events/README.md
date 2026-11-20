@@ -3,7 +3,7 @@ name: "JavaScript"
 teaches: "that a program can be a set of listeners, each doing one small thing and then emitting the event the next one waits for; and that emit() calls its listeners at once, so only an explicit scheduling boundary gives the event loop a turn."
 kind: weird
 languages: [javascript, sqlite]
-lesson: "languages/javascript.md#listeners-all-the-way-down"
+lesson: "lenguajes/javascript.md#listeners-all-the-way-down"
 loop-by: dispatch-and-triggers
 evaluation: eager
 assurance: guaranteed
@@ -40,7 +40,7 @@ Total simulated hours: 46.0
 Saved locally for the modernization exercise.
 ```
 
-With the same seed, all three Node entries print the same cards (`SEED=42`). Read them as a set of three: a [`for` clause](../javascript/README.md), a [lazy pull](../javascript-weird/README.md), and this, a chain of events. The [events lesson](../../lessons/cs/10-events-callbacks-and-reactive-control-flow.md) explains the ideas behind this one.
+With the same seed, all three Node entries print the same cards (`SEED=42`). Read them as a set of three: a [`for` clause](../javascript/README.md), a [lazy pull](../javascript-weird/README.md), and this, a chain of events. The [events lesson](../../lessons/informatica/10-eventos-retrollamadas-y-flujo-de-control-reactivo.md) explains the ideas behind this one.
 
 ## Run it
 
@@ -207,4 +207,4 @@ An `EventEmitter` is for a program that *reacts*: a server hears a request, a wi
 
 ---
 
-See the [root README](../../README.md#the-results-so-far) for how this compares to the other entries, and [`CHALLENGE.md`](../../CHALLENGE.md) if you want to write your own.
+See the [root README](../../README.md#the-results-so-far) for how this compares to the other entries, and [`RETO.md`](../../RETO.md) if you want to write your own.

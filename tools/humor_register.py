@@ -101,17 +101,31 @@ ENTRIES = [
 ]
 
 
+def layer():
+    here = os.path.dirname(os.path.abspath(__file__))
+    if here not in sys.path:
+        sys.path.insert(0, here)
+    import enpath
+    return enpath.load(os.path.dirname(here))
+
+
 def read(path):
-    with open(path, encoding="utf-8") as f:
+    """The lines of the file with English key `path` (it sits at its Spanish name once the layout is Spanish)."""
+    with open(layer().full(path), encoding="utf-8") as f:
         return f.read().splitlines()
 
 
 def markdown_files():
+    """English keys of the Markdown files the register searches, found at their working paths."""
+    lay = layer()
+    import enpath
     files = ["README.md", "CHALLENGE.md"]
-    for pattern in ("lessons/*.md", "lessons/languages/*.md", "lessons/cs-source/**/*.md",
-                    "src/*/README.md"):
-        files += glob.glob(pattern, recursive=True)
-    return sorted(set(f for f in files if os.path.isfile(f)))
+    for pattern in ("lessons/*.md", "lessons/languages/*.md", "lessons/cs-source/**/*.md", "src/*/README.md"):
+        folder, _, tail = pattern.partition("/*")
+        work = enpath.map_path(lay, folder) if lay.moved else folder          # renamed folders move as a whole
+        for f in glob.glob(os.path.join(lay.root, work + "/*" + tail), recursive=True):
+            files.append(lay.english(os.path.relpath(f, lay.root)))
+    return sorted(set(f for f in files if os.path.isfile(lay.full(f))))
 
 
 def find_headings(text, files):

@@ -2,15 +2,15 @@
 
 # State beyond variables
 
-For an advanced reading path with traces and experiments, see the [state and control beyond variables study guide](../study-guides/concepts/state-and-control-beyond-variables.md).
+For an advanced reading path with traces and experiments, see the [state and control beyond variables study guide](../guias-de-estudio/conceptos/estado-y-control-mas-alla-de-las-variables.md).
 
 If a language has no variables, or if you may not use them, where can a program keep what it remembers? This chapter collects the answers. A stack of marks. A line of text that substitutions rewrite. Which files exist on disk. The captures that a regex leaves behind. The source text of functions. A temporary table of procedures. The depth of a trigger's recursion. A pile of `x` characters.
 
-None of these looks like "state" in the way that a variable does, and every one of them is. The concepts below are the places where it can hide: the call stack, the stack as a data structure, scope and binding, closures (a function plus its environment), code as data, reflection, dependency graphs, database triggers and serialization (a program or a state written down as bytes, and what it takes to read it back and run it). The first concept is state itself, and the lesson is a habit: for every program, ask *where does it live?* You will find a table of the entries' answers in [By goal](../goals.md).
+None of these looks like "state" in the way that a variable does, and every one of them is. The concepts below are the places where it can hide: the call stack, the stack as a data structure, scope and binding, closures (a function plus its environment), code as data, reflection, dependency graphs, database triggers and serialization (a program or a state written down as bytes, and what it takes to read it back and run it). The first concept is state itself, and the lesson is a habit: for every program, ask *where does it live?* You will find a table of the entries' answers in [By goal](../objetivos.md).
 
 ## State
 
-State is whatever a program remembers between steps. Without it, nothing could be computed. The interesting question is *where it lives*: in variables, on a stack, on the heap, in a file, in a database, in an environment variable, over the network. This book's first goal is to ask that question about every program. The answers here are surprising. State lives in the target of a `GO TO`, in one line of text, in which files exist on disk, in the captures of a regex, in the text of functions, in the input stream and in the depth of trigger recursion. See the table in [By goal](../goals.md).
+State is whatever a program remembers between steps. Without it, nothing could be computed. The interesting question is *where it lives*: in variables, on a stack, on the heap, in a file, in a database, in an environment variable, over the network. This book's first goal is to ask that question about every program. The answers here are surprising. State lives in the target of a `GO TO`, in one line of text, in which files exist on disk, in the captures of a regex, in the text of functions, in the input stream and in the depth of trigger recursion. See the table in [By goal](../objetivos.md).
 
 - **Use it when:** make state explicit, small and close to where it is used.
 - **Avoid hidden and global state.** It is hard to test, hard to share and hard to reason about.
@@ -66,7 +66,7 @@ flowchart TB
     STACK ~~~ RET
 ```
 
-Each active call owns one frame, and the newest frame is on top. When `saveRow` returns, its frame is removed and execution continues at the return address it stored, which is inside `drawCard`. The names here are examples, and the exact layout of a frame differs between languages and processors. The general idea of a stack is in [The stack as a data structure](06-state-beyond-variables.md#the-stack-as-a-data-structure).
+Each active call owns one frame, and the newest frame is on top. When `saveRow` returns, its frame is removed and execution continues at the return address it stored, which is inside `drawCard`. The names here are examples, and the exact layout of a frame differs between languages and processors. The general idea of a stack is in [The stack as a data structure](06-estado-mas-alla-de-las-variables.md#the-stack-as-a-data-structure).
 
 - **Use it when:** you read a stack trace, or you reason about recursion depth.
 - **Avoid it when:** the recursion depth has no bound. A stack overflow ends the program, and in unsafe languages it can become a security hole.
@@ -109,7 +109,7 @@ flowchart TB
     T2 -->|"pop gives C, pop gives B"| T3
 ```
 
-Only the top can be reached. A push adds on top and a pop removes from the top, so the last item in is the first one out. [The call stack](06-state-beyond-variables.md#the-call-stack) is one use of this structure, with frames as the items. Undo lists, bracket matching and the data stack of [`forth-weird`](../../src/forth-weird/README.md) are others.
+Only the top can be reached. A push adds on top and a pop removes from the top, so the last item in is the first one out. [The call stack](06-estado-mas-alla-de-las-variables.md#the-call-stack) is one use of this structure, with frames as the items. Undo lists, bracket matching and the data stack of [`forth-weird`](../../src/forth-weird/README.md) are others.
 
 - **Use it when:** the problem is nested, or you must undo in reverse order.
 - **Avoid it when:** you need random access or first-in, first-out order. Use an array or a queue.
@@ -197,7 +197,7 @@ Be exact about three things:
 
 - **A closure captures variables, not values.** Two closures over the same variable share it, and a change made by one is seen by the other. Each call to a factory such as `counter()` makes a *new* variable, so two counters never share state. C# lambdas behave the same way.
 - **Lambda syntax is not a closure.** `x => x + 1` uses no outside variable, so there is nothing interesting to capture. An arrow function that updates a variable that outlives the call is a closure that matters.
-- **A closure is not a continuation.** You can call it again and it does the *next* step. You cannot hand it "the rest of the computation", resume it in the middle of something or go back. See [Continuations](03-control-flow-and-continuations.md#continuations). Nor is `this` a captured variable: a method that uses `this.n` loses its `n` when you detach it from its object, and a closure keeps its variable.
+- **A closure is not a continuation.** You can call it again and it does the *next* step. You cannot hand it "the rest of the computation", resume it in the middle of something or go back. See [Continuations](03-flujo-de-control-y-continuaciones.md#continuations). Nor is `this` a captured variable: a method that uses `this.n` loses its `n` when you detach it from its object, and a closure keeps its variable.
 
 The environment lives as long as the function can be reached. When nothing refers to the function any more, the engine may collect it, and its variables with it. [`javascript-weird`](../../src/javascript-weird/README.md) builds its whole algorithm from three closures (a seeded number source, a card machine and an iterator around it), and its check script proves each claim on this page, including the lifetime one, with a `WeakRef` and a forced garbage collection. [`javascript`](../../src/javascript/README.md) uses a closure over the seed for its random numbers. [`RustChallenge1`](../../src/RustChallenge1/README.md) and [`ModernChallenge1`](../../src/ModernChallenge1/README.md) use closures (and a C# lambda) to move work into places that expect a value.
 
@@ -284,7 +284,7 @@ flowchart LR
     class cat changed
 ```
 
-Each arrow here runs from an input to the thing built from it, so a change travels along the arrows. (Some books draw the arrow the other way, from a thing to what it needs. The facts are the same.) Only `categories` changed, so only what is downstream of it must be redone. `raw cards` keeps its old result. The graph says what *must* be recomputed, not when values arrive. For that, see [Dataflow programming](04-evaluation-and-demand.md#dataflow-programming).
+Each arrow here runs from an input to the thing built from it, so a change travels along the arrows. (Some books draw the arrow the other way, from a thing to what it needs. The facts are the same.) Only `categories` changed, so only what is downstream of it must be redone. `raw cards` keeps its old result. The graph says what *must* be recomputed, not when values arrive. For that, see [Dataflow programming](04-evaluacion-y-demanda.md#dataflow-programming).
 
 - **Use it when:** any problem of the form "A must come before B".
 - **Avoid it when:** the dependencies form a cycle or the graph leaves some dependencies implicit. A hidden dependency gives wrong incremental builds.
@@ -364,7 +364,7 @@ The four cards are separate promises, and none implies another. Equal bytes do n
 
 **Security.** Bytes are inert until a consumer gives them meaning. A tar archive cannot register a hook for itself: `tar -xf` only writes files, and it is the operator's `--to-command` option that makes tar start a program for each member. JSON is not "safe by nature" either. It is only data, until a consumer passes a field to `eval`, a shell or a SQL string. Unsafe deserialization attacks chain the *reconstruction callbacks* that a format allows (constructors, `__reduce__`, `readObject`) into code that does something the author did not plan. The defenses are old and boring. Do not deserialize untrusted bytes into live objects. Check every record against a strict grammar. Refuse what you do not know. Run the consumer with the least privilege it needs.
 
-**Category theory.** An encoder and a decoder are functions that should compose to something with a stated law: `decode ∘ encode = id` on the values you care about. That is true for some types and some formats, false for others (a format may map two values to one string). Do not call a codec an isomorphism unless you can prove the law in both directions; [Category theory](05-formal-languages-as-computational-substrates.md#category-theory) says what the word asks of you.
+**Category theory.** An encoder and a decoder are functions that should compose to something with a stated law: `decode ∘ encode = id` on the values you care about. That is true for some types and some formats, false for others (a format may map two values to one string). Do not call a codec an isomorphism unless you can prove the law in both directions; [Category theory](05-lenguajes-formales-como-sustratos-de-computacion.md#category-theory) says what the word asks of you.
 
 | | What the bytes hold | What the consumer rebuilds | Can code run while reading? | Where the trust boundary is |
 | --- | --- | --- | --- | --- |

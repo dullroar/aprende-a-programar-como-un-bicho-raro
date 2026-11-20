@@ -13,7 +13,7 @@ When you finish, you should be able to:
 5. Say what each machine cannot do, with evidence: the old four-name ceiling, the missing counted repetition, the failed .NET `Match` that exposes nothing.
 6. Label claims as guaranteed, implementation-permitted or accidentally exploited.
 
-**Scope limits.** The guide is about the *relationship between a notation and the machine it can express*. It is not a course in automata theory: it names the levels and uses them. Its source chapter is [Formal languages as computational substrates](../../cs/05-formal-languages-as-computational-substrates.md).
+**Scope limits.** The guide is about the *relationship between a notation and the machine it can express*. It is not a course in automata theory: it names the levels and uses them. Its source chapter is [Formal languages as computational substrates](../../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md).
 
 ## Before you begin
 
@@ -33,7 +33,7 @@ When you finish, you should be able to:
 
 ## The shared challenge
 
-The [challenge specification](../../intro.md#what-the-challenge-does) calls for cards with a category and 10 to 19 whole hours. Categories cycle through Meetings, Coding, Debugging and Learning. Add each card's hours to the running total. Stop when the total passes 40. Keep the **first card that takes the total over 40**. A total of exactly 40 continues. Four 10-hour cards need a fifth card, in the Meetings category. Conforming runs finish with 3 to 5 cards and a total of 41 to 59 hours.
+The [challenge specification](../../introduccion.md#what-the-challenge-does) calls for cards with a category and 10 to 19 whole hours. Categories cycle through Meetings, Coding, Debugging and Learning. Add each card's hours to the running total. Stop when the total passes 40. Keep the **first card that takes the total over 40**. A total of exactly 40 continues. Four 10-hour cards need a fifth card, in the Meetings category. Conforming runs finish with 3 to 5 cards and a total of 41 to 59 hours.
 
 For a formal-language reader the challenge needs two capabilities: *counting* (compare a total with 40) and *repetition with memory* (carry the total from one card to the next). A pure regular expression has neither. Every entry in this guide supplies them by borrowing a mechanism: a stack, tally marks, a restart, a host. The boundary is exact: a total of 40 must *continue*, so the machine must tell 40 from 41.
 
@@ -109,18 +109,18 @@ Read the second row: a PCRE2 pattern that "fails" is the program's *success*, be
 
 **Costs to state.**
 
-- **Language-theoretic security.** If an input language is more powerful than its authors realized, reading the input is running a program. XAML's parser is the case in this repository. The defense is the *rule of least power*: accept the weakest language that does the job, and parse it before acting on it ([Language-theoretic security](../../cs/05-formal-languages-as-computational-substrates.md#language-theoretic-security)).
-- **A weird machine is made of unintended states.** The entries do it deliberately, in a sandbox, to teach. The defender's task is to find the weird machine before an attacker does ([Weird machines](../../cs/05-formal-languages-as-computational-substrates.md#weird-machines)).
+- **Language-theoretic security.** If an input language is more powerful than its authors realized, reading the input is running a program. XAML's parser is the case in this repository. The defense is the *rule of least power*: accept the weakest language that does the job, and parse it before acting on it ([Language-theoretic security](../../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#language-theoretic-security)).
+- **A weird machine is made of unintended states.** The entries do it deliberately, in a sandbox, to teach. The defender's task is to find the weird machine before an attacker does ([Weird machines](../../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#weird-machines)).
 - **Hidden limits.** A finite tape or list is a design limit that behaves like a semantic one at the boundary.
 - **Where this is legitimate.** Using a regex to *tokenize*, a build tool to *generate* sources, a macro processor to *configure* are all ordinary. The stunt is demanding a whole program from the notation.
 
 ## Connections across the repository
 
-- **The language guides.** [Regex engines and sed](../languages/regex-engines-and-sed.md), [Make and CMake](../languages/make-and-cmake.md), [m4](../languages/m4.md), [ed and Ex](../languages/ed-and-ex.md), [tar](../languages/tar.md) and [C#, LINQ, XAML and ports](../languages/csharp-linq-xaml-and-ports.md) each trace one substrate.
-- **State and control.** [State and control beyond variables](state-and-control-beyond-variables.md) says where each substrate keeps its program counter.
-- **Reading safely.** [Reading adversarial programs](reading-adversarial-programs.md) takes "an input language is a program" as its main example.
-- **Cost.** [Portability, abstraction and cost](portability-abstraction-and-cost.md) covers the backtracking cliff and the implementation extensions.
-- **In the book.** [The Chomsky hierarchy](../../cs/05-formal-languages-as-computational-substrates.md#the-chomsky-hierarchy), [Regular expressions](../../cs/05-formal-languages-as-computational-substrates.md#regular-expressions), [Term and string rewriting](../../cs/05-formal-languages-as-computational-substrates.md#term-and-string-rewriting), [Macros and text expansion](../../cs/05-formal-languages-as-computational-substrates.md#macros-and-text-expansion) and [Build automation](../../cs/05-formal-languages-as-computational-substrates.md#build-automation).
+- **The language guides.** [Regex engines and sed](../lenguajes/motores-de-regex-y-sed.md), [Make and CMake](../lenguajes/make-y-cmake.md), [m4](../lenguajes/m4.md), [ed and Ex](../lenguajes/ed-y-ex.md), [tar](../lenguajes/tar.md) and [C#, LINQ, XAML and ports](../lenguajes/csharp-linq-xaml-y-adaptaciones.md) each trace one substrate.
+- **State and control.** [State and control beyond variables](estado-y-control-mas-alla-de-las-variables.md) says where each substrate keeps its program counter.
+- **Reading safely.** [Reading adversarial programs](lectura-de-programas-adversariales.md) takes "an input language is a program" as its main example.
+- **Cost.** [Portability, abstraction and cost](portabilidad-abstraccion-y-costo.md) covers the backtracking cliff and the implementation extensions.
+- **In the book.** [The Chomsky hierarchy](../../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#the-chomsky-hierarchy), [Regular expressions](../../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#regular-expressions), [Term and string rewriting](../../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#term-and-string-rewriting), [Macros and text expansion](../../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#macros-and-text-expansion) and [Build automation](../../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#build-automation).
 
 ## Self-check
 

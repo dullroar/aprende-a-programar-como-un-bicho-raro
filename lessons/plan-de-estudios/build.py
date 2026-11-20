@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """Build the curriculum (docs/curriculum.md) as its own document set: one HTML file, one EPUB and one PDF.
 
-    python lessons/curriculum/build.py            # writes curriculum.pdf and curriculum.epub in the repository root
-    python lessons/curriculum/build.py --release  # build and require the PDF layout and content checks
-    python lessons/curriculum/build.py --check    # lint the curriculum, build the HTML and verify every internal link resolves
-    python lessons/curriculum/build.py --artifacts-dir DIR   # write the PDF and EPUB to DIR (used to test reproducibility)
+    python lessons/plan-de-estudios/build.py            # writes curriculum.pdf and curriculum.epub in the repository root
+    python lessons/plan-de-estudios/build.py --release  # build and require the PDF layout and content checks
+    python lessons/plan-de-estudios/build.py --check    # lint the curriculum, build the HTML and verify every internal link resolves
+    python lessons/plan-de-estudios/build.py --artifacts-dir DIR   # write the PDF and EPUB to DIR (used to test reproducibility)
 
 The words the checks depend on come from the locale catalog (lessons/book/locale/<lang>.yaml): the printed chapter label ("Ch" or "Cap."),
 the sentence limit, the register rule, and the acronym, the phase letters and their weeks. The language is BOOK_LANG (default "en").
@@ -156,7 +156,7 @@ def check_curriculum(text=None, repo=REPO):
             add(f"diagram node {node} is labeled with the letter {label.group(1)!r}; the phase letter is {letter!r}")
 
     # printed chapter numbers: "Ch N" (the catalog's chapter label) must be the chapter's number in the printed book (chapters.txt order, numbered from 1)
-    order = [l.strip() for l in study_guides.read(os.path.join(BOOKDIR, "chapters.txt")).splitlines() if l.strip() and not l.startswith("#")]
+    order = [l.strip() for l in study_guides.read(os.path.join(repo, "lessons", "book", "chapters.txt")).splitlines() if l.strip() and not l.startswith("#")]
     for m in re.finditer(r"\[" + re.escape(CHAPTER_LABEL) + r" (\d+)\]\(\.\./lessons/(" + re.escape(CS_DIR) + r"/[^)#]+)", text):
         want = order.index(m.group(2)) + 1 if m.group(2) in order else None
         if want != int(m.group(1)):
@@ -176,13 +176,14 @@ def check_curriculum(text=None, repo=REPO):
 
     # links: relative ones resolve to a file and a heading, external ones use an allowed host over https
     stripped = re.sub(r"```.*?```", "", text, flags=re.S)
-    base = os.path.dirname(SOURCE)
+    source = os.path.join(repo, *where.split("/"))        # `repo` is the tree the text is checked against (the English clone in the fixtures)
+    base = os.path.dirname(source)
     for m in study_guides.LINK.finditer(stripped):
         target = m.group(2)
         if re.match(r"[a-z][a-z0-9+.-]*:", target):
             continue
         path, _, frag = target.partition("#")
-        full = os.path.normpath(os.path.join(base, path)) if path else SOURCE
+        full = os.path.normpath(os.path.join(base, path)) if path else source
         if not os.path.exists(full):
             add(f"link to a missing file: {target}")
         elif frag and full.endswith(".md") and frag not in study_guides.anchors(study_guides.read(full)):

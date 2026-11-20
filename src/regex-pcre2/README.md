@@ -3,7 +3,7 @@ name: "PCRE2"
 teaches: "that regex callouts can serve as a tiny instruction set."
 kind: weird
 languages: [c, pcre2, regex]
-lesson: "languages/regex.md#pcre2-callouts-as-an-instruction-set"
+lesson: "lenguajes/regex.md#pcre2-callouts-as-an-instruction-set"
 loop-by: backtracking-search
 evaluation: search
 assurance: implementation-permitted
@@ -115,4 +115,4 @@ Callouts only mean something if the engine actually visits them. This program co
 
 ---
 
-See the [root README](../../README.md#the-results-so-far) for how this compares to the other regex entries, and [`CHALLENGE.md`](../../CHALLENGE.md) if you want to write your own.
+See the [root README](../../README.md#the-results-so-far) for how this compares to the other regex entries, and [`RETO.md`](../../RETO.md) if you want to write your own.

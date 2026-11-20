@@ -23,6 +23,8 @@ import time
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
+sys.path.insert(0, HERE)
+import enpath  # noqa: E402
 SCRATCH = os.path.join(ROOT, "translation", "work", "scratch")
 REPORT = os.path.join(ROOT, "translation", "scratch-proof.md")
 ALLOWLIST = "translation/tooling-allowlist.txt"
@@ -58,9 +60,18 @@ def is_metadata(rel):
     return rel.endswith("metadata.yaml") or rel.endswith("metadata.yml")
 
 
+# Data in the layout of the edition (P3B-005): these files name other files, so the Spanish layout rewrites them. They are
+# allowlisted (I13) but never part of the layer that is applied to the English clone: the English clone keeps its own.
+DATA_FILES = ("lessons/book/chapters.txt", "lessons/study-guides/chapters.txt", "lessons/book/guide-dependencies.json")
+
+
+def is_data(rel):
+    return is_metadata(rel) or rel.startswith(".github/") or rel in DATA_FILES
+
+
 def layer_files(root=ROOT):
     """Repo-relative files that make up the locale layer: allowlisted tooling (not metadata) and the locale dir."""
-    files = [r for r in parse_allowlist(read_lines(os.path.join(root, ALLOWLIST))) if not is_metadata(r)]
+    files = [r for r in parse_allowlist(read_lines(os.path.join(root, ALLOWLIST))) if not is_data(r)]
     loc = os.path.join(root, LOCALE_DIR)
     for dirpath, dirnames, filenames in os.walk(loc):
         dirnames[:] = [d for d in dirnames if d != "__pycache__"]
@@ -72,10 +83,12 @@ def layer_files(root=ROOT):
 
 
 def apply_layer(src_root, dest_root, files):
+    """Copy each layer file (named by English key) from where it sits in `src_root` to its English path in the clone."""
+    layer = enpath.load(src_root)
     for rel in files:
         dst = os.path.join(dest_root, rel)
         os.makedirs(os.path.dirname(dst), exist_ok=True)
-        shutil.copyfile(os.path.join(src_root, rel), dst)
+        shutil.copyfile(layer.full(rel), dst)
 
 
 def sha256_file(path):

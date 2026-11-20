@@ -2,7 +2,7 @@
 
 Entries: [`src/cobol`](../../src/cobol/README.md) (the idiomatic one) and [`src/cobol-weird`](../../src/cobol-weird/README.md) (no `IF`, no `PERFORM`).
 
-For an advanced reading path with traces and experiments, see the [COBOL study guide](../study-guides/languages/cobol.md).
+For an advanced reading path with traces and experiments, see the [COBOL study guide](../guias-de-estudio/lenguajes/cobol.md).
 
 COBOL (1959) was built for records, totals and reports, and it shows. What makes it special is that it moves rules and shapes *out of the procedure and into the data description*. What makes it a rich field for quirks is that it is old enough to have a feature, `ALTER`, that the standard has since deleted.
 
@@ -51,7 +51,7 @@ END-ADD
 
 ### What did we just learn?
 
-- **A jump target can be state.** Control flow is not only the program counter walking source text; it can be data the program edits. Compare [Make's restart](make-cmake.md#gnu-make), [CMake's registers](make-cmake.md#cmake) and [Forth's `>in`](forth.md): all keep control state somewhere other than ordinary variables. See [patterns](../patterns.md#control-state-outside-variables).
+- **A jump target can be state.** Control flow is not only the program counter walking source text; it can be data the program edits. Compare [Make's restart](make-cmake.md#gnu-make), [CMake's registers](make-cmake.md#cmake) and [Forth's `>in`](forth.md): all keep control state somewhere other than ordinary variables. See [patterns](../patrones.md#control-state-outside-variables).
 - **Overflow is a decision.** `ON SIZE ERROR` is a conditional triggered by arithmetic running out of digits rather than by a comparison anyone wrote.
 - **Structured programming won for a reason**, and this program is the reason. See the next step.
 
@@ -65,7 +65,7 @@ Tags: `ALTER` is **implementation-permitted** (deleted from the standard, kept b
 - **Optimizers.** A compiler that cannot assume a `GO TO` is constant has little it can do with the paragraph.
 - **Reentrancy.** Rewriting the code's own jump table is the opposite of reentrant: two callers share one `NEXT-CARD`. (On the rewriting-the-program theme, see [APL](apl.md#self-modifying-functions-apl-weird).)
 
-Legitimate uses: none in new code. Historically, though, in memory-poor, performance-sensitive batch systems, a switch set once and tested by an unconditional `GO TO` was cheaper than testing a flag on every pass. That is the "mainframe in 1978" answer to the recurring question: *it was reasonable when the constraint was real*. See the [intro](../intro.md#the-recurring-question).
+Legitimate uses: none in new code. Historically, though, in memory-poor, performance-sensitive batch systems, a switch set once and tested by an unconditional `GO TO` was cheaper than testing a flag on every pass. That is the "mainframe in 1978" answer to the recurring question: *it was reasonable when the constraint was real*. See the [intro](../introduccion.md#the-recurring-question).
 
 ### Now break it yourself
 
@@ -94,7 +94,7 @@ Rarely in the form shown. The `88`-level stop rule, though, is a good design whe
 <!-- BEGIN GENERATED program-flow:languages/cobol.md -->
 ## How each program runs
 
-Each picture below is the `## Program Flow` section of an entry's README, copied here by the build. It shows how that program makes the work happen: what the language, runtime or tool really does. [The introduction](../intro.md#what-the-challenge-does) shows what the challenge asks for and where entries differ.
+Each picture below is the `## Program Flow` section of an entry's README, copied here by the build. It shows how that program makes the work happen: what the language, runtime or tool really does. [The introduction](../introduccion.md#what-the-challenge-does) shows what the challenge asks for and where entries differ.
 
 ### Program flow of `cobol`
 
@@ -148,5 +148,5 @@ stateDiagram-v2
 ## Computer science behind this page
 
 <!-- BEGIN GENERATED concepts:languages/cobol.md -->
-The computer-science ideas behind this page: [Representing state](../cs/02-what-counts-as-a-machine.md#representing-state), [Control flow](../cs/03-control-flow-and-continuations.md#control-flow), [Goto and structured programming](../cs/03-control-flow-and-continuations.md#goto-and-structured-programming), [The program counter](../cs/03-control-flow-and-continuations.md#the-program-counter), [Self-modifying code](../cs/03-control-flow-and-continuations.md#self-modifying-code), [Declarative programming](../cs/05-formal-languages-as-computational-substrates.md#declarative-programming), [State](../cs/06-state-beyond-variables.md#state), [Exception handling](../cs/07-effects-errors-and-commitment.md#exception-handling), [Integrity constraints](../cs/07-effects-errors-and-commitment.md#integrity-constraints), [Undefined, unspecified and implementation-defined behavior](../cs/08-abstraction-leaks-and-implementation-dependence.md#undefined-unspecified-and-implementation-defined-behavior).
+The computer-science ideas behind this page: [Representing state](../informatica/02-que-cuenta-como-maquina.md#representing-state), [Control flow](../informatica/03-flujo-de-control-y-continuaciones.md#control-flow), [Goto and structured programming](../informatica/03-flujo-de-control-y-continuaciones.md#goto-and-structured-programming), [The program counter](../informatica/03-flujo-de-control-y-continuaciones.md#the-program-counter), [Self-modifying code](../informatica/03-flujo-de-control-y-continuaciones.md#self-modifying-code), [Declarative programming](../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#declarative-programming), [State](../informatica/06-estado-mas-alla-de-las-variables.md#state), [Exception handling](../informatica/07-efectos-errores-y-confirmacion.md#exception-handling), [Integrity constraints](../informatica/07-efectos-errores-y-confirmacion.md#integrity-constraints), [Undefined, unspecified and implementation-defined behavior](../informatica/08-fugas-de-abstraccion-y-dependencia-de-la-implementacion.md#undefined-unspecified-and-implementation-defined-behavior).
 <!-- END GENERATED concepts:languages/cobol.md -->

@@ -62,7 +62,7 @@ class RealCopies(unittest.TestCase):
 
     def test_a_copy_does_not_touch_the_repository_files(self):
         rel = bp.FORTH
-        path = os.path.join(bp.ROOT, rel)
+        path = __import__("enpath").load(bp.ROOT).full(rel)      # `rel` is the English key
         with open(path, "rb") as f:
             before = f.read()
         bp.run_one(PILOT, next(c for c in CATALOG if c.id == "anchor-heading-renamed"))

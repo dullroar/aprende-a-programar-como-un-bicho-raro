@@ -17,14 +17,23 @@ import sys
 import time
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import enpath  # noqa: E402
+
+
+def W(en):
+    """Where the file with English key `en` sits in this checkout (paths.layout of the Spanish catalog)."""
+    return enpath.load(ROOT).work(en)
+
+
 REPORT = os.path.join(ROOT, "translation", "baseline.md")
 WORK = os.path.join(ROOT, "translation", "work", "baseline")
 
 PY = "python3"
 GATES = [
     ("book-check", [PY, "lessons/book/build.py", "--check"], 600),
-    ("study-guides-check", [PY, "lessons/study-guides/build.py", "--check"], 600),
-    ("curriculum-check", [PY, "lessons/curriculum/build.py", "--check"], 600),
+    ("study-guides-check", [PY, W("lessons/study-guides/build.py"), "--check"], 600),
+    ("curriculum-check", [PY, W("lessons/curriculum/build.py"), "--check"], 600),
     ("test_cs", [PY, "lessons/book/test_cs.py"], 600),
     ("test_study_guides", [PY, "lessons/book/test_study_guides.py"], 600),
     ("test_curriculum", [PY, "lessons/book/test_curriculum.py"], 600),
@@ -40,12 +49,12 @@ GATES = [
     ),
     (
         "release-study-guides",
-        [PY, "lessons/study-guides/build.py", "--release", "--artifacts-dir", "translation/work/baseline/release"],
+        [PY, W("lessons/study-guides/build.py"), "--release", "--artifacts-dir", "translation/work/baseline/release"],
         1200,
     ),
     (
         "release-curriculum",
-        [PY, "lessons/curriculum/build.py", "--release", "--artifacts-dir", "translation/work/baseline/release"],
+        [PY, W("lessons/curriculum/build.py"), "--release", "--artifacts-dir", "translation/work/baseline/release"],
         1200,
     ),
 ]

@@ -3,7 +3,7 @@ name: "Haskell"
 teaches: "that reading a lazy list can drive a program when forcing each element has a side effect."
 kind: weird
 languages: [haskell]
-lesson: "languages/haskell.md#lazy-io-as-control-flow"
+lesson: "lenguajes/haskell.md#lazy-io-as-control-flow"
 loop-by: lazy-demand
 evaluation: lazy
 assurance: implementation-permitted

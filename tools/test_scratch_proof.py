@@ -30,7 +30,31 @@ class LayerTests(unittest.TestCase):
 
     def test_every_layer_file_exists(self):
         for rel in sp.layer_files():
-            self.assertTrue(os.path.isfile(os.path.join(sp.ROOT, rel)), rel)
+            self.assertTrue(os.path.isfile(sp.enpath.load(sp.ROOT).full(rel)), rel)      # moved files sit at their working path
+
+    def test_layer_excludes_data_files_workflows_and_metadata(self):
+        files = sp.layer_files()
+        for data in sp.DATA_FILES + (".github/workflows/pdf-release-gate.yml",):
+            self.assertNotIn(data, files)
+            self.assertTrue(sp.is_data(data))
+        self.assertFalse(sp.is_data("lessons/book/cs.py"))                    # negative: code stays in the layer
+
+    def test_apply_layer_reads_a_moved_file_at_its_working_path(self):
+        os.makedirs(SCRATCH_TMP, exist_ok=True)
+        with tempfile.TemporaryDirectory(dir=SCRATCH_TMP) as d:
+            src, dst = os.path.join(d, "s"), os.path.join(d, "d")
+            os.makedirs(os.path.join(src, "translation"))
+            os.makedirs(os.path.join(src, "lessons", "book", "locale"))
+            os.makedirs(os.path.join(src, "lessons", "guias"))
+            with open(os.path.join(src, "translation", "path-map.yaml"), "w", encoding="utf-8") as f:
+                f.write('schema: 1\npaths:\n  "lessons/guides/build.py": "lessons/guias/build.py"\n')
+            with open(os.path.join(src, "lessons", "book", "locale", "es.yaml"), "w", encoding="utf-8") as f:
+                f.write('paths:\n  layout: "spanish"\n')
+            with open(os.path.join(src, "lessons", "guias", "build.py"), "wb") as f:
+                f.write(b"x = 1\n")
+            sp.apply_layer(src, dst, ["lessons/guides/build.py"])
+            with open(os.path.join(dst, "lessons", "guides", "build.py"), "rb") as f:   # lands at the English key
+                self.assertEqual(f.read(), b"x = 1\n")
 
     def test_apply_layer_copies_bytes(self):
         os.makedirs(SCRATCH_TMP, exist_ok=True)

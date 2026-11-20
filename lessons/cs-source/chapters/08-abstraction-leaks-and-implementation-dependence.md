@@ -1,7 +1,7 @@
 ---
 title: "Abstraction leaks and implementation dependence"
 ---
-For an advanced reading path with traces and experiments, see the [portability, abstraction and cost study guide](../study-guides/concepts/portability-abstraction-and-cost.md).
+For an advanced reading path with traces and experiments, see the [portability, abstraction and cost study guide](../guias-de-estudio/conceptos/portabilidad-abstraccion-y-costo.md).
 
 Every abstraction hides something, and sooner or later the hidden thing shows. This chapter is about those moments. A language standard promises some things, allows others and ignores the rest. An optimizer may skip code that the language says nobody can see. A regex that is fast on every test can take a year on one bad input. A feature that nobody promised can still be the one that everybody uses.
 

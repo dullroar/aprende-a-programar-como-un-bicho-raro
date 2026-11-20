@@ -1,7 +1,7 @@
 ---
 title: "Control flow and continuations"
 ---
-For an advanced reading path with traces and experiments, see the [state and control beyond variables study guide](../study-guides/concepts/state-and-control-beyond-variables.md).
+For an advanced reading path with traces and experiments, see the [state and control beyond variables study guide](../guias-de-estudio/conceptos/estado-y-control-mas-alla-de-las-variables.md).
 
 "What runs next?" is one of the two basic questions about any program. (The other is "what does it remember?", in the chapter "State beyond variables".) Most languages answer it with a program counter and a call stack, and most programmers never think about it again. The entries in this book keep control somewhere else, so you can see it clearly.
 

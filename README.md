@@ -11,7 +11,7 @@ A series of responses to a code challenge that has morphed into a set of educati
 
 The first version was a [2008 classroom exercise](/docs/My%20Code%20Challenge.pdf), built to put new C# 3.0 and .NET 3.x features on display. Keeping the one-statement rule and porting it to new languages turned out to be a great way to learn what those languages actually let you do, once you push past the part the tutorials cover. Each entry answers the same question in its own accent: *how far can this language's own machinery - its iterators, its regex engine, its markup parser, its build tool - be pushed before it starts acting like a general-purpose program?*
 
-It is a joke with a serious job inside it. Underneath every entry is a real lesson in a real language construct - LINQ, XAML, GNU Make, regular expressions, iterators, callouts - taught by pushing that construct until it does something its own documentation would not think to show you. That is why every folder's README has a **How the stunt works** section: read it, and you have learned the construct, not just watched a trick. The entertainment gets you in the door; the "oh, THAT'S how that actually works" is what you leave with. The full curriculum, with exercises, is in **[Learn Programming the Weird Way!](lessons/intro.md)**.
+It is a joke with a serious job inside it. Underneath every entry is a real lesson in a real language construct - LINQ, XAML, GNU Make, regular expressions, iterators, callouts - taught by pushing that construct until it does something its own documentation would not think to show you. That is why every folder's README has a **How the stunt works** section: read it, and you have learned the construct, not just watched a trick. The entertainment gets you in the door; the "oh, THAT'S how that actually works" is what you leave with. The full curriculum, with exercises, is in **[Learn Programming the Weird Way!](lessons/introduccion.md)**.
 
 The deeper point, the one worth keeping after the jokes wear off: **THERE ARE NO BLOCKERS, JUST NOT ENOUGH IMAGINATION.**
 
@@ -27,13 +27,13 @@ You know you want to write beautifully wrong code. **You know you do.**
 
 ## Want to learn from it?
 
-**[Learn Programming the Weird Way!](lessons/README.md)** *Programs you shouldn't write. Language features you should understand.* Lessons by [goals](lessons/goals.md), by [computer science concept](lessons/cs/README.md), by [language](lessons/languages/README.md) (including [COBOL's `ALTER`](lessons/languages/cobol.md#alter) and [APL on the whiteboard](lessons/languages/apl.md)) and by [solution pattern](lessons/patterns.md), plus [problems overcome](lessons/problems-overcome.md), [blocking problems](lessons/blocking-problems.md) and [exercises](lessons/exercises.md) you can run in a container.
+**[Learn Programming the Weird Way!](lessons/README.md)** *Programs you shouldn't write. Language features you should understand.* Lessons by [goals](lessons/objetivos.md), by [computer science concept](lessons/informatica/README.md), by [language](lessons/lenguajes/README.md) (including [COBOL's `ALTER`](lessons/lenguajes/cobol.md#alter) and [APL on the whiteboard](lessons/lenguajes/apl.md)) and by [solution pattern](lessons/patrones.md), plus [problems overcome](lessons/problemas-superados.md), [blocking problems](lessons/problemas-bloqueantes.md) and [exercises](lessons/exercises.md) you can run in a container.
 
-Want a plan for a whole semester? The **[16-week curriculum](docs/curriculum.md)** ([PDF](curriculum.pdf), [EPUB](curriculum.epub)) sequences the book chapters, study guides and exercises for senior undergraduates, graduate students and self-taught programmers.
+Want a plan for a whole semester? The **[16-week curriculum](docs/plan-de-estudios.md)** ([PDF](curriculum.pdf), [EPUB](curriculum.epub)) sequences the book chapters, study guides and exercises for senior undergraduates, graduate students and self-taught programmers.
 
 ## Ready to play?
 
-The rules, the shared demo and the do's and don'ts live in **[`CHALLENGE.md`](CHALLENGE.md)**. Pick a language. Pick a constraint. Make something terrible that works. Sending it in? See **[`CONTRIBUTING.md`](CONTRIBUTING.md)**.
+The rules, the shared demo and the do's and don'ts live in **[`RETO.md`](RETO.md)**. Pick a language. Pick a constraint. Make something terrible that works. Sending it in? See **[`CONTRIBUTING.md`](CONTRIBUTING.md)**.
 
 ## The results so far
 
@@ -90,12 +90,12 @@ Every entry builds the same small demo: make up some *Meetings / Coding / Debugg
 | **Tcl, weirder** | Jim | The program is text in a SQLite table, fetched by an overridden `unknown`; a recursive trigger is the loop and `INSERT ... WHERE` is the stop rule | Code as data, and a database trigger as control flow | [`src/tcl-weird`](src/tcl-weird/README.md) |
 | **XAML** | Jim | The program *is* a `.xaml` file, run by the parser that loads it | XAML as a runtime interpreter, not just markup | [`src/xaml`](src/xaml/README.md) |
 
-Every "Teaches you" cell above is a promise, not just a label: open the folder's README and that is genuinely what you will walk away understanding. For the same material organized by [language](lessons/languages/README.md) and by [mechanism](lessons/patterns.md), with exercises, see [Learn Programming the Weird Way!](lessons/README.md).
+Every "Teaches you" cell above is a promise, not just a label: open the folder's README and that is genuinely what you will walk away understanding. For the same material organized by [language](lessons/lenguajes/README.md) and by [mechanism](lessons/patrones.md), with exercises, see [Learn Programming the Weird Way!](lessons/README.md).
 
 ## Repository layout
 
 ```text
-CHALLENGE.md                  # the rules - start here if you want to play
+RETO.md                  # the rules - start here if you want to play
 CONTRIBUTING.md               # how to send in an entry, and how it gets reviewed
 SANDBOX-SETUP.md              # how to install Docker / Windows Sandbox to run entries safely
 lessons/                      # Learn Programming the Weird Way!: lessons, patterns, blockers, exercises

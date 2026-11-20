@@ -10,14 +10,14 @@ python lessons/book/build.py --check-diagrams   # the full render gate for the P
 
 - `chapters.txt` is the reading order. Add a chapter by adding its path there.
 - `metadata.yaml` holds the title, the edition number (`book-version`), author and table-of-contents settings. The book is numbered from v3 on: bump `book-version`, the title, the title page in `front-matter.md` and add a section to [`VERSIONS.md`](VERSIONS.md) (what that edition added). `build.py` fails if they disagree.
-- `build.py` assembles the chapters and rewrites links after Pandoc parses the Markdown. Code samples stay literal. A link to another chapter becomes an in-book anchor, a link to the web index becomes plain text, and a link to anything else in the repo (source files, `src/*/README.md`, `CHALLENGE.md`) becomes its GitHub URL. The chapters themselves stay ordinary GitHub-friendly Markdown.
+- `build.py` assembles the chapters and rewrites links after Pandoc parses the Markdown. Code samples stay literal. A link to another chapter becomes an in-book anchor, a link to the web index becomes plain text, and a link to anything else in the repo (source files, `src/*/README.md`, `RETO.md`) becomes its GitHub URL. The chapters themselves stay ordinary GitHub-friendly Markdown.
 
 - **Why the sources use relative links and the PDF and EPUB use absolute ones.** On GitHub and in a clone a relative link always works, and it keeps working when the repository is renamed or forked. A PDF or EPUB has no repository around it, so its links to source files must be full URLs. [`repo_links.py`](repo_links.py) is the only place that knows the repository's address: a fixed canonical default (`https://github.com/dullroar/learn-programming-the-weird-way`, branch `master`), so the same sources give the same bytes on any machine. The build never reads `git remote`. A fork can set `REPOSITORY_WEB_BASE` (and `REPOSITORY_BRANCH`) to publish its own links. The title and copyright pages use the placeholders `{{REPOSITORY_WEB_URL}}` and `{{REPOSITORY_WEB_LABEL}}`, which the build fills in. If the repository is renamed again, change `DEFAULT_WEB_BASE` there, rebuild the publications and commit them. [`test_repo_links.py`](test_repo_links.py) tests the mapping, and [`test_repo_identity.py`](test_repo_identity.py) fails if the old repository name returns anywhere except a short, reviewed list (the internal sandbox image tag `code-challenge-sandbox:local` and a per-user Rust build cache directory), including in the published PDFs and EPUBs.
 - **PDF** is written to the repo root as `learn-programming-the-weird-way.pdf` and needs [WeasyPrint](https://weasyprint.org) (`uv tool install weasyprint` or `pipx install weasyprint`; it also needs the Pango library, which most Linux desktops and WSL images already have). Without it the script skips the PDF with a note; the EPUB and HTML are complete either way. The layout is `book.css`; fonts are DejaVu, whose mono face has the APL glyphs (`⍴ ⍳ ⎕`; see [Seeing the glyphs](../../src/apl/README.md#seeing-the-glyphs)).
-- **Title and copyright pages** are in [`front-matter.md`](../front-matter.md) (plain HTML, inserted before the table of contents). EPUB puts this material on its opening page. Edit authors and the copyright line in the source.
+- **Title and copyright pages** are in [`front-matter.md`](../preliminares.md) (plain HTML, inserted before the table of contents). EPUB puts this material on its opening page. Edit authors and the copyright line in the source.
 - **Long code lines** (regexes, XAML, CMake) are hard-wrapped in the PDF by `wrap-code.lua` so nothing runs off the page. A line that continues ends in `↩` and the next line starts with `↪`. The Markdown source is untouched; HTML and EPUB reflow on their own.
 - The PDF and EPUB in the repo root are committed. The HTML and assembled Markdown go to `lessons/book/out/`, which is git-ignored.
-- **The study guides are a separate document set.** [`lessons/study-guides/`](../study-guides/README.md) holds hand-written guides that build with `python lessons/study-guides/build.py` into `learn-programming-the-weird-way-study-guides.pdf` and `.epub` beside the book's. That script imports this one (`build_documents`), so the link rewriting, diagram rendering, Pandoc call, stylesheet and reproducibility rule are shared and not copied. The guides are not in `chapters.txt`, and the book only links to them. [`study_guides.py`](study_guides.py) checks them and [`test_study_guides.py`](test_study_guides.py) tests those checks.
+- **The study guides are a separate document set.** [`lessons/guias-de-estudio/`](../guias-de-estudio/README.md) holds hand-written guides that build with `python lessons/guias-de-estudio/build.py` into `learn-programming-the-weird-way-study-guides.pdf` and `.epub` beside the book's. That script imports this one (`build_documents`), so the link rewriting, diagram rendering, Pandoc call, stylesheet and reproducibility rule are shared and not copied. The guides are not in `chapters.txt`, and the book only links to them. [`study_guides.py`](study_guides.py) checks them and [`test_study_guides.py`](test_study_guides.py) tests those checks.
 
 ## PDF release gate
 
@@ -36,11 +36,11 @@ python lessons/book/lint_pdf.py --release \
 
 # Run the same ordered gates as CI, with the build and diagram tools installed.
 python lessons/book/build.py --check
-python lessons/study-guides/build.py --check
+python lessons/guias-de-estudio/build.py --check
 python lessons/book/build.py --check-diagrams
 python lessons/book/test_pdf_lint.py
 python lessons/book/build.py --release
-python lessons/study-guides/build.py --release
+python lessons/guias-de-estudio/build.py --release
 ```
 
 The standalone CLI uses the publication filenames to select the book and study-guide sentinels. Use `--profile book` or `--profile study-guides` for a renamed copy, or `--profile letter` for geometry on a fixture. Its exit codes are **0** for a complete scan with zero errors, **1** for a completed scan with errors and **2** for an incomplete scan or invocation failure. Warnings are advisory in every mode. `--release` also rasterizes every page at low resolution and fails on a rasterizer exception or an entirely white render with substantial detected content. The [PDF release workflow](../../.github/workflows/pdf-release-gate.yml) builds both documents from source and uploads the lint diagnostics on failure.
@@ -66,7 +66,7 @@ For an intentional exception, specify the profile, rule and observable object si
 
 ## Diagrams
 
-Every entry's README has a `## Program Flow` section with one Mermaid diagram (the contract is in [`CONTRIBUTING.md`](../../CONTRIBUTING.md#program-flow-a-picture-of-the-machine)). The diagram is text in Git, and the build turns it into a figure. The shared "what the challenge does" picture is a fenced `mermaid` block in [`intro.md`](../intro.md), and the chapter on events has one too. **Any** `mermaid` fence in a chapter is rendered.
+Every entry's README has a `## Program Flow` section with one Mermaid diagram (the contract is in [`CONTRIBUTING.md`](../../CONTRIBUTING.md#program-flow-a-picture-of-the-machine)). The diagram is text in Git, and the build turns it into a figure. The shared "what the challenge does" picture is a fenced `mermaid` block in [`intro.md`](../introduccion.md), and the chapter on events has one too. **Any** `mermaid` fence in a chapter is rendered.
 
 **How it flows.** `src/<entry>/README.md` (the source of truth) is read by [`diagrams.py`](diagrams.py) with a fence-aware Markdown scanner, not a regex. The `## Program Flow` section is copied by `build.py --generate` into the generated block `How each program runs` of the lesson page named by the entry's `lesson:` key (the page keeps the Mermaid fence, so GitHub draws it too). At book-build time every `mermaid` fence is rendered once to SVG and once to PNG by Mermaid CLI and replaced by an HTML `<figure>` with a caption (`accTitle`) and alt text (`accDescr`) before pandoc runs. The PDF and HTML use the SVG (vector, scaled to fit one page); the EPUB uses the PNG (every reader draws it). There is one renderer and no second mechanism.
 
@@ -110,14 +110,14 @@ Part of the book is **generated** from metadata and author-written Markdown. The
 | Source (hand-written) | What it becomes |
 | --- | --- |
 | The YAML frontmatter at the top of every `src/*/README.md` (see [`CONTRIBUTING.md`](../../CONTRIBUTING.md#how-your-entry-plugs-into-the-book)) | The "In this repo" table under each concept, the comparative chapter, and the tables between `<!-- BEGIN GENERATED ... -->` markers in `goals.md`, `patterns.md` and the language pages |
-| [`cs-source/concepts/<id>.md`](../cs-source/concepts/): one file per computer-science concept (`title`, `chapter`, `order`, then the prose) | A section in a chapter of `lessons/cs/`. The file name is the **tag** that entries use |
+| [`cs-source/concepts/<id>.md`](../cs-source/concepts/): one file per computer-science concept (`title`, `chapter`, `order`, then the prose) | A section in a chapter of `lessons/informatica/`. The file name is the **tag** that entries use |
 | [`cs-source/roles/<id>.md`](../cs-source/roles/): one file per "what plays the loop" role | A section of the comparative chapter (chapter 9) |
 | [`cs-source/chapters/NN-name.md`](../cs-source/chapters/) and [`cs-source/index.md`](../cs-source/index.md) | The chapter introductions and the opener of the "By computer science concept" part |
 | [`link-hosts.txt`](link-hosts.txt) | The only external hosts the prose may link to |
 
 **How a concept is grounded.** Every concept page needs something real behind it, and the build fails if it has nothing. An entry can relate to a concept in three ways, set in its frontmatter: `tags` (it **demonstrates** the idea), `analogies` (it resembles the idea) or `counterexamples` (it shows what the idea is not). The concept's "In this repo" table has a column that says which. Some facts are true of *every* entry, and a maintainer states them once in the concept's own frontmatter instead of tagging every entry: `applies-to: all` (or `has:machine`, for the entries that name their machine) with a required `applies-because:` sentence. A concept that no entry demonstrates at all can instead point at a focused exercise with `exercise: exercises.md#anchor`. The prose "no entry uses this yet" is rejected: the generator now says what is behind each concept. `python lessons/book/build.py --orphans` prints the grounding of every concept and fails if one has none. `python lessons/book/test_cs.py` tests the rules.
 
-Run `python lessons/book/build.py --generate` to refresh the generated Markdown (the files in `lessons/cs/` and the marked blocks) without running pandoc. The generated files are **committed**, so GitHub readers see the full chapters, and `--check` fails if they are out of date or if any metadata is invalid (an unknown tag, a missing key, a link to a host that is not on the list).
+Run `python lessons/book/build.py --generate` to refresh the generated Markdown (the files in `lessons/informatica/` and the marked blocks) without running pandoc. The generated files are **committed**, so GitHub readers see the full chapters, and `--check` fails if they are out of date or if any metadata is invalid (an unknown tag, a missing key, a link to a host that is not on the list).
 
 In prose you can write `[[concept-id]]` to link to a concept, `[[entry:folder-name]]` to link to an entry, and `{{table:glance}}`, `{{table:evaluation}}` or `{{table:roles}}` for a generated table. A concept file's body should hold: one paragraph (why it exists, why it is used), a **Use it when** line, an **Avoid it when** line, and a **Read more** list. The generator adds the "In this repo" table itself.
 
@@ -135,7 +135,7 @@ That last point took a fix. Mermaid draws some node shapes, above all the stadiu
 
 After merging a new entry: add its row to the root `README.md` table, add any new tag, role or language to `lessons/cs-source/`, run `python lessons/book/build.py` (it regenerates the chapters, the index and the PDF and EPUB), and update the bold **"N challenges in M languages"** line at the top of the root `README.md`. The build prints the right numbers and warns when that line is stale. It is the one count that is kept by hand.
 
-To keep the book building: give every chapter exactly one `# ` title, link between chapters with relative `.md` links, and put exercises' answers in [`answers-key.md`](../answers-key.md).
+To keep the book building: give every chapter exactly one `# ` title, link between chapters with relative `.md` links, and put exercises' answers in [`answers-key.md`](../respuestas.md).
 
 ### Guide impact review
 
@@ -154,12 +154,12 @@ Once you've checked a guide's traces, exercises, boundaries and source citations
 The guides build as their own HTML, PDF and EPUB set, separate from the book. The book's PDF and EPUB do not contain them.
 
 ```bash
-python lessons/study-guides/build.py --check   # lint the guides, build the HTML, verify every internal link
-python lessons/study-guides/build.py           # write the PDF and EPUB next to the book's, in the repository root
+python lessons/guias-de-estudio/build.py --check   # lint the guides, build the HTML, verify every internal link
+python lessons/guias-de-estudio/build.py           # write the PDF and EPUB next to the book's, in the repository root
 python lessons/book/test_study_guides.py       # the tests: template, diagrams, links, index
 ```
 
-The outputs are `learn-programming-the-weird-way-study-guides.pdf` and `.epub`. The reading order is [`chapters.txt`](../study-guides/chapters.txt). The build reuses the book's own pipeline ([`lessons/book/build.py`](build.py)) for link rewriting, diagrams, Pandoc and reproducibility. [`lessons/book/study_guides.py`](study_guides.py) checks each guide for the template, for placeholder text, for diagrams that match their source, and for links.
+The outputs are `learn-programming-the-weird-way-study-guides.pdf` and `.epub`. The reading order is [`chapters.txt`](../guias-de-estudio/chapters.txt). The build reuses the book's own pipeline ([`lessons/book/build.py`](build.py)) for link rewriting, diagrams, Pandoc and reproducibility. [`lessons/book/study_guides.py`](study_guides.py) checks each guide for the template, for placeholder text, for diagrams that match their source, and for links.
 
 The [PDF release gate](README.md#pdf-release-gate) checks the guide PDF after each full build. Pass `--release` to make the PDF and its lint scan required.
 
@@ -169,12 +169,12 @@ The [PDF release gate](README.md#pdf-release-gate) checks the guide PDF after ea
 
 ## Building the curriculum
 
-The curriculum is one hand-written file, [`docs/curriculum.md`](../../docs/curriculum.md): a 16-week course plan that points at the book chapters, the study guides and the exercises without changing them. It builds as its own HTML, PDF and EPUB, separate from the book and the study guides.
+The curriculum is one hand-written file, [`docs/plan-de-estudios.md`](../../docs/plan-de-estudios.md): a 16-week course plan that points at the book chapters, the study guides and the exercises without changing them. It builds as its own HTML, PDF and EPUB, separate from the book and the study guides.
 
 ```bash
-python lessons/curriculum/build.py --check   # lint the curriculum, build the HTML, verify every internal link
-python lessons/curriculum/build.py           # write curriculum.pdf and curriculum.epub in the repository root
+python lessons/plan-de-estudios/build.py --check   # lint the curriculum, build the HTML, verify every internal link
+python lessons/plan-de-estudios/build.py           # write curriculum.pdf and curriculum.epub in the repository root
 python lessons/book/test_curriculum.py       # the tests: plan, diagram, links, house style, page limit
 ```
 
-[`lessons/curriculum/build.py`](../curriculum/build.py) imports this build's `build_documents`, as the study-guide build does, so the link rewriting, Mermaid rendering, Pandoc call, stylesheet, reproducibility rule and PDF lint are shared. Its own checks cover weeks 1 to 16 once each, the one diagram with `accTitle` and `accDescr`, links and hosts, house style (25 words at most in a prose sentence, no contractions, no dashes) and a limit of 12 PDF pages. The title page and metadata are in [`lessons/curriculum/`](../curriculum/). When the book's edition changes, `companion-to` in `metadata.yaml` must change too, after someone reviews the curriculum.
+[`lessons/plan-de-estudios/build.py`](../plan-de-estudios/build.py) imports this build's `build_documents`, as the study-guide build does, so the link rewriting, Mermaid rendering, Pandoc call, stylesheet, reproducibility rule and PDF lint are shared. Its own checks cover weeks 1 to 16 once each, the one diagram with `accTitle` and `accDescr`, links and hosts, house style (25 words at most in a prose sentence, no contractions, no dashes) and a limit of 12 PDF pages. The title page and metadata are in [`lessons/plan-de-estudios/`](../plan-de-estudios/). When the book's edition changes, `companion-to` in `metadata.yaml` must change too, after someone reviews the curriculum.

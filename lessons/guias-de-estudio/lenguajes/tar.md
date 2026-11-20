@@ -13,7 +13,7 @@ When you finish, you should be able to:
 5. Explain why a failing callback or a short archive stalls the clock instead of failing loudly.
 6. Label each behavior as guaranteed, implementation-permitted or accidentally exploited.
 
-**Scope limits.** You need to know that tar writes a stream of 512-byte blocks and that GNU tar has options for callbacks. The guide does not teach the ustar header format, the SQL or the awk simulator that tests the weird entry. It uses GNU tar 1.34 or 1.35. BSD and macOS tar have no `--to-command`. The book's page is [tar](../../languages/tar.md). For ideas, see [Serialization, deserialization and object pickling](../../cs/06-state-beyond-variables.md#serialization-deserialization-and-object-pickling), [Capability and authority](../../cs/01-reading-an-adversarial-program.md#capability-and-authority) and [Logical clocks and event ordering](../../cs/03-control-flow-and-continuations.md#logical-clocks-and-event-ordering).
+**Scope limits.** You need to know that tar writes a stream of 512-byte blocks and that GNU tar has options for callbacks. The guide does not teach the ustar header format, the SQL or the awk simulator that tests the weird entry. It uses GNU tar 1.34 or 1.35. BSD and macOS tar have no `--to-command`. The book's page is [tar](../../lenguajes/tar.md). For ideas, see [Serialization, deserialization and object pickling](../../informatica/06-estado-mas-alla-de-las-variables.md#serialization-deserialization-and-object-pickling), [Capability and authority](../../informatica/01-lectura-de-un-programa-adversarial.md#capability-and-authority) and [Logical clocks and event ordering](../../informatica/03-flujo-de-control-y-continuaciones.md#logical-clocks-and-event-ordering).
 
 ## Before you begin
 
@@ -40,7 +40,7 @@ Edit only copies ([Running things safely](../../exercises.md#running-things-safe
 
 ## The shared challenge
 
-The [challenge specification](../../intro.md#what-the-challenge-does) calls for cards with a category and 10 to 19 whole hours. Categories cycle through Meetings, Coding, Debugging and Learning. Add each card's hours to the running total. Stop when the total passes 40. Keep the **first card that takes the total over 40**. A total of exactly 40 continues. Four 10-hour cards need a fifth card, in the Meetings category. Conforming runs finish with 3 to 5 cards and a total of 41 to 59 hours.
+The [challenge specification](../../introduccion.md#what-the-challenge-does) calls for cards with a category and 10 to 19 whole hours. Categories cycle through Meetings, Coding, Debugging and Learning. Add each card's hours to the running total. Stop when the total passes 40. Keep the **first card that takes the total over 40**. A total of exactly 40 continues. Four 10-hour cards need a fifth card, in the Meetings category. Conforming runs finish with 3 to 5 cards and a total of 41 to 59 hours.
 
 Both tar entries report from SQLite. The archive program dispatches member operations, while the checkpoint program commits each tick. In `tar-gnu`, the archive has five card slots (Meetings, Coding, Debugging, Learning, Meetings), each followed by a `stop-over` member that carries `limit=40` and means "halt if the total is *over* 40". Exactly 40 is not over 40, so the next slot runs. In `tar-gnu-weird`, a card is closed at the tick whose number equals the running total, and `done` is set when `total > 40`. A run needs between 41 and 59 ticks.
 
@@ -200,7 +200,7 @@ The B16 one-line answer is the lesson: the *inspector* parsed the program, the *
 
 **Costs to state.**
 
-- **The authority is in the command, not the data.** Every unsafe thing here would be a *decision by the operator*: choosing `--to-command`, choosing `--execute`. See [Capability and authority](../../cs/01-reading-an-adversarial-program.md#capability-and-authority).
+- **The authority is in the command, not the data.** Every unsafe thing here would be a *decision by the operator*: choosing `--to-command`, choosing `--execute`. See [Capability and authority](../../informatica/01-lectura-de-un-programa-adversarial.md#capability-and-authority).
 - **The dispatcher is a trust boundary.** Names and bodies are checked against strict patterns before any SQL runs, and no part of a member reaches a shell. A relaxed pattern would turn the archive into an injection vector.
 - **A clock without a stop.** The weird machine cannot stop tar, so a layout that is too short stalls the run mid-card, and one that is too long idles. The run needs 41 to 59 ticks, and the default is 64.
 - **Scheduling with a progress indicator.** Checkpoints were designed to show progress. This is a hack that depends on counting records.
@@ -208,11 +208,11 @@ The B16 one-line answer is the lesson: the *inspector* parsed the program, the *
 
 ## Connections across the repository
 
-- **Document order as the program.** `tar-gnu` is the repository's example of data that is read in order and given meaning by the reader. [XAML in the C# guide](csharp-linq-xaml-and-ports.md) is the same worry in a markup file: a parser that runs what it parses. The concept guide [Reading adversarial programs](../concepts/reading-adversarial-programs.md) uses both.
-- **A callback inverted.** `tar-gnu-weird` is a program called by its environment, as the PCRE2 callouts in [Regex engines and sed](regex-engines-and-sed.md) and the listeners in [JavaScript](javascript.md) are. The concept guide [Events, callbacks and reactive control](../concepts/events-callbacks-and-reactive-control.md) compares who owns the next turn.
-- **A state machine in one row.** [Tcl](tcl.md) keeps its state in table rows too. The concept guide [State and control beyond variables](../concepts/state-and-control-beyond-variables.md) compares them.
-- **Prediction as a test.** `check.sh` contains a second implementation of the machine and compares the two. The concept guide [Portability, abstraction and cost](../concepts/portability-abstraction-and-cost.md) uses this to ask what an observation proves.
-- **In the book.** [tar](../../languages/tar.md), [Serialization, deserialization and object pickling](../../cs/06-state-beyond-variables.md#serialization-deserialization-and-object-pickling), [Logical clocks and event ordering](../../cs/03-control-flow-and-continuations.md#logical-clocks-and-event-ordering) and [Capability and authority](../../cs/01-reading-an-adversarial-program.md#capability-and-authority).
+- **Document order as the program.** `tar-gnu` is the repository's example of data that is read in order and given meaning by the reader. [XAML in the C# guide](csharp-linq-xaml-y-adaptaciones.md) is the same worry in a markup file: a parser that runs what it parses. The concept guide [Reading adversarial programs](../conceptos/lectura-de-programas-adversariales.md) uses both.
+- **A callback inverted.** `tar-gnu-weird` is a program called by its environment, as the PCRE2 callouts in [Regex engines and sed](motores-de-regex-y-sed.md) and the listeners in [JavaScript](javascript.md) are. The concept guide [Events, callbacks and reactive control](../conceptos/eventos-retrollamadas-y-control-reactivo.md) compares who owns the next turn.
+- **A state machine in one row.** [Tcl](tcl.md) keeps its state in table rows too. The concept guide [State and control beyond variables](../conceptos/estado-y-control-mas-alla-de-las-variables.md) compares them.
+- **Prediction as a test.** `check.sh` contains a second implementation of the machine and compares the two. The concept guide [Portability, abstraction and cost](../conceptos/portabilidad-abstraccion-y-costo.md) uses this to ask what an observation proves.
+- **In the book.** [tar](../../lenguajes/tar.md), [Serialization, deserialization and object pickling](../../informatica/06-estado-mas-alla-de-las-variables.md#serialization-deserialization-and-object-pickling), [Logical clocks and event ordering](../../informatica/03-flujo-de-control-y-continuaciones.md#logical-clocks-and-event-ordering) and [Capability and authority](../../informatica/01-lectura-de-un-programa-adversarial.md#capability-and-authority).
 
 ## Self-check
 
@@ -228,4 +228,4 @@ Answer each question in your own words before you read the italic text. Say what
 - [Tar (computing)](https://en.wikipedia.org/wiki/Tar_(computing)) (Wikipedia): the format, its blocks and its history.
 - [GNU tar: Checkpoints](https://www.gnu.org/software/tar/manual/html_node/checkpoints.html) (GNU Project): the official description of `--checkpoint`, `--checkpoint-action` and `TAR_CHECKPOINT`. The checkpoint behavior this guide leans on is documented here, but how many records a command writes is measured, not promised.
 - [Serialization](https://en.wikipedia.org/wiki/Serialization) (Wikipedia): why data that is written down and read back can become a program.
-- [Capability and authority](../../cs/01-reading-an-adversarial-program.md#capability-and-authority) (this book): why authority comes from the command that runs a program, not from the data it reads.
+- [Capability and authority](../../informatica/01-lectura-de-un-programa-adversarial.md#capability-and-authority) (this book): why authority comes from the command that runs a program, not from the data it reads.

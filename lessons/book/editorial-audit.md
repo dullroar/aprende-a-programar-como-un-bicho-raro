@@ -2,7 +2,7 @@
 
 Baseline: `191aeca` (`master`), v4 and its standalone companion. Reviewed the adjudicated revision plan, which supplies the claims below. The original Gemini review was not separately attached to this checkout. PDF observations are from the baseline and rebuilt PDFs in this checkout.
 
-The book manifest lists 35 chapters and the guide manifest lists the guide index, 13 language-family guides and eight concept guides. The 40 entries and 29 languages come from `cs.Model()`. The authoritative inputs are the entry READMEs and code, `cs-source/`, the unmarked portions of lesson pages, and the hand-written guides. The generated copies are `lessons/cs/`, `lessons/index.md`, and the marked blocks on lesson pages.
+The book manifest lists 35 chapters and the guide manifest lists the guide index, 13 language-family guides and eight concept guides. The 40 entries and 29 languages come from `cs.Model()`. The authoritative inputs are the entry READMEs and code, `cs-source/`, the unmarked portions of lesson pages, and the hand-written guides. The generated copies are `lessons/informatica/`, `lessons/indice.md`, and the marked blocks on lesson pages.
 
 ## Behavior and evidence
 

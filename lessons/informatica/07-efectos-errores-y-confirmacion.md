@@ -2,7 +2,7 @@
 
 # Effects, errors and commitment
 
-For an advanced reading path with traces and experiments, see the [effects, errors and commitment study guide](../study-guides/concepts/effects-errors-and-commitment.md).
+For an advanced reading path with traces and experiments, see the [effects, errors and commitment study guide](../guias-de-estudio/conceptos/efectos-errores-y-confirmacion.md).
 
 A program that does nothing outside itself is a very expensive heater. Useful programs change the world: they write files, print and insert rows. This chapter is about the three questions that follow. When does an effect happen (**side effects**)? What happens when something goes wrong (**errors**)? And at what point is a change final (**commitment**)?
 
@@ -27,7 +27,7 @@ flowchart LR
     end
 ```
 
-Both calls return a value. Only the second also changes something outside itself: a row now exists in the database, and it still exists if the caller ignores the return value. That is why a side effect is not just another return value. The caller sees the return value only if it looks, but the effect has already happened. Compare [Referential transparency](04-evaluation-and-demand.md#referential-transparency): a pure call can be replaced by its value, and the second call cannot.
+Both calls return a value. Only the second also changes something outside itself: a row now exists in the database, and it still exists if the caller ignores the return value. That is why a side effect is not just another return value. The caller sees the return value only if it looks, but the effect has already happened. Compare [Referential transparency](04-evaluacion-y-demanda.md#referential-transparency): a pure call can be replaced by its value, and the second call cannot.
 
 - **Use effects when:** at the edges of a program, where it talks to the world, and in places where you can say exactly when they run.
 - **Avoid effects when:** they hide in lazy or "pure-looking" code, where nobody can say who triggers them.
@@ -35,7 +35,7 @@ Both calls return a value. Only the second also changes something outside itself
 **Read more:**
 
 - [Side effect (computer science)](https://en.wikipedia.org/wiki/Side_effect_(computer_science)) (Wikipedia)
-- [Referential transparency](04-evaluation-and-demand.md#referential-transparency) in "Evaluation and demand"
+- [Referential transparency](04-evaluacion-y-demanda.md#referential-transparency) in "Evaluation and demand"
 
 **In this repo:**
 
@@ -101,7 +101,7 @@ sequenceDiagram
     Note over M: normal flow resumes after the try
 ```
 
-The normal `return` of `save` and `process` never runs. The exception passes outward through each call until a `catch` accepts it, and then normal flow resumes after the `try` in `main`. If nothing catches it, it leaves the program. Unwinding only moves control. It does not undo what the skipped code already did: a row that `save` wrote stays written, unless a transaction rolls it back (see [Transactions](07-effects-errors-and-commitment.md#transactions)).
+The normal `return` of `save` and `process` never runs. The exception passes outward through each call until a `catch` accepts it, and then normal flow resumes after the `try` in `main`. If nothing catches it, it leaves the program. Unwinding only moves control. It does not undo what the skipped code already did: a row that `save` wrote stays written, unless a transaction rolls it back (see [Transactions](07-efectos-errores-y-confirmacion.md#transactions)).
 
 - **Use it when:** something truly unexpected happens, and the caller can recover or must be told.
 - **Avoid it when:** the "error" is a normal, frequent outcome (such as "end of input"), or when you catch everything and move on in silence.
@@ -153,7 +153,7 @@ The status is one small number. The caller does not learn what went wrong, only 
 
 An integrity constraint is a rule that the database itself enforces: `NOT NULL`, `UNIQUE`, `FOREIGN KEY`, `CHECK`. It exists because "we validate in the application" is only as good as every application. A constraint makes bad data *impossible*, not just unlikely. In this repository `CHECK(demo_only=1)` appears in nearly every entry: a table where a non-demo row cannot exist, which each `check.sh` tries to violate. Here constraints are also used as a stop rule (a violation ends the run) and as a guarantee. The second use is the one to keep in real programs.
 
-- **Use it when:** a rule must hold no matter who writes the data. See also [Invariants](02-what-counts-as-a-machine.md#invariants).
+- **Use it when:** a rule must hold no matter who writes the data. See also [Invariants](02-que-cuenta-como-maquina.md#invariants).
 - **Avoid it when:** users need validation messages they can act on. Complex rules that need triggers are also a poor fit for a simple constraint.
 
 **Read more:**
@@ -192,7 +192,7 @@ flowchart TB
 The search remembers the choices that still have untried alternatives. When a path fails, it goes back to the most recent one. Here that is the start, where `B` is still open. Undoing a choice undoes the search's own state, not the outside world. As the paragraph above says, a row written along a failed path stays written.
 
 - **Use it when:** the search space is small, or you can prune it early.
-- **Avoid it when:** effects cannot be undone, or when the input comes from an attacker (see [Regular-expression denial of service](08-abstraction-leaks-and-implementation-dependence.md#regular-expression-denial-of-service)).
+- **Avoid it when:** effects cannot be undone, or when the input comes from an attacker (see [Regular-expression denial of service](08-fugas-de-abstraccion-y-dependencia-de-la-implementacion.md#regular-expression-denial-of-service)).
 
 **Read more:**
 
@@ -306,7 +306,7 @@ flowchart TB
     end
 ```
 
-For an operation `f` on a state `s`, idempotence means `f(f(s)) = f(s)`. The question is what the second call does to the *state*, not whether the two return values match. Compare the clock in [Referential transparency](04-evaluation-and-demand.md#referential-transparency): calling `now()` twice can give different answers, but that alone does not make it non-idempotent, because it changes nothing.
+For an operation `f` on a state `s`, idempotence means `f(f(s)) = f(s)`. The question is what the second call does to the *state*, not whether the two return values match. Compare the clock in [Referential transparency](04-evaluacion-y-demanda.md#referential-transparency): calling `now()` twice can give different answers, but that alone does not make it non-idempotent, because it changes nothing.
 
 - **Use it when:** you design an API, a job queue or a deployment script.
 - **Avoid assuming it:** "add one to the counter" is not idempotent. When an operation cannot be, give each request a unique key and ignore repeats.
