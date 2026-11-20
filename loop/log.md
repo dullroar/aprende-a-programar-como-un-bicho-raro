@@ -24,3 +24,4 @@
 23 P1-006 done Phase 1 gate passed: tools/mask.py + 26 tests; masked round trip identical on 4 fixtures (also CRLF), code spans/URLs/macros/DNT never reach the translator, fenced output and front matter withheld, I2 negatives (drop, duplicate, invent, edit) fail closed
 24 P2-001 done lessons/book/locale/catalog.py loader (dotted keys, 1-based lists, macros, MissingKeyError) + en.yaml mirror + diagrams.section key; tools/test_catalog.py 28 tests incl. 11 negatives
 25 P2-002 done tools/segment.py + 37 tests (escaped pipes, spaces in code, COBOL column 1, list continuation, 14 negatives); T0 identity on all 212 authored files; 7394 translatable segments; mermaid withheld whole until P2-004
+26 P2-003 done tools/apply.py + 26 tests: PO layer (msgctxt=segment id, msgid=English masked), fuzzy/empty keep English, phase macros expand before unmask, orphan/stale/I2 fail closed; identity and empty PO reproduce all 212 files

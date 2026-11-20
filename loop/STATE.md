@@ -1,9 +1,9 @@
 # loop/STATE.md (keep to 60 lines; refreshed by every iteration)
 
 - **Edition:** v4-es.0-rc1 (working)    **English SHA:** 48a4429c0a22b2aac628b256a50c07d1816bcb80
-- **Iteration:** 25    **Stage:** 2    **Last result:** P2-002 done (tools/segment.py + 37 tests; T0 identical on 212 files)
-- **Tasks:** todo 118 (41 seed + 77 generated) | doing 0 | done 20 | blocked 0 | skipped 0
-- **Next task:** run `python3 tools/next_task.py` (P2-003 apply.py and P2-004 mermaid/placeholder restore build on tools/segment.py: Segmentation.reassemble, render_block, FM_TRANSLATE_KEYS)
+- **Iteration:** 26    **Stage:** 2    **Last result:** P2-003 done (tools/apply.py + 26 tests; identity and empty PO reproduce 212 files)
+- **Tasks:** todo 117 (40 seed + 77 generated) | doing 0 | done 21 | blocked 0 | skipped 0
+- **Next task:** run `python3 tools/next_task.py` (P2-004 mermaid labels extend tools/segment.py; PO files live at translation/po/<path>.po, written by tools/apply.py --init)
 - **Budget:** spent $0.00 of $100; iterations 0 of 300
 - **Translate progress:** segments accepted 0 / total 7394 (segmenter count, mermaid labels not yet extracted) ; files done 0 / ?
 - **Last audit:** none    **Next audit due after:** 8 translate tasks

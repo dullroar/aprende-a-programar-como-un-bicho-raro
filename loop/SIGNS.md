@@ -22,3 +22,4 @@
 - Build masking regexes with named groups (never numbered backreferences) and unmask in one non-recursive pass; run `python3 -I tools/test_mask.py` after touching tools/mask.py.
 - Add every new locale key to BOTH lessons/book/locale/en.yaml and es.yaml in the same commit, then run `python3 -I lessons/book/locale/catalog.py --check es en` and `python3 -I tools/test_catalog.py`; never name a package `locale` (it shadows the stdlib), import catalog.py by putting its directory on sys.path.
 - Tools run as `python3 -I` do not see sibling modules: put HERE on sys.path before `import mask`/`import segment`; after touching tools/segment.py run `python3 -I tools/test_segment.py` and `python3 -I tools/segment.py --t0`.
+- After touching tools/apply.py or the PO layout run `python3 -I tools/test_apply.py` and `python3 -I tools/apply.py --identity`; PO entries are keyed by msgctxt = segment id, and macros must expand in msgstr before unmask.
