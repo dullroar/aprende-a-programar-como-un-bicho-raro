@@ -5,7 +5,7 @@
 Each test copies the real sources into a scratch folder and breaks one thing, so the rules are tested against the real data
 and nothing in the repository is touched. Needs only the Python standard library.
 """
-import os, re, shutil, sys, tempfile, unittest
+import os, posixpath, re, shutil, sys, tempfile, unittest
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 import cs
@@ -21,7 +21,7 @@ def snapshot(dest):
             os.makedirs(os.path.join(dest, "src", d))
             shutil.copy(r, os.path.join(dest, "src", d, "README.md"))
     cs.REPO, cs.SRC = dest, os.path.join(dest, "src")
-    cs.LESSONS, cs.CSSRC, cs.CSOUT = os.path.join(dest, "lessons"), os.path.join(dest, "lessons", "cs-source"), os.path.join(dest, "lessons", "cs")
+    cs.LESSONS, cs.CSSRC, cs.CSOUT = os.path.join(dest, "lessons"), os.path.join(dest, "lessons", "cs-source"), os.path.join(dest, "lessons", cs.CAT.lessons_path("cs"))
 
 class Base(unittest.TestCase):
     def setUp(self):
@@ -62,7 +62,7 @@ class TestRepositoryAsItIs(Base):
         for d in ("tar-gnu", "tar-gnu-weird", "ed-weird", "ex-weird", "javascript", "javascript-weird"):
             self.assertIn(f"`{d}`", files["index.md"], d)
             self.assertIn(f"src/{d}/README.md", files["cs/09-comparative-case-studies.md"], d)
-            with open(os.path.join(cs.LESSONS, "languages", "README.md"), encoding="utf-8") as f:
+            with open(os.path.join(cs.LESSONS, cs.P("languages"), "README.md"), encoding="utf-8") as f:
                 self.assertIn(f"`{d}`", f.read(), f"{d} is missing from the By language page")
             self.assertIn(f"src/{d}/README.md", cs.generate_blocks(cs.Model(), "patterns.md"), f"{d} is missing from the By solution patterns page")
 
@@ -169,7 +169,7 @@ class TestSpanishWords(Base):
         m = cs.Model()
         self.en = cs.generate_all(m)
         self.en_anchor, self.en_flow = cs.CHALLENGE_ANCHOR, cs.slug(cs.diagrams.SECTION)
-        for rel in cs.BLOCK_FILES:       # generate_all lists a block page only when its text differs from the committed one
+        for rel in cs.block_files():       # generate_all lists a block page only when its text differs from the committed one
             self.en.setdefault(rel, cs.read(os.path.join(cs.LESSONS, rel)))
         cs.set_language("es")
         # The English READMEs have an English "## Program Flow" heading; read them with the English diagram words, so that the
@@ -178,10 +178,10 @@ class TestSpanishWords(Base):
         m = cs.Model()
         self.es = self.es_raw = cs.generate_all(m)
         self.es = dict(self.es)
-        for rel in cs.BLOCK_FILES:
+        for rel in cs.block_files():
             self.es.setdefault(rel, cs.read(os.path.join(cs.LESSONS, rel)))
         # only the generated words: the index pages, the opener and the text between the BEGIN/END GENERATED markers
-        self.generated = "\n".join([self.es["index.md"], self.es["cs/README.md"]] + [mk.group(0) for rel in cs.BLOCK_FILES for mk in cs.MARK.finditer(self.es[rel])])
+        self.generated = "\n".join([self.es["index.md"], self.es["cs/README.md"]] + [mk.group(0) for rel in cs.block_files() for mk in cs.MARK.finditer(self.es[rel])])
     def tearDown(self):
         cs.set_language("en")
         super().tearDown()
@@ -300,6 +300,96 @@ class TestSortingAndLettersFollowSpanish(unittest.TestCase):
     def test_ascii_order_is_exactly_the_old_casefold_order(self):
         for words in (["b", "A", "a", "B"], ["Closure", "closure", "Eval"]):
             self.assertEqual(sorted(words, key=lambda w: (cs.fold(w), w)), sorted(words, key=lambda w: (w.casefold(), w)))
+
+class TestRenamedLayout(Base):
+    """Plan 5.6: the same sources in the Spanish layout (folders and files moved per the catalog) generate the same text at the
+    renamed paths. The scratch copy is moved by the catalog, so a path that is still hard-coded in cs.py fails here."""
+
+    def setUp(self):
+        super().setUp()
+        self.saved_cat, self.saved_csout = cs.CAT, cs.CSOUT
+        flat = dict(cs.catalog.load("es").flat)         # the Spanish names, with the layout switched as P3B-005 will leave it
+        flat["paths.layout"] = "spanish"
+        cs.CAT = cs.catalog.Catalog("es", flat)
+        files = {k[len("paths.files."):]: v for k, v in flat.items() if k.startswith("paths.files.lessons/")}
+        for old, new in sorted(files.items()):
+            src, dst = os.path.join(self.tmp, old), os.path.join(self.tmp, new)
+            if os.path.isfile(src) and not old.endswith((".py", ".yaml")):
+                os.makedirs(os.path.dirname(dst), exist_ok=True)
+                shutil.move(src, dst)
+        for root, dirs, names in sorted(os.walk(os.path.join(self.tmp, "lessons"), topdown=False)):
+            if not dirs and not names:
+                os.rmdir(root)              # a moved folder leaves no empty English twin behind
+        cs.CSOUT = os.path.join(self.tmp, "lessons", cs.P("cs"))
+
+        def respell(text):      # content references are in the layout of the edition: rewrite them like P3B-005 will
+            for old, new in files.items():
+                a, b = old[len("lessons/"):], new[len("lessons/"):]
+                text = text.replace(a, b)
+            return text
+        for d in os.listdir(os.path.join(self.tmp, "src")):
+            p = os.path.join(self.tmp, "src", d, "README.md")
+            with open(p, encoding="utf-8") as f:
+                t = f.read()
+            with open(p, "w", encoding="utf-8") as f:
+                f.write(re.sub(r'^(lesson: ")([^"]+)', lambda m: m.group(1) + respell(m.group(2)), t, flags=re.M))
+        for root, _, names in os.walk(os.path.join(self.tmp, "lessons")):
+            for n in names:
+                if n.endswith(".md") or n == "chapters.txt":
+                    p = os.path.join(root, n)
+                    with open(p, encoding="utf-8") as f:
+                        t = f.read()
+                    if os.path.basename(root) in ("book",):
+                        continue
+                    if "lessons/cs-source" in p:
+                        continue
+                    if n == "chapters.txt" and root.endswith(cs.P("study-guides")):      # entries are relative to the guides folder
+                        rel = lambda line: posixpath.relpath(cs.CAT.path("lessons/study-guides/" + line), cs.CAT.path("lessons/study-guides"))
+                        with open(p, "w", encoding="utf-8") as f:
+                            f.write("\n".join(rel(l) if l.strip() and not l.startswith("#") else l for l in t.split("\n")))
+                        continue
+                    with open(p, "w", encoding="utf-8") as f:
+                        f.write(re.sub(r"(<!-- BEGIN GENERATED (?:program-flow:)?)([\w./-]+)", lambda m: m.group(1) + respell(m.group(2)), t))
+
+    def tearDown(self):
+        cs.CAT, cs.CSOUT = self.saved_cat, self.saved_csout
+        super().tearDown()
+
+    def test_generated_files_are_keyed_by_english_and_written_at_the_renamed_path(self):
+        m = cs.Model()
+        files = cs.generate_all(m)
+        self.assertIn("cs/README.md", files)
+        self.assertIn("index.md", files)
+        self.assertEqual(sorted(cs.block_files())[:3], ["goals.md", "languages/README.md", "languages/apl.md"])
+        cs.write_all(files)
+        self.assertTrue(os.path.isfile(os.path.join(self.tmp, "lessons", "informatica", "README.md")))
+        self.assertTrue(os.path.isfile(os.path.join(self.tmp, "lessons", "indice.md")))
+        self.assertFalse(os.path.exists(os.path.join(self.tmp, "lessons", "cs")))
+        self.assertEqual(cs.drift(cs.generate_all(cs.Model())), [])
+
+    def test_opener_and_index_links_use_the_renamed_names(self):
+        files = cs.generate_all(cs.Model())
+        opener = files["cs/README.md"]
+        self.assertIn("(01-lectura-de-un-programa-adversarial.md)", opener)
+        self.assertNotIn("(01-reading-an-adversarial-program.md)", opener)
+        self.assertIn("(informatica/", files["index.md"])
+        self.assertIn("guias-de-estudio/lenguajes/", files["index.md"])
+        entries = [l for l in files["index.md"].splitlines() if l.startswith("- [") and "guias-de-estudio/" in l]
+        self.assertGreater(len(entries), 10)        # one link per guide; the intro sentence is catalog text (see P3B-005)
+        self.assertFalse([l for l in files["index.md"].splitlines() if l.startswith("- [") and "(study-guides/" in l])
+
+    def test_a_stale_file_in_the_renamed_folder_is_reported(self):
+        cs.write_all(cs.generate_all(cs.Model()))
+        stale = os.path.join(cs.CSOUT, "99-stale.md")
+        with open(stale, "w", encoding="utf-8") as f:
+            f.write("x\n")
+        self.assertTrue(any("informatica/99-stale.md (stale" in b for b in cs.drift(cs.generate_all(cs.Model()))))
+
+    def test_the_english_name_of_a_moved_folder_is_not_used(self):
+        cs.write_all(cs.generate_all(cs.Model()))
+        self.assertFalse(os.path.exists(os.path.join(self.tmp, "lessons", "cs")))
+        self.assertFalse(os.path.exists(os.path.join(self.tmp, "lessons", "languages", "apl.md")))
+
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)

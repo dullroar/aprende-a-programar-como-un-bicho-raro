@@ -10,6 +10,7 @@ from xml.etree import ElementTree as ET
 from zipfile import ZipFile
 
 import build
+import study_guides
 
 
 class Document(HTMLParser):
@@ -42,7 +43,7 @@ class PublicationLinks(unittest.TestCase):
     def build(self, temp, texts, checking=True):
         with patch.object(build, "OUT", temp), patch.object(build, "ARTIFACTS", temp):
             return Path(build.build_documents(texts, "test", str(Path(build.HERE) / "metadata.yaml"),
-                                              build.FRONT, "test.html", "test", checking=checking))
+                                              build.front_path(), "test.html", "test", checking=checking))
 
     def render(self, texts):
         with tempfile.TemporaryDirectory() as temp:
@@ -75,7 +76,7 @@ class PublicationLinks(unittest.TestCase):
 
     def test_epub_front_matter_is_well_formed_and_appears_once(self):
         chapters = {"one.md": "# First chapter\n\nFirst.", "two.md": "# Second chapter\n\nSecond."}
-        for front in (build.FRONT, str(Path(build.LESSONS) / "study-guides/front-matter.md")):
+        for front in (build.front_path(), str(Path(build.LESSONS) / study_guides.GW("front-matter.md").removeprefix("lessons/"))):
             with self.subTest(front=front), tempfile.TemporaryDirectory() as tmp:
                 with patch.object(build, "OUT", tmp), patch.object(build, "ARTIFACTS", tmp), patch.object(build, "pdf_engine", return_value=None):
                     build.build_documents(chapters, "test", str(Path(build.HERE) / "metadata.yaml"),

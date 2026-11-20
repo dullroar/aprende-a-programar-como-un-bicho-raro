@@ -106,6 +106,49 @@ class Catalog:
             raise CatalogError("key %s is not text" % key)
         return self.expand(val)
 
+    # ---- file and folder names (plan 5.6): the English path is the key, the catalog gives the path in this edition
+    def _paths(self):
+        cached = self.__dict__.get("_path_tables")
+        if cached is None:
+            pick = lambda pre: {k[len(pre):]: v for k, v in self.flat.items() if k.startswith(pre)}
+            layout = self.flat.get("paths.layout")
+            if layout not in ("english", "spanish"):
+                raise CatalogError("paths.layout must be english or spanish, not %r" % (layout,))
+            files, dirs = pick("paths.files."), pick("paths.dirs.")
+            cached = self._path_tables = (layout == "spanish", files, dirs,
+                                          {v: k for k, v in files.items()}, {v: k for k, v in dirs.items()})
+        return cached
+
+    def path(self, rel):
+        """The path, in this edition, of the English repository-relative path `rel` (a file or a folder, '/' separated).
+        Identity while paths.layout is english, and for every path the map does not rename."""
+        moved, files, dirs, _, _ = self._paths()
+        if not moved:
+            return rel
+        if rel in files:
+            return files[rel]
+        return _swap_prefix(rel, dirs)
+
+    def english(self, rel):
+        """The reverse of `path`: the English path of a path of this edition."""
+        moved, _, _, files, dirs = self._paths()
+        if not moved:
+            return rel
+        if rel in files:
+            return files[rel]
+        return _swap_prefix(rel, dirs)
+
+    def lessons_path(self, rel):
+        """`path` for a path given relative to lessons/ (the form the book tools use); the result is relative to lessons/ too."""
+        out = self.path("lessons/" + rel)
+        if not out.startswith("lessons/"):
+            raise CatalogError("%s moves out of lessons/" % rel)
+        return out[len("lessons/"):]
+
+    def lessons_english(self, rel):
+        out = self.english("lessons/" + rel)
+        return out[len("lessons/"):] if out.startswith("lessons/") else out
+
     def phase_letters(self):
         n = 1
         out = []
@@ -113,6 +156,16 @@ class Catalog:
             out.append(self.flat["phases.%d.letter" % n])
             n += 1
         return out
+
+
+def _swap_prefix(rel, table):
+    """Replace the longest folder prefix of `rel` that `table` names."""
+    parts = rel.split("/")
+    for i in range(len(parts), 0, -1):
+        head = "/".join(parts[:i])
+        if head in table:
+            return "/".join([table[head]] + parts[i:])
+    return rel
 
 
 def path_for(lang, base=HERE):

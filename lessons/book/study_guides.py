@@ -19,7 +19,7 @@ What is checked (the rules come from the study-guides implementation plan):
 
 Standard library only.
 """
-import os, re, sys, unicodedata
+import os, posixpath, re, sys, unicodedata
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
@@ -29,7 +29,29 @@ import diagrams
 
 LESSONS = os.path.dirname(HERE)
 REPO = os.path.dirname(LESSONS)
-GUIDES = os.path.join(LESSONS, "study-guides")
+GUIDES = None       # the guides folder of this edition (set with the language; plan 5.6)
+CAT = None          # the locale catalog of the current language; it names this edition's files and folders (paths.*)
+
+
+# The guide names below (LANGUAGE_GUIDES, CONCEPT_GUIDES, EXPECTED_DIAGRAMS, BOOK_LINKS) are English paths, the canonical keys.
+# Every place that touches a disk or a link goes through GW/GP/LP, which give the path in the edition being checked.
+def GW(rel):
+    """Repository-relative path, in this edition, of the English guide path `rel` (relative to lessons/study-guides/)."""
+    return CAT.path("lessons/study-guides/" + rel)
+
+
+def GP(rel):
+    """`rel` in this edition, relative to the guides folder (the spelling chapters.txt and the index use)."""
+    return posixpath.relpath(GW(rel), CAT.path("lessons/study-guides"))
+
+
+def LP(rel):
+    """This edition's path, relative to lessons/, of the English path `rel` (relative to lessons/)."""
+    return CAT.lessons_path(rel)
+
+
+def groot(repo):
+    return os.path.join(repo, *CAT.path("lessons/study-guides").split("/"))
 
 # The words the checks require come from the locale catalog (lessons/book/locale/<lang>.yaml, block study_guides). The language is
 # BOOK_LANG (default "en", as in diagrams.py); `set_language` switches it, for example in tests. A missing key fails loudly
@@ -49,7 +71,7 @@ def nfc(text):
 def set_language(lang):
     """Load the study_guides.* words of `lang` into the module constants, and the diagrams.* words too. All or nothing: a missing
     key leaves the old language in place."""
-    global LANG, TITLE_PREFIX, TITLE_SUFFIX, SECTIONS, CHALLENGE_HEADING, SHARED_CHALLENGE, EXACT_FORTY
+    global LANG, TITLE_PREFIX, TITLE_SUFFIX, SECTIONS, CHALLENGE_HEADING, SHARED_CHALLENGE, EXACT_FORTY, CAT, GUIDES, CANONICAL_HOMES
     global FIVE_QUESTIONS, FOUR_QUESTIONS, ASSURANCE_LABELS, SANDBOX_WORD, PREDICT, PLACEHOLDER
     cat = catalog.load(lang)
     t = lambda key: nfc(cat.text("study_guides." + key))
@@ -66,6 +88,9 @@ def set_language(lang):
     diagrams.set_language(lang)      # last, so that nothing above can fail after it has switched
     (LANG, TITLE_PREFIX, TITLE_SUFFIX, SECTIONS, CHALLENGE_HEADING, SHARED_CHALLENGE, EXACT_FORTY, FIVE_QUESTIONS, FOUR_QUESTIONS,
      ASSURANCE_LABELS, SANDBOX_WORD, PREDICT, PLACEHOLDER) = values
+    CAT = cat
+    GUIDES = os.path.join(LESSONS, cat.lessons_path("study-guides"))
+    CANONICAL_HOMES = ("src/", "lessons/cs-source/", cat.path("lessons/intro.md"))
 
 # A new (non-canonical) diagram is allowed only for a relationship the source diagram does not show.
 NEW_DIAGRAM_KINDS = ("cross-language-state", "lazy-demand-trace", "transaction-boundary", "authority-boundary")
@@ -146,7 +171,7 @@ LINK = re.compile(r"(?<!!)\[([^\]]*)\]\(([^)\s]+)\)")
 SOURCE_COMMENT = re.compile(r"^<!--\s*diagram-source:\s*(\S+?)\s*-->\s*$")
 NEW_COMMENT = re.compile(r"^<!--\s*diagram-new:\s*([a-z-]+)\s*[:—-]\s*(.+?)\s*-->\s*$")
 # Canonical sources may live only where a person edits them: not in the generated lessons/cs/ or in generated blocks.
-CANONICAL_HOMES = ("src/", "lessons/cs-source/", "lessons/intro.md")
+CANONICAL_HOMES = None      # set with the language: src/, lessons/cs-source/ and the intro page of this edition
 
 
 # ---------------------------------------------------------------- reading
@@ -279,7 +304,7 @@ def external_urls(text):
 def check_guide(rel, text, repo=None):
     """Problems (a list of strings) in one guide. `rel` is its path under lessons/study-guides/."""
     repo = repo or REPO
-    where = f"lessons/study-guides/{rel}"
+    where = GW(rel)
     problems = []
     add = lambda msg: problems.append(f"{where}: {msg}")
     items = diagrams.scan(text)
@@ -359,9 +384,9 @@ def check_guide(rel, text, repo=None):
 def check_links(rel, text, repo=None):
     """Relative links must resolve (file, heading anchor, or a source line that exists); external links need an allowed host."""
     repo = repo or REPO
-    where = f"lessons/study-guides/{rel}"
+    where = GW(rel)
     problems = []
-    base = os.path.dirname(os.path.join(repo, "lessons", "study-guides", rel))
+    base = os.path.dirname(os.path.join(repo, GW(rel)))
     stripped = re.sub(r"```.*?```", "", text, flags=re.S)
     allowed = hosts(repo)
     for m in LINK.finditer(stripped):
@@ -369,7 +394,7 @@ def check_links(rel, text, repo=None):
         if re.match(r"[a-z][a-z0-9+.-]*:", target):
             continue
         path, _, frag = target.partition("#")
-        full = os.path.normpath(os.path.join(base, path)) if path else os.path.join(repo, "lessons", "study-guides", rel)
+        full = os.path.normpath(os.path.join(base, path)) if path else os.path.join(repo, GW(rel))
         if not os.path.exists(full):
             problems.append(f"{where}: link to a missing file: {target}")
             continue
@@ -403,61 +428,63 @@ def check_links(rel, text, repo=None):
 def check_set(repo=None):
     """Problems with the set of guides: the files, the manifest, the index, the book's links and the book's own manifest."""
     repo = repo or REPO
-    root = os.path.join(repo, "lessons", "study-guides")
+    root = groot(repo)
+    gw = GW("chapters.txt")[:-len("chapters.txt")]       # "<guides folder>/", for messages
+    mine = [GP(g) for g in ALL_GUIDES]
     problems = []
     on_disk = sorted(os.path.relpath(os.path.join(d, f), root).replace(os.sep, "/")
-                     for d, _, fs in os.walk(root) for f in fs if f.endswith(".md") and f not in ("README.md", "front-matter.md"))
-    for g in ALL_GUIDES:
+                     for d, _, fs in os.walk(root) for f in fs if f.endswith(".md") and f not in ("README.md", GP("front-matter.md")))
+    for g in mine:
         if g not in on_disk:
-            problems.append(f"lessons/study-guides/{g}: the guide does not exist")
+            problems.append(f"{gw}{g}: the guide does not exist")
     for g in on_disk:
-        if g not in ALL_GUIDES:
-            problems.append(f"lessons/study-guides/{g}: not one of the planned guides (add it to study_guides.py and the index first)")
+        if g not in mine:
+            problems.append(f"{gw}{g}: not one of the planned guides (add it to study_guides.py and the index first)")
     chap = manifest(root)
     if not chap or chap[0] != "README.md":
-        problems.append("lessons/study-guides/chapters.txt: must start with README.md (the index)")
-    for g in ALL_GUIDES:
+        problems.append(f"{gw}chapters.txt: must start with README.md (the index)")
+    for g in mine:
         if g not in chap:
-            problems.append(f"lessons/study-guides/chapters.txt: missing {g}")
+            problems.append(f"{gw}chapters.txt: missing {g}")
     for c in chap:
         if not os.path.isfile(os.path.join(root, c)):
-            problems.append(f"lessons/study-guides/chapters.txt: {c} does not exist")
+            problems.append(f"{gw}chapters.txt: {c} does not exist")
     if len(chap) != len(set(chap)):
-        problems.append("lessons/study-guides/chapters.txt: a chapter is listed twice")
+        problems.append(f"{gw}chapters.txt: a chapter is listed twice")
     index = read(os.path.join(root, "README.md"))
     linked = set()
     for m in LINK.finditer(index):
         t = m.group(2).partition("#")[0]
         if t and not re.match(r"[a-z][a-z0-9+.-]*:", t):
             linked.add(os.path.relpath(os.path.normpath(os.path.join(root, t)), root).replace(os.sep, "/"))
-    for g in ALL_GUIDES:
+    for g in mine:
         if g not in linked:
-            problems.append(f"lessons/study-guides/README.md: the index does not link to {g}")
+            problems.append(f"{gw}README.md: the index does not link to {g}")
     book = [l.strip() for l in read(os.path.join(repo, "lessons", "book", "chapters.txt")).splitlines() if l.strip() and not l.startswith("#")]
     for c in book:
-        if c.startswith("study-guides"):
+        if c.startswith(LP("study-guides")):
             problems.append(f"lessons/book/chapters.txt: {c}: the study guides are a separate set, not book chapters")
     # the book points at the guides
     for g, pages in BOOK_LINKS.items():
         for page in pages:
-            path = os.path.join(repo, "lessons", page)
+            path = os.path.join(repo, "lessons", LP(page))
             if not os.path.isfile(path):
-                problems.append(f"lessons/{page}: missing")
+                problems.append(f"lessons/{LP(page)}: missing")
                 continue
             head = "\n".join(read(path).split("\n")[:40])
-            if f"study-guides/{g}" not in head:
-                problems.append(f"lessons/{page}: needs a link to study-guides/{g} near the top (within the first 40 lines)")
-    for page in ("README.md", "index.md"):
-        text = read(os.path.join(repo, "lessons", page))
-        if "study-guides/README.md" not in text:
-            problems.append(f"lessons/{page}: needs a Study Guides section linking to study-guides/README.md")
+            if LP(f"study-guides/{g}") not in head:
+                problems.append(f"lessons/{LP(page)}: needs a link to {LP(f'study-guides/{g}')} near the top (within the first 40 lines)")
+    for page in ("README.md", "index.md"):  # en-key: lessons/<page>, mapped by LP()
+        text = read(os.path.join(repo, "lessons", LP(page)))
+        if LP("study-guides/README.md") not in text:
+            problems.append(f"lessons/{LP(page)}: needs a Study Guides section linking to {LP('study-guides/README.md')}")
     # the guides name the book edition they belong to
     meta = read(os.path.join(root, "metadata.yaml"))
     book_meta = read(os.path.join(repo, "lessons", "book", "metadata.yaml"))
     title = re.search(r'^title:\s*"(.+)"\s*$', book_meta, re.M)
     comp = re.search(r'^companion-to:\s*"(.+)"\s*$', meta, re.M)
     if not title or not comp or comp.group(1) != title.group(1):
-        problems.append(f"lessons/study-guides/metadata.yaml: companion-to must equal the book title ({title.group(1) if title else '?'}); "
+        problems.append(f"{gw}metadata.yaml: companion-to must equal the book title ({title.group(1) if title else '?'}); "
                         "review the guides when the book's edition changes")
     return problems
 
@@ -465,7 +492,7 @@ def check_external(repo=None):
     """Network check, not part of the deterministic build: every external link in the guides must load. Returns a list of failures."""
     import urllib.request, urllib.error
     repo = repo or REPO
-    root = os.path.join(repo, "lessons", "study-guides")
+    root = groot(repo)
     urls = {}
     for rel in manifest(root):
         for u in external_urls(re.sub(r"```.*?```", "", read(os.path.join(root, rel)), flags=re.S)):
@@ -487,10 +514,10 @@ def check_external(repo=None):
 
 def check_all(repo=None):
     repo = repo or REPO
-    root = os.path.join(repo, "lessons", "study-guides")
+    root = groot(repo)
     problems = check_set(repo)
     for g in ALL_GUIDES:
-        path = os.path.join(root, g)
+        path = os.path.join(root, GP(g))
         if os.path.isfile(path):
             problems += check_guide(g, read(path), repo)
     for extra in ("README.md",):

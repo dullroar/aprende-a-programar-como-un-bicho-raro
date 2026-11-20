@@ -243,7 +243,10 @@ def set_language(lang):
     GITHUB = repo_links.blob_base()
     BOOK, BOOK_TITLE, TOC_TITLE = (repo_links.IDENTITY[k] for k in ("book_stem", "book_title", "toc_title"))
     PDF_NAME = BOOK + ".pdf"
-FRONT = os.path.join(LESSONS, "front-matter.md")
+def front_path():
+    """The title and copyright page of this edition (lessons/front-matter.md in English)."""
+    return os.path.join(LESSONS, cs.P("front-matter.md"))
+
 CSS = os.path.join(HERE, "book.css")
 
 def artifacts_dir():
@@ -290,10 +293,10 @@ def check_version():
     problems = []
     if t.group(1) != full:
         problems.append(f"metadata.yaml: title is {t.group(1)!r}, expected {full!r} to match book-version")
-    with open(FRONT, encoding="utf-8") as f:
+    with open(front_path(), encoding="utf-8") as f:
         front = f.read()
     if f'<span class="book-version">v{v.group(1)}</span>' not in front or f"<p>{full}</p>" not in front:
-        problems.append(f"front-matter.md: the title page and the copyright page must both say {full!r}")
+        problems.append(f"{os.path.basename(front_path())}: the title page and the copyright page must both say {full!r}")
     versions = os.path.join(HERE, "VERSIONS.md")
     if not os.path.isfile(versions) or not re.search(rf"^## v{v.group(1)}\b", open(versions, encoding="utf-8").read(), re.M):
         problems.append(f"lessons/book/VERSIONS.md needs a '## v{v.group(1)}' section saying what this edition added")
@@ -418,7 +421,7 @@ def main():
         return
     checking = "--check" in sys.argv
     texts = chapter_texts()
-    html = build_documents(texts, BOOK, os.path.join(HERE, "metadata.yaml"), FRONT, "weird-way.html", "book", checking)
+    html = build_documents(texts, BOOK, os.path.join(HERE, "metadata.yaml"), front_path(), "weird-way.html", "book", checking)
     if checking:
         check(html)
 

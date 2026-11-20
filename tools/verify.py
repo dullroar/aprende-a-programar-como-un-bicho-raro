@@ -150,17 +150,24 @@ def route(path, classes):
         acts.append(("cmd", ("prompts", ["python3", "-I", "tools/prompt_check.py"])))
     elif path.startswith("tests/fixtures/"):
         acts.append(("cmd", ("fixtures", ["python3", "-I", "tools/fixture_check.py"])))
+    elif path == "translation/path-map.yaml" or path == "translation/path-names.es.yaml":
+        acts.append(("cmd", ("path map", ["python3", "tools/pathmap.py", "--check"])))
     elif path == "translation/dnt.txt":
         acts.append(("cmd", ("dnt", ["python3", "-I", "tools/dnt.py", "--check"])))
     elif path == "translation/humor-register.jsonl":
         acts.append(("cmd", ("humor-register", ["python3", "-I", "tools/humor_register.py", "--check"])))
+    if path.startswith("lessons/") and name.endswith(".py") and not name.startswith("test_"):
+        acts.append(("cmd", PATH_CMD))           # a build or check tool must not hard-code a renamed path (plan 5.6)
     return acts
 
 
+PATH_CMD = ("tooling paths", ["python3", "-I", "tools/tooling_paths.py"])
 LOCALE_CMDS = (
     ("locale phases", ["python3", "-I", "tools/locale_check.py"]),
     ("locale catalog", ["python3", "-I", "lessons/book/locale/catalog.py", "--check", "es", "en"]),
     ("test_catalog", ["python3", "-I", "tools/test_catalog.py"]),
+    ("path map and catalog paths", ["python3", "tools/pathmap.py", "--check"]),
+    PATH_CMD,
 )
 
 

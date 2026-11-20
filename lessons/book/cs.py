@@ -33,7 +33,16 @@ LESSONS = os.path.dirname(HERE)
 REPO = os.path.dirname(LESSONS)
 SRC = os.path.join(REPO, "src")
 CSSRC = os.path.join(LESSONS, "cs-source")
-CSOUT = os.path.join(LESSONS, "cs")
+CAT = None      # the locale catalog of the current language; it also names this edition's files and folders (paths.*)
+CSOUT = None    # lessons/<generated chapters folder>, set with the language
+
+def P(rel):
+    """This edition's path, relative to lessons/, for the English path `rel` (also relative to lessons/): plan 5.6."""
+    return CAT.lessons_path(rel)
+
+def E(rel):
+    """The English path, relative to lessons/, of a path of this edition (the key of every generated file)."""
+    return CAT.lessons_english(rel)
 
 KINDS = ("idiomatic", "weird", "port")
 ASSURANCE = ("guaranteed", "implementation-permitted", "accidentally-exploited")   # frontmatter values: data, never translated
@@ -68,13 +77,14 @@ def nfc(text):
 def set_language(lang):
     """Load the cs.* words of `lang` into the module constants, and the diagrams.* words too. All or nothing: a missing key
     leaves the old language in place."""
-    global LANG, BANNER, CHALLENGE_ANCHOR, W, ASSURANCE_LABELS, RELATION, STALE_PHRASES
+    global LANG, BANNER, CHALLENGE_ANCHOR, W, ASSURANCE_LABELS, RELATION, STALE_PHRASES, CAT, CSOUT
     cat = catalog.load(lang)
     cat.require(["cs." + k for k in WORD_KEYS] + ["study_guides.challenge_heading"])
     words = {k: nfc(cat.text("cs." + k)) for k in WORD_KEYS}
     anchor = slug(nfc(cat.text("study_guides.challenge_heading")))
     diagrams.set_language(lang)      # last, so that nothing above can fail after it has switched
-    LANG, W, CHALLENGE_ANCHOR = lang, words, anchor
+    LANG, W, CHALLENGE_ANCHOR, CAT = lang, words, anchor, cat
+    CSOUT = os.path.join(LESSONS, cat.lessons_path("cs"))
     BANNER = f"<!-- {words['banner']} -->"
     ASSURANCE_LABELS = {"guaranteed": words["assurance.guaranteed"],
                         "implementation-permitted": words["assurance.implementation_permitted"],
@@ -228,8 +238,8 @@ class Model:
         self.concepts = load_dir("concepts", CONCEPT_FIELDS, p, CONCEPT_OPTIONAL)
         self.roles = load_dir("roles", ROLE_FIELDS, p)
         self.chapters = load_dir("chapters", CHAPTER_FIELDS, p)
-        self.index = parse_frontmatter(read(os.path.join(CSSRC, "index.md")), "cs-source/index.md", p)[1].strip("\n") \
-            if os.path.isfile(os.path.join(CSSRC, "index.md")) else ""
+        opener = os.path.join(CSSRC, "index.md")      # path-ok: lessons/cs-source/index.md is not renamed (not lessons/index.md)
+        self.index = parse_frontmatter(read(opener), "cs-source/index.md", p)[1].strip("\n") if os.path.isfile(opener) else ""  # path-ok
         self.hosts = self._hosts()
         self.languages = self._languages()
         for c in self.concepts.values():
@@ -257,7 +267,7 @@ class Model:
     def _lint_stale(self):
         """Prose that says a concept is unused must not come back: the generator now decides, from the metadata."""
         texts = [(f"concept {i}", c["body"]) for i, c in self.concepts.items()] + [(f"role {i}", r["body"]) for i, r in self.roles.items()] \
-              + [(f"chapter {i}", c["body"]) for i, c in self.chapters.items()] + [("cs-source/index.md", self.index)]
+              + [(f"chapter {i}", c["body"]) for i, c in self.chapters.items()] + [("cs-source/index.md", self.index)]  # path-ok: not renamed
         for fn in sorted(os.listdir(LESSONS)):
             if fn.endswith(".md"):
                 texts.append((f"lessons/{fn}", read(os.path.join(LESSONS, fn))))
@@ -443,6 +453,7 @@ def table(header, rows):
 class Links:
     """Relative links from a file in lessons/<where>/ (where = '' for lessons/ itself)."""
     def __init__(self, model, where):
+        """`where` is the folder of the page, relative to lessons(), in the layout of this edition."""
         self.m, self.where = model, where
     def lessons(self, path):
         return posixpath.relpath(path, self.where or ".")
@@ -452,10 +463,10 @@ class Links:
         return f"[`{d}`]({self.repo('src/' + d + '/README.md')})"
     def concept(self, cid, text=None):
         c = self.m.concepts[cid]
-        return f"[{text or c['title']}]({self.lessons('cs/' + self.m.chapter_files[c['chapter']])}#{slug(c['title'])})"
+        return f"[{text or c['title']}]({self.lessons(P('cs/' + self.m.chapter_files[c['chapter']]))}#{slug(c['title'])})"
     def role(self, rid, text=None):
         r = self.m.roles[rid]
-        return f"[{text or r['title']}]({self.lessons('cs/' + self.m.chapter_files[9])}#{slug(r['title'])})"
+        return f"[{text or r['title']}]({self.lessons(P('cs/' + self.m.chapter_files[9]))}#{slug(r['title'])})"
     def lesson(self, lesson):
         return f"[{lesson.partition('#')[0].rsplit('/', 1)[-1][:-3]}]({self.lessons(lesson)})"
 
@@ -512,7 +523,7 @@ def in_this_repo(model, L, cid):
         parts.append(f"**{W['lead_in_applies_all']}** " + fill("applies_all", n=len(model.entries), because=c["applies-because"]))
     elif how:
         parts.append(f"**{W['lead_in_applies_machine']}** " + fill("applies_machine", n=len(model.applies(cid)), total=len(model.entries),
-                                                                    link=L.lessons("goals.md"), because=c["applies-because"]))
+                                                                    link=L.lessons(P("goals.md")), because=c["applies-because"]))
     rel = model.related(cid)
     if rel:
         rows = [(L.entry(d), model.lang_names(model.entries[d]), RELATION[kind], cap(model.entries[d]["teaches"])) for d, kind in rel]
@@ -577,7 +588,7 @@ def blk_program_flow(model, L, lesson_file):
     es = sorted_entries(model, lambda e: e["lesson"].partition("#")[0] == lesson_file and e.get("_flow"))
     if not es:
         return ""
-    parts = ["## " + W["program_flow_heading"], fill("program_flow_intro", link=f"{L.lessons('intro.md')}#{CHALLENGE_ANCHOR}")]
+    parts = ["## " + W["program_flow_heading"], fill("program_flow_intro", link=f"{L.lessons(P('intro.md'))}#{CHALLENGE_ANCHOR}")]
     for e in es:
         source = f"{L.repo('src/' + e['dir'] + '/README.md')}#{slug(diagrams.SECTION)}"
         parts.append(f"### {fill('program_flow_of', dir=e['dir'])}\n\n{fill('program_flow_from', entry=L.entry(e['dir']), link=source)}"
@@ -620,7 +631,7 @@ def make_expander(model, L):
 def generate_cs(model):
     """-> {path relative to lessons/: text}"""
     out = {}
-    L = Links(model, "cs")
+    L = Links(model, P("cs"))
     expand = make_expander(model, L)
     for n, fn in sorted(model.chapter_files.items()):
         ch = model.chapters[fn[:-3]]
@@ -636,12 +647,13 @@ def generate_cs(model):
         ids = [c["title"] for _, c in sorted(((i, c) for i, c in model.concepts.items() if c["chapter"] == n), key=lambda kv: kv[1]["order"])]
         if n == 9:
             ids = [r["title"] for r in sorted(model.roles.values(), key=lambda r: r["order"])]
-        chapters.append(f"- [{title}]({fn})" + "".join(f"\n  - {item}" for item in ids))
+        chapters.append(f"- [{title}]({posixpath.basename(P('cs/' + fn))})" + "".join(f"\n  - {item}" for item in ids))
     idx = table(heads("concept", "chapter", "used_by"), [
         (L.concept(cid), model.chapters[model.chapter_files[c["chapter"]][:-3]]["title"], ", ".join(users_of(model, cid)))
         for cid, c in sorted(model.concepts.items(), key=lambda kv: kv[1]["title"].casefold())])
-    out["cs/README.md"] = "\n\n".join([BANNER, "# " + W["opener_title"], expand(model.index),
-                                       f"## {W['opener_chapters']}\n\n" + "\n".join(chapters), f"## {W['opener_index']}\n\n" + idx]) + "\n"
+    opener = [BANNER, "# " + W["opener_title"], expand(model.index),
+              f"## {W['opener_chapters']}\n\n" + "\n".join(chapters), f"## {W['opener_index']}\n\n" + idx]
+    out["cs/README.md"] = "\n\n".join(opener) + "\n"  # en-key: generated files are keyed by their English path
     return out
 
 def orphan_report(model):
@@ -699,15 +711,17 @@ def lesson_title(rel):
 def study_guides_section():
     """The "Study guides" section of the index: one link per guide, read from lessons/study-guides/chapters.txt (the guides are hand-written;
     only this list is generated). Returns "" when the study guides do not exist, so the book builds without them."""
-    manifest = os.path.join(LESSONS, "study-guides", "chapters.txt")
+    guides = P("study-guides")
+    manifest = os.path.join(LESSONS, guides, "chapters.txt")
     if not os.path.isfile(manifest):
         return ""
     paths = [l.strip() for l in read(manifest).splitlines() if l.strip() and not l.startswith("#") and l.strip() != "README.md"]
     def entry(rel):
-        title = lesson_title(f"study-guides/{rel}")
-        return f"- [{title}](study-guides/{rel})"
-    langs = [entry(r) for r in paths if r.startswith("languages/")]
-    concepts = [entry(r) for r in paths if r.startswith("concepts/")]
+        title = lesson_title(f"{guides}/{rel}")
+        return f"- [{title}]({guides}/{rel})"
+    sub = lambda name: posixpath.relpath(P("study-guides/" + name), guides) + "/"      # the folder, as chapters.txt spells it
+    langs = [entry(r) for r in paths if r.startswith(sub("languages"))]
+    concepts = [entry(r) for r in paths if r.startswith(sub("concepts"))]
     return "\n\n".join(["## " + W["study_guides_heading"], W["study_guides_intro"],
                          f"**{W['study_guides_languages']}**\n\n" + "\n".join(langs), f"**{W['study_guides_concepts']}**\n\n" + "\n".join(concepts)])
 
@@ -744,8 +758,8 @@ MARK = re.compile(r"(<!-- BEGIN GENERATED ([\w:./-]+) -->)\n.*?(<!-- END GENERAT
 
 def generate_blocks(model, rel):
     """Return the text of lessons/<rel> with its generated blocks refreshed (unchanged if it has none)."""
-    text = read(os.path.join(LESSONS, rel))
-    L = Links(model, posixpath.dirname(rel))
+    text = read(os.path.join(LESSONS, P(rel)))
+    L = Links(model, posixpath.dirname(P(rel)))
     def sub(m):
         name = m.group(2)
         if name in TABLES:
@@ -760,21 +774,25 @@ def generate_blocks(model, rel):
         return m.group(1) + "\n" + body + "\n" + m.group(3)
     return MARK.sub(sub, text)
 
-BLOCK_FILES = ["goals.md", "patterns.md", "languages/README.md"] + \
-              [f"languages/{f}" for f in sorted(os.listdir(os.path.join(LESSONS, "languages"))) if f.endswith(".md") and f != "README.md"]
+def block_files():
+    """The pages with generated blocks, as English keys relative to lessons/ (the pages themselves sit at P(key))."""
+    folder = os.path.join(LESSONS, P("languages"))
+    keys = ["goals.md", "patterns.md", "languages/README.md"]  # en-key
+    return keys + [E(f"{P('languages')}/{f}") for f in sorted(os.listdir(folder)) if f.endswith(".md") and f != "README.md"]
 
 def generate_all(model):
     files = generate_cs(model)
-    files["index.md"] = generate_index(model)
-    for rel in BLOCK_FILES:
+    files["index.md"] = generate_index(model)  # en-key
+    for rel in block_files():
         new = generate_blocks(model, rel)
-        if new != read(os.path.join(LESSONS, rel)):
+        if new != read(os.path.join(LESSONS, P(rel))):
             files[rel] = new
     return files
 
 def write_all(files):
+    """`files` is keyed by the English path relative to lessons/; each is written at its path in this edition."""
     for rel, text in files.items():
-        path = os.path.join(LESSONS, rel)
+        path = os.path.join(LESSONS, P(rel))
         os.makedirs(os.path.dirname(path), exist_ok=True)
         with open(path, "w", encoding="utf-8", newline="\n") as f:
             f.write(text)
@@ -783,14 +801,14 @@ def drift(files):
     """Generated files whose committed text differs from what the sources produce."""
     bad = []
     for rel, text in sorted(files.items()):
-        path = os.path.join(LESSONS, rel)
+        path = os.path.join(LESSONS, P(rel))
         if not os.path.isfile(path) or read(path) != text:
-            bad.append("lessons/" + rel)
+            bad.append("lessons/" + P(rel))
     cs = os.path.join(CSOUT)
     if os.path.isdir(cs):
         for fn in sorted(os.listdir(cs)):
-            if "cs/" + fn not in files:
-                bad.append(f"lessons/cs/{fn} (stale: no source produces it)")
+            if E(f"{P('cs')}/{fn}") not in files:
+                bad.append(f"lessons/{P('cs')}/{fn} (stale: no source produces it)")
     return bad
 
 def check_links(model):

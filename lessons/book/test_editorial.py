@@ -149,6 +149,11 @@ def apl_text_problems(w, path, text):
     return problems
 
 
+def P(path):
+    """This edition's path for an English repository path (plan 5.6; the identity while the catalog layout is english)."""
+    return cs.CAT.path(path)
+
+
 class RealSources(unittest.TestCase):
     """The checks against the real repository, in BOOK_LANG."""
 
@@ -157,10 +162,10 @@ class RealSources(unittest.TestCase):
         cls.w = Words(BOOK_LANG)
 
     def test_recursive_acronym_occurs_once_near_each_opening(self):
-        guide_files = [f"lessons/study-guides/{path}" for path in study_guides.manifest(study_guides.GUIDES)]
-        book = list(build.chapter_texts().values()) + [read("lessons/front-matter.md")]
-        guides = [read(path) for path in guide_files + ["lessons/study-guides/front-matter.md"]]
-        self.assertEqual(acronym_problems(self.w, read("lessons/intro.md"), guides[0], read("README.md"), book, guides), [])
+        guide_files = [f"{P('lessons/study-guides')}/{path}" for path in study_guides.manifest(study_guides.GUIDES)]
+        book = list(build.chapter_texts().values()) + [read(P("lessons/front-matter.md"))]
+        guides = [read(path) for path in guide_files + [P("lessons/study-guides/front-matter.md")]]
+        self.assertEqual(acronym_problems(self.w, read(P("lessons/intro.md")), guides[0], read("README.md"), book, guides), [])
 
     def test_count_and_assurance_tally_follow_the_model(self):
         model = cs.Model()
@@ -173,12 +178,12 @@ class RealSources(unittest.TestCase):
         self.assertEqual(membership_problems("roles", roles, r"^\| ", model.entries.keys()), [])
         languages = {language for e in model.entries.values() for language in e["languages"]}
         self.assertEqual(count_problems(self.w, read("README.md"), len(model.entries), len(languages)), [])
-        guide = read("lessons/study-guides/concepts/portability-abstraction-and-cost.md")
+        guide = read(P("lessons/study-guides/concepts/portability-abstraction-and-cost.md"))
         self.assertEqual(tally_problems(self.w, guide, Counter(e["assurance"] for e in model.entries.values())), [])
 
     def test_apl_explanations_match_the_four_array_assignments(self):
         self.assertEqual(apl_source_problems(read("src/apl/timecards.apl")), [])
-        for path in ["src/apl/README.md", "lessons/languages/apl.md", "lessons/study-guides/languages/apl.md"]:
+        for path in ["src/apl/README.md", P("lessons/languages/apl.md"), P("lessons/study-guides/languages/apl.md")]:
             with self.subTest(path=path):
                 self.assertEqual(apl_text_problems(self.w, path, read(path)), [])
 

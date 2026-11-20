@@ -337,6 +337,55 @@ class RealRepoTests(unittest.TestCase):
     def test_committed_files_are_current(self):
         self.assertEqual(pm.read_own(pm.ROOT, pm.MAP_PATH), pm.dump_map(self.res["map"]))
         self.assertEqual(pm.read_own(pm.ROOT, pm.REPORT_PATH), pm.dump_report(self.files, self.res))
+        for lang in pm.CATALOG_FILES:
+            self.assertEqual(pm.read_own(pm.ROOT, pm.CATALOG_FILES[lang]), pm.catalog_text(pm.ROOT, lang, self.res["map"]), lang)
+
+
+class CatalogBlockTests(unittest.TestCase):
+    MAP = {"a/x.md": "a/y.md", "a/keep.md": "a/keep.md", "b/c/d.md": "b/e/f.md", "README.md": "README.md"}
+
+    def test_block_lists_renamed_files_and_folders_only(self):
+        dirs, files = pm.catalog_tables(self.MAP)
+        self.assertEqual(files, {"a/x.md": "a/y.md", "b/c/d.md": "b/e/f.md"})
+        self.assertEqual(dirs, {"b/c": "b/e"})
+
+    def test_english_block_is_the_identity(self):
+        text = pm.catalog_block(self.MAP, "en", "english")
+        self.assertIn('"a/x.md": "a/x.md"', text)
+        self.assertNotIn("a/y.md", text)
+        self.assertIn('"a/y.md"', pm.catalog_block(self.MAP, "es", "english"))
+
+    def test_two_folders_for_one_name_fail(self):
+        with self.assertRaises(ValueError):
+            pm.catalog_tables({"b/c/d.md": "b/e/d.md", "b/c/g.md": "b/h/g.md"})
+
+    def test_a_rename_that_changes_the_depth_fails(self):
+        with self.assertRaises(ValueError):
+            pm.catalog_tables({"a/x.md": "x.md"})
+
+    def test_a_stale_catalog_is_detected(self):
+        import tempfile
+        with tempfile.TemporaryDirectory(dir=os.path.join(pm.ROOT, "translation", "work")) as tmp:
+            os.makedirs(os.path.join(tmp, "lessons", "book", "locale"))
+            for lang, rel in pm.CATALOG_FILES.items():
+                with open(os.path.join(tmp, rel), "w", encoding="utf-8", newline="\n") as fh:
+                    fh.write("key: value\n")
+            first = pm.catalog_text(tmp, "es", self.MAP)
+            self.assertTrue(first.startswith("key: value\n"))
+            with open(os.path.join(tmp, pm.CATALOG_FILES["es"]), "w", encoding="utf-8", newline="\n") as fh:
+                fh.write(first.replace("a/y.md", "a/z.md"))
+            self.assertNotEqual(pm.read_own(tmp, pm.CATALOG_FILES["es"]), pm.catalog_text(tmp, "es", self.MAP))
+            fixed = pm.catalog_text(tmp, "es", self.MAP)       # regenerating replaces the block in place
+            self.assertEqual(fixed, first)
+            self.assertEqual(fixed.count(pm.CATALOG_BEGIN), 1)
+
+    def test_the_layout_value_survives_regeneration(self):
+        import tempfile
+        with tempfile.TemporaryDirectory(dir=os.path.join(pm.ROOT, "translation", "work")) as tmp:
+            os.makedirs(os.path.join(tmp, "lessons", "book", "locale"))
+            with open(os.path.join(tmp, pm.CATALOG_FILES["es"]), "w", encoding="utf-8", newline="\n") as fh:
+                fh.write("key: value\n\n" + pm.catalog_block(self.MAP, "es", "spanish"))
+            self.assertIn('layout: "spanish"', pm.catalog_text(tmp, "es", self.MAP))
 
 
 if __name__ == "__main__":

@@ -52,8 +52,9 @@ def main():
     if not shutil.which("pandoc"):
         raise SystemExit("pandoc not found (https://pandoc.org/installing.html)")
     # The book's pipeline wants chapter paths relative to lessons/ so that its link rewriting finds the right neighbours.
-    texts = {f"study-guides/{c}": study_guides.read(os.path.join(HERE, c)) for c in study_guides.manifest(HERE)}
-    html = book.build_documents(texts, STEM, os.path.join(HERE, "metadata.yaml"), os.path.join(HERE, "front-matter.md"),
+    guides = study_guides.LP("study-guides")      # this edition's folder name; chapters.txt spells the chapters in this edition's layout
+    texts = {f"{guides}/{c}": study_guides.read(os.path.join(HERE, c)) for c in study_guides.manifest(HERE)}
+    html = book.build_documents(texts, STEM, os.path.join(HERE, "metadata.yaml"), os.path.join(HERE, study_guides.GP("front-matter.md")),
                                 HTML, "study-guides", checking, prune_cache=False)
     if checking:
         book.check(html)

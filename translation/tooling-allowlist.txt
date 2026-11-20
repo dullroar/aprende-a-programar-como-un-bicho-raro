@@ -20,3 +20,5 @@ lessons/study-guides/build.py  # P2-013: study-guides stem from the catalog (ide
 lessons/book/metadata.yaml  # P2-013: Spanish title, subtitle, es-419, new UUIDv5 from the Spanish repository address
 lessons/curriculum/metadata.yaml  # P2-013: Spanish title, companion-to, es-419, new UUIDv5
 lessons/study-guides/metadata.yaml  # P2-013: Spanish title, companion-to, es-419, new UUIDv5
+lessons/book/guide_impact.py  # P3B-003: guide folder and source patterns from the catalog paths block
+lessons/book/test_document_links.py  # P3B-003: front-matter and guide front matter paths from the catalog

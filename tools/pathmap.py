@@ -454,6 +454,55 @@ def dump_report(files: dict[str, str], res: dict) -> str:
     return "\n".join(out)
 
 
+CATALOG_FILES = {"en": "lessons/book/locale/en.yaml", "es": "lessons/book/locale/es.yaml"}
+CATALOG_BEGIN = "# BEGIN GENERATED paths (tools/pathmap.py --write; do not edit by hand)"
+CATALOG_END = "# END GENERATED paths"
+CATALOG_LAYOUT = "layout"
+
+
+def catalog_tables(result: dict[str, str]) -> tuple[dict[str, str], dict[str, str]]:
+    """(dirs, files): the renamed entries only, English path -> Spanish path. A folder is renamed when the
+    ancestor at the same depth differs; every file of the folder must agree (else a ValueError)."""
+    files = {p: n for p, n in sorted(result.items()) if p != n}
+    dirs: dict[str, str] = {}
+    for p, n in files.items():
+        pp, np_ = p.split("/"), n.split("/")
+        if len(pp) != len(np_):
+            raise ValueError(f"{p} -> {n}: a rename may not change the folder depth")
+        for i in range(1, len(pp)):
+            a, b = "/".join(pp[:i]), "/".join(np_[:i])
+            if a != b and dirs.setdefault(a, b) != b:
+                raise ValueError(f"folder {a} maps to both {dirs[a]} and {b}")
+    return dict(sorted(dirs.items())), files
+
+
+def catalog_block(result: dict[str, str], lang: str, layout: str) -> str:
+    """The generated `paths:` block of a locale catalog. English is the identity map (same keys, same values)."""
+    import json
+    dirs, files = catalog_tables(result)
+    q = lambda v: json.dumps(v, ensure_ascii=False)
+    lines = [CATALOG_BEGIN, "paths:", f'  {CATALOG_LAYOUT}: {q(layout)}', "  dirs:"]
+    lines += [f"    {q(k)}: {q(k if lang == 'en' else v)}" for k, v in dirs.items()]
+    lines.append("  files:")
+    lines += [f"    {q(k)}: {q(k if lang == 'en' else v)}" for k, v in files.items()]
+    lines.append(CATALOG_END)
+    return "\n".join(lines) + "\n"
+
+
+def catalog_text(root: str, lang: str, result: dict[str, str]) -> str:
+    """The catalog file with its generated paths block (re)built. The layout value is kept as it is in the file."""
+    text = read_own(root, CATALOG_FILES[lang])
+    m = re.search(re.escape(CATALOG_BEGIN) + r".*?" + re.escape(CATALOG_END) + r"\n", text, re.S)
+    layout = "english"
+    if m:
+        lm = re.search(r'^  layout: "(\w+)"', m.group(0), re.M)
+        layout = lm.group(1) if lm else layout
+    block = catalog_block(result, lang, layout)
+    if m:
+        return text[:m.start()] + block + text[m.end():]
+    return text.rstrip("\n") + "\n\n" + block
+
+
 def read_own(root: str, rel: str) -> str:
     with open(os.path.join(root, rel), encoding="utf-8") as fh:
         return fh.read()
@@ -489,11 +538,16 @@ def main(argv: list[str] | None = None) -> int:
             fh.write(dump_map(res["map"]))
         with open(os.path.join(ROOT, REPORT_PATH), "w", encoding="utf-8", newline="\n") as fh:
             fh.write(dump_report(files, res))
-        print(f"wrote {MAP_PATH} and {REPORT_PATH}")
+        for lang, rel in CATALOG_FILES.items():
+            text = catalog_text(ROOT, lang, res["map"])      # read before the file is opened for writing
+            with open(os.path.join(ROOT, rel), "w", encoding="utf-8", newline="\n") as fh:
+                fh.write(text)
+        print(f"wrote {MAP_PATH}, {REPORT_PATH} and the paths block of both locale catalogs")
         return 1 if res["problems"] else 0
     if "--check" in argv:
         bad = bool(res["problems"])
-        for rel, want in ((MAP_PATH, dump_map(res["map"])), (REPORT_PATH, dump_report(files, res))):
+        for rel, want in ((MAP_PATH, dump_map(res["map"])), (REPORT_PATH, dump_report(files, res)),
+                          *((c, catalog_text(ROOT, l, res["map"])) for l, c in CATALOG_FILES.items())):
             try:
                 have = read_own(ROOT, rel)
             except OSError:

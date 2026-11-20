@@ -175,5 +175,86 @@ class Negatives(Scratch):
         self.assertTrue(errs)
 
 
+def spanish_layout():
+    """The real Spanish catalog with its layout switched to spanish, as P3B-005 will leave it."""
+    cat = catalog.load("es")
+    flat = dict(cat.flat)
+    flat["paths.layout"] = "spanish"
+    return catalog.Catalog("es", flat)
+
+
+class Paths(Scratch):
+    """The paths: block (plan 5.6): English is the identity map, Spanish comes from path-map.yaml, the layout switch decides."""
+
+    def test_english_is_the_identity_map(self):
+        en = catalog.load("en")
+        pairs = {k[len("paths.files."):]: v for k, v in en.flat.items() if k.startswith("paths.files.")}
+        self.assertGreater(len(pairs), 60)
+        for k, v in pairs.items():
+            self.assertEqual(k, v)
+            self.assertEqual(en.path(k), k)
+        for k, v in en.flat.items():
+            if k.startswith("paths.dirs."):
+                self.assertEqual(k[len("paths.dirs."):], v)
+
+    def test_spanish_stays_english_until_the_layout_switches(self):
+        es = catalog.load("es")
+        self.assertEqual(es.flat["paths.layout"], "english")      # P3B-005 flips this in the rename commit
+        self.assertEqual(es.path("lessons/answers-key.md"), "lessons/answers-key.md")
+
+    def test_files_dirs_and_nested_paths_map(self):
+        es = spanish_layout()
+        self.assertEqual(es.path("lessons/answers-key.md"), "lessons/respuestas.md")
+        self.assertEqual(es.path("lessons/cs"), "lessons/informatica")
+        self.assertEqual(es.path("lessons/study-guides/languages"), "lessons/guias-de-estudio/lenguajes")
+        self.assertEqual(es.path("lessons/study-guides/languages/make-and-cmake.md"),
+                         "lessons/guias-de-estudio/lenguajes/make-y-cmake.md")
+        self.assertEqual(es.path("lessons/study-guides/chapters.txt"), "lessons/guias-de-estudio/chapters.txt")
+        self.assertEqual(es.lessons_path("cs/README.md"), "informatica/README.md")
+        self.assertEqual(es.path("docs/curriculum.md"), "docs/plan-de-estudios.md")
+
+    def test_kept_paths_do_not_move(self):
+        es = spanish_layout()
+        for p in ("README.md", "LICENSE", "lessons/exercises.md", "lessons/solutions/x.py", "lessons/cs-source/concepts/a.md",
+                  "src/apl/README.md", "lessons/book/build.py"):
+            self.assertEqual(es.path(p), p)
+
+    def test_english_reverses_path(self):
+        es = spanish_layout()
+        for p in ("lessons/answers-key.md", "lessons/cs", "lessons/study-guides/concepts/comparative-machine-design.md",
+                  "lessons/languages/editors.md", "CHALLENGE.md", "README.md"):
+            self.assertEqual(es.english(es.path(p)), p)
+        self.assertEqual(es.lessons_english("informatica/05-lenguajes-formales-como-sustratos-de-computacion.md"),
+                         "cs/05-formal-languages-as-computational-substrates.md")
+
+    def test_a_lessons_path_that_leaves_lessons_fails(self):
+        cat = spanish_layout()
+        flat = dict(cat.flat)
+        flat["paths.files.lessons/x.md"] = "docs/x.md"
+        with self.assertRaises(catalog.CatalogError):
+            catalog.Catalog("es", flat).lessons_path("x.md")
+        self.assertEqual(cat.lessons_path("x.md"), "x.md")       # the unchanged tree stays inside lessons/
+
+    def test_invalid_layout_fails(self):
+        cat = catalog.load("es")
+        flat = dict(cat.flat)
+        flat["paths.layout"] = "klingon"
+        with self.assertRaises(catalog.CatalogError):
+            catalog.Catalog("es", flat).path("README.md")
+
+    def test_a_dropped_spanish_path_entry_fails_the_mirror_check(self):
+        def drop(d):
+            d["paths"]["files"].pop("CHALLENGE.md")
+        self.edit("es", drop)
+        self.assertTrue(any("paths.files.CHALLENGE.md" in e for e in catalog.check(["es"], self.tmp)))
+
+    def test_every_spanish_entry_matches_path_map_yaml(self):
+        with open(os.path.join(REPO, "translation", "path-map.yaml"), encoding="utf-8") as f:
+            mapping = yaml.safe_load(f)["paths"]
+        es = spanish_layout()
+        for p, q in mapping.items():
+            self.assertEqual(es.path(p), q, p)
+
+
 if __name__ == "__main__":
     unittest.main()

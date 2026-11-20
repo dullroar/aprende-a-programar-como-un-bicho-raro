@@ -23,14 +23,17 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 LESSONS = os.path.dirname(HERE)
 REPO = os.path.dirname(LESSONS)
 BOOKDIR = os.path.join(LESSONS, "book")
-SOURCE = os.path.join(REPO, "docs", "curriculum.md")
+SOURCE = None                         # the curriculum document of this edition (docs/curriculum.md in English); set with the language
 sys.path.insert(0, BOOKDIR)
 sys.path.insert(0, os.path.join(BOOKDIR, "locale"))     # never name a package `locale`: it would shadow the stdlib module
 import catalog, diagrams, repo_links, study_guides
 
 STEM = repo_links.IDENTITY["curriculum_stem"]     # from the locale catalog (identity.curriculum_stem)
 HTML = "curriculum.html"
-CHAPTER = "../docs/curriculum.md"     # relative to lessons/, as the book's link rewriting expects
+CHAPTER = None                        # the same, relative to lessons/, as the book's link rewriting expects
+FRONT_MATTER = None                   # this edition's name for front-matter.md in this folder
+CS_DIR = None                         # this edition's name for the generated chapters folder, relative to lessons/
+CAT = None
 WEEKS = 16
 TARGET_PAGES, MAX_PAGES = 8, 12       # the plan: aim for about 8 pages in the whole PDF, never more than 12 (the rubric and the log template added two)
 ENGLISH_ACRONYM = "WEIRD"             # the source edition's acronym; a translated edition must not keep it
@@ -49,6 +52,7 @@ def norm(text):
 def set_language(lang):
     """Load the curriculum words of `lang` into the module constants. All or nothing: a missing or malformed key leaves the old language."""
     global LANG, MAX_WORDS, CHAPTER_LABEL, REGISTER, REGISTER_LABEL, ACRONYM, GLOSS, PHASES_NOTE, PHASES
+    global SOURCE, CHAPTER, FRONT_MATTER, CS_DIR, CAT
     cat = catalog.load(lang)
     letters = cat.phase_letters()
     cat.require(WORD_KEYS + [f"phases.{n}.{f}" for n in range(1, len(letters) + 1) for f in ("mermaid_node_id", "weeks")])
@@ -68,6 +72,11 @@ def set_language(lang):
     values = (lang, limit, norm(cat.text("curriculum.chapter_label")), pattern, cat.text("curriculum.register_label"),
               cat.text("acronym.word"), norm(cat.text("acronym.gloss")), norm(cat.text("acronym.phases_note")), tuple(phases))
     LANG, MAX_WORDS, CHAPTER_LABEL, REGISTER, REGISTER_LABEL, ACRONYM, GLOSS, PHASES_NOTE, PHASES = values
+    CAT = cat
+    SOURCE = os.path.join(REPO, *cat.path("docs/curriculum.md").split("/"))
+    CHAPTER = "../" + cat.path("docs/curriculum.md")
+    FRONT_MATTER = os.path.basename(cat.path("lessons/curriculum/front-matter.md"))
+    CS_DIR = cat.lessons_path("cs")
     study_guides.set_language(lang)      # last, so that nothing above can fail after it has switched
 
 set_language(os.environ.get("BOOK_LANG", "en"))
@@ -97,7 +106,7 @@ def prose_sentences(text):
 def check_curriculum(text=None, repo=REPO):
     """Problems (a list of strings) in docs/curriculum.md."""
     text = study_guides.read(SOURCE) if text is None else text
-    where = "docs/curriculum.md"
+    where = CAT.path("docs/curriculum.md")
     problems = []
     add = lambda msg: problems.append(f"{where}: {msg}")
 
@@ -148,11 +157,11 @@ def check_curriculum(text=None, repo=REPO):
 
     # printed chapter numbers: "Ch N" (the catalog's chapter label) must be the chapter's number in the printed book (chapters.txt order, numbered from 1)
     order = [l.strip() for l in study_guides.read(os.path.join(BOOKDIR, "chapters.txt")).splitlines() if l.strip() and not l.startswith("#")]
-    for m in re.finditer(r"\[" + re.escape(CHAPTER_LABEL) + r" (\d+)\]\(\.\./lessons/(cs/[^)#]+)", text):
+    for m in re.finditer(r"\[" + re.escape(CHAPTER_LABEL) + r" (\d+)\]\(\.\./lessons/(" + re.escape(CS_DIR) + r"/[^)#]+)", text):
         want = order.index(m.group(2)) + 1 if m.group(2) in order else None
         if want != int(m.group(1)):
             add(f"'{CHAPTER_LABEL} {m.group(1)}' links to {m.group(2)}, which is chapter {want} of the printed book")
-    for m in re.finditer(r"\[(\w+\.?) (\d+)\]\(\.\./lessons/cs/", text):
+    for m in re.finditer(r"\[(\w+\.?) (\d+)\]\(\.\./lessons/" + re.escape(CS_DIR) + "/", text):
         if m.group(1) != CHAPTER_LABEL:
             add(f"chapter link labeled '{m.group(1)} {m.group(2)}'; this edition writes '{CHAPTER_LABEL} {m.group(2)}'")
     # an exercise link's text is the exercise ID and the heading it points at starts with the same ID (the IDs never change in translation)
@@ -230,7 +239,7 @@ def main():
     if not shutil.which("pandoc"):
         raise SystemExit("pandoc not found (https://pandoc.org/installing.html)")
     texts = {CHAPTER: study_guides.read(SOURCE)}
-    html = book.build_documents(texts, STEM, os.path.join(HERE, "metadata.yaml"), os.path.join(HERE, "front-matter.md"),
+    html = book.build_documents(texts, STEM, os.path.join(HERE, "metadata.yaml"), os.path.join(HERE, FRONT_MATTER),
                                 HTML, "curriculum", checking, prune_cache=False)
     if checking:
         book.check(html)

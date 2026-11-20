@@ -69,7 +69,12 @@ class RoutingTests(unittest.TestCase):
 
     def test_authored_markdown_tooling_and_tools(self):
         self.assertEqual(verify.route("README.md", ["authored"]), [("file", "README.md")])
-        self.assertEqual(verify.route("lessons/book/build.py", ["tooling"]), [("tooling", "lessons/book/build.py")])
+        # a build or check tool also gets the hard-coded-path scan (plan 5.6); a test file under lessons/ does not
+        self.assertEqual(verify.route("lessons/book/build.py", ["tooling"]),
+                         [("tooling", "lessons/book/build.py"), ("cmd", verify.PATH_CMD)])
+        self.assertNotIn(("cmd", verify.PATH_CMD), verify.route("lessons/book/test_cs.py", ["tooling"]))
+        self.assertEqual(verify.route("translation/path-map.yaml", []),
+                         [("cmd", ("path map", ["python3", "tools/pathmap.py", "--check"]))])
         self.assertEqual(verify.route("tools/mask.py", ["owned"]), [("test", "tools/test_mask.py")])
         self.assertEqual(verify.route("tools/test_mask.py", ["owned"]), [("test", "tools/test_mask.py")])
 

@@ -12,10 +12,10 @@ import repo_links
 BASE = "https://github.com/dullroar/learn-programming-the-weird-way"
 BASE_ES = "https://github.com/dullroar/aprende-a-programar-como-un-bicho-raro"
 LESSONS = Path(__file__).resolve().parents[1]
-METADATA = {"book": LESSONS / "book" / "metadata.yaml", "study-guides": LESSONS / "study-guides" / "metadata.yaml",
-            "curriculum": LESSONS / "curriculum" / "metadata.yaml"}
-
 build.set_language("en")        # the English tests below must not depend on BOOK_LANG in the environment
+METADATA = {"book": LESSONS / "book" / "metadata.yaml",
+            "study-guides": LESSONS.parent / build.cs.CAT.path("lessons/study-guides/metadata.yaml"),
+            "curriculum": LESSONS.parent / build.cs.CAT.path("lessons/curriculum/metadata.yaml")}
 
 
 class Resolver(unittest.TestCase):

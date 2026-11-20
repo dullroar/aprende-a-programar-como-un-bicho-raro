@@ -13,8 +13,12 @@ import cs
 import study_guides
 
 ROOT = Path(study_guides.REPO)
-GUIDE_ROOT = "lessons/study-guides/"
 MANIFEST = "lessons/book/guide-dependencies.json"
+
+
+def guide_root():
+    """The study guides folder of this edition, repository-relative, with a trailing slash (plan 5.6)."""
+    return study_guides.GW("")
 
 
 def git(*args):
@@ -30,14 +34,16 @@ def changed_sources(base, head, worktree):
 
 
 def is_source(path):
+    cat = study_guides.CAT
+    languages = re.escape(cat.path("lessons/languages"))
     return bool(re.match(
-        r"^(?:src/[^/]+/.+|lessons/(?:cs-source/.+|solutions/.+|tools/.+|languages/[^/]+\.md|[^/]+\.md))$",
+        r"^(?:src/[^/]+/.+|lessons/(?:cs-source/.+|solutions/.+|tools/.+|[^/]+\.md)|" + languages + r"/[^/]+\.md)$",
         path,
-    )) and path != "lessons/index.md"
+    )) and path != cat.path("lessons/index.md")
 
 
 def linked_paths(guide, text):
-    base = posixpath.dirname(GUIDE_ROOT + guide)
+    base = posixpath.dirname(guide_root() + study_guides.GP(guide))
     paths = set()
     for link in study_guides.LINK.finditer(text):
         target = urlsplit(link[2])
@@ -87,7 +93,7 @@ def snapshot(ref, path):
 
 
 def author_text(path, content):
-    if content is not None and path.startswith("lessons/languages/"):
+    if content is not None and path.startswith(study_guides.CAT.path("lessons/languages") + "/"):
         return cs.MARK.sub("", content.decode()).encode()
     return content
 
@@ -108,7 +114,7 @@ def main():
     paths = [path for path in paths if before[path] != after[path]]
     guides = {}
     for guide in study_guides.ALL_GUIDES:
-        content = snapshot(target, GUIDE_ROOT + guide)
+        content = snapshot(target, guide_root() + study_guides.GP(guide))
         if content is not None:
             guides[guide] = content.decode()
     indirect = json.loads(snapshot(target, MANIFEST) or b"{}")
