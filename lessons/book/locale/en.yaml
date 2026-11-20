@@ -63,3 +63,50 @@ diagrams:
   # figcaption word ("Figure 3. ...") and the caption used when a diagram has no accTitle.
   figure: "Figure"
   default_title: "Diagram"
+
+# lessons/book/study_guides.py: the words the guide checks require. This block is the ONE authoritative source of the
+# standard "shared challenge" paragraph (the guides must start that section with exactly this text).
+study_guides:
+  # H1 of every guide; {topic} is the guide's subject.
+  title: "{topic} study guide"
+  # The eleven required H2 sections, in order.
+  sections:
+    - "What this guide is for"
+    - "Before you begin"
+    - "The shared challenge"
+    - "The machine to identify"
+    - "Trace one run"
+    - "Compare the ordinary and weird designs"
+    - "What the exercises demonstrate"
+    - "Failure modes, costs and boundaries"
+    - "Connections across the repository"
+    - "Self-check"
+    - "Further reading"
+  # Heading in lessons/intro.md that the shared paragraph links to ({anchor} below is its slug).
+  challenge_heading: "What the challenge does"
+  # The standard first paragraph of "The shared challenge". Markdown; {anchor} is filled from challenge_heading.
+  shared_challenge: "The [challenge specification](../../intro.md#{anchor}) calls for cards with a category and 10 to 19 whole hours. Categories cycle through Meetings, Coding, Debugging and Learning. Add each card's hours to the running total. Stop when the total passes 40. Keep the **first card that takes the total over 40**. A total of exactly 40 continues. Four 10-hour cards need a fifth card, in the Meetings category. Conforming runs finish with 3 to 5 cards and a total of 41 to 59 hours."
+  # Text the shared section must contain (the exact-40 rule).
+  exact_forty: "exactly 40"
+  # Fixed bold lead-ins (invariant I11): the five questions under "The machine to identify", the four under "Self-check".
+  lead_in_five:
+    - "What repeats."
+    - "Where state lives."
+    - "What advances the next step."
+    - "What stops it."
+    - "What commits."
+  lead_in_four:
+    - "Trace."
+    - "Explain."
+    - "Transfer."
+    - "Evidence."
+  # The three assurance labels as written in the guides (matched in lower case).
+  assurance:
+    guaranteed: "guaranteed"
+    implementation_permitted: "implementation-permitted"
+    accidentally_exploited: "accidentally exploited"
+  # The safety model must name the sandbox; the guide must ask for a prediction (a regular expression, case-insensitive).
+  sandbox_word: "sandbox"
+  predict_pattern: "\\bpredict"
+  # Words that mark unfinished text, besides TODO, TBD and the like which are language-neutral (a regular expression).
+  placeholder_pattern: "placeholder|to be (?:written|done|added)"

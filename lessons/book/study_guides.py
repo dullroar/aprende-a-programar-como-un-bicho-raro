@@ -19,50 +19,57 @@ What is checked (the rules come from the study-guides implementation plan):
 
 Standard library only.
 """
-import os, re, sys
+import os, re, sys, unicodedata
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
+sys.path.insert(0, os.path.join(HERE, "locale"))            # never name a package `locale`: it would shadow the stdlib module
+import catalog                                              # the locale catalog (needs PyYAML, like the rest of the book tooling)
 import diagrams
 
 LESSONS = os.path.dirname(HERE)
 REPO = os.path.dirname(LESSONS)
 GUIDES = os.path.join(LESSONS, "study-guides")
 
-TITLE_SUFFIX = " study guide"
+# The words the checks require come from the locale catalog (lessons/book/locale/<lang>.yaml, block study_guides). The language is
+# BOOK_LANG (default "en", as in diagrams.py); `set_language` switches it, for example in tests. A missing key fails loudly
+# (catalog.MissingKeyError); there is no silent fallback to English. SHARED_CHALLENGE has exactly one source: the catalog.
+#   TITLE_PREFIX/TITLE_SUFFIX  the H1 is PREFIX + topic + SUFFIX      SECTIONS  the eleven required H2 titles, in order
+#   FIVE_QUESTIONS, FOUR_QUESTIONS  bold lead-ins                     ASSURANCE_LABELS  the three labels, lower case
+LANG = TITLE_PREFIX = TITLE_SUFFIX = SECTIONS = CHALLENGE_HEADING = SHARED_CHALLENGE = EXACT_FORTY = None
+FIVE_QUESTIONS = FOUR_QUESTIONS = ASSURANCE_LABELS = SANDBOX_WORD = PREDICT = PLACEHOLDER = None
+S_CHALLENGE, S_MACHINE, S_SELF = 2, 3, 9    # positions in SECTIONS of the sections the content checks look inside
 
-SECTIONS = [
-    "What this guide is for",
-    "Before you begin",
-    "The shared challenge",
-    "The machine to identify",
-    "Trace one run",
-    "Compare the ordinary and weird designs",
-    "What the exercises demonstrate",
-    "Failure modes, costs and boundaries",
-    "Connections across the repository",
-    "Self-check",
-    "Further reading",
-]
 
-SHARED_CHALLENGE = (
-    "The [challenge specification](../../intro.md#what-the-challenge-does) calls for cards with a category and 10 "
-    "to 19 whole hours. Categories cycle through Meetings, Coding, Debugging and Learning. Add each card's hours "
-    "to the running total. Stop when the total passes 40. Keep the **first card that takes the total over 40**. A "
-    "total of exactly 40 continues. Four 10-hour cards need a fifth card, in the Meetings category. Conforming "
-    "runs finish with 3 to 5 cards and a total of 41 to 59 hours."
-)
+def nfc(text):
+    """One normal form for text that is compared with catalog words (an accented letter may be one code point or two)."""
+    return unicodedata.normalize("NFC", text)
 
-# The five questions every guide must answer, as bold lead-ins under "The machine to identify".
-FIVE_QUESTIONS = ["What repeats.", "Where state lives.", "What advances the next step.", "What stops it.", "What commits."]
-# The four kinds of self-check question, as bold lead-ins under "Self-check".
-FOUR_QUESTIONS = ["Trace.", "Explain.", "Transfer.", "Evidence."]
-ASSURANCE_LABELS = ("guaranteed", "implementation-permitted", "accidentally exploited")
+
+def set_language(lang):
+    """Load the study_guides.* words of `lang` into the module constants, and the diagrams.* words too. All or nothing: a missing
+    key leaves the old language in place."""
+    global LANG, TITLE_PREFIX, TITLE_SUFFIX, SECTIONS, CHALLENGE_HEADING, SHARED_CHALLENGE, EXACT_FORTY
+    global FIVE_QUESTIONS, FOUR_QUESTIONS, ASSURANCE_LABELS, SANDBOX_WORD, PREDICT, PLACEHOLDER
+    cat = catalog.load(lang)
+    t = lambda key: nfc(cat.text("study_guides." + key))
+    many = lambda key, n: [t(f"{key}.{i}") for i in range(1, n + 1)]
+    prefix, found, suffix = t("title").partition("{topic}")
+    if not found or "{topic}" in suffix:
+        raise catalog.CatalogError("study_guides.title must contain {topic} exactly once")
+    heading = t("challenge_heading")
+    shared = " ".join(t("shared_challenge").split()).replace("{anchor}", slug(heading))
+    assurance = tuple(t("assurance." + k).lower() for k in ("guaranteed", "implementation_permitted", "accidentally_exploited"))
+    placeholder = re.compile(r"\b(TODO|TBD|FIXME|XXX|lorem ipsum)\b|\b(?:" + t("placeholder_pattern") + r")\b|<[A-Za-z ]*here>|\[\.\.\.\]|…", re.I)
+    values = (lang, prefix, suffix, many("sections", 11), heading, shared, t("exact_forty"), many("lead_in_five", 5),
+              many("lead_in_four", 4), assurance, t("sandbox_word").lower(), re.compile(t("predict_pattern"), re.I), placeholder)
+    diagrams.set_language(lang)      # last, so that nothing above can fail after it has switched
+    (LANG, TITLE_PREFIX, TITLE_SUFFIX, SECTIONS, CHALLENGE_HEADING, SHARED_CHALLENGE, EXACT_FORTY, FIVE_QUESTIONS, FOUR_QUESTIONS,
+     ASSURANCE_LABELS, SANDBOX_WORD, PREDICT, PLACEHOLDER) = values
 
 # A new (non-canonical) diagram is allowed only for a relationship the source diagram does not show.
 NEW_DIAGRAM_KINDS = ("cross-language-state", "lazy-demand-trace", "transaction-boundary", "authority-boundary")
 
-PLACEHOLDER = re.compile(r"\b(TODO|TBD|FIXME|XXX|lorem ipsum|placeholder)\b|\bto be (written|done|added)\b|<[A-Za-z ]*here>|\[\.\.\.\]|…", re.I)
 MIN_SECTION_WORDS = 15
 
 LANGUAGE_GUIDES = [
@@ -159,6 +166,9 @@ def slug(heading):
     h = re.sub(r"[^\w\- ]", "", h)
     return h.replace(" ", "-")
 
+
+set_language(os.environ.get("BOOK_LANG", "en"))
+
 def anchors(text):
     """GitHub heading ids of a Markdown file: the first keeps its slug, repeats get -1, -2, ... in order."""
     seen, out = {}, set()
@@ -185,7 +195,7 @@ def sections(text):
 
 def words(text):
     text = re.sub(r"```.*?```", " ", text, flags=re.S)
-    return len(re.findall(r"[A-Za-z0-9`]+", text))
+    return len(re.findall(r"(?:[^\W_]|`)+", text))      # letters of any language and digits, so accented Spanish words count once
 
 
 # ---------------------------------------------------------------- canonical diagram sources
@@ -274,9 +284,10 @@ def check_guide(rel, text, repo=None):
     add = lambda msg: problems.append(f"{where}: {msg}")
     items = diagrams.scan(text)
     h1s = [it for it in items if it[0] == "heading" and it[1] == 1]
-    if len(h1s) != 1 or not h1s[0][2].endswith(TITLE_SUFFIX) or len(h1s[0][2]) <= len(TITLE_SUFFIX):
-        add(f"needs exactly one H1 of the form '# <Topic>{TITLE_SUFFIX}'")
-    secs = sections(text)
+    h1 = nfc(h1s[0][2]) if len(h1s) == 1 else ""
+    if len(h1s) != 1 or not (h1.startswith(TITLE_PREFIX) and h1.endswith(TITLE_SUFFIX)) or len(h1) <= len(TITLE_PREFIX) + len(TITLE_SUFFIX):
+        add(f"needs exactly one H1 of the form '# {TITLE_PREFIX}<Topic>{TITLE_SUFFIX}'")
+    secs = [(nfc(t), b, n) for t, b, n in sections(text)]
     titles = [s[0] for s in secs]
     if titles != SECTIONS:
         missing = [s for s in SECTIONS if s not in titles]
@@ -293,26 +304,27 @@ def check_guide(rel, text, repo=None):
     if "BEGIN GENERATED" in text or "END GENERATED" in text:
         add("guides are hand-written: no BEGIN/END GENERATED markers")
     # required content
-    shared = body.get("The shared challenge", "")
-    if "DEMO ONLY" not in text or "sandbox" not in text.lower():
-        add("must state the safety model: DEMO ONLY data and sandbox-first execution")
+    low = nfc(text).lower()
+    shared, machine, selfcheck = (nfc(body.get(SECTIONS[i], "")) for i in (S_CHALLENGE, S_MACHINE, S_SELF))
+    if "DEMO ONLY" not in text or SANDBOX_WORD not in low:
+        add(f"must state the safety model: DEMO ONLY data and sandbox-first execution (the word '{SANDBOX_WORD}')")
     first_paragraph = re.split(r"\n\s*\n", shared.strip(), maxsplit=1)[0]
     if " ".join(first_paragraph.split()) != SHARED_CHALLENGE:
-        add('"The shared challenge" must start with the standard paragraph, including the exactly 40 rule')
-    if "exactly 40" not in shared:
-        add("'The shared challenge' must say that a total of exactly 40 continues")
+        add(f'"{SECTIONS[S_CHALLENGE]}" must start with the standard paragraph, including the exactly 40 rule')
+    if EXACT_FORTY not in shared:
+        add(f"'{SECTIONS[S_CHALLENGE]}' must say that a total of exactly 40 continues")
     for q in FIVE_QUESTIONS:
-        if f"**{q}**" not in body.get("The machine to identify", ""):
-            add(f"'The machine to identify' needs a paragraph that starts with **{q}**")
+        if f"**{q}**" not in machine:
+            add(f"'{SECTIONS[S_MACHINE]}' needs a paragraph that starts with **{q}**")
     for q in FOUR_QUESTIONS:
-        if f"**{q}**" not in body.get("Self-check", ""):
-            add(f"'Self-check' needs a question that starts with **{q}**")
-    if not re.search(r"\bpredict", text, re.I):
+        if f"**{q}**" not in selfcheck:
+            add(f"'{SECTIONS[S_SELF]}' needs a question that starts with **{q}**")
+    if not PREDICT.search(text):
         add("must ask the reader to predict before running")
     if not re.search(r"exercises\.md#[a-z]\d", text):
         add("must link to a verified exercise in lessons/exercises.md (for example exercises.md#b1-...)")
-    if not any(label in text.lower() for label in ASSURANCE_LABELS):
-        add("must label behavior as guaranteed, implementation-permitted or accidentally exploited")
+    if not any(label in low for label in ASSURANCE_LABELS):
+        add("must label behavior as " + ", ".join(ASSURANCE_LABELS[:-1]) + " or " + ASSURANCE_LABELS[-1])
     # diagrams
     found = guide_diagrams(text)
     seen_sources = set()

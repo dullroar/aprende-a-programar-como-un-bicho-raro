@@ -29,3 +29,5 @@
 - Run `python3 -I tools/verify.py --fast` before every commit; a localized tooling file must be added to translation/tooling-allowlist.txt in the same commit or I13 fails.
 - Name catalog keys for fixed bold lead-ins `lead_in_*` (invariant I11 only enforces those), and when localizing a tooling file add its row to translation/tooling-allowlist.txt in the same commit; append with Edit, heredocs are denied.
 - After a Spanish heading changes run `python3 -I tools/anchors.py --generate`, remap links with `--remap FILE` and run `--check`; commit translation/anchors.json with the heading change, and keep headings NFC so the build slug equals the GitHub slug.
+- Keep `slug()` in lessons/book/study_guides.py, build.py and cs.py a verbatim copy of each other (tools/test_anchors.py execs them); normalize text at the call site (nfc), never inside slug().
+- Translate "What the challenge does" in lessons/intro.md as exactly the catalog value study_guides.challenge_heading, because SHARED_CHALLENGE links to its slug.

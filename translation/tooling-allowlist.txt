@@ -4,3 +4,5 @@
 # Add a row only in the same commit that localizes the file, with the task id as a comment.
 lessons/book/diagrams.py  # P2-008: words from the locale catalog (diagrams.*)
 lessons/book/test_diagrams.py  # P2-008: Spanish fixtures, English literals guard
+lessons/book/study_guides.py  # P2-009: words and SHARED_CHALLENGE from the locale catalog (study_guides.*)
+lessons/book/test_study_guides.py  # P2-009: Spanish contract on a synthetic guide, English literals guard

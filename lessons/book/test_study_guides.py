@@ -6,12 +6,24 @@ The first group runs the rules against the real guides and the real book. The se
 scratch folder, breaks one thing, and checks that the right problem is reported, so each rule is shown to be able to fail. Nothing in the
 repository is touched. Needs only the Python standard library.
 """
-import os, re, shutil, sys, tempfile, unittest
+import os, re, shutil, sys, tempfile, unicodedata, unittest
+from unittest import mock
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 import study_guides as sg
 
 REPO = sg.REPO
+# The language of the real guides under lessons/study-guides/. It is English until the guides are translated; then BOOK_LANG=es
+# (or flipping the default in study_guides.py) makes RealRepository check the Spanish guides. The Mutations class edits English
+# text on purpose and stays pinned to "en"; the Spanish contract is tested on a synthetic guide (class SpanishContract below).
+REAL_LANG = os.environ.get("BOOK_LANG", "en")
+
+
+def use_language(testcase, lang):
+    """Switch study_guides (and diagrams) to `lang` for one test and restore the previous language afterwards."""
+    old = sg.LANG
+    sg.set_language(lang)
+    testcase.addCleanup(sg.set_language, old)
 
 
 def snapshot(dest):
@@ -30,6 +42,9 @@ def snapshot(dest):
 
 
 class RealRepository(unittest.TestCase):
+    def setUp(self):
+        use_language(self, REAL_LANG)
+
     def test_every_rule_passes_on_the_real_guides(self):
         problems = sg.check_all()
         self.assertEqual(problems, [], "\n".join(problems))
@@ -76,6 +91,9 @@ class RealRepository(unittest.TestCase):
 
 
 class Scanner(unittest.TestCase):
+    def setUp(self):
+        use_language(self, "en")
+
     def test_sections_ignore_headings_inside_fences(self):
         text = "# T study guide\n\n## One\n\nbody\n\n```text\n## Not a heading\n```\n\n## Two\n\nmore\n"
         self.assertEqual([t for t, _, _ in sg.sections(text)], ["One", "Two"])
@@ -105,6 +123,7 @@ class Mutations(unittest.TestCase):
     """Each test breaks one thing in a scratch copy and expects the matching problem."""
 
     def setUp(self):
+        use_language(self, "en")
         self.tmp = tempfile.mkdtemp()
         snapshot(self.tmp)
 
@@ -257,6 +276,267 @@ class Mutations(unittest.TestCase):
     def test_the_companion_edition_must_match_the_book(self):
         self.edit("lessons/study-guides/metadata.yaml", lambda s: s.replace("companion-to: \"Learn Programming the Weird Way! v4\"", "companion-to: \"Learn Programming the Weird Way! v3\"", 1))
         self.assertTrue(any("companion-to must equal the book title" in p for p in sg.check_set(self.tmp)))
+
+
+# ---- The Spanish contract. The words below are written out on purpose (not read from the catalog), so a change to the catalog
+# ---- that drifts from the glossary (translation/glossary.es.yaml) or from the frozen timecard wording fails here.
+
+ES_SECTIONS = ["Para qué sirve esta guía", "Antes de empezar", "El reto compartido", "La máquina que hay que identificar",
+               "Traza una ejecución", "Compara los diseños ordinarios y los raros", "Qué demuestran los ejercicios",
+               "Modos de fallo, costos y límites", "Conexiones a lo largo del repositorio", "Autoevaluación", "Lecturas adicionales"]
+ES_SHARED = ("La [especificación del reto](../../intro.md#qué-hace-el-reto) pide tarjetas con una categoría y de 10 a 19 horas enteras. "
+             "Las categorías se repiten en ciclo: `Meetings`, `Coding`, `Debugging` y `Learning`. Suma las horas de cada tarjeta al total "
+             "acumulado. Detente cuando el total pasa de 40. Conserva la **primera tarjeta con la que el total pasa de 40**. Un total de "
+             "exactamente 40 continúa. Cuatro tarjetas de 10 horas necesitan una quinta tarjeta, de la categoría `Meetings`. Las "
+             "ejecuciones conformes tienen de 3 a 5 tarjetas y un total de 41 a 59 horas.")
+ES_FIVE = ["Qué se repite.", "Dónde vive el estado.", "Qué hace avanzar el paso siguiente.", "Qué lo detiene.", "Qué confirma."]
+ES_FOUR = ["Traza.", "Explica.", "Transfiere.", "Evidencia."]
+FILL = "Este texto de relleno tiene bastantes palabras para superar el mínimo de quince palabras que exige la revisión de cada sección."
+
+
+def spanish_guide():
+    """A minimal guide that satisfies every rule in Spanish (it uses a name outside the planned list, so no diagram is required)."""
+    bodies = {i: FILL for i in range(11)}
+    bodies[1] = ("**Modelo de seguridad.** Todos los datos son ficticios (**DEMO ONLY**). Lee el código y ejecútalo primero en un entorno "
+                 "aislado (*sandbox*).\n\n**Regla de predicción.** Predice el resultado antes de cada ejecución. " + FILL)
+    bodies[2] = ES_SHARED + "\n\n" + FILL
+    bodies[3] = "\n\n".join(f"**{q}** {FILL}" for q in ES_FIVE)
+    bodies[6] = "Practica con `exercises.md#a1-lee-las-filas`. Este comportamiento es garantizado por el lenguaje. " + FILL
+    bodies[9] = "\n\n".join(f"**{q}** {FILL}" for q in ES_FOUR)
+    out = ["# Guía de estudio de Prueba", ""]
+    for i, title in enumerate(ES_SECTIONS):
+        out += [f"## {title}", "", bodies[i], ""]
+    return "\n".join(out)
+
+
+class SpanishContract(unittest.TestCase):
+    GOOD = spanish_guide()
+
+    @classmethod
+    def setUpClass(cls):
+        # A scratch repo whose intro.md already has the Spanish heading the shared paragraph links to (the real intro.md is
+        # still English). The checks also read lessons/book/link-hosts.txt from the repo they are given.
+        cls.repo = tempfile.mkdtemp()
+        os.makedirs(os.path.join(cls.repo, "lessons", "book"))
+        os.makedirs(os.path.join(cls.repo, "lessons", "study-guides", "concepts"))
+        shutil.copy(os.path.join(REPO, "lessons", "book", "link-hosts.txt"), os.path.join(cls.repo, "lessons", "book", "link-hosts.txt"))
+        with open(os.path.join(cls.repo, "lessons", "intro.md"), "w", encoding="utf-8") as f:
+            f.write("# Introducción\n\n## Qué hace el reto\n\nTexto.\n")
+
+    @classmethod
+    def tearDownClass(cls):
+        shutil.rmtree(cls.repo)
+
+    def setUp(self):
+        use_language(self, "es")
+
+    def problems(self, text):
+        return sg.check_guide("concepts/prueba.md", text, self.repo)
+
+    def assertProblem(self, text, expect):
+        ps = self.problems(text)
+        self.assertTrue(any(expect in p for p in ps), f"expected a problem containing {expect!r}; got {ps}")
+
+    def broken(self, old, new, expect, count=1):
+        self.assertIn(old, self.GOOD, "the test edit would change nothing")
+        self.assertProblem(self.GOOD.replace(old, new, count), expect)
+
+    def test_the_spanish_words_are_the_glossary_words(self):
+        self.assertEqual(sg.SECTIONS, ES_SECTIONS)
+        self.assertEqual(sg.FIVE_QUESTIONS, ES_FIVE)
+        self.assertEqual(sg.FOUR_QUESTIONS, ES_FOUR)
+        self.assertEqual(sg.SHARED_CHALLENGE, ES_SHARED)
+        self.assertEqual(sg.ASSURANCE_LABELS, ("garantizado", "permitido por la implementación", "aprovechado por accidente"))
+        self.assertEqual((sg.TITLE_PREFIX, sg.TITLE_SUFFIX), ("Guía de estudio de ", ""))
+
+    def test_the_frozen_timecard_wording_is_in_the_shared_paragraph(self):
+        for must in ("pasa de 40", "un total de exactamente 40 continúa", "de 3 a 5 tarjetas", "de 41 a 59 horas"):
+            self.assertIn(must, sg.SHARED_CHALLENGE.lower())
+        for banned in ("hasta 40", "a partir de 40", "40 o más", "al menos 40", "alcanza 40", "llega a 40", "desafío", "ficha"):
+            self.assertNotIn(banned, sg.SHARED_CHALLENGE)
+        for category in ("Meetings", "Coding", "Debugging", "Learning"):
+            self.assertIn(f"`{category}`", sg.SHARED_CHALLENGE)    # the four categories are data: always in code font, never translated
+
+    def test_the_catalog_paragraph_links_to_the_intro_heading_it_names(self):
+        self.assertEqual(sg.CHALLENGE_HEADING, "Qué hace el reto")
+        self.assertIn("(../../intro.md#qué-hace-el-reto)", sg.SHARED_CHALLENGE)
+        self.assertEqual(sg.slug("Qué hace el reto"), "qué-hace-el-reto")
+
+    def test_a_complete_spanish_guide_has_no_problems(self):
+        self.assertEqual(self.problems(self.GOOD), [])
+
+    def test_a_guide_written_with_decomposed_accents_is_still_accepted(self):
+        nfd = lambda s: unicodedata.normalize("NFD", s)
+        decomposed = nfd(self.GOOD)
+        self.assertNotEqual(decomposed, self.GOOD)
+        # the words are compared in one normal form; a link anchor must stay NFC (a different byte string would not work on GitHub)
+        self.assertEqual(self.problems(decomposed.replace(nfd("#qué-hace-el-reto"), "#qué-hace-el-reto")), [])
+        self.assertTrue(any("missing heading" in p for p in self.problems(decomposed)))
+        # slug() stays a verbatim copy of build.py's (tools/test_anchors.py checks that), so it does not normalize: headings must be NFC
+        self.assertNotEqual(sg.slug(nfd("Qué hace el reto")), sg.slug("Qué hace el reto"))
+
+    def test_accented_words_count_once_each(self):
+        self.assertEqual(sg.words("información útil sección"), 3)
+        self.assertEqual(sg.words("```\nnot counted\n```\n`code` ya"), 2)
+
+    def test_the_title_must_use_the_spanish_form(self):
+        self.broken("# Guía de estudio de Prueba", "# Prueba study guide", "# Guía de estudio de <Topic>")
+        self.broken("# Guía de estudio de Prueba", "# Guía de estudio de ", "# Guía de estudio de <Topic>")
+        self.broken("# Guía de estudio de Prueba", "# Notas de Prueba", "# Guía de estudio de <Topic>")
+
+    def test_each_of_the_eleven_headings_is_required(self):
+        for title in ES_SECTIONS:
+            with self.subTest(title):
+                self.broken(f"## {title}\n", "## Otro título\n", "exactly the template")
+
+    def test_english_headings_are_refused_in_spanish(self):
+        self.broken("## Antes de empezar\n", "## Before you begin\n", "exactly the template")
+
+    def test_a_reordered_section_is_caught(self):
+        swapped = self.GOOD.replace("## Autoevaluación", "## @@").replace("## Lecturas adicionales", "## Autoevaluación").replace("## @@", "## Lecturas adicionales")
+        self.assertProblem(swapped, "the order is wrong")
+
+    def test_the_shared_paragraph_must_use_the_frozen_wording(self):
+        for old, new in (("pasa de 40. Conserva", "llega a 40. Conserva"), ("Detente cuando", "Para cuando"),
+                         ("un total de 41 a 59 horas", "un total de 41 a 60 horas"), ("`Debugging`", "Debugging")):
+            with self.subTest(old):
+                self.broken(old, new, "must start with the standard paragraph")
+
+    def test_exactly_40_must_be_stated(self):
+        self.broken("exactamente 40 continúa", "cuarenta continúa", "exactly 40 continues")
+        # the paragraph itself is also wrong then, so both problems are reported
+        self.broken("exactamente 40 continúa", "cuarenta continúa", "standard paragraph")
+
+    def test_each_of_the_five_and_four_questions_is_required(self):
+        for q in ES_FIVE:
+            with self.subTest(q):
+                self.broken(f"**{q}**", "**Otra cosa.**", f"**{q}**")
+        for q in ES_FOUR:
+            with self.subTest(q):
+                self.broken(f"**{q}**", "**Otra cosa.**", f"**{q}**")
+
+    def test_the_english_question_labels_are_refused_in_spanish(self):
+        self.broken("**Qué lo detiene.**", "**What stops it.**", "**Qué lo detiene.**")
+
+    def test_the_safety_model_needs_demo_only_and_the_sandbox_word(self):
+        self.broken("**DEMO ONLY**", "**datos de prueba**", "safety model")
+        self.broken("entorno aislado", "entorno", "safety model")
+
+    def test_the_reader_must_be_asked_to_predict(self):
+        for word in ("Predice", "predicción"):
+            text = self.GOOD.replace(word, "Anota")
+            self.assertNotEqual(text, self.GOOD)
+        no_predict = self.GOOD.replace("**Regla de predicción.** Predice el resultado antes de cada ejecución. ", "")
+        self.assertNotEqual(no_predict, self.GOOD)
+        self.assertProblem(no_predict, "predict")
+        for ok in ("predecir", "predigas", "una predicción"):
+            self.assertEqual(self.problems(self.GOOD.replace("Predice", ok)), [], ok)
+
+    def test_an_assurance_label_is_required(self):
+        self.broken("garantizado", "seguro", "must label behavior as garantizado")
+        for label in ("permitido por la implementación", "aprovechado por accidente"):
+            self.assertEqual(self.problems(self.GOOD.replace("garantizado", label)), [], label)
+
+    def test_the_exercise_link_is_still_required(self):
+        self.broken("exercises.md#a1-lee-las-filas", "ejercicios", "verified exercise")
+
+    def test_spanish_placeholder_text_is_caught(self):
+        for words in ("TODO", "por escribir", "Por completar", "marcador de posición", "lorem ipsum"):
+            with self.subTest(words):
+                self.assertProblem(self.GOOD.replace("## Lecturas adicionales\n", f"## Lecturas adicionales\n\n{words}.\n"), "placeholder text")
+
+    def test_a_short_section_with_accented_words_is_caught(self):
+        self.broken(FILL + "\n\n## Antes", "Poco.\n\n## Antes", "section 'Para qué sirve esta guía' is empty or too short")
+
+    def test_generated_markers_are_refused(self):
+        self.broken("## Lecturas adicionales\n", "## Lecturas adicionales\n\n<!-- BEGIN GENERATED x -->\n", "BEGIN/END GENERATED")
+
+    def test_the_english_guides_are_refused_in_spanish(self):
+        text = sg.read(os.path.join(sg.GUIDES, "languages", "cobol.md"))
+        ps = sg.check_guide("languages/cobol.md", text)
+        self.assertTrue(any("exactly the template" in p for p in ps), ps)
+        self.assertTrue(any("# Guía de estudio de <Topic>" in p for p in ps), ps)
+
+    def test_diagrams_follow_the_language(self):
+        from_diagrams = sg.diagrams
+        self.assertEqual(from_diagrams.SECTION, "Flujo del programa")
+        sg.set_language("en")
+        self.assertEqual(from_diagrams.SECTION, "Program Flow")
+        sg.set_language("es")
+        self.assertEqual(from_diagrams.SECTION, "Flujo del programa")
+
+
+class EnglishContract(unittest.TestCase):
+    """The English words are exactly what they were before they moved into the catalog (guards the extraction)."""
+
+    def setUp(self):
+        use_language(self, "en")
+
+    def test_the_english_words_are_unchanged(self):
+        self.assertEqual(sg.SECTIONS, ["What this guide is for", "Before you begin", "The shared challenge", "The machine to identify",
+                                       "Trace one run", "Compare the ordinary and weird designs", "What the exercises demonstrate",
+                                       "Failure modes, costs and boundaries", "Connections across the repository", "Self-check",
+                                       "Further reading"])
+        self.assertEqual(sg.FIVE_QUESTIONS, ["What repeats.", "Where state lives.", "What advances the next step.", "What stops it.", "What commits."])
+        self.assertEqual(sg.FOUR_QUESTIONS, ["Trace.", "Explain.", "Transfer.", "Evidence."])
+        self.assertEqual(sg.ASSURANCE_LABELS, ("guaranteed", "implementation-permitted", "accidentally exploited"))
+        self.assertEqual((sg.TITLE_PREFIX, sg.TITLE_SUFFIX), ("", " study guide"))
+        self.assertEqual(sg.SHARED_CHALLENGE, (
+            "The [challenge specification](../../intro.md#what-the-challenge-does) calls for cards with a category and 10 "
+            "to 19 whole hours. Categories cycle through Meetings, Coding, Debugging and Learning. Add each card's hours "
+            "to the running total. Stop when the total passes 40. Keep the **first card that takes the total over 40**. A "
+            "total of exactly 40 continues. Four 10-hour cards need a fifth card, in the Meetings category. Conforming "
+            "runs finish with 3 to 5 cards and a total of 41 to 59 hours."))
+
+    def test_the_spanish_guide_is_refused_in_english(self):
+        ps = sg.check_guide("concepts/prueba.md", SpanishContract.GOOD)
+        self.assertTrue(any("exactly the template" in p for p in ps), ps)
+
+    def test_the_shared_paragraph_has_one_source_the_catalog(self):
+        with open(os.path.join(HERE, "study_guides.py"), encoding="utf-8") as f:
+            source = f.read()
+        self.assertNotIn("Keep the **first card", source)
+        self.assertNotIn("Conserva la **primera", source)
+
+
+class LanguageSwitch(unittest.TestCase):
+    def setUp(self):
+        use_language(self, "es")
+
+    def test_a_missing_catalog_key_fails_loudly_and_changes_nothing(self):
+        real = sg.catalog.load
+
+        def broken(lang, *a, **kw):
+            cat = real(lang, *a, **kw)
+            flat = dict(cat.flat)
+            del flat["study_guides.lead_in_four.4"]
+            return sg.catalog.Catalog(lang, flat)
+
+        with mock.patch.object(sg.catalog, "load", broken):
+            with self.assertRaises(sg.catalog.MissingKeyError):
+                sg.set_language("en")
+        self.assertEqual(sg.LANG, "es")
+        self.assertEqual(sg.SECTIONS[0], "Para qué sirve esta guía")
+        self.assertEqual(sg.diagrams.SECTION, "Flujo del programa")
+
+    def test_an_unknown_language_fails_loudly(self):
+        with self.assertRaises(sg.catalog.CatalogError):
+            sg.set_language("xx")
+        self.assertEqual(sg.LANG, "es")
+
+    def test_a_title_without_the_topic_is_refused(self):
+        real = sg.catalog.load
+
+        def no_topic(lang, *a, **kw):
+            cat = real(lang, *a, **kw)
+            flat = dict(cat.flat)
+            flat["study_guides.title"] = "Guía de estudio"
+            return sg.catalog.Catalog(lang, flat)
+
+        with mock.patch.object(sg.catalog, "load", no_topic):
+            with self.assertRaises(sg.catalog.CatalogError):
+                sg.set_language("es")
+        self.assertEqual(sg.TITLE_PREFIX, "Guía de estudio de ")
 
 
 if __name__ == "__main__":
