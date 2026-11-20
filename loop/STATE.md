@@ -1,11 +1,11 @@
 # loop/STATE.md (keep to 60 lines; refreshed by every iteration)
 
 - **Edition:** v4-es.0-rc1 (working)    **English SHA:** 48a4429c0a22b2aac628b256a50c07d1816bcb80
-- **Iteration:** 60    **Stage:** 4 (bulk translation), next P4-src-2    **Last result:** P4-src-1 done (Go, Java, Kotlin entry READMEs; translate.py cache id fix; waivers EXC-024..044; known pending: anchors link in generated lessons/languages/forth.md until P5-001)
-- **Tasks:** todo 88 (12 seed + 76 generated) | doing 0 | done 50 | blocked 0 | skipped 0
+- **Iteration:** 75    **Stage:** 4 (bulk translation), next P4-src-3    **Last result:** P4-src-2 done (Linq1, Linq2, Modern1, Python1 entry READMEs; waivers EXC-045..078; H009 recorded; known pending: anchors link in generated lessons/languages/forth.md until P5-001)
+- **Tasks:** todo 87 (12 seed + 75 generated) | doing 0 | done 51 | blocked 0 | skipped 0
 - **Next task:** run `python3 tools/next_task.py` (PO files live at translation/po/<path>.po, written by tools/apply.py --init)
 - **Budget:** spent $0.00 of $100; iterations 0 of 300
-- **Translate progress:** segments accepted 627 / total 8827 (7394 prose + 1433 Mermaid labels) ; files done 8 / 212 (src/GoChallenge1, JavaChallenge1, KotlinChallenge1 READMEs, src/forth/README.md, lessons/cs-source/concepts/recursion.md, lessons/study-guides/languages/forth.md, docs/curriculum.md, lessons/study-guides/languages/apl.md)
+- **Translate progress:** segments accepted 836 / total 8827 (7394 prose + 1433 Mermaid labels) ; files done 12 / 212 (src/GoChallenge1, JavaChallenge1, KotlinChallenge1, LinqChallenge1, LinqChallenge2, ModernChallenge1, PythonChallenge1 READMEs, src/forth/README.md, lessons/cs-source/concepts/recursion.md, lessons/study-guides/languages/forth.md, docs/curriculum.md, lessons/study-guides/languages/apl.md)
 - **Last audit:** none    **Next audit due after:** 8 translate tasks
 - **Gates:** P0 passed (iter 17)  P1 passed (iter 23)  P2 passed (iter 47)  P3 passed (iter 58)  P4 -  P5 -  P6 -  P7A -
 - **Open provisional decisions:** 5 (acronym BICHO; glossary choices; house style N=29 calibrated; schema/segment-id formats; same-tier reviewer kept after recall test)    **Blockers:** 0    **Source issues:** 0

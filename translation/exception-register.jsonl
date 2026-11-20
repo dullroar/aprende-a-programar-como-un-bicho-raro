@@ -42,3 +42,37 @@
 {"id":"EXC-042","segment":"s-7b8a7f3d623a-0019","invariant":"I7","reason":"'Program' is the file name Program.kt in a link title, not the term program.","task":"P4-src-1"}
 {"id":"EXC-043","segment":"s-2a59c28710e7-0038","invariant":"I7","reason":"'builds the loop's state' is the verb (construye); 'condición' renders the for-loop condition, not the term state.","task":"P4-src-1"}
 {"id":"EXC-044","segment":"s-968fdf5162a6-0048","invariant":"I7","reason":"'this folder' is the English word folder (carpeta), not the term directory; the term is rendered 'directorio' in the same sentence.","task":"P4-src-1"}
+{"id":"EXC-045","segment":"s-ca6a2bcad7d6-0007","invariant":"I7","reason":"'built' and 'builds' are the verb (construida, construye), not the term build; 'compilación' would be wrong for building a WPF window.","task":"P4-src-2"}
+{"id":"EXC-046","segment":"s-b41c50ab7de6-0011","invariant":"I7","reason":"'Windows Sandbox' is the product name of a Windows feature, kept as is; it is not the generic term sandbox.","task":"P4-src-2"}
+{"id":"EXC-047","segment":"s-989c13754935-0016","invariant":"I7","reason":"'builds and shows the window' is the verb (compila/construye), not the term build.","task":"P4-src-2"}
+{"id":"EXC-048","segment":"s-c5ba09ceeac5-0023","invariant":"I7","reason":"'build and show the WPF window' is the verb (construir), not the term build.","task":"P4-src-2"}
+{"id":"EXC-049","segment":"s-7ab88972bb89-0035","invariant":"I7","reason":"'LINQ to Objects' is the name of a LINQ provider, kept in English; it is not the term object.","task":"P4-src-2"}
+{"id":"EXC-050","segment":"s-e4165d7e1ba4-0036","invariant":"I7","reason":"'Builds, styles, and shows the WPF window' is the verb (construye), not the term build.","task":"P4-src-2"}
+{"id":"EXC-051","segment":"s-db4fd510d55f-0040","invariant":"I7","reason":"'compromise' means a trade-off (compromiso), not a database commit; the ban targets commit-transaction only.","task":"P4-src-2"}
+{"id":"EXC-052","segment":"s-4e22179f17d7-0044","invariant":"I7","reason":"'builds the project' is the verb, and the sentence renders it as 'compila el proyecto', which is the established verb for building a project; not the noun build.","task":"P4-src-2"}
+{"id":"EXC-053","segment":"s-dd52d742010d-0046","invariant":"I7","reason":"'LINQ-to-Objects' is the name of a LINQ provider, kept in English; it is not the term object.","task":"P4-src-2"}
+{"id":"EXC-054","segment":"s-5d69f9119900-0016","invariant":"I7","reason":"'build the window and the pulse' is the verb (construyen), not the term build.","task":"P4-src-2"}
+{"id":"EXC-055","segment":"s-4ecee0492c7c-0017","invariant":"I9","reason":"The label starts with the C# query clause 'from day in WorkWeek', which is code kept verbatim; the English function words are code, not untranslated prose.","task":"P4-src-2"}
+{"id":"EXC-056","segment":"s-8d76a700bb78-0019","invariant":"I7","reason":"'Timecards' is part of the identifier ctx.Timecards.Add (an EF Core DbSet), not the term timecard.","task":"P4-src-2"}
+{"id":"EXC-057","segment":"s-344fb6e8c382-0032","invariant":"I7","reason":"'pull the value back out' is the plain verb (extraer) for taking a value out of a one-row query; the glossary term pull is the lazy-evaluation pull model.","task":"P4-src-2"}
+{"id":"EXC-058","segment":"s-ba61d674ee1f-0000","invariant":"TRANSLATE","reason":"The segment is 'C#' plus one code span (the entry's title token); there is no prose to translate.","task":"P4-src-2"}
+{"id":"EXC-059","segment":"s-3e31cae24003-0001","invariant":"I7","reason":"'LINQ to Objects' is the name of a LINQ provider, kept in English; it is not the term object.","task":"P4-src-2"}
+{"id":"EXC-060","segment":"s-329fdeb135b1-0005","invariant":"I7","reason":"'LINQ to Objects' is the name of a LINQ provider, kept in English; it is not the term object.","task":"P4-src-2"}
+{"id":"EXC-061","segment":"s-3cc3fabf181d-0010","invariant":"I10","reason":"The '!' is the Markdown image marker in ![alt](path), not an exclamation sentence; no inverted mark applies.","task":"P4-src-2"}
+{"id":"EXC-062","segment":"s-4c7e274e3b4c-0012","invariant":"I7","reason":"'Windows Sandbox' is the product name of a Windows feature, kept as is; it is not the generic term sandbox.","task":"P4-src-2"}
+{"id":"EXC-063","segment":"s-17502b086883-0016","invariant":"I7","reason":"'builds one anonymous object' and 'builds the window' are the verb (construye), not the term build.","task":"P4-src-2"}
+{"id":"EXC-064","segment":"s-6fd9115565f9-0024","invariant":"I7","reason":"'XamlReader.Load builds the window' is the verb (construye), not the term build.","task":"P4-src-2"}
+{"id":"EXC-065","segment":"s-014e12b141de-0027","invariant":"I7","reason":"'builds and shows the window' is the verb (crea), not the term build.","task":"P4-src-2"}
+{"id":"EXC-066","segment":"s-8310500cc36c-0033","invariant":"I7","reason":"'builds every piece of state' is the verb (construye), not the term build.","task":"P4-src-2"}
+{"id":"EXC-067","segment":"s-18eeb3828a7a-0034","invariant":"I7","reason":"'the condition builds and shows the result window' is the verb (construye), not the term build.","task":"P4-src-2"}
+{"id":"EXC-068","segment":"s-50301674af23-0044","invariant":"I7","reason":"'builds a ...' in a table row is the verb (construye), not the term build.","task":"P4-src-2"}
+{"id":"EXC-069","segment":"s-199de383909c-0013","invariant":"I7","reason":"'It builds this folder's Dockerfile' is the verb (construye), not the term build.","task":"P4-src-2"}
+{"id":"EXC-070","segment":"s-4c7e274e3b4c-0015","invariant":"I7","reason":"'Windows Sandbox' is the product name of a Windows feature, kept as is; it is not the generic term sandbox.","task":"P4-src-2"}
+{"id":"EXC-071","segment":"s-165eb48c9bb5-0018","invariant":"I7","reason":"'program.py' is a file name in a link title, not the term program.","task":"P4-src-2"}
+{"id":"EXC-072","segment":"s-dc4a4d373122-0021","invariant":"I7","reason":"'builds the function step' and 'builds a Tk window' are the verb (construye), not the term build.","task":"P4-src-2"}
+{"id":"EXC-073","segment":"s-f97bb60096b7-0023","invariant":"I7","reason":"'step' is the Python identifier of the generated function (step()), not the term step.","task":"P4-src-2"}
+{"id":"EXC-074","segment":"s-0fe2521fc226-0024","invariant":"I7","reason":"'step' is the Python identifier of the generated function, not the term step.","task":"P4-src-2"}
+{"id":"EXC-075","segment":"s-ae3206593459-0030","invariant":"I7","reason":"'build a Tk window' is the verb (construye), not the term build.","task":"P4-src-2"}
+{"id":"EXC-076","segment":"s-2a59c28710e7-0035","invariant":"I7","reason":"'builds the loop's state' is the verb (construye); 'condición' renders the for-loop condition, not the term state.","task":"P4-src-2"}
+{"id":"EXC-077","segment":"s-3b2696528a07-0037","invariant":"I7","reason":"'a lambda that builds' is the verb (construye), not the term build.","task":"P4-src-2"}
+{"id":"EXC-078","segment":"s-f97bb60096b7-0023","invariant":"I9","reason":"The label is the Python code 'for _ in iter(step, False)' plus 'calls step()', so its English-looking words are code, not untranslated prose.","task":"P4-src-2"}

@@ -40,7 +40,8 @@ Labels used throughout: **[fact]** measured in the repo or by a spike, as report
 | --- | --- | --- |
 | Acronym | Five-letter recursive Spanish backronym, **BICHO** recommended, gated by a naming sprint (§2) | Your requirement. Keeps five phases and the curriculum shape |
 | Repo | New independent repo, private until sign-off | All three agree |
-| Internal paths, entry IDs, YAML keys and enums, Mermaid node IDs | Frozen | Link, build and line-anchor stability (ChatGPT, Claude) |
+| Code paths, entry IDs, YAML keys and enums, Mermaid node IDs | Frozen | Link, build and line-anchor stability (ChatGPT, Claude) |
+| Student-facing file and folder names | **Spanish via `path-map.yaml`**; English path stays the canonical key; a path stays English if a frozen file mentions it (§5.6) | Jim's request (revision 3). Supersedes the earlier "keep all paths stable" rule |
 | `## Program Flow` heading | Translate to `## Flujo del programa`, driven by the locale catalog | ChatGPT and Claude agree. Never mix spellings |
 | Code, samples, output, comments, fixtures | Byte-identical to the pinned English SHA | All three agree |
 | Tooling | Catalog-driven Spanish locale layer. Same schemas, same checks, no deleted tests | ChatGPT, Claude |
@@ -322,7 +323,7 @@ A compact, data-only catalog (`lessons/book/locale/es.yaml`, plus the English ta
 aprende-a-programar-como-un-bicho-raro/
 ├── (the English tree at the pinned SHA; all non-Markdown files byte-identical,
 │    except an allowlist: locale files, metadata.yaml, repo_links default, publication stems)
-├── *.md                          # translated in place, same paths
+├── *.md                          # translated; student-facing paths renamed per translation/path-map.yaml (section 5.6)
 ├── lessons/book/locale/es.yaml
 └── translation/
     ├── README.md  release-cookbook.md  decisions.md
@@ -346,6 +347,67 @@ aprende-a-programar-como-un-bicho-raro/
 ```
 
 Keep PO files and the ledger separate. Provenance in PO comments makes every diff noisy.
+
+---
+
+### 5.6 Student-facing file and directory names in Spanish (revision 3, requested by Jim)
+
+**Decision.** Students see file and folder names in the GitHub tree, in URLs and in link text, so student-facing names should be Spanish where that is possible. This **replaces** the earlier rule "keep every path stable" (which came from the ChatGPT plan). The new rule is:
+
+> **The English path stays the canonical key. The Spanish path is a mapped view of it.**
+
+PO files, the ledger, segment IDs, `locked-code.sha256`, `anchors.json` and the release cookbook's diffs all keep using the **English path** as the key, so comparing with a new English release still works. `translation/path-map.yaml` maps each English path to its Spanish path (or to itself when the path must stay).
+
+**What gets renamed.** Student-facing Markdown documents and the folders that hold only documents.
+
+**What never gets renamed, and why:**
+
+| Kept as is | Reason |
+| --- | --- |
+| `README.md` (root and in every folder, including `src/*/README.md`) | GitHub shows `README.md` as a folder's landing page, and the build globs `src/*/README.md`. A `LEEME.md` would silently stop rendering |
+| `LICENSE`, `CONTRIBUTING.md`, `SECURITY.md`, `CODE_OF_CONDUCT.md`, `.github/` | GitHub recognizes these exact names |
+| `src/**` (entry folders and every code file), `lessons/solutions/`, `lessons/tools/` | Frozen code and scripts: they must stay byte-identical, and their paths are part of how they run |
+| Build scripts, tests, `metadata.yaml`, CSS, Lua, `chapters.txt`, `link-hosts.txt`, `package.json`, `.gitignore`, Dockerfiles, workflows | Tooling that other tools look up by name |
+| **Any path that a frozen file mentions** | The **reference-closure rule** below |
+
+**Reference-closure rule (automatic, not a judgment call).** We may not edit frozen files, so a path is renamable **only if no frozen file refers to it**. `tools/pathmap.py` scans every frozen file, every workflow and the sandbox scripts for each candidate path, and keeps any path that is mentioned. The Phase 3B survey already found these, so they stay English:
+
+- `lessons/` itself (frozen Dockerfiles and scripts name `lessons/solutions/…` and `lessons/tools/…`).
+- `lessons/exercises.md` (named by `verify-exercises.sh` and `verify-windows.ps1`).
+- `lessons/cs-source/concepts/` and `lessons/cs-source/languages.txt` (named by `sandbox/scope-check.sh`, whose job is a security boundary on which paths a pull request may touch; a stale path there would weaken it).
+- `SANDBOX-SETUP.md` and `CONTRIBUTING.md` (named by sandbox scripts and `CODEOWNERS`).
+- `docs/running-with-gradle.md` (named by `build.gradle`).
+
+So the top-level `lessons/` folder cannot become `lecciones/` unless Jim chooses to let us edit those frozen scripts, which this plan does not recommend. Folders below it that hold only documents can be renamed.
+
+**Expected result (the real list comes from the tool; each row is subject to the closure scan):**
+
+| English path | Spanish path |
+| --- | --- |
+| `lessons/study-guides/languages/make-and-cmake.md` | `lessons/guias-de-estudio/lenguajes/make-y-cmake.md` |
+| `lessons/study-guides/concepts/*.md` | `lessons/guias-de-estudio/conceptos/*.md` |
+| `lessons/languages/forth.md` | `lessons/lenguajes/forth.md` |
+| `lessons/cs/*.md` (generated chapters) | `lessons/informatica/*.md` (name from the glossary) |
+| `lessons/intro.md`, `goals.md`, `patterns.md` | `lessons/introduccion.md`, `objetivos.md`, `patrones.md` |
+| `lessons/problems-overcome.md`, `blocking-problems.md` | `lessons/problemas-superados.md`, `problemas-bloqueantes.md` |
+| `lessons/answers-key.md`, `index.md`, `front-matter.md` | `lessons/respuestas.md`, `indice.md`, `preliminares.md` |
+| `docs/curriculum.md` | `docs/plan-de-estudios.md` |
+| `CHALLENGE.md`, `house-style.md` | `DESAFIO.md`, `guia-de-estilo.md` |
+
+**Naming rules.** ASCII lowercase kebab-case with no accents or ñ (portable across Windows, EPUB and URLs). Take each word from the glossary, so the same Spanish term appears in file names and prose. Proper names and language names stay (`forth`, `awk`, `cobol`, `make`, `cmake`); connecting words are translated (`and` becomes `y`). Keep extensions and numeric prefixes. All-caps document names stay all-caps in Spanish (`DESAFIO.md`). The tool rejects collisions and any non-bijective mapping.
+
+**Mechanism.**
+1. `tools/pathmap.py` writes `translation/path-map.yaml` and a report listing every path as renamed or kept, with the reason.
+2. Build and test code stops hard-coding paths: they come from a `paths:` section in the locale catalog. The English catalog is the identity map, and the existing English-neutrality proof (double build, identical hashes) must still pass.
+3. Our own tools (segment, apply, translate, verify, plan_tasks, anchors, lock_code, inventory, jury_packet) read English-path keys and read or write at the Spanish path.
+4. The rename is **two commits**: one pure `git mv` (so history follows the files), one that rewrites references: Markdown link destinations, `lesson:` front-matter values, `chapters.txt`, workflows, metadata and docs.
+5. Generated file names (such as the chapters currently in `lessons/cs/`) come from the catalog.
+
+**New checks.** I17: every link destination resolves after the rename. I18: no renamed student-facing path keeps English words unless it is on the keep list. I19: no frozen file mentions a renamed path, and the byte lock is unchanged. I20: the path map is one-to-one with no collisions. Negative tests: a link still pointing at an old English name; two files mapped to one name; renaming a path a frozen file mentions; renaming `README.md`.
+
+**New English files in later releases** get a name from the same rules and glossary. If a needed Spanish word is missing, the file is flagged for a human to name it before the release.
+
+**Timing and cost.** Do it once, **now**, between the pilot and the bulk translation, so the remaining files are translated straight to their final paths. Roughly 8 to 12 extra iterations.
 
 ---
 
@@ -468,7 +530,7 @@ After segment checks, run the repo gates (localized): `build.py --generate` (twi
 
 ### 8.2 Links and anchors
 
-- Keep file paths stable; recompute heading fragments. Emit `anchors.json` (English anchor → Spanish anchor, per file).
+- File paths are remapped by `translation/path-map.yaml` (§5.6); recompute heading fragments. Emit `anchors.json` (English anchor → Spanish anchor, per file).
 - Test GitHub's slug behavior for `¿`, `¡`, accents and duplicate headings against the repo's slug function. Test the Pandoc/EPUB/PDF IDs separately.
 - Cross-publication links go to the Spanish repo, never back to English, except deliberate provenance links.
 - External link policy (existing project rule): book links point to Wikipedia or long-lived, IP-open sources such as IETF RFCs. Spanish-language replacements must pass the same allowlist. Translate link *labels*; do not silently swap targets.
@@ -689,6 +751,12 @@ Translate the pilot set (§Appendix A): `src/forth/README.md`, `lessons/cs-sourc
 
 **Exit:** no protected-byte diff; semantic and graph equivalence; links and layout pass; recall bar met or the reviewer role is downgraded in `CONFIG.yaml` and the Jury weight raised. If the architecture fails the pilot, the loop writes `HANDOFF.md` with the evidence and stops: scaling a brittle process is the one thing worth stopping for.
 
+#### Phase 3B: Spanish file and folder names (loop; inserted between the pilot and bulk translation)
+
+Implements §5.6. Tasks: `tools/pathmap.py` (rules, reference-closure scan against every frozen file, workflow and sandbox script, collision check, report); record the provisional naming decisions; move every path constant in the build and test tooling into a catalog `paths:` section (English identity map first, English-neutrality proof re-run); make our own tools key on the English path and read or write at the Spanish path; apply the rename as one pure `git mv` commit plus one reference-rewrite commit; add invariants I17 to I20 with negative fixtures; run the full release gates and the double build.
+
+**Exit (P3B-007):** every link resolves; the byte lock is unchanged; the English-neutrality proof passes; all six publications build twice with identical hashes; no frozen file mentions a renamed path. Bulk translation tasks depend on this gate.
+
 #### Phase 4: Bulk translation (loop; the long chug)
 
 Order: entry READMEs, CS sources, hand-authored book lessons, study guides, curriculum, support docs, exceptions. One task per file or part. Keep `teaches` and `Te enseña:` identical in meaning. Mark each playful segment for transcreation and record it in the humor register. Audits are interleaved every 8 tasks.
@@ -859,6 +927,7 @@ Because the loop never stops to ask (§11.1), every decision below has a **defau
 | 7 | License arrangement | English `LICENSE` unchanged and authoritative; optional non-binding `LICENCIA.es.md`; **no** added translator copyright line unless Jim names one | Low |
 | 8 | Which models do what | Per `CONFIG.yaml`. If only one vendor's key exists, the in-loop reviewer is a fresh-context instance of a different model tier, and the Jury carries the independence burden | Low |
 | 9 | Native-speaker reviewer | None assumed. The release is labelled machine-translated and independently machine-reviewed until one signs off | Low |
+| 10 | Spanish file and folder names | Yes, for student-facing docs and doc-only folders; `lessons/` and everything a frozen file mentions stay English (§5.6) | Medium: one more rename pass if a name is disliked; renaming `lessons/` itself needs edits to frozen scripts, which we do not do |
 
 **End-of-run review list.** The loop writes `loop/END-REVIEW.md` containing: every provisional decision with its alternatives; blocked tasks and what would unblock each; the exception register; the humor register with statuses; playful headings and any that were deliberately flattened; the glossary changes made during the run; the canary and recall numbers for every in-loop reviewer; the token and cost ledger; the list of tooling changes against the allowlist, including every test touched; and anything needing a native speaker. Jim skims this first, then starts Phase 7B.
 
@@ -883,6 +952,7 @@ Because the loop never stops to ask (§11.1), every decision below has a **defau
 - [ ] 13 language guides, 8 concept guides, 16-week curriculum, eleven-section architecture, exercise IDs intact.
 - [ ] **The five-letter acronym is used consistently in book, guides, curriculum and diagrams; phases are in the original order; exact-40 rule intact.**
 - [ ] A second `--generate` run is a no-op; no generated English.
+- [ ] Student-facing file and folder names are Spanish per `path-map.yaml`; every kept English path has a recorded reason (frozen-file reference, GitHub special name, or tooling); no link is dangling; `README.md` and `LICENSE` unchanged.
 
 **Publications**
 - [ ] Six artifacts build and pass gates; new deterministic EPUB UUIDs; language tags, titles, `companion-to` agree.

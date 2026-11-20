@@ -1,6 +1,6 @@
 ---
 name: "LINQ"
-teaches: "that a chain of LINQ methods can express the entire program."
+teaches: "que una cadena de métodos de LINQ puede expresar el programa completo."
 kind: weird
 languages: [c-sharp, linq]
 lesson: "languages/csharp-linq-xaml.md#deferred-execution-and-the-void-to-value-trick"
@@ -8,23 +8,23 @@ loop-by: lazy-demand
 evaluation: deferred
 assurance: guaranteed
 pairs-with: LinqChallenge2
-machine: "A lazy chain of LINQ stages that one final `Aggregate` demands"
-state: "Inside the stages' enumerators, and in the database"
+machine: "Una cadena perezosa de etapas de LINQ que un único `Aggregate` final demanda"
+state: "Dentro de los enumeradores de las etapas y en la base de datos"
 tags: [control-flow, dataflow-programming, deferred-execution, event-loop, first-class-and-higher-order-functions, lazy-evaluation, monoid-and-fold, side-effect, thread-safety]
 analogies: [category-theory, functor]
 counterexamples: [event-driven-programming]
 ---
-# LINQ challenge, Variant A: one fluent method-chain statement
+# Reto de LINQ, variante A: una sola instrucción con una cadena fluida de métodos
 
-**Teaches you:** that a chain of LINQ methods can express the entire program.
+**Te enseña:** que una cadena de métodos de LINQ puede expresar todo el programa.
 
-> **Not the shared challenge.** This entry draws no random hours: its work week is five fixed 8-hour days, capped so that the total is exactly 40.0 hours and no card crosses the line. It teaches deferred execution and LINQ method chains, not the stop rule "keep the first card over 40".
+> **No es el reto compartido.** Esta entrada no genera horas al azar: su semana laboral tiene cinco días fijos de 8 horas, con un tope para que el total sea exactamente 40.0 horas y ninguna tarjeta cruce la línea. Enseña la ejecución diferida y las cadenas de métodos de LINQ, no la regla de parada "conserva la primera tarjeta que pasa de 40".
 
-One `;`-terminated expression statement, built entirely from LINQ method calls. It generates a fixed 40-hour timecard, tracks and saves it through EF Core and SQLite, crosses the `IQueryable<T>` → `IEnumerable<T>` boundary, and builds, shows, pulses, and closes a WPF **DEMO ONLY** terminal window - all inside that one statement. No `RunEverything`-style helper does the real work; `Main` only sets up the STA thread, the `DbContext`, and the `Application` before calling it.
+Una sola instrucción de expresión terminada en `;`, construida por completo con llamadas a métodos LINQ. Genera una tarjeta de horas fija de 40 horas, la rastrea y la guarda con EF Core y SQLite, cruza la frontera `IQueryable<T>` → `IEnumerable<T>`, y construye, muestra, hace latir y cierra una ventana de terminal WPF **DEMO ONLY** - todo dentro de esa sola instrucción. Ningún método auxiliar al estilo de `RunEverything` hace el trabajo real; `Main` solo prepara el hilo STA, el `DbContext` y el `Application` antes de llamarla.
 
-## Run it
+## Ejecútalo
 
-You need Windows and the .NET 10 SDK.
+Necesitas Windows y el SDK de .NET 10.
 
 ```powershell
 cd src\LinqChallenge1
@@ -32,75 +32,75 @@ dotnet restore
 dotnet run
 ```
 
-A small terminal-styled window appears, pulses three times, and closes itself; the process then exits on its own. Records land in `%LOCALAPPDATA%\LinqChallenge1\timecards.db`; delete that file to start fresh. Each run's rows are tagged with a fresh `RunId`, so the window's report always shows just that run's 40.0h. The file keeps every run's history, like the other entries in this repo.
+Aparece una ventana pequeña con estilo de terminal, palpita tres veces y se cierra sola; después, el proceso termina por su cuenta. Los registros se guardan en `%LOCALAPPDATA%\LinqChallenge1\timecards.db`; elimina ese archivo para empezar de cero. Las filas de cada ejecución se etiquetan con un `RunId` nuevo, así que el informe de la ventana siempre muestra solo las 40.0h de esa ejecución. El archivo conserva el historial de todas las ejecuciones, como las demás entradas de este repositorio.
 
 ```powershell
 .\check.ps1    # build, structural check, one end-to-end run against a throwaway DB
 ```
 
-## Run it in Windows Sandbox
+## Ejecútalo en Windows Sandbox
 
-Prerequisites: Windows Sandbox and this entry's toolchain on your machine, set up once as described in [`SANDBOX-SETUP.md`](../../SANDBOX-SETUP.md#windows-sandbox).
+Requisitos previos: Windows Sandbox (un entorno aislado, *sandbox*, donde ejecutas programas sin afectar el resto de tu sistema) y la cadena de herramientas de esta entrada en tu máquina, configurados una sola vez como se describe en [`SANDBOX-SETUP.md`](../../SANDBOX-SETUP.md#windows-sandbox).
 
 ```powershell
 sandbox\windows\run.ps1 src\LinqChallenge1
 ```
 
-It runs the entry in a throwaway VM with networking off, screenshots the window, asks it to close, and prints what it saved. This entry has a `check.ps1`, so that is what runs.
+Ejecuta la entrada en una máquina virtual (VM) desechable con la red desactivada, captura una imagen de la ventana, le pide que se cierre e imprime lo que guardó. Esta entrada tiene un `check.ps1`, así que eso es lo que se ejecuta.
 
-## Program Flow
+## Flujo del programa
 
 ```mermaid
 flowchart TD
-    accTitle: LinqChallenge1: an eager fold first, then a lazy tail that the last Aggregate forces
-    accDescr: A flowchart with two groups. The eager group runs first because it is the innermost argument. An Aggregate folds the five fixed days into tracked entities and refuses a day that would pass 40 hours, and then the tuple calls SaveChanges. The deferred group is a chain of LINQ stages that does nothing until asked. The final Aggregate asks. That pulls the EF Core query and the return to objects, then a second Aggregate that folds the saved rows into a report, then the stage that builds and shows the window, then the stage that starts the pulse and calls Application.Run, which pumps the dispatcher until the window closes.
-    subgraph E["Eager: runs first, as the innermost argument"]
-        A["Aggregate: fold the five fixed days into tracked entities, refuse a day that passes 40 h"] --> B["Tuple element: SaveChanges runs after every entity is tracked"]
+    accTitle: LinqChallenge1: un pliegue (*fold*) ansioso primero y después una cola perezosa que el último Aggregate fuerza
+    accDescr: Un diagrama de flujo con dos grupos. El grupo eager se ejecuta primero porque es el argumento más interno. Un Aggregate pliega los cinco días fijos en entidades rastreadas y rechaza un día que pasaría de 40 horas, y después la tupla llama a SaveChanges. El grupo deferred es una cadena de etapas LINQ que no hace nada hasta que se le pide. El último Aggregate lo pide. Esa demanda (pull) activa la consulta de EF Core y el retorno a objetos, luego un segundo Aggregate que pliega las filas guardadas en un informe, luego la etapa que compila y muestra la ventana, y luego la etapa que inicia el pulso y llama a Application.Run, que mantiene en marcha el dispatcher hasta que se cierra la ventana.
+    subgraph E["Inmediata (*eager*): se ejecuta primero, como el argumento más interno"]
+        A["Aggregate: acumula los cinco días fijos en entidades rastreadas y rechaza un día que pasa de 40 h"] --> B["Elemento de tupla: SaveChanges se ejecuta después de que cada entidad esté rastreada"]
     end
-    subgraph D["Deferred: nothing runs until the final Aggregate asks"]
-        C["Repeat 1 then SelectMany: EF Core query, then AsEnumerable"] --> F["Aggregate: fold the saved rows into a report"]
-        F --> G["Select: build and show the WPF window"]
-        G --> H["Select: start the pulse, Application.Run pumps the dispatcher until the window closes"]
+    subgraph D["Diferido: nada se ejecuta hasta que el Aggregate final lo pide"]
+        C["Repite 1 y después SelectMany: consulta de EF Core y después AsEnumerable"] --> F["Aggregate: pliega las filas guardadas en un informe"]
+        F --> G["Select: compila y muestra la ventana WPF"]
+        G --> H["Select: inicia el pulso, Application.Run mantiene en marcha el despachador hasta que se cierra la ventana"]
     end
     B --> C
-    Z["Final Aggregate: the demand that forces the whole tail"] -.->|pulls| C
+    Z["Aggregate final: la demanda que fuerza toda la cola"] -.->|demanda (pull)| C
 ```
 
-**What this shows:** the whole program is one expression, so the order of work is the order of *evaluation*. The inner `Aggregate` is eager and runs first. Everything after it is a lazy chain of `LINQ` stages, and the last `Aggregate` is what makes them run. The dotted edge is demand, not data.
+**Qué muestra:** todo el programa es una sola expresión, así que el orden del trabajo es el orden de *evaluación*. El `Aggregate` interno es inmediato y se ejecuta primero. Todo lo que viene después es una cadena perezosa de etapas `LINQ`, y el último `Aggregate` es lo que hace que se ejecuten. La arista punteada es demanda, no datos.
 
-**Why this mechanism matters:** this is the difference between a query as a description and a query as an execution. `Enumerable.Repeat(…, 1)` turns one value into a one-element sequence so that each stage can stay a real `LINQ` operator. Every `void` call is wrapped to return a value, as the `void`-to-value trick (a section of this README) explains.
+**Por qué importa este mecanismo:** esta es la diferencia entre una consulta como descripción y una consulta como ejecución. `Enumerable.Repeat(…, 1)` convierte un valor en una secuencia de un elemento para que cada etapa pueda seguir siendo un operador `LINQ` real. Cada llamada a `void` se envuelve para que devuelva un valor, como explica el truco de `void` a valor (una sección de este README).
 
-## How the stunt works
+## Cómo funciona el truco
 
-The fixed work week (`WorkWeek`, five 8-hour days: Planning / Implementation / Review / Testing / Documentation) and the challenge statement live in [`Program.cs`](Program.cs). Reading top to bottom, the one statement is:
+La semana fija de trabajo (`WorkWeek`, cinco días de 8 horas: Planificación / Implementación / Revisión / Pruebas / Documentación) y el enunciado del reto están en [`Program.cs`](Program.cs). Si lo lees de arriba abajo, el enunciado único es:
 
-| Stage | LINQ operator | What it does |
+| Etapa | Operador LINQ | Qué hace |
 | --- | --- | --- |
-| 1 | `Aggregate` | Folds the fixed days into tracked `TimecardEntry` entities, refusing any day that would push the running total past 40h. Eager, so it runs first. |
-| - | tuple `(…, ctx.SaveChanges())` | Tuple elements evaluate left to right, so `SaveChanges()` only runs once every entity above is tracked. |
-| 2 | `Enumerable.Repeat(…, 1).SelectMany` | Crosses from the in-memory fold into EF Core's `IQueryable<T>` (`Where`/`OrderBy`/`Select` - all SQL-translatable), then explicitly back with `AsEnumerable()`. The outer sequence has exactly one element, so the query runs exactly once. |
-| 3 | `Aggregate` | Back on LINQ to Objects: folds the persisted rows into a report (`Lines`, `Total`). |
-| 4 | `Enumerable.Repeat(…, 1).Select` | Builds, styles, and shows the WPF window, inline. |
-| 5 | `.Select` | Starts a finite pulse (`DoubleAnimation`, `AutoReverse`, three repeats), then calls `Application.Run()` to pump the dispatcher until the completion handler closes the window and shuts the app down. |
-| final | `.Aggregate(0, …)` | Forces the whole lazy tail (stages 2-5) to actually execute. |
+| 1 | `Aggregate` | Incorpora los días fijos en entidades `TimecardEntry` rastreadas. Rechaza cualquier día que haría pasar de 40 h el total acumulado. Es de evaluación inmediata, así que se ejecuta primero. |
+| - | tupla `(…, ctx.SaveChanges())` | Los elementos de la tupla se evalúan de izquierda a derecha. Por eso `SaveChanges()` solo se ejecuta después de que todas las entidades de arriba estén rastreadas. |
+| 2 | `Enumerable.Repeat(…, 1).SelectMany` | Pasa del *fold* en memoria al `IQueryable<T>` de EF Core (`Where`/`OrderBy`/`Select`: todos traducibles a SQL) y vuelve de forma explícita con `AsEnumerable()`. La secuencia externa tiene exactamente un elemento, así que la consulta se ejecuta exactamente una vez. |
+| 3 | `Aggregate` | De vuelta en LINQ to Objects: reduce las filas persistidas a un informe (`Lines`, `Total`). |
+| 4 | `Enumerable.Repeat(…, 1).Select` | Construye, da estilo y muestra la ventana WPF, en línea. |
+| 5 | `.Select` | Inicia un pulso finito (`DoubleAnimation`, `AutoReverse`, tres repeticiones) y luego llama a `Application.Run()` para mantener en marcha el dispatcher hasta que el manejador de finalización cierre la ventana y termine la aplicación. |
+| final | `.Aggregate(0, …)` | Obliga a que toda la cola perezosa (etapas de 2 a 5) se ejecute de verdad. |
 
-## The `void`-to-value trick
+## El truco de `void` a valor
 
-WPF and EF Core are full of `void` methods - `Add`, `Show`, `BeginAnimation`, `Close`, `Shutdown` - and a LINQ chain only has room for values. Every side effect above sits inside an inline `new Func<T>(() => { sideEffect(); return value; }).Invoke()`, immediately invoked right where the chain needs its return value. It is a deliberate compromise, not a recommendation: ordinary code would just write a statement.
+WPF y EF Core están llenos de métodos `void` - `Add`, `Show`, `BeginAnimation`, `Close`, `Shutdown` - y una cadena LINQ solo tiene espacio para valores. Cada efecto secundario de arriba está dentro de un `new Func<T>(() => { sideEffect(); return value; }).Invoke()` en línea, que se invoca de inmediato justo donde la cadena necesita su valor de retorno. Es un compromiso deliberado, no una recomendación: el código normal simplemente escribiría una instrucción.
 
-## Why two nested `Enumerable.Repeat(…, 1)` calls
+## Por qué dos llamadas `Enumerable.Repeat(…, 1)` anidadas
 
-C# only allows a handful of expression shapes as a top-level expression statement - invocation, object creation, assignment, increment/decrement, `await` - not an arbitrary `&&` or `is` expression. That rules out binding intermediate stages to a pattern-matched local (`x is var report && …`) at the top level: the statement has to *end* in an invocation. So the program does not name the fold result or the report. Instead, each one is nested directly as the argument to the next `Enumerable.Repeat(…, 1)`. That call turns a single computed value back into a one-element sequence, so the next stage can stay a genuine LINQ operator (`SelectMany`, `Select`) and not a bare method call. The whole statement is one deeply nested expression tree whose outermost call is `.Aggregate(…)` - an invocation, which is legal.
+C# solo permite unas pocas formas de expresión como instrucción de expresión en el nivel superior: invocación, creación de objeto, asignación, incremento/decremento, `await`. No permite una expresión `&&` o `is` arbitraria. Eso excluye enlazar etapas intermedias a una variable local creada con un patrón (`x is var report && …`) en el nivel superior: la instrucción debe *terminar* en una invocación. Por eso el programa no da nombre al resultado del *fold* ni al informe. En su lugar, cada uno se anida directamente como argumento del siguiente `Enumerable.Repeat(…, 1)`. Esa llamada convierte un único valor calculado otra vez en una secuencia de un elemento. Así, la siguiente etapa puede seguir siendo un operador LINQ genuino (`SelectMany`, `Select`) y no una simple llamada a un método. Toda la instrucción es un único árbol de expresiones muy anidado, cuya llamada más externa es `.Aggregate(…)`: una invocación, que está permitida.
 
-## What `check.ps1` enforces
+## Qué impone `check.ps1`
 
-`check.ps1` first makes sure no orchestration helper hides the workflow: `RunEverything`, `BuildAndPersistCards`, `ShowTerminal`, `DoChallenge` and `Orchestrate` may not appear in `Program.cs`. Then it builds the project and runs it against a throwaway data folder, with a hard 15-second timeout in case the dispatcher gets stuck. The program must exit with code 0 and print `PERSISTED 5 rows, total=40.0h`. All five rows (2024-01-01 to 2024-01-05, 8.0h each, Planning to Documentation) must be in the report, and `timecards.db` must exist.
+`check.ps1` primero verifica que ningún ayudante de orquestación oculte el flujo de trabajo: `RunEverything`, `BuildAndPersistCards`, `ShowTerminal`, `DoChallenge` y `Orchestrate` no deben aparecer en `Program.cs`. Después compila el proyecto y lo ejecuta con una carpeta de datos desechable, con un tiempo límite estricto de 15 segundos por si el despachador se atasca. El programa debe terminar con código 0 e imprimir `PERSISTED 5 rows, total=40.0h`. Las cinco filas (de 2024-01-01 a 2024-01-05, 8.0h cada una, de Planning a Documentation) deben aparecer en el informe, y `timecards.db` debe existir.
 
-## Gotchas worth knowing
+## Trampas que conviene conocer
 
-- `SaveChanges()` is called once, eagerly, at the point where the outer `Enumerable.Repeat(…, 1)` call evaluates its argument - before any of the lazy LINQ-to-Objects/EF stages begin enumerating. That is still entirely inside the one statement. It is just not deferred to the final `Aggregate`'s enumeration, the way `Select`/`SelectMany` stages are. `Aggregate` is an eager LINQ operator by definition, so some eagerness here is unavoidable.
-- The accumulator state in both `Aggregate` calls is mutated in place (`list.Add(...)`) rather than rebuilt immutably. That mirrors the mutation shortcut the original `ModernChallenge1` takes with `i.totalHours.Add(...)`, and is called out here for the same reason: it is a pragmatic shortcut, not a LINQ-purity claim.
-- `Application.Run()` (no window argument) is called from inside a `.Select` lambda, which is what actually pumps WPF dispatcher messages so the window paints and the animation ticks. `ShutdownMode` is set to `OnExplicitShutdown` so the animation's `Completed` handler, not an implicit "last window closed" rule, decides when the app (and `Run()`) exits.
-- `Console.WriteLine` calls inside the window-creation stage exist purely so `check.ps1` can verify the persisted report from stdout, without needing a SQLite CLI tool on the test machine.
+- `SaveChanges()` se llama una sola vez, de forma inmediata, en el punto en que la llamada externa a `Enumerable.Repeat(…, 1)` evalúa su argumento, antes de que empiece a enumerar cualquiera de las etapas diferidas de LINQ-to-Objects/EF. Eso sigue estando dentro de la misma sentencia. Solo que no se difiere hasta la enumeración del `Aggregate` final, como sí ocurre con las etapas `Select`/`SelectMany`. `Aggregate` es, por definición, un operador LINQ de evaluación inmediata, así que aquí cierta evaluación inmediata es inevitable.
+- El estado del acumulador en ambas llamadas a `Aggregate` se modifica en el lugar (`list.Add(...)`) en lugar de reconstruirse de forma inmutable. Esto refleja el atajo de mutación que toma el `ModernChallenge1` original con `i.totalHours.Add(...)`. Se señala aquí por la misma razón: es un atajo pragmático, no una afirmación de pureza de LINQ.
+- Se llama a `Application.Run()` (sin argumento de ventana) desde dentro de una lambda `.Select`. Eso es lo que realmente procesa los mensajes del *dispatcher* de WPF, de modo que la ventana se dibuja y la animación avanza. `ShutdownMode` se establece en `OnExplicitShutdown` para que el manejador `Completed` de la animación, y no una regla implícita de "última ventana cerrada", decida cuándo termina la aplicación (y `Run()`).
+- Las llamadas a `Console.WriteLine` dentro de la etapa de creación de la ventana existen únicamente para que `check.ps1` pueda verificar el informe guardado desde stdout, sin necesitar una herramienta de línea de comandos de SQLite en la máquina de pruebas.
 
-See [the root README](../../README.md#the-results-so-far) for how this compares to the other one-statement entries, and [`src/LinqChallenge2`](../LinqChallenge2/README.md) for the query-expression variant of the same idea.
+Consulta [el README raíz](../../README.md#the-results-so-far) para ver cómo se compara esto con las otras entradas de una sola instrucción, y [`src/LinqChallenge2`](../LinqChallenge2/README.md) para la variante de la misma idea con expresión de consulta.

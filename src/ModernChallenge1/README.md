@@ -1,6 +1,6 @@
 ---
 name: "C# `for`"
-teaches: "that a `for` statement with no body can drive runtime XAML, LINQ to Objects, EF Core and WPF animation."
+teaches: "que una instrucción `for` sin cuerpo puede controlar XAML en tiempo de ejecución, LINQ to Objects, EF Core y la animación de WPF."
 kind: weird
 languages: [c-sharp]
 lesson: "languages/csharp-linq-xaml.md#the-original-modernchallenge1"
@@ -8,20 +8,20 @@ loop-by: loop-statement
 evaluation: eager
 assurance: guaranteed
 pairs-with: JavaChallenge1
-machine: "Three expression slots"
-state: "Fields of one anonymous object"
+machine: "Tres espacios para expresiones"
+state: "Campos de un objeto anónimo"
 tags: [closure, control-flow, deferred-execution, eager-evaluation, event-loop, markup-language, side-effect, thread-safety]
 counterexamples: [event-driven-programming]
 ---
-# C# challenge: the original (modernized)
+# Reto de C#: el original (modernizado)
 
-**Teaches you:** that a `for` statement with no body can drive runtime XAML, LINQ to Objects, EF Core and WPF animation.
+**Te enseña:** que una instrucción `for` sin cuerpo puede controlar XAML en tiempo de ejecución, LINQ to Objects, EF Core y la animación de WPF.
 
-This is where the whole thing started: a 2008 classroom exercise, kept alive and rebuilt for current .NET. The rule is one C# statement. `Main` contains exactly one `for` loop, and that loop's body is empty (`{ /* Intentionally empty. */ }`). Every piece of behavior - the random draws, the running total, the database save, the window, the animation - has to happen inside the loop's three `;`-separated clauses: initializer, condition, iterator.
+Aquí empezó todo: un ejercicio de clase de 2008, mantenido vivo y reconstruido para el .NET actual. La regla es una sola instrucción de C#. `Main` contiene exactamente un bucle `for`, y el cuerpo de ese bucle está vacío (`{ /* Intentionally empty. */ }`). Todo el comportamiento - los sorteos aleatorios, el total acumulado, el guardado en la base de datos, la ventana, la animación - tiene que ocurrir dentro de las tres cláusulas del bucle, separadas por `;`: inicializador, condición, iterador.
 
-## Run it
+## Ejecútalo
 
-You need Windows and the .NET 10 SDK (WPF is Windows-only).
+Necesitas Windows y el SDK de .NET 10 (WPF solo funciona en Windows).
 
 ```powershell
 cd src\ModernChallenge1
@@ -29,43 +29,43 @@ dotnet restore
 dotnet run
 ```
 
-The window says **DEMO ONLY** on purpose. Records go to a local SQLite file under `%LOCALAPPDATA%\ModernChallenge1`; the program never talks to a real time-reporting system.
+La ventana dice **DEMO ONLY** a propósito. Los registros van a un archivo SQLite local bajo `%LOCALAPPDATA%\ModernChallenge1`; el programa nunca se comunica con un sistema real de registro de horas.
 
-![Modern WPF demo window](../../docs/images/modern-wpf-demo.png)
+![Ventana de demostración moderna en WPF](../../docs/images/modern-wpf-demo.png)
 
-## Run it in Windows Sandbox
+## Ejecútalo en Windows Sandbox
 
-Prerequisites: Windows Sandbox and this entry's toolchain on your machine, set up once as described in [`SANDBOX-SETUP.md`](../../SANDBOX-SETUP.md#windows-sandbox).
+Requisitos previos: Windows Sandbox y la cadena de herramientas de esta entrada en tu máquina, configuradas una sola vez como se describe en [`SANDBOX-SETUP.md`](../../SANDBOX-SETUP.md#windows-sandbox).
 
 ```powershell
 sandbox\windows\run.ps1 src\ModernChallenge1
 ```
 
-It runs the entry in a throwaway VM with networking off, screenshots the window, asks it to close, and prints what it saved. Use `-Seconds 30` to leave the animation up longer.
+Ejecuta la entrada en una VM desechable con la red desactivada, toma una captura de la ventana, le pide que se cierre e imprime lo que guardó. Usa `-Seconds 30` para dejar la animación en pantalla más tiempo.
 
-## Program Flow
+## Flujo del programa
 
 ```mermaid
 flowchart TD
-    accTitle: ModernChallenge1: a for statement whose false branch runs the WPF message loop
-    accDescr: A flowchart. The initializer builds one anonymous object with the EF Core context, a category enumerator, a WPF Application, a Mutex and an XElement. The condition is true while the LINQ sum is 40 or less and MoveNext succeeds. Then the empty body runs and the iterator draws hours, adds a row to the context and starts a thread that waits on the Mutex and saves through MethodInfo.Invoke. When the condition is false, XamlReader.Load builds the window from a string and the XElement becomes its DoubleAnimation. Application.Run then runs the WPF message loop until the window closes, and IsNaN of its result is false, so the for ends.
-    A["Initializer: anonymous object holds EF context, enumerator, WPF Application, Mutex, XElement"] --> B{{"Condition: LINQ Sum <= 40 and MoveNext()?"}}
-    B -->|true| C["Empty body"]
-    C --> D["Iterator: draw hours, add a row, start a Thread"]
+    accTitle: ModernChallenge1: una instrucción for cuya rama falsa ejecuta el bucle de mensajes de WPF
+    accDescr: Un diagrama de flujo. El inicializador construye un objeto anónimo con el contexto de EF Core, un enumerador de categorías, una Application de WPF, un Mutex y un XElement. La condición es verdadera mientras la suma de LINQ no pasa de 40 y MoveNext tiene éxito. Entonces se ejecuta el cuerpo vacío y el iterador sortea horas, agrega una fila al contexto e inicia un hilo que espera en el Mutex y guarda mediante MethodInfo.Invoke. Cuando la condición es falsa, XamlReader.Load construye la ventana a partir de una cadena de texto y el XElement se convierte en su DoubleAnimation. Después Application.Run ejecuta el bucle de mensajes de WPF hasta que se cierra la ventana. IsNaN de su resultado es false, así que el for termina.
+    A["Inicializador: un objeto anónimo contiene el contexto de EF, el enumerador, la Application de WPF, el Mutex y el XElement"] --> B{{"Condición: ¿LINQ Sum <= 40 y MoveNext()?"}}
+    B -->|true| C["Cuerpo vacío"]
+    C --> D["Iterador: sortea horas, agrega una fila e inicia un hilo"]
     D --> B
-    D -.-> T["Thread: Mutex.WaitOne, SaveChanges via MethodInfo.Invoke, ReleaseMutex"]
-    B -->|false| E["XamlReader.Load builds the window from a string; the XElement is its DoubleAnimation"]
-    E --> F["Application.Run: the WPF message loop runs until the window closes"]
-    F --> G["Double.IsNaN of the result is false: the for ends"]
+    D -.-> T["Hilo: Mutex.WaitOne, SaveChanges mediante MethodInfo.Invoke, ReleaseMutex"]
+    B -->|false| E["XamlReader.Load construye la ventana a partir de una cadena de texto; el XElement es su DoubleAnimation"]
+    E --> F["Application.Run: el bucle de mensajes de WPF se ejecuta hasta que la ventana se cierra"]
+    F --> G["Double.IsNaN del resultado es false: el for termina"]
 ```
 
-**What this shows:** the original stunt. One `for` statement with an empty body, in which the condition and the iterator do all the work. While the total is 40 or less the condition is true. When it is not, the condition builds and shows the window, and the window's blocking call yields the `false` that ends the loop.
+**Qué muestra:** el truco original. Una instrucción `for` con el cuerpo vacío, en la que la condición y el iterador hacen todo el trabajo. Mientras el total no pasa de 40, la condición es verdadera. Cuando no es así, la condición crea y muestra la ventana, y la llamada bloqueante de la ventana devuelve el `false` que termina el bucle.
 
-**Why this mechanism matters:** `Application.Run` is a UI framework's own loop, started from inside a loop condition. The animation fades the window by itself: nothing in `Program.cs` subscribes to an event to do it. See [`xaml`](../xaml/README.md) for a stricter view of what that runtime parsing does.
+**Por qué importa este mecanismo:** `Application.Run` es el propio bucle de un framework de interfaz de usuario, iniciado desde dentro de la condición de un bucle. La animación desvanece la ventana por sí sola: nada en `Program.cs` se suscribe a un evento para hacerlo. Consulta [`xaml`](../xaml/README.md) para ver con más rigor qué hace ese análisis sintáctico en tiempo de ejecución.
 
-## How the stunt works
+## Cómo funciona el truco
 
-Open [`Program.cs`](Program.cs) and look for the two arrow comments:
+Abre [`Program.cs`](Program.cs) y busca los dos comentarios con flecha:
 
 ```text
       *                  *
@@ -74,48 +74,48 @@ Open [`Program.cs`](Program.cs) and look for the two arrow comments:
       *                  *
 ```
 
-Everything between those two semicolons is the `for` statement. Read it as three clauses:
+Todo lo que hay entre esos dos puntos y coma es la sentencia `for`. Léelo como tres cláusulas:
 
-| Clause | Job |
+| Cláusula | Tarea |
 | --- | --- |
-| **Initializer** | One `var i = new { ... }` builds every piece of state the loop needs (the SQLite context, the random source, a category enumerator, the WPF `Application`, a `Mutex`, and an `XElement` that will become part of a `DoubleAnimation`) as fields on one anonymous object. A `for` initializer allows only one declaration, even when the loop needs seven kinds of state - the anonymous object is the one legal container. |
-| **Condition** | `(from hours in i.totalHours select hours).Sum() <= 40d && i.categories!.MoveNext()`. While the running total is 40 or under and there is still a category left to hand out, the condition is `true` and the loop goes again. Once either runs out, the condition builds and shows the result window instead, inline. The category list has five names (`Meetings` repeats), so four 10-hour cards, a total of exactly 40, are followed by a fifth card instead of ending the run. (The 2008 original had four names and stopped there.) The window is the *value* that the comparison would have returned: `Double.IsNaN(i.app.Run(...))`. It is wrapped in a `Func<bool>` so that it can sit where a `bool` is expected. |
-| **Iterator** | Draws one random hour count, adds a new timecard row to the EF Core context, and starts a background `Thread` that calls `Mutex.WaitOne`, `SaveChanges`, and `Mutex.ReleaseMutex` - not directly, but through `MethodInfo.Invoke`. The reflection and the thread add nothing useful; they are here on purpose, as a time capsule of 2008-era style next to the EF Core code that replaced LINQ to SQL. |
+| **Inicializador** | Un solo `var i = new { ... }` construye todo el estado que necesita el bucle (el contexto de SQLite, la fuente de números aleatorios, un enumerador de categorías, el `Application` de WPF, un `Mutex` y un `XElement` que pasará a formar parte de un `DoubleAnimation`) como campos de un único objeto anónimo. Un inicializador de `for` permite una sola declaración, incluso cuando el bucle necesita siete tipos de estado: el objeto anónimo es el único contenedor legal. |
+| **Condición** | `(from hours in i.totalHours select hours).Sum() <= 40d && i.categories!.MoveNext()`. Mientras el total acumulado no pase de 40 y quede todavía una categoría por repartir, la condición es `true` y el bucle se repite. Cuando se agota cualquiera de las dos, la condición construye y muestra en su lugar la ventana de resultado, en línea. La lista de categorías tiene cinco nombres (`Meetings` se repite), así que cuatro tarjetas de 10 horas, un total de exactamente 40, van seguidas de una quinta tarjeta en lugar de terminar la ejecución. (El original de 2008 tenía cuatro nombres y se detenía ahí.) La ventana es el *valor* que habría devuelto la comparación: `Double.IsNaN(i.app.Run(...))`. Está envuelta en `Func<bool>` para que pueda ir donde se espera `bool`. |
+| **Iterator** | Sortea una cantidad aleatoria de horas, agrega una fila nueva de tarjeta de horas al contexto de EF Core e inicia un `Thread` en segundo plano que llama a `Mutex.WaitOne`, `SaveChanges` y `Mutex.ReleaseMutex` - no directamente, sino a través de `MethodInfo.Invoke`. La reflexión y el hilo no aportan nada útil; están aquí a propósito, como una cápsula del tiempo del estilo de 2008 junto al código de EF Core que reemplazó a LINQ to SQL. |
 
-Each condition test constructs a deferred LINQ projection over the list and immediately consumes it with `Sum()`. The eager `for` needs the sum before it can take the next step. The window itself is also built from inside the condition clause: a string of raw XAML is handed to `XamlReader.Load` at runtime, and the `XElement` built in the initializer becomes the `<DoubleAnimation>` that fades the window in and out until it is closed.
+Cada prueba de condición construye una proyección LINQ diferida sobre la lista y la consume de inmediato con `Sum()`. El `for` de evaluación inmediata necesita la suma antes de poder dar el siguiente paso. La ventana también se construye desde dentro de la cláusula de condición: en tiempo de ejecución, se pasa a `XamlReader.Load` una cadena de texto con XAML sin procesar. El `XElement` creado en el inicializador se convierte en el `<DoubleAnimation>` que hace aparecer y desaparecer la ventana gradualmente hasta que se cierra.
 
-## What changed since 2008, and what did not
+## Qué cambió desde 2008 y qué no
 
-The project deliberately keeps the original's shape. A clean modern rewrite would use declarative XAML, view models, dependency injection, and `await SaveChangesAsync()` - all intentionally skipped here, so each old-fashioned piece still has a visible, current-day counterpart next to it.
+El proyecto conserva a propósito la forma del original. Una reescritura moderna y limpia usaría XAML declarativo, modelos de vista, inyección de dependencias y `await SaveChangesAsync()`. Aquí omitimos todo eso a propósito, para que cada pieza anticuada tenga a su lado un equivalente actual y visible.
 
-| Original construct | Current construct | Why |
+| Construcción original | Construcción actual | Por qué |
 |---|---|---|
-| C# 3.0 / .NET 3.x project | SDK-style `net10.0-windows` WPF project | Current Windows WPF target |
-| `[STAThread]` and `Program.Main` | Kept as-is | WPF still needs a single-threaded UI entry point |
-| One empty-body `for` statement | Kept as-is | The challenge rule |
-| Anonymous object as loop state | Kept as-is | Still the only way to pack mixed state into one `for` initializer |
-| `XElement` builds a `DoubleAnimation` | Kept as-is | Still fed into runtime XAML |
-| `List<float>` + LINQ `Sum()` | `List<double>` + LINQ `Sum()` | `double` is the common modern default |
-| `Environment.GetEnvironmentVariable("USERNAME")` | `Environment.UserName` | A direct, typed API for the same value |
-| LINQ to SQL / `NorthwindDataContext` | EF Core / `DemoTimeCardContext` / SQLite | LINQ to SQL no longer ships; SQLite keeps the demo self-contained |
-| `InsertOnSubmit` / `SubmitChanges` | `TimeCards.Add` / `SaveChanges` | The closest current equivalent |
-| Live `TimeCard` records | Local, clearly marked `DemoTimeCard` records | Keeps generated values from being mistaken for real ones |
-| `new Random()` | `Random.Shared` | Avoids creating a throwaway generator each run |
-| `DayOfYear / 7` | `ISOWeek.GetWeekOfYear` | A correctly defined ISO calendar week |
-| Runtime WPF window + `XamlReader.Load` | Kept as-is | Keeps the program recognizably code-first |
-| `Viewbox.Triggers` | `FrameworkElement.Triggers` | Current runtime XAML accepts this inherited syntax |
-| An external `Bliss.jpg` image | A plain color panel | Removes a dependency on a file that was never checked in |
-| Named `Mutex` | Kept as-is | Keeps the deliberately awkward shared-context path |
-| Background `Thread` + reflection | Kept as-is, for contrast | Modern code would use `Task`/`await`, not reflection, to call these methods |
+| Proyecto de C# 3.0 / .NET 3.x | Proyecto WPF de estilo SDK `net10.0-windows` | Destino WPF actual en Windows |
+| `[STAThread]` y `Program.Main` | Se conserva tal cual | WPF sigue necesitando un punto de entrada de un solo hilo para la interfaz de usuario |
+| Una instrucción `for` con cuerpo vacío | Se conserva sin cambios | La regla del reto |
+| Objeto anónimo como estado del bucle | Se deja igual | Sigue siendo la única forma de empaquetar estado mixto en un solo inicializador `for` |
+| `XElement` construye un `DoubleAnimation` | Se conserva tal cual | Se sigue pasando al XAML en tiempo de ejecución |
+| `List<float>` + LINQ `Sum()` | `List<double>` + LINQ `Sum()` | `double` es la opción predeterminada moderna más común |
+| `Environment.GetEnvironmentVariable("USERNAME")` | `Environment.UserName` | Una API directa y tipada para el mismo valor |
+| LINQ to SQL / `NorthwindDataContext` | EF Core / `DemoTimeCardContext` / SQLite | LINQ to SQL ya no se distribuye; SQLite mantiene la demostración autocontenida |
+| `InsertOnSubmit` / `SubmitChanges` | `TimeCards.Add` / `SaveChanges` | El equivalente actual más cercano |
+| Registros `TimeCard` reales | Registros `DemoTimeCard` locales, claramente marcados | Evita que los valores generados se confundan con los reales |
+| `new Random()` | `Random.Shared` | Evita crear un generador desechable en cada ejecución |
+| `DayOfYear / 7` | `ISOWeek.GetWeekOfYear` | Una semana de calendario ISO definida correctamente |
+| Ventana WPF en tiempo de ejecución + `XamlReader.Load` | Se mantiene tal cual | Mantiene el programa reconocible como de código primero |
+| `Viewbox.Triggers` | `FrameworkElement.Triggers` | El XAML del entorno de ejecución actual acepta esta sintaxis heredada |
+| Una imagen `Bliss.jpg` externa | Un panel de color liso | Elimina una dependencia de un archivo que nunca se subió al repositorio |
+| Llamado `Mutex` | Se deja tal cual | Conserva la ruta de contexto compartido, torpe a propósito |
+| Segundo plano `Thread` + reflexión | Se mantiene tal cual, por contraste | El código moderno usaría `Task`/`await`, no reflexión, para llamar a estos métodos |
 
-## Gotchas worth knowing
+## Trampas que conviene conocer
 
-`DbContext` is not thread-safe. The `Mutex` exists only to keep the original thread-plus-reflection shape working at all - read it as a historical artifact, not a modern data-access pattern.
+`DbContext` no es seguro para hilos. `Mutex` existe solo para que la forma original de hilo más reflexión siga funcionando - léelo como un artefacto histórico, no como un patrón moderno de acceso a datos.
 
-## Why this is weird
+## Por qué es raro
 
-The why is simple: the original was built to show off C# 3.0 and .NET 3.x features that were new at the time, inside a classroom exercise. This version keeps that spirit and gives it a current-day body. The fun is treating a `for` loop's three clauses as a tiny language of their own; the proud part is making real, working WPF, LINQ, and EF Core machinery fit inside them.
+El porqué es simple: el original se construyó para mostrar las características de C# 3.0 y .NET 3.x que eran nuevas en ese momento, dentro de un ejercicio de clase. Esta versión mantiene ese espíritu y le da un cuerpo actual. Lo divertido es tratar las tres cláusulas de un bucle `for` como un lenguaje diminuto propio; lo que da orgullo es lograr que maquinaria real y funcional de WPF, LINQ y EF Core quepa dentro de ellas.
 
 ---
 
-See the [root README](../../README.md) for how this compares to the other entries, and [`CHALLENGE.md`](../../CHALLENGE.md) if you want to write your own.
+Consulta el [README raíz](../../README.md) para ver cómo se compara con las otras entradas, y [`CHALLENGE.md`](../../CHALLENGE.md) si quieres escribir la tuya.

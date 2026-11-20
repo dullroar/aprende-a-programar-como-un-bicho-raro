@@ -1,6 +1,6 @@
 ---
 name: "Python"
-teaches: "that Python can drive a whole program with `iter(step, False)`, which calls `step` until it returns `False`."
+teaches: "que Python puede controlar un programa completo con `iter(step, False)`, que llama a `step` hasta que devuelve `False`."
 kind: port
 languages: [python]
 lesson: "languages/csharp-linq-xaml.md#the-one-statement-ports-same-trick-different-machinery"
@@ -8,91 +8,91 @@ loop-by: lazy-demand
 evaluation: lazy
 assurance: guaranteed
 pairs-with: JavaChallenge1
-machine: "A function that `iter` calls until it returns the sentinel `False`"
-state: "Attributes of one state object passed to the lambda"
+machine: "Una función que `iter` llama hasta que devuelve el centinela `False`"
+state: "Atributos de un objeto de estado que se pasa a la lambda"
 tags: [evaluation-strategy, event-loop, generators, side-effect, thread-safety]
 analogies: [coroutine]
 counterexamples: [event-driven-programming]
 ---
-# One Statement, Python Edition
+# Una instrucción, edición Python
 
-Ken's Python port of Jim Lehmer's C# challenge. It is one of four sibling ports, along with [Java](../JavaChallenge1/README.md), [Kotlin](../KotlinChallenge1/README.md) and [Go](../GoChallenge1/README.md). The Java README has [what every version does](../JavaChallenge1/README.md#what-every-version-does) and the [side-by-side comparison](../JavaChallenge1/README.md#side-by-side) of all four.
+Es el port a Python que hizo Ken del reto en C# de Jim Lehmer. Es uno de cuatro ports hermanos, junto con [Java](../JavaChallenge1/README.md), [Kotlin](../KotlinChallenge1/README.md) y [Go](../GoChallenge1/README.md). El README de Java tiene [lo que hace cada versión](../JavaChallenge1/README.md#what-every-version-does) y la [comparación lado a lado](../JavaChallenge1/README.md#side-by-side) de las cuatro.
 
-The constraint: `main` contains exactly one statement, a `for` loop with an empty body. This is a stunt in expression mechanics, not good production code. Nothing here connects to a real time-reporting system: the cards are flagged `is_demo`.
+La restricción: `main` contiene exactamente una instrucción, un bucle `for` con el cuerpo vacío. Es una acrobacia con la mecánica de las expresiones, no un buen código de producción. Nada de esto se conecta con un sistema real de registro de horas: las tarjetas están marcadas con `is_demo`.
 
-## Run it
+## Ejecútalo
 
-You need only Python 3: `tkinter` and `sqlite3` are built in.
+Solo necesitas Python 3: `tkinter` y `sqlite3` vienen incluidos.
 
 ```powershell
 py src\PythonChallenge1\program.py
 ```
 
-Or, from the repo root, through Gradle: `.\gradlew.bat runPython`.
+O, desde la raíz del repositorio, con Gradle: `.\gradlew.bat runPython`.
 
-The window is a Tk window. Records land in `src/PythonChallenge1/data/demo-timecards.db`, beside `program.py`, whatever the working directory. Delete `data` to start over.
+La ventana es una ventana de Tk. Los registros se guardan en `src/PythonChallenge1/data/demo-timecards.db`, junto a `program.py`, sin importar el directorio de trabajo. Borra `data` para empezar de nuevo.
 
-## Run it in a container
+## Ejecútalo en un contenedor
 
-Prerequisite: Docker, set up once as described in [`SANDBOX-SETUP.md`](../../SANDBOX-SETUP.md#docker).
+Requisito previo: Docker, configurado una sola vez como se describe en [`SANDBOX-SETUP.md`](../../SANDBOX-SETUP.md#docker).
 
 ```bash
 sandbox/container/run-image.sh --out ./results src/PythonChallenge1
 ```
 
-It builds this folder's [`Dockerfile`](Dockerfile) and runs the result with no network, a read-only file system and user `nobody`. The image holds Python 3 with Tk, Xvfb and a screenshot tool. It has no pip and no compiler (about 340 MB). The window opens on a virtual display (Xvfb) *inside* the container, so nothing is drawn on your desktop: the run screenshots it, closes it, and prints the rows it wrote. With `--out`, `results/screenshot.png` is the window.
+Construye el [`Dockerfile`](Dockerfile) de esta carpeta y ejecuta el resultado sin red, con un sistema de archivos de solo lectura y con el usuario `nobody`. La imagen contiene Python 3 con Tk, Xvfb y una herramienta de capturas de pantalla. No tiene pip ni compilador (unos 340 MB). La ventana se abre en una pantalla virtual (Xvfb) *dentro* del contenedor, así que no se dibuja nada en tu escritorio: la ejecución toma una captura de la ventana, la cierra e imprime las filas que escribió. Con `--out`, `results/screenshot.png` es la ventana.
 
-## Run it in Windows Sandbox
+## Ejecútalo en Windows Sandbox
 
-Prerequisites: Windows Sandbox and this entry's toolchain on your machine, set up once as described in [`SANDBOX-SETUP.md`](../../SANDBOX-SETUP.md#windows-sandbox).
+Requisitos previos: Windows Sandbox y la cadena de herramientas de esta entrada en tu máquina, configuradas una sola vez como se describe en [`SANDBOX-SETUP.md`](../../SANDBOX-SETUP.md#windows-sandbox).
 
 ```powershell
 sandbox\windows\run.ps1 src\PythonChallenge1
 ```
 
-It runs the entry in a throwaway VM with networking off, screenshots the window, asks it to close, and prints what it saved. This one has been tested.
+Ejecuta la entrada en una VM desechable con la red desactivada, captura la ventana, le pide que se cierre e imprime lo que guardó. Este ya se probó.
 
-## Layout
+## Estructura
 
-[program.py](program.py) is the whole port. The entity and repository classes sit in the same file, above `main`.
+[program.py](program.py) es todo el port. Las clases de entidad y de repositorio están en el mismo archivo, encima de `main`.
 
-## Program Flow
+## Flujo del programa
 
 ```mermaid
 flowchart TD
-    accTitle: PythonChallenge1: iter with a sentinel calls one function until it returns False
-    accDescr: A flowchart. A lambda builds the function step from the state object. The for statement iterates iter(step, False), so it calls step again and again. Each call tests whether the total is 40 or less and a category remains. If so, a tuple of calls runs left to right: lock, add hours, stage a card, unlock, start a thread that saves. The last item of the tuple is True, which is not the sentinel, so the empty body runs and the loop calls step again. If not, the else branch builds a Tk window from an XML string and calls mainloop, which blocks until the window closes, and step returns False. That equals the sentinel, so iter stops and the for ends.
-    A["Initializer: a lambda takes the state and returns step"] --> B["for _ in iter(step, False) calls step()"]
-    B --> C{{"step: total <= 40 and categories left?"}}
-    C -->|yes| D["Tuple, left to right: lock, hours, card, unlock, Thread; value True"]
-    D -->|"True: the body is ..., call step again"| B
-    D -.-> T["Thread: save_all"]
-    C -->|no| F["Else: build a Tk window from XML, mainloop blocks"]
-    F --> G["step returns False, the sentinel: iter stops"]
+    accTitle: PythonChallenge1: iter con un centinela llama a una función hasta que devuelve False
+    accDescr: Un diagrama de flujo. Una lambda construye la función step a partir del objeto de estado. La instrucción for itera iter(step, False), así que llama a step una y otra vez. Cada llamada comprueba si el total no pasa de 40 y si queda una categoría. Si es así, se ejecuta una tupla de llamadas de izquierda a derecha: bloquear, sumar horas, preparar una tarjeta, desbloquear, iniciar un hilo que guarda. El último elemento de la tupla es True, que no es el centinela, así que se ejecuta el cuerpo vacío y el bucle llama a step otra vez. Si no, la rama else construye una ventana de Tk a partir de una cadena de texto XML y llama a mainloop, que bloquea hasta que se cierra la ventana, y step devuelve False. Eso es igual al centinela, así que iter se detiene y el for termina.
+    A["Inicializador: una lambda recibe el estado y devuelve paso"] --> B["for _ in iter(step, False) llama a step()"]
+    B --> C{{"step: total <= 40 y ¿quedan categorías?"}}
+    C -->|sí| D["Tupla, de izquierda a derecha: lock, horas, tarjeta, unlock, hilo; valor True"]
+    D -->|"True: el cuerpo es ..., llama a paso otra vez"| B
+    D -.-> T["Hilo: save_all"]
+    C -->|no| F["Si no: construye una ventana Tk a partir de XML, mainloop bloquea"]
+    F --> G["paso devuelve False, el centinela: iter se detiene"]
 ```
 
-**What this shows:** Python has no three-clause `for`, so the loop is `iter(step, False)`: call `step` until it returns the sentinel. One conditional expression is the test, and a tuple stands in for the comma list. Python evaluates the tuple's items in order, and the last item (`True`) is the value of the update.
+**Qué muestra:** Python no tiene un `for` de tres cláusulas, así que el bucle es `iter(step, False)`: llama a `step` hasta que devuelva el centinela. Una expresión condicional es la prueba, y una tupla ocupa el lugar de la lista separada por comas. Python evalúa los elementos de la tupla en orden, y el último elemento (`True`) es el valor de la actualización.
 
-**Why this mechanism matters:** the stop is a return value compared by `iter` with the sentinel, not a condition that the `for` itself checks. The window shows the same idea as the other ports: the final branch does the last work, then returns the value that ends the loop.
+**Por qué importa este mecanismo:** la parada es un valor de retorno que `iter` compara con el centinela, no una condición que `for` comprueba por su cuenta. La ventana muestra la misma idea que las otras versiones: la rama final hace el último trabajo y después devuelve el valor que termina el bucle.
 
-## How the stunt works
+## Cómo funciona el truco
 
-The work splits three ways: an **initializer** that builds the loop's state, a **condition** that decides whether to keep going (and, on the last check, shows the window), and an **update** that does one pass of work. Comment banners in the source mark the boundaries.
+El trabajo se divide en tres partes: un **inicializador** que construye el estado del bucle, una **condición** que decide si el bucle continúa (y, en la última comprobación, muestra la ventana) y una **actualización** que hace una pasada de trabajo. Los rótulos en comentarios del código fuente marcan los límites.
 
-Python has no three-part `for`, no comma expressions and no statements inside expressions, so the loop is `for _ in iter(step, False): ...`. Calling `step` again and again is the loop. It stops when `step` returns the sentinel `False`.
+Python no tiene un `for` de tres partes, ni expresiones con coma, ni sentencias dentro de expresiones, así que el bucle es `for _ in iter(step, False): ...`. Llamar a `step` una y otra vez es el bucle. Se detiene cuando `step` devuelve el valor centinela `False`.
 
-- **Initializer.** A `SimpleNamespace` holds the state. It is passed to a lambda that builds `step`.
-- **Condition.** One conditional expression: `(update ...) if total <= 40 and categories else (show the window ...)`.
-- **Update.** A tuple of calls whose last element is `True`; `[-1]` picks it. Tuples evaluate left to right, which takes the place of the comma list. It locks, adds hours, stages a card, unlocks, and starts a `threading.Thread`.
-- **Empty body.** The body is `...`, a bare constant expression. A `pass` would be a second statement.
-- **Window.** The window is a Tk window, described by an XML string that is parsed at runtime with `xml.etree.ElementTree`, one widget per element via `getattr(tkinter, tag)`. `after()` repeats a timer that blends each label's color toward the background (Tk labels have no alpha). `mainloop()` blocks until the window closes.
-- **Saving.** The program uses the standard-library `sqlite3`. `getattr(repo, "save_all")` plays the role of reflection.
-- **Caveat.** `main` is exactly one `for` statement, but the lambdas and comprehensions inside it are expressions only. Imports, the entity and the repository sit outside `main`.
+- **Inicializador.** `SimpleNamespace` guarda el estado. Se pasa a una lambda que construye `step`.
+- **Condición.** Una expresión condicional: `(update ...) if total <= 40 and categories else (show the window ...)`.
+- **Actualización.** Una tupla de llamadas cuyo último elemento es `True`; `[-1]` lo elige. Las tuplas se evalúan de izquierda a derecha, y eso reemplaza la lista con comas. Bloquea, suma horas, prepara una tarjeta, desbloquea e inicia un `threading.Thread`.
+- **Cuerpo vacío.** El cuerpo es `...`, una expresión constante sin más. Un `pass` sería una segunda instrucción.
+- **Ventana.** La ventana es una ventana de Tk, descrita por una cadena de texto XML que `xml.etree.ElementTree` analiza en tiempo de ejecución, con un widget por elemento mediante `getattr(tkinter, tag)`. `after()` repite un temporizador que mezcla el color de cada etiqueta hacia el color del fondo (las etiquetas de Tk no tienen alfa). `mainloop()` bloquea la ejecución hasta que se cierra la ventana.
+- **Guardado.** El programa usa `sqlite3` de la biblioteca estándar. `getattr(repo, "save_all")` hace el papel de la reflexión.
+- **Advertencia.** `main` es exactamente una sentencia `for`, pero las lambdas y las comprensiones que contiene son solo expresiones. Las importaciones, la entidad y el repositorio quedan fuera de `main`.
 
-## Gotchas worth knowing
+## Trampas que conviene conocer
 
-- **`main` is one `for` statement, but not everything is.** The lambdas and comprehensions inside it are expressions only. Imports, the entity and the repository sit outside `main`.
-- **The empty body is `...`.** A `pass` would be a second statement.
-- **The data lives beside the program.** Records land in `data/` next to `program.py`, whatever the working directory.
-- **Tk labels have no alpha.** So the pulse blends each label's color toward the background instead of fading it.
-- **This port has no check script,** so the sandbox gate does not cover it yet. Its Windows Sandbox profile has been tested.
+- **`main` es una sola sentencia `for`, pero no todo lo es.** Las lambdas y las comprensiones que contiene son solo expresiones. Las importaciones, la entidad y el repositorio quedan fuera de `main`.
+- **El cuerpo vacío es `...`.** Un `pass` sería una segunda sentencia.
+- **Los datos viven junto al programa.** Los registros se guardan en `data/`, junto a `program.py`, sin importar el directorio de trabajo.
+- **Las etiquetas de Tk no tienen alfa.** Por eso el pulso mezcla el color de cada etiqueta hacia el color del fondo, en lugar de desvanecerla.
+- **Este port no tiene script de verificación,** así que el control del entorno aislado (*sandbox*) todavía no lo cubre. Un entorno aislado es un espacio separado donde el código se ejecuta sin afectar tu equipo. Ya se probó su perfil de Windows Sandbox.
