@@ -21,11 +21,14 @@ The frontmatter dialect is a strict subset of YAML so that no parser library is 
   key: plain text            key: "quoted text"           key: [item, item]
   # comment lines and blank lines are ignored. Anything else is an error.
 """
-import json, os, posixpath, re
+import json, os, posixpath, re, sys, unicodedata
 from urllib.parse import urlparse
+HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, HERE)
+sys.path.insert(0, os.path.join(HERE, "locale"))            # never name a package `locale`: it would shadow the stdlib module
+import catalog                                              # the locale catalog (needs PyYAML, like the rest of the book tooling)
 import diagrams
 
-HERE = os.path.dirname(os.path.abspath(__file__))
 LESSONS = os.path.dirname(HERE)
 REPO = os.path.dirname(LESSONS)
 SRC = os.path.join(REPO, "src")
@@ -33,12 +36,57 @@ CSSRC = os.path.join(LESSONS, "cs-source")
 CSOUT = os.path.join(LESSONS, "cs")
 
 KINDS = ("idiomatic", "weird", "port")
-ASSURANCE_LABELS = {
-    "guaranteed": "guaranteed",
-    "implementation-permitted": "implementation-permitted",
-    "accidentally-exploited": "accidentally exploited",
-}
-ASSURANCE = tuple(ASSURANCE_LABELS)
+ASSURANCE = ("guaranteed", "implementation-permitted", "accidentally-exploited")   # frontmatter values: data, never translated
+
+# The words of the generated text come from the locale catalog (lessons/book/locale/<lang>.yaml, keys cs.*). The language is
+# BOOK_LANG (default "en", as in diagrams.py); `set_language` switches it, for example in tests. A missing key fails loudly
+# (catalog.MissingKeyError); there is no silent fallback to English.
+#   W         key -> text (macros expanded) for every key in WORD_KEYS      ASSURANCE_LABELS  frontmatter value -> label
+#   RELATION  relation kind -> word                                          STALE_PHRASES     lower-case phrases the prose lint refuses
+#   BANNER    the comment on top of every generated file                     CHALLENGE_ANCHOR  slug of the intro's challenge heading
+WORD_KEYS = (
+    ["banner", "lead_in_in_repo", "lead_in_applies_all", "lead_in_applies_machine", "lead_in_practice", "lead_in_entries",
+     "applies_all", "applies_machine", "practice_only", "users_all", "users_machine", "users_exercise", "role_empty", "concepts_of",
+     "program_flow_heading", "program_flow_intro", "program_flow_of", "program_flow_from", "opener_title", "opener_chapters",
+     "opener_index", "index_title", "index_intro", "index_concepts", "index_languages", "index_entries", "index_roles",
+     "index_language_line", "study_guides_heading", "study_guides_intro", "study_guides_languages", "study_guides_concepts",
+     "stale_phrases.1", "stale_phrases.2"]
+    + ["assurance." + k for k in ("guaranteed", "implementation_permitted", "accidentally_exploited")]
+    + ["relation." + k for k in ("demonstrates", "analogy", "counterexample")]
+    + ["header." + k for k in ("language_tool", "real_machine", "state_lives_long", "lesson", "place", "entry", "name", "evaluation",
+                               "languages", "kind", "plays_loop", "assurance", "pairs_with", "language", "teaches", "how_relates",
+                               "machine", "state_lives", "concept", "chapter", "used_by")]
+)
+LANG = BANNER = CHALLENGE_ANCHOR = None
+W, ASSURANCE_LABELS, RELATION, STALE_PHRASES = {}, {}, {}, ()
+
+
+def nfc(text):
+    return unicodedata.normalize("NFC", text)
+
+
+def set_language(lang):
+    """Load the cs.* words of `lang` into the module constants, and the diagrams.* words too. All or nothing: a missing key
+    leaves the old language in place."""
+    global LANG, BANNER, CHALLENGE_ANCHOR, W, ASSURANCE_LABELS, RELATION, STALE_PHRASES
+    cat = catalog.load(lang)
+    cat.require(["cs." + k for k in WORD_KEYS] + ["study_guides.challenge_heading"])
+    words = {k: nfc(cat.text("cs." + k)) for k in WORD_KEYS}
+    anchor = slug(nfc(cat.text("study_guides.challenge_heading")))
+    diagrams.set_language(lang)      # last, so that nothing above can fail after it has switched
+    LANG, W, CHALLENGE_ANCHOR = lang, words, anchor
+    BANNER = f"<!-- {words['banner']} -->"
+    ASSURANCE_LABELS = {"guaranteed": words["assurance.guaranteed"],
+                        "implementation-permitted": words["assurance.implementation_permitted"],
+                        "accidentally-exploited": words["assurance.accidentally_exploited"]}
+    RELATION = {k: words["relation." + k] for k in ("demonstrates", "analogy", "counterexample")}
+    STALE_PHRASES = (words["stale_phrases.1"].lower(), words["stale_phrases.2"].lower())
+
+
+def fill(key, **values):
+    """The catalog text `key` with each {name} replaced by its value (one pass, so a value is never re-expanded)."""
+    return re.sub(r"\{([a-z_]+)\}", lambda m: str(values[m.group(1)]), W[key])
+
 EVALUATION = ("eager", "lazy", "deferred", "rewriting", "search", "declarative")
 # field -> (type, required)   type: str | list
 ENTRY_FIELDS = {
@@ -55,7 +103,6 @@ CONCEPT_FIELDS = {"title": "str", "chapter": "str", "order": "str"}
 # field) for a stated reason, or it points at an exercise. Nothing else makes a concept acceptable.
 CONCEPT_OPTIONAL = {"applies-to": "str", "applies-because": "str", "exercise": "str"}
 APPLIES_TO = ("all", "has:machine")
-STALE_PHRASES = ("no entry uses this yet", "it is background for the others")
 ROLE_FIELDS = {"title": "str", "order": "str"}
 CHAPTER_FIELDS = {"title": "str"}
 
@@ -63,6 +110,8 @@ def slug(heading):
     h = re.sub(r"`", "", heading.strip().lower())
     h = re.sub(r"[^\w\- ]", "", h)
     return h.replace(" ", "-")
+
+set_language(os.environ.get("BOOK_LANG", "en"))
 
 class Problems(list):
     def add(self, where, msg):
@@ -417,30 +466,34 @@ def tbl_machines(model, L):
     rows = [(e["name"], e["machine"], e["state"],
              f"[{e['lesson'].partition('#')[0].rsplit('/', 1)[-1][:-3]}]({L.lessons(e['lesson'])})")
             for e in sorted_entries(model, lambda e: "machine" in e)]
-    return table(["Language / tool", "The machine it really is", "Where the program's state lives", "Lesson"], rows)
+    return table(heads("language_tool", "real_machine", "state_lives_long", "lesson"), rows)
+
+def heads(*keys):
+    """Column headers from the catalog (cs.header.<key>)."""
+    return [W["header." + k] for k in keys]
 
 def tbl_control_state(model, L):
     rows = [(e["state"], f"{L.lesson(e['lesson'])}: {L.entry(e['dir'])}") for e in sorted_entries(model, lambda e: "state" in e)]
-    return table(["Place", "Entry"], rows)
+    return table(heads("place", "entry"), rows)
 
 def tbl_evaluation(model, L):
     rows = [(L.entry(e["dir"]), e["name"], e["evaluation"]) for e in sorted_entries(model)]
     rows.sort(key=lambda r: (EVALUATION.index(r[2]), r[1].casefold()))
-    return table(["Entry", "Name", "Evaluation"], rows)
+    return table(heads("entry", "name", "evaluation"), rows)
 
 def tbl_glance(model, L):
     rows = []
     for e in sorted_entries(model):
         rows.append((L.entry(e["dir"]), model.lang_names(e), e["kind"], L.role(e["loop-by"], model.roles[e["loop-by"]]["title"]), e["evaluation"],
                      ASSURANCE_LABELS[e["assurance"]], L.entry(e["pairs-with"]) if "pairs-with" in e else ""))
-    return table(["Entry", "Languages", "Kind", "What plays the loop", "Evaluation", "Assurance", "Pairs with"], rows)
+    return table(heads("entry", "languages", "kind", "plays_loop", "evaluation", "assurance", "pairs_with"), rows)
 
 def cap(text):
     return text[:1].upper() + text[1:]
 
 def tbl_entries_for(model, L, pred):
     rows = [(L.entry(e["dir"]), model.lang_names(e), cap(e["teaches"])) for e in sorted_entries(model, pred)]
-    return table(["Entry", "Language", "What it teaches"], rows) if rows else ""
+    return table(heads("entry", "language", "teaches"), rows) if rows else ""
 
 def heading_for(rel):
     """The text of the heading that a lessons-relative link 'file.md#anchor' points at."""
@@ -456,30 +509,29 @@ def in_this_repo(model, L, cid):
     c, parts = model.concepts[cid], []
     how = c.get("applies-to")
     if how == "all":
-        parts.append(f"**Applies to every entry** ({len(model.entries)}). {c['applies-because']}")
+        parts.append(f"**{W['lead_in_applies_all']}** " + fill("applies_all", n=len(model.entries), because=c["applies-because"]))
     elif how:
-        n = len(model.applies(cid))
-        parts.append(f"**Applies to every entry that names its machine** ({n} of {len(model.entries)}; see the "
-                     f"[table of machines]({L.lessons('goals.md')})). {c['applies-because']}")
+        parts.append(f"**{W['lead_in_applies_machine']}** " + fill("applies_machine", n=len(model.applies(cid)), total=len(model.entries),
+                                                                    link=L.lessons("goals.md"), because=c["applies-because"]))
     rel = model.related(cid)
     if rel:
-        rows = [(L.entry(d), model.lang_names(model.entries[d]), kind, cap(model.entries[d]["teaches"])) for d, kind in rel]
-        parts.append(table(["Entry", "Language", "How it relates", "What it teaches"], rows))
+        rows = [(L.entry(d), model.lang_names(model.entries[d]), RELATION[kind], cap(model.entries[d]["teaches"])) for d, kind in rel]
+        parts.append(table(heads("entry", "language", "how_relates", "teaches"), rows))
     if "exercise" in c:
-        parts.append(f"**Practice it:** [{heading_for(c['exercise'])}]({L.lessons(c['exercise'])})."
-                     + ("" if rel or how else " No entry demonstrates this idea, so the exercise is the example."))
-    return "**In this repo:**\n\n" + "\n\n".join(parts)
+        parts.append(f"**{W['lead_in_practice']}** [{heading_for(c['exercise'])}]({L.lessons(c['exercise'])})."
+                     + ("" if rel or how else W["practice_only"]))
+    return f"**{W['lead_in_in_repo']}**\n\n" + "\n\n".join(parts)
 
 def users_of(model, cid, fmt=lambda d: f"`{d}`"):
     """Short text for the indexes: who is tied to this concept, and how."""
-    out = [fmt(d) + ("" if kind == "demonstrates" else f" ({kind})") for d, kind in model.related(cid)]
+    out = [fmt(d) + ("" if kind == "demonstrates" else f" ({RELATION[kind]})") for d, kind in model.related(cid)]
     c = model.concepts[cid]
     if c.get("applies-to") == "all":
-        out.append("all entries")
+        out.append(W["users_all"])
     elif c.get("applies-to"):
-        out.append("every entry that names its machine")
+        out.append(W["users_machine"])
     if "exercise" in c:
-        out.append("an exercise")
+        out.append(W["users_exercise"])
     return out
 
 def blk_roles(model, L, expand):
@@ -489,9 +541,9 @@ def blk_roles(model, L, expand):
                 for e in sorted_entries(model, lambda e: e["loop-by"] == rid)]
         body = expand(r["body"])
         if rows:
-            body += "\n\n**Entries:**\n\n" + table(["Entry", "Language", "The machine", "Where the state lives", "Evaluation", "Assurance"], rows)
+            body += f"\n\n**{W['lead_in_entries']}**\n\n" + table(heads("entry", "language", "machine", "state_lives", "evaluation", "assurance"), rows)
         else:
-            body += "\n\n*No entry uses this yet.*"
+            body += f"\n\n*{W['role_empty']}*"
         parts.append(f"## {r['title']}\n\n{body}")
     return "\n\n".join(parts)
 
@@ -500,7 +552,7 @@ def blk_concepts_of(model, L, lesson_file):
                  key=lambda t: (model.concepts[t]["chapter"], model.concepts[t]["order"]))
     if not ids:
         return ""
-    return "The computer-science ideas behind this page: " + ", ".join(L.concept(t) for t in ids) + "."
+    return fill("concepts_of", list=", ".join(L.concept(t) for t in ids))
 
 PLAIN_LINK = re.compile(r"(?<!!)\[([^\]]*)\]\(([^)\s]+)\)")
 
@@ -525,13 +577,11 @@ def blk_program_flow(model, L, lesson_file):
     es = sorted_entries(model, lambda e: e["lesson"].partition("#")[0] == lesson_file and e.get("_flow"))
     if not es:
         return ""
-    parts = ["## How each program runs",
-             "Each picture below is the `## Program Flow` section of an entry's README, copied here by the build. It shows how "
-             "that program makes the work happen: what the language, runtime or tool really does. "
-             f"[The introduction]({L.lessons('intro.md')}#what-the-challenge-does) shows what the challenge asks for and where entries differ."]
+    parts = ["## " + W["program_flow_heading"], fill("program_flow_intro", link=f"{L.lessons('intro.md')}#{CHALLENGE_ANCHOR}")]
     for e in es:
-        parts.append(f"### Program flow of `{e['dir']}`\n\nFrom {L.entry(e['dir'])}"
-                     f" ([source section]({L.repo('src/' + e['dir'] + '/README.md')}#program-flow)).\n\n{rebase_links(e['_flow'], e['dir'], L, model.problems)}")
+        source = f"{L.repo('src/' + e['dir'] + '/README.md')}#{slug(diagrams.SECTION)}"
+        parts.append(f"### {fill('program_flow_of', dir=e['dir'])}\n\n{fill('program_flow_from', entry=L.entry(e['dir']), link=source)}"
+                     f"\n\n{rebase_links(e['_flow'], e['dir'], L, model.problems)}")
     return "\n\n".join(parts)
 
 TABLES = {"machines": tbl_machines, "control-state": tbl_control_state, "evaluation": tbl_evaluation, "glance": tbl_glance}
@@ -567,8 +617,6 @@ def make_expander(model, L):
 
 # ---------------------------------------------------------------- generated files
 
-BANNER = "<!-- GENERATED by lessons/book/build.py from lessons/cs-source/ and the entries' frontmatter. Do not edit; edit the sources and run build.py. -->"
-
 def generate_cs(model):
     """-> {path relative to lessons/: text}"""
     out = {}
@@ -589,11 +637,11 @@ def generate_cs(model):
         if n == 9:
             ids = [r["title"] for r in sorted(model.roles.values(), key=lambda r: r["order"])]
         chapters.append(f"- [{title}]({fn})" + "".join(f"\n  - {item}" for item in ids))
-    idx = table(["Concept", "Chapter", "Entries that use it"], [
+    idx = table(heads("concept", "chapter", "used_by"), [
         (L.concept(cid), model.chapters[model.chapter_files[c["chapter"]][:-3]]["title"], ", ".join(users_of(model, cid)))
         for cid, c in sorted(model.concepts.items(), key=lambda kv: kv[1]["title"].casefold())])
-    out["cs/README.md"] = "\n\n".join([BANNER, "# By computer science concept", expand(model.index),
-                                       "## The chapters\n\n" + "\n".join(chapters), "## Concept index\n\n" + idx]) + "\n"
+    out["cs/README.md"] = "\n\n".join([BANNER, "# " + W["opener_title"], expand(model.index),
+                                       f"## {W['opener_chapters']}\n\n" + "\n".join(chapters), f"## {W['opener_index']}\n\n" + idx]) + "\n"
     return out
 
 def orphan_report(model):
@@ -617,16 +665,24 @@ def orphan_report(model):
         lines += [f"  {i}" for i in ids] if name != "demonstrated by an entry" else []
     return lines, len(groups["NOTHING"])
 
+def fold(text):
+    """Sort key: case and accents ignored (á sorts with a), but ñ sorts after n and before o, as in the Spanish alphabet.
+    For plain ASCII this is exactly str.casefold."""
+    t = nfc(text).casefold().replace("ñ", "n￿")
+    return "".join(c for c in unicodedata.normalize("NFD", t) if not unicodedata.combining(c))
+
 def letter(text):
-    for ch in text:
+    for ch in nfc(text):
         if ch.isalnum():
-            return ch.upper() if ch.isalpha() else "0-9"
+            if not ch.isalpha():
+                return "0-9"
+            return "Ñ" if ch in "ñÑ" else unicodedata.normalize("NFD", ch)[0].upper()
     return "#"
 
 def lettered(items):
     """items: [(sort key, markdown line)] -> markdown with a bold letter heading before each group."""
     out, cur = [], None
-    for key, line in sorted(items, key=lambda kv: (kv[0].casefold(), kv[0])):
+    for key, line in sorted(items, key=lambda kv: (fold(kv[0]), kv[0])):
         l = letter(key)
         if l != cur:
             out += ["", f"**{l}**", ""]
@@ -652,10 +708,8 @@ def study_guides_section():
         return f"- [{title}](study-guides/{rel})"
     langs = [entry(r) for r in paths if r.startswith("languages/")]
     concepts = [entry(r) for r in paths if r.startswith("concepts/")]
-    return "\n\n".join(["## Study guides",
-                         "Hand-written guides for advanced readers: traces of a fixed run, predictions before execution, and evidence. They are a "
-                         "separate document from the book. See [the study guides](study-guides/README.md).",
-                         "**Language families**\n\n" + "\n".join(langs), "**Concepts**\n\n" + "\n".join(concepts)])
+    return "\n\n".join(["## " + W["study_guides_heading"], W["study_guides_intro"],
+                         f"**{W['study_guides_languages']}**\n\n" + "\n".join(langs), f"**{W['study_guides_concepts']}**\n\n" + "\n".join(concepts)])
 
 def generate_index(model):
     L = Links(model, "")
@@ -668,22 +722,19 @@ def generate_index(model):
         if not es:
             continue
         pages = sorted({model.entries[d]["lesson"].partition("#")[0] for d in es})
-        langs.append((name, f"- **{name}**: lesson " + ", ".join(f"[{lesson_title(p)}]({p})" for p in pages)
-                      + "; entries " + dirs(es)))
+        langs.append((name, fill("index_language_line", name=name, entries=dirs(es),
+                                 pages=", ".join(f"[{lesson_title(p)}]({p})" for p in pages))))
     entries = [(d, f"- {L.entry(d)}: {model.lang_names(e)}; {e['kind']}; "
                    + L.role(e["loop-by"], model.roles[e["loop-by"]]["title"]))
                for d, e in model.entries.items()]
     roles = [(r["title"], f"- {L.role(rid)}: " + dirs(d for d, e in model.entries.items() if e["loop-by"] == rid))
              for rid, r in model.roles.items()]
     wrap = lambda body: '<div class="book-index">\n\n' + body + "\n\n</div>"
-    parts = [BANNER, "# Index",
-             "Three indexes, all built from the metadata at the top of each entry's README: the computer-science "
-             "concepts, the languages, and the entries themselves. In the PDF, a page number follows each link "
-             "that points inside the book.",
-             "## Index of concepts", wrap(lettered(concepts)),
-             "## Index of languages", wrap(lettered(langs)),
-             "## Index of entries", wrap(lettered(entries)),
-             "## Index of roles: what plays the loop", wrap(lettered(roles))]
+    parts = [BANNER, "# " + W["index_title"], W["index_intro"],
+             "## " + W["index_concepts"], wrap(lettered(concepts)),
+             "## " + W["index_languages"], wrap(lettered(langs)),
+             "## " + W["index_entries"], wrap(lettered(entries)),
+             "## " + W["index_roles"], wrap(lettered(roles))]
     guides = study_guides_section()
     if guides:
         parts.append(guides)

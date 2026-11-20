@@ -120,3 +120,80 @@ study_guides:
   predict_pattern: "\\bpred(?:ic|ec|ig)"
   # Words that mark unfinished text, besides TODO, TBD and the like which are language-neutral (a regular expression).
   placeholder_pattern: "marcador de posición|por (?:escribir|completar|agregar|añadir)"
+
+# lessons/book/cs.py: the words of the generated chapters, tables, indexes and blocks. {name} marks a value the code fills in.
+# Frontmatter values (kind, evaluation, tags, ids) are data, not words, and are never looked up here.
+cs:
+  banner: "GENERADO por lessons/book/build.py a partir de lessons/cs-source/ y del frontmatter de las entradas. No lo edites; edita las fuentes y ejecuta build.py."
+  # Phrases that must not come back in hand-written prose (lower case): the generator now says which concepts have entries.
+  stale_phrases:
+    - "ninguna entrada usa esto todavía"
+    - "sirve de trasfondo para las demás"
+  # The three assurance labels in generated tables, keyed by the frontmatter value (glossary: assurance_labels).
+  assurance:
+    guaranteed: "garantizado"
+    implementation_permitted: "permitido por la implementación"
+    accidentally_exploited: "aprovechado por accidente"
+  # How an entry relates to a concept (the kind shown in the "In this repo" table and in the indexes).
+  relation:
+    demonstrates: "demuestra"
+    analogy: "analogía"
+    counterexample: "contraejemplo"
+  # Table column headers.
+  header:
+    language_tool: "Lenguaje o herramienta"
+    real_machine: "La máquina que es en realidad"
+    state_lives_long: "Dónde vive el estado del programa"
+    lesson: "Lección"
+    place: "Lugar"
+    entry: "Entrada"
+    name: "Nombre"
+    evaluation: "Evaluación"
+    languages: "Lenguajes"
+    kind: "Tipo"
+    plays_loop: "Qué hace de bucle"
+    assurance: "Garantía"
+    pairs_with: "Se empareja con"
+    language: "Lenguaje"
+    teaches: "Qué enseña"
+    how_relates: "Cómo se relaciona"
+    machine: "La máquina"
+    state_lives: "Dónde vive el estado"
+    concept: "Concepto"
+    chapter: "Capítulo"
+    used_by: "Entradas que lo usan"
+  # Fixed bold lead-ins (invariant I11): the text between ** and **.
+  lead_in_in_repo: "En este repositorio:"
+  lead_in_applies_all: "Se aplica a todas las entradas"
+  lead_in_applies_machine: "Se aplica a toda entrada que nombra su máquina"
+  lead_in_practice: "Practícalo:"
+  lead_in_entries: "Entradas:"
+  # Cross-cutting statements. {n} entries of {total}; {link} the table of machines (a Markdown link target); {because} the concept's reason.
+  applies_all: "({n}). {because}"
+  applies_machine: "({n} de {total}; mira la [tabla de máquinas]({link})). {because}"
+  practice_only: " Ninguna entrada demuestra esta idea, así que el ejercicio es el ejemplo."
+  users_all: "todas las entradas"
+  users_machine: "toda entrada que nombra su máquina"
+  users_exercise: "un ejercicio"
+  role_empty: "Ninguna entrada usa esto todavía."
+  concepts_of: "Las ideas de ciencias de la computación detrás de esta página: {list}."
+  # The "How each program runs" block of a lesson page. {link} points at the introduction's challenge section.
+  program_flow_heading: "Cómo corre cada programa"
+  program_flow_intro: "Cada imagen de abajo es la sección `## Flujo del programa` del README de una entrada, copiada aquí por la compilación. Muestra cómo ese programa hace el trabajo: lo que el lenguaje, el entorno de ejecución o la herramienta hacen en realidad. [La introducción]({link}) muestra qué pide el reto y en qué se distinguen las entradas."
+  program_flow_of: "Flujo del programa de `{dir}`"
+  program_flow_from: "Desde {entry} ([sección original]({link}))."
+  # The generated chapter opener and the book index.
+  opener_title: "Por concepto de ciencias de la computación"
+  opener_chapters: "Los capítulos"
+  opener_index: "Índice de conceptos"
+  index_title: "Índice"
+  index_intro: "Tres índices, todos construidos con los metadatos al comienzo del README de cada entrada: los conceptos de ciencias de la computación, los lenguajes y las entradas mismas. En el PDF, un número de página sigue a cada enlace que apunta dentro del libro."
+  index_concepts: "Índice de conceptos"
+  index_languages: "Índice de lenguajes"
+  index_entries: "Índice de entradas"
+  index_roles: "Índice de papeles: qué hace de bucle"
+  index_language_line: "- **{name}**: lección {pages}; entradas {entries}"
+  study_guides_heading: "Guías de estudio"
+  study_guides_intro: "Guías escritas a mano para lectores avanzados: trazas de una ejecución fija, predicciones antes de ejecutar y evidencia. Son un documento aparte del libro. Mira [las guías de estudio](study-guides/README.md)."
+  study_guides_languages: "Familias de lenguajes"
+  study_guides_concepts: "Conceptos"

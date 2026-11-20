@@ -31,3 +31,5 @@
 - After a Spanish heading changes run `python3 -I tools/anchors.py --generate`, remap links with `--remap FILE` and run `--check`; commit translation/anchors.json with the heading change, and keep headings NFC so the build slug equals the GitHub slug.
 - Keep `slug()` in lessons/book/study_guides.py, build.py and cs.py a verbatim copy of each other (tools/test_anchors.py execs them); normalize text at the call site (nfc), never inside slug().
 - Translate "What the challenge does" in lessons/intro.md as exactly the catalog value study_guides.challenge_heading, because SHARED_CHALLENGE links to its slug.
+- Before refactoring a generator, hash its English output with translation/work/cs_snapshot.py (sha256 of generate_all) and require the same hash after; heredocs (`python3 - <<EOF`) are denied, so edit with the Edit tool.
+- When testing a Spanish generator over the still-English READMEs, call diagrams.set_language("en") after cs.set_language("es") so the Program Flow sections parse; generate_all lists a block page only when its text differs, so fill missing ones from disk before comparing.

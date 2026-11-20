@@ -6,3 +6,5 @@ lessons/book/diagrams.py  # P2-008: words from the locale catalog (diagrams.*)
 lessons/book/test_diagrams.py  # P2-008: Spanish fixtures, English literals guard
 lessons/book/study_guides.py  # P2-009: words and SHARED_CHALLENGE from the locale catalog (study_guides.*)
 lessons/book/test_study_guides.py  # P2-009: Spanish contract on a synthetic guide, English literals guard
+lessons/book/cs.py  # P2-010: generated words from the locale catalog (cs.*), accent-aware index order
+lessons/book/test_cs.py  # P2-010: Spanish words over the English sources, English literals guard, atomic language switch
