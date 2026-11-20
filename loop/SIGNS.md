@@ -27,3 +27,4 @@
 - After touching tools/invariants.py run `python3 -I tools/test_invariants.py`; style checks (I7, I9, I10, I12, I14) must read the MASKED target with placeholders stripped, never the restored text, and a waiver is only an exception-register row naming the segment and the invariant.
 - After touching tools/verify.py run `python3 -I tools/test_verify.py`; the English side of every check comes from the pinned clone, and tests must never start the English repo gates (`--release` without `--no-gates` takes many minutes).
 - Run `python3 -I tools/verify.py --fast` before every commit; a localized tooling file must be added to translation/tooling-allowlist.txt in the same commit or I13 fails.
+- After a Spanish heading changes run `python3 -I tools/anchors.py --generate`, remap links with `--remap FILE` and run `--check`; commit translation/anchors.json with the heading change, and keep headings NFC so the build slug equals the GitHub slug.

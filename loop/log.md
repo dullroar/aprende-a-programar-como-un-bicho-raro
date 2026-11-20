@@ -28,3 +28,4 @@
 31 P2-004 done tools/mermaid.py + tools/test_mermaid.py (37 tests); segment.py emits mermaid_label segments (+1433, total 8827); I2/I5/I10 fail closed; T0 and apply identity pass on 212 files (finished uncommitted work left by stalled iterations 27 to 30)
 32 P2-005 done tools/invariants.py (I1 to I16: check_segment, check_po, check_files, protected_files) + 100 tests, each invariant with passing and failing cases; I13 tooling-allowlist report goes to P2-006, I14 exercise-ID ambiguity to P2-014
 33 P2-006 done tools/verify.py (--fast touched files, --release everything incl. tooling allowlist report, counts, gates, double build) + 35 tests; fast run 1.3s; release --no-gates fails only on I16 no-PO for 212 files (expected)
+34 P2-007 done tools/anchors.py + 47 tests; translation/anchors.json (223 files, 1314 headings); github/build/pandoc slug rules (pandoc parity tested), per-file map, link remap and check; --check is clean
