@@ -12,7 +12,7 @@
 
 Iterations 27 to 30 stalled on P2-004 (stall breaker at 30; usage-limit replies were the likely cause, fixed in loop fix 4). Their uncommitted work was complete enough to finish in iteration 31.
 
-## P3B-007 (iteration 82): blocked, English test tooling still hard-codes renamed paths
+## P3B-007 (iteration 82): blocked, English test tooling still hard-codes renamed paths (RESOLVED iter 85: P3B-006b done, gate passed)
 - Evidence: `python3 -I tools/verify.py --release` (second run, after the BOOK_LANG=es fix). Failing gates caused by paths: test_repo_links (`lessons/study-guides/metadata.yaml`), test_pdf_lint (`lessons/front-matter.md`), test_cs, test_study_guides, test_editorial, test_curriculum (`lessons/goals.md`, `docs/curriculum.md`, ...). Full write-up and the passed checks: translation/reviews/p3b-gate.md.
 - Already fixed here: gates now run with BOOK_LANG=es (baseline.gate_env, verify.run_release, test in test_verify).
 - Not fixed: the test files and lessons/book/*.py literals (about ten files, wider than one retry). tools/tooling_paths.py misses them and must be widened.
