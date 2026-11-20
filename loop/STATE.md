@@ -1,8 +1,8 @@
 # loop/STATE.md (keep to 60 lines; refreshed by every iteration)
 
 - **Edition:** v4-es.0-rc1 (working)    **English SHA:** 48a4429c0a22b2aac628b256a50c07d1816bcb80
-- **Iteration:** 58    **Stage:** 3 (pilot) gate passed, next P4-000    **Last result:** P3-010 done (Phase 3 gate: lock ok, fast verify on the 5 pilot files ok, curriculum --check ok; known pending: anchors link in generated lessons/languages/forth.md until P5-001)
-- **Tasks:** todo 90 (13 seed + 77 generated) | doing 0 | done 48 | blocked 0 | skipped 0
+- **Iteration:** 59    **Stage:** 4 (bulk translation) started, next P4-src-1    **Last result:** P4-000 done (68 translate + 9 audit tasks generated; all 212 authored files covered once; known pending: anchors link in generated lessons/languages/forth.md until P5-001)
+- **Tasks:** todo 89 (12 seed + 77 generated) | doing 0 | done 49 | blocked 0 | skipped 0
 - **Next task:** run `python3 tools/next_task.py` (PO files live at translation/po/<path>.po, written by tools/apply.py --init)
 - **Budget:** spent $0.00 of $100; iterations 0 of 300
 - **Translate progress:** segments accepted 411 / total 8827 (7394 prose + 1433 Mermaid labels) ; files done 5 / 212 (src/forth/README.md, lessons/cs-source/concepts/recursion.md, lessons/study-guides/languages/forth.md, docs/curriculum.md, lessons/study-guides/languages/apl.md)
