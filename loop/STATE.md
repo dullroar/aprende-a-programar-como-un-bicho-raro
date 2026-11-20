@@ -1,7 +1,7 @@
 # loop/STATE.md (keep to 60 lines; refreshed by every iteration)
 
 - **Edition:** v4-es.0-rc1 (working)    **English SHA:** 48a4429c0a22b2aac628b256a50c07d1816bcb80
-- **Iteration:** 4    **Stage:** 0    **Last result:** P0-002 blocked
+- **Iteration:** 5    **Stage:** 0    **Last result:** DONE-WITH-BLOCKERS (no eligible task; P0-002 blocked)
 - **Tasks:** todo 59 | doing 0 | done 1 | blocked 1 | skipped 0
 - **Next task:** run `python3 tools/next_task.py`
 - **Budget:** spent $0.00 of $100; iterations 0 of 300
