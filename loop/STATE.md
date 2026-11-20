@@ -1,9 +1,9 @@
 # loop/STATE.md (keep to 60 lines; refreshed by every iteration)
 
 - **Edition:** v4-es.0-rc1 (working)    **English SHA:** 48a4429c0a22b2aac628b256a50c07d1816bcb80
-- **Iteration:** 10    **Stage:** 0    **Last result:** P0-005 done (tools/baseline.py; translation/baseline.md; 14/14 English gates exit 0)
-- **Tasks:** todo 56 | doing 0 | done 5 | blocked 0 | skipped 0
-- **Next task:** tools/next_task.py not built yet (P0-011); take the first `todo` in loop/queue/seed.jsonl whose deps are done (P0-006)
+- **Iteration:** 11    **Stage:** 0    **Last result:** P0-006 done (LICENSE is MIT; EXC-001 in translation/exception-register.jsonl)
+- **Tasks:** todo 55 | doing 0 | done 6 | blocked 0 | skipped 0
+- **Next task:** tools/next_task.py not built yet (P0-011); take the first `todo` in loop/queue/seed.jsonl whose deps are done (P0-007)
 - **Budget:** spent $0.00 of $100; iterations 0 of 300
 - **Translate progress:** segments accepted 0 / total ? ; files done 0 / ?
 - **Last audit:** none    **Next audit due after:** 8 translate tasks
