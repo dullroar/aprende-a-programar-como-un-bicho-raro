@@ -4,3 +4,5 @@
 - If the sandbox denies `tar -x` of the English tree into the repo, block P0-002 at once; do not retry variants or hand-copy files.
 - Compound Bash (&&, ;, redirects mixed with other commands) is denied; a single pipeline `git -C <english_clone_path> archive <sha> | tar -x -C <repo> --exclude=.gitignore` is allowed. Edit files with Edit/Write, not shell.
 - Import the English tree with: git -C <english_clone_path> archive <sha> | tar -x -C . ; keep this repo's own .gitignore entries and loop/, translation/, ralph-kit-es/ and the plan file intact.
+- Never extract the English tree with `--exclude=.gitignore` (it drops nested ones); `tools/inventory.py --check` compares the file set to the pinned SHA and catches this.
+- Run `python3 -I tools/test_*.py` for tool tests; keep Bash calls single-command when possible, tools in tools/ read files with `with open`.
