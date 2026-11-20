@@ -392,7 +392,7 @@ So the top-level `lessons/` folder cannot become `lecciones/` unless Jim chooses
 | `lessons/problems-overcome.md`, `blocking-problems.md` | `lessons/problemas-superados.md`, `problemas-bloqueantes.md` |
 | `lessons/answers-key.md`, `index.md`, `front-matter.md` | `lessons/respuestas.md`, `indice.md`, `preliminares.md` |
 | `docs/curriculum.md` | `docs/plan-de-estudios.md` |
-| `CHALLENGE.md`, `house-style.md` | `DESAFIO.md`, `guia-de-estilo.md` |
+| `CHALLENGE.md`, `house-style.md` | `RETO.md`, `guia-de-estilo.md` |
 
 **Naming rules.** ASCII lowercase kebab-case with no accents or ñ (portable across Windows, EPUB and URLs). Take each word from the glossary, so the same Spanish term appears in file names and prose. Proper names and language names stay (`forth`, `awk`, `cobol`, `make`, `cmake`); connecting words are translated (`and` becomes `y`). Keep extensions and numeric prefixes. All-caps document names stay all-caps in Spanish (`DESAFIO.md`). The tool rejects collisions and any non-bijective mapping.
 

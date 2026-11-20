@@ -7,7 +7,7 @@
 # Naming rules: ASCII lowercase kebab-case, no accents, no n-tilde; take each word from the glossary
 # (translation/glossary.es.yaml) so file names and prose agree; language and command names stay
 # (forth, awk, make, cmake); "and" becomes "y"; keep extensions and numeric prefixes; an all-caps
-# document name stays all-caps (DESAFIO.md).
+# document name stays all-caps (RETO.md).
 schema: 1
 
 # English directory path -> Spanish name of that last path component.
@@ -21,7 +21,7 @@ dirs:
 
 # English file path -> Spanish file name (with extension).
 files:
-  CHALLENGE.md: DESAFIO.md
+  CHALLENGE.md: RETO.md
   house-style.md: guia-de-estilo.md
   docs/curriculum.md: plan-de-estudios.md
   docs/stacked-bar-charts.md: graficos-de-barras-apiladas.md
@@ -42,14 +42,14 @@ files:
   lessons/cs/04-evaluation-and-demand.md: 04-evaluacion-y-demanda.md
   lessons/cs/05-formal-languages-as-computational-substrates.md: 05-lenguajes-formales-como-sustratos-de-computacion.md
   lessons/cs/06-state-beyond-variables.md: 06-estado-mas-alla-de-las-variables.md
-  lessons/cs/07-effects-errors-and-commitment.md: 07-efectos-errores-y-compromiso.md
+  lessons/cs/07-effects-errors-and-commitment.md: 07-efectos-errores-y-confirmacion.md
   lessons/cs/08-abstraction-leaks-and-implementation-dependence.md: 08-fugas-de-abstraccion-y-dependencia-de-la-implementacion.md
   lessons/cs/09-comparative-case-studies.md: 09-casos-de-estudio-comparativos.md
-  lessons/cs/10-events-callbacks-and-reactive-control-flow.md: 10-eventos-callbacks-y-flujo-de-control-reactivo.md
+  lessons/cs/10-events-callbacks-and-reactive-control-flow.md: 10-eventos-retrollamadas-y-flujo-de-control-reactivo.md
   lessons/study-guides/concepts/comparative-machine-design.md: diseno-comparativo-de-maquinas.md
-  lessons/study-guides/concepts/effects-errors-and-commitment.md: efectos-errores-y-compromiso.md
+  lessons/study-guides/concepts/effects-errors-and-commitment.md: efectos-errores-y-confirmacion.md
   lessons/study-guides/concepts/evaluation-demand-and-laziness.md: evaluacion-demanda-y-pereza.md
-  lessons/study-guides/concepts/events-callbacks-and-reactive-control.md: eventos-callbacks-y-control-reactivo.md
+  lessons/study-guides/concepts/events-callbacks-and-reactive-control.md: eventos-retrollamadas-y-control-reactivo.md
   lessons/study-guides/concepts/formal-languages-and-weird-machines.md: lenguajes-formales-y-maquinas-raras.md
   lessons/study-guides/concepts/portability-abstraction-and-cost.md: portabilidad-abstraccion-y-costo.md
   lessons/study-guides/concepts/reading-adversarial-programs.md: lectura-de-programas-adversariales.md

@@ -5,14 +5,20 @@ Checks: the file parses; every term has id/en/es; ids are unique; `banned` is a 
 no approved `es` rendering is banned for another term; the assurance labels and the frozen 40-rule
 wording are present and consistent; no literal phase letters appear in phase entries.
 
-Usage: python3 -I tools/glossary_check.py [path]     (exit 0 = OK, 1 = problems)
+Path names (P3B-002): every word of a Spanish file or folder name in translation/path-names.es.yaml must be a
+word of a `terms` entry, of `path_words`, a function word or a proper name; a glossary-banned word fails.
+
+Usage: python3 -I tools/glossary_check.py [glossary [path-names]]     (exit 0 = OK, 1 = problems)
 """
 import os
+import re
 import sys
+import unicodedata
 
 import yaml
 
 DEFAULT_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "translation", "glossary.es.yaml")
+PATH_NAMES = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "translation", "path-names.es.yaml")
 
 REQUIRED_LABELS = {
     "guaranteed": "garantizado",
@@ -113,6 +119,66 @@ def check(data):
     return problems
 
 
+def fold(word):
+    """Lowercase and strip accents and n-tilde marks: the form a path name is written in."""
+    return "".join(c for c in unicodedata.normalize("NFD", word.lower()) if unicodedata.category(c) != "Mn")
+
+
+def _words(text):
+    return [fold(w) for w in re.findall(r"[^\W\d_]+", str(text))]
+
+
+def _forms(word):
+    return {word, word + "s", word + "es", word[:-1] if word.endswith("s") else word}
+
+
+def path_name_words(names):
+    """Content tokens of every Spanish folder and file name in a path-names mapping (extension dropped)."""
+    out = {}
+    values = list((names.get("dirs") or {}).values()) + list((names.get("files") or {}).values())
+    for v in values:
+        stem = str(v).rsplit(".", 1)[0] if "." in str(v) else str(v)
+        for w in _words(stem):
+            out.setdefault(w, v)
+    return out
+
+
+def check_path_words(data, names):
+    """Every word of a Spanish path name must come from the glossary (plan 5.6), and none may be a banned word."""
+    problems = []
+    known = set()
+    for t in data.get("terms", []) or []:
+        for w in _words(t.get("es", "")):
+            known |= _forms(w)
+    path_words = data.get("path_words")
+    if not isinstance(path_words, list):
+        return ["path_words: missing"]
+    for i, pw in enumerate(path_words):
+        if not isinstance(pw, dict) or not str(pw.get("en", "")).strip() or not str(pw.get("es", "")).strip():
+            problems.append(f"path_words[{i}]: needs non-empty 'en' and 'es'")
+            continue
+        for w in _words(pw["es"]):
+            known |= _forms(w)
+    allowed = set()
+    for key in ("path_function_words", "path_proper_names"):
+        vals = data.get(key)
+        if not isinstance(vals, list) or not vals:
+            problems.append(f"{key}: missing or empty")
+            continue
+        allowed |= {fold(v) for v in vals}
+    banned = {}
+    for t in data.get("terms", []) or []:
+        for b in t.get("banned") or []:
+            if isinstance(b, str) and len(_words(b)) == 1 and fold(b) not in known:
+                banned.setdefault(fold(b), t.get("id"))
+    for word, name in sorted(path_name_words(names).items()):
+        if word in banned:
+            problems.append(f"path word '{word}' in '{name}' is banned by glossary term '{banned[word]}'")
+        elif not (_forms(word) & (known | allowed)):
+            problems.append(f"path word '{word}' in '{name}' has no glossary entry (terms or path_words)")
+    return problems
+
+
 def main(argv):
     path = argv[1] if len(argv) > 1 else DEFAULT_PATH
     try:
@@ -121,6 +187,14 @@ def main(argv):
         print(f"glossary_check: cannot load {path}: {exc}")
         return 1
     problems = check(data)
+    names_path = argv[2] if len(argv) > 2 else PATH_NAMES
+    if os.path.exists(names_path):
+        try:
+            names = load(names_path)
+        except (OSError, yaml.YAMLError) as exc:
+            print(f"glossary_check: cannot load {names_path}: {exc}")
+            return 1
+        problems += check_path_words(data, names)
     if problems:
         for p in problems:
             print("PROBLEM:", p)

@@ -324,7 +324,7 @@ class RealRepoTests(unittest.TestCase):
         self.assertEqual(m["lessons/study-guides/languages/make-and-cmake.md"],
                          "lessons/guias-de-estudio/lenguajes/make-y-cmake.md")
         self.assertEqual(m["docs/curriculum.md"], "docs/plan-de-estudios.md")
-        self.assertEqual(m["CHALLENGE.md"], "DESAFIO.md")
+        self.assertEqual(m["CHALLENGE.md"], "RETO.md")
         self.assertEqual(m["lessons/cs/01-reading-an-adversarial-program.md"].split("/")[1], "informatica")
 
     def test_no_frozen_file_mentions_a_renamed_path(self):

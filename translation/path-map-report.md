@@ -48,7 +48,7 @@ Folders below `src/`, `sandbox/` and `gradle/` are kept (frozen trees) and are n
 | `.github/CODEOWNERS` | (same) | kept | frozen: byte lock covers it |
 | `.github/workflows/pdf-release-gate.yml` | (same) | kept | keep-list: GitHub or tooling recognizes this exact name |
 | `.github/workflows/sandbox-gate.yml` | (same) | kept | keep-list: GitHub or tooling recognizes this exact name |
-| `CHALLENGE.md` | `DESAFIO.md` | renamed | renamed |
+| `CHALLENGE.md` | `RETO.md` | renamed | renamed |
 | `CONTRIBUTING.md` | (same) | kept | keep-list: GitHub or tooling recognizes this exact name |
 | `LICENSE` | (same) | kept | frozen: byte lock covers it |
 | `README.md` | (same) | kept | reference closure: lessons/book/diagrams/package.json (frozen) mentions it |
@@ -226,10 +226,10 @@ Folders below `src/`, `sandbox/` and `gradle/` are kept (frozen trees) and are n
 | `lessons/cs/04-evaluation-and-demand.md` | `lessons/informatica/04-evaluacion-y-demanda.md` | renamed | renamed |
 | `lessons/cs/05-formal-languages-as-computational-substrates.md` | `lessons/informatica/05-lenguajes-formales-como-sustratos-de-computacion.md` | renamed | renamed |
 | `lessons/cs/06-state-beyond-variables.md` | `lessons/informatica/06-estado-mas-alla-de-las-variables.md` | renamed | renamed |
-| `lessons/cs/07-effects-errors-and-commitment.md` | `lessons/informatica/07-efectos-errores-y-compromiso.md` | renamed | renamed |
+| `lessons/cs/07-effects-errors-and-commitment.md` | `lessons/informatica/07-efectos-errores-y-confirmacion.md` | renamed | renamed |
 | `lessons/cs/08-abstraction-leaks-and-implementation-dependence.md` | `lessons/informatica/08-fugas-de-abstraccion-y-dependencia-de-la-implementacion.md` | renamed | renamed |
 | `lessons/cs/09-comparative-case-studies.md` | `lessons/informatica/09-casos-de-estudio-comparativos.md` | renamed | renamed |
-| `lessons/cs/10-events-callbacks-and-reactive-control-flow.md` | `lessons/informatica/10-eventos-callbacks-y-flujo-de-control-reactivo.md` | renamed | renamed |
+| `lessons/cs/10-events-callbacks-and-reactive-control-flow.md` | `lessons/informatica/10-eventos-retrollamadas-y-flujo-de-control-reactivo.md` | renamed | renamed |
 | `lessons/cs/README.md` | `lessons/informatica/README.md` | renamed | keep-list: README.md is the folder landing page (the folder may move); folder renamed |
 | `lessons/curriculum/build.py` | `lessons/plan-de-estudios/build.py` | renamed | tooling or archival file: name kept (moves only with a renamed folder); folder renamed |
 | `lessons/curriculum/front-matter.md` | `lessons/plan-de-estudios/preliminares.md` | renamed | renamed |
@@ -268,9 +268,9 @@ Folders below `src/`, `sandbox/` and `gradle/` are kept (frozen trees) and are n
 | `lessons/study-guides/build.py` | `lessons/guias-de-estudio/build.py` | renamed | tooling or archival file: name kept (moves only with a renamed folder); folder renamed |
 | `lessons/study-guides/chapters.txt` | `lessons/guias-de-estudio/chapters.txt` | renamed | tooling or archival file: name kept (moves only with a renamed folder); folder renamed |
 | `lessons/study-guides/concepts/comparative-machine-design.md` | `lessons/guias-de-estudio/conceptos/diseno-comparativo-de-maquinas.md` | renamed | renamed |
-| `lessons/study-guides/concepts/effects-errors-and-commitment.md` | `lessons/guias-de-estudio/conceptos/efectos-errores-y-compromiso.md` | renamed | renamed |
+| `lessons/study-guides/concepts/effects-errors-and-commitment.md` | `lessons/guias-de-estudio/conceptos/efectos-errores-y-confirmacion.md` | renamed | renamed |
 | `lessons/study-guides/concepts/evaluation-demand-and-laziness.md` | `lessons/guias-de-estudio/conceptos/evaluacion-demanda-y-pereza.md` | renamed | renamed |
-| `lessons/study-guides/concepts/events-callbacks-and-reactive-control.md` | `lessons/guias-de-estudio/conceptos/eventos-callbacks-y-control-reactivo.md` | renamed | renamed |
+| `lessons/study-guides/concepts/events-callbacks-and-reactive-control.md` | `lessons/guias-de-estudio/conceptos/eventos-retrollamadas-y-control-reactivo.md` | renamed | renamed |
 | `lessons/study-guides/concepts/formal-languages-and-weird-machines.md` | `lessons/guias-de-estudio/conceptos/lenguajes-formales-y-maquinas-raras.md` | renamed | renamed |
 | `lessons/study-guides/concepts/portability-abstraction-and-cost.md` | `lessons/guias-de-estudio/conceptos/portabilidad-abstraccion-y-costo.md` | renamed | renamed |
 | `lessons/study-guides/concepts/reading-adversarial-programs.md` | `lessons/guias-de-estudio/conceptos/lectura-de-programas-adversariales.md` | renamed | renamed |
@@ -544,48 +544,19 @@ Folders below `src/`, `sandbox/` and `gradle/` are kept (frozen trees) and are n
 ## Warnings
 
 - lessons/answers-key.md: file name answers-key.md appears in frozen lessons/tools/verify-exercises.sh (check it is not a path)
-- word 'adaptaciones' in a Spanish path is not in the glossary (P3B-002 adds it): lessons/study-guides/languages/csharp-linq-xaml-and-ports.md
 - word 'adversariales' in a Spanish path is not in the glossary (P3B-002 adds it): lessons/study-guides/concepts/reading-adversarial-programs.md
-- word 'alla' in a Spanish path is not in the glossary (P3B-002 adds it): lessons/cs/06-state-beyond-variables.md
-- word 'apiladas' in a Spanish path is not in the glossary (P3B-002 adds it): docs/stacked-bar-charts.md
-- word 'barras' in a Spanish path is not in the glossary (P3B-002 adds it): docs/stacked-bar-charts.md
-- word 'bloqueantes' in a Spanish path is not in the glossary (P3B-002 adds it): lessons/blocking-problems.md
-- word 'callbacks' in a Spanish path is not in the glossary (P3B-002 adds it): lessons/cs/10-events-callbacks-and-reactive-control-flow.md
-- word 'casos' in a Spanish path is not in the glossary (P3B-002 adds it): lessons/cs/09-comparative-case-studies.md
-- word 'comparativo' in a Spanish path is not in the glossary (P3B-002 adds it): lessons/study-guides/concepts/comparative-machine-design.md
 - word 'comparativos' in a Spanish path is not in the glossary (P3B-002 adds it): lessons/cs/09-comparative-case-studies.md
-- word 'compromiso' in a Spanish path is not in the glossary (P3B-002 adds it): lessons/cs/07-effects-errors-and-commitment.md
-- word 'computacion' in a Spanish path is not in the glossary (P3B-002 adds it): lessons/cs/05-formal-languages-as-computational-substrates.md
 - word 'conceptos' in a Spanish path is not in the glossary (P3B-002 adds it): lessons/study-guides/concepts/comparative-machine-design.md
-- word 'continuaciones' in a Spanish path is not in the glossary (P3B-002 adds it): lessons/cs/03-control-flow-and-continuations.md
-- word 'cuenta' in a Spanish path is not in the glossary (P3B-002 adds it): lessons/cs/02-what-counts-as-a-machine.md
-- word 'dependencia' in a Spanish path is not in the glossary (P3B-002 adds it): lessons/cs/08-abstraction-leaks-and-implementation-dependence.md
-- word 'desafio' in a Spanish path is not in the glossary (P3B-002 adds it): CHALLENGE.md
-- word 'diseno' in a Spanish path is not in the glossary (P3B-002 adds it): lessons/study-guides/concepts/comparative-machine-design.md
 - word 'editores' in a Spanish path is not in the glossary (P3B-002 adds it): lessons/languages/editors.md
 - word 'efectos' in a Spanish path is not in the glossary (P3B-002 adds it): lessons/cs/07-effects-errors-and-commitment.md
 - word 'errores' in a Spanish path is not in the glossary (P3B-002 adds it): lessons/cs/07-effects-errors-and-commitment.md
-- word 'estilo' in a Spanish path is not in the glossary (P3B-002 adds it): house-style.md
 - word 'formales' in a Spanish path is not in the glossary (P3B-002 adds it): lessons/cs/05-formal-languages-as-computational-substrates.md
-- word 'fugas' in a Spanish path is not in the glossary (P3B-002 adds it): lessons/cs/08-abstraction-leaks-and-implementation-dependence.md
-- word 'graficos' in a Spanish path is not in the glossary (P3B-002 adds it): docs/stacked-bar-charts.md
 - word 'guias' in a Spanish path is not in the glossary (P3B-002 adds it): lessons/study-guides/concepts/comparative-machine-design.md
-- word 'indice' in a Spanish path is not in the glossary (P3B-002 adds it): lessons/index.md
-- word 'informatica' in a Spanish path is not in the glossary (P3B-002 adds it): lessons/cs/01-reading-an-adversarial-program.md
-- word 'introduccion' in a Spanish path is not in the glossary (P3B-002 adds it): lessons/intro.md
-- word 'lectura' in a Spanish path is not in the glossary (P3B-002 adds it): lessons/cs/01-reading-an-adversarial-program.md
 - word 'maquinas' in a Spanish path is not in the glossary (P3B-002 adds it): lessons/study-guides/concepts/comparative-machine-design.md
-- word 'motores' in a Spanish path is not in the glossary (P3B-002 adds it): lessons/study-guides/languages/regex-engines-and-sed.md
-- word 'objetivos' in a Spanish path is not in the glossary (P3B-002 adds it): lessons/goals.md
 - word 'patrones' in a Spanish path is not in the glossary (P3B-002 adds it): lessons/patterns.md
-- word 'pereza' in a Spanish path is not in the glossary (P3B-002 adds it): lessons/study-guides/concepts/evaluation-demand-and-laziness.md
-- word 'preliminares' in a Spanish path is not in the glossary (P3B-002 adds it): lessons/curriculum/front-matter.md
-- word 'problemas' in a Spanish path is not in the glossary (P3B-002 adds it): lessons/blocking-problems.md
 - word 'programas' in a Spanish path is not in the glossary (P3B-002 adds it): lessons/study-guides/concepts/reading-adversarial-programs.md
 - word 'raras' in a Spanish path is not in the glossary (P3B-002 adds it): lessons/study-guides/concepts/formal-languages-and-weird-machines.md
-- word 'reactivo' in a Spanish path is not in the glossary (P3B-002 adds it): lessons/cs/10-events-callbacks-and-reactive-control-flow.md
-- word 'respuestas' in a Spanish path is not in the glossary (P3B-002 adds it): lessons/answers-key.md
-- word 'superados' in a Spanish path is not in the glossary (P3B-002 adds it): lessons/problems-overcome.md
+- word 'retrollamadas' in a Spanish path is not in the glossary (P3B-002 adds it): lessons/cs/10-events-callbacks-and-reactive-control-flow.md
 - word 'sustratos' in a Spanish path is not in the glossary (P3B-002 adds it): lessons/cs/05-formal-languages-as-computational-substrates.md
 - word 'variables' in a Spanish path is not in the glossary (P3B-002 adds it): lessons/cs/06-state-beyond-variables.md
 

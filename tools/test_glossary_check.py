@@ -100,5 +100,58 @@ class NegativeTests(unittest.TestCase):
         self.assertEqual(gc.check(["x"]), ["glossary is not a mapping"])
 
 
+def names(**files):
+    return {"dirs": {"lessons/cs": "informatica"}, "files": {"A.md": "x.md", **{k: v for k, v in files.items()}}}
+
+
+class PathWordTests(unittest.TestCase):
+    def test_real_path_names_are_clean(self):
+        self.assertEqual(gc.check_path_words(good(), gc.load(gc.PATH_NAMES)), [])
+
+    def test_accents_and_plurals_fold(self):
+        d = good()
+        n = {"dirs": {}, "files": {"a": "01-guias-de-estudio.md", "b": "indice.md", "c": "maquinas-raras.md"}}
+        self.assertEqual(gc.check_path_words(d, n), [])
+
+    def test_word_without_entry_is_caught(self):
+        n = {"dirs": {}, "files": {"a": "zapatos.md"}}
+        problems = gc.check_path_words(good(), n)
+        self.assertEqual(len(problems), 1)
+        self.assertIn("zapatos", problems[0])
+
+    def test_banned_word_in_a_path_is_caught(self):
+        # "desafio" is banned for the glossary term "reto"; the name DESAFIO.md was exactly this mistake.
+        n = {"dirs": {}, "files": {"CHALLENGE.md": "DESAFIO.md"}}
+        problems = gc.check_path_words(good(), n)
+        self.assertTrue(any("banned" in p and "desafio" in p for p in problems), problems)
+
+    def test_banned_commitment_and_callback_are_caught(self):
+        n = {"dirs": {}, "files": {"a": "efectos-errores-y-compromiso.md", "b": "eventos-callbacks.md"}}
+        problems = gc.check_path_words(good(), n)
+        self.assertTrue(any("compromiso" in p for p in problems), problems)
+        self.assertTrue(any("callbacks" in p for p in problems), problems)
+
+    def test_removing_a_path_word_entry_is_caught(self):
+        d = good()
+        d["path_words"] = [p for p in d["path_words"] if p["es"] != "informática"]
+        problems = gc.check_path_words(d, {"dirs": {"lessons/cs": "informatica"}, "files": {}})
+        self.assertTrue(any("informatica" in p for p in problems), problems)
+
+    def test_proper_names_and_function_words_pass_but_only_when_listed(self):
+        d = good()
+        n = {"dirs": {}, "files": {"a": "make-y-cmake.md"}}
+        self.assertEqual(gc.check_path_words(d, n), [])
+        d["path_proper_names"].remove("cmake")
+        self.assertTrue(any("cmake" in p for p in gc.check_path_words(d, n)))
+
+    def test_missing_section_is_caught(self):
+        d = good()
+        del d["path_words"]
+        self.assertEqual(gc.check_path_words(d, {"dirs": {}, "files": {}}), ["path_words: missing"])
+
+    def test_path_words_do_not_reach_the_term_list(self):
+        self.assertFalse({p["es"] for p in good()["path_words"]} & {t["es"] for t in good()["terms"]})
+
+
 if __name__ == "__main__":
     unittest.main()

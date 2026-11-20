@@ -895,3 +895,47 @@ terms:
     en: debugging
     es: depuración
     banned: [debugueo]
+
+# ---------------------------------------------------------------------------
+# Path words (plan 5.6, P3B-002). Spanish words that appear ONLY in student-facing file and folder names
+# (translation/path-names.es.yaml) and have no `terms` entry. Kept apart from `terms` on purpose: lint I7
+# and the translator read `terms` only, so a name word such as "indice" cannot start demanding
+# "índice" wherever the English says "index" in another sense. tools/glossary_check.py fails when a word of
+# a Spanish path name is neither in `terms` (any word of an `es`), nor here, nor a function word or a proper name.
+# Paths are ASCII (no accents, no n-tilde); `es` below is the correctly accented prose form of the path word.
+# ---------------------------------------------------------------------------
+path_words:
+  - {en: "computer science (folder lessons/cs)", es: informática}
+  - {en: "ports (adaptations of a program)",      es: adaptaciones}
+  - {en: beyond,                                  es: más allá}
+  - {en: stacked,                                 es: apiladas}
+  - {en: "bars (bar chart)",                      es: barras}
+  - {en: "charts",                                es: gráficos}
+  - {en: blocking,                                es: bloqueantes}
+  - {en: "case studies",                          es: casos de estudio}
+  - {en: comparative,                             es: comparativo}
+  - {en: computation,                             es: computación}
+  - {en: continuations,                           es: continuaciones}
+  - {en: "counts (what counts as a machine)",     es: cuenta}
+  - {en: dependence,                              es: dependencia}
+  - {en: design,                                  es: diseño}
+  - {en: style,                                   es: estilo}
+  - {en: leaks,                                   es: fugas}
+  - {en: implementation,                          es: implementación}
+  - {en: index,                                   es: índice}
+  - {en: introduction,                            es: introducción}
+  - {en: reading,                                 es: lectura}
+  - {en: engines,                                 es: motores}
+  - {en: goals,                                   es: objetivos}
+  - {en: laziness,                                es: pereza}
+  - {en: front matter,                            es: preliminares}
+  - {en: problems,                                es: problemas}
+  - {en: reactive,                                es: reactivo}
+  - {en: answers,                                 es: respuestas}
+  - {en: overcome,                                es: superados}
+
+# Function words allowed inside a path name (not terms).
+path_function_words: [a, con, de, del, el, en, la, las, los, para, por, que, un, una, y, como]
+
+# Language, command and product names that stay as they are inside a path name.
+path_proper_names: [cmake, csharp, ed, ex, linq, make, regex, sed, xaml]
