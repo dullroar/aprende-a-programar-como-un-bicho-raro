@@ -202,7 +202,7 @@ cs:
 curriculum:
   # Longest descriptive sentence, in words. Same value as sentence_word_limit_N in loop/CONFIG.yaml (house-style.es.md rule 2);
   # recalibrate both together after the pilot. A whole number written as text (the catalog mirror check requires structural integers to be equal in both files).
-  max_words: "28"
+  max_words: "29"
   # The printed chapter label in table links: "[Cap. 4](../lessons/cs/...)".
   chapter_label: "Cap."
   # House style rule 3: the register is tú, so the formal "usted" and the voseo and vosotros forms are refused.

@@ -41,7 +41,7 @@ Edita solo copias ([Ejecutar cosas de forma segura](../../exercises.md#running-t
 
 ## El reto compartido
 
-La [especificación del reto](../../intro.md#what-the-challenge-does) pide tarjetas con una categoría y de 10 a 19 horas enteras. Las categorías forman un ciclo: Meetings, Coding, Debugging y Learning. Suma las horas de cada tarjeta al total acumulado. Detente cuando el total pase de 40. Conserva la **primera tarjeta que lleva el total a más de 40**. Un total de exactamente 40 continúa. Cuatro tarjetas de 10 horas necesitan una quinta tarjeta, de la categoría Meetings. Las ejecuciones conformes terminan con de 3 a 5 tarjetas y un total de 41 a 59 horas.
+La [especificación del reto](../../intro.md#what-the-challenge-does) pide tarjetas con una categoría y de 10 a 19 horas enteras. Las categorías se repiten en ciclo: `Meetings`, `Coding`, `Debugging` y `Learning`. Suma las horas de cada tarjeta al total acumulado. Detente cuando el total pasa de 40. Conserva la **primera tarjeta con la que el total pasa de 40**. Un total de exactamente 40 continúa. Cuatro tarjetas de 10 horas necesitan una quinta tarjeta, de la categoría `Meetings`. Las ejecuciones conformes tienen de 3 a 5 tarjetas y un total de 41 a 59 horas.
 
 APL expresa el límite en una sola comparación, `40≥`, "¿el total es como máximo 40?". Es verdadera para 40. El programa cuenta las tarjetas para las que es verdadera y después suma una, para incluir la tarjeta que cruza.
 

@@ -36,4 +36,4 @@ audit_sample_size: 5
 
 # ---- quality bars ----
 seeded_fault_recall_bar: 0.95
-sentence_word_limit_N: 28                 # replaced by the calibrated value after the pilot
+sentence_word_limit_N: 29                 # calibrated on the pilot (P3-006): 25 x 1.160 (9422 English, 10927 Spanish words); see translation/pilot-calibration.md

@@ -327,12 +327,20 @@ class Translator:
                              "gloss": "Fixed lead-in from the catalog; write it exactly, bold, at the start."})
         return rows
 
+    def fixed_paragraph_rows(self, cur):
+        """The standard 'shared challenge' paragraph of the study guides is catalog text (invariant I11): give the exact Spanish."""
+        es = invariants.shared_paragraph_masked(cur, self.ctx)
+        if es is None:
+            return []
+        return [{"id": "fixed-paragraph:" + invariants.SHARED_KEY, "en": cur.masked, "es": es,
+                 "gloss": "Fixed paragraph from the catalog; copy the Spanish exactly, placeholders included."}]
+
     def build_input(self, seg, index, rel):
         items = seg.segments()
         cur = items[index]
         inp = {"segment_id": cur.id, "file": rel, "tier": self.ctx.tier_of(rel),
                "english_masked": cur.masked, "placeholders": list(cur.mapping),
-               "glossary_slice": self.glossary.slice(cur.masked) + self.lead_in_rows(cur.masked)}
+               "glossary_slice": self.glossary.slice(cur.masked) + self.lead_in_rows(cur.masked) + self.fixed_paragraph_rows(cur)}
         before = items[index - 1].masked if index > 0 else ""
         after = items[index + 1].masked if index + 1 < len(items) else ""
         if before:

@@ -115,7 +115,7 @@ msgstr "El reto compartido"
 #: lessons/study-guides/languages/forth.md:44
 msgctxt "s-78a7d749b03d-0019"
 msgid "The [challenge specification](⟦DEST_0001⟧) calls for cards with a category and 10 to 19 whole hours. Categories cycle through ⟦DNT_0002⟧, ⟦DNT_0003⟧, ⟦DNT_0004⟧ and ⟦DNT_0005⟧. Add each card's hours to the running total. Stop when the total passes 40. Keep the **first card that takes the total over 40**. A total of exactly 40 continues. Four 10-hour cards need a fifth card, in the ⟦DNT_0006⟧ category. Conforming runs finish with 3 to 5 cards and a total of 41 to 59 hours."
-msgstr "La [especificación del reto](⟦DEST_0001⟧) pide tarjetas con una categoría y de 10 a 19 horas enteras. Las categorías siguen este ciclo: ⟦DNT_0002⟧, ⟦DNT_0003⟧, ⟦DNT_0004⟧ y ⟦DNT_0005⟧. Suma las horas de cada tarjeta al total acumulado. Detente cuando el total pase de 40. Conserva la **primera tarjeta que lleva el total a más de 40**. Un total de exactamente 40 continúa. Cuatro tarjetas de 10 horas necesitan una quinta tarjeta, de la categoría ⟦DNT_0006⟧. Las ejecuciones conformes terminan así: de 3 a 5 tarjetas y un total de 41 a 59 horas."
+msgstr "La [especificación del reto](⟦DEST_0001⟧) pide tarjetas con una categoría y de 10 a 19 horas enteras. Las categorías se repiten en ciclo: `⟦DNT_0002⟧`, `⟦DNT_0003⟧`, `⟦DNT_0004⟧` y `⟦DNT_0005⟧`. Suma las horas de cada tarjeta al total acumulado. Detente cuando el total pasa de 40. Conserva la **primera tarjeta con la que el total pasa de 40**. Un total de exactamente 40 continúa. Cuatro tarjetas de 10 horas necesitan una quinta tarjeta, de la categoría `⟦DNT_0006⟧`. Las ejecuciones conformes tienen de 3 a 5 tarjetas y un total de 41 a 59 horas."
 
 #: lessons/study-guides/languages/forth.md:46
 msgctxt "s-d91b3c363a37-0020"
@@ -160,7 +160,7 @@ msgstr "forth: un solo bucle begin until sobre una palabra llamada card"
 #: lessons/study-guides/languages/forth.md:65
 msgctxt "s-48a93443871e-0028"
 msgid "A flowchart. The word main sets up, which opens a pipe to sqlite3, and writes the schema. The word run is a begin until loop. Each pass runs card, which draws hours, adds them to the total variable, bumps the card count, prints the row, and sends the INSERT through the pipe. Then over-40 leaves a flag on the stack, and until consumes it. If the flag is false, the loop repeats. If it is true, run ends, and main commits, closes the pipe and reports."
-msgstr "Un diagrama de flujo. La palabra main hace la preparación: abre una tubería a sqlite3 y escribe el esquema. La palabra run es un bucle begin until. Cada pasada ejecuta card. Esta palabra sortea las horas, las suma a la variable total, incrementa el conteo de tarjetas, imprime la fila y envía el INSERT por la tubería. Después over-40 deja una bandera en la pila, y until la consume. Si la bandera es falsa, el bucle se repite. Si es verdadera, run termina, y main confirma, cierra la tubería e informa."
+msgstr "Un diagrama de flujo. La palabra main hace la preparación: abre una tubería a sqlite3 y escribe el esquema. La palabra run es un bucle begin until. Cada pasada ejecuta card, que sortea las horas, las suma a la variable total, incrementa el conteo de tarjetas, imprime la fila y envía el INSERT por la tubería. Después, over-40 deja una bandera en la pila y until la consume. Si la bandera es falsa, el bucle se repite. Si es verdadera, run termina, y main confirma, cierra la tubería e informa."
 
 #: lessons/study-guides/languages/forth.md:66
 msgctxt "s-41a381841487-0029"
@@ -175,7 +175,7 @@ msgstr "run: begin"
 #: lessons/study-guides/languages/forth.md:67
 msgctxt "s-ccd5a5faa5d1-0031"
 msgid "card: draw hours, add to total, bump cards"
-msgstr "card: saca horas, suma al total, incrementa tarjetas"
+msgstr "card: sacar horas, sumar al total, incrementar tarjetas"
 
 #: lessons/study-guides/languages/forth.md:68
 msgctxt "s-5f6983f484cf-0032"
@@ -200,7 +200,7 @@ msgstr "true"
 #: lessons/study-guides/languages/forth.md:71
 msgctxt "s-330fa6f7306b-0036"
 msgid "main: commit, close the pipe, report"
-msgstr "main: confirma, cierra la tubería, informa"
+msgstr "main: confirma la transacción, cierra la tubería, informa"
 
 #: lessons/study-guides/languages/forth.md:74
 msgctxt "s-5886ca2c7275-0037"

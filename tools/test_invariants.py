@@ -392,6 +392,37 @@ class TestI11(Base):
         self.assertFires(inv.check_segment(first("**Hint** think twice."), "**Consejo** piensa dos veces.", ctx), "I11")
 
 
+class TestI11SharedParagraph(Base):
+    """The study guides must open "The shared challenge" with the catalog paragraph, word for word (study_guides.py check)."""
+    EN = ("The [challenge specification](../../intro.md#what-the-challenge-does) calls for cards with a category and 10 to 19 whole hours. "
+          "Categories cycle through Meetings, Coding, Debugging and Learning. Add each card's hours to the running total. "
+          "Stop when the total passes 40. Keep the **first card that takes the total over 40**. A total of exactly 40 continues. "
+          "Four 10-hour cards need a fifth card, in the Meetings category. Conforming runs finish with 3 to 5 cards and a total of 41 to 59 hours.")
+
+    def sctx(self):
+        return make_ctx(dnt=["Meetings", "Coding", "Debugging", "Learning"], tier_of=lambda rel: "T2", sentence_limit=60)
+
+    def msgstr(self):
+        return inv.shared_paragraph_masked(first(self.EN), self.sctx())
+
+    def test_masked_catalog_text_passes(self):
+        text = self.msgstr()
+        self.assertIsNotNone(text)
+        self.assertIn("`" + ph("DNT", 2) + "`", text)
+        self.assertClean(inv.check_segment(first(self.EN), text, self.sctx()))
+
+    def test_free_translation_fails(self):
+        free = self.msgstr().replace("Detente cuando el total pasa de 40", "Detente cuando el total pase de 40")
+        self.assertNotEqual(free, self.msgstr())
+        self.assertFires(inv.check_segment(first(self.EN), free, self.sctx()), "I11")
+
+    def test_other_paragraphs_are_not_affected(self):
+        self.assertIsNone(inv.shared_paragraph_masked(first("A different paragraph about cards."), self.sctx()))
+
+    def test_edited_english_is_not_the_standard_paragraph(self):
+        self.assertIsNone(inv.shared_paragraph_masked(first(self.EN.replace("exactly 40", "at least 40")), self.sctx()))
+
+
 class TestI7LeadIn(Base):
     def ctx_with_lead_in(self):
         en_cat = catalog.Catalog("en", {"hints.lead_in_a": "The loop part.", "acronym.word": "WEIRD"})
@@ -472,6 +503,25 @@ class TestI13(Base):
 
     def test_fail_dropped_fence(self):
         self.assertFires(inv.i13_text(self.EN, "# T\n\nUsa `make all` aquí.\n", "t.md"), "I13")
+
+    CARDS_EN = "# T\n\nThe categories are Meetings and Coding, then `make all`.\n"
+
+    def file_findings(self, es):
+        return [f for f in inv.check_files(self.CARDS_EN, es, "t.md", make_ctx(dnt=["Meetings", "Coding"]))
+                if f.inv in ("I2", "I13")]
+
+    def test_dnt_phrase_in_backticks_is_allowed(self):
+        """The frozen Spanish wording writes the card categories as code; the English writes them bare."""
+        self.assertEqual([], self.file_findings("# T\n\nLas categorías son `Meetings` y `Coding`, luego `make all`.\n"))
+
+    def test_fail_backticks_around_a_word_that_is_not_dnt(self):
+        self.assertFires(self.file_findings("# T\n\nLas categorías son Meetings y Coding, luego `make all` y `bucle`.\n"), "I13")
+
+    def test_fail_translated_code_next_to_a_wrapped_dnt_phrase(self):
+        self.assertFires(self.file_findings("# T\n\nLas categorías son `Meetings` y `Coding`, luego `hacer todo`.\n"), "I13")
+
+    def test_fail_dnt_phrase_in_backticks_is_not_a_license_to_drop_code(self):
+        self.assertFires(self.file_findings("# T\n\nLas categorías son `Meetings` y `Coding`, luego make all.\n"), "I13")
 
     def test_fail_generated_block_edited(self):
         en = "# T\n\n<!-- BEGIN GENERATED x -->\nA\n<!-- END GENERATED x -->\n"
@@ -639,7 +689,9 @@ class TestRealContext(unittest.TestCase):
         ctx = inv.load_context()
         self.assertTrue(ctx.terms)
         self.assertIn("Meetings", ctx.dnt)
-        self.assertEqual(28, ctx.sentence_limit)
+        import inventory
+        self.assertEqual(int(inventory.read_config(ROOT)["sentence_word_limit_N"]), ctx.sentence_limit)
+        self.assertEqual(29, ctx.sentence_limit)      # calibrated on the pilot (translation/pilot-calibration.md)
         self.assertEqual(["Weird", "Execution", "Indirect", "Results", "Data"], ctx.phase_names)
 
     def test_identity_po_is_not_accepted_as_a_translation(self):

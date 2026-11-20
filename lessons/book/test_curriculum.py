@@ -196,7 +196,7 @@ class SpanishCurriculum(InLanguage):
         self.assertEqual(self.problems(), [])
 
     def test_the_catalog_words_are_loaded(self):
-        self.assertEqual((cb.MAX_WORDS, cb.CHAPTER_LABEL, cb.ACRONYM), (28, "Cap.", "BICHO"))
+        self.assertEqual((cb.MAX_WORDS, cb.CHAPTER_LABEL, cb.ACRONYM), (29, "Cap.", "BICHO"))
         self.assertEqual([p[0] for p in cb.PHASES], list("BICHO"))
         self.assertEqual([p[1] for p in cb.PHASES], list("WEIRD"))      # the node ids never change
 
@@ -240,10 +240,11 @@ class SpanishCurriculum(InLanguage):
     def test_the_tu_imperative_is_not_reported(self):
         self.assertEqual(self.broken(usted="Lee el texto, ejecútalo y compara los resultados de tu prueba."), [])
 
-    def test_the_sentence_limit_is_28_words(self):
+    def test_the_sentence_limit_is_29_words(self):
+        # 29 = 25 x 1.160, the Spanish/English word ratio measured on the pilot (translation/pilot-calibration.md)
         words = lambda n: " ".join(["palabra"] * (n - 1)) + " final."
-        self.assertEqual(self.broken(usted=words(28)), [])               # 26 or 28 words pass in Spanish (25 would be the English limit)
-        self.has("sentence of 29 words (the limit is 28)", self.broken(usted=words(29)))
+        self.assertEqual(self.broken(usted=words(29)), [])               # 28 or 29 words pass in Spanish (25 would be the English limit)
+        self.has("sentence of 30 words (the limit is 29)", self.broken(usted=words(30)))
 
     def test_the_chapter_label_does_not_end_a_sentence(self):
         sentences = cb.prose_sentences("Lee el [Cap. 4](../lessons/cs/x.md) antes de empezar la semana.")
@@ -266,7 +267,7 @@ class SpanishCurriculum(InLanguage):
     def test_set_language_is_all_or_nothing(self):
         with self.assertRaises(catalog.CatalogError):
             cb.set_language("xx")
-        self.assertEqual((cb.LANG, cb.MAX_WORDS), ("es", 28))
+        self.assertEqual((cb.LANG, cb.MAX_WORDS), ("es", 29))
 
     def test_the_spanish_sentence_limit_matches_the_loop_config(self):
         config = os.path.join(cb.REPO, "loop", "CONFIG.yaml")

@@ -257,7 +257,7 @@ def read_config(root: str) -> dict:
     if os.path.exists(p):
         with open(p, encoding="utf-8") as fh:
             for l in fh:
-                m = re.match(r"^([a-z_]+):\s*([^#\n]*?)\s*(?:#.*)?$", l)
+                m = re.match(r"^([A-Za-z_]+):\s*([^#\n]*?)\s*(?:#.*)?$", l)
                 if m:
                     cfg[m.group(1)] = m.group(2).strip().strip('"')
     return cfg

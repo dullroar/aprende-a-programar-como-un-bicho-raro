@@ -209,5 +209,20 @@ class BuildTests(unittest.TestCase):
             json.loads(a)
 
 
+class ReadConfigTests(unittest.TestCase):
+    def test_keys_with_capital_letters_are_read(self):
+        """sentence_word_limit_N was silently ignored (the key has a capital N), so the 28 default always applied."""
+        with tempfile.TemporaryDirectory() as root:
+            os.makedirs(os.path.join(root, "loop"))
+            with open(os.path.join(root, "loop", "CONFIG.yaml"), "w", encoding="utf-8") as f:
+                f.write("sentence_word_limit_N: 29   # calibrated\nedition_label: rc1\n")
+            cfg = inv.read_config(root)
+        self.assertEqual("29", cfg["sentence_word_limit_N"])
+        self.assertEqual("rc1", cfg["edition_label"])
+
+    def test_the_real_config_has_the_calibrated_limit(self):
+        self.assertEqual("29", inv.read_config(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))["sentence_word_limit_N"])
+
+
 if __name__ == "__main__":
     unittest.main()

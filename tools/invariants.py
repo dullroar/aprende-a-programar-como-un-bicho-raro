@@ -397,8 +397,61 @@ def bold_spans(masked):
     return BOLD_RE.findall(masked)
 
 
+SHARED_KEY = "study_guides.shared_challenge"
+ANCHOR_RE = r"[^)\s]+"
+
+
+def _norm_ws(text):
+    return " ".join(text.split())
+
+
+def _template_regex(template):
+    """Regex for a catalog template whose only variable part is {anchor}; whitespace runs match one another."""
+    parts = _norm_ws(template).split("{anchor}")
+    return re.compile(ANCHOR_RE.join(re.escape(p) for p in parts))
+
+
+def shared_paragraph(src_text, ctx):
+    """The Spanish catalog paragraph (a template with {anchor}) when `src_text` is the English standard
+    'shared challenge' paragraph of the study guides, else None. The study-guide check wants this text exactly."""
+    if ctx.lang_cat is None or ctx.cat is None:
+        return None
+    try:
+        en, es = ctx.lang_cat.text(SHARED_KEY), ctx.cat.text(SHARED_KEY)
+    except (catalog.CatalogError, KeyError):
+        return None
+    if _template_regex(en).fullmatch(_norm_ws(src_text)):
+        return es
+    return None
+
+
+def shared_paragraph_masked(src, ctx):
+    """The same paragraph written over the source's placeholders (link destination, then the DNT category names, in
+    order), the form a PO msgstr must have; None when `src` is not that paragraph or its placeholders do not line up."""
+    es = shared_paragraph(src.text, ctx)
+    if es is None:
+        return None
+    dests = [k for k in src.mapping if k.startswith("⟦DEST_")]
+    dnts = [k for k in src.mapping if k.startswith("⟦DNT_")]
+    names = re.findall(r"`([^`]+)`", es)
+    if len(dests) != 1 or len(dnts) != len(names):
+        return None
+    out = _norm_ws(es).replace("{anchor}", "\0")
+    out = re.sub(r"\(\.\./\.\./intro\.md#\0\)", "(" + dests[0] + ")", out)
+    for k in dnts:
+        out = out.replace("`" + src.mapping[k] + "`", "`" + k + "`", 1)
+    return out if "\0" not in out else None
+
+
+def i11_shared(src, tgt_text, ctx):
+    es = shared_paragraph(src.text, ctx)
+    if es is None or _template_regex(es).fullmatch(_norm_ws(tgt_text)):
+        return []
+    return [Finding("I11", "", "the standard shared-challenge paragraph must be the catalog text %s exactly" % SHARED_KEY)]
+
+
 def i11(src, target, tgt_text, ctx):
-    out = []
+    out = i11_shared(src, tgt_text, ctx) if getattr(src, "kind", "") != "mermaid_label" else []
     a, b = bold_spans(src.masked), bold_spans(target)
     if len(a) != len(b):
         out.append(Finding("I11", "", "bold spans: %d in the source, %d in the target" % (len(a), len(b))))
@@ -605,8 +658,18 @@ def inline_code(text):
     return Counter(re.findall(r"(?<!`)(`+)(?!`)(.+?)(?<!`)\1(?!`)", text))
 
 
-def i13_text(en_text, es_text, rel=""):
-    """Code and output of a Spanish file equal the English file's: fenced blocks in order, inline spans as multisets."""
+def drop_dnt_spans(spans, dnt):
+    """Remove from an inline-code Counter the single-backtick spans that wrap exactly one DNT phrase (for example `Meetings`).
+
+    The frozen Spanish wording writes the card categories as code where the English prose writes them bare; the phrase itself is
+    still required by I8, and every other code span is compared as before."""
+    return Counter({k: n for k, n in spans.items() if not (k[0] == "`" and k[1] in dnt)})
+
+
+def i13_text(en_text, es_text, rel="", dnt=()):
+    """Code and output of a Spanish file equal the English file's: fenced blocks in order, inline spans as multisets.
+
+    `dnt` is the list of do-not-translate phrases; a span that wraps only one of them is ignored on both sides."""
     try:
         sa, sb = segment.Segmentation(en_text, rel), segment.Segmentation(es_text, rel)
     except segment.SegmentError as e:
@@ -632,6 +695,8 @@ def i13_text(en_text, es_text, rel=""):
     for b in sb.blocks:
         if b.kind in segment.SEGMENT_KINDS:
             cb.update(inline_code(b.text or ""))
+    dnt = set(dnt)
+    ca, cb = drop_dnt_spans(ca, dnt), drop_dnt_spans(cb, dnt)
     if ca != cb:
         miss = sorted((ca - cb).elements())[:3]
         extra = sorted((cb - ca).elements())[:3]
@@ -657,10 +722,14 @@ def i5(en_text, es_text, rel=""):
     return out
 
 
-def values(seg_blocks):
+def values(seg_blocks, dnt=()):
+    """Multiset of protected token values; a single-backtick span around exactly one DNT phrase counts as the bare phrase."""
+    dnt = set(dnt)
     c = Counter()
     for b in seg_blocks:
-        c.update(b.mapping.values())
+        for v in b.mapping.values():
+            m = re.fullmatch(r"`([^`]+)`", v)
+            c[m.group(1) if m and m.group(1) in dnt else v] += 1
     return c
 
 
@@ -670,7 +739,7 @@ def check_files(en_text, es_text, rel="", ctx=None):
     out = [Finding("I1", rel, p) for p in segment.check_roundtrip(en_text, rel)]
     out += [f._replace(where=f.where or rel) for f in i6(en_text, es_text)]
     out += i5(en_text, es_text, rel)
-    out += i13_text(en_text, es_text, rel)
+    out += i13_text(en_text, es_text, rel, ctx.dnt)
     a = [d for d in link_destinations(en_text)]
     b = link_destinations(es_text)
     a = [map_anchor(d, ctx.anchor_map) for d in a]
@@ -682,7 +751,7 @@ def check_files(en_text, es_text, rel="", ctx=None):
         return out + [Finding("I1", rel, "segmenter refused: %s" % e)]
     ba = [x for x in sa.blocks if x.kind in segment.SEGMENT_KINDS and x.translate]
     bb = [x for x in sb.blocks if x.kind in segment.SEGMENT_KINDS and x.translate]
-    if values(ba) != values(bb):
+    if values(ba, ctx.dnt) != values(bb, ctx.dnt):
         out.append(Finding("I2", rel, "protected tokens (code, URLs, macros, DNT) differ between the files"))
     if len(ba) == len(bb):
         for x, y in zip(ba, bb):

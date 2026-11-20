@@ -4,7 +4,7 @@ Esta guía es el perfil de estilo de la edición en español de *Learn Programmi
 
 ETS es un **perfil propio del proyecto**. Toma prestada la disciplina de ASD-STE100 (frases cortas, términos controlados, voz activa) y las ideas de lenguaje claro de ISO 24495-1. No es un estándar, y ningún documento puede afirmar que está certificado.
 
-Datos fijos de esta edición: variante `es-419` (español neutro de América Latina), registro de *tú*, glosario vinculante en [`glossary.es.yaml`](glossary.es.yaml). El límite de palabras por frase es **N = 28** (valor provisional de `loop/CONFIG.yaml`, clave `sentence_word_limit_N`). Se recalibra con el piloto: N = 25 × la razón medida entre palabras en español y en inglés.
+Datos fijos de esta edición: variante `es-419` (español neutro de América Latina), registro de *tú*, glosario vinculante en [`glossary.es.yaml`](glossary.es.yaml). El límite de palabras por frase es **N = 29** (clave `sentence_word_limit_N` de `loop/CONFIG.yaml`). Se calibró con el piloto: N = 25 × la razón medida entre palabras en español y en inglés (10927 / 9422 = 1,160; ver [`pilot-calibration.md`](pilot-calibration.md)).
 
 ## 1. Niveles (tiers)
 
@@ -23,7 +23,7 @@ Si un archivo no aparece en la lista, usa el nivel del directorio que lo contien
 Las reglas 1 a 13 son las del plan (sección 6.2). Cada una indica cómo se comprueba.
 
 1. **Público.** Escribe para programadores con experiencia y para estudiantes avanzados. Simplifica la sintaxis, nunca la informática. Conserva las salvedades y los contraejemplos.
-2. **Una idea por frase.** Una frase descriptiva tiene como máximo N palabras (N = 28 por ahora). Las definiciones y las citas pueden pasar del límite si se registran como excepción. Lint I12, solo en T1.
+2. **Una idea por frase.** Una frase descriptiva tiene como máximo N palabras (N = 29, calibrado con el piloto). Las definiciones y las citas pueden pasar del límite si se registran como excepción. Lint I12, solo en T1.
 3. **Voz.** Usa el imperativo de *tú* en las instrucciones (*Ejecuta*, *Lee*, *Compara*). Usa voz activa. Usa la pasiva refleja (*se* + verbo) solo cuando no importa quién actúa. No uses *usted* ni *vos*.
 4. **Un término por concepto.** El glosario es vinculante. No uses sinónimos de la lista `banned`. Lint I7.
 5. **Sin gerundio de posterioridad.** No escribas «…, obteniendo 41». Empieza otra frase: «El resultado es 41».

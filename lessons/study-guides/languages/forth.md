@@ -41,7 +41,7 @@ Edita solo copias ([Running things safely](../../exercises.md#running-things-saf
 
 ## El reto compartido
 
-La [especificación del reto](../../intro.md#what-the-challenge-does) pide tarjetas con una categoría y de 10 a 19 horas enteras. Las categorías siguen este ciclo: Meetings, Coding, Debugging y Learning. Suma las horas de cada tarjeta al total acumulado. Detente cuando el total pase de 40. Conserva la **primera tarjeta que lleva el total a más de 40**. Un total de exactamente 40 continúa. Cuatro tarjetas de 10 horas necesitan una quinta tarjeta, de la categoría Meetings. Las ejecuciones conformes terminan así: de 3 a 5 tarjetas y un total de 41 a 59 horas.
+La [especificación del reto](../../intro.md#what-the-challenge-does) pide tarjetas con una categoría y de 10 a 19 horas enteras. Las categorías se repiten en ciclo: `Meetings`, `Coding`, `Debugging` y `Learning`. Suma las horas de cada tarjeta al total acumulado. Detente cuando el total pasa de 40. Conserva la **primera tarjeta con la que el total pasa de 40**. Un total de exactamente 40 continúa. Cuatro tarjetas de 10 horas necesitan una quinta tarjeta, de la categoría `Meetings`. Las ejecuciones conformes tienen de 3 a 5 tarjetas y un total de 41 a 59 horas.
 
 Las dos entradas de Forth guardan las tarjetas en una sola transacción de SQLite e imprimen un resumen. Forth escribe el límite de dos maneras distintas, y vale la pena ver la diferencia. El programa simple dice `total @ 40 >` ([L105](../../../src/forth/timecards.fs#L105)): se detiene cuando el total *pasa de* 40. El programa raro dice `over 41 <` ([L93](../../../src/forth-weird/timecards.fs#L93)): *continúa* mientras el total sea *menor que 41*. Las dos son la misma regla. Un total de exactamente 40 es menor que 41, así que el bucle continúa.
 
@@ -62,13 +62,13 @@ Las dos entradas de Forth guardan las tarjetas en una sola transacción de SQLit
 ```mermaid
 flowchart TD
     accTitle: forth: un solo bucle begin until sobre una palabra llamada card
-    accDescr: Un diagrama de flujo. La palabra main hace la preparación: abre una tubería a sqlite3 y escribe el esquema. La palabra run es un bucle begin until. Cada pasada ejecuta card. Esta palabra sortea las horas, las suma a la variable total, incrementa el conteo de tarjetas, imprime la fila y envía el INSERT por la tubería. Después over-40 deja una bandera en la pila, y until la consume. Si la bandera es falsa, el bucle se repite. Si es verdadera, run termina, y main confirma, cierra la tubería e informa.
+    accDescr: Un diagrama de flujo. La palabra main hace la preparación: abre una tubería a sqlite3 y escribe el esquema. La palabra run es un bucle begin until. Cada pasada ejecuta card, que sortea las horas, las suma a la variable total, incrementa el conteo de tarjetas, imprime la fila y envía el INSERT por la tubería. Después, over-40 deja una bandera en la pila y until la consume. Si la bandera es falsa, el bucle se repite. Si es verdadera, run termina, y main confirma, cierra la tubería e informa.
     A["main: abre la tubería a sqlite3, escribe el esquema"] --> B["run: begin"]
-    B --> C["card: saca horas, suma al total, incrementa tarjetas"]
+    B --> C["card: sacar horas, sumar al total, incrementar tarjetas"]
     C --> D["Imprime la fila; envía el INSERT por la tubería"]
     D --> E{{"over-40? deja una bandera; until la consume"}}
     E -->|false| B
-    E -->|true| F["main: confirma, cierra la tubería, informa"]
+    E -->|true| F["main: confirma la transacción, cierra la tubería, informa"]
 ```
 
 El primer diagrama es un bucle con una prueba de bandera. La bandera se calcula *después* de la tarjeta, así que se conserva la tarjeta que cruza el límite.
