@@ -1,0 +1,39 @@
+# loop/CONFIG.yaml: flat key: value lines (ralph.sh reads the budget keys with a simple parser).
+# Copy this file to <spanish-repo>/loop/CONFIG.yaml and fill the <...> values.
+
+# ---- pinned source ----
+english_repo: https://github.com/dullroar/learn-programming-the-weird-way
+english_commit: <FULL-SHA-TO-PIN>        # never a moving branch
+english_tag: <tag-or-empty>
+english_clone_path: ../english-source    # read-only clone, outside this repo
+plan_path: SYNTHESIZED-TRANSLATION-PLAN-es-bicho-raro.md
+
+# ---- edition identity (provisional defaults; see plan section 16) ----
+spanish_title: "¡Aprende a programar como un bicho raro!"
+spanish_slug: aprende-a-programar-como-un-bicho-raro
+language_tag: es-419
+register: tu
+acronym_word: BICHO                      # phase macros expand from locale/es.yaml
+edition_label: v4-es.0-rc1
+
+# ---- budgets (ralph.sh reads these; environment variables override) ----
+max_iterations: 300
+max_usd: 150                              # set to what you are willing to spend before review
+iteration_timeout_minutes: 45
+max_stalled_iterations: 3
+sleep_seconds_between_iterations: 5
+
+# ---- model roles (record EXACT model IDs when the run starts) ----
+translator: <vendor/model-id>
+in_loop_reviewer: <vendor/model-id>       # a different model tier or vendor than the translator
+cross_vendor_review: false                # true only if API keys exist for a second vendor
+local_model_for_t3_drafts: false          # true only after it passes the seeded-fault recall bar
+
+# ---- task sizing ----
+translate_task_max_source_words: 4000
+audit_every_n_translate_tasks: 8
+audit_sample_size: 5
+
+# ---- quality bars ----
+seeded_fault_recall_bar: 0.95
+sentence_word_limit_N: 28                 # replaced by the calibrated value after the pilot

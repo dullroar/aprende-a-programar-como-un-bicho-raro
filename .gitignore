@@ -1,0 +1,7 @@
+loop/logs/
+loop/.lock
+loop/.iteration
+translation/work/
+__pycache__/
+*.pyc
+.venv/
