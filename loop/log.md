@@ -15,3 +15,4 @@
 14 P0-009 done tools/humor_register.py + 12 tests; translation/humor-register.jsonl seeded with 33 entries (31 headings, 2 prose lines), all status pending
 15 P0-010 done tools/acronym_search.py + 14 tests; BICHO adopted with TORCE runner-up logged; no Spanish word list on machine, so the candidate search itself was not run
 16 P0-011 done tools/next_task.py (+19 tests) and tools/plan_tasks.py (+22 tests); 68 translate + 9 audit tasks generated (max 3986 words/task); rerun is byte-identical; seedtask.py now handles generated files
+17 P0-012 done Phase 0 gate passed: inventory --check OK, lock_code --verify OK (230 frozen files), all deps done, LICENSE exception/phase-letters/dnt/humor-register/queue present
