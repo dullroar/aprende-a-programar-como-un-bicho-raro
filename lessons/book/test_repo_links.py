@@ -202,7 +202,8 @@ class Identity(unittest.TestCase):
                 with open(path, "w", encoding="utf-8") as f:
                     f.write(body)
                 with self.assertRaises(SystemExit) as caught:
-                    with patch("builtins.print") as out:
+                    # ID_MAPS is module state that other tests fill; this test is about the foreign-link rule only.
+                    with patch("builtins.print") as out, patch.dict(build.ID_MAPS, clear=True):
                         build.check(path)
                 self.assertEqual(caught.exception.code, status)
                 if status:
