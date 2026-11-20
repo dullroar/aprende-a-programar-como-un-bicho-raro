@@ -1,9 +1,9 @@
 # loop/STATE.md (keep to 60 lines; refreshed by every iteration)
 
 - **Edition:** v4-es.0-rc1 (working)    **English SHA:** 48a4429c0a22b2aac628b256a50c07d1816bcb80
-- **Iteration:** 17    **Stage:** 1    **Last result:** P0-012 done (Phase 0 gate passed: inventory, locks, baseline, LICENSE, phase letters, queue)
-- **Tasks:** todo 126 (49 seed + 77 generated) | doing 0 | done 12 | blocked 0 | skipped 0
-- **Next task:** run `python3 tools/next_task.py` (P1-001 glossary or P1-002 house style are next)
+- **Iteration:** 18    **Stage:** 1    **Last result:** P1-001 done (glossary.es.yaml, 206 terms; tools/glossary_check.py)
+- **Tasks:** todo 125 (48 seed + 77 generated) | doing 0 | done 13 | blocked 0 | skipped 0
+- **Next task:** run `python3 tools/next_task.py` (P1-002 house style is next)
 - **Budget:** spent $0.00 of $100; iterations 0 of 300
 - **Translate progress:** segments accepted 0 / total ? ; files done 0 / ?
 - **Last audit:** none    **Next audit due after:** 8 translate tasks

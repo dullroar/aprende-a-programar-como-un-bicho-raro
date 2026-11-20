@@ -1,0 +1,892 @@
+# translation/glossary.es.yaml: binding glossary for the Spanish edition (P1-001).
+# Locale: es-419. Register: tú. Editorial draft; the adjudicator and the Spanish editor may change entries
+# deliberately (log every change in translation/decisions.md; never rephrase unchanged text over a new synonym).
+#
+# Entry fields:
+#   id        stable key (kebab-case)
+#   en        English term as it appears in the source
+#   es        the ONE approved Spanish rendering (lint I7 looks for it)
+#   def       one-line definition in Spanish (used for the first-use gloss)
+#   use       a correct usage sentence (Spanish)
+#   banned    near-synonyms that must NOT be used for this concept (lint)
+#   counter   a prohibited counterexample (Spanish), for entries that touch semantics
+#   literal   true when the English token stays as is in code, enums, output or commands
+#   gloss     "first-use" (gloss once per chapter, keep the English in italics) or omitted
+#   note      free-form rationale
+#
+# Phase letters and names are NEVER written here as literals: use the macros {{phase.N.letter}} and
+# {{phase.N.name}} expanded from locale/es.yaml. The acronym word is {{acronym.word}}.
+
+schema: 1
+locale: es-419
+english_sha: 48a4429c0a22b2aac628b256a50c07d1816bcb80
+status: draft-seed
+
+# ---------------------------------------------------------------------------
+# Frozen wording (plan section 4.2, decision D9). One wording, used everywhere. Lint matches these strings.
+# ---------------------------------------------------------------------------
+frozen:
+  timecard_rule:
+    en: >-
+      Categories cycle through Meetings, Coding, Debugging, Learning; each card has 10 to 19 whole hours;
+      add cards until the total is strictly greater than 40; a total of exactly 40 continues; keep the first
+      card that pushes the total over 40; conforming runs have 3 to 5 cards and a total of 41 to 59.
+    stop_phrase: "pasa de 40"
+    stop_phrase_alt: "más de 40"
+    exact_forty_phrase: "un total de exactamente 40 continúa"
+    es: >-
+      Las categorías se repiten en ciclo: `Meetings`, `Coding`, `Debugging`, `Learning`. Cada tarjeta tiene de 10 a 19
+      horas enteras. Agrega tarjetas y detente cuando el total pasa de 40. Un total de exactamente 40 continúa.
+      Conserva la primera tarjeta con la que el total pasa de 40. Las ejecuciones conformes tienen de 3 a 5 tarjetas y un
+      total de 41 a 59.
+    rules:
+      - "El total debe ser estrictamente mayor que 40 para detenerse ('pasa de 40', 'más de 40')."
+      - "Un total de exactamente 40 NO detiene la ejecución: 'un total de exactamente 40 continúa'."
+      - "Prohibido: 'hasta 40', 'a partir de 40', '40 o más', 'al menos 40', 'alcanza 40' como condición de parada."
+    banned:
+      - "hasta 40"
+      - "a partir de 40"
+      - "40 o más"
+      - "al menos 40"
+      - "alcanza 40"
+      - "llega a 40"
+  assurance_labels:
+    note: >-
+      Labels attach to a masculine noun (comportamiento garantizado) or stand alone as labels, so gender
+      agreement cannot drift and break the tally regex. Enum values stay in English in code, YAML and output.
+    labels:
+      - {enum: guaranteed,             es: garantizado,                    banned: ["asegurado", "seguro", "garantizada"]}
+      - {enum: implementation-permitted, es: permitido por la implementación, banned: ["permitido por la implementacion", "permitido por implementación", "implementación permitida"]}
+      - {enum: accidentally-exploited, es: aprovechado por accidente,      banned: ["explotado accidentalmente", "aprovechado sin garantía", "explotado por accidente"]}
+  card_categories:
+    note: >-
+      Data, not words. Always in code font on every use. Gloss once per chapter on first use:
+      `Meetings` (reuniones), `Coding` (programación), `Debugging` (depuración), `Learning` (aprendizaje).
+    values: [Meetings, Coding, Debugging, Learning]
+    glosses: {Meetings: reuniones, Coding: programación, Debugging: depuración, Learning: aprendizaje}
+  weird_idiomatic_enums:
+    note: "Enum values `weird` and `idiomatic` stay in English; prose uses the terms below."
+    values: [weird, idiomatic]
+
+# ---------------------------------------------------------------------------
+# Phase names: macros only. Concepts and order are unchanged (plan N7).
+# ---------------------------------------------------------------------------
+phases:
+  - {n: 1, concept: weird,     macro_letter: "{{phase.1.letter}}", macro_name: "{{phase.1.name}}"}
+  - {n: 2, concept: execution, macro_letter: "{{phase.2.letter}}", macro_name: "{{phase.2.name}}"}
+  - {n: 3, concept: indirect,  macro_letter: "{{phase.3.letter}}", macro_name: "{{phase.3.name}}"}
+  - {n: 4, concept: results,   macro_letter: "{{phase.4.letter}}", macro_name: "{{phase.4.name}}"}
+  - {n: 5, concept: data,      macro_letter: "{{phase.5.letter}}", macro_name: "{{phase.5.name}}"}
+
+# ---------------------------------------------------------------------------
+# Terms
+# ---------------------------------------------------------------------------
+terms:
+
+  # ---- identity of the book ----
+  - id: weird-program
+    en: weird (kind of program)
+    es: raro
+    def: "Un programa raro resuelve el reto con un mecanismo que nadie diseñó para eso."
+    use: "Cada entrada es un programa raro o un programa idiomático."
+    banned: [extraño, "estrafalario", "weird"]
+    literal: false
+    note: "Enum `weird` stays in code. Matches 'bicho raro'."
+  - id: idiomatic
+    en: idiomatic
+    es: idiomático
+    def: "Un programa idiomático usa el lenguaje de la manera que su comunidad considera normal."
+    use: "La versión idiomática usa un bucle `for`."
+    banned: [típico, convencional, "idiomatico"]
+    note: "Enum `idiomatic` stays in code."
+  - id: weird-machine
+    en: weird machine
+    es: máquina rara
+    gloss: first-use
+    def: "La computación que un procesador de entradas realiza más allá de lo que sus autores previeron."
+    use: "Una máquina rara (*weird machine*) nace cuando leer la entrada equivale a ejecutarla."
+    banned: [máquina extraña, máquina weird]
+    note: "First use per chapter must carry the gloss (*weird machine*)."
+    note: "Gloss once per chapter, grounded in the security literature."
+  - id: bicho-raro
+    en: oddball (title idiom)
+    es: bicho raro
+    def: "Persona o cosa inusual; en España, bicho también es un error de software."
+    note: "Title joke. Never explain it more than once in the book."
+  - id: weird-next-to-boring
+    en: Weird next to boring
+    es: Lo raro junto a lo aburrido
+    note: "Recurring section heading in the guides; sentence case."
+
+  # ---- machine and control ----
+  - id: machine
+    en: machine
+    es: máquina
+    def: "Lo que, en una entrada, cumple un papel: una bandera, un archivo, una captura, un método."
+    banned: [aparato, mecanismo]
+  - id: role
+    en: role
+    es: papel
+    def: "Un trabajo que toda solución debe hacer: bucle, estado, reloj, decisión, confirmación."
+    banned: [rol]
+  - id: substrate
+    en: substrate
+    es: sustrato
+    def: "La notación más su motor, usada como máquina."
+  - id: program
+    en: program
+    es: programa
+  - id: loop
+    en: loop
+    es: bucle
+    def: "Una parte del programa que se repite."
+    use: "El bucle se detiene cuando el total pasa de 40."
+    banned: [lazo, loop]
+    counter: "El ciclo termina cuando el total pasa de 40."
+    note: "'Ciclo' only for 'ciclo de categorías' (cycle of the four categories) where the English says cycle."
+  - id: cycle
+    en: cycle (the four categories repeat)
+    es: ciclo
+    note: "Only for categories that repeat in order. Never for a loop."
+  - id: iteration
+    en: iteration
+    es: iteración
+  - id: repeat
+    en: what repeats
+    es: lo que se repite
+    note: "First of the five questions of each guide (the machine to identify)."
+  - id: state
+    en: state
+    es: estado
+    def: "Todo lo que persiste entre pasos y puede cambiar un paso posterior."
+    use: "El estado vive en un archivo, no en una variable."
+    banned: [condición]
+    counter: "El estado es solo una variable local."
+    note: "Not just a local variable."
+  - id: program-counter
+    en: program counter
+    es: contador de programa
+    def: "El lugar que dice qué se ejecuta a continuación."
+    banned: [contador de instrucciones, "puntero de programa"]
+  - id: control-flow
+    en: control flow
+    es: flujo de control
+    banned: [flujo de ejecución]
+  - id: stop-rule
+    en: stop rule
+    es: regla de parada
+    def: "La condición que termina la ejecución."
+    banned: [regla de detención, "regla de parar"]
+    note: "For the timecard, use the frozen wording 'pasa de 40'."
+  - id: stop-condition
+    en: stop condition
+    es: condición de parada
+  - id: representation
+    en: representation
+    es: representación
+    def: "Cómo se escribe un valor: bits, texto, marcas, una posición."
+  - id: invariant
+    en: invariant
+    es: invariante
+    def: "Un hecho que sigue siendo cierto mientras corre la máquina, al menos después de cada paso."
+    banned: [constante]
+  - id: step
+    en: step
+    es: paso
+  - id: next-step
+    en: what advances the next step
+    es: lo que hace avanzar el paso siguiente
+  - id: decision
+    en: decision
+    es: decisión
+  - id: clock
+    en: clock
+    es: reloj
+  - id: ceiling
+    en: ceiling
+    es: techo
+    def: "Un límite que impone un suministro finito (cuatro nombres, cinco dados), no la regla."
+  - id: supply
+    en: supply
+    es: suministro
+
+  # ---- calls, stack, evaluation ----
+  - id: stack
+    en: stack
+    es: pila
+    banned: [stack]
+    counter: "Evita 'pila' a secas cuando pueda confundirse con otra estructura; escribe 'pila de llamadas'."
+  - id: call-stack
+    en: call stack
+    es: pila de llamadas
+    note: "Never bare 'pila' where ambiguous."
+  - id: stack-depth
+    en: stack depth
+    es: profundidad de la pila
+  - id: stack-overflow
+    en: stack overflow
+    es: desbordamiento de pila
+  - id: stack-trace
+    en: stack trace
+    es: traza de pila
+    note: "Only when the source says stack trace. Not the same as 'traza'."
+  - id: function
+    en: function
+    es: función
+  - id: method
+    en: method
+    es: método
+  - id: callback
+    en: callback
+    es: retrollamada
+    gloss: first-use
+    def: "Una función que entregas a otro para que la llame más tarde o desde otro lugar."
+    banned: [llamada de vuelta, "callback"]
+  - id: event
+    en: event
+    es: evento
+    def: "Un aviso de que algo ocurrió."
+  - id: emitter
+    en: emitter
+    es: emisor
+    def: "Un objeto que llama a los oyentes registrados para un evento."
+    banned: [emisor de eventos]
+  - id: listener
+    en: listener
+    es: oyente
+  - id: event-loop
+    en: event loop
+    es: bucle de eventos
+    banned: [ciclo de eventos]
+  - id: turn
+    en: turn (of the event loop)
+    es: turno
+    def: "Una pasada del bucle de eventos."
+  - id: reentrancy
+    en: reentrancy
+    es: reentrada
+    def: "Una retrollamada que corre mientras lo que la disparó sigue en curso."
+  - id: backpressure
+    en: backpressure
+    es: contrapresión
+    gloss: first-use
+    def: "Una forma de que un consumidor lento frene a un productor."
+  - id: eager
+    en: eager evaluation
+    es: evaluación ansiosa
+    def: "Calcular al escribir: todos los valores, ahora."
+    banned: [evaluación impaciente, "evaluación estricta"]
+  - id: lazy
+    en: lazy evaluation
+    es: evaluación perezosa
+    def: "Calcular cuando alguien lo pide por primera vez y recordar el resultado."
+    banned: [evaluación vaga, "evaluación floja"]
+    counter: "La ejecución diferida y la evaluación perezosa son lo mismo."
+    note: "Not interchangeable with deferred execution."
+  - id: deferred
+    en: deferred execution
+    es: ejecución diferida
+    def: "Describir ahora, ejecutar cuando algo enumera, y volver a ejecutar cada vez."
+  - id: pull
+    en: pull
+    es: demanda (pull)
+    note: "Gloss once; use 'demanda' in prose."
+  - id: forcing
+    en: forcing
+    es: forzar
+    def: "Evaluar un cálculo suspendido, hasta donde lo exige la demanda."
+  - id: thunk
+    en: thunk
+    es: thunk
+    gloss: first-use
+    def: "Un cálculo suspendido que se evalúa cuando se fuerza."
+    literal: true
+    note: "No settled Spanish term; keep and gloss."
+  - id: short-circuit
+    en: short-circuit evaluation
+    es: evaluación de cortocircuito
+    banned: [evaluación en corto]
+    counter: "El cortocircuito de la evaluación quema el circuito."
+    note: "Not the hardware sense."
+  - id: demand
+    en: demand
+    es: demanda
+  - id: precedence
+    en: precedence
+    es: precedencia
+  - id: closure
+    en: closure
+    es: clausura
+    gloss: first-use
+    def: "Una función junto con el entorno léxico en el que se creó."
+    banned: [cierre]
+  - id: lexical-environment
+    en: lexical environment
+    es: entorno léxico
+  - id: scope
+    en: scope
+    es: ámbito
+    banned: [alcance, "scope"]
+  - id: recursion
+    en: recursion
+    es: recursión
+  - id: recursive
+    en: recursive
+    es: recursivo
+  - id: backtracking
+    en: backtracking
+    es: retroceso
+    def: "Volver atrás en una búsqueda o coincidencia para probar otra rama."
+    banned: [vuelta atrás, "backtracking"]
+    counter: "El retroceso de la transacción deshace los cambios."
+    note: "Regex and search sense. For transactions use 'reversión'."
+  - id: parsing
+    en: parsing
+    es: análisis sintáctico
+    banned: [parseo]
+  - id: parser
+    en: parser
+    es: analizador sintáctico
+    banned: [parser, parseador]
+  - id: interpreter
+    en: interpreter
+    es: intérprete
+    def: "El componente que convierte datos en efectos. Un analizador puede serlo sin que nadie lo llame así."
+  - id: compiler
+    en: compiler
+    es: compilador
+
+  # ---- effects, errors, commit ----
+  - id: side-effect
+    en: side effect
+    es: efecto secundario
+    def: "Un cambio más allá de devolver un valor: imprimir, escribir una fila, iniciar un proceso."
+    banned: [efecto colateral, "efecto lateral"]
+    counter: "Un efecto secundario es un fallo."
+    note: "Not failure, not transaction."
+  - id: effect
+    en: effect
+    es: efecto
+  - id: transaction
+    en: transaction
+    es: transacción
+    def: "Un grupo de operaciones que ocurren todas o ninguna."
+  - id: commit-transaction
+    en: commit (of a transaction)
+    es: confirmación
+    def: "El punto en que un cambio se vuelve definitivo."
+    use: "Confirma la transacción con `COMMIT`."
+    banned: [compromiso, comitear]
+    note: "Verb: confirmar. Keep `COMMIT` literal."
+  - id: git-commit
+    en: commit (Git)
+    es: confirmación (*commit*) de Git
+    gloss: first-use
+    note: "Keep the command `git commit` literal."
+  - id: rollback
+    en: rollback
+    es: reversión
+    def: "Deshacer los cambios no confirmados de una transacción. No deshace los efectos fuera de ella."
+    banned: ["marcha atrás", "reversa"]
+    counter: "El retroceso de la transacción deshace las filas."
+    note: "Keep `ROLLBACK` literal. 'Retroceso' is reserved for backtracking."
+  - id: point-of-no-return
+    en: point of no return
+    es: punto sin retorno
+  - id: integrity-constraint
+    en: integrity constraint
+    es: restricción de integridad
+    def: "Una regla que la base de datos impone en cada escritura."
+  - id: exit-status
+    en: exit status
+    es: estado de salida
+    def: "Un número que un proceso devuelve para decir cómo terminó."
+    banned: [código de salida, "código de retorno"]
+    note: "Not to be confused with 'estado' (state)."
+  - id: error
+    en: error
+    es: error
+  - id: failure
+    en: failure
+    es: fallo
+    banned: [falla]
+    note: "es-419 usage varies; 'fallo' chosen for consistency; see decisions.md."
+  - id: failure-mode
+    en: failure mode
+    es: modo de fallo
+  - id: exception
+    en: exception
+    es: excepción
+  - id: idempotence
+    en: idempotence
+    es: idempotencia
+    def: "Repetir la operación deja el mismo resultado que hacerla una vez."
+    note: "Define per operation."
+  - id: unwind
+    en: unwound
+    es: desenrollado
+  - id: resource
+    en: resource
+    es: recurso
+  - id: closed-resource
+    en: closed resource
+    es: recurso cerrado
+  - id: authority
+    en: authority
+    es: autoridad
+    def: "Lo que un programa tiene permitido hacer: los archivos, procesos y red que alcanza con los permisos de quien lo ejecutó."
+  - id: trust-boundary
+    en: trust boundary
+    es: frontera de confianza
+    def: "La línea entre los datos que controlas y los que un atacante puede influir."
+  - id: passive-inspection
+    en: passive inspection
+    es: inspección pasiva
+    def: "Leer y comprobar un formato sin ejecutar nada de él."
+  - id: attacker
+    en: attacker
+    es: atacante
+  - id: adversarial
+    en: adversarial
+    es: adversarial
+  - id: sandbox
+    en: sandbox
+    es: entorno aislado (*sandbox*)
+    gloss: first-use
+    banned: [caja de arena, "arenero"]
+    note: "After the gloss, use 'entorno aislado'. Keep paths like `sandbox/container/run-image.sh` literal."
+  - id: demo-only
+    en: DEMO ONLY
+    es: DEMO ONLY
+    literal: true
+    note: "Marker in data and output; never translated. Prose may say 'datos ficticios'."
+  - id: language-theoretic-security
+    en: language-theoretic security
+    es: seguridad basada en teoría de lenguajes
+  - id: formal-language
+    en: formal language
+    es: lenguaje formal
+    def: "Un conjunto de cadenas definido por reglas estrictas que una máquina puede procesar."
+  - id: chomsky-hierarchy
+    en: Chomsky hierarchy
+    es: jerarquía de Chomsky
+    def: "Una escalera de clases de lenguajes según la máquina que necesitan."
+  - id: regular-language
+    en: regular
+    es: regular
+  - id: context-free
+    en: context-free
+    es: libre de contexto
+  - id: context-sensitive
+    en: context-sensitive
+    es: sensible al contexto
+  - id: recursively-enumerable
+    en: recursively enumerable
+    es: recursivamente enumerable
+
+  # ---- evidence and teaching vocabulary ----
+  - id: trace
+    en: trace
+    es: traza
+    def: "Los pasos observados de una ejecución."
+    banned: [rastro, "rastreo", "seguimiento"]
+    counter: "La traza de pila muestra los pasos observados."
+    note: "Observed steps; not a stack trace unless stated."
+  - id: trace-one-run
+    en: Trace one run
+    es: Traza una ejecución
+    note: "Section heading in every guide (eleven-section architecture)."
+  - id: evidence
+    en: evidence
+    es: evidencia
+    note: "Do not use 'prueba' for evidence: 'prueba' means test/proof here."
+  - id: claim
+    en: claim
+    es: afirmación
+  - id: prediction
+    en: prediction
+    es: predicción
+  - id: predict-first
+    en: Predict first
+    es: Predice primero
+  - id: exercise
+    en: exercise
+    es: ejercicio
+  - id: self-check
+    en: Self-check
+    es: Autoevaluación
+  - id: further-reading
+    en: Further reading
+    es: Lecturas adicionales
+  - id: before-you-begin
+    en: Before you begin
+    es: Antes de empezar
+  - id: shared-challenge
+    en: The shared challenge
+    es: El reto compartido
+    banned: [desafío compartido]
+  - id: challenge
+    en: challenge
+    es: reto
+    banned: [desafío]
+  - id: entry
+    en: entry
+    es: entrada
+    def: "Un programa del libro: un directorio con su código y su README."
+    banned: [artículo, "ítem", "registro"]
+    note: "Do not confuse with 'entrada' as input; the context disambiguates, and input is 'entrada de datos' only when the English says input."
+  - id: input
+    en: input
+    es: entrada de datos
+    note: "Use 'entrada de datos' when the English means input and 'entrada' could be read as a book entry."
+  - id: output
+    en: output
+    es: salida
+  - id: guide
+    en: guide
+    es: guía
+  - id: study-guide
+    en: study guide
+    es: guía de estudio
+  - id: language-guide
+    en: language guide
+    es: guía de lenguaje
+  - id: concept-guide
+    en: concept guide
+    es: guía de concepto
+  - id: vocabulary
+    en: Vocabulary
+    es: Vocabulario
+  - id: safety-model
+    en: Safety model
+    es: Modelo de seguridad
+  - id: prediction-rule
+    en: Prediction rule
+    es: Regla de predicción
+  - id: scope-limits
+    en: Scope limits
+    es: Límites del alcance
+  - id: what-this-guide-is-for
+    en: What this guide is for
+    es: Para qué sirve esta guía
+  - id: machine-to-identify
+    en: The machine to identify
+    es: La máquina que hay que identificar
+  - id: compare-ordinary-weird
+    en: Compare the ordinary and weird designs
+    es: Compara los diseños ordinarios y los raros
+  - id: failure-modes-costs
+    en: Failure modes, costs and boundaries
+    es: Modos de fallo, costos y límites
+  - id: connections
+    en: Connections across the repository
+    es: Conexiones a lo largo del repositorio
+  - id: what-exercises-demonstrate
+    en: What the exercises demonstrate
+    es: Qué demuestran los ejercicios
+  - id: assurance
+    en: assurance
+    es: grado de garantía
+    note: "Prose noun for the three labels; the labels themselves are in frozen.assurance_labels."
+  - id: assurance-tally
+    en: assurance tally
+    es: recuento de garantías
+  - id: label
+    en: "label (verb, as in label a claim)"
+    es: etiquetar
+  - id: hyrums-law
+    en: Hyrum's law
+    es: ley de Hyrum
+    def: "Con suficientes usuarios, alguien dependerá de cada comportamiento observable de un sistema."
+    banned: ["Hyrum's law"]
+  - id: performance-cliff
+    en: performance cliff
+    es: precipicio de rendimiento
+    def: "Una entrada en la que el costo salta de pequeño a enorme."
+    banned: [acantilado de rendimiento, "acantilado de desempeño"]
+  - id: portability
+    en: portability
+    es: portabilidad
+  - id: abstraction
+    en: abstraction
+    es: abstracción
+  - id: cost
+    en: cost
+    es: costo
+    banned: [coste]
+    note: "es-419 spelling."
+  - id: performance
+    en: performance
+    es: rendimiento
+    banned: [desempeño, "performance"]
+
+  # ---- data types and structures (es-419) ----
+  - id: array
+    en: array
+    es: arreglo
+    banned: [array, matriz, "vector"]
+    note: "es-419 choice; regional variants (matriz, array) recorded in decisions.md."
+  - id: string
+    en: string
+    es: cadena de texto
+    banned: [string, "cadena de caracteres"]
+    literal: false
+    note: "Keep 'string' only as a literal type keyword in code."
+  - id: return-value
+    en: return value
+    es: valor de retorno
+    banned: [valor devuelto, "valor de regreso"]
+  - id: variable
+    en: variable
+    es: variable
+  - id: value
+    en: value
+    es: valor
+  - id: integer
+    en: integer
+    es: entero
+  - id: whole-hours
+    en: whole hours
+    es: horas enteras
+  - id: list
+    en: list
+    es: lista
+  - id: queue
+    en: queue
+    es: cola
+  - id: flag
+    en: flag
+    es: bandera
+    banned: [flag, "indicador"]
+  - id: capture
+    en: capture (regex)
+    es: captura
+  - id: regular-expression
+    en: regular expression
+    es: expresión regular
+    banned: [regexp, "regex como sustantivo en prosa"]
+    note: "Keep 'regex' only in names like `regex-perl`."
+  - id: match
+    en: match (regex)
+    es: coincidencia
+    banned: [match, "emparejamiento"]
+  - id: pattern
+    en: pattern
+    es: patrón
+  - id: file
+    en: file
+    es: archivo
+    banned: [fichero]
+  - id: directory
+    en: directory
+    es: directorio
+    banned: [carpeta]
+  - id: database
+    en: database
+    es: base de datos
+  - id: row
+    en: row
+    es: fila
+  - id: table
+    en: table
+    es: tabla
+  - id: card
+    en: card
+    es: tarjeta
+    banned: [ficha, "carta"]
+    note: "One card of the timecard run. The whole record is 'tarjeta de horas' (timecard)."
+  - id: timecard
+    en: timecard
+    es: tarjeta de horas
+  - id: hours
+    en: hours
+    es: horas
+  - id: total
+    en: total
+    es: total
+  - id: running-total
+    en: running total
+    es: total acumulado
+    banned: [total corriente]
+  - id: summary
+    en: summary
+    es: resumen
+  - id: run
+    en: run (noun)
+    es: ejecución
+    banned: [corrida]
+    note: "es-419 'corrida' is regional; 'ejecución' chosen."
+  - id: execute
+    en: run (verb)
+    es: ejecutar
+    banned: [correr]
+  - id: process
+    en: process
+    es: proceso
+  - id: thread
+    en: thread
+    es: hilo
+  - id: command
+    en: command
+    es: comando
+  - id: terminal
+    en: terminal
+    es: terminal
+  - id: script
+    en: script
+    es: script
+    literal: false
+    note: "Spanish uses 'script' widely; keep."
+  - id: source-code
+    en: source code
+    es: código fuente
+  - id: code
+    en: code
+    es: código
+  - id: comment
+    en: comment (in code)
+    es: comentario
+  - id: identifier
+    en: identifier
+    es: identificador
+  - id: keyword
+    en: keyword
+    es: palabra clave
+  - id: type
+    en: type
+    es: tipo
+  - id: object
+    en: object
+    es: objeto
+  - id: class
+    en: class
+    es: clase
+  - id: class-precedence-list
+    en: class precedence list
+    es: lista de precedencia de clases
+  - id: macro
+    en: macro
+    es: macro
+  - id: template
+    en: template
+    es: plantilla
+  - id: build
+    en: build
+    es: compilación
+    note: "For 'build the book' use 'construir' (verbo) and 'construcción'; for build systems keep Make/CMake names."
+  - id: build-system
+    en: build system
+    es: sistema de construcción
+  - id: pipeline
+    en: pipeline
+    es: canalización
+    note: "Shell pipe: 'tubería'; keep `|` literal. Use 'canalización' for CI pipelines."
+  - id: pipe
+    en: pipe
+    es: tubería
+  - id: buffer
+    en: buffer
+    es: búfer
+  - id: editor
+    en: editor
+    es: editor
+  - id: launcher
+    en: launcher
+    es: lanzador
+  - id: host
+    en: host
+    es: anfitrión
+    note: "The .NET host, the PCRE2 C host. Keep consistent."
+  - id: callout
+    en: callout (PCRE2)
+    es: callout
+    literal: true
+    note: "PCRE2 term of art; keep and gloss once."
+  - id: veto
+    en: veto
+    es: vetar
+  - id: branch
+    en: branch
+    es: rama
+  - id: edge
+    en: edge (diagram)
+    es: arista
+    note: "Mermaid edges; keep Mermaid syntax and node IDs untouched."
+  - id: node
+    en: node (diagram)
+    es: nodo
+  - id: diagram
+    en: diagram
+    es: diagrama
+  - id: sequence-diagram
+    en: sequence diagram
+    es: diagrama de secuencia
+  - id: text-alternative
+    en: text alternative
+    es: alternativa textual
+
+  # ---- people, course, publishing ----
+  - id: reader
+    en: reader
+    es: lector
+    note: "Prefer second person (tú) in instructions; use 'quien lee' for gender-neutral phrasing."
+  - id: learner
+    en: learner
+    es: estudiante
+  - id: week
+    en: week
+    es: semana
+  - id: curriculum
+    en: curriculum
+    es: plan de estudios
+    banned: [currículo, "currículum"]
+  - id: semester
+    en: semester
+    es: semestre
+  - id: first-pass
+    en: first pass
+    es: primera pasada
+  - id: second-pass
+    en: second pass
+    es: segunda pasada
+  - id: book
+    en: book
+    es: libro
+  - id: chapter
+    en: chapter
+    es: capítulo
+  - id: appendix
+    en: appendix
+    es: apéndice
+  - id: repository
+    en: repository
+    es: repositorio
+    banned: [repo]
+    note: "Keep 'repo' only in names and URLs."
+  - id: contributor
+    en: contributor
+    es: colaborador
+  - id: maintainer
+    en: maintainer
+    es: mantenedor
+  - id: license
+    en: license
+    es: licencia
+    note: "Never translate the English LICENSE file (frozen, exception EXC-001)."
+  - id: warning
+    en: warning
+    es: advertencia
+    banned: [aviso, "alerta"]
+    note: "Never drop a warning."
+  - id: do-this-in-production
+    en: Do this in production and you're fired
+    es: Haz esto en producción y estás despedido
+    note: "Playful recurring heading; transcreate by effect and record in humor-register.jsonl."
+  - id: bug
+    en: bug
+    es: bicho
+    note: "Pun with 'bicho raro' (Spain). In technical prose use 'error' unless the pun is intended."
+  - id: debugging
+    en: debugging
+    es: depuración
+    banned: [debugueo]
