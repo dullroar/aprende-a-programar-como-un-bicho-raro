@@ -363,6 +363,10 @@ class Translator:
         tokens = {"input": 0, "output": 0}
         out = self.cache.get(key)
         cached = out is not None
+        if cached:
+            # The key ignores the segment id, so a repeated English text (a table row, a banner) returns the
+            # reply stored for its first occurrence; the translation is the same, the id must be this one's.
+            out = dict(out, segment_id=inp["segment_id"])
         if not cached:
             out, tokens = self.backend.ask(self.system, inp)
         probs = validate(self.schema, "translator_output", out)

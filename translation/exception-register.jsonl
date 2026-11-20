@@ -21,3 +21,24 @@
 {"id":"EXC-021","segment":"s-17958128ade7-0101","invariant":"I7","reason":"'can build and run forms' is the verb (construir), not the noun 'build' (compilación).","task":"P3-005"}
 {"id":"EXC-022","segment":"s-185403b177b9-0104","invariant":"I7","reason":"'shift register' is a hardware term (registro de desplazamiento), not the noun 'entry' (entrada); the ban on 'registro' applies to entry only.","task":"P3-005"}
 {"id":"EXC-023","segment":"s-ba1aa8e49fc6-0108","invariant":"I7","reason":"'Haskell builds only the demanded prefix; APL builds five values' is the verb (construye), not the noun 'build' (compilación).","task":"P3-005"}
+{"id":"EXC-024","segment":"s-b41c50ab7de6-0015","invariant":"I7","reason":"'Windows Sandbox' is a product name (kept as is), not the generic term sandbox.","task":"P4-src-1"}
+{"id":"EXC-025","segment":"s-4c7e274e3b4c-0016","invariant":"I7","reason":"'Windows Sandbox' is a product name (kept as is), not the generic term sandbox.","task":"P4-src-1"}
+{"id":"EXC-026","segment":"s-13ce5929cece-0026","invariant":"I7","reason":"'state struct' is the Go identifier concept and 'condición' renders the for-loop condition; 'builds' is the verb (crea), not the noun 'build'.","task":"P4-src-1"}
+{"id":"EXC-027","segment":"s-4d4616dfb213-0027","invariant":"I7","reason":"'build the state struct' is the verb (construye), not the noun 'build' (compilación).","task":"P4-src-1"}
+{"id":"EXC-028","segment":"s-39b17a3c888f-0031","invariant":"I7","reason":"'lock, hours, card, unlock, spawn' are Go function identifiers in a diagram label, not the terms hours and card.","task":"P4-src-1"}
+{"id":"EXC-029","segment":"s-2a59c28710e7-0041","invariant":"I7","reason":"'condición' renders the for-loop condition, not the term state; 'builds' is the verb (construye), not the noun 'build'.","task":"P4-src-1"}
+{"id":"EXC-030","segment":"s-b41c50ab7de6-0018","invariant":"I7","reason":"'Windows Sandbox' is a product name (kept as is), not the generic term sandbox.","task":"P4-src-1"}
+{"id":"EXC-031","segment":"s-7f1aff0db65a-0023","invariant":"I7","reason":"'Program' is the file name Program.java in a link title, not the term program.","task":"P4-src-1"}
+{"id":"EXC-032","segment":"s-eb64d277a798-0029","invariant":"I7","reason":"'builds' and 'build' are the verb (construye, construir), not the noun 'build' (compilación).","task":"P4-src-1"}
+{"id":"EXC-033","segment":"s-b107a9dcf86e-0037","invariant":"I7","reason":"'build a Swing dialog' is the verb (construye), not the noun 'build' (compilación).","task":"P4-src-1"}
+{"id":"EXC-034","segment":"s-55b6a386f706-0043","invariant":"I7","reason":"'builds the loop's state' is the verb (construye); 'condición' renders the for-loop condition, not the term state.","task":"P4-src-1"}
+{"id":"EXC-035","segment":"s-1f02e8d4d2ee-0046","invariant":"I7","reason":"'builds the window' is the verb (construye), not the noun 'build' (compilación).","task":"P4-src-1"}
+{"id":"EXC-036","segment":"s-575d0a2a664f-0056","invariant":"I9","reason":"A table row of language names (Java, Kotlin, Python, Go) is proper names and stays identical.","task":"P4-src-1"}
+{"id":"EXC-037","segment":"s-81cb52bbba78-0082","invariant":"I7","reason":"'LINQ to Objects' is a product name (kept as is), not the generic term object.","task":"P4-src-1"}
+{"id":"EXC-038","segment":"s-062d2a3489ee-0085","invariant":"I9","reason":"A table row made only of code spans and the product name Spring has nothing to translate.","task":"P4-src-1"}
+{"id":"EXC-039","segment":"s-d6a3baceb254-0088","invariant":"I7","reason":"'builds' is the verb (construye), not the noun 'build' (compilación).","task":"P4-src-1"}
+{"id":"EXC-040","segment":"s-14fbcb35d28b-0010","invariant":"I7","reason":"'this folder' is the English word folder (carpeta), not the term directory; the term is rendered 'directorio de trabajo' in the same sentence.","task":"P4-src-1"}
+{"id":"EXC-041","segment":"s-b41c50ab7de6-0014","invariant":"I7","reason":"'Windows Sandbox' is a product name (kept as is), not the generic term sandbox.","task":"P4-src-1"}
+{"id":"EXC-042","segment":"s-7b8a7f3d623a-0019","invariant":"I7","reason":"'Program' is the file name Program.kt in a link title, not the term program.","task":"P4-src-1"}
+{"id":"EXC-043","segment":"s-2a59c28710e7-0038","invariant":"I7","reason":"'builds the loop's state' is the verb (construye); 'condición' renders the for-loop condition, not the term state.","task":"P4-src-1"}
+{"id":"EXC-044","segment":"s-968fdf5162a6-0048","invariant":"I7","reason":"'this folder' is the English word folder (carpeta), not the term directory; the term is rendered 'directorio' in the same sentence.","task":"P4-src-1"}

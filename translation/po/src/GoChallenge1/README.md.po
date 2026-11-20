@@ -1,0 +1,509 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/GoChallenge1/README.md:2
+msgctxt "s-6cc8519b9158-0000"
+msgid "Go"
+msgstr "Go"
+
+#: src/GoChallenge1/README.md:3
+msgctxt "s-fd596c9c4442-0001"
+msgid ""
+"that one three-part ⟦CODE_0001⟧ with an empty body can run the whole Go "
+"program."
+msgstr ""
+"un solo ⟦CODE_0001⟧ de tres partes con un cuerpo vacío puede ejecutar todo "
+"el programa en Go."
+
+#: src/GoChallenge1/README.md:11
+msgctxt "s-03dab4fee092-0002"
+msgid "Three expression slots, with helper functions in the slots"
+msgstr "Tres espacios de expresión, con funciones auxiliares en los espacios"
+
+#: src/GoChallenge1/README.md:12
+msgctxt "s-2bf00f0abe9b-0003"
+msgid "Fields of one anonymous struct"
+msgstr "Campos de una struct anónima"
+
+#: src/GoChallenge1/README.md:15
+msgctxt "s-b3d4701a9f91-0004"
+msgid "One Statement, Go Edition"
+msgstr "Una instrucción, edición Go"
+
+#: src/GoChallenge1/README.md:17
+msgctxt "s-e38aa4aed710-0005"
+msgid ""
+"Ken's Go port of Jim Lehmer's C# challenge. It is one of four sibling ports,"
+" along with [Java](⟦DEST_0001⟧), [Kotlin](⟦DEST_0002⟧) and "
+"[Python](⟦DEST_0003⟧). The Java README has [what every version "
+"does](⟦DEST_0004⟧) and the [side-by-side comparison](⟦DEST_0005⟧) of all "
+"four."
+msgstr ""
+"Port de Ken en Go del reto en C# de Jim Lehmer. Es uno de cuatro ports "
+"hermanos, junto con [Java](⟦DEST_0001⟧), [Kotlin](⟦DEST_0002⟧) y "
+"[Python](⟦DEST_0003⟧). El README de Java explica [qué hace cada "
+"versión](⟦DEST_0004⟧) y tiene la [comparación lado a lado](⟦DEST_0005⟧) de "
+"las cuatro."
+
+#: src/GoChallenge1/README.md:19
+msgctxt "s-7080a1014289-0006"
+msgid ""
+"The constraint: ⟦CODE_0001⟧ contains exactly one statement, a ⟦CODE_0002⟧ "
+"loop with an empty body. This is a stunt in expression mechanics, not good "
+"production code. Nothing here connects to a real time-reporting system: the "
+"cards are flagged ⟦CODE_0003⟧."
+msgstr ""
+"La restricción: ⟦CODE_0001⟧ contiene exactamente una instrucción, un bucle "
+"⟦CODE_0002⟧ con el cuerpo vacío. Esto es una acrobacia sobre la mecánica de "
+"las expresiones, no un buen código de producción. Nada de aquí se conecta "
+"con un sistema real de registro de horas: las tarjetas están marcadas con "
+"⟦CODE_0003⟧."
+
+#: src/GoChallenge1/README.md:21
+msgctxt "s-958ca26c6a61-0007"
+msgid "Run it"
+msgstr "Ejecútalo"
+
+#: src/GoChallenge1/README.md:23
+msgctxt "s-b1c422505a37-0008"
+msgid ""
+"You need the Go toolchain (⟦CODE_0001⟧). The first run downloads one module."
+msgstr ""
+"Necesitas la cadena de herramientas de Go (⟦CODE_0001⟧). La primera "
+"ejecución descarga un módulo."
+
+#: src/GoChallenge1/README.md:30
+msgctxt "s-f3eb244704de-0009"
+msgid "Or, from the repo root, through Gradle: ⟦CODE_0001⟧."
+msgstr "O, desde la raíz del repositorio, con Gradle: ⟦CODE_0001⟧."
+
+#: src/GoChallenge1/README.md:32
+msgctxt "s-1531c476a719-0010"
+msgid ""
+"The window is a page in your default browser. Press Close in the page, or "
+"close the tab, to finish. Records land in ⟦CODE_0001⟧; the path is relative "
+"to the working directory, so run it from this folder. Delete ⟦CODE_0002⟧ to "
+"start over."
+msgstr ""
+"La ventana es una página en tu navegador predeterminado. Pulsa Close en la "
+"página, o cierra la pestaña, para terminar. Los registros se guardan en "
+"⟦CODE_0001⟧; la ruta es relativa al directorio de trabajo, así que ejecuta "
+"el programa desde este directorio. Elimina ⟦CODE_0002⟧ para empezar de "
+"nuevo."
+
+#: src/GoChallenge1/README.md:34
+msgctxt "s-09fe67d0d2ef-0011"
+msgid ""
+"If a running IDE doesn't see ⟦CODE_0001⟧ after installing it, restart the "
+"IDE so it picks up the new PATH."
+msgstr ""
+"Si un IDE en ejecución no detecta ⟦CODE_0001⟧ después de instalarlo, "
+"reinicia el IDE para que tome el nuevo PATH."
+
+#: src/GoChallenge1/README.md:36
+msgctxt "s-254f0c660db3-0012"
+msgid "Run it in a container"
+msgstr "Ejecútalo en un contenedor"
+
+#: src/GoChallenge1/README.md:38
+msgctxt "s-643df015c8a2-0013"
+msgid ""
+"Prerequisite: Docker, set up once as described in "
+"[⟦CODE_0001⟧](⟦DEST_0002⟧)."
+msgstr ""
+"Requisito previo: Docker, configurado una sola vez como se describe en "
+"[⟦CODE_0001⟧](⟦DEST_0002⟧)."
+
+#: src/GoChallenge1/README.md:44
+msgctxt "s-fad9dceee457-0014"
+msgid ""
+"It builds this folder's [⟦CODE_0001⟧](⟦DEST_0002⟧) and runs the result with "
+"no network, a read-only file system and user ⟦CODE_0003⟧, then prints the "
+"output and a read-only look at the rows it wrote. The image holds a static "
+"Go binary, sqlite3 (for the inspect step) and a tiny ⟦CODE_0004⟧. It has no "
+"Go toolchain. It needs ⟦CODE_0005⟧ (⟦CODE_0006⟧) because the build downloads"
+" the SQLite module; the run itself has no network. The page the program "
+"serves on ⟦CODE_0007⟧ is fetched from *inside* the container with "
+"⟦CODE_0008⟧, saved as ⟦CODE_0009⟧, and then \"closed\", so nothing is ever "
+"published to your machine."
+msgstr ""
+"Compila el [⟦CODE_0001⟧](⟦DEST_0002⟧) de esta carpeta y ejecuta el resultado"
+" sin red, con un sistema de archivos de solo lectura y con el usuario "
+"⟦CODE_0003⟧. Después muestra la salida y una vista de solo lectura de las "
+"filas que escribió. La imagen contiene un binario estático de Go, sqlite3 "
+"(para el paso de inspección) y un ⟦CODE_0004⟧ diminuto. No tiene la cadena "
+"de herramientas de Go. Necesita ⟦CODE_0005⟧ (⟦CODE_0006⟧) porque la "
+"compilación descarga el módulo de SQLite. La ejecución en sí no tiene red. "
+"La página que el programa sirve en ⟦CODE_0007⟧ se obtiene desde *dentro* del"
+" contenedor con ⟦CODE_0008⟧, se guarda como ⟦CODE_0009⟧ y luego se "
+"\"cierra\", así que nunca se publica nada en tu máquina."
+
+#: src/GoChallenge1/README.md:46
+msgctxt "s-b41c50ab7de6-0015"
+msgid "Run it in Windows Sandbox"
+msgstr "Ejecútalo en Windows Sandbox"
+
+#: src/GoChallenge1/README.md:48
+msgctxt "s-4c7e274e3b4c-0016"
+msgid ""
+"Prerequisites: Windows Sandbox and this entry's toolchain on your machine, "
+"set up once as described in [⟦CODE_0001⟧](⟦DEST_0002⟧)."
+msgstr ""
+"Requisitos previos: Windows Sandbox y la cadena de herramientas de esta "
+"entrada, instalados en tu máquina y configurados una sola vez como se "
+"describe en [⟦CODE_0001⟧](⟦DEST_0002⟧)."
+
+#: src/GoChallenge1/README.md:54
+msgctxt "s-5537f18f5d9a-0017"
+msgid ""
+"It runs the entry in a throwaway VM with networking off, screenshots the "
+"window, asks it to close, and prints what it saved. The page opens in Edge "
+"inside the VM, and the harness also fetches it over loopback and saves it. "
+"**Not yet tested on real hardware.**"
+msgstr ""
+"Ejecuta la entrada en una máquina virtual desechable con la red desactivada,"
+" captura la ventana, le pide que se cierre e imprime lo que guardó. La "
+"página se abre en Edge dentro de la máquina virtual, y el arnés también la "
+"obtiene por loopback y la guarda. **Aún no se ha probado en hardware real.**"
+
+#: src/GoChallenge1/README.md:56
+msgctxt "s-a511909161e1-0018"
+msgid "Layout"
+msgstr "Estructura"
+
+#: src/GoChallenge1/README.md:58
+msgctxt "s-554ac78ddc81-0019"
+msgid "⟦SEP_0001⟧ File ⟦SEP_0002⟧ Role ⟦SEP_0003⟧"
+msgstr "⟦SEP_0001⟧ Archivo ⟦SEP_0002⟧ Papel ⟦SEP_0003⟧"
+
+#: src/GoChallenge1/README.md:60
+msgctxt "s-2aac0e1b18d5-0020"
+msgid ""
+"⟦SEP_0003⟧ [main.go](⟦DEST_0001⟧) ⟦SEP_0004⟧ ⟦CODE_0002⟧ and its one "
+"statement ⟦SEP_0005⟧"
+msgstr ""
+"⟦SEP_0003⟧ [main.go](⟦DEST_0001⟧) ⟦SEP_0004⟧ ⟦CODE_0002⟧ y su única "
+"instrucción ⟦SEP_0005⟧"
+
+#: src/GoChallenge1/README.md:61
+msgctxt "s-5fa2dc0af315-0021"
+msgid ""
+"⟦SEP_0002⟧ [helpers.go](⟦DEST_0001⟧) ⟦SEP_0003⟧ The entity, the repository "
+"and the expression helpers ⟦SEP_0004⟧"
+msgstr ""
+"⟦SEP_0002⟧ [helpers.go](⟦DEST_0001⟧) ⟦SEP_0003⟧ La entidad, el repositorio y"
+" los asistentes de expresiones ⟦SEP_0004⟧"
+
+#: src/GoChallenge1/README.md:62
+msgctxt "s-bb4f1010bf3f-0022"
+msgid ""
+"⟦SEP_0003⟧ ⟦CODE_0001⟧, ⟦CODE_0002⟧ ⟦SEP_0004⟧ Module definition ⟦SEP_0005⟧"
+msgstr ""
+"⟦SEP_0003⟧ ⟦CODE_0001⟧, ⟦CODE_0002⟧ ⟦SEP_0004⟧ Definición del módulo "
+"⟦SEP_0005⟧"
+
+#: src/GoChallenge1/README.md:64
+msgctxt "s-36e14d5ae0be-0023"
+msgid ""
+"As in the original, the entity and the data-access type sit outside "
+"⟦CODE_0001⟧. Go also needs small helper functions there (explained below)."
+msgstr ""
+"Igual que en el original, la entidad y el tipo de acceso a datos quedan "
+"fuera de ⟦CODE_0001⟧. Go también necesita allí pequeñas funciones auxiliares"
+" (se explican más abajo)."
+
+#: src/GoChallenge1/README.md:66
+msgctxt "s-0dcb373c2dff-0024"
+msgid "Program Flow"
+msgstr "Flujo del programa"
+
+#: src/GoChallenge1/README.md:70
+msgctxt "s-4eca9e9d85a4-0025"
+msgid ""
+"GoChallenge1: one for statement, a goroutine and a dialog served over HTTP"
+msgstr ""
+"GoChallenge1: una sola sentencia for, una goroutine y un diálogo servido por"
+" HTTP"
+
+#: src/GoChallenge1/README.md:71
+msgctxt "s-13ce5929cece-0026"
+msgid ""
+"A flowchart. The initializer builds a state struct and opens the repository."
+" The condition is true while the total is 40 or less and categories remain. "
+"Then the empty body runs, and the post statement runs Seq, which locks, adds"
+" hours, stages a card, unlocks, and starts a goroutine that saves the staged"
+" cards. When the condition is false, After runs ShowDialog, which serves a "
+"page and waits for the browser to post that it closed, then WaitForSaves "
+"waits for the goroutines, and the condition returns false so the for ends."
+msgstr ""
+"Un diagrama de flujo. El inicializador crea una estructura de estado y abre "
+"el repositorio. La condición es verdadera mientras el total no pase de 40 y "
+"queden categorías. Entonces se ejecuta el cuerpo vacío, y la sentencia "
+"posterior ejecuta Seq, que bloquea, suma horas, prepara una tarjeta, "
+"desbloquea e inicia una goroutine que guarda las tarjetas preparadas. Cuando"
+" la condición es falsa, After ejecuta ShowDialog, que sirve una página y "
+"espera a que el navegador envíe por POST el aviso de que se cerró. Después "
+"WaitForSaves espera a las goroutines, y la condición devuelve falso para que"
+" el for termine."
+
+#: src/GoChallenge1/README.md:72
+msgctxt "s-4d4616dfb213-0027"
+msgid "Initializer: build the state struct, open SQLite"
+msgstr "Inicializador: construye la estructura de estado y abre SQLite"
+
+#: src/GoChallenge1/README.md:72
+msgctxt "s-e5e1719f4f75-0028"
+msgid "Condition: total <= 40 and categories left?"
+msgstr "Condición: total <= 40 y ¿quedan categorías?"
+
+#: src/GoChallenge1/README.md:73
+msgctxt "s-b5bea41b6c62-0029"
+msgid "true"
+msgstr "true"
+
+#: src/GoChallenge1/README.md:73
+msgctxt "s-f4bc948d685c-0030"
+msgid "Empty body"
+msgstr "Cuerpo vacío"
+
+#: src/GoChallenge1/README.md:74
+msgctxt "s-39b17a3c888f-0031"
+msgid ""
+"Post: Seq runs its arguments in order: lock, hours, card, unlock, spawn"
+msgstr ""
+"Sentencia posterior: Seq ejecuta sus argumentos en orden: lock, hours, card,"
+" unlock, spawn"
+
+#: src/GoChallenge1/README.md:76
+msgctxt "s-4cd0e21a9a07-0032"
+msgid "go"
+msgstr "go"
+
+#: src/GoChallenge1/README.md:76
+msgctxt "s-d0ab6bbd51fa-0033"
+msgid "Goroutine: lock, SaveAll by reflection, unlock"
+msgstr "Goroutine: bloquea, ejecuta SaveAll por reflexión, desbloquea"
+
+#: src/GoChallenge1/README.md:77
+msgctxt "s-fcbcf165908d-0034"
+msgid "false"
+msgstr "false"
+
+#: src/GoChallenge1/README.md:77
+msgctxt "s-0ae38482b3d1-0035"
+msgid "After: ShowDialog serves a page on loopback and waits for /closed"
+msgstr "Después: ShowDialog sirve una página en loopback y espera /closed"
+
+#: src/GoChallenge1/README.md:78
+msgctxt "s-a0cb8773e05c-0036"
+msgid "WaitForSaves waits for the goroutines"
+msgstr "WaitForSaves espera a las goroutines"
+
+#: src/GoChallenge1/README.md:80
+msgctxt "s-41031358346f-0037"
+msgid "After returns false: the for ends"
+msgstr "Después de que devuelve false: el for termina"
+
+#: src/GoChallenge1/README.md:83
+msgctxt "s-9ee43594be21-0038"
+msgid ""
+"**What this shows:** Go's ⟦CODE_0001⟧ has the same three clauses as the C# "
+"original, but Go allows only simple statements there. So the work moves into"
+" helper functions, and ⟦CODE_0002⟧ runs its arguments in order in place of "
+"the comma list. The dashed edges are the concurrent part: each pass starts a"
+" goroutine, and the program must wait for all of them before it exits."
+msgstr ""
+"**Qué muestra:** ⟦CODE_0001⟧ en Go tiene las mismas tres cláusulas que el "
+"original en C#, pero Go solo permite instrucciones simples ahí. Por eso el "
+"trabajo pasa a funciones auxiliares, y ⟦CODE_0002⟧ ejecuta sus argumentos en"
+" orden, en lugar de usar la lista separada por comas. Las aristas punteadas "
+"son la parte concurrente: cada pasada inicia una goroutine, y el programa "
+"debe esperar a todas antes de terminar."
+
+#: src/GoChallenge1/README.md:85
+msgctxt "s-b0b99c015b62-0039"
+msgid ""
+"**Why this mechanism matters:** the loop ends through its condition, not "
+"through a ⟦CODE_0001⟧. The ⟦CODE_0002⟧ makes the false branch do the final "
+"work (show the page, wait for the saves) and then yield ⟦CODE_0003⟧. The "
+"window is a browser page, because Go has no standard-library GUI."
+msgstr ""
+"**Por qué importa este mecanismo:** el bucle termina por su condición, no "
+"por un ⟦CODE_0001⟧. Con ⟦CODE_0002⟧, la rama falsa hace el trabajo final "
+"(mostrar la página, esperar los guardados) y luego devuelve ⟦CODE_0003⟧. La "
+"ventana es una página del navegador, porque Go no tiene una biblioteca "
+"estándar para interfaces gráficas."
+
+#: src/GoChallenge1/README.md:87
+msgctxt "s-7f97d965b4c0-0040"
+msgid "How the stunt works"
+msgstr "Cómo funciona el truco"
+
+#: src/GoChallenge1/README.md:89
+msgctxt "s-2a59c28710e7-0041"
+msgid ""
+"The work splits three ways: an **initializer** that builds the loop's state,"
+" a **condition** that decides whether to keep going (and, on the last check,"
+" shows the window), and an **update** that does one pass of work. Comment "
+"banners in the source mark the boundaries."
+msgstr ""
+"El trabajo se divide en tres partes: un **inicializador** que construye el "
+"estado del bucle, una **condición** que decide si se sigue adelante (y, en "
+"la última comprobación, muestra la ventana) y una **actualización** que hace"
+" una pasada de trabajo. Los banners de comentarios en el código fuente "
+"marcan los límites."
+
+#: src/GoChallenge1/README.md:91
+msgctxt "s-ce9f0a51675c-0042"
+msgid ""
+"Go is the strictest: a ⟦CODE_0001⟧ clause allows only simple statements, and"
+" Go has no ternary, no comma expression and no statements inside "
+"expressions. The loop is still a real three-part ⟦CODE_0002⟧ with the same "
+"two semicolons as the Java port."
+msgstr ""
+"Go es el más estricto: una cláusula ⟦CODE_0001⟧ permite solo sentencias "
+"simples, y Go no tiene operador ternario, ni expresión con coma, ni "
+"sentencias dentro de expresiones. El bucle sigue siendo un ⟦CODE_0002⟧ real "
+"de tres partes, con los mismos dos puntos y coma que la versión en Java."
+
+#: src/GoChallenge1/README.md:93
+msgctxt "s-98bb49efbbc4-0043"
+msgid ""
+"**Initializer.** ⟦CODE_0001⟧. An anonymous struct holds the state: the CSS "
+"fragment, hours, user, repository, staged cards, categories and a mutex."
+msgstr ""
+"**Inicializador.** ⟦CODE_0001⟧. Una estructura anónima guarda el estado: el "
+"fragmento de CSS, las horas, el usuario, el repositorio, las tarjetas "
+"preparadas, las categorías y un mutex."
+
+#: src/GoChallenge1/README.md:94
+msgctxt "s-2932fc41933b-0044"
+msgid ""
+"**Condition.** ⟦CODE_0001⟧. The ⟦CODE_0002⟧ plays the role of the ternary: "
+"when the loop should end, the page is shown, the saves are awaited, and the "
+"result is ⟦CODE_0003⟧."
+msgstr ""
+"**Condición.** ⟦CODE_0001⟧. El ⟦CODE_0002⟧ cumple el papel del operador "
+"ternario: cuando el bucle debe terminar, se muestra la página, se esperan "
+"los guardados y el resultado es ⟦CODE_0003⟧."
+
+#: src/GoChallenge1/README.md:95
+msgctxt "s-ca9dab608199-0045"
+msgid ""
+"**Update.** One call, ⟦CODE_0001⟧, whose arguments run left to right. Go "
+"evaluates function calls in an argument list in order, so ⟦CODE_0002⟧ takes "
+"the place of the comma list: ⟦CODE_0003⟧, ⟦CODE_0004⟧ hours, ⟦CODE_0005⟧ a "
+"card, ⟦CODE_0006⟧, ⟦CODE_0007⟧."
+msgstr ""
+"**Actualización.** Una sola llamada, ⟦CODE_0001⟧, cuyos argumentos se "
+"evalúan de izquierda a derecha. Go evalúa en orden las llamadas a función de"
+" una lista de argumentos, así que ⟦CODE_0002⟧ ocupa el lugar de la lista "
+"separada por comas: ⟦CODE_0003⟧, ⟦CODE_0004⟧ horas, ⟦CODE_0005⟧ una tarjeta,"
+" ⟦CODE_0006⟧, ⟦CODE_0007⟧."
+
+#: src/GoChallenge1/README.md:96
+msgctxt "s-1844ccb60eaf-0046"
+msgid ""
+"**The price.** Anything that needs a statement (⟦CODE_0001⟧, ⟦CODE_0002⟧, "
+"⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧) is a small value-returning function "
+"in ⟦CODE_0006⟧. The goroutine's body is one ⟦CODE_0007⟧ call."
+msgstr ""
+"**El precio.** Todo lo que necesita una sentencia (⟦CODE_0001⟧, ⟦CODE_0002⟧,"
+" ⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧) es una función pequeña que devuelve "
+"un valor en ⟦CODE_0006⟧. El cuerpo de la goroutine es una sola llamada a "
+"⟦CODE_0007⟧."
+
+#: src/GoChallenge1/README.md:97
+msgctxt "s-a8514277888d-0047"
+msgid ""
+"**Window.** Go has no standard-library GUI, so ⟦CODE_0001⟧ serves a page on "
+"a loopback port and opens it in the default browser. The pulse is a CSS "
+"animation fragment, as the original had an animation fragment. The page "
+"posts to ⟦CODE_0002⟧ when you press Close or leave it, which unblocks the "
+"loop."
+msgstr ""
+"**Ventana.** Go no tiene una GUI en su biblioteca estándar, así que "
+"⟦CODE_0001⟧ sirve una página en un puerto de retorno local (*loopback*) y la"
+" abre en el navegador predeterminado. El pulso es un fragmento de animación "
+"CSS, igual que el original tenía un fragmento de animación. La página envía "
+"una petición POST a ⟦CODE_0002⟧ cuando pulsas Close o la abandonas, y eso "
+"desbloquea el bucle."
+
+#: src/GoChallenge1/README.md:98
+msgctxt "s-1ef5468af419-0048"
+msgid ""
+"**Saving.** The driver is ⟦CODE_0001⟧, a pure-Go driver that needs no C "
+"compiler. ⟦CODE_0002⟧'s ⟦CODE_0003⟧ calls ⟦CODE_0004⟧. ⟦CODE_0005⟧ stops the"
+" process from exiting before the goroutines finish."
+msgstr ""
+"**Guardado.** El controlador es ⟦CODE_0001⟧, un controlador escrito solo en "
+"Go que no necesita compilador de C. ⟦CODE_0003⟧ de ⟦CODE_0002⟧ llama a "
+"⟦CODE_0004⟧. ⟦CODE_0005⟧ evita que el proceso termine antes de que las "
+"goroutines acaben."
+
+#: src/GoChallenge1/README.md:100
+msgctxt "s-5a0ad00b10fc-0049"
+msgid "Gotchas worth knowing"
+msgstr "Trampas que conviene conocer"
+
+#: src/GoChallenge1/README.md:102
+msgctxt "s-1e8d91f38731-0050"
+msgid ""
+"**Helper functions are the price.** Go has no statement-expressions, so "
+"every statement-only operation (⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧, "
+"⟦CODE_0004⟧, ⟦CODE_0005⟧) lives in a small function in ⟦CODE_0006⟧. That is "
+"the stated cost of this version."
+msgstr ""
+"**Las funciones auxiliares son el precio.** Go no tiene expresiones-"
+"sentencia, así que cada operación que solo existe como sentencia "
+"(⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧) vive en "
+"una pequeña función en ⟦CODE_0006⟧. Ese es el costo declarado de esta "
+"versión."
+
+#: src/GoChallenge1/README.md:103
+msgctxt "s-e6e0c850bb33-0051"
+msgid ""
+"**The window is a web page.** Go has no standard-library GUI, so the program"
+" serves a page on a loopback port and opens your default browser. Press "
+"Close in the page, or close the tab, to finish."
+msgstr ""
+"**La ventana es una página web.** Go no tiene una interfaz gráfica (GUI) en "
+"su biblioteca estándar, así que el programa sirve una página en un puerto de"
+" loopback y abre tu navegador predeterminado. Presiona Close en la página, o"
+" cierra la pestaña, para terminar."
+
+#: src/GoChallenge1/README.md:104
+msgctxt "s-f2e2eae4bf12-0052"
+msgid ""
+"**Run it from this folder.** The data path is relative to the working "
+"directory."
+msgstr ""
+"**Ejecútalo desde este directorio.** La ruta de los datos es relativa al "
+"directorio de trabajo."
+
+#: src/GoChallenge1/README.md:105
+msgctxt "s-1f0e5632c68a-0053"
+msgid ""
+"**The container build needs the network.** ⟦CODE_0001⟧ is needed because the"
+" build downloads the SQLite module. The run itself has no network."
+msgstr ""
+"**La compilación del contenedor necesita red.** Se necesita ⟦CODE_0001⟧ "
+"porque la compilación descarga el módulo de SQLite. La ejecución en sí no "
+"tiene red."
+
+#: src/GoChallenge1/README.md:106
+msgctxt "s-aa90f087e772-0054"
+msgid ""
+"**The Windows Sandbox profile is not yet tested on real hardware,** and this"
+" port has no check script, so the sandbox gate does not cover it yet."
+msgstr ""
+"**El perfil de Windows Sandbox aún no se ha probado en hardware real,** y "
+"esta versión portada no tiene script de comprobación, así que la "
+"verificación del entorno aislado (*sandbox*, un espacio separado del resto "
+"del sistema donde se ejecuta el programa) todavía no la cubre."

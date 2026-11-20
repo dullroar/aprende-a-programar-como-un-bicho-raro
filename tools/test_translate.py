@@ -258,6 +258,21 @@ class TestResume(Base):
         self.assertEqual(res["accepted"], 4)
         self.assertEqual(self.entries()[self.ids[1]].msgstr, self.answers[self.ids[1]])
 
+    def test_cache_hit_for_repeated_english_gets_the_asking_segment_id(self):
+        # Two segments with the same English (a repeated table row) share a cache key but not an id.
+        t = self.translator(Fake(self.answers))
+        src = self.seg.segments()[1]
+        first = t.build_input(self.seg, 1, "doc.md")
+        t.translate_one(first, src)
+        second = dict(first, segment_id="s-000000000000-0099")
+        self.assertEqual(t._cache_key(first), t._cache_key(second))
+        calls = Fake({})
+        t.backend = calls
+        status, text, _, out, _ = t.translate_one(second, src)
+        self.assertEqual(calls.asked, [])
+        self.assertEqual(status, "accepted")
+        self.assertEqual(out["segment_id"], "s-000000000000-0099")
+
     def test_stale_po_entry_is_refused(self):
         self.run_file(self.translator(Fake(self.answers)), limit=1)
         po = polib.pofile(self.po, wrapwidth=0)

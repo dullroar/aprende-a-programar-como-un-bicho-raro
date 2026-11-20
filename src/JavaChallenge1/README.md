@@ -1,6 +1,6 @@
 ---
 name: "Java"
-teaches: "that a Java `for (init; condition; update) { }` can preserve the shape of the original C# program."
+teaches: "que un `for (init; condition; update) { }` de Java puede conservar la forma del programa original en C#."
 kind: port
 languages: [java]
 lesson: "languages/csharp-linq-xaml.md#the-one-statement-ports-same-trick-different-machinery"
@@ -8,176 +8,176 @@ loop-by: loop-statement
 evaluation: eager
 assurance: guaranteed
 pairs-with: ModernChallenge1
-machine: "Three expression slots"
-state: "Fields of one anonymous class"
+machine: "Tres espacios para expresiones"
+state: "Campos de una clase anónima"
 tags: [control-flow, side-effect, thread-safety]
 analogies: [closure]
 ---
-# One Statement, Java Edition
+# Una sola instrucción, edición Java
 
-Ken's Java port of Jim Lehmer's C# challenge. It is one of four sibling ports, along with [Kotlin](../KotlinChallenge1/README.md), [Python](../PythonChallenge1/README.md) and [Go](../GoChallenge1/README.md), written so the languages can be compared. This README also holds the [side-by-side comparison](#side-by-side) of all four.
+Port a Java del reto en C# de Jim Lehmer, hecho por Ken. Es uno de cuatro ports hermanos, junto con [Kotlin](../KotlinChallenge1/README.md), [Python](../PythonChallenge1/README.md) y [Go](../GoChallenge1/README.md), escritos para poder comparar los lenguajes. Este README también contiene la [comparación lado a lado](#side-by-side) de los cuatro.
 
-The constraint: `main` contains exactly one statement, a `for` loop with an empty body. The loop header does all the work. This is a stunt in expression mechanics. It is not an architectural pattern and it is not good production code.
+La restricción: `main` contiene exactamente una sentencia, un bucle `for` con el cuerpo vacío. La cabecera del bucle hace todo el trabajo. Esto es una acrobacia con la mecánica de las expresiones. No es un patrón de arquitectura y no es buen código de producción.
 
-## What every version does
+## Qué hacen todas las versiones
 
-All four ports do the same thing, in the same order:
+Las cuatro versiones hacen lo mismo, en el mismo orden:
 
-1. Open a local SQLite database (`demo-timecards.db`) and create a `time_cards` table if it is missing.
-2. Loop. Each pass adds 10 to 19 random hours, stages a made-up time card with the next category (Meetings, Coding, Debugging, Learning), and starts a background thread that saves the staged cards.
-3. Stop when the total passes 40 or the categories run out. There are five category names (Meetings repeats), so a total of exactly 40 after four cards continues to a fifth. That is three to five passes.
-4. Show a window that says **DEMO ONLY** with the total simulated hours. It pulses (fades in and out) until you close it.
-5. Wait for the saves to finish, then exit.
+1. Abre una base de datos SQLite local (`demo-timecards.db`) y crea una tabla `time_cards` si no existe.
+2. Entra en un bucle. Cada pasada suma de 10 a 19 horas aleatorias, prepara una tarjeta de horas inventada con la siguiente categoría (Meetings, Coding, Debugging, Learning) e inicia un hilo en segundo plano que guarda las tarjetas preparadas.
+3. El bucle se detiene cuando el total pasa de 40 o cuando se acaban las categorías. Hay cinco nombres de categoría (Meetings se repite), así que un total de exactamente 40 después de cuatro tarjetas continúa con una quinta. Son de tres a cinco pasadas.
+4. Muestra una ventana que dice **DEMO ONLY** con el total de horas simuladas. La ventana pulsa (se desvanece y reaparece) hasta que la cierres.
+5. Espera a que terminen los guardados y después sale.
 
-The cards are flagged `is_demo`. Nothing here connects to a real time-reporting system. Delete the `data` folder to start over; git ignores it.
+Las tarjetas se marcan como `is_demo`. Nada de esto se conecta con un sistema real de registro de horas. Borra la carpeta `data` para empezar de nuevo; git la ignora.
 
-## Run it
+## Ejecútalo
 
-You need JDK 25. The Gradle wrapper does the rest. Run it from a desktop session:
+Necesitas JDK 25. El Gradle wrapper hace el resto. Ejecútalo desde una sesión de escritorio:
 
 ```powershell
 cd src\JavaChallenge1
 .\gradlew.bat runJava
 ```
 
-From the repo root, the same task name works without the `cd`: `.\gradlew.bat runJava`.
+Desde la raíz del repositorio, el mismo nombre de tarea funciona sin el `cd`: `.\gradlew.bat runJava`.
 
-`bootRun` runs the same program. The window is a Swing dialog. Records land in `src/JavaChallenge1/data/demo-timecards.db`. The data path is relative to the working directory, which the Gradle run tasks set to this folder. If you run the JAR from somewhere else, `data` is created there.
+`bootRun` ejecuta el mismo programa. La ventana es un cuadro de diálogo de Swing. Los registros se guardan en `src/JavaChallenge1/data/demo-timecards.db`. La ruta de datos es relativa al directorio de trabajo, que las tareas de ejecución de Gradle fijan en este directorio. Si ejecutas el JAR desde otro lugar, `data` se crea allí.
 
-## Run it in a container
+## Ejecútalo en un contenedor
 
-Prerequisite: Docker, set up once as described in [`SANDBOX-SETUP.md`](../../SANDBOX-SETUP.md#docker).
+Requisito previo: Docker, configurado una sola vez como se describe en [`SANDBOX-SETUP.md`](../../SANDBOX-SETUP.md#docker).
 
 ```bash
 sandbox/container/run-image.sh --online-build --out ./results src/JavaChallenge1
 ```
 
-It builds this folder's [`Dockerfile`](Dockerfile) and runs the result with no network, a read-only file system and user `nobody`. Gradle and OpenJDK 25 build one Spring Boot jar in a build stage; the image holds only that jar on an OpenJDK 25 JRE with AWT, Xvfb and a screenshot tool, with no JDK or Gradle (about 760 MB, the largest of the set). The window opens on a virtual display (Xvfb) *inside* the container, so nothing is drawn on your desktop: the run screenshots it, closes it, and prints the rows it wrote. With `--out`, `results/screenshot.png` is the window. `--online-build` is needed because the build downloads Gradle (from this entry's wrapper) and the Maven dependencies; the run itself has no network.
+Compila el [`Dockerfile`](Dockerfile) de esta carpeta y ejecuta el resultado sin red, con un sistema de archivos de solo lectura y con el usuario `nobody`. Gradle y OpenJDK 25 compilan un jar de Spring Boot en una etapa de compilación; la imagen contiene solo ese jar sobre un JRE de OpenJDK 25 con AWT, Xvfb y una herramienta para capturar la pantalla, sin JDK ni Gradle (unos 760 MB, la más grande del conjunto). La ventana se abre en una pantalla virtual (Xvfb) *dentro* del contenedor, así que no se dibuja nada en tu escritorio: la ejecución captura la ventana, la cierra e imprime las filas que escribió. Con `--out`, `results/screenshot.png` es la ventana. Se necesita `--online-build` porque la compilación descarga Gradle (desde el wrapper de esta entrada) y las dependencias de Maven; la ejecución en sí no tiene red.
 
-## Run it in Windows Sandbox
+## Ejecútalo en Windows Sandbox
 
-Prerequisites: Windows Sandbox and this entry's toolchain on your machine, set up once as described in [`SANDBOX-SETUP.md`](../../SANDBOX-SETUP.md#windows-sandbox).
+Requisitos previos: Windows Sandbox (un entorno aislado, o *sandbox*, donde se ejecuta código sin tocar el resto del sistema) y la cadena de herramientas de esta entrada en tu máquina, configuradas una sola vez como se describe en [`SANDBOX-SETUP.md`](../../SANDBOX-SETUP.md#windows-sandbox).
 
 ```powershell
 sandbox\windows\run.ps1 src\JavaChallenge1
 ```
 
-It runs the entry in a throwaway VM with networking off, screenshots the window, asks it to close, and prints what it saved. **Not yet tested on real hardware**; it needs a JDK and a populated Gradle home on the host.
+Ejecuta la entrada en una máquina virtual desechable sin red, captura la ventana, le pide que se cierre e imprime lo que guardó. **Aún no está probado en hardware real**; necesita un JDK y un *Gradle home* ya poblado en el anfitrión.
 
-## Layout
+## Estructura
 
-| File | Role |
+| Archivo | Papel |
 | --- | --- |
-| [Program.java](src/main/java/challenge1/javaversion/Program.java) | `main` and its one statement |
-| `DemoTimeCard.java` | The entity |
-| `DemoTimeCardRepository.java` | The Spring Data repository |
+| [Program.java](src/main/java/challenge1/javaversion/Program.java) | `main` y su única instrucción |
+| `DemoTimeCard.java` | La entidad |
+| `DemoTimeCardRepository.java` | El repositorio de Spring Data |
 
-As in the original, the entity and the data-access type are the only code outside `main`.
+Como en el original, la entidad y el tipo de acceso a datos son el único código fuera de `main`.
 
-## Program Flow
+## Flujo del programa
 
 ```mermaid
 flowchart TD
-    accTitle: JavaChallenge1: a for statement whose false branch opens a modal dialog
-    accDescr: A flowchart. The initializer builds an anonymous object with the Spring context, repository, hours, a category iterator and a lock. The condition is true while the total is 40 or less and a category remains. Then the empty body runs and the update locks, adds hours, stages a card, unlocks and starts a thread that saves through reflection. When the condition is false, the else branch builds a Swing dialog from Spring XML at run time and shows it. The modal dialog blocks while a Timer bean fades the label colors. When it closes, Double.isNaN turns the result into false and the for ends.
-    A["Initializer: anonymous class holds Spring context, repository, hours, categories, lock"] --> B{{"Condition: total <= 40 and categories.hasNext()?"}}
-    B -->|true| C["Empty body"]
-    C --> D["Update: lock, add hours, stage a card, unlock, start a Thread"]
+    accTitle: JavaChallenge1: una instrucción for cuya rama falsa abre un cuadro de diálogo modal
+    accDescr: Un diagrama de flujo. El inicializador construye un objeto anónimo con el contexto de Spring, el repositorio, las horas, un iterador de categorías y un cerrojo. La condición es verdadera mientras el total no pasa de 40 y queda una categoría. Entonces se ejecuta el cuerpo vacío y la actualización adquiere el cerrojo, suma horas, prepara una tarjeta, libera el cerrojo e inicia un hilo que guarda mediante reflexión. Cuando la condición es falsa, la rama else construye un diálogo de Swing a partir de XML de Spring en tiempo de ejecución y lo muestra. El diálogo modal bloquea mientras un bean Timer desvanece gradualmente los colores de la etiqueta. Cuando se cierra, Double.isNaN convierte el resultado en false y el for termina.
+    A["Inicializador: la clase anónima contiene el contexto de Spring, el repositorio, las horas, las categorías y el cerrojo"] --> B{{"Condición: ¿total <= 40 y categories.hasNext()?"}}
+    B -->|true| C["Cuerpo vacío"]
+    C --> D["Actualización: bloquea, suma horas, deja una tarjeta en preparación, desbloquea e inicia un hilo"]
     D --> B
-    D -.-> T["Thread: saveAll through ReflectionUtils"]
-    B -->|false| E["Else branch: build a Swing dialog from Spring XML at run time"]
-    E --> F["setVisible blocks while a Timer bean fades the colors"]
-    F --> G["Dialog closes: Double.isNaN turns the result into false"]
+    D -.-> T["Hilo: saveAll mediante ReflectionUtils"]
+    B -->|false| E["Rama else: construye un diálogo Swing a partir de XML de Spring en tiempo de ejecución"]
+    E --> F["setVisible bloquea mientras un bean Timer desvanece los colores"]
+    F --> G["El diálogo se cierra: Double.isNaN convierte el resultado en false"]
 ```
 
-**What this shows:** the literal three-clause `for (init; condition; update) { }`. The condition decides between "go round again" and "show the window, then say false". The window is built from Spring XML bean definitions when it is needed, and the modal dialog does not return until the user closes it.
+**Qué muestra:** el `for (init; condition; update) { }` literal de tres cláusulas. La condición decide entre "vuelve a dar otra vuelta" y "muestra la ventana y luego di false". La ventana se construye a partir de definiciones de beans de Spring en XML cuando se necesita, y el diálogo modal no regresa hasta que el usuario lo cierra.
 
-**Why this mechanism matters:** this entry keeps control flow in the `for` and puts a framework's blocking call (a modal dialog with its own event handling) inside the condition. The dashed thread is the original's deliberately awkward background save.
+**Por qué importa este mecanismo:** esta entrada mantiene el flujo de control en el `for` y coloca la llamada bloqueante de un framework (un diálogo modal con su propio manejo de eventos) dentro de la condición. El hilo punteado es el guardado en segundo plano del original, torpe a propósito.
 
-## How the stunt works
+## Cómo funciona el truco
 
-Every port splits the work three ways: an **initializer** that builds the loop's state, a **condition** that decides whether to keep going (and, on the last check, shows the window), and an **update** that does one pass of work. Comment banners in the source mark the boundaries.
+Cada versión divide el trabajo en tres partes: un **inicializador** que construye el estado del bucle, una **condición** que decide si el bucle sigue (y, en la última comprobación, muestra la ventana) y una **actualización** que hace una pasada de trabajo. Los banners de comentarios en el código fuente marcan los límites.
 
-Java uses the literal original shape: `for (init; condition; update) { }`, with the two semicolons.
+Java usa la forma original literal: `for (init; condition; update) { }`, con los dos puntos y coma.
 
-- **Initializer.** `var i = new Object() { ... }`. An anonymous class is the state holder, because the `for` initializer allows only one declaration. `var` keeps the anonymous type so its fields stay reachable. Fields: the Spring Boot context, the repository, the hours list, a category iterator, a lock, and an XML fragment.
-- **Condition.** `total <= 40 && categories.hasNext() ? true : (BooleanSupplier) () -> ...`. When the loop should end, the else branch builds the window, shows it, and turns the result into `false` with `Double.isNaN(int)`, the original's trick.
-- **Update.** The update is a comma-separated list: lock, add hours, stage a card, unlock, then `new Thread(...).start()`.
-- **Several steps in one expression.** Chain them: `Stream.of(x).peek(...).peek(...)`.
-- **Window.** The window is a Swing `JDialog`, described by Spring XML bean definitions that are built at runtime (`GenericXmlApplicationContext` over a string). A `javax.swing.Timer` bean fades the label colors. The modal dialog blocks until closed.
-- **Saving.** The program saves with Spring Data JPA `saveAll`, invoked through Spring's `ReflectionUtils`.
+- **Inicializador.** `var i = new Object() { ... }`. Una clase anónima es el contenedor del estado, porque el inicializador de `for` permite solo una declaración. `var` conserva el tipo anónimo para que sus campos sigan siendo accesibles. Campos: el contexto de Spring Boot, el repositorio, la lista de horas, un iterador de categorías, un cerrojo y un fragmento de XML.
+- **Condición.** `total <= 40 && categories.hasNext() ? true : (BooleanSupplier) () -> ...`. Cuando el bucle debe terminar, la rama else construye la ventana, la muestra y convierte el resultado en `false` con `Double.isNaN(int)`, el truco del original.
+- **Actualización.** La actualización es una lista separada por comas: bloquear, sumar horas, preparar una tarjeta, desbloquear y, por último, `new Thread(...).start()`.
+- **Varios pasos en una expresión.** Encadénalos: `Stream.of(x).peek(...).peek(...)`.
+- **Ventana.** La ventana es un `JDialog` de Swing, descrito por definiciones de beans XML de Spring que se construyen en tiempo de ejecución (`GenericXmlApplicationContext` sobre una cadena de texto). Un bean `javax.swing.Timer` desvanece los colores de las etiquetas. El diálogo modal bloquea la ejecución hasta que se cierra.
+- **Guardado.** El programa guarda con Spring Data JPA `saveAll`, invocado a través del `ReflectionUtils` de Spring.
 
-## Gotchas worth knowing
+## Trampas que conviene conocer
 
-- **Run it from the right place.** The data path is relative to the working directory, which the Gradle run tasks set to this folder. If you run the JAR from somewhere else, `data` is created there.
-- **The container image is the biggest of the set** (about 760 MB), and `--online-build` is needed because the build downloads Gradle and the Maven dependencies. The run itself has no network.
-- **The Windows Sandbox profile is not yet tested on real hardware.** It needs a JDK and a populated Gradle home on the host, and this port has no check script, so the sandbox gate does not cover it yet.
+- **Ejecútalo desde el lugar correcto.** La ruta de datos es relativa al directorio de trabajo, que las tareas de ejecución de Gradle fijan en este directorio. Si ejecutas el JAR desde otro lugar, `data` se crea allí.
+- **La imagen de contenedor es la más grande del conjunto** (unos 760 MB), y se necesita `--online-build` porque la compilación descarga Gradle y las dependencias de Maven. La ejecución en sí no tiene red.
+- **El perfil de Windows Sandbox aún no está probado en hardware real.** Necesita un JDK y un directorio Gradle home ya poblado en el anfitrión. Esta adaptación no tiene un script de verificación. Por eso, el control del entorno aislado (*sandbox*, un espacio donde el código se ejecuta sin afectar al resto del sistema) aún no la cubre.
 
-## Side by side
+## Lado a lado
 
 | | Java | Kotlin | Python | Go |
 | --- | --- | --- | --- | --- |
-| The one statement | `for (init; cond; update) {}` | `for (pass in generateSequence(seed) {...}) {}` | `for _ in iter(step, False): ...` | `for init; cond; post {}` |
-| Real three-part `for` | Yes | No | No | Yes |
-| State holder | Anonymous class in a `var` | `object { }` as the seed | `SimpleNamespace` | Anonymous struct |
-| Condition | `? :` expression | `takeIf { if ... else ... }` | Conditional expression | `a && b \|\| After(false, ...)` |
-| Update (several steps) | Comma-separated expressions | Chain of `?.also { }` | Tuple, `[-1]` | `Seq(...)` call |
-| Ending the loop | Condition returns `false` | `takeIf` yields null | `step` returns the sentinel `False` | Condition returns `false` |
-| Empty body | `{ }` | `{ }` | `...` | `{ }` |
-| Window | Swing from Spring XML | Swing from Spring XML | Tk from ElementTree XML | Browser page on loopback |
-| Pulse | `javax.swing.Timer` | `javax.swing.Timer` | Tk `after()` timer | CSS animation |
-| Blocks until closed | Modal `JDialog` | Modal `JDialog` | `mainloop()` | Wait for `/closed` |
-| Database | Spring Data JPA, Hibernate, SQLite | Same | Standard-library `sqlite3` | `modernc.org/sqlite` |
-| Background save | `Thread` | `Thread` | `threading.Thread` | Goroutine via `Spawn` |
-| Lock | `ReentrantLock` | `ReentrantLock` | `threading.RLock` | `sync.Mutex` |
-| "Reflection" | Spring `ReflectionUtils` | Spring `ReflectionUtils` | `getattr` | `reflect.MethodByName` |
-| Code outside `main` | Entity, repository | Entity, repository | Entity, repository | Entity, repository and helper functions |
-| Extra install | JDK 25 | JDK 25 | None | Go toolchain |
+| La única instrucción | `for (init; cond; update) {}` | `for (pass in generateSequence(seed) {...}) {}` | `for _ in iter(step, False): ...` | `for init; cond; post {}` |
+| `for` real de tres partes | Sí | No | No | Sí |
+| Contenedor de estado | Clase anónima en un `var` | `object { }` como semilla | `SimpleNamespace` | Struct anónimo |
+| Condición | Expresión `? :` | `takeIf { if ... else ... }` | Expresión condicional | `a && b \|\| After(false, ...)` |
+| Actualización (varios pasos) | Expresiones separadas por comas | Cadena de `?.also { }` | Tupla, `[-1]` | Llamada a `Seq(...)` |
+| Terminar el bucle | La condición devuelve `false` | `takeIf` produce null | `step` devuelve el valor centinela `False` | La condición devuelve `false` |
+| Cuerpo vacío | `{ }` | `{ }` | `...` | `{ }` |
+| Ventana | Swing desde XML de Spring | Swing desde XML de Spring | Tk desde XML de ElementTree | Página del navegador en loopback |
+| Pulso | `javax.swing.Timer` | `javax.swing.Timer` | Temporizador `after()` de Tk | Animación CSS |
+| Bloquea hasta que se cierre | Modal `JDialog` | Modal `JDialog` | `mainloop()` | Espera a `/closed` |
+| Base de datos | Spring Data JPA, Hibernate, SQLite | Igual | `sqlite3` de la biblioteca estándar | `modernc.org/sqlite` |
+| Guardado en segundo plano | `Thread` | `Thread` | `threading.Thread` | Goroutine con `Spawn` |
+| Bloqueo | `ReentrantLock` | `ReentrantLock` | `threading.RLock` | `sync.Mutex` |
+| "Reflexión" | Spring `ReflectionUtils` | Spring `ReflectionUtils` | `getattr` | `reflect.MethodByName` |
+| Código fuera de `main` | Entidad, repositorio | Entidad, repositorio | Entidad, repositorio | Entidad, repositorio y funciones auxiliares |
+| Instalación adicional | JDK 25 | JDK 25 | Ninguna | Cadena de herramientas de Go |
 
-## What changed from the .NET version
+## Qué cambió respecto a la versión de .NET
 
-| .NET version | Java and Kotlin | Python | Go |
+| Versión de .NET | Java y Kotlin | Python | Go |
 | --- | --- | --- | --- |
-| Anonymous object as iterator state | Anonymous class or object expression | `SimpleNamespace` | Anonymous struct |
-| EF Core `DbContext` and SQLite | Spring Data JPA, Hibernate and SQLite | `sqlite3` | `modernc.org/sqlite` |
-| `TimeCards.Add` then `SaveChanges` | A `pending` list, then `saveAll` | A `pending` list, then `save_all` | A `pending` slice, then `SaveAll` |
-| WPF window from `XamlReader.Load` on a runtime XAML string | Swing window from `GenericXmlApplicationContext` on a runtime Spring XML string | Tk window from an XML string via `ElementTree` | HTML page built from a string, shown in the browser |
-| `XElement` holding a `DoubleAnimation` | XML fragment holding a `Timer` bean | XML fragment holding the timer interval | CSS `@keyframes` fragment |
-| Opacity animation on the `Viewbox` | Timer that fades the label colors | Timer that blends label colors | CSS opacity animation |
-| `Application.Run` blocks until the window closes | Modal `JDialog.setVisible(true)` | `Tk.mainloop()` | Wait for the page's `/closed` request |
-| LINQ to Objects `Sum` | `Stream` `sum` or `sum()` | `sum(...)` | A small `Sum` function |
-| SQLite file under `%LOCALAPPDATA%` | `data/` in the entry's folder | `data/` in the entry's folder | `data/` in the entry's folder |
-| Named `Mutex` | `ReentrantLock` | `threading.RLock` | `sync.Mutex` |
+| Objeto anónimo como estado del iterador | Clase anónima o expresión de objeto | `SimpleNamespace` | Struct anónimo |
+| EF Core `DbContext` y SQLite | Spring Data JPA, Hibernate y SQLite | `sqlite3` | `modernc.org/sqlite` |
+| `TimeCards.Add` y después `SaveChanges` | Una lista `pending`, y después `saveAll` | Una lista `pending`, y después `save_all` | Un slice `pending`, y después `SaveAll` |
+| Ventana WPF desde `XamlReader.Load` a partir de una cadena de texto XAML en tiempo de ejecución | Ventana Swing desde `GenericXmlApplicationContext` a partir de una cadena de texto XML de Spring en tiempo de ejecución | Ventana Tk desde una cadena de texto XML mediante `ElementTree` | Página HTML construida a partir de una cadena de texto y mostrada en el navegador |
+| `XElement` que contiene un `DoubleAnimation` | Fragmento XML que contiene un bean `Timer` | Fragmento XML que contiene el intervalo del temporizador | Fragmento CSS `@keyframes` |
+| Animación de opacidad en el `Viewbox` | Temporizador que desvanece los colores de las etiquetas | Temporizador que mezcla los colores de las etiquetas | Animación de opacidad con CSS |
+| `Application.Run` bloquea hasta que se cierra la ventana | `JDialog.setVisible(true)` modal | `Tk.mainloop()` | Espera la solicitud `/closed` de la página |
+| LINQ to Objects `Sum` | `Stream` `sum` o `sum()` | `sum(...)` | Una función `Sum` pequeña |
+| Archivo SQLite en `%LOCALAPPDATA%` | `data/` en la carpeta de la entrada | `data/` en la carpeta de la entrada | `data/` en la carpeta de la entrada |
+| Con el nombre `Mutex` | `ReentrantLock` | `threading.RLock` | `sync.Mutex` |
 | `MethodInfo.Invoke` | Spring `ReflectionUtils.invokeMethod` | `getattr` | `reflect` `MethodByName` |
 | `Random.Shared` | `ThreadLocalRandom.current()` | `random.Random()` | `math/rand/v2` |
 | `ISOWeek.GetWeekOfYear` | `IsoFields.WEEK_OF_WEEK_BASED_YEAR` | `date.isocalendar().week` | `time.ISOWeek()` |
-| `Environment.UserName` | `System.getProperty("user.name")` | `getpass.getuser()` | `USERNAME` or `USER` environment variable |
+| `Environment.UserName` | `System.getProperty("user.name")` | `getpass.getuser()` | variable de entorno `USERNAME` o `USER` |
 
-## From the original XAML to each port's markup
+## Del XAML original al marcado de cada port
 
-The .NET version builds its window from a XAML string at runtime with `XamlReader.Load`. XAML only runs on .NET, so each port builds its UI from a different markup string at runtime instead:
+La versión de .NET construye su ventana a partir de una cadena de texto XAML en tiempo de ejecución con `XamlReader.Load`. XAML solo se ejecuta en .NET, así que cada port construye su interfaz de usuario a partir de una cadena de texto de marcado distinta en tiempo de ejecución:
 
-- **Java and Kotlin** use standard Spring bean XML. Spring usually uses it to wire up services, and here it creates Swing widgets.
-- **Python** uses a made-up XML format. Each tag is named after a tkinter class (`<Tk>`, `<Label>`), and `getattr(tkinter, tag)` creates the widget.
-- **Go** uses plain HTML and CSS, rendered by the browser.
+- **Java y Kotlin** usan XML estándar de beans de Spring. Spring suele usarlo para conectar servicios, y aquí crea widgets de Swing.
+- **Python** usa un formato XML inventado. Cada etiqueta lleva el nombre de una clase de tkinter (`<Tk>`, `<Label>`), y `getattr(tkinter, tag)` crea el widget.
+- **Go** usa HTML y CSS simples, que el navegador renderiza.
 
-| UI piece | Original XAML (C#) | Java / Kotlin (Spring XML) | Python (custom XML) | Go (HTML/CSS) |
+| Elemento de la interfaz | XAML original (C#) | Java / Kotlin (XML de Spring) | Python (XML personalizado) | Go (HTML/CSS) |
 | --- | --- | --- | --- | --- |
-| Root of the markup | `<Viewbox>` with WPF namespaces | `<beans>` with Spring namespaces | `<ui>` (any name works) | `<!doctype html>` page |
-| The window | Created in C#; the XAML becomes its `Content` | `<bean id="window" class="javax.swing.JDialog">` | `<Tk id="window" .../>` | The browser window |
-| Window title | Set in C# code | `<property name="title" .../>` | `title="..."` attribute | `<title>...</title>` |
-| Size | `Width='520' Height='320'` on the Viewbox | `size` property, `Dimension(520, 320)` | Not set (fits the content) | Not set (browser decides) |
-| Layout container | `<Grid>` with two `RowDefinition`s | `<bean id="panel" class="javax.swing.JPanel">` with `BorderLayout` | None: each label is stacked with `pack="..."` | `<body>` with `text-align:center` |
-| Background color | `Background='#172033'` on the Grid | `background` property, `#172033` | `bg="#172033"` on every element | `background:#172033` style |
-| Padding and margins | `Margin='10'`, `Margin='28,24,28,0'`, `Margin='28'` | `createEmptyBorder(24, 28, 40, 28)` on the panel | `pack="fill=x,padx=28,pady=24"` | `padding:48px` |
-| Yellow banner text | `<TextBlock Foreground='#FFCE56' FontSize='18' FontWeight='Bold' .../>` | `<bean id="banner" class="javax.swing.JLabel">`, `#FFCE56`, SansSerif bold 18 | `<Label id="banner" fg="#FFCE56" font="Helvetica 18 bold" .../>` | `<h2 style="color:#FFCE56">` |
-| Hours total text | Second `<TextBlock Grid.Row='1' FontSize='24' Foreground='White' .../>` | `<bean id="total" class="javax.swing.JLabel">`, white, bold 24 | `<Label id="total" fg="#FFFFFF" font="Helvetica 24 bold" .../>` | `<h1>` |
-| "Saved locally" text | Same TextBlock as the total, after two line breaks (`&#x0a;&#x0a;`) | Separate `<bean id="saved" class="javax.swing.JLabel">`, bold 18 | Separate `<Label id="saved" .../>`, bold 18 | Separate `<h3>` |
-| Centered text | `TextAlignment='Center'` | `horizontalAlignment` property, `0` (center) | `pack="fill=x"` (labels center by default) | `text-align:center` |
-| Placing children in the layout | Nesting inside `<Grid>`, plus `Grid.Row` | `MethodInvokingBean` calling `panel.add(label, "North" / "Center" / "South")` | `parent="window"` attribute | Nesting inside `<body>` |
-| Close button | None (the window's X) | None (the window's X) | None (the window's X) | `<button onclick="done()">Close</button>` |
-| Animation fragment, built separately and inserted | `XElement` holding `<DoubleAnimation From="1" To="0.45" Duration="0:0:1.2" AutoReverse="True" RepeatBehavior="Forever" .../>` | `xmlAnim` string holding `<bean id="anim" class="javax.swing.Timer">`, ticking every 40 ms | `xml_anim` string holding `<timer interval="40"/>` | `animCSS` string holding `@keyframes pulse { from { opacity: 1 } to { opacity: .45 } }` |
-| What starts the animation | `<EventTrigger RoutedEvent='FrameworkElement.Loaded'>` and a `<Storyboard>`, all in the markup | `init-method="start"` in the XML; Java code fades the labels on each tick | Python code reads `interval` and schedules ticks with `after()` | `animation: pulse 1.2s ease-in-out infinite alternate`, all in CSS |
-| What fades | The whole Viewbox's `Opacity` | Each label's text color, from 100% to 45% alpha | Each label's color, blended toward the background | `h1`, `h2` and `h3` opacity |
+| Raíz del marcado | `<Viewbox>` con espacios de nombres de WPF | `<beans>` con espacios de nombres de Spring | `<ui>` (sirve cualquier nombre) | Página `<!doctype html>` |
+| La ventana | Se crea en C#; el XAML se convierte en su `Content` | `<bean id="window" class="javax.swing.JDialog">` | `<Tk id="window" .../>` | La ventana del navegador |
+| Título de la ventana | Se define en código C# | `<property name="title" .../>` | Atributo `title="..."` | `<title>...</title>` |
+| Tamaño | `Width='520' Height='320'` en el Viewbox | propiedad `size`, `Dimension(520, 320)` | Sin definir (se ajusta al contenido) | Sin definir (lo decide el navegador) |
+| Contenedor de diseño | `<Grid>` con dos `RowDefinition` | `<bean id="panel" class="javax.swing.JPanel">` con `BorderLayout` | Ninguno: cada etiqueta se apila con `pack="..."` | `<body>` con `text-align:center` |
+| Color de fondo | `Background='#172033'` en el Grid | propiedad `background`, `#172033` | `bg="#172033"` en cada elemento | estilo `background:#172033` |
+| Relleno y márgenes | `Margin='10'`, `Margin='28,24,28,0'`, `Margin='28'` | `createEmptyBorder(24, 28, 40, 28)` en el panel | `pack="fill=x,padx=28,pady=24"` | `padding:48px` |
+| Texto del banner amarillo | `<TextBlock Foreground='#FFCE56' FontSize='18' FontWeight='Bold' .../>` | `<bean id="banner" class="javax.swing.JLabel">`, `#FFCE56`, SansSerif negrita 18 | `<Label id="banner" fg="#FFCE56" font="Helvetica 18 bold" .../>` | `<h2 style="color:#FFCE56">` |
+| Texto del total de horas | Segundo `<TextBlock Grid.Row='1' FontSize='24' Foreground='White' .../>` | `<bean id="total" class="javax.swing.JLabel">`, blanco, negrita 24 | `<Label id="total" fg="#FFFFFF" font="Helvetica 24 bold" .../>` | `<h1>` |
+| Texto "Saved locally" | El mismo TextBlock que el total, después de dos saltos de línea (`&#x0a;&#x0a;`) | `<bean id="saved" class="javax.swing.JLabel">` independiente, negrita 18 | `<Label id="saved" .../>` independiente, negrita 18 | `<h3>` independiente |
+| Texto centrado | `TextAlignment='Center'` | Propiedad `horizontalAlignment`, `0` (centro) | `pack="fill=x"` (las etiquetas se centran por defecto) | `text-align:center` |
+| Colocar los hijos en el diseño | Anidar dentro de `<Grid>`, más `Grid.Row` | `MethodInvokingBean` que llama a `panel.add(label, "North" / "Center" / "South")` | Atributo `parent="window"` | Anidar dentro de `<body>` |
+| Botón de cierre | Ninguno (la X de la ventana) | Ninguno (la X de la ventana) | Ninguno (la X de la ventana) | `<button onclick="done()">Close</button>` |
+| Fragmento de animación, construido por separado e insertado | `XElement` que contiene `<DoubleAnimation From="1" To="0.45" Duration="0:0:1.2" AutoReverse="True" RepeatBehavior="Forever" .../>` | `xmlAnim` cadena de texto que contiene `<bean id="anim" class="javax.swing.Timer">`, con un tick cada 40 ms | `xml_anim` cadena de texto que contiene `<timer interval="40"/>` | `animCSS` cadena de texto que contiene `@keyframes pulse { from { opacity: 1 } to { opacity: .45 } }` |
+| Qué inicia la animación | `<EventTrigger RoutedEvent='FrameworkElement.Loaded'>` y un `<Storyboard>`, todo en el marcado | `init-method="start"` en el XML; el código Java atenúa las etiquetas en cada tick | El código Python lee `interval` y programa ticks con `after()` | `animation: pulse 1.2s ease-in-out infinite alternate`, todo en CSS |
+| Qué se desvanece | El `Opacity` de todo el Viewbox | El color del texto de cada etiqueta, con alfa de 100% a 45% | El color de cada etiqueta, mezclado hacia el fondo | La opacidad de `h1`, `h2` y `h3` |
 
-The XAML and the Go CSS describe the animation completely in markup. Swing and Tk can't declare an animation in markup, so in Java, Kotlin and Python the markup only declares a timer, and code outside it does the fading.
+El XAML y el CSS de Go describen la animación completa en el marcado. Swing y Tk no pueden declarar una animación en el marcado, así que en Java, Kotlin y Python el marcado solo declara un temporizador y el código fuera del marcado hace el desvanecimiento.

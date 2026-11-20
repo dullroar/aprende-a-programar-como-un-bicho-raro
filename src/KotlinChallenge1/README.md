@@ -1,6 +1,6 @@
 ---
 name: "Kotlin"
-teaches: "that Kotlin can use `generateSequence` as the loop, ending when the generator returns null."
+teaches: "que Kotlin puede usar `generateSequence` como el bucle, y termina cuando el generador devuelve null."
 kind: port
 languages: [kotlin]
 lesson: "languages/csharp-linq-xaml.md#the-one-statement-ports-same-trick-different-machinery"
@@ -8,95 +8,95 @@ loop-by: lazy-demand
 evaluation: lazy
 assurance: guaranteed
 pairs-with: JavaChallenge1
-machine: "A lazy sequence that the empty `for` pulls"
-state: "Properties of one object expression, the seed of the sequence"
+machine: "Una secuencia perezosa que el `for` vacío demanda (pull)"
+state: "Propiedades de una expresión de objeto, la semilla de la secuencia"
 tags: [generators, lazy-evaluation, side-effect, thread-safety]
 analogies: [coroutine]
 ---
-# One Statement, Kotlin Edition
+# Una sola instrucción, edición Kotlin
 
-Ken's Kotlin port of Jim Lehmer's C# challenge. It is one of four sibling ports, along with [Java](../JavaChallenge1/README.md), [Python](../PythonChallenge1/README.md) and [Go](../GoChallenge1/README.md). The Java README has [what every version does](../JavaChallenge1/README.md#what-every-version-does) and the [side-by-side comparison](../JavaChallenge1/README.md#side-by-side) of all four.
+Esta es la adaptación a Kotlin que hizo Ken del reto en C# de Jim Lehmer. Es una de cuatro adaptaciones hermanas, junto con [Java](../JavaChallenge1/README.md), [Python](../PythonChallenge1/README.md) y [Go](../GoChallenge1/README.md). El README de Java explica [qué hace cada versión](../JavaChallenge1/README.md#what-every-version-does) y tiene la [comparación lado a lado](../JavaChallenge1/README.md#side-by-side) de las cuatro.
 
-The constraint: `main` contains exactly one statement, a `for` loop with an empty body. This is a stunt in expression mechanics, not good production code. Nothing here connects to a real time-reporting system: the cards are flagged `is_demo`.
+La restricción: `main` contiene exactamente una instrucción, un bucle `for` con el cuerpo vacío. Esto es una acrobacia con la mecánica de las expresiones, no es buen código de producción. Nada de esto se conecta con un sistema real de registro de horas: las tarjetas están marcadas como `is_demo`.
 
-## Run it
+## Ejecútalo
 
-You need JDK 25. The Gradle wrapper does the rest. Run it from a desktop session:
+Necesitas JDK 25. El Gradle wrapper hace el resto. Ejecútalo desde una sesión de escritorio:
 
 ```powershell
 cd src\KotlinChallenge1
 .\gradlew.bat runKotlin
 ```
 
-From the repo root, the same task name works without the `cd`: `.\gradlew.bat runKotlin`.
+Desde la raíz del repositorio, el mismo nombre de tarea funciona sin `cd`: `.\gradlew.bat runKotlin`.
 
-`bootRun` runs the same program. The window is a Swing dialog. Records land in `src/KotlinChallenge1/data/demo-timecards.db`; delete `data` to start over. The data path is relative to the working directory, which the Gradle run tasks set to this folder.
+`bootRun` ejecuta el mismo programa. La ventana es un diálogo de Swing. Los registros se guardan en `src/KotlinChallenge1/data/demo-timecards.db`; elimina `data` para empezar de nuevo. La ruta de los datos es relativa al directorio de trabajo, que las tareas de ejecución de Gradle fijan en esta carpeta.
 
-## Run it in a container
+## Ejecútalo en un contenedor
 
-Prerequisite: Docker, set up once as described in [`SANDBOX-SETUP.md`](../../SANDBOX-SETUP.md#docker).
+Requisito previo: Docker, configurado una sola vez como se describe en [`SANDBOX-SETUP.md`](../../SANDBOX-SETUP.md#docker).
 
 ```bash
 sandbox/container/run-image.sh --online-build --out ./results src/KotlinChallenge1
 ```
 
-It builds this folder's [`Dockerfile`](Dockerfile) and runs the result with no network, a read-only file system and user `nobody`. Gradle and OpenJDK 25 build one Spring Boot jar in a build stage; the image holds only that jar on an OpenJDK 25 JRE with AWT, Xvfb and a screenshot tool, with no JDK, Gradle or Kotlin compiler (about 770 MB, the largest of the set). The window opens on a virtual display (Xvfb) *inside* the container, so nothing is drawn on your desktop: the run screenshots it, closes it, and prints the rows it wrote. With `--out`, `results/screenshot.png` is the window. `--online-build` is needed because the build downloads Gradle (from this entry's wrapper) and the Maven dependencies; the run itself has no network.
+Compila el [`Dockerfile`](Dockerfile) de esta carpeta y ejecuta el resultado sin red, con un sistema de archivos de solo lectura y con el usuario `nobody`. Gradle y OpenJDK 25 compilan un solo jar de Spring Boot en una etapa de compilación. La imagen contiene solo ese jar sobre un JRE de OpenJDK 25 con AWT, Xvfb y una herramienta de capturas de pantalla, sin JDK, sin Gradle y sin compilador de Kotlin (unos 770 MB, la más grande del conjunto). La ventana se abre en una pantalla virtual (Xvfb) *dentro* del contenedor, así que no se dibuja nada en tu escritorio: la ejecución toma una captura de la ventana, la cierra e imprime las filas que escribió. Con `--out`, `results/screenshot.png` es la ventana. Se necesita `--online-build` porque la compilación descarga Gradle (desde el wrapper de esta entrada) y las dependencias de Maven. La ejecución en sí no tiene red.
 
-## Run it in Windows Sandbox
+## Ejecútalo en Windows Sandbox
 
-Prerequisites: Windows Sandbox and this entry's toolchain on your machine, set up once as described in [`SANDBOX-SETUP.md`](../../SANDBOX-SETUP.md#windows-sandbox).
+Requisitos previos: Windows Sandbox (un entorno aislado, o *sandbox*, donde se ejecuta código sin tocar el resto del sistema) y la cadena de herramientas de esta entrada en tu máquina, configuradas una sola vez como se describe en [`SANDBOX-SETUP.md`](../../SANDBOX-SETUP.md#windows-sandbox).
 
 ```powershell
 sandbox\windows\run.ps1 src\KotlinChallenge1
 ```
 
-It runs the entry in a throwaway VM with networking off, screenshots the window, asks it to close, and prints what it saved. **Not yet tested on real hardware**; it needs a JDK and a populated Gradle home on the host.
+Ejecuta la entrada en una máquina virtual desechable sin red, captura la ventana, le pide que se cierre e imprime lo que guardó. **Aún no está probado en hardware real**; necesita un JDK y un *Gradle home* ya poblado en el anfitrión.
 
-## Layout
+## Estructura
 
-| File | Role |
+| Archivo | Papel |
 | --- | --- |
-| [Program.kt](src/main/kotlin/challenge1/kotlinversion/Program.kt) | `main` and its one statement |
-| `DemoTimeCard.kt` | The entity |
-| `DemoTimeCardRepository.kt` | The Spring Data repository |
+| [Program.kt](src/main/kotlin/challenge1/kotlinversion/Program.kt) | `main` y su única instrucción |
+| `DemoTimeCard.kt` | La entidad |
+| `DemoTimeCardRepository.kt` | El repositorio de Spring Data |
 
-As in the original, the entity and the data-access type are the only code outside `main`.
+Como en el original, la entidad y el tipo de acceso a datos son el único código fuera de `main`.
 
-## Program Flow
+## Flujo del programa
 
 ```mermaid
 flowchart TD
-    accTitle: KotlinChallenge1: a generated sequence ends when takeIf returns null
-    accDescr: A flowchart. The seed object is the first value of generateSequence. The empty for body runs. The sequence then asks its next function for the next value. takeIf tests whether the total is 40 or less and a category remains. If so, a chain of also calls locks, adds hours, stages a card, unlocks and starts a thread, and the same object is the next value, so the body runs again. If not, the else branch shows a Swing dialog built from Spring XML and ends with let false, so takeIf returns null and the sequence, and the for, end.
-    A["Seed: an object expression holds the state"] --> B["Empty for body"]
-    B --> C["generateSequence asks for the next value"]
-    C --> D{{"takeIf: total <= 40 and categories left?"}}
-    D -->|yes| E["also chain: lock, add hours, stage a card, unlock, start a Thread"]
+    accTitle: KotlinChallenge1: una secuencia generada termina cuando takeIf devuelve null
+    accDescr: Un diagrama de flujo. El objeto semilla es el primer valor de generateSequence. El cuerpo vacío del for se ejecuta. Luego la secuencia pide el siguiente valor a su función siguiente. takeIf comprueba si el total no pasa de 40 y si queda una categoría. Si es así, una cadena de llamadas a also bloquea, suma horas, prepara una tarjeta, desbloquea e inicia un hilo, y el mismo objeto es el siguiente valor, así que el cuerpo se ejecuta otra vez. Si no, la rama else muestra un diálogo de Swing construido con XML de Spring y termina con let false, así que takeIf devuelve null y la secuencia y el for terminan.
+    A["Semilla: una expresión de objeto guarda el estado"] --> B["Vacío para el cuerpo"]
+    B --> C["generateSequence pide el siguiente valor"]
+    C --> D{{"takeIf: ¿total <= 40 y quedan categorías?"}}
+    D -->|sí| E["también encadena: bloquea, agrega horas, prepara una tarjeta, desbloquea, inicia un hilo"]
     E --> B
-    D -->|no| F["Else branch: show the Swing dialog, then let false"]
-    F --> G["takeIf returns null: the sequence is over"]
+    D -->|no| F["Rama else: muestra el diálogo de Swing y luego let false"]
+    F --> G["takeIf devuelve null: la secuencia terminó"]
 ```
 
-**What this shows:** Kotlin has no three-clause `for`, so the loop iterates a sequence. The condition is `takeIf`, and "stop" is a `null`. The update is the chain of `?.also { ... }` calls that runs only when the condition passed. The body runs once before the first test, which makes no difference here because the body is empty.
+**Qué muestra:** Kotlin no tiene un `for` de tres cláusulas, así que el bucle itera una secuencia. La condición es `takeIf`, y "detenerse" es un `null`. La actualización es la cadena de llamadas a `?.also { ... }` que se ejecuta solo cuando la condición se cumplió. El cuerpo se ejecuta una vez antes de la primera prueba, lo que aquí no cambia nada porque el cuerpo está vacío.
 
-**Why this mechanism matters:** it is the same three jobs as the Java port (initialize, test, update), carried by a lazy sequence that is pulled one value at a time. Ending the sequence is a value (`null`), not a statement.
+**Por qué importa este mecanismo:** son los mismos tres trabajos que en el port de Java (inicializar, probar, actualizar), pero los hace una secuencia perezosa de la que se toma un valor a la vez. Terminar la secuencia es un valor (`null`), no una instrucción.
 
-## How the stunt works
+## Cómo funciona el truco
 
-The work splits three ways: an **initializer** that builds the loop's state, a **condition** that decides whether to keep going (and, on the last check, shows the window), and an **update** that does one pass of work. Comment banners in the source mark the boundaries.
+El trabajo se divide en tres partes: un **inicializador** que construye el estado del bucle, una **condición** que decide si el bucle sigue (y, en la última comprobación, muestra la ventana) y una **actualización** que hace una pasada de trabajo. Los banners de comentarios del código fuente marcan los límites.
 
-Kotlin has no three-part `for` and no semicolons, so the loop iterates a sequence: `for (pass in generateSequence(seed) { ... }) { }`.
+Kotlin no tiene un `for` de tres partes ni puntos y comas, así que el bucle recorre una secuencia: `for (pass in generateSequence(seed) { ... }) { }`.
 
-- **Initializer.** An `object { ... }` expression is the sequence seed.
-- **Condition.** `takeIf { if ... else ... }`. A null result ends the sequence. When the loop should end, the else branch shows the window and finishes with `.let { false }`, so `takeIf` returns null.
-- **Update.** The update is a chain of `?.also { ... }` calls.
-- **Several steps in one expression.** Chain them: `x.also { ... }.also { ... }`.
-- **Window and saving.** The same Swing, Spring XML and Spring Data JPA as the Java port. The XML is one raw string with `${...}` templates instead of joined text blocks.
-- **One behavior difference.** The Kotlin loop body runs once before the first condition check, where Java checks first. The body is empty, so both programs do the same things in the same order.
+- **Inicializador.** Una expresión `object { ... }` es la semilla de la secuencia.
+- **Condición.** `takeIf { if ... else ... }`. Un resultado null termina la secuencia. Cuando el bucle tiene que terminar, la rama else muestra la ventana y acaba con `.let { false }`, así que `takeIf` devuelve null.
+- **Actualización.** La actualización es una cadena de llamadas a `?.also { ... }`.
+- **Varios pasos en una expresión.** Encadénalos: `x.also { ... }.also { ... }`.
+- **Ventana y guardado.** Los mismos Swing, Spring XML y Spring Data JPA que en la versión en Java. El XML es una sola cadena de texto sin procesar con plantillas `${...}`, en lugar de bloques de texto unidos.
+- **Una diferencia de comportamiento.** El cuerpo del bucle de Kotlin se ejecuta una vez antes de la primera comprobación de la condición. Java comprueba primero. El cuerpo está vacío, así que los dos programas hacen las mismas cosas en el mismo orden.
 
-## Gotchas worth knowing
+## Trampas que conviene conocer
 
-- **The loop body runs once before the first condition check.** Java checks first. The body is empty, so both programs do the same things in the same order.
-- **Run it from the right place.** The data path is relative to the working directory, which the Gradle run tasks set to this folder.
-- **The container image is the biggest of the set** (about 770 MB), and `--online-build` is needed because the build downloads Gradle and the Maven dependencies. The run itself has no network.
-- **The Windows Sandbox profile is not yet tested on real hardware.** It needs a JDK and a populated Gradle home on the host, and this port has no check script, so the sandbox gate does not cover it yet.
+- **El cuerpo del bucle se ejecuta una vez antes de la primera comprobación de la condición.** Java comprueba primero. El cuerpo está vacío, así que los dos programas hacen las mismas cosas en el mismo orden.
+- **Ejecuta el programa desde el lugar correcto.** La ruta de los datos es relativa al directorio de trabajo, y las tareas de ejecución de Gradle fijan ese directorio en esta carpeta.
+- **La imagen de contenedor es la más grande del conjunto** (unos 770 MB), y se necesita `--online-build` porque la compilación descarga Gradle y las dependencias de Maven. La ejecución en sí no tiene red.
+- **El perfil de Windows Sandbox aún no se ha probado en hardware real.** Necesita un JDK y un directorio base de Gradle (*Gradle home*) ya poblado en el anfitrión. Este port no tiene un script de verificación, así que el control del entorno aislado (*sandbox*) todavía no lo cubre. Un entorno aislado es un espacio separado donde el código se ejecuta sin afectar al resto del sistema.

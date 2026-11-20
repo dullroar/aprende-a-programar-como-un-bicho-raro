@@ -1,0 +1,1068 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/JavaChallenge1/README.md:2
+msgctxt "s-c1ba60ce1358-0000"
+msgid "Java"
+msgstr "Java"
+
+#: src/JavaChallenge1/README.md:3
+msgctxt "s-9102f4ac03f1-0001"
+msgid ""
+"that a Java ⟦CODE_0001⟧ can preserve the shape of the original C# program."
+msgstr ""
+"que un ⟦CODE_0001⟧ de Java puede conservar la forma del programa original en"
+" C#."
+
+#: src/JavaChallenge1/README.md:11
+msgctxt "s-af314db68bc7-0002"
+msgid "Three expression slots"
+msgstr "Tres espacios para expresiones"
+
+#: src/JavaChallenge1/README.md:12
+msgctxt "s-f4b426881083-0003"
+msgid "Fields of one anonymous class"
+msgstr "Campos de una clase anónima"
+
+#: src/JavaChallenge1/README.md:16
+msgctxt "s-0cf6cd772d63-0004"
+msgid "One Statement, Java Edition"
+msgstr "Una sola instrucción, edición Java"
+
+#: src/JavaChallenge1/README.md:18
+msgctxt "s-0f9ae48a6b27-0005"
+msgid ""
+"Ken's Java port of Jim Lehmer's C# challenge. It is one of four sibling "
+"ports, along with [Kotlin](⟦DEST_0001⟧), [Python](⟦DEST_0002⟧) and "
+"[Go](⟦DEST_0003⟧), written so the languages can be compared. This README "
+"also holds the [side-by-side comparison](⟦DEST_0004⟧) of all four."
+msgstr ""
+"Port a Java del reto en C# de Jim Lehmer, hecho por Ken. Es uno de cuatro "
+"ports hermanos, junto con [Kotlin](⟦DEST_0001⟧), [Python](⟦DEST_0002⟧) y "
+"[Go](⟦DEST_0003⟧), escritos para poder comparar los lenguajes. Este README "
+"también contiene la [comparación lado a lado](⟦DEST_0004⟧) de los cuatro."
+
+#: src/JavaChallenge1/README.md:20
+msgctxt "s-4e217c5361ea-0006"
+msgid ""
+"The constraint: ⟦CODE_0001⟧ contains exactly one statement, a ⟦CODE_0002⟧ "
+"loop with an empty body. The loop header does all the work. This is a stunt "
+"in expression mechanics. It is not an architectural pattern and it is not "
+"good production code."
+msgstr ""
+"La restricción: ⟦CODE_0001⟧ contiene exactamente una sentencia, un bucle "
+"⟦CODE_0002⟧ con el cuerpo vacío. La cabecera del bucle hace todo el trabajo."
+" Esto es una acrobacia con la mecánica de las expresiones. No es un patrón "
+"de arquitectura y no es buen código de producción."
+
+#: src/JavaChallenge1/README.md:22
+msgctxt "s-345d3521d5b5-0007"
+msgid "What every version does"
+msgstr "Qué hacen todas las versiones"
+
+#: src/JavaChallenge1/README.md:24
+msgctxt "s-a560b909884c-0008"
+msgid "All four ports do the same thing, in the same order:"
+msgstr "Las cuatro versiones hacen lo mismo, en el mismo orden:"
+
+#: src/JavaChallenge1/README.md:26
+msgctxt "s-7da000214f9f-0009"
+msgid ""
+"Open a local SQLite database (⟦CODE_0001⟧) and create a ⟦CODE_0002⟧ table if it is missing.\n"
+"2. Loop. Each pass adds 10 to 19 random hours, stages a made-up time card with the next category (⟦DNT_0003⟧, ⟦DNT_0004⟧, ⟦DNT_0005⟧, ⟦DNT_0006⟧), and starts a background thread that saves the staged cards.\n"
+"3. Stop when the total passes 40 or the categories run out. There are five category names (⟦DNT_0007⟧ repeats), so a total of exactly 40 after four cards continues to a fifth. That is three to five passes.\n"
+"4. Show a window that says **⟦DNT_0008⟧** with the total simulated hours. It pulses (fades in and out) until you close it.\n"
+"5. Wait for the saves to finish, then exit."
+msgstr ""
+"Abre una base de datos SQLite local (⟦CODE_0001⟧) y crea una tabla ⟦CODE_0002⟧ si no existe.\n"
+"2. Entra en un bucle. Cada pasada suma de 10 a 19 horas aleatorias, prepara una tarjeta de horas inventada con la siguiente categoría (⟦DNT_0003⟧, ⟦DNT_0004⟧, ⟦DNT_0005⟧, ⟦DNT_0006⟧) e inicia un hilo en segundo plano que guarda las tarjetas preparadas.\n"
+"3. El bucle se detiene cuando el total pasa de 40 o cuando se acaban las categorías. Hay cinco nombres de categoría (⟦DNT_0007⟧ se repite), así que un total de exactamente 40 después de cuatro tarjetas continúa con una quinta. Son de tres a cinco pasadas.\n"
+"4. Muestra una ventana que dice **⟦DNT_0008⟧** con el total de horas simuladas. La ventana pulsa (se desvanece y reaparece) hasta que la cierres.\n"
+"5. Espera a que terminen los guardados y después sale."
+
+#: src/JavaChallenge1/README.md:32
+msgctxt "s-34dd88364e84-0010"
+msgid ""
+"The cards are flagged ⟦CODE_0001⟧. Nothing here connects to a real time-"
+"reporting system. Delete the ⟦CODE_0002⟧ folder to start over; git ignores "
+"it."
+msgstr ""
+"Las tarjetas se marcan como ⟦CODE_0001⟧. Nada de esto se conecta con un "
+"sistema real de registro de horas. Borra la carpeta ⟦CODE_0002⟧ para empezar"
+" de nuevo; git la ignora."
+
+#: src/JavaChallenge1/README.md:34
+msgctxt "s-958ca26c6a61-0011"
+msgid "Run it"
+msgstr "Ejecútalo"
+
+#: src/JavaChallenge1/README.md:36
+msgctxt "s-7cc22086db48-0012"
+msgid ""
+"You need JDK 25. The Gradle wrapper does the rest. Run it from a desktop "
+"session:"
+msgstr ""
+"Necesitas JDK 25. El Gradle wrapper hace el resto. Ejecútalo desde una "
+"sesión de escritorio:"
+
+#: src/JavaChallenge1/README.md:43
+msgctxt "s-9db7b7228132-0013"
+msgid ""
+"From the repo root, the same task name works without the ⟦CODE_0001⟧: "
+"⟦CODE_0002⟧."
+msgstr ""
+"Desde la raíz del repositorio, el mismo nombre de tarea funciona sin el "
+"⟦CODE_0001⟧: ⟦CODE_0002⟧."
+
+#: src/JavaChallenge1/README.md:45
+msgctxt "s-6eb2506bbdf7-0014"
+msgid ""
+"⟦CODE_0001⟧ runs the same program. The window is a Swing dialog. Records "
+"land in ⟦CODE_0002⟧. The data path is relative to the working directory, "
+"which the Gradle run tasks set to this folder. If you run the JAR from "
+"somewhere else, ⟦CODE_0003⟧ is created there."
+msgstr ""
+"⟦CODE_0001⟧ ejecuta el mismo programa. La ventana es un cuadro de diálogo de"
+" Swing. Los registros se guardan en ⟦CODE_0002⟧. La ruta de datos es "
+"relativa al directorio de trabajo, que las tareas de ejecución de Gradle "
+"fijan en este directorio. Si ejecutas el JAR desde otro lugar, ⟦CODE_0003⟧ "
+"se crea allí."
+
+#: src/JavaChallenge1/README.md:47
+msgctxt "s-254f0c660db3-0015"
+msgid "Run it in a container"
+msgstr "Ejecútalo en un contenedor"
+
+#: src/JavaChallenge1/README.md:49
+msgctxt "s-643df015c8a2-0016"
+msgid ""
+"Prerequisite: Docker, set up once as described in "
+"[⟦CODE_0001⟧](⟦DEST_0002⟧)."
+msgstr ""
+"Requisito previo: Docker, configurado una sola vez como se describe en "
+"[⟦CODE_0001⟧](⟦DEST_0002⟧)."
+
+#: src/JavaChallenge1/README.md:55
+msgctxt "s-6e682ee81349-0017"
+msgid ""
+"It builds this folder's [⟦CODE_0001⟧](⟦DEST_0002⟧) and runs the result with "
+"no network, a read-only file system and user ⟦CODE_0003⟧. Gradle and OpenJDK"
+" 25 build one Spring Boot jar in a build stage; the image holds only that "
+"jar on an OpenJDK 25 JRE with AWT, Xvfb and a screenshot tool, with no JDK "
+"or Gradle (about 760 MB, the largest of the set). The window opens on a "
+"virtual display (Xvfb) *inside* the container, so nothing is drawn on your "
+"desktop: the run screenshots it, closes it, and prints the rows it wrote. "
+"With ⟦CODE_0004⟧, ⟦CODE_0005⟧ is the window. ⟦CODE_0006⟧ is needed because "
+"the build downloads Gradle (from this entry's wrapper) and the Maven "
+"dependencies; the run itself has no network."
+msgstr ""
+"Compila el [⟦CODE_0001⟧](⟦DEST_0002⟧) de esta carpeta y ejecuta el resultado"
+" sin red, con un sistema de archivos de solo lectura y con el usuario "
+"⟦CODE_0003⟧. Gradle y OpenJDK 25 compilan un jar de Spring Boot en una etapa"
+" de compilación; la imagen contiene solo ese jar sobre un JRE de OpenJDK 25 "
+"con AWT, Xvfb y una herramienta para capturar la pantalla, sin JDK ni Gradle"
+" (unos 760 MB, la más grande del conjunto). La ventana se abre en una "
+"pantalla virtual (Xvfb) *dentro* del contenedor, así que no se dibuja nada "
+"en tu escritorio: la ejecución captura la ventana, la cierra e imprime las "
+"filas que escribió. Con ⟦CODE_0004⟧, ⟦CODE_0005⟧ es la ventana. Se necesita "
+"⟦CODE_0006⟧ porque la compilación descarga Gradle (desde el wrapper de esta "
+"entrada) y las dependencias de Maven; la ejecución en sí no tiene red."
+
+#: src/JavaChallenge1/README.md:57
+msgctxt "s-b41c50ab7de6-0018"
+msgid "Run it in Windows Sandbox"
+msgstr "Ejecútalo en Windows Sandbox"
+
+#: src/JavaChallenge1/README.md:59
+msgctxt "s-4c7e274e3b4c-0019"
+msgid ""
+"Prerequisites: Windows Sandbox and this entry's toolchain on your machine, "
+"set up once as described in [⟦CODE_0001⟧](⟦DEST_0002⟧)."
+msgstr ""
+"Requisitos previos: Windows Sandbox (un entorno aislado, o *sandbox*, donde "
+"se ejecuta código sin tocar el resto del sistema) y la cadena de "
+"herramientas de esta entrada en tu máquina, configuradas una sola vez como "
+"se describe en [⟦CODE_0001⟧](⟦DEST_0002⟧)."
+
+#: src/JavaChallenge1/README.md:65
+msgctxt "s-b241532fdacb-0020"
+msgid ""
+"It runs the entry in a throwaway VM with networking off, screenshots the "
+"window, asks it to close, and prints what it saved. **Not yet tested on real"
+" hardware**; it needs a JDK and a populated Gradle home on the host."
+msgstr ""
+"Ejecuta la entrada en una máquina virtual desechable sin red, captura la "
+"ventana, le pide que se cierre e imprime lo que guardó. **Aún no está "
+"probado en hardware real**; necesita un JDK y un *Gradle home* ya poblado en"
+" el anfitrión."
+
+#: src/JavaChallenge1/README.md:67
+msgctxt "s-a511909161e1-0021"
+msgid "Layout"
+msgstr "Estructura"
+
+#: src/JavaChallenge1/README.md:69
+msgctxt "s-554ac78ddc81-0022"
+msgid "⟦SEP_0001⟧ File ⟦SEP_0002⟧ Role ⟦SEP_0003⟧"
+msgstr "⟦SEP_0001⟧ Archivo ⟦SEP_0002⟧ Papel ⟦SEP_0003⟧"
+
+#: src/JavaChallenge1/README.md:71
+msgctxt "s-7f1aff0db65a-0023"
+msgid ""
+"⟦SEP_0003⟧ [Program.java](⟦DEST_0001⟧) ⟦SEP_0004⟧ ⟦CODE_0002⟧ and its one "
+"statement ⟦SEP_0005⟧"
+msgstr ""
+"⟦SEP_0003⟧ [Program.java](⟦DEST_0001⟧) ⟦SEP_0004⟧ ⟦CODE_0002⟧ y su única "
+"instrucción ⟦SEP_0005⟧"
+
+#: src/JavaChallenge1/README.md:72
+msgctxt "s-b697a202cdf8-0024"
+msgid "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ The entity ⟦SEP_0004⟧"
+msgstr "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ La entidad ⟦SEP_0004⟧"
+
+#: src/JavaChallenge1/README.md:73
+msgctxt "s-64521c1068ec-0025"
+msgid ""
+"⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ The Spring Data repository ⟦SEP_0004⟧"
+msgstr ""
+"⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ El repositorio de Spring Data ⟦SEP_0004⟧"
+
+#: src/JavaChallenge1/README.md:75
+msgctxt "s-76c5bba83173-0026"
+msgid ""
+"As in the original, the entity and the data-access type are the only code "
+"outside ⟦CODE_0001⟧."
+msgstr ""
+"Como en el original, la entidad y el tipo de acceso a datos son el único "
+"código fuera de ⟦CODE_0001⟧."
+
+#: src/JavaChallenge1/README.md:77
+msgctxt "s-0dcb373c2dff-0027"
+msgid "Program Flow"
+msgstr "Flujo del programa"
+
+#: src/JavaChallenge1/README.md:81
+msgctxt "s-39c2e2bd312c-0028"
+msgid ""
+"JavaChallenge1: a for statement whose false branch opens a modal dialog"
+msgstr ""
+"JavaChallenge1: una instrucción for cuya rama falsa abre un cuadro de "
+"diálogo modal"
+
+#: src/JavaChallenge1/README.md:82
+msgctxt "s-eb64d277a798-0029"
+msgid ""
+"A flowchart. The initializer builds an anonymous object with the Spring "
+"context, repository, hours, a category iterator and a lock. The condition is"
+" true while the total is 40 or less and a category remains. Then the empty "
+"body runs and the update locks, adds hours, stages a card, unlocks and "
+"starts a thread that saves through reflection. When the condition is false, "
+"the else branch builds a Swing dialog from Spring XML at run time and shows "
+"it. The modal dialog blocks while a Timer bean fades the label colors. When "
+"it closes, Double.isNaN turns the result into false and the for ends."
+msgstr ""
+"Un diagrama de flujo. El inicializador construye un objeto anónimo con el "
+"contexto de Spring, el repositorio, las horas, un iterador de categorías y "
+"un cerrojo. La condición es verdadera mientras el total no pasa de 40 y "
+"queda una categoría. Entonces se ejecuta el cuerpo vacío y la actualización "
+"adquiere el cerrojo, suma horas, prepara una tarjeta, libera el cerrojo e "
+"inicia un hilo que guarda mediante reflexión. Cuando la condición es falsa, "
+"la rama else construye un diálogo de Swing a partir de XML de Spring en "
+"tiempo de ejecución y lo muestra. El diálogo modal bloquea mientras un bean "
+"Timer desvanece gradualmente los colores de la etiqueta. Cuando se cierra, "
+"Double.isNaN convierte el resultado en false y el for termina."
+
+#: src/JavaChallenge1/README.md:83
+msgctxt "s-0da81a75fddf-0030"
+msgid ""
+"Initializer: anonymous class holds Spring context, repository, hours, "
+"categories, lock"
+msgstr ""
+"Inicializador: la clase anónima contiene el contexto de Spring, el "
+"repositorio, las horas, las categorías y el cerrojo"
+
+#: src/JavaChallenge1/README.md:83
+msgctxt "s-32fc9223f7b0-0031"
+msgid "Condition: total <= 40 and categories.hasNext()?"
+msgstr "Condición: ¿total <= 40 y categories.hasNext()?"
+
+#: src/JavaChallenge1/README.md:84
+msgctxt "s-b5bea41b6c62-0032"
+msgid "true"
+msgstr "true"
+
+#: src/JavaChallenge1/README.md:84
+msgctxt "s-f4bc948d685c-0033"
+msgid "Empty body"
+msgstr "Cuerpo vacío"
+
+#: src/JavaChallenge1/README.md:85
+msgctxt "s-634e9d631c5f-0034"
+msgid "Update: lock, add hours, stage a card, unlock, start a Thread"
+msgstr ""
+"Actualización: bloquea, suma horas, deja una tarjeta en preparación, "
+"desbloquea e inicia un hilo"
+
+#: src/JavaChallenge1/README.md:87
+msgctxt "s-4a8fe9794c87-0035"
+msgid "Thread: saveAll through ReflectionUtils"
+msgstr "Hilo: saveAll mediante ReflectionUtils"
+
+#: src/JavaChallenge1/README.md:88
+msgctxt "s-fcbcf165908d-0036"
+msgid "false"
+msgstr "false"
+
+#: src/JavaChallenge1/README.md:88
+msgctxt "s-b107a9dcf86e-0037"
+msgid "Else branch: build a Swing dialog from Spring XML at run time"
+msgstr ""
+"Rama else: construye un diálogo Swing a partir de XML de Spring en tiempo de"
+" ejecución"
+
+#: src/JavaChallenge1/README.md:89
+msgctxt "s-7afdf4d8cf0c-0038"
+msgid "setVisible blocks while a Timer bean fades the colors"
+msgstr "setVisible bloquea mientras un bean Timer desvanece los colores"
+
+#: src/JavaChallenge1/README.md:90
+msgctxt "s-8c47a0094ce0-0039"
+msgid "Dialog closes: Double.isNaN turns the result into false"
+msgstr "El diálogo se cierra: Double.isNaN convierte el resultado en false"
+
+#: src/JavaChallenge1/README.md:93
+msgctxt "s-8f47a40aa044-0040"
+msgid ""
+"**What this shows:** the literal three-clause ⟦CODE_0001⟧. The condition "
+"decides between \"go round again\" and \"show the window, then say false\". "
+"The window is built from Spring XML bean definitions when it is needed, and "
+"the modal dialog does not return until the user closes it."
+msgstr ""
+"**Qué muestra:** el ⟦CODE_0001⟧ literal de tres cláusulas. La condición "
+"decide entre \"vuelve a dar otra vuelta\" y \"muestra la ventana y luego di "
+"false\". La ventana se construye a partir de definiciones de beans de Spring"
+" en XML cuando se necesita, y el diálogo modal no regresa hasta que el "
+"usuario lo cierra."
+
+#: src/JavaChallenge1/README.md:95
+msgctxt "s-ea999f2d056b-0041"
+msgid ""
+"**Why this mechanism matters:** this entry keeps control flow in the "
+"⟦CODE_0001⟧ and puts a framework's blocking call (a modal dialog with its "
+"own event handling) inside the condition. The dashed thread is the "
+"original's deliberately awkward background save."
+msgstr ""
+"**Por qué importa este mecanismo:** esta entrada mantiene el flujo de "
+"control en el ⟦CODE_0001⟧ y coloca la llamada bloqueante de un framework (un"
+" diálogo modal con su propio manejo de eventos) dentro de la condición. El "
+"hilo punteado es el guardado en segundo plano del original, torpe a "
+"propósito."
+
+#: src/JavaChallenge1/README.md:97
+msgctxt "s-7f97d965b4c0-0042"
+msgid "How the stunt works"
+msgstr "Cómo funciona el truco"
+
+#: src/JavaChallenge1/README.md:99
+msgctxt "s-55b6a386f706-0043"
+msgid ""
+"Every port splits the work three ways: an **initializer** that builds the "
+"loop's state, a **condition** that decides whether to keep going (and, on "
+"the last check, shows the window), and an **update** that does one pass of "
+"work. Comment banners in the source mark the boundaries."
+msgstr ""
+"Cada versión divide el trabajo en tres partes: un **inicializador** que "
+"construye el estado del bucle, una **condición** que decide si el bucle "
+"sigue (y, en la última comprobación, muestra la ventana) y una "
+"**actualización** que hace una pasada de trabajo. Los banners de comentarios"
+" en el código fuente marcan los límites."
+
+#: src/JavaChallenge1/README.md:101
+msgctxt "s-caaff625bad5-0044"
+msgid ""
+"Java uses the literal original shape: ⟦CODE_0001⟧, with the two semicolons."
+msgstr ""
+"Java usa la forma original literal: ⟦CODE_0001⟧, con los dos puntos y coma."
+
+#: src/JavaChallenge1/README.md:103
+msgctxt "s-076c515d995e-0045"
+msgid ""
+"**Initializer.** ⟦CODE_0001⟧. An anonymous class is the state holder, "
+"because the ⟦CODE_0002⟧ initializer allows only one declaration. ⟦CODE_0003⟧"
+" keeps the anonymous type so its fields stay reachable. Fields: the Spring "
+"Boot context, the repository, the hours list, a category iterator, a lock, "
+"and an XML fragment."
+msgstr ""
+"**Inicializador.** ⟦CODE_0001⟧. Una clase anónima es el contenedor del "
+"estado, porque el inicializador de ⟦CODE_0002⟧ permite solo una declaración."
+" ⟦CODE_0003⟧ conserva el tipo anónimo para que sus campos sigan siendo "
+"accesibles. Campos: el contexto de Spring Boot, el repositorio, la lista de "
+"horas, un iterador de categorías, un cerrojo y un fragmento de XML."
+
+#: src/JavaChallenge1/README.md:104
+msgctxt "s-1f02e8d4d2ee-0046"
+msgid ""
+"**Condition.** ⟦CODE_0001⟧. When the loop should end, the else branch builds"
+" the window, shows it, and turns the result into ⟦CODE_0002⟧ with "
+"⟦CODE_0003⟧, the original's trick."
+msgstr ""
+"**Condición.** ⟦CODE_0001⟧. Cuando el bucle debe terminar, la rama else "
+"construye la ventana, la muestra y convierte el resultado en ⟦CODE_0002⟧ con"
+" ⟦CODE_0003⟧, el truco del original."
+
+#: src/JavaChallenge1/README.md:105
+msgctxt "s-35e079beb739-0047"
+msgid ""
+"**Update.** The update is a comma-separated list: lock, add hours, stage a "
+"card, unlock, then ⟦CODE_0001⟧."
+msgstr ""
+"**Actualización.** La actualización es una lista separada por comas: "
+"bloquear, sumar horas, preparar una tarjeta, desbloquear y, por último, "
+"⟦CODE_0001⟧."
+
+#: src/JavaChallenge1/README.md:106
+msgctxt "s-62927654bb9d-0048"
+msgid "**Several steps in one expression.** Chain them: ⟦CODE_0001⟧."
+msgstr "**Varios pasos en una expresión.** Encadénalos: ⟦CODE_0001⟧."
+
+#: src/JavaChallenge1/README.md:107
+msgctxt "s-9d00eb169971-0049"
+msgid ""
+"**Window.** The window is a Swing ⟦CODE_0001⟧, described by Spring XML bean "
+"definitions that are built at runtime (⟦CODE_0002⟧ over a string). A "
+"⟦CODE_0003⟧ bean fades the label colors. The modal dialog blocks until "
+"closed."
+msgstr ""
+"**Ventana.** La ventana es un ⟦CODE_0001⟧ de Swing, descrito por "
+"definiciones de beans XML de Spring que se construyen en tiempo de ejecución"
+" (⟦CODE_0002⟧ sobre una cadena de texto). Un bean ⟦CODE_0003⟧ desvanece los "
+"colores de las etiquetas. El diálogo modal bloquea la ejecución hasta que se"
+" cierra."
+
+#: src/JavaChallenge1/README.md:108
+msgctxt "s-dbcc135dd1b3-0050"
+msgid ""
+"**Saving.** The program saves with Spring Data JPA ⟦CODE_0001⟧, invoked "
+"through Spring's ⟦CODE_0002⟧."
+msgstr ""
+"**Guardado.** El programa guarda con Spring Data JPA ⟦CODE_0001⟧, invocado a"
+" través del ⟦CODE_0002⟧ de Spring."
+
+#: src/JavaChallenge1/README.md:110
+msgctxt "s-5a0ad00b10fc-0051"
+msgid "Gotchas worth knowing"
+msgstr "Trampas que conviene conocer"
+
+#: src/JavaChallenge1/README.md:112
+msgctxt "s-8a8812fc314b-0052"
+msgid ""
+"**Run it from the right place.** The data path is relative to the working "
+"directory, which the Gradle run tasks set to this folder. If you run the JAR"
+" from somewhere else, ⟦CODE_0001⟧ is created there."
+msgstr ""
+"**Ejecútalo desde el lugar correcto.** La ruta de datos es relativa al "
+"directorio de trabajo, que las tareas de ejecución de Gradle fijan en este "
+"directorio. Si ejecutas el JAR desde otro lugar, ⟦CODE_0001⟧ se crea allí."
+
+#: src/JavaChallenge1/README.md:113
+msgctxt "s-5c2cd3a43cc1-0053"
+msgid ""
+"**The container image is the biggest of the set** (about 760 MB), and "
+"⟦CODE_0001⟧ is needed because the build downloads Gradle and the Maven "
+"dependencies. The run itself has no network."
+msgstr ""
+"**La imagen de contenedor es la más grande del conjunto** (unos 760 MB), y "
+"se necesita ⟦CODE_0001⟧ porque la compilación descarga Gradle y las "
+"dependencias de Maven. La ejecución en sí no tiene red."
+
+#: src/JavaChallenge1/README.md:114
+msgctxt "s-7cf1af65f36e-0054"
+msgid ""
+"**The Windows Sandbox profile is not yet tested on real hardware.** It needs"
+" a JDK and a populated Gradle home on the host, and this port has no check "
+"script, so the sandbox gate does not cover it yet."
+msgstr ""
+"**El perfil de Windows Sandbox aún no está probado en hardware real.** "
+"Necesita un JDK y un directorio Gradle home ya poblado en el anfitrión. Esta"
+" adaptación no tiene un script de verificación. Por eso, el control del "
+"entorno aislado (*sandbox*, un espacio donde el código se ejecuta sin "
+"afectar al resto del sistema) aún no la cubre."
+
+#: src/JavaChallenge1/README.md:116
+msgctxt "s-a3d7b387c34d-0055"
+msgid "Side by side"
+msgstr "Lado a lado"
+
+#: src/JavaChallenge1/README.md:118
+msgctxt "s-575d0a2a664f-0056"
+msgid ""
+"⟦SEP_0001⟧ ⟦SEP_0002⟧ Java ⟦SEP_0003⟧ Kotlin ⟦SEP_0004⟧ Python ⟦SEP_0005⟧ Go"
+" ⟦SEP_0006⟧"
+msgstr ""
+"⟦SEP_0001⟧ ⟦SEP_0002⟧ Java ⟦SEP_0003⟧ Kotlin ⟦SEP_0004⟧ Python ⟦SEP_0005⟧ Go"
+" ⟦SEP_0006⟧"
+
+#: src/JavaChallenge1/README.md:120
+msgctxt "s-388f7862288c-0057"
+msgid ""
+"⟦SEP_0005⟧ The one statement ⟦SEP_0006⟧ ⟦CODE_0001⟧ ⟦SEP_0007⟧ ⟦CODE_0002⟧ "
+"⟦SEP_0008⟧ ⟦CODE_0003⟧ ⟦SEP_0009⟧ ⟦CODE_0004⟧ ⟦SEP_0010⟧"
+msgstr ""
+"⟦SEP_0005⟧ La única instrucción ⟦SEP_0006⟧ ⟦CODE_0001⟧ ⟦SEP_0007⟧ "
+"⟦CODE_0002⟧ ⟦SEP_0008⟧ ⟦CODE_0003⟧ ⟦SEP_0009⟧ ⟦CODE_0004⟧ ⟦SEP_0010⟧"
+
+#: src/JavaChallenge1/README.md:121
+msgctxt "s-fb3362e092c6-0058"
+msgid ""
+"⟦SEP_0002⟧ Real three-part ⟦CODE_0001⟧ ⟦SEP_0003⟧ Yes ⟦SEP_0004⟧ No "
+"⟦SEP_0005⟧ No ⟦SEP_0006⟧ Yes ⟦SEP_0007⟧"
+msgstr ""
+"⟦SEP_0002⟧ ⟦CODE_0001⟧ real de tres partes ⟦SEP_0003⟧ Sí ⟦SEP_0004⟧ No "
+"⟦SEP_0005⟧ No ⟦SEP_0006⟧ Sí ⟦SEP_0007⟧"
+
+#: src/JavaChallenge1/README.md:122
+msgctxt "s-ed933b360238-0059"
+msgid ""
+"⟦SEP_0004⟧ State holder ⟦SEP_0005⟧ Anonymous class in a ⟦CODE_0001⟧ "
+"⟦SEP_0006⟧ ⟦CODE_0002⟧ as the seed ⟦SEP_0007⟧ ⟦CODE_0003⟧ ⟦SEP_0008⟧ "
+"Anonymous struct ⟦SEP_0009⟧"
+msgstr ""
+"⟦SEP_0004⟧ Contenedor de estado ⟦SEP_0005⟧ Clase anónima en un ⟦CODE_0001⟧ "
+"⟦SEP_0006⟧ ⟦CODE_0002⟧ como semilla ⟦SEP_0007⟧ ⟦CODE_0003⟧ ⟦SEP_0008⟧ Struct"
+" anónimo ⟦SEP_0009⟧"
+
+#: src/JavaChallenge1/README.md:123
+msgctxt "s-8ffb63cc80d2-0060"
+msgid ""
+"⟦SEP_0004⟧ Condition ⟦SEP_0005⟧ ⟦CODE_0001⟧ expression ⟦SEP_0006⟧ "
+"⟦CODE_0002⟧ ⟦SEP_0007⟧ Conditional expression ⟦SEP_0008⟧ ⟦CODE_0003⟧ "
+"⟦SEP_0009⟧"
+msgstr ""
+"⟦SEP_0004⟧ Condición ⟦SEP_0005⟧ Expresión ⟦CODE_0001⟧ ⟦SEP_0006⟧ ⟦CODE_0002⟧"
+" ⟦SEP_0007⟧ Expresión condicional ⟦SEP_0008⟧ ⟦CODE_0003⟧ ⟦SEP_0009⟧"
+
+#: src/JavaChallenge1/README.md:124
+msgctxt "s-4f16e59c99c8-0061"
+msgid ""
+"⟦SEP_0004⟧ Update (several steps) ⟦SEP_0005⟧ Comma-separated expressions "
+"⟦SEP_0006⟧ Chain of ⟦CODE_0001⟧ ⟦SEP_0007⟧ Tuple, ⟦CODE_0002⟧ ⟦SEP_0008⟧ "
+"⟦CODE_0003⟧ call ⟦SEP_0009⟧"
+msgstr ""
+"⟦SEP_0004⟧ Actualización (varios pasos) ⟦SEP_0005⟧ Expresiones separadas por"
+" comas ⟦SEP_0006⟧ Cadena de ⟦CODE_0001⟧ ⟦SEP_0007⟧ Tupla, ⟦CODE_0002⟧ "
+"⟦SEP_0008⟧ Llamada a ⟦CODE_0003⟧ ⟦SEP_0009⟧"
+
+#: src/JavaChallenge1/README.md:125
+msgctxt "s-ea2b3fb260c6-0062"
+msgid ""
+"⟦SEP_0006⟧ Ending the loop ⟦SEP_0007⟧ Condition returns ⟦CODE_0001⟧ "
+"⟦SEP_0008⟧ ⟦CODE_0002⟧ yields null ⟦SEP_0009⟧ ⟦CODE_0003⟧ returns the "
+"sentinel ⟦CODE_0004⟧ ⟦SEP_0010⟧ Condition returns ⟦CODE_0005⟧ ⟦SEP_0011⟧"
+msgstr ""
+"⟦SEP_0006⟧ Terminar el bucle ⟦SEP_0007⟧ La condición devuelve ⟦CODE_0001⟧ "
+"⟦SEP_0008⟧ ⟦CODE_0002⟧ produce null ⟦SEP_0009⟧ ⟦CODE_0003⟧ devuelve el valor"
+" centinela ⟦CODE_0004⟧ ⟦SEP_0010⟧ La condición devuelve ⟦CODE_0005⟧ "
+"⟦SEP_0011⟧"
+
+#: src/JavaChallenge1/README.md:126
+msgctxt "s-0e1d374259fb-0063"
+msgid ""
+"⟦SEP_0005⟧ Empty body ⟦SEP_0006⟧ ⟦CODE_0001⟧ ⟦SEP_0007⟧ ⟦CODE_0002⟧ "
+"⟦SEP_0008⟧ ⟦CODE_0003⟧ ⟦SEP_0009⟧ ⟦CODE_0004⟧ ⟦SEP_0010⟧"
+msgstr ""
+"⟦SEP_0005⟧ Cuerpo vacío ⟦SEP_0006⟧ ⟦CODE_0001⟧ ⟦SEP_0007⟧ ⟦CODE_0002⟧ "
+"⟦SEP_0008⟧ ⟦CODE_0003⟧ ⟦SEP_0009⟧ ⟦CODE_0004⟧ ⟦SEP_0010⟧"
+
+#: src/JavaChallenge1/README.md:127
+msgctxt "s-700000841a72-0064"
+msgid ""
+"⟦SEP_0001⟧ Window ⟦SEP_0002⟧ Swing from Spring XML ⟦SEP_0003⟧ Swing from "
+"Spring XML ⟦SEP_0004⟧ Tk from ElementTree XML ⟦SEP_0005⟧ Browser page on "
+"loopback ⟦SEP_0006⟧"
+msgstr ""
+"⟦SEP_0001⟧ Ventana ⟦SEP_0002⟧ Swing desde XML de Spring ⟦SEP_0003⟧ Swing "
+"desde XML de Spring ⟦SEP_0004⟧ Tk desde XML de ElementTree ⟦SEP_0005⟧ Página"
+" del navegador en loopback ⟦SEP_0006⟧"
+
+#: src/JavaChallenge1/README.md:128
+msgctxt "s-c74052f2d2e5-0065"
+msgid ""
+"⟦SEP_0004⟧ Pulse ⟦SEP_0005⟧ ⟦CODE_0001⟧ ⟦SEP_0006⟧ ⟦CODE_0002⟧ ⟦SEP_0007⟧ Tk"
+" ⟦CODE_0003⟧ timer ⟦SEP_0008⟧ CSS animation ⟦SEP_0009⟧"
+msgstr ""
+"⟦SEP_0004⟧ Pulso ⟦SEP_0005⟧ ⟦CODE_0001⟧ ⟦SEP_0006⟧ ⟦CODE_0002⟧ ⟦SEP_0007⟧ "
+"Temporizador ⟦CODE_0003⟧ de Tk ⟦SEP_0008⟧ Animación CSS ⟦SEP_0009⟧"
+
+#: src/JavaChallenge1/README.md:129
+msgctxt "s-0feb6e0d839b-0066"
+msgid ""
+"⟦SEP_0005⟧ Blocks until closed ⟦SEP_0006⟧ Modal ⟦CODE_0001⟧ ⟦SEP_0007⟧ Modal"
+" ⟦CODE_0002⟧ ⟦SEP_0008⟧ ⟦CODE_0003⟧ ⟦SEP_0009⟧ Wait for ⟦CODE_0004⟧ "
+"⟦SEP_0010⟧"
+msgstr ""
+"⟦SEP_0005⟧ Bloquea hasta que se cierre ⟦SEP_0006⟧ Modal ⟦CODE_0001⟧ "
+"⟦SEP_0007⟧ Modal ⟦CODE_0002⟧ ⟦SEP_0008⟧ ⟦CODE_0003⟧ ⟦SEP_0009⟧ Espera a "
+"⟦CODE_0004⟧ ⟦SEP_0010⟧"
+
+#: src/JavaChallenge1/README.md:130
+msgctxt "s-64f501c92e48-0067"
+msgid ""
+"⟦SEP_0003⟧ Database ⟦SEP_0004⟧ Spring Data JPA, Hibernate, SQLite ⟦SEP_0005⟧"
+" Same ⟦SEP_0006⟧ Standard-library ⟦CODE_0001⟧ ⟦SEP_0007⟧ ⟦CODE_0002⟧ "
+"⟦SEP_0008⟧"
+msgstr ""
+"⟦SEP_0003⟧ Base de datos ⟦SEP_0004⟧ Spring Data JPA, Hibernate, SQLite "
+"⟦SEP_0005⟧ Igual ⟦SEP_0006⟧ ⟦CODE_0001⟧ de la biblioteca estándar ⟦SEP_0007⟧"
+" ⟦CODE_0002⟧ ⟦SEP_0008⟧"
+
+#: src/JavaChallenge1/README.md:131
+msgctxt "s-6f202a5615e0-0068"
+msgid ""
+"⟦SEP_0005⟧ Background save ⟦SEP_0006⟧ ⟦CODE_0001⟧ ⟦SEP_0007⟧ ⟦CODE_0002⟧ "
+"⟦SEP_0008⟧ ⟦CODE_0003⟧ ⟦SEP_0009⟧ Goroutine via ⟦CODE_0004⟧ ⟦SEP_0010⟧"
+msgstr ""
+"⟦SEP_0005⟧ Guardado en segundo plano ⟦SEP_0006⟧ ⟦CODE_0001⟧ ⟦SEP_0007⟧ "
+"⟦CODE_0002⟧ ⟦SEP_0008⟧ ⟦CODE_0003⟧ ⟦SEP_0009⟧ Goroutine con ⟦CODE_0004⟧ "
+"⟦SEP_0010⟧"
+
+#: src/JavaChallenge1/README.md:132
+msgctxt "s-f0f8e93925d9-0069"
+msgid ""
+"⟦SEP_0005⟧ Lock ⟦SEP_0006⟧ ⟦CODE_0001⟧ ⟦SEP_0007⟧ ⟦CODE_0002⟧ ⟦SEP_0008⟧ "
+"⟦CODE_0003⟧ ⟦SEP_0009⟧ ⟦CODE_0004⟧ ⟦SEP_0010⟧"
+msgstr ""
+"⟦SEP_0005⟧ Bloqueo ⟦SEP_0006⟧ ⟦CODE_0001⟧ ⟦SEP_0007⟧ ⟦CODE_0002⟧ ⟦SEP_0008⟧ "
+"⟦CODE_0003⟧ ⟦SEP_0009⟧ ⟦CODE_0004⟧ ⟦SEP_0010⟧"
+
+#: src/JavaChallenge1/README.md:133
+msgctxt "s-ed2eb6f84ed9-0070"
+msgid ""
+"⟦SEP_0005⟧ \"Reflection\" ⟦SEP_0006⟧ Spring ⟦CODE_0001⟧ ⟦SEP_0007⟧ Spring "
+"⟦CODE_0002⟧ ⟦SEP_0008⟧ ⟦CODE_0003⟧ ⟦SEP_0009⟧ ⟦CODE_0004⟧ ⟦SEP_0010⟧"
+msgstr ""
+"⟦SEP_0005⟧ \"Reflexión\" ⟦SEP_0006⟧ Spring ⟦CODE_0001⟧ ⟦SEP_0007⟧ Spring "
+"⟦CODE_0002⟧ ⟦SEP_0008⟧ ⟦CODE_0003⟧ ⟦SEP_0009⟧ ⟦CODE_0004⟧ ⟦SEP_0010⟧"
+
+#: src/JavaChallenge1/README.md:134
+msgctxt "s-c622f01cef48-0071"
+msgid ""
+"⟦SEP_0002⟧ Code outside ⟦CODE_0001⟧ ⟦SEP_0003⟧ Entity, repository ⟦SEP_0004⟧"
+" Entity, repository ⟦SEP_0005⟧ Entity, repository ⟦SEP_0006⟧ Entity, "
+"repository and helper functions ⟦SEP_0007⟧"
+msgstr ""
+"⟦SEP_0002⟧ Código fuera de ⟦CODE_0001⟧ ⟦SEP_0003⟧ Entidad, repositorio "
+"⟦SEP_0004⟧ Entidad, repositorio ⟦SEP_0005⟧ Entidad, repositorio ⟦SEP_0006⟧ "
+"Entidad, repositorio y funciones auxiliares ⟦SEP_0007⟧"
+
+#: src/JavaChallenge1/README.md:135
+msgctxt "s-5e67b77ca358-0072"
+msgid ""
+"⟦SEP_0001⟧ Extra install ⟦SEP_0002⟧ JDK 25 ⟦SEP_0003⟧ JDK 25 ⟦SEP_0004⟧ None"
+" ⟦SEP_0005⟧ Go toolchain ⟦SEP_0006⟧"
+msgstr ""
+"⟦SEP_0001⟧ Instalación adicional ⟦SEP_0002⟧ JDK 25 ⟦SEP_0003⟧ JDK 25 "
+"⟦SEP_0004⟧ Ninguna ⟦SEP_0005⟧ Cadena de herramientas de Go ⟦SEP_0006⟧"
+
+#: src/JavaChallenge1/README.md:137
+msgctxt "s-c54070df77f9-0073"
+msgid "What changed from the .NET version"
+msgstr "Qué cambió respecto a la versión de .NET"
+
+#: src/JavaChallenge1/README.md:139
+msgctxt "s-ed692736e789-0074"
+msgid ""
+"⟦SEP_0001⟧ .NET version ⟦SEP_0002⟧ Java and Kotlin ⟦SEP_0003⟧ Python "
+"⟦SEP_0004⟧ Go ⟦SEP_0005⟧"
+msgstr ""
+"⟦SEP_0001⟧ Versión de .NET ⟦SEP_0002⟧ Java y Kotlin ⟦SEP_0003⟧ Python "
+"⟦SEP_0004⟧ Go ⟦SEP_0005⟧"
+
+#: src/JavaChallenge1/README.md:141
+msgctxt "s-ae2df72ea989-0075"
+msgid ""
+"⟦SEP_0002⟧ Anonymous object as iterator state ⟦SEP_0003⟧ Anonymous class or "
+"object expression ⟦SEP_0004⟧ ⟦CODE_0001⟧ ⟦SEP_0005⟧ Anonymous struct "
+"⟦SEP_0006⟧"
+msgstr ""
+"⟦SEP_0002⟧ Objeto anónimo como estado del iterador ⟦SEP_0003⟧ Clase anónima "
+"o expresión de objeto ⟦SEP_0004⟧ ⟦CODE_0001⟧ ⟦SEP_0005⟧ Struct anónimo "
+"⟦SEP_0006⟧"
+
+#: src/JavaChallenge1/README.md:142
+msgctxt "s-f99aac18b8a5-0076"
+msgid ""
+"⟦SEP_0004⟧ EF Core ⟦CODE_0001⟧ and SQLite ⟦SEP_0005⟧ Spring Data JPA, "
+"Hibernate and SQLite ⟦SEP_0006⟧ ⟦CODE_0002⟧ ⟦SEP_0007⟧ ⟦CODE_0003⟧ "
+"⟦SEP_0008⟧"
+msgstr ""
+"⟦SEP_0004⟧ EF Core ⟦CODE_0001⟧ y SQLite ⟦SEP_0005⟧ Spring Data JPA, "
+"Hibernate y SQLite ⟦SEP_0006⟧ ⟦CODE_0002⟧ ⟦SEP_0007⟧ ⟦CODE_0003⟧ ⟦SEP_0008⟧"
+
+#: src/JavaChallenge1/README.md:143
+msgctxt "s-b6756013566e-0077"
+msgid ""
+"⟦SEP_0009⟧ ⟦CODE_0001⟧ then ⟦CODE_0002⟧ ⟦SEP_0010⟧ A ⟦CODE_0003⟧ list, then "
+"⟦CODE_0004⟧ ⟦SEP_0011⟧ A ⟦CODE_0005⟧ list, then ⟦CODE_0006⟧ ⟦SEP_0012⟧ A "
+"⟦CODE_0007⟧ slice, then ⟦CODE_0008⟧ ⟦SEP_0013⟧"
+msgstr ""
+"⟦SEP_0009⟧ ⟦CODE_0001⟧ y después ⟦CODE_0002⟧ ⟦SEP_0010⟧ Una lista "
+"⟦CODE_0003⟧, y después ⟦CODE_0004⟧ ⟦SEP_0011⟧ Una lista ⟦CODE_0005⟧, y "
+"después ⟦CODE_0006⟧ ⟦SEP_0012⟧ Un slice ⟦CODE_0007⟧, y después ⟦CODE_0008⟧ "
+"⟦SEP_0013⟧"
+
+#: src/JavaChallenge1/README.md:144
+msgctxt "s-8bf547bb7e3f-0078"
+msgid ""
+"⟦SEP_0004⟧ WPF window from ⟦CODE_0001⟧ on a runtime XAML string ⟦SEP_0005⟧ "
+"Swing window from ⟦CODE_0002⟧ on a runtime Spring XML string ⟦SEP_0006⟧ Tk "
+"window from an XML string via ⟦CODE_0003⟧ ⟦SEP_0007⟧ HTML page built from a "
+"string, shown in the browser ⟦SEP_0008⟧"
+msgstr ""
+"⟦SEP_0004⟧ Ventana WPF desde ⟦CODE_0001⟧ a partir de una cadena de texto "
+"XAML en tiempo de ejecución ⟦SEP_0005⟧ Ventana Swing desde ⟦CODE_0002⟧ a "
+"partir de una cadena de texto XML de Spring en tiempo de ejecución "
+"⟦SEP_0006⟧ Ventana Tk desde una cadena de texto XML mediante ⟦CODE_0003⟧ "
+"⟦SEP_0007⟧ Página HTML construida a partir de una cadena de texto y mostrada"
+" en el navegador ⟦SEP_0008⟧"
+
+#: src/JavaChallenge1/README.md:145
+msgctxt "s-16a06de62cf1-0079"
+msgid ""
+"⟦SEP_0005⟧ ⟦CODE_0001⟧ holding a ⟦CODE_0002⟧ ⟦SEP_0006⟧ XML fragment holding"
+" a ⟦CODE_0003⟧ bean ⟦SEP_0007⟧ XML fragment holding the timer interval "
+"⟦SEP_0008⟧ CSS ⟦CODE_0004⟧ fragment ⟦SEP_0009⟧"
+msgstr ""
+"⟦SEP_0005⟧ ⟦CODE_0001⟧ que contiene un ⟦CODE_0002⟧ ⟦SEP_0006⟧ Fragmento XML "
+"que contiene un bean ⟦CODE_0003⟧ ⟦SEP_0007⟧ Fragmento XML que contiene el "
+"intervalo del temporizador ⟦SEP_0008⟧ Fragmento CSS ⟦CODE_0004⟧ ⟦SEP_0009⟧"
+
+#: src/JavaChallenge1/README.md:146
+msgctxt "s-169fdbe0ee7a-0080"
+msgid ""
+"⟦SEP_0002⟧ Opacity animation on the ⟦CODE_0001⟧ ⟦SEP_0003⟧ Timer that fades "
+"the label colors ⟦SEP_0004⟧ Timer that blends label colors ⟦SEP_0005⟧ CSS "
+"opacity animation ⟦SEP_0006⟧"
+msgstr ""
+"⟦SEP_0002⟧ Animación de opacidad en el ⟦CODE_0001⟧ ⟦SEP_0003⟧ Temporizador "
+"que desvanece los colores de las etiquetas ⟦SEP_0004⟧ Temporizador que "
+"mezcla los colores de las etiquetas ⟦SEP_0005⟧ Animación de opacidad con CSS"
+" ⟦SEP_0006⟧"
+
+#: src/JavaChallenge1/README.md:147
+msgctxt "s-8f11e9007260-0081"
+msgid ""
+"⟦SEP_0005⟧ ⟦CODE_0001⟧ blocks until the window closes ⟦SEP_0006⟧ Modal "
+"⟦CODE_0002⟧ ⟦SEP_0007⟧ ⟦CODE_0003⟧ ⟦SEP_0008⟧ Wait for the page's "
+"⟦CODE_0004⟧ request ⟦SEP_0009⟧"
+msgstr ""
+"⟦SEP_0005⟧ ⟦CODE_0001⟧ bloquea hasta que se cierra la ventana ⟦SEP_0006⟧ "
+"⟦CODE_0002⟧ modal ⟦SEP_0007⟧ ⟦CODE_0003⟧ ⟦SEP_0008⟧ Espera la solicitud "
+"⟦CODE_0004⟧ de la página ⟦SEP_0009⟧"
+
+#: src/JavaChallenge1/README.md:148
+msgctxt "s-81cb52bbba78-0082"
+msgid ""
+"⟦SEP_0007⟧ LINQ to Objects ⟦CODE_0001⟧ ⟦SEP_0008⟧ ⟦CODE_0002⟧ ⟦CODE_0003⟧ or"
+" ⟦CODE_0004⟧ ⟦SEP_0009⟧ ⟦CODE_0005⟧ ⟦SEP_0010⟧ A small ⟦CODE_0006⟧ function "
+"⟦SEP_0011⟧"
+msgstr ""
+"⟦SEP_0007⟧ LINQ to Objects ⟦CODE_0001⟧ ⟦SEP_0008⟧ ⟦CODE_0002⟧ ⟦CODE_0003⟧ o "
+"⟦CODE_0004⟧ ⟦SEP_0009⟧ ⟦CODE_0005⟧ ⟦SEP_0010⟧ Una función ⟦CODE_0006⟧ "
+"pequeña ⟦SEP_0011⟧"
+
+#: src/JavaChallenge1/README.md:149
+msgctxt "s-d120561987fb-0083"
+msgid ""
+"⟦SEP_0005⟧ SQLite file under ⟦CODE_0001⟧ ⟦SEP_0006⟧ ⟦CODE_0002⟧ in the "
+"entry's folder ⟦SEP_0007⟧ ⟦CODE_0003⟧ in the entry's folder ⟦SEP_0008⟧ "
+"⟦CODE_0004⟧ in the entry's folder ⟦SEP_0009⟧"
+msgstr ""
+"⟦SEP_0005⟧ Archivo SQLite en ⟦CODE_0001⟧ ⟦SEP_0006⟧ ⟦CODE_0002⟧ en la "
+"carpeta de la entrada ⟦SEP_0007⟧ ⟦CODE_0003⟧ en la carpeta de la entrada "
+"⟦SEP_0008⟧ ⟦CODE_0004⟧ en la carpeta de la entrada ⟦SEP_0009⟧"
+
+#: src/JavaChallenge1/README.md:150
+msgctxt "s-31cfb49522c1-0084"
+msgid ""
+"⟦SEP_0005⟧ Named ⟦CODE_0001⟧ ⟦SEP_0006⟧ ⟦CODE_0002⟧ ⟦SEP_0007⟧ ⟦CODE_0003⟧ "
+"⟦SEP_0008⟧ ⟦CODE_0004⟧ ⟦SEP_0009⟧"
+msgstr ""
+"⟦SEP_0005⟧ Con el nombre ⟦CODE_0001⟧ ⟦SEP_0006⟧ ⟦CODE_0002⟧ ⟦SEP_0007⟧ "
+"⟦CODE_0003⟧ ⟦SEP_0008⟧ ⟦CODE_0004⟧ ⟦SEP_0009⟧"
+
+#: src/JavaChallenge1/README.md:151
+msgctxt "s-062d2a3489ee-0085"
+msgid ""
+"⟦SEP_0006⟧ ⟦CODE_0001⟧ ⟦SEP_0007⟧ Spring ⟦CODE_0002⟧ ⟦SEP_0008⟧ ⟦CODE_0003⟧ "
+"⟦SEP_0009⟧ ⟦CODE_0004⟧ ⟦CODE_0005⟧ ⟦SEP_0010⟧"
+msgstr ""
+"⟦SEP_0006⟧ ⟦CODE_0001⟧ ⟦SEP_0007⟧ Spring ⟦CODE_0002⟧ ⟦SEP_0008⟧ ⟦CODE_0003⟧ "
+"⟦SEP_0009⟧ ⟦CODE_0004⟧ ⟦CODE_0005⟧ ⟦SEP_0010⟧"
+
+#: src/JavaChallenge1/README.md:154
+msgctxt "s-dea298388919-0086"
+msgid ""
+"⟦SEP_0006⟧ ⟦CODE_0001⟧ ⟦SEP_0007⟧ ⟦CODE_0002⟧ ⟦SEP_0008⟧ ⟦CODE_0003⟧ "
+"⟦SEP_0009⟧ ⟦CODE_0004⟧ or ⟦CODE_0005⟧ environment variable ⟦SEP_0010⟧"
+msgstr ""
+"⟦SEP_0006⟧ ⟦CODE_0001⟧ ⟦SEP_0007⟧ ⟦CODE_0002⟧ ⟦SEP_0008⟧ ⟦CODE_0003⟧ "
+"⟦SEP_0009⟧ variable de entorno ⟦CODE_0004⟧ o ⟦CODE_0005⟧ ⟦SEP_0010⟧"
+
+#: src/JavaChallenge1/README.md:156
+msgctxt "s-3ec4c779d5f4-0087"
+msgid "From the original XAML to each port's markup"
+msgstr "Del XAML original al marcado de cada port"
+
+#: src/JavaChallenge1/README.md:158
+msgctxt "s-d6a3baceb254-0088"
+msgid ""
+"The .NET version builds its window from a XAML string at runtime with "
+"⟦CODE_0001⟧. XAML only runs on .NET, so each port builds its UI from a "
+"different markup string at runtime instead:"
+msgstr ""
+"La versión de .NET construye su ventana a partir de una cadena de texto XAML"
+" en tiempo de ejecución con ⟦CODE_0001⟧. XAML solo se ejecuta en .NET, así "
+"que cada port construye su interfaz de usuario a partir de una cadena de "
+"texto de marcado distinta en tiempo de ejecución:"
+
+#: src/JavaChallenge1/README.md:160
+msgctxt "s-1b4c134175ef-0089"
+msgid ""
+"**Java and Kotlin** use standard Spring bean XML. Spring usually uses it to "
+"wire up services, and here it creates Swing widgets."
+msgstr ""
+"**Java y Kotlin** usan XML estándar de beans de Spring. Spring suele usarlo "
+"para conectar servicios, y aquí crea widgets de Swing."
+
+#: src/JavaChallenge1/README.md:161
+msgctxt "s-922fd351fcc3-0090"
+msgid ""
+"**Python** uses a made-up XML format. Each tag is named after a tkinter "
+"class (⟦CODE_0001⟧, ⟦CODE_0002⟧), and ⟦CODE_0003⟧ creates the widget."
+msgstr ""
+"**Python** usa un formato XML inventado. Cada etiqueta lleva el nombre de "
+"una clase de tkinter (⟦CODE_0001⟧, ⟦CODE_0002⟧), y ⟦CODE_0003⟧ crea el "
+"widget."
+
+#: src/JavaChallenge1/README.md:162
+msgctxt "s-95e6a6202ea5-0091"
+msgid "**Go** uses plain HTML and CSS, rendered by the browser."
+msgstr "**Go** usa HTML y CSS simples, que el navegador renderiza."
+
+#: src/JavaChallenge1/README.md:164
+msgctxt "s-736e80bd885a-0092"
+msgid ""
+"⟦SEP_0001⟧ UI piece ⟦SEP_0002⟧ Original XAML (C#) ⟦SEP_0003⟧ Java / Kotlin "
+"(Spring XML) ⟦SEP_0004⟧ Python (custom XML) ⟦SEP_0005⟧ Go (HTML/CSS) "
+"⟦SEP_0006⟧"
+msgstr ""
+"⟦SEP_0001⟧ Elemento de la interfaz ⟦SEP_0002⟧ XAML original (C#) ⟦SEP_0003⟧ "
+"Java / Kotlin (XML de Spring) ⟦SEP_0004⟧ Python (XML personalizado) "
+"⟦SEP_0005⟧ Go (HTML/CSS) ⟦SEP_0006⟧"
+
+#: src/JavaChallenge1/README.md:166
+msgctxt "s-d1e9833d3539-0093"
+msgid ""
+"⟦SEP_0005⟧ Root of the markup ⟦SEP_0006⟧ ⟦CODE_0001⟧ with WPF namespaces "
+"⟦SEP_0007⟧ ⟦CODE_0002⟧ with Spring namespaces ⟦SEP_0008⟧ ⟦CODE_0003⟧ (any "
+"name works) ⟦SEP_0009⟧ ⟦CODE_0004⟧ page ⟦SEP_0010⟧"
+msgstr ""
+"⟦SEP_0005⟧ Raíz del marcado ⟦SEP_0006⟧ ⟦CODE_0001⟧ con espacios de nombres "
+"de WPF ⟦SEP_0007⟧ ⟦CODE_0002⟧ con espacios de nombres de Spring ⟦SEP_0008⟧ "
+"⟦CODE_0003⟧ (sirve cualquier nombre) ⟦SEP_0009⟧ Página ⟦CODE_0004⟧ "
+"⟦SEP_0010⟧"
+
+#: src/JavaChallenge1/README.md:167
+msgctxt "s-a73526e772a8-0094"
+msgid ""
+"⟦SEP_0004⟧ The window ⟦SEP_0005⟧ Created in C#; the XAML becomes its "
+"⟦CODE_0001⟧ ⟦SEP_0006⟧ ⟦CODE_0002⟧ ⟦SEP_0007⟧ ⟦CODE_0003⟧ ⟦SEP_0008⟧ The "
+"browser window ⟦SEP_0009⟧"
+msgstr ""
+"⟦SEP_0004⟧ La ventana ⟦SEP_0005⟧ Se crea en C#; el XAML se convierte en su "
+"⟦CODE_0001⟧ ⟦SEP_0006⟧ ⟦CODE_0002⟧ ⟦SEP_0007⟧ ⟦CODE_0003⟧ ⟦SEP_0008⟧ La "
+"ventana del navegador ⟦SEP_0009⟧"
+
+#: src/JavaChallenge1/README.md:168
+msgctxt "s-c762a7564bb5-0095"
+msgid ""
+"⟦SEP_0004⟧ Window title ⟦SEP_0005⟧ Set in C# code ⟦SEP_0006⟧ ⟦CODE_0001⟧ "
+"⟦SEP_0007⟧ ⟦CODE_0002⟧ attribute ⟦SEP_0008⟧ ⟦CODE_0003⟧ ⟦SEP_0009⟧"
+msgstr ""
+"⟦SEP_0004⟧ Título de la ventana ⟦SEP_0005⟧ Se define en código C# ⟦SEP_0006⟧"
+" ⟦CODE_0001⟧ ⟦SEP_0007⟧ Atributo ⟦CODE_0002⟧ ⟦SEP_0008⟧ ⟦CODE_0003⟧ "
+"⟦SEP_0009⟧"
+
+#: src/JavaChallenge1/README.md:169
+msgctxt "s-00b3b356172e-0096"
+msgid ""
+"⟦SEP_0004⟧ Size ⟦SEP_0005⟧ ⟦CODE_0001⟧ on the Viewbox ⟦SEP_0006⟧ ⟦CODE_0002⟧"
+" property, ⟦CODE_0003⟧ ⟦SEP_0007⟧ Not set (fits the content) ⟦SEP_0008⟧ Not "
+"set (browser decides) ⟦SEP_0009⟧"
+msgstr ""
+"⟦SEP_0004⟧ Tamaño ⟦SEP_0005⟧ ⟦CODE_0001⟧ en el Viewbox ⟦SEP_0006⟧ propiedad "
+"⟦CODE_0002⟧, ⟦CODE_0003⟧ ⟦SEP_0007⟧ Sin definir (se ajusta al contenido) "
+"⟦SEP_0008⟧ Sin definir (lo decide el navegador) ⟦SEP_0009⟧"
+
+#: src/JavaChallenge1/README.md:170
+msgctxt "s-7931d7f45e26-0097"
+msgid ""
+"⟦SEP_0008⟧ Layout container ⟦SEP_0009⟧ ⟦CODE_0001⟧ with two ⟦CODE_0002⟧s "
+"⟦SEP_0010⟧ ⟦CODE_0003⟧ with ⟦CODE_0004⟧ ⟦SEP_0011⟧ None: each label is "
+"stacked with ⟦CODE_0005⟧ ⟦SEP_0012⟧ ⟦CODE_0006⟧ with ⟦CODE_0007⟧ ⟦SEP_0013⟧"
+msgstr ""
+"⟦SEP_0008⟧ Contenedor de diseño ⟦SEP_0009⟧ ⟦CODE_0001⟧ con dos ⟦CODE_0002⟧ "
+"⟦SEP_0010⟧ ⟦CODE_0003⟧ con ⟦CODE_0004⟧ ⟦SEP_0011⟧ Ninguno: cada etiqueta se "
+"apila con ⟦CODE_0005⟧ ⟦SEP_0012⟧ ⟦CODE_0006⟧ con ⟦CODE_0007⟧ ⟦SEP_0013⟧"
+
+#: src/JavaChallenge1/README.md:171
+msgctxt "s-1ab82abf649a-0098"
+msgid ""
+"⟦SEP_0006⟧ Background color ⟦SEP_0007⟧ ⟦CODE_0001⟧ on the Grid ⟦SEP_0008⟧ "
+"⟦CODE_0002⟧ property, ⟦CODE_0003⟧ ⟦SEP_0009⟧ ⟦CODE_0004⟧ on every element "
+"⟦SEP_0010⟧ ⟦CODE_0005⟧ style ⟦SEP_0011⟧"
+msgstr ""
+"⟦SEP_0006⟧ Color de fondo ⟦SEP_0007⟧ ⟦CODE_0001⟧ en el Grid ⟦SEP_0008⟧ "
+"propiedad ⟦CODE_0002⟧, ⟦CODE_0003⟧ ⟦SEP_0009⟧ ⟦CODE_0004⟧ en cada elemento "
+"⟦SEP_0010⟧ estilo ⟦CODE_0005⟧ ⟦SEP_0011⟧"
+
+#: src/JavaChallenge1/README.md:172
+msgctxt "s-ba5cc0c812ec-0099"
+msgid ""
+"⟦SEP_0007⟧ Padding and margins ⟦SEP_0008⟧ ⟦CODE_0001⟧, ⟦CODE_0002⟧, "
+"⟦CODE_0003⟧ ⟦SEP_0009⟧ ⟦CODE_0004⟧ on the panel ⟦SEP_0010⟧ ⟦CODE_0005⟧ "
+"⟦SEP_0011⟧ ⟦CODE_0006⟧ ⟦SEP_0012⟧"
+msgstr ""
+"⟦SEP_0007⟧ Relleno y márgenes ⟦SEP_0008⟧ ⟦CODE_0001⟧, ⟦CODE_0002⟧, "
+"⟦CODE_0003⟧ ⟦SEP_0009⟧ ⟦CODE_0004⟧ en el panel ⟦SEP_0010⟧ ⟦CODE_0005⟧ "
+"⟦SEP_0011⟧ ⟦CODE_0006⟧ ⟦SEP_0012⟧"
+
+#: src/JavaChallenge1/README.md:173
+msgctxt "s-d082c003198e-0100"
+msgid ""
+"⟦SEP_0006⟧ Yellow banner text ⟦SEP_0007⟧ ⟦CODE_0001⟧ ⟦SEP_0008⟧ ⟦CODE_0002⟧,"
+" ⟦CODE_0003⟧, SansSerif bold 18 ⟦SEP_0009⟧ ⟦CODE_0004⟧ ⟦SEP_0010⟧ "
+"⟦CODE_0005⟧ ⟦SEP_0011⟧"
+msgstr ""
+"⟦SEP_0006⟧ Texto del banner amarillo ⟦SEP_0007⟧ ⟦CODE_0001⟧ ⟦SEP_0008⟧ "
+"⟦CODE_0002⟧, ⟦CODE_0003⟧, SansSerif negrita 18 ⟦SEP_0009⟧ ⟦CODE_0004⟧ "
+"⟦SEP_0010⟧ ⟦CODE_0005⟧ ⟦SEP_0011⟧"
+
+#: src/JavaChallenge1/README.md:174
+msgctxt "s-d79ee022f72e-0101"
+msgid ""
+"⟦SEP_0005⟧ Hours total text ⟦SEP_0006⟧ Second ⟦CODE_0001⟧ ⟦SEP_0007⟧ "
+"⟦CODE_0002⟧, white, bold 24 ⟦SEP_0008⟧ ⟦CODE_0003⟧ ⟦SEP_0009⟧ ⟦CODE_0004⟧ "
+"⟦SEP_0010⟧"
+msgstr ""
+"⟦SEP_0005⟧ Texto del total de horas ⟦SEP_0006⟧ Segundo ⟦CODE_0001⟧ "
+"⟦SEP_0007⟧ ⟦CODE_0002⟧, blanco, negrita 24 ⟦SEP_0008⟧ ⟦CODE_0003⟧ ⟦SEP_0009⟧"
+" ⟦CODE_0004⟧ ⟦SEP_0010⟧"
+
+#: src/JavaChallenge1/README.md:175
+msgctxt "s-3c9181f9ae34-0102"
+msgid ""
+"⟦SEP_0005⟧ \"Saved locally\" text ⟦SEP_0006⟧ Same TextBlock as the total, "
+"after two line breaks (⟦CODE_0001⟧) ⟦SEP_0007⟧ Separate ⟦CODE_0002⟧, bold 18"
+" ⟦SEP_0008⟧ Separate ⟦CODE_0003⟧, bold 18 ⟦SEP_0009⟧ Separate ⟦CODE_0004⟧ "
+"⟦SEP_0010⟧"
+msgstr ""
+"⟦SEP_0005⟧ Texto \"Saved locally\" ⟦SEP_0006⟧ El mismo TextBlock que el "
+"total, después de dos saltos de línea (⟦CODE_0001⟧) ⟦SEP_0007⟧ ⟦CODE_0002⟧ "
+"independiente, negrita 18 ⟦SEP_0008⟧ ⟦CODE_0003⟧ independiente, negrita 18 "
+"⟦SEP_0009⟧ ⟦CODE_0004⟧ independiente ⟦SEP_0010⟧"
+
+#: src/JavaChallenge1/README.md:176
+msgctxt "s-3bf90aec3562-0103"
+msgid ""
+"⟦SEP_0006⟧ Centered text ⟦SEP_0007⟧ ⟦CODE_0001⟧ ⟦SEP_0008⟧ ⟦CODE_0002⟧ "
+"property, ⟦CODE_0003⟧ (center) ⟦SEP_0009⟧ ⟦CODE_0004⟧ (labels center by "
+"default) ⟦SEP_0010⟧ ⟦CODE_0005⟧ ⟦SEP_0011⟧"
+msgstr ""
+"⟦SEP_0006⟧ Texto centrado ⟦SEP_0007⟧ ⟦CODE_0001⟧ ⟦SEP_0008⟧ Propiedad "
+"⟦CODE_0002⟧, ⟦CODE_0003⟧ (centro) ⟦SEP_0009⟧ ⟦CODE_0004⟧ (las etiquetas se "
+"centran por defecto) ⟦SEP_0010⟧ ⟦CODE_0005⟧ ⟦SEP_0011⟧"
+
+#: src/JavaChallenge1/README.md:177
+msgctxt "s-625a151d38f0-0104"
+msgid ""
+"⟦SEP_0007⟧ Placing children in the layout ⟦SEP_0008⟧ Nesting inside "
+"⟦CODE_0001⟧, plus ⟦CODE_0002⟧ ⟦SEP_0009⟧ ⟦CODE_0003⟧ calling ⟦CODE_0004⟧ "
+"⟦SEP_0010⟧ ⟦CODE_0005⟧ attribute ⟦SEP_0011⟧ Nesting inside ⟦CODE_0006⟧ "
+"⟦SEP_0012⟧"
+msgstr ""
+"⟦SEP_0007⟧ Colocar los hijos en el diseño ⟦SEP_0008⟧ Anidar dentro de "
+"⟦CODE_0001⟧, más ⟦CODE_0002⟧ ⟦SEP_0009⟧ ⟦CODE_0003⟧ que llama a ⟦CODE_0004⟧ "
+"⟦SEP_0010⟧ Atributo ⟦CODE_0005⟧ ⟦SEP_0011⟧ Anidar dentro de ⟦CODE_0006⟧ "
+"⟦SEP_0012⟧"
+
+#: src/JavaChallenge1/README.md:178
+msgctxt "s-6dd1dc3f0882-0105"
+msgid ""
+"⟦SEP_0002⟧ Close button ⟦SEP_0003⟧ None (the window's X) ⟦SEP_0004⟧ None "
+"(the window's X) ⟦SEP_0005⟧ None (the window's X) ⟦SEP_0006⟧ ⟦CODE_0001⟧ "
+"⟦SEP_0007⟧"
+msgstr ""
+"⟦SEP_0002⟧ Botón de cierre ⟦SEP_0003⟧ Ninguno (la X de la ventana) "
+"⟦SEP_0004⟧ Ninguno (la X de la ventana) ⟦SEP_0005⟧ Ninguno (la X de la "
+"ventana) ⟦SEP_0006⟧ ⟦CODE_0001⟧ ⟦SEP_0007⟧"
+
+#: src/JavaChallenge1/README.md:179
+msgctxt "s-77d563cb05a5-0106"
+msgid ""
+"⟦SEP_0009⟧ Animation fragment, built separately and inserted ⟦SEP_0010⟧ "
+"⟦CODE_0001⟧ holding ⟦CODE_0002⟧ ⟦SEP_0011⟧ ⟦CODE_0003⟧ string holding "
+"⟦CODE_0004⟧, ticking every 40 ms ⟦SEP_0012⟧ ⟦CODE_0005⟧ string holding "
+"⟦CODE_0006⟧ ⟦SEP_0013⟧ ⟦CODE_0007⟧ string holding ⟦CODE_0008⟧ ⟦SEP_0014⟧"
+msgstr ""
+"⟦SEP_0009⟧ Fragmento de animación, construido por separado e insertado "
+"⟦SEP_0010⟧ ⟦CODE_0001⟧ que contiene ⟦CODE_0002⟧ ⟦SEP_0011⟧ ⟦CODE_0003⟧ "
+"cadena de texto que contiene ⟦CODE_0004⟧, con un tick cada 40 ms ⟦SEP_0012⟧ "
+"⟦CODE_0005⟧ cadena de texto que contiene ⟦CODE_0006⟧ ⟦SEP_0013⟧ ⟦CODE_0007⟧ "
+"cadena de texto que contiene ⟦CODE_0008⟧ ⟦SEP_0014⟧"
+
+#: src/JavaChallenge1/README.md:180
+msgctxt "s-05d2ef85bf35-0107"
+msgid ""
+"⟦SEP_0007⟧ What starts the animation ⟦SEP_0008⟧ ⟦CODE_0001⟧ and a "
+"⟦CODE_0002⟧, all in the markup ⟦SEP_0009⟧ ⟦CODE_0003⟧ in the XML; Java code "
+"fades the labels on each tick ⟦SEP_0010⟧ Python code reads ⟦CODE_0004⟧ and "
+"schedules ticks with ⟦CODE_0005⟧ ⟦SEP_0011⟧ ⟦CODE_0006⟧, all in CSS "
+"⟦SEP_0012⟧"
+msgstr ""
+"⟦SEP_0007⟧ Qué inicia la animación ⟦SEP_0008⟧ ⟦CODE_0001⟧ y un ⟦CODE_0002⟧, "
+"todo en el marcado ⟦SEP_0009⟧ ⟦CODE_0003⟧ en el XML; el código Java atenúa "
+"las etiquetas en cada tick ⟦SEP_0010⟧ El código Python lee ⟦CODE_0004⟧ y "
+"programa ticks con ⟦CODE_0005⟧ ⟦SEP_0011⟧ ⟦CODE_0006⟧, todo en CSS "
+"⟦SEP_0012⟧"
+
+#: src/JavaChallenge1/README.md:181
+msgctxt "s-ea2bbe5c6826-0108"
+msgid ""
+"⟦SEP_0005⟧ What fades ⟦SEP_0006⟧ The whole Viewbox's ⟦CODE_0001⟧ ⟦SEP_0007⟧ "
+"Each label's text color, from 100% to 45% alpha ⟦SEP_0008⟧ Each label's "
+"color, blended toward the background ⟦SEP_0009⟧ ⟦CODE_0002⟧, ⟦CODE_0003⟧ and"
+" ⟦CODE_0004⟧ opacity ⟦SEP_0010⟧"
+msgstr ""
+"⟦SEP_0005⟧ Qué se desvanece ⟦SEP_0006⟧ El ⟦CODE_0001⟧ de todo el Viewbox "
+"⟦SEP_0007⟧ El color del texto de cada etiqueta, con alfa de 100% a 45% "
+"⟦SEP_0008⟧ El color de cada etiqueta, mezclado hacia el fondo ⟦SEP_0009⟧ La "
+"opacidad de ⟦CODE_0002⟧, ⟦CODE_0003⟧ y ⟦CODE_0004⟧ ⟦SEP_0010⟧"
+
+#: src/JavaChallenge1/README.md:183
+msgctxt "s-50da33d8a2e9-0109"
+msgid ""
+"The XAML and the Go CSS describe the animation completely in markup. Swing "
+"and Tk can't declare an animation in markup, so in Java, Kotlin and Python "
+"the markup only declares a timer, and code outside it does the fading."
+msgstr ""
+"El XAML y el CSS de Go describen la animación completa en el marcado. Swing "
+"y Tk no pueden declarar una animación en el marcado, así que en Java, Kotlin"
+" y Python el marcado solo declara un temporizador y el código fuera del "
+"marcado hace el desvanecimiento."

@@ -1,0 +1,450 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/KotlinChallenge1/README.md:2
+msgctxt "s-c78f6c97923e-0000"
+msgid "Kotlin"
+msgstr "Kotlin"
+
+#: src/KotlinChallenge1/README.md:3
+msgctxt "s-884344c574fe-0001"
+msgid ""
+"that Kotlin can use ⟦CODE_0001⟧ as the loop, ending when the generator "
+"returns null."
+msgstr ""
+"que Kotlin puede usar ⟦CODE_0001⟧ como el bucle, y termina cuando el "
+"generador devuelve null."
+
+#: src/KotlinChallenge1/README.md:11
+msgctxt "s-ee8732ca88f0-0002"
+msgid "A lazy sequence that the empty ⟦CODE_0001⟧ pulls"
+msgstr "Una secuencia perezosa que el ⟦CODE_0001⟧ vacío demanda (pull)"
+
+#: src/KotlinChallenge1/README.md:12
+msgctxt "s-61307ef2eb8f-0003"
+msgid "Properties of one object expression, the seed of the sequence"
+msgstr "Propiedades de una expresión de objeto, la semilla de la secuencia"
+
+#: src/KotlinChallenge1/README.md:16
+msgctxt "s-9cb4e747c78c-0004"
+msgid "One Statement, Kotlin Edition"
+msgstr "Una sola instrucción, edición Kotlin"
+
+#: src/KotlinChallenge1/README.md:18
+msgctxt "s-721a3d5b4723-0005"
+msgid ""
+"Ken's Kotlin port of Jim Lehmer's C# challenge. It is one of four sibling "
+"ports, along with [Java](⟦DEST_0001⟧), [Python](⟦DEST_0002⟧) and "
+"[Go](⟦DEST_0003⟧). The Java README has [what every version "
+"does](⟦DEST_0004⟧) and the [side-by-side comparison](⟦DEST_0005⟧) of all "
+"four."
+msgstr ""
+"Esta es la adaptación a Kotlin que hizo Ken del reto en C# de Jim Lehmer. Es"
+" una de cuatro adaptaciones hermanas, junto con [Java](⟦DEST_0001⟧), "
+"[Python](⟦DEST_0002⟧) y [Go](⟦DEST_0003⟧). El README de Java explica [qué "
+"hace cada versión](⟦DEST_0004⟧) y tiene la [comparación lado a "
+"lado](⟦DEST_0005⟧) de las cuatro."
+
+#: src/KotlinChallenge1/README.md:20
+msgctxt "s-7080a1014289-0006"
+msgid ""
+"The constraint: ⟦CODE_0001⟧ contains exactly one statement, a ⟦CODE_0002⟧ "
+"loop with an empty body. This is a stunt in expression mechanics, not good "
+"production code. Nothing here connects to a real time-reporting system: the "
+"cards are flagged ⟦CODE_0003⟧."
+msgstr ""
+"La restricción: ⟦CODE_0001⟧ contiene exactamente una instrucción, un bucle "
+"⟦CODE_0002⟧ con el cuerpo vacío. Esto es una acrobacia con la mecánica de "
+"las expresiones, no es buen código de producción. Nada de esto se conecta "
+"con un sistema real de registro de horas: las tarjetas están marcadas como "
+"⟦CODE_0003⟧."
+
+#: src/KotlinChallenge1/README.md:22
+msgctxt "s-958ca26c6a61-0007"
+msgid "Run it"
+msgstr "Ejecútalo"
+
+#: src/KotlinChallenge1/README.md:24
+msgctxt "s-7cc22086db48-0008"
+msgid ""
+"You need JDK 25. The Gradle wrapper does the rest. Run it from a desktop "
+"session:"
+msgstr ""
+"Necesitas JDK 25. El Gradle wrapper hace el resto. Ejecútalo desde una "
+"sesión de escritorio:"
+
+#: src/KotlinChallenge1/README.md:31
+msgctxt "s-284de0358a08-0009"
+msgid ""
+"From the repo root, the same task name works without the ⟦CODE_0001⟧: "
+"⟦CODE_0002⟧."
+msgstr ""
+"Desde la raíz del repositorio, el mismo nombre de tarea funciona sin "
+"⟦CODE_0001⟧: ⟦CODE_0002⟧."
+
+#: src/KotlinChallenge1/README.md:33
+msgctxt "s-14fbcb35d28b-0010"
+msgid ""
+"⟦CODE_0001⟧ runs the same program. The window is a Swing dialog. Records "
+"land in ⟦CODE_0002⟧; delete ⟦CODE_0003⟧ to start over. The data path is "
+"relative to the working directory, which the Gradle run tasks set to this "
+"folder."
+msgstr ""
+"⟦CODE_0001⟧ ejecuta el mismo programa. La ventana es un diálogo de Swing. "
+"Los registros se guardan en ⟦CODE_0002⟧; elimina ⟦CODE_0003⟧ para empezar de"
+" nuevo. La ruta de los datos es relativa al directorio de trabajo, que las "
+"tareas de ejecución de Gradle fijan en esta carpeta."
+
+#: src/KotlinChallenge1/README.md:35
+msgctxt "s-254f0c660db3-0011"
+msgid "Run it in a container"
+msgstr "Ejecútalo en un contenedor"
+
+#: src/KotlinChallenge1/README.md:37
+msgctxt "s-643df015c8a2-0012"
+msgid ""
+"Prerequisite: Docker, set up once as described in "
+"[⟦CODE_0001⟧](⟦DEST_0002⟧)."
+msgstr ""
+"Requisito previo: Docker, configurado una sola vez como se describe en "
+"[⟦CODE_0001⟧](⟦DEST_0002⟧)."
+
+#: src/KotlinChallenge1/README.md:43
+msgctxt "s-cd7103550c6b-0013"
+msgid ""
+"It builds this folder's [⟦CODE_0001⟧](⟦DEST_0002⟧) and runs the result with "
+"no network, a read-only file system and user ⟦CODE_0003⟧. Gradle and OpenJDK"
+" 25 build one Spring Boot jar in a build stage; the image holds only that "
+"jar on an OpenJDK 25 JRE with AWT, Xvfb and a screenshot tool, with no JDK, "
+"Gradle or Kotlin compiler (about 770 MB, the largest of the set). The window"
+" opens on a virtual display (Xvfb) *inside* the container, so nothing is "
+"drawn on your desktop: the run screenshots it, closes it, and prints the "
+"rows it wrote. With ⟦CODE_0004⟧, ⟦CODE_0005⟧ is the window. ⟦CODE_0006⟧ is "
+"needed because the build downloads Gradle (from this entry's wrapper) and "
+"the Maven dependencies; the run itself has no network."
+msgstr ""
+"Compila el [⟦CODE_0001⟧](⟦DEST_0002⟧) de esta carpeta y ejecuta el resultado"
+" sin red, con un sistema de archivos de solo lectura y con el usuario "
+"⟦CODE_0003⟧. Gradle y OpenJDK 25 compilan un solo jar de Spring Boot en una "
+"etapa de compilación. La imagen contiene solo ese jar sobre un JRE de "
+"OpenJDK 25 con AWT, Xvfb y una herramienta de capturas de pantalla, sin JDK,"
+" sin Gradle y sin compilador de Kotlin (unos 770 MB, la más grande del "
+"conjunto). La ventana se abre en una pantalla virtual (Xvfb) *dentro* del "
+"contenedor, así que no se dibuja nada en tu escritorio: la ejecución toma "
+"una captura de la ventana, la cierra e imprime las filas que escribió. Con "
+"⟦CODE_0004⟧, ⟦CODE_0005⟧ es la ventana. Se necesita ⟦CODE_0006⟧ porque la "
+"compilación descarga Gradle (desde el wrapper de esta entrada) y las "
+"dependencias de Maven. La ejecución en sí no tiene red."
+
+#: src/KotlinChallenge1/README.md:45
+msgctxt "s-b41c50ab7de6-0014"
+msgid "Run it in Windows Sandbox"
+msgstr "Ejecútalo en Windows Sandbox"
+
+#: src/KotlinChallenge1/README.md:47
+msgctxt "s-4c7e274e3b4c-0015"
+msgid ""
+"Prerequisites: Windows Sandbox and this entry's toolchain on your machine, "
+"set up once as described in [⟦CODE_0001⟧](⟦DEST_0002⟧)."
+msgstr ""
+"Requisitos previos: Windows Sandbox (un entorno aislado, o *sandbox*, donde "
+"se ejecuta código sin tocar el resto del sistema) y la cadena de "
+"herramientas de esta entrada en tu máquina, configuradas una sola vez como "
+"se describe en [⟦CODE_0001⟧](⟦DEST_0002⟧)."
+
+#: src/KotlinChallenge1/README.md:53
+msgctxt "s-b241532fdacb-0016"
+msgid ""
+"It runs the entry in a throwaway VM with networking off, screenshots the "
+"window, asks it to close, and prints what it saved. **Not yet tested on real"
+" hardware**; it needs a JDK and a populated Gradle home on the host."
+msgstr ""
+"Ejecuta la entrada en una máquina virtual desechable sin red, captura la "
+"ventana, le pide que se cierre e imprime lo que guardó. **Aún no está "
+"probado en hardware real**; necesita un JDK y un *Gradle home* ya poblado en"
+" el anfitrión."
+
+#: src/KotlinChallenge1/README.md:55
+msgctxt "s-a511909161e1-0017"
+msgid "Layout"
+msgstr "Estructura"
+
+#: src/KotlinChallenge1/README.md:57
+msgctxt "s-554ac78ddc81-0018"
+msgid "⟦SEP_0001⟧ File ⟦SEP_0002⟧ Role ⟦SEP_0003⟧"
+msgstr "⟦SEP_0001⟧ Archivo ⟦SEP_0002⟧ Papel ⟦SEP_0003⟧"
+
+#: src/KotlinChallenge1/README.md:59
+msgctxt "s-7b8a7f3d623a-0019"
+msgid ""
+"⟦SEP_0003⟧ [Program.kt](⟦DEST_0001⟧) ⟦SEP_0004⟧ ⟦CODE_0002⟧ and its one "
+"statement ⟦SEP_0005⟧"
+msgstr ""
+"⟦SEP_0003⟧ [Program.kt](⟦DEST_0001⟧) ⟦SEP_0004⟧ ⟦CODE_0002⟧ y su única "
+"instrucción ⟦SEP_0005⟧"
+
+#: src/KotlinChallenge1/README.md:60
+msgctxt "s-0d9fd4e10836-0020"
+msgid "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ The entity ⟦SEP_0004⟧"
+msgstr "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ La entidad ⟦SEP_0004⟧"
+
+#: src/KotlinChallenge1/README.md:61
+msgctxt "s-b9732d624147-0021"
+msgid ""
+"⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ The Spring Data repository ⟦SEP_0004⟧"
+msgstr ""
+"⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ El repositorio de Spring Data ⟦SEP_0004⟧"
+
+#: src/KotlinChallenge1/README.md:63
+msgctxt "s-76c5bba83173-0022"
+msgid ""
+"As in the original, the entity and the data-access type are the only code "
+"outside ⟦CODE_0001⟧."
+msgstr ""
+"Como en el original, la entidad y el tipo de acceso a datos son el único "
+"código fuera de ⟦CODE_0001⟧."
+
+#: src/KotlinChallenge1/README.md:65
+msgctxt "s-0dcb373c2dff-0023"
+msgid "Program Flow"
+msgstr "Flujo del programa"
+
+#: src/KotlinChallenge1/README.md:69
+msgctxt "s-56f8b1255875-0024"
+msgid "KotlinChallenge1: a generated sequence ends when takeIf returns null"
+msgstr ""
+"KotlinChallenge1: una secuencia generada termina cuando takeIf devuelve null"
+
+#: src/KotlinChallenge1/README.md:70
+msgctxt "s-2df4b6e1929b-0025"
+msgid ""
+"A flowchart. The seed object is the first value of generateSequence. The "
+"empty for body runs. The sequence then asks its next function for the next "
+"value. takeIf tests whether the total is 40 or less and a category remains. "
+"If so, a chain of also calls locks, adds hours, stages a card, unlocks and "
+"starts a thread, and the same object is the next value, so the body runs "
+"again. If not, the else branch shows a Swing dialog built from Spring XML "
+"and ends with let false, so takeIf returns null and the sequence, and the "
+"for, end."
+msgstr ""
+"Un diagrama de flujo. El objeto semilla es el primer valor de "
+"generateSequence. El cuerpo vacío del for se ejecuta. Luego la secuencia "
+"pide el siguiente valor a su función siguiente. takeIf comprueba si el total"
+" no pasa de 40 y si queda una categoría. Si es así, una cadena de llamadas a"
+" also bloquea, suma horas, prepara una tarjeta, desbloquea e inicia un hilo,"
+" y el mismo objeto es el siguiente valor, así que el cuerpo se ejecuta otra "
+"vez. Si no, la rama else muestra un diálogo de Swing construido con XML de "
+"Spring y termina con let false, así que takeIf devuelve null y la secuencia "
+"y el for terminan."
+
+#: src/KotlinChallenge1/README.md:71
+msgctxt "s-48bb4ba3da99-0026"
+msgid "Seed: an object expression holds the state"
+msgstr "Semilla: una expresión de objeto guarda el estado"
+
+#: src/KotlinChallenge1/README.md:71
+msgctxt "s-afab3da2b72a-0027"
+msgid "Empty for body"
+msgstr "Vacío para el cuerpo"
+
+#: src/KotlinChallenge1/README.md:72
+msgctxt "s-9dd732c87ad6-0028"
+msgid "generateSequence asks for the next value"
+msgstr "generateSequence pide el siguiente valor"
+
+#: src/KotlinChallenge1/README.md:73
+msgctxt "s-14c204f239f5-0029"
+msgid "takeIf: total <= 40 and categories left?"
+msgstr "takeIf: ¿total <= 40 y quedan categorías?"
+
+#: src/KotlinChallenge1/README.md:74
+msgctxt "s-8a798890fe93-0030"
+msgid "yes"
+msgstr "sí"
+
+#: src/KotlinChallenge1/README.md:74
+msgctxt "s-414b83232351-0031"
+msgid "also chain: lock, add hours, stage a card, unlock, start a Thread"
+msgstr ""
+"también encadena: bloquea, agrega horas, prepara una tarjeta, desbloquea, "
+"inicia un hilo"
+
+#: src/KotlinChallenge1/README.md:76
+msgctxt "s-9390298f3fb0-0032"
+msgid "no"
+msgstr "no"
+
+#: src/KotlinChallenge1/README.md:76
+msgctxt "s-e188209d722e-0033"
+msgid "Else branch: show the Swing dialog, then let false"
+msgstr "Rama else: muestra el diálogo de Swing y luego let false"
+
+#: src/KotlinChallenge1/README.md:77
+msgctxt "s-89ffc1be9876-0034"
+msgid "takeIf returns null: the sequence is over"
+msgstr "takeIf devuelve null: la secuencia terminó"
+
+#: src/KotlinChallenge1/README.md:80
+msgctxt "s-e12798e008e2-0035"
+msgid ""
+"**What this shows:** Kotlin has no three-clause ⟦CODE_0001⟧, so the loop "
+"iterates a sequence. The condition is ⟦CODE_0002⟧, and \"stop\" is a "
+"⟦CODE_0003⟧. The update is the chain of ⟦CODE_0004⟧ calls that runs only "
+"when the condition passed. The body runs once before the first test, which "
+"makes no difference here because the body is empty."
+msgstr ""
+"**Qué muestra:** Kotlin no tiene un ⟦CODE_0001⟧ de tres cláusulas, así que "
+"el bucle itera una secuencia. La condición es ⟦CODE_0002⟧, y \"detenerse\" "
+"es un ⟦CODE_0003⟧. La actualización es la cadena de llamadas a ⟦CODE_0004⟧ "
+"que se ejecuta solo cuando la condición se cumplió. El cuerpo se ejecuta una"
+" vez antes de la primera prueba, lo que aquí no cambia nada porque el cuerpo"
+" está vacío."
+
+#: src/KotlinChallenge1/README.md:82
+msgctxt "s-9192d0664e01-0036"
+msgid ""
+"**Why this mechanism matters:** it is the same three jobs as the Java port "
+"(initialize, test, update), carried by a lazy sequence that is pulled one "
+"value at a time. Ending the sequence is a value (⟦CODE_0001⟧), not a "
+"statement."
+msgstr ""
+"**Por qué importa este mecanismo:** son los mismos tres trabajos que en el "
+"port de Java (inicializar, probar, actualizar), pero los hace una secuencia "
+"perezosa de la que se toma un valor a la vez. Terminar la secuencia es un "
+"valor (⟦CODE_0001⟧), no una instrucción."
+
+#: src/KotlinChallenge1/README.md:84
+msgctxt "s-7f97d965b4c0-0037"
+msgid "How the stunt works"
+msgstr "Cómo funciona el truco"
+
+#: src/KotlinChallenge1/README.md:86
+msgctxt "s-2a59c28710e7-0038"
+msgid ""
+"The work splits three ways: an **initializer** that builds the loop's state,"
+" a **condition** that decides whether to keep going (and, on the last check,"
+" shows the window), and an **update** that does one pass of work. Comment "
+"banners in the source mark the boundaries."
+msgstr ""
+"El trabajo se divide en tres partes: un **inicializador** que construye el "
+"estado del bucle, una **condición** que decide si el bucle sigue (y, en la "
+"última comprobación, muestra la ventana) y una **actualización** que hace "
+"una pasada de trabajo. Los banners de comentarios del código fuente marcan "
+"los límites."
+
+#: src/KotlinChallenge1/README.md:88
+msgctxt "s-3b550bf1b093-0039"
+msgid ""
+"Kotlin has no three-part ⟦CODE_0001⟧ and no semicolons, so the loop iterates"
+" a sequence: ⟦CODE_0002⟧."
+msgstr ""
+"Kotlin no tiene un ⟦CODE_0001⟧ de tres partes ni puntos y comas, así que el "
+"bucle recorre una secuencia: ⟦CODE_0002⟧."
+
+#: src/KotlinChallenge1/README.md:90
+msgctxt "s-81d9625e25fa-0040"
+msgid "**Initializer.** An ⟦CODE_0001⟧ expression is the sequence seed."
+msgstr ""
+"**Inicializador.** Una expresión ⟦CODE_0001⟧ es la semilla de la secuencia."
+
+#: src/KotlinChallenge1/README.md:91
+msgctxt "s-fb9041ae9ee8-0041"
+msgid ""
+"**Condition.** ⟦CODE_0001⟧. A null result ends the sequence. When the loop "
+"should end, the else branch shows the window and finishes with ⟦CODE_0002⟧, "
+"so ⟦CODE_0003⟧ returns null."
+msgstr ""
+"**Condición.** ⟦CODE_0001⟧. Un resultado null termina la secuencia. Cuando "
+"el bucle tiene que terminar, la rama else muestra la ventana y acaba con "
+"⟦CODE_0002⟧, así que ⟦CODE_0003⟧ devuelve null."
+
+#: src/KotlinChallenge1/README.md:92
+msgctxt "s-07b5d914b091-0042"
+msgid "**Update.** The update is a chain of ⟦CODE_0001⟧ calls."
+msgstr ""
+"**Actualización.** La actualización es una cadena de llamadas a ⟦CODE_0001⟧."
+
+#: src/KotlinChallenge1/README.md:93
+msgctxt "s-b1c83465d4e8-0043"
+msgid "**Several steps in one expression.** Chain them: ⟦CODE_0001⟧."
+msgstr "**Varios pasos en una expresión.** Encadénalos: ⟦CODE_0001⟧."
+
+#: src/KotlinChallenge1/README.md:94
+msgctxt "s-9abc3433eb42-0044"
+msgid ""
+"**Window and saving.** The same Swing, Spring XML and Spring Data JPA as the"
+" Java port. The XML is one raw string with ⟦CODE_0001⟧ templates instead of "
+"joined text blocks."
+msgstr ""
+"**Ventana y guardado.** Los mismos Swing, Spring XML y Spring Data JPA que "
+"en la versión en Java. El XML es una sola cadena de texto sin procesar con "
+"plantillas ⟦CODE_0001⟧, en lugar de bloques de texto unidos."
+
+#: src/KotlinChallenge1/README.md:95
+msgctxt "s-d30743680afb-0045"
+msgid ""
+"**One behavior difference.** The Kotlin loop body runs once before the first"
+" condition check, where Java checks first. The body is empty, so both "
+"programs do the same things in the same order."
+msgstr ""
+"**Una diferencia de comportamiento.** El cuerpo del bucle de Kotlin se "
+"ejecuta una vez antes de la primera comprobación de la condición. Java "
+"comprueba primero. El cuerpo está vacío, así que los dos programas hacen las"
+" mismas cosas en el mismo orden."
+
+#: src/KotlinChallenge1/README.md:97
+msgctxt "s-5a0ad00b10fc-0046"
+msgid "Gotchas worth knowing"
+msgstr "Trampas que conviene conocer"
+
+#: src/KotlinChallenge1/README.md:99
+msgctxt "s-1570e58a165f-0047"
+msgid ""
+"**The loop body runs once before the first condition check.** Java checks "
+"first. The body is empty, so both programs do the same things in the same "
+"order."
+msgstr ""
+"**El cuerpo del bucle se ejecuta una vez antes de la primera comprobación de"
+" la condición.** Java comprueba primero. El cuerpo está vacío, así que los "
+"dos programas hacen las mismas cosas en el mismo orden."
+
+#: src/KotlinChallenge1/README.md:100
+msgctxt "s-968fdf5162a6-0048"
+msgid ""
+"**Run it from the right place.** The data path is relative to the working "
+"directory, which the Gradle run tasks set to this folder."
+msgstr ""
+"**Ejecuta el programa desde el lugar correcto.** La ruta de los datos es "
+"relativa al directorio de trabajo, y las tareas de ejecución de Gradle fijan"
+" ese directorio en esta carpeta."
+
+#: src/KotlinChallenge1/README.md:101
+msgctxt "s-707faee68fb6-0049"
+msgid ""
+"**The container image is the biggest of the set** (about 770 MB), and "
+"⟦CODE_0001⟧ is needed because the build downloads Gradle and the Maven "
+"dependencies. The run itself has no network."
+msgstr ""
+"**La imagen de contenedor es la más grande del conjunto** (unos 770 MB), y "
+"se necesita ⟦CODE_0001⟧ porque la compilación descarga Gradle y las "
+"dependencias de Maven. La ejecución en sí no tiene red."
+
+#: src/KotlinChallenge1/README.md:102
+msgctxt "s-7cf1af65f36e-0050"
+msgid ""
+"**The Windows Sandbox profile is not yet tested on real hardware.** It needs"
+" a JDK and a populated Gradle home on the host, and this port has no check "
+"script, so the sandbox gate does not cover it yet."
+msgstr ""
+"**El perfil de Windows Sandbox aún no se ha probado en hardware real.** "
+"Necesita un JDK y un directorio base de Gradle (*Gradle home*) ya poblado en"
+" el anfitrión. Este port no tiene un script de verificación, así que el "
+"control del entorno aislado (*sandbox*) todavía no lo cubre. Un entorno "
+"aislado es un espacio separado donde el código se ejecuta sin afectar al "
+"resto del sistema."
