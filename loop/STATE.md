@@ -1,9 +1,9 @@
 # loop/STATE.md (keep to 60 lines; refreshed by every iteration)
 
 - **Edition:** v4-es.0-rc1 (working)    **English SHA:** 48a4429c0a22b2aac628b256a50c07d1816bcb80
-- **Iteration:** 20    **Stage:** 1    **Last result:** P1-003 done (translation/prompts/ x4, translation/schemas/ x3, tools/prompt_check.py)
-- **Tasks:** todo 123 (46 seed + 77 generated) | doing 0 | done 15 | blocked 0 | skipped 0
-- **Next task:** run `python3 tools/next_task.py` (P1-004 locale phases or P1-005 fixtures are next)
+- **Iteration:** 21    **Stage:** 1    **Last result:** P1-004 done (lessons/book/locale/es.yaml acronym + phases 1 to 5; tools/locale_check.py)
+- **Tasks:** todo 122 (45 seed + 77 generated) | doing 0 | done 16 | blocked 0 | skipped 0
+- **Next task:** run `python3 tools/next_task.py` (P1-005 fixtures is next, then the P1-006 gate)
 - **Budget:** spent $0.00 of $100; iterations 0 of 300
 - **Translate progress:** segments accepted 0 / total ? ; files done 0 / ?
 - **Last audit:** none    **Next audit due after:** 8 translate tasks

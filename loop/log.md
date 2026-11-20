@@ -19,3 +19,4 @@
 18 P1-001 done translation/glossary.es.yaml (206 terms, frozen 40-rule wording, assurance labels, card categories, phase macros); tools/glossary_check.py + 17 tests
 19 P1-002 done translation/house-style.es.md (ETS profile: tiers T1 to T3, rules 1 to 13 with lint IDs, English-to-Spanish convention table, N=28 provisional)
 20 P1-003 done translation/prompts/ (translate, review, backtranslate, adjudicate, v1) and translation/schemas/ (segment, finding, ledger-row + samples); tools/prompt_check.py with 42 tests incl. exact-substring finding check
+21 P1-004 done lessons/book/locale/es.yaml with BICHO acronym text and phases 1 to 5 (letter, name, question, definition, weeks, node ID); tools/locale_check.py + 13 tests incl. TORCE swap and 7 negative cases

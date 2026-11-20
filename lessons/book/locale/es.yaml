@@ -1,0 +1,61 @@
+# lessons/book/locale/es.yaml: Spanish locale catalog (data only; no logic).
+# P1-004 writes the acronym and phase catalog. Later tasks (P2-001 onward) add the rest.
+#
+# The acronym is a PARAMETER. Prose and PO files use the macros {{acronym.word}},
+# {{phase.N.letter}} and {{phase.N.name}}, expanded from this file at apply time.
+# To switch to the runner-up TORCE, edit only this block and re-apply (see decisions-provisional.md).
+# Mermaid node IDs W E I R D never change; only displayed labels do.
+# Phase names are written with a capital first letter whose initial is the phase letter.
+
+acronym:
+  word: BICHO
+  # Exactly the text counted by the editorial test (one occurrence per publication).
+  expansion: "Bicho raro, Interpreta, Camino indirecto, Hallazgos y Octetos"
+  # First letter of the word is also the first letter of phase 1: the acronym is recursive.
+  recursive_letter: "{{phase.1.letter}}"
+  recursive_note: "La {{phase.1.letter}} es recursiva."
+  # One-sentence gloss used where the English reads "X stands for Y. The W is recursive."
+  gloss: "**{{acronym.word}}** significa **Bicho raro, Interpreta, Camino indirecto, Hallazgos y Octetos**. La {{phase.1.letter}} es recursiva."
+  # Self-deflating aside near the opening of the book (English: "It does not, of course.").
+  aside: "{{acronym.word}} significa **Bicho raro, Interpreta, Camino indirecto, Hallazgos y Octetos**. Claro que no."
+  # What the letters give the reader to trace (study-guides opening).
+  trace: "Las demás letras te dan algo que seguir: qué se ejecuta, dónde aparece el resultado y qué se trata como datos."
+  # Curriculum sentence: the five letters are the five phases.
+  phases_note: "Las cinco letras también dan al curso sus cinco fases."
+
+phases:
+  - n: 1
+    letter: B
+    name: Bicho raro
+    weeks: "1 a 2"
+    question: "¿Qué puede causarlo?"
+    definition: "Un programa raro resuelve el reto con un mecanismo que nadie diseñó para eso."
+    mermaid_node_id: W
+  - n: 2
+    letter: I
+    name: Interpreta
+    weeks: "3 a 6"
+    question: "¿Qué lo hace avanzar?"
+    definition: "La ejecución: qué instrucción corre ahora y qué la empuja hacia la siguiente."
+    mermaid_node_id: E
+  - n: 3
+    letter: C
+    name: Camino indirecto
+    weeks: "7 a 10"
+    question: "¿Quién exige el trabajo?"
+    definition: "El trabajo no se pide de frente: otra pieza lo reclama, lo retrasa o lo reparte."
+    mermaid_node_id: I
+  - n: 4
+    letter: H
+    name: Hallazgos
+    weeks: "11 a 13"
+    question: "¿Qué sobrevive al fallo?"
+    definition: "Los resultados: qué queda cuando algo falla y dónde aparece la evidencia."
+    mermaid_node_id: R
+  - n: 5
+    letter: O
+    name: Octetos
+    weeks: "14 a 15"
+    question: "¿Cuándo el código es solo datos?"
+    definition: "El código tratado como datos: octetos que otro programa lee, copia o ejecuta."
+    mermaid_node_id: D
