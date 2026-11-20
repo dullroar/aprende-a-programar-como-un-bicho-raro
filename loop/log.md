@@ -13,3 +13,4 @@
 12 P0-007 done tools/dnt.py + 14 tests; translation/dnt.txt (19 phrases) derived from frozen program sources
 13 P0-008 done translation/phase-letters.json: 20 phase-letter locations, exercise prefixes A-G; BICHO collides on B and C (plan expected B only)
 14 P0-009 done tools/humor_register.py + 12 tests; translation/humor-register.jsonl seeded with 33 entries (31 headings, 2 prose lines), all status pending
+15 P0-010 done tools/acronym_search.py + 14 tests; BICHO adopted with TORCE runner-up logged; no Spanish word list on machine, so the candidate search itself was not run

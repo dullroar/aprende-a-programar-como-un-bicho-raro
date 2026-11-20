@@ -1,14 +1,14 @@
 # loop/STATE.md (keep to 60 lines; refreshed by every iteration)
 
 - **Edition:** v4-es.0-rc1 (working)    **English SHA:** 48a4429c0a22b2aac628b256a50c07d1816bcb80
-- **Iteration:** 14    **Stage:** 0    **Last result:** P0-009 done (translation/humor-register.jsonl, 33 entries, all pending; tools/humor_register.py --check)
-- **Tasks:** todo 52 | doing 0 | done 9 | blocked 0 | skipped 0
-- **Next task:** tools/next_task.py not built yet (P0-011); take the first `todo` in loop/queue/seed.jsonl whose deps are done (P0-010)
+- **Iteration:** 15    **Stage:** 0    **Last result:** P0-010 done (tools/acronym_search.py + tests; BICHO adopted, TORCE runner-up in decisions-provisional.md)
+- **Tasks:** todo 51 | doing 0 | done 10 | blocked 0 | skipped 0
+- **Next task:** tools/next_task.py not built yet (P0-011); take the first `todo` in loop/queue/seed.jsonl whose deps are done (P0-011)
 - **Budget:** spent $0.00 of $100; iterations 0 of 300
 - **Translate progress:** segments accepted 0 / total ? ; files done 0 / ?
 - **Last audit:** none    **Next audit due after:** 8 translate tasks
 - **Gates:** P0 -  P1 -  P2 -  P3 -  P4 -  P5 -  P6 -  P7A -
-- **Open provisional decisions:** 0    **Blockers:** 0    **Source issues:** 0
+- **Open provisional decisions:** 1 (acronym BICHO; no Spanish word list on machine)    **Blockers:** 0    **Source issues:** 0
 
 ## Traps to remember (details live in SIGNS.md)
 
