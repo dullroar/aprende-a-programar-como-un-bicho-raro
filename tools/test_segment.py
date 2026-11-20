@@ -157,11 +157,12 @@ class Structure(unittest.TestCase):
         s = seg(text)
         self.assertEqual([b.text for b in s.segments()], ["item", "next"])
 
-    def test_mermaid_is_withheld_whole_until_p2_004(self):
+    def test_mermaid_labels_are_segments_and_skeleton_is_not(self):
         text = "```mermaid\nflowchart TD\n  A[\"Start\"] --> B\n```\n"
         s = seg(text)
         self.assertEqual([b.kind for b in s.blocks][:1], ["mermaid"])
-        self.assertEqual(s.segments(), [])
+        self.assertEqual([x.text for x in s.segments()], ["Start"])
+        self.assertEqual(s.segments()[0].kind, "mermaid_label")
 
     def test_blockquote_prefix(self):
         b = only("> **DEMO ONLY.** Fictional data\n> second line\n")

@@ -25,3 +25,4 @@
 24 P2-001 done lessons/book/locale/catalog.py loader (dotted keys, 1-based lists, macros, MissingKeyError) + en.yaml mirror + diagrams.section key; tools/test_catalog.py 28 tests incl. 11 negatives
 25 P2-002 done tools/segment.py + 37 tests (escaped pipes, spaces in code, COBOL column 1, list continuation, 14 negatives); T0 identity on all 212 authored files; 7394 translatable segments; mermaid withheld whole until P2-004
 26 P2-003 done tools/apply.py + 26 tests: PO layer (msgctxt=segment id, msgid=English masked), fuzzy/empty keep English, phase macros expand before unmask, orphan/stale/I2 fail closed; identity and empty PO reproduce all 212 files
+31 P2-004 done tools/mermaid.py + tools/test_mermaid.py (37 tests); segment.py emits mermaid_label segments (+1433, total 8827); I2/I5/I10 fail closed; T0 and apply identity pass on 212 files (finished uncommitted work left by stalled iterations 27 to 30)

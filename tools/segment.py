@@ -5,8 +5,10 @@ A file is split on "\\n" into BLOCKS that partition its lines exactly (every lin
 Each block is either translatable (a segment) or withheld:
 
   segments   heading, paragraph, list_item, table_row, frontmatter (allowlisted keys only)
-  withheld   blank, frontmatter_keep, fence, mermaid, comment, generated, rule, table_sep, inert
-             Mermaid label extraction (R6) is P2-004; until then mermaid fences are withheld whole.
+  withheld   blank, frontmatter_keep, fence, comment, generated, rule, table_sep, inert
+  mermaid    a fence whose LABELS are segments (kind mermaid_label: accTitle, accDescr, node, edge, subgraph,
+             participant, message, note, block, state and transition text, R6). The rest of the diagram (type,
+             node IDs, arrows, shapes, classDef) is the skeleton and is never touched (tools/mermaid.py, I5).
 
 A segment keeps what it must not change outside its text: per-line PREFIXES (indentation, "> ", list
 markers, "## ", "key: \\"") and a SUFFIX (trailing whitespace, closing "#"s, closing quote). Nothing is
@@ -31,6 +33,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
 sys.path.insert(0, HERE)
 import mask  # noqa: E402
+import mermaid  # noqa: E402
 
 # Front matter keys whose double-quoted scalar values are translated. R5 lists teaches, machine, state and
 # name; title and applies-because are added because the generators copy them into prose (provisional
@@ -39,6 +42,7 @@ FM_TRANSLATE_KEYS = ("title", "name", "teaches", "machine", "state", "applies-be
 
 SEGMENT_KINDS = ("frontmatter", "heading", "paragraph", "list_item", "table_row")
 SINGLE_LINE_KINDS = ("frontmatter", "heading", "table_row")
+ENTITY_RE = re.compile(r"#(?:[A-Za-z]+|\d+);")  # Mermaid entities such as the gt, lt and quot ones
 
 QUOTE_RE = re.compile(r"^(?P<q>(?: {0,3}>[ ]?)+)")
 FENCE_RE = re.compile(r"^\s*(?P<f>`{3,}|~{3,})(?P<info>.*)$")
@@ -62,7 +66,7 @@ class SegmentError(ValueError):
 
 class Block:
     __slots__ = ("kind", "start", "end", "lines", "prefixes", "suffix", "text", "translate",
-                 "masked", "mapping", "id", "info")
+                 "masked", "mapping", "id", "info", "labels")
 
     def __init__(self, kind, start, lines, prefixes=None, suffix="", text=None, info=""):
         self.kind = kind
@@ -77,14 +81,36 @@ class Block:
         self.masked = None
         self.mapping = {}
         self.id = None
+        self.labels = []                       # mermaid blocks only: Label objects
 
     def to_dict(self):
         d = {"kind": self.kind, "start": self.start + 1, "end": self.end + 1, "translate": self.translate}
+        if self.kind == "mermaid":
+            d["labels"] = [lab.to_dict() for lab in self.labels]
         if self.kind in SEGMENT_KINDS:
             d.update(prefixes=self.prefixes, suffix=self.suffix, text=self.text)
         if self.translate:
             d.update(segment_id=self.id, english_masked=self.masked,
                      placeholders=list(self.mapping))
+        return d
+
+
+class Label:
+    """One translatable piece of a Mermaid diagram: a column range inside one line of a mermaid block."""
+    kind = "mermaid_label"
+    __slots__ = ("start", "span", "text", "info", "translate", "masked", "mapping", "id")
+
+    def __init__(self, start, span):
+        self.start = start                     # 0-based absolute line
+        self.span = span                       # mermaid.Span (columns inside that line)
+        self.text, self.info = span.text, span.role
+        self.translate, self.masked, self.mapping, self.id = False, None, {}, None
+
+    def to_dict(self):
+        d = {"kind": self.kind, "role": self.info, "start": self.start + 1, "translate": self.translate,
+             "text": self.text}
+        if self.translate:
+            d.update(segment_id=self.id, english_masked=self.masked, placeholders=list(self.mapping))
         return d
 
 
@@ -197,7 +223,13 @@ def segment_lines(lines):
             if j >= n:
                 raise SegmentError("line %d: unterminated code fence" % (i + 1))
             kind = "mermaid" if fo[1].lower().startswith("mermaid") else "fence"
-            blocks.append(Block(kind, i, lines[i:j + 1], info=fo[1]))
+            blk = Block(kind, i, lines[i:j + 1], info=fo[1])
+            if kind == "mermaid":
+                try:
+                    blk.labels = [Label(i + 1 + sp.line, sp) for sp in mermaid.extract(blk.lines[1:-1])]
+                except mermaid.MermaidError as e:
+                    raise SegmentError("line %d: mermaid: %s" % (i + 1, e)) from None
+            blocks.append(blk)
             i, prev_blank = j + 1, False
             continue
         s = line.strip()
@@ -283,32 +315,45 @@ class Segmentation:
         mk = mask.Masker()
         pos = 0
         for b in self.blocks:
-            if b.kind not in SEGMENT_KINDS:
-                continue
-            mk.counter, mk.mapping = 0, {}
-            if b.kind == "frontmatter":
-                masked = self._mask_escapes(mk, b.text)
+            if b.kind == "mermaid":
+                items = b.labels
+            elif b.kind in SEGMENT_KINDS:
+                items = [b]
             else:
-                masked = mk.mask_line(b.text, table=(b.kind == "table_row"))
-            if not LETTER_RE.search(mask.PH_RE.sub("", masked)):
-                continue  # nothing to translate: numbers, code, markup only
-            b.translate, b.masked, b.mapping = True, masked, mk.mapping
-            digest = hashlib.sha256(b.text.encode("utf-8")).hexdigest()[:12]
-            b.id = "s-%s-%04d" % (digest, pos)
-            pos += 1
+                continue
+            for it in items:
+                mk.counter, mk.mapping = 0, {}
+                if it.kind == "frontmatter":
+                    masked = self._mask_escapes(mk, it.text, ESCAPE_RE)
+                elif it.kind == "mermaid_label":
+                    masked = self._mask_escapes(mk, it.text, ENTITY_RE, "ENT")
+                else:
+                    masked = mk.mask_line(it.text, table=(it.kind == "table_row"))
+                if not LETTER_RE.search(mask.PH_RE.sub("", masked)):
+                    continue  # nothing to translate: numbers, code, markup only
+                it.translate, it.masked, it.mapping = True, masked, mk.mapping
+                digest = hashlib.sha256(it.text.encode("utf-8")).hexdigest()[:12]
+                it.id = "s-%s-%04d" % (digest, pos)
+                pos += 1
 
     @staticmethod
-    def _mask_escapes(mk, value):
+    def _mask_escapes(mk, value, pattern, kind="ESC"):
         out, last = [], 0
-        for m in ESCAPE_RE.finditer(value):
+        for m in pattern.finditer(value):
             out.append(mk.mask_line(value[last:m.start()]))
-            out.append(mk._new("ESC", m.group(0)))
+            out.append(mk._new(kind, m.group(0)))
             last = m.end()
         out.append(mk.mask_line(value[last:]))
         return "".join(out)
 
     def segments(self):
-        return [b for b in self.blocks if b.translate]
+        out = []
+        for b in self.blocks:
+            if b.kind == "mermaid":
+                out.extend(lab for lab in b.labels if lab.translate)
+            elif b.translate:
+                out.append(b)
+        return out
 
     def original_lines(self):
         return [ln for b in self.blocks for ln in b.lines]
@@ -325,6 +370,9 @@ class Segmentation:
         mk = mask.Masker([])
         out = []
         for b in self.blocks:
+            if b.kind == "mermaid":
+                out.extend(self._render_mermaid(b, targets, mk))
+                continue
             if not b.translate:
                 out.extend(b.lines)
                 continue
@@ -335,6 +383,30 @@ class Segmentation:
             mk.mapping = b.mapping
             out.extend(render_block(b, mk.unmask(tgt)))
         return self.eol.join(out)
+
+    @staticmethod
+    def _render_mermaid(b, targets, mk):
+        """Lines of a mermaid fence with the targeted labels replaced; the skeleton is copied untouched."""
+        if not any(lab.id in targets for lab in b.labels if lab.translate):
+            return b.lines
+        texts = []
+        for lab in b.labels:
+            if not lab.translate or lab.id not in targets:
+                texts.append(lab.text)
+                continue
+            tgt = targets[lab.id]
+            problems = mask.check_placeholders(lab.masked, tgt)
+            problems += mermaid.label_problems(lab.span, tgt)
+            if problems:
+                raise ValueError("I2/I10 failed for %s: %s" % (lab.id, "; ".join(problems)))
+            mk.mapping = lab.mapping
+            text = mk.unmask(tgt)
+            problems = mermaid.label_problems(lab.span, text)
+            if problems:
+                raise ValueError("I10 failed for %s after restore: %s" % (lab.id, "; ".join(problems)))
+            texts.append(text)
+        body = mermaid.apply_spans(b.lines[1:-1], [lab.span for lab in b.labels], texts)
+        return [b.lines[0]] + body + [b.lines[-1]]
 
     def to_dict(self):
         return {"file": self.path, "eol": self.eol, "blocks": [b.to_dict() for b in self.blocks]}
@@ -378,6 +450,11 @@ def check_roundtrip(text, path=""):
     for b in seg.blocks:
         if b.kind in SEGMENT_KINDS and render_block(b, b.text) != b.lines:
             problems.append("lines %d-%d: prefix/text/suffix do not rebuild the source" % (b.start + 1, b.end + 1))
+    for b in seg.blocks:
+        if b.kind == "mermaid":
+            body = b.lines[1:-1]
+            if mermaid.apply_spans(body, [x.span for x in b.labels], [x.text for x in b.labels]) != body:
+                problems.append("lines %d-%d: mermaid labels do not rebuild the source" % (b.start + 1, b.end + 1))
     try:
         back = seg.reassemble()
     except ValueError as e:
