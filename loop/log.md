@@ -17,3 +17,4 @@
 16 P0-011 done tools/next_task.py (+19 tests) and tools/plan_tasks.py (+22 tests); 68 translate + 9 audit tasks generated (max 3986 words/task); rerun is byte-identical; seedtask.py now handles generated files
 17 P0-012 done Phase 0 gate passed: inventory --check OK, lock_code --verify OK (230 frozen files), all deps done, LICENSE exception/phase-letters/dnt/humor-register/queue present
 18 P1-001 done translation/glossary.es.yaml (206 terms, frozen 40-rule wording, assurance labels, card categories, phase macros); tools/glossary_check.py + 17 tests
+19 P1-002 done translation/house-style.es.md (ETS profile: tiers T1 to T3, rules 1 to 13 with lint IDs, English-to-Spanish convention table, N=28 provisional)
