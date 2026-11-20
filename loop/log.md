@@ -12,3 +12,4 @@
 11 P0-006 done LICENSE confirmed MIT, sha256 matches lock and English SHA; EXC-001 added to translation/exception-register.jsonl
 12 P0-007 done tools/dnt.py + 14 tests; translation/dnt.txt (19 phrases) derived from frozen program sources
 13 P0-008 done translation/phase-letters.json: 20 phase-letter locations, exercise prefixes A-G; BICHO collides on B and C (plan expected B only)
+14 P0-009 done tools/humor_register.py + 12 tests; translation/humor-register.jsonl seeded with 33 entries (31 headings, 2 prose lines), all status pending
