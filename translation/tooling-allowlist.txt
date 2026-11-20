@@ -1,0 +1,4 @@
+# Tooling files (lessons/**/*.py, workflows, metadata YAML) that MAY differ from the pinned English source.
+# One repo-relative path per line; text after # is a comment. tools/verify.py (I13) fails on any other
+# difference, and on a row whose file is identical to English (remove the row then).
+# Add a row only in the same commit that localizes the file, with the task id as a comment.
