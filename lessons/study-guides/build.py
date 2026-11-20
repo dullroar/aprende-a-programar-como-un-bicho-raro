@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Build the study guides as their own document set: one HTML file, one EPUB and one PDF.
 
-    python lessons/study-guides/build.py            # writes learn-programming-the-weird-way-study-guides.pdf and .epub in the repo root
+    python lessons/study-guides/build.py            # writes <study guides stem>.pdf and .epub (identity.study_guides_stem in the locale catalog) in the repo root
     python lessons/study-guides/build.py --release  # build and require PDF layout/content checks
     python lessons/study-guides/build.py --check    # lint the guides, build the HTML and verify every internal link resolves
     python lessons/study-guides/build.py --check-links   # (network) verify every external link in the guides loads
@@ -22,7 +22,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 LESSONS = os.path.dirname(HERE)
 BOOKDIR = os.path.join(LESSONS, "book")
 sys.path.insert(0, BOOKDIR)
-import study_guides
+import repo_links, study_guides
 
 def load_book_build():
     sys.dont_write_bytecode = True      # importing the book's build must not rewrite a __pycache__ file
@@ -32,7 +32,7 @@ def load_book_build():
     spec.loader.exec_module(mod)
     return mod
 
-STEM = "learn-programming-the-weird-way-study-guides"
+STEM = repo_links.IDENTITY["study_guides_stem"]     # from the locale catalog (identity.study_guides_stem)
 HTML = "study-guides.html"
 
 def main():

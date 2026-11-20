@@ -26,9 +26,9 @@ BOOKDIR = os.path.join(LESSONS, "book")
 SOURCE = os.path.join(REPO, "docs", "curriculum.md")
 sys.path.insert(0, BOOKDIR)
 sys.path.insert(0, os.path.join(BOOKDIR, "locale"))     # never name a package `locale`: it would shadow the stdlib module
-import catalog, diagrams, study_guides
+import catalog, diagrams, repo_links, study_guides
 
-STEM = "curriculum"
+STEM = repo_links.IDENTITY["curriculum_stem"]     # from the locale catalog (identity.curriculum_stem)
 HTML = "curriculum.html"
 CHAPTER = "../docs/curriculum.md"     # relative to lessons/, as the book's link rewriting expects
 WEEKS = 16

@@ -274,7 +274,7 @@ class Mutations(unittest.TestCase):
         self.assertTrue(any("lessons/README.md: needs a Study Guides section" in p for p in sg.check_set(self.tmp)))
 
     def test_the_companion_edition_must_match_the_book(self):
-        self.edit("lessons/study-guides/metadata.yaml", lambda s: s.replace("companion-to: \"Learn Programming the Weird Way! v4\"", "companion-to: \"Learn Programming the Weird Way! v3\"", 1))
+        self.edit("lessons/study-guides/metadata.yaml", lambda s: s.replace("companion-to: \"", "companion-to: \"An older edition of ", 1))     # any language: the title no longer matches the book's
         self.assertTrue(any("companion-to must equal the book title" in p for p in sg.check_set(self.tmp)))
 
 

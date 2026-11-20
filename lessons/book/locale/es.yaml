@@ -236,3 +236,15 @@ sentinels:
   awk_diagram: "Última regla: ¿t ≥ 41?"
   apl_book: "⍴ (cambio de forma), ⍳ (generador de índices)"
   apl_guide: "APL básico: ⍳, ⍴"
+
+# lessons/book/repo_links.py, build.py, lint_pdf.py and the study-guides and curriculum builds: who the edition is and where it lives.
+# The metadata YAMLs (lessons/*/metadata.yaml) carry the same title, language tag and identifiers; test_repo_links.py keeps them in step.
+identity:
+  language_tag: "es-419"
+  repo_url: "https://github.com/dullroar/aprende-a-programar-como-un-bicho-raro"
+  branch: "main"
+  book_title: "¡Aprende a programar como un bicho raro!"   # the title in metadata.yaml is this, a space and "v<book-version>"
+  book_stem: "aprende-a-programar-como-un-bicho-raro"       # the PDF and EPUB are <stem>.pdf and <stem>.epub
+  study_guides_stem: "aprende-a-programar-como-un-bicho-raro-guias-de-estudio"
+  curriculum_stem: "plan-de-estudios"
+  toc_title: "Contenido"                                    # the PDF's table of contents heading

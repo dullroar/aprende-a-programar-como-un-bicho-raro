@@ -1,17 +1,18 @@
 ---
-# Metadata for the standalone study-guides documents. Same shape as lessons/book/metadata.yaml.
-# `companion-to` must equal the book's title: study_guides.py fails when the book's edition changes, as a reminder to review the guides.
-companion-to: "Learn Programming the Weird Way! v4"
-title: "Learn Programming the Weird Way! Study Guides"
-subtitle: "Traces, predictions and evidence for advanced readers"
+# Metadatos de los documentos independientes de las guías de estudio. Misma forma que lessons/book/metadata.yaml.
+# `companion-to` debe ser igual al título del libro: study_guides.py falla cuando cambia la edición del libro, como recordatorio de revisar las guías.
+companion-to: "¡Aprende a programar como un bicho raro! v4"
+title: "¡Aprende a programar como un bicho raro! Guías de estudio"
+subtitle: "Trazas, predicciones y evidencia para lectores avanzados"
 author:
   - Jim Lehmer
   - Ken Astl
-lang: en-US
-rights: "Copyright (c) 2026 Jim Lehmer and Ken Astl. MIT License."
+lang: es-419
+rights: "Copyright (c) 2026 Jim Lehmer y Ken Astl. Licencia MIT."
 toc: true
 toc-depth: 2
 date: 2026-11-19
-# A fixed identifier (a UUIDv5 of the study guides' name under the repository URL), so the EPUB does not get a random one.
-identifier: "urn:uuid:a9ad89cf-a41f-53c0-8fb3-eb7e6cb584bf"
+# Un identificador fijo (un UUIDv5 de la dirección del repositorio en español más "/study-guides", calculado por repo_links.publication_uuid),
+# para que el EPUB no reciba uno al azar.
+identifier: "urn:uuid:09033379-b9bd-5efd-bc51-5ea66026f3b1"
 ---

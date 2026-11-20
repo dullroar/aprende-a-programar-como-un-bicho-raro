@@ -223,3 +223,15 @@ sentinels:
   awk_diagram: "Last rule: t ≥ 41?"
   apl_book: "⍴ (reshape), ⍳ (index generator)"
   apl_guide: "basic APL: ⍳, ⍴"
+
+# lessons/book/repo_links.py, build.py, lint_pdf.py and the study-guides and curriculum builds: who the edition is and where it lives.
+# The metadata YAMLs (lessons/*/metadata.yaml) carry the same title, language tag and identifiers; test_repo_links.py keeps them in step.
+identity:
+  language_tag: "en-US"
+  repo_url: "https://github.com/dullroar/learn-programming-the-weird-way"
+  branch: "master"
+  book_title: "Learn Programming the Weird Way!"        # the title in metadata.yaml is this, a space and "v<book-version>"
+  book_stem: "learn-programming-the-weird-way"          # the PDF and EPUB are <stem>.pdf and <stem>.epub
+  study_guides_stem: "learn-programming-the-weird-way-study-guides"
+  curriculum_stem: "curriculum"
+  toc_title: "Contents"                                  # the PDF's table of contents heading

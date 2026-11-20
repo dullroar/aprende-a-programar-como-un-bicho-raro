@@ -1,17 +1,18 @@
 ---
-# The edition number. Bump it (and add a section to VERSIONS.md) for each release; build.py checks that this file,
-# the title page and VERSIONS.md agree.
+# El número de la edición. Súbelo (y añade una sección a VERSIONS.md) en cada versión; build.py comprueba que este archivo,
+# la portada y VERSIONS.md coincidan.
 book-version: 4
-title: "Learn Programming the Weird Way! v4"
-subtitle: "Programs you shouldn't write. Language features you should understand."
+title: "¡Aprende a programar como un bicho raro! v4"
+subtitle: "Programas que no deberías escribir. Funciones de los lenguajes que sí deberías entender."
 author:
   - Jim Lehmer
   - Ken Astl
-lang: en-US
-rights: "Copyright (c) 2026 Jim Lehmer and Ken Astl. MIT License."
+lang: es-419
+rights: "Copyright (c) 2026 Jim Lehmer y Ken Astl. Licencia MIT."
 toc: true
 toc-depth: 2
 date: 2026-11-19
-# A fixed book identifier (a UUIDv5 of the repository URL), so the EPUB does not get a random one.
-identifier: "urn:uuid:1cb8694e-e636-50f5-9ff2-0f33ae51404a"
+# Un identificador fijo del libro (un UUIDv5 de la dirección del repositorio en español, calculado por repo_links.publication_uuid),
+# para que el EPUB no reciba uno al azar.
+identifier: "urn:uuid:44970ac2-d3e1-500b-9998-38e46acfcdbb"
 ---

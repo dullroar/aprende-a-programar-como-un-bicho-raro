@@ -1,17 +1,18 @@
 ---
-# Metadata for the standalone curriculum documents. Same shape as lessons/book/metadata.yaml and lessons/study-guides/metadata.yaml.
-# `companion-to` must equal the book's title: build.py fails when the book's edition changes, as a reminder to review the curriculum.
-companion-to: "Learn Programming the Weird Way! v4"
-title: "Learn Programming the Weird Way! Curriculum"
-subtitle: "A 16-week course in computer science through odd languages"
+# Metadatos de los documentos independientes del plan de estudios. Misma forma que lessons/book/metadata.yaml y lessons/study-guides/metadata.yaml.
+# `companion-to` debe ser igual al título del libro: build.py falla cuando cambia la edición del libro, como recordatorio de revisar el plan.
+companion-to: "¡Aprende a programar como un bicho raro! v4"
+title: "¡Aprende a programar como un bicho raro! Plan de estudios"
+subtitle: "Un curso de 16 semanas de informática con lenguajes raros"
 author:
   - Jim Lehmer
   - Ken Astl
-lang: en-US
-rights: "Copyright (c) 2026 Jim Lehmer and Ken Astl. MIT License."
+lang: es-419
+rights: "Copyright (c) 2026 Jim Lehmer y Ken Astl. Licencia MIT."
 toc: true
 toc-depth: 2
 date: 2026-11-19
-# A fixed identifier (a UUIDv5 of the curriculum's name under the repository URL), so the EPUB does not get a random one.
-identifier: "urn:uuid:94d86832-9fc9-568b-bb8b-8fca5f34d14f"
+# Un identificador fijo (un UUIDv5 de la dirección del repositorio en español más "/curriculum", calculado por repo_links.publication_uuid),
+# para que el EPUB no reciba uno al azar.
+identifier: "urn:uuid:3b06a968-bdf3-5f42-b69e-b67ce224147f"
 ---

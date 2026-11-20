@@ -29,7 +29,8 @@ metadata.yaml, so the same sources give the same EPUB and PDF bytes (given the s
 WeasyPrint versions).
 
 The title page and copyright page live in lessons/front-matter.md (plain HTML, inserted before the
-table of contents). The PDF and EPUB are written to the repo root as learn-programming-the-weird-way.*.
+table of contents). The PDF and EPUB are written to the repo root as <book stem>.* (identity.book_stem in the locale catalog;
+learn-programming-the-weird-way in English).
 """
 import calendar, json, os, re, shutil, subprocess, sys, time
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -40,7 +41,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 LESSONS = os.path.dirname(HERE)
 REPO = os.path.dirname(LESSONS)
 OUT = os.path.join(HERE, "out")
-GITHUB = repo_links.blob_base()     # prefix of a published link to a file; the one canonical address lives in repo_links.py
+GITHUB = repo_links.blob_base()     # prefix of a published link to a file; the one canonical address lives in the locale catalog (read by repo_links.py)
 
 def slug(heading):
     h = re.sub(r"`", "", heading.strip().lower())
@@ -227,9 +228,21 @@ def prepare_document(texts, figs, fmt, name, front=None):
 
 ID_MAPS = {}
 
-BOOK = "learn-programming-the-weird-way"
+BOOK = repo_links.IDENTITY["book_stem"]           # the stems, the title and the PDF contents heading come from the catalog (identity.*)
+BOOK_TITLE = repo_links.IDENTITY["book_title"]
+TOC_TITLE = repo_links.IDENTITY["toc_title"]
 ARTIFACTS = REPO   # --artifacts-dir DIR writes the PDF and EPUB there instead (used to test reproducibility)
 PDF_NAME = BOOK + ".pdf"
+
+def set_language(lang):
+    """Switch the edition's identity (stem, title, contents heading, repository address) and the generated words, for example in tests.
+    All or nothing: repo_links and cs each load their keys before they change anything."""
+    global GITHUB, BOOK, BOOK_TITLE, TOC_TITLE, PDF_NAME
+    repo_links.set_language(lang)
+    cs.set_language(lang)
+    GITHUB = repo_links.blob_base()
+    BOOK, BOOK_TITLE, TOC_TITLE = (repo_links.IDENTITY[k] for k in ("book_stem", "book_title", "toc_title"))
+    PDF_NAME = BOOK + ".pdf"
 FRONT = os.path.join(LESSONS, "front-matter.md")
 CSS = os.path.join(HERE, "book.css")
 
@@ -273,7 +286,7 @@ def check_version():
     t = re.search(r'^title:\s*"(.+)"\s*$', meta, re.M)
     if not v or not t:
         raise SystemExit("metadata.yaml needs `book-version: N` and a quoted `title:` line")
-    full = f"Learn Programming the Weird Way! v{v.group(1)}"
+    full = f"{BOOK_TITLE} v{v.group(1)}"
     problems = []
     if t.group(1) != full:
         problems.append(f"metadata.yaml: title is {t.group(1)!r}, expected {full!r} to match book-version")
@@ -441,7 +454,7 @@ def build_documents(texts, stem, metadata, front, html_name, md_stem, checking, 
         outs.append(("epub", epub_document, ["--epub-title-page=false", "--css", CSS, "-o", os.path.join(artifacts_dir(), stem + ".epub")]))
         if engine:
             outs.append(("pdf", document, front_option + ["--pdf-engine=" + engine, "--css", CSS, "--lua-filter", os.path.join(HERE, "wrap-code.lua"),
-                                     "--metadata", "toc-title=Contents", "-o", os.path.join(artifacts_dir(), stem + ".pdf")]))
+                                     "--metadata", f"toc-title={TOC_TITLE}", "-o", os.path.join(artifacts_dir(), stem + ".pdf")]))
         else:
             print("note: weasyprint not found (uv tool install weasyprint); skipping PDF")
     for name, src, extra in outs:

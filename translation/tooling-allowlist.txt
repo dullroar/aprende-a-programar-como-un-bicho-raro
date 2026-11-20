@@ -12,3 +12,11 @@ lessons/curriculum/build.py  # P2-011: chapter label, sentence limit, register r
 lessons/book/test_curriculum.py  # P2-011: Spanish fixtures (Cap., BICHO letters, register, limit 28), surviving English letter negatives
 lessons/book/test_editorial.py  # P2-012: editorial words from the catalog (editorial.*), checks as functions, English and Spanish mutation fixtures
 lessons/book/pdf_sentinels.py  # P2-012: diagram label sentinels from the catalog (sentinels.*), code sentinels unchanged
+lessons/book/repo_links.py  # P2-013: repository address and branch from the catalog (identity.*), publication_uuid (UUIDv5 of the address)
+lessons/book/build.py  # P2-013: book stem, title check and PDF contents heading from the catalog (identity.*), set_language
+lessons/book/lint_pdf.py  # P2-013: publication stems from the catalog (identity.*)
+lessons/book/test_repo_links.py  # P2-013: Spanish identity, metadata agreement with the catalog, mutation cases
+lessons/study-guides/build.py  # P2-013: study-guides stem from the catalog (identity.study_guides_stem)
+lessons/book/metadata.yaml  # P2-013: Spanish title, subtitle, es-419, new UUIDv5 from the Spanish repository address
+lessons/curriculum/metadata.yaml  # P2-013: Spanish title, companion-to, es-419, new UUIDv5
+lessons/study-guides/metadata.yaml  # P2-013: Spanish title, companion-to, es-419, new UUIDv5

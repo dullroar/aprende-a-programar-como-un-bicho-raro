@@ -14,11 +14,13 @@ from pdf_layout import (
 )
 
 from pdf_sentinels import PROFILES
+import repo_links
 
 HERE = Path(__file__).resolve().parent
+# The published stems come from the locale catalog (identity.*), so a Spanish PDF gets its sentinel profile too.
 PUBLICATIONS = {
-    "learn-programming-the-weird-way": "book",
-    "learn-programming-the-weird-way-study-guides": "study-guides",
+    repo_links.IDENTITY["book_stem"]: "book",
+    repo_links.IDENTITY["study_guides_stem"]: "study-guides",
 }
 INSTALL = "install lessons/book/requirements-pdf-lint.txt in the Python environment running this command"
 PREVIEW_DPI = 144

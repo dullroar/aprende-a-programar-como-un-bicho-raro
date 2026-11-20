@@ -1,12 +1,21 @@
 """Tests for the one place that knows the repository's web address, and for how the book's link rewrite uses it."""
 import os
+import re
 import unittest
+import uuid
+from pathlib import Path
 from unittest.mock import patch
 
 import build
 import repo_links
 
 BASE = "https://github.com/dullroar/learn-programming-the-weird-way"
+BASE_ES = "https://github.com/dullroar/aprende-a-programar-como-un-bicho-raro"
+LESSONS = Path(__file__).resolve().parents[1]
+METADATA = {"book": LESSONS / "book" / "metadata.yaml", "study-guides": LESSONS / "study-guides" / "metadata.yaml",
+            "curriculum": LESSONS / "curriculum" / "metadata.yaml"}
+
+build.set_language("en")        # the English tests below must not depend on BOOK_LANG in the environment
 
 
 class Resolver(unittest.TestCase):
@@ -72,6 +81,105 @@ class LinkTarget(unittest.TestCase):
     def test_an_override_reaches_every_published_link(self):
         with patch.dict(os.environ, {"REPOSITORY_WEB_BASE": "https://github.com/x/y"}):
             self.assertEqual(build.repo_links.file_url("a.md"), "https://github.com/x/y/blob/master/a.md")
+
+
+def field(text, key):
+    found = re.search(rf'^{key}:\s*"?([^"\n]+?)"?\s*$', text, re.M)
+    return found.group(1) if found else None
+
+
+def identity_problems(metadata, lang):
+    """What is wrong with the three metadata texts ({"book": text, "study-guides": text, "curriculum": text}) for edition `lang`."""
+    repo_links.set_language(lang)
+    ident = repo_links.IDENTITY
+    problems = []
+    book_title = f"{ident['book_title']} v{field(metadata['book'], 'book-version')}"
+    if field(metadata["book"], "title") != book_title:
+        problems.append(f"book title is {field(metadata['book'], 'title')!r}, expected {book_title!r}")
+    for kind, text in metadata.items():
+        if field(text, "lang") != ident["language_tag"]:
+            problems.append(f"{kind}: lang is {field(text, 'lang')!r}, expected {ident['language_tag']!r}")
+        want = repo_links.publication_uuid(kind)
+        if field(text, "identifier") != want:
+            problems.append(f"{kind}: identifier is {field(text, 'identifier')!r}, expected {want}")
+        if kind != "book" and field(text, "companion-to") != book_title:
+            problems.append(f"{kind}: companion-to is {field(text, 'companion-to')!r}, expected {book_title!r}")
+    return problems
+
+
+class Identity(unittest.TestCase):
+    """The edition's identity: stems, title, language tag, repository address and EPUB identifiers come from one catalog block."""
+    def tearDown(self):
+        build.set_language("en")
+
+    def test_the_english_identity_is_what_it_was(self):
+        self.assertEqual(repo_links.IDENTITY["language_tag"], "en-US")
+        self.assertEqual((build.BOOK, build.TOC_TITLE, build.PDF_NAME), ("learn-programming-the-weird-way", "Contents", "learn-programming-the-weird-way.pdf"))
+        self.assertEqual(repo_links.web_base({}), BASE)
+
+    def test_the_spanish_identity(self):
+        build.set_language("es")
+        self.assertEqual(repo_links.web_base({}), BASE_ES)
+        self.assertEqual(repo_links.blob_base({}), BASE_ES + "/blob/main/")
+        self.assertEqual(repo_links.label({}), "github.com/dullroar/aprende-a-programar-como-un-bicho-raro")
+        self.assertEqual((build.BOOK, build.BOOK_TITLE, build.TOC_TITLE),
+                         ("aprende-a-programar-como-un-bicho-raro", "¡Aprende a programar como un bicho raro!", "Contenido"))
+        self.assertEqual(build.GITHUB, BASE_ES + "/blob/main/")
+        self.assertEqual(repo_links.IDENTITY["language_tag"], "es-419")
+        self.assertEqual(repo_links.IDENTITY["study_guides_stem"], "aprende-a-programar-como-un-bicho-raro-guias-de-estudio")
+
+    def test_a_published_link_in_spanish_points_at_the_spanish_repository(self):
+        build.set_language("es")
+        target = build.link_target("../../src/apl/README.md", "languages/x.md", {}, {"languages/x.md": {}})
+        self.assertEqual(target, BASE_ES + "/blob/main/src/apl/README.md")
+        self.assertNotIn("learn-programming-the-weird-way", target)
+
+    def test_a_language_without_the_identity_block_changes_nothing(self):
+        with patch.object(repo_links.catalog, "load", side_effect=repo_links.catalog.MissingKeyError("identity.repo_url")):
+            with self.assertRaises(repo_links.catalog.MissingKeyError):
+                repo_links.set_language("es")
+        self.assertEqual(repo_links.web_base({}), BASE)
+
+    def test_the_identifiers_are_stable_and_differ_by_publication_and_by_repository(self):
+        repo_links.set_language("es")
+        ids = {k: repo_links.publication_uuid(k) for k in ("book", "study-guides", "curriculum")}
+        self.assertEqual(len(set(ids.values())), 3)
+        self.assertEqual(ids["book"], "urn:uuid:" + str(uuid.uuid5(uuid.NAMESPACE_URL, BASE_ES)))
+        self.assertEqual(ids["study-guides"], "urn:uuid:" + str(uuid.uuid5(uuid.NAMESPACE_URL, BASE_ES + "/study-guides")))
+        self.assertNotEqual(ids["book"], repo_links.publication_uuid("book", BASE))
+        with self.assertRaises(ValueError):
+            repo_links.publication_uuid("pamphlet")
+
+    def test_the_metadata_files_of_this_edition_agree_with_the_catalog(self):
+        # This repository is the Spanish edition; the English edition's files would pass the same check with lang "en".
+        metadata = {k: p.read_text(encoding="utf-8") for k, p in METADATA.items()}
+        self.assertEqual(identity_problems(metadata, "es"), [])
+
+    def test_the_metadata_check_can_fail(self):
+        good = {k: p.read_text(encoding="utf-8") for k, p in METADATA.items()}
+        self.assertEqual(identity_problems(good, "es"), [])
+        self.assertTrue(identity_problems(good, "en"), "the Spanish files must not pass as the English edition")
+        title_es, title_en = '"¡Aprende a programar como un bicho raro! v4"', '"Learn Programming the Weird Way! v4"'
+        for kind, old, new, expect in [
+                ("book", "lang: es-419", "lang: en-US", "lang is 'en-US'"),
+                ("curriculum", "lang: es-419", "lang: es-ES", "lang is 'es-ES'"),
+                ("study-guides", "urn:uuid:09033379", "urn:uuid:09033378", "study-guides: identifier"),
+                ("book", "urn:uuid:44970ac2", "urn:uuid:1cb8694e", "book: identifier"),
+                ("curriculum", "companion-to: " + title_es, 'companion-to: "¡Aprende a programar como un bicho raro! v3"', "companion-to"),
+                ("book", "title: " + title_es, "title: " + title_en, "book title")]:
+            with self.subTest(kind=kind, new=new):
+                bad = dict(good, **{kind: good[kind].replace(old, new, 1)})
+                self.assertNotEqual(bad[kind], good[kind], "the mutation did not apply")
+                self.assertTrue(any(expect in p for p in identity_problems(bad, "es")), expect)
+
+    def test_the_english_repository_address_is_nowhere_in_the_tooling_defaults(self):
+        for name in ("build.py", "repo_links.py", "lint_pdf.py", "metadata.yaml"):
+            self.assertNotIn("dullroar/learn-programming-the-weird-way", (LESSONS / "book" / name).read_text(encoding="utf-8"), name)
+
+    def test_the_sandbox_image_tag_keeps_its_name(self):
+        # `code-challenge-sandbox:local` is an internal image tag, not a stale repository reference (plan 5.4); test_repo_identity.py allows it on purpose.
+        tagged = [p for p in (LESSONS.parent / "src").rglob("Dockerfile*") if "code-challenge-sandbox:local" in p.read_text(encoding="utf-8", errors="replace")]
+        self.assertTrue(tagged, "no Dockerfile uses the sandbox image tag any more")
 
 
 if __name__ == "__main__":

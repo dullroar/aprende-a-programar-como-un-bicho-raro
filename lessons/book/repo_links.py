@@ -7,14 +7,36 @@ is the only place that knows the repository's web address.
   * The default is the canonical repository below. It is a constant, not a guess: the build never reads `git remote`, so a
     fork, a clone with a remote alias, an offline checkout and a release build all produce the same bytes.
   * A fork that wants its own links sets REPOSITORY_WEB_BASE (and, if it publishes another branch, REPOSITORY_BRANCH).
-  * Renaming the repository again means changing DEFAULT_WEB_BASE here and nowhere else.
+  * Renaming the repository again means changing identity.repo_url in the locale catalog (lessons/book/locale/<lang>.yaml) and
+    nowhere else. The language is BOOK_LANG (default "en"); `set_language` switches it, for example in tests.
+  * The same catalog block holds the edition's identity: the title, the language tag, the publication stems. `publication_uuid`
+    derives each publication's fixed EPUB identifier from the repository address, so a new repository gets new identifiers.
 """
 import os
 import re
+import sys
+import uuid
 from urllib.parse import quote
 
-DEFAULT_WEB_BASE = "https://github.com/dullroar/learn-programming-the-weird-way"
-DEFAULT_BRANCH = "master"
+HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, os.path.join(HERE, "locale"))            # never name a package `locale`: it would shadow the stdlib module
+import catalog                                              # the locale catalog (needs PyYAML, like the rest of the book tooling)
+
+IDENTITY_KEYS = ("language_tag", "repo_url", "branch", "book_title", "book_stem", "study_guides_stem", "curriculum_stem", "toc_title")
+LANG = DEFAULT_WEB_BASE = DEFAULT_BRANCH = None
+IDENTITY = {}
+
+
+def set_language(lang):
+    """Load the identity.* words of `lang`. All or nothing: a missing key leaves the old language in place."""
+    global LANG, DEFAULT_WEB_BASE, DEFAULT_BRANCH, IDENTITY
+    cat = catalog.load(lang)
+    cat.require(["identity." + k for k in IDENTITY_KEYS])
+    values = {k: cat.text("identity." + k) for k in IDENTITY_KEYS}
+    LANG, DEFAULT_WEB_BASE, DEFAULT_BRANCH, IDENTITY = lang, values["repo_url"], values["branch"], values
+
+
+set_language(os.environ.get("BOOK_LANG", "en"))
 
 # RFC 3986 pchar: what may stay unescaped in a path segment or a fragment.
 _SAFE = "-_.~!$&'()*+,;=:@/"
@@ -59,6 +81,15 @@ def folder_url(path, environ=None):
 def label(environ=None):
     """The address as shown to a reader: no scheme."""
     return web_base(environ).removeprefix("https://")
+
+
+def publication_uuid(kind="book", base=None):
+    """The fixed EPUB identifier (urn:uuid:...) of a publication: a UUIDv5 in the URL namespace of the repository address
+    (kind "book") or of that address plus "/study-guides" or "/curriculum". Deterministic, so the EPUB bytes do not change."""
+    if kind not in ("book", "study-guides", "curriculum"):
+        raise ValueError(f"unknown publication {kind!r}")
+    name = (base or DEFAULT_WEB_BASE).rstrip("/") + ("" if kind == "book" else "/" + kind)
+    return "urn:uuid:" + str(uuid.uuid5(uuid.NAMESPACE_URL, name))
 
 
 def fill_placeholders(text, environ=None):
