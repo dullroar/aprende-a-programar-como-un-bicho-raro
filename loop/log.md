@@ -20,3 +20,4 @@
 19 P1-002 done translation/house-style.es.md (ETS profile: tiers T1 to T3, rules 1 to 13 with lint IDs, English-to-Spanish convention table, N=28 provisional)
 20 P1-003 done translation/prompts/ (translate, review, backtranslate, adjudicate, v1) and translation/schemas/ (segment, finding, ledger-row + samples); tools/prompt_check.py with 42 tests incl. exact-substring finding check
 21 P1-004 done lessons/book/locale/es.yaml with BICHO acronym text and phases 1 to 5 (letter, name, question, definition, weeks, node ID); tools/locale_check.py + 13 tests incl. TORCE swap and 7 negative cases
+22 P1-005 done tests/fixtures/ (mixed.md, mermaid.md, hostile.md, data.yaml: front matter, macros, tables with \|, Mermaid entities, APL/NFD/NBSP/astral Unicode, injection text); tools/fixture_check.py + 11 tests; inventory owns tests/fixtures/ and locale/ (repaired failing --check)

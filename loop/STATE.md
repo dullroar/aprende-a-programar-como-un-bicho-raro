@@ -1,9 +1,9 @@
 # loop/STATE.md (keep to 60 lines; refreshed by every iteration)
 
 - **Edition:** v4-es.0-rc1 (working)    **English SHA:** 48a4429c0a22b2aac628b256a50c07d1816bcb80
-- **Iteration:** 21    **Stage:** 1    **Last result:** P1-004 done (lessons/book/locale/es.yaml acronym + phases 1 to 5; tools/locale_check.py)
-- **Tasks:** todo 122 (45 seed + 77 generated) | doing 0 | done 16 | blocked 0 | skipped 0
-- **Next task:** run `python3 tools/next_task.py` (P1-005 fixtures is next, then the P1-006 gate)
+- **Iteration:** 22    **Stage:** 1    **Last result:** P1-005 done (tests/fixtures/ + tools/fixture_check.py; inventory owns tests/fixtures/ and locale/)
+- **Tasks:** todo 121 (44 seed + 77 generated) | doing 0 | done 17 | blocked 0 | skipped 0
+- **Next task:** run `python3 tools/next_task.py` (P1-006 Phase 1 gate is next: needs a masked round-trip test over tests/fixtures/)
 - **Budget:** spent $0.00 of $100; iterations 0 of 300
 - **Translate progress:** segments accepted 0 / total ? ; files done 0 / ?
 - **Last audit:** none    **Next audit due after:** 8 translate tasks

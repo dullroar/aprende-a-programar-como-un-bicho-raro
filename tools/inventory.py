@@ -32,7 +32,8 @@ from pathlib import PurePosixPath
 
 CLASSES = ("frozen", "authored", "generated", "tooling", "archival", "owned")
 
-OWNED_PREFIXES = ("loop/", "translation/", "tools/", "ralph-kit-es/", ".claude/")
+OWNED_PREFIXES = ("loop/", "translation/", "tools/", "ralph-kit-es/", ".claude/",
+                  "tests/fixtures/", "lessons/book/locale/")
 OWNED_FILES = {".gitignore", "requirements-es.txt"}
 OWNED_GLOBS = (re.compile(r"^SYNTHESIZED-TRANSLATION-PLAN-.*\.md$"),)
 

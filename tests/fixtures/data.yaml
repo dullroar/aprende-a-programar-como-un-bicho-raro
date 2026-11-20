@@ -1,0 +1,14 @@
+# Fixture YAML: keys and enum values are frozen, only the listed prose fields are translated.
+id: m4
+name: Recursion
+teaches: A function that calls itself needs a base case.
+assurance: guaranteed
+state: the call stack grows by one frame per call
+machine: a stack of frames
+labels:
+  - garantizado-not-translated-here
+  - implementation-permitted
+  - accidentally-exploited
+card_categories: [Meetings, Coding, Debugging, Learning]
+url: https://example.com/path?x=1
+path: lessons/solutions/forth/timecards.fs

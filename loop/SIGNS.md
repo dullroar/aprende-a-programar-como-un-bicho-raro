@@ -17,3 +17,5 @@
 - After editing translation/prompts/ or translation/schemas/ run `python3 -I tools/prompt_check.py`; it validates every JSON example in the prompts and every sample row, so update both together.
 - Compare frozen files by git blob content: .bat files check out as CRLF here (.gitattributes), so raw working-tree hashes of gradlew.bat differ by design; use tools/lock_code.py --verify, never plain sha256sum -c.
 - After editing lessons/book/locale/es.yaml run OK locale phases 1 to 5 (lessons/book/locale/es.yaml); to change the acronym edit only its acronym and phases blocks, never the Mermaid node IDs W E I R D.
+- The Write and Edit tools decode \uXXXX escapes and normalize NBSP and combining marks; build special characters with chr() in a script under translation/work/ and run `python3 -I tools/fixture_check.py` after touching tests/fixtures/.
+- After adding a new directory of Spanish-owned files, add its prefix to OWNED_PREFIXES in tools/inventory.py and run `python3 tools/inventory.py --check` before committing.
