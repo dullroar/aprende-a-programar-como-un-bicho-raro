@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "finding.schema.json",
+  "title": "Review finding (schema version 1)",
+  "description": "One finding from an in-loop reviewer or an ingested juror. Excerpts must be exact substrings of the English and Spanish segment; tools/prompt_check.py (check_excerpts) rejects findings whose excerpts are not.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "segment_id", "severity", "category", "english_excerpt", "spanish_excerpt", "problem", "evidence", "proposed_fix", "reviewer_model", "confidence", "type", "status"],
+  "properties": {
+    "id": { "type": "string", "pattern": "^F[0-9]{3,}$" },
+    "segment_id": { "type": "string", "pattern": "^s-[0-9a-f]{12}-[0-9]{4}$" },
+    "file": { "type": "string" },
+    "severity": { "enum": ["critical", "major", "minor", "suggestion"] },
+    "category": {
+      "enum": [
+        "meaning", "number-operator", "modal-logic", "omission", "addition", "terminology",
+        "glossary-violation", "code-touched", "dnt-violation", "mermaid", "link-anchor",
+        "phase-acronym", "playfulness", "clarity", "style-profile", "grammar-agreement",
+        "register", "dialect", "cross-file", "safety-warning", "structure",
+        "untranslated-english", "other"
+      ]
+    },
+    "english_excerpt": { "type": ["string", "null"], "maxLength": 300 },
+    "spanish_excerpt": { "type": ["string", "null"], "maxLength": 300 },
+    "problem": { "type": "string", "minLength": 1 },
+    "learner_impact": { "type": "string" },
+    "evidence": { "type": "string", "minLength": 1, "description": "Counterexample, boundary case or test idea." },
+    "proposed_fix": { "type": "string", "minLength": 1 },
+    "reviewer_model": { "type": "string", "minLength": 1 },
+    "confidence": { "enum": ["low", "medium", "high"] },
+    "type": { "enum": ["defect", "risk", "question"] },
+    "status": { "enum": ["open", "accepted", "rejected", "duplicate", "needs-human", "needs-source-issue", "fixed"] }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "english_excerpt": { "const": null }, "spanish_excerpt": { "const": null } }, "required": ["english_excerpt", "spanish_excerpt"] },
+      "then": { "not": {} }
+    }
+  ]
+}

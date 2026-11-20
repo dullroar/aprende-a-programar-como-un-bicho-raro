@@ -1,0 +1,1 @@
+{"stage":1,"segment_id":"s-0123456789ab-0001","english_rendering":"Stop when the total goes over 40. Run ⟦CODE_0001⟧ and compare.","operational_claims":["The run stops when the total is strictly greater than 40.","The reader runs the code and compares."],"ambiguities":[],"apparent_omissions":[],"unnatural_terms":[]}

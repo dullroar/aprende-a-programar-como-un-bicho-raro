@@ -1,14 +1,14 @@
 # loop/STATE.md (keep to 60 lines; refreshed by every iteration)
 
 - **Edition:** v4-es.0-rc1 (working)    **English SHA:** 48a4429c0a22b2aac628b256a50c07d1816bcb80
-- **Iteration:** 19    **Stage:** 1    **Last result:** P1-002 done (translation/house-style.es.md: tiers T1 to T3, rules 1 to 13)
-- **Tasks:** todo 124 (47 seed + 77 generated) | doing 0 | done 14 | blocked 0 | skipped 0
-- **Next task:** run `python3 tools/next_task.py` (P1-003 prompts and schemas or P1-005 fixtures are next)
+- **Iteration:** 20    **Stage:** 1    **Last result:** P1-003 done (translation/prompts/ x4, translation/schemas/ x3, tools/prompt_check.py)
+- **Tasks:** todo 123 (46 seed + 77 generated) | doing 0 | done 15 | blocked 0 | skipped 0
+- **Next task:** run `python3 tools/next_task.py` (P1-004 locale phases or P1-005 fixtures are next)
 - **Budget:** spent $0.00 of $100; iterations 0 of 300
 - **Translate progress:** segments accepted 0 / total ? ; files done 0 / ?
 - **Last audit:** none    **Next audit due after:** 8 translate tasks
 - **Gates:** P0 passed (iter 17)  P1 -  P2 -  P3 -  P4 -  P5 -  P6 -  P7A -
-- **Open provisional decisions:** 3 (acronym BICHO; glossary choices; house style N=28)    **Blockers:** 0    **Source issues:** 0
+- **Open provisional decisions:** 4 (acronym BICHO; glossary choices; house style N=28; schema/segment-id formats)    **Blockers:** 0    **Source issues:** 0
 
 ## Traps to remember (details live in SIGNS.md)
 

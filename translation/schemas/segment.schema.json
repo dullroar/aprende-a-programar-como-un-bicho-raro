@@ -1,0 +1,149 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "segment.schema.json",
+  "title": "Segment envelope, translator output, back-translation and adjudication outputs (schema version 1)",
+  "description": "Every structured message exchanged between the tools and the models. Use $defs by name: translator_input, translator_output, backtranslation_blind, backtranslation_compare, adjudication.",
+  "$defs": {
+    "segment_id": {
+      "type": "string",
+      "pattern": "^s-[0-9a-f]{12}-[0-9]{4}$",
+      "description": "s-<first 12 hex of sha256 of the English text>-<4-digit position in the file>. Stable when a paragraph moves (plan R7)."
+    },
+    "placeholder": {
+      "type": "string",
+      "pattern": "^⟦[A-Z]+_[0-9]{4}⟧$",
+      "description": "Typed, numbered placeholder such as CODE_0001, URL_0002, ENUM_0003 between the brackets U+27E6 and U+27E7."
+    },
+    "tier": { "enum": ["T1", "T2", "T3"] },
+    "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "translator_input": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["segment_id", "file", "tier", "english_masked", "placeholders", "glossary_slice", "playful"],
+      "properties": {
+        "segment_id": { "$ref": "#/$defs/segment_id" },
+        "file": { "type": "string", "minLength": 1 },
+        "tier": { "$ref": "#/$defs/tier" },
+        "english_masked": { "type": "string", "minLength": 1 },
+        "placeholders": { "type": "array", "items": { "$ref": "#/$defs/placeholder" }, "uniqueItems": true },
+        "context_before": { "type": "string" },
+        "context_after": { "type": "string" },
+        "glossary_slice": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["id", "en", "es"],
+            "properties": {
+              "id": { "type": "string" },
+              "en": { "type": "string" },
+              "es": { "type": "string" },
+              "banned": { "type": "array", "items": { "type": "string" } },
+              "gloss": { "type": "string" }
+            }
+          }
+        },
+        "playful": { "type": "boolean" },
+        "english_does": { "type": ["string", "null"], "description": "What the English joke or heading does, from the humor register." },
+        "word_limit_n": { "type": "integer", "minimum": 5 }
+      }
+    },
+    "translator_output": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["segment_id", "translated_text", "ambiguities", "placeholders_seen"],
+      "properties": {
+        "segment_id": { "$ref": "#/$defs/segment_id" },
+        "translated_text": { "type": "string", "minLength": 1 },
+        "ambiguities": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["english_excerpt", "question"],
+            "properties": {
+              "english_excerpt": { "type": "string", "minLength": 1 },
+              "question": { "type": "string", "minLength": 1 },
+              "chosen_reading": { "type": ["string", "null"] }
+            }
+          }
+        },
+        "placeholders_seen": { "type": "array", "items": { "$ref": "#/$defs/placeholder" } },
+        "playful_note": { "type": ["string", "null"], "description": "For playful segments: what effect the Spanish aims at." }
+      }
+    },
+    "backtranslation_blind": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["stage", "segment_id", "english_rendering", "operational_claims", "ambiguities", "apparent_omissions", "unnatural_terms"],
+      "properties": {
+        "stage": { "const": 1 },
+        "segment_id": { "$ref": "#/$defs/segment_id" },
+        "english_rendering": { "type": "string", "minLength": 1 },
+        "operational_claims": { "type": "array", "items": { "type": "string", "minLength": 1 } },
+        "ambiguities": { "type": "array", "items": { "type": "string" } },
+        "apparent_omissions": { "type": "array", "items": { "type": "string" } },
+        "unnatural_terms": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "backtranslation_compare": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["stage", "segment_id", "mismatches"],
+      "properties": {
+        "stage": { "const": 2 },
+        "segment_id": { "$ref": "#/$defs/segment_id" },
+        "mismatches": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["english_excerpt", "spanish_excerpt", "claim", "severity"],
+            "properties": {
+              "english_excerpt": { "type": ["string", "null"] },
+              "spanish_excerpt": { "type": ["string", "null"] },
+              "claim": { "type": "string", "minLength": 1 },
+              "severity": { "enum": ["critical", "major", "minor", "suggestion"] }
+            }
+          }
+        }
+      }
+    },
+    "adjudication": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["finding_id", "segment_id", "decision", "reason", "cited_english", "cited_spanish", "corrected_spanish", "escalate"],
+      "properties": {
+        "finding_id": { "type": "string", "minLength": 1 },
+        "segment_id": { "$ref": "#/$defs/segment_id" },
+        "decision": { "enum": ["accepted", "rejected", "duplicate", "needs-human", "needs-source-issue"] },
+        "reason": { "type": "string", "minLength": 1 },
+        "cited_english": { "type": ["string", "null"] },
+        "cited_spanish": { "type": ["string", "null"] },
+        "duplicate_of": { "type": ["string", "null"] },
+        "corrected_spanish": {
+          "type": ["string", "null"],
+          "description": "Minimal replacement for cited_spanish. Required when decision is accepted."
+        },
+        "escalate": { "type": "boolean" },
+        "escalation_topic": {
+          "enum": [null, "semantics", "boundary", "guarantee", "security", "evidence", "acronym", "playfulness", "other"]
+        }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "decision": { "const": "accepted" } }, "required": ["decision"] },
+          "then": { "properties": { "corrected_spanish": { "type": "string", "minLength": 1 } } }
+        },
+        {
+          "if": { "properties": { "decision": { "const": "duplicate" } }, "required": ["decision"] },
+          "then": { "required": ["duplicate_of"], "properties": { "duplicate_of": { "type": "string", "minLength": 1 } } }
+        },
+        {
+          "if": { "properties": { "decision": { "const": "needs-human" } }, "required": ["decision"] },
+          "then": { "properties": { "escalate": { "const": true }, "escalation_topic": { "type": "string" } } }
+        }
+      ]
+    }
+  }
+}

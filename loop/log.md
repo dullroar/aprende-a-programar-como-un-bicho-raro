@@ -18,3 +18,4 @@
 17 P0-012 done Phase 0 gate passed: inventory --check OK, lock_code --verify OK (230 frozen files), all deps done, LICENSE exception/phase-letters/dnt/humor-register/queue present
 18 P1-001 done translation/glossary.es.yaml (206 terms, frozen 40-rule wording, assurance labels, card categories, phase macros); tools/glossary_check.py + 17 tests
 19 P1-002 done translation/house-style.es.md (ETS profile: tiers T1 to T3, rules 1 to 13 with lint IDs, English-to-Spanish convention table, N=28 provisional)
+20 P1-003 done translation/prompts/ (translate, review, backtranslate, adjudicate, v1) and translation/schemas/ (segment, finding, ledger-row + samples); tools/prompt_check.py with 42 tests incl. exact-substring finding check

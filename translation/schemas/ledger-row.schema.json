@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "ledger-row.schema.json",
+  "title": "Ledger row for translation/ledger/vN-es.M.jsonl (schema version 1)",
+  "description": "Append-only provenance. kind=segment records who translated a segment under which inputs; kind=finding embeds a finding; kind=disposition records an adjudication and its effect. PO files hold the text; the ledger holds provenance.",
+  "type": "object",
+  "required": ["ledger_version", "kind", "edition", "ts", "segment_id"],
+  "properties": {
+    "ledger_version": { "const": 1 },
+    "kind": { "enum": ["segment", "finding", "disposition"] },
+    "edition": { "type": "string", "pattern": "^v[0-9]+-es\\.[0-9]+(-rc[0-9]+)?$" },
+    "ts": { "type": "string", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$" },
+    "segment_id": { "type": "string", "pattern": "^s-[0-9a-f]{12}-[0-9]{4}$" }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "kind": { "const": "segment" } } },
+      "then": {
+        "required": ["file", "tier", "status", "round", "translator_model", "prompt_sha256", "glossary_sha256", "house_style_sha256", "english_sha256", "spanish_sha256"],
+        "properties": {
+          "file": { "type": "string", "minLength": 1 },
+          "tier": { "enum": ["T1", "T2", "T3"] },
+          "status": { "enum": ["translated", "accepted", "needs-revision", "escalated", "exception", "blocked"] },
+          "round": { "type": "integer", "minimum": 0, "maximum": 2, "description": "Autonomous revision round; a third round must be escalated instead." },
+          "translator_model": { "type": "string", "minLength": 1 },
+          "prompt_sha256": { "$ref": "#/$defs/sha256" },
+          "glossary_sha256": { "$ref": "#/$defs/sha256" },
+          "house_style_sha256": { "$ref": "#/$defs/sha256" },
+          "english_sha256": { "$ref": "#/$defs/sha256" },
+          "spanish_sha256": { "$ref": "#/$defs/sha256" },
+          "playful": { "type": "boolean" },
+          "exception_id": { "type": ["string", "null"] },
+          "tokens": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": { "input": { "type": "integer", "minimum": 0 }, "output": { "type": "integer", "minimum": 0 } }
+          },
+          "task_id": { "type": "string" }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "kind": { "const": "finding" } } },
+      "then": {
+        "required": ["finding", "round"],
+        "properties": {
+          "round": { "type": "integer", "minimum": 0, "maximum": 2 },
+          "finding": { "$ref": "finding.schema.json" }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "kind": { "const": "disposition" } } },
+      "then": {
+        "required": ["finding_id", "decision", "adjudicator_model", "round", "applied"],
+        "properties": {
+          "finding_id": { "type": "string", "minLength": 1 },
+          "decision": { "enum": ["accepted", "rejected", "duplicate", "needs-human", "needs-source-issue"] },
+          "adjudicator_model": { "type": "string", "minLength": 1 },
+          "round": { "type": "integer", "minimum": 0, "maximum": 2 },
+          "applied": { "type": "boolean", "description": "True once the correction is in the PO file." },
+          "note": { "type": "string" }
+        }
+      }
+    }
+  ],
+  "unevaluatedProperties": false,
+  "$defs": {
+    "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" }
+  }
+}

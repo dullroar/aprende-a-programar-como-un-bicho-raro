@@ -1,0 +1,2 @@
+{"segment_id":"s-0123456789ab-0001","translated_text":"Detente cuando el total pase de 40. Ejecuta ⟦CODE_0001⟧ y compara.","ambiguities":[],"placeholders_seen":["⟦CODE_0001⟧"],"playful_note":null}
+{"segment_id":"s-89abcdef0123-0002","translated_text":"## Contempla al monstruo","ambiguities":[{"english_excerpt":"monstrosity","question":"Mock-grand tone: monstruosidad or monstruo?","chosen_reading":"monstruo, shorter and funnier"}],"placeholders_seen":[],"playful_note":"Keeps the showman's announcement; drops the abstract noun."}
