@@ -8,3 +8,5 @@
 {"id":"EXC-008","segment":"s-8a26b5708063-0041","invariant":"I7","reason":"Mermaid label 'the word step': `step` is the name of a Forth word (an identifier), so it stays as written; the glossary rendering 'paso' does not apply.","task":"P3-003"}
 {"id":"EXC-009","segment":"s-f72ab19a33d0-0042","invariant":"I10","reason":"Mermaid label starts with the Forth word `rewind?`; the question mark belongs to the identifier, not to a question.","task":"P3-003"}
 {"id":"EXC-010","segment":"s-87d9e31bff8d-0090","invariant":"I7","reason":"'Costs to state' is the verb (declarar, to declare), not the noun 'state' (estado).","task":"P3-003"}
+{"id":"EXC-011","segment":"s-8f93b9f61614-0100","invariant":"I7","reason":"'State when you would use it' is the verb (indicar, to say), not the noun 'state' (estado).","task":"P3-004"}
+{"id":"EXC-012","segment":"s-085950519a5d-0117","invariant":"I7","reason":"'did not state' is the verb (indicar, to say), not the noun 'state' (estado).","task":"P3-004"}

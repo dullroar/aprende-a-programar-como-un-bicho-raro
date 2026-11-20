@@ -510,6 +510,14 @@ class TestI14(Base):
     def test_fail_literal_spanish_phase(self):
         self.assertFires(self.run_seg("The first phase is odd.", "La primera fase es B: Bicho raro, claro."), "I14")
 
+    def test_fail_english_letter_kept_as_label(self):
+        self.assertFires(self.run_seg("The first phase is odd.", "W: Raro, semanas 1 a 2, es la primera."), "I14")
+        self.assertFires(self.run_seg("Start: phase = W", "Inicio: fase = W"), "I14")
+
+    def test_english_letter_check_has_no_false_positive_on_macros(self):
+        self.assertClean(self.run_seg("Start: phase = W", "Inicio: fase = {{phase.1.letter}}"))
+        self.assertClean(self.run_seg("The first phase is odd, weeks 1 to 2.", "{{phase.1.letter}}: {{phase.1.name}}, semanas 1 a 2, es la primera."))
+
     def test_macro_form_is_accepted(self):
         self.assertClean(self.run_seg("The acronym is cute.", "El acrónimo {{acronym.word}} es simpático."))
 

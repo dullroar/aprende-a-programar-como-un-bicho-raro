@@ -362,131 +362,131 @@
     {
      "en": "Curriculum",
      "en_id": "curriculum",
-     "es": "Curriculum",
-     "es_id": "curriculum",
+     "es": "Plan de estudios",
+     "es_id": "plan-de-estudios",
      "level": 1,
      "line": 1
     },
     {
      "en": "Who this is for",
      "en_id": "who-this-is-for",
-     "es": "Who this is for",
-     "es_id": "who-this-is-for",
+     "es": "Para quién es este curso",
+     "es_id": "para-quién-es-este-curso",
      "level": 2,
      "line": 9
     },
     {
      "en": "What you will be able to do",
      "en_id": "what-you-will-be-able-to-do",
-     "es": "What you will be able to do",
-     "es_id": "what-you-will-be-able-to-do",
+     "es": "Lo que podrás hacer",
+     "es_id": "lo-que-podrás-hacer",
      "level": 2,
      "line": 17
     },
     {
      "en": "The semester as an algorithm",
      "en_id": "the-semester-as-an-algorithm",
-     "es": "The semester as an algorithm",
-     "es_id": "the-semester-as-an-algorithm",
+     "es": "El semestre como algoritmo",
+     "es_id": "el-semestre-como-algoritmo",
      "level": 2,
      "line": 26
     },
     {
      "en": "How every week works",
      "en_id": "how-every-week-works",
-     "es": "How every week works",
-     "es_id": "how-every-week-works",
+     "es": "Cómo funciona cada semana",
+     "es_id": "cómo-funciona-cada-semana",
      "level": 2,
      "line": 48
     },
     {
      "en": "How much to do",
      "en_id": "how-much-to-do",
-     "es": "How much to do",
-     "es_id": "how-much-to-do",
+     "es": "Cuánto debes hacer",
+     "es_id": "cuánto-debes-hacer",
      "level": 3,
      "line": 59
     },
     {
      "en": "The log",
      "en_id": "the-log",
-     "es": "The log",
-     "es_id": "the-log",
+     "es": "El registro",
+     "es_id": "el-registro",
      "level": 3,
      "line": 67
     },
     {
      "en": "Week by week",
      "en_id": "week-by-week",
-     "es": "Week by week",
-     "es_id": "week-by-week",
+     "es": "Semana a semana",
+     "es_id": "semana-a-semana",
      "level": 2,
      "line": 78
     },
     {
      "en": "Old languages, real problems",
      "en_id": "old-languages-real-problems",
-     "es": "Old languages, real problems",
-     "es_id": "old-languages-real-problems",
+     "es": "Lenguajes antiguos, problemas reales",
+     "es_id": "lenguajes-antiguos-problemas-reales",
      "level": 2,
      "line": 106
     },
     {
      "en": "How to think about adversarial programs",
      "en_id": "how-to-think-about-adversarial-programs",
-     "es": "How to think about adversarial programs",
-     "es_id": "how-to-think-about-adversarial-programs",
+     "es": "Cómo pensar sobre los programas adversariales",
+     "es_id": "cómo-pensar-sobre-los-programas-adversariales",
      "level": 2,
      "line": 125
     },
     {
      "en": "How to think about problem-solving differently",
      "en_id": "how-to-think-about-problem-solving-differently",
-     "es": "How to think about problem-solving differently",
-     "es_id": "how-to-think-about-problem-solving-differently",
+     "es": "Cómo pensar de otra manera sobre la resolución de problemas",
+     "es_id": "cómo-pensar-de-otra-manera-sobre-la-resolución-de-problemas",
      "level": 2,
      "line": 137
     },
     {
      "en": "Assessment",
      "en_id": "assessment",
-     "es": "Assessment",
-     "es_id": "assessment",
+     "es": "Evaluación",
+     "es_id": "evaluación",
      "level": 2,
      "line": 146
     },
     {
      "en": "Rubric",
      "en_id": "rubric",
-     "es": "Rubric",
-     "es_id": "rubric",
+     "es": "Rúbrica",
+     "es_id": "rúbrica",
      "level": 3,
      "line": 155
     },
     {
      "en": "Scope",
      "en_id": "scope",
-     "es": "Scope",
-     "es_id": "scope",
+     "es": "Ámbito",
+     "es_id": "ámbito",
      "level": 2,
      "line": 173
     }
    ],
    "map": {
-    "assessment": "assessment",
-    "curriculum": "curriculum",
-    "how-every-week-works": "how-every-week-works",
-    "how-much-to-do": "how-much-to-do",
-    "how-to-think-about-adversarial-programs": "how-to-think-about-adversarial-programs",
-    "how-to-think-about-problem-solving-differently": "how-to-think-about-problem-solving-differently",
-    "old-languages-real-problems": "old-languages-real-problems",
-    "rubric": "rubric",
-    "scope": "scope",
-    "the-log": "the-log",
-    "the-semester-as-an-algorithm": "the-semester-as-an-algorithm",
-    "week-by-week": "week-by-week",
-    "what-you-will-be-able-to-do": "what-you-will-be-able-to-do",
-    "who-this-is-for": "who-this-is-for"
+    "assessment": "evaluación",
+    "curriculum": "plan-de-estudios",
+    "how-every-week-works": "cómo-funciona-cada-semana",
+    "how-much-to-do": "cuánto-debes-hacer",
+    "how-to-think-about-adversarial-programs": "cómo-pensar-sobre-los-programas-adversariales",
+    "how-to-think-about-problem-solving-differently": "cómo-pensar-de-otra-manera-sobre-la-resolución-de-problemas",
+    "old-languages-real-problems": "lenguajes-antiguos-problemas-reales",
+    "rubric": "rúbrica",
+    "scope": "ámbito",
+    "the-log": "el-registro",
+    "the-semester-as-an-algorithm": "el-semestre-como-algoritmo",
+    "week-by-week": "semana-a-semana",
+    "what-you-will-be-able-to-do": "lo-que-podrás-hacer",
+    "who-this-is-for": "para-quién-es-este-curso"
    }
   },
   "docs/running-with-gradle.md": {

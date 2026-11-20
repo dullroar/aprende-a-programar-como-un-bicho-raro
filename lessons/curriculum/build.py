@@ -196,7 +196,8 @@ def check_curriculum(text=None, repo=REPO):
     for ch, name in (("—", "em dash"), ("–", "en dash"), ("“", "curly quote"), ("’", "curly apostrophe")):
         if ch in text:
             add(f"contains a {name}; house style types straight quotes and breaks the sentence instead of using a dash")
-    if re.search(r"\b(?:TODO|TBD|lorem ipsum)\b", text, re.I):
+    # TODO and TBD are upper-case markers: the Spanish word "todo" is ordinary prose.
+    if re.search(r"\b(?:(?-i:TODO|TBD)|lorem ipsum)\b", text, re.I):
         add("contains placeholder text")
 
     # the book's edition: when it changes, someone must review the curriculum against it

@@ -465,6 +465,14 @@ def i14(src, target, ctx, raw=None):
                 break
             if isinstance(letter, str) and re.search(r"\b%s\s*:\s*%s\b" % (re.escape(letter), re.escape(name)), raw_text):
                 out.append(Finding("I14", "", "literal phase '%s: %s' (use the phase macros)" % (letter, name)))
+        # an English phase letter kept as a label ("W: Raro", "fase = W"); a letter shared with the Spanish set is skipped (ambiguous)
+        es_letters = {ctx.cat.get("phases.%d.letter" % k) for k in range(1, 6) if "phases.%d.letter" % k in ctx.cat.flat}
+        for k in range(1, 6):
+            en_letter = ctx.lang_cat.flat.get("phases.%d.letter" % k)
+            if not isinstance(en_letter, str) or en_letter in es_letters:
+                continue
+            if re.search(r"(?<![\w\-])%s\s*:\s*[A-ZÁÉÍÓÚÑ]|\bfase\s*=\s*%s\b" % (re.escape(en_letter), re.escape(en_letter)), raw_text):
+                out.append(Finding("I14", "", "English phase letter '%s' kept as a label (use the phase macros)" % en_letter))
     return out
 
 

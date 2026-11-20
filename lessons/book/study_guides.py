@@ -60,7 +60,7 @@ def set_language(lang):
     heading = t("challenge_heading")
     shared = " ".join(t("shared_challenge").split()).replace("{anchor}", slug(heading))
     assurance = tuple(t("assurance." + k).lower() for k in ("guaranteed", "implementation_permitted", "accidentally_exploited"))
-    placeholder = re.compile(r"\b(TODO|TBD|FIXME|XXX|lorem ipsum)\b|\b(?:" + t("placeholder_pattern") + r")\b|<[A-Za-z ]*here>|\[\.\.\.\]|…", re.I)
+    placeholder = re.compile(r"\b((?-i:TODO|TBD|FIXME|XXX)|lorem ipsum)\b|\b(?:" + t("placeholder_pattern") + r")\b|<[A-Za-z ]*here>|\[\.\.\.\]|…", re.I)
     values = (lang, prefix, suffix, many("sections", 11), heading, shared, t("exact_forty"), many("lead_in_five", 5),
               many("lead_in_four", 4), assurance, t("sandbox_word").lower(), re.compile(t("predict_pattern"), re.I), placeholder)
     diagrams.set_language(lang)      # last, so that nothing above can fail after it has switched

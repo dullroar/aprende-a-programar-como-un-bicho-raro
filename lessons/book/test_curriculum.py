@@ -201,7 +201,8 @@ class SpanishCurriculum(InLanguage):
         self.assertEqual([p[1] for p in cb.PHASES], list("WEIRD"))      # the node ids never change
 
     def test_the_english_curriculum_fails_the_spanish_rules(self):
-        problems = self.problems(real()) if BOOK_LANG == "en" else None
+        english = BOOK_LANG == "en" and "BICHO" not in real()     # the translated curriculum has BICHO
+        problems = self.problems(real()) if english else None
         if problems is None:
             self.skipTest("the real curriculum is already Spanish")
         self.has("acronym sentence is missing", problems)
@@ -252,8 +253,15 @@ class SpanishCurriculum(InLanguage):
         self.has("em dash", self.broken(sentence="Las ideas — no la sintaxis — son el tema."))
         self.has("curly quote", self.broken(sentence="Lee “con cuidado” el texto."))
 
+    def test_the_spanish_word_todo_is_not_a_placeholder(self):
+        self.assertEqual(self.broken(usted="Lee todo el texto antes de ejecutarlo."), [])
+
+    def test_upper_case_markers_are_still_placeholders(self):
+        for marker in ("TODO", "TBD", "lorem ipsum"):
+            self.has("placeholder text", self.broken(usted="Lee %s antes de ejecutarlo." % marker))
+
     def test_the_week_table_is_still_checked(self):
-        self.has("weeks 1 to 16", self.problems(spanish_curriculum().replace("| 9 |", "| 99 |", 1)))
+        self.has("weeks 1 to 16",self.problems(spanish_curriculum().replace("| 9 |", "| 99 |", 1)))
 
     def test_set_language_is_all_or_nothing(self):
         with self.assertRaises(catalog.CatalogError):

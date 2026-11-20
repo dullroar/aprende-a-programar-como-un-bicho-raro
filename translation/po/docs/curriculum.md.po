@@ -1,0 +1,633 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: docs/curriculum.md:1
+msgctxt "s-ed6c2e7e04d3-0000"
+msgid "Curriculum"
+msgstr "Plan de estudios"
+
+#: docs/curriculum.md:3
+msgctxt "s-ea3b8737488b-0001"
+msgid "*A 16-week course built on* Learn Programming the Weird Way!"
+msgstr "*Un curso de 16 semanas basado en* ¡Aprende a programar como un bicho raro!"
+
+#: docs/curriculum.md:5
+msgctxt "s-e828d650102a-0002"
+msgid "This curriculum turns the repository into one semester. It teaches computer science through a survey of languages and implementations. Most of them are old, odd or both. The ideas are the subject. The languages are the evidence."
+msgstr "Este plan de estudios convierte el repositorio en un semestre. Enseña informática mediante un recorrido por lenguajes e implementaciones. La mayoría son antiguos, extraños o ambas cosas. Las ideas son el tema. Los lenguajes son la evidencia."
+
+#: docs/curriculum.md:7
+msgctxt "s-db7746125d62-0003"
+msgid "**WEIRD** stands for **Weird Execution, Indirect Results and Data**. The W is recursive. The five letters also give the course its five phases."
+msgstr "**{{acronym.word}}** significa **Bicho raro, Interpreta, Camino indirecto, Hallazgos y Octetos**. La {{phase.1.letter}} es recursiva. Las cinco letras también dan al curso sus cinco fases."
+
+#: docs/curriculum.md:9
+msgctxt "s-6f7e69bb1fdd-0004"
+msgid "Who this is for"
+msgstr "Para quién es este curso"
+
+#: docs/curriculum.md:11
+msgctxt "s-6efdaa3bbcc3-0005"
+msgid "Senior undergraduates and graduate students."
+msgstr "Estudiantes avanzados de licenciatura y estudiantes de posgrado."
+
+#: docs/curriculum.md:12
+msgctxt "s-5c64a68893bc-0006"
+msgid "Self-taught programmers who write working code and want the theory under it."
+msgstr "Programadores autodidactas que escriben código que funciona y quieren la teoría que hay debajo."
+
+#: docs/curriculum.md:13
+msgctxt "s-7674f2a0dc33-0007"
+msgid "Curious readers who like a puzzle."
+msgstr "Lectores curiosos a quienes les gustan los acertijos."
+
+#: docs/curriculum.md:15
+msgctxt "s-4e0380c6fdcd-0008"
+msgid "You need one language you know well, a shell and a container runtime. You do not need a degree. You do not need to install COBOL, APL or Forth. The [sandbox](⟦DEST_0001⟧) supplies them."
+msgstr "Necesitas un lenguaje que conozcas bien, una terminal y un entorno de ejecución de contenedores. No necesitas un título universitario. No necesitas instalar COBOL, APL ni Forth. El [entorno aislado (*sandbox*)](⟦DEST_0001⟧) los incluye."
+
+#: docs/curriculum.md:17
+msgctxt "s-98083fc6f4ea-0009"
+msgid "What you will be able to do"
+msgstr "Lo que podrás hacer"
+
+#: docs/curriculum.md:19
+msgctxt "s-b31fba58623f-0010"
+msgid ""
+"Name the machine inside a program: what repeats, where state lives, what advances the next step, what stops it and what commits.\n"
+"2. Read an unfamiliar program and list what it can cause before you run it.\n"
+"3. Predict a trace, then test the prediction with a run.\n"
+"4. Label a claim **guaranteed**, **implementation-permitted** or **accidentally exploited**, and give the evidence.\n"
+"5. Solve one problem under a constraint and compare the designs by more than line count.\n"
+"6. Say which problem of its time a language solved, and which of its ideas you still use."
+msgstr ""
+"Nombra la máquina dentro de un programa: lo que se repite, dónde vive el estado, lo que hace avanzar el paso siguiente, qué lo detiene y qué confirma.\n"
+"2. Lee un programa desconocido y haz una lista de lo que puede causar antes de ejecutarlo.\n"
+"3. Predice una traza y luego pon a prueba la predicción con una ejecución.\n"
+"4. Etiqueta una afirmación como **garantizado**, **permitido por la implementación** o **aprovechado por accidente**, y da la evidencia.\n"
+"5. Resuelve un problema bajo una restricción y compara los diseños por algo más que el número de líneas.\n"
+"6. Di qué problema de su época resolvió un lenguaje y cuáles de sus ideas sigues usando."
+
+#: docs/curriculum.md:26
+msgctxt "s-c1cccbeae03b-0011"
+msgid "The semester as an algorithm"
+msgstr "El semestre como algoritmo"
+
+#: docs/curriculum.md:28
+msgctxt "s-30913e972320-0012"
+msgid "The course follows the rules it teaches. No counter variable drives it. The phase is the state, as in the programs you will read. A review at the end decides whether to stop. If it fails, the second pass starts at W again."
+msgstr "El curso sigue las reglas que enseña. Ninguna variable contador lo controla. La fase es el estado, como en los programas que leerás. Una revisión al final decide si se detiene. Si no la supera, la segunda pasada vuelve a empezar en W."
+
+#: docs/curriculum.md:32
+msgctxt "s-87098cdbcda6-0013"
+msgid "The semester as a WEIRD algorithm"
+msgstr "El semestre como un algoritmo raro"
+
+#: docs/curriculum.md:33
+msgctxt "s-d2530eda36b4-0014"
+msgid "A flowchart. The course starts with the phase pointer set to W, Weird. A box around the five phases says that every week repeats one cycle: identify the machine, trace one run, predict, run and prove. Inside the box, the pointer moves from W to E to I to R to D. W covers weeks 1 and 2, E for Execution covers weeks 3 to 6, I for Indirect covers weeks 7 to 10, R for Results covers weeks 11 to 13 and D for Data covers weeks 14 and 15. After D, week 16 is a decision that asks whether a stranger can reproduce your claim from your evidence. If the answer is yes, the course commits the result and stops. If the answer is no and this was the first pass, an arrow returns to W, and you read your own program as an adversary. If the answer is no after the second pass, the course stops and you report what is missing. At most one more pass is allowed."
+msgstr "Un diagrama de flujo. El curso empieza con el puntero de fase en {{phase.1.letter}}, {{phase.1.name}}. Un recuadro alrededor de las cinco fases indica que cada semana repite un ciclo: identifica la máquina, traza una ejecución, predice, ejecuta y prueba. Dentro del recuadro, el puntero pasa de {{phase.1.letter}} a {{phase.2.letter}}, a {{phase.3.letter}}, a {{phase.4.letter}} y a {{phase.5.letter}}. {{phase.1.letter}} cubre las semanas 1 y 2. {{phase.2.letter}} ({{phase.2.name}}) cubre las semanas de 3 a 6. {{phase.3.letter}} ({{phase.3.name}}) cubre las semanas de 7 a 10. {{phase.4.letter}} ({{phase.4.name}}) cubre las semanas de 11 a 13. {{phase.5.letter}} ({{phase.5.name}}) cubre las semanas 14 y 15. Después de {{phase.5.letter}}, la semana 16 es una decisión que pregunta si un desconocido puede reproducir tu afirmación a partir de tu evidencia. Si la respuesta es sí, el curso guarda el resultado con una confirmación (*commit*) de Git, un registro fijo del cambio en el historial, y termina. Si la respuesta es no y esta fue la primera pasada, una flecha vuelve a {{phase.1.letter}}, y lees tu propio programa como un adversario. Si la respuesta es no después de la segunda pasada, el curso termina y informas qué falta. Se permite como máximo una pasada más."
+
+#: docs/curriculum.md:34
+msgctxt "s-86f94444e904-0015"
+msgid "Start: phase = W"
+msgstr "Inicio: fase = {{phase.1.letter}}"
+
+#: docs/curriculum.md:35
+msgctxt "s-5ca1e8e823b7-0016"
+msgid "Every week: identify, trace, predict, run, prove"
+msgstr "Cada semana: identifica, traza, predice, ejecuta, demuestra"
+
+#: docs/curriculum.md:36
+msgctxt "s-93fe173049a4-0017"
+msgid "W: Weird, weeks 1 to 2⟦HTML_0001⟧What can it cause?"
+msgstr "{{phase.1.letter}}: {{phase.1.name}}, semanas 1 a 2⟦HTML_0001⟧¿Qué puede causarlo?"
+
+#: docs/curriculum.md:36
+msgctxt "s-45bc17d7b1b4-0018"
+msgid "E: Execution, weeks 3 to 6⟦HTML_0001⟧What moves it forward?"
+msgstr "{{phase.2.letter}}: {{phase.2.name}}, semanas 3 a 6⟦HTML_0001⟧¿Qué lo hace avanzar?"
+
+#: docs/curriculum.md:36
+msgctxt "s-cb934c1792a2-0019"
+msgid "I: Indirect, weeks 7 to 10⟦HTML_0001⟧Who demands the work?"
+msgstr "{{phase.3.letter}}: {{phase.3.name}}, semanas 7 a 10⟦HTML_0001⟧¿Quién demanda el trabajo?"
+
+#: docs/curriculum.md:36
+msgctxt "s-b14772a02da4-0020"
+msgid "R: Results, weeks 11 to 13⟦HTML_0001⟧What survives failure?"
+msgstr "{{phase.4.letter}}: {{phase.4.name}}, semanas 11 a 13⟦HTML_0001⟧¿Qué sobrevive al fallo?"
+
+#: docs/curriculum.md:36
+msgctxt "s-5c62e517e99f-0021"
+msgid "D: Data, weeks 14 to 15⟦HTML_0001⟧When is code just data?"
+msgstr "{{phase.5.letter}}: {{phase.5.name}}, semanas 14 a 15⟦HTML_0001⟧¿Cuándo es el código solo datos?"
+
+#: docs/curriculum.md:38
+msgctxt "s-b72addfe6d27-0022"
+msgid "Week 16 review: can a stranger⟦HTML_0001⟧reproduce your claim?"
+msgstr "Repaso de la semana 16: ¿puede un desconocido⟦HTML_0001⟧reproducir tu afirmación?"
+
+#: docs/curriculum.md:39
+msgctxt "s-8a798890fe93-0023"
+msgid "yes"
+msgstr "sí"
+
+#: docs/curriculum.md:39
+msgctxt "s-f82af9d19e05-0024"
+msgid "Commit and stop"
+msgstr "Confirma y detente"
+
+#: docs/curriculum.md:40
+msgctxt "s-c842f080c371-0025"
+msgid "no, first pass:⟦HTML_0001⟧read your own work⟦HTML_0002⟧as the adversary"
+msgstr "no, primera pasada:⟦HTML_0001⟧lee tu propio trabajo⟦HTML_0002⟧como el adversario"
+
+#: docs/curriculum.md:41
+msgctxt "s-23d02f397c8a-0026"
+msgid "no, second pass"
+msgstr "no, segunda pasada"
+
+#: docs/curriculum.md:41
+msgctxt "s-1b89dc0606be-0027"
+msgid "Stop and report the gap"
+msgstr "Detente e informa la brecha"
+
+#: docs/curriculum.md:44
+msgctxt "s-cb74108ca57e-0028"
+msgid "The W is recursive. In the first pass you read other people's programs. In the second pass you read your own."
+msgstr "La W es recursiva. En la primera pasada lees programas de otras personas. En la segunda pasada lees tus propios programas."
+
+#: docs/curriculum.md:46
+msgctxt "s-2abc98d86fc5-0029"
+msgid "The loop has a bound. A second failed review ends the course with a written report of the gap. A failed claim, honestly reported, is a result."
+msgstr "El bucle tiene un límite. Una segunda revisión fallida termina el curso con un informe escrito de la brecha. Una afirmación fallida, reportada con honestidad, es un resultado."
+
+#: docs/curriculum.md:48
+msgctxt "s-322ca52fefad-0030"
+msgid "How every week works"
+msgstr "Cómo funciona cada semana"
+
+#: docs/curriculum.md:50
+msgctxt "s-f7e7a49e5fee-0031"
+msgid "A week has the same four steps. They come from the [study guides](⟦DEST_0001⟧)."
+msgstr "Una semana tiene los mismos cuatro pasos. Vienen de las [guías de estudio](⟦DEST_0001⟧)."
+
+#: docs/curriculum.md:52
+msgctxt "s-efd2d56dfb21-0032"
+msgid ""
+"**Identify the machine.** Read the guide and the opening of the book chapter. Find the loop, the state, the clock, the decision and the commit.\n"
+"2. **Trace one run.** Follow the guide's fixed run by hand. Write the state before and after each step.\n"
+"3. **Predict, then run.** Write your prediction in the log file and commit it. Then run the verified exercise in the sandbox. The commit time proves the order. Compare the two.\n"
+"4. **Prove.** Answer the guide's evidence question. A claim needs a test that can fail."
+msgstr ""
+"**Identifica la máquina.** Lee la guía y el comienzo del capítulo del libro. Encuentra el bucle, el estado, el reloj, la decisión y la confirmación.\n"
+"2. **Traza una ejecución.** Sigue a mano la ejecución fija de la guía. Escribe el estado antes y después de cada paso.\n"
+"3. **Predice y luego ejecuta.** Escribe tu predicción en el archivo de registro y guárdala con una confirmación (*commit*) de Git, un punto fijo en el historial del proyecto. Luego ejecuta el ejercicio verificado en el entorno aislado (*sandbox*), un espacio separado donde el código no afecta a tu sistema. La hora de la confirmación demuestra el orden. Compara las dos.\n"
+"4. **Demuestra.** Responde la pregunta de evidencia de la guía. Una afirmación necesita una prueba que pueda fallar."
+
+#: docs/curriculum.md:57
+msgctxt "s-bbf8ff04c331-0033"
+msgid "All programs use fictional **⟦DNT_0001⟧** data. Read the source first. Run it only in the sandbox. See [Running things safely](⟦DEST_0002⟧)."
+msgstr "Todos los programas usan datos ficticios de **⟦DNT_0001⟧**. Lee primero el código fuente. Ejecútalo solo en el entorno aislado (*sandbox*), un espacio separado de tu sistema donde el programa no puede dañar nada. Consulta [Ejecutar cosas con seguridad](⟦DEST_0002⟧)."
+
+#: docs/curriculum.md:59
+msgctxt "s-2ca17f5fc616-0034"
+msgid "How much to do"
+msgstr "Cuánto debes hacer"
+
+#: docs/curriculum.md:61
+msgctxt "s-9592774b5cb8-0035"
+msgid "The full set is too much for most weeks, so the work comes in three tiers."
+msgstr "El conjunto completo es demasiado para la mayoría de las semanas, así que el trabajo se organiza en tres niveles."
+
+#: docs/curriculum.md:63
+msgctxt "s-c3c11fbd0255-0036"
+msgid "**Required (about 6 hours).** The bold guide in the Read column, the four steps, and the first exercise in the Do column."
+msgstr "**Obligatorio (unas 6 horas).** La guía en negrita de la columna Read, los cuatro pasos y el primer ejercicio de la columna Do."
+
+#: docs/curriculum.md:64
+msgctxt "s-1d54225a92da-0037"
+msgid "**Choose one (about 2 more hours).** A second exercise from the Do column, or a second guide from the Read column."
+msgstr "**Elige una (unas 2 horas más).** Un segundo ejercicio de la columna Do, o una segunda guía de la columna Read."
+
+#: docs/curriculum.md:65
+msgctxt "s-a35717cfe62d-0038"
+msgid "**Optional deepening.** The rest of the chapter, the book's language chapter for the week's language, and the source code."
+msgstr "**Profundización opcional.** El resto del capítulo, el capítulo del libro sobre el lenguaje de la semana y el código fuente."
+
+#: docs/curriculum.md:67
+msgctxt "s-c7181c729f1e-0039"
+msgid "The log"
+msgstr "El registro"
+
+#: docs/curriculum.md:69
+msgctxt "s-b33e3011f7e9-0040"
+msgid "Each week adds one entry to the prediction log. Use the same four rows every time."
+msgstr "Cada semana añade una entrada a la bitácora de predicciones. Usa las mismas cuatro filas cada vez."
+
+#: docs/curriculum.md:71
+msgctxt "s-b9b932366d6f-0041"
+msgid "⟦SEP_0001⟧ Before the run (commit first) ⟦SEP_0002⟧ After the run ⟦SEP_0003⟧ Evidence ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ Antes de la ejecución (haz primero la confirmación (*commit*) de Git: un registro guardado de tus cambios) ⟦SEP_0002⟧ Después de la ejecución ⟦SEP_0003⟧ Evidencia ⟦SEP_0004⟧"
+
+#: docs/curriculum.md:73
+msgctxt "s-72e4a3a85151-0042"
+msgid "⟦SEP_0001⟧ Machine: what plays the loop? ⟦SEP_0002⟧ Observed trace ⟦SEP_0003⟧ The command and the source line ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ Máquina: ¿qué ejecuta el bucle? ⟦SEP_0002⟧ Traza observada ⟦SEP_0003⟧ El comando y la línea de código fuente ⟦SEP_0004⟧"
+
+#: docs/curriculum.md:74
+msgctxt "s-768ca24ee7c3-0043"
+msgid "⟦SEP_0001⟧ State: where does it live? ⟦SEP_0002⟧ How the state changed ⟦SEP_0003⟧ Assurance label, with the specification or implementation named ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ Estado: ¿dónde vive? ⟦SEP_0002⟧ Cómo cambió el estado ⟦SEP_0003⟧ Grado de garantía, con la especificación o la implementación nombrada ⟦SEP_0004⟧"
+
+#: docs/curriculum.md:75
+msgctxt "s-d22b4302662e-0044"
+msgid "⟦SEP_0001⟧ Stop rule ⟦SEP_0002⟧ Outcome, or the failure ⟦SEP_0003⟧ Negative control: a change that must break the claim ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ Regla de parada ⟦SEP_0002⟧ Resultado, o el fallo ⟦SEP_0003⟧ Control negativo: un cambio que debe romper la afirmación ⟦SEP_0004⟧"
+
+#: docs/curriculum.md:76
+msgctxt "s-054599054b38-0045"
+msgid "⟦SEP_0001⟧ Commit point ⟦SEP_0002⟧ Effects that persisted ⟦SEP_0003⟧ Repository commit, tool versions and steps to reproduce ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ Punto de confirmación ⟦SEP_0002⟧ Efectos que persistieron ⟦SEP_0003⟧ Confirmación (*commit*) de Git del repositorio, versiones de las herramientas y pasos para reproducir ⟦SEP_0004⟧"
+
+#: docs/curriculum.md:78
+msgctxt "s-c94b209f52e3-0046"
+msgid "Week by week"
+msgstr "Semana a semana"
+
+#: docs/curriculum.md:80
+msgctxt "s-511c8ea620b5-0047"
+msgid "The links go to the book chapters, the study guides and the exercises. This curriculum changes none of them. Chapter numbers are the printed book's numbers, where the Intro is Ch 1. The first guide in bold is the required one."
+msgstr "Los enlaces llevan a los capítulos del libro, a las guías de estudio y a los ejercicios. Este plan de estudios no cambia ninguno de ellos. Los números de capítulo son los del libro impreso, donde la Intro es el cap. 1. La primera guía en negrita es la obligatoria."
+
+#: docs/curriculum.md:82
+msgctxt "s-7bdac100ff10-0048"
+msgid "⟦SEP_0001⟧ Week ⟦SEP_0002⟧ Question ⟦SEP_0003⟧ Read ⟦SEP_0004⟧ Do ⟦SEP_0005⟧"
+msgstr "⟦SEP_0001⟧ Semana ⟦SEP_0002⟧ Pregunta ⟦SEP_0003⟧ Lee ⟦SEP_0004⟧ Haz ⟦SEP_0005⟧"
+
+#: docs/curriculum.md:84
+msgctxt "s-aa83d9b983fb-0049"
+msgid "⟦SEP_0001⟧ ⟦SEP_0002⟧ **W: Weird** ⟦SEP_0003⟧ ⟦SEP_0004⟧ ⟦SEP_0005⟧"
+msgstr "⟦SEP_0001⟧ ⟦SEP_0002⟧ **{{phase.1.letter}}: {{phase.1.name}}** ⟦SEP_0003⟧ ⟦SEP_0004⟧ ⟦SEP_0005⟧"
+
+#: docs/curriculum.md:85
+msgctxt "s-592b76fe75bb-0050"
+msgid "⟦SEP_0005⟧ 1 ⟦SEP_0006⟧ What can a program cause before I run it? ⟦SEP_0007⟧ [Ch 4](⟦DEST_0001⟧), **[guide](⟦DEST_0002⟧)** ⟦SEP_0008⟧ [A1](⟦DEST_0003⟧), [F2](⟦DEST_0004⟧) ⟦SEP_0009⟧"
+msgstr "⟦SEP_0005⟧ 1 ⟦SEP_0006⟧ ¿Qué puede causar un programa antes de que yo lo ejecute? ⟦SEP_0007⟧ [Cap. 4](⟦DEST_0001⟧), **[guía](⟦DEST_0002⟧)** ⟦SEP_0008⟧ [A1](⟦DEST_0003⟧), [F2](⟦DEST_0004⟧) ⟦SEP_0009⟧"
+
+#: docs/curriculum.md:86
+msgctxt "s-cd4548953f10-0051"
+msgid "⟦SEP_0004⟧ 2 ⟦SEP_0005⟧ What counts as a machine? COBOL: a jump is the loop. ⟦SEP_0006⟧ [Ch 5](⟦DEST_0001⟧), **[COBOL guide](⟦DEST_0002⟧)** ⟦SEP_0007⟧ [B1](⟦DEST_0003⟧) ⟦SEP_0008⟧"
+msgstr "⟦SEP_0004⟧ 2 ⟦SEP_0005⟧ ¿Qué cuenta como una máquina? COBOL: un salto es el bucle. ⟦SEP_0006⟧ [Cap. 5](⟦DEST_0001⟧), **[guía de COBOL](⟦DEST_0002⟧)** ⟦SEP_0007⟧ [B1](⟦DEST_0003⟧) ⟦SEP_0008⟧"
+
+#: docs/curriculum.md:87
+msgctxt "s-60bc9c7bfd36-0052"
+msgid "⟦SEP_0001⟧ ⟦SEP_0002⟧ **E: Execution** ⟦SEP_0003⟧ ⟦SEP_0004⟧ ⟦SEP_0005⟧"
+msgstr "⟦SEP_0001⟧ ⟦SEP_0002⟧ **{{phase.2.letter}}: {{phase.2.name}}** ⟦SEP_0003⟧ ⟦SEP_0004⟧ ⟦SEP_0005⟧"
+
+#: docs/curriculum.md:88
+msgctxt "s-df743378ff1e-0053"
+msgid "⟦SEP_0004⟧ 3 ⟦SEP_0005⟧ Where is the program counter? Forth: the parse position. ⟦SEP_0006⟧ [Ch 6](⟦DEST_0001⟧), **[Forth guide](⟦DEST_0002⟧)** ⟦SEP_0007⟧ [B3](⟦DEST_0003⟧) ⟦SEP_0008⟧"
+msgstr "⟦SEP_0004⟧ 3 ⟦SEP_0005⟧ ¿Dónde está el contador de programa? Forth: la posición de análisis. ⟦SEP_0006⟧ [Cap. 6](⟦DEST_0001⟧), **[Guía de Forth](⟦DEST_0002⟧)** ⟦SEP_0007⟧ [B3](⟦DEST_0003⟧) ⟦SEP_0008⟧"
+
+#: docs/curriculum.md:89
+msgctxt "s-a7957bb31779-0054"
+msgid "⟦SEP_0004⟧ 4 ⟦SEP_0005⟧ Who chooses the next step? Make and CMake: a dependency graph. ⟦SEP_0006⟧ **[Make and CMake guide](⟦DEST_0001⟧)** ⟦SEP_0007⟧ [B4](⟦DEST_0002⟧), [B5](⟦DEST_0003⟧) ⟦SEP_0008⟧"
+msgstr "⟦SEP_0004⟧ 4 ⟦SEP_0005⟧ ¿Quién elige el siguiente paso? Make y CMake: un grafo de dependencias. ⟦SEP_0006⟧ **[Guía de Make y CMake](⟦DEST_0001⟧)** ⟦SEP_0007⟧ [B4](⟦DEST_0002⟧), [B5](⟦DEST_0003⟧) ⟦SEP_0008⟧"
+
+#: docs/curriculum.md:90
+msgctxt "s-590ed0b80185-0055"
+msgid "⟦SEP_0007⟧ 5 ⟦SEP_0008⟧ Where does state live? ed and Ex: a text buffer. ⟦SEP_0009⟧ [Ch 9](⟦DEST_0001⟧), **[ed and Ex guide](⟦DEST_0002⟧)**, [state guide](⟦DEST_0003⟧) ⟦SEP_0010⟧ [B18](⟦DEST_0004⟧), [B19](⟦DEST_0005⟧), [C3](⟦DEST_0006⟧) ⟦SEP_0011⟧"
+msgstr "⟦SEP_0007⟧ 5 ⟦SEP_0008⟧ ¿Dónde vive el estado? ed y Ex: un búfer de texto. ⟦SEP_0009⟧ [Cap. 9](⟦DEST_0001⟧), **[guía de ed y Ex](⟦DEST_0002⟧)**, [guía de estado](⟦DEST_0003⟧) ⟦SEP_0010⟧ [B18](⟦DEST_0004⟧), [B19](⟦DEST_0005⟧), [C3](⟦DEST_0006⟧) ⟦SEP_0011⟧"
+
+#: docs/curriculum.md:91
+msgctxt "s-2c0c1300e4f5-0056"
+msgid "⟦SEP_0004⟧ 6 ⟦SEP_0005⟧ What replaces the loop? APL: whole arrays. ⟦SEP_0006⟧ **[APL guide](⟦DEST_0001⟧)** ⟦SEP_0007⟧ [B6](⟦DEST_0002⟧), [C1](⟦DEST_0003⟧) ⟦SEP_0008⟧"
+msgstr "⟦SEP_0004⟧ 6 ⟦SEP_0005⟧ ¿Qué reemplaza al bucle? APL: arreglos completos. ⟦SEP_0006⟧ **[Guía de APL](⟦DEST_0001⟧)** ⟦SEP_0007⟧ [B6](⟦DEST_0002⟧), [C1](⟦DEST_0003⟧) ⟦SEP_0008⟧"
+
+#: docs/curriculum.md:92
+msgctxt "s-f803b23b9391-0057"
+msgid "⟦SEP_0001⟧ ⟦SEP_0002⟧ **I: Indirect** ⟦SEP_0003⟧ ⟦SEP_0004⟧ ⟦SEP_0005⟧"
+msgstr "⟦SEP_0001⟧ ⟦SEP_0002⟧ **{{phase.3.letter}}: {{phase.3.name}}** ⟦SEP_0003⟧ ⟦SEP_0004⟧ ⟦SEP_0005⟧"
+
+#: docs/curriculum.md:93
+msgctxt "s-e6f17ab2bebc-0058"
+msgid "⟦SEP_0005⟧ 7 ⟦SEP_0006⟧ Who demands the work? Haskell: laziness. ⟦SEP_0007⟧ [Ch 7](⟦DEST_0001⟧), **[demand guide](⟦DEST_0002⟧)**, [Haskell guide](⟦DEST_0003⟧) ⟦SEP_0008⟧ [B2](⟦DEST_0004⟧) ⟦SEP_0009⟧"
+msgstr "⟦SEP_0005⟧ 7 ⟦SEP_0006⟧ ¿Quién demanda el trabajo? Haskell: pereza. ⟦SEP_0007⟧ [Cap. 7](⟦DEST_0001⟧), **[guía de la demanda](⟦DEST_0002⟧)**, [guía de Haskell](⟦DEST_0003⟧) ⟦SEP_0008⟧ [B2](⟦DEST_0004⟧) ⟦SEP_0009⟧"
+
+#: docs/curriculum.md:94
+msgctxt "s-38f025d977e0-0059"
+msgid "⟦SEP_0003⟧ 8 ⟦SEP_0004⟧ Can dispatch rules be a loop? Lisp. **Midterm.** ⟦SEP_0005⟧ **[Lisp guide](⟦DEST_0001⟧)** ⟦SEP_0006⟧ [B10](⟦DEST_0002⟧) ⟦SEP_0007⟧"
+msgstr "⟦SEP_0003⟧ 8 ⟦SEP_0004⟧ ¿Pueden las reglas de despacho ser un bucle? Lisp. **Examen parcial.** ⟦SEP_0005⟧ **[Guía de Lisp](⟦DEST_0001⟧)** ⟦SEP_0006⟧ [B10](⟦DEST_0002⟧) ⟦SEP_0007⟧"
+
+#: docs/curriculum.md:95
+msgctxt "s-94cfa811a712-0060"
+msgid "⟦SEP_0004⟧ 9 ⟦SEP_0005⟧ What does a closure remember? JavaScript. ⟦SEP_0006⟧ **[JavaScript guide](⟦DEST_0001⟧)** ⟦SEP_0007⟧ [B20](⟦DEST_0002⟧), [B21](⟦DEST_0003⟧) ⟦SEP_0008⟧"
+msgstr "⟦SEP_0004⟧ 9 ⟦SEP_0005⟧ ¿Qué recuerda una clausura (*closure*: función que conserva las variables del lugar donde se creó)? JavaScript. ⟦SEP_0006⟧ **[Guía de JavaScript](⟦DEST_0001⟧)** ⟦SEP_0007⟧ [B20](⟦DEST_0002⟧), [B21](⟦DEST_0003⟧) ⟦SEP_0008⟧"
+
+#: docs/curriculum.md:96
+msgctxt "s-9372623bdaa5-0061"
+msgid "⟦SEP_0004⟧ 10 ⟦SEP_0005⟧ Who owns the next turn? Events and callbacks. ⟦SEP_0006⟧ [Ch 13](⟦DEST_0001⟧), **[events guide](⟦DEST_0002⟧)** ⟦SEP_0007⟧ [B22](⟦DEST_0003⟧) ⟦SEP_0008⟧"
+msgstr "⟦SEP_0004⟧ 10 ⟦SEP_0005⟧ ¿De quién es el siguiente turno? Eventos y retrollamadas (*callbacks*: funciones que se ejecutan cuando ocurre un evento). ⟦SEP_0006⟧ [Cap. 13](⟦DEST_0001⟧), **[guía de eventos](⟦DEST_0002⟧)** ⟦SEP_0007⟧ [B22](⟦DEST_0003⟧) ⟦SEP_0008⟧"
+
+#: docs/curriculum.md:97
+msgctxt "s-088e0ee76366-0062"
+msgid "⟦SEP_0001⟧ ⟦SEP_0002⟧ **R: Results** ⟦SEP_0003⟧ ⟦SEP_0004⟧ ⟦SEP_0005⟧"
+msgstr "⟦SEP_0001⟧ ⟦SEP_0002⟧ **{{phase.4.letter}}: {{phase.4.name}}** ⟦SEP_0003⟧ ⟦SEP_0004⟧ ⟦SEP_0005⟧"
+
+#: docs/curriculum.md:98
+msgctxt "s-7b1743c41e99-0063"
+msgid "⟦SEP_0005⟧ 11 ⟦SEP_0006⟧ What truly commits? Effects, errors and queries. ⟦SEP_0007⟧ [Ch 10](⟦DEST_0001⟧), **[effects guide](⟦DEST_0002⟧)**, [C# and LINQ guide](⟦DEST_0003⟧) ⟦SEP_0008⟧ [B7](⟦DEST_0004⟧) ⟦SEP_0009⟧"
+msgstr "⟦SEP_0005⟧ 11 ⟦SEP_0006⟧ ¿Qué se confirma de verdad? Efectos, errores y consultas. ⟦SEP_0007⟧ [Cap. 10](⟦DEST_0001⟧), **[guía de efectos](⟦DEST_0002⟧)**, [guía de C# y LINQ](⟦DEST_0003⟧) ⟦SEP_0008⟧ [B7](⟦DEST_0004⟧) ⟦SEP_0009⟧"
+
+#: docs/curriculum.md:99
+msgctxt "s-3109d3424959-0064"
+msgid "⟦SEP_0004⟧ 12 ⟦SEP_0005⟧ What survives a failed match? Regex and sed. ⟦SEP_0006⟧ **[Regex and sed guide](⟦DEST_0001⟧)** ⟦SEP_0007⟧ [B8](⟦DEST_0002⟧), [B9](⟦DEST_0003⟧) ⟦SEP_0008⟧"
+msgstr "⟦SEP_0004⟧ 12 ⟦SEP_0005⟧ ¿Qué sobrevive a una coincidencia fallida? Regex y sed. ⟦SEP_0006⟧ **[Guía de regex y sed](⟦DEST_0001⟧)** ⟦SEP_0007⟧ [B8](⟦DEST_0002⟧), [B9](⟦DEST_0003⟧) ⟦SEP_0008⟧"
+
+#: docs/curriculum.md:100
+msgctxt "s-e9cb27e1c8ed-0065"
+msgid "⟦SEP_0005⟧ 13 ⟦SEP_0006⟧ What does the specification promise? AWK and find. ⟦SEP_0007⟧ [Ch 11](⟦DEST_0001⟧), **[portability guide](⟦DEST_0002⟧)** ⟦SEP_0008⟧ [B13](⟦DEST_0003⟧), [B15](⟦DEST_0004⟧) ⟦SEP_0009⟧"
+msgstr "⟦SEP_0005⟧ 13 ⟦SEP_0006⟧ ¿Qué promete la especificación? AWK y find. ⟦SEP_0007⟧ [Cap. 11](⟦DEST_0001⟧), **[guía de portabilidad](⟦DEST_0002⟧)** ⟦SEP_0008⟧ [B13](⟦DEST_0003⟧), [B15](⟦DEST_0004⟧) ⟦SEP_0009⟧"
+
+#: docs/curriculum.md:101
+msgctxt "s-f6c518a5921b-0066"
+msgid "⟦SEP_0001⟧ ⟦SEP_0002⟧ **D: Data** ⟦SEP_0003⟧ ⟦SEP_0004⟧ ⟦SEP_0005⟧"
+msgstr "⟦SEP_0001⟧ ⟦SEP_0002⟧ **{{phase.5.letter}}: {{phase.5.name}}** ⟦SEP_0003⟧ ⟦SEP_0004⟧ ⟦SEP_0005⟧"
+
+#: docs/curriculum.md:102
+msgctxt "s-3905bce03b3f-0067"
+msgid "⟦SEP_0005⟧ 14 ⟦SEP_0006⟧ When is a notation a machine? Formal languages and m4. ⟦SEP_0007⟧ [Ch 8](⟦DEST_0001⟧), **[formal languages guide](⟦DEST_0002⟧)**, [m4 guide](⟦DEST_0003⟧) ⟦SEP_0008⟧ [B11](⟦DEST_0004⟧) ⟦SEP_0009⟧"
+msgstr "⟦SEP_0005⟧ 14 ⟦SEP_0006⟧ ¿Cuándo es una notación una máquina? Lenguajes formales y m4. ⟦SEP_0007⟧ [Cap. 8](⟦DEST_0001⟧), **[guía de lenguajes formales](⟦DEST_0002⟧)**, [guía de m4](⟦DEST_0003⟧) ⟦SEP_0008⟧ [B11](⟦DEST_0004⟧) ⟦SEP_0009⟧"
+
+#: docs/curriculum.md:103
+msgctxt "s-0b27dc03f86a-0068"
+msgid "⟦SEP_0007⟧ 15 ⟦SEP_0008⟧ When is data a program? Tcl and tar. ⟦SEP_0009⟧ Ch 12, sections 12.11 and 12.12 only: [where the program lives](⟦DEST_0001⟧) and [writing it down](⟦DEST_0002⟧), **[Tcl guide](⟦DEST_0003⟧)**, [tar guide](⟦DEST_0004⟧) ⟦SEP_0010⟧ [B12](⟦DEST_0005⟧), [B16](⟦DEST_0006⟧) ⟦SEP_0011⟧"
+msgstr "⟦SEP_0007⟧ 15 ⟦SEP_0008⟧ ¿Cuándo son los datos un programa? Tcl y tar. ⟦SEP_0009⟧ Cap. 12, solo las secciones 12.11 y 12.12: [dónde vive el programa](⟦DEST_0001⟧) y [ponerlo por escrito](⟦DEST_0002⟧), **[guía de Tcl](⟦DEST_0003⟧)**, [guía de tar](⟦DEST_0004⟧) ⟦SEP_0010⟧ [B12](⟦DEST_0005⟧), [B16](⟦DEST_0006⟧) ⟦SEP_0011⟧"
+
+#: docs/curriculum.md:104
+msgctxt "s-81a51588d581-0069"
+msgid "⟦SEP_0004⟧ 16 ⟦SEP_0005⟧ Can a stranger reproduce your claim? Capstone. ⟦SEP_0006⟧ **[Comparative guide](⟦DEST_0001⟧)** ⟦SEP_0007⟧ One of [D](⟦DEST_0002⟧) or [F1](⟦DEST_0003⟧) ⟦SEP_0008⟧"
+msgstr "⟦SEP_0004⟧ 16 ⟦SEP_0005⟧ ¿Puede un desconocido reproducir tu afirmación? Proyecto final. ⟦SEP_0006⟧ **[Guía comparativa](⟦DEST_0001⟧)** ⟦SEP_0007⟧ Uno de [D](⟦DEST_0002⟧) o [F1](⟦DEST_0003⟧) ⟦SEP_0008⟧"
+
+#: docs/curriculum.md:106
+msgctxt "s-f405fe7a1059-0070"
+msgid "Old languages, real problems"
+msgstr "Lenguajes antiguos, problemas reales"
+
+#: docs/curriculum.md:108
+msgctxt "s-f9033b7a291a-0071"
+msgid "A historical language is not a curiosity. Each one solved a problem of its time. The problems changed shape. They did not go away."
+msgstr "Un lenguaje histórico no es una curiosidad. Cada uno resolvió un problema de su época. Los problemas cambiaron de forma. No desaparecieron."
+
+#: docs/curriculum.md:110
+msgctxt "s-ee2f81e5c7c7-0072"
+msgid "⟦SEP_0001⟧ Language ⟦SEP_0002⟧ Era ⟦SEP_0003⟧ Problem of the time ⟦SEP_0004⟧ Idea you keep ⟦SEP_0005⟧"
+msgstr "⟦SEP_0001⟧ Lenguaje ⟦SEP_0002⟧ Época ⟦SEP_0003⟧ Problema de la época ⟦SEP_0004⟧ Idea que conservas ⟦SEP_0005⟧"
+
+#: docs/curriculum.md:112
+msgctxt "s-a7e72a81b7fe-0073"
+msgid "⟦SEP_0002⟧ [Lisp](⟦DEST_0001⟧)) ⟦SEP_0003⟧ 1958 ⟦SEP_0004⟧ AI research needed to process symbols and lists, not only numbers. ⟦SEP_0005⟧ Code is data. Garbage collection. ⟦SEP_0006⟧"
+msgstr "⟦SEP_0002⟧ [Lisp](⟦DEST_0001⟧)) ⟦SEP_0003⟧ 1958 ⟦SEP_0004⟧ La investigación en IA necesitaba procesar símbolos y listas, no solo números. ⟦SEP_0005⟧ El código son datos. Recolección de basura. ⟦SEP_0006⟧"
+
+#: docs/curriculum.md:113
+msgctxt "s-148e309d7ba8-0074"
+msgid "⟦SEP_0002⟧ [COBOL](⟦DEST_0001⟧) ⟦SEP_0003⟧ 1959 ⟦SEP_0004⟧ Businesses needed programs that auditors could read on many makes of computer. ⟦SEP_0005⟧ Declared data as a contract. Exact decimal arithmetic. ⟦SEP_0006⟧"
+msgstr "⟦SEP_0002⟧ [COBOL](⟦DEST_0001⟧) ⟦SEP_0003⟧ 1959 ⟦SEP_0004⟧ Las empresas necesitaban programas que los auditores pudieran leer en muchas marcas de computadoras. ⟦SEP_0005⟧ Datos declarados como un contrato. Aritmética decimal exacta. ⟦SEP_0006⟧"
+
+#: docs/curriculum.md:114
+msgctxt "s-d4b3ec471461-0075"
+msgid "⟦SEP_0002⟧ [APL](⟦DEST_0001⟧)) ⟦SEP_0003⟧ 1960s ⟦SEP_0004⟧ Mathematicians needed one notation for operations on whole arrays. ⟦SEP_0005⟧ Think in arrays, not in loops. ⟦SEP_0006⟧"
+msgstr "⟦SEP_0002⟧ [APL](⟦DEST_0001⟧)) ⟦SEP_0003⟧ Década de 1960 ⟦SEP_0004⟧ Los matemáticos necesitaban una sola notación para las operaciones sobre arreglos completos. ⟦SEP_0005⟧ Piensa en arreglos, no en bucles. ⟦SEP_0006⟧"
+
+#: docs/curriculum.md:115
+msgctxt "s-a3ef2bbdf806-0076"
+msgid "⟦SEP_0002⟧ [ed](⟦DEST_0001⟧)) ⟦SEP_0003⟧ 1969 ⟦SEP_0004⟧ Terminals printed on paper, so users edited text without seeing a screen. ⟦SEP_0005⟧ Commands as a small language. A failed command as a condition. ⟦SEP_0006⟧"
+msgstr "⟦SEP_0002⟧ [ed](⟦DEST_0001⟧)) ⟦SEP_0003⟧ 1969 ⟦SEP_0004⟧ Las terminales imprimían en papel, así que los usuarios editaban texto sin ver una pantalla. ⟦SEP_0005⟧ Los comandos como un lenguaje pequeño. Un comando fallido como condición. ⟦SEP_0006⟧"
+
+#: docs/curriculum.md:116
+msgctxt "s-f209a35f2593-0077"
+msgid "⟦SEP_0002⟧ [Forth](⟦DEST_0001⟧)) ⟦SEP_0003⟧ about 1970 ⟦SEP_0004⟧ Small computers that ran instruments had very little memory. ⟦SEP_0005⟧ A stack and a dictionary are enough for a language. ⟦SEP_0006⟧"
+msgstr "⟦SEP_0002⟧ [Forth](⟦DEST_0001⟧)) ⟦SEP_0003⟧ alrededor de 1970 ⟦SEP_0004⟧ Las computadoras pequeñas que controlaban instrumentos tenían muy poca memoria. ⟦SEP_0005⟧ Una pila y un diccionario bastan para un lenguaje. ⟦SEP_0006⟧"
+
+#: docs/curriculum.md:117
+msgctxt "s-18b0dab66467-0078"
+msgid "⟦SEP_0003⟧ [sed](⟦DEST_0001⟧) and [AWK](⟦DEST_0002⟧) ⟦SEP_0004⟧ 1970s ⟦SEP_0005⟧ Files were too many to edit by hand, so pipelines filtered streams. ⟦SEP_0006⟧ Pattern and action. The implicit loop. ⟦SEP_0007⟧"
+msgstr "⟦SEP_0003⟧ [sed](⟦DEST_0001⟧) y [AWK](⟦DEST_0002⟧) ⟦SEP_0004⟧ década de 1970 ⟦SEP_0005⟧ Había demasiados archivos para editarlos a mano, así que las canalizaciones filtraban flujos. ⟦SEP_0006⟧ Patrón y acción. El bucle implícito. ⟦SEP_0007⟧"
+
+#: docs/curriculum.md:118
+msgctxt "s-d7846ad7829d-0079"
+msgid "⟦SEP_0002⟧ [m4](⟦DEST_0001⟧)) ⟦SEP_0003⟧ 1970s ⟦SEP_0004⟧ One source text had to produce code for many targets. ⟦SEP_0005⟧ Expansion and rescanning are computation. ⟦SEP_0006⟧"
+msgstr "⟦SEP_0002⟧ [m4](⟦DEST_0001⟧)) ⟦SEP_0003⟧ Década de 1970 ⟦SEP_0004⟧ Un solo texto fuente tenía que producir código para muchos destinos. ⟦SEP_0005⟧ La expansión y el reescaneo son cómputo. ⟦SEP_0006⟧"
+
+#: docs/curriculum.md:119
+msgctxt "s-8f4ad4906b9c-0080"
+msgid "⟦SEP_0002⟧ [Make](⟦DEST_0001⟧)) ⟦SEP_0003⟧ 1976 ⟦SEP_0004⟧ Rebuilding by hand after each change was slow and error-prone. ⟦SEP_0005⟧ Declare the dependencies. Let the tool choose the order. ⟦SEP_0006⟧"
+msgstr "⟦SEP_0002⟧ [Make](⟦DEST_0001⟧)) ⟦SEP_0003⟧ 1976 ⟦SEP_0004⟧ Reconstruir a mano después de cada cambio era lento y propenso a errores. ⟦SEP_0005⟧ Declara las dependencias. Deja que la herramienta elija el orden. ⟦SEP_0006⟧"
+
+#: docs/curriculum.md:120
+msgctxt "s-fc87f54593c2-0081"
+msgid "⟦SEP_0002⟧ [tar](⟦DEST_0001⟧)) ⟦SEP_0003⟧ late 1970s ⟦SEP_0004⟧ Tape drives read and wrote best in sequence, and seeking was slow. ⟦SEP_0005⟧ Serialization. An archive can carry effects when something interprets it. ⟦SEP_0006⟧"
+msgstr "⟦SEP_0002⟧ [tar](⟦DEST_0001⟧)) ⟦SEP_0003⟧ finales de la década de 1970 ⟦SEP_0004⟧ Las unidades de cinta leían y escribían mejor en secuencia, y buscar posiciones era lento. ⟦SEP_0005⟧ Serialización. Un archivo empaquetado puede llevar efectos cuando algo lo interpreta. ⟦SEP_0006⟧"
+
+#: docs/curriculum.md:121
+msgctxt "s-d8e409f82abf-0082"
+msgid "⟦SEP_0002⟧ [Tcl](⟦DEST_0001⟧) ⟦SEP_0003⟧ 1988 ⟦SEP_0004⟧ Tool authors needed a command language to embed in their programs. ⟦SEP_0005⟧ Everything is a string. Code is data. ⟦SEP_0006⟧"
+msgstr "⟦SEP_0002⟧ [Tcl](⟦DEST_0001⟧) ⟦SEP_0003⟧ 1988 ⟦SEP_0004⟧ Los autores de herramientas necesitaban un lenguaje de comandos para integrar en sus programas. ⟦SEP_0005⟧ Todo es una cadena de texto. El código es dato. ⟦SEP_0006⟧"
+
+#: docs/curriculum.md:122
+msgctxt "s-00e87701df80-0083"
+msgid "⟦SEP_0002⟧ [Haskell](⟦DEST_0001⟧) ⟦SEP_0003⟧ 1990 ⟦SEP_0004⟧ Researchers had many lazy functional languages and needed one shared standard. ⟦SEP_0005⟧ Laziness. Purity. Demand drives evaluation. ⟦SEP_0006⟧"
+msgstr "⟦SEP_0002⟧ [Haskell](⟦DEST_0001⟧) ⟦SEP_0003⟧ 1990 ⟦SEP_0004⟧ Los investigadores tenían muchos lenguajes funcionales perezosos y necesitaban un estándar compartido. ⟦SEP_0005⟧ Pereza. Pureza. La demanda impulsa la evaluación. ⟦SEP_0006⟧"
+
+#: docs/curriculum.md:123
+msgctxt "s-d2ac8b96ed3a-0084"
+msgid "⟦SEP_0002⟧ [JavaScript](⟦DEST_0001⟧) ⟦SEP_0003⟧ 1995 ⟦SEP_0004⟧ Browsers needed small programs that react to user events. ⟦SEP_0005⟧ The event loop. Closures. Callbacks. ⟦SEP_0006⟧"
+msgstr "⟦SEP_0002⟧ [JavaScript](⟦DEST_0001⟧) ⟦SEP_0003⟧ 1995 ⟦SEP_0004⟧ Los navegadores necesitaban programas pequeños que reaccionan a los eventos del usuario. ⟦SEP_0005⟧ El bucle de eventos. Clausuras (*closures*: funciones que recuerdan las variables de su entorno). Retrollamadas (*callbacks*: funciones que pasas a otra función para que las llame más tarde). ⟦SEP_0006⟧"
+
+#: docs/curriculum.md:125
+msgctxt "s-ef455ffa7561-0085"
+msgid "How to think about adversarial programs"
+msgstr "Cómo pensar sobre los programas adversariales"
+
+#: docs/curriculum.md:127
+msgctxt "s-08bdeaa97a6c-0086"
+msgid "An adversarial program is written to surprise its reader. Treat every program as if it might be one."
+msgstr "Un programa adversarial se escribe para sorprender a su lector. Trata todo programa como si pudiera serlo."
+
+#: docs/curriculum.md:129
+msgctxt "s-3878e863951e-0087"
+msgid "**Ask what it can cause, not what it says.** Names, comments and README text are claims. The source is the evidence."
+msgstr "**Pregunta qué puede causar, no qué dice.** Los nombres, los comentarios y el texto del README son afirmaciones. El código fuente es la evidencia."
+
+#: docs/curriculum.md:130
+msgctxt "s-d2d4a34ff8f5-0088"
+msgid "**Separate reading from running.** Read first. Use a passive inspector before you use an interpreter. The tar entries show both roles."
+msgstr "**Separa leer de ejecutar.** Lee primero. Usa un inspector pasivo antes de usar un *intérprete*. Las entradas de tar muestran los dos papeles."
+
+#: docs/curriculum.md:131
+msgctxt "s-f135b13a293c-0089"
+msgid "**Treat text as input that carries intent.** A hidden character, a file name or an archive member can change what a program does. Exercise F2 shows how."
+msgstr "**Trata el texto como entrada de datos que lleva una intención.** Un carácter oculto, un nombre de archivo o un miembro de un archivo comprimido pueden cambiar lo que hace un programa. El ejercicio F2 muestra cómo."
+
+#: docs/curriculum.md:132
+msgctxt "s-f5d2343c6fa9-0090"
+msgid "**Label each claim.** Is it guaranteed by a specification, permitted by one implementation, or accidentally exploited? Give the evidence for the label."
+msgstr "**Etiqueta cada afirmación.** ¿Qué etiqueta recibe: *garantizado* por una especificación, *permitido por la implementación* o *aprovechado por accidente*? Da la evidencia de la etiqueta."
+
+#: docs/curriculum.md:133
+msgctxt "s-4516cbcd2430-0091"
+msgid "**Follow the commit.** Find which effects survive a failure. Find what truly commits."
+msgstr "**Sigue la confirmación.** Averigua qué efectos sobreviven a un fallo. Averigua qué se confirma de verdad."
+
+#: docs/curriculum.md:134
+msgctxt "s-6870c3cb2599-0092"
+msgid "**Test the boundary.** The shared challenge keeps the first card that takes the total over 40. Exactly 40 continues. Boundaries hide bugs."
+msgstr "**Prueba el límite.** El reto compartido conserva la primera tarjeta con la que el total pasa de 40. Un total de exactamente 40 continúa. Los límites esconden bichos."
+
+#: docs/curriculum.md:135
+msgctxt "s-a3c78a20b49c-0093"
+msgid "**Switch sides.** Write the program as its author. Then read it as its reviewer."
+msgstr "**Cambia de lado.** Escribe el programa como su autor. Después léelo como su revisor."
+
+#: docs/curriculum.md:137
+msgctxt "s-2f96314beb2a-0094"
+msgid "How to think about problem-solving differently"
+msgstr "Cómo pensar de otra manera sobre la resolución de problemas"
+
+#: docs/curriculum.md:139
+msgctxt "s-e7cb75c358b6-0095"
+msgid "**Use a constraint as a design tool.** Remove the loop, the variable or the clock. Then ask what plays that role. Practice: [C2](⟦DEST_0001⟧). See [Problems overcome](⟦DEST_0002⟧)."
+msgstr "**Usa una restricción como herramienta de diseño.** Quita el bucle, la variable o el reloj. Luego pregunta qué cosa cumple ese papel. Práctica: [C2](⟦DEST_0001⟧). Consulta [Problemas superados](⟦DEST_0002⟧)."
+
+#: docs/curriculum.md:140
+msgctxt "s-ee3fd8ba3c35-0096"
+msgid "**Ask five questions of every machine.** What plays the loop, the state, the clock, the decision and the commit? See [By solution pattern](⟦DEST_0001⟧)."
+msgstr "**Hazle cinco preguntas a cada máquina.** ¿Qué hace de bucle, de estado, de reloj, de decisión y de confirmación? Consulta [Por patrón de solución](⟦DEST_0001⟧)."
+
+#: docs/curriculum.md:141
+msgctxt "s-33130a988846-0097"
+msgid "**Change the representation.** Text, arrays, graphs and archives each make a different problem easy. Pick the substrate before you pick the algorithm."
+msgstr "**Cambia la representación.** El texto, los arreglos, los grafos y los archivos comprimidos hacen que cada uno facilite un problema distinto. Elige el sustrato antes de elegir el algoritmo."
+
+#: docs/curriculum.md:142
+msgctxt "s-102bca44e1e1-0098"
+msgid "**Compare weird with boring.** Judge the pair by representation, testing, debugging, portability and cost. Do not judge by line count. Practice: [C1](⟦DEST_0001⟧). See [Weird next to boring](⟦DEST_0002⟧)."
+msgstr "**Compara lo raro con lo aburrido.** Juzga el par por representación, pruebas, depuración, portabilidad y costo. No juzgues por el número de líneas. Práctica: [C1](⟦DEST_0001⟧). Consulta [Lo raro junto a lo aburrido](⟦DEST_0002⟧)."
+
+#: docs/curriculum.md:143
+msgctxt "s-6943ab1eb560-0099"
+msgid "**Learn from scarcity.** Old designers had little memory and slow tape. Their limits forced clear ideas."
+msgstr "**Aprende de la escasez.** Los diseñadores antiguos tenían poca memoria y una cinta lenta. Sus límites los obligaron a tener ideas claras."
+
+#: docs/curriculum.md:144
+msgctxt "s-8f93b9f61614-0100"
+msgid "**Know when to stop being weird.** Each weird design has a cost. State when you would use it and when you would avoid it."
+msgstr "**Sabe cuándo dejar de ser raro.** Cada diseño raro tiene un costo. Indica cuándo lo usarías y cuándo lo evitarías."
+
+#: docs/curriculum.md:146
+msgctxt "s-7808eeeb45df-0101"
+msgid "Assessment"
+msgstr "Evaluación"
+
+#: docs/curriculum.md:148
+msgctxt "s-43b52e71dc22-0102"
+msgid "⟦SEP_0001⟧ Part ⟦SEP_0002⟧ When ⟦SEP_0003⟧ Weight ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ Parte ⟦SEP_0002⟧ Cuándo ⟦SEP_0003⟧ Peso ⟦SEP_0004⟧"
+
+#: docs/curriculum.md:150
+msgctxt "s-04c90b721e60-0103"
+msgid "⟦SEP_0001⟧ Prediction log: one prediction, one run and one evidence answer each week ⟦SEP_0002⟧ Weeks 1 to 15 ⟦SEP_0003⟧ 30% ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ Registro de predicciones: una predicción, una ejecución y una respuesta con evidencia cada semana ⟦SEP_0002⟧ Semanas de 1 a 15 ⟦SEP_0003⟧ 30% ⟦SEP_0004⟧"
+
+#: docs/curriculum.md:151
+msgctxt "s-d91cc2e2d067-0104"
+msgid "⟦SEP_0001⟧ Midterm: trace and predict an entry you have not seen, then test the prediction ⟦SEP_0002⟧ Week 8 ⟦SEP_0003⟧ 20% ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ Examen parcial: haz la traza y la predicción de una entrada que no has visto, y luego prueba la predicción ⟦SEP_0002⟧ Semana 8 ⟦SEP_0003⟧ 20% ⟦SEP_0004⟧"
+
+#: docs/curriculum.md:152
+msgctxt "s-43837ec977d9-0105"
+msgid "⟦SEP_0001⟧ Capstone: port the challenge to a new language, or prove a README claim with a test that can fail ⟦SEP_0002⟧ Week 16 ⟦SEP_0003⟧ 40% ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ Proyecto final: porta el reto a un lenguaje nuevo, o demuestra una afirmación del README con una prueba que pueda fallar ⟦SEP_0002⟧ Semana 16 ⟦SEP_0003⟧ 40 % ⟦SEP_0004⟧"
+
+#: docs/curriculum.md:153
+msgctxt "s-4d9f183c3e3b-0106"
+msgid "⟦SEP_0001⟧ Peer review: read a classmate's capstone as an adversary and report what it can cause ⟦SEP_0002⟧ Week 16 ⟦SEP_0003⟧ 10% ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ Revisión por pares: lee el proyecto final de un compañero como un adversario e informa qué puede causar ⟦SEP_0002⟧ Semana 16 ⟦SEP_0003⟧ 10% ⟦SEP_0004⟧"
+
+#: docs/curriculum.md:155
+msgctxt "s-f13a78500989-0107"
+msgid "Rubric"
+msgstr "Rúbrica"
+
+#: docs/curriculum.md:157
+msgctxt "s-189e87fc51d4-0108"
+msgid "Score every dimension from 0 to 2: 0 is absent, 1 is partial and 2 is complete. The last column says where each dimension applies. L is the prediction log, C is the capstone and P is the peer review."
+msgstr "Puntúa cada dimensión de 0 a 2: 0 es ausente, 1 es parcial y 2 es completa. La última columna indica dónde se aplica cada dimensión. L es el registro de predicciones, C es el proyecto final y P es la revisión por pares."
+
+#: docs/curriculum.md:159
+msgctxt "s-46de323b0b4c-0109"
+msgid "⟦SEP_0001⟧ Dimension ⟦SEP_0002⟧ A score of 2 needs ⟦SEP_0003⟧ Used in ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ Dimensión ⟦SEP_0002⟧ Una puntuación de 2 requiere ⟦SEP_0003⟧ Se usa en ⟦SEP_0004⟧"
+
+#: docs/curriculum.md:161
+msgctxt "s-cbe0e8c9f157-0110"
+msgid "⟦SEP_0001⟧ Trace and prediction ⟦SEP_0002⟧ A hand trace, and a prediction committed before the run. The write-up says where the run differed. ⟦SEP_0003⟧ L, C ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ Traza y predicción ⟦SEP_0002⟧ Una traza a mano y una predicción registrada antes de la ejecución. El informe indica dónde difirió la ejecución. ⟦SEP_0003⟧ L, C ⟦SEP_0004⟧"
+
+#: docs/curriculum.md:162
+msgctxt "s-26ca0511d4eb-0111"
+msgid "⟦SEP_0001⟧ Evidence ⟦SEP_0002⟧ Every claim cites a command or a source line. A negative control shows that the claim can fail. ⟦SEP_0003⟧ L, C, P ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ Evidencia ⟦SEP_0002⟧ Cada afirmación cita un comando o una línea de código fuente. Un control negativo muestra que la afirmación puede fallar. ⟦SEP_0003⟧ L, C, P ⟦SEP_0004⟧"
+
+#: docs/curriculum.md:163
+msgctxt "s-59f745b3597a-0112"
+msgid "⟦SEP_0001⟧ Assurance label ⟦SEP_0002⟧ Guaranteed, implementation-permitted or accidentally exploited, with the specification or implementation named. ⟦SEP_0003⟧ L, C, P ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ Grado de garantía ⟦SEP_0002⟧ Garantizado, permitido por la implementación o aprovechado por accidente, con la especificación o la implementación nombrada. ⟦SEP_0003⟧ L, C, P ⟦SEP_0004⟧"
+
+#: docs/curriculum.md:164
+msgctxt "s-b8d3800dd25c-0113"
+msgid "⟦SEP_0001⟧ Mechanism ⟦SEP_0002⟧ The five questions are answered: what plays the loop, the state, the clock, the decision and the commit. ⟦SEP_0003⟧ L, C ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ Mecanismo ⟦SEP_0002⟧ Las cinco preguntas tienen respuesta: qué hace de bucle, qué hace de estado, qué hace de reloj, qué hace de decisión y qué hace de confirmación. ⟦SEP_0003⟧ L, C ⟦SEP_0004⟧"
+
+#: docs/curriculum.md:165
+msgctxt "s-eb1b8c908f41-0114"
+msgid "⟦SEP_0001⟧ Reproducibility ⟦SEP_0002⟧ A stranger can follow the steps and get the same result. Versions and inputs are pinned. ⟦SEP_0003⟧ C, P ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ Reproducibilidad ⟦SEP_0002⟧ Una persona ajena puede seguir los pasos y obtener el mismo resultado. Las versiones y las entradas de datos están fijadas. ⟦SEP_0003⟧ C, P ⟦SEP_0004⟧"
+
+#: docs/curriculum.md:166
+msgctxt "s-964cdca1b9df-0115"
+msgid "⟦SEP_0001⟧ Tradeoffs ⟦SEP_0002⟧ The write-up says what the design costs and when to avoid it. It compares by more than line count. ⟦SEP_0003⟧ C ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ Ventajas y desventajas ⟦SEP_0002⟧ El informe dice qué costo tiene el diseño y cuándo evitarlo. Compara por algo más que el número de líneas. ⟦SEP_0003⟧ C ⟦SEP_0004⟧"
+
+#: docs/curriculum.md:167
+msgctxt "s-e6433ecacd4d-0116"
+msgid "⟦SEP_0002⟧ Safety ⟦SEP_0003⟧ The source was read first. Every run was in the sandbox, on ⟦DNT_0001⟧ data. ⟦SEP_0004⟧ L, C, P ⟦SEP_0005⟧"
+msgstr "⟦SEP_0002⟧ Seguridad ⟦SEP_0003⟧ Primero se leyó el código fuente. Todas las ejecuciones se hicieron en el entorno aislado (*sandbox*), un espacio separado del sistema real, con datos ⟦DNT_0001⟧. ⟦SEP_0004⟧ L, C, P ⟦SEP_0005⟧"
+
+#: docs/curriculum.md:169
+msgctxt "s-085950519a5d-0117"
+msgid "The prediction log uses the four dimensions marked L, 2 points each, so one entry is worth 8 points. The capstone uses all seven. The peer review is scored on the reviewer's report, using the dimensions marked P. The report also names one thing the classmate's program can cause that the author did not state."
+msgstr "La bitácora de predicciones usa las cuatro dimensiones marcadas con L, de 2 puntos cada una, así que una entrada vale 8 puntos. El proyecto final usa todas las dimensiones, las siete. La revisión entre pares se califica según el informe del revisor, con las dimensiones marcadas con P. El informe también nombra una cosa que el programa del compañero de clase puede causar y que el autor no indicó."
+
+#: docs/curriculum.md:171
+msgctxt "s-c8b058a30213-0118"
+msgid "Self-taught readers can keep the same order and drop the weights. Replace the peer review with a post to a friend or a forum. Ask them to find what your program can cause."
+msgstr "Los lectores autodidactas pueden mantener el mismo orden y quitar los pesos. Sustituye la revisión por pares por una publicación a un amigo o a un foro. Pídeles que encuentren lo que tu programa puede causar."
+
+#: docs/curriculum.md:173
+msgctxt "s-b073f6c68ef8-0119"
+msgid "Scope"
+msgstr "Ámbito"
+
+#: docs/curriculum.md:175
+msgctxt "s-84e12a652ade-0120"
+msgid "This document is a plan. It does not change the [book](⟦DEST_0001⟧), the [study guides](⟦DEST_0002⟧), the [challenge](⟦DEST_0003⟧), the exercises or the solutions. The source and the sample programs are in the [repository's README](⟦DEST_0004⟧)."
+msgstr "Este documento es un plan. No cambia el [libro](⟦DEST_0001⟧), las [guías de estudio](⟦DEST_0002⟧), el [reto](⟦DEST_0003⟧), los ejercicios ni las soluciones. El código fuente y los programas de ejemplo están en el [README del repositorio](⟦DEST_0004⟧)."
