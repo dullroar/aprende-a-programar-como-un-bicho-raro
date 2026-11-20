@@ -20,3 +20,4 @@
 - The Write and Edit tools decode \uXXXX escapes and normalize NBSP and combining marks; build special characters with chr() in a script under translation/work/ and run `python3 -I tools/fixture_check.py` after touching tests/fixtures/.
 - After adding a new directory of Spanish-owned files, add its prefix to OWNED_PREFIXES in tools/inventory.py and run `python3 tools/inventory.py --check` before committing.
 - Build masking regexes with named groups (never numbered backreferences) and unmask in one non-recursive pass; run `python3 -I tools/test_mask.py` after touching tools/mask.py.
+- Add every new locale key to BOTH lessons/book/locale/en.yaml and es.yaml in the same commit, then run `python3 -I lessons/book/locale/catalog.py --check es en` and `python3 -I tools/test_catalog.py`; never name a package `locale` (it shadows the stdlib), import catalog.py by putting its directory on sys.path.

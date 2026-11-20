@@ -59,3 +59,7 @@ phases:
     question: "¿Cuándo el código es solo datos?"
     definition: "El código tratado como datos: octetos que otro programa lee, copia o ejecuta."
     mermaid_node_id: D
+
+diagrams:
+  # lessons/book/diagrams.py SECTION: the exact heading the diagram check requires.
+  section: "Flujo del programa"

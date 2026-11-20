@@ -1,0 +1,57 @@
+# lessons/book/locale/en.yaml: English mirror of the locale catalog (data only; no logic).
+#
+# Every key here must exist in es.yaml and vice versa (lessons/book/locale/catalog.py --check).
+# The values are the English literals the publication tooling carries today, so the English
+# tooling can run against this catalog and produce the same output as before.
+# Add a key to BOTH files in the same commit.
+
+acronym:
+  word: WEIRD
+  expansion: "Weird Execution, Indirect Results and Data"
+  recursive_letter: "{{phase.1.letter}}"
+  recursive_note: "The {{phase.1.letter}} is recursive."
+  gloss: "**{{acronym.word}}** stands for **Weird Execution, Indirect Results and Data**. The {{phase.1.letter}} is recursive."
+  aside: "{{acronym.word}} stands for **Weird Execution, Indirect Results and Data**. It does not, of course."
+  trace: "The rest gives you something to trace: what executes, where the result turns up and what the program gets away with treating as data."
+  phases_note: "The five letters also give the course its five phases."
+
+phases:
+  - n: 1
+    letter: W
+    name: Weird
+    weeks: "1 to 2"
+    question: "What can it cause?"
+    definition: "A weird program solves the challenge with a mechanism nobody designed for it."
+    mermaid_node_id: W
+  - n: 2
+    letter: E
+    name: Execution
+    weeks: "3 to 6"
+    question: "What moves it forward?"
+    definition: "The run itself: which instruction executes now and what pushes it to the next one."
+    mermaid_node_id: E
+  - n: 3
+    letter: I
+    name: Indirect
+    weeks: "7 to 10"
+    question: "Who demands the work?"
+    definition: "The work is not asked for head on: another piece demands it, delays it or hands it out."
+    mermaid_node_id: I
+  - n: 4
+    letter: R
+    name: Results
+    weeks: "11 to 13"
+    question: "What survives failure?"
+    definition: "The outcomes: what is left when something fails and where the evidence turns up."
+    mermaid_node_id: R
+  - n: 5
+    letter: D
+    name: Data
+    weeks: "14 to 15"
+    question: "When is code just data?"
+    definition: "Code treated as data: bytes that another program reads, copies or runs."
+    mermaid_node_id: D
+
+diagrams:
+  # lessons/book/diagrams.py SECTION: the exact heading the diagram check requires.
+  section: "Program Flow"
