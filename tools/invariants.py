@@ -247,12 +247,25 @@ def i2(src, target):
     return [Finding("I2", "", p) for p in mask.check_placeholders(src.masked, target)]
 
 
+COMPARE_RE = re.compile(r"[≤≥<>≠]")
+
+
+def _signs(text):
+    return text.replace("<=", "≤").replace(">=", "≥").replace("!=", "≠")
+
+
 def i3(src, target):
     a, b = numbers(src.masked), numbers(target)
     out = []
     for tok in sorted(set(a) | set(b)):
         if a[tok] != b[tok]:
             out.append(Finding("I3", "", "digit token %s appears %d time(s) in the source, %d in the target" % (tok, a[tok], b[tok])))
+    # a comparison sign written in prose or in a diagram label ("total ≤ 40") is a boundary: < for ≤ moves the stop rule
+    # (words may replace a sign, so only a sign the source does not have as often is refused)
+    ca, cb = Counter(COMPARE_RE.findall(_signs(src.masked))), Counter(COMPARE_RE.findall(_signs(target)))
+    for sign in sorted(cb):
+        if cb[sign] > ca[sign]:
+            out.append(Finding("I3", "", "comparison sign %s appears %d time(s) in the target, %d in the source" % (sign, cb[sign], ca[sign])))
     return out
 
 
@@ -526,6 +539,11 @@ def i14(src, target, ctx, raw=None):
                 continue
             if re.search(r"(?<![\w\-])%s\s*:\s*[A-ZÁÉÍÓÚÑ]|\bfase\s*=\s*%s\b" % (re.escape(en_letter), re.escape(en_letter)), raw_text):
                 out.append(Finding("I14", "", "English phase letter '%s' kept as a label (use the phase macros)" % en_letter))
+            # a bare English phase letter that the source also wrote bare ("starts at W again"), kept as it was
+            # (a letter that also starts an exercise ID, such as the section D, is ambiguous and skipped)
+            bare = r"(?<![\w\-/.])%s(?![\w\-/])" % re.escape(en_letter)
+            if en_letter not in ctx.exercise_prefixes and re.search(bare, src_text) and re.search(bare, raw_text):
+                out.append(Finding("I14", "", "English phase letter '%s' survives in prose (use {{phase.%d.letter}})" % (en_letter, k)))
     return out
 
 

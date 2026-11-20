@@ -50,6 +50,11 @@ frozen:
       - "al menos 40"
       - "alcanza 40"
       - "llega a 40"
+      - "llegue a 40"
+      - "llegar a 40"
+      - "alcance 40"
+      - "alcanzar 40"
+      - "menor que 40"
   assurance_labels:
     note: >-
       Labels attach to a masculine noun (comportamiento garantizado) or stand alone as labels, so gender

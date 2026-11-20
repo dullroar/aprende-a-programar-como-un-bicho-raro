@@ -82,7 +82,7 @@ msgstr "El semestre como algoritmo"
 #: docs/curriculum.md:28
 msgctxt "s-30913e972320-0012"
 msgid "The course follows the rules it teaches. No counter variable drives it. The phase is the state, as in the programs you will read. A review at the end decides whether to stop. If it fails, the second pass starts at W again."
-msgstr "El curso sigue las reglas que enseña. Ninguna variable contador lo controla. La fase es el estado, como en los programas que leerás. Una revisión al final decide si se detiene. Si no la supera, la segunda pasada vuelve a empezar en W."
+msgstr "El curso sigue las reglas que enseña. Ninguna variable contador lo controla. La fase es el estado, como en los programas que leerás. Una revisión al final decide si se detiene. Si no la supera, la segunda pasada vuelve a empezar en {{phase.1.letter}}."
 
 #: docs/curriculum.md:32
 msgctxt "s-87098cdbcda6-0013"
@@ -162,7 +162,7 @@ msgstr "Detente e informa la brecha"
 #: docs/curriculum.md:44
 msgctxt "s-cb74108ca57e-0028"
 msgid "The W is recursive. In the first pass you read other people's programs. In the second pass you read your own."
-msgstr "La W es recursiva. En la primera pasada lees programas de otras personas. En la segunda pasada lees tus propios programas."
+msgstr "La {{phase.1.letter}} es recursiva. En la primera pasada lees programas de otras personas. En la segunda pasada lees tus propios programas."
 
 #: docs/curriculum.md:46
 msgctxt "s-2abc98d86fc5-0029"

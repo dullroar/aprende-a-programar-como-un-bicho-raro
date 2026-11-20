@@ -255,8 +255,9 @@ def check_jsonl(path):
 def negative_problems():
     """The negative fixtures of plan 10.2: the control is clean and every mutation makes its gate fail (tools/negative.py).
     A gate that stopped failing is a disarmed gate, and a release with a disarmed gate is not a release."""
+    import breakage_pilot
     import negative
-    return negative.run_all()
+    return negative.run_all() + breakage_pilot.run_all()
 
 
 def check_counts(root, expected=EXPECTED_COUNTS):

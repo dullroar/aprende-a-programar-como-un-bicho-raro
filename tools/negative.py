@@ -168,11 +168,10 @@ def file_fixture(es_edit=None, after=None, en_edit=None, po_edit=None, ctx_edit=
     return run
 
 
-def lock_problems(mutate):
+def lock_problems(mutate, rel="src/forth/timecards.fs"):
     """check_lock on a one-file mini repo: a real frozen file and its row of translation/locked-code.sha256."""
     import lock_code
     import verify
-    rel = "src/forth/timecards.fs"
     root = os.path.join(WORK, "lock")
     shutil.rmtree(root, ignore_errors=True)
     for r in (rel, lock_code.MANIFEST):

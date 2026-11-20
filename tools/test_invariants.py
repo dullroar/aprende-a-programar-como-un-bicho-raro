@@ -154,6 +154,16 @@ class TestI3(Base):
     def test_macro_digits_do_not_count(self):
         self.assertClean(self.run_seg("The W is recursive.", "La {{phase.1.letter}} es recursiva."))
 
+    def test_fail_comparison_sign_changes(self):
+        # "≤ 40" written "< 40" moves the stop rule: exactly 40 would stop
+        self.assertFires(self.run_seg("Alive: total ≤ 40?", "¿Vivo: total < 40?"), "I3")
+        self.assertFires(self.run_seg("Alive: total ≤ 40?", "¿Vivo: total ≥ 40?"), "I3")
+
+    def test_comparison_sign_kept_or_put_in_words_is_clean(self):
+        self.assertClean(self.run_seg("Alive: total ≤ 40?", "¿Vivo: total ≤ 40?"))
+        self.assertClean(self.run_seg("The flag is -1 while total <= 40.", "La bandera es -1 mientras el total no pasa de 40."))
+        self.assertClean(self.run_seg("The flag is -1 while total <= 40.", "La bandera es -1 mientras total ≤ 40."))
+
     def test_waived_by_exception(self):
         s = first(self.SRC)
         ctx = make_ctx(exceptions={(s.id, "I3")})
@@ -563,6 +573,17 @@ class TestI14(Base):
     def test_fail_english_letter_kept_as_label(self):
         self.assertFires(self.run_seg("The first phase is odd.", "W: Raro, semanas 1 a 2, es la primera."), "I14")
         self.assertFires(self.run_seg("Start: phase = W", "Inicio: fase = W"), "I14")
+
+    def test_fail_bare_english_letter_in_prose(self):
+        self.assertFires(self.run_seg("If it fails, the second pass starts at W again.",
+                                      "Si no la supera, la segunda pasada vuelve a empezar en W."), "I14")
+        self.assertFires(self.run_seg("The W is recursive.", "La W es recursiva."), "I14")
+
+    def test_bare_letter_check_skips_what_the_source_never_wrote_and_exercise_sections(self):
+        self.assertClean(self.run_seg("If it fails, the second pass starts at W again.",
+                                      "Si no la supera, la segunda pasada vuelve a empezar en {{phase.1.letter}}."))
+        self.assertClean(self.run_seg("Pick one of the D section.", "Elige uno de la sección D.", exercise_prefixes=["D", "E"]))
+        self.assertFires(self.run_seg("Pick one of the D section.", "Elige uno de la sección D.", exercise_prefixes=["B"]), "I14")
 
     def test_english_letter_check_has_no_false_positive_on_macros(self):
         self.assertClean(self.run_seg("Start: phase = W", "Inicio: fase = {{phase.1.letter}}"))

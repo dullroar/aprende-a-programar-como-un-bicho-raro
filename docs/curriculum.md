@@ -25,7 +25,7 @@ Necesitas un lenguaje que conozcas bien, una terminal y un entorno de ejecución
 
 ## El semestre como algoritmo
 
-El curso sigue las reglas que enseña. Ninguna variable contador lo controla. La fase es el estado, como en los programas que leerás. Una revisión al final decide si se detiene. Si no la supera, la segunda pasada vuelve a empezar en W.
+El curso sigue las reglas que enseña. Ninguna variable contador lo controla. La fase es el estado, como en los programas que leerás. Una revisión al final decide si se detiene. Si no la supera, la segunda pasada vuelve a empezar en B.
 
 ```mermaid
 flowchart TD
@@ -41,7 +41,7 @@ flowchart TD
     C -- "no, segunda pasada" --> G(["Detente e informa la brecha"])
 ```
 
-La W es recursiva. En la primera pasada lees programas de otras personas. En la segunda pasada lees tus propios programas.
+La B es recursiva. En la primera pasada lees programas de otras personas. En la segunda pasada lees tus propios programas.
 
 El bucle tiene un límite. Una segunda revisión fallida termina el curso con un informe escrito de la brecha. Una afirmación fallida, reportada con honestidad, es un resultado.
 
