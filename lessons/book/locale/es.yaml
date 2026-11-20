@@ -197,3 +197,15 @@ cs:
   study_guides_intro: "Guías escritas a mano para lectores avanzados: trazas de una ejecución fija, predicciones antes de ejecutar y evidencia. Son un documento aparte del libro. Mira [las guías de estudio](study-guides/README.md)."
   study_guides_languages: "Familias de lenguajes"
   study_guides_concepts: "Conceptos"
+
+# lessons/curriculum/build.py: the words its checks depend on (the acronym and phase letters come from the acronym and phases blocks).
+curriculum:
+  # Longest descriptive sentence, in words. Same value as sentence_word_limit_N in loop/CONFIG.yaml (house-style.es.md rule 2);
+  # recalibrate both together after the pilot. A whole number written as text (the catalog mirror check requires structural integers to be equal in both files).
+  max_words: "28"
+  # The printed chapter label in table links: "[Cap. 4](../lessons/cs/...)".
+  chapter_label: "Cap."
+  # House style rule 3: the register is tú, so the formal "usted" and the voseo and vosotros forms are refused.
+  register_pattern: "\\b(?:usted|vos|vosotros|vosotras|vuestr[oa]s?)\\b"
+  # A maintainer diagnostic, not book text: it names the problem in a check report.
+  register_label: "register slip (usted, vos or vosotros; the register is tú)"

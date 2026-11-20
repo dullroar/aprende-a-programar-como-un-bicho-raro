@@ -6,6 +6,9 @@
     python lessons/curriculum/build.py --check    # lint the curriculum, build the HTML and verify every internal link resolves
     python lessons/curriculum/build.py --artifacts-dir DIR   # write the PDF and EPUB to DIR (used to test reproducibility)
 
+The words the checks depend on come from the locale catalog (lessons/book/locale/<lang>.yaml): the printed chapter label ("Ch" or "Cap."),
+the sentence limit, the register rule, and the acronym, the phase letters and their weeks. The language is BOOK_LANG (default "en").
+
 The curriculum is one hand-written Markdown file. This script does not write prose. It only
   * checks it with check_curriculum() below (links, the one diagram, the plan, the house style and the length), and
   * gives it to the book's own pipeline, lessons/book/build.py, which does the link rewriting, the Mermaid rendering, the Pandoc call,
@@ -14,7 +17,7 @@ The curriculum is one hand-written Markdown file. This script does not write pro
 
 A link from the curriculum to a chapter, a study guide or an exercise becomes its GitHub URL, because those are different documents.
 """
-import importlib.util, os, re, shutil, subprocess, sys
+import importlib.util, os, re, shutil, subprocess, sys, unicodedata
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 LESSONS = os.path.dirname(HERE)
@@ -22,14 +25,52 @@ REPO = os.path.dirname(LESSONS)
 BOOKDIR = os.path.join(LESSONS, "book")
 SOURCE = os.path.join(REPO, "docs", "curriculum.md")
 sys.path.insert(0, BOOKDIR)
-import diagrams, study_guides
+sys.path.insert(0, os.path.join(BOOKDIR, "locale"))     # never name a package `locale`: it would shadow the stdlib module
+import catalog, diagrams, study_guides
 
 STEM = "curriculum"
 HTML = "curriculum.html"
 CHAPTER = "../docs/curriculum.md"     # relative to lessons/, as the book's link rewriting expects
 WEEKS = 16
 TARGET_PAGES, MAX_PAGES = 8, 12       # the plan: aim for about 8 pages in the whole PDF, never more than 12 (the rubric and the log template added two)
-MAX_WORDS = 25                        # Simplified Technical English: at most 25 words in a descriptive sentence
+ENGLISH_ACRONYM = "WEIRD"             # the source edition's acronym; a translated edition must not keep it
+# The words of the checks come from the catalog (block curriculum, plus acronym and phases). `set_language` switches them, for example in tests.
+#   MAX_WORDS       the longest descriptive sentence (Simplified Technical English)    CHAPTER_LABEL  "Ch" or "Cap." in "[Ch 4](...)"
+#   REGISTER        the pattern of forbidden register forms, and REGISTER_LABEL its name in a problem
+#   ACRONYM, GLOSS, PHASES_NOTE   the sentences that state the acronym             PHASES  (letter, Mermaid node id, first week, last week)
+LANG = MAX_WORDS = CHAPTER_LABEL = REGISTER = REGISTER_LABEL = ACRONYM = GLOSS = PHASES_NOTE = PHASES = None
+WORD_KEYS = ["curriculum.max_words", "curriculum.chapter_label", "curriculum.register_pattern", "curriculum.register_label",
+             "acronym.word", "acronym.gloss", "acronym.phases_note"]
+
+def norm(text):
+    """One normal form for comparing text with catalog words: NFC, one space for each run of white space."""
+    return " ".join(unicodedata.normalize("NFC", text).split())
+
+def set_language(lang):
+    """Load the curriculum words of `lang` into the module constants. All or nothing: a missing or malformed key leaves the old language."""
+    global LANG, MAX_WORDS, CHAPTER_LABEL, REGISTER, REGISTER_LABEL, ACRONYM, GLOSS, PHASES_NOTE, PHASES
+    cat = catalog.load(lang)
+    letters = cat.phase_letters()
+    cat.require(WORD_KEYS + [f"phases.{n}.{f}" for n in range(1, len(letters) + 1) for f in ("mermaid_node_id", "weeks")])
+    if len(letters) != 5:
+        raise catalog.CatalogError(f"the catalog must define 5 phases, it defines {len(letters)}")
+    phases = []
+    for n, letter in enumerate(letters, 1):
+        weeks = [int(w) for w in re.findall(r"\d+", cat.get(f"phases.{n}.weeks"))]
+        if len(weeks) != 2 or weeks[0] > weeks[1]:
+            raise catalog.CatalogError(f"phases.{n}.weeks must name a first and a last week")
+        phases.append((letter, cat.get(f"phases.{n}.mermaid_node_id"), weeks[0], weeks[1]))
+    limit = cat.text("curriculum.max_words").strip()
+    if not limit.isdigit() or int(limit) < 1:
+        raise catalog.CatalogError("curriculum.max_words must be a positive whole number")
+    limit = int(limit)
+    pattern = re.compile(cat.text("curriculum.register_pattern"), re.I)
+    values = (lang, limit, norm(cat.text("curriculum.chapter_label")), pattern, cat.text("curriculum.register_label"),
+              cat.text("acronym.word"), norm(cat.text("acronym.gloss")), norm(cat.text("acronym.phases_note")), tuple(phases))
+    LANG, MAX_WORDS, CHAPTER_LABEL, REGISTER, REGISTER_LABEL, ACRONYM, GLOSS, PHASES_NOTE, PHASES = values
+    study_guides.set_language(lang)      # last, so that nothing above can fail after it has switched
+
+set_language(os.environ.get("BOOK_LANG", "en"))
 
 def load_book_build():
     sys.dont_write_bytecode = True      # importing the book's build must not rewrite a __pycache__ file
@@ -49,6 +90,7 @@ def prose_sentences(text):
         line = re.sub(r"^\s*(?:[-*]|\d+\.)\s+", "", line)
         line = re.sub(r"\[([^\]]*)\]\([^)]*\)", r"\1", line)       # keep the label, drop the target
         line = re.sub(r"[*_`]", "", line)
+        line = re.sub(re.escape(CHAPTER_LABEL) + r"(?= \d)", CHAPTER_LABEL.replace(".", ""), line)   # "Cap. 4" is not the end of a sentence
         out += [s.strip() for s in re.split(r"(?<=[.!?])\s+", line) if s.strip()]
     return out
 
@@ -75,12 +117,44 @@ def check_curriculum(text=None, repo=REPO):
         if not re.search(r"flowchart|stateDiagram", src.split("\n", 1)[0]):
             add("the diagram must be a flowchart or a state diagram")
 
-    # printed chapter numbers: "Ch N" must be the chapter's number in the printed book (chapters.txt order, numbered from 1)
+    # the acronym and its five phases: the sentences, the table rows and the diagram nodes all use the catalog's letters, so an English
+    # letter that survived translation fails (the Mermaid node ids never change; only the displayed labels do)
+    flat = norm(text)
+    for what, sentence in (("acronym sentence", GLOSS), ("phases sentence", PHASES_NOTE)):
+        if sentence not in flat:
+            add(f"the {what} is missing; it must read exactly: {sentence}")
+    if ACRONYM != ENGLISH_ACRONYM and re.search(r"\b" + ENGLISH_ACRONYM + r"\b", text):
+        add(f"the English acronym {ENGLISH_ACRONYM} survives; this edition's acronym is {ACRONYM}")
+    letters = [p[0] for p in PHASES]
+    rows = re.findall(r"^\| \| \*\*([^:*|]+): ", text, re.M)
+    if rows != letters:
+        add(f"the week-by-week table must have the phase rows {letters} in order; it has {rows}")
+    phase, first_week_of = None, {}
+    for line in text.splitlines():
+        row = re.match(r"^\| \| \*\*([^:*|]+): ", line)
+        week = re.match(r"^\| (\d+) \|", line)
+        if row:
+            phase = row.group(1)
+        elif week and phase in letters:
+            _, _, lo, hi = PHASES[letters.index(phase)]
+            if int(week.group(1)) <= PHASES[-1][3] and not lo <= int(week.group(1)) <= hi:     # the review week after the last phase has no phase
+                add(f"week {week.group(1)} is under phase {phase}, which covers weeks {lo} to {hi}")
+    for letter, node, _, _ in PHASES:
+        label = re.search(r"\b" + re.escape(node) + r'\["([^":]+):', "\n".join(src for _, _, src in blocks))
+        if not label:
+            add(f"the diagram has no node '{node}' with a label that starts with the phase letter")
+        elif label.group(1) != letter:
+            add(f"diagram node {node} is labeled with the letter {label.group(1)!r}; the phase letter is {letter!r}")
+
+    # printed chapter numbers: "Ch N" (the catalog's chapter label) must be the chapter's number in the printed book (chapters.txt order, numbered from 1)
     order = [l.strip() for l in study_guides.read(os.path.join(BOOKDIR, "chapters.txt")).splitlines() if l.strip() and not l.startswith("#")]
-    for m in re.finditer(r"\[Ch (\d+)\]\(\.\./lessons/(cs/[^)#]+)", text):
+    for m in re.finditer(r"\[" + re.escape(CHAPTER_LABEL) + r" (\d+)\]\(\.\./lessons/(cs/[^)#]+)", text):
         want = order.index(m.group(2)) + 1 if m.group(2) in order else None
         if want != int(m.group(1)):
-            add(f"'Ch {m.group(1)}' links to {m.group(2)}, which is chapter {want} of the printed book")
+            add(f"'{CHAPTER_LABEL} {m.group(1)}' links to {m.group(2)}, which is chapter {want} of the printed book")
+    for m in re.finditer(r"\[(\w+\.?) (\d+)\]\(\.\./lessons/cs/", text):
+        if m.group(1) != CHAPTER_LABEL:
+            add(f"chapter link labeled '{m.group(1)} {m.group(2)}'; this edition writes '{CHAPTER_LABEL} {m.group(2)}'")
     # the diagram's arrows must land on a node, not on the box around the nodes
     for _, _, src in blocks:
         for box in re.findall(r"^\s*subgraph\s+(\w+)", src, re.M):
@@ -113,8 +187,8 @@ def check_curriculum(text=None, repo=REPO):
         n = len(s.split())
         if n > MAX_WORDS:
             add(f"sentence of {n} words (the limit is {MAX_WORDS}): {s[:70]}...")
-        if re.search(r"\b\w+n't\b|\b(?:it|we|you|they|that|there)'(?:s|re|ve|ll|d)\b", s, re.I):
-            add(f"contraction in body prose: {s[:70]}...")
+        if REGISTER.search(s):
+            add(f"{REGISTER_LABEL} in body prose: {s[:70]}...")
     for ch, name in (("—", "em dash"), ("–", "en dash"), ("“", "curly quote"), ("’", "curly apostrophe")):
         if ch in text:
             add(f"contains a {name}; house style types straight quotes and breaks the sentence instead of using a dash")

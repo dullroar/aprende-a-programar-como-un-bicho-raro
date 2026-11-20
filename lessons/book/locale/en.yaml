@@ -187,3 +187,13 @@ cs:
   study_guides_intro: "Hand-written guides for advanced readers: traces of a fixed run, predictions before execution, and evidence. They are a separate document from the book. See [the study guides](study-guides/README.md)."
   study_guides_languages: "Language families"
   study_guides_concepts: "Concepts"
+
+# lessons/curriculum/build.py: the words its checks depend on (the acronym and phase letters come from the acronym and phases blocks).
+curriculum:
+  # Longest descriptive sentence, in words (Simplified Technical English). A whole number written as text (the catalog mirror check requires structural integers to be equal in both files).
+  max_words: "25"
+  # The printed chapter label in table links: "[Ch 4](../lessons/cs/...)".
+  chapter_label: "Ch"
+  # Regular expression (case-insensitive) for register forms the body prose must not use, and its name in a problem report.
+  register_pattern: "\\b\\w+n't\\b|\\b(?:it|we|you|they|that|there)'(?:s|re|ve|ll|d)\\b"
+  register_label: "contraction"
