@@ -1,0 +1,143 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lessons/cs-source/concepts/recursion.md:2
+msgctxt "s-37476e82bdae-0000"
+msgid "Recursion"
+msgstr "Recursión"
+
+#: lessons/cs-source/concepts/recursion.md:6
+msgctxt "s-bdf2d59948a5-0001"
+msgid "A recursive definition uses itself. A function calls itself on a smaller problem until the problem is so small that the answer is obvious. It exists because many things are naturally nested: trees, folders, grammars, arithmetic expressions. Loops and recursion are equally powerful, and functional languages use recursion instead of loops. Several entries here recurse in disguise. In ⟦MACRO_0001⟧ a macro whose replacement text contains itself is read again, which makes a loop. In ⟦MACRO_0002⟧ a database trigger inserts a row, which fires the same trigger again. The stop rule is a query that finds nothing."
+msgstr "Una definición recursiva se usa a sí misma. Una función se llama a sí misma sobre un problema más pequeño, hasta que el problema es tan pequeño que la respuesta es obvia. La recursión existe porque muchas cosas son anidadas por naturaleza: árboles, carpetas, gramáticas, expresiones aritméticas. Los bucles y la recursión son igual de potentes, y los lenguajes funcionales usan recursión en lugar de bucles. Varias entradas de aquí son recursivas sin parecerlo. En ⟦MACRO_0001⟧, una macro cuyo texto de reemplazo se contiene a sí mismo se lee de nuevo, lo que produce un bucle. En ⟦MACRO_0002⟧, un disparador de base de datos inserta una fila, lo que activa de nuevo el mismo disparador. La regla de parada es una consulta que no encuentra nada."
+
+#: lessons/cs-source/concepts/recursion.md:10
+msgctxt "s-aecab4bcff3f-0002"
+msgid "Recursion moves toward a base case, then unwinds with the accumulated results"
+msgstr "La recursión avanza hacia un caso base y luego retrocede con los resultados acumulados"
+
+#: lessons/cs-source/concepts/recursion.md:11
+msgctxt "s-552f3a07498a-0003"
+msgid "Two columns for sum of 3. The left column, read downward, shows the calls moving inward. Sum of 3 calls sum of 2, which calls sum of 1, which calls sum of 0. Sum of 0 is the base case and returns 0 without calling anything. The right column, read upward, shows the results coming back outward. Sum of 1 is 1 plus 0, which is 1. Sum of 2 is 2 plus 1, which is 3. Sum of 3 is 3 plus 3, which is 6."
+msgstr "Dos columnas para la suma de 3. La columna izquierda, leída hacia abajo, muestra las llamadas que avanzan hacia adentro. La suma de 3 llama a la suma de 2, que llama a la suma de 1, que llama a la suma de 0. La suma de 0 es el caso base y devuelve 0 sin llamar a nada. La columna derecha, leída hacia arriba, muestra los resultados que vuelven hacia afuera. La suma de 1 es 1 más 0, que es 1. La suma de 2 es 2 más 1, que es 3. La suma de 3 es 3 más 3, que es 6."
+
+#: lessons/cs-source/concepts/recursion.md:12
+msgctxt "s-8dd24cf06d85-0004"
+msgid "Calls go down"
+msgstr "Las llamadas bajan"
+
+#: lessons/cs-source/concepts/recursion.md:14
+msgctxt "s-f9a809663175-0005"
+msgid "sum(3)"
+msgstr "sum(3)"
+
+#: lessons/cs-source/concepts/recursion.md:14
+msgctxt "s-f46f5990ebfa-0006"
+msgid "calls"
+msgstr "llama a"
+
+#: lessons/cs-source/concepts/recursion.md:14
+msgctxt "s-c2e58a0570a2-0007"
+msgid "sum(2)"
+msgstr "sum(2)"
+
+#: lessons/cs-source/concepts/recursion.md:14
+msgctxt "s-f46f5990ebfa-0008"
+msgid "calls"
+msgstr "llama a"
+
+#: lessons/cs-source/concepts/recursion.md:14
+msgctxt "s-fb832f2380a2-0009"
+msgid "sum(1)"
+msgstr "sum(1)"
+
+#: lessons/cs-source/concepts/recursion.md:14
+msgctxt "s-f46f5990ebfa-0010"
+msgid "calls"
+msgstr "llama a"
+
+#: lessons/cs-source/concepts/recursion.md:14
+msgctxt "s-890327322eb4-0011"
+msgid "sum(0): base case"
+msgstr "sum(0): caso base"
+
+#: lessons/cs-source/concepts/recursion.md:16
+msgctxt "s-3f8293389179-0012"
+msgid "Results come back up"
+msgstr "Los resultados suben de vuelta"
+
+#: lessons/cs-source/concepts/recursion.md:18
+msgctxt "s-48a5087cc297-0013"
+msgid "sum(0) = 0"
+msgstr "sum(0) = 0"
+
+#: lessons/cs-source/concepts/recursion.md:18
+msgctxt "s-153b2a38cb4a-0014"
+msgid "returns"
+msgstr "devuelve"
+
+#: lessons/cs-source/concepts/recursion.md:18
+msgctxt "s-f5450640866b-0015"
+msgid "sum(1) = 1 + 0 = 1"
+msgstr "sum(1) = 1 + 0 = 1"
+
+#: lessons/cs-source/concepts/recursion.md:18
+msgctxt "s-153b2a38cb4a-0016"
+msgid "returns"
+msgstr "devuelve"
+
+#: lessons/cs-source/concepts/recursion.md:18
+msgctxt "s-97457f9764ff-0017"
+msgid "sum(2) = 2 + 1 = 3"
+msgstr "sum(2) = 2 + 1 = 3"
+
+#: lessons/cs-source/concepts/recursion.md:18
+msgctxt "s-153b2a38cb4a-0018"
+msgid "returns"
+msgstr "devuelve"
+
+#: lessons/cs-source/concepts/recursion.md:18
+msgctxt "s-7eb071f4e26b-0019"
+msgid "sum(3) = 3 + 3 = 6"
+msgstr "sum(3) = 3 + 3 = 6"
+
+#: lessons/cs-source/concepts/recursion.md:23
+msgctxt "s-b8d70c63c2a3-0020"
+msgid "On the way down, each call hands a smaller problem to the next call. The base case, ⟦CODE_0001⟧, is the only call that answers without calling again. Without it the calls never stop. On the way up, each call finishes the work it was waiting to do. ⟦MACRO_0002⟧ shows where those waiting calls are kept."
+msgstr "Al bajar, cada llamada pasa un problema más pequeño a la siguiente llamada. El caso base, ⟦CODE_0001⟧, es la única llamada que responde sin volver a llamar. Sin él, las llamadas nunca se detienen. Al subir, cada llamada termina el trabajo que tenía pendiente. ⟦MACRO_0002⟧ muestra dónde se guardan esas llamadas en espera."
+
+#: lessons/cs-source/concepts/recursion.md:25
+msgctxt "s-cae0f6ae5a40-0021"
+msgid "**Use it when:** the data is nested, or the problem splits into smaller copies of itself."
+msgstr "**Úsala cuando:** los datos están anidados, o el problema se divide en copias más pequeñas de sí mismo."
+
+#: lessons/cs-source/concepts/recursion.md:26
+msgctxt "s-c303b149fd39-0022"
+msgid "**Avoid it when:** the depth is unbounded and the language does not remove tail calls. The stack can run out. Always know the stop rule, and know what happens if it never fires."
+msgstr "**Evítala cuando:** la profundidad no tiene límite y el lenguaje no elimina las llamadas de cola. La *pila* (*stack*) puede agotarse. Conoce siempre la regla de parada y sabe qué pasa si nunca se activa."
+
+#: lessons/cs-source/concepts/recursion.md:28
+msgctxt "s-250de292f56f-0023"
+msgid "**Read more:**"
+msgstr "**Lee más:**"
+
+#: lessons/cs-source/concepts/recursion.md:30
+msgctxt "s-55bc7e28d223-0024"
+msgid "[Recursion (computer science)](⟦DEST_0001⟧)) (Wikipedia)"
+msgstr "[Recursión (informática)](⟦DEST_0001⟧)) (Wikipedia)"
+
+#: lessons/cs-source/concepts/recursion.md:31
+msgctxt "s-ba85517b22b7-0025"
+msgid "[Tail call](⟦DEST_0001⟧) (Wikipedia)"
+msgstr "[Llamada final](⟦DEST_0001⟧) (Wikipedia)"
+
+#: lessons/cs-source/concepts/recursion.md:32
+msgctxt "s-232b9a6e545a-0026"
+msgid "[Recursion](⟦DEST_0001⟧) (MDN glossary)"
+msgstr "[Recursión](⟦DEST_0001⟧) (glosario de MDN)"

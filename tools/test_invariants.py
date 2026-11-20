@@ -271,6 +271,13 @@ class TestI7(Base):
         self.assertIn("funciones", inv.form_variants("función"))
         self.assertNotIn("tarjeta de horas", inv.form_variants("tarjetas"))
 
+    def test_feminine_forms_of_an_adjective_are_accepted(self):
+        self.assertIn("recursiva", inv.form_variants("recursivo"))
+        self.assertIn("recursivas", inv.form_variants("recursivo"))
+        self.assertIn("total acumulada", inv.form_variants("total acumulado"))
+        self.assertNotIn("recursivo", inv.form_variants("recursiva"))
+        self.assertNotIn("recursión", inv.form_variants("recursivo"))
+
     def test_plural_of_another_word_is_not_accepted(self):
         self.assertFires(self.run_seg("Two loops run.", "Dos ciclos corren."), "I7")
 

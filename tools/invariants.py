@@ -291,6 +291,13 @@ def form_variants(es):
         variants.add(" ".join([es_plural(words[0])] + words[1:]))
         if "de" not in words and len(words) > 1:
             variants.add(" ".join(es_plural(w) for w in words))
+    # Gender agreement of an adjective ending in -o: 'recursivo' -> 'recursiva', 'recursivas' (a feminine noun).
+    for v in list(variants):
+        w = v.split()
+        if w and w[-1].endswith("os"):
+            variants.add(" ".join(w[:-1] + [w[-1][:-2] + "as"]))
+        elif w and w[-1].endswith("o"):
+            variants.add(" ".join(w[:-1] + [w[-1][:-1] + "a"]))
     return variants
 
 
