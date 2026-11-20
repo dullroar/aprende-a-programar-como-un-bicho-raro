@@ -92,6 +92,33 @@ def publication_uuid(kind="book", base=None):
     return "urn:uuid:" + str(uuid.uuid5(uuid.NAMESPACE_URL, name))
 
 
+def other_editions():
+    """The repository addresses of every OTHER edition in the locale directory (the active language is left out)."""
+    out = set()
+    for name in sorted(os.listdir(os.path.join(HERE, "locale"))):
+        lang, ext = os.path.splitext(name)
+        if ext != ".yaml" or lang == LANG:
+            continue
+        try:
+            out.add(catalog.load(lang).text("identity.repo_url").rstrip("/"))
+        except (catalog.CatalogError, OSError):
+            continue                                    # a locale without an identity block has no address to guard
+    out.discard(DEFAULT_WEB_BASE.rstrip("/"))
+    return out
+
+
+def foreign_repo_links(html):
+    """Links of a built document (HTML text) that point into ANOTHER edition's repository, for example a Spanish PDF whose links
+    go to the English repository. Returns the sorted URLs; an empty list is good. A prefix match is made on a path boundary,
+    so `.../learn-programming-the-weird-way-extras` is not mistaken for `.../learn-programming-the-weird-way`."""
+    bad = set()
+    for url in re.findall(r'(?:href|src)\s*=\s*"([^"]+)"', html):
+        for base in other_editions():
+            if url == base or url.startswith(base + "/") or url.startswith(base + "#") or url.startswith(base + "?"):
+                bad.add(url)
+    return sorted(bad)
+
+
 def fill_placeholders(text, environ=None):
     """Replace the two placeholders the front-matter files use: {{REPOSITORY_WEB_URL}} and {{REPOSITORY_WEB_LABEL}}."""
     return text.replace("{{REPOSITORY_WEB_URL}}", web_base(environ)).replace("{{REPOSITORY_WEB_LABEL}}", label(environ))

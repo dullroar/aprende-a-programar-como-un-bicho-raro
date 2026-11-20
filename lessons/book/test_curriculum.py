@@ -108,6 +108,13 @@ class BrokenCurriculum(InLanguage):
         self.assertTrue(any("phase rows" in p for p in self.problems("| | **E: Execution**", "| | **X: Execution**")))
         self.assertTrue(any("labeled with the letter 'X'" in p for p in self.problems('E["E: Execution', 'E["X: Execution')))
 
+    def test_a_wrong_exercise_id_is_reported(self):
+        link = "[A1](../lessons/exercises.md#a1-read-the-rows-verified)"
+        self.assertEqual(self.problems(link, link), [])
+        self.assertTrue(any("an exercise ID must not change" in p for p in self.problems(link, link.replace("[A1]", "[Z9]"))))
+        self.assertTrue(any("exercise link 'A1' points at the heading of exercise B3" in p
+                            for p in self.problems(link, "[A1](../lessons/exercises.md#b3-forth-move-the-anchor-verified)")))
+
     def test_a_week_under_the_wrong_phase_is_reported(self):
         text = real()
         row = next(l for l in text.splitlines() if l.startswith("| 3 |"))

@@ -155,6 +155,10 @@ def check_curriculum(text=None, repo=REPO):
     for m in re.finditer(r"\[(\w+\.?) (\d+)\]\(\.\./lessons/cs/", text):
         if m.group(1) != CHAPTER_LABEL:
             add(f"chapter link labeled '{m.group(1)} {m.group(2)}'; this edition writes '{CHAPTER_LABEL} {m.group(2)}'")
+    # an exercise link's text is the exercise ID and the heading it points at starts with the same ID (the IDs never change in translation)
+    for m in re.finditer(r"\[([A-Z]\d+)\]\(\.\./lessons/exercises\.md#([a-z]\d+)-", text):
+        if m.group(1).lower() != m.group(2):
+            add(f"exercise link '{m.group(1)}' points at the heading of exercise {m.group(2).upper()}; an exercise ID must not change")
     # the diagram's arrows must land on a node, not on the box around the nodes
     for _, _, src in blocks:
         for box in re.findall(r"^\s*subgraph\s+(\w+)", src, re.M):

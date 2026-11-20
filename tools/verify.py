@@ -19,7 +19,8 @@ Fast (aims at well under 60 seconds):
   * the tests or checkers that belong to a touched tool, locale, glossary, prompt, fixture, DNT list,
     humor register or JSONL file.
 Release adds: every authored file with its complete PO (I16), the tooling report for all tooling files, the
-file counts of the plan (40 entry READMEs, 108 CS sources, 23 guide files), inventory --check, every
+file counts of the plan (40 entry READMEs, 108 CS sources, 23 guide files), inventory --check, the negative fixtures
+of plan 10.2 (tools/negative.py: the control is clean and every mutation makes its gate fail), every
 tools/test_*.py, the English repo gates (baseline.GATES) and a double build of the three release documents
 with identical hashes. A release that skipped the gates is INCOMPLETE (exit 3), never OK.
 
@@ -251,6 +252,13 @@ def check_jsonl(path):
     return out
 
 
+def negative_problems():
+    """The negative fixtures of plan 10.2: the control is clean and every mutation makes its gate fail (tools/negative.py).
+    A gate that stopped failing is a disarmed gate, and a release with a disarmed gate is not a release."""
+    import negative
+    return negative.run_all()
+
+
 def check_counts(root, expected=EXPECTED_COUNTS):
     import inventory
     totals = inventory.build_inventory(root)["totals"]
@@ -426,6 +434,7 @@ def run_release(root=ROOT, gates=True):
                 if rel is not None and rel not in set(files):
                     bad.append("I16 %s: PO file for a file that is not an authored Markdown file (orphan PO)" % rel)
     results.append(Result("authored files (%d) with PO" % len(files), bad, time.time() - t0))
+    results.append(timed("negative fixtures (plan 10.2)", negative_problems))
     for p in ("translation/exception-register.jsonl", "translation/humor-register.jsonl"):
         if os.path.isfile(os.path.join(root, p)):
             results.append(timed("jsonl " + p, check_jsonl, os.path.join(root, p)))

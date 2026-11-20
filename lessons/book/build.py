@@ -479,10 +479,13 @@ def check(html_path):
     dup = sorted({i for i in re.findall(r'\bid="([^"]+)"', html) if re.findall(r'\bid="([^"]+)"', html).count(i) > 1})
     for d in dup:
         print("DUPLICATE id in the book: #" + d)
+    foreign = repo_links.foreign_repo_links(html)     # a link into another edition's repository (a Spanish book pointing at the English repo)
+    for f in foreign:
+        print("FOREIGN repository link: " + f)
     n = sum(len(m) for m in ID_MAPS.values())
-    print("internal links ok" if not (bad or wrong or dup) else f"{len(bad)} broken, {len(wrong)} mismatched, {len(dup)} duplicate")
+    print("internal links ok" if not (bad or wrong or dup or foreign) else f"{len(bad)} broken, {len(wrong)} mismatched, {len(dup)} duplicate, {len(foreign)} foreign")
     print(f"{n} headings checked; every repeated title has its own id")
-    sys.exit(1 if (bad or wrong or dup) else 0)
+    sys.exit(1 if (bad or wrong or dup or foreign) else 0)
 
 if __name__ == "__main__":
     main()

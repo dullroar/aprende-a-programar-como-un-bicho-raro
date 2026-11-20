@@ -176,6 +176,38 @@ class Identity(unittest.TestCase):
         for name in ("build.py", "repo_links.py", "lint_pdf.py", "metadata.yaml"):
             self.assertNotIn("dullroar/learn-programming-the-weird-way", (LESSONS / "book" / name).read_text(encoding="utf-8"), name)
 
+    def test_a_link_into_the_other_edition_is_foreign(self):
+        # Plan 10.2 item 9: a Spanish PDF or EPUB whose links go to the English repository must fail the link check.
+        english = f'<a href="{BASE}/blob/master/src/apl/README.md#run-it">x</a>'
+        spanish = f'<a href="{BASE_ES}/blob/main/src/apl/README.md">x</a>'
+        build.set_language("es")
+        self.assertEqual(repo_links.foreign_repo_links(spanish), [])
+        self.assertEqual(repo_links.foreign_repo_links(english), [f"{BASE}/blob/master/src/apl/README.md#run-it"])
+        self.assertEqual(repo_links.foreign_repo_links(f'<a href="{BASE}">x</a><img src="{BASE}/raw/x.png">'), [BASE, f"{BASE}/raw/x.png"])
+        build.set_language("en")
+        self.assertEqual(repo_links.foreign_repo_links(english), [])
+        self.assertEqual(repo_links.foreign_repo_links(spanish), [f"{BASE_ES}/blob/main/src/apl/README.md"])
+
+    def test_a_longer_repository_name_is_not_foreign(self):
+        build.set_language("es")
+        self.assertEqual(repo_links.foreign_repo_links(f'<a href="{BASE}-extras/blob/main/x.md">x</a>'), [])
+        self.assertEqual(repo_links.foreign_repo_links('<a href="#local">x</a><a href="https://example.com/">y</a>'), [])
+
+    def test_the_build_check_reports_a_foreign_link_and_fails(self):
+        import tempfile
+        build.set_language("es")
+        with tempfile.TemporaryDirectory() as d:
+            path = os.path.join(d, "book.html")
+            for body, status in ((f'<a href="{BASE_ES}/blob/main/x.md">ok</a>', 0), (f'<a href="{BASE}/blob/master/x.md">english</a>', 1)):
+                with open(path, "w", encoding="utf-8") as f:
+                    f.write(body)
+                with self.assertRaises(SystemExit) as caught:
+                    with patch("builtins.print") as out:
+                        build.check(path)
+                self.assertEqual(caught.exception.code, status)
+                if status:
+                    self.assertTrue(any("FOREIGN repository link" in str(c) for c in out.call_args_list))
+
     def test_the_sandbox_image_tag_keeps_its_name(self):
         # `code-challenge-sandbox:local` is an internal image tag, not a stale repository reference (plan 5.4); test_repo_identity.py allows it on purpose.
         tagged = [p for p in (LESSONS.parent / "src").rglob("Dockerfile*") if "code-challenge-sandbox:local" in p.read_text(encoding="utf-8", errors="replace")]
