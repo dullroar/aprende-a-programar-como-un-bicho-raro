@@ -1,0 +1,596 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lessons/study-guides/languages/apl.md:1
+msgctxt "s-7590c9258bfb-0000"
+msgid "APL study guide"
+msgstr "Guía de estudio de APL"
+
+#: lessons/study-guides/languages/apl.md:3
+msgctxt "s-4e718de9279e-0001"
+msgid "What this guide is for"
+msgstr "Para qué sirve esta guía"
+
+#: lessons/study-guides/languages/apl.md:5
+msgctxt "s-9567bb25188f-0002"
+msgid "This guide reads two GNU APL programs: [⟦CODE_0001⟧](⟦DEST_0002⟧), whose card calculation uses four named array assignments, and [⟦CODE_0003⟧](⟦DEST_0004⟧), where each card is a function *written as text by the previous card* and then run. The question is: **when the program works on whole arrays, or on its own source text, what replaces the loop and what holds the state?**"
+msgstr "Esta guía lee dos programas de GNU APL. El primero es [⟦CODE_0001⟧](⟦DEST_0002⟧), cuyo cálculo de la tarjeta usa cuatro asignaciones con nombre de arreglos. El segundo es [⟦CODE_0003⟧](⟦DEST_0004⟧), donde cada tarjeta es una función *escrita como texto por la tarjeta anterior* y luego ejecutada. La pregunta es: **cuando el programa trabaja con arreglos completos, o con su propio texto fuente, ¿qué reemplaza al bucle y qué mantiene el estado?**"
+
+#: lessons/study-guides/languages/apl.md:7
+msgctxt "s-d84bcb27c154-0003"
+msgid "When you finish, you should be able to:"
+msgstr "Cuando termines, deberías poder:"
+
+#: lessons/study-guides/languages/apl.md:9
+msgctxt "s-ef5653ba2abe-0004"
+msgid ""
+"Read ⟦CODE_0001⟧ from right to left and say what each primitive produces on a given input.\n"
+"2. Explain why an eager, whole-array program draws more values than it needs, and why that is a *bound* and not a loop count.\n"
+"3. Explain how ⟦CODE_0002⟧ and ⟦CODE_0003⟧ let a function read and write functions, and why the stop rule in ⟦CODE_0004⟧ is a compress over text.\n"
+"4. Trace both programs through the same three cards, showing the arrays in one and the generated source in the other.\n"
+"5. Label each behavior as guaranteed, implementation-permitted or accidentally exploited."
+msgstr ""
+"Lee ⟦CODE_0001⟧ de derecha a izquierda y di qué produce cada primitiva con una entrada de datos dada.\n"
+"2. Explica por qué un programa ansioso, que trabaja sobre el arreglo completo, genera más valores de los que necesita. Explica también por qué eso es una *cota* y no una cantidad de repeticiones de un bucle.\n"
+"3. Explica cómo ⟦CODE_0002⟧ y ⟦CODE_0003⟧ permiten que una función lea y escriba funciones. Explica también por qué la regla de parada de ⟦CODE_0004⟧ es una compresión sobre texto.\n"
+"4. Haz la traza de ambos programas con las mismas tres tarjetas. Muestra los arreglos en uno y el código fuente generado en el otro.\n"
+"5. Etiqueta cada comportamiento como garantizado, permitido por la implementación o aprovechado por accidente."
+
+#: lessons/study-guides/languages/apl.md:15
+msgctxt "s-5d69ddea98c3-0005"
+msgid "**Scope limits.** You need to read basic APL: ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧ (scan), ⟦CODE_0004⟧ (reduce), ⟦CODE_0005⟧ (compress) and ⟦CODE_0006⟧ (take). The guide does not teach the whole glyph set, GNU APL's ⟦CODE_0007⟧ file functions beyond what the programs use or SQL. If the APL symbols show as empty boxes, see [Seeing the glyphs](⟦DEST_0008⟧)."
+msgstr "**Límites del alcance.** Necesitas leer APL básico: ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧ (escaneo), ⟦CODE_0004⟧ (reducción), ⟦CODE_0005⟧ (compresión) y ⟦CODE_0006⟧ (tomar). La guía no enseña el conjunto completo de glifos, las funciones de archivo ⟦CODE_0007⟧ de GNU APL más allá de lo que usan los programas, ni SQL. Si los símbolos de APL aparecen como cuadros vacíos, consulta [Cómo ver los glifos](⟦DEST_0008⟧)."
+
+#: lessons/study-guides/languages/apl.md:17
+msgctxt "s-e99fd3a8f2a4-0006"
+msgid "The book's page is [APL](⟦DEST_0001⟧). The ideas are in [Array programming](⟦DEST_0002⟧), [Homoiconicity: code as data](⟦DEST_0003⟧) and [Self-modifying code](⟦DEST_0004⟧)."
+msgstr "La página del libro es [APL](⟦DEST_0001⟧). Las ideas están en [Programación con arreglos](⟦DEST_0002⟧), [Homoiconicidad: código como datos](⟦DEST_0003⟧) y [Código automodificable](⟦DEST_0004⟧)."
+
+#: lessons/study-guides/languages/apl.md:19
+msgctxt "s-d5bfdd7d989d-0007"
+msgid "Before you begin"
+msgstr "Antes de empezar"
+
+#: lessons/study-guides/languages/apl.md:21
+msgctxt "s-6728fdaf6997-0008"
+msgid "**Safety model.** Every entry writes fictional **⟦DNT_0001⟧** data. Both programs start a shell snippet that creates a folder and runs ⟦CODE_0002⟧, and ⟦CODE_0003⟧ *defines new functions while it runs*. Read the source before you run it, and run it in the sandbox first:"
+msgstr "**Modelo de seguridad.** Cada entrada escribe datos ficticios de **⟦DNT_0001⟧**. Los dos programas inician un fragmento de shell que crea una carpeta y ejecuta ⟦CODE_0002⟧, y ⟦CODE_0003⟧ *define funciones nuevas mientras se ejecuta*. Lee el código fuente antes de ejecutarlo y ejecútalo primero en el entorno aislado (*sandbox*), un espacio separado donde un error no daña tus archivos:"
+
+#: lessons/study-guides/languages/apl.md:28
+msgctxt "s-a015e53f9890-0009"
+msgid "Edit only copies ([Running things safely](⟦DEST_0001⟧)). A broken self-rewriting program may recurse without stopping: set ⟦CODE_0002⟧ for any change to ⟦CODE_0003⟧."
+msgstr "Edita solo copias ([Ejecutar cosas de forma segura](⟦DEST_0001⟧)). Un programa que se reescribe a sí mismo y tiene un error puede entrar en recursión sin parar: fija ⟦CODE_0002⟧ para cualquier cambio en ⟦CODE_0003⟧."
+
+#: lessons/study-guides/languages/apl.md:30
+msgctxt "s-1e1cd69aabf4-0010"
+msgid "**Prediction rule.** Before each run, write down the arrays (or the generated function text) you expect, and what output would prove you wrong."
+msgstr "**Regla de predicción.** Antes de cada ejecución, escribe los arreglos (o el texto de la función generada) que esperas y qué salida demostraría que te equivocaste."
+
+#: lessons/study-guides/languages/apl.md:32
+msgctxt "s-2dd18ffddf3e-0011"
+msgid "**Vocabulary.**"
+msgstr "**Vocabulario.**"
+
+#: lessons/study-guides/languages/apl.md:34
+msgctxt "s-790e521777f0-0012"
+msgid "⟦SEP_0001⟧ Term ⟦SEP_0002⟧ Meaning here ⟦SEP_0003⟧"
+msgstr "⟦SEP_0001⟧ Término ⟦SEP_0002⟧ Significado aquí ⟦SEP_0003⟧"
+
+#: lessons/study-guides/languages/apl.md:36
+msgctxt "s-22b4ed41e873-0013"
+msgid "⟦SEP_0004⟧ Scan ⟦CODE_0001⟧ ⟦SEP_0005⟧ Running total: ⟦CODE_0002⟧ is ⟦CODE_0003⟧. ⟦SEP_0006⟧"
+msgstr "⟦SEP_0004⟧ Recorre ⟦CODE_0001⟧ ⟦SEP_0005⟧ Total acumulado: ⟦CODE_0002⟧ es ⟦CODE_0003⟧. ⟦SEP_0006⟧"
+
+#: lessons/study-guides/languages/apl.md:37
+msgctxt "s-50fa30822644-0014"
+msgid "⟦SEP_0004⟧ Reduce ⟦CODE_0001⟧ ⟦SEP_0005⟧ Total: ⟦CODE_0002⟧ is ⟦CODE_0003⟧. ⟦SEP_0006⟧"
+msgstr "⟦SEP_0004⟧ Reduce ⟦CODE_0001⟧ ⟦SEP_0005⟧ Total: ⟦CODE_0002⟧ es ⟦CODE_0003⟧. ⟦SEP_0006⟧"
+
+#: lessons/study-guides/languages/apl.md:38
+msgctxt "s-c8c1b5d24373-0015"
+msgid "⟦SEP_0004⟧ Compress ⟦CODE_0001⟧ ⟦SEP_0005⟧ A boolean on the left selects items on the right. A scalar ⟦CODE_0002⟧ selects nothing and a scalar ⟦CODE_0003⟧ selects everything. ⟦SEP_0006⟧"
+msgstr "⟦SEP_0004⟧ Comprimir ⟦CODE_0001⟧ ⟦SEP_0005⟧ Un booleano a la izquierda selecciona elementos de la derecha. Un escalar ⟦CODE_0002⟧ no selecciona nada y un escalar ⟦CODE_0003⟧ selecciona todo. ⟦SEP_0006⟧"
+
+#: lessons/study-guides/languages/apl.md:39
+msgctxt "s-d7a0128394e2-0016"
+msgid "⟦SEP_0003⟧ ⟦CODE_0001⟧ / ⟦CODE_0002⟧ ⟦SEP_0004⟧ \"Canonical representation\": a function's source as a character matrix. \"Fix\": define a function from such text. ⟦SEP_0005⟧"
+msgstr "⟦SEP_0003⟧ ⟦CODE_0001⟧ / ⟦CODE_0002⟧ ⟦SEP_0004⟧ \"Representación canónica\": el código fuente de una función como matriz de caracteres. \"Fix\": define una función a partir de ese texto. ⟦SEP_0005⟧"
+
+#: lessons/study-guides/languages/apl.md:40
+msgctxt "s-3c54f337e07d-0017"
+msgid "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ The index origin: whether the first index is 0 or 1. ⟦SEP_0004⟧"
+msgstr "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ El origen de índices (*index origin*): indica si el primer índice es 0 o 1. ⟦SEP_0004⟧"
+
+#: lessons/study-guides/languages/apl.md:42
+msgctxt "s-ae7d69ef2745-0018"
+msgid "The shared challenge"
+msgstr "El reto compartido"
+
+#: lessons/study-guides/languages/apl.md:44
+msgctxt "s-78a7d749b03d-0019"
+msgid "The [challenge specification](⟦DEST_0001⟧) calls for cards with a category and 10 to 19 whole hours. Categories cycle through ⟦DNT_0002⟧, ⟦DNT_0003⟧, ⟦DNT_0004⟧ and ⟦DNT_0005⟧. Add each card's hours to the running total. Stop when the total passes 40. Keep the **first card that takes the total over 40**. A total of exactly 40 continues. Four 10-hour cards need a fifth card, in the ⟦DNT_0006⟧ category. Conforming runs finish with 3 to 5 cards and a total of 41 to 59 hours."
+msgstr "La [especificación del reto](⟦DEST_0001⟧) pide tarjetas con una categoría y de 10 a 19 horas enteras. Las categorías forman un ciclo: ⟦DNT_0002⟧, ⟦DNT_0003⟧, ⟦DNT_0004⟧ y ⟦DNT_0005⟧. Suma las horas de cada tarjeta al total acumulado. Detente cuando el total pase de 40. Conserva la **primera tarjeta que lleva el total a más de 40**. Un total de exactamente 40 continúa. Cuatro tarjetas de 10 horas necesitan una quinta tarjeta, de la categoría ⟦DNT_0006⟧. Las ejecuciones conformes terminan con de 3 a 5 tarjetas y un total de 41 a 59 horas."
+
+#: lessons/study-guides/languages/apl.md:46
+msgctxt "s-698d7f9c4523-0020"
+msgid "APL expresses the boundary in one comparison, ⟦CODE_0001⟧, \"is the total at most 40?\". It is true for 40. The program counts the cards for which it is true and then adds one, to include the card that crosses."
+msgstr "APL expresa el límite en una sola comparación, ⟦CODE_0001⟧, \"¿el total es como máximo 40?\". Es verdadera para 40. El programa cuenta las tarjetas para las que es verdadera y después suma una, para incluir la tarjeta que cruza."
+
+#: lessons/study-guides/languages/apl.md:48
+msgctxt "s-9f148b367e02-0021"
+msgid "The machine to identify"
+msgstr "La máquina que hay que identificar"
+
+#: lessons/study-guides/languages/apl.md:50
+msgctxt "s-27fc60c30f78-0022"
+msgid "**What repeats.** In ⟦CODE_0001⟧, nothing repeats in the code: the array primitives apply to every element. [Four named assignments](⟦DEST_0002⟧) hold the calculation: five draws in ⟦CODE_0003⟧, then three results derived from it in ⟦CODE_0004⟧, ⟦CODE_0005⟧ and ⟦CODE_0006⟧. In ⟦CODE_0007⟧, a *chain of calls*: ⟦CODE_0008⟧ calls ⟦CODE_0009⟧, which ⟦CODE_0010⟧ wrote, which calls ⟦CODE_0011⟧ and so on ([L43-55](⟦DEST_0012⟧)). The chain is recursion-shaped, but each link is a *different function*."
+msgstr "**Qué se repite.** En ⟦CODE_0001⟧, en el código no se repite nada: las primitivas de arreglos se aplican a todos los elementos. [Cuatro asignaciones con nombre](⟦DEST_0002⟧) contienen el cálculo: cinco sorteos en ⟦CODE_0003⟧, y luego tres resultados derivados de ellos en ⟦CODE_0004⟧, ⟦CODE_0005⟧ y ⟦CODE_0006⟧. En ⟦CODE_0007⟧ hay una *cadena de llamadas*: ⟦CODE_0008⟧ llama a ⟦CODE_0009⟧, que escribió ⟦CODE_0010⟧, que a su vez llama a ⟦CODE_0011⟧, y así sucesivamente ([L43-55](⟦DEST_0012⟧)). La cadena tiene forma de recursión, pero cada eslabón es una *función distinta*."
+
+#: lessons/study-guides/languages/apl.md:52
+msgctxt "s-a3b232129922-0023"
+msgid "**Where state lives.** In ⟦CODE_0001⟧, in arrays: ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧. All five values are drawn at once, so the state is *the whole vector*. In ⟦CODE_0006⟧, in the **source text** of each function. Lines 1 to 4 of every card are four \"gene\" lines: ⟦CODE_0007⟧ (card number), ⟦CODE_0008⟧ (category), ⟦CODE_0009⟧ (hours) and ⟦CODE_0010⟧ (running total). Each child gets new gene lines."
+msgstr "**Dónde vive el estado.** En ⟦CODE_0001⟧, en arreglos: ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧. Los cinco valores se sortean a la vez, así que el estado es *el vector completo*. En ⟦CODE_0006⟧, en el **texto fuente** de cada función. Las líneas 1 a 4 de cada tarjeta son cuatro líneas de \"genes\": ⟦CODE_0007⟧ (número de tarjeta), ⟦CODE_0008⟧ (categoría), ⟦CODE_0009⟧ (horas) y ⟦CODE_0010⟧ (total acumulado). Cada hijo recibe líneas de genes nuevas."
+
+#: lessons/study-guides/languages/apl.md:54
+msgctxt "s-d7f2c1f9007c-0024"
+msgid "**What advances the next step.** In ⟦CODE_0001⟧, nothing advances: each primitive runs once over its argument. In ⟦CODE_0002⟧, a card builds the next card's text with ⟦CODE_0003⟧ and runs it with ⟦CODE_0004⟧."
+msgstr "**Qué hace avanzar el paso siguiente.** En ⟦CODE_0001⟧, nada hace avanzar: cada primitiva se ejecuta una vez sobre su argumento. En ⟦CODE_0002⟧, una tarjeta construye el texto de la tarjeta siguiente con ⟦CODE_0003⟧ y lo ejecuta con ⟦CODE_0004⟧."
+
+#: lessons/study-guides/languages/apl.md:56
+msgctxt "s-ed850e2b415a-0025"
+msgid "**What stops it.** In ⟦CODE_0001⟧, ⟦CODE_0002⟧ counts the leading cards whose running total is at most 40. Because running totals only grow, \"still at most 40\" is true for a prefix and false for the remaining cards, so the count *is* the position of the boundary. In ⟦CODE_0003⟧, ⟦CODE_0004⟧ is 1 or 0. ⟦CODE_0005⟧ compresses the child's source: a scalar 0 keeps no lines, so ⟦CODE_0006⟧ defines nothing, and the same ⟦CODE_0007⟧ empties the call so ⟦CODE_0008⟧ runs an empty string."
+msgstr "**Qué lo detiene.** En ⟦CODE_0001⟧, ⟦CODE_0002⟧ cuenta las primeras tarjetas cuyo total acumulado no pasa de 40. Como los totales acumulados solo crecen, \"todavía no pasa de 40\" es verdadero para un prefijo y falso para las demás tarjetas. Por eso el conteo *es* la posición del límite. En ⟦CODE_0003⟧, ⟦CODE_0004⟧ vale 1 o 0. ⟦CODE_0005⟧ comprime el código fuente del hijo: un 0 escalar no conserva ninguna línea, así que ⟦CODE_0006⟧ no define nada. El mismo ⟦CODE_0007⟧ vacía la llamada, así que ⟦CODE_0008⟧ ejecuta una cadena de texto vacía."
+
+#: lessons/study-guides/languages/apl.md:58
+msgctxt "s-bd7338a98f0e-0026"
+msgid "**What commits.** In ⟦CODE_0001⟧, rows are written to a pipe to ⟦CODE_0002⟧ *after* the arrays are computed, followed by ⟦CODE_0003⟧ and a pipe close that waits for ⟦CODE_0004⟧. In ⟦CODE_0005⟧, each card writes its ⟦CODE_0006⟧ as it runs, and ⟦CODE_0007⟧ is written after the whole chain returns ([L67-68](⟦DEST_0008⟧)). The row printing in ⟦CODE_0009⟧ happens on the way *down* the chain: the crossing card prints and saves itself, then finds it is not alive and writes no child."
+msgstr "**Qué confirma.** En ⟦CODE_0001⟧, las filas se escriben en una tubería hacia ⟦CODE_0002⟧ *después* de calcular los arreglos. Siguen ⟦CODE_0003⟧ y un cierre de la tubería que espera a ⟦CODE_0004⟧. En ⟦CODE_0005⟧, cada tarjeta escribe su ⟦CODE_0006⟧ mientras se ejecuta, y ⟦CODE_0007⟧ se escribe después de que regresa toda la cadena ([L67-68](⟦DEST_0008⟧)). La impresión de filas en ⟦CODE_0009⟧ ocurre al *bajar* por la cadena. La tarjeta que cruza imprime y se guarda. Luego descubre que no está viva y no escribe ningún hijo."
+
+#: lessons/study-guides/languages/apl.md:64
+msgctxt "s-a83c6392727a-0027"
+msgid "apl: draw everything first, then let arrays decide where to stop"
+msgstr "apl: dibuja todo primero y deja que los arreglos decidan dónde parar"
+
+#: lessons/study-guides/languages/apl.md:65
+msgctxt "s-b1873a15d380-0028"
+msgid "A flowchart of data moving through whole-array operations. Five random hours between 10 and 19 are drawn at once. A running sum gives the total after each card. Comparing the totals with 40 gives ones and zeros. Summing the ones and adding one counts the cards to keep. Taking that many cards from the drawn hours gives the kept hours. The running totals and the category names, reshaped to the same length, are derived from them. Then a function applied to each row number saves each row and shows each row."
+msgstr "Un diagrama de flujo de datos que pasan por operaciones sobre arreglos completos. Se sortean de una vez cinco horas aleatorias de 10 a 19. Una suma acumulada da el total después de cada tarjeta. Comparar los totales con 40 da unos y ceros. Sumar los unos y añadir uno cuenta las tarjetas que se conservan. Tomar esa cantidad de tarjetas de las horas sorteadas da las horas conservadas. Los totales acumulados y los nombres de categoría, ajustados a la misma longitud, se derivan de ellas. Luego una función aplicada a cada número de fila guarda cada fila y muestra cada fila."
+
+#: lessons/study-guides/languages/apl.md:66
+msgctxt "s-f3a777e19f46-0029"
+msgid "Drawn: five random hours, 10 to 19, rolled at once"
+msgstr "Sorteadas: cinco horas aleatorias, de 10 a 19, lanzadas a la vez"
+
+#: lessons/study-guides/languages/apl.md:66
+msgctxt "s-ba12a6ab051e-0030"
+msgid "Running sum of Drawn: the total after each card"
+msgstr "Suma acumulada de Drawn: el total después de cada tarjeta"
+
+#: lessons/study-guides/languages/apl.md:67
+msgctxt "s-0f9b554db7c5-0031"
+msgid "Compare with 40: 1 where the total is 40 or less, else 0"
+msgstr "Compara con 40: 1 donde el total no pasa de 40, y 0 en caso contrario"
+
+#: lessons/study-guides/languages/apl.md:68
+msgctxt "s-6c5488b3933f-0032"
+msgid "Sum the 1s, add 1: the number of cards to keep"
+msgstr "Suma los 1 y añade 1: el número de tarjetas que se conservan"
+
+#: lessons/study-guides/languages/apl.md:69
+msgctxt "s-a35e0f2d5f97-0033"
+msgid "Take that many from Drawn: Hours"
+msgstr "Toma esa cantidad de Drawn: Hours"
+
+#: lessons/study-guides/languages/apl.md:70
+msgctxt "s-8627aa9f7742-0034"
+msgid "Totals is a running sum of Hours; Kinds is the categories reshaped to the length of Hours"
+msgstr "Totals es una suma acumulada de Hours; Kinds son las categorías remodeladas a la longitud de Hours"
+
+#: lessons/study-guides/languages/apl.md:71
+msgctxt "s-73cd0565201e-0035"
+msgid "SaveRow and ShowRow, each applied to every row number"
+msgstr "SaveRow y ShowRow, cada una aplicada a cada número de fila"
+
+#: lessons/study-guides/languages/apl.md:74
+msgctxt "s-11c177a1fe56-0036"
+msgid "The first diagram is data flowing through array steps. There is no loop edge."
+msgstr "El primer diagrama muestra datos que fluyen por pasos sobre arreglos. No hay ninguna arista de bucle."
+
+#: lessons/study-guides/languages/apl.md:80
+msgctxt "s-cbef66020347-0037"
+msgid "apl-weird: each card function writes and calls the next one"
+msgstr "apl-weird: cada función de tarjeta escribe y llama a la siguiente"
+
+#: lessons/study-guides/languages/apl.md:81
+msgctxt "s-3894643a82b3-0038"
+msgid "A flowchart. The function Card0 runs with its genes: the card number, category, hours and running total. It prints its row and inserts it into SQLite. It draws the next hours and builds the four gene lines for the next card as text. A boolean Alive is 1 while the total is 40 or less. The function then takes its own source with the quad-CR function, replaces the header and genes, and compresses the whole child away with Alive. The quad-FX function defines a new function, Card1, from what is left, or defines nothing. Executing the name, also compressed by Alive, then calls Card1, which does the same steps. When Alive is 0, nothing is written or called, and the chain of calls returns."
+msgstr "Un diagrama de flujo. La función Card0 se ejecuta con sus genes: el número de tarjeta, la categoría, las horas y el total acumulado. Imprime su fila y la inserta en SQLite. Sortea las siguientes horas y construye como texto las cuatro líneas de genes de la siguiente tarjeta. Un booleano Alive vale 1 mientras el total no pasa de 40. Después, la función toma su propio código fuente con la función quad-CR, reemplaza el encabezado y los genes, y descarta todo el hijo mediante compresión con Alive. La función quad-FX define una función nueva, Card1, con lo que queda, o no define nada. Después, al ejecutar el nombre, también comprimido por Alive, se llama a Card1, que hace los mismos pasos. Cuando Alive es 0, no se escribe ni se llama nada, y la cadena de llamadas retorna."
+
+#: lessons/study-guides/languages/apl.md:82
+msgctxt "s-9556ba32a9f6-0039"
+msgid "CardN runs with its genes: number, category, hours, total"
+msgstr "CardN se ejecuta con sus genes: número, categoría, horas, total"
+
+#: lessons/study-guides/languages/apl.md:82
+msgctxt "s-3ac7a822e64c-0040"
+msgid "Print the row and INSERT it"
+msgstr "Imprime la fila e insértala con INSERT"
+
+#: lessons/study-guides/languages/apl.md:83
+msgctxt "s-0c31610b8a71-0041"
+msgid "Draw the next hours; build four new gene lines as text"
+msgstr "Sortea las siguientes horas; construye cuatro líneas de genes nuevas como texto"
+
+#: lessons/study-guides/languages/apl.md:84
+msgctxt "s-4edf7961a28b-0042"
+msgid "Alive: total ≤ 40?"
+msgstr "¿Vivo: total ≤ 40?"
+
+#: lessons/study-guides/languages/apl.md:85
+msgctxt "s-e1e91b3ac1a0-0043"
+msgid "1: keep the child"
+msgstr "1: conserva el hijo"
+
+#: lessons/study-guides/languages/apl.md:85
+msgctxt "s-c1a3455a70bb-0044"
+msgid "Quad-CR reads this function's own source; quad-FX defines Card N+1 from it with the new genes"
+msgstr "Quad-CR lee el código fuente de esta misma función; quad-FX define la tarjeta N+1 a partir de ese código con los nuevos genes"
+
+#: lessons/study-guides/languages/apl.md:86
+msgctxt "s-94ef3318f472-0045"
+msgid "Execute the name Card N+1: it is a different function with the same body"
+msgstr "Ejecuta el nombre Card N+1: es una función distinta con el mismo cuerpo"
+
+#: lessons/study-guides/languages/apl.md:88
+msgctxt "s-96b2605e1c40-0046"
+msgid "0: Alive compresses the child away"
+msgstr "0: Alive elimina al hijo con compresión"
+
+#: lessons/study-guides/languages/apl.md:88
+msgctxt "s-c0ef48597182-0047"
+msgid "Quad-FX defines nothing and execute runs an empty string; the calls return"
+msgstr "Quad-FX no define nada y execute ejecuta una cadena de texto vacía; las llamadas regresan"
+
+#: lessons/study-guides/languages/apl.md:91
+msgctxt "s-7e2f19a39a7b-0048"
+msgid "The second diagram has a cycle, but each trip around it goes through a function that did not exist a moment earlier."
+msgstr "El segundo diagrama tiene un ciclo, pero cada vuelta pasa por una función que no existía un momento antes."
+
+#: lessons/study-guides/languages/apl.md:93
+msgctxt "s-67a72cdadc6f-0049"
+msgid "Trace one run"
+msgstr "Traza una ejecución"
+
+#: lessons/study-guides/languages/apl.md:95
+msgctxt "s-c4d9052817fc-0050"
+msgid "The programs draw random numbers. Use hours **15, 19, 12** for the trace. To check it against real behavior, scratch copies were run in the sandbox with the draws replaced by fixed values (and, for ⟦CODE_0001⟧, a few lines added to print the intermediate arrays)."
+msgstr "Los programas generan números aleatorios. Usa las horas **15, 19, 12** para la traza. Para comprobarla con el comportamiento real, se ejecutaron copias de prueba en el entorno aislado (*sandbox*), un espacio separado del resto del sistema. En esas copias, los sorteos se reemplazaron por valores fijos (y, para ⟦CODE_0001⟧, se añadieron unas líneas para imprimir los arreglos intermedios)."
+
+#: lessons/study-guides/languages/apl.md:97
+msgctxt "s-78319e8d4c99-0051"
+msgid "**⟦CODE_0001⟧: four named arrays.** The original GNU APL scratch run used ⟦CODE_0002⟧. The values below were re-derived from the four assignments in source order. It printed:"
+msgstr "**⟦CODE_0001⟧: cuatro arreglos con nombre.** La ejecución de prueba original en GNU APL usó ⟦CODE_0002⟧. Los valores de abajo se volvieron a derivar de las cuatro asignaciones, en el orden del código fuente. Imprimió:"
+
+#: lessons/study-guides/languages/apl.md:107
+msgctxt "s-638459ea40c5-0052"
+msgid "⟦SEP_0001⟧ Step ⟦SEP_0002⟧ Expression ⟦SEP_0003⟧ Result ⟦SEP_0004⟧ Meaning ⟦SEP_0005⟧"
+msgstr "⟦SEP_0001⟧ Paso ⟦SEP_0002⟧ Expresión ⟦SEP_0003⟧ Resultado ⟦SEP_0004⟧ Significado ⟦SEP_0005⟧"
+
+#: lessons/study-guides/languages/apl.md:109
+msgctxt "s-4fd596217ea9-0053"
+msgid "⟦SEP_0003⟧ 1 ⟦SEP_0004⟧ ⟦CODE_0001⟧ ⟦SEP_0005⟧ ⟦CODE_0002⟧ ⟦SEP_0006⟧ Five draws. Five cards of 10 hours always reach 50, so five is a bound. ⟦SEP_0007⟧"
+msgstr "⟦SEP_0003⟧ 1 ⟦SEP_0004⟧ ⟦CODE_0001⟧ ⟦SEP_0005⟧ ⟦CODE_0002⟧ ⟦SEP_0006⟧ Cinco extracciones. Cinco tarjetas de 10 horas siempre suman 50, así que cinco es una cota. ⟦SEP_0007⟧"
+
+#: lessons/study-guides/languages/apl.md:110
+msgctxt "s-ebf8d4df3ad0-0054"
+msgid "⟦SEP_0003⟧ 2 ⟦SEP_0004⟧ ⟦CODE_0001⟧ ⟦SEP_0005⟧ ⟦CODE_0002⟧ ⟦SEP_0006⟧ The running total after each card. ⟦SEP_0007⟧"
+msgstr "⟦SEP_0003⟧ 2 ⟦SEP_0004⟧ ⟦CODE_0001⟧ ⟦SEP_0005⟧ ⟦CODE_0002⟧ ⟦SEP_0006⟧ El total acumulado después de cada tarjeta. ⟦SEP_0007⟧"
+
+#: lessons/study-guides/languages/apl.md:111
+msgctxt "s-c08914ec9d56-0055"
+msgid "⟦SEP_0003⟧ 3 ⟦SEP_0004⟧ ⟦CODE_0001⟧ ⟦SEP_0005⟧ ⟦CODE_0002⟧ ⟦SEP_0006⟧ \"Total is still at most 40\": true, true, then false for the remaining cards. ⟦SEP_0007⟧"
+msgstr "⟦SEP_0003⟧ 3 ⟦SEP_0004⟧ ⟦CODE_0001⟧ ⟦SEP_0005⟧ ⟦CODE_0002⟧ ⟦SEP_0006⟧ \"El total sigue siendo como máximo 40\": verdadero, verdadero y luego falso para las tarjetas restantes. ⟦SEP_0007⟧"
+
+#: lessons/study-guides/languages/apl.md:112
+msgctxt "s-75525b3499b4-0056"
+msgid "⟦SEP_0003⟧ 4 ⟦SEP_0004⟧ ⟦CODE_0001⟧ of that ⟦SEP_0005⟧ ⟦CODE_0002⟧ ⟦SEP_0006⟧ Two cards are at or under 40. ⟦SEP_0007⟧"
+msgstr "⟦SEP_0003⟧ 4 ⟦SEP_0004⟧ ⟦CODE_0001⟧ de eso ⟦SEP_0005⟧ ⟦CODE_0002⟧ ⟦SEP_0006⟧ Dos tarjetas quedan en 40 o menos. ⟦SEP_0007⟧"
+
+#: lessons/study-guides/languages/apl.md:113
+msgctxt "s-df7e736d2456-0057"
+msgid "⟦SEP_0003⟧ 5 ⟦SEP_0004⟧ ⟦CODE_0001⟧ ⟦SEP_0005⟧ ⟦CODE_0002⟧ ⟦SEP_0006⟧ Add the one card that crosses. ⟦SEP_0007⟧"
+msgstr "⟦SEP_0003⟧ 5 ⟦SEP_0004⟧ ⟦CODE_0001⟧ ⟦SEP_0005⟧ ⟦CODE_0002⟧ ⟦SEP_0006⟧ Agrega la única tarjeta que cruza. ⟦SEP_0007⟧"
+
+#: lessons/study-guides/languages/apl.md:114
+msgctxt "s-965947ef9305-0058"
+msgid "⟦SEP_0003⟧ 6 ⟦SEP_0004⟧ ⟦CODE_0001⟧ ⟦SEP_0005⟧ ⟦CODE_0002⟧ ⟦SEP_0006⟧ Take that many. ⟦SEP_0007⟧"
+msgstr "⟦SEP_0003⟧ 6 ⟦SEP_0004⟧ ⟦CODE_0001⟧ ⟦SEP_0005⟧ ⟦CODE_0002⟧ ⟦SEP_0006⟧ Toma esa cantidad. ⟦SEP_0007⟧"
+
+#: lessons/study-guides/languages/apl.md:116
+msgctxt "s-52db87a4601c-0059"
+msgid "The output was ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧ and ⟦CODE_0004⟧. ⟦CODE_0005⟧ was ⟦CODE_0006⟧. ⟦CODE_0007⟧ reshapes the four category names to the length of ⟦CODE_0008⟧, filling three slots in this run and up to five in any conforming run. Draws 4 and 5 (10 and 10 here) were scanned and discarded. That waste is the price of eager evaluation."
+msgstr "La salida fue ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧ y ⟦CODE_0004⟧. ⟦CODE_0005⟧ fue ⟦CODE_0006⟧. ⟦CODE_0007⟧ remodela los cuatro nombres de categoría a la longitud de ⟦CODE_0008⟧. Llena tres posiciones en esta ejecución y hasta cinco en cualquier ejecución conforme. Se examinaron y descartaron los sorteos 4 y 5 (aquí, 10 y 10). Ese desperdicio es el precio de la evaluación ansiosa."
+
+#: lessons/study-guides/languages/apl.md:118
+msgctxt "s-9e7b206af550-0060"
+msgid "**⟦CODE_0001⟧: the chain of functions.** The scratch copy gave ⟦CODE_0002⟧ the hours 15 and let each card take the next card's hours from the list 19, 12, 10, ... The generated source of ⟦CODE_0003⟧, printed with ⟦CODE_0004⟧, was:"
+msgstr "**⟦CODE_0001⟧: la cadena de funciones.** La copia de trabajo dio a ⟦CODE_0002⟧ las horas 15. También dejó que cada tarjeta tomara las horas de la tarjeta siguiente de la lista 19, 12, 10, ... El código fuente generado de ⟦CODE_0003⟧, impreso con ⟦CODE_0004⟧, fue:"
+
+#: lessons/study-guides/languages/apl.md:135
+msgctxt "s-57d4c4395263-0061"
+msgid "(The ⟦CODE_0001⟧ line is the scratch edit. In the real program it is ⟦CODE_0002⟧.) Lines 2 to 5 are the genes: card number 2, category 2 (⟦DNT_0003⟧, with ⟦CODE_0004⟧), hours 12, total 46. Everything below them is copied unchanged from the parent."
+msgstr "(La línea ⟦CODE_0001⟧ es la edición de prueba. En el programa real es ⟦CODE_0002⟧.) Las líneas de 2 a 5 son los genes: tarjeta número 2, categoría 2 (⟦DNT_0003⟧, con ⟦CODE_0004⟧), horas 12, total 46. Todo lo que está debajo de ellas se copia sin cambios del padre."
+
+#: lessons/study-guides/languages/apl.md:137
+msgctxt "s-94c7c60e9e5e-0062"
+msgid "⟦SEP_0002⟧ Function ⟦SEP_0003⟧ Genes (N, C, H, T) ⟦SEP_0004⟧ Prints ⟦SEP_0005⟧ ⟦CODE_0001⟧ ⟦SEP_0006⟧ What it does next ⟦SEP_0007⟧"
+msgstr "⟦SEP_0002⟧ Función ⟦SEP_0003⟧ Genes (N, C, H, T) ⟦SEP_0004⟧ Imprime ⟦SEP_0005⟧ ⟦CODE_0001⟧ ⟦SEP_0006⟧ Qué hace después ⟦SEP_0007⟧"
+
+#: lessons/study-guides/languages/apl.md:139
+msgctxt "s-2ec2c731e7d0-0063"
+msgid "⟦SEP_0005⟧ ⟦CODE_0001⟧ (written by the host) ⟦SEP_0006⟧ 0, 0, 15, 15 ⟦SEP_0007⟧ ⟦DNT_0002⟧ 15 15 ⟦SEP_0008⟧ ⟦CODE_0003⟧ = 1 ⟦SEP_0009⟧ Writes ⟦CODE_0004⟧ with genes 1, 1, 19, 34. Calls it. ⟦SEP_0010⟧"
+msgstr "⟦SEP_0005⟧ ⟦CODE_0001⟧ (escrito por el anfitrión) ⟦SEP_0006⟧ 0, 0, 15, 15 ⟦SEP_0007⟧ ⟦DNT_0002⟧ 15 15 ⟦SEP_0008⟧ ⟦CODE_0003⟧ = 1 ⟦SEP_0009⟧ Escribe ⟦CODE_0004⟧ con los genes 1, 1, 19, 34. La llama. ⟦SEP_0010⟧"
+
+#: lessons/study-guides/languages/apl.md:140
+msgctxt "s-56fc5b82e10f-0064"
+msgid "⟦SEP_0005⟧ ⟦CODE_0001⟧ ⟦SEP_0006⟧ 1, 1, 19, 34 ⟦SEP_0007⟧ ⟦DNT_0002⟧ 19 34 ⟦SEP_0008⟧ ⟦CODE_0003⟧ = 1 ⟦SEP_0009⟧ Writes ⟦CODE_0004⟧ with genes 2, 2, 12, 46. Calls it. ⟦SEP_0010⟧"
+msgstr "⟦SEP_0005⟧ ⟦CODE_0001⟧ ⟦SEP_0006⟧ 1, 1, 19, 34 ⟦SEP_0007⟧ ⟦DNT_0002⟧ 19 34 ⟦SEP_0008⟧ ⟦CODE_0003⟧ = 1 ⟦SEP_0009⟧ Escribe ⟦CODE_0004⟧ con los genes 2, 2, 12, 46. Hace la llamada. ⟦SEP_0010⟧"
+
+#: lessons/study-guides/languages/apl.md:141
+msgctxt "s-6049288aa06f-0065"
+msgid "⟦SEP_0006⟧ ⟦CODE_0001⟧ ⟦SEP_0007⟧ 2, 2, 12, 46 ⟦SEP_0008⟧ ⟦DNT_0002⟧ 12 46 ⟦SEP_0009⟧ ⟦CODE_0003⟧ = **0** ⟦SEP_0010⟧ Compresses the child away. ⟦CODE_0004⟧ defines nothing. ⟦CODE_0005⟧ runs an empty string. The calls return. ⟦SEP_0011⟧"
+msgstr "⟦SEP_0006⟧ ⟦CODE_0001⟧ ⟦SEP_0007⟧ 2, 2, 12, 46 ⟦SEP_0008⟧ ⟦DNT_0002⟧ 12 46 ⟦SEP_0009⟧ ⟦CODE_0003⟧ = **0** ⟦SEP_0010⟧ Comprime al hijo y lo elimina. ⟦CODE_0004⟧ no define nada. ⟦CODE_0005⟧ ejecuta una cadena de texto vacía. Las llamadas regresan. ⟦SEP_0011⟧"
+
+#: lessons/study-guides/languages/apl.md:143
+msgctxt "s-febaadace6a1-0066"
+msgid "The report then lists the functions in the workspace with ⟦CODE_0001⟧ and reads each one's hours gene: ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧. The program wrote two of those three functions. The crossing card, ⟦CODE_0005⟧, is *kept*, because its genes were written when its parent was still alive. The stop rule suppresses the *next* card."
+msgstr "Luego el informe lista las funciones del espacio de trabajo con ⟦CODE_0001⟧ y lee el gen de horas de cada una: ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧. El programa escribió dos de esas tres funciones. La tarjeta que cruza el límite, ⟦CODE_0005⟧, se *conserva*, porque sus genes se escribieron cuando su padre aún estaba vivo. La regla de parada suprime la tarjeta *siguiente*."
+
+#: lessons/study-guides/languages/apl.md:145
+msgctxt "s-3790d67e020b-0067"
+msgid "**Exactly 40.** With four 10-hour cards, ⟦CODE_0001⟧ is ⟦CODE_0002⟧, ⟦CODE_0003⟧ gives ⟦CODE_0004⟧, ⟦CODE_0005⟧ gives 4, plus 1 is 5, and all five draws are used. In ⟦CODE_0006⟧, ⟦CODE_0007⟧ has ⟦CODE_0008⟧, so ⟦CODE_0009⟧ is 1 and it writes ⟦CODE_0010⟧."
+msgstr "**Exactamente 40.** Con cuatro tarjetas de 10 horas, ⟦CODE_0001⟧ es ⟦CODE_0002⟧, ⟦CODE_0003⟧ da ⟦CODE_0004⟧, ⟦CODE_0005⟧ da 4, más 1 son 5, y se usan los cinco sorteos. En ⟦CODE_0006⟧, ⟦CODE_0007⟧ tiene ⟦CODE_0008⟧, así que ⟦CODE_0009⟧ es 1 y escribe ⟦CODE_0010⟧."
+
+#: lessons/study-guides/languages/apl.md:147
+msgctxt "s-405c1b857089-0068"
+msgid "Compare the ordinary and weird designs"
+msgstr "Compara los diseños ordinarios y los raros"
+
+#: lessons/study-guides/languages/apl.md:149
+msgctxt "s-d1c36e887ccf-0069"
+msgid "⟦SEP_0003⟧ Dimension ⟦SEP_0004⟧ ⟦CODE_0001⟧ ⟦SEP_0005⟧ ⟦CODE_0002⟧ ⟦SEP_0006⟧"
+msgstr "⟦SEP_0003⟧ Dimensión ⟦SEP_0004⟧ ⟦CODE_0001⟧ ⟦SEP_0005⟧ ⟦CODE_0002⟧ ⟦SEP_0006⟧"
+
+#: lessons/study-guides/languages/apl.md:151
+msgctxt "s-d65909fa68c9-0070"
+msgid "⟦SEP_0001⟧ **Representation** ⟦SEP_0002⟧ Arrays. The data is the program: each line is a function of the previous array. ⟦SEP_0003⟧ Functions as text. Each card's state is four literal lines in its source. ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ **Representación** ⟦SEP_0002⟧ Arreglos. Los datos son el programa: cada línea es una función del arreglo anterior. ⟦SEP_0003⟧ Funciones como texto. El estado de cada tarjeta consiste en cuatro líneas literales en su código fuente. ⟦SEP_0004⟧"
+
+#: lessons/study-guides/languages/apl.md:152
+msgctxt "s-1dcf05bc6ab3-0071"
+msgid "⟦SEP_0002⟧ **Observability** ⟦SEP_0003⟧ Print any intermediate array and see the whole state. ⟦SEP_0004⟧ The state is in source text. ⟦CODE_0001⟧ shows it, but only for functions that exist. A card that was never written leaves no evidence. ⟦SEP_0005⟧"
+msgstr "⟦SEP_0002⟧ **Observabilidad** ⟦SEP_0003⟧ Imprime cualquier arreglo intermedio y ve todo el estado. ⟦SEP_0004⟧ El estado está en el texto fuente. ⟦CODE_0001⟧ lo muestra, pero solo para las funciones que existen. Una tarjeta que nunca se escribió no deja evidencia. ⟦SEP_0005⟧"
+
+#: lessons/study-guides/languages/apl.md:153
+msgctxt "s-2299981a3479-0072"
+msgid "⟦SEP_0004⟧ **Tests** ⟦SEP_0005⟧ Pure array expressions: fix ⟦CODE_0001⟧ and compare ⟦CODE_0002⟧. ⟦SEP_0006⟧ You must run the chain. The book's check runs under ⟦CODE_0003⟧ because a broken stop rule may prevent the recursion from stopping. ⟦SEP_0007⟧"
+msgstr "⟦SEP_0004⟧ **Pruebas** ⟦SEP_0005⟧ Expresiones puras sobre arreglos: fija ⟦CODE_0001⟧ y compara ⟦CODE_0002⟧. ⟦SEP_0006⟧ Debes ejecutar la cadena. La comprobación del libro se ejecuta bajo ⟦CODE_0003⟧ porque una regla de parada defectuosa puede impedir que la recursión se detenga. ⟦SEP_0007⟧"
+
+#: lessons/study-guides/languages/apl.md:154
+msgctxt "s-7b10e48c6588-0073"
+msgid "⟦SEP_0003⟧ **⟦DNT_0001⟧** ⟦SEP_0004⟧ Read an array. ⟦SEP_0005⟧ Read generated source, and remember that locals are *dynamically scoped*: a child sees its parent's variables unless each card declares its own (that is what ⟦CODE_0002⟧ is for). ⟦SEP_0006⟧"
+msgstr "⟦SEP_0003⟧ **⟦DNT_0001⟧** ⟦SEP_0004⟧ Lee un arreglo. ⟦SEP_0005⟧ Lee el código fuente generado y recuerda que las variables locales tienen *alcance dinámico*. Un hijo ve las variables de su padre, a menos que cada tarjeta declare las suyas (para eso sirve ⟦CODE_0002⟧). ⟦SEP_0006⟧"
+
+#: lessons/study-guides/languages/apl.md:155
+msgctxt "s-a121bdf99a34-0074"
+msgid "⟦SEP_0005⟧ **Portability** ⟦SEP_0006⟧ Standard array primitives, plus GNU APL's ⟦CODE_0001⟧ for files and pipes. ⟦SEP_0007⟧ Needs ⟦CODE_0002⟧ and ⟦CODE_0003⟧, and the off-by-one in the copy (⟦CODE_0004⟧) is invisible unless you run it. ⟦SEP_0008⟧"
+msgstr "⟦SEP_0005⟧ **Portabilidad** ⟦SEP_0006⟧ Primitivas estándar de arreglos, más ⟦CODE_0001⟧ de GNU APL para archivos y tuberías. ⟦SEP_0007⟧ Necesita ⟦CODE_0002⟧ y ⟦CODE_0003⟧, y el error de desfase de uno en la copia (⟦CODE_0004⟧) es invisible a menos que lo ejecutes. ⟦SEP_0008⟧"
+
+#: lessons/study-guides/languages/apl.md:156
+msgctxt "s-be388be6c7ab-0075"
+msgid "⟦SEP_0001⟧ **Cost** ⟦SEP_0002⟧ Draws five values and scans all five, even when three suffice. ⟦SEP_0003⟧ Cheap: each card draws one value. But it defines a new function per card and leaves them in the workspace. ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ **Costo** ⟦SEP_0002⟧ Extrae cinco valores y recorre los cinco, incluso cuando bastan tres. ⟦SEP_0003⟧ Barato: cada tarjeta extrae un valor. Pero define una función nueva por cada tarjeta y las deja en el espacio de trabajo. ⟦SEP_0004⟧"
+
+#: lessons/study-guides/languages/apl.md:158
+msgctxt "s-74af58db1d3f-0076"
+msgid "The honest summary: the first program wastes data to avoid a decision, and the second wastes clarity to avoid a loop. The first needs the bound (five draws always suffice) to be true. The second needs the copy to be exactly right."
+msgstr "El resumen honesto: el primer programa desperdicia datos para evitar una decisión, y el segundo desperdicia claridad para evitar un bucle. El primero necesita que la cota (cinco sorteos siempre bastan) sea verdadera. El segundo necesita que la copia sea exactamente correcta."
+
+#: lessons/study-guides/languages/apl.md:160
+msgctxt "s-716cae37520b-0077"
+msgid "What the exercises demonstrate"
+msgstr "Qué demuestran los ejercicios"
+
+#: lessons/study-guides/languages/apl.md:162
+msgctxt "s-d6a3ec9d5ed0-0078"
+msgid "⟦SEP_0001⟧ Exercise ⟦SEP_0002⟧ Predict first ⟦SEP_0003⟧ What the evidence shows ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ Ejercicio ⟦SEP_0002⟧ Predice primero ⟦SEP_0003⟧ Qué muestra la evidencia ⟦SEP_0004⟧"
+
+#: lessons/study-guides/languages/apl.md:164
+msgctxt "s-af5497f95839-0079"
+msgid "⟦SEP_0007⟧ [B6. APL: the off-by-one rewrite](⟦DEST_0001⟧), step 1 to 2 ⟦SEP_0008⟧ Change ⟦CODE_0002⟧ to ⟦CODE_0003⟧ in ⟦CODE_0004⟧. What does each child keep from its parent? ⟦SEP_0009⟧ Each child keeps one line too many of its parent's genes, which restarts the running total, so the stop rule never fires. The run ends only by timeout (or the container's memory limit), with no ⟦CODE_0005⟧ line and rows whose total equals their own hours. Self-modifying code fails *structurally* and silently, which is why the entry's check runs under ⟦CODE_0006⟧. ⟦SEP_0010⟧"
+msgstr "⟦SEP_0007⟧ [B6. APL: la reescritura con error por uno](⟦DEST_0001⟧), pasos de 1 a 2 ⟦SEP_0008⟧ Cambia ⟦CODE_0002⟧ a ⟦CODE_0003⟧ en ⟦CODE_0004⟧. ¿Qué conserva cada hijo de su padre? ⟦SEP_0009⟧ Cada hijo conserva una línea de más de los genes de su padre. Eso reinicia el total acumulado, así que la regla de parada nunca se activa. La ejecución termina solo por tiempo de espera agotado (o por el límite de memoria del contenedor). No hay ninguna línea ⟦CODE_0005⟧, y las filas tienen un total igual a sus propias horas. El código automodificable falla de forma *estructural* y en silencio. Por eso la comprobación de la entrada se ejecuta bajo ⟦CODE_0006⟧. ⟦SEP_0010⟧"
+
+#: lessons/study-guides/languages/apl.md:165
+msgctxt "s-11b7f44d02f5-0080"
+msgid "⟦SEP_0007⟧ B6, step 3 ⟦SEP_0008⟧ Change ⟦CODE_0001⟧ to ⟦CODE_0002⟧. What happens? ⟦SEP_0009⟧ An ⟦CODE_0003⟧ and no rows. ⟦CODE_0004⟧ and the ⟦CODE_0005⟧-indexed lookups assume origin 0. The plain ⟦CODE_0006⟧ entry avoids this by never assuming an origin. ⟦SEP_0010⟧"
+msgstr "⟦SEP_0007⟧ B6, paso 3 ⟦SEP_0008⟧ Cambia ⟦CODE_0001⟧ por ⟦CODE_0002⟧. ¿Qué pasa? ⟦SEP_0009⟧ Aparece un ⟦CODE_0003⟧ y ninguna fila. ⟦CODE_0004⟧ y las búsquedas indexadas con ⟦CODE_0005⟧ asumen el origen 0. La entrada simple ⟦CODE_0006⟧ evita esto porque nunca asume un origen. ⟦SEP_0010⟧"
+
+#: lessons/study-guides/languages/apl.md:166
+msgctxt "s-199ad0c16647-0081"
+msgid "⟦SEP_0004⟧ [C1. Weird next to boring](⟦DEST_0001⟧) ⟦SEP_0005⟧ In which program can you point at the state? ⟦SEP_0006⟧ ⟦CODE_0002⟧ shows state as arrays you can print. ⟦CODE_0003⟧ stores it in source lines that exist only while the program runs. ⟦SEP_0007⟧"
+msgstr "⟦SEP_0004⟧ [C1. Lo raro junto a lo aburrido](⟦DEST_0001⟧) ⟦SEP_0005⟧ ¿En qué programa puedes señalar el estado? ⟦SEP_0006⟧ ⟦CODE_0002⟧ muestra el estado como arreglos que puedes imprimir. ⟦CODE_0003⟧ lo guarda en líneas de código fuente que existen solo mientras el programa se ejecuta. ⟦SEP_0007⟧"
+
+#: lessons/study-guides/languages/apl.md:167
+msgctxt "s-f0dbac54bb0f-0082"
+msgid "⟦SEP_0007⟧ [A1. Read the rows](⟦DEST_0001⟧) ⟦SEP_0008⟧ Which card crossed 40 here? ⟦SEP_0009⟧ For ⟦CODE_0002⟧, check that ⟦CODE_0003⟧ counted the cards at or under 40. For ⟦CODE_0004⟧, check which ⟦CODE_0005⟧ function has the last ⟦CODE_0006⟧. ⟦SEP_0010⟧"
+msgstr "⟦SEP_0007⟧ [A1. Lee las filas](⟦DEST_0001⟧) ⟦SEP_0008⟧ ¿Qué tarjeta pasó de 40 aquí? ⟦SEP_0009⟧ Para ⟦CODE_0002⟧, comprueba que ⟦CODE_0003⟧ contó las tarjetas con 40 o menos. Para ⟦CODE_0004⟧, comprueba qué función ⟦CODE_0005⟧ tiene el último ⟦CODE_0006⟧. ⟦SEP_0010⟧"
+
+#: lessons/study-guides/languages/apl.md:168
+msgctxt "s-f3d629a1cff8-0083"
+msgid "⟦SEP_0002⟧ [F. Prove a README claim](⟦DEST_0001⟧) ⟦SEP_0003⟧ What would show that \"five draws are always enough\" is a bound? ⟦SEP_0004⟧ A test that draws five 10-hour cards and checks that the fifth total is 50. A negative control would draw only four and show that the count of 4 stops at exactly 40. ⟦SEP_0005⟧"
+msgstr "⟦SEP_0002⟧ [F. Prueba una afirmación del README](⟦DEST_0001⟧) ⟦SEP_0003⟧ ¿Qué mostraría que \"cinco extracciones siempre bastan\" es una cota? ⟦SEP_0004⟧ Una prueba que saca cinco tarjetas de 10 horas y comprueba que el quinto total es 50. Un control negativo sacaría solo cuatro y mostraría que el conteo de 4 se queda en exactamente 40. ⟦SEP_0005⟧"
+
+#: lessons/study-guides/languages/apl.md:170
+msgctxt "s-4fe97c469cdb-0084"
+msgid "Failure modes, costs and boundaries"
+msgstr "Modos de fallo, costos y límites"
+
+#: lessons/study-guides/languages/apl.md:172
+msgctxt "s-621aac5615e3-0085"
+msgid "⟦SEP_0001⟧ Behavior ⟦SEP_0002⟧ Label ⟦SEP_0003⟧ Why ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ Comportamiento ⟦SEP_0002⟧ Etiqueta ⟦SEP_0003⟧ Por qué ⟦SEP_0004⟧"
+
+#: lessons/study-guides/languages/apl.md:174
+msgctxt "s-71e36732ab2c-0086"
+msgid "⟦SEP_0005⟧ ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧ and ⟦CODE_0004⟧ have fixed array semantics ⟦SEP_0006⟧ **guaranteed** ⟦SEP_0007⟧ Core language definitions. Verified in the trace above. ⟦SEP_0008⟧"
+msgstr "⟦SEP_0005⟧ ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧ y ⟦CODE_0004⟧ tienen una semántica fija para los arreglos ⟦SEP_0006⟧ **garantizado** ⟦SEP_0007⟧ Definiciones del núcleo del lenguaje. Verificado en la traza anterior. ⟦SEP_0008⟧"
+
+#: lessons/study-guides/languages/apl.md:175
+msgctxt "s-d916f0ce26d2-0087"
+msgid "⟦SEP_0001⟧ Five draws are enough because five cards of at least 10 hours reach 50 ⟦SEP_0002⟧ **guaranteed** ⟦SEP_0003⟧ Arithmetic about this challenge, not about APL. ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ Cinco extracciones bastan porque cinco tarjetas de al menos 10 horas llegan a 50 ⟦SEP_0002⟧ **garantizado** ⟦SEP_0003⟧ Aritmética sobre este reto, no sobre APL. ⟦SEP_0004⟧"
+
+#: lessons/study-guides/languages/apl.md:176
+msgctxt "s-6887c7a59e35-0088"
+msgid "⟦SEP_0004⟧ ⟦CODE_0001⟧'s result depends on ⟦CODE_0002⟧, so the program subtracts it back out ⟦SEP_0005⟧ **guaranteed** ⟦SEP_0006⟧ Specified behavior. ⟦CODE_0003⟧ is written to work in either origin. ⟦SEP_0007⟧"
+msgstr "⟦SEP_0004⟧ El resultado de ⟦CODE_0001⟧ depende de ⟦CODE_0002⟧, así que el programa lo vuelve a restar ⟦SEP_0005⟧ **garantizado** ⟦SEP_0006⟧ Comportamiento especificado. Se escribió ⟦CODE_0003⟧ para que funcione en cualquiera de los dos orígenes. ⟦SEP_0007⟧"
+
+#: lessons/study-guides/languages/apl.md:177
+msgctxt "s-c297fffb9c5d-0089"
+msgid "⟦SEP_0004⟧ ⟦CODE_0001⟧ returns a function's source as a matrix and ⟦CODE_0002⟧ defines a function from one ⟦SEP_0005⟧ **implementation-permitted** ⟦SEP_0006⟧ Part of the APL2 family, but their exact behavior, including what ⟦CODE_0003⟧ returns for empty input, is an interpreter detail. The programs use GNU APL. ⟦SEP_0007⟧"
+msgstr "⟦SEP_0004⟧ ⟦CODE_0001⟧ devuelve el código fuente de una función como una matriz y ⟦CODE_0002⟧ define una función a partir de una ⟦SEP_0005⟧ **permitido por la implementación** ⟦SEP_0006⟧ Forman parte de la familia APL2, pero su comportamiento exacto, incluido lo que ⟦CODE_0003⟧ devuelve con una entrada de datos vacía, es un detalle del intérprete. Los programas usan GNU APL. ⟦SEP_0007⟧"
+
+#: lessons/study-guides/languages/apl.md:178
+msgctxt "s-e9fef5ea67d3-0090"
+msgid "⟦SEP_0003⟧ Compressing a function's lines with ⟦CODE_0001⟧ makes ⟦CODE_0002⟧ define nothing ⟦SEP_0004⟧ **implementation-permitted** ⟦SEP_0005⟧ Observed in GNU APL. The final workspace listing shows only the functions that should exist. ⟦SEP_0006⟧"
+msgstr "⟦SEP_0003⟧ Comprimir las líneas de una función con ⟦CODE_0001⟧ hace que ⟦CODE_0002⟧ no defina nada ⟦SEP_0004⟧ **permitido por la implementación** ⟦SEP_0005⟧ Se observó en GNU APL. El listado final del espacio de trabajo muestra solo las funciones que deberían existir. ⟦SEP_0006⟧"
+
+#: lessons/study-guides/languages/apl.md:179
+msgctxt "s-fc35210edc65-0091"
+msgid "⟦SEP_0002⟧ GNU APL starts with ⟦CODE_0001⟧, so every run draws the same cards unless seeded ⟦SEP_0003⟧ **implementation-permitted** ⟦SEP_0004⟧ The program reseeds from the clock. ⟦SEP_0005⟧"
+msgstr "⟦SEP_0002⟧ GNU APL empieza con ⟦CODE_0001⟧, así que cada ejecución saca las mismas tarjetas a menos que establezcas una semilla ⟦SEP_0003⟧ **permitido por la implementación** ⟦SEP_0004⟧ El programa vuelve a establecer la semilla con el reloj. ⟦SEP_0005⟧"
+
+#: lessons/study-guides/languages/apl.md:180
+msgctxt "s-1c6fe056f608-0092"
+msgid "⟦SEP_0003⟧ ⟦CODE_0001⟧, ⟦CODE_0002⟧ and friends ⟦SEP_0004⟧ **implementation-permitted** ⟦SEP_0005⟧ GNU APL's file-and-process extension. Not portable to other APLs. ⟦SEP_0006⟧"
+msgstr "⟦SEP_0003⟧ ⟦CODE_0001⟧, ⟦CODE_0002⟧ y similares ⟦SEP_0004⟧ **permitido por la implementación** ⟦SEP_0005⟧ Extensión de GNU APL para archivos y procesos. No es portable a otros APL. ⟦SEP_0006⟧"
+
+#: lessons/study-guides/languages/apl.md:181
+msgctxt "s-5059febcbf91-0093"
+msgid "⟦SEP_0006⟧ The report finds the last card from the order of names ⟦CODE_0001⟧ returns ⟦SEP_0007⟧ **accidentally exploited** ⟦SEP_0008⟧ ⟦CODE_0002⟧ to ⟦CODE_0003⟧ sort correctly as text. With ten or more cards ⟦CODE_0004⟧ would sort before ⟦CODE_0005⟧. The challenge's maximum is five cards, so the dependence never fails. Nobody promised the order for other bounds. ⟦SEP_0009⟧"
+msgstr "⟦SEP_0006⟧ El informe encuentra la última tarjeta a partir del orden de nombres que devuelve ⟦CODE_0001⟧ ⟦SEP_0007⟧ **aprovechado por accidente** ⟦SEP_0008⟧ ⟦CODE_0002⟧ a ⟦CODE_0003⟧ se ordenan correctamente como texto. Con diez o más tarjetas, ⟦CODE_0004⟧ se ordenaría antes que ⟦CODE_0005⟧. El máximo del reto es de cinco tarjetas, así que la dependencia nunca falla. Nadie prometió el orden para otros límites. ⟦SEP_0009⟧"
+
+#: lessons/study-guides/languages/apl.md:183
+msgctxt "s-87d9e31bff8d-0094"
+msgid "**Costs to state.**"
+msgstr "**Costos que declarar.**"
+
+#: lessons/study-guides/languages/apl.md:185
+msgctxt "s-0d642d3649df-0095"
+msgid "**Dynamic scope.** APL locals are visible to everything *called* from a function. Every card must declare ⟦CODE_0001⟧ in its header, or a child's genes would overwrite its parent's."
+msgstr "**Ámbito dinámico.** Las variables locales de APL son visibles para todo lo que una función *llama*. Cada tarjeta debe declarar ⟦CODE_0001⟧ en su encabezado; si no, los genes de una tarjeta hija sobrescribirían los de su tarjeta madre."
+
+#: lessons/study-guides/languages/apl.md:186
+msgctxt "s-ffe2a3a79131-0096"
+msgid "**Silent structural failure.** A wrong line count in the copy does not raise an error: it changes the *program*, and the stop rule may never fire."
+msgstr "**Fallo estructural silencioso.** Un número de líneas incorrecto en la copia no genera un error: cambia el *programa*, y la regla de parada puede no activarse nunca."
+
+#: lessons/study-guides/languages/apl.md:187
+msgctxt "s-cf7f632751bf-0097"
+msgid "**⟦CODE_0001⟧ is not \"first\".** In GNU APL ⟦CODE_0002⟧ discloses and ⟦CODE_0003⟧ takes the first item. Dyalog APL swaps those meanings, so the programs would need edits to run there."
+msgstr "**⟦CODE_0001⟧ no es \"primero\".** En GNU APL, ⟦CODE_0002⟧ revela y ⟦CODE_0003⟧ toma el primer elemento. Dyalog APL intercambia esos significados, así que los programas necesitarían cambios para ejecutarse allí."
+
+#: lessons/study-guides/languages/apl.md:188
+msgctxt "s-96ff81082a8d-0098"
+msgid "**Workspace pollution.** Functions defined by ⟦CODE_0001⟧ stay in the workspace until it ends."
+msgstr "**Contaminación del espacio de trabajo.** Las funciones definidas por ⟦CODE_0001⟧ permanecen en el espacio de trabajo hasta que este termina."
+
+#: lessons/study-guides/languages/apl.md:189
+msgctxt "s-2839f2578dcd-0099"
+msgid "**Where this is legitimate.** Array languages make \"compute everything, then cut\" natural, and it is often the fast way. Writing code at run time is how some APL systems implement macros and meta-tools. Rewriting your own source to avoid a loop is a stunt."
+msgstr "**Dónde es legítimo.** Los lenguajes de arreglos hacen natural \"calcular todo y luego recortar\", y a menudo es la forma rápida. Escribir código en tiempo de ejecución es como algunos sistemas APL implementan macros y metaherramientas. Reescribir tu propio código fuente para evitar un bucle es un truco de exhibición."
+
+#: lessons/study-guides/languages/apl.md:191
+msgctxt "s-061eb6da82a8-0100"
+msgid "Connections across the repository"
+msgstr "Conexiones a lo largo del repositorio"
+
+#: lessons/study-guides/languages/apl.md:193
+msgctxt "s-17958128ade7-0101"
+msgid "**Code as data in other languages.** [Tcl](⟦DEST_0001⟧) stores program text in a database row and defines it when needed. [Common Lisp](⟦DEST_0002⟧) can build and run forms. [COBOL](⟦DEST_0003⟧) patches a jump instead of text."
+msgstr "**Código como datos en otros lenguajes.** [Tcl](⟦DEST_0001⟧) guarda el texto de un programa en una fila de la base de datos y lo define cuando hace falta. [Common Lisp](⟦DEST_0002⟧) puede construir y ejecutar formas. [COBOL](⟦DEST_0003⟧) parchea un salto en lugar de texto."
+
+#: lessons/study-guides/languages/apl.md:194
+msgctxt "s-a487a673c65d-0102"
+msgid "**Eager versus lazy.** ⟦CODE_0001⟧ computes five values and discards two. [Haskell](⟦DEST_0002⟧) reads only as much of an infinite list as it needs. The deferred LINQ pipelines in [C#, LINQ, XAML and ports](⟦DEST_0003⟧) wait for enumeration. The separate C# ⟦CODE_0004⟧ header enumerates eagerly with ⟦CODE_0005⟧ each time it tests the condition. The concept guide [Evaluation, demand and laziness](⟦DEST_0006⟧) sets these three side by side."
+msgstr "**Evaluación ansiosa frente a perezosa.** ⟦CODE_0001⟧ calcula cinco valores y descarta dos. [Haskell](⟦DEST_0002⟧) lee de una lista infinita solo lo que necesita. Las canalizaciones diferidas de LINQ en [C#, LINQ, XAML y ports](⟦DEST_0003⟧) esperan a la enumeración. El encabezado separado ⟦CODE_0004⟧ de C# enumera de forma ansiosa con ⟦CODE_0005⟧ cada vez que evalúa la condición. La guía de concepto [Evaluación, demanda y pereza](⟦DEST_0006⟧) pone estos tres casos uno junto a otro."
+
+#: lessons/study-guides/languages/apl.md:195
+msgctxt "s-1f384911cef5-0103"
+msgid "**State outside variables.** ⟦CODE_0001⟧ keeps its state in source lines, as [Make](⟦DEST_0002⟧) keeps it in files and [Forth](⟦DEST_0003⟧) in a parse position. See [State and control beyond variables](⟦DEST_0004⟧)."
+msgstr "**Estado fuera de las variables.** ⟦CODE_0001⟧ guarda su estado en líneas de código fuente, como [Make](⟦DEST_0002⟧) lo guarda en archivos y [Forth](⟦DEST_0003⟧) en una posición de análisis. Consulta [Estado y control más allá de las variables](⟦DEST_0004⟧)."
+
+#: lessons/study-guides/languages/apl.md:196
+msgctxt "s-185403b177b9-0104"
+msgid "**Reproducibility of \"random\".** The APL entries reseed from the clock; the sed entry in [Regex engines and sed](⟦DEST_0001⟧) uses a seeded shift register and gives the same cards for the same seed."
+msgstr "**Reproducibilidad de \"aleatorio\".** Las entradas de APL reinician la semilla a partir del reloj. La entrada de sed en [Motores de expresiones regulares y sed](⟦DEST_0001⟧) usa un registro de desplazamiento con semilla y da las mismas tarjetas con la misma semilla."
+
+#: lessons/study-guides/languages/apl.md:197
+msgctxt "s-b2858a794911-0105"
+msgid "**In the book.** [APL](⟦DEST_0001⟧), [Array programming](⟦DEST_0002⟧), [Eager evaluation](⟦DEST_0003⟧) and [Homoiconicity: code as data](⟦DEST_0004⟧)."
+msgstr "**En el libro.** [APL](⟦DEST_0001⟧), [Programación con arreglos](⟦DEST_0002⟧), [Evaluación ansiosa](⟦DEST_0003⟧) y [Homoiconicidad: el código como datos](⟦DEST_0004⟧)."
+
+#: lessons/study-guides/languages/apl.md:199
+msgctxt "s-50944288ce61-0106"
+msgid "Self-check"
+msgstr "Autoevaluación"
+
+#: lessons/study-guides/languages/apl.md:201
+msgctxt "s-274e192b952c-0107"
+msgid "Answer each question in your own words before you read the italic text. Say what evidence would support each answer."
+msgstr "Responde cada pregunta con tus propias palabras antes de leer el texto en cursiva. Di qué evidencia respaldaría cada respuesta."
+
+#: lessons/study-guides/languages/apl.md:203
+msgctxt "s-ba1aa8e49fc6-0108"
+msgid ""
+"**Trace.** ⟦CODE_0001⟧ is ⟦CODE_0002⟧. For ⟦CODE_0003⟧, give ⟦CODE_0004⟧, the boolean from ⟦CODE_0005⟧, the count and the final ⟦CODE_0006⟧. *(Totals ⟦CODE_0007⟧. The boolean is ⟦CODE_0008⟧. The count is 3, plus 1 is 4. ⟦CODE_0009⟧ is ⟦CODE_0010⟧, with a final total of 49. The crossing card is the fourth.)*\n"
+"2. **Explain.** In ⟦CODE_0011⟧, why does ⟦CODE_0012⟧ in the trace still print and save a row even though its ⟦CODE_0013⟧ is 0? *(Printing and saving come *before* the ⟦CODE_0014⟧ test in the card's body. ⟦CODE_0015⟧ only controls whether the *next* card is written and called. The crossing card was written by a parent whose total was still at most 40.)*\n"
+"3. **Transfer.** In the Haskell weird entry, the stop rule is \"how much of the list I read\". In ⟦CODE_0016⟧, it is \"how many items a prefix count says to take\". What is the main difference in *work done*? *(Haskell builds only the demanded prefix. APL builds five values and trims. Both answer \"which cards are kept\" the same way. They differ in whether the unused work happens.)*\n"
+"4. **Evidence.** A student says, \"⟦CODE_0017⟧ never draws more than five hours.\" Design a test that could fail. *(Run the program many times in the sandbox and count the ⟦CODE_0018⟧ functions listed in the report. The count must never exceed 5. For a negative control, use the exercise B6 edit and show that the count, and the run time, explode. Remember the timeout.)*"
+msgstr ""
+"**Traza.** ⟦CODE_0001⟧ es ⟦CODE_0002⟧. Para ⟦CODE_0003⟧, da ⟦CODE_0004⟧, el booleano de ⟦CODE_0005⟧, el conteo y el ⟦CODE_0006⟧ final. *(Los totales ⟦CODE_0007⟧. El booleano es ⟦CODE_0008⟧. El conteo es 3, más 1 es 4. ⟦CODE_0009⟧ es ⟦CODE_0010⟧, con un total final de 49. La tarjeta que cruza es la cuarta.)*\n"
+"2. **Explica.** En ⟦CODE_0011⟧, ¿por qué ⟦CODE_0012⟧ en la traza todavía imprime y guarda una fila aunque su ⟦CODE_0013⟧ es 0? *(Imprimir y guardar ocurren *antes* de la prueba de ⟦CODE_0014⟧ en el cuerpo de la tarjeta. ⟦CODE_0015⟧ solo controla si la *siguiente* tarjeta se escribe y se llama. La tarjeta que cruza la escribió un padre cuyo total todavía era de 40 o menos.)*\n"
+"3. **Transfiere.** En la entrada rara de Haskell, la regla de parada es \"cuánto de la lista leo\". En ⟦CODE_0016⟧, es \"cuántos elementos indica tomar un conteo de prefijo\". ¿Cuál es la diferencia principal en el *trabajo realizado*? *(Haskell construye solo el prefijo solicitado. APL construye cinco valores y recorta. Ambos responden \"qué tarjetas se conservan\" de la misma manera. Difieren en si se hace el trabajo que no se usa.)*\n"
+"4. **Evidencia.** Un estudiante dice: \"⟦CODE_0017⟧ nunca saca más de cinco horas\". Diseña una prueba que pueda fallar. *(Ejecuta el programa muchas veces en el entorno aislado (*sandbox*), un espacio separado donde pruebas sin riesgo, y cuenta las funciones ⟦CODE_0018⟧ que aparecen en el informe. El conteo nunca debe superar 5. Como control negativo, usa la modificación del ejercicio B6 y muestra que el conteo y el tiempo de ejecución se disparan. Recuerda el límite de tiempo.)*"
+
+#: lessons/study-guides/languages/apl.md:208
+msgctxt "s-4082f515b2f4-0109"
+msgid "Further reading"
+msgstr "Lecturas adicionales"
+
+#: lessons/study-guides/languages/apl.md:210
+msgctxt "s-c65d07caa06a-0110"
+msgid "[APL (programming language)](⟦DEST_0001⟧)) (Wikipedia): the history of array notation and the glyph set."
+msgstr "[APL (programming language)](⟦DEST_0001⟧)) (Wikipedia): la historia de la notación de arreglos y del conjunto de glifos."
+
+#: lessons/study-guides/languages/apl.md:211
+msgctxt "s-f942b38a6bcd-0111"
+msgid "[Array programming](⟦DEST_0001⟧) (Wikipedia): why whole-array operations replace loops, and what that does to the cost of unused work."
+msgstr "[Array programming](⟦DEST_0001⟧) (Wikipedia): por qué las operaciones sobre arreglos completos reemplazan los bucles y qué efecto tiene eso en el costo del trabajo que no se usa."
+
+#: lessons/study-guides/languages/apl.md:212
+msgctxt "s-2f3844e27424-0112"
+msgid "[Homoiconicity](⟦DEST_0001⟧) (Wikipedia): code as data. APL is not homoiconic in the Lisp sense. ⟦CODE_0002⟧ and ⟦CODE_0003⟧ give a text route to the same effect."
+msgstr "[Homoiconicity](⟦DEST_0001⟧) (Wikipedia): el código como datos. APL no es homoicónico en el sentido de Lisp. ⟦CODE_0002⟧ y ⟦CODE_0003⟧ dan una vía de texto al mismo efecto."
+
+#: lessons/study-guides/languages/apl.md:213
+msgctxt "s-9011313a440a-0113"
+msgid "[GNU APL](⟦DEST_0001⟧) (GNU Project): the interpreter these entries use, and the source of its ⟦CODE_0002⟧ extension."
+msgstr "[GNU APL](⟦DEST_0001⟧) (Proyecto GNU): el intérprete que usan estas entradas y la fuente de su extensión ⟦CODE_0002⟧."

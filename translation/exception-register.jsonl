@@ -10,3 +10,14 @@
 {"id":"EXC-010","segment":"s-87d9e31bff8d-0090","invariant":"I7","reason":"'Costs to state' is the verb (declarar, to declare), not the noun 'state' (estado).","task":"P3-003"}
 {"id":"EXC-011","segment":"s-8f93b9f61614-0100","invariant":"I7","reason":"'State when you would use it' is the verb (indicar, to say), not the noun 'state' (estado).","task":"P3-004"}
 {"id":"EXC-012","segment":"s-085950519a5d-0117","invariant":"I7","reason":"'did not state' is the verb (indicar, to say), not the noun 'state' (estado).","task":"P3-004"}
+{"id":"EXC-013","segment":"s-5d69ddea98c3-0005","invariant":"I7","reason":"'Scope limits' names how far the guide reaches (alcance), not variable scope (ámbito); same as EXC-005.","task":"P3-005"}
+{"id":"EXC-014","segment":"s-d7f2c1f9007c-0024","invariant":"I7","reason":"'a card builds the next card's text' is the verb (construye), not the noun 'build' (compilación).","task":"P3-005"}
+{"id":"EXC-015","segment":"s-a35e0f2d5f97-0033","invariant":"I7","reason":"'Hours' is the APL variable name in a diagram label, an identifier that stays as written, not the noun 'hours' (horas).","task":"P3-005"}
+{"id":"EXC-016","segment":"s-8627aa9f7742-0034","invariant":"I7","reason":"'Hours' is the APL variable name in a diagram label, an identifier that stays as written, not the noun 'hours' (horas).","task":"P3-005"}
+{"id":"EXC-017","segment":"s-3894643a82b3-0038","invariant":"I7","reason":"'builds the four gene lines' is the verb (construye), not the noun 'build' (compilación).","task":"P3-005"}
+{"id":"EXC-018","segment":"s-0c31610b8a71-0041","invariant":"I7","reason":"'build four new gene lines' is the verb (construye), not the noun 'build' (compilación).","task":"P3-005"}
+{"id":"EXC-019","segment":"s-94ef3318f472-0045","invariant":"I7","reason":"'Card N+1' is an APL function name in a diagram label, an identifier that stays as written, not the noun 'card' (tarjeta).","task":"P3-005"}
+{"id":"EXC-020","segment":"s-87d9e31bff8d-0094","invariant":"I7","reason":"'Costs to state' is the verb (declarar, to declare), not the noun 'state' (estado); same as EXC-010.","task":"P3-005"}
+{"id":"EXC-021","segment":"s-17958128ade7-0101","invariant":"I7","reason":"'can build and run forms' is the verb (construir), not the noun 'build' (compilación).","task":"P3-005"}
+{"id":"EXC-022","segment":"s-185403b177b9-0104","invariant":"I7","reason":"'shift register' is a hardware term (registro de desplazamiento), not the noun 'entry' (entrada); the ban on 'registro' applies to entry only.","task":"P3-005"}
+{"id":"EXC-023","segment":"s-ba1aa8e49fc6-0108","invariant":"I7","reason":"'Haskell builds only the demanded prefix; APL builds five values' is the verb (construye), not the noun 'build' (compilación).","task":"P3-005"}
