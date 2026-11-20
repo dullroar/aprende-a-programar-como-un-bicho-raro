@@ -299,6 +299,18 @@ class TestRejections(Base):
         self.assertEqual(res["needs_revision"], 1)
         self.assertIn("English text unchanged", self.entries()[sid].comment)
 
+    def test_may_stay_english_is_narrow(self):
+        class S:
+            def __init__(self, masked, kind="text"):
+                self.masked, self.kind = masked, kind
+        self.assertTrue(tr.may_stay_english(S("Forth")))
+        self.assertTrue(tr.may_stay_english(S("false", "mermaid_label")))
+        self.assertTrue(tr.may_stay_english(S("run: begin", "mermaid_label")))
+        self.assertFalse(tr.may_stay_english(S("Program Flow")))                   # two plain words, not a label
+        self.assertFalse(tr.may_stay_english(S("false")))                          # lower-case plain text
+        self.assertFalse(tr.may_stay_english(S("Run the loop", "mermaid_label")))   # three words
+        self.assertFalse(tr.may_stay_english(S("the end", "mermaid_label")))        # English function word
+
     def test_wrong_placeholders_seen_is_needs_revision(self):
         sid = self.ids[1]
         c1 = list(self.seg.segments()[1].mapping)[0]

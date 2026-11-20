@@ -262,11 +262,30 @@ class TestI7(Base):
     def test_plural_still_requires_the_term(self):
         self.assertFires(self.run_seg("Two loops run.", "Dos repeticiones corren."), "I7")
 
+    def test_regular_plural_of_the_approved_form_is_accepted(self):
+        self.assertClean(self.run_seg("Two loops run.", "Dos bucles corren."))
+
+    def test_plural_variants_of_multiword_forms(self):
+        self.assertIn("tarjetas de horas", inv.form_variants("tarjeta de horas"))
+        self.assertIn("totales acumulados", inv.form_variants("total acumulado"))
+        self.assertIn("funciones", inv.form_variants("función"))
+        self.assertNotIn("tarjeta de horas", inv.form_variants("tarjetas"))
+
+    def test_plural_of_another_word_is_not_accepted(self):
+        self.assertFires(self.run_seg("Two loops run.", "Dos ciclos corren."), "I7")
+
     def test_frozen_timecard_wording_is_banned(self):
         self.assertFires(self.run_seg("Stop at the total.", "Detente hasta 40 en el total."), "I7")
 
     def test_banned_assurance_label(self):
-        self.assertFires(self.run_seg("It is a promise.", "Es un comportamiento asegurado."), "I7")
+        self.assertFires(self.run_seg("It is guaranteed.", "Es un comportamiento asegurado."), "I7")
+
+    def test_assurance_ban_needs_the_english_label(self):
+        self.assertClean(self.run_seg("It is safe here.", "Aquí es seguro."))
+
+    def test_banned_rendering_needs_the_english_term(self):
+        # 'ciclo' is banned for 'loop'; an English source without 'loop' may use it
+        self.assertClean(self.run_seg("The cycle ends.", "El ciclo termina."))
 
     def test_banned_word_already_in_source_is_not_blamed(self):
         self.assertClean(self.run_seg("The loop uses the ciclo word.", "El bucle usa la palabra ciclo."))

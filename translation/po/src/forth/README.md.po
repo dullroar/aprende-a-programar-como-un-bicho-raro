@@ -1,0 +1,227 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/forth/README.md:2
+msgctxt "s-bc9ccbb685ed-0000"
+msgid "Forth"
+msgstr "Forth"
+
+#: src/forth/README.md:3
+msgctxt "s-c6506f148299-0001"
+msgid "that a stack language needs one ⟦CODE_0001⟧ and a pipe to be a whole program."
+msgstr "que un lenguaje de pila necesita un ⟦CODE_0001⟧ y una tubería para ser un programa completo."
+
+#: src/forth/README.md:11
+msgctxt "s-1c6a5704fce6-0002"
+msgid "Ordinary: a stack machine with one ⟦CODE_0001⟧ loop"
+msgstr "Ordinario: una máquina de pila con un solo bucle ⟦CODE_0001⟧"
+
+#: src/forth/README.md:12
+msgctxt "s-43af20309777-0003"
+msgid "The variables ⟦CODE_0001⟧ and ⟦CODE_0002⟧, and the data stack"
+msgstr "Las variables ⟦CODE_0001⟧ y ⟦CODE_0002⟧, y la pila de datos"
+
+#: src/forth/README.md:15
+msgctxt "s-bc9ccbb685ed-0004"
+msgid "Forth"
+msgstr "Forth"
+
+#: src/forth/README.md:17
+msgctxt "s-95371b0f5604-0005"
+msgid "**Teaches you:** that a stack language needs one ⟦CODE_0001⟧ and a pipe to be a whole program."
+msgstr "**Te enseña:** que un lenguaje de pila necesita un ⟦CODE_0001⟧ y una tubería para ser un programa completo."
+
+#: src/forth/README.md:19
+msgctxt "s-5ca333b42af1-0006"
+msgid "**⟦DNT_0001⟧.** Fictional timecards in a scratch SQLite file. No connection to any real time-reporting system."
+msgstr "**⟦DNT_0001⟧.** Tarjetas de horas ficticias en un archivo SQLite temporal. Sin conexión con ningún sistema real de registro de horas."
+
+#: src/forth/README.md:21
+msgctxt "s-e1af1c1571d3-0007"
+msgid "The challenge (\"add 10 to 19 hour cards until the total passes 40\") is one word, ⟦CODE_0001⟧, and it is one line: ⟦CODE_0002⟧. Everything else in [⟦CODE_0003⟧](⟦DEST_0004⟧) is a small word that does one thing, defined before it is used."
+msgstr "El reto (\"agrega de 10 a 19 tarjetas de horas hasta que el total pase de 40\") es una sola palabra, ⟦CODE_0001⟧, y ocupa una sola línea: ⟦CODE_0002⟧. Todo lo demás en [⟦CODE_0003⟧](⟦DEST_0004⟧) es una palabra pequeña que hace una sola cosa y se define antes de usarla."
+
+#: src/forth/README.md:23
+msgctxt "s-958ca26c6a61-0008"
+msgid "Run it"
+msgstr "Ejecútalo"
+
+#: src/forth/README.md:25
+msgctxt "s-b4a18d3914aa-0009"
+msgid "You need Gforth (⟦CODE_0001⟧, 0.7.3 or later) and ⟦CODE_0002⟧."
+msgstr "Necesitas Gforth (⟦CODE_0001⟧, versión 0.7.3 o posterior) y ⟦CODE_0002⟧."
+
+#: src/forth/README.md:33
+msgctxt "s-76a446f3fda7-0010"
+msgid "Records go to ⟦CODE_0001⟧ (default ⟦CODE_0002⟧). A run looks like this:"
+msgstr "Los registros van a ⟦CODE_0001⟧ (por defecto, ⟦CODE_0002⟧). Una ejecución se ve así:"
+
+#: src/forth/README.md:43
+msgctxt "s-0dcb373c2dff-0011"
+msgid "Program Flow"
+msgstr "Flujo del programa"
+
+#: src/forth/README.md:47
+msgctxt "s-9fef4d3c6c79-0012"
+msgid "forth: one begin until loop over a word called card"
+msgstr "forth: un solo bucle begin until sobre una palabra llamada card"
+
+#: src/forth/README.md:48
+msgctxt "s-48a93443871e-0013"
+msgid "A flowchart. The word main sets up, which opens a pipe to sqlite3, and writes the schema. The word run is a begin until loop. Each pass runs card, which draws hours, adds them to the total variable, bumps the card count, prints the row, and sends the INSERT through the pipe. Then over-40 leaves a flag on the stack, and until consumes it. If the flag is false, the loop repeats. If it is true, run ends, and main commits, closes the pipe and reports."
+msgstr "Un diagrama de flujo. La palabra main hace la preparación: abre una tubería a sqlite3 y escribe el esquema. La palabra run es un bucle begin until. Cada pasada ejecuta card, que sortea las horas, las suma a la variable total, incrementa el conteo de tarjetas, imprime la fila y envía el INSERT por la tubería. Después, over-40 deja una bandera en la pila y until la consume. Si la bandera es falsa, el bucle se repite. Si es verdadera, run termina, y main confirma, cierra la tubería e informa."
+
+#: src/forth/README.md:49
+msgctxt "s-41a381841487-0014"
+msgid "main: open the pipe to sqlite3, write the schema"
+msgstr "main: abre la tubería a sqlite3, escribe el esquema"
+
+#: src/forth/README.md:49
+msgctxt "s-e1ddfce47f6f-0015"
+msgid "run: begin"
+msgstr "run: begin"
+
+#: src/forth/README.md:50
+msgctxt "s-ccd5a5faa5d1-0016"
+msgid "card: draw hours, add to total, bump cards"
+msgstr "card: sacar horas, sumar al total, incrementar tarjetas"
+
+#: src/forth/README.md:51
+msgctxt "s-5f6983f484cf-0017"
+msgid "Print the row; send the INSERT through the pipe"
+msgstr "Imprime la fila; envía el INSERT por la tubería"
+
+#: src/forth/README.md:52
+msgctxt "s-4467879d0f9b-0018"
+msgid "over-40? leaves a flag; until consumes it"
+msgstr "over-40? deja una bandera; until la consume"
+
+#: src/forth/README.md:53
+msgctxt "s-fcbcf165908d-0019"
+msgid "false"
+msgstr "false"
+
+#: src/forth/README.md:54
+msgctxt "s-b5bea41b6c62-0020"
+msgid "true"
+msgstr "true"
+
+#: src/forth/README.md:54
+msgctxt "s-330fa6f7306b-0021"
+msgid "main: commit, close the pipe, report"
+msgstr "main: confirma la transacción, cierra la tubería, informa"
+
+#: src/forth/README.md:57
+msgctxt "s-b3855ade5eae-0022"
+msgid "**What this shows:** Forth has one ordinary loop, ⟦CODE_0001⟧. The loop body runs ⟦CODE_0002⟧, and then ⟦CODE_0003⟧ leaves a flag on the stack for ⟦CODE_0004⟧ to take. The state lives in two variables, ⟦CODE_0005⟧ and ⟦CODE_0006⟧, and the data stack carries values between words."
+msgstr "**Qué muestra:** Forth tiene un solo bucle ordinario, ⟦CODE_0001⟧. El cuerpo del bucle ejecuta ⟦CODE_0002⟧, y después ⟦CODE_0003⟧ deja una bandera en la pila para que ⟦CODE_0004⟧ la tome. El estado vive en dos variables, ⟦CODE_0005⟧ y ⟦CODE_0006⟧, y la pila de datos lleva valores entre palabras."
+
+#: src/forth/README.md:59
+msgctxt "s-eedf0c7a6d75-0023"
+msgid "**Why this mechanism matters:** the stop rule is a flag, not a condition in the loop's header. The flag is computed after the card, so the crossing card is kept. The weird sibling [⟦CODE_0001⟧](⟦DEST_0002⟧) has no ⟦CODE_0003⟧ and no ⟦CODE_0004⟧."
+msgstr "**Por qué importa este mecanismo:** la regla de parada es una bandera, no una condición en el encabezado del bucle. La bandera se calcula después de la tarjeta, así que la tarjeta que cruza el límite se conserva. El hermano raro [⟦CODE_0001⟧](⟦DEST_0002⟧) no tiene ⟦CODE_0003⟧ ni ⟦CODE_0004⟧."
+
+#: src/forth/README.md:61
+msgctxt "s-7f97d965b4c0-0024"
+msgid "How the stunt works"
+msgstr "Cómo funciona el truco"
+
+#: src/forth/README.md:63
+msgctxt "s-f75e4fbfc788-0025"
+msgid "Forth has almost no syntax: the interpreter reads a space-delimited word, looks it up, and runs it. A ⟦CODE_0001⟧ definition is a new word; words pass values on a **stack**. Every definition in the file carries a *stack comment* such as ⟦CODE_0002⟧, meaning \"takes one number, leaves nothing\". Read those first and most of the file explains itself."
+msgstr "Forth casi no tiene sintaxis: el intérprete lee una palabra delimitada por espacios, la busca y la ejecuta. Una definición con ⟦CODE_0001⟧ es una palabra nueva. Las palabras se pasan valores mediante una **pila**. Cada definición del archivo lleva un *comentario de pila* como ⟦CODE_0002⟧, que significa \"toma un número y no deja nada\". Lee esos comentarios primero y casi todo el archivo se explica solo."
+
+#: src/forth/README.md:65
+msgctxt "s-09713b30b6e9-0026"
+msgid "The file is built bottom-up, so each word is made of words above it:"
+msgstr "El archivo se construye de abajo hacia arriba, así que cada palabra se define con palabras que están más arriba:"
+
+#: src/forth/README.md:67
+msgctxt "s-3dfbad6a2335-0027"
+msgid ""
+"**State.** Two ⟦CODE_0001⟧s, ⟦CODE_0002⟧ and ⟦CODE_0003⟧. ⟦CODE_0004⟧ fetches, ⟦CODE_0005⟧ stores, ⟦CODE_0006⟧ adds.\n"
+"2. **Categories.** Four one-line words (⟦CODE_0007⟧, ⟦CODE_0008⟧, …) each leave a string on the stack as an address and a length (⟦CODE_0009⟧). ⟦CODE_0010⟧ builds a table of their *execution tokens* (⟦CODE_0011⟧ is \"tick\": the token of the next word). ⟦CODE_0012⟧ picks one with ⟦CODE_0013⟧ and runs it with ⟦CODE_0014⟧. That is Forth's switch statement: an array of functions.\n"
+"3. **Printing as plumbing.** ⟦CODE_0015⟧, ⟦CODE_0016⟧, ⟦CODE_0017⟧ and ⟦CODE_0018⟧ are tiny output helpers so the SQL and the display rows read as lists of ingredients rather than escaped strings.\n"
+"4. **SQLite.** ⟦CODE_0019⟧ starts ⟦CODE_0020⟧ with ⟦CODE_0021⟧ and keeps the handle in ⟦CODE_0022⟧. ⟦CODE_0023⟧ takes an execution token and runs it with ⟦CODE_0024⟧, which **redirects all output to that file** for the duration. That is the stunt of the straight version: ⟦CODE_0025⟧, ⟦CODE_0026⟧ and ⟦CODE_0027⟧ are ordinary words that ⟦CODE_0028⟧ and ⟦CODE_0029⟧ text, and the pipe turns that text into SQL.\n"
+"5. **One card.** ⟦CODE_0030⟧ draws hours, adds them to ⟦CODE_0031⟧, bumps ⟦CODE_0032⟧, prints the row, and sends the insert. Note ⟦CODE_0033⟧: ⟦CODE_0034⟧ consumes the hours, so a copy is kept for ⟦CODE_0035⟧, which runs *inside* ⟦CODE_0036⟧ against the same stack.\n"
+"6. **The loop.** ⟦CODE_0037⟧. ⟦CODE_0038⟧ consumes a flag from ⟦CODE_0039⟧ and repeats the body until the flag is true. ⟦CODE_0040⟧ is the ordinary Forth loop, and the only control-flow word in the file.\n"
+"7. **⟦CODE_0041⟧.** Sets up, writes the schema, calls ⟦CODE_0042⟧, commits, closes the pipe and reports."
+msgstr ""
+"**Estado.** Dos ⟦CODE_0001⟧: ⟦CODE_0002⟧ y ⟦CODE_0003⟧. ⟦CODE_0004⟧ lee, ⟦CODE_0005⟧ guarda, ⟦CODE_0006⟧ suma.\n"
+"2. **Categorías.** Cuatro palabras de una línea (⟦CODE_0007⟧, ⟦CODE_0008⟧, …) dejan cada una una cadena de texto en la pila como una dirección y una longitud (⟦CODE_0009⟧). ⟦CODE_0010⟧ construye una tabla con sus *tokens de ejecución* (⟦CODE_0011⟧ se lee \"tick\": el token de la palabra siguiente). ⟦CODE_0012⟧ elige uno con ⟦CODE_0013⟧ y lo ejecuta con ⟦CODE_0014⟧. Esa es la instrucción switch de Forth: un arreglo de funciones.\n"
+"3. **Imprimir como plomería.** ⟦CODE_0015⟧, ⟦CODE_0016⟧, ⟦CODE_0017⟧ y ⟦CODE_0018⟧ son pequeños auxiliares de salida. Así el SQL y las filas que se muestran se leen como listas de ingredientes y no como cadenas de texto con caracteres de escape.\n"
+"4. **SQLite.** ⟦CODE_0019⟧ inicia ⟦CODE_0020⟧ con ⟦CODE_0021⟧ y guarda el descriptor en ⟦CODE_0022⟧. ⟦CODE_0023⟧ toma un token de ejecución y lo ejecuta con ⟦CODE_0024⟧, que **redirige toda la salida a ese archivo** mientras dure. Ese es el truco de la versión directa: ⟦CODE_0025⟧, ⟦CODE_0026⟧ y ⟦CODE_0027⟧ son palabras ordinarias que ⟦CODE_0028⟧ y ⟦CODE_0029⟧ texto, y la tubería convierte ese texto en SQL.\n"
+"5. **Una tarjeta.** ⟦CODE_0030⟧ sortea las horas, las suma a ⟦CODE_0031⟧, incrementa ⟦CODE_0032⟧, imprime la fila y envía la inserción. Fíjate en ⟦CODE_0033⟧: ⟦CODE_0034⟧ consume las horas, así que se guarda una copia para ⟦CODE_0035⟧, que se ejecuta *dentro de* ⟦CODE_0036⟧ sobre la misma pila.\n"
+"6. **El bucle.** ⟦CODE_0037⟧. ⟦CODE_0038⟧ consume una bandera de ⟦CODE_0039⟧ y repite el cuerpo hasta que la bandera sea verdadera. ⟦CODE_0040⟧ es el bucle ordinario de Forth y la única palabra de control de flujo del archivo.\n"
+"7. **⟦CODE_0041⟧.** Prepara todo, escribe el esquema, llama a ⟦CODE_0042⟧, hace la confirmación, cierra la tubería e informa."
+
+#: src/forth/README.md:75
+msgctxt "s-339cc2c18f83-0028"
+msgid "What ⟦CODE_0001⟧ enforces"
+msgstr "Qué impone ⟦CODE_0001⟧"
+
+#: src/forth/README.md:77
+msgctxt "s-7c642f8bed53-0029"
+msgid "⟦CODE_0001⟧ checks that ⟦CODE_0002⟧ carries the ⟦CODE_0003⟧ marker and has no network-looking text. Then it runs the program 25 times. Every run must print a sane record set: categories in order, hours from 10 to 19, running totals that add up, a ⟦CODE_0004⟧ mark on every row, and a stop exactly when the total passes 40. SQLite must agree with the printed rows. The 25 runs must be 25 different runs, and the hours must show at least six different values, so the \"random\" draws really look random. Last, it tries to insert a non-demo row and expects SQLite to refuse it, which proves that ⟦CODE_0005⟧ is real."
+msgstr "⟦CODE_0001⟧ comprueba que ⟦CODE_0002⟧ lleva la marca ⟦CODE_0003⟧ y no tiene texto que parezca de red. Después ejecuta el programa 25 veces. Cada ejecución debe imprimir un conjunto de registros coherente: categorías en orden, horas de 10 a 19, totales acumulados que suman bien, una marca ⟦CODE_0004⟧ en cada fila y una parada exactamente cuando el total pasa de 40. SQLite debe coincidir con las filas impresas. Las 25 ejecuciones deben ser 25 ejecuciones distintas, y las horas deben mostrar al menos seis valores distintos, para que los sorteos \"aleatorios\" parezcan realmente aleatorios. Por último, intenta insertar una fila que no es de demo y espera que SQLite la rechace, lo cual prueba que ⟦CODE_0005⟧ es real."
+
+#: src/forth/README.md:79
+msgctxt "s-5a0ad00b10fc-0030"
+msgid "Gotchas worth knowing"
+msgstr "Trampas que conviene conocer"
+
+#: src/forth/README.md:81
+msgctxt "s-3e512369eac4-0031"
+msgid "**Control words only work inside definitions.** Typing ⟦CODE_0001⟧ at the top level is an error in standard Forth. That is why ⟦CODE_0002⟧ is a word. (The weird version cheats the other way.)"
+msgstr "**Las palabras de control solo funcionan dentro de definiciones.** Escribir ⟦CODE_0001⟧ en el nivel superior es un error en Forth estándar. Por eso ⟦CODE_0002⟧ es una palabra. (La versión rara hace trampa en sentido contrario.)"
+
+#: src/forth/README.md:82
+msgctxt "s-d65cd2322a7f-0032"
+msgid "**⟦CODE_0001⟧ strings are temporary.** In some interpreters, ⟦CODE_0002⟧ outside a definition returns a buffer that is overwritten by the next one. The category words are definitions for that reason."
+msgstr "**Las cadenas de texto de ⟦CODE_0001⟧ son temporales.** En algunos intérpretes, ⟦CODE_0002⟧ fuera de una definición devuelve un búfer que se sobrescribe con el siguiente. Las palabras de categoría son definiciones por esa razón."
+
+#: src/forth/README.md:83
+msgctxt "s-d0d71605117d-0033"
+msgid "**⟦CODE_0001⟧ is ⟦CODE_0002⟧.** ⟦CODE_0003⟧ gives 10 to 19. Gforth seeds it with ⟦CODE_0004⟧; this file seeds it from ⟦CODE_0005⟧ (microseconds), which is also the run id."
+msgstr "**⟦CODE_0001⟧ es ⟦CODE_0002⟧.** ⟦CODE_0003⟧ da un valor de 10 a 19. Gforth lo inicializa con ⟦CODE_0004⟧; este archivo lo inicializa con ⟦CODE_0005⟧ (microsegundos), que también es el id de la ejecución."
+
+#: src/forth/README.md:84
+msgctxt "s-6379f79ccf2c-0034"
+msgid "**⟦CODE_0001⟧ returns the exit status.** ⟦CODE_0002⟧ turns a non-zero status into an abort, so a failed ⟦CODE_0003⟧ is not silently ignored."
+msgstr "**⟦CODE_0001⟧ devuelve el estado de salida.** ⟦CODE_0002⟧ convierte un estado distinto de cero en un aborto, así que un ⟦CODE_0003⟧ fallido no se ignora en silencio."
+
+#: src/forth/README.md:85
+msgctxt "s-44299ac061af-0035"
+msgid "**Gforth-specific words.** ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧ and ⟦CODE_0004⟧ are Gforth extensions, not ISO Forth."
+msgstr "**Palabras específicas de Gforth.** ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧ y ⟦CODE_0004⟧ son extensiones de Gforth, no de ISO Forth."
+
+#: src/forth/README.md:86
+msgctxt "s-a936c578bce3-0036"
+msgid "**No formatter exists.** The style is by hand: one stack comment per word, short words, two-space indents for bodies, and a trailing ⟦CODE_0001⟧ on words that leave a string."
+msgstr "**No existe un formateador.** El estilo se aplica a mano: un comentario de pila por palabra, palabras cortas, sangrías de dos espacios en los cuerpos y un ⟦CODE_0001⟧ final en las palabras que dejan una cadena de texto."
+
+#: src/forth/README.md:87
+msgctxt "s-e98af1fe40dc-0037"
+msgid "**SQL by concatenation is a bad habit.** It is safe here only because every value is a number computed by the program or one of four fixed words. Do not copy it."
+msgstr "**Armar SQL por concatenación es un mal hábito.** Aquí es seguro solo porque cada valor es un número que calcula el programa o una de cuatro palabras fijas. No lo copies."
+
+#: src/forth/README.md:89
+msgctxt "s-254f0c660db3-0038"
+msgid "Run it in a container"
+msgstr "Ejecútalo en un contenedor"
+
+#: src/forth/README.md:91
+msgctxt "s-643df015c8a2-0039"
+msgid "Prerequisite: Docker, set up once as described in [⟦CODE_0001⟧](⟦DEST_0002⟧)."
+msgstr "Requisito previo: Docker, configurado una sola vez como se describe en [⟦CODE_0001⟧](⟦DEST_0002⟧)."
+
+#: src/forth/README.md:97
+msgctxt "s-ad0dd27b24c4-0040"
+msgid "It builds this folder's [⟦CODE_0001⟧](⟦DEST_0002⟧) and runs the result with no network, a read-only file system and user ⟦CODE_0003⟧, then prints the output and a read-only look at the rows it wrote. The image holds Gforth and sqlite3 on a minimal Ubuntu. It has no compiler and no package manager."
+msgstr "Hace la compilación del [⟦CODE_0001⟧](⟦DEST_0002⟧) de esta carpeta y ejecuta el resultado sin red, con un sistema de archivos de solo lectura y con el usuario ⟦CODE_0003⟧. Después muestra la salida y una vista de solo lectura de las filas que escribió. La imagen contiene Gforth y sqlite3 sobre un Ubuntu mínimo. No tiene compilador ni gestor de paquetes."

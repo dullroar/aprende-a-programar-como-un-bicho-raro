@@ -60,6 +60,17 @@ class NegativeCheckTests(unittest.TestCase):
             rows["H002"]["occurrences"] += 1
         self.assertTrue(any("occurrences" in p for p in self.run_with(m)))
 
+    def test_translated_heading_still_counts_by_its_spanish_text(self):
+        # H008 'How the stunt works' is now Spanish in src/forth/README.md; the total must still match
+        self.assertEqual(hr.check(), [])
+        rows = hr.load()
+        self.assertEqual(rows["H008"]["status"], "transcreated")
+
+    def test_spanish_text_that_is_not_in_the_files_is_reported(self):
+        def m(rows):
+            rows["H008"]["spanish"] = "Un título que no existe en ningún archivo"
+        self.assertTrue(any("occurrences" in p for p in self.run_with(m)))
+
     def test_bad_status_is_reported(self):
         def m(rows):
             rows["H003"]["status"] = "maybe"

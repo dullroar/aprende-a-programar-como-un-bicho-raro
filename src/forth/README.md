@@ -1,6 +1,6 @@
 ---
 name: "Forth"
-teaches: "that a stack language needs one `begin ... until` and a pipe to be a whole program."
+teaches: "que un lenguaje de pila necesita un `begin ... until` y una tubería para ser un programa completo."
 kind: idiomatic
 languages: [forth]
 lesson: "languages/forth.md"
@@ -8,21 +8,21 @@ loop-by: loop-statement
 evaluation: eager
 assurance: guaranteed
 pairs-with: forth-weird
-machine: "Ordinary: a stack machine with one `begin ... until` loop"
-state: "The variables `total` and `cards`, and the data stack"
+machine: "Ordinario: una máquina de pila con un solo bucle `begin ... until`"
+state: "Las variables `total` y `cards`, y la pila de datos"
 tags: [control-flow, stack-data-structure, stack-machine, transaction]
 ---
 # Forth
 
-**Teaches you:** that a stack language needs one `begin ... until` and a pipe to be a whole program.
+**Te enseña:** que un lenguaje de pila necesita un `begin ... until` y una tubería para ser un programa completo.
 
-> **DEMO ONLY.** Fictional timecards in a scratch SQLite file. No connection to any real time-reporting system.
+> **DEMO ONLY.** Tarjetas de horas ficticias en un archivo SQLite temporal. Sin conexión con ningún sistema real de registro de horas.
 
-The challenge ("add 10 to 19 hour cards until the total passes 40") is one word, `run`, and it is one line: `begin card over-40? until`. Everything else in [`timecards.fs`](timecards.fs) is a small word that does one thing, defined before it is used.
+El reto ("agrega de 10 a 19 tarjetas de horas hasta que el total pase de 40") es una sola palabra, `run`, y ocupa una sola línea: `begin card over-40? until`. Todo lo demás en [`timecards.fs`](timecards.fs) es una palabra pequeña que hace una sola cosa y se define antes de usarla.
 
-## Run it
+## Ejecútalo
 
-You need Gforth (`gforth`, 0.7.3 or later) and `sqlite3`.
+Necesitas Gforth (`gforth`, versión 0.7.3 o posterior) y `sqlite3`.
 
 ```bash
 cd src/forth
@@ -30,7 +30,7 @@ gforth timecards.fs
 ./check.sh                  # set GFORTH=/path/to/gforth if it is not on your PATH
 ```
 
-Records go to `$XDG_DATA_HOME/Forth/demo-timecards.db` (default `~/.local/share/Forth/`). A run looks like this:
+Los registros van a `$XDG_DATA_HOME/Forth/demo-timecards.db` (por defecto, `~/.local/share/Forth/`). Una ejecución se ve así:
 
 ```text
 # DEMO ONLY run 1794674715672985
@@ -40,58 +40,58 @@ Debugging	14	48	2026-W46	DEMO ONLY
 # committed total=48 entries=3 DEMO ONLY
 ```
 
-## Program Flow
+## Flujo del programa
 
 ```mermaid
 flowchart TD
-    accTitle: forth: one begin until loop over a word called card
-    accDescr: A flowchart. The word main sets up, which opens a pipe to sqlite3, and writes the schema. The word run is a begin until loop. Each pass runs card, which draws hours, adds them to the total variable, bumps the card count, prints the row, and sends the INSERT through the pipe. Then over-40 leaves a flag on the stack, and until consumes it. If the flag is false, the loop repeats. If it is true, run ends, and main commits, closes the pipe and reports.
-    A["main: open the pipe to sqlite3, write the schema"] --> B["run: begin"]
-    B --> C["card: draw hours, add to total, bump cards"]
-    C --> D["Print the row; send the INSERT through the pipe"]
-    D --> E{{"over-40? leaves a flag; until consumes it"}}
+    accTitle: forth: un solo bucle begin until sobre una palabra llamada card
+    accDescr: Un diagrama de flujo. La palabra main hace la preparación: abre una tubería a sqlite3 y escribe el esquema. La palabra run es un bucle begin until. Cada pasada ejecuta card, que sortea las horas, las suma a la variable total, incrementa el conteo de tarjetas, imprime la fila y envía el INSERT por la tubería. Después, over-40 deja una bandera en la pila y until la consume. Si la bandera es falsa, el bucle se repite. Si es verdadera, run termina, y main confirma, cierra la tubería e informa.
+    A["main: abre la tubería a sqlite3, escribe el esquema"] --> B["run: begin"]
+    B --> C["card: sacar horas, sumar al total, incrementar tarjetas"]
+    C --> D["Imprime la fila; envía el INSERT por la tubería"]
+    D --> E{{"over-40? deja una bandera; until la consume"}}
     E -->|false| B
-    E -->|true| F["main: commit, close the pipe, report"]
+    E -->|true| F["main: confirma la transacción, cierra la tubería, informa"]
 ```
 
-**What this shows:** Forth has one ordinary loop, `begin ... until`. The loop body runs `card`, and then `over-40?` leaves a flag on the stack for `until` to take. The state lives in two variables, `total` and `cards`, and the data stack carries values between words.
+**Qué muestra:** Forth tiene un solo bucle ordinario, `begin ... until`. El cuerpo del bucle ejecuta `card`, y después `over-40?` deja una bandera en la pila para que `until` la tome. El estado vive en dos variables, `total` y `cards`, y la pila de datos lleva valores entre palabras.
 
-**Why this mechanism matters:** the stop rule is a flag, not a condition in the loop's header. The flag is computed after the card, so the crossing card is kept. The weird sibling [`forth-weird`](../forth-weird/README.md) has no `begin` and no `until`.
+**Por qué importa este mecanismo:** la regla de parada es una bandera, no una condición en el encabezado del bucle. La bandera se calcula después de la tarjeta, así que la tarjeta que cruza el límite se conserva. El hermano raro [`forth-weird`](../forth-weird/README.md) no tiene `begin` ni `until`.
 
-## How the stunt works
+## Cómo funciona el truco
 
-Forth has almost no syntax: the interpreter reads a space-delimited word, looks it up, and runs it. A `:` definition is a new word; words pass values on a **stack**. Every definition in the file carries a *stack comment* such as `( hours -- )`, meaning "takes one number, leaves nothing". Read those first and most of the file explains itself.
+Forth casi no tiene sintaxis: el intérprete lee una palabra delimitada por espacios, la busca y la ejecuta. Una definición con `:` es una palabra nueva. Las palabras se pasan valores mediante una **pila**. Cada definición del archivo lleva un *comentario de pila* como `( hours -- )`, que significa "toma un número y no deja nada". Lee esos comentarios primero y casi todo el archivo se explica solo.
 
-The file is built bottom-up, so each word is made of words above it:
+El archivo se construye de abajo hacia arriba, así que cada palabra se define con palabras que están más arriba:
 
-1. **State.** Two `variable`s, `total` and `cards`. `x @` fetches, `n x !` stores, `n x +!` adds.
-2. **Categories.** Four one-line words (`meetings`, `coding`, …) each leave a string on the stack as an address and a length (`c-addr u`). `create categories ' meetings , …` builds a table of their *execution tokens* (`'` is "tick": the token of the next word). `category$` picks one with `4 mod` and runs it with `execute`. That is Forth's switch statement: an array of functions.
-3. **Printing as plumbing.** `.num`, `tab`, `quoted` and `comma` are tiny output helpers so the SQL and the display rows read as lists of ingredients rather than escaped strings.
-4. **SQLite.** `open-sqlite` starts `sqlite3` with `open-pipe` and keeps the handle in `sqlite`. `>sqlite` takes an execution token and runs it with `outfile-execute`, which **redirects all output to that file** for the duration. That is the stunt of the straight version: `.schema`, `.insert` and `.commit` are ordinary words that `cr` and `."` text, and the pipe turns that text into SQL.
-5. **One card.** `card` draws hours, adds them to `total`, bumps `cards`, prints the row, and sends the insert. Note `dup .row`: `.row` consumes the hours, so a copy is kept for `.insert`, which runs *inside* `outfile-execute` against the same stack.
-6. **The loop.** `: run  begin card over-40? until ;`. `until` consumes a flag from `over-40?` and repeats the body until the flag is true. `begin ... until` is the ordinary Forth loop, and the only control-flow word in the file.
-7. **`main`.** Sets up, writes the schema, calls `run`, commits, closes the pipe and reports.
+1. **Estado.** Dos `variable`: `total` y `cards`. `x @` lee, `n x !` guarda, `n x +!` suma.
+2. **Categorías.** Cuatro palabras de una línea (`meetings`, `coding`, …) dejan cada una una cadena de texto en la pila como una dirección y una longitud (`c-addr u`). `create categories ' meetings , …` construye una tabla con sus *tokens de ejecución* (`'` se lee "tick": el token de la palabra siguiente). `category$` elige uno con `4 mod` y lo ejecuta con `execute`. Esa es la instrucción switch de Forth: un arreglo de funciones.
+3. **Imprimir como plomería.** `.num`, `tab`, `quoted` y `comma` son pequeños auxiliares de salida. Así el SQL y las filas que se muestran se leen como listas de ingredientes y no como cadenas de texto con caracteres de escape.
+4. **SQLite.** `open-sqlite` inicia `sqlite3` con `open-pipe` y guarda el descriptor en `sqlite`. `>sqlite` toma un token de ejecución y lo ejecuta con `outfile-execute`, que **redirige toda la salida a ese archivo** mientras dure. Ese es el truco de la versión directa: `.schema`, `.insert` y `.commit` son palabras ordinarias que `cr` y `."` texto, y la tubería convierte ese texto en SQL.
+5. **Una tarjeta.** `card` sortea las horas, las suma a `total`, incrementa `cards`, imprime la fila y envía la inserción. Fíjate en `dup .row`: `.row` consume las horas, así que se guarda una copia para `.insert`, que se ejecuta *dentro de* `outfile-execute` sobre la misma pila.
+6. **El bucle.** `: run  begin card over-40? until ;`. `until` consume una bandera de `over-40?` y repite el cuerpo hasta que la bandera sea verdadera. `begin ... until` es el bucle ordinario de Forth y la única palabra de control de flujo del archivo.
+7. **`main`.** Prepara todo, escribe el esquema, llama a `run`, hace la confirmación, cierra la tubería e informa.
 
-## What `check.sh` enforces
+## Qué impone `check.sh`
 
-`check.sh` checks that `timecards.fs` carries the `DEMO ONLY` marker and has no network-looking text. Then it runs the program 25 times. Every run must print a sane record set: categories in order, hours from 10 to 19, running totals that add up, a `DEMO ONLY` mark on every row, and a stop exactly when the total passes 40. SQLite must agree with the printed rows. The 25 runs must be 25 different runs, and the hours must show at least six different values, so the "random" draws really look random. Last, it tries to insert a non-demo row and expects SQLite to refuse it, which proves that `CHECK(demo_only=1)` is real.
+`check.sh` comprueba que `timecards.fs` lleva la marca `DEMO ONLY` y no tiene texto que parezca de red. Después ejecuta el programa 25 veces. Cada ejecución debe imprimir un conjunto de registros coherente: categorías en orden, horas de 10 a 19, totales acumulados que suman bien, una marca `DEMO ONLY` en cada fila y una parada exactamente cuando el total pasa de 40. SQLite debe coincidir con las filas impresas. Las 25 ejecuciones deben ser 25 ejecuciones distintas, y las horas deben mostrar al menos seis valores distintos, para que los sorteos "aleatorios" parezcan realmente aleatorios. Por último, intenta insertar una fila que no es de demo y espera que SQLite la rechace, lo cual prueba que `CHECK(demo_only=1)` es real.
 
-## Gotchas worth knowing
+## Trampas que conviene conocer
 
-- **Control words only work inside definitions.** Typing `begin ... until` at the top level is an error in standard Forth. That is why `run` is a word. (The weird version cheats the other way.)
-- **`s"` strings are temporary.** In some interpreters, `s"` outside a definition returns a buffer that is overwritten by the next one. The category words are definitions for that reason.
-- **`random` is `0..n-1`.** `10 random 10 +` gives 10 to 19. Gforth seeds it with `seed`; this file seeds it from `utime` (microseconds), which is also the run id.
-- **`close-pipe` returns the exit status.** `close-sqlite` turns a non-zero status into an abort, so a failed `sqlite3` is not silently ignored.
-- **Gforth-specific words.** `outfile-execute`, `open-pipe`, `utime` and `s\"` are Gforth extensions, not ISO Forth.
-- **No formatter exists.** The style is by hand: one stack comment per word, short words, two-space indents for bodies, and a trailing `$` on words that leave a string.
-- **SQL by concatenation is a bad habit.** It is safe here only because every value is a number computed by the program or one of four fixed words. Do not copy it.
+- **Las palabras de control solo funcionan dentro de definiciones.** Escribir `begin ... until` en el nivel superior es un error en Forth estándar. Por eso `run` es una palabra. (La versión rara hace trampa en sentido contrario.)
+- **Las cadenas de texto de `s"` son temporales.** En algunos intérpretes, `s"` fuera de una definición devuelve un búfer que se sobrescribe con el siguiente. Las palabras de categoría son definiciones por esa razón.
+- **`random` es `0..n-1`.** `10 random 10 +` da un valor de 10 a 19. Gforth lo inicializa con `seed`; este archivo lo inicializa con `utime` (microsegundos), que también es el id de la ejecución.
+- **`close-pipe` devuelve el estado de salida.** `close-sqlite` convierte un estado distinto de cero en un aborto, así que un `sqlite3` fallido no se ignora en silencio.
+- **Palabras específicas de Gforth.** `outfile-execute`, `open-pipe`, `utime` y `s\"` son extensiones de Gforth, no de ISO Forth.
+- **No existe un formateador.** El estilo se aplica a mano: un comentario de pila por palabra, palabras cortas, sangrías de dos espacios en los cuerpos y un `$` final en las palabras que dejan una cadena de texto.
+- **Armar SQL por concatenación es un mal hábito.** Aquí es seguro solo porque cada valor es un número que calcula el programa o una de cuatro palabras fijas. No lo copies.
 
-## Run it in a container
+## Ejecútalo en un contenedor
 
-Prerequisite: Docker, set up once as described in [`SANDBOX-SETUP.md`](../../SANDBOX-SETUP.md#docker).
+Requisito previo: Docker, configurado una sola vez como se describe en [`SANDBOX-SETUP.md`](../../SANDBOX-SETUP.md#docker).
 
 ```bash
 sandbox/container/run-image.sh src/forth
 ```
 
-It builds this folder's [`Dockerfile`](Dockerfile) and runs the result with no network, a read-only file system and user `nobody`, then prints the output and a read-only look at the rows it wrote. The image holds Gforth and sqlite3 on a minimal Ubuntu. It has no compiler and no package manager.
+Hace la compilación del [`Dockerfile`](Dockerfile) de esta carpeta y ejecuta el resultado sin red, con un sistema de archivos de solo lectura y con el usuario `nobody`. Después muestra la salida y una vista de solo lectura de las filas que escribió. La imagen contiene Gforth y sqlite3 sobre un Ubuntu mínimo. No tiene compilador ni gestor de paquetes.

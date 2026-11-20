@@ -189,6 +189,10 @@ def check():
         if r["status"] in ("kept", "transcreated") and not r.get("spanish"):
             problems.append(r["id"] + ": status needs a Spanish text")
         hits = locate(r["kind"], r["english"], r["files"] or files, files)
+        if r["status"] in ("kept", "transcreated") and r.get("spanish"):
+            # A translated file no longer holds the English line: count the recorded Spanish too, so the
+            # total stays the number of places the line occurs, translated or not.
+            hits = hits + locate(r["kind"], r["spanish"], r["files"] or files, files)
         if not hits:
             problems.append(r["id"] + ": English text not found in source: " + r["english"][:50])
         elif len(hits) != r["occurrences"]:

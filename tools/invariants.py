@@ -130,8 +130,11 @@ class Context:
         for p in (frozen.get("timecard_rule", {}) or {}).get("banned", []) or []:
             self.banned_phrases.append((p, "timecard rule"))
         for lab in (frozen.get("assurance_labels", {}) or {}).get("labels", []) or []:
+            # An assurance label is banned only where the English names that label ('safe' is not 'guaranteed').
+            stem = re.sub(r"[^a-z]", "", str(lab.get("enum", "")).split("-")[0].lower())[:6]
+            trigger = re.compile(r"(?<!\w)%s" % re.escape(stem), re.I) if stem else None
             for p in lab.get("banned", []) or []:
-                self.banned_phrases.append((p, "assurance label"))
+                self.banned_phrases.append((p, "assurance label", trigger))
 
     def waived(self, seg_id, inv):
         return (seg_id, inv) in self.exceptions
@@ -267,18 +270,50 @@ def approved_form(es):
     return re.sub(r"\s*\([^)]*\)", "", es).strip().lower()
 
 
+def es_plural(word):
+    """Regular Spanish plural of one lowercase word (the English term regex already accepts -s/-es)."""
+    if word.endswith("ón"):
+        return word[:-2] + "ones"
+    if word.endswith("z"):
+        return word[:-1] + "ces"
+    if word.endswith(("a", "e", "i", "o", "u", "á", "é", "í", "ó", "ú")):
+        return word + "s"
+    return word + "es"
+
+
+def form_variants(es):
+    """The approved form and its regular plurals: 'tarjeta de horas' -> 'tarjetas de horas';
+    'total acumulado' -> 'totales acumulados'. A missing term still fails; only the plural is also accepted."""
+    base = approved_form(es)
+    words = base.split()
+    variants = {base}
+    if words:
+        variants.add(" ".join([es_plural(words[0])] + words[1:]))
+        if "de" not in words and len(words) > 1:
+            variants.add(" ".join(es_plural(w) for w in words))
+    return variants
+
+
 def i7(src, target, ctx):
     out = []
     src_words = prose(src.masked)
     low = prose(target).lower()
     for rx, es, banned, tid in ctx.terms:
-        if rx is not None and rx.search(src_words) and approved_form(es) not in low:
+        if rx is not None and rx.search(src_words) and not any(v in low for v in form_variants(es)):
             out.append(Finding("I7", "", "glossary term %s must be rendered '%s'" % (tid, es)))
+        # A banned rendering is banned FOR its term: it counts only where the English uses that term
+        # ('carpeta' for 'folder' and 'mecanismo' for 'mechanism' are not renderings of 'directory' or 'machine').
+        if rx is not None and not rx.search(src_words):
+            continue
         for b in banned:
             pat = r"(?<!\w)%s(?!\w)" % re.escape(b.lower())
             if re.search(pat, low) and not re.search(pat, src_words.lower()):
                 out.append(Finding("I7", "", "banned rendering '%s' for glossary term %s" % (b, tid)))
-    for phrase, label in ctx.banned_phrases:
+    for entry in ctx.banned_phrases:
+        phrase, label = entry[0], entry[1]
+        trigger = entry[2] if len(entry) > 2 else None
+        if trigger is not None and not trigger.search(src_words):
+            continue
         if phrase.lower() in low and phrase.lower() not in src_words.lower():
             out.append(Finding("I7", "", "banned phrase '%s' (%s)" % (phrase, label)))
     return out

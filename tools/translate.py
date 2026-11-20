@@ -93,6 +93,18 @@ def validate(root, name, obj):
             for e in sorted(v.iter_errors(obj), key=lambda e: list(e.absolute_path))]
 
 
+def may_stay_english(src):
+    """True for a segment whose correct Spanish is the English text: one capitalised proper noun ("Forth"), or a
+    Mermaid label of at most two words with no English function word (`false`, `run: begin`). Anything longer,
+    any other kind, or any text with an English function word must be translated."""
+    words = invariants.WORD_RE.findall(mask.PH_RE.sub(" ", src.masked))
+    if not words or len(words) > 2 or any(w.lower() in invariants.EN_STOP for w in words):
+        return False
+    if getattr(src, "kind", "") == "mermaid_label":
+        return True
+    return len(words) == 1 and words[0][0].isupper() and src.masked.strip() == words[0]
+
+
 def now():
     return time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
 
@@ -354,7 +366,8 @@ class Translator:
                     findings.append("REGISTER: %s" % f.msg)
                 else:
                     findings.append("%s: %s" % (f.inv, f.msg))
-        if text.strip() == src.masked.strip() and mask.PH_RE.sub("", src.masked).strip():
+        if (text.strip() == src.masked.strip() and mask.PH_RE.sub("", src.masked).strip()
+                and not may_stay_english(src)):
             findings.append("TRANSLATE: the reply is the English text unchanged")
         if out["ambiguities"]:
             findings.append("AMBIGUITY: %d reported by the translator (see ledger)" % len(out["ambiguities"]))
