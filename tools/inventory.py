@@ -33,7 +33,7 @@ from pathlib import PurePosixPath
 CLASSES = ("frozen", "authored", "generated", "tooling", "archival", "owned")
 
 OWNED_PREFIXES = ("loop/", "translation/", "tools/", "ralph-kit-es/", ".claude/")
-OWNED_FILES = {".gitignore"}
+OWNED_FILES = {".gitignore", "requirements-es.txt"}
 OWNED_GLOBS = (re.compile(r"^SYNTHESIZED-TRANSLATION-PLAN-.*\.md$"),)
 
 # Tooling: adapted through the locale layer. Everything else non-Markdown is frozen.

@@ -9,3 +9,4 @@
 - Do not write to paths outside this repo or the English clone (for example /tmp): such writes are denied in dontAsk mode. Use translation/work/ (git-ignored) for scratch files.
 - Do not use $?, $(...) or backticks in Bash calls; they are denied. Run one simple command per call and read its output instead.
 - Use the project virtualenv (.venv; already first on PATH). pip and npm installs are allowed (Jim approved installs in chat); install into .venv only, never globally, and record each new dependency in requirements-es.txt.
+- Compare frozen files by git blob content: .bat files check out as CRLF here (.gitattributes), so raw working-tree hashes of gradlew.bat differ by design; use tools/lock_code.py --verify, never plain sha256sum -c.

@@ -7,3 +7,4 @@
 7 P0-002 done English tree imported (git archive | tar, single command); .gitignore merged; upstream remote fetch-only
 
 8 P0-003 done tools/inventory.py + 17 tests; file set matches English tree; repaired P0-002 import (9 nested .gitignore + tracked .pyc)
+9 P0-004 done tools/lock_code.py + 22 tests; 230 frozen files locked; pre-commit hook installed; inventory --check repaired (requirements-es.txt owned)
