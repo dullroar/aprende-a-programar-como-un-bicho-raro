@@ -92,8 +92,17 @@ def pip_versions():
     return [l for l in p.stdout.splitlines() if l.split("==")[0].lower() in wanted]
 
 
+def gate_env(root=ROOT, base=None):
+    """The environment of a repo gate: in a checkout whose paths.layout is spanish the builds and tests must run in
+    Spanish (BOOK_LANG=es), or they look for the English file names that the rename (P3B-005) removed."""
+    env = dict(os.environ if base is None else base, PYTHONDONTWRITEBYTECODE="1")
+    if enpath.read_layout(root) == "spanish":
+        env["BOOK_LANG"] = "es"
+    return env
+
+
 def run_gate(name, cmd, timeout):
-    env = dict(os.environ, PYTHONDONTWRITEBYTECODE="1")
+    env = gate_env()
     t0 = time.time()
     try:
         p = subprocess.run(cmd, cwd=ROOT, capture_output=True, text=True, timeout=timeout, env=env)

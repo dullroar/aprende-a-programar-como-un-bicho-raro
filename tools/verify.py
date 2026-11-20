@@ -311,11 +311,11 @@ def compare_dirs(a, b):
     return out
 
 
-def run_cmd(argv, timeout=300, cwd=ROOT):
+def run_cmd(argv, timeout=300, cwd=ROOT, env=None):
     """Run a command; returns (problems, seconds). A non-zero exit or a timeout is a problem."""
     t0 = time.time()
     try:
-        r = subprocess.run(argv, cwd=cwd, capture_output=True, timeout=timeout)
+        r = subprocess.run(argv, cwd=cwd, capture_output=True, timeout=timeout, env=env)
     except subprocess.TimeoutExpired:
         return ["%s: timed out after %ds" % (" ".join(argv), timeout)], time.time() - t0
     except OSError as e:
@@ -480,12 +480,14 @@ def run_release(root=ROOT, gates=True):
     if gates:
         work = os.path.join(root, "translation", "work", "verify")
         a_dir, b_dir = os.path.join(work, "release-a"), os.path.join(work, "release-b")
+        import baseline
+        genv = baseline.gate_env(root)  # BOOK_LANG=es in a Spanish-layout checkout (P3B-007)
         for name, argv, timeout in release_gate_commands(a_dir)[0]:
-            results.append(timed("gate " + name, lambda a=argv, t=timeout: run_cmd(a, t)[0]))
+            results.append(timed("gate " + name, lambda a=argv, t=timeout: run_cmd(a, t, env=genv)[0]))
         for d in (a_dir, b_dir):
             for name, argv, timeout in release_gate_commands(os.path.relpath(d, root))[1]:
                 results.append(timed("gate %s (%s)" % (name, os.path.basename(d)),
-                                     lambda a=argv, t=timeout: run_cmd(a, t)[0]))
+                                     lambda a=argv, t=timeout: run_cmd(a, t, env=genv)[0]))
         results.append(timed("double build: identical hashes", compare_dirs, a_dir, b_dir))
     return results
 

@@ -256,6 +256,14 @@ class SmallCheckTests(unittest.TestCase):
         self.assertFalse(any(n.startswith("release-") for n, _, _ in plain))
         self.assertGreaterEqual(len(plain), 10)
 
+    def test_gates_run_in_spanish_in_a_spanish_layout_and_only_there(self):
+        import baseline
+        import tempfile
+        base = {"PATH": "/bin"}
+        self.assertEqual(baseline.gate_env(os.path.dirname(HERE), base).get("BOOK_LANG"), "es")  # this checkout
+        with tempfile.TemporaryDirectory() as empty:  # no catalog: English layout, the variable stays unset
+            self.assertNotIn("BOOK_LANG", baseline.gate_env(empty, base))
+
 
 class ReportAndCliTests(unittest.TestCase):
     def run_report(self, results, label="release", incomplete=False):
