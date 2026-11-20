@@ -1,0 +1,19 @@
+# DEMO ONLY run
+# committed total=
+Coding
+DEMO ONLY
+Debugging
+HOME
+Learning
+Meetings
+NO_COLOR
+XDG_DATA_HOME
+created_at
+demo-timecards.db
+demo_only
+demo_timecards
+entries=
+iso_week
+run_id
+running_total
+user_id

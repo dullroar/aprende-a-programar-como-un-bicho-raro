@@ -1,9 +1,9 @@
 # loop/STATE.md (keep to 60 lines; refreshed by every iteration)
 
 - **Edition:** v4-es.0-rc1 (working)    **English SHA:** 48a4429c0a22b2aac628b256a50c07d1816bcb80
-- **Iteration:** 11    **Stage:** 0    **Last result:** P0-006 done (LICENSE is MIT; EXC-001 in translation/exception-register.jsonl)
-- **Tasks:** todo 55 | doing 0 | done 6 | blocked 0 | skipped 0
-- **Next task:** tools/next_task.py not built yet (P0-011); take the first `todo` in loop/queue/seed.jsonl whose deps are done (P0-007)
+- **Iteration:** 12    **Stage:** 0    **Last result:** P0-007 done (tools/dnt.py; translation/dnt.txt has 19 phrases)
+- **Tasks:** todo 54 | doing 0 | done 7 | blocked 0 | skipped 0
+- **Next task:** tools/next_task.py not built yet (P0-011); take the first `todo` in loop/queue/seed.jsonl whose deps are done (P0-008)
 - **Budget:** spent $0.00 of $100; iterations 0 of 300
 - **Translate progress:** segments accepted 0 / total ? ; files done 0 / ?
 - **Last audit:** none    **Next audit due after:** 8 translate tasks

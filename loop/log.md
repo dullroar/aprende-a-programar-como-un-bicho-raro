@@ -10,3 +10,4 @@
 9 P0-004 done tools/lock_code.py + 22 tests; 230 frozen files locked; pre-commit hook installed; inventory --check repaired (requirements-es.txt owned)
 10 P0-005 done tools/baseline.py + 6 tests; 14/14 English CI gates exit 0; translation/baseline.md written (caveats: diagrams from cache, 2 PDF-009 warnings, no Java)
 11 P0-006 done LICENSE confirmed MIT, sha256 matches lock and English SHA; EXC-001 added to translation/exception-register.jsonl
+12 P0-007 done tools/dnt.py + 14 tests; translation/dnt.txt (19 phrases) derived from frozen program sources
