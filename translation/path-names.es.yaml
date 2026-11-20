@@ -1,0 +1,86 @@
+# translation/path-names.es.yaml: Spanish names for student-facing paths (plan 5.6, P3B-001).
+# Input of tools/pathmap.py. The English path stays the canonical key; this table only says what each
+# renamable English path is called in Spanish. The tool decides what MAY be renamed (keep-list and
+# reference-closure scan): a row here for a path a frozen file mentions is ignored and reported,
+# and a row for a keep-list path (README.md, LICENSE, ...) is an error.
+#
+# Naming rules: ASCII lowercase kebab-case, no accents, no n-tilde; take each word from the glossary
+# (translation/glossary.es.yaml) so file names and prose agree; language and command names stay
+# (forth, awk, make, cmake); "and" becomes "y"; keep extensions and numeric prefixes; an all-caps
+# document name stays all-caps (DESAFIO.md).
+schema: 1
+
+# English directory path -> Spanish name of that last path component.
+dirs:
+  lessons/cs: informatica
+  lessons/languages: lenguajes
+  lessons/study-guides: guias-de-estudio
+  lessons/study-guides/concepts: conceptos
+  lessons/study-guides/languages: lenguajes
+  lessons/curriculum: plan-de-estudios
+
+# English file path -> Spanish file name (with extension).
+files:
+  CHALLENGE.md: DESAFIO.md
+  house-style.md: guia-de-estilo.md
+  docs/curriculum.md: plan-de-estudios.md
+  docs/stacked-bar-charts.md: graficos-de-barras-apiladas.md
+  lessons/answers-key.md: respuestas.md
+  lessons/blocking-problems.md: problemas-bloqueantes.md
+  lessons/front-matter.md: preliminares.md
+  lessons/goals.md: objetivos.md
+  lessons/index.md: indice.md
+  lessons/intro.md: introduccion.md
+  lessons/patterns.md: patrones.md
+  lessons/problems-overcome.md: problemas-superados.md
+  lessons/curriculum/front-matter.md: preliminares.md
+  lessons/study-guides/front-matter.md: preliminares.md
+  lessons/languages/editors.md: editores.md
+  lessons/cs/01-reading-an-adversarial-program.md: 01-lectura-de-un-programa-adversarial.md
+  lessons/cs/02-what-counts-as-a-machine.md: 02-que-cuenta-como-maquina.md
+  lessons/cs/03-control-flow-and-continuations.md: 03-flujo-de-control-y-continuaciones.md
+  lessons/cs/04-evaluation-and-demand.md: 04-evaluacion-y-demanda.md
+  lessons/cs/05-formal-languages-as-computational-substrates.md: 05-lenguajes-formales-como-sustratos-de-computacion.md
+  lessons/cs/06-state-beyond-variables.md: 06-estado-mas-alla-de-las-variables.md
+  lessons/cs/07-effects-errors-and-commitment.md: 07-efectos-errores-y-compromiso.md
+  lessons/cs/08-abstraction-leaks-and-implementation-dependence.md: 08-fugas-de-abstraccion-y-dependencia-de-la-implementacion.md
+  lessons/cs/09-comparative-case-studies.md: 09-casos-de-estudio-comparativos.md
+  lessons/cs/10-events-callbacks-and-reactive-control-flow.md: 10-eventos-callbacks-y-flujo-de-control-reactivo.md
+  lessons/study-guides/concepts/comparative-machine-design.md: diseno-comparativo-de-maquinas.md
+  lessons/study-guides/concepts/effects-errors-and-commitment.md: efectos-errores-y-compromiso.md
+  lessons/study-guides/concepts/evaluation-demand-and-laziness.md: evaluacion-demanda-y-pereza.md
+  lessons/study-guides/concepts/events-callbacks-and-reactive-control.md: eventos-callbacks-y-control-reactivo.md
+  lessons/study-guides/concepts/formal-languages-and-weird-machines.md: lenguajes-formales-y-maquinas-raras.md
+  lessons/study-guides/concepts/portability-abstraction-and-cost.md: portabilidad-abstraccion-y-costo.md
+  lessons/study-guides/concepts/reading-adversarial-programs.md: lectura-de-programas-adversariales.md
+  lessons/study-guides/concepts/state-and-control-beyond-variables.md: estado-y-control-mas-alla-de-las-variables.md
+  lessons/study-guides/languages/csharp-linq-xaml-and-ports.md: csharp-linq-xaml-y-adaptaciones.md
+  lessons/study-guides/languages/ed-and-ex.md: ed-y-ex.md
+  lessons/study-guides/languages/make-and-cmake.md: make-y-cmake.md
+  lessons/study-guides/languages/regex-engines-and-sed.md: motores-de-regex-y-sed.md
+
+# English file paths whose name is a language, command or product name and therefore stays.
+proper:
+  - lessons/languages/apl.md
+  - lessons/languages/awk.md
+  - lessons/languages/cobol.md
+  - lessons/languages/csharp-linq-xaml.md
+  - lessons/languages/find.md
+  - lessons/languages/forth.md
+  - lessons/languages/haskell.md
+  - lessons/languages/javascript.md
+  - lessons/languages/lisp.md
+  - lessons/languages/m4.md
+  - lessons/languages/make-cmake.md
+  - lessons/languages/regex.md
+  - lessons/languages/tar.md
+  - lessons/languages/tcl.md
+  - lessons/study-guides/languages/apl.md
+  - lessons/study-guides/languages/cobol.md
+  - lessons/study-guides/languages/common-lisp.md
+  - lessons/study-guides/languages/forth.md
+  - lessons/study-guides/languages/haskell.md
+  - lessons/study-guides/languages/javascript.md
+  - lessons/study-guides/languages/m4.md
+  - lessons/study-guides/languages/tar.md
+  - lessons/study-guides/languages/tcl.md
