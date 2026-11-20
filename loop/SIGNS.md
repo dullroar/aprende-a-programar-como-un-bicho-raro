@@ -34,3 +34,5 @@
 - Before refactoring a generator, hash its English output with translation/work/cs_snapshot.py (sha256 of generate_all) and require the same hash after; heredocs (`python3 - <<EOF`) are denied, so edit with the Edit tool.
 - When testing a Spanish generator over the still-English READMEs, call diagrams.set_language("en") after cs.set_language("es") so the Program Flow sections parse; generate_all lists a block page only when its text differs, so fill missing ones from disk before comparing.
 - Store a catalog number that differs by language (a word limit) as quoted text and parse it in code: catalog.py requires integer values to be equal in en.yaml and es.yaml.
+- After running any lessons/book test, run `git status --short` and `git checkout -- lessons/book/__pycache__/build.cpython-312.pyc`: that tracked, locked .pyc gets rewritten when build.py is imported.
+- Translate the README, guides and APL pages so they match the patterns in catalog blocks editorial.* and sentinels.* (count line, assurance tally sentence, APL phrases, Mermaid label texts); run `env BOOK_LANG=es python3 lessons/book/test_editorial.py` after stage 4, where all its tests must pass.

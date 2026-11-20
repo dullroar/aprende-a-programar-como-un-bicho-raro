@@ -197,3 +197,29 @@ curriculum:
   # Regular expression (case-insensitive) for register forms the body prose must not use, and its name in a problem report.
   register_pattern: "\\b\\w+n't\\b|\\b(?:it|we|you|they|that|there)'(?:s|re|ve|ll|d)\\b"
   register_label: "contraction"
+
+# lessons/book/test_editorial.py: the words of the cross-volume editorial checks. Regular expressions are case-sensitive unless noted.
+# A translated edition must write the guide, README and APL sentences so that these patterns match them (the translation tasks follow this block).
+editorial:
+  # The acronym aside must occur once before these headings (root README, first study guide); the intro uses study_guides.challenge_heading.
+  root_opening_end: "Why this exists"
+  guides_opening_end: "How every guide works"
+  # The count line of the root README: two groups, the number of challenges and the number of languages.
+  root_count_pattern: "\\*\\*(\\d+) challenges in (\\d+) languages\\*\\*"
+  # The assurance tally of the portability guide: group 1 the count, group 2 one of the study_guides.assurance labels ({labels} is filled in).
+  tally_pattern: "\\*\\*(\\d+)\\*\\* (?:entries )?are ({labels})"
+  # The four APL explanations (lower case) that must match src/apl/timecards.apl: four assignments, five rolls, up to five, and the wrong "seven slots".
+  apl_four: "four named array assignments"
+  apl_five_pattern: "five (rolls|draws)"
+  apl_up_to_five: "up to five"
+  apl_seven_slots: "seven slots"
+
+# lessons/book/pdf_sentinels.py: the selectable words of the diagram labels that the PDF check looks for (code sentinels are not here: they never change).
+# A space after a comparison sign (≤ or ≥) may be lost at an SVG tspan boundary, so the check tolerates it there only.
+sentinels:
+  apl_diagram: "Alive: total ≤ 40?"
+  ascii_diagram: "-1 while total <= 40, else 0"
+  forth_diagram: "Interpreter reads: 0 0 >in @"
+  awk_diagram: "Last rule: t ≥ 41?"
+  apl_book: "⍴ (reshape), ⍳ (index generator)"
+  apl_guide: "basic APL: ⍳, ⍴"

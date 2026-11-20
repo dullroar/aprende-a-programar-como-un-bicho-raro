@@ -10,3 +10,5 @@ lessons/book/cs.py  # P2-010: generated words from the locale catalog (cs.*), ac
 lessons/book/test_cs.py  # P2-010: Spanish words over the English sources, English literals guard, atomic language switch
 lessons/curriculum/build.py  # P2-011: chapter label, sentence limit, register rule, acronym and phase letters from the locale catalog (curriculum.*)
 lessons/book/test_curriculum.py  # P2-011: Spanish fixtures (Cap., BICHO letters, register, limit 28), surviving English letter negatives
+lessons/book/test_editorial.py  # P2-012: editorial words from the catalog (editorial.*), checks as functions, English and Spanish mutation fixtures
+lessons/book/pdf_sentinels.py  # P2-012: diagram label sentinels from the catalog (sentinels.*), code sentinels unchanged

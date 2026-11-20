@@ -1,8 +1,8 @@
 # loop/STATE.md (keep to 60 lines; refreshed by every iteration)
 
 - **Edition:** v4-es.0-rc1 (working)    **English SHA:** 48a4429c0a22b2aac628b256a50c07d1816bcb80
-- **Iteration:** 38    **Stage:** 2    **Last result:** P2-011 done (curriculum/build.py localized via catalog curriculum.*, acronym, phases; test_curriculum.py 35 tests)
-- **Tasks:** todo 109 (32 seed + 77 generated) | doing 0 | done 29 | blocked 0 | skipped 0
+- **Iteration:** 39    **Stage:** 2    **Last result:** P2-012 done (test_editorial.py and pdf_sentinels.py localized via catalog editorial.* and sentinels.*; 39 tests)
+- **Tasks:** todo 108 (31 seed + 77 generated) | doing 0 | done 30 | blocked 0 | skipped 0
 - **Next task:** run `python3 tools/next_task.py` (PO files live at translation/po/<path>.po, written by tools/apply.py --init)
 - **Budget:** spent $0.00 of $100; iterations 0 of 300
 - **Translate progress:** segments accepted 0 / total 8827 (7394 prose + 1433 Mermaid labels) ; files done 0 / ?

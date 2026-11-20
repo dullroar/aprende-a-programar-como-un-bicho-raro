@@ -209,3 +209,30 @@ curriculum:
   register_pattern: "\\b(?:usted|vos|vosotros|vosotras|vuestr[oa]s?)\\b"
   # A maintainer diagnostic, not book text: it names the problem in a check report.
   register_label: "register slip (usted, vos or vosotros; the register is tú)"
+
+# lessons/book/test_editorial.py: the words of the cross-volume editorial checks. Regular expressions are case-sensitive unless noted.
+# The translation tasks must write the guide, README and APL sentences so that these patterns match them.
+editorial:
+  # The acronym aside must occur once before these headings (README raíz, primera guía de estudio); la intro usa study_guides.challenge_heading.
+  root_opening_end: "Por qué existe"
+  guides_opening_end: "Cómo funciona cada guía"
+  # The count line of the root README: two groups, the number of challenges and the number of languages.
+  root_count_pattern: "\\*\\*(\\d+) retos en (\\d+) lenguajes\\*\\*"
+  # The assurance tally of the portability guide: group 1 the count, group 2 one of the study_guides.assurance labels ({labels} is filled in).
+  tally_pattern: "\\*\\*(\\d+)\\*\\* (?:entradas )?tienen la garantía \"?({labels})\"?"
+  # The four APL explanations (lower case) that must match src/apl/timecards.apl: four assignments, five rolls, up to five, and the wrong "seven slots".
+  apl_four: "cuatro asignaciones de arreglos con nombre"
+  apl_five_pattern: "cinco (tiradas|sorteos)"
+  apl_up_to_five: "hasta cinco"
+  apl_seven_slots: "siete casillas"
+
+# lessons/book/pdf_sentinels.py: the selectable words of the diagram labels that the PDF check looks for (code sentinels are not here: they never change).
+# A space after a comparison sign (≤ or ≥) may be lost at an SVG tspan boundary, so the check tolerates it there only.
+# Alive is an APL identifier (it stays); the question mark of a Spanish label is paired (¿...?) and the check looks at the closing one.
+sentinels:
+  apl_diagram: "Alive: ¿total ≤ 40?"
+  ascii_diagram: "-1 mientras total <= 40; si no, 0"
+  forth_diagram: "El intérprete lee: 0 0 >in @"
+  awk_diagram: "Última regla: ¿t ≥ 41?"
+  apl_book: "⍴ (cambio de forma), ⍳ (generador de índices)"
+  apl_guide: "APL básico: ⍳, ⍴"
