@@ -1,8 +1,8 @@
 # loop/STATE.md (keep to 60 lines; refreshed by every iteration)
 
 - **Edition:** v4-es.0-rc1 (working)    **English SHA:** 48a4429c0a22b2aac628b256a50c07d1816bcb80
-- **Iteration:** 31    **Stage:** 2    **Last result:** P2-004 done (tools/mermaid.py + 37 tests; Mermaid labels are mermaid_label segments)
-- **Tasks:** todo 116 (39 seed + 77 generated) | doing 0 | done 22 | blocked 0 | skipped 0
+- **Iteration:** 32    **Stage:** 2    **Last result:** P2-005 done (tools/invariants.py I1 to I16 + 100 tests; waivers only via exception-register rows with segment+invariant)
+- **Tasks:** todo 115 (38 seed + 77 generated) | doing 0 | done 23 | blocked 0 | skipped 0
 - **Next task:** run `python3 tools/next_task.py` (PO files live at translation/po/<path>.po, written by tools/apply.py --init)
 - **Budget:** spent $0.00 of $100; iterations 0 of 300
 - **Translate progress:** segments accepted 0 / total 8827 (7394 prose + 1433 Mermaid labels) ; files done 0 / ?
