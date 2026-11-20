@@ -1,9 +1,9 @@
 # loop/STATE.md (keep to 60 lines; refreshed by every iteration)
 
 - **Edition:** v4-es.0-rc1 (working)    **English SHA:** 48a4429c0a22b2aac628b256a50c07d1816bcb80
-- **Iteration:** 15    **Stage:** 0    **Last result:** P0-010 done (tools/acronym_search.py + tests; BICHO adopted, TORCE runner-up in decisions-provisional.md)
-- **Tasks:** todo 51 | doing 0 | done 10 | blocked 0 | skipped 0
-- **Next task:** tools/next_task.py not built yet (P0-011); take the first `todo` in loop/queue/seed.jsonl whose deps are done (P0-011)
+- **Iteration:** 16    **Stage:** 0    **Last result:** P0-011 done (tools/next_task.py + tools/plan_tasks.py + tests; 68 translate + 9 audit tasks generated)
+- **Tasks:** todo 127 (50 seed + 77 generated) | doing 0 | done 11 | blocked 0 | skipped 0
+- **Next task:** run `python3 tools/next_task.py` (exists now; prints `TASK <json>`; P0-012 is next)
 - **Budget:** spent $0.00 of $100; iterations 0 of 300
 - **Translate progress:** segments accepted 0 / total ? ; files done 0 / ?
 - **Last audit:** none    **Next audit due after:** 8 translate tasks

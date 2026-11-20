@@ -11,4 +11,5 @@
 - Use the project virtualenv (.venv; already first on PATH). pip and npm installs are allowed (Jim approved installs in chat); install into .venv only, never globally, and record each new dependency in requirements-es.txt.
 - Never use $PIPESTATUS, `echo` or pipes with `tail` in Bash calls to capture exit codes; write a small tool in tools/ that records them (see tools/baseline.py) and run it as one command.
 - Write scripts with the Write tool, never shell heredocs (denied); change a seed-queue task status with `python3 tools/seedtask.py <id> <status> [notes]`.
+- Run `python3 tools/next_task.py` to pick (exit 0 = TASK, 1 = NONE-BLOCKED, 2 = NONE-WAITING, 3 = NONE-COMPLETE); never use `&&`, `;` or `echo $?` in Bash calls, they are denied.
 - Compare frozen files by git blob content: .bat files check out as CRLF here (.gitattributes), so raw working-tree hashes of gradlew.bat differ by design; use tools/lock_code.py --verify, never plain sha256sum -c.
