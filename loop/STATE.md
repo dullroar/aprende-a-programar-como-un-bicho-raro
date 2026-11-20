@@ -1,9 +1,9 @@
 # loop/STATE.md (keep to 60 lines; refreshed by every iteration)
 
 - **Edition:** v4-es.0-rc1 (working)    **English SHA:** 48a4429c0a22b2aac628b256a50c07d1816bcb80
-- **Iteration:** 9    **Stage:** 0    **Last result:** P0-004 done (tools/lock_code.py; locked-code.sha256 = 230 files; pre-commit hook)
-- **Tasks:** todo 57 | doing 0 | done 4 | blocked 0 | skipped 0
-- **Next task:** run `python3 tools/next_task.py`
+- **Iteration:** 10    **Stage:** 0    **Last result:** P0-005 done (tools/baseline.py; translation/baseline.md; 14/14 English gates exit 0)
+- **Tasks:** todo 56 | doing 0 | done 5 | blocked 0 | skipped 0
+- **Next task:** tools/next_task.py not built yet (P0-011); take the first `todo` in loop/queue/seed.jsonl whose deps are done (P0-006)
 - **Budget:** spent $0.00 of $100; iterations 0 of 300
 - **Translate progress:** segments accepted 0 / total ? ; files done 0 / ?
 - **Last audit:** none    **Next audit due after:** 8 translate tasks

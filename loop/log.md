@@ -8,3 +8,4 @@
 
 8 P0-003 done tools/inventory.py + 17 tests; file set matches English tree; repaired P0-002 import (9 nested .gitignore + tracked .pyc)
 9 P0-004 done tools/lock_code.py + 22 tests; 230 frozen files locked; pre-commit hook installed; inventory --check repaired (requirements-es.txt owned)
+10 P0-005 done tools/baseline.py + 6 tests; 14/14 English CI gates exit 0; translation/baseline.md written (caveats: diagrams from cache, 2 PDF-009 warnings, no Java)
