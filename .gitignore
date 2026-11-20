@@ -5,3 +5,6 @@ translation/work/
 __pycache__/
 *.pyc
 .venv/
+loop/driver.out
+loop/ledger/
+loop/STOP
