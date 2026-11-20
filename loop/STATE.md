@@ -1,11 +1,11 @@
 # loop/STATE.md (keep to 60 lines; refreshed by every iteration)
 
 - **Edition:** v4-es.0-rc1 (working)    **English SHA:** 48a4429c0a22b2aac628b256a50c07d1816bcb80
-- **Iteration:** 24    **Stage:** 2    **Last result:** P2-001 done (catalog loader + English mirror + 28 tests)
-- **Tasks:** todo 119 (42 seed + 77 generated) | doing 0 | done 19 | blocked 0 | skipped 0
-- **Next task:** run `python3 tools/next_task.py` (Stage 2 starts: P2-001 locale loader and P2-002 segmenter; the segmenter should reuse tools/mask.py)
+- **Iteration:** 25    **Stage:** 2    **Last result:** P2-002 done (tools/segment.py + 37 tests; T0 identical on 212 files)
+- **Tasks:** todo 118 (41 seed + 77 generated) | doing 0 | done 20 | blocked 0 | skipped 0
+- **Next task:** run `python3 tools/next_task.py` (P2-003 apply.py and P2-004 mermaid/placeholder restore build on tools/segment.py: Segmentation.reassemble, render_block, FM_TRANSLATE_KEYS)
 - **Budget:** spent $0.00 of $100; iterations 0 of 300
-- **Translate progress:** segments accepted 0 / total ? ; files done 0 / ?
+- **Translate progress:** segments accepted 0 / total 7394 (segmenter count, mermaid labels not yet extracted) ; files done 0 / ?
 - **Last audit:** none    **Next audit due after:** 8 translate tasks
 - **Gates:** P0 passed (iter 17)  P1 passed (iter 23)  P2 -  P3 -  P4 -  P5 -  P6 -  P7A -
 - **Open provisional decisions:** 4 (acronym BICHO; glossary choices; house style N=28; schema/segment-id formats)    **Blockers:** 0    **Source issues:** 0
