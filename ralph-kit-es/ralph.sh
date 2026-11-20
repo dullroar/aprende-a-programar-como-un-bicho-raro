@@ -132,6 +132,24 @@ while :; do
   secs=$(( $(date +%s) - start ))
   record_usage "$iter" "$out" "$rc" "$secs"
 
+  # Usage-limit replies are not stalls: sleep and retry instead of tripping the breaker.
+  if python3 -I - "$LEDGER" <<'PY'
+import json, sys
+last = ""
+for line in open(sys.argv[1], encoding="utf-8"):
+    if line.strip():
+        last = line
+r = json.loads(last) if last else {}
+tail = str(r.get("result_tail", "")).lower()
+sys.exit(0 if ("hit your" in tail and "limit" in tail) else 1)
+PY
+  then
+    echo "ralph: usage limit reached at iteration $iter; sleeping ${LIMIT_SLEEP_SECS:-900}s then retrying (not counted as a stall)."
+    iter=$((iter-1))
+    sleep "${LIMIT_SLEEP_SECS:-900}"
+    continue
+  fi
+
   head_after="$(git rev-parse HEAD 2>/dev/null || echo none)"
   sig_after="$(queue_signature)"
   if [ "$head_before" = "$head_after" ] && [ "$sig_before" = "$sig_after" ]; then
