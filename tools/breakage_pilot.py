@@ -62,7 +62,8 @@ class Pilot:
     def files(self, rel):
         en = self.verify.english_text(self.cfg, rel)
         po = self.apply.load_po(self.apply.po_path_for(rel))
-        return en, po, read(os.path.join(ROOT, rel))
+        import enpath
+        return en, po, read(enpath.load(ROOT).full(rel))        # `rel` is the English key
 
     def check(self, rel, es, po, en=None):
         en = en if en is not None else self.verify.english_text(self.cfg, rel)

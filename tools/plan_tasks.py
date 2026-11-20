@@ -132,6 +132,13 @@ def pack(units, cap):
     return bins
 
 
+def _layer():
+    """The English-key / working-path layer of the current directory (tools/enpath.py)."""
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    import enpath
+    return enpath.load(os.getcwd())
+
+
 def pilot_paths(seed_path=SEED):
     """Markdown paths named by Phase 3 pilot translate tasks (already translated there)."""
     found = set()
@@ -143,7 +150,7 @@ def pilot_paths(seed_path=SEED):
                 t = json.loads(line)
                 if t.get("stage") == 3 and t.get("kind") == "translate":
                     for m in re.findall(r"[\w./-]+/[\w./-]+\.md", t.get("title", "")):
-                        found.add(m)
+                        found.add(_layer().english(m))     # tasks and the inventory are keyed by the English path
     return found
 
 

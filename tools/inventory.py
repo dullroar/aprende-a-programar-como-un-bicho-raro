@@ -30,6 +30,10 @@ import subprocess
 import sys
 from pathlib import PurePosixPath
 
+_HERE = os.path.dirname(os.path.abspath(__file__))
+if _HERE not in sys.path:
+    sys.path.insert(0, _HERE)
+
 CLASSES = ("frozen", "authored", "generated", "tooling", "archival", "owned")
 
 OWNED_PREFIXES = ("loop/", "translation/", "tools/", "ralph-kit-es/", ".claude/",
@@ -232,7 +236,19 @@ def measure_markdown(path: str, text: str) -> dict:
 
 # ---------------------------------------------------------------- file listing
 
+def layer_of(root: str):
+    """The English-key / working-path layer of `root` (tools/enpath.py)."""
+    import enpath
+    return enpath.load(root)
+
+
+def full_path(root: str, en: str) -> str:
+    """Where the file with English key `en` lives under `root` (its Spanish name once the rename is applied)."""
+    return layer_of(root).full(en)
+
+
 def list_files(root: str) -> list[str]:
+    """Every file of the checkout, named by its ENGLISH path (the key all records use) whatever its name on disk."""
     if os.path.isdir(os.path.join(root, ".git")):
         out = subprocess.run(["git", "-C", root, "ls-files", "-z"], check=True,
                              capture_output=True).stdout.decode("utf-8")
@@ -243,7 +259,8 @@ def list_files(root: str) -> list[str]:
             dn[:] = [d for d in dn if d != ".git"]
             for f in fn:
                 files.append(os.path.relpath(os.path.join(dp, f), root).replace(os.sep, "/"))
-    return sorted(f for f in files if os.path.isfile(os.path.join(root, f)))
+    layer = layer_of(root)
+    return sorted({layer.english(f) for f in files if os.path.isfile(os.path.join(root, f))})
 
 
 def read_text(path: str) -> str:
@@ -286,7 +303,7 @@ def build_inventory(root: str) -> dict:
         cls = classes[0]
         rec = {"path": f, "class": cls}
         if cls in ("authored", "generated"):
-            with open(os.path.join(root, f), encoding="utf-8") as fh:
+            with open(full_path(root, f), encoding="utf-8") as fh:
                 data = fh.read()
             mm = measure_markdown(f, data)
             rec.update({

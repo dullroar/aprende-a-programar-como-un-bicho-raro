@@ -27,6 +27,7 @@ import subprocess
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import enpath  # noqa: E402
 import inventory as inv  # noqa: E402
 
 MANIFEST = "translation/locked-code.sha256"
@@ -140,27 +141,33 @@ def cmd_write(root: str) -> int:
 
 
 def crlf_checkout_paths(root: str, paths: list[str]) -> set[str]:
-    """Paths git checks out as CRLF by attribute (`text eol=crlf`) while the index holds LF.
+    """English keys of the paths git checks out as CRLF by attribute (`text eol=crlf`) while the index holds LF.
 
     For these the working-tree bytes differ from the committed blob only by the checkout
     conversion; git itself treats them as unchanged, so the lock compares them after
-    CRLF -> LF. Any other difference still fails.
+    CRLF -> LF. Any other difference still fails. `paths` are English keys; git is asked
+    about their working names.
     """
     if not paths or not os.path.isdir(os.path.join(root, ".git")):
         return set()
-    raw = git_bytes(root, "ls-files", "--eol", "-z", "--", *paths).decode("utf-8", "replace")
+    layer = enpath.load(root)
+    work = {layer.work(p): p for p in paths}
+    raw = git_bytes(root, "ls-files", "--eol", "-z", "--", *work).decode("utf-8", "replace")
     out = set()
     for rec in raw.split("\0"):
         info, _, path = rec.partition("\t")
         if info.startswith("i/lf") and "w/crlf" in info and "eol=crlf" in info:
-            out.add(path)
+            out.add(work.get(path, layer.english(path)))
     return out
 
 
 def tree_problems(root: str, entries: dict[str, str]) -> list[str]:
+    """Working tree against the manifest. Manifest keys are ENGLISH paths; the content is read where the file lives
+    (its Spanish name once the rename is applied)."""
     problems, suspects = [], {}
+    layer = enpath.load(root)
     for path, want in sorted(entries.items()):
-        full = os.path.join(root, path)
+        full = layer.full(path)
         if not os.path.isfile(full):
             problems.append(f"MISSING  {path}")
             continue
@@ -220,15 +227,19 @@ def staged_violations(root: str, entries: dict[str, str]) -> list[str]:
     raw = git_bytes(root, "diff", "--cached", "--name-status", "-z", "--no-renames")
     parts = [p for p in raw.decode("utf-8").split("\0") if p]
     bad = []
+    layer = enpath.load(root)
     for status, path in zip(parts[0::2], parts[1::2]):
-        if path not in entries:
+        key = layer.english(path)            # git names the working path; the manifest names the English one
+        if key not in entries:
             continue
         if status.startswith("D"):
-            bad.append(f"DELETED  {path}")
+            if layer.work(key) != path:
+                continue                     # the old name of a file that is committed at its mapped name
+            bad.append(f"DELETED  {key}")
             continue
         got = sha256_bytes(git_bytes(root, "show", f":{path}"))
-        if got != entries[path]:
-            bad.append(f"CHANGED  {path}")
+        if got != entries[key]:
+            bad.append(f"CHANGED  {key}")
     return bad
 
 

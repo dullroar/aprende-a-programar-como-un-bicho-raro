@@ -8904,77 +8904,77 @@
     {
      "en": "One Statement, Go Edition",
      "en_id": "one-statement-go-edition",
-     "es": "One Statement, Go Edition",
-     "es_id": "one-statement-go-edition",
+     "es": "Una instrucción, edición Go",
+     "es_id": "una-instrucción-edición-go",
      "level": 1,
      "line": 15
     },
     {
      "en": "Run it",
      "en_id": "run-it",
-     "es": "Run it",
-     "es_id": "run-it",
+     "es": "Ejecútalo",
+     "es_id": "ejecútalo",
      "level": 2,
      "line": 21
     },
     {
      "en": "Run it in a container",
      "en_id": "run-it-in-a-container",
-     "es": "Run it in a container",
-     "es_id": "run-it-in-a-container",
+     "es": "Ejecútalo en un contenedor",
+     "es_id": "ejecútalo-en-un-contenedor",
      "level": 2,
      "line": 36
     },
     {
      "en": "Run it in Windows Sandbox",
      "en_id": "run-it-in-windows-sandbox",
-     "es": "Run it in Windows Sandbox",
-     "es_id": "run-it-in-windows-sandbox",
+     "es": "Ejecútalo en Windows Sandbox",
+     "es_id": "ejecútalo-en-windows-sandbox",
      "level": 2,
      "line": 46
     },
     {
      "en": "Layout",
      "en_id": "layout",
-     "es": "Layout",
-     "es_id": "layout",
+     "es": "Estructura",
+     "es_id": "estructura",
      "level": 2,
      "line": 56
     },
     {
      "en": "Program Flow",
      "en_id": "program-flow",
-     "es": "Program Flow",
-     "es_id": "program-flow",
+     "es": "Flujo del programa",
+     "es_id": "flujo-del-programa",
      "level": 2,
      "line": 66
     },
     {
      "en": "How the stunt works",
      "en_id": "how-the-stunt-works",
-     "es": "How the stunt works",
-     "es_id": "how-the-stunt-works",
+     "es": "Cómo funciona el truco",
+     "es_id": "cómo-funciona-el-truco",
      "level": 2,
      "line": 87
     },
     {
      "en": "Gotchas worth knowing",
      "en_id": "gotchas-worth-knowing",
-     "es": "Gotchas worth knowing",
-     "es_id": "gotchas-worth-knowing",
+     "es": "Trampas que conviene conocer",
+     "es_id": "trampas-que-conviene-conocer",
      "level": 2,
      "line": 100
     }
    ],
    "map": {
-    "gotchas-worth-knowing": "gotchas-worth-knowing",
-    "how-the-stunt-works": "how-the-stunt-works",
-    "layout": "layout",
-    "one-statement-go-edition": "one-statement-go-edition",
-    "program-flow": "program-flow",
-    "run-it": "run-it",
-    "run-it-in-a-container": "run-it-in-a-container",
-    "run-it-in-windows-sandbox": "run-it-in-windows-sandbox"
+    "gotchas-worth-knowing": "trampas-que-conviene-conocer",
+    "how-the-stunt-works": "cómo-funciona-el-truco",
+    "layout": "estructura",
+    "one-statement-go-edition": "una-instrucción-edición-go",
+    "program-flow": "flujo-del-programa",
+    "run-it": "ejecútalo",
+    "run-it-in-a-container": "ejecútalo-en-un-contenedor",
+    "run-it-in-windows-sandbox": "ejecútalo-en-windows-sandbox"
    }
   },
   "src/JavaChallenge1/README.md": {
@@ -8982,113 +8982,113 @@
     {
      "en": "One Statement, Java Edition",
      "en_id": "one-statement-java-edition",
-     "es": "One Statement, Java Edition",
-     "es_id": "one-statement-java-edition",
+     "es": "Una sola instrucción, edición Java",
+     "es_id": "una-sola-instrucción-edición-java",
      "level": 1,
      "line": 16
     },
     {
      "en": "What every version does",
      "en_id": "what-every-version-does",
-     "es": "What every version does",
-     "es_id": "what-every-version-does",
+     "es": "Qué hacen todas las versiones",
+     "es_id": "qué-hacen-todas-las-versiones",
      "level": 2,
      "line": 22
     },
     {
      "en": "Run it",
      "en_id": "run-it",
-     "es": "Run it",
-     "es_id": "run-it",
+     "es": "Ejecútalo",
+     "es_id": "ejecútalo",
      "level": 2,
      "line": 34
     },
     {
      "en": "Run it in a container",
      "en_id": "run-it-in-a-container",
-     "es": "Run it in a container",
-     "es_id": "run-it-in-a-container",
+     "es": "Ejecútalo en un contenedor",
+     "es_id": "ejecútalo-en-un-contenedor",
      "level": 2,
      "line": 47
     },
     {
      "en": "Run it in Windows Sandbox",
      "en_id": "run-it-in-windows-sandbox",
-     "es": "Run it in Windows Sandbox",
-     "es_id": "run-it-in-windows-sandbox",
+     "es": "Ejecútalo en Windows Sandbox",
+     "es_id": "ejecútalo-en-windows-sandbox",
      "level": 2,
      "line": 57
     },
     {
      "en": "Layout",
      "en_id": "layout",
-     "es": "Layout",
-     "es_id": "layout",
+     "es": "Estructura",
+     "es_id": "estructura",
      "level": 2,
      "line": 67
     },
     {
      "en": "Program Flow",
      "en_id": "program-flow",
-     "es": "Program Flow",
-     "es_id": "program-flow",
+     "es": "Flujo del programa",
+     "es_id": "flujo-del-programa",
      "level": 2,
      "line": 77
     },
     {
      "en": "How the stunt works",
      "en_id": "how-the-stunt-works",
-     "es": "How the stunt works",
-     "es_id": "how-the-stunt-works",
+     "es": "Cómo funciona el truco",
+     "es_id": "cómo-funciona-el-truco",
      "level": 2,
      "line": 97
     },
     {
      "en": "Gotchas worth knowing",
      "en_id": "gotchas-worth-knowing",
-     "es": "Gotchas worth knowing",
-     "es_id": "gotchas-worth-knowing",
+     "es": "Trampas que conviene conocer",
+     "es_id": "trampas-que-conviene-conocer",
      "level": 2,
      "line": 110
     },
     {
      "en": "Side by side",
      "en_id": "side-by-side",
-     "es": "Side by side",
-     "es_id": "side-by-side",
+     "es": "Lado a lado",
+     "es_id": "lado-a-lado",
      "level": 2,
      "line": 116
     },
     {
      "en": "What changed from the .NET version",
      "en_id": "what-changed-from-the-net-version",
-     "es": "What changed from the .NET version",
-     "es_id": "what-changed-from-the-net-version",
+     "es": "Qué cambió respecto a la versión de .NET",
+     "es_id": "qué-cambió-respecto-a-la-versión-de-net",
      "level": 2,
      "line": 137
     },
     {
      "en": "From the original XAML to each port's markup",
      "en_id": "from-the-original-xaml-to-each-ports-markup",
-     "es": "From the original XAML to each port's markup",
-     "es_id": "from-the-original-xaml-to-each-ports-markup",
+     "es": "Del XAML original al marcado de cada port",
+     "es_id": "del-xaml-original-al-marcado-de-cada-port",
      "level": 2,
      "line": 156
     }
    ],
    "map": {
-    "from-the-original-xaml-to-each-ports-markup": "from-the-original-xaml-to-each-ports-markup",
-    "gotchas-worth-knowing": "gotchas-worth-knowing",
-    "how-the-stunt-works": "how-the-stunt-works",
-    "layout": "layout",
-    "one-statement-java-edition": "one-statement-java-edition",
-    "program-flow": "program-flow",
-    "run-it": "run-it",
-    "run-it-in-a-container": "run-it-in-a-container",
-    "run-it-in-windows-sandbox": "run-it-in-windows-sandbox",
-    "side-by-side": "side-by-side",
-    "what-changed-from-the-net-version": "what-changed-from-the-net-version",
-    "what-every-version-does": "what-every-version-does"
+    "from-the-original-xaml-to-each-ports-markup": "del-xaml-original-al-marcado-de-cada-port",
+    "gotchas-worth-knowing": "trampas-que-conviene-conocer",
+    "how-the-stunt-works": "cómo-funciona-el-truco",
+    "layout": "estructura",
+    "one-statement-java-edition": "una-sola-instrucción-edición-java",
+    "program-flow": "flujo-del-programa",
+    "run-it": "ejecútalo",
+    "run-it-in-a-container": "ejecútalo-en-un-contenedor",
+    "run-it-in-windows-sandbox": "ejecútalo-en-windows-sandbox",
+    "side-by-side": "lado-a-lado",
+    "what-changed-from-the-net-version": "qué-cambió-respecto-a-la-versión-de-net",
+    "what-every-version-does": "qué-hacen-todas-las-versiones"
    }
   },
   "src/KotlinChallenge1/README.md": {
@@ -9096,77 +9096,77 @@
     {
      "en": "One Statement, Kotlin Edition",
      "en_id": "one-statement-kotlin-edition",
-     "es": "One Statement, Kotlin Edition",
-     "es_id": "one-statement-kotlin-edition",
+     "es": "Una sola instrucción, edición Kotlin",
+     "es_id": "una-sola-instrucción-edición-kotlin",
      "level": 1,
      "line": 16
     },
     {
      "en": "Run it",
      "en_id": "run-it",
-     "es": "Run it",
-     "es_id": "run-it",
+     "es": "Ejecútalo",
+     "es_id": "ejecútalo",
      "level": 2,
      "line": 22
     },
     {
      "en": "Run it in a container",
      "en_id": "run-it-in-a-container",
-     "es": "Run it in a container",
-     "es_id": "run-it-in-a-container",
+     "es": "Ejecútalo en un contenedor",
+     "es_id": "ejecútalo-en-un-contenedor",
      "level": 2,
      "line": 35
     },
     {
      "en": "Run it in Windows Sandbox",
      "en_id": "run-it-in-windows-sandbox",
-     "es": "Run it in Windows Sandbox",
-     "es_id": "run-it-in-windows-sandbox",
+     "es": "Ejecútalo en Windows Sandbox",
+     "es_id": "ejecútalo-en-windows-sandbox",
      "level": 2,
      "line": 45
     },
     {
      "en": "Layout",
      "en_id": "layout",
-     "es": "Layout",
-     "es_id": "layout",
+     "es": "Estructura",
+     "es_id": "estructura",
      "level": 2,
      "line": 55
     },
     {
      "en": "Program Flow",
      "en_id": "program-flow",
-     "es": "Program Flow",
-     "es_id": "program-flow",
+     "es": "Flujo del programa",
+     "es_id": "flujo-del-programa",
      "level": 2,
      "line": 65
     },
     {
      "en": "How the stunt works",
      "en_id": "how-the-stunt-works",
-     "es": "How the stunt works",
-     "es_id": "how-the-stunt-works",
+     "es": "Cómo funciona el truco",
+     "es_id": "cómo-funciona-el-truco",
      "level": 2,
      "line": 84
     },
     {
      "en": "Gotchas worth knowing",
      "en_id": "gotchas-worth-knowing",
-     "es": "Gotchas worth knowing",
-     "es_id": "gotchas-worth-knowing",
+     "es": "Trampas que conviene conocer",
+     "es_id": "trampas-que-conviene-conocer",
      "level": 2,
      "line": 97
     }
    ],
    "map": {
-    "gotchas-worth-knowing": "gotchas-worth-knowing",
-    "how-the-stunt-works": "how-the-stunt-works",
-    "layout": "layout",
-    "one-statement-kotlin-edition": "one-statement-kotlin-edition",
-    "program-flow": "program-flow",
-    "run-it": "run-it",
-    "run-it-in-a-container": "run-it-in-a-container",
-    "run-it-in-windows-sandbox": "run-it-in-windows-sandbox"
+    "gotchas-worth-knowing": "trampas-que-conviene-conocer",
+    "how-the-stunt-works": "cómo-funciona-el-truco",
+    "layout": "estructura",
+    "one-statement-kotlin-edition": "una-sola-instrucción-edición-kotlin",
+    "program-flow": "flujo-del-programa",
+    "run-it": "ejecútalo",
+    "run-it-in-a-container": "ejecútalo-en-un-contenedor",
+    "run-it-in-windows-sandbox": "ejecútalo-en-windows-sandbox"
    }
   },
   "src/LinqChallenge1/README.md": {
@@ -9174,86 +9174,86 @@
     {
      "en": "LINQ challenge, Variant A: one fluent method-chain statement",
      "en_id": "linq-challenge-variant-a-one-fluent-method-chain-statement",
-     "es": "LINQ challenge, Variant A: one fluent method-chain statement",
-     "es_id": "linq-challenge-variant-a-one-fluent-method-chain-statement",
+     "es": "Reto de LINQ, variante A: una sola instrucción con una cadena fluida de métodos",
+     "es_id": "reto-de-linq-variante-a-una-sola-instrucción-con-una-cadena-fluida-de-métodos",
      "level": 1,
      "line": 17
     },
     {
      "en": "Run it",
      "en_id": "run-it",
-     "es": "Run it",
-     "es_id": "run-it",
+     "es": "Ejecútalo",
+     "es_id": "ejecútalo",
      "level": 2,
      "line": 25
     },
     {
      "en": "Run it in Windows Sandbox",
      "en_id": "run-it-in-windows-sandbox",
-     "es": "Run it in Windows Sandbox",
-     "es_id": "run-it-in-windows-sandbox",
+     "es": "Ejecútalo en Windows Sandbox",
+     "es_id": "ejecútalo-en-windows-sandbox",
      "level": 2,
      "line": 41
     },
     {
      "en": "Program Flow",
      "en_id": "program-flow",
-     "es": "Program Flow",
-     "es_id": "program-flow",
+     "es": "Flujo del programa",
+     "es_id": "flujo-del-programa",
      "level": 2,
      "line": 51
     },
     {
      "en": "How the stunt works",
      "en_id": "how-the-stunt-works",
-     "es": "How the stunt works",
-     "es_id": "how-the-stunt-works",
+     "es": "Cómo funciona el truco",
+     "es_id": "cómo-funciona-el-truco",
      "level": 2,
      "line": 73
     },
     {
      "en": "The `void`-to-value trick",
      "en_id": "the-void-to-value-trick",
-     "es": "The `void`-to-value trick",
-     "es_id": "the-void-to-value-trick",
+     "es": "El truco de `void` a valor",
+     "es_id": "el-truco-de-void-a-valor",
      "level": 2,
      "line": 87
     },
     {
      "en": "Why two nested `Enumerable.Repeat(…, 1)` calls",
      "en_id": "why-two-nested-enumerablerepeat-1-calls",
-     "es": "Why two nested `Enumerable.Repeat(…, 1)` calls",
-     "es_id": "why-two-nested-enumerablerepeat-1-calls",
+     "es": "Por qué dos llamadas `Enumerable.Repeat(…, 1)` anidadas",
+     "es_id": "por-qué-dos-llamadas-enumerablerepeat-1-anidadas",
      "level": 2,
      "line": 91
     },
     {
      "en": "What `check.ps1` enforces",
      "en_id": "what-checkps1-enforces",
-     "es": "What `check.ps1` enforces",
-     "es_id": "what-checkps1-enforces",
+     "es": "Qué impone `check.ps1`",
+     "es_id": "qué-impone-checkps1",
      "level": 2,
      "line": 95
     },
     {
      "en": "Gotchas worth knowing",
      "en_id": "gotchas-worth-knowing",
-     "es": "Gotchas worth knowing",
-     "es_id": "gotchas-worth-knowing",
+     "es": "Trampas que conviene conocer",
+     "es_id": "trampas-que-conviene-conocer",
      "level": 2,
      "line": 99
     }
    ],
    "map": {
-    "gotchas-worth-knowing": "gotchas-worth-knowing",
-    "how-the-stunt-works": "how-the-stunt-works",
-    "linq-challenge-variant-a-one-fluent-method-chain-statement": "linq-challenge-variant-a-one-fluent-method-chain-statement",
-    "program-flow": "program-flow",
-    "run-it": "run-it",
-    "run-it-in-windows-sandbox": "run-it-in-windows-sandbox",
-    "the-void-to-value-trick": "the-void-to-value-trick",
-    "what-checkps1-enforces": "what-checkps1-enforces",
-    "why-two-nested-enumerablerepeat-1-calls": "why-two-nested-enumerablerepeat-1-calls"
+    "gotchas-worth-knowing": "trampas-que-conviene-conocer",
+    "how-the-stunt-works": "cómo-funciona-el-truco",
+    "linq-challenge-variant-a-one-fluent-method-chain-statement": "reto-de-linq-variante-a-una-sola-instrucción-con-una-cadena-fluida-de-métodos",
+    "program-flow": "flujo-del-programa",
+    "run-it": "ejecútalo",
+    "run-it-in-windows-sandbox": "ejecútalo-en-windows-sandbox",
+    "the-void-to-value-trick": "el-truco-de-void-a-valor",
+    "what-checkps1-enforces": "qué-impone-checkps1",
+    "why-two-nested-enumerablerepeat-1-calls": "por-qué-dos-llamadas-enumerablerepeat-1-anidadas"
    }
   },
   "src/LinqChallenge2/README.md": {
@@ -9261,77 +9261,77 @@
     {
      "en": "LINQ challenge, Variant B: one SQL-like query-expression statement",
      "en_id": "linq-challenge-variant-b-one-sql-like-query-expression-statement",
-     "es": "LINQ challenge, Variant B: one SQL-like query-expression statement",
-     "es_id": "linq-challenge-variant-b-one-sql-like-query-expression-statement",
+     "es": "Reto de LINQ, variante B: una sola sentencia de expresión de consulta similar a SQL",
+     "es_id": "reto-de-linq-variante-b-una-sola-sentencia-de-expresión-de-consulta-similar-a-sql",
      "level": 1,
      "line": 15
     },
     {
      "en": "Run it",
      "en_id": "run-it",
-     "es": "Run it",
-     "es_id": "run-it",
+     "es": "Ejecútalo",
+     "es_id": "ejecútalo",
      "level": 2,
      "line": 23
     },
     {
      "en": "Run it in Windows Sandbox",
      "en_id": "run-it-in-windows-sandbox",
-     "es": "Run it in Windows Sandbox",
-     "es_id": "run-it-in-windows-sandbox",
+     "es": "Ejecútalo en Windows Sandbox",
+     "es_id": "ejecútalo-en-windows-sandbox",
      "level": 2,
      "line": 39
     },
     {
      "en": "Program Flow",
      "en_id": "program-flow",
-     "es": "Program Flow",
-     "es_id": "program-flow",
+     "es": "Flujo del programa",
+     "es_id": "flujo-del-programa",
      "level": 2,
      "line": 49
     },
     {
      "en": "How the stunt works",
      "en_id": "how-the-stunt-works",
-     "es": "How the stunt works",
-     "es_id": "how-the-stunt-works",
+     "es": "Cómo funciona el truco",
+     "es_id": "cómo-funciona-el-truco",
      "level": 2,
      "line": 68
     },
     {
      "en": "Important language constraint",
      "en_id": "important-language-constraint",
-     "es": "Important language constraint",
-     "es_id": "important-language-constraint",
+     "es": "Restricción importante del lenguaje",
+     "es_id": "restricción-importante-del-lenguaje",
      "level": 2,
      "line": 99
     },
     {
      "en": "What `check.ps1` enforces",
      "en_id": "what-checkps1-enforces",
-     "es": "What `check.ps1` enforces",
-     "es_id": "what-checkps1-enforces",
+     "es": "Qué impone `check.ps1`",
+     "es_id": "qué-impone-checkps1",
      "level": 2,
      "line": 107
     },
     {
      "en": "Gotchas worth knowing",
      "en_id": "gotchas-worth-knowing",
-     "es": "Gotchas worth knowing",
-     "es_id": "gotchas-worth-knowing",
+     "es": "Trampas que conviene conocer",
+     "es_id": "trampas-que-conviene-conocer",
      "level": 2,
      "line": 111
     }
    ],
    "map": {
-    "gotchas-worth-knowing": "gotchas-worth-knowing",
-    "how-the-stunt-works": "how-the-stunt-works",
-    "important-language-constraint": "important-language-constraint",
-    "linq-challenge-variant-b-one-sql-like-query-expression-statement": "linq-challenge-variant-b-one-sql-like-query-expression-statement",
-    "program-flow": "program-flow",
-    "run-it": "run-it",
-    "run-it-in-windows-sandbox": "run-it-in-windows-sandbox",
-    "what-checkps1-enforces": "what-checkps1-enforces"
+    "gotchas-worth-knowing": "trampas-que-conviene-conocer",
+    "how-the-stunt-works": "cómo-funciona-el-truco",
+    "important-language-constraint": "restricción-importante-del-lenguaje",
+    "linq-challenge-variant-b-one-sql-like-query-expression-statement": "reto-de-linq-variante-b-una-sola-sentencia-de-expresión-de-consulta-similar-a-sql",
+    "program-flow": "flujo-del-programa",
+    "run-it": "ejecútalo",
+    "run-it-in-windows-sandbox": "ejecútalo-en-windows-sandbox",
+    "what-checkps1-enforces": "qué-impone-checkps1"
    }
   },
   "src/ModernChallenge1/README.md": {
@@ -9339,77 +9339,77 @@
     {
      "en": "C# challenge: the original (modernized)",
      "en_id": "c-challenge-the-original-modernized",
-     "es": "C# challenge: the original (modernized)",
-     "es_id": "c-challenge-the-original-modernized",
+     "es": "Reto de C#: el original (modernizado)",
+     "es_id": "reto-de-c-el-original-modernizado",
      "level": 1,
      "line": 16
     },
     {
      "en": "Run it",
      "en_id": "run-it",
-     "es": "Run it",
-     "es_id": "run-it",
+     "es": "Ejecútalo",
+     "es_id": "ejecútalo",
      "level": 2,
      "line": 22
     },
     {
      "en": "Run it in Windows Sandbox",
      "en_id": "run-it-in-windows-sandbox",
-     "es": "Run it in Windows Sandbox",
-     "es_id": "run-it-in-windows-sandbox",
+     "es": "Ejecútalo en Windows Sandbox",
+     "es_id": "ejecútalo-en-windows-sandbox",
      "level": 2,
      "line": 36
     },
     {
      "en": "Program Flow",
      "en_id": "program-flow",
-     "es": "Program Flow",
-     "es_id": "program-flow",
+     "es": "Flujo del programa",
+     "es_id": "flujo-del-programa",
      "level": 2,
      "line": 46
     },
     {
      "en": "How the stunt works",
      "en_id": "how-the-stunt-works",
-     "es": "How the stunt works",
-     "es_id": "how-the-stunt-works",
+     "es": "Cómo funciona el truco",
+     "es_id": "cómo-funciona-el-truco",
      "level": 2,
      "line": 66
     },
     {
      "en": "What changed since 2008, and what did not",
      "en_id": "what-changed-since-2008-and-what-did-not",
-     "es": "What changed since 2008, and what did not",
-     "es_id": "what-changed-since-2008-and-what-did-not",
+     "es": "Qué cambió desde 2008 y qué no",
+     "es_id": "qué-cambió-desde-2008-y-qué-no",
      "level": 2,
      "line": 87
     },
     {
      "en": "Gotchas worth knowing",
      "en_id": "gotchas-worth-knowing",
-     "es": "Gotchas worth knowing",
-     "es_id": "gotchas-worth-knowing",
+     "es": "Trampas que conviene conocer",
+     "es_id": "trampas-que-conviene-conocer",
      "level": 2,
      "line": 111
     },
     {
      "en": "Why this is weird",
      "en_id": "why-this-is-weird",
-     "es": "Why this is weird",
-     "es_id": "why-this-is-weird",
+     "es": "Por qué es raro",
+     "es_id": "por-qué-es-raro",
      "level": 2,
      "line": 115
     }
    ],
    "map": {
-    "c-challenge-the-original-modernized": "c-challenge-the-original-modernized",
-    "gotchas-worth-knowing": "gotchas-worth-knowing",
-    "how-the-stunt-works": "how-the-stunt-works",
-    "program-flow": "program-flow",
-    "run-it": "run-it",
-    "run-it-in-windows-sandbox": "run-it-in-windows-sandbox",
-    "what-changed-since-2008-and-what-did-not": "what-changed-since-2008-and-what-did-not",
-    "why-this-is-weird": "why-this-is-weird"
+    "c-challenge-the-original-modernized": "reto-de-c-el-original-modernizado",
+    "gotchas-worth-knowing": "trampas-que-conviene-conocer",
+    "how-the-stunt-works": "cómo-funciona-el-truco",
+    "program-flow": "flujo-del-programa",
+    "run-it": "ejecútalo",
+    "run-it-in-windows-sandbox": "ejecútalo-en-windows-sandbox",
+    "what-changed-since-2008-and-what-did-not": "qué-cambió-desde-2008-y-qué-no",
+    "why-this-is-weird": "por-qué-es-raro"
    }
   },
   "src/PythonChallenge1/README.md": {
@@ -9417,77 +9417,77 @@
     {
      "en": "One Statement, Python Edition",
      "en_id": "one-statement-python-edition",
-     "es": "One Statement, Python Edition",
-     "es_id": "one-statement-python-edition",
+     "es": "Una instrucción, edición Python",
+     "es_id": "una-instrucción-edición-python",
      "level": 1,
      "line": 17
     },
     {
      "en": "Run it",
      "en_id": "run-it",
-     "es": "Run it",
-     "es_id": "run-it",
+     "es": "Ejecútalo",
+     "es_id": "ejecútalo",
      "level": 2,
      "line": 23
     },
     {
      "en": "Run it in a container",
      "en_id": "run-it-in-a-container",
-     "es": "Run it in a container",
-     "es_id": "run-it-in-a-container",
+     "es": "Ejecútalo en un contenedor",
+     "es_id": "ejecútalo-en-un-contenedor",
      "level": 2,
      "line": 35
     },
     {
      "en": "Run it in Windows Sandbox",
      "en_id": "run-it-in-windows-sandbox",
-     "es": "Run it in Windows Sandbox",
-     "es_id": "run-it-in-windows-sandbox",
+     "es": "Ejecútalo en Windows Sandbox",
+     "es_id": "ejecútalo-en-windows-sandbox",
      "level": 2,
      "line": 45
     },
     {
      "en": "Layout",
      "en_id": "layout",
-     "es": "Layout",
-     "es_id": "layout",
+     "es": "Estructura",
+     "es_id": "estructura",
      "level": 2,
      "line": 55
     },
     {
      "en": "Program Flow",
      "en_id": "program-flow",
-     "es": "Program Flow",
-     "es_id": "program-flow",
+     "es": "Flujo del programa",
+     "es_id": "flujo-del-programa",
      "level": 2,
      "line": 59
     },
     {
      "en": "How the stunt works",
      "en_id": "how-the-stunt-works",
-     "es": "How the stunt works",
-     "es_id": "how-the-stunt-works",
+     "es": "Cómo funciona el truco",
+     "es_id": "cómo-funciona-el-truco",
      "level": 2,
      "line": 78
     },
     {
      "en": "Gotchas worth knowing",
      "en_id": "gotchas-worth-knowing",
-     "es": "Gotchas worth knowing",
-     "es_id": "gotchas-worth-knowing",
+     "es": "Trampas que conviene conocer",
+     "es_id": "trampas-que-conviene-conocer",
      "level": 2,
      "line": 92
     }
    ],
    "map": {
-    "gotchas-worth-knowing": "gotchas-worth-knowing",
-    "how-the-stunt-works": "how-the-stunt-works",
-    "layout": "layout",
-    "one-statement-python-edition": "one-statement-python-edition",
-    "program-flow": "program-flow",
-    "run-it": "run-it",
-    "run-it-in-a-container": "run-it-in-a-container",
-    "run-it-in-windows-sandbox": "run-it-in-windows-sandbox"
+    "gotchas-worth-knowing": "trampas-que-conviene-conocer",
+    "how-the-stunt-works": "cómo-funciona-el-truco",
+    "layout": "estructura",
+    "one-statement-python-edition": "una-instrucción-edición-python",
+    "program-flow": "flujo-del-programa",
+    "run-it": "ejecútalo",
+    "run-it-in-a-container": "ejecútalo-en-un-contenedor",
+    "run-it-in-windows-sandbox": "ejecútalo-en-windows-sandbox"
    }
   },
   "src/RustChallenge1/README.md": {

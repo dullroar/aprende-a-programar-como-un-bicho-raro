@@ -17,6 +17,9 @@ import re
 import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, os.path.join(ROOT, "tools"))
+import enpath  # noqa: E402
+
 GUIDES = os.path.join(ROOT, "lessons", "study-guides")
 BOOKDIR = os.path.join(ROOT, "lessons", "book")
 PILOT_GUIDES = ["languages/forth.md", "languages/apl.md"]
@@ -30,7 +33,7 @@ NO_SECTION_RE = re.compile(r"line \d+: (\S+?)#program-flow: the file has no '## 
 def source_still_english(path, repo=ROOT):
     """True when `path` still has the English '## Program Flow' heading: its README is not translated yet (stage 4)."""
     try:
-        with open(os.path.join(repo, path), encoding="utf-8") as f:
+        with open(enpath.load(repo).full(path), encoding="utf-8") as f:       # `path` is an English key
             return any(ln.strip() == "## Program Flow" for ln in f)
     except OSError:
         return False
@@ -38,7 +41,7 @@ def source_still_english(path, repo=ROOT):
 
 def intro_still_english(repo=ROOT):
     try:
-        with open(os.path.join(repo, "lessons", "intro.md"), encoding="utf-8") as f:
+        with open(enpath.load(repo).full("lessons/intro.md"), encoding="utf-8") as f:
             return any(ln.strip() == "## What the challenge does" for ln in f)
     except OSError:
         return False

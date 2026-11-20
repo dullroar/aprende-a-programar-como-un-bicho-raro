@@ -398,7 +398,7 @@ def load_tree(root: str) -> tuple[dict[str, str], object]:
 
     def read(p: str):
         try:
-            with open(os.path.join(root, p), "rb") as fh:
+            with open(inventory.full_path(root, p), "rb") as fh:       # p is an English key
                 data = fh.read()
         except OSError:
             return None

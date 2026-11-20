@@ -40,6 +40,7 @@ from collections import namedtuple
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
 sys.path.insert(0, HERE)
+import enpath  # noqa: E402
 
 ANCHORS_PATH = os.path.join(ROOT, "translation", "anchors.json")
 FORMAT = 1
@@ -209,22 +210,33 @@ def page_of(rel):
     return "lessons/cs/" + m.group(1) if m else rel
 
 
-def resolve(rel, dest):
-    """(target file, fragment) of an internal link written in file `rel`, or None for an external link, an
-    absolute path, a mail link or an empty destination. The file part is normalised, repo-root relative."""
+ENGLISH = enpath.PathLayer()          # identity: the layer of English text, whose links name English paths
+
+
+def resolve(rel, dest, layer=None):
+    """(target file, fragment) of an internal link written in file `rel` (an ENGLISH key), or None for an external
+    link, an absolute path, a mail link or an empty destination. The file part is normalised, repo-root relative,
+    and is an English key (anchors.json is keyed by English path).
+
+    `layer` says how the text that holds the link is laid out: a Spanish file written after the rename names its
+    targets by their Spanish paths, relative to its own Spanish folder, so the link is read from `layer.work(rel)` and
+    the target mapped back to its English key. The default is the real layer of this checkout; pass ENGLISH for text
+    that still carries English paths."""
     if not dest or SCHEME_RE.match(dest) or dest.startswith("/"):
         return None
+    layer = layer or enpath.load(ROOT)
     path, _, frag = dest.partition("#")
     if not path:
         return page_of(rel), frag
-    full = os.path.normpath(os.path.join(os.path.dirname(rel), path.replace("%20", " "))).replace(os.sep, "/")
+    base = layer.work(rel)
+    full = os.path.normpath(os.path.join(os.path.dirname(base), path.replace("%20", " "))).replace(os.sep, "/")
     if full.startswith(".."):
         return None
-    return full, frag
+    return layer.english(full), frag
 
 
-def _remap_dest(rel, dest, doc, missing):
-    r = resolve(rel, dest)
+def _remap_dest(rel, dest, doc, missing, layer=None):
+    r = resolve(rel, dest, layer)
     if r is None or not r[1]:
         return dest
     target, frag = r
@@ -260,16 +272,16 @@ def _outside_fences(lines):
             close = None
 
 
-def remap_text(text, rel, doc, missing=None):
+def remap_text(text, rel, doc, missing=None, layer=None):
     """Rewrite the fragment of every internal link in `text` (a Spanish file as applied from its PO: the
     links still carry the English fragments). Fenced code is left alone. Unknown fragments are left
-    unchanged and appended to `missing`."""
+    unchanged and appended to `missing`. `rel` is the English key of the file."""
     missing = [] if missing is None else missing
     eol = "\r\n" if "\r\n" in text else "\n"
     lines = text.replace("\r\n", "\n").split("\n")
     for n, line in _outside_fences(lines):
         for s, e, dest in reversed(_links_in(line)):
-            line = line[:s] + _remap_dest(rel, dest, doc, missing) + line[e:]
+            line = line[:s] + _remap_dest(rel, dest, doc, missing, layer) + line[e:]
         lines[n - 1] = line
     return eol.join(lines)
 
@@ -280,18 +292,18 @@ def dest_map(en_text, rel, doc):
     out, missing = {}, []
     for _, line in _outside_fences(en_text.replace("\r\n", "\n").split("\n")):
         for _, _, dest in _links_in(line):
-            new = _remap_dest(rel, dest, doc, missing)
+            new = _remap_dest(rel, dest, doc, missing, ENGLISH)      # English text: English paths
             if new != dest:
                 out[dest] = new
     return out
 
 
-def check_links(rel, es_text, doc):
+def check_links(rel, es_text, doc, layer=None):
     """Problems for the internal links of one Spanish file: each fragment must be an id of the target file."""
     problems = []
     for n, line in _outside_fences(es_text.replace("\r\n", "\n").split("\n")):
         for _, _, dest in _links_in(line):
-            r = resolve(rel, dest)
+            r = resolve(rel, dest, layer)
             if r is None or not r[1]:
                 continue
             entry = doc["files"].get(r[0])
@@ -344,7 +356,8 @@ def english_text(cfg, rel):
 
 
 def read_es(rel):
-    with open(os.path.join(ROOT, rel), encoding="utf-8", newline="") as f:
+    """The working-tree text of the file with English key `rel` (read at its Spanish name after the rename)."""
+    with open(enpath.load(ROOT).full(rel), encoding="utf-8", newline="") as f:
         return f.read().replace("\r\n", "\n")
 
 
@@ -413,7 +426,7 @@ def main(argv):
             return 1
         bad = 0
         for path in argv[2:]:
-            rel = os.path.relpath(os.path.abspath(path), ROOT).replace(os.sep, "/")
+            rel, path = enpath.locate(path, ROOT)
             with open(path, encoding="utf-8", newline="") as f:
                 text = f.read()
             missing = []

@@ -328,8 +328,10 @@ class Env:
 
     def __init__(self, root=ROOT):
         import inventory
+        import enpath
         self.root = root
         self.cfg = inventory.read_config(root)
+        self.layer = enpath.load(root)
         self._ctx = self._cat = None
 
     @property
@@ -349,7 +351,7 @@ class Env:
     def file_problems(self, rel, release):
         import apply as apply_mod
         import polib  # noqa: F401  (load_po needs it)
-        full = os.path.join(self.root, rel)
+        full = self.layer.full(rel)                 # `rel` is the English key; the file sits at its working path
         es = read_text(full) if os.path.isfile(full) else None
         po_path = apply_mod.po_path_for(rel, os.path.join(self.root, "translation", "po"))
         po = None
@@ -366,16 +368,20 @@ class Env:
 
     def tooling_problems(self, rels, allowlist):
         def es_of(r):
-            p = os.path.join(self.root, r)
+            p = self.layer.full(r)
             return read_bytes(p) if os.path.isfile(p) else None
         return check_tooling(rels, lambda r: english_bytes(self.cfg, r), es_of, allowlist)
 
 
-def plan_fast(paths):
-    """Deduplicated, ordered actions for the touched paths."""
+def plan_fast(paths, root=ROOT):
+    """Deduplicated, ordered actions for the touched paths (named as git reports them: the working names). Each is
+    routed by its English key, the name every PO, ledger row and class rule uses."""
+    import enpath
     import inventory
+    layer = enpath.load(root)
     seen, acts = set(), []
     for p in paths:
+        p = layer.english(p)
         for a in route(p, inventory.classify(p)):
             key = (a[0], repr(a[1]))
             if key not in seen:
@@ -387,7 +393,7 @@ def plan_fast(paths):
 def run_fast(paths, root=ROOT):
     env = Env(root)
     results = [timed("lock", check_lock, root)]
-    acts = plan_fast(paths)
+    acts = plan_fast(paths, root)
     allow = load_allowlist(root)
     tooling = [a[1] for a in acts if a[0] == "tooling"]
     if tooling:
@@ -510,7 +516,7 @@ def main(argv):
         since = args[args.index("--since") + 1] if "--since" in args and args.index("--since") + 1 < len(args) else None
         paths = touched_files(ROOT, since)
     if "--plan" in flags:
-        for a in plan_fast(paths):
+        for a in plan_fast(paths, ROOT):
             print("%s %s" % (a[0], a[1] if a[1] is not None else ""))
         return 0
     return report(run_fast(paths, ROOT), "fast")

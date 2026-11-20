@@ -37,6 +37,7 @@ ROOT = os.path.dirname(HERE)
 sys.path.insert(0, HERE)
 sys.path.insert(0, os.path.join(ROOT, "lessons", "book", "locale"))
 import catalog  # noqa: E402
+import enpath  # noqa: E402
 import segment  # noqa: E402
 
 PO_DIR = os.path.join(ROOT, "translation", "po")
@@ -159,8 +160,21 @@ def write_text(path, text):
 
 
 def rel(path):
-    full = os.path.abspath(path)
-    return os.path.relpath(full, ROOT).replace(os.sep, "/")
+    """The English key of a file (PO files, ledger and anchors name files by their English path)."""
+    return enpath.locate(path, ROOT)[0]
+
+
+def identity_files(files, root=ROOT, layer=None):
+    """T0 through the PO layer on each file, read at its working path. Returns (failures, lines): `files` are English
+    keys or paths in either form; each failure is a line naming the English key."""
+    layer = layer or enpath.load(root)
+    bad = []
+    for arg in files:
+        p, full = enpath.locate(arg, root, layer)
+        probs = identity_check(segment.read_raw(full), p)
+        if probs:
+            bad.append("FAIL %s: %s" % (p, "; ".join(probs)))
+    return bad
 
 
 def main(argv):
@@ -188,21 +202,17 @@ def main(argv):
 
     if flag_identity and not flag_init:
         files = args or segment.authored_files()
-        bad = 0
-        for p in files:
-            full = p if os.path.isabs(p) or os.path.exists(p) else os.path.join(ROOT, p)
-            probs = identity_check(segment.read_raw(full), p)
-            if probs:
-                bad += 1
-                print("FAIL %s: %s" % (p, "; ".join(probs)))
+        failing = identity_files(files)
+        for line in failing:
+            print(line)
+        bad = len(failing)
         print("apply identity %s: %d file(s), %d failing" % ("FAILED" if bad else "OK", len(files), bad))
         return 1 if bad else 0
 
     if len(args) != 1:
         print("expected exactly one FILE.md; see usage")
         return 2
-    src = args[0]
-    rp = rel(src)
+    rp, src = enpath.locate(args[0], ROOT)
     text = segment.read_raw(src)
     if flag_init:
         target = po_arg or po_path_for(rp)

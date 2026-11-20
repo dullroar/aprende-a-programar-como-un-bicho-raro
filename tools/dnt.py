@@ -32,6 +32,9 @@ import os
 import re
 import sys
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import enpath  # noqa: E402
+
 MANIFEST = "translation/locked-code.sha256"
 OUTPUT = "translation/dnt.txt"
 MIN_ENTRIES = 3
@@ -165,7 +168,7 @@ def load_files(root: str) -> dict[str, str]:
     for rel in read_manifest_paths(root):
         if not is_program(rel):
             continue
-        full = os.path.join(root, rel)
+        full = enpath.load(root).full(rel)            # manifest keys are English paths
         try:
             with open(full, encoding="utf-8", errors="replace", newline="") as fh:
                 files[rel] = fh.read().replace("\r\n", "\n")

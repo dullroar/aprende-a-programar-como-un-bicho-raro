@@ -32,6 +32,7 @@ import sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
 sys.path.insert(0, HERE)
+import enpath  # noqa: E402
 import mask  # noqa: E402
 import mermaid  # noqa: E402
 
@@ -478,8 +479,8 @@ def main(argv):
     if len(argv) >= 2 and argv[1] == "--t0":
         files = argv[2:] or authored_files()
         bad = 0
-        for p in files:
-            full = p if os.path.isabs(p) or os.path.exists(p) else os.path.join(ROOT, p)
+        for arg in files:
+            p, full = enpath.locate(arg, ROOT)
             probs = check_roundtrip(read_raw(full), p)
             if probs:
                 bad += 1
@@ -488,9 +489,9 @@ def main(argv):
         return 1 if bad else 0
     as_json = len(argv) == 3 and argv[1] == "--json"
     if as_json or len(argv) == 2:
-        path = argv[-1]
+        path, full = enpath.locate(argv[-1], ROOT)
         try:
-            seg = Segmentation(read_raw(path), path)
+            seg = Segmentation(read_raw(full), path)
         except SegmentError as e:
             print("FAIL %s" % e)
             return 1

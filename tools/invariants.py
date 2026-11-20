@@ -48,6 +48,7 @@ sys.path.insert(0, HERE)
 sys.path.insert(0, os.path.join(ROOT, "lessons", "book", "locale"))
 import apply as apply_mod  # noqa: E402
 import catalog  # noqa: E402
+import enpath  # noqa: E402
 import mask  # noqa: E402
 import mermaid  # noqa: E402
 import phase_lint  # noqa: E402
@@ -809,16 +810,17 @@ def main(argv):
     if args and args[0] == "--t0":
         files = args[1:] or segment.authored_files()
         found = []
-        for p in files:
-            found += [Finding("I1", p, m) for m in segment.check_roundtrip(read_raw(os.path.join(ROOT, p) if not os.path.exists(p) else p), p)]
+        for arg in files:
+            p, full = enpath.locate(arg, ROOT)
+            found += [Finding("I1", p, m) for m in segment.check_roundtrip(read_raw(full), p)]
         return report(found, "I1 on %d file(s)" % len(files))
     if args and args[0] == "--protected":
         return report(protected_files(), "I13 protected files")
     if len(args) >= 2 and args[0] == "--po":
-        rel = args[1]
+        rel, full = enpath.locate(args[1], ROOT)
         po_path = args[2] if len(args) > 2 else apply_mod.po_path_for(rel)
         ctx = load_context()
-        return report(check_po(read_raw(os.path.join(ROOT, rel)), apply_mod.load_po(po_path), rel, ctx), "PO %s" % rel)
+        return report(check_po(read_raw(full), apply_mod.load_po(po_path), rel, ctx), "PO %s" % rel)
     if len(args) == 3 and args[0] == "--files":
         ctx = load_context()
         return report(check_files(read_raw(args[1]), read_raw(args[2]), args[1], ctx), "files %s %s" % (args[1], args[2]))

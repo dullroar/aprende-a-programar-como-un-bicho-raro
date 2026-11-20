@@ -28,10 +28,11 @@ ROOT = os.path.dirname(HERE)
 sys.path.insert(0, HERE)
 sys.path.insert(0, os.path.join(ROOT, "lessons", "book", "locale"))
 import catalog  # noqa: E402
+import enpath  # noqa: E402
 import mask  # noqa: E402
 
 PHASE_LETTERS_JSON = os.path.join(ROOT, "translation", "phase-letters.json")
-EXERCISES_MD = os.path.join(ROOT, "lessons", "exercises.md")
+EXERCISES_MD = enpath.load(ROOT).full("lessons/exercises.md")
 PHASE_WORDS = r"(?:fases?|phases?)"
 MACRO_RE = re.compile(r"\{\{[^}\n]+\}\}|\[\[[^\]\n]+\]\]")
 HEADING_ID_RE = re.compile(r"^#{2,4}\s+([A-Z])(\d*)\.\s", re.M)

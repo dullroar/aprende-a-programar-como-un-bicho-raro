@@ -47,6 +47,7 @@ sys.path.insert(0, HERE)
 sys.path.insert(0, os.path.join(ROOT, "lessons", "book", "locale"))
 import apply as ap  # noqa: E402
 import catalog  # noqa: E402
+import enpath  # noqa: E402
 import invariants  # noqa: E402
 import inventory  # noqa: E402
 import mask  # noqa: E402
@@ -434,7 +435,7 @@ class Translator:
     # -- one file
     def run_file(self, path, po_path=None, start=1, limit=None, redo_fuzzy=False, dry_run=False, log=print):
         """Translate a file's segments into its PO. Returns a result dict; raises TranslateError on a bad run."""
-        rel = ap.rel(path)
+        rel, path = enpath.locate(path, ROOT)
         text = segment.read_raw(path)
         try:
             seg = segment.Segmentation(text, rel)
@@ -451,7 +452,8 @@ class Translator:
         orphans = [c for c in by_id if c not in known]
         if orphans:  # the file was probably applied (already Spanish): never mix its segments into the PO
             raise TranslateError("%s: %d PO entries match no segment of %s (is the file already applied? "
-                                 "run `git checkout -- %s` first)" % (po_path, len(orphans), rel, rel))
+                                 "run `git checkout -- %s` first)" % (po_path, len(orphans), rel,
+                                                         os.path.relpath(path, ROOT).replace(os.sep, "/")))
         for b in items:  # a PO written by an older run may lack entries; never overwrite stale ones
             e = by_id.get(b.id)
             if e is None:
@@ -545,8 +547,8 @@ def main(argv):
     try:
         if show:
             tr = Translator(ReplayBackend(lambda i: None), task_id=task_id)
-            rel = ap.rel(path)
-            seg = segment.Segmentation(segment.read_raw(path), rel)
+            rel, full = enpath.locate(path, ROOT)
+            seg = segment.Segmentation(segment.read_raw(full), rel)
             items = seg.segments()
             if not 1 <= start <= len(items):
                 print("segment %d is out of range 1..%d" % (start, len(items)))

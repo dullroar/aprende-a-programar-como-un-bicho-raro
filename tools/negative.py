@@ -176,7 +176,8 @@ def lock_problems(mutate, rel="src/forth/timecards.fs"):
     shutil.rmtree(root, ignore_errors=True)
     for r in (rel, lock_code.MANIFEST):
         os.makedirs(os.path.dirname(os.path.join(root, r)), exist_ok=True)
-    shutil.copyfile(os.path.join(ROOT, rel), os.path.join(root, rel))
+    import enpath
+    shutil.copyfile(enpath.load(ROOT).full(rel), os.path.join(root, rel))    # the mini repo keeps English names
     with open(os.path.join(ROOT, lock_code.MANIFEST), encoding="utf-8") as f:
         row = next(ln for ln in f if ln.rstrip().endswith("  " + rel))
     with open(os.path.join(root, lock_code.MANIFEST), "w", encoding="utf-8", newline="") as f:

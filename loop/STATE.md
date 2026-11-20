@@ -1,8 +1,8 @@
 # loop/STATE.md (keep to 60 lines; refreshed by every iteration)
 
 - **Edition:** v4-es.0-rc1 (working)    **English SHA:** 48a4429c0a22b2aac628b256a50c07d1816bcb80
-- **Iteration:** 78    **Stage:** 3B (Spanish file names; bulk translation waits for the P3B-007 gate), next P3B-004    **Last result:** P3B-003 done (paths: block in both catalogs, tooling routed through it, tools/tooling_paths.py, English-neutrality proof PASS; es layout stays english until P3B-005)
-- **Tasks:** todo 84 (10 seed + 74 generated) | doing 0 | done 54 | blocked 0 | skipped 0
+- **Iteration:** 79    **Stage:** 3B (Spanish file names; bulk translation waits for the P3B-007 gate), next P3B-005    **Last result:** P3B-004 done (tools/enpath.py; every tool keys on the English path and reads/writes the working path; test_enpath 46 tests; anchors.json regenerated; test_anchors has 2 failures that predate this task, fixed by P5-001)
+- **Tasks:** todo 83 (9 seed + 74 generated) | doing 0 | done 55 | blocked 0 | skipped 0
 - **Next task:** run `python3 tools/next_task.py` (PO files live at translation/po/<path>.po, written by tools/apply.py --init)
 - **Budget:** spent $0.00 of $100; iterations 0 of 300
 - **Translate progress:** segments accepted 836 / total 8827 (7394 prose + 1433 Mermaid labels) ; files done 12 / 212 (src/GoChallenge1, JavaChallenge1, KotlinChallenge1, LinqChallenge1, LinqChallenge2, ModernChallenge1, PythonChallenge1 READMEs, src/forth/README.md, lessons/cs-source/concepts/recursion.md, lessons/study-guides/languages/forth.md, docs/curriculum.md, lessons/study-guides/languages/apl.md)

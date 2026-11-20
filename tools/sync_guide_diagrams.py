@@ -111,7 +111,8 @@ def main(argv):
     if len(args) != 1:
         print(__doc__.split("\n\n")[0])
         return 2
-    rel = args[0]
+    import enpath
+    rel = enpath.locate(args[0], ROOT)[0]        # the English key (the PO and the English clone use it)
     import inventory
     clone = inventory.read_config(ROOT)["english_clone_path"]
 
