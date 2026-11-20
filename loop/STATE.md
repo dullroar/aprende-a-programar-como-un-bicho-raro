@@ -1,8 +1,8 @@
 # loop/STATE.md (keep to 60 lines; refreshed by every iteration)
 
 - **Edition:** v4-es.0-rc1 (working)    **English SHA:** 48a4429c0a22b2aac628b256a50c07d1816bcb80
-- **Iteration:** 34    **Stage:** 2    **Last result:** P2-007 done (tools/anchors.py + 47 tests; translation/anchors.json)
-- **Tasks:** todo 113 (36 seed + 77 generated) | doing 0 | done 25 | blocked 0 | skipped 0
+- **Iteration:** 35    **Stage:** 2    **Last result:** P2-008 done (diagrams.py localized via catalog diagrams.* keys; 35 tests)
+- **Tasks:** todo 112 (35 seed + 77 generated) | doing 0 | done 26 | blocked 0 | skipped 0
 - **Next task:** run `python3 tools/next_task.py` (PO files live at translation/po/<path>.po, written by tools/apply.py --init)
 - **Budget:** spent $0.00 of $100; iterations 0 of 300
 - **Translate progress:** segments accepted 0 / total 8827 (7394 prose + 1433 Mermaid labels) ; files done 0 / ?

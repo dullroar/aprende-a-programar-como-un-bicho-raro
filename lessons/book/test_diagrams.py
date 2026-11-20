@@ -9,6 +9,8 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 import diagrams
 
+diagrams.set_language("en")       # the English tests below must not depend on BOOK_LANG in the environment
+
 GOOD = '''# Title
 
 ## Run it
@@ -111,6 +113,86 @@ class Scanner(unittest.TestCase):
     def test_diagram_family(self):
         self.assertEqual(diagrams.diagram_type("sequenceDiagram\n  A->>B: x"), "sequenceDiagram")
         self.assertEqual(diagrams.diagram_type("%% c\n\nstateDiagram-v2\n"), "stateDiagram-v2")
+
+
+GOOD_ES = GOOD.replace("## Program Flow", "## Flujo del programa").replace("**What this shows:**", "**Qué muestra:**") \
+              .replace("**Why this mechanism matters:**", "**Por qué importa este mecanismo:**").replace("A caption", "Un pie de figura")
+
+
+class SpanishContract(unittest.TestCase):
+    """The same README contract, with the words taken from the Spanish catalog (lessons/book/locale/es.yaml)."""
+    def setUp(self):
+        diagrams.set_language("es")
+        self.addCleanup(diagrams.set_language, "en")
+
+    def check(self, text):
+        return diagrams.program_flow(text, "src/x/README.md")
+
+    def test_the_constants_come_from_the_spanish_catalog(self):
+        self.assertEqual((diagrams.SECTION, diagrams.LEAD_SHOWS, diagrams.FIGURE_WORD, diagrams.LANG),
+                         ("Flujo del programa", "Qué muestra:", "Figura", "es"))
+
+    def test_a_good_spanish_section(self):
+        sec, probs = self.check(GOOD_ES)
+        self.assertEqual(probs, [])
+        self.assertTrue(sec.startswith("```mermaid") and sec.rstrip().endswith("y."))
+
+    def test_the_english_heading_is_not_accepted(self):
+        sec, probs = self.check(GOOD)
+        self.assertIsNone(sec)
+        self.assertIn("no '## Flujo del programa' section", probs[0])
+
+    def test_a_near_miss_heading_is_reported_with_the_exact_spelling(self):
+        for wrong in ("## Flujo del Programa", "## Flujo", "## FLUJO DEL PROGRAMA"):
+            _, probs = self.check(GOOD_ES.replace("## Flujo del programa", wrong))
+            self.assertTrue(any("exactly '## Flujo del programa'" in p for p in probs), wrong)
+
+    def test_an_unaccented_lead_in_is_refused(self):
+        _, probs = self.check(GOOD_ES.replace("**Qué muestra:**", "**Que muestra:**"))
+        self.assertTrue(any("**Qué muestra:**" in p for p in probs))
+        _, probs = self.check(GOOD_ES.replace("**Por qué importa este mecanismo:**", "**Por qué:**"))
+        self.assertTrue(any("Por qué importa este mecanismo" in p for p in probs))
+
+    def test_english_lead_ins_are_refused_under_the_spanish_catalog(self):
+        _, probs = self.check(GOOD_ES.replace("**Qué muestra:**", "**What this shows:**"))
+        self.assertEqual(len(probs), 1)
+
+    def test_the_caption_says_figura(self):
+        src = "flowchart TD\n    accTitle: Un pie\n    accDescr: Texto\n    A-->B"
+        fig = diagrams.Figure("k", src, "somewhere")
+        fig.w, fig.h = 400.0, 200.0
+        fig.pw, fig.ph, fig.scale = 400, 200, 1.0
+        self.assertIn("<figcaption>Figura 2. Un pie</figcaption>", diagrams.embed("```mermaid\n" + src + "\n```", {src: fig}, "svg", [2]))
+        self.assertEqual(diagrams.Figure("k", "flowchart TD\n  A-->B", "x").title, "Diagrama")
+
+    def test_a_missing_key_fails_loudly_and_leaves_the_language_unchanged(self):
+        import catalog
+        real = catalog.load
+        def broken(lang, base=catalog.HERE):
+            cat = real(lang, base)
+            del cat.flat["diagrams.figure"]
+            return cat
+        catalog.load = broken
+        try:
+            with self.assertRaises(catalog.MissingKeyError):
+                diagrams.set_language("es")
+        finally:
+            catalog.load = real
+        self.assertEqual(diagrams.SECTION, "Flujo del programa", "a failed switch must not leave half-loaded constants")
+
+
+class EnglishCatalogMatchesTheOldLiterals(unittest.TestCase):
+    """The English catalog reproduces the strings the tool carried before localization, so English output is unchanged."""
+    def test_literals(self):
+        diagrams.set_language("en")
+        self.assertEqual((diagrams.SECTION, diagrams.LEAD_SHOWS, diagrams.LEAD_WHY, diagrams.FIGURE_WORD, diagrams.DEFAULT_TITLE),
+                         ("Program Flow", "What this shows:", "Why this mechanism matters:", "Figure", "Diagram"))
+
+    def test_an_unknown_language_is_an_error(self):
+        import catalog
+        with self.assertRaises(catalog.CatalogError):
+            diagrams.set_language("xx")
+        self.assertEqual(diagrams.LANG, "en")
 
 
 class FakeRenderer(diagrams.Renderer):
@@ -261,6 +343,14 @@ class RealRender(unittest.TestCase):
             else:
                 self.assertEqual(first[0], drawn[0], "the SVG changed between two cold draws: is handDrawnSeed still set in mermaid-config.json?")
                 self.assertEqual(first[1], drawn[1], "the PNG changed between two cold draws")
+
+    def test_a_spanish_diagram_with_accents_and_inverted_marks_renders_and_keeps_its_labels(self):
+        import xml.etree.ElementTree as ET
+        src = 'flowchart TD\n    accTitle: Pie\n    accDescr: Texto\n    A["¿total mayor que 40?"] --> B["¡Se acabó! Sí, más de 40"]'
+        figs, errs = diagrams.render_all(self.r, {src: "src/x/README.md"})
+        self.assertEqual(errs, [])
+        texts = {"".join(n.itertext()) for n in ET.parse(figs[src].svg).iter("{http://www.w3.org/2000/svg}text")}
+        self.assertEqual(texts, {"¿total mayor que 40?", "¡Se acabó! Sí, más de 40"})
 
     def test_the_config_seeds_the_hand_drawn_randomness(self):
         with open(diagrams.CONFIG, encoding="utf-8") as f:

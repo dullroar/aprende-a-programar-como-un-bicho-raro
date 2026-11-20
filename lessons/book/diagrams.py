@@ -14,15 +14,39 @@ fenced block and a few sentences. This module:
 Standard library only. The renderer (Node + Mermaid CLI + a Chromium) is needed only to render. The structural
 checks run without it, and `build.py --check` says which kind of check ran.
 """
-import concurrent.futures, glob, hashlib, json, os, re, shutil, struct, subprocess, tempfile
+import concurrent.futures, glob, hashlib, json, os, re, shutil, struct, subprocess, sys, tempfile, unicodedata
 
 HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, os.path.join(HERE, "locale"))            # never name a package `locale`: it would shadow the stdlib module
+import catalog                                              # the locale catalog (needs PyYAML, like the rest of the book tooling)
 DIAGRAM_TOOLS = os.path.join(HERE, "diagrams")           # package.json, package-lock.json, mermaid-config.json
 CONFIG = os.path.join(DIAGRAM_TOOLS, "mermaid-config.json")
 FLATTEN = os.path.join(DIAGRAM_TOOLS, "flatten-text.mjs")   # makes the SVG light for PDF viewers (see the Renderer.flatten docstring)
 CACHE = os.path.join(HERE, "out", "diagrams")            # git-ignored build output (lessons/book/out/)
 
-SECTION = "Program Flow"
+# The words the README contract and the figure captions use come from the locale catalog (lessons/book/locale/<lang>.yaml,
+# keys diagrams.*). The language is BOOK_LANG (default "en"); `set_language` switches it, for example in tests. A missing key
+# fails loudly (catalog.MissingKeyError); there is no silent fallback to English.
+SECTION = SECTION_SHORT = LEAD_SHOWS = LEAD_WHY = FIGURE_WORD = DEFAULT_TITLE = LANG = None
+
+
+def set_language(lang):
+    """Load the diagrams.* words of `lang` into the module constants. All or nothing: a missing key leaves the old language in place."""
+    global SECTION, SECTION_SHORT, LEAD_SHOWS, LEAD_WHY, FIGURE_WORD, DEFAULT_TITLE, LANG
+    cat = catalog.load(lang)
+    words = [cat.text("diagrams." + k) for k in ("section", "section_short", "lead_in_shows", "lead_in_why", "figure", "default_title")]
+    SECTION, SECTION_SHORT, LEAD_SHOWS, LEAD_WHY, FIGURE_WORD, DEFAULT_TITLE = words
+    LANG = lang
+
+
+def _norm(title):
+    """A heading reduced to lowercase letters without accents, so 'Program flow' and 'Flujo del Programa' compare as near misses."""
+    d = unicodedata.normalize("NFKD", title.lower())
+    return re.sub(r"[^a-z]", "", "".join(c for c in d if not unicodedata.combining(c)))
+
+
+set_language(os.environ.get("BOOK_LANG", "en"))
+
 PNG_SCALE = 3          # the PNG (EPUB) is rendered at 3x so that it stays sharp on a high-density e-reader
 
 # ---- Page geometry, in CSS pixels (1 px = 1/96 inch). Letter paper, 2.2 cm side margins (see book.css).
@@ -72,10 +96,11 @@ def program_flow(body, where):
 
     `section_text` is everything between that heading and the next level-1 or level-2 heading, trimmed. Problems
     name `where` (the README path). The README contract:
-      * exactly one heading `## Program Flow`, spelled exactly like that (not "Program flow", not a synonym);
+      * exactly one heading `## Program Flow` (the catalog's `diagrams.section`), spelled exactly like that (not "Program flow", not a synonym);
       * inside it, exactly one ```mermaid block and no sub-headings;
       * the diagram has `accTitle:` (the figure caption) and `accDescr:` (the alt text), and no HTML tags;
-      * the prose after it has a **What this shows:** and a **Why this mechanism matters:** paragraph.
+      * the prose after it has a **What this shows:** and a **Why this mechanism matters:** paragraph
+        (the catalog's `diagrams.lead_in_shows` and `diagrams.lead_in_why`).
     Relative links to other files are fine: the book copies the section into a lesson page and re-aims them (cs.py). Links to a
     heading in the same README are not, because the heading is not on the page it is copied to."""
     items = scan(body)
@@ -83,7 +108,7 @@ def program_flow(body, where):
     problems = []
     heads = [(it[3], it[2]) for it in items if it[0] == "heading" and it[1] == 2]
     flow = [h for h in heads if h[1] == SECTION]
-    near = [h for h in heads if h[1] != SECTION and re.sub(r"[^a-z]", "", h[1].lower()) in ("programflow", "flow")]
+    near = [h for h in heads if h[1] != SECTION and _norm(h[1]) in (_norm(SECTION), _norm(SECTION_SHORT))]
     for line, title in near:
         problems.append(f"{where}:{line}: the heading must be exactly '## {SECTION}', not '## {title}'")
     if not flow:
@@ -117,7 +142,7 @@ def program_flow(body, where):
         for k, l in enumerate(lines[start:end - 1]):
             if re.search(r"\]\(#", l) and not any(f[3] - start - 1 <= k <= f[4] - start - 1 for f in fences):
                 problems.append(f"{where}:{start + k + 1}: no links to a heading in this README inside '## {SECTION}' (the section is copied to another page)")
-        for label in ("What this shows:", "Why this mechanism matters:"):
+        for label in (LEAD_SHOWS, LEAD_WHY):
             if f"**{label}**" not in prose:
                 problems.append(f"{where}:{start}: the prose needs a paragraph that starts with **{label}**")
     return section, problems
@@ -259,7 +284,7 @@ class Figure:
     def __init__(self, key, source, where):
         self.key, self.source, self.where = key, source, where
         self.svg, self.png = os.path.join(CACHE, key + ".svg"), os.path.join(CACHE, key + ".png")
-        self.title = acc(source, "accTitle") or "Diagram"
+        self.title = acc(source, "accTitle") or DEFAULT_TITLE
         self.descr = acc(source, "accDescr") or self.title
         self.family = diagram_type(source)
         self.hit = None
@@ -338,7 +363,7 @@ def figure_html(fig, number, fmt):
     else:
         src, size = fig.png, f'width="{round(fig.w)}"'
     return (f'<figure class="diagram">\n<img src="{esc(src)}" alt="{esc(fig.descr)}" {size} />\n'
-            f'<figcaption>Figure {number}. {esc(fig.title)}</figcaption>\n</figure>')
+            f'<figcaption>{FIGURE_WORD} {number}. {esc(fig.title)}</figcaption>\n</figure>')
 
 
 def embed(text, figs, fmt, counter):

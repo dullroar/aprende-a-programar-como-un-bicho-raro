@@ -55,3 +55,11 @@ phases:
 diagrams:
   # lessons/book/diagrams.py SECTION: the exact heading the diagram check requires.
   section: "Program Flow"
+  # The one-word form of the heading; a heading that is only this, or the section title in other case, is reported as a near miss.
+  section_short: "Flow"
+  # Fixed lead-ins (tools/invariants.py I11 enforces keys named lead_in*): the bold lead-ins of the two paragraphs after the diagram (the text between ** and **).
+  lead_in_shows: "What this shows:"
+  lead_in_why: "Why this mechanism matters:"
+  # figcaption word ("Figure 3. ...") and the caption used when a diagram has no accTitle.
+  figure: "Figure"
+  default_title: "Diagram"

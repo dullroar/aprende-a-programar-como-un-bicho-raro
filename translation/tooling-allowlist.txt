@@ -2,3 +2,5 @@
 # One repo-relative path per line; text after # is a comment. tools/verify.py (I13) fails on any other
 # difference, and on a row whose file is identical to English (remove the row then).
 # Add a row only in the same commit that localizes the file, with the task id as a comment.
+lessons/book/diagrams.py  # P2-008: words from the locale catalog (diagrams.*)
+lessons/book/test_diagrams.py  # P2-008: Spanish fixtures, English literals guard
