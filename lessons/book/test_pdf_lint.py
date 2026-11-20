@@ -13,6 +13,7 @@ import pymupdf as pdf
 
 import diagrams
 import lint_pdf
+from repo_links import catalog
 from pdf_sentinels import Sentinel
 from pdf_layout import EDGE_TOLERANCE, MARGIN_TOLERANCE, overflow, read_geometry, table_edges
 
@@ -153,7 +154,8 @@ class Fixtures(unittest.TestCase):
             self.assertEqual(image.size, (1584 + 390, 1224))
 
     def test_real_front_matter_and_footer(self):
-        front = (lint_pdf.HERE.parent / "front-matter.md").read_text(encoding="utf-8")
+        name = lint_pdf.HERE.parent.parent / catalog.checkout().path("lessons/front-matter.md")
+        front = name.read_text(encoding="utf-8")
         html = self.directory / "front.html"
         html.write_text(front + "<p>A short final page.</p>", encoding="utf-8")
         subprocess.run(["weasyprint", "-s", str(CSS), str(html), str(self.directory / "front.pdf")],

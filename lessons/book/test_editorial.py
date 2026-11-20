@@ -171,9 +171,9 @@ class RealSources(unittest.TestCase):
         model = cs.Model()
         files = cs.generate_all(model)
         marker = "## " + self.w.index_entries
-        self.assertIn(marker, files["index.md"])
-        index = files["index.md"].split(marker, 1)[1]
-        roles = cs.blk_roles(model, cs.Links(model, "cs/09-comparative-case-studies.md"), lambda text: text)
+        self.assertIn(marker, files["index.md"])  # en-key
+        index = files["index.md"].split(marker, 1)[1]  # en-key
+        roles = cs.blk_roles(model, cs.Links(model, "cs/09-comparative-case-studies.md"), lambda text: text)  # en-key
         self.assertEqual(membership_problems("index", index, r"^- ", model.entries.keys()), [])
         self.assertEqual(membership_problems("roles", roles, r"^\| ", model.entries.keys()), [])
         languages = {language for e in model.entries.values() for language in e["languages"]}
@@ -216,7 +216,7 @@ class RealSources(unittest.TestCase):
 
     def test_changed_source_invalidates_a_guide_review(self):
         path = "src/regex-dotnet/README.md"
-        guide = "languages/regex-engines-and-sed.md"
+        guide = "languages/regex-engines-and-sed.md"  # path-ok: a synthetic key of a pure function
         text = "[pattern](../../../src/regex-dotnet/README.md#program-flow)"
         queue = guide_impact.candidate_reviews([path], {guide: text}, {})
         self.assertEqual(queue, {guide: [path]})
@@ -229,7 +229,7 @@ class RealSources(unittest.TestCase):
 
     def test_indirect_dependencies_can_add_guides(self):
         path = "src/awk-weird/README.md"
-        guide = "concepts/comparative-machine-design.md"
+        guide = "concepts/comparative-machine-design.md"  # path-ok: a synthetic key of a pure function
         text = {guide: "An input engine supplies the next record."}
         self.assertEqual(guide_impact.candidate_reviews([path], text, {}), {})
         self.assertEqual(guide_impact.candidate_reviews([path], text, {path: [guide]}), {guide: [path]})

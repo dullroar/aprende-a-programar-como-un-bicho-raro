@@ -13,9 +13,13 @@ BASE = "https://github.com/dullroar/learn-programming-the-weird-way"
 BASE_ES = "https://github.com/dullroar/aprende-a-programar-como-un-bicho-raro"
 LESSONS = Path(__file__).resolve().parents[1]
 build.set_language("en")        # the English tests below must not depend on BOOK_LANG in the environment
+LAY = repo_links.catalog.checkout()     # the names the real files have in this checkout, whatever language a test runs in
+# The metadata YAMLs are data of the edition: the English layer of tools/scratch_proof.py keeps the English ones, so the two tests
+# that read the Spanish files run in the Spanish checkout only.
+spanish_checkout_only = unittest.skipIf(LAY.path("lessons/intro.md") == "lessons/intro.md", "needs the Spanish edition's metadata files")  # path-ok: layout probe
 METADATA = {"book": LESSONS / "book" / "metadata.yaml",
-            "study-guides": LESSONS.parent / build.cs.CAT.path("lessons/study-guides/metadata.yaml"),
-            "curriculum": LESSONS.parent / build.cs.CAT.path("lessons/curriculum/metadata.yaml")}
+            "study-guides": LESSONS.parent / LAY.path("lessons/study-guides/metadata.yaml"),
+            "curriculum": LESSONS.parent / LAY.path("lessons/curriculum/metadata.yaml")}
 
 
 class Resolver(unittest.TestCase):
@@ -150,11 +154,13 @@ class Identity(unittest.TestCase):
         with self.assertRaises(ValueError):
             repo_links.publication_uuid("pamphlet")
 
+    @spanish_checkout_only
     def test_the_metadata_files_of_this_edition_agree_with_the_catalog(self):
         # This repository is the Spanish edition; the English edition's files would pass the same check with lang "en".
         metadata = {k: p.read_text(encoding="utf-8") for k, p in METADATA.items()}
         self.assertEqual(identity_problems(metadata, "es"), [])
 
+    @spanish_checkout_only
     def test_the_metadata_check_can_fail(self):
         good = {k: p.read_text(encoding="utf-8") for k, p in METADATA.items()}
         self.assertEqual(identity_problems(good, "es"), [])

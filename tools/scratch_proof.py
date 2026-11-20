@@ -13,6 +13,8 @@ Steps (everything happens under translation/work/scratch/, which is git-ignored)
 Usage:
     python3 tools/scratch_proof.py              # full proof (about 5 minutes), writes translation/scratch-proof.md
     python3 tools/scratch_proof.py --layer      # print the layer file list and exit
+    python3 tools/scratch_proof.py --tests      # apply the layer to the clone and run the tests of lessons/book there, in English
+                                                # (the classes that skip in the Spanish checkout, @english_only, must run and pass)
 """
 import hashlib
 import os
@@ -152,6 +154,15 @@ def build_round(clone, out_dir, builders=None, timeout=1200, env=None):
 def english_env():
     env = dict(os.environ)
     env.pop("BOOK_LANG", None)
+    env.pop("BOOK_LAYOUT", None)
+    return env
+
+
+def english_layer_env():
+    """The environment of the unit tests in the clone: the layer carries es.yaml (layout spanish) but the files keep the English names."""
+    env = english_env()
+    env["BOOK_LAYOUT"] = "english"
+    env["PYTHONDONTWRITEBYTECODE"] = "1"
     return env
 
 
@@ -216,10 +227,50 @@ def render(info):
     return "\n".join(L) + "\n"
 
 
+TEST_GLOB = os.path.join("lessons", "book", "test_*.py")
+ENGLISH_LAYER_MARK = "English layer (tools/scratch_proof.py --tests)"    # the skip reason of a test that only runs here
+
+
+def english_layer_tests(clone, env, timeout=900):
+    """Run every test module of the layered English clone (BOOK_LANG unset, English names, English text). The tests that skip
+    themselves in the Spanish checkout because they edit English text (@english_only) must RUN here: a skip here is a problem.
+    Returns (rows, problems); a row is (module, exit code, seconds, last line)."""
+    import glob
+    rows, problems = [], []
+    for path in sorted(glob.glob(os.path.join(clone, TEST_GLOB))):
+        name = os.path.basename(path)
+        code, out, secs = run([PY, os.path.join("lessons", "book", name), "-v"], clone, timeout, env)
+        lines = [l for l in out.splitlines() if l.strip()]
+        rows.append((name, code, secs, lines[-1] if lines else ""))
+        if code != 0:
+            problems.append("English layer: %s exit %s\n%s" % (name, code, "\n".join(lines[-12:])))
+        if ENGLISH_LAYER_MARK in out:
+            problems.append("English layer: %s skipped tests that must run here (%s)" % (name, ENGLISH_LAYER_MARK))
+    if not rows:
+        problems.append("English layer: no test module found in the clone")
+    return rows, problems
+
+
+def tests_main():
+    sha = config_value("english_commit")
+    english = config_value("english_clone_path")
+    clone = os.path.join(SCRATCH, "english")
+    layer = layer_files()
+    prepare_clone(english, sha, clone)
+    apply_layer(ROOT, clone, layer)
+    rows, problems = english_layer_tests(clone, english_layer_env())
+    for name, code, secs, last in rows:
+        print("%-28s exit %-3s %5.0fs  %s" % (name, code, secs, last))
+    print("PASS" if not problems else "FAIL: %d problem(s)\n%s" % (len(problems), "\n".join(problems)))
+    return 0 if not problems else 1
+
+
 def main(argv):
     if "--layer" in argv:
         print("\n".join(layer_files()))
         return 0
+    if "--tests" in argv:
+        return tests_main()
     sha = config_value("english_commit")
     english = config_value("english_clone_path")
     clone = os.path.join(SCRATCH, "english")

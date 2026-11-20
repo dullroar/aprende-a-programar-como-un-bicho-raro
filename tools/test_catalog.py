@@ -243,6 +243,41 @@ class Paths(Scratch):
         with self.assertRaises(catalog.CatalogError):
             catalog.Catalog("es", flat).path("README.md")
 
+    def test_the_layout_can_be_overridden_for_one_load_and_for_all(self):
+        self.assertEqual(catalog.load("es", layout="english").path("lessons/answers-key.md"), "lessons/answers-key.md")
+        self.assertEqual(catalog.load("es", layout="spanish").path("lessons/answers-key.md"), "lessons/respuestas.md")
+        old = catalog.LAYOUT_OVERRIDE
+        catalog.LAYOUT_OVERRIDE = "english"
+        try:
+            self.assertEqual(catalog.load("es").path("lessons/cs"), "lessons/cs")
+            self.assertEqual(catalog.load("es", layout="spanish").path("lessons/cs"), "lessons/informatica")    # an explicit layout wins
+        finally:
+            catalog.LAYOUT_OVERRIDE = old
+        self.assertEqual(catalog.load("es").path("lessons/cs"), "lessons/informatica" if old is None else "lessons/cs")
+
+    def test_checkout_names_the_layout_the_files_are_really_in(self):
+        self.assertEqual(catalog.checkout().path("lessons/intro.md"), "lessons/introduccion.md")      # this repository: Spanish names on disk
+        root = os.path.join(self.tmp, "repo")
+        base = os.path.join(root, "lessons", "book", "locale")
+        os.makedirs(base)
+        shutil.copy(os.path.join(LOCALE, "es.yaml"), base)
+        os.makedirs(os.path.join(root, "lessons"), exist_ok=True)
+        with open(os.path.join(root, "lessons", "intro.md"), "w", encoding="utf-8") as f:       # the English clone with the layer applied
+            f.write("# Intro\n")
+        self.assertEqual(catalog.checkout(base).path("lessons/intro.md"), "lessons/intro.md")
+        os.remove(os.path.join(root, "lessons", "intro.md"))
+        with open(os.path.join(root, "lessons", "introduccion.md"), "w", encoding="utf-8") as f:
+            f.write("# Introducción\n")
+        self.assertEqual(catalog.checkout(base).path("lessons/intro.md"), "lessons/introduccion.md")
+
+    def test_english_text_writes_the_edition_names_back_as_english(self):
+        es = spanish_layout()
+        text = "[a](../../introduccion.md#x) [b](guias-de-estudio/lenguajes/cobol.md) [c](conceptos/lectura-de-programas-adversariales.md) lessons/informatica/README.md"
+        self.assertEqual(es.english_text(text), "[a](../../intro.md#x) [b](study-guides/languages/cobol.md) "
+                                                "[c](concepts/reading-adversarial-programs.md) lessons/cs/README.md")
+        self.assertEqual(es.english_text("exercises.md and README.md stay"), "exercises.md and README.md stay")
+        self.assertEqual(catalog.load("en").english_text(text), text)      # the English edition is the identity
+
     def test_a_dropped_spanish_path_entry_fails_the_mirror_check(self):
         def drop(d):
             d["paths"]["files"].pop("CHALLENGE.md")

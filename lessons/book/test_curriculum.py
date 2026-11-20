@@ -19,7 +19,7 @@ import catalog
 def _builder_path():
     """lessons/curriculum/build.py where this checkout keeps it: the Spanish layout moves the folder (plan 5.6)."""
     root = os.path.dirname(os.path.dirname(HERE))
-    for rel in (catalog.load("es").path("lessons/curriculum/build.py"), "lessons/curriculum/build.py"):
+    for rel in (catalog.checkout().path("lessons/curriculum/build.py"), "lessons/curriculum/build.py"):  # path-ok: the English clone keeps the English name
         if os.path.isfile(os.path.join(root, *rel.split("/"))):
             return os.path.join(root, *rel.split("/"))
     raise FileNotFoundError("lessons/curriculum/build.py (or its Spanish-layout name)")
@@ -62,11 +62,19 @@ class RealCurriculum(InLanguage):
 
     def test_points_at_the_study_guides_and_chapters_it_names(self):
         text = real()
-        for target in ("study-guides/concepts/reading-adversarial-programs.md", "cs/10-events-callbacks-and-reactive-control-flow.md",
-                       "exercises.md#f1-test-a-claim-of-your-choice"):
+        for target in (cb.CAT.lessons_path("study-guides/concepts/reading-adversarial-programs.md"),
+                       cb.CAT.lessons_path("cs/10-events-callbacks-and-reactive-control-flow.md"),
+                       cb.CAT.lessons_path("exercises.md") + "#f1-test-a-claim-of-your-choice"):
             self.assertIn(target, text)
 
 
+ENGLISH_TEXT = os.path.isfile(os.path.join(cb.REPO, *catalog.load("en").path("docs/curriculum.md").split("/")))     # path-ok: probe for the English file
+
+
+english_only = unittest.skipUnless(ENGLISH_TEXT, "edits of the English text: they run in the English layer (tools/scratch_proof.py --tests), where docs/curriculum.md exists")
+
+
+@english_only
 class BrokenCurriculum(InLanguage):
     """Edits of the English text; pinned to "en". When the real curriculum is Spanish (stage 5), port these edits to it, do not delete them."""
     lang = "en"

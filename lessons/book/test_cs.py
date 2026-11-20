@@ -11,25 +11,50 @@ sys.path.insert(0, HERE)
 import cs
 
 REPO = cs.REPO
+LAY = cs.catalog.checkout()         # the names the real files have in this checkout (identity in the English repository)
+LANGUAGE = os.environ.get("BOOK_LANG", "en")
+ES_LAY = cs.catalog.load("es", layout="spanish")      # the Spanish edition's names, whatever this checkout is
 
 def snapshot(dest):
-    """Copy what cs.Model reads (the entries' READMEs and the whole lessons tree, minus build output) and point cs at it."""
-    shutil.copytree(os.path.join(REPO, "lessons"), os.path.join(dest, "lessons"), ignore=shutil.ignore_patterns("out", "__pycache__", "node_modules"))
+    """Copy what cs.Model reads (the entries' READMEs and the whole lessons tree, minus build output) and point cs at it.
+    The copy is laid out in the ENGLISH names whatever this checkout calls its files: the tests below name the English path
+    as the key (`cs.P`, `edit`), and TestRenamedLayout moves the copy into the Spanish names itself."""
+    real = os.path.join(REPO, "lessons")
+    for root, dirs, names in os.walk(real):
+        dirs[:] = [d for d in dirs if d not in ("out", "__pycache__", "node_modules")]
+        for n in names:
+            rel = os.path.relpath(os.path.join(root, n), REPO).replace(os.sep, "/")
+            target = os.path.join(dest, *LAY.english(rel).split("/"))
+            os.makedirs(os.path.dirname(target), exist_ok=True)
+            if n.endswith((".md", ".txt")):         # the references inside move with the files
+                with open(os.path.join(root, n), encoding="utf-8", newline="") as f, open(target, "w", encoding="utf-8", newline="") as g:
+                    g.write(LAY.english_text(f.read()))
+            else:
+                shutil.copy(os.path.join(root, n), target)
     for d in os.listdir(os.path.join(REPO, "src")):
         r = os.path.join(REPO, "src", d, "README.md")
         if os.path.isfile(r):
             os.makedirs(os.path.join(dest, "src", d))
-            shutil.copy(r, os.path.join(dest, "src", d, "README.md"))
+            with open(r, encoding="utf-8", newline="") as f, open(os.path.join(dest, "src", d, "README.md"), "w", encoding="utf-8", newline="") as g:
+                g.write(re.sub(r'^(lesson: ")([^"]+)', lambda m: m.group(1) + LAY.english_text(m.group(2)), f.read(), flags=re.M))
     cs.REPO, cs.SRC = dest, os.path.join(dest, "src")
     cs.LESSONS, cs.CSSRC, cs.CSOUT = os.path.join(dest, "lessons"), os.path.join(dest, "lessons", "cs-source"), os.path.join(dest, "lessons", cs.CAT.lessons_path("cs"))
 
 class Base(unittest.TestCase):
+    NAMES = "english"       # the scratch copy has the English names (tools/tooling_paths.py skips classes that say so)
+    LANG = LANGUAGE         # the words the scratch copy is read in; a test may switch with cs.set_language
     def setUp(self):
         self.tmp = tempfile.mkdtemp()
-        self.saved = (cs.REPO, cs.SRC, cs.LESSONS, cs.CSSRC, cs.CSOUT)
+        self.saved = (cs.REPO, cs.SRC, cs.LESSONS, cs.CSSRC, cs.CSOUT, cs.CAT.lang)
+        self.saved_override = cs.catalog.LAYOUT_OVERRIDE
+        cs.catalog.LAYOUT_OVERRIDE = "english"      # the scratch copy has the English names, in every language
+        cs.set_language(self.LANG)
         snapshot(self.tmp)
     def tearDown(self):
-        cs.REPO, cs.SRC, cs.LESSONS, cs.CSSRC, cs.CSOUT = self.saved
+        cs.catalog.LAYOUT_OVERRIDE = self.saved_override
+        cs.REPO, cs.SRC, cs.LESSONS, cs.CSSRC, cs.CSOUT, lang = self.saved
+        cs.set_language(lang)
+        cs.CSOUT = self.saved[4]
         shutil.rmtree(self.tmp)
     def edit(self, rel, fn):
         p = os.path.join(self.tmp, rel)
@@ -85,6 +110,7 @@ class TestRepositoryAsItIs(Base):
             self.assertTrue(has_docker or "\n## Run it in Windows Sandbox" in readme, d)
 
 class TestTheLintersRefuse(Base):
+    LANG = "en"             # the stale-wording and message checks below are about the English words
     def test_an_ungrounded_concept(self):
         self.edit("lessons/cs-source/concepts/sandbox.md", lambda s: re.sub(r"applies-to: all\napplies-because: .*\n", "", s))
         self.assertTrue(any("sandbox" in p and "no entry demonstrates" in p for p in self.problems()), self.problems())
@@ -140,10 +166,9 @@ class TestTheLintersRefuse(Base):
         self.edit("src/cobol/README.md", lambda s: re.sub(r"^state: .*\n", "", s, count=1, flags=re.M))
         self.assertTrue(any("cobol" in p and "missing required key 'state'" in p for p in self.problems()), self.problems())
 
-class TestEnglishWordsAreUnchanged(unittest.TestCase):
+class TestEnglishWordsAreUnchanged(Base):
     """The catalog must give back exactly the literals the generator used before it read the catalog."""
-    def setUp(self):
-        cs.set_language("en")
+    LANG = "en"
     def test_assurance_labels(self):
         self.assertEqual(cs.ASSURANCE_LABELS, {"guaranteed": "guaranteed", "implementation-permitted": "implementation-permitted",
                                                "accidentally-exploited": "accidentally exploited"})
@@ -164,6 +189,7 @@ class TestEnglishWordsAreUnchanged(unittest.TestCase):
 
 class TestSpanishWords(Base):
     """BOOK_LANG=es over the English sources: every word the generator adds is Spanish, the shape and the links do not change."""
+    LANG = "en"
     def setUp(self):
         super().setUp()
         m = cs.Model()
@@ -207,6 +233,7 @@ class TestSpanishWords(Base):
         def norm(t, *anchors):
             out = []
             for l in link.findall(t):
+                l = ES_LAY.english_text(l)     # the Spanish catalog text names the Spanish edition's folders; the copy has the English ones
                 for a, tag in zip(anchors, ("#CH", "#PF", "#CH", "#PF")):
                     l = l.replace("#" + a, tag)
                 out.append(l)

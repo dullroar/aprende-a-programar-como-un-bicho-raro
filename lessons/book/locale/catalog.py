@@ -138,6 +138,26 @@ class Catalog:
             return files[rel]
         return _swap_prefix(rel, dirs)
 
+    def english_text(self, text):
+        """`text` with every file and folder name of this edition written back as the English one, both as a repository path
+        (lessons/guias-de-estudio/...) and as a path relative to lessons/. For the scratch copies that tests lay out in the
+        English names. Identity while paths.layout is english."""
+        moved, files, dirs, _, _ = self._paths()
+        if not moved:
+            return text
+        pairs = []
+        for table, tail in ((files, ""), (dirs, "/")):
+            for en, es in table.items():
+                if en != es:
+                    pairs.append((es + tail, en + tail))
+                    if en.startswith("lessons/") and es.startswith("lessons/"):
+                        pairs.append((es[len("lessons/"):] + tail, en[len("lessons/"):] + tail))
+                    if es.rsplit("/", 1)[-1] != en.rsplit("/", 1)[-1]:      # a sibling link names the file (or the folder) alone
+                        pairs.append((es.rsplit("/", 1)[-1] + tail, en.rsplit("/", 1)[-1] + tail))
+        for es, en in sorted(pairs, key=lambda p: -len(p[0])):
+            text = text.replace(es, en)
+        return text
+
     def lessons_path(self, rel):
         """`path` for a path given relative to lessons/ (the form the book tools use); the result is relative to lessons/ too."""
         out = self.path("lessons/" + rel)
@@ -172,13 +192,42 @@ def path_for(lang, base=HERE):
     return os.path.join(base, lang + ".yaml")
 
 
-def load(lang, base=HERE):
+# Tests only: "english" or "spanish" replaces paths.layout of every catalog `load` returns. The English layer of
+# tools/scratch_proof.py sets BOOK_LAYOUT=english: it carries es.yaml but keeps the English file names.
+LAYOUT_OVERRIDE = os.environ.get("BOOK_LAYOUT") or None
+
+
+def _read(lang, base):
     path = path_for(lang, base)
     if not os.path.isfile(path):
         raise CatalogError("no catalog for language %r (%s)" % (lang, path))
     with open(path, encoding="utf-8") as f:
-        data = yaml.safe_load(f)
-    return Catalog(lang, flatten(data))
+        return flatten(yaml.safe_load(f))
+
+
+def load(lang, base=HERE, layout=None):
+    flat = _read(lang, base)
+    layout = layout or LAYOUT_OVERRIDE
+    if layout:
+        flat["paths.layout"] = layout
+    return Catalog(lang, flat)
+
+
+def checkout(base=HERE):
+    """The catalog that names the files of THIS checkout: es.yaml owns `paths.layout`, the same switch tools/enpath.py reads.
+    Identity in the English repository. Tests use it to find the real files whatever language they run in, and to
+    lay a scratch copy out in the English or the Spanish names (checkout().english(p) / .path(p)).
+    The layout is the one the files are really in: the English clone with the locale layer applied (tools/scratch_proof.py)
+    carries es.yaml but keeps the English names, so a probe file decides, not the flag alone."""
+    flat = _read("es", base)
+    cat = Catalog("es", flat)
+    root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(base))))
+    probe = "lessons/intro.md"
+    spanish = cat.path(probe)
+    if spanish != probe and not os.path.isfile(os.path.join(root, *spanish.split("/"))) \
+            and os.path.isfile(os.path.join(root, *probe.split("/"))):
+        return Catalog("es", dict(flat, **{"paths.layout": "english"}))
+    return cat
 
 
 def problems(cat, mirror):

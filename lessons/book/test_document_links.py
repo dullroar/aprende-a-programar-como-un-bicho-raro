@@ -56,9 +56,10 @@ class PublicationLinks(unittest.TestCase):
         return source.split("## C2. Make the constraint real\n", 1)[1].split("## C3.", 1)[0]
 
     def test_c2_shell_survives_real_book_chapter(self):
-        source = build.read("answers-key.md")
+        answers = build.cs.P("answers-key.md")
+        source = build.read(answers)
         code = self.c2(source).split("```bash\n", 1)[1].split("\n```", 1)[0]
-        document, markdown = self.render({"answers-key.md": source})
+        document, markdown = self.render({answers: source})
         self.assertIn(code, markdown)
         self.assertTrue(any(code in block for block in document.code))
         self.assertIn(build.GITHUB + "lessons/solutions/c2-forth-rule-check.sh", document.links)
@@ -66,9 +67,10 @@ class PublicationLinks(unittest.TestCase):
     @unittest.skipUnless(shutil.which("weasyprint") and shutil.which("gs"),
                          "WeasyPrint and Ghostscript are required for the PDF code check")
     def test_c2_shell_survives_pdf(self):
-        chapter = "# C2. Make the constraint real\n" + self.c2(build.read("answers-key.md"))
+        answers = build.cs.P("answers-key.md")
+        chapter = "# C2. Make the constraint real\n" + self.c2(build.read(answers))
         with tempfile.TemporaryDirectory() as temp:
-            self.build(temp, {"answers-key.md": chapter}, checking=False)
+            self.build(temp, {answers: chapter}, checking=False)
             pdf = Path(temp) / "test.pdf"
             result = subprocess.run(["gs", "-q", "-dBATCH", "-dNOPAUSE", "-sDEVICE=txtwrite",
                                      "-sOutputFile=-", str(pdf)], check=True, capture_output=True, text=True)
@@ -96,12 +98,13 @@ class PublicationLinks(unittest.TestCase):
             "regex": '^[ab](value)$',
         }
         fences = "\n\n".join(f"~~~~{lang}\n{code}\n~~~~" for lang, code in snippets.items())
+        intro = build.cs.P("intro.md")      # the name of the book's introduction in the edition being built
         first = r"""# First guide
 
 ## Details
 
 [`next guide`](two.md#details) and [local](#details).
-[Book chapter](../../intro.md) and [repository index](../../README.md).
+[Book chapter](../../""" + intro + r""") and [repository index](../../README.md).
 [Reference link][ref].
 
 [ref]: ../../../src/apl/README.md
@@ -117,14 +120,14 @@ Literal \[escaped](value) and ``one ` [inline](code)``.
 ````
 """ + "\n" + fences + "\n"
         second = "# Second guide\n\n## Details\n\n[Back](one.md#details)\n"
-        prefix = "study-guides/languages/"
+        prefix = build.cs.P("study-guides/languages") + "/"
         document, markdown = self.render({prefix + "one.md": first, prefix + "two.md": second})
         for code in (*snippets.values(), "[indented](code)", "```\n[still](code)\n## Details", "one ` [inline](code)"):
             with self.subTest(code=code):
                 self.assertIn(code, markdown)
                 self.assertTrue(any(code in block for block in document.code))
         body_links = [link for link in document.links if link.startswith(build.GITHUB)]
-        self.assertCountEqual(body_links, [build.GITHUB + "lessons/intro.md",
+        self.assertCountEqual(body_links, [build.GITHUB + "lessons/" + intro,
                                            build.GITHUB + "src/apl/README.md"])
         self.assertIn('<a href="#details-1"><code>next guide</code></a>', document.html)
         self.assertIn('<a href="#details">local</a>', document.html)

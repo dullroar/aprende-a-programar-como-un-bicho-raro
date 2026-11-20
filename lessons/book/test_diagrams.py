@@ -96,7 +96,9 @@ class Contract(unittest.TestCase):
         self.assertEqual(probs, [])
 
     def test_the_real_entries_all_pass(self):
-        src = os.path.join(diagrams.HERE, "..", "..", "src")
+        diagrams.set_language(os.environ.get("BOOK_LANG", "en"))      # the real entries are in the language of the edition being built
+        self.addCleanup(diagrams.set_language, "en")
+        src =os.path.join(diagrams.HERE, "..", "..", "src")
         for d in sorted(os.listdir(src)):
             r = os.path.join(src, d, "README.md")
             if os.path.isfile(r):

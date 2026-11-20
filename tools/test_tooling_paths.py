@@ -76,6 +76,41 @@ class Scanning(unittest.TestCase):
         self.assertEqual(scan('x = os.path.join(CSSRC, "index.md")\n'), ["index.md"])
 
 
+class TestModules(unittest.TestCase):
+    """P3B-006b: a test module that names a renamed file fails in the Spanish checkout, so it is scanned like the tooling."""
+
+    def test_a_literal_in_a_test_class_is_found(self):
+        src = 'import unittest\nclass T(unittest.TestCase):\n    def test_x(self):\n        open("lessons/answers-key.md")\n'
+        self.assertEqual(scan(src), ["lessons/answers-key.md"])
+        self.assertEqual(scan('class T:\n    def test_x(self):\n        open("study-guides/languages/apl.md")\n'),
+                         ["study-guides/languages/apl.md"])
+
+    def test_a_class_decorated_english_only_is_skipped_whole(self):
+        src = '@english_only\nclass T:\n    def test_x(self):\n        open("lessons/answers-key.md")\n'
+        self.assertEqual(scan(src), [])
+        self.assertEqual(scan('@unittest.english_only\nclass T:\n    x = "lessons/answers-key.md"\n'), [])
+        self.assertEqual(scan(src.replace("@english_only\n", "")), ["lessons/answers-key.md"])        # the control: same class, no decorator
+
+    def test_a_class_that_declares_english_names_and_its_subclasses_are_skipped(self):
+        base = 'class Base:\n    NAMES = "english"\n    x = "lessons/answers-key.md"\n'
+        self.assertEqual(scan(base), [])
+        self.assertEqual(scan(base + 'class Sub(Base):\n    y = "lessons/answers-key.md"\n'), [])
+        self.assertEqual(scan(base + 'class Other:\n    y = "lessons/answers-key.md"\n'), ["lessons/answers-key.md"])
+        self.assertEqual(scan(base.replace('"english"', '"spanish"')), ["lessons/answers-key.md"])      # only the English declaration exempts
+
+    def test_the_exemption_does_not_leak_past_the_class(self):
+        src = '@english_only\nclass T:\n    x = 1\ny = "lessons/answers-key.md"\n'
+        self.assertEqual(scan(src), ["lessons/answers-key.md"])
+
+    def test_the_literals_the_gate_failed_on_are_found(self):
+        # regression fixture: the literals the Spanish checkout broke on (gate report of P3B-007), spelled as the tests had them
+        literals, folders = tp.candidates(tp.load_map())
+        old = ('METADATA = {"study-guides": ROOT / "lessons/study-guides/metadata.yaml"}\n'
+               'front = open("lessons/front-matter.md")\n'
+               'goals = read("docs/curriculum.md")\n')
+        self.assertEqual(len(tp.scan_source(old, literals, folders)), 3)
+
+
 class RealTooling(unittest.TestCase):
     def test_the_build_and_check_tooling_is_clean(self):
         literals, folders = tp.candidates(tp.load_map())
@@ -90,7 +125,10 @@ class RealTooling(unittest.TestCase):
                      "lessons/plan-de-estudios/build.py", "lessons/guias-de-estudio/build.py",     # the builders move with their folder
                      "lessons/book/guide_impact.py"):
             self.assertIn(must, names)
-        self.assertFalse([n for n in names if os.path.basename(n).startswith("test_")])
+        for must in ("lessons/book/test_repo_links.py", "lessons/book/test_cs.py", "lessons/book/test_study_guides.py",
+                     "lessons/book/test_editorial.py", "lessons/book/test_curriculum.py", "lessons/book/test_pdf_lint.py",
+                     "lessons/book/test_document_links.py"):      # P3B-006b: the tests are scanned too
+            self.assertIn(must, names)
 
     def test_it_would_fail_on_the_old_hard_coded_code(self):
         # the pre-catalog line from cs.py, as a regression fixture: this is what the tool exists to stop

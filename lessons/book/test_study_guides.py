@@ -6,13 +6,17 @@ The first group runs the rules against the real guides and the real book. The se
 scratch folder, breaks one thing, and checks that the right problem is reported, so each rule is shown to be able to fail. Nothing in the
 repository is touched. Needs only the Python standard library.
 """
-import os, re, shutil, sys, tempfile, unicodedata, unittest
+import os, posixpath, re, shutil, sys, tempfile, unicodedata, unittest
 from unittest import mock
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 import study_guides as sg
 
 REPO = sg.REPO
+LAY = sg.catalog.checkout()         # the names the real files have in this checkout (identity in the English repository and in its layered clone)
+ENGLISH_LAYER = LAY.path("lessons/intro.md") == "lessons/intro.md"      # path-ok: probe for the English layout
+english_only = unittest.skipUnless(ENGLISH_LAYER, "edits and reads English text under the English names: it runs in the English layer (tools/scratch_proof.py --tests)")
+INTRO = "introduccion.md"           # what the Spanish edition calls lessons/intro.md: the shared paragraph links to it
 # The language of the real guides under lessons/study-guides/. It is English until the guides are translated; then BOOK_LANG=es
 # (or flipping the default in study_guides.py) makes RealRepository check the Spanish guides. The Mutations class edits English
 # text on purpose and stays pinned to "en"; the Spanish contract is tested on a synthetic guide (class SpanishContract below).
@@ -53,43 +57,44 @@ class RealRepository(unittest.TestCase):
         self.assertEqual(len(sg.LANGUAGE_GUIDES), 13)
         self.assertEqual(len(sg.CONCEPT_GUIDES), 8)
         for g in sg.ALL_GUIDES:
-            self.assertTrue(os.path.isfile(os.path.join(sg.GUIDES, g)), g)
+            self.assertTrue(os.path.isfile(os.path.join(sg.GUIDES, sg.GP(g))), g)
 
     def test_every_guide_is_in_the_manifest_and_the_index(self):
         chap = sg.manifest()
         index = sg.read(os.path.join(sg.GUIDES, "README.md"))
         for g in sg.ALL_GUIDES:
-            self.assertIn(g, chap)
-            self.assertIn(f"]({g}", index, f"the index does not link to {g}")
+            self.assertIn(sg.GP(g), chap)
+            self.assertIn(f"]({sg.GP(g)}", index, f"the index does not link to {sg.GP(g)}")
 
     def test_the_book_does_not_contain_the_guides(self):
         book = sg.read(os.path.join(sg.LESSONS, "book", "chapters.txt"))
-        self.assertNotIn("study-guides", book)
+        self.assertNotIn(posixpath.basename(sg.CAT.path("lessons/study-guides")), book)
 
     def test_every_expected_program_flow_diagram_is_reused_verbatim(self):
         for rel, entries in sg.EXPECTED_DIAGRAMS.items():
-            found = {m[1] for _, _, m in sg.guide_diagrams(sg.read(os.path.join(sg.GUIDES, rel))) if m and m[0] == "source"}
+            found = {m[1] for _, _, m in sg.guide_diagrams(sg.read(os.path.join(sg.GUIDES, sg.GP(rel)))) if m and m[0] == "source"}
             for e in entries:
                 self.assertIn(f"src/{e}/README.md#program-flow", found, f"{rel} lacks the Program Flow diagram of {e}")
 
     def test_the_book_points_at_each_guide(self):
         for g, pages in sg.BOOK_LINKS.items():
             for page in pages:
-                head = "\n".join(sg.read(os.path.join(sg.LESSONS, page)).split("\n")[:40])
-                self.assertIn(f"study-guides/{g}", head, f"lessons/{page} should link to {g} near its start")
+                head = "\n".join(sg.read(os.path.join(sg.LESSONS, sg.LP(page))).split("\n")[:40])
+                self.assertIn(sg.LP("study-guides/" + g), head, f"lessons/{sg.LP(page)} should link to {sg.GP(g)} near its start")
 
     def test_the_generated_chapters_were_not_edited_by_hand(self):
         # The links in lessons/cs/ come from lessons/cs-source/. Both must carry them.
         for g, pages in sg.BOOK_LINKS.items():
             for page in (p for p in pages if p.startswith("cs/")):
-                src = os.path.join(sg.LESSONS, "cs-source", "chapters", os.path.basename(page))
-                self.assertIn(f"study-guides/{g}", sg.read(src), f"{src} is the source of {page}")
+                src = os.path.join(sg.LESSONS, sg.LP("cs-source/chapters/" + os.path.basename(page)))
+                self.assertIn(sg.LP("study-guides/" + g), sg.read(src), f"{src} is the source of {page}")
 
     def test_the_companion_edition_matches_the_book(self):
         book = re.search(r'^title:\s*"(.+)"', sg.read(os.path.join(sg.LESSONS, "book", "metadata.yaml")), re.M).group(1)
         self.assertIn(f'companion-to: "{book}"', sg.read(os.path.join(sg.GUIDES, "metadata.yaml")))
 
 
+@english_only
 class Scanner(unittest.TestCase):
     def setUp(self):
         use_language(self, "en")
@@ -119,6 +124,7 @@ class Scanner(unittest.TestCase):
         self.assertIsNone(found[2])
 
 
+@english_only
 class Mutations(unittest.TestCase):
     """Each test breaks one thing in a scratch copy and expects the matching problem."""
 
@@ -284,7 +290,7 @@ class Mutations(unittest.TestCase):
 ES_SECTIONS = ["Para qué sirve esta guía", "Antes de empezar", "El reto compartido", "La máquina que hay que identificar",
                "Traza una ejecución", "Compara los diseños ordinarios y los raros", "Qué demuestran los ejercicios",
                "Modos de fallo, costos y límites", "Conexiones a lo largo del repositorio", "Autoevaluación", "Lecturas adicionales"]
-ES_SHARED = ("La [especificación del reto](../../intro.md#qué-hace-el-reto) pide tarjetas con una categoría y de 10 a 19 horas enteras. "
+ES_SHARED = ("La [especificación del reto](../../introduccion.md#qué-hace-el-reto) pide tarjetas con una categoría y de 10 a 19 horas enteras. "
              "Las categorías se repiten en ciclo: `Meetings`, `Coding`, `Debugging` y `Learning`. Suma las horas de cada tarjeta al total "
              "acumulado. Detente cuando el total pasa de 40. Conserva la **primera tarjeta con la que el total pasa de 40**. Un total de "
              "exactamente 40 continúa. Cuatro tarjetas de 10 horas necesitan una quinta tarjeta, de la categoría `Meetings`. Las "
@@ -318,9 +324,10 @@ class SpanishContract(unittest.TestCase):
         # still English). The checks also read lessons/book/link-hosts.txt from the repo they are given.
         cls.repo = tempfile.mkdtemp()
         os.makedirs(os.path.join(cls.repo, "lessons", "book"))
-        os.makedirs(os.path.join(cls.repo, "lessons", "study-guides", "concepts"))
+        es = sg.catalog.load("es", layout="spanish")        # the scratch repo is in the Spanish edition's names, whatever this checkout is
+        os.makedirs(os.path.join(cls.repo, *es.path("lessons/study-guides/concepts").split("/")))
         shutil.copy(os.path.join(REPO, "lessons", "book", "link-hosts.txt"), os.path.join(cls.repo, "lessons", "book", "link-hosts.txt"))
-        with open(os.path.join(cls.repo, "lessons", "intro.md"), "w", encoding="utf-8") as f:
+        with open(os.path.join(cls.repo, *es.path("lessons/intro.md").split("/")), "w", encoding="utf-8") as f:
             f.write("# Introducción\n\n## Qué hace el reto\n\nTexto.\n")
 
     @classmethod
@@ -359,7 +366,7 @@ class SpanishContract(unittest.TestCase):
 
     def test_the_catalog_paragraph_links_to_the_intro_heading_it_names(self):
         self.assertEqual(sg.CHALLENGE_HEADING, "Qué hace el reto")
-        self.assertIn("(../../intro.md#qué-hace-el-reto)", sg.SHARED_CHALLENGE)
+        self.assertIn("(../../" + INTRO + "#qué-hace-el-reto)", sg.SHARED_CHALLENGE)
         self.assertEqual(sg.slug("Qué hace el reto"), "qué-hace-el-reto")
 
     def test_a_complete_spanish_guide_has_no_problems(self):
@@ -452,8 +459,8 @@ class SpanishContract(unittest.TestCase):
         self.broken("## Lecturas adicionales\n", "## Lecturas adicionales\n\n<!-- BEGIN GENERATED x -->\n", "BEGIN/END GENERATED")
 
     def test_the_english_guides_are_refused_in_spanish(self):
-        text = sg.read(os.path.join(sg.GUIDES, "languages", "cobol.md"))
-        ps = sg.check_guide("languages/cobol.md", text)
+        text = sg.read(os.path.join(REPO, LAY.path("lessons/study-guides/languages/cobol.md")))      # still the English guide until it is translated (P4)
+        ps = sg.check_guide("languages/cobol.md", text)  # en-key
         self.assertTrue(any("exactly the template" in p for p in ps), ps)
         self.assertTrue(any("# Guía de estudio de <Topic>" in p for p in ps), ps)
 
@@ -482,7 +489,7 @@ class EnglishContract(unittest.TestCase):
         self.assertEqual(sg.ASSURANCE_LABELS, ("guaranteed", "implementation-permitted", "accidentally exploited"))
         self.assertEqual((sg.TITLE_PREFIX, sg.TITLE_SUFFIX), ("", " study guide"))
         self.assertEqual(sg.SHARED_CHALLENGE, (
-            "The [challenge specification](../../intro.md#what-the-challenge-does) calls for cards with a category and 10 "
+            "The [challenge specification](../../intro.md#what-the-challenge-does) calls for cards with a category and 10 "  # path-ok: the English words, frozen
             "to 19 whole hours. Categories cycle through Meetings, Coding, Debugging and Learning. Add each card's hours "
             "to the running total. Stop when the total passes 40. Keep the **first card that takes the total over 40**. A "
             "total of exactly 40 continues. Four 10-hour cards need a fifth card, in the Meetings category. Conforming "

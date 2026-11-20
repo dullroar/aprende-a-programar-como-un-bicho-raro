@@ -11,6 +11,9 @@ not one of:
   * on a line that carries a `# en-key` comment (a key of the English-keyed generated files) or a `# path-ok: reason`
     comment (a path that merely shares a file name with a renamed one, such as lessons/cs-source/index.md).
 A bare folder name (os.path.join(LESSONS, "cs")) is reported too when it is an argument of os.path.join / posixpath.join.
+Test modules are scanned like the tooling. A test class that works on the English names by construction is skipped whole:
+`@english_only` (it runs in the English layer, tools/scratch_proof.py --tests) or `NAMES = "english"` in its body (its scratch
+copy is laid out in the English names), and the classes of the same file derived from such a class.
 
 Usage:  python3 -I tools/tooling_paths.py            # exit 0 = clean, 1 = hard-coded paths found
         python3 -I tools/tooling_paths.py FILE...    # scan these files instead of the default tooling set
@@ -40,7 +43,7 @@ def default_files():
     layer = enpath.load(ROOT)
     for pattern in ("lessons/book/*.py", "lessons/curriculum/build.py", "lessons/study-guides/build.py"):
         out += glob.glob(os.path.join(ROOT, *layer.work(pattern).split("/")))    # the two builders move with their folder
-    return sorted(f for f in out if not os.path.basename(f).startswith("test_"))
+    return sorted(out)      # the test modules too: a test that names a renamed file fails in the Spanish checkout (P3B-006b)
 
 
 def load_map(path=MAP_PATH):
@@ -75,11 +78,41 @@ def call_name(node):
     return None
 
 
+def english_names_classes(tree):
+    """Names of the classes whose code is about the ENGLISH names by construction: a class decorated `@english_only` (it runs in
+    the English layer, where the files have the English names) or whose body says `NAMES = "english"` (its scratch copy is laid
+    out in the English names), and every class of the same file that derives from one of them."""
+    classes = [n for n in ast.walk(tree) if isinstance(n, ast.ClassDef)]
+    marked = set()
+    for c in classes:
+        for d in c.decorator_list:
+            if getattr(d, "id", getattr(d, "attr", None)) == "english_only":
+                marked.add(c.name)
+        for stmt in c.body:
+            if isinstance(stmt, ast.Assign) and any(isinstance(t, ast.Name) and t.id == "NAMES" for t in stmt.targets) \
+                    and isinstance(stmt.value, ast.Constant) and stmt.value.value == "english":
+                marked.add(c.name)
+    changed = True
+    while changed:
+        changed = False
+        for c in classes:
+            if c.name not in marked and any(isinstance(b, ast.Name) and b.id in marked for b in c.bases):
+                marked.add(c.name)
+                changed = True
+    return marked
+
+
 class Scan(ast.NodeVisitor):
-    def __init__(self, literals, folders, marked=()):
+    def __init__(self, literals, folders, marked=(), english_classes=()):
         self.literals, self.folders, self.marked = literals, folders, set(marked)
+        self.english_classes = set(english_classes)
         self.found = []
         self.stack = []
+
+    def visit_ClassDef(self, node):
+        if node.name in self.english_classes:
+            return          # written against the English names on purpose; see english_names_classes
+        self.generic_visit(node)
 
     def generic_visit(self, node):
         self.stack.append(node)
@@ -125,7 +158,7 @@ def scan_source(source, literals, folders):
     mark_docstrings(tree)
     marked = {t.start[0] for t in tokenize.generate_tokens(io.StringIO(source).readline)
               if t.type == tokenize.COMMENT and any(m in t.string for m in MARKERS)}
-    scan = Scan(literals, folders, marked)
+    scan = Scan(literals, folders, marked, english_names_classes(tree))
     scan.visit(tree)
     return scan.found
 
