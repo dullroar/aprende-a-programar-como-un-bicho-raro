@@ -1,13 +1,13 @@
 # loop/STATE.md (keep to 60 lines; refreshed by every iteration)
 
 - **Edition:** v4-es.0-rc1 (working)    **English SHA:** 48a4429c0a22b2aac628b256a50c07d1816bcb80
-- **Iteration:** 22    **Stage:** 1    **Last result:** P1-005 done (tests/fixtures/ + tools/fixture_check.py; inventory owns tests/fixtures/ and locale/)
-- **Tasks:** todo 121 (44 seed + 77 generated) | doing 0 | done 17 | blocked 0 | skipped 0
-- **Next task:** run `python3 tools/next_task.py` (P1-006 Phase 1 gate is next: needs a masked round-trip test over tests/fixtures/)
+- **Iteration:** 23    **Stage:** 2    **Last result:** P1-006 done (Phase 1 gate: tools/mask.py + 26 tests; masked round trip identical on fixtures)
+- **Tasks:** todo 120 (43 seed + 77 generated) | doing 0 | done 18 | blocked 0 | skipped 0
+- **Next task:** run `python3 tools/next_task.py` (Stage 2 starts: P2-001 locale loader and P2-002 segmenter; the segmenter should reuse tools/mask.py)
 - **Budget:** spent $0.00 of $100; iterations 0 of 300
 - **Translate progress:** segments accepted 0 / total ? ; files done 0 / ?
 - **Last audit:** none    **Next audit due after:** 8 translate tasks
-- **Gates:** P0 passed (iter 17)  P1 -  P2 -  P3 -  P4 -  P5 -  P6 -  P7A -
+- **Gates:** P0 passed (iter 17)  P1 passed (iter 23)  P2 -  P3 -  P4 -  P5 -  P6 -  P7A -
 - **Open provisional decisions:** 4 (acronym BICHO; glossary choices; house style N=28; schema/segment-id formats)    **Blockers:** 0    **Source issues:** 0
 
 ## Traps to remember (details live in SIGNS.md)

@@ -19,3 +19,4 @@
 - After editing lessons/book/locale/es.yaml run OK locale phases 1 to 5 (lessons/book/locale/es.yaml); to change the acronym edit only its acronym and phases blocks, never the Mermaid node IDs W E I R D.
 - The Write and Edit tools decode \uXXXX escapes and normalize NBSP and combining marks; build special characters with chr() in a script under translation/work/ and run `python3 -I tools/fixture_check.py` after touching tests/fixtures/.
 - After adding a new directory of Spanish-owned files, add its prefix to OWNED_PREFIXES in tools/inventory.py and run `python3 tools/inventory.py --check` before committing.
+- Build masking regexes with named groups (never numbered backreferences) and unmask in one non-recursive pass; run `python3 -I tools/test_mask.py` after touching tools/mask.py.
