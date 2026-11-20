@@ -1,0 +1,74 @@
+{
+  "schema": 1,
+  "task": "P0-008",
+  "english_sha": "48a4429c0a22b2aac628b256a50c07d1816bcb80",
+  "plan_section": "2.5",
+  "note": "Inventory of every place the English phase letters W E I R D are used as phase names, plus every exercise-ID prefix. Line numbers are in the pinned English text and will shift once files are translated; the 'quote' field is the stable key. Spanish values are macros expanded from locale/es.yaml (BICHO default), never literals.",
+  "phases": [
+    {"n": 1, "en_letter": "W", "en_name": "Weird",     "weeks": "1 to 2",   "concept": "What can it cause?",        "es_letter_bicho": "B", "es_name_bicho": "Bicho raro",      "macro_letter": "{{phase.1.letter}}", "macro_name": "{{phase.1.name}}", "mermaid_node_id": "W"},
+    {"n": 2, "en_letter": "E", "en_name": "Execution", "weeks": "3 to 6",   "concept": "What moves it forward?",    "es_letter_bicho": "I", "es_name_bicho": "Interpreta",      "macro_letter": "{{phase.2.letter}}", "macro_name": "{{phase.2.name}}", "mermaid_node_id": "E"},
+    {"n": 3, "en_letter": "I", "en_name": "Indirect",  "weeks": "7 to 10",  "concept": "Who demands the work?",     "es_letter_bicho": "C", "es_name_bicho": "Camino indirecto","macro_letter": "{{phase.3.letter}}", "macro_name": "{{phase.3.name}}", "mermaid_node_id": "I"},
+    {"n": 4, "en_letter": "R", "en_name": "Results",   "weeks": "11 to 13", "concept": "What survives failure?",    "es_letter_bicho": "H", "es_name_bicho": "Hallazgos",       "macro_letter": "{{phase.4.letter}}", "macro_name": "{{phase.4.name}}", "mermaid_node_id": "R"},
+    {"n": 5, "en_letter": "D", "en_name": "Data",      "weeks": "14 to 15", "concept": "When is code just data?",   "es_letter_bicho": "O", "es_name_bicho": "Octetos",         "macro_letter": "{{phase.5.letter}}", "macro_name": "{{phase.5.name}}", "mermaid_node_id": "D"}
+  ],
+  "acronym": {
+    "en": "WEIRD", "expansion_en": "Weird Execution, Indirect Results and Data",
+    "recursive_rule": "Letter 1 stands for the acronym word itself ('The W is recursive'). In Spanish the acronym word is {{acronym.word}} (BICHO) and the first letter stays recursive."
+  },
+  "locations": [
+    {"id": "PL-001", "file": "README.md", "line": 8, "kind": "acronym-gloss", "quote": "**WEIRD** stands for **Weird Execution, Indirect Results and Data**. The W is recursive.", "meaning": "Expands the acronym and states that W is recursive. Also the single permitted aside in the root README.", "es_action": "Retranslate as an explanation of {{acronym.word}} with phase-name macros; keep 'recursive' idea; the aside count is tested (test_editorial.py: exactly 1 in the README)."},
+    {"id": "PL-002", "file": "lessons/intro.md", "line": 9, "kind": "acronym-gloss", "quote": "WEIRD stands for **Weird Execution, Indirect Results and Data**. It does not, of course.", "meaning": "Expansion of the acronym as a self-deflating aside near the book opening (exactly one occurrence in the book volume).", "es_action": "Transcreate; keep the 'it does not, of course' deflation; one occurrence only."},
+    {"id": "PL-003", "file": "lessons/study-guides/README.md", "line": 5, "kind": "acronym-gloss", "quote": "**WEIRD** stands for **Weird Execution, Indirect Results and Data**. The W is recursive. The rest gives you something to trace", "meaning": "Expansion in the guides volume opening (exactly one occurrence in the guides volume); explains what the other letters give the reader to trace: what executes, where the result turns up, what is treated as data.", "es_action": "Retranslate with macros; keep the trace-the-letters gloss, which must stay true for the Spanish words (execution, indirection, results, data)."},
+    {"id": "PL-004", "file": "docs/curriculum.md", "line": 7, "kind": "acronym-gloss", "quote": "**WEIRD** stands for **Weird Execution, Indirect Results and Data**. The W is recursive. The five letters also give the course its five phases.", "meaning": "Expansion in the curriculum; adds that the five letters are the five phases.", "es_action": "Retranslate with macros."},
+    {"id": "PL-005", "file": "docs/curriculum.md", "line": 28, "kind": "prose-phase-reference", "quote": "If it fails, the second pass starts at W again.", "meaning": "Phase 1 (W) as the restart point of the second pass.", "es_action": "Use {{phase.1.letter}}."},
+    {"id": "PL-006", "file": "docs/curriculum.md", "line": 32, "kind": "mermaid-accTitle", "quote": "accTitle: The semester as a WEIRD algorithm", "meaning": "Accessible title of the phase diagram; names the acronym.", "es_action": "Translate the title with {{acronym.word}}. The key 'accTitle:' is Mermaid syntax and stays."},
+    {"id": "PL-007", "file": "docs/curriculum.md", "line": 33, "kind": "mermaid-accDescr", "quote": "The course starts with the phase pointer set to W, Weird. ... the pointer moves from W to E to I to R to D. W covers weeks 1 and 2, E for Execution covers weeks 3 to 6, I for Indirect covers weeks 7 to 10, R for Results covers weeks 11 to 13 and D for Data covers weeks 14 and 15. ... an arrow returns to W", "meaning": "Long text alternative for the diagram; names all five letters, their English names and week ranges, and the return to phase 1. Must be exactly consistent with the labels.", "es_action": "Retranslate with all five letter and name macros; week ranges unchanged (1-2, 3-6, 7-10, 11-13, 14-15)."},
+    {"id": "PL-008", "file": "docs/curriculum.md", "line": 34, "kind": "mermaid-node-and-label", "quote": "S([\"Start: phase = W\"]) --> W", "meaning": "Start node label shows the phase pointer value 'W'; the target 'W' is a node ID.", "es_action": "Translate the label to 'Inicio: fase = {{phase.1.letter}}'. The node ID 'W' stays unchanged (machine token). Verified by test_curriculum.py (frozen string 'Start: phase = W' appears in a test, see PL-016)."},
+    {"id": "PL-009", "file": "docs/curriculum.md", "line": 36, "kind": "mermaid-node-labels", "quote": "W[\"W: Weird, weeks 1 to 2<br/>What can it cause?\"] --> E[\"E: Execution, weeks 3 to 6 ... D[\"D: Data, weeks 14 to 15<br/>When is code just data?\"]", "meaning": "The five phase boxes: label = letter + English name + week range + guiding question. This is the phase diagram proper.", "es_action": "Change labels only (letter, name, question); node IDs W E I R D stay stable (plan section 2.5, decision DEC-node-ids)."},
+    {"id": "PL-010", "file": "docs/curriculum.md", "line": 40, "kind": "mermaid-edge-target", "quote": "C -- \"no, first pass:<br/>read your own work<br/>as the adversary\" --> W", "meaning": "Return edge to phase 1; the target 'W' is a node ID, not a displayed letter.", "es_action": "No change to the ID; translate only the edge label. Also note the unrelated node ID 'C' (the review decision diamond) is a node ID, not a phase."},
+    {"id": "PL-011", "file": "docs/curriculum.md", "line": 44, "kind": "prose-phase-reference", "quote": "The W is recursive. In the first pass you read other people's programs. In the second pass you read your own.", "meaning": "Explains the recursion of letter 1: the second pass restarts at W and reads one's own work.", "es_action": "Use {{phase.1.letter}} and keep the recursion explanation true for the Spanish word (BICHO: B = Bicho raro)."},
+    {"id": "PL-012", "file": "docs/curriculum.md", "line": 84, "kind": "table-phase-row", "quote": "| | **W: Weird** | | |", "meaning": "Week-table phase header, weeks 1 to 2.", "es_action": "'**{{phase.1.letter}}: {{phase.1.name}}**'. The test regex expects the row shape '| | **X: ' (see PL-015)."},
+    {"id": "PL-013", "file": "docs/curriculum.md", "line": 87, "kind": "table-phase-row", "quote": "| | **E: Execution** | | |", "meaning": "Week-table phase header, weeks 3 to 6.", "es_action": "'**{{phase.2.letter}}: {{phase.2.name}}**'."},
+    {"id": "PL-014", "file": "docs/curriculum.md", "line": 92, "kind": "table-phase-row", "quote": "| | **I: Indirect** | | |", "meaning": "Week-table phase header, weeks 7 to 10.", "es_action": "'**{{phase.3.letter}}: {{phase.3.name}}**'."},
+    {"id": "PL-014b", "file": "docs/curriculum.md", "line": 97, "kind": "table-phase-row", "quote": "| | **R: Results** | | |", "meaning": "Week-table phase header, weeks 11 to 13.", "es_action": "'**{{phase.4.letter}}: {{phase.4.name}}**'."},
+    {"id": "PL-014c", "file": "docs/curriculum.md", "line": 101, "kind": "table-phase-row", "quote": "| | **D: Data** | | |", "meaning": "Week-table phase header, weeks 14 to 15.", "es_action": "'**{{phase.5.letter}}: {{phase.5.name}}**'."},
+    {"id": "PL-015", "file": "lessons/book/test_curriculum.py", "line": 28, "kind": "test-expectation", "quote": "self.assertEqual(re.findall(r\"^\\| \\| \\*\\*([WEIRD]): \", text, re.M), list(\"WEIRD\"))", "meaning": "The only code that hard-codes the five letters: the regex class [WEIRD] and list('WEIRD') (test name at line 26: test_has_the_weird_phases_in_order). It is a .py file under lessons/book/, not in locked-code.sha256 (the lock covers 230 files and no lessons/book/*.py), so it is adaptable tooling.", "es_action": "Task for Stage 3 tooling: parametrise from locale/es.yaml (read the five letters from the catalog) and add the negative tests of plan 2.5 (missing phase, duplicated letter, changed order, surviving 'W'). Do not weaken: the order and cardinality checks must remain."},
+    {"id": "PL-016", "file": "lessons/book/test_curriculum.py", "line": 53, "kind": "test-fixture", "quote": "S([\"Start: phase = W\"]) --> W", "meaning": "Negative test that rewrites the start edge to point at the box 'weeks'. It depends on the exact English start-node text and on the node ID 'W'.", "es_action": "Update the fixture string to the Spanish label when the curriculum is translated; the node ID W stays."},
+    {"id": "PL-017", "file": "lessons/book/test_editorial.py", "line": 16, "kind": "test-expectation", "quote": "ASIDE = \"Weird Execution, Indirect Results and Data\"", "meaning": "Editorial test counts the exact English expansion string: once in the book, once in the guides, once in README, and requires it before 'What the challenge does' / 'How every guide works' / 'Why this exists'.", "es_action": "Stage 3 tooling: read the Spanish expansion from the locale catalog; keep the counts (1, 1, README 1) and the position checks."},
+    {"id": "PL-018", "file": "lessons/book/editorial-audit.md", "line": 19, "kind": "mention-of-aside", "quote": "The opening narrative contains one self-deflating WEIRD aside.", "meaning": "Audit note that refers to the aside; not a phase use.", "es_action": "Translate prose; refer to {{acronym.word}}."}
+  ],
+  "not_phase_uses": [
+    {"file": "lessons/answers-key.md", "line": 170, "text": "TIMECARDS-WEIRD", "why": "Lisp package name inside program output; frozen identifier."},
+    {"file": "src/cobol-weird/timecards.cob", "line": 26, "text": "TIMECARDS-WEIRD", "why": "COBOL PROGRAM-ID; frozen source."},
+    {"file": "lessons/exercises.md", "line": 434, "text": "C1. Weird next to boring", "why": "Ordinary use of the word 'weird' in an exercise title (Spanish: transcreate; not a phase)."},
+    {"file": "docs/curriculum.md", "line": 142, "text": "Compare weird with boring", "why": "Ordinary word, not a phase."},
+    {"file": "lessons/study-guides/concepts/formal-languages-and-weird-machines.md", "line": null, "text": "weird machines", "why": "Security term of art 'weird machine'; not the phase."},
+    {"file": "lessons/study-guides/**, lessons/languages/**", "line": null, "text": "'phase' (Make's two phases, event-loop phases, second phase of a timer)", "why": "Technical use of 'phase'; unrelated to W E I R D."}
+  ],
+  "no_phase_uses_found_in": ["lessons/goals.md", "lessons/cs/*.md (generated)", "lessons/answers-key.md", "lessons/exercises.md", "lessons/patterns.md", "lessons/problems-overcome.md", "lessons/front-matter.md", "docs/ (other than curriculum.md)", "CONTRIBUTING.md", "CHALLENGE.md", "SANDBOX-SETUP.md", "lessons/curriculum/build.py (checks week numbers, diagram count, accTitle/accDescr, arrow-to-box rule; no letter checks)", "lessons/curriculum/front-matter.md", "lessons/curriculum/metadata.yaml"],
+  "binary_outputs": {"note": "curriculum.pdf/.epub, learn-programming-the-weird-way*.pdf/.epub are generated or archival outputs that carry the English letters; they are rebuilt from Spanish sources, never edited.", "files": ["curriculum.pdf", "curriculum.epub"]},
+  "exercise_id_prefixes": {
+    "source": "headings in lessons/exercises.md (anchors such as #b3-forth-move-the-anchor-verified)",
+    "prefixes": ["A", "B", "C", "D", "E", "F", "G"],
+    "ids": {
+      "A": ["A1"],
+      "B": ["B1", "B2", "B3", "B4", "B5", "B6", "B7", "B8", "B9", "B10", "B11", "B12", "B13", "B14", "B15", "B16", "B17", "B18", "B19", "B20", "B21", "B22"],
+      "C": ["C1", "C2", "C3"],
+      "D": ["D"],
+      "E": ["E1", "E2"],
+      "F": ["F1", "F2"],
+      "G": []
+    },
+    "notes": "Section D (Port the challenge) and G (Open challenges) have no numbered IDs; their prefixes are still cited as 'D' and 'G' in docs/curriculum.md links. Exercise IDs are never translated and anchors (#b3-...) are kept stable."
+  },
+  "collisions": {
+    "english_weird": {"phase_letters": ["W", "E", "I", "R", "D"], "collide_with_exercise_prefixes": ["E", "D"], "note": "The English edition already has two collisions (E: Execution vs E1-E2 Windows track; D: Data vs section D), resolved by context: phases appear as 'W: Weird' headers and 'phase' wording, exercises as 'E1' or 'Exercise D'."},
+    "bicho": {"phase_letters": ["B", "I", "C", "H", "O"], "collide_with_exercise_prefixes": ["B", "C"], "note": "Plan N5 anticipated only B. The inventory also finds C (phase 3, Camino indirecto) colliding with C1-C3. Letters I, H, O are free. B and C are each reused heavily (B1-B22, C1-C3), so every phase reference must carry the word 'fase' or the phase name next to the letter and every exercise reference must carry its digit (or 'ejercicio D'). The phase lint (I14) must reject a bare letter in a phase context and a bare 'B'/'C' followed by a digit in a phase context."},
+    "torce": {"phase_letters": ["T", "O", "R", "C", "E"], "collide_with_exercise_prefixes": ["C", "E"], "note": "Runner-up alphabet: collides on two letters as well, same as English, so BICHO is no worse than TORCE on N5 (both have two collisions) and the plan's trigger 'choose TORCE if B collides badly' does not hold on the evidence."},
+    "recommendation": "Keep BICHO as provisional default. Record in decisions-provisional.md that C also collides, and make the phase lint (I14) context-based as in plan 2.5."
+  },
+  "frozen_conflicts": {
+    "locked_files_touching_phase_letters": [],
+    "note": "No frozen file (locked-code.sha256) contains a phase letter used as a phase. The Mermaid node IDs W E I R D live in docs/curriculum.md (Markdown, translatable) and stay unchanged by design."
+  }
+}
