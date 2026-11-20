@@ -257,7 +257,8 @@ def negative_problems():
     A gate that stopped failing is a disarmed gate, and a release with a disarmed gate is not a release."""
     import breakage_pilot
     import negative
-    return negative.run_all() + breakage_pilot.run_all()
+    import resume_test
+    return negative.run_all() + breakage_pilot.run_all() + resume_test.run_all()
 
 
 def check_counts(root, expected=EXPECTED_COUNTS):
