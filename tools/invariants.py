@@ -50,6 +50,7 @@ import apply as apply_mod  # noqa: E402
 import catalog  # noqa: E402
 import mask  # noqa: E402
 import mermaid  # noqa: E402
+import phase_lint  # noqa: E402
 import segment  # noqa: E402
 
 TRANSLATION = os.path.join(ROOT, "translation")
@@ -100,7 +101,7 @@ class Context:
     """Everything the checks read besides the two texts. Build it once; tests build small ones by hand."""
 
     def __init__(self, dnt=(), glossary=None, cat=None, humor=None, exceptions=None, anchor_map=None,
-                 sentence_limit=28, tier_of=None, phase_names=None, lang_cat=None):
+                 sentence_limit=28, tier_of=None, phase_names=None, lang_cat=None, exercise_prefixes=()):
         self.dnt = list(dnt)
         self.terms = []                       # [(en regex, es text, banned list, id)]
         self.banned_phrases = []              # [(phrase, label)] extra banned phrases (frozen wording)
@@ -113,6 +114,7 @@ class Context:
         self.sentence_limit = sentence_limit
         self.tier_of = tier_of or (lambda rel: "T2")
         self.phase_names = phase_names or []  # English phase names to hunt for (Weird, Execution, ...)
+        self.exercise_prefixes = list(exercise_prefixes)  # letters that start exercise IDs (phase_lint, I14)
 
     def load_glossary(self, data):
         plain = re.compile(r"^[A-Za-z][A-Za-z' -]*$")
@@ -164,7 +166,8 @@ def load_context(lang="es", root=ROOT):
     return Context(dnt=mask.load_dnt(os.path.join(tr, "dnt.txt")), glossary=glossary, cat=catalog.load(lang),
                    lang_cat=en_cat, humor=humor, exceptions=exceptions,
                    sentence_limit=int(cfg.get("sentence_word_limit_N", 28)), tier_of=tier_of_path,
-                   phase_names=[n for n in names if isinstance(n, str)])
+                   phase_names=[n for n in names if isinstance(n, str)],
+                   exercise_prefixes=phase_lint.load_prefixes(os.path.join(tr, "phase-letters.json")))
 
 
 def tier_of_path(rel):
@@ -373,28 +376,34 @@ def strip_ph_keep_words(text):
     return PLACEHOLDER_RE.sub("X", text)
 
 
-def i14(src, target, ctx):
-    """Surviving English phase letters and names; literal letters where a macro belongs."""
+def i14(src, target, ctx, raw=None):
+    """Surviving English phase letters and names; literal letters where a macro belongs.
+
+    `target` is the text as the reader sees it (macros expanded); `raw` is the text as written in the PO file,
+    before expansion. The literal-letter checks read `raw`, because an expanded macro is a literal by then."""
     out = []
     text = prose(target)
+    raw_text = prose(raw if raw is not None else target)
     src_text = prose(src.masked)
     for n, name in enumerate(ctx.phase_names, 1):
         pat = r"\b[A-Z]\s*:\s*%s\b|\bphase\s+(?:[A-Z]\b|%s\b)" % (re.escape(name), re.escape(name))
         # the English name only counts as a surviving phase name when it is written the phase way
         for m in re.finditer(pat, text):
             out.append(Finding("I14", "", "English phase name survives: '%s'" % m.group(0)))
+    for msg in phase_lint.ambiguity(text, ctx.cat, ctx.exercise_prefixes):
+        out.append(Finding("I14", "", msg))
     if ctx.lang_cat is not None and ctx.cat is not None:
         en_word, es_word = ctx.lang_cat.get("acronym.word"), ctx.cat.get("acronym.word")
         if en_word != es_word and dnt_in(text, en_word) and not dnt_in(src_text, es_word):
             out.append(Finding("I14", "", "English acronym %s survives (use {{acronym.word}})" % en_word))
-        if es_word and dnt_in(text, es_word):
+        if es_word and dnt_in(raw_text, es_word):
             out.append(Finding("I14", "", "write {{acronym.word}}, not the literal acronym %s" % es_word))
         for n in range(1, 6):
             try:
                 letter, name = ctx.cat.get("phases.%d.letter" % n), ctx.cat.get("phases.%d.name" % n)
             except catalog.CatalogError:
                 break
-            if isinstance(letter, str) and re.search(r"\b%s\s*:\s*%s\b" % (re.escape(letter), re.escape(name)), text):
+            if isinstance(letter, str) and re.search(r"\b%s\s*:\s*%s\b" % (re.escape(letter), re.escape(name)), raw_text):
                 out.append(Finding("I14", "", "literal phase '%s: %s' (use the phase macros)" % (letter, name)))
     return out
 
@@ -417,8 +426,10 @@ def i15(src, tgt_text, ctx):
     return []
 
 
-def check_segment(src, target, ctx, rel=""):
-    """All per-segment invariants for one translated MASKED `target`. Returns a list of Findings."""
+def check_segment(src, target, ctx, rel="", raw=None):
+    """All per-segment invariants for one translated MASKED `target`. Returns a list of Findings.
+
+    `raw` is the PO msgstr before macro expansion (I14 reads it for literal letters); default: `target`."""
     findings = i2(src, target)
     if findings:
         return [f._replace(where=src.id) for f in findings]      # nothing else can be trusted
@@ -435,7 +446,7 @@ def check_segment(src, target, ctx, rel=""):
     findings += i10(src, target, tgt_text)
     findings += i11(src, target, tgt_text, ctx)
     findings += i12(src, target, rel, ctx)
-    findings += i14(src, target, ctx)
+    findings += i14(src, target, ctx, raw)
     findings += i15(src, tgt_text, ctx)
     return [f._replace(where=src.id) for f in findings if not ctx.waived(src.id, f.inv)]
 
@@ -479,7 +490,7 @@ def check_po(en_text, po, rel, ctx):
                 except catalog.CatalogError as ex:
                     out.append(Finding("I14", sid, str(ex)))
                     continue
-            out.extend(check_segment(s, text, ctx, rel))
+            out.extend(check_segment(s, text, ctx, rel, raw=e.msgstr))
     return out
 
 

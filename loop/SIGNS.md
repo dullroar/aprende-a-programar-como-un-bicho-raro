@@ -37,3 +37,4 @@
 - After running any lessons/book test, run `git status --short` and `git checkout -- lessons/book/__pycache__/build.cpython-312.pyc`: that tracked, locked .pyc gets rewritten when build.py is imported.
 - Edition identity (repo URL, branch, stems, title, es-419, UUIDs) lives in catalog block identity.*; change a Spanish value there and recompute the three metadata identifiers with repo_links.publication_uuid in the same commit, or test_repo_links.py fails.
 - Translate the README, guides and APL pages so they match the patterns in catalog blocks editorial.* and sentinels.* (count line, assurance tally sentence, APL phrases, Mermaid label texts); run `env BOOK_LANG=es python3 lessons/book/test_editorial.py` after stage 4, where all its tests must pass.
+- Check literal phase letters and the literal acronym on the PO msgstr BEFORE macro expansion (check_segment raw=), and ambiguity on the expanded text; a colliding letter after "fase" needs its name (phase_lint.py).
