@@ -1717,3 +1717,29 @@
 {"segment_id": "s-87d9e31bff8d-0085", "ts": "2026-11-21T17:17:15Z", "findings": ["I7: glossary term state must be rendered 'estado'"]}
 {"segment_id": "s-e53941b646bb-0088", "ts": "2026-11-21T17:17:15Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
 {"segment_id": "s-fd844f88f735-0089", "ts": "2026-11-21T17:17:15Z", "findings": ["I12: sentence of 35 words (limit 29): Un conteo de líneas incorrecto en la cop..."]}
+{"segment_id": "s-adf72213db36-0005", "ts": "2026-11-21T18:11:54Z", "findings": ["I7: banned rendering 'condición' for glossary term state", "I12: sentence of 31 words (limit 29): Trazar ambos programas con las mismas tr..."]}
+{"segment_id": "s-38e9c8f92144-0006", "ts": "2026-11-21T18:11:54Z", "findings": ["I7: glossary term scope must be rendered 'ámbito'", "I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-8fe5a662f9c6-0008", "ts": "2026-11-21T18:11:54Z", "findings": ["I7: banned rendering 'registro' for glossary term entry"]}
+{"segment_id": "s-5dc271b479af-0013", "ts": "2026-11-21T18:11:54Z", "findings": ["placeholders_seen does not list the placeholders of translated_text in order"]}
+{"segment_id": "s-78c634aafffc-0016", "ts": "2026-11-21T18:11:54Z", "findings": ["placeholders_seen does not list the placeholders of translated_text in order"]}
+{"segment_id": "s-0ff7701fffe3-0025", "ts": "2026-11-21T18:11:54Z", "findings": ["I25: comma before a simple 'y' ('ese párrafo desemboca en X, y X vuelve a saltar a X'): no comma before a simple o or y"]}
+{"segment_id": "s-2c871c0a2b8c-0033", "ts": "2026-11-21T18:11:54Z", "findings": ["I10: '?' without '¿'"]}
+{"segment_id": "s-e270bb9c0ef9-0035", "ts": "2026-11-21T18:11:54Z", "findings": ["I7: glossary term card must be rendered 'tarjeta'"]}
+{"segment_id": "s-161a50585077-0040", "ts": "2026-11-21T18:13:47Z", "findings": ["I25: comma before a simple 'y' ('La prueba es un nodo real, y el ciclo es una arista real'): no comma before a simple o or y"]}
+{"segment_id": "s-42d048695631-0042", "ts": "2026-11-21T18:13:47Z", "findings": ["I7: glossary term card must be rendered 'tarjeta'"]}
+{"segment_id": "s-02aa4cc4fe71-0044", "ts": "2026-11-21T18:13:47Z", "findings": ["I7: glossary term card must be rendered 'tarjeta'"]}
+{"segment_id": "s-5669695a70a5-0049", "ts": "2026-11-21T18:13:47Z", "findings": ["I9: looks English: 1 of 4 words are English function words", "TRANSLATE: the reply is the English text unchanged"]}
+{"segment_id": "s-16d8bd9c4202-0050", "ts": "2026-11-21T18:13:47Z", "findings": ["I9: target equals the English source", "TRANSLATE: the reply is the English text unchanged"]}
+{"segment_id": "s-cadbbff673f2-0053", "ts": "2026-11-21T18:13:47Z", "findings": ["I7: glossary term string must be rendered 'cadena de texto'"]}
+{"segment_id": "s-bfbfbb9220f0-0054", "ts": "2026-11-21T18:13:47Z", "findings": ["I7: glossary term list must be rendered 'lista'"]}
+{"segment_id": "s-d09b86aaa0b2-0063", "ts": "2026-11-21T18:13:47Z", "findings": ["I7: glossary term entry must be rendered 'entrada'"]}
+{"segment_id": "s-405c1b857089-0074", "ts": "2026-11-21T18:13:47Z", "findings": ["I7: glossary term compare-ordinary-weird must be rendered 'Compara los diseños ordinarios y los raros'"]}
+{"segment_id": "s-095e91e5e555-0083", "ts": "2026-11-21T18:15:54Z", "findings": ["I7: glossary term statement must be rendered 'sentencia'"]}
+{"segment_id": "s-3ee2398ab302-0087", "ts": "2026-11-21T18:15:54Z", "findings": ["I7: glossary term off-by-one must be rendered 'error de desfase en una posición'", "I12: sentence of 34 words (limit 29): La salida sola prueba el invariante \"el ..."]}
+{"segment_id": "s-b92061eaf126-0092", "ts": "2026-11-21T18:15:54Z", "findings": ["I12: sentence of 37 words (limit 29): En B1 parte 1, una sola ejecución aleato..."]}
+{"segment_id": "s-926b478ee819-0100", "ts": "2026-11-21T18:15:54Z", "findings": ["I7: glossary term warning must be rendered 'advertencia'"]}
+{"segment_id": "s-888032be3d46-0105", "ts": "2026-11-21T18:15:54Z", "findings": ["I7: glossary term state must be rendered 'estado'"]}
+{"segment_id": "s-0219d2802819-0108", "ts": "2026-11-21T18:15:54Z", "findings": ["I7: glossary term reader must be rendered 'lector'"]}
+{"segment_id": "s-40c223d11a63-0109", "ts": "2026-11-21T18:15:54Z", "findings": ["I12: sentence of 32 words (limit 29): La semana ISO se construye a mano a part..."]}
+{"segment_id": "s-df56b301cb47-0120", "ts": "2026-11-21T18:15:55Z", "findings": ["I7: glossary term state must be rendered 'estado'", "I7: glossary term warning must be rendered 'advertencia'", "I25: comma before a simple 'y' ('X pasa a ser X, y conviene cambiarle el nombre'): no comma before a simple o or y"]}
+{"segment_id": "s-955a2373d178-0124", "ts": "2026-11-21T18:15:55Z", "findings": ["I25: comma before a simple 'y' ('no bytes de instrucciones, y la diferencia importa'): no comma before a simple o or y"]}

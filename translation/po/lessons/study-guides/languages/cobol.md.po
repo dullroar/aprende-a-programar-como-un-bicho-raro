@@ -1,0 +1,656 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lessons/study-guides/languages/cobol.md:1
+msgctxt "s-a06092f905b7-0000"
+msgid "COBOL study guide"
+msgstr "Guía de estudio de COBOL"
+
+#: lessons/study-guides/languages/cobol.md:3
+msgctxt "s-4e718de9279e-0001"
+msgid "What this guide is for"
+msgstr "Para qué sirve esta guía"
+
+#: lessons/study-guides/languages/cobol.md:5
+msgctxt "s-e4c680f9a695-0002"
+msgid "This guide reads two COBOL programs side by side: [⟦CODE_0001⟧](⟦DEST_0002⟧), which declares its stop rule as data, and [⟦CODE_0003⟧](⟦DEST_0004⟧), which stores its loop in the target of a ⟦CODE_0005⟧ that rewrites itself. It treats them as two answers to one question: *where does a program keep \"what happens next\" and \"when to stop\"?*"
+msgstr "Esta guía lee dos programas COBOL uno junto al otro. [⟦CODE_0001⟧](⟦DEST_0002⟧) declara su regla de parada como dato. [⟦CODE_0003⟧](⟦DEST_0004⟧) guarda su bucle en el destino de un ⟦CODE_0005⟧ que se reescribe a sí mismo. Los trata como dos respuestas a una misma pregunta: *¿dónde guarda un programa \"qué pasa después\" y \"cuándo parar\"?*"
+
+#: lessons/study-guides/languages/cobol.md:7
+msgctxt "s-988501c8f54b-0003"
+msgid "It began as a study guide written by the book's co-author Ken Astl for the COBOL chapter, and it keeps his method: predict the state change, then run, then compare."
+msgstr "Empezó como una guía de estudio que escribió Ken Astl, coautor del libro, para el capítulo de COBOL. Conserva su método: predice el cambio de estado, luego ejecuta y después compara."
+
+#: lessons/study-guides/languages/cobol.md:9
+msgctxt "s-d84bcb27c154-0004"
+msgid "When you finish, you should be able to:"
+msgstr "Al terminar, deberías poder:"
+
+#: lessons/study-guides/languages/cobol.md:11
+msgctxt "s-adf72213db36-0005"
+msgid ""
+"Explain how a level-88 condition name turns a stop rule into a property of the data, and why the idiomatic loop contains no comparison.\n"
+"2. Trace both programs through the same three cards and name the state that decides each step: ⟦CODE_0001⟧ and ⟦CODE_0002⟧ in one program, the target of ⟦CODE_0003⟧ and ⟦CODE_0004⟧ in the other.\n"
+"3. Say exactly what ⟦CODE_0005⟧ changes, what it leaves alone and why it needs a paragraph that is only one ⟦CODE_0006⟧.\n"
+"4. Explain why a size error is a conditional, and what a field holding 99 can mean.\n"
+"5. Label each COBOL behavior in the programs as guaranteed, implementation-permitted or accidentally exploited, and say what evidence supports the label."
+msgstr ""
+"Explicar cómo un nombre de condición de nivel 88 vuelve la regla de parada una propiedad de los datos, y por qué el bucle idiomático no contiene ninguna comparación.\n"
+"2. Trazar ambos programas con las mismas tres tarjetas. Nombrar el estado que decide cada paso: ⟦CODE_0001⟧ y ⟦CODE_0002⟧ en un programa, el destino de ⟦CODE_0003⟧ y ⟦CODE_0004⟧ en el otro.\n"
+"3. Decir exactamente qué cambia ⟦CODE_0005⟧, qué deja intacto y por qué necesita un párrafo que es solo un ⟦CODE_0006⟧.\n"
+"4. Explicar por qué un error de tamaño es un condicional, y qué puede significar un campo que contiene 99.\n"
+"5. Etiquetar cada comportamiento de COBOL de los programas como garantizado, permitido por la implementación o aprovechado por accidente, y decir qué evidencia respalda la etiqueta."
+
+#: lessons/study-guides/languages/cobol.md:17
+msgctxt "s-38e9c8f92144-0006"
+msgid "**Scope limits.** This is not a COBOL tutorial: it does not teach divisions, files or the full ⟦CODE_0001⟧ language. It covers GnuCOBOL 3.1 or later in fixed format. It does not teach the SQL, which both programs build as text and hand to ⟦CODE_0002⟧. For the general lesson, read [COBOL in the book](⟦DEST_0003⟧) first, or after."
+msgstr "**Límites del alcance.** Esto no es un tutorial de COBOL: no enseña divisiones, archivos ni el lenguaje ⟦CODE_0001⟧ completo. Cubre GnuCOBOL 3.1 o posterior en formato fijo. No enseña el SQL que ambos programas construyen como texto y pasan a ⟦CODE_0002⟧. Para la lección general, lee [COBOL en el libro](⟦DEST_0003⟧) antes o después."
+
+#: lessons/study-guides/languages/cobol.md:19
+msgctxt "s-d5bfdd7d989d-0007"
+msgid "Before you begin"
+msgstr "Antes de empezar"
+
+#: lessons/study-guides/languages/cobol.md:21
+msgctxt "s-8fe5a662f9c6-0008"
+msgid "**Safety model.** Every entry writes fictional **⟦DNT_0001⟧** data to a scratch SQLite file, and nothing connects to a real time-reporting system. The programs start processes (⟦CODE_0002⟧, ⟦CODE_0003⟧), so read the source before you run it, and run it in the sandbox first. From the repository root, with the one-time setup in [⟦CODE_0004⟧](⟦DEST_0005⟧) done:"
+msgstr "**Modelo de seguridad.** Cada entrada escribe datos ficticios marcados con **⟦DNT_0001⟧** en un archivo SQLite de trabajo, y nada se conecta a un sistema real de control de horas. Los programas inician procesos (⟦CODE_0002⟧, ⟦CODE_0003⟧), así que lee el código fuente antes de ejecutarlos y ejecútalos primero en el entorno aislado (*sandbox*). Desde la raíz del repositorio, con la configuración única de [⟦CODE_0004⟧](⟦DEST_0005⟧) ya hecha:"
+
+#: lessons/study-guides/languages/cobol.md:28
+msgctxt "s-d11640be1ac4-0009"
+msgid "Work on a copy when an exercise asks you to edit (see [Running things safely](⟦DEST_0001⟧)). The output is random, so your numbers will differ from every number printed here. The properties will not."
+msgstr "Trabaja en una copia cuando un ejercicio te pida editar (consulta [Ejecutar cosas de forma segura](⟦DEST_0001⟧)). La salida es aleatoria, así que tus números serán distintos de todos los que se imprimen aquí. Las propiedades no cambiarán."
+
+#: lessons/study-guides/languages/cobol.md:30
+msgctxt "s-ca2da8f88156-0010"
+msgid "**Prediction rule.** Before each run, write down which state will change, which statement will run next and what output would prove you wrong. The check script tells you whether you got a result. Only the prediction tells you whether you understood."
+msgstr "**Regla de predicción.** Antes de cada ejecución, anota qué estado va a cambiar, qué sentencia se ejecutará a continuación y qué salida demostraría que te equivocaste. El script de comprobación te dice si obtuviste un resultado. Solo la predicción te dice si entendiste."
+
+#: lessons/study-guides/languages/cobol.md:32
+msgctxt "s-ebdd2bb7d2ff-0011"
+msgid "**Vocabulary you need.**"
+msgstr "**Vocabulario que necesitas.**"
+
+#: lessons/study-guides/languages/cobol.md:34
+msgctxt "s-790e521777f0-0012"
+msgid "⟦SEP_0001⟧ Term ⟦SEP_0002⟧ Meaning here ⟦SEP_0003⟧"
+msgstr "⟦SEP_0001⟧ Término ⟦SEP_0002⟧ Significado aquí ⟦SEP_0003⟧"
+
+#: lessons/study-guides/languages/cobol.md:36
+msgctxt "s-5dc271b479af-0013"
+msgid "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ A field that holds exactly two decimal digits, 00 to 99. Its shape is part of its meaning. ⟦SEP_0004⟧"
+msgstr "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ Un campo que contiene exactamente dos dígitos decimales, de 00 a 99. Su forma es parte de su significado. ⟦SEP_0004⟧"
+
+#: lessons/study-guides/languages/cobol.md:37
+msgctxt "s-2f6945f30367-0014"
+msgid "⟦SEP_0001⟧ Level 88 ⟦SEP_0002⟧ A named condition on the field above it. It has no storage of its own. ⟦SEP_0003⟧"
+msgstr "⟦SEP_0001⟧ Nivel 88 ⟦SEP_0002⟧ Una condición con nombre sobre el campo que tiene encima. No tiene almacenamiento propio. ⟦SEP_0003⟧"
+
+#: lessons/study-guides/languages/cobol.md:38
+msgctxt "s-1c0a08c9a580-0015"
+msgid "⟦SEP_0001⟧ Paragraph ⟦SEP_0002⟧ A named block of statements. Control falls from one paragraph into the next unless a jump redirects it. ⟦SEP_0003⟧"
+msgstr "⟦SEP_0001⟧ Párrafo ⟦SEP_0002⟧ Un bloque de sentencias con nombre. El control sigue de un párrafo al siguiente, salvo que un salto lo redirija. ⟦SEP_0003⟧"
+
+#: lessons/study-guides/languages/cobol.md:39
+msgctxt "s-78c634aafffc-0016"
+msgid "⟦SEP_0006⟧ ⟦CODE_0001⟧ / ⟦CODE_0002⟧ ⟦SEP_0007⟧ ⟦CODE_0003⟧ jumps. ⟦CODE_0004⟧ changes where a given ⟦CODE_0005⟧ will jump the next time it runs. ⟦SEP_0008⟧"
+msgstr "⟦SEP_0006⟧ ⟦CODE_0001⟧ /⟦CODE_0002⟧ ⟦SEP_0007⟧ ⟦CODE_0003⟧ salta. ⟦CODE_0004⟧ cambia adónde saltará un ⟦CODE_0005⟧ dado la próxima vez que se ejecute. ⟦SEP_0008⟧"
+
+#: lessons/study-guides/languages/cobol.md:40
+msgctxt "s-03b421dfe536-0017"
+msgid "⟦SEP_0001⟧ Size error ⟦SEP_0002⟧ An arithmetic result that does not fit its receiving field. ⟦SEP_0003⟧"
+msgstr "⟦SEP_0001⟧ Error de tamaño ⟦SEP_0002⟧ Un resultado aritmético que no cabe en el campo que lo recibe. ⟦SEP_0003⟧"
+
+#: lessons/study-guides/languages/cobol.md:42
+msgctxt "s-ae7d69ef2745-0018"
+msgid "The shared challenge"
+msgstr "El reto compartido"
+
+#: lessons/study-guides/languages/cobol.md:44
+msgctxt "s-78a7d749b03d-0019"
+msgid "The [challenge specification](⟦DEST_0001⟧) calls for cards with a category and 10 to 19 whole hours. Categories cycle through ⟦DNT_0002⟧, ⟦DNT_0003⟧, ⟦DNT_0004⟧ and ⟦DNT_0005⟧. Add each card's hours to the running total. Stop when the total passes 40. Keep the **first card that takes the total over 40**. A total of exactly 40 continues. Four 10-hour cards need a fifth card, in the ⟦DNT_0006⟧ category. Conforming runs finish with 3 to 5 cards and a total of 41 to 59 hours."
+msgstr "La [especificación del reto](⟦DEST_0001⟧) pide tarjetas con una categoría y de 10 a 19 horas enteras. Las categorías se repiten en ciclo: `⟦DNT_0002⟧`, `⟦DNT_0003⟧`, `⟦DNT_0004⟧` y `⟦DNT_0005⟧`. Suma las horas de cada tarjeta al total acumulado. Detente cuando el total pasa de 40. Conserva la **primera tarjeta con la que el total pasa de 40**. Un total de exactamente 40 continúa. Cuatro tarjetas de 10 horas necesitan una quinta tarjeta, de la categoría `⟦DNT_0006⟧`. Las ejecuciones conformes tienen de 3 a 5 tarjetas y un total de 41 a 59 horas."
+
+#: lessons/study-guides/languages/cobol.md:46
+msgctxt "s-400c62d111c1-0020"
+msgid "Two cards reach at most 38 hours, so a conforming run needs at least three cards."
+msgstr "Dos tarjetas suman 38 horas como máximo, así que una ejecución conforme necesita al menos tres tarjetas."
+
+#: lessons/study-guides/languages/cobol.md:48
+msgctxt "s-80788f69a114-0021"
+msgid "Both COBOL entries save a completed run as a single transaction in a SQLite file and print a summary. The shared checker, [⟦CODE_0001⟧](⟦DEST_0002⟧), verifies the *shape* of the output: the ⟦CODE_0003⟧ marker, hours in range, correct running sums, a stop on the first crossing and a summary that agrees with the rows."
+msgstr "Las dos entradas de COBOL guardan una ejecución completa como una sola transacción en un archivo SQLite e imprimen un resumen. El verificador compartido, [⟦CODE_0001⟧](⟦DEST_0002⟧), comprueba la *forma* de la salida. Revisa el marcador ⟦CODE_0003⟧, las horas en el rango, las sumas acumuladas correctas, una parada en el primer cruce y un resumen que coincide con las filas."
+
+#: lessons/study-guides/languages/cobol.md:50
+msgctxt "s-66a3b366ed9f-0022"
+msgid "For a stop rule of exactly this shape, notice how COBOL says it. In the idiomatic program the rule is ⟦CODE_0001⟧: the first total *above* 40. There is no ⟦CODE_0002⟧ or ⟦CODE_0003⟧ anywhere to get wrong."
+msgstr "Para una regla de parada exactamente de esta forma, fíjate en cómo la dice COBOL. En el programa idiomático la regla es ⟦CODE_0001⟧: el primer total que está *por encima de* 40. No hay ningún ⟦CODE_0002⟧ ni ⟦CODE_0003⟧ en el que equivocarse."
+
+#: lessons/study-guides/languages/cobol.md:52
+msgctxt "s-9f148b367e02-0023"
+msgid "The machine to identify"
+msgstr "La máquina que hay que identificar"
+
+#: lessons/study-guides/languages/cobol.md:54
+msgctxt "s-228d57ea58f4-0024"
+msgid "Name the machine before you read the code. Both programs answer the same five questions, with different parts of the language."
+msgstr "Nombra la máquina antes de leer el código. Los dos programas responden las mismas cinco preguntas, con partes distintas del lenguaje."
+
+#: lessons/study-guides/languages/cobol.md:56
+msgctxt "s-0ff7701fffe3-0025"
+msgid "**What repeats.** In ⟦CODE_0001⟧, one statement repeats a paragraph: ⟦CODE_0002⟧ ([L93](⟦DEST_0003⟧)). In ⟦CODE_0004⟧, nothing is *performed*. Control makes a circuit: ⟦CODE_0005⟧ jumps to a category paragraph, that paragraph joins ⟦CODE_0006⟧, and ⟦CODE_0007⟧ jumps back to ⟦CODE_0008⟧ ([L150-200](⟦DEST_0009⟧))."
+msgstr "**Qué se repite.** En ⟦CODE_0001⟧, una sentencia repite un párrafo: ⟦CODE_0002⟧ ([L93](⟦DEST_0003⟧)). En ⟦CODE_0004⟧, nada se *ejecuta con PERFORM*. El control forma un circuito: ⟦CODE_0005⟧ salta a un párrafo de categoría. Ese párrafo desemboca en ⟦CODE_0006⟧. Luego ⟦CODE_0007⟧ vuelve a saltar a ⟦CODE_0008⟧ ([L150-200](⟦DEST_0009⟧))."
+
+#: lessons/study-guides/languages/cobol.md:58
+msgctxt "s-463531b9d8b8-0026"
+msgid "**Where state lives.** In ⟦CODE_0001⟧, the running total ⟦CODE_0002⟧ and the count ⟦CODE_0003⟧ are ordinary fields, and the category is computed from the count: ⟦CODE_0004⟧ ([L106](⟦DEST_0005⟧)). In ⟦CODE_0006⟧, \"which category is next\" is not in any variable. It exists only as the current target of the ⟦CODE_0007⟧ inside ⟦CODE_0008⟧. A second number, ⟦CODE_0009⟧, starts at 59 and tracks ⟦CODE_0010⟧ ([L44](⟦DEST_0011⟧))."
+msgstr "**Dónde vive el estado.** En ⟦CODE_0001⟧, el total acumulado ⟦CODE_0002⟧ y el conteo ⟦CODE_0003⟧ son campos comunes, y la categoría se calcula a partir del conteo: ⟦CODE_0004⟧ ([L106](⟦DEST_0005⟧)). En ⟦CODE_0006⟧, \"qué categoría toca después\" no está en ninguna variable. Existe solo como el destino actual del ⟦CODE_0007⟧ dentro de ⟦CODE_0008⟧. Un segundo número, ⟦CODE_0009⟧, empieza en 59 y sigue la pista de ⟦CODE_0010⟧ ([L44](⟦DEST_0011⟧))."
+
+#: lessons/study-guides/languages/cobol.md:60
+msgctxt "s-90f8c2b97f10-0027"
+msgid "**What advances the next step.** In ⟦CODE_0001⟧, the ⟦CODE_0002⟧ statement decides, by testing the condition before each pass. In ⟦CODE_0003⟧, each category paragraph executes ⟦CODE_0004⟧ ([L157](⟦DEST_0005⟧), [L162](⟦DEST_0006⟧), [L167](⟦DEST_0007⟧), [L172](⟦DEST_0008⟧)), so the *same* ⟦CODE_0009⟧ leads somewhere new on the next trip."
+msgstr "**Qué hace avanzar el paso siguiente.** En ⟦CODE_0001⟧, la sentencia ⟦CODE_0002⟧ decide, al comprobar la condición antes de cada pasada. En ⟦CODE_0003⟧, cada párrafo de categoría ejecuta ⟦CODE_0004⟧ ([L157](⟦DEST_0005⟧), [L162](⟦DEST_0006⟧), [L167](⟦DEST_0007⟧), [L172](⟦DEST_0008⟧)), así que el *mismo* ⟦CODE_0009⟧ lleva a otro destino en la vuelta siguiente."
+
+#: lessons/study-guides/languages/cobol.md:62
+msgctxt "s-f98055dbe39a-0028"
+msgid "**What stops it.** In ⟦CODE_0001⟧, the data declaration ⟦CODE_0002⟧ on ⟦CODE_0003⟧ ([L41-42](⟦DEST_0004⟧)). In ⟦CODE_0005⟧, an overflow: ⟦CODE_0006⟧ ([L196-199](⟦DEST_0007⟧)). ⟦CODE_0008⟧ fits in two digits while the total is 40 or less. The first card that makes it 100 or more is a size error, and the handler rewrites ⟦CODE_0009⟧ one last time, to ⟦CODE_0010⟧."
+msgstr "**Qué lo detiene.** En ⟦CODE_0001⟧, la declaración de datos ⟦CODE_0002⟧ sobre ⟦CODE_0003⟧ ([L41-42](⟦DEST_0004⟧)). En ⟦CODE_0005⟧, un desbordamiento: ⟦CODE_0006⟧ ([L196-199](⟦DEST_0007⟧)). ⟦CODE_0008⟧ cabe en dos dígitos mientras el total no pase de 40. La primera tarjeta que lo deja en 100 o más es un error de tamaño, y el manejador reescribe ⟦CODE_0009⟧ por última vez, a ⟦CODE_0010⟧."
+
+#: lessons/study-guides/languages/cobol.md:64
+msgctxt "s-ec67416ffca0-0029"
+msgid "**What commits.** Both programs write ⟦CODE_0001⟧ lines to a line-sequential script file and print each row as they go. Nothing reaches the database until the finishing paragraph closes the file and runs ⟦CODE_0002⟧ on it. The script has a ⟦CODE_0003⟧ and a ⟦CODE_0004⟧, so the run lands as one transaction or not at all. The ⟦CODE_0005⟧ rows are *not* part of that transaction: they are already on the terminal, whatever ⟦CODE_0006⟧ later does."
+msgstr "**Qué confirma.** Ambos programas escriben líneas ⟦CODE_0001⟧ en un archivo de script secuencial por líneas e imprimen cada fila a medida que avanzan. Nada llega a la base de datos hasta que el párrafo final cierra el archivo y ejecuta ⟦CODE_0002⟧ sobre él. El script tiene un ⟦CODE_0003⟧ y un ⟦CODE_0004⟧, así que la ejecución se aplica como una sola transacción o no se aplica en absoluto. Las filas ⟦CODE_0005⟧ *no* forman parte de esa transacción: ya están en la terminal, haga lo que haga ⟦CODE_0006⟧ después."
+
+#: lessons/study-guides/languages/cobol.md:70
+msgctxt "s-67a1ffce7515-0030"
+msgid "cobol: PERFORM UNTIL with the stop rule declared as data"
+msgstr "cobol: PERFORM UNTIL con la regla de parada declarada como datos"
+
+#: lessons/study-guides/languages/cobol.md:71
+msgctxt "s-030edbd243c5-0031"
+msgid "A flowchart. Set-up and open-script run once. Then PERFORM DRAW-CARD repeats until the 88-level condition OVER-FORTY, declared on WS-TOTAL, is true. Each pass draws a card, adds its hours to the total, prints the row and writes an INSERT line. When OVER-FORTY is true the loop ends, the script is committed with sqlite3, and the run stops."
+msgstr "Un diagrama de flujo. Set-up y open-script se ejecutan una sola vez. Después, PERFORM DRAW-CARD se repite hasta que la condición de nivel 88 OVER-FORTY, declarada sobre WS-TOTAL, sea verdadera. Cada pasada toma una tarjeta, suma sus horas al total, imprime la fila y escribe una línea INSERT. Cuando OVER-FORTY es verdadera, el bucle termina, el script se confirma con sqlite3 y la ejecución se detiene."
+
+#: lessons/study-guides/languages/cobol.md:72
+msgctxt "s-bdc2991591ee-0032"
+msgid "SET-UP, OPEN-SCRIPT: seed, ISO week, folder, SQL file"
+msgstr "SET-UP, OPEN-SCRIPT: semilla, semana ISO, carpeta, archivo SQL"
+
+#: lessons/study-guides/languages/cobol.md:72
+msgctxt "s-2c871c0a2b8c-0033"
+msgid "OVER-FORTY? WS-TOTAL in 41 to 99"
+msgstr "OVER-FORTY? WS-TOTAL de 41 a 99"
+
+#: lessons/study-guides/languages/cobol.md:73
+msgctxt "s-1ea442a134b2-0034"
+msgid "No"
+msgstr "No"
+
+#: lessons/study-guides/languages/cobol.md:73
+msgctxt "s-e270bb9c0ef9-0035"
+msgid "DRAW-CARD: category from MOD of WS-ENTRIES, hours, ADD to WS-TOTAL"
+msgstr "DRAW-CARD: categoría a partir de MOD de WS-ENTRIES, horas, ADD a WS-TOTAL"
+
+#: lessons/study-guides/languages/cobol.md:74
+msgctxt "s-aa81c155fb8f-0036"
+msgid "DISPLAY the row, WRITE the INSERT line"
+msgstr "Muestra la fila con DISPLAY y escribe la línea INSERT con WRITE"
+
+#: lessons/study-guides/languages/cobol.md:76
+msgctxt "s-85a39ab345d6-0037"
+msgid "Yes"
+msgstr "Sí"
+
+#: lessons/study-guides/languages/cobol.md:76
+msgctxt "s-13ee30c89efb-0038"
+msgid "COMMIT-SCRIPT: run sqlite3"
+msgstr "COMMIT-SCRIPT: ejecuta sqlite3"
+
+#: lessons/study-guides/languages/cobol.md:77
+msgctxt "s-8063f52f8de4-0039"
+msgid "DISPLAY summary, STOP RUN"
+msgstr "DISPLAY summary, STOP RUN"
+
+#: lessons/study-guides/languages/cobol.md:80
+msgctxt "s-161a50585077-0040"
+msgid "The first diagram is a conventional loop. The test is a real node, and the cycle is a real edge. The test node asks the data a question."
+msgstr "El primer diagrama es un bucle convencional. La prueba es un nodo real y el ciclo es una arista real. El nodo de prueba le hace una pregunta a los datos."
+
+#: lessons/study-guides/languages/cobol.md:86
+msgctxt "s-b3cdf86c8e55-0041"
+msgid "cobol-weird: the target of one GO TO is the loop"
+msgstr "cobol-weird: el destino de un solo GO TO es el bucle"
+
+#: lessons/study-guides/languages/cobol.md:87
+msgctxt "s-42d048695631-0042"
+msgid "A state diagram. The state is the current target of the single GO TO in the NEXT-CARD paragraph. It starts as ⟦DNT_0001⟧. Each category paragraph rewrites it to the next category with ALTER, so the cycle is ⟦DNT_0002⟧, ⟦DNT_0003⟧, ⟦DNT_0004⟧, ⟦DNT_0005⟧, and back to ⟦DNT_0006⟧. When the two-digit headroom field overflows, ON SIZE ERROR rewrites the target to FINISH-RUN, which commits the script and stops."
+msgstr "Un diagrama de estados. El estado es el destino actual del único GO TO del párrafo NEXT-CARD. Empieza como ⟦DNT_0001⟧. Cada párrafo de categoría lo reescribe con ALTER para apuntar a la categoría siguiente, así que el ciclo es ⟦DNT_0002⟧, ⟦DNT_0003⟧, ⟦DNT_0004⟧, ⟦DNT_0005⟧ y de nuevo ⟦DNT_0006⟧. Cuando el campo de margen de dos dígitos se desborda, ON SIZE ERROR reescribe el destino a FINISH-RUN, que hace la confirmación de la transacción del script y se detiene."
+
+#: lessons/study-guides/languages/cobol.md:92
+msgctxt "s-9d3b81398d3e-0043"
+msgid "FINISH-RUN"
+msgstr "FINISH-RUN"
+
+#: lessons/study-guides/languages/cobol.md:93
+msgctxt "s-02aa4cc4fe71-0044"
+msgid "NEXT-CARD's GO TO jumps to"
+msgstr "El GO TO de NEXT-CARD salta a"
+
+#: lessons/study-guides/languages/cobol.md:95
+msgctxt "s-958ef1655f5b-0045"
+msgid "ALTER"
+msgstr "ALTER"
+
+#: lessons/study-guides/languages/cobol.md:96
+msgctxt "s-958ef1655f5b-0046"
+msgid "ALTER"
+msgstr "ALTER"
+
+#: lessons/study-guides/languages/cobol.md:97
+msgctxt "s-958ef1655f5b-0047"
+msgid "ALTER"
+msgstr "ALTER"
+
+#: lessons/study-guides/languages/cobol.md:98
+msgctxt "s-958ef1655f5b-0048"
+msgid "ALTER"
+msgstr "ALTER"
+
+#: lessons/study-guides/languages/cobol.md:100
+msgctxt "s-5669695a70a5-0049"
+msgid "ON SIZE ERROR, ALTER"
+msgstr "ON SIZE ERROR, ALTER"
+
+#: lessons/study-guides/languages/cobol.md:101
+msgctxt "s-16d8bd9c4202-0050"
+msgid "COMMIT, sqlite3, STOP RUN"
+msgstr "COMMIT, sqlite3, STOP RUN"
+
+#: lessons/study-guides/languages/cobol.md:104
+msgctxt "s-5a381c86e7fb-0051"
+msgid "The second diagram has no test node at all. It is a state diagram whose single state is the *target of one jump*. The exit is one more rewrite of that same target, triggered by overflow."
+msgstr "El segundo diagrama no tiene ningún nodo de prueba. Es un diagrama de estados cuyo único estado es el *destino de un salto*. La salida es una reescritura más de ese mismo destino, provocada por el desbordamiento."
+
+#: lessons/study-guides/languages/cobol.md:106
+msgctxt "s-67a72cdadc6f-0052"
+msgid "Trace one run"
+msgstr "Traza una ejecución"
+
+#: lessons/study-guides/languages/cobol.md:108
+msgctxt "s-cadbbff673f2-0053"
+msgid "The programs draw random hours, so a real run cannot be fixed in advance. For a trace, use hours **15, 19, 12**, in that order. To check the trace against real behavior, a scratch copy of ⟦CODE_0001⟧ was run in the sandbox with the hours read from a fixed string and two ⟦CODE_0002⟧ lines added to show ⟦CODE_0003⟧ around the add. (Those lines sit in ⟦CODE_0004⟧. A ⟦CODE_0005⟧ inside ⟦CODE_0006⟧ would be a different matter: see the exercises.) The output was:"
+msgstr "Los programas sacan horas aleatorias, así que una ejecución real no se puede fijar de antemano. Para la traza, usa las horas **15, 19, 12**, en ese orden. Para comprobar la traza con el comportamiento real, se ejecutó en el entorno aislado una copia de trabajo de ⟦CODE_0001⟧. Las horas se leyeron de una cadena de texto fija. Se añadieron dos líneas ⟦CODE_0002⟧ para mostrar ⟦CODE_0003⟧ alrededor de la suma. (Esas líneas están en ⟦CODE_0004⟧. Un ⟦CODE_0005⟧ dentro de ⟦CODE_0006⟧ sería otro asunto: consulta los ejercicios.) La salida fue:"
+
+#: lessons/study-guides/languages/cobol.md:124
+msgctxt "s-bfbfbb9220f0-0054"
+msgid "(The ISO-week column was removed for width.) The tables below list the state that decides each step."
+msgstr "(Se quitó la columna de la semana ISO por falta de ancho.) Las tablas siguientes muestran el estado que decide cada paso."
+
+#: lessons/study-guides/languages/cobol.md:126
+msgctxt "s-df77cd1bd3c6-0055"
+msgid "**⟦CODE_0001⟧, the idiomatic version.** The test runs *before* each pass."
+msgstr "**⟦CODE_0001⟧, la versión idiomática.** La prueba se hace *antes* de cada pasada."
+
+#: lessons/study-guides/languages/cobol.md:128
+msgctxt "s-71e1359009e3-0056"
+msgid "⟦SEP_0005⟧ Step ⟦SEP_0006⟧ ⟦CODE_0001⟧ tested on ⟦SEP_0007⟧ Draw ⟦SEP_0008⟧ ⟦CODE_0002⟧ ⟦SEP_0009⟧ ⟦CODE_0003⟧ after ⟦SEP_0010⟧ ⟦CODE_0004⟧ after ⟦SEP_0011⟧"
+msgstr "⟦SEP_0005⟧ Paso ⟦SEP_0006⟧ ⟦CODE_0001⟧ se prueba con ⟦SEP_0007⟧ Sacar ⟦SEP_0008⟧ ⟦CODE_0002⟧ ⟦SEP_0009⟧ ⟦CODE_0003⟧ después ⟦SEP_0010⟧ ⟦CODE_0004⟧ después ⟦SEP_0011⟧"
+
+#: lessons/study-guides/languages/cobol.md:130
+msgctxt "s-a4519055094a-0057"
+msgid "⟦SEP_0003⟧ 1 ⟦SEP_0004⟧ total 0: false ⟦SEP_0005⟧ ⟦CODE_0001⟧ = 1, ⟦DNT_0002⟧ ⟦SEP_0006⟧ 15 ⟦SEP_0007⟧ 15 ⟦SEP_0008⟧ 1 ⟦SEP_0009⟧"
+msgstr "⟦SEP_0003⟧ 1 ⟦SEP_0004⟧ total 0: falso ⟦SEP_0005⟧ ⟦CODE_0001⟧ = 1, ⟦DNT_0002⟧ ⟦SEP_0006⟧ 15 ⟦SEP_0007⟧ 15 ⟦SEP_0008⟧ 1 ⟦SEP_0009⟧"
+
+#: lessons/study-guides/languages/cobol.md:131
+msgctxt "s-09e423ae1135-0058"
+msgid "⟦SEP_0003⟧ 2 ⟦SEP_0004⟧ total 15: false ⟦SEP_0005⟧ ⟦CODE_0001⟧ = 2, ⟦DNT_0002⟧ ⟦SEP_0006⟧ 19 ⟦SEP_0007⟧ 34 ⟦SEP_0008⟧ 2 ⟦SEP_0009⟧"
+msgstr "⟦SEP_0003⟧ 2 ⟦SEP_0004⟧ total 15: falso ⟦SEP_0005⟧ ⟦CODE_0001⟧ = 2, ⟦DNT_0002⟧ ⟦SEP_0006⟧ 19 ⟦SEP_0007⟧ 34 ⟦SEP_0008⟧ 2 ⟦SEP_0009⟧"
+
+#: lessons/study-guides/languages/cobol.md:132
+msgctxt "s-0b0edb5f3730-0059"
+msgid "⟦SEP_0003⟧ 3 ⟦SEP_0004⟧ total 34: false ⟦SEP_0005⟧ ⟦CODE_0001⟧ = 3, ⟦DNT_0002⟧ ⟦SEP_0006⟧ 12 ⟦SEP_0007⟧ 46 ⟦SEP_0008⟧ 3 ⟦SEP_0009⟧"
+msgstr "⟦SEP_0003⟧ 3 ⟦SEP_0004⟧ total 34: falso ⟦SEP_0005⟧ ⟦CODE_0001⟧ = 3, ⟦DNT_0002⟧ ⟦SEP_0006⟧ 12 ⟦SEP_0007⟧ 46 ⟦SEP_0008⟧ 3 ⟦SEP_0009⟧"
+
+#: lessons/study-guides/languages/cobol.md:133
+msgctxt "s-044ed96e4e8e-0060"
+msgid "⟦SEP_0001⟧ end ⟦SEP_0002⟧ total 46: **true** ⟦SEP_0003⟧ none ⟦SEP_0004⟧ none ⟦SEP_0005⟧ 46 ⟦SEP_0006⟧ 3 ⟦SEP_0007⟧"
+msgstr "⟦SEP_0001⟧ fin ⟦SEP_0002⟧ total 46: **verdadero** ⟦SEP_0003⟧ ninguno ⟦SEP_0004⟧ ninguno ⟦SEP_0005⟧ 46 ⟦SEP_0006⟧ 3 ⟦SEP_0007⟧"
+
+#: lessons/study-guides/languages/cobol.md:135
+msgctxt "s-7cb9d5738a07-0061"
+msgid "The third card is kept because the test happens *before* the next pass, so it only sees the effect of the card just completed. That is the reason the crossing card is part of the result."
+msgstr "La tercera tarjeta se conserva porque la prueba ocurre *antes* de la pasada siguiente, así que solo ve el efecto de la tarjeta que acaba de completarse. Por eso la tarjeta del cruce forma parte del resultado."
+
+#: lessons/study-guides/languages/cobol.md:137
+msgctxt "s-0ca064be0252-0062"
+msgid "**⟦CODE_0001⟧, the self-rewriting version.** ⟦CODE_0002⟧ starts pointing at ⟦DNT_0003⟧."
+msgstr "**⟦CODE_0001⟧, la versión que se reescribe a sí misma.** ⟦CODE_0002⟧ empieza apuntando a ⟦DNT_0003⟧."
+
+#: lessons/study-guides/languages/cobol.md:139
+msgctxt "s-d09b86aaa0b2-0063"
+msgid "⟦SEP_0005⟧ Step ⟦SEP_0006⟧ Target of ⟦CODE_0001⟧ on entry ⟦SEP_0007⟧ Category runs, then ⟦CODE_0002⟧ sets target to ⟦SEP_0008⟧ ⟦CODE_0003⟧ after ⟦SEP_0009⟧ ⟦CODE_0004⟧ before, then after ⟦SEP_0010⟧ Outcome of the add ⟦SEP_0011⟧"
+msgstr "⟦SEP_0005⟧ Paso ⟦SEP_0006⟧ Destino de ⟦CODE_0001⟧ en la entrada ⟦SEP_0007⟧ Se ejecuta la categoría y luego ⟦CODE_0002⟧ fija el destino en ⟦SEP_0008⟧ ⟦CODE_0003⟧ después ⟦SEP_0009⟧ ⟦CODE_0004⟧ antes y después ⟦SEP_0010⟧ Resultado de la suma ⟦SEP_0011⟧"
+
+#: lessons/study-guides/languages/cobol.md:141
+msgctxt "s-29cd19db750f-0064"
+msgid "⟦SEP_0003⟧ 1 ⟦SEP_0004⟧ ⟦DNT_0001⟧ ⟦SEP_0005⟧ ⟦DNT_0002⟧ ⟦SEP_0006⟧ 15 ⟦SEP_0007⟧ 59, then 74 ⟦SEP_0008⟧ fits ⟦SEP_0009⟧"
+msgstr "⟦SEP_0003⟧ 1 ⟦SEP_0004⟧ ⟦DNT_0001⟧ ⟦SEP_0005⟧ ⟦DNT_0002⟧ ⟦SEP_0006⟧ 15 ⟦SEP_0007⟧ 59, luego 74 ⟦SEP_0008⟧ cabe ⟦SEP_0009⟧"
+
+#: lessons/study-guides/languages/cobol.md:142
+msgctxt "s-f1e7011c9d84-0065"
+msgid "⟦SEP_0003⟧ 2 ⟦SEP_0004⟧ ⟦DNT_0001⟧ ⟦SEP_0005⟧ ⟦DNT_0002⟧ ⟦SEP_0006⟧ 34 ⟦SEP_0007⟧ 74, then 93 ⟦SEP_0008⟧ fits ⟦SEP_0009⟧"
+msgstr "⟦SEP_0003⟧ 2 ⟦SEP_0004⟧ ⟦DNT_0001⟧ ⟦SEP_0005⟧ ⟦DNT_0002⟧ ⟦SEP_0006⟧ 34 ⟦SEP_0007⟧ 74, luego 93 ⟦SEP_0008⟧ cabe ⟦SEP_0009⟧"
+
+#: lessons/study-guides/languages/cobol.md:143
+msgctxt "s-2623471aff84-0066"
+msgid "⟦SEP_0003⟧ 3 ⟦SEP_0004⟧ ⟦DNT_0001⟧ ⟦SEP_0005⟧ ⟦DNT_0002⟧, then **FINISH-RUN** ⟦SEP_0006⟧ 46 ⟦SEP_0007⟧ 93, then 93 ⟦SEP_0008⟧ size error: 93 + 12 = 105 ⟦SEP_0009⟧"
+msgstr "⟦SEP_0003⟧ 3 ⟦SEP_0004⟧ ⟦DNT_0001⟧ ⟦SEP_0005⟧ ⟦DNT_0002⟧, luego **FINISH-RUN** ⟦SEP_0006⟧ 46 ⟦SEP_0007⟧ 93, luego 93 ⟦SEP_0008⟧ error de tamaño: 93 + 12 = 105 ⟦SEP_0009⟧"
+
+#: lessons/study-guides/languages/cobol.md:144
+msgctxt "s-b0f89b0f91f9-0067"
+msgid "⟦SEP_0001⟧ end ⟦SEP_0002⟧ FINISH-RUN ⟦SEP_0003⟧ none ⟦SEP_0004⟧ 46 ⟦SEP_0005⟧ 93 ⟦SEP_0006⟧ commit and stop ⟦SEP_0007⟧"
+msgstr "⟦SEP_0001⟧ fin ⟦SEP_0002⟧ FINISH-RUN ⟦SEP_0003⟧ ninguna ⟦SEP_0004⟧ 46 ⟦SEP_0005⟧ 93 ⟦SEP_0006⟧ confirma y se detiene ⟦SEP_0007⟧"
+
+#: lessons/study-guides/languages/cobol.md:146
+msgctxt "s-78a86b1e10ca-0068"
+msgid "Look at step 3. The category paragraph for ⟦DNT_0001⟧ has already set the target to ⟦DNT_0002⟧. Then the size error handler in ⟦CODE_0003⟧ overwrites that target with ⟦CODE_0004⟧. The last ⟦CODE_0005⟧ wins. The statement ⟦CODE_0006⟧ that follows is byte-for-byte the same statement as in steps 1 and 2."
+msgstr "Fíjate en el paso 3. El párrafo de la categoría ⟦DNT_0001⟧ ya fijó el destino en ⟦DNT_0002⟧. Luego el manejador del error de tamaño en ⟦CODE_0003⟧ sobrescribe ese destino con ⟦CODE_0004⟧. Gana el último ⟦CODE_0005⟧. La sentencia ⟦CODE_0006⟧ que sigue es, byte por byte, la misma sentencia que en los pasos 1 y 2."
+
+#: lessons/study-guides/languages/cobol.md:148
+msgctxt "s-eb4c72a304c2-0069"
+msgid "**The boundary case: exactly 40.** Use ten hours for every card. This was also run in the scratch copy."
+msgstr "**El caso límite: exactamente 40.** Usa diez horas en cada tarjeta. Esto también se ejecutó en la copia de trabajo."
+
+#: lessons/study-guides/languages/cobol.md:150
+msgctxt "s-f3eb98948ada-0070"
+msgid "⟦SEP_0001⟧ Card ⟦SEP_0002⟧ Category ⟦SEP_0003⟧ True total ⟦SEP_0004⟧ Headroom before ⟦SEP_0005⟧ After the add ⟦SEP_0006⟧"
+msgstr "⟦SEP_0001⟧ Tarjeta ⟦SEP_0002⟧ Categoría ⟦SEP_0003⟧ Total real ⟦SEP_0004⟧ Margen antes ⟦SEP_0005⟧ Después de la suma ⟦SEP_0006⟧"
+
+#: lessons/study-guides/languages/cobol.md:155
+msgctxt "s-5b0928cd5064-0071"
+msgid "⟦SEP_0002⟧ 4 ⟦SEP_0003⟧ ⟦DNT_0001⟧ ⟦SEP_0004⟧ 40 ⟦SEP_0005⟧ 89 ⟦SEP_0006⟧ 99, fits ⟦SEP_0007⟧"
+msgstr "⟦SEP_0002⟧ 4 ⟦SEP_0003⟧ ⟦DNT_0001⟧ ⟦SEP_0004⟧ 40 ⟦SEP_0005⟧ 89 ⟦SEP_0006⟧ 99, cabe ⟦SEP_0007⟧"
+
+#: lessons/study-guides/languages/cobol.md:156
+msgctxt "s-d0ab18dd95d8-0072"
+msgid "⟦SEP_0002⟧ 5 ⟦SEP_0003⟧ ⟦DNT_0001⟧ ⟦SEP_0004⟧ 50 ⟦SEP_0005⟧ 99 ⟦SEP_0006⟧ size error, stays 99 ⟦SEP_0007⟧"
+msgstr "⟦SEP_0002⟧ 5 ⟦SEP_0003⟧ ⟦DNT_0001⟧ ⟦SEP_0004⟧ 50 ⟦SEP_0005⟧ 99 ⟦SEP_0006⟧ error de tamaño, sigue en 99 ⟦SEP_0007⟧"
+
+#: lessons/study-guides/languages/cobol.md:158
+msgctxt "s-5e31bea18948-0073"
+msgid "At card 4 the total is exactly 40 and the headroom is 99, the largest value two digits can hold. It still fits, so the run continues. The fifth card overflows it. Now change the starting value from 59 to 49 and run the same ten-hour cards. The headroom reaches 99 on card **5** (total 50), still fits and overflows on card 6 (total 60). The final total was 60. The field holds 99 at two different moments with two different meanings: \"this add fit exactly\" and \"this add failed and left the old value\". To tell them apart, check whether the error clause ran, and where ⟦CODE_0001⟧ points now."
+msgstr "En la tarjeta 4 el total es exactamente 40 y el margen es 99, el mayor valor que pueden contener dos dígitos. Todavía cabe, así que la ejecución continúa. La quinta tarjeta lo desborda. Ahora cambia el valor inicial de 59 a 49 y ejecuta las mismas tarjetas de diez horas. El margen llega a 99 en la tarjeta **5** (total 50), todavía cabe y se desborda en la tarjeta 6 (total 60). El total final fue 60. El campo contiene 99 en dos momentos distintos con dos significados distintos: \"esta suma cupo exactamente\" y \"esta suma falló y dejó el valor anterior\". Para distinguirlos, comprueba si se ejecutó la cláusula de error y adónde apunta ahora ⟦CODE_0001⟧."
+
+#: lessons/study-guides/languages/cobol.md:160
+msgctxt "s-405c1b857089-0074"
+msgid "Compare the ordinary and weird designs"
+msgstr "Compara los diseños ordinarios y los raros"
+
+#: lessons/study-guides/languages/cobol.md:162
+msgctxt "s-9184e4c7d125-0075"
+msgid "Line count is the weakest comparison. By the book's counting convention (non-comment lines, blank lines included), the idiomatic program has 156 lines and the weird one has 170. They are about the same size. What differs is where the information sits."
+msgstr "El número de líneas es la comparación más débil. Según la convención de conteo del libro (líneas que no son comentarios, incluidas las líneas en blanco), el programa idiomático tiene 156 líneas y el programa raro tiene 170. Tienen casi el mismo tamaño. Lo que cambia es dónde está la información."
+
+#: lessons/study-guides/languages/cobol.md:164
+msgctxt "s-a5aa11fc12bf-0076"
+msgid "⟦SEP_0003⟧ Dimension ⟦SEP_0004⟧ ⟦CODE_0001⟧ (idiomatic) ⟦SEP_0005⟧ ⟦CODE_0002⟧ ⟦SEP_0006⟧"
+msgstr "⟦SEP_0003⟧ Dimensión ⟦SEP_0004⟧ ⟦CODE_0001⟧ (idiomático) ⟦SEP_0005⟧ ⟦CODE_0002⟧ ⟦SEP_0006⟧"
+
+#: lessons/study-guides/languages/cobol.md:166
+msgctxt "s-5ef97659241e-0077"
+msgid "⟦SEP_0003⟧ **Representation** ⟦SEP_0004⟧ The stop rule is a named range on the data: ⟦CODE_0001⟧ is true for 41 to 99. The category is arithmetic on a counter. ⟦SEP_0005⟧ The next category is the destination of a ⟦CODE_0002⟧. The stop rule is the capacity of a two-digit field plus an error clause. ⟦SEP_0006⟧"
+msgstr "⟦SEP_0003⟧ **Representación** ⟦SEP_0004⟧ La regla de parada es un rango con nombre sobre los datos: ⟦CODE_0001⟧ es verdadera de 41 a 99. La categoría es aritmética sobre un contador. ⟦SEP_0005⟧ La categoría siguiente es el destino de un ⟦CODE_0002⟧. La regla de parada es la capacidad de un campo de dos dígitos más una cláusula de error. ⟦SEP_0006⟧"
+
+#: lessons/study-guides/languages/cobol.md:167
+msgctxt "s-0372271c6acf-0078"
+msgid "⟦SEP_0007⟧ **Observability** ⟦SEP_0008⟧ Print ⟦CODE_0001⟧, ⟦CODE_0002⟧ and ⟦CODE_0003⟧ and you have the machine. ⟦SEP_0009⟧ The variables do not show the next category. You must know the last ⟦CODE_0004⟧ that ran. The source text of ⟦CODE_0005⟧ says ⟦CODE_0006⟧ and, at run time, almost never does. ⟦SEP_0010⟧"
+msgstr "⟦SEP_0007⟧ **Observabilidad** ⟦SEP_0008⟧ Imprime ⟦CODE_0001⟧, ⟦CODE_0002⟧ y ⟦CODE_0003⟧ y ya tienes la máquina. ⟦SEP_0009⟧ Las variables no muestran la categoría siguiente. Debes saber cuál fue el último ⟦CODE_0004⟧ que se ejecutó. El texto fuente de ⟦CODE_0005⟧ dice ⟦CODE_0006⟧ y, en tiempo de ejecución, casi nunca lo hace. ⟦SEP_0010⟧"
+
+#: lessons/study-guides/languages/cobol.md:168
+msgctxt "s-3740f3cd3e34-0079"
+msgid "⟦SEP_0002⟧ **Tests** ⟦SEP_0003⟧ Set ⟦CODE_0001⟧ to 40, then 41 and check the condition. ⟦SEP_0004⟧ You must drive the program with controlled hours and observe whether the next dispatch finishes. The rule cannot be unit-tested apart from the paragraphs. ⟦SEP_0005⟧"
+msgstr "⟦SEP_0002⟧ **Pruebas** ⟦SEP_0003⟧ Fija ⟦CODE_0001⟧ en 40, luego en 41 y comprueba la condición. ⟦SEP_0004⟧ Debes manejar el programa con horas controladas y observar si el siguiente despacho termina. La regla no se puede probar con una prueba unitaria aparte de los párrafos. ⟦SEP_0005⟧"
+
+#: lessons/study-guides/languages/cobol.md:169
+msgctxt "s-eb817b907704-0080"
+msgid "⟦SEP_0002⟧ **⟦DNT_0001⟧** ⟦SEP_0003⟧ A watch on three fields is enough. ⟦SEP_0004⟧ A watch on the numeric fields is incomplete. You need the current jump target, which most debuggers do not display. ⟦SEP_0005⟧"
+msgstr "⟦SEP_0002⟧ **⟦DNT_0001⟧** ⟦SEP_0003⟧ Basta con vigilar tres campos. ⟦SEP_0004⟧ Vigilar solo los campos numéricos es incompleto. Necesitas el destino de salto actual, que la mayoría de los depuradores no muestran. ⟦SEP_0005⟧"
+
+#: lessons/study-guides/languages/cobol.md:170
+msgctxt "s-5f2951a80fff-0081"
+msgid "⟦SEP_0004⟧ **Portability** ⟦SEP_0005⟧ Standard COBOL: the ⟦CODE_0001⟧, level 88 and ⟦CODE_0002⟧ semantics are part of the language. ⟦SEP_0006⟧ ⟦CODE_0003⟧ was declared obsolete in 1985 and deleted from the standard in 2002. GnuCOBOL accepts it and warns five times. A compiler in standards mode may not. ⟦SEP_0007⟧"
+msgstr "⟦SEP_0004⟧ **Portabilidad** ⟦SEP_0005⟧ COBOL estándar: la semántica de ⟦CODE_0001⟧, del nivel 88 y de ⟦CODE_0002⟧ forma parte del lenguaje. ⟦SEP_0006⟧ ⟦CODE_0003⟧ se declaró obsoleto en 1985 y se eliminó del estándar en 2002. GnuCOBOL lo acepta y advierte cinco veces. Un compilador en modo estándar puede no aceptarlo. ⟦SEP_0007⟧"
+
+#: lessons/study-guides/languages/cobol.md:171
+msgctxt "s-e649fd8e2ca8-0082"
+msgid "⟦SEP_0004⟧ **Cost** ⟦SEP_0005⟧ A readable loop. Changing the limit means editing one ⟦CODE_0001⟧ range, and renaming the condition if you want to keep the name honest. ⟦SEP_0006⟧ The program cannot be reentered safely, because two callers would share one rewritten ⟦CODE_0002⟧. Optimizers can assume little about a ⟦CODE_0003⟧ that might change. ⟦SEP_0007⟧"
+msgstr "⟦SEP_0004⟧ **Costo** ⟦SEP_0005⟧ Un bucle legible. Cambiar el límite significa editar un rango de ⟦CODE_0001⟧, y cambiar el nombre de la condición si quieres que el nombre siga siendo honesto. ⟦SEP_0006⟧ El programa no se puede reentrar de forma segura, porque dos llamadores compartirían un mismo ⟦CODE_0002⟧ reescrito. Los optimizadores pueden suponer poco sobre un ⟦CODE_0003⟧ que podría cambiar. ⟦SEP_0007⟧"
+
+#: lessons/study-guides/languages/cobol.md:173
+msgctxt "s-095e91e5e555-0083"
+msgid "Notice the asymmetry in what each design *cannot* say. The idiomatic version cannot make the loop target data. The weird version cannot make the stop rule readable. Neither is morally better. The book's historical case for ⟦CODE_0001⟧ is a tightly controlled batch system in which a switch set once and tested by an unconditional ⟦CODE_0002⟧ was cheaper than testing a flag on every pass, when memory and cycles were the constraint. That is a statement about 1978. It is not a recommendation for new code."
+msgstr "Fíjate en la asimetría de lo que cada diseño *no puede* decir. La versión idiomática no puede hacer que el destino del bucle sea un dato. La versión rara no puede hacer legible la regla de parada. Ninguna es moralmente mejor. El caso histórico que da el libro a favor de ⟦CODE_0001⟧ es un sistema por lotes muy controlado. Allí, un interruptor fijado una vez y probado con un ⟦CODE_0002⟧ incondicional costaba menos que probar una bandera en cada pasada. La memoria y los ciclos eran la limitación. Eso es una afirmación sobre 1978. No es una recomendación para código nuevo."
+
+#: lessons/study-guides/languages/cobol.md:175
+msgctxt "s-716cae37520b-0084"
+msgid "What the exercises demonstrate"
+msgstr "Qué demuestran los ejercicios"
+
+#: lessons/study-guides/languages/cobol.md:177
+msgctxt "s-34597beab0fa-0085"
+msgid "All of these exercises are marked verified in the book: the reference solutions were run against the real entries. Predict before you run each one, and write the prediction down."
+msgstr "Todos estos ejercicios están marcados como verificados en el libro: las soluciones de referencia se ejecutaron contra las entradas reales. Predice antes de ejecutar cada uno y anota la predicción."
+
+#: lessons/study-guides/languages/cobol.md:179
+msgctxt "s-d6a3ec9d5ed0-0086"
+msgid "⟦SEP_0001⟧ Exercise ⟦SEP_0002⟧ Predict first ⟦SEP_0003⟧ What the evidence shows ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ Ejercicio ⟦SEP_0002⟧ Predice primero ⟦SEP_0003⟧ Qué muestra la evidencia ⟦SEP_0004⟧"
+
+#: lessons/study-guides/languages/cobol.md:181
+msgctxt "s-3ee2398ab302-0087"
+msgid "⟦SEP_0002⟧ [A1. Read the rows](⟦DEST_0001⟧) ⟦SEP_0003⟧ Which card crossed 40, and what was the total just before it? Could a run reach exactly 40 and continue? ⟦SEP_0004⟧ The stop rule is a precise boundary, not an approximation. The output alone proves the invariant \"each row total equals the previous total plus hours\" and exposes an off-by-one error even though the hours change every run. ⟦SEP_0005⟧"
+msgstr "⟦SEP_0002⟧ [A1. Lee las filas](⟦DEST_0001⟧) ⟦SEP_0003⟧ ¿Qué tarjeta pasó de 40 y cuál era el total justo antes? ¿Podría una ejecución dar un total de exactamente 40 y continuar? ⟦SEP_0004⟧ La regla de parada es un límite preciso, no una aproximación. La salida sola prueba el invariante \"el total de cada fila es el total anterior más las horas\". También deja ver un error de desfase en una posición (*off-by-one*) aunque las horas cambien en cada ejecución. ⟦SEP_0005⟧"
+
+#: lessons/study-guides/languages/cobol.md:182
+msgctxt "s-6a69ef399474-0088"
+msgid "⟦SEP_0004⟧ [B1, part 1. Change the starting value](⟦DEST_0001⟧) ⟦SEP_0005⟧ Above what total will the run stop if ⟦CODE_0002⟧ starts at 49 instead of 59? ⟦SEP_0006⟧ The stop point moves to \"first total above 50\" (final totals 51 to 69). The shared checker passes with limit 50, and the entry's own ⟦CODE_0003⟧, which hard-codes 40, fails. One number encodes the business rule. ⟦SEP_0007⟧"
+msgstr "⟦SEP_0004⟧ [B1, parte 1. Cambia el valor inicial](⟦DEST_0001⟧) ⟦SEP_0005⟧ ¿Por encima de qué total se detendrá la ejecución si ⟦CODE_0002⟧ empieza en 49 en vez de 59? ⟦SEP_0006⟧ El punto de parada pasa a ser \"el primer total por encima de 50\" (totales finales de 51 a 69). El verificador compartido pasa con el límite 50, y el ⟦CODE_0003⟧ propio de la entrada, que fija 40 en el código, falla. Un solo número codifica la regla de negocio. ⟦SEP_0007⟧"
+
+#: lessons/study-guides/languages/cobol.md:183
+msgctxt "s-5db9053e5d9e-0089"
+msgid "⟦SEP_0007⟧ [B1, part 2. Add a ⟦CODE_0001⟧ to ⟦CODE_0002⟧](⟦DEST_0003⟧) ⟦SEP_0008⟧ Will you ever see the ⟦CODE_0004⟧ printed? At what stage will it fail? ⟦SEP_0009⟧ It fails at *compile time*, not run time: ⟦CODE_0005⟧, once per ⟦CODE_0006⟧ (five times). The compiler checks the structural rule that makes the target patchable. ⟦SEP_0010⟧"
+msgstr "⟦SEP_0007⟧ [B1, parte 2. Añade un ⟦CODE_0001⟧ a ⟦CODE_0002⟧](⟦DEST_0003⟧) ⟦SEP_0008⟧ ¿Llegarás a ver impreso ⟦CODE_0004⟧? ¿En qué etapa fallará? ⟦SEP_0009⟧ Falla en *tiempo de compilación*, no en tiempo de ejecución: ⟦CODE_0005⟧, una vez por cada ⟦CODE_0006⟧ (cinco veces). El compilador comprueba la regla estructural que permite parchear el destino. ⟦SEP_0010⟧"
+
+#: lessons/study-guides/languages/cobol.md:184
+msgctxt "s-a19e8f68060d-0090"
+msgid "⟦SEP_0002⟧ [C1. Weird next to boring](⟦DEST_0001⟧) ⟦SEP_0003⟧ For each program, which fields would you watch, isolate and change? ⟦SEP_0004⟧ Programs can satisfy the same output contract while exposing different state. Readability and testability depend on where the rule lives. ⟦SEP_0005⟧"
+msgstr "⟦SEP_0002⟧ [C1. Lo raro junto a lo aburrido](⟦DEST_0001⟧) ⟦SEP_0003⟧ En cada programa, ¿qué campos vigilarías, aislarías y cambiarías? ⟦SEP_0004⟧ Dos programas pueden cumplir el mismo contrato de salida y exponer un estado distinto. La legibilidad y la capacidad de prueba dependen de dónde vive la regla. ⟦SEP_0005⟧"
+
+#: lessons/study-guides/languages/cobol.md:185
+msgctxt "s-930401839979-0091"
+msgid "⟦SEP_0004⟧ [F. Prove a README claim](⟦DEST_0001⟧) ⟦SEP_0005⟧ What would a compile-time assertion look like for \"GnuCOBOL warns five times about ⟦CODE_0002⟧\"? ⟦SEP_0006⟧ A claim is only evidence if it can fail. A negative control (remove one ⟦CODE_0003⟧, expect the count to change) shows that your test can detect the change. ⟦SEP_0007⟧"
+msgstr "⟦SEP_0004⟧ [F. Demuestra una afirmación del README](⟦DEST_0001⟧) ⟦SEP_0005⟧ ¿Cómo sería una aserción en tiempo de compilación para \"GnuCOBOL advierte cinco veces sobre ⟦CODE_0002⟧\"? ⟦SEP_0006⟧ Una afirmación solo es evidencia si puede fallar. Un control negativo (quita un ⟦CODE_0003⟧ y espera que el conteo cambie) muestra que tu prueba puede detectar el cambio. ⟦SEP_0007⟧"
+
+#: lessons/study-guides/languages/cobol.md:187
+msgctxt "s-b92061eaf126-0092"
+msgid "Two cautions from the book's answer key. In B1 part 1, a single random run can satisfy *both* checkers if it crosses 40 and 50 on the same card, so use the entry's own check for the failure evidence. In F, the book's worked solution uses Haskell. A COBOL version is an adaptation you design yourself, and the claim it proves is the behavior of the tested build only."
+msgstr "Dos precauciones de la clave de respuestas del libro. En B1 parte 1, una sola ejecución aleatoria puede satisfacer a *ambos* verificadores. Esto ocurre si pasa de 40 y de 50 en la misma tarjeta. Usa la comprobación propia de la entrada como evidencia del fallo. En F, la solución resuelta del libro usa Haskell. Una versión en COBOL es una adaptación que diseñas tú, y la afirmación que prueba es solo el comportamiento de la compilación probada."
+
+#: lessons/study-guides/languages/cobol.md:189
+msgctxt "s-4fe97c469cdb-0093"
+msgid "Failure modes, costs and boundaries"
+msgstr "Modos de fallo, costos y límites"
+
+#: lessons/study-guides/languages/cobol.md:191
+msgctxt "s-893504ca816e-0094"
+msgid "Label every behavior by the strength of its promise (see [Three kinds of knowledge](⟦DEST_0001⟧)). The label changes what you may safely rely on."
+msgstr "Etiqueta cada comportamiento según la fuerza de su promesa (consulta [Tres tipos de conocimiento](⟦DEST_0001⟧)). La etiqueta cambia aquello en lo que puedes confiar con seguridad."
+
+#: lessons/study-guides/languages/cobol.md:193
+msgctxt "s-621aac5615e3-0095"
+msgid "⟦SEP_0001⟧ Behavior ⟦SEP_0002⟧ Label ⟦SEP_0003⟧ Why ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ Comportamiento ⟦SEP_0002⟧ Etiqueta ⟦SEP_0003⟧ Por qué ⟦SEP_0004⟧"
+
+#: lessons/study-guides/languages/cobol.md:195
+msgctxt "s-f446e23cd575-0096"
+msgid "⟦SEP_0003⟧ A size error leaves the receiving field unchanged and runs the ⟦CODE_0001⟧ clause ⟦SEP_0004⟧ **guaranteed** ⟦SEP_0005⟧ Specified COBOL semantics. Verified in a scratch run: ⟦CODE_0002⟧ left B at 99. ⟦SEP_0006⟧"
+msgstr "⟦SEP_0003⟧ Un error de tamaño deja sin cambios el campo receptor y ejecuta la cláusula ⟦CODE_0001⟧ ⟦SEP_0004⟧ **garantizado** ⟦SEP_0005⟧ Semántica especificada de COBOL. Verificado en una ejecución de trabajo: ⟦CODE_0002⟧ dejó B en 99. ⟦SEP_0006⟧"
+
+#: lessons/study-guides/languages/cobol.md:196
+msgctxt "s-7b24799f1aac-0097"
+msgid "⟦SEP_0004⟧ Without ⟦CODE_0001⟧, a two-digit add silently drops the leading digit (99 + 1 gives 00) ⟦SEP_0005⟧ **implementation-permitted** ⟦SEP_0006⟧ The standard does not promise a usable result when a size error happens and no handler is written. The tested GnuCOBOL build stored ⟦CODE_0002⟧: verified with ⟦CODE_0003⟧ and A = 99. Rely on the clause, not on the truncation. ⟦SEP_0007⟧"
+msgstr "⟦SEP_0004⟧ Sin ⟦CODE_0001⟧, una suma de dos dígitos descarta en silencio el dígito inicial (99 + 1 da 00) ⟦SEP_0005⟧ **permitido por la implementación** ⟦SEP_0006⟧ El estándar no promete un resultado utilizable cuando ocurre un error de tamaño y no se escribió ningún manejador. La compilación probada de GnuCOBOL guardó ⟦CODE_0002⟧: verificado con ⟦CODE_0003⟧ y A = 99. Confía en la cláusula, no en el truncamiento. ⟦SEP_0007⟧"
+
+#: lessons/study-guides/languages/cobol.md:197
+msgctxt "s-d82d05e5ad65-0098"
+msgid "⟦SEP_0003⟧ Storing 17.9 into ⟦CODE_0001⟧ gives 17 ⟦SEP_0004⟧ **guaranteed** ⟦SEP_0005⟧ Truncation by the receiver's declared scale. Verified: it printed ⟦CODE_0002⟧. ⟦SEP_0006⟧"
+msgstr "⟦SEP_0003⟧ Guardar 17.9 en ⟦CODE_0001⟧ da 17 ⟦SEP_0004⟧ **garantizado** ⟦SEP_0005⟧ Truncamiento según la escala declarada del receptor. Verificado: imprimió ⟦CODE_0002⟧. ⟦SEP_0006⟧"
+
+#: lessons/study-guides/languages/cobol.md:198
+msgctxt "s-3b043aa94a2d-0099"
+msgid "⟦SEP_0007⟧ ⟦CODE_0001⟧ leaves bytes to the right of what it writes ⟦SEP_0008⟧ **guaranteed** ⟦SEP_0009⟧ Defined behavior of ⟦CODE_0002⟧. Verified: writing ⟦CODE_0003⟧ into a buffer holding ⟦CODE_0004⟧ left ⟦CODE_0005⟧. Hence ⟦CODE_0006⟧ first. ⟦SEP_0010⟧"
+msgstr "⟦SEP_0007⟧ ⟦CODE_0001⟧ deja intactos los bytes a la derecha de lo que escribe ⟦SEP_0008⟧ **garantizado** ⟦SEP_0009⟧ Comportamiento definido de ⟦CODE_0002⟧. Verificado: escribir ⟦CODE_0003⟧ en un búfer que contenía ⟦CODE_0004⟧ dejó ⟦CODE_0005⟧. De ahí que ⟦CODE_0006⟧ vaya primero. ⟦SEP_0010⟧"
+
+#: lessons/study-guides/languages/cobol.md:199
+msgctxt "s-926b478ee819-0100"
+msgid "⟦SEP_0002⟧ ⟦CODE_0001⟧ is accepted and runs ⟦SEP_0003⟧ **implementation-permitted** ⟦SEP_0004⟧ Deleted from the standard in 2002. GnuCOBOL still supports it and prints five obsolescence warnings. ⟦SEP_0005⟧"
+msgstr "⟦SEP_0002⟧ ⟦CODE_0001⟧ se acepta y se ejecuta ⟦SEP_0003⟧ **permitido por la implementación** ⟦SEP_0004⟧ Se eliminó del estándar en 2002. GnuCOBOL todavía lo admite e imprime cinco advertencias de obsolescencia. ⟦SEP_0005⟧"
+
+#: lessons/study-guides/languages/cobol.md:200
+msgctxt "s-6f1cc5d1d6c5-0101"
+msgid "⟦SEP_0002⟧ ⟦CODE_0001⟧ returns a raw wait status (exit 3 appears as 768) ⟦SEP_0003⟧ **implementation-permitted** ⟦SEP_0004⟧ A host detail of the tested Linux build. The program divides by 256 to recover the exit code. ⟦SEP_0005⟧"
+msgstr "⟦SEP_0002⟧ ⟦CODE_0001⟧ devuelve un estado de espera sin procesar (el código de salida 3 aparece como 768) ⟦SEP_0003⟧ **permitido por la implementación** ⟦SEP_0004⟧ Un detalle del anfitrión, propio de la compilación de Linux probada. El programa divide entre 256 para recuperar el código de salida. ⟦SEP_0005⟧"
+
+#: lessons/study-guides/languages/cobol.md:201
+msgctxt "s-bc7e2c857f16-0102"
+msgid "⟦SEP_0002⟧ ⟦CODE_0001⟧ blanks the field when the variable is unset ⟦SEP_0003⟧ **implementation-permitted** ⟦SEP_0004⟧ This is how the tested runtime behaves. The weird program turns it into a table subscript on purpose (see below). ⟦SEP_0005⟧"
+msgstr "⟦SEP_0002⟧ ⟦CODE_0001⟧ deja el campo en blanco cuando la variable no está definida ⟦SEP_0003⟧ **permitido por la implementación** ⟦SEP_0004⟧ Así se comporta el entorno de ejecución probado. El programa raro lo convierte a propósito en un subíndice de tabla (consulta más abajo). ⟦SEP_0005⟧"
+
+#: lessons/study-guides/languages/cobol.md:202
+msgctxt "s-059f74019532-0103"
+msgid "⟦SEP_0003⟧ The program needs ⟦CODE_0001⟧ and ⟦CODE_0002⟧ on the host ⟦SEP_0004⟧ **implementation-permitted** ⟦SEP_0005⟧ These are host commands, not COBOL. ⟦SEP_0006⟧"
+msgstr "⟦SEP_0003⟧ El programa necesita ⟦CODE_0001⟧ y ⟦CODE_0002⟧ en el anfitrión ⟦SEP_0004⟧ **permitido por la implementación** ⟦SEP_0005⟧ Son comandos del anfitrión, no de COBOL. ⟦SEP_0006⟧"
+
+#: lessons/study-guides/languages/cobol.md:204
+msgctxt "s-01ed67dd80a1-0104"
+msgid "Nothing in the two COBOL entries is merely *accidentally exploited*. ⟦CODE_0001⟧ has a documented place in the compiler's history, which is not the same as an accident. The label exists for programs like the [Make entry](⟦DEST_0002⟧), whose restart behavior nobody promised."
+msgstr "Nada en las dos entradas de COBOL es simplemente *aprovechado por accidente*. ⟦CODE_0001⟧ tiene un lugar documentado en la historia del compilador, que no es lo mismo que un accidente. La etiqueta existe para programas como la [entrada de Make](⟦DEST_0002⟧), cuyo comportamiento de reinicio nadie prometió."
+
+#: lessons/study-guides/languages/cobol.md:206
+msgctxt "s-888032be3d46-0105"
+msgid "**Costs to be able to state.**"
+msgstr "**Costos que debes poder enunciar.**"
+
+#: lessons/study-guides/languages/cobol.md:208
+msgctxt "s-9e320439951e-0106"
+msgid "**You cannot understand a paragraph by reading it.** This is the complaint that removed ⟦CODE_0001⟧. The text of ⟦CODE_0002⟧ and its behavior are different things."
+msgstr "**No puedes entender un párrafo leyéndolo.** Esta es la queja que acabó con ⟦CODE_0001⟧. El texto de ⟦CODE_0002⟧ y su comportamiento son cosas distintas."
+
+#: lessons/study-guides/languages/cobol.md:209
+msgctxt "s-5d3b543c0310-0107"
+msgid "**Fixed format makes whitespace significant.** Columns 1-6 are the old sequence area, ⟦CODE_0001⟧ in column 7 starts a comment, area A begins at column 8 and area B at column 12, and text after column 72 is ignored. The entry's ⟦CODE_0002⟧ rejects any line over 72 characters because a silently ignored tail can change the program a human thinks they wrote. In exercise B1 part 2, line up the new ⟦CODE_0003⟧ with the existing ⟦CODE_0004⟧."
+msgstr "**El formato fijo hace significativos los espacios en blanco.** Las columnas 1 a 6 son el área de secuencia antigua. ⟦CODE_0001⟧ en la columna 7 inicia un comentario. El área A empieza en la columna 8 y el área B en la 12. El texto posterior a la columna 72 se ignora. El ⟦CODE_0002⟧ de la entrada rechaza cualquier línea de más de 72 caracteres. Una cola ignorada en silencio puede cambiar el programa que una persona cree haber escrito. En el ejercicio B1 parte 2, alinea el nuevo ⟦CODE_0003⟧ con el ⟦CODE_0004⟧ existente."
+
+#: lessons/study-guides/languages/cobol.md:210
+msgctxt "s-0219d2802819-0108"
+msgid "**Choosing without ⟦CODE_0001⟧.** The weird program picks a data folder with ⟦CODE_0002⟧ ([L119](⟦DEST_0003⟧)): length 0 selects table slot 1 and any longer length selects slot 2. A conditional can be written as a calculation plus a lookup, and the reader pays for it."
+msgstr "**Elegir sin ⟦CODE_0001⟧.** El programa raro elige una carpeta de datos con ⟦CODE_0002⟧ ([L119](⟦DEST_0003⟧)): la longitud 0 selecciona la ranura 1 de la tabla y cualquier longitud mayor selecciona la ranura 2. Un condicional se puede escribir como un cálculo más una búsqueda, y el lector paga el costo."
+
+#: lessons/study-guides/languages/cobol.md:211
+msgctxt "s-40c223d11a63-0109"
+msgid "**Host details leak in.** ⟦CODE_0001⟧ is a reserved word in GnuCOBOL, which is why the field is named ⟦CODE_0002⟧. The ISO week is built by hand from ⟦CODE_0003⟧, because an ISO week belongs to the year that holds its Thursday, so dates near New Year need care."
+msgstr "**Se filtran detalles del anfitrión.** ⟦CODE_0001⟧ es una palabra reservada en GnuCOBOL, por eso el campo se llama ⟦CODE_0002⟧. La semana ISO se construye a mano a partir de ⟦CODE_0003⟧. Esto se debe a que una semana ISO pertenece al año que contiene su jueves, así que las fechas cercanas al Año Nuevo exigen cuidado."
+
+#: lessons/study-guides/languages/cobol.md:212
+msgctxt "s-a318df27c700-0110"
+msgid "**SQL by string building.** Both programs assemble ⟦CODE_0001⟧ text. It is safe here only because every value is a number computed by the program or one of four fixed words. Do not copy it."
+msgstr "**SQL construido con cadenas de texto.** Ambos programas ensamblan texto ⟦CODE_0001⟧. Aquí es seguro solo porque cada valor es un número que calcula el programa o una de cuatro palabras fijas. No lo copies."
+
+#: lessons/study-guides/languages/cobol.md:214
+msgctxt "s-061eb6da82a8-0111"
+msgid "Connections across the repository"
+msgstr "Conexiones a lo largo del repositorio"
+
+#: lessons/study-guides/languages/cobol.md:216
+msgctxt "s-7dc19b17477f-0112"
+msgid "**Control state outside variables.** ⟦CODE_0001⟧ is one of several ways in this repository to keep the next step somewhere other than a variable. [Forth](⟦DEST_0002⟧) keeps it in the parse position ⟦CODE_0003⟧. [Make](⟦DEST_0004⟧) keeps it in which files exist. CMake keeps it in regex captures. [Tcl](⟦DEST_0005⟧) keeps it in a database trigger. The concept guide [State and control beyond variables](⟦DEST_0006⟧) compares them directly."
+msgstr "**Estado de control fuera de las variables.** ⟦CODE_0001⟧ es una de varias formas que hay en este repositorio de guardar el paso siguiente en un lugar distinto de una variable. [Forth](⟦DEST_0002⟧) lo guarda en la posición de análisis ⟦CODE_0003⟧. [Make](⟦DEST_0004⟧) lo guarda en qué archivos existen. CMake lo guarda en las capturas de una expresión regular. [Tcl](⟦DEST_0005⟧) lo guarda en un disparador de base de datos. La guía de concepto [Estado y control más allá de las variables](⟦DEST_0006⟧) los compara directamente."
+
+#: lessons/study-guides/languages/cobol.md:217
+msgctxt "s-7b168acaa2c5-0113"
+msgid "**Self-modifying behavior.** [APL's ⟦CODE_0001⟧](⟦DEST_0002⟧) rewrites a function while it runs. The comparison with ⟦CODE_0003⟧ is useful because APL's rewrite is explicit text and COBOL's is a patched jump."
+msgstr "**Comportamiento automodificable.** [El ⟦CODE_0001⟧ de APL](⟦DEST_0002⟧) reescribe una función mientras se ejecuta. La comparación con ⟦CODE_0003⟧ es útil porque la reescritura de APL es texto explícito y la de COBOL es un salto parcheado."
+
+#: lessons/study-guides/languages/cobol.md:218
+msgctxt "s-2ed2fe6bb7ef-0114"
+msgid "**Declarative stop rules.** The level-88 rule resembles the stop rules in [Haskell](⟦DEST_0001⟧) (how much of a list you read) and the 41-character literal in CMake. In each, the rule is *data or structure* rather than a comparison in a loop."
+msgstr "**Reglas de parada declarativas.** La regla de nivel 88 se parece a las reglas de parada de [Haskell](⟦DEST_0001⟧) (cuánto de una lista lees) y al literal de 41 caracteres de CMake. En cada caso, la regla es *dato o estructura* y no una comparación en un bucle."
+
+#: lessons/study-guides/languages/cobol.md:219
+msgctxt "s-a204729b0a09-0115"
+msgid "**Arithmetic error as control flow.** The size-error trick is a cousin of the exception and exit-status ideas in [Effects, errors and commitment](⟦DEST_0001⟧)."
+msgstr "**Error aritmético como flujo de control.** El truco del error de tamaño es pariente de las ideas de excepción y de estado de salida de [Efectos, errores y confirmación](⟦DEST_0001⟧)."
+
+#: lessons/study-guides/languages/cobol.md:220
+msgctxt "s-9f96b5d213ac-0116"
+msgid "**What the label means.** [Portability, abstraction and cost](⟦DEST_0001⟧) explains the vocabulary of guaranteed and implementation-permitted behavior."
+msgstr "**Qué significa la etiqueta.** [Portabilidad, abstracción y costo](⟦DEST_0001⟧) explica el vocabulario del comportamiento garantizado y permitido por la implementación."
+
+#: lessons/study-guides/languages/cobol.md:221
+msgctxt "s-3af347d8d279-0117"
+msgid "**In the book.** The concept chapters are [What counts as a machine?](⟦DEST_0001⟧), [Control flow and continuations](⟦DEST_0002⟧), [Effects, errors and commitment](⟦DEST_0003⟧) and [Abstraction leaks and implementation dependence](⟦DEST_0004⟧). The language page is [COBOL](⟦DEST_0005⟧)."
+msgstr "**En el libro.** Los capítulos de conceptos son [¿Qué cuenta como máquina?](⟦DEST_0001⟧), [Flujo de control y continuaciones](⟦DEST_0002⟧), [Efectos, errores y confirmación](⟦DEST_0003⟧) y [Fugas de abstracción y dependencia de la implementación](⟦DEST_0004⟧). La página del lenguaje es [COBOL](⟦DEST_0005⟧)."
+
+#: lessons/study-guides/languages/cobol.md:223
+msgctxt "s-50944288ce61-0118"
+msgid "Self-check"
+msgstr "Autoevaluación"
+
+#: lessons/study-guides/languages/cobol.md:225
+msgctxt "s-274e192b952c-0119"
+msgid "Answer each question in your own words before you read the italic text. Say what evidence would support each answer."
+msgstr "Responde cada pregunta con tus propias palabras antes de leer el texto en cursiva. Di qué evidencia respaldaría cada respuesta."
+
+#: lessons/study-guides/languages/cobol.md:227
+msgctxt "s-df56b301cb47-0120"
+msgid ""
+"**Trace.** Hours are 12, 17, 11, 10, in that order. For ⟦CODE_0001⟧, write the true total and ⟦CODE_0002⟧ after each card and say what happens on the fourth. *(Totals 12, 29, 40, 50. Headroom 71, 88, 99, then a size error on the fourth. The third card makes the total exactly 40, so the run continues.)*\n"
+"2. **Explain.** Why does ⟦CODE_0003⟧ inside ⟦CODE_0004⟧ fail to compile, when the same ⟦CODE_0005⟧ inside ⟦CODE_0006⟧ works? What would a compiler need to know to patch a jump? *(The target of ⟦CODE_0007⟧ must be a paragraph that is exactly one unconditional ⟦CODE_0008⟧, which the compiler can check before the program runs.)*\n"
+"3. **Transfer.** Change the idiomatic program so that it stops on the first total above 50. What do you edit? What would you edit in the weird program, and which of the two edits is easier to review? *(Idiomatic: ⟦CODE_0009⟧ becomes ⟦CODE_0010⟧, and you should rename it. Weird: the starting value 59 becomes 49. Both are one-line edits, but the first states the rule and the second hides it in an offset.)*\n"
+"4. **Evidence.** A colleague says, \"GnuCOBOL warns five times about ⟦CODE_0011⟧ in ⟦CODE_0012⟧.\" Design a test that could fail. What is your negative control, and which label does the claim get? *(Compile the unmodified entry, capture the diagnostics and assert five ⟦CODE_0013⟧ warnings. For the control, remove one ⟦CODE_0014⟧ in a copy and expect four. The claim is implementation-permitted, because it describes one build's diagnostics.)*"
+msgstr ""
+"**Traza.** Las horas son 12, 17, 11, 10, en ese orden. Para ⟦CODE_0001⟧, escribe el total real y ⟦CODE_0002⟧ después de cada tarjeta y di qué pasa en la cuarta. *(Totales 12, 29, 40, 50. Margen 71, 88, 99, y luego un error de tamaño en la cuarta. La tercera tarjeta deja el total en exactamente 40, así que la ejecución continúa.)*\n"
+"2. **Explica.** ¿Por qué ⟦CODE_0003⟧ dentro de ⟦CODE_0004⟧ no compila, cuando el mismo ⟦CODE_0005⟧ dentro de ⟦CODE_0006⟧ funciona? ¿Qué necesitaría saber un compilador para parchear un salto? *(El destino de ⟦CODE_0007⟧ debe ser un párrafo que sea exactamente un ⟦CODE_0008⟧ incondicional, algo que el compilador puede comprobar antes de que el programa se ejecute.)*\n"
+"3. **Transfiere.** Cambia el programa idiomático para que se detenga en el primer total por encima de 50. ¿Qué editas? ¿Qué editarías en el programa raro, y cuál de las dos ediciones es más fácil de revisar? *(Idiomático: ⟦CODE_0009⟧ pasa a ser ⟦CODE_0010⟧. Conviene cambiarle el nombre. Raro: el valor inicial 59 pasa a ser 49. Ambas son ediciones de una línea, pero la primera enuncia la regla y la segunda la oculta en un desplazamiento.)*\n"
+"4. **Evidencia.** Una colega dice: \"GnuCOBOL advierte cinco veces sobre ⟦CODE_0011⟧ en ⟦CODE_0012⟧\". Diseña una prueba que pueda fallar. ¿Cuál es tu control negativo y qué etiqueta recibe la afirmación? *(Compila la entrada sin modificar, captura los diagnósticos y verifica que haya cinco advertencias ⟦CODE_0013⟧. Para el control, quita un ⟦CODE_0014⟧ en una copia y espera cuatro. La afirmación es permitida por la implementación, porque describe los diagnósticos de una sola compilación.)*"
+
+#: lessons/study-guides/languages/cobol.md:232
+msgctxt "s-4082f515b2f4-0121"
+msgid "Further reading"
+msgstr "Lecturas adicionales"
+
+#: lessons/study-guides/languages/cobol.md:234
+msgctxt "s-7140e21932f2-0122"
+msgid "[COBOL](⟦DEST_0001⟧) (Wikipedia): a broad orientation, including the language's history and the standards that followed 1985."
+msgstr "[COBOL](⟦DEST_0001⟧) (Wikipedia): una orientación general, con la historia del lenguaje y los estándares posteriores a 1985."
+
+#: lessons/study-guides/languages/cobol.md:235
+msgctxt "s-dfe09ccb3202-0123"
+msgid "[Goto and structured programming](⟦DEST_0001⟧) (this book): the argument that ⟦CODE_0002⟧ is exhibit A for."
+msgstr "[Goto y la programación estructurada](⟦DEST_0001⟧) (este libro): el argumento del que ⟦CODE_0002⟧ es el mejor ejemplo."
+
+#: lessons/study-guides/languages/cobol.md:236
+msgctxt "s-955a2373d178-0124"
+msgid "[Self-modifying code](⟦DEST_0001⟧) (Wikipedia): where ⟦CODE_0002⟧ fits among other ways programs change themselves. ⟦CODE_0003⟧ changes a jump target, not instruction bytes, and the difference matters."
+msgstr "[Código automodificable](⟦DEST_0001⟧) (Wikipedia): dónde encaja ⟦CODE_0002⟧ entre otras formas en que los programas se cambian a sí mismos. ⟦CODE_0003⟧ cambia un destino de salto, no bytes de instrucciones. La diferencia importa."
+
+#: lessons/study-guides/languages/cobol.md:237
+msgctxt "s-7d9f0c59eeaf-0125"
+msgid "[Undefined, unspecified and implementation-defined behavior](⟦DEST_0001⟧) (this book): the three standards terms behind the labels in this guide."
+msgstr "[Comportamiento indefinido, no especificado y definido por la implementación](⟦DEST_0001⟧) (este libro): los tres términos de los estándares detrás de las etiquetas de esta guía."

@@ -1,96 +1,96 @@
-# COBOL study guide
+# Guía de estudio de COBOL
 
-## What this guide is for
+## Para qué sirve esta guía
 
-This guide reads two COBOL programs side by side: [`src/cobol`](../../../src/cobol/README.md), which declares its stop rule as data, and [`src/cobol-weird`](../../../src/cobol-weird/README.md), which stores its loop in the target of a `GO TO` that rewrites itself. It treats them as two answers to one question: *where does a program keep "what happens next" and "when to stop"?*
+Esta guía lee dos programas COBOL uno junto al otro. [`src/cobol`](../../../src/cobol/README.md) declara su regla de parada como dato. [`src/cobol-weird`](../../../src/cobol-weird/README.md) guarda su bucle en el destino de un `GO TO` que se reescribe a sí mismo. Los trata como dos respuestas a una misma pregunta: *¿dónde guarda un programa "qué pasa después" y "cuándo parar"?*
 
-It began as a study guide written by the book's co-author Ken Astl for the COBOL chapter, and it keeps his method: predict the state change, then run, then compare.
+Empezó como una guía de estudio que escribió Ken Astl, coautor del libro, para el capítulo de COBOL. Conserva su método: predice el cambio de estado, luego ejecuta y después compara.
 
-When you finish, you should be able to:
+Al terminar, deberías poder:
 
-1. Explain how a level-88 condition name turns a stop rule into a property of the data, and why the idiomatic loop contains no comparison.
-2. Trace both programs through the same three cards and name the state that decides each step: `WS-TOTAL` and `WS-ENTRIES` in one program, the target of `NEXT-CARD` and `WS-HEADROOM` in the other.
-3. Say exactly what `ALTER` changes, what it leaves alone and why it needs a paragraph that is only one `GO TO`.
-4. Explain why a size error is a conditional, and what a field holding 99 can mean.
-5. Label each COBOL behavior in the programs as guaranteed, implementation-permitted or accidentally exploited, and say what evidence supports the label.
+1. Explicar cómo un nombre de condición de nivel 88 vuelve la regla de parada una propiedad de los datos, y por qué el bucle idiomático no contiene ninguna comparación.
+2. Trazar ambos programas con las mismas tres tarjetas. Nombrar el estado que decide cada paso: `WS-TOTAL` y `WS-ENTRIES` en un programa, el destino de `NEXT-CARD` y `WS-HEADROOM` en el otro.
+3. Decir exactamente qué cambia `ALTER`, qué deja intacto y por qué necesita un párrafo que es solo un `GO TO`.
+4. Explicar por qué un error de tamaño es un condicional, y qué puede significar un campo que contiene 99.
+5. Etiquetar cada comportamiento de COBOL de los programas como garantizado, permitido por la implementación o aprovechado por accidente, y decir qué evidencia respalda la etiqueta.
 
-**Scope limits.** This is not a COBOL tutorial: it does not teach divisions, files or the full `PICTURE` language. It covers GnuCOBOL 3.1 or later in fixed format. It does not teach the SQL, which both programs build as text and hand to `sqlite3`. For the general lesson, read [COBOL in the book](../../lenguajes/cobol.md) first, or after.
+**Límites del alcance.** Esto no es un tutorial de COBOL: no enseña divisiones, archivos ni el lenguaje `PICTURE` completo. Cubre GnuCOBOL 3.1 o posterior en formato fijo. No enseña el SQL que ambos programas construyen como texto y pasan a `sqlite3`. Para la lección general, lee [COBOL en el libro](../../lenguajes/cobol.md) antes o después.
 
-## Before you begin
+## Antes de empezar
 
-**Safety model.** Every entry writes fictional **DEMO ONLY** data to a scratch SQLite file, and nothing connects to a real time-reporting system. The programs start processes (`mkdir`, `sqlite3`), so read the source before you run it, and run it in the sandbox first. From the repository root, with the one-time setup in [`SANDBOX-SETUP.md`](../../../SANDBOX-SETUP.md) done:
+**Modelo de seguridad.** Cada entrada escribe datos ficticios marcados con **DEMO ONLY** en un archivo SQLite de trabajo, y nada se conecta a un sistema real de control de horas. Los programas inician procesos (`mkdir`, `sqlite3`), así que lee el código fuente antes de ejecutarlos y ejecútalos primero en el entorno aislado (*sandbox*). Desde la raíz del repositorio, con la configuración única de [`SANDBOX-SETUP.md`](../../../SANDBOX-SETUP.md) ya hecha:
 
 ```bash
 sandbox/container/run-image.sh src/cobol
 sandbox/container/run-image.sh src/cobol-weird
 ```
 
-Work on a copy when an exercise asks you to edit (see [Running things safely](../../exercises.md#running-things-safely)). The output is random, so your numbers will differ from every number printed here. The properties will not.
+Trabaja en una copia cuando un ejercicio te pida editar (consulta [Ejecutar cosas de forma segura](../../exercises.md#running-things-safely)). La salida es aleatoria, así que tus números serán distintos de todos los que se imprimen aquí. Las propiedades no cambiarán.
 
-**Prediction rule.** Before each run, write down which state will change, which statement will run next and what output would prove you wrong. The check script tells you whether you got a result. Only the prediction tells you whether you understood.
+**Regla de predicción.** Antes de cada ejecución, anota qué estado va a cambiar, qué sentencia se ejecutará a continuación y qué salida demostraría que te equivocaste. El script de comprobación te dice si obtuviste un resultado. Solo la predicción te dice si entendiste.
 
-**Vocabulary you need.**
+**Vocabulario que necesitas.**
 
-| Term | Meaning here |
+| Término | Significado aquí |
 | --- | --- |
-| `PIC 99` | A field that holds exactly two decimal digits, 00 to 99. Its shape is part of its meaning. |
-| Level 88 | A named condition on the field above it. It has no storage of its own. |
-| Paragraph | A named block of statements. Control falls from one paragraph into the next unless a jump redirects it. |
-| `GO TO` / `ALTER` | `GO TO` jumps. `ALTER` changes where a given `GO TO` will jump the next time it runs. |
-| Size error | An arithmetic result that does not fit its receiving field. |
+| `PIC 99` | Un campo que contiene exactamente dos dígitos decimales, de 00 a 99. Su forma es parte de su significado. |
+| Nivel 88 | Una condición con nombre sobre el campo que tiene encima. No tiene almacenamiento propio. |
+| Párrafo | Un bloque de sentencias con nombre. El control sigue de un párrafo al siguiente, salvo que un salto lo redirija. |
+| `GO TO` /`ALTER` | `GO TO` salta. `ALTER` cambia adónde saltará un `GO TO` dado la próxima vez que se ejecute. |
+| Error de tamaño | Un resultado aritmético que no cabe en el campo que lo recibe. |
 
-## The shared challenge
+## El reto compartido
 
-The [challenge specification](../../introduccion.md#what-the-challenge-does) calls for cards with a category and 10 to 19 whole hours. Categories cycle through Meetings, Coding, Debugging and Learning. Add each card's hours to the running total. Stop when the total passes 40. Keep the **first card that takes the total over 40**. A total of exactly 40 continues. Four 10-hour cards need a fifth card, in the Meetings category. Conforming runs finish with 3 to 5 cards and a total of 41 to 59 hours.
+La [especificación del reto](../../introduccion.md#what-the-challenge-does) pide tarjetas con una categoría y de 10 a 19 horas enteras. Las categorías se repiten en ciclo: `Meetings`, `Coding`, `Debugging` y `Learning`. Suma las horas de cada tarjeta al total acumulado. Detente cuando el total pasa de 40. Conserva la **primera tarjeta con la que el total pasa de 40**. Un total de exactamente 40 continúa. Cuatro tarjetas de 10 horas necesitan una quinta tarjeta, de la categoría `Meetings`. Las ejecuciones conformes tienen de 3 a 5 tarjetas y un total de 41 a 59 horas.
 
-Two cards reach at most 38 hours, so a conforming run needs at least three cards.
+Dos tarjetas suman 38 horas como máximo, así que una ejecución conforme necesita al menos tres tarjetas.
 
-Both COBOL entries save a completed run as a single transaction in a SQLite file and print a summary. The shared checker, [`lessons/tools/check-demo.sh`](../../tools/check-demo.sh), verifies the *shape* of the output: the `DEMO ONLY` marker, hours in range, correct running sums, a stop on the first crossing and a summary that agrees with the rows.
+Las dos entradas de COBOL guardan una ejecución completa como una sola transacción en un archivo SQLite e imprimen un resumen. El verificador compartido, [`lessons/tools/check-demo.sh`](../../tools/check-demo.sh), comprueba la *forma* de la salida. Revisa el marcador `DEMO ONLY`, las horas en el rango, las sumas acumuladas correctas, una parada en el primer cruce y un resumen que coincide con las filas.
 
-For a stop rule of exactly this shape, notice how COBOL says it. In the idiomatic program the rule is `88 OVER-FORTY VALUE 41 THRU 99`: the first total *above* 40. There is no `<=` or `>` anywhere to get wrong.
+Para una regla de parada exactamente de esta forma, fíjate en cómo la dice COBOL. En el programa idiomático la regla es `88 OVER-FORTY VALUE 41 THRU 99`: el primer total que está *por encima de* 40. No hay ningún `<=` ni `>` en el que equivocarse.
 
-## The machine to identify
+## La máquina que hay que identificar
 
-Name the machine before you read the code. Both programs answer the same five questions, with different parts of the language.
+Nombra la máquina antes de leer el código. Los dos programas responden las mismas cinco preguntas, con partes distintas del lenguaje.
 
-**What repeats.** In `cobol`, one statement repeats a paragraph: `PERFORM DRAW-CARD UNTIL OVER-FORTY` ([L93](../../../src/cobol/timecards.cob#L93)). In `cobol-weird`, nothing is *performed*. Control makes a circuit: `NEXT-CARD` jumps to a category paragraph, that paragraph joins `RECORD-CARD`, and `RECORD-CARD` jumps back to `NEXT-CARD` ([L150-200](../../../src/cobol-weird/timecards.cob#L150-L200)).
+**Qué se repite.** En `cobol`, una sentencia repite un párrafo: `PERFORM DRAW-CARD UNTIL OVER-FORTY` ([L93](../../../src/cobol/timecards.cob#L93)). En `cobol-weird`, nada se *ejecuta con PERFORM*. El control forma un circuito: `NEXT-CARD` salta a un párrafo de categoría. Ese párrafo desemboca en `RECORD-CARD`. Luego `RECORD-CARD` vuelve a saltar a `NEXT-CARD` ([L150-200](../../../src/cobol-weird/timecards.cob#L150-L200)).
 
-**Where state lives.** In `cobol`, the running total `WS-TOTAL` and the count `WS-ENTRIES` are ordinary fields, and the category is computed from the count: `MOD(WS-ENTRIES, 4) + 1` ([L106](../../../src/cobol/timecards.cob#L106)). In `cobol-weird`, "which category is next" is not in any variable. It exists only as the current target of the `GO TO` inside `NEXT-CARD`. A second number, `WS-HEADROOM`, starts at 59 and tracks `59 + total` ([L44](../../../src/cobol-weird/timecards.cob#L44)).
+**Dónde vive el estado.** En `cobol`, el total acumulado `WS-TOTAL` y el conteo `WS-ENTRIES` son campos comunes, y la categoría se calcula a partir del conteo: `MOD(WS-ENTRIES, 4) + 1` ([L106](../../../src/cobol/timecards.cob#L106)). En `cobol-weird`, "qué categoría toca después" no está en ninguna variable. Existe solo como el destino actual del `GO TO` dentro de `NEXT-CARD`. Un segundo número, `WS-HEADROOM`, empieza en 59 y sigue la pista de `59 + total` ([L44](../../../src/cobol-weird/timecards.cob#L44)).
 
-**What advances the next step.** In `cobol`, the `PERFORM` statement decides, by testing the condition before each pass. In `cobol-weird`, each category paragraph executes `ALTER NEXT-CARD TO PROCEED TO <next category>` ([L157](../../../src/cobol-weird/timecards.cob#L157), [L162](../../../src/cobol-weird/timecards.cob#L162), [L167](../../../src/cobol-weird/timecards.cob#L167), [L172](../../../src/cobol-weird/timecards.cob#L172)), so the *same* `GO TO` leads somewhere new on the next trip.
+**Qué hace avanzar el paso siguiente.** En `cobol`, la sentencia `PERFORM` decide, al comprobar la condición antes de cada pasada. En `cobol-weird`, cada párrafo de categoría ejecuta `ALTER NEXT-CARD TO PROCEED TO <next category>` ([L157](../../../src/cobol-weird/timecards.cob#L157), [L162](../../../src/cobol-weird/timecards.cob#L162), [L167](../../../src/cobol-weird/timecards.cob#L167), [L172](../../../src/cobol-weird/timecards.cob#L172)), así que el *mismo* `GO TO` lleva a otro destino en la vuelta siguiente.
 
-**What stops it.** In `cobol`, the data declaration `88 OVER-FORTY VALUE 41 THRU 99` on `WS-TOTAL` ([L41-42](../../../src/cobol/timecards.cob#L41-L42)). In `cobol-weird`, an overflow: `ADD WS-HOURS TO WS-HEADROOM ON SIZE ERROR ...` ([L196-199](../../../src/cobol-weird/timecards.cob#L196-L199)). `59 + total` fits in two digits while the total is 40 or less. The first card that makes it 100 or more is a size error, and the handler rewrites `NEXT-CARD` one last time, to `FINISH-RUN`.
+**Qué lo detiene.** En `cobol`, la declaración de datos `88 OVER-FORTY VALUE 41 THRU 99` sobre `WS-TOTAL` ([L41-42](../../../src/cobol/timecards.cob#L41-L42)). En `cobol-weird`, un desbordamiento: `ADD WS-HOURS TO WS-HEADROOM ON SIZE ERROR ...` ([L196-199](../../../src/cobol-weird/timecards.cob#L196-L199)). `59 + total` cabe en dos dígitos mientras el total no pase de 40. La primera tarjeta que lo deja en 100 o más es un error de tamaño, y el manejador reescribe `NEXT-CARD` por última vez, a `FINISH-RUN`.
 
-**What commits.** Both programs write `INSERT` lines to a line-sequential script file and print each row as they go. Nothing reaches the database until the finishing paragraph closes the file and runs `sqlite3` on it. The script has a `BEGIN` and a `COMMIT`, so the run lands as one transaction or not at all. The `DISPLAY` rows are *not* part of that transaction: they are already on the terminal, whatever `sqlite3` later does.
+**Qué confirma.** Ambos programas escriben líneas `INSERT` en un archivo de script secuencial por líneas e imprimen cada fila a medida que avanzan. Nada llega a la base de datos hasta que el párrafo final cierra el archivo y ejecuta `sqlite3` sobre él. El script tiene un `BEGIN` y un `COMMIT`, así que la ejecución se aplica como una sola transacción o no se aplica en absoluto. Las filas `DISPLAY` *no* forman parte de esa transacción: ya están en la terminal, haga lo que haga `sqlite3` después.
 
 <!-- diagram-source: src/cobol/README.md#program-flow -->
 
 ```mermaid
 flowchart TD
-    accTitle: cobol: PERFORM UNTIL with the stop rule declared as data
-    accDescr: A flowchart. Set-up and open-script run once. Then PERFORM DRAW-CARD repeats until the 88-level condition OVER-FORTY, declared on WS-TOTAL, is true. Each pass draws a card, adds its hours to the total, prints the row and writes an INSERT line. When OVER-FORTY is true the loop ends, the script is committed with sqlite3, and the run stops.
-    A["SET-UP, OPEN-SCRIPT: seed, ISO week, folder, SQL file"] --> B{{"OVER-FORTY? WS-TOTAL in 41 to 99"}}
-    B -->|No| C["DRAW-CARD: category from MOD of WS-ENTRIES, hours, ADD to WS-TOTAL"]
-    C --> D["DISPLAY the row, WRITE the INSERT line"]
+    accTitle: cobol: PERFORM UNTIL con la regla de parada declarada como datos
+    accDescr: Un diagrama de flujo. Set-up y open-script se ejecutan una sola vez. Después, PERFORM DRAW-CARD se repite hasta que la condición de nivel 88 OVER-FORTY, declarada sobre WS-TOTAL, sea verdadera. Cada pasada toma una tarjeta, suma sus horas al total, imprime la fila y escribe una línea INSERT. Cuando OVER-FORTY es verdadera, el bucle termina, el script se confirma con sqlite3 y la ejecución se detiene.
+    A["SET-UP, OPEN-SCRIPT: semilla, semana ISO, carpeta, archivo SQL"] --> B{{"OVER-FORTY? WS-TOTAL de 41 a 99"}}
+    B -->|No| C["DRAW-CARD: categoría a partir de MOD de WS-ENTRIES, horas, ADD a WS-TOTAL"]
+    C --> D["Muestra la fila con DISPLAY y escribe la línea INSERT con WRITE"]
     D --> B
-    B -->|Yes| E["COMMIT-SCRIPT: run sqlite3"]
+    B -->|Sí| E["COMMIT-SCRIPT: ejecuta sqlite3"]
     E --> F["DISPLAY summary, STOP RUN"]
 ```
 
-The first diagram is a conventional loop. The test is a real node, and the cycle is a real edge. The test node asks the data a question.
+El primer diagrama es un bucle convencional. La prueba es un nodo real y el ciclo es una arista real. El nodo de prueba le hace una pregunta a los datos.
 
 <!-- diagram-source: src/cobol-weird/README.md#program-flow -->
 
 ```mermaid
 stateDiagram-v2
-    accTitle: cobol-weird: the target of one GO TO is the loop
-    accDescr: A state diagram. The state is the current target of the single GO TO in the NEXT-CARD paragraph. It starts as Meetings. Each category paragraph rewrites it to the next category with ALTER, so the cycle is Meetings, Coding, Debugging, Learning, and back to Meetings. When the two-digit headroom field overflows, ON SIZE ERROR rewrites the target to FINISH-RUN, which commits the script and stops.
+    accTitle: cobol-weird: el destino de un solo GO TO es el bucle
+    accDescr: Un diagrama de estados. El estado es el destino actual del único GO TO del párrafo NEXT-CARD. Empieza como Meetings. Cada párrafo de categoría lo reescribe con ALTER para apuntar a la categoría siguiente, así que el ciclo es Meetings, Coding, Debugging, Learning y de nuevo Meetings. Cuando el campo de margen de dos dígitos se desborda, ON SIZE ERROR reescribe el destino a FINISH-RUN, que hace la confirmación de la transacción del script y se detiene.
     state "Meetings" as M
     state "Coding" as C
     state "Debugging" as D
     state "Learning" as L
     state "FINISH-RUN" as F
-    state "NEXT-CARD's GO TO jumps to" as T {
+    state "El GO TO de NEXT-CARD salta a" as T {
         [*] --> M
         M --> C : ALTER
         C --> D : ALTER
@@ -101,11 +101,11 @@ stateDiagram-v2
     F --> [*] : COMMIT, sqlite3, STOP RUN
 ```
 
-The second diagram has no test node at all. It is a state diagram whose single state is the *target of one jump*. The exit is one more rewrite of that same target, triggered by overflow.
+El segundo diagrama no tiene ningún nodo de prueba. Es un diagrama de estados cuyo único estado es el *destino de un salto*. La salida es una reescritura más de ese mismo destino, provocada por el desbordamiento.
 
-## Trace one run
+## Traza una ejecución
 
-The programs draw random hours, so a real run cannot be fixed in advance. For a trace, use hours **15, 19, 12**, in that order. To check the trace against real behavior, a scratch copy of `cobol-weird` was run in the sandbox with the hours read from a fixed string and two `DISPLAY` lines added to show `WS-HEADROOM` around the add. (Those lines sit in `RECORD-CARD`. A `DISPLAY` inside `NEXT-CARD` would be a different matter: see the exercises.) The output was:
+Los programas sacan horas aleatorias, así que una ejecución real no se puede fijar de antemano. Para la traza, usa las horas **15, 19, 12**, en ese orden. Para comprobar la traza con el comportamiento real, se ejecutó en el entorno aislado una copia de trabajo de `cobol-weird`. Las horas se leyeron de una cadena de texto fija. Se añadieron dos líneas `DISPLAY` para mostrar `WS-HEADROOM` alrededor de la suma. (Esas líneas están en `RECORD-CARD`. Un `DISPLAY` dentro de `NEXT-CARD` sería otro asunto: consulta los ejercicios.) La salida fue:
 
 ```text
 Meetings	15	15	DEMO ONLY
@@ -121,117 +121,117 @@ after add:  headroom=93
 # committed total=46 entries=3 DEMO ONLY
 ```
 
-(The ISO-week column was removed for width.) The tables below list the state that decides each step.
+(Se quitó la columna de la semana ISO por falta de ancho.) Las tablas siguientes muestran el estado que decide cada paso.
 
-**`cobol`, the idiomatic version.** The test runs *before* each pass.
+**`cobol`, la versión idiomática.** La prueba se hace *antes* de cada pasada.
 
-| Step | `OVER-FORTY` tested on | Draw | `WS-HOURS` | `WS-TOTAL` after | `WS-ENTRIES` after |
+| Paso | `OVER-FORTY` se prueba con | Sacar | `WS-HOURS` | `WS-TOTAL` después | `WS-ENTRIES` después |
 | --- | --- | --- | ---: | ---: | ---: |
-| 1 | total 0: false | `MOD(0,4)+1` = 1, Meetings | 15 | 15 | 1 |
-| 2 | total 15: false | `MOD(1,4)+1` = 2, Coding | 19 | 34 | 2 |
-| 3 | total 34: false | `MOD(2,4)+1` = 3, Debugging | 12 | 46 | 3 |
-| end | total 46: **true** | none | none | 46 | 3 |
+| 1 | total 0: falso | `MOD(0,4)+1` = 1, Meetings | 15 | 15 | 1 |
+| 2 | total 15: falso | `MOD(1,4)+1` = 2, Coding | 19 | 34 | 2 |
+| 3 | total 34: falso | `MOD(2,4)+1` = 3, Debugging | 12 | 46 | 3 |
+| fin | total 46: **verdadero** | ninguno | ninguno | 46 | 3 |
 
-The third card is kept because the test happens *before* the next pass, so it only sees the effect of the card just completed. That is the reason the crossing card is part of the result.
+La tercera tarjeta se conserva porque la prueba ocurre *antes* de la pasada siguiente, así que solo ve el efecto de la tarjeta que acaba de completarse. Por eso la tarjeta del cruce forma parte del resultado.
 
-**`cobol-weird`, the self-rewriting version.** `NEXT-CARD` starts pointing at Meetings.
+**`cobol-weird`, la versión que se reescribe a sí misma.** `NEXT-CARD` empieza apuntando a Meetings.
 
-| Step | Target of `NEXT-CARD` on entry | Category runs, then `ALTER` sets target to | `WS-TOTAL` after | `WS-HEADROOM` before, then after | Outcome of the add |
+| Paso | Destino de `NEXT-CARD` en la entrada | Se ejecuta la categoría y luego `ALTER` fija el destino en | `WS-TOTAL` después | `WS-HEADROOM` antes y después | Resultado de la suma |
 | --- | --- | --- | ---: | --- | --- |
-| 1 | Meetings | Coding | 15 | 59, then 74 | fits |
-| 2 | Coding | Debugging | 34 | 74, then 93 | fits |
-| 3 | Debugging | Learning, then **FINISH-RUN** | 46 | 93, then 93 | size error: 93 + 12 = 105 |
-| end | FINISH-RUN | none | 46 | 93 | commit and stop |
+| 1 | Meetings | Coding | 15 | 59, luego 74 | cabe |
+| 2 | Coding | Debugging | 34 | 74, luego 93 | cabe |
+| 3 | Debugging | Learning, luego **FINISH-RUN** | 46 | 93, luego 93 | error de tamaño: 93 + 12 = 105 |
+| fin | FINISH-RUN | ninguna | 46 | 93 | confirma y se detiene |
 
-Look at step 3. The category paragraph for Debugging has already set the target to Learning. Then the size error handler in `RECORD-CARD` overwrites that target with `FINISH-RUN`. The last `ALTER` wins. The statement `GO TO NEXT-CARD` that follows is byte-for-byte the same statement as in steps 1 and 2.
+Fíjate en el paso 3. El párrafo de la categoría Debugging ya fijó el destino en Learning. Luego el manejador del error de tamaño en `RECORD-CARD` sobrescribe ese destino con `FINISH-RUN`. Gana el último `ALTER`. La sentencia `GO TO NEXT-CARD` que sigue es, byte por byte, la misma sentencia que en los pasos 1 y 2.
 
-**The boundary case: exactly 40.** Use ten hours for every card. This was also run in the scratch copy.
+**El caso límite: exactamente 40.** Usa diez horas en cada tarjeta. Esto también se ejecutó en la copia de trabajo.
 
-| Card | Category | True total | Headroom before | After the add |
+| Tarjeta | Categoría | Total real | Margen antes | Después de la suma |
 | --- | --- | ---: | ---: | --- |
 | 1 | Meetings | 10 | 59 | 69 |
 | 2 | Coding | 20 | 69 | 79 |
 | 3 | Debugging | 30 | 79 | 89 |
-| 4 | Learning | 40 | 89 | 99, fits |
-| 5 | Meetings | 50 | 99 | size error, stays 99 |
+| 4 | Learning | 40 | 89 | 99, cabe |
+| 5 | Meetings | 50 | 99 | error de tamaño, sigue en 99 |
 
-At card 4 the total is exactly 40 and the headroom is 99, the largest value two digits can hold. It still fits, so the run continues. The fifth card overflows it. Now change the starting value from 59 to 49 and run the same ten-hour cards. The headroom reaches 99 on card **5** (total 50), still fits and overflows on card 6 (total 60). The final total was 60. The field holds 99 at two different moments with two different meanings: "this add fit exactly" and "this add failed and left the old value". To tell them apart, check whether the error clause ran, and where `NEXT-CARD` points now.
+En la tarjeta 4 el total es exactamente 40 y el margen es 99, el mayor valor que pueden contener dos dígitos. Todavía cabe, así que la ejecución continúa. La quinta tarjeta lo desborda. Ahora cambia el valor inicial de 59 a 49 y ejecuta las mismas tarjetas de diez horas. El margen llega a 99 en la tarjeta **5** (total 50), todavía cabe y se desborda en la tarjeta 6 (total 60). El total final fue 60. El campo contiene 99 en dos momentos distintos con dos significados distintos: "esta suma cupo exactamente" y "esta suma falló y dejó el valor anterior". Para distinguirlos, comprueba si se ejecutó la cláusula de error y adónde apunta ahora `NEXT-CARD`.
 
-## Compare the ordinary and weird designs
+## Compara los diseños ordinarios y los raros
 
-Line count is the weakest comparison. By the book's counting convention (non-comment lines, blank lines included), the idiomatic program has 156 lines and the weird one has 170. They are about the same size. What differs is where the information sits.
+El número de líneas es la comparación más débil. Según la convención de conteo del libro (líneas que no son comentarios, incluidas las líneas en blanco), el programa idiomático tiene 156 líneas y el programa raro tiene 170. Tienen casi el mismo tamaño. Lo que cambia es dónde está la información.
 
-| Dimension | `cobol` (idiomatic) | `cobol-weird` |
+| Dimensión | `cobol` (idiomático) | `cobol-weird` |
 | --- | --- | --- |
-| **Representation** | The stop rule is a named range on the data: `OVER-FORTY` is true for 41 to 99. The category is arithmetic on a counter. | The next category is the destination of a `GO TO`. The stop rule is the capacity of a two-digit field plus an error clause. |
-| **Observability** | Print `WS-TOTAL`, `WS-ENTRIES` and `OVER-FORTY` and you have the machine. | The variables do not show the next category. You must know the last `ALTER` that ran. The source text of `NEXT-CARD` says `GO TO MEETINGS-CARD` and, at run time, almost never does. |
-| **Tests** | Set `WS-TOTAL` to 40, then 41 and check the condition. | You must drive the program with controlled hours and observe whether the next dispatch finishes. The rule cannot be unit-tested apart from the paragraphs. |
-| **Debugging** | A watch on three fields is enough. | A watch on the numeric fields is incomplete. You need the current jump target, which most debuggers do not display. |
-| **Portability** | Standard COBOL: the `PIC`, level 88 and `PERFORM UNTIL` semantics are part of the language. | `ALTER` was declared obsolete in 1985 and deleted from the standard in 2002. GnuCOBOL accepts it and warns five times. A compiler in standards mode may not. |
-| **Cost** | A readable loop. Changing the limit means editing one `VALUE` range, and renaming the condition if you want to keep the name honest. | The program cannot be reentered safely, because two callers would share one rewritten `NEXT-CARD`. Optimizers can assume little about a `GO TO` that might change. |
+| **Representación** | La regla de parada es un rango con nombre sobre los datos: `OVER-FORTY` es verdadera de 41 a 99. La categoría es aritmética sobre un contador. | La categoría siguiente es el destino de un `GO TO`. La regla de parada es la capacidad de un campo de dos dígitos más una cláusula de error. |
+| **Observabilidad** | Imprime `WS-TOTAL`, `WS-ENTRIES` y `OVER-FORTY` y ya tienes la máquina. | Las variables no muestran la categoría siguiente. Debes saber cuál fue el último `ALTER` que se ejecutó. El texto fuente de `NEXT-CARD` dice `GO TO MEETINGS-CARD` y, en tiempo de ejecución, casi nunca lo hace. |
+| **Pruebas** | Fija `WS-TOTAL` en 40, luego en 41 y comprueba la condición. | Debes manejar el programa con horas controladas y observar si el siguiente despacho termina. La regla no se puede probar con una prueba unitaria aparte de los párrafos. |
+| **Debugging** | Basta con vigilar tres campos. | Vigilar solo los campos numéricos es incompleto. Necesitas el destino de salto actual, que la mayoría de los depuradores no muestran. |
+| **Portabilidad** | COBOL estándar: la semántica de `PIC`, del nivel 88 y de `PERFORM UNTIL` forma parte del lenguaje. | `ALTER` se declaró obsoleto en 1985 y se eliminó del estándar en 2002. GnuCOBOL lo acepta y advierte cinco veces. Un compilador en modo estándar puede no aceptarlo. |
+| **Costo** | Un bucle legible. Cambiar el límite significa editar un rango de `VALUE`, y cambiar el nombre de la condición si quieres que el nombre siga siendo honesto. | El programa no se puede reentrar de forma segura, porque dos llamadores compartirían un mismo `NEXT-CARD` reescrito. Los optimizadores pueden suponer poco sobre un `GO TO` que podría cambiar. |
 
-Notice the asymmetry in what each design *cannot* say. The idiomatic version cannot make the loop target data. The weird version cannot make the stop rule readable. Neither is morally better. The book's historical case for `ALTER` is a tightly controlled batch system in which a switch set once and tested by an unconditional `GO TO` was cheaper than testing a flag on every pass, when memory and cycles were the constraint. That is a statement about 1978. It is not a recommendation for new code.
+Fíjate en la asimetría de lo que cada diseño *no puede* decir. La versión idiomática no puede hacer que el destino del bucle sea un dato. La versión rara no puede hacer legible la regla de parada. Ninguna es moralmente mejor. El caso histórico que da el libro a favor de `ALTER` es un sistema por lotes muy controlado. Allí, un interruptor fijado una vez y probado con un `GO TO` incondicional costaba menos que probar una bandera en cada pasada. La memoria y los ciclos eran la limitación. Eso es una afirmación sobre 1978. No es una recomendación para código nuevo.
 
-## What the exercises demonstrate
+## Qué demuestran los ejercicios
 
-All of these exercises are marked verified in the book: the reference solutions were run against the real entries. Predict before you run each one, and write the prediction down.
+Todos estos ejercicios están marcados como verificados en el libro: las soluciones de referencia se ejecutaron contra las entradas reales. Predice antes de ejecutar cada uno y anota la predicción.
 
-| Exercise | Predict first | What the evidence shows |
+| Ejercicio | Predice primero | Qué muestra la evidencia |
 | --- | --- | --- |
-| [A1. Read the rows](../../exercises.md#a1-read-the-rows-verified) | Which card crossed 40, and what was the total just before it? Could a run reach exactly 40 and continue? | The stop rule is a precise boundary, not an approximation. The output alone proves the invariant "each row total equals the previous total plus hours" and exposes an off-by-one error even though the hours change every run. |
-| [B1, part 1. Change the starting value](../../exercises.md#b1-cobol-predict-then-break-alter-verified) | Above what total will the run stop if `WS-HEADROOM` starts at 49 instead of 59? | The stop point moves to "first total above 50" (final totals 51 to 69). The shared checker passes with limit 50, and the entry's own `check.sh`, which hard-codes 40, fails. One number encodes the business rule. |
-| [B1, part 2. Add a `DISPLAY` to `NEXT-CARD`](../../exercises.md#b1-cobol-predict-then-break-alter-verified) | Will you ever see the `x` printed? At what stage will it fail? | It fails at *compile time*, not run time: `'NEXT-CARD' is not an alterable paragraph`, once per `ALTER` (five times). The compiler checks the structural rule that makes the target patchable. |
-| [C1. Weird next to boring](../../exercises.md#c1-weird-next-to-boring-verified) | For each program, which fields would you watch, isolate and change? | Programs can satisfy the same output contract while exposing different state. Readability and testability depend on where the rule lives. |
-| [F. Prove a README claim](../../exercises.md#f-prove-a-readme-claim-verified) | What would a compile-time assertion look like for "GnuCOBOL warns five times about `ALTER`"? | A claim is only evidence if it can fail. A negative control (remove one `ALTER`, expect the count to change) shows that your test can detect the change. |
+| [A1. Lee las filas](../../exercises.md#a1-read-the-rows-verified) | ¿Qué tarjeta pasó de 40 y cuál era el total justo antes? ¿Podría una ejecución dar un total de exactamente 40 y continuar? | La regla de parada es un límite preciso, no una aproximación. La salida sola prueba el invariante "el total de cada fila es el total anterior más las horas". También deja ver un error de desfase en una posición (*off-by-one*) aunque las horas cambien en cada ejecución. |
+| [B1, parte 1. Cambia el valor inicial](../../exercises.md#b1-cobol-predict-then-break-alter-verified) | ¿Por encima de qué total se detendrá la ejecución si `WS-HEADROOM` empieza en 49 en vez de 59? | El punto de parada pasa a ser "el primer total por encima de 50" (totales finales de 51 a 69). El verificador compartido pasa con el límite 50, y el `check.sh` propio de la entrada, que fija 40 en el código, falla. Un solo número codifica la regla de negocio. |
+| [B1, parte 2. Añade un `DISPLAY` a `NEXT-CARD`](../../exercises.md#b1-cobol-predict-then-break-alter-verified) | ¿Llegarás a ver impreso `x`? ¿En qué etapa fallará? | Falla en *tiempo de compilación*, no en tiempo de ejecución: `'NEXT-CARD' is not an alterable paragraph`, una vez por cada `ALTER` (cinco veces). El compilador comprueba la regla estructural que permite parchear el destino. |
+| [C1. Lo raro junto a lo aburrido](../../exercises.md#c1-weird-next-to-boring-verified) | En cada programa, ¿qué campos vigilarías, aislarías y cambiarías? | Dos programas pueden cumplir el mismo contrato de salida y exponer un estado distinto. La legibilidad y la capacidad de prueba dependen de dónde vive la regla. |
+| [F. Demuestra una afirmación del README](../../exercises.md#f-prove-a-readme-claim-verified) | ¿Cómo sería una aserción en tiempo de compilación para "GnuCOBOL advierte cinco veces sobre `ALTER`"? | Una afirmación solo es evidencia si puede fallar. Un control negativo (quita un `ALTER` y espera que el conteo cambie) muestra que tu prueba puede detectar el cambio. |
 
-Two cautions from the book's answer key. In B1 part 1, a single random run can satisfy *both* checkers if it crosses 40 and 50 on the same card, so use the entry's own check for the failure evidence. In F, the book's worked solution uses Haskell. A COBOL version is an adaptation you design yourself, and the claim it proves is the behavior of the tested build only.
+Dos precauciones de la clave de respuestas del libro. En B1 parte 1, una sola ejecución aleatoria puede satisfacer a *ambos* verificadores. Esto ocurre si pasa de 40 y de 50 en la misma tarjeta. Usa la comprobación propia de la entrada como evidencia del fallo. En F, la solución resuelta del libro usa Haskell. Una versión en COBOL es una adaptación que diseñas tú, y la afirmación que prueba es solo el comportamiento de la compilación probada.
 
-## Failure modes, costs and boundaries
+## Modos de fallo, costos y límites
 
-Label every behavior by the strength of its promise (see [Three kinds of knowledge](../../introduccion.md#three-kinds-of-knowledge)). The label changes what you may safely rely on.
+Etiqueta cada comportamiento según la fuerza de su promesa (consulta [Tres tipos de conocimiento](../../introduccion.md#three-kinds-of-knowledge)). La etiqueta cambia aquello en lo que puedes confiar con seguridad.
 
-| Behavior | Label | Why |
+| Comportamiento | Etiqueta | Por qué |
 | --- | --- | --- |
-| A size error leaves the receiving field unchanged and runs the `ON SIZE ERROR` clause | **guaranteed** | Specified COBOL semantics. Verified in a scratch run: `ADD 1 TO B ON SIZE ERROR ...` left B at 99. |
-| Without `ON SIZE ERROR`, a two-digit add silently drops the leading digit (99 + 1 gives 00) | **implementation-permitted** | The standard does not promise a usable result when a size error happens and no handler is written. The tested GnuCOBOL build stored `00`: verified with `ADD 1 TO A` and A = 99. Rely on the clause, not on the truncation. |
-| Storing 17.9 into `PIC 99` gives 17 | **guaranteed** | Truncation by the receiver's declared scale. Verified: it printed `17`. |
-| `STRING` leaves bytes to the right of what it writes | **guaranteed** | Defined behavior of `STRING`. Verified: writing `XY` into a buffer holding `ABCDEFGH` left `XYCDEFGH`. Hence `MOVE SPACES` first. |
-| `ALTER` is accepted and runs | **implementation-permitted** | Deleted from the standard in 2002. GnuCOBOL still supports it and prints five obsolescence warnings. |
-| `CALL "SYSTEM"` returns a raw wait status (exit 3 appears as 768) | **implementation-permitted** | A host detail of the tested Linux build. The program divides by 256 to recover the exit code. |
-| `ACCEPT ... FROM ENVIRONMENT` blanks the field when the variable is unset | **implementation-permitted** | This is how the tested runtime behaves. The weird program turns it into a table subscript on purpose (see below). |
-| The program needs `mkdir` and `sqlite3` on the host | **implementation-permitted** | These are host commands, not COBOL. |
+| Un error de tamaño deja sin cambios el campo receptor y ejecuta la cláusula `ON SIZE ERROR` | **garantizado** | Semántica especificada de COBOL. Verificado en una ejecución de trabajo: `ADD 1 TO B ON SIZE ERROR ...` dejó B en 99. |
+| Sin `ON SIZE ERROR`, una suma de dos dígitos descarta en silencio el dígito inicial (99 + 1 da 00) | **permitido por la implementación** | El estándar no promete un resultado utilizable cuando ocurre un error de tamaño y no se escribió ningún manejador. La compilación probada de GnuCOBOL guardó `00`: verificado con `ADD 1 TO A` y A = 99. Confía en la cláusula, no en el truncamiento. |
+| Guardar 17.9 en `PIC 99` da 17 | **garantizado** | Truncamiento según la escala declarada del receptor. Verificado: imprimió `17`. |
+| `STRING` deja intactos los bytes a la derecha de lo que escribe | **garantizado** | Comportamiento definido de `STRING`. Verificado: escribir `XY` en un búfer que contenía `ABCDEFGH` dejó `XYCDEFGH`. De ahí que `MOVE SPACES` vaya primero. |
+| `ALTER` se acepta y se ejecuta | **permitido por la implementación** | Se eliminó del estándar en 2002. GnuCOBOL todavía lo admite e imprime cinco advertencias de obsolescencia. |
+| `CALL "SYSTEM"` devuelve un estado de espera sin procesar (el código de salida 3 aparece como 768) | **permitido por la implementación** | Un detalle del anfitrión, propio de la compilación de Linux probada. El programa divide entre 256 para recuperar el código de salida. |
+| `ACCEPT ... FROM ENVIRONMENT` deja el campo en blanco cuando la variable no está definida | **permitido por la implementación** | Así se comporta el entorno de ejecución probado. El programa raro lo convierte a propósito en un subíndice de tabla (consulta más abajo). |
+| El programa necesita `mkdir` y `sqlite3` en el anfitrión | **permitido por la implementación** | Son comandos del anfitrión, no de COBOL. |
 
-Nothing in the two COBOL entries is merely *accidentally exploited*. `ALTER` has a documented place in the compiler's history, which is not the same as an accident. The label exists for programs like the [Make entry](make-y-cmake.md), whose restart behavior nobody promised.
+Nada en las dos entradas de COBOL es simplemente *aprovechado por accidente*. `ALTER` tiene un lugar documentado en la historia del compilador, que no es lo mismo que un accidente. La etiqueta existe para programas como la [entrada de Make](make-y-cmake.md), cuyo comportamiento de reinicio nadie prometió.
 
-**Costs to be able to state.**
+**Costos que debes poder enunciar.**
 
-- **You cannot understand a paragraph by reading it.** This is the complaint that removed `ALTER`. The text of `NEXT-CARD` and its behavior are different things.
-- **Fixed format makes whitespace significant.** Columns 1-6 are the old sequence area, `*` in column 7 starts a comment, area A begins at column 8 and area B at column 12, and text after column 72 is ignored. The entry's `check.sh` rejects any line over 72 characters because a silently ignored tail can change the program a human thinks they wrote. In exercise B1 part 2, line up the new `DISPLAY` with the existing `GO TO`.
-- **Choosing without `IF`.** The weird program picks a data folder with `1 + FUNCTION MIN(WS-XDG-LENGTH, 1)` ([L119](../../../src/cobol-weird/timecards.cob#L119)): length 0 selects table slot 1 and any longer length selects slot 2. A conditional can be written as a calculation plus a lookup, and the reader pays for it.
-- **Host details leak in.** `TAB` is a reserved word in GnuCOBOL, which is why the field is named `WS-TAB`. The ISO week is built by hand from `FUNCTION INTEGER-OF-DATE`, because an ISO week belongs to the year that holds its Thursday, so dates near New Year need care.
-- **SQL by string building.** Both programs assemble `INSERT` text. It is safe here only because every value is a number computed by the program or one of four fixed words. Do not copy it.
+- **No puedes entender un párrafo leyéndolo.** Esta es la queja que acabó con `ALTER`. El texto de `NEXT-CARD` y su comportamiento son cosas distintas.
+- **El formato fijo hace significativos los espacios en blanco.** Las columnas 1 a 6 son el área de secuencia antigua. `*` en la columna 7 inicia un comentario. El área A empieza en la columna 8 y el área B en la 12. El texto posterior a la columna 72 se ignora. El `check.sh` de la entrada rechaza cualquier línea de más de 72 caracteres. Una cola ignorada en silencio puede cambiar el programa que una persona cree haber escrito. En el ejercicio B1 parte 2, alinea el nuevo `DISPLAY` con el `GO TO` existente.
+- **Elegir sin `IF`.** El programa raro elige una carpeta de datos con `1 + FUNCTION MIN(WS-XDG-LENGTH, 1)` ([L119](../../../src/cobol-weird/timecards.cob#L119)): la longitud 0 selecciona la ranura 1 de la tabla y cualquier longitud mayor selecciona la ranura 2. Un condicional se puede escribir como un cálculo más una búsqueda, y el lector paga el costo.
+- **Se filtran detalles del anfitrión.** `TAB` es una palabra reservada en GnuCOBOL, por eso el campo se llama `WS-TAB`. La semana ISO se construye a mano a partir de `FUNCTION INTEGER-OF-DATE`. Esto se debe a que una semana ISO pertenece al año que contiene su jueves, así que las fechas cercanas al Año Nuevo exigen cuidado.
+- **SQL construido con cadenas de texto.** Ambos programas ensamblan texto `INSERT`. Aquí es seguro solo porque cada valor es un número que calcula el programa o una de cuatro palabras fijas. No lo copies.
 
-## Connections across the repository
+## Conexiones a lo largo del repositorio
 
-- **Control state outside variables.** `ALTER` is one of several ways in this repository to keep the next step somewhere other than a variable. [Forth](forth.md) keeps it in the parse position `>in`. [Make](make-y-cmake.md) keeps it in which files exist. CMake keeps it in regex captures. [Tcl](tcl.md) keeps it in a database trigger. The concept guide [State and control beyond variables](../conceptos/estado-y-control-mas-alla-de-las-variables.md) compares them directly.
-- **Self-modifying behavior.** [APL's `apl-weird`](apl.md) rewrites a function while it runs. The comparison with `ALTER` is useful because APL's rewrite is explicit text and COBOL's is a patched jump.
-- **Declarative stop rules.** The level-88 rule resembles the stop rules in [Haskell](haskell.md) (how much of a list you read) and the 41-character literal in CMake. In each, the rule is *data or structure* rather than a comparison in a loop.
-- **Arithmetic error as control flow.** The size-error trick is a cousin of the exception and exit-status ideas in [Effects, errors and commitment](../conceptos/efectos-errores-y-confirmacion.md).
-- **What the label means.** [Portability, abstraction and cost](../conceptos/portabilidad-abstraccion-y-costo.md) explains the vocabulary of guaranteed and implementation-permitted behavior.
-- **In the book.** The concept chapters are [What counts as a machine?](../../informatica/02-que-cuenta-como-maquina.md), [Control flow and continuations](../../informatica/03-flujo-de-control-y-continuaciones.md), [Effects, errors and commitment](../../informatica/07-efectos-errores-y-confirmacion.md) and [Abstraction leaks and implementation dependence](../../informatica/08-fugas-de-abstraccion-y-dependencia-de-la-implementacion.md). The language page is [COBOL](../../lenguajes/cobol.md).
+- **Estado de control fuera de las variables.** `ALTER` es una de varias formas que hay en este repositorio de guardar el paso siguiente en un lugar distinto de una variable. [Forth](forth.md) lo guarda en la posición de análisis `>in`. [Make](make-y-cmake.md) lo guarda en qué archivos existen. CMake lo guarda en las capturas de una expresión regular. [Tcl](tcl.md) lo guarda en un disparador de base de datos. La guía de concepto [Estado y control más allá de las variables](../conceptos/estado-y-control-mas-alla-de-las-variables.md) los compara directamente.
+- **Comportamiento automodificable.** [El `apl-weird` de APL](apl.md) reescribe una función mientras se ejecuta. La comparación con `ALTER` es útil porque la reescritura de APL es texto explícito y la de COBOL es un salto parcheado.
+- **Reglas de parada declarativas.** La regla de nivel 88 se parece a las reglas de parada de [Haskell](haskell.md) (cuánto de una lista lees) y al literal de 41 caracteres de CMake. En cada caso, la regla es *dato o estructura* y no una comparación en un bucle.
+- **Error aritmético como flujo de control.** El truco del error de tamaño es pariente de las ideas de excepción y de estado de salida de [Efectos, errores y confirmación](../conceptos/efectos-errores-y-confirmacion.md).
+- **Qué significa la etiqueta.** [Portabilidad, abstracción y costo](../conceptos/portabilidad-abstraccion-y-costo.md) explica el vocabulario del comportamiento garantizado y permitido por la implementación.
+- **En el libro.** Los capítulos de conceptos son [¿Qué cuenta como máquina?](../../informatica/02-que-cuenta-como-maquina.md), [Flujo de control y continuaciones](../../informatica/03-flujo-de-control-y-continuaciones.md), [Efectos, errores y confirmación](../../informatica/07-efectos-errores-y-confirmacion.md) y [Fugas de abstracción y dependencia de la implementación](../../informatica/08-fugas-de-abstraccion-y-dependencia-de-la-implementacion.md). La página del lenguaje es [COBOL](../../lenguajes/cobol.md).
 
-## Self-check
+## Autoevaluación
 
-Answer each question in your own words before you read the italic text. Say what evidence would support each answer.
+Responde cada pregunta con tus propias palabras antes de leer el texto en cursiva. Di qué evidencia respaldaría cada respuesta.
 
-1. **Trace.** Hours are 12, 17, 11, 10, in that order. For `cobol-weird`, write the true total and `WS-HEADROOM` after each card and say what happens on the fourth. *(Totals 12, 29, 40, 50. Headroom 71, 88, 99, then a size error on the fourth. The third card makes the total exactly 40, so the run continues.)*
-2. **Explain.** Why does `DISPLAY "x"` inside `NEXT-CARD` fail to compile, when the same `DISPLAY` inside `RECORD-CARD` works? What would a compiler need to know to patch a jump? *(The target of `ALTER` must be a paragraph that is exactly one unconditional `GO TO`, which the compiler can check before the program runs.)*
-3. **Transfer.** Change the idiomatic program so that it stops on the first total above 50. What do you edit? What would you edit in the weird program, and which of the two edits is easier to review? *(Idiomatic: `OVER-FORTY` becomes `51 THRU 99`, and you should rename it. Weird: the starting value 59 becomes 49. Both are one-line edits, but the first states the rule and the second hides it in an offset.)*
-4. **Evidence.** A colleague says, "GnuCOBOL warns five times about `ALTER` in `cobol-weird`." Design a test that could fail. What is your negative control, and which label does the claim get? *(Compile the unmodified entry, capture the diagnostics and assert five `ALTER` warnings. For the control, remove one `ALTER` in a copy and expect four. The claim is implementation-permitted, because it describes one build's diagnostics.)*
+1. **Traza.** Las horas son 12, 17, 11, 10, en ese orden. Para `cobol-weird`, escribe el total real y `WS-HEADROOM` después de cada tarjeta y di qué pasa en la cuarta. *(Totales 12, 29, 40, 50. Margen 71, 88, 99, y luego un error de tamaño en la cuarta. La tercera tarjeta deja el total en exactamente 40, así que la ejecución continúa.)*
+2. **Explica.** ¿Por qué `DISPLAY "x"` dentro de `NEXT-CARD` no compila, cuando el mismo `DISPLAY` dentro de `RECORD-CARD` funciona? ¿Qué necesitaría saber un compilador para parchear un salto? *(El destino de `ALTER` debe ser un párrafo que sea exactamente un `GO TO` incondicional, algo que el compilador puede comprobar antes de que el programa se ejecute.)*
+3. **Transfiere.** Cambia el programa idiomático para que se detenga en el primer total por encima de 50. ¿Qué editas? ¿Qué editarías en el programa raro, y cuál de las dos ediciones es más fácil de revisar? *(Idiomático: `OVER-FORTY` pasa a ser `51 THRU 99`. Conviene cambiarle el nombre. Raro: el valor inicial 59 pasa a ser 49. Ambas son ediciones de una línea, pero la primera enuncia la regla y la segunda la oculta en un desplazamiento.)*
+4. **Evidencia.** Una colega dice: "GnuCOBOL advierte cinco veces sobre `ALTER` en `cobol-weird`". Diseña una prueba que pueda fallar. ¿Cuál es tu control negativo y qué etiqueta recibe la afirmación? *(Compila la entrada sin modificar, captura los diagnósticos y verifica que haya cinco advertencias `ALTER`. Para el control, quita un `ALTER` en una copia y espera cuatro. La afirmación es permitida por la implementación, porque describe los diagnósticos de una sola compilación.)*
 
-## Further reading
+## Lecturas adicionales
 
-- [COBOL](https://en.wikipedia.org/wiki/COBOL) (Wikipedia): a broad orientation, including the language's history and the standards that followed 1985.
-- [Goto and structured programming](../../informatica/03-flujo-de-control-y-continuaciones.md#goto-and-structured-programming) (this book): the argument that `ALTER` is exhibit A for.
-- [Self-modifying code](https://en.wikipedia.org/wiki/Self-modifying_code) (Wikipedia): where `ALTER` fits among other ways programs change themselves. `ALTER` changes a jump target, not instruction bytes, and the difference matters.
-- [Undefined, unspecified and implementation-defined behavior](../../informatica/08-fugas-de-abstraccion-y-dependencia-de-la-implementacion.md#undefined-unspecified-and-implementation-defined-behavior) (this book): the three standards terms behind the labels in this guide.
+- [COBOL](https://en.wikipedia.org/wiki/COBOL) (Wikipedia): una orientación general, con la historia del lenguaje y los estándares posteriores a 1985.
+- [Goto y la programación estructurada](../../informatica/03-flujo-de-control-y-continuaciones.md#goto-and-structured-programming) (este libro): el argumento del que `ALTER` es el mejor ejemplo.
+- [Código automodificable](https://en.wikipedia.org/wiki/Self-modifying_code) (Wikipedia): dónde encaja `ALTER` entre otras formas en que los programas se cambian a sí mismos. `ALTER` cambia un destino de salto, no bytes de instrucciones. La diferencia importa.
+- [Comportamiento indefinido, no especificado y definido por la implementación](../../informatica/08-fugas-de-abstraccion-y-dependencia-de-la-implementacion.md#undefined-unspecified-and-implementation-defined-behavior) (este libro): los tres términos de los estándares detrás de las etiquetas de esta guía.
