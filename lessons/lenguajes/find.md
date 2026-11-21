@@ -8,10 +8,10 @@ Un comando `find` es una **expresión**. Se evalúa una vez por cada archivo de 
 
 | Característica | Qué enseña |
 | --- | --- |
-| `-a` (and) is implied and binds tighter than `-o` (or) | `A -a B -o C -a D` is "if A and B, else if C and D". A chain of `-o` branches is a `case` statement, with short-circuit evaluation for free. |
-| `-exec` returns the program's exit status | A command is also a test. A `mkdir` that fails makes the rest of the `-a` chain false. Control flow by error code. |
-| `-path` patterns are globs where `*` crosses `/` | `-path '*/0/*/0/*'` means "the path has at least two directories named `0`". The path is a string, and a glob is a way to count in it. |
-| The walk visits a directory before it reads its entries | If `-exec` makes a directory inside the one being visited, the walk goes into it next. This is the loop. POSIX does not promise it. |
+| `-a` (y) está implícito y tiene mayor precedencia que `-o` (o) | `A -a B -o C -a D` significa "si A y B, de lo contrario si C y D". Una cadena de ramas `-o` es una sentencia `case`, con evaluación de cortocircuito gratis. |
+| `-exec` devuelve el estado de salida del programa | Un comando también es una prueba. Un `mkdir` que falla hace falso el resto de la cadena `-a`. Flujo de control mediante código de error. |
+| Los patrones `-path` son patrones glob donde `*` cruza `/` | `-path '*/0/*/0/*'` significa "la ruta tiene al menos dos directorios llamados `0`". La ruta es una cadena de texto y un glob es una forma de contar en ella. |
+| El recorrido visita un directorio antes de leer sus entradas | Si `-exec` crea un directorio dentro del que se visita, el recorrido entra en él a continuación. Este es el bucle. POSIX no lo promete. |
 
 ## A tree walk that digs its own tree
 

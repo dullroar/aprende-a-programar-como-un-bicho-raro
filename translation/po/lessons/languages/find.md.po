@@ -35,22 +35,22 @@ msgstr "⟦SEP_0001⟧ Característica ⟦SEP_0002⟧ Qué enseña ⟦SEP_0003�
 #: lessons/languages/find.md:11
 msgctxt "s-2a9146045993-0005"
 msgid "⟦SEP_0006⟧ ⟦CODE_0001⟧ (and) is implied and binds tighter than ⟦CODE_0002⟧ (or) ⟦SEP_0007⟧ ⟦CODE_0003⟧ is \"if A and B, else if C and D\". A chain of ⟦CODE_0004⟧ branches is a ⟦CODE_0005⟧ statement, with short-circuit evaluation for free. ⟦SEP_0008⟧"
-msgstr ""
+msgstr "⟦SEP_0006⟧ ⟦CODE_0001⟧ (y) está implícito y tiene mayor precedencia que ⟦CODE_0002⟧ (o) ⟦SEP_0007⟧ ⟦CODE_0003⟧ significa \"si A y B, de lo contrario si C y D\". Una cadena de ramas ⟦CODE_0004⟧ es una sentencia ⟦CODE_0005⟧, con evaluación de cortocircuito gratis. ⟦SEP_0008⟧"
 
 #: lessons/languages/find.md:12
 msgctxt "s-b15a84690178-0006"
 msgid "⟦SEP_0004⟧ ⟦CODE_0001⟧ returns the program's exit status ⟦SEP_0005⟧ A command is also a test. A ⟦CODE_0002⟧ that fails makes the rest of the ⟦CODE_0003⟧ chain false. Control flow by error code. ⟦SEP_0006⟧"
-msgstr ""
+msgstr "⟦SEP_0004⟧ ⟦CODE_0001⟧ devuelve el estado de salida del programa ⟦SEP_0005⟧ Un comando también es una prueba. Un ⟦CODE_0002⟧ que falla hace falso el resto de la cadena ⟦CODE_0003⟧. Flujo de control mediante código de error. ⟦SEP_0006⟧"
 
 #: lessons/languages/find.md:13
 msgctxt "s-285732a68f18-0007"
 msgid "⟦SEP_0006⟧ ⟦CODE_0001⟧ patterns are globs where ⟦CODE_0002⟧ crosses ⟦CODE_0003⟧ ⟦SEP_0007⟧ ⟦CODE_0004⟧ means \"the path has at least two directories named ⟦CODE_0005⟧\". The path is a string, and a glob is a way to count in it. ⟦SEP_0008⟧"
-msgstr ""
+msgstr "⟦SEP_0006⟧ Los patrones ⟦CODE_0001⟧ son patrones glob donde ⟦CODE_0002⟧ cruza ⟦CODE_0003⟧ ⟦SEP_0007⟧ ⟦CODE_0004⟧ significa \"la ruta tiene al menos dos directorios llamados ⟦CODE_0005⟧\". La ruta es una cadena de texto y un glob es una forma de contar en ella. ⟦SEP_0008⟧"
 
 #: lessons/languages/find.md:14
 msgctxt "s-b5e9ca3e4a7b-0008"
 msgid "⟦SEP_0002⟧ The walk visits a directory before it reads its entries ⟦SEP_0003⟧ If ⟦CODE_0001⟧ makes a directory inside the one being visited, the walk goes into it next. This is the loop. POSIX does not promise it. ⟦SEP_0004⟧"
-msgstr ""
+msgstr "⟦SEP_0002⟧ El recorrido visita un directorio antes de leer sus entradas ⟦SEP_0003⟧ Si ⟦CODE_0001⟧ crea un directorio dentro del que se visita, el recorrido entra en él a continuación. Este es el bucle. POSIX no lo promete. ⟦SEP_0004⟧"
 
 #: lessons/languages/find.md:16
 msgctxt "s-a41e03263c79-0009"
