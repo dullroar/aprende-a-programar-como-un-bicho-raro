@@ -165,27 +165,27 @@ msgstr "**El sistema unario no escala.** Un millón es un millón de caracteres.
 #: lessons/languages/editors.md:53
 msgctxt "s-38cb53c4fcfb-0031"
 msgid "**The program depends on positions.** One extra line between a card and its ledger breaks every total."
-msgstr ""
+msgstr "**El programa depende de las posiciones.** Una línea de más entre una tarjeta y su libro de cuentas arruina todos los totales."
 
 #: lessons/languages/editors.md:54
 msgctxt "s-d3ae7a851aeb-0032"
 msgid "**Nobody can debug ten rewrite rules by eye.** The entry has a test that compares it with a short model."
-msgstr ""
+msgstr "**Nadie puede depurar diez reglas de reescritura a simple vista.** La entrada tiene una prueba que la compara con un modelo breve."
 
 #: lessons/languages/editors.md:56
 msgctxt "s-4c934f8259c1-0033"
 msgid "Legitimate uses: ⟦CODE_0001⟧ and ⟦CODE_0002⟧ in scripts for exact, scriptable edits (⟦CODE_0003⟧), such as a build step that must change one line of a config file."
-msgstr ""
+msgstr "Usos legítimos: ⟦CODE_0001⟧ y ⟦CODE_0002⟧ en scripts para hacer ediciones exactas y automatizables (⟦CODE_0003⟧). Por ejemplo, un paso de compilación que debe cambiar una línea de un archivo de configuración."
 
 #: lessons/languages/editors.md:58
 msgctxt "s-5e3bcdfbf845-0034"
 msgid "Now break it yourself"
-msgstr ""
+msgstr "Ahora rómpelo tú"
 
 #: lessons/languages/editors.md:60
 msgctxt "s-685ffb89e6ee-0035"
 msgid "See [exercise B18](⟦DEST_0001⟧)."
-msgstr ""
+msgstr "Consulta el [ejercicio B18](⟦DEST_0001⟧)."
 
 #: lessons/languages/editors.md:62
 msgctxt "s-d76e82c036b5-0036"

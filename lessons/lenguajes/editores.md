@@ -50,14 +50,14 @@ Etiquetas: los comandos `s`, `g`, `t`, `j`, `d` y `0a` están en POSIX. Que un `
 ### Haz esto en producción y estás despedido
 
 - **El sistema unario no escala.** Un millón es un millón de caracteres.
-- **The program depends on positions.** One extra line between a card and its ledger breaks every total.
-- **Nobody can debug ten rewrite rules by eye.** The entry has a test that compares it with a short model.
+- **El programa depende de las posiciones.** Una línea de más entre una tarjeta y su libro de cuentas arruina todos los totales.
+- **Nadie puede depurar diez reglas de reescritura a simple vista.** La entrada tiene una prueba que la compara con un modelo breve.
 
-Legitimate uses: `ed` and `ex` in scripts for exact, scriptable edits (`ed -s file < commands`), such as a build step that must change one line of a config file.
+Usos legítimos: `ed` y `ex` en scripts para hacer ediciones exactas y automatizables (`ed -s file < commands`). Por ejemplo, un paso de compilación que debe cambiar una línea de un archivo de configuración.
 
-### Now break it yourself
+### Ahora rómpelo tú
 
-See [exercise B18](../exercises.md#b18-ed-move-the-stop-rule-and-break-the-cleanup-verified).
+Consulta el [ejercicio B18](../exercises.md#b18-ed-move-the-stop-rule-and-break-the-cleanup-verified).
 
 ## A program you can edit
 
