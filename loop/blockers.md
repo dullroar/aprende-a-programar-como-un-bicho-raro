@@ -1,5 +1,10 @@
 # Blockers
 
+## P4-lessons-curriculum-1 (iteration 193): working-tree verification blocked
+
+- `python3 -I tools/verify.py --fast` failed twice: `I1 TRANSLATING.md: no English source at the pinned commit (stale PO or wrong path)`. The unrelated untracked file is preserved.
+- The recorded acceptance command also exits 2 because `--task` is unsupported. The documented `--fast --files lessons/plan-de-estudios/preliminares.md translation/po/lessons/curriculum/front-matter.md.po` passed; the existing PO has 1 translated entry, with no untranslated or fuzzy entries. Resolve the working-tree issue and rerun the gates before unblocking.
+
 ## P4-lessons-3 (iteration 192): working-tree verification blocked
 
 - `python3 -I tools/verify.py --fast` failed twice: `I1 TRANSLATING.md: no English source at the pinned commit (stale PO or wrong path)`. The unrelated, untracked `TRANSLATING.md` appeared during this iteration and is preserved.

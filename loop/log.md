@@ -164,3 +164,4 @@
 190 P4-lessons-3 partial accepted and applied answer key segments 84 to 85; resume at 86; scoped and working-tree fast checks passed.
 191 P4-lessons-3 partial accepted and applied answer key segments 86 to 87; resume at 88; scoped and working-tree fast checks and anchors check passed.
 192 P4-lessons-3 blocked accepted and applied answer key segments 88 to 91; scoped check and anchors pass; full fast check fails twice on unrelated untracked TRANSLATING.md.
+193 P4-lessons-curriculum-1 blocked already translated (1 of 1 PO entries); scoped fast check passes; full fast check fails twice on unrelated untracked TRANSLATING.md; queued --task flag unsupported.
