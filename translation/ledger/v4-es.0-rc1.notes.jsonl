@@ -2154,3 +2154,14 @@
 {"segment_id": "s-87d9e31bff8d-0105", "ts": "2026-11-21T19:33:37Z", "findings": ["I7: glossary term state must be rendered 'estado'"]}
 {"segment_id": "s-534085b7ea72-0111", "ts": "2026-11-21T19:33:37Z", "findings": ["I7: banned rendering 'condición' for glossary term state", "I12: sentence of 38 words (limit 29): El disparador es la misma idea que la co..."]}
 {"segment_id": "s-2dfea8f8bfac-0118", "ts": "2026-11-21T19:33:37Z", "findings": ["I12: sentence of 31 words (limit 29): El disparador imprime la tarjeta 1 e ins..."]}
+{"segment_id": "s-4c21311e484e-0000", "ts": "2026-11-21T19:41:49Z", "findings": [], "playful_note": "Mantiene el título acordado y su juego con bicho raro."}
+{"segment_id": "s-7474395a9b22-0004", "ts": "2026-11-21T19:41:49Z", "findings": ["placeholders_seen does not list the placeholders of translated_text in order"]}
+{"segment_id": "s-f08e38c3d757-0005", "ts": "2026-11-21T19:41:49Z", "findings": ["placeholders_seen does not list the placeholders of translated_text in order"]}
+{"segment_id": "s-2c5ddb782d50-0006", "ts": "2026-11-21T19:41:49Z", "findings": ["placeholders_seen does not list the placeholders of translated_text in order"]}
+{"segment_id": "s-3c4b2d075381-0007", "ts": "2026-11-21T19:41:49Z", "findings": ["placeholders_seen does not list the placeholders of translated_text in order"]}
+{"segment_id": "s-dc32640c68df-0008", "ts": "2026-11-21T19:41:49Z", "findings": ["placeholders_seen does not list the placeholders of translated_text in order"]}
+{"segment_id": "s-ece11e83a456-0009", "ts": "2026-11-21T19:41:49Z", "findings": ["placeholders_seen does not list the placeholders of translated_text in order"]}
+{"segment_id": "s-56becb08d3cc-0010", "ts": "2026-11-21T19:41:49Z", "findings": ["placeholders_seen does not list the placeholders of translated_text in order"]}
+{"segment_id": "s-44949e9a117a-0011", "ts": "2026-11-21T19:41:49Z", "findings": ["placeholders_seen does not list the placeholders of translated_text in order"]}
+{"segment_id": "s-157b20b061a0-0012", "ts": "2026-11-21T19:41:49Z", "findings": ["placeholders_seen does not list the placeholders of translated_text in order"]}
+{"segment_id": "s-926c639f471e-0013", "ts": "2026-11-21T19:41:49Z", "findings": ["placeholders_seen does not list the placeholders of translated_text in order"]}

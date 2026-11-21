@@ -149,3 +149,4 @@
 175 P4-lessons-study-guides-languages-13 done tcl study guide translated (124 segments) via drafts imports (2 rounds); 5 scoped waivers (scope heading, build verb x3 incl. 2 README-copied diagram segments, state verb); 29 diagram segments reused verbatim from the tcl and tcl-weird READMEs (sync 0 changes); verify --fast OK, release-level file_problems clean.
 176 P4-audit-6 done five length-weighted segments sampled (seed 175, 1095-entry pool); 4 pass, 1 minor finding F007 (one-time sandbox gloss missing in the 7 language guides of this batch) queued as P4-fix-7; see translation/reviews/p4-audit-6.md
 177 P4-fix-7 done added the sandbox definition at first use in seven guides via PO and regenerated; verify --fast OK.
+178 P4-lessons-1 done translated 16 lessons index segments; corrected unsupported acceptance flag; fast verification and anchors check passed.

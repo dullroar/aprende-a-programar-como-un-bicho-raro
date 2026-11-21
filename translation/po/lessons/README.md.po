@@ -1,0 +1,88 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lessons/README.md:1
+msgctxt "s-4c21311e484e-0000"
+msgid "Learn Programming the Weird Way!"
+msgstr "¡Aprende a programar como un bicho raro!"
+
+#: lessons/README.md:3
+msgctxt "s-7548bf880648-0001"
+msgid "*Programs you shouldn't write. Language features you should understand.*"
+msgstr "*Programas que no deberías escribir. Características del lenguaje que deberías entender.*"
+
+#: lessons/README.md:5
+msgctxt "s-a0d25cbe9991-0002"
+msgid "Start here: **[Intro: why these lessons exist](⟦DEST_0001⟧)**"
+msgstr "Empieza aquí: **[Introducción: por qué existen estas lecciones](⟦DEST_0001⟧)**"
+
+#: lessons/README.md:7
+msgctxt "s-caa82d8768b6-0003"
+msgid "⟦SEP_0001⟧ Way in ⟦SEP_0002⟧ Page ⟦SEP_0003⟧"
+msgstr "⟦SEP_0001⟧ Punto de entrada ⟦SEP_0002⟧ Página ⟦SEP_0003⟧"
+
+#: lessons/README.md:9
+msgctxt "s-7474395a9b22-0004"
+msgid "⟦SEP_0002⟧ By goal ⟦SEP_0003⟧ [goals.md](⟦DEST_0001⟧) ⟦SEP_0004⟧"
+msgstr "⟦SEP_0002⟧ Por objetivo ⟦SEP_0003⟧ [goals.md](⟦DEST_0001⟧) ⟦SEP_0004⟧"
+
+#: lessons/README.md:10
+msgctxt "s-f08e38c3d757-0005"
+msgid "⟦SEP_0002⟧ By computer science concept ⟦SEP_0003⟧ [cs/](⟦DEST_0001⟧) ⟦SEP_0004⟧"
+msgstr "⟦SEP_0002⟧ Por concepto de informática ⟦SEP_0003⟧ [cs/](⟦DEST_0001⟧) ⟦SEP_0004⟧"
+
+#: lessons/README.md:11
+msgctxt "s-2c5ddb782d50-0006"
+msgid "⟦SEP_0002⟧ By language ⟦SEP_0003⟧ [languages/](⟦DEST_0001⟧) ⟦SEP_0004⟧"
+msgstr "⟦SEP_0002⟧ Por lenguaje ⟦SEP_0003⟧ [languages/](⟦DEST_0001⟧) ⟦SEP_0004⟧"
+
+#: lessons/README.md:12
+msgctxt "s-3c4b2d075381-0007"
+msgid "⟦SEP_0002⟧ By solution pattern ⟦SEP_0003⟧ [patterns.md](⟦DEST_0001⟧) ⟦SEP_0004⟧"
+msgstr "⟦SEP_0002⟧ Por patrón de solución ⟦SEP_0003⟧ [patterns.md](⟦DEST_0001⟧) ⟦SEP_0004⟧"
+
+#: lessons/README.md:13
+msgctxt "s-dc32640c68df-0008"
+msgid "⟦SEP_0002⟧ Problems overcome ⟦SEP_0003⟧ [problems-overcome.md](⟦DEST_0001⟧) ⟦SEP_0004⟧"
+msgstr "⟦SEP_0002⟧ Problemas superados ⟦SEP_0003⟧ [problems-overcome.md](⟦DEST_0001⟧) ⟦SEP_0004⟧"
+
+#: lessons/README.md:14
+msgctxt "s-ece11e83a456-0009"
+msgid "⟦SEP_0002⟧ Blocking problems ⟦SEP_0003⟧ [blocking-problems.md](⟦DEST_0001⟧) ⟦SEP_0004⟧"
+msgstr "⟦SEP_0002⟧ Problemas bloqueantes ⟦SEP_0003⟧ [blocking-problems.md](⟦DEST_0001⟧) ⟦SEP_0004⟧"
+
+#: lessons/README.md:15
+msgctxt "s-56becb08d3cc-0010"
+msgid "⟦SEP_0002⟧ Exercises ⟦SEP_0003⟧ [exercises.md](⟦DEST_0001⟧) ⟦SEP_0004⟧"
+msgstr "⟦SEP_0002⟧ Ejercicios ⟦SEP_0003⟧ [exercises.md](⟦DEST_0001⟧) ⟦SEP_0004⟧"
+
+#: lessons/README.md:16
+msgctxt "s-44949e9a117a-0011"
+msgid "⟦SEP_0002⟧ Index of concepts, languages and entries ⟦SEP_0003⟧ [index.md](⟦DEST_0001⟧) ⟦SEP_0004⟧"
+msgstr "⟦SEP_0002⟧ Índice de conceptos, lenguajes y entradas ⟦SEP_0003⟧ [index.md](⟦DEST_0001⟧) ⟦SEP_0004⟧"
+
+#: lessons/README.md:17
+msgctxt "s-157b20b061a0-0012"
+msgid "⟦SEP_0002⟧ **Study guides**: traces, predictions and evidence for advanced readers ⟦SEP_0003⟧ [study-guides/](⟦DEST_0001⟧) ⟦SEP_0004⟧"
+msgstr "⟦SEP_0002⟧ **Guías de estudio**: trazas, predicciones y evidencia para lectores avanzados ⟦SEP_0003⟧ [study-guides/](⟦DEST_0001⟧) ⟦SEP_0004⟧"
+
+#: lessons/README.md:18
+msgctxt "s-926c639f471e-0013"
+msgid "⟦SEP_0002⟧ **Curriculum**: a 16-week course that sequences the chapters, guides and exercises ⟦SEP_0003⟧ [docs/curriculum.md](⟦DEST_0001⟧) ⟦SEP_0004⟧"
+msgstr "⟦SEP_0002⟧ **Plan de estudios**: un curso de 16 semanas que ordena los capítulos, las guías y los ejercicios ⟦SEP_0003⟧ [docs/curriculum.md](⟦DEST_0001⟧) ⟦SEP_0004⟧"
+
+#: lessons/README.md:20
+msgctxt "s-ebdc1cf86cb6-0014"
+msgid "Back to the [challenge](⟦DEST_0001⟧)."
+msgstr "Vuelve al [reto](⟦DEST_0001⟧)."
+
+#: lessons/README.md:22
+msgctxt "s-af737bbdff5b-0015"
+msgid "For publication commands, see [Building the book](⟦DEST_0001⟧), [Building the study guides](⟦DEST_0002⟧) and [Building the curriculum](⟦DEST_0003⟧)."
+msgstr "Para los comandos de publicación, consulta [Construcción del libro](⟦DEST_0001⟧), [Construcción de las guías de estudio](⟦DEST_0002⟧) y [Construcción del plan de estudios](⟦DEST_0003⟧)."

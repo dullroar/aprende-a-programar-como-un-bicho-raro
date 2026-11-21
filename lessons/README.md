@@ -1,22 +1,22 @@
-# Learn Programming the Weird Way!
+# ¡Aprende a programar como un bicho raro!
 
-*Programs you shouldn't write. Language features you should understand.*
+*Programas que no deberías escribir. Características del lenguaje que deberías entender.*
 
-Start here: **[Intro: why these lessons exist](introduccion.md)**
+Empieza aquí: **[Introducción: por qué existen estas lecciones](introduccion.md)**
 
-| Way in | Page |
+| Punto de entrada | Página |
 | --- | --- |
-| By goal | [goals.md](objetivos.md) |
-| By computer science concept | [cs/](informatica/README.md) |
-| By language | [languages/](lenguajes/README.md) |
-| By solution pattern | [patterns.md](patrones.md) |
-| Problems overcome | [problems-overcome.md](problemas-superados.md) |
-| Blocking problems | [blocking-problems.md](problemas-bloqueantes.md) |
-| Exercises | [exercises.md](exercises.md) |
-| Index of concepts, languages and entries | [index.md](indice.md) |
-| **Study guides**: traces, predictions and evidence for advanced readers | [study-guides/](guias-de-estudio/README.md) |
-| **Curriculum**: a 16-week course that sequences the chapters, guides and exercises | [docs/plan-de-estudios.md](../docs/plan-de-estudios.md) |
+| Por objetivo | [goals.md](objetivos.md) |
+| Por concepto de informática | [cs/](informatica/README.md) |
+| Por lenguaje | [languages/](lenguajes/README.md) |
+| Por patrón de solución | [patterns.md](patrones.md) |
+| Problemas superados | [problems-overcome.md](problemas-superados.md) |
+| Problemas bloqueantes | [blocking-problems.md](problemas-bloqueantes.md) |
+| Ejercicios | [exercises.md](exercises.md) |
+| Índice de conceptos, lenguajes y entradas | [index.md](indice.md) |
+| **Guías de estudio**: trazas, predicciones y evidencia para lectores avanzados | [study-guides/](guias-de-estudio/README.md) |
+| **Plan de estudios**: un curso de 16 semanas que ordena los capítulos, las guías y los ejercicios | [docs/plan-de-estudios.md](../docs/plan-de-estudios.md) |
 
-Back to the [challenge](../README.md).
+Vuelve al [reto](../README.md).
 
-For publication commands, see [Building the book](book/README.md), [Building the study guides](book/README.md#compilación-de-las-guías-de-estudio) and [Building the curriculum](book/README.md#compilación-del-plan-de-estudios).
+Para los comandos de publicación, consulta [Construcción del libro](book/README.md), [Construcción de las guías de estudio](book/README.md#compilación-de-las-guías-de-estudio) y [Construcción del plan de estudios](book/README.md#compilación-del-plan-de-estudios).
