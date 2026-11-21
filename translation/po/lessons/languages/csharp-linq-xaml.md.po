@@ -375,22 +375,22 @@ msgstr "⟦SEP_0001⟧ Adaptación ⟦SEP_0002⟧ Mecanismo de la cabecera ⟦SE
 #: lessons/languages/csharp-linq-xaml.md:128
 msgctxt "s-1512fb6ea37a-0073"
 msgid "⟦SEP_0003⟧ [Java](⟦DEST_0001⟧) ⟦SEP_0004⟧ ⟦CODE_0002⟧ header; anonymous class holds state; Swing window assembled from Spring XML with SpEL ⟦SEP_0005⟧ A text block of XML as the UI; the README has a side-by-side of all four ports ⟦SEP_0006⟧"
-msgstr ""
+msgstr "⟦SEP_0003⟧ [Java](⟦DEST_0001⟧) ⟦SEP_0004⟧ Cabecera ⟦CODE_0002⟧; una clase anónima guarda el estado; ventana Swing ensamblada desde XML de Spring con SpEL ⟦SEP_0005⟧ Un bloque de texto XML como interfaz; el README compara las cuatro adaptaciones ⟦SEP_0006⟧"
 
 #: lessons/languages/csharp-linq-xaml.md:129
 msgctxt "s-21e3a919e607-0074"
 msgid "⟦SEP_0004⟧ [Kotlin](⟦DEST_0001⟧) ⟦SEP_0005⟧ ⟦CODE_0002⟧; a null from ⟦CODE_0003⟧ ends the sequence ⟦SEP_0006⟧ The body runs once before the first check, a documented difference ⟦SEP_0007⟧"
-msgstr ""
+msgstr "⟦SEP_0004⟧ [Kotlin](⟦DEST_0001⟧) ⟦SEP_0005⟧ ⟦CODE_0002⟧; un valor nulo de ⟦CODE_0003⟧ termina la secuencia ⟦SEP_0006⟧ El cuerpo se ejecuta una vez antes de la primera comprobación, una diferencia documentada ⟦SEP_0007⟧"
 
 #: lessons/languages/csharp-linq-xaml.md:130
 msgctxt "s-169f5b69208e-0075"
 msgid "⟦SEP_0006⟧ [Python](⟦DEST_0001⟧) ⟦SEP_0007⟧ ⟦CODE_0002⟧ ⟦SEP_0008⟧ No ⟦CODE_0003⟧ loops, so a tuple plus ⟦CODE_0004⟧ stands in for the comma operator; Tk widgets built from an XML string with ⟦CODE_0005⟧ ⟦SEP_0009⟧"
-msgstr ""
+msgstr "⟦SEP_0006⟧ [Python](⟦DEST_0001⟧) ⟦SEP_0007⟧ ⟦CODE_0002⟧ ⟦SEP_0008⟧ No hay bucles ⟦CODE_0003⟧, así que una tupla y ⟦CODE_0004⟧ sustituyen al operador coma; widgets Tk creados desde una cadena de texto XML con ⟦CODE_0005⟧ ⟦SEP_0009⟧"
 
 #: lessons/languages/csharp-linq-xaml.md:131
 msgctxt "s-303551692936-0076"
 msgid "⟦SEP_0006⟧ [Go](⟦DEST_0001⟧) ⟦SEP_0007⟧ a real three-clause ⟦CODE_0002⟧; helpers like ⟦CODE_0003⟧ and ⟦CODE_0004⟧ in ⟦CODE_0005⟧ ⟦SEP_0008⟧ Statement-only operations had to be hidden in a helper file, the stated cost of the Go version ⟦SEP_0009⟧"
-msgstr ""
+msgstr "⟦SEP_0006⟧ [Go](⟦DEST_0001⟧) ⟦SEP_0007⟧ Un ⟦CODE_0002⟧ real de tres cláusulas; auxiliares como ⟦CODE_0003⟧ y ⟦CODE_0004⟧ en ⟦CODE_0005⟧ ⟦SEP_0008⟧ Las operaciones que solo admiten sentencias tuvieron que ocultarse en un archivo auxiliar, el costo declarado de la versión Go ⟦SEP_0009⟧"
 
 #: lessons/languages/csharp-linq-xaml.md:132
 msgctxt "s-b944b4e999ac-0077"

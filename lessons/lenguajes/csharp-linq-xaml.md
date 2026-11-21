@@ -125,10 +125,10 @@ Las adaptaciones de Ken conservan la regla del bucle sin cuerpo y usan las pieza
 
 | Adaptación | Mecanismo de la cabecera | Peculiaridad que vale la pena robar |
 | --- | --- | --- |
-| [Java](../../src/JavaChallenge1/README.md) | `for` header; anonymous class holds state; Swing window assembled from Spring XML with SpEL | A text block of XML as the UI; the README has a side-by-side of all four ports |
-| [Kotlin](../../src/KotlinChallenge1/README.md) | `for (pass in generateSequence(...) {...})`; a null from `takeIf` ends the sequence | The body runs once before the first check, a documented difference |
-| [Python](../../src/PythonChallenge1/README.md) | `for _ in iter(<lambda>, False): ...` | No `;` loops, so a tuple plus `[-1]` stands in for the comma operator; Tk widgets built from an XML string with `getattr(tk, e.tag)` |
-| [Go](../../src/GoChallenge1/README.md) | a real three-clause `for`; helpers like `Seq` and `After` in `helpers.go` | Statement-only operations had to be hidden in a helper file, the stated cost of the Go version |
+| [Java](../../src/JavaChallenge1/README.md) | Cabecera `for`; una clase anónima guarda el estado; ventana Swing ensamblada desde XML de Spring con SpEL | Un bloque de texto XML como interfaz; el README compara las cuatro adaptaciones |
+| [Kotlin](../../src/KotlinChallenge1/README.md) | `for (pass in generateSequence(...) {...})`; un valor nulo de `takeIf` termina la secuencia | El cuerpo se ejecuta una vez antes de la primera comprobación, una diferencia documentada |
+| [Python](../../src/PythonChallenge1/README.md) | `for _ in iter(<lambda>, False): ...` | No hay bucles `;`, así que una tupla y `[-1]` sustituyen al operador coma; widgets Tk creados desde una cadena de texto XML con `getattr(tk, e.tag)` |
+| [Go](../../src/GoChallenge1/README.md) | Un `for` real de tres cláusulas; auxiliares como `Seq` y `After` en `helpers.go` | Las operaciones que solo admiten sentencias tuvieron que ocultarse en un archivo auxiliar, el costo declarado de la versión Go |
 | [Rust](../../src/RustChallenge1/README.md) | `for _ in std::iter::successors(...) {}` ([`main.rs` L19](../../src/RustChallenge1/src/main.rs#L19)) | No `;`, `let` or `return` in `main`; `match x { name => ... }` stands in for `let`; a test scans the source to enforce it |
 
 ## Under what circumstances would this terrible idea become reasonable?
