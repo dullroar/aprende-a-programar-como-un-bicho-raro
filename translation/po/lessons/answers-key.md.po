@@ -163,22 +163,22 @@ msgstr "Con 31 ⟦CODE_0001⟧ (⟦CODE_0002⟧), el bucle se detiene cuando el 
 #: lessons/answers-key.md:86
 msgctxt "s-416fb652a738-0029"
 msgid "The stop test must come **first** in the condition because a failed ⟦CODE_0001⟧ clears every ⟦CODE_0002⟧ register and a successful one rewrites them. The *main* match has to run last for its captures to be the ones that survive into the next pass."
-msgstr ""
+msgstr "La prueba de parada debe ir **primero** en la condición porque un ⟦CODE_0001⟧ fallido borra todos los registros ⟦CODE_0002⟧ y uno exitoso los reescribe. La coincidencia *principal* debe ejecutarse al final para que sus capturas sobrevivan a la siguiente pasada."
 
 #: lessons/answers-key.md:88
 msgctxt "s-39116ae53a59-0030"
 msgid "B6. APL: the off-by-one rewrite"
-msgstr ""
+msgstr "B6. APL: la reescritura con error de uno"
 
 #: lessons/answers-key.md:90
 msgctxt "s-2ed84a7a9e29-0031"
 msgid "⟦CODE_0001⟧ drops only the header and *three* gene lines, so the child's body keeps its parent's ⟦CODE_0002⟧ gene (the fourth). Every child resets its running total to just its own hours, and ⟦CODE_0003⟧ is always 1. The program recurses until the timeout:"
-msgstr ""
+msgstr "⟦CODE_0001⟧ descarta solo el encabezado y *tres* líneas de genes. Por eso el cuerpo del hijo conserva el gen ⟦CODE_0002⟧ del padre (el cuarto). Cada hijo reinicia su total acumulado con solo sus propias horas y ⟦CODE_0003⟧ siempre es 1. El programa recurre hasta agotar el tiempo:"
 
 #: lessons/answers-key.md:99
 msgctxt "s-b799b7d57c85-0032"
 msgid "On the laptop used for the 2026-11-16 rerun the recursion filled the container's 2 GB memory limit first, so the run ended with ⟦CODE_0001⟧ (exit 137) after about 2,000 lines instead of the timeout. Either way it never reaches ⟦CODE_0002⟧; which one you see depends on the machine."
-msgstr ""
+msgstr "En la computadora portátil usada para la nueva ejecución del 2026-11-16, la recursión llenó primero el límite de memoria de 2 GB del contenedor. Por eso la ejecución terminó con ⟦CODE_0001⟧ (salida 137) tras unas 2,000 líneas, en vez de agotar el tiempo. En ambos casos nunca llega a ⟦CODE_0002⟧; cuál observas depende de la máquina."
 
 #: lessons/answers-key.md:101
 msgctxt "s-480e41197a9d-0033"
@@ -186,21 +186,23 @@ msgid ""
 "That is why [⟦CODE_0001⟧](⟦DEST_0002⟧) runs under ⟦CODE_0003⟧: this failure is silent and structural.\n"
 "2. ⟦CODE_0004⟧ gives an ⟦CODE_0005⟧ on ⟦CODE_0006⟧, the line ⟦CODE_0007⟧. ⟦CODE_0008⟧ counts categories from 0 (⟦CODE_0009⟧, ⟦CODE_0010⟧), which is a valid index only with origin 0. No rows are printed."
 msgstr ""
+"Por eso [⟦CODE_0001⟧](⟦DEST_0002⟧) se ejecuta bajo ⟦CODE_0003⟧: este fallo es silencioso y estructural.\n"
+"2. ⟦CODE_0004⟧ produce un ⟦CODE_0005⟧ en ⟦CODE_0006⟧, la línea ⟦CODE_0007⟧. ⟦CODE_0008⟧ cuenta las categorías desde 0 (⟦CODE_0009⟧, ⟦CODE_0010⟧), que es un índice válido solo con origen 0. No se imprime ninguna fila."
 
 #: lessons/answers-key.md:104
 msgctxt "s-ed1cb04becc5-0034"
 msgid "B7. LINQ: enumerate twice"
-msgstr ""
+msgstr "B7. LINQ: enumera dos veces"
 
 #: lessons/answers-key.md:106
 msgctxt "s-c0c46a784d2c-0035"
 msgid "The program (also in [⟦CODE_0001⟧](⟦DEST_0002⟧)):"
-msgstr ""
+msgstr "El programa (también en [⟦CODE_0001⟧](⟦DEST_0002⟧)):"
 
 #: lessons/answers-key.md:121
 msgctxt "s-407d320629ff-0036"
 msgid "⟦SEP_0002⟧ Step ⟦SEP_0003⟧ ⟦CODE_0001⟧ lines ⟦SEP_0004⟧ Why ⟦SEP_0005⟧"
-msgstr ""
+msgstr "⟦SEP_0002⟧ Paso ⟦SEP_0003⟧ Líneas de ⟦CODE_0001⟧ ⟦SEP_0004⟧ Por qué ⟦SEP_0005⟧"
 
 #: lessons/answers-key.md:123
 msgctxt "s-4b82b8c5ecc7-0037"

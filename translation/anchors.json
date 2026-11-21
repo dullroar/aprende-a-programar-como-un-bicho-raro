@@ -747,16 +747,16 @@
     {
      "en": "B4. Make: remove the no-op, and override the clock",
      "en_id": "b4-make-remove-the-no-op-and-override-the-clock",
-     "es": "B4. Make: remove the no-op, and override the clock",
-     "es_id": "b4-make-remove-the-no-op-and-override-the-clock",
+     "es": "B4. Make: elimina la operación nula y reemplaza el reloj",
+     "es_id": "b4-make-elimina-la-operación-nula-y-reemplaza-el-reloj",
      "level": 2,
      "line": 70
     },
     {
      "en": "B5. CMake: mutate the literal",
      "en_id": "b5-cmake-mutate-the-literal",
-     "es": "B5. CMake: mutate the literal",
-     "es_id": "b5-cmake-mutate-the-literal",
+     "es": "B5. CMake: modifica el literal",
+     "es_id": "b5-cmake-modifica-el-literal",
      "level": 2,
      "line": 82
     },
@@ -988,8 +988,8 @@
     "b21-javascript-weirder-move-the-stop-rule-in-a-closure-and-watch-the-demand": "b21-javascript-weirder-move-the-stop-rule-in-a-closure-and-watch-the-demand",
     "b22-javascript-event-driven-predict-the-trace-then-remove-the-boundary": "b22-javascript-event-driven-predict-the-trace-then-remove-the-boundary",
     "b3-forth-move-the-anchor": "b3-forth-mueve-el-ancla",
-    "b4-make-remove-the-no-op-and-override-the-clock": "b4-make-remove-the-no-op-and-override-the-clock",
-    "b5-cmake-mutate-the-literal": "b5-cmake-mutate-the-literal",
+    "b4-make-remove-the-no-op-and-override-the-clock": "b4-make-elimina-la-operación-nula-y-reemplaza-el-reloj",
+    "b5-cmake-mutate-the-literal": "b5-cmake-modifica-el-literal",
     "b6-apl-the-off-by-one-rewrite": "b6-apl-the-off-by-one-rewrite",
     "b7-linq-enumerate-twice": "b7-linq-enumerate-twice",
     "b8-regex-what-survives-a-failed-match": "b8-regex-what-survives-a-failed-match",

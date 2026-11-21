@@ -154,3 +154,4 @@
 180 P4-lessons-2 partial accepted and applied answers key segments 7 to 15; resume at 16; scoped and full fast verification passed.
 181 P4-lessons-2 partial accepted and applied answers key segments 16 to 23; resume at 24; scoped and working-tree fast verification passed.
 182 P4-lessons-2 partial accepted and applied answers key segments 24 to 29; resume at 30; scoped and working-tree fast verification passed.
+183 P4-lessons-2 partial accepted and applied answers key segments 30 to 37; resume at 38; scoped and working-tree fast verification passed.

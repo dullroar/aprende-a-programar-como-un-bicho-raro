@@ -83,11 +83,11 @@ timecards.cob:158: error: 'NEXT-CARD' is not an alterable paragraph
 
 Con 31 `x` (`"^xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"`), el bucle se detiene cuando el total llega a 31, es decir, **pasa de 30**. `check-demo.sh out.txt 30` pasa en cada ejecución. Con el límite predeterminado de 40 solo pasa cuando el total final resulta ser 41 o más, así que no dependas de eso. `sandbox/run.sh` falla porque la comprobación de la propia entrada espera 40.
 
-The stop test must come **first** in the condition because a failed `MATCHES` clears every `CMAKE_MATCH_n` register and a successful one rewrites them. The *main* match has to run last for its captures to be the ones that survive into the next pass.
+La prueba de parada debe ir **primero** en la condición porque un `MATCHES` fallido borra todos los registros `CMAKE_MATCH_n` y uno exitoso los reescribe. La coincidencia *principal* debe ejecutarse al final para que sus capturas sobrevivan a la siguiente pasada.
 
-## B6. APL: the off-by-one rewrite
+## B6. APL: la reescritura con error de uno
 
-1. `4↓` drops only the header and *three* gene lines, so the child's body keeps its parent's `T←H` gene (the fourth). Every child resets its running total to just its own hours, and `Alive←40≥T` is always 1. The program recurses until the timeout:
+1. `4↓` descarta solo el encabezado y *tres* líneas de genes. Por eso el cuerpo del hijo conserva el gen `T←H` del padre (el cuarto). Cada hijo reinicia su total acumulado con solo sus propias horas y `Alive←40≥T` siempre es 1. El programa recurre hasta agotar el tiempo:
 
    ```text
    Meetings    18    18    ...
@@ -96,14 +96,14 @@ The stop test must come **first** in the condition because a failed `MATCHES` cl
    TIMEOUT after 40s          (exit 124)
    ```
 
-   On the laptop used for the 2026-11-16 rerun the recursion filled the container's 2 GB memory limit first, so the run ended with `Killed` (exit 137) after about 2,000 lines instead of the timeout. Either way it never reaches `# committed`; which one you see depends on the machine.
+   En la computadora portátil usada para la nueva ejecución del 2026-11-16, la recursión llenó primero el límite de memoria de 2 GB del contenedor. Por eso la ejecución terminó con `Killed` (salida 137) tras unas 2,000 líneas, en vez de agotar el tiempo. En ambos casos nunca llega a `# committed`; cuál observas depende de la máquina.
 
-   That is why [`apl-weird/check.sh`](../src/apl-weird/check.sh) runs under `timeout`: this failure is silent and structural.
-2. `⎕IO←1` gives an `INDEX ERROR` on `Card0[5]`, the line `Show(⊃Categories[C])...`. `C` counts categories from 0 (`C←0`, `4|C+1`), which is a valid index only with origin 0. No rows are printed.
+   Por eso [`apl-weird/check.sh`](../src/apl-weird/check.sh) se ejecuta bajo `timeout`: este fallo es silencioso y estructural.
+2. `⎕IO←1` produce un `INDEX ERROR` en `Card0[5]`, la línea `Show(⊃Categories[C])...`. `C` cuenta las categorías desde 0 (`C←0`, `4|C+1`), que es un índice válido solo con origen 0. No se imprime ninguna fila.
 
-## B7. LINQ: enumerate twice
+## B7. LINQ: enumera dos veces
 
-The program (also in [`solutions/b7-linq`](solutions/b7-linq)):
+El programa (también en [`solutions/b7-linq`](solutions/b7-linq)):
 
 ```csharp
 var q = Enumerable.Range(1, 3).Select(i => { Console.WriteLine($"effect {i}"); return i; });
@@ -118,7 +118,7 @@ var r = new Random(42);
 Console.WriteLine(string.Join(" ", Enumerable.Range(0, 5).Select(_ => r.Next(10, 20))));
 ```
 
-| Step | `effect` lines | Why |
+| Paso | Líneas de `effect` | Por qué |
 | --- | --- | --- |
 | (a) declare | 0 | `Select` is **deferred**: it builds a description, not a result. |
 | (b) `Sum()` | 3 | Enumerating runs the lambda once per element. |
