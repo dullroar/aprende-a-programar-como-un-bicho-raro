@@ -1,6 +1,6 @@
 ---
 name: "JavaScript"
-teaches: "that a for statement is three expressions and an empty body, and that JavaScript's own evaluation order, truthiness and comma operator are enough to run a whole program from the three clauses."
+teaches: "que una sentencia for consta de tres expresiones y un cuerpo vacío y que el orden de evaluación propio de JavaScript, los valores verdaderos y falsos y el operador coma bastan para ejecutar un programa completo desde las tres cláusulas."
 kind: port
 languages: [javascript, sqlite]
 lesson: "lenguajes/javascript.md#the-bodiless-for-in-node"
@@ -8,18 +8,18 @@ loop-by: loop-statement
 evaluation: eager
 assurance: guaranteed
 pairs-with: javascript-weird
-machine: "Three expression slots"
-state: "Properties of one object literal"
+machine: "Tres espacios para expresiones"
+state: "Propiedades de un objeto literal"
 tags: [callback, closure, control-flow, eager-evaluation, event-driven-programming, event-loop, first-class-and-higher-order-functions, integrity-constraint, invariant, monoid-and-fold, operational-semantics, reproducibility, scope-and-binding, short-circuit-evaluation, side-effect, state]
 ---
-# JavaScript: back to the original, in Node.js
+# JavaScript: de vuelta al original, en Node.js
 
-**Teaches you:** that a for statement is three expressions and an empty body, and that JavaScript's own evaluation order, truthiness and comma operator are enough to run a whole program from the three clauses.
+**Te enseña:** que una sentencia for consta de tres expresiones y un cuerpo vacío, y que el orden de evaluación propio de JavaScript, la veracidad de los valores (*truthiness*) y el operador coma bastan para ejecutar un programa completo a partir de las tres cláusulas.
 
-> **DEMO ONLY.** Fictional time cards, written to a scratch SQLite file under `$XDG_DATA_HOME/JavaScript/`.
-> Nothing here touches real time reporting.
+> **DEMO ONLY.** Tarjetas de horas ficticias, escritas en un archivo SQLite temporal bajo `$XDG_DATA_HOME/JavaScript/`.
+> Nada de esto toca el reporte real de horas.
 
-This is the Node.js version of [the original C# challenge](../ModernChallenge1/README.md): a `for` statement with an empty body, and everything else in its three clauses. It stays as close to the C# as the language lets it. There is no window and no XAML. The result is printed on the terminal, and when the terminal is a real one, the **DEMO ONLY** line pulses, as the C# window faded in and out.
+Esta es la versión en Node.js del [reto original en C#](../ModernChallenge1/README.md): una sentencia `for` con el cuerpo vacío y todo lo demás en sus tres cláusulas. Se mantiene tan cerca de C# como lo permite el lenguaje. No hay ventana ni XAML. El programa imprime el resultado en la terminal y, cuando la terminal es una real, la línea **DEMO ONLY** pulsa, igual que la ventana de C# aparecía y se desvanecía.
 
 ```text
 $ node timecards.mjs
@@ -33,11 +33,11 @@ Total simulated hours: 46.0
 Saved locally for the modernization exercise.
 ```
 
-This is a **port** (the same stunt in another language, like the Java, Kotlin, Python and Go entries). Its partner, [`javascript-weird`](../javascript-weird/README.md), solves the same problem with closures and no loop at all. Read them as a pair: the C# original, then this one, then the weird one.
+Esta es una **adaptación** (*port*: la misma acrobacia en otro lenguaje, como las entradas de Java, Kotlin, Python y Go). Su pareja, [`javascript-weird`](../javascript-weird/README.md), resuelve el mismo problema con clausuras (*closures*: funciones que recuerdan las variables de su entorno) y sin ningún bucle. Léelos como un par: el original en C#, después este y después el raro.
 
-## Run it
+## Ejecútalo
 
-You need **Node.js 24 or newer**. The program uses `node:sqlite`, which is built in, so there is no `npm install` and no package.
+Necesitas **Node.js 24 o una versión posterior**. El programa usa `node:sqlite`, que viene integrado, así que no hay `npm install` ni paquetes.
 
 ```bash
 cd src/javascript
@@ -48,113 +48,113 @@ PULSE_CYCLES=1 node timecards.mjs        # on a terminal: a shorter pulse (defau
 ./check.sh                               # every rule below (needs sqlite3 and GNU date, and `script` for the terminal tests)
 ```
 
-Records go to `$XDG_DATA_HOME/JavaScript/demo-timecards.db` (default `~/.local/share/JavaScript/`).
+Los registros se guardan en `$XDG_DATA_HOME/JavaScript/demo-timecards.db` (por defecto, `~/.local/share/JavaScript/`).
 
-## Run it in a container
+## Ejecútalo en un contenedor
 
-Prerequisite: Docker, set up once as described in [`SANDBOX-SETUP.md`](../../SANDBOX-SETUP.md#docker).
+Requisito previo: Docker, configurado una sola vez como se describe en [`SANDBOX-SETUP.md`](../../SANDBOX-SETUP.md#docker).
 
 ```bash
 sandbox/container/run-image.sh src/javascript          # the plain, CI-style output
 sandbox/container/run-image.sh --tty src/javascript    # with a terminal: watch the DEMO ONLY line pulse
 ```
 
-It builds this folder's [`Dockerfile`](Dockerfile) and runs the result with no network, a read-only file system and user `nobody`. The image holds Node 24 (a pinned upstream build) and sqlite3 on a minimal Ubuntu.
+Construye el [`Dockerfile`](Dockerfile) de esta carpeta y ejecuta el resultado sin red, con un sistema de archivos de solo lectura y con el usuario `nobody`. La imagen contiene Node 24 (una compilación fijada del proyecto original) y sqlite3 sobre un Ubuntu mínimo.
 
-## Program Flow
+## Flujo del programa
 
 ```mermaid
 flowchart TD
-    accTitle: javascript: a for statement in Node whose condition prints the result and the event loop keeps the pulse alive
-    accDescr: A flowchart. The initializer builds one object literal with the seed generator, the SQLite database and the categories. The condition sums the hours with reduce and is true while the total is 40 or less. Then the empty body runs and the iterator pushes random hours and inserts a card with the comma operator. When the condition is false, a comma expression prints the result, starts a setInterval timer if the output is a terminal, and yields false, so the for ends. Node does not exit yet, because the timer is still registered. The event loop runs the timer callback, which pulses the DEMO ONLY line and then clears the timer, so Node exits.
-    A["Initializer: one object literal holds seed, SQLite, categories, state"] --> B{{"Condition: reduce sum <= 40?"}}
-    B -->|true| C["Empty body"]
-    C --> D["Iterator, comma operator: push hours, insert the card"]
+    accTitle: javascript: una sentencia for en Node cuya condición imprime el resultado y el bucle de eventos mantiene vivo el pulso
+    accDescr: Un diagrama de flujo. El inicializador construye un literal de objeto con el generador de semilla, la base de datos SQLite y las categorías. La condición suma las horas con reduce y es verdadera mientras el total no pase de 40. Luego se ejecuta el cuerpo vacío y el iterador agrega horas aleatorias e inserta una tarjeta con el operador coma. Cuando la condición es falsa, una expresión con coma imprime el resultado, inicia un temporizador setInterval si la salida es una terminal y produce false. Así termina el for. Node todavía no termina, porque el temporizador sigue registrado. El bucle de eventos ejecuta la función de devolución de llamada del temporizador, que hace pulsar la línea DEMO ONLY y después borra el temporizador, así que Node termina.
+    A["Inicializador: un literal de objeto contiene la semilla, SQLite, las categorías y el estado"] --> B{{"Condición: ¿reduce sum <= 40?"}}
+    B -->|true| C["Cuerpo vacío"]
+    C --> D["Iterador, operador coma: agrega las horas, inserta la tarjeta"]
     D --> B
-    B -->|false| E["Comma expression: console.log the result, setInterval if a terminal, value false"]
-    E --> F["The for ends; the call stack empties"]
-    F --> G["Event loop runs the timer callback: pulse the DEMO ONLY line"]
-    G --> H["clearInterval: nothing is left, Node exits"]
+    B -->|false| E["Expresión con coma: console.log muestra el resultado, setInterval se llama si hay una terminal, valor false"]
+    E --> F["El for termina; la pila de llamadas se vacía"]
+    F --> G["El bucle de eventos ejecuta la función de devolución de llamada del temporizador: pulsa la línea DEMO ONLY"]
+    G --> H["clearInterval: no queda nada y Node termina"]
 ```
 
-**What this shows:** the three clauses of a `for`, where the condition is a conditional expression that does the final work when it is false. The only asynchronous part is the pulse. Until the `for` is over, everything runs synchronously on one call stack.
+**Qué muestra:** las tres cláusulas de un `for`, donde la condición es una expresión condicional que hace el trabajo final cuando es falsa. La única parte asíncrona es el pulso. Hasta que termina `for`, todo se ejecuta de forma síncrona en una sola pila de llamadas.
 
-**Why this mechanism matters:** the program has a loop, a stop and a second phase, and the second phase exists only because a timer keeps the event loop alive. Without a terminal there is no timer, and Node exits as soon as the `for` ends. The other two Node entries make this scheduling the point: [`javascript-weird`](../javascript-weird/README.md) (closures) and [`javascript-events`](../javascript-events/README.md) (listeners).
+**Por qué importa este mecanismo:** el programa tiene un bucle, una parada y una segunda fase, y la segunda fase existe solo porque un temporizador mantiene vivo el bucle de eventos. Sin una terminal no hay temporizador y Node termina en cuanto acaba `for`. Las otras dos entradas de Node se centran en esta planificación: [`javascript-weird`](../javascript-weird/README.md) (clausuras) y [`javascript-events`](../javascript-events/README.md) (escuchadores de eventos).
 
-## How the stunt works
+## Cómo funciona el truco
 
-Open [`timecards.mjs`](timecards.mjs). After four `import` lines, the file is one statement. Read it as three clauses:
+Abre [`timecards.mjs`](timecards.mjs). Después de cuatro líneas de `import`, el archivo es una sola sentencia. Léelo como tres cláusulas:
 
-| Clause | Job |
+| Cláusula | Tarea |
 | --- | --- |
-| **Initializer** | One `let i = ...` builds all the state as properties of one object literal: the list of hours, the user name, the category names, the seed, the clock, an ISO-week function, the SQLite database, and flags for the terminal. It also creates the tables, starts a run and prepares the `INSERT`. The object literal plays the part of C#'s anonymous object |
-| **Condition** | `i.hours.reduce(...) <= 40 ? true : (...)`. While the running total is 40 or under, it is `true` and the loop goes again. Once the total passes 40, the condition prints the result, starts the pulse timer on a terminal, and its value is `false`: the loop ends. The report is built inline, as the C# built its window inline |
-| **Iterator** | A comma expression with two parts: draw one random number of hours (10 to 19) and push it, then `INSERT` one card. This is the only place that adds a card |
+| **Inicializador** | Un `let i = ...` construye todo el estado como propiedades de un solo literal de objeto: la lista de horas, el nombre de usuario, los nombres de las categorías, la semilla, el reloj, una función de semana ISO, la base de datos SQLite y banderas para la terminal. También crea las tablas, inicia una ejecución y prepara `INSERT`. El literal de objeto cumple el papel del objeto anónimo de C# |
+| **Condición** | `i.hours.reduce(...) <= 40 ? true : (...)`. Mientras el total acumulado sea 40 o menos, la condición vale `true` y el bucle da otra vuelta. Cuando el total pasa de 40, la condición imprime el resultado e inicia el temporizador de pulso en una terminal, y su valor es `false`: el bucle termina. El informe se construye en línea, igual que el C# construyó su ventana en línea |
+| **Iterador** | Una expresión con coma de dos partes: genera un número aleatorio de horas (de 10 a 19) y lo agrega al arreglo; después `INSERT` una tarjeta. Este es el único lugar que agrega una tarjeta |
 
-Without `SEED`, the initializer gets the seed for its Park–Miller generator from the global Web Crypto object's `crypto.getRandomValues`. Node also offers `randomInt` as an export of `node:crypto`. This entry uses the global Web Crypto method.
+Sin `SEED`, el inicializador obtiene la semilla de su generador Park–Miller del `crypto.getRandomValues` del objeto global Web Crypto. Node también ofrece `randomInt` como exportación de `node:crypto`. Esta entrada usa el método global de Web Crypto.
 
-The body is `{ /* Intentionally empty. */ }`. **Trace one card:** the initializer runs once. The condition runs: the total is 0, so it returns `true`. The body does nothing. The iterator runs: it adds a card. Back to the condition: if the total is still 40 or less, it returns `true` again, and so on. The first time the condition sees a total over 40, the crossing card is already in the database, and the condition prints it and returns `false`. So the card that crosses 40 is included, because the iterator ran *before* that test.
+El cuerpo es `{ /* Intentionally empty. */ }`. **Traza una tarjeta:** el inicializador se ejecuta una vez. Se ejecuta la condición: el total es 0, así que devuelve `true`. El cuerpo no hace nada. Se ejecuta el iterador: suma una tarjeta. Vuelve a la condición: si el total aún no pasa de 40, devuelve `true` otra vez y así sucesivamente. La primera vez que la condición ve un total de más de 40, la tarjeta que cruza el límite ya está en la base de datos. La condición la imprime y devuelve `false`. Así, la tarjeta que cruza el límite de 40 queda incluida, porque el iterador se ejecutó *antes* de esa prueba.
 
-### What the C# did, and what this does
+### Qué hizo el C# y qué hace este código
 
-| C# original | JavaScript here | A deliberate difference |
+| Original en C# | JavaScript aquí | Una diferencia deliberada |
 |---|---|---|
-| `for (var i = new { ... }; cond; iter) { }` | `for (let i = ...; cond; iter) { }` | None. The empty body is kept |
-| The anonymous object is the one declaration | An object literal is the one declaration | A `let` initializer cannot be followed by more expressions: the comma starts the next declarator. So the literal goes through an arrow function that finishes it with the comma operator. C# allows a list of statements instead of a declaration |
-| `(from h in i.totalHours select h).Sum() <= 40d` | `i.hours.reduce((sum, h) => sum + h, 0) <= 40` | `reduce` is the closest relative of LINQ's `Sum`. Both compute their result during the condition test. C# constructs a deferred LINQ projection that `Sum()` immediately consumes |
-| `... && i.categories.MoveNext() ? true : new Func<bool>(...)()` | `... <= 40 ? true : (console.log(...), ..., false)` | There is no `MoveNext` and no `Func`. See the next table about the categories |
-| `Double.IsNaN(i.app.Run(new Window { ... }))` | `console.log(...)`, then `setInterval` on a terminal | There is no window. See the pulse below |
-| `XElement` builds the `DoubleAnimation` | `setInterval` and ANSI codes | A timer plays the storyboard |
-| EF Core, `DemoTimeCardContext`, `Database.EnsureCreated()` | `node:sqlite`, `CREATE TABLE IF NOT EXISTS` | No ORM. node:sqlite is part of Node, so it needs no package |
-| `i.rnd.Next(10, 20)` (`Random.Shared`) | `10 + i.rnd() % 10` with a seeded Park-Miller closure | `Math.random` cannot be seeded. A closure over the seed can, so `SEED=42` replays a run |
-| `Environment.UserName` | `os.userInfo().username` | None |
-| `ISOWeek.GetWeekOfYear(DateTime.Now)` | A hand-written arrow, `i.iso` | JavaScript has no ISO week. The Thursday of the week decides the year. `check.sh` compares it with GNU `date` on ten dates |
-| `Year = DateTime.Now.Year` | The ISO week-year | C# stores the calendar year next to the ISO week, and the two disagree near New Year (for example 2024-12-30 is in calendar year 2024 but in ISO week 1 of 2025, and 2021-01-03 is in calendar year 2021 but in ISO week 53 of 2020). A year and a week from the same system always agree |
-| `Mutex`, a background `Thread`, `MethodInfo.Invoke` | Nothing | Node runs your JavaScript on one thread and `node:sqlite` is synchronous. The thread and the reflection were there to show off a 2008 style. Here the iterator saves the card by calling `insert.run` |
-| `IsDemo = true` | `demo_only`, with a `CHECK` constraint | Same idea. The database refuses a row that is not DEMO ONLY |
+| `for (var i = new { ... }; cond; iter) { }` | `for (let i = ...; cond; iter) { }` | Ninguna. Se conserva el cuerpo vacío |
+| El objeto anónimo es la única declaración | Un literal de objeto es la única declaración | Un inicializador `let` no puede ir seguido de más expresiones: la coma inicia el siguiente declarador. Por eso el literal pasa por una función flecha que lo termina con el operador coma. C# permite una lista de sentencias en lugar de una declaración |
+| `(from h in i.totalHours select h).Sum() <= 40d` | `i.hours.reduce((sum, h) => sum + h, 0) <= 40` | `reduce` es el pariente más cercano de `Sum` en LINQ. Ambos calculan su resultado durante la prueba de la condición. C# construye una proyección diferida de LINQ que `Sum()` consume de inmediato |
+| `... && i.categories.MoveNext() ? true : new Func<bool>(...)()` | `... <= 40 ? true : (console.log(...), ..., false)` | No hay `MoveNext` ni `Func`. Consulta la tabla siguiente sobre las categorías |
+| `Double.IsNaN(i.app.Run(new Window { ... }))` | `console.log(...)` y luego `setInterval` en una terminal | No hay ventana. Mira el pulso de abajo |
+| `XElement` construye el `DoubleAnimation` | `setInterval` y códigos ANSI | Un temporizador reproduce el guion gráfico |
+| EF Core, `DemoTimeCardContext`, `Database.EnsureCreated()` | `node:sqlite`, `CREATE TABLE IF NOT EXISTS` | No hay ORM. node:sqlite forma parte de Node, así que no necesita ningún paquete |
+| `i.rnd.Next(10, 20)` (`Random.Shared`) | `10 + i.rnd() % 10` con una clausura de Park-Miller con semilla | `Math.random` no puede recibir semilla. Una clausura sobre la semilla sí puede, así que `SEED=42` repite una ejecución |
+| `Environment.UserName` | `os.userInfo().username` | Ninguno |
+| `ISOWeek.GetWeekOfYear(DateTime.Now)` | Una flecha escrita a mano, `i.iso` | JavaScript no tiene semana ISO. El jueves de la semana decide el año. `check.sh` la compara con `date` de GNU en diez fechas |
+| `Year = DateTime.Now.Year` | El año de la semana ISO | C# guarda el año calendario junto a la semana ISO. Los dos no coinciden cerca de Año Nuevo. Por ejemplo, 2024-12-30 está en el año calendario 2024, pero en la semana ISO 1 de 2025. Y 2021-01-03 está en el año calendario 2021, pero en la semana ISO 53 de 2020. Un año y una semana del mismo sistema siempre coinciden |
+| `Mutex`, un `Thread` en segundo plano, `MethodInfo.Invoke` | Nada | Node ejecuta tu JavaScript en un solo hilo y `node:sqlite` es síncrono. El hilo y la reflexión estaban ahí para lucir un estilo de 2008. Aquí el iterador guarda la tarjeta al llamar a `insert.run` |
+| `IsDemo = true` | `demo_only`, con una restricción `CHECK` | La misma idea. La base de datos rechaza una fila que no sea DEMO ONLY |
 
-### What matches the original, and what does not (measured)
+### Qué coincide con el original y qué no (medido)
 
-| Behavior | C# original | This entry |
+| Comportamiento | Original en C# | Esta entrada |
 |---|---|---|
-| Start | Opens the database in the initializer | Same |
-| When the loop stops | When the sum is over 40, **or when the categories run out**. The 2008 original had four category names, so four cards of exactly 10 hours ended the run at a total of 40, with no card over 40. `ModernChallenge1` and the Java, Go, Kotlin, Python and Rust ports now have five names (`Meetings` repeats), like this entry | Only when the sum is over 40. The categories repeat (the fifth card is `Meetings`). A total of exactly 40 continues. That is a one-in-ten-thousand case, and `check.sh` has a test for it: it finds a seed that makes four cards total 40 and checks that a fifth card follows |
-| The crossing card | Included | Included |
-| Recorded fields | `Id`, `Category`, `Hours` (a double), `UserId`, `Year`, `Week`, `IsDemo` | `category`, `hours` (an integer), `user_id`, `year`, `week`, `demo_only`, plus `run_id` and `running_total` for the book's shared checks |
-| What you see | A WPF window: **DEMO ONLY - no real time system is involved**, **Total simulated hours: 46.0**, **Saved locally for the modernization exercise.**, fading in and out | The same three texts on the terminal: the report first, always. On a terminal, the first text pulses (bold, then dim) |
-| Waiting | The window stays until you close it | The pulse runs 3 cycles (about four seconds), then the program ends. In CI, or when redirected, it ends at once |
-| Errors | An unhandled exception ends the process with a non-zero status | The same: an exception (for example, a data folder that cannot be created) prints a message and exits with status 1 |
+| Inicio | Abre la base de datos en el inicializador | Igual |
+| Cuándo se detiene el bucle | Cuando la suma pasa de 40, **o cuando se agotan las categorías**. El original de 2008 tenía cuatro nombres de categoría, así que cuatro tarjetas de exactamente 10 horas terminaban la ejecución con un total de 40, sin ninguna tarjeta de más de 40. `ModernChallenge1` y las adaptaciones a Java, Go, Kotlin, Python y Rust ahora tienen cinco nombres (`Meetings` se repite), como esta entrada | Solo cuando la suma pasa de 40. Las categorías se repiten (la quinta tarjeta es `Meetings`). Un total de exactamente 40 continúa. Es un caso de uno entre diez mil, y `check.sh` tiene una prueba para él: busca una semilla con la que cuatro tarjetas suman un total de 40 y comprueba que sigue una quinta tarjeta |
+| La tarjeta que cruza | Incluida | Incluida |
+| Campos registrados | `Id`, `Category`, `Hours` (un número de doble precisión), `UserId`, `Year`, `Week`, `IsDemo` | `category`, `hours` (un entero), `user_id`, `year`, `week`, `demo_only`, más `run_id` y `running_total` para las comprobaciones compartidas del libro |
+| Qué ves | Una ventana WPF: **DEMO ONLY - no real time system is involved**, **Total simulated hours: 46.0**, **Saved locally for the modernization exercise.**, que aparecen y desaparecen gradualmente | Los mismos tres textos en la terminal: primero el informe, siempre. En una terminal, el primer texto pulsa (primero en negrita y luego atenuado) |
+| Espera | La ventana permanece hasta que la cierres | El pulso dura 3 ciclos (unos cuatro segundos) y después el programa termina. En CI, o cuando se redirige, termina de inmediato |
+| Errores | Una excepción no controlada termina el proceso con un estado distinto de cero | Lo mismo: una excepción (por ejemplo, una carpeta de datos que no se puede crear) imprime un mensaje y termina con el estado 1 |
 
-### The pulse and the event loop
+### El pulso y el bucle de eventos
 
-The `for` statement is synchronous. All the cards are drawn, and the report is printed, before the first timer can fire. The pulse is `setInterval`: when the loop is done, Node's **event loop** runs the timer every 600 milliseconds, writes a line (`\r`, then a bold or dim version of the text), and after the last cycle clears the timer. Then there is nothing left to wait for, and Node exits.
+La sentencia `for` es síncrona. El programa dibuja todas las tarjetas e imprime el informe antes de que el primer temporizador pueda dispararse. El pulso es `setInterval`: cuando termina el bucle, el **bucle de eventos** de Node ejecuta el temporizador cada 600 milisegundos, escribe una línea (`\r`, y luego una versión en negrita o atenuada del texto) y, tras el último ciclo, cancela el temporizador. Después ya no queda nada por esperar y Node termina.
 
-- **It never delays the computation.** The timer is only started in the *false* branch of the condition, after everything is saved.
-- **It is off when it should be.** The timer starts only when standard output is a terminal and `TERM` is not `dumb`. A pipe or a file gets the plain report and nothing else, and the program ends at once.
-- **`NO_COLOR` is respected.** With it set, the line blinks between `*DEMO ONLY ...` and ` DEMO ONLY ...` and there are no escape codes for style. (The `\r` and the erase-line code stay: they are cursor control, not color.)
-- **Backpressure** does not matter here. The program writes a few hundred bytes, so it does not wait for the stream to drain.
+- **Nunca retrasa el cálculo.** El temporizador solo se inicia en la rama *false* de la condición, después de guardar todo.
+- **Está apagado cuando debe estarlo.** El temporizador se inicia solo cuando la salida estándar es una terminal y `TERM` no es `dumb`. Una tubería o un archivo recibe el informe simple y nada más, y el programa termina de inmediato.
+- **Se respeta `NO_COLOR`.** Con esa variable definida, la línea parpadea entre `*DEMO ONLY ...` y ` DEMO ONLY ...` y no hay códigos de escape de estilo. (`\r` y el código de borrado de línea se mantienen: controlan el cursor, no el color.)
+- La **contrapresión** (*backpressure*) no importa aquí. El programa escribe unos cientos de bytes, así que no espera a que el flujo se vacíe.
 
-## What `check.sh` enforces
+## Qué impone `check.sh`
 
-`check.sh` needs Node 24 or newer, `sqlite3` and GNU `date`.
+`check.sh` requiere Node 24 o posterior, `sqlite3` y GNU `date`.
 
-- **The constraint is real.** `check-structure.mjs` scans the file, with comments and strings blanked out. After the imports it must be **one `for` statement**: exactly two semicolons in the header, an empty body, no other statement, no second `for`, no `while`, no `do`, no `forEach`, no `eval`, no `Function`. Six mutants of the program are rejected: a statement after the loop, a body in the loop, a `runEverything` wrapper, a hidden `while`, a second `for`, and `eval`. The program imports no network, process or thread module.
-- **The rules of the challenge.** 25 random runs: categories in order, hours 10 to 19, correct running totals, a stop right after the first total over 40, `DEMO ONLY` everywhere, nothing on stderr, no escape codes in redirected output. In SQLite: only demo rows, the current user, and every `running_total` equal to the sum of the hours so far.
-- **A seed replays a run.** `SEED=42` twice gives the same cards. Twelve seeds (totals of 41, 42, 50, 51 and 57, in three to five cards) match a separate model of the generator, written in awk. A seed whose first four cards make exactly 40 is found and must get a fifth card.
-- **The ISO week.** The week and year agree with GNU `date +%G-W%V` for ten dates: the first days of January, 53-week years, and the last days of December.
-- **The pulse.** On a pseudo-terminal (made with `script`): the report is printed first, then the line pulses bold and dim. With `NO_COLOR`: plain blinking, no style codes. With `TERM=dumb`: no escape codes. Redirected: no timer, and the run ends in under 3 seconds.
-- **Errors and the schema.** An unwritable data folder ends with a non-zero status and a message. SQLite refuses a non-demo row or run, 9 hours and a fifth category.
+- **La restricción es real.** `check-structure.mjs` analiza el archivo, tras vaciar los comentarios y las cadenas de texto. Después de las importaciones debe quedar **una sola sentencia `for`**: exactamente dos puntos y coma en el encabezado, un cuerpo vacío, sin otra sentencia, sin un segundo `for`, sin `while`, sin `do`, sin `forEach`, sin `eval`, sin `Function`. Se rechazan seis mutantes del programa: una sentencia después del bucle, un cuerpo en el bucle, un envoltorio `runEverything`, un `while` oculto, un segundo `for` y `eval`. El programa no importa ningún módulo de red, de proceso ni de hilo.
+- **Las reglas del reto.** 25 ejecuciones aleatorias: categorías en orden, horas de 10 a 19, totales acumulados correctos, una parada justo después del primer total que pasa de 40, `DEMO ONLY` en todas partes, nada en stderr, ningún código de escape en la salida redirigida. En SQLite: solo filas de demostración, el usuario actual y cada `running_total` igual a la suma de las horas hasta ese momento.
+- **Una semilla repite una ejecución.** Usar `SEED=42` dos veces da las mismas tarjetas. Doce semillas (totales de 41, 42, 50, 51 y 57, con tres a cinco tarjetas) coinciden con un modelo aparte del generador, escrito en awk. Se encuentra una semilla cuyas primeras cuatro tarjetas suman exactamente 40 y esa semilla debe recibir una quinta tarjeta.
+- **La semana ISO.** La semana y el año coinciden con GNU `date +%G-W%V` en diez fechas: los primeros días de enero, los años de 53 semanas y los últimos días de diciembre.
+- **El pulso.** En una pseudoterminal (creada con `script`): primero se imprime el informe y luego la línea pulsa entre negrita y atenuado. Con `NO_COLOR`: parpadeo simple, sin códigos de estilo. Con `TERM=dumb`: sin códigos de escape. Con la salida redirigida: sin temporizador, y la ejecución termina en menos de 3 segundos.
+- **Errores y el esquema.** Una carpeta de datos sin permiso de escritura termina con un estado distinto de cero y un mensaje. SQLite rechaza una fila o una ejecución que no sea de demostración, 9 horas y una quinta categoría.
 
-## Gotchas worth knowing
+## Trampas que conviene conocer
 
-- **Node 24 or newer.** `node:sqlite` came in with Node 22.5. It is not part of any standard, and it is newer than most of Node's API, so read its stability note in the Node documentation for your version (**implementation-permitted**: we tested it only on the versions below). The `for` semantics are **guaranteed** by the ECMAScript specification. The entry also runs on Node 24.15 and 24.22, which are the versions we tested.
-- **`let` in a `for` header makes a new binding on each pass.** The specification copies the loop variable for every iteration, so a closure made inside the loop sees its own copy. Here that does not matter, because `i` holds *one object*, and every copy points to it. If `i` had been a number, the iterator could not have updated it for the condition. This is why the state is an object.
-- **The comma has two meanings.** In `let a = 1, b = 2` it separates declarators. In `(x, y)` it is an operator that evaluates both and gives `y`. The initializer has to use the second kind after the declaration, which is why the arrow function is there.
-- **`this` is not the object.** The pulse callback is a `function` and not an arrow, only because `clearInterval(this)` needs the timer object that Node passes as `this`. Everything else uses arrows, which read `i` from the enclosing scope.
-- **Recursive `mkdir` can spin.** On Node 24.15 on Linux, `mkdirSync(path, { recursive: true })` on a path under `/proc` never returned (we stopped it after ten minutes). The check uses a plain file as the parent folder, to get an error at once. That is a Node issue, not part of the program's design.
-- **No `Math.random`.** It cannot be seeded, so a closure with Park-Miller (multiplier 48271, modulus 2147483647) draws the hours. The distribution is uniform enough for a demo, and not for anything else.
-- **The pulse is a polite lie.** It is a timer that rewrites one line. If your terminal does not support ANSI codes, it prints them as text. Set `NO_COLOR` or `TERM=dumb`, or redirect the output.
+- **Node 24 o más reciente.** `node:sqlite` llegó con Node 22.5. No forma parte de ningún estándar. Es más reciente que la mayoría de las API de Node, así que lee su nota de estabilidad en la documentación de Node para tu versión (**permitido por la implementación**: solo lo probamos en las versiones siguientes). La semántica de `for` es un comportamiento **garantizado** por la especificación de ECMAScript. La entrada también se ejecuta en Node 24.15 y 24.22, que son las versiones que probamos.
+- **`let` en el encabezado de un `for` crea un enlace nuevo en cada pasada.** La especificación copia la variable del bucle en cada iteración, así que una clausura creada dentro del bucle ve su propia copia. Aquí eso no importa, porque `i` contiene *un objeto* y todas las copias apuntan a él. Si `i` hubiera sido un número, el iterador no habría podido actualizarlo para la condición. Por eso el estado es un objeto.
+- **La coma tiene dos significados.** En `let a = 1, b = 2` separa declaradores. En `(x, y)` es un operador que evalúa ambos y produce `y`. Después de la declaración, el inicializador tiene que usar el segundo tipo, y por eso está ahí la función flecha.
+- **`this` no es el objeto.** La función de devolución de llamada del pulso (*callback*: una función que entregas a otro código para que la ejecute más tarde) es `function` y no una función flecha, solo porque `clearInterval(this)` necesita el objeto del temporizador que Node pasa como `this`. Todo lo demás usa funciones flecha, que leen `i` del ámbito que las contiene.
+- **Un `mkdir` recursivo puede quedarse girando.** En Node 24.15 en Linux, `mkdirSync(path, { recursive: true })` sobre una ruta bajo `/proc` nunca retornó (lo detuvimos después de diez minutos). La comprobación usa un archivo normal como carpeta padre para obtener un error de inmediato. Es un problema de Node, no parte del diseño del programa.
+- **Sin `Math.random`.** No admite semilla, así que una clausura con Park-Miller (multiplicador 48271, módulo 2147483647) genera las horas. La distribución es lo bastante uniforme para una demostración, y para nada más.
+- **El pulso es una mentira educada.** Es un temporizador que reescribe una línea. Si tu terminal no admite códigos ANSI, el temporizador los imprime como texto. Define `NO_COLOR`, define `TERM=dumb` o redirige la salida.
 
 ---
 
-See the [root README](../../README.md#the-results-so-far) for how this compares to the other entries, and [`RETO.md`](../../RETO.md) if you want to write your own.
+Consulta el [README principal](../../README.md#the-results-so-far) para ver cómo se compara con las demás entradas, y [`RETO.md`](../../RETO.md) si quieres escribir la tuya.

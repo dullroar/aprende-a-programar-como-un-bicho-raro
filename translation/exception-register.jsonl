@@ -151,3 +151,14 @@
 {"id":"EXC-151","segment":"s-fb3bb820b4e1-0021","invariant":"I7","reason":"cards, machine and hoursFrom are identifiers (names in the code) kept English, not the glossary nouns card and machine","task":"P4-src-9"}
 {"id":"EXC-152","segment":"s-5fd084fe6d25-0042","invariant":"I7","reason":"'builds' is the verb (the call constructs a pipeline), not the noun build the glossary renders as compilación","task":"P4-src-9"}
 {"id":"EXC-153","segment":"s-d785051c4d31-0074","invariant":"I7","reason":"'pull it off its object' is the plain verb (taking a method off its object), not the pull model the glossary renders as demanda (pull)","task":"P4-src-9"}
+{"id":"EXC-154","segment":"s-70d1ed8d0c32-0017","invariant":"I7","reason":"build is the verb 'builds' (the initializer builds an object), not the build process","task":"P4-src-10"}
+{"id":"EXC-155","segment":"s-4441bafafd05-0033","invariant":"I7","reason":"build is the verb 'builds' (one for builds all the state), not the build process","task":"P4-src-10"}
+{"id":"EXC-156","segment":"s-cc79423c37d0-0045","invariant":"I7","reason":"build is the verb 'builds' (a function builds the frame), not the build process","task":"P4-src-10"}
+{"id":"EXC-157","segment":"s-faca8018e30a-0059","invariant":"I7","reason":"exercise and hours sit inside a quoted on-screen text the program prints in English; they are not prose","task":"P4-src-10"}
+{"id":"EXC-158","segment":"s-d0a22cd8c24e-0078","invariant":"I7","reason":"'condición' renders the English word condition (the loop condition), not the glossary term state","task":"P4-src-10"}
+{"id":"EXC-159","segment":"s-fedf9ff74960-0000","invariant":"TRANSLATE","reason":"The segment is the heading 'Common Lisp', a language name (product name); there is no prose to translate.","task":"P4-src-10"}
+{"id":"EXC-160","segment":"s-d00f37a3b73e-0019","invariant":"I7","reason":"card-N is an identifier (the generated methods card-1 to card-5), not the glossary term card","task":"P4-src-10"}
+{"id":"EXC-161","segment":"s-b0f5fcb23650-0023","invariant":"I7","reason":"call-next-method is a CLOS identifier; 'method' there is part of the name, not the glossary term","task":"P4-src-10"}
+{"id":"EXC-162","segment":"s-760534379865-0029","invariant":"I7","reason":"pipe is the verb 'to pipe' (canaliza), not the noun pipe","task":"P4-src-10"}
+{"id":"EXC-163","segment":"s-f88b37bf3921-0044","invariant":"I7","reason":"build is the verb 'the reader builds a ring' (forma), not the build process","task":"P4-src-10"}
+{"id":"EXC-164","segment":"s-5373085210e7-0020","invariant":"I7","reason":"card-1 is a class identifier (a CLOS class name), not the glossary term card","task":"P4-src-10"}

@@ -118,7 +118,7 @@ flowchart TD
 
 ### Program flow of `lisp-weird`
 
-From [`lisp-weird`](../../src/lisp-weird/README.md) ([source section](../../src/lisp-weird/README.md#program-flow)).
+From [`lisp-weird`](../../src/lisp-weird/README.md) ([source section](../../src/lisp-weird/README.md#flujo-del-programa)).
 
 ```mermaid
 sequenceDiagram

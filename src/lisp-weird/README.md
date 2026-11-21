@@ -1,6 +1,6 @@
 ---
 name: "Common Lisp"
-teaches: "that CLOS method combination is a control-flow construct: a class hierarchy is a loop, and `or` is a stop rule."
+teaches: "que la combinación de métodos de CLOS es una construcción de control de flujo: una jerarquía de clases es un bucle y `or` es una regla de parada."
 kind: weird
 languages: [common-lisp]
 lesson: "lenguajes/lisp.md#method-combination-as-control-flow"
@@ -8,23 +8,23 @@ loop-by: dispatch-and-triggers
 evaluation: eager
 assurance: implementation-permitted
 pairs-with: lisp
-machine: "A method dispatcher with a pluggable combination rule"
-state: "The class precedence list, and each method's return value"
+machine: "Un despachador de métodos con una regla de combinación intercambiable"
+state: "La lista de precedencia de clases y el valor de retorno de cada método"
 tags: [control-flow, homoiconicity, macro-processing, reflection-and-metaprogramming, scope-and-binding, short-circuit-evaluation, state]
 ---
-# Common Lisp, weirder
+# Common Lisp, más raro
 
-**Teaches you:** that CLOS method combination is a control-flow construct: a class hierarchy is a loop, and `or` is a stop rule.
+**Te enseña:** que la combinación de métodos de CLOS es una estructura de control: una jerarquía de clases es un bucle y `or` es una regla de parada.
 
-> **DEMO ONLY.** Fictional timecards in a scratch SQLite file. No connection to any real time-reporting system.
+> **DEMO ONLY.** Tarjetas de horas ficticias en un archivo SQLite temporal. Sin conexión con ningún sistema real de registro de horas.
 
-Below the line marked `RUN TIME` in [`timecards.lisp`](timecards.lisp) there is **no loop, no `if`, `when`, `cond` or `case`, no `mapcar`, and no recursion**. Each card is a *method*. The cards are chained through a class hierarchy, and the generic function that calls them uses the built-in `or` method combination, which runs methods one after another and **stops at the first one that returns true**. Each method deals a card and answers "is the total over 40 yet?". The class precedence list is the loop counter, and `or`'s short-circuit is the stop rule.
+Debajo de la línea marcada con `RUN TIME` en [`timecards.lisp`](timecards.lisp) **no hay bucle, ni `if`, `when`, `cond` ni `case`, ni `mapcar`, ni recursión**. Cada tarjeta es un *método*. Las tarjetas se encadenan mediante una jerarquía de clases. La función genérica que las llama usa la combinación de métodos integrada `or`. Esta ejecuta los métodos uno tras otro y **se detiene en el primero que devuelve verdadero**. Cada método reparte una tarjeta y responde "¿el total ya pasa de 40?". La lista de precedencia de clases es el contador del bucle, y el cortocircuito de `or` es la regla de parada.
 
-The straight version is [`lisp`](../lisp/README.md).
+La versión directa es [`lisp`](../lisp/README.md).
 
-## Run it
+## Ejecútalo
 
-You need [SBCL](https://www.sbcl.org/) (tested with 2.2.9) and `sqlite3`. Nothing else is needed: no libraries, no ASDF.
+Necesitas [SBCL](https://www.sbcl.org/) (probado con 2.2.9) y `sqlite3`. No necesitas nada más: ni bibliotecas ni ASDF.
 
 ```bash
 cd src/lisp-weird
@@ -32,7 +32,7 @@ sbcl --script timecards.lisp
 ./check.sh                  # set SBCL=/path/to/sbcl if it is not on your PATH
 ```
 
-Records go to `$XDG_DATA_HOME/LispWeird/demo-timecards.db` (default `~/.local/share/LispWeird/`). A run looks like this:
+Los registros van a `$XDG_DATA_HOME/LispWeird/demo-timecards.db` (por defecto, `~/.local/share/LispWeird/`). Una ejecución se ve así:
 
 ```text
 # DEMO ONLY run 1794860078-QM6YV6
@@ -43,40 +43,40 @@ Debugging	15	51	2026-W47	DEMO ONLY
 # PUNCH had 5 OR methods and 3 ran: the class precedence list is the loop, and OR is the stop rule
 ```
 
-The last line is introspection: it asks the **metaobject protocol** (`sb-mop:compute-applicable-methods`) which methods apply to the ledger, and counts how many of the five actually ran.
+La última línea es introspección: le pregunta al **protocolo de metaobjetos** (`sb-mop:compute-applicable-methods`) qué métodos se aplican al libro de registro y cuenta cuántos de los cinco se ejecutaron en realidad.
 
-## Program Flow
+## Flujo del programa
 
 ```mermaid
 sequenceDiagram
-    accTitle: lisp-weird: method combination with or is the loop and the stop rule
-    accDescr: A sequence diagram. Main calls the generic function punch on a card-1 instance. CLOS finds every applicable method and sorts them by class precedence: card-1, card-2, and so on up to the ledger. An around method on the ledger runs first. It binds the special variable for the SQL stream and calls the next method, which is the or combination. The or combination calls the card methods in order. Each one deals a card: it draws hours, adds to the total, prints the row and writes the INSERT to the SQL stream. The method returns whether the total is over 40. The first true result ends the or, so later methods never run. The around method then appends COMMIT and pipes the script into sqlite3.
+    accTitle: lisp-weird: la combinación de métodos con or es el bucle y la regla de parada
+    accDescr: Un diagrama de secuencia. Main llama a la función genérica punch sobre una instancia de card-1. CLOS encuentra todos los métodos aplicables y los ordena por precedencia de clase: card-1, card-2 y así hasta ledger. Un método around sobre ledger se ejecuta primero. Este método enlaza la variable especial del flujo SQL y llama al siguiente método, que es la combinación or. La combinación or llama a los métodos de las tarjetas en orden. Cada método reparte una tarjeta: sortea las horas, las suma al total, imprime la fila y escribe el INSERT en el flujo SQL. El método devuelve si el total pasa de 40. El primer resultado verdadero termina el or, así que los métodos posteriores nunca se ejecutan. Después, el método around añade COMMIT y pasa el script a sqlite3 mediante una tubería.
     participant M as main
-    participant A as around method on ledger
-    participant P as punch with or combination
-    participant K as card-N methods
-    M->>P: punch on a card-1 instance
-    P->>A: the around method runs first
-    A->>A: bind *sql* to a new string stream
-    A->>P: call-next-method: the or chain
-    loop each applicable method, most specific first
-        P->>K: card-N deals a card: hours, total, print, INSERT into *sql*
-        K-->>P: is the total over 40?
+    participant A as método around sobre ledger
+    participant P as punch con combinación or
+    participant K as métodos card-N
+    M->>P: punch en una instancia de card-1
+    P->>A: el método `around` se ejecuta primero
+    A->>A: vincula *sql* a un nuevo flujo de cadena de texto
+    A->>P: call-next-method: la cadena de or
+    loop cada método aplicable, del más específico al menos específico
+        P->>K: card-N reparte una tarjeta: horas, total, impresión, INSERT en *sql*
+        K-->>P: ¿el total pasa de 40?
     end
-    Note over P,K: the first true result ends the or: later methods never run
-    P-->>A: the chain returns
-    A->>A: append COMMIT, pipe the script into sqlite3
+    Note over P,K: el primer resultado verdadero termina el `or`: los métodos posteriores nunca se ejecutan
+    P-->>A: la cadena devuelve
+    A->>A: añade COMMIT, canaliza el script a sqlite3
 ```
 
-**What this shows:** the loop is a class hierarchy. `card-1` inherits from `card-2`, and so on, and the generic function `punch` calls the method of each class in turn. The class is the whole message "this is card number N". The method combination `or` is what stops it: it calls methods until one returns true.
+**Qué muestra:** el bucle es una jerarquía de clases. `card-1` hereda de `card-2` y así sucesivamente. La función genérica `punch` llama al método de cada clase, una tras otra. La clase es todo el mensaje "esta es la tarjeta número N". La combinación de métodos `or` es lo que lo detiene: llama a los métodos hasta que uno devuelva verdadero.
 
-**Why this mechanism matters:** CLOS decides what runs and in what order. The program has no statement that says "stop", and the unused methods are simply never called. The `:around` method wraps the whole chain and uses dynamic binding to send every `format` to one stream.
+**Por qué importa este mecanismo:** CLOS decide qué se ejecuta y en qué orden. El programa no tiene ninguna sentencia que diga "detente", y los métodos que no se usan simplemente nunca se llaman. El método `:around` envuelve toda la cadena y usa enlace dinámico para enviar cada `format` a un único flujo.
 
-## How the stunt works
+## Cómo funciona el truco
 
-### 1. Method combination: what happens when more than one method applies
+### 1. Combinación de métodos: qué ocurre cuando se aplica más de un método
 
-When you call a generic function, CLOS finds every method whose specializers match, sorts them most-specific-first, and then **combines** them. The default combination calls the most specific method, and that method may call `call-next-method` to reach the next. But the standard also provides built-in combinations (`and`, `or`, `progn`, `append`, `list`, `max`, `min`, `+`, `nconc`) which call *all* the applicable methods for you and combine the results. With `or`:
+Cuando llamas a una función genérica, CLOS encuentra todos los métodos cuyos especializadores coinciden, los ordena del más específico al menos específico y luego los **combina**. La combinación predeterminada llama al método más específico y ese método puede llamar a `call-next-method` para llegar al siguiente. Pero el estándar también ofrece combinaciones integradas (`and`, `or`, `progn`, `append`, `list`, `max`, `min`, `+`, `nconc`) que llaman por ti a *todos* los métodos aplicables y combinan los resultados. Con `or`:
 
 ```lisp
 (defgeneric punch (ledger)
@@ -84,79 +84,79 @@ When you call a generic function, CLOS finds every method whose specializers mat
 (defmethod punch or ((ledger card-3)) ...)    ; "or" here is the method qualifier
 ```
 
-`punch` becomes `(or (method-1 ledger) (method-2 ledger) ...)`, in specificity order. It is the same short-circuit as the ordinary `or` special operator: the first true result ends it and **later methods never run**.
+`punch` se convierte en `(or (method-1 ledger) (method-2 ledger) ...)`, en orden de especificidad. Es el mismo cortocircuito que el del operador especial `or` ordinario: el primer resultado verdadero termina la evaluación y **los métodos posteriores nunca se ejecutan**.
 
-### 2. The class hierarchy as a counter
+### 2. La jerarquía de clases como contador
 
 ```text
 card-1 -> card-2 -> card-3 -> card-4 -> card-5 -> ledger
 ```
 
-`(defcard 3 card-4)` expands into `(defclass card-3 (card-4) ())` and a `punch or` method specialized on `card-3`. An instance of `card-1` therefore has class precedence list `(card-1 card-2 card-3 card-4 card-5 ledger ...)`, so `punch` runs card 1's method, then card 2's, and so on. The classes have no slots of their own; the class itself is the whole message "this is card number N". The `ledger` at the end of the chain holds the state (running total, entry count, random state, run id).
+`(defcard 3 card-4)` se expande en `(defclass card-3 (card-4) ())` y en un método `punch or` especializado en `card-3`. Por tanto, una instancia de `card-1` tiene la lista de precedencia de clases `(card-1 card-2 card-3 card-4 card-5 ledger ...)`, así que `punch` ejecuta el método de la tarjeta 1, luego el de la tarjeta 2 y así sucesivamente. Las clases no tienen ranuras (*slots*) propias; la clase misma es todo el mensaje "esta es la tarjeta número N". `ledger`, al final de la cadena, guarda el estado (total acumulado, número de entradas, estado aleatorio, id de ejecución).
 
-Why five? Cards are at least 10 hours, so four cards total at least 40, and 40 is not *over* 40 (that is the all-10s case); a fifth card always pushes past it. Five is the most this challenge can ever need.
+¿Por qué cinco? Cada tarjeta dura al menos 10 horas, así que cuatro tarjetas suman como mínimo 40 horas. Y 40 no es *más de* 40 (ese es el caso en que todas duran 10 horas). Una quinta tarjeta siempre hace que el total pase de ese tope. Cinco es el máximo que este reto puede necesitar.
 
-### 3. The stop rule is `or`
+### 3. La regla de parada es `or`
 
-`deal` ends with `(> (total ledger) 40)`. When it is true the chain stops. After three or four cards the remaining methods are simply never called. The program contains no statement that says "stop".
+`deal` termina con `(> (total ledger) 40)`. Cuando es verdadero, la cadena se detiene. Después de tres o cuatro tarjetas, los demás métodos simplemente nunca se llaman. El programa no contiene ninguna sentencia que diga "detente".
 
-### 4. `:around`, `prog1`, and dynamic binding
+### 4. `:around`, `prog1` y enlace dinámico
 
-An `:around` method on `ledger` wraps the whole chain. It binds the special variable `*sql*` to a fresh string stream (dynamic binding: every `format *sql*` deeper in the call stack, in `deal`, writes into it, with no stream passed down), calls `call-next-method` (which is the `or` chain), then appends `COMMIT` and pipes the script into `sqlite3`.
+Un método `:around` sobre `ledger` envuelve todo el encadenamiento. El método vincula la variable especial `*sql*` a un flujo de cadena de texto nuevo. Es una vinculación dinámica: cada `format *sql*` más abajo en la pila de llamadas, en `deal`, escribe en ese flujo, sin pasar ningún flujo hacia abajo. Luego llama a `call-next-method` (que es el encadenamiento `or`), agrega `COMMIT` y pasa el script por una tubería a `sqlite3`.
 
-### 5. A circular list from the reader
+### 5. Una lista circular desde el lector
 
 ```lisp
 (defparameter *week* '#1=("Meetings" "Coding" "Debugging" "Learning" . #1#))
 ```
 
-`#1=` labels the list and `#1#` points back at it, so the reader builds a ring. `(nth 4 *week*)` is `"Meetings"` again: the categories repeat with no `mod`. (Never print it with `*print-circle*` off.)
+`#1=` etiqueta la lista y `#1#` apunta de vuelta a ella, así que el lector forma un anillo. `(nth 4 *week*)` es de nuevo `"Meetings"`: las categorías se repiten sin `mod`. (Nunca la imprimas con `*print-circle*` desactivado.)
 
-### 6. Generalized places
+### 6. Lugares generalizados
 
-`(incf (total ledger) hours)`: `total` is a slot accessor, and every accessor is a `setf`-able **place**, so `incf` works on it exactly as on a variable.
+`(incf (total ledger) hours)`: `total` es un accesor de ranura, y todo accesor es un **lugar** donde puede usarse `setf`, así que `incf` funciona con él igual que con una variable.
 
-### 7. Macros at compile time
+### 7. Macros en tiempo de compilación
 
-`defcard` is a macro, so its expansion is five `defclass` and five `defmethod` forms written for us at compile time. The code that builds the names (`intern`, `format`) runs while compiling, inside `eval-when`, so none of it is a loop over cards at run time.
+`defcard` es una macro, así que su expansión son cinco formas `defclass` y cinco formas `defmethod` escritas para nosotros en tiempo de compilación. El código que construye los nombres (`intern`, `format`) se ejecuta durante la compilación, dentro de `eval-when`, así que nada de eso es un bucle sobre tarjetas en tiempo de ejecución.
 
-## Why this is weird
+## Por qué es raro
 
-A Lisp programmer reads `or` as a *form*. Here it appears as a *qualifier on a method*, and the thing being or-ed is a chain of classes. Control flow is made out of the object system: dispatch is the iteration, specificity order is the sequence, and the return value is the "break". Nothing is doing the work in a thin wrapper: delete `:method-combination or` and the program no longer stops (see the proof below).
+Un programador de Lisp lee `or` como una *forma*. Aquí aparece como un *calificador de un método*, y lo que se combina con *or* es una cadena de clases. El flujo de control se construye con el sistema de objetos: el despacho es la iteración, el orden de especificidad es la secuencia y el valor de retorno es el "break". Ningún envoltorio delgado hace el trabajo: elimina `:method-combination or` y el programa ya no se detiene (consulta la prueba más abajo).
 
-You should not do this in production because the control flow is invisible: nothing near `punch` says "this loops". A maintainer would have to know that `defclass` ordering decides execution order, and splicing a class into the chain would change behavior without touching any method.
+No deberías hacer esto en producción porque el flujo de control es invisible: nada cerca de `punch` dice "esto hace un bucle". Un mantenedor tendría que saber que el orden de `defclass` decide el orden de ejecución, y que insertar una clase en la cadena cambiaría el comportamiento sin tocar ningún método.
 
-## What you can learn
+## Qué puedes aprender
 
-- Method combination, qualifiers (`or`, `:around`) and how `defgeneric ... (:method-combination ...)` selects it. `define-method-combination` lets you write your own.
-- Class precedence lists, and that they are *computed* (`sb-mop:compute-class-precedence-list`) and can be inspected.
-- The metaobject protocol: `sb-mop:compute-applicable-methods` and `method-qualifiers`.
-- Reader labels `#n=` / `#n#` for circular and shared structure.
-- Dynamic binding (`defvar` + `let`) as an implicit parameter.
-- Why `(eval-when (:compile-toplevel ...))` matters: a function used by a macro must exist at compile time.
+- La combinación de métodos, los calificadores (`or`, `:around`) y cómo la selecciona `defgeneric ... (:method-combination ...)`. `define-method-combination` te permite escribir la tuya.
+- Las listas de precedencia de clases, que se *calculan* (`sb-mop:compute-class-precedence-list`) y se pueden inspeccionar.
+- El protocolo de metaobjetos: `sb-mop:compute-applicable-methods` y `method-qualifiers`.
+- Etiquetas del lector `#n=` / `#n#` para estructuras circulares y compartidas.
+- Enlace dinámico (`defvar` + `let`) como parámetro implícito.
+- Por qué importa `(eval-when (:compile-toplevel ...))`: una función usada por una macro debe existir en tiempo de compilación.
 
-## Proof that `or` is the stop rule
+## Prueba de que `or` es la regla de parada
 
-`check.sh` rewrites the file, replacing `or` with `progn` (the combination that runs *every* method) and runs it five times: every run deals **all five** cards, the total ending anywhere up to 95. The unmodified file stops after three or four cards. Nothing else changes between the two files, so the combination is what stops it.
+`check.sh` reescribe el archivo, reemplaza `or` por `progn` (la combinación que ejecuta *todos* los métodos) y lo ejecuta cinco veces: cada ejecución reparte **las cinco** tarjetas y el total termina en cualquier valor hasta 95. El archivo sin modificar se detiene después de tres o cuatro tarjetas. Nada más cambia entre los dos archivos, así que la combinación es lo que lo detiene.
 
-## Gotchas worth knowing
+## Trampas que conviene conocer
 
-- **SBCL only.** `sb-mop`, `sb-ext:run-program`, `sb-ext:posix-getenv` are SBCL's. The CLOS parts (`or` combination, `:around`, `defcard`) are standard Common Lisp.
-- **Order of definitions.** Superclasses must exist before subclasses, so `defcard` goes tail first (`card-5`, then `card-4`, ...). A forward reference would work in some implementations and warn in others.
-- **The limit is baked into the chain.** Five classes handle "10 to 19 hours, stop over 40". Different rules need a longer or shorter chain: a design limit the straight version does not have.
-- **`sql-quote` does not escape.** Every value is a number or one of four fixed words; do not use it with anything else.
-- **Formatting.** No formatter exists for Common Lisp; the layout follows Emacs `lisp-mode` indentation by hand.
+- **Solo SBCL.** `sb-mop`, `sb-ext:run-program` y `sb-ext:posix-getenv` son propios de SBCL. Las partes de CLOS (la combinación `or`, `:around` y `defcard`) son Common Lisp estándar.
+- **Orden de las definiciones.** Las superclases deben existir antes que las subclases, así que `defcard` va primero por la cola (`card-5`, luego `card-4`, ...). Una referencia hacia adelante funcionaría en algunas implementaciones y generaría una advertencia en otras.
+- **El límite está incorporado en la cadena.** Cinco clases manejan "de 10 a 19 horas, se detiene si pasa de 40". Reglas distintas necesitan una cadena más larga o más corta: una limitación de diseño que la versión directa no tiene.
+- **`sql-quote` no aplica escape.** Cada valor es un número o una de cuatro palabras fijas; no lo uses con nada más.
+- **Formato.** No existe un formateador para Common Lisp; el diseño sigue a mano la sangría de Emacs `lisp-mode`.
 
-## What `check.sh` enforces
+## Qué impone `check.sh`
 
-With comments removed, below the `RUN TIME` marker: none of `loop do dolist dotimes mapc mapcar mapcan map maphash reduce if when unless cond case tagbody go block return catch throw handler-case`; `(:method-combination or)` is present; there are exactly five `defcard` forms; the over-40 test appears once. Then the `progn` experiment above, then 25 runs each checked for sane records (hours 10 to 19, categories in order, correct running totals, stopping when the total passes 40) with SQLite agreeing with the output.
+Sin comentarios, debajo del marcador `RUN TIME`: no aparece ninguno de `loop do dolist dotimes mapc mapcar mapcan map maphash reduce if when unless cond case tagbody go block return catch throw handler-case`; `(:method-combination or)` está presente; hay exactamente cinco formas `defcard`; la prueba de más de 40 aparece una vez. Después, el experimento `progn` de arriba y 25 ejecuciones, cada una revisada para comprobar que los registros son coherentes (horas de 10 a 19, categorías en orden, totales acumulados correctos, parada cuando el total pasa de 40), con SQLite de acuerdo con la salida.
 
-## Run it in a container
+## Ejecuta el programa en un contenedor
 
-Prerequisite: Docker, set up once as described in [`SANDBOX-SETUP.md`](../../SANDBOX-SETUP.md#docker). The `cc-rt-sbcl` base image comes from `sandbox/container/build-bases.sh`.
+Requisito previo: Docker, configurado una sola vez como se describe en [`SANDBOX-SETUP.md`](../../SANDBOX-SETUP.md#docker). La imagen base `cc-rt-sbcl` proviene de `sandbox/container/build-bases.sh`.
 
 ```bash
 sandbox/container/run-image.sh src/lisp-weird
 ```
 
-The image holds SBCL and sqlite3 on a minimal Ubuntu.
+La imagen contiene SBCL y sqlite3 sobre un Ubuntu mínimo.

@@ -1,0 +1,437 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/javascript/README.md:2
+msgctxt "s-b27ad06d123c-0000"
+msgid "JavaScript"
+msgstr "JavaScript"
+
+#: src/javascript/README.md:3
+msgctxt "s-144c07050913-0001"
+msgid "that a for statement is three expressions and an empty body, and that JavaScript's own evaluation order, truthiness and comma operator are enough to run a whole program from the three clauses."
+msgstr "que una sentencia for consta de tres expresiones y un cuerpo vacío y que el orden de evaluación propio de JavaScript, los valores verdaderos y falsos y el operador coma bastan para ejecutar un programa completo desde las tres cláusulas."
+
+#: src/javascript/README.md:11
+msgctxt "s-af314db68bc7-0002"
+msgid "Three expression slots"
+msgstr "Tres espacios para expresiones"
+
+#: src/javascript/README.md:12
+msgctxt "s-2ea5f2aa5ed7-0003"
+msgid "Properties of one object literal"
+msgstr "Propiedades de un objeto literal"
+
+#: src/javascript/README.md:15
+msgctxt "s-f9cccbb3c120-0004"
+msgid "JavaScript: back to the original, in Node.js"
+msgstr "JavaScript: de vuelta al original, en Node.js"
+
+#: src/javascript/README.md:17
+msgctxt "s-9f25e7bd07f4-0005"
+msgid "**Teaches you:** that a for statement is three expressions and an empty body, and that JavaScript's own evaluation order, truthiness and comma operator are enough to run a whole program from the three clauses."
+msgstr "**Te enseña:** que una sentencia for consta de tres expresiones y un cuerpo vacío, y que el orden de evaluación propio de JavaScript, la veracidad de los valores (*truthiness*) y el operador coma bastan para ejecutar un programa completo a partir de las tres cláusulas."
+
+#: src/javascript/README.md:19
+msgctxt "s-65d79a287ef9-0006"
+msgid ""
+"**⟦DNT_0001⟧.** Fictional time cards, written to a scratch SQLite file under ⟦CODE_0002⟧.\n"
+"Nothing here touches real time reporting."
+msgstr ""
+"**⟦DNT_0001⟧.** Tarjetas de horas ficticias, escritas en un archivo SQLite temporal bajo ⟦CODE_0002⟧.\n"
+"Nada de esto toca el reporte real de horas."
+
+#: src/javascript/README.md:22
+msgctxt "s-80e570bf6f87-0007"
+msgid "This is the Node.js version of [the original C# challenge](⟦DEST_0001⟧): a ⟦CODE_0002⟧ statement with an empty body, and everything else in its three clauses. It stays as close to the C# as the language lets it. There is no window and no XAML. The result is printed on the terminal, and when the terminal is a real one, the **⟦DNT_0003⟧** line pulses, as the C# window faded in and out."
+msgstr "Esta es la versión en Node.js del [reto original en C#](⟦DEST_0001⟧): una sentencia ⟦CODE_0002⟧ con el cuerpo vacío y todo lo demás en sus tres cláusulas. Se mantiene tan cerca de C# como lo permite el lenguaje. No hay ventana ni XAML. El programa imprime el resultado en la terminal y, cuando la terminal es una real, la línea **⟦DNT_0003⟧** pulsa, igual que la ventana de C# aparecía y se desvanecía."
+
+#: src/javascript/README.md:36
+msgctxt "s-8828b83d016c-0008"
+msgid "This is a **port** (the same stunt in another language, like the Java, Kotlin, Python and Go entries). Its partner, [⟦CODE_0001⟧](⟦DEST_0002⟧), solves the same problem with closures and no loop at all. Read them as a pair: the C# original, then this one, then the weird one."
+msgstr "Esta es una **adaptación** (*port*: la misma acrobacia en otro lenguaje, como las entradas de Java, Kotlin, Python y Go). Su pareja, [⟦CODE_0001⟧](⟦DEST_0002⟧), resuelve el mismo problema con clausuras (*closures*: funciones que recuerdan las variables de su entorno) y sin ningún bucle. Léelos como un par: el original en C#, después este y después el raro."
+
+#: src/javascript/README.md:38
+msgctxt "s-958ca26c6a61-0009"
+msgid "Run it"
+msgstr "Ejecútalo"
+
+#: src/javascript/README.md:40
+msgctxt "s-07a7a32b3ee3-0010"
+msgid "You need **Node.js 24 or newer**. The program uses ⟦CODE_0001⟧, which is built in, so there is no ⟦CODE_0002⟧ and no package."
+msgstr "Necesitas **Node.js 24 o una versión posterior**. El programa usa ⟦CODE_0001⟧, que viene integrado, así que no hay ⟦CODE_0002⟧ ni paquetes."
+
+#: src/javascript/README.md:51
+msgctxt "s-d197702d6021-0011"
+msgid "Records go to ⟦CODE_0001⟧ (default ⟦CODE_0002⟧)."
+msgstr "Los registros se guardan en ⟦CODE_0001⟧ (por defecto, ⟦CODE_0002⟧)."
+
+#: src/javascript/README.md:53
+msgctxt "s-254f0c660db3-0012"
+msgid "Run it in a container"
+msgstr "Ejecútalo en un contenedor"
+
+#: src/javascript/README.md:55
+msgctxt "s-643df015c8a2-0013"
+msgid "Prerequisite: Docker, set up once as described in [⟦CODE_0001⟧](⟦DEST_0002⟧)."
+msgstr "Requisito previo: Docker, configurado una sola vez como se describe en [⟦CODE_0001⟧](⟦DEST_0002⟧)."
+
+#: src/javascript/README.md:62
+msgctxt "s-f47ebc4905aa-0014"
+msgid "It builds this folder's [⟦CODE_0001⟧](⟦DEST_0002⟧) and runs the result with no network, a read-only file system and user ⟦CODE_0003⟧. The image holds Node 24 (a pinned upstream build) and sqlite3 on a minimal Ubuntu."
+msgstr "Construye el [⟦CODE_0001⟧](⟦DEST_0002⟧) de esta carpeta y ejecuta el resultado sin red, con un sistema de archivos de solo lectura y con el usuario ⟦CODE_0003⟧. La imagen contiene Node 24 (una compilación fijada del proyecto original) y sqlite3 sobre un Ubuntu mínimo."
+
+#: src/javascript/README.md:64
+msgctxt "s-0dcb373c2dff-0015"
+msgid "Program Flow"
+msgstr "Flujo del programa"
+
+#: src/javascript/README.md:68
+msgctxt "s-96b03bd3fb64-0016"
+msgid "javascript: a for statement in Node whose condition prints the result and the event loop keeps the pulse alive"
+msgstr "javascript: una sentencia for en Node cuya condición imprime el resultado y el bucle de eventos mantiene vivo el pulso"
+
+#: src/javascript/README.md:69
+msgctxt "s-70d1ed8d0c32-0017"
+msgid "A flowchart. The initializer builds one object literal with the seed generator, the SQLite database and the categories. The condition sums the hours with reduce and is true while the total is 40 or less. Then the empty body runs and the iterator pushes random hours and inserts a card with the comma operator. When the condition is false, a comma expression prints the result, starts a setInterval timer if the output is a terminal, and yields false, so the for ends. Node does not exit yet, because the timer is still registered. The event loop runs the timer callback, which pulses the ⟦DNT_0001⟧ line and then clears the timer, so Node exits."
+msgstr "Un diagrama de flujo. El inicializador construye un literal de objeto con el generador de semilla, la base de datos SQLite y las categorías. La condición suma las horas con reduce y es verdadera mientras el total no pase de 40. Luego se ejecuta el cuerpo vacío y el iterador agrega horas aleatorias e inserta una tarjeta con el operador coma. Cuando la condición es falsa, una expresión con coma imprime el resultado, inicia un temporizador setInterval si la salida es una terminal y produce false. Así termina el for. Node todavía no termina, porque el temporizador sigue registrado. El bucle de eventos ejecuta la función de devolución de llamada del temporizador, que hace pulsar la línea ⟦DNT_0001⟧ y después borra el temporizador, así que Node termina."
+
+#: src/javascript/README.md:70
+msgctxt "s-c98d76b040d1-0018"
+msgid "Initializer: one object literal holds seed, SQLite, categories, state"
+msgstr "Inicializador: un literal de objeto contiene la semilla, SQLite, las categorías y el estado"
+
+#: src/javascript/README.md:70
+msgctxt "s-1cecae26aecb-0019"
+msgid "Condition: reduce sum <= 40?"
+msgstr "Condición: ¿reduce sum <= 40?"
+
+#: src/javascript/README.md:71
+msgctxt "s-b5bea41b6c62-0020"
+msgid "true"
+msgstr "true"
+
+#: src/javascript/README.md:71
+msgctxt "s-f4bc948d685c-0021"
+msgid "Empty body"
+msgstr "Cuerpo vacío"
+
+#: src/javascript/README.md:72
+msgctxt "s-f1f907adddb5-0022"
+msgid "Iterator, comma operator: push hours, insert the card"
+msgstr "Iterador, operador coma: agrega las horas, inserta la tarjeta"
+
+#: src/javascript/README.md:74
+msgctxt "s-fcbcf165908d-0023"
+msgid "false"
+msgstr "false"
+
+#: src/javascript/README.md:74
+msgctxt "s-c7a60aae2cb0-0024"
+msgid "Comma expression: console.log the result, setInterval if a terminal, value false"
+msgstr "Expresión con coma: console.log muestra el resultado, setInterval se llama si hay una terminal, valor false"
+
+#: src/javascript/README.md:75
+msgctxt "s-198fed83943e-0025"
+msgid "The for ends; the call stack empties"
+msgstr "El for termina; la pila de llamadas se vacía"
+
+#: src/javascript/README.md:76
+msgctxt "s-663481a6eecc-0026"
+msgid "Event loop runs the timer callback: pulse the ⟦DNT_0001⟧ line"
+msgstr "El bucle de eventos ejecuta la función de devolución de llamada del temporizador: pulsa la línea ⟦DNT_0001⟧"
+
+#: src/javascript/README.md:77
+msgctxt "s-93f4ac973a0d-0027"
+msgid "clearInterval: nothing is left, Node exits"
+msgstr "clearInterval: no queda nada y Node termina"
+
+#: src/javascript/README.md:80
+msgctxt "s-75194c1e9e53-0028"
+msgid "**What this shows:** the three clauses of a ⟦CODE_0001⟧, where the condition is a conditional expression that does the final work when it is false. The only asynchronous part is the pulse. Until the ⟦CODE_0002⟧ is over, everything runs synchronously on one call stack."
+msgstr "**Qué muestra:** las tres cláusulas de un ⟦CODE_0001⟧, donde la condición es una expresión condicional que hace el trabajo final cuando es falsa. La única parte asíncrona es el pulso. Hasta que termina ⟦CODE_0002⟧, todo se ejecuta de forma síncrona en una sola pila de llamadas."
+
+#: src/javascript/README.md:82
+msgctxt "s-283d8f054902-0029"
+msgid "**Why this mechanism matters:** the program has a loop, a stop and a second phase, and the second phase exists only because a timer keeps the event loop alive. Without a terminal there is no timer, and Node exits as soon as the ⟦CODE_0001⟧ ends. The other two Node entries make this scheduling the point: [⟦CODE_0002⟧](⟦DEST_0003⟧) (closures) and [⟦CODE_0004⟧](⟦DEST_0005⟧) (listeners)."
+msgstr "**Por qué importa este mecanismo:** el programa tiene un bucle, una parada y una segunda fase, y la segunda fase existe solo porque un temporizador mantiene vivo el bucle de eventos. Sin una terminal no hay temporizador y Node termina en cuanto acaba ⟦CODE_0001⟧. Las otras dos entradas de Node se centran en esta planificación: [⟦CODE_0002⟧](⟦DEST_0003⟧) (clausuras) y [⟦CODE_0004⟧](⟦DEST_0005⟧) (escuchadores de eventos)."
+
+#: src/javascript/README.md:84
+msgctxt "s-7f97d965b4c0-0030"
+msgid "How the stunt works"
+msgstr "Cómo funciona el truco"
+
+#: src/javascript/README.md:86
+msgctxt "s-7bd7ba52cc28-0031"
+msgid "Open [⟦CODE_0001⟧](⟦DEST_0002⟧). After four ⟦CODE_0003⟧ lines, the file is one statement. Read it as three clauses:"
+msgstr "Abre [⟦CODE_0001⟧](⟦DEST_0002⟧). Después de cuatro líneas de ⟦CODE_0003⟧, el archivo es una sola sentencia. Léelo como tres cláusulas:"
+
+#: src/javascript/README.md:88
+msgctxt "s-b7aa33e7c490-0032"
+msgid "⟦SEP_0001⟧ Clause ⟦SEP_0002⟧ Job ⟦SEP_0003⟧"
+msgstr "⟦SEP_0001⟧ Cláusula ⟦SEP_0002⟧ Tarea ⟦SEP_0003⟧"
+
+#: src/javascript/README.md:90
+msgctxt "s-4441bafafd05-0033"
+msgid "⟦SEP_0003⟧ **Initializer** ⟦SEP_0004⟧ One ⟦CODE_0001⟧ builds all the state as properties of one object literal: the list of hours, the user name, the category names, the seed, the clock, an ISO-week function, the SQLite database, and flags for the terminal. It also creates the tables, starts a run and prepares the ⟦CODE_0002⟧. The object literal plays the part of C#'s anonymous object ⟦SEP_0005⟧"
+msgstr "⟦SEP_0003⟧ **Inicializador** ⟦SEP_0004⟧ Un ⟦CODE_0001⟧ construye todo el estado como propiedades de un solo literal de objeto: la lista de horas, el nombre de usuario, los nombres de las categorías, la semilla, el reloj, una función de semana ISO, la base de datos SQLite y banderas para la terminal. También crea las tablas, inicia una ejecución y prepara ⟦CODE_0002⟧. El literal de objeto cumple el papel del objeto anónimo de C# ⟦SEP_0005⟧"
+
+#: src/javascript/README.md:91
+msgctxt "s-c5cada34f864-0034"
+msgid "⟦SEP_0004⟧ **Condition** ⟦SEP_0005⟧ ⟦CODE_0001⟧. While the running total is 40 or under, it is ⟦CODE_0002⟧ and the loop goes again. Once the total passes 40, the condition prints the result, starts the pulse timer on a terminal, and its value is ⟦CODE_0003⟧: the loop ends. The report is built inline, as the C# built its window inline ⟦SEP_0006⟧"
+msgstr "⟦SEP_0004⟧ **Condición** ⟦SEP_0005⟧ ⟦CODE_0001⟧. Mientras el total acumulado sea 40 o menos, la condición vale ⟦CODE_0002⟧ y el bucle da otra vuelta. Cuando el total pasa de 40, la condición imprime el resultado e inicia el temporizador de pulso en una terminal, y su valor es ⟦CODE_0003⟧: el bucle termina. El informe se construye en línea, igual que el C# construyó su ventana en línea ⟦SEP_0006⟧"
+
+#: src/javascript/README.md:92
+msgctxt "s-5309064dd818-0035"
+msgid "⟦SEP_0002⟧ **Iterator** ⟦SEP_0003⟧ A comma expression with two parts: draw one random number of hours (10 to 19) and push it, then ⟦CODE_0001⟧ one card. This is the only place that adds a card ⟦SEP_0004⟧"
+msgstr "⟦SEP_0002⟧ **Iterador** ⟦SEP_0003⟧ Una expresión con coma de dos partes: genera un número aleatorio de horas (de 10 a 19) y lo agrega al arreglo; después ⟦CODE_0001⟧ una tarjeta. Este es el único lugar que agrega una tarjeta ⟦SEP_0004⟧"
+
+#: src/javascript/README.md:94
+msgctxt "s-ca46453749f9-0036"
+msgid "Without ⟦CODE_0001⟧, the initializer gets the seed for its Park–Miller generator from the global Web Crypto object's ⟦CODE_0002⟧. Node also offers ⟦CODE_0003⟧ as an export of ⟦CODE_0004⟧. This entry uses the global Web Crypto method."
+msgstr "Sin ⟦CODE_0001⟧, el inicializador obtiene la semilla de su generador Park–Miller del ⟦CODE_0002⟧ del objeto global Web Crypto. Node también ofrece ⟦CODE_0003⟧ como exportación de ⟦CODE_0004⟧. Esta entrada usa el método global de Web Crypto."
+
+#: src/javascript/README.md:96
+msgctxt "s-e75ea87e4d1e-0037"
+msgid "The body is ⟦CODE_0001⟧. **Trace one card:** the initializer runs once. The condition runs: the total is 0, so it returns ⟦CODE_0002⟧. The body does nothing. The iterator runs: it adds a card. Back to the condition: if the total is still 40 or less, it returns ⟦CODE_0003⟧ again, and so on. The first time the condition sees a total over 40, the crossing card is already in the database, and the condition prints it and returns ⟦CODE_0004⟧. So the card that crosses 40 is included, because the iterator ran *before* that test."
+msgstr "El cuerpo es ⟦CODE_0001⟧. **Traza una tarjeta:** el inicializador se ejecuta una vez. Se ejecuta la condición: el total es 0, así que devuelve ⟦CODE_0002⟧. El cuerpo no hace nada. Se ejecuta el iterador: suma una tarjeta. Vuelve a la condición: si el total aún no pasa de 40, devuelve ⟦CODE_0003⟧ otra vez y así sucesivamente. La primera vez que la condición ve un total de más de 40, la tarjeta que cruza el límite ya está en la base de datos. La condición la imprime y devuelve ⟦CODE_0004⟧. Así, la tarjeta que cruza el límite de 40 queda incluida, porque el iterador se ejecutó *antes* de esa prueba."
+
+#: src/javascript/README.md:98
+msgctxt "s-7ca8cd438f46-0038"
+msgid "What the C# did, and what this does"
+msgstr "Qué hizo el C# y qué hace este código"
+
+#: src/javascript/README.md:100
+msgctxt "s-d0099fdfe31a-0039"
+msgid "⟦SEP_0001⟧ C# original ⟦SEP_0002⟧ JavaScript here ⟦SEP_0003⟧ A deliberate difference ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ Original en C# ⟦SEP_0002⟧ JavaScript aquí ⟦SEP_0003⟧ Una diferencia deliberada ⟦SEP_0004⟧"
+
+#: src/javascript/README.md:102
+msgctxt "s-3e06033c72b6-0040"
+msgid "⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ ⟦CODE_0002⟧ ⟦SEP_0005⟧ None. The empty body is kept ⟦SEP_0006⟧"
+msgstr "⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ ⟦CODE_0002⟧ ⟦SEP_0005⟧ Ninguna. Se conserva el cuerpo vacío ⟦SEP_0006⟧"
+
+#: src/javascript/README.md:103
+msgctxt "s-632d2e1b2014-0041"
+msgid "⟦SEP_0002⟧ The anonymous object is the one declaration ⟦SEP_0003⟧ An object literal is the one declaration ⟦SEP_0004⟧ A ⟦CODE_0001⟧ initializer cannot be followed by more expressions: the comma starts the next declarator. So the literal goes through an arrow function that finishes it with the comma operator. C# allows a list of statements instead of a declaration ⟦SEP_0005⟧"
+msgstr "⟦SEP_0002⟧ El objeto anónimo es la única declaración ⟦SEP_0003⟧ Un literal de objeto es la única declaración ⟦SEP_0004⟧ Un inicializador ⟦CODE_0001⟧ no puede ir seguido de más expresiones: la coma inicia el siguiente declarador. Por eso el literal pasa por una función flecha que lo termina con el operador coma. C# permite una lista de sentencias en lugar de una declaración ⟦SEP_0005⟧"
+
+#: src/javascript/README.md:104
+msgctxt "s-9999dd3714b5-0042"
+msgid "⟦SEP_0006⟧ ⟦CODE_0001⟧ ⟦SEP_0007⟧ ⟦CODE_0002⟧ ⟦SEP_0008⟧ ⟦CODE_0003⟧ is the closest relative of LINQ's ⟦CODE_0004⟧. Both compute their result during the condition test. C# constructs a deferred LINQ projection that ⟦CODE_0005⟧ immediately consumes ⟦SEP_0009⟧"
+msgstr "⟦SEP_0006⟧ ⟦CODE_0001⟧ ⟦SEP_0007⟧ ⟦CODE_0002⟧ ⟦SEP_0008⟧ ⟦CODE_0003⟧ es el pariente más cercano de ⟦CODE_0004⟧ en LINQ. Ambos calculan su resultado durante la prueba de la condición. C# construye una proyección diferida de LINQ que ⟦CODE_0005⟧ consume de inmediato ⟦SEP_0009⟧"
+
+#: src/javascript/README.md:105
+msgctxt "s-d69f16197fd8-0043"
+msgid "⟦SEP_0005⟧ ⟦CODE_0001⟧ ⟦SEP_0006⟧ ⟦CODE_0002⟧ ⟦SEP_0007⟧ There is no ⟦CODE_0003⟧ and no ⟦CODE_0004⟧. See the next table about the categories ⟦SEP_0008⟧"
+msgstr "⟦SEP_0005⟧ ⟦CODE_0001⟧ ⟦SEP_0006⟧ ⟦CODE_0002⟧ ⟦SEP_0007⟧ No hay ⟦CODE_0003⟧ ni ⟦CODE_0004⟧. Consulta la tabla siguiente sobre las categorías ⟦SEP_0008⟧"
+
+#: src/javascript/README.md:106
+msgctxt "s-0f393723e2cc-0044"
+msgid "⟦SEP_0004⟧ ⟦CODE_0001⟧ ⟦SEP_0005⟧ ⟦CODE_0002⟧, then ⟦CODE_0003⟧ on a terminal ⟦SEP_0006⟧ There is no window. See the pulse below ⟦SEP_0007⟧"
+msgstr "⟦SEP_0004⟧ ⟦CODE_0001⟧ ⟦SEP_0005⟧ ⟦CODE_0002⟧ y luego ⟦CODE_0003⟧ en una terminal ⟦SEP_0006⟧ No hay ventana. Mira el pulso de abajo ⟦SEP_0007⟧"
+
+#: src/javascript/README.md:107
+msgctxt "s-cc79423c37d0-0045"
+msgid "⟦SEP_0004⟧ ⟦CODE_0001⟧ builds the ⟦CODE_0002⟧ ⟦SEP_0005⟧ ⟦CODE_0003⟧ and ANSI codes ⟦SEP_0006⟧ A timer plays the storyboard ⟦SEP_0007⟧"
+msgstr "⟦SEP_0004⟧ ⟦CODE_0001⟧ construye el ⟦CODE_0002⟧ ⟦SEP_0005⟧ ⟦CODE_0003⟧ y códigos ANSI ⟦SEP_0006⟧ Un temporizador reproduce el guion gráfico ⟦SEP_0007⟧"
+
+#: src/javascript/README.md:108
+msgctxt "s-7874ca750063-0046"
+msgid "⟦SEP_0005⟧ EF Core, ⟦CODE_0001⟧, ⟦CODE_0002⟧ ⟦SEP_0006⟧ ⟦CODE_0003⟧, ⟦CODE_0004⟧ ⟦SEP_0007⟧ No ORM. node:sqlite is part of Node, so it needs no package ⟦SEP_0008⟧"
+msgstr "⟦SEP_0005⟧ EF Core, ⟦CODE_0001⟧, ⟦CODE_0002⟧ ⟦SEP_0006⟧ ⟦CODE_0003⟧, ⟦CODE_0004⟧ ⟦SEP_0007⟧ No hay ORM. node:sqlite forma parte de Node, así que no necesita ningún paquete ⟦SEP_0008⟧"
+
+#: src/javascript/README.md:109
+msgctxt "s-0f3d4fee075a-0047"
+msgid "⟦SEP_0006⟧ ⟦CODE_0001⟧ (⟦CODE_0002⟧) ⟦SEP_0007⟧ ⟦CODE_0003⟧ with a seeded Park-Miller closure ⟦SEP_0008⟧ ⟦CODE_0004⟧ cannot be seeded. A closure over the seed can, so ⟦CODE_0005⟧ replays a run ⟦SEP_0009⟧"
+msgstr "⟦SEP_0006⟧ ⟦CODE_0001⟧ (⟦CODE_0002⟧) ⟦SEP_0007⟧ ⟦CODE_0003⟧ con una clausura de Park-Miller con semilla ⟦SEP_0008⟧ ⟦CODE_0004⟧ no puede recibir semilla. Una clausura sobre la semilla sí puede, así que ⟦CODE_0005⟧ repite una ejecución ⟦SEP_0009⟧"
+
+#: src/javascript/README.md:110
+msgctxt "s-331be059e0b2-0048"
+msgid "⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ ⟦CODE_0002⟧ ⟦SEP_0005⟧ None ⟦SEP_0006⟧"
+msgstr "⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ ⟦CODE_0002⟧ ⟦SEP_0005⟧ Ninguno ⟦SEP_0006⟧"
+
+#: src/javascript/README.md:111
+msgctxt "s-5cd750896993-0049"
+msgid "⟦SEP_0005⟧ ⟦CODE_0001⟧ ⟦SEP_0006⟧ A hand-written arrow, ⟦CODE_0002⟧ ⟦SEP_0007⟧ JavaScript has no ISO week. The Thursday of the week decides the year. ⟦CODE_0003⟧ compares it with GNU ⟦CODE_0004⟧ on ten dates ⟦SEP_0008⟧"
+msgstr "⟦SEP_0005⟧ ⟦CODE_0001⟧ ⟦SEP_0006⟧ Una flecha escrita a mano, ⟦CODE_0002⟧ ⟦SEP_0007⟧ JavaScript no tiene semana ISO. El jueves de la semana decide el año. ⟦CODE_0003⟧ la compara con ⟦CODE_0004⟧ de GNU en diez fechas ⟦SEP_0008⟧"
+
+#: src/javascript/README.md:112
+msgctxt "s-4ae3bfc645c1-0050"
+msgid "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ The ISO week-year ⟦SEP_0004⟧ C# stores the calendar year next to the ISO week, and the two disagree near New Year (for example 2024-12-30 is in calendar year 2024 but in ISO week 1 of 2025, and 2021-01-03 is in calendar year 2021 but in ISO week 53 of 2020). A year and a week from the same system always agree ⟦SEP_0005⟧"
+msgstr "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ El año de la semana ISO ⟦SEP_0004⟧ C# guarda el año calendario junto a la semana ISO. Los dos no coinciden cerca de Año Nuevo. Por ejemplo, 2024-12-30 está en el año calendario 2024, pero en la semana ISO 1 de 2025. Y 2021-01-03 está en el año calendario 2021, pero en la semana ISO 53 de 2020. Un año y una semana del mismo sistema siempre coinciden ⟦SEP_0005⟧"
+
+#: src/javascript/README.md:113
+msgctxt "s-ef5005c72860-0051"
+msgid "⟦SEP_0006⟧ ⟦CODE_0001⟧, a background ⟦CODE_0002⟧, ⟦CODE_0003⟧ ⟦SEP_0007⟧ Nothing ⟦SEP_0008⟧ Node runs your JavaScript on one thread and ⟦CODE_0004⟧ is synchronous. The thread and the reflection were there to show off a 2008 style. Here the iterator saves the card by calling ⟦CODE_0005⟧ ⟦SEP_0009⟧"
+msgstr "⟦SEP_0006⟧ ⟦CODE_0001⟧, un ⟦CODE_0002⟧ en segundo plano, ⟦CODE_0003⟧ ⟦SEP_0007⟧ Nada ⟦SEP_0008⟧ Node ejecuta tu JavaScript en un solo hilo y ⟦CODE_0004⟧ es síncrono. El hilo y la reflexión estaban ahí para lucir un estilo de 2008. Aquí el iterador guarda la tarjeta al llamar a ⟦CODE_0005⟧ ⟦SEP_0009⟧"
+
+#: src/javascript/README.md:114
+msgctxt "s-b3604d257eeb-0052"
+msgid "⟦SEP_0005⟧ ⟦CODE_0001⟧ ⟦SEP_0006⟧ ⟦CODE_0002⟧, with a ⟦CODE_0003⟧ constraint ⟦SEP_0007⟧ Same idea. The database refuses a row that is not ⟦DNT_0004⟧ ⟦SEP_0008⟧"
+msgstr "⟦SEP_0005⟧ ⟦CODE_0001⟧ ⟦SEP_0006⟧ ⟦CODE_0002⟧, con una restricción ⟦CODE_0003⟧ ⟦SEP_0007⟧ La misma idea. La base de datos rechaza una fila que no sea ⟦DNT_0004⟧ ⟦SEP_0008⟧"
+
+#: src/javascript/README.md:116
+msgctxt "s-7dc61a7dcb6c-0053"
+msgid "What matches the original, and what does not (measured)"
+msgstr "Qué coincide con el original y qué no (medido)"
+
+#: src/javascript/README.md:118
+msgctxt "s-206857a89acd-0054"
+msgid "⟦SEP_0001⟧ Behavior ⟦SEP_0002⟧ C# original ⟦SEP_0003⟧ This entry ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ Comportamiento ⟦SEP_0002⟧ Original en C# ⟦SEP_0003⟧ Esta entrada ⟦SEP_0004⟧"
+
+#: src/javascript/README.md:120
+msgctxt "s-7d646b77cf36-0055"
+msgid "⟦SEP_0001⟧ Start ⟦SEP_0002⟧ Opens the database in the initializer ⟦SEP_0003⟧ Same ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ Inicio ⟦SEP_0002⟧ Abre la base de datos en el inicializador ⟦SEP_0003⟧ Igual ⟦SEP_0004⟧"
+
+#: src/javascript/README.md:121
+msgctxt "s-155ad52a88b3-0056"
+msgid "⟦SEP_0005⟧ When the loop stops ⟦SEP_0006⟧ When the sum is over 40, **or when the categories run out**. The 2008 original had four category names, so four cards of exactly 10 hours ended the run at a total of 40, with no card over 40. ⟦CODE_0001⟧ and the Java, Go, Kotlin, Python and Rust ports now have five names (⟦CODE_0002⟧ repeats), like this entry ⟦SEP_0007⟧ Only when the sum is over 40. The categories repeat (the fifth card is ⟦CODE_0003⟧). A total of exactly 40 continues. That is a one-in-ten-thousand case, and ⟦CODE_0004⟧ has a test for it: it finds a seed that makes four cards total 40 and checks that a fifth card follows ⟦SEP_0008⟧"
+msgstr "⟦SEP_0005⟧ Cuándo se detiene el bucle ⟦SEP_0006⟧ Cuando la suma pasa de 40, **o cuando se agotan las categorías**. El original de 2008 tenía cuatro nombres de categoría, así que cuatro tarjetas de exactamente 10 horas terminaban la ejecución con un total de 40, sin ninguna tarjeta de más de 40. ⟦CODE_0001⟧ y las adaptaciones a Java, Go, Kotlin, Python y Rust ahora tienen cinco nombres (⟦CODE_0002⟧ se repite), como esta entrada ⟦SEP_0007⟧ Solo cuando la suma pasa de 40. Las categorías se repiten (la quinta tarjeta es ⟦CODE_0003⟧). Un total de exactamente 40 continúa. Es un caso de uno entre diez mil, y ⟦CODE_0004⟧ tiene una prueba para él: busca una semilla con la que cuatro tarjetas suman un total de 40 y comprueba que sigue una quinta tarjeta ⟦SEP_0008⟧"
+
+#: src/javascript/README.md:122
+msgctxt "s-c41cbdba42bc-0057"
+msgid "⟦SEP_0001⟧ The crossing card ⟦SEP_0002⟧ Included ⟦SEP_0003⟧ Included ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ La tarjeta que cruza ⟦SEP_0002⟧ Incluida ⟦SEP_0003⟧ Incluida ⟦SEP_0004⟧"
+
+#: src/javascript/README.md:123
+msgctxt "s-d82e1601ee12-0058"
+msgid "⟦SEP_0016⟧ Recorded fields ⟦SEP_0017⟧ ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧ (a double), ⟦CODE_0004⟧, ⟦CODE_0005⟧, ⟦CODE_0006⟧, ⟦CODE_0007⟧ ⟦SEP_0018⟧ ⟦CODE_0008⟧, ⟦CODE_0009⟧ (an integer), ⟦CODE_0010⟧, ⟦CODE_0011⟧, ⟦CODE_0012⟧, ⟦CODE_0013⟧, plus ⟦CODE_0014⟧ and ⟦CODE_0015⟧ for the book's shared checks ⟦SEP_0019⟧"
+msgstr "⟦SEP_0016⟧ Campos registrados ⟦SEP_0017⟧ ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧ (un número de doble precisión), ⟦CODE_0004⟧, ⟦CODE_0005⟧, ⟦CODE_0006⟧, ⟦CODE_0007⟧ ⟦SEP_0018⟧ ⟦CODE_0008⟧, ⟦CODE_0009⟧ (un entero), ⟦CODE_0010⟧, ⟦CODE_0011⟧, ⟦CODE_0012⟧, ⟦CODE_0013⟧, más ⟦CODE_0014⟧ y ⟦CODE_0015⟧ para las comprobaciones compartidas del libro ⟦SEP_0019⟧"
+
+#: src/javascript/README.md:124
+msgctxt "s-faca8018e30a-0059"
+msgid "⟦SEP_0002⟧ What you see ⟦SEP_0003⟧ A WPF window: **⟦DNT_0001⟧ - no real time system is involved**, **Total simulated hours: 46.0**, **Saved locally for the modernization exercise.**, fading in and out ⟦SEP_0004⟧ The same three texts on the terminal: the report first, always. On a terminal, the first text pulses (bold, then dim) ⟦SEP_0005⟧"
+msgstr "⟦SEP_0002⟧ Qué ves ⟦SEP_0003⟧ Una ventana WPF: **⟦DNT_0001⟧ - no real time system is involved**, **Total simulated hours: 46.0**, **Saved locally for the modernization exercise.**, que aparecen y desaparecen gradualmente ⟦SEP_0004⟧ Los mismos tres textos en la terminal: primero el informe, siempre. En una terminal, el primer texto pulsa (primero en negrita y luego atenuado) ⟦SEP_0005⟧"
+
+#: src/javascript/README.md:125
+msgctxt "s-5b11ba40ea26-0060"
+msgid "⟦SEP_0001⟧ Waiting ⟦SEP_0002⟧ The window stays until you close it ⟦SEP_0003⟧ The pulse runs 3 cycles (about four seconds), then the program ends. In CI, or when redirected, it ends at once ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ Espera ⟦SEP_0002⟧ La ventana permanece hasta que la cierres ⟦SEP_0003⟧ El pulso dura 3 ciclos (unos cuatro segundos) y después el programa termina. En CI, o cuando se redirige, termina de inmediato ⟦SEP_0004⟧"
+
+#: src/javascript/README.md:126
+msgctxt "s-2e8a70cf7da0-0061"
+msgid "⟦SEP_0001⟧ Errors ⟦SEP_0002⟧ An unhandled exception ends the process with a non-zero status ⟦SEP_0003⟧ The same: an exception (for example, a data folder that cannot be created) prints a message and exits with status 1 ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ Errores ⟦SEP_0002⟧ Una excepción no controlada termina el proceso con un estado distinto de cero ⟦SEP_0003⟧ Lo mismo: una excepción (por ejemplo, una carpeta de datos que no se puede crear) imprime un mensaje y termina con el estado 1 ⟦SEP_0004⟧"
+
+#: src/javascript/README.md:128
+msgctxt "s-151807c8973d-0062"
+msgid "The pulse and the event loop"
+msgstr "El pulso y el bucle de eventos"
+
+#: src/javascript/README.md:130
+msgctxt "s-77bb306d4d38-0063"
+msgid "The ⟦CODE_0001⟧ statement is synchronous. All the cards are drawn, and the report is printed, before the first timer can fire. The pulse is ⟦CODE_0002⟧: when the loop is done, Node's **event loop** runs the timer every 600 milliseconds, writes a line (⟦CODE_0003⟧, then a bold or dim version of the text), and after the last cycle clears the timer. Then there is nothing left to wait for, and Node exits."
+msgstr "La sentencia ⟦CODE_0001⟧ es síncrona. El programa dibuja todas las tarjetas e imprime el informe antes de que el primer temporizador pueda dispararse. El pulso es ⟦CODE_0002⟧: cuando termina el bucle, el **bucle de eventos** de Node ejecuta el temporizador cada 600 milisegundos, escribe una línea (⟦CODE_0003⟧, y luego una versión en negrita o atenuada del texto) y, tras el último ciclo, cancela el temporizador. Después ya no queda nada por esperar y Node termina."
+
+#: src/javascript/README.md:132
+msgctxt "s-dac8e0182659-0064"
+msgid "**It never delays the computation.** The timer is only started in the *false* branch of the condition, after everything is saved."
+msgstr "**Nunca retrasa el cálculo.** El temporizador solo se inicia en la rama *false* de la condición, después de guardar todo."
+
+#: src/javascript/README.md:133
+msgctxt "s-fb6297b75004-0065"
+msgid "**It is off when it should be.** The timer starts only when standard output is a terminal and ⟦CODE_0001⟧ is not ⟦CODE_0002⟧. A pipe or a file gets the plain report and nothing else, and the program ends at once."
+msgstr "**Está apagado cuando debe estarlo.** El temporizador se inicia solo cuando la salida estándar es una terminal y ⟦CODE_0001⟧ no es ⟦CODE_0002⟧. Una tubería o un archivo recibe el informe simple y nada más, y el programa termina de inmediato."
+
+#: src/javascript/README.md:134
+msgctxt "s-0c16932ece8f-0066"
+msgid "**⟦CODE_0001⟧ is respected.** With it set, the line blinks between ⟦CODE_0002⟧ and ⟦CODE_0003⟧ and there are no escape codes for style. (The ⟦CODE_0004⟧ and the erase-line code stay: they are cursor control, not color.)"
+msgstr "**Se respeta ⟦CODE_0001⟧.** Con esa variable definida, la línea parpadea entre ⟦CODE_0002⟧ y ⟦CODE_0003⟧ y no hay códigos de escape de estilo. (⟦CODE_0004⟧ y el código de borrado de línea se mantienen: controlan el cursor, no el color.)"
+
+#: src/javascript/README.md:135
+msgctxt "s-78d3c7cb4531-0067"
+msgid "**Backpressure** does not matter here. The program writes a few hundred bytes, so it does not wait for the stream to drain."
+msgstr "La **contrapresión** (*backpressure*) no importa aquí. El programa escribe unos cientos de bytes, así que no espera a que el flujo se vacíe."
+
+#: src/javascript/README.md:137
+msgctxt "s-339cc2c18f83-0068"
+msgid "What ⟦CODE_0001⟧ enforces"
+msgstr "Qué impone ⟦CODE_0001⟧"
+
+#: src/javascript/README.md:139
+msgctxt "s-76b0bf0200d5-0069"
+msgid "⟦CODE_0001⟧ needs Node 24 or newer, ⟦CODE_0002⟧ and GNU ⟦CODE_0003⟧."
+msgstr "⟦CODE_0001⟧ requiere Node 24 o posterior, ⟦CODE_0002⟧ y GNU ⟦CODE_0003⟧."
+
+#: src/javascript/README.md:141
+msgctxt "s-cea3a699016e-0070"
+msgid "**The constraint is real.** ⟦CODE_0001⟧ scans the file, with comments and strings blanked out. After the imports it must be **one ⟦CODE_0002⟧ statement**: exactly two semicolons in the header, an empty body, no other statement, no second ⟦CODE_0003⟧, no ⟦CODE_0004⟧, no ⟦CODE_0005⟧, no ⟦CODE_0006⟧, no ⟦CODE_0007⟧, no ⟦CODE_0008⟧. Six mutants of the program are rejected: a statement after the loop, a body in the loop, a ⟦CODE_0009⟧ wrapper, a hidden ⟦CODE_0010⟧, a second ⟦CODE_0011⟧, and ⟦CODE_0012⟧. The program imports no network, process or thread module."
+msgstr "**La restricción es real.** ⟦CODE_0001⟧ analiza el archivo, tras vaciar los comentarios y las cadenas de texto. Después de las importaciones debe quedar **una sola sentencia ⟦CODE_0002⟧**: exactamente dos puntos y coma en el encabezado, un cuerpo vacío, sin otra sentencia, sin un segundo ⟦CODE_0003⟧, sin ⟦CODE_0004⟧, sin ⟦CODE_0005⟧, sin ⟦CODE_0006⟧, sin ⟦CODE_0007⟧, sin ⟦CODE_0008⟧. Se rechazan seis mutantes del programa: una sentencia después del bucle, un cuerpo en el bucle, un envoltorio ⟦CODE_0009⟧, un ⟦CODE_0010⟧ oculto, un segundo ⟦CODE_0011⟧ y ⟦CODE_0012⟧. El programa no importa ningún módulo de red, de proceso ni de hilo."
+
+#: src/javascript/README.md:142
+msgctxt "s-e46cd5742ae6-0071"
+msgid "**The rules of the challenge.** 25 random runs: categories in order, hours 10 to 19, correct running totals, a stop right after the first total over 40, ⟦CODE_0001⟧ everywhere, nothing on stderr, no escape codes in redirected output. In SQLite: only demo rows, the current user, and every ⟦CODE_0002⟧ equal to the sum of the hours so far."
+msgstr "**Las reglas del reto.** 25 ejecuciones aleatorias: categorías en orden, horas de 10 a 19, totales acumulados correctos, una parada justo después del primer total que pasa de 40, ⟦CODE_0001⟧ en todas partes, nada en stderr, ningún código de escape en la salida redirigida. En SQLite: solo filas de demostración, el usuario actual y cada ⟦CODE_0002⟧ igual a la suma de las horas hasta ese momento."
+
+#: src/javascript/README.md:143
+msgctxt "s-8497409b234b-0072"
+msgid "**A seed replays a run.** ⟦CODE_0001⟧ twice gives the same cards. Twelve seeds (totals of 41, 42, 50, 51 and 57, in three to five cards) match a separate model of the generator, written in awk. A seed whose first four cards make exactly 40 is found and must get a fifth card."
+msgstr "**Una semilla repite una ejecución.** Usar ⟦CODE_0001⟧ dos veces da las mismas tarjetas. Doce semillas (totales de 41, 42, 50, 51 y 57, con tres a cinco tarjetas) coinciden con un modelo aparte del generador, escrito en awk. Se encuentra una semilla cuyas primeras cuatro tarjetas suman exactamente 40 y esa semilla debe recibir una quinta tarjeta."
+
+#: src/javascript/README.md:144
+msgctxt "s-acde2639c9d5-0073"
+msgid "**The ISO week.** The week and year agree with GNU ⟦CODE_0001⟧ for ten dates: the first days of January, 53-week years, and the last days of December."
+msgstr "**La semana ISO.** La semana y el año coinciden con GNU ⟦CODE_0001⟧ en diez fechas: los primeros días de enero, los años de 53 semanas y los últimos días de diciembre."
+
+#: src/javascript/README.md:145
+msgctxt "s-52378d1bdf39-0074"
+msgid "**The pulse.** On a pseudo-terminal (made with ⟦CODE_0001⟧): the report is printed first, then the line pulses bold and dim. With ⟦CODE_0002⟧: plain blinking, no style codes. With ⟦CODE_0003⟧: no escape codes. Redirected: no timer, and the run ends in under 3 seconds."
+msgstr "**El pulso.** En una pseudoterminal (creada con ⟦CODE_0001⟧): primero se imprime el informe y luego la línea pulsa entre negrita y atenuado. Con ⟦CODE_0002⟧: parpadeo simple, sin códigos de estilo. Con ⟦CODE_0003⟧: sin códigos de escape. Con la salida redirigida: sin temporizador, y la ejecución termina en menos de 3 segundos."
+
+#: src/javascript/README.md:146
+msgctxt "s-a114013c9dbd-0075"
+msgid "**Errors and the schema.** An unwritable data folder ends with a non-zero status and a message. SQLite refuses a non-demo row or run, 9 hours and a fifth category."
+msgstr "**Errores y el esquema.** Una carpeta de datos sin permiso de escritura termina con un estado distinto de cero y un mensaje. SQLite rechaza una fila o una ejecución que no sea de demostración, 9 horas y una quinta categoría."
+
+#: src/javascript/README.md:148
+msgctxt "s-5a0ad00b10fc-0076"
+msgid "Gotchas worth knowing"
+msgstr "Trampas que conviene conocer"
+
+#: src/javascript/README.md:150
+msgctxt "s-e46987c3cd60-0077"
+msgid "**Node 24 or newer.** ⟦CODE_0001⟧ came in with Node 22.5. It is not part of any standard, and it is newer than most of Node's API, so read its stability note in the Node documentation for your version (**implementation-permitted**: we tested it only on the versions below). The ⟦CODE_0002⟧ semantics are **guaranteed** by the ECMAScript specification. The entry also runs on Node 24.15 and 24.22, which are the versions we tested."
+msgstr "**Node 24 o más reciente.** ⟦CODE_0001⟧ llegó con Node 22.5. No forma parte de ningún estándar. Es más reciente que la mayoría de las API de Node, así que lee su nota de estabilidad en la documentación de Node para tu versión (**permitido por la implementación**: solo lo probamos en las versiones siguientes). La semántica de ⟦CODE_0002⟧ es un comportamiento **garantizado** por la especificación de ECMAScript. La entrada también se ejecuta en Node 24.15 y 24.22, que son las versiones que probamos."
+
+#: src/javascript/README.md:151
+msgctxt "s-d0a22cd8c24e-0078"
+msgid "**⟦CODE_0001⟧ in a ⟦CODE_0002⟧ header makes a new binding on each pass.** The specification copies the loop variable for every iteration, so a closure made inside the loop sees its own copy. Here that does not matter, because ⟦CODE_0003⟧ holds *one object*, and every copy points to it. If ⟦CODE_0004⟧ had been a number, the iterator could not have updated it for the condition. This is why the state is an object."
+msgstr "**⟦CODE_0001⟧ en el encabezado de un ⟦CODE_0002⟧ crea un enlace nuevo en cada pasada.** La especificación copia la variable del bucle en cada iteración, así que una clausura creada dentro del bucle ve su propia copia. Aquí eso no importa, porque ⟦CODE_0003⟧ contiene *un objeto* y todas las copias apuntan a él. Si ⟦CODE_0004⟧ hubiera sido un número, el iterador no habría podido actualizarlo para la condición. Por eso el estado es un objeto."
+
+#: src/javascript/README.md:152
+msgctxt "s-6b1fc2768ad0-0079"
+msgid "**The comma has two meanings.** In ⟦CODE_0001⟧ it separates declarators. In ⟦CODE_0002⟧ it is an operator that evaluates both and gives ⟦CODE_0003⟧. The initializer has to use the second kind after the declaration, which is why the arrow function is there."
+msgstr "**La coma tiene dos significados.** En ⟦CODE_0001⟧ separa declaradores. En ⟦CODE_0002⟧ es un operador que evalúa ambos y produce ⟦CODE_0003⟧. Después de la declaración, el inicializador tiene que usar el segundo tipo, y por eso está ahí la función flecha."
+
+#: src/javascript/README.md:153
+msgctxt "s-80cf494da73f-0080"
+msgid "**⟦CODE_0001⟧ is not the object.** The pulse callback is a ⟦CODE_0002⟧ and not an arrow, only because ⟦CODE_0003⟧ needs the timer object that Node passes as ⟦CODE_0004⟧. Everything else uses arrows, which read ⟦CODE_0005⟧ from the enclosing scope."
+msgstr "**⟦CODE_0001⟧ no es el objeto.** La función de devolución de llamada del pulso (*callback*: una función que entregas a otro código para que la ejecute más tarde) es ⟦CODE_0002⟧ y no una función flecha, solo porque ⟦CODE_0003⟧ necesita el objeto del temporizador que Node pasa como ⟦CODE_0004⟧. Todo lo demás usa funciones flecha, que leen ⟦CODE_0005⟧ del ámbito que las contiene."
+
+#: src/javascript/README.md:154
+msgctxt "s-1c3a77fbdd26-0081"
+msgid "**Recursive ⟦CODE_0001⟧ can spin.** On Node 24.15 on Linux, ⟦CODE_0002⟧ on a path under ⟦CODE_0003⟧ never returned (we stopped it after ten minutes). The check uses a plain file as the parent folder, to get an error at once. That is a Node issue, not part of the program's design."
+msgstr "**Un ⟦CODE_0001⟧ recursivo puede quedarse girando.** En Node 24.15 en Linux, ⟦CODE_0002⟧ sobre una ruta bajo ⟦CODE_0003⟧ nunca retornó (lo detuvimos después de diez minutos). La comprobación usa un archivo normal como carpeta padre para obtener un error de inmediato. Es un problema de Node, no parte del diseño del programa."
+
+#: src/javascript/README.md:155
+msgctxt "s-d8608c0fc21d-0082"
+msgid "**No ⟦CODE_0001⟧.** It cannot be seeded, so a closure with Park-Miller (multiplier 48271, modulus 2147483647) draws the hours. The distribution is uniform enough for a demo, and not for anything else."
+msgstr "**Sin ⟦CODE_0001⟧.** No admite semilla, así que una clausura con Park-Miller (multiplicador 48271, módulo 2147483647) genera las horas. La distribución es lo bastante uniforme para una demostración, y para nada más."
+
+#: src/javascript/README.md:156
+msgctxt "s-f78f685e2054-0083"
+msgid "**The pulse is a polite lie.** It is a timer that rewrites one line. If your terminal does not support ANSI codes, it prints them as text. Set ⟦CODE_0001⟧ or ⟦CODE_0002⟧, or redirect the output."
+msgstr "**El pulso es una mentira educada.** Es un temporizador que reescribe una línea. Si tu terminal no admite códigos ANSI, el temporizador los imprime como texto. Define ⟦CODE_0001⟧, define ⟦CODE_0002⟧ o redirige la salida."
+
+#: src/javascript/README.md:160
+msgctxt "s-40ddb79ac33a-0084"
+msgid "See the [root README](⟦DEST_0001⟧) for how this compares to the other entries, and [⟦CODE_0002⟧](⟦DEST_0003⟧) if you want to write your own."
+msgstr "Consulta el [README principal](⟦DEST_0001⟧) para ver cómo se compara con las demás entradas, y [⟦CODE_0002⟧](⟦DEST_0003⟧) si quieres escribir la tuya."

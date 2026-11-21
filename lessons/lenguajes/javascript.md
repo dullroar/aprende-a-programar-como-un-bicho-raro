@@ -33,7 +33,7 @@ One statement, about 80 lines long. The body is empty. No function is declared i
 - **The iterator is the work.** It draws the hours and saves the card. After the initial test, each update saves its card before the next test. That is why the crossing card is included.
 - **A timer is the animation.** On a terminal, `setInterval` pulses the DEMO ONLY line. It starts only after the loop, so it cannot slow the cards down.
 
-The [README](../../src/javascript/README.md#how-the-stunt-works) has the table of what the C# did and what this does, and a measured comparison with the original.
+The [README](../../src/javascript/README.md#cómo-funciona-el-truco) has the table of what the C# did and what this does, and a measured comparison with the original.
 
 ### What did we just learn?
 
@@ -151,7 +151,7 @@ Each picture below is the `## Program Flow` section of an entry's README, copied
 
 ### Program flow of `javascript`
 
-From [`javascript`](../../src/javascript/README.md) ([source section](../../src/javascript/README.md#program-flow)).
+From [`javascript`](../../src/javascript/README.md) ([source section](../../src/javascript/README.md#flujo-del-programa)).
 
 ```mermaid
 flowchart TD
