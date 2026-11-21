@@ -4425,24 +4425,24 @@
     {
      "en": "A program you can edit",
      "en_id": "a-program-you-can-edit",
-     "es": "A program you can edit",
-     "es_id": "a-program-you-can-edit",
+     "es": "Un programa que puedes editar",
+     "es_id": "un-programa-que-puedes-editar",
      "level": 2,
      "line": 62
     },
     {
      "en": "Behold the monstrosity",
      "en_id": "behold-the-monstrosity-1",
-     "es": "Behold the monstrosity",
-     "es_id": "behold-the-monstrosity",
+     "es": "Contempla la monstruosidad",
+     "es_id": "contempla-la-monstruosidad-1",
      "level": 3,
      "line": 64
     },
     {
      "en": "How the hell does that work?",
      "en_id": "how-the-hell-does-that-work-1",
-     "es": "How the hell does that work?",
-     "es_id": "how-the-hell-does-that-work",
+     "es": "¿Cómo demonios funciona eso?",
+     "es_id": "cómo-demonios-funciona-eso-1",
      "level": 3,
      "line": 72
     },
@@ -4504,16 +4504,16 @@
     }
    ],
    "map": {
-    "a-program-you-can-edit": "a-program-you-can-edit",
+    "a-program-you-can-edit": "un-programa-que-puedes-editar",
     "behold-the-monstrosity": "contempla-la-monstruosidad",
-    "behold-the-monstrosity-1": "behold-the-monstrosity",
+    "behold-the-monstrosity-1": "contempla-la-monstruosidad-1",
     "computer-science-behind-this-page": "computer-science-behind-this-page",
     "do-this-in-production-and-youre-fired": "haz-esto-en-producción-y-estás-despedido",
     "do-this-in-production-and-youre-fired-1": "do-this-in-production-and-youre-fired",
     "ed-and-ex": "ed-y-ex",
     "how-each-program-runs": "how-each-program-runs",
     "how-the-hell-does-that-work": "cómo-demonios-funciona-eso",
-    "how-the-hell-does-that-work-1": "how-the-hell-does-that-work",
+    "how-the-hell-does-that-work-1": "cómo-demonios-funciona-eso-1",
     "now-break-it-yourself": "ahora-rómpelo-tú",
     "now-break-it-yourself-1": "now-break-it-yourself",
     "program-flow-of-ed-weird": "program-flow-of-ed-weird",

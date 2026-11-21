@@ -327,7 +327,7 @@ Acceptance criteria:
 
 ### B19. Ex: move the limit on the tape and cut the loop (verified)
 
-**Lesson:** [ed and Ex](lenguajes/editores.md#a-program-you-can-edit). **Entry:** a copy of `src/ex-weird`.
+**Lesson:** [ed and Ex](lenguajes/editores.md#un-programa-que-puedes-editar). **Entry:** a copy of `src/ex-weird`.
 
 The launcher takes `DICE="a b c d e"`: five digits. Each card has 10 + its digit hours.
 

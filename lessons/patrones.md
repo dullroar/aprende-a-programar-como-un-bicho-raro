@@ -101,7 +101,7 @@ Each track stores "what happens next" somewhere that is not a loop counter: in t
 | Variables the `LOOP` owns, such as `total` | [lisp](lenguajes/lisp.md): [`lisp`](../src/lisp/README.md) |
 | The class precedence list, and each method's return value | [lisp](lenguajes/lisp.md#method-combination-as-control-flow): [`lisp-weird`](../src/lisp-weird/README.md) |
 | The editor buffer: one line per card, and marks (x) that are added by joining lines | [editors](lenguajes/editores.md#el-búfer-es-la-máquina): [`ed-weird`](../src/ed-weird/README.md) |
-| The marks (where we are on a tape of numbered lines), the first line of the buffer (the next card), and registers a, d and n | [editors](lenguajes/editores.md#a-program-you-can-edit): [`ex-weird`](../src/ex-weird/README.md) |
+| The marks (where we are on a tape of numbered lines), the first line of the buffer (the next card), and registers a, d and n | [editors](lenguajes/editores.md#un-programa-que-puedes-editar): [`ex-weird`](../src/ex-weird/README.md) |
 | The variables `total` and `cards`, and the data stack | [forth](lenguajes/forth.md): [`forth`](../src/forth/README.md) |
 | The data stack and the parse position `>in` | [forth](lenguajes/forth.md): [`forth-weird`](../src/forth-weird/README.md) |
 | The path from the start directory to the directory being visited; its depth is the running total | [find](lenguajes/find.md): [`find-gnu`](../src/find-gnu/README.md) |
@@ -202,7 +202,7 @@ The same bytes can be read without running anything, and ordinary `tar -xf` only
 | The members of a tar archive: names are instructions, bodies are operands | GNU tar walks them, and a dispatcher that the *operator* attached gives them meaning (a passive inspector reads the same bytes and runs nothing) | [`tar-gnu`](../src/tar-gnu/README.md), [tar](lenguajes/tar.md#a-program-that-is-an-archive) |
 | The layout of an archive: how many records tar writes | Tar's checkpoints are a clock, and a state machine takes one step per tick | [`tar-gnu-weird`](../src/tar-gnu-weird/README.md), [tar](lenguajes/tar.md#the-archive-is-the-clock) |
 | Rows in a SQLite table | An overridden `unknown` fetches Tcl source and evaluates it | [`tcl-weird`](../src/tcl-weird/README.md), [Tcl](lenguajes/tcl.md#sqlite-as-the-program) |
-| A line of text in an editor buffer, copied into a register | Ex runs the register, and the program reads its next instruction from a tape of lines | [`ex-weird`](../src/ex-weird/README.md), [editors](lenguajes/editores.md#a-program-you-can-edit) |
+| A line of text in an editor buffer, copied into a register | Ex runs the register, and the program reads its next instruction from a tape of lines | [`ex-weird`](../src/ex-weird/README.md), [editors](lenguajes/editores.md#un-programa-que-puedes-editar) |
 | The source text of a function | `⎕CR` writes it out, the function rewrites it and `⎕FX` defines the copy | [`apl-weird`](../src/apl-weird/README.md), [APL](lenguajes/apl.md#funciones-que-se-modifican-a-sí-mismas-apl-weird) |
 
 The question that separates them: *can you read the program without running it?* In `tar-gnu` you can, with the inspector, because tar extraction alone runs nothing. In `tcl-weird` and `ex-weird` the reading and the running are the same act, so there is no safe way to look except to read the text yourself.

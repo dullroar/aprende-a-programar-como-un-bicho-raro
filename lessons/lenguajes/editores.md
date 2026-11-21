@@ -59,19 +59,19 @@ Usos legítimos: `ed` y `ex` en scripts para hacer ediciones exactas y automatiz
 
 Consulta el [ejercicio B18](../exercises.md#b18-ed-move-the-stop-rule-and-break-the-cleanup-verified).
 
-## A program you can edit
+## Un programa que puedes editar
 
-### Behold the monstrosity
+### Contempla la monstruosidad
 
 ```bash
 sandbox/container/run-image.sh src/ex-weird
 ```
 
-A script of about 100 lines, most of it a table of sixty numbered lines. The program itself is **one line of text**.
+Un script de unas 100 líneas, en su mayoría una tabla de sesenta líneas numeradas. El programa en sí es **una línea de texto**.
 
-### How the hell does that work?
+### ¿Cómo demonios funciona eso?
 
-- **A mark is a register.** `k t` puts a mark on a line. `'t+17k t` moves it seventeen lines down. That is `t = t + 17`.
+- **Una marca es un registro.** `k t` pone una marca en una línea. `'t+17k t` la mueve diecisiete líneas hacia abajo. Eso es `t = t + 17`.
 - **The tape is the number line.** Sixty lines, each `total instruction`. Where the mark stands *is* the running total, and the text of the line is that total as digits.
 - **The program writes its own command.** A substitution turns the card `Meetings 7` into the text `'t+17k t`. The program copies that text into a register and runs it with `@d`.
 - **The loop is a register that runs itself.** The program copies the numbered tape line to the end of the buffer, strips the digits and following space with `$s/^[0-9]* //` and yanks just the instruction into register `n`. Up to 40 it is `@a`, which is the program again. Above 40 it is a quote mark, which is a comment, so nothing runs.

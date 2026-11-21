@@ -190,27 +190,27 @@ msgstr "Consulta el [ejercicio B18](⟦DEST_0001⟧)."
 #: lessons/languages/editors.md:62
 msgctxt "s-d76e82c036b5-0036"
 msgid "A program you can edit"
-msgstr ""
+msgstr "Un programa que puedes editar"
 
 #: lessons/languages/editors.md:64
 msgctxt "s-cc9cfaabc50d-0037"
 msgid "Behold the monstrosity"
-msgstr ""
+msgstr "Contempla la monstruosidad"
 
 #: lessons/languages/editors.md:70
 msgctxt "s-6ce41c867572-0038"
 msgid "A script of about 100 lines, most of it a table of sixty numbered lines. The program itself is **one line of text**."
-msgstr ""
+msgstr "Un script de unas 100 líneas, en su mayoría una tabla de sesenta líneas numeradas. El programa en sí es **una línea de texto**."
 
 #: lessons/languages/editors.md:72
 msgctxt "s-415f5fa29cf9-0039"
 msgid "How the hell does that work?"
-msgstr ""
+msgstr "¿Cómo demonios funciona eso?"
 
 #: lessons/languages/editors.md:74
 msgctxt "s-5e14769957a1-0040"
 msgid "**A mark is a register.** ⟦CODE_0001⟧ puts a mark on a line. ⟦CODE_0002⟧ moves it seventeen lines down. That is ⟦CODE_0003⟧."
-msgstr ""
+msgstr "**Una marca es un registro.** ⟦CODE_0001⟧ pone una marca en una línea. ⟦CODE_0002⟧ la mueve diecisiete líneas hacia abajo. Eso es ⟦CODE_0003⟧."
 
 #: lessons/languages/editors.md:75
 msgctxt "s-f5d9a5aacfcb-0041"
