@@ -140,27 +140,27 @@ msgstr "**Los datos pueden llevar el control.** Una barra o un signo de exclamac
 #: lessons/languages/editors.md:45
 msgctxt "s-17e56ecc2219-0026"
 msgid "**Standards and implementations differ.** busybox ed is an ⟦CODE_0001⟧, and it cannot run this program: no ⟦CODE_0002⟧, no ⟦CODE_0003⟧, no ⟦CODE_0004⟧, no ⟦CODE_0005⟧ and no empty match."
-msgstr ""
+msgstr "**Las normas y las implementaciones difieren.** busybox ed es un ⟦CODE_0001⟧ y no puede ejecutar este programa: no tiene ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧ ni coincidencia vacía."
 
 #: lessons/languages/editors.md:46
 msgctxt "s-93353dceb115-0027"
 msgid "**A wall is a result.** Nested ⟦CODE_0001⟧ is refused. A blank line is a command. We kept a test for each."
-msgstr ""
+msgstr "**Un obstáculo es un resultado.** Se rechaza ⟦CODE_0001⟧ anidado. Una línea vacía es un comando. Conservamos una prueba para cada caso."
 
 #: lessons/languages/editors.md:48
 msgctxt "s-8fb289b86805-0028"
 msgid "Tags: the commands ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧ and ⟦CODE_0006⟧ are in POSIX. That a failed ⟦CODE_0007⟧ inside ⟦CODE_0008⟧ is silent is **accidentally exploited** knowledge: GNU ed 1.20.1 does it, and its manual does not say so. ⟦CODE_0009⟧ comments are a GNU extension."
-msgstr ""
+msgstr "Etiquetas: los comandos ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧ y ⟦CODE_0006⟧ están en POSIX. Que un ⟦CODE_0007⟧ fallido dentro de ⟦CODE_0008⟧ sea silencioso es conocimiento **aprovechado por accidente**: GNU ed 1.20.1 lo hace y su manual no lo dice. Los comentarios ⟦CODE_0009⟧ son una extensión de GNU."
 
 #: lessons/languages/editors.md:50
 msgctxt "s-299b7a6f9cbe-0029"
 msgid "Do this in production and you're fired"
-msgstr ""
+msgstr "Haz esto en producción y estás despedido"
 
 #: lessons/languages/editors.md:52
 msgctxt "s-c44765905045-0030"
 msgid "**Unary does not scale.** One million is a million characters."
-msgstr ""
+msgstr "**El sistema unario no escala.** Un millón es un millón de caracteres."
 
 #: lessons/languages/editors.md:53
 msgctxt "s-38cb53c4fcfb-0031"

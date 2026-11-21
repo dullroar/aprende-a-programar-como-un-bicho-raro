@@ -42,14 +42,14 @@ El [README](../../src/ed-weird/README.md#cómo-funciona-el-truco) contiene la ta
 - **Los números pueden ser texto.** Las marcas unarias hacen que la suma sea una concatenación. El precio es la longitud de la cadena de texto.
 - **Una guarda es una condición.** "Reescribe solo si hay coincidencia" es `if` en un lenguaje que carece de ella.
 - **Los datos pueden llevar el control.** Una barra o un signo de exclamación en una línea indica si la máquina sigue en ejecución. El estado viaja con los datos.
-- **Standards and implementations differ.** busybox ed is an `ed`, and it cannot run this program: no `g`, no `t`, no `j`, no `#` and no empty match.
-- **A wall is a result.** Nested `g` is refused. A blank line is a command. We kept a test for each.
+- **Las normas y las implementaciones difieren.** busybox ed es un `ed` y no puede ejecutar este programa: no tiene `g`, `t`, `j`, `#` ni coincidencia vacía.
+- **Un obstáculo es un resultado.** Se rechaza `g` anidado. Una línea vacía es un comando. Conservamos una prueba para cada caso.
 
-Tags: the commands `s`, `g`, `t`, `j`, `d` and `0a` are in POSIX. That a failed `s` inside `g` is silent is **accidentally exploited** knowledge: GNU ed 1.20.1 does it, and its manual does not say so. `#` comments are a GNU extension.
+Etiquetas: los comandos `s`, `g`, `t`, `j`, `d` y `0a` están en POSIX. Que un `s` fallido dentro de `g` sea silencioso es conocimiento **aprovechado por accidente**: GNU ed 1.20.1 lo hace y su manual no lo dice. Los comentarios `#` son una extensión de GNU.
 
-### Do this in production and you're fired
+### Haz esto en producción y estás despedido
 
-- **Unary does not scale.** One million is a million characters.
+- **El sistema unario no escala.** Un millón es un millón de caracteres.
 - **The program depends on positions.** One extra line between a card and its ledger breaks every total.
 - **Nobody can debug ten rewrite rules by eye.** The entry has a test that compares it with a short model.
 
