@@ -215,27 +215,27 @@ msgstr "**Una marca es un registro.** ⟦CODE_0001⟧ pone una marca en una lín
 #: lessons/languages/editors.md:75
 msgctxt "s-f5d9a5aacfcb-0041"
 msgid "**The tape is the number line.** Sixty lines, each ⟦CODE_0001⟧. Where the mark stands *is* the running total, and the text of the line is that total as digits."
-msgstr ""
+msgstr "**La cinta es la recta numérica.** Sesenta líneas, cada una ⟦CODE_0001⟧. La posición de la marca *es* el total acumulado; el texto de la línea expresa ese total en cifras."
 
 #: lessons/languages/editors.md:76
 msgctxt "s-b179bb728aca-0042"
 msgid "**The program writes its own command.** A substitution turns the card ⟦CODE_0001⟧ into the text ⟦CODE_0002⟧. The program copies that text into a register and runs it with ⟦CODE_0003⟧."
-msgstr ""
+msgstr "**El programa escribe su propio comando.** Una sustitución convierte la tarjeta ⟦CODE_0001⟧ en el texto ⟦CODE_0002⟧. El programa copia ese texto en un registro y lo ejecuta con ⟦CODE_0003⟧."
 
 #: lessons/languages/editors.md:77
 msgctxt "s-570073fe400c-0043"
 msgid "**The loop is a register that runs itself.** The program copies the numbered tape line to the end of the buffer, strips the digits and following space with ⟦CODE_0001⟧ and yanks just the instruction into register ⟦CODE_0002⟧. Up to 40 it is ⟦CODE_0003⟧, which is the program again. Above 40 it is a quote mark, which is a comment, so nothing runs."
-msgstr ""
+msgstr "**El bucle es un registro que se ejecuta a sí mismo.** El programa copia la línea numerada de la cinta al final del búfer. Elimina las cifras y el espacio siguiente con ⟦CODE_0001⟧ y copia solo la instrucción al registro ⟦CODE_0002⟧. Con un total de exactamente 40 o menos es ⟦CODE_0003⟧, que es el programa otra vez. Con más de 40 es una comilla, que indica un comentario, así que no se ejecuta nada."
 
 #: lessons/languages/editors.md:78
 msgctxt "s-8fe41c100843-0044"
 msgid "**Nothing in the program says 40.** The limit is where ⟦CODE_0001⟧ stops on the tape."
-msgstr ""
+msgstr "**Nada en el programa dice 40.** El límite es donde ⟦CODE_0001⟧ se detiene en la cinta."
 
 #: lessons/languages/editors.md:80
 msgctxt "s-e6ffd666adf4-0045"
 msgid "The [README](⟦DEST_0001⟧) has the step table, the comparison with the ed entry and the five places where nvi and Vim disagree."
-msgstr ""
+msgstr "El [README](⟦DEST_0001⟧) tiene la tabla de pasos, la comparación con la entrada de ed y los cinco puntos en los que nvi y Vim discrepan."
 
 #: lessons/languages/editors.md:82
 msgctxt "s-d2bbf037de84-0046"

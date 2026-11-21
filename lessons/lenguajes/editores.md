@@ -72,12 +72,12 @@ Un script de unas 100 líneas, en su mayoría una tabla de sesenta líneas numer
 ### ¿Cómo demonios funciona eso?
 
 - **Una marca es un registro.** `k t` pone una marca en una línea. `'t+17k t` la mueve diecisiete líneas hacia abajo. Eso es `t = t + 17`.
-- **The tape is the number line.** Sixty lines, each `total instruction`. Where the mark stands *is* the running total, and the text of the line is that total as digits.
-- **The program writes its own command.** A substitution turns the card `Meetings 7` into the text `'t+17k t`. The program copies that text into a register and runs it with `@d`.
-- **The loop is a register that runs itself.** The program copies the numbered tape line to the end of the buffer, strips the digits and following space with `$s/^[0-9]* //` and yanks just the instruction into register `n`. Up to 40 it is `@a`, which is the program again. Above 40 it is a quote mark, which is a comment, so nothing runs.
-- **Nothing in the program says 40.** The limit is where `@a` stops on the tape.
+- **La cinta es la recta numérica.** Sesenta líneas, cada una `total instruction`. La posición de la marca *es* el total acumulado; el texto de la línea expresa ese total en cifras.
+- **El programa escribe su propio comando.** Una sustitución convierte la tarjeta `Meetings 7` en el texto `'t+17k t`. El programa copia ese texto en un registro y lo ejecuta con `@d`.
+- **El bucle es un registro que se ejecuta a sí mismo.** El programa copia la línea numerada de la cinta al final del búfer. Elimina las cifras y el espacio siguiente con `$s/^[0-9]* //` y copia solo la instrucción al registro `n`. Con un total de exactamente 40 o menos es `@a`, que es el programa otra vez. Con más de 40 es una comilla, que indica un comentario, así que no se ejecuta nada.
+- **Nada en el programa dice 40.** El límite es donde `@a` se detiene en la cinta.
 
-The [README](../../src/ex-weird/README.md#cómo-funciona-el-truco) has the step table, the comparison with the ed entry and the five places where nvi and Vim disagree.
+El [README](../../src/ex-weird/README.md#cómo-funciona-el-truco) tiene la tabla de pasos, la comparación con la entrada de ed y los cinco puntos en los que nvi y Vim discrepan.
 
 ### What did we just learn?
 
