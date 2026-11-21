@@ -41,12 +41,12 @@ El [README](../../src/find-posix/README.md#cómo-funciona-el-truco) tiene la tab
 
 - **Un orden de recorrido es un contrato o es una costumbre.** Aquí es una costumbre. Funciona en GNU find, bfs y busybox, pero POSIX no dice que deba hacerlo.
 - **Un patrón de ruta es un analizador sintáctico diminuto.** Con un comodín que cruza `/`, puedes contar, buscar y comprobar el último segmento.
-- **Make the names carry the state.** In a language with no variables, the file system is the memory.
-- **Short-circuit evaluation is a program counter.** Which branch runs next is decided by which test failed.
-- **A tool's own measurements can be your values.** Depth and file time did, in one directive each, what ten-row tables did in the portable version.
-- **An optimizer's promise is cheap to test.** Run at every level and compare. Here the promise held, and nothing moved.
+- **Haz que los nombres lleven el estado.** En un lenguaje sin variables, el sistema de archivos es la memoria.
+- **La evaluación de cortocircuito es un contador de programa.** La prueba que falló determina qué rama se ejecuta después.
+- **Las propias mediciones de una herramienta pueden ser tus valores.** La profundidad y la fecha del archivo hicieron, con una directiva cada una, lo que hicieron tablas de diez filas en la versión portable.
+- **La promesa de un optimizador es barata de probar.** Ejecuta en cada nivel y compara. Aquí la promesa se cumplió y nada se movió.
 
-Tags: `-fprintf`, `%d`, `%T`, `-regex` and `-D` are GNU extensions (**implementation-permitted**). The `-a`/`-o` precedence, `-name`, `-path` and `-exec` are **guaranteed** by POSIX. Walking into a directory that `-exec` just made is **accidentally exploited**. `{}` inside a longer argument is **implementation-permitted**: POSIX leaves it unspecified, and GNU find, bfs and busybox all replace it. `mktemp` is outside POSIX, but is on every BSD and Linux system.
+Etiquetas: `-fprintf`, `%d`, `%T`, `-regex` y `-D` son extensiones de GNU (**permitido por la implementación**). POSIX garantiza la precedencia de `-a`/`-o`, `-name`, `-path` y `-exec` (**garantizado**). Entrar en un directorio que `-exec` acaba de crear es **aprovechado por accidente**. `{}` dentro de un argumento más largo es **permitido por la implementación**: POSIX lo deja sin especificar y GNU find, bfs y busybox lo reemplazan. `mktemp` está fuera de POSIX, pero está en todos los sistemas BSD y Linux.
 
 ### Do this in production and you're fired
 

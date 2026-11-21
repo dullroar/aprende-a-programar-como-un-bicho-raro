@@ -130,27 +130,27 @@ msgstr "**Un patrón de ruta es un analizador sintáctico diminuto.** Con un com
 #: lessons/languages/find.md:44
 msgctxt "s-d5e0df24dfd4-0024"
 msgid "**Make the names carry the state.** In a language with no variables, the file system is the memory."
-msgstr ""
+msgstr "**Haz que los nombres lleven el estado.** En un lenguaje sin variables, el sistema de archivos es la memoria."
 
 #: lessons/languages/find.md:45
 msgctxt "s-65450e6bdf3e-0025"
 msgid "**Short-circuit evaluation is a program counter.** Which branch runs next is decided by which test failed."
-msgstr ""
+msgstr "**La evaluación de cortocircuito es un contador de programa.** La prueba que falló determina qué rama se ejecuta después."
 
 #: lessons/languages/find.md:46
 msgctxt "s-9aafb5eb79d5-0026"
 msgid "**A tool's own measurements can be your values.** Depth and file time did, in one directive each, what ten-row tables did in the portable version."
-msgstr ""
+msgstr "**Las propias mediciones de una herramienta pueden ser tus valores.** La profundidad y la fecha del archivo hicieron, con una directiva cada una, lo que hicieron tablas de diez filas en la versión portable."
 
 #: lessons/languages/find.md:47
 msgctxt "s-cc4562f4bc02-0027"
 msgid "**An optimizer's promise is cheap to test.** Run at every level and compare. Here the promise held, and nothing moved."
-msgstr ""
+msgstr "**La promesa de un optimizador es barata de probar.** Ejecuta en cada nivel y compara. Aquí la promesa se cumplió y nada se movió."
 
 #: lessons/languages/find.md:49
 msgctxt "s-34a4b0a8f695-0028"
 msgid "Tags: ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧ and ⟦CODE_0005⟧ are GNU extensions (**implementation-permitted**). The ⟦CODE_0006⟧/⟦CODE_0007⟧ precedence, ⟦CODE_0008⟧, ⟦CODE_0009⟧ and ⟦CODE_0010⟧ are **guaranteed** by POSIX. Walking into a directory that ⟦CODE_0011⟧ just made is **accidentally exploited**. ⟦CODE_0012⟧ inside a longer argument is **implementation-permitted**: POSIX leaves it unspecified, and GNU find, bfs and busybox all replace it. ⟦CODE_0013⟧ is outside POSIX, but is on every BSD and Linux system."
-msgstr ""
+msgstr "Etiquetas: ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧ y ⟦CODE_0005⟧ son extensiones de GNU (**permitido por la implementación**). POSIX garantiza la precedencia de ⟦CODE_0006⟧/⟦CODE_0007⟧, ⟦CODE_0008⟧, ⟦CODE_0009⟧ y ⟦CODE_0010⟧ (**garantizado**). Entrar en un directorio que ⟦CODE_0011⟧ acaba de crear es **aprovechado por accidente**. ⟦CODE_0012⟧ dentro de un argumento más largo es **permitido por la implementación**: POSIX lo deja sin especificar y GNU find, bfs y busybox lo reemplazan. ⟦CODE_0013⟧ está fuera de POSIX, pero está en todos los sistemas BSD y Linux."
 
 #: lessons/languages/find.md:51
 msgctxt "s-299b7a6f9cbe-0029"
