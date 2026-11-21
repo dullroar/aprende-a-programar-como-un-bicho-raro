@@ -1,6 +1,6 @@
 ---
 name: "Haskell"
-teaches: "that reading a lazy list can drive a program when forcing each element has a side effect."
+teaches: "que leer una lista perezosa puede dirigir un programa cuando forzar cada elemento tiene un efecto secundario."
 kind: weird
 languages: [haskell]
 lesson: "lenguajes/haskell.md#lazy-io-as-control-flow"
@@ -8,23 +8,23 @@ loop-by: lazy-demand
 evaluation: lazy
 assurance: implementation-permitted
 pairs-with: haskell
-machine: "A lazy graph reducer"
-state: "Thunks: which parts of a list have been demanded"
+machine: "Un reductor de grafos perezoso"
+state: "Thunks: qué partes de una lista se han demandado"
 tags: [control-flow, evaluation-strategy, lazy-evaluation, monad-and-effect-systems, referential-transparency, side-effect, state]
 ---
-# Haskell on drugs
+# Haskell bajo los efectos de las drogas
 
-**Teaches you:** that reading a lazy list can drive a program when forcing each element has a side effect.
+**Te enseña:** que leer una lista perezosa puede dirigir un programa cuando forzar cada elemento tiene un efecto secundario.
 
-> **DEMO ONLY.** Fictional timecards in a scratch SQLite file. No connection to any real time-reporting system.
+> **DEMO ONLY.** Tarjetas de horas ficticias en un archivo SQLite temporal. Sin conexión con ningún sistema real de registro de horas.
 
-This is Haskell on drugs.
+Esto es Haskell con esteroides.
 
-The program builds an **infinite list of cards**, and *forcing the n-th cell of that list prints card n and sends its `INSERT` to `sqlite3`*. Nothing else in the program writes a row. There is no loop, accumulator, counter or explicit recursion. The stop rule is a consumer, `span`, that stops asking for the next cell, and the `INSERT`s stop with it.
+El programa construye una **lista infinita de tarjetas**, y *forzar la celda n de esa lista imprime la tarjeta n y envía su `INSERT` a `sqlite3`*. Nada más en el programa escribe una fila. No hay bucle, acumulador, contador ni recursión explícita. La regla de parada es un consumidor, `span`, que deja de pedir la siguiente celda, y los `INSERT`s se detienen con él.
 
-## Run it
+## Ejecuta el programa
 
-You need GHC (`runghc`) and `sqlite3`. Only packages that ship with GHC are used.
+Necesitas GHC (`runghc`) y `sqlite3`. Solo se usan paquetes que vienen con GHC.
 
 ```bash
 cd src/haskell-weird
@@ -32,7 +32,7 @@ runghc timecards.hs
 ./check.sh                  # set RUNGHC=/path/to/runghc if it is not on your PATH
 ```
 
-Records go to `$XDG_DATA_HOME/HaskellWeird/demo-timecards.db` (default `~/.local/share/HaskellWeird/`). A run looks like this:
+Los registros se escriben en `$XDG_DATA_HOME/HaskellWeird/demo-timecards.db` (valor por defecto: `~/.local/share/HaskellWeird/`). Una ejecución tiene este aspecto:
 
 ```text
 # DEMO ONLY run 1794674995-36735
@@ -44,45 +44,45 @@ Learning	10	44	2026-W46	DEMO ONLY
 # the list of cards is a fixed point of itself, and reading it is what wrote the rows
 ```
 
-## Program Flow
+## Flujo del programa
 
 ```mermaid
 sequenceDiagram
-    accTitle: haskell-weird: reading a cell of a lazy list runs that card's effect
-    accDescr: A sequence diagram. The consumer, span in untilOver40, demands the next cell of the lazy list of cards. The cell needs the hours from the random stream and the running total of the previous card. Because every cell is wrapped in unsafeInterleaveIO, the effect for that card runs now, when the cell is demanded: it prints the row and writes the INSERT to the pipe. The cell then returns the card to the consumer. The consumer tests the running total. While it is 40 or less, it demands the next cell. At the first card over 40, the consumer stops demanding, so no later effect ever runs, and main commits.
-    participant S as span, the consumer
-    participant C as the next cell of the list
-    participant R as the random stream and the previous card
-    participant E as onBirth, the card's effect
-    loop while the running total is 40 or less
-        S->>C: demand the next card
-        C->>R: need the hours, and the total of the previous card
-        R-->>C: hours and total, already known
-        C->>E: unsafeInterleaveIO runs the effect now
-        E-->>E: print the row and write the INSERT to the pipe
-        C-->>S: the card
+    accTitle: haskell-weird: leer una celda de una lista perezosa ejecuta el efecto de esa tarjeta
+    accDescr: Un diagrama de secuencia. El consumidor, span en untilOver40, demanda la siguiente celda de la lista perezosa de tarjetas. La celda necesita las horas del flujo aleatorio y el total acumulado de la tarjeta anterior. Como cada celda está envuelta en unsafeInterleaveIO, el efecto de esa tarjeta se ejecuta ahora, cuando se demanda la celda: imprime la fila y escribe el INSERT en la tubería. Después, la celda devuelve la tarjeta al consumidor. El consumidor comprueba el total acumulado. Mientras el total no pase de 40, demanda la siguiente celda. En la primera tarjeta que pasa de 40, el consumidor deja de demandar, así que ningún efecto posterior se ejecuta nunca, y main confirma la transacción.
+    participant S as span, el consumidor
+    participant C as la siguiente celda de la lista
+    participant R as el flujo aleatorio y la tarjeta anterior
+    participant E as onBirth, el efecto de la tarjeta
+    loop mientras el total acumulado sea 40 o menos
+        S->>C: demanda la siguiente tarjeta
+        C->>R: necesitan las horas y el total de la tarjeta anterior
+        R-->>C: las horas y el total, ya conocidos
+        C->>E: unsafeInterleaveIO ejecuta el efecto ahora
+        E-->>E: imprime la fila y escribe el INSERT en la tubería
+        C-->>S: la tarjeta
     end
-    Note over S: the first card over 40 is returned and kept. No later cell is demanded, so no later effect runs
-    S-->>S: main commits and reports
+    Note over S: se devuelve y se conserva la primera tarjeta que pasa de 40. No se pide ninguna celda posterior, así que no se ejecuta ningún efecto posterior
+    S-->>S: main confirma la transacción e informa
 ```
 
-**What this shows:** the effects are tied to the *reading* of the list. The list is built so that nothing runs when it is made. Each cell holds a promise, and forcing the cell runs that card's `onBirth`. So the number of rows printed equals the number of `INSERT`s, equals the number of cards read.
+**Qué muestra:** los efectos están ligados a la *lectura* de la lista. La lista está construida para que no se ejecute nada al crearla. Cada celda guarda una promesa, y forzar la celda ejecuta el `onBirth` de esa tarjeta. Así, el número de filas impresas es igual al número de `INSERT`, que es igual al número de tarjetas leídas.
 
-**Why this mechanism matters:** this is demand-driven control flow with side effects, and it is only safe because of how the cells are linked. `unsafeInterleaveIO` is called *unsafe* for a reason: the order of effects now depends on the order of demand. The same laziness without effects is in the plain [`haskell`](../haskell/README.md) entry.
+**Por qué importa este mecanismo:** este es un flujo de control dirigido por la demanda y con efectos secundarios, y solo es seguro por cómo están enlazadas las celdas. `unsafeInterleaveIO` se llama *unsafe* por una razón: el orden de los efectos ahora depende del orden de la demanda. La misma evaluación perezosa sin efectos aparece en la entrada simple de [`haskell`](../haskell/README.md).
 
-## How the stunt works
+## Cómo funciona el truco
 
-There are three tricks, stacked on each other.
+Hay tres trucos, apilados unos sobre otros.
 
-### 1. A list defined in terms of itself (`fix`)
+### 1. Una lista definida en términos de sí misma (`fix`)
 
 ```haskell
 rolls seed = map toHours (tail (fix (\xs -> seed : map next xs)))
 ```
 
-`fix f = f (fix f)`: it hands a function *its own result*. Here `xs` is the list being defined, so `xs = seed : map next xs`: the first element is the seed and every later element is `next` applied to the one before it. It works because `map` only needs one element of `xs` at a time. This is the random stream with no `iterate` and no recursion.
+`fix f = f (fix f)`: entrega a una función *su propio resultado*. Aquí `xs` es la lista que se define, así que `xs = seed : map next xs`: el primer elemento es la semilla y cada elemento posterior es el resultado de aplicar `next` al anterior. Funciona porque `map` solo necesita un elemento de `xs` a la vez. Este es el flujo aleatorio sin `iterate` y sin recursión.
 
-### 2. A knot through the cards themselves (`fixIO`)
+### 2. Un nudo a través de las propias tarjetas (`fixIO`)
 
 ```haskell
 sheet onBirth seed = fixIO $ \cards ->
@@ -91,40 +91,40 @@ sheet onBirth seed = fixIO $ \cards ->
    in lazily (map born (zip3 (cycle [minBound ..]) (rolls seed) before))
 ```
 
-`cards` is the list being built, and `before` is `0` followed by the running total of each card in it. So card n's total is its hours plus the total read off card n-1, an element of the very list under construction. `fixIO` is `fix` for IO: it gives the action a handle on its own eventual result.
+`cards` es la lista en construcción, y `before` es `0` seguido del total acumulado de cada tarjeta de esa lista. Así, el total de la tarjeta n es sus horas más el total leído de la tarjeta n-1, un elemento de la propia lista en construcción. `fixIO` es `fix` para IO: da a la acción una referencia a su propio resultado futuro.
 
-### 3. Effects that wait to be asked for (`unsafeInterleaveIO`)
+### 3. Efectos que esperan a que los pidan (`unsafeInterleaveIO`)
 
 ```haskell
 lazily = fix $ \self actions -> unsafeInterleaveIO $ case actions of ...
 ```
 
-`sequence` turns a list of IO actions into one action returning a list, but it **runs all of them first**, which never returns on an infinite list. `lazily` does the same job with `unsafeInterleaveIO` around every cell, which means "run this action only when its result is demanded". After `sheet` returns, nothing has run. Each cell is a promise.
+`sequence` convierte una lista de acciones de IO en una sola acción que devuelve una lista. Pero **ejecuta todas ellas primero**, así que nunca retorna con una lista infinita. `lazily` hace el mismo trabajo con `unsafeInterleaveIO` alrededor de cada celda, lo que significa "ejecuta esta acción solo cuando se demande su resultado". Después de que `sheet` retorna, no se ha ejecutado nada. Cada celda es una promesa.
 
-`onBirth` is the effect attached to a card: print the row, write the `INSERT` to the pipe. The stop rule in `untilOver40` is then only a `span`, a pure function that reads cards until one is over 40. Reading card n is what runs `onBirth` for card n. Total reads equals total `INSERT`s equals the number of printed rows, by construction.
+`onBirth` es el efecto asociado a una tarjeta: imprime la fila y escribe el `INSERT` en la tubería. La regla de parada de `untilOver40` es entonces solo un `span`, una función pura que lee tarjetas hasta que una pasa de 40. Leer la tarjeta n es lo que ejecuta `onBirth` para la tarjeta n. El total de lecturas es igual al total de `INSERT` y al número de filas impresas, por construcción.
 
-## Gotchas worth knowing
+## Trampas que conviene conocer
 
-- **Laziness bites twice.** The first draft counted the cards with `let entries = length cards` and the program printed `# committed total=Meetings 12 12 …` and then crashed with "handle is closed". A `let` binding is itself lazy, so nothing demanded the cards until the summary line was printed, after `COMMIT` and after the pipe had been closed. The cards' effects fired *during* the output of `show`. The fix is `entries <- evaluate (length cards)`, which forces the count *before* committing. With lazy IO, "when is it demanded?" is part of your program's meaning.
-- **Why it is `unsafe`.** The order of effects is decided by the evaluator, not the text of the program. Here the order is safe because card n cannot be forced before card n-1 (its total depends on it).
-- **`lazily` must defer its own pattern match.** The `case` is *inside* `unsafeInterleaveIO`. If the list of actions were matched when `lazily` was called, forcing it would need `before`, which needs `cards`, which does not exist yet: `<<loop>>`.
-- **`take 1 over` fires one more effect.** The crossing card has to be read to see that it crosses, so its row is written. That is why the card is kept rather than dropped.
-- **Production code should not do this.** Lazy IO is why `System.IO`'s `hGetContents` has famously surprising behavior; this program turns that surprise into the algorithm.
+- **La evaluación perezosa muerde dos veces.** El primer borrador contaba las tarjetas con `let entries = length cards` y el programa imprimió `# committed total=Meetings 12 12 …` y luego falló con "handle is closed". Un enlace `let` es perezoso en sí mismo. Por eso nada exigió las tarjetas hasta que se imprimió la línea de resumen. Eso ocurrió después de `COMMIT` y después de que se cerró la tubería. Los efectos de las tarjetas se dispararon *durante* la salida de `show`. La solución es `entries <- evaluate (length cards)`, que fuerza el conteo *antes* de confirmar. Con E/S perezosa, "¿cuándo se exige?" forma parte del significado de tu programa.
+- **Por qué es `unsafe`.** El evaluador decide el orden de los efectos, no el texto del programa. Aquí el orden es seguro porque no se puede forzar la tarjeta n antes que la tarjeta n-1 (su total depende de ella).
+- **`lazily` debe posponer su propia coincidencia de patrones.** `case` está *dentro de* `unsafeInterleaveIO`. Si la coincidencia de patrones sobre la lista de acciones se hiciera cuando se llamara a `lazily`, forzar esa lista necesitaría `before`, que necesita `cards`, que todavía no existe: `<<loop>>`.
+- **`take 1 over` dispara un efecto más.** El programa tiene que leer la tarjeta que cruza para ver que cruza, así que escribe su fila. Por eso el programa conserva la tarjeta en lugar de descartarla.
+- **El código de producción no debería hacer esto.** La E/S perezosa (*lazy IO*) es la razón por la que `hGetContents` de `System.IO` tiene un comportamiento famoso por sorprendente; este programa convierte esa sorpresa en el algoritmo.
 
-## What `check.sh` enforces
+## Qué impone `check.sh`
 
-With comment lines removed: the cards are built with `fixIO $ \cards ->`; there is exactly one use of `unsafeInterleaveIO`; none of `scanl iterate foldr foldl unfoldr until go mapM forM forever replicateM foldM zipWithM sequence` appears; the `sheet` type is `(Card -> IO ()) -> Word64 -> IO [Card]`; and 25 runs each stop when they should, with the database agreeing with the output.
+Sin las líneas de comentario: las tarjetas se construyen con `fixIO $ \cards ->`; hay exactamente un uso de `unsafeInterleaveIO`; no aparece ninguno de `scanl iterate foldr foldl unfoldr until go mapM forM forever replicateM foldM zipWithM sequence`; el tipo `sheet` es `(Card -> IO ()) -> Word64 -> IO [Card]`; y cada una de las 25 ejecuciones se detiene cuando debe, con la base de datos de acuerdo con la salida.
 
-## Format and lint
+## Da formato y analiza con linter
 
-The source is laid out by hand in [Ormolu](https://github.com/tweag/ormolu)'s style (two-space indent, leading commas, sorted imports) and compiles clean under `ghc -Wall -Wcompat`. It has **not** been run through the `ormolu` or `hlint` binaries; they were not available where this was written, so expect them to find small differences.
+El código fuente está formateado a mano al estilo de [Ormolu](https://github.com/tweag/ormolu) (sangría de dos espacios, comas al inicio de línea e importaciones ordenadas) y compila limpio con `ghc -Wall -Wcompat`. **No** se ha ejecutado con los binarios `ormolu` ni `hlint`; no estaban disponibles donde se escribió, así que espera que encuentren pequeñas diferencias.
 
-## Run it in a container
+## Ejecútalo en un contenedor
 
-Prerequisite: Docker, set up once as described in [`SANDBOX-SETUP.md`](../../SANDBOX-SETUP.md#docker).
+Requisito previo: Docker, configurado una sola vez como se describe en [`SANDBOX-SETUP.md`](../../SANDBOX-SETUP.md#docker).
 
 ```bash
 sandbox/container/run-image.sh src/haskell-weird
 ```
 
-It builds this folder's [`Dockerfile`](Dockerfile) and runs the result with no network, a read-only file system and user `nobody`, then prints the output and a read-only look at the rows it wrote. In a build stage, GHC compiles the script to one binary. The image holds only that binary and sqlite3, with no GHC.
+Construye el [`Dockerfile`](Dockerfile) de esta carpeta y ejecuta el resultado sin red, con un sistema de archivos de solo lectura y el usuario `nobody`, y luego imprime la salida y una vista de solo lectura de las filas que escribió. En una etapa de compilación, GHC compila el script en un solo binario. La imagen contiene solo ese binario y sqlite3, sin GHC.

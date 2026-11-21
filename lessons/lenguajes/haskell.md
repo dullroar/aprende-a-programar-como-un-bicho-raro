@@ -81,7 +81,7 @@ Each picture below is the `## Program Flow` section of an entry's README, copied
 
 ### Program flow of `haskell`
 
-From [`haskell`](../../src/haskell/README.md) ([source section](../../src/haskell/README.md#program-flow)).
+From [`haskell`](../../src/haskell/README.md) ([source section](../../src/haskell/README.md#flujo-del-programa)).
 
 ```mermaid
 flowchart TD
@@ -102,7 +102,7 @@ flowchart TD
 
 ### Program flow of `haskell-weird`
 
-From [`haskell-weird`](../../src/haskell-weird/README.md) ([source section](../../src/haskell-weird/README.md#program-flow)).
+From [`haskell-weird`](../../src/haskell-weird/README.md) ([source section](../../src/haskell-weird/README.md#flujo-del-programa)).
 
 ```mermaid
 sequenceDiagram

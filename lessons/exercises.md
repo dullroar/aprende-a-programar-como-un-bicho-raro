@@ -524,7 +524,7 @@ Acceptance criteria:
 
 ### F1. Test a claim of your choice
 
-Every README has a "Gotchas" or "Walls" section. Pick **one claim** and write a test that would fail if it were false. A worked example is in the [answer key](respuestas.md#f-prove-a-readme-claim): "`takeWhile` is not enough" ([`src/haskell/README.md`](../src/haskell/README.md#gotchas-worth-knowing)).
+Every README has a "Gotchas" or "Walls" section. Pick **one claim** and write a test that would fail if it were false. A worked example is in the [answer key](respuestas.md#f-prove-a-readme-claim): "`takeWhile` is not enough" ([`src/haskell/README.md`](../src/haskell/README.md#trampas-que-conviene-conocer)).
 
 Other good claims: "`SYSTEM` returns the raw wait status (exit 3 comes back as 768)", "GnuCOBOL warns five times about `ALTER`", "pcre2grep does not search `PATH`".
 

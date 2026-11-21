@@ -118,7 +118,7 @@ No `for`, no `while`, no pipeline, no closure factory. The visible start-up is o
 - **The save comes first.** `node:sqlite` is synchronous, so the row is written when `run()` returns. The running total changes only after that.
 - **A failure is one event.** Every listener catches its own throw and emits `failed`. `failed` rolls back, closes the database, prints one line and removes every listener.
 
-The [README](../../src/javascript-events/README.md#how-the-stunt-works) has the table of events, the trace and the comparison with the other two Node entries.
+The [README](../../src/javascript-events/README.md#cómo-funciona-el-truco) has the table of events, the trace and the comparison with the other two Node entries.
 
 ### What did we just learn?
 
@@ -173,7 +173,7 @@ flowchart TD
 
 ### Program flow of `javascript-events`
 
-From [`javascript-events`](../../src/javascript-events/README.md) ([source section](../../src/javascript-events/README.md#program-flow)).
+From [`javascript-events`](../../src/javascript-events/README.md) ([source section](../../src/javascript-events/README.md#flujo-del-programa)).
 
 ```mermaid
 sequenceDiagram

@@ -1,6 +1,6 @@
 ---
 name: "JavaScript"
-teaches: "that a program can be a set of listeners, each doing one small thing and then emitting the event the next one waits for; and that emit() calls its listeners at once, so only an explicit scheduling boundary gives the event loop a turn."
+teaches: "que un programa puede ser un conjunto de escuchadores de eventos, cada uno hace una sola cosa pequeña y luego emite el evento que espera el siguiente; y que emit() llama a sus escuchadores de eventos de inmediato, así que solo un límite de planificación explícito da un turno al bucle de eventos."
 kind: weird
 languages: [javascript, sqlite]
 lesson: "lenguajes/javascript.md#listeners-all-the-way-down"
@@ -8,25 +8,25 @@ loop-by: dispatch-and-triggers
 evaluation: eager
 assurance: guaranteed
 pairs-with: javascript
-machine: "A set of listeners on one EventEmitter, which together are a state machine"
-state: "The running total and the card count, held in one object that only the listeners touch"
+machine: "Un conjunto de escuchadores de eventos en un solo EventEmitter, que juntos son una máquina de estados"
+state: "El total acumulado y el número de tarjetas, guardados en un objeto que solo tocan los escuchadores de eventos"
 tags: [call-stack, callback, control-flow, deferred-execution, event-driven-programming, event-loop, exception-handling, integrity-constraint, invariant, observability, publish-subscribe, reproducibility, side-effect, state, transition-system]
 counterexamples: [backpressure, coroutine]
 ---
-# JavaScript, event-driven: one line of work, an entire program in the listeners
+# JavaScript, orientado a eventos: una línea de trabajo, un programa entero en los escuchadores de eventos
 
-**Teaches you:** that a program can be a set of listeners, each doing one small thing and then emitting the event the next one waits for; and that emit() calls its listeners at once, so only an explicit scheduling boundary gives the event loop a turn.
+**Te enseña:** que un programa puede ser un conjunto de escuchadores de eventos, cada uno con una sola tarea pequeña que termina emitiendo el evento que espera el siguiente; y que emit() llama a sus escuchadores de inmediato, así que solo un límite de planificación explícito da un turno al bucle de eventos.
 
-> **DEMO ONLY.** Fictional time cards, written to a scratch SQLite file under `$XDG_DATA_HOME/JavaScriptEvents/`.
-> Nothing here touches real time reporting.
+> **DEMO ONLY.** Tarjetas de horas ficticias, escritas en un archivo SQLite temporal dentro de `$XDG_DATA_HOME/JavaScriptEvents/`.
+> Nada de esto toca el registro real de horas.
 
-The [conventional entry](../javascript/README.md) is a `for` statement with an empty body. The [closure entry](../javascript-weird/README.md) is three closures pulled by an iterator. This one has **no loop statement and no pipeline**. The visible start-up is one line:
+La [entrada convencional](../javascript/README.md) es una sentencia `for` con cuerpo vacío. La [entrada con clausuras](../javascript-weird/README.md) usa tres clausuras (*closures*), funciones que conservan las variables del lugar donde se crearon, y un iterador las extrae. Esta entrada **no tiene sentencia de bucle ni canalización**. El arranque visible es una sola línea:
 
 ```js
 program(realWorld()).emit('start');
 ```
 
-Everything else is a *listener*: a small function that Node calls when an event arrives. The `start` listener opens the database. The `generate` listener makes a card. The `card-created` listener saves it. And so on, until the `finished` listener closes the program. The program is the set of listeners, and the loop is the way the events chain.
+Todo lo demás es un escuchador de eventos (*listener*): una función pequeña que Node llama cuando llega un evento. El escuchador de eventos `start` abre la base de datos. El escuchador de eventos `generate` crea una tarjeta. El escuchador de eventos `card-created` la guarda. Y así sigue hasta que el escuchador de eventos `finished` cierra el programa. El programa es el conjunto de escuchadores de eventos y el bucle es la forma en que los eventos se encadenan.
 
 ```text
 $ node timecards.mjs
@@ -40,11 +40,11 @@ Total simulated hours: 46.0
 Saved locally for the modernization exercise.
 ```
 
-With the same seed, all three Node entries print the same cards (`SEED=42`). Read them as a set of three: a [`for` clause](../javascript/README.md), a [lazy pull](../javascript-weird/README.md), and this, a chain of events. The [events lesson](../../lessons/informatica/10-eventos-retrollamadas-y-flujo-de-control-reactivo.md) explains the ideas behind this one.
+Con la misma semilla, las tres entradas de Node imprimen las mismas tarjetas (`SEED=42`). Léelas como un conjunto de tres: una [cláusula `for`](../javascript/README.md), una [demanda (pull) perezosa](../javascript-weird/README.md) y esta, una cadena de eventos. La [lección sobre eventos](../../lessons/informatica/10-eventos-retrollamadas-y-flujo-de-control-reactivo.md) explica las ideas en que se basa esta.
 
-## Run it
+## Ejecútalo
 
-You need **Node.js 24 or newer**: it has `node:sqlite` built in. `node:events` is built in too. There is no `npm install`.
+Necesitas **Node.js 24 o posterior**: ya incluye `node:sqlite`. `node:events` también viene incluido. No hay `npm install`.
 
 ```bash
 cd src/javascript-events
@@ -53,78 +53,78 @@ node --test check.mjs                    # the event lab: 14 tests that prove wh
 ./check.sh                               # everything below (needs sqlite3 and GNU date, and `script` for the terminal tests)
 ```
 
-Records go to `$XDG_DATA_HOME/JavaScriptEvents/demo-timecards.db` (default `~/.local/share/JavaScriptEvents/`).
+Los registros van a `$XDG_DATA_HOME/JavaScriptEvents/demo-timecards.db` (por defecto, `~/.local/share/JavaScriptEvents/`).
 
-## Run it in a container
+## Ejecútalo en un contenedor
 
-Prerequisite: Docker, set up once as described in [`SANDBOX-SETUP.md`](../../SANDBOX-SETUP.md#docker).
+Requisito previo: Docker, configurado una sola vez como se describe en [`SANDBOX-SETUP.md`](../../SANDBOX-SETUP.md#docker).
 
 ```bash
 sandbox/container/run-image.sh src/javascript-events          # the plain, CI-style output
 sandbox/container/run-image.sh --tty src/javascript-events    # with a terminal: watch the DEMO ONLY line pulse
 ```
 
-It builds this folder's [`Dockerfile`](Dockerfile) and runs the result with no network, a read-only file system and user `nobody`.
+Compila el [`Dockerfile`](Dockerfile) de esta carpeta y ejecuta el resultado sin red, con un sistema de archivos de solo lectura y el usuario `nobody`.
 
-## Program Flow
+## Flujo del programa
 
 ```mermaid
 sequenceDiagram
-    accTitle: javascript-events: emit is a call, setImmediate is a later turn
-    accDescr: A sequence diagram. The main module emits start. The listener for start opens the database, begins a transaction and saves the run, then asks the event loop for the generate event on a later turn with setImmediate. Emit returns and the call stack is empty. On a later turn the event loop emits generate. The generate listener makes a card and emits card-created, whose listener runs at once inside the same call and saves the card to SQLite. That listener emits card-saved, whose listener updates the total and prints the row. That listener emits total-updated. If the total is 40 or less, its listener asks the event loop for the next generate on a later turn, and the stack unwinds. If the total is over 40, it emits finished, whose listener commits, prints and closes. A throw in any listener emits failed, which rolls back and reports once.
-    participant M as Main module
+    accTitle: javascript-events: emit es una llamada, setImmediate es un turno posterior
+    accDescr: Un diagrama de secuencia. El módulo principal emite start. El escuchador de eventos de start abre la base de datos, inicia una transacción y guarda la ejecución. Después pide al bucle de eventos el evento generate para un turno posterior con setImmediate. La llamada a emit termina y la pila de llamadas queda vacía. En un turno posterior, el bucle de eventos emite generate. El escuchador de generate crea una tarjeta y emite card-created. El escuchador de card-created se ejecuta de inmediato dentro de la misma llamada y guarda la tarjeta en SQLite. Ese escuchador emite card-saved, cuyo escuchador actualiza el total e imprime la fila. Ese escuchador emite total-updated. Si el total no pasa de 40, el escuchador de total-updated pide al bucle de eventos el siguiente generate para un turno posterior y la pila se desenrolla. Si el total pasa de 40, emite finished, cuyo escuchador confirma la transacción, imprime y cierra. Un throw en cualquier escuchador emite failed, que revierte la transacción e informa una sola vez.
+    participant M as Módulo principal
     participant E as EventEmitter
-    participant Q as Event loop queue
+    participant Q as Cola del bucle de eventos
     participant D as SQLite
-    M->>E: emit start
-    E->>D: start listener: BEGIN, save the run
-    E->>Q: setImmediate: generate, later
-    E-->>M: emit returns: the stack is empty
-    loop one turn of the event loop for each card
+    M->>E: emitir start
+    E->>D: escuchador de eventos de start: BEGIN, guarda la ejecución
+    E->>Q: setImmediate: generar, más tarde
+    E-->>M: emit retorna: la pila está vacía
+    loop un turno del bucle de eventos por cada tarjeta
         Q->>E: emit generate
-        E->>D: card-created, nested inside generate: INSERT the card
-        E->>E: card-saved, nested: total changes
-        E->>E: total-updated, nested: stop rule
-        alt total is 40 or less
-            E->>Q: setImmediate: generate, later
-        else total is over 40
+        E->>D: card-created, anidado dentro de generate: INSERT de la tarjeta
+        E->>E: card-saved, anidado: cambia el total
+        E->>E: total-updated, anidado: regla de parada
+        alt el total es 40 o menos
+            E->>Q: setImmediate: generar después
+        else el total pasa de 40
             E->>D: finished, nested: COMMIT, close
         end
     end
 ```
 
-**What this shows:** two kinds of arrow. An `emit` is a call: the listener runs *inside* it, on top of the caller, and `emit` returns only when the listener has. The `setImmediate` arrows are requests: the next `generate` waits in the event loop's queue until the stack is empty. Each card is one turn of the loop, and four emits nest inside that turn. A throw in any listener emits `failed`, which rolls back, reports once and removes every listener.
+**Qué muestra:** dos tipos de flecha. Un `emit` es una llamada: el escuchador de eventos se ejecuta *dentro* de ella, encima del llamador, y `emit` solo regresa cuando el escuchador de eventos termina. Las flechas `setImmediate` son solicitudes: el siguiente `generate` espera en la cola del bucle de eventos hasta que la pila quede vacía. Cada tarjeta es un turno del bucle y cuatro emisiones se anidan dentro de ese turno. Una excepción lanzada en cualquier escuchador de eventos emite `failed`, que revierte, informa una sola vez y elimina todos los escuchadores de eventos.
 
-**Why this mechanism matters:** the program has no loop statement and no recursion. The cycle is "total-updated asks the event loop for another generate". Without that boundary the same events would nest one level deeper for every card. The database write finishes inside `card-created`, before the total changes in `card-saved`.
+**Por qué importa este mecanismo:** el programa no tiene sentencias de bucle ni recursión. El ciclo es "total-updated le pide al bucle de eventos otro generate". Sin ese límite, los mismos eventos se anidarían un nivel más por cada tarjeta. La escritura en la base de datos termina dentro de `card-created`, antes de que el total cambie en `card-saved`.
 
-## How the stunt works
+## Cómo funciona el truco
 
-### The events
+### Los eventos
 
-[`timecards.mjs`](timecards.mjs) registers ten listeners on one `EventEmitter`. Nine are the steps of the state machine. The tenth turns a stray `error` event into `failed` (see below). Read the table from top to bottom, and the program from top to bottom: they agree.
+[`timecards.mjs`](timecards.mjs) registra diez escuchadores de eventos en un solo `EventEmitter`. Nueve son los pasos de la máquina de estados. El décimo convierte un evento `error` suelto en `failed` (mira más abajo). Lee la tabla de arriba abajo y el programa de arriba abajo: coinciden.
 
-| Event | The listener does | Then |
+| Evento | El escuchador de eventos hace | Luego |
 |---|---|---|
-| `start` | Opens the database, begins a transaction, saves the run | Asks for the first card **on a later turn** (`setImmediate`) |
-| `generate` | Draws the hours and picks the category | Emits `card-created` (now) |
-| `card-created` | **Saves the card** to SQLite | Emits `card-saved` (now) |
-| `card-saved` | Only now: updates the running total, prints the row | Emits `total-updated` (now) |
-| `total-updated` | **The stop rule.** Is the total over 40? | If yes, emits `finished` (now). If no, asks for the next card **on a later turn** |
-| `finished` | Commits, prints the summary, closes the database | Ends, or starts the pulse timer on a terminal |
-| `frame` | One tick of the pulse. Called by the timer | After the last tick, emits `done` |
-| `done` | Removes every listener and ends the process normally | |
-| `failed` | Rolls back, closes, tells the user once | Removes every listener, ends with status 1 |
+| `start` | Abre la base de datos, inicia una transacción y guarda la ejecución | Pide la primera tarjeta **en un turno posterior** (`setImmediate`) |
+| `generate` | Sortea las horas y elige la categoría | Emite `card-created` (ahora) |
+| `card-created` | **Guarda la tarjeta** en SQLite | Emite `card-saved` (ahora) |
+| `card-saved` | Solo ahora: actualiza el total acumulado e imprime la fila | Emite `total-updated` (ahora) |
+| `total-updated` | **La regla de parada.** ¿El total pasa de 40? | Si es así, emite `finished` (ahora). Si no, pide la siguiente tarjeta **en un turno posterior** |
+| `finished` | Confirma la transacción, imprime el resumen y cierra la base de datos | Termina o inicia el temporizador de pulso en una terminal |
+| `frame` | Un tic del pulso. Lo llama el temporizador | Después del último tic, emite `done` |
+| `done` | Elimina todos los escuchadores de eventos y termina el proceso con normalidad | |
+| `failed` | Revierte, cierra y avisa al usuario una sola vez | Elimina todos los escuchadores de eventos y termina con estado 1 |
 
-### Two kinds of "then"
+### Dos tipos de "luego"
 
-The Node.js documentation says the same in two places: [`events`](https://nodejs.org/api/events.html) for `emit()`, and the guide to the [event loop, timers and `process.nextTick()`](https://nodejs.org/en/learn/asynchronous-work/event-loop-timers-and-nexttick) for `setImmediate()`.
+La documentación de Node.js dice lo mismo en dos lugares: [`events`](https://nodejs.org/api/events.html) para `emit()` y la guía sobre el [bucle de eventos, los temporizadores y `process.nextTick()`](https://nodejs.org/en/learn/asynchronous-work/event-loop-timers-and-nexttick) para `setImmediate()`.
 
-This is the lesson. The table says *now* in some rows and *on a later turn* in others, and they are not the same.
+Esta es la lección. La tabla dice *ahora* en algunas filas y *en un turno posterior* en otras, y no son lo mismo.
 
-- **`emit()` is a call.** `events.emit('card-created', card)` calls every listener of `card-created`, in the order they were registered, and *returns only after they have all returned*. The listener runs on top of the caller on the **call stack**. If the listener emits another event, that is one more level. This is documented, and `check.mjs` proves it: a listener's output comes before the line after `emit()`.
-- **`setImmediate()` is a request.** It puts a function on the event loop's queue and returns at once. Node runs the function after the current call stack has finished. By then every `emit` of this card has returned, and the stack is empty.
+- **`emit()` es una llamada.** `events.emit('card-created', card)` llama a todos los escuchadores de eventos de `card-created`, en el orden en que se registraron, y *retorna solo después de que todos han retornado*. El escuchador de eventos se ejecuta encima de quien lo llamó, en la **pila de llamadas**. Si el escuchador de eventos emite otro evento, eso es un nivel más. Esto está documentado y `check.mjs` lo demuestra: la salida de un escuchador de eventos aparece antes de la línea que sigue a `emit()`.
+- **`setImmediate()` es una solicitud.** Pone una función en la cola del bucle de eventos y regresa de inmediato. Node ejecuta la función después de que termine la pila de llamadas actual. Para entonces, cada `emit` de esta tarjeta ya ha regresado y la pila está vacía.
 
-Why does it matter? Suppose `total-updated` called `events.emit('generate')` directly. Then the first card's `generate` would still be on the stack when the second card's `generate` started, and so on. Each card would add a few more frames, and a long enough run would end with `RangeError: Maximum call stack size exceeded`. With 40 hours that is no risk. With a limit of a million it is a crash. `check.mjs` shows both halves: an emitter that calls itself overflows (and it is caught, so the test is safe), and the real program stays at the *same* depth from card 1 to card 2000.
+¿Por qué importa? Supón que `total-updated` llamara directamente a `events.emit('generate')`. Entonces el `generate` de la primera tarjeta seguiría en la pila cuando empezara el `generate` de la segunda tarjeta, y así sucesivamente. Cada tarjeta añadiría unos cuantos marcos más, y una ejecución lo bastante larga terminaría con `RangeError: Maximum call stack size exceeded`. Con 40 horas no hay riesgo. Con un límite de un millón es una caída. `check.mjs` muestra las dos mitades: un emisor que se llama a sí mismo se desborda (y se captura, así que la prueba es segura), y el programa real se mantiene en la *misma* profundidad de la tarjeta 1 a la tarjeta 2000.
 
 ```text
 turn 1:  start ................................... asks for generate, returns
@@ -134,77 +134,77 @@ turn 3:  generate > card-created > card-saved > total-updated ... asks for gener
 turn N:  generate > card-created > card-saved > total-updated > finished > done
 ```
 
-The `>` is "calls, inside". A turn is everything between two returns to the event loop. The lab also records every `emit` as it starts and returns, so the nesting is a fact you can read, not a story.
+El `>` es "llamadas, dentro". Un turno es todo lo que ocurre entre dos regresos al bucle de eventos. El laboratorio también registra cada `emit` cuando empieza y cuando retorna, así que el anidamiento es un hecho que puedes leer, no un cuento.
 
-### The save happens before the total changes
+### El guardado ocurre antes de que cambie el total
 
-`node:sqlite` is synchronous. `insert.run()` has written the row when it returns. So `card-created` saves the card first, and only then emits `card-saved`. The running total changes in the `card-saved` listener, never earlier. Nothing downstream can see a card that is not in the database, and a failed save leaves nothing half done. `check.sh` has a mutant that announces the card before saving it, and the lab catches it.
+`node:sqlite` funciona de forma síncrona. `insert.run()` ya escribió la fila cuando retorna. Por eso `card-created` guarda primero la tarjeta y solo después emite `card-saved`. El total acumulado cambia en el escuchador de eventos de `card-saved`, nunca antes. Nada posterior puede ver una tarjeta que no esté en la base de datos, y un guardado fallido no deja nada a medias. `check.sh` tiene un mutante que anuncia la tarjeta antes de guardarla, y el laboratorio lo detecta.
 
-### When a listener throws
+### Cuando un escuchador de eventos lanza una excepción
 
-A listener that throws sends its exception *up* through `emit()` to whoever called it. Here that would be a callback that nobody waits for, so the exception would kill the process. So every listener is wrapped: the wrapper catches the exception and emits `failed`. The `failed` listener rolls the transaction back, closes the database, stops the timer, prints **one** message and removes **every** listener, itself included. A second failure finds nobody to tell, so a failure is reported exactly once.
+Un escuchador de eventos que lanza una excepción la envía *hacia arriba*, a través de `emit()`, hasta quien lo llamó. Aquí sería una función de devolución de llamada (*callback*): una función que se entrega a otro código para que la invoque después. Nadie la espera, así que la excepción terminaría el proceso. Por eso cada escuchador de eventos va envuelto: el envoltorio captura la excepción y emite `failed`. El escuchador de eventos de `failed` revierte la transacción, cierra la base de datos, detiene el temporizador, imprime **un** mensaje y elimina **todos** los escuchadores de eventos, incluido él mismo. Un segundo fallo no encuentra a nadie a quien avisar, así que un fallo se informa exactamente una vez.
 
-Node treats the event name `error` in a special way: `emit('error', e)` with no listener *throws* `e`. This program registers a listener that turns a stray `error` into `failed`, so it has one way to fail. After the program removes all listeners, an unheard `error` throws again, and the lab checks that too.
+Node trata el nombre de evento `error` de forma especial: `emit('error', e)` sin ningún escuchador de eventos *lanza* `e`. Este programa registra un escuchador de eventos que convierte un `error` suelto en `failed`, así que solo tiene una forma de fallar. Después de que el programa elimina todos los escuchadores de eventos, un `error` que nadie escucha lanza de nuevo, y el laboratorio también lo comprueba.
 
-### No leftovers
+### Sin restos
 
-A listener, a timer or an immediate that stays registered keeps the process alive or leaks. The program ends by removing every listener, closing the database and (on a terminal) stopping its one timer. The lab compares `process.getActiveResourcesInfo()` before and after a run and finds no difference. A redirected run starts no timer, so Node has nothing left to wait for and exits at once.
+Un escuchador de eventos, un temporizador o un inmediato que sigue registrado mantiene vivo el proceso o provoca una fuga. El programa termina al quitar todos los escuchadores de eventos, cerrar la base de datos y (en una terminal) detener su único temporizador. El laboratorio compara `process.getActiveResourcesInfo()` antes y después de una ejecución y no encuentra ninguna diferencia. Una ejecución redirigida no inicia ningún temporizador, así que Node no tiene nada más que esperar y termina de inmediato.
 
-| Job | Done by |
+| Tarea | Realizado por |
 |---|---|
-| Loop | A chain of events: `total-updated` asks for the next `generate` through the scheduler |
-| Random hours | `rng`, a closure over the seed (Park-Miller): the same one as the other two Node entries |
-| Running total, card count | One object `s`, touched only by listeners |
-| Stop rule | The `total-updated` listener: `total > limit` |
-| Persistence | The `card-created` listener, then a commit in `finished` |
-| Failure | The `failed` listener, reached from every wrapped listener and from `error` |
-| Output | `out()`, `raw()` and `err()` of the world object |
+| Bucle | Una cadena de eventos: `total-updated` pide el siguiente `generate` a través del planificador |
+| Horas aleatorias | `rng`, una clausura (*closure*: función que conserva las variables de su entorno) sobre la semilla (Park-Miller): la misma de las otras dos entradas de Node |
+| Total acumulado, número de tarjetas | Un objeto `s`, que solo tocan los escuchadores de eventos |
+| Regla de parada | El escuchador de eventos `total-updated`: `total > limit` |
+| Persistencia | El escuchador de eventos `card-created`, luego una confirmación de la transacción en `finished` |
+| Fallo | El escuchador de eventos `failed`, al que se llega desde cada escuchador de eventos envuelto y desde `error` |
+| Salida | `out()`, `raw()` y `err()` del objeto world |
 
-### Where does the program live, and what makes the next step run?
+### ¿Dónde vive el programa y qué hace que se ejecute el siguiente paso?
 
-| | JavaScript, bodiless `for` | JavaScript, closures | JavaScript, events |
+| | JavaScript, `for` sin cuerpo | JavaScript, clausuras | JavaScript, eventos |
 |---|---|---|---|
-| Where the program lives | In the three clauses of a `for` | In three closures and one expression | **In ten small listeners** |
-| Where the state lives | Properties of an object literal | Captured variables | **One object that only listeners touch** |
-| What makes the next step run | The `for` statement | The consumer's demand: `next()` | **An event, then the scheduler** |
-| What stops it | A condition that is false | A closure that says `done` | **A listener that does not ask for the next card** |
-| Order of work is visible in | The order of the clauses | The shape of the pipeline | **The event names, and the emit calls** |
+| Dónde vive el programa | En las tres cláusulas de un `for` | En tres clausuras y una expresión | **En diez escuchadores de eventos pequeños** |
+| Dónde vive el estado | Propiedades de un literal de objeto | Variables capturadas | **Un objeto que solo tocan los escuchadores de eventos** |
+| Qué hace que se ejecute el paso siguiente | La sentencia `for` | La demanda del consumidor: `next()` | **Un evento y después el planificador** |
+| Qué lo detiene | Una condición que es falsa | Una clausura (*closure*, una función que conserva las variables del lugar donde se creó) que dice `done` | **Un escuchador de eventos que no pide la siguiente tarjeta** |
+| El orden del trabajo se ve en | El orden de las cláusulas | La forma de la canalización | **Los nombres de los eventos y las llamadas a emit** |
 
-### The world is an argument
+### El mundo es un argumento
 
-`program(world)` takes one object: the random numbers, the scheduler, the way to open the database, the output functions and the timer. `realWorld()` makes the real one. A test hands in its own: fixed hours instead of random ones, a scheduler that only queues, a scratch database, a timer it ticks by hand. The program does not change, and so the lab tests the program that runs.
+`program(world)` recibe un objeto: los números aleatorios, el planificador, la forma de abrir la base de datos, las funciones de salida y el temporizador. `realWorld()` crea el real. Una prueba entrega el suyo: horas fijas en lugar de aleatorias, un planificador que solo pone en cola, una base de datos temporal, un temporizador que la prueba hace avanzar a mano. El programa no cambia y por eso el laboratorio prueba el programa que se ejecuta.
 
-## What `check.sh` enforces
+## Qué impone `check.sh`
 
-- **The constraints are real.** `check-static.mjs` scans the source with comments and strings blanked out. There is no `for`, `while` or `do`, no `forEach`, `eval`, `async`, `await`, `nextTick` or `setTimeout`, and no import except `node:events`, `node:fs`, `node:os`, `node:path`, `node:sqlite` and `node:url`. The file ends with exactly one `emit('start')`. Exactly ten listeners exist, and `generate` is reached only through the scheduler. Nine mutants (a `for`, a `while`, `forEach`, `eval`, `child_process`, `async`, a direct `emit('generate')`, a second `emit('start')`, `nextTick`) are rejected.
-- **The event lab (`check.mjs`).** Fourteen tests. One run saves only demo rows and the report matches them. It stops at exactly the right card (a total of exactly 40 goes on). `emit('start')` returns before any card exists. Events nest inside one turn like a call stack. `emit()` is synchronous and `setImmediate()` is a later turn. The stack stays the same depth over 2000 cards. An emitter that calls itself overflows. A failing insert and a failing commit each report once and roll back. `error` is routed. No listener, timer or immediate is left. The pulse is a timer that stops itself. The seed replays. The ISO week is right at New Year.
-- **The lab fails on mutants.** Seven changes to the program (stop at 40 instead of over 40, no `ROLLBACK`, listeners left after a failure and after the end, a card announced before it is saved, no scheduling boundary, another random generator) each make the lab fail.
-- **The rules of the challenge.** 25 random runs: categories in order, hours 10 to 19, correct running totals, a stop right after the first total over 40, `DEMO ONLY` everywhere, nothing on stderr, no escape codes in redirected output, and no file in the data folder but `demo-timecards.db`. In SQLite: only demo rows, the current user, and every `running_total` equal to the sum of the hours so far.
-- **Seeds.** `SEED=42` twice gives the same cards, and the same cards as the other two Node entries. Twelve seeds match a separate model of the generator in awk, and a seed whose first four cards make exactly 40 must get a fifth.
-- **The ISO week** agrees with GNU `date` on ten dates, and **the pulse** behaves on a pseudo-terminal, with `NO_COLOR`, with `TERM=dumb`, and when redirected.
-- **Errors and the schema.** An unwritable data folder ends with a non-zero status and exactly one message. SQLite refuses a non-demo row or run, 9 hours and a fifth category.
+- **Las restricciones son reales.** `check-static.mjs` analiza el código fuente con los comentarios y las cadenas de texto borrados. No hay `for`, `while` ni `do`; tampoco `forEach`, `eval`, `async`, `await`, `nextTick` ni `setTimeout`. No hay más importaciones que `node:events`, `node:fs`, `node:os`, `node:path`, `node:sqlite` y `node:url`. El archivo termina con exactamente un `emit('start')`. Existen exactamente diez escuchadores de eventos, y a `generate` solo se llega a través del planificador. Se rechazan nueve mutantes (un `for`, un `while`, `forEach`, `eval`, `child_process`, `async`, un `emit('generate')` directo, un segundo `emit('start')`, `nextTick`).
+- **El laboratorio de eventos (`check.mjs`).** Catorce pruebas. Una ejecución guarda solo filas de demostración y el informe coincide con ellas. Se detiene justo en la tarjeta correcta (un total de exactamente 40 continúa). `emit('start')` retorna antes de que exista ninguna tarjeta. Los eventos se anidan dentro de un turno como una pila de llamadas. `emit()` es síncrono y `setImmediate()` es un turno posterior. La pila mantiene la misma profundidad con 2000 tarjetas. Un emisor que se llama a sí mismo se desborda. Una inserción que falla y una confirmación de la transacción que falla informan una vez cada una y revierten. `error` se enruta. No queda ningún escuchador de eventos, temporizador ni inmediato. El pulso es un temporizador que se detiene solo. La semilla se reproduce. La semana ISO es correcta en Año Nuevo.
+- **El laboratorio falla ante los mutantes.** Siete cambios en el programa (parar con un total de 40 en lugar de con más de 40, sin `ROLLBACK`, escuchadores de eventos que quedan tras un fallo y tras el final, una tarjeta anunciada antes de guardarse, sin frontera de planificación, otro generador aleatorio) hacen que el laboratorio falle, cada uno por separado.
+- **Las reglas del reto.** 25 ejecuciones aleatorias: categorías en orden, de 10 a 19 horas, totales acumulados correctos, una parada justo después del primer total que pasa de 40, `DEMO ONLY` en todas partes, nada en stderr, ningún código de escape en la salida redirigida y ningún archivo en la carpeta de datos salvo `demo-timecards.db`. En SQLite: solo filas de demostración, el usuario actual y cada `running_total` igual a la suma de las horas hasta ese momento.
+- **Semillas.** Usar `SEED=42` dos veces da las mismas tarjetas, y las mismas que producen las otras dos entradas de Node. Doce semillas coinciden con un modelo aparte del generador escrito en awk, y una semilla cuyas primeras cuatro tarjetas suman exactamente 40 debe recibir una quinta.
+- **La semana ISO** coincide con GNU `date` en diez fechas y **el pulso** se comporta bien en un pseudoterminal, con `NO_COLOR`, con `TERM=dumb` y cuando se redirige.
+- **Errores y esquema.** Una carpeta de datos en la que no se puede escribir termina con un estado distinto de cero y exactamente un mensaje. SQLite rechaza una fila o una ejecución que no sea de demostración, 9 horas y una quinta categoría.
 
-## Why this is weird
+## Por qué es raro
 
-An `EventEmitter` is for a program that *reacts*: a server hears a request, a window hears a click. Here nothing outside the program sends anything. The program emits every event to itself, so the listeners are not reacting. They are *steps*, and the emitter is a switchboard that connects them. The control-flow graph that a `for` statement keeps in one place is spread over ten functions and ten event names, and you have to read the `emit` calls to see it.
+Un `EventEmitter` sirve para un programa que *reacciona*: un servidor oye una petición y una ventana oye un clic. Aquí nada fuera del programa envía nada. El programa emite cada evento hacia sí mismo, así que los escuchadores de eventos no reaccionan. Son *pasos*, y el emisor es una centralita que los conecta. El grafo de flujo de control que una sentencia `for` mantiene en un solo lugar queda repartido entre diez funciones y diez nombres de evento, y tienes que leer las llamadas a `emit` para verlo.
 
-## When you should not do this
+## Cuándo no debes hacer esto
 
-- **When a plain function call says the same thing.** `card-created` has exactly one listener, and it is always the same one. Replace the event with a call and the program gets shorter, and a debugger can step through it. An event earns its place when *more than one* party may care, or when the sender must not know who.
-- **When you need the order to be obvious.** The order of work lives in the names of events, and in the order that listeners were registered. A reader must search for every `emit` to learn what follows what.
-- **When errors matter.** A throw in a listener goes to the caller of `emit()`, which may be a callback that nobody awaits. This program needs a wrapper around every listener to avoid it.
-- **When the producer is faster than the consumer.** Events have no back pressure: an emitter keeps emitting. This program is safe because each card waits for the previous one. A real event source needs a queue with a limit, or a stream.
-- **When listeners can add or remove listeners.** Listeners that change who listens, in the middle of an `emit`, make the order hard to predict. This program removes its listeners only at the very end.
+- **Cuando una llamada a función simple dice lo mismo.** `card-created` tiene exactamente un escuchador de eventos, y siempre es el mismo. Reemplaza el evento por una llamada y el programa queda más corto y un depurador puede recorrerlo paso a paso. Un evento se justifica cuando *más de una* parte puede tener interés, o cuando el emisor no debe saber quién escucha.
+- **Cuando necesitas que el orden sea evidente.** El orden del trabajo vive en los nombres de los eventos y en el orden en que se registraron los escuchadores de eventos. Un lector debe buscar cada `emit` para saber qué sigue a qué.
+- **Cuando los errores importan.** Un error lanzado en un escuchador de eventos llega a quien llama a `emit()`. Ese llamador puede ser una función de devolución de llamada (*callback*, una función que pasas a otro código para que la llame después) que nadie espera. Para evitarlo, este programa necesita un envoltorio alrededor de cada escuchador de eventos.
+- **Cuando el productor es más rápido que el consumidor.** Los eventos no tienen contrapresión: un emisor sigue emitiendo. Este programa es seguro porque cada tarjeta espera a la anterior. Una fuente de eventos real necesita una cola con límite o un *stream*.
+- **Cuando los escuchadores de eventos pueden agregar o quitar escuchadores de eventos.** Los escuchadores de eventos que cambian quién escucha, en medio de un `emit`, hacen que el orden sea difícil de predecir. Este programa quita sus escuchadores de eventos solo al final de todo.
 
-## Gotchas worth knowing
+## Trampas que conviene conocer
 
-- **What the language promises.** `emit()` calling its listeners synchronously and in registration order is documented Node behavior, and so is `setImmediate()` running after the current operation: we mark the entry **guaranteed**. The *relative order* of `setImmediate` and `setTimeout(fn, 0)` is not promised everywhere, so the program does not depend on it. It uses only `setImmediate`.
-- **`node:sqlite` is synchronous.** The save is finished when `run()` returns. With an asynchronous driver the `card-created` listener would have to wait for the write before it emitted `card-saved`, and the whole chain would need `async` and `await`. Events and promises are different tools.
-- **`EventEmitter` is not an event loop.** The emitter has no queue and no loop. It is a table of listeners and a function that calls them. The queue and the loop are Node's, and `setImmediate` is how this program uses them.
-- **`removeAllListeners()` inside an `emit` is safe.** Node copies the listener list before it calls the listeners, so the ones for the event in flight still run. The lab relies on that for `done`.
-- **The pulse timer is the one real asynchronous source.** It exists only on a terminal. It is the only thing that keeps Node alive after the last card, and it stops itself.
-- **We tested Node 24.15.** `node:sqlite` needs Node 22.5 or newer, and the other entries need 24. This one needs 24 too, to keep the three entries in step.
+- **Lo que promete el lenguaje.** Node documenta que `emit()` llama a sus escuchadores de eventos de forma síncrona y en el orden en que se registraron. También documenta que `setImmediate()` se ejecuta después de la operación actual: marcamos la entrada como **garantizado**. El *orden relativo* de `setImmediate` y `setTimeout(fn, 0)` no está prometido en todas partes, así que el programa no depende de él. Solo usa `setImmediate`.
+- **`node:sqlite` funciona de forma síncrona.** El guardado termina cuando `run()` retorna. Con un controlador asíncrono, el escuchador de eventos `card-created` tendría que esperar a la escritura antes de emitir `card-saved`, y toda la cadena necesitaría `async` y `await`. Los eventos y las promesas son herramientas distintas.
+- **`EventEmitter` no es un bucle de eventos.** El emisor no tiene cola ni bucle. Es una tabla de escuchadores de eventos y una función que los llama. La cola y el bucle son de Node, y `setImmediate` es la forma en que este programa los usa.
+- **`removeAllListeners()` dentro de un `emit` es seguro.** Node copia la lista de escuchadores de eventos antes de llamarlos, así que los del evento en curso se ejecutan igualmente. El laboratorio depende de eso para `done`.
+- **El temporizador de pulso es la única fuente asíncrona real.** Existe solo en una terminal. Es lo único que mantiene vivo a Node después de la última tarjeta, y se detiene solo.
+- **Probamos con Node 24.15.** `node:sqlite` necesita Node 22.5 o una versión posterior, mientras que las otras entradas necesitan Node 24. Esta también necesita Node 24, para que las tres entradas vayan al mismo paso.
 
 ---
 
-See the [root README](../../README.md#the-results-so-far) for how this compares to the other entries, and [`RETO.md`](../../RETO.md) if you want to write your own.
+Consulta el [README raíz](../../README.md#the-results-so-far) para ver cómo se compara con las otras entradas, y [`RETO.md`](../../RETO.md) si quieres escribir la tuya.

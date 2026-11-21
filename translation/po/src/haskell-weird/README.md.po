@@ -1,0 +1,268 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/haskell-weird/README.md:2
+msgctxt "s-540d2c45c091-0000"
+msgid "Haskell"
+msgstr "Haskell"
+
+#: src/haskell-weird/README.md:3
+msgctxt "s-f066a948309b-0001"
+msgid "that reading a lazy list can drive a program when forcing each element has a side effect."
+msgstr "que leer una lista perezosa puede dirigir un programa cuando forzar cada elemento tiene un efecto secundario."
+
+#: src/haskell-weird/README.md:11
+msgctxt "s-f02885cc1fdb-0002"
+msgid "A lazy graph reducer"
+msgstr "Un reductor de grafos perezoso"
+
+#: src/haskell-weird/README.md:12
+msgctxt "s-1e75e0504f92-0003"
+msgid "Thunks: which parts of a list have been demanded"
+msgstr "Thunks: qué partes de una lista se han demandado"
+
+#: src/haskell-weird/README.md:15
+msgctxt "s-fa69ba6cd976-0004"
+msgid "Haskell on drugs"
+msgstr "Haskell bajo los efectos de las drogas"
+
+#: src/haskell-weird/README.md:17
+msgctxt "s-396ad10e9a15-0005"
+msgid "**Teaches you:** that reading a lazy list can drive a program when forcing each element has a side effect."
+msgstr "**Te enseña:** que leer una lista perezosa puede dirigir un programa cuando forzar cada elemento tiene un efecto secundario."
+
+#: src/haskell-weird/README.md:19
+msgctxt "s-5ca333b42af1-0006"
+msgid "**⟦DNT_0001⟧.** Fictional timecards in a scratch SQLite file. No connection to any real time-reporting system."
+msgstr "**⟦DNT_0001⟧.** Tarjetas de horas ficticias en un archivo SQLite temporal. Sin conexión con ningún sistema real de registro de horas."
+
+#: src/haskell-weird/README.md:21
+msgctxt "s-c90f71066201-0007"
+msgid "This is Haskell on drugs."
+msgstr "Esto es Haskell con esteroides."
+
+#: src/haskell-weird/README.md:23
+msgctxt "s-d7f5f7c3ec76-0008"
+msgid "The program builds an **infinite list of cards**, and *forcing the n-th cell of that list prints card n and sends its ⟦CODE_0001⟧ to ⟦CODE_0002⟧*. Nothing else in the program writes a row. There is no loop, accumulator, counter or explicit recursion. The stop rule is a consumer, ⟦CODE_0003⟧, that stops asking for the next cell, and the ⟦CODE_0004⟧s stop with it."
+msgstr "El programa construye una **lista infinita de tarjetas**, y *forzar la celda n de esa lista imprime la tarjeta n y envía su ⟦CODE_0001⟧ a ⟦CODE_0002⟧*. Nada más en el programa escribe una fila. No hay bucle, acumulador, contador ni recursión explícita. La regla de parada es un consumidor, ⟦CODE_0003⟧, que deja de pedir la siguiente celda, y los ⟦CODE_0004⟧s se detienen con él."
+
+#: src/haskell-weird/README.md:25
+msgctxt "s-958ca26c6a61-0009"
+msgid "Run it"
+msgstr "Ejecuta el programa"
+
+#: src/haskell-weird/README.md:27
+msgctxt "s-08ae81f3751a-0010"
+msgid "You need GHC (⟦CODE_0001⟧) and ⟦CODE_0002⟧. Only packages that ship with GHC are used."
+msgstr "Necesitas GHC (⟦CODE_0001⟧) y ⟦CODE_0002⟧. Solo se usan paquetes que vienen con GHC."
+
+#: src/haskell-weird/README.md:35
+msgctxt "s-167fb4599efa-0011"
+msgid "Records go to ⟦CODE_0001⟧ (default ⟦CODE_0002⟧). A run looks like this:"
+msgstr "Los registros se escriben en ⟦CODE_0001⟧ (valor por defecto: ⟦CODE_0002⟧). Una ejecución tiene este aspecto:"
+
+#: src/haskell-weird/README.md:47
+msgctxt "s-0dcb373c2dff-0012"
+msgid "Program Flow"
+msgstr "Flujo del programa"
+
+#: src/haskell-weird/README.md:51
+msgctxt "s-29a48f959376-0013"
+msgid "haskell-weird: reading a cell of a lazy list runs that card's effect"
+msgstr "haskell-weird: leer una celda de una lista perezosa ejecuta el efecto de esa tarjeta"
+
+#: src/haskell-weird/README.md:52
+msgctxt "s-541d74dc65ff-0014"
+msgid "A sequence diagram. The consumer, span in untilOver40, demands the next cell of the lazy list of cards. The cell needs the hours from the random stream and the running total of the previous card. Because every cell is wrapped in unsafeInterleaveIO, the effect for that card runs now, when the cell is demanded: it prints the row and writes the INSERT to the pipe. The cell then returns the card to the consumer. The consumer tests the running total. While it is 40 or less, it demands the next cell. At the first card over 40, the consumer stops demanding, so no later effect ever runs, and main commits."
+msgstr "Un diagrama de secuencia. El consumidor, span en untilOver40, demanda la siguiente celda de la lista perezosa de tarjetas. La celda necesita las horas del flujo aleatorio y el total acumulado de la tarjeta anterior. Como cada celda está envuelta en unsafeInterleaveIO, el efecto de esa tarjeta se ejecuta ahora, cuando se demanda la celda: imprime la fila y escribe el INSERT en la tubería. Después, la celda devuelve la tarjeta al consumidor. El consumidor comprueba el total acumulado. Mientras el total no pase de 40, demanda la siguiente celda. En la primera tarjeta que pasa de 40, el consumidor deja de demandar, así que ningún efecto posterior se ejecuta nunca, y main confirma la transacción."
+
+#: src/haskell-weird/README.md:53
+msgctxt "s-fd7dd411e8c1-0015"
+msgid "span, the consumer"
+msgstr "span, el consumidor"
+
+#: src/haskell-weird/README.md:54
+msgctxt "s-05a570d039f6-0016"
+msgid "the next cell of the list"
+msgstr "la siguiente celda de la lista"
+
+#: src/haskell-weird/README.md:55
+msgctxt "s-40432fb725d4-0017"
+msgid "the random stream and the previous card"
+msgstr "el flujo aleatorio y la tarjeta anterior"
+
+#: src/haskell-weird/README.md:56
+msgctxt "s-00de388c996c-0018"
+msgid "onBirth, the card's effect"
+msgstr "onBirth, el efecto de la tarjeta"
+
+#: src/haskell-weird/README.md:57
+msgctxt "s-a9c0ff5d40c6-0019"
+msgid "while the running total is 40 or less"
+msgstr "mientras el total acumulado sea 40 o menos"
+
+#: src/haskell-weird/README.md:58
+msgctxt "s-4bf11e73a93d-0020"
+msgid "demand the next card"
+msgstr "demanda la siguiente tarjeta"
+
+#: src/haskell-weird/README.md:59
+msgctxt "s-e37d1ba9a84e-0021"
+msgid "need the hours, and the total of the previous card"
+msgstr "necesitan las horas y el total de la tarjeta anterior"
+
+#: src/haskell-weird/README.md:60
+msgctxt "s-b14bcedf8306-0022"
+msgid "hours and total, already known"
+msgstr "las horas y el total, ya conocidos"
+
+#: src/haskell-weird/README.md:61
+msgctxt "s-d3c93415d23f-0023"
+msgid "unsafeInterleaveIO runs the effect now"
+msgstr "unsafeInterleaveIO ejecuta el efecto ahora"
+
+#: src/haskell-weird/README.md:62
+msgctxt "s-b033b7873c5d-0024"
+msgid "print the row and write the INSERT to the pipe"
+msgstr "imprime la fila y escribe el INSERT en la tubería"
+
+#: src/haskell-weird/README.md:63
+msgctxt "s-aa33d8209f68-0025"
+msgid "the card"
+msgstr "la tarjeta"
+
+#: src/haskell-weird/README.md:65
+msgctxt "s-127eae4da20c-0026"
+msgid "the first card over 40 is returned and kept. No later cell is demanded, so no later effect runs"
+msgstr "se devuelve y se conserva la primera tarjeta que pasa de 40. No se pide ninguna celda posterior, así que no se ejecuta ningún efecto posterior"
+
+#: src/haskell-weird/README.md:66
+msgctxt "s-3f7311503102-0027"
+msgid "main commits and reports"
+msgstr "main confirma la transacción e informa"
+
+#: src/haskell-weird/README.md:69
+msgctxt "s-dea0438ca778-0028"
+msgid "**What this shows:** the effects are tied to the *reading* of the list. The list is built so that nothing runs when it is made. Each cell holds a promise, and forcing the cell runs that card's ⟦CODE_0001⟧. So the number of rows printed equals the number of ⟦CODE_0002⟧s, equals the number of cards read."
+msgstr "**Qué muestra:** los efectos están ligados a la *lectura* de la lista. La lista está construida para que no se ejecute nada al crearla. Cada celda guarda una promesa, y forzar la celda ejecuta el ⟦CODE_0001⟧ de esa tarjeta. Así, el número de filas impresas es igual al número de ⟦CODE_0002⟧, que es igual al número de tarjetas leídas."
+
+#: src/haskell-weird/README.md:71
+msgctxt "s-cb45e1f08af6-0029"
+msgid "**Why this mechanism matters:** this is demand-driven control flow with side effects, and it is only safe because of how the cells are linked. ⟦CODE_0001⟧ is called *unsafe* for a reason: the order of effects now depends on the order of demand. The same laziness without effects is in the plain [⟦CODE_0002⟧](⟦DEST_0003⟧) entry."
+msgstr "**Por qué importa este mecanismo:** este es un flujo de control dirigido por la demanda y con efectos secundarios, y solo es seguro por cómo están enlazadas las celdas. ⟦CODE_0001⟧ se llama *unsafe* por una razón: el orden de los efectos ahora depende del orden de la demanda. La misma evaluación perezosa sin efectos aparece en la entrada simple de [⟦CODE_0002⟧](⟦DEST_0003⟧)."
+
+#: src/haskell-weird/README.md:73
+msgctxt "s-7f97d965b4c0-0030"
+msgid "How the stunt works"
+msgstr "Cómo funciona el truco"
+
+#: src/haskell-weird/README.md:75
+msgctxt "s-275cafc13fb8-0031"
+msgid "There are three tricks, stacked on each other."
+msgstr "Hay tres trucos, apilados unos sobre otros."
+
+#: src/haskell-weird/README.md:77
+msgctxt "s-6adccfb21f6c-0032"
+msgid "1. A list defined in terms of itself (⟦CODE_0001⟧)"
+msgstr "1. Una lista definida en términos de sí misma (⟦CODE_0001⟧)"
+
+#: src/haskell-weird/README.md:83
+msgctxt "s-de41a3d66182-0033"
+msgid "⟦CODE_0001⟧: it hands a function *its own result*. Here ⟦CODE_0002⟧ is the list being defined, so ⟦CODE_0003⟧: the first element is the seed and every later element is ⟦CODE_0004⟧ applied to the one before it. It works because ⟦CODE_0005⟧ only needs one element of ⟦CODE_0006⟧ at a time. This is the random stream with no ⟦CODE_0007⟧ and no recursion."
+msgstr "⟦CODE_0001⟧: entrega a una función *su propio resultado*. Aquí ⟦CODE_0002⟧ es la lista que se define, así que ⟦CODE_0003⟧: el primer elemento es la semilla y cada elemento posterior es el resultado de aplicar ⟦CODE_0004⟧ al anterior. Funciona porque ⟦CODE_0005⟧ solo necesita un elemento de ⟦CODE_0006⟧ a la vez. Este es el flujo aleatorio sin ⟦CODE_0007⟧ y sin recursión."
+
+#: src/haskell-weird/README.md:85
+msgctxt "s-7848816db2c4-0034"
+msgid "2. A knot through the cards themselves (⟦CODE_0001⟧)"
+msgstr "2. Un nudo a través de las propias tarjetas (⟦CODE_0001⟧)"
+
+#: src/haskell-weird/README.md:94
+msgctxt "s-679e02f692c0-0035"
+msgid "⟦CODE_0001⟧ is the list being built, and ⟦CODE_0002⟧ is ⟦CODE_0003⟧ followed by the running total of each card in it. So card n's total is its hours plus the total read off card n-1, an element of the very list under construction. ⟦CODE_0004⟧ is ⟦CODE_0005⟧ for IO: it gives the action a handle on its own eventual result."
+msgstr "⟦CODE_0001⟧ es la lista en construcción, y ⟦CODE_0002⟧ es ⟦CODE_0003⟧ seguido del total acumulado de cada tarjeta de esa lista. Así, el total de la tarjeta n es sus horas más el total leído de la tarjeta n-1, un elemento de la propia lista en construcción. ⟦CODE_0004⟧ es ⟦CODE_0005⟧ para IO: da a la acción una referencia a su propio resultado futuro."
+
+#: src/haskell-weird/README.md:96
+msgctxt "s-7868946c1a95-0036"
+msgid "3. Effects that wait to be asked for (⟦CODE_0001⟧)"
+msgstr "3. Efectos que esperan a que los pidan (⟦CODE_0001⟧)"
+
+#: src/haskell-weird/README.md:102
+msgctxt "s-6a36345b64c8-0037"
+msgid "⟦CODE_0001⟧ turns a list of IO actions into one action returning a list, but it **runs all of them first**, which never returns on an infinite list. ⟦CODE_0002⟧ does the same job with ⟦CODE_0003⟧ around every cell, which means \"run this action only when its result is demanded\". After ⟦CODE_0004⟧ returns, nothing has run. Each cell is a promise."
+msgstr "⟦CODE_0001⟧ convierte una lista de acciones de IO en una sola acción que devuelve una lista. Pero **ejecuta todas ellas primero**, así que nunca retorna con una lista infinita. ⟦CODE_0002⟧ hace el mismo trabajo con ⟦CODE_0003⟧ alrededor de cada celda, lo que significa \"ejecuta esta acción solo cuando se demande su resultado\". Después de que ⟦CODE_0004⟧ retorna, no se ha ejecutado nada. Cada celda es una promesa."
+
+#: src/haskell-weird/README.md:104
+msgctxt "s-9e676f581d0c-0038"
+msgid "⟦CODE_0001⟧ is the effect attached to a card: print the row, write the ⟦CODE_0002⟧ to the pipe. The stop rule in ⟦CODE_0003⟧ is then only a ⟦CODE_0004⟧, a pure function that reads cards until one is over 40. Reading card n is what runs ⟦CODE_0005⟧ for card n. Total reads equals total ⟦CODE_0006⟧s equals the number of printed rows, by construction."
+msgstr "⟦CODE_0001⟧ es el efecto asociado a una tarjeta: imprime la fila y escribe el ⟦CODE_0002⟧ en la tubería. La regla de parada de ⟦CODE_0003⟧ es entonces solo un ⟦CODE_0004⟧, una función pura que lee tarjetas hasta que una pasa de 40. Leer la tarjeta n es lo que ejecuta ⟦CODE_0005⟧ para la tarjeta n. El total de lecturas es igual al total de ⟦CODE_0006⟧ y al número de filas impresas, por construcción."
+
+#: src/haskell-weird/README.md:106
+msgctxt "s-5a0ad00b10fc-0039"
+msgid "Gotchas worth knowing"
+msgstr "Trampas que conviene conocer"
+
+#: src/haskell-weird/README.md:108
+msgctxt "s-cf5b3f31ee3d-0040"
+msgid "**Laziness bites twice.** The first draft counted the cards with ⟦CODE_0001⟧ and the program printed ⟦CODE_0002⟧ and then crashed with \"handle is closed\". A ⟦CODE_0003⟧ binding is itself lazy, so nothing demanded the cards until the summary line was printed, after ⟦CODE_0004⟧ and after the pipe had been closed. The cards' effects fired *during* the output of ⟦CODE_0005⟧. The fix is ⟦CODE_0006⟧, which forces the count *before* committing. With lazy IO, \"when is it demanded?\" is part of your program's meaning."
+msgstr "**La evaluación perezosa muerde dos veces.** El primer borrador contaba las tarjetas con ⟦CODE_0001⟧ y el programa imprimió ⟦CODE_0002⟧ y luego falló con \"handle is closed\". Un enlace ⟦CODE_0003⟧ es perezoso en sí mismo. Por eso nada exigió las tarjetas hasta que se imprimió la línea de resumen. Eso ocurrió después de ⟦CODE_0004⟧ y después de que se cerró la tubería. Los efectos de las tarjetas se dispararon *durante* la salida de ⟦CODE_0005⟧. La solución es ⟦CODE_0006⟧, que fuerza el conteo *antes* de confirmar. Con E/S perezosa, \"¿cuándo se exige?\" forma parte del significado de tu programa."
+
+#: src/haskell-weird/README.md:109
+msgctxt "s-c1ed58912905-0041"
+msgid "**Why it is ⟦CODE_0001⟧.** The order of effects is decided by the evaluator, not the text of the program. Here the order is safe because card n cannot be forced before card n-1 (its total depends on it)."
+msgstr "**Por qué es ⟦CODE_0001⟧.** El evaluador decide el orden de los efectos, no el texto del programa. Aquí el orden es seguro porque no se puede forzar la tarjeta n antes que la tarjeta n-1 (su total depende de ella)."
+
+#: src/haskell-weird/README.md:110
+msgctxt "s-b039ac29bbf6-0042"
+msgid "**⟦CODE_0001⟧ must defer its own pattern match.** The ⟦CODE_0002⟧ is *inside* ⟦CODE_0003⟧. If the list of actions were matched when ⟦CODE_0004⟧ was called, forcing it would need ⟦CODE_0005⟧, which needs ⟦CODE_0006⟧, which does not exist yet: ⟦CODE_0007⟧."
+msgstr "**⟦CODE_0001⟧ debe posponer su propia coincidencia de patrones.** ⟦CODE_0002⟧ está *dentro de* ⟦CODE_0003⟧. Si la coincidencia de patrones sobre la lista de acciones se hiciera cuando se llamara a ⟦CODE_0004⟧, forzar esa lista necesitaría ⟦CODE_0005⟧, que necesita ⟦CODE_0006⟧, que todavía no existe: ⟦CODE_0007⟧."
+
+#: src/haskell-weird/README.md:111
+msgctxt "s-1fb522dc2d9a-0043"
+msgid "**⟦CODE_0001⟧ fires one more effect.** The crossing card has to be read to see that it crosses, so its row is written. That is why the card is kept rather than dropped."
+msgstr "**⟦CODE_0001⟧ dispara un efecto más.** El programa tiene que leer la tarjeta que cruza para ver que cruza, así que escribe su fila. Por eso el programa conserva la tarjeta en lugar de descartarla."
+
+#: src/haskell-weird/README.md:112
+msgctxt "s-6788744cf205-0044"
+msgid "**Production code should not do this.** Lazy IO is why ⟦CODE_0001⟧'s ⟦CODE_0002⟧ has famously surprising behavior; this program turns that surprise into the algorithm."
+msgstr "**El código de producción no debería hacer esto.** La E/S perezosa (*lazy IO*) es la razón por la que ⟦CODE_0002⟧ de ⟦CODE_0001⟧ tiene un comportamiento famoso por sorprendente; este programa convierte esa sorpresa en el algoritmo."
+
+#: src/haskell-weird/README.md:114
+msgctxt "s-339cc2c18f83-0045"
+msgid "What ⟦CODE_0001⟧ enforces"
+msgstr "Qué impone ⟦CODE_0001⟧"
+
+#: src/haskell-weird/README.md:116
+msgctxt "s-bbd406ffdd18-0046"
+msgid "With comment lines removed: the cards are built with ⟦CODE_0001⟧; there is exactly one use of ⟦CODE_0002⟧; none of ⟦CODE_0003⟧ appears; the ⟦CODE_0004⟧ type is ⟦CODE_0005⟧; and 25 runs each stop when they should, with the database agreeing with the output."
+msgstr "Sin las líneas de comentario: las tarjetas se construyen con ⟦CODE_0001⟧; hay exactamente un uso de ⟦CODE_0002⟧; no aparece ninguno de ⟦CODE_0003⟧; el tipo ⟦CODE_0004⟧ es ⟦CODE_0005⟧; y cada una de las 25 ejecuciones se detiene cuando debe, con la base de datos de acuerdo con la salida."
+
+#: src/haskell-weird/README.md:118
+msgctxt "s-1bf4ccb2c004-0047"
+msgid "Format and lint"
+msgstr "Da formato y analiza con linter"
+
+#: src/haskell-weird/README.md:120
+msgctxt "s-447fa1e42405-0048"
+msgid "The source is laid out by hand in [Ormolu](⟦DEST_0001⟧)'s style (two-space indent, leading commas, sorted imports) and compiles clean under ⟦CODE_0002⟧. It has **not** been run through the ⟦CODE_0003⟧ or ⟦CODE_0004⟧ binaries; they were not available where this was written, so expect them to find small differences."
+msgstr "El código fuente está formateado a mano al estilo de [Ormolu](⟦DEST_0001⟧) (sangría de dos espacios, comas al inicio de línea e importaciones ordenadas) y compila limpio con ⟦CODE_0002⟧. **No** se ha ejecutado con los binarios ⟦CODE_0003⟧ ni ⟦CODE_0004⟧; no estaban disponibles donde se escribió, así que espera que encuentren pequeñas diferencias."
+
+#: src/haskell-weird/README.md:122
+msgctxt "s-254f0c660db3-0049"
+msgid "Run it in a container"
+msgstr "Ejecútalo en un contenedor"
+
+#: src/haskell-weird/README.md:124
+msgctxt "s-643df015c8a2-0050"
+msgid "Prerequisite: Docker, set up once as described in [⟦CODE_0001⟧](⟦DEST_0002⟧)."
+msgstr "Requisito previo: Docker, configurado una sola vez como se describe en [⟦CODE_0001⟧](⟦DEST_0002⟧)."
+
+#: src/haskell-weird/README.md:130
+msgctxt "s-e4c49a55a29c-0051"
+msgid "It builds this folder's [⟦CODE_0001⟧](⟦DEST_0002⟧) and runs the result with no network, a read-only file system and user ⟦CODE_0003⟧, then prints the output and a read-only look at the rows it wrote. In a build stage, GHC compiles the script to one binary. The image holds only that binary and sqlite3, with no GHC."
+msgstr "Construye el [⟦CODE_0001⟧](⟦DEST_0002⟧) de esta carpeta y ejecuta el resultado sin red, con un sistema de archivos de solo lectura y el usuario ⟦CODE_0003⟧, y luego imprime la salida y una vista de solo lectura de las filas que escribió. En una etapa de compilación, GHC compila el script en un solo binario. La imagen contiene solo ese binario y sqlite3, sin GHC."

@@ -1,0 +1,226 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/haskell/README.md:2
+msgctxt "s-540d2c45c091-0000"
+msgid "Haskell"
+msgstr "Haskell"
+
+#: src/haskell/README.md:3
+msgctxt "s-388f1d152537-0001"
+msgid "that a lazy list and one ⟦CODE_0001⟧ are the whole stop rule."
+msgstr "que una lista perezosa y un solo ⟦CODE_0001⟧ son la regla de parada completa."
+
+#: src/haskell/README.md:11
+msgctxt "s-e1424a7f3838-0002"
+msgid "Ordinary: a lazy list that one ⟦CODE_0001⟧ reads until the test fails"
+msgstr "Ordinario: una lista perezosa que un solo ⟦CODE_0001⟧ lee hasta que la prueba falla"
+
+#: src/haskell/README.md:12
+msgctxt "s-caaa336a2947-0003"
+msgid "The unevaluated parts of the lists, read on demand"
+msgstr "Las partes sin evaluar de las listas, leídas bajo demanda"
+
+#: src/haskell/README.md:16
+msgctxt "s-540d2c45c091-0004"
+msgid "Haskell"
+msgstr "Haskell"
+
+#: src/haskell/README.md:18
+msgctxt "s-a4df35a7539a-0005"
+msgid "**Teaches you:** that a lazy list and one ⟦CODE_0001⟧ are the whole stop rule."
+msgstr "**Te enseña:** que una lista perezosa y un solo ⟦CODE_0001⟧ son toda la regla de parada."
+
+#: src/haskell/README.md:20
+msgctxt "s-5ca333b42af1-0006"
+msgid "**⟦DNT_0001⟧.** Fictional timecards in a scratch SQLite file. No connection to any real time-reporting system."
+msgstr "**⟦DNT_0001⟧.** Tarjetas de horas ficticias en un archivo SQLite temporal. Sin conexión con ningún sistema real de registro de horas."
+
+#: src/haskell/README.md:22
+msgctxt "s-12c23a6ac68e-0007"
+msgid "This is straightforward Haskell: the challenge is one pure function, ⟦CODE_0001⟧, and ⟦CODE_0002⟧ is plumbing around it."
+msgstr "Este es Haskell sencillo: el reto es una sola función pura, ⟦CODE_0001⟧, y ⟦CODE_0002⟧ se ocupa de cómo viaja el dato a su alrededor."
+
+#: src/haskell/README.md:24
+msgctxt "s-958ca26c6a61-0008"
+msgid "Run it"
+msgstr "Ejecútalo"
+
+#: src/haskell/README.md:26
+msgctxt "s-3b093ba92a00-0009"
+msgid "You need GHC (⟦CODE_0001⟧) and ⟦CODE_0002⟧. Only packages that ship with GHC are used (⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧, ⟦CODE_0006⟧, ⟦CODE_0007⟧, ⟦CODE_0008⟧)."
+msgstr "Necesitas GHC (⟦CODE_0001⟧) y ⟦CODE_0002⟧. Solo se usan paquetes que vienen con GHC (⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧, ⟦CODE_0006⟧, ⟦CODE_0007⟧, ⟦CODE_0008⟧)."
+
+#: src/haskell/README.md:34
+msgctxt "s-8d41a87ab4de-0010"
+msgid "Records go to ⟦CODE_0001⟧ (default ⟦CODE_0002⟧). A run looks like this:"
+msgstr "Los registros van a ⟦CODE_0001⟧ (por defecto ⟦CODE_0002⟧). Una ejecución se ve así:"
+
+#: src/haskell/README.md:46
+msgctxt "s-0dcb373c2dff-0011"
+msgid "Program Flow"
+msgstr "Flujo del programa"
+
+#: src/haskell/README.md:50
+msgctxt "s-7f092fa47d7c-0012"
+msgid "haskell: infinite lists that are read only as far as span demands"
+msgstr "haskell: listas infinitas que se leen solo hasta donde llega la demanda de span"
+
+#: src/haskell/README.md:51
+msgctxt "s-08e7717b129e-0013"
+msgid "A flowchart of data and demand. The function rolls is an infinite list of hours made with iterate. The categories are an infinite cycle. A running sum of the hours gives the totals. The function zipWith3 glues the categories, hours and totals into allCards, an infinite list of cards, none of them built yet. The function span asks for one card at a time and stops at the first card whose total is over 40. The result keeps the cards before it and the first card over 40. The function main then pipes the INSERTs to sqlite3 and prints the rows."
+msgstr "Un diagrama de flujo de datos y demanda. La función rolls es una lista infinita de horas, creada con iterate. Las categorías forman un ciclo infinito. Una suma acumulada de las horas da los totales. La función zipWith3 une las categorías, las horas y los totales en allCards, una lista infinita de tarjetas, ninguna construida todavía. La función span pide una tarjeta a la vez y se detiene en la primera tarjeta cuyo total pasa de 40. El resultado conserva las tarjetas anteriores y la primera tarjeta con más de 40. Después, la función main pasa los INSERT por una tubería a sqlite3 e imprime las filas."
+
+#: src/haskell/README.md:52
+msgctxt "s-3e4f1ac5a333-0014"
+msgid "rolls: an infinite list of hours, from iterate next seed"
+msgstr "rolls: una lista infinita de horas, a partir de iterate next seed"
+
+#: src/haskell/README.md:52
+msgctxt "s-98babdaf2175-0015"
+msgid "scanl1 (+): the running totals"
+msgstr "scanl1 (+): los totales acumulados"
+
+#: src/haskell/README.md:54
+msgctxt "s-df3cb7860317-0016"
+msgid "cycle of the four categories: repeats forever"
+msgstr "ciclo de las cuatro categorías: se repite sin fin"
+
+#: src/haskell/README.md:55
+msgctxt "s-a166a2fed26b-0017"
+msgid "zipWith3 Card: allCards, an infinite list, none of it built yet"
+msgstr "zipWith3 Card: allCards, una lista infinita de la que todavía no se ha construido nada"
+
+#: src/haskell/README.md:56
+msgctxt "s-d8e47f31f2a2-0018"
+msgid "span (total <= 40): asks for one card at a time, stops at the first that fails"
+msgstr "span (total <= 40): pide una tarjeta a la vez y se detiene en la primera que no cumple la condición"
+
+#: src/haskell/README.md:57
+msgctxt "s-1d3916d622a4-0019"
+msgid "under ++ take 1 over: the cards before 40 and the crossing card"
+msgstr "under ++ take 1 over: las tarjetas antes de 40 y la que lo cruza"
+
+#: src/haskell/README.md:58
+msgctxt "s-8307f8f04185-0020"
+msgid "main: pipe the INSERTs to sqlite3, print the rows"
+msgstr "main: envía los INSERT a sqlite3 mediante una tubería e imprime las filas"
+
+#: src/haskell/README.md:61
+msgctxt "s-5e28f6d7ed4f-0021"
+msgid "**What this shows:** the lists are descriptions, not data. Nothing is computed until ⟦CODE_0001⟧ asks for a card, and ⟦CODE_0002⟧ stops asking at the first card that fails the test. So only a handful of cards are ever built, even though the lists are infinite."
+msgstr "**Qué muestra:** las listas son descripciones, no datos. No se calcula nada hasta que ⟦CODE_0001⟧ pide una tarjeta, y ⟦CODE_0002⟧ deja de pedir en la primera tarjeta que no pasa la prueba. Por eso el programa construye solo unas pocas tarjetas, aunque las listas son infinitas."
+
+#: src/haskell/README.md:63
+msgctxt "s-ffee6d7dce10-0022"
+msgid "**Why this mechanism matters:** the stop rule is not a loop condition. It is *how much of a list you choose to read*. Demand flows backwards, from ⟦CODE_0001⟧ to the lists, while the data flows forwards. This is lazy evaluation as a way to write a loop without one."
+msgstr "**Por qué importa este mecanismo:** la regla de parada no es una condición de bucle. Es *cuánto de una lista eliges leer*. La demanda fluye hacia atrás, desde ⟦CODE_0001⟧ hasta las listas, mientras que los datos fluyen hacia adelante. Esto es evaluación perezosa como forma de escribir un bucle sin escribir un bucle."
+
+#: src/haskell/README.md:65
+msgctxt "s-7f97d965b4c0-0023"
+msgid "How the stunt works"
+msgstr "Cómo funciona el truco"
+
+#: src/haskell/README.md:67
+msgctxt "s-978e1f7ddf46-0024"
+msgid "The file reads top to bottom as four steps, each a small function with a type signature."
+msgstr "El archivo se lee de arriba abajo como cuatro pasos, cada uno una función pequeña con una firma de tipo."
+
+#: src/haskell/README.md:69
+msgctxt "s-367ed2d90acb-0025"
+msgid ""
+"**⟦CODE_0001⟧** is an *infinite* list of hours in 10 to 19. GHC ships no random-number package, so this is a 64-bit linear congruential generator. ⟦CODE_0002⟧ produces ⟦CODE_0003⟧; ⟦CODE_0004⟧ drops the seed itself; the high bits (⟦CODE_0005⟧) are the good ones. Because ⟦CODE_0006⟧ arithmetic wraps on overflow, the \"mod 2^64\" the algorithm needs is free.\n"
+"2. **⟦CODE_0007⟧** is every card there could ever be, also infinite. ⟦CODE_0008⟧ repeats ⟦CODE_0009⟧ forever (the ⟦CODE_0010⟧ type derives ⟦CODE_0011⟧ and ⟦CODE_0012⟧, so it can list itself). ⟦CODE_0013⟧ is a *running sum*: ⟦CODE_0014⟧ becomes ⟦CODE_0015⟧. ⟦CODE_0016⟧ glues the three infinite lists into cards.\n"
+"3. **⟦CODE_0017⟧** is the challenge: ⟦CODE_0018⟧ splits the list at the first card whose total passes 40, and ⟦CODE_0019⟧ keeps everything before it plus that card.\n"
+"4. **Output.** ⟦CODE_0020⟧ and ⟦CODE_0021⟧ turn a card into a SQL statement and a terminal line; ⟦CODE_0022⟧ pipes SQL to ⟦CODE_0023⟧ and prints rows."
+msgstr ""
+"**⟦CODE_0001⟧** es una lista *infinita* de horas de 10 a 19. GHC no incluye ningún paquete de números aleatorios, así que esto es un generador congruencial lineal de 64 bits. ⟦CODE_0002⟧ produce ⟦CODE_0003⟧; ⟦CODE_0004⟧ descarta la semilla misma; los bits altos (⟦CODE_0005⟧) son los buenos. Como la aritmética de ⟦CODE_0006⟧ da la vuelta al desbordarse, el \"mod 2^64\" que necesita el algoritmo sale gratis.\n"
+"2. **⟦CODE_0007⟧** son todas las tarjetas que podrían existir, también infinitas. ⟦CODE_0008⟧ repite ⟦CODE_0009⟧ para siempre (el tipo ⟦CODE_0010⟧ deriva ⟦CODE_0011⟧ y ⟦CODE_0012⟧, así que puede listarse a sí mismo). ⟦CODE_0013⟧ es una *suma acumulada*: ⟦CODE_0014⟧ se convierte en ⟦CODE_0015⟧. ⟦CODE_0016⟧ une las tres listas infinitas en tarjetas.\n"
+"3. **⟦CODE_0017⟧** es el reto: ⟦CODE_0018⟧ divide la lista en la primera tarjeta cuyo total pasa de 40, y ⟦CODE_0019⟧ conserva todo lo que va antes de ella más esa tarjeta.\n"
+"4. **Salida.** ⟦CODE_0020⟧ y ⟦CODE_0021⟧ convierten una tarjeta en una sentencia SQL y en una línea de terminal; ⟦CODE_0022⟧ pasa el SQL por una tubería a ⟦CODE_0023⟧ e imprime las filas."
+
+#: src/haskell/README.md:74
+msgctxt "s-9b342e31410f-0026"
+msgid "Why an infinite list is safe"
+msgstr "¿Por qué es segura una lista infinita?"
+
+#: src/haskell/README.md:76
+msgctxt "s-4418198529bc-0027"
+msgid "Haskell is lazy: a value is computed only when something needs it. ⟦CODE_0001⟧ looks at one card at a time and stops at the first one that fails the test, so only a handful of cards are ever built. The \"infinite\" lists are *descriptions*, not data. That is the lesson of the file: the stop rule is not a loop condition, it is *how much of a list you choose to read*."
+msgstr "Haskell es perezoso: un valor se calcula solo cuando algo lo necesita. ⟦CODE_0001⟧ examina una tarjeta a la vez y se detiene en la primera que no pasa la prueba, así que solo se construye un puñado de tarjetas. Las listas \"infinitas\" son *descripciones*, no datos. Esa es la lección del archivo: la regla de parada no es una condición de bucle, sino *cuánto de una lista eliges leer*."
+
+#: src/haskell/README.md:78
+msgctxt "s-339cc2c18f83-0028"
+msgid "What ⟦CODE_0001⟧ enforces"
+msgstr "Qué exige ⟦CODE_0001⟧"
+
+#: src/haskell/README.md:80
+msgctxt "s-b56db442d54b-0029"
+msgid "⟦CODE_0001⟧ first checks that the challenge really is a pure function: ⟦CODE_0002⟧ must exist, so its type has no ⟦CODE_0003⟧, and no ⟦CODE_0004⟧, network or HTTP import may sneak in. The file also needs the ⟦CODE_0005⟧ marker. Then it runs the program 25 times. Every run must print a sane record set: categories in order, hours from 10 to 19, running totals that add up, a ⟦CODE_0006⟧ mark on every row, and a stop exactly when the total passes 40. SQLite must agree with the printed rows. The 25 runs must be 25 different runs, and the hours must show at least six different values, so the \"random\" draws really look random. Last, it tries to insert a non-demo row and expects SQLite to refuse it, which proves that ⟦CODE_0007⟧ is real."
+msgstr "⟦CODE_0001⟧ primero comprueba que el reto de verdad es una función pura: ⟦CODE_0002⟧ debe existir, así que su tipo no tiene ⟦CODE_0003⟧, y no puede colarse ninguna importación de ⟦CODE_0004⟧, de red ni de HTTP. El archivo también necesita la marca ⟦CODE_0005⟧. Después ejecuta el programa 25 veces. Cada ejecución debe imprimir un conjunto de registros razonable: categorías en orden, horas de 10 a 19, totales acumulados que cuadran, una marca ⟦CODE_0006⟧ en cada fila y una parada exactamente cuando el total pasa de 40. SQLite debe coincidir con las filas impresas. Las 25 ejecuciones deben ser 25 ejecuciones distintas, y las horas deben mostrar al menos seis valores distintos, para que los sorteos \"aleatorios\" parezcan realmente aleatorios. Por último, intenta insertar una fila que no es de demostración y espera que SQLite la rechace, lo que demuestra que ⟦CODE_0007⟧ es real."
+
+#: src/haskell/README.md:82
+msgctxt "s-5a0ad00b10fc-0030"
+msgid "Gotchas worth knowing"
+msgstr "Trampas que conviene conocer"
+
+#: src/haskell/README.md:84
+msgctxt "s-26b8de087745-0031"
+msgid "**⟦CODE_0001⟧ is not enough.** ⟦CODE_0002⟧ drops the card that crosses the line, and the challenge needs it. ⟦CODE_0003⟧ hands back both halves."
+msgstr "**⟦CODE_0001⟧ no basta.** ⟦CODE_0002⟧ descarta la tarjeta que cruza la línea, y el reto la necesita. ⟦CODE_0003⟧ devuelve ambas mitades."
+
+#: src/haskell/README.md:85
+msgctxt "s-b10eb05dc548-0032"
+msgid "**Partial functions.** ⟦CODE_0001⟧, ⟦CODE_0002⟧ and ⟦CODE_0003⟧ crash on an empty list. Nothing here uses them: the total is a ⟦CODE_0004⟧ and the count is a ⟦CODE_0005⟧."
+msgstr "**Funciones parciales.** ⟦CODE_0001⟧, ⟦CODE_0002⟧ y ⟦CODE_0003⟧ fallan con una lista vacía. Nada aquí las usa: el total es un ⟦CODE_0004⟧ y el conteo es un ⟦CODE_0005⟧."
+
+#: src/haskell/README.md:86
+msgctxt "s-536eb69dd02f-0033"
+msgid "**⟦CODE_0001⟧ vs ⟦CODE_0002⟧ vs ⟦CODE_0003⟧.** Hours and totals are small, so ⟦CODE_0004⟧. The generator's state wants exactly 64 unsigned bits, so ⟦CODE_0005⟧, and its wraparound is a feature. With ⟦CODE_0006⟧ you would have to write ⟦CODE_0007⟧ yourself."
+msgstr "**⟦CODE_0001⟧ vs ⟦CODE_0002⟧ vs ⟦CODE_0003⟧.** Las horas y los totales son pequeños, así que ⟦CODE_0004⟧. El estado del generador necesita exactamente 64 bits sin signo, así que ⟦CODE_0005⟧; su desbordamiento cíclico es una característica. Con ⟦CODE_0006⟧ tendrías que escribir ⟦CODE_0007⟧ por tu cuenta."
+
+#: src/haskell/README.md:87
+msgctxt "s-4e2d596f89b1-0034"
+msgid "**⟦CODE_0001⟧ doubles embedded ⟦CODE_0002⟧.** The inputs are fixed words and numbers here, so it never fires, but SQL assembled by string concatenation should always go through one escaping function."
+msgstr "**⟦CODE_0001⟧ duplica los ⟦CODE_0002⟧ incrustados.** Aquí las entradas de datos son palabras y números fijos, así que nunca se activa. Pero el SQL armado por concatenación de cadenas de texto debería pasar siempre por una sola función de escape."
+
+#: src/haskell/README.md:88
+msgctxt "s-1835188a486b-0035"
+msgid "**⟦CODE_0001⟧** honors ⟦CODE_0002⟧ and otherwise falls back to ⟦CODE_0003⟧, which replaces a hand-written ⟦CODE_0004⟧ routine."
+msgstr "**⟦CODE_0001⟧** respeta ⟦CODE_0002⟧ y, en caso contrario, recurre a ⟦CODE_0003⟧, que reemplaza una rutina ⟦CODE_0004⟧ escrita a mano."
+
+#: src/haskell/README.md:89
+msgctxt "s-2021322caee3-0036"
+msgid "**The generator is for demos.** LCGs are fine for fictional hours and terrible for anything else."
+msgstr "**El generador es solo para demos.** Los LCG sirven para horas ficticias y no sirven para nada más."
+
+#: src/haskell/README.md:91
+msgctxt "s-1bf4ccb2c004-0037"
+msgid "Format and lint"
+msgstr "Da formato y analiza el código"
+
+#: src/haskell/README.md:93
+msgctxt "s-447fa1e42405-0038"
+msgid "The source is laid out by hand in [Ormolu](⟦DEST_0001⟧)'s style (two-space indent, leading commas, sorted imports) and compiles clean under ⟦CODE_0002⟧. It has **not** been run through the ⟦CODE_0003⟧ or ⟦CODE_0004⟧ binaries; they were not available where this was written, so expect them to find small differences."
+msgstr "El código fuente está formateado a mano al estilo de [Ormolu](⟦DEST_0001⟧) (sangría de dos espacios, comas al inicio de línea e importaciones ordenadas) y compila limpio con ⟦CODE_0002⟧. **No** se ha ejecutado con los binarios ⟦CODE_0003⟧ ni ⟦CODE_0004⟧; no estaban disponibles donde se escribió, así que espera que encuentren pequeñas diferencias."
+
+#: src/haskell/README.md:95
+msgctxt "s-254f0c660db3-0039"
+msgid "Run it in a container"
+msgstr "Ejecútalo en un contenedor"
+
+#: src/haskell/README.md:97
+msgctxt "s-643df015c8a2-0040"
+msgid "Prerequisite: Docker, set up once as described in [⟦CODE_0001⟧](⟦DEST_0002⟧)."
+msgstr "Requisito previo: Docker, configurado una sola vez como se describe en [⟦CODE_0001⟧](⟦DEST_0002⟧)."
+
+#: src/haskell/README.md:103
+msgctxt "s-e4c49a55a29c-0041"
+msgid "It builds this folder's [⟦CODE_0001⟧](⟦DEST_0002⟧) and runs the result with no network, a read-only file system and user ⟦CODE_0003⟧, then prints the output and a read-only look at the rows it wrote. In a build stage, GHC compiles the script to one binary. The image holds only that binary and sqlite3, with no GHC."
+msgstr "Construye el [⟦CODE_0001⟧](⟦DEST_0002⟧) de esta carpeta y ejecuta el resultado sin red, con un sistema de archivos de solo lectura y el usuario ⟦CODE_0003⟧, y luego imprime la salida y una vista de solo lectura de las filas que escribió. En una etapa de compilación, GHC compila el script en un solo binario. La imagen contiene solo ese binario y sqlite3, sin GHC."

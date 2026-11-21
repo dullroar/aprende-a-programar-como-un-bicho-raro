@@ -10767,104 +10767,104 @@
     {
      "en": "Haskell on drugs",
      "en_id": "haskell-on-drugs",
-     "es": "Haskell on drugs",
-     "es_id": "haskell-on-drugs",
+     "es": "Haskell bajo los efectos de las drogas",
+     "es_id": "haskell-bajo-los-efectos-de-las-drogas",
      "level": 1,
      "line": 15
     },
     {
      "en": "Run it",
      "en_id": "run-it",
-     "es": "Run it",
-     "es_id": "run-it",
+     "es": "Ejecuta el programa",
+     "es_id": "ejecuta-el-programa",
      "level": 2,
      "line": 25
     },
     {
      "en": "Program Flow",
      "en_id": "program-flow",
-     "es": "Program Flow",
-     "es_id": "program-flow",
+     "es": "Flujo del programa",
+     "es_id": "flujo-del-programa",
      "level": 2,
      "line": 47
     },
     {
      "en": "How the stunt works",
      "en_id": "how-the-stunt-works",
-     "es": "How the stunt works",
-     "es_id": "how-the-stunt-works",
+     "es": "Cómo funciona el truco",
+     "es_id": "cómo-funciona-el-truco",
      "level": 2,
      "line": 73
     },
     {
      "en": "1. A list defined in terms of itself (`fix`)",
      "en_id": "1-a-list-defined-in-terms-of-itself-fix",
-     "es": "1. A list defined in terms of itself (`fix`)",
-     "es_id": "1-a-list-defined-in-terms-of-itself-fix",
+     "es": "1. Una lista definida en términos de sí misma (`fix`)",
+     "es_id": "1-una-lista-definida-en-términos-de-sí-misma-fix",
      "level": 3,
      "line": 77
     },
     {
      "en": "2. A knot through the cards themselves (`fixIO`)",
      "en_id": "2-a-knot-through-the-cards-themselves-fixio",
-     "es": "2. A knot through the cards themselves (`fixIO`)",
-     "es_id": "2-a-knot-through-the-cards-themselves-fixio",
+     "es": "2. Un nudo a través de las propias tarjetas (`fixIO`)",
+     "es_id": "2-un-nudo-a-través-de-las-propias-tarjetas-fixio",
      "level": 3,
      "line": 85
     },
     {
      "en": "3. Effects that wait to be asked for (`unsafeInterleaveIO`)",
      "en_id": "3-effects-that-wait-to-be-asked-for-unsafeinterleaveio",
-     "es": "3. Effects that wait to be asked for (`unsafeInterleaveIO`)",
-     "es_id": "3-effects-that-wait-to-be-asked-for-unsafeinterleaveio",
+     "es": "3. Efectos que esperan a que los pidan (`unsafeInterleaveIO`)",
+     "es_id": "3-efectos-que-esperan-a-que-los-pidan-unsafeinterleaveio",
      "level": 3,
      "line": 96
     },
     {
      "en": "Gotchas worth knowing",
      "en_id": "gotchas-worth-knowing",
-     "es": "Gotchas worth knowing",
-     "es_id": "gotchas-worth-knowing",
+     "es": "Trampas que conviene conocer",
+     "es_id": "trampas-que-conviene-conocer",
      "level": 2,
      "line": 106
     },
     {
      "en": "What `check.sh` enforces",
      "en_id": "what-checksh-enforces",
-     "es": "What `check.sh` enforces",
-     "es_id": "what-checksh-enforces",
+     "es": "Qué impone `check.sh`",
+     "es_id": "qué-impone-checksh",
      "level": 2,
      "line": 114
     },
     {
      "en": "Format and lint",
      "en_id": "format-and-lint",
-     "es": "Format and lint",
-     "es_id": "format-and-lint",
+     "es": "Da formato y analiza con linter",
+     "es_id": "da-formato-y-analiza-con-linter",
      "level": 2,
      "line": 118
     },
     {
      "en": "Run it in a container",
      "en_id": "run-it-in-a-container",
-     "es": "Run it in a container",
-     "es_id": "run-it-in-a-container",
+     "es": "Ejecútalo en un contenedor",
+     "es_id": "ejecútalo-en-un-contenedor",
      "level": 2,
      "line": 122
     }
    ],
    "map": {
-    "1-a-list-defined-in-terms-of-itself-fix": "1-a-list-defined-in-terms-of-itself-fix",
-    "2-a-knot-through-the-cards-themselves-fixio": "2-a-knot-through-the-cards-themselves-fixio",
-    "3-effects-that-wait-to-be-asked-for-unsafeinterleaveio": "3-effects-that-wait-to-be-asked-for-unsafeinterleaveio",
-    "format-and-lint": "format-and-lint",
-    "gotchas-worth-knowing": "gotchas-worth-knowing",
-    "haskell-on-drugs": "haskell-on-drugs",
-    "how-the-stunt-works": "how-the-stunt-works",
-    "program-flow": "program-flow",
-    "run-it": "run-it",
-    "run-it-in-a-container": "run-it-in-a-container",
-    "what-checksh-enforces": "what-checksh-enforces"
+    "1-a-list-defined-in-terms-of-itself-fix": "1-una-lista-definida-en-términos-de-sí-misma-fix",
+    "2-a-knot-through-the-cards-themselves-fixio": "2-un-nudo-a-través-de-las-propias-tarjetas-fixio",
+    "3-effects-that-wait-to-be-asked-for-unsafeinterleaveio": "3-efectos-que-esperan-a-que-los-pidan-unsafeinterleaveio",
+    "format-and-lint": "da-formato-y-analiza-con-linter",
+    "gotchas-worth-knowing": "trampas-que-conviene-conocer",
+    "haskell-on-drugs": "haskell-bajo-los-efectos-de-las-drogas",
+    "how-the-stunt-works": "cómo-funciona-el-truco",
+    "program-flow": "flujo-del-programa",
+    "run-it": "ejecuta-el-programa",
+    "run-it-in-a-container": "ejecútalo-en-un-contenedor",
+    "what-checksh-enforces": "qué-impone-checksh"
    }
   },
   "src/haskell/README.md": {
@@ -10880,78 +10880,78 @@
     {
      "en": "Run it",
      "en_id": "run-it",
-     "es": "Run it",
-     "es_id": "run-it",
+     "es": "Ejecútalo",
+     "es_id": "ejecútalo",
      "level": 2,
      "line": 24
     },
     {
      "en": "Program Flow",
      "en_id": "program-flow",
-     "es": "Program Flow",
-     "es_id": "program-flow",
+     "es": "Flujo del programa",
+     "es_id": "flujo-del-programa",
      "level": 2,
      "line": 46
     },
     {
      "en": "How the stunt works",
      "en_id": "how-the-stunt-works",
-     "es": "How the stunt works",
-     "es_id": "how-the-stunt-works",
+     "es": "Cómo funciona el truco",
+     "es_id": "cómo-funciona-el-truco",
      "level": 2,
      "line": 65
     },
     {
      "en": "Why an infinite list is safe",
      "en_id": "why-an-infinite-list-is-safe",
-     "es": "Why an infinite list is safe",
-     "es_id": "why-an-infinite-list-is-safe",
+     "es": "¿Por qué es segura una lista infinita?",
+     "es_id": "por-qué-es-segura-una-lista-infinita",
      "level": 3,
      "line": 74
     },
     {
      "en": "What `check.sh` enforces",
      "en_id": "what-checksh-enforces",
-     "es": "What `check.sh` enforces",
-     "es_id": "what-checksh-enforces",
+     "es": "Qué exige `check.sh`",
+     "es_id": "qué-exige-checksh",
      "level": 2,
      "line": 78
     },
     {
      "en": "Gotchas worth knowing",
      "en_id": "gotchas-worth-knowing",
-     "es": "Gotchas worth knowing",
-     "es_id": "gotchas-worth-knowing",
+     "es": "Trampas que conviene conocer",
+     "es_id": "trampas-que-conviene-conocer",
      "level": 2,
      "line": 82
     },
     {
      "en": "Format and lint",
      "en_id": "format-and-lint",
-     "es": "Format and lint",
-     "es_id": "format-and-lint",
+     "es": "Da formato y analiza el código",
+     "es_id": "da-formato-y-analiza-el-código",
      "level": 2,
      "line": 91
     },
     {
      "en": "Run it in a container",
      "en_id": "run-it-in-a-container",
-     "es": "Run it in a container",
-     "es_id": "run-it-in-a-container",
+     "es": "Ejecútalo en un contenedor",
+     "es_id": "ejecútalo-en-un-contenedor",
      "level": 2,
      "line": 95
     }
    ],
    "map": {
-    "format-and-lint": "format-and-lint",
-    "gotchas-worth-knowing": "gotchas-worth-knowing",
+    "format-and-lint": "da-formato-y-analiza-el-código",
+    "gotchas-worth-knowing": "trampas-que-conviene-conocer",
     "haskell": "haskell",
-    "how-the-stunt-works": "how-the-stunt-works",
-    "program-flow": "program-flow",
-    "run-it": "run-it",
-    "run-it-in-a-container": "run-it-in-a-container",
-    "what-checksh-enforces": "what-checksh-enforces",
-    "why-an-infinite-list-is-safe": "why-an-infinite-list-is-safe"
+    "how-the-stunt-works": "cómo-funciona-el-truco",
+    "program-flow": "flujo-del-programa",
+    "run-it": "ejecútalo",
+    "run-it-in-a-container": "ejecútalo-en-un-contenedor",
+    "what-checksh-enforces": "qué-exige-checksh",
+    "why-an-infinite-list-is-safe": "por-qué-es-segura-una-lista-infinita"
    }
   },
   "src/javascript-events/README.md": {
@@ -10959,149 +10959,149 @@
     {
      "en": "JavaScript, event-driven: one line of work, an entire program in the listeners",
      "en_id": "javascript-event-driven-one-line-of-work-an-entire-program-in-the-listeners",
-     "es": "JavaScript, event-driven: one line of work, an entire program in the listeners",
-     "es_id": "javascript-event-driven-one-line-of-work-an-entire-program-in-the-listeners",
+     "es": "JavaScript, orientado a eventos: una línea de trabajo, un programa entero en los escuchadores de eventos",
+     "es_id": "javascript-orientado-a-eventos-una-línea-de-trabajo-un-programa-entero-en-los-escuchadores-de-eventos",
      "level": 1,
      "line": 16
     },
     {
      "en": "Run it",
      "en_id": "run-it",
-     "es": "Run it",
-     "es_id": "run-it",
+     "es": "Ejecútalo",
+     "es_id": "ejecútalo",
      "level": 2,
      "line": 45
     },
     {
      "en": "Run it in a container",
      "en_id": "run-it-in-a-container",
-     "es": "Run it in a container",
-     "es_id": "run-it-in-a-container",
+     "es": "Ejecútalo en un contenedor",
+     "es_id": "ejecútalo-en-un-contenedor",
      "level": 2,
      "line": 58
     },
     {
      "en": "Program Flow",
      "en_id": "program-flow",
-     "es": "Program Flow",
-     "es_id": "program-flow",
+     "es": "Flujo del programa",
+     "es_id": "flujo-del-programa",
      "level": 2,
      "line": 69
     },
     {
      "en": "How the stunt works",
      "en_id": "how-the-stunt-works",
-     "es": "How the stunt works",
-     "es_id": "how-the-stunt-works",
+     "es": "Cómo funciona el truco",
+     "es_id": "cómo-funciona-el-truco",
      "level": 2,
      "line": 100
     },
     {
      "en": "The events",
      "en_id": "the-events",
-     "es": "The events",
-     "es_id": "the-events",
+     "es": "Los eventos",
+     "es_id": "los-eventos",
      "level": 3,
      "line": 102
     },
     {
      "en": "Two kinds of \"then\"",
      "en_id": "two-kinds-of-then",
-     "es": "Two kinds of \"then\"",
-     "es_id": "two-kinds-of-then",
+     "es": "Dos tipos de \"luego\"",
+     "es_id": "dos-tipos-de-luego",
      "level": 3,
      "line": 118
     },
     {
      "en": "The save happens before the total changes",
      "en_id": "the-save-happens-before-the-total-changes",
-     "es": "The save happens before the total changes",
-     "es_id": "the-save-happens-before-the-total-changes",
+     "es": "El guardado ocurre antes de que cambie el total",
+     "es_id": "el-guardado-ocurre-antes-de-que-cambie-el-total",
      "level": 3,
      "line": 139
     },
     {
      "en": "When a listener throws",
      "en_id": "when-a-listener-throws",
-     "es": "When a listener throws",
-     "es_id": "when-a-listener-throws",
+     "es": "Cuando un escuchador de eventos lanza una excepción",
+     "es_id": "cuando-un-escuchador-de-eventos-lanza-una-excepción",
      "level": 3,
      "line": 143
     },
     {
      "en": "No leftovers",
      "en_id": "no-leftovers",
-     "es": "No leftovers",
-     "es_id": "no-leftovers",
+     "es": "Sin restos",
+     "es_id": "sin-restos",
      "level": 3,
      "line": 149
     },
     {
      "en": "Where does the program live, and what makes the next step run?",
      "en_id": "where-does-the-program-live-and-what-makes-the-next-step-run",
-     "es": "Where does the program live, and what makes the next step run?",
-     "es_id": "where-does-the-program-live-and-what-makes-the-next-step-run",
+     "es": "¿Dónde vive el programa y qué hace que se ejecute el siguiente paso?",
+     "es_id": "dónde-vive-el-programa-y-qué-hace-que-se-ejecute-el-siguiente-paso",
      "level": 3,
      "line": 163
     },
     {
      "en": "The world is an argument",
      "en_id": "the-world-is-an-argument",
-     "es": "The world is an argument",
-     "es_id": "the-world-is-an-argument",
+     "es": "El mundo es un argumento",
+     "es_id": "el-mundo-es-un-argumento",
      "level": 3,
      "line": 173
     },
     {
      "en": "What `check.sh` enforces",
      "en_id": "what-checksh-enforces",
-     "es": "What `check.sh` enforces",
-     "es_id": "what-checksh-enforces",
+     "es": "Qué impone `check.sh`",
+     "es_id": "qué-impone-checksh",
      "level": 2,
      "line": 177
     },
     {
      "en": "Why this is weird",
      "en_id": "why-this-is-weird",
-     "es": "Why this is weird",
-     "es_id": "why-this-is-weird",
+     "es": "Por qué es raro",
+     "es_id": "por-qué-es-raro",
      "level": 2,
      "line": 187
     },
     {
      "en": "When you should not do this",
      "en_id": "when-you-should-not-do-this",
-     "es": "When you should not do this",
-     "es_id": "when-you-should-not-do-this",
+     "es": "Cuándo no debes hacer esto",
+     "es_id": "cuándo-no-debes-hacer-esto",
      "level": 2,
      "line": 191
     },
     {
      "en": "Gotchas worth knowing",
      "en_id": "gotchas-worth-knowing",
-     "es": "Gotchas worth knowing",
-     "es_id": "gotchas-worth-knowing",
+     "es": "Trampas que conviene conocer",
+     "es_id": "trampas-que-conviene-conocer",
      "level": 2,
      "line": 199
     }
    ],
    "map": {
-    "gotchas-worth-knowing": "gotchas-worth-knowing",
-    "how-the-stunt-works": "how-the-stunt-works",
-    "javascript-event-driven-one-line-of-work-an-entire-program-in-the-listeners": "javascript-event-driven-one-line-of-work-an-entire-program-in-the-listeners",
-    "no-leftovers": "no-leftovers",
-    "program-flow": "program-flow",
-    "run-it": "run-it",
-    "run-it-in-a-container": "run-it-in-a-container",
-    "the-events": "the-events",
-    "the-save-happens-before-the-total-changes": "the-save-happens-before-the-total-changes",
-    "the-world-is-an-argument": "the-world-is-an-argument",
-    "two-kinds-of-then": "two-kinds-of-then",
-    "what-checksh-enforces": "what-checksh-enforces",
-    "when-a-listener-throws": "when-a-listener-throws",
-    "when-you-should-not-do-this": "when-you-should-not-do-this",
-    "where-does-the-program-live-and-what-makes-the-next-step-run": "where-does-the-program-live-and-what-makes-the-next-step-run",
-    "why-this-is-weird": "why-this-is-weird"
+    "gotchas-worth-knowing": "trampas-que-conviene-conocer",
+    "how-the-stunt-works": "cómo-funciona-el-truco",
+    "javascript-event-driven-one-line-of-work-an-entire-program-in-the-listeners": "javascript-orientado-a-eventos-una-línea-de-trabajo-un-programa-entero-en-los-escuchadores-de-eventos",
+    "no-leftovers": "sin-restos",
+    "program-flow": "flujo-del-programa",
+    "run-it": "ejecútalo",
+    "run-it-in-a-container": "ejecútalo-en-un-contenedor",
+    "the-events": "los-eventos",
+    "the-save-happens-before-the-total-changes": "el-guardado-ocurre-antes-de-que-cambie-el-total",
+    "the-world-is-an-argument": "el-mundo-es-un-argumento",
+    "two-kinds-of-then": "dos-tipos-de-luego",
+    "what-checksh-enforces": "qué-impone-checksh",
+    "when-a-listener-throws": "cuando-un-escuchador-de-eventos-lanza-una-excepción",
+    "when-you-should-not-do-this": "cuándo-no-debes-hacer-esto",
+    "where-does-the-program-live-and-what-makes-the-next-step-run": "dónde-vive-el-programa-y-qué-hace-que-se-ejecute-el-siguiente-paso",
+    "why-this-is-weird": "por-qué-es-raro"
    }
   },
   "src/javascript-weird/README.md": {
