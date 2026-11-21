@@ -245,7 +245,7 @@ msgstr "Trampas que conviene conocer"
 #: src/regex-pcre2/README.md:112
 msgctxt "s-1edc8bb51840-0047"
 msgid "The ⟦CODE_0001⟧ loop ends because ⟦CODE_0002⟧ fails the next iteration (or the five category names run out, which only matters when the total is still 40 or less after four cards: it never is after five), not because anything in C decides to stop. The C only answers the question \"is the total over 40?\" when the engine asks."
-msgstr "El bucle ⟦CODE_0001⟧ termina porque ⟦CODE_0002⟧ falla en la siguiente iteración (o porque se agotan los cinco nombres de categoría, lo cual solo importa cuando el total todavía no pasa de 40 después de cuatro tarjetas: después de cinco nunca ocurre), y no porque algo en C decida detenerse. El código en C solo responde a la pregunta \"¿el total pasa de 40?\" cuando el motor se lo pregunta."
+msgstr "El bucle ⟦CODE_0001⟧ termina porque ⟦CODE_0002⟧ falla en la siguiente iteración o porque se agotan los cinco nombres de categoría. Agotar los nombres solo importa cuando el total todavía no pasa de 40 después de cuatro tarjetas. Después de cinco tarjetas, el total siempre supera ese límite. El motor controla la parada. El código en C solo responde a la pregunta \"¿el total pasa de 40?\" cuando el motor se lo pregunta."
 
 #: src/regex-pcre2/README.md:113
 msgctxt "s-cc23f0d53e32-0048"

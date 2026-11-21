@@ -109,7 +109,7 @@ Los callouts solo tienen sentido si el motor realmente los visita. Este programa
 
 ## Trampas que conviene conocer
 
-- El bucle `*` termina porque `gate` falla en la siguiente iteración (o porque se agotan los cinco nombres de categoría, lo cual solo importa cuando el total todavía no pasa de 40 después de cuatro tarjetas: después de cinco nunca ocurre), y no porque algo en C decida detenerse. El código en C solo responde a la pregunta "¿el total pasa de 40?" cuando el motor se lo pregunta.
+- El bucle `*` termina porque `gate` falla en la siguiente iteración o porque se agotan los cinco nombres de categoría. Agotar los nombres solo importa cuando el total todavía no pasa de 40 después de cuatro tarjetas. Después de cinco tarjetas, el total siempre supera ese límite. El motor controla la parada. El código en C solo responde a la pregunta "¿el total pasa de 40?" cuando el motor se lo pregunta.
 - El estado (`total`, `entries`, el archivo) vive en una struct de C que comparten los callouts, así que, a diferencia de `local` en Perl, nada de eso se revierte con el retroceso. Eso conviene a este programa: nunca se deshace nada.
 - El despachador es una cadena de operadores ternarios, no una tabla, para mantener el anfitrión libre de bucles y de trucos con punteros a función. Los códigos de operación desconocidos (y los errores de E/S) abortan la coincidencia con `PCRE2_ERROR_CALLOUT`, que a propósito es distinto de `-1`, que significa "no hay coincidencia". El anfitrión informa de éxito solo si `commit` se ejecutó de verdad.
 
