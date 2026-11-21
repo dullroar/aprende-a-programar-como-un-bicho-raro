@@ -101,3 +101,4 @@
 124 P4-lessons-cs-source-1 done applied all four computer science index source segments, recorded EXC-216 and passed scoped and working-tree fast verification.
 125 P4-audit-2 done reviewed five segments and queued two minor clarity findings as P4-fix-3 and P4-fix-4.
 126 P4-fix-3 done accepted F003, clarified the fifth-card total through the PCRE2 README PO, and passed scoped and working-tree fast verification.
+127 P4-fix-4 done accepted F004, named the regular expression as the builder of the capture stack through the .NET README PO, and passed scoped and working-tree fast verification.

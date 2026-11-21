@@ -101,7 +101,7 @@ Comprobé los casos límite con un prototipo desechable (no está en el reposito
 ### Letra pequeña, pero honesta
 
 - El anfitrión hace una cosa con forma de iteración: informar. `string.Concat(...Zip(...))` recorre las listas `cat` y `hrs` capturadas para dar formato a las filas. Solo lee el estado final capturado, lo que el plan permite ("imprimir/informar el estado final"). Además, `check.sh` rechaza `MatchEvaluator`, `Replace`, `NextMatch`, `Matches` y cualquier palabra clave de bucle en el anfitrión, y exige exactamente un `Regex.Match`. Aun así, es una pasada de LINQ y prefiero decirlo a ocultarlo.
-- El total impreso es el número de capturas de la pila `s`, que construyó la expresión regular. Las horas de cada fila son las longitudes de las capturas `hrs`.
+- El total impreso es el número de capturas de la pila `s`. La expresión regular construyó esa pila. Las horas de cada fila son las longitudes de las capturas `hrs`.
 - El patrón no tiene formato a propósito, igual que en las otras variantes.
 
 ---

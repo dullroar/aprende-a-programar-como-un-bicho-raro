@@ -240,7 +240,7 @@ msgstr "El anfitrión hace una cosa con forma de iteración: informar. ⟦CODE_0
 #: src/regex-dotnet/README.md:104
 msgctxt "s-3092f522323b-0044"
 msgid "The total printed is the count of captures on the ⟦CODE_0001⟧ stack, which the regex built. The per-row hours are the lengths of the ⟦CODE_0002⟧ captures."
-msgstr "El total impreso es el número de capturas de la pila ⟦CODE_0001⟧, que construyó la expresión regular. Las horas de cada fila son las longitudes de las capturas ⟦CODE_0002⟧."
+msgstr "El total impreso es el número de capturas de la pila ⟦CODE_0001⟧. La expresión regular construyó esa pila. Las horas de cada fila son las longitudes de las capturas ⟦CODE_0002⟧."
 
 #: src/regex-dotnet/README.md:105
 msgctxt "s-1f8e33e97fcc-0045"

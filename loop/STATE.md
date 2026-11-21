@@ -1,9 +1,9 @@
 # loop/STATE.md (keep to 60 lines; refreshed by every iteration)
 
 - **Edition:** v4-es.0-rc1 (working)    **English SHA:** 48a4429c0a22b2aac628b256a50c07d1816bcb80
-- **Iteration:** 126    **Stage:** 4 (bulk translation)    **Last result:** iter 126 P4-fix-3 done (clarified the fifth-card total in the PCRE2 README).
-- **Tasks:** todo 72 | doing 0 | done 96 | blocked 0 | skipped 0 (recount with the queue files)
-- **Next task:** P4-fix-4 (name the .NET regular expression as the builder of the capture stack).
+- **Iteration:** 127    **Stage:** 4 (bulk translation)    **Last result:** iter 127 P4-fix-4 done (named the .NET regular expression as the builder of the capture stack).
+- **Tasks:** todo 71 | doing 0 | done 97 | blocked 0 | skipped 0 (recount with the queue files)
+- **Next task:** P4-lessons-cs-source-chapters-1 (translate the nine computer science source chapters).
 - **Budget:** driver-reported $89.4099 of $100 through the Claude run, with Codex session cost unavailable
 - **Translate progress:** segments accepted 2978 / total 8827 (7394 prose + 1433 Mermaid labels) ; files done 47 / 212 (recounted nonempty, non-fuzzy PO entries and complete files). Latest: lessons/cs-source/index.md.
 - **Last audit:** P4-audit-2 (iter 125, translation/reviews/p4-audit-2.md)    **Next audit due:** P4-audit-3
