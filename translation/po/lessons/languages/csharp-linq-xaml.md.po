@@ -310,22 +310,22 @@ msgstr "⟦SEP_0003⟧ ⟦CODE_0001⟧ en marcado ⟦SEP_0004⟧ un ⟦CODE_0002
 #: lessons/languages/csharp-linq-xaml.md:106
 msgctxt "s-7ec4d0950704-0060"
 msgid "Honest fine print"
-msgstr ""
+msgstr "Letra pequeña, pero honesta"
 
 #: lessons/languages/csharp-linq-xaml.md:108
 msgctxt "s-6791ddd02d41-0061"
 msgid "**The loop is unrolled**: four copy-pasted passes. \"Four categories\" is baked into the markup, so this entry can deal at most four cards. With the shipped seed (⟦CODE_0001⟧: 16, 11, 11, 15 hours) it always deals four and ends at 53, so the case where four cards total exactly 40 (which should continue to a fifth) never arises. It is the only entry with that limit."
-msgstr ""
+msgstr "**El bucle está desenrollado**: cuatro pasadas copiadas y pegadas. \"Cuatro categorías\" está incorporado al marcado, así que esta entrada puede repartir como máximo cuatro tarjetas. Con la semilla incluida (⟦CODE_0001⟧: 16, 11, 11, 15 horas), siempre reparte cuatro y termina en 53. Por eso nunca ocurre el caso en que cuatro tarjetas suman un total de exactamente 40 (que debería continuar hasta una quinta). Es la única entrada con ese límite."
 
 #: lessons/languages/csharp-linq-xaml.md:109
 msgctxt "s-8635c6d45874-0062"
 msgid "**The branching is done by SQL or ⟦CODE_0001⟧**, not by WPF triggers."
-msgstr ""
+msgstr "**La ramificación la hace SQL o ⟦CODE_0001⟧**, no los disparadores de WPF."
 
 #: lessons/languages/csharp-linq-xaml.md:110
 msgctxt "s-60e3459db047-0063"
 msgid "**⟦CODE_0001⟧ is fixed-seeded** in the ⟦CODE_0002⟧ files, so the hours are the same on every run."
-msgstr ""
+msgstr "**⟦CODE_0001⟧ tiene una semilla fija** en los archivos ⟦CODE_0002⟧, así que las horas son las mismas en cada ejecución."
 
 #: lessons/languages/csharp-linq-xaml.md:111
 msgctxt "s-5c066bdb2de4-0064"

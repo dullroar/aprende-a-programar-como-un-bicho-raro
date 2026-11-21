@@ -103,11 +103,11 @@ Consulta los [ejercicios](../exercises.md#b7-linq-enumerate-twice-verified).
 | Motores de expresiones (`DataTable.Compute("Sum(h)")`, `DataView.RowFilter`, SQL) | la ALU y los condicionales |
 | `Delegate.CreateDelegate` en marcado | un `Thread` construido, iniciado y unido desde XAML |
 
-### Honest fine print
+### Letra pequeña, pero honesta
 
-- **The loop is unrolled**: four copy-pasted passes. "Four categories" is baked into the markup, so this entry can deal at most four cards. With the shipped seed (`Random(42)`: 16, 11, 11, 15 hours) it always deals four and ends at 53, so the case where four cards total exactly 40 (which should continue to a fifth) never arises. It is the only entry with that limit.
-- **The branching is done by SQL or `DataTable`**, not by WPF triggers.
-- **`Random(42)` is fixed-seeded** in the `.xaml` files, so the hours are the same on every run.
+- **El bucle está desenrollado**: cuatro pasadas copiadas y pegadas. "Cuatro categorías" está incorporado al marcado, así que esta entrada puede repartir como máximo cuatro tarjetas. Con la semilla incluida (`Random(42)`: 16, 11, 11, 15 horas), siempre reparte cuatro y termina en 53. Por eso nunca ocurre el caso en que cuatro tarjetas suman un total de exactamente 40 (que debería continuar hasta una quinta). Es la única entrada con ese límite.
+- **La ramificación la hace SQL o `DataTable`**, no los disparadores de WPF.
+- **`Random(42)` tiene una semilla fija** en los archivos `.xaml`, así que las horas son las mismas en cada ejecución.
 - **`XamlChallenge1.csproj` has `<Page Remove="**/*.xaml" />`**, so the files are loaded at run time, never compiled. That *is* the point.
 - **Three flavors**: `strict.xaml` (only .NET types, saves XML), `sqlite.xaml`, `efcore.xaml`. The stop rule is a SQL `WHERE` clause or a SQLite trigger.
 

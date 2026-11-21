@@ -4206,8 +4206,8 @@
     {
      "en": "Honest fine print",
      "en_id": "honest-fine-print",
-     "es": "Honest fine print",
-     "es_id": "honest-fine-print",
+     "es": "Letra pequeña, pero honesta",
+     "es_id": "letra-pequeña-pero-honesta",
      "level": 3,
      "line": 106
     },
@@ -4331,7 +4331,7 @@
     "deferred-execution-and-the-void-to-value-trick": "la-ejecución-diferida-y-el-truco-de-convertir-void-en-valor",
     "do-this-in-production-and-youre-fired": "haz-esto-en-producción-y-estás-despedido",
     "do-this-in-production-and-youre-fired-1": "haz-esto-en-producción-y-estás-despedido-1",
-    "honest-fine-print": "honest-fine-print",
+    "honest-fine-print": "letra-pequeña-pero-honesta",
     "how-each-program-runs": "how-each-program-runs",
     "how-is-that-even-possible": "cómo-es-posible-siquiera",
     "how-the-hell-does-that-work": "cómo-demonios-funciona-eso",

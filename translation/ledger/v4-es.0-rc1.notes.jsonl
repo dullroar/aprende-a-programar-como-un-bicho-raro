@@ -2182,3 +2182,6 @@
 {"segment_id": "s-1967b7982af5-0035", "ts": "2026-11-21T20:23:47Z", "findings": ["I21: identifier 'Aggregate' must stay literal (the English names it here); describe around it, never translate it"]}
 {"segment_id": "s-5e3bcdfbf845-0049", "ts": "2026-11-21T20:28:55Z", "findings": [], "playful_note": "Invita al lector a romper el programa."}
 {"segment_id": "s-b3fa9ef58de3-0053", "ts": "2026-11-21T20:30:28Z", "findings": ["REGISTER: playful segment H013 has status 'pending' in the humor register"], "playful_note": "Conserva la incredulidad de la pregunta."}
+{"segment_id": "s-7ec4d0950704-0060", "ts": "2026-11-21T20:33:37Z", "findings": ["I15: heading differs from the recorded transcreated 'Letra pequeña, pero honesta'"], "playful_note": "Conserva el tono de letra chica."}
+{"segment_id": "s-6791ddd02d41-0061", "ts": "2026-11-21T20:33:37Z", "findings": ["I7: glossary term total must be rendered 'total'"]}
+{"segment_id": "s-7ec4d0950704-0060", "ts": "2026-11-21T20:33:51Z", "findings": [], "playful_note": "Conserva el tono de letra chica."}
