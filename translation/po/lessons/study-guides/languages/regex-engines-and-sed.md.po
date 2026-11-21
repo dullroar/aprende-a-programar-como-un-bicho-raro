@@ -1,0 +1,813 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:1
+msgctxt "s-f880fd64cb68-0000"
+msgid "Regex engines and sed study guide"
+msgstr "Guía de estudio de motores de regex y sed"
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:3
+msgctxt "s-4e718de9279e-0001"
+msgid "What this guide is for"
+msgstr "Para qué sirve esta guía"
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:5
+msgctxt "s-b43e4ca36f55-0002"
+msgid "This guide reads five programs that use a regular-expression engine, or a stream editor built on one, as the whole machine: [⟦CODE_0001⟧](⟦DEST_0002⟧), [⟦CODE_0003⟧](⟦DEST_0004⟧), [⟦CODE_0005⟧](⟦DEST_0006⟧), [⟦CODE_0007⟧](⟦DEST_0008⟧) and [⟦CODE_0009⟧](⟦DEST_0010⟧). The question is: **a match is a search, a substitution is a rewrite. What does each engine keep, undo and lose when the search fails?**"
+msgstr "Esta guía lee cinco programas. Cada uno usa como máquina completa un motor de expresiones regulares, o un editor de flujo construido sobre uno. Son [⟦CODE_0001⟧](⟦DEST_0002⟧), [⟦CODE_0003⟧](⟦DEST_0004⟧), [⟦CODE_0005⟧](⟦DEST_0006⟧), [⟦CODE_0007⟧](⟦DEST_0008⟧) y [⟦CODE_0009⟧](⟦DEST_0010⟧). La pregunta es: **una coincidencia es una búsqueda y una sustitución es una reescritura. ¿Qué conserva, deshace y pierde cada motor cuando la búsqueda falla?**"
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:7
+msgctxt "s-d84bcb27c154-0003"
+msgid "When you finish, you should be able to:"
+msgstr "Al terminar, deberías poder:"
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:9
+msgctxt "s-4aded6bc0174-0004"
+msgid ""
+"Explain the difference between *searching* (one match that explores and abandons paths) and *rewriting* (a loop of substitutions over one string), and say which entries are which.\n"
+"2. Say what survives a failed match in each engine: Perl's ⟦CODE_0001⟧, PCRE2's C state, pcre2grep's database writes, .NET's captures, sed's pattern space.\n"
+"3. Explain what ⟦CODE_0002⟧, ⟦CODE_0003⟧ and a callout's return value do, and why the order of the pieces matters.\n"
+"4. Trace PCRE2, .NET and sed through a fixed run and name the state at each step.\n"
+"5. Explain how a finite supply of category names set a hidden ceiling of four cards, what that did to the \"exactly 40 continues\" rule, how the five-name fix and its test work and how a backtracking pattern becomes a denial-of-service risk.\n"
+"6. Label each behavior as guaranteed, implementation-permitted or accidentally exploited."
+msgstr ""
+"Explicar la diferencia entre *buscar* y *reescribir*. Buscar es una coincidencia que explora y abandona caminos. Reescribir es un bucle de sustituciones sobre una cadena de texto. Decir qué entradas son de cada tipo.\n"
+"2. Decir qué sobrevive a una coincidencia fallida en cada motor. En Perl, el ⟦CODE_0001⟧. En PCRE2, el estado en C. En pcre2grep, las escrituras en la base de datos. En .NET, las capturas. En sed, el espacio de patrones.\n"
+"3. Explicar qué hacen ⟦CODE_0002⟧, ⟦CODE_0003⟧ y el valor de retorno de un callout, y por qué importa el orden de las piezas.\n"
+"4. Hacer la traza de PCRE2, .NET y sed en una ejecución fija y nombrar el estado en cada paso.\n"
+"5. Explicar cómo un suministro finito de nombres de categoría fijó un techo oculto de cuatro tarjetas. Explicar qué le hizo eso a la regla de que un total de exactamente 40 continúa. Explicar cómo funcionan la corrección de cinco nombres y su prueba, y cómo un patrón con retroceso se vuelve un riesgo de denegación de servicio.\n"
+"6. Etiquetar cada comportamiento como garantizado, permitido por la implementación o aprovechado por accidente."
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:16
+msgctxt "s-aab1439bf7ab-0005"
+msgid "**Scope limits.** You need to know what a capture group, a greedy quantifier and alternation are. The guide does not teach regex syntax from scratch, the SQL or the terminal \"pulse\" animation. It covers Perl 5, PCRE2 10.x, pcre2grep with callout scripts, .NET 10 and GNU sed. For the theory, see [Regular expressions](⟦DEST_0001⟧) and [Backtracking](⟦DEST_0002⟧) in the book. The language page is [Regular expressions: five engines](⟦DEST_0003⟧)."
+msgstr "**Límites del alcance.** Necesitas saber qué son un grupo de captura, un cuantificador voraz y una alternancia. La guía no enseña desde cero la sintaxis de las expresiones regulares, el SQL ni la animación de \"pulso\" en la terminal. Cubre Perl 5, PCRE2 10.x, pcre2grep con scripts de callout, .NET 10 y GNU sed. Para la teoría, consulta [Expresiones regulares](⟦DEST_0001⟧) y [Retroceso](⟦DEST_0002⟧) en el libro. La página del lenguaje es [Expresiones regulares: cinco motores](⟦DEST_0003⟧)."
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:18
+msgctxt "s-d5bfdd7d989d-0006"
+msgid "Before you begin"
+msgstr "Antes de empezar"
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:20
+msgctxt "s-900db9530e49-0007"
+msgid "**Safety model.** Every entry writes fictional **⟦DNT_0001⟧** data. This family is the most dangerous to run unread. A Perl pattern here runs Perl code and starts ⟦CODE_0002⟧, a PCRE2 callout runs host C and ⟦CODE_0003⟧ callouts start programs. Read the source first and run it in the sandbox first:"
+msgstr "**Modelo de seguridad.** Cada entrada escribe datos ficticios marcados con **⟦DNT_0001⟧**. Esta familia es la más peligrosa de ejecutar sin leer. Un patrón de Perl ejecuta código de Perl e inicia ⟦CODE_0002⟧. Un callout de PCRE2 ejecuta código en C del anfitrión, y los callouts de ⟦CODE_0003⟧ inician programas. Lee primero el código fuente y ejecútalo primero en el entorno aislado (*sandbox*):"
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:28
+msgctxt "s-b44c7224120c-0008"
+msgid "Edit only copies ([Running things safely](⟦DEST_0001⟧)). Two warnings from experience. First, ⟦CODE_0002⟧ writes SQL to file descriptor 3. Run its script only through the entry's wrapper, or in the sandbox with ⟦CODE_0003⟧. While this guide was being prepared, a harness that left fd 3 closed let the script's ⟦CODE_0004⟧ open the *script file itself* and overwrite it. Second, run any sed or regex experiment on a scratch copy, never in your checkout."
+msgstr "Edita solo copias ([Ejecutar cosas de forma segura](⟦DEST_0001⟧)). Dos advertencias que nacen de la experiencia. Primera: ⟦CODE_0002⟧ escribe SQL en el descriptor de archivo 3. Ejecuta su script solo mediante el envoltorio de la entrada, o en el entorno aislado con ⟦CODE_0003⟧. Mientras se preparaba esta guía, un arnés que dejó cerrado el descriptor 3 hizo que el ⟦CODE_0004⟧ del script abriera el *propio archivo del script* y lo sobrescribiera. Segunda: ejecuta cualquier experimento con sed o con regex en una copia desechable, nunca en tu copia de trabajo."
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:30
+msgctxt "s-dd366465dc08-0009"
+msgid "**Prediction rule.** Before each run, write down what state each engine holds when the match ends, and what you would see if the match failed instead."
+msgstr "**Regla de predicción.** Antes de cada ejecución, anota qué estado guarda cada motor cuando termina la coincidencia y qué verías si la coincidencia fallara."
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:32
+msgctxt "s-2dd18ffddf3e-0010"
+msgid "**Vocabulary.**"
+msgstr "**Vocabulario.**"
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:34
+msgctxt "s-790e521777f0-0011"
+msgid "⟦SEP_0001⟧ Term ⟦SEP_0002⟧ Meaning here ⟦SEP_0003⟧"
+msgstr "⟦SEP_0001⟧ Término ⟦SEP_0002⟧ Significado aquí ⟦SEP_0003⟧"
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:36
+msgctxt "s-8645d720779f-0012"
+msgid "⟦SEP_0001⟧ Backtracking ⟦SEP_0002⟧ When a path fails, the engine returns to the last choice point and tries the next alternative. ⟦SEP_0003⟧"
+msgstr "⟦SEP_0001⟧ Retroceso ⟦SEP_0002⟧ Cuando un camino falla, el motor vuelve al último punto de elección y prueba la siguiente alternativa. ⟦SEP_0003⟧"
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:37
+msgctxt "s-c2a2b88b443d-0013"
+msgid "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ Once the match gets past this point, backtracking may not retry before it. ⟦SEP_0004⟧"
+msgstr "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ Una vez que la coincidencia pasa este punto, el retroceso ya no puede reintentar antes de él. ⟦SEP_0004⟧"
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:38
+msgctxt "s-8571b8783fea-0014"
+msgid "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ Fail at once. Used here to end a pass or the whole match. ⟦SEP_0004⟧"
+msgstr "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ Falla de inmediato. Aquí sirve para terminar una pasada o toda la coincidencia. ⟦SEP_0004⟧"
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:39
+msgctxt "s-437dbf3ef187-0015"
+msgid "⟦SEP_0001⟧ Callout ⟦SEP_0002⟧ A point in a PCRE2 pattern where the engine calls out to host code. Its return value says continue, fail this path or abort. ⟦SEP_0003⟧"
+msgstr "⟦SEP_0001⟧ Callout ⟦SEP_0002⟧ Un punto de un patrón de PCRE2 donde el motor llama a código del anfitrión. Su valor de retorno indica que continúe, que este camino falle o que se aborte. ⟦SEP_0003⟧"
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:40
+msgctxt "s-9f3063ea7850-0016"
+msgid "⟦SEP_0001⟧ Balancing group ⟦SEP_0002⟧ A .NET group that pops one capture stack and pushes another. ⟦SEP_0003⟧"
+msgstr "⟦SEP_0001⟧ Grupo de equilibrio ⟦SEP_0002⟧ Un grupo de .NET que extrae de una pila de capturas y apila en otra. ⟦SEP_0003⟧"
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:41
+msgctxt "s-0a775a70c645-0017"
+msgid "⟦SEP_0001⟧ Pattern space ⟦SEP_0002⟧ sed's working buffer: one line of text. ⟦SEP_0003⟧"
+msgstr "⟦SEP_0001⟧ Espacio de patrones ⟦SEP_0002⟧ El búfer de trabajo de sed: una línea de texto. ⟦SEP_0003⟧"
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:43
+msgctxt "s-ae7d69ef2745-0018"
+msgid "The shared challenge"
+msgstr "El reto compartido"
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:45
+msgctxt "s-78a7d749b03d-0019"
+msgid "The [challenge specification](⟦DEST_0001⟧) calls for cards with a category and 10 to 19 whole hours. Categories cycle through ⟦DNT_0002⟧, ⟦DNT_0003⟧, ⟦DNT_0004⟧ and ⟦DNT_0005⟧. Add each card's hours to the running total. Stop when the total passes 40. Keep the **first card that takes the total over 40**. A total of exactly 40 continues. Four 10-hour cards need a fifth card, in the ⟦DNT_0006⟧ category. Conforming runs finish with 3 to 5 cards and a total of 41 to 59 hours."
+msgstr "La [especificación del reto](⟦DEST_0001⟧) pide tarjetas con una categoría y de 10 a 19 horas enteras. Las categorías se repiten en ciclo: `⟦DNT_0002⟧`, `⟦DNT_0003⟧`, `⟦DNT_0004⟧` y `⟦DNT_0005⟧`. Suma las horas de cada tarjeta al total acumulado. Detente cuando el total pasa de 40. Conserva la **primera tarjeta con la que el total pasa de 40**. Un total de exactamente 40 continúa. Cuatro tarjetas de 10 horas necesitan una quinta tarjeta, de la categoría `⟦DNT_0006⟧`. Las ejecuciones conformes tienen de 3 a 5 tarjetas y un total de 41 a 59 horas."
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:47
+msgctxt "s-33003f4f9a02-0020"
+msgid "All five entries follow the numeric rule, with three storage paths worth distinguishing: the C and .NET tracks write TSV, pcre2grep saves through separate SQLite calls and Perl and sed send a transaction to SQLite. This family once could not obey the numeric rule, and the way it was found is instructive. Each regex entry walked a *finite list of four category names* (the subject string, the scaffold or sed's ⟦CODE_0001⟧ list). When the four names ran out the loop ended, whatever the total was, so a run of four 10-hour cards ended at exactly 40 with four rows. That has probability one in 10,000 per run, so the entries passed their own checks, which accepted \"four entries\" as a legitimate stop. The shared checker ⟦CODE_0002⟧ rejects such a run, and running it with forced draws while writing this guide showed the problem (see Trace). It is now fixed: each entry has **five** names (⟦CODE_0003⟧ repeats), and each ⟦CODE_0004⟧ builds a copy of the program whose every card is worth 10 hours and requires a fifth card, ⟦CODE_0005⟧, ending at 50."
+msgstr "Las cinco entradas siguen la regla numérica, con tres rutas de almacenamiento que conviene distinguir. Las rutas de C y .NET escriben TSV, pcre2grep guarda mediante llamadas separadas a SQLite, y Perl y sed envían una transacción a SQLite. Esta familia una vez no pudo obedecer la regla numérica, y la forma en que se descubrió es instructiva. Cada entrada de regex recorría una *lista finita de cuatro nombres de categoría* (la cadena de texto de entrada, el armazón o la lista ⟦CODE_0001⟧ de sed). Cuando se acababan los cuatro nombres, el bucle terminaba, fuera cual fuera el total. Así, una ejecución de cuatro tarjetas de 10 horas terminaba en exactamente 40 con cuatro filas. Eso tiene una probabilidad de una entre 10 000 por ejecución, así que las entradas pasaban sus propias comprobaciones, que aceptaban \"cuatro entradas\" como una parada legítima. El verificador compartido ⟦CODE_0002⟧ rechaza una ejecución así. Al ejecutarlo para forzar los sorteos mientras se escribía esta guía, quedó a la vista el problema (consulta la sección de traza). Ya está corregido: cada entrada tiene **cinco** nombres (⟦CODE_0003⟧ se repite). Además, cada ⟦CODE_0004⟧ hace la compilación de una copia del programa cuyas tarjetas valen todas 10 horas. Esa copia exige una quinta tarjeta, ⟦CODE_0005⟧, que termina en 50."
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:49
+msgctxt "s-9f148b367e02-0021"
+msgid "The machine to identify"
+msgstr "La máquina que hay que identificar"
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:51
+msgctxt "s-560c7924cbda-0022"
+msgid "Perl, PCRE2 and pcre2grep search and deliberately fail after doing work through side effects. The .NET search fails the final *pass* and succeeds overall, returning its captures. Sed uses a loop of substitutions over one line. The final status tells you where to look for results."
+msgstr "Perl, PCRE2 y pcre2grep buscan y fallan a propósito después de hacer su trabajo mediante efectos secundarios. La búsqueda de .NET falla la *pasada* final y tiene éxito en conjunto, y devuelve sus capturas. Sed usa un bucle de sustituciones sobre una línea. El estado final te dice dónde buscar los resultados."
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:53
+msgctxt "s-ae4c73493504-0023"
+msgid "**What repeats.** In Perl, a greedy quantifier, ⟦CODE_0001⟧, whose body is a code block ([L7](⟦DEST_0002⟧)). In PCRE2, the same shape with callouts: ⟦CODE_0003⟧ ([L24-26](⟦DEST_0004⟧)). In pcre2grep, the same, with callouts that run ⟦CODE_0005⟧ ([L14-20](⟦DEST_0006⟧)). In .NET, ⟦CODE_0007⟧ over a pattern of balancing groups only ([L13](⟦DEST_0008⟧)). In sed, a jump back to the label ⟦CODE_0009⟧, taken by ⟦CODE_0010⟧ and ⟦CODE_0011⟧ behind regex addresses ([timecards.sed](⟦DEST_0012⟧))."
+msgstr "**Qué se repite.** En Perl, un cuantificador voraz, ⟦CODE_0001⟧, cuyo cuerpo es un bloque de código ([L7](⟦DEST_0002⟧)). En PCRE2, la misma forma con callouts: ⟦CODE_0003⟧ ([L24-26](⟦DEST_0004⟧)). En pcre2grep, lo mismo, con callouts que ejecutan ⟦CODE_0005⟧ ([L14-20](⟦DEST_0006⟧)). En .NET, ⟦CODE_0007⟧ sobre un patrón hecho solo de grupos de equilibrio ([L13](⟦DEST_0008⟧)). En sed, un salto de vuelta a la etiqueta ⟦CODE_0009⟧, que hacen ⟦CODE_0010⟧ y ⟦CODE_0011⟧ detrás de direcciones regex ([timecards.sed](⟦DEST_0012⟧))."
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:55
+msgctxt "s-417a0413eef1-0024"
+msgid "**Where state lives.** Perl: package variables ⟦CODE_0001⟧ and ⟦CODE_0002⟧, assigned with ⟦CODE_0003⟧. PCRE2: a C struct that the callouts share. pcre2grep: SQLite, which each callout rereads. .NET: *stack depth*, in the captures of group ⟦CODE_0004⟧ (the budget) and group ⟦CODE_0005⟧ (the total). sed: one line of text. Numbers are runs of ⟦CODE_0006⟧ (tally marks), random numbers are a 16-character string of 0s and 1s, and even the return address of a subroutine is text."
+msgstr "**Dónde vive el estado.** Perl: las variables de paquete ⟦CODE_0001⟧ y ⟦CODE_0002⟧, asignadas con ⟦CODE_0003⟧. PCRE2: una estructura de C que comparten los callouts. pcre2grep: SQLite, que cada callout vuelve a leer. .NET: la *profundidad de la pila*, en las capturas del grupo ⟦CODE_0004⟧ (el presupuesto) y del grupo ⟦CODE_0005⟧ (el total). sed: una línea de texto. Los números son series de ⟦CODE_0006⟧ (marcas de conteo). Los números aleatorios son una cadena de texto de 16 caracteres de 0 y 1. Incluso la dirección de retorno de una subrutina es texto."
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:57
+msgctxt "s-7d9325e5a24f-0025"
+msgid "**What advances the next step.** Perl and PCRE2: the engine reaches the next pass of the quantifier. pcre2grep: the exit code of a program the callout ran. .NET: the engine matches 10 to 19 letters ⟦CODE_0001⟧, each popping one budget token. sed: a ⟦CODE_0002⟧ or ⟦CODE_0003⟧ jump that goes back to ⟦CODE_0004⟧."
+msgstr "**Qué hace avanzar el paso siguiente.** Perl y PCRE2: el motor llega a la siguiente pasada del cuantificador. pcre2grep: el estado de salida de un programa que ejecutó el callout. .NET: el motor encuentra de 10 a 19 letras ⟦CODE_0001⟧ (horas por tarjeta), y cada una retira un token del presupuesto. sed: un salto ⟦CODE_0002⟧ o ⟦CODE_0003⟧ que vuelve a ⟦CODE_0004⟧."
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:59
+msgctxt "s-4fb8b097f5e3-0026"
+msgid "**What stops it.** Perl: a postponed block that returns the next category as a *pattern*, or ⟦CODE_0001⟧ once the total passes 40 or the names run out. PCRE2: ⟦CODE_0002⟧ returns 1 when the total is over 40. pcre2grep: SQLite refuses to insert \"total is at most 40\" into a ⟦CODE_0003⟧ column, so ⟦CODE_0004⟧ exits non-zero, which vetoes the branch. .NET: when the budget stack is empty the pass hits ⟦CODE_0005⟧. sed: ⟦CODE_0006⟧, which asks whether 41 tally marks occur."
+msgstr "**Qué lo detiene.** Perl: un bloque pospuesto que devuelve la siguiente categoría como *patrón*, o ⟦CODE_0001⟧ cuando el total pasa de 40 o se acaban los nombres. PCRE2: ⟦CODE_0002⟧ devuelve 1 cuando el total pasa de 40. pcre2grep: SQLite se niega a insertar \"el total es de 40 o menos\" en una columna ⟦CODE_0003⟧. Por eso ⟦CODE_0004⟧ termina con estado distinto de cero, lo que permite vetar la rama. .NET: cuando la pila del presupuesto está vacía, la pasada llega a ⟦CODE_0005⟧. sed: ⟦CODE_0006⟧, que pregunta si aparecen 41 marcas de conteo."
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:61
+msgctxt "s-5b4242b4af67-0027"
+msgid "**What commits.** In Perl the transaction commits before the match returns false. In the C PCRE2 program a callout writes the TSV summary and closes the file before the same deliberate failure. In pcre2grep, each callout is its own ⟦CODE_0001⟧ process, so each statement commits at once. There is no outer transaction. In .NET, *nothing commits inside the match*: a regex cannot write. After a successful match the host reads the captures and appends a TSV report. A failed match yields no cards, but the host still writes a zero-entry report and exits 1. In sed, the SQL goes to fd 3 for ⟦CODE_0002⟧ to read, with ⟦CODE_0003⟧ and ⟦CODE_0004⟧ in the stream."
+msgstr "**Qué confirma.** En Perl, la transacción se confirma antes de que la coincidencia devuelva falso. En el programa PCRE2 en C, un callout escribe el resumen TSV y cierra el archivo antes del mismo fallo deliberado. En pcre2grep, cada callout es su propio proceso ⟦CODE_0001⟧, así que cada sentencia se confirma de inmediato. No hay transacción externa. En .NET, *nada se confirma dentro de la coincidencia*: una regex no puede escribir. Tras una coincidencia correcta, el anfitrión lee las capturas y añade un informe TSV. Una coincidencia fallida no da tarjetas, pero el anfitrión escribe igualmente un informe de cero entradas y termina con estado 1. En sed, el SQL va al descriptor 3 para que lo lea ⟦CODE_0002⟧, con ⟦CODE_0003⟧ y ⟦CODE_0004⟧ en el flujo."
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:67
+msgctxt "s-7c09072003ae-0028"
+msgid "regex-pcre2: the engine calls back into C at each callout"
+msgstr "regex-pcre2: el motor llama de vuelta a C en cada callout"
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:68
+msgctxt "s-591140a37cda-0029"
+msgid "A sequence diagram. The C host compiles the pattern and calls pcre2_match once. The engine reaches an init callout, and the host opens the scratch file and writes the header. For each category, the engine reaches a gate callout, which returns 0 while the total is 40 or less. The engine matches the next category name from the subject, and then reaches a book callout, where the host draws hours and writes the record. When the gate returns 1, because the total is over 40, that pass fails and the star loop ends. The commit verb forbids retrying fewer passes, and a commit callout writes the summary and closes the file. A final fail verb makes the match return no match, and the host prints the file."
+msgstr "Un diagrama de secuencia. El anfitrión en C compila el patrón y llama a pcre2_match una sola vez. El motor llega a un callout init y el anfitrión abre el archivo temporal y escribe el encabezado. Para cada categoría, el motor llega a un callout gate, que devuelve 0 mientras el total no pase de 40. El motor busca la coincidencia del siguiente nombre de categoría en la cadena de entrada y luego llega a un callout book, donde el anfitrión sortea las horas y escribe el registro. Cuando el callout gate devuelve 1, porque el total pasa de 40, esa pasada falla y el bucle con asterisco termina. El verbo commit prohíbe reintentar con menos pasadas y un callout commit escribe el resumen y cierra el archivo. Un verbo fail final hace que la búsqueda no encuentre coincidencia y el anfitrión imprime el archivo."
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:69
+msgctxt "s-f892cac3758c-0030"
+msgid "C host"
+msgstr "Anfitrión en C"
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:70
+msgctxt "s-e6de388781eb-0031"
+msgid "PCRE2 engine"
+msgstr "Motor PCRE2"
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:71
+msgctxt "s-dd12b9c54eb3-0032"
+msgid "Callout function"
+msgstr "Función de callout"
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:72
+msgctxt "s-19d5bf68fed0-0033"
+msgid "pcre2_match, once"
+msgstr "pcre2_match, una vez"
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:73
+msgctxt "s-1a251ad619ce-0034"
+msgid "init: opens the file, writes the header"
+msgstr "init: abre el archivo y escribe el encabezado"
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:74
+msgctxt "s-b62de3b75002-0035"
+msgid "for each category in the subject"
+msgstr "para cada categoría en el sujeto"
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:75
+msgctxt "s-ccd0f617af1c-0036"
+msgid "gate: returns 0 while the total is 40 or less"
+msgstr "gate: devuelve 0 mientras el total no pasa de 40"
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:76
+msgctxt "s-929c72c17486-0037"
+msgid "match the next category name"
+msgstr "busca la coincidencia del nombre de la siguiente categoría"
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:77
+msgctxt "s-27858a1981c8-0038"
+msgid "book: draws hours, writes the record"
+msgstr "libro: obtiene las horas y escribe el registro"
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:79
+msgctxt "s-eb22578ff761-0039"
+msgid "gate: returns 1, the total is over 40"
+msgstr "gate: devuelve 1, el total pasa de 40"
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:80
+msgctxt "s-e9a704851692-0040"
+msgid "the pass fails, the star loop ends"
+msgstr "la pasada falla, el bucle de la estrella termina"
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:81
+msgctxt "s-bbf16ff7daa7-0041"
+msgid "commit, after COMMIT: writes the summary"
+msgstr "commit, después de COMMIT: escribe el resumen"
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:82
+msgctxt "s-9aa264aa70c7-0042"
+msgid "FAIL: no match, after all the work"
+msgstr "FAIL: sin coincidencia, después de todo el trabajo"
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:83
+msgctxt "s-564ea43a72fd-0043"
+msgid "print the file"
+msgstr "imprime el archivo"
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:86
+msgctxt "s-702adfec090d-0044"
+msgid "The PCRE2 diagram is a conversation: the engine calls back into C at every callout, and the return value is the decision."
+msgstr "El diagrama de PCRE2 es una conversación: el motor llama de vuelta a C en cada callout, y el valor de retorno es la decisión."
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:92
+msgctxt "s-dcdebdf3a825-0045"
+msgid "regex-dotnet: balancing groups as a budget stack"
+msgstr "regex-dotnet: grupos de equilibrio como una pila de presupuesto"
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:93
+msgctxt "s-496bd1fca955-0046"
+msgid "A flowchart. The host draws five hour counts and writes them as a tape of letters a, one per hour. It runs one regex match. The pattern first pushes 41 empty captures onto the stack of group b, which is the budget. Each pass of the star loop first checks whether the budget stack is non-empty. If it is, a chain of conditional flag groups picks the next category. Then 10 to 19 letters a are matched, and each one pops a budget token, if any is left, and pushes a token onto the running total stack. When the budget is empty, a failing lookahead fails the pass and the loop ends. The host then reads out the categories, the hours and the size of the total stack."
+msgstr "Un diagrama de flujo. El anfitrión sortea cinco cantidades de horas y las escribe como una cinta de letras a, una por hora. Ejecuta una sola coincidencia de regex. El patrón empieza por apilar 41 capturas vacías en la pila del grupo b, que es el presupuesto. Cada pasada del bucle de estrella comprueba primero si la pila del presupuesto no está vacía. Si no lo está, una cadena de grupos condicionales de banderas elige la siguiente categoría. Después coinciden de 10 a 19 letras a (las horas de una tarjeta). Cada una retira un token del presupuesto, si queda alguno, y apila un token en la pila del total acumulado. Cuando el presupuesto está vacío, un *lookahead* que falla hace fallar la pasada y el bucle termina. Por último, el anfitrión lee las categorías, las horas y el tamaño de la pila del total acumulado."
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:94
+msgctxt "s-3119d4532f17-0047"
+msgid "Host: draw five hour counts, write them as a tape of a's"
+msgstr "Anfitrión: sortea cinco conteos de horas y los escribe como una cinta de letras a"
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:94
+msgctxt "s-933185ca0dbf-0048"
+msgid "One Regex match runs against the tape"
+msgstr "Una sola coincidencia de Regex se ejecuta sobre la cinta"
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:95
+msgctxt "s-9086f50330b0-0049"
+msgid "Push 41 empty captures onto group b: the budget"
+msgstr "Empuja 41 capturas vacías al grupo b: el presupuesto"
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:96
+msgctxt "s-0705454242cc-0050"
+msgid "Is the budget stack non-empty?"
+msgstr "¿La pila del presupuesto no está vacía?"
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:97
+msgctxt "s-8a798890fe93-0051"
+msgid "yes"
+msgstr "sí"
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:97
+msgctxt "s-47c80c5e4327-0052"
+msgid "Category picker: the first flag not yet set names the category"
+msgstr "Selector de categoría: la primera bandera que aún no está activada indica la categoría"
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:98
+msgctxt "s-145611937a30-0053"
+msgid "Match 10 to 19 a's: each pops a budget token if any is left, and pushes one onto the total stack s"
+msgstr "Busca de 10 a 19 horas (letras *a*): cada una extrae un token de presupuesto si queda alguno y apila uno en la pila total s"
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:100
+msgctxt "s-2c266a00c512-0054"
+msgid "no: a failing lookahead fails the pass"
+msgstr "no: un lookahead que falla hace fallar la pasada"
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:100
+msgctxt "s-e0d36c852aeb-0055"
+msgid "The star loop ends and the match succeeds"
+msgstr "El bucle de la estrella termina y la coincidencia tiene éxito"
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:101
+msgctxt "s-088d80d2ae28-0056"
+msgid "Host reads the captures: categories, hours and the size of s"
+msgstr "El anfitrión lee las capturas: las categorías, las horas y el tamaño de s"
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:104
+msgctxt "s-afbadd8653b6-0057"
+msgid "The .NET diagram has no callback at all. The only output is what the engine captured."
+msgstr "El diagrama de .NET no tiene ninguna función de devolución de llamada (*callback*). La única salida es lo que el motor capturó."
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:110
+msgctxt "s-e277d3104f83-0058"
+msgid "regex-sed: one line of text, rewritten by substitutions with labels and jumps"
+msgstr "regex-sed: una línea de texto, reescrita por sustituciones con etiquetas y saltos"
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:111
+msgctxt "s-dbad975ae6fb-0059"
+msgid "A flowchart. sed reads one tape line and rewrites it into the program state. At the label entry, two address tests decide whether to go to done: forty-one or more tally marks in the total, or no categories left. Otherwise the next category is moved to the current slot. At draw, substitutions rewrite a 16-bit shift register in the line until a digit is available. The digit becomes tally marks that are added to the total. The label dec rewrites marks into decimal. The label row prints the row and writes an INSERT to file descriptor 3. Control jumps back to entry. At done, the summary is printed and COMMIT is written to file descriptor 3. On a terminal, a catastrophic backtracking match is the clock for the pulse. sed then exits with status 1 on purpose."
+msgstr "Un diagrama de flujo. sed lee una línea de cinta y la reescribe para formar el estado del programa. En la etiqueta de entrada entry, dos pruebas de dirección deciden si saltar a done: el total tiene cuarenta y una marcas de conteo o más, o no quedan categorías. Si ninguna se cumple, la siguiente categoría pasa a la posición actual. En draw, las sustituciones reescriben un registro de desplazamiento de 16 bits en la línea hasta que hay un dígito disponible. El dígito se convierte en marcas de conteo que se suman al total. La etiqueta dec reescribe las marcas en decimal. En la etiqueta row, sed imprime la fila y escribe un INSERT en el descriptor de archivo 3. El control vuelve a la etiqueta entry. En done, sed imprime el resumen y escribe COMMIT en el descriptor de archivo 3. En una terminal, una coincidencia con retroceso catastrófico hace de reloj para el pulso. Luego sed termina a propósito con estado de salida 1."
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:112
+msgctxt "s-da5d9aee014a-0060"
+msgid "Read the tape line and rewrite it into the program state"
+msgstr "Lee la línea de la cinta y reescríbela en el estado del programa"
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:112
+msgctxt "s-5c35bdb294a0-0061"
+msgid "entry: 41 or more # marks in the total, or no categories left?"
+msgstr "entrada: ¿41 o más marcas # en el total o no quedan categorías?"
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:113
+msgctxt "s-9390298f3fb0-0062"
+msgid "no"
+msgstr "no"
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:113
+msgctxt "s-913eba0e8d44-0063"
+msgid "Move the next category into the current slot"
+msgstr "Mueve la siguiente categoría a la ranura actual"
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:114
+msgctxt "s-351d307214d6-0064"
+msgid "draw and step: rewrite the 16-bit shift register until a digit comes out"
+msgstr "draw y step: reescribe el registro de desplazamiento de 16 bits hasta que salga un dígito"
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:115
+msgctxt "s-b4b2233e95f5-0065"
+msgid "Turn the digit into tally marks and append them to the total"
+msgstr "Convierte el dígito en marcas y añádelas al total"
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:116
+msgctxt "s-40f1c4a29654-0066"
+msgid "dec and row: marks to decimal, print the row, write the INSERT to fd 3"
+msgstr "dec y row: convierte a decimal, imprime la fila y escribe INSERT en el descriptor 3"
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:118
+msgctxt "s-8a798890fe93-0067"
+msgid "yes"
+msgstr "sí"
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:118
+msgctxt "s-beaf167a0297-0068"
+msgid "done: print the summary, write COMMIT to fd 3"
+msgstr "done: imprime el resumen y escribe COMMIT en el descriptor 3"
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:119
+msgctxt "s-051f43dd54d4-0069"
+msgid "On a terminal: pulse, timed by a regex that backtracks for a while"
+msgstr "En terminal: pulso al ritmo del retroceso de una expresión regular"
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:120
+msgctxt "s-96957d79ba00-0070"
+msgid "Q1: sed exits 1 on purpose; sqlite3 reads fd 3"
+msgstr "Q1: sed termina a propósito con estado 1. sqlite3 lee el descriptor 3"
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:123
+msgctxt "s-54fb43fe2b0e-0071"
+msgid "The sed diagram is a flowchart with a real cycle, because sed has a goto. It is a rewriting machine with a program counter, not a single match."
+msgstr "El diagrama de sed es un diagrama de flujo con un ciclo real, porque sed tiene un goto. Es una máquina de reescritura con un contador de programa, no una sola coincidencia."
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:125
+msgctxt "s-67a72cdadc6f-0072"
+msgid "Trace one run"
+msgstr "Traza una ejecución"
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:127
+msgctxt "s-7e00cfc46e2d-0073"
+msgid "The entries draw random hours, and in this family the hours are not always under your control. For PCRE2 and .NET, the trace uses scratch copies with the random draws replaced by fixed values, run in the sandbox (PCRE2) or locally from a scratch folder (.NET). For sed, the entry has a seed: the README's seed ⟦CODE_0001⟧ always gives the same cards, so it is a fixed run, with hours 15, 14, 14 instead of 15, 19, 12. All three were run to check this section."
+msgstr "Las entradas sortean horas al azar, y en esta familia no siempre controlas las horas. Para PCRE2 y .NET, la traza usa copias de trabajo con los sorteos aleatorios sustituidos por valores fijos. Se ejecutaron en el entorno aislado (PCRE2) o en local desde una carpeta temporal (.NET). Para sed, la entrada tiene una semilla. La semilla ⟦CODE_0001⟧ del README siempre da las mismas tarjetas, así que es una ejecución fija. Sus horas son 15, 14, 14 en lugar de 15, 19, 12. Se ejecutaron los tres para comprobar esta sección."
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:129
+msgctxt "s-8e95557be5e2-0074"
+msgid "PCRE2: the callout conversation"
+msgstr "PCRE2: la conversación de callouts"
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:131
+msgctxt "s-d7f02f801434-0075"
+msgid "With hours 15, 19, 12, and a line of output added to stderr at each callout, the run printed:"
+msgstr "Con las horas 15, 19, 12 y una línea de salida añadida a stderr en cada callout, la ejecución imprimió:"
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:145
+msgctxt "s-6e201f0c3d2d-0076"
+msgid "⟦SEP_0001⟧ Callout ⟦SEP_0002⟧ State before ⟦SEP_0003⟧ Return ⟦SEP_0004⟧ Effect ⟦SEP_0005⟧"
+msgstr "⟦SEP_0001⟧ Callout ⟦SEP_0002⟧ Estado antes ⟦SEP_0003⟧ Retorno ⟦SEP_0004⟧ Efecto ⟦SEP_0005⟧"
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:147
+msgctxt "s-a6e3d18e72c6-0077"
+msgid "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ none ⟦SEP_0004⟧ 0 ⟦SEP_0005⟧ opens the file, writes the header ⟦SEP_0006⟧"
+msgstr "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ ninguno ⟦SEP_0004⟧ 0 ⟦SEP_0005⟧ abre el archivo y escribe el encabezado ⟦SEP_0006⟧"
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:148
+msgctxt "s-8417fec54288-0078"
+msgid "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ total 0 ⟦SEP_0004⟧ 0 ⟦SEP_0005⟧ continue ⟦SEP_0006⟧"
+msgstr "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ total 0 ⟦SEP_0004⟧ 0 ⟦SEP_0005⟧ continúa ⟦SEP_0006⟧"
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:149
+msgctxt "s-28dbc1e452b8-0079"
+msgid "⟦SEP_0003⟧ ⟦CODE_0001⟧ (⟦DNT_0002⟧) ⟦SEP_0004⟧ total 0 ⟦SEP_0005⟧ 0 ⟦SEP_0006⟧ draws 15, total 15, writes the row ⟦SEP_0007⟧"
+msgstr "⟦SEP_0003⟧ ⟦CODE_0001⟧ (⟦DNT_0002⟧) ⟦SEP_0004⟧ total 0 ⟦SEP_0005⟧ 0 ⟦SEP_0006⟧ sortea 15, total 15, escribe la fila ⟦SEP_0007⟧"
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:150
+msgctxt "s-22d59f8076ac-0080"
+msgid "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ total 15 ⟦SEP_0004⟧ 0 ⟦SEP_0005⟧ continue ⟦SEP_0006⟧"
+msgstr "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ total 15 ⟦SEP_0004⟧ 0 ⟦SEP_0005⟧ continúa ⟦SEP_0006⟧"
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:151
+msgctxt "s-e55f125e3a5f-0081"
+msgid "⟦SEP_0003⟧ ⟦CODE_0001⟧ (⟦DNT_0002⟧) ⟦SEP_0004⟧ total 15 ⟦SEP_0005⟧ 0 ⟦SEP_0006⟧ 19, total 34 ⟦SEP_0007⟧"
+msgstr "⟦SEP_0003⟧ ⟦CODE_0001⟧ (⟦DNT_0002⟧) ⟦SEP_0004⟧ total 15 ⟦SEP_0005⟧ 0 ⟦SEP_0006⟧ sortea 19, total 34 ⟦SEP_0007⟧"
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:152
+msgctxt "s-d01d7291f6c5-0082"
+msgid "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ total 34 ⟦SEP_0004⟧ 0 ⟦SEP_0005⟧ continue ⟦SEP_0006⟧"
+msgstr "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ total 34 ⟦SEP_0004⟧ 0 ⟦SEP_0005⟧ continúa ⟦SEP_0006⟧"
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:153
+msgctxt "s-6935bd6e1c51-0083"
+msgid "⟦SEP_0003⟧ ⟦CODE_0001⟧ (⟦DNT_0002⟧) ⟦SEP_0004⟧ total 34 ⟦SEP_0005⟧ 0 ⟦SEP_0006⟧ 12, total 46 ⟦SEP_0007⟧"
+msgstr "⟦SEP_0003⟧ ⟦CODE_0001⟧ (⟦DNT_0002⟧) ⟦SEP_0004⟧ total 34 ⟦SEP_0005⟧ 0 ⟦SEP_0006⟧ sortea 12, total 46 ⟦SEP_0007⟧"
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:154
+msgctxt "s-d581f055dbfa-0084"
+msgid "⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ total 46 ⟦SEP_0005⟧ **1** ⟦SEP_0006⟧ fail this branch: the ⟦CODE_0002⟧ ends ⟦SEP_0007⟧"
+msgstr "⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ total 46 ⟦SEP_0005⟧ **1** ⟦SEP_0006⟧ falla esta rama: el ⟦CODE_0002⟧ termina ⟦SEP_0007⟧"
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:155
+msgctxt "s-6721c88c56e4-0085"
+msgid "⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ total 46 ⟦SEP_0005⟧ 0 ⟦SEP_0006⟧ after ⟦CODE_0002⟧, writes the summary once ⟦SEP_0007⟧"
+msgstr "⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ total 46 ⟦SEP_0005⟧ 0 ⟦SEP_0006⟧ después de ⟦CODE_0002⟧, escribe el resumen una vez ⟦SEP_0007⟧"
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:156
+msgctxt "s-3b4a6aa34561-0086"
+msgid "⟦SEP_0003⟧ match result ⟦SEP_0004⟧ none ⟦SEP_0005⟧ none ⟦SEP_0006⟧ ⟦CODE_0001⟧: ⟦CODE_0002⟧ returns -1 (no match) ⟦SEP_0007⟧"
+msgstr "⟦SEP_0003⟧ resultado de la coincidencia ⟦SEP_0004⟧ ninguno ⟦SEP_0005⟧ ninguno ⟦SEP_0006⟧ ⟦CODE_0001⟧: ⟦CODE_0002⟧ devuelve -1 (sin coincidencia) ⟦SEP_0007⟧"
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:158
+msgctxt "s-aac7bc1d9edf-0087"
+msgid "The crossing card is already booked when the gate fires. That is the rule \"keep the first card over 40\": the gate tests *before* each category, so it rejects the card *after* the crossing one. The match returned no match, and the file still holds three rows and a summary."
+msgstr "La tarjeta que cruza el tope ya está registrada cuando se activa el gate. Esa es la regla \"conserva la primera tarjeta que pasa de 40\": el gate comprueba *antes* de cada categoría, así que rechaza la tarjeta *posterior* a la que cruza. La búsqueda no encontró coincidencia, y el archivo aún contiene tres filas y un resumen."
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:160
+msgctxt "s-57fe1a379582-0088"
+msgid ".NET: the budget stack"
+msgstr ".NET: la pila del presupuesto"
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:162
+msgctxt "s-987285c75b7c-0089"
+msgid "The scratch copy drew from the command line instead of ⟦CODE_0001⟧. With draws ⟦CODE_0002⟧ it printed three rows and ⟦CODE_0003⟧. The fourth and fifth draws were ignored. The trace in terms of stacks:"
+msgstr "La copia de trabajo sorteaba desde la línea de comandos en lugar de ⟦CODE_0001⟧. Con los sorteos ⟦CODE_0002⟧ imprimió tres filas y ⟦CODE_0003⟧. El cuarto y el quinto sorteo se ignoraron. La traza en términos de pilas:"
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:164
+msgctxt "s-24ac0d620449-0090"
+msgid "⟦SEP_0003⟧ Step ⟦SEP_0004⟧ Budget stack ⟦CODE_0001⟧ ⟦SEP_0005⟧ Total stack ⟦CODE_0002⟧ ⟦SEP_0006⟧ What the pattern does ⟦SEP_0007⟧"
+msgstr "⟦SEP_0003⟧ Paso ⟦SEP_0004⟧ Pila del presupuesto ⟦CODE_0001⟧ ⟦SEP_0005⟧ Pila del total ⟦CODE_0002⟧ ⟦SEP_0006⟧ Qué hace el patrón ⟦SEP_0007⟧"
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:166
+msgctxt "s-22c3ea99fe58-0091"
+msgid "⟦SEP_0002⟧ Start ⟦SEP_0003⟧ 41 tokens ⟦SEP_0004⟧ 0 ⟦SEP_0005⟧ ⟦CODE_0001⟧ pushes the budget ⟦SEP_0006⟧"
+msgstr "⟦SEP_0002⟧ Inicio ⟦SEP_0003⟧ 41 tokens ⟦SEP_0004⟧ 0 ⟦SEP_0005⟧ ⟦CODE_0001⟧ apila el presupuesto ⟦SEP_0006⟧"
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:167
+msgctxt "s-714a1546b54a-0092"
+msgid "⟦SEP_0007⟧ Pass 1: ⟦DNT_0001⟧ ⟦SEP_0008⟧ 41, then 26 ⟦SEP_0009⟧ 15 ⟦SEP_0010⟧ stack ⟦CODE_0002⟧ non-empty, picker takes ⟦DNT_0003⟧, 15 letters ⟦CODE_0004⟧ each pop one ⟦CODE_0005⟧ and push one ⟦CODE_0006⟧ ⟦SEP_0011⟧"
+msgstr "⟦SEP_0007⟧ Pasada 1: ⟦DNT_0001⟧ ⟦SEP_0008⟧ 41, luego 26 ⟦SEP_0009⟧ 15 ⟦SEP_0010⟧ la pila ⟦CODE_0002⟧ no está vacía, el selector toma ⟦DNT_0003⟧, 15 letras ⟦CODE_0004⟧ retiran cada una un ⟦CODE_0005⟧ y apilan un ⟦CODE_0006⟧ ⟦SEP_0011⟧"
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:168
+msgctxt "s-9ee1aa82460b-0093"
+msgid "⟦SEP_0002⟧ Pass 2: ⟦DNT_0001⟧ ⟦SEP_0003⟧ 26, then 7 ⟦SEP_0004⟧ 34 ⟦SEP_0005⟧ 19 letters ⟦SEP_0006⟧"
+msgstr "⟦SEP_0002⟧ Pasada 2: ⟦DNT_0001⟧ ⟦SEP_0003⟧ 26, luego 7 ⟦SEP_0004⟧ 34 ⟦SEP_0005⟧ 19 letras ⟦SEP_0006⟧"
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:169
+msgctxt "s-e5abda749d14-0094"
+msgid "⟦SEP_0003⟧ Pass 3: ⟦DNT_0001⟧ ⟦SEP_0004⟧ 7, then 0 ⟦SEP_0005⟧ 46 ⟦SEP_0006⟧ 12 letters: the first 7 pop a token and the last 5 pop nothing, because the conditional ⟦CODE_0002⟧ finds the stack empty ⟦SEP_0007⟧"
+msgstr "⟦SEP_0003⟧ Pasada 3: ⟦DNT_0001⟧ ⟦SEP_0004⟧ 7, luego 0 ⟦SEP_0005⟧ 46 ⟦SEP_0006⟧ 12 letras: las primeras 7 retiran un token y las últimas 5 no retiran nada, porque la condición ⟦CODE_0002⟧ encuentra la pila vacía ⟦SEP_0007⟧"
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:170
+msgctxt "s-39fde1b99a24-0095"
+msgid "⟦SEP_0005⟧ Pass 4 test ⟦SEP_0006⟧ 0 ⟦SEP_0007⟧ 46 ⟦SEP_0008⟧ ⟦CODE_0001⟧ finds ⟦CODE_0002⟧ empty and takes ⟦CODE_0003⟧, which fails the pass. The ⟦CODE_0004⟧ ends and the match *succeeds* ⟦SEP_0009⟧"
+msgstr "⟦SEP_0005⟧ Prueba de la pasada 4 ⟦SEP_0006⟧ 0 ⟦SEP_0007⟧ 46 ⟦SEP_0008⟧ ⟦CODE_0001⟧ encuentra ⟦CODE_0002⟧ vacío y toma ⟦CODE_0003⟧, lo que hace fallar la pasada. El ⟦CODE_0004⟧ termina y la coincidencia *tiene éxito* ⟦SEP_0009⟧"
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:172
+msgctxt "s-9ca138b635b8-0096"
+msgid "The crossing card can overshoot the budget in the middle of its hours. Only the next pass is refused. The [fixed-tape check](⟦DEST_0001⟧) runs five tens through the original pattern and then the same tape through the pattern with ⟦CODE_0002⟧ appended. On .NET SDK 10.0.401 the first reports 50 hours across five rows with exit 0; the failure reports zero hours and rows with exit 1. Both reports are appended to TSV."
+msgstr "La tarjeta que cruza el tope puede rebasar el presupuesto a mitad de sus horas. Solo se rechaza la pasada siguiente. La [comprobación con cinta fija](⟦DEST_0001⟧) ejecuta cinco decenas con el patrón original y luego la misma cinta con el patrón con ⟦CODE_0002⟧ añadido. En .NET SDK 10.0.401, la primera informa de 50 horas en cinco filas con estado de salida 0. El caso de fallo informa de cero horas y cero filas con estado de salida 1. Ambos informes se añaden a TSV."
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:174
+msgctxt "s-59e8bb74e271-0097"
+msgid "**The boundary: before and after the fix.** Before the fix, scratch copies of PCRE2 and .NET were run with four 10-hour draws. Both stopped with ⟦CODE_0001⟧: after ⟦CODE_0002⟧ there was no fifth category name, so no fifth pass could start, although 40 is not over 40. For PCRE2 the shared checker confirmed it:"
+msgstr "**El límite: antes y después de la corrección.** Antes de la corrección, se ejecutaron copias de trabajo de PCRE2 y .NET con cuatro sorteos de 10 horas. Ambas se detuvieron con ⟦CODE_0001⟧: después de ⟦CODE_0002⟧ no había un quinto nombre de categoría, así que no podía empezar una quinta pasada, aunque 40 no pasa de 40. Para PCRE2, el verificador compartido lo confirmó:"
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:181
+msgctxt "s-8f549827c2eb-0098"
+msgid "The same held for the Perl entry (its postponed block returns ⟦CODE_0001⟧, which fails when the names are used up) and for sed (⟦CODE_0002⟧). The fix is one more name in each: ⟦CODE_0003⟧ in PCRE2's subject and pcre2grep's tape, a fifth ⟦CODE_0004⟧ in Perl's scaffold and ⟦CODE_0005⟧, a fifth tape entry and one more flag group (⟦CODE_0006⟧) in the .NET picker and ⟦CODE_0007⟧ in sed. Each ⟦CODE_0008⟧ now builds a variant whose every card is worth 10 hours and requires five rows (the fourth ⟦CODE_0009⟧, the fifth ⟦CODE_0010⟧, total 50). The new tests were also run against the old code, and each failed there (⟦CODE_0011⟧), so they can fail. All five entries pass them now."
+msgstr "Lo mismo ocurría en la entrada de Perl (su bloque pospuesto devuelve ⟦CODE_0001⟧, que falla cuando se agotan los nombres) y en sed (⟦CODE_0002⟧). La corrección añade un nombre en cada entrada. En PCRE2 y pcre2grep es ⟦CODE_0003⟧, en la cadena de texto de entrada de uno y en la cinta del otro. En Perl es un quinto ⟦CODE_0004⟧ en el armazón y ⟦CODE_0005⟧. En .NET es una quinta entrada de la cinta y un grupo de banderas más (⟦CODE_0006⟧) en el selector. En sed es ⟦CODE_0007⟧. Cada ⟦CODE_0008⟧ hace ahora la compilación de una variante en la que cada tarjeta vale 10 horas. Esa variante exige cinco filas (la cuarta ⟦CODE_0009⟧, la quinta ⟦CODE_0010⟧, total 50). Las pruebas nuevas también se ejecutaron contra el código antiguo y cada una falló allí (⟦CODE_0011⟧), así que pueden fallar. Las cinco entradas las pasan ahora."
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:183
+msgctxt "s-faa0763b86e1-0099"
+msgid "sed: one line, rewritten"
+msgstr "sed: una línea, reescrita"
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:185
+msgctxt "s-66d34655e538-0100"
+msgid "A tape with ⟦CODE_0001⟧ enables a state print at each head and at intervening rewrites. GNU sed 4.9 reproduced the trace below using the README's fixed tape with ⟦CODE_0002⟧ and fd 3 redirected to a separate SQL file. Running that SQL in SQLite 3.45.1 reproduced the three card rows. Here are the ⟦CODE_0003⟧ states without their common prefix:"
+msgstr "Una cinta con ⟦CODE_0001⟧ activa una impresión del estado en cada cabecera del bucle y en las reescrituras intermedias. GNU sed 4.9 reprodujo la traza de abajo con la cinta fija del README con ⟦CODE_0002⟧ y el descriptor 3 redirigido a un archivo SQL aparte. Al ejecutar ese SQL en SQLite 3.45.1 se reprodujeron las tres filas de tarjetas. Estos son los estados de ⟦CODE_0003⟧ sin su prefijo común:"
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:194
+msgctxt "s-dc543d92b684-0101"
+msgid "⟦SEP_0002⟧ Loop head ⟦SEP_0003⟧ Total (marks) ⟦SEP_0004⟧ Categories left ⟦SEP_0005⟧ ⟦CODE_0001⟧ ⟦SEP_0006⟧ Next ⟦SEP_0007⟧"
+msgstr "⟦SEP_0002⟧ Cabecera del bucle ⟦SEP_0003⟧ Total (marcas) ⟦SEP_0004⟧ Categorías restantes ⟦SEP_0005⟧ ⟦CODE_0001⟧ ⟦SEP_0006⟧ Siguiente ⟦SEP_0007⟧"
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:196
+msgctxt "s-f632d93347e4-0102"
+msgid "⟦SEP_0002⟧ 1 ⟦SEP_0003⟧ 0 ⟦SEP_0004⟧ five ⟦SEP_0005⟧ no match ⟦SEP_0006⟧ take ⟦DNT_0001⟧, draw 15 ⟦SEP_0007⟧"
+msgstr "⟦SEP_0002⟧ 1 ⟦SEP_0003⟧ 0 ⟦SEP_0004⟧ cinco ⟦SEP_0005⟧ sin coincidencia ⟦SEP_0006⟧ toma ⟦DNT_0001⟧, sortea 15 ⟦SEP_0007⟧"
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:197
+msgctxt "s-dcd20e09cb28-0103"
+msgid "⟦SEP_0002⟧ 2 ⟦SEP_0003⟧ 15 ⟦SEP_0004⟧ four ⟦SEP_0005⟧ no match ⟦SEP_0006⟧ take ⟦DNT_0001⟧, draw 14 ⟦SEP_0007⟧"
+msgstr "⟦SEP_0002⟧ 2 ⟦SEP_0003⟧ 15 ⟦SEP_0004⟧ cuatro ⟦SEP_0005⟧ sin coincidencia ⟦SEP_0006⟧ toma ⟦DNT_0001⟧, sortea 14 ⟦SEP_0007⟧"
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:198
+msgctxt "s-548998705692-0104"
+msgid "⟦SEP_0002⟧ 3 ⟦SEP_0003⟧ 29 ⟦SEP_0004⟧ three ⟦SEP_0005⟧ no match ⟦SEP_0006⟧ take ⟦DNT_0001⟧, draw 14 ⟦SEP_0007⟧"
+msgstr "⟦SEP_0002⟧ 3 ⟦SEP_0003⟧ 29 ⟦SEP_0004⟧ tres ⟦SEP_0005⟧ sin coincidencia ⟦SEP_0006⟧ toma ⟦DNT_0001⟧, sortea 14 ⟦SEP_0007⟧"
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:199
+msgctxt "s-8a1ca5ae8197-0105"
+msgid "⟦SEP_0003⟧ 4 ⟦SEP_0004⟧ **43** ⟦SEP_0005⟧ two ⟦SEP_0006⟧ **match** ⟦SEP_0007⟧ ⟦CODE_0001⟧: print the summary, write ⟦CODE_0002⟧ ⟦SEP_0008⟧"
+msgstr "⟦SEP_0003⟧ 4 ⟦SEP_0004⟧ **43** ⟦SEP_0005⟧ dos ⟦SEP_0006⟧ **coincide** ⟦SEP_0007⟧ ⟦CODE_0001⟧: imprime el resumen, escribe ⟦CODE_0002⟧ ⟦SEP_0008⟧"
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:201
+msgctxt "s-23eef91c0708-0106"
+msgid "The rows were ⟦CODE_0001⟧, ⟦CODE_0002⟧ and ⟦CODE_0003⟧, with ⟦CODE_0004⟧. Each trip between loop heads rewrites the shift register to produce a digit, rejects draws of 10 to 15 (⟦CODE_0005⟧) and turns the accepted digit into tally marks. The number of state lines per card is not constant, because a rejected draw repeats a step. ⟦DNT_0006⟧ and the second ⟦DNT_0007⟧ were never used: the stop rule fired first. Had the total been exactly 40 at a later head, ⟦CODE_0008⟧ would still hold a name, so another card would be drawn. With five names the list can only end a run after five cards, and five cards of at least 10 hours always pass 40."
+msgstr "Las filas fueron ⟦CODE_0001⟧, ⟦CODE_0002⟧ y ⟦CODE_0003⟧, con ⟦CODE_0004⟧. Cada viaje entre cabeceras del bucle reescribe el registro de desplazamiento para producir un dígito. Rechaza los sorteos de 10 a 15 (⟦CODE_0005⟧) y convierte el dígito aceptado en marcas de conteo. El número de líneas de estado por tarjeta no es constante, porque un sorteo rechazado repite un paso. ⟦DNT_0006⟧ y el segundo ⟦DNT_0007⟧ nunca se usaron: la regla de parada se activó antes. Si el total hubiera sido exactamente 40 en una cabecera posterior, ⟦CODE_0008⟧ aún tendría un nombre, así que se sortearía otra tarjeta. Con cinco nombres, la lista solo puede terminar una ejecución después de cinco tarjetas, y cinco tarjetas de al menos 10 horas siempre pasan de 40."
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:203
+msgctxt "s-405c1b857089-0107"
+msgid "Compare the ordinary and weird designs"
+msgstr "Compara los diseños ordinarios y los raros"
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:205
+msgctxt "s-bddde8ca5413-0108"
+msgid "There is no ordinary version of this family in the repository: the \"ordinary\" way to do the challenge is any entry in another language. The useful comparison is between the five regex designs."
+msgstr "En el repositorio no hay una versión ordinaria de esta familia: la forma \"ordinaria\" de hacer el reto es cualquier entrada en otro lenguaje. La comparación útil es entre los cinco diseños de regex."
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:207
+msgctxt "s-ac30e4ef45e0-0109"
+msgid "⟦SEP_0001⟧ Dimension ⟦SEP_0002⟧ Perl ⟦SEP_0003⟧ PCRE2 ⟦SEP_0004⟧ pcre2grep ⟦SEP_0005⟧ .NET ⟦SEP_0006⟧ sed ⟦SEP_0007⟧"
+msgstr "⟦SEP_0001⟧ Dimensión ⟦SEP_0002⟧ Perl ⟦SEP_0003⟧ PCRE2 ⟦SEP_0004⟧ pcre2grep ⟦SEP_0005⟧ .NET ⟦SEP_0006⟧ sed ⟦SEP_0007⟧"
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:209
+msgctxt "s-0af1e3e1f434-0110"
+msgid "⟦SEP_0001⟧ **Representation** ⟦SEP_0002⟧ Code blocks in the pattern ⟦SEP_0003⟧ Callout names as opcodes ⟦SEP_0004⟧ Callout scripts that name programs ⟦SEP_0005⟧ Balancing groups as stacks ⟦SEP_0006⟧ Substitutions on one line ⟦SEP_0007⟧"
+msgstr "⟦SEP_0001⟧ **Representación** ⟦SEP_0002⟧ Bloques de código en el patrón ⟦SEP_0003⟧ Nombres de callout como códigos de operación ⟦SEP_0004⟧ Scripts de callout que nombran programas ⟦SEP_0005⟧ Grupos de equilibrio como pilas ⟦SEP_0006⟧ Sustituciones sobre una línea ⟦SEP_0007⟧"
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:210
+msgctxt "s-023af1e71714-0111"
+msgid "⟦SEP_0002⟧ **State** ⟦SEP_0003⟧ ⟦CODE_0001⟧ variables ⟦SEP_0004⟧ C struct ⟦SEP_0005⟧ SQLite ⟦SEP_0006⟧ stack depth ⟦SEP_0007⟧ the line ⟦SEP_0008⟧"
+msgstr "⟦SEP_0002⟧ **Estado** ⟦SEP_0003⟧ variables ⟦CODE_0001⟧ ⟦SEP_0004⟧ estructura de C ⟦SEP_0005⟧ SQLite ⟦SEP_0006⟧ profundidad de la pila ⟦SEP_0007⟧ la línea ⟦SEP_0008⟧"
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:211
+msgctxt "s-fbc225a104cd-0112"
+msgid "⟦SEP_0004⟧ **Observability** ⟦SEP_0005⟧ Hidden in package variables ⟦SEP_0006⟧ ⟦CODE_0001⟧, or printing in the dispatcher ⟦SEP_0007⟧ ⟦CODE_0002⟧ log ⟦SEP_0008⟧ Only the final captures ⟦SEP_0009⟧ The whole machine is one printable line (⟦CODE_0003⟧) ⟦SEP_0010⟧"
+msgstr "⟦SEP_0004⟧ **Observabilidad** ⟦SEP_0005⟧ Oculto en variables de paquete ⟦SEP_0006⟧ ⟦CODE_0001⟧, o impresión en el despachador ⟦SEP_0007⟧ registro de ⟦CODE_0002⟧ ⟦SEP_0008⟧ Solo las capturas finales ⟦SEP_0009⟧ Toda la máquina es una línea imprimible (⟦CODE_0003⟧) ⟦SEP_0010⟧"
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:212
+msgctxt "s-79e28ef13539-0113"
+msgid "⟦SEP_0001⟧ **Tests** ⟦SEP_0002⟧ Run it and read the database ⟦SEP_0003⟧ Compare the callout log with the TSV file ⟦SEP_0004⟧ Black box: the pattern and the exit codes ⟦SEP_0005⟧ Fix the draws and read the captures ⟦SEP_0006⟧ Same seed gives same cards, so the output is testable ⟦SEP_0007⟧"
+msgstr "⟦SEP_0001⟧ **Pruebas** ⟦SEP_0002⟧ Ejecútalo y lee la base de datos ⟦SEP_0003⟧ Compara el registro de callouts con el archivo TSV ⟦SEP_0004⟧ Caja negra: el patrón y los estados de salida ⟦SEP_0005⟧ Fija los sorteos y lee las capturas ⟦SEP_0006⟧ La misma semilla da las mismas tarjetas, así que la salida se puede probar ⟦SEP_0007⟧"
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:213
+msgctxt "s-8f1891d7f993-0114"
+msgid "⟦SEP_0005⟧ **Portability** ⟦SEP_0006⟧ Perl 5 code-block features ⟦SEP_0007⟧ Needs a PCRE2 built with callouts; no JIT ⟦SEP_0008⟧ Needs an upstream build with callout scripts ⟦SEP_0009⟧ Any .NET ⟦SEP_0010⟧ GNU sed only (⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧ intervals) ⟦SEP_0011⟧"
+msgstr "⟦SEP_0005⟧ **Portabilidad** ⟦SEP_0006⟧ Funciones de bloques de código de Perl 5 ⟦SEP_0007⟧ Necesita un PCRE2 compilado con callouts y sin JIT ⟦SEP_0008⟧ Necesita una compilación del proyecto original con scripts de callout ⟦SEP_0009⟧ Cualquier .NET ⟦SEP_0010⟧ Solo GNU sed (intervalos ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧) ⟦SEP_0011⟧"
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:214
+msgctxt "s-151f677ab401-0115"
+msgid "⟦SEP_0001⟧ **Cost** ⟦SEP_0002⟧ Cheap ⟦SEP_0003⟧ Optimizer switched off to keep callouts honest ⟦SEP_0004⟧ One process per callout ⟦SEP_0005⟧ No side effects possible ⟦SEP_0006⟧ about 137 commands per card; a deliberately slow regex as a clock ⟦SEP_0007⟧"
+msgstr "⟦SEP_0001⟧ **Costo** ⟦SEP_0002⟧ Barato ⟦SEP_0003⟧ Optimizador desactivado para que los callouts sean honestos ⟦SEP_0004⟧ Un proceso por callout ⟦SEP_0005⟧ No es posible ningún efecto secundario ⟦SEP_0006⟧ unos 137 comandos por tarjeta; una regex deliberadamente lenta como reloj ⟦SEP_0007⟧"
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:216
+msgctxt "s-b3422e6f76c1-0116"
+msgid "Searching and rewriting differ in a way worth stating. A single match always finishes, because the input is fixed and the engine tries a bounded number of paths. A loop of substitutions can continue indefinitely. This is why rewriting systems are universal and why sed's check needs the stop rule to be real."
+msgstr "Buscar y reescribir se diferencian de una manera que vale la pena decir. Una sola coincidencia siempre termina, porque la entrada de datos es fija y el motor prueba una cantidad acotada de caminos. Un bucle de sustituciones puede continuar indefinidamente. Por eso los sistemas de reescritura son universales y por eso la comprobación de sed necesita que la regla de parada sea real."
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:218
+msgctxt "s-716cae37520b-0117"
+msgid "What the exercises demonstrate"
+msgstr "Qué demuestran los ejercicios"
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:220
+msgctxt "s-d6a3ec9d5ed0-0118"
+msgid "⟦SEP_0001⟧ Exercise ⟦SEP_0002⟧ Predict first ⟦SEP_0003⟧ What the evidence shows ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ Ejercicio ⟦SEP_0002⟧ Predice primero ⟦SEP_0003⟧ Qué muestra la evidencia ⟦SEP_0004⟧"
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:222
+msgctxt "s-a1b721c5bdc9-0119"
+msgid "⟦SEP_0006⟧ [B8. Regex: what survives a failed match](⟦DEST_0001⟧), .NET ⟦SEP_0007⟧ Append ⟦CODE_0002⟧ to the pattern. What can the host still read? ⟦SEP_0008⟧ ⟦CODE_0003⟧ and ⟦CODE_0004⟧. A failed .NET ⟦CODE_0005⟧ exposes no captures. The host appends a report with no card rows and exits 1. A successful match is required to return the cards. ⟦SEP_0009⟧"
+msgstr "⟦SEP_0006⟧ [B8. Regex: qué sobrevive a una coincidencia fallida](⟦DEST_0001⟧), .NET ⟦SEP_0007⟧ Añade ⟦CODE_0002⟧ al patrón. ¿Qué puede seguir leyendo el anfitrión? ⟦SEP_0008⟧ ⟦CODE_0003⟧ y ⟦CODE_0004⟧. Un ⟦CODE_0005⟧ de .NET fallido no expone ninguna captura. El anfitrión añade un informe sin filas de tarjetas y termina con estado 1. Se necesita una coincidencia correcta para devolver las tarjetas. ⟦SEP_0009⟧"
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:223
+msgctxt "s-919912ee3571-0120"
+msgid "⟦SEP_0007⟧ B8, pcre2grep ⟦SEP_0008⟧ Change the first ⟦CODE_0001⟧ to ⟦CODE_0002⟧. What happens? ⟦SEP_0009⟧ No output at all and exit code 0. ⟦CODE_0003⟧ uses ⟦CODE_0004⟧ and ⟦CODE_0005⟧, which do not search ⟦CODE_0006⟧, so a callout that cannot start looks the same as a vetoed branch. ⟦SEP_0010⟧"
+msgstr "⟦SEP_0007⟧ B8, pcre2grep ⟦SEP_0008⟧ Cambia el primer ⟦CODE_0001⟧ por ⟦CODE_0002⟧. ¿Qué pasa? ⟦SEP_0009⟧ No hay ninguna salida y el estado de salida es 0. ⟦CODE_0003⟧ usa ⟦CODE_0004⟧ y ⟦CODE_0005⟧, que no buscan en ⟦CODE_0006⟧, así que un callout que no puede arrancar se ve igual que una rama vetada. ⟦SEP_0010⟧"
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:224
+msgctxt "s-26087a2483cd-0121"
+msgid "⟦SEP_0004⟧ [B9. sed: watch a computation](⟦DEST_0001⟧) ⟦SEP_0005⟧ Roughly how many state lines per card? ⟦SEP_0006⟧ Many, and not a constant number, because rejected draws repeat a step. The last ⟦CODE_0002⟧ has 41 or more ⟦CODE_0003⟧. ⟦SEP_0007⟧"
+msgstr "⟦SEP_0004⟧ [B9. sed: observa una computación](⟦DEST_0001⟧) ⟦SEP_0005⟧ ¿Más o menos cuántas líneas de estado hay por tarjeta? ⟦SEP_0006⟧ Muchas, pero no una cantidad constante, porque los sorteos rechazados repiten un paso. El último ⟦CODE_0002⟧ tiene 41 o más ⟦CODE_0003⟧. ⟦SEP_0007⟧"
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:225
+msgctxt "s-e709dec309a4-0122"
+msgid "⟦SEP_0002⟧ [C1. Weird next to boring](⟦DEST_0001⟧) ⟦SEP_0003⟧ Which entry would you debug first? ⟦SEP_0004⟧ The one whose whole state you can print: sed. ⟦SEP_0005⟧"
+msgstr "⟦SEP_0002⟧ [C1. Lo raro junto a lo aburrido](⟦DEST_0001⟧) ⟦SEP_0003⟧ ¿Qué entrada depurarías primero? ⟦SEP_0004⟧ La que tiene todo su estado imprimible: sed. ⟦SEP_0005⟧"
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:226
+msgctxt "s-89576ae6d8be-0123"
+msgid "⟦SEP_0004⟧ [A1. Read the rows](⟦DEST_0001⟧) ⟦SEP_0005⟧ Run ⟦CODE_0002⟧, whose rows have no running-total column. How many cards? ⟦SEP_0006⟧ You must sum the hours yourself. This is also where the old four-card ceiling was invisible, because the rarest case, exactly 40, almost never appears. The ⟦CODE_0003⟧ of every regex entry now forces it. ⟦SEP_0007⟧"
+msgstr "⟦SEP_0004⟧ [A1. Lee las filas](⟦DEST_0001⟧) ⟦SEP_0005⟧ Ejecuta ⟦CODE_0002⟧, cuyas filas no tienen columna de total acumulado. ¿Cuántas tarjetas hay? ⟦SEP_0006⟧ Tienes que sumar tú mismo las horas. Aquí también era invisible el antiguo techo de cuatro tarjetas, porque el caso más raro, exactamente 40, casi nunca aparece. El ⟦CODE_0003⟧ de cada entrada de regex se encarga ahora de forzarlo. ⟦SEP_0007⟧"
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:228
+msgctxt "s-14ffb54c1376-0124"
+msgid "The B8 exercise asks for three sentences contrasting what survives a failed match. The version that shows you understood: Perl's ⟦CODE_0001⟧ values are restored when the engine backtracks, but the prints and inserts stay done. PCRE2's C struct is never rewound. In .NET no card captures survive a failed match. The host can still append its empty report."
+msgstr "El ejercicio B8 pide tres oraciones que contrasten qué sobrevive a una coincidencia fallida. La versión que muestra que lo entendiste: los valores de ⟦CODE_0001⟧ de Perl se restauran cuando el motor retrocede, pero las impresiones y las inserciones ya hechas siguen hechas. La estructura de C de PCRE2 nunca se rebobina. En .NET no sobrevive ninguna captura de tarjetas a una coincidencia fallida. El anfitrión aún puede añadir su informe vacío."
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:230
+msgctxt "s-4fe97c469cdb-0125"
+msgid "Failure modes, costs and boundaries"
+msgstr "Modos de fallo, costos y límites"
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:232
+msgctxt "s-621aac5615e3-0126"
+msgid "⟦SEP_0001⟧ Behavior ⟦SEP_0002⟧ Label ⟦SEP_0003⟧ Why ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ Comportamiento ⟦SEP_0002⟧ Etiqueta ⟦SEP_0003⟧ Por qué ⟦SEP_0004⟧"
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:234
+msgctxt "s-908b691d0004-0127"
+msgid "⟦SEP_0004⟧ Perl runs ⟦CODE_0001⟧ and ⟦CODE_0002⟧ code during a match, and ⟦CODE_0003⟧ is undone on backtracking ⟦SEP_0005⟧ **guaranteed** ⟦SEP_0006⟧ Documented Perl features. ⟦SEP_0007⟧"
+msgstr "⟦SEP_0004⟧ Perl ejecuta código ⟦CODE_0001⟧ y ⟦CODE_0002⟧ durante una coincidencia, y ⟦CODE_0003⟧ se deshace con el retroceso ⟦SEP_0005⟧ **garantizado** ⟦SEP_0006⟧ Funciones de Perl documentadas. ⟦SEP_0007⟧"
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:235
+msgctxt "s-811cda47d463-0128"
+msgid "⟦SEP_0001⟧ PCRE2 calls the callout function at each callout point, and a positive return fails the path ⟦SEP_0002⟧ **guaranteed** ⟦SEP_0003⟧ Documented API. ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ PCRE2 llama a la función de callout en cada punto de callout, y un retorno positivo hace fallar el camino ⟦SEP_0002⟧ **garantizado** ⟦SEP_0003⟧ API documentada. ⟦SEP_0004⟧"
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:236
+msgctxt "s-81ddea527c51-0129"
+msgid "⟦SEP_0004⟧ The optimizer would not skip or reorder callouts, given ⟦CODE_0001⟧, ⟦CODE_0002⟧ and ⟦CODE_0003⟧ and no JIT ⟦SEP_0005⟧ **implementation-permitted** ⟦SEP_0006⟧ The README tested the system PCRE2 with those flags and did not test what the optimizer would elide without them. ⟦SEP_0007⟧"
+msgstr "⟦SEP_0004⟧ El optimizador no omitiría ni reordenaría callouts, con ⟦CODE_0001⟧, ⟦CODE_0002⟧ y ⟦CODE_0003⟧ y sin JIT ⟦SEP_0005⟧ **permitido por la implementación** ⟦SEP_0006⟧ El README probó el PCRE2 del sistema con esas banderas y no probó qué eliminaría el optimizador sin ellas. ⟦SEP_0007⟧"
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:237
+msgctxt "s-95334b62d7fe-0130"
+msgid "⟦SEP_0003⟧ ⟦CODE_0001⟧ callout scripts run programs, and their exit codes steer the match ⟦SEP_0004⟧ **implementation-permitted** ⟦SEP_0005⟧ A build option. Ubuntu's own ⟦CODE_0002⟧ is built without it, so the sandbox pins an upstream build. ⟦SEP_0006⟧"
+msgstr "⟦SEP_0003⟧ Los scripts de callout de ⟦CODE_0001⟧ ejecutan programas, y sus estados de salida dirigen la coincidencia ⟦SEP_0004⟧ **permitido por la implementación** ⟦SEP_0005⟧ Una opción de compilación. El propio ⟦CODE_0002⟧ de Ubuntu se compila sin ella, así que el entorno aislado fija una compilación del proyecto original. ⟦SEP_0006⟧"
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:238
+msgctxt "s-666548b40bc6-0131"
+msgid "⟦SEP_0001⟧ .NET balancing groups subtract one capture from a named group and can add a capture to another ⟦SEP_0002⟧ **guaranteed** within the .NET regex API ⟦SEP_0003⟧ These are documented grouping constructs in the .NET backtracking engine. The pattern requires that engine feature. ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ Los grupos de equilibrio de .NET restan una captura de un grupo con nombre y pueden añadir una captura a otro ⟦SEP_0002⟧ **garantizado** dentro de la API de regex de .NET ⟦SEP_0003⟧ Son construcciones de agrupación documentadas del motor de retroceso de .NET. El patrón exige esa función del motor. ⟦SEP_0004⟧"
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:239
+msgctxt "s-cabd725697f6-0132"
+msgid "⟦SEP_0002⟧ A failed .NET ⟦CODE_0001⟧ exposes no captures ⟦SEP_0003⟧ **guaranteed** ⟦SEP_0004⟧ Verified in exercise B8. ⟦SEP_0005⟧"
+msgstr "⟦SEP_0002⟧ Un ⟦CODE_0001⟧ de .NET fallido no expone ninguna captura ⟦SEP_0003⟧ **garantizado** ⟦SEP_0004⟧ Verificado en el ejercicio B8. ⟦SEP_0005⟧"
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:240
+msgctxt "s-567469557c28-0133"
+msgid "⟦SEP_0006⟧ sed's ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧ and ⟦CODE_0005⟧ intervals ⟦SEP_0007⟧ **implementation-permitted** ⟦SEP_0008⟧ GNU extensions. BSD and macOS sed will not run the script. ⟦SEP_0009⟧"
+msgstr "⟦SEP_0006⟧ Los intervalos ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧ y ⟦CODE_0005⟧ de sed ⟦SEP_0007⟧ **permitido por la implementación** ⟦SEP_0008⟧ Extensiones de GNU. El sed de BSD y de macOS no ejecutará el script. ⟦SEP_0009⟧"
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:241
+msgctxt "s-8bdb6c22e5e6-0134"
+msgid "⟦SEP_0002⟧ The sed pulse takes about 50 ms per frame because a regex backtracks catastrophically ⟦SEP_0003⟧ **accidentally exploited** ⟦SEP_0004⟧ The cost of a failing pattern is a performance cliff nobody promised, and it varies with the CPU. The pulse is skipped in pipes and in ⟦CODE_0001⟧. ⟦SEP_0005⟧"
+msgstr "⟦SEP_0002⟧ El pulso de sed tarda unos 50 ms por fotograma porque una regex retrocede de forma catastrófica ⟦SEP_0003⟧ **aprovechado por accidente** ⟦SEP_0004⟧ El costo de un patrón que falla es un precipicio de rendimiento que nadie prometió, y varía con la CPU. El pulso se omite en las tuberías y en ⟦CODE_0001⟧. ⟦SEP_0005⟧"
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:242
+msgctxt "s-5448f4655100-0135"
+msgid "⟦SEP_0001⟧ The number of category names bounds the number of cards ⟦SEP_0002⟧ **guaranteed** by construction, tested ⟦SEP_0003⟧ With five names a run has at most five cards, which is exactly the worst case (five cards of at least 10 hours reach 50). With four names (before the fix) the bound contradicted the shared challenge for one run in 10,000. ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ La cantidad de nombres de categoría limita la cantidad de tarjetas ⟦SEP_0002⟧ **garantizado** por construcción, comprobado ⟦SEP_0003⟧ Con cinco nombres, una ejecución tiene como máximo cinco tarjetas, que es exactamente el peor caso (cinco tarjetas de al menos 10 horas llegan a 50). Con cuatro nombres (antes de la corrección), el límite contradecía el reto compartido en una de cada 10 000 ejecuciones. ⟦SEP_0004⟧"
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:244
+msgctxt "s-87d9e31bff8d-0136"
+msgid "**Costs to state.**"
+msgstr "**Costos que conviene declarar.**"
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:246
+msgctxt "s-87d13051a515-0137"
+msgid "**ReDoS is the same mechanism.** The sed entry uses catastrophic backtracking as a clock, and the CMake guide notes that a pattern for \"at most 40\" written as 40 optional groups would backtrack exponentially on failure. In a production service, a pattern like that on attacker-chosen input is a denial-of-service bug. See [Regular-expression denial of service](⟦DEST_0001⟧)."
+msgstr "**ReDoS es el mismo mecanismo.** La entrada de sed usa el retroceso catastrófico como reloj. La guía de CMake señala que un patrón para \"como máximo 40\", escrito como 40 grupos opcionales, retrocedería de forma exponencial al fallar. En un servicio de producción, un patrón así sobre una entrada elegida por un atacante es un error de denegación de servicio. Consulta [Denegación de servicio mediante expresiones regulares](⟦DEST_0001⟧)."
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:247
+msgctxt "s-83b5a9b38089-0138"
+msgid "**A pattern that runs code is a program.** The book's threat-model example is exactly this entry: if your threat model only worries about a slow regex, update it ([Threat model](⟦DEST_0001⟧))."
+msgstr "**Un patrón que ejecuta código es un programa.** El ejemplo de modelo de amenazas del libro es exactamente esta entrada: si tu modelo de amenazas solo se preocupa por una regex lenta, actualízalo ([Modelo de amenazas](⟦DEST_0001⟧))."
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:248
+msgctxt "s-909e104b95f2-0139"
+msgid "**Callouts that run programs are command execution.** The entry's ⟦CODE_0001⟧ allows only ⟦CODE_0002⟧, ⟦CODE_0003⟧ and ⟦CODE_0004⟧."
+msgstr "**Los callouts que ejecutan programas son ejecución de comandos.** El ⟦CODE_0001⟧ de la entrada solo permite ⟦CODE_0002⟧, ⟦CODE_0003⟧ y ⟦CODE_0004⟧."
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:249
+msgctxt "s-cb014a490240-0140"
+msgid "**State rewinding differs by engine.** Code that is correct under Perl's ⟦CODE_0001⟧ can be wrong in a language whose state does not unwind."
+msgstr "**El rebobinado del estado difiere según el motor.** El código que es correcto bajo el ⟦CODE_0001⟧ de Perl puede ser incorrecto en un lenguaje cuyo estado no se deshace."
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:250
+msgctxt "s-04abd2b0d20d-0141"
+msgid "**A host that only reports is still a host.** .NET and CMake need a host to seed randomness and to write files, because a regex cannot do either."
+msgstr "**Un anfitrión que solo informa sigue siendo un anfitrión.** .NET y CMake necesitan un anfitrión para sembrar la aleatoriedad y escribir archivos, porque una regex no puede hacer ninguna de las dos cosas."
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:252
+msgctxt "s-061eb6da82a8-0142"
+msgid "Connections across the repository"
+msgstr "Conexiones a lo largo del repositorio"
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:254
+msgctxt "s-4a81217cdc55-0143"
+msgid "**The loop inside one match, in another tool.** [Make and CMake](⟦DEST_0001⟧): CMake lets a ⟦CODE_0002⟧ re-expand a regex every pass, so its captures become registers."
+msgstr "**El bucle dentro de una sola coincidencia, en otra herramienta.** [Make y CMake](⟦DEST_0001⟧): CMake permite que un ⟦CODE_0002⟧ vuelva a expandir una regex en cada pasada, así que sus capturas se vuelven registros."
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:255
+msgctxt "s-bc19d91832a2-0144"
+msgid "**Rewriting until nothing changes.** [m4](⟦DEST_0001⟧) rescans its own output, and sed's ⟦CODE_0002⟧ and ⟦CODE_0003⟧ loop does the same on one line. The concept guide [Formal languages and weird machines](⟦DEST_0004⟧) puts string rewriting beside the Markov algorithm."
+msgstr "**Reescribir hasta que nada cambie.** [m4](⟦DEST_0001⟧) reescanea su propia salida, y el bucle de ⟦CODE_0002⟧ y ⟦CODE_0003⟧ de sed hace lo mismo sobre una línea. La guía de concepto [Lenguajes formales y máquinas raras](⟦DEST_0004⟧) pone la reescritura de cadenas de texto junto al algoritmo de Markov."
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:256
+msgctxt "s-fd2277e3f8b9-0145"
+msgid "**A failed match as information.** [Effects, errors and commitment](⟦DEST_0001⟧) compares what survives failure here with transactions, exit status and the cut."
+msgstr "**Una coincidencia fallida como información.** [Efectos, errores y confirmación](⟦DEST_0001⟧) compara lo que sobrevive a un fallo aquí con las transacciones, el estado de salida y el corte."
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:257
+msgctxt "s-eb39c280575b-0146"
+msgid "**Authority from the command, not the data.** [tar](⟦DEST_0001⟧) shows the same worry from another side: whether reading the data runs it."
+msgstr "**La autoridad viene del comando, no de los datos.** [tar](⟦DEST_0001⟧) muestra la misma preocupación desde otro lado: si leer los datos los ejecuta."
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:258
+msgctxt "s-d36dbeccda39-0147"
+msgid "**In the book.** [Regular expressions: five engines](⟦DEST_0001⟧), [Regular expressions](⟦DEST_0002⟧), [Backtracking](⟦DEST_0003⟧), [The cut](⟦DEST_0004⟧) and [Markov algorithms](⟦DEST_0005⟧)."
+msgstr "**En el libro.** [Expresiones regulares: cinco motores](⟦DEST_0001⟧), [Expresiones regulares](⟦DEST_0002⟧), [Retroceso](⟦DEST_0003⟧), [El corte](⟦DEST_0004⟧) y [Algoritmos de Markov](⟦DEST_0005⟧)."
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:260
+msgctxt "s-50944288ce61-0148"
+msgid "Self-check"
+msgstr "Autoevaluación"
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:262
+msgctxt "s-274e192b952c-0149"
+msgid "Answer each question in your own words before you read the italic text. Say what evidence would support each answer."
+msgstr "Responde cada pregunta con tus propias palabras antes de leer el texto en cursiva. Di qué evidencia respaldaría cada respuesta."
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:264
+msgctxt "s-44d125ca9178-0150"
+msgid ""
+"**Trace.** In the PCRE2 entry, hours are 13, 12, 14, 15. List the ⟦CODE_0001⟧ returns and the number of rows. *(The gate sees totals 0, 13, 25 and 39 and returns 0 each time, so four cards are booked. A fifth gate sees 54 and returns 1, which ends the loop. Four rows, total 54, and the crossing card is the fourth. Had the total been exactly 40 after four cards, the fifth gate would return 0, and the fifth name in the subject, ⟦CODE_0002⟧, would be matched and booked: the fix described above. Before it, the subject had no fifth name, and the loop ended at 40.)*\n"
+"2. **Explain.** Why does PCRE2 need ⟦CODE_0003⟧ before the ⟦CODE_0004⟧ callout? *(The final ⟦CODE_0005⟧ makes the engine backtrack. Without ⟦CODE_0006⟧ it would retry shorter loops, and ⟦CODE_0007⟧ would run more than once.)*\n"
+"3. **Transfer.** Why must the .NET match succeed to report its cards when the C PCRE2 match can deliberately fail? What is the difference in where each keeps its output? *(The PCRE2 callouts write the TSV before the final failure. The .NET pattern supplies card data via captures, and a failed ⟦CODE_0008⟧ supplies none.)*\n"
+"4. **Evidence.** A reviewer says, \"A total of exactly 40 continues to a fifth card in every regex entry.\" Design a test that could fail. What is the negative control? *(Run each entry, or a copy with every card worth 10 hours, and check for five rows ending at 50. The ⟦CODE_0009⟧ files now do exactly that. The negative control is the entry as it was before the fix, which stops at four rows and a total of 40. Run the new checks against the old code to see them fail.)*"
+msgstr ""
+"**Traza.** En la entrada de PCRE2, las horas son 13, 12, 14, 15. Lista los retornos de ⟦CODE_0001⟧ y el número de filas. *(El gate ve los totales 0, 13, 25 y 39 y devuelve 0 cada vez, así que se registran cuatro tarjetas. Un quinto gate ve 54 y devuelve 1, lo que termina el bucle. Cuatro filas, total 54, y la tarjeta que cruza el tope es la cuarta. Si el total hubiera sido exactamente 40 tras cuatro tarjetas, el quinto gate devolvería 0. Entonces se encontraría y registraría el quinto nombre de la cadena de entrada, ⟦CODE_0002⟧: la corrección descrita arriba. Antes de ella, la cadena de entrada no tenía quinto nombre, y el bucle terminaba en 40.)*\n"
+"2. **Explica.** ¿Por qué PCRE2 necesita ⟦CODE_0003⟧ antes del callout ⟦CODE_0004⟧? *(El ⟦CODE_0005⟧ final hace que el motor retroceda. Sin ⟦CODE_0006⟧ reintentaría bucles más cortos, y ⟦CODE_0007⟧ se ejecutaría más de una vez.)*\n"
+"3. **Transfiere.** ¿Por qué la coincidencia de .NET debe tener éxito para informar de sus tarjetas, cuando la coincidencia de PCRE2 en C puede fallar a propósito? ¿Qué diferencia hay en dónde guarda cada una su salida? *(Los callouts de PCRE2 escriben el TSV antes del fallo final. El patrón de .NET entrega los datos de las tarjetas mediante capturas, y un ⟦CODE_0008⟧ fallido no entrega ninguna.)*\n"
+"4. **Evidencia.** Un revisor dice: \"Un total de exactamente 40 continúa hasta una quinta tarjeta en cada entrada de regex\". Diseña una prueba que pueda fallar. ¿Cuál es el control negativo? *(Ejecuta cada entrada, o una copia con cada tarjeta de 10 horas, y comprueba que haya cinco filas que terminen en 50. Los archivos ⟦CODE_0009⟧ ahora hacen exactamente eso. El control negativo es la entrada tal como estaba antes de la corrección, que se detiene en cuatro filas y un total de 40. Ejecuta las comprobaciones nuevas contra el código antiguo para verlas fallar.)*"
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:269
+msgctxt "s-4082f515b2f4-0151"
+msgid "Further reading"
+msgstr "Lecturas adicionales"
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:271
+msgctxt "s-52d9c7757ace-0152"
+msgid "[Regular expression](⟦DEST_0001⟧) (Wikipedia): the formal and practical senses of the term, and why practical engines exceed the formal definition."
+msgstr "[Expresión regular](⟦DEST_0001⟧) (Wikipedia): los sentidos formal y práctico del término, y por qué los motores prácticos van más allá de la definición formal."
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:272
+msgctxt "s-c728b63dab3e-0153"
+msgid "[ReDoS](⟦DEST_0001⟧) (Wikipedia): how catastrophic backtracking becomes an attack."
+msgstr "[ReDoS](⟦DEST_0001⟧) (Wikipedia): cómo el retroceso catastrófico se convierte en un ataque."
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:273
+msgctxt "s-1331c7f66204-0154"
+msgid "[Regular Expression Denial of Service](⟦DEST_0001⟧) (OWASP): examples and defenses."
+msgstr "[Denegación de servicio mediante expresiones regulares](⟦DEST_0001⟧) (OWASP): ejemplos y defensas."
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:274
+msgctxt "s-54c10b98eaa5-0155"
+msgid "[Markov algorithm](⟦DEST_0001⟧) (Wikipedia): the formal model behind sed's find-and-replace machine."
+msgstr "[Algoritmo de Markov](⟦DEST_0001⟧) (Wikipedia): el modelo formal que hay detrás de la máquina de buscar y reemplazar de sed."
+
+#: lessons/study-guides/languages/regex-engines-and-sed.md:275
+msgctxt "s-ef1205632a1a-0156"
+msgid "[sed, a stream editor](⟦DEST_0001⟧) (GNU Project): the manual for the GNU extensions the sed entry uses."
+msgstr "[sed, un editor de flujo](⟦DEST_0001⟧) (Proyecto GNU): el manual de las extensiones de GNU que usa la entrada de sed."

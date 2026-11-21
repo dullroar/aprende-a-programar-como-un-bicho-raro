@@ -1,23 +1,23 @@
-# Regex engines and sed study guide
+# Guía de estudio de motores de regex y sed
 
-## What this guide is for
+## Para qué sirve esta guía
 
-This guide reads five programs that use a regular-expression engine, or a stream editor built on one, as the whole machine: [`regex-perl`](../../../src/regex-perl/README.md), [`regex-pcre2`](../../../src/regex-pcre2/README.md), [`regex-pcre2grep`](../../../src/regex-pcre2grep/README.md), [`regex-dotnet`](../../../src/regex-dotnet/README.md) and [`regex-sed`](../../../src/regex-sed/README.md). The question is: **a match is a search, a substitution is a rewrite. What does each engine keep, undo and lose when the search fails?**
+Esta guía lee cinco programas. Cada uno usa como máquina completa un motor de expresiones regulares, o un editor de flujo construido sobre uno. Son [`regex-perl`](../../../src/regex-perl/README.md), [`regex-pcre2`](../../../src/regex-pcre2/README.md), [`regex-pcre2grep`](../../../src/regex-pcre2grep/README.md), [`regex-dotnet`](../../../src/regex-dotnet/README.md) y [`regex-sed`](../../../src/regex-sed/README.md). La pregunta es: **una coincidencia es una búsqueda y una sustitución es una reescritura. ¿Qué conserva, deshace y pierde cada motor cuando la búsqueda falla?**
 
-When you finish, you should be able to:
+Al terminar, deberías poder:
 
-1. Explain the difference between *searching* (one match that explores and abandons paths) and *rewriting* (a loop of substitutions over one string), and say which entries are which.
-2. Say what survives a failed match in each engine: Perl's `local`, PCRE2's C state, pcre2grep's database writes, .NET's captures, sed's pattern space.
-3. Explain what `(*COMMIT)`, `(*FAIL)` and a callout's return value do, and why the order of the pieces matters.
-4. Trace PCRE2, .NET and sed through a fixed run and name the state at each step.
-5. Explain how a finite supply of category names set a hidden ceiling of four cards, what that did to the "exactly 40 continues" rule, how the five-name fix and its test work and how a backtracking pattern becomes a denial-of-service risk.
-6. Label each behavior as guaranteed, implementation-permitted or accidentally exploited.
+1. Explicar la diferencia entre *buscar* y *reescribir*. Buscar es una coincidencia que explora y abandona caminos. Reescribir es un bucle de sustituciones sobre una cadena de texto. Decir qué entradas son de cada tipo.
+2. Decir qué sobrevive a una coincidencia fallida en cada motor. En Perl, el `local`. En PCRE2, el estado en C. En pcre2grep, las escrituras en la base de datos. En .NET, las capturas. En sed, el espacio de patrones.
+3. Explicar qué hacen `(*COMMIT)`, `(*FAIL)` y el valor de retorno de un callout, y por qué importa el orden de las piezas.
+4. Hacer la traza de PCRE2, .NET y sed en una ejecución fija y nombrar el estado en cada paso.
+5. Explicar cómo un suministro finito de nombres de categoría fijó un techo oculto de cuatro tarjetas. Explicar qué le hizo eso a la regla de que un total de exactamente 40 continúa. Explicar cómo funcionan la corrección de cinco nombres y su prueba, y cómo un patrón con retroceso se vuelve un riesgo de denegación de servicio.
+6. Etiquetar cada comportamiento como garantizado, permitido por la implementación o aprovechado por accidente.
 
-**Scope limits.** You need to know what a capture group, a greedy quantifier and alternation are. The guide does not teach regex syntax from scratch, the SQL or the terminal "pulse" animation. It covers Perl 5, PCRE2 10.x, pcre2grep with callout scripts, .NET 10 and GNU sed. For the theory, see [Regular expressions](../../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#regular-expressions) and [Backtracking](../../informatica/07-efectos-errores-y-confirmacion.md#backtracking) in the book. The language page is [Regular expressions: five engines](../../lenguajes/regex.md).
+**Límites del alcance.** Necesitas saber qué son un grupo de captura, un cuantificador voraz y una alternancia. La guía no enseña desde cero la sintaxis de las expresiones regulares, el SQL ni la animación de "pulso" en la terminal. Cubre Perl 5, PCRE2 10.x, pcre2grep con scripts de callout, .NET 10 y GNU sed. Para la teoría, consulta [Expresiones regulares](../../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#regular-expressions) y [Retroceso](../../informatica/07-efectos-errores-y-confirmacion.md#backtracking) en el libro. La página del lenguaje es [Expresiones regulares: cinco motores](../../lenguajes/regex.md).
 
-## Before you begin
+## Antes de empezar
 
-**Safety model.** Every entry writes fictional **DEMO ONLY** data. This family is the most dangerous to run unread. A Perl pattern here runs Perl code and starts `sqlite3`, a PCRE2 callout runs host C and `pcre2grep` callouts start programs. Read the source first and run it in the sandbox first:
+**Modelo de seguridad.** Cada entrada escribe datos ficticios marcados con **DEMO ONLY**. Esta familia es la más peligrosa de ejecutar sin leer. Un patrón de Perl ejecuta código de Perl e inicia `sqlite3`. Un callout de PCRE2 ejecuta código en C del anfitrión, y los callouts de `pcre2grep` inician programas. Lee primero el código fuente y ejecútalo primero en el entorno aislado (*sandbox*):
 
 ```bash
 sandbox/container/run-image.sh src/regex-pcre2
@@ -25,110 +25,110 @@ sandbox/container/run-image.sh src/regex-dotnet
 sandbox/container/run-image.sh src/regex-sed
 ```
 
-Edit only copies ([Running things safely](../../exercises.md#running-things-safely)). Two warnings from experience. First, `regex-sed` writes SQL to file descriptor 3. Run its script only through the entry's wrapper, or in the sandbox with `3>/dev/null`. While this guide was being prepared, a harness that left fd 3 closed let the script's `w /dev/fd/3` open the *script file itself* and overwrite it. Second, run any sed or regex experiment on a scratch copy, never in your checkout.
+Edita solo copias ([Ejecutar cosas de forma segura](../../exercises.md#running-things-safely)). Dos advertencias que nacen de la experiencia. Primera: `regex-sed` escribe SQL en el descriptor de archivo 3. Ejecuta su script solo mediante el envoltorio de la entrada, o en el entorno aislado con `3>/dev/null`. Mientras se preparaba esta guía, un arnés que dejó cerrado el descriptor 3 hizo que el `w /dev/fd/3` del script abriera el *propio archivo del script* y lo sobrescribiera. Segunda: ejecuta cualquier experimento con sed o con regex en una copia desechable, nunca en tu copia de trabajo.
 
-**Prediction rule.** Before each run, write down what state each engine holds when the match ends, and what you would see if the match failed instead.
+**Regla de predicción.** Antes de cada ejecución, anota qué estado guarda cada motor cuando termina la coincidencia y qué verías si la coincidencia fallara.
 
-**Vocabulary.**
+**Vocabulario.**
 
-| Term | Meaning here |
+| Término | Significado aquí |
 | --- | --- |
-| Backtracking | When a path fails, the engine returns to the last choice point and tries the next alternative. |
-| `(*COMMIT)` | Once the match gets past this point, backtracking may not retry before it. |
-| `(*FAIL)` | Fail at once. Used here to end a pass or the whole match. |
-| Callout | A point in a PCRE2 pattern where the engine calls out to host code. Its return value says continue, fail this path or abort. |
-| Balancing group | A .NET group that pops one capture stack and pushes another. |
-| Pattern space | sed's working buffer: one line of text. |
+| Retroceso | Cuando un camino falla, el motor vuelve al último punto de elección y prueba la siguiente alternativa. |
+| `(*COMMIT)` | Una vez que la coincidencia pasa este punto, el retroceso ya no puede reintentar antes de él. |
+| `(*FAIL)` | Falla de inmediato. Aquí sirve para terminar una pasada o toda la coincidencia. |
+| Callout | Un punto de un patrón de PCRE2 donde el motor llama a código del anfitrión. Su valor de retorno indica que continúe, que este camino falle o que se aborte. |
+| Grupo de equilibrio | Un grupo de .NET que extrae de una pila de capturas y apila en otra. |
+| Espacio de patrones | El búfer de trabajo de sed: una línea de texto. |
 
-## The shared challenge
+## El reto compartido
 
-The [challenge specification](../../introduccion.md#what-the-challenge-does) calls for cards with a category and 10 to 19 whole hours. Categories cycle through Meetings, Coding, Debugging and Learning. Add each card's hours to the running total. Stop when the total passes 40. Keep the **first card that takes the total over 40**. A total of exactly 40 continues. Four 10-hour cards need a fifth card, in the Meetings category. Conforming runs finish with 3 to 5 cards and a total of 41 to 59 hours.
+La [especificación del reto](../../introduccion.md#what-the-challenge-does) pide tarjetas con una categoría y de 10 a 19 horas enteras. Las categorías se repiten en ciclo: `Meetings`, `Coding`, `Debugging` y `Learning`. Suma las horas de cada tarjeta al total acumulado. Detente cuando el total pasa de 40. Conserva la **primera tarjeta con la que el total pasa de 40**. Un total de exactamente 40 continúa. Cuatro tarjetas de 10 horas necesitan una quinta tarjeta, de la categoría `Meetings`. Las ejecuciones conformes tienen de 3 a 5 tarjetas y un total de 41 a 59 horas.
 
-All five entries follow the numeric rule, with three storage paths worth distinguishing: the C and .NET tracks write TSV, pcre2grep saves through separate SQLite calls and Perl and sed send a transaction to SQLite. This family once could not obey the numeric rule, and the way it was found is instructive. Each regex entry walked a *finite list of four category names* (the subject string, the scaffold or sed's `cats:` list). When the four names ran out the loop ended, whatever the total was, so a run of four 10-hour cards ended at exactly 40 with four rows. That has probability one in 10,000 per run, so the entries passed their own checks, which accepted "four entries" as a legitimate stop. The shared checker `lessons/tools/check-demo.sh` rejects such a run, and running it with forced draws while writing this guide showed the problem (see Trace). It is now fixed: each entry has **five** names (`Meetings` repeats), and each `check.sh` builds a copy of the program whose every card is worth 10 hours and requires a fifth card, `Meetings`, ending at 50.
+Las cinco entradas siguen la regla numérica, con tres rutas de almacenamiento que conviene distinguir. Las rutas de C y .NET escriben TSV, pcre2grep guarda mediante llamadas separadas a SQLite, y Perl y sed envían una transacción a SQLite. Esta familia una vez no pudo obedecer la regla numérica, y la forma en que se descubrió es instructiva. Cada entrada de regex recorría una *lista finita de cuatro nombres de categoría* (la cadena de texto de entrada, el armazón o la lista `cats:` de sed). Cuando se acababan los cuatro nombres, el bucle terminaba, fuera cual fuera el total. Así, una ejecución de cuatro tarjetas de 10 horas terminaba en exactamente 40 con cuatro filas. Eso tiene una probabilidad de una entre 10 000 por ejecución, así que las entradas pasaban sus propias comprobaciones, que aceptaban "cuatro entradas" como una parada legítima. El verificador compartido `lessons/tools/check-demo.sh` rechaza una ejecución así. Al ejecutarlo para forzar los sorteos mientras se escribía esta guía, quedó a la vista el problema (consulta la sección de traza). Ya está corregido: cada entrada tiene **cinco** nombres (`Meetings` se repite). Además, cada `check.sh` hace la compilación de una copia del programa cuyas tarjetas valen todas 10 horas. Esa copia exige una quinta tarjeta, `Meetings`, que termina en 50.
 
-## The machine to identify
+## La máquina que hay que identificar
 
-Perl, PCRE2 and pcre2grep search and deliberately fail after doing work through side effects. The .NET search fails the final *pass* and succeeds overall, returning its captures. Sed uses a loop of substitutions over one line. The final status tells you where to look for results.
+Perl, PCRE2 y pcre2grep buscan y fallan a propósito después de hacer su trabajo mediante efectos secundarios. La búsqueda de .NET falla la *pasada* final y tiene éxito en conjunto, y devuelve sus capturas. Sed usa un bucle de sustituciones sobre una línea. El estado final te dice dónde buscar los resultados.
 
-**What repeats.** In Perl, a greedy quantifier, `(?: ... )*`, whose body is a code block ([L7](../../../src/regex-perl/timecards.pl#L7)). In PCRE2, the same shape with callouts: `(?:(?C"gate")(Meetings|Coding|Debugging|Learning)(?C"book"))*` ([L24-26](../../../src/regex-pcre2/timecards.c#L24-L26)). In pcre2grep, the same, with callouts that run `sqlite3` ([L14-20](../../../src/regex-pcre2grep/timecards.sh#L14-L20)). In .NET, `(?: ... )*` over a pattern of balancing groups only ([L13](../../../src/regex-dotnet/Program.cs#L13)). In sed, a jump back to the label `:entry`, taken by `b` and `t` behind regex addresses ([timecards.sed](../../../src/regex-sed/timecards.sed)).
+**Qué se repite.** En Perl, un cuantificador voraz, `(?: ... )*`, cuyo cuerpo es un bloque de código ([L7](../../../src/regex-perl/timecards.pl#L7)). En PCRE2, la misma forma con callouts: `(?:(?C"gate")(Meetings|Coding|Debugging|Learning)(?C"book"))*` ([L24-26](../../../src/regex-pcre2/timecards.c#L24-L26)). En pcre2grep, lo mismo, con callouts que ejecutan `sqlite3` ([L14-20](../../../src/regex-pcre2grep/timecards.sh#L14-L20)). En .NET, `(?: ... )*` sobre un patrón hecho solo de grupos de equilibrio ([L13](../../../src/regex-dotnet/Program.cs#L13)). En sed, un salto de vuelta a la etiqueta `:entry`, que hacen `b` y `t` detrás de direcciones regex ([timecards.sed](../../../src/regex-sed/timecards.sed)).
 
-**Where state lives.** Perl: package variables `$::t` and `$::n`, assigned with `local`. PCRE2: a C struct that the callouts share. pcre2grep: SQLite, which each callout rereads. .NET: *stack depth*, in the captures of group `b` (the budget) and group `s` (the total). sed: one line of text. Numbers are runs of `#` (tally marks), random numbers are a 16-character string of 0s and 1s, and even the return address of a subroutine is text.
+**Dónde vive el estado.** Perl: las variables de paquete `$::t` y `$::n`, asignadas con `local`. PCRE2: una estructura de C que comparten los callouts. pcre2grep: SQLite, que cada callout vuelve a leer. .NET: la *profundidad de la pila*, en las capturas del grupo `b` (el presupuesto) y del grupo `s` (el total). sed: una línea de texto. Los números son series de `#` (marcas de conteo). Los números aleatorios son una cadena de texto de 16 caracteres de 0 y 1. Incluso la dirección de retorno de una subrutina es texto.
 
-**What advances the next step.** Perl and PCRE2: the engine reaches the next pass of the quantifier. pcre2grep: the exit code of a program the callout ran. .NET: the engine matches 10 to 19 letters `a`, each popping one budget token. sed: a `b` or `t` jump that goes back to `:entry`.
+**Qué hace avanzar el paso siguiente.** Perl y PCRE2: el motor llega a la siguiente pasada del cuantificador. pcre2grep: el estado de salida de un programa que ejecutó el callout. .NET: el motor encuentra de 10 a 19 letras `a` (horas por tarjeta), y cada una retira un token del presupuesto. sed: un salto `b` o `t` que vuelve a `:entry`.
 
-**What stops it.** Perl: a postponed block that returns the next category as a *pattern*, or `(*FAIL)` once the total passes 40 or the names run out. PCRE2: `gate` returns 1 when the total is over 40. pcre2grep: SQLite refuses to insert "total is at most 40" into a `CHECK(ok=1)` column, so `sqlite3` exits non-zero, which vetoes the branch. .NET: when the budget stack is empty the pass hits `(?!)`. sed: `/ tot:#{41}/b done`, which asks whether 41 tally marks occur.
+**Qué lo detiene.** Perl: un bloque pospuesto que devuelve la siguiente categoría como *patrón*, o `(*FAIL)` cuando el total pasa de 40 o se acaban los nombres. PCRE2: `gate` devuelve 1 cuando el total pasa de 40. pcre2grep: SQLite se niega a insertar "el total es de 40 o menos" en una columna `CHECK(ok=1)`. Por eso `sqlite3` termina con estado distinto de cero, lo que permite vetar la rama. .NET: cuando la pila del presupuesto está vacía, la pasada llega a `(?!)`. sed: `/ tot:#{41}/b done`, que pregunta si aparecen 41 marcas de conteo.
 
-**What commits.** In Perl the transaction commits before the match returns false. In the C PCRE2 program a callout writes the TSV summary and closes the file before the same deliberate failure. In pcre2grep, each callout is its own `sqlite3` process, so each statement commits at once. There is no outer transaction. In .NET, *nothing commits inside the match*: a regex cannot write. After a successful match the host reads the captures and appends a TSV report. A failed match yields no cards, but the host still writes a zero-entry report and exits 1. In sed, the SQL goes to fd 3 for `sqlite3` to read, with `BEGIN` and `COMMIT` in the stream.
+**Qué confirma.** En Perl, la transacción se confirma antes de que la coincidencia devuelva falso. En el programa PCRE2 en C, un callout escribe el resumen TSV y cierra el archivo antes del mismo fallo deliberado. En pcre2grep, cada callout es su propio proceso `sqlite3`, así que cada sentencia se confirma de inmediato. No hay transacción externa. En .NET, *nada se confirma dentro de la coincidencia*: una regex no puede escribir. Tras una coincidencia correcta, el anfitrión lee las capturas y añade un informe TSV. Una coincidencia fallida no da tarjetas, pero el anfitrión escribe igualmente un informe de cero entradas y termina con estado 1. En sed, el SQL va al descriptor 3 para que lo lea `sqlite3`, con `BEGIN` y `COMMIT` en el flujo.
 
 <!-- diagram-source: src/regex-pcre2/README.md#program-flow -->
 
 ```mermaid
 sequenceDiagram
-    accTitle: regex-pcre2: the engine calls back into C at each callout
-    accDescr: A sequence diagram. The C host compiles the pattern and calls pcre2_match once. The engine reaches an init callout, and the host opens the scratch file and writes the header. For each category, the engine reaches a gate callout, which returns 0 while the total is 40 or less. The engine matches the next category name from the subject, and then reaches a book callout, where the host draws hours and writes the record. When the gate returns 1, because the total is over 40, that pass fails and the star loop ends. The commit verb forbids retrying fewer passes, and a commit callout writes the summary and closes the file. A final fail verb makes the match return no match, and the host prints the file.
-    participant H as C host
-    participant E as PCRE2 engine
-    participant K as Callout function
-    H->>E: pcre2_match, once
-    E->>K: init: opens the file, writes the header
-    loop for each category in the subject
-        E->>K: gate: returns 0 while the total is 40 or less
-        E->>E: match the next category name
-        E->>K: book: draws hours, writes the record
+    accTitle: regex-pcre2: el motor llama de vuelta a C en cada callout
+    accDescr: Un diagrama de secuencia. El anfitrión en C compila el patrón y llama a pcre2_match una sola vez. El motor llega a un callout init y el anfitrión abre el archivo temporal y escribe el encabezado. Para cada categoría, el motor llega a un callout gate, que devuelve 0 mientras el total no pase de 40. El motor busca la coincidencia del siguiente nombre de categoría en la cadena de entrada y luego llega a un callout book, donde el anfitrión sortea las horas y escribe el registro. Cuando el callout gate devuelve 1, porque el total pasa de 40, esa pasada falla y el bucle con asterisco termina. El verbo commit prohíbe reintentar con menos pasadas y un callout commit escribe el resumen y cierra el archivo. Un verbo fail final hace que la búsqueda no encuentre coincidencia y el anfitrión imprime el archivo.
+    participant H as Anfitrión en C
+    participant E as Motor PCRE2
+    participant K as Función de callout
+    H->>E: pcre2_match, una vez
+    E->>K: init: abre el archivo y escribe el encabezado
+    loop para cada categoría en el sujeto
+        E->>K: gate: devuelve 0 mientras el total no pasa de 40
+        E->>E: busca la coincidencia del nombre de la siguiente categoría
+        E->>K: libro: obtiene las horas y escribe el registro
     end
-    E->>K: gate: returns 1, the total is over 40
-    Note over E: the pass fails, the star loop ends
-    E->>K: commit, after COMMIT: writes the summary
-    E-->>H: FAIL: no match, after all the work
-    H->>H: print the file
+    E->>K: gate: devuelve 1, el total pasa de 40
+    Note over E: la pasada falla, el bucle de la estrella termina
+    E->>K: commit, después de COMMIT: escribe el resumen
+    E-->>H: FAIL: sin coincidencia, después de todo el trabajo
+    H->>H: imprime el archivo
 ```
 
-The PCRE2 diagram is a conversation: the engine calls back into C at every callout, and the return value is the decision.
+El diagrama de PCRE2 es una conversación: el motor llama de vuelta a C en cada callout, y el valor de retorno es la decisión.
 
 <!-- diagram-source: src/regex-dotnet/README.md#program-flow -->
 
 ```mermaid
 flowchart TD
-    accTitle: regex-dotnet: balancing groups as a budget stack
-    accDescr: A flowchart. The host draws five hour counts and writes them as a tape of letters a, one per hour. It runs one regex match. The pattern first pushes 41 empty captures onto the stack of group b, which is the budget. Each pass of the star loop first checks whether the budget stack is non-empty. If it is, a chain of conditional flag groups picks the next category. Then 10 to 19 letters a are matched, and each one pops a budget token, if any is left, and pushes a token onto the running total stack. When the budget is empty, a failing lookahead fails the pass and the loop ends. The host then reads out the categories, the hours and the size of the total stack.
-    A["Host: draw five hour counts, write them as a tape of a's"] --> B["One Regex match runs against the tape"]
-    B --> C["Push 41 empty captures onto group b: the budget"]
-    C --> D{{"Is the budget stack non-empty?"}}
-    D -->|yes| E["Category picker: the first flag not yet set names the category"]
-    E --> F["Match 10 to 19 a's: each pops a budget token if any is left, and pushes one onto the total stack s"]
+    accTitle: regex-dotnet: grupos de equilibrio como una pila de presupuesto
+    accDescr: Un diagrama de flujo. El anfitrión sortea cinco cantidades de horas y las escribe como una cinta de letras a, una por hora. Ejecuta una sola coincidencia de regex. El patrón empieza por apilar 41 capturas vacías en la pila del grupo b, que es el presupuesto. Cada pasada del bucle de estrella comprueba primero si la pila del presupuesto no está vacía. Si no lo está, una cadena de grupos condicionales de banderas elige la siguiente categoría. Después coinciden de 10 a 19 letras a (las horas de una tarjeta). Cada una retira un token del presupuesto, si queda alguno, y apila un token en la pila del total acumulado. Cuando el presupuesto está vacío, un *lookahead* que falla hace fallar la pasada y el bucle termina. Por último, el anfitrión lee las categorías, las horas y el tamaño de la pila del total acumulado.
+    A["Anfitrión: sortea cinco conteos de horas y los escribe como una cinta de letras a"] --> B["Una sola coincidencia de Regex se ejecuta sobre la cinta"]
+    B --> C["Empuja 41 capturas vacías al grupo b: el presupuesto"]
+    C --> D{{"¿La pila del presupuesto no está vacía?"}}
+    D -->|sí| E["Selector de categoría: la primera bandera que aún no está activada indica la categoría"]
+    E --> F["Busca de 10 a 19 horas (letras *a*): cada una extrae un token de presupuesto si queda alguno y apila uno en la pila total s"]
     F --> D
-    D -->|"no: a failing lookahead fails the pass"| G["The star loop ends and the match succeeds"]
-    G --> H["Host reads the captures: categories, hours and the size of s"]
+    D -->|"no: un lookahead que falla hace fallar la pasada"| G["El bucle de la estrella termina y la coincidencia tiene éxito"]
+    G --> H["El anfitrión lee las capturas: las categorías, las horas y el tamaño de s"]
 ```
 
-The .NET diagram has no callback at all. The only output is what the engine captured.
+El diagrama de .NET no tiene ninguna función de devolución de llamada (*callback*). La única salida es lo que el motor capturó.
 
 <!-- diagram-source: src/regex-sed/README.md#program-flow -->
 
 ```mermaid
 flowchart TD
-    accTitle: regex-sed: one line of text, rewritten by substitutions with labels and jumps
-    accDescr: A flowchart. sed reads one tape line and rewrites it into the program state. At the label entry, two address tests decide whether to go to done: forty-one or more tally marks in the total, or no categories left. Otherwise the next category is moved to the current slot. At draw, substitutions rewrite a 16-bit shift register in the line until a digit is available. The digit becomes tally marks that are added to the total. The label dec rewrites marks into decimal. The label row prints the row and writes an INSERT to file descriptor 3. Control jumps back to entry. At done, the summary is printed and COMMIT is written to file descriptor 3. On a terminal, a catastrophic backtracking match is the clock for the pulse. sed then exits with status 1 on purpose.
-    A["Read the tape line and rewrite it into the program state"] --> B{{"entry: 41 or more # marks in the total, or no categories left?"}}
-    B -->|no| C["Move the next category into the current slot"]
-    C --> D["draw and step: rewrite the 16-bit shift register until a digit comes out"]
-    D --> E["Turn the digit into tally marks and append them to the total"]
-    E --> F["dec and row: marks to decimal, print the row, write the INSERT to fd 3"]
+    accTitle: regex-sed: una línea de texto, reescrita por sustituciones con etiquetas y saltos
+    accDescr: Un diagrama de flujo. sed lee una línea de cinta y la reescribe para formar el estado del programa. En la etiqueta de entrada entry, dos pruebas de dirección deciden si saltar a done: el total tiene cuarenta y una marcas de conteo o más, o no quedan categorías. Si ninguna se cumple, la siguiente categoría pasa a la posición actual. En draw, las sustituciones reescriben un registro de desplazamiento de 16 bits en la línea hasta que hay un dígito disponible. El dígito se convierte en marcas de conteo que se suman al total. La etiqueta dec reescribe las marcas en decimal. En la etiqueta row, sed imprime la fila y escribe un INSERT en el descriptor de archivo 3. El control vuelve a la etiqueta entry. En done, sed imprime el resumen y escribe COMMIT en el descriptor de archivo 3. En una terminal, una coincidencia con retroceso catastrófico hace de reloj para el pulso. Luego sed termina a propósito con estado de salida 1.
+    A["Lee la línea de la cinta y reescríbela en el estado del programa"] --> B{{"entrada: ¿41 o más marcas # en el total o no quedan categorías?"}}
+    B -->|no| C["Mueve la siguiente categoría a la ranura actual"]
+    C --> D["draw y step: reescribe el registro de desplazamiento de 16 bits hasta que salga un dígito"]
+    D --> E["Convierte el dígito en marcas y añádelas al total"]
+    E --> F["dec y row: convierte a decimal, imprime la fila y escribe INSERT en el descriptor 3"]
     F --> B
-    B -->|yes| G["done: print the summary, write COMMIT to fd 3"]
-    G --> H["On a terminal: pulse, timed by a regex that backtracks for a while"]
-    H --> I["Q1: sed exits 1 on purpose; sqlite3 reads fd 3"]
+    B -->|sí| G["done: imprime el resumen y escribe COMMIT en el descriptor 3"]
+    G --> H["En terminal: pulso al ritmo del retroceso de una expresión regular"]
+    H --> I["Q1: sed termina a propósito con estado 1. sqlite3 lee el descriptor 3"]
 ```
 
-The sed diagram is a flowchart with a real cycle, because sed has a goto. It is a rewriting machine with a program counter, not a single match.
+El diagrama de sed es un diagrama de flujo con un ciclo real, porque sed tiene un goto. Es una máquina de reescritura con un contador de programa, no una sola coincidencia.
 
-## Trace one run
+## Traza una ejecución
 
-The entries draw random hours, and in this family the hours are not always under your control. For PCRE2 and .NET, the trace uses scratch copies with the random draws replaced by fixed values, run in the sandbox (PCRE2) or locally from a scratch folder (.NET). For sed, the entry has a seed: the README's seed `1011001110100101` always gives the same cards, so it is a fixed run, with hours 15, 14, 14 instead of 15, 19, 12. All three were run to check this section.
+Las entradas sortean horas al azar, y en esta familia no siempre controlas las horas. Para PCRE2 y .NET, la traza usa copias de trabajo con los sorteos aleatorios sustituidos por valores fijos. Se ejecutaron en el entorno aislado (PCRE2) o en local desde una carpeta temporal (.NET). Para sed, la entrada tiene una semilla. La semilla `1011001110100101` del README siempre da las mismas tarjetas, así que es una ejecución fija. Sus horas son 15, 14, 14 en lugar de 15, 19, 12. Se ejecutaron los tres para comprobar esta sección.
 
-### PCRE2: the callout conversation
+### PCRE2: la conversación de callouts
 
-With hours 15, 19, 12, and a line of output added to stderr at each callout, the run printed:
+Con las horas 15, 19, 12 y una línea de salida añadida a stderr en cada callout, la ejecución imprimió:
 
 ```text
   gate:   total=0, returns 0
@@ -142,47 +142,47 @@ With hours 15, 19, 12, and a line of output added to stderr at each callout, the
 pcre2_match returned -1 (no match)
 ```
 
-| Callout | State before | Return | Effect |
+| Callout | Estado antes | Retorno | Efecto |
 | --- | --- | --- | --- |
-| `init` | none | 0 | opens the file, writes the header |
-| `gate` | total 0 | 0 | continue |
-| `book` (Meetings) | total 0 | 0 | draws 15, total 15, writes the row |
-| `gate` | total 15 | 0 | continue |
-| `book` (Coding) | total 15 | 0 | 19, total 34 |
-| `gate` | total 34 | 0 | continue |
-| `book` (Debugging) | total 34 | 0 | 12, total 46 |
-| `gate` | total 46 | **1** | fail this branch: the `*` ends |
-| `commit` | total 46 | 0 | after `(*COMMIT)`, writes the summary once |
-| match result | none | none | `(*FAIL)`: `pcre2_match` returns -1 (no match) |
+| `init` | ninguno | 0 | abre el archivo y escribe el encabezado |
+| `gate` | total 0 | 0 | continúa |
+| `book` (Meetings) | total 0 | 0 | sortea 15, total 15, escribe la fila |
+| `gate` | total 15 | 0 | continúa |
+| `book` (Coding) | total 15 | 0 | sortea 19, total 34 |
+| `gate` | total 34 | 0 | continúa |
+| `book` (Debugging) | total 34 | 0 | sortea 12, total 46 |
+| `gate` | total 46 | **1** | falla esta rama: el `*` termina |
+| `commit` | total 46 | 0 | después de `(*COMMIT)`, escribe el resumen una vez |
+| resultado de la coincidencia | ninguno | ninguno | `(*FAIL)`: `pcre2_match` devuelve -1 (sin coincidencia) |
 
-The crossing card is already booked when the gate fires. That is the rule "keep the first card over 40": the gate tests *before* each category, so it rejects the card *after* the crossing one. The match returned no match, and the file still holds three rows and a summary.
+La tarjeta que cruza el tope ya está registrada cuando se activa el gate. Esa es la regla "conserva la primera tarjeta que pasa de 40": el gate comprueba *antes* de cada categoría, así que rechaza la tarjeta *posterior* a la que cruza. La búsqueda no encontró coincidencia, y el archivo aún contiene tres filas y un resumen.
 
-### .NET: the budget stack
+### .NET: la pila del presupuesto
 
-The scratch copy drew from the command line instead of `Random`. With draws `15 19 12 17 11` it printed three rows and `# captured total=46 entries=3`. The fourth and fifth draws were ignored. The trace in terms of stacks:
+La copia de trabajo sorteaba desde la línea de comandos en lugar de `Random`. Con los sorteos `15 19 12 17 11` imprimió tres filas y `# captured total=46 entries=3`. El cuarto y el quinto sorteo se ignoraron. La traza en términos de pilas:
 
-| Step | Budget stack `b` | Total stack `s` | What the pattern does |
+| Paso | Pila del presupuesto `b` | Pila del total `s` | Qué hace el patrón |
 | --- | --- | --- | --- |
-| Start | 41 tokens | 0 | `(?:(?<b>)){41}` pushes the budget |
-| Pass 1: Meetings | 41, then 26 | 15 | stack `b` non-empty, picker takes Meetings, 15 letters `a` each pop one `b` and push one `s` |
-| Pass 2: Coding | 26, then 7 | 34 | 19 letters |
-| Pass 3: Debugging | 7, then 0 | 46 | 12 letters: the first 7 pop a token and the last 5 pop nothing, because the conditional `(?(b)...)` finds the stack empty |
-| Pass 4 test | 0 | 46 | `(?(b)...|(?!))` finds `b` empty and takes `(?!)`, which fails the pass. The `*` ends and the match *succeeds* |
+| Inicio | 41 tokens | 0 | `(?:(?<b>)){41}` apila el presupuesto |
+| Pasada 1: Meetings | 41, luego 26 | 15 | la pila `b` no está vacía, el selector toma Meetings, 15 letras `a` retiran cada una un `b` y apilan un `s` |
+| Pasada 2: Coding | 26, luego 7 | 34 | 19 letras |
+| Pasada 3: Debugging | 7, luego 0 | 46 | 12 letras: las primeras 7 retiran un token y las últimas 5 no retiran nada, porque la condición `(?(b)...)` encuentra la pila vacía |
+| Prueba de la pasada 4 | 0 | 46 | `(?(b)...|(?!))` encuentra `b` vacío y toma `(?!)`, lo que hace fallar la pasada. El `*` termina y la coincidencia *tiene éxito* |
 
-The crossing card can overshoot the budget in the middle of its hours. Only the next pass is refused. The [fixed-tape check](../../../src/regex-dotnet/check.sh) runs five tens through the original pattern and then the same tape through the pattern with `(?!)` appended. On .NET SDK 10.0.401 the first reports 50 hours across five rows with exit 0; the failure reports zero hours and rows with exit 1. Both reports are appended to TSV.
+La tarjeta que cruza el tope puede rebasar el presupuesto a mitad de sus horas. Solo se rechaza la pasada siguiente. La [comprobación con cinta fija](../../../src/regex-dotnet/check.sh) ejecuta cinco decenas con el patrón original y luego la misma cinta con el patrón con `(?!)` añadido. En .NET SDK 10.0.401, la primera informa de 50 horas en cinco filas con estado de salida 0. El caso de fallo informa de cero horas y cero filas con estado de salida 1. Ambos informes se añaden a TSV.
 
-**The boundary: before and after the fix.** Before the fix, scratch copies of PCRE2 and .NET were run with four 10-hour draws. Both stopped with `total=40 entries=4`: after `Learning` there was no fifth category name, so no fifth pass could start, although 40 is not over 40. For PCRE2 the shared checker confirmed it:
+**El límite: antes y después de la corrección.** Antes de la corrección, se ejecutaron copias de trabajo de PCRE2 y .NET con cuatro sorteos de 10 horas. Ambas se detuvieron con `total=40 entries=4`: después de `Learning` no había un quinto nombre de categoría, así que no podía empezar una quinta pasada, aunque 40 no pasa de 40. Para PCRE2, el verificador compartido lo confirmó:
 
 ```text
 $ bash lessons/tools/check-demo.sh out.txt
 FAIL: final total 40 does not pass 40
 ```
 
-The same held for the Perl entry (its postponed block returns `$::c[$::n] // '(*FAIL)'`, which fails when the names are used up) and for sed (`/ cats: /b done`). The fix is one more name in each: `MeetingsCodingDebuggingLearningMeetings` in PCRE2's subject and pcre2grep's tape, a fifth `Meetings` in Perl's scaffold and `@::c`, a fifth tape entry and one more flag group (`f5`) in the .NET picker and `cats:Meetings,Coding,Debugging,Learning,Meetings,` in sed. Each `check.sh` now builds a variant whose every card is worth 10 hours and requires five rows (the fourth `Learning`, the fifth `Meetings`, total 50). The new tests were also run against the old code, and each failed there (`total=40 entries=4`), so they can fail. All five entries pass them now.
+Lo mismo ocurría en la entrada de Perl (su bloque pospuesto devuelve `$::c[$::n] // '(*FAIL)'`, que falla cuando se agotan los nombres) y en sed (`/ cats: /b done`). La corrección añade un nombre en cada entrada. En PCRE2 y pcre2grep es `MeetingsCodingDebuggingLearningMeetings`, en la cadena de texto de entrada de uno y en la cinta del otro. En Perl es un quinto `Meetings` en el armazón y `@::c`. En .NET es una quinta entrada de la cinta y un grupo de banderas más (`f5`) en el selector. En sed es `cats:Meetings,Coding,Debugging,Learning,Meetings,`. Cada `check.sh` hace ahora la compilación de una variante en la que cada tarjeta vale 10 horas. Esa variante exige cinco filas (la cuarta `Learning`, la quinta `Meetings`, total 50). Las pruebas nuevas también se ejecutaron contra el código antiguo y cada una falló allí (`total=40 entries=4`), así que pueden fallar. Las cinco entradas las pasan ahora.
 
-### sed: one line, rewritten
+### sed: una línea, reescrita
 
-A tape with `trace:1` enables a state print at each head and at intervening rewrites. GNU sed 4.9 reproduced the trace below using the README's fixed tape with `trace:1` and fd 3 redirected to a separate SQL file. Running that SQL in SQLite 3.45.1 reproduced the three card rows. Here are the `:entry` states without their common prefix:
+Una cinta con `trace:1` activa una impresión del estado en cada cabecera del bucle y en las reescrituras intermedias. GNU sed 4.9 reprodujo la traza de abajo con la cinta fija del README con `trace:1` y el descriptor 3 redirigido a un archivo SQL aparte. Al ejecutar ese SQL en SQLite 3.45.1 se reprodujeron las tres filas de tarjetas. Estos son los estados de `:entry` sin su prefijo común:
 
 ```text
 rng:1011001110100101 cats:Meetings,Coding,Debugging,Learning,Meetings, tot: n:
@@ -191,85 +191,85 @@ rng:0100101001011011 cats:Debugging,Learning,Meetings, tot:#####################
 rng:0100010010100101 cats:Learning,Meetings, tot:########################################### n:%%%
 ```
 
-| Loop head | Total (marks) | Categories left | `/ tot:#{41}/` | Next |
+| Cabecera del bucle | Total (marcas) | Categorías restantes | `/ tot:#{41}/` | Siguiente |
 | --- | ---: | --- | --- | --- |
-| 1 | 0 | five | no match | take Meetings, draw 15 |
-| 2 | 15 | four | no match | take Coding, draw 14 |
-| 3 | 29 | three | no match | take Debugging, draw 14 |
-| 4 | **43** | two | **match** | `b done`: print the summary, write `COMMIT` |
+| 1 | 0 | cinco | sin coincidencia | toma Meetings, sortea 15 |
+| 2 | 15 | cuatro | sin coincidencia | toma Coding, sortea 14 |
+| 3 | 29 | tres | sin coincidencia | toma Debugging, sortea 14 |
+| 4 | **43** | dos | **coincide** | `b done`: imprime el resumen, escribe `COMMIT` |
 
-The rows were `Meetings 15 15`, `Coding 14 29` and `Debugging 14 43`, with `# committed total=43 entries=3`. Each trip between loop heads rewrites the shift register to produce a digit, rejects draws of 10 to 15 (`/ rng:1(01|1)/b draw`) and turns the accepted digit into tally marks. The number of state lines per card is not constant, because a rejected draw repeats a step. Learning and the second Meetings were never used: the stop rule fired first. Had the total been exactly 40 at a later head, `cats:` would still hold a name, so another card would be drawn. With five names the list can only end a run after five cards, and five cards of at least 10 hours always pass 40.
+Las filas fueron `Meetings 15 15`, `Coding 14 29` y `Debugging 14 43`, con `# committed total=43 entries=3`. Cada viaje entre cabeceras del bucle reescribe el registro de desplazamiento para producir un dígito. Rechaza los sorteos de 10 a 15 (`/ rng:1(01|1)/b draw`) y convierte el dígito aceptado en marcas de conteo. El número de líneas de estado por tarjeta no es constante, porque un sorteo rechazado repite un paso. Learning y el segundo Meetings nunca se usaron: la regla de parada se activó antes. Si el total hubiera sido exactamente 40 en una cabecera posterior, `cats:` aún tendría un nombre, así que se sortearía otra tarjeta. Con cinco nombres, la lista solo puede terminar una ejecución después de cinco tarjetas, y cinco tarjetas de al menos 10 horas siempre pasan de 40.
 
-## Compare the ordinary and weird designs
+## Compara los diseños ordinarios y los raros
 
-There is no ordinary version of this family in the repository: the "ordinary" way to do the challenge is any entry in another language. The useful comparison is between the five regex designs.
+En el repositorio no hay una versión ordinaria de esta familia: la forma "ordinaria" de hacer el reto es cualquier entrada en otro lenguaje. La comparación útil es entre los cinco diseños de regex.
 
-| Dimension | Perl | PCRE2 | pcre2grep | .NET | sed |
+| Dimensión | Perl | PCRE2 | pcre2grep | .NET | sed |
 | --- | --- | --- | --- | --- | --- |
-| **Representation** | Code blocks in the pattern | Callout names as opcodes | Callout scripts that name programs | Balancing groups as stacks | Substitutions on one line |
-| **State** | `local` variables | C struct | SQLite | stack depth | the line |
-| **Observability** | Hidden in package variables | `gdb`, or printing in the dispatcher | `sqlite3` log | Only the final captures | The whole machine is one printable line (`TRACE=1`) |
-| **Tests** | Run it and read the database | Compare the callout log with the TSV file | Black box: the pattern and the exit codes | Fix the draws and read the captures | Same seed gives same cards, so the output is testable |
-| **Portability** | Perl 5 code-block features | Needs a PCRE2 built with callouts; no JIT | Needs an upstream build with callout scripts | Any .NET | GNU sed only (`T`, `Q`, `--debug`, `-E` intervals) |
-| **Cost** | Cheap | Optimizer switched off to keep callouts honest | One process per callout | No side effects possible | about 137 commands per card; a deliberately slow regex as a clock |
+| **Representación** | Bloques de código en el patrón | Nombres de callout como códigos de operación | Scripts de callout que nombran programas | Grupos de equilibrio como pilas | Sustituciones sobre una línea |
+| **Estado** | variables `local` | estructura de C | SQLite | profundidad de la pila | la línea |
+| **Observabilidad** | Oculto en variables de paquete | `gdb`, o impresión en el despachador | registro de `sqlite3` | Solo las capturas finales | Toda la máquina es una línea imprimible (`TRACE=1`) |
+| **Pruebas** | Ejecútalo y lee la base de datos | Compara el registro de callouts con el archivo TSV | Caja negra: el patrón y los estados de salida | Fija los sorteos y lee las capturas | La misma semilla da las mismas tarjetas, así que la salida se puede probar |
+| **Portabilidad** | Funciones de bloques de código de Perl 5 | Necesita un PCRE2 compilado con callouts y sin JIT | Necesita una compilación del proyecto original con scripts de callout | Cualquier .NET | Solo GNU sed (intervalos `T`, `Q`, `--debug`, `-E`) |
+| **Costo** | Barato | Optimizador desactivado para que los callouts sean honestos | Un proceso por callout | No es posible ningún efecto secundario | unos 137 comandos por tarjeta; una regex deliberadamente lenta como reloj |
 
-Searching and rewriting differ in a way worth stating. A single match always finishes, because the input is fixed and the engine tries a bounded number of paths. A loop of substitutions can continue indefinitely. This is why rewriting systems are universal and why sed's check needs the stop rule to be real.
+Buscar y reescribir se diferencian de una manera que vale la pena decir. Una sola coincidencia siempre termina, porque la entrada de datos es fija y el motor prueba una cantidad acotada de caminos. Un bucle de sustituciones puede continuar indefinidamente. Por eso los sistemas de reescritura son universales y por eso la comprobación de sed necesita que la regla de parada sea real.
 
-## What the exercises demonstrate
+## Qué demuestran los ejercicios
 
-| Exercise | Predict first | What the evidence shows |
+| Ejercicio | Predice primero | Qué muestra la evidencia |
 | --- | --- | --- |
-| [B8. Regex: what survives a failed match](../../exercises.md#b8-regex-what-survives-a-failed-match-verified), .NET | Append `(?!)` to the pattern. What can the host still read? | `match returned: false` and `total=0 entries=0`. A failed .NET `Match` exposes no captures. The host appends a report with no card rows and exits 1. A successful match is required to return the cards. |
-| B8, pcre2grep | Change the first `(?C{/usr/bin/sqlite3` to `(?C{sqlite3`. What happens? | No output at all and exit code 0. `pcre2grep` uses `fork` and `execv`, which do not search `PATH`, so a callout that cannot start looks the same as a vetoed branch. |
-| [B9. sed: watch a computation](../../exercises.md#b9-sed-watch-a-computation-verified) | Roughly how many state lines per card? | Many, and not a constant number, because rejected draws repeat a step. The last `tot:` has 41 or more `#`. |
-| [C1. Weird next to boring](../../exercises.md#c1-weird-next-to-boring-verified) | Which entry would you debug first? | The one whose whole state you can print: sed. |
-| [A1. Read the rows](../../exercises.md#a1-read-the-rows-verified) | Run `src/regex-dotnet`, whose rows have no running-total column. How many cards? | You must sum the hours yourself. This is also where the old four-card ceiling was invisible, because the rarest case, exactly 40, almost never appears. The `check.sh` of every regex entry now forces it. |
+| [B8. Regex: qué sobrevive a una coincidencia fallida](../../exercises.md#b8-regex-what-survives-a-failed-match-verified), .NET | Añade `(?!)` al patrón. ¿Qué puede seguir leyendo el anfitrión? | `match returned: false` y `total=0 entries=0`. Un `Match` de .NET fallido no expone ninguna captura. El anfitrión añade un informe sin filas de tarjetas y termina con estado 1. Se necesita una coincidencia correcta para devolver las tarjetas. |
+| B8, pcre2grep | Cambia el primer `(?C{/usr/bin/sqlite3` por `(?C{sqlite3`. ¿Qué pasa? | No hay ninguna salida y el estado de salida es 0. `pcre2grep` usa `fork` y `execv`, que no buscan en `PATH`, así que un callout que no puede arrancar se ve igual que una rama vetada. |
+| [B9. sed: observa una computación](../../exercises.md#b9-sed-watch-a-computation-verified) | ¿Más o menos cuántas líneas de estado hay por tarjeta? | Muchas, pero no una cantidad constante, porque los sorteos rechazados repiten un paso. El último `tot:` tiene 41 o más `#`. |
+| [C1. Lo raro junto a lo aburrido](../../exercises.md#c1-weird-next-to-boring-verified) | ¿Qué entrada depurarías primero? | La que tiene todo su estado imprimible: sed. |
+| [A1. Lee las filas](../../exercises.md#a1-read-the-rows-verified) | Ejecuta `src/regex-dotnet`, cuyas filas no tienen columna de total acumulado. ¿Cuántas tarjetas hay? | Tienes que sumar tú mismo las horas. Aquí también era invisible el antiguo techo de cuatro tarjetas, porque el caso más raro, exactamente 40, casi nunca aparece. El `check.sh` de cada entrada de regex se encarga ahora de forzarlo. |
 
-The B8 exercise asks for three sentences contrasting what survives a failed match. The version that shows you understood: Perl's `local` values are restored when the engine backtracks, but the prints and inserts stay done. PCRE2's C struct is never rewound. In .NET no card captures survive a failed match. The host can still append its empty report.
+El ejercicio B8 pide tres oraciones que contrasten qué sobrevive a una coincidencia fallida. La versión que muestra que lo entendiste: los valores de `local` de Perl se restauran cuando el motor retrocede, pero las impresiones y las inserciones ya hechas siguen hechas. La estructura de C de PCRE2 nunca se rebobina. En .NET no sobrevive ninguna captura de tarjetas a una coincidencia fallida. El anfitrión aún puede añadir su informe vacío.
 
-## Failure modes, costs and boundaries
+## Modos de fallo, costos y límites
 
-| Behavior | Label | Why |
+| Comportamiento | Etiqueta | Por qué |
 | --- | --- | --- |
-| Perl runs `(?{ })` and `(??{ })` code during a match, and `local` is undone on backtracking | **guaranteed** | Documented Perl features. |
-| PCRE2 calls the callout function at each callout point, and a positive return fails the path | **guaranteed** | Documented API. |
-| The optimizer would not skip or reorder callouts, given `PCRE2_NO_AUTO_POSSESS`, `PCRE2_NO_START_OPTIMIZE` and `PCRE2_NO_DOTSTAR_ANCHOR` and no JIT | **implementation-permitted** | The README tested the system PCRE2 with those flags and did not test what the optimizer would elide without them. |
-| `pcre2grep` callout scripts run programs, and their exit codes steer the match | **implementation-permitted** | A build option. Ubuntu's own `pcre2grep` is built without it, so the sandbox pins an upstream build. |
-| .NET balancing groups subtract one capture from a named group and can add a capture to another | **guaranteed** within the .NET regex API | These are documented grouping constructs in the .NET backtracking engine. The pattern requires that engine feature. |
-| A failed .NET `Match` exposes no captures | **guaranteed** | Verified in exercise B8. |
-| sed's `T`, `Q`, `--debug`, `\x1b` and `-E` intervals | **implementation-permitted** | GNU extensions. BSD and macOS sed will not run the script. |
-| The sed pulse takes about 50 ms per frame because a regex backtracks catastrophically | **accidentally exploited** | The cost of a failing pattern is a performance cliff nobody promised, and it varies with the CPU. The pulse is skipped in pipes and in `check.sh`. |
-| The number of category names bounds the number of cards | **guaranteed** by construction, tested | With five names a run has at most five cards, which is exactly the worst case (five cards of at least 10 hours reach 50). With four names (before the fix) the bound contradicted the shared challenge for one run in 10,000. |
+| Perl ejecuta código `(?{ })` y `(??{ })` durante una coincidencia, y `local` se deshace con el retroceso | **garantizado** | Funciones de Perl documentadas. |
+| PCRE2 llama a la función de callout en cada punto de callout, y un retorno positivo hace fallar el camino | **garantizado** | API documentada. |
+| El optimizador no omitiría ni reordenaría callouts, con `PCRE2_NO_AUTO_POSSESS`, `PCRE2_NO_START_OPTIMIZE` y `PCRE2_NO_DOTSTAR_ANCHOR` y sin JIT | **permitido por la implementación** | El README probó el PCRE2 del sistema con esas banderas y no probó qué eliminaría el optimizador sin ellas. |
+| Los scripts de callout de `pcre2grep` ejecutan programas, y sus estados de salida dirigen la coincidencia | **permitido por la implementación** | Una opción de compilación. El propio `pcre2grep` de Ubuntu se compila sin ella, así que el entorno aislado fija una compilación del proyecto original. |
+| Los grupos de equilibrio de .NET restan una captura de un grupo con nombre y pueden añadir una captura a otro | **garantizado** dentro de la API de regex de .NET | Son construcciones de agrupación documentadas del motor de retroceso de .NET. El patrón exige esa función del motor. |
+| Un `Match` de .NET fallido no expone ninguna captura | **garantizado** | Verificado en el ejercicio B8. |
+| Los intervalos `T`, `Q`, `--debug`, `\x1b` y `-E` de sed | **permitido por la implementación** | Extensiones de GNU. El sed de BSD y de macOS no ejecutará el script. |
+| El pulso de sed tarda unos 50 ms por fotograma porque una regex retrocede de forma catastrófica | **aprovechado por accidente** | El costo de un patrón que falla es un precipicio de rendimiento que nadie prometió, y varía con la CPU. El pulso se omite en las tuberías y en `check.sh`. |
+| La cantidad de nombres de categoría limita la cantidad de tarjetas | **garantizado** por construcción, comprobado | Con cinco nombres, una ejecución tiene como máximo cinco tarjetas, que es exactamente el peor caso (cinco tarjetas de al menos 10 horas llegan a 50). Con cuatro nombres (antes de la corrección), el límite contradecía el reto compartido en una de cada 10 000 ejecuciones. |
 
-**Costs to state.**
+**Costos que conviene declarar.**
 
-- **ReDoS is the same mechanism.** The sed entry uses catastrophic backtracking as a clock, and the CMake guide notes that a pattern for "at most 40" written as 40 optional groups would backtrack exponentially on failure. In a production service, a pattern like that on attacker-chosen input is a denial-of-service bug. See [Regular-expression denial of service](../../informatica/08-fugas-de-abstraccion-y-dependencia-de-la-implementacion.md#regular-expression-denial-of-service).
-- **A pattern that runs code is a program.** The book's threat-model example is exactly this entry: if your threat model only worries about a slow regex, update it ([Threat model](../../informatica/01-lectura-de-un-programa-adversarial.md#threat-model)).
-- **Callouts that run programs are command execution.** The entry's `check.sh` allows only `/usr/bin/sqlite3`, `/usr/bin/test` and `/bin/sleep`.
-- **State rewinding differs by engine.** Code that is correct under Perl's `local` can be wrong in a language whose state does not unwind.
-- **A host that only reports is still a host.** .NET and CMake need a host to seed randomness and to write files, because a regex cannot do either.
+- **ReDoS es el mismo mecanismo.** La entrada de sed usa el retroceso catastrófico como reloj. La guía de CMake señala que un patrón para "como máximo 40", escrito como 40 grupos opcionales, retrocedería de forma exponencial al fallar. En un servicio de producción, un patrón así sobre una entrada elegida por un atacante es un error de denegación de servicio. Consulta [Denegación de servicio mediante expresiones regulares](../../informatica/08-fugas-de-abstraccion-y-dependencia-de-la-implementacion.md#regular-expression-denial-of-service).
+- **Un patrón que ejecuta código es un programa.** El ejemplo de modelo de amenazas del libro es exactamente esta entrada: si tu modelo de amenazas solo se preocupa por una regex lenta, actualízalo ([Modelo de amenazas](../../informatica/01-lectura-de-un-programa-adversarial.md#threat-model)).
+- **Los callouts que ejecutan programas son ejecución de comandos.** El `check.sh` de la entrada solo permite `/usr/bin/sqlite3`, `/usr/bin/test` y `/bin/sleep`.
+- **El rebobinado del estado difiere según el motor.** El código que es correcto bajo el `local` de Perl puede ser incorrecto en un lenguaje cuyo estado no se deshace.
+- **Un anfitrión que solo informa sigue siendo un anfitrión.** .NET y CMake necesitan un anfitrión para sembrar la aleatoriedad y escribir archivos, porque una regex no puede hacer ninguna de las dos cosas.
 
-## Connections across the repository
+## Conexiones a lo largo del repositorio
 
-- **The loop inside one match, in another tool.** [Make and CMake](make-y-cmake.md): CMake lets a `while()` re-expand a regex every pass, so its captures become registers.
-- **Rewriting until nothing changes.** [m4](m4.md) rescans its own output, and sed's `b` and `t` loop does the same on one line. The concept guide [Formal languages and weird machines](../conceptos/lenguajes-formales-y-maquinas-raras.md) puts string rewriting beside the Markov algorithm.
-- **A failed match as information.** [Effects, errors and commitment](../conceptos/efectos-errores-y-confirmacion.md) compares what survives failure here with transactions, exit status and the cut.
-- **Authority from the command, not the data.** [tar](tar.md) shows the same worry from another side: whether reading the data runs it.
-- **In the book.** [Regular expressions: five engines](../../lenguajes/regex.md), [Regular expressions](../../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#regular-expressions), [Backtracking](../../informatica/07-efectos-errores-y-confirmacion.md#backtracking), [The cut](../../informatica/07-efectos-errores-y-confirmacion.md#the-cut-committing-to-a-choice) and [Markov algorithms](../../informatica/02-que-cuenta-como-maquina.md#markov-algorithms).
+- **El bucle dentro de una sola coincidencia, en otra herramienta.** [Make y CMake](make-y-cmake.md): CMake permite que un `while()` vuelva a expandir una regex en cada pasada, así que sus capturas se vuelven registros.
+- **Reescribir hasta que nada cambie.** [m4](m4.md) reescanea su propia salida, y el bucle de `b` y `t` de sed hace lo mismo sobre una línea. La guía de concepto [Lenguajes formales y máquinas raras](../conceptos/lenguajes-formales-y-maquinas-raras.md) pone la reescritura de cadenas de texto junto al algoritmo de Markov.
+- **Una coincidencia fallida como información.** [Efectos, errores y confirmación](../conceptos/efectos-errores-y-confirmacion.md) compara lo que sobrevive a un fallo aquí con las transacciones, el estado de salida y el corte.
+- **La autoridad viene del comando, no de los datos.** [tar](tar.md) muestra la misma preocupación desde otro lado: si leer los datos los ejecuta.
+- **En el libro.** [Expresiones regulares: cinco motores](../../lenguajes/regex.md), [Expresiones regulares](../../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#regular-expressions), [Retroceso](../../informatica/07-efectos-errores-y-confirmacion.md#backtracking), [El corte](../../informatica/07-efectos-errores-y-confirmacion.md#the-cut-committing-to-a-choice) y [Algoritmos de Markov](../../informatica/02-que-cuenta-como-maquina.md#markov-algorithms).
 
-## Self-check
+## Autoevaluación
 
-Answer each question in your own words before you read the italic text. Say what evidence would support each answer.
+Responde cada pregunta con tus propias palabras antes de leer el texto en cursiva. Di qué evidencia respaldaría cada respuesta.
 
-1. **Trace.** In the PCRE2 entry, hours are 13, 12, 14, 15. List the `gate` returns and the number of rows. *(The gate sees totals 0, 13, 25 and 39 and returns 0 each time, so four cards are booked. A fifth gate sees 54 and returns 1, which ends the loop. Four rows, total 54, and the crossing card is the fourth. Had the total been exactly 40 after four cards, the fifth gate would return 0, and the fifth name in the subject, `Meetings`, would be matched and booked: the fix described above. Before it, the subject had no fifth name, and the loop ended at 40.)*
-2. **Explain.** Why does PCRE2 need `(*COMMIT)` before the `commit` callout? *(The final `(*FAIL)` makes the engine backtrack. Without `(*COMMIT)` it would retry shorter loops, and `commit` would run more than once.)*
-3. **Transfer.** Why must the .NET match succeed to report its cards when the C PCRE2 match can deliberately fail? What is the difference in where each keeps its output? *(The PCRE2 callouts write the TSV before the final failure. The .NET pattern supplies card data via captures, and a failed `Match` supplies none.)*
-4. **Evidence.** A reviewer says, "A total of exactly 40 continues to a fifth card in every regex entry." Design a test that could fail. What is the negative control? *(Run each entry, or a copy with every card worth 10 hours, and check for five rows ending at 50. The `check.sh` files now do exactly that. The negative control is the entry as it was before the fix, which stops at four rows and a total of 40. Run the new checks against the old code to see them fail.)*
+1. **Traza.** En la entrada de PCRE2, las horas son 13, 12, 14, 15. Lista los retornos de `gate` y el número de filas. *(El gate ve los totales 0, 13, 25 y 39 y devuelve 0 cada vez, así que se registran cuatro tarjetas. Un quinto gate ve 54 y devuelve 1, lo que termina el bucle. Cuatro filas, total 54, y la tarjeta que cruza el tope es la cuarta. Si el total hubiera sido exactamente 40 tras cuatro tarjetas, el quinto gate devolvería 0. Entonces se encontraría y registraría el quinto nombre de la cadena de entrada, `Meetings`: la corrección descrita arriba. Antes de ella, la cadena de entrada no tenía quinto nombre, y el bucle terminaba en 40.)*
+2. **Explica.** ¿Por qué PCRE2 necesita `(*COMMIT)` antes del callout `commit`? *(El `(*FAIL)` final hace que el motor retroceda. Sin `(*COMMIT)` reintentaría bucles más cortos, y `commit` se ejecutaría más de una vez.)*
+3. **Transfiere.** ¿Por qué la coincidencia de .NET debe tener éxito para informar de sus tarjetas, cuando la coincidencia de PCRE2 en C puede fallar a propósito? ¿Qué diferencia hay en dónde guarda cada una su salida? *(Los callouts de PCRE2 escriben el TSV antes del fallo final. El patrón de .NET entrega los datos de las tarjetas mediante capturas, y un `Match` fallido no entrega ninguna.)*
+4. **Evidencia.** Un revisor dice: "Un total de exactamente 40 continúa hasta una quinta tarjeta en cada entrada de regex". Diseña una prueba que pueda fallar. ¿Cuál es el control negativo? *(Ejecuta cada entrada, o una copia con cada tarjeta de 10 horas, y comprueba que haya cinco filas que terminen en 50. Los archivos `check.sh` ahora hacen exactamente eso. El control negativo es la entrada tal como estaba antes de la corrección, que se detiene en cuatro filas y un total de 40. Ejecuta las comprobaciones nuevas contra el código antiguo para verlas fallar.)*
 
-## Further reading
+## Lecturas adicionales
 
-- [Regular expression](https://en.wikipedia.org/wiki/Regular_expression) (Wikipedia): the formal and practical senses of the term, and why practical engines exceed the formal definition.
-- [ReDoS](https://en.wikipedia.org/wiki/ReDoS) (Wikipedia): how catastrophic backtracking becomes an attack.
-- [Regular Expression Denial of Service](https://owasp.org/www-community/attacks/Regular_expression_Denial_of_Service_-_ReDoS) (OWASP): examples and defenses.
-- [Markov algorithm](https://en.wikipedia.org/wiki/Markov_algorithm) (Wikipedia): the formal model behind sed's find-and-replace machine.
-- [sed, a stream editor](https://www.gnu.org/software/sed/manual/sed.html) (GNU Project): the manual for the GNU extensions the sed entry uses.
+- [Expresión regular](https://en.wikipedia.org/wiki/Regular_expression) (Wikipedia): los sentidos formal y práctico del término, y por qué los motores prácticos van más allá de la definición formal.
+- [ReDoS](https://en.wikipedia.org/wiki/ReDoS) (Wikipedia): cómo el retroceso catastrófico se convierte en un ataque.
+- [Denegación de servicio mediante expresiones regulares](https://owasp.org/www-community/attacks/Regular_expression_Denial_of_Service_-_ReDoS) (OWASP): ejemplos y defensas.
+- [Algoritmo de Markov](https://en.wikipedia.org/wiki/Markov_algorithm) (Wikipedia): el modelo formal que hay detrás de la máquina de buscar y reemplazar de sed.
+- [sed, un editor de flujo](https://www.gnu.org/software/sed/manual/sed.html) (Proyecto GNU): el manual de las extensiones de GNU que usa la entrada de sed.

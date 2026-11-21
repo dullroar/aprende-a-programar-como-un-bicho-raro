@@ -2028,3 +2028,55 @@
 {"segment_id": "s-516d5d815bb8-0077", "ts": "2026-11-21T19:15:05Z", "findings": ["I7: banned rendering 'registro' for glossary term entry"]}
 {"segment_id": "s-87d9e31bff8d-0107", "ts": "2026-11-21T19:15:05Z", "findings": ["I7: glossary term state must be rendered 'estado'"]}
 {"segment_id": "s-0c5c99225ec2-0125", "ts": "2026-11-21T19:15:06Z", "findings": ["I7: glossary term statement must be rendered 'sentencia'"]}
+{"segment_id": "s-4aded6bc0174-0004", "ts": "2026-11-21T19:20:54Z", "findings": ["I12: sentence of 31 words (limit 29): Explicar la diferencia entre *buscar* (u...", "I12: sentence of 40 words (limit 29): Decir qué sobrevive a una coincidencia f..."]}
+{"segment_id": "s-aab1439bf7ab-0005", "ts": "2026-11-21T19:20:54Z", "findings": ["I7: glossary term scope must be rendered 'ámbito'"]}
+{"segment_id": "s-33003f4f9a02-0020", "ts": "2026-11-21T19:20:54Z", "findings": ["I7: glossary term string must be rendered 'cadena de texto'", "I12: sentence of 31 words (limit 29): El verificador compartido X rechaza una ...", "I12: sentence of 38 words (limit 29): Ya está corregido: cada entrada tiene **..."]}
+{"segment_id": "s-ae4c73493504-0023", "ts": "2026-11-21T19:20:54Z", "findings": ["I7: glossary term timecard must be rendered 'tarjeta de horas'"]}
+{"segment_id": "s-417a0413eef1-0024", "ts": "2026-11-21T19:20:54Z", "findings": ["I7: glossary term string must be rendered 'cadena de texto'", "I12: sentence of 33 words (limit 29): Los números son series de X (marcas de c..."]}
+{"segment_id": "s-7d9325e5a24f-0025", "ts": "2026-11-21T19:20:54Z", "findings": ["I7: glossary term code must be rendered 'código'", "I22: range '10 a 19' names no unit (write horas por tarjeta)"]}
+{"segment_id": "s-4fb8b097f5e3-0026", "ts": "2026-11-21T19:20:54Z", "findings": ["I7: glossary term veto must be rendered 'vetar'", "I12: sentence of 31 words (limit 29): pcre2grep: SQLite se niega a insertar \"e..."]}
+{"segment_id": "s-591140a37cda-0029", "ts": "2026-11-21T19:20:54Z", "findings": ["I7: glossary term book must be rendered 'libro'", "I12: sentence of 32 words (limit 29): El motor busca la coincidencia del sigui..."]}
+{"segment_id": "s-dbad975ae6fb-0059", "ts": "2026-11-21T19:20:54Z", "findings": ["I7: banned rendering 'registro' for glossary term entry", "I12: sentence of 30 words (limit 29): En la etiqueta de entrada entry, dos pru..."]}
+{"segment_id": "s-e55f125e3a5f-0081", "ts": "2026-11-21T19:20:54Z", "findings": ["TRANSLATE: the reply is the English text unchanged"]}
+{"segment_id": "s-6935bd6e1c51-0083", "ts": "2026-11-21T19:20:54Z", "findings": ["TRANSLATE: the reply is the English text unchanged"]}
+{"segment_id": "s-8f549827c2eb-0098", "ts": "2026-11-21T19:20:54Z", "findings": ["I3: digit token 2 appears 2 time(s) in the source, 4 in the target", "I12: sentence of 30 words (limit 29): Cada X hace ahora la compilación de una ...", "I25: comma before a simple 'y' ('en el selector, y en sed es X'): no comma before a simple o or y"]}
+{"segment_id": "s-23eef91c0708-0106", "ts": "2026-11-21T19:20:54Z", "findings": ["I12: sentence of 32 words (limit 29): Cada viaje entre cabeceras del bucle ree..."]}
+{"segment_id": "s-79e28ef13539-0113", "ts": "2026-11-21T19:20:54Z", "findings": ["I7: glossary term code must be rendered 'código'"]}
+{"segment_id": "s-919912ee3571-0120", "ts": "2026-11-21T19:20:54Z", "findings": ["I7: glossary term code must be rendered 'código'"]}
+{"segment_id": "s-26087a2483cd-0121", "ts": "2026-11-21T19:20:54Z", "findings": ["I25: comma before a simple 'y' ('| Muchas, y no una cantidad constante'): no comma before a simple o or y"]}
+{"segment_id": "s-908b691d0004-0127", "ts": "2026-11-21T19:20:54Z", "findings": ["I7: glossary term backtracking must be rendered 'retroceso'"]}
+{"segment_id": "s-95334b62d7fe-0130", "ts": "2026-11-21T19:20:54Z", "findings": ["I7: glossary term code must be rendered 'código'"]}
+{"segment_id": "s-87d9e31bff8d-0136", "ts": "2026-11-21T19:20:54Z", "findings": ["I7: glossary term state must be rendered 'estado'"]}
+{"segment_id": "s-87d13051a515-0137", "ts": "2026-11-21T19:20:54Z", "findings": ["I7: glossary term bug must be rendered 'bicho'"]}
+{"segment_id": "s-bc19d91832a2-0144", "ts": "2026-11-21T19:20:54Z", "findings": ["I7: glossary term string must be rendered 'cadena de texto'"]}
+{"segment_id": "s-4aded6bc0174-0004", "ts": "2026-11-21T19:20:57Z", "findings": ["I12: sentence of 31 words (limit 29): Explicar la diferencia entre *buscar* (u...", "I12: sentence of 40 words (limit 29): Decir qué sobrevive a una coincidencia f..."]}
+{"segment_id": "s-aab1439bf7ab-0005", "ts": "2026-11-21T19:20:57Z", "findings": ["I7: glossary term scope must be rendered 'ámbito'"]}
+{"segment_id": "s-33003f4f9a02-0020", "ts": "2026-11-21T19:20:57Z", "findings": ["I7: glossary term string must be rendered 'cadena de texto'", "I12: sentence of 31 words (limit 29): El verificador compartido X rechaza una ...", "I12: sentence of 38 words (limit 29): Ya está corregido: cada entrada tiene **..."]}
+{"segment_id": "s-ae4c73493504-0023", "ts": "2026-11-21T19:20:57Z", "findings": ["I7: glossary term timecard must be rendered 'tarjeta de horas'"]}
+{"segment_id": "s-417a0413eef1-0024", "ts": "2026-11-21T19:20:57Z", "findings": ["I7: glossary term string must be rendered 'cadena de texto'", "I12: sentence of 33 words (limit 29): Los números son series de X (marcas de c..."]}
+{"segment_id": "s-7d9325e5a24f-0025", "ts": "2026-11-21T19:20:57Z", "findings": ["I7: glossary term code must be rendered 'código'", "I22: range '10 a 19' names no unit (write horas por tarjeta)"]}
+{"segment_id": "s-4fb8b097f5e3-0026", "ts": "2026-11-21T19:20:57Z", "findings": ["I7: glossary term veto must be rendered 'vetar'", "I12: sentence of 31 words (limit 29): pcre2grep: SQLite se niega a insertar \"e..."]}
+{"segment_id": "s-591140a37cda-0029", "ts": "2026-11-21T19:20:57Z", "findings": ["I7: glossary term book must be rendered 'libro'", "I12: sentence of 32 words (limit 29): El motor busca la coincidencia del sigui..."]}
+{"segment_id": "s-dbad975ae6fb-0059", "ts": "2026-11-21T19:20:57Z", "findings": ["I7: banned rendering 'registro' for glossary term entry", "I12: sentence of 30 words (limit 29): En la etiqueta de entrada entry, dos pru..."]}
+{"segment_id": "s-e55f125e3a5f-0081", "ts": "2026-11-21T19:20:57Z", "findings": ["TRANSLATE: the reply is the English text unchanged"]}
+{"segment_id": "s-6935bd6e1c51-0083", "ts": "2026-11-21T19:20:57Z", "findings": ["TRANSLATE: the reply is the English text unchanged"]}
+{"segment_id": "s-8f549827c2eb-0098", "ts": "2026-11-21T19:20:57Z", "findings": ["I3: digit token 2 appears 2 time(s) in the source, 4 in the target", "I12: sentence of 30 words (limit 29): Cada X hace ahora la compilación de una ...", "I25: comma before a simple 'y' ('en el selector, y en sed es X'): no comma before a simple o or y"]}
+{"segment_id": "s-23eef91c0708-0106", "ts": "2026-11-21T19:20:57Z", "findings": ["I12: sentence of 32 words (limit 29): Cada viaje entre cabeceras del bucle ree..."]}
+{"segment_id": "s-79e28ef13539-0113", "ts": "2026-11-21T19:20:57Z", "findings": ["I7: glossary term code must be rendered 'código'"]}
+{"segment_id": "s-919912ee3571-0120", "ts": "2026-11-21T19:20:57Z", "findings": ["I7: glossary term code must be rendered 'código'"]}
+{"segment_id": "s-26087a2483cd-0121", "ts": "2026-11-21T19:20:57Z", "findings": ["I25: comma before a simple 'y' ('| Muchas, y no una cantidad constante'): no comma before a simple o or y"]}
+{"segment_id": "s-908b691d0004-0127", "ts": "2026-11-21T19:20:57Z", "findings": ["I7: glossary term backtracking must be rendered 'retroceso'"]}
+{"segment_id": "s-95334b62d7fe-0130", "ts": "2026-11-21T19:20:57Z", "findings": ["I7: glossary term code must be rendered 'código'"]}
+{"segment_id": "s-87d9e31bff8d-0136", "ts": "2026-11-21T19:20:57Z", "findings": ["I7: glossary term state must be rendered 'estado'"]}
+{"segment_id": "s-87d13051a515-0137", "ts": "2026-11-21T19:20:57Z", "findings": ["I7: glossary term bug must be rendered 'bicho'"]}
+{"segment_id": "s-bc19d91832a2-0144", "ts": "2026-11-21T19:20:57Z", "findings": ["I7: glossary term string must be rendered 'cadena de texto'"]}
+{"segment_id": "s-aab1439bf7ab-0005", "ts": "2026-11-21T19:21:54Z", "findings": ["I7: glossary term scope must be rendered 'ámbito'"]}
+{"segment_id": "s-ae4c73493504-0023", "ts": "2026-11-21T19:21:54Z", "findings": ["I7: glossary term timecard must be rendered 'tarjeta de horas'"]}
+{"segment_id": "s-7d9325e5a24f-0025", "ts": "2026-11-21T19:21:54Z", "findings": ["I7: glossary term code must be rendered 'código'"]}
+{"segment_id": "s-591140a37cda-0029", "ts": "2026-11-21T19:21:54Z", "findings": ["I7: glossary term book must be rendered 'libro'", "I12: sentence of 32 words (limit 29): El motor busca la coincidencia del sigui..."]}
+{"segment_id": "s-dbad975ae6fb-0059", "ts": "2026-11-21T19:21:54Z", "findings": ["I7: banned rendering 'registro' for glossary term entry", "I12: sentence of 30 words (limit 29): En la etiqueta de entrada entry, dos pru..."]}
+{"segment_id": "s-79e28ef13539-0113", "ts": "2026-11-21T19:21:54Z", "findings": ["I7: glossary term code must be rendered 'código'"]}
+{"segment_id": "s-919912ee3571-0120", "ts": "2026-11-21T19:21:54Z", "findings": ["I7: glossary term code must be rendered 'código'"]}
+{"segment_id": "s-95334b62d7fe-0130", "ts": "2026-11-21T19:21:54Z", "findings": ["I7: glossary term code must be rendered 'código'"]}
+{"segment_id": "s-87d9e31bff8d-0136", "ts": "2026-11-21T19:21:54Z", "findings": ["I7: glossary term state must be rendered 'estado'"]}
+{"segment_id": "s-87d13051a515-0137", "ts": "2026-11-21T19:21:54Z", "findings": ["I7: glossary term bug must be rendered 'bicho'"]}
