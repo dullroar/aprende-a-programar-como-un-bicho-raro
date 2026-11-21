@@ -100,7 +100,7 @@ Each track stores "what happens next" somewhere that is not a loop counter: in t
 | The target of one `GO TO` | [cobol](lenguajes/cobol.md#alter): [`cobol-weird`](../src/cobol-weird/README.md) |
 | Variables the `LOOP` owns, such as `total` | [lisp](lenguajes/lisp.md): [`lisp`](../src/lisp/README.md) |
 | The class precedence list, and each method's return value | [lisp](lenguajes/lisp.md#method-combination-as-control-flow): [`lisp-weird`](../src/lisp-weird/README.md) |
-| The editor buffer: one line per card, and marks (x) that are added by joining lines | [editors](lenguajes/editores.md#the-buffer-is-the-machine): [`ed-weird`](../src/ed-weird/README.md) |
+| The editor buffer: one line per card, and marks (x) that are added by joining lines | [editors](lenguajes/editores.md#el-búfer-es-la-máquina): [`ed-weird`](../src/ed-weird/README.md) |
 | The marks (where we are on a tape of numbered lines), the first line of the buffer (the next card), and registers a, d and n | [editors](lenguajes/editores.md#a-program-you-can-edit): [`ex-weird`](../src/ex-weird/README.md) |
 | The variables `total` and `cards`, and the data stack | [forth](lenguajes/forth.md): [`forth`](../src/forth/README.md) |
 | The data stack and the parse position `>in` | [forth](lenguajes/forth.md): [`forth-weird`](../src/forth-weird/README.md) |

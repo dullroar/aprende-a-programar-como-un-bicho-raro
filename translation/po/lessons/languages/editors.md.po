@@ -60,32 +60,32 @@ msgstr "⟦SEP_0001⟧ Sin aritmética ni variables ⟦SEP_0002⟧ Los números 
 #: lessons/languages/editors.md:17
 msgctxt "s-34eada1921b1-0010"
 msgid "The buffer is the machine"
-msgstr ""
+msgstr "El búfer es la máquina"
 
 #: lessons/languages/editors.md:19
 msgctxt "s-cc9cfaabc50d-0011"
 msgid "Behold the monstrosity"
-msgstr ""
+msgstr "Contempla la monstruosidad"
 
 #: lessons/languages/editors.md:25
 msgctxt "s-52dc4bbecc26-0012"
 msgid "Seventy lines of ed commands. A launcher that supplies five random digits and stores the answer. All the computing is the editor changing text."
-msgstr ""
+msgstr "Setenta líneas de comandos de ed. Un lanzador que proporciona cinco dígitos aleatorios y guarda la respuesta. Todo el cómputo consiste en que el editor cambia texto."
 
 #: lessons/languages/editors.md:27
 msgctxt "s-415f5fa29cf9-0013"
 msgid "How the hell does that work?"
-msgstr ""
+msgstr "¿Cómo demonios funciona eso?"
 
 #: lessons/languages/editors.md:29
 msgctxt "s-7837f7660777-0014"
 msgid "**The category order is addressing.** ⟦CODE_0001⟧ puts a name on line 1, ⟦CODE_0002⟧ on line 2."
-msgstr ""
+msgstr "**El orden de las categorías es el direccionamiento.** ⟦CODE_0001⟧ coloca un nombre en la línea 1 y ⟦CODE_0002⟧ en la línea 2."
 
 #: lessons/languages/editors.md:30
 msgctxt "s-074170cd05a4-0015"
 msgid "**A rewrite table does the lookup.** There are ten rules, ⟦CODE_0001⟧ and nine more. A digit becomes that many marks."
-msgstr ""
+msgstr "**Una tabla de reescritura hace la búsqueda.** Hay diez reglas: ⟦CODE_0001⟧ y nueve más. Un dígito se convierte en esa cantidad de marcas."
 
 #: lessons/languages/editors.md:31
 msgctxt "s-150ec52bebf6-0016"

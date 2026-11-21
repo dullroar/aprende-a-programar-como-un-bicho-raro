@@ -2189,3 +2189,6 @@
 {"segment_id": "s-6f0b1a39f5c3-0079", "ts": "2026-11-21T20:40:27Z", "findings": ["I7: glossary term bug must be rendered 'bicho'"]}
 {"segment_id": "s-c08a852d0dbe-0078", "ts": "2026-11-21T20:40:43Z", "findings": [], "playful_note": "Conserva la pregunta irónica sobre una idea terrible."}
 {"segment_id": "s-0d7e13605312-0008", "ts": "2026-11-21T20:44:14Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-34eada1921b1-0010", "ts": "2026-11-21T20:45:53Z", "findings": ["REGISTER: playful segment H015 has status 'pending' in the humor register"], "playful_note": "Conserva el lema directo de identidad."}
+{"segment_id": "s-cc9cfaabc50d-0011", "ts": "2026-11-21T20:45:53Z", "findings": [], "playful_note": "Conserva el anuncio teatral usado en las otras páginas."}
+{"segment_id": "s-415f5fa29cf9-0013", "ts": "2026-11-21T20:45:53Z", "findings": [], "playful_note": "Conserva la pregunta exasperada de las otras páginas."}

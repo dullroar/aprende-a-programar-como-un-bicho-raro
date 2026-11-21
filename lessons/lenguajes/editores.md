@@ -14,20 +14,20 @@ Para un recorrido avanzado de lectura con trazas y experimentos, consulta la [gu
 | `t`, `m`, `j`, `d` | Copiar, mover, unir y borrar líneas completas: la forma en que ed construye y deshace datos. |
 | Sin aritmética ni variables | Los números deben escribirse como texto. En la entrada son filas de marcas. |
 
-## The buffer is the machine
+## El búfer es la máquina
 
-### Behold the monstrosity
+### Contempla la monstruosidad
 
 ```bash
 sandbox/container/run-image.sh src/ed-weird
 ```
 
-Seventy lines of ed commands. A launcher that supplies five random digits and stores the answer. All the computing is the editor changing text.
+Setenta líneas de comandos de ed. Un lanzador que proporciona cinco dígitos aleatorios y guarda la respuesta. Todo el cómputo consiste en que el editor cambia texto.
 
-### How the hell does that work?
+### ¿Cómo demonios funciona eso?
 
-- **The category order is addressing.** `1s/^/Meetings /` puts a name on line 1, `2s/^/Coding /` on line 2.
-- **A rewrite table does the lookup.** There are ten rules, `g/x7$/s/7$/xxxxxxx/` and nine more. A digit becomes that many marks.
+- **El orden de las categorías es el direccionamiento.** `1s/^/Meetings /` coloca un nombre en la línea 1 y `2s/^/Coding /` en la línea 2.
+- **Una tabla de reescritura hace la búsqueda.** Hay diez reglas: `g/x7$/s/7$/xxxxxxx/` y nueve más. Un dígito se convierte en esa cantidad de marcas.
 - **A marker seeds the ledger.** `Start 0|` supplies the zero total above the first card. After the pass, `g/^Start /d` removes that marker from the output.
 - **Adding is writing marks side by side.** `-t.` copies the line above (the total so far), `-,.j` joins it to the card and one `s` puts the two sets of marks together.
 - **A failed `s` is an `if`.** Inside a global command it does nothing, and does not stop the list. So each substitution means "if the line looks like this, rewrite it".

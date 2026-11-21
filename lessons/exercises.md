@@ -310,7 +310,7 @@ Acceptance criteria:
 
 ### B18. ed: move the stop rule and break the cleanup (verified)
 
-**Lesson:** [ed and Ex](lenguajes/editores.md#the-buffer-is-the-machine). **Entry:** a copy of `src/ed-weird`.
+**Lesson:** [ed and Ex](lenguajes/editores.md#el-búfer-es-la-máquina). **Entry:** a copy of `src/ed-weird`.
 
 The launcher takes `DICE="a b c d e"`: five digits. Each card has 10 + its digit hours.
 

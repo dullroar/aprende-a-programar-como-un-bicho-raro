@@ -22,7 +22,7 @@ Every weird entry forces you to name the machine hiding inside a language. Once 
 | COBOL | A program whose jump targets are mutable | The target of one `GO TO` | [cobol](lenguajes/cobol.md#alter) |
 | Common Lisp | Ordinary: one `LOOP` that runs its clauses in order on every pass | Variables the `LOOP` owns, such as `total` | [lisp](lenguajes/lisp.md) |
 | Common Lisp | A method dispatcher with a pluggable combination rule | The class precedence list, and each method's return value | [lisp](lenguajes/lisp.md#method-combination-as-control-flow) |
-| ed | A string-rewriting machine with line addresses | The editor buffer: one line per card, and marks (x) that are added by joining lines | [editors](lenguajes/editores.md#the-buffer-is-the-machine) |
+| ed | A string-rewriting machine with line addresses | The editor buffer: one line per card, and marks (x) that are added by joining lines | [editors](lenguajes/editores.md#el-búfer-es-la-máquina) |
 | Ex | A register machine whose registers are editor marks, and whose program is a register that runs itself | The marks (where we are on a tape of numbered lines), the first line of the buffer (the next card), and registers a, d and n | [editors](lenguajes/editores.md#a-program-you-can-edit) |
 | Forth | Ordinary: a stack machine with one `begin ... until` loop | The variables `total` and `cards`, and the data stack | [forth](lenguajes/forth.md) |
 | Forth | A stack machine with a movable instruction pointer | The data stack and the parse position `>in` | [forth](lenguajes/forth.md) |
