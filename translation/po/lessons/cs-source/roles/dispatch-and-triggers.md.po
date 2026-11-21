@@ -1,0 +1,18 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lessons/cs-source/roles/dispatch-and-triggers.md:2
+msgctxt "s-5ee0bdb65691-0000"
+msgid "Dispatch and triggers: the rule fires the next step"
+msgstr "Despacho y disparadores: la regla activa el siguiente paso"
+
+#: lessons/cs-source/roles/dispatch-and-triggers.md:5
+msgctxt "s-52c845067af1-0001"
+msgid "The rule fires the next step. In ⟦MACRO_0001⟧ a class hierarchy is the loop: each method calls the next one up the class precedence list, and the ⟦CODE_0002⟧ method combination stops at the first true value. In ⟦MACRO_0003⟧ a SQLite trigger inserts the next card, which fires the trigger again, and the loop ends when a ⟦CODE_0004⟧ clause finds nothing to insert. In both, the repeat is invisible in the code that starts it. ⟦MACRO_0005⟧ gets its callbacks from GNU tar: every record that tar writes runs one transition of a small state machine, so the archive's layout sets the pace. ⟦MACRO_0006⟧ is the plainest case: ten listeners on one ⟦CODE_0007⟧ are the whole program, and each one emits the event that the next one waits for. The next card is asked for through ⟦CODE_0008⟧, so every card is a new turn of the event loop and the call stack never grows."
+msgstr "La regla activa el siguiente paso. En ⟦MACRO_0001⟧, una jerarquía de clases es el bucle: cada método llama al siguiente de la lista de precedencia de clases, y la combinación de métodos ⟦CODE_0002⟧ se detiene en el primer valor verdadero. En ⟦MACRO_0003⟧, un disparador de SQLite inserta la siguiente tarjeta, lo que vuelve a activar el disparador, y el bucle termina cuando una cláusula ⟦CODE_0004⟧ no encuentra nada que insertar. En ambos, la repetición es invisible en el código que la inicia. ⟦MACRO_0005⟧ obtiene sus funciones de devolución de llamada (*callbacks*) de GNU tar: cada registro que escribe tar ejecuta una transición de una pequeña máquina de estados, así que el formato del archivo marca el ritmo. ⟦MACRO_0006⟧ es el caso más simple: diez escuchadores de eventos sobre un mismo ⟦CODE_0007⟧ son todo el programa, y cada uno emite el evento que espera el siguiente. La siguiente tarjeta se pide con ⟦CODE_0008⟧, así que cada tarjeta es un turno nuevo del bucle de eventos y la pila de llamadas nunca crece."

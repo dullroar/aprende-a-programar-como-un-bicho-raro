@@ -1,0 +1,18 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lessons/cs-source/roles/self-modifying-control.md:2
+msgctxt "s-a19a265d8f87-0000"
+msgid "Control flow that rewrites itself"
+msgstr "Flujo de control que se reescribe a sí mismo"
+
+#: lessons/cs-source/roles/self-modifying-control.md:5
+msgctxt "s-8d3c33f65ec7-0001"
+msgid "The program changes where it goes next. ⟦MACRO_0001⟧ uses ⟦CODE_0002⟧ to rewire a ⟦CODE_0003⟧. ⟦MACRO_0004⟧ moves ⟦CODE_0005⟧, the text interpreter's parse position, backward to run the same words again. ⟦MACRO_0006⟧ reads its own source with ⟦CODE_0007⟧, rewrites it and defines the new function with ⟦CODE_0008⟧: each step makes its own successor. This is the most dangerous role in the book. It is also the clearest picture of what a program counter really is. ⟦MACRO_0009⟧ copies a line of data from a tape into a register and runs it. On the tape the instruction is ⟦CODE_0010⟧ (run the program again) or a comment (stop), so the program reads its next step out of the data."
+msgstr "El programa cambia adónde va a continuación. ⟦MACRO_0001⟧ usa ⟦CODE_0002⟧ para recablear un ⟦CODE_0003⟧. ⟦MACRO_0004⟧ mueve ⟦CODE_0005⟧, la posición de análisis del intérprete de texto, hacia atrás para ejecutar de nuevo las mismas palabras. ⟦MACRO_0006⟧ lee su propio código fuente con ⟦CODE_0007⟧, lo reescribe y define la función nueva con ⟦CODE_0008⟧: cada paso fabrica a su sucesor. Este es el papel más peligroso del libro. También es la imagen más clara de lo que de verdad es un contador de programa. ⟦MACRO_0009⟧ copia una línea de datos de una cinta a un registro y la ejecuta. En la cinta, la instrucción es ⟦CODE_0010⟧ (ejecuta el programa otra vez) o un comentario (detente), así que el programa lee su siguiente paso en los datos."

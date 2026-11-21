@@ -1,0 +1,18 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lessons/cs-source/roles/rewrite-and-rescan.md:2
+msgctxt "s-b529e8b02368-0000"
+msgid "Text that is rewritten and read again"
+msgstr "Texto que se reescribe y se vuelve a leer"
+
+#: lessons/cs-source/roles/rewrite-and-rescan.md:5
+msgctxt "s-cf5c6408c774-0001"
+msgid "The program is text, and repetition is rewriting it. ⟦MACRO_0001⟧ keeps one line of text and applies substitutions until none match. ⟦MACRO_0002⟧ defines a macro whose replacement text contains the macro itself, so the output is scanned again, and again. ⟦MACRO_0003⟧ remakes a makefile that it includes, and then *starts over* with the new one. In all three the repeated thing is a read of rewritten input, and the state is whatever the text (or the set of files) says now. ⟦MACRO_0004⟧ rewrites lines with guarded substitutions, and joins lines so that marks are added side by side. It has no ⟦CODE_0005⟧-style branch: its only repeat is one global command."
+msgstr "El programa es texto y repetir es reescribirlo. ⟦MACRO_0001⟧ conserva una línea de texto y aplica sustituciones hasta que ninguna coincide. ⟦MACRO_0002⟧ define una macro cuyo texto de reemplazo contiene la propia macro, así que la salida se escanea otra vez, y otra. ⟦MACRO_0003⟧ rehace un makefile que incluye, y luego *empieza de nuevo* con el nuevo. En los tres, lo que se repite es la lectura de una entrada reescrita, y el estado es lo que diga ahora el texto (o el conjunto de archivos). ⟦MACRO_0004⟧ reescribe líneas con sustituciones protegidas, y une líneas para que las marcas se añadan una junto a otra. No tiene una rama al estilo de ⟦CODE_0005⟧: su única repetición es un comando global."

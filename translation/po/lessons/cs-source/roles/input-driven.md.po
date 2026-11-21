@@ -1,0 +1,18 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lessons/cs-source/roles/input-driven.md:2
+msgctxt "s-76220d991fe4-0000"
+msgid "The input is the loop"
+msgstr "La entrada de datos es el bucle"
+
+#: lessons/cs-source/roles/input-driven.md:5
+msgctxt "s-a4399680e81a-0001"
+msgid "The input is the loop. AWK reads one record at a time and runs every pattern-action rule on it, so the program does not contain a loop at all. ⟦MACRO_0001⟧ uses the loop in the usual way. ⟦MACRO_0002⟧ sets a regular expression as the record separator, so a stream of random bytes becomes dice, and a single pattern (⟦CODE_0003⟧) is the stop rule."
+msgstr "La entrada de datos es el bucle. AWK lee un registro a la vez y ejecuta cada regla de patrón y acción sobre él, así que el programa no contiene ningún bucle. ⟦MACRO_0001⟧ usa el bucle de la forma habitual. ⟦MACRO_0002⟧ fija una expresión regular como separador de registros, así que un flujo de bytes aleatorios se convierte en dados, y un solo patrón (⟦CODE_0003⟧) es la regla de parada."

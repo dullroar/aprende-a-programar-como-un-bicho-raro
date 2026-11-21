@@ -1,0 +1,18 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lessons/cs-source/roles/backtracking-search.md:2
+msgctxt "s-2bdf9be36d05-0000"
+msgid "Regex search with side effects and deliberate failure"
+msgstr "Búsqueda con regex, efectos secundarios y fallo deliberado"
+
+#: lessons/cs-source/roles/backtracking-search.md:5
+msgctxt "s-b4da560d4740-0001"
+msgid "⟦MACRO_0001⟧, ⟦MACRO_0002⟧ and ⟦MACRO_0003⟧ use one match to drive callbacks or embedded code. The actions build the result outside the matcher. Each pattern eventually forces the match to fail, and completed writes can survive that failure. Perl's localized variables unwind on backtracking, while PCRE2 callouts keep their state in the C host or in external helpers."
+msgstr "⟦MACRO_0001⟧, ⟦MACRO_0002⟧ y ⟦MACRO_0003⟧ usan una sola coincidencia para activar funciones de devolución de llamada (*callbacks*) o código incrustado. Las acciones construyen el resultado fuera del motor de coincidencias. Cada patrón acaba forzando que la coincidencia falle, y las escrituras ya hechas pueden sobrevivir a ese fallo. Las variables locales de Perl se deshacen con el retroceso, mientras que los callouts de PCRE2 guardan su estado en el anfitrión de C o en ayudantes externos."

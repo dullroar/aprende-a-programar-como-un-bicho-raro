@@ -1,0 +1,18 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lessons/cs-source/roles/lazy-demand.md:2
+msgctxt "s-ad532324c650-0000"
+msgid "A lazy sequence that someone keeps asking for"
+msgstr "Una secuencia perezosa que alguien sigue pidiendo"
+
+#: lessons/cs-source/roles/lazy-demand.md:5
+msgctxt "s-f465e37e0337-0001"
+msgid "There is no loop. There is a sequence that someone keeps asking for, and the program stops when the asking stops. ⟦MACRO_0001⟧ describes the cards as an infinite lazy list and takes a prefix with ⟦CODE_0002⟧. ⟦MACRO_0003⟧ puts the effects inside the list, so reading it does the work. LINQ builds a deferred pipeline that a final eager operator forces. Kotlin's ⟦CODE_0004⟧, Rust's ⟦CODE_0005⟧ and Python's ⟦CODE_0006⟧ give a similar shape in other languages. The difference between the entries is *who forces the sequence*, and *when*. ⟦MACRO_0007⟧ has no loop statement: three closures make cards, and an iterator pipeline pulls one card at a time until the machine says it is done."
+msgstr "No hay bucle. Hay una secuencia que alguien sigue pidiendo, y el programa se detiene cuando se deja de pedir. ⟦MACRO_0001⟧ describe las tarjetas como una lista perezosa infinita y toma un prefijo con ⟦CODE_0002⟧. ⟦MACRO_0003⟧ pone los efectos dentro de la lista, así que leerla hace el trabajo. LINQ construye una canalización diferida que un operador final voraz fuerza. ⟦CODE_0004⟧ de Kotlin, ⟦CODE_0005⟧ de Rust y ⟦CODE_0006⟧ de Python dan una forma parecida en otros lenguajes. La diferencia entre las entradas es *quién fuerza la secuencia* y *cuándo*. ⟦MACRO_0007⟧ no tiene sentencia de bucle: tres clausuras (*closures*) fabrican tarjetas, y una canalización de iteradores demanda una tarjeta a la vez hasta que la máquina dice que terminó."

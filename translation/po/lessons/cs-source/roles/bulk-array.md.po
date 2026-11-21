@@ -1,0 +1,18 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lessons/cs-source/roles/bulk-array.md:2
+msgctxt "s-b71b3f1ba581-0000"
+msgid "Whole-array operations instead of steps"
+msgstr "Operaciones sobre arreglos completos en lugar de pasos"
+
+#: lessons/cs-source/roles/bulk-array.md:5
+msgctxt "s-6b75b702b948-0001"
+msgid "Do it to all of them at once, then cut. ⟦MACRO_0001⟧ draws five random values (a bound that can never be too small), takes a running sum and keeps the prefix whose total does not pass 40, plus the card that does. There is no loop and no counter. The cost is that the program computes more than it needs, and the reader needs to think in arrays."
+msgstr "Hazlo con todos a la vez y luego corta. ⟦MACRO_0001⟧ genera cinco valores aleatorios (una cota que nunca puede quedarse corta), calcula una suma acumulada y conserva el prefijo cuyo total no pasa de 40, más la tarjeta que sí pasa. No hay bucle ni contador. El costo es que el programa calcula más de lo necesario y el lector tiene que pensar en arreglos."
