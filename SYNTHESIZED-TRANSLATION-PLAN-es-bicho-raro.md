@@ -577,6 +577,14 @@ Batch by meaning (one entry README, one concept, one guide section group). Cache
 
 ---
 
+### 9.5 Early external editorial checkpoints (added in revision 4)
+
+Do not wait for the Jury at the end to find systemic problems. Rework cost grows with every translated file. The first external review (ChatGPT, 2026-11-20, 12 files) found, among other things, a **critical unit error in the shared challenge sentence** ("10 a 19 tarjetas" for hour cards of 10 to 19 hours), code identifiers translated inside diagrams, added safety guarantees, an unrenderable diagram label and stale anchors. All were cheap to fix at 12 files and would have been expensive at 212.
+
+Rules: (1) run an external review after the pilot and after **each family** of files, starting with the entry READMEs; (2) the loop stops at a checkpoint task (`P4-chk-1`) and writes a packet, and Jim runs the review; (3) every review item gets a recorded disposition (accept, modify, reject) against the English source, never a blind application; (4) systemic findings become rules in `house-style.es.md`, glossary entries, prompt text and **lints with failing fixtures**, so the mistake cannot recur; (5) English-source defects go to `source-issues.md` and the Spanish stays faithful. The binding record of the first review is `translation/review-decisions-2026-11-20.md`.
+
+---
+
 ## 10. CI and negative tests
 
 ### 10.1 Gate categories
@@ -750,6 +758,10 @@ Tasks, in dependency order: `locale/es.yaml` and the catalog loader; localize `d
 Translate the pilot set (§Appendix A): `src/forth/README.md`, `lessons/cs-source/concepts/recursion.md`, `lessons/study-guides/languages/forth.md`, `docs/curriculum.md`, one APL or regex page. Render HTML, PDF and EPUB. **Calibrate N** (sentence length) from the measured ratio and write it to the style guide. Run the **seeded-fault recall test** on whichever in-loop reviewer is configured. Run the four deliberate-breakage tests plus the surviving-phase-letter test.
 
 **Exit:** no protected-byte diff; semantic and graph equivalence; links and layout pass; recall bar met or the reviewer role is downgraded in `CONFIG.yaml` and the Jury weight raised. If the architecture fails the pilot, the loop writes `HANDOFF.md` with the evidence and stops: scaling a brittle process is the one thing worth stopping for.
+
+#### Phase 3C: Early editorial corrections (loop; inserted after Phase 3B, before bulk translation)
+
+Applies `translation/review-decisions-2026-11-20.md`. P3C-001: new rules, glossary decisions and source-issue log. P3C-002: new lints (identifier protection in diagrams and tables, unit check, translation-time diagram rendering, duplicate-gloss and added-guarantee lints, typography) with failing fixtures. P3C-003: tooling fixes (`teaches` contract through the locale, study-guide anchor, stale-anchor migration, title-page copy). P3C-004 to P3C-015: one correction task per translated file, each recording a disposition for every review item. P3C-016: fresh-context regression audit. P3C-017: gate. Bulk translation depends on this gate. After the entry READMEs, task `P4-chk-1` writes a checkpoint packet and stops the loop for the next external review (§9.5).
 
 #### Phase 3B: Spanish file and folder names (loop; inserted between the pilot and bulk translation)
 

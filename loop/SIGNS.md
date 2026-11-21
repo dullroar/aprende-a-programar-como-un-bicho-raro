@@ -65,3 +65,9 @@
 - A tool or test that opens a file named by an English key (PO, ledger, inventory, anchors) must go through `enpath.load(ROOT).full(key)`, and a `glob` over lessons folders must map the folder with `enpath.map_path`; a literal old path in a command or glob fails silently.
 - A test in lessons/book that reads a real file finds it with `catalog.checkout().path(english_path)`, never a literal; after changing any lessons/book test run `python3 tools/scratch_proof.py --tests` (English layer, about 40 s) as well as the Spanish run, and add every changed tooling file to translation/tooling-allowlist.txt (I13).
 - Do not start a Bash call with `VAR=value command`, a `for` loop or a heredoc plus a second command: all are denied; write a script with Write and run it, or use `sed -i`/Edit.
+- Units: the shared challenge is 10 to 19 HOURS per card (de 10 a 19 horas por tarjeta). Never write "tarjetas" for that range. Check every file that repeats the challenge sentence.
+- Code identifiers (also, step, where, from persisted in, over-40?, let, Aggregate, SaveChanges, APL symbols) stay literal inside Mermaid labels, accDescr, tables and prose. Describe around them; never translate them.
+- Do not add guarantees the English does not make ("no puede dañar nada", "no afecta a tu sistema"). Gloss sandbox once per file, then say entorno aislado.
+- Mermaid edge labels with parentheses must be quoted or reworded. Render every translated diagram and keep it at 8.4 pt or more; shorten labels, never loosen the gate.
+- Apply review items through the PO targets after checking the English; record a disposition per item. Source-issue items are logged in translation/source-issues.md only; the Spanish stays faithful to the English.
+- Binding decisions live in translation/review-decisions-2026-11-20.md: read its Parts B and C before translating.
