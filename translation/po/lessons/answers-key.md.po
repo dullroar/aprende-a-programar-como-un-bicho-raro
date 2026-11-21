@@ -207,37 +207,37 @@ msgstr "⟦SEP_0002⟧ Paso ⟦SEP_0003⟧ Líneas de ⟦CODE_0001⟧ ⟦SEP_000
 #: lessons/answers-key.md:123
 msgctxt "s-4b82b8c5ecc7-0037"
 msgid "⟦SEP_0002⟧ (a) declare ⟦SEP_0003⟧ 0 ⟦SEP_0004⟧ ⟦CODE_0001⟧ is **deferred**: it builds a description, not a result. ⟦SEP_0005⟧"
-msgstr ""
+msgstr "⟦SEP_0002⟧ (a) declarar ⟦SEP_0003⟧ 0 ⟦SEP_0004⟧ ⟦CODE_0001⟧ es **diferido**: construye una descripción, no un resultado. ⟦SEP_0005⟧"
 
 #: lessons/answers-key.md:124
 msgctxt "s-514b38be1009-0038"
 msgid "⟦SEP_0002⟧ (b) ⟦CODE_0001⟧ ⟦SEP_0003⟧ 3 ⟦SEP_0004⟧ Enumerating runs the lambda once per element. ⟦SEP_0005⟧"
-msgstr ""
+msgstr "⟦SEP_0002⟧ (b) ⟦CODE_0001⟧ ⟦SEP_0003⟧ 3 ⟦SEP_0004⟧ La enumeración ejecuta la lambda una vez por elemento. ⟦SEP_0005⟧"
 
 #: lessons/answers-key.md:125
 msgctxt "s-c6a2a98dfdc1-0039"
 msgid "⟦SEP_0003⟧ (c) ⟦CODE_0001⟧ and ⟦CODE_0002⟧ ⟦SEP_0004⟧ 6 ⟦SEP_0005⟧ Each enumeration reruns the pipeline and every side effect in it. ⟦SEP_0006⟧"
-msgstr ""
+msgstr "⟦SEP_0003⟧ (c) ⟦CODE_0001⟧ y ⟦CODE_0002⟧ ⟦SEP_0004⟧ 6 ⟦SEP_0005⟧ Cada enumeración vuelve a ejecutar la canalización y cada efecto secundario que contiene. ⟦SEP_0006⟧"
 
 #: lessons/answers-key.md:126
 msgctxt "s-427d6cb826c6-0040"
 msgid "⟦SEP_0003⟧ (d) ⟦CODE_0001⟧ then sum the list ⟦SEP_0004⟧ 3 ⟦SEP_0005⟧ ⟦CODE_0002⟧ is eager and snapshots the values; summing a list reruns nothing. ⟦SEP_0006⟧"
-msgstr ""
+msgstr "⟦SEP_0003⟧ (d) ⟦CODE_0001⟧ y luego sumar la lista ⟦SEP_0004⟧ 3 ⟦SEP_0005⟧ ⟦CODE_0002⟧ es inmediato y toma una instantánea de los valores; sumar una lista no vuelve a ejecutar nada. ⟦SEP_0006⟧"
 
 #: lessons/answers-key.md:128
 msgctxt "s-52e4262eba7b-0041"
 msgid "Seed 42 gives ⟦CODE_0001⟧. A ⟦CODE_0002⟧ with a fixed seed is a deterministic sequence, and the ⟦CODE_0003⟧ file creates ⟦CODE_0004⟧ with no other entropy, so every run produces the same cards. The eager operator that forces the lazy tail in ⟦CODE_0005⟧ is the final ⟦CODE_0006⟧. In ⟦CODE_0007⟧, the enclosing ⟦CODE_0008⟧ evaluates its condition each turn. ⟦CODE_0009⟧ consumes the deferred projection during that condition test, before the comparison can decide whether to continue."
-msgstr ""
+msgstr "La semilla 42 da ⟦CODE_0001⟧. Un ⟦CODE_0002⟧ con una semilla fija es una secuencia determinista. El archivo ⟦CODE_0003⟧ crea ⟦CODE_0004⟧ sin otra entropía, así que cada ejecución produce las mismas tarjetas. El operador inmediato que fuerza la cola diferida en ⟦CODE_0005⟧ es el ⟦CODE_0006⟧ final. En ⟦CODE_0007⟧, el ⟦CODE_0008⟧ que lo contiene evalúa su condición en cada turno. ⟦CODE_0009⟧ consume la proyección diferida durante esa prueba de condición, antes de que la comparación pueda decidir si continúa."
 
 #: lessons/answers-key.md:130
 msgctxt "s-3db4bc645f18-0042"
 msgid "B8. Regex: what survives a failed match"
-msgstr ""
+msgstr "B8. Regex: qué sobrevive a una coincidencia fallida"
 
 #: lessons/answers-key.md:132
 msgctxt "s-4d620efcfae7-0043"
 msgid "**.NET:** the fixed all-10 tape normally returns a successful match with five rows, total 50 and exit status 0. With ⟦CODE_0001⟧ appended, ⟦CODE_0002⟧ is false and the failed match exposes no captures. The host exits 1 after printing and appending a report containing only its header and summary."
-msgstr ""
+msgstr "**.NET:** la cinta fija de solo 10 normalmente devuelve una coincidencia exitosa con cinco filas, total 50 y estado de salida 0. Al agregar ⟦CODE_0001⟧, ⟦CODE_0002⟧ es falso y la coincidencia fallida no expone capturas. El anfitrión sale con 1 después de imprimir y agregar un informe que contiene solo su encabezado y resumen."
 
 #: lessons/answers-key.md:139
 msgctxt "s-962d5f67a0da-0044"

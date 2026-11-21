@@ -424,3 +424,4 @@
 {"id":"EXC-424","segment":"s-9d607f026b88-0027","invariant":"I7","reason":"'build a Tk window' in an accDescr copied verbatim from the Spanish tcl README is the ordinary verb, not a program build.","task":"P4-lessons-study-guides-languages-13"}
 {"id":"EXC-425","segment":"s-5698d43a065f-0034","invariant":"I7","reason":"'build the Tk treeview' in a label copied verbatim from the Spanish tcl README is the ordinary verb, not a program build.","task":"P4-lessons-study-guides-languages-13"}
 {"id":"EXC-426","segment":"s-87d9e31bff8d-0105","invariant":"I7","reason":"'state' is the verb (declarar los costos), not the noun state (estado).","task":"P4-lessons-study-guides-languages-13"}
+{"id":"EXC-427","segment":"s-4b82b8c5ecc7-0037","invariant":"I7","reason":"Here builds is a verb meaning constructs a description, not the noun build or compilation.","task":"P4-lessons-2"}

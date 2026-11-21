@@ -120,16 +120,16 @@ Console.WriteLine(string.Join(" ", Enumerable.Range(0, 5).Select(_ => r.Next(10,
 
 | Paso | Líneas de `effect` | Por qué |
 | --- | --- | --- |
-| (a) declare | 0 | `Select` is **deferred**: it builds a description, not a result. |
-| (b) `Sum()` | 3 | Enumerating runs the lambda once per element. |
-| (c) `Sum()` and `ToList()` | 6 | Each enumeration reruns the pipeline and every side effect in it. |
-| (d) `ToList()` then sum the list | 3 | `ToList()` is eager and snapshots the values; summing a list reruns nothing. |
+| (a) declarar | 0 | `Select` es **diferido**: construye una descripción, no un resultado. |
+| (b) `Sum()` | 3 | La enumeración ejecuta la lambda una vez por elemento. |
+| (c) `Sum()` y `ToList()` | 6 | Cada enumeración vuelve a ejecutar la canalización y cada efecto secundario que contiene. |
+| (d) `ToList()` y luego sumar la lista | 3 | `ToList()` es inmediato y toma una instantánea de los valores; sumar una lista no vuelve a ejecutar nada. |
 
-Seed 42 gives `16 11 11 15 11`. A `System.Random` with a fixed seed is a deterministic sequence, and the `.xaml` file creates `new Random(42)` with no other entropy, so every run produces the same cards. The eager operator that forces the lazy tail in `LinqChallenge1` is the final `.Aggregate(0, (count, _) => count + 1)`. In `ModernChallenge1`, the enclosing `for` evaluates its condition each turn. `Sum()` consumes the deferred projection during that condition test, before the comparison can decide whether to continue.
+La semilla 42 da `16 11 11 15 11`. Un `System.Random` con una semilla fija es una secuencia determinista. El archivo `.xaml` crea `new Random(42)` sin otra entropía, así que cada ejecución produce las mismas tarjetas. El operador inmediato que fuerza la cola diferida en `LinqChallenge1` es el `.Aggregate(0, (count, _) => count + 1)` final. En `ModernChallenge1`, el `for` que lo contiene evalúa su condición en cada turno. `Sum()` consume la proyección diferida durante esa prueba de condición, antes de que la comparación pueda decidir si continúa.
 
-## B8. Regex: what survives a failed match
+## B8. Regex: qué sobrevive a una coincidencia fallida
 
-- **.NET:** the fixed all-10 tape normally returns a successful match with five rows, total 50 and exit status 0. With `(?!)` appended, `Match.Success` is false and the failed match exposes no captures. The host exits 1 after printing and appending a report containing only its header and summary.
+- **.NET:** la cinta fija de solo 10 normalmente devuelve una coincidencia exitosa con cinco filas, total 50 y estado de salida 0. Al agregar `(?!)`, `Match.Success` es falso y la coincidencia fallida no expone capturas. El anfitrión sale con 1 después de imprimir y agregar un informe que contiene solo su encabezado y resumen.
 
   ```text
   match returned: false

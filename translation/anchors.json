@@ -763,24 +763,24 @@
     {
      "en": "B6. APL: the off-by-one rewrite",
      "en_id": "b6-apl-the-off-by-one-rewrite",
-     "es": "B6. APL: the off-by-one rewrite",
-     "es_id": "b6-apl-the-off-by-one-rewrite",
+     "es": "B6. APL: la reescritura con error de uno",
+     "es_id": "b6-apl-la-reescritura-con-error-de-uno",
      "level": 2,
      "line": 88
     },
     {
      "en": "B7. LINQ: enumerate twice",
      "en_id": "b7-linq-enumerate-twice",
-     "es": "B7. LINQ: enumerate twice",
-     "es_id": "b7-linq-enumerate-twice",
+     "es": "B7. LINQ: enumera dos veces",
+     "es_id": "b7-linq-enumera-dos-veces",
      "level": 2,
      "line": 104
     },
     {
      "en": "B8. Regex: what survives a failed match",
      "en_id": "b8-regex-what-survives-a-failed-match",
-     "es": "B8. Regex: what survives a failed match",
-     "es_id": "b8-regex-what-survives-a-failed-match",
+     "es": "B8. Regex: qué sobrevive a una coincidencia fallida",
+     "es_id": "b8-regex-qué-sobrevive-a-una-coincidencia-fallida",
      "level": 2,
      "line": 130
     },
@@ -990,9 +990,9 @@
     "b3-forth-move-the-anchor": "b3-forth-mueve-el-ancla",
     "b4-make-remove-the-no-op-and-override-the-clock": "b4-make-elimina-la-operación-nula-y-reemplaza-el-reloj",
     "b5-cmake-mutate-the-literal": "b5-cmake-modifica-el-literal",
-    "b6-apl-the-off-by-one-rewrite": "b6-apl-the-off-by-one-rewrite",
-    "b7-linq-enumerate-twice": "b7-linq-enumerate-twice",
-    "b8-regex-what-survives-a-failed-match": "b8-regex-what-survives-a-failed-match",
+    "b6-apl-the-off-by-one-rewrite": "b6-apl-la-reescritura-con-error-de-uno",
+    "b7-linq-enumerate-twice": "b7-linq-enumera-dos-veces",
+    "b8-regex-what-survives-a-failed-match": "b8-regex-qué-sobrevive-a-una-coincidencia-fallida",
     "b9-sed-watch-a-computation": "b9-sed-watch-a-computation",
     "c1-weird-next-to-boring": "c1-weird-next-to-boring",
     "c2-make-the-constraint-real": "c2-make-the-constraint-real",
