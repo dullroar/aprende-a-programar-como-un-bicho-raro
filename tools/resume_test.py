@@ -323,7 +323,7 @@ def negative_lock():
 
 
 def provider_handoff():
-    """Both quota formats release the lock, and a fresh claim survives the switch."""
+    """Quota handoffs release the lock and preserve a fresh claim across all three providers."""
     dest = build_scratch("provider-handoff")
     write(os.path.join(dest, "agents", "quota.py"), """import json, os, subprocess, sys
 
@@ -336,22 +336,31 @@ else:
     result = subprocess.run([sys.executable, "tools/next_task.py", "--id"],
                             capture_output=True, text=True, check=True)
     if result.stdout.strip() != "TASK T-1":
-        sys.exit("Codex did not reclaim the fresh claim")
+        sys.exit(agent + " did not reclaim the fresh claim")
+    if agent == "copilot":
+        for tokens in (7, 5):
+            print(json.dumps({"type": "assistant.usage", "data": {
+                "inputTokens": tokens, "outputTokens": 2, "cost": 1}}))
+        print(json.dumps({"type": "session.error", "data": {"errorType": "quota", "message": "Limit exhausted"}}))
+        sys.exit(0)
     print(json.dumps({"type": "turn.failed", "error": {"message": "usage_limit_reached"}}))
 sys.exit(1)
 """)
     cmd = "%s agents/quota.py" % sys.executable
     problems = []
-    for provider in ("claude", "codex"):
-        rc, out = run_ralph(dest, cmd, options=("--agent", provider, "--on-limit", "handoff"))
+    providers = ("claude", "copilot", "codex")
+    for provider in providers:
+        rc, out = run_ralph(dest, cmd, options=("--agent=" + provider, "--on-limit", "handoff"))
         if rc != 75 or provider + " usage limit" not in out:
             problems.append("%s did not hand off (rc=%d): %s" % (provider, rc, out))
     rc, out = run_ralph(dest, agent_cmd("A", "resume"), options=("--agent", "claude"))
-    if rc or "DONE sentinel found" not in out or calls(dest)[0][0] != 3:
+    if rc or "DONE sentinel found" not in out or calls(dest)[0][0] != 4:
         problems.append("Claude did not continue after Codex handed back the queue")
     ledger = [json.loads(l) for l in read(os.path.join(dest, "loop", "ledger", "usage.jsonl")).splitlines()]
-    if [(r["agent"], r["usage_limited"]) for r in ledger[:2]] != [("claude", True), ("codex", True)]:
-        problems.append("quota handoff was not recorded for both providers")
+    if [(r["agent"], r["usage_limited"]) for r in ledger[:3]] != [(provider, True) for provider in providers]:
+        problems.append("quota handoff was not recorded for all three providers")
+    elif (ledger[1]["input_tokens"], ledger[1]["output_tokens"], ledger[1]["cost_usd"]) != (12, 4, None):
+        problems.append("Copilot usage was not recorded without a USD cost")
     return problems
 
 

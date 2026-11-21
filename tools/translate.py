@@ -598,8 +598,9 @@ def main(argv):
                 return 2
             print(json.dumps(tr.build_input(seg, start - 1, rel), ensure_ascii=False, indent=2))
             return 0
-        if not (drafts or backend_spec) and os.getenv("RALPH_AGENT") == "codex":
-            print("Codex iterations must use --export-pending and --drafts (see loop/RUN.md).")
+        agent = os.getenv("RALPH_AGENT")
+        if not (drafts or backend_spec) and agent in {"codex", "copilot"}:
+            print(f"{agent} iterations must use --export-pending and --drafts (see loop/RUN.md).")
             return 2
         backend = DraftBackend(drafts, draft_model) if drafts else make_backend(backend_spec or "claude", model)
         tr = Translator(backend, task_id=task_id, ledger_path=ledger_arg, cache_path=cache_arg)

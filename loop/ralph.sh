@@ -9,7 +9,9 @@
 #   4. checks that progress happened (new commit or queue change)
 # It never pushes, never touches remotes, and never needs credentials.
 #
-# Handoff: loop/ralph.sh --agent claude|codex --on-limit handoff. See loop/RUN.md.
+# Pass --agent=claude, --agent=copilot, or --agent=codex for your runner.
+# Provider-specific CLI and output handling branch on this value. Loop tasks
+# can read RALPH_AGENT for provider-specific steps. See loop/RUN.md.
 # VERIFY every agent-CLI flag against the installed version's --help before the first run.
 
 set -u
@@ -23,6 +25,7 @@ on_limit=wait
 resume=0
 while [ "$#" -gt 0 ]; do
   case "$1" in
+    --agent=*) agent="${1#*=}"; shift ;;
     --agent|--on-limit)
       [ "$#" -ge 2 ] || { echo "ralph: $1 needs a value." >&2; exit 2; }
       if [ "$1" = --agent ]; then agent="$2"; else on_limit="$2"; fi
@@ -30,13 +33,13 @@ while [ "$#" -gt 0 ]; do
     --pause) touch "$LOOP_DIR/PAUSE"; exit $? ;;
     --resume) resume=1; shift ;;
     --help)
-      echo "Usage: loop/ralph.sh [--agent claude|codex] [--on-limit wait|handoff] [--resume]"
+      echo "Usage: loop/ralph.sh [--agent=claude|copilot|codex] [--on-limit wait|handoff] [--resume]"
       echo "       loop/ralph.sh --pause"
       exit 0 ;;
     *) echo "ralph: unknown option $1." >&2; exit 2 ;;
   esac
 done
-case "$agent" in claude|codex) ;; *) echo "ralph: unknown agent $agent." >&2; exit 2 ;; esac
+case "$agent" in claude|copilot|codex) ;; *) echo "ralph: unknown agent $agent." >&2; exit 2 ;; esac
 case "$on_limit" in wait|handoff) ;; *) echo "ralph: unknown limit action $on_limit." >&2; exit 2 ;; esac
 
 PROMPT="$LOOP_DIR/PROMPT.md"
@@ -59,18 +62,29 @@ MAX_STALL="${MAX_STALL:-$(cfg max_stalled_iterations 3)}"
 SLEEP_SECS="${SLEEP_SECS:-$(cfg sleep_seconds_between_iterations 5)}"
 
 # Default agent: Claude Code in print mode with an explicit tool allowlist.
-# Replace via AGENT_CMD to hand the loop to a different agent. The command must read the
+# AGENT_CMD can override the selected provider command, for example in tests. It must read the
 # prompt on stdin, run shell commands in the current directory, and print its result to stdout.
 # Verified on Claude Code 2.1.319: no --max-turns flag exists; --max-budget-usd caps each iteration.
 # NOTE: the allowlist is a guard rail, not a sandbox (python3 can do anything). Real protection:
 # no credentials in the environment, no pushable remote, and a pre-push hook that refuses.
-DEFAULT_AGENT_CMD='claude -p --output-format json --model sonnet --max-budget-usd 6 --permission-mode dontAsk --allowedTools "Read,Edit,Write,Glob,Grep,Bash(git:*),Bash(python3:*),Bash(python:*),Bash(pandoc:*),Bash(node:*),Bash(npx:*),Bash(tools/*:*),Bash(ls:*),Bash(cat:*),Bash(head:*),Bash(tail:*),Bash(wc:*),Bash(grep:*),Bash(find:*),Bash(sed:*),Bash(sort:*),Bash(diff:*),Bash(cp:*),Bash(mv:*),Bash(mkdir:*),Bash(touch:*),Bash(chmod:*),Bash(date:*),Bash(sha256sum:*),Bash(zip:*),Bash(unzip:*),Bash(echo:*),Bash(printf:*),Bash(test:*),Bash(pip:*),Bash(pip3:*),Bash(npm:*),Bash(.venv/bin/*:*),Bash(pytest:*),Bash(tar:*),Bash(rsync:*),Bash(rm:*),Bash(cd:*),Bash(awk:*),Bash(tr:*),Bash(cut:*),Bash(xargs:*),Bash(pwd:*),Bash(which:*),Bash(basename:*),Bash(dirname:*),Bash(stat:*),Bash(file:*),Bash(du:*),Bash(tee:*),Bash(uniq:*),Bash(comm:*),Bash(env:*),Bash(true:*),Bash(sleep:*),Bash(time:*)" --disallowedTools "Bash(git push:*)" "Bash(gh:*)" "Bash(curl:*)" "Bash(wget:*)" "Bash(ssh:*)"'
-# The agent must be able to read the pinned English clone (outside the repo). --add-dir grants that.
-ENGLISH_DIR="$(cfg english_clone_path "")"
-[ -n "$ENGLISH_DIR" ] && [ -d "$ENGLISH_DIR" ] && DEFAULT_AGENT_CMD="$DEFAULT_AGENT_CMD --add-dir \"$ENGLISH_DIR\""
-if [ "$agent" = codex ]; then
-  DEFAULT_AGENT_CMD='codex exec --approve-for-me --color never --json -'
-fi
+CLAUDE_AGENT_CMD='claude -p --output-format json --model sonnet --max-budget-usd 6 --permission-mode dontAsk --allowedTools "Read,Edit,Write,Glob,Grep,Bash(git:*),Bash(python3:*),Bash(python:*),Bash(pandoc:*),Bash(node:*),Bash(npx:*),Bash(tools/*:*),Bash(ls:*),Bash(cat:*),Bash(head:*),Bash(tail:*),Bash(wc:*),Bash(grep:*),Bash(find:*),Bash(sed:*),Bash(sort:*),Bash(diff:*),Bash(cp:*),Bash(mv:*),Bash(mkdir:*),Bash(touch:*),Bash(chmod:*),Bash(date:*),Bash(sha256sum:*),Bash(zip:*),Bash(unzip:*),Bash(echo:*),Bash(printf:*),Bash(test:*),Bash(pip:*),Bash(pip3:*),Bash(npm:*),Bash(.venv/bin/*:*),Bash(pytest:*),Bash(tar:*),Bash(rsync:*),Bash(rm:*),Bash(cd:*),Bash(awk:*),Bash(tr:*),Bash(cut:*),Bash(xargs:*),Bash(pwd:*),Bash(which:*),Bash(basename:*),Bash(dirname:*),Bash(stat:*),Bash(file:*),Bash(du:*),Bash(tee:*),Bash(uniq:*),Bash(comm:*),Bash(env:*),Bash(true:*),Bash(sleep:*),Bash(time:*)" --disallowedTools "Bash(git push:*)" "Bash(gh:*)" "Bash(curl:*)" "Bash(wget:*)" "Bash(ssh:*)"'
+case "$agent" in
+  claude)
+    DEFAULT_AGENT_CMD="$CLAUDE_AGENT_CMD"
+    # Claude needs explicit access to the pinned English source.
+    ENGLISH_DIR="$(cfg english_clone_path "")"
+    if [ -n "$ENGLISH_DIR" ] && [ -d "$ENGLISH_DIR" ]; then
+      printf -v english_arg '%q' "$ENGLISH_DIR"
+      DEFAULT_AGENT_CMD+=" --add-dir $english_arg"
+    fi
+    ;;
+  copilot)
+    DEFAULT_AGENT_CMD='copilot --no-auto-update --no-ask-user --assisted-approval --disable-builtin-mcps --output-format json --deny-tool="shell(git push)" --deny-tool="shell(gh)" --deny-tool="shell(curl)" --deny-tool="shell(wget)" --deny-tool="shell(ssh)" --prompt "$(cat)"'
+    ;;
+  codex)
+    DEFAULT_AGENT_CMD='codex exec --approve-for-me --color never --json -'
+    ;;
+esac
 AGENT_CMD="${AGENT_CMD:-$DEFAULT_AGENT_CMD}"
 export RALPH_AGENT="$agent"
 
@@ -124,6 +138,7 @@ raw = pathlib.Path(path).read_text(encoding="utf-8", errors="replace")
 result = ""
 errors = []
 usage = {}
+quota_error = False
 if agent == "claude":
     try:
         data = json.loads(raw)
@@ -143,7 +158,19 @@ else:
         if not isinstance(event, dict):
             continue
         event_type = event.get("type")
-        if event_type == "turn.completed":
+        if agent == "copilot":
+            data = event.get("data") or {}
+            if event_type == "assistant.message" and not data.get("toolRequests"):
+                result = str(data.get("content") or "")
+            elif event_type == "assistant.usage":
+                # Copilot reports usage per API call and its cost field is not USD.
+                for key, field in (("input_tokens", "inputTokens"), ("output_tokens", "outputTokens")):
+                    if isinstance(data.get(field), int):
+                        usage[key] = usage.get(key, 0) + data[field]
+            elif event_type == "session.error":
+                errors.append(str(data.get("message") or ""))
+                quota_error |= data.get("errorType") == "quota"
+        elif event_type == "turn.completed":
             usage = event.get("usage") or {}
         elif event_type == "item.completed":
             item = event.get("item") or {}
@@ -154,12 +181,12 @@ else:
 if int(rc):
     errors.append(pathlib.Path(path + ".err").read_text(encoding="utf-8", errors="replace").strip())
 error_text = "\n".join(filter(None, errors))
-rec["result_tail"] = ((error_text if int(rc) else "") or result)[-300:]
+rec["result_tail"] = ((error_text if int(rc) or quota_error else "") or result)[-300:]
 rec["input_tokens"] = usage.get("input_tokens")
 rec["output_tokens"] = usage.get("output_tokens")
-rec["usage_limited"] = int(rc) != 0 and bool(re.search(
+rec["usage_limited"] = quota_error or (int(rc) != 0 and bool(re.search(
     r"\bhit your\b[^\n]{0,100}\blimit\b|\busage[_ ]limit[_ ]reached\b", error_text, re.I
-))
+)))
 with open(ledger, "a", encoding="utf-8") as f:
     f.write(json.dumps(rec, ensure_ascii=False) + "\n")
 print("limit" if rec["usage_limited"] else "recorded")
@@ -202,7 +229,7 @@ while :; do
 
   if [ "$outcome" = limit ]; then
     if [ "$on_limit" = handoff ]; then
-      echo "ralph: $agent usage limit at iteration $iter. Resume with --agent claude or --agent codex."
+      echo "ralph: $agent usage limit at iteration $iter. Resume with --agent=claude, --agent=copilot, or --agent=codex."
       result=75
       break
     fi

@@ -1,34 +1,39 @@
 # Run and hand off the translation loop
 
-Start from the Spanish repository. Both runners use the same checkout, queue,
+Start from the Spanish repository. All runners use the same checkout, queue,
 PO files, review registers, and Git history.
 
 ```bash
-loop/ralph.sh --agent claude --on-limit handoff
-loop/ralph.sh --agent codex --on-limit handoff
+loop/ralph.sh --agent=claude --on-limit handoff
+loop/ralph.sh --agent=copilot --on-limit handoff
+loop/ralph.sh --agent=codex --on-limit handoff
 ```
 
-Run one command at a time. The driver releases its lock when it exits. On a
-recognized provider usage limit it exits with status 75 in handoff mode. Start
-the other command in the same checkout and the next iteration picks up the
-saved work, including a task whose prior claim is still fresh. The default
-limit action is `wait`, which retries the same provider.
+Pass your provider explicitly. The driver exports it as `RALPH_AGENT` for
+provider-specific steps in the iteration. The default is Claude, and the
+space-separated form `--agent NAME` also works. Run one command at a time.
+The driver releases its lock when it exits. On a recognized provider usage
+limit it exits with status 75 in handoff mode. Start another provider's command
+in the same checkout and the next iteration picks up the saved work, including
+a task whose prior claim is still fresh. The default limit action is `wait`,
+which retries the same provider.
 
 To request a pause while the loop is running, issue `loop/ralph.sh --pause`
 from a second terminal. Wait for the iteration to finish and the driver to
-exit. Restart either runner with `--resume` to clear that pause. An editorial
+exit. Restart a runner with `--resume` to clear that pause. An editorial
 `loop/STOP` is a separate checkpoint. Complete the review before removing it
 using the checkpoint instructions. Check `loop/STATE.md`,
 `python3 tools/next_task.py --counts`, and the latest driver output for status.
 
-Both CLIs use their existing sign-ins. Codex runs with workspace-write sandboxing and automatic approval review.
+The CLIs use their existing sign-ins. Codex runs with workspace-write
+sandboxing and automatic approval review. Copilot runs with assisted approval.
 Request review for a scoped Git operation or the unchanged verifier if the
 sandbox blocks it. If review denies a required operation, keep the partial
-work and report the specific operation. The usage
-ledger records the agent and tokens reported by the CLI. The shared USD cap
-uses only costs the CLIs report. Codex token entries have no dollar amount.
+work and report the specific operation. The usage ledger records the agent and
+tokens reported by the CLI. The shared USD cap uses only reported dollar costs.
+Codex and Copilot token entries have no dollar amount.
 
-## Drafts from a Codex iteration or an interactive session
+## Drafts from Codex, Copilot, or an interactive session
 
 Export masked inputs from the pinned English source, including pending fuzzy
 entries. Use `--limit` and `--from` to work in smaller batches.
@@ -41,7 +46,9 @@ Draft the replies in the current session using `translation/prompts/translate.md
 and the house style. Use one JSON object per input with the
 `translator_output` fields from `translation/schemas/segment.schema.json`.
 Import a contiguous pending batch with the same start and limit, its actual
-provider/model identifier when available, and the queue task ID.
+provider/model identifier when available, and the queue task ID. The example
+uses the Codex session label. For Copilot, use `github-copilot/MODEL` with the
+model reported by its CLI, or `github-copilot/agent` if it is unavailable.
 
 ```bash
 python3 -I tools/translate.py FILE.md --drafts /tmp/spanish-replies.jsonl \

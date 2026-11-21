@@ -17,6 +17,10 @@ Your working directory is the root of the Spanish repo. The design is in `transl
 
 ## Procedure
 
+Use `--agent=claude`, `--agent=copilot`, or `--agent=codex` when launching or
+handing off `loop/ralph.sh`. Use the exported `RALPH_AGENT` for provider-specific
+steps in the iteration. See [the loop runbook](RUN.md).
+
 1. **Orient (keep it short).**
    - Read `loop/STATE.md`, `loop/HANDOFF.md` if it exists, `loop/SIGNS.md`, and the last 20 lines of `loop/log.md`.
    - Run `git status --short`. If the tree is dirty, a previous iteration crashed. Inspect the diff. Resume changes that belong to the picked task. Preserve unrelated edits and stage only task files.
@@ -25,7 +29,7 @@ Your working directory is the root of the Spanish repo. The design is in `transl
 3. **Claim.** Set the task to `doing` with `claimed_by` (use the iteration number in `loop/.iteration`, written by the driver) and `claimed_at`. The driver holds the lock, so the queue picker can reclaim a previous iteration’s claim immediately.
 4. **Do the task.**
    - Read only the files the task names, plus the glossary slice (`translation/glossary.es.yaml`), `translation/house-style.es.md`, and the relevant `locale/es.yaml` keys.
-   - For `translate` tasks use the project tools: segment, mask, translate under the glossary and the ETS profile, restore, apply. Translate by effect where the English is playful, and record each playful segment in `translation/humor-register.jsonl`. When `RALPH_AGENT=codex`, export pending translator inputs and write drafts in this session, then import them through `tools/translate.py`. See `loop/RUN.md`. Use phase macros such as `{{phase.1.letter}}`, never the literal letters, when the text names a phase.
+   - For `translate` tasks use the project tools: segment, mask, translate under the glossary and the ETS profile, restore, apply. Translate by effect where the English is playful, and record each playful segment in `translation/humor-register.jsonl`. When `RALPH_AGENT` is `codex` or `copilot`, export pending translator inputs and write drafts in this session, then import them through `tools/translate.py`. See `loop/RUN.md`. Use phase macros such as `{{phase.1.letter}}`, never the literal letters, when the text names a phase.
    - For `build-tool` tasks write the tool **and its tests**. Tests must be able to fail: include at least one negative case.
    - Keep each commit small and consistent. If you cannot finish within your remaining context, commit the safe partial state (everything already verified), leave the task `todo` with precise notes ("segments 1 to 14 done; resume at segment 15"), and exit with `partial`.
 5. **Verify.** Run the task's `accept` command and `python3 tools/verify.py --fast` (once it exists). If it fails, fix and retry **once**. After a second failure set the task to `blocked`, write the reason and the failing output pointer in `loop/blockers.md`, and revert uncommitted work that does not pass.
@@ -35,7 +39,7 @@ Your working directory is the root of the Spanish repo. The design is in `transl
    - Update the counters in `loop/STATE.md` (keep it at most 60 lines).
    - If you learned something that would stop a future iteration repeating a mistake, add one rule to `loop/SIGNS.md` (one line, imperative, specific).
    - Add any default you took to `loop/decisions-provisional.md`.
-7. **Commit.** `git add -- <task files>` and `git commit -m "loop(<task-id>): <summary>"`, ending the message with the attribution trailer the environment requires. For Codex, if the sandbox blocks the unchanged verifier or a scoped Git command, request automatic approval review for that exact command. If review denies it, preserve the task files and record a partial handoff. If the pre-commit hook rejects the commit, fix the cause; do not bypass the hook with `--no-verify`.
+7. **Commit.** `git add -- <task files>` and `git commit -m "loop(<task-id>): <summary>"`, ending the message with the attribution trailer the environment requires. For Codex and Copilot, use the runner’s approval review for the unchanged verifier or a scoped Git command if permission is required. If review denies it, preserve the task files and record a partial handoff. If the pre-commit hook rejects the commit, fix the cause; do not bypass the hook with `--no-verify`.
 8. **Exit.** Print exactly one final line: `LOOP-RESULT: <task-id> <done|blocked|partial>`. Do not begin another task.
 
 ## Quality bar for translation tasks
