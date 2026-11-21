@@ -115,3 +115,4 @@
 138 P4-lessons-cs-source-concepts-5 done applied the remaining 11 concept files (term-rewriting .. weird-machine) via per-file export/import; 6 scoped waivers; verify --fast OK.
 139 P4-lessons-cs-source-roles-1 partial 10 role pages translated and verified (verify --fast OK, queue task marked done) but approval review denied `git add`, so nothing is committed; next iteration: commit the dirty task files.
 140 P4-lessons-cs-source-roles-1 done committed the verified 10 role pages preserved from iteration 139.
+141 P4-audit-3 done sampled 5 segments (1,303 pool); all pass, no fixes queued.
