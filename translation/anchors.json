@@ -4537,8 +4537,8 @@
     {
      "en": "What makes find special",
      "en_id": "what-makes-find-special",
-     "es": "What makes find special",
-     "es_id": "what-makes-find-special",
+     "es": "Qué hace especial a find",
+     "es_id": "qué-hace-especial-a-find",
      "level": 2,
      "line": 5
     },
@@ -4635,7 +4635,7 @@
     "program-flow-of-find-gnu": "program-flow-of-find-gnu",
     "program-flow-of-find-posix": "program-flow-of-find-posix",
     "what-did-we-just-learn": "what-did-we-just-learn",
-    "what-makes-find-special": "what-makes-find-special"
+    "what-makes-find-special": "qué-hace-especial-a-find"
    }
   },
   "lessons/languages/forth.md": {

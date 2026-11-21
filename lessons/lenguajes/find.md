@@ -1,12 +1,12 @@
 # find
 
-Entries: [`src/find-posix`](../../src/find-posix/README.md) (portable) and [`src/find-gnu`](../../src/find-gnu/README.md) (every GNU extra). `find` is a file search tool. Here it is asked to run a program, and the only thing it is allowed to be is a file search tool: one command, four primaries, no variables.
+Entradas: [`src/find-posix`](../../src/find-posix/README.md) (portable) y [`src/find-gnu`](../../src/find-gnu/README.md) (todas las extensiones de GNU). `find` es una herramienta de búsqueda de archivos. Aquí se le pide que ejecute un programa y solo se le permite ser una herramienta de búsqueda de archivos: un comando, cuatro primarios, ninguna variable.
 
-## What makes find special
+## Qué hace especial a find
 
-A `find` command is an **expression**. It is evaluated once for every file in a tree, left to right, and it stops early, like `&&` and `||` do. Tests (`-name`, `-path`) return true or false. Actions (`-exec`, `-print`) do something and also return true or false. That is all find has: booleans, patterns, side effects and a walk.
+Un comando `find` es una **expresión**. Se evalúa una vez por cada archivo de un árbol, de izquierda a derecha. Se detiene antes de terminar, como `&&` y `||`. Las pruebas (`-name`, `-path`) devuelven verdadero o falso. Las acciones (`-exec`, `-print`) hacen algo y también devuelven verdadero o falso. Eso es todo lo que tiene find: valores booleanos, patrones, efectos secundarios y un recorrido.
 
-| Feature | What it teaches |
+| Característica | Qué enseña |
 | --- | --- |
 | `-a` (and) is implied and binds tighter than `-o` (or) | `A -a B -o C -a D` is "if A and B, else if C and D". A chain of `-o` branches is a `case` statement, with short-circuit evaluation for free. |
 | `-exec` returns the program's exit status | A command is also a test. A `mkdir` that fails makes the rest of the `-a` chain false. Control flow by error code. |

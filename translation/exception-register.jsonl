@@ -431,3 +431,4 @@
 {"id":"EXC-431","segment":"s-920459831906-0034","invariant":"I7","reason":"Build means construct the window at runtime, not compilation; construye preserves the verb.","task":"P4-lessons-languages-2"}
 {"id":"EXC-432","segment":"s-1967b7982af5-0035","invariant":"I21","reason":"Aggregate is preserved inside the protected code placeholder; the checker cannot see it in the masked target.","task":"P4-lessons-languages-2"}
 {"id":"EXC-433","segment":"s-0d7e13605312-0008","invariant":"I7","reason":"The source uses build as a verb meaning construct data; the glossary term compilación denotes a software build and does not apply.","task":"P4-lessons-languages-2"}
+{"id":"EXC-434","segment":"s-e6640de835ad-0000","invariant":"TRANSLATE","reason":"The heading is the literal executable name find, which must remain unchanged.","task":"P4-lessons-languages-2"}
