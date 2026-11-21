@@ -1,6 +1,6 @@
 ---
 name: "pcre2grep"
-teaches: "that program exit codes can steer control flow."
+teaches: "que los códigos de salida de un programa pueden dirigir el flujo de control."
 kind: weird
 languages: [pcre2, regex]
 lesson: "lenguajes/regex.md#pcre2grep-exit-codes-as-control-flow"
@@ -8,20 +8,20 @@ loop-by: backtracking-search
 evaluation: search
 assurance: implementation-permitted
 pairs-with: regex-pcre2
-machine: "A backtracking search that runs one program per callout"
-state: "SQLite rows, and the exit code of each callout"
+machine: "Una búsqueda con retroceso que ejecuta un programa por cada callout"
+state: "Filas de SQLite y el código de salida de cada callout"
 tags: [backtracking, cut, exit-status, integrity-constraint, portability, regular-expression, side-effect]
 analogies: [callback]
 ---
-# Regex challenge, Track 2b: `pcre2grep` (no custom code at all)
+# Reto de regex, pista 2b: `pcre2grep` (sin nada de código personalizado)
 
-**Teaches you:** that program exit codes can steer control flow.
+**Qué aprenderás:** que los códigos de salida de un programa pueden dirigir el flujo de control.
 
-The "host" here is a stock `pcre2grep` and one command line. There is no C, no Perl, no dispatcher to write: the pattern's callout strings name the programs to run, and the **exit codes of those programs steer the match**. Then the match **returns false**. It follows the regex challenge plan (since removed; it lives in git history as `plans/regex.md`). **DEMO ONLY**: the records are fictional and go to a scratch SQLite file, with no connection to any real time-reporting system.
+Aquí el "anfitrión" es un `pcre2grep` estándar y una línea de comandos. No hay C, ni Perl, ni despachador que escribir: las cadenas de texto de callout del patrón nombran los programas que se ejecutan, y los **códigos de salida de esos programas dirigen la coincidencia**. Luego la coincidencia **devuelve falso**. Sigue el plan del reto de expresiones regulares (eliminado desde entonces; está en el historial de git como `plans/regex.md`). **DEMO ONLY**: los registros son ficticios y van a un archivo SQLite desechable, sin conexión con ningún sistema real de registro de horas.
 
-## Run it
+## Ejecútalo
 
-Ubuntu's own `pcre2grep` is built *without* callout scripts, so it needs an upstream build. In a throwaway shell:
+Ubuntu compila su propio `pcre2grep` *sin* scripts de callout, así que necesitas una compilación del proyecto original. En un intérprete de comandos (*shell*) desechable (el programa donde escribes comandos):
 
 ```bash
 sudo apt install -y build-essential sqlite3
@@ -34,7 +34,7 @@ make -j"$(nproc)" && make install
 ~/.local/bin/pcre2grep --help | grep -i callout    # "All callout scripts in patterns are supported."
 ```
 
-Then:
+Luego:
 
 ```bash
 cd src/regex-pcre2grep
@@ -42,7 +42,7 @@ PCRE2GREP=~/.local/bin/pcre2grep ./timecards.sh    # or put ~/.local/bin first o
 PCRE2GREP=~/.local/bin/pcre2grep ./check.sh        # 25 runs, asserts the rules below
 ```
 
-`timecards.sh` refuses (exit 2, with a message) a `pcre2grep` that lacks callout scripts, so a wrong binary cannot quietly fail. Records go to `$XDG_DATA_HOME/RegexPcre2grep/demo-timecards.db` (default `~/.local/share/RegexPcre2grep/`). Delete that directory to start over. A run looks like this, followed by a three-second pulse on a real terminal:
+`timecards.sh` rechaza (termina con código de salida 2 y muestra un mensaje) un `pcre2grep` que no tiene scripts de callout, así que un binario equivocado no puede fallar en silencio. Los registros van a `$XDG_DATA_HOME/RegexPcre2grep/demo-timecards.db` (por defecto `~/.local/share/RegexPcre2grep/`). Elimina ese directorio para empezar de nuevo. Una ejecución se ve así, seguida de un pulso de tres segundos en una terminal real:
 
 ```text
 # DEMO ONLY run 1
@@ -55,72 +55,72 @@ Error: stepping, CHECK constraint failed: stop rule fired: total exceeds 40 (19)
 # the match now returns false, on purpose
 ```
 
-That `Error:` line is on **stderr** and is the stop rule announcing itself (see below), not a failure. It appears exactly once per run that ends over 40; `check.sh` asserts that and that nothing else is ever written to stderr.
+Esa línea `Error:` va a **stderr** y es la regla de parada que se anuncia a sí misma (consulta más abajo), no un fallo. Aparece exactamente una vez por cada ejecución que termina con más de 40; `check.sh` comprueba eso y que nunca se escribe nada más en stderr.
 
-## Run it in a container
+## Ejecútalo en un contenedor
 
-Prerequisite: Docker, set up once as described in [`SANDBOX-SETUP.md`](../../SANDBOX-SETUP.md#docker).
+Requisito previo: Docker, configurado una sola vez como se describe en [`SANDBOX-SETUP.md`](../../SANDBOX-SETUP.md#docker).
 
 ```bash
 sandbox/container/run-image.sh src/regex-pcre2grep
 ```
 
-It builds this folder's [`Dockerfile`](Dockerfile) and runs the result with no network, a read-only file system and user `nobody`, then prints the output and a read-only look at the rows it wrote. The image holds a callout-enabled `pcre2grep` (built from the pinned PCRE2 release in the toolchain image) and sqlite3 on a minimal Ubuntu.
+Compila el [`Dockerfile`](Dockerfile) de esta carpeta y ejecuta el resultado sin red, con un sistema de archivos de solo lectura y el usuario `nobody`. Después imprime la salida y una vista de solo lectura de las filas que escribió. La imagen contiene un `pcre2grep` con callouts habilitados (compilado a partir de la versión fijada de PCRE2 en la imagen de la cadena de herramientas) y sqlite3 sobre un Ubuntu mínimo.
 
-## Program Flow
+## Flujo del programa
 
 ```mermaid
 flowchart TD
-    accTitle: regex-pcre2grep: each callout runs sqlite3, and its exit code is the decision
-    accDescr: A flowchart. pcre2grep matches one pattern against a one-line tape. An initializing callout runs sqlite3 to create the tables and start a run. A greedy quantifier repeats a pass. At each pass a gate callout inserts a total-is-at-most-40 value into a table with a constraint that requires it to be true. If it is, sqlite3 exits with 0 and the pass continues. If it is not, the constraint fails, sqlite3 exits nonzero, and the branch is vetoed, so the loop ends. The category alternation matches the next name on the tape, and a book callout runs sqlite3 to insert and print the row. After the loop, a commit verb, a summary callout and the optional pulse run, and a final fail verb makes the match return false.
-    A["pcre2grep matches one pattern against a one-line tape"] --> B["Initializer callout: sqlite3 creates the tables, starts the run, prints the header"]
-    B --> C["Greedy quantifier starts a pass"]
-    C --> D["Gate callout: sqlite3 inserts total <= 40 into a column with CHECK ok = 1"]
-    D --> E{{"sqlite3 exit code"}}
-    E -->|"0: the row is accepted"| F["Alternation matches the next category name on the tape"]
-    F --> G["Book callout: sqlite3 draws hours, inserts the row, prints it"]
+    accTitle: regex-pcre2grep: cada callout ejecuta sqlite3 y su código de salida es la decisión
+    accDescr: Un diagrama de flujo. pcre2grep busca una coincidencia de un patrón en una cinta de una línea. Un callout de inicialización ejecuta sqlite3 para crear las tablas e iniciar una ejecución. Un cuantificador voraz repite una pasada. En cada pasada, un callout de compuerta inserta en una tabla un valor que indica si el total no pasa de 40, y la tabla tiene una restricción que exige que ese valor sea verdadero. Si lo es, sqlite3 termina con 0 y la pasada continúa. Si no lo es, la restricción falla, sqlite3 termina con un código distinto de cero y la rama se veta, así que el bucle termina. La alternancia de categorías coincide con el siguiente nombre de la cinta, y un callout de libro ejecuta sqlite3 para insertar e imprimir la fila. Después del bucle se ejecutan un verbo commit, un callout de resumen y el pulse opcional, y un verbo fail final hace que la coincidencia devuelva falso.
+    A["pcre2grep compara un patrón con una cinta de una línea"] --> B["Callout de inicialización: sqlite3 crea las tablas, inicia la ejecución e imprime el encabezado"]
+    B --> C["El cuantificador voraz inicia una pasada"]
+    C --> D["Callout de compuerta: sqlite3 inserta un total <= 40 en una columna con CHECK ok = 1"]
+    D --> E{{"Código de salida de sqlite3"}}
+    E -->|"0: la fila se acepta"| F["La alternancia coincide con el siguiente nombre de categoría en la cinta"]
+    F --> G["Llamada del libro: sqlite3 sortea las horas, inserta la fila y la imprime"]
     G --> C
-    E -->|"nonzero: the constraint failed, the branch is vetoed"| H["The quantifier stops, COMMIT forbids retrying"]
-    H --> I["Summary callout, then the pulse if test -t 1 succeeds"]
-    I --> J["FAIL: the match returns false after all the work"]
+    E -->|"distinto de cero: la restricción falló y la rama queda vetada"| H["El cuantificador se detiene, COMMIT prohíbe reintentar"]
+    H --> I["Callout de resumen y después el pulso si test -t 1 tiene éxito"]
+    I --> J["FAIL: la coincidencia devuelve false después de todo el trabajo"]
 ```
 
-**What this shows:** a callout string that starts with a path runs a program. Exit status 0 lets the match go on, and any other status fails that branch. So every decision in the program is an exit code from `sqlite3`. A constraint violation (the total is over 40) is the stop rule.
+**Qué muestra:** una cadena de texto de callout que empieza con una ruta ejecuta un programa. El estado de salida 0 permite que la coincidencia continúe, y cualquier otro estado hace fallar esa rama. Así, cada decisión del programa es un estado de salida de `sqlite3`. Una violación de restricción (el total pasa de 40) es la regla de parada.
 
-**Why this mechanism matters:** `pcre2grep` is not a language runtime, but it has a process boundary inside the matcher. The engine asks an external program a question and backtracks on the answer. Compare [`regex-pcre2`](../regex-pcre2/README.md), where the question is a function call in the same process.
+**Por qué importa este mecanismo:** `pcre2grep` no es un entorno de ejecución de un lenguaje, pero tiene un límite de proceso dentro del comparador. El motor le hace una pregunta a un programa externo y retrocede según la respuesta. Compara [`regex-pcre2`](../regex-pcre2/README.md), donde la pregunta es una llamada a una función en el mismo proceso.
 
-## How the stunt works
+## Cómo funciona el truco
 
-`pcre2grep` supports two kinds of callout string. `(?C{|text$n})` echoes text. `(?C{/abs/path/prog|arg|arg})` runs a program: **exit 0 lets the match continue; any other exit code, or a program that cannot run, fails that branch and the engine backtracks.** The subject is a one-line "tape": `MeetingsCodingDebuggingLearning` followed by 60 three-digit gray shades.
+`pcre2grep` admite dos tipos de cadena de texto de callout. `(?C{|text$n})` repite texto. `(?C{/abs/path/prog|arg|arg})` ejecuta un programa: **el código de salida 0 deja que la coincidencia continúe; cualquier otro código de salida, o un programa que no se puede ejecutar, hace fallar esa rama y el motor retrocede.** El sujeto es una "cinta" de una sola línea: `MeetingsCodingDebuggingLearning` seguido de 60 tonos de gris de tres dígitos.
 
-| Piece | Job |
+| Pieza | Rol |
 | --- | --- |
-| `^(?C{sqlite3 ...})` | Initializer: creates the tables (with `CHECK(demo_only=1)` and `CHECK(hours BETWEEN 10 AND 19)`), starts a run row, prints the header |
-| `(?: ... )*` | The loop. PCRE2's greedy quantifier is the iteration; the tape's category names are what it walks |
-| `(?C{sqlite3 ... INSERT INTO stop_rule ...})` | The **gate** (the stop rule). It inserts `(running total <= 40)` into a table whose only column is `CHECK(ok=1)`, named "stop rule fired: total exceeds 40". When the total is over 40 the insert fails, `sqlite3` exits nonzero, and the branch is vetoed, ending the loop. The error message on stderr is that constraint's name |
-| `(Meetings\|Coding\|Debugging\|Learning)` | The category: the tape supplies the order (`MeetingsCodingDebuggingLearningMeetings`, five names so that exactly 40 can continue to a fifth card), the alternation matches it |
-| `(?C{sqlite3 ... INSERT INTO demo_timecards ...})` | **Book** one entry. SQLite draws the hours with `random()`, computes the running total and the ISO week, inserts the row, and prints it. `$1` in the SQL is the category the pattern just matched |
-| `(*COMMIT)(?C{sqlite3 ... SELECT printf(...)})` | Once the loop ends, backtracking may not retry shorter loops; then print the summary |
-| `[A-Za-z]*(?:(?C{/usr/bin/test\|-t\|1})(\d{3})(?C{\|$r$e[48;5;$2m ...})(?C{/bin/sleep\|0.05}))*` | The pulse. `test -t 1` is the predicate "is stdout a terminal?" (nonzero on a pipe, so the loop never starts and pipes and `check.sh` skip it). Each frame's shade is read back from the tape through `$2` |
-| `(*COMMIT)(?:test -t 1, clear)?+(?C{\|# the match now returns false...})(*FAIL)` | Clear the banner (if there was one), then the signature move. The `?+` is possessive on purpose: without it, `(*FAIL)` backtracks into skipping the optional group and prints the final message twice |
+| `^(?C{sqlite3 ...})` | Inicializador: crea las tablas (con `CHECK(demo_only=1)` y `CHECK(hours BETWEEN 10 AND 19)`), inicia una fila de ejecución e imprime el encabezado |
+| `(?: ... )*` | El bucle. El cuantificador voraz de PCRE2 es la iteración; los nombres de categoría de la cinta son lo que recorre |
+| `(?C{sqlite3 ... INSERT INTO stop_rule ...})` | La **compuerta** (la regla de parada). Inserta `(running total <= 40)` en una tabla cuya única columna es `CHECK(ok=1)`, con el nombre "stop rule fired: total exceeds 40". Cuando el total pasa de 40, la inserción falla, `sqlite3` termina con un código distinto de cero y la rama queda vetada, con lo que el bucle termina. El mensaje de error en stderr es el nombre de esa restricción |
+| `(Meetings\|Coding\|Debugging\|Learning)` | La categoría: la cinta aporta el orden (`MeetingsCodingDebuggingLearningMeetings`, cinco nombres para que un total de exactamente 40 pueda continuar con una quinta tarjeta) y la alternancia coincide con ella |
+| `(?C{sqlite3 ... INSERT INTO demo_timecards ...})` | **Anota** una entrada. SQLite sortea las horas con `random()`, calcula el total acumulado y la semana ISO, inserta la fila y la imprime. `$1` en el SQL es la categoría con la que el patrón acaba de coincidir |
+| `(*COMMIT)(?C{sqlite3 ... SELECT printf(...)})` | Una vez que termina el bucle, el retroceso puede no reintentar bucles más cortos; después el programa imprime el resumen |
+| `[A-Za-z]*(?:(?C{/usr/bin/test\|-t\|1})(\d{3})(?C{\|$r$e[48;5;$2m ...})(?C{/bin/sleep\|0.05}))*` | El pulso. `test -t 1` es el predicado "¿stdout es una terminal?" (distinto de cero en una tubería, así que el bucle nunca arranca y las tuberías y `check.sh` lo omiten). El programa vuelve a leer el tono de cada fotograma desde la cinta mediante `$2` |
+| `(*COMMIT)(?:test -t 1, clear)?+(?C{\|# the match now returns false...})(*FAIL)` | Borra el banner (si había uno); luego, la jugada característica. El `?+` es posesivo a propósito: sin él, `(*FAIL)` retrocede hasta omitir el grupo opcional e imprime el mensaje final dos veces |
 
-The exit code is the whole trick. SQLite's `random()` and arithmetic live in the helper program, but the *decisions* (go around again, stop, pulse or not) are the pattern consuming exit codes.
+El código de salida es todo el truco. El `random()` de SQLite y la aritmética viven en el programa auxiliar. Pero las *decisiones* (dar otra vuelta, parar, emitir un pulso o no) son el patrón que consume los códigos de salida.
 
-## What `check.sh` enforces
+## Qué hace cumplir `check.sh`
 
-`check.sh` checks that `timecards.sh` has no loop keyword and runs exactly one `pcre2grep`. The callouts may run only `/bin/sleep`, `/usr/bin/sqlite3` and `/usr/bin/test`, never a shell or an interpreter. If a `pcre2grep` without callout support is installed, the script must refuse it with exit code 2. Then it runs the program 25 times, and a copy of the script in which every card is worth 10 hours must deal five rows (the fifth `Meetings`, total 50), which proves that exactly 40 continues. Each run must print the "returns false" line, as many rows as it has entries, hours from 10 to 19, and the right stop rule (the total before the last card is at most 40, so exactly 40 continues, and the total after it is over 40; three to five entries). The stop-rule error must appear on stderr exactly once when the total is over 40 and never otherwise, and nothing else may be written to stderr. SQLite must agree with the output, the database must hold 25 runs and no probe rows, and a non-demo row must be refused.
+`check.sh` comprueba que `timecards.sh` no tiene ninguna palabra clave de bucle y ejecuta exactamente un `pcre2grep`. Los callouts solo pueden ejecutar `/bin/sleep`, `/usr/bin/sqlite3` y `/usr/bin/test`, nunca un intérprete de comandos (*shell*, el programa que recibe y ejecuta comandos escritos) ni un intérprete. Si se instala un `pcre2grep` sin soporte de callouts, el script debe rechazarlo con el código de salida 2. Después ejecuta el programa 25 veces. Una copia del script en la que cada tarjeta vale 10 horas debe repartir cinco filas (la quinta `Meetings`, total de 50), lo que demuestra que un total de exactamente 40 continúa. Cada ejecución debe imprimir la línea "returns false", tantas filas como entradas tenga, de 10 a 19 horas y la regla de parada correcta (el total antes de la última tarjeta es como máximo 40, así que un total de exactamente 40 continúa, y el total después de ella pasa de 40; de tres a cinco entradas). El error de la regla de parada debe aparecer en stderr exactamente una vez cuando el total pasa de 40 y nunca en otro caso, y no debe escribirse nada más en stderr. SQLite debe coincidir con la salida, la base de datos debe contener 25 ejecuciones y ninguna fila de prueba, y se debe rechazar una fila que no sea de demostración.
 
-## Gotchas worth knowing
+## Trampas que conviene conocer
 
-- **State cannot live in the pattern.** `pcre2grep` has no variables, so the running total lives in SQLite and each callout rereads it. That makes the arithmetic the helper's job, not PCRE2's; the pattern supplies the loop, the order, the branching and the failing.
-- **No transaction this time.** Each helper is its own `sqlite3` process, so each statement commits immediately and nothing can be rolled back. Unlike the Perl track's single transaction, here "abandoned branch, side effects stay" is literal: the rows are already in the database before the match fails.
-- **Callouts need absolute paths.** `pcre2grep` uses `fork` and `execv`, which do not search `PATH`. A bare `true` or `sleep` is silently a failed callout, indistinguishable from a vetoed branch. `check.sh` therefore pins the program list.
-- **Guardrail.** Callouts may only run `/usr/bin/sqlite3`, `/usr/bin/test` and `/bin/sleep`, each with a fixed argument list. `check.sh` fails if any other program (in particular a shell or interpreter) appears. The only value interpolated into SQL is `$1`, one of four fixed category names from the tape.
-- **The host is not nothing.** `timecards.sh` finds a callout-capable `pcre2grep`, creates and enters the scratch directory, and pipes the tape into one `pcre2grep` command. It has no loop and decides nothing, but it does contain a literal 60-shade tape (the pulse's brightness ramp, precomputed) and one `if`-like guard. The honest claim is "no custom code", not "no shell".
-- **Not concurrency-safe.** A run is identified as `max(id)` in the `runs` table, so two simultaneous runs would tangle. It is a toy.
-- **The ISO week is computed with SQLite date arithmetic**, because Ubuntu 24.04's SQLite (3.45) has no `%G`/`%V`. As in the other versions, the ISO year can differ from the calendar year near New Year.
-- Only the `10.49` build above was tested. I did not try other PCRE2 versions or configure options.
+- **El estado no puede vivir en el patrón.** `pcre2grep` no tiene variables, así que el total acumulado vive en SQLite y cada callout lo vuelve a leer. Así, la aritmética es tarea del programa auxiliar, no de PCRE2; el patrón aporta el bucle, el orden, la ramificación y el fallo.
+- **Esta vez no hay transacción.** Cada auxiliar es su propio proceso `sqlite3`, así que cada sentencia se confirma de inmediato y nada se puede revertir. A diferencia de la transacción única del recorrido de Perl, aquí "rama abandonada, los efectos secundarios se quedan" es literal: las filas ya están en la base de datos antes de que falle la coincidencia.
+- **Los callouts necesitan rutas absolutas.** `pcre2grep` usa `fork` y `execv`, que no buscan en `PATH`. Un `true` o `sleep` sin ruta es en silencio un callout fallido, indistinguible de una rama vetada. Por eso `check.sh` fija la lista de programas.
+- **Salvaguarda.** Los callouts solo pueden ejecutar `/usr/bin/sqlite3`, `/usr/bin/test` y `/bin/sleep`, cada uno con una lista fija de argumentos. `check.sh` falla si aparece cualquier otro programa, en particular un intérprete de comandos (*shell*, el programa que lee comandos escritos y los ejecuta) o un intérprete. El único valor que se interpola en SQL es `$1`, uno de los cuatro nombres de categoría fijos de la cinta.
+- **El anfitrión no es insignificante.** `timecards.sh` busca un `pcre2grep` con soporte de callouts, crea y entra en el directorio temporal de trabajo y pasa la cinta por una tubería a un solo comando `pcre2grep`. No tiene ningún bucle y no decide nada, pero sí contiene una cinta literal de 60 tonos (la rampa de brillo del pulso, precalculada) y una guarda parecida a `if`. La afirmación honesta es "sin código propio", no "sin intérprete de comandos (*shell*, el programa que lee y ejecuta comandos)".
+- **No es seguro para la concurrencia.** Una ejecución se identifica como `max(id)` en la tabla `runs`, así que dos ejecuciones simultáneas interferirían entre sí. Es un juguete.
+- **La semana ISO se calcula con aritmética de fechas de SQLite**, porque el SQLite de Ubuntu 24.04 (3.45) no tiene `%G`/`%V`. Como en las otras versiones, el año ISO puede diferir del año calendario cerca de Año Nuevo.
+- Solo probé la compilación de `10.49` indicada arriba. No probé otras versiones de PCRE2 ni otras opciones de configuración.
 
 ---
 
-See the [root README](../../README.md#the-results-so-far) for how this compares to the other regex entries, and [`RETO.md`](../../RETO.md) if you want to write your own.
+Consulta el [README principal](../../README.md#the-results-so-far) para ver cómo se compara esto con las otras entradas de regex, y [`RETO.md`](../../RETO.md) si quieres escribir el tuyo.

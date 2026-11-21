@@ -11847,77 +11847,77 @@
     {
      "en": "Regex challenge, Track 3: .NET balancing groups (the purist's attempt)",
      "en_id": "regex-challenge-track-3-net-balancing-groups-the-purists-attempt",
-     "es": "Regex challenge, Track 3: .NET balancing groups (the purist's attempt)",
-     "es_id": "regex-challenge-track-3-net-balancing-groups-the-purists-attempt",
+     "es": "Reto de regex, ruta 3: grupos de equilibrio de .NET (el intento purista)",
+     "es_id": "reto-de-regex-ruta-3-grupos-de-equilibrio-de-net-el-intento-purista",
      "level": 1,
      "line": 15
     },
     {
      "en": "Run it",
      "en_id": "run-it",
-     "es": "Run it",
-     "es_id": "run-it",
+     "es": "Ejecútalo",
+     "es_id": "ejecútalo",
      "level": 2,
      "line": 21
     },
     {
      "en": "Run it in a container",
      "en_id": "run-it-in-a-container",
-     "es": "Run it in a container",
-     "es_id": "run-it-in-a-container",
+     "es": "Ejecuta el programa en un contenedor",
+     "es_id": "ejecuta-el-programa-en-un-contenedor",
      "level": 2,
      "line": 43
     },
     {
      "en": "Program Flow",
      "en_id": "program-flow",
-     "es": "Program Flow",
-     "es_id": "program-flow",
+     "es": "Flujo del programa",
+     "es_id": "flujo-del-programa",
      "level": 2,
      "line": 53
     },
     {
      "en": "How the stunt works",
      "en_id": "how-the-stunt-works",
-     "es": "How the stunt works",
-     "es_id": "how-the-stunt-works",
+     "es": "Cómo funciona el truco",
+     "es_id": "cómo-funciona-el-truco",
      "level": 2,
      "line": 73
     },
     {
      "en": "What `check.sh` enforces",
      "en_id": "what-checksh-enforces",
-     "es": "What `check.sh` enforces",
-     "es_id": "what-checksh-enforces",
+     "es": "Qué impone `check.sh`",
+     "es_id": "qué-impone-checksh",
      "level": 2,
      "line": 89
     },
     {
      "en": "Gotchas worth knowing",
      "en_id": "gotchas-worth-knowing",
-     "es": "Gotchas worth knowing",
-     "es_id": "gotchas-worth-knowing",
+     "es": "Trampas que conviene conocer",
+     "es_id": "trampas-que-conviene-conocer",
      "level": 2,
      "line": 93
     },
     {
      "en": "Honest fine print",
      "en_id": "honest-fine-print",
-     "es": "Honest fine print",
-     "es_id": "honest-fine-print",
+     "es": "Letra pequeña, pero honesta",
+     "es_id": "letra-pequeña-pero-honesta",
      "level": 3,
      "line": 101
     }
    ],
    "map": {
-    "gotchas-worth-knowing": "gotchas-worth-knowing",
-    "honest-fine-print": "honest-fine-print",
-    "how-the-stunt-works": "how-the-stunt-works",
-    "program-flow": "program-flow",
-    "regex-challenge-track-3-net-balancing-groups-the-purists-attempt": "regex-challenge-track-3-net-balancing-groups-the-purists-attempt",
-    "run-it": "run-it",
-    "run-it-in-a-container": "run-it-in-a-container",
-    "what-checksh-enforces": "what-checksh-enforces"
+    "gotchas-worth-knowing": "trampas-que-conviene-conocer",
+    "honest-fine-print": "letra-pequeña-pero-honesta",
+    "how-the-stunt-works": "cómo-funciona-el-truco",
+    "program-flow": "flujo-del-programa",
+    "regex-challenge-track-3-net-balancing-groups-the-purists-attempt": "reto-de-regex-ruta-3-grupos-de-equilibrio-de-net-el-intento-purista",
+    "run-it": "ejecútalo",
+    "run-it-in-a-container": "ejecuta-el-programa-en-un-contenedor",
+    "what-checksh-enforces": "qué-impone-checksh"
    }
   },
   "src/regex-pcre2/README.md": {
@@ -11925,86 +11925,86 @@
     {
      "en": "Regex challenge, Track 2: PCRE2 callouts as a tiny DSL",
      "en_id": "regex-challenge-track-2-pcre2-callouts-as-a-tiny-dsl",
-     "es": "Regex challenge, Track 2: PCRE2 callouts as a tiny DSL",
-     "es_id": "regex-challenge-track-2-pcre2-callouts-as-a-tiny-dsl",
+     "es": "Reto de regex, ruta 2: callouts de PCRE2 como un DSL minúsculo",
+     "es_id": "reto-de-regex-ruta-2-callouts-de-pcre2-como-un-dsl-minúsculo",
      "level": 1,
      "line": 15
     },
     {
      "en": "Run it",
      "en_id": "run-it",
-     "es": "Run it",
-     "es_id": "run-it",
+     "es": "Ejecútalo",
+     "es_id": "ejecútalo",
      "level": 2,
      "line": 21
     },
     {
      "en": "Run it in a container",
      "en_id": "run-it-in-a-container",
-     "es": "Run it in a container",
-     "es_id": "run-it-in-a-container",
+     "es": "Ejecuta el programa en un contenedor",
+     "es_id": "ejecuta-el-programa-en-un-contenedor",
      "level": 2,
      "line": 42
     },
     {
      "en": "Program Flow",
      "en_id": "program-flow",
-     "es": "Program Flow",
-     "es_id": "program-flow",
+     "es": "Flujo del programa",
+     "es_id": "flujo-del-programa",
      "level": 2,
      "line": 52
     },
     {
      "en": "How the stunt works",
      "en_id": "how-the-stunt-works",
-     "es": "How the stunt works",
-     "es_id": "how-the-stunt-works",
+     "es": "Cómo funciona el truco",
+     "es_id": "cómo-funciona-el-truco",
      "level": 2,
      "line": 79
     },
     {
      "en": "The pulse",
      "en_id": "the-pulse",
-     "es": "The pulse",
-     "es_id": "the-pulse",
+     "es": "El pulso",
+     "es_id": "el-pulso",
      "level": 2,
      "line": 98
     },
     {
      "en": "The optimizer caveat, as the plan asks",
      "en_id": "the-optimizer-caveat-as-the-plan-asks",
-     "es": "The optimizer caveat, as the plan asks",
-     "es_id": "the-optimizer-caveat-as-the-plan-asks",
+     "es": "La advertencia sobre el optimizador, como pide el plan",
+     "es_id": "la-advertencia-sobre-el-optimizador-como-pide-el-plan",
      "level": 2,
      "line": 102
     },
     {
      "en": "What `check.sh` enforces",
      "en_id": "what-checksh-enforces",
-     "es": "What `check.sh` enforces",
-     "es_id": "what-checksh-enforces",
+     "es": "Qué impone `check.sh`",
+     "es_id": "qué-impone-checksh",
      "level": 2,
      "line": 106
     },
     {
      "en": "Gotchas worth knowing",
      "en_id": "gotchas-worth-knowing",
-     "es": "Gotchas worth knowing",
-     "es_id": "gotchas-worth-knowing",
+     "es": "Trampas que conviene conocer",
+     "es_id": "trampas-que-conviene-conocer",
      "level": 2,
      "line": 110
     }
    ],
    "map": {
-    "gotchas-worth-knowing": "gotchas-worth-knowing",
-    "how-the-stunt-works": "how-the-stunt-works",
-    "program-flow": "program-flow",
-    "regex-challenge-track-2-pcre2-callouts-as-a-tiny-dsl": "regex-challenge-track-2-pcre2-callouts-as-a-tiny-dsl",
-    "run-it": "run-it",
-    "run-it-in-a-container": "run-it-in-a-container",
-    "the-optimizer-caveat-as-the-plan-asks": "the-optimizer-caveat-as-the-plan-asks",
-    "the-pulse": "the-pulse",
-    "what-checksh-enforces": "what-checksh-enforces"
+    "gotchas-worth-knowing": "trampas-que-conviene-conocer",
+    "how-the-stunt-works": "cómo-funciona-el-truco",
+    "program-flow": "flujo-del-programa",
+    "regex-challenge-track-2-pcre2-callouts-as-a-tiny-dsl": "reto-de-regex-ruta-2-callouts-de-pcre2-como-un-dsl-minúsculo",
+    "run-it": "ejecútalo",
+    "run-it-in-a-container": "ejecuta-el-programa-en-un-contenedor",
+    "the-optimizer-caveat-as-the-plan-asks": "la-advertencia-sobre-el-optimizador-como-pide-el-plan",
+    "the-pulse": "el-pulso",
+    "what-checksh-enforces": "qué-impone-checksh"
    }
   },
   "src/regex-pcre2grep/README.md": {
@@ -12012,68 +12012,68 @@
     {
      "en": "Regex challenge, Track 2b: `pcre2grep` (no custom code at all)",
      "en_id": "regex-challenge-track-2b-pcre2grep-no-custom-code-at-all",
-     "es": "Regex challenge, Track 2b: `pcre2grep` (no custom code at all)",
-     "es_id": "regex-challenge-track-2b-pcre2grep-no-custom-code-at-all",
+     "es": "Reto de regex, pista 2b: `pcre2grep` (sin nada de código personalizado)",
+     "es_id": "reto-de-regex-pista-2b-pcre2grep-sin-nada-de-código-personalizado",
      "level": 1,
      "line": 16
     },
     {
      "en": "Run it",
      "en_id": "run-it",
-     "es": "Run it",
-     "es_id": "run-it",
+     "es": "Ejecútalo",
+     "es_id": "ejecútalo",
      "level": 2,
      "line": 22
     },
     {
      "en": "Run it in a container",
      "en_id": "run-it-in-a-container",
-     "es": "Run it in a container",
-     "es_id": "run-it-in-a-container",
+     "es": "Ejecútalo en un contenedor",
+     "es_id": "ejecútalo-en-un-contenedor",
      "level": 2,
      "line": 60
     },
     {
      "en": "Program Flow",
      "en_id": "program-flow",
-     "es": "Program Flow",
-     "es_id": "program-flow",
+     "es": "Flujo del programa",
+     "es_id": "flujo-del-programa",
      "level": 2,
      "line": 70
     },
     {
      "en": "How the stunt works",
      "en_id": "how-the-stunt-works",
-     "es": "How the stunt works",
-     "es_id": "how-the-stunt-works",
+     "es": "Cómo funciona el truco",
+     "es_id": "cómo-funciona-el-truco",
      "level": 2,
      "line": 92
     },
     {
      "en": "What `check.sh` enforces",
      "en_id": "what-checksh-enforces",
-     "es": "What `check.sh` enforces",
-     "es_id": "what-checksh-enforces",
+     "es": "Qué hace cumplir `check.sh`",
+     "es_id": "qué-hace-cumplir-checksh",
      "level": 2,
      "line": 109
     },
     {
      "en": "Gotchas worth knowing",
      "en_id": "gotchas-worth-knowing",
-     "es": "Gotchas worth knowing",
-     "es_id": "gotchas-worth-knowing",
+     "es": "Trampas que conviene conocer",
+     "es_id": "trampas-que-conviene-conocer",
      "level": 2,
      "line": 113
     }
    ],
    "map": {
-    "gotchas-worth-knowing": "gotchas-worth-knowing",
-    "how-the-stunt-works": "how-the-stunt-works",
-    "program-flow": "program-flow",
-    "regex-challenge-track-2b-pcre2grep-no-custom-code-at-all": "regex-challenge-track-2b-pcre2grep-no-custom-code-at-all",
-    "run-it": "run-it",
-    "run-it-in-a-container": "run-it-in-a-container",
-    "what-checksh-enforces": "what-checksh-enforces"
+    "gotchas-worth-knowing": "trampas-que-conviene-conocer",
+    "how-the-stunt-works": "cómo-funciona-el-truco",
+    "program-flow": "flujo-del-programa",
+    "regex-challenge-track-2b-pcre2grep-no-custom-code-at-all": "reto-de-regex-pista-2b-pcre2grep-sin-nada-de-código-personalizado",
+    "run-it": "ejecútalo",
+    "run-it-in-a-container": "ejecútalo-en-un-contenedor",
+    "what-checksh-enforces": "qué-hace-cumplir-checksh"
    }
   },
   "src/regex-perl/README.md": {

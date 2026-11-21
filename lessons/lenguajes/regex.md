@@ -124,7 +124,7 @@ Each picture below is the `## Program Flow` section of an entry's README, copied
 
 ### Program flow of `regex-dotnet`
 
-From [`regex-dotnet`](../../src/regex-dotnet/README.md) ([source section](../../src/regex-dotnet/README.md#program-flow)).
+From [`regex-dotnet`](../../src/regex-dotnet/README.md) ([source section](../../src/regex-dotnet/README.md#flujo-del-programa)).
 
 ```mermaid
 flowchart TD
@@ -169,7 +169,7 @@ flowchart TD
 
 ### Program flow of `regex-pcre2`
 
-From [`regex-pcre2`](../../src/regex-pcre2/README.md) ([source section](../../src/regex-pcre2/README.md#program-flow)).
+From [`regex-pcre2`](../../src/regex-pcre2/README.md) ([source section](../../src/regex-pcre2/README.md#flujo-del-programa)).
 
 ```mermaid
 sequenceDiagram
@@ -198,7 +198,7 @@ sequenceDiagram
 
 ### Program flow of `regex-pcre2grep`
 
-From [`regex-pcre2grep`](../../src/regex-pcre2grep/README.md) ([source section](../../src/regex-pcre2grep/README.md#program-flow)).
+From [`regex-pcre2grep`](../../src/regex-pcre2grep/README.md) ([source section](../../src/regex-pcre2grep/README.md#flujo-del-programa)).
 
 ```mermaid
 flowchart TD

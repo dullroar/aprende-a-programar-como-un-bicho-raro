@@ -1,0 +1,288 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/regex-pcre2grep/README.md:2
+msgctxt "s-f7b410e9addd-0000"
+msgid "pcre2grep"
+msgstr "pcre2grep"
+
+#: src/regex-pcre2grep/README.md:3
+msgctxt "s-e1590d114199-0001"
+msgid "that program exit codes can steer control flow."
+msgstr "que los códigos de salida de un programa pueden dirigir el flujo de control."
+
+#: src/regex-pcre2grep/README.md:11
+msgctxt "s-f77ec12e3c5b-0002"
+msgid "A backtracking search that runs one program per callout"
+msgstr "Una búsqueda con retroceso que ejecuta un programa por cada callout"
+
+#: src/regex-pcre2grep/README.md:12
+msgctxt "s-e419f0182b9b-0003"
+msgid "SQLite rows, and the exit code of each callout"
+msgstr "Filas de SQLite y el código de salida de cada callout"
+
+#: src/regex-pcre2grep/README.md:16
+msgctxt "s-90ea8694341b-0004"
+msgid "Regex challenge, Track 2b: ⟦CODE_0001⟧ (no custom code at all)"
+msgstr "Reto de regex, pista 2b: ⟦CODE_0001⟧ (sin nada de código personalizado)"
+
+#: src/regex-pcre2grep/README.md:18
+msgctxt "s-c123c9617a96-0005"
+msgid "**Teaches you:** that program exit codes can steer control flow."
+msgstr "**Qué aprenderás:** que los códigos de salida de un programa pueden dirigir el flujo de control."
+
+#: src/regex-pcre2grep/README.md:20
+msgctxt "s-a096a7973879-0006"
+msgid "The \"host\" here is a stock ⟦CODE_0001⟧ and one command line. There is no C, no Perl, no dispatcher to write: the pattern's callout strings name the programs to run, and the **exit codes of those programs steer the match**. Then the match **returns false**. It follows the regex challenge plan (since removed; it lives in git history as ⟦CODE_0002⟧). **⟦DNT_0003⟧**: the records are fictional and go to a scratch SQLite file, with no connection to any real time-reporting system."
+msgstr "Aquí el \"anfitrión\" es un ⟦CODE_0001⟧ estándar y una línea de comandos. No hay C, ni Perl, ni despachador que escribir: las cadenas de texto de callout del patrón nombran los programas que se ejecutan, y los **códigos de salida de esos programas dirigen la coincidencia**. Luego la coincidencia **devuelve falso**. Sigue el plan del reto de expresiones regulares (eliminado desde entonces; está en el historial de git como ⟦CODE_0002⟧). **⟦DNT_0003⟧**: los registros son ficticios y van a un archivo SQLite desechable, sin conexión con ningún sistema real de registro de horas."
+
+#: src/regex-pcre2grep/README.md:22
+msgctxt "s-958ca26c6a61-0007"
+msgid "Run it"
+msgstr "Ejecútalo"
+
+#: src/regex-pcre2grep/README.md:24
+msgctxt "s-ef726ac1864c-0008"
+msgid "Ubuntu's own ⟦CODE_0001⟧ is built *without* callout scripts, so it needs an upstream build. In a throwaway shell:"
+msgstr "Ubuntu compila su propio ⟦CODE_0001⟧ *sin* scripts de callout, así que necesitas una compilación del proyecto original. En un intérprete de comandos (*shell*) desechable (el programa donde escribes comandos):"
+
+#: src/regex-pcre2grep/README.md:37
+msgctxt "s-fa36c4e4f0f6-0009"
+msgid "Then:"
+msgstr "Luego:"
+
+#: src/regex-pcre2grep/README.md:45
+msgctxt "s-e6c2b688851f-0010"
+msgid "⟦CODE_0001⟧ refuses (exit 2, with a message) a ⟦CODE_0002⟧ that lacks callout scripts, so a wrong binary cannot quietly fail. Records go to ⟦CODE_0003⟧ (default ⟦CODE_0004⟧). Delete that directory to start over. A run looks like this, followed by a three-second pulse on a real terminal:"
+msgstr "⟦CODE_0001⟧ rechaza (termina con código de salida 2 y muestra un mensaje) un ⟦CODE_0002⟧ que no tiene scripts de callout, así que un binario equivocado no puede fallar en silencio. Los registros van a ⟦CODE_0003⟧ (por defecto ⟦CODE_0004⟧). Elimina ese directorio para empezar de nuevo. Una ejecución se ve así, seguida de un pulso de tres segundos en una terminal real:"
+
+#: src/regex-pcre2grep/README.md:58
+msgctxt "s-e48b99f06581-0011"
+msgid "That ⟦CODE_0001⟧ line is on **stderr** and is the stop rule announcing itself (see below), not a failure. It appears exactly once per run that ends over 40; ⟦CODE_0002⟧ asserts that and that nothing else is ever written to stderr."
+msgstr "Esa línea ⟦CODE_0001⟧ va a **stderr** y es la regla de parada que se anuncia a sí misma (consulta más abajo), no un fallo. Aparece exactamente una vez por cada ejecución que termina con más de 40; ⟦CODE_0002⟧ comprueba eso y que nunca se escribe nada más en stderr."
+
+#: src/regex-pcre2grep/README.md:60
+msgctxt "s-254f0c660db3-0012"
+msgid "Run it in a container"
+msgstr "Ejecútalo en un contenedor"
+
+#: src/regex-pcre2grep/README.md:62
+msgctxt "s-643df015c8a2-0013"
+msgid "Prerequisite: Docker, set up once as described in [⟦CODE_0001⟧](⟦DEST_0002⟧)."
+msgstr "Requisito previo: Docker, configurado una sola vez como se describe en [⟦CODE_0001⟧](⟦DEST_0002⟧)."
+
+#: src/regex-pcre2grep/README.md:68
+msgctxt "s-622b8c2e1d90-0014"
+msgid "It builds this folder's [⟦CODE_0001⟧](⟦DEST_0002⟧) and runs the result with no network, a read-only file system and user ⟦CODE_0003⟧, then prints the output and a read-only look at the rows it wrote. The image holds a callout-enabled ⟦CODE_0004⟧ (built from the pinned PCRE2 release in the toolchain image) and sqlite3 on a minimal Ubuntu."
+msgstr "Compila el [⟦CODE_0001⟧](⟦DEST_0002⟧) de esta carpeta y ejecuta el resultado sin red, con un sistema de archivos de solo lectura y el usuario ⟦CODE_0003⟧. Después imprime la salida y una vista de solo lectura de las filas que escribió. La imagen contiene un ⟦CODE_0004⟧ con callouts habilitados (compilado a partir de la versión fijada de PCRE2 en la imagen de la cadena de herramientas) y sqlite3 sobre un Ubuntu mínimo."
+
+#: src/regex-pcre2grep/README.md:70
+msgctxt "s-0dcb373c2dff-0015"
+msgid "Program Flow"
+msgstr "Flujo del programa"
+
+#: src/regex-pcre2grep/README.md:74
+msgctxt "s-2b516fb73862-0016"
+msgid "regex-pcre2grep: each callout runs sqlite3, and its exit code is the decision"
+msgstr "regex-pcre2grep: cada callout ejecuta sqlite3 y su código de salida es la decisión"
+
+#: src/regex-pcre2grep/README.md:75
+msgctxt "s-6a6bf052e7c1-0017"
+msgid "A flowchart. pcre2grep matches one pattern against a one-line tape. An initializing callout runs sqlite3 to create the tables and start a run. A greedy quantifier repeats a pass. At each pass a gate callout inserts a total-is-at-most-40 value into a table with a constraint that requires it to be true. If it is, sqlite3 exits with 0 and the pass continues. If it is not, the constraint fails, sqlite3 exits nonzero, and the branch is vetoed, so the loop ends. The category alternation matches the next name on the tape, and a book callout runs sqlite3 to insert and print the row. After the loop, a commit verb, a summary callout and the optional pulse run, and a final fail verb makes the match return false."
+msgstr "Un diagrama de flujo. pcre2grep busca una coincidencia de un patrón en una cinta de una línea. Un callout de inicialización ejecuta sqlite3 para crear las tablas e iniciar una ejecución. Un cuantificador voraz repite una pasada. En cada pasada, un callout de compuerta inserta en una tabla un valor que indica si el total no pasa de 40, y la tabla tiene una restricción que exige que ese valor sea verdadero. Si lo es, sqlite3 termina con 0 y la pasada continúa. Si no lo es, la restricción falla, sqlite3 termina con un código distinto de cero y la rama se veta, así que el bucle termina. La alternancia de categorías coincide con el siguiente nombre de la cinta, y un callout de libro ejecuta sqlite3 para insertar e imprimir la fila. Después del bucle se ejecutan un verbo commit, un callout de resumen y el pulse opcional, y un verbo fail final hace que la coincidencia devuelva falso."
+
+#: src/regex-pcre2grep/README.md:76
+msgctxt "s-24db6e91a935-0018"
+msgid "pcre2grep matches one pattern against a one-line tape"
+msgstr "pcre2grep compara un patrón con una cinta de una línea"
+
+#: src/regex-pcre2grep/README.md:76
+msgctxt "s-627793530d64-0019"
+msgid "Initializer callout: sqlite3 creates the tables, starts the run, prints the header"
+msgstr "Callout de inicialización: sqlite3 crea las tablas, inicia la ejecución e imprime el encabezado"
+
+#: src/regex-pcre2grep/README.md:77
+msgctxt "s-d42e0fc9e59d-0020"
+msgid "Greedy quantifier starts a pass"
+msgstr "El cuantificador voraz inicia una pasada"
+
+#: src/regex-pcre2grep/README.md:78
+msgctxt "s-415fcf27c5b6-0021"
+msgid "Gate callout: sqlite3 inserts total <= 40 into a column with CHECK ok = 1"
+msgstr "Callout de compuerta: sqlite3 inserta un total <= 40 en una columna con CHECK ok = 1"
+
+#: src/regex-pcre2grep/README.md:79
+msgctxt "s-39e6ea8b6256-0022"
+msgid "sqlite3 exit code"
+msgstr "Código de salida de sqlite3"
+
+#: src/regex-pcre2grep/README.md:80
+msgctxt "s-0b2306a70b2f-0023"
+msgid "0: the row is accepted"
+msgstr "0: la fila se acepta"
+
+#: src/regex-pcre2grep/README.md:80
+msgctxt "s-d4d58c0d4957-0024"
+msgid "Alternation matches the next category name on the tape"
+msgstr "La alternancia coincide con el siguiente nombre de categoría en la cinta"
+
+#: src/regex-pcre2grep/README.md:81
+msgctxt "s-72bbbd43c34a-0025"
+msgid "Book callout: sqlite3 draws hours, inserts the row, prints it"
+msgstr "Llamada del libro: sqlite3 sortea las horas, inserta la fila y la imprime"
+
+#: src/regex-pcre2grep/README.md:83
+msgctxt "s-4daab5db623b-0026"
+msgid "nonzero: the constraint failed, the branch is vetoed"
+msgstr "distinto de cero: la restricción falló y la rama queda vetada"
+
+#: src/regex-pcre2grep/README.md:83
+msgctxt "s-3c97a041927e-0027"
+msgid "The quantifier stops, COMMIT forbids retrying"
+msgstr "El cuantificador se detiene, COMMIT prohíbe reintentar"
+
+#: src/regex-pcre2grep/README.md:84
+msgctxt "s-1a3b4986e698-0028"
+msgid "Summary callout, then the pulse if test -t 1 succeeds"
+msgstr "Callout de resumen y después el pulso si test -t 1 tiene éxito"
+
+#: src/regex-pcre2grep/README.md:85
+msgctxt "s-2d12b2dcb6ac-0029"
+msgid "FAIL: the match returns false after all the work"
+msgstr "FAIL: la coincidencia devuelve false después de todo el trabajo"
+
+#: src/regex-pcre2grep/README.md:88
+msgctxt "s-5d80b6fd3780-0030"
+msgid "**What this shows:** a callout string that starts with a path runs a program. Exit status 0 lets the match go on, and any other status fails that branch. So every decision in the program is an exit code from ⟦CODE_0001⟧. A constraint violation (the total is over 40) is the stop rule."
+msgstr "**Qué muestra:** una cadena de texto de callout que empieza con una ruta ejecuta un programa. El estado de salida 0 permite que la coincidencia continúe, y cualquier otro estado hace fallar esa rama. Así, cada decisión del programa es un estado de salida de ⟦CODE_0001⟧. Una violación de restricción (el total pasa de 40) es la regla de parada."
+
+#: src/regex-pcre2grep/README.md:90
+msgctxt "s-d1c39eb05e80-0031"
+msgid "**Why this mechanism matters:** ⟦CODE_0001⟧ is not a language runtime, but it has a process boundary inside the matcher. The engine asks an external program a question and backtracks on the answer. Compare [⟦CODE_0002⟧](⟦DEST_0003⟧), where the question is a function call in the same process."
+msgstr "**Por qué importa este mecanismo:** ⟦CODE_0001⟧ no es un entorno de ejecución de un lenguaje, pero tiene un límite de proceso dentro del comparador. El motor le hace una pregunta a un programa externo y retrocede según la respuesta. Compara [⟦CODE_0002⟧](⟦DEST_0003⟧), donde la pregunta es una llamada a una función en el mismo proceso."
+
+#: src/regex-pcre2grep/README.md:92
+msgctxt "s-7f97d965b4c0-0032"
+msgid "How the stunt works"
+msgstr "Cómo funciona el truco"
+
+#: src/regex-pcre2grep/README.md:94
+msgctxt "s-881602133000-0033"
+msgid "⟦CODE_0001⟧ supports two kinds of callout string. ⟦CODE_0002⟧ echoes text. ⟦CODE_0003⟧ runs a program: **exit 0 lets the match continue; any other exit code, or a program that cannot run, fails that branch and the engine backtracks.** The subject is a one-line \"tape\": ⟦CODE_0004⟧ followed by 60 three-digit gray shades."
+msgstr "⟦CODE_0001⟧ admite dos tipos de cadena de texto de callout. ⟦CODE_0002⟧ repite texto. ⟦CODE_0003⟧ ejecuta un programa: **el código de salida 0 deja que la coincidencia continúe; cualquier otro código de salida, o un programa que no se puede ejecutar, hace fallar esa rama y el motor retrocede.** El sujeto es una \"cinta\" de una sola línea: ⟦CODE_0004⟧ seguido de 60 tonos de gris de tres dígitos."
+
+#: src/regex-pcre2grep/README.md:96
+msgctxt "s-fe4f26a8c819-0034"
+msgid "⟦SEP_0001⟧ Piece ⟦SEP_0002⟧ Job ⟦SEP_0003⟧"
+msgstr "⟦SEP_0001⟧ Pieza ⟦SEP_0002⟧ Rol ⟦SEP_0003⟧"
+
+#: src/regex-pcre2grep/README.md:98
+msgctxt "s-7b0d47454946-0035"
+msgid "⟦SEP_0004⟧ ⟦CODE_0001⟧ ⟦SEP_0005⟧ Initializer: creates the tables (with ⟦CODE_0002⟧ and ⟦CODE_0003⟧), starts a run row, prints the header ⟦SEP_0006⟧"
+msgstr "⟦SEP_0004⟧ ⟦CODE_0001⟧ ⟦SEP_0005⟧ Inicializador: crea las tablas (con ⟦CODE_0002⟧ y ⟦CODE_0003⟧), inicia una fila de ejecución e imprime el encabezado ⟦SEP_0006⟧"
+
+#: src/regex-pcre2grep/README.md:99
+msgctxt "s-dd0bec9e67d9-0036"
+msgid "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ The loop. PCRE2's greedy quantifier is the iteration; the tape's category names are what it walks ⟦SEP_0004⟧"
+msgstr "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ El bucle. El cuantificador voraz de PCRE2 es la iteración; los nombres de categoría de la cinta son lo que recorre ⟦SEP_0004⟧"
+
+#: src/regex-pcre2grep/README.md:100
+msgctxt "s-22b920ddbc62-0037"
+msgid "⟦SEP_0005⟧ ⟦CODE_0001⟧ ⟦SEP_0006⟧ The **gate** (the stop rule). It inserts ⟦CODE_0002⟧ into a table whose only column is ⟦CODE_0003⟧, named \"stop rule fired: total exceeds 40\". When the total is over 40 the insert fails, ⟦CODE_0004⟧ exits nonzero, and the branch is vetoed, ending the loop. The error message on stderr is that constraint's name ⟦SEP_0007⟧"
+msgstr "⟦SEP_0005⟧ ⟦CODE_0001⟧ ⟦SEP_0006⟧ La **compuerta** (la regla de parada). Inserta ⟦CODE_0002⟧ en una tabla cuya única columna es ⟦CODE_0003⟧, con el nombre \"stop rule fired: total exceeds 40\". Cuando el total pasa de 40, la inserción falla, ⟦CODE_0004⟧ termina con un código distinto de cero y la rama queda vetada, con lo que el bucle termina. El mensaje de error en stderr es el nombre de esa restricción ⟦SEP_0007⟧"
+
+#: src/regex-pcre2grep/README.md:101
+msgctxt "s-324fedd50a8a-0038"
+msgid "⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ The category: the tape supplies the order (⟦CODE_0002⟧, five names so that exactly 40 can continue to a fifth card), the alternation matches it ⟦SEP_0005⟧"
+msgstr "⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ La categoría: la cinta aporta el orden (⟦CODE_0002⟧, cinco nombres para que un total de exactamente 40 pueda continuar con una quinta tarjeta) y la alternancia coincide con ella ⟦SEP_0005⟧"
+
+#: src/regex-pcre2grep/README.md:102
+msgctxt "s-fb0d23a83650-0039"
+msgid "⟦SEP_0004⟧ ⟦CODE_0001⟧ ⟦SEP_0005⟧ **Book** one entry. SQLite draws the hours with ⟦CODE_0002⟧, computes the running total and the ISO week, inserts the row, and prints it. ⟦CODE_0003⟧ in the SQL is the category the pattern just matched ⟦SEP_0006⟧"
+msgstr "⟦SEP_0004⟧ ⟦CODE_0001⟧ ⟦SEP_0005⟧ **Anota** una entrada. SQLite sortea las horas con ⟦CODE_0002⟧, calcula el total acumulado y la semana ISO, inserta la fila y la imprime. ⟦CODE_0003⟧ en el SQL es la categoría con la que el patrón acaba de coincidir ⟦SEP_0006⟧"
+
+#: src/regex-pcre2grep/README.md:103
+msgctxt "s-c62dd4413ec6-0040"
+msgid "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ Once the loop ends, backtracking may not retry shorter loops; then print the summary ⟦SEP_0004⟧"
+msgstr "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ Una vez que termina el bucle, el retroceso puede no reintentar bucles más cortos; después el programa imprime el resumen ⟦SEP_0004⟧"
+
+#: src/regex-pcre2grep/README.md:104
+msgctxt "s-3bc62d9279d6-0041"
+msgid "⟦SEP_0005⟧ ⟦CODE_0001⟧ ⟦SEP_0006⟧ The pulse. ⟦CODE_0002⟧ is the predicate \"is stdout a terminal?\" (nonzero on a pipe, so the loop never starts and pipes and ⟦CODE_0003⟧ skip it). Each frame's shade is read back from the tape through ⟦CODE_0004⟧ ⟦SEP_0007⟧"
+msgstr "⟦SEP_0005⟧ ⟦CODE_0001⟧ ⟦SEP_0006⟧ El pulso. ⟦CODE_0002⟧ es el predicado \"¿stdout es una terminal?\" (distinto de cero en una tubería, así que el bucle nunca arranca y las tuberías y ⟦CODE_0003⟧ lo omiten). El programa vuelve a leer el tono de cada fotograma desde la cinta mediante ⟦CODE_0004⟧ ⟦SEP_0007⟧"
+
+#: src/regex-pcre2grep/README.md:105
+msgctxt "s-efee3baba07c-0042"
+msgid "⟦SEP_0004⟧ ⟦CODE_0001⟧ ⟦SEP_0005⟧ Clear the banner (if there was one), then the signature move. The ⟦CODE_0002⟧ is possessive on purpose: without it, ⟦CODE_0003⟧ backtracks into skipping the optional group and prints the final message twice ⟦SEP_0006⟧"
+msgstr "⟦SEP_0004⟧ ⟦CODE_0001⟧ ⟦SEP_0005⟧ Borra el banner (si había uno); luego, la jugada característica. El ⟦CODE_0002⟧ es posesivo a propósito: sin él, ⟦CODE_0003⟧ retrocede hasta omitir el grupo opcional e imprime el mensaje final dos veces ⟦SEP_0006⟧"
+
+#: src/regex-pcre2grep/README.md:107
+msgctxt "s-e58c82e1ea53-0043"
+msgid "The exit code is the whole trick. SQLite's ⟦CODE_0001⟧ and arithmetic live in the helper program, but the *decisions* (go around again, stop, pulse or not) are the pattern consuming exit codes."
+msgstr "El código de salida es todo el truco. El ⟦CODE_0001⟧ de SQLite y la aritmética viven en el programa auxiliar. Pero las *decisiones* (dar otra vuelta, parar, emitir un pulso o no) son el patrón que consume los códigos de salida."
+
+#: src/regex-pcre2grep/README.md:109
+msgctxt "s-339cc2c18f83-0044"
+msgid "What ⟦CODE_0001⟧ enforces"
+msgstr "Qué hace cumplir ⟦CODE_0001⟧"
+
+#: src/regex-pcre2grep/README.md:111
+msgctxt "s-c1a0194b5814-0045"
+msgid "⟦CODE_0001⟧ checks that ⟦CODE_0002⟧ has no loop keyword and runs exactly one ⟦CODE_0003⟧. The callouts may run only ⟦CODE_0004⟧, ⟦CODE_0005⟧ and ⟦CODE_0006⟧, never a shell or an interpreter. If a ⟦CODE_0007⟧ without callout support is installed, the script must refuse it with exit code 2. Then it runs the program 25 times, and a copy of the script in which every card is worth 10 hours must deal five rows (the fifth ⟦CODE_0008⟧, total 50), which proves that exactly 40 continues. Each run must print the \"returns false\" line, as many rows as it has entries, hours from 10 to 19, and the right stop rule (the total before the last card is at most 40, so exactly 40 continues, and the total after it is over 40; three to five entries). The stop-rule error must appear on stderr exactly once when the total is over 40 and never otherwise, and nothing else may be written to stderr. SQLite must agree with the output, the database must hold 25 runs and no probe rows, and a non-demo row must be refused."
+msgstr "⟦CODE_0001⟧ comprueba que ⟦CODE_0002⟧ no tiene ninguna palabra clave de bucle y ejecuta exactamente un ⟦CODE_0003⟧. Los callouts solo pueden ejecutar ⟦CODE_0004⟧, ⟦CODE_0005⟧ y ⟦CODE_0006⟧, nunca un intérprete de comandos (*shell*, el programa que recibe y ejecuta comandos escritos) ni un intérprete. Si se instala un ⟦CODE_0007⟧ sin soporte de callouts, el script debe rechazarlo con el código de salida 2. Después ejecuta el programa 25 veces. Una copia del script en la que cada tarjeta vale 10 horas debe repartir cinco filas (la quinta ⟦CODE_0008⟧, total de 50), lo que demuestra que un total de exactamente 40 continúa. Cada ejecución debe imprimir la línea \"returns false\", tantas filas como entradas tenga, de 10 a 19 horas y la regla de parada correcta (el total antes de la última tarjeta es como máximo 40, así que un total de exactamente 40 continúa, y el total después de ella pasa de 40; de tres a cinco entradas). El error de la regla de parada debe aparecer en stderr exactamente una vez cuando el total pasa de 40 y nunca en otro caso, y no debe escribirse nada más en stderr. SQLite debe coincidir con la salida, la base de datos debe contener 25 ejecuciones y ninguna fila de prueba, y se debe rechazar una fila que no sea de demostración."
+
+#: src/regex-pcre2grep/README.md:113
+msgctxt "s-5a0ad00b10fc-0046"
+msgid "Gotchas worth knowing"
+msgstr "Trampas que conviene conocer"
+
+#: src/regex-pcre2grep/README.md:115
+msgctxt "s-e29a4e2d820d-0047"
+msgid "**State cannot live in the pattern.** ⟦CODE_0001⟧ has no variables, so the running total lives in SQLite and each callout rereads it. That makes the arithmetic the helper's job, not PCRE2's; the pattern supplies the loop, the order, the branching and the failing."
+msgstr "**El estado no puede vivir en el patrón.** ⟦CODE_0001⟧ no tiene variables, así que el total acumulado vive en SQLite y cada callout lo vuelve a leer. Así, la aritmética es tarea del programa auxiliar, no de PCRE2; el patrón aporta el bucle, el orden, la ramificación y el fallo."
+
+#: src/regex-pcre2grep/README.md:116
+msgctxt "s-39ebc88ce294-0048"
+msgid "**No transaction this time.** Each helper is its own ⟦CODE_0001⟧ process, so each statement commits immediately and nothing can be rolled back. Unlike the Perl track's single transaction, here \"abandoned branch, side effects stay\" is literal: the rows are already in the database before the match fails."
+msgstr "**Esta vez no hay transacción.** Cada auxiliar es su propio proceso ⟦CODE_0001⟧, así que cada sentencia se confirma de inmediato y nada se puede revertir. A diferencia de la transacción única del recorrido de Perl, aquí \"rama abandonada, los efectos secundarios se quedan\" es literal: las filas ya están en la base de datos antes de que falle la coincidencia."
+
+#: src/regex-pcre2grep/README.md:117
+msgctxt "s-10e224f4e459-0049"
+msgid "**Callouts need absolute paths.** ⟦CODE_0001⟧ uses ⟦CODE_0002⟧ and ⟦CODE_0003⟧, which do not search ⟦CODE_0004⟧. A bare ⟦CODE_0005⟧ or ⟦CODE_0006⟧ is silently a failed callout, indistinguishable from a vetoed branch. ⟦CODE_0007⟧ therefore pins the program list."
+msgstr "**Los callouts necesitan rutas absolutas.** ⟦CODE_0001⟧ usa ⟦CODE_0002⟧ y ⟦CODE_0003⟧, que no buscan en ⟦CODE_0004⟧. Un ⟦CODE_0005⟧ o ⟦CODE_0006⟧ sin ruta es en silencio un callout fallido, indistinguible de una rama vetada. Por eso ⟦CODE_0007⟧ fija la lista de programas."
+
+#: src/regex-pcre2grep/README.md:118
+msgctxt "s-4dfa728a4dc6-0050"
+msgid "**Guardrail.** Callouts may only run ⟦CODE_0001⟧, ⟦CODE_0002⟧ and ⟦CODE_0003⟧, each with a fixed argument list. ⟦CODE_0004⟧ fails if any other program (in particular a shell or interpreter) appears. The only value interpolated into SQL is ⟦CODE_0005⟧, one of four fixed category names from the tape."
+msgstr "**Salvaguarda.** Los callouts solo pueden ejecutar ⟦CODE_0001⟧, ⟦CODE_0002⟧ y ⟦CODE_0003⟧, cada uno con una lista fija de argumentos. ⟦CODE_0004⟧ falla si aparece cualquier otro programa, en particular un intérprete de comandos (*shell*, el programa que lee comandos escritos y los ejecuta) o un intérprete. El único valor que se interpola en SQL es ⟦CODE_0005⟧, uno de los cuatro nombres de categoría fijos de la cinta."
+
+#: src/regex-pcre2grep/README.md:119
+msgctxt "s-7668c6925f64-0051"
+msgid "**The host is not nothing.** ⟦CODE_0001⟧ finds a callout-capable ⟦CODE_0002⟧, creates and enters the scratch directory, and pipes the tape into one ⟦CODE_0003⟧ command. It has no loop and decides nothing, but it does contain a literal 60-shade tape (the pulse's brightness ramp, precomputed) and one ⟦CODE_0004⟧-like guard. The honest claim is \"no custom code\", not \"no shell\"."
+msgstr "**El anfitrión no es insignificante.** ⟦CODE_0001⟧ busca un ⟦CODE_0002⟧ con soporte de callouts, crea y entra en el directorio temporal de trabajo y pasa la cinta por una tubería a un solo comando ⟦CODE_0003⟧. No tiene ningún bucle y no decide nada, pero sí contiene una cinta literal de 60 tonos (la rampa de brillo del pulso, precalculada) y una guarda parecida a ⟦CODE_0004⟧. La afirmación honesta es \"sin código propio\", no \"sin intérprete de comandos (*shell*, el programa que lee y ejecuta comandos)\"."
+
+#: src/regex-pcre2grep/README.md:120
+msgctxt "s-e4e459fd8e04-0052"
+msgid "**Not concurrency-safe.** A run is identified as ⟦CODE_0001⟧ in the ⟦CODE_0002⟧ table, so two simultaneous runs would tangle. It is a toy."
+msgstr "**No es seguro para la concurrencia.** Una ejecución se identifica como ⟦CODE_0001⟧ en la tabla ⟦CODE_0002⟧, así que dos ejecuciones simultáneas interferirían entre sí. Es un juguete."
+
+#: src/regex-pcre2grep/README.md:121
+msgctxt "s-3a064d45982f-0053"
+msgid "**The ISO week is computed with SQLite date arithmetic**, because Ubuntu 24.04's SQLite (3.45) has no ⟦CODE_0001⟧/⟦CODE_0002⟧. As in the other versions, the ISO year can differ from the calendar year near New Year."
+msgstr "**La semana ISO se calcula con aritmética de fechas de SQLite**, porque el SQLite de Ubuntu 24.04 (3.45) no tiene ⟦CODE_0001⟧/⟦CODE_0002⟧. Como en las otras versiones, el año ISO puede diferir del año calendario cerca de Año Nuevo."
+
+#: src/regex-pcre2grep/README.md:122
+msgctxt "s-f2f82e9c0422-0054"
+msgid "Only the ⟦CODE_0001⟧ build above was tested. I did not try other PCRE2 versions or configure options."
+msgstr "Solo probé la compilación de ⟦CODE_0001⟧ indicada arriba. No probé otras versiones de PCRE2 ni otras opciones de configuración."
+
+#: src/regex-pcre2grep/README.md:126
+msgctxt "s-341d7c13f6c2-0055"
+msgid "See the [root README](⟦DEST_0001⟧) for how this compares to the other regex entries, and [⟦CODE_0002⟧](⟦DEST_0003⟧) if you want to write your own."
+msgstr "Consulta el [README principal](⟦DEST_0001⟧) para ver cómo se compara esto con las otras entradas de regex, y [⟦CODE_0002⟧](⟦DEST_0003⟧) si quieres escribir el tuyo."

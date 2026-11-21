@@ -1,0 +1,263 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/regex-pcre2/README.md:2
+msgctxt "s-51dced994840-0000"
+msgid "PCRE2"
+msgstr "PCRE2"
+
+#: src/regex-pcre2/README.md:3
+msgctxt "s-be2185a199e5-0001"
+msgid "that regex callouts can serve as a tiny instruction set."
+msgstr "que los callouts de regex pueden servir como un pequeño conjunto de instrucciones."
+
+#: src/regex-pcre2/README.md:11
+msgctxt "s-e45dfa080ec9-0002"
+msgid "A backtracking search with hooks"
+msgstr "Una búsqueda con retroceso y ganchos"
+
+#: src/regex-pcre2/README.md:12
+msgctxt "s-3caccd4103b2-0003"
+msgid "A C struct that never rewinds"
+msgstr "Una struct de C que nunca retrocede"
+
+#: src/regex-pcre2/README.md:15
+msgctxt "s-823540cbc2ab-0004"
+msgid "Regex challenge, Track 2: PCRE2 callouts as a tiny DSL"
+msgstr "Reto de regex, ruta 2: callouts de PCRE2 como un DSL minúsculo"
+
+#: src/regex-pcre2/README.md:17
+msgctxt "s-5bca9bf7e117-0005"
+msgid "**Teaches you:** that regex callouts can serve as a tiny instruction set."
+msgstr "**Te enseña:** que los callouts de regex pueden servir como un conjunto diminuto de instrucciones."
+
+#: src/regex-pcre2/README.md:19
+msgctxt "s-8fcdcdc1eae0-0006"
+msgid "One ⟦CODE_0001⟧ call runs the whole timecard demo, then reports **no match**. It follows the regex challenge plan (since removed; it lives in git history as ⟦CODE_0002⟧). **⟦DNT_0003⟧**: the records are fictional and go to a scratch file, with no connection to any real time-reporting system."
+msgstr "Una sola llamada a ⟦CODE_0001⟧ ejecuta toda la demostración de la tarjeta de horas y luego informa **sin coincidencia**. Sigue el plan del reto de regex (ya se eliminó; está en el historial de git como ⟦CODE_0002⟧). **⟦DNT_0003⟧**: los registros son ficticios y van a un archivo temporal, sin conexión con ningún sistema real de registro de horas."
+
+#: src/regex-pcre2/README.md:21
+msgctxt "s-958ca26c6a61-0007"
+msgid "Run it"
+msgstr "Ejecútalo"
+
+#: src/regex-pcre2/README.md:30
+msgctxt "s-5f922b2bcd42-0008"
+msgid "Records are appended to ⟦CODE_0001⟧ (default ⟦CODE_0002⟧). Delete that directory to start over. A run looks like:"
+msgstr "Los registros se añaden a ⟦CODE_0001⟧ (por defecto, ⟦CODE_0002⟧). Elimina ese directorio para empezar de nuevo. Una ejecución se ve así:"
+
+#: src/regex-pcre2/README.md:42
+msgctxt "s-254f0c660db3-0009"
+msgid "Run it in a container"
+msgstr "Ejecuta el programa en un contenedor"
+
+#: src/regex-pcre2/README.md:44
+msgctxt "s-643df015c8a2-0010"
+msgid "Prerequisite: Docker, set up once as described in [⟦CODE_0001⟧](⟦DEST_0002⟧)."
+msgstr "Requisito previo: Docker, configurado una sola vez como se describe en [⟦CODE_0001⟧](⟦DEST_0002⟧)."
+
+#: src/regex-pcre2/README.md:50
+msgctxt "s-4009f65bff38-0011"
+msgid "It builds this folder's [⟦CODE_0001⟧](⟦DEST_0002⟧) and runs the result with no network, a read-only file system and user ⟦CODE_0003⟧, then prints the output and a read-only look at the rows it wrote. The C host is compiled in a build stage. The image holds only the binary and the shared libpcre2, with no compiler or headers."
+msgstr "Construye el [⟦CODE_0001⟧](⟦DEST_0002⟧) de esta carpeta y ejecuta el resultado sin red, con un sistema de archivos de solo lectura y el usuario ⟦CODE_0003⟧, luego imprime la salida y una vista de solo lectura de las filas que escribió. El anfitrión en C se compila en una etapa de compilación. La imagen contiene solo el binario y la biblioteca compartida libpcre2, sin compilador ni encabezados."
+
+#: src/regex-pcre2/README.md:52
+msgctxt "s-0dcb373c2dff-0012"
+msgid "Program Flow"
+msgstr "Flujo del programa"
+
+#: src/regex-pcre2/README.md:56
+msgctxt "s-7c09072003ae-0013"
+msgid "regex-pcre2: the engine calls back into C at each callout"
+msgstr "regex-pcre2: el motor llama de vuelta a C en cada callout"
+
+#: src/regex-pcre2/README.md:57
+msgctxt "s-591140a37cda-0014"
+msgid "A sequence diagram. The C host compiles the pattern and calls pcre2_match once. The engine reaches an init callout, and the host opens the scratch file and writes the header. For each category, the engine reaches a gate callout, which returns 0 while the total is 40 or less. The engine matches the next category name from the subject, and then reaches a book callout, where the host draws hours and writes the record. When the gate returns 1, because the total is over 40, that pass fails and the star loop ends. The commit verb forbids retrying fewer passes, and a commit callout writes the summary and closes the file. A final fail verb makes the match return no match, and the host prints the file."
+msgstr "Un diagrama de secuencia. El anfitrión en C compila el patrón y llama a pcre2_match una sola vez. El motor llega a un callout init y el anfitrión abre el archivo temporal y escribe el encabezado. Para cada categoría, el motor llega a un callout gate, que devuelve 0 mientras el total no pase de 40. El motor busca la coincidencia del siguiente nombre de categoría en la cadena de entrada y luego llega a un callout book, donde el anfitrión sortea las horas y escribe el registro. Cuando el callout gate devuelve 1, porque el total pasa de 40, esa pasada falla y el bucle con asterisco termina. El verbo commit prohíbe reintentar con menos pasadas y un callout commit escribe el resumen y cierra el archivo. Un verbo fail final hace que la búsqueda no encuentre coincidencia y el anfitrión imprime el archivo."
+
+#: src/regex-pcre2/README.md:58
+msgctxt "s-f892cac3758c-0015"
+msgid "C host"
+msgstr "Anfitrión en C"
+
+#: src/regex-pcre2/README.md:59
+msgctxt "s-e6de388781eb-0016"
+msgid "PCRE2 engine"
+msgstr "Motor PCRE2"
+
+#: src/regex-pcre2/README.md:60
+msgctxt "s-dd12b9c54eb3-0017"
+msgid "Callout function"
+msgstr "Función de callout"
+
+#: src/regex-pcre2/README.md:61
+msgctxt "s-19d5bf68fed0-0018"
+msgid "pcre2_match, once"
+msgstr "pcre2_match, una vez"
+
+#: src/regex-pcre2/README.md:62
+msgctxt "s-1a251ad619ce-0019"
+msgid "init: opens the file, writes the header"
+msgstr "init: abre el archivo y escribe el encabezado"
+
+#: src/regex-pcre2/README.md:63
+msgctxt "s-b62de3b75002-0020"
+msgid "for each category in the subject"
+msgstr "para cada categoría en el sujeto"
+
+#: src/regex-pcre2/README.md:64
+msgctxt "s-ccd0f617af1c-0021"
+msgid "gate: returns 0 while the total is 40 or less"
+msgstr "gate: devuelve 0 mientras el total no pasa de 40"
+
+#: src/regex-pcre2/README.md:65
+msgctxt "s-929c72c17486-0022"
+msgid "match the next category name"
+msgstr "busca la coincidencia del nombre de la siguiente categoría"
+
+#: src/regex-pcre2/README.md:66
+msgctxt "s-27858a1981c8-0023"
+msgid "book: draws hours, writes the record"
+msgstr "libro: obtiene las horas y escribe el registro"
+
+#: src/regex-pcre2/README.md:68
+msgctxt "s-eb22578ff761-0024"
+msgid "gate: returns 1, the total is over 40"
+msgstr "gate: devuelve 1, el total pasa de 40"
+
+#: src/regex-pcre2/README.md:69
+msgctxt "s-e9a704851692-0025"
+msgid "the pass fails, the star loop ends"
+msgstr "la pasada falla, el bucle de la estrella termina"
+
+#: src/regex-pcre2/README.md:70
+msgctxt "s-bbf16ff7daa7-0026"
+msgid "commit, after COMMIT: writes the summary"
+msgstr "commit, después de COMMIT: escribe el resumen"
+
+#: src/regex-pcre2/README.md:71
+msgctxt "s-9aa264aa70c7-0027"
+msgid "FAIL: no match, after all the work"
+msgstr "FAIL: sin coincidencia, después de todo el trabajo"
+
+#: src/regex-pcre2/README.md:72
+msgctxt "s-564ea43a72fd-0028"
+msgid "print the file"
+msgstr "imprime el archivo"
+
+#: src/regex-pcre2/README.md:75
+msgctxt "s-8c528932ef2b-0029"
+msgid "**What this shows:** the C host has no loop. It calls ⟦CODE_0001⟧ once and the engine calls back into the host at every callout. The callout name is an opcode. The return value is the decision: ⟦CODE_0002⟧ means continue and ⟦CODE_0003⟧ means fail this branch."
+msgstr "**Qué muestra:** el anfitrión en C no tiene bucle. Llama a ⟦CODE_0001⟧ una sola vez y el motor vuelve a llamar al anfitrión en cada callout. El nombre del callout es un código de operación. El valor de retorno es la decisión: ⟦CODE_0002⟧ significa continuar y ⟦CODE_0003⟧ significa hacer fallar esta rama."
+
+#: src/regex-pcre2/README.md:77
+msgctxt "s-e1ed3284ba7b-0030"
+msgid "**Why this mechanism matters:** the stop rule is a callout that returns ⟦CODE_0001⟧, so the ⟦CODE_0002⟧ quantifier ends by backtracking. ⟦CODE_0003⟧ makes ⟦CODE_0004⟧ run exactly once, and ⟦CODE_0005⟧ makes the whole match lose. The callouts are synchronous calls from the engine, not queued events."
+msgstr "**Por qué importa este mecanismo:** la regla de parada es un callout que devuelve ⟦CODE_0001⟧, así que el cuantificador ⟦CODE_0002⟧ termina por retroceso. ⟦CODE_0003⟧ hace que ⟦CODE_0004⟧ se ejecute exactamente una vez, y ⟦CODE_0005⟧ hace que toda la coincidencia falle. Los callouts son llamadas síncronas del motor, no eventos en cola."
+
+#: src/regex-pcre2/README.md:79
+msgctxt "s-7f97d965b4c0-0031"
+msgid "How the stunt works"
+msgstr "Cómo funciona el truco"
+
+#: src/regex-pcre2/README.md:81
+msgctxt "s-026e175dab39-0032"
+msgid "The pattern is the whole program:"
+msgstr "El patrón es todo el programa:"
+
+#: src/regex-pcre2/README.md:87
+msgctxt "s-3f38c058c2b3-0033"
+msgid "The C host (⟦CODE_0001⟧) compiles it, registers one callout dispatcher, calls ⟦CODE_0002⟧ once against ⟦CODE_0003⟧ (five names, so that four 10-hour cards, a total of exactly 40, can be followed by a fifth), and prints the file. It has no ⟦CODE_0004⟧, ⟦CODE_0005⟧, ⟦CODE_0006⟧, ⟦CODE_0007⟧, or recursion (⟦CODE_0008⟧ greps for them). The callout strings are opcodes:"
+msgstr "El anfitrión en C (⟦CODE_0001⟧) lo compila, registra un despachador de callouts, llama a ⟦CODE_0002⟧ una vez con ⟦CODE_0003⟧ (cinco nombres, para que a cuatro tarjetas de 10 horas, un total de exactamente 40, pueda seguirles una quinta) e imprime el archivo. No tiene ⟦CODE_0004⟧, ⟦CODE_0005⟧, ⟦CODE_0006⟧ ni ⟦CODE_0007⟧, ni recursión (⟦CODE_0008⟧ los busca con grep). Las cadenas de texto de los callouts son opcodes:"
+
+#: src/regex-pcre2/README.md:89
+msgctxt "s-861705528cc1-0034"
+msgid "⟦SEP_0001⟧ Opcode ⟦SEP_0002⟧ Does ⟦SEP_0003⟧ Return value to the engine ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ Opcode ⟦SEP_0002⟧ Qué hace ⟦SEP_0003⟧ Valor de retorno al motor ⟦SEP_0004⟧"
+
+#: src/regex-pcre2/README.md:91
+msgctxt "s-a22580e497b5-0035"
+msgid "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ opens the scratch file, writes the header ⟦SEP_0004⟧ 0 (continue) ⟦SEP_0005⟧"
+msgstr "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ abre el archivo temporal y escribe el encabezado ⟦SEP_0004⟧ 0 (continuar) ⟦SEP_0005⟧"
+
+#: src/regex-pcre2/README.md:92
+msgctxt "s-96846ba1da32-0036"
+msgid "⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ the stop rule ⟦SEP_0005⟧ 1 (fail this branch) once the total is over 40, which ends the ⟦CODE_0002⟧ loop; else 0 ⟦SEP_0006⟧"
+msgstr "⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ la regla de parada ⟦SEP_0005⟧ 1 (falla esta rama) cuando el total pasa de 40, lo que termina el bucle ⟦CODE_0002⟧; si no, 0 ⟦SEP_0006⟧"
+
+#: src/regex-pcre2/README.md:93
+msgctxt "s-04596d05676e-0037"
+msgid "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ draws 10 to 19 hours, adds to the total, writes the record for the category that was just matched (read from capture group 1) ⟦SEP_0004⟧ 0 ⟦SEP_0005⟧"
+msgstr "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ sortea de 10 a 19 horas, suma al total, escribe el registro de la categoría que acaba de coincidir (se lee del grupo de captura 1) ⟦SEP_0004⟧ 0 ⟦SEP_0005⟧"
+
+#: src/regex-pcre2/README.md:94
+msgctxt "s-ba090b9c2aa6-0038"
+msgid "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ writes the summary line, closes the file ⟦SEP_0004⟧ 0 ⟦SEP_0005⟧"
+msgstr "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ escribe la línea de resumen y cierra el archivo ⟦SEP_0004⟧ 0 ⟦SEP_0005⟧"
+
+#: src/regex-pcre2/README.md:96
+msgctxt "s-dfcf5792432c-0039"
+msgid "PCRE2 supplies the iteration (⟦CODE_0001⟧), the category walk (the subject string and the alternation), and the backtracking. ⟦CODE_0002⟧ keeps a failed match from retrying shorter loops, so ⟦CODE_0003⟧ runs exactly once. ⟦CODE_0004⟧ then makes the whole match lose, after everything was written. That is the signature move."
+msgstr "PCRE2 aporta la iteración (⟦CODE_0001⟧), el recorrido de categorías (la cadena de texto sujeto y la alternancia) y el retroceso. ⟦CODE_0002⟧ evita que una coincidencia fallida reintente bucles más cortos, así que ⟦CODE_0003⟧ se ejecuta exactamente una vez. Después, ⟦CODE_0004⟧ hace que toda la coincidencia falle, cuando ya se escribió todo. Esa es la jugada distintiva."
+
+#: src/regex-pcre2/README.md:98
+msgctxt "s-3d9024cef2d1-0040"
+msgid "The pulse"
+msgstr "El pulso"
+
+#: src/regex-pcre2/README.md:100
+msgctxt "s-057ea2b4cb9b-0041"
+msgid "On a real terminal, the match finishes the records, then pulses a **⟦DNT_0001⟧** banner through a gray ramp for about three seconds (60 frames, 50 ms each), then clears it. ⟦CODE_0002⟧ and ⟦CODE_0003⟧ are two more opcodes: the host appends 60 ⟦CODE_0004⟧ characters to the subject, and ⟦CODE_0005⟧ draws one frame per tick. The host still has no loop. The second ⟦CODE_0006⟧ stops the final ⟦CODE_0007⟧ from backtracking into shorter tick counts and rerunning ⟦CODE_0008⟧. Nothing is appended when stdout is not a terminal, so pipes and ⟦CODE_0009⟧ skip it."
+msgstr "En una terminal real, la coincidencia termina los registros, luego hace pulsar un banner **⟦DNT_0001⟧** a través de una rampa de grises durante unos tres segundos (60 fotogramas, 50 ms cada uno) y después lo borra. ⟦CODE_0002⟧ y ⟦CODE_0003⟧ son dos opcodes más: el anfitrión añade 60 caracteres ⟦CODE_0004⟧ al sujeto, y ⟦CODE_0005⟧ dibuja un fotograma por tick. El anfitrión sigue sin tener bucle. El segundo ⟦CODE_0006⟧ evita que el ⟦CODE_0007⟧ final haga retroceso hacia conteos de ticks más cortos y vuelva a ejecutar ⟦CODE_0008⟧. No se añade nada cuando stdout no es una terminal, así que las tuberías y ⟦CODE_0009⟧ lo omiten."
+
+#: src/regex-pcre2/README.md:102
+msgctxt "s-c8de0ecb8b25-0042"
+msgid "The optimizer caveat, as the plan asks"
+msgstr "La advertencia sobre el optimizador, como pide el plan"
+
+#: src/regex-pcre2/README.md:104
+msgctxt "s-f84f62d70728-0043"
+msgid "Callouts only mean something if the engine actually visits them. This program compiles with ⟦CODE_0001⟧, so the optimizer cannot skip or reorder the callout points. It also does **not** use the PCRE2 JIT, which does not support callouts at all. ⟦CODE_0002⟧ verifies that every run's committed total and entry count agree with the rows actually written, which is the evidence that no callout was silently skipped. This was tested with the system PCRE2 (10.42 on Ubuntu 24.04); I did not test with those flags removed to see which callouts the optimizer would elide."
+msgstr "Los callouts solo tienen sentido si el motor realmente los visita. Este programa se compila con ⟦CODE_0001⟧, así que el optimizador no puede omitir ni reordenar los puntos de callout. Además, **no** usa el JIT de PCRE2, que no admite callouts en absoluto. ⟦CODE_0002⟧ verifica que el total confirmado y el número de entradas de cada ejecución coincidan con las filas realmente escritas, y esa es la evidencia de que ningún callout se omitió en silencio. Probé con el PCRE2 del sistema (10.42 en Ubuntu 24.04); no probé sin esas banderas para ver qué callouts eliminaría el optimizador."
+
+#: src/regex-pcre2/README.md:106
+msgctxt "s-339cc2c18f83-0044"
+msgid "What ⟦CODE_0001⟧ enforces"
+msgstr "Qué impone ⟦CODE_0001⟧"
+
+#: src/regex-pcre2/README.md:108
+msgctxt "s-b9f76ad5dea6-0045"
+msgid "⟦CODE_0001⟧ checks that the C host has no loop keyword (comments excluded). Then it runs the program 25 times. Each run must exit cleanly and report ⟦CODE_0002⟧. Each run must print as many rows as it has entries, with at least three entries, hours from 10 to 19, no early stop (the total must end over 40), three to five entries, and a total of at most 59. It also builds a copy of the host in which every card is worth 10 hours and checks that exactly 40 continues: five rows, the fifth ⟦CODE_0003⟧, total 50."
+msgstr "⟦CODE_0001⟧ comprueba que el anfitrión en C no tenga ninguna palabra clave de bucle (se excluyen los comentarios). Después ejecuta el programa 25 veces. Cada ejecución debe terminar sin errores e informar ⟦CODE_0002⟧. Cada ejecución debe imprimir tantas filas como entradas tenga, con al menos tres entradas, horas de 10 a 19, sin parada anticipada (el total debe terminar en más de 40), de tres a cinco entradas y un total de 59 como máximo. También compila una copia del anfitrión en la que cada tarjeta vale 10 horas y comprueba que un total de exactamente 40 continúa: cinco filas, la quinta ⟦CODE_0003⟧, total 50."
+
+#: src/regex-pcre2/README.md:110
+msgctxt "s-5a0ad00b10fc-0046"
+msgid "Gotchas worth knowing"
+msgstr "Trampas que conviene conocer"
+
+#: src/regex-pcre2/README.md:112
+msgctxt "s-1edc8bb51840-0047"
+msgid "The ⟦CODE_0001⟧ loop ends because ⟦CODE_0002⟧ fails the next iteration (or the five category names run out, which only matters when the total is still 40 or less after four cards: it never is after five), not because anything in C decides to stop. The C only answers the question \"is the total over 40?\" when the engine asks."
+msgstr "El bucle ⟦CODE_0001⟧ termina porque ⟦CODE_0002⟧ falla en la siguiente iteración (o porque se agotan los cinco nombres de categoría, lo cual solo importa cuando el total todavía no pasa de 40 después de cuatro tarjetas: después de cinco nunca ocurre), y no porque algo en C decida detenerse. El código en C solo responde a la pregunta \"¿el total pasa de 40?\" cuando el motor se lo pregunta."
+
+#: src/regex-pcre2/README.md:113
+msgctxt "s-cc23f0d53e32-0048"
+msgid "The state (⟦CODE_0001⟧, ⟦CODE_0002⟧, the file) lives in a C struct that the callouts share, so, unlike Perl's ⟦CODE_0003⟧, none of it rewinds on backtracking. That suits this program: nothing is ever undone."
+msgstr "El estado (⟦CODE_0001⟧, ⟦CODE_0002⟧, el archivo) vive en una struct de C que comparten los callouts, así que, a diferencia de ⟦CODE_0003⟧ en Perl, nada de eso se revierte con el retroceso. Eso conviene a este programa: nunca se deshace nada."
+
+#: src/regex-pcre2/README.md:114
+msgctxt "s-1a6058790180-0049"
+msgid "The dispatcher is a ternary chain, not a table, to keep the host free of loops and function-pointer tricks. Unknown opcodes (and I/O errors) abort the match with ⟦CODE_0001⟧, which is deliberately not the ⟦CODE_0002⟧ that means \"no match\", and the host reports success only if ⟦CODE_0003⟧ actually ran."
+msgstr "El despachador es una cadena de operadores ternarios, no una tabla, para mantener el anfitrión libre de bucles y de trucos con punteros a función. Los códigos de operación desconocidos (y los errores de E/S) abortan la coincidencia con ⟦CODE_0001⟧, que a propósito es distinto de ⟦CODE_0002⟧, que significa \"no hay coincidencia\". El anfitrión informa de éxito solo si ⟦CODE_0003⟧ se ejecutó de verdad."
+
+#: src/regex-pcre2/README.md:118
+msgctxt "s-341d7c13f6c2-0050"
+msgid "See the [root README](⟦DEST_0001⟧) for how this compares to the other regex entries, and [⟦CODE_0002⟧](⟦DEST_0003⟧) if you want to write your own."
+msgstr "Consulta el [README raíz](⟦DEST_0001⟧) para ver cómo se compara esto con las demás entradas de regex, y [⟦CODE_0002⟧](⟦DEST_0003⟧) si quieres escribir las tuyas."

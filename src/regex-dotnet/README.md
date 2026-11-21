@@ -1,6 +1,6 @@
 ---
-name: ".NET regex"
-teaches: "that a regex can use a stack to count."
+name: "Regex de .NET"
+teaches: "que una expresión regular puede usar una pila para contar."
 kind: weird
 languages: [c-sharp, regex]
 lesson: "lenguajes/regex.md#net-balancing-groups"
@@ -8,19 +8,19 @@ loop-by: capture-search
 evaluation: search
 assurance: guaranteed
 pairs-with: regex-perl
-machine: "A counter built from a stack"
-state: "Balancing-group capture stacks"
+machine: "Un contador construido con una pila"
+state: "Pilas de captura con grupos de equilibrio"
 tags: [backtracking, chomsky-hierarchy, parsing, register-machine, regular-expression, stack-data-structure, state]
 ---
-# Regex challenge, Track 3: .NET balancing groups (the purist's attempt)
+# Reto de regex, ruta 3: grupos de equilibrio de .NET (el intento purista)
 
-**Teaches you:** that a regex can use a stack to count.
+**Te enseña:** que una expresión regular puede usar una pila para contar.
 
-One `Regex.Match` call, no callouts, no inline code, no `MatchEvaluator`. It follows the regex challenge plan (since removed; it lives in git history as `plans/regex.md`), which expected this track to hit a wall. It did hit some, and they are listed below, but the core got further than the plan predicted. **DEMO ONLY**: the records are fictional and go to a scratch file, with no connection to any real time-reporting system.
+Una sola llamada a `Regex.Match`, sin callouts, sin código en línea y sin `MatchEvaluator`. Sigue el plan del reto de regex (ya eliminado; sigue en el historial de git como `plans/regex.md`), que preveía que esta pista chocaría con un muro. Sí chocó con algunos y se listan abajo, pero el núcleo llegó más lejos de lo que el plan predecía. **DEMO ONLY**: los registros son ficticios y van a un archivo temporal, sin conexión con ningún sistema real de registro de horas.
 
-## Run it
+## Ejecútalo
 
-You need the .NET 10 SDK (cross-platform; nothing here is Windows-specific).
+Necesitas el SDK de .NET 10 (multiplataforma; nada de esto es específico de Windows).
 
 ```bash
 cd src/regex-dotnet
@@ -28,7 +28,7 @@ dotnet run -c Release       # run the demo
 ./check.sh                  # 25 runs, asserts the rules below
 ```
 
-Records are appended to `$XDG_DATA_HOME/RegexDotnet/demo-timecards.tsv` (default `~/.local/share/RegexDotnet/`). Delete that directory to start over. A run looks like:
+Los registros se añaden a `$XDG_DATA_HOME/RegexDotnet/demo-timecards.tsv` (por defecto `~/.local/share/RegexDotnet/`). Elimina ese directorio para empezar de nuevo. Una ejecución se ve así:
 
 ```text
 match returned: true
@@ -40,70 +40,70 @@ Debugging	18	2026-W46	DEMO ONLY
 # captured total=50 entries=3 DEMO ONLY
 ```
 
-## Run it in a container
+## Ejecuta el programa en un contenedor
 
-Prerequisite: Docker, set up once as described in [`SANDBOX-SETUP.md`](../../SANDBOX-SETUP.md#docker).
+Requisito previo: Docker, configurado una sola vez como se describe en [`SANDBOX-SETUP.md`](../../SANDBOX-SETUP.md#docker).
 
 ```bash
 sandbox/container/run-image.sh src/regex-dotnet
 ```
 
-It builds this folder's [`Dockerfile`](Dockerfile) and runs the result with no network, a read-only file system and user `nobody`, then prints the output and a read-only look at the rows it wrote. The .NET SDK builds it in a build stage. The image holds only the compiled dll on the .NET runtime, with no SDK.
+Compila el [`Dockerfile`](Dockerfile) de esta carpeta y ejecuta el resultado sin red, con un sistema de archivos de solo lectura y el usuario `nobody`; luego imprime la salida y una vista de solo lectura de las filas que escribió. El SDK de .NET lo compila en una etapa de compilación. La imagen contiene solo la dll compilada sobre el entorno de ejecución de .NET, sin SDK.
 
-## Program Flow
+## Flujo del programa
 
 ```mermaid
 flowchart TD
-    accTitle: regex-dotnet: balancing groups as a budget stack
-    accDescr: A flowchart. The host draws five hour counts and writes them as a tape of letters a, one per hour. It runs one regex match. The pattern first pushes 41 empty captures onto the stack of group b, which is the budget. Each pass of the star loop first checks whether the budget stack is non-empty. If it is, a chain of conditional flag groups picks the next category. Then 10 to 19 letters a are matched, and each one pops a budget token, if any is left, and pushes a token onto the running total stack. When the budget is empty, a failing lookahead fails the pass and the loop ends. The host then reads out the categories, the hours and the size of the total stack.
-    A["Host: draw five hour counts, write them as a tape of a's"] --> B["One Regex match runs against the tape"]
-    B --> C["Push 41 empty captures onto group b: the budget"]
-    C --> D{{"Is the budget stack non-empty?"}}
-    D -->|yes| E["Category picker: the first flag not yet set names the category"]
-    E --> F["Match 10 to 19 a's: each pops a budget token if any is left, and pushes one onto the total stack s"]
+    accTitle: regex-dotnet: grupos de equilibrio como una pila de presupuesto
+    accDescr: Un diagrama de flujo. El anfitrión sortea cinco cantidades de horas y las escribe como una cinta de letras a, una por hora. Ejecuta una sola coincidencia de regex. El patrón empieza por apilar 41 capturas vacías en la pila del grupo b, que es el presupuesto. Cada pasada del bucle de estrella comprueba primero si la pila del presupuesto no está vacía. Si no lo está, una cadena de grupos condicionales de banderas elige la siguiente categoría. Después coinciden de 10 a 19 letras a (las horas de una tarjeta). Cada una retira un token del presupuesto, si queda alguno, y apila un token en la pila del total acumulado. Cuando el presupuesto está vacío, un *lookahead* que falla hace fallar la pasada y el bucle termina. Por último, el anfitrión lee las categorías, las horas y el tamaño de la pila del total acumulado.
+    A["Anfitrión: sortea cinco conteos de horas y los escribe como una cinta de letras a"] --> B["Una sola coincidencia de Regex se ejecuta sobre la cinta"]
+    B --> C["Empuja 41 capturas vacías al grupo b: el presupuesto"]
+    C --> D{{"¿La pila del presupuesto no está vacía?"}}
+    D -->|sí| E["Selector de categoría: la primera bandera que aún no está activada indica la categoría"]
+    E --> F["Busca de 10 a 19 horas (letras *a*): cada una extrae un token de presupuesto si queda alguno y apila uno en la pila total s"]
     F --> D
-    D -->|"no: a failing lookahead fails the pass"| G["The star loop ends and the match succeeds"]
-    G --> H["Host reads the captures: categories, hours and the size of s"]
+    D -->|"no: un lookahead que falla hace fallar la pasada"| G["El bucle de la estrella termina y la coincidencia tiene éxito"]
+    G --> H["El anfitrión lee las capturas: las categorías, las horas y el tamaño de s"]
 ```
 
-**What this shows:** the regex engine is a machine with stacks. Each `a` pushes one capture onto the total stack `s`. The balancing group also pops one budget token from `b` while any remain. The budget stack is the stop rule: when it is empty, the next pass cannot start.
+**Qué muestra:** el motor de regex es una máquina con pilas. Cada `a` apila una captura en la pila del total `s`. El grupo de equilibrio también desapila un token de presupuesto de `b` mientras quede alguno. La pila de presupuesto es la regla de parada: cuando está vacía, la siguiente pasada no puede empezar.
 
-**Why this mechanism matters:** the state is stack *depth*. Nothing counts and nothing adds. The match succeeds, and the program's answer is what the engine captured. An entry may push the total over 40 mid-way, because the budget runs dry partway through its hours and the extra `a`s pop nothing.
+**Por qué importa este mecanismo:** el estado es la *profundidad* de la pila. Nada cuenta y nada suma. La coincidencia tiene éxito y la respuesta del programa es lo que capturó el motor. Una entrada puede hacer que el total pase de 40 a mitad de camino. Esto ocurre porque el presupuesto se agota en medio de sus horas y los `a` adicionales no extraen nada.
 
-## How the stunt works
+## Cómo funciona el truco
 
-The host draws five random hour counts and builds a *unary tape*: `Meetings:aaaaaaaaaaaaaaa;Coding:aaaaaaaaaaaa;...;Meetings:aaaaaaaaaaa;` (one `a` per hour; the fifth name is `Meetings` again, so that four 10-hour cards, which total exactly 40, can be followed by a fifth). It fires one match against the tape and reads out what the pattern captured. The pattern does the rest:
+El anfitrión sortea cinco cantidades de horas al azar y construye una *cinta unaria*: `Meetings:aaaaaaaaaaaaaaa;Coding:aaaaaaaaaaaa;...;Meetings:aaaaaaaaaaa;` (un `a` por hora; el quinto nombre es otra vez `Meetings`, para que después de cuatro tarjetas de 10 horas, cuyo total es exactamente 40, pueda venir una quinta). Ejecuta una coincidencia contra la cinta y lee lo que capturó el patrón. El patrón hace el resto:
 
-| Piece | Job |
+| Pieza | Función |
 | --- | --- |
-| `\A(?:(?<b>)){41}` | The **budget**: 41 empty captures pushed on group `b`'s stack. 41 because the stop rule is "total *exceeds* 40" |
-| `(?: ... )*` | The loop: each pass is one timecard entry |
-| `(?(b) ... \|(?!))` | The **stop rule**. While the budget stack is non-empty, take another entry; once it is empty, `(?!)` fails the pass and the `*` ends |
-| `(?(fm)(?(fc)(?(fd)(?(fl)(?(f5)(?!)\|(?<f5>)Meetings)\|(?<fl>)Learning)\|(?<fd>)Debugging)\|(?<fc>)Coding)\|(?<fm>)Meetings)` | The **category picker**: five flag groups are a little state machine. The first pass finds `fm` unset, so it takes Meetings and sets it; the next sees `fm` and takes Coding; and so on. After the second `Meetings`, the last `(?!)` stops a sixth pass |
-| `(?<hrs>(?:(?(b)(?<-b>))(?<s>)a){10,19});` | The entry's hours. Each `a` pops one budget token if any are left (a **balancing group**), pushes one onto the running-total stack `s`, and the `{10,19}` enforces the demo's range |
+| `\A(?:(?<b>)){41}` | El **presupuesto**: 41 capturas vacías que se añaden a la pila del grupo `b`. Son 41 porque la regla de parada es "el total *pasa de* 40" |
+| `(?: ... )*` | El bucle: cada pasada es una entrada de la tarjeta de horas |
+| `(?(b) ... \|(?!))` | La **regla de parada**. Mientras la pila de presupuesto no esté vacía, el patrón toma otra entrada; cuando está vacía, `(?!)` hace fallar la pasada y el `*` termina |
+| `(?(fm)(?(fc)(?(fd)(?(fl)(?(f5)(?!)\|(?<f5>)Meetings)\|(?<fl>)Learning)\|(?<fd>)Debugging)\|(?<fc>)Coding)\|(?<fm>)Meetings)` | El **selector de categorías**: cinco grupos de banderas forman una pequeña máquina de estados. La primera pasada encuentra `fm` sin establecer, así que toma Meetings y lo establece; la siguiente ve `fm` y toma Coding; y así sucesivamente. Después del segundo `Meetings`, el último `(?!)` impide una sexta pasada |
+| `(?<hrs>(?:(?(b)(?<-b>))(?<s>)a){10,19});` | Las horas de la entrada. Cada `a` extrae una ficha del presupuesto si queda alguna (un **grupo de equilibrio**) y apila una en la pila del total acumulado `s`. El `{10,19}` impone el rango de la demostración |
 
-An entry can push the total over 40 from anywhere in its 10 to 19 hours; the budget simply runs dry partway through it and the extra `a`s pop nothing. After the entry the stop rule sees an empty stack. The captured state is then: `cat` and `hrs` capture lists (the records), and `s`'s capture count (the total).
+Una entrada puede hacer que el total pase de 40 en cualquier punto de sus horas (de 10 a 19); el presupuesto simplemente se agota a mitad de la entrada y los `a` sobrantes no extraen nada. Después de la entrada, la regla de parada ve una pila vacía. El estado capturado queda así: las listas de captura `cat` y `hrs` (los registros) y el conteo de capturas de `s` (el total).
 
-I checked the edges with a throwaway prototype (not in the repo, because the real program has no way to inject a fixed draw): totals of exactly 40 (four 10-hour cards, one token left, which now continues to a fifth card), 41 on the fourth entry, and 45 and 57 stopping after three all came out right. `check.sh` verifies the stop rule on every random run (the total before the last card is at most 40 and the total after it is over 40, with three to five cards), and it builds a copy of the host in which every card is worth 10 hours to prove that exactly 40 continues: five rows, the fourth `Learning`, the fifth `Meetings`, total 50.
+Comprobé los casos límite con un prototipo desechable (no está en el repositorio, porque el programa real no tiene forma de inyectar un sorteo fijo): un total de exactamente 40 (cuatro tarjetas de 10 horas, queda un token, que ahora continúa con una quinta tarjeta), un total de 41 en la cuarta entrada y totales de 45 y 57 con parada después de tres tarjetas. Todos dieron el resultado correcto. `check.sh` verifica la regla de parada en cada ejecución aleatoria (el total antes de la última tarjeta es como máximo 40 y el total después de ella pasa de 40, con entre tres y cinco tarjetas) y crea una copia del anfitrión en la que cada tarjeta vale 10 horas, para demostrar que un total de exactamente 40 continúa: cinco filas, la cuarta `Learning`, la quinta `Meetings`, total de 50.
 
-## What `check.sh` enforces
+## Qué impone `check.sh`
 
-`check.sh` makes sure the host stays honest. `Program.cs` may have no loop keyword and none of `MatchEvaluator`, `Replace`, `NextMatch` or `Matches`, and it must contain exactly one `Regex.Match` call. Then it runs the program 25 times. Each run must report that the match returned `true` (this track cannot fail on purpose). Each run must print as many rows as it has entries, the hours must sum to the total, and every hour count must be from 10 to 19. The stop rule must be right: the total before the last card is at most 40 (exactly 40 continues) and the total after it is over 40, with three to five entries. The total can never be more than 59. Last, a copy of the host with every card worth 10 hours must deal five rows, the fourth `Learning` and the fifth `Meetings`, with a total of 50. The same tape with `(?!)` appended to the pattern must report a failed match, zero captures and exit status 1. Its TSV still contains the empty report because the host appends it before returning.
+`check.sh` se asegura de que el anfitrión siga siendo honesto. `Program.cs` no puede tener ninguna palabra clave de bucle ni ninguna de `MatchEvaluator`, `Replace`, `NextMatch` o `Matches`. Debe contener exactamente una llamada a `Regex.Match`. Después ejecuta el programa 25 veces. Cada ejecución debe informar de que la coincidencia devolvió `true` (este recorrido no puede fallar a propósito). Cada ejecución debe imprimir tantas filas como entradas tiene. Las horas deben sumar el total. Cada cantidad de horas debe ser de 10 a 19. La regla de parada debe ser correcta. El total antes de la última tarjeta es como máximo 40 (un total de exactamente 40 continúa). El total después de ella pasa de 40. La ejecución tiene entre tres y cinco entradas. El total nunca puede ser de más de 59. Por último, una copia del anfitrión con todas las tarjetas de 10 horas debe repartir cinco filas, la cuarta `Learning` y la quinta `Meetings`, con un total de 50. La misma cinta con `(?!)` añadido al patrón debe informar de una coincidencia fallida, cero capturas y estado de salida 1. Su TSV sigue conteniendo el informe vacío porque el anfitrión lo añade antes de devolver el control.
 
-## Gotchas worth knowing
+## Trampas que conviene conocer
 
-1. **A regex cannot draw random numbers.** The random 10 to 19 draws had to be seeded by the host, as five unary strings. The plan allows the host to "seed the initial data", so this is within the rules, but the regex does not choose the hours. It only bounds them (`{10,19}`) and accumulates them.
-2. **The host writes after matching.** The pattern supplies captures. The host formats them and calls `File.AppendAllText` once, so the output depends on the capture lists it gets back.
-3. **The match must succeed to yield any cards.** Append `(?!)` to force failure and `Match.Success` is false with zero returned captures. The fixed-tape test checks both outcomes on the real pattern. The guarantee here is the [documented behavior of .NET regex balancing groups and captures](https://learn.microsoft.com/en-us/dotnet/standard/base-types/grouping-constructs-in-regular-expressions#balancing-group-definitions). An engine that lacks that API needs a different mechanism.
-4. **No pulse.** The terminal pulse needs side effects during the match. This track has none, and a host loop to animate it would break the rules.
-5. **Unrolled randomness, not a random loop.** The tape always holds five draws even when only three are needed (any draw left over once the budget runs dry is ignored). The `*` loop is real, but the draws are fixed up front.
+1. **Una regex no puede generar números aleatorios.** El anfitrión tuvo que sembrar los sorteos aleatorios de 10 a 19 horas como cinco cadenas de texto unarias. El plan permite que el anfitrión "siembre los datos iniciales", así que esto cumple las reglas, pero la regex no elige las horas. Solo las acota (`{10,19}`) y las acumula.
+2. **El anfitrión escribe después de la coincidencia.** El patrón aporta capturas. El anfitrión las formatea y llama a `File.AppendAllText` una vez, así que la salida depende de las listas de capturas que recibe.
+3. **La coincidencia debe tener éxito para producir alguna tarjeta.** Si añades `(?!)` para forzar el fallo, `Match.Success` es falso y se devuelven cero capturas. La prueba de cinta fija comprueba ambos resultados con el patrón real. La garantía aquí es el [comportamiento documentado de los grupos de equilibrio y las capturas de regex de .NET](https://learn.microsoft.com/en-us/dotnet/standard/base-types/grouping-constructs-in-regular-expressions#balancing-group-definitions). Un motor que no tenga esa API necesita otro mecanismo.
+4. **Sin pulso.** El pulso de la terminal necesita efectos secundarios durante la coincidencia. Esta pista no tiene ninguno, y un bucle del anfitrión para animarlo rompería las reglas.
+5. **Aleatoriedad desenrollada, no un bucle aleatorio.** La cinta siempre contiene cinco sorteos aunque solo se necesiten tres (se ignora cualquier sorteo sobrante cuando se agota el presupuesto). El bucle `*` es real, pero los sorteos se fijan de antemano.
 
-### Honest fine print
+### Letra pequeña, pero honesta
 
-- The host does one iteration-shaped thing: reporting. `string.Concat(...Zip(...))` walks the captured `cat` and `hrs` lists to format the rows. It only reads the final captured state, which the plan allows ("print/report the final state"), and `check.sh` rejects `MatchEvaluator`, `Replace`, `NextMatch`, `Matches` and any loop keyword in the host, and requires exactly one `Regex.Match`. Still, it is a LINQ pass, and I would rather say so than hide it.
-- The total printed is the count of captures on the `s` stack, which the regex built. The per-row hours are the lengths of the `hrs` captures.
-- The pattern is unformatted on purpose, as in the other tracks.
+- El anfitrión hace una cosa con forma de iteración: informar. `string.Concat(...Zip(...))` recorre las listas `cat` y `hrs` capturadas para dar formato a las filas. Solo lee el estado final capturado, lo que el plan permite ("imprimir/informar el estado final"). Además, `check.sh` rechaza `MatchEvaluator`, `Replace`, `NextMatch`, `Matches` y cualquier palabra clave de bucle en el anfitrión, y exige exactamente un `Regex.Match`. Aun así, es una pasada de LINQ y prefiero decirlo a ocultarlo.
+- El total impreso es el número de capturas de la pila `s`, que construyó la expresión regular. Las horas de cada fila son las longitudes de las capturas `hrs`.
+- El patrón no tiene formato a propósito, igual que en las otras variantes.
 
 ---
 
-See the [root README](../../README.md#the-results-so-far) for how this compares to the other regex entries, and [`RETO.md`](../../RETO.md) if you want to write your own.
+Consulta el [README raíz](../../README.md#the-results-so-far) para ver cómo se compara esto con las otras entradas de regex, y [`RETO.md`](../../RETO.md) si quieres escribir las tuyas.

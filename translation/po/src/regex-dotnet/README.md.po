@@ -1,0 +1,253 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/regex-dotnet/README.md:2
+msgctxt "s-db1779888a63-0000"
+msgid ".NET regex"
+msgstr "Regex de .NET"
+
+#: src/regex-dotnet/README.md:3
+msgctxt "s-ad54565254f7-0001"
+msgid "that a regex can use a stack to count."
+msgstr "que una expresión regular puede usar una pila para contar."
+
+#: src/regex-dotnet/README.md:11
+msgctxt "s-46e4eba1f241-0002"
+msgid "A counter built from a stack"
+msgstr "Un contador construido con una pila"
+
+#: src/regex-dotnet/README.md:12
+msgctxt "s-ca54d54a8c7e-0003"
+msgid "Balancing-group capture stacks"
+msgstr "Pilas de captura con grupos de equilibrio"
+
+#: src/regex-dotnet/README.md:15
+msgctxt "s-77c1272ebc91-0004"
+msgid "Regex challenge, Track 3: .NET balancing groups (the purist's attempt)"
+msgstr "Reto de regex, ruta 3: grupos de equilibrio de .NET (el intento purista)"
+
+#: src/regex-dotnet/README.md:17
+msgctxt "s-0dfde507cf71-0005"
+msgid "**Teaches you:** that a regex can use a stack to count."
+msgstr "**Te enseña:** que una expresión regular puede usar una pila para contar."
+
+#: src/regex-dotnet/README.md:19
+msgctxt "s-2b18cca01dbd-0006"
+msgid "One ⟦CODE_0001⟧ call, no callouts, no inline code, no ⟦CODE_0002⟧. It follows the regex challenge plan (since removed; it lives in git history as ⟦CODE_0003⟧), which expected this track to hit a wall. It did hit some, and they are listed below, but the core got further than the plan predicted. **⟦DNT_0004⟧**: the records are fictional and go to a scratch file, with no connection to any real time-reporting system."
+msgstr "Una sola llamada a ⟦CODE_0001⟧, sin callouts, sin código en línea y sin ⟦CODE_0002⟧. Sigue el plan del reto de regex (ya eliminado; sigue en el historial de git como ⟦CODE_0003⟧), que preveía que esta pista chocaría con un muro. Sí chocó con algunos y se listan abajo, pero el núcleo llegó más lejos de lo que el plan predecía. **⟦DNT_0004⟧**: los registros son ficticios y van a un archivo temporal, sin conexión con ningún sistema real de registro de horas."
+
+#: src/regex-dotnet/README.md:21
+msgctxt "s-958ca26c6a61-0007"
+msgid "Run it"
+msgstr "Ejecútalo"
+
+#: src/regex-dotnet/README.md:23
+msgctxt "s-d73503a46baa-0008"
+msgid "You need the .NET 10 SDK (cross-platform; nothing here is Windows-specific)."
+msgstr "Necesitas el SDK de .NET 10 (multiplataforma; nada de esto es específico de Windows)."
+
+#: src/regex-dotnet/README.md:31
+msgctxt "s-34bee08cd45f-0009"
+msgid "Records are appended to ⟦CODE_0001⟧ (default ⟦CODE_0002⟧). Delete that directory to start over. A run looks like:"
+msgstr "Los registros se añaden a ⟦CODE_0001⟧ (por defecto ⟦CODE_0002⟧). Elimina ese directorio para empezar de nuevo. Una ejecución se ve así:"
+
+#: src/regex-dotnet/README.md:43
+msgctxt "s-254f0c660db3-0010"
+msgid "Run it in a container"
+msgstr "Ejecuta el programa en un contenedor"
+
+#: src/regex-dotnet/README.md:45
+msgctxt "s-643df015c8a2-0011"
+msgid "Prerequisite: Docker, set up once as described in [⟦CODE_0001⟧](⟦DEST_0002⟧)."
+msgstr "Requisito previo: Docker, configurado una sola vez como se describe en [⟦CODE_0001⟧](⟦DEST_0002⟧)."
+
+#: src/regex-dotnet/README.md:51
+msgctxt "s-22e2c47f005a-0012"
+msgid "It builds this folder's [⟦CODE_0001⟧](⟦DEST_0002⟧) and runs the result with no network, a read-only file system and user ⟦CODE_0003⟧, then prints the output and a read-only look at the rows it wrote. The .NET SDK builds it in a build stage. The image holds only the compiled dll on the .NET runtime, with no SDK."
+msgstr "Compila el [⟦CODE_0001⟧](⟦DEST_0002⟧) de esta carpeta y ejecuta el resultado sin red, con un sistema de archivos de solo lectura y el usuario ⟦CODE_0003⟧; luego imprime la salida y una vista de solo lectura de las filas que escribió. El SDK de .NET lo compila en una etapa de compilación. La imagen contiene solo la dll compilada sobre el entorno de ejecución de .NET, sin SDK."
+
+#: src/regex-dotnet/README.md:53
+msgctxt "s-0dcb373c2dff-0013"
+msgid "Program Flow"
+msgstr "Flujo del programa"
+
+#: src/regex-dotnet/README.md:57
+msgctxt "s-dcdebdf3a825-0014"
+msgid "regex-dotnet: balancing groups as a budget stack"
+msgstr "regex-dotnet: grupos de equilibrio como una pila de presupuesto"
+
+#: src/regex-dotnet/README.md:58
+msgctxt "s-496bd1fca955-0015"
+msgid "A flowchart. The host draws five hour counts and writes them as a tape of letters a, one per hour. It runs one regex match. The pattern first pushes 41 empty captures onto the stack of group b, which is the budget. Each pass of the star loop first checks whether the budget stack is non-empty. If it is, a chain of conditional flag groups picks the next category. Then 10 to 19 letters a are matched, and each one pops a budget token, if any is left, and pushes a token onto the running total stack. When the budget is empty, a failing lookahead fails the pass and the loop ends. The host then reads out the categories, the hours and the size of the total stack."
+msgstr "Un diagrama de flujo. El anfitrión sortea cinco cantidades de horas y las escribe como una cinta de letras a, una por hora. Ejecuta una sola coincidencia de regex. El patrón empieza por apilar 41 capturas vacías en la pila del grupo b, que es el presupuesto. Cada pasada del bucle de estrella comprueba primero si la pila del presupuesto no está vacía. Si no lo está, una cadena de grupos condicionales de banderas elige la siguiente categoría. Después coinciden de 10 a 19 letras a (las horas de una tarjeta). Cada una retira un token del presupuesto, si queda alguno, y apila un token en la pila del total acumulado. Cuando el presupuesto está vacío, un *lookahead* que falla hace fallar la pasada y el bucle termina. Por último, el anfitrión lee las categorías, las horas y el tamaño de la pila del total acumulado."
+
+#: src/regex-dotnet/README.md:59
+msgctxt "s-3119d4532f17-0016"
+msgid "Host: draw five hour counts, write them as a tape of a's"
+msgstr "Anfitrión: sortea cinco conteos de horas y los escribe como una cinta de letras a"
+
+#: src/regex-dotnet/README.md:59
+msgctxt "s-933185ca0dbf-0017"
+msgid "One Regex match runs against the tape"
+msgstr "Una sola coincidencia de Regex se ejecuta sobre la cinta"
+
+#: src/regex-dotnet/README.md:60
+msgctxt "s-9086f50330b0-0018"
+msgid "Push 41 empty captures onto group b: the budget"
+msgstr "Empuja 41 capturas vacías al grupo b: el presupuesto"
+
+#: src/regex-dotnet/README.md:61
+msgctxt "s-0705454242cc-0019"
+msgid "Is the budget stack non-empty?"
+msgstr "¿La pila del presupuesto no está vacía?"
+
+#: src/regex-dotnet/README.md:62
+msgctxt "s-8a798890fe93-0020"
+msgid "yes"
+msgstr "sí"
+
+#: src/regex-dotnet/README.md:62
+msgctxt "s-47c80c5e4327-0021"
+msgid "Category picker: the first flag not yet set names the category"
+msgstr "Selector de categoría: la primera bandera que aún no está activada indica la categoría"
+
+#: src/regex-dotnet/README.md:63
+msgctxt "s-145611937a30-0022"
+msgid "Match 10 to 19 a's: each pops a budget token if any is left, and pushes one onto the total stack s"
+msgstr "Busca de 10 a 19 horas (letras *a*): cada una extrae un token de presupuesto si queda alguno y apila uno en la pila total s"
+
+#: src/regex-dotnet/README.md:65
+msgctxt "s-2c266a00c512-0023"
+msgid "no: a failing lookahead fails the pass"
+msgstr "no: un lookahead que falla hace fallar la pasada"
+
+#: src/regex-dotnet/README.md:65
+msgctxt "s-e0d36c852aeb-0024"
+msgid "The star loop ends and the match succeeds"
+msgstr "El bucle de la estrella termina y la coincidencia tiene éxito"
+
+#: src/regex-dotnet/README.md:66
+msgctxt "s-088d80d2ae28-0025"
+msgid "Host reads the captures: categories, hours and the size of s"
+msgstr "El anfitrión lee las capturas: las categorías, las horas y el tamaño de s"
+
+#: src/regex-dotnet/README.md:69
+msgctxt "s-0f3db11e21f6-0026"
+msgid "**What this shows:** the regex engine is a machine with stacks. Each ⟦CODE_0001⟧ pushes one capture onto the total stack ⟦CODE_0002⟧. The balancing group also pops one budget token from ⟦CODE_0003⟧ while any remain. The budget stack is the stop rule: when it is empty, the next pass cannot start."
+msgstr "**Qué muestra:** el motor de regex es una máquina con pilas. Cada ⟦CODE_0001⟧ apila una captura en la pila del total ⟦CODE_0002⟧. El grupo de equilibrio también desapila un token de presupuesto de ⟦CODE_0003⟧ mientras quede alguno. La pila de presupuesto es la regla de parada: cuando está vacía, la siguiente pasada no puede empezar."
+
+#: src/regex-dotnet/README.md:71
+msgctxt "s-dfe5769926a0-0027"
+msgid "**Why this mechanism matters:** the state is stack *depth*. Nothing counts and nothing adds. The match succeeds, and the program's answer is what the engine captured. An entry may push the total over 40 mid-way, because the budget runs dry partway through its hours and the extra ⟦CODE_0001⟧s pop nothing."
+msgstr "**Por qué importa este mecanismo:** el estado es la *profundidad* de la pila. Nada cuenta y nada suma. La coincidencia tiene éxito y la respuesta del programa es lo que capturó el motor. Una entrada puede hacer que el total pase de 40 a mitad de camino. Esto ocurre porque el presupuesto se agota en medio de sus horas y los ⟦CODE_0001⟧ adicionales no extraen nada."
+
+#: src/regex-dotnet/README.md:73
+msgctxt "s-7f97d965b4c0-0028"
+msgid "How the stunt works"
+msgstr "Cómo funciona el truco"
+
+#: src/regex-dotnet/README.md:75
+msgctxt "s-0f433c0e2e31-0029"
+msgid "The host draws five random hour counts and builds a *unary tape*: ⟦CODE_0001⟧ (one ⟦CODE_0002⟧ per hour; the fifth name is ⟦CODE_0003⟧ again, so that four 10-hour cards, which total exactly 40, can be followed by a fifth). It fires one match against the tape and reads out what the pattern captured. The pattern does the rest:"
+msgstr "El anfitrión sortea cinco cantidades de horas al azar y construye una *cinta unaria*: ⟦CODE_0001⟧ (un ⟦CODE_0002⟧ por hora; el quinto nombre es otra vez ⟦CODE_0003⟧, para que después de cuatro tarjetas de 10 horas, cuyo total es exactamente 40, pueda venir una quinta). Ejecuta una coincidencia contra la cinta y lee lo que capturó el patrón. El patrón hace el resto:"
+
+#: src/regex-dotnet/README.md:77
+msgctxt "s-fe4f26a8c819-0030"
+msgid "⟦SEP_0001⟧ Piece ⟦SEP_0002⟧ Job ⟦SEP_0003⟧"
+msgstr "⟦SEP_0001⟧ Pieza ⟦SEP_0002⟧ Función ⟦SEP_0003⟧"
+
+#: src/regex-dotnet/README.md:79
+msgctxt "s-c7e12c99e050-0031"
+msgid "⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ The **budget**: 41 empty captures pushed on group ⟦CODE_0002⟧'s stack. 41 because the stop rule is \"total *exceeds* 40\" ⟦SEP_0005⟧"
+msgstr "⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ El **presupuesto**: 41 capturas vacías que se añaden a la pila del grupo ⟦CODE_0002⟧. Son 41 porque la regla de parada es \"el total *pasa de* 40\" ⟦SEP_0005⟧"
+
+#: src/regex-dotnet/README.md:80
+msgctxt "s-fe23a771e3aa-0032"
+msgid "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ The loop: each pass is one timecard entry ⟦SEP_0004⟧"
+msgstr "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ El bucle: cada pasada es una entrada de la tarjeta de horas ⟦SEP_0004⟧"
+
+#: src/regex-dotnet/README.md:81
+msgctxt "s-de9717336235-0033"
+msgid "⟦SEP_0004⟧ ⟦CODE_0001⟧ ⟦SEP_0005⟧ The **stop rule**. While the budget stack is non-empty, take another entry; once it is empty, ⟦CODE_0002⟧ fails the pass and the ⟦CODE_0003⟧ ends ⟦SEP_0006⟧"
+msgstr "⟦SEP_0004⟧ ⟦CODE_0001⟧ ⟦SEP_0005⟧ La **regla de parada**. Mientras la pila de presupuesto no esté vacía, el patrón toma otra entrada; cuando está vacía, ⟦CODE_0002⟧ hace fallar la pasada y el ⟦CODE_0003⟧ termina ⟦SEP_0006⟧"
+
+#: src/regex-dotnet/README.md:82
+msgctxt "s-d31189856aa7-0034"
+msgid "⟦SEP_0008⟧ ⟦CODE_0001⟧ ⟦SEP_0009⟧ The **category picker**: five flag groups are a little state machine. The first pass finds ⟦CODE_0002⟧ unset, so it takes ⟦DNT_0003⟧ and sets it; the next sees ⟦CODE_0004⟧ and takes ⟦DNT_0005⟧; and so on. After the second ⟦CODE_0006⟧, the last ⟦CODE_0007⟧ stops a sixth pass ⟦SEP_0010⟧"
+msgstr "⟦SEP_0008⟧ ⟦CODE_0001⟧ ⟦SEP_0009⟧ El **selector de categorías**: cinco grupos de banderas forman una pequeña máquina de estados. La primera pasada encuentra ⟦CODE_0002⟧ sin establecer, así que toma ⟦DNT_0003⟧ y lo establece; la siguiente ve ⟦CODE_0004⟧ y toma ⟦DNT_0005⟧; y así sucesivamente. Después del segundo ⟦CODE_0006⟧, el último ⟦CODE_0007⟧ impide una sexta pasada ⟦SEP_0010⟧"
+
+#: src/regex-dotnet/README.md:83
+msgctxt "s-e43f6c5c8c2a-0035"
+msgid "⟦SEP_0005⟧ ⟦CODE_0001⟧ ⟦SEP_0006⟧ The entry's hours. Each ⟦CODE_0002⟧ pops one budget token if any are left (a **balancing group**), pushes one onto the running-total stack ⟦CODE_0003⟧, and the ⟦CODE_0004⟧ enforces the demo's range ⟦SEP_0007⟧"
+msgstr "⟦SEP_0005⟧ ⟦CODE_0001⟧ ⟦SEP_0006⟧ Las horas de la entrada. Cada ⟦CODE_0002⟧ extrae una ficha del presupuesto si queda alguna (un **grupo de equilibrio**) y apila una en la pila del total acumulado ⟦CODE_0003⟧. El ⟦CODE_0004⟧ impone el rango de la demostración ⟦SEP_0007⟧"
+
+#: src/regex-dotnet/README.md:85
+msgctxt "s-bea64305648f-0036"
+msgid "An entry can push the total over 40 from anywhere in its 10 to 19 hours; the budget simply runs dry partway through it and the extra ⟦CODE_0001⟧s pop nothing. After the entry the stop rule sees an empty stack. The captured state is then: ⟦CODE_0002⟧ and ⟦CODE_0003⟧ capture lists (the records), and ⟦CODE_0004⟧'s capture count (the total)."
+msgstr "Una entrada puede hacer que el total pase de 40 en cualquier punto de sus horas (de 10 a 19); el presupuesto simplemente se agota a mitad de la entrada y los ⟦CODE_0001⟧ sobrantes no extraen nada. Después de la entrada, la regla de parada ve una pila vacía. El estado capturado queda así: las listas de captura ⟦CODE_0002⟧ y ⟦CODE_0003⟧ (los registros) y el conteo de capturas de ⟦CODE_0004⟧ (el total)."
+
+#: src/regex-dotnet/README.md:87
+msgctxt "s-6ba5dc87842b-0037"
+msgid "I checked the edges with a throwaway prototype (not in the repo, because the real program has no way to inject a fixed draw): totals of exactly 40 (four 10-hour cards, one token left, which now continues to a fifth card), 41 on the fourth entry, and 45 and 57 stopping after three all came out right. ⟦CODE_0001⟧ verifies the stop rule on every random run (the total before the last card is at most 40 and the total after it is over 40, with three to five cards), and it builds a copy of the host in which every card is worth 10 hours to prove that exactly 40 continues: five rows, the fourth ⟦CODE_0002⟧, the fifth ⟦CODE_0003⟧, total 50."
+msgstr "Comprobé los casos límite con un prototipo desechable (no está en el repositorio, porque el programa real no tiene forma de inyectar un sorteo fijo): un total de exactamente 40 (cuatro tarjetas de 10 horas, queda un token, que ahora continúa con una quinta tarjeta), un total de 41 en la cuarta entrada y totales de 45 y 57 con parada después de tres tarjetas. Todos dieron el resultado correcto. ⟦CODE_0001⟧ verifica la regla de parada en cada ejecución aleatoria (el total antes de la última tarjeta es como máximo 40 y el total después de ella pasa de 40, con entre tres y cinco tarjetas) y crea una copia del anfitrión en la que cada tarjeta vale 10 horas, para demostrar que un total de exactamente 40 continúa: cinco filas, la cuarta ⟦CODE_0002⟧, la quinta ⟦CODE_0003⟧, total de 50."
+
+#: src/regex-dotnet/README.md:89
+msgctxt "s-339cc2c18f83-0038"
+msgid "What ⟦CODE_0001⟧ enforces"
+msgstr "Qué impone ⟦CODE_0001⟧"
+
+#: src/regex-dotnet/README.md:91
+msgctxt "s-d8d73ecd3ba2-0039"
+msgid "⟦CODE_0001⟧ makes sure the host stays honest. ⟦CODE_0002⟧ may have no loop keyword and none of ⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧ or ⟦CODE_0006⟧, and it must contain exactly one ⟦CODE_0007⟧ call. Then it runs the program 25 times. Each run must report that the match returned ⟦CODE_0008⟧ (this track cannot fail on purpose). Each run must print as many rows as it has entries, the hours must sum to the total, and every hour count must be from 10 to 19. The stop rule must be right: the total before the last card is at most 40 (exactly 40 continues) and the total after it is over 40, with three to five entries. The total can never be more than 59. Last, a copy of the host with every card worth 10 hours must deal five rows, the fourth ⟦CODE_0009⟧ and the fifth ⟦CODE_0010⟧, with a total of 50. The same tape with ⟦CODE_0011⟧ appended to the pattern must report a failed match, zero captures and exit status 1. Its TSV still contains the empty report because the host appends it before returning."
+msgstr "⟦CODE_0001⟧ se asegura de que el anfitrión siga siendo honesto. ⟦CODE_0002⟧ no puede tener ninguna palabra clave de bucle ni ninguna de ⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧ o ⟦CODE_0006⟧. Debe contener exactamente una llamada a ⟦CODE_0007⟧. Después ejecuta el programa 25 veces. Cada ejecución debe informar de que la coincidencia devolvió ⟦CODE_0008⟧ (este recorrido no puede fallar a propósito). Cada ejecución debe imprimir tantas filas como entradas tiene. Las horas deben sumar el total. Cada cantidad de horas debe ser de 10 a 19. La regla de parada debe ser correcta. El total antes de la última tarjeta es como máximo 40 (un total de exactamente 40 continúa). El total después de ella pasa de 40. La ejecución tiene entre tres y cinco entradas. El total nunca puede ser de más de 59. Por último, una copia del anfitrión con todas las tarjetas de 10 horas debe repartir cinco filas, la cuarta ⟦CODE_0009⟧ y la quinta ⟦CODE_0010⟧, con un total de 50. La misma cinta con ⟦CODE_0011⟧ añadido al patrón debe informar de una coincidencia fallida, cero capturas y estado de salida 1. Su TSV sigue conteniendo el informe vacío porque el anfitrión lo añade antes de devolver el control."
+
+#: src/regex-dotnet/README.md:93
+msgctxt "s-5a0ad00b10fc-0040"
+msgid "Gotchas worth knowing"
+msgstr "Trampas que conviene conocer"
+
+#: src/regex-dotnet/README.md:95
+msgctxt "s-686cd22c2382-0041"
+msgid ""
+"**A regex cannot draw random numbers.** The random 10 to 19 draws had to be seeded by the host, as five unary strings. The plan allows the host to \"seed the initial data\", so this is within the rules, but the regex does not choose the hours. It only bounds them (⟦CODE_0001⟧) and accumulates them.\n"
+"2. **The host writes after matching.** The pattern supplies captures. The host formats them and calls ⟦CODE_0002⟧ once, so the output depends on the capture lists it gets back.\n"
+"3. **The match must succeed to yield any cards.** Append ⟦CODE_0003⟧ to force failure and ⟦CODE_0004⟧ is false with zero returned captures. The fixed-tape test checks both outcomes on the real pattern. The guarantee here is the [documented behavior of .NET regex balancing groups and captures](⟦DEST_0005⟧). An engine that lacks that API needs a different mechanism.\n"
+"4. **No pulse.** The terminal pulse needs side effects during the match. This track has none, and a host loop to animate it would break the rules.\n"
+"5. **Unrolled randomness, not a random loop.** The tape always holds five draws even when only three are needed (any draw left over once the budget runs dry is ignored). The ⟦CODE_0006⟧ loop is real, but the draws are fixed up front."
+msgstr ""
+"**Una regex no puede generar números aleatorios.** El anfitrión tuvo que sembrar los sorteos aleatorios de 10 a 19 horas como cinco cadenas de texto unarias. El plan permite que el anfitrión \"siembre los datos iniciales\", así que esto cumple las reglas, pero la regex no elige las horas. Solo las acota (⟦CODE_0001⟧) y las acumula.\n"
+"2. **El anfitrión escribe después de la coincidencia.** El patrón aporta capturas. El anfitrión las formatea y llama a ⟦CODE_0002⟧ una vez, así que la salida depende de las listas de capturas que recibe.\n"
+"3. **La coincidencia debe tener éxito para producir alguna tarjeta.** Si añades ⟦CODE_0003⟧ para forzar el fallo, ⟦CODE_0004⟧ es falso y se devuelven cero capturas. La prueba de cinta fija comprueba ambos resultados con el patrón real. La garantía aquí es el [comportamiento documentado de los grupos de equilibrio y las capturas de regex de .NET](⟦DEST_0005⟧). Un motor que no tenga esa API necesita otro mecanismo.\n"
+"4. **Sin pulso.** El pulso de la terminal necesita efectos secundarios durante la coincidencia. Esta pista no tiene ninguno, y un bucle del anfitrión para animarlo rompería las reglas.\n"
+"5. **Aleatoriedad desenrollada, no un bucle aleatorio.** La cinta siempre contiene cinco sorteos aunque solo se necesiten tres (se ignora cualquier sorteo sobrante cuando se agota el presupuesto). El bucle ⟦CODE_0006⟧ es real, pero los sorteos se fijan de antemano."
+
+#: src/regex-dotnet/README.md:101
+msgctxt "s-7ec4d0950704-0042"
+msgid "Honest fine print"
+msgstr "Letra pequeña, pero honesta"
+
+#: src/regex-dotnet/README.md:103
+msgctxt "s-6986ec6985e5-0043"
+msgid "The host does one iteration-shaped thing: reporting. ⟦CODE_0001⟧ walks the captured ⟦CODE_0002⟧ and ⟦CODE_0003⟧ lists to format the rows. It only reads the final captured state, which the plan allows (\"print/report the final state\"), and ⟦CODE_0004⟧ rejects ⟦CODE_0005⟧, ⟦CODE_0006⟧, ⟦CODE_0007⟧, ⟦CODE_0008⟧ and any loop keyword in the host, and requires exactly one ⟦CODE_0009⟧. Still, it is a LINQ pass, and I would rather say so than hide it."
+msgstr "El anfitrión hace una cosa con forma de iteración: informar. ⟦CODE_0001⟧ recorre las listas ⟦CODE_0002⟧ y ⟦CODE_0003⟧ capturadas para dar formato a las filas. Solo lee el estado final capturado, lo que el plan permite (\"imprimir/informar el estado final\"). Además, ⟦CODE_0004⟧ rechaza ⟦CODE_0005⟧, ⟦CODE_0006⟧, ⟦CODE_0007⟧, ⟦CODE_0008⟧ y cualquier palabra clave de bucle en el anfitrión, y exige exactamente un ⟦CODE_0009⟧. Aun así, es una pasada de LINQ y prefiero decirlo a ocultarlo."
+
+#: src/regex-dotnet/README.md:104
+msgctxt "s-3092f522323b-0044"
+msgid "The total printed is the count of captures on the ⟦CODE_0001⟧ stack, which the regex built. The per-row hours are the lengths of the ⟦CODE_0002⟧ captures."
+msgstr "El total impreso es el número de capturas de la pila ⟦CODE_0001⟧, que construyó la expresión regular. Las horas de cada fila son las longitudes de las capturas ⟦CODE_0002⟧."
+
+#: src/regex-dotnet/README.md:105
+msgctxt "s-1f8e33e97fcc-0045"
+msgid "The pattern is unformatted on purpose, as in the other tracks."
+msgstr "El patrón no tiene formato a propósito, igual que en las otras variantes."
+
+#: src/regex-dotnet/README.md:109
+msgctxt "s-341d7c13f6c2-0046"
+msgid "See the [root README](⟦DEST_0001⟧) for how this compares to the other regex entries, and [⟦CODE_0002⟧](⟦DEST_0003⟧) if you want to write your own."
+msgstr "Consulta el [README raíz](⟦DEST_0001⟧) para ver cómo se compara esto con las otras entradas de regex, y [⟦CODE_0002⟧](⟦DEST_0003⟧) si quieres escribir las tuyas."

@@ -1,6 +1,6 @@
 ---
 name: "PCRE2"
-teaches: "that regex callouts can serve as a tiny instruction set."
+teaches: "que los callouts de regex pueden servir como un pequeño conjunto de instrucciones."
 kind: weird
 languages: [c, pcre2, regex]
 lesson: "lenguajes/regex.md#pcre2-callouts-as-an-instruction-set"
@@ -8,17 +8,17 @@ loop-by: backtracking-search
 evaluation: search
 assurance: implementation-permitted
 pairs-with: regex-perl
-machine: "A backtracking search with hooks"
-state: "A C struct that never rewinds"
+machine: "Una búsqueda con retroceso y ganchos"
+state: "Una struct de C que nunca retrocede"
 tags: [backtracking, callback, compiler-optimization, computation-versus-orchestration, cut, domain-specific-language, interpreter-and-virtual-machine, regular-expression, side-effect, state]
 ---
-# Regex challenge, Track 2: PCRE2 callouts as a tiny DSL
+# Reto de regex, ruta 2: callouts de PCRE2 como un DSL minúsculo
 
-**Teaches you:** that regex callouts can serve as a tiny instruction set.
+**Te enseña:** que los callouts de regex pueden servir como un conjunto diminuto de instrucciones.
 
-One `pcre2_match` call runs the whole timecard demo, then reports **no match**. It follows the regex challenge plan (since removed; it lives in git history as `plans/regex.md`). **DEMO ONLY**: the records are fictional and go to a scratch file, with no connection to any real time-reporting system.
+Una sola llamada a `pcre2_match` ejecuta toda la demostración de la tarjeta de horas y luego informa **sin coincidencia**. Sigue el plan del reto de regex (ya se eliminó; está en el historial de git como `plans/regex.md`). **DEMO ONLY**: los registros son ficticios y van a un archivo temporal, sin conexión con ningún sistema real de registro de horas.
 
-## Run it
+## Ejecútalo
 
 ```bash
 sudo apt install -y build-essential pkg-config libpcre2-dev
@@ -27,7 +27,7 @@ make run          # build and run the demo
 make check        # 25 runs, asserts the rules below
 ```
 
-Records are appended to `$XDG_DATA_HOME/RegexPCRE2/demo-timecards.tsv` (default `~/.local/share/RegexPCRE2/`). Delete that directory to start over. A run looks like:
+Los registros se añaden a `$XDG_DATA_HOME/RegexPCRE2/demo-timecards.tsv` (por defecto, `~/.local/share/RegexPCRE2/`). Elimina ese directorio para empezar de nuevo. Una ejecución se ve así:
 
 ```text
 pcre2_match returned -1 (no match)
@@ -39,80 +39,80 @@ Debugging	15	44	DEMO ONLY
 # committed total=44 entries=3 DEMO ONLY
 ```
 
-## Run it in a container
+## Ejecuta el programa en un contenedor
 
-Prerequisite: Docker, set up once as described in [`SANDBOX-SETUP.md`](../../SANDBOX-SETUP.md#docker).
+Requisito previo: Docker, configurado una sola vez como se describe en [`SANDBOX-SETUP.md`](../../SANDBOX-SETUP.md#docker).
 
 ```bash
 sandbox/container/run-image.sh src/regex-pcre2
 ```
 
-It builds this folder's [`Dockerfile`](Dockerfile) and runs the result with no network, a read-only file system and user `nobody`, then prints the output and a read-only look at the rows it wrote. The C host is compiled in a build stage. The image holds only the binary and the shared libpcre2, with no compiler or headers.
+Construye el [`Dockerfile`](Dockerfile) de esta carpeta y ejecuta el resultado sin red, con un sistema de archivos de solo lectura y el usuario `nobody`, luego imprime la salida y una vista de solo lectura de las filas que escribió. El anfitrión en C se compila en una etapa de compilación. La imagen contiene solo el binario y la biblioteca compartida libpcre2, sin compilador ni encabezados.
 
-## Program Flow
+## Flujo del programa
 
 ```mermaid
 sequenceDiagram
-    accTitle: regex-pcre2: the engine calls back into C at each callout
-    accDescr: A sequence diagram. The C host compiles the pattern and calls pcre2_match once. The engine reaches an init callout, and the host opens the scratch file and writes the header. For each category, the engine reaches a gate callout, which returns 0 while the total is 40 or less. The engine matches the next category name from the subject, and then reaches a book callout, where the host draws hours and writes the record. When the gate returns 1, because the total is over 40, that pass fails and the star loop ends. The commit verb forbids retrying fewer passes, and a commit callout writes the summary and closes the file. A final fail verb makes the match return no match, and the host prints the file.
-    participant H as C host
-    participant E as PCRE2 engine
-    participant K as Callout function
-    H->>E: pcre2_match, once
-    E->>K: init: opens the file, writes the header
-    loop for each category in the subject
-        E->>K: gate: returns 0 while the total is 40 or less
-        E->>E: match the next category name
-        E->>K: book: draws hours, writes the record
+    accTitle: regex-pcre2: el motor llama de vuelta a C en cada callout
+    accDescr: Un diagrama de secuencia. El anfitrión en C compila el patrón y llama a pcre2_match una sola vez. El motor llega a un callout init y el anfitrión abre el archivo temporal y escribe el encabezado. Para cada categoría, el motor llega a un callout gate, que devuelve 0 mientras el total no pase de 40. El motor busca la coincidencia del siguiente nombre de categoría en la cadena de entrada y luego llega a un callout book, donde el anfitrión sortea las horas y escribe el registro. Cuando el callout gate devuelve 1, porque el total pasa de 40, esa pasada falla y el bucle con asterisco termina. El verbo commit prohíbe reintentar con menos pasadas y un callout commit escribe el resumen y cierra el archivo. Un verbo fail final hace que la búsqueda no encuentre coincidencia y el anfitrión imprime el archivo.
+    participant H as Anfitrión en C
+    participant E as Motor PCRE2
+    participant K as Función de callout
+    H->>E: pcre2_match, una vez
+    E->>K: init: abre el archivo y escribe el encabezado
+    loop para cada categoría en el sujeto
+        E->>K: gate: devuelve 0 mientras el total no pasa de 40
+        E->>E: busca la coincidencia del nombre de la siguiente categoría
+        E->>K: libro: obtiene las horas y escribe el registro
     end
-    E->>K: gate: returns 1, the total is over 40
-    Note over E: the pass fails, the star loop ends
-    E->>K: commit, after COMMIT: writes the summary
-    E-->>H: FAIL: no match, after all the work
-    H->>H: print the file
+    E->>K: gate: devuelve 1, el total pasa de 40
+    Note over E: la pasada falla, el bucle de la estrella termina
+    E->>K: commit, después de COMMIT: escribe el resumen
+    E-->>H: FAIL: sin coincidencia, después de todo el trabajo
+    H->>H: imprime el archivo
 ```
 
-**What this shows:** the C host has no loop. It calls `pcre2_match` once and the engine calls back into the host at every callout. The callout name is an opcode. The return value is the decision: `0` means continue and `1` means fail this branch.
+**Qué muestra:** el anfitrión en C no tiene bucle. Llama a `pcre2_match` una sola vez y el motor vuelve a llamar al anfitrión en cada callout. El nombre del callout es un código de operación. El valor de retorno es la decisión: `0` significa continuar y `1` significa hacer fallar esta rama.
 
-**Why this mechanism matters:** the stop rule is a callout that returns `1`, so the `*` quantifier ends by backtracking. `(*COMMIT)` makes `commit` run exactly once, and `(*FAIL)` makes the whole match lose. The callouts are synchronous calls from the engine, not queued events.
+**Por qué importa este mecanismo:** la regla de parada es un callout que devuelve `1`, así que el cuantificador `*` termina por retroceso. `(*COMMIT)` hace que `commit` se ejecute exactamente una vez, y `(*FAIL)` hace que toda la coincidencia falle. Los callouts son llamadas síncronas del motor, no eventos en cola.
 
-## How the stunt works
+## Cómo funciona el truco
 
-The pattern is the whole program:
+El patrón es todo el programa:
 
 ```text
 ^(?C"init")(?:(?C"gate")(Meetings|Coding|Debugging|Learning)(?C"book"))*(*COMMIT)(?C"commit")(*FAIL)
 ```
 
-The C host (`timecards.c`) compiles it, registers one callout dispatcher, calls `pcre2_match` once against `MeetingsCodingDebuggingLearningMeetings` (five names, so that four 10-hour cards, a total of exactly 40, can be followed by a fifth), and prints the file. It has no `for`, `while`, `do`, `goto`, or recursion (`check.sh` greps for them). The callout strings are opcodes:
+El anfitrión en C (`timecards.c`) lo compila, registra un despachador de callouts, llama a `pcre2_match` una vez con `MeetingsCodingDebuggingLearningMeetings` (cinco nombres, para que a cuatro tarjetas de 10 horas, un total de exactamente 40, pueda seguirles una quinta) e imprime el archivo. No tiene `for`, `while`, `do` ni `goto`, ni recursión (`check.sh` los busca con grep). Las cadenas de texto de los callouts son opcodes:
 
-| Opcode | Does | Return value to the engine |
+| Opcode | Qué hace | Valor de retorno al motor |
 | --- | --- | --- |
-| `init` | opens the scratch file, writes the header | 0 (continue) |
-| `gate` | the stop rule | 1 (fail this branch) once the total is over 40, which ends the `*` loop; else 0 |
-| `book` | draws 10 to 19 hours, adds to the total, writes the record for the category that was just matched (read from capture group 1) | 0 |
-| `commit` | writes the summary line, closes the file | 0 |
+| `init` | abre el archivo temporal y escribe el encabezado | 0 (continuar) |
+| `gate` | la regla de parada | 1 (falla esta rama) cuando el total pasa de 40, lo que termina el bucle `*`; si no, 0 |
+| `book` | sortea de 10 a 19 horas, suma al total, escribe el registro de la categoría que acaba de coincidir (se lee del grupo de captura 1) | 0 |
+| `commit` | escribe la línea de resumen y cierra el archivo | 0 |
 
-PCRE2 supplies the iteration (`*`), the category walk (the subject string and the alternation), and the backtracking. `(*COMMIT)` keeps a failed match from retrying shorter loops, so `commit` runs exactly once. `(*FAIL)` then makes the whole match lose, after everything was written. That is the signature move.
+PCRE2 aporta la iteración (`*`), el recorrido de categorías (la cadena de texto sujeto y la alternancia) y el retroceso. `(*COMMIT)` evita que una coincidencia fallida reintente bucles más cortos, así que `commit` se ejecuta exactamente una vez. Después, `(*FAIL)` hace que toda la coincidencia falle, cuando ya se escribió todo. Esa es la jugada distintiva.
 
-## The pulse
+## El pulso
 
-On a real terminal, the match finishes the records, then pulses a **DEMO ONLY** banner through a gray ramp for about three seconds (60 frames, 50 ms each), then clears it. `pulse` and `settle` are two more opcodes: the host appends 60 `~` characters to the subject, and `[A-Za-z]*(?:~(?C"pulse"))*(*COMMIT)(?C"settle")` draws one frame per tick. The host still has no loop. The second `(*COMMIT)` stops the final `(*FAIL)` from backtracking into shorter tick counts and rerunning `settle`. Nothing is appended when stdout is not a terminal, so pipes and `check.sh` skip it.
+En una terminal real, la coincidencia termina los registros, luego hace pulsar un banner **DEMO ONLY** a través de una rampa de grises durante unos tres segundos (60 fotogramas, 50 ms cada uno) y después lo borra. `pulse` y `settle` son dos opcodes más: el anfitrión añade 60 caracteres `~` al sujeto, y `[A-Za-z]*(?:~(?C"pulse"))*(*COMMIT)(?C"settle")` dibuja un fotograma por tick. El anfitrión sigue sin tener bucle. El segundo `(*COMMIT)` evita que el `(*FAIL)` final haga retroceso hacia conteos de ticks más cortos y vuelva a ejecutar `settle`. No se añade nada cuando stdout no es una terminal, así que las tuberías y `check.sh` lo omiten.
 
-## The optimizer caveat, as the plan asks
+## La advertencia sobre el optimizador, como pide el plan
 
-Callouts only mean something if the engine actually visits them. This program compiles with `PCRE2_NO_AUTO_POSSESS | PCRE2_NO_START_OPTIMIZE | PCRE2_NO_DOTSTAR_ANCHOR`, so the optimizer cannot skip or reorder the callout points. It also does **not** use the PCRE2 JIT, which does not support callouts at all. `check.sh` verifies that every run's committed total and entry count agree with the rows actually written, which is the evidence that no callout was silently skipped. This was tested with the system PCRE2 (10.42 on Ubuntu 24.04); I did not test with those flags removed to see which callouts the optimizer would elide.
+Los callouts solo tienen sentido si el motor realmente los visita. Este programa se compila con `PCRE2_NO_AUTO_POSSESS | PCRE2_NO_START_OPTIMIZE | PCRE2_NO_DOTSTAR_ANCHOR`, así que el optimizador no puede omitir ni reordenar los puntos de callout. Además, **no** usa el JIT de PCRE2, que no admite callouts en absoluto. `check.sh` verifica que el total confirmado y el número de entradas de cada ejecución coincidan con las filas realmente escritas, y esa es la evidencia de que ningún callout se omitió en silencio. Probé con el PCRE2 del sistema (10.42 en Ubuntu 24.04); no probé sin esas banderas para ver qué callouts eliminaría el optimizador.
 
-## What `check.sh` enforces
+## Qué impone `check.sh`
 
-`check.sh` checks that the C host has no loop keyword (comments excluded). Then it runs the program 25 times. Each run must exit cleanly and report `pcre2_match returned -1 (no match)`. Each run must print as many rows as it has entries, with at least three entries, hours from 10 to 19, no early stop (the total must end over 40), three to five entries, and a total of at most 59. It also builds a copy of the host in which every card is worth 10 hours and checks that exactly 40 continues: five rows, the fifth `Meetings`, total 50.
+`check.sh` comprueba que el anfitrión en C no tenga ninguna palabra clave de bucle (se excluyen los comentarios). Después ejecuta el programa 25 veces. Cada ejecución debe terminar sin errores e informar `pcre2_match returned -1 (no match)`. Cada ejecución debe imprimir tantas filas como entradas tenga, con al menos tres entradas, horas de 10 a 19, sin parada anticipada (el total debe terminar en más de 40), de tres a cinco entradas y un total de 59 como máximo. También compila una copia del anfitrión en la que cada tarjeta vale 10 horas y comprueba que un total de exactamente 40 continúa: cinco filas, la quinta `Meetings`, total 50.
 
-## Gotchas worth knowing
+## Trampas que conviene conocer
 
-- The `*` loop ends because `gate` fails the next iteration (or the five category names run out, which only matters when the total is still 40 or less after four cards: it never is after five), not because anything in C decides to stop. The C only answers the question "is the total over 40?" when the engine asks.
-- The state (`total`, `entries`, the file) lives in a C struct that the callouts share, so, unlike Perl's `local`, none of it rewinds on backtracking. That suits this program: nothing is ever undone.
-- The dispatcher is a ternary chain, not a table, to keep the host free of loops and function-pointer tricks. Unknown opcodes (and I/O errors) abort the match with `PCRE2_ERROR_CALLOUT`, which is deliberately not the `-1` that means "no match", and the host reports success only if `commit` actually ran.
+- El bucle `*` termina porque `gate` falla en la siguiente iteración (o porque se agotan los cinco nombres de categoría, lo cual solo importa cuando el total todavía no pasa de 40 después de cuatro tarjetas: después de cinco nunca ocurre), y no porque algo en C decida detenerse. El código en C solo responde a la pregunta "¿el total pasa de 40?" cuando el motor se lo pregunta.
+- El estado (`total`, `entries`, el archivo) vive en una struct de C que comparten los callouts, así que, a diferencia de `local` en Perl, nada de eso se revierte con el retroceso. Eso conviene a este programa: nunca se deshace nada.
+- El despachador es una cadena de operadores ternarios, no una tabla, para mantener el anfitrión libre de bucles y de trucos con punteros a función. Los códigos de operación desconocidos (y los errores de E/S) abortan la coincidencia con `PCRE2_ERROR_CALLOUT`, que a propósito es distinto de `-1`, que significa "no hay coincidencia". El anfitrión informa de éxito solo si `commit` se ejecutó de verdad.
 
 ---
 
-See the [root README](../../README.md#the-results-so-far) for how this compares to the other regex entries, and [`RETO.md`](../../RETO.md) if you want to write your own.
+Consulta el [README raíz](../../README.md#the-results-so-far) para ver cómo se compara esto con las demás entradas de regex, y [`RETO.md`](../../RETO.md) si quieres escribir las tuyas.
