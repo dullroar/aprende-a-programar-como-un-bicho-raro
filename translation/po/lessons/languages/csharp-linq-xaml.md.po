@@ -170,27 +170,27 @@ msgstr "⟦SEP_0005⟧ 1 ⟦SEP_0006⟧ ⟦CODE_0001⟧ sobre una semana laboral
 #: lessons/languages/csharp-linq-xaml.md:62
 msgctxt "s-31647e0aaf4e-0032"
 msgid "⟦SEP_0003⟧ tuple ⟦SEP_0004⟧ ⟦CODE_0001⟧ ([L66-68](⟦DEST_0002⟧)) ⟦SEP_0005⟧ Tuple elements evaluate **left to right**, which sequences the save after every entity is tracked. ⟦SEP_0006⟧"
-msgstr ""
+msgstr "⟦SEP_0003⟧ tupla ⟦SEP_0004⟧ ⟦CODE_0001⟧ ([L66-68](⟦DEST_0002⟧)) ⟦SEP_0005⟧ Los elementos de la tupla se evalúan **de izquierda a derecha**. Esto sitúa el guardado después de que se rastrea cada entidad. ⟦SEP_0006⟧"
 
 #: lessons/languages/csharp-linq-xaml.md:63
 msgctxt "s-dd6d6037b099-0033"
 msgid "⟦SEP_0008⟧ 2 ⟦SEP_0009⟧ ⟦CODE_0001⟧ and ⟦CODE_0002⟧ ([L72-78](⟦DEST_0003⟧)) ⟦SEP_0010⟧ The ⟦CODE_0004⟧ to ⟦CODE_0005⟧ boundary: EF translates ⟦CODE_0006⟧ to SQL, and ⟦CODE_0007⟧ is where it stops. ⟦SEP_0011⟧"
-msgstr ""
+msgstr "⟦SEP_0008⟧ 2 ⟦SEP_0009⟧ ⟦CODE_0001⟧ y ⟦CODE_0002⟧ ([L72-78](⟦DEST_0003⟧)) ⟦SEP_0010⟧ El límite entre ⟦CODE_0004⟧ y ⟦CODE_0005⟧: EF traduce ⟦CODE_0006⟧ a SQL y se detiene en ⟦CODE_0007⟧. ⟦SEP_0011⟧"
 
 #: lessons/languages/csharp-linq-xaml.md:64
 msgctxt "s-920459831906-0034"
 msgid "⟦SEP_0006⟧ 3-5 ⟦SEP_0007⟧ ⟦CODE_0001⟧, ⟦CODE_0002⟧ builds the WPF window, ⟦CODE_0003⟧ pulses and calls ⟦CODE_0004⟧ ⟦SEP_0008⟧ Lazy ⟦CODE_0005⟧ stages do nothing until enumerated. ⟦SEP_0009⟧"
-msgstr ""
+msgstr "⟦SEP_0006⟧ 3-5 ⟦SEP_0007⟧ ⟦CODE_0001⟧, ⟦CODE_0002⟧ construye la ventana WPF, ⟦CODE_0003⟧ emite pulsos y llama a ⟦CODE_0004⟧ ⟦SEP_0008⟧ Las etapas diferidas de ⟦CODE_0005⟧ no hacen nada hasta que se enumeran. ⟦SEP_0009⟧"
 
 #: lessons/languages/csharp-linq-xaml.md:65
 msgctxt "s-1967b7982af5-0035"
 msgid "⟦SEP_0002⟧ final ⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ An eager operator at the end drags the whole lazy pipeline through. ⟦SEP_0005⟧"
-msgstr ""
+msgstr "⟦SEP_0002⟧ final ⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ Un operador de evaluación inmediata al final arrastra toda la canalización diferida. ⟦SEP_0005⟧"
 
 #: lessons/languages/csharp-linq-xaml.md:67
 msgctxt "s-76cb4a65bb48-0036"
 msgid "Why two nested ⟦CODE_0001⟧? C# allows only a few expression shapes as a statement (invocation, assignment, ⟦CODE_0002⟧...), not ⟦CODE_0003⟧. So each stage is nested directly as the argument to the next ⟦CODE_0004⟧, which turns a single value back into a one-element sequence so the next step can stay a LINQ operator."
-msgstr ""
+msgstr "¿Por qué hay dos ⟦CODE_0001⟧ anidados? C# permite pocas formas de expresión como sentencia (invocación, asignación, ⟦CODE_0002⟧...), pero no ⟦CODE_0003⟧. Por eso cada etapa se anida directamente como argumento del siguiente ⟦CODE_0004⟧. Este convierte un valor de nuevo en una secuencia de un elemento para que el siguiente paso siga siendo un operador LINQ."
 
 #: lessons/languages/csharp-linq-xaml.md:69
 msgctxt "s-6512b902719b-0037"

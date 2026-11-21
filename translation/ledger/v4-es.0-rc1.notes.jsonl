@@ -2176,3 +2176,7 @@
 {"segment_id": "s-6135b7e28257-0009", "ts": "2026-11-21T20:15:06Z", "findings": ["I3: digit token 3 appears 0 time(s) in the source, 1 in the target"]}
 {"segment_id": "s-971e3ad80ea0-0012", "ts": "2026-11-21T20:15:06Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
 {"segment_id": "s-299b7a6f9cbe-0020", "ts": "2026-11-21T20:18:46Z", "findings": [], "playful_note": "Conserva la amenaza cómica e hiperbólica."}
+{"segment_id": "s-31647e0aaf4e-0032", "ts": "2026-11-21T20:23:47Z", "findings": ["I21: identifier 'SaveChanges' must stay literal (the English names it here); describe around it, never translate it"]}
+{"segment_id": "s-dd6d6037b099-0033", "ts": "2026-11-21T20:23:47Z", "findings": ["I21: identifier 'SelectMany' must stay literal (the English names it here); describe around it, never translate it"]}
+{"segment_id": "s-920459831906-0034", "ts": "2026-11-21T20:23:47Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-1967b7982af5-0035", "ts": "2026-11-21T20:23:47Z", "findings": ["I21: identifier 'Aggregate' must stay literal (the English names it here); describe around it, never translate it"]}

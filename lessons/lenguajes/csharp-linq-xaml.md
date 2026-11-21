@@ -59,12 +59,12 @@ Una sentencia de expresión terminada en `;` se construye con llamadas LINQ. Emp
 | Etapa | Operador | Lección |
 | --- | --- | --- |
 | 1 | `Aggregate` sobre una semana laboral fija, `ctx.Add(...)` dentro de `new Func<...>(() => {...}).Invoke()` | `Aggregate` es de **evaluación inmediata**; se ejecuta primero. |
-| tuple | `(..., ctx.SaveChanges())` ([L66-68](../../src/LinqChallenge1/Program.cs#L66-L68)) | Tuple elements evaluate **left to right**, which sequences the save after every entity is tracked. |
-| 2 | `Enumerable.Repeat(x, 1).SelectMany(...)` and `.AsEnumerable()` ([L72-78](../../src/LinqChallenge1/Program.cs#L72-L78)) | The `IQueryable<T>` to `IEnumerable<T>` boundary: EF translates `Where/OrderBy/Select` to SQL, and `AsEnumerable()` is where it stops. |
-| 3-5 | `Aggregate`, `Select` builds the WPF window, `Select` pulses and calls `Application.Run()` | Lazy `Select` stages do nothing until enumerated. |
-| final | `.Aggregate(0, (count, _) => count + 1)` | An eager operator at the end drags the whole lazy pipeline through. |
+| tupla | `(..., ctx.SaveChanges())` ([L66-68](../../src/LinqChallenge1/Program.cs#L66-L68)) | Los elementos de la tupla se evalúan **de izquierda a derecha**. Esto sitúa el guardado después de que se rastrea cada entidad. |
+| 2 | `Enumerable.Repeat(x, 1).SelectMany(...)` y `.AsEnumerable()` ([L72-78](../../src/LinqChallenge1/Program.cs#L72-L78)) | El límite entre `IQueryable<T>` y `IEnumerable<T>`: EF traduce `Where/OrderBy/Select` a SQL y se detiene en `AsEnumerable()`. |
+| 3-5 | `Aggregate`, `Select` construye la ventana WPF, `Select` emite pulsos y llama a `Application.Run()` | Las etapas diferidas de `Select` no hacen nada hasta que se enumeran. |
+| final | `.Aggregate(0, (count, _) => count + 1)` | Un operador de evaluación inmediata al final arrastra toda la canalización diferida. |
 
-Why two nested `Enumerable.Repeat(..., 1)`? C# allows only a few expression shapes as a statement (invocation, assignment, `await`...), not `x is var r && ...`. So each stage is nested directly as the argument to the next `Repeat`, which turns a single value back into a one-element sequence so the next step can stay a LINQ operator.
+¿Por qué hay dos `Enumerable.Repeat(..., 1)` anidados? C# permite pocas formas de expresión como sentencia (invocación, asignación, `await`...), pero no `x is var r && ...`. Por eso cada etapa se anida directamente como argumento del siguiente `Repeat`. Este convierte un valor de nuevo en una secuencia de un elemento para que el siguiente paso siga siendo un operador LINQ.
 
 ### LinqChallenge2: query syntax all the way down
 

@@ -426,3 +426,7 @@
 {"id":"EXC-426","segment":"s-87d9e31bff8d-0105","invariant":"I7","reason":"'state' is the verb (declarar los costos), not the noun state (estado).","task":"P4-lessons-study-guides-languages-13"}
 {"id":"EXC-427","segment":"s-4b82b8c5ecc7-0037","invariant":"I7","reason":"Here builds is a verb meaning constructs a description, not the noun build or compilation.","task":"P4-lessons-2"}
 {"id":"EXC-428","segment":"s-971e3ad80ea0-0012","invariant":"I7","reason":"Build here means construct a window at runtime, not compile; construye preserves the verb.","task":"P4-lessons-languages-2"}
+{"id":"EXC-429","segment":"s-31647e0aaf4e-0032","invariant":"I21","reason":"SaveChanges is preserved inside the protected code placeholder; the checker cannot see it in the masked target.","task":"P4-lessons-languages-2"}
+{"id":"EXC-430","segment":"s-dd6d6037b099-0033","invariant":"I21","reason":"SelectMany is preserved inside a protected code placeholder; the checker cannot see it in the masked target.","task":"P4-lessons-languages-2"}
+{"id":"EXC-431","segment":"s-920459831906-0034","invariant":"I7","reason":"Build means construct the window at runtime, not compilation; construye preserves the verb.","task":"P4-lessons-languages-2"}
+{"id":"EXC-432","segment":"s-1967b7982af5-0035","invariant":"I21","reason":"Aggregate is preserved inside the protected code placeholder; the checker cannot see it in the masked target.","task":"P4-lessons-languages-2"}
