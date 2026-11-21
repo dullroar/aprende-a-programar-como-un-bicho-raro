@@ -8,14 +8,14 @@ loop-by: loop-statement
 evaluation: eager
 assurance: guaranteed
 pairs-with: ModernChallenge1
-machine: "Tres espacios para expresiones"
+machine: "Tres posiciones de expresión"
 state: "Campos de una clase anónima"
 tags: [control-flow, side-effect, thread-safety]
 analogies: [closure]
 ---
-# Una sola instrucción, edición Java
+# Una sola sentencia, edición Java
 
-Port a Java del reto en C# de Jim Lehmer, hecho por Ken. Es uno de cuatro ports hermanos, junto con [Kotlin](../KotlinChallenge1/README.md), [Python](../PythonChallenge1/README.md) y [Go](../GoChallenge1/README.md), escritos para poder comparar los lenguajes. Este README también contiene la [comparación lado a lado](#lado-a-lado) de los cuatro.
+Adaptación a Java del reto en C# de Jim Lehmer, hecha por Ken. Es una de las cuatro adaptaciones hermanas, junto con [Kotlin](../KotlinChallenge1/README.md), [Python](../PythonChallenge1/README.md) y [Go](../GoChallenge1/README.md), escritas para poder comparar los lenguajes. Este README también contiene la [comparación lado a lado](#lado-a-lado) de las cuatro.
 
 La restricción: `main` contiene exactamente una sentencia, un bucle `for` con el cuerpo vacío. La cabecera del bucle hace todo el trabajo. Esto es una acrobacia con la mecánica de las expresiones. No es un patrón de arquitectura y no es buen código de producción.
 
@@ -23,17 +23,17 @@ La restricción: `main` contiene exactamente una sentencia, un bucle `for` con e
 
 Las cuatro versiones hacen lo mismo, en el mismo orden:
 
-1. Abre una base de datos SQLite local (`demo-timecards.db`) y crea una tabla `time_cards` si no existe.
-2. Entra en un bucle. Cada pasada suma de 10 a 19 horas aleatorias, prepara una tarjeta de horas inventada con la siguiente categoría (Meetings, Coding, Debugging, Learning) e inicia un hilo en segundo plano que guarda las tarjetas preparadas.
+1. El programa abre una base de datos SQLite local (`demo-timecards.db`) y crea una tabla `time_cards` si no existe.
+2. Después entra en un bucle. Cada pasada suma de 10 a 19 horas aleatorias, prepara una tarjeta de horas inventada con la siguiente categoría (Meetings, Coding, Debugging, Learning) e inicia un hilo en segundo plano que guarda las tarjetas preparadas.
 3. El bucle se detiene cuando el total pasa de 40 o cuando se acaban las categorías. Hay cinco nombres de categoría (Meetings se repite), así que un total de exactamente 40 después de cuatro tarjetas continúa con una quinta. Son de tres a cinco pasadas.
-4. Muestra una ventana que dice **DEMO ONLY** con el total de horas simuladas. La ventana pulsa (se desvanece y reaparece) hasta que la cierres.
-5. Espera a que terminen los guardados y después sale.
+4. Luego muestra una ventana que dice **DEMO ONLY** con el total de horas simuladas. La ventana parpadea suavemente (se desvanece y reaparece) hasta que la cierres.
+5. Por último, espera a que terminen los guardados y después sale.
 
 Las tarjetas se marcan como `is_demo`. Nada de esto se conecta con un sistema real de registro de horas. Borra la carpeta `data` para empezar de nuevo; git la ignora.
 
 ## Ejecútalo
 
-Necesitas JDK 25. El Gradle wrapper hace el resto. Ejecútalo desde una sesión de escritorio:
+Necesitas el JDK 25. Gradle Wrapper hace el resto. Ejecútalo desde una sesión de escritorio:
 
 ```powershell
 cd src\JavaChallenge1
@@ -52,7 +52,7 @@ Requisito previo: Docker, configurado una sola vez como se describe en [`SANDBOX
 sandbox/container/run-image.sh --online-build --out ./results src/JavaChallenge1
 ```
 
-Compila el [`Dockerfile`](Dockerfile) de esta carpeta y ejecuta el resultado sin red, con un sistema de archivos de solo lectura y con el usuario `nobody`. Gradle y OpenJDK 25 compilan un jar de Spring Boot en una etapa de compilación; la imagen contiene solo ese jar sobre un JRE de OpenJDK 25 con AWT, Xvfb y una herramienta para capturar la pantalla, sin JDK ni Gradle (unos 760 MB, la más grande del conjunto). La ventana se abre en una pantalla virtual (Xvfb) *dentro* del contenedor, así que no se dibuja nada en tu escritorio: la ejecución captura la ventana, la cierra e imprime las filas que escribió. Con `--out`, `results/screenshot.png` es la ventana. Se necesita `--online-build` porque la compilación descarga Gradle (desde el wrapper de esta entrada) y las dependencias de Maven; la ejecución en sí no tiene red.
+El script hace la compilación de la imagen a partir del [`Dockerfile`](Dockerfile) de esta carpeta y ejecuta el resultado sin red, con un sistema de archivos de solo lectura y con el usuario `nobody`. Gradle y OpenJDK 25 compilan un JAR de Spring Boot en una etapa de compilación; la imagen incluye solo ese JAR y un entorno JRE de OpenJDK 25 con AWT, Xvfb y una herramienta de captura de pantalla, sin JDK ni Gradle (unos 760 MB, la más grande del conjunto). La ventana se abre en una pantalla virtual (Xvfb) *dentro* del contenedor, así que no se dibuja nada en tu escritorio: la ejecución captura la ventana, la cierra e imprime las filas que escribió. Con `--out`, `results/screenshot.png` es la ventana. Se necesita `--online-build` porque la compilación descarga Gradle (desde el Gradle Wrapper de esta entrada) y las dependencias de Maven; la ejecución en sí no tiene red.
 
 ## Ejecútalo en Windows Sandbox
 
@@ -62,13 +62,13 @@ Requisitos previos: Windows Sandbox (un entorno aislado, o *sandbox*, donde se e
 sandbox\windows\run.ps1 src\JavaChallenge1
 ```
 
-Ejecuta la entrada en una máquina virtual desechable sin red, captura la ventana, le pide que se cierre e imprime lo que guardó. **Aún no está probado en hardware real**; necesita un JDK y un *Gradle home* ya poblado en el anfitrión.
+Ejecuta la entrada en una máquina virtual desechable sin red, captura la ventana, le pide que se cierre e imprime lo que guardó. **Aún no está probado en hardware real**; necesita un JDK y un directorio de usuario de Gradle (*Gradle home*) ya poblado en el anfitrión.
 
 ## Estructura
 
 | Archivo | Papel |
 | --- | --- |
-| [Program.java](src/main/java/challenge1/javaversion/Program.java) | `main` y su única instrucción |
+| [Program.java](src/main/java/challenge1/javaversion/Program.java) | `main` y su única sentencia |
 | `DemoTimeCard.java` | La entidad |
 | `DemoTimeCardRepository.java` | El repositorio de Spring Data |
 
@@ -78,8 +78,8 @@ Como en el original, la entidad y el tipo de acceso a datos son el único códig
 
 ```mermaid
 flowchart TD
-    accTitle: JavaChallenge1: una instrucción for cuya rama falsa abre un cuadro de diálogo modal
-    accDescr: Un diagrama de flujo. El inicializador construye un objeto anónimo con el contexto de Spring, el repositorio, las horas, un iterador de categorías y un cerrojo. La condición es verdadera mientras el total no pasa de 40 y queda una categoría. Entonces se ejecuta el cuerpo vacío y la actualización adquiere el cerrojo, suma horas, prepara una tarjeta, libera el cerrojo e inicia un hilo que guarda mediante reflexión. Cuando la condición es falsa, la rama else construye un diálogo de Swing a partir de XML de Spring en tiempo de ejecución y lo muestra. El diálogo modal bloquea mientras un bean Timer desvanece gradualmente los colores de la etiqueta. Cuando se cierra, Double.isNaN convierte el resultado en false y el for termina.
+    accTitle: JavaChallenge1: una sentencia for cuya rama falsa abre un cuadro de diálogo modal
+    accDescr: Un diagrama de flujo. El inicializador construye un objeto anónimo con el contexto de Spring, el repositorio, las horas, un iterador de categorías y un cerrojo. La condición es verdadera mientras el total no pasa de 40 y queda una categoría. Entonces se ejecuta el cuerpo vacío y la actualización adquiere el bloqueo, suma horas, prepara una tarjeta, libera el bloqueo e inicia un hilo que guarda mediante reflexión. Cuando la condición es falsa, la rama else construye un diálogo de Swing a partir de XML de Spring en tiempo de ejecución y lo muestra. El diálogo modal bloquea mientras un bean Timer desvanece gradualmente los colores de la etiqueta. Cuando se cierra, Double.isNaN convierte el resultado en false y el for termina.
     A["Inicializador: la clase anónima contiene el contexto de Spring, el repositorio, las horas, las categorías y el cerrojo"] --> B{{"Condición: ¿total <= 40 y categories.hasNext()?"}}
     B -->|true| C["Cuerpo vacío"]
     C --> D["Actualización: bloquea, suma horas, deja una tarjeta en preparación, desbloquea e inicia un hilo"]
@@ -90,15 +90,15 @@ flowchart TD
     F --> G["El diálogo se cierra: Double.isNaN convierte el resultado en false"]
 ```
 
-**Qué muestra:** el `for (init; condition; update) { }` literal de tres cláusulas. La condición decide entre "vuelve a dar otra vuelta" y "muestra la ventana y luego di false". La ventana se construye a partir de definiciones de beans de Spring en XML cuando se necesita, y el diálogo modal no regresa hasta que el usuario lo cierra.
+**Qué muestra:** el `for (init; condition; update) { }` literal de tres cláusulas. La condición decide entre "vuelve a dar otra vuelta" y "muestra la ventana y luego devuelve false". La ventana se construye a partir de definiciones de beans de Spring en XML cuando se necesita, y el diálogo modal bloquea la llamada hasta que el usuario lo cierra.
 
-**Por qué importa este mecanismo:** esta entrada mantiene el flujo de control en el `for` y coloca la llamada bloqueante de un framework (un diálogo modal con su propio manejo de eventos) dentro de la condición. El hilo punteado es el guardado en segundo plano del original, torpe a propósito.
+**Por qué importa este mecanismo:** esta entrada mantiene el flujo de control en el `for` y coloca la llamada bloqueante de un framework (un diálogo modal con su propio manejo de eventos) dentro de la condición. La arista punteada lleva al hilo del guardado en segundo plano del original, torpe a propósito.
 
 ## Cómo funciona el truco
 
-Cada versión divide el trabajo en tres partes: un **inicializador** que construye el estado del bucle, una **condición** que decide si el bucle sigue (y, en la última comprobación, muestra la ventana) y una **actualización** que hace una pasada de trabajo. Los banners de comentarios en el código fuente marcan los límites.
+Cada versión divide el trabajo en tres partes: un **inicializador** que construye el estado del bucle, una **condición** que decide si el bucle sigue (y, en la última comprobación, muestra la ventana) y una **actualización** que hace una pasada de trabajo. Unos comentarios destacados en el código fuente marcan los límites entre cláusulas.
 
-Java usa la forma original literal: `for (init; condition; update) { }`, con los dos puntos y coma.
+Java usa la forma original literal: `for (init; condition; update) { }`, con los dos puntos y coma que separan las cláusulas.
 
 - **Inicializador.** `var i = new Object() { ... }`. Una clase anónima es el contenedor del estado, porque el inicializador de `for` permite solo una declaración. `var` conserva el tipo anónimo para que sus campos sigan siendo accesibles. Campos: el contexto de Spring Boot, el repositorio, la lista de horas, un iterador de categorías, un cerrojo y un fragmento de XML.
 - **Condición.** `total <= 40 && categories.hasNext() ? true : (BooleanSupplier) () -> ...`. Cuando el bucle debe terminar, la rama else construye la ventana, la muestra y convierte el resultado en `false` con `Double.isNaN(int)`, el truco del original.
@@ -111,22 +111,22 @@ Java usa la forma original literal: `for (init; condition; update) { }`, con los
 
 - **Ejecútalo desde el lugar correcto.** La ruta de datos es relativa al directorio de trabajo, que las tareas de ejecución de Gradle fijan en este directorio. Si ejecutas el JAR desde otro lugar, `data` se crea allí.
 - **La imagen de contenedor es la más grande del conjunto** (unos 760 MB), y se necesita `--online-build` porque la compilación descarga Gradle y las dependencias de Maven. La ejecución en sí no tiene red.
-- **El perfil de Windows Sandbox aún no está probado en hardware real.** Necesita un JDK y un directorio Gradle home ya poblado en el anfitrión. Esta adaptación no tiene un script de verificación. Por eso, el control del entorno aislado (*sandbox*, un espacio donde el código se ejecuta sin afectar al resto del sistema) aún no la cubre.
+- **El perfil de Windows Sandbox aún no está probado en hardware real.** Necesita un JDK y un directorio de usuario de Gradle ya poblado en el anfitrión. Esta adaptación no tiene un script de verificación. Por eso, la verificación automatizada del entorno aislado aún no la cubre.
 
 ## Lado a lado
 
 | | Java | Kotlin | Python | Go |
 | --- | --- | --- | --- | --- |
-| La única instrucción | `for (init; cond; update) {}` | `for (pass in generateSequence(seed) {...}) {}` | `for _ in iter(step, False): ...` | `for init; cond; post {}` |
+| La única sentencia | `for (init; cond; update) {}` | `for (pass in generateSequence(seed) {...}) {}` | `for _ in iter(step, False): ...` | `for init; cond; post {}` |
 | `for` real de tres partes | Sí | No | No | Sí |
-| Contenedor de estado | Clase anónima en un `var` | `object { }` como semilla | `SimpleNamespace` | Struct anónimo |
+| Contenedor de estado | Clase anónima en un `var` | `object { }` como semilla | `SimpleNamespace` | Estructura anónima |
 | Condición | Expresión `? :` | `takeIf { if ... else ... }` | Expresión condicional | `a && b \|\| After(false, ...)` |
 | Actualización (varios pasos) | Expresiones separadas por comas | Cadena de `?.also { }` | Tupla, `[-1]` | Llamada a `Seq(...)` |
 | Terminar el bucle | La condición devuelve `false` | `takeIf` produce null | `step` devuelve el valor centinela `False` | La condición devuelve `false` |
 | Cuerpo vacío | `{ }` | `{ }` | `...` | `{ }` |
-| Ventana | Swing desde XML de Spring | Swing desde XML de Spring | Tk desde XML de ElementTree | Página del navegador en loopback |
+| Ventana | Swing desde XML de Spring | Swing desde XML de Spring | Tk desde XML de ElementTree | Página del navegador en la interfaz local |
 | Pulso | `javax.swing.Timer` | `javax.swing.Timer` | Temporizador `after()` de Tk | Animación CSS |
-| Bloquea hasta que se cierre | Modal `JDialog` | Modal `JDialog` | `mainloop()` | Espera a `/closed` |
+| Bloquea hasta que se cierre | `JDialog` modal | `JDialog` modal | `mainloop()` | Espera a `/closed` |
 | Base de datos | Spring Data JPA, Hibernate, SQLite | Igual | `sqlite3` de la biblioteca estándar | `modernc.org/sqlite` |
 | Guardado en segundo plano | `Thread` | `Thread` | `threading.Thread` | Goroutine con `Spawn` |
 | Bloqueo | `ReentrantLock` | `ReentrantLock` | `threading.RLock` | `sync.Mutex` |
@@ -138,9 +138,9 @@ Java usa la forma original literal: `for (init; condition; update) { }`, con los
 
 | Versión de .NET | Java y Kotlin | Python | Go |
 | --- | --- | --- | --- |
-| Objeto anónimo como estado del iterador | Clase anónima o expresión de objeto | `SimpleNamespace` | Struct anónimo |
+| Objeto anónimo como estado del iterador | Clase anónima o expresión de objeto | `SimpleNamespace` | Estructura anónima |
 | EF Core `DbContext` y SQLite | Spring Data JPA, Hibernate y SQLite | `sqlite3` | `modernc.org/sqlite` |
-| `TimeCards.Add` y después `SaveChanges` | Una lista `pending`, y después `saveAll` | Una lista `pending`, y después `save_all` | Un slice `pending`, y después `SaveAll` |
+| `TimeCards.Add` y después `SaveChanges` | Una lista `pending` y después `saveAll` | Una lista `pending` y después `save_all` | Un slice `pending` y después `SaveAll` |
 | Ventana WPF desde `XamlReader.Load` a partir de una cadena de texto XAML en tiempo de ejecución | Ventana Swing desde `GenericXmlApplicationContext` a partir de una cadena de texto XML de Spring en tiempo de ejecución | Ventana Tk desde una cadena de texto XML mediante `ElementTree` | Página HTML construida a partir de una cadena de texto y mostrada en el navegador |
 | `XElement` que contiene un `DoubleAnimation` | Fragmento XML que contiene un bean `Timer` | Fragmento XML que contiene el intervalo del temporizador | Fragmento CSS `@keyframes` |
 | Animación de opacidad en el `Viewbox` | Temporizador que desvanece los colores de las etiquetas | Temporizador que mezcla los colores de las etiquetas | Animación de opacidad con CSS |
@@ -153,12 +153,12 @@ Java usa la forma original literal: `for (init; condition; update) { }`, con los
 | `ISOWeek.GetWeekOfYear` | `IsoFields.WEEK_OF_WEEK_BASED_YEAR` | `date.isocalendar().week` | `time.ISOWeek()` |
 | `Environment.UserName` | `System.getProperty("user.name")` | `getpass.getuser()` | variable de entorno `USERNAME` o `USER` |
 
-## Del XAML original al marcado de cada port
+## Del XAML original al marcado de cada adaptación
 
-La versión de .NET construye su ventana a partir de una cadena de texto XAML en tiempo de ejecución con `XamlReader.Load`. XAML solo se ejecuta en .NET, así que cada port construye su interfaz de usuario a partir de una cadena de texto de marcado distinta en tiempo de ejecución:
+La versión de .NET construye su ventana a partir de una cadena de texto XAML en tiempo de ejecución con `XamlReader.Load`. XAML solo se ejecuta en .NET, así que cada adaptación construye su interfaz de usuario a partir de una cadena de texto de marcado distinta en tiempo de ejecución:
 
-- **Java y Kotlin** usan XML estándar de beans de Spring. Spring suele usarlo para conectar servicios, y aquí crea widgets de Swing.
-- **Python** usa un formato XML inventado. Cada etiqueta lleva el nombre de una clase de tkinter (`<Tk>`, `<Label>`), y `getattr(tkinter, tag)` crea el widget.
+- **Java y Kotlin** usan XML estándar de beans de Spring. Spring suele usarlo para conectar servicios y aquí crea widgets de Swing.
+- **Python** usa un formato XML inventado. Cada etiqueta lleva el nombre de una clase de tkinter (`<Tk>`, `<Label>`) y `getattr(tkinter, tag)` crea el widget.
 - **Go** usa HTML y CSS simples, que el navegador renderiza.
 
 | Elemento de la interfaz | XAML original (C#) | Java / Kotlin (XML de Spring) | Python (XML personalizado) | Go (HTML/CSS) |
@@ -174,10 +174,10 @@ La versión de .NET construye su ventana a partir de una cadena de texto XAML en
 | Texto del total de horas | Segundo `<TextBlock Grid.Row='1' FontSize='24' Foreground='White' .../>` | `<bean id="total" class="javax.swing.JLabel">`, blanco, negrita 24 | `<Label id="total" fg="#FFFFFF" font="Helvetica 24 bold" .../>` | `<h1>` |
 | Texto "Saved locally" | El mismo TextBlock que el total, después de dos saltos de línea (`&#x0a;&#x0a;`) | `<bean id="saved" class="javax.swing.JLabel">` independiente, negrita 18 | `<Label id="saved" .../>` independiente, negrita 18 | `<h3>` independiente |
 | Texto centrado | `TextAlignment='Center'` | Propiedad `horizontalAlignment`, `0` (centro) | `pack="fill=x"` (las etiquetas se centran por defecto) | `text-align:center` |
-| Colocar los hijos en el diseño | Anidar dentro de `<Grid>`, más `Grid.Row` | `MethodInvokingBean` que llama a `panel.add(label, "North" / "Center" / "South")` | Atributo `parent="window"` | Anidar dentro de `<body>` |
+| Colocar los elementos hijos en el diseño | Anidar dentro de `<Grid>`, más `Grid.Row` | `MethodInvokingBean` que llama a `panel.add(label, "North" / "Center" / "South")` | Atributo `parent="window"` | Anidar dentro de `<body>` |
 | Botón de cierre | Ninguno (la X de la ventana) | Ninguno (la X de la ventana) | Ninguno (la X de la ventana) | `<button onclick="done()">Close</button>` |
-| Fragmento de animación, construido por separado e insertado | `XElement` que contiene `<DoubleAnimation From="1" To="0.45" Duration="0:0:1.2" AutoReverse="True" RepeatBehavior="Forever" .../>` | `xmlAnim` cadena de texto que contiene `<bean id="anim" class="javax.swing.Timer">`, con un tick cada 40 ms | `xml_anim` cadena de texto que contiene `<timer interval="40"/>` | `animCSS` cadena de texto que contiene `@keyframes pulse { from { opacity: 1 } to { opacity: .45 } }` |
-| Qué inicia la animación | `<EventTrigger RoutedEvent='FrameworkElement.Loaded'>` y un `<Storyboard>`, todo en el marcado | `init-method="start"` en el XML; el código Java atenúa las etiquetas en cada tick | El código Python lee `interval` y programa ticks con `after()` | `animation: pulse 1.2s ease-in-out infinite alternate`, todo en CSS |
-| Qué se desvanece | El `Opacity` de todo el Viewbox | El color del texto de cada etiqueta, con alfa de 100% a 45% | El color de cada etiqueta, mezclado hacia el fondo | La opacidad de `h1`, `h2` y `h3` |
+| Fragmento de animación, construido por separado e insertado | `XElement` que contiene `<DoubleAnimation From="1" To="0.45" Duration="0:0:1.2" AutoReverse="True" RepeatBehavior="Forever" .../>` | `xmlAnim` cadena de texto que contiene `<bean id="anim" class="javax.swing.Timer">`, con un intervalo de 40 ms | `xml_anim` cadena de texto que contiene `<timer interval="40"/>` | `animCSS` cadena de texto que contiene `@keyframes pulse { from { opacity: 1 } to { opacity: .45 } }` |
+| Qué inicia la animación | `<EventTrigger RoutedEvent='FrameworkElement.Loaded'>` y un `<Storyboard>`, todo en el marcado | `init-method="start"` en el XML; el código Java atenúa las etiquetas tras cada intervalo | El código Python lee `interval` y programa los intervalos con `after()` | `animation: pulse 1.2s ease-in-out infinite alternate`, todo en CSS |
+| Qué se desvanece | El `Opacity` de todo el Viewbox | El color del texto de cada etiqueta, con alfa de 100 % a 45 % | El color de cada etiqueta, mezclado con el fondo | La opacidad de `h1`, `h2` y `h3` |
 
 El XAML y el CSS de Go describen la animación completa en el marcado. Swing y Tk no pueden declarar una animación en el marcado, así que en Java, Kotlin y Python el marcado solo declara un temporizador y el código fuera del marcado hace el desvanecimiento.

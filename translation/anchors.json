@@ -8982,8 +8982,8 @@
     {
      "en": "One Statement, Java Edition",
      "en_id": "one-statement-java-edition",
-     "es": "Una sola instrucción, edición Java",
-     "es_id": "una-sola-instrucción-edición-java",
+     "es": "Una sola sentencia, edición Java",
+     "es_id": "una-sola-sentencia-edición-java",
      "level": 1,
      "line": 16
     },
@@ -9070,18 +9070,18 @@
     {
      "en": "From the original XAML to each port's markup",
      "en_id": "from-the-original-xaml-to-each-ports-markup",
-     "es": "Del XAML original al marcado de cada port",
-     "es_id": "del-xaml-original-al-marcado-de-cada-port",
+     "es": "Del XAML original al marcado de cada adaptación",
+     "es_id": "del-xaml-original-al-marcado-de-cada-adaptación",
      "level": 2,
      "line": 156
     }
    ],
    "map": {
-    "from-the-original-xaml-to-each-ports-markup": "del-xaml-original-al-marcado-de-cada-port",
+    "from-the-original-xaml-to-each-ports-markup": "del-xaml-original-al-marcado-de-cada-adaptación",
     "gotchas-worth-knowing": "trampas-que-conviene-conocer",
     "how-the-stunt-works": "cómo-funciona-el-truco",
     "layout": "estructura",
-    "one-statement-java-edition": "una-sola-instrucción-edición-java",
+    "one-statement-java-edition": "una-sola-sentencia-edición-java",
     "program-flow": "flujo-del-programa",
     "run-it": "ejecútalo",
     "run-it-in-a-container": "ejecútalo-en-un-contenedor",
