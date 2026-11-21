@@ -1,0 +1,300 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/apl-weird/README.md:2
+msgctxt "s-326f91484a83-0000"
+msgid "APL"
+msgstr "APL"
+
+#: src/apl-weird/README.md:3
+msgctxt "s-cd947a192342-0001"
+msgid "that ⟦CODE_0001⟧, ⟦CODE_0002⟧ and compress make ⟦ESC_0003⟧if⟦ESC_0004⟧ and ⟦ESC_0005⟧loop⟦ESC_0006⟧ optional, and that a function can be its own successor."
+msgstr "que ⟦CODE_0001⟧, ⟦CODE_0002⟧ y compress hacen opcionales el ⟦ESC_0003⟧if⟦ESC_0004⟧ y el ⟦ESC_0005⟧bucle⟦ESC_0006⟧, y que una función puede ser su propia sucesora."
+
+#: src/apl-weird/README.md:11
+msgctxt "s-09af39c6913e-0002"
+msgid "An array machine, with code that is also an array"
+msgstr "Una máquina de arreglos, con código que también es un arreglo"
+
+#: src/apl-weird/README.md:12
+msgctxt "s-0a80a7cb2554-0003"
+msgid "Arrays, and the source text of functions"
+msgstr "Arreglos y el texto fuente de las funciones"
+
+#: src/apl-weird/README.md:15
+msgctxt "s-632556cfef24-0004"
+msgid "APL, weirder"
+msgstr "APL, aún más raro"
+
+#: src/apl-weird/README.md:17
+msgctxt "s-71c49e98ba90-0005"
+msgid "**Teaches you:** that ⟦CODE_0001⟧, ⟦CODE_0002⟧ and compress make \"if\" and \"loop\" optional, and that a function can be its own successor."
+msgstr "**Te enseña:** que ⟦CODE_0001⟧, ⟦CODE_0002⟧ y la compresión vuelven opcionales el \"if\" y el \"bucle\", y que una función puede ser su propia sucesora."
+
+#: src/apl-weird/README.md:19
+msgctxt "s-5ca333b42af1-0006"
+msgid "**⟦DNT_0001⟧.** Fictional timecards in a scratch SQLite file. No connection to any real time-reporting system."
+msgstr "**⟦DNT_0001⟧.** Tarjetas de horas ficticias en un archivo SQLite temporal. Sin conexión con ningún sistema real de registro de horas."
+
+#: src/apl-weird/README.md:21
+msgctxt "s-f819273a9994-0007"
+msgid "This is weird, even for APL folk."
+msgstr "Esto es raro, incluso para la gente de APL."
+
+#: src/apl-weird/README.md:23
+msgctxt "s-e0233c3394a5-0008"
+msgid "The host defines exactly one function, ⟦CODE_0001⟧. Every other card is a function that the card before it **wrote**: it reads its own source, rewrites four lines of it, defines the copy with ⟦CODE_0002⟧, and calls it. The stop rule is a compress (⟦CODE_0003⟧) over the child's source text. When the total passes 40 the child's source is empty, ⟦CODE_0004⟧ defines nothing, and there is nothing left to call. The state of the program is not in variables; it is in the program text."
+msgstr "El anfitrión define exactamente una función, ⟦CODE_0001⟧. Cada una de las demás tarjetas es una función que **escribió** la tarjeta anterior: lee su propio código fuente, reescribe cuatro líneas, define la copia con ⟦CODE_0002⟧ y la llama. La regla de parada es una compresión (⟦CODE_0003⟧) sobre el texto fuente de la función hija. Cuando el total pasa de 40, el código fuente de la hija queda vacío, ⟦CODE_0004⟧ no define nada y ya no queda nada que llamar. El estado del programa no está en variables; está en el texto del programa."
+
+#: src/apl-weird/README.md:25
+msgctxt "s-958ca26c6a61-0009"
+msgid "Run it"
+msgstr "Ejecútalo"
+
+#: src/apl-weird/README.md:27
+msgctxt "s-398ce9ce0eb3-0010"
+msgid "You need GNU APL (⟦CODE_0001⟧, from [gnu.org/software/apl](⟦DEST_0002⟧)) and ⟦CODE_0003⟧."
+msgstr "Necesitas GNU APL (⟦CODE_0001⟧, de [gnu.org/software/apl](⟦DEST_0002⟧)) y ⟦CODE_0003⟧."
+
+#: src/apl-weird/README.md:35
+msgctxt "s-5815f0c01b16-0011"
+msgid "Records go to ⟦CODE_0001⟧ (default ⟦CODE_0002⟧). A run looks like this:"
+msgstr "Los registros van a ⟦CODE_0001⟧ (por defecto ⟦CODE_0002⟧). Una ejecución se ve así:"
+
+#: src/apl-weird/README.md:49
+msgctxt "s-64e7daa294f5-0012"
+msgid "The three ⟦CODE_0001⟧ lines are read back from the workspace *after* the run (⟦CODE_0002⟧ lists its functions). ⟦CODE_0003⟧ and ⟦CODE_0004⟧ exist only because ⟦CODE_0005⟧ and ⟦CODE_0006⟧ wrote them, and their hours are literals in their own source."
+msgstr "Las tres líneas ⟦CODE_0001⟧ se vuelven a leer desde el espacio de trabajo *después* de la ejecución (⟦CODE_0002⟧ lista sus funciones). ⟦CODE_0003⟧ y ⟦CODE_0004⟧ existen solo porque ⟦CODE_0005⟧ y ⟦CODE_0006⟧ las escribieron, y sus horas son literales en su propio código fuente."
+
+#: src/apl-weird/README.md:51
+msgctxt "s-0dcb373c2dff-0013"
+msgid "Program Flow"
+msgstr "Flujo del programa"
+
+#: src/apl-weird/README.md:55
+msgctxt "s-cbef66020347-0014"
+msgid "apl-weird: each card function writes and calls the next one"
+msgstr "apl-weird: cada función de tarjeta escribe y llama a la siguiente"
+
+#: src/apl-weird/README.md:56
+msgctxt "s-3894643a82b3-0015"
+msgid "A flowchart. The function Card0 runs with its genes: the card number, category, hours and running total. It prints its row and inserts it into SQLite. It draws the next hours and builds the four gene lines for the next card as text. A boolean Alive is 1 while the total is 40 or less. The function then takes its own source with the quad-CR function, replaces the header and genes, and compresses the whole child away with Alive. The quad-FX function defines a new function, Card1, from what is left, or defines nothing. Executing the name, also compressed by Alive, then calls Card1, which does the same steps. When Alive is 0, nothing is written or called, and the chain of calls returns."
+msgstr "Un diagrama de flujo. La función Card0 se ejecuta con sus genes: el número de tarjeta, la categoría, las horas y el total acumulado. Imprime su fila y la inserta en SQLite. Sortea las siguientes horas y construye como texto las cuatro líneas de genes de la tarjeta siguiente. Un booleano Alive vale 1 mientras el total no pase de 40. Luego la función toma su propio código fuente con la función ⎕CR, reemplaza el encabezado y los genes, y comprime con Alive todo el hijo. La función ⎕FX define una función nueva, Card1, con lo que queda, o no define nada. Ejecutar el nombre, también comprimido con Alive, llama entonces a Card1, que hace los mismos pasos. Cuando Alive vale 0, no se escribe ni se llama nada y la cadena de llamadas retorna."
+
+#: src/apl-weird/README.md:57
+msgctxt "s-9556ba32a9f6-0016"
+msgid "CardN runs with its genes: number, category, hours, total"
+msgstr "CardN se ejecuta con sus genes: número, categoría, horas, total"
+
+#: src/apl-weird/README.md:57
+msgctxt "s-3ac7a822e64c-0017"
+msgid "Print the row and INSERT it"
+msgstr "Imprime la fila e insértala con INSERT"
+
+#: src/apl-weird/README.md:58
+msgctxt "s-0c31610b8a71-0018"
+msgid "Draw the next hours; build four new gene lines as text"
+msgstr "Sortea las siguientes horas; construye cuatro líneas de genes nuevas como texto"
+
+#: src/apl-weird/README.md:59
+msgctxt "s-4edf7961a28b-0019"
+msgid "Alive: total ≤ 40?"
+msgstr "¿Vivo: total ≤ 40?"
+
+#: src/apl-weird/README.md:60
+msgctxt "s-e1e91b3ac1a0-0020"
+msgid "1: keep the child"
+msgstr "1: conserva el hijo"
+
+#: src/apl-weird/README.md:60
+msgctxt "s-c1a3455a70bb-0021"
+msgid "Quad-CR reads this function's own source; quad-FX defines Card N+1 from it with the new genes"
+msgstr "Quad-CR lee el código fuente de esta misma función; quad-FX define Card N+1 a partir de ese código con los nuevos genes"
+
+#: src/apl-weird/README.md:61
+msgctxt "s-94ef3318f472-0022"
+msgid "Execute the name Card N+1: it is a different function with the same body"
+msgstr "Ejecuta el nombre Card N+1: es una función distinta con el mismo cuerpo"
+
+#: src/apl-weird/README.md:63
+msgctxt "s-96b2605e1c40-0023"
+msgid "0: Alive compresses the child away"
+msgstr "0: Alive descarta al hijo por compresión"
+
+#: src/apl-weird/README.md:63
+msgctxt "s-c0ef48597182-0024"
+msgid "Quad-FX defines nothing and execute runs an empty string; the calls return"
+msgstr "Quad-FX no define nada y execute ejecuta una cadena de texto vacía; las llamadas regresan"
+
+#: src/apl-weird/README.md:66
+msgctxt "s-2fe8424cd2f2-0025"
+msgid "**What this shows:** the recursion is a chain of different functions, not one function calling itself. Each ⟦CODE_0001⟧ function *writes* the next one as text and then calls it. The boolean ⟦CODE_0002⟧ is both the stop rule and the guard on writing, because compressing with ⟦CODE_0003⟧ removes every line of the child."
+msgstr "**Qué muestra:** la recursión es una cadena de funciones distintas, no una función que se llama a sí misma. Cada función ⟦CODE_0001⟧ *escribe* la siguiente como texto y luego la llama. El booleano ⟦CODE_0002⟧ es a la vez la regla de parada y la condición que protege la escritura, porque comprimir con ⟦CODE_0003⟧ elimina todas las líneas de la función hija."
+
+#: src/apl-weird/README.md:68
+msgctxt "s-6ce58f2f55f8-0026"
+msgid "**Why this mechanism matters:** the program is self-modifying, and its state is source text: the \"genes\" are four lines that each child gets with new values. A broken stop rule does not fail. It recurses forever, which is why the check runs the program under a timeout."
+msgstr "**Por qué importa este mecanismo:** el programa se modifica a sí mismo y su estado es texto fuente: los \"genes\" son cuatro líneas que cada hijo recibe con valores nuevos. Una regla de parada rota no falla. Recurre sin fin, y por eso la comprobación ejecuta el programa con un límite de tiempo."
+
+#: src/apl-weird/README.md:70
+msgctxt "s-7f97d965b4c0-0027"
+msgid "How the stunt works"
+msgstr "Cómo funciona el truco"
+
+#: src/apl-weird/README.md:72
+msgctxt "s-835ca5cebe46-0028"
+msgid "A function in GNU APL is a block of text between two ⟦CODE_0001⟧ marks. Its first line is the header. Here is ⟦CODE_0002⟧, with the lines numbered the way ⟦CODE_0003⟧ (which returns a function's source as a character matrix) numbers them:"
+msgstr "Una función en GNU APL es un bloque de texto entre dos marcas ⟦CODE_0001⟧. Su primera línea es el encabezado. Aquí está ⟦CODE_0002⟧, con las líneas numeradas como las numera ⟦CODE_0003⟧ (que devuelve el código fuente de una función como una matriz de caracteres):"
+
+#: src/apl-weird/README.md:74
+msgctxt "s-d1f113f05796-0029"
+msgid "⟦SEP_0001⟧ Line ⟦SEP_0002⟧ Source ⟦SEP_0003⟧ Role ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ Línea ⟦SEP_0002⟧ Fuente ⟦SEP_0003⟧ Papel ⟦SEP_0004⟧"
+
+#: src/apl-weird/README.md:76
+msgctxt "s-6da9dce07753-0030"
+msgid "⟦SEP_0002⟧ 0 ⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ Header: the name, then local variables ⟦SEP_0005⟧"
+msgstr "⟦SEP_0002⟧ 0 ⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ Encabezado: el nombre y luego las variables locales ⟦SEP_0005⟧"
+
+#: src/apl-weird/README.md:77
+msgctxt "s-e6b39ba36b8c-0031"
+msgid "⟦SEP_0005⟧ 1-4 ⟦SEP_0006⟧ ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧ ⟦SEP_0007⟧ The **genes**: card number, category, hours, running total ⟦SEP_0008⟧"
+msgstr "⟦SEP_0005⟧ 1-4 ⟦SEP_0006⟧ ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧ ⟦SEP_0007⟧ Los **genes**: número de tarjeta, categoría, horas, total acumulado ⟦SEP_0008⟧"
+
+#: src/apl-weird/README.md:78
+msgctxt "s-ffb2cff73b08-0032"
+msgid "⟦SEP_0001⟧ 5-… ⟦SEP_0002⟧ the body ⟦SEP_0003⟧ Prints the row, saves it, and **writes and calls the next card** ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ 5-… ⟦SEP_0002⟧ el cuerpo ⟦SEP_0003⟧ Imprime la fila, la guarda y **escribe y llama a la siguiente tarjeta** ⟦SEP_0004⟧"
+
+#: src/apl-weird/README.md:80
+msgctxt "s-b0a06119f69f-0033"
+msgid ""
+"**Print and save.** The body uses the genes to print one row and ⟦CODE_0001⟧ one row into SQLite.\n"
+"2. **Draw the next card.** ⟦CODE_0002⟧ is the next card's hours. ⟦CODE_0003⟧ builds four replacement gene lines *as text*: ⟦CODE_0004⟧ formats a number as characters, so ⟦CODE_0005⟧ of 1 becomes the line ⟦CODE_0006⟧.\n"
+"3. **The stop rule.** ⟦CODE_0007⟧ is 1 while the total is 40 or less, else 0.\n"
+"4. **Write the child.** ⟦CODE_0008⟧. Read it from the right:"
+msgstr ""
+"**Imprimir y guardar.** El cuerpo usa los genes para imprimir una fila y ⟦CODE_0001⟧ una fila en SQLite.\n"
+"2. **Dibujar la siguiente tarjeta.** ⟦CODE_0002⟧ son las horas de la siguiente tarjeta. ⟦CODE_0003⟧ construye cuatro líneas de genes de reemplazo *como texto*: ⟦CODE_0004⟧ convierte un número en caracteres, así que ⟦CODE_0005⟧ de 1 se convierte en la línea ⟦CODE_0006⟧.\n"
+"3. **La regla de parada.** ⟦CODE_0007⟧ vale 1 mientras el total no pase de 40; en otro caso vale 0.\n"
+"4. **Escribir la función hija.** ⟦CODE_0008⟧. Léelo desde la derecha:"
+
+#: src/apl-weird/README.md:84
+msgctxt "s-1b254df2e2a0-0034"
+msgid "⟦CODE_0001⟧ is *this function's own source* as a matrix;"
+msgstr "⟦CODE_0001⟧ es *el código fuente de esta misma función* como matriz;"
+
+#: src/apl-weird/README.md:85
+msgctxt "s-df5987e773ef-0035"
+msgid "⟦CODE_0001⟧ cuts that matrix into a list of its rows, and ⟦CODE_0002⟧ throws away the header and four gene lines, leaving the body;"
+msgstr "⟦CODE_0001⟧ corta esa matriz en una lista de sus filas y ⟦CODE_0002⟧ descarta el encabezado y las cuatro líneas de genes para dejar el cuerpo;"
+
+#: src/apl-weird/README.md:86
+msgctxt "s-adf7a79a097c-0036"
+msgid "the new header and the four new gene lines are put in front;"
+msgstr "el nuevo encabezado y las cuatro líneas de genes nuevas se ponen delante;"
+
+#: src/apl-weird/README.md:87
+msgctxt "s-c51af717ad8b-0037"
+msgid "⟦CODE_0001⟧ is the stop rule. A scalar 1 keeps every line and a scalar 0 keeps none: **the whole child is compressed away**;"
+msgstr "⟦CODE_0001⟧ es la regla de parada. Un escalar 1 conserva todas las líneas y un escalar 0 no conserva ninguna: **todo el hijo desaparece por compresión**;"
+
+#: src/apl-weird/README.md:88
+msgctxt "s-974a96f789c7-0038"
+msgid ""
+"⟦CODE_0001⟧ \"fixes\" (defines) a function from that list of lines, or does nothing for an empty list.\n"
+"5. **Call the child.** ⟦CODE_0002⟧. ⟦CODE_0003⟧ (execute) runs text as APL; ⟦CODE_0004⟧ over the name leaves either the name or the empty string; executing the empty string is a no-op. So the same boolean controls both the writing and the calling."
+msgstr ""
+"⟦CODE_0001⟧ \"fija\" (define) una función a partir de esa lista de líneas, o no hace nada con una lista vacía.\n"
+"5. **Llama a la función hija.** ⟦CODE_0002⟧. ⟦CODE_0003⟧ (ejecutar) ejecuta texto como APL; ⟦CODE_0004⟧ sobre el nombre deja el nombre o la cadena de texto vacía; ejecutar la cadena de texto vacía no hace nada. Así, el mismo booleano controla tanto la escritura como la llamada."
+
+#: src/apl-weird/README.md:91
+msgctxt "s-d02d52a08639-0039"
+msgid "The recursion is therefore a chain of different functions rather than a function calling itself: ⟦CODE_0001⟧ calls ⟦CODE_0002⟧, which was *written by* ⟦CODE_0003⟧, which calls ⟦CODE_0004⟧, and so on. At most five cards are ever needed (five cards of ten hours reach 50)."
+msgstr "Por tanto, la recursión es una cadena de funciones distintas, no una función que se llama a sí misma: ⟦CODE_0001⟧ llama a ⟦CODE_0002⟧, que fue *escrita por* ⟦CODE_0003⟧, que llama a ⟦CODE_0004⟧ y así sucesivamente. Se necesitan como máximo cinco tarjetas (cinco tarjetas de diez horas suman 50)."
+
+#: src/apl-weird/README.md:93
+msgctxt "s-6c7d54047644-0040"
+msgid "What this version refuses to use"
+msgstr "Qué se niega a usar esta versión"
+
+#: src/apl-weird/README.md:95
+msgctxt "s-f9cf521c6449-0041"
+msgid "⟦CODE_0001⟧ enforces the rules by reading the source: no ⟦CODE_0002⟧ (power operator), no ⟦CODE_0003⟧ (branch), exactly one ⟦CODE_0004⟧ block, exactly one ⟦CODE_0005⟧, and the generated-card count in the output must equal the number of entries. It also runs the program under ⟦CODE_0006⟧, because a broken stop rule does not fail, it recurses forever (see below)."
+msgstr "⟦CODE_0001⟧ hace cumplir las reglas leyendo el código fuente: ningún ⟦CODE_0002⟧ (operador de potencia), ningún ⟦CODE_0003⟧ (rama), exactamente un bloque ⟦CODE_0004⟧, exactamente un ⟦CODE_0005⟧, y el número de tarjetas generadas en la salida debe ser igual al número de entradas. También ejecuta el programa con ⟦CODE_0006⟧, porque una regla de parada defectuosa no falla: se llama a sí misma sin fin (mira más abajo)."
+
+#: src/apl-weird/README.md:97
+msgctxt "s-680087897055-0042"
+msgid "Seeing the glyphs"
+msgstr "Cómo ver los glifos"
+
+#: src/apl-weird/README.md:99
+msgctxt "s-aecd62da8417-0043"
+msgid "If the APL symbols show as empty boxes, see [Seeing the glyphs](⟦DEST_0001⟧) in the straight entry's README. (⟦CODE_0002⟧ is *supposed* to be an empty box.)"
+msgstr "Si los símbolos de APL aparecen como cuadros vacíos, consulta [Cómo ver los glifos](⟦DEST_0001⟧) en el README de la entrada directa. (⟦CODE_0002⟧ *debe* ser un cuadro vacío.)"
+
+#: src/apl-weird/README.md:101
+msgctxt "s-339cc2c18f83-0044"
+msgid "What ⟦CODE_0001⟧ enforces"
+msgstr "Qué impone ⟦CODE_0001⟧"
+
+#: src/apl-weird/README.md:103
+msgctxt "s-f064cefe8c34-0045"
+msgid "⟦CODE_0001⟧ reads the source first and enforces the constraint. There is no ⟦CODE_0002⟧ (the power operator) and no ⟦CODE_0003⟧ (branch) outside comments. There is exactly one ⟦CODE_0004⟧ definition (⟦CODE_0005⟧) and exactly one ⟦CODE_0006⟧, so every other card must be written at run time. The file has the ⟦CODE_0007⟧ marker and no network-looking text. Then it runs the program 25 times. Every run must print a sane record set: categories in order, hours from 10 to 19, running totals that add up, a ⟦CODE_0008⟧ mark on every row, and a stop exactly when the total passes 40. SQLite must agree with the printed rows. It runs the program under ⟦CODE_0009⟧, because a broken stop rule does not fail: it recurses forever. The 25 runs must be 25 different runs, and the hours must show at least six different values, so the \"random\" draws really look random. Last, it tries to insert a non-demo row and expects SQLite to refuse it, which proves that ⟦CODE_0010⟧ is real."
+msgstr "⟦CODE_0001⟧ lee primero el código fuente y hace cumplir la restricción. No hay ⟦CODE_0002⟧ (el operador de potencia) ni ⟦CODE_0003⟧ (rama) fuera de los comentarios. Hay exactamente una definición de ⟦CODE_0004⟧ (⟦CODE_0005⟧) y exactamente un ⟦CODE_0006⟧, así que todas las demás tarjetas se deben escribir en tiempo de ejecución. El archivo tiene el marcador ⟦CODE_0007⟧ y ningún texto que parezca de red. Luego ejecuta el programa 25 veces. Cada ejecución debe imprimir un conjunto de registros coherente: categorías en orden, horas de 10 a 19, totales acumulados que suman correctamente, una marca ⟦CODE_0008⟧ en cada fila y una parada exactamente cuando el total pasa de 40. SQLite debe coincidir con las filas impresas. Ejecuta el programa bajo ⟦CODE_0009⟧, porque una regla de parada rota no falla: entra en recursión infinita. Las 25 ejecuciones deben ser 25 ejecuciones distintas, y las horas deben mostrar al menos seis valores distintos, para que los sorteos \"aleatorios\" parezcan aleatorios de verdad. Por último, intenta insertar una fila que no es de demostración y espera que SQLite la rechace, lo que prueba que ⟦CODE_0010⟧ es real."
+
+#: src/apl-weird/README.md:105
+msgctxt "s-5a0ad00b10fc-0046"
+msgid "Gotchas worth knowing"
+msgstr "Trampas que conviene conocer"
+
+#: src/apl-weird/README.md:107
+msgctxt "s-7cc661502f55-0047"
+msgid "**Dynamic scope.** APL local variables are visible to everything *called* from the function, not just to its own text. Every card must declare ⟦CODE_0001⟧ in its header (that is what ⟦CODE_0002⟧ is for) or a child's genes would overwrite its parent's."
+msgstr "**Ámbito dinámico.** Las variables locales de APL son visibles para todo lo que *se llama* desde la función, no solo para su propio texto. Cada tarjeta debe declarar ⟦CODE_0001⟧ en su encabezado (para eso sirve ⟦CODE_0002⟧) o los genes de una tarjeta hija sobrescribirían los de su tarjeta madre."
+
+#: src/apl-weird/README.md:108
+msgctxt "s-75e0288833fb-0048"
+msgid "**Off-by-one in a rewrite.** The first draft of this program dropped four lines instead of five when copying the body, so every child kept its parent's ⟦CODE_0001⟧ gene line and reset the running total to one card. The total could never pass 40, the stop rule never fired, and the program recursed until killed. Self-modifying code fails silently and structurally; that is why the check script has a timeout."
+msgstr "**Error por uno en una reescritura.** El primer borrador de este programa eliminaba cuatro líneas en lugar de cinco al copiar el cuerpo, así que cada hijo conservaba la línea de genes ⟦CODE_0001⟧ de su padre y reiniciaba el total acumulado a una tarjeta. El total nunca podía pasar de 40, la regla de parada nunca se activaba y el programa recursaba hasta que lo terminaban. El código que se modifica a sí mismo falla en silencio y de forma estructural; por eso el script de comprobación tiene un límite de tiempo."
+
+#: src/apl-weird/README.md:109
+msgctxt "s-5dc9f8b18aa8-0049"
+msgid "**⟦CODE_0001⟧ vs ⟦CODE_0002⟧.** In GNU APL ⟦CODE_0003⟧ is *disclose* and ⟦CODE_0004⟧ is *first* (Dyalog swaps them). The report picks the last card with ⟦CODE_0005⟧."
+msgstr "**⟦CODE_0001⟧ frente a ⟦CODE_0002⟧.** En GNU APL, ⟦CODE_0003⟧ es *disclose* y ⟦CODE_0004⟧ es *first* (Dyalog los intercambia). El informe elige la última tarjeta con ⟦CODE_0005⟧."
+
+#: src/apl-weird/README.md:110
+msgctxt "s-955b0e45f839-0050"
+msgid "**⟦CODE_0001⟧ is slightly different.** It is the only card whose hours come from ⟦CODE_0002⟧ in its own text; later cards have a literal. That is the honest price of having something to start from."
+msgstr "**⟦CODE_0001⟧ es un poco diferente.** Es la única tarjeta cuyas horas vienen de ⟦CODE_0002⟧ en su propio texto; las tarjetas posteriores tienen un literal. Ese es el precio honesto de tener un punto de partida."
+
+#: src/apl-weird/README.md:111
+msgctxt "s-fa24898468c9-0051"
+msgid "**No ⟦CODE_0001⟧ independence here.** The weird version sets ⟦CODE_0002⟧ and relies on it."
+msgstr "**Aquí no hay independencia de ⟦CODE_0001⟧.** La versión rara define ⟦CODE_0002⟧ y depende de ello."
+
+#: src/apl-weird/README.md:112
+msgctxt "s-c616f6f4d4ad-0052"
+msgid "**Not a pattern.** Rewriting your own source to avoid a ⟦CODE_0001⟧ is a stunt, not a technique."
+msgstr "**No es un patrón.** Reescribir tu propio código fuente para evitar un ⟦CODE_0001⟧ es un truco llamativo, no una técnica."
+
+#: src/apl-weird/README.md:114
+msgctxt "s-254f0c660db3-0053"
+msgid "Run it in a container"
+msgstr "Ejecútalo en un contenedor"
+
+#: src/apl-weird/README.md:116
+msgctxt "s-643df015c8a2-0054"
+msgid "Prerequisite: Docker, set up once as described in [⟦CODE_0001⟧](⟦DEST_0002⟧)."
+msgstr "Requisito previo: Docker, configurado una sola vez como se describe en [⟦CODE_0001⟧](⟦DEST_0002⟧)."
+
+#: src/apl-weird/README.md:122
+msgctxt "s-97180c9402e1-0055"
+msgid "It builds this folder's [⟦CODE_0001⟧](⟦DEST_0002⟧) and runs the result with no network, a read-only file system and user ⟦CODE_0003⟧, then prints the output and a read-only look at the rows it wrote. The image holds GNU APL (built from the pinned gnu.org tarball in the toolchain image) and sqlite3 on a minimal Ubuntu. It has no compiler and no package manager."
+msgstr "Construye el [⟦CODE_0001⟧](⟦DEST_0002⟧) de esta carpeta y ejecuta el resultado sin red, con un sistema de archivos de solo lectura y el usuario ⟦CODE_0003⟧. Luego imprime la salida y una vista de solo lectura de las filas que escribió. La imagen contiene GNU APL (compilado a partir del archivo *tarball* de gnu.org con versión fija, en la imagen de la cadena de herramientas) y sqlite3 sobre un Ubuntu mínimo. No tiene compilador ni gestor de paquetes."

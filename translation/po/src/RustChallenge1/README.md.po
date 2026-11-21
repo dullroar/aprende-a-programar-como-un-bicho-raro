@@ -1,0 +1,303 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/RustChallenge1/README.md:2
+msgctxt "s-d9aa89fdd15a-0000"
+msgid "Rust"
+msgstr "Rust"
+
+#: src/RustChallenge1/README.md:3
+msgctxt "s-9947155fb39f-0001"
+msgid "that iterators and closures can express the control flow of a whole Rust program."
+msgstr "que los iteradores y las clausuras (*closures*: funciones sin nombre que capturan valores de su entorno) pueden expresar el flujo de control de un programa completo en Rust."
+
+#: src/RustChallenge1/README.md:11
+msgctxt "s-46c7a04ee042-0002"
+msgid "A chain of values from ⟦CODE_0001⟧, which stops at ⟦CODE_0002⟧"
+msgstr "Una cadena de valores desde ⟦CODE_0001⟧, que se detiene en ⟦CODE_0002⟧"
+
+#: src/RustChallenge1/README.md:12
+msgctxt "s-d131c17ba273-0003"
+msgid "A new immutable ⟦CODE_0001⟧ for every step; nothing is mutated"
+msgstr "Un nuevo ⟦CODE_0001⟧ inmutable en cada paso; nada se muta"
+
+#: src/RustChallenge1/README.md:17
+msgctxt "s-4add0244aaa9-0004"
+msgid "One Statement, Rust Edition"
+msgstr "Una sola sentencia, edición Rust"
+
+#: src/RustChallenge1/README.md:19
+msgctxt "s-c071f0fdbfbc-0005"
+msgid "**Teaches you:** that iterators and closures can express the control flow of a whole Rust program."
+msgstr "**Te enseña:** que los iteradores y las clausuras (*closures*, funciones que capturan variables de su entorno) pueden expresar el flujo de control de un programa completo en Rust."
+
+#: src/RustChallenge1/README.md:21
+msgctxt "s-f0bae8e9b197-0006"
+msgid "A WSL/GTK 4 companion to Jim Lehmer's C# challenge and Ken's [Java](⟦DEST_0001⟧), [Kotlin](⟦DEST_0002⟧), [Python](⟦DEST_0003⟧), and [Go](⟦DEST_0004⟧) versions. The point is to explore expression mechanics through a deliberately ridiculous constraint, not to offer a production architecture."
+msgstr "Un complemento para WSL/GTK 4 del reto en C# de Jim Lehmer y de las versiones de Ken en [Java](⟦DEST_0001⟧), [Kotlin](⟦DEST_0002⟧), [Python](⟦DEST_0003⟧) y [Go](⟦DEST_0004⟧). El objetivo es explorar la mecánica de las expresiones mediante una restricción deliberadamente ridícula, no ofrecer una arquitectura de producción."
+
+#: src/RustChallenge1/README.md:23
+msgctxt "s-958ca26c6a61-0007"
+msgid "Run it"
+msgstr "Ejecútalo"
+
+#: src/RustChallenge1/README.md:25
+msgctxt "s-10947259579b-0008"
+msgid "You need a working WSLg desktop session. In Ubuntu 24.04, install the APT toolchain and the native libraries:"
+msgstr "Necesitas una sesión de escritorio WSLg que funcione. En Ubuntu 24.04, instala la cadena de herramientas de APT y las bibliotecas nativas:"
+
+#: src/RustChallenge1/README.md:35
+msgctxt "s-54438c5cc301-0009"
+msgid "The locked dependencies are tested with Ubuntu's Rust and Cargo 1.75. Cargo needs network access to download crates on the first build. See Microsoft's [WSLg setup](⟦DEST_0001⟧) if the window cannot open."
+msgstr "Las dependencias bloqueadas se probaron con Rust y Cargo 1.75 de Ubuntu. Cargo necesita acceso a la red para descargar crates en la primera compilación. Si la ventana no se abre, consulta la [configuración de WSLg](⟦DEST_0001⟧) de Microsoft."
+
+#: src/RustChallenge1/README.md:37
+msgctxt "s-684effa6a401-0010"
+msgid "The window displays the generated total over a gently shifting shade; closing it ends the program. Each run appends fictional records to ⟦CODE_0001⟧ (by default ⟦CODE_0002⟧), the Linux counterpart of the C# version's ⟦CODE_0003⟧. Delete that directory to start over. The database is **⟦DNT_0004⟧**, with no connection to a real time-reporting system."
+msgstr "La ventana muestra el total generado sobre un tono que cambia suavemente. Al cerrarla, termina el programa. Cada ejecución agrega registros ficticios a ⟦CODE_0001⟧ (por defecto ⟦CODE_0002⟧), el equivalente en Linux de ⟦CODE_0003⟧ en la versión de C#. Elimina ese directorio para empezar de cero. La base de datos es **⟦DNT_0004⟧**, sin conexión con un sistema real de reporte de horas."
+
+#: src/RustChallenge1/README.md:39
+msgctxt "s-254f0c660db3-0011"
+msgid "Run it in a container"
+msgstr "Ejecuta el programa en un contenedor"
+
+#: src/RustChallenge1/README.md:41
+msgctxt "s-643df015c8a2-0012"
+msgid "Prerequisite: Docker, set up once as described in [⟦CODE_0001⟧](⟦DEST_0002⟧)."
+msgstr "Requisito previo: Docker, configurado una sola vez como se describe en [⟦CODE_0001⟧](⟦DEST_0002⟧)."
+
+#: src/RustChallenge1/README.md:47
+msgctxt "s-c39665bcf2fb-0013"
+msgid "This is the Linux home of this entry, and it needs no WSLg: the [⟦CODE_0001⟧](⟦DEST_0002⟧) compiles it with Ubuntu's Rust in a build stage, then runs the one binary on a base with the GTK 4 runtime, a virtual display (Xvfb) and a screenshot tool, and no Rust, headers or compiler. The window opens on that virtual display *inside* the container, the entrypoint screenshots it after a few seconds and closes it, and the run prints the SQLite rows it wrote. With ⟦CODE_0003⟧, ⟦CODE_0004⟧ is the window. ⟦CODE_0005⟧ is needed because the build downloads the locked crates (the run itself has no network). The image is about 350 MB, because GTK 4 is big."
+msgstr "Este es el hogar en Linux de esta entrada y no necesita WSLg: el [⟦CODE_0001⟧](⟦DEST_0002⟧) la compila con el Rust de Ubuntu en una etapa de compilación y después ejecuta el único binario sobre una base con el entorno de ejecución de GTK 4, una pantalla virtual (Xvfb) y una herramienta de capturas de pantalla, y sin Rust, encabezados ni compilador. La ventana se abre en esa pantalla virtual *dentro* del contenedor, el entrypoint le toma una captura después de unos segundos y la cierra, y la ejecución imprime las filas de SQLite que escribió. Con ⟦CODE_0003⟧, ⟦CODE_0004⟧ es la ventana. Se necesita ⟦CODE_0005⟧ porque la compilación descarga los crates bloqueados (la ejecución en sí no tiene red). La imagen pesa unos 350 MB, porque GTK 4 es grande."
+
+#: src/RustChallenge1/README.md:49
+msgctxt "s-0dcb373c2dff-0014"
+msgid "Program Flow"
+msgstr "Flujo del programa"
+
+#: src/RustChallenge1/README.md:53
+msgctxt "s-a17605207f42-0015"
+msgid "RustChallenge1: std::iter::successors ends when next returns None"
+msgstr "RustChallenge1: std::iter::successors termina cuando next devuelve None"
+
+#: src/RustChallenge1/README.md:54
+msgctxt "s-661ee3d894c3-0016"
+msgid "A flowchart. successors starts from an immutable DemoBatch. The empty for body runs, then successors calls next with the batch. If the total is 40 or less and a category remains, next returns Some of a new batch with one more card, and the body runs again. If not, a scoped worker thread saves the batch in one SQLite transaction and is joined. Then a GTK window is built from Builder XML, and a glib MainLoop runs until the window closes while a timeout redraws the background. Then next returns None and the for ends."
+msgstr "Un diagrama de flujo. successors parte de un DemoBatch inmutable. El cuerpo vacío del for se ejecuta y luego successors llama a next con el lote. Si el total no pasa de 40 y queda una categoría, next devuelve Some con un lote nuevo que tiene una tarjeta más, y el cuerpo se ejecuta otra vez. Si no, un hilo de trabajo con ámbito (scoped) guarda el lote en una sola transacción de SQLite y el programa espera a que termine (join). Después se construye una ventana GTK a partir de XML de Builder, y un MainLoop de glib se ejecuta hasta que la ventana se cierra, mientras un timeout redibuja el fondo. Luego next devuelve None y el for termina."
+
+#: src/RustChallenge1/README.md:55
+msgctxt "s-7255f94dd91e-0017"
+msgid "first: Some(DemoBatch) is the first value"
+msgstr "first: Some(DemoBatch) es el primer valor"
+
+#: src/RustChallenge1/README.md:55
+msgctxt "s-afab3da2b72a-0018"
+msgid "Empty for body"
+msgstr "Vacío para el cuerpo"
+
+#: src/RustChallenge1/README.md:56
+msgctxt "s-6231d9f66349-0019"
+msgid "successors calls next(batch)"
+msgstr "successors llama a next(batch)"
+
+#: src/RustChallenge1/README.md:57
+msgctxt "s-088582a4a1f7-0020"
+msgid "total <= 40 and categories left?"
+msgstr "¿total <= 40 y quedan categorías?"
+
+#: src/RustChallenge1/README.md:58
+msgctxt "s-8a798890fe93-0021"
+msgid "yes"
+msgstr "sí"
+
+#: src/RustChallenge1/README.md:58
+msgctxt "s-9b7c58f9b23b-0022"
+msgid "Some(batch.extended(hours)): a new immutable batch with one more card"
+msgstr "Some(batch.extended(hours)): un nuevo lote inmutable con una tarjeta más"
+
+#: src/RustChallenge1/README.md:60
+msgctxt "s-9390298f3fb0-0023"
+msgid "no"
+msgstr "no"
+
+#: src/RustChallenge1/README.md:60
+msgctxt "s-33708156a9dd-0024"
+msgid "thread::scope: a worker saves the batch in one transaction; join waits"
+msgstr "thread::scope: un hilo de trabajo guarda el lote en una transacción; join espera"
+
+#: src/RustChallenge1/README.md:61
+msgctxt "s-1330a7f1df36-0025"
+msgid "GTK Builder XML makes the window; glib MainLoop.run blocks, a timeout redraws"
+msgstr "El XML de GTK Builder crea la ventana; `MainLoop.run` de glib bloquea el hilo y un temporizador redibuja"
+
+#: src/RustChallenge1/README.md:62
+msgctxt "s-f634309dad56-0026"
+msgid "Window closed: next returns None, the for ends"
+msgstr "Cierras la ventana: next devuelve None y el for termina"
+
+#: src/RustChallenge1/README.md:65
+msgctxt "s-7bdf71fae83a-0027"
+msgid "**What this shows:** ⟦CODE_0001⟧ carries the three jobs of a ⟦CODE_0002⟧: ⟦CODE_0003⟧ is the initializer, ⟦CODE_0004⟧ is both the condition and the update, and returning ⟦CODE_0005⟧ is the stop. The state is never mutated. Each step builds a new ⟦CODE_0006⟧."
+msgstr "**Qué muestra:** ⟦CODE_0001⟧ reúne los tres trabajos de un ⟦CODE_0002⟧: ⟦CODE_0003⟧ es el inicializador, ⟦CODE_0004⟧ es a la vez la condición y la actualización, y devolver ⟦CODE_0005⟧ es la parada. El estado nunca se modifica. Cada paso construye un ⟦CODE_0006⟧ nuevo."
+
+#: src/RustChallenge1/README.md:67
+msgctxt "s-753e6ad9e73f-0028"
+msgid "**Why this mechanism matters:** saving is a joined, scoped thread, so the program never says \"saved\" before the transaction finished. The GTK window runs its own event loop (⟦CODE_0001⟧) inside the ⟦CODE_0002⟧ call, which is the last step before the loop ends."
+msgstr "**Por qué importa este mecanismo:** guardar es un hilo unido y con ámbito, así que el programa nunca dice \"guardado\" antes de que termine la transacción. La ventana GTK ejecuta su propio bucle de eventos (⟦CODE_0001⟧) dentro de la llamada a ⟦CODE_0002⟧, que es el último paso antes de que termine el bucle."
+
+#: src/RustChallenge1/README.md:69
+msgctxt "s-7f97d965b4c0-0029"
+msgid "How the stunt works"
+msgstr "Cómo funciona el truco"
+
+#: src/RustChallenge1/README.md:71
+msgctxt "s-27b57f6f2eb8-0030"
+msgid "⟦CODE_0001⟧ is one empty-body ⟦CODE_0002⟧ loop, and nothing inside it is a statement: no ⟦CODE_0003⟧, no ⟦CODE_0004⟧, no ⟦CODE_0005⟧. ⟦CODE_0006⟧ scans ⟦CODE_0007⟧ and fails if that stops being true. Helper types in ⟦CODE_0008⟧ handle data generation and persistence, as the C# version's ⟦CODE_0009⟧ does."
+msgstr "⟦CODE_0001⟧ es un único bucle ⟦CODE_0002⟧ de cuerpo vacío, y nada dentro de él es una sentencia: ni ⟦CODE_0003⟧, ni ⟦CODE_0004⟧, ni ⟦CODE_0005⟧. ⟦CODE_0006⟧ revisa ⟦CODE_0007⟧ y falla si eso deja de cumplirse. Los tipos auxiliares de ⟦CODE_0008⟧ se encargan de la generación y la persistencia de los datos, como lo hace ⟦CODE_0009⟧ en la versión de C#."
+
+#: src/RustChallenge1/README.md:73
+msgctxt "s-414c540e91c0-0031"
+msgid "Rust has no ⟦CODE_0001⟧-separated three-clause ⟦CODE_0002⟧, but ⟦CODE_0003⟧ has the same three jobs:"
+msgstr "Rust no tiene un ⟦CODE_0002⟧ de tres cláusulas separadas por ⟦CODE_0001⟧, pero ⟦CODE_0003⟧ cumple las mismas tres funciones:"
+
+#: src/RustChallenge1/README.md:75
+msgctxt "s-43d066577f58-0032"
+msgid "⟦SEP_0002⟧ ⟦CODE_0001⟧ section ⟦SEP_0003⟧ In the Rust version ⟦SEP_0004⟧"
+msgstr "⟦SEP_0002⟧ Sección ⟦CODE_0001⟧ ⟦SEP_0003⟧ En la versión de Rust ⟦SEP_0004⟧"
+
+#: src/RustChallenge1/README.md:77
+msgctxt "s-f41ce1025767-0033"
+msgid "⟦SEP_0003⟧ Initializer ⟦SEP_0004⟧ ⟦CODE_0001⟧: an immutable ⟦CODE_0002⟧ ⟦SEP_0005⟧"
+msgstr "⟦SEP_0003⟧ Inicializador ⟦SEP_0004⟧ ⟦CODE_0001⟧: un ⟦CODE_0002⟧ inmutable ⟦SEP_0005⟧"
+
+#: src/RustChallenge1/README.md:78
+msgctxt "s-f07a946af798-0034"
+msgid "⟦SEP_0003⟧ Condition ⟦SEP_0004⟧ ⟦CODE_0001⟧ returns ⟦CODE_0002⟧ to end the loop; as in the C#, the window is launched from inside it ⟦SEP_0005⟧"
+msgstr "⟦SEP_0003⟧ Condición ⟦SEP_0004⟧ ⟦CODE_0001⟧ devuelve ⟦CODE_0002⟧ para terminar el bucle; como en C#, el programa lanza la ventana desde dentro de ella ⟦SEP_0005⟧"
+
+#: src/RustChallenge1/README.md:79
+msgctxt "s-ee78b3963d34-0035"
+msgid "⟦SEP_0003⟧ Iterator ⟦SEP_0004⟧ ⟦CODE_0001⟧ returns ⟦CODE_0002⟧, the batch plus one more card ⟦SEP_0005⟧"
+msgstr "⟦SEP_0003⟧ Iterador ⟦SEP_0004⟧ ⟦CODE_0001⟧ devuelve ⟦CODE_0002⟧, el lote más una tarjeta ⟦SEP_0005⟧"
+
+#: src/RustChallenge1/README.md:81
+msgctxt "s-11bd85b58518-0036"
+msgid "Two tricks take the place of the statements Rust would normally use:"
+msgstr "Dos trucos sustituyen a las sentencias que Rust usaría normalmente:"
+
+#: src/RustChallenge1/README.md:83
+msgctxt "s-164ec5d51351-0037"
+msgid "⟦CODE_0001⟧ is a ⟦CODE_0002⟧ that is an expression."
+msgstr "⟦CODE_0001⟧ es un ⟦CODE_0002⟧ que es una expresión."
+
+#: src/RustChallenge1/README.md:84
+msgctxt "s-c00ebd512ec9-0038"
+msgid "⟦CODE_0001⟧ is the comma operator: it evaluates ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧ in order and yields the last."
+msgstr "⟦CODE_0001⟧ es el operador coma: evalúa ⟦CODE_0002⟧, ⟦CODE_0003⟧ y ⟦CODE_0004⟧ en orden y produce el último valor."
+
+#: src/RustChallenge1/README.md:86
+msgctxt "s-4b0d22b83712-0039"
+msgid "The loop checks the running total before each record: while it is at most 40 and categories remain, it adds 10 to 19 hours for the next category. There are five category names (⟦CODE_0001⟧ repeats), so a total of exactly 40 after four cards continues to a fifth card. When the batch is finished, a scoped worker thread saves it in one SQLite transaction. The thread borrows the cards, so nothing is cloned. The program joins the thread (waits for it to finish) before the window claims that anything was saved. Errors end the program with a message, and the program never reports success after a failure. The one exception is the GTK draw callback, where Cairo errors are ignored, because a panic there would abort across the C boundary. The calendar year and ISO week match the original's separate fields. Around New Year the ISO week-based year can differ from the calendar year."
+msgstr "El bucle comprueba el total acumulado antes de cada registro. Mientras el total no pasa de 40 y quedan categorías, suma de 10 a 19 horas para la siguiente categoría. Hay cinco nombres de categoría (⟦CODE_0001⟧ se repite), así que un total de exactamente 40 después de cuatro tarjetas continúa con una quinta tarjeta. Cuando el lote termina, un hilo de trabajo con ámbito lo guarda en una sola transacción de SQLite. El hilo toma prestadas las tarjetas, así que no se clona nada. El programa une el hilo (espera a que termine) antes de que la ventana afirme que se guardó algo. Los errores terminan el programa con un mensaje, y el programa nunca informa de éxito tras un fallo. La única excepción es la función de devolución de llamada (*callback*) de dibujo de GTK: una función que GTK llama cuando necesita dibujar. Ahí se ignoran los errores de Cairo, porque un *panic* abortaría el programa al cruzar la frontera de C. El año calendario y la semana ISO coinciden con los campos separados del original. Alrededor de Año Nuevo, el año ISO basado en semanas puede diferir del año calendario."
+
+#: src/RustChallenge1/README.md:88
+msgctxt "s-b08424f8ab2d-0040"
+msgid "⟦SEP_0001⟧ Original and Ken's ports ⟦SEP_0002⟧ Rust companion ⟦SEP_0003⟧"
+msgstr "⟦SEP_0001⟧ Original y adaptaciones de Ken ⟦SEP_0002⟧ Complemento en Rust ⟦SEP_0003⟧"
+
+#: src/RustChallenge1/README.md:90
+msgctxt "s-fe12e8e55d41-0041"
+msgid "⟦SEP_0003⟧ C# and Java use the three sections of a ⟦CODE_0001⟧ with an empty body; Kotlin builds a sequence ⟦SEP_0004⟧ Rust builds an iterator with ⟦CODE_0002⟧, also with an empty body ⟦SEP_0005⟧"
+msgstr "⟦SEP_0003⟧ C# y Java usan las tres secciones de un ⟦CODE_0001⟧ con cuerpo vacío; Kotlin construye una secuencia ⟦SEP_0004⟧ Rust construye un iterador con ⟦CODE_0002⟧, también con cuerpo vacío ⟦SEP_0005⟧"
+
+#: src/RustChallenge1/README.md:91
+msgctxt "s-1160f679b280-0042"
+msgid "⟦SEP_0004⟧ Anonymous state objects and Kotlin ⟦CODE_0001⟧ chains ⟦SEP_0005⟧ An immutable ⟦CODE_0002⟧; ⟦CODE_0003⟧ binds names ⟦SEP_0006⟧"
+msgstr "⟦SEP_0004⟧ Objetos de estado anónimos y cadenas ⟦CODE_0001⟧ de Kotlin ⟦SEP_0005⟧ Un ⟦CODE_0002⟧ inmutable; ⟦CODE_0003⟧ vincula nombres ⟦SEP_0006⟧"
+
+#: src/RustChallenge1/README.md:92
+msgctxt "s-060653ff6b4d-0043"
+msgid "⟦SEP_0002⟧ Comma-separated iterator expressions ⟦SEP_0003⟧ Tuples, projected with ⟦CODE_0001⟧ ⟦SEP_0004⟧"
+msgstr "⟦SEP_0002⟧ Expresiones de iterador separadas por comas ⟦SEP_0003⟧ Tuplas, proyectadas con ⟦CODE_0001⟧ ⟦SEP_0004⟧"
+
+#: src/RustChallenge1/README.md:93
+msgctxt "s-1a17f53f037a-0044"
+msgid "⟦SEP_0001⟧ Runtime XAML or Spring XML builds the window ⟦SEP_0002⟧ Runtime GTK Builder XML builds the window; a GLib timer moves a soft background shade ⟦SEP_0003⟧"
+msgstr "⟦SEP_0001⟧ En tiempo de ejecución, XAML o Spring XML construye la ventana ⟦SEP_0002⟧ En tiempo de ejecución, GTK Builder XML construye la ventana; un temporizador de GLib mueve un tono suave de fondo ⟦SEP_0003⟧"
+
+#: src/RustChallenge1/README.md:94
+msgctxt "s-16c948099266-0045"
+msgid "⟦SEP_0002⟧ EF Core or Spring Data and SQLite ⟦SEP_0003⟧ ⟦CODE_0001⟧ and a local transaction ⟦SEP_0004⟧"
+msgstr "⟦SEP_0002⟧ EF Core o Spring Data y SQLite ⟦SEP_0003⟧ ⟦CODE_0001⟧ y una transacción local ⟦SEP_0004⟧"
+
+#: src/RustChallenge1/README.md:95
+msgctxt "s-c64fac68be44-0046"
+msgid "⟦SEP_0002⟧ Background save and reflective method calls ⟦SEP_0003⟧ A joined scoped thread; no reflection is needed, since ⟦CODE_0001⟧ is an ordinary value in Rust ⟦SEP_0004⟧"
+msgstr "⟦SEP_0002⟧ Guardado en segundo plano y llamadas a métodos por reflexión ⟦SEP_0003⟧ Un hilo con ámbito (*scoped thread*) al que se hace *join*; no hace falta reflexión, ya que ⟦CODE_0001⟧ es un valor ordinario en Rust ⟦SEP_0004⟧"
+
+#: src/RustChallenge1/README.md:96
+msgctxt "s-7cb12f4baf02-0047"
+msgid "⟦SEP_0004⟧ ⟦CODE_0001⟧ ⟦SEP_0005⟧ ⟦CODE_0002⟧, then ⟦CODE_0003⟧, ignoring empty values, else \"unknown\" ⟦SEP_0006⟧"
+msgstr "⟦SEP_0004⟧ ⟦CODE_0001⟧ ⟦SEP_0005⟧ ⟦CODE_0002⟧ y después ⟦CODE_0003⟧; ignora los valores vacíos; si no, \"unknown\" ⟦SEP_0006⟧"
+
+#: src/RustChallenge1/README.md:98
+msgctxt "s-dee67dfcc5fe-0048"
+msgid "The worker does not touch GTK. The UI and its event loop stay on the main thread. This version waits for persistence on purpose, unlike the original's intentionally awkward shared-context thread. So the thread is only a nod to the original, not a source of concurrency. The application is a language exercise, not a recommendation to hide work inside iterator expressions."
+msgstr "El hilo de trabajo no toca GTK. La interfaz y su bucle de eventos permanecen en el hilo principal. Esta versión espera la persistencia a propósito, a diferencia del hilo con contexto compartido del original, torpe de forma intencional. Por eso el hilo es solo un guiño al original, no una fuente de concurrencia. La aplicación es un ejercicio de lenguaje, no una recomendación para ocultar trabajo dentro de expresiones de iteradores."
+
+#: src/RustChallenge1/README.md:100
+msgctxt "s-5a0ad00b10fc-0049"
+msgid "Gotchas worth knowing"
+msgstr "Trampas que conviene conocer"
+
+#: src/RustChallenge1/README.md:102
+msgctxt "s-cd94869c155b-0050"
+msgid "**A test enforces the one-statement rule.** ⟦CODE_0001⟧ scans ⟦CODE_0002⟧ and fails if a ⟦CODE_0003⟧, a ⟦CODE_0004⟧ or a ⟦CODE_0005⟧ appears in ⟦CODE_0006⟧."
+msgstr "**Una prueba impone la regla de una sola sentencia.** ⟦CODE_0001⟧ analiza ⟦CODE_0002⟧ y falla si aparece un ⟦CODE_0003⟧, un ⟦CODE_0004⟧ o un ⟦CODE_0005⟧ en ⟦CODE_0006⟧."
+
+#: src/RustChallenge1/README.md:103
+msgctxt "s-307e40a55e1f-0051"
+msgid "**You need a desktop session.** Outside the container, the window needs WSLg. The locked dependencies were tested with Ubuntu's Rust and Cargo 1.75, and Cargo needs the network to download crates on the first build."
+msgstr "**Necesitas una sesión de escritorio.** Fuera del contenedor, la ventana necesita WSLg. Las dependencias bloqueadas se probaron con Rust y Cargo 1.75 de Ubuntu, y Cargo necesita la red para descargar crates en la primera compilación."
+
+#: src/RustChallenge1/README.md:104
+msgctxt "s-0d34a38a56fa-0052"
+msgid "**Cairo errors are ignored in the draw callback,** because a panic there would abort across the C boundary. Everywhere else, errors end the program with a message."
+msgstr "**Los errores de Cairo se ignoran en la función de devolución de llamada (*callback*, una función que se entrega a otro código para que la llame después) de dibujo,** porque un *panic* ahí abortaría al cruzar el límite con C. En todo lo demás, los errores finalizan el programa con un mensaje."
+
+#: src/RustChallenge1/README.md:105
+msgctxt "s-0deeb96d5886-0053"
+msgid "**Around New Year, the ISO week-based year can differ from the calendar year.**"
+msgstr "**Alrededor de Año Nuevo, el año basado en semanas ISO puede diferir del año calendario.**"
+
+#: src/RustChallenge1/README.md:106
+msgctxt "s-6a7072d503c6-0054"
+msgid "**The thread is a nod to the original.** The worker waits for persistence on purpose, so it is not a source of concurrency."
+msgstr "**El hilo es un guiño al original.** El trabajador espera a la persistencia a propósito, así que no es una fuente de concurrencia."
+
+#: src/RustChallenge1/README.md:107
+msgctxt "s-ed847951ba78-0055"
+msgid "**There is no Windows Sandbox profile and no check script,** so the sandbox gate does not cover this port yet. The container image is about 350 MB, because GTK 4 is big."
+msgstr "**No hay perfil de Windows Sandbox ni script de verificación,** así que el control de un entorno aislado (*sandbox*) que limita el acceso al sistema anfitrión todavía no cubre esta adaptación. La imagen del contenedor pesa unos 350 MB, porque GTK 4 es grande."
+
+#: src/RustChallenge1/README.md:109
+msgctxt "s-5761bab478df-0056"
+msgid "Check it"
+msgstr "Compruébalo"
+
+#: src/RustChallenge1/README.md:117
+msgctxt "s-06350f5dd569-0057"
+msgid "Inspect the database with ⟦CODE_0001⟧."
+msgstr "Inspecciona la base de datos con ⟦CODE_0001⟧."
+
+#: src/RustChallenge1/README.md:121
+msgctxt "s-40ddb79ac33a-0058"
+msgid "See the [root README](⟦DEST_0001⟧) for how this compares to the other entries, and [⟦CODE_0002⟧](⟦DEST_0003⟧) if you want to write your own."
+msgstr "Consulta el [README principal](⟦DEST_0001⟧) para ver cómo se compara con las demás entradas, y [⟦CODE_0002⟧](⟦DEST_0003⟧) si quieres escribir la tuya."

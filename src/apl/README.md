@@ -1,6 +1,6 @@
 ---
 name: "APL"
-teaches: "that five rolls and a take-while can replace a loop."
+teaches: "que cinco tiradas y un take-while pueden reemplazar un bucle."
 kind: idiomatic
 languages: [apl]
 lesson: "lenguajes/apl.md"
@@ -8,21 +8,21 @@ loop-by: bulk-array
 evaluation: eager
 assurance: implementation-permitted
 pairs-with: apl-weird
-machine: "Ordinary: an array machine that draws five cards at once and decides afterwards"
-state: "Arrays, and nothing hidden"
+machine: "Ordinario: una máquina de arreglos que saca cinco tarjetas a la vez y decide después"
+state: "Arreglos y nada oculto"
 tags: [array-programming, eager-evaluation, referential-transparency]
 ---
 # APL
 
-**Teaches you:** that five rolls and a take-while can replace a loop.
+**Te enseña:** que cinco tiradas y un *take-while* pueden reemplazar un bucle.
 
-> **DEMO ONLY.** Fictional timecards in a scratch SQLite file. No connection to any real time-reporting system.
+> **DEMO ONLY.** Tarjetas de horas ficticias en un archivo SQLite temporal. Sin conexión con ningún sistema real de reporte de horas.
 
-The challenge's card selection takes four named array assignments. `Drawn` holds the five rolls, and `Hours`, `Totals` and `Kinds` derive the kept rows from them. There is no loop and no `if`. The rest of [`timecards.apl`](timecards.apl) is plumbing: seeding, a pipe to `sqlite3`, and printing.
+La selección de tarjetas del reto usa cuatro asignaciones de arreglos con nombre. `Drawn` contiene las cinco tiradas, y `Hours`, `Totals` y `Kinds` derivan de ellas las filas conservadas. No hay ningún bucle ni `if`. El resto de [`timecards.apl`](timecards.apl) trata de cómo viaja el dato: la semilla, una tubería hacia `sqlite3` y la impresión.
 
-## Run it
+## Ejecútalo
 
-You need GNU APL (`apl`, built from [gnu.org/software/apl](https://www.gnu.org/software/apl/)) and `sqlite3`.
+Necesitas GNU APL (`apl`, compilado desde [gnu.org/software/apl](https://www.gnu.org/software/apl/)) y `sqlite3`.
 
 ```bash
 cd src/apl
@@ -30,7 +30,7 @@ apl --script -f timecards.apl
 ./check.sh                  # set APL=/path/to/apl if it is not on your PATH
 ```
 
-Records go to `$XDG_DATA_HOME/Apl/demo-timecards.db` (default `~/.local/share/Apl/`). A run looks like this:
+Los registros van a `$XDG_DATA_HOME/Apl/demo-timecards.db` (por defecto `~/.local/share/Apl/`). Una ejecución se ve así:
 
 ```text
 # DEMO ONLY run 2026-11-14-9-38-27-440
@@ -40,93 +40,93 @@ Debugging	16	52	2026-W46	DEMO ONLY
 # committed total=52 entries=3 DEMO ONLY
 ```
 
-## Program Flow
+## Flujo del programa
 
 ```mermaid
 flowchart TD
-    accTitle: apl: draw everything first, then let arrays decide where to stop
-    accDescr: A flowchart of data moving through whole-array operations. Five random hours between 10 and 19 are drawn at once. A running sum gives the total after each card. Comparing the totals with 40 gives ones and zeros. Summing the ones and adding one counts the cards to keep. Taking that many cards from the drawn hours gives the kept hours. The running totals and the category names, reshaped to the same length, are derived from them. Then a function applied to each row number saves each row and shows each row.
-    A["Drawn: five random hours, 10 to 19, rolled at once"] --> B["Running sum of Drawn: the total after each card"]
-    B --> C["Compare with 40: 1 where the total is 40 or less, else 0"]
-    C --> D["Sum the 1s, add 1: the number of cards to keep"]
-    D --> E["Take that many from Drawn: Hours"]
-    E --> F["Totals is a running sum of Hours; Kinds is the categories reshaped to the length of Hours"]
-    F --> G["SaveRow and ShowRow, each applied to every row number"]
+    accTitle: apl: dibuja todo primero y luego deja que los arreglos decidan dónde parar
+    accDescr: Un diagrama de flujo de los datos a través de operaciones sobre arreglos completos. Se sortean cinco horas aleatorias de 10 a 19 de una sola vez. Una suma acumulada da el total después de cada tarjeta. Al comparar los totales con 40 se obtienen unos y ceros. Al sumar los unos y añadir uno se cuenta cuántas tarjetas se conservan. Al tomar esa cantidad de tarjetas de las horas sorteadas se obtienen las horas conservadas. De ellas se derivan los totales acumulados y los nombres de las categorías, remodelados a la misma longitud. Después, una función aplicada a cada número de fila guarda cada fila y muestra cada fila.
+    A["Drawn: cinco horas aleatorias, de 10 a 19, sorteadas a la vez"] --> B["Suma acumulada de Drawn: el total después de cada tarjeta"]
+    B --> C["Compara con 40: 1 donde el total no pasa de 40, 0 en caso contrario"]
+    C --> D["Suma los 1 y añade 1: el número de tarjetas que se conservan"]
+    D --> E["Toma esa cantidad de Drawn: Hours"]
+    E --> F["Totals es una suma acumulada de Hours; Kinds son las categorías remodeladas a la longitud de Hours"]
+    F --> G["SaveRow y ShowRow, cada una aplicada a todos los números de fila"]
 ```
 
-**What this shows:** no card is drawn *after* the stop rule is known. All five are drawn first, and the stop rule is arithmetic on whole arrays: a running sum, a comparison, a count. The only repetition is `¨` ("each"), and it visits rows that were already decided.
+**Qué muestra:** el programa no saca ninguna tarjeta *después* de conocer la regla de parada. Primero saca las cinco. La regla de parada es aritmética sobre arreglos completos: una suma acumulada, una comparación y un conteo. La única repetición es `¨` ("cada uno"), que visita filas que ya estaban decididas.
 
-**Why this mechanism matters:** five is not a loop count. It is a bound that can never be too small, because five cards of at least 10 hours always pass 40. The program does its work as array operations, and an array operation takes the place of a loop. Compare [`apl-weird`](../apl-weird/README.md), where the program writes itself.
+**Por qué importa este mecanismo:** cinco no es un número de repeticiones del bucle. Es un límite que nunca puede quedar corto, porque cinco tarjetas de al menos 10 horas siempre pasan de 40. El programa hace su trabajo con operaciones sobre arreglos, y una operación sobre arreglos ocupa el lugar de un bucle. Compara [`apl-weird`](../apl-weird/README.md), donde el programa se escribe a sí mismo.
 
-## How the stunt works
+## Cómo funciona el truco
 
-Read the four assignments under "The challenge" in the source with this walk-through beside them.
+Lee las cuatro asignaciones bajo "The challenge" en el código fuente con este recorrido a tu lado.
 
-1. **Draw everything up front.** `Drawn←(10-⎕IO)+?5⍴10`. `5⍴10` is five tens, `?` rolls each one (`?10` gives a number from the first ten integers), and the `10-⎕IO` shift turns those into 10 to 19. Why five? Every card is at least 10 hours, so five cards always total at least 50. Five is a *bound that can never be too small*, not a loop count.
-2. **Apply the stop rule as data.** `Hours←Drawn↑⍨1++/40≥+\Drawn`. Read it right to left:
-   - `+\Drawn` is the running total after each card, for example `15 26 41 51 …`;
-   - `40≥` turns that into 1s and 0s: `1 1 0 0 …`. Totals only ever grow, so the 1s are always a prefix;
-   - `+/` counts the 1s, which is how many cards fit under the line;
-   - `1+` adds the one card that crosses it, and `↑⍨` ("take, arguments swapped") keeps that many.
-3. **Derive the rest.** `Totals←+\Hours` is the running total again. `Kinds←(≢Hours)⍴Categories` uses a quiet property of reshape: `⍴` *recycles* its right argument when it is shorter than the target, so four category names fill as many slots as there are kept cards, up to five. If a fifth card is kept, its name is `Meetings` again. No modulo needed.
+1. **Sortea todo por adelantado.** `Drawn←(10-⎕IO)+?5⍴10`. `5⍴10` son cinco dieces, `?` tira cada uno (`?10` da un número entre los primeros diez enteros) y el desplazamiento `10-⎕IO` los convierte en horas de 10 a 19. ¿Por qué cinco? Cada tarjeta tiene al menos 10 horas, así que el total de cinco tarjetas es siempre al menos 50. Cinco es una *cota que nunca puede quedarse corta*, no el número de vueltas de un bucle.
+2. **Aplica la regla de parada como datos.** `Hours←Drawn↑⍨1++/40≥+\Drawn`. Léela de derecha a izquierda:
+   - `+\Drawn` es el total acumulado después de cada tarjeta, por ejemplo `15 26 41 51 …`;
+   - `40≥` convierte eso en 1 y 0: `1 1 0 0 …`. Los totales solo crecen, así que los 1 siempre forman un prefijo;
+   - `+/` cuenta los 1, que es la cantidad de tarjetas que caben bajo la línea;
+   - `1+` suma la única tarjeta que la cruza, y `↑⍨` ("take, con los argumentos intercambiados") conserva esa cantidad.
+3. **Deduce el resto.** `Totals←+\Hours` es de nuevo el total acumulado. `Kinds←(≢Hours)⍴Categories` usa una propiedad discreta de *reshape*: `⍴` *recicla* su argumento derecho cuando este es más corto que el destino. Así, cuatro nombres de categoría llenan tantas posiciones como tarjetas se conserven, hasta cinco. Si se conserva una quinta tarjeta, su nombre es `Meetings` otra vez. No hace falta usar módulo.
 
-After that, `SaveRow¨⍳≢Hours` and `ShowRow¨⍳≢Hours` apply a small function (a *dfn*, `{ … }`) to each row number (`¨` is "each"). That is APL's `for`, and it is not the stop rule: it just visits the rows that are already decided.
+Después, `SaveRow¨⍳≢Hours` y `ShowRow¨⍳≢Hours` aplican una función pequeña (una *dfn*, `{ … }`) a cada número de fila (`¨` significa "cada uno"). Eso es `for` de APL y no es la regla de parada: solo visita las filas que ya están decididas.
 
-### The plumbing, in the order it appears
+### Cómo viaja el dato, en el orden en que aparece
 
-| Piece | What it does |
+| Pieza | Qué hace |
 | --- | --- |
-| `⎕RL←+/⎕TS×1 12 …` | Seeds the random generator from the clock. GNU APL starts every session with `⎕RL` at 16807, so without this every run would draw the same "random" cards |
-| `⎕FIO[24]` / `⎕FIO[8]` / `⎕FIO[25]` | `popen`, read a line, `pclose`. Used to ask `date +%G-W%V` for the ISO week |
-| `'w' ⎕FIO[24] '…sqlite3…'` | `popen` for writing: APL sends SQL down a pipe to a real `sqlite3` |
-| `⎕FIO[23]` / `⎕FIO[22]` | `fwrite` and `fprintf`. The left argument of `⎕FIO[22]` is a format string followed by its values; the right is the file handle (`1` is stdout) |
-| `CHECK(demo_only=1)` | Makes a non-demo row unrepresentable in the table. `check.sh` tries to insert one and expects SQLite to refuse |
-| `)OFF` | A *system command*, not APL code. It ends the script. Without it `--script` would sit at the prompt |
+| `⎕RL←+/⎕TS×1 12 …` | Inicializa el generador aleatorio con el reloj. GNU APL inicia cada sesión con `⎕RL` en 16807, así que sin esto cada ejecución sacaría las mismas tarjetas "aleatorias" |
+| `⎕FIO[24]` / `⎕FIO[8]` / `⎕FIO[25]` | `popen`, lee una línea, `pclose`. Se usaba para pedir a `date +%G-W%V` la semana ISO |
+| `'w' ⎕FIO[24] '…sqlite3…'` | `popen` para escribir: APL envía SQL por una tubería a un `sqlite3` real |
+| `⎕FIO[23]` / `⎕FIO[22]` | `fwrite` y `fprintf`. El argumento izquierdo de `⎕FIO[22]` es una cadena de texto de formato seguida de sus valores; el derecho es el identificador del archivo (`1` es la salida estándar) |
+| `CHECK(demo_only=1)` | Hace imposible representar en la tabla una fila que no sea de demostración. `check.sh` intenta insertar una y espera que SQLite la rechace |
+| `)OFF` | Un *comando del sistema*, no código APL. Termina el script. Sin él, `--script` se quedaría en el prompt |
 
-## Seeing the glyphs
+## Cómo ver los glifos
 
-APL uses symbols that most fonts lack. If the source shows rows of empty boxes, your font has no APL glyphs. Two things to know first:
+APL usa símbolos que la mayoría de las fuentes no incluyen. Si el código fuente muestra filas de cuadros vacíos, tu fuente no tiene glifos de APL. Antes de empezar, ten en cuenta dos cosas:
 
-- **`⎕` is meant to be an empty box.** It is APL's "quad", so `⎕IO` should look like a small hollow square followed by `IO`. Every other symbol (`⍴ ⍳ ⍵ ∇ ⍝ ⍨ ⌽ ⍕`) should look like a letter or mark, not a box.
-- **A terminal that is not UTF-8 will garble them** before the font even matters. GNU APL needs a UTF-8 locale.
+- **`⎕` debe verse como una caja vacía.** Es el "quad" de APL, así que `⎕IO` debería verse como un pequeño cuadrado hueco seguido de `IO`. Cada otro símbolo (`⍴ ⍳ ⍵ ∇ ⍝ ⍨ ⌽ ⍕`) debería verse como una letra o una marca, no como una caja.
+- **Una terminal que no use UTF-8 los mostrará mal** incluso antes de que importe la fuente. GNU APL necesita una configuración regional UTF-8.
 
-**The fix is a font that has the APL range.** [DejaVu Sans Mono](https://dejavu-fonts.github.io/) covers every symbol used in these files. [APL385 Unicode](https://www.dyalog.com/apl-font-keyboard.htm) is the traditional APL font and also works.
+**La solución es una fuente que tenga el rango APL.** [DejaVu Sans Mono](https://dejavu-fonts.github.io/) cubre todos los símbolos que usan estos archivos. [APL385 Unicode](https://www.dyalog.com/apl-font-keyboard.htm) es la fuente tradicional de APL y también funciona.
 
-On **Ubuntu**, `fonts-dejavu-mono` is usually already installed (`fc-list | grep -i "dejavu sans mono"` will tell you). Fonts installed *inside WSL* are not used by Windows programs, so on **Windows or WSL2** the font has to be installed on the Windows side:
+En **Ubuntu**, `fonts-dejavu-mono` suele estar ya instalado (`fc-list | grep -i "dejavu sans mono"` te lo dirá). Los programas de Windows no usan las fuentes instaladas *dentro de WSL*, así que en **Windows o WSL2** debes instalar la fuente en el lado de Windows:
 
-1. Copy the font out of WSL, or download it from the DejaVu site:
+1. Copia la fuente desde WSL o descárgala del sitio de DejaVu:
 
    ```bash
    mkdir -p /mnt/c/Users/<you>/Downloads/DejaVuSansMono
    cp /usr/share/fonts/truetype/dejavu/DejaVuSansMono*.ttf /mnt/c/Users/<you>/Downloads/DejaVuSansMono/
    ```
 
-2. In File Explorer, select the four `.ttf` files, right-click, **Show more options**, **Install for all users**.
-3. Quit and reopen your browser and editor. A browser falls back to any installed font that has the glyph, so GitHub's rendering of these files will usually start working with nothing else changed.
-4. If an editor or terminal still shows boxes, name the font explicitly:
-   - VS Code: `editor.fontFamily` and `terminal.integrated.fontFamily` set to `'DejaVu Sans Mono'`.
-   - Windows Terminal: Settings, your profile, Appearance, Font face.
+2. En el Explorador de archivos, selecciona los cuatro archivos `.ttf`, haz clic con el botón derecho, elige **Mostrar más opciones** y luego **Instalar para todos los usuarios**.
+3. Cierra y vuelve a abrir tu navegador y tu editor. Un navegador recurre a cualquier fuente instalada que tenga el glifo, así que la visualización de estos archivos en GitHub normalmente empezará a funcionar sin ningún otro cambio.
+4. Si un editor o una terminal sigue mostrando cuadros, indica la fuente de forma explícita:
+   - VS Code: `editor.fontFamily` y `terminal.integrated.fontFamily` con el valor `'DejaVu Sans Mono'`.
+   - Windows Terminal: Configuración, tu perfil, Apariencia, Tipo de letra.
 
-To test, paste `⍳ ⍴ ⍵ ⎕ ∇ ⍝ ⍣ ⍸ ⌽` somewhere. You should see eight letter-like symbols and one empty box (the `⎕`).
+Para probar, pega `⍳ ⍴ ⍵ ⎕ ∇ ⍝ ⍣ ⍸ ⌽` en cualquier parte. Deberías ver ocho símbolos con forma de letra y un cuadro vacío (el `⎕`).
 
-## What `check.sh` enforces
+## Qué impone `check.sh`
 
-`check.sh` is the referee. It checks that `timecards.apl` carries the `DEMO ONLY` marker and contains no network-looking text (`http`, `socket`, `curl`, `wget`). Then it runs the program 25 times. Every run must print a sane record set: categories in order, hours from 10 to 19, running totals that add up, a `DEMO ONLY` mark on every row, and a stop exactly when the total passes 40. SQLite must agree with the printed rows. The 25 runs must be 25 different runs, and the hours must show at least six different values, so the "random" draws really look random. Last, it tries to insert a non-demo row and expects SQLite to refuse it, which proves that `CHECK(demo_only=1)` is real.
+`check.sh` es el árbitro. Comprueba que `timecards.apl` lleve la marca `DEMO ONLY` y que no contenga texto que parezca de red (`http`, `socket`, `curl`, `wget`). Luego ejecuta el programa 25 veces. Cada ejecución debe imprimir un conjunto coherente de registros: categorías en orden, horas de 10 a 19, totales acumulados que cuadran, una marca `DEMO ONLY` en cada fila y una parada justo cuando el total pasa de 40. SQLite debe coincidir con las filas impresas. Las 25 ejecuciones deben ser 25 ejecuciones distintas, y las horas deben mostrar al menos seis valores distintos, para que los sorteos "aleatorios" parezcan aleatorios de verdad. Por último, intenta insertar una fila que no sea de demostración y espera que SQLite la rechace, lo que demuestra que `CHECK(demo_only=1)` es real.
 
-## Gotchas worth knowing
+## Trampas que conviene conocer
 
-- **Origin.** `⎕IO` is the index origin (1 by default in GNU APL, 0 in some code). The file never assumes it: `?` is the only primitive whose results depend on it, and the draw subtracts `⎕IO` back out. `check.sh` runs with the default; try putting `⎕IO←0` on the first line and see that the cards are still 10 to 19.
-- **`⊃` is not "first".** In APL2-family interpreters (GNU APL, APL2) `⊃` *discloses* (it is "mix") and `↑` is "first". Dyalog reverses that: `⊃` is first/pick. `⊃Kinds[⍵]` here is a disclose of one selected string back to a plain character vector.
-- **`_←` is a throwaway.** Primitives such as `⎕FIO` return a value; a bare expression would print it. Assigning to `_` swallows it.
-- **No formatter exists.** There is no `gofmt` for GNU APL source. The layout rules applied by hand are: one statement per line (`⋄` is for the REPL), CamelCase names for things you define, and comments aligned in a column.
-- **SQL by string formatting is a bad habit.** It is safe here only because every value is a number computed by the program or one of four fixed words. Do not copy it.
+- **Origen.** `⎕IO` es el origen de índices (1 de forma predeterminada en GNU APL, 0 en algún código). El archivo nunca lo da por supuesto: `?` es la única primitiva cuyos resultados dependen de él, y el sorteo vuelve a restar `⎕IO`. `check.sh` se ejecuta con el valor predeterminado; prueba a poner `⎕IO←0` en la primera línea y comprueba que las tarjetas siguen siendo de 10 a 19 horas.
+- **`⊃` no es "first".** En los intérpretes de la familia APL2 (GNU APL, APL2), `⊃` aplica *disclose* (es "mix") y `↑` es "first". Dyalog lo invierte: `⊃` es first/pick. Aquí, `⊃Kinds[⍵]` aplica *disclose* a una sola cadena de texto seleccionada para devolverla a un vector simple de caracteres.
+- **`_←` es desechable.** Primitivas como `⎕FIO` devuelven un valor; una expresión sola lo imprimiría. Asignar a `_` lo descarta.
+- **No existe un formateador.** No hay `gofmt` para el código fuente de GNU APL. Las reglas de formato que se aplican a mano son: una sentencia por línea (`⋄` es para el REPL), nombres en CamelCase para lo que defines y comentarios alineados en una columna.
+- **Armar SQL con formato de cadenas de texto es un mal hábito.** Aquí es seguro solo porque cada valor es un número que calcula el programa o una de cuatro palabras fijas. No lo copies.
 
-## Run it in a container
+## Ejecútalo en un contenedor
 
-Prerequisite: Docker, set up once as described in [`SANDBOX-SETUP.md`](../../SANDBOX-SETUP.md#docker).
+Requisito previo: Docker, configurado una sola vez como se describe en [`SANDBOX-SETUP.md`](../../SANDBOX-SETUP.md#docker).
 
 ```bash
 sandbox/container/run-image.sh src/apl
 ```
 
-It builds this folder's [`Dockerfile`](Dockerfile) and runs the result with no network, a read-only file system and user `nobody`, then prints the output and a read-only look at the rows it wrote. The image holds GNU APL (built from the pinned gnu.org tarball in the toolchain image) and sqlite3 on a minimal Ubuntu. It has no compiler and no package manager.
+Construye el [`Dockerfile`](Dockerfile) de esta carpeta y ejecuta el resultado sin red, con un sistema de archivos de solo lectura y con el usuario `nobody`. Luego imprime la salida y una vista de solo lectura de las filas que escribió. La imagen contiene GNU APL (compilado desde el archivo *tarball* fijado de gnu.org en la imagen de la cadena de herramientas) y sqlite3 sobre un Ubuntu mínimo. No tiene compilador ni gestor de paquetes.

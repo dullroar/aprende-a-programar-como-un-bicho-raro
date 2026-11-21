@@ -9495,68 +9495,68 @@
     {
      "en": "One Statement, Rust Edition",
      "en_id": "one-statement-rust-edition",
-     "es": "One Statement, Rust Edition",
-     "es_id": "one-statement-rust-edition",
+     "es": "Una sola sentencia, edición Rust",
+     "es_id": "una-sola-sentencia-edición-rust",
      "level": 1,
      "line": 17
     },
     {
      "en": "Run it",
      "en_id": "run-it",
-     "es": "Run it",
-     "es_id": "run-it",
+     "es": "Ejecútalo",
+     "es_id": "ejecútalo",
      "level": 2,
      "line": 23
     },
     {
      "en": "Run it in a container",
      "en_id": "run-it-in-a-container",
-     "es": "Run it in a container",
-     "es_id": "run-it-in-a-container",
+     "es": "Ejecuta el programa en un contenedor",
+     "es_id": "ejecuta-el-programa-en-un-contenedor",
      "level": 2,
      "line": 39
     },
     {
      "en": "Program Flow",
      "en_id": "program-flow",
-     "es": "Program Flow",
-     "es_id": "program-flow",
+     "es": "Flujo del programa",
+     "es_id": "flujo-del-programa",
      "level": 2,
      "line": 49
     },
     {
      "en": "How the stunt works",
      "en_id": "how-the-stunt-works",
-     "es": "How the stunt works",
-     "es_id": "how-the-stunt-works",
+     "es": "Cómo funciona el truco",
+     "es_id": "cómo-funciona-el-truco",
      "level": 2,
      "line": 69
     },
     {
      "en": "Gotchas worth knowing",
      "en_id": "gotchas-worth-knowing",
-     "es": "Gotchas worth knowing",
-     "es_id": "gotchas-worth-knowing",
+     "es": "Trampas que conviene conocer",
+     "es_id": "trampas-que-conviene-conocer",
      "level": 2,
      "line": 100
     },
     {
      "en": "Check it",
      "en_id": "check-it",
-     "es": "Check it",
-     "es_id": "check-it",
+     "es": "Compruébalo",
+     "es_id": "compruébalo",
      "level": 2,
      "line": 109
     }
    ],
    "map": {
-    "check-it": "check-it",
-    "gotchas-worth-knowing": "gotchas-worth-knowing",
-    "how-the-stunt-works": "how-the-stunt-works",
-    "one-statement-rust-edition": "one-statement-rust-edition",
-    "program-flow": "program-flow",
-    "run-it": "run-it",
-    "run-it-in-a-container": "run-it-in-a-container"
+    "check-it": "compruébalo",
+    "gotchas-worth-knowing": "trampas-que-conviene-conocer",
+    "how-the-stunt-works": "cómo-funciona-el-truco",
+    "one-statement-rust-edition": "una-sola-sentencia-edición-rust",
+    "program-flow": "flujo-del-programa",
+    "run-it": "ejecútalo",
+    "run-it-in-a-container": "ejecuta-el-programa-en-un-contenedor"
    }
   },
   "src/apl-weird/README.md": {
@@ -9564,86 +9564,86 @@
     {
      "en": "APL, weirder",
      "en_id": "apl-weirder",
-     "es": "APL, weirder",
-     "es_id": "apl-weirder",
+     "es": "APL, aún más raro",
+     "es_id": "apl-aún-más-raro",
      "level": 1,
      "line": 15
     },
     {
      "en": "Run it",
      "en_id": "run-it",
-     "es": "Run it",
-     "es_id": "run-it",
+     "es": "Ejecútalo",
+     "es_id": "ejecútalo",
      "level": 2,
      "line": 25
     },
     {
      "en": "Program Flow",
      "en_id": "program-flow",
-     "es": "Program Flow",
-     "es_id": "program-flow",
+     "es": "Flujo del programa",
+     "es_id": "flujo-del-programa",
      "level": 2,
      "line": 51
     },
     {
      "en": "How the stunt works",
      "en_id": "how-the-stunt-works",
-     "es": "How the stunt works",
-     "es_id": "how-the-stunt-works",
+     "es": "Cómo funciona el truco",
+     "es_id": "cómo-funciona-el-truco",
      "level": 2,
      "line": 70
     },
     {
      "en": "What this version refuses to use",
      "en_id": "what-this-version-refuses-to-use",
-     "es": "What this version refuses to use",
-     "es_id": "what-this-version-refuses-to-use",
+     "es": "Qué se niega a usar esta versión",
+     "es_id": "qué-se-niega-a-usar-esta-versión",
      "level": 3,
      "line": 93
     },
     {
      "en": "Seeing the glyphs",
      "en_id": "seeing-the-glyphs",
-     "es": "Seeing the glyphs",
-     "es_id": "seeing-the-glyphs",
+     "es": "Cómo ver los glifos",
+     "es_id": "cómo-ver-los-glifos",
      "level": 2,
      "line": 97
     },
     {
      "en": "What `check.sh` enforces",
      "en_id": "what-checksh-enforces",
-     "es": "What `check.sh` enforces",
-     "es_id": "what-checksh-enforces",
+     "es": "Qué impone `check.sh`",
+     "es_id": "qué-impone-checksh",
      "level": 2,
      "line": 101
     },
     {
      "en": "Gotchas worth knowing",
      "en_id": "gotchas-worth-knowing",
-     "es": "Gotchas worth knowing",
-     "es_id": "gotchas-worth-knowing",
+     "es": "Trampas que conviene conocer",
+     "es_id": "trampas-que-conviene-conocer",
      "level": 2,
      "line": 105
     },
     {
      "en": "Run it in a container",
      "en_id": "run-it-in-a-container",
-     "es": "Run it in a container",
-     "es_id": "run-it-in-a-container",
+     "es": "Ejecútalo en un contenedor",
+     "es_id": "ejecútalo-en-un-contenedor",
      "level": 2,
      "line": 114
     }
    ],
    "map": {
-    "apl-weirder": "apl-weirder",
-    "gotchas-worth-knowing": "gotchas-worth-knowing",
-    "how-the-stunt-works": "how-the-stunt-works",
-    "program-flow": "program-flow",
-    "run-it": "run-it",
-    "run-it-in-a-container": "run-it-in-a-container",
-    "seeing-the-glyphs": "seeing-the-glyphs",
-    "what-checksh-enforces": "what-checksh-enforces",
-    "what-this-version-refuses-to-use": "what-this-version-refuses-to-use"
+    "apl-weirder": "apl-aún-más-raro",
+    "gotchas-worth-knowing": "trampas-que-conviene-conocer",
+    "how-the-stunt-works": "cómo-funciona-el-truco",
+    "program-flow": "flujo-del-programa",
+    "run-it": "ejecútalo",
+    "run-it-in-a-container": "ejecútalo-en-un-contenedor",
+    "seeing-the-glyphs": "cómo-ver-los-glifos",
+    "what-checksh-enforces": "qué-impone-checksh",
+    "what-this-version-refuses-to-use": "qué-se-niega-a-usar-esta-versión"
    }
   },
   "src/apl/README.md": {
@@ -9659,78 +9659,78 @@
     {
      "en": "Run it",
      "en_id": "run-it",
-     "es": "Run it",
-     "es_id": "run-it",
+     "es": "Ejecútalo",
+     "es_id": "ejecútalo",
      "level": 2,
      "line": 23
     },
     {
      "en": "Program Flow",
      "en_id": "program-flow",
-     "es": "Program Flow",
-     "es_id": "program-flow",
+     "es": "Flujo del programa",
+     "es_id": "flujo-del-programa",
      "level": 2,
      "line": 43
     },
     {
      "en": "How the stunt works",
      "en_id": "how-the-stunt-works",
-     "es": "How the stunt works",
-     "es_id": "how-the-stunt-works",
+     "es": "Cómo funciona el truco",
+     "es_id": "cómo-funciona-el-truco",
      "level": 2,
      "line": 61
     },
     {
      "en": "The plumbing, in the order it appears",
      "en_id": "the-plumbing-in-the-order-it-appears",
-     "es": "The plumbing, in the order it appears",
-     "es_id": "the-plumbing-in-the-order-it-appears",
+     "es": "Cómo viaja el dato, en el orden en que aparece",
+     "es_id": "cómo-viaja-el-dato-en-el-orden-en-que-aparece",
      "level": 3,
      "line": 75
     },
     {
      "en": "Seeing the glyphs",
      "en_id": "seeing-the-glyphs",
-     "es": "Seeing the glyphs",
-     "es_id": "seeing-the-glyphs",
+     "es": "Cómo ver los glifos",
+     "es_id": "cómo-ver-los-glifos",
      "level": 2,
      "line": 86
     },
     {
      "en": "What `check.sh` enforces",
      "en_id": "what-checksh-enforces",
-     "es": "What `check.sh` enforces",
-     "es_id": "what-checksh-enforces",
+     "es": "Qué impone `check.sh`",
+     "es_id": "qué-impone-checksh",
      "level": 2,
      "line": 112
     },
     {
      "en": "Gotchas worth knowing",
      "en_id": "gotchas-worth-knowing",
-     "es": "Gotchas worth knowing",
-     "es_id": "gotchas-worth-knowing",
+     "es": "Trampas que conviene conocer",
+     "es_id": "trampas-que-conviene-conocer",
      "level": 2,
      "line": 116
     },
     {
      "en": "Run it in a container",
      "en_id": "run-it-in-a-container",
-     "es": "Run it in a container",
-     "es_id": "run-it-in-a-container",
+     "es": "Ejecútalo en un contenedor",
+     "es_id": "ejecútalo-en-un-contenedor",
      "level": 2,
      "line": 124
     }
    ],
    "map": {
     "apl": "apl",
-    "gotchas-worth-knowing": "gotchas-worth-knowing",
-    "how-the-stunt-works": "how-the-stunt-works",
-    "program-flow": "program-flow",
-    "run-it": "run-it",
-    "run-it-in-a-container": "run-it-in-a-container",
-    "seeing-the-glyphs": "seeing-the-glyphs",
-    "the-plumbing-in-the-order-it-appears": "the-plumbing-in-the-order-it-appears",
-    "what-checksh-enforces": "what-checksh-enforces"
+    "gotchas-worth-knowing": "trampas-que-conviene-conocer",
+    "how-the-stunt-works": "cómo-funciona-el-truco",
+    "program-flow": "flujo-del-programa",
+    "run-it": "ejecútalo",
+    "run-it-in-a-container": "ejecútalo-en-un-contenedor",
+    "seeing-the-glyphs": "cómo-ver-los-glifos",
+    "the-plumbing-in-the-order-it-appears": "cómo-viaja-el-dato-en-el-orden-en-que-aparece",
+    "what-checksh-enforces": "qué-impone-checksh"
    }
   },
   "src/awk-weird/README.md": {

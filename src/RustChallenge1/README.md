@@ -1,6 +1,6 @@
 ---
 name: "Rust"
-teaches: "that iterators and closures can express the control flow of a whole Rust program."
+teaches: "que los iteradores y las clausuras (*closures*: funciones sin nombre que capturan valores de su entorno) pueden expresar el flujo de control de un programa completo en Rust."
 kind: port
 languages: [rust]
 lesson: "lenguajes/csharp-linq-xaml.md#the-one-statement-ports-same-trick-different-machinery"
@@ -8,21 +8,21 @@ loop-by: lazy-demand
 evaluation: lazy
 assurance: guaranteed
 pairs-with: JavaChallenge1
-machine: "A chain of values from `successors`, which stops at `None`"
-state: "A new immutable `DemoBatch` for every step; nothing is mutated"
+machine: "Una cadena de valores desde `successors`, que se detiene en `None`"
+state: "Un nuevo `DemoBatch` inmutable en cada paso; nada se muta"
 tags: [closure, event-loop, first-class-and-higher-order-functions, generators, lazy-evaluation, side-effect, thread-safety]
 analogies: [coroutine]
 counterexamples: [event-driven-programming]
 ---
-# One Statement, Rust Edition
+# Una sola sentencia, edición Rust
 
-**Teaches you:** that iterators and closures can express the control flow of a whole Rust program.
+**Te enseña:** que los iteradores y las clausuras (*closures*, funciones que capturan variables de su entorno) pueden expresar el flujo de control de un programa completo en Rust.
 
-A WSL/GTK 4 companion to Jim Lehmer's C# challenge and Ken's [Java](../JavaChallenge1/README.md), [Kotlin](../KotlinChallenge1/README.md), [Python](../PythonChallenge1/README.md), and [Go](../GoChallenge1/README.md) versions. The point is to explore expression mechanics through a deliberately ridiculous constraint, not to offer a production architecture.
+Un complemento para WSL/GTK 4 del reto en C# de Jim Lehmer y de las versiones de Ken en [Java](../JavaChallenge1/README.md), [Kotlin](../KotlinChallenge1/README.md), [Python](../PythonChallenge1/README.md) y [Go](../GoChallenge1/README.md). El objetivo es explorar la mecánica de las expresiones mediante una restricción deliberadamente ridícula, no ofrecer una arquitectura de producción.
 
-## Run it
+## Ejecútalo
 
-You need a working WSLg desktop session. In Ubuntu 24.04, install the APT toolchain and the native libraries:
+Necesitas una sesión de escritorio WSLg que funcione. En Ubuntu 24.04, instala la cadena de herramientas de APT y las bibliotecas nativas:
 
 ```bash
 sudo apt-get update
@@ -32,81 +32,81 @@ cd src/RustChallenge1
 cargo run --locked
 ```
 
-The locked dependencies are tested with Ubuntu's Rust and Cargo 1.75. Cargo needs network access to download crates on the first build. See Microsoft's [WSLg setup](https://learn.microsoft.com/en-us/windows/wsl/tutorials/gui-apps) if the window cannot open.
+Las dependencias bloqueadas se probaron con Rust y Cargo 1.75 de Ubuntu. Cargo necesita acceso a la red para descargar crates en la primera compilación. Si la ventana no se abre, consulta la [configuración de WSLg](https://learn.microsoft.com/en-us/windows/wsl/tutorials/gui-apps) de Microsoft.
 
-The window displays the generated total over a gently shifting shade; closing it ends the program. Each run appends fictional records to `$XDG_DATA_HOME/RustChallenge1/demo-timecards.db` (by default `~/.local/share/RustChallenge1/demo-timecards.db`), the Linux counterpart of the C# version's `%LOCALAPPDATA%\ModernChallenge1`. Delete that directory to start over. The database is **DEMO ONLY**, with no connection to a real time-reporting system.
+La ventana muestra el total generado sobre un tono que cambia suavemente. Al cerrarla, termina el programa. Cada ejecución agrega registros ficticios a `$XDG_DATA_HOME/RustChallenge1/demo-timecards.db` (por defecto `~/.local/share/RustChallenge1/demo-timecards.db`), el equivalente en Linux de `%LOCALAPPDATA%\ModernChallenge1` en la versión de C#. Elimina ese directorio para empezar de cero. La base de datos es **DEMO ONLY**, sin conexión con un sistema real de reporte de horas.
 
-## Run it in a container
+## Ejecuta el programa en un contenedor
 
-Prerequisite: Docker, set up once as described in [`SANDBOX-SETUP.md`](../../SANDBOX-SETUP.md#docker).
+Requisito previo: Docker, configurado una sola vez como se describe en [`SANDBOX-SETUP.md`](../../SANDBOX-SETUP.md#docker).
 
 ```bash
 sandbox/container/run-image.sh --online-build --out ./results src/RustChallenge1
 ```
 
-This is the Linux home of this entry, and it needs no WSLg: the [`Dockerfile`](Dockerfile) compiles it with Ubuntu's Rust in a build stage, then runs the one binary on a base with the GTK 4 runtime, a virtual display (Xvfb) and a screenshot tool, and no Rust, headers or compiler. The window opens on that virtual display *inside* the container, the entrypoint screenshots it after a few seconds and closes it, and the run prints the SQLite rows it wrote. With `--out`, `results/screenshot.png` is the window. `--online-build` is needed because the build downloads the locked crates (the run itself has no network). The image is about 350 MB, because GTK 4 is big.
+Este es el hogar en Linux de esta entrada y no necesita WSLg: el [`Dockerfile`](Dockerfile) la compila con el Rust de Ubuntu en una etapa de compilación y después ejecuta el único binario sobre una base con el entorno de ejecución de GTK 4, una pantalla virtual (Xvfb) y una herramienta de capturas de pantalla, y sin Rust, encabezados ni compilador. La ventana se abre en esa pantalla virtual *dentro* del contenedor, el entrypoint le toma una captura después de unos segundos y la cierra, y la ejecución imprime las filas de SQLite que escribió. Con `--out`, `results/screenshot.png` es la ventana. Se necesita `--online-build` porque la compilación descarga los crates bloqueados (la ejecución en sí no tiene red). La imagen pesa unos 350 MB, porque GTK 4 es grande.
 
-## Program Flow
+## Flujo del programa
 
 ```mermaid
 flowchart TD
-    accTitle: RustChallenge1: std::iter::successors ends when next returns None
-    accDescr: A flowchart. successors starts from an immutable DemoBatch. The empty for body runs, then successors calls next with the batch. If the total is 40 or less and a category remains, next returns Some of a new batch with one more card, and the body runs again. If not, a scoped worker thread saves the batch in one SQLite transaction and is joined. Then a GTK window is built from Builder XML, and a glib MainLoop runs until the window closes while a timeout redraws the background. Then next returns None and the for ends.
-    A["first: Some(DemoBatch) is the first value"] --> B["Empty for body"]
-    B --> C["successors calls next(batch)"]
-    C --> D{{"total <= 40 and categories left?"}}
-    D -->|yes| E["Some(batch.extended(hours)): a new immutable batch with one more card"]
+    accTitle: RustChallenge1: std::iter::successors termina cuando next devuelve None
+    accDescr: Un diagrama de flujo. successors parte de un DemoBatch inmutable. El cuerpo vacío del for se ejecuta y luego successors llama a next con el lote. Si el total no pasa de 40 y queda una categoría, next devuelve Some con un lote nuevo que tiene una tarjeta más, y el cuerpo se ejecuta otra vez. Si no, un hilo de trabajo con ámbito (scoped) guarda el lote en una sola transacción de SQLite y el programa espera a que termine (join). Después se construye una ventana GTK a partir de XML de Builder, y un MainLoop de glib se ejecuta hasta que la ventana se cierra, mientras un timeout redibuja el fondo. Luego next devuelve None y el for termina.
+    A["first: Some(DemoBatch) es el primer valor"] --> B["Vacío para el cuerpo"]
+    B --> C["successors llama a next(batch)"]
+    C --> D{{"¿total <= 40 y quedan categorías?"}}
+    D -->|sí| E["Some(batch.extended(hours)): un nuevo lote inmutable con una tarjeta más"]
     E --> B
-    D -->|no| F["thread::scope: a worker saves the batch in one transaction; join waits"]
-    F --> G["GTK Builder XML makes the window; glib MainLoop.run blocks, a timeout redraws"]
-    G --> H["Window closed: next returns None, the for ends"]
+    D -->|no| F["thread::scope: un hilo de trabajo guarda el lote en una transacción; join espera"]
+    F --> G["El XML de GTK Builder crea la ventana; `MainLoop.run` de glib bloquea el hilo y un temporizador redibuja"]
+    G --> H["Cierras la ventana: next devuelve None y el for termina"]
 ```
 
-**What this shows:** `std::iter::successors(first, next)` carries the three jobs of a `for`: `first` is the initializer, `next` is both the condition and the update, and returning `None` is the stop. The state is never mutated. Each step builds a new `DemoBatch`.
+**Qué muestra:** `std::iter::successors(first, next)` reúne los tres trabajos de un `for`: `first` es el inicializador, `next` es a la vez la condición y la actualización, y devolver `None` es la parada. El estado nunca se modifica. Cada paso construye un `DemoBatch` nuevo.
 
-**Why this mechanism matters:** saving is a joined, scoped thread, so the program never says "saved" before the transaction finished. The GTK window runs its own event loop (`MainLoop.run`) inside the `next` call, which is the last step before the loop ends.
+**Por qué importa este mecanismo:** guardar es un hilo unido y con ámbito, así que el programa nunca dice "guardado" antes de que termine la transacción. La ventana GTK ejecuta su propio bucle de eventos (`MainLoop.run`) dentro de la llamada a `next`, que es el último paso antes de que termine el bucle.
 
-## How the stunt works
+## Cómo funciona el truco
 
-`main` is one empty-body `for` loop, and nothing inside it is a statement: no `;`, no `let`, no `return`. `tests/one_statement.rs` scans `src/main.rs` and fails if that stops being true. Helper types in `lib.rs` handle data generation and persistence, as the C# version's `DemoTimeCardContext` does.
+`main` es un único bucle `for` de cuerpo vacío, y nada dentro de él es una sentencia: ni `;`, ni `let`, ni `return`. `tests/one_statement.rs` revisa `src/main.rs` y falla si eso deja de cumplirse. Los tipos auxiliares de `lib.rs` se encargan de la generación y la persistencia de los datos, como lo hace `DemoTimeCardContext` en la versión de C#.
 
-Rust has no `;`-separated three-clause `for`, but `std::iter::successors(first, next)` has the same three jobs:
+Rust no tiene un `for` de tres cláusulas separadas por `;`, pero `std::iter::successors(first, next)` cumple las mismas tres funciones:
 
-| `for` section | In the Rust version |
+| Sección `for` | En la versión de Rust |
 | --- | --- |
-| Initializer | `first`: an immutable `DemoBatch` |
-| Condition | `next` returns `None` to end the loop; as in the C#, the window is launched from inside it |
-| Iterator | `next` returns `Some(batch.extended(hours))`, the batch plus one more card |
+| Inicializador | `first`: un `DemoBatch` inmutable |
+| Condición | `next` devuelve `None` para terminar el bucle; como en C#, el programa lanza la ventana desde dentro de ella |
+| Iterador | `next` devuelve `Some(batch.extended(hours))`, el lote más una tarjeta |
 
-Two tricks take the place of the statements Rust would normally use:
+Dos trucos sustituyen a las sentencias que Rust usaría normalmente:
 
-- `match value { name => ... }` is a `let` that is an expression.
-- `(a, b, c).2` is the comma operator: it evaluates `a`, `b`, `c` in order and yields the last.
+- `match value { name => ... }` es un `let` que es una expresión.
+- `(a, b, c).2` es el operador coma: evalúa `a`, `b` y `c` en orden y produce el último valor.
 
-The loop checks the running total before each record: while it is at most 40 and categories remain, it adds 10 to 19 hours for the next category. There are five category names (`Meetings` repeats), so a total of exactly 40 after four cards continues to a fifth card. When the batch is finished, a scoped worker thread saves it in one SQLite transaction. The thread borrows the cards, so nothing is cloned. The program joins the thread (waits for it to finish) before the window claims that anything was saved. Errors end the program with a message, and the program never reports success after a failure. The one exception is the GTK draw callback, where Cairo errors are ignored, because a panic there would abort across the C boundary. The calendar year and ISO week match the original's separate fields. Around New Year the ISO week-based year can differ from the calendar year.
+El bucle comprueba el total acumulado antes de cada registro. Mientras el total no pasa de 40 y quedan categorías, suma de 10 a 19 horas para la siguiente categoría. Hay cinco nombres de categoría (`Meetings` se repite), así que un total de exactamente 40 después de cuatro tarjetas continúa con una quinta tarjeta. Cuando el lote termina, un hilo de trabajo con ámbito lo guarda en una sola transacción de SQLite. El hilo toma prestadas las tarjetas, así que no se clona nada. El programa une el hilo (espera a que termine) antes de que la ventana afirme que se guardó algo. Los errores terminan el programa con un mensaje, y el programa nunca informa de éxito tras un fallo. La única excepción es la función de devolución de llamada (*callback*) de dibujo de GTK: una función que GTK llama cuando necesita dibujar. Ahí se ignoran los errores de Cairo, porque un *panic* abortaría el programa al cruzar la frontera de C. El año calendario y la semana ISO coinciden con los campos separados del original. Alrededor de Año Nuevo, el año ISO basado en semanas puede diferir del año calendario.
 
-| Original and Ken's ports | Rust companion |
+| Original y adaptaciones de Ken | Complemento en Rust |
 | --- | --- |
-| C# and Java use the three sections of a `for` with an empty body; Kotlin builds a sequence | Rust builds an iterator with `successors`, also with an empty body |
-| Anonymous state objects and Kotlin `also` chains | An immutable `DemoBatch`; `match x { name => ... }` binds names |
-| Comma-separated iterator expressions | Tuples, projected with `.N` |
-| Runtime XAML or Spring XML builds the window | Runtime GTK Builder XML builds the window; a GLib timer moves a soft background shade |
-| EF Core or Spring Data and SQLite | `rusqlite` and a local transaction |
-| Background save and reflective method calls | A joined scoped thread; no reflection is needed, since `()` is an ordinary value in Rust |
-| `Environment.UserName` | `$USER`, then `$LOGNAME`, ignoring empty values, else "unknown" |
+| C# y Java usan las tres secciones de un `for` con cuerpo vacío; Kotlin construye una secuencia | Rust construye un iterador con `successors`, también con cuerpo vacío |
+| Objetos de estado anónimos y cadenas `also` de Kotlin | Un `DemoBatch` inmutable; `match x { name => ... }` vincula nombres |
+| Expresiones de iterador separadas por comas | Tuplas, proyectadas con `.N` |
+| En tiempo de ejecución, XAML o Spring XML construye la ventana | En tiempo de ejecución, GTK Builder XML construye la ventana; un temporizador de GLib mueve un tono suave de fondo |
+| EF Core o Spring Data y SQLite | `rusqlite` y una transacción local |
+| Guardado en segundo plano y llamadas a métodos por reflexión | Un hilo con ámbito (*scoped thread*) al que se hace *join*; no hace falta reflexión, ya que `()` es un valor ordinario en Rust |
+| `Environment.UserName` | `$USER` y después `$LOGNAME`; ignora los valores vacíos; si no, "unknown" |
 
-The worker does not touch GTK. The UI and its event loop stay on the main thread. This version waits for persistence on purpose, unlike the original's intentionally awkward shared-context thread. So the thread is only a nod to the original, not a source of concurrency. The application is a language exercise, not a recommendation to hide work inside iterator expressions.
+El hilo de trabajo no toca GTK. La interfaz y su bucle de eventos permanecen en el hilo principal. Esta versión espera la persistencia a propósito, a diferencia del hilo con contexto compartido del original, torpe de forma intencional. Por eso el hilo es solo un guiño al original, no una fuente de concurrencia. La aplicación es un ejercicio de lenguaje, no una recomendación para ocultar trabajo dentro de expresiones de iteradores.
 
-## Gotchas worth knowing
+## Trampas que conviene conocer
 
-- **A test enforces the one-statement rule.** `tests/one_statement.rs` scans `src/main.rs` and fails if a `;`, a `let` or a `return` appears in `main`.
-- **You need a desktop session.** Outside the container, the window needs WSLg. The locked dependencies were tested with Ubuntu's Rust and Cargo 1.75, and Cargo needs the network to download crates on the first build.
-- **Cairo errors are ignored in the draw callback,** because a panic there would abort across the C boundary. Everywhere else, errors end the program with a message.
-- **Around New Year, the ISO week-based year can differ from the calendar year.**
-- **The thread is a nod to the original.** The worker waits for persistence on purpose, so it is not a source of concurrency.
-- **There is no Windows Sandbox profile and no check script,** so the sandbox gate does not cover this port yet. The container image is about 350 MB, because GTK 4 is big.
+- **Una prueba impone la regla de una sola sentencia.** `tests/one_statement.rs` analiza `src/main.rs` y falla si aparece un `;`, un `let` o un `return` en `main`.
+- **Necesitas una sesión de escritorio.** Fuera del contenedor, la ventana necesita WSLg. Las dependencias bloqueadas se probaron con Rust y Cargo 1.75 de Ubuntu, y Cargo necesita la red para descargar crates en la primera compilación.
+- **Los errores de Cairo se ignoran en la función de devolución de llamada (*callback*, una función que se entrega a otro código para que la llame después) de dibujo,** porque un *panic* ahí abortaría al cruzar el límite con C. En todo lo demás, los errores finalizan el programa con un mensaje.
+- **Alrededor de Año Nuevo, el año basado en semanas ISO puede diferir del año calendario.**
+- **El hilo es un guiño al original.** El trabajador espera a la persistencia a propósito, así que no es una fuente de concurrencia.
+- **No hay perfil de Windows Sandbox ni script de verificación,** así que el control de un entorno aislado (*sandbox*) que limita el acceso al sistema anfitrión todavía no cubre esta adaptación. La imagen del contenedor pesa unos 350 MB, porque GTK 4 es grande.
 
-## Check it
+## Compruébalo
 
 ```bash
 cargo fmt --check
@@ -114,8 +114,8 @@ cargo test --locked
 cargo build --locked
 ```
 
-Inspect the database with `sqlite3 data/demo-timecards.db 'select * from demo_timecards;'`.
+Inspecciona la base de datos con `sqlite3 data/demo-timecards.db 'select * from demo_timecards;'`.
 
 ---
 
-See the [root README](../../README.md#the-results-so-far) for how this compares to the other entries, and [`RETO.md`](../../RETO.md) if you want to write your own.
+Consulta el [README principal](../../README.md#the-results-so-far) para ver cómo se compara con las demás entradas, y [`RETO.md`](../../RETO.md) si quieres escribir la tuya.

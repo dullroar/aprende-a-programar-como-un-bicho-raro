@@ -155,17 +155,17 @@ msgstr "**Qué confirma.** En ⟦CODE_0001⟧, las filas se escriben en una tube
 #: lessons/study-guides/languages/apl.md:64
 msgctxt "s-a83c6392727a-0027"
 msgid "apl: draw everything first, then let arrays decide where to stop"
-msgstr "apl: genera todos los valores al azar y deja que los arreglos decidan dónde parar"
+msgstr "apl: dibuja todo primero y luego deja que los arreglos decidan dónde parar"
 
 #: lessons/study-guides/languages/apl.md:65
 msgctxt "s-b1873a15d380-0028"
 msgid "A flowchart of data moving through whole-array operations. Five random hours between 10 and 19 are drawn at once. A running sum gives the total after each card. Comparing the totals with 40 gives ones and zeros. Summing the ones and adding one counts the cards to keep. Taking that many cards from the drawn hours gives the kept hours. The running totals and the category names, reshaped to the same length, are derived from them. Then a function applied to each row number saves each row and shows each row."
-msgstr "Un diagrama de flujo de datos que pasan por operaciones sobre arreglos completos. Se generan de una vez cinco valores aleatorios de 10 a 19 horas. Una suma acumulada da el total después de cada tarjeta. Comparar los totales con 40 da unos y ceros. Sumar los unos y añadir uno cuenta las tarjetas que se conservan. Tomar ese número de tarjetas de las horas generadas da las horas conservadas. Los totales acumulados y los nombres de categoría, ajustados a la misma longitud, se derivan de ellas. Luego una función aplicada a cada número de fila guarda cada fila y muestra cada fila."
+msgstr "Un diagrama de flujo de los datos a través de operaciones sobre arreglos completos. Se sortean cinco horas aleatorias de 10 a 19 de una sola vez. Una suma acumulada da el total después de cada tarjeta. Al comparar los totales con 40 se obtienen unos y ceros. Al sumar los unos y añadir uno se cuenta cuántas tarjetas se conservan. Al tomar esa cantidad de tarjetas de las horas sorteadas se obtienen las horas conservadas. De ellas se derivan los totales acumulados y los nombres de las categorías, remodelados a la misma longitud. Después, una función aplicada a cada número de fila guarda cada fila y muestra cada fila."
 
 #: lessons/study-guides/languages/apl.md:66
 msgctxt "s-f3a777e19f46-0029"
 msgid "Drawn: five random hours, 10 to 19, rolled at once"
-msgstr "Drawn: cinco horas aleatorias, de 10 a 19, generadas a la vez"
+msgstr "Drawn: cinco horas aleatorias, de 10 a 19, sorteadas a la vez"
 
 #: lessons/study-guides/languages/apl.md:66
 msgctxt "s-ba12a6ab051e-0030"
@@ -175,7 +175,7 @@ msgstr "Suma acumulada de Drawn: el total después de cada tarjeta"
 #: lessons/study-guides/languages/apl.md:67
 msgctxt "s-0f9b554db7c5-0031"
 msgid "Compare with 40: 1 where the total is 40 or less, else 0"
-msgstr "Compara con 40: 1 donde el total no pasa de 40, y 0 en caso contrario"
+msgstr "Compara con 40: 1 donde el total no pasa de 40, 0 en caso contrario"
 
 #: lessons/study-guides/languages/apl.md:68
 msgctxt "s-6c5488b3933f-0032"
@@ -185,17 +185,17 @@ msgstr "Suma los 1 y añade 1: el número de tarjetas que se conservan"
 #: lessons/study-guides/languages/apl.md:69
 msgctxt "s-a35e0f2d5f97-0033"
 msgid "Take that many from Drawn: Hours"
-msgstr "Toma ese número de elementos de Drawn: Hours"
+msgstr "Toma esa cantidad de Drawn: Hours"
 
 #: lessons/study-guides/languages/apl.md:70
 msgctxt "s-8627aa9f7742-0034"
 msgid "Totals is a running sum of Hours; Kinds is the categories reshaped to the length of Hours"
-msgstr "Totals es una suma acumulada de Hours; Kinds son las categorías ajustadas a la longitud de Hours"
+msgstr "Totals es una suma acumulada de Hours; Kinds son las categorías remodeladas a la longitud de Hours"
 
 #: lessons/study-guides/languages/apl.md:71
 msgctxt "s-73cd0565201e-0035"
 msgid "SaveRow and ShowRow, each applied to every row number"
-msgstr "Aplica SaveRow y ShowRow a cada número de fila"
+msgstr "SaveRow y ShowRow, cada una aplicada a todos los números de fila"
 
 #: lessons/study-guides/languages/apl.md:74
 msgctxt "s-11c177a1fe56-0036"
@@ -210,7 +210,7 @@ msgstr "apl-weird: cada función de tarjeta escribe y llama a la siguiente"
 #: lessons/study-guides/languages/apl.md:81
 msgctxt "s-3894643a82b3-0038"
 msgid "A flowchart. The function Card0 runs with its genes: the card number, category, hours and running total. It prints its row and inserts it into SQLite. It draws the next hours and builds the four gene lines for the next card as text. A boolean Alive is 1 while the total is 40 or less. The function then takes its own source with the quad-CR function, replaces the header and genes, and compresses the whole child away with Alive. The quad-FX function defines a new function, Card1, from what is left, or defines nothing. Executing the name, also compressed by Alive, then calls Card1, which does the same steps. When Alive is 0, nothing is written or called, and the chain of calls returns."
-msgstr "Un diagrama de flujo. La función Card0 se ejecuta con sus genes: el número de tarjeta, la categoría, las horas y el total acumulado. Imprime su fila y la inserta en SQLite. Extrae las siguientes horas y construye como texto las cuatro líneas de genes de la siguiente tarjeta. Un booleano Alive vale 1 mientras el total no pasa de 40. Después, la función toma su propio código fuente con ⎕CR, que devuelve la representación canónica de una función. Reemplaza el encabezado y los genes, y comprime el texto del hijo con Alive, que conserva todas sus líneas o ninguna. ⎕FX define una función nueva, Card1, con lo que queda, o no define nada. Después, ⍎ ejecuta el nombre, también comprimido por Alive, así que llama a Card1, que hace los mismos pasos. Cuando Alive es 0, no se escribe ni se llama nada, y la cadena de llamadas retorna."
+msgstr "Un diagrama de flujo. La función Card0 se ejecuta con sus genes: el número de tarjeta, la categoría, las horas y el total acumulado. Imprime su fila y la inserta en SQLite. Sortea las siguientes horas y construye como texto las cuatro líneas de genes de la tarjeta siguiente. Un booleano Alive vale 1 mientras el total no pase de 40. Luego la función toma su propio código fuente con la función ⎕CR, reemplaza el encabezado y los genes, y comprime con Alive todo el hijo. La función ⎕FX define una función nueva, Card1, con lo que queda, o no define nada. Ejecutar el nombre, también comprimido con Alive, llama entonces a Card1, que hace los mismos pasos. Cuando Alive vale 0, no se escribe ni se llama nada y la cadena de llamadas retorna."
 
 #: lessons/study-guides/languages/apl.md:82
 msgctxt "s-9556ba32a9f6-0039"
@@ -220,12 +220,12 @@ msgstr "CardN se ejecuta con sus genes: número, categoría, horas, total"
 #: lessons/study-guides/languages/apl.md:82
 msgctxt "s-3ac7a822e64c-0040"
 msgid "Print the row and INSERT it"
-msgstr "Imprime la fila y la inserta con INSERT"
+msgstr "Imprime la fila e insértala con INSERT"
 
 #: lessons/study-guides/languages/apl.md:83
 msgctxt "s-0c31610b8a71-0041"
 msgid "Draw the next hours; build four new gene lines as text"
-msgstr "Extrae las siguientes horas y construye cuatro líneas de genes nuevas como texto"
+msgstr "Sortea las siguientes horas; construye cuatro líneas de genes nuevas como texto"
 
 #: lessons/study-guides/languages/apl.md:84
 msgctxt "s-4edf7961a28b-0042"
@@ -240,22 +240,22 @@ msgstr "1: conserva el hijo"
 #: lessons/study-guides/languages/apl.md:85
 msgctxt "s-c1a3455a70bb-0044"
 msgid "Quad-CR reads this function's own source; quad-FX defines Card N+1 from it with the new genes"
-msgstr "⎕CR lee el código fuente de esta misma función; ⎕FX define la tarjeta CardN+1 a partir de ese código con los nuevos genes"
+msgstr "Quad-CR lee el código fuente de esta misma función; quad-FX define Card N+1 a partir de ese código con los nuevos genes"
 
 #: lessons/study-guides/languages/apl.md:86
 msgctxt "s-94ef3318f472-0045"
 msgid "Execute the name Card N+1: it is a different function with the same body"
-msgstr "⍎ ejecuta el nombre CardN+1: es una función distinta con el mismo cuerpo"
+msgstr "Ejecuta el nombre Card N+1: es una función distinta con el mismo cuerpo"
 
 #: lessons/study-guides/languages/apl.md:88
 msgctxt "s-96b2605e1c40-0046"
 msgid "0: Alive compresses the child away"
-msgstr "0: Alive no conserva ninguna línea del hijo"
+msgstr "0: Alive descarta al hijo por compresión"
 
 #: lessons/study-guides/languages/apl.md:88
 msgctxt "s-c0ef48597182-0047"
 msgid "Quad-FX defines nothing and execute runs an empty string; the calls return"
-msgstr "⎕FX no define nada y ⍎ ejecuta una cadena de texto vacía; las llamadas regresan"
+msgstr "Quad-FX no define nada y execute ejecuta una cadena de texto vacía; las llamadas regresan"
 
 #: lessons/study-guides/languages/apl.md:91
 msgctxt "s-7e2f19a39a7b-0048"

@@ -296,7 +296,7 @@ flowchart TD
 
 ### Program flow of `RustChallenge1`
 
-From [`RustChallenge1`](../../src/RustChallenge1/README.md) ([source section](../../src/RustChallenge1/README.md#program-flow)).
+From [`RustChallenge1`](../../src/RustChallenge1/README.md) ([source section](../../src/RustChallenge1/README.md#flujo-del-programa)).
 
 ```mermaid
 flowchart TD

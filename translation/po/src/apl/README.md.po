@@ -1,0 +1,327 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/apl/README.md:2
+msgctxt "s-326f91484a83-0000"
+msgid "APL"
+msgstr "APL"
+
+#: src/apl/README.md:3
+msgctxt "s-fabc7bae713d-0001"
+msgid "that five rolls and a take-while can replace a loop."
+msgstr "que cinco tiradas y un take-while pueden reemplazar un bucle."
+
+#: src/apl/README.md:11
+msgctxt "s-935d509c0c17-0002"
+msgid "Ordinary: an array machine that draws five cards at once and decides afterwards"
+msgstr "Ordinario: una máquina de arreglos que saca cinco tarjetas a la vez y decide después"
+
+#: src/apl/README.md:12
+msgctxt "s-382d924b95c4-0003"
+msgid "Arrays, and nothing hidden"
+msgstr "Arreglos y nada oculto"
+
+#: src/apl/README.md:15
+msgctxt "s-326f91484a83-0004"
+msgid "APL"
+msgstr "APL"
+
+#: src/apl/README.md:17
+msgctxt "s-421a36ba89fd-0005"
+msgid "**Teaches you:** that five rolls and a take-while can replace a loop."
+msgstr "**Te enseña:** que cinco tiradas y un *take-while* pueden reemplazar un bucle."
+
+#: src/apl/README.md:19
+msgctxt "s-5ca333b42af1-0006"
+msgid "**⟦DNT_0001⟧.** Fictional timecards in a scratch SQLite file. No connection to any real time-reporting system."
+msgstr "**⟦DNT_0001⟧.** Tarjetas de horas ficticias en un archivo SQLite temporal. Sin conexión con ningún sistema real de reporte de horas."
+
+#: src/apl/README.md:21
+msgctxt "s-3f0c939a1710-0007"
+msgid "The challenge's card selection takes four named array assignments. ⟦CODE_0001⟧ holds the five rolls, and ⟦CODE_0002⟧, ⟦CODE_0003⟧ and ⟦CODE_0004⟧ derive the kept rows from them. There is no loop and no ⟦CODE_0005⟧. The rest of [⟦CODE_0006⟧](⟦DEST_0007⟧) is plumbing: seeding, a pipe to ⟦CODE_0008⟧, and printing."
+msgstr "La selección de tarjetas del reto usa cuatro asignaciones de arreglos con nombre. ⟦CODE_0001⟧ contiene las cinco tiradas, y ⟦CODE_0002⟧, ⟦CODE_0003⟧ y ⟦CODE_0004⟧ derivan de ellas las filas conservadas. No hay ningún bucle ni ⟦CODE_0005⟧. El resto de [⟦CODE_0006⟧](⟦DEST_0007⟧) trata de cómo viaja el dato: la semilla, una tubería hacia ⟦CODE_0008⟧ y la impresión."
+
+#: src/apl/README.md:23
+msgctxt "s-958ca26c6a61-0008"
+msgid "Run it"
+msgstr "Ejecútalo"
+
+#: src/apl/README.md:25
+msgctxt "s-30512e74fb24-0009"
+msgid "You need GNU APL (⟦CODE_0001⟧, built from [gnu.org/software/apl](⟦DEST_0002⟧)) and ⟦CODE_0003⟧."
+msgstr "Necesitas GNU APL (⟦CODE_0001⟧, compilado desde [gnu.org/software/apl](⟦DEST_0002⟧)) y ⟦CODE_0003⟧."
+
+#: src/apl/README.md:33
+msgctxt "s-e28cc77456a7-0010"
+msgid "Records go to ⟦CODE_0001⟧ (default ⟦CODE_0002⟧). A run looks like this:"
+msgstr "Los registros van a ⟦CODE_0001⟧ (por defecto ⟦CODE_0002⟧). Una ejecución se ve así:"
+
+#: src/apl/README.md:43
+msgctxt "s-0dcb373c2dff-0011"
+msgid "Program Flow"
+msgstr "Flujo del programa"
+
+#: src/apl/README.md:47
+msgctxt "s-a83c6392727a-0012"
+msgid "apl: draw everything first, then let arrays decide where to stop"
+msgstr "apl: dibuja todo primero y luego deja que los arreglos decidan dónde parar"
+
+#: src/apl/README.md:48
+msgctxt "s-b1873a15d380-0013"
+msgid "A flowchart of data moving through whole-array operations. Five random hours between 10 and 19 are drawn at once. A running sum gives the total after each card. Comparing the totals with 40 gives ones and zeros. Summing the ones and adding one counts the cards to keep. Taking that many cards from the drawn hours gives the kept hours. The running totals and the category names, reshaped to the same length, are derived from them. Then a function applied to each row number saves each row and shows each row."
+msgstr "Un diagrama de flujo de los datos a través de operaciones sobre arreglos completos. Se sortean cinco horas aleatorias de 10 a 19 de una sola vez. Una suma acumulada da el total después de cada tarjeta. Al comparar los totales con 40 se obtienen unos y ceros. Al sumar los unos y añadir uno se cuenta cuántas tarjetas se conservan. Al tomar esa cantidad de tarjetas de las horas sorteadas se obtienen las horas conservadas. De ellas se derivan los totales acumulados y los nombres de las categorías, remodelados a la misma longitud. Después, una función aplicada a cada número de fila guarda cada fila y muestra cada fila."
+
+#: src/apl/README.md:49
+msgctxt "s-f3a777e19f46-0014"
+msgid "Drawn: five random hours, 10 to 19, rolled at once"
+msgstr "Drawn: cinco horas aleatorias, de 10 a 19, sorteadas a la vez"
+
+#: src/apl/README.md:49
+msgctxt "s-ba12a6ab051e-0015"
+msgid "Running sum of Drawn: the total after each card"
+msgstr "Suma acumulada de Drawn: el total después de cada tarjeta"
+
+#: src/apl/README.md:50
+msgctxt "s-0f9b554db7c5-0016"
+msgid "Compare with 40: 1 where the total is 40 or less, else 0"
+msgstr "Compara con 40: 1 donde el total no pasa de 40, 0 en caso contrario"
+
+#: src/apl/README.md:51
+msgctxt "s-6c5488b3933f-0017"
+msgid "Sum the 1s, add 1: the number of cards to keep"
+msgstr "Suma los 1 y añade 1: el número de tarjetas que se conservan"
+
+#: src/apl/README.md:52
+msgctxt "s-a35e0f2d5f97-0018"
+msgid "Take that many from Drawn: Hours"
+msgstr "Toma esa cantidad de Drawn: Hours"
+
+#: src/apl/README.md:53
+msgctxt "s-8627aa9f7742-0019"
+msgid "Totals is a running sum of Hours; Kinds is the categories reshaped to the length of Hours"
+msgstr "Totals es una suma acumulada de Hours; Kinds son las categorías remodeladas a la longitud de Hours"
+
+#: src/apl/README.md:54
+msgctxt "s-73cd0565201e-0020"
+msgid "SaveRow and ShowRow, each applied to every row number"
+msgstr "SaveRow y ShowRow, cada una aplicada a todos los números de fila"
+
+#: src/apl/README.md:57
+msgctxt "s-dce5e86b18bb-0021"
+msgid "**What this shows:** no card is drawn *after* the stop rule is known. All five are drawn first, and the stop rule is arithmetic on whole arrays: a running sum, a comparison, a count. The only repetition is ⟦CODE_0001⟧ (\"each\"), and it visits rows that were already decided."
+msgstr "**Qué muestra:** el programa no saca ninguna tarjeta *después* de conocer la regla de parada. Primero saca las cinco. La regla de parada es aritmética sobre arreglos completos: una suma acumulada, una comparación y un conteo. La única repetición es ⟦CODE_0001⟧ (\"cada uno\"), que visita filas que ya estaban decididas."
+
+#: src/apl/README.md:59
+msgctxt "s-41d5c94cf4fb-0022"
+msgid "**Why this mechanism matters:** five is not a loop count. It is a bound that can never be too small, because five cards of at least 10 hours always pass 40. The program does its work as array operations, and an array operation takes the place of a loop. Compare [⟦CODE_0001⟧](⟦DEST_0002⟧), where the program writes itself."
+msgstr "**Por qué importa este mecanismo:** cinco no es un número de repeticiones del bucle. Es un límite que nunca puede quedar corto, porque cinco tarjetas de al menos 10 horas siempre pasan de 40. El programa hace su trabajo con operaciones sobre arreglos, y una operación sobre arreglos ocupa el lugar de un bucle. Compara [⟦CODE_0001⟧](⟦DEST_0002⟧), donde el programa se escribe a sí mismo."
+
+#: src/apl/README.md:61
+msgctxt "s-7f97d965b4c0-0023"
+msgid "How the stunt works"
+msgstr "Cómo funciona el truco"
+
+#: src/apl/README.md:63
+msgctxt "s-e8a815c64330-0024"
+msgid "Read the four assignments under \"The challenge\" in the source with this walk-through beside them."
+msgstr "Lee las cuatro asignaciones bajo \"The challenge\" en el código fuente con este recorrido a tu lado."
+
+#: src/apl/README.md:65
+msgctxt "s-4015429e3fbd-0025"
+msgid ""
+"**Draw everything up front.** ⟦CODE_0001⟧. ⟦CODE_0002⟧ is five tens, ⟦CODE_0003⟧ rolls each one (⟦CODE_0004⟧ gives a number from the first ten integers), and the ⟦CODE_0005⟧ shift turns those into 10 to 19. Why five? Every card is at least 10 hours, so five cards always total at least 50. Five is a *bound that can never be too small*, not a loop count.\n"
+"2. **Apply the stop rule as data.** ⟦CODE_0006⟧. Read it right to left:"
+msgstr ""
+"**Sortea todo por adelantado.** ⟦CODE_0001⟧. ⟦CODE_0002⟧ son cinco dieces, ⟦CODE_0003⟧ tira cada uno (⟦CODE_0004⟧ da un número entre los primeros diez enteros) y el desplazamiento ⟦CODE_0005⟧ los convierte en horas de 10 a 19. ¿Por qué cinco? Cada tarjeta tiene al menos 10 horas, así que el total de cinco tarjetas es siempre al menos 50. Cinco es una *cota que nunca puede quedarse corta*, no el número de vueltas de un bucle.\n"
+"2. **Aplica la regla de parada como datos.** ⟦CODE_0006⟧. Léela de derecha a izquierda:"
+
+#: src/apl/README.md:67
+msgctxt "s-8758a3f9c2bf-0026"
+msgid "⟦CODE_0001⟧ is the running total after each card, for example ⟦CODE_0002⟧;"
+msgstr "⟦CODE_0001⟧ es el total acumulado después de cada tarjeta, por ejemplo ⟦CODE_0002⟧;"
+
+#: src/apl/README.md:68
+msgctxt "s-a02b84faa68b-0027"
+msgid "⟦CODE_0001⟧ turns that into 1s and 0s: ⟦CODE_0002⟧. Totals only ever grow, so the 1s are always a prefix;"
+msgstr "⟦CODE_0001⟧ convierte eso en 1 y 0: ⟦CODE_0002⟧. Los totales solo crecen, así que los 1 siempre forman un prefijo;"
+
+#: src/apl/README.md:69
+msgctxt "s-c8280ca768ca-0028"
+msgid "⟦CODE_0001⟧ counts the 1s, which is how many cards fit under the line;"
+msgstr "⟦CODE_0001⟧ cuenta los 1, que es la cantidad de tarjetas que caben bajo la línea;"
+
+#: src/apl/README.md:70
+msgctxt "s-142d516c51a8-0029"
+msgid ""
+"⟦CODE_0001⟧ adds the one card that crosses it, and ⟦CODE_0002⟧ (\"take, arguments swapped\") keeps that many.\n"
+"3. **Derive the rest.** ⟦CODE_0003⟧ is the running total again. ⟦CODE_0004⟧ uses a quiet property of reshape: ⟦CODE_0005⟧ *recycles* its right argument when it is shorter than the target, so four category names fill as many slots as there are kept cards, up to five. If a fifth card is kept, its name is ⟦CODE_0006⟧ again. No modulo needed."
+msgstr ""
+"⟦CODE_0001⟧ suma la única tarjeta que la cruza, y ⟦CODE_0002⟧ (\"take, con los argumentos intercambiados\") conserva esa cantidad.\n"
+"3. **Deduce el resto.** ⟦CODE_0003⟧ es de nuevo el total acumulado. ⟦CODE_0004⟧ usa una propiedad discreta de *reshape*: ⟦CODE_0005⟧ *recicla* su argumento derecho cuando este es más corto que el destino. Así, cuatro nombres de categoría llenan tantas posiciones como tarjetas se conserven, hasta cinco. Si se conserva una quinta tarjeta, su nombre es ⟦CODE_0006⟧ otra vez. No hace falta usar módulo."
+
+#: src/apl/README.md:73
+msgctxt "s-5f77fa7f4d1e-0030"
+msgid "After that, ⟦CODE_0001⟧ and ⟦CODE_0002⟧ apply a small function (a *dfn*, ⟦CODE_0003⟧) to each row number (⟦CODE_0004⟧ is \"each\"). That is APL's ⟦CODE_0005⟧, and it is not the stop rule: it just visits the rows that are already decided."
+msgstr "Después, ⟦CODE_0001⟧ y ⟦CODE_0002⟧ aplican una función pequeña (una *dfn*, ⟦CODE_0003⟧) a cada número de fila (⟦CODE_0004⟧ significa \"cada uno\"). Eso es ⟦CODE_0005⟧ de APL y no es la regla de parada: solo visita las filas que ya están decididas."
+
+#: src/apl/README.md:75
+msgctxt "s-ae7e2978b8df-0031"
+msgid "The plumbing, in the order it appears"
+msgstr "Cómo viaja el dato, en el orden en que aparece"
+
+#: src/apl/README.md:77
+msgctxt "s-7c9ffe5bbfbb-0032"
+msgid "⟦SEP_0001⟧ Piece ⟦SEP_0002⟧ What it does ⟦SEP_0003⟧"
+msgstr "⟦SEP_0001⟧ Pieza ⟦SEP_0002⟧ Qué hace ⟦SEP_0003⟧"
+
+#: src/apl/README.md:79
+msgctxt "s-6b9b43a2411f-0033"
+msgid "⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ Seeds the random generator from the clock. GNU APL starts every session with ⟦CODE_0002⟧ at 16807, so without this every run would draw the same \"random\" cards ⟦SEP_0005⟧"
+msgstr "⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ Inicializa el generador aleatorio con el reloj. GNU APL inicia cada sesión con ⟦CODE_0002⟧ en 16807, así que sin esto cada ejecución sacaría las mismas tarjetas \"aleatorias\" ⟦SEP_0005⟧"
+
+#: src/apl/README.md:80
+msgctxt "s-e5111d6459b3-0034"
+msgid "⟦SEP_0007⟧ ⟦CODE_0001⟧ / ⟦CODE_0002⟧ / ⟦CODE_0003⟧ ⟦SEP_0008⟧ ⟦CODE_0004⟧, read a line, ⟦CODE_0005⟧. Used to ask ⟦CODE_0006⟧ for the ISO week ⟦SEP_0009⟧"
+msgstr "⟦SEP_0007⟧ ⟦CODE_0001⟧ / ⟦CODE_0002⟧ / ⟦CODE_0003⟧ ⟦SEP_0008⟧ ⟦CODE_0004⟧, lee una línea, ⟦CODE_0005⟧. Se usaba para pedir a ⟦CODE_0006⟧ la semana ISO ⟦SEP_0009⟧"
+
+#: src/apl/README.md:81
+msgctxt "s-96f4069cca93-0035"
+msgid "⟦SEP_0004⟧ ⟦CODE_0001⟧ ⟦SEP_0005⟧ ⟦CODE_0002⟧ for writing: APL sends SQL down a pipe to a real ⟦CODE_0003⟧ ⟦SEP_0006⟧"
+msgstr "⟦SEP_0004⟧ ⟦CODE_0001⟧ ⟦SEP_0005⟧ ⟦CODE_0002⟧ para escribir: APL envía SQL por una tubería a un ⟦CODE_0003⟧ real ⟦SEP_0006⟧"
+
+#: src/apl/README.md:82
+msgctxt "s-89ed3f7f14fd-0036"
+msgid "⟦SEP_0007⟧ ⟦CODE_0001⟧ / ⟦CODE_0002⟧ ⟦SEP_0008⟧ ⟦CODE_0003⟧ and ⟦CODE_0004⟧. The left argument of ⟦CODE_0005⟧ is a format string followed by its values; the right is the file handle (⟦CODE_0006⟧ is stdout) ⟦SEP_0009⟧"
+msgstr "⟦SEP_0007⟧ ⟦CODE_0001⟧ / ⟦CODE_0002⟧ ⟦SEP_0008⟧ ⟦CODE_0003⟧ y ⟦CODE_0004⟧. El argumento izquierdo de ⟦CODE_0005⟧ es una cadena de texto de formato seguida de sus valores; el derecho es el identificador del archivo (⟦CODE_0006⟧ es la salida estándar) ⟦SEP_0009⟧"
+
+#: src/apl/README.md:83
+msgctxt "s-eb9ebbf2171a-0037"
+msgid "⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ Makes a non-demo row unrepresentable in the table. ⟦CODE_0002⟧ tries to insert one and expects SQLite to refuse ⟦SEP_0005⟧"
+msgstr "⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ Hace imposible representar en la tabla una fila que no sea de demostración. ⟦CODE_0002⟧ intenta insertar una y espera que SQLite la rechace ⟦SEP_0005⟧"
+
+#: src/apl/README.md:84
+msgctxt "s-aaa4bd3e6552-0038"
+msgid "⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ A *system command*, not APL code. It ends the script. Without it ⟦CODE_0002⟧ would sit at the prompt ⟦SEP_0005⟧"
+msgstr "⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ Un *comando del sistema*, no código APL. Termina el script. Sin él, ⟦CODE_0002⟧ se quedaría en el prompt ⟦SEP_0005⟧"
+
+#: src/apl/README.md:86
+msgctxt "s-680087897055-0039"
+msgid "Seeing the glyphs"
+msgstr "Cómo ver los glifos"
+
+#: src/apl/README.md:88
+msgctxt "s-d626e0ea44f0-0040"
+msgid "APL uses symbols that most fonts lack. If the source shows rows of empty boxes, your font has no APL glyphs. Two things to know first:"
+msgstr "APL usa símbolos que la mayoría de las fuentes no incluyen. Si el código fuente muestra filas de cuadros vacíos, tu fuente no tiene glifos de APL. Antes de empezar, ten en cuenta dos cosas:"
+
+#: src/apl/README.md:90
+msgctxt "s-bd2690577028-0041"
+msgid "**⟦CODE_0001⟧ is meant to be an empty box.** It is APL's \"quad\", so ⟦CODE_0002⟧ should look like a small hollow square followed by ⟦CODE_0003⟧. Every other symbol (⟦CODE_0004⟧) should look like a letter or mark, not a box."
+msgstr "**⟦CODE_0001⟧ debe verse como una caja vacía.** Es el \"quad\" de APL, así que ⟦CODE_0002⟧ debería verse como un pequeño cuadrado hueco seguido de ⟦CODE_0003⟧. Cada otro símbolo (⟦CODE_0004⟧) debería verse como una letra o una marca, no como una caja."
+
+#: src/apl/README.md:91
+msgctxt "s-836c96750c63-0042"
+msgid "**A terminal that is not UTF-8 will garble them** before the font even matters. GNU APL needs a UTF-8 locale."
+msgstr "**Una terminal que no use UTF-8 los mostrará mal** incluso antes de que importe la fuente. GNU APL necesita una configuración regional UTF-8."
+
+#: src/apl/README.md:93
+msgctxt "s-5e7eb2001e17-0043"
+msgid "**The fix is a font that has the APL range.** [DejaVu Sans Mono](⟦DEST_0001⟧) covers every symbol used in these files. [APL385 Unicode](⟦DEST_0002⟧) is the traditional APL font and also works."
+msgstr "**La solución es una fuente que tenga el rango APL.** [DejaVu Sans Mono](⟦DEST_0001⟧) cubre todos los símbolos que usan estos archivos. [APL385 Unicode](⟦DEST_0002⟧) es la fuente tradicional de APL y también funciona."
+
+#: src/apl/README.md:95
+msgctxt "s-5a4cf055edeb-0044"
+msgid "On **Ubuntu**, ⟦CODE_0001⟧ is usually already installed (⟦CODE_0002⟧ will tell you). Fonts installed *inside WSL* are not used by Windows programs, so on **Windows or WSL2** the font has to be installed on the Windows side:"
+msgstr "En **Ubuntu**, ⟦CODE_0001⟧ suele estar ya instalado (⟦CODE_0002⟧ te lo dirá). Los programas de Windows no usan las fuentes instaladas *dentro de WSL*, así que en **Windows o WSL2** debes instalar la fuente en el lado de Windows:"
+
+#: src/apl/README.md:97
+msgctxt "s-2d8ea99912f5-0045"
+msgid "Copy the font out of WSL, or download it from the DejaVu site:"
+msgstr "Copia la fuente desde WSL o descárgala del sitio de DejaVu:"
+
+#: src/apl/README.md:104
+msgctxt "s-b83d74340a96-0046"
+msgid ""
+"In File Explorer, select the four ⟦CODE_0001⟧ files, right-click, **Show more options**, **Install for all users**.\n"
+"3. Quit and reopen your browser and editor. A browser falls back to any installed font that has the glyph, so GitHub's rendering of these files will usually start working with nothing else changed.\n"
+"4. If an editor or terminal still shows boxes, name the font explicitly:"
+msgstr ""
+"En el Explorador de archivos, selecciona los cuatro archivos ⟦CODE_0001⟧, haz clic con el botón derecho, elige **Mostrar más opciones** y luego **Instalar para todos los usuarios**.\n"
+"3. Cierra y vuelve a abrir tu navegador y tu editor. Un navegador recurre a cualquier fuente instalada que tenga el glifo, así que la visualización de estos archivos en GitHub normalmente empezará a funcionar sin ningún otro cambio.\n"
+"4. Si un editor o una terminal sigue mostrando cuadros, indica la fuente de forma explícita:"
+
+#: src/apl/README.md:107
+msgctxt "s-2fd43ea64375-0047"
+msgid "VS Code: ⟦CODE_0001⟧ and ⟦CODE_0002⟧ set to ⟦CODE_0003⟧."
+msgstr "VS Code: ⟦CODE_0001⟧ y ⟦CODE_0002⟧ con el valor ⟦CODE_0003⟧."
+
+#: src/apl/README.md:108
+msgctxt "s-714edbce9b49-0048"
+msgid "Windows Terminal: Settings, your profile, Appearance, Font face."
+msgstr "Windows Terminal: Configuración, tu perfil, Apariencia, Tipo de letra."
+
+#: src/apl/README.md:110
+msgctxt "s-757e91e30b91-0049"
+msgid "To test, paste ⟦CODE_0001⟧ somewhere. You should see eight letter-like symbols and one empty box (the ⟦CODE_0002⟧)."
+msgstr "Para probar, pega ⟦CODE_0001⟧ en cualquier parte. Deberías ver ocho símbolos con forma de letra y un cuadro vacío (el ⟦CODE_0002⟧)."
+
+#: src/apl/README.md:112
+msgctxt "s-339cc2c18f83-0050"
+msgid "What ⟦CODE_0001⟧ enforces"
+msgstr "Qué impone ⟦CODE_0001⟧"
+
+#: src/apl/README.md:114
+msgctxt "s-869a5a6bbe0d-0051"
+msgid "⟦CODE_0001⟧ is the referee. It checks that ⟦CODE_0002⟧ carries the ⟦CODE_0003⟧ marker and contains no network-looking text (⟦CODE_0004⟧, ⟦CODE_0005⟧, ⟦CODE_0006⟧, ⟦CODE_0007⟧). Then it runs the program 25 times. Every run must print a sane record set: categories in order, hours from 10 to 19, running totals that add up, a ⟦CODE_0008⟧ mark on every row, and a stop exactly when the total passes 40. SQLite must agree with the printed rows. The 25 runs must be 25 different runs, and the hours must show at least six different values, so the \"random\" draws really look random. Last, it tries to insert a non-demo row and expects SQLite to refuse it, which proves that ⟦CODE_0009⟧ is real."
+msgstr "⟦CODE_0001⟧ es el árbitro. Comprueba que ⟦CODE_0002⟧ lleve la marca ⟦CODE_0003⟧ y que no contenga texto que parezca de red (⟦CODE_0004⟧, ⟦CODE_0005⟧, ⟦CODE_0006⟧, ⟦CODE_0007⟧). Luego ejecuta el programa 25 veces. Cada ejecución debe imprimir un conjunto coherente de registros: categorías en orden, horas de 10 a 19, totales acumulados que cuadran, una marca ⟦CODE_0008⟧ en cada fila y una parada justo cuando el total pasa de 40. SQLite debe coincidir con las filas impresas. Las 25 ejecuciones deben ser 25 ejecuciones distintas, y las horas deben mostrar al menos seis valores distintos, para que los sorteos \"aleatorios\" parezcan aleatorios de verdad. Por último, intenta insertar una fila que no sea de demostración y espera que SQLite la rechace, lo que demuestra que ⟦CODE_0009⟧ es real."
+
+#: src/apl/README.md:116
+msgctxt "s-5a0ad00b10fc-0052"
+msgid "Gotchas worth knowing"
+msgstr "Trampas que conviene conocer"
+
+#: src/apl/README.md:118
+msgctxt "s-bbf91c86a30d-0053"
+msgid "**Origin.** ⟦CODE_0001⟧ is the index origin (1 by default in GNU APL, 0 in some code). The file never assumes it: ⟦CODE_0002⟧ is the only primitive whose results depend on it, and the draw subtracts ⟦CODE_0003⟧ back out. ⟦CODE_0004⟧ runs with the default; try putting ⟦CODE_0005⟧ on the first line and see that the cards are still 10 to 19."
+msgstr "**Origen.** ⟦CODE_0001⟧ es el origen de índices (1 de forma predeterminada en GNU APL, 0 en algún código). El archivo nunca lo da por supuesto: ⟦CODE_0002⟧ es la única primitiva cuyos resultados dependen de él, y el sorteo vuelve a restar ⟦CODE_0003⟧. ⟦CODE_0004⟧ se ejecuta con el valor predeterminado; prueba a poner ⟦CODE_0005⟧ en la primera línea y comprueba que las tarjetas siguen siendo de 10 a 19 horas."
+
+#: src/apl/README.md:119
+msgctxt "s-c21c64b264cd-0054"
+msgid "**⟦CODE_0001⟧ is not \"first\".** In APL2-family interpreters (GNU APL, APL2) ⟦CODE_0002⟧ *discloses* (it is \"mix\") and ⟦CODE_0003⟧ is \"first\". Dyalog reverses that: ⟦CODE_0004⟧ is first/pick. ⟦CODE_0005⟧ here is a disclose of one selected string back to a plain character vector."
+msgstr "**⟦CODE_0001⟧ no es \"first\".** En los intérpretes de la familia APL2 (GNU APL, APL2), ⟦CODE_0002⟧ aplica *disclose* (es \"mix\") y ⟦CODE_0003⟧ es \"first\". Dyalog lo invierte: ⟦CODE_0004⟧ es first/pick. Aquí, ⟦CODE_0005⟧ aplica *disclose* a una sola cadena de texto seleccionada para devolverla a un vector simple de caracteres."
+
+#: src/apl/README.md:120
+msgctxt "s-684e5b5c7623-0055"
+msgid "**⟦CODE_0001⟧ is a throwaway.** Primitives such as ⟦CODE_0002⟧ return a value; a bare expression would print it. Assigning to ⟦CODE_0003⟧ swallows it."
+msgstr "**⟦CODE_0001⟧ es desechable.** Primitivas como ⟦CODE_0002⟧ devuelven un valor; una expresión sola lo imprimiría. Asignar a ⟦CODE_0003⟧ lo descarta."
+
+#: src/apl/README.md:121
+msgctxt "s-1ba9e6099a4c-0056"
+msgid "**No formatter exists.** There is no ⟦CODE_0001⟧ for GNU APL source. The layout rules applied by hand are: one statement per line (⟦CODE_0002⟧ is for the REPL), CamelCase names for things you define, and comments aligned in a column."
+msgstr "**No existe un formateador.** No hay ⟦CODE_0001⟧ para el código fuente de GNU APL. Las reglas de formato que se aplican a mano son: una sentencia por línea (⟦CODE_0002⟧ es para el REPL), nombres en CamelCase para lo que defines y comentarios alineados en una columna."
+
+#: src/apl/README.md:122
+msgctxt "s-dd4965dda3a0-0057"
+msgid "**SQL by string formatting is a bad habit.** It is safe here only because every value is a number computed by the program or one of four fixed words. Do not copy it."
+msgstr "**Armar SQL con formato de cadenas de texto es un mal hábito.** Aquí es seguro solo porque cada valor es un número que calcula el programa o una de cuatro palabras fijas. No lo copies."
+
+#: src/apl/README.md:124
+msgctxt "s-254f0c660db3-0058"
+msgid "Run it in a container"
+msgstr "Ejecútalo en un contenedor"
+
+#: src/apl/README.md:126
+msgctxt "s-643df015c8a2-0059"
+msgid "Prerequisite: Docker, set up once as described in [⟦CODE_0001⟧](⟦DEST_0002⟧)."
+msgstr "Requisito previo: Docker, configurado una sola vez como se describe en [⟦CODE_0001⟧](⟦DEST_0002⟧)."
+
+#: src/apl/README.md:132
+msgctxt "s-97180c9402e1-0060"
+msgid "It builds this folder's [⟦CODE_0001⟧](⟦DEST_0002⟧) and runs the result with no network, a read-only file system and user ⟦CODE_0003⟧, then prints the output and a read-only look at the rows it wrote. The image holds GNU APL (built from the pinned gnu.org tarball in the toolchain image) and sqlite3 on a minimal Ubuntu. It has no compiler and no package manager."
+msgstr "Construye el [⟦CODE_0001⟧](⟦DEST_0002⟧) de esta carpeta y ejecuta el resultado sin red, con un sistema de archivos de solo lectura y con el usuario ⟦CODE_0003⟧. Luego imprime la salida y una vista de solo lectura de las filas que escribió. La imagen contiene GNU APL (compilado desde el archivo *tarball* fijado de gnu.org en la imagen de la cadena de herramientas) y sqlite3 sobre un Ubuntu mínimo. No tiene compilador ni gestor de paquetes."

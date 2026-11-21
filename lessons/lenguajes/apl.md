@@ -18,7 +18,7 @@ Now imagine the thing you came here for: **whiteboarding in this.** Ask yourself
 
 - *What would you actually write?* Draw `Drawn←(10-⎕IO)+?5⍴10` on a whiteboard and you have a design in one line. Draw the same idea as a C-style loop and you have eight lines and an off-by-one risk.
 - *What does a whiteboard hide?* Anything that requires a keyboard: the glyphs themselves, the dependence on `⎕IO`, whether `⊃` means "first" or "disclose" in your interpreter. APL on a whiteboard is concise and *ambiguous in exactly the ways a notation should not be*.
-- *Who can read it?* The author, today. The [README's "Seeing the glyphs"](../../src/apl/README.md#seeing-the-glyphs) section exists because many fonts and terminals cannot even *display* the source.
+- *Who can read it?* The author, today. The [README's "Seeing the glyphs"](../../src/apl/README.md#cómo-ver-los-glifos) section exists because many fonts and terminals cannot even *display* the source.
 
 The honest summary: APL is an astonishingly good *thinking* notation and an unforgiving *maintenance* language. The repo lets you feel both sides.
 
@@ -129,7 +129,7 @@ Each picture below is the `## Program Flow` section of an entry's README, copied
 
 ### Program flow of `apl`
 
-From [`apl`](../../src/apl/README.md) ([source section](../../src/apl/README.md#program-flow)).
+From [`apl`](../../src/apl/README.md) ([source section](../../src/apl/README.md#flujo-del-programa)).
 
 ```mermaid
 flowchart TD
@@ -149,7 +149,7 @@ flowchart TD
 
 ### Program flow of `apl-weird`
 
-From [`apl-weird`](../../src/apl-weird/README.md) ([source section](../../src/apl-weird/README.md#program-flow)).
+From [`apl-weird`](../../src/apl-weird/README.md) ([source section](../../src/apl-weird/README.md#flujo-del-programa)).
 
 ```mermaid
 flowchart TD

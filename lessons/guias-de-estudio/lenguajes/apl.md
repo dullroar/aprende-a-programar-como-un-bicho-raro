@@ -12,7 +12,7 @@ Cuando termines, deberías poder:
 4. Trazar ambos programas con las mismas tres tarjetas, mostrando los arreglos en uno y el código fuente generado en el otro.
 5. Etiquetar cada comportamiento como garantizado, permitido por la implementación o aprovechado por accidente.
 
-**Límites del alcance.** Necesitas leer APL básico: `⍳`, `⍴`, `+\` (escaneo), `+/` (reducción), `/` (compresión) y `↑` (tomar). La guía no enseña el conjunto completo de glifos, las funciones de archivo `⎕FIO` de GNU APL más allá de lo que usan los programas, ni SQL. Si los glifos de APL aparecen como recuadros vacíos, consulta [Cómo ver los glifos](../../../src/apl/README.md#seeing-the-glyphs).
+**Límites del alcance.** Necesitas leer APL básico: `⍳`, `⍴`, `+\` (escaneo), `+/` (reducción), `/` (compresión) y `↑` (tomar). La guía no enseña el conjunto completo de glifos, las funciones de archivo `⎕FIO` de GNU APL más allá de lo que usan los programas, ni SQL. Si los glifos de APL aparecen como recuadros vacíos, consulta [Cómo ver los glifos](../../../src/apl/README.md#cómo-ver-los-glifos).
 
 La página del libro es [APL](../../lenguajes/apl.md). Las ideas están en [Programación con arreglos](../../informatica/04-evaluacion-y-demanda.md#array-programming), [Homoiconicidad: código como datos](../../informatica/06-estado-mas-alla-de-las-variables.md#homoiconicity-code-as-data) y [Código automodificable](../../informatica/03-flujo-de-control-y-continuaciones.md#self-modifying-code).
 
@@ -61,14 +61,14 @@ APL expresa el límite en una sola comparación, `40≥`, "¿el total es como m�
 
 ```mermaid
 flowchart TD
-    accTitle: apl: genera todos los valores al azar y deja que los arreglos decidan dónde parar
-    accDescr: Un diagrama de flujo de datos que pasan por operaciones sobre arreglos completos. Se generan de una vez cinco valores aleatorios de 10 a 19 horas. Una suma acumulada da el total después de cada tarjeta. Comparar los totales con 40 da unos y ceros. Sumar los unos y añadir uno cuenta las tarjetas que se conservan. Tomar ese número de tarjetas de las horas generadas da las horas conservadas. Los totales acumulados y los nombres de categoría, ajustados a la misma longitud, se derivan de ellas. Luego una función aplicada a cada número de fila guarda cada fila y muestra cada fila.
-    A["Drawn: cinco horas aleatorias, de 10 a 19, generadas a la vez"] --> B["Suma acumulada de Drawn: el total después de cada tarjeta"]
-    B --> C["Compara con 40: 1 donde el total no pasa de 40, y 0 en caso contrario"]
+    accTitle: apl: dibuja todo primero y luego deja que los arreglos decidan dónde parar
+    accDescr: Un diagrama de flujo de los datos a través de operaciones sobre arreglos completos. Se sortean cinco horas aleatorias de 10 a 19 de una sola vez. Una suma acumulada da el total después de cada tarjeta. Al comparar los totales con 40 se obtienen unos y ceros. Al sumar los unos y añadir uno se cuenta cuántas tarjetas se conservan. Al tomar esa cantidad de tarjetas de las horas sorteadas se obtienen las horas conservadas. De ellas se derivan los totales acumulados y los nombres de las categorías, remodelados a la misma longitud. Después, una función aplicada a cada número de fila guarda cada fila y muestra cada fila.
+    A["Drawn: cinco horas aleatorias, de 10 a 19, sorteadas a la vez"] --> B["Suma acumulada de Drawn: el total después de cada tarjeta"]
+    B --> C["Compara con 40: 1 donde el total no pasa de 40, 0 en caso contrario"]
     C --> D["Suma los 1 y añade 1: el número de tarjetas que se conservan"]
-    D --> E["Toma ese número de elementos de Drawn: Hours"]
-    E --> F["Totals es una suma acumulada de Hours; Kinds son las categorías ajustadas a la longitud de Hours"]
-    F --> G["Aplica SaveRow y ShowRow a cada número de fila"]
+    D --> E["Toma esa cantidad de Drawn: Hours"]
+    E --> F["Totals es una suma acumulada de Hours; Kinds son las categorías remodeladas a la longitud de Hours"]
+    F --> G["SaveRow y ShowRow, cada una aplicada a todos los números de fila"]
 ```
 
 El primer diagrama muestra datos que fluyen por pasos sobre arreglos. No hay ninguna arista de bucle.
@@ -78,14 +78,14 @@ El primer diagrama muestra datos que fluyen por pasos sobre arreglos. No hay nin
 ```mermaid
 flowchart TD
     accTitle: apl-weird: cada función de tarjeta escribe y llama a la siguiente
-    accDescr: Un diagrama de flujo. La función Card0 se ejecuta con sus genes: el número de tarjeta, la categoría, las horas y el total acumulado. Imprime su fila y la inserta en SQLite. Extrae las siguientes horas y construye como texto las cuatro líneas de genes de la siguiente tarjeta. Un booleano Alive vale 1 mientras el total no pasa de 40. Después, la función toma su propio código fuente con ⎕CR, que devuelve la representación canónica de una función. Reemplaza el encabezado y los genes, y comprime el texto del hijo con Alive, que conserva todas sus líneas o ninguna. ⎕FX define una función nueva, Card1, con lo que queda, o no define nada. Después, ⍎ ejecuta el nombre, también comprimido por Alive, así que llama a Card1, que hace los mismos pasos. Cuando Alive es 0, no se escribe ni se llama nada, y la cadena de llamadas retorna.
-    A["CardN se ejecuta con sus genes: número, categoría, horas, total"] --> B["Imprime la fila y la inserta con INSERT"]
-    B --> C["Extrae las siguientes horas y construye cuatro líneas de genes nuevas como texto"]
+    accDescr: Un diagrama de flujo. La función Card0 se ejecuta con sus genes: el número de tarjeta, la categoría, las horas y el total acumulado. Imprime su fila y la inserta en SQLite. Sortea las siguientes horas y construye como texto las cuatro líneas de genes de la tarjeta siguiente. Un booleano Alive vale 1 mientras el total no pase de 40. Luego la función toma su propio código fuente con la función ⎕CR, reemplaza el encabezado y los genes, y comprime con Alive todo el hijo. La función ⎕FX define una función nueva, Card1, con lo que queda, o no define nada. Ejecutar el nombre, también comprimido con Alive, llama entonces a Card1, que hace los mismos pasos. Cuando Alive vale 0, no se escribe ni se llama nada y la cadena de llamadas retorna.
+    A["CardN se ejecuta con sus genes: número, categoría, horas, total"] --> B["Imprime la fila e insértala con INSERT"]
+    B --> C["Sortea las siguientes horas; construye cuatro líneas de genes nuevas como texto"]
     C --> D{{"¿Vivo: total ≤ 40?"}}
-    D -->|"1: conserva el hijo"| E["⎕CR lee el código fuente de esta misma función; ⎕FX define la tarjeta CardN+1 a partir de ese código con los nuevos genes"]
-    E --> F["⍎ ejecuta el nombre CardN+1: es una función distinta con el mismo cuerpo"]
+    D -->|"1: conserva el hijo"| E["Quad-CR lee el código fuente de esta misma función; quad-FX define Card N+1 a partir de ese código con los nuevos genes"]
+    E --> F["Ejecuta el nombre Card N+1: es una función distinta con el mismo cuerpo"]
     F --> A
-    D -->|"0: Alive no conserva ninguna línea del hijo"| G["⎕FX no define nada y ⍎ ejecuta una cadena de texto vacía; las llamadas regresan"]
+    D -->|"0: Alive descarta al hijo por compresión"| G["Quad-FX no define nada y execute ejecuta una cadena de texto vacía; las llamadas regresan"]
 ```
 
 El segundo diagrama tiene un ciclo, pero cada vuelta pasa por una función que no existía un momento antes.
