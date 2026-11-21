@@ -715,16 +715,16 @@
     {
      "en": "A1. Read the rows",
      "en_id": "a1-read-the-rows",
-     "es": "A1. Read the rows",
-     "es_id": "a1-read-the-rows",
+     "es": "A1. Lee las filas",
+     "es_id": "a1-lee-las-filas",
      "level": 2,
      "line": 12
     },
     {
      "en": "B1. COBOL: predict, then break `ALTER`",
      "en_id": "b1-cobol-predict-then-break-alter",
-     "es": "B1. COBOL: predict, then break `ALTER`",
-     "es_id": "b1-cobol-predict-then-break-alter",
+     "es": "B1. COBOL: predice y luego rompe `ALTER`",
+     "es_id": "b1-cobol-predice-y-luego-rompe-alter",
      "level": 2,
      "line": 26
     },
@@ -970,9 +970,9 @@
     }
    ],
    "map": {
-    "a1-read-the-rows": "a1-read-the-rows",
+    "a1-read-the-rows": "a1-lee-las-filas",
     "answer-key": "clave-de-respuestas",
-    "b1-cobol-predict-then-break-alter": "b1-cobol-predict-then-break-alter",
+    "b1-cobol-predict-then-break-alter": "b1-cobol-predice-y-luego-rompe-alter",
     "b10-lisp-swap-the-method-combination": "b10-lisp-swap-the-method-combination",
     "b11-m4-quote-the-recursion": "b11-m4-quote-the-recursion",
     "b12-tcl-edit-the-program-in-the-database": "b12-tcl-edit-the-program-in-the-database",

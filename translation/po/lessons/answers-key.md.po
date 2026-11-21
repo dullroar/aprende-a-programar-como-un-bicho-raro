@@ -40,47 +40,47 @@ msgstr "La salida es aleatoria, así que los números aquí son *ejemplos*. Lo q
 #: lessons/answers-key.md:12
 msgctxt "s-698a3de6394d-0006"
 msgid "A1. Read the rows"
-msgstr ""
+msgstr "A1. Lee las filas"
 
 #: lessons/answers-key.md:14
 msgctxt "s-c6523d2d565a-0007"
 msgid "Example output from ⟦CODE_0001⟧:"
-msgstr ""
+msgstr "Ejemplo de salida de ⟦CODE_0001⟧:"
 
 #: lessons/answers-key.md:23
 msgctxt "s-eff92ad4f0f8-0008"
 msgid "The card that crosses is the first whose running total is **over 40**; the total before it is always **at most 40** (otherwise the run would have stopped earlier). The totals can end anywhere from 41 to 59."
-msgstr ""
+msgstr "La tarjeta que cruza el tope es la primera cuyo total acumulado es **más de 40**; el total anterior siempre es **como máximo 40** (de otro modo, la ejecución se habría detenido antes). Los totales pueden terminar entre 41 y 59."
 
 #: lessons/answers-key.md:24
 msgctxt "s-a905bb9d58da-0009"
 msgid "Exactly 40 continues under the challenge rule. Four 10-hour cards total exactly 40, so a conforming run keeps a fifth card. The former four-name ceiling in the regex and ⟦CODE_0001⟧-header entries has been fixed. See the [intro](⟦DEST_0002⟧) for the four-pass XAML ceiling and the fixed LINQ demos. [⟦CODE_0003⟧](⟦DEST_0004⟧) prints no running-total column, so ⟦CODE_0005⟧ adds the hours itself."
-msgstr ""
+msgstr "Un total de exactamente 40 continúa según la regla del reto. Cuatro tarjetas de 10 horas suman exactamente 40, así que una ejecución conforme conserva una quinta tarjeta. Se corrigió el antiguo techo de cuatro nombres en las entradas de regex y de encabezado ⟦CODE_0001⟧. Consulta la [introducción](⟦DEST_0002⟧) para el techo de cuatro pasadas de XAML y las demostraciones corregidas de LINQ. [⟦CODE_0003⟧](⟦DEST_0004⟧) no imprime una columna de total acumulado, así que ⟦CODE_0005⟧ suma las horas por sí mismo."
 
 #: lessons/answers-key.md:26
 msgctxt "s-3ba71624646e-0010"
 msgid "B1. COBOL: predict, then break ⟦CODE_0001⟧"
-msgstr ""
+msgstr "B1. COBOL: predice y luego rompe ⟦CODE_0001⟧"
 
 #: lessons/answers-key.md:36
 msgctxt "s-3b92b84eed16-0011"
 msgid "**Prediction:** ⟦CODE_0001⟧ is ⟦CODE_0002⟧. It overflows when ⟦CODE_0003⟧ reaches 100, i.e. when ⟦CODE_0004⟧. So the run stops on the first card that takes the total **above 50**. (With the original 59 it is over 40.)"
-msgstr ""
+msgstr "**Predicción:** ⟦CODE_0001⟧ es ⟦CODE_0002⟧. Se desborda cuando ⟦CODE_0003⟧ llega a 100, es decir, cuando ⟦CODE_0004⟧. Así que la ejecución se detiene en la primera tarjeta que lleva el total **por encima de 50**. (Con el 59 original, es más de 40.)"
 
 #: lessons/answers-key.md:37
 msgctxt "s-611e37f57c68-0012"
 msgid "The run ends with totals from 51 to 69; ⟦CODE_0001⟧ passes. The entry's own ⟦CODE_0002⟧ fails because it hard-codes 40."
-msgstr ""
+msgstr "La ejecución termina con totales de 51 a 69; ⟦CODE_0001⟧ pasa. El propio ⟦CODE_0002⟧ de la entrada falla porque contiene el valor 40 fijo en el código."
 
 #: lessons/answers-key.md:38
 msgctxt "s-de1881a509ec-0013"
 msgid "**⟦CODE_0001⟧ inside ⟦CODE_0002⟧:** the *build* fails, because ⟦CODE_0003⟧ may only rewrite a paragraph that is exactly one ⟦CODE_0004⟧:"
-msgstr ""
+msgstr "**⟦CODE_0001⟧ dentro de ⟦CODE_0002⟧:** la *compilación* falla porque ⟦CODE_0003⟧ solo puede reescribir un párrafo que sea exactamente un ⟦CODE_0004⟧:"
 
 #: lessons/answers-key.md:44
 msgctxt "s-f3d804429d36-0014"
 msgid "(five of these, one per ⟦CODE_0001⟧). The compiler has to know that the paragraph's only content is a jump whose target it can patch."
-msgstr ""
+msgstr "(cinco de estos, uno por ⟦CODE_0001⟧). El compilador debe saber que el único contenido del párrafo es un salto cuyo destino puede modificar."
 
 #: lessons/answers-key.md:46
 msgctxt "s-5fd611acc548-0015"

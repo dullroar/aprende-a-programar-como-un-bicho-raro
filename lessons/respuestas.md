@@ -9,9 +9,9 @@ Todas las soluciones siguientes se ejecutaron con las entradas reales:
 
 La salida es aleatoria, así que los números aquí son *ejemplos*. Lo que está garantizado es la **propiedad** que cada ejercicio te pide observar. Variables de carpeta: `WORK=$(mktemp -d)` y `cp -r src/<entry> "$WORK/"` antes de editar.
 
-## A1. Read the rows
+## A1. Lee las filas
 
-Example output from `src/cobol-weird`:
+Ejemplo de salida de `src/cobol-weird`:
 
 ```text
 Meetings   15   15
@@ -20,10 +20,10 @@ Debugging  12   46      <- crossing card: the total before it was 34, which is <
 # committed total=46 entries=3 DEMO ONLY
 ```
 
-- The card that crosses is the first whose running total is **over 40**; the total before it is always **at most 40** (otherwise the run would have stopped earlier). The totals can end anywhere from 41 to 59.
-- Exactly 40 continues under the challenge rule. Four 10-hour cards total exactly 40, so a conforming run keeps a fifth card. The former four-name ceiling in the regex and `for`-header entries has been fixed. See the [intro](introduccion.md#where-entries-differ) for the four-pass XAML ceiling and the fixed LINQ demos. [`regex-dotnet`](../src/regex-dotnet/README.md) prints no running-total column, so `check-demo.sh` adds the hours itself.
+- La tarjeta que cruza el tope es la primera cuyo total acumulado es **más de 40**; el total anterior siempre es **como máximo 40** (de otro modo, la ejecución se habría detenido antes). Los totales pueden terminar entre 41 y 59.
+- Un total de exactamente 40 continúa según la regla del reto. Cuatro tarjetas de 10 horas suman exactamente 40, así que una ejecución conforme conserva una quinta tarjeta. Se corrigió el antiguo techo de cuatro nombres en las entradas de regex y de encabezado `for`. Consulta la [introducción](introduccion.md#where-entries-differ) para el techo de cuatro pasadas de XAML y las demostraciones corregidas de LINQ. [`regex-dotnet`](../src/regex-dotnet/README.md) no imprime una columna de total acumulado, así que `check-demo.sh` suma las horas por sí mismo.
 
-## B1. COBOL: predict, then break `ALTER`
+## B1. COBOL: predice y luego rompe `ALTER`
 
 ```bash
 cp -r src/cobol-weird "$WORK/"                                   # run everything from the repo root
@@ -33,15 +33,15 @@ bash lessons/tools/check-demo.sh out.txt 50                      # PASS: 4 rows,
 sandbox/run.sh "$WORK/cobol-weird"                               # FAIL run N: kept going after the total passed 40
 ```
 
-- **Prediction:** `WS-HEADROOM` is `PIC 99`. It overflows when `headroom + total` reaches 100, i.e. when `total >= 100 - 49 = 51`. So the run stops on the first card that takes the total **above 50**. (With the original 59 it is over 40.)
-- The run ends with totals from 51 to 69; `check-demo.sh ... 50` passes. The entry's own `check.sh` fails because it hard-codes 40.
-- **`DISPLAY "x"` inside `NEXT-CARD`:** the *build* fails, because `ALTER` may only rewrite a paragraph that is exactly one `GO TO`:
+- **Predicción:** `WS-HEADROOM` es `PIC 99`. Se desborda cuando `headroom + total` llega a 100, es decir, cuando `total >= 100 - 49 = 51`. Así que la ejecución se detiene en la primera tarjeta que lleva el total **por encima de 50**. (Con el 59 original, es más de 40.)
+- La ejecución termina con totales de 51 a 69; `check-demo.sh ... 50` pasa. El propio `check.sh` de la entrada falla porque contiene el valor 40 fijo en el código.
+- **`DISPLAY "x"` dentro de `NEXT-CARD`:** la *compilación* falla porque `ALTER` solo puede reescribir un párrafo que sea exactamente un `GO TO`:
 
 ```text
 timecards.cob:158: error: 'NEXT-CARD' is not an alterable paragraph
 ```
 
-  (five of these, one per `ALTER`). The compiler has to know that the paragraph's only content is a jump whose target it can patch.
+  (cinco de estos, uno por `ALTER`). El compilador debe saber que el único contenido del párrafo es un salto cuyo destino puede modificar.
 
 ## B2. Haskell: break the laziness
 
