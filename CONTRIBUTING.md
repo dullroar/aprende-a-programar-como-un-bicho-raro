@@ -115,7 +115,7 @@ flowchart TD
 - **Keep it small.** About 5 to 10 nodes or messages, labels under about 60 characters. Draw decisions as hexagons (`{{"text"}}`): a diamond grows too tall around its text. No HTML tags in labels, no colors that carry meaning, no `;` in a sequence-diagram message (it ends the statement).
 - **`accTitle` and `accDescr` are required.** The first is the figure's caption and the second is its alt text.
 - **Links** to other files are fine (they are re-aimed when the section is copied into a lesson page). Links to a heading in your own README are not.
-- **The build checks it.** `python lessons/book/build.py --check` checks the section's structure. `python lessons/book/build.py --check-diagrams` renders every diagram and fails if one cannot be drawn, or would print smaller than about 8.4 pt on a Letter page. If your diagram is too tall or wide, shorten the labels or use fewer nodes. See [`lessons/book/README.md`](lessons/book/README.md#diagrams) for the one-time setup.
+- **The build checks it.** `python lessons/book/build.py --check` checks the section's structure. `python lessons/book/build.py --check-diagrams` renders every diagram and fails if one cannot be drawn, or would print smaller than about 8.4 pt on a Letter page. If your diagram is too tall or wide, shorten the labels or use fewer nodes. See [`lessons/book/README.md`](lessons/book/README.md#diagramas) for the one-time setup.
 
 ### 4. Voice and tone
 

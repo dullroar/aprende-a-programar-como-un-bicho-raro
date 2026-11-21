@@ -1178,95 +1178,95 @@
     {
      "en": "Building the book",
      "en_id": "building-the-book",
-     "es": "Building the book",
-     "es_id": "building-the-book",
+     "es": "Compilación del libro",
+     "es_id": "compilación-del-libro",
      "level": 1,
      "line": 1
     },
     {
      "en": "PDF release gate",
      "en_id": "pdf-release-gate",
-     "es": "PDF release gate",
-     "es_id": "pdf-release-gate",
+     "es": "Control de publicación del PDF",
+     "es_id": "control-de-publicación-del-pdf",
      "level": 2,
      "line": 22
     },
     {
      "en": "Diagrams",
      "en_id": "diagrams",
-     "es": "Diagrams",
-     "es_id": "diagrams",
+     "es": "Diagramas",
+     "es_id": "diagramas",
      "level": 2,
      "line": 67
     },
     {
      "en": "Metadata-driven chapters",
      "en_id": "metadata-driven-chapters",
-     "es": "Metadata-driven chapters",
-     "es_id": "metadata-driven-chapters",
+     "es": "Capítulos dirigidos por metadatos",
+     "es_id": "capítulos-dirigidos-por-metadatos",
      "level": 2,
      "line": 106
     },
     {
      "en": "Links",
      "en_id": "links",
-     "es": "Links",
-     "es_id": "links",
+     "es": "Enlaces",
+     "es_id": "enlaces",
      "level": 3,
      "line": 124
     },
     {
      "en": "Reproducible builds",
      "en_id": "reproducible-builds",
-     "es": "Reproducible builds",
-     "es_id": "reproducible-builds",
+     "es": "Compilaciones reproducibles",
+     "es_id": "compilaciones-reproducibles",
      "level": 3,
      "line": 128
     },
     {
      "en": "When an entry is added (for maintainers)",
      "en_id": "when-an-entry-is-added-for-maintainers",
-     "es": "When an entry is added (for maintainers)",
-     "es_id": "when-an-entry-is-added-for-maintainers",
+     "es": "Cuando se añade una entrada (para mantenedores)",
+     "es_id": "cuando-se-añade-una-entrada-para-mantenedores",
      "level": 3,
      "line": 134
     },
     {
      "en": "Guide impact review",
      "en_id": "guide-impact-review",
-     "es": "Guide impact review",
-     "es_id": "guide-impact-review",
+     "es": "Revisión del impacto en las guías",
+     "es_id": "revisión-del-impacto-en-las-guías",
      "level": 3,
      "line": 140
     },
     {
      "en": "Building the study guides",
      "en_id": "building-the-study-guides",
-     "es": "Building the study guides",
-     "es_id": "building-the-study-guides",
+     "es": "Compilación de las guías de estudio",
+     "es_id": "compilación-de-las-guías-de-estudio",
      "level": 2,
      "line": 152
     },
     {
      "en": "Building the curriculum",
      "en_id": "building-the-curriculum",
-     "es": "Building the curriculum",
-     "es_id": "building-the-curriculum",
+     "es": "Compilación del plan de estudios",
+     "es_id": "compilación-del-plan-de-estudios",
      "level": 2,
      "line": 170
     }
    ],
    "map": {
-    "building-the-book": "building-the-book",
-    "building-the-curriculum": "building-the-curriculum",
-    "building-the-study-guides": "building-the-study-guides",
-    "diagrams": "diagrams",
-    "guide-impact-review": "guide-impact-review",
-    "links": "links",
-    "metadata-driven-chapters": "metadata-driven-chapters",
-    "pdf-release-gate": "pdf-release-gate",
-    "reproducible-builds": "reproducible-builds",
-    "when-an-entry-is-added-for-maintainers": "when-an-entry-is-added-for-maintainers"
+    "building-the-book": "compilación-del-libro",
+    "building-the-curriculum": "compilación-del-plan-de-estudios",
+    "building-the-study-guides": "compilación-de-las-guías-de-estudio",
+    "diagrams": "diagramas",
+    "guide-impact-review": "revisión-del-impacto-en-las-guías",
+    "links": "enlaces",
+    "metadata-driven-chapters": "capítulos-dirigidos-por-metadatos",
+    "pdf-release-gate": "control-de-publicación-del-pdf",
+    "reproducible-builds": "compilaciones-reproducibles",
+    "when-an-entry-is-added-for-maintainers": "cuando-se-añade-una-entrada-para-mantenedores"
    }
   },
   "lessons/book/VERSIONS.md": {
@@ -1274,8 +1274,8 @@
     {
      "en": "Book versions",
      "en_id": "book-versions",
-     "es": "Book versions",
-     "es_id": "book-versions",
+     "es": "Versiones del libro",
+     "es_id": "versiones-del-libro",
      "level": 1,
      "line": 1
     },
@@ -1297,7 +1297,7 @@
     }
    ],
    "map": {
-    "book-versions": "book-versions",
+    "book-versions": "versiones-del-libro",
     "v3": "v3",
     "v4": "v4"
    }

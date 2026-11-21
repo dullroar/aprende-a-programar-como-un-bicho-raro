@@ -105,3 +105,4 @@
 - For PCRE2 JIT source issues, distinguish support for callouts from support for `callout_flags`; check the installed `pcre2callout(3)` and `pcre2jit(3)` manuals.
 - Check `setImmediate()` ordering from inside an I/O callback before treating earlier queued timers as ahead of it.
 - If I25 reports a percentage in a protected URL, confirm the percent-encoded destination stayed byte-identical before recording a segment exception.
+- After translating headings, run `anchors.py --generate` BEFORE the final `apply.py --write`; if links are stale afterwards use `python3 -I tools/apply.py --relink FILE --write` (never `anchors.py --remap` on an already-Spanish file, it fails on its Spanish fragments).

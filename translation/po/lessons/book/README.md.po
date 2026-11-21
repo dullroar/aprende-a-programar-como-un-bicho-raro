@@ -1,0 +1,378 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lessons/book/README.md:1
+msgctxt "s-48b3d3eef4ce-0000"
+msgid "Building the book"
+msgstr "Compilación del libro"
+
+#: lessons/book/README.md:3
+msgctxt "s-1e05d9decfbc-0001"
+msgid "The whole of *Learn Programming the Weird Way!* builds into **one** document with [pandoc](⟦DEST_0001⟧):"
+msgstr "El libro completo, *¡Aprende a programar como un bicho raro!*, se compila en **un solo** documento con [pandoc](⟦DEST_0001⟧):"
+
+#: lessons/book/README.md:11
+msgctxt "s-0ad0be5eb221-0002"
+msgid "⟦CODE_0001⟧ is the reading order. Add a chapter by adding its path there."
+msgstr "⟦CODE_0001⟧ define el orden de lectura. Para añadir un capítulo, añade su ruta ahí."
+
+#: lessons/book/README.md:12
+msgctxt "s-f5ca3080a56c-0003"
+msgid "⟦CODE_0001⟧ holds the title, the edition number (⟦CODE_0002⟧), author and table-of-contents settings. The book is numbered from v3 on: bump ⟦CODE_0003⟧, the title, the title page in ⟦CODE_0004⟧ and add a section to [⟦CODE_0005⟧](⟦DEST_0006⟧) (what that edition added). ⟦CODE_0007⟧ fails if they disagree."
+msgstr "⟦CODE_0001⟧ contiene el título, el número de edición (⟦CODE_0002⟧), el autor y la configuración de la tabla de contenido. El libro está numerado desde v3: sube ⟦CODE_0003⟧, el título y la portada de ⟦CODE_0004⟧, y añade una sección a [⟦CODE_0005⟧](⟦DEST_0006⟧) (lo que añadió esa edición). ⟦CODE_0007⟧ falla si no coinciden."
+
+#: lessons/book/README.md:13
+msgctxt "s-3dd2e62390ee-0004"
+msgid "⟦CODE_0001⟧ assembles the chapters and rewrites links after Pandoc parses the Markdown. Code samples stay literal. A link to another chapter becomes an in-book anchor, a link to the web index becomes plain text, and a link to anything else in the repo (source files, ⟦CODE_0002⟧, ⟦CODE_0003⟧) becomes its GitHub URL. The chapters themselves stay ordinary GitHub-friendly Markdown."
+msgstr "⟦CODE_0001⟧ ensambla los capítulos y reescribe los enlaces después de que Pandoc analiza el Markdown. Los ejemplos de código se conservan literales. Un enlace a otro capítulo se convierte en un ancla dentro del libro. Un enlace al índice web se convierte en texto plano. Un enlace a cualquier otra cosa del repositorio (archivos fuente, ⟦CODE_0002⟧, ⟦CODE_0003⟧) se convierte en su URL de GitHub. Los capítulos en sí siguen siendo Markdown corriente, apto para GitHub."
+
+#: lessons/book/README.md:15
+msgctxt "s-0a271e7bbe3d-0005"
+msgid "**Why the sources use relative links and the PDF and EPUB use absolute ones.** On GitHub and in a clone a relative link always works, and it keeps working when the repository is renamed or forked. A PDF or EPUB has no repository around it, so its links to source files must be full URLs. [⟦CODE_0001⟧](⟦DEST_0002⟧) is the only place that knows the repository's address: a fixed canonical default (⟦CODE_0003⟧, branch ⟦CODE_0004⟧), so the same sources give the same bytes on any machine. The build never reads ⟦CODE_0005⟧. A fork can set ⟦CODE_0006⟧ (and ⟦CODE_0007⟧) to publish its own links. The title and copyright pages use the placeholders ⟦CODE_0008⟧ and ⟦CODE_0009⟧, which the build fills in. If the repository is renamed again, change ⟦CODE_0010⟧ there, rebuild the publications and commit them. [⟦CODE_0011⟧](⟦DEST_0012⟧) tests the mapping, and [⟦CODE_0013⟧](⟦DEST_0014⟧) fails if the old repository name returns anywhere except a short, reviewed list (the internal sandbox image tag ⟦CODE_0015⟧ and a per-user Rust build cache directory), including in the published PDFs and EPUBs."
+msgstr "**Por qué las fuentes usan enlaces relativos y el PDF y el EPUB usan enlaces absolutos.** En GitHub y en un clon, un enlace relativo siempre funciona, y sigue funcionando si se renombra o se bifurca el repositorio. Un PDF o un EPUB no tiene ningún repositorio alrededor, así que sus enlaces a archivos fuente deben ser URL completas. [⟦CODE_0001⟧](⟦DEST_0002⟧) es el único lugar que conoce la dirección del repositorio: un valor canónico fijo por defecto (⟦CODE_0003⟧, rama ⟦CODE_0004⟧), de modo que las mismas fuentes producen los mismos bytes en cualquier máquina. La compilación nunca lee ⟦CODE_0005⟧. Un *fork* puede definir ⟦CODE_0006⟧ (y ⟦CODE_0007⟧) para publicar sus propios enlaces. Las páginas de título y de derechos de autor usan los marcadores ⟦CODE_0008⟧ y ⟦CODE_0009⟧, que la compilación rellena. Si el repositorio vuelve a renombrarse, cambia ⟦CODE_0010⟧ ahí, recompila las publicaciones y haz *commit* de ellas. [⟦CODE_0011⟧](⟦DEST_0012⟧) prueba la correspondencia; [⟦CODE_0013⟧](⟦DEST_0014⟧) falla si el nombre antiguo del repositorio reaparece en cualquier sitio fuera de una lista corta y revisada (la etiqueta de la imagen interna del entorno aislado ⟦CODE_0015⟧ y un directorio de caché de compilación de Rust por usuario), incluso en los PDF y EPUB publicados."
+
+#: lessons/book/README.md:16
+msgctxt "s-dc94a7f0d794-0006"
+msgid "**PDF** is written to the repo root as ⟦CODE_0001⟧ and needs [WeasyPrint](⟦DEST_0002⟧) (⟦CODE_0003⟧ or ⟦CODE_0004⟧; it also needs the Pango library, which most Linux desktops and WSL images already have). Without it the script skips the PDF with a note; the EPUB and HTML are complete either way. The layout is ⟦CODE_0005⟧; fonts are DejaVu, whose mono face has the APL glyphs (⟦CODE_0006⟧; see [Seeing the glyphs](⟦DEST_0007⟧))."
+msgstr "**El PDF** se escribe en la raíz del repositorio como ⟦CODE_0001⟧ y requiere [WeasyPrint](⟦DEST_0002⟧) (⟦CODE_0003⟧ o ⟦CODE_0004⟧; también requiere la biblioteca Pango, que la mayoría de los escritorios Linux y de las imágenes de WSL ya incluyen). Sin WeasyPrint, el script omite el PDF y deja una nota; el EPUB y el HTML quedan completos en ambos casos. El diseño de página es ⟦CODE_0005⟧; las fuentes son DejaVu, cuya cara monoespaciada tiene los glifos de APL (⟦CODE_0006⟧; consulta [Cómo ver los glifos](⟦DEST_0007⟧))."
+
+#: lessons/book/README.md:17
+msgctxt "s-5d01361a9e56-0007"
+msgid "**Title and copyright pages** are in [⟦CODE_0001⟧](⟦DEST_0002⟧) (plain HTML, inserted before the table of contents). EPUB puts this material on its opening page. Edit authors and the copyright line in the source."
+msgstr "Las **páginas de título y de derechos de autor** están en [⟦CODE_0001⟧](⟦DEST_0002⟧) (HTML plano, insertado antes de la tabla de contenido). El EPUB pone este material en su página de apertura. Edita los autores y la línea de derechos de autor en la fuente."
+
+#: lessons/book/README.md:18
+msgctxt "s-fb8740452993-0008"
+msgid "**Long code lines** (regexes, XAML, CMake) are hard-wrapped in the PDF by ⟦CODE_0001⟧ so nothing runs off the page. A line that continues ends in ⟦CODE_0002⟧ and the next line starts with ⟦CODE_0003⟧. The Markdown source is untouched; HTML and EPUB reflow on their own."
+msgstr "Las **líneas de código largas** (expresiones regulares, XAML, CMake) se parten a la fuerza en el PDF mediante ⟦CODE_0001⟧, para que nada se salga de la página. Una línea que continúa termina en ⟦CODE_0002⟧ y la siguiente empieza con ⟦CODE_0003⟧. El Markdown fuente no se toca; el HTML y el EPUB reajustan el texto por su cuenta."
+
+#: lessons/book/README.md:19
+msgctxt "s-4b15053105af-0009"
+msgid "The PDF and EPUB in the repo root are committed. The HTML and assembled Markdown go to ⟦CODE_0001⟧, which is git-ignored."
+msgstr "El PDF y el EPUB de la raíz del repositorio se guardan con *commit*. El HTML y el Markdown ensamblado van a ⟦CODE_0001⟧, que Git ignora."
+
+#: lessons/book/README.md:20
+msgctxt "s-7a7f2079e530-0010"
+msgid "**The study guides are a separate document set.** [⟦CODE_0001⟧](⟦DEST_0002⟧) holds hand-written guides that build with ⟦CODE_0003⟧ into ⟦CODE_0004⟧ and ⟦CODE_0005⟧ beside the book's. That script imports this one (⟦CODE_0006⟧), so the link rewriting, diagram rendering, Pandoc call, stylesheet and reproducibility rule are shared and not copied. The guides are not in ⟦CODE_0007⟧, and the book only links to them. [⟦CODE_0008⟧](⟦DEST_0009⟧) checks them and [⟦CODE_0010⟧](⟦DEST_0011⟧) tests those checks."
+msgstr "**Las guías de estudio son un conjunto de documentos aparte.** [⟦CODE_0001⟧](⟦DEST_0002⟧) contiene guías escritas a mano que se compilan con ⟦CODE_0003⟧ en ⟦CODE_0004⟧ y ⟦CODE_0005⟧, junto a los del libro. Ese script importa a este (⟦CODE_0006⟧), de modo que la reescritura de enlaces, el renderizado de diagramas, la llamada a Pandoc, la hoja de estilo y la regla de reproducibilidad se comparten y no se copian. Las guías no están en ⟦CODE_0007⟧; el libro solo enlaza a ellas. [⟦CODE_0008⟧](⟦DEST_0009⟧) las comprueba y [⟦CODE_0010⟧](⟦DEST_0011⟧) prueba esas comprobaciones."
+
+#: lessons/book/README.md:22
+msgctxt "s-84c91e48673d-0011"
+msgid "PDF release gate"
+msgstr "Control de publicación del PDF"
+
+#: lessons/book/README.md:24
+msgctxt "s-9505dbe2aa4e-0012"
+msgid "Every full build lints the PDF it just wrote. Both the book and the study guides use the same hook, including with ⟦CODE_0001⟧. Run the build with ⟦CODE_0002⟧ to require WeasyPrint, a complete lint scan and zero errors. Without ⟦CODE_0003⟧, the post-build lint reports diagnostics and the build continues. The HTML-only ⟦CODE_0004⟧ routes need no PDF lint dependencies."
+msgstr "Cada compilación completa pasa por un lint el PDF que acaba de escribir. El libro y las guías de estudio usan el mismo gancho, incluso con ⟦CODE_0001⟧. Ejecuta la compilación con ⟦CODE_0002⟧ para exigir WeasyPrint, un análisis de lint completo y cero errores. Sin ⟦CODE_0003⟧, el lint posterior a la compilación informa de los diagnósticos y la compilación continúa. Las rutas ⟦CODE_0004⟧ que solo producen HTML no necesitan las dependencias del lint del PDF."
+
+#: lessons/book/README.md:46
+msgctxt "s-512e01632795-0013"
+msgid "The standalone CLI uses the publication filenames to select the book and study-guide sentinels. Use ⟦CODE_0001⟧ or ⟦CODE_0002⟧ for a renamed copy, or ⟦CODE_0003⟧ for geometry on a fixture. Its exit codes are **0** for a complete scan with zero errors, **1** for a completed scan with errors and **2** for an incomplete scan or invocation failure. Warnings are advisory in every mode. ⟦CODE_0004⟧ also rasterizes every page at low resolution and fails on a rasterizer exception or an entirely white render with substantial detected content. The [PDF release workflow](⟦DEST_0005⟧) builds both documents from source and uploads the lint diagnostics on failure."
+msgstr "La CLI independiente usa los nombres de archivo de las publicaciones para elegir los centinelas del libro y de las guías de estudio. Usa ⟦CODE_0001⟧ o ⟦CODE_0002⟧ para una copia renombrada, o ⟦CODE_0003⟧ para la geometría de unos datos de prueba. Sus estados de salida son **0** para un análisis completo con cero errores, **1** para un análisis terminado con errores y **2** para un análisis incompleto o un fallo de invocación. Las advertencias son solo informativas en todos los modos. ⟦CODE_0004⟧ también rasteriza cada página a baja resolución y falla si el rasterizador lanza una excepción o si la imagen sale totalmente blanca pese a haber contenido sustancial detectado. El [flujo de trabajo de publicación del PDF](⟦DEST_0005⟧) compila ambos documentos desde la fuente y sube los diagnósticos del lint cuando se produce un fallo."
+
+#: lessons/book/README.md:48
+msgctxt "s-d1b8ca9bc96b-0014"
+msgid "The linter derives Letter size and its content rectangle from ⟦CODE_0001⟧. It checks the MediaBox and CropBox within 0.1 pt, the page edge within 1 pt, and the content margin within 1.5 pt. The placement tolerances allow small variations in glyph metrics. The initial scan also exposed a table and two highlighted listings with measurable intrusions well above these tolerances. Title, copyright, TOC and index content use the regular margins. The footer exemption requires the physical page number, the expected font and size, and a centered position in the footer."
+msgstr "El linter deriva el tamaño Letter y su rectángulo de contenido de ⟦CODE_0001⟧. Comprueba MediaBox y CropBox con una tolerancia de 0.1 pt, el borde de la página con 1 pt y el margen del contenido con 1.5 pt. Las tolerancias de colocación admiten pequeñas variaciones en las métricas de los glifos. El análisis inicial también destapó una tabla y dos listados resaltados con intrusiones medibles muy por encima de esas tolerancias. El contenido del título, de los derechos de autor, de la tabla de contenido y del índice usa los márgenes regulares. La excepción del pie exige el número de página físico, la fuente y el tamaño esperados y una posición centrada en el pie."
+
+#: lessons/book/README.md:50
+msgctxt "s-1c7a58303c91-0015"
+msgid "⟦SEP_0001⟧ Rules ⟦SEP_0002⟧ Evidence ⟦SEP_0003⟧"
+msgstr "⟦SEP_0001⟧ Reglas ⟦SEP_0002⟧ Evidencia ⟦SEP_0003⟧"
+
+#: lessons/book/README.md:52
+msgctxt "s-1f82d663ae74-0016"
+msgid "⟦SEP_0001⟧ PDF-001 through PDF-005 ⟦SEP_0002⟧ Scan completion, page geometry, glyph and displayed raster placement bounds. ⟦SEP_0003⟧"
+msgstr "⟦SEP_0001⟧ PDF-001 a PDF-005 ⟦SEP_0002⟧ Finalización del análisis, geometría de página y límites de colocación de glifos y de imágenes rasterizadas mostradas. ⟦SEP_0003⟧"
+
+#: lessons/book/README.md:53
+msgctxt "s-b339d31abf1d-0017"
+msgid "⟦SEP_0001⟧ PDF-006 ⟦SEP_0002⟧ Advisory vector overrun, using path bounds and enclosing clip bounds. ⟦SEP_0003⟧"
+msgstr "⟦SEP_0001⟧ PDF-006 ⟦SEP_0002⟧ Desbordamiento vectorial informativo, a partir de los límites de la ruta y de los límites del recorte que la contiene. ⟦SEP_0003⟧"
+
+#: lessons/book/README.md:54
+msgctxt "s-3312a489f2a0-0018"
+msgid "⟦SEP_0001⟧ PDF-007 ⟦SEP_0002⟧ Empty publication page when no body or drawing objects are detected. Ambiguous cases and generic Letter fixtures are advisory. ⟦SEP_0003⟧"
+msgstr "⟦SEP_0001⟧ PDF-007 ⟦SEP_0002⟧ Página de publicación vacía cuando no se detecta ningún objeto de cuerpo ni de dibujo. Los casos ambiguos y los datos de prueba genéricos de tamaño Letter son informativos. ⟦SEP_0003⟧"
+
+#: lessons/book/README.md:55
+msgctxt "s-62f3bdabfed2-0019"
+msgid "⟦SEP_0001⟧ PDF-008 and PDF-009 ⟦SEP_0002⟧ Advisory overlap by relative box area, a sparse page, caption with no nearby figure evidence, or matching table grids with an open edge across a page break. ⟦SEP_0003⟧"
+msgstr "⟦SEP_0001⟧ PDF-008 y PDF-009 ⟦SEP_0002⟧ Superposición informativa según el área relativa de los recuadros, una página casi vacía, un pie de figura sin evidencia de una figura cercana, o cuadrículas de tabla coincidentes con un borde abierto en un salto de página. ⟦SEP_0003⟧"
+
+#: lessons/book/README.md:56
+msgctxt "s-ef4c1e3d9221-0020"
+msgid "⟦SEP_0002⟧ PDF-010 ⟦SEP_0003⟧ Named selectable-text sentinels for Mermaid comparisons and Forth labels, APL glyphs, regex/sed literals and selected Forth and Make wraps. The fixture renders literal comparisons and Mermaid's ⟦CODE_0001⟧ through the pinned SVG route. Its wrap comparison removes only adjacent paired arrows from a deliberately mid-token break, where no source space was lost. ⟦SEP_0004⟧"
+msgstr "⟦SEP_0002⟧ PDF-010 ⟦SEP_0003⟧ Centinelas con nombre de texto seleccionable para las comparaciones de Mermaid y las etiquetas de Forth, los glifos de APL, los literales de expresiones regulares y de sed, y ciertos saltos de línea de Forth y de Make. Los datos de prueba renderizan comparaciones literales y el ⟦CODE_0001⟧ de Mermaid mediante la ruta SVG fijada. Su comparación de saltos de línea elimina solo las flechas emparejadas adyacentes de un corte deliberado en mitad de un token, donde no se perdió ningún espacio de la fuente. ⟦SEP_0004⟧"
+
+#: lessons/book/README.md:57
+msgctxt "s-6fa6fb932977-0021"
+msgid "⟦SEP_0001⟧ PDF-011 ⟦SEP_0002⟧ Release rasterization and diagnostic preview failures. ⟦SEP_0003⟧"
+msgstr "⟦SEP_0001⟧ PDF-011 ⟦SEP_0002⟧ Fallos de rasterización de publicación y de la vista previa de diagnóstico. ⟦SEP_0003⟧"
+
+#: lessons/book/README.md:59
+msgctxt "s-123d207d9bb2-0022"
+msgid "Path bounds approximate visible ink. Clip boxes approximate clipping, and content discarded before PDF serialization may be undetectable. Raster measurements describe placement even when masking affects the visible pixels. The selectable-text checks cover the named strings in [the sentinel list](⟦DEST_0001⟧). Outlined glyphs and semantic row boundaries require visual inspection or evidence from the source. Figure scale remains the responsibility of ⟦CODE_0002⟧. A separate ⟦CODE_0003⟧ structural check is optional and outside this gate."
+msgstr "Los límites de ruta aproximan la tinta visible. Los recuadros de recorte aproximan el recorte, y el contenido descartado antes de serializar el PDF puede ser indetectable. Las mediciones de imágenes rasterizadas describen la colocación incluso cuando el enmascarado afecta a los píxeles visibles. Las comprobaciones de texto seleccionable cubren las cadenas de texto con nombre de [la lista de centinelas](⟦DEST_0001⟧). Los glifos convertidos en contornos y los límites semánticos de fila requieren inspección visual o evidencia de la fuente. La escala de las figuras sigue siendo responsabilidad de ⟦CODE_0002⟧. Una comprobación estructural aparte con ⟦CODE_0003⟧ es opcional y queda fuera de este control."
+
+#: lessons/book/README.md:61
+msgctxt "s-adae566debf6-0023"
+msgid "Keep diagnostics under the ignored ⟦CODE_0001⟧. The build hook stores a report per document in ⟦CODE_0002⟧ and writes affected pages to its ⟦CODE_0003⟧ subdirectory. A preview shows the allowed content region in teal, marks measured boxes, and lists the rule and displacement in a side legend. The default cap is 20 console findings and 12 preview pages per PDF, with up to 12 marked items per PNG. ⟦CODE_0004⟧ prints every finding and produces a preview for every affected page. JSON always includes all findings."
+msgstr "Guarda los diagnósticos en ⟦CODE_0001⟧, que Git ignora. El gancho de compilación guarda un informe por documento en ⟦CODE_0002⟧ y escribe las páginas afectadas en su subdirectorio ⟦CODE_0003⟧. Una vista previa muestra la región de contenido permitida en verde azulado, marca los recuadros medidos e indica la regla y el desplazamiento en una leyenda lateral. El límite por defecto es de 20 hallazgos en la consola y 12 páginas de vista previa por PDF, con hasta 12 elementos marcados por PNG. ⟦CODE_0004⟧ imprime todos los hallazgos y produce una vista previa de cada página afectada. El JSON siempre incluye todos los hallazgos."
+
+#: lessons/book/README.md:63
+msgctxt "s-6a8a2e1ca551-0024"
+msgid "JSON schema version 1 has top-level ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧ and ⟦CODE_0005⟧ fields. Each document records its basename, profile, ⟦CODE_0006⟧, ⟦CODE_0007⟧, ⟦CODE_0008⟧, ⟦CODE_0009⟧, ⟦CODE_0010⟧ and ⟦CODE_0011⟧. Each finding records the rule, severity, message, one-based physical page (or null), excerpt, ⟦CODE_0012⟧, ⟦CODE_0013⟧, ⟦CODE_0014⟧ and a preview filename when available. Boxes are normally unrotated, crop-relative points in ⟦CODE_0015⟧ order. Page-geometry findings display the measured and expected page boxes. For an overlap, ⟦CODE_0016⟧ is the other object's measured box. A document-level check can have null geometry. Documents sort by basename and findings by page, severity, rule and geometry. Reports contain no timestamps or absolute input paths."
+msgstr "La versión 1 del esquema JSON tiene los campos de nivel superior ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧ y ⟦CODE_0005⟧. Cada documento registra su nombre base, su perfil, ⟦CODE_0006⟧, ⟦CODE_0007⟧, ⟦CODE_0008⟧, ⟦CODE_0009⟧, ⟦CODE_0010⟧ y ⟦CODE_0011⟧. Cada hallazgo registra la regla, la gravedad, el mensaje, la página física con base uno (o null), un extracto, ⟦CODE_0012⟧, ⟦CODE_0013⟧, ⟦CODE_0014⟧ y un nombre de archivo de vista previa cuando existe. Los recuadros normalmente no están rotados y se expresan en puntos relativos al recorte, en el orden ⟦CODE_0015⟧. Los hallazgos de geometría de página muestran los recuadros de página medido y esperado. En una superposición, ⟦CODE_0016⟧ es el recuadro medido del otro objeto. Una comprobación a nivel de documento puede tener geometría nula. Los documentos se ordenan por nombre base y los hallazgos por página, gravedad, regla y geometría. Los informes no contienen marcas de tiempo ni rutas de entrada absolutas."
+
+#: lessons/book/README.md:65
+msgctxt "s-9c0c0b2dff72-0025"
+msgid "For an intentional exception, specify the profile, rule and observable object signature, record why the position is expected, and test both it and a nearby genuine failure. The development dependency file pins PyMuPDF and Pillow. This repository uses the AGPL distribution of PyMuPDF as an installed local and CI tool, and ships the WeasyPrint publications and lint source without the PyMuPDF package. PyMuPDF remains available under AGPL or Artifex's commercial terms. [PyMuPDF licensing](⟦DEST_0001⟧)"
+msgstr "Para una excepción intencionada, especifica el perfil, la regla y la firma del objeto observable, registra por qué se espera esa posición y prueba tanto esa excepción como un fallo genuino cercano. El archivo de dependencias de desarrollo fija PyMuPDF y Pillow. Este repositorio usa la distribución AGPL de PyMuPDF como herramienta local y de integración continua instalada, y distribuye las publicaciones de WeasyPrint y el código fuente del lint sin el paquete PyMuPDF. PyMuPDF sigue disponible bajo AGPL o bajo los términos comerciales de Artifex. [Licencias de PyMuPDF](⟦DEST_0001⟧)"
+
+#: lessons/book/README.md:67
+msgctxt "s-2831192c95cb-0026"
+msgid "Diagrams"
+msgstr "Diagramas"
+
+#: lessons/book/README.md:69
+msgctxt "s-6c554747f7cb-0027"
+msgid "Every entry's README has a ⟦CODE_0001⟧ section with one Mermaid diagram (the contract is in [⟦CODE_0002⟧](⟦DEST_0003⟧)). The diagram is text in Git, and the build turns it into a figure. The shared \"what the challenge does\" picture is a fenced ⟦CODE_0004⟧ block in [⟦CODE_0005⟧](⟦DEST_0006⟧), and the chapter on events has one too. **Any** ⟦CODE_0007⟧ fence in a chapter is rendered."
+msgstr "El README de cada entrada tiene una sección ⟦CODE_0001⟧ con un diagrama de Mermaid (el contrato está en [⟦CODE_0002⟧](⟦DEST_0003⟧)). El diagrama es texto en Git, y la compilación lo convierte en una figura. La imagen compartida de \"qué hace el reto\" es un bloque ⟦CODE_0004⟧ delimitado en [⟦CODE_0005⟧](⟦DEST_0006⟧); el capítulo sobre eventos tiene otra. **Cualquier** bloque ⟦CODE_0007⟧ de un capítulo se renderiza."
+
+#: lessons/book/README.md:71
+msgctxt "s-2cb64c3c842f-0028"
+msgid "**How it flows.** ⟦CODE_0001⟧ (the source of truth) is read by [⟦CODE_0002⟧](⟦DEST_0003⟧) with a fence-aware Markdown scanner, not a regex. The ⟦CODE_0004⟧ section is copied by ⟦CODE_0005⟧ into the generated block ⟦CODE_0006⟧ of the lesson page named by the entry's ⟦CODE_0007⟧ key (the page keeps the Mermaid fence, so GitHub draws it too). At book-build time every ⟦CODE_0008⟧ fence is rendered once to SVG and once to PNG by Mermaid CLI and replaced by an HTML ⟦CODE_0009⟧ with a caption (⟦CODE_0010⟧) and alt text (⟦CODE_0011⟧) before pandoc runs. The PDF and HTML use the SVG (vector, scaled to fit one page); the EPUB uses the PNG (every reader draws it). There is one renderer and no second mechanism."
+msgstr "**Cómo fluye.** ⟦CODE_0001⟧ (la fuente de verdad) la lee [⟦CODE_0002⟧](⟦DEST_0003⟧) con un escáner de Markdown que reconoce los bloques delimitados, no con una expresión regular. La sección ⟦CODE_0004⟧ la copia ⟦CODE_0005⟧ en el bloque generado ⟦CODE_0006⟧ de la página de lección que nombra la clave ⟦CODE_0007⟧ de la entrada (la página conserva el bloque de Mermaid, así que GitHub también lo dibuja). Al compilar el libro, Mermaid CLI renderiza cada bloque ⟦CODE_0008⟧ una vez a SVG y otra a PNG, y lo sustituye por un ⟦CODE_0009⟧ HTML con pie de figura (⟦CODE_0010⟧) y texto alternativo (⟦CODE_0011⟧) antes de que se ejecute pandoc. El PDF y el HTML usan el SVG (vectorial, escalado para caber en una página); el EPUB usa el PNG (todos los lectores lo dibujan). Hay un solo renderizador y ningún segundo mecanismo."
+
+#: lessons/book/README.md:73
+msgctxt "s-3e7e4d224561-0029"
+msgid "**Setup (once, no root needed).** You need Node and a Chromium. Mermaid CLI is pinned in [⟦CODE_0001⟧](⟦DEST_0002⟧) and [⟦CODE_0003⟧](⟦DEST_0004⟧) (⟦CODE_0005⟧ 12.2.0; tested with Node 24 and Chrome for Testing 147):"
+msgstr "**Preparación (una sola vez, sin necesidad de root).** Necesitas Node y un Chromium. Mermaid CLI está fijado en [⟦CODE_0001⟧](⟦DEST_0002⟧) y [⟦CODE_0003⟧](⟦DEST_0004⟧) (⟦CODE_0005⟧ 12.2.0; probado con Node 24 y Chrome for Testing 147):"
+
+#: lessons/book/README.md:82
+msgctxt "s-0cf42bcfc162-0030"
+msgid "After that the build works offline. If Chromium's sandbox does not work in your container, set ⟦CODE_0001⟧; the diagrams are text from this repository, rendered with Mermaid's ⟦CODE_0002⟧."
+msgstr "Después de eso, la compilación funciona sin conexión. Si el entorno aislado de Chromium no funciona en tu contenedor, define ⟦CODE_0001⟧; los diagramas son texto de este repositorio, renderizado con el ⟦CODE_0002⟧ de Mermaid."
+
+#: lessons/book/README.md:84
+msgctxt "s-759374ca7221-0031"
+msgid "**What is checked, and when.**"
+msgstr "**Qué se comprueba y cuándo.**"
+
+#: lessons/book/README.md:86
+msgctxt "s-ade566bd844e-0032"
+msgid "⟦SEP_0001⟧ Command ⟦SEP_0002⟧ Needs the renderer? ⟦SEP_0003⟧ What it checks ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ Comando ⟦SEP_0002⟧ ¿Necesita el renderizador? ⟦SEP_0003⟧ Qué comprueba ⟦SEP_0004⟧"
+
+#: lessons/book/README.md:88
+msgctxt "s-3fcf44e2913e-0033"
+msgid "⟦SEP_0006⟧ ⟦CODE_0001⟧ ⟦SEP_0007⟧ No (it says so if it was missing) ⟦SEP_0008⟧ Every entry has exactly one ⟦CODE_0002⟧ heading, spelled exactly so, with one ⟦CODE_0003⟧ block, ⟦CODE_0004⟧ and ⟦CODE_0005⟧, no HTML tags, no sub-headings, and the two bold lead-ins. Generated lesson pages are up to date. If the renderer is present it also renders and checks every diagram. **Without the renderer this is a syntax-and-structure check only, and the build says so** ⟦SEP_0009⟧"
+msgstr "⟦SEP_0006⟧ ⟦CODE_0001⟧ ⟦SEP_0007⟧ No (lo avisa si falta) ⟦SEP_0008⟧ Cada entrada tiene exactamente un encabezado ⟦CODE_0002⟧, escrito exactamente así, con un bloque ⟦CODE_0003⟧, ⟦CODE_0004⟧ y ⟦CODE_0005⟧, sin etiquetas HTML, sin subencabezados y con las dos frases iniciales en negrita. Las páginas de lección generadas están al día. Si el renderizador está presente, también renderiza y comprueba cada diagrama. **Sin el renderizador, esto es solo una comprobación de sintaxis y estructura, y la compilación lo dice** ⟦SEP_0009⟧"
+
+#: lessons/book/README.md:89
+msgctxt "s-f536c0fef32e-0034"
+msgid "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ Yes ⟦SEP_0004⟧ **The full render gate.** Renders every diagram, prints its family, natural size, the scale that fits it to a Letter page and the printed size of its labels, and fails on a render error (with the entry, the heading and Mermaid's message), on a diagram that would print under 70% scale (labels under 8.4 pt), or on a second pass that is not entirely served from the cache ⟦SEP_0005⟧"
+msgstr "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ Sí ⟦SEP_0004⟧ **El control completo de renderizado.** Renderiza cada diagrama, imprime su familia, su tamaño natural, la escala que lo ajusta a una página Letter y el tamaño impreso de sus etiquetas. Falla si hay un error de renderizado (con la entrada, el encabezado y el mensaje de Mermaid), si un diagrama se imprimiría por debajo del 70 % de escala (etiquetas de menos de 8.4 pt), o si una segunda pasada no se sirve íntegramente desde la caché ⟦SEP_0005⟧"
+
+#: lessons/book/README.md:90
+msgctxt "s-aa38db3f06fd-0035"
+msgid "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ Yes ⟦SEP_0004⟧ Renders (or reuses) the figures, deletes cached files that no diagram uses, builds the PDF, EPUB and HTML. It never writes a blank figure or an unrendered code block: any failure stops it ⟦SEP_0005⟧"
+msgstr "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ Sí ⟦SEP_0004⟧ Renderiza (o reutiliza) las figuras, borra los archivos en caché que ningún diagrama usa y compila el PDF, el EPUB y el HTML. Nunca escribe una figura en blanco ni un bloque de código sin renderizar: cualquier fallo lo detiene ⟦SEP_0005⟧"
+
+#: lessons/book/README.md:92
+msgctxt "s-cbbfab7af6d1-0036"
+msgid "**Cache.** Figures live in ⟦CODE_0001⟧ and ⟦CODE_0002⟧ (⟦CODE_0003⟧ is git-ignored). The key is a hash of the diagram text, the Mermaid CLI version, the Chrome version, the PNG scale and [⟦CODE_0004⟧](⟦DEST_0005⟧). Edit one diagram and only its figure is drawn again. Change the renderer, the browser or the style and all of them are. A clean checkout renders everything once (about 15 seconds). The committed PDF and EPUB contain the figures."
+msgstr "**Caché.** Las figuras viven en ⟦CODE_0001⟧ y ⟦CODE_0002⟧ (Git ignora ⟦CODE_0003⟧). La clave es un hash del texto del diagrama, la versión de Mermaid CLI, la versión de Chrome, la escala del PNG y [⟦CODE_0004⟧](⟦DEST_0005⟧). Si editas un diagrama, solo se vuelve a dibujar su figura. Si cambias el renderizador, el navegador o el estilo, se vuelven a dibujar todas. Una copia limpia renderiza todo una vez (unos 15 segundos). El PDF y el EPUB del repositorio contienen las figuras."
+
+#: lessons/book/README.md:94
+msgctxt "s-a214dba2abbc-0037"
+msgid "**Page fit.** ⟦CODE_0001⟧ computes each figure's printed size (⟦CODE_0002⟧, ⟦CODE_0003⟧ in CSS pixels, 1 px = 1/96 inch) from the page geometry in ⟦CODE_0004⟧, so a figure always fits one page with its heading and caption, and never splits. If a diagram is so large that scaling would shrink its labels below the minimum, the build fails and tells you which README to fix. The fixes are in the contribution rules: fewer nodes, shorter labels, hexagons for decisions."
+msgstr "**Ajuste a la página.** ⟦CODE_0001⟧ calcula el tamaño impreso de cada figura (⟦CODE_0002⟧, ⟦CODE_0003⟧ en píxeles CSS, 1 px = 1/96 de pulgada) a partir de la geometría de página de ⟦CODE_0004⟧, de modo que una figura siempre cabe en una página con su encabezado y su pie, y nunca se parte. Si un diagrama es tan grande que escalarlo reduciría sus etiquetas por debajo del mínimo, la compilación falla y te dice qué README corregir. Las correcciones están en las reglas de contribución: menos nodos, etiquetas más cortas, hexágonos para las decisiones."
+
+#: lessons/book/README.md:96
+msgctxt "s-bcfe0f5ad0d7-0038"
+msgid "**Style.** [⟦CODE_0001⟧](⟦DEST_0002⟧): the ⟦CODE_0003⟧ theme, DejaVu Sans (the book's font), dark lines on white, SVG text labels (⟦CODE_0004⟧, because WeasyPrint does not draw HTML inside SVG), no color that carries meaning."
+msgstr "**Estilo.** [⟦CODE_0001⟧](⟦DEST_0002⟧): el tema ⟦CODE_0003⟧, DejaVu Sans (la fuente del libro), líneas oscuras sobre fondo blanco, etiquetas de texto SVG (⟦CODE_0004⟧, porque WeasyPrint no dibuja HTML dentro de un SVG) y ningún color que lleve significado."
+
+#: lessons/book/README.md:98
+msgctxt "s-3ba9dabfff85-0039"
+msgid "**A light PDF.** Two things keep the figures cheap for PDF viewers, and an early v4 PDF had neither. Mermaid's default ⟦CODE_0001⟧ look gives every node a gradient border and a blurred shadow, so the config says ⟦CODE_0002⟧ (flat and vector, still crisp). And Mermaid centers every label and draws label backgrounds half transparent, which WeasyPrint writes as a PDF *transparency group* each. Edge and Chrome (PDFium) draw every group into an off-screen bitmap, and a book with thousands of them showed white pages for a long time, even on pages without a figure, because all pages shared one resource list naming every group. [⟦CODE_0003⟧](⟦DEST_0004⟧) runs on each SVG after Mermaid: the same Chrome measures each label, the script moves it to the equivalent left-anchored position and turns single-shape ⟦CODE_0005⟧ into ⟦CODE_0006⟧, and it fails the figure if any label moved by more than half a pixel. The PNG for the EPUB is untouched. The result: the PDF went from about 7,500 objects and 4.3 MB to about 400 objects and 2.1 MB, with no transparency groups. ⟦CODE_0007⟧ checks that no centered text is left, and (when WeasyPrint is installed) that a figure turns into a PDF without groups. If you see ⟦CODE_0008⟧, the figure uses a text feature the script does not handle yet; the message names the file."
+msgstr "**Un PDF ligero.** Dos cosas mantienen livianas las figuras para los visores de PDF, y un PDF temprano de v4 no tenía ninguna. El aspecto predeterminado ⟦CODE_0001⟧ de Mermaid da a cada nodo un borde con degradado y una sombra difuminada, así que la configuración dice ⟦CODE_0002⟧ (plano y vectorial, pero nítido). Además, Mermaid centra cada etiqueta y dibuja los fondos de las etiquetas semitransparentes, y WeasyPrint escribe cada uno como un *grupo de transparencia* del PDF. Edge y Chrome (PDFium) dibujan cada grupo en un mapa de bits fuera de pantalla, y un libro con miles de ellos mostró páginas en blanco durante mucho tiempo, incluso en páginas sin figura, porque todas las páginas compartían una lista de recursos que nombraba todos los grupos. [⟦CODE_0003⟧](⟦DEST_0004⟧) se ejecuta sobre cada SVG después de Mermaid: el mismo Chrome mide cada etiqueta, el script la mueve a la posición equivalente anclada a la izquierda y convierte ⟦CODE_0005⟧ de una sola forma en ⟦CODE_0006⟧, y hace fallar la figura si alguna etiqueta se movió más de medio píxel. El PNG para el EPUB no se toca. El resultado: el PDF pasó de unos 7,500 objetos y 4.3 MB a unos 400 objetos y 2.1 MB, sin grupos de transparencia. ⟦CODE_0007⟧ comprueba que no quede texto centrado y (cuando WeasyPrint está instalado) que una figura se convierta en un PDF sin grupos. Si ves ⟦CODE_0008⟧, la figura usa una característica de texto que el script aún no maneja; el mensaje nombra el archivo."
+
+#: lessons/book/README.md:100
+msgctxt "s-8fd0da4210b0-0040"
+msgid "**Failure modes.** ⟦CODE_0001⟧: run the setup above. ⟦CODE_0002⟧: set ⟦CODE_0003⟧. A Mermaid parse error is printed with the README path and the line Mermaid complains about (a ⟦CODE_0004⟧ inside a sequence-diagram message is a common cause). PDF viewers differ: we checked the PDF with MuPDF; Ghostscript at some resolutions drops parts of a WeasyPrint SVG, which is a Ghostscript problem."
+msgstr "**Modos de fallo.** ⟦CODE_0001⟧: ejecuta la preparación de arriba. ⟦CODE_0002⟧: define ⟦CODE_0003⟧. Un error de análisis de Mermaid se imprime con la ruta del README y la línea de la que se queja Mermaid (una causa común es un ⟦CODE_0004⟧ dentro de un mensaje de diagrama de secuencia). Los visores de PDF difieren: comprobamos el PDF con MuPDF; Ghostscript, con algunas resoluciones, omite partes de un SVG de WeasyPrint, y eso es un problema de Ghostscript."
+
+#: lessons/book/README.md:102
+msgctxt "s-a9a0e096c7ab-0041"
+msgid "**Pseudocode.** There is no pseudocode section on purpose. No standard defines one that fits imperative, lazy, rewriting, self-modifying and event-driven programs without erasing the difference. Pseudocode may appear in an entry's prose when it helps, labeled as such, and it never replaces the diagram."
+msgstr "**Pseudocódigo.** No hay una sección de pseudocódigo; es a propósito. Ningún estándar define uno que sirva para programas imperativos, de evaluación perezosa, de reescritura, automodificables y orientados a eventos sin borrar la diferencia entre ellos. El pseudocódigo puede aparecer en la prosa de una entrada cuando ayuda, etiquetado como tal; nunca sustituye al diagrama."
+
+#: lessons/book/README.md:104
+msgctxt "s-05c24a9a7599-0042"
+msgid "**Adding or changing a diagram.** Edit the ⟦CODE_0001⟧ section of the entry's README, run ⟦CODE_0002⟧ (it refreshes the lesson page copy), then ⟦CODE_0003⟧. Look at the figure. There is nothing else to edit by hand. ⟦CODE_0004⟧ tests the extractor, the cache keys and the contract."
+msgstr "**Cómo añadir o cambiar un diagrama.** Edita la sección ⟦CODE_0001⟧ del README de la entrada, ejecuta ⟦CODE_0002⟧ (actualiza la copia de la página de lección) y luego ⟦CODE_0003⟧. Mira la figura. No hay nada más que editar a mano. ⟦CODE_0004⟧ prueba el extractor, las claves de la caché y el contrato."
+
+#: lessons/book/README.md:106
+msgctxt "s-7b75f465f7cc-0043"
+msgid "Metadata-driven chapters"
+msgstr "Capítulos dirigidos por metadatos"
+
+#: lessons/book/README.md:108
+msgctxt "s-b25de509dee6-0044"
+msgid "Part of the book is **generated** from metadata and author-written Markdown. The freshness check verifies agreement with those inputs. Review the labels against the implementation and its tests before changing the metadata."
+msgstr "Una parte del libro se **genera** a partir de metadatos y de Markdown escrito por los autores. La comprobación de actualización verifica que el resultado coincida con esas entradas. Revisa las etiquetas contra la implementación y sus pruebas antes de cambiar los metadatos."
+
+#: lessons/book/README.md:110
+msgctxt "s-bbb8bfdc38c2-0045"
+msgid "⟦SEP_0001⟧ Source (hand-written) ⟦SEP_0002⟧ What it becomes ⟦SEP_0003⟧"
+msgstr "⟦SEP_0001⟧ Fuente (escrita a mano) ⟦SEP_0002⟧ En qué se convierte ⟦SEP_0003⟧"
+
+#: lessons/book/README.md:112
+msgctxt "s-f0f7145edff5-0046"
+msgid "⟦SEP_0007⟧ The YAML frontmatter at the top of every ⟦CODE_0001⟧ (see [⟦CODE_0002⟧](⟦DEST_0003⟧)) ⟦SEP_0008⟧ The \"In this repo\" table under each concept, the comparative chapter, and the tables between ⟦CODE_0004⟧ markers in ⟦CODE_0005⟧, ⟦CODE_0006⟧ and the language pages ⟦SEP_0009⟧"
+msgstr "⟦SEP_0007⟧ El front matter YAML al principio de cada ⟦CODE_0001⟧ (consulta [⟦CODE_0002⟧](⟦DEST_0003⟧)) ⟦SEP_0008⟧ La tabla \"En este repositorio\" de cada concepto, el capítulo comparativo y las tablas entre los marcadores ⟦CODE_0004⟧ de ⟦CODE_0005⟧, ⟦CODE_0006⟧ y las páginas de lenguajes ⟦SEP_0009⟧"
+
+#: lessons/book/README.md:113
+msgctxt "s-227e5f486b39-0047"
+msgid "⟦SEP_0007⟧ [⟦CODE_0001⟧](⟦DEST_0002⟧): one file per computer-science concept (⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧, then the prose) ⟦SEP_0008⟧ A section in a chapter of ⟦CODE_0006⟧. The file name is the **tag** that entries use ⟦SEP_0009⟧"
+msgstr "⟦SEP_0007⟧ [⟦CODE_0001⟧](⟦DEST_0002⟧): un archivo por concepto de ciencias de la computación (⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧ y luego la prosa) ⟦SEP_0008⟧ Una sección de un capítulo de ⟦CODE_0006⟧. El nombre del archivo es la **etiqueta** que usan las entradas ⟦SEP_0009⟧"
+
+#: lessons/book/README.md:114
+msgctxt "s-23090fe9f86e-0048"
+msgid "⟦SEP_0003⟧ [⟦CODE_0001⟧](⟦DEST_0002⟧): one file per \"what plays the loop\" role ⟦SEP_0004⟧ A section of the comparative chapter (chapter 9) ⟦SEP_0005⟧"
+msgstr "⟦SEP_0003⟧ [⟦CODE_0001⟧](⟦DEST_0002⟧): un archivo por cada papel de \"lo que hace de bucle\" ⟦SEP_0004⟧ Una sección del capítulo comparativo (capítulo 9) ⟦SEP_0005⟧"
+
+#: lessons/book/README.md:115
+msgctxt "s-217a2c36c920-0049"
+msgid "⟦SEP_0005⟧ [⟦CODE_0001⟧](⟦DEST_0002⟧) and [⟦CODE_0003⟧](⟦DEST_0004⟧) ⟦SEP_0006⟧ The chapter introductions and the opener of the \"By computer science concept\" part ⟦SEP_0007⟧"
+msgstr "⟦SEP_0005⟧ [⟦CODE_0001⟧](⟦DEST_0002⟧) y [⟦CODE_0003⟧](⟦DEST_0004⟧) ⟦SEP_0006⟧ Las introducciones de los capítulos y la apertura de la parte \"Por concepto de ciencias de la computación\" ⟦SEP_0007⟧"
+
+#: lessons/book/README.md:116
+msgctxt "s-404f7c90f674-0050"
+msgid "⟦SEP_0003⟧ [⟦CODE_0001⟧](⟦DEST_0002⟧) ⟦SEP_0004⟧ The only external hosts the prose may link to ⟦SEP_0005⟧"
+msgstr "⟦SEP_0003⟧ [⟦CODE_0001⟧](⟦DEST_0002⟧) ⟦SEP_0004⟧ Los únicos sitios externos a los que puede enlazar la prosa ⟦SEP_0005⟧"
+
+#: lessons/book/README.md:118
+msgctxt "s-42746ec94c2b-0051"
+msgid "**How a concept is grounded.** Every concept page needs something real behind it, and the build fails if it has nothing. An entry can relate to a concept in three ways, set in its frontmatter: ⟦CODE_0001⟧ (it **demonstrates** the idea), ⟦CODE_0002⟧ (it resembles the idea) or ⟦CODE_0003⟧ (it shows what the idea is not). The concept's \"In this repo\" table has a column that says which. Some facts are true of *every* entry, and a maintainer states them once in the concept's own frontmatter instead of tagging every entry: ⟦CODE_0004⟧ (or ⟦CODE_0005⟧, for the entries that name their machine) with a required ⟦CODE_0006⟧ sentence. A concept that no entry demonstrates at all can instead point at a focused exercise with ⟦CODE_0007⟧. The prose \"no entry uses this yet\" is rejected: the generator now says what is behind each concept. ⟦CODE_0008⟧ prints the grounding of every concept and fails if one has none. ⟦CODE_0009⟧ tests the rules."
+msgstr "**Cómo se fundamenta un concepto.** Cada página de concepto necesita algo real detrás, y la compilación falla si no lo tiene. Una entrada puede relacionarse con un concepto de tres maneras, indicadas en su front matter: ⟦CODE_0001⟧ (**demuestra** la idea), ⟦CODE_0002⟧ (se parece a la idea) o ⟦CODE_0003⟧ (muestra lo que la idea no es). La tabla \"En este repositorio\" del concepto tiene una columna que indica cuál. Algunos hechos son ciertos para *todas* las entradas, y un mantenedor los declara una sola vez en el front matter del propio concepto, en lugar de etiquetar cada entrada: ⟦CODE_0004⟧ (o ⟦CODE_0005⟧, para las entradas que nombran su máquina) con una frase ⟦CODE_0006⟧ obligatoria. Un concepto que ninguna entrada demuestra puede, en cambio, apuntar a un ejercicio específico con ⟦CODE_0007⟧. Se rechaza la frase de prosa \"ninguna entrada usa esto todavía\": ahora el generador dice qué hay detrás de cada concepto. ⟦CODE_0008⟧ imprime el fundamento de cada concepto y falla si alguno no tiene ninguno. ⟦CODE_0009⟧ prueba las reglas."
+
+#: lessons/book/README.md:120
+msgctxt "s-8dc96387a2f6-0052"
+msgid "Run ⟦CODE_0001⟧ to refresh the generated Markdown (the files in ⟦CODE_0002⟧ and the marked blocks) without running pandoc. The generated files are **committed**, so GitHub readers see the full chapters, and ⟦CODE_0003⟧ fails if they are out of date or if any metadata is invalid (an unknown tag, a missing key, a link to a host that is not on the list)."
+msgstr "Ejecuta ⟦CODE_0001⟧ para actualizar el Markdown generado (los archivos de ⟦CODE_0002⟧ y los bloques marcados) sin ejecutar pandoc. Los archivos generados están **en el repositorio**, así que los lectores de GitHub ven los capítulos completos, y ⟦CODE_0003⟧ falla si están desactualizados o si algún metadato no es válido (una etiqueta desconocida, una clave ausente, un enlace a un sitio que no está en la lista)."
+
+#: lessons/book/README.md:122
+msgctxt "s-e40527f80e15-0053"
+msgid "In prose you can write ⟦CODE_0001⟧ to link to a concept, ⟦CODE_0002⟧ to link to an entry, and ⟦CODE_0003⟧, ⟦CODE_0004⟧ or ⟦CODE_0005⟧ for a generated table. A concept file's body should hold: one paragraph (why it exists, why it is used), a **Use it when** line, an **Avoid it when** line, and a **Read more** list. The generator adds the \"In this repo\" table itself."
+msgstr "En la prosa puedes escribir ⟦CODE_0001⟧ para enlazar a un concepto, ⟦CODE_0002⟧ para enlazar a una entrada, y ⟦CODE_0003⟧, ⟦CODE_0004⟧ o ⟦CODE_0005⟧ para una tabla generada. El cuerpo del archivo de un concepto debe contener: un párrafo (por qué existe y por qué se usa), una línea **Úsalo cuando**, una línea **Evítalo cuando** y una lista **Lee más**. El generador añade por sí mismo la tabla \"En este repositorio\"."
+
+#: lessons/book/README.md:124
+msgctxt "s-9024c197d849-0054"
+msgid "Links"
+msgstr "Enlaces"
+
+#: lessons/book/README.md:126
+msgctxt "s-58e9fedf0767-0055"
+msgid "External links must follow the policy in [⟦CODE_0001⟧](⟦DEST_0002⟧): Wikipedia first, then only sources that are long-lived and openly licensed or freely readable (IETF RFCs, OWASP, MDN). ⟦CODE_0003⟧ enforces the host list offline. ⟦CODE_0004⟧ fetches every external link in the prose and reports any that no longer load. It needs the network, so it is deliberately **not** part of ⟦CODE_0005⟧; run it now and then, and before a release."
+msgstr "Los enlaces externos deben seguir la política de [⟦CODE_0001⟧](⟦DEST_0002⟧): primero Wikipedia, y después solo fuentes duraderas y con licencia abierta o de lectura libre (RFC del IETF, OWASP, MDN). ⟦CODE_0003⟧ aplica la lista de sitios sin conexión. ⟦CODE_0004⟧ consulta cada enlace externo de la prosa e informa de los que ya no cargan. Necesita red, así que deliberadamente **no** forma parte de ⟦CODE_0005⟧; ejecútalo de vez en cuando y antes de una publicación."
+
+#: lessons/book/README.md:128
+msgctxt "s-04e4f116a107-0056"
+msgid "Reproducible builds"
+msgstr "Compilaciones reproducibles"
+
+#: lessons/book/README.md:130
+msgctxt "s-52ea9cdfcc57-0057"
+msgid "The same sources give the same bytes. Every list is sorted, nothing reads the clock, and ⟦CODE_0001⟧ is set from the ⟦CODE_0002⟧ line in [⟦CODE_0003⟧](⟦DEST_0004⟧), which also holds a fixed EPUB identifier. Bump ⟦CODE_0005⟧ when you publish new books. The check is simple: build twice with ⟦CODE_0006⟧ pointing at two empty folders and compare the files with ⟦CODE_0007⟧. They match for the same pandoc and WeasyPrint versions (tested with pandoc 3.1.3 and WeasyPrint on Ubuntu 24.04). That includes a build from an empty diagram cache (⟦CODE_0008⟧): the cache only saves time, and the committed PDFs and EPUBs do not depend on it."
+msgstr "Las mismas fuentes dan los mismos bytes. Toda lista está ordenada, nada lee el reloj, y ⟦CODE_0001⟧ se toma de la línea ⟦CODE_0002⟧ de [⟦CODE_0003⟧](⟦DEST_0004⟧), que también guarda un identificador EPUB fijo. Sube ⟦CODE_0005⟧ cuando publiques libros nuevos. La comprobación es simple: compila dos veces con ⟦CODE_0006⟧ apuntando a dos directorios vacíos y compara los archivos con ⟦CODE_0007⟧. Coinciden con las mismas versiones de pandoc y WeasyPrint (probado con pandoc 3.1.3 y WeasyPrint en Ubuntu 24.04). Eso incluye una compilación desde una caché de diagramas vacía (⟦CODE_0008⟧): la caché solo ahorra tiempo, y el PDF y el EPUB del repositorio no dependen de ella."
+
+#: lessons/book/README.md:132
+msgctxt "s-675e9adef997-0058"
+msgid "That last point took a fix. Mermaid draws some node shapes, above all the stadium ⟦CODE_0001⟧, with rough.js, which jitters each outline with random numbers. Unseeded, every fresh draw of such a diagram differed from the last. Many concept pages use stadiums, so a clean checkout rebuilt different bytes, and the committed files could be reproduced only from the exact cache that had built them. [⟦CODE_0002⟧](⟦DEST_0003⟧) now sets ⟦CODE_0004⟧, which makes the jitter the same on every draw. Keep it. ⟦CODE_0005⟧ draws every node shape twice from an empty cache and fails if the SVG or PNG changes. If you change the seed, the Mermaid CLI or Chrome version, or the config, every diagram is drawn again and the PDFs and EPUBs change: rebuild all six and commit them together."
+msgstr "Ese último punto requirió una corrección. Mermaid dibuja algunas formas de nodo, sobre todo el estadio ⟦CODE_0001⟧, con rough.js, que agita cada contorno con números aleatorios. Sin semilla, cada dibujo nuevo de uno de esos diagramas difería del anterior. Muchas páginas de concepto usan estadios, así que una copia limpia recompilaba bytes distintos, y los archivos del repositorio solo podían reproducirse con la caché exacta que los había generado. [⟦CODE_0002⟧](⟦DEST_0003⟧) ahora define ⟦CODE_0004⟧, que hace que la agitación sea la misma en cada dibujo. No lo quites. ⟦CODE_0005⟧ dibuja cada forma de nodo dos veces desde una caché vacía y falla si el SVG o el PNG cambian. Si cambias la semilla, la versión de Mermaid CLI o de Chrome, o la configuración, se vuelven a dibujar todos los diagramas y cambian el PDF y el EPUB: recompila los seis y haz *commit* de ellos juntos."
+
+#: lessons/book/README.md:134
+msgctxt "s-24c2cbfc4005-0059"
+msgid "When an entry is added (for maintainers)"
+msgstr "Cuando se añade una entrada (para mantenedores)"
+
+#: lessons/book/README.md:136
+msgctxt "s-c612eb2343f3-0060"
+msgid "After merging a new entry: add its row to the root ⟦CODE_0001⟧ table, add any new tag, role or language to ⟦CODE_0002⟧, run ⟦CODE_0003⟧ (it regenerates the chapters, the index and the PDF and EPUB), and update the bold **\"N challenges in M languages\"** line at the top of the root ⟦CODE_0004⟧. The build prints the right numbers and warns when that line is stale. It is the one count that is kept by hand."
+msgstr "Después de fusionar una entrada nueva: añade su fila a la tabla de ⟦CODE_0001⟧ de la raíz, añade cualquier etiqueta, papel o lenguaje nuevo a ⟦CODE_0002⟧, ejecuta ⟦CODE_0003⟧ (regenera los capítulos, el índice, el PDF y el EPUB) y actualiza la línea en negrita **\"N retos en M lenguajes\"** al principio de ⟦CODE_0004⟧ de la raíz. La compilación imprime los números correctos y avisa cuando esa línea está desactualizada. Es el único recuento que se mantiene a mano."
+
+#: lessons/book/README.md:138
+msgctxt "s-ac41df1b25bf-0061"
+msgid "To keep the book building: give every chapter exactly one ⟦CODE_0001⟧ title, link between chapters with relative ⟦CODE_0002⟧ links, and put exercises' answers in [⟦CODE_0003⟧](⟦DEST_0004⟧)."
+msgstr "Para que el libro siga compilándose: da a cada capítulo exactamente un título ⟦CODE_0001⟧, enlaza entre capítulos con enlaces ⟦CODE_0002⟧ relativos y pon las respuestas de los ejercicios en [⟦CODE_0003⟧](⟦DEST_0004⟧)."
+
+#: lessons/book/README.md:140
+msgctxt "s-4b68fa3c62d7-0062"
+msgid "Guide impact review"
+msgstr "Revisión del impacto en las guías"
+
+#: lessons/book/README.md:142
+msgctxt "s-326a4f232b58-0063"
+msgid "Compare a proposed revision with its base before building both volumes. The report uses entry and concept IDs, source links and the indirect dependencies in [⟦CODE_0001⟧](⟦DEST_0002⟧). It is a reading list for the reviewer. Add missing dependencies when a guide teaches a mechanism without naming the edited source. If a changed file has no affected guides, record an empty list for that path in the dependency file after review."
+msgstr "Compara una revisión propuesta con su base antes de compilar ambos volúmenes. El informe usa los ID de entradas y de conceptos, los enlaces a las fuentes y las dependencias indirectas de [⟦CODE_0001⟧](⟦DEST_0002⟧). Es una lista de lectura para quien revisa. Añade las dependencias que falten cuando una guía enseñe un mecanismo sin nombrar la fuente editada. Si un archivo modificado no afecta a ninguna guía, registra una lista vacía para esa ruta en el archivo de dependencias después de la revisión."
+
+#: lessons/book/README.md:150
+msgctxt "s-b33a1389cf4a-0064"
+msgid "Once you've checked a guide's traces, exercises, boundaries and source citations, record its printed token in a JSON object keyed by guide path, such as ⟦CODE_0001⟧. The check rejects missing tokens and tokens made stale by an edit to the guide or the relevant sources. Record the supporting run or source evidence in the review. Rebuild the book and the separate study guides together."
+msgstr "Cuando hayas comprobado las trazas, los ejercicios, los límites y las citas de fuentes de una guía, registra su token impreso en un objeto JSON con la ruta de la guía como clave, por ejemplo ⟦CODE_0001⟧. La comprobación rechaza los tokens ausentes y los que han quedado obsoletos por una edición de la guía o de las fuentes relevantes. Registra en la revisión la ejecución o la evidencia de fuente que lo respalda. Recompila juntos el libro y las guías de estudio por separado."
+
+#: lessons/book/README.md:152
+msgctxt "s-df6730cdd35c-0065"
+msgid "Building the study guides"
+msgstr "Compilación de las guías de estudio"
+
+#: lessons/book/README.md:154
+msgctxt "s-fd5872ed0b1d-0066"
+msgid "The guides build as their own HTML, PDF and EPUB set, separate from the book. The book's PDF and EPUB do not contain them."
+msgstr "Las guías se compilan como su propio conjunto de HTML, PDF y EPUB, aparte del libro. El PDF y el EPUB del libro no las contienen."
+
+#: lessons/book/README.md:162
+msgctxt "s-579898772650-0067"
+msgid "The outputs are ⟦CODE_0001⟧ and ⟦CODE_0002⟧. The reading order is [⟦CODE_0003⟧](⟦DEST_0004⟧). The build reuses the book's own pipeline ([⟦CODE_0005⟧](⟦DEST_0006⟧)) for link rewriting, diagrams, Pandoc and reproducibility. [⟦CODE_0007⟧](⟦DEST_0008⟧) checks each guide for the template, for placeholder text, for diagrams that match their source, and for links."
+msgstr "Las salidas son ⟦CODE_0001⟧ y ⟦CODE_0002⟧. El orden de lectura está en [⟦CODE_0003⟧](⟦DEST_0004⟧). La compilación reutiliza la canalización del propio libro ([⟦CODE_0005⟧](⟦DEST_0006⟧)) para reescribir enlaces, renderizar diagramas, llamar a Pandoc y mantener la reproducibilidad. [⟦CODE_0007⟧](⟦DEST_0008⟧) comprueba en cada guía la plantilla, el texto de relleno, que los diagramas coincidan con su fuente y los enlaces."
+
+#: lessons/book/README.md:164
+msgctxt "s-e88dd38d58af-0068"
+msgid "The [PDF release gate](⟦DEST_0001⟧) checks the guide PDF after each full build. Pass ⟦CODE_0002⟧ to make the PDF and its lint scan required."
+msgstr "El [control de publicación del PDF](⟦DEST_0001⟧) comprueba el PDF de las guías después de cada compilación completa. Pasa ⟦CODE_0002⟧ para hacer obligatorios el PDF y su análisis de lint."
+
+#: lessons/book/README.md:166
+msgctxt "s-c925c5e7f391-0069"
+msgid "**Diagrams.** A Program Flow diagram in a guide is copied verbatim from ⟦CODE_0001⟧ and marked with ⟦CODE_0002⟧. The build fails if a copy has drifted. A new diagram is allowed only when it shows a relationship no source diagram shows (cross-language state placement, a lazy-demand trace, a transaction boundary or an authority boundary), and is marked ⟦CODE_0003⟧."
+msgstr "**Diagramas.** Un diagrama de \"Flujo del programa\" de una guía se copia literalmente de ⟦CODE_0001⟧ y se marca con ⟦CODE_0002⟧. La compilación falla si una copia se ha desviado. Solo se permite un diagrama nuevo cuando muestra una relación que ningún diagrama fuente muestra (ubicación del estado entre lenguajes, una traza de demanda perezosa, un límite de la transacción o un límite de autoridad). Se marca con ⟦CODE_0003⟧."
+
+#: lessons/book/README.md:168
+msgctxt "s-b5141eb27604-0070"
+msgid "**External links.** A guide may link only to the hosts in [⟦CODE_0001⟧](⟦DEST_0002⟧). Wikipedia comes first. The GNU Project manuals (⟦CODE_0003⟧) were added for the guides, because a claim about an implementation needs its manual."
+msgstr "**Enlaces externos.** Una guía solo puede enlazar a los sitios de [⟦CODE_0001⟧](⟦DEST_0002⟧). Wikipedia va primero. Los manuales del Proyecto GNU (⟦CODE_0003⟧) se añadieron para las guías, porque una afirmación sobre una implementación necesita su manual."
+
+#: lessons/book/README.md:170
+msgctxt "s-1177dc904381-0071"
+msgid "Building the curriculum"
+msgstr "Compilación del plan de estudios"
+
+#: lessons/book/README.md:172
+msgctxt "s-3486fed063e1-0072"
+msgid "The curriculum is one hand-written file, [⟦CODE_0001⟧](⟦DEST_0002⟧): a 16-week course plan that points at the book chapters, the study guides and the exercises without changing them. It builds as its own HTML, PDF and EPUB, separate from the book and the study guides."
+msgstr "El plan de estudios es un solo archivo escrito a mano, [⟦CODE_0001⟧](⟦DEST_0002⟧): un plan de curso de 16 semanas que apunta a los capítulos del libro, a las guías de estudio y a los ejercicios sin modificarlos. Se compila como su propio HTML, PDF y EPUB, aparte del libro y de las guías de estudio."
+
+#: lessons/book/README.md:180
+msgctxt "s-66a4d99c08a0-0073"
+msgid "[⟦CODE_0001⟧](⟦DEST_0002⟧) imports this build's ⟦CODE_0003⟧, as the study-guide build does, so the link rewriting, Mermaid rendering, Pandoc call, stylesheet, reproducibility rule and PDF lint are shared. Its own checks cover weeks 1 to 16 once each, the one diagram with ⟦CODE_0004⟧ and ⟦CODE_0005⟧, links and hosts, house style (25 words at most in a prose sentence, no contractions, no dashes) and a limit of 12 PDF pages. The title page and metadata are in [⟦CODE_0006⟧](⟦DEST_0007⟧). When the book's edition changes, ⟦CODE_0008⟧ in ⟦CODE_0009⟧ must change too, after someone reviews the curriculum."
+msgstr "[⟦CODE_0001⟧](⟦DEST_0002⟧) importa el ⟦CODE_0003⟧ de esta compilación, igual que la compilación de las guías de estudio, de modo que se comparten la reescritura de enlaces, el renderizado de Mermaid, la llamada a Pandoc, la hoja de estilo, la regla de reproducibilidad y el lint del PDF. Sus propias comprobaciones cubren las semanas de 1 a 16 una sola vez cada una, el único diagrama con ⟦CODE_0004⟧ y ⟦CODE_0005⟧, los enlaces y los sitios, el estilo de la casa (como máximo 25 palabras por frase de prosa, sin contracciones, sin rayas) y un límite de 12 páginas de PDF. La página de título y los metadatos están en [⟦CODE_0006⟧](⟦DEST_0007⟧). Cuando cambia la edición del libro, también debe cambiar ⟦CODE_0008⟧ en ⟦CODE_0009⟧, después de que alguien revise el plan de estudios."

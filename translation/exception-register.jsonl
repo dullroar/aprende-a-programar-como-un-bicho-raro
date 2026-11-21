@@ -271,3 +271,19 @@
 {"id":"EXC-271","segment":"s-2b3c09e7b960-0001","invariant":"I7","reason":"'builds objects' is the verb construir, not the noun build (compilación)","task":"P4-lessons-cs-source-roles-1"}
 {"id":"EXC-272","segment":"s-f465e37e0337-0001","invariant":"I7","reason":"'LINQ builds a pipeline' is the verb construir, not the noun build (compilación)","task":"P4-lessons-cs-source-roles-1"}
 {"id":"EXC-273","segment":"s-b7cb1913af0d-0001","invariant":"I7","reason":"'condición' renders English 'condition' (a loop condition), not the glossary term state; the state in this segment is 'estado'","task":"P4-lessons-cs-source-roles-1"}
+{"id":"EXC-274","segment":"s-1e05d9decfbc-0001","invariant":"I7","reason":"build is the verb in 'builds into one document'; the glossary term build (compilación) is the noun","task":"P4-lessons-book-1"}
+{"id":"EXC-275","segment":"s-7a7f2079e530-0010","invariant":"I7","reason":"build is the verb in 'guides that build with'; the glossary term build (compilación) is the noun","task":"P4-lessons-book-1"}
+{"id":"EXC-276","segment":"s-512e01632795-0013","invariant":"I7","reason":"build is the verb in 'builds both documents', code is part of 'exit codes' whose glossary term exit-status (estado de salida) bans código de salida, and 'on failure' is rendered with the noun fallo","task":"P4-lessons-book-1"}
+{"id":"EXC-277","segment":"s-adae566debf6-0023","invariant":"I7","reason":"list is the verb in 'lists the rule and displacement'; the glossary term list is the noun","task":"P4-lessons-book-1"}
+{"id":"EXC-278","segment":"s-2cb64c3c842f-0028","invariant":"I7","reason":"build is the verb or compound ('At book-build time'), rendered Al compilar; the glossary term build is the noun","task":"P4-lessons-book-1"}
+{"id":"EXC-279","segment":"s-aa38db3f06fd-0035","invariant":"I7","reason":"build is the verb in 'builds the PDF, EPUB and HTML'; the glossary term build is the noun","task":"P4-lessons-book-1"}
+{"id":"EXC-280","segment":"s-404f7c90f674-0050","invariant":"I7","reason":"host means a web site in 'external hosts' (a URL host), not a machine host; rendered sitios","task":"P4-lessons-book-1"}
+{"id":"EXC-281","segment":"s-42746ec94c2b-0051","invariant":"I7","reason":"state is the verb in 'a maintainer states them once'; the glossary term state is the noun","task":"P4-lessons-book-1"}
+{"id":"EXC-282","segment":"s-8dc96387a2f6-0052","invariant":"I7","reason":"host means a web site in 'a link to a host that is not on the list', not a machine host; rendered sitio","task":"P4-lessons-book-1"}
+{"id":"EXC-283","segment":"s-58e9fedf0767-0055","invariant":"I7","reason":"host means a web site in 'the host list', not a machine host; rendered sitios","task":"P4-lessons-book-1"}
+{"id":"EXC-284","segment":"s-fd5872ed0b1d-0066","invariant":"I7","reason":"build is the verb in 'The guides build as their own set'; the glossary term build is the noun","task":"P4-lessons-book-1"}
+{"id":"EXC-285","segment":"s-b5141eb27604-0070","invariant":"I7","reason":"host means a web site in 'the hosts in the list', not a machine host; rendered sitios","task":"P4-lessons-book-1"}
+{"id":"EXC-286","segment":"s-3486fed063e1-0072","invariant":"I7","reason":"build is the verb in 'It builds as its own HTML, PDF and EPUB'; the glossary term build is the noun","task":"P4-lessons-book-1"}
+{"id":"EXC-287","segment":"s-66a4d99c08a0-0073","invariant":"I7","reason":"host means a web site in 'links and hosts', not a machine host; rendered sitios","task":"P4-lessons-book-1"}
+{"id":"EXC-288","segment":"s-8e38a1ea5c68-0002","invariant":"TRANSLATE","reason":"v4 is an edition number and stays as the heading","task":"P4-lessons-book-1"}
+{"id":"EXC-289","segment":"s-e0d2747b9ab7-0014","invariant":"TRANSLATE","reason":"v3 is an edition number and stays as the heading","task":"P4-lessons-book-1"}

@@ -19,4 +19,4 @@ Start here: **[Intro: why these lessons exist](introduccion.md)**
 
 Back to the [challenge](../README.md).
 
-For publication commands, see [Building the book](book/README.md), [Building the study guides](book/README.md#building-the-study-guides) and [Building the curriculum](book/README.md#building-the-curriculum).
+For publication commands, see [Building the book](book/README.md), [Building the study guides](book/README.md#compilación-de-las-guías-de-estudio) and [Building the curriculum](book/README.md#compilación-del-plan-de-estudios).

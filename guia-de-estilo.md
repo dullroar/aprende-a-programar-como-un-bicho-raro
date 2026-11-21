@@ -32,7 +32,7 @@ Use this guide for entry READMEs, *Learn Programming the Weird Way!* and its stu
 - Use Simplified Technical English for advanced readers. Prefer literal verbs, one idea per sentence and at most 25 words in a descriptive sentence. Use a list or table for a long series.
 - Follow the [guide template](lessons/guias-de-estudio/README.md#how-every-guide-works). Start "The shared challenge" with the standard specification paragraph. Put entry-specific details and exceptions in the next paragraph.
 - Start an Evidence question with a named speaker and a concrete claim. Use this pattern: A reviewer says, "The total stays at 40." Design a test that could fail.
-- Keep build commands and contributor notes in [the build guide](lessons/book/README.md#building-the-study-guides).
+- Keep build commands and contributor notes in [the build guide](lessons/book/README.md#compilación-de-las-guías-de-estudio).
 
 ## Source and publication
 

@@ -1,0 +1,153 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lessons/book/VERSIONS.md:1
+msgctxt "s-0e907d22c19f-0000"
+msgid "Book versions"
+msgstr "Versiones del libro"
+
+#: lessons/book/VERSIONS.md:3
+msgctxt "s-70e799fc3d43-0001"
+msgid "*Learn Programming the Weird Way!* is numbered from **v3** on, so you can see which edition added what. Earlier editions were not numbered. Each release adds a section here, newest first. The edition number lives in [⟦CODE_0001⟧](⟦DEST_0002⟧) (⟦CODE_0003⟧) and on the title page; ⟦CODE_0004⟧ checks that they agree with this file."
+msgstr "*¡Aprende a programar como un bicho raro!* está numerado desde **v3**, para que puedas ver qué edición añadió qué. Las ediciones anteriores no estaban numeradas. Cada publicación añade aquí una sección, la más reciente primero. El número de edición vive en [⟦CODE_0001⟧](⟦DEST_0002⟧) (⟦CODE_0003⟧) y en la portada; ⟦CODE_0004⟧ comprueba que coincidan con este archivo."
+
+#: lessons/book/VERSIONS.md:5
+msgctxt "s-8e38a1ea5c68-0002"
+msgid "v4"
+msgstr "v4"
+
+#: lessons/book/VERSIONS.md:7
+msgctxt "s-41bd157845c2-0003"
+msgid "A picture of how every program runs, one new entry and one new chapter, on events."
+msgstr "Una imagen de cómo corre cada programa, una entrada nueva y un capítulo nuevo sobre eventos."
+
+#: lessons/book/VERSIONS.md:9
+msgctxt "s-e9d50f69bbfa-0004"
+msgid "**A ⟦CODE_0001⟧ section in every entry's README.** One Mermaid diagram and a few sentences answer \"what is the runtime really doing?\". The diagram type is chosen to fit the machine: flowcharts for loops and branches, sequence diagrams for callbacks and dispatch, state diagrams for a changing jump target, and dataflow and demand graphs for lazy evaluation. They are not all flowcharts on purpose. The build copies each section to the lesson page of the entry's language, under **How each program runs**, renders it, and checks that it fits a printed page at a legible size."
+msgstr "**Una sección ⟦CODE_0001⟧ en el README de cada entrada.** Un diagrama de Mermaid y unas pocas frases responden a \"¿qué hace en realidad el entorno de ejecución?\". El tipo de diagrama se elige según la máquina: diagramas de flujo para bucles y ramas, diagramas de secuencia para funciones de devolución de llamada y despacho, diagramas de estado para un destino de salto que cambia, y grafos de flujo de datos y de demanda para la evaluación perezosa. A propósito, no todos son diagramas de flujo. La compilación copia cada sección a la página de lección del lenguaje de la entrada, bajo **Cómo corre cada programa**, la renderiza y comprueba que quepa en una página impresa con un tamaño legible."
+
+#: lessons/book/VERSIONS.md:10
+msgctxt "s-c497e9a47ba0-0005"
+msgid "**What the challenge does.** One shared picture in the intro says *what* every entry does. The Program Flow pictures say *how*."
+msgstr "**Qué hace el reto.** Una imagen compartida en la introducción dice *qué* hace cada entrada. Las imágenes de \"Flujo del programa\" dicen *cómo*."
+
+#: lessons/book/VERSIONS.md:11
+msgctxt "s-43bd47c5351d-0006"
+msgid "**Fourteen teaching figures for the concepts and the patterns.** Ten sit in the chapters \"By computer science concept\" (what a machine is, computation versus orchestration, continuations, eager, lazy and deferred evaluation, referential transparency, closures, four kinds of round-trip \"sameness\", the commit boundary, idempotence and backpressure) and four in \"By solution patterns\" (fold against demand, where control state lives, what backtracking rewinds and programs stored as data). They compare an idea *across* languages. The Program Flow figures still show each program."
+msgstr "**Catorce figuras didácticas para los conceptos y los patrones.** Diez están en los capítulos \"Por concepto de ciencias de la computación\" (qué es una máquina, cómputo frente a orquestación, continuaciones, evaluación inmediata, perezosa y diferida, transparencia referencial, clausuras, cuatro tipos de \"igualdad\" en un viaje de ida y vuelta, el límite de la confirmación de la transacción, idempotencia y contrapresión) y cuatro en \"Por patrones de solución\" (pliegue frente a demanda, dónde vive el estado de control, qué rebobina el retroceso y programas almacenados como datos). Comparan una idea *entre* lenguajes. Las figuras de \"Flujo del programa\" siguen mostrando cada programa."
+
+#: lessons/book/VERSIONS.md:12
+msgctxt "s-36f8ea8383db-0007"
+msgid "**Twenty-three more concept figures.** Each of these concept sections now has one diagram of the *idea*, drawn in the family that fits it: stack machines, register and counter machines, Markov algorithms, recursion, fixed-point iteration, coroutines, lazy evaluation, short-circuit evaluation, iterators and generators, array programming, dataflow programming, macros and text expansion, build automation, the call stack, the stack as a data structure, scope and binding, dependency graphs, database triggers, side effects, exception handling, exit status, backtracking and the cut. Sequence diagrams show hand-offs (coroutines, generators, exceptions), snapshots show state (stacks), and trees show search (backtracking against the cut). All pass the same 70% print gate."
+msgstr "**Veintitrés figuras de concepto más.** Cada una de estas secciones de concepto tiene ahora un diagrama de la *idea*, dibujado en la familia que le corresponde: máquinas de pila, máquinas de registros y de contador, algoritmos de Markov, recursión, iteración de punto fijo, corrutinas, evaluación perezosa, evaluación de cortocircuito, iteradores y generadores, programación con arreglos, programación de flujo de datos, macros y expansión de texto, automatización de la compilación, la pila de llamadas, la pila como estructura de datos, ámbito y vinculación, grafos de dependencias, disparadores de bases de datos, efectos secundarios, manejo de excepciones, estado de salida, retroceso y el corte. Los diagramas de secuencia muestran traspasos (corrutinas, generadores, excepciones), las instantáneas muestran estado (pilas) y los árboles muestran búsqueda (el retroceso frente al corte). Todos superan el mismo control de impresión del 70 %."
+
+#: lessons/book/VERSIONS.md:13
+msgctxt "s-081508dae7e9-0008"
+msgid "**New entry:** [⟦CODE_0001⟧](⟦DEST_0002⟧): ten listeners on one ⟦CODE_0003⟧ are the whole program, and ⟦CODE_0004⟧ gives the event loop a turn between cards."
+msgstr "**Entrada nueva:** [⟦CODE_0001⟧](⟦DEST_0002⟧): diez escuchadores de eventos sobre un mismo ⟦CODE_0003⟧ son el programa entero, y ⟦CODE_0004⟧ da un turno al bucle de eventos entre tarjeta y tarjeta."
+
+#: lessons/book/VERSIONS.md:14
+msgctxt "s-700c5b749813-0009"
+msgid "**New chapter 10, \"Events, callbacks and reactive control flow\".** Who chooses what runs next, a synchronous ⟦CODE_0001⟧ against the event loop, a trace you can read, state machines, backpressure, and a table that separates real events from look-alikes such as a window's own loop. It adds the concepts callbacks, publish and subscribe, the event loop and scheduling turns, and backpressure, and moves event-driven programming here from chapter 3."
+msgstr "**Capítulo 10 nuevo, \"Eventos, funciones de devolución de llamada y flujo de control reactivo\".** Quién elige qué se ejecuta después, un ⟦CODE_0001⟧ síncrono frente al bucle de eventos, una traza que puedes leer, máquinas de estado, contrapresión y una tabla que separa los eventos reales de los parecidos, como el bucle propio de una ventana. Añade los conceptos funciones de devolución de llamada, publicación y suscripción, el bucle de eventos y los turnos de planificación, y contrapresión, y traslada aquí la programación orientada a eventos desde el capítulo 3."
+
+#: lessons/book/VERSIONS.md:15
+msgctxt "s-c3a4b302c8f8-0010"
+msgid "**New exercise:** B22 (predict the event trace, then remove the scheduling boundary), checked by ⟦CODE_0001⟧."
+msgstr "**Ejercicio nuevo:** B22 (predice la traza de eventos y luego quita el límite de planificación), comprobado por ⟦CODE_0001⟧."
+
+#: lessons/book/VERSIONS.md:16
+msgctxt "s-43bcea2b5e48-0011"
+msgid "**A faster PDF.** The figures no longer put thousands of transparency groups into the PDF, which made Edge and Chrome show white pages for a long time. The Mermaid look is now flat (⟦CODE_0001⟧), and each SVG is post-processed (⟦CODE_0002⟧). The PDF has about 400 objects instead of 7,500 and is half the size. The figures look the same."
+msgstr "**Un PDF más rápido.** Las figuras ya no meten miles de grupos de transparencia en el PDF, lo que hacía que Edge y Chrome mostraran páginas en blanco durante mucho tiempo. El aspecto de Mermaid ahora es plano (⟦CODE_0001⟧) y cada SVG se posprocesa (⟦CODE_0002⟧). El PDF tiene unos 400 objetos en lugar de 7,500 y pesa la mitad. Las figuras se ven igual."
+
+#: lessons/book/VERSIONS.md:17
+msgctxt "s-d378d60ff62a-0012"
+msgid "**A fix found by the study guides: exactly 40 now continues everywhere it can.** The regex entries (⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧) and the one-statement ⟦CODE_0006⟧ entries (⟦CODE_0007⟧ and the Go, Java, Kotlin, Python and Rust ports) walked a list of four category names, so four 10-hour cards ended the run at exactly 40 instead of continuing to a fifth card. Each now has five names, and the regex entries' ⟦CODE_0008⟧ files force the case. ⟦CODE_0009⟧ (four copied passes, Windows only) still has the limit. Also: the ⟦CODE_0010⟧ hours are drawn once into a table instead of relying on SQLite's evaluation order, the ⟦CODE_0011⟧ README no longer claims that the loop nests, and the sed README warns about its ⟦CODE_0012⟧. See the [study guides](⟦DEST_0013⟧), a separate companion set."
+msgstr "**Una corrección que hallaron las guías de estudio: un total de exactamente 40 ahora continúa en todos los lugares en que puede.** Las entradas de expresiones regulares (⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧) y las entradas ⟦CODE_0006⟧ de una sola sentencia (⟦CODE_0007⟧ y las adaptaciones a Go, Java, Kotlin, Python y Rust) recorrían una lista de cuatro nombres de categoría, así que cuatro tarjetas de 10 horas terminaban la ejecución con un total de exactamente 40 en lugar de continuar hasta una quinta tarjeta. Ahora cada una tiene cinco nombres, y los archivos ⟦CODE_0008⟧ de las entradas de expresiones regulares fuerzan ese caso. ⟦CODE_0009⟧ (cuatro pasadas copiadas, solo en Windows) todavía tiene el límite. Además: las horas de ⟦CODE_0010⟧ se sortean una sola vez y se guardan en una tabla, en lugar de depender del orden de evaluación de SQLite; el README de ⟦CODE_0011⟧ ya no incluye la afirmación de que el bucle se anida; y el README de sed advierte sobre su ⟦CODE_0012⟧. Consulta las [guías de estudio](⟦DEST_0013⟧), un conjunto complementario aparte."
+
+#: lessons/book/VERSIONS.md:18
+msgctxt "s-20368fee2166-0013"
+msgid "**Build:** ⟦CODE_0001⟧ renders the diagrams with a pinned Mermaid CLI (see [⟦CODE_0002⟧](⟦DEST_0003⟧)); ⟦CODE_0004⟧ is the full render gate."
+msgstr "**Compilación:** ⟦CODE_0001⟧ renderiza los diagramas con un Mermaid CLI fijado (consulta [⟦CODE_0002⟧](⟦DEST_0003⟧)); ⟦CODE_0004⟧ es el control completo de renderizado."
+
+#: lessons/book/VERSIONS.md:20
+msgctxt "s-e0d2747b9ab7-0014"
+msgid "v3"
+msgstr "v3"
+
+#: lessons/book/VERSIONS.md:22
+msgctxt "s-ecfdc5d28b90-0015"
+msgid "Six new entries, a new way to ground the computer-science concepts, and a dozen new concepts."
+msgstr "Seis entradas nuevas, una forma nueva de fundamentar los conceptos de ciencias de la computación y una docena de conceptos nuevos."
+
+#: lessons/book/VERSIONS.md:24
+msgctxt "s-895c76baa5a6-0016"
+msgid "**New entries:**"
+msgstr "**Entradas nuevas:**"
+
+#: lessons/book/VERSIONS.md:25
+msgctxt "s-54f6924d3746-0017"
+msgid "[⟦CODE_0001⟧](⟦DEST_0002⟧): a tar archive as a serialized program, with a passive inspector and a fail-closed interpreter."
+msgstr "[⟦CODE_0001⟧](⟦DEST_0002⟧): un archivo tar como programa serializado, con un inspector pasivo y un intérprete que, ante un fallo, rechaza (*fail-closed*)."
+
+#: lessons/book/VERSIONS.md:26
+msgctxt "s-ca9220ce5f41-0018"
+msgid "[⟦CODE_0001⟧](⟦DEST_0002⟧): tar's checkpoints as the clock of a state machine."
+msgstr "[⟦CODE_0001⟧](⟦DEST_0002⟧): los puntos de control (*checkpoints*) de tar como reloj de una máquina de estados."
+
+#: lessons/book/VERSIONS.md:27
+msgctxt "s-551d374d087b-0019"
+msgid "[⟦CODE_0001⟧](⟦DEST_0002⟧): a line editor's buffer as the machine; a failed substitution as an ⟦CODE_0003⟧."
+msgstr "[⟦CODE_0001⟧](⟦DEST_0002⟧): el búfer de un editor de líneas como máquina; una sustitución fallida como un ⟦CODE_0003⟧."
+
+#: lessons/book/VERSIONS.md:28
+msgctxt "s-b238877e70a6-0020"
+msgid "[⟦CODE_0001⟧](⟦DEST_0002⟧): a register that runs itself; marks as registers."
+msgstr "[⟦CODE_0001⟧](⟦DEST_0002⟧): un registro que se ejecuta a sí mismo; marcas como registros."
+
+#: lessons/book/VERSIONS.md:29
+msgctxt "s-f00553998570-0021"
+msgid "[⟦CODE_0001⟧](⟦DEST_0002⟧): the original's bodiless ⟦CODE_0003⟧, in Node.js."
+msgstr "[⟦CODE_0001⟧](⟦DEST_0002⟧): el ⟦CODE_0003⟧ sin cuerpo del original, en Node.js."
+
+#: lessons/book/VERSIONS.md:30
+msgctxt "s-1e7057ebcdfa-0022"
+msgid "[⟦CODE_0001⟧](⟦DEST_0002⟧): closures and a lazy iterator, with no loop statement."
+msgstr "[⟦CODE_0001⟧](⟦DEST_0002⟧): clausuras y un iterador perezoso, sin ninguna sentencia de bucle."
+
+#: lessons/book/VERSIONS.md:31
+msgctxt "s-e392d93cb0e6-0023"
+msgid "**New computer-science concepts:** serialization, deserialization and object pickling; closures and lexical environments; first-class and higher-order functions; functors and mapping; monoids and folds; category theory; dataflow programming; operational semantics; interpreters and virtual machines; event-driven programming; logical clocks and event ordering; computation versus orchestration; capability and authority; reproducibility and deterministic builds."
+msgstr "**Conceptos nuevos de ciencias de la computación:** serialización, deserialización y *pickling* de objetos; clausuras y entornos léxicos; funciones de primera clase y de orden superior; functores y mapeo; monoides y pliegues; teoría de categorías; programación de flujo de datos; semántica operacional; intérpretes y máquinas virtuales; programación orientada a eventos; relojes lógicos y orden de eventos; cómputo frente a orquestación; capacidad y autoridad; reproducibilidad y compilaciones deterministas."
+
+#: lessons/book/VERSIONS.md:32
+msgctxt "s-750ae4c09c11-0024"
+msgid "**Every concept is now grounded.** An entry can relate to a concept as a demonstration (⟦CODE_0001⟧), an ⟦CODE_0002⟧ or a ⟦CODE_0003⟧, and the \"In this repo\" tables say which. Some facts are stated once for all entries (⟦CODE_0004⟧, ⟦CODE_0005⟧, ⟦CODE_0006⟧). Trojan Source has an exercise instead of an entry. ⟦CODE_0007⟧ reports it, and ⟦CODE_0008⟧ fails if a concept has nothing behind it."
+msgstr "**Ahora todo concepto tiene fundamento.** Una entrada puede relacionarse con un concepto como una demostración (⟦CODE_0001⟧), un ⟦CODE_0002⟧ o un ⟦CODE_0003⟧, y las tablas \"En este repositorio\" indican cuál. Algunos hechos se declaran una sola vez para todas las entradas (⟦CODE_0004⟧, ⟦CODE_0005⟧, ⟦CODE_0006⟧). Trojan Source tiene un ejercicio en lugar de una entrada. ⟦CODE_0007⟧ lo informa, y ⟦CODE_0008⟧ falla si un concepto no tiene nada detrás."
+
+#: lessons/book/VERSIONS.md:33
+msgctxt "s-b5c6ca37aa5c-0025"
+msgid "**A new chapter 9 section** compares where each program lives and what makes its next step run, and a second one separates serialization, deserialization, interpretation and execution, with the round-trip promise each entry makes."
+msgstr "**Una sección nueva del capítulo 9** compara dónde vive cada programa y qué hace que se ejecute su paso siguiente, y otra separa la serialización, la deserialización, la interpretación y la ejecución, con la promesa de ida y vuelta que hace cada entrada."
+
+#: lessons/book/VERSIONS.md:34
+msgctxt "s-279328ad0fe7-0026"
+msgid "**New exercises:** B16 to B21 (one for each new entry; B16 and B17 are the two tar entries) and F2 (Trojan Source). All are checked by ⟦CODE_0001⟧."
+msgstr "**Ejercicios nuevos:** de B16 a B21 (uno por cada entrada nueva; B16 y B17 son las dos entradas de tar) y F2 (Trojan Source). Todos los comprueba ⟦CODE_0001⟧."
+
+#: lessons/book/VERSIONS.md:35
+msgctxt "s-91c427459499-0027"
+msgid "**Sandbox:** the images gain ⟦CODE_0001⟧, nvi and Node 24 (pinned by SHA-256)."
+msgstr "**Entorno aislado:** las imágenes incorporan ⟦CODE_0001⟧, nvi y Node 24 (fijado con SHA-256)."
+
+#: lessons/book/VERSIONS.md:36
+msgctxt "s-c02d6f5394c5-0028"
+msgid "**The book is numbered.** This page, the title page and ⟦CODE_0001⟧ must agree, and the build checks it."
+msgstr "**El libro está numerado.** Esta página, la portada y ⟦CODE_0001⟧ deben coincidir; la compilación lo comprueba."

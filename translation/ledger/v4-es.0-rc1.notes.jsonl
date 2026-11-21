@@ -1351,3 +1351,64 @@
 {"segment_id": "s-f465e37e0337-0001", "ts": "2026-11-21T16:15:12Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
 {"segment_id": "s-b7cb1913af0d-0001", "ts": "2026-11-21T16:15:12Z", "findings": ["I7: banned rendering 'condición' for glossary term state", "I25: comma before a simple 'y' ('una condición X ejecuta una regex, y sus capturas son los re'): no comma before a simple o or y", "I25: comma before a simple 'y' (', y X repite hasta que se cumple'): no comma before a simple o or y"]}
 {"segment_id": "s-cf5c6408c774-0001", "ts": "2026-11-21T16:15:13Z", "findings": ["I25: comma before a simple 'y' ('El programa es texto, y repetir es reescribirlo'): no comma before a simple o or y"]}
+{"segment_id": "s-8e38a1ea5c68-0002", "ts": "2026-11-21T16:22:49Z", "findings": ["TRANSLATE: the reply is the English text unchanged"]}
+{"segment_id": "s-43bcea2b5e48-0011", "ts": "2026-11-21T16:22:49Z", "findings": ["I3: digit token 500 appears 1 time(s) in the source, 0 in the target", "I3: digit token 7 appears 1 time(s) in the source, 0 in the target", "I3: digit token 7500 appears 0 time(s) in the source, 1 in the target", "I25: comma before a simple 'y' (', y cada SVG se posprocesa'): no comma before a simple o or y"]}
+{"segment_id": "s-d378d60ff62a-0012", "ts": "2026-11-21T16:22:49Z", "findings": ["I7: glossary term claim must be rendered 'afirmación'"]}
+{"segment_id": "s-e0d2747b9ab7-0014", "ts": "2026-11-21T16:22:49Z", "findings": ["TRANSLATE: the reply is the English text unchanged"]}
+{"segment_id": "s-c02d6f5394c5-0028", "ts": "2026-11-21T16:22:49Z", "findings": ["I25: comma before a simple 'y' ('la portada y X deben coincidir, y la compilación lo comprueb'): no comma before a simple o or y"]}
+{"segment_id": "s-8e38a1ea5c68-0002", "ts": "2026-11-21T16:22:56Z", "findings": ["TRANSLATE: the reply is the English text unchanged"]}
+{"segment_id": "s-43bcea2b5e48-0011", "ts": "2026-11-21T16:22:56Z", "findings": ["I25: comma before a simple 'y' (', y cada SVG se posprocesa'): no comma before a simple o or y"]}
+{"segment_id": "s-e0d2747b9ab7-0014", "ts": "2026-11-21T16:22:56Z", "findings": ["TRANSLATE: the reply is the English text unchanged"]}
+{"segment_id": "s-8e38a1ea5c68-0002", "ts": "2026-11-21T16:23:00Z", "findings": ["TRANSLATE: the reply is the English text unchanged"]}
+{"segment_id": "s-e0d2747b9ab7-0014", "ts": "2026-11-21T16:23:00Z", "findings": ["TRANSLATE: the reply is the English text unchanged"]}
+{"segment_id": "s-1e05d9decfbc-0001", "ts": "2026-11-21T16:23:00Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-0a271e7bbe3d-0005", "ts": "2026-11-21T16:23:00Z", "findings": ["I25: comma before a simple 'y' ('prueba la correspondencia, y [X]'): no comma before a simple o or y"]}
+{"segment_id": "s-7a7f2079e530-0010", "ts": "2026-11-21T16:23:00Z", "findings": ["I7: glossary term build must be rendered 'compilación'", "I25: comma before a simple 'y' ('Las guías no están en X, y el libro solo enlaza a ellas'): no comma before a simple o or y"]}
+{"segment_id": "s-512e01632795-0013", "ts": "2026-11-21T16:23:00Z", "findings": ["I7: banned rendering 'falla' for glossary term failure", "I7: glossary term code must be rendered 'código'", "I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-d1b8ca9bc96b-0014", "ts": "2026-11-21T16:23:00Z", "findings": ["I3: digit token 0 appears 0 time(s) in the source, 1 in the target", "I3: digit token 0.1 appears 1 time(s) in the source, 0 in the target", "I3: digit token 1 appears 1 time(s) in the source, 3 in the target", "I3: digit token 1.5 appears 1 time(s) in the source, 0 in the target", "I3: digit token 5 appears 0 time(s) in the source, 1 in the target", "I7: glossary term regular-language must be rendered 'regular'", "I25: comma before a simple 'y' ('la fuente y el tamaño esperados, y una posición centrada en '): no comma before a simple o or y"]}
+{"segment_id": "s-adae566debf6-0023", "ts": "2026-11-21T16:23:00Z", "findings": ["I7: glossary term list must be rendered 'lista'"]}
+{"segment_id": "s-6c554747f7cb-0027", "ts": "2026-11-21T16:23:00Z", "findings": ["I25: comma before a simple 'y' (', y el capítulo sobre eventos tiene otra'): no comma before a simple o or y"]}
+{"segment_id": "s-2cb64c3c842f-0028", "ts": "2026-11-21T16:23:00Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-f536c0fef32e-0034", "ts": "2026-11-21T16:23:00Z", "findings": ["I3: digit token 4 appears 0 time(s) in the source, 1 in the target", "I3: digit token 8 appears 0 time(s) in the source, 1 in the target", "I3: digit token 8.4 appears 1 time(s) in the source, 0 in the target"]}
+{"segment_id": "s-aa38db3f06fd-0035", "ts": "2026-11-21T16:23:00Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-3ba9dabfff85-0039", "ts": "2026-11-21T16:23:00Z", "findings": ["I3: digit token 1 appears 0 time(s) in the source, 1 in the target", "I3: digit token 2 appears 0 time(s) in the source, 1 in the target", "I3: digit token 2.1 appears 1 time(s) in the source, 0 in the target", "I3: digit token 3 appears 0 time(s) in the source, 1 in the target", "I3: digit token 4 appears 1 time(s) in the source, 2 in the target", "I3: digit token 4.3 appears 1 time(s) in the source, 0 in the target"]}
+{"segment_id": "s-a9a0e096c7ab-0041", "ts": "2026-11-21T16:23:01Z", "findings": ["I25: comma before a simple 'y' ('** No hay una sección de pseudocódigo, y es a propósito'): no comma before a simple o or y", "I25: comma before a simple 'y' ('etiquetado como tal, y nunca sustituye al diagrama'): no comma before a simple o or y"]}
+{"segment_id": "s-404f7c90f674-0050", "ts": "2026-11-21T16:23:01Z", "findings": ["I7: glossary term host must be rendered 'anfitrión'"]}
+{"segment_id": "s-42746ec94c2b-0051", "ts": "2026-11-21T16:23:01Z", "findings": ["I7: glossary term state must be rendered 'estado'"]}
+{"segment_id": "s-8dc96387a2f6-0052", "ts": "2026-11-21T16:23:01Z", "findings": ["I7: glossary term host must be rendered 'anfitrión'", "I7: glossary term reader must be rendered 'lector'"]}
+{"segment_id": "s-58e9fedf0767-0055", "ts": "2026-11-21T16:23:01Z", "findings": ["I7: glossary term host must be rendered 'anfitrión'"]}
+{"segment_id": "s-fd5872ed0b1d-0066", "ts": "2026-11-21T16:23:01Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-579898772650-0067", "ts": "2026-11-21T16:23:01Z", "findings": ["I7: glossary term output must be rendered 'salida'"]}
+{"segment_id": "s-c925c5e7f391-0069", "ts": "2026-11-21T16:23:01Z", "findings": ["I25: comma before a simple 'y' (', y se marca con X'): no comma before a simple o or y"]}
+{"segment_id": "s-b5141eb27604-0070", "ts": "2026-11-21T16:23:01Z", "findings": ["I7: glossary term host must be rendered 'anfitrión'"]}
+{"segment_id": "s-3486fed063e1-0072", "ts": "2026-11-21T16:23:01Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-66a4d99c08a0-0073", "ts": "2026-11-21T16:23:01Z", "findings": ["I7: glossary term host must be rendered 'anfitrión'"]}
+{"segment_id": "s-1e05d9decfbc-0001", "ts": "2026-11-21T16:23:19Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-7a7f2079e530-0010", "ts": "2026-11-21T16:23:19Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-512e01632795-0013", "ts": "2026-11-21T16:23:19Z", "findings": ["I7: banned rendering 'falla' for glossary term failure", "I7: glossary term code must be rendered 'código'", "I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-d1b8ca9bc96b-0014", "ts": "2026-11-21T16:23:19Z", "findings": ["I7: glossary term regular-language must be rendered 'regular'", "I25: comma before a simple 'y' ('la fuente y el tamaño esperados, y una posición centrada en '): no comma before a simple o or y"]}
+{"segment_id": "s-adae566debf6-0023", "ts": "2026-11-21T16:23:19Z", "findings": ["I7: glossary term list must be rendered 'lista'"]}
+{"segment_id": "s-2cb64c3c842f-0028", "ts": "2026-11-21T16:23:19Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-aa38db3f06fd-0035", "ts": "2026-11-21T16:23:19Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-404f7c90f674-0050", "ts": "2026-11-21T16:23:19Z", "findings": ["I7: glossary term host must be rendered 'anfitrión'"]}
+{"segment_id": "s-42746ec94c2b-0051", "ts": "2026-11-21T16:23:19Z", "findings": ["I7: glossary term state must be rendered 'estado'"]}
+{"segment_id": "s-8dc96387a2f6-0052", "ts": "2026-11-21T16:23:19Z", "findings": ["I7: glossary term host must be rendered 'anfitrión'"]}
+{"segment_id": "s-58e9fedf0767-0055", "ts": "2026-11-21T16:23:19Z", "findings": ["I7: glossary term host must be rendered 'anfitrión'"]}
+{"segment_id": "s-fd5872ed0b1d-0066", "ts": "2026-11-21T16:23:20Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-b5141eb27604-0070", "ts": "2026-11-21T16:23:20Z", "findings": ["I7: glossary term host must be rendered 'anfitrión'"]}
+{"segment_id": "s-3486fed063e1-0072", "ts": "2026-11-21T16:23:20Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-66a4d99c08a0-0073", "ts": "2026-11-21T16:23:20Z", "findings": ["I7: glossary term host must be rendered 'anfitrión'"]}
+{"segment_id": "s-1e05d9decfbc-0001", "ts": "2026-11-21T16:23:25Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-7a7f2079e530-0010", "ts": "2026-11-21T16:23:25Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-512e01632795-0013", "ts": "2026-11-21T16:23:25Z", "findings": ["I7: banned rendering 'falla' for glossary term failure", "I7: glossary term code must be rendered 'código'", "I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-adae566debf6-0023", "ts": "2026-11-21T16:23:25Z", "findings": ["I7: glossary term list must be rendered 'lista'"]}
+{"segment_id": "s-2cb64c3c842f-0028", "ts": "2026-11-21T16:23:25Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-aa38db3f06fd-0035", "ts": "2026-11-21T16:23:25Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-404f7c90f674-0050", "ts": "2026-11-21T16:23:25Z", "findings": ["I7: glossary term host must be rendered 'anfitrión'"]}
+{"segment_id": "s-42746ec94c2b-0051", "ts": "2026-11-21T16:23:25Z", "findings": ["I7: glossary term state must be rendered 'estado'"]}
+{"segment_id": "s-8dc96387a2f6-0052", "ts": "2026-11-21T16:23:25Z", "findings": ["I7: glossary term host must be rendered 'anfitrión'"]}
+{"segment_id": "s-58e9fedf0767-0055", "ts": "2026-11-21T16:23:25Z", "findings": ["I7: glossary term host must be rendered 'anfitrión'"]}
+{"segment_id": "s-fd5872ed0b1d-0066", "ts": "2026-11-21T16:23:25Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-b5141eb27604-0070", "ts": "2026-11-21T16:23:25Z", "findings": ["I7: glossary term host must be rendered 'anfitrión'"]}
+{"segment_id": "s-3486fed063e1-0072", "ts": "2026-11-21T16:23:25Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-66a4d99c08a0-0073", "ts": "2026-11-21T16:23:25Z", "findings": ["I7: glossary term host must be rendered 'anfitrión'"]}
