@@ -1,23 +1,23 @@
-# JavaScript study guide
+# Guía de estudio de JavaScript
 
-## What this guide is for
+## Para qué sirve esta guía
 
-This guide reads three Node.js programs that solve the same challenge in three different control styles: [`src/javascript`](../../../src/javascript/README.md), one bodiless `for` statement whose three clauses do everything; [`src/javascript-weird`](../../../src/javascript-weird/README.md), three closures and a lazy iterator with no loop statement; and [`src/javascript-events`](../../../src/javascript-events/README.md), ten listeners on one `EventEmitter`. The question is: **who owns the next step: the loop header, the consumer that pulls or the event loop?**
+Esta guía lee tres programas de Node.js que resuelven el mismo reto con tres estilos de control distintos. [`src/javascript`](../../../src/javascript/README.md): una sola sentencia `for` sin cuerpo, cuyas tres cláusulas lo hacen todo. [`src/javascript-weird`](../../../src/javascript-weird/README.md): tres clausuras (*closures*) y un iterador perezoso, sin ninguna sentencia de bucle. [`src/javascript-events`](../../../src/javascript-events/README.md): diez escuchadores de eventos sobre un mismo `EventEmitter`. La pregunta es: **¿quién es dueño del paso siguiente: el encabezado del bucle, el consumidor que demanda o el bucle de eventos?**
 
-When you finish, you should be able to:
+Al terminar, deberías poder:
 
-1. Say which clause of the `for` header does what, and why the stop test sees the card the iterator just added.
-2. Explain how a closure keeps state that nothing else can reach, and why the weird program's stop rule is one assignment (`over = total > 40`).
-3. Explain pull iteration: nothing is drawn until a consumer asks, and the consumer decides how many cards exist.
-4. Explain the difference between `emit()` (a synchronous call) and `setImmediate()` (a new turn of the event loop), and what happens to the call stack without that boundary.
-5. Trace all three programs through the same three cards.
-6. Label each behavior as guaranteed, implementation-permitted or accidentally exploited.
+1. Decir qué hace cada cláusula del encabezado de `for` y por qué la prueba de parada ve la tarjeta que el iterador acaba de añadir.
+2. Explicar cómo una clausura guarda un estado al que nada más puede llegar, y por qué la regla de parada del programa raro es una sola asignación (`over = total > 40`).
+3. Explicar la iteración por demanda (pull): no se genera ninguna tarjeta hasta que un consumidor la pide, y el consumidor decide cuántas tarjetas existen.
+4. Explicar la diferencia entre `emit()` (una llamada síncrona) y `setImmediate()` (un turno nuevo del bucle de eventos), y qué le pasa a la pila de llamadas sin esa frontera.
+5. Hacer la traza de los tres programas con las mismas tres tarjetas.
+6. Etiquetar cada comportamiento como garantizado, permitido por la implementación o aprovechado por accidente.
 
-**Scope limits.** You need to read modern JavaScript: arrow functions, object literals, spread and the comma operator. The guide does not teach SQLite or the terminal pulse. It uses Node.js 24 with built-in `node:sqlite` and iterator helpers. The language page is [JavaScript](../../lenguajes/javascript.md). For events in general, see the chapter [Events, callbacks and reactive control flow](../../informatica/10-eventos-retrollamadas-y-flujo-de-control-reactivo.md).
+**Límites del alcance.** Necesitas saber leer JavaScript moderno: funciones flecha, literales de objeto, propagación (*spread*) y el operador coma. La guía no enseña SQLite ni el pulso de la terminal. Usa Node.js 24 con `node:sqlite` integrado y los métodos auxiliares de iteradores. La página del lenguaje es [JavaScript](../../lenguajes/javascript.md). Para los eventos en general, consulta el capítulo [Eventos, funciones de devolución de llamada y flujo de control reactivo](../../informatica/10-eventos-retrollamadas-y-flujo-de-control-reactivo.md).
 
-## Before you begin
+## Antes de empezar
 
-**Safety model.** Every entry writes fictional **DEMO ONLY** data to a scratch SQLite file. These programs open files and, for the pulse, set timers. Read the source before you run it, and run it in the sandbox first:
+**Modelo de seguridad.** Cada entrada escribe datos ficticios marcados con **DEMO ONLY** en un archivo SQLite de trabajo. Estos programas abren archivos y, en el caso del pulso, programan temporizadores. Lee el código fuente antes de ejecutarlo. Ejecútalo primero en el entorno aislado (*sandbox*):
 
 ```bash
 sandbox/container/run-image.sh src/javascript
@@ -25,127 +25,127 @@ sandbox/container/run-image.sh src/javascript-weird
 sandbox/container/run-image.sh src/javascript-events
 ```
 
-Edit only copies ([Running things safely](../../exercises.md#running-things-safely)). All three entries accept `SEED` (an integer) to replay a run, and `NOW=YYYY-MM-DD` to fix the date. This guide uses `SEED=1105`, which gives hours 15, 19, 12 in all three.
+Edita solo copias ([Ejecutar cosas de forma segura](../../exercises.md#running-things-safely)). Las tres entradas aceptan `SEED` (un entero) para repetir una ejecución y `NOW=YYYY-MM-DD` para fijar la fecha. Esta guía usa `SEED=1105`, que da las horas 15, 19 y 12 en las tres.
 
-**Prediction rule.** Before each run, write down the order in which things happen. In this family, *order* is the whole lesson.
+**Regla de predicción.** Antes de cada ejecución, anota el orden en que ocurren las cosas. En esta familia, el *orden* es toda la lección.
 
-**Vocabulary.**
+**Vocabulario.**
 
-| Term | Meaning here |
+| Término | Significado aquí |
 | --- | --- |
-| Closure | A function together with the variables it was made next to. Here those variables are the program's state. |
-| Iterator protocol | An object with `next()` that answers `{ value, done }`. |
-| Pull | The consumer asks for the next value. Nothing is produced until it does. |
-| `emit()` | Calls every listener of an event, in registration order, *before it returns*. |
-| Turn | One pass of the event loop. `setImmediate` runs its function on a later turn. |
+| Clausura | Una función junto con las variables que tenía a su lado cuando se creó. Aquí esas variables son el estado del programa. |
+| Protocolo de iteradores | Un objeto con `next()` que responde con `{ value, done }`. |
+| Demanda (pull) | El consumidor pide el siguiente valor. No se produce nada hasta que lo hace. |
+| `emit()` | Llama a todos los escuchadores de eventos de un evento, en el orden de registro, *antes de regresar*. |
+| Turno | Una pasada del bucle de eventos. `setImmediate` ejecuta su función en un turno posterior. |
 
-## The shared challenge
+## El reto compartido
 
-The [challenge specification](../../introduccion.md#what-the-challenge-does) calls for cards with a category and 10 to 19 whole hours. Categories cycle through Meetings, Coding, Debugging and Learning. Add each card's hours to the running total. Stop when the total passes 40. Keep the **first card that takes the total over 40**. A total of exactly 40 continues. Four 10-hour cards need a fifth card, in the Meetings category. Conforming runs finish with 3 to 5 cards and a total of 41 to 59 hours.
+La [especificación del reto](../../introduccion.md#what-the-challenge-does) pide tarjetas con una categoría y de 10 a 19 horas enteras. Las categorías se repiten en ciclo: `Meetings`, `Coding`, `Debugging` y `Learning`. Suma las horas de cada tarjeta al total acumulado. Detente cuando el total pasa de 40. Conserva la **primera tarjeta con la que el total pasa de 40**. Un total de exactamente 40 continúa. Cuatro tarjetas de 10 horas necesitan una quinta tarjeta, de la categoría `Meetings`. Las ejecuciones conformes tienen de 3 a 5 tarjetas y un total de 41 a 59 horas.
 
-All three stop on the first crossing and print a summary, but their SQLite write boundaries differ. The first two insert as they go. The events version wraps the run in one transaction. Each style writes the stop test differently. In the `for`, the condition is `reduce(...) <= 40 ? true : (...show the result..., false)`: `<= 40` is true for 40, so the loop repeats ([L54](../../../src/javascript/timecards.mjs#L54)). In the weird program, `over = total > 40` is false for 40, so the machine keeps answering ([core.mjs L14](../../../src/javascript-weird/core.mjs#L14)). In the events program, `total > limit` is false for 40, so the next card is scheduled ([L115](../../../src/javascript-events/timecards.mjs#L115)).
+Las tres se detienen en el primer cruce e imprimen un resumen, pero sus límites de escritura en SQLite son distintos. Las dos primeras insertan sobre la marcha. La versión de eventos envuelve la ejecución en una sola transacción. Cada estilo escribe la prueba de parada de forma distinta. En `for`, la condición es `reduce(...) <= 40 ? true : (...show the result..., false)`: `<= 40` es verdadero para 40, así que el bucle se repite ([L54](../../../src/javascript/timecards.mjs#L54)). En el programa raro, `over = total > 40` es falso para 40, así que la máquina sigue respondiendo ([core.mjs L14](../../../src/javascript-weird/core.mjs#L14)). En el programa de eventos, `total > limit` es falso para 40, así que se programa la tarjeta siguiente ([L115](../../../src/javascript-events/timecards.mjs#L115)).
 
-## The machine to identify
+## La máquina que hay que identificar
 
-**What repeats.** In `javascript`, a `for` statement with an empty body: the *header's* three clauses repeat ([L10-67](../../../src/javascript/timecards.mjs#L10-L67)). In `javascript-weird`, a consumer asking an iterator for the next card, over and over: `.toArray()` ([L30](../../../src/javascript-weird/timecards.mjs#L30)). In `javascript-events`, a cycle of events: `generate` leads to `card-created`, `card-saved` and `total-updated`, and `total-updated` schedules the next `generate`.
+**Qué se repite.** En `javascript`, una sentencia `for` con el cuerpo vacío: se repiten las tres cláusulas del *encabezado* ([L10-67](../../../src/javascript/timecards.mjs#L10-L67)). En `javascript-weird`, un consumidor que pide una y otra vez la tarjeta siguiente a un iterador: `.toArray()` ([L30](../../../src/javascript-weird/timecards.mjs#L30)). En `javascript-events`, una secuencia circular de eventos: `generate` lleva a `card-created`, `card-saved` y `total-updated`; `total-updated` programa el siguiente `generate`.
 
-**Evaluation.** The three original entries seed via the global Web Crypto `crypto.getRandomValues` when `SEED` is absent. In the bodiless `for`, `reduce` sums the array immediately on every condition check. The [C# header](csharp-linq-xaml-y-adaptaciones.md) does the same work with `Sum()`, even though its inner LINQ projection is deferred until `Sum()` enumerates it. The pull iterator below uses a different driver.
+**Evaluación.** Las tres entradas originales se siembran mediante el `crypto.getRandomValues` global de Web Crypto cuando falta `SEED`. En el `for` sin cuerpo, `reduce` suma el arreglo de inmediato en cada comprobación de la condición. El [encabezado de C#](csharp-linq-xaml-y-adaptaciones.md) hace el mismo trabajo con `Sum()`, aunque su proyección LINQ interna se aplaza hasta que `Sum()` la enumera. El iterador por demanda de más abajo usa otro mecanismo de avance.
 
-**Where state lives.** In `javascript`, the properties of one object literal that the `for` initializer builds: hours so far, the database, the random closure and the clock. In `javascript-weird`, three closures: a source of hours over one number, a card machine over `n`, `total` and `over` and an iterator wrapper. None of that state can be reached except by calling the function ([core.mjs](../../../src/javascript-weird/core.mjs)). In `javascript-events`, an object `s` (`n`, `total`, `db`, ...) shared by the listeners, plus the registrations on the emitter itself.
+**Dónde vive el estado.** En `javascript`, las propiedades de un literal de objeto que crea el inicializador de `for`: horas acumuladas, base de datos, clausura aleatoria y reloj. En `javascript-weird`, tres clausuras: una fuente de horas sobre un número; una máquina de tarjetas sobre `n`, `total` y `over`; y un envoltorio de iterador. A nada de ese estado se llega si no es llamando a la función ([core.mjs](../../../src/javascript-weird/core.mjs)). En `javascript-events`, un objeto `s` (`n`, `total`, `db`, ...) compartido por los escuchadores de eventos, más los registros del propio emisor.
 
-**What advances the next step.** In `javascript`, the third `for` clause draws one card and saves it. In `javascript-weird`, a call to the iterator's `next()`. In `javascript-events`, one listener emits the event that the next listener is waiting for.
+**Qué hace avanzar el paso siguiente.** En `javascript`, la tercera cláusula de `for` genera una tarjeta y la guarda. En `javascript-weird`, una llamada a `next()` del iterador. En `javascript-events`, un escuchador de eventos emite el evento que espera el siguiente escuchador de eventos.
 
-**What stops it.** In `javascript`, the condition returns `false` after showing the result. In `javascript-weird`, the machine's `over` flag: after the crossing card, every ask answers `undefined`, and the iterator says `done`. In `javascript-events`, `total-updated` emits `finished` instead of scheduling another `generate`.
+**Qué lo detiene.** En `javascript`, la condición devuelve `false` después de mostrar el resultado. En `javascript-weird`, la bandera `over` de la máquina: tras la tarjeta que cruza el límite, cada petición recibe `undefined` como respuesta y el iterador dice `done`. En `javascript-events`, `total-updated` emite `finished` en lugar de programar otro `generate`.
 
-**What commits.** In `javascript`, rows are saved by the iterator clause as they are made, and the condition prints. In `javascript-weird`, each ask saves its record in a `.map(save)` stage, and the summary is printed after the pipeline is complete. In `javascript-events`, `start` runs `BEGIN`, `card-created` inserts a row synchronously and `finished` runs `COMMIT`. A throw in any listener becomes a `failed` event, which does a `ROLLBACK` exactly once.
+**Qué confirma.** En `javascript`, la cláusula del iterador guarda las filas a medida que se crean, y la condición imprime. En `javascript-weird`, cada petición guarda su registro en una etapa `.map(save)`, y el resumen se imprime cuando la canalización está completa. En `javascript-events`, `start` ejecuta `BEGIN`, `card-created` inserta una fila de forma síncrona y `finished` ejecuta `COMMIT`. Una excepción lanzada en cualquier escuchador de eventos se convierte en un evento `failed`, que hace un `ROLLBACK` exactamente una vez.
 
 <!-- diagram-source: src/javascript/README.md#program-flow -->
 
 ```mermaid
 flowchart TD
-    accTitle: javascript: a for statement in Node whose condition prints the result and the event loop keeps the pulse alive
-    accDescr: A flowchart. The initializer builds one object literal with the seed generator, the SQLite database and the categories. The condition sums the hours with reduce and is true while the total is 40 or less. Then the empty body runs and the iterator pushes random hours and inserts a card with the comma operator. When the condition is false, a comma expression prints the result, starts a setInterval timer if the output is a terminal, and yields false, so the for ends. Node does not exit yet, because the timer is still registered. The event loop runs the timer callback, which pulses the DEMO ONLY line and then clears the timer, so Node exits.
-    A["Initializer: one object literal holds seed, SQLite, categories, state"] --> B{{"Condition: reduce sum <= 40?"}}
-    B -->|true| C["Empty body"]
-    C --> D["Iterator, comma operator: push hours, insert the card"]
+    accTitle: javascript: una sentencia for en Node cuya condición imprime el resultado y el bucle de eventos mantiene vivo el pulso
+    accDescr: Un diagrama de flujo. El inicializador crea un literal de objeto con el generador de semillas, la base de datos SQLite y las categorías. La condición suma las horas con reduce y es verdadera mientras el total sea 40 o menos. Entonces se ejecuta el cuerpo vacío y el iterador agrega horas aleatorias e inserta una tarjeta con el operador coma. Cuando la condición es falsa, una expresión con comas imprime el resultado e inicia un temporizador setInterval si la salida es una terminal. La expresión produce false, así que el for termina. Node todavía no sale, porque el temporizador sigue registrado. El bucle de eventos ejecuta la función de devolución de llamada del temporizador. Esa función hace pulsar la línea DEMO ONLY y borra el temporizador, así que Node sale.
+    A["Inicializador: un literal de objeto guarda la semilla, SQLite, las categorías y el estado"] --> B{{"Condición: ¿suma de reduce <= 40?"}}
+    B -->|verdadero| C["Cuerpo vacío"]
+    C --> D["Iterador, operador coma: agrega las horas, inserta la tarjeta"]
     D --> B
-    B -->|false| E["Comma expression: console.log the result, setInterval if a terminal, value false"]
-    E --> F["The for ends; the call stack empties"]
-    F --> G["Event loop runs the timer callback: pulse the DEMO ONLY line"]
-    G --> H["clearInterval: nothing is left, Node exits"]
+    B -->|falso| E["Expresión con comas: console.log del resultado, setInterval si es una terminal, valor false"]
+    E --> F["El for termina; la pila de llamadas queda vacía"]
+    F --> G["El bucle de eventos ejecuta la función de devolución de llamada del temporizador: pulsa la línea DEMO ONLY"]
+    G --> H["clearInterval: no queda nada, Node sale"]
 ```
 
-The first diagram is a loop whose header is the program. The second shows who asks whom.
+El primer diagrama es un bucle cuyo encabezado es el programa. El segundo muestra quién le pide algo a quién.
 
 <!-- diagram-source: src/javascript-weird/README.md#program-flow -->
 
 ```mermaid
 sequenceDiagram
-    accTitle: javascript-weird: demand pulls each card through three closures and two maps
-    accDescr: A sequence diagram of pull. The call toArray demands a value from the second map, which demands one from the first map, which demands one from the cards iterator. The cards iterator calls the machine closure, which calls the hours closure for a number and moves the generator state. The machine adds the hours to its captured total and sets its stop flag if the total is over 40, and returns the card. The card travels back up: the first map stamps it with the user and week, the second map saves it to SQLite, and toArray collects it. Then toArray demands again. After the crossing card, the machine answers undefined, the iterator answers done, and toArray stops.
+    accTitle: javascript-weird: la demanda saca cada tarjeta a través de tres clausuras y dos maps
+    accDescr: Un diagrama de secuencia de la demanda (pull). La llamada a toArray demanda un valor al segundo map, que demanda uno al primer map, que demanda uno al iterador cards. El iterador cards llama a la clausura de la máquina (machine), que llama a la clausura hoursFrom para obtener un número y mueve el estado del generador. La clausura de la máquina suma las horas a su total capturado, activa su bandera de parada si el total pasa de 40 y devuelve la tarjeta. La tarjeta vuelve hacia arriba: el primer map la sella con el usuario y la semana, el segundo map la guarda en SQLite y toArray la recoge. Después toArray vuelve a demandar. Tras la tarjeta que cruza el límite, la máquina responde undefined, el iterador responde done y toArray se detiene.
     participant T as toArray
     participant S as map save
     participant P as map stamp
-    participant C as cards, machine and hoursFrom
-    loop until the iterator says done
+    participant C as cards (tarjetas), machine (máquina) y hoursFrom
+    loop hasta que el iterador dice done
         T->>S: next
         S->>P: next
-        P->>C: next: the machine calls hoursFrom
-        C-->>C: hours drawn, total and over updated
-        C-->>P: value: card
-        P-->>S: record stamped with user and week
-        S-->>T: record, saved to SQLite
+        P->>C: next: la máquina (machine) llama a hoursFrom
+        C-->>C: horas generadas, total y over actualizados
+        C-->>P: value (el valor): la tarjeta
+        P-->>S: registro sellado con el usuario y la semana
+        S-->>T: registro guardado en SQLite
     end
-    Note over C,T: after the crossing card the machine answers undefined, cards answers done, and toArray stops
+    Note over C,T: tras la tarjeta que cruza el límite, la máquina responde undefined, cards responde done y toArray se detiene
 ```
 
-In the second, demand flows backward from `toArray` to the machine. Nothing happens until it asks.
+En el segundo, la demanda fluye hacia atrás desde `toArray` hasta la máquina. No ocurre nada hasta que pide.
 
 <!-- diagram-source: src/javascript-events/README.md#program-flow -->
 
 ```mermaid
 sequenceDiagram
-    accTitle: javascript-events: emit is a call, setImmediate is a later turn
-    accDescr: A sequence diagram. The main module emits start. The listener for start opens the database, begins a transaction and saves the run, then asks the event loop for the generate event on a later turn with setImmediate. Emit returns and the call stack is empty. On a later turn the event loop emits generate. The generate listener makes a card and emits card-created, whose listener runs at once inside the same call and saves the card to SQLite. That listener emits card-saved, whose listener updates the total and prints the row. That listener emits total-updated. If the total is 40 or less, its listener asks the event loop for the next generate on a later turn, and the stack unwinds. If the total is over 40, it emits finished, whose listener commits, prints and closes. A throw in any listener emits failed, which rolls back and reports once.
-    participant M as Main module
+    accTitle: javascript-events: emit es una llamada, setImmediate es un turno posterior
+    accDescr: Un diagrama de secuencia. El módulo principal emite start. El escuchador de eventos de start abre la base de datos, inicia una transacción y guarda la ejecución. Después pide al bucle de eventos el evento generate en un turno posterior con setImmediate. Emit regresa y la pila de llamadas queda vacía. En un turno posterior, el bucle de eventos emite generate. El escuchador de eventos de generate crea una tarjeta y emite card-created, cuyo escuchador se ejecuta de inmediato dentro de la misma llamada y guarda la tarjeta en SQLite. Ese escuchador emite card-saved, cuyo escuchador actualiza el total e imprime la fila. Ese escuchador emite total-updated. Si el total es 40 o menos, su escuchador pide al bucle de eventos el siguiente generate en un turno posterior, y la pila se desenrolla. Si el total pasa de 40, emite finished, cuyo escuchador confirma la transacción, imprime y cierra. Una excepción lanzada en cualquier escuchador emite failed, que revierte la transacción e informa una sola vez.
+    participant M as Módulo principal
     participant E as EventEmitter
-    participant Q as Event loop queue
+    participant Q as Cola del bucle de eventos
     participant D as SQLite
     M->>E: emit start
-    E->>D: start listener: BEGIN, save the run
-    E->>Q: setImmediate: generate, later
-    E-->>M: emit returns: the stack is empty
-    loop one turn of the event loop for each card
+    E->>D: escuchador de eventos de start: BEGIN, guarda la ejecución
+    E->>Q: setImmediate: generate, más tarde
+    E-->>M: emit regresa: la pila queda vacía
+    loop un turno del bucle de eventos por cada tarjeta
         Q->>E: emit generate
-        E->>D: card-created, nested inside generate: INSERT the card
-        E->>E: card-saved, nested: total changes
-        E->>E: total-updated, nested: stop rule
-        alt total is 40 or less
-            E->>Q: setImmediate: generate, later
-        else total is over 40
-            E->>D: finished, nested: COMMIT, close
+        E->>D: card-created, anidado dentro de generate: INSERT de la tarjeta
+        E->>E: card-saved (tarjeta guardada), anidado: cambia el total
+        E->>E: total-updated, anidado: regla de parada
+        alt el total es 40 o menos
+            E->>Q: setImmediate: generate, más tarde
+        else el total pasa de 40
+            E->>D: finished, anidado: COMMIT, cierre
         end
     end
 ```
 
-The third distinguishes two kinds of arrow: a plain `emit` that returns after the listeners have run, and a hop to a later turn.
+El tercero distingue dos clases de flecha: un `emit` simple, que regresa después de que se ejecutaron los escuchadores de eventos, y un salto a un turno posterior.
 
-## Trace one run
+## Traza una ejecución
 
-With `SEED=1105` all three programs draw hours 15, 19, 12. The traces use scratch copies with logging around the entry's own functions. On Node 24.15.0, running the original `timecards.mjs` of each entry with that seed and a fresh `XDG_DATA_HOME` reproduced the reported rows and the persisted totals 15, 34 and 46.
+Con `SEED=1105`, los tres programas sortean las horas 15, 19 y 12. Las trazas usan copias de trabajo con registros alrededor de las funciones propias de cada entrada. En Node 24.15.0, se ejecutó el `timecards.mjs` original de cada entrada con esa semilla y un `XDG_DATA_HOME` nuevo. Reprodujo las filas informadas y los totales guardados 15, 34 y 46.
 
-**`javascript`: the `for` clauses.** Total starts at 0 with no cards.
+**`javascript`: las cláusulas de `for`.** El total empieza en 0 y no hay tarjetas.
 
-| Evaluation | Condition (`sum <= 40`) | Iterator clause draws | Sum after |
+| Evaluación | Condición (`sum <= 40`) | La cláusula del iterador genera | Suma después |
 | --- | --- | --- | ---: |
-| 1 | 0 ≤ 40: true | `10 + rnd() % 10` = 15, saves Meetings | 15 |
-| 2 | 15 ≤ 40: true | 19, saves Coding | 34 |
-| 3 | 34 ≤ 40: true | 12, saves Debugging | 46 |
-| 4 | 46 ≤ 40: **false** | none | print result, end |
+| 1 | 0 ≤ 40: verdadero | `10 + rnd() % 10` = 15, guarda Meetings | 15 |
+| 2 | 15 ≤ 40: verdadero | 19, guarda Coding | 34 |
+| 3 | 34 ≤ 40: verdadero | 12, guarda Debugging | 46 |
+| 4 | 46 ≤ 40: **falso** | ninguna | imprime el resultado y termina |
 
-The condition runs *after* each iterator step, except the first, so the crossing card (12 hours) is saved by the iterator before the test refuses to continue. The output was `Meetings 15 15`, `Coding 19 34`, `Debugging 12 46`.
+La condición se ejecuta *después* de cada paso del iterador, excepto el primero. Por eso el iterador guarda la tarjeta que cruza el límite (12 horas) antes de que la prueba se niegue a continuar. La salida fue `Meetings 15 15`, `Coding 19 34`, `Debugging 12 46`.
 
-**`javascript-weird`: who asked.** A scratch script wrapped the machine so that each ask was logged:
+**`javascript-weird`: quién pidió.** Un script de trabajo envolvió la máquina para registrar cada petición:
 
 ```text
 building the pipeline: nothing asked yet (asks = 0)
@@ -157,9 +157,9 @@ ask 4: machine answers undefined (over)
 toArray done: asks = 4 cards = 3
 ```
 
-Two facts matter. Building the pipeline asked for nothing. And there were *four* asks for three cards. The third answer set `over = true` (46 > 40), and the fourth ask was needed to learn that there were no more. The stop is in the machine, not in the consumer.
+Importan dos hechos. Construir la canalización no pidió nada. Y hubo *cuatro* peticiones para tres tarjetas. La tercera respuesta activó `over = true` (46 > 40), y hizo falta la cuarta petición para saber que ya no había más. La parada está en la máquina, no en el consumidor.
 
-**`javascript-events`: the turns.** A scratch script logged every `emit` (indented by nesting depth) and every hop to a new turn:
+**`javascript-events`: los turnos.** Un script de trabajo registró cada `emit` (con sangría según la profundidad de anidamiento) y cada salto a un turno nuevo:
 
 ```text
 --- event loop turn 1 ---
@@ -183,86 +183,86 @@ emit generate
           emit done
 ```
 
-(The printed rows and the summary appear between the lines in the real output and are omitted here.) `emit start` returned before any card existed. Each card ran in its own turn, four emits deep, and the stack unwound before the next turn. On turn 4 the total was 46, so `total-updated` emitted `finished` directly instead of scheduling, and `finished` committed.
+(Las filas impresas y el resumen aparecen entre las líneas en la salida real y aquí se omiten.) `emit start` regresó antes de que existiera ninguna tarjeta. Cada tarjeta se ejecutó en su propio turno, a cuatro emits de profundidad, y la pila quedó desenrollada antes del turno siguiente. En el turno 4 el total era 46, así que `total-updated` emitió `finished` directamente en vez de programar, y `finished` confirmó la transacción.
 
-**Exactly 40.** With four 10-hour cards: the `for` test `40 <= 40` is true, so a fifth card is drawn. The weird machine has `over = 40 > 40`, false, so it answers again. The events listener evaluates `40 > 40`, false and schedules a fifth `generate`. All three continue.
+**Exactamente 40.** Con cuatro tarjetas de 10 horas, la prueba `for` `40 <= 40` es verdadera, así que se genera una quinta tarjeta. La máquina rara (*weird machine*) tiene `over = 40 > 40`, falso, así que vuelve a responder. El escuchador de eventos del programa de eventos evalúa `40 > 40` (falso) y programa un quinto `generate`. Los tres programas continúan.
 
-## Compare the ordinary and weird designs
+## Compara los diseños ordinarios y los raros
 
-| Dimension | `javascript` | `javascript-weird` | `javascript-events` |
+| Dimensión | `javascript` | `javascript-weird` | `javascript-events` |
 | --- | --- | --- | --- |
-| **Representation** | One statement, with a state object in the initializer | Three closures; no statement-level loop | Listeners registered on one emitter |
-| **Observability** | Open the state object in a debugger | State is *unreachable* by design: you can only call the closure | Log every `emit`: the whole program is its event trace |
-| **Tests** | Structure check: the body must be empty, and the program a single statement | A "closure lab" (`node --test check.mjs`) pins the machine's rules, with `world`-free pure functions | The program takes a `world` object (`rng`, `schedule`, `open`, ...), so a test can inject its own and run the trace |
-| **Debugging** | Step through the header clauses | Step through `next()` calls | A throw travels up through `emit()`; every listener catches it and emits `failed` once |
-| **Portability** | Node 22+ for `node:sqlite` | Also needs iterator helpers (`Iterator.from`, `.map`, `.toArray`) | Only Node's `EventEmitter` semantics (listener order, synchronous `emit`) |
-| **Cost** | One pass | Lazy: a card is made only when asked | A hop per card, and a flat call stack |
+| **Representación** | Una sentencia, con un objeto de estado en el inicializador | Tres clausuras; ningún bucle a nivel de sentencia | Escuchadores de eventos registrados en un solo emisor |
+| **Observabilidad** | Abre el objeto de estado en un depurador | El estado es *inaccesible* por diseño: solo puedes llamar a la clausura | Registra cada `emit`: todo el programa es su traza de eventos |
+| **Pruebas** | Comprobación de estructura: el cuerpo debe estar vacío y el programa debe ser una sola sentencia | Un "laboratorio de clausuras" (`node --test check.mjs`) fija las reglas de la máquina, con funciones puras sin `world` | El programa recibe un objeto `world` (`rng`, `schedule`, `open`, ...), así que una prueba puede inyectar el suyo y ejecutar la traza |
+| **Debugging** | Recorre paso a paso las cláusulas del encabezado | Recorre paso a paso las llamadas a `next()` | Una excepción lanzada sube a través de `emit()`; cada escuchador de eventos la captura y emite `failed` una vez |
+| **Portabilidad** | Node 22 o posterior para `node:sqlite` | También necesita métodos auxiliares de iteradores (`Iterator.from`, `.map`, `.toArray`) | Solo la semántica de `EventEmitter` de Node (orden de los escuchadores de eventos, `emit` síncrono) |
+| **Costo** | Una pasada | Perezoso: una tarjeta se crea solo cuando se pide | Un salto por tarjeta y una pila de llamadas plana |
 
-The three programs separate three questions that most code ties together.
+Los tres programas separan tres preguntas que la mayor parte del código mantiene atadas.
 
-1. What is the next step? The header, `next()` or an event.
-2. Who decides to take it? The loop, the consumer or the loop in the runtime.
-3. Where is the state? An object, a closure or a shared object.
+1. ¿Cuál es el paso siguiente? El encabezado, `next()` o un evento.
+2. ¿Quién decide darlo? El bucle, el consumidor o el bucle del entorno de ejecución.
+3. ¿Dónde está el estado? En un objeto, en una clausura o en un objeto compartido.
 
-A synchronous `emit` calls its listeners directly. The event chain recurses until a scheduling boundary lets those calls return.
+Un `emit` síncrono llama directamente a sus escuchadores de eventos. La cadena de eventos hace recursión hasta que una frontera de planificación deja que esas llamadas regresen.
 
-## What the exercises demonstrate
+## Qué demuestran los ejercicios
 
-| Exercise | Predict first | What the evidence shows |
+| Ejercicio | Predice primero | Qué muestra la evidencia |
 | --- | --- | --- |
-| [B20. JavaScript: read the clauses, move the limit and fail the structure check](../../exercises.md#b20-javascript-read-the-clauses-move-the-limit-and-fail-the-structure-check-verified) | With `SEED=42`, which card crosses 40? Change `<= 40` to `<= 20`: how many cards? | Three cards (12, 17, 17: total 46) and, with `<= 20`, two cards (12 then 29). The condition is evaluated after the iterator added a card. A statement added to the body still runs correctly and the *structure check* fails: the constraint was real. |
-| B20, step 4 | `NOW=2026-12-31` and `NOW=2024-12-30` with `SEED=42`: what week? | `2026-W53` and `2025-W01`. The ISO year can differ from the calendar year at New Year. |
-| [B21. JavaScript, weirder](../../exercises.md#b21-javascript-weirder-move-the-stop-rule-in-a-closure-and-watch-the-demand-verified) | Change `over = total > 40` to `total > 20`. What rows? Does the closure lab pass? | Two cards. The lab fails 7 of 12 tests (the ones that pin the stop rule) and passes the 5 about closures, which do not care about the limit. |
-| B21, step 3-4 | `take(1)` against `take(2)` on the pipeline: how many `drawn` lines? | `built`, then one `drawn` for `take(1)`; two for `take(2)`. The consumer decides how many cards exist. |
-| [B22. JavaScript, event-driven](../../exercises.md#b22-javascript-event-driven-predict-the-trace-then-remove-the-boundary-verified), steps 2-3 | `listener`, `after emit` and `immediate`: in what order? And the trace of three 19-hour cards? | `listener`, `after emit`, `immediate`. `emit()` calls listeners before it returns; `setImmediate()` only asks. In the card trace `emit('start')` returns before any card is made. |
-| B22, step 4 | Replace `later('generate')` with `events.emit('generate')`. What happens to a very long run? | A normal run still works, but the lab fails 2 tests and a long run prints `Maximum call stack size exceeded` and exits 1. The boundary is what keeps the stack flat. |
+| [B20. JavaScript: lee las cláusulas, mueve el límite y haz fallar la comprobación de estructura](../../exercises.md#b20-javascript-read-the-clauses-move-the-limit-and-fail-the-structure-check-verified) | Con `SEED=42`, ¿qué tarjeta hace que el total pase de 40? Cambia `<= 40` por `<= 20`: ¿cuántas tarjetas? | Tres tarjetas (12, 17, 17: total 46) y, con `<= 20`, dos tarjetas (12 y luego 29). La condición se evalúa después de que el iterador añadió una tarjeta. Una sentencia añadida al cuerpo sigue funcionando bien y la *comprobación de estructura* falla: la restricción era real. |
+| B20, paso 4 | `NOW=2026-12-31` y `NOW=2024-12-30` con `SEED=42`: ¿qué semana? | `2026-W53` y `2025-W01`. El año ISO puede diferir del año civil en Año Nuevo. |
+| [B21. JavaScript, más raro](../../exercises.md#b21-javascript-weirder-move-the-stop-rule-in-a-closure-and-watch-the-demand-verified) | Cambia `over = total > 40` por `total > 20`. ¿Qué filas salen? ¿Pasa el laboratorio de clausuras? | Dos tarjetas. El laboratorio falla 7 de 12 pruebas (las que fijan la regla de parada) y pasa las 5 sobre clausuras, a las que no les importa el límite. |
+| B21, pasos 3 y 4 | `take(1)` frente a `take(2)` en la canalización: ¿cuántas líneas `drawn`? | `built`, luego un `drawn` para `take(1)`; dos para `take(2)`. El consumidor decide cuántas tarjetas existen. |
+| [B22. JavaScript, dirigido por eventos](../../exercises.md#b22-javascript-event-driven-predict-the-trace-then-remove-the-boundary-verified), pasos 2 y 3 | `listener`, `after emit` y `immediate`: ¿en qué orden? ¿Y la traza de tres tarjetas de 19 horas? | `listener`, `after emit`, `immediate`. `emit()` llama a los escuchadores de eventos antes de regresar; `setImmediate()` solo pide. En la traza de las tarjetas, `emit('start')` regresa antes de que exista ninguna tarjeta. |
+| B22, paso 4 | Reemplaza `later('generate')` por `events.emit('generate')`. ¿Qué pasa con una ejecución muy larga? | Una ejecución normal sigue funcionando, pero el laboratorio falla 2 pruebas y una ejecución larga imprime `Maximum call stack size exceeded` y sale con 1. La frontera es lo que mantiene plana la pila. |
 
-B22 step 4 is the most instructive failure in this family: the program is *correct* for the sizes you test and breaks at a size you do not. A chain of synchronous `emit` calls is a recursion whose depth grows with the number of cards.
+El paso 4 de B22 es el fallo más instructivo de esta familia. El programa es *correcto* para los tamaños que pruebas y se rompe con uno que no pruebas. Una cadena de llamadas `emit` síncronas es una recursión cuya profundidad crece con el número de tarjetas.
 
-## Failure modes, costs and boundaries
+## Modos de fallo, costos y límites
 
-| Behavior | Label | Why |
+| Comportamiento | Etiqueta | Por qué |
 | --- | --- | --- |
-| A closure keeps its captured variables alive and private | **guaranteed** | Language semantics. |
-| On the dense hours array, the reducer visits every card on each call | **guaranteed** | `Array.prototype.reduce` runs the callback for every present element unless evaluation throws. The plain entry calls it during every condition check. The weird entry folds once after collection. |
-| `emit()` calls listeners synchronously, in registration order, before it returns | **guaranteed** | Documented Node.js behavior (see [`emitter.emit`](https://nodejs.org/api/events.html)). |
-| `emit('error', e)` with no `error` listener throws `e` | **guaranteed** | Documented. The program registers an `error` listener to turn a stray error into `failed`. |
-| `setImmediate` runs its callback after the current code finishes and before timers of a later phase | **guaranteed** | Documented Node.js scheduling. |
-| The Park-Miller closure replays a run for a given `SEED` | **guaranteed** | It is plain arithmetic. `Math.random` cannot be seeded, which is why it is not used. |
-| `node:sqlite` is synchronous, so a row is written when `run()` returns | **implementation-permitted** | A property of Node's built-in module at the tested version. If the API became asynchronous, the `card-saved` guarantee ("nothing downstream sees an unsaved card") would break. |
-| `Iterator.from(...).map(...).toArray()` | **implementation-permitted** | Iterator helpers are recent. They exist in the Node 24 the entries target, not in older runtimes. |
-| A flat stack over about 2000 cards depends on the `setImmediate` boundary | **guaranteed** by design, tested | Removing it fails a test and a long run, as exercise B22 shows. |
+| Una clausura mantiene vivas y privadas las variables que captura | **garantizado** | Semántica del lenguaje. |
+| En el arreglo denso de horas, el reductor visita cada tarjeta en cada llamada | **garantizado** | `Array.prototype.reduce` ejecuta la función de devolución de llamada (*callback*) para cada elemento presente, salvo que la evaluación lance una excepción. La entrada simple la llama en cada comprobación de la condición. La entrada rara pliega una sola vez después de reunir las tarjetas. |
+| `emit()` llama a los escuchadores de eventos de forma síncrona, en el orden de registro, antes de regresar | **garantizado** | Comportamiento documentado de Node.js (consulta [`emitter.emit`](https://nodejs.org/api/events.html)). |
+| `emit('error', e)` sin un escuchador de eventos de `error` lanza `e` | **garantizado** | Documentado. El programa registra un escuchador de eventos de `error` para convertir un error perdido en `failed`. |
+| `setImmediate` ejecuta su función de devolución de llamada cuando termina el código actual y antes de los temporizadores de una fase posterior | **garantizado** | Planificación documentada de Node.js. |
+| La clausura de Park-Miller reproduce una ejecución para un `SEED` dado | **garantizado** | Es aritmética simple. `Math.random` no admite semilla. Por eso no se usa. |
+| `node:sqlite` es síncrono, así que se escribe una fila cuando `run()` regresa | **permitido por la implementación** | Es una propiedad del módulo integrado de Node en la versión probada. Si la API pasara a ser asíncrona, la garantía de `card-saved` ("nada aguas abajo ve una tarjeta sin guardar") se rompería. |
+| `Iterator.from(...).map(...).toArray()` | **permitido por la implementación** | Los métodos auxiliares de iteradores son recientes. Existen en el Node 24 al que apuntan las entradas, no en entornos de ejecución más antiguos. |
+| Una pila plana a lo largo de unas 2000 tarjetas depende de la frontera de `setImmediate` | **garantizado** por diseño y probado | Quitarla hace fallar una prueba y una ejecución larga, como muestra el ejercicio B22. |
 
-No JavaScript behavior here is merely accidentally exploited. The closest is that the `for` header uses the comma operator inside an arrow function because a `for` initializer accepts only one declaration; that is a language rule, but one the code works around rather than uses.
+Ningún comportamiento de JavaScript de esta guía es simplemente un comportamiento aprovechado por accidente. Lo más cercano es que el encabezado `for` usa el operador coma dentro de una función flecha porque un inicializador `for` acepta una sola declaración. Eso es una regla del lenguaje, pero una que el código esquiva en vez de aprovechar.
 
-**Costs to state.**
+**Costos que conviene declarar.**
 
-- **A throw in a scheduled callback has no caller.** It would end the process. The events program wraps every listener so that a throw becomes `failed`, and `failed` removes every listener so that it runs exactly once.
-- **Reentrancy.** A listener that emits can re-enter other listeners. The programs avoid it by having each listener do one thing and emit once.
-- **Hidden order dependence.** Listener order is registration order. Reordering the `on(...)` calls changes the program.
-- **Where the techniques are legitimate.** Closures as private state, lazy iterators for large or infinite sources and an emitter with explicit turn boundaries are ordinary JavaScript. The stunts are the empty-body `for` and the absence of any statement loop.
+- **Una excepción lanzada en una función de devolución de llamada programada no tiene quien la reciba.** Terminaría el proceso. El programa de eventos envuelve cada escuchador de eventos para que una excepción lanzada se convierta en `failed`. Además, `failed` quita todos los escuchadores de eventos para que se ejecute exactamente una vez.
+- **Reentrada.** Un escuchador de eventos que emite puede volver a entrar en otros escuchadores de eventos. Los programas lo evitan haciendo que cada escuchador de eventos haga una sola cosa y emita una sola vez.
+- **Dependencia oculta del orden.** El orden de los escuchadores de eventos es el orden de registro. Reordenar las llamadas a `on(...)` cambia el programa.
+- **Dónde son legítimas las técnicas.** Las clausuras como estado privado, los iteradores perezosos para fuentes grandes o infinitas y un emisor con fronteras de turno explícitas son JavaScript corriente. Las acrobacias son el `for` de cuerpo vacío y la ausencia de cualquier bucle como sentencia.
 
-## Connections across the repository
+## Conexiones a lo largo del repositorio
 
-- **The same question as Haskell and LINQ.** Pull iteration in `javascript-weird` is the JavaScript form of [Haskell](haskell.md)'s lazy list and the deferred pipelines of [C#, LINQ, XAML and ports](csharp-linq-xaml-y-adaptaciones.md). The concept guide [Evaluation, demand and laziness](../conceptos/evaluacion-demanda-y-pereza.md) puts them side by side.
-- **The `for` header as the whole program.** Four other ports (C#, Java, Go and Kotlin) use the same bodiless-`for` shape. See the comparison in the C# guide.
-- **Turn boundaries and reentrancy.** [Events, callbacks and reactive control](../conceptos/eventos-retrollamadas-y-control-reactivo.md) generalizes B22. [XAML and thread affinity](csharp-linq-xaml-y-adaptaciones.md) is a related hazard: *where* a callback runs matters.
-- **Callbacks in other entries.** The PCRE2 callouts in [Regex engines and sed](motores-de-regex-y-sed.md) and the checkpoint actions in [tar](tar.md) are synchronous callbacks too, but the engine calls them, not an event loop.
-- **In the book.** [JavaScript](../../lenguajes/javascript.md), [Iterators and generators](../../informatica/04-evaluacion-y-demanda.md#iterators-and-generators), [Closures and lexical environments](../../informatica/06-estado-mas-alla-de-las-variables.md#closures-and-lexical-environments), [Callbacks](../../informatica/10-eventos-retrollamadas-y-flujo-de-control-reactivo.md#callbacks) and [The event loop and scheduling turns](../../informatica/10-eventos-retrollamadas-y-flujo-de-control-reactivo.md#the-event-loop-and-scheduling-turns).
+- **La misma pregunta que en Haskell y LINQ.** La iteración por demanda (pull) en `javascript-weird` es la versión JavaScript de la lista perezosa de [Haskell](haskell.md). Corresponde también a las canalizaciones diferidas de [C#, LINQ, XAML y adaptaciones](csharp-linq-xaml-y-adaptaciones.md). La guía de concepto [Evaluación, demanda y pereza](../conceptos/evaluacion-demanda-y-pereza.md) las pone lado a lado.
+- **El encabezado `for` como programa completo.** Otras cuatro adaptaciones (C#, Java, Go y Kotlin) usan la misma forma de `for` sin cuerpo. Consulta la comparación en la guía de C#.
+- **Fronteras de turno y reentrada.** [Eventos, funciones de devolución de llamada y control reactivo](../conceptos/eventos-retrollamadas-y-control-reactivo.md) generaliza B22. [XAML y afinidad de hilo](csharp-linq-xaml-y-adaptaciones.md) es un riesgo relacionado: importa *dónde* se ejecuta una función de devolución de llamada.
+- **Funciones de devolución de llamada en otras entradas.** Los *callouts* de PCRE2 de [Motores de expresiones regulares y sed](motores-de-regex-y-sed.md) y las acciones de punto de control de [tar](tar.md) también son funciones de devolución de llamada síncronas. Pero las llama el motor, no un bucle de eventos.
+- **En el libro.** [JavaScript](../../lenguajes/javascript.md), [Iteradores y generadores](../../informatica/04-evaluacion-y-demanda.md#iterators-and-generators), [Clausuras y entornos léxicos](../../informatica/06-estado-mas-alla-de-las-variables.md#closures-and-lexical-environments), [Funciones de devolución de llamada](../../informatica/10-eventos-retrollamadas-y-flujo-de-control-reactivo.md#callbacks) y [El bucle de eventos y los turnos de planificación](../../informatica/10-eventos-retrollamadas-y-flujo-de-control-reactivo.md#the-event-loop-and-scheduling-turns).
 
-## Self-check
+## Autoevaluación
 
-Answer each question in your own words before you read the italic text. Say what evidence would support each answer.
+Responde cada pregunta con tus propias palabras antes de leer el texto en cursiva. Di qué evidencia respaldaría cada respuesta.
 
-1. **Trace.** Hours are 10, 10, 10, 10, 13. For `javascript-weird`, how many times does `toArray` ask the machine, and what does the last ask return? *(Six asks. The fifth card (13 hours, total 53) sets `over`, and the sixth ask returns `undefined`. Five asks produce cards, because exactly 40 does not set `over`.)*
-2. **Explain.** In `javascript-events`, why does `total-updated` call `later('generate')` but call `events.emit('finished')` directly? *(`later` hops to a new turn so the stack unwinds between cards. `finished` ends the chain, so there is no recursion to avoid, and it runs inside the same turn so the commit happens before anything else can intervene.)*
-3. **Transfer.** What would you use in Python or Rust to get the same "nothing is produced until asked" behavior as the iterator pipeline? *(A generator or an iterator adapter chain. Nothing runs until something consumes it, and the consumer decides how many items exist.)*
-4. **Evidence.** A reviewer says, "The events program never nests more than five calls deep." Design a test that could fail. *(Wrap `emit` with a depth counter on a very long run, as in exercise B22, and assert the maximum depth. The negative control is the version with `later('generate')` replaced by a direct `emit`, whose depth grows with the number of cards. The claim is guaranteed by design and tested.)*
+1. **Traza.** Las horas son 10, 10, 10, 10, 13. Para `javascript-weird`, ¿cuántas veces le pide algo a la máquina `toArray` y qué devuelve la última petición? *(Seis peticiones. La quinta tarjeta (13 horas, total 53) activa `over`. La sexta petición devuelve `undefined`. Cinco peticiones producen tarjetas, porque exactamente 40 no activa `over`.)*
+2. **Explica.** En `javascript-events`, ¿por qué `total-updated` llama a `later('generate')` pero llama directamente a `events.emit('finished')`? *(`later` salta a un turno nuevo para que la pila se desenrolle entre tarjetas. `finished` termina la cadena, así que no hay recursión que evitar. Se ejecuta dentro del mismo turno, para que la confirmación de la transacción ocurra antes de que nada pueda intervenir.)*
+3. **Transfiere.** ¿Qué usarías en Python o en Rust para obtener el mismo comportamiento de "no se produce nada hasta que se pide" que da la canalización de iteradores? *(Un generador o una cadena de adaptadores de iteradores. No se ejecuta nada hasta que algo lo consume, y el consumidor decide cuántos elementos existen.)*
+4. **Evidencia.** Una revisora dice: "El programa de eventos nunca anida más de cinco llamadas de profundidad". Diseña una prueba que pueda fallar. *(Envuelve `emit` con un contador de profundidad en una ejecución muy larga, como en el ejercicio B22. Comprueba la profundidad máxima. El control negativo es la versión en la que `later('generate')` se reemplaza por un `emit` directo, cuya profundidad crece con el número de tarjetas. La afirmación describe un comportamiento garantizado por diseño y probado.)*
 
-## Further reading
+## Lecturas adicionales
 
-- [Closure (computer programming)](https://en.wikipedia.org/wiki/Closure_(computer_programming)) (Wikipedia): what a closure captures and why it can serve as private state.
-- [Iterators and generators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_generators) (MDN): the iterator protocol the weird program implements by hand.
-- [Using iterator helpers](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Iterator) (MDN): `Iterator.from`, `map` and `toArray`, and their lazy semantics.
-- [The Node.js event loop](https://nodejs.org/en/learn/asynchronous-work/event-loop-timers-and-nexttick) (Node.js): why `setImmediate` runs on a later turn, from the runtime's own documentation.
-- [Event loop](https://en.wikipedia.org/wiki/Event_loop) (Wikipedia): the general idea, outside Node.
+- [Clausura (informática)](https://en.wikipedia.org/wiki/Closure_(computer_programming)) (Wikipedia): qué captura una clausura y por qué puede servir como estado privado.
+- [Iteradores y generadores](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_generators) (MDN): el protocolo de iteradores que el programa raro implementa a mano.
+- [Uso de los métodos auxiliares de iteradores](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Iterator) (MDN): `Iterator.from`, `map` y `toArray` con su semántica perezosa.
+- [El bucle de eventos de Node.js](https://nodejs.org/en/learn/asynchronous-work/event-loop-timers-and-nexttick) (Node.js): por qué `setImmediate` se ejecuta en un turno posterior, según la propia documentación del entorno de ejecución.
+- [Bucle de eventos](https://en.wikipedia.org/wiki/Event_loop) (Wikipedia): la idea general, fuera de Node.

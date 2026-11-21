@@ -1967,3 +1967,27 @@
 {"segment_id": "s-c00b658d3722-0123", "ts": "2026-11-21T18:57:21Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
 {"segment_id": "s-720bb30b9940-0129", "ts": "2026-11-21T18:57:21Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
 {"segment_id": "s-ffefedf810b4-0134", "ts": "2026-11-21T18:57:21Z", "findings": ["I7: glossary term step must be rendered 'paso'"]}
+{"segment_id": "s-25323143abfa-0005", "ts": "2026-11-21T19:03:57Z", "findings": ["I7: glossary term scope must be rendered 'ámbito'"]}
+{"segment_id": "s-5a7694098743-0021", "ts": "2026-11-21T19:03:57Z", "findings": ["I25: comma before a simple 'y' ('X y X, y X programa el siguiente X'): no comma before a simple o or y"]}
+{"segment_id": "s-48f6e49acf62-0023", "ts": "2026-11-21T19:03:57Z", "findings": ["I7: glossary term build must be rendered 'compilación'", "I25: comma before a simple 'y' ('X y X, y un envoltorio de iterador'): no comma before a simple o or y"]}
+{"segment_id": "s-70d1ed8d0c32-0028", "ts": "2026-11-21T19:03:57Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-9bf220ebeb02-0041", "ts": "2026-11-21T19:03:57Z", "findings": ["I7: glossary term machine must be rendered 'máquina'"]}
+{"segment_id": "s-fb3bb820b4e1-0045", "ts": "2026-11-21T19:03:57Z", "findings": ["I7: glossary term machine must be rendered 'máquina'", "I7: glossary term card must be rendered 'tarjeta'"]}
+{"segment_id": "s-1dd96cbc525e-0049", "ts": "2026-11-21T19:03:57Z", "findings": ["I7: glossary term machine must be rendered 'máquina'"]}
+{"segment_id": "s-a283b0e8237a-0051", "ts": "2026-11-21T19:03:57Z", "findings": ["I7: glossary term value must be rendered 'valor'"]}
+{"segment_id": "s-7a8f5fafdcff-0054", "ts": "2026-11-21T19:03:57Z", "findings": ["I7: glossary term machine must be rendered 'máquina'"]}
+{"segment_id": "s-835efdd1a035-0056", "ts": "2026-11-21T19:03:57Z", "findings": ["I7: glossary term event must be rendered 'evento'"]}
+{"segment_id": "s-afbb30266ebb-0069", "ts": "2026-11-21T19:03:57Z", "findings": ["I7: glossary term card must be rendered 'tarjeta'"]}
+{"segment_id": "s-b56c9b2ecc69-0088", "ts": "2026-11-21T19:03:57Z", "findings": ["I7: glossary term unwind must be rendered 'desenrollado'"]}
+{"segment_id": "s-d2aa3efa1831-0089", "ts": "2026-11-21T19:03:57Z", "findings": ["I25: comma before a simple 'y' ('falso, y programa un quinto X'): no comma before a simple o or y"]}
+{"segment_id": "s-898ad550dc24-0117", "ts": "2026-11-21T19:03:57Z", "findings": ["I25: comma before a simple 'y' ('X no admite semilla, y por eso no se usa'): no comma before a simple o or y"]}
+{"segment_id": "s-87d9e31bff8d-0122", "ts": "2026-11-21T19:03:57Z", "findings": ["I7: glossary term state must be rendered 'estado'"]}
+{"segment_id": "s-59aeaf5b61d7-0123", "ts": "2026-11-21T19:03:57Z", "findings": ["I12: sentence of 33 words (limit 29): El programa de eventos envuelve cada esc..."]}
+{"segment_id": "s-c44c9da004c8-0131", "ts": "2026-11-21T19:03:57Z", "findings": ["I12: sentence of 38 words (limit 29): Los *callouts* de PCRE2 de [Motores de e..."]}
+{"segment_id": "s-e6ab715ce48a-0135", "ts": "2026-11-21T19:03:57Z", "findings": ["I25: comma before a simple 'y' ('activa X, y la sexta petición devuelve X'): no comma before a simple o or y", "I25: comma before a simple 'y' ('como en el ejercicio B22, y comprueba la profundidad máxima'): no comma before a simple o or y"]}
+{"segment_id": "s-fb3916807599-0139", "ts": "2026-11-21T19:03:57Z", "findings": ["I25: comma before a simple 'y' ('X y X, y su semántica perezosa'): no comma before a simple o or y"]}
+{"segment_id": "s-25323143abfa-0005", "ts": "2026-11-21T19:04:43Z", "findings": ["I7: glossary term scope must be rendered 'ámbito'"]}
+{"segment_id": "s-48f6e49acf62-0023", "ts": "2026-11-21T19:04:43Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-70d1ed8d0c32-0028", "ts": "2026-11-21T19:04:43Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-835efdd1a035-0056", "ts": "2026-11-21T19:04:43Z", "findings": ["I7: glossary term event must be rendered 'evento'"]}
+{"segment_id": "s-87d9e31bff8d-0122", "ts": "2026-11-21T19:04:43Z", "findings": ["I7: glossary term state must be rendered 'estado'"]}
