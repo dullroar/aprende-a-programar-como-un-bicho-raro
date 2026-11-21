@@ -1,112 +1,112 @@
-# tar study guide
+# Guía de estudio de tar
 
-## What this guide is for
+## Para qué sirve esta guía
 
-This guide examines two programs that use GNU `tar` as the machine. In [`src/tar-gnu`](../../../src/tar-gnu/README.md), an archive is a serialized program. The `tar --to-command` option processes its members in order. In [`src/tar-gnu-weird`](../../../src/tar-gnu-weird/README.md), the archive size sets the clock. Each checkpoint advances a state machine by one hour. **What gives the archive an effect and what makes it safe to read?**
+Esta guía examina dos programas que usan `tar` de GNU como máquina. En [`src/tar-gnu`](../../../src/tar-gnu/README.md), un archivo es un programa serializado. La opción `tar --to-command` procesa sus miembros en orden. En [`src/tar-gnu-weird`](../../../src/tar-gnu-weird/README.md), el tamaño del archivo marca el reloj. Cada punto de control avanza una hora una máquina de estados. **¿Qué da efecto al archivo y qué lo hace seguro de leer?**
 
-When you finish, you should be able to:
+Al terminar, deberías poder:
 
-1. Explain the difference between *reading* an archive and *running* one, and name which command gives the archive an effect.
-2. Explain why the dispatcher passes no part of a member to a shell, and what the inspector adds.
-3. Trace both programs through the same three cards: members in order for one, checkpoint ticks for the other.
-4. Explain why the weird program's number of ticks is set by the archive's layout and not by its content.
-5. Explain why a failing callback or a short archive stalls the clock instead of failing loudly.
-6. Label each behavior as guaranteed, implementation-permitted or accidentally exploited.
+1. Explicar la diferencia entre *leer* un archivo y *ejecutarlo*, y decir qué comando da efecto al archivo.
+2. Explicar por qué el despachador no pasa ninguna parte de un miembro a un intérprete de comandos (*shell*). Explicar también qué añade el inspector.
+3. Hacer la traza de ambos programas con las mismas tres tarjetas: los miembros en orden en uno, los pulsos de los puntos de control en el otro.
+4. Explicar por qué el número de pulsos del programa raro lo fija la disposición del archivo y no su contenido.
+5. Explicar por qué una función de devolución de llamada (*callback*) que falla, o un archivo corto, detiene el reloj en vez de fallar con ruido.
+6. Etiquetar cada comportamiento como garantizado, permitido por la implementación o aprovechado por accidente.
 
-**Scope limits.** You need to know that tar writes a stream of 512-byte blocks and that GNU tar has options for callbacks. The guide does not teach the ustar header format, the SQL or the awk simulator that tests the weird entry. It uses GNU tar 1.34 or 1.35. BSD and macOS tar have no `--to-command`. The book's page is [tar](../../lenguajes/tar.md). For ideas, see [Serialization, deserialization and object pickling](../../informatica/06-estado-mas-alla-de-las-variables.md#serialization-deserialization-and-object-pickling), [Capability and authority](../../informatica/01-lectura-de-un-programa-adversarial.md#capability-and-authority) and [Logical clocks and event ordering](../../informatica/03-flujo-de-control-y-continuaciones.md#logical-clocks-and-event-ordering).
+**Límites del alcance.** Necesitas saber que tar escribe un flujo de bloques de 512 bytes y que GNU tar tiene opciones para funciones de devolución de llamada. La guía no enseña el formato de cabecera ustar, el SQL ni el simulador en awk que prueba la entrada rara. Usa GNU tar 1.34 o 1.35. BSD tar y macOS tar no tienen `--to-command`. La página del libro es [tar](../../lenguajes/tar.md). Para ver las ideas, consulta [Serialización, deserialización y pickling de objetos](../../informatica/06-estado-mas-alla-de-las-variables.md#serialization-deserialization-and-object-pickling), [Capacidad y autoridad](../../informatica/01-lectura-de-un-programa-adversarial.md#capability-and-authority) y [Relojes lógicos y orden de los eventos](../../informatica/03-flujo-de-control-y-continuaciones.md#logical-clocks-and-event-ordering).
 
-## Before you begin
+## Antes de empezar
 
-**Safety model.** Every entry writes fictional **DEMO ONLY** data to a scratch SQLite file. An archive that carries a program is exactly what you should not run unread, and `tar-gnu` is built around that rule: *reading* and *running* are separate commands, and running needs an explicit flag. Read the source before you run it, and run it in the sandbox first:
+**Modelo de seguridad.** Cada entrada escribe datos ficticios de **DEMO ONLY** en un archivo SQLite desechable. Un archivo que lleva un programa es justo lo que no debes ejecutar sin leer, y `tar-gnu` se construye en torno a esa regla. *Leer* y *ejecutar* son comandos distintos. Ejecutar exige una bandera explícita. Lee el código fuente antes de ejecutarlo, y ejecútalo primero en el entorno aislado (*sandbox*):
 
 ```bash
 sandbox/container/run-image.sh src/tar-gnu
 sandbox/container/run-image.sh src/tar-gnu-weird
 ```
 
-Edit only copies ([Running things safely](../../exercises.md#running-things-safely)). You can write an archive with chosen hours: `sh build-archive.sh --seed 7 --hours "15 19 12 10 10" program.tar`. The weird entry takes `--seed N`; seed 1105 gives hours 15, 19, 12.
+Edita solo copias ([Ejecutar cosas de forma segura](../../exercises.md#running-things-safely)). Puedes escribir un archivo con las horas que elijas: `sh build-archive.sh --seed 7 --hours "15 19 12 10 10" program.tar`. La entrada rara acepta `--seed N`; la semilla 1105 da las horas 15, 19, 12.
 
-**Prediction rule.** Before each run, write down which members will be read, which will run and how many ticks the clock will receive.
+**Regla de predicción.** Antes de cada ejecución, anota qué miembros se leerán, cuáles se ejecutarán y cuántos pulsos recibirá el reloj.
 
-**Vocabulary.**
+**Vocabulario.**
 
-| Term | Meaning here |
+| Término | Significado aquí |
 | --- | --- |
-| Member | One file in an archive. Here a member is one *instruction*. |
-| `--to-command` | A GNU tar option that sends each member's contents to a command instead of writing a file. |
-| Record | The unit tar writes at a time. With `-b 1` it is 512 bytes. |
-| Checkpoint | A callback tar can run every N records, meant to show progress. |
-| Dispatcher | The one program that gives a member name its meaning. |
+| Miembro | Un solo archivo guardado dentro del archivo tar. Aquí un miembro es una *instrucción*. |
+| `--to-command` | Una opción de GNU tar que envía el contenido de cada miembro a un comando en lugar de escribir un archivo. |
+| Registro | La unidad que tar escribe cada vez. Con `-b 1` son 512 bytes. |
+| Punto de control | Una función de devolución de llamada que tar puede ejecutar cada N registros, pensada para mostrar el progreso. |
+| Despachador | El único programa que da sentido al nombre de un miembro. |
 
-## The shared challenge
+## El reto compartido
 
-The [challenge specification](../../introduccion.md#what-the-challenge-does) calls for cards with a category and 10 to 19 whole hours. Categories cycle through Meetings, Coding, Debugging and Learning. Add each card's hours to the running total. Stop when the total passes 40. Keep the **first card that takes the total over 40**. A total of exactly 40 continues. Four 10-hour cards need a fifth card, in the Meetings category. Conforming runs finish with 3 to 5 cards and a total of 41 to 59 hours.
+La [especificación del reto](../../introduccion.md#what-the-challenge-does) pide tarjetas con una categoría y de 10 a 19 horas enteras. Las categorías se repiten en ciclo: `Meetings`, `Coding`, `Debugging` y `Learning`. Suma las horas de cada tarjeta al total acumulado. Detente cuando el total pasa de 40. Conserva la **primera tarjeta con la que el total pasa de 40**. Un total de exactamente 40 continúa. Cuatro tarjetas de 10 horas necesitan una quinta tarjeta, de la categoría `Meetings`. Las ejecuciones conformes tienen de 3 a 5 tarjetas y un total de 41 a 59 horas.
 
-Both tar entries report from SQLite. The archive program dispatches member operations, while the checkpoint program commits each tick. In `tar-gnu`, the archive has five card slots (Meetings, Coding, Debugging, Learning, Meetings), each followed by a `stop-over` member that carries `limit=40` and means "halt if the total is *over* 40". Exactly 40 is not over 40, so the next slot runs. In `tar-gnu-weird`, a card is closed at the tick whose number equals the running total, and `done` is set when `total > 40`. A run needs between 41 and 59 ticks.
+Las dos entradas de tar informan desde SQLite. El programa del archivo despacha operaciones de miembros, y el programa de puntos de control confirma cada pulso. En `tar-gnu`, el archivo tiene cinco espacios para tarjetas (Meetings, Coding, Debugging, Learning, Meetings). Cada uno va seguido de un miembro `stop-over` que lleva `limit=40` y significa "detente si el total *pasa de* 40". Exactamente 40 no pasa de 40, así que se ejecuta el espacio siguiente. En `tar-gnu-weird`, una tarjeta se cierra en el pulso cuyo número es igual al total acumulado, y `done` se activa cuando `total > 40`. Una ejecución necesita entre 41 y 59 pulsos.
 
-## The machine to identify
+## La máquina que hay que identificar
 
-**What repeats.** In `tar-gnu`, tar: it walks the members in archive order and calls the dispatcher once per member (`tar --to-command`, [interpret.sh](../../../src/tar-gnu/interpret.sh)). In `tar-gnu-weird`, tar again, but through its *checkpoints*: one callback per 512-byte record written, using one `tar` command ([README](../../../src/tar-gnu-weird/README.md#el-reloj)).
+**Qué se repite.** En `tar-gnu`, tar recorre los miembros en el orden del archivo y llama al despachador una vez por miembro (`tar --to-command`, [interpret.sh](../../../src/tar-gnu/interpret.sh)). En `tar-gnu-weird`, es tar otra vez. Actúa mediante sus *puntos de control*: una función de devolución de llamada por cada registro de 512 bytes escrito, con un solo comando `tar` ([README](../../../src/tar-gnu-weird/README.md#el-reloj)).
 
-**Where state lives.** In `tar-gnu`, in the archive itself (the instructions, the card hours, the limit) and in SQLite (the running total and a `halted` flag in the `runs` row, plus a trace table). In `tar-gnu-weird`, in *one row* of a table called `fsm`: the generator seed, the card number, hours worked, the target, the total and a `done` flag.
+**Dónde vive el estado.** En `tar-gnu`, vive en el propio archivo (las instrucciones, las horas de las tarjetas, el límite). También vive en SQLite: el total acumulado y una bandera `halted` en la fila `runs`, más una tabla de traza. En `tar-gnu-weird`, vive en *una fila* de una tabla llamada `fsm`. Guarda la semilla del generador, el número de tarjeta, las horas trabajadas, la meta, el total y una bandera `done`.
 
-**What advances the next step.** In `tar-gnu`, the next member in the archive. In `tar-gnu-weird`, the next checkpoint. Nothing else moves it: if tar wrote no records, no hours would pass.
+**Qué hace avanzar el paso siguiente.** En `tar-gnu`, el miembro siguiente del archivo. En `tar-gnu-weird`, el punto de control siguiente. Nada más lo mueve: si tar no escribiera registros, no pasarían horas.
 
-**What stops it.** In `tar-gnu`, a `stop-over` member, which sets `halted` when the total exceeds its limit. From then on the later members are traced as `ignored: halted`. In `tar-gnu-weird`, the `done` flag, set by the transition that closes the crossing card. tar does *not* stop: the remaining ticks only count as idle.
+**Qué lo detiene.** En `tar-gnu`, un miembro `stop-over`, que activa `halted` cuando el total pasa de su límite. Desde ese punto, la traza anota los miembros posteriores como `ignored: halted`. En `tar-gnu-weird`, la bandera `done`, que activa la transición que cierra la tarjeta que cruza el tope. tar *no* se detiene: los pulsos restantes solo cuentan como inactivos.
 
-**What commits.** In `tar-gnu`, the dispatcher runs one SQL statement per member, and `show` prints the rows. In `tar-gnu-weird`, each tick is one SQLite transaction; the launcher reads and prints the cards after tar finishes. In both, the operator, not the archive, decides to run: the archive carries no authority.
+**Qué confirma.** En `tar-gnu`, el despachador ejecuta una sentencia SQL por miembro, y `show` imprime las filas. En `tar-gnu-weird`, cada pulso es una transacción de SQLite; el lanzador lee e imprime las tarjetas cuando tar termina. En ambos, quien decide ejecutar es el operador, no el archivo: el archivo no lleva ninguna autoridad.
 
 <!-- diagram-source: src/tar-gnu/README.md#program-flow -->
 
 ```mermaid
 sequenceDiagram
-    accTitle: tar-gnu: the archive is the program and a dispatcher gives its members meaning
-    accDescr: A sequence diagram. The interpreter first asks the inspector to vet the whole archive, which reads it and runs nothing. Then it starts tar with the to-command option. For each member, in archive order, tar sends the member name and body to the dispatcher. The dispatcher checks the name and the body against strict patterns, runs exactly one SQL statement for the member, and writes a row to the trace table. A stop-over member marks the run as halted when the total is over the limit, and the later members are traced as ignored. The show member prints the rows.
+    accTitle: tar-gnu: el archivo es el programa y un despachador da sentido a sus miembros
+    accDescr: Diagrama de secuencia. Primero, el intérprete pide al inspector que valide todo el archivo. El inspector lo lee sin ejecutar nada. Después, el intérprete inicia el comando tar con la opción to-command. Por cada miembro, tar envía el nombre y el cuerpo al despachador en el orden del archivo. El despachador compara el nombre y el cuerpo con patrones estrictos. Ejecuta exactamente una sentencia SQL por miembro y escribe una fila en la tabla de traza. Un miembro stop-over marca la ejecución como detenida cuando el total pasa del límite. La traza marca como ignorados los miembros posteriores. El miembro show imprime las filas.
     participant I as interpret.sh
     participant S as inspect.sh
     participant T as tar
     participant D as dispatch.sh
     participant Q as SQLite
-    I->>S: vet every member of the archive
-    S-->>I: valid, and nothing was run
-    I->>T: tar --to-command=dispatch.sh
-    loop each member, in archive order
-        T->>D: member name and body
-        D->>D: check name and body against strict patterns
-        D->>Q: one SQL statement, and a trace row
+    I->>S: Valida cada miembro del archivo
+    S-->>I: Válido, no se ejecutó nada
+    I->>T: Comando tar --to-command=dispatch.sh
+    loop Cada miembro, en el orden del archivo
+        T->>D: Nombre y cuerpo del miembro
+        D->>D: Comprueba nombre y cuerpo con patrones estrictos
+        D->>Q: Una sentencia SQL y una fila de traza
     end
-    Note over D,Q: stop-over halts the run when the total is over its limit, and later members are traced as ignored
-    D->>Q: show prints the rows
+    Note over D,Q: stop-over detiene la ejecución si el total pasa del límite. La traza marca el resto como ignorado
+    D->>Q: show imprime las filas
 ```
 
-The first diagram shows the order of members as the order of execution, with a passive inspector in front.
+El primer diagrama muestra el orden de los miembros como orden de ejecución, con un inspector pasivo delante.
 
 <!-- diagram-source: src/tar-gnu-weird/README.md#program-flow -->
 
 ```mermaid
 sequenceDiagram
-    accTitle: tar-gnu-weird: tar's checkpoints are the clock of a state machine
-    accDescr: A sequence diagram. The launcher runs one tar command that writes an archive with a checkpoint every 512-byte record. For each record that tar writes, tar runs tick.sh with the record count. The script runs one SQL transaction on a single row of state. If the run is done, the tick only counts as idle. Otherwise it works one hour, writes the card when the hours reach the target, and closes the card, which sets done when the total is over 40. The exit status is ignored, and tar goes on writing. When the archive is finished, the launcher reads the cards and prints them.
+    accTitle: tar-gnu-weird: los puntos de control de tar son el reloj de una máquina de estados
+    accDescr: Diagrama de secuencia. El lanzador ejecuta un comando tar que escribe un archivo con un punto de control por cada registro de 512 bytes. Por cada registro que escribe, tar ejecuta tick.sh con el número de registros. El script ejecuta una transacción SQL sobre una sola fila de estado. Si la ejecución terminó, el pulso solo se cuenta como inactivo. Si no, trabaja una hora, escribe la tarjeta al completar sus horas y la cierra. Al cerrarla, activa done si el total pasa de 40. tar ignora el estado de salida y sigue escribiendo. Al terminar el archivo, el lanzador lee las tarjetas y las imprime.
     participant R as run-clock.sh
     participant T as tar
     participant K as tick.sh
-    participant Q as SQLite fsm row
-    R->>T: one tar command with --checkpoint=1 and an exec action
-    loop each 512-byte record that tar writes
-        T->>K: run tick.sh with TAR_CHECKPOINT
-        K->>Q: tick.sql: one transaction
-        Note over Q: if done, count an idle tick. Else work one hour, write the card at the target, close it and set done when the total is over 40
-        K-->>T: exit status, which tar ignores
+    participant Q as Fila fsm en SQLite
+    R->>T: Un comando tar con --checkpoint=1 y una acción exec
+    loop Cada registro de 512 bytes que escribe tar
+        T->>K: Ejecuta tick.sh con TAR_CHECKPOINT
+        K->>Q: tick.sql: una transacción
+        Note over Q: Si done está activo, cuenta un pulso inactivo. Si no, trabaja una hora. Al completar las horas, escribe y cierra la tarjeta. Activa done si el total pasa de 40
+        K-->>T: Estado de salida que tar ignora
     end
-    T-->>R: the archive is finished: the clock ran out
-    R->>Q: read the cards and print them
+    T-->>R: Fin del archivo: se agotó el reloj
+    R->>Q: Lee e imprime las tarjetas
 ```
 
-The second shows a callback made by tar for each record. The program does not call tar's loop. tar calls the program.
+El segundo muestra una función de devolución de llamada que tar invoca por cada registro. El programa no llama al bucle de tar. tar llama al programa.
 
-## Trace one run
+## Traza una ejecución
 
-**`tar-gnu`: the members, in order.** A scratch copy built an archive with `--hours "15 19 12 10 10"`, listed it with plain `tar -tvf`, read it with the inspector and ran it with `interpret.sh --execute`. The inspector printed each member decoded:
+**`tar-gnu`: los miembros, en orden.** Una copia desechable construyó un archivo con `--hours "15 19 12 10 10"`, lo listó con `tar -tvf` a secas, lo leyó con el inspector y lo ejecutó con `interpret.sh --execute`. El inspector imprimió cada miembro decodificado:
 
 ```text
 seq  member         decoded
@@ -125,107 +125,107 @@ seq  member         decoded
 # 12 member(s); 0 the interpreter would refuse
 ```
 
-and the run printed `Meetings 15 15`, `Coding 19 34`, `Debugging 12 46`, then `# committed total=46 entries=3 DEMO ONLY`.
+y la ejecución imprimió `Meetings 15 15`, `Coding 19 34`, `Debugging 12 46` y luego `# committed total=46 entries=3 DEMO ONLY`.
 
-| Member | Meaning | Total after | Halted? |
+| Miembro | Significado | Total después | ¿Detenido? |
 | --- | --- | ---: | --- |
-| `000.begin` | start a run | 0 | no |
+| `000.begin` | inicia una ejecución | 0 | no |
 | `010.card` | Meetings, 15 | 15 | no |
-| `011.stop-over` | halt if total > 40 | 15 | no |
+| `011.stop-over` | detiene si el total > 40 | 15 | no |
 | `020.card` | Coding, 19 | 34 | no |
-| `021.stop-over` | halt if total > 40 | 34 | no |
+| `021.stop-over` | detiene si el total > 40 | 34 | no |
 | `030.card` | Debugging, 12 | 46 | no |
-| `031.stop-over` | halt if total > 40 | 46 | **yes** |
-| `040.card` ... `051.stop-over` | traced as `ignored: halted` | 46 | yes |
-| `990.show` | print the rows | 46 | yes |
+| `031.stop-over` | detiene si el total > 40 | 46 | **sí** |
+| `040.card` ... `051.stop-over` | se anotan como `ignored: halted` | 46 | sí |
+| `990.show` | imprime las filas | 46 | sí |
 
-The members after the halt are still *read* by tar and handed to the dispatcher, which records them as ignored. A halted program does not stop tar. It stops the dispatcher from acting.
+tar sigue *leyendo* los miembros posteriores a la detención y se los entrega al despachador, que los anota como ignorados. Un programa detenido no detiene a tar. Detiene al despachador: ya no actúa.
 
-**`tar-gnu-weird`: the ticks.** With `--seed 1105` the program printed `Meetings 15 15`, `Coding 19 34`, `Debugging 12 46`, and the closing line `# clock: last tick 64, idle ticks after the stop 18, tape 32768 bytes`. The default layout is 64 records, so there are 64 ticks.
+**`tar-gnu-weird`: los pulsos.** Con `--seed 1105` el programa imprimió `Meetings 15 15`, `Coding 19 34`, `Debugging 12 46` y la línea final `# clock: last tick 64, idle ticks after the stop 18, tape 32768 bytes`. La disposición predeterminada es de 64 registros, así que hay 64 pulsos.
 
-| Ticks | What the machine does | State |
+| Pulsos | Qué hace la máquina | Estado |
 | --- | --- | --- |
-| 1 to 15 | works one hour per tick on card 1 (Meetings), target 15 | worked rises to 15 |
-| 15 | worked equals target: writes card 1, closes it, draws the next length (19) | total 15, done no |
-| 16 to 34 | works card 2 (Coding) | worked rises to 19 |
-| 34 | writes card 2 | total 34 |
-| 35 to 46 | works card 3 (Debugging), target 12 | worked rises to 12 |
-| 46 | writes card 3; the total 46 is over 40, so `done` is set | total 46, **done** |
-| 47 to 64 | each tick only increments `idle` | 18 idle ticks |
+| de 1 a 15 | trabaja una hora por pulso en la tarjeta 1 (Meetings), meta 15 | las horas trabajadas suben a 15 |
+| 15 | las horas trabajadas igualan la meta: escribe la tarjeta 1, la cierra y sortea la duración siguiente (19) | total 15, done no |
+| de 16 a 34 | trabaja la tarjeta 2 (Coding) | las horas trabajadas suben a 19 |
+| 34 | escribe la tarjeta 2 | total 34 |
+| de 35 a 46 | trabaja la tarjeta 3 (Debugging), meta 12 | las horas trabajadas suben a 12 |
+| 46 | escribe la tarjeta 3; el total 46 pasa de 40, así que se activa `done` | total 46, **done** |
+| de 47 a 64 | cada pulso solo incrementa `idle` | 18 pulsos inactivos |
 
-Each card is closed at the tick whose number is its running total: 15, 34, 46. The stop rule runs *after* the card is written, so the crossing card is kept. 64 minus 46 is the 18 idle ticks.
+Cada tarjeta se cierra en el pulso cuyo número es su total acumulado: 15, 34, 46. La regla de parada se ejecuta *después* de escribir la tarjeta, así que se conserva la tarjeta que cruza el tope. 64 menos 46 son los 18 pulsos inactivos.
 
-**Exactly 40.** In `tar-gnu`, four cards of 10 reach 40, `stop-over` does not halt and the fifth slot (Meetings again) runs. In `tar-gnu-weird`, card 4 closes at tick 40 and `done` stays unset (40 is not over 40), so card 5 starts and closes at a tick of 50 or more, which the default 64 ticks cover.
+**Exactamente 40.** En `tar-gnu`, cuatro tarjetas de 10 llegan a 40, `stop-over` no detiene la ejecución y se ejecuta el quinto espacio (otra vez Meetings). En `tar-gnu-weird`, la tarjeta 4 se cierra en el pulso 40 y `done` sigue sin activarse (40 no pasa de 40). Así, la tarjeta 5 empieza y se cierra en un pulso de 50 o más, que los 64 pulsos predeterminados cubren.
 
-## Compare the ordinary and weird designs
+## Compara los diseños ordinarios y los raros
 
-The two entries are an ordinary use and a stunt of the same tool, and they use *different* parts of tar.
+Las dos entradas son un uso ordinario y una acrobacia de la misma herramienta, y usan partes *distintas* de tar.
 
-| Dimension | `tar-gnu` | `tar-gnu-weird` |
+| Dimensión | `tar-gnu` | `tar-gnu-weird` |
 | --- | --- | --- |
-| **Representation** | The program is the archive's contents: member names are opcodes, bodies are operands. | The program is `tick.sql`; the archive is a stream of zeros whose size is the clock. |
-| **Observability** | `tar -tvf` lists the program. `inspect.sh` decodes it without running anything. | The state is one SQLite row. `check.sh` has an awk simulation that predicts it. |
-| **Tests** | The inspector and a fixed `--hours` list make the run deterministic. | The test *predicts* the cards for 65 combinations of layouts, and compares. |
-| **Debugging** | Read the trace table: `ok` or `ignored: halted` for each member. | A failed tick leaves tar running and the machine unmoved: the run ends with `the clock ran out` and exit 3. |
-| **Portability** | GNU tar only: `--to-command` does not exist in BSD or macOS tar. | GNU tar only, and the number of records a command writes was *measured* on 1.34 and 1.35. |
-| **Cost** | One shell process per member. | One `sqlite3` start per tick: a few tenths of a second for 64 ticks. |
+| **Representación** | El programa es el contenido del archivo: los nombres de los miembros son códigos de operación y los cuerpos son operandos. | El programa es `tick.sql`; el archivo es un flujo de ceros cuyo tamaño es el reloj. |
+| **Observabilidad** | `tar -tvf` lista el programa. `inspect.sh` lo decodifica sin ejecutar nada. | El estado es una fila de SQLite. `check.sh` tiene una simulación en awk que lo predice. |
+| **Pruebas** | El inspector y una lista fija de `--hours` hacen determinista la ejecución. | La prueba *predice* las tarjetas para 65 combinaciones de disposiciones y las compara. |
+| **Debugging** | Lee la tabla de traza: `ok` o `ignored: halted` para cada miembro. | Un pulso que falla deja a tar ejecutándose y a la máquina sin moverse: la ejecución termina con `the clock ran out` y estado de salida 3. |
+| **Portabilidad** | Solo GNU tar: `--to-command` no existe en BSD tar ni en macOS tar. | Solo GNU tar, y el número de registros que escribe un comando se *midió* en las versiones 1.34 y 1.35. |
+| **Costo** | Un proceso del intérprete de comandos por miembro. | Un arranque de `sqlite3` por pulso: unas décimas de segundo para 64 pulsos. |
 
-The first is about what a layout **means**. The second is about **when** things happen. In the first, tar is a parser that happens to call your code. In the second, tar is an event source: a program written as a callback, with no loop of its own.
+La primera trata de lo que **significa** una disposición. La segunda trata de **cuándo** ocurren las cosas. En la primera, tar es un analizador sintáctico que además llama a tu código. En la segunda, tar es una fuente de eventos: un programa escrito como función de devolución de llamada, sin bucle propio.
 
-## What the exercises demonstrate
+## Qué demuestran los ejercicios
 
-| Exercise | Predict first | What the evidence shows |
+| Ejercicio | Predice primero | Qué muestra la evidencia |
 | --- | --- | --- |
-| [B16. tar: read the program, then run it](../../exercises.md#b16-tar-read-the-program-then-run-it-verified), step 1 | `--hours "12 12 12 12 12"`: how many cards run, and which slot is read and ignored? | Four cards (12, 24, 36, 48), and the fifth slot is read and ignored. |
-| B16, step 2 | Change `limit=40` in `021.stop-over` to `limit=20` and pack it again in the same order. | Two cards (12, 24). The limit is in the archive, so editing a member changed the stop rule, and `dispatch.sh` did not change. The trace shows `ok` then `ignored: halted`. |
-| B16, step 3 | Add a member `025.exec` that is not in the instruction set. | The inspector prints `REFUSE (unknown record type)` and exits 4, `interpret.sh` runs nothing and no `pwned` file appears. Plain `tar -xf` would not create it either: a member name is not a command. |
-| [B17. tar, weirder: predict the clock](../../exercises.md#b17-tar-weirder-predict-the-clock-verified), step 1 | `--seed 42 --ticks 45`, then `46`. | With 45 ticks the third card is not finished: two cards, `the clock ran out` and exit 3. With 46, three cards and exit 0. |
-| B17, steps 2-3 | `--interval 2` with 92 and 91 ticks; `--blocking 4`. | 92 records give 46 ticks and finish. 91 give 45 and stall. `-b 4` with 260 blocks gives 65 records and 65 ticks, so 19 idle. |
-| B17, step 4 | What is in the tape? | Almost all zeros, plus one 512-byte header. The payload does not matter. Its *size* is the clock. |
+| [B16. tar: lee el programa y luego ejecútalo](../../exercises.md#b16-tar-read-the-program-then-run-it-verified), paso 1 | `--hours "12 12 12 12 12"`: ¿cuántas tarjetas se ejecutan y qué espacio se lee y se ignora? | Cuatro tarjetas (12, 24, 36, 48), y el quinto espacio se lee y se ignora. |
+| B16, paso 2 | Cambia `limit=40` en `021.stop-over` a `limit=20` y empaquétalo otra vez en el mismo orden. | Dos tarjetas (12, 24). El límite está en el archivo, así que editar un miembro cambió la regla de parada, y `dispatch.sh` no cambió. La traza muestra `ok` y luego `ignored: halted`. |
+| B16, paso 3 | Añade un miembro `025.exec` que no está en el conjunto de instrucciones. | El inspector imprime `REFUSE (unknown record type)` y sale con 4, `interpret.sh` no ejecuta nada y no aparece ningún archivo `pwned`. `tar -xf` a secas tampoco lo crearía: el nombre de un miembro no es un comando. |
+| [B17. tar, más raro: predice el reloj](../../exercises.md#b17-tar-weirder-predict-the-clock-verified), paso 1 | `--seed 42 --ticks 45` y después `46`. | Con 45 pulsos la tercera tarjeta no termina: dos tarjetas, `the clock ran out` y salida 3. Con 46, tres tarjetas y salida 0. |
+| B17, pasos 2 y 3 | `--interval 2` con 92 y 91 pulsos; `--blocking 4`. | 92 registros dan 46 pulsos y terminan. 91 dan 45 y se atascan. `-b 4` con 260 bloques da 65 registros y 65 pulsos, así que 19 son inactivos. |
+| B17, paso 4 | ¿Qué hay en la cinta? | Casi todo ceros, más una cabecera de 512 bytes. La carga útil no importa. Su *tamaño* es el reloj. |
 
-The B16 one-line answer is the lesson: the *inspector* parsed the program, the *interpreter* ran it and the trust boundary was the operator's decision to use `--execute`, not anything in the archive.
+La respuesta de una línea de B16 es la lección. El *inspector* analizó el programa y el *intérprete* lo ejecutó. La frontera de confianza fue la decisión del operador de usar `--execute`, no algo del archivo.
 
-## Failure modes, costs and boundaries
+## Modos de fallo, costos y límites
 
-| Behavior | Label | Why |
+| Comportamiento | Etiqueta | Por qué |
 | --- | --- | --- |
-| `tar --to-command` sends each member to a command, in archive order | **implementation-permitted** | A documented GNU tar feature, absent in POSIX tar and BSD tar. |
-| Plain `tar -xf` writes files and does not run their contents | **guaranteed** | An archive is data. Only the command the operator attaches gives members an effect. |
-| `--checkpoint=N` and `--checkpoint-action=exec=` with `TAR_CHECKPOINT` | **implementation-permitted** | Documented GNU tar features. A checkpoint counts *records*. |
-| How many records a command writes for a given set of members | **implementation-permitted** | Measured on tar 1.34 and 1.35, with identical numbers, but worked out from observation. |
-| Creating an archive of 21 blocks gives 21 ticks, but *listing* it gives 10 | **accidentally exploited** knowledge | The mode changes the count because tar skips data it need not read. Nobody promises it. The entry uses only creation, the simplest rule. |
-| The callback's exit status is ignored | **accidentally exploited** | A command that exits 7 leaves tar's own status at 0 on every release tried. The entry does not rely on it: it makes extra ticks harmless and a failed tick merely idle. |
-| tar keeps writing after the stop rule | **implementation-permitted** | tar cannot be told to stop, so the machine has a `done` flag. |
-| Reading an archive with the inspector runs nothing | **guaranteed** by design, tested | `inspect.sh` parses only. `check.sh` verifies refusals. |
+| `tar --to-command` envía cada miembro a un comando, en el orden del archivo | **permitido por la implementación** | Una función documentada de GNU tar, ausente en tar POSIX y en BSD tar. |
+| `tar -xf` a secas escribe archivos y no ejecuta su contenido | **garantizado** | Un archivo son datos. Solo el comando que añade el operador da efecto a los miembros. |
+| `--checkpoint=N` y `--checkpoint-action=exec=` con `TAR_CHECKPOINT` | **permitido por la implementación** | Funciones documentadas de GNU tar. Un punto de control cuenta *registros*. |
+| Cuántos registros escribe un comando para un conjunto dado de miembros | **permitido por la implementación** | Medido en tar 1.34 y 1.35, con números idénticos, pero deducido de la observación. |
+| Crear un archivo de 21 bloques da 21 pulsos, pero *listarlo* da 10 | **aprovechado por accidente** (conocimiento) | El modo cambia la cuenta porque tar omite los datos que no necesita leer. Nadie lo promete. La entrada solo usa la creación, la regla más simple. |
+| El estado de salida de la función de devolución de llamada se ignora | **aprovechado por accidente** | Un comando que termina con 7 deja el estado de tar en 0 en todas las versiones probadas. La entrada no depende de eso: hace inofensivos los pulsos extra y hace que un pulso fallido sea solo inactivo. |
+| tar sigue escribiendo después de la regla de parada | **permitido por la implementación** | No se puede ordenar a tar que se detenga, así que la máquina tiene una bandera `done`. |
+| Leer un archivo con el inspector no ejecuta nada | **garantizado** por diseño, y probado | `inspect.sh` solo analiza. `check.sh` verifica los rechazos. |
 
-**Costs to state.**
+**Costos que declarar.**
 
-- **The authority is in the command, not the data.** Every unsafe thing here would be a *decision by the operator*: choosing `--to-command`, choosing `--execute`. See [Capability and authority](../../informatica/01-lectura-de-un-programa-adversarial.md#capability-and-authority).
-- **The dispatcher is a trust boundary.** Names and bodies are checked against strict patterns before any SQL runs, and no part of a member reaches a shell. A relaxed pattern would turn the archive into an injection vector.
-- **A clock without a stop.** The weird machine cannot stop tar, so a layout that is too short stalls the run mid-card, and one that is too long idles. The run needs 41 to 59 ticks, and the default is 64.
-- **Scheduling with a progress indicator.** Checkpoints were designed to show progress. This is a hack that depends on counting records.
-- **Where this is legitimate.** Serializing work as an archive, and running it with an explicit, reviewable command, is how many build and install tools work. A scheduler made from checkpoints is a stunt.
+- **La autoridad está en el comando, no en los datos.** Todo lo inseguro aquí sería una *decisión del operador*: elegir `--to-command`, elegir `--execute`. Consulta [Capacidad y autoridad](../../informatica/01-lectura-de-un-programa-adversarial.md#capability-and-authority).
+- **El despachador es una frontera de confianza.** Los nombres y los cuerpos se comparan con patrones estrictos antes de que se ejecute cualquier SQL, y ninguna parte de un miembro llega a un intérprete de comandos. Un patrón relajado convertiría el archivo en un vector de inyección.
+- **Un reloj sin parada.** La máquina rara no puede detener a tar. Por eso una disposición demasiado corta atasca la ejecución a media tarjeta, y una demasiado larga queda inactiva. La ejecución necesita de 41 a 59 pulsos, y el valor predeterminado es 64.
+- **Planificar con un indicador de progreso.** Los puntos de control se diseñaron para mostrar el progreso. Esto es un truco que depende de contar registros.
+- **Dónde esto es legítimo.** Serializar trabajo como archivo y ejecutarlo con un comando explícito y revisable es como funcionan muchas herramientas de compilación e instalación. Un planificador hecho con puntos de control es una acrobacia.
 
-## Connections across the repository
+## Conexiones a lo largo del repositorio
 
-- **Document order as the program.** `tar-gnu` is the repository's example of data that is read in order and given meaning by the reader. [XAML in the C# guide](csharp-linq-xaml-y-adaptaciones.md) is the same worry in a markup file: a parser that runs what it parses. The concept guide [Reading adversarial programs](../conceptos/lectura-de-programas-adversariales.md) uses both.
-- **A callback inverted.** `tar-gnu-weird` is a program called by its environment, as the PCRE2 callouts in [Regex engines and sed](motores-de-regex-y-sed.md) and the listeners in [JavaScript](javascript.md) are. The concept guide [Events, callbacks and reactive control](../conceptos/eventos-retrollamadas-y-control-reactivo.md) compares who owns the next turn.
-- **A state machine in one row.** [Tcl](tcl.md) keeps its state in table rows too. The concept guide [State and control beyond variables](../conceptos/estado-y-control-mas-alla-de-las-variables.md) compares them.
-- **Prediction as a test.** `check.sh` contains a second implementation of the machine and compares the two. The concept guide [Portability, abstraction and cost](../conceptos/portabilidad-abstraccion-y-costo.md) uses this to ask what an observation proves.
-- **In the book.** [tar](../../lenguajes/tar.md), [Serialization, deserialization and object pickling](../../informatica/06-estado-mas-alla-de-las-variables.md#serialization-deserialization-and-object-pickling), [Logical clocks and event ordering](../../informatica/03-flujo-de-control-y-continuaciones.md#logical-clocks-and-event-ordering) and [Capability and authority](../../informatica/01-lectura-de-un-programa-adversarial.md#capability-and-authority).
+- **El orden del documento como programa.** `tar-gnu` es el ejemplo del repositorio de datos que se leen en orden y a los que el lector da sentido. [XAML en la guía de C#](csharp-linq-xaml-y-adaptaciones.md) es la misma preocupación en un archivo de marcado: un analizador sintáctico que ejecuta lo que analiza. La guía de concepto [Lectura de programas adversariales](../conceptos/lectura-de-programas-adversariales.md) usa ambos.
+- **Una función de devolución de llamada invertida.** `tar-gnu-weird` es un programa al que llama su entorno, como los callouts de PCRE2 en [Motores de regex y sed](motores-de-regex-y-sed.md) y los escuchadores de eventos de [JavaScript](javascript.md). La guía de concepto [Eventos, funciones de devolución de llamada y control reactivo](../conceptos/eventos-retrollamadas-y-control-reactivo.md) compara quién es dueño del turno siguiente.
+- **Una máquina de estados en una fila.** [Tcl](tcl.md) también guarda su estado en filas de una tabla. La guía de concepto [Estado y control más allá de las variables](../conceptos/estado-y-control-mas-alla-de-las-variables.md) las compara.
+- **La predicción como prueba.** `check.sh` contiene una segunda implementación de la máquina y compara las dos. La guía de concepto [Portabilidad, abstracción y costo](../conceptos/portabilidad-abstraccion-y-costo.md) lo usa para preguntar qué demuestra una observación.
+- **En el libro.** [tar](../../lenguajes/tar.md), [Serialización, deserialización y pickling de objetos](../../informatica/06-estado-mas-alla-de-las-variables.md#serialization-deserialization-and-object-pickling), [Relojes lógicos y orden de los eventos](../../informatica/03-flujo-de-control-y-continuaciones.md#logical-clocks-and-event-ordering) y [Capacidad y autoridad](../../informatica/01-lectura-de-un-programa-adversarial.md#capability-and-authority).
 
-## Self-check
+## Autoevaluación
 
-Answer each question in your own words before you read the italic text. Say what evidence would support each answer.
+Responde cada pregunta con tus propias palabras antes de leer el texto en cursiva. Di qué evidencia respaldaría cada respuesta.
 
-1. **Trace.** `tar-gnu` is built with hours 11, 11, 11, 11, 10 (totals 11, 22, 33, 44). Which members run and which are ignored? *(The first four cards run. After card 4, `041.stop-over` sees 44 and halts. `050.card`, `051.stop-over` are read and traced `ignored: halted`. `990.show` prints four rows.)*
-2. **Explain.** Why does `tar-gnu-weird` still tick after the run is done? *(tar writes all its records and runs the callback for each. tar cannot be told to stop, so the machine's `done` flag makes later ticks only count as idle.)*
-3. **Transfer.** In `tar-gnu`, the limit lives in the archive. In another entry it lives in a regex, a tape line or a data declaration. Which is the easiest to change by someone who can edit data but not code, and what does that imply for review? *(The archive and the Ex tape: both are data. Reviewing the *data* is then as important as reviewing the code, so a change to the limit must be visible to the reviewer.)*
-4. **Evidence.** The README says, "Exit status 7 from the callback leaves tar's status at 0." Design a test that could fail. Which label applies to the claim? *(Run a copy whose `exec` action is `sh -c 'exit 7'` and check tar's exit status. The negative control is a run where tar itself fails, for example on an unreadable file, which must give non-zero. The claim describes tested releases only, so it is accidentally exploited.)*
+1. **Traza.** `tar-gnu` se construye con las horas 11, 11, 11, 11, 10 (totales 11, 22, 33, 44). ¿Qué miembros se ejecutan y cuáles se ignoran? *(Las primeras cuatro tarjetas se ejecutan. Tras la tarjeta 4, `041.stop-over` ve 44 y detiene la ejecución. `050.card` y `051.stop-over` se leen y se anotan como `ignored: halted`. `990.show` imprime cuatro filas.)*
+2. **Explica.** ¿Por qué `tar-gnu-weird` sigue dando pulsos cuando la ejecución ya terminó? *(tar escribe todos sus registros y ejecuta la función de devolución de llamada por cada uno. No se puede ordenar a tar que se detenga, así que la bandera `done` de la máquina hace que los pulsos posteriores solo cuenten como inactivos.)*
+3. **Transfiere.** En `tar-gnu`, el límite vive en el archivo. En otra entrada vive en una regex, en una línea de cinta o en una declaración de datos. ¿Cuál es más fácil de cambiar para quien puede editar datos pero no código, y qué implica eso para la revisión? *(El archivo y la cinta de Ex: ambos son datos. Revisar los *datos* es entonces tan importante como revisar el código, así que un cambio en el límite debe ser visible para el revisor.)*
+4. **Evidencia.** El README dice: "El estado de salida 7 de la función de devolución de llamada deja el estado de tar en 0". Diseña una prueba que pueda fallar. ¿Qué etiqueta se aplica a la afirmación? *(Ejecuta una copia cuya acción `exec` sea `sh -c 'exit 7'` y comprueba el estado de salida de tar. El control negativo es una ejecución en la que falla el propio tar, por ejemplo con un archivo ilegible, que debe dar un estado distinto de cero. La afirmación describe solo las versiones probadas, así que es aprovechada por accidente.)*
 
-## Further reading
+## Lecturas adicionales
 
-- [Tar (computing)](https://en.wikipedia.org/wiki/Tar_(computing)) (Wikipedia): the format, its blocks and its history.
-- [GNU tar: Checkpoints](https://www.gnu.org/software/tar/manual/html_node/checkpoints.html) (GNU Project): the official description of `--checkpoint`, `--checkpoint-action` and `TAR_CHECKPOINT`. The checkpoint behavior this guide leans on is documented here, but how many records a command writes is measured, not promised.
-- [Serialization](https://en.wikipedia.org/wiki/Serialization) (Wikipedia): why data that is written down and read back can become a program.
-- [Capability and authority](../../informatica/01-lectura-de-un-programa-adversarial.md#capability-and-authority) (this book): why authority comes from the command that runs a program, not from the data it reads.
+- [Tar (informática)](https://en.wikipedia.org/wiki/Tar_(computing)) (Wikipedia): el formato, sus bloques y su historia.
+- [GNU tar: Puntos de control](https://www.gnu.org/software/tar/manual/html_node/checkpoints.html) (Proyecto GNU): la descripción oficial de `--checkpoint`, `--checkpoint-action` y `TAR_CHECKPOINT`. El comportamiento de los puntos de control en el que se apoya esta guía está documentado aquí, pero cuántos registros escribe un comando se midió y no se promete.
+- [Serialización](https://en.wikipedia.org/wiki/Serialization) (Wikipedia): por qué los datos que se escriben y se vuelven a leer pueden convertirse en un programa.
+- [Capacidad y autoridad](../../informatica/01-lectura-de-un-programa-adversarial.md#capability-and-authority) (este libro): por qué la autoridad viene del comando que ejecuta un programa, no de los datos que lee.

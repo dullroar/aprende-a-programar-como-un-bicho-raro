@@ -1,0 +1,688 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lessons/study-guides/languages/tar.md:1
+msgctxt "s-86d52b85c794-0000"
+msgid "tar study guide"
+msgstr "Guía de estudio de tar"
+
+#: lessons/study-guides/languages/tar.md:3
+msgctxt "s-4e718de9279e-0001"
+msgid "What this guide is for"
+msgstr "Para qué sirve esta guía"
+
+#: lessons/study-guides/languages/tar.md:5
+msgctxt "s-f15c10e284e5-0002"
+msgid "This guide examines two programs that use GNU ⟦CODE_0001⟧ as the machine. In [⟦CODE_0002⟧](⟦DEST_0003⟧), an archive is a serialized program. The ⟦CODE_0004⟧ option processes its members in order. In [⟦CODE_0005⟧](⟦DEST_0006⟧), the archive size sets the clock. Each checkpoint advances a state machine by one hour. **What gives the archive an effect and what makes it safe to read?**"
+msgstr "Esta guía examina dos programas que usan ⟦CODE_0001⟧ de GNU como máquina. En [⟦CODE_0002⟧](⟦DEST_0003⟧), un archivo es un programa serializado. La opción ⟦CODE_0004⟧ procesa sus miembros en orden. En [⟦CODE_0005⟧](⟦DEST_0006⟧), el tamaño del archivo marca el reloj. Cada punto de control avanza una hora una máquina de estados. **¿Qué da efecto al archivo y qué lo hace seguro de leer?**"
+
+#: lessons/study-guides/languages/tar.md:7
+msgctxt "s-d84bcb27c154-0003"
+msgid "When you finish, you should be able to:"
+msgstr "Al terminar, deberías poder:"
+
+#: lessons/study-guides/languages/tar.md:9
+msgctxt "s-01b798c5f27a-0004"
+msgid ""
+"Explain the difference between *reading* an archive and *running* one, and name which command gives the archive an effect.\n"
+"2. Explain why the dispatcher passes no part of a member to a shell, and what the inspector adds.\n"
+"3. Trace both programs through the same three cards: members in order for one, checkpoint ticks for the other.\n"
+"4. Explain why the weird program's number of ticks is set by the archive's layout and not by its content.\n"
+"5. Explain why a failing callback or a short archive stalls the clock instead of failing loudly.\n"
+"6. Label each behavior as guaranteed, implementation-permitted or accidentally exploited."
+msgstr ""
+"Explicar la diferencia entre *leer* un archivo y *ejecutarlo*, y decir qué comando da efecto al archivo.\n"
+"2. Explicar por qué el despachador no pasa ninguna parte de un miembro a un intérprete de comandos (*shell*). Explicar también qué añade el inspector.\n"
+"3. Hacer la traza de ambos programas con las mismas tres tarjetas: los miembros en orden en uno, los pulsos de los puntos de control en el otro.\n"
+"4. Explicar por qué el número de pulsos del programa raro lo fija la disposición del archivo y no su contenido.\n"
+"5. Explicar por qué una función de devolución de llamada (*callback*) que falla, o un archivo corto, detiene el reloj en vez de fallar con ruido.\n"
+"6. Etiquetar cada comportamiento como garantizado, permitido por la implementación o aprovechado por accidente."
+
+#: lessons/study-guides/languages/tar.md:16
+msgctxt "s-6e36c2b391b5-0005"
+msgid "**Scope limits.** You need to know that tar writes a stream of 512-byte blocks and that GNU tar has options for callbacks. The guide does not teach the ustar header format, the SQL or the awk simulator that tests the weird entry. It uses GNU tar 1.34 or 1.35. BSD and macOS tar have no ⟦CODE_0001⟧. The book's page is [tar](⟦DEST_0002⟧). For ideas, see [Serialization, deserialization and object pickling](⟦DEST_0003⟧), [Capability and authority](⟦DEST_0004⟧) and [Logical clocks and event ordering](⟦DEST_0005⟧)."
+msgstr "**Límites del alcance.** Necesitas saber que tar escribe un flujo de bloques de 512 bytes y que GNU tar tiene opciones para funciones de devolución de llamada. La guía no enseña el formato de cabecera ustar, el SQL ni el simulador en awk que prueba la entrada rara. Usa GNU tar 1.34 o 1.35. BSD tar y macOS tar no tienen ⟦CODE_0001⟧. La página del libro es [tar](⟦DEST_0002⟧). Para ver las ideas, consulta [Serialización, deserialización y pickling de objetos](⟦DEST_0003⟧), [Capacidad y autoridad](⟦DEST_0004⟧) y [Relojes lógicos y orden de los eventos](⟦DEST_0005⟧)."
+
+#: lessons/study-guides/languages/tar.md:18
+msgctxt "s-d5bfdd7d989d-0006"
+msgid "Before you begin"
+msgstr "Antes de empezar"
+
+#: lessons/study-guides/languages/tar.md:20
+msgctxt "s-6a06524a7e5d-0007"
+msgid "**Safety model.** Every entry writes fictional **⟦DNT_0001⟧** data to a scratch SQLite file. An archive that carries a program is exactly what you should not run unread, and ⟦CODE_0002⟧ is built around that rule: *reading* and *running* are separate commands, and running needs an explicit flag. Read the source before you run it, and run it in the sandbox first:"
+msgstr "**Modelo de seguridad.** Cada entrada escribe datos ficticios de **⟦DNT_0001⟧** en un archivo SQLite desechable. Un archivo que lleva un programa es justo lo que no debes ejecutar sin leer, y ⟦CODE_0002⟧ se construye en torno a esa regla. *Leer* y *ejecutar* son comandos distintos. Ejecutar exige una bandera explícita. Lee el código fuente antes de ejecutarlo, y ejecútalo primero en el entorno aislado (*sandbox*):"
+
+#: lessons/study-guides/languages/tar.md:27
+msgctxt "s-749aec91d11b-0008"
+msgid "Edit only copies ([Running things safely](⟦DEST_0001⟧)). You can write an archive with chosen hours: ⟦CODE_0002⟧. The weird entry takes ⟦CODE_0003⟧; seed 1105 gives hours 15, 19, 12."
+msgstr "Edita solo copias ([Ejecutar cosas de forma segura](⟦DEST_0001⟧)). Puedes escribir un archivo con las horas que elijas: ⟦CODE_0002⟧. La entrada rara acepta ⟦CODE_0003⟧; la semilla 1105 da las horas 15, 19, 12."
+
+#: lessons/study-guides/languages/tar.md:29
+msgctxt "s-56eabadd6f67-0009"
+msgid "**Prediction rule.** Before each run, write down which members will be read, which will run and how many ticks the clock will receive."
+msgstr "**Regla de predicción.** Antes de cada ejecución, anota qué miembros se leerán, cuáles se ejecutarán y cuántos pulsos recibirá el reloj."
+
+#: lessons/study-guides/languages/tar.md:31
+msgctxt "s-2dd18ffddf3e-0010"
+msgid "**Vocabulary.**"
+msgstr "**Vocabulario.**"
+
+#: lessons/study-guides/languages/tar.md:33
+msgctxt "s-790e521777f0-0011"
+msgid "⟦SEP_0001⟧ Term ⟦SEP_0002⟧ Meaning here ⟦SEP_0003⟧"
+msgstr "⟦SEP_0001⟧ Término ⟦SEP_0002⟧ Significado aquí ⟦SEP_0003⟧"
+
+#: lessons/study-guides/languages/tar.md:35
+msgctxt "s-4d38f71e0885-0012"
+msgid "⟦SEP_0001⟧ Member ⟦SEP_0002⟧ One file in an archive. Here a member is one *instruction*. ⟦SEP_0003⟧"
+msgstr "⟦SEP_0001⟧ Miembro ⟦SEP_0002⟧ Un solo archivo guardado dentro del archivo tar. Aquí un miembro es una *instrucción*. ⟦SEP_0003⟧"
+
+#: lessons/study-guides/languages/tar.md:36
+msgctxt "s-cc20274e4700-0013"
+msgid "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ A GNU tar option that sends each member's contents to a command instead of writing a file. ⟦SEP_0004⟧"
+msgstr "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ Una opción de GNU tar que envía el contenido de cada miembro a un comando en lugar de escribir un archivo. ⟦SEP_0004⟧"
+
+#: lessons/study-guides/languages/tar.md:37
+msgctxt "s-5094c6656f76-0014"
+msgid "⟦SEP_0002⟧ Record ⟦SEP_0003⟧ The unit tar writes at a time. With ⟦CODE_0001⟧ it is 512 bytes. ⟦SEP_0004⟧"
+msgstr "⟦SEP_0002⟧ Registro ⟦SEP_0003⟧ La unidad que tar escribe cada vez. Con ⟦CODE_0001⟧ son 512 bytes. ⟦SEP_0004⟧"
+
+#: lessons/study-guides/languages/tar.md:38
+msgctxt "s-91b6025059a1-0015"
+msgid "⟦SEP_0001⟧ Checkpoint ⟦SEP_0002⟧ A callback tar can run every N records, meant to show progress. ⟦SEP_0003⟧"
+msgstr "⟦SEP_0001⟧ Punto de control ⟦SEP_0002⟧ Una función de devolución de llamada que tar puede ejecutar cada N registros, pensada para mostrar el progreso. ⟦SEP_0003⟧"
+
+#: lessons/study-guides/languages/tar.md:39
+msgctxt "s-12f1511264bb-0016"
+msgid "⟦SEP_0001⟧ Dispatcher ⟦SEP_0002⟧ The one program that gives a member name its meaning. ⟦SEP_0003⟧"
+msgstr "⟦SEP_0001⟧ Despachador ⟦SEP_0002⟧ El único programa que da sentido al nombre de un miembro. ⟦SEP_0003⟧"
+
+#: lessons/study-guides/languages/tar.md:41
+msgctxt "s-ae7d69ef2745-0017"
+msgid "The shared challenge"
+msgstr "El reto compartido"
+
+#: lessons/study-guides/languages/tar.md:43
+msgctxt "s-78a7d749b03d-0018"
+msgid "The [challenge specification](⟦DEST_0001⟧) calls for cards with a category and 10 to 19 whole hours. Categories cycle through ⟦DNT_0002⟧, ⟦DNT_0003⟧, ⟦DNT_0004⟧ and ⟦DNT_0005⟧. Add each card's hours to the running total. Stop when the total passes 40. Keep the **first card that takes the total over 40**. A total of exactly 40 continues. Four 10-hour cards need a fifth card, in the ⟦DNT_0006⟧ category. Conforming runs finish with 3 to 5 cards and a total of 41 to 59 hours."
+msgstr "La [especificación del reto](⟦DEST_0001⟧) pide tarjetas con una categoría y de 10 a 19 horas enteras. Las categorías se repiten en ciclo: `⟦DNT_0002⟧`, `⟦DNT_0003⟧`, `⟦DNT_0004⟧` y `⟦DNT_0005⟧`. Suma las horas de cada tarjeta al total acumulado. Detente cuando el total pasa de 40. Conserva la **primera tarjeta con la que el total pasa de 40**. Un total de exactamente 40 continúa. Cuatro tarjetas de 10 horas necesitan una quinta tarjeta, de la categoría `⟦DNT_0006⟧`. Las ejecuciones conformes tienen de 3 a 5 tarjetas y un total de 41 a 59 horas."
+
+#: lessons/study-guides/languages/tar.md:45
+msgctxt "s-10d9ef8c8a4a-0019"
+msgid "Both tar entries report from SQLite. The archive program dispatches member operations, while the checkpoint program commits each tick. In ⟦CODE_0001⟧, the archive has five card slots (⟦DNT_0002⟧, ⟦DNT_0003⟧, ⟦DNT_0004⟧, ⟦DNT_0005⟧, ⟦DNT_0006⟧), each followed by a ⟦CODE_0007⟧ member that carries ⟦CODE_0008⟧ and means \"halt if the total is *over* 40\". Exactly 40 is not over 40, so the next slot runs. In ⟦CODE_0009⟧, a card is closed at the tick whose number equals the running total, and ⟦CODE_0010⟧ is set when ⟦CODE_0011⟧. A run needs between 41 and 59 ticks."
+msgstr "Las dos entradas de tar informan desde SQLite. El programa del archivo despacha operaciones de miembros, y el programa de puntos de control confirma cada pulso. En ⟦CODE_0001⟧, el archivo tiene cinco espacios para tarjetas (⟦DNT_0002⟧, ⟦DNT_0003⟧, ⟦DNT_0004⟧, ⟦DNT_0005⟧, ⟦DNT_0006⟧). Cada uno va seguido de un miembro ⟦CODE_0007⟧ que lleva ⟦CODE_0008⟧ y significa \"detente si el total *pasa de* 40\". Exactamente 40 no pasa de 40, así que se ejecuta el espacio siguiente. En ⟦CODE_0009⟧, una tarjeta se cierra en el pulso cuyo número es igual al total acumulado, y ⟦CODE_0010⟧ se activa cuando ⟦CODE_0011⟧. Una ejecución necesita entre 41 y 59 pulsos."
+
+#: lessons/study-guides/languages/tar.md:47
+msgctxt "s-9f148b367e02-0020"
+msgid "The machine to identify"
+msgstr "La máquina que hay que identificar"
+
+#: lessons/study-guides/languages/tar.md:49
+msgctxt "s-edaa51db7d67-0021"
+msgid "**What repeats.** In ⟦CODE_0001⟧, tar: it walks the members in archive order and calls the dispatcher once per member (⟦CODE_0002⟧, [interpret.sh](⟦DEST_0003⟧)). In ⟦CODE_0004⟧, tar again, but through its *checkpoints*: one callback per 512-byte record written, using one ⟦CODE_0005⟧ command ([README](⟦DEST_0006⟧))."
+msgstr "**Qué se repite.** En ⟦CODE_0001⟧, tar recorre los miembros en el orden del archivo y llama al despachador una vez por miembro (⟦CODE_0002⟧, [interpret.sh](⟦DEST_0003⟧)). En ⟦CODE_0004⟧, es tar otra vez. Actúa mediante sus *puntos de control*: una función de devolución de llamada por cada registro de 512 bytes escrito, con un solo comando ⟦CODE_0005⟧ ([README](⟦DEST_0006⟧))."
+
+#: lessons/study-guides/languages/tar.md:51
+msgctxt "s-bc6b79b420e1-0022"
+msgid "**Where state lives.** In ⟦CODE_0001⟧, in the archive itself (the instructions, the card hours, the limit) and in SQLite (the running total and a ⟦CODE_0002⟧ flag in the ⟦CODE_0003⟧ row, plus a trace table). In ⟦CODE_0004⟧, in *one row* of a table called ⟦CODE_0005⟧: the generator seed, the card number, hours worked, the target, the total and a ⟦CODE_0006⟧ flag."
+msgstr "**Dónde vive el estado.** En ⟦CODE_0001⟧, vive en el propio archivo (las instrucciones, las horas de las tarjetas, el límite). También vive en SQLite: el total acumulado y una bandera ⟦CODE_0002⟧ en la fila ⟦CODE_0003⟧, más una tabla de traza. En ⟦CODE_0004⟧, vive en *una fila* de una tabla llamada ⟦CODE_0005⟧. Guarda la semilla del generador, el número de tarjeta, las horas trabajadas, la meta, el total y una bandera ⟦CODE_0006⟧."
+
+#: lessons/study-guides/languages/tar.md:53
+msgctxt "s-3a52b48c4192-0023"
+msgid "**What advances the next step.** In ⟦CODE_0001⟧, the next member in the archive. In ⟦CODE_0002⟧, the next checkpoint. Nothing else moves it: if tar wrote no records, no hours would pass."
+msgstr "**Qué hace avanzar el paso siguiente.** En ⟦CODE_0001⟧, el miembro siguiente del archivo. En ⟦CODE_0002⟧, el punto de control siguiente. Nada más lo mueve: si tar no escribiera registros, no pasarían horas."
+
+#: lessons/study-guides/languages/tar.md:55
+msgctxt "s-bb967d32ebc8-0024"
+msgid "**What stops it.** In ⟦CODE_0001⟧, a ⟦CODE_0002⟧ member, which sets ⟦CODE_0003⟧ when the total exceeds its limit. From then on the later members are traced as ⟦CODE_0004⟧. In ⟦CODE_0005⟧, the ⟦CODE_0006⟧ flag, set by the transition that closes the crossing card. tar does *not* stop: the remaining ticks only count as idle."
+msgstr "**Qué lo detiene.** En ⟦CODE_0001⟧, un miembro ⟦CODE_0002⟧, que activa ⟦CODE_0003⟧ cuando el total pasa de su límite. Desde ese punto, la traza anota los miembros posteriores como ⟦CODE_0004⟧. En ⟦CODE_0005⟧, la bandera ⟦CODE_0006⟧, que activa la transición que cierra la tarjeta que cruza el tope. tar *no* se detiene: los pulsos restantes solo cuentan como inactivos."
+
+#: lessons/study-guides/languages/tar.md:57
+msgctxt "s-5c1056af02d5-0025"
+msgid "**What commits.** In ⟦CODE_0001⟧, the dispatcher runs one SQL statement per member, and ⟦CODE_0002⟧ prints the rows. In ⟦CODE_0003⟧, each tick is one SQLite transaction; the launcher reads and prints the cards after tar finishes. In both, the operator, not the archive, decides to run: the archive carries no authority."
+msgstr "**Qué confirma.** En ⟦CODE_0001⟧, el despachador ejecuta una sentencia SQL por miembro, y ⟦CODE_0002⟧ imprime las filas. En ⟦CODE_0003⟧, cada pulso es una transacción de SQLite; el lanzador lee e imprime las tarjetas cuando tar termina. En ambos, quien decide ejecutar es el operador, no el archivo: el archivo no lleva ninguna autoridad."
+
+#: lessons/study-guides/languages/tar.md:63
+msgctxt "s-543268affede-0026"
+msgid "tar-gnu: the archive is the program and a dispatcher gives its members meaning"
+msgstr "tar-gnu: el archivo es el programa y un despachador da sentido a sus miembros"
+
+#: lessons/study-guides/languages/tar.md:64
+msgctxt "s-5d53639ae134-0027"
+msgid "A sequence diagram. The interpreter first asks the inspector to vet the whole archive, which reads it and runs nothing. Then it starts tar with the to-command option. For each member, in archive order, tar sends the member name and body to the dispatcher. The dispatcher checks the name and the body against strict patterns, runs exactly one SQL statement for the member, and writes a row to the trace table. A stop-over member marks the run as halted when the total is over the limit, and the later members are traced as ignored. The show member prints the rows."
+msgstr "Diagrama de secuencia. Primero, el intérprete pide al inspector que valide todo el archivo. El inspector lo lee sin ejecutar nada. Después, el intérprete inicia el comando tar con la opción to-command. Por cada miembro, tar envía el nombre y el cuerpo al despachador en el orden del archivo. El despachador compara el nombre y el cuerpo con patrones estrictos. Ejecuta exactamente una sentencia SQL por miembro y escribe una fila en la tabla de traza. Un miembro stop-over marca la ejecución como detenida cuando el total pasa del límite. La traza marca como ignorados los miembros posteriores. El miembro show imprime las filas."
+
+#: lessons/study-guides/languages/tar.md:65
+msgctxt "s-0091dbcb67de-0028"
+msgid "interpret.sh"
+msgstr "interpret.sh"
+
+#: lessons/study-guides/languages/tar.md:66
+msgctxt "s-59a5dc9586ec-0029"
+msgid "inspect.sh"
+msgstr "inspect.sh"
+
+#: lessons/study-guides/languages/tar.md:67
+msgctxt "s-90aebae31567-0030"
+msgid "tar"
+msgstr "tar"
+
+#: lessons/study-guides/languages/tar.md:68
+msgctxt "s-3d899699b578-0031"
+msgid "dispatch.sh"
+msgstr "dispatch.sh"
+
+#: lessons/study-guides/languages/tar.md:69
+msgctxt "s-2d2eef3e092a-0032"
+msgid "SQLite"
+msgstr "SQLite"
+
+#: lessons/study-guides/languages/tar.md:70
+msgctxt "s-59b307702130-0033"
+msgid "vet every member of the archive"
+msgstr "Valida cada miembro del archivo"
+
+#: lessons/study-guides/languages/tar.md:71
+msgctxt "s-31d4eb0d8f9f-0034"
+msgid "valid, and nothing was run"
+msgstr "Válido, no se ejecutó nada"
+
+#: lessons/study-guides/languages/tar.md:72
+msgctxt "s-86136f468a1e-0035"
+msgid "tar --to-command=dispatch.sh"
+msgstr "Comando tar --to-command=dispatch.sh"
+
+#: lessons/study-guides/languages/tar.md:73
+msgctxt "s-25d7d6b91977-0036"
+msgid "each member, in archive order"
+msgstr "Cada miembro, en el orden del archivo"
+
+#: lessons/study-guides/languages/tar.md:74
+msgctxt "s-9aea383e8e09-0037"
+msgid "member name and body"
+msgstr "Nombre y cuerpo del miembro"
+
+#: lessons/study-guides/languages/tar.md:75
+msgctxt "s-1f810e03985a-0038"
+msgid "check name and body against strict patterns"
+msgstr "Comprueba nombre y cuerpo con patrones estrictos"
+
+#: lessons/study-guides/languages/tar.md:76
+msgctxt "s-c99e318203cd-0039"
+msgid "one SQL statement, and a trace row"
+msgstr "Una sentencia SQL y una fila de traza"
+
+#: lessons/study-guides/languages/tar.md:78
+msgctxt "s-84fc76a5ad53-0040"
+msgid "stop-over halts the run when the total is over its limit, and later members are traced as ignored"
+msgstr "stop-over detiene la ejecución si el total pasa del límite. La traza marca el resto como ignorado"
+
+#: lessons/study-guides/languages/tar.md:79
+msgctxt "s-798d7d2e4c04-0041"
+msgid "show prints the rows"
+msgstr "show imprime las filas"
+
+#: lessons/study-guides/languages/tar.md:82
+msgctxt "s-ef946d7c3fe3-0042"
+msgid "The first diagram shows the order of members as the order of execution, with a passive inspector in front."
+msgstr "El primer diagrama muestra el orden de los miembros como orden de ejecución, con un inspector pasivo delante."
+
+#: lessons/study-guides/languages/tar.md:88
+msgctxt "s-7a91c7f47709-0043"
+msgid "tar-gnu-weird: tar's checkpoints are the clock of a state machine"
+msgstr "tar-gnu-weird: los puntos de control de tar son el reloj de una máquina de estados"
+
+#: lessons/study-guides/languages/tar.md:89
+msgctxt "s-881a04953879-0044"
+msgid "A sequence diagram. The launcher runs one tar command that writes an archive with a checkpoint every 512-byte record. For each record that tar writes, tar runs tick.sh with the record count. The script runs one SQL transaction on a single row of state. If the run is done, the tick only counts as idle. Otherwise it works one hour, writes the card when the hours reach the target, and closes the card, which sets done when the total is over 40. The exit status is ignored, and tar goes on writing. When the archive is finished, the launcher reads the cards and prints them."
+msgstr "Diagrama de secuencia. El lanzador ejecuta un comando tar que escribe un archivo con un punto de control por cada registro de 512 bytes. Por cada registro que escribe, tar ejecuta tick.sh con el número de registros. El script ejecuta una transacción SQL sobre una sola fila de estado. Si la ejecución terminó, el pulso solo se cuenta como inactivo. Si no, trabaja una hora, escribe la tarjeta al completar sus horas y la cierra. Al cerrarla, activa done si el total pasa de 40. tar ignora el estado de salida y sigue escribiendo. Al terminar el archivo, el lanzador lee las tarjetas y las imprime."
+
+#: lessons/study-guides/languages/tar.md:90
+msgctxt "s-12eb4836b380-0045"
+msgid "run-clock.sh"
+msgstr "run-clock.sh"
+
+#: lessons/study-guides/languages/tar.md:91
+msgctxt "s-90aebae31567-0046"
+msgid "tar"
+msgstr "tar"
+
+#: lessons/study-guides/languages/tar.md:92
+msgctxt "s-c6dc1a5a58f8-0047"
+msgid "tick.sh"
+msgstr "tick.sh"
+
+#: lessons/study-guides/languages/tar.md:93
+msgctxt "s-580999af1079-0048"
+msgid "SQLite fsm row"
+msgstr "Fila fsm en SQLite"
+
+#: lessons/study-guides/languages/tar.md:94
+msgctxt "s-bc71acddb3a3-0049"
+msgid "one tar command with --checkpoint=1 and an exec action"
+msgstr "Un comando tar con --checkpoint=1 y una acción exec"
+
+#: lessons/study-guides/languages/tar.md:95
+msgctxt "s-24890deeb3d1-0050"
+msgid "each 512-byte record that tar writes"
+msgstr "Cada registro de 512 bytes que escribe tar"
+
+#: lessons/study-guides/languages/tar.md:96
+msgctxt "s-3bf62010d37e-0051"
+msgid "run tick.sh with TAR_CHECKPOINT"
+msgstr "Ejecuta tick.sh con TAR_CHECKPOINT"
+
+#: lessons/study-guides/languages/tar.md:97
+msgctxt "s-f5197f1d2952-0052"
+msgid "tick.sql: one transaction"
+msgstr "tick.sql: una transacción"
+
+#: lessons/study-guides/languages/tar.md:98
+msgctxt "s-4bbfe3fdc3c6-0053"
+msgid "if done, count an idle tick. Else work one hour, write the card at the target, close it and set done when the total is over 40"
+msgstr "Si done está activo, cuenta un pulso inactivo. Si no, trabaja una hora. Al completar las horas, escribe y cierra la tarjeta. Activa done si el total pasa de 40"
+
+#: lessons/study-guides/languages/tar.md:99
+msgctxt "s-a65a2e3d847d-0054"
+msgid "exit status, which tar ignores"
+msgstr "Estado de salida que tar ignora"
+
+#: lessons/study-guides/languages/tar.md:101
+msgctxt "s-9a236f401b84-0055"
+msgid "the archive is finished: the clock ran out"
+msgstr "Fin del archivo: se agotó el reloj"
+
+#: lessons/study-guides/languages/tar.md:102
+msgctxt "s-34bbfe16a1d8-0056"
+msgid "read the cards and print them"
+msgstr "Lee e imprime las tarjetas"
+
+#: lessons/study-guides/languages/tar.md:105
+msgctxt "s-744972200140-0057"
+msgid "The second shows a callback made by tar for each record. The program does not call tar's loop. tar calls the program."
+msgstr "El segundo muestra una función de devolución de llamada que tar invoca por cada registro. El programa no llama al bucle de tar. tar llama al programa."
+
+#: lessons/study-guides/languages/tar.md:107
+msgctxt "s-67a72cdadc6f-0058"
+msgid "Trace one run"
+msgstr "Traza una ejecución"
+
+#: lessons/study-guides/languages/tar.md:109
+msgctxt "s-07a9fe574001-0059"
+msgid "**⟦CODE_0001⟧: the members, in order.** A scratch copy built an archive with ⟦CODE_0002⟧, listed it with plain ⟦CODE_0003⟧, read it with the inspector and ran it with ⟦CODE_0004⟧. The inspector printed each member decoded:"
+msgstr "**⟦CODE_0001⟧: los miembros, en orden.** Una copia desechable construyó un archivo con ⟦CODE_0002⟧, lo listó con ⟦CODE_0003⟧ a secas, lo leyó con el inspector y lo ejecutó con ⟦CODE_0004⟧. El inspector imprimió cada miembro decodificado:"
+
+#: lessons/study-guides/languages/tar.md:128
+msgctxt "s-ea6958958a35-0060"
+msgid "and the run printed ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧, then ⟦CODE_0004⟧."
+msgstr "y la ejecución imprimió ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧ y luego ⟦CODE_0004⟧."
+
+#: lessons/study-guides/languages/tar.md:130
+msgctxt "s-155d006bfa3f-0061"
+msgid "⟦SEP_0001⟧ Member ⟦SEP_0002⟧ Meaning ⟦SEP_0003⟧ Total after ⟦SEP_0004⟧ Halted? ⟦SEP_0005⟧"
+msgstr "⟦SEP_0001⟧ Miembro ⟦SEP_0002⟧ Significado ⟦SEP_0003⟧ Total después ⟦SEP_0004⟧ ¿Detenido? ⟦SEP_0005⟧"
+
+#: lessons/study-guides/languages/tar.md:132
+msgctxt "s-e6b6a07699d1-0062"
+msgid "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ start a run ⟦SEP_0004⟧ 0 ⟦SEP_0005⟧ no ⟦SEP_0006⟧"
+msgstr "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ inicia una ejecución ⟦SEP_0004⟧ 0 ⟦SEP_0005⟧ no ⟦SEP_0006⟧"
+
+#: lessons/study-guides/languages/tar.md:133
+msgctxt "s-fee407fd3b53-0063"
+msgid "⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ ⟦DNT_0002⟧, 15 ⟦SEP_0005⟧ 15 ⟦SEP_0006⟧ no ⟦SEP_0007⟧"
+msgstr "⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ ⟦DNT_0002⟧, 15 ⟦SEP_0005⟧ 15 ⟦SEP_0006⟧ no ⟦SEP_0007⟧"
+
+#: lessons/study-guides/languages/tar.md:134
+msgctxt "s-069acb1a2421-0064"
+msgid "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ halt if total > 40 ⟦SEP_0004⟧ 15 ⟦SEP_0005⟧ no ⟦SEP_0006⟧"
+msgstr "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ detiene si el total > 40 ⟦SEP_0004⟧ 15 ⟦SEP_0005⟧ no ⟦SEP_0006⟧"
+
+#: lessons/study-guides/languages/tar.md:135
+msgctxt "s-942b0c21c819-0065"
+msgid "⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ ⟦DNT_0002⟧, 19 ⟦SEP_0005⟧ 34 ⟦SEP_0006⟧ no ⟦SEP_0007⟧"
+msgstr "⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ ⟦DNT_0002⟧, 19 ⟦SEP_0005⟧ 34 ⟦SEP_0006⟧ no ⟦SEP_0007⟧"
+
+#: lessons/study-guides/languages/tar.md:136
+msgctxt "s-f0a8c2210016-0066"
+msgid "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ halt if total > 40 ⟦SEP_0004⟧ 34 ⟦SEP_0005⟧ no ⟦SEP_0006⟧"
+msgstr "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ detiene si el total > 40 ⟦SEP_0004⟧ 34 ⟦SEP_0005⟧ no ⟦SEP_0006⟧"
+
+#: lessons/study-guides/languages/tar.md:137
+msgctxt "s-fe1cde8498c8-0067"
+msgid "⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ ⟦DNT_0002⟧, 12 ⟦SEP_0005⟧ 46 ⟦SEP_0006⟧ no ⟦SEP_0007⟧"
+msgstr "⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ ⟦DNT_0002⟧, 12 ⟦SEP_0005⟧ 46 ⟦SEP_0006⟧ no ⟦SEP_0007⟧"
+
+#: lessons/study-guides/languages/tar.md:138
+msgctxt "s-340564b489f0-0068"
+msgid "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ halt if total > 40 ⟦SEP_0004⟧ 46 ⟦SEP_0005⟧ **yes** ⟦SEP_0006⟧"
+msgstr "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ detiene si el total > 40 ⟦SEP_0004⟧ 46 ⟦SEP_0005⟧ **sí** ⟦SEP_0006⟧"
+
+#: lessons/study-guides/languages/tar.md:139
+msgctxt "s-bb1f5f18d0a2-0069"
+msgid "⟦SEP_0004⟧ ⟦CODE_0001⟧ ... ⟦CODE_0002⟧ ⟦SEP_0005⟧ traced as ⟦CODE_0003⟧ ⟦SEP_0006⟧ 46 ⟦SEP_0007⟧ yes ⟦SEP_0008⟧"
+msgstr "⟦SEP_0004⟧ ⟦CODE_0001⟧ ... ⟦CODE_0002⟧ ⟦SEP_0005⟧ se anotan como ⟦CODE_0003⟧ ⟦SEP_0006⟧ 46 ⟦SEP_0007⟧ sí ⟦SEP_0008⟧"
+
+#: lessons/study-guides/languages/tar.md:140
+msgctxt "s-c20962babbd4-0070"
+msgid "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ print the rows ⟦SEP_0004⟧ 46 ⟦SEP_0005⟧ yes ⟦SEP_0006⟧"
+msgstr "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ imprime las filas ⟦SEP_0004⟧ 46 ⟦SEP_0005⟧ sí ⟦SEP_0006⟧"
+
+#: lessons/study-guides/languages/tar.md:142
+msgctxt "s-0ecc159394c1-0071"
+msgid "The members after the halt are still *read* by tar and handed to the dispatcher, which records them as ignored. A halted program does not stop tar. It stops the dispatcher from acting."
+msgstr "tar sigue *leyendo* los miembros posteriores a la detención y se los entrega al despachador, que los anota como ignorados. Un programa detenido no detiene a tar. Detiene al despachador: ya no actúa."
+
+#: lessons/study-guides/languages/tar.md:144
+msgctxt "s-fc09c64ebb74-0072"
+msgid "**⟦CODE_0001⟧: the ticks.** With ⟦CODE_0002⟧ the program printed ⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧, and the closing line ⟦CODE_0006⟧. The default layout is 64 records, so there are 64 ticks."
+msgstr "**⟦CODE_0001⟧: los pulsos.** Con ⟦CODE_0002⟧ el programa imprimió ⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧ y la línea final ⟦CODE_0006⟧. La disposición predeterminada es de 64 registros, así que hay 64 pulsos."
+
+#: lessons/study-guides/languages/tar.md:146
+msgctxt "s-e3f64defc42c-0073"
+msgid "⟦SEP_0001⟧ Ticks ⟦SEP_0002⟧ What the machine does ⟦SEP_0003⟧ State ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ Pulsos ⟦SEP_0002⟧ Qué hace la máquina ⟦SEP_0003⟧ Estado ⟦SEP_0004⟧"
+
+#: lessons/study-guides/languages/tar.md:148
+msgctxt "s-1a685d631df0-0074"
+msgid "⟦SEP_0002⟧ 1 to 15 ⟦SEP_0003⟧ works one hour per tick on card 1 (⟦DNT_0001⟧), target 15 ⟦SEP_0004⟧ worked rises to 15 ⟦SEP_0005⟧"
+msgstr "⟦SEP_0002⟧ de 1 a 15 ⟦SEP_0003⟧ trabaja una hora por pulso en la tarjeta 1 (⟦DNT_0001⟧), meta 15 ⟦SEP_0004⟧ las horas trabajadas suben a 15 ⟦SEP_0005⟧"
+
+#: lessons/study-guides/languages/tar.md:149
+msgctxt "s-d5b92b4404ef-0075"
+msgid "⟦SEP_0001⟧ 15 ⟦SEP_0002⟧ worked equals target: writes card 1, closes it, draws the next length (19) ⟦SEP_0003⟧ total 15, done no ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ 15 ⟦SEP_0002⟧ las horas trabajadas igualan la meta: escribe la tarjeta 1, la cierra y sortea la duración siguiente (19) ⟦SEP_0003⟧ total 15, done no ⟦SEP_0004⟧"
+
+#: lessons/study-guides/languages/tar.md:150
+msgctxt "s-86a82d0f4e72-0076"
+msgid "⟦SEP_0002⟧ 16 to 34 ⟦SEP_0003⟧ works card 2 (⟦DNT_0001⟧) ⟦SEP_0004⟧ worked rises to 19 ⟦SEP_0005⟧"
+msgstr "⟦SEP_0002⟧ de 16 a 34 ⟦SEP_0003⟧ trabaja la tarjeta 2 (⟦DNT_0001⟧) ⟦SEP_0004⟧ las horas trabajadas suben a 19 ⟦SEP_0005⟧"
+
+#: lessons/study-guides/languages/tar.md:151
+msgctxt "s-93999cfc7ac5-0077"
+msgid "⟦SEP_0001⟧ 34 ⟦SEP_0002⟧ writes card 2 ⟦SEP_0003⟧ total 34 ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ 34 ⟦SEP_0002⟧ escribe la tarjeta 2 ⟦SEP_0003⟧ total 34 ⟦SEP_0004⟧"
+
+#: lessons/study-guides/languages/tar.md:152
+msgctxt "s-2c3fbf7f1604-0078"
+msgid "⟦SEP_0002⟧ 35 to 46 ⟦SEP_0003⟧ works card 3 (⟦DNT_0001⟧), target 12 ⟦SEP_0004⟧ worked rises to 12 ⟦SEP_0005⟧"
+msgstr "⟦SEP_0002⟧ de 35 a 46 ⟦SEP_0003⟧ trabaja la tarjeta 3 (⟦DNT_0001⟧), meta 12 ⟦SEP_0004⟧ las horas trabajadas suben a 12 ⟦SEP_0005⟧"
+
+#: lessons/study-guides/languages/tar.md:153
+msgctxt "s-440ae575d5da-0079"
+msgid "⟦SEP_0002⟧ 46 ⟦SEP_0003⟧ writes card 3; the total 46 is over 40, so ⟦CODE_0001⟧ is set ⟦SEP_0004⟧ total 46, **done** ⟦SEP_0005⟧"
+msgstr "⟦SEP_0002⟧ 46 ⟦SEP_0003⟧ escribe la tarjeta 3; el total 46 pasa de 40, así que se activa ⟦CODE_0001⟧ ⟦SEP_0004⟧ total 46, **done** ⟦SEP_0005⟧"
+
+#: lessons/study-guides/languages/tar.md:154
+msgctxt "s-774156402546-0080"
+msgid "⟦SEP_0002⟧ 47 to 64 ⟦SEP_0003⟧ each tick only increments ⟦CODE_0001⟧ ⟦SEP_0004⟧ 18 idle ticks ⟦SEP_0005⟧"
+msgstr "⟦SEP_0002⟧ de 47 a 64 ⟦SEP_0003⟧ cada pulso solo incrementa ⟦CODE_0001⟧ ⟦SEP_0004⟧ 18 pulsos inactivos ⟦SEP_0005⟧"
+
+#: lessons/study-guides/languages/tar.md:156
+msgctxt "s-a10bf6592cff-0081"
+msgid "Each card is closed at the tick whose number is its running total: 15, 34, 46. The stop rule runs *after* the card is written, so the crossing card is kept. 64 minus 46 is the 18 idle ticks."
+msgstr "Cada tarjeta se cierra en el pulso cuyo número es su total acumulado: 15, 34, 46. La regla de parada se ejecuta *después* de escribir la tarjeta, así que se conserva la tarjeta que cruza el tope. 64 menos 46 son los 18 pulsos inactivos."
+
+#: lessons/study-guides/languages/tar.md:158
+msgctxt "s-6274d0ae277b-0082"
+msgid "**Exactly 40.** In ⟦CODE_0001⟧, four cards of 10 reach 40, ⟦CODE_0002⟧ does not halt and the fifth slot (⟦DNT_0003⟧ again) runs. In ⟦CODE_0004⟧, card 4 closes at tick 40 and ⟦CODE_0005⟧ stays unset (40 is not over 40), so card 5 starts and closes at a tick of 50 or more, which the default 64 ticks cover."
+msgstr "**Exactamente 40.** En ⟦CODE_0001⟧, cuatro tarjetas de 10 llegan a 40, ⟦CODE_0002⟧ no detiene la ejecución y se ejecuta el quinto espacio (otra vez ⟦DNT_0003⟧). En ⟦CODE_0004⟧, la tarjeta 4 se cierra en el pulso 40 y ⟦CODE_0005⟧ sigue sin activarse (40 no pasa de 40). Así, la tarjeta 5 empieza y se cierra en un pulso de 50 o más, que los 64 pulsos predeterminados cubren."
+
+#: lessons/study-guides/languages/tar.md:160
+msgctxt "s-405c1b857089-0083"
+msgid "Compare the ordinary and weird designs"
+msgstr "Compara los diseños ordinarios y los raros"
+
+#: lessons/study-guides/languages/tar.md:162
+msgctxt "s-f9a9d418a683-0084"
+msgid "The two entries are an ordinary use and a stunt of the same tool, and they use *different* parts of tar."
+msgstr "Las dos entradas son un uso ordinario y una acrobacia de la misma herramienta, y usan partes *distintas* de tar."
+
+#: lessons/study-guides/languages/tar.md:164
+msgctxt "s-e2f167a99cdf-0085"
+msgid "⟦SEP_0003⟧ Dimension ⟦SEP_0004⟧ ⟦CODE_0001⟧ ⟦SEP_0005⟧ ⟦CODE_0002⟧ ⟦SEP_0006⟧"
+msgstr "⟦SEP_0003⟧ Dimensión ⟦SEP_0004⟧ ⟦CODE_0001⟧ ⟦SEP_0005⟧ ⟦CODE_0002⟧ ⟦SEP_0006⟧"
+
+#: lessons/study-guides/languages/tar.md:166
+msgctxt "s-f15add31d306-0086"
+msgid "⟦SEP_0002⟧ **Representation** ⟦SEP_0003⟧ The program is the archive's contents: member names are opcodes, bodies are operands. ⟦SEP_0004⟧ The program is ⟦CODE_0001⟧; the archive is a stream of zeros whose size is the clock. ⟦SEP_0005⟧"
+msgstr "⟦SEP_0002⟧ **Representación** ⟦SEP_0003⟧ El programa es el contenido del archivo: los nombres de los miembros son códigos de operación y los cuerpos son operandos. ⟦SEP_0004⟧ El programa es ⟦CODE_0001⟧; el archivo es un flujo de ceros cuyo tamaño es el reloj. ⟦SEP_0005⟧"
+
+#: lessons/study-guides/languages/tar.md:167
+msgctxt "s-eb1fa9bb4ebf-0087"
+msgid "⟦SEP_0004⟧ **Observability** ⟦SEP_0005⟧ ⟦CODE_0001⟧ lists the program. ⟦CODE_0002⟧ decodes it without running anything. ⟦SEP_0006⟧ The state is one SQLite row. ⟦CODE_0003⟧ has an awk simulation that predicts it. ⟦SEP_0007⟧"
+msgstr "⟦SEP_0004⟧ **Observabilidad** ⟦SEP_0005⟧ ⟦CODE_0001⟧ lista el programa. ⟦CODE_0002⟧ lo decodifica sin ejecutar nada. ⟦SEP_0006⟧ El estado es una fila de SQLite. ⟦CODE_0003⟧ tiene una simulación en awk que lo predice. ⟦SEP_0007⟧"
+
+#: lessons/study-guides/languages/tar.md:168
+msgctxt "s-4871e5cde597-0088"
+msgid "⟦SEP_0002⟧ **Tests** ⟦SEP_0003⟧ The inspector and a fixed ⟦CODE_0001⟧ list make the run deterministic. ⟦SEP_0004⟧ The test *predicts* the cards for 65 combinations of layouts, and compares. ⟦SEP_0005⟧"
+msgstr "⟦SEP_0002⟧ **Pruebas** ⟦SEP_0003⟧ El inspector y una lista fija de ⟦CODE_0001⟧ hacen determinista la ejecución. ⟦SEP_0004⟧ La prueba *predice* las tarjetas para 65 combinaciones de disposiciones y las compara. ⟦SEP_0005⟧"
+
+#: lessons/study-guides/languages/tar.md:169
+msgctxt "s-167643582cd7-0089"
+msgid "⟦SEP_0005⟧ **⟦DNT_0001⟧** ⟦SEP_0006⟧ Read the trace table: ⟦CODE_0002⟧ or ⟦CODE_0003⟧ for each member. ⟦SEP_0007⟧ A failed tick leaves tar running and the machine unmoved: the run ends with ⟦CODE_0004⟧ and exit 3. ⟦SEP_0008⟧"
+msgstr "⟦SEP_0005⟧ **⟦DNT_0001⟧** ⟦SEP_0006⟧ Lee la tabla de traza: ⟦CODE_0002⟧ o ⟦CODE_0003⟧ para cada miembro. ⟦SEP_0007⟧ Un pulso que falla deja a tar ejecutándose y a la máquina sin moverse: la ejecución termina con ⟦CODE_0004⟧ y estado de salida 3. ⟦SEP_0008⟧"
+
+#: lessons/study-guides/languages/tar.md:170
+msgctxt "s-00287e55150c-0090"
+msgid "⟦SEP_0002⟧ **Portability** ⟦SEP_0003⟧ GNU tar only: ⟦CODE_0001⟧ does not exist in BSD or macOS tar. ⟦SEP_0004⟧ GNU tar only, and the number of records a command writes was *measured* on 1.34 and 1.35. ⟦SEP_0005⟧"
+msgstr "⟦SEP_0002⟧ **Portabilidad** ⟦SEP_0003⟧ Solo GNU tar: ⟦CODE_0001⟧ no existe en BSD tar ni en macOS tar. ⟦SEP_0004⟧ Solo GNU tar, y el número de registros que escribe un comando se *midió* en las versiones 1.34 y 1.35. ⟦SEP_0005⟧"
+
+#: lessons/study-guides/languages/tar.md:171
+msgctxt "s-57a7129e07f1-0091"
+msgid "⟦SEP_0002⟧ **Cost** ⟦SEP_0003⟧ One shell process per member. ⟦SEP_0004⟧ One ⟦CODE_0001⟧ start per tick: a few tenths of a second for 64 ticks. ⟦SEP_0005⟧"
+msgstr "⟦SEP_0002⟧ **Costo** ⟦SEP_0003⟧ Un proceso del intérprete de comandos por miembro. ⟦SEP_0004⟧ Un arranque de ⟦CODE_0001⟧ por pulso: unas décimas de segundo para 64 pulsos. ⟦SEP_0005⟧"
+
+#: lessons/study-guides/languages/tar.md:173
+msgctxt "s-166ad90041eb-0092"
+msgid "The first is about what a layout **means**. The second is about **when** things happen. In the first, tar is a parser that happens to call your code. In the second, tar is an event source: a program written as a callback, with no loop of its own."
+msgstr "La primera trata de lo que **significa** una disposición. La segunda trata de **cuándo** ocurren las cosas. En la primera, tar es un analizador sintáctico que además llama a tu código. En la segunda, tar es una fuente de eventos: un programa escrito como función de devolución de llamada, sin bucle propio."
+
+#: lessons/study-guides/languages/tar.md:175
+msgctxt "s-716cae37520b-0093"
+msgid "What the exercises demonstrate"
+msgstr "Qué demuestran los ejercicios"
+
+#: lessons/study-guides/languages/tar.md:177
+msgctxt "s-d6a3ec9d5ed0-0094"
+msgid "⟦SEP_0001⟧ Exercise ⟦SEP_0002⟧ Predict first ⟦SEP_0003⟧ What the evidence shows ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ Ejercicio ⟦SEP_0002⟧ Predice primero ⟦SEP_0003⟧ Qué muestra la evidencia ⟦SEP_0004⟧"
+
+#: lessons/study-guides/languages/tar.md:179
+msgctxt "s-8f8a799a1b34-0095"
+msgid "⟦SEP_0003⟧ [B16. tar: read the program, then run it](⟦DEST_0001⟧), step 1 ⟦SEP_0004⟧ ⟦CODE_0002⟧: how many cards run, and which slot is read and ignored? ⟦SEP_0005⟧ Four cards (12, 24, 36, 48), and the fifth slot is read and ignored. ⟦SEP_0006⟧"
+msgstr "⟦SEP_0003⟧ [B16. tar: lee el programa y luego ejecútalo](⟦DEST_0001⟧), paso 1 ⟦SEP_0004⟧ ⟦CODE_0002⟧: ¿cuántas tarjetas se ejecutan y qué espacio se lee y se ignora? ⟦SEP_0005⟧ Cuatro tarjetas (12, 24, 36, 48), y el quinto espacio se lee y se ignora. ⟦SEP_0006⟧"
+
+#: lessons/study-guides/languages/tar.md:180
+msgctxt "s-da9d2bca700a-0096"
+msgid "⟦SEP_0007⟧ B16, step 2 ⟦SEP_0008⟧ Change ⟦CODE_0001⟧ in ⟦CODE_0002⟧ to ⟦CODE_0003⟧ and pack it again in the same order. ⟦SEP_0009⟧ Two cards (12, 24). The limit is in the archive, so editing a member changed the stop rule, and ⟦CODE_0004⟧ did not change. The trace shows ⟦CODE_0005⟧ then ⟦CODE_0006⟧. ⟦SEP_0010⟧"
+msgstr "⟦SEP_0007⟧ B16, paso 2 ⟦SEP_0008⟧ Cambia ⟦CODE_0001⟧ en ⟦CODE_0002⟧ a ⟦CODE_0003⟧ y empaquétalo otra vez en el mismo orden. ⟦SEP_0009⟧ Dos tarjetas (12, 24). El límite está en el archivo, así que editar un miembro cambió la regla de parada, y ⟦CODE_0004⟧ no cambió. La traza muestra ⟦CODE_0005⟧ y luego ⟦CODE_0006⟧. ⟦SEP_0010⟧"
+
+#: lessons/study-guides/languages/tar.md:181
+msgctxt "s-1aac8696b6fc-0097"
+msgid "⟦SEP_0006⟧ B16, step 3 ⟦SEP_0007⟧ Add a member ⟦CODE_0001⟧ that is not in the instruction set. ⟦SEP_0008⟧ The inspector prints ⟦CODE_0002⟧ and exits 4, ⟦CODE_0003⟧ runs nothing and no ⟦CODE_0004⟧ file appears. Plain ⟦CODE_0005⟧ would not create it either: a member name is not a command. ⟦SEP_0009⟧"
+msgstr "⟦SEP_0006⟧ B16, paso 3 ⟦SEP_0007⟧ Añade un miembro ⟦CODE_0001⟧ que no está en el conjunto de instrucciones. ⟦SEP_0008⟧ El inspector imprime ⟦CODE_0002⟧ y sale con 4, ⟦CODE_0003⟧ no ejecuta nada y no aparece ningún archivo ⟦CODE_0004⟧. ⟦CODE_0005⟧ a secas tampoco lo crearía: el nombre de un miembro no es un comando. ⟦SEP_0009⟧"
+
+#: lessons/study-guides/languages/tar.md:182
+msgctxt "s-e1dcaf16d0f2-0098"
+msgid "⟦SEP_0005⟧ [B17. tar, weirder: predict the clock](⟦DEST_0001⟧), step 1 ⟦SEP_0006⟧ ⟦CODE_0002⟧, then ⟦CODE_0003⟧. ⟦SEP_0007⟧ With 45 ticks the third card is not finished: two cards, ⟦CODE_0004⟧ and exit 3. With 46, three cards and exit 0. ⟦SEP_0008⟧"
+msgstr "⟦SEP_0005⟧ [B17. tar, más raro: predice el reloj](⟦DEST_0001⟧), paso 1 ⟦SEP_0006⟧ ⟦CODE_0002⟧ y después ⟦CODE_0003⟧. ⟦SEP_0007⟧ Con 45 pulsos la tercera tarjeta no termina: dos tarjetas, ⟦CODE_0004⟧ y salida 3. Con 46, tres tarjetas y salida 0. ⟦SEP_0008⟧"
+
+#: lessons/study-guides/languages/tar.md:183
+msgctxt "s-c152500cfdc6-0099"
+msgid "⟦SEP_0004⟧ B17, steps 2-3 ⟦SEP_0005⟧ ⟦CODE_0001⟧ with 92 and 91 ticks; ⟦CODE_0002⟧. ⟦SEP_0006⟧ 92 records give 46 ticks and finish. 91 give 45 and stall. ⟦CODE_0003⟧ with 260 blocks gives 65 records and 65 ticks, so 19 idle. ⟦SEP_0007⟧"
+msgstr "⟦SEP_0004⟧ B17, pasos 2 y 3 ⟦SEP_0005⟧ ⟦CODE_0001⟧ con 92 y 91 pulsos; ⟦CODE_0002⟧. ⟦SEP_0006⟧ 92 registros dan 46 pulsos y terminan. 91 dan 45 y se atascan. ⟦CODE_0003⟧ con 260 bloques da 65 registros y 65 pulsos, así que 19 son inactivos. ⟦SEP_0007⟧"
+
+#: lessons/study-guides/languages/tar.md:184
+msgctxt "s-29d26c5fe497-0100"
+msgid "⟦SEP_0001⟧ B17, step 4 ⟦SEP_0002⟧ What is in the tape? ⟦SEP_0003⟧ Almost all zeros, plus one 512-byte header. The payload does not matter. Its *size* is the clock. ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ B17, paso 4 ⟦SEP_0002⟧ ¿Qué hay en la cinta? ⟦SEP_0003⟧ Casi todo ceros, más una cabecera de 512 bytes. La carga útil no importa. Su *tamaño* es el reloj. ⟦SEP_0004⟧"
+
+#: lessons/study-guides/languages/tar.md:186
+msgctxt "s-7ee09fae7c90-0101"
+msgid "The B16 one-line answer is the lesson: the *inspector* parsed the program, the *interpreter* ran it and the trust boundary was the operator's decision to use ⟦CODE_0001⟧, not anything in the archive."
+msgstr "La respuesta de una línea de B16 es la lección. El *inspector* analizó el programa y el *intérprete* lo ejecutó. La frontera de confianza fue la decisión del operador de usar ⟦CODE_0001⟧, no algo del archivo."
+
+#: lessons/study-guides/languages/tar.md:188
+msgctxt "s-4fe97c469cdb-0102"
+msgid "Failure modes, costs and boundaries"
+msgstr "Modos de fallo, costos y límites"
+
+#: lessons/study-guides/languages/tar.md:190
+msgctxt "s-621aac5615e3-0103"
+msgid "⟦SEP_0001⟧ Behavior ⟦SEP_0002⟧ Label ⟦SEP_0003⟧ Why ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ Comportamiento ⟦SEP_0002⟧ Etiqueta ⟦SEP_0003⟧ Por qué ⟦SEP_0004⟧"
+
+#: lessons/study-guides/languages/tar.md:192
+msgctxt "s-a4a693d869ea-0104"
+msgid "⟦SEP_0002⟧ ⟦CODE_0001⟧ sends each member to a command, in archive order ⟦SEP_0003⟧ **implementation-permitted** ⟦SEP_0004⟧ A documented GNU tar feature, absent in POSIX tar and BSD tar. ⟦SEP_0005⟧"
+msgstr "⟦SEP_0002⟧ ⟦CODE_0001⟧ envía cada miembro a un comando, en el orden del archivo ⟦SEP_0003⟧ **permitido por la implementación** ⟦SEP_0004⟧ Una función documentada de GNU tar, ausente en tar POSIX y en BSD tar. ⟦SEP_0005⟧"
+
+#: lessons/study-guides/languages/tar.md:193
+msgctxt "s-ff2bcd498367-0105"
+msgid "⟦SEP_0002⟧ Plain ⟦CODE_0001⟧ writes files and does not run their contents ⟦SEP_0003⟧ **guaranteed** ⟦SEP_0004⟧ An archive is data. Only the command the operator attaches gives members an effect. ⟦SEP_0005⟧"
+msgstr "⟦SEP_0002⟧ ⟦CODE_0001⟧ a secas escribe archivos y no ejecuta su contenido ⟦SEP_0003⟧ **garantizado** ⟦SEP_0004⟧ Un archivo son datos. Solo el comando que añade el operador da efecto a los miembros. ⟦SEP_0005⟧"
+
+#: lessons/study-guides/languages/tar.md:194
+msgctxt "s-a61978395d8f-0106"
+msgid "⟦SEP_0004⟧ ⟦CODE_0001⟧ and ⟦CODE_0002⟧ with ⟦CODE_0003⟧ ⟦SEP_0005⟧ **implementation-permitted** ⟦SEP_0006⟧ Documented GNU tar features. A checkpoint counts *records*. ⟦SEP_0007⟧"
+msgstr "⟦SEP_0004⟧ ⟦CODE_0001⟧ y ⟦CODE_0002⟧ con ⟦CODE_0003⟧ ⟦SEP_0005⟧ **permitido por la implementación** ⟦SEP_0006⟧ Funciones documentadas de GNU tar. Un punto de control cuenta *registros*. ⟦SEP_0007⟧"
+
+#: lessons/study-guides/languages/tar.md:195
+msgctxt "s-067935858d9e-0107"
+msgid "⟦SEP_0001⟧ How many records a command writes for a given set of members ⟦SEP_0002⟧ **implementation-permitted** ⟦SEP_0003⟧ Measured on tar 1.34 and 1.35, with identical numbers, but worked out from observation. ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ Cuántos registros escribe un comando para un conjunto dado de miembros ⟦SEP_0002⟧ **permitido por la implementación** ⟦SEP_0003⟧ Medido en tar 1.34 y 1.35, con números idénticos, pero deducido de la observación. ⟦SEP_0004⟧"
+
+#: lessons/study-guides/languages/tar.md:196
+msgctxt "s-f237faf1dea0-0108"
+msgid "⟦SEP_0001⟧ Creating an archive of 21 blocks gives 21 ticks, but *listing* it gives 10 ⟦SEP_0002⟧ **accidentally exploited** knowledge ⟦SEP_0003⟧ The mode changes the count because tar skips data it need not read. Nobody promises it. The entry uses only creation, the simplest rule. ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ Crear un archivo de 21 bloques da 21 pulsos, pero *listarlo* da 10 ⟦SEP_0002⟧ **aprovechado por accidente** (conocimiento) ⟦SEP_0003⟧ El modo cambia la cuenta porque tar omite los datos que no necesita leer. Nadie lo promete. La entrada solo usa la creación, la regla más simple. ⟦SEP_0004⟧"
+
+#: lessons/study-guides/languages/tar.md:197
+msgctxt "s-1082d71f6dac-0109"
+msgid "⟦SEP_0001⟧ The callback's exit status is ignored ⟦SEP_0002⟧ **accidentally exploited** ⟦SEP_0003⟧ A command that exits 7 leaves tar's own status at 0 on every release tried. The entry does not rely on it: it makes extra ticks harmless and a failed tick merely idle. ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ El estado de salida de la función de devolución de llamada se ignora ⟦SEP_0002⟧ **aprovechado por accidente** ⟦SEP_0003⟧ Un comando que termina con 7 deja el estado de tar en 0 en todas las versiones probadas. La entrada no depende de eso: hace inofensivos los pulsos extra y hace que un pulso fallido sea solo inactivo. ⟦SEP_0004⟧"
+
+#: lessons/study-guides/languages/tar.md:198
+msgctxt "s-670e8832d0a6-0110"
+msgid "⟦SEP_0002⟧ tar keeps writing after the stop rule ⟦SEP_0003⟧ **implementation-permitted** ⟦SEP_0004⟧ tar cannot be told to stop, so the machine has a ⟦CODE_0001⟧ flag. ⟦SEP_0005⟧"
+msgstr "⟦SEP_0002⟧ tar sigue escribiendo después de la regla de parada ⟦SEP_0003⟧ **permitido por la implementación** ⟦SEP_0004⟧ No se puede ordenar a tar que se detenga, así que la máquina tiene una bandera ⟦CODE_0001⟧. ⟦SEP_0005⟧"
+
+#: lessons/study-guides/languages/tar.md:199
+msgctxt "s-4bfa387e3265-0111"
+msgid "⟦SEP_0003⟧ Reading an archive with the inspector runs nothing ⟦SEP_0004⟧ **guaranteed** by design, tested ⟦SEP_0005⟧ ⟦CODE_0001⟧ parses only. ⟦CODE_0002⟧ verifies refusals. ⟦SEP_0006⟧"
+msgstr "⟦SEP_0003⟧ Leer un archivo con el inspector no ejecuta nada ⟦SEP_0004⟧ **garantizado** por diseño, y probado ⟦SEP_0005⟧ ⟦CODE_0001⟧ solo analiza. ⟦CODE_0002⟧ verifica los rechazos. ⟦SEP_0006⟧"
+
+#: lessons/study-guides/languages/tar.md:201
+msgctxt "s-87d9e31bff8d-0112"
+msgid "**Costs to state.**"
+msgstr "**Costos que declarar.**"
+
+#: lessons/study-guides/languages/tar.md:203
+msgctxt "s-afa7ee692913-0113"
+msgid "**The authority is in the command, not the data.** Every unsafe thing here would be a *decision by the operator*: choosing ⟦CODE_0001⟧, choosing ⟦CODE_0002⟧. See [Capability and authority](⟦DEST_0003⟧)."
+msgstr "**La autoridad está en el comando, no en los datos.** Todo lo inseguro aquí sería una *decisión del operador*: elegir ⟦CODE_0001⟧, elegir ⟦CODE_0002⟧. Consulta [Capacidad y autoridad](⟦DEST_0003⟧)."
+
+#: lessons/study-guides/languages/tar.md:204
+msgctxt "s-822b258f27d0-0114"
+msgid "**The dispatcher is a trust boundary.** Names and bodies are checked against strict patterns before any SQL runs, and no part of a member reaches a shell. A relaxed pattern would turn the archive into an injection vector."
+msgstr "**El despachador es una frontera de confianza.** Los nombres y los cuerpos se comparan con patrones estrictos antes de que se ejecute cualquier SQL, y ninguna parte de un miembro llega a un intérprete de comandos. Un patrón relajado convertiría el archivo en un vector de inyección."
+
+#: lessons/study-guides/languages/tar.md:205
+msgctxt "s-c275c3357fd4-0115"
+msgid "**A clock without a stop.** The weird machine cannot stop tar, so a layout that is too short stalls the run mid-card, and one that is too long idles. The run needs 41 to 59 ticks, and the default is 64."
+msgstr "**Un reloj sin parada.** La máquina rara no puede detener a tar. Por eso una disposición demasiado corta atasca la ejecución a media tarjeta, y una demasiado larga queda inactiva. La ejecución necesita de 41 a 59 pulsos, y el valor predeterminado es 64."
+
+#: lessons/study-guides/languages/tar.md:206
+msgctxt "s-efbfdf722554-0116"
+msgid "**Scheduling with a progress indicator.** Checkpoints were designed to show progress. This is a hack that depends on counting records."
+msgstr "**Planificar con un indicador de progreso.** Los puntos de control se diseñaron para mostrar el progreso. Esto es un truco que depende de contar registros."
+
+#: lessons/study-guides/languages/tar.md:207
+msgctxt "s-299b555f8b78-0117"
+msgid "**Where this is legitimate.** Serializing work as an archive, and running it with an explicit, reviewable command, is how many build and install tools work. A scheduler made from checkpoints is a stunt."
+msgstr "**Dónde esto es legítimo.** Serializar trabajo como archivo y ejecutarlo con un comando explícito y revisable es como funcionan muchas herramientas de compilación e instalación. Un planificador hecho con puntos de control es una acrobacia."
+
+#: lessons/study-guides/languages/tar.md:209
+msgctxt "s-061eb6da82a8-0118"
+msgid "Connections across the repository"
+msgstr "Conexiones a lo largo del repositorio"
+
+#: lessons/study-guides/languages/tar.md:211
+msgctxt "s-d9eb3cd50a14-0119"
+msgid "**Document order as the program.** ⟦CODE_0001⟧ is the repository's example of data that is read in order and given meaning by the reader. [XAML in the C# guide](⟦DEST_0002⟧) is the same worry in a markup file: a parser that runs what it parses. The concept guide [Reading adversarial programs](⟦DEST_0003⟧) uses both."
+msgstr "**El orden del documento como programa.** ⟦CODE_0001⟧ es el ejemplo del repositorio de datos que se leen en orden y a los que el lector da sentido. [XAML en la guía de C#](⟦DEST_0002⟧) es la misma preocupación en un archivo de marcado: un analizador sintáctico que ejecuta lo que analiza. La guía de concepto [Lectura de programas adversariales](⟦DEST_0003⟧) usa ambos."
+
+#: lessons/study-guides/languages/tar.md:212
+msgctxt "s-c8c7eaf9fd04-0120"
+msgid "**A callback inverted.** ⟦CODE_0001⟧ is a program called by its environment, as the PCRE2 callouts in [Regex engines and sed](⟦DEST_0002⟧) and the listeners in [JavaScript](⟦DEST_0003⟧) are. The concept guide [Events, callbacks and reactive control](⟦DEST_0004⟧) compares who owns the next turn."
+msgstr "**Una función de devolución de llamada invertida.** ⟦CODE_0001⟧ es un programa al que llama su entorno, como los callouts de PCRE2 en [Motores de regex y sed](⟦DEST_0002⟧) y los escuchadores de eventos de [JavaScript](⟦DEST_0003⟧). La guía de concepto [Eventos, funciones de devolución de llamada y control reactivo](⟦DEST_0004⟧) compara quién es dueño del turno siguiente."
+
+#: lessons/study-guides/languages/tar.md:213
+msgctxt "s-29aac730e574-0121"
+msgid "**A state machine in one row.** [Tcl](⟦DEST_0001⟧) keeps its state in table rows too. The concept guide [State and control beyond variables](⟦DEST_0002⟧) compares them."
+msgstr "**Una máquina de estados en una fila.** [Tcl](⟦DEST_0001⟧) también guarda su estado en filas de una tabla. La guía de concepto [Estado y control más allá de las variables](⟦DEST_0002⟧) las compara."
+
+#: lessons/study-guides/languages/tar.md:214
+msgctxt "s-b47f54f0db1a-0122"
+msgid "**Prediction as a test.** ⟦CODE_0001⟧ contains a second implementation of the machine and compares the two. The concept guide [Portability, abstraction and cost](⟦DEST_0002⟧) uses this to ask what an observation proves."
+msgstr "**La predicción como prueba.** ⟦CODE_0001⟧ contiene una segunda implementación de la máquina y compara las dos. La guía de concepto [Portabilidad, abstracción y costo](⟦DEST_0002⟧) lo usa para preguntar qué demuestra una observación."
+
+#: lessons/study-guides/languages/tar.md:215
+msgctxt "s-365acaad80aa-0123"
+msgid "**In the book.** [tar](⟦DEST_0001⟧), [Serialization, deserialization and object pickling](⟦DEST_0002⟧), [Logical clocks and event ordering](⟦DEST_0003⟧) and [Capability and authority](⟦DEST_0004⟧)."
+msgstr "**En el libro.** [tar](⟦DEST_0001⟧), [Serialización, deserialización y pickling de objetos](⟦DEST_0002⟧), [Relojes lógicos y orden de los eventos](⟦DEST_0003⟧) y [Capacidad y autoridad](⟦DEST_0004⟧)."
+
+#: lessons/study-guides/languages/tar.md:217
+msgctxt "s-50944288ce61-0124"
+msgid "Self-check"
+msgstr "Autoevaluación"
+
+#: lessons/study-guides/languages/tar.md:219
+msgctxt "s-274e192b952c-0125"
+msgid "Answer each question in your own words before you read the italic text. Say what evidence would support each answer."
+msgstr "Responde cada pregunta con tus propias palabras antes de leer el texto en cursiva. Di qué evidencia respaldaría cada respuesta."
+
+#: lessons/study-guides/languages/tar.md:221
+msgctxt "s-05c935f22d35-0126"
+msgid ""
+"**Trace.** ⟦CODE_0001⟧ is built with hours 11, 11, 11, 11, 10 (totals 11, 22, 33, 44). Which members run and which are ignored? *(The first four cards run. After card 4, ⟦CODE_0002⟧ sees 44 and halts. ⟦CODE_0003⟧, ⟦CODE_0004⟧ are read and traced ⟦CODE_0005⟧. ⟦CODE_0006⟧ prints four rows.)*\n"
+"2. **Explain.** Why does ⟦CODE_0007⟧ still tick after the run is done? *(tar writes all its records and runs the callback for each. tar cannot be told to stop, so the machine's ⟦CODE_0008⟧ flag makes later ticks only count as idle.)*\n"
+"3. **Transfer.** In ⟦CODE_0009⟧, the limit lives in the archive. In another entry it lives in a regex, a tape line or a data declaration. Which is the easiest to change by someone who can edit data but not code, and what does that imply for review? *(The archive and the Ex tape: both are data. Reviewing the *data* is then as important as reviewing the code, so a change to the limit must be visible to the reviewer.)*\n"
+"4. **Evidence.** The README says, \"Exit status 7 from the callback leaves tar's status at 0.\" Design a test that could fail. Which label applies to the claim? *(Run a copy whose ⟦CODE_0010⟧ action is ⟦CODE_0011⟧ and check tar's exit status. The negative control is a run where tar itself fails, for example on an unreadable file, which must give non-zero. The claim describes tested releases only, so it is accidentally exploited.)*"
+msgstr ""
+"**Traza.** ⟦CODE_0001⟧ se construye con las horas 11, 11, 11, 11, 10 (totales 11, 22, 33, 44). ¿Qué miembros se ejecutan y cuáles se ignoran? *(Las primeras cuatro tarjetas se ejecutan. Tras la tarjeta 4, ⟦CODE_0002⟧ ve 44 y detiene la ejecución. ⟦CODE_0003⟧ y ⟦CODE_0004⟧ se leen y se anotan como ⟦CODE_0005⟧. ⟦CODE_0006⟧ imprime cuatro filas.)*\n"
+"2. **Explica.** ¿Por qué ⟦CODE_0007⟧ sigue dando pulsos cuando la ejecución ya terminó? *(tar escribe todos sus registros y ejecuta la función de devolución de llamada por cada uno. No se puede ordenar a tar que se detenga, así que la bandera ⟦CODE_0008⟧ de la máquina hace que los pulsos posteriores solo cuenten como inactivos.)*\n"
+"3. **Transfiere.** En ⟦CODE_0009⟧, el límite vive en el archivo. En otra entrada vive en una regex, en una línea de cinta o en una declaración de datos. ¿Cuál es más fácil de cambiar para quien puede editar datos pero no código, y qué implica eso para la revisión? *(El archivo y la cinta de Ex: ambos son datos. Revisar los *datos* es entonces tan importante como revisar el código, así que un cambio en el límite debe ser visible para el revisor.)*\n"
+"4. **Evidencia.** El README dice: \"El estado de salida 7 de la función de devolución de llamada deja el estado de tar en 0\". Diseña una prueba que pueda fallar. ¿Qué etiqueta se aplica a la afirmación? *(Ejecuta una copia cuya acción ⟦CODE_0010⟧ sea ⟦CODE_0011⟧ y comprueba el estado de salida de tar. El control negativo es una ejecución en la que falla el propio tar, por ejemplo con un archivo ilegible, que debe dar un estado distinto de cero. La afirmación describe solo las versiones probadas, así que es aprovechada por accidente.)*"
+
+#: lessons/study-guides/languages/tar.md:226
+msgctxt "s-4082f515b2f4-0127"
+msgid "Further reading"
+msgstr "Lecturas adicionales"
+
+#: lessons/study-guides/languages/tar.md:228
+msgctxt "s-545845735d69-0128"
+msgid "[Tar (computing)](⟦DEST_0001⟧)) (Wikipedia): the format, its blocks and its history."
+msgstr "[Tar (informática)](⟦DEST_0001⟧)) (Wikipedia): el formato, sus bloques y su historia."
+
+#: lessons/study-guides/languages/tar.md:229
+msgctxt "s-d486dcc94073-0129"
+msgid "[GNU tar: Checkpoints](⟦DEST_0001⟧) (GNU Project): the official description of ⟦CODE_0002⟧, ⟦CODE_0003⟧ and ⟦CODE_0004⟧. The checkpoint behavior this guide leans on is documented here, but how many records a command writes is measured, not promised."
+msgstr "[GNU tar: Puntos de control](⟦DEST_0001⟧) (Proyecto GNU): la descripción oficial de ⟦CODE_0002⟧, ⟦CODE_0003⟧ y ⟦CODE_0004⟧. El comportamiento de los puntos de control en el que se apoya esta guía está documentado aquí, pero cuántos registros escribe un comando se midió y no se promete."
+
+#: lessons/study-guides/languages/tar.md:230
+msgctxt "s-dc2ca6e56b00-0130"
+msgid "[Serialization](⟦DEST_0001⟧) (Wikipedia): why data that is written down and read back can become a program."
+msgstr "[Serialización](⟦DEST_0001⟧) (Wikipedia): por qué los datos que se escriben y se vuelven a leer pueden convertirse en un programa."
+
+#: lessons/study-guides/languages/tar.md:231
+msgctxt "s-3a3b0bc3f088-0131"
+msgid "[Capability and authority](⟦DEST_0001⟧) (this book): why authority comes from the command that runs a program, not from the data it reads."
+msgstr "[Capacidad y autoridad](⟦DEST_0001⟧) (este libro): por qué la autoridad viene del comando que ejecuta un programa, no de los datos que lee."

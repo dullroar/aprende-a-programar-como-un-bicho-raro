@@ -2080,3 +2080,60 @@
 {"segment_id": "s-95334b62d7fe-0130", "ts": "2026-11-21T19:21:54Z", "findings": ["I7: glossary term code must be rendered 'código'"]}
 {"segment_id": "s-87d9e31bff8d-0136", "ts": "2026-11-21T19:21:54Z", "findings": ["I7: glossary term state must be rendered 'estado'"]}
 {"segment_id": "s-87d13051a515-0137", "ts": "2026-11-21T19:21:54Z", "findings": ["I7: glossary term bug must be rendered 'bicho'"]}
+{"segment_id": "s-01b798c5f27a-0004", "ts": "2026-11-21T19:26:23Z", "findings": ["I7: glossary term shell must be rendered 'intérprete de comandos (*shell*)'"]}
+{"segment_id": "s-6e36c2b391b5-0005", "ts": "2026-11-21T19:26:23Z", "findings": ["I7: glossary term scope must be rendered 'ámbito'"]}
+{"segment_id": "s-6a06524a7e5d-0007", "ts": "2026-11-21T19:26:23Z", "findings": ["I25: comma before a simple 'y' ('*Leer* y *ejecutar* son comandos distintos, y ejecutar exige'): no comma before a simple o or y"]}
+{"segment_id": "s-78a7d749b03d-0018", "ts": "2026-11-21T19:26:23Z", "findings": ["I11: the standard shared-challenge paragraph must be the catalog text study_guides.shared_challenge exactly"]}
+{"segment_id": "s-edaa51db7d67-0021", "ts": "2026-11-21T19:26:23Z", "findings": ["I7: glossary term callback must be rendered 'función de devolución de llamada'"]}
+{"segment_id": "s-bc6b79b420e1-0022", "ts": "2026-11-21T19:26:23Z", "findings": ["I12: sentence of 34 words (limit 29): En X, en el propio archivo (las instrucc..."]}
+{"segment_id": "s-3a52b48c4192-0023", "ts": "2026-11-21T19:26:23Z", "findings": ["I7: glossary term hours must be rendered 'horas'"]}
+{"segment_id": "s-12eb4836b380-0045", "ts": "2026-11-21T19:26:23Z", "findings": ["I7: glossary term clock must be rendered 'reloj'", "TRANSLATE: the reply is the English text unchanged"]}
+{"segment_id": "s-fee407fd3b53-0063", "ts": "2026-11-21T19:26:23Z", "findings": ["TRANSLATE: the reply is the English text unchanged"]}
+{"segment_id": "s-942b0c21c819-0065", "ts": "2026-11-21T19:26:23Z", "findings": ["TRANSLATE: the reply is the English text unchanged"]}
+{"segment_id": "s-fe1cde8498c8-0067", "ts": "2026-11-21T19:26:23Z", "findings": ["TRANSLATE: the reply is the English text unchanged"]}
+{"segment_id": "s-405c1b857089-0083", "ts": "2026-11-21T19:26:24Z", "findings": ["I7: glossary term compare-ordinary-weird must be rendered 'Compara los diseños ordinarios y los raros'"]}
+{"segment_id": "s-57a7129e07f1-0091", "ts": "2026-11-21T19:26:24Z", "findings": ["I7: glossary term shell must be rendered 'intérprete de comandos (*shell*)'"]}
+{"segment_id": "s-166ad90041eb-0092", "ts": "2026-11-21T19:26:24Z", "findings": ["I7: glossary term parser must be rendered 'analizador sintáctico'"]}
+{"segment_id": "s-e1dcaf16d0f2-0098", "ts": "2026-11-21T19:26:24Z", "findings": ["I25: comma before a simple 'y' ('paso 1 | X, y luego X'): no comma before a simple o or y"]}
+{"segment_id": "s-7ee09fae7c90-0101", "ts": "2026-11-21T19:26:24Z", "findings": ["I12: sentence of 36 words (limit 29): La respuesta de una línea de B16 es la l..."]}
+{"segment_id": "s-87d9e31bff8d-0112", "ts": "2026-11-21T19:26:24Z", "findings": ["I7: glossary term state must be rendered 'estado'"]}
+{"segment_id": "s-822b258f27d0-0114", "ts": "2026-11-21T19:26:24Z", "findings": ["I7: glossary term shell must be rendered 'intérprete de comandos (*shell*)'"]}
+{"segment_id": "s-299b555f8b78-0117", "ts": "2026-11-21T19:26:24Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-d9eb3cd50a14-0119", "ts": "2026-11-21T19:26:24Z", "findings": ["I7: glossary term parser must be rendered 'analizador sintáctico'"]}
+{"segment_id": "s-c8c7eaf9fd04-0120", "ts": "2026-11-21T19:26:24Z", "findings": ["I7: glossary term listener must be rendered 'escuchador de eventos'", "I7: banned rendering 'oyentes' for glossary term listener"]}
+{"segment_id": "s-01b798c5f27a-0004", "ts": "2026-11-21T19:26:26Z", "findings": ["I7: glossary term shell must be rendered 'intérprete de comandos (*shell*)'"]}
+{"segment_id": "s-6e36c2b391b5-0005", "ts": "2026-11-21T19:26:26Z", "findings": ["I7: glossary term scope must be rendered 'ámbito'"]}
+{"segment_id": "s-6a06524a7e5d-0007", "ts": "2026-11-21T19:26:26Z", "findings": ["I25: comma before a simple 'y' ('*Leer* y *ejecutar* son comandos distintos, y ejecutar exige'): no comma before a simple o or y"]}
+{"segment_id": "s-78a7d749b03d-0018", "ts": "2026-11-21T19:26:26Z", "findings": ["I11: the standard shared-challenge paragraph must be the catalog text study_guides.shared_challenge exactly"]}
+{"segment_id": "s-edaa51db7d67-0021", "ts": "2026-11-21T19:26:26Z", "findings": ["I7: glossary term callback must be rendered 'función de devolución de llamada'"]}
+{"segment_id": "s-bc6b79b420e1-0022", "ts": "2026-11-21T19:26:26Z", "findings": ["I12: sentence of 34 words (limit 29): En X, en el propio archivo (las instrucc..."]}
+{"segment_id": "s-3a52b48c4192-0023", "ts": "2026-11-21T19:26:26Z", "findings": ["I7: glossary term hours must be rendered 'horas'"]}
+{"segment_id": "s-12eb4836b380-0045", "ts": "2026-11-21T19:26:26Z", "findings": ["I7: glossary term clock must be rendered 'reloj'", "TRANSLATE: the reply is the English text unchanged"]}
+{"segment_id": "s-fee407fd3b53-0063", "ts": "2026-11-21T19:26:26Z", "findings": ["TRANSLATE: the reply is the English text unchanged"]}
+{"segment_id": "s-942b0c21c819-0065", "ts": "2026-11-21T19:26:26Z", "findings": ["TRANSLATE: the reply is the English text unchanged"]}
+{"segment_id": "s-fe1cde8498c8-0067", "ts": "2026-11-21T19:26:26Z", "findings": ["TRANSLATE: the reply is the English text unchanged"]}
+{"segment_id": "s-405c1b857089-0083", "ts": "2026-11-21T19:26:26Z", "findings": ["I7: glossary term compare-ordinary-weird must be rendered 'Compara los diseños ordinarios y los raros'"]}
+{"segment_id": "s-57a7129e07f1-0091", "ts": "2026-11-21T19:26:26Z", "findings": ["I7: glossary term shell must be rendered 'intérprete de comandos (*shell*)'"]}
+{"segment_id": "s-166ad90041eb-0092", "ts": "2026-11-21T19:26:26Z", "findings": ["I7: glossary term parser must be rendered 'analizador sintáctico'"]}
+{"segment_id": "s-e1dcaf16d0f2-0098", "ts": "2026-11-21T19:26:26Z", "findings": ["I25: comma before a simple 'y' ('paso 1 | X, y luego X'): no comma before a simple o or y"]}
+{"segment_id": "s-7ee09fae7c90-0101", "ts": "2026-11-21T19:26:26Z", "findings": ["I12: sentence of 36 words (limit 29): La respuesta de una línea de B16 es la l..."]}
+{"segment_id": "s-87d9e31bff8d-0112", "ts": "2026-11-21T19:26:26Z", "findings": ["I7: glossary term state must be rendered 'estado'"]}
+{"segment_id": "s-822b258f27d0-0114", "ts": "2026-11-21T19:26:26Z", "findings": ["I7: glossary term shell must be rendered 'intérprete de comandos (*shell*)'"]}
+{"segment_id": "s-299b555f8b78-0117", "ts": "2026-11-21T19:26:26Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-d9eb3cd50a14-0119", "ts": "2026-11-21T19:26:26Z", "findings": ["I7: glossary term parser must be rendered 'analizador sintáctico'"]}
+{"segment_id": "s-c8c7eaf9fd04-0120", "ts": "2026-11-21T19:26:26Z", "findings": ["I7: glossary term listener must be rendered 'escuchador de eventos'", "I7: banned rendering 'oyentes' for glossary term listener"]}
+{"segment_id": "s-01b798c5f27a-0004", "ts": "2026-11-21T19:27:06Z", "findings": ["I25: comma before a simple 'y' (', y qué añade el inspector'): no comma before a simple o or y"]}
+{"segment_id": "s-6e36c2b391b5-0005", "ts": "2026-11-21T19:27:06Z", "findings": ["I7: glossary term scope must be rendered 'ámbito'"]}
+{"segment_id": "s-edaa51db7d67-0021", "ts": "2026-11-21T19:27:06Z", "findings": ["I12: sentence of 31 words (limit 29): En X, es tar otra vez, pero mediante sus..."]}
+{"segment_id": "s-bc6b79b420e1-0022", "ts": "2026-11-21T19:27:06Z", "findings": ["I12: sentence of 30 words (limit 29): En X, vive en *una fila* de una tabla ll..."]}
+{"segment_id": "s-12eb4836b380-0045", "ts": "2026-11-21T19:27:06Z", "findings": ["I7: glossary term clock must be rendered 'reloj'", "TRANSLATE: the reply is the English text unchanged"]}
+{"segment_id": "s-fee407fd3b53-0063", "ts": "2026-11-21T19:27:06Z", "findings": ["TRANSLATE: the reply is the English text unchanged"]}
+{"segment_id": "s-942b0c21c819-0065", "ts": "2026-11-21T19:27:06Z", "findings": ["TRANSLATE: the reply is the English text unchanged"]}
+{"segment_id": "s-fe1cde8498c8-0067", "ts": "2026-11-21T19:27:06Z", "findings": ["TRANSLATE: the reply is the English text unchanged"]}
+{"segment_id": "s-87d9e31bff8d-0112", "ts": "2026-11-21T19:27:06Z", "findings": ["I7: glossary term state must be rendered 'estado'"]}
+{"segment_id": "s-6e36c2b391b5-0005", "ts": "2026-11-21T19:27:11Z", "findings": ["I7: glossary term scope must be rendered 'ámbito'"]}
+{"segment_id": "s-12eb4836b380-0045", "ts": "2026-11-21T19:27:11Z", "findings": ["I7: glossary term clock must be rendered 'reloj'", "TRANSLATE: the reply is the English text unchanged"]}
+{"segment_id": "s-fee407fd3b53-0063", "ts": "2026-11-21T19:27:11Z", "findings": ["TRANSLATE: the reply is the English text unchanged"]}
+{"segment_id": "s-942b0c21c819-0065", "ts": "2026-11-21T19:27:11Z", "findings": ["TRANSLATE: the reply is the English text unchanged"]}
+{"segment_id": "s-fe1cde8498c8-0067", "ts": "2026-11-21T19:27:11Z", "findings": ["TRANSLATE: the reply is the English text unchanged"]}
+{"segment_id": "s-87d9e31bff8d-0112", "ts": "2026-11-21T19:27:11Z", "findings": ["I7: glossary term state must be rendered 'estado'"]}
