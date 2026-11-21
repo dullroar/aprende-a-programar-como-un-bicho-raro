@@ -26,7 +26,10 @@ using the checkpoint instructions. Check `loop/STATE.md`,
 `python3 tools/next_task.py --counts`, and the latest driver output for status.
 
 The CLIs use their existing sign-ins. Codex runs with workspace-write
-sandboxing and automatic approval review. Copilot runs with assisted approval.
+sandboxing and automatic approval review. Copilot runs with assisted approval, plus allow rules for `python3`,
+`python`, `tools/*`, `git` and file writes (the judge kept denying
+`tools/translate.py` exports and imports); `git push`, `gh`, `curl`, `wget`
+and `ssh` stay denied.
 Request review for a scoped Git operation or the unchanged verifier if the
 sandbox blocks it. If review denies a required operation, keep the partial
 work and report the specific operation. The usage ledger records the agent and

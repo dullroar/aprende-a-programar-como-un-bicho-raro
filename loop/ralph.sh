@@ -79,7 +79,7 @@ case "$agent" in
     fi
     ;;
   copilot)
-    DEFAULT_AGENT_CMD='copilot --no-auto-update --no-ask-user --assisted-approval --disable-builtin-mcps --output-format json --deny-tool="shell(git push)" --deny-tool="shell(gh)" --deny-tool="shell(curl)" --deny-tool="shell(wget)" --deny-tool="shell(ssh)" --prompt "$(cat)"'
+    DEFAULT_AGENT_CMD='copilot --no-auto-update --no-ask-user --assisted-approval --disable-builtin-mcps --output-format json --allow-tool="shell(python3)" --allow-tool="shell(python)" --allow-tool="shell(tools/*)" --allow-tool="shell(git)" --allow-tool="write" --deny-tool="shell(git push)" --deny-tool="shell(gh)" --deny-tool="shell(curl)" --deny-tool="shell(wget)" --deny-tool="shell(ssh)" --prompt "$(cat)"'
     ;;
   codex)
     DEFAULT_AGENT_CMD='codex exec --approve-for-me --color never --json -'
