@@ -109,3 +109,10 @@ The Spanish edition translates what the English says. When the English itself lo
 ## G. Early checkpoints (process change)
 
 Do not wait for the end. After the **entry READMEs** (all `P4-src-*` tasks) the loop writes a checkpoint packet and **stops** (`P4-chk-1`), so an external review can run before the 108 concept files and the rest are translated. Any new rule found there is added here, applied to the finished files, and only then does the next family start.
+
+## H. Learned at the Phase 3C gate (P3C-017, iteration 105)
+
+- The dispositions file cites **lines of the reviewed Spanish file**, not lines of the review document. A coverage check must match each review item's bold line numbers to the rows of its own file.
+- `verify --release` fails `inventory --check` whenever `translation/work/inventory.json` (git-ignored) predates a commit; run `python3 tools/inventory.py` first, then the gate.
+- Release findings on translated files are zero. The remaining red checks are all untranslated content (200 files without a PO, `'teaches'` and `## Flujo del programa` in untranslated READMEs, 313 guide problems, the aside, the `test_cs` heading literal). Three links from translated guides point into English READMEs and re-aim when those READMEs are translated.
+- Rules B1 to B6 and the glossary choices of Part C held up on a fresh-context audit (P3C-016: 0 critical, 0 major). Apply them to every P4 file from the start, because a file translated before the Part B lints needs a second pass.
