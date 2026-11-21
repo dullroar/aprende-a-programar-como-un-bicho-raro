@@ -1307,41 +1307,41 @@
     {
      "en": "v4 book and study-guide editorial audit",
      "en_id": "v4-book-and-study-guide-editorial-audit",
-     "es": "v4 book and study-guide editorial audit",
-     "es_id": "v4-book-and-study-guide-editorial-audit",
+     "es": "Auditoría editorial del libro y la guía de estudio de la v4",
+     "es_id": "auditoría-editorial-del-libro-y-la-guía-de-estudio-de-la-v4",
      "level": 1,
      "line": 1
     },
     {
      "en": "Behavior and evidence",
      "en_id": "behavior-and-evidence",
-     "es": "Behavior and evidence",
-     "es_id": "behavior-and-evidence",
+     "es": "Comportamiento y evidencia",
+     "es_id": "comportamiento-y-evidencia",
      "level": 2,
      "line": 7
     },
     {
      "en": "Gemini dispositions",
      "en_id": "gemini-dispositions",
-     "es": "Gemini dispositions",
-     "es_id": "gemini-dispositions",
+     "es": "Resolución de las observaciones de Gemini",
+     "es_id": "resolución-de-las-observaciones-de-gemini",
      "level": 2,
      "line": 21
     },
     {
      "en": "Release checks",
      "en_id": "release-checks",
-     "es": "Release checks",
-     "es_id": "release-checks",
+     "es": "Comprobaciones de la versión",
+     "es_id": "comprobaciones-de-la-versión",
      "level": 2,
      "line": 41
     }
    ],
    "map": {
-    "behavior-and-evidence": "behavior-and-evidence",
-    "gemini-dispositions": "gemini-dispositions",
-    "release-checks": "release-checks",
-    "v4-book-and-study-guide-editorial-audit": "v4-book-and-study-guide-editorial-audit"
+    "behavior-and-evidence": "comportamiento-y-evidencia",
+    "gemini-dispositions": "resolución-de-las-observaciones-de-gemini",
+    "release-checks": "comprobaciones-de-la-versión",
+    "v4-book-and-study-guide-editorial-audit": "auditoría-editorial-del-libro-y-la-guía-de-estudio-de-la-v4"
    }
   },
   "lessons/cs-source/chapters/01-reading-an-adversarial-program.md": {

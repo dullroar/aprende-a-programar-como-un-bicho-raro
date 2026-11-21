@@ -1412,3 +1412,34 @@
 {"segment_id": "s-b5141eb27604-0070", "ts": "2026-11-21T16:23:25Z", "findings": ["I7: glossary term host must be rendered 'anfitrión'"]}
 {"segment_id": "s-3486fed063e1-0072", "ts": "2026-11-21T16:23:25Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
 {"segment_id": "s-66a4d99c08a0-0073", "ts": "2026-11-21T16:23:25Z", "findings": ["I7: glossary term host must be rendered 'anfitrión'"]}
+{"segment_id": "s-3b720be5ba88-0002", "ts": "2026-11-21T16:28:05Z", "findings": ["I7: glossary term list must be rendered 'lista'"]}
+{"segment_id": "s-b38390283d03-0004", "ts": "2026-11-21T16:28:05Z", "findings": ["I7: glossary term closure must be rendered 'clausura'", "I7: banned rendering 'cierre' for glossary term closure"]}
+{"segment_id": "s-a0f15250e21a-0005", "ts": "2026-11-21T16:28:05Z", "findings": ["I7: banned rendering 'compromiso' for glossary term commit-transaction"]}
+{"segment_id": "s-4c6f29f60901-0006", "ts": "2026-11-21T16:28:05Z", "findings": ["I7: glossary term exercise must be rendered 'ejercicio'"]}
+{"segment_id": "s-6f5ebaa2476c-0007", "ts": "2026-11-21T16:28:05Z", "findings": ["I7: glossary term assurance must be rendered 'grado de garantía'"]}
+{"segment_id": "s-ffce6c390955-0008", "ts": "2026-11-21T16:28:05Z", "findings": ["I7: banned rendering 'registro' for glossary term entry"]}
+{"segment_id": "s-a7832774652e-0009", "ts": "2026-11-21T16:28:05Z", "findings": ["I7: glossary term concept-guide must be rendered 'guía de concepto'"]}
+{"segment_id": "s-6c07c283cef9-0013", "ts": "2026-11-21T16:28:05Z", "findings": ["I7: glossary term scope must be rendered 'ámbito'", "I14: English acronym WEIRD survives (use {{acronym.word}})"]}
+{"segment_id": "s-0b632b31355c-0015", "ts": "2026-11-21T16:28:05Z", "findings": ["I7: glossary term closure must be rendered 'clausura'", "I7: banned rendering 'cierre' for glossary term closure"]}
+{"segment_id": "s-0c4e065976cc-0017", "ts": "2026-11-21T16:28:05Z", "findings": ["I3: digit token 000 appears 1 time(s) in the source, 0 in the target", "I3: digit token 1 appears 1 time(s) in the source, 0 in the target", "I3: digit token 1000 appears 0 time(s) in the source, 1 in the target"]}
+{"segment_id": "s-8597b0e055e9-0018", "ts": "2026-11-21T16:28:05Z", "findings": ["I25: comma before a simple 'y' ('B9 pasó, y GNU sed 4'): no comma before a simple o or y"]}
+{"segment_id": "s-09d207757274-0024", "ts": "2026-11-21T16:28:05Z", "findings": ["I7: banned rendering 'compromiso' for glossary term commit-transaction"]}
+{"segment_id": "s-a049d005fb5f-0025", "ts": "2026-11-21T16:28:05Z", "findings": ["I7: glossary term scope must be rendered 'ámbito'"]}
+{"segment_id": "s-9fde20b17b56-0032", "ts": "2026-11-21T16:28:05Z", "findings": ["I7: glossary term parser must be rendered 'analizador sintáctico'"]}
+{"segment_id": "s-3b720be5ba88-0002", "ts": "2026-11-21T16:28:07Z", "findings": ["I7: glossary term list must be rendered 'lista'"]}
+{"segment_id": "s-b38390283d03-0004", "ts": "2026-11-21T16:28:07Z", "findings": ["I7: glossary term closure must be rendered 'clausura'", "I7: banned rendering 'cierre' for glossary term closure"]}
+{"segment_id": "s-a0f15250e21a-0005", "ts": "2026-11-21T16:28:07Z", "findings": ["I7: banned rendering 'compromiso' for glossary term commit-transaction"]}
+{"segment_id": "s-4c6f29f60901-0006", "ts": "2026-11-21T16:28:07Z", "findings": ["I7: glossary term exercise must be rendered 'ejercicio'"]}
+{"segment_id": "s-6f5ebaa2476c-0007", "ts": "2026-11-21T16:28:07Z", "findings": ["I7: glossary term assurance must be rendered 'grado de garantía'"]}
+{"segment_id": "s-ffce6c390955-0008", "ts": "2026-11-21T16:28:07Z", "findings": ["I7: banned rendering 'registro' for glossary term entry"]}
+{"segment_id": "s-a7832774652e-0009", "ts": "2026-11-21T16:28:07Z", "findings": ["I7: glossary term concept-guide must be rendered 'guía de concepto'"]}
+{"segment_id": "s-6c07c283cef9-0013", "ts": "2026-11-21T16:28:07Z", "findings": ["I7: glossary term scope must be rendered 'ámbito'", "I14: English acronym WEIRD survives (use {{acronym.word}})"]}
+{"segment_id": "s-0b632b31355c-0015", "ts": "2026-11-21T16:28:07Z", "findings": ["I7: glossary term closure must be rendered 'clausura'", "I7: banned rendering 'cierre' for glossary term closure"]}
+{"segment_id": "s-0c4e065976cc-0017", "ts": "2026-11-21T16:28:07Z", "findings": ["I3: digit token 000 appears 1 time(s) in the source, 0 in the target", "I3: digit token 1 appears 1 time(s) in the source, 0 in the target", "I3: digit token 1000 appears 0 time(s) in the source, 1 in the target"]}
+{"segment_id": "s-8597b0e055e9-0018", "ts": "2026-11-21T16:28:07Z", "findings": ["I25: comma before a simple 'y' ('B9 pasó, y GNU sed 4'): no comma before a simple o or y"]}
+{"segment_id": "s-09d207757274-0024", "ts": "2026-11-21T16:28:07Z", "findings": ["I7: banned rendering 'compromiso' for glossary term commit-transaction"]}
+{"segment_id": "s-a049d005fb5f-0025", "ts": "2026-11-21T16:28:07Z", "findings": ["I7: glossary term scope must be rendered 'ámbito'"]}
+{"segment_id": "s-9fde20b17b56-0032", "ts": "2026-11-21T16:28:07Z", "findings": ["I7: glossary term parser must be rendered 'analizador sintáctico'"]}
+{"segment_id": "s-6f5ebaa2476c-0007", "ts": "2026-11-21T16:28:22Z", "findings": ["I7: glossary term assurance-tally must be rendered 'recuento de garantías'"]}
+{"segment_id": "s-6c07c283cef9-0013", "ts": "2026-11-21T16:28:22Z", "findings": ["I7: glossary term scope must be rendered 'ámbito'"]}
+{"segment_id": "s-a049d005fb5f-0025", "ts": "2026-11-21T16:28:22Z", "findings": ["I7: glossary term scope must be rendered 'ámbito'"]}

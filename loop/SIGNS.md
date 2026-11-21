@@ -106,3 +106,4 @@
 - Check `setImmediate()` ordering from inside an I/O callback before treating earlier queued timers as ahead of it.
 - If I25 reports a percentage in a protected URL, confirm the percent-encoded destination stayed byte-identical before recording a segment exception.
 - After translating headings, run `anchors.py --generate` BEFORE the final `apply.py --write`; if links are stale afterwards use `python3 -I tools/apply.py --relink FILE --write` (never `anchors.py --remap` on an already-Spanish file, it fails on its Spanish fragments).
+- When a source word triggers a glossary I7 check (scope, closure, commit, assurance tally), reword to include the approved term instead of waiving; run the import twice with --redo-fuzzy until 0 needs-revision.

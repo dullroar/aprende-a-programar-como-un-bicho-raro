@@ -1,0 +1,213 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lessons/book/editorial-audit.md:1
+msgctxt "s-67b52d86f1e0-0000"
+msgid "v4 book and study-guide editorial audit"
+msgstr "Auditoría editorial del libro y la guía de estudio de la v4"
+
+#: lessons/book/editorial-audit.md:3
+msgctxt "s-dbc47b36732d-0001"
+msgid "Baseline: ⟦CODE_0001⟧ (⟦CODE_0002⟧), v4 and its standalone companion. Reviewed the adjudicated revision plan, which supplies the claims below. The original Gemini review was not separately attached to this checkout. PDF observations are from the baseline and rebuilt PDFs in this checkout."
+msgstr "Línea base: ⟦CODE_0001⟧ (⟦CODE_0002⟧), la v4 y su guía complementaria independiente. Se examinó el plan de revisión adjudicado, que aporta las afirmaciones siguientes. La revisión original de Gemini no se adjuntó por separado a esta copia de trabajo. Las observaciones sobre los PDF proceden de los PDF de la línea base y de los reconstruidos en esta copia."
+
+#: lessons/book/editorial-audit.md:5
+msgctxt "s-3b720be5ba88-0002"
+msgid "The book manifest lists 35 chapters and the guide manifest lists the guide index, 13 language-family guides and eight concept guides. The 40 entries and 29 languages come from ⟦CODE_0001⟧. The authoritative inputs are the entry READMEs and code, ⟦CODE_0002⟧, the unmarked portions of lesson pages, and the hand-written guides. The generated copies are ⟦CODE_0003⟧, ⟦CODE_0004⟧, and the marked blocks on lesson pages."
+msgstr "La lista del manifiesto del libro contiene 35 capítulos y la del manifiesto de las guías contiene el índice, 13 guías de familias de lenguajes y ocho guías de concepto. Las 40 entradas y los 29 lenguajes provienen de ⟦CODE_0001⟧. Las fuentes autorizadas son los README de las entradas y el código, ⟦CODE_0002⟧, las partes sin marcar de las páginas de lección y las guías escritas a mano. Las copias generadas son ⟦CODE_0003⟧, ⟦CODE_0004⟧ y los bloques marcados de las páginas de lección."
+
+#: lessons/book/editorial-audit.md:7
+msgctxt "s-fc2f2091b27c-0003"
+msgid "Behavior and evidence"
+msgstr "Comportamiento y evidencia"
+
+#: lessons/book/editorial-audit.md:9
+msgctxt "s-b38390283d03-0004"
+msgid "⟦SEP_0001⟧ ID ⟦SEP_0002⟧ Decision and source/book impact ⟦SEP_0003⟧ Guide impact and diagram review ⟦SEP_0004⟧ Exercise or closure evidence ⟦SEP_0005⟧"
+msgstr "⟦SEP_0001⟧ ID ⟦SEP_0002⟧ Decisión e impacto en la fuente y el libro ⟦SEP_0003⟧ Impacto en las guías y revisión de diagramas ⟦SEP_0004⟧ Ejercicio o evidencia de clausura ⟦SEP_0005⟧"
+
+#: lessons/book/editorial-audit.md:11
+msgctxt "s-a0f15250e21a-0005"
+msgid "⟦SEP_0001⟧ B01 ⟦SEP_0002⟧ Accept. The opening now gives the common numeric rule and names both fixed-week LINQ entries, the four-pass XAML cap, and the distinct regex storage paths. ⟦SEP_0003⟧ Reviewed all 21 shared-challenge sections and the guide index. The comparative, C#/LINQ/XAML, regex and commitment guides explain the exceptions next to their traces. The opening diagram describes the SQLite case. ⟦SEP_0004⟧ A1 checks the report against the numeric rule. B7 witnesses enumeration. B8 checks match success, failure, exit status and output. WPF execution is source-only here. ⟦SEP_0005⟧"
+msgstr "⟦SEP_0001⟧ B01 ⟦SEP_0002⟧ Aceptada. La apertura ahora da la regla numérica común y nombra las dos entradas LINQ de semana fija, el tope de cuatro pasadas de XAML y las rutas de almacenamiento distintas de regex. ⟦SEP_0003⟧ Se revisaron las 21 secciones de retos compartidos y el índice de guías. Las guías comparativa, de C#/LINQ/XAML, de regex y de confirmación explican las excepciones junto a sus trazas. El diagrama de apertura describe el caso de SQLite. ⟦SEP_0004⟧ A1 comprueba el informe con la regla numérica. B7 da fe de la enumeración. B8 comprueba el éxito y el fallo de la coincidencia, el estado de salida y la salida. Aquí la ejecución de WPF es solo de código fuente. ⟦SEP_0005⟧"
+
+#: lessons/book/editorial-audit.md:12
+msgctxt "s-4c6f29f60901-0006"
+msgid "⟦SEP_0001⟧ B02 ⟦SEP_0002⟧ Accept. Comparative chapter 9 now says the available interface may be a terminal or a window. ⟦SEP_0003⟧ Reviewed the comparative worksheet, C# and JavaScript guides, and the effects and state/control guides. No common strand of the composite figure requires a window. ⟦SEP_0004⟧ A1, B8 and B20 exercise terminal output. WPF remains platform-specific. ⟦SEP_0005⟧"
+msgstr "⟦SEP_0001⟧ B02 ⟦SEP_0002⟧ Aceptada. El capítulo 9 comparativo ahora dice que la interfaz disponible puede ser una terminal o una ventana. ⟦SEP_0003⟧ Se revisaron la hoja de trabajo comparativa, las guías de C# y JavaScript, y las guías de efectos y de estado y control. Ninguna línea común de la figura compuesta exige una ventana. ⟦SEP_0004⟧ Los ejercicios A1, B8 y B20 comprueban la salida en la terminal. WPF sigue siendo específico de la plataforma. ⟦SEP_0005⟧"
+
+#: lessons/book/editorial-audit.md:13
+msgctxt "s-6f5ebaa2476c-0007"
+msgid "⟦SEP_0002⟧ B03 ⟦SEP_0003⟧ Accept. The book build README, contribution rules and comparative chapter explain what metadata generation verifies. ⟦SEP_0004⟧ Reviewed the comparative and portability guides. The tally describes the metadata declarations. ⟦SEP_0005⟧ ⟦CODE_0001⟧ checks model/index/role membership, counts and assurance tally. APL and .NET have additional source and runtime checks (G01, G09). ⟦SEP_0006⟧"
+msgstr "⟦SEP_0002⟧ B03 ⟦SEP_0003⟧ Aceptada. El README de compilación del libro, las reglas de contribución y el capítulo comparativo explican qué verifica la generación de metadatos. ⟦SEP_0004⟧ Se revisaron las guías comparativa y de portabilidad. El recuento describe las declaraciones de metadatos. ⟦SEP_0005⟧ ⟦CODE_0001⟧ comprueba la pertenencia al modelo, al índice y al papel, los recuentos y el recuento de garantías por grado de garantía. APL y .NET tienen comprobaciones adicionales de código fuente y de ejecución (G01, G09). ⟦SEP_0006⟧"
+
+#: lessons/book/editorial-audit.md:14
+msgctxt "s-ffce6c390955-0008"
+msgid "⟦SEP_0003⟧ B04 ⟦SEP_0004⟧ Accept. The impact command reports changed entry files, authoritative CS material, hand-authored lesson text and exercises. ⟦SEP_0005⟧ The review [record](⟦DEST_0001⟧) covers all 21 guides for this change. Indirect edges for the shared contract, regex role, AWK and portability live in ⟦CODE_0002⟧. ⟦SEP_0006⟧ A changed README invalidates a guide review token. Existing mutations still catch stale copied diagrams and broken guide-to-book links. ⟦SEP_0007⟧"
+msgstr "⟦SEP_0003⟧ B04 ⟦SEP_0004⟧ Aceptada. El comando de impacto informa de los archivos de las entradas modificadas, el material de CS autorizado, el texto de lección escrito a mano y los ejercicios. ⟦SEP_0005⟧ El [acta](⟦DEST_0001⟧) de revisión cubre las 21 guías para este cambio. Las aristas indirectas del contrato compartido, el papel de regex, AWK y la portabilidad se encuentran en ⟦CODE_0002⟧. ⟦SEP_0006⟧ Un README modificado invalida el token de revisión de una guía. Las mutaciones existentes siguen detectando diagramas copiados obsoletos y enlaces rotos de guía a libro. ⟦SEP_0007⟧"
+
+#: lessons/book/editorial-audit.md:15
+msgctxt "s-a7832774652e-0009"
+msgid "⟦SEP_0001⟧ B05 ⟦SEP_0002⟧ Accept. The intro, contribution rules and comparative chapter bind guarantees to specific behaviors, with the weakest required behavior as the entry-level assurance. ⟦SEP_0003⟧ Revised assurance and evidence in affected language and concept guides, including .NET, C#, find and portability. Diagrams remain about control, state or effects. ⟦SEP_0004⟧ See G09–G11 for which behavior is promised and at what boundary. ⟦SEP_0005⟧"
+msgstr "⟦SEP_0001⟧ B05 ⟦SEP_0002⟧ Aceptada. La introducción, las reglas de contribución y el capítulo comparativo vinculan las garantías con comportamientos concretos. El grado de garantía de la entrada es el del comportamiento requerido más débil. ⟦SEP_0003⟧ Se revisaron el grado de garantía y la evidencia en las guías de lenguaje y las guías de concepto afectadas, entre ellas .NET, C#, find y portabilidad. Los diagramas siguen tratando del control, el estado o los efectos. ⟦SEP_0004⟧ Consulta G09–G11 para saber qué comportamiento se promete y en qué límite. ⟦SEP_0005⟧"
+
+#: lessons/book/editorial-audit.md:16
+msgctxt "s-bb71ea02352f-0010"
+msgid "⟦SEP_0001⟧ B06 ⟦SEP_0002⟧ Accept. Source and runtime evidence for revised traces is recorded below and in the respective guides. ⟦SEP_0003⟧ Reviewed trace and self-check claims alongside fixed APL, .NET, Node, sed and editor witnesses. The Windows GUI entries and the C# source-level condition remain labeled at their actual evidence level. ⟦SEP_0004⟧ Full Linux exercise suite and fixed-input witnesses passed. ⟦SEP_0005⟧"
+msgstr "⟦SEP_0001⟧ B06 ⟦SEP_0002⟧ Aceptada. La evidencia de código fuente y de ejecución de las trazas revisadas se registra más abajo y en las guías respectivas. ⟦SEP_0003⟧ Se revisaron las afirmaciones de las trazas y de las autoevaluaciones junto con los testigos de entrada fija de APL, .NET, Node, sed y los editores. Las entradas de GUI de Windows y la condición de C# a nivel de código fuente siguen etiquetadas con su nivel real de evidencia. ⟦SEP_0004⟧ La suite completa de ejercicios en Linux y los testigos de entrada fija pasaron. ⟦SEP_0005⟧"
+
+#: lessons/book/editorial-audit.md:17
+msgctxt "s-35f7f4b6c5eb-0011"
+msgid "⟦SEP_0001⟧ B07 ⟦SEP_0002⟧ Accept. The renderer and its cache/legibility contract stay in use. ⟦SEP_0003⟧ APL and Lisp copies match the corrected canonical figures. Reviewed the independent comparative, demand and transaction figures beside the revised prose. ⟦SEP_0004⟧ G05 covers predicate preservation. ⟦SEP_0005⟧"
+msgstr "⟦SEP_0001⟧ B07 ⟦SEP_0002⟧ Aceptada. El renderizador y su contrato de caché y legibilidad siguen en uso. ⟦SEP_0003⟧ Las copias de APL y de Lisp coinciden con las figuras canónicas corregidas. Se revisaron las figuras comparativas, de demanda y de transacción independientes junto al texto revisado. ⟦SEP_0004⟧ G05 cubre la preservación de predicados. ⟦SEP_0005⟧"
+
+#: lessons/book/editorial-audit.md:18
+msgctxt "s-53d558ff3eb8-0012"
+msgid "⟦SEP_0001⟧ B08 ⟦SEP_0002⟧ Accept. Book and companion were generated and checked together. ⟦SEP_0003⟧ Separate guide manifest, index, linked exercises, cross-volume navigation and output verified. ⟦SEP_0004⟧ See release checks below. ⟦SEP_0005⟧"
+msgstr "⟦SEP_0001⟧ B08 ⟦SEP_0002⟧ Aceptada. El libro y su guía complementaria se generaron y comprobaron juntos. ⟦SEP_0003⟧ Se verificaron por separado el manifiesto de las guías, el índice, los ejercicios enlazados, la navegación entre volúmenes y la salida. ⟦SEP_0004⟧ Consulta más abajo las comprobaciones de la versión. ⟦SEP_0005⟧"
+
+#: lessons/book/editorial-audit.md:19
+msgctxt "s-6c07c283cef9-0013"
+msgid "⟦SEP_0002⟧ B09 ⟦SEP_0003⟧ Accept. The opening narrative contains one self-deflating WEIRD aside. ⟦SEP_0004⟧ The guide manuscript and output contain zero occurrences. ⟦SEP_0005⟧ ⟦CODE_0001⟧ checks scope and count. Inspected the opening and counted the phrase in both volumes' HTML, PDF and EPUB. ⟦SEP_0006⟧"
+msgstr "⟦SEP_0002⟧ B09 ⟦SEP_0003⟧ Aceptada. La narración de apertura contiene un comentario al margen sobre {{acronym.word}} que se burla de sí mismo. ⟦SEP_0004⟧ El manuscrito y la salida de la guía contienen cero apariciones. ⟦SEP_0005⟧ ⟦CODE_0001⟧ comprueba el ámbito y el recuento. Se inspeccionó la apertura y se contó la frase en el HTML, el PDF y el EPUB de ambos volúmenes. ⟦SEP_0006⟧"
+
+#: lessons/book/editorial-audit.md:21
+msgctxt "s-5f4e5a1befed-0014"
+msgid "Gemini dispositions"
+msgstr "Resolución de las observaciones de Gemini"
+
+#: lessons/book/editorial-audit.md:23
+msgctxt "s-0b632b31355c-0015"
+msgid "⟦SEP_0001⟧ ID ⟦SEP_0002⟧ Decision, symptom and source/book impact ⟦SEP_0003⟧ Downstream guides and figures ⟦SEP_0004⟧ Exercise or closure evidence ⟦SEP_0005⟧"
+msgstr "⟦SEP_0001⟧ ID ⟦SEP_0002⟧ Decisión, síntoma e impacto en la fuente y el libro ⟦SEP_0003⟧ Guías y figuras derivadas ⟦SEP_0004⟧ Ejercicio o evidencia de clausura ⟦SEP_0005⟧"
+
+#: lessons/book/editorial-audit.md:25
+msgctxt "s-0cbb1710888f-0016"
+msgid "⟦SEP_0005⟧ G01 ⟦SEP_0006⟧ **Accept.** Changed “three array expressions” and “seven slots” in ⟦CODE_0001⟧ and the APL lesson. The four assignments select from five draws and reshape four names to the number of kept rows. ⟦SEP_0007⟧ Corrected the APL guide's introduction, state, trace and maximum. Reviewed the evaluation and comparative guides. The plain APL figure already showed five draws and the reshape. ⟦SEP_0008⟧ On GNU APL 2.0 in the locked-down runner, source from ⟦CODE_0002⟧ with only ⟦CODE_0003⟧ substituted gave stdout and SQLite totals 15, 34, 46 for ⟦CODE_0004⟧, and 10, 20, 30, 40, 50 for five tens. Both exited 0. B6 and the assignment consistency test passed. ⟦SEP_0009⟧"
+msgstr "⟦SEP_0005⟧ G01 ⟦SEP_0006⟧ **Aceptada.** Se cambiaron \"tres expresiones de arreglo\" y \"siete posiciones\" en ⟦CODE_0001⟧ y en la lección de APL. Las cuatro asignaciones seleccionan entre cinco tiradas y remodelan cuatro nombres al número de filas conservadas. ⟦SEP_0007⟧ Se corrigieron la introducción, el estado, la traza y el máximo de la guía de APL. Se revisaron las guías de evaluación y comparativa. La figura básica de APL ya mostraba cinco tiradas y el remodelado. ⟦SEP_0008⟧ En GNU APL 2.0 con el ejecutor bloqueado, el código de ⟦CODE_0002⟧ con solo ⟦CODE_0003⟧ sustituido dio una salida estándar y totales de SQLite de 15, 34, 46 para ⟦CODE_0004⟧, y de 10, 20, 30, 40, 50 para cinco dieces. Ambos terminaron con estado de salida 0. B6 y la prueba de coherencia de asignaciones pasaron. ⟦SEP_0009⟧"
+
+#: lessons/book/editorial-audit.md:26
+msgctxt "s-0c4e065976cc-0017"
+msgid "⟦SEP_0003⟧ G02 ⟦SEP_0004⟧ **Already addressed.** SQLite's documented default trigger recursion limit is 1,000. Host SQLite 3.45.1 reports ⟦CODE_0001⟧. No source figure or default changed. ⟦SEP_0005⟧ The Tcl and effects guides describe recursion and transaction behavior. ⟦SEP_0006⟧ B12 passed in Docker. The default is documented separately from the demonstrated recursion behavior. [SQLite limits](⟦DEST_0002⟧) ⟦SEP_0007⟧"
+msgstr "⟦SEP_0003⟧ G02 ⟦SEP_0004⟧ **Ya resuelta.** El límite predeterminado documentado de recursión de disparadores de SQLite es 1,000. El SQLite 3.45.1 del anfitrión informa ⟦CODE_0001⟧. No cambió ninguna figura ni valor predeterminado de la fuente. ⟦SEP_0005⟧ Las guías de Tcl y de efectos describen el comportamiento de la recursión y de las transacciones. ⟦SEP_0006⟧ B12 pasó en Docker. El valor predeterminado se documenta por separado del comportamiento de recursión demostrado. [Límites de SQLite](⟦DEST_0002⟧) ⟦SEP_0007⟧"
+
+#: lessons/book/editorial-audit.md:27
+msgctxt "s-8597b0e055e9-0018"
+msgid "⟦SEP_0002⟧ G03 ⟦SEP_0003⟧ **Reject.** ⟦CODE_0001⟧ is valid ERE. The original executable grep/sed expressions are unchanged. ⟦SEP_0004⟧ Reviewed the regex/sed and portability guides. The sed trace and its figure describe the same unary tally. ⟦SEP_0005⟧ GNU grep 3.11 matched 41 literal hashes. B9 passed, and GNU sed 4.9 with the pinned tape produced persisted totals 15, 29, 43. ⟦SEP_0006⟧"
+msgstr "⟦SEP_0002⟧ G03 ⟦SEP_0003⟧ **Rechazada.** ⟦CODE_0001⟧ es una ERE válida. Las expresiones ejecutables originales de grep y sed no cambian. ⟦SEP_0004⟧ Se revisaron las guías de regex y sed y de portabilidad. La traza de sed y su figura describen el mismo recuento unario. ⟦SEP_0005⟧ GNU grep 3.11 encontró 41 almohadillas literales. B9 pasó y GNU sed 4.9 con la cinta fijada produjo totales persistidos de 15, 29, 43. ⟦SEP_0006⟧"
+
+#: lessons/book/editorial-audit.md:28
+msgctxt "s-f3a0e15532bd-0019"
+msgid "⟦SEP_0006⟧ G04 ⟦SEP_0007⟧ **Accept.** Clarified the module export ⟦CODE_0001⟧ / ⟦CODE_0002⟧ and global Web Crypto in Node source documentation, the JavaScript lesson and the problems comparison. ⟦SEP_0008⟧ JavaScript guide now identifies the Web Crypto seed path. No figure changes. ⟦SEP_0009⟧ Node 24.15.0 exposes the module function and global ⟦CODE_0003⟧. All three Node entries with ⟦CODE_0004⟧ produced 15, 34, 46 in stdout and SQLite. B20–B22 passed. [Node crypto](⟦DEST_0005⟧) ⟦SEP_0010⟧"
+msgstr "⟦SEP_0006⟧ G04 ⟦SEP_0007⟧ **Aceptada.** Se aclaró la exportación del módulo ⟦CODE_0001⟧ / ⟦CODE_0002⟧ y de Web Crypto global en la documentación fuente de Node, la lección de JavaScript y la comparación de problemas. ⟦SEP_0008⟧ La guía de JavaScript ahora identifica la ruta de la semilla de Web Crypto. No cambia ninguna figura. ⟦SEP_0009⟧ Node 24.15.0 expone la función del módulo y el ⟦CODE_0003⟧ global. Las tres entradas de Node con ⟦CODE_0004⟧ produjeron 15, 34, 46 en la salida estándar y en SQLite. B20–B22 pasaron. [Node crypto](⟦DEST_0005⟧) ⟦SEP_0010⟧"
+
+#: lessons/book/editorial-audit.md:29
+msgctxt "s-2f181077c686-0020"
+msgid "⟦SEP_0003⟧ G05 ⟦SEP_0004⟧ **Accept, reproduced.** The baseline APL label became equality and the AWK and Lisp labels lost the greater-than sign at the raw SVG stage. Changed only the three canonical labels, using exact integer predicates. ⟦SEP_0005⟧ APL and Common Lisp copies refreshed. AWK has no language guide. Reviewed its coverage in the comparative and formal-language guides. ⟦SEP_0006⟧ Mermaid CLI 12.2.0 and Chrome 147.0.7727.15 rendered all operator variants. Raw ⟦CODE_0001⟧, named Mermaid entities and HTML named entities survived in this fixture. Raw ⟦CODE_0002⟧ disappeared and numeric Mermaid entities rendered literally. Unicode survived raw SVG, flattening, WeasyPrint PDF and EPUB PNG. Real-render test checks all four comparison glyphs. ⟦SEP_0007⟧"
+msgstr "⟦SEP_0003⟧ G05 ⟦SEP_0004⟧ **Aceptada, reproducida.** La etiqueta de APL de la línea base pasó a ser igualdad, y las etiquetas de AWK y de Lisp perdieron el signo de mayor que en la etapa de SVG sin procesar. Solo se cambiaron las tres etiquetas canónicas, con predicados enteros exactos. ⟦SEP_0005⟧ Se actualizaron las copias de APL y de Common Lisp. AWK no tiene guía de lenguaje. Se revisó su cobertura en las guías comparativa y de lenguajes formales. ⟦SEP_0006⟧ Mermaid CLI 12.2.0 y Chrome 147.0.7727.15 renderizaron todas las variantes de operador. En esta prueba sobrevivieron el ⟦CODE_0001⟧ sin procesar, las entidades con nombre de Mermaid y las entidades con nombre de HTML. El ⟦CODE_0002⟧ sin procesar desapareció y las entidades numéricas de Mermaid se renderizaron literalmente. Unicode sobrevivió en el SVG sin procesar, en el aplanado, en el PDF de WeasyPrint y en el PNG del EPUB. La prueba de renderizado real comprueba los cuatro glifos de comparación. ⟦SEP_0007⟧"
+
+#: lessons/book/editorial-audit.md:30
+msgctxt "s-3ce11d49095e-0021"
+msgid "⟦SEP_0003⟧ G06 ⟦SEP_0004⟧ **Accept clarification.** The ed lesson identifies the ⟦CODE_0001⟧ buffer marker and its cleanup. The README and figure already showed it. ⟦SEP_0005⟧ Reviewed the ed/Ex guide's marker and state trace. Figure remains correct. ⟦SEP_0006⟧ GNU ed 1.20.1 with ⟦CODE_0002⟧ printed 15, 34, 46 and SQLite held those rows. B18 passed. ⟦SEP_0007⟧"
+msgstr "⟦SEP_0003⟧ G06 ⟦SEP_0004⟧ **Aceptada la aclaración.** La lección de ed identifica el marcador de búfer ⟦CODE_0001⟧ y su limpieza. El README y la figura ya lo mostraban. ⟦SEP_0005⟧ Se revisaron el marcador de la guía de ed/Ex y su traza de estado. La figura sigue siendo correcta. ⟦SEP_0006⟧ GNU ed 1.20.1 con ⟦CODE_0002⟧ imprimió 15, 34, 46 y SQLite guardó esas filas. B18 pasó. ⟦SEP_0007⟧"
+
+#: lessons/book/editorial-audit.md:31
+msgctxt "s-8b3406176ac7-0022"
+msgid "⟦SEP_0005⟧ G07 ⟦SEP_0006⟧ **Accept clarification.** The Ex README and lesson describe the copy/substitute/yank that puts the instruction in register ⟦CODE_0001⟧. ⟦SEP_0007⟧ The editor guide traces the mutable tape and copied instruction. Diagram stays concise. ⟦SEP_0008⟧ Vim 9.1 with the same dice gave 15, 34, 46 in output and SQLite. Instrumented tape showed ⟦CODE_0002⟧, ⟦CODE_0003⟧ and ⟦CODE_0004⟧. B19 passed with the nvi sandbox. ⟦SEP_0009⟧"
+msgstr "⟦SEP_0005⟧ G07 ⟦SEP_0006⟧ **Aceptada la aclaración.** El README y la lección de Ex describen la copia, la sustitución y el *yank* que dejan la instrucción en el registro ⟦CODE_0001⟧. ⟦SEP_0007⟧ La guía de editores traza la cinta mutable y la instrucción copiada. El diagrama sigue siendo conciso. ⟦SEP_0008⟧ Vim 9.1 con los mismos dados dio 15, 34, 46 en la salida y en SQLite. La cinta instrumentada mostró ⟦CODE_0002⟧, ⟦CODE_0003⟧ y ⟦CODE_0004⟧. B19 pasó con el entorno aislado (*sandbox*) de nvi, que limita el acceso al sistema anfitrión. ⟦SEP_0009⟧"
+
+#: lessons/book/editorial-audit.md:32
+msgctxt "s-b0194e8292cc-0023"
+msgid "⟦SEP_0001⟧ G08 ⟦SEP_0002⟧ **Reject.** The model contains 40 entries. The generated index and role tables include each entry exactly once. ⟦SEP_0003⟧ The portability guide still records 17, 16 and 7 in the three assurance classes. No figure or exercise depends on 39. ⟦SEP_0004⟧ Model/index/role/tally regression passed. ⟦SEP_0005⟧"
+msgstr "⟦SEP_0001⟧ G08 ⟦SEP_0002⟧ **Rechazada.** El modelo contiene 40 entradas. El índice generado y las tablas de papeles incluyen cada entrada exactamente una vez. ⟦SEP_0003⟧ La guía de portabilidad sigue registrando 17, 16 y 7 en las tres clases de grado de garantía. Ninguna figura ni ejercicio depende de 39. ⟦SEP_0004⟧ Pasó la regresión de modelo, índice, papeles y recuento. ⟦SEP_0005⟧"
+
+#: lessons/book/editorial-audit.md:33
+msgctxt "s-09d207757274-0024"
+msgid "⟦SEP_0002⟧ G09 ⟦SEP_0003⟧ **Accept role distinction.** Split successful capture search from deliberate failure with effects. The .NET documented balancing-group guarantee applies within its API. ⟦SEP_0004⟧ Regex, reading, formal-language, comparative, portability and commitment guides distinguish success, captures and side effects. Reviewed the source and comparison figures. ⟦SEP_0005⟧ The fixed .NET 10.0.401 tape of all tens succeeded at 50/5. The same tape with a terminal failing assertion reported failure, 0/0, exit 1 and a TSV with only the header and summary. Both reports matched stdout. B8 also reproduced pcre2grep's missing-tool empty-output case. [Balancing groups](⟦DEST_0001⟧) ⟦SEP_0006⟧"
+msgstr "⟦SEP_0002⟧ G09 ⟦SEP_0003⟧ **Aceptada la distinción de papeles.** Se separó la búsqueda de captura con éxito del fallo deliberado con efectos. La garantía documentada de .NET sobre grupos de equilibrio rige dentro de su API. ⟦SEP_0004⟧ Las guías de regex, de lectura, de lenguajes formales, comparativa, de portabilidad y de confirmación distinguen éxito, capturas y efectos secundarios. Se revisaron las figuras de la fuente y de la comparación. ⟦SEP_0005⟧ La cinta fija de todos los dieces en .NET 10.0.401 tuvo éxito con 50/5. La misma cinta con una aserción terminal fallida informó un fallo, 0/0, estado de salida 1 y un TSV con solo el encabezado y el resumen. Ambos informes coincidieron con la salida estándar. B8 también reprodujo el caso de salida vacía de pcre2grep cuando falta la herramienta. [Grupos de equilibrio](⟦DEST_0001⟧) ⟦SEP_0006⟧"
+
+#: lessons/book/editorial-audit.md:34
+msgctxt "s-a049d005fb5f-0025"
+msgid "⟦SEP_0002⟧ G10 ⟦SEP_0003⟧ **Accept scope clarification.** ⟦CODE_0001⟧ remains accidentally exploited because traversal of a just-created subtree is the weakest dependency. Embedded brace substitution has its own implementation dependency. ⟦SEP_0004⟧ Reading, state/control, formal-language and portability guides distinguish documented operations from traversal observations. ⟦SEP_0005⟧ GNU find 4.9 entry check passed 25 random runs and seven fixed dice cases. Other POSIX traversals may omit new entries. ⟦SEP_0006⟧"
+msgstr "⟦SEP_0002⟧ G10 ⟦SEP_0003⟧ **Aceptada la aclaración de ámbito.** ⟦CODE_0001⟧ sigue siendo aprovechado por accidente, porque recorrer un subárbol recién creado es la dependencia más débil. La sustitución de llaves incrustadas tiene su propia dependencia de implementación. ⟦SEP_0004⟧ Las guías de lectura, de estado y control, de lenguajes formales y de portabilidad distinguen las operaciones documentadas de las observaciones de recorrido. ⟦SEP_0005⟧ La comprobación de la entrada de GNU find 4.9 pasó 25 ejecuciones aleatorias y siete casos de dados fijos. Otros recorridos POSIX pueden omitir entradas nuevas. ⟦SEP_0006⟧"
+
+#: lessons/book/editorial-audit.md:35
+msgctxt "s-fb663b76118a-0026"
+msgid "⟦SEP_0002⟧ G11 ⟦SEP_0003⟧ **Accept.** Modern C# and Node are eager at the loop condition. A C# projection can be deferred and ⟦CODE_0001⟧ forces it immediately. The fixed-week LINQ entries still teach deferred execution. ⟦SEP_0004⟧ C#/LINQ/XAML, JavaScript, comparative, evaluation and portability guides revised. Checked that the figures still distinguish demand from reduction. ⟦SEP_0005⟧ B7's fixture on .NET 10.0.401 gave 0/3/6/3 projection effects and seed-42 draws 16/11/11/15/11. A console reduction of the original condition gave 46/3 on 15/19/12, 50/5 on five tens, and 40/4 with four names. This is separate from a WPF run. ⟦SEP_0006⟧"
+msgstr "⟦SEP_0002⟧ G11 ⟦SEP_0003⟧ **Aceptada.** C# y Node modernos evalúan de forma anticipada en la condición del bucle. Una proyección de C# puede diferirse y ⟦CODE_0001⟧ la fuerza de inmediato. Las entradas LINQ de semana fija siguen enseñando la ejecución diferida. ⟦SEP_0004⟧ Se revisaron las guías de C#/LINQ/XAML, JavaScript, comparativa, de evaluación y de portabilidad. Se comprobó que las figuras siguen distinguiendo la demanda de la reducción. ⟦SEP_0005⟧ La prueba de B7 en .NET 10.0.401 dio efectos de proyección 0/3/6/3 y tiradas con semilla 42 de 16/11/11/15/11. Una reducción en consola de la condición original dio 46/3 con 15/19/12, 50/5 con cinco dieces y 40/4 con cuatro nombres. Esto es independiente de una ejecución de WPF. ⟦SEP_0006⟧"
+
+#: lessons/book/editorial-audit.md:36
+msgctxt "s-79409a7d3867-0027"
+msgid "⟦SEP_0001⟧ G12 ⟦SEP_0002⟧ **Accept, reproduced.** The baseline PDF put the Trojan Source row's evidence on p. 30 and its title on p. 31. The guide's comparative worksheet also split an entry row. The stylesheet now permits long tables to span pages while keeping normal-sized rows together. ⟦SEP_0003⟧ Reviewed the comparative worksheet and guide trace and assurance tables using the common stylesheet. ⟦SEP_0004⟧ Two-page WeasyPrint fixture reproduces a split under the baseline stylesheet and keeps the complete row and repeated header under the new stylesheet. Output spot checks included Trojan Source and Functors and mapping. ⟦SEP_0005⟧"
+msgstr "⟦SEP_0001⟧ G12 ⟦SEP_0002⟧ **Aceptada, reproducida.** El PDF de la línea base puso la evidencia de la fila de Trojan Source en la p. 30 y su título en la p. 31. La hoja de trabajo comparativa de la guía también partió una fila de entrada. La hoja de estilos ahora permite que las tablas largas ocupen varias páginas y mantiene juntas las filas de tamaño normal. ⟦SEP_0003⟧ Se revisaron la hoja de trabajo comparativa y las tablas de trazas y de grados de garantía de la guía, que usan la hoja de estilos común. ⟦SEP_0004⟧ Una prueba de WeasyPrint de dos páginas reproduce una división con la hoja de estilos de la línea base. Con la nueva hoja conserva la fila completa y el encabezado repetido. Las comprobaciones puntuales de la salida incluyeron Trojan Source y Functors and mapping. ⟦SEP_0005⟧"
+
+#: lessons/book/editorial-audit.md:37
+msgctxt "s-8c04b30f5866-0028"
+msgid "⟦SEP_0003⟧ G13 ⟦SEP_0004⟧ **Extraction artifact in checked examples.** Extracted captions contain ⟦CODE_0001⟧ and ⟦CODE_0002⟧. The checked HTML and rendered caption pixels show the normal words. ⟦SEP_0005⟧ The shared Tcl caption has the same extraction artifact in the guide. Both volumes' Mermaid source titles are spelled normally. ⟦SEP_0006⟧ Compared the corresponding source, HTML, PDF images and pypdf extraction. No exercise content affected. ⟦SEP_0007⟧"
+msgstr "⟦SEP_0003⟧ G13 ⟦SEP_0004⟧ **Artefacto de extracción en los ejemplos comprobados.** Los pies de figura extraídos contienen ⟦CODE_0001⟧ y ⟦CODE_0002⟧. El HTML comprobado y los píxeles renderizados del pie muestran las palabras normales. ⟦SEP_0005⟧ El pie compartido de Tcl tiene el mismo artefacto de extracción en la guía. Los títulos de la fuente Mermaid de ambos volúmenes están escritos con normalidad. ⟦SEP_0006⟧ Se compararon la fuente, el HTML, las imágenes del PDF y la extracción con pypdf correspondientes. No se afectó ningún contenido de los ejercicios. ⟦SEP_0007⟧"
+
+#: lessons/book/editorial-audit.md:38
+msgctxt "s-e59c148a7243-0029"
+msgid "⟦SEP_0002⟧ G14 ⟦SEP_0003⟧ **Extraction artifact for the checked index and inline-code samples.** ⟦CODE_0001⟧ was in the extraction. The punctuation is adjacent in the source, HTML and rendered index. ⟦SEP_0004⟧ Inspected inline code in guide traces and the comparative tables. ⟦SEP_0005⟧ Wrapped C2 code uses the PDF's continuation marks. Other exact wording from the standalone review was unavailable. ⟦SEP_0006⟧"
+msgstr "⟦SEP_0002⟧ G14 ⟦SEP_0003⟧ **Artefacto de extracción en las muestras comprobadas del índice y del código en línea.** ⟦CODE_0001⟧ estaba en la extracción. La puntuación está adyacente en la fuente, en el HTML y en el índice renderizado. ⟦SEP_0004⟧ Se inspeccionó el código en línea de las trazas de las guías y de las tablas comparativas. ⟦SEP_0005⟧ El código envuelto de C2 usa las marcas de continuación del PDF. No estaba disponible otra redacción exacta de la revisión independiente. ⟦SEP_0006⟧"
+
+#: lessons/book/editorial-audit.md:39
+msgctxt "s-1aaaa80c74d2-0030"
+msgid "⟦SEP_0001⟧ G15 ⟦SEP_0002⟧ **Accept, reproduced.** The baseline C2 sed regex became a GitHub URL in the assembled book and PDF. The shared publisher now rewrites Pandoc Link nodes after parsing. ⟦SEP_0003⟧ Checked the Forth guide and both HTML/EPUB link policies. Code across both volumes remains literal. No diagram is involved. ⟦SEP_0004⟧ Tests cover fenced, indented and inline code, reference links and actual C2 HTML/PDF output. C2 passed the reference and four negative/control cases. ⟦SEP_0005⟧"
+msgstr "⟦SEP_0001⟧ G15 ⟦SEP_0002⟧ **Aceptada, reproducida.** La regex de sed de C2 de la línea base se convirtió en una URL de GitHub en el libro ensamblado y en el PDF. El publicador compartido ahora reescribe los nodos Link de Pandoc tras el análisis sintáctico. ⟦SEP_0003⟧ Se comprobaron la guía de Forth y las políticas de enlaces de HTML y EPUB. El código de ambos volúmenes sigue siendo literal. No interviene ningún diagrama. ⟦SEP_0004⟧ Las pruebas cubren código delimitado, con sangría y en línea, enlaces de referencia y la salida real de C2 en HTML y PDF. C2 pasó la referencia y cuatro casos negativos o de control. ⟦SEP_0005⟧"
+
+#: lessons/book/editorial-audit.md:41
+msgctxt "s-f2a51202944e-0031"
+msgid "Release checks"
+msgstr "Comprobaciones de la versión"
+
+#: lessons/book/editorial-audit.md:43
+msgctxt "s-9fde20b17b56-0032"
+msgid "The baseline EPUBs repeated the title and copyright on every spine item, including navigation. An HTML comment containing a double hyphen made the packaged XHTML ill-formed. The shared builder now puts the front matter in a single opening spine item. Both volumes have an EPUB regression that parses the XHTML with an XML parser and counts the two sections."
+msgstr "Los EPUB de la línea base repetían el título y los derechos de autor en cada elemento de la secuencia de lectura (*spine*), incluida la navegación. Un comentario HTML con doble guion dejó mal formado el XHTML empaquetado. El constructor compartido ahora pone las páginas preliminares en un único elemento de apertura de la secuencia. Ambos volúmenes tienen una prueba de regresión de EPUB que analiza el XHTML con un analizador sintáctico XML y cuenta las dos secciones."
+
+#: lessons/book/editorial-audit.md:46
+msgctxt "s-7c23f4208013-0033"
+msgid "Toolchain: Pandoc 3.1.3, WeasyPrint 70.0, Mermaid CLI 12.2.0 and Chrome for Testing 147.0.7727.15. Fixed toolchain outputs were compared byte for byte."
+msgstr "Cadena de herramientas: Pandoc 3.1.3, WeasyPrint 70.0, Mermaid CLI 12.2.0 y Chrome for Testing 147.0.7727.15. Se compararon byte a byte las salidas fijas de la cadena de herramientas."
+
+#: lessons/book/editorial-audit.md:47
+msgctxt "s-9826a75bea04-0034"
+msgid "The baseline book source, concept, guide structure and cached book diagram gates passed. Fresh Chromium launches in the workspace sandbox failed with ⟦CODE_0001⟧. Fresh renders and checks ran outside that tool sandbox using the repository's documented renderer setting."
+msgstr "Pasaron las comprobaciones de la línea base sobre el código fuente del libro, los conceptos, la estructura de las guías y los diagramas del libro en caché. Los arranques nuevos de Chromium en el entorno aislado del espacio de trabajo fallaron con ⟦CODE_0001⟧. Los renderizados y las comprobaciones nuevos se ejecutaron fuera de ese entorno aislado de la herramienta, con la opción de renderizador documentada del repositorio."
+
+#: lessons/book/editorial-audit.md:48
+msgctxt "s-5bbd41b46820-0035"
+msgid "Ran the book and guide ⟦CODE_0001⟧, book ⟦CODE_0002⟧, ⟦CODE_0003⟧ and ⟦CODE_0004⟧, plus the CS (16), diagram (22), guide (39), publisher-link (4) and editorial (6) tests. The toolchain rendered 79 book figures and 36 guide figures. WeasyPrint emitted the existing stylesheet warnings about ⟦CODE_0005⟧ and ⟦CODE_0006⟧."
+msgstr "Se ejecutaron ⟦CODE_0001⟧ del libro y de la guía, y ⟦CODE_0002⟧, ⟦CODE_0003⟧ y ⟦CODE_0004⟧ del libro, además de las pruebas de CS (16), de diagramas (22), de guías (39), de enlaces del publicador (4) y editoriales (6). La cadena de herramientas renderizó 79 figuras del libro y 36 de la guía. WeasyPrint emitió las advertencias existentes de la hoja de estilos sobre ⟦CODE_0005⟧ y ⟦CODE_0006⟧."
+
+#: lessons/book/editorial-audit.md:49
+msgctxt "s-bb13ca6e5bdb-0036"
+msgid "The Docker exercise gate passed 112 checks. The Windows WPF and XAML exercise runner was unavailable. The editor launchers' random-mode checks on the host emitted broken-pipe diagnostics from the unchanged ⟦CODE_0001⟧ pipeline. The fixed-input witnesses exercised both editors independently. Docker entry checks passed for APL, .NET regex, nvi Ex and GNU ed. In the ed check, BusyBox exited via SIGPIPE when its diagnostic was cut off by ⟦CODE_0002⟧. Capturing the diagnostic before truncating it let the dialect assertion and the remaining checks run."
+msgstr "La verificación de ejercicios en Docker superó 112 comprobaciones. El ejecutor de ejercicios de Windows WPF y XAML no estaba disponible. Las comprobaciones en modo aleatorio de los lanzadores de editores en el anfitrión emitieron diagnósticos de tubería rota (*broken pipe*) desde la canalización ⟦CODE_0001⟧ sin cambios. Los testigos de entrada fija ejercitaron ambos editores de forma independiente. Las comprobaciones de entradas en Docker pasaron para APL, regex de .NET, Ex de nvi y GNU ed. En la comprobación de ed, BusyBox terminó por SIGPIPE cuando ⟦CODE_0002⟧ cortó su diagnóstico. Capturar el diagnóstico antes de truncarlo permitió ejecutar la aserción de dialecto y el resto de las comprobaciones."
+
+#: lessons/book/editorial-audit.md:50
+msgctxt "s-83982f5f7723-0037"
+msgid "The network-enabled link checks passed for 207 book concept links and 66 guide external links. The volumes retain the project's master-branch GitHub link policy. Links to newly introduced anchors resolve after the branch lands."
+msgstr "Las comprobaciones de enlaces con red habilitada pasaron para 207 enlaces de conceptos del libro y 66 enlaces externos de las guías. Los volúmenes conservan la política de enlaces de GitHub a la rama master del proyecto. Los enlaces a anclas recién introducidas se resuelven cuando la rama se fusione."
+
+#: lessons/book/editorial-audit.md:51
+msgctxt "s-64bbfe7b6ca8-0038"
+msgid "The edition stays v4 on this feature branch. The PDFs and EPUBs are rebuilt working copies of the v4 edition."
+msgstr "La edición sigue siendo la v4 en esta rama de funcionalidad. Los PDF y EPUB son copias de trabajo reconstruidas de la edición v4."
+
+#: lessons/book/editorial-audit.md:52
+msgctxt "s-a7e390c96190-0039"
+msgid "Visual checks covered the book's opening (p. 11), concept index (pp. 24 and 28), comparative regex roles (p. 153), the repaired APL, AWK and Lisp figures (pp. 185, 192 and 229), the C2 answer (p. 359) and the index (p. 364). Guide checks included the APL trace (pp. 94–95) and the independent comparative figure and worksheet (pp. 212–214). The two PDFs have 373 and 220 pages. All six outputs matched the independent builds byte for byte."
+msgstr "Comprobaciones visuales del libro: la apertura (p. 11), el índice de conceptos (pp. 24 y 28), los papeles comparativos de regex (p. 153), las figuras reparadas de APL, AWK y Lisp (pp. 185, 192 y 229), la respuesta de C2 (p. 359) y el índice (p. 364). Comprobaciones de la guía: la traza de APL (pp. 94–95) y la figura comparativa independiente con su hoja de trabajo (pp. 212–214). Los dos PDF tienen 373 y 220 páginas. Las seis salidas coincidieron byte a byte con las compilaciones independientes."
+
+#: lessons/book/editorial-audit.md:53
+msgctxt "s-eb2037a85526-0040"
+msgid "Parsed all EPUB XHTML and checked local navigation and alt text in both outputs. The book contains 79 diagram PNGs and the guides contain 36. The repaired PNG labels were inspected from the EPUBs."
+msgstr "Se analizaron todos los XHTML de los EPUB y se comprobaron la navegación local y el texto alternativo en ambas salidas. El libro contiene 79 PNG de diagramas y las guías contienen 36. Se inspeccionaron las etiquetas reparadas de los PNG a partir de los EPUB."

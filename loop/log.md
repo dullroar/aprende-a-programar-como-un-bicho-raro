@@ -117,3 +117,4 @@
 140 P4-lessons-cs-source-roles-1 done committed the verified 10 role pages preserved from iteration 139.
 141 P4-audit-3 done sampled 5 segments (1,303 pool); all pass, no fixes queued.
 142 P4-lessons-book-1 done applied 103 segments (README 74, VERSIONS 29) via drafts import; 16 scoped waivers; anchors regenerated and three linking files relinked; verify --fast OK.
+143 P4-lessons-book-2 done applied 41 segments of editorial-audit.md via drafts import; reworded around glossary checks (scope, closure, commit); anchors regenerated; verify --fast OK.
