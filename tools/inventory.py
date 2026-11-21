@@ -37,7 +37,7 @@ if _HERE not in sys.path:
 CLASSES = ("frozen", "authored", "generated", "tooling", "archival", "owned")
 
 OWNED_PREFIXES = ("loop/", "translation/", "tools/", "ralph-kit-es/", ".claude/",
-                  "tests/fixtures/", "lessons/book/locale/")
+                  "tests/fixtures/", "lessons/book/locale/", "review/")
 OWNED_FILES = {".gitignore", "requirements-es.txt"}
 OWNED_GLOBS = (re.compile(r"^SYNTHESIZED-TRANSLATION-PLAN-.*\.md$"),)
 

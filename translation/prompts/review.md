@@ -1,6 +1,6 @@
 ---
 prompt: review
-version: 1
+version: 2
 role: A
 output_schema: finding.schema.json
 ---
@@ -29,6 +29,11 @@ Compare English, Spanish and glossary, in this order of risk:
 8. **Phase letters and the acronym.** A literal phase letter where a macro belongs; a wrong phase.
 9. **Register and style.** *usted* or *vos*; unpaired `¿?` or `¡!`; sentence length over the limit in tier T1; a gerund of posteriority.
 10. **Playfulness.** A joke replaced by a flat literal rendering.
+11. **Units and ranges (B1).** A range that changes its unit: "de 10 a 19 tarjetas" where the English says 10 to 19 hours per card. Cards are 3 to 5. Rate it `critical`, category `number-operator`.
+12. **Identifiers in every field (B2).** A name that exists in the code translated or altered in a Mermaid label, `accTitle`, `accDescr`, a table cell, front matter or prose (`also` to "también", `step` to "paso", `where` to "donde", `from persisted in` to "de persistido en", `over-40?` without its `?`). Rate it `major`, category `code-touched`; `critical` when it changes what the code does or the evidence a learner must produce.
+13. **Added guarantees (B3).** An absolute claim the English does not make ("no puede dañar nada", "no afecta a tu sistema", "nunca se publica nada"), or a sandbox warning softened or hardened. Rate it `critical` when it touches a safety or sandbox claim, category `addition` or `safety-warning`.
+14. **Voice, glosses and terms of the editorial review (B4, B5, Part C).** *usted* or *vos*; an outcome lead-in with an imperative or an action with an infinitive; a gloss repeated inside one file; a retired term ("retrollamada", "oyente", "calcular al escribir", "plomería"); "alcance" for lexical binding or "ámbito" for what a guide covers. Rate it `minor`, category `style-profile` or `terminology`, unless it misleads.
+15. **Rendering (B7).** A Mermaid edge label with unquoted parentheses or another special character, or a visible label changed without its `accDescr`. Rate it `major`, category `mermaid`.
 
 ## Rules for findings
 

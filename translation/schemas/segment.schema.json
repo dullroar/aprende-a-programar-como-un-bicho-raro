@@ -45,7 +45,21 @@
         },
         "playful": { "type": "boolean" },
         "english_does": { "type": ["string", "null"], "description": "What the English joke or heading does, from the humor register." },
-        "word_limit_n": { "type": "integer", "minimum": 5 }
+        "word_limit_n": { "type": "integer", "minimum": 5 },
+        "file_first_use": {
+          "type": "array",
+          "description": "First-use decisions of the whole file so far (rule B5). One entry per glossary term whose gloss is scoped per file: 'glossed' means an earlier segment of this file already gave the definition, so do not repeat it; 'pending' means this segment is where the gloss belongs.",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["id", "state"],
+            "properties": {
+              "id": { "type": "string", "description": "Glossary term id." },
+              "state": { "enum": ["glossed", "pending"] },
+              "segment_id": { "$ref": "#/$defs/segment_id", "description": "The segment that holds the gloss, when state is glossed." }
+            }
+          }
+        }
       }
     },
     "translator_output": {

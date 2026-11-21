@@ -243,10 +243,11 @@ terms:
     es: método
   - id: callback
     en: callback
-    es: retrollamada
+    es: función de devolución de llamada
     gloss: first-use
-    def: "Una función que entregas a otro para que la llame más tarde o desde otro lugar."
-    banned: [llamada de vuelta, "callback"]
+    def: "Una función que entregas a otra para que la llame; puede correr de inmediato o más tarde."
+    banned: [retrollamada, retrollamadas, llamada de vuelta, "callback"]
+    note: "Decision C (2026-11-20): retire 'retrollamada'. First use per file: función de devolución de llamada (*callback*); then repeat the full term where the referent could be unclear. A callback can be synchronous: never define it by an event or a delay. Keep API names such as `addEventListener` literal."
   - id: event
     en: event
     es: evento
@@ -254,11 +255,13 @@ terms:
   - id: emitter
     en: emitter
     es: emisor
-    def: "Un objeto que llama a los oyentes registrados para un evento."
+    def: "Un objeto que llama a los escuchadores de eventos registrados para un evento."
     banned: [emisor de eventos]
   - id: listener
     en: listener
-    es: oyente
+    es: escuchador de eventos
+    banned: [oyente, oyentes]
+    note: "Decision C: not 'oyente'. Keep API names such as `addEventListener` literal."
   - id: event-loop
     en: event loop
     es: bucle de eventos
@@ -270,7 +273,7 @@ terms:
   - id: reentrancy
     en: reentrancy
     es: reentrada
-    def: "Una retrollamada que corre mientras lo que la disparó sigue en curso."
+    def: "Una función de devolución de llamada que corre mientras lo que la disparó sigue en curso."
   - id: backpressure
     en: backpressure
     es: contrapresión
@@ -278,9 +281,10 @@ terms:
     def: "Una forma de que un consumidor lento frene a un productor."
   - id: eager
     en: eager evaluation
-    es: evaluación ansiosa
-    def: "Calcular al escribir: todos los valores, ahora."
-    banned: [evaluación impaciente, "evaluación estricta"]
+    es: evaluación inmediata
+    def: "Calcular todos los valores ahora, sin esperar a que alguien los pida."
+    banned: [evaluación ansiosa, evaluación impaciente, "evaluación estricta", calcular al escribir]
+    note: "Decision C: retire 'calcular al escribir'. Keep 'evaluación perezosa', 'ejecución diferida' (LINQ) and memoization as separate concepts."
   - id: lazy
     en: lazy evaluation
     es: evaluación perezosa
@@ -331,7 +335,12 @@ terms:
   - id: scope
     en: scope
     es: ámbito
-    banned: [alcance, "scope"]
+    banned: ["scope"]
+    note: "Decision C: 'ámbito' for lexical or dynamic binding (use 'ámbito dinámico' consistently); 'alcance' only for what a guide covers (term scope-coverage)."
+  - id: scope-coverage
+    en: scope (what a guide covers)
+    es: alcance
+    note: "Decision C: what a guide or a section covers. Never for lexical or dynamic binding (that is 'ámbito')."
   - id: recursion
     en: recursion
     es: recursión
@@ -378,16 +387,17 @@ terms:
     def: "Un grupo de operaciones que ocurren todas o ninguna."
   - id: commit-transaction
     en: commit (of a transaction)
-    es: confirmación
+    es: confirmación de la transacción
     def: "El punto en que un cambio se vuelve definitivo."
     use: "Confirma la transacción con `COMMIT`."
     banned: [compromiso, comitear]
-    note: "Verb: confirmar. Keep `COMMIT` literal."
+    note: "Verb: confirmar. Keep `COMMIT` literal. Decision C: the noun is 'confirmación de la transacción' (SQL only)."
   - id: git-commit
     en: commit (Git)
-    es: confirmación (*commit*) de Git
+    es: "*commit* de Git"
     gloss: first-use
-    note: "Keep the command `git commit` literal."
+    banned: [confirmación de Git]
+    note: "Decision C: the action is 'registrar … con un *commit*'. Keep the command `git commit` literal. Never 'confirmación' for Git."
   - id: rollback
     en: rollback
     es: reversión
@@ -459,7 +469,7 @@ terms:
     es: entorno aislado (*sandbox*)
     gloss: first-use
     banned: [caja de arena, "arenero"]
-    note: "After the gloss, use 'entorno aislado'. Keep paths like `sandbox/container/run-image.sh` literal."
+    note: "Rule B3: gloss ONCE PER FILE as 'un entorno aislado (*sandbox*) que limita el acceso al sistema anfitrión', then use 'entorno aislado'. Never add a guarantee the English does not make. Keep paths like `sandbox/container/run-image.sh` literal."
   - id: demo-only
     en: DEMO ONLY
     es: DEMO ONLY
@@ -663,6 +673,7 @@ terms:
     en: flag
     es: bandera
     banned: [flag, "indicador"]
+    note: "Decision C: introduce it in context as a boolean or a bit mask."
   - id: capture
     en: capture (regex)
     es: captura
@@ -895,6 +906,72 @@ terms:
     en: debugging
     es: depuración
     banned: [debugueo]
+    note: "Decision C: 'Depuración' as a table dimension or heading. The four card category strings stay `Debugging`, `Meetings`, `Coding`, `Learning` wherever they designate values."
+  - id: statement
+    en: statement
+    es: sentencia
+    note: "Decision C. 'sentencia de expresión' for expression statement; 'instrucción' for instruction. Never 'declaración' for statement (that is a declaration)."
+  - id: expression-statement
+    en: expression statement
+    es: sentencia de expresión
+  - id: instruction
+    en: instruction
+    es: instrucción
+  - id: helper-function
+    en: helper function
+    es: función auxiliar
+    banned: [función ayudante, función de ayuda]
+  - id: shell
+    en: shell
+    es: intérprete de comandos (*shell*)
+    gloss: first-use
+    note: "Decision C: a terminal hosts the session; the shell interprets. Do not use 'terminal' for the shell."
+  - id: loopback
+    en: loopback
+    es: interfaz local
+    banned: [puerto de retorno local]
+    note: "Decision C: write the address `127.0.0.1` in code font."
+  - id: off-by-one
+    en: off-by-one error
+    es: error de desfase en una posición
+    banned: [error por uno]
+    note: "Decision C: 'error de una línea' only for the source-copy boundary."
+  - id: jar
+    en: JAR
+    es: JAR
+    literal: true
+    note: "Decision C: always capitals, never 'jar'."
+  - id: dispatcher
+    en: dispatcher (WPF)
+    es: despachador de WPF
+    note: "Decision C: 'despachador de WPF' or 'bucle de mensajes', chosen by referent."
+  - id: lazy-queue
+    en: lazy queue
+    es: etapas diferidas
+    banned: [cola perezosa]
+  - id: plumbing
+    en: plumbing
+    es: cómo viaja el dato
+    banned: [plomería]
+    note: "Decision C: figurative use. Also acceptable: 'la mecánica de la salida'. Never 'plomería'."
+  - id: in-place
+    en: in place (modify directly)
+    es: in situ
+    note: "Decision C: or 'se modifica directamente'."
+  - id: prefix-sum
+    en: prefix sum
+    es: suma acumulada
+    gloss: first-use
+    note: "Decision C: gloss once per file."
+  - id: review
+    en: review (curriculum)
+    es: revisión
+    note: "Decision C: the curriculum review week."
+  - id: port
+    en: port (of a program)
+    es: adaptación
+    banned: [portación]
+    note: "Decision C: promoted from path_words into the prose glossary."
 
 # ---------------------------------------------------------------------------
 # Path words (plan 5.6, P3B-002). Spanish words that appear ONLY in student-facing file and folder names
@@ -906,7 +983,7 @@ terms:
 # ---------------------------------------------------------------------------
 path_words:
   - {en: "computer science (folder lessons/cs)", es: informática}
-  - {en: "ports (adaptations of a program)",      es: adaptaciones}
+  - {en: "callbacks (legacy path name, see decisions-provisional)", es: retrollamadas}
   - {en: beyond,                                  es: más allá}
   - {en: stacked,                                 es: apiladas}
   - {en: "bars (bar chart)",                      es: barras}

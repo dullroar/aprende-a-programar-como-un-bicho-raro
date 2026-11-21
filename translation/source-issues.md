@@ -1,0 +1,25 @@
+# Source issues (defects or imprecisions in the English)
+
+Policy (plan 6.2 and `review-decisions-2026-11-20.md` Part F): the Spanish edition translates what the English says. When the English itself looks wrong or imprecise, it is logged here for the English repository and is **never fixed silently in Spanish**. The Spanish stays faithful to the English meaning. Line numbers refer to the pinned English SHA `48a4429c0a22b2aac628b256a50c07d1816bcb80`.
+
+Row format: `SI-NNN`, file and line, what the English says, why it is imprecise, suggested English fix, status. Status is `open` until Jim decides to report it upstream (the loop never contacts the English repository).
+
+First batch: logged from the external editorial review of 2026-11-20 (`review/inbox/chatgpt-editorial-2026-11-20.md`), items checked against the English source.
+
+| ID | File and line | What the English says | Problem | Suggested English fix | Status |
+| --- | --- | --- | --- | --- | --- |
+| SI-001 | `docs/curriculum.md:54` | "The commit time proves the order" of the prediction and the run. | A commit timestamp shows when the prediction was committed. It does not prove the run came after it. Independent proof needs evidence that ties the run to the committed prediction (for example a commit hash printed by the run). | Say "The commit time shows when you wrote the prediction", and ask for evidence that ties the run to that commit. | open |
+| SI-002 | `lessons/study-guides/languages/apl.md:116` and `:194` | "Draws 4 and 5 ... were scanned and discarded" and "`apl` computes five values and discards two". | The two discarded draws are an observed trace of one run. The program can use three, four or all five draws. The test concerns the count of card functions, not "five hours". | Say that the trace of this run discards two, and that the count varies with the run (3 to 5 cards). | open |
+| SI-003 | `src/JavaChallenge1/README.md:104` (and the same trick in `src/ModernChallenge1/README.md`) | "`Double.isNaN(int)`" | It reads like a method signature. The method takes a `double`, and the integer is widened. | Write `Double.isNaN(double)` and say the `int` is widened. | open |
+| SI-004 | `src/ModernChallenge1/README.md` | "the anonymous object is the only legal container" | A design choice of this implementation, not a language rule. Other containers are legal. | Say "the container this implementation uses is the anonymous object". | open |
+| SI-005 | `src/LinqChallenge1/README.md:93` | "the statement has to *end* in an invocation" | Overgeneralizes. The C# grammar allows other expression statements (object creation, assignment, increment, `await`), as the same paragraph says. | Say that the statement must be one of the allowed shapes; this program chooses an invocation. | open |
+| SI-006 | `src/LinqChallenge1/README.md` (variant B) | The explanation of how `where`, `let` and `from` are used in the nested statement. | In variant B, `where` filters by the cap and does not signal an early stop. The lowering of `where`, `let` and `from` is not stated precisely. | Clarify what each clause lowers to, and say that `where` only filters. | open |
+| SI-007 | `src/PythonChallenge1/README.md:82` | "no statements inside expressions" | The explanation of `pass` versus `...` and the rule for counting statements are left implicit. | State why `...` is used and how the statement-counting rule applies. | open |
+| SI-008 | `src/KotlinChallenge1/README.md:88` | "no three-part `for` and no semicolons" | "No semicolons" is shorthand for the missing three-clause `for` header. Kotlin allows semicolons as statement separators. | Say "no three-clause `for` header". | open |
+| SI-009 | `src/forth/README.md:3` and `:17` | "a stack language needs one `begin ... until` and a pipe to be a whole program" | Overgeneralizes: the sentence describes this program, not stack languages. | Say "this Forth program needs one `begin ... until` and a pipe to be whole". | open |
+| SI-010 | `src/forth/README.md:48` | The diagram `accDescr` says "Then over-40 leaves a flag on the stack". | It drops the `?` of the word `over-40?`, which the diagram label and the code keep. | Write `over-40?` in the `accDescr`. | open |
+
+## Notes for translators
+
+- Translate the English as it stands, including the imprecise sentence. Where a rule of this edition applies (B2: identifiers literal, so `over-40?` keeps its `?` in the Spanish `accDescr`; B3: no added guarantees), follow the rule and keep the meaning.
+- To add an issue, append a row with the next `SI-` number. Do not renumber.

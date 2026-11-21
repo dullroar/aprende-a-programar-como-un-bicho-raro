@@ -71,3 +71,4 @@
 - Mermaid edge labels with parentheses must be quoted or reworded. Render every translated diagram and keep it at 8.4 pt or more; shorten labels, never loosen the gate.
 - Apply review items through the PO targets after checking the English; record a disposition per item. Source-issue items are logged in translation/source-issues.md only; the Spanish stays faithful to the English.
 - Binding decisions live in translation/review-decisions-2026-11-20.md: read its Parts B and C before translating.
+- Give a glossary term whose English word is ambiguous (port, in place, dispatcher) a parenthesized `en` so I7 builds no regex for it; a new plain-word term makes I7 flag every already-translated file that lacks it, so check `verify --fast --files` on them before adding one.

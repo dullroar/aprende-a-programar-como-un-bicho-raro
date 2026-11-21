@@ -1,6 +1,6 @@
 # Guía de estilo: Español Técnico Simplificado (ETS)
 
-Esta guía es el perfil de estilo de la edición en español de *Learn Programming the Weird Way!*. Es la contraparte de [`house-style.md`](../house-style.md), que sigue siendo la guía del inglés y no se traduce.
+Esta guía es el perfil de estilo de la edición en español de *Learn Programming the Weird Way!*. Es la contraparte de [`house-style.md`](https://github.com/dullroar/learn-programming-the-weird-way/blob/48a4429c0a22b2aac628b256a50c07d1816bcb80/house-style.md), la guía del inglés en la versión fijada, y de su copia local [`guia-de-estilo.md`](../guia-de-estilo.md).
 
 ETS es un **perfil propio del proyecto**. Toma prestada la disciplina de ASD-STE100 (frases cortas, términos controlados, voz activa) y las ideas de lenguaje claro de ISO 24495-1. No es un estándar, y ningún documento puede afirmar que está certificado.
 
@@ -35,6 +35,40 @@ Las reglas 1 a 13 son las del plan (sección 6.2). Cada una indica cómo se comp
 11. **Tono.** Conserva la picardía del original. Traduce los chistes **por su efecto, no palabra por palabra**, y nunca a costa de la precisión. Los modismos son bienvenidos cuando llevan la voz juguetona. Mantén el español neutro: evita la jerga que solo entiende un país. Registra cada pasaje juguetón en `translation/humor-register.jsonl`. Lint I15.
 12. **Sin deriva.** No añadas API, ejemplos, ejercicios ni secciones. No pierdas ninguna advertencia. No reordenes el contenido.
 13. **Nunca traduzcas dentro del código**, la salida de terminal, el SQL, los identificadores, los valores de enumeración, las claves de YAML, las URL, las rutas ni los anclajes. Tampoco las cuatro categorías de tarjeta: `Meetings`, `Coding`, `Debugging`, `Learning`. Tampoco la sintaxis ni los ID de nodo de Mermaid, ni las macros `[[...]]` y `{{...}}`. Su prosa circundante sí se traduce. Lints I1, I2, I5 e I13.
+
+### 2.1 Reglas B1 a B8 (primera revisión editorial, 2026-11-20)
+
+Estas reglas salen de `review-decisions-2026-11-20.md` y completan las reglas 1 a 13. Donde chocan con ellas, mandan estas. Las comprobaciones automáticas llegan en las tareas P3C-002 y P3C-003.
+
+**B1. Unidades y rangos.** Un rango numérico conserva la unidad del inglés. El reto compartido dice que cada tarjeta tiene «de 10 a 19 horas» (horas por tarjeta). Nunca escribas «de 10 a 19 tarjetas». Las tarjetas son de 3 a 5, y ese rango no lleva «de 10 a 19». Pasa: «de 10 a 19 horas por tarjeta». Falla: «de 10 a 19 tarjetas».
+
+**B2. Los identificadores son literales en todos los campos de texto.** Un nombre que existe en el código queda tal cual en las etiquetas de nodo y de arista de Mermaid, en `accTitle` y `accDescr`, en las celdas de tablas, en el front matter y en la prosa. Usa tipografía de código donde el campo lo permita. Ejemplos: `also`, `step`, `where`, `from persisted in`, `let`, `over-40?` (con su `?`), `.let { false }`, `Double.IsNaN`, `SaveChanges`, `Aggregate`, `Seq`, `After`, `ShowDialog`, `/closed`, `WaitForSaves`, `⎕CR`, `⎕FX`, `⍎`. El español describe alrededor del nombre: «`where`: la suma acumulada hasta este día es como máximo 40».
+
+**B3. No añadas garantías.** No escribas afirmaciones absolutas que el inglés no hace. Evita «no puede dañar nada», «el código no afecta a tu sistema», «donde un error no daña tu equipo» y «nunca se publica nada». Define el *sandbox* **una vez por archivo**: «un entorno aislado (*sandbox*) que limita el acceso al sistema anfitrión». Después escribe «entorno aislado». Conserva «Ejecútalo solo en el entorno aislado» y el marcador `DEMO ONLY`, con esta glosa: «datos ficticios marcados con `DEMO ONLY`».
+
+**B4. Voz y trato.** Conserva *tú*, casi siempre implícito.
+- Usa el imperativo para una acción del lector: *Lee*, *traza*, *ejecuta*.
+- Usa el infinitivo tras una fórmula de resultado («deberías poder», «podrás») y coordina en infinitivo.
+- Describe lo que hace un programa en indicativo y con sujeto explícito: «El programa abre…».
+- En un encabezado, usa el imperativo para una acción («Traza una ejecución») y una pregunta, directa o indirecta, para una explicación («Cómo funciona el truco»).
+- Nunca cambies a *usted* ni a *vos*. La salida de los programas y las etiquetas literales no cambian.
+
+**B5. Las glosas de primer uso se miden por archivo.** La definición breve de un término difícil (regla 7) se da una vez por archivo, no en cada segmento. El traductor recibe las decisiones de primer uso del archivo con cada segmento. Un lint sobre el archivo ensamblado detecta glosas duplicadas, deriva de etiquetas, cambios de sujeto y valores literales ausentes.
+
+**B6. Tipografía y puntuación.**
+- Usa un espacio duro antes de `%`: `30 %`.
+- No uses coma serial en listas simples ni coma antes de un «o» o un «y» simples.
+- Los títulos de obras van en cursiva. El texto de un enlace se traduce. Los encabezados usan sentence case: mayúscula inicial y minúsculas en el resto, salvo nombres propios, siglas y literales.
+- Distingue la notación decimal y las unidades en la prosa («40 horas», «8 horas») de la salida exacta de un programa (`40.0h`), que se conserva.
+- Las comillas rectas siguen siendo la regla. Deja la puntuación fuera del delimitador cuando no pertenezca a la cita.
+
+**B7. Los diagramas se comprueban al traducir.** Cada diagrama traducido debe dibujarse con la CLI de Mermaid del proyecto y cumplir el umbral de impresión de 8,4 pt. Una etiqueta de arista con paréntesis u otro carácter especial de Mermaid va entre comillas o se reformula. Si una etiqueta es larga, acórtala (una etiqueta no es una frase) y deja el detalle en `accDescr` y en la prosa. Nunca aflojes el umbral. Cambia las etiquetas visibles y `accDescr` a la vez.
+
+**B8. Encabezados y anclajes.** Cuando traduzcas un encabezado, migra en el mismo cambio todos los enlaces que apuntan a él (`tools/anchors.py`). Si el párrafo común del reto compartido enlaza el encabezado, prefiere un anclaje explícito y estable.
+
+### 2.2 Términos de la revisión editorial
+
+Las decisiones de vocabulario de esa revisión (Parte C) viven en `glossary.es.yaml`. Las más visibles: *función de devolución de llamada* (*callback*; se retira «retrollamada»), *escuchador de eventos*, *evaluación inmediata* (se retira «calcular al escribir»), *ámbito* para el enlace de nombres y *alcance* para lo que cubre una guía, *commit de Git* frente a *confirmación de la transacción*, *intérprete de comandos* (*shell*) frente a *terminal*, y *adaptación* para *port*.
 
 ## 3. Decisiones heredadas de la guía en inglés
 
