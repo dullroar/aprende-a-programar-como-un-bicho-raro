@@ -1,0 +1,467 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/ex-weird/README.md:2
+msgctxt "s-12974c598966-0000"
+msgid "Ex"
+msgstr "Ex"
+
+#: src/ex-weird/README.md:3
+msgctxt "s-66a172aecb41-0001"
+msgid "that an editor's registers can hold a program: a line of text is copied into a register and run with @, and the editor's own marks and line addresses do the arithmetic."
+msgstr "que los registros de un editor pueden contener un programa: una línea de texto se copia en un registro y se ejecuta con @ y las marcas y las direcciones de línea del propio editor hacen la aritmética."
+
+#: src/ex-weird/README.md:11
+msgctxt "s-c549a1ee0859-0002"
+msgid "A register machine whose registers are editor marks, and whose program is a register that runs itself"
+msgstr "Una máquina de registros cuyos registros son marcas del editor y cuyo programa es un registro que se ejecuta a sí mismo"
+
+#: src/ex-weird/README.md:12
+msgctxt "s-ffa9b74fdd40-0003"
+msgid "The marks (where we are on a tape of numbered lines), the first line of the buffer (the next card), and registers a, d and n"
+msgstr "Las marcas (dónde estamos en una cinta de líneas numeradas), la primera línea del búfer (la siguiente tarjeta) y los registros a, d y n"
+
+#: src/ex-weird/README.md:15
+msgctxt "s-74ae77ac700a-0004"
+msgid "Ex: a program you can edit"
+msgstr "Ex: un programa que puedes editar"
+
+#: src/ex-weird/README.md:17
+msgctxt "s-05e6b6127bc7-0005"
+msgid "**Teaches you:** that an editor's registers can hold a program: a line of text is copied into a register and run with @, and the editor's own marks and line addresses do the arithmetic."
+msgstr "**Te enseña:** que los registros de un editor pueden contener un programa: una línea de texto se copia en un registro y se ejecuta con @, y las marcas y las direcciones de línea del propio editor hacen la aritmética."
+
+#: src/ex-weird/README.md:19
+msgctxt "s-efedc63e0263-0006"
+msgid ""
+"**⟦DNT_0001⟧.** Fictional time cards, written to a scratch SQLite file under ⟦CODE_0002⟧.\n"
+"Nothing here touches real time reporting."
+msgstr ""
+"**⟦DNT_0001⟧.** Tarjetas de horas ficticias, escritas en un archivo SQLite temporal dentro de ⟦CODE_0002⟧.\n"
+"Nada de esto toca el registro de horas real."
+
+#: src/ex-weird/README.md:22
+msgctxt "s-aca73d073089-0007"
+msgid "⟦CODE_0001⟧ is the command language of the ⟦CODE_0002⟧ editor. It is a line editor like [⟦CODE_0003⟧](⟦DEST_0004⟧), with extra powers: **named registers** that hold text, an **⟦CODE_0005⟧ command that runs a register as Ex commands**, **marks** that remember a line, and several commands on one line, separated by bars. This entry uses those powers to build something that ⟦CODE_0006⟧ cannot: a program that is stored as text, copied into a register, and run, and that decides its own next step by copying a line of *data* into a register and running that too."
+msgstr "⟦CODE_0001⟧ es el lenguaje de comandos del editor ⟦CODE_0002⟧. Es un editor de líneas como [⟦CODE_0003⟧](⟦DEST_0004⟧), con poderes extra: **registros con nombre** que guardan texto, un **comando ⟦CODE_0005⟧ que ejecuta un registro como comandos Ex**, **marcas** que recuerdan una línea y varios comandos en una sola línea, separados por barras. Esta entrada usa esos poderes para construir algo que ⟦CODE_0006⟧ no puede: un programa guardado como texto, copiado en un registro y ejecutado. Ese programa decide su propio paso siguiente: copia una línea de *datos* en un registro y también la ejecuta."
+
+#: src/ex-weird/README.md:31
+msgctxt "s-8c2e18aa417a-0008"
+msgid "There is no global command in the program, no regular expression test, no loop statement and no error. The loop is a register that runs itself."
+msgstr "El programa no tiene ningún comando global, ninguna prueba de expresión regular, ninguna sentencia de bucle y ningún error. El bucle es un registro que se ejecuta a sí mismo."
+
+#: src/ex-weird/README.md:33
+msgctxt "s-958ca26c6a61-0009"
+msgid "Run it"
+msgstr "Ejecútalo"
+
+#: src/ex-weird/README.md:35
+msgctxt "s-2ab5a43c274a-0010"
+msgid "You need an **Ex**: **nvi** (a 4.4BSD POSIX ex/vi; 1.81.6 was tested, and it is what the sandbox has) or **Vim** in Ex mode (9.1 was tested). Ubuntu's own ⟦CODE_0001⟧ is Vim. You also need a POSIX shell, ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧ and ⟦CODE_0006⟧."
+msgstr "Necesitas un **Ex**: **nvi** (un ex/vi POSIX de 4.4BSD; se probó la versión 1.81.6, que es la que tiene el entorno aislado (*sandbox*) que limita el acceso al sistema anfitrión) o **Vim** en modo Ex (se probó la versión 9.1). El ⟦CODE_0001⟧ propio de Ubuntu es Vim. También necesitas un intérprete de comandos (*shell*) POSIX, el programa que ejecuta los comandos que escribes, ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧ y ⟦CODE_0006⟧."
+
+#: src/ex-weird/README.md:46
+msgctxt "s-344745df1d7e-0011"
+msgid "Records go to ⟦CODE_0001⟧ (default ⟦CODE_0002⟧)."
+msgstr "Los registros van a ⟦CODE_0001⟧ (por defecto, ⟦CODE_0002⟧)."
+
+#: src/ex-weird/README.md:48
+msgctxt "s-254f0c660db3-0012"
+msgid "Run it in a container"
+msgstr "Ejecútalo en un contenedor"
+
+#: src/ex-weird/README.md:50
+msgctxt "s-643df015c8a2-0013"
+msgid "Prerequisite: Docker, set up once as described in [⟦CODE_0001⟧](⟦DEST_0002⟧)."
+msgstr "Requisito previo: Docker, instalado una sola vez como se describe en [⟦CODE_0001⟧](⟦DEST_0002⟧)."
+
+#: src/ex-weird/README.md:56
+msgctxt "s-16f611665b77-0014"
+msgid "It builds this folder's [⟦CODE_0001⟧](⟦DEST_0002⟧) and runs the result with no network, a read-only file system and user ⟦CODE_0003⟧. The image holds nvi and sqlite3 on a minimal Ubuntu."
+msgstr "Construye el [⟦CODE_0001⟧](⟦DEST_0002⟧) de esta carpeta y ejecuta el resultado sin red, con un sistema de archivos de solo lectura y con el usuario ⟦CODE_0003⟧. La imagen contiene nvi y sqlite3 sobre un Ubuntu mínimo."
+
+#: src/ex-weird/README.md:58
+msgctxt "s-0dcb373c2dff-0015"
+msgid "Program Flow"
+msgstr "Flujo del programa"
+
+#: src/ex-weird/README.md:62
+msgctxt "s-fad149abf823-0016"
+msgid "ex-weird: a register that holds the command that runs it again"
+msgstr "ex-weird: un registro que guarda el comando que lo ejecuta de nuevo"
+
+#: src/ex-weird/README.md:63
+msgctxt "s-f818756b86e0-0017"
+msgid "A flowchart. The launcher gives Ex five digits as cards. The script adds a tape of sixty lines under the cards, and the program as one line of text, which it copies into register a. Running register a starts the loop. The first card's digit is rewritten into a command that moves the mark t down the tape, and running it adds the hours. The program prints the row, using the total from the tape line under the mark. It copies that tape line's instruction into register n and deletes the used card. Running register n then does what the tape line says. Up to 40, the line says to run register a again. Above 40, the line is a comment, so nothing runs and the script ends."
+msgstr "Un diagrama de flujo. El lanzador entrega a Ex cinco dígitos como tarjetas. El script añade bajo las tarjetas una cinta de sesenta líneas y el programa como una sola línea de texto, que copia en el registro a. Ejecutar el registro a inicia el bucle. El dígito de la primera tarjeta se reescribe como un comando que baja la marca t por la cinta, y ejecutarlo suma las horas. El programa imprime la fila con el total de la línea de la cinta que está bajo la marca. Copia la instrucción de esa línea de la cinta en el registro n y borra la tarjeta usada. Después, ejecutar el registro n hace lo que dice la línea de la cinta. Si el total no pasa de 40, la línea indica ejecutar de nuevo el registro a. Si pasa de 40, la línea es un comentario, así que no se ejecuta nada y el script termina."
+
+#: src/ex-weird/README.md:64
+msgctxt "s-172838ef444d-0018"
+msgid "Launcher gives five digits; the script adds a 60-line tape and the program as one line, copied into register a"
+msgstr "El lanzador da cinco dígitos; el script añade una cinta de 60 líneas y el programa como una sola línea, copiada en el registro a"
+
+#: src/ex-weird/README.md:64
+msgctxt "s-6739f6b91d08-0019"
+msgid "Run @a: rewrite the first card's digit into a command, 't+17 k t"
+msgstr "Ejecuta @a: reescribe el dígito de la primera tarjeta como un comando, 't+17 k t"
+
+#: src/ex-weird/README.md:65
+msgctxt "s-b50fbcb4e41b-0020"
+msgid "Run that command: mark t moves down the tape, and that is the addition"
+msgstr "Ejecuta ese comando: la marca t baja por la cinta y esa es la suma"
+
+#: src/ex-weird/README.md:66
+msgctxt "s-ec87a8cd28ba-0021"
+msgid "Print the row: the card and the total on the tape line under mark t"
+msgstr "Imprime la fila: la tarjeta y el total en la línea de la cinta bajo la marca t"
+
+#: src/ex-weird/README.md:67
+msgctxt "s-bae7c635ca49-0022"
+msgid "Copy that tape line's instruction into register n, delete the used card"
+msgstr "Copia la instrucción de esa línea de la cinta en el registro n y elimina la tarjeta usada"
+
+#: src/ex-weird/README.md:68
+msgctxt "s-6724af16d250-0023"
+msgid "Run @n: what does the tape line say?"
+msgstr "Ejecución @n: ¿qué dice la línea de la cinta?"
+
+#: src/ex-weird/README.md:69
+msgctxt "s-94f23df3c054-0024"
+msgid "@a: total is 40 or less"
+msgstr "@a: el total no pasa de 40"
+
+#: src/ex-weird/README.md:70
+msgctxt "s-3d0c7487ebec-0025"
+msgid "a quote mark: a comment, total is over 40"
+msgstr "una comilla: un comentario, el total pasa de 40"
+
+#: src/ex-weird/README.md:70
+msgctxt "s-c984996f4a7f-0026"
+msgid "Nothing runs: the script ends and the launcher loads the rows"
+msgstr "No se ejecuta nada: el script termina y el lanzador carga las filas"
+
+#: src/ex-weird/README.md:73
+msgctxt "s-5c469e12aaa2-0027"
+msgid "**What this shows:** Ex keeps state outside the text, in marks, and it can run a register as a command. The position of mark ⟦CODE_0001⟧ on a tape *is* the running total. The tape line under it holds the next instruction: ⟦CODE_0002⟧, which means \"go round again\", or a quote mark, which Ex reads as a comment."
+msgstr "**Qué muestra:** Ex guarda el estado fuera del texto, en marcas. También puede ejecutar un registro como comando. La posición de la marca ⟦CODE_0001⟧ en una cinta *es* el total acumulado. La línea de la cinta que está debajo contiene la siguiente instrucción: ⟦CODE_0002⟧ (que significa \"da otra vuelta\") o una comilla, que Ex lee como comentario."
+
+#: src/ex-weird/README.md:75
+msgctxt "s-a7b69cff2ea6-0028"
+msgid "**Why this mechanism matters:** this is self-modifying code. The program writes the command that does its arithmetic, and the stop rule is the place on the tape where ⟦CODE_0001⟧ turns into a comment. Nothing in the program says \"40\" anywhere except in how the tape is laid out."
+msgstr "**Por qué importa este mecanismo:** este es código que se modifica a sí mismo. El programa escribe el comando que hace su aritmética, y la regla de parada es el lugar de la cinta donde ⟦CODE_0001⟧ se convierte en un comentario. Nada en el programa dice \"40\" en ninguna parte, salvo en cómo está dispuesta la cinta."
+
+#: src/ex-weird/README.md:77
+msgctxt "s-7f97d965b4c0-0029"
+msgid "How the stunt works"
+msgstr "Cómo funciona el truco"
+
+#: src/ex-weird/README.md:79
+msgctxt "s-0fdc52c4e1fd-0030"
+msgid "Read [⟦CODE_0001⟧](⟦DEST_0002⟧) from top to bottom. Its comments say what each part does."
+msgstr "Lee [⟦CODE_0001⟧](⟦DEST_0002⟧) de principio a fin. Sus comentarios dicen qué hace cada parte."
+
+#: src/ex-weird/README.md:81
+msgctxt "s-c085421d2701-0031"
+msgid "The registers are marks"
+msgstr "Los registros son marcas"
+
+#: src/ex-weird/README.md:83
+msgctxt "s-f064accf7898-0032"
+msgid "⟦CODE_0001⟧ keeps its state in the *text* of the buffer. Ex also has state outside the text: **marks**. ⟦CODE_0002⟧ puts a mark called ⟦CODE_0003⟧ on a line, and ⟦CODE_0004⟧ is that line as an address. The mark follows its line when lines above it are added or removed. Address arithmetic works on marks, so ⟦CODE_0005⟧ is \"seventeen lines below mark ⟦CODE_0006⟧\". The command ⟦CODE_0007⟧ puts the mark there. That is **t = t + 17**, with no number anywhere except in the text of the address."
+msgstr "⟦CODE_0001⟧ guarda su estado en el *texto* del búfer. Ex también tiene estado fuera del texto: las **marcas**. ⟦CODE_0002⟧ pone una marca llamada ⟦CODE_0003⟧ en una línea, y ⟦CODE_0004⟧ es esa línea como dirección. La marca sigue a su línea cuando se agregan o se quitan líneas por encima de ella. La aritmética de direcciones funciona con marcas, así que ⟦CODE_0005⟧ es \"diecisiete líneas debajo de la marca ⟦CODE_0006⟧\". El comando ⟦CODE_0007⟧ pone la marca ahí. Eso es **t = t + 17**, sin ningún número en ninguna parte salvo en el texto de la dirección."
+
+#: src/ex-weird/README.md:85
+msgctxt "s-691a0a0e936a-0033"
+msgid "The tape"
+msgstr "La cinta"
+
+#: src/ex-weird/README.md:87
+msgctxt "s-b2d2a1a0fd63-0034"
+msgid "Under the five cards the program adds a tape of sixty lines. A line is ⟦CODE_0001⟧:"
+msgstr "Debajo de las cinco tarjetas el programa añade una cinta de sesenta líneas. Cada línea es ⟦CODE_0001⟧:"
+
+#: src/ex-weird/README.md:100
+msgctxt "s-a97236599278-0035"
+msgid "The position of mark ⟦CODE_0001⟧ on the tape *is* the running total. The text of the line under it is the total as decimal digits, and a *next instruction*. Up to 40 the instruction is ⟦CODE_0002⟧: go on. Above 40 it is a quote mark, which Ex reads as a comment: do nothing. **The limit of 40 is the place where ⟦CODE_0003⟧ stops on the tape.** Nothing in the program says \"40\"."
+msgstr "La posición de la marca ⟦CODE_0001⟧ en la cinta *es* el total acumulado. El texto de la línea que está debajo es el total en dígitos decimales y una *instrucción siguiente*. Mientras el total no pase de 40, la instrucción es ⟦CODE_0002⟧: continúa. Cuando el total pasa de 40, la instrucción es una comilla, que Ex lee como un comentario: no hace nada. **El límite de 40 es el lugar de la cinta donde se detiene ⟦CODE_0003⟧.** Nada en el programa dice \"40\"."
+
+#: src/ex-weird/README.md:102
+msgctxt "s-8d08872e81e0-0036"
+msgid "The program"
+msgstr "El programa"
+
+#: src/ex-weird/README.md:104
+msgctxt "s-5f7a30fb55a9-0037"
+msgid "The program is one line of text. The script adds it to the buffer after the tape, copies it into register ⟦CODE_0001⟧ (⟦CODE_0002⟧), and removes it (⟦CODE_0003⟧). Then ⟦CODE_0004⟧ runs it. The bars are line breaks. In order:"
+msgstr "El programa es una línea de texto. El script la agrega al búfer después de la cinta, la copia en el registro ⟦CODE_0001⟧ (⟦CODE_0002⟧) y la elimina (⟦CODE_0003⟧). Luego ⟦CODE_0004⟧ la ejecuta. Las barras son saltos de línea. En orden:"
+
+#: src/ex-weird/README.md:106
+msgctxt "s-8c09b3fb5cb3-0038"
+msgid "⟦SEP_0001⟧ Step ⟦SEP_0002⟧ What it does ⟦SEP_0003⟧"
+msgstr "⟦SEP_0001⟧ Paso ⟦SEP_0002⟧ Qué hace ⟦SEP_0003⟧"
+
+#: src/ex-weird/README.md:108
+msgctxt "s-f240cda00333-0039"
+msgid "⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ Copy the first card, ⟦CODE_0002⟧, to the end of the buffer ⟦SEP_0005⟧"
+msgstr "⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ Copia la primera tarjeta, ⟦CODE_0002⟧, al final del búfer ⟦SEP_0005⟧"
+
+#: src/ex-weird/README.md:109
+msgctxt "s-290da148143d-0040"
+msgid "⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ Rewrite the copy into a *command*: ⟦CODE_0002⟧. The card's digit became text that Ex can run ⟦SEP_0005⟧"
+msgstr "⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ Reescribe la copia como un *comando*: ⟦CODE_0002⟧. El dígito de la tarjeta se convirtió en texto que Ex puede ejecutar ⟦SEP_0005⟧"
+
+#: src/ex-weird/README.md:110
+msgctxt "s-dce7e6a0ca0f-0041"
+msgid "⟦SEP_0004⟧ ⟦CODE_0001⟧, ⟦CODE_0002⟧ ⟦SEP_0005⟧ Copy the command into register ⟦CODE_0003⟧, and remove it from the buffer ⟦SEP_0006⟧"
+msgstr "⟦SEP_0004⟧ ⟦CODE_0001⟧, ⟦CODE_0002⟧ ⟦SEP_0005⟧ Copia el comando en el registro ⟦CODE_0003⟧ y quítalo del búfer ⟦SEP_0006⟧"
+
+#: src/ex-weird/README.md:111
+msgctxt "s-995fc3da76ab-0042"
+msgid "⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ Turn the digit of the card into hours: ⟦CODE_0002⟧ ⟦SEP_0005⟧"
+msgstr "⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ Convierte el dígito de la tarjeta en horas: ⟦CODE_0002⟧ ⟦SEP_0005⟧"
+
+#: src/ex-weird/README.md:112
+msgctxt "s-2a9e46c59d2c-0043"
+msgid "⟦SEP_0004⟧ ⟦CODE_0001⟧ ⟦SEP_0005⟧ **Run register ⟦CODE_0002⟧.** Mark ⟦CODE_0003⟧ moves 17 lines down the tape. This is the addition ⟦SEP_0006⟧"
+msgstr "⟦SEP_0004⟧ ⟦CODE_0001⟧ ⟦SEP_0005⟧ **Ejecuta el registro ⟦CODE_0002⟧.** La marca ⟦CODE_0003⟧ baja 17 líneas por la cinta. Esta es la suma ⟦SEP_0006⟧"
+
+#: src/ex-weird/README.md:113
+msgctxt "s-070ef7f5aa4c-0044"
+msgid "⟦SEP_0008⟧ ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧ ⟦SEP_0009⟧ Copy the card. Copy the tape line under mark ⟦CODE_0006⟧. Keep only its total. Join the two (Ex's join puts a space between them). Print the row: ⟦CODE_0007⟧ ⟦SEP_0010⟧"
+msgstr "⟦SEP_0008⟧ ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧ ⟦SEP_0009⟧ Copia la tarjeta. Copia la línea de la cinta bajo la marca ⟦CODE_0006⟧. Conserva solo su total. Une las dos (la orden join de Ex pone un espacio entre ellas). Imprime la fila: ⟦CODE_0007⟧ ⟦SEP_0010⟧"
+
+#: src/ex-weird/README.md:114
+msgctxt "s-dd9c63b62a77-0045"
+msgid "⟦SEP_0006⟧ ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧ ⟦SEP_0007⟧ Copy the tape line to the end of the buffer again. Strip the leading total and its space, yank the remaining instruction into register ⟦CODE_0005⟧, then delete the temporary line ⟦SEP_0008⟧"
+msgstr "⟦SEP_0006⟧ ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧ ⟦SEP_0007⟧ Copia de nuevo la línea de la cinta al final del búfer. Quita el total inicial y su espacio, copia la instrucción restante en el registro ⟦CODE_0005⟧ y borra la línea temporal ⟦SEP_0008⟧"
+
+#: src/ex-weird/README.md:115
+msgctxt "s-1d09de4072ae-0046"
+msgid "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ The card is used up. The next card is now line 1 ⟦SEP_0004⟧"
+msgstr "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ La tarjeta se ha agotado. La siguiente tarjeta pasa a ser la línea 1 ⟦SEP_0004⟧"
+
+#: src/ex-weird/README.md:116
+msgctxt "s-5cf093877ec2-0047"
+msgid "⟦SEP_0005⟧ ⟦CODE_0001⟧ ⟦SEP_0006⟧ **Run register ⟦CODE_0002⟧.** On the tape it says ⟦CODE_0003⟧, so the program runs again. Above 40 it says ⟦CODE_0004⟧, and nothing runs ⟦SEP_0007⟧"
+msgstr "⟦SEP_0005⟧ ⟦CODE_0001⟧ ⟦SEP_0006⟧ **Registro de ejecución ⟦CODE_0002⟧.** En la cinta dice ⟦CODE_0003⟧, así que el programa se ejecuta otra vez. Con más de 40 dice ⟦CODE_0004⟧ y no se ejecuta nada ⟦SEP_0007⟧"
+
+#: src/ex-weird/README.md:118
+msgctxt "s-e4dd520a254d-0048"
+msgid "⟦SEP_0001⟧ Job ⟦SEP_0002⟧ Done by ⟦SEP_0003⟧"
+msgstr "⟦SEP_0001⟧ Tarea ⟦SEP_0002⟧ Hecho por ⟦SEP_0003⟧"
+
+#: src/ex-weird/README.md:120
+msgctxt "s-99c0cf9b2841-0049"
+msgid "⟦SEP_0003⟧ Loop ⟦SEP_0004⟧ Register ⟦CODE_0001⟧ holds ⟦CODE_0002⟧, so the program calls itself ⟦SEP_0005⟧"
+msgstr "⟦SEP_0003⟧ Bucle ⟦SEP_0004⟧ El registro ⟦CODE_0001⟧ contiene ⟦CODE_0002⟧, así que el programa se llama a sí mismo ⟦SEP_0005⟧"
+
+#: src/ex-weird/README.md:121
+msgctxt "s-78918409f259-0050"
+msgid "⟦SEP_0003⟧ Category order ⟦SEP_0004⟧ Line addresses (⟦CODE_0001⟧, ⟦CODE_0002⟧, ...), as in the ed entry ⟦SEP_0005⟧"
+msgstr "⟦SEP_0003⟧ Orden de las categorías ⟦SEP_0004⟧ Direcciones de línea (⟦CODE_0001⟧, ⟦CODE_0002⟧, ...), como en la entrada de ed ⟦SEP_0005⟧"
+
+#: src/ex-weird/README.md:122
+msgctxt "s-241bc880d31d-0051"
+msgid "⟦SEP_0001⟧ Random hours ⟦SEP_0002⟧ The launcher gives Ex five digits. A substitution makes each into a command ⟦SEP_0003⟧"
+msgstr "⟦SEP_0001⟧ Horas aleatorias ⟦SEP_0002⟧ El lanzador entrega cinco dígitos a Ex. Una sustitución convierte cada uno en un comando ⟦SEP_0003⟧"
+
+#: src/ex-weird/README.md:123
+msgctxt "s-929d6f96e686-0052"
+msgid "⟦SEP_0002⟧ Running total ⟦SEP_0003⟧ The mark ⟦CODE_0001⟧, moved by a command that the program wrote itself ⟦SEP_0004⟧"
+msgstr "⟦SEP_0002⟧ Total acumulado ⟦SEP_0003⟧ La marca ⟦CODE_0001⟧, movida por un comando que el propio programa escribió ⟦SEP_0004⟧"
+
+#: src/ex-weird/README.md:124
+msgctxt "s-6501a07c2994-0053"
+msgid "⟦SEP_0001⟧ Decimal total ⟦SEP_0002⟧ The text of the tape line under the mark ⟦SEP_0003⟧"
+msgstr "⟦SEP_0001⟧ Total decimal ⟦SEP_0002⟧ El texto de la línea de la cinta que está bajo la marca ⟦SEP_0003⟧"
+
+#: src/ex-weird/README.md:125
+msgctxt "s-4f32dc46fe7f-0054"
+msgid "⟦SEP_0001⟧ Stop rule ⟦SEP_0002⟧ The tape: the first line whose instruction is a comment ⟦SEP_0003⟧"
+msgstr "⟦SEP_0001⟧ Regla de parada ⟦SEP_0002⟧ La cinta: la primera línea cuya instrucción es un comentario ⟦SEP_0003⟧"
+
+#: src/ex-weird/README.md:126
+msgctxt "s-4c88e2393773-0055"
+msgid "⟦SEP_0002⟧ Output ⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧"
+msgstr "⟦SEP_0002⟧ Salida ⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧"
+
+#: src/ex-weird/README.md:127
+msgctxt "s-a905b8c28681-0056"
+msgid "⟦SEP_0003⟧ Persistence ⟦SEP_0004⟧ ⟦CODE_0001⟧, with ⟦CODE_0002⟧ constraints ⟦SEP_0005⟧"
+msgstr "⟦SEP_0003⟧ Persistencia ⟦SEP_0004⟧ ⟦CODE_0001⟧, con restricciones ⟦CODE_0002⟧ ⟦SEP_0005⟧"
+
+#: src/ex-weird/README.md:129
+msgctxt "s-ad2365083001-0057"
+msgid "The launcher, [⟦CODE_0001⟧](⟦DEST_0002⟧), has four jobs: five random digits, run Ex, load the rows into SQLite with the week, and show them. It has no arithmetic, no ⟦CODE_0003⟧, no ⟦CODE_0004⟧ and no loop. It also checks every line that Ex prints: anything that is not a card row is an error, except one known note from nvi (see the gotchas)."
+msgstr "El lanzador, [⟦CODE_0001⟧](⟦DEST_0002⟧), tiene cuatro tareas: generar cinco dígitos aleatorios, ejecutar Ex, cargar las filas en SQLite con la semana y mostrarlas. No tiene aritmética, ⟦CODE_0003⟧, ⟦CODE_0004⟧ ni bucle. También revisa cada línea que imprime Ex: cualquier cosa que no sea una fila de tarjeta es un error, salvo una nota conocida de nvi (consulta las trampas comunes)."
+
+#: src/ex-weird/README.md:131
+msgctxt "s-1a4f33ebe77d-0058"
+msgid "What is different from the ed entry"
+msgstr "Qué cambia respecto de la entrada de ed"
+
+#: src/ex-weird/README.md:135
+msgctxt "s-a3e5214052c8-0059"
+msgid "⟦SEP_0003⟧ State ⟦SEP_0004⟧ Text: rows of ⟦CODE_0001⟧ marks ⟦SEP_0005⟧ The mark ⟦CODE_0002⟧ (a position), and a tape of lines ⟦SEP_0006⟧"
+msgstr "⟦SEP_0003⟧ Estado ⟦SEP_0004⟧ Texto: filas de marcas ⟦CODE_0001⟧ ⟦SEP_0005⟧ La marca ⟦CODE_0002⟧ (una posición) y una cinta de líneas ⟦SEP_0006⟧"
+
+#: src/ex-weird/README.md:136
+msgctxt "s-c8c36632ed07-0060"
+msgid "⟦SEP_0001⟧ Addition ⟦SEP_0002⟧ Join two lines, so the marks sit side by side ⟦SEP_0003⟧ Move a mark by an address ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ Suma ⟦SEP_0002⟧ Une dos líneas para que las marcas queden una al lado de la otra ⟦SEP_0003⟧ Mueve una marca mediante una dirección ⟦SEP_0004⟧"
+
+#: src/ex-weird/README.md:137
+msgctxt "s-266774ac0447-0061"
+msgid "⟦SEP_0002⟧ Control ⟦SEP_0003⟧ One global command; a failed ⟦CODE_0001⟧ is an \"if\" ⟦SEP_0004⟧ A register that runs itself; the tape says whether to run it again ⟦SEP_0005⟧"
+msgstr "⟦SEP_0002⟧ Control ⟦SEP_0003⟧ Un comando global; un ⟦CODE_0001⟧ fallido es un \"si\" ⟦SEP_0004⟧ Un registro que se ejecuta a sí mismo; la cinta indica si hay que ejecutarlo de nuevo ⟦SEP_0005⟧"
+
+#: src/ex-weird/README.md:138
+msgctxt "s-c07af353a2f8-0062"
+msgid "⟦SEP_0001⟧ Program text ⟦SEP_0002⟧ The script ⟦SEP_0003⟧ The script, *and* text that the program writes and then runs ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ Texto del programa ⟦SEP_0002⟧ El script ⟦SEP_0003⟧ El script *y* el texto que el programa escribe y luego ejecuta ⟦SEP_0004⟧"
+
+#: src/ex-weird/README.md:139
+msgctxt "s-904072e631ba-0063"
+msgid "⟦SEP_0002⟧ Stop rule ⟦SEP_0003⟧ A regular expression over the marks (⟦CODE_0001⟧) ⟦SEP_0004⟧ A line of data on the tape ⟦SEP_0005⟧"
+msgstr "⟦SEP_0002⟧ Regla de parada ⟦SEP_0003⟧ Una expresión regular sobre las marcas (⟦CODE_0001⟧) ⟦SEP_0004⟧ Una línea de datos en la cinta ⟦SEP_0005⟧"
+
+#: src/ex-weird/README.md:140
+msgctxt "s-a95f7fb87f78-0064"
+msgid "⟦SEP_0001⟧ Decimal output ⟦SEP_0002⟧ Ten rewrite rules for marks to digits ⟦SEP_0003⟧ The tape already has the digits ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ Salida decimal ⟦SEP_0002⟧ Diez reglas de reescritura que convierten marcas en dígitos ⟦SEP_0003⟧ La cinta ya tiene los dígitos ⟦SEP_0004⟧"
+
+#: src/ex-weird/README.md:142
+msgctxt "s-fff646ea1f30-0065"
+msgid "Why this is weird"
+msgstr "Por qué es raro"
+
+#: src/ex-weird/README.md:144
+msgctxt "s-c5e067475ce0-0066"
+msgid "⟦CODE_0001⟧ was made to edit text. It has no function, no ⟦CODE_0002⟧ and no loop. What it does have is **code that is just text**. A register can hold a command, and ⟦CODE_0003⟧ runs it. So a program can write its own next instruction, as a string, and run it. That is the same idea as ⟦CODE_0004⟧ in a scripting language, built from a text editor. It is also a jump table: the next step is looked up by *address*, in the data."
+msgstr "⟦CODE_0001⟧ se creó para editar texto. No tiene funciones, ⟦CODE_0002⟧ ni bucles. Lo que sí tiene es **código que es solo texto**. Un registro puede guardar un comando y ⟦CODE_0003⟧ lo ejecuta. Así, un programa puede escribir su propia instrucción siguiente, como una cadena de texto y ejecutarla. Es la misma idea que ⟦CODE_0004⟧ en un lenguaje de scripts, construida con un editor de texto. También es una tabla de saltos: el siguiente paso se busca por *dirección*, en los datos."
+
+#: src/ex-weird/README.md:146
+msgctxt "s-e5fa01f417c5-0067"
+msgid "An interactive session and a batch run"
+msgstr "Una sesión interactiva y una ejecución por lotes"
+
+#: src/ex-weird/README.md:148
+msgctxt "s-f27629d52a92-0068"
+msgid "Normally you use Ex by typing a command and looking at the result: you move around, you see lines, you change your mind. The entry runs the same commands with **no one watching**. ⟦CODE_0001⟧ says \"silent: do not show the usual messages\". The commands come from a file on standard input, so every step must be right the first time. That is why the comments in the script matter more than they do for a one-off edit."
+msgstr "Normalmente usas Ex así: escribes un comando y miras el resultado. Te mueves por el texto, ves líneas y cambias de opinión. La entrada ejecuta los mismos comandos **sin que nadie mire**. ⟦CODE_0001⟧ significa \"silencioso: no muestres los mensajes habituales\". Los comandos vienen de un archivo por la entrada estándar, así que cada paso debe ser correcto a la primera. Por eso los comentarios del script importan más que en una edición puntual."
+
+#: src/ex-weird/README.md:150
+msgctxt "s-339cc2c18f83-0069"
+msgid "What ⟦CODE_0001⟧ enforces"
+msgstr "Qué impone ⟦CODE_0001⟧"
+
+#: src/ex-weird/README.md:152
+msgctxt "s-a266d6c368b9-0070"
+msgid "⟦CODE_0001⟧ runs against whichever ⟦CODE_0002⟧ you have, and says which one it found."
+msgstr "⟦CODE_0001⟧ se ejecuta con cualquier ⟦CODE_0002⟧ que tengas e indica cuál encontró."
+
+#: src/ex-weird/README.md:154
+msgctxt "s-f7db5027f5dd-0071"
+msgid "**The constraint is real.** ⟦CODE_0001⟧ has no arithmetic, no ⟦CODE_0002⟧, no ⟦CODE_0003⟧, no ⟦CODE_0004⟧ and no loop, and starts the editor once. ⟦CODE_0005⟧ has **no ⟦CODE_0006⟧ or ⟦CODE_0007⟧ command**, no shell escape and no file command. The tape has 41 go rows and 19 stop rows. The program ends with exactly one ⟦CODE_0008⟧, and ⟦CODE_0009⟧ is started once."
+msgstr "**La restricción es real.** ⟦CODE_0001⟧ no tiene aritmética, ni ⟦CODE_0002⟧, ni ⟦CODE_0003⟧, ni ⟦CODE_0004⟧ ni bucle. Inicia el editor una vez. ⟦CODE_0005⟧ **no tiene ningún comando ⟦CODE_0006⟧ ni ⟦CODE_0007⟧**, ni escape al intérprete de comandos (*shell*, el programa que recibe y ejecuta comandos del sistema), ni comando de archivos. La cinta tiene 41 filas go y 19 filas stop. El programa termina con exactamente un ⟦CODE_0008⟧, y ⟦CODE_0009⟧ se inicia una vez."
+
+#: src/ex-weird/README.md:155
+msgctxt "s-5db5d6ea341a-0072"
+msgid "**The rules of the challenge.** 25 random runs: categories in order, hours 10 to 19, correct totals, a stop at the first total over 40 with the crossing card kept, ⟦CODE_0001⟧ everywhere, exit status 0 and nothing on stderr."
+msgstr "**Las reglas del reto.** 25 ejecuciones aleatorias: categorías en orden, de 10 a 19 horas, totales correctos, una parada en el primer total que pasa de 40 con la tarjeta que lo cruza conservada, ⟦CODE_0001⟧ en todas partes, estado de salida 0 y nada en stderr."
+
+#: src/ex-weird/README.md:156
+msgctxt "s-51ffced94772-0073"
+msgid "**An independent simulation.** A separate model (a short awk program) gives the rows for each dice sequence. The entry agrees on all 1,024 sequences over the digits 0, 4, 5 and 9, and on 400 random ones."
+msgstr "**Una simulación independiente.** Un modelo aparte (un programa corto en awk) da las filas de cada secuencia de dados. La entrada coincide en las 1024 secuencias formadas con los dígitos 0, 4, 5 y 9 y también en 400 secuencias aleatorias."
+
+#: src/ex-weird/README.md:157
+msgctxt "s-7e6b16676948-0074"
+msgid "**Perturbations.** Move the boundary on the tape to 30 and the run stops after 30. Move it to 45, and eleven-hour dice give five cards. Swap two category lines and the categories swap. Delete the last ⟦CODE_0001⟧ and only one card runs. Make every tape instruction a comment and only one card runs."
+msgstr "**Perturbaciones.** Mueve el límite de la cinta a 30 y la ejecución se detiene después de 30. Muévelo a 45 y los dados de once horas dan cinco tarjetas. Intercambia dos líneas de categoría y las categorías se intercambian. Elimina el último ⟦CODE_0001⟧ y se ejecuta solo una tarjeta. Convierte cada instrucción de la cinta en un comentario y se ejecuta solo una tarjeta."
+
+#: src/ex-weird/README.md:158
+msgctxt "s-21aa7e321051-0075"
+msgid "**Dialects.** Five measured differences between Ex implementations (below), checked for the one you have."
+msgstr "**Dialectos.** Cinco diferencias medidas entre las implementaciones de Ex (abajo), comprobadas para la que tengas."
+
+#: src/ex-weird/README.md:159
+msgctxt "s-eec2c6fd003a-0076"
+msgid "**The schema.** SQLite refuses a non-demo row, 9 hours and a fifth category. The launcher refuses four dice and a non-digit."
+msgstr "**El esquema.** SQLite rechaza una fila que no sea de demostración, 9 horas y una quinta categoría. El lanzador rechaza cuatro dados y un carácter que no sea un dígito."
+
+#: src/ex-weird/README.md:161
+msgctxt "s-5a0ad00b10fc-0077"
+msgid "Gotchas worth knowing"
+msgstr "Trampas que conviene conocer"
+
+#: src/ex-weird/README.md:163
+msgctxt "s-0d0f4f70b6a5-0078"
+msgid "**Which Ex?** There is no one Ex. We ran the program on **nvi 1.81.6** (a descendant of the 4.4BSD editor that the POSIX ⟦CODE_0001⟧ description is based on) and on **Vim 9.1** in Ex mode (⟦CODE_0002⟧), and both give the same answers. That is **implementation-permitted**: we tested these two, we did not test conformance to the standard. ⟦CODE_0003⟧ (run a buffer), ⟦CODE_0004⟧ (mark), ⟦CODE_0005⟧ (yank), ⟦CODE_0006⟧ (copy), ⟦CODE_0007⟧ (join), the bar and the ⟦CODE_0008⟧ comment are all described for Ex in POSIX, as far as we can tell from reading it (we did not run a conformance suite). The program uses these and nothing else."
+msgstr "**¿Qué Ex?** No existe un único Ex. Ejecutamos el programa en **nvi 1.81.6** (un descendiente del editor de 4.4BSD en el que se basa la descripción de ⟦CODE_0001⟧ en POSIX) y en **Vim 9.1** en modo Ex (⟦CODE_0002⟧). Ambos dan las mismas respuestas. Eso es **permitido por la implementación**: probamos estos dos y no probamos la conformidad con el estándar. ⟦CODE_0003⟧ (ejecutar un búfer), ⟦CODE_0004⟧ (marcar), ⟦CODE_0005⟧ (copiar al registro, *yank*), ⟦CODE_0006⟧ (copiar líneas), ⟦CODE_0007⟧ (unir), la barra y el comentario ⟦CODE_0008⟧ están descritos para Ex en POSIX, hasta donde podemos saber al leerlo (no ejecutamos un conjunto de pruebas de conformidad). El programa usa estos y nada más."
+
+#: src/ex-weird/README.md:164
+msgctxt "s-9cd4e64c65e4-0079"
+msgid "**Where POSIX Ex ends and Vim begins.** The program uses no Vim extension. ⟦CODE_0001⟧ and ⟦CODE_0002⟧ are Vim's options, to keep your ⟦CODE_0003⟧ out of it. The launcher adds them when it sees Vim. Do not call Vim \"Ex\": it is a bigger editor that has an Ex mode."
+msgstr "**Dónde termina POSIX Ex y dónde empieza Vim.** El programa no usa ninguna extensión de Vim. ⟦CODE_0001⟧ y ⟦CODE_0002⟧ son opciones de Vim para mantener tu ⟦CODE_0003⟧ fuera de él. El lanzador las agrega cuando detecta Vim. No llames \"Ex\" a Vim: es un editor más grande que tiene un modo Ex."
+
+#: src/ex-weird/README.md:165
+msgctxt "s-ed7680838bec-0080"
+msgid "**Five differences that the program avoids.** The check measures each one."
+msgstr "**Cinco diferencias que el programa evita.** La comprobación mide cada una."
+
+#: src/ex-weird/README.md:166
+msgctxt "s-46b380a08bb2-0081"
+msgid ""
+"**Register order.** nvi runs a register of several lines from the **last line to the first**. Vim runs it from the first to the last. This is why the program is **one line**, with bars.\n"
+"2. **Nested global commands.** A global command inside a register that was started from a global command works in nvi and is refused by Vim. The program has no global command.\n"
+"3. **Printing.** In nvi a bare address (⟦CODE_0001⟧, ⟦CODE_0002⟧) prints the line it moves to. Vim prints nothing. The program moves its mark with ⟦CODE_0003⟧, which never prints.\n"
+"4. **Errors.** After the first error, nvi stops reading the script and exits with status 1. Vim carries on, and exits with status 1 at the end. The program makes no error on purpose, because a failed search or a backward address range would end it in nvi.\n"
+"5. **Backward ranges.** ⟦CODE_0004⟧ with the mark below line 2 is an error in nvi (⟦CODE_0005⟧). Vim prints nothing and does not stop."
+msgstr ""
+"**Orden del registro.** nvi ejecuta un registro de varias líneas **de la última línea a la primera**. Vim lo ejecuta de la primera a la última. Por eso el programa es de **una línea**, con barras.\n"
+"2. **Comandos globales anidados.** Un comando global dentro de un registro que se inició desde un comando global funciona en nvi y Vim lo rechaza. El programa no tiene ningún comando global.\n"
+"3. **Impresión.** En nvi una dirección sola (⟦CODE_0001⟧, ⟦CODE_0002⟧) imprime la línea a la que se mueve. Vim no imprime nada. El programa mueve su marca con ⟦CODE_0003⟧, que nunca imprime.\n"
+"4. **Errores.** Tras el primer error, nvi deja de leer el script y sale con estado 1. Vim continúa y sale con estado 1 al final. El programa no provoca ningún error a propósito, porque una búsqueda fallida o un rango de direcciones hacia atrás terminaría el programa en nvi.\n"
+"5. **Rangos hacia atrás.** ⟦CODE_0004⟧ con la marca debajo de la línea 2 es un error en nvi (⟦CODE_0005⟧). Vim no imprime nada y no se detiene."
+
+#: src/ex-weird/README.md:171
+msgctxt "s-187fbdfd4716-0082"
+msgid "**nvi says things on standard output.** Its messages go to stdout, not stderr. When it has no terminal (a pipe, a container) it prints ⟦CODE_0001⟧ first. The launcher drops that one known line, and fails on any other line that is not a card row."
+msgstr "**nvi escribe en la salida estándar.** Sus mensajes van a stdout, no a stderr. Cuando no tiene terminal (una tubería o un contenedor) imprime primero ⟦CODE_0001⟧. El lanzador descarta esa única línea conocida y falla con cualquier otra línea que no sea una fila de tarjeta."
+
+#: src/ex-weird/README.md:172
+msgctxt "s-810c35e8629e-0083"
+msgid "**nvi needs a recovery folder.** It will not start if it cannot write to ⟦CODE_0001⟧. The sandbox images link that folder to ⟦CODE_0002⟧, because the sandbox root is read-only. That is a fact about the images, and it is the only change they needed for this entry."
+msgstr "**nvi necesita una carpeta de recuperación.** No arranca si no puede escribir en ⟦CODE_0001⟧. Las imágenes del entorno aislado enlazan esa carpeta con ⟦CODE_0002⟧, porque la raíz del entorno aislado es de solo lectura. Es un hecho sobre las imágenes y es el único cambio que necesitaron para esta entrada."
+
+#: src/ex-weird/README.md:173
+msgctxt "s-4c8c73f133f8-0084"
+msgid "**Ex's join adds a space.** ⟦CODE_0001⟧ puts ⟦CODE_0002⟧ and ⟦CODE_0003⟧ together as ⟦CODE_0004⟧. The ⟦CODE_0005⟧ of ⟦CODE_0006⟧ does not add one. Both are specified: that is a difference between the two languages, not a quirk."
+msgstr "**La unión de Ex añade un espacio.** ⟦CODE_0001⟧ junta ⟦CODE_0002⟧ y ⟦CODE_0003⟧ como ⟦CODE_0004⟧. En ⟦CODE_0006⟧, ⟦CODE_0005⟧ no añade ninguno. Ambos comportamientos están especificados: es una diferencia entre los dos lenguajes, no una rareza."
+
+#: src/ex-weird/README.md:174
+msgctxt "s-02ef291f6723-0085"
+msgid "**A comment is an instruction.** The tape's \"stop\" instruction is a quote mark. That works because Ex reads ⟦CODE_0001⟧ as a comment, in a register as well as in a file."
+msgstr "**Un comentario es una instrucción.** La instrucción \"parar\" de la cinta es una comilla. Funciona porque Ex lee ⟦CODE_0001⟧ como un comentario, tanto en un registro como en un archivo."
+
+#: src/ex-weird/README.md:175
+msgctxt "s-715e868f8de5-0086"
+msgid "**A mark that sits on a deleted line is gone.** The program never deletes the line under mark ⟦CODE_0001⟧. It deletes only the card line (line 1) and its own scratch lines at the end of the buffer."
+msgstr "**Una marca que está en una línea borrada desaparece.** El programa nunca borra la línea bajo la marca ⟦CODE_0001⟧. Borra solo la línea de la tarjeta (línea 1) y sus propias líneas de trabajo al final del búfer."
+
+#: src/ex-weird/README.md:176
+msgctxt "s-4f5fde958c4d-0087"
+msgid "**The tape is data, and it is long.** Sixty lines, one per possible total from 0 to 59. The longest run ends at 40 + 19 = 59. A different limit needs a different tape, and nothing computes one."
+msgstr "**La cinta es de datos y es larga.** Sesenta líneas, una por cada total posible de 0 a 59. La ejecución más larga termina en 40 + 19 = 59. Un límite distinto necesita otra cinta. Nada calcula una."
+
+#: src/ex-weird/README.md:180
+msgctxt "s-40ddb79ac33a-0088"
+msgid "See the [root README](⟦DEST_0001⟧) for how this compares to the other entries, and [⟦CODE_0002⟧](⟦DEST_0003⟧) if you want to write your own."
+msgstr "Consulta el [README raíz](⟦DEST_0001⟧) para ver cómo se compara esta entrada con las otras y consulta [⟦CODE_0002⟧](⟦DEST_0003⟧) si quieres escribir la tuya."

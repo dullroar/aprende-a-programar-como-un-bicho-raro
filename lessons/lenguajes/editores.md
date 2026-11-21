@@ -77,7 +77,7 @@ A script of about 100 lines, most of it a table of sixty numbered lines. The pro
 - **The loop is a register that runs itself.** The program copies the numbered tape line to the end of the buffer, strips the digits and following space with `$s/^[0-9]* //` and yanks just the instruction into register `n`. Up to 40 it is `@a`, which is the program again. Above 40 it is a quote mark, which is a comment, so nothing runs.
 - **Nothing in the program says 40.** The limit is where `@a` stops on the tape.
 
-The [README](../../src/ex-weird/README.md#how-the-stunt-works) has the step table, the comparison with the ed entry and the five places where nvi and Vim disagree.
+The [README](../../src/ex-weird/README.md#cómo-funciona-el-truco) has the step table, the comparison with the ed entry and the five places where nvi and Vim disagree.
 
 ### What did we just learn?
 
@@ -130,7 +130,7 @@ flowchart TD
 
 ### Program flow of `ex-weird`
 
-From [`ex-weird`](../../src/ex-weird/README.md) ([source section](../../src/ex-weird/README.md#program-flow)).
+From [`ex-weird`](../../src/ex-weird/README.md) ([source section](../../src/ex-weird/README.md#flujo-del-programa)).
 
 ```mermaid
 flowchart TD

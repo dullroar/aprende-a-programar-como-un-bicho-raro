@@ -1,0 +1,327 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/find-gnu/README.md:2
+msgctxt "s-38bd8921595f-0000"
+msgid "GNU find"
+msgstr "GNU find"
+
+#: src/find-gnu/README.md:3
+msgctxt "s-c4e461580ee1-0001"
+msgid "that the GNU extras to find (path depth, file times, regular expressions and a built-in profiler) can replace a whole table of branches, and that find's optimizer has nothing to reorder when every branch ends in a side effect."
+msgstr "que los extras de GNU para find (profundidad de ruta, marcas de tiempo de los archivos, expresiones regulares y un perfilador integrado) pueden reemplazar una tabla entera de ramas, y que el optimizador de find no tiene nada que reordenar cuando cada rama termina en un efecto secundario."
+
+#: src/find-gnu/README.md:11
+msgctxt "s-c7007531d92d-0002"
+msgid "A tree walk that grows the tree it is walking, with find itself reading the depth and the clock"
+msgstr "Un recorrido de árbol que hace crecer el árbol que recorre y en el que find mismo lee la profundidad y el reloj"
+
+#: src/find-gnu/README.md:12
+msgctxt "s-f773bf210409-0003"
+msgid "The path from the start directory to the directory being visited; its depth is the running total"
+msgstr "El camino desde el directorio de inicio hasta el directorio que se visita; su profundidad es el total acumulado"
+
+#: src/find-gnu/README.md:15
+msgctxt "s-7d359708f132-0004"
+msgid "GNU find: let find do the arithmetic"
+msgstr "GNU find: deja que find haga la aritmética"
+
+#: src/find-gnu/README.md:17
+msgctxt "s-52d398b04f88-0005"
+msgid "**Teaches you:** that the GNU extras to find (path depth, file times, regular expressions and a built-in profiler) can replace a whole table of branches, and that find's optimizer has nothing to reorder when every branch ends in a side effect."
+msgstr "**Te enseña:** que los extras de GNU para find (profundidad de ruta, marcas de tiempo de los archivos, expresiones regulares y un perfilador integrado) pueden reemplazar una tabla entera de ramas, y que el optimizador de find no tiene nada que reordenar cuando cada rama termina en un efecto secundario."
+
+#: src/find-gnu/README.md:19
+msgctxt "s-f6ca18540fa8-0006"
+msgid ""
+"**⟦DNT_0001⟧.** Fictional time cards, written to a scratch SQLite file under ⟦CODE_0002⟧.\n"
+"Nothing here touches real time reporting."
+msgstr ""
+"**⟦DNT_0001⟧.** Tarjetas de horas ficticias, escritas en un archivo SQLite temporal bajo ⟦CODE_0002⟧.\n"
+"Nada de esto toca el reporte real de horas."
+
+#: src/find-gnu/README.md:22
+msgctxt "s-373d8261fc0c-0007"
+msgid "This is the same stunt as [⟦CODE_0001⟧](⟦DEST_0002⟧): one ⟦CODE_0003⟧, and the walk digs the directory tree it is walking. The difference is that this entry may use anything GNU find has. That turns out to remove most of the work. The line is about 3 KB, a little over half the size of the portable one. In one profiled run of each, find evaluated about 2,950 tests here and about 57,000 there."
+msgstr "Este es el mismo truco que [⟦CODE_0001⟧](⟦DEST_0002⟧): un ⟦CODE_0003⟧, y el recorrido cava el árbol de directorios que está recorriendo. La diferencia es que esta entrada puede usar cualquier cosa que ofrezca GNU find. Resulta que eso elimina la mayor parte del trabajo. La línea mide unos 3 KB, algo más de la mitad del tamaño de la portable. En una ejecución perfilada de cada una, find evaluó unas 2950 pruebas aquí y unas 57 000 allá."
+
+#: src/find-gnu/README.md:33
+msgctxt "s-958ca26c6a61-0008"
+msgid "Run it"
+msgstr "Ejecútalo"
+
+#: src/find-gnu/README.md:35
+msgctxt "s-e5310b619bc3-0009"
+msgid "You need **GNU find** (4.9 was tested; as far as we know, BSD and macOS find have no ⟦CODE_0001⟧, so they cannot run it), a POSIX shell, ⟦CODE_0002⟧ and ⟦CODE_0003⟧."
+msgstr "Necesitas **GNU find** (se probó la versión 4.9; hasta donde sabemos, el find de BSD y el de macOS no tienen ⟦CODE_0001⟧, así que no pueden ejecutarlo), un intérprete de comandos (*shell*, el programa que ejecuta tus comandos) POSIX, ⟦CODE_0002⟧ y ⟦CODE_0003⟧."
+
+#: src/find-gnu/README.md:46
+msgctxt "s-c53f935b4df9-0010"
+msgid "Records go to ⟦CODE_0001⟧ (default ⟦CODE_0002⟧)."
+msgstr "Los registros van a ⟦CODE_0001⟧ (por defecto, ⟦CODE_0002⟧)."
+
+#: src/find-gnu/README.md:48
+msgctxt "s-254f0c660db3-0011"
+msgid "Run it in a container"
+msgstr "Ejecútalo en un contenedor"
+
+#: src/find-gnu/README.md:50
+msgctxt "s-643df015c8a2-0012"
+msgid "Prerequisite: Docker, set up once as described in [⟦CODE_0001⟧](⟦DEST_0002⟧)."
+msgstr "Requisito previo: Docker, configurado una sola vez como se describe en [⟦CODE_0001⟧](⟦DEST_0002⟧)."
+
+#: src/find-gnu/README.md:56
+msgctxt "s-6a148025b0a9-0013"
+msgid "It builds this folder's [⟦CODE_0001⟧](⟦DEST_0002⟧) and runs the result with no network, a read-only file system and user ⟦CODE_0003⟧. The image holds GNU findutils, coreutils and sqlite3 on a minimal Ubuntu."
+msgstr "Compila el [⟦CODE_0001⟧](⟦DEST_0002⟧) de esta carpeta y ejecuta el resultado sin red, con un sistema de archivos de solo lectura y con el usuario ⟦CODE_0003⟧. La imagen contiene GNU findutils, coreutils y sqlite3 sobre un Ubuntu mínimo."
+
+#: src/find-gnu/README.md:58
+msgctxt "s-0dcb373c2dff-0014"
+msgid "Program Flow"
+msgstr "Flujo del programa"
+
+#: src/find-gnu/README.md:62
+msgctxt "s-180c65b70a1c-0015"
+msgid "find-gnu: the depth of a directory is the running total"
+msgstr "find-gnu: la profundidad de un directorio es el total acumulado"
+
+#: src/find-gnu/README.md:63
+msgctxt "s-70de1d458728-0016"
+msgid "A flowchart. find visits a directory. A chain of -o branches is chosen by name and by regular expression on the path. Most branches dig the next directory with mkdir or mktemp. The first hour of a card is the dice directory itself, and the other hours are directories named b17 down to b00, so the depth of the directory is the running total. At the end of a card, fprintf writes SQL to file descriptor 3, using the depth as the total and the directory's modification time as the ISO week. If the path has at least 41 slashes, the total is over 40, and nothing is dug. After visiting, find reads the directory's entries and visits the new directory. The walk ends when nothing new is dug, and sqlite3 reads file descriptor 3."
+msgstr "Un diagrama de flujo. find visita un directorio. Se elige una cadena de ramas -o por nombre y por expresión regular sobre la ruta. La mayoría de las ramas cavan el siguiente directorio con mkdir o mktemp. La primera hora de una tarjeta es el propio directorio dice, y las demás horas son directorios llamados de b17 a b00 en orden descendente, así que la profundidad del directorio es el total acumulado. Al final de una tarjeta, fprintf escribe SQL en el descriptor de archivo 3, con la profundidad como total y la fecha de modificación del directorio como semana ISO. Si la ruta tiene al menos 41 barras, el total pasa de 40 y no se cava nada. Después de visitar, find lee las entradas del directorio y visita el nuevo directorio. El recorrido termina cuando no se cava nada nuevo, y sqlite3 lee el descriptor de archivo 3."
+
+#: src/find-gnu/README.md:64
+msgctxt "s-6483fb75a0f0-0017"
+msgid "find visits one directory: -name, -path and -regex tests pick a branch"
+msgstr "find visita un directorio: las pruebas -name, -path y -regex eligen una rama"
+
+#: src/find-gnu/README.md:64
+msgctxt "s-e89ef51ef3e1-0018"
+msgid "Does the branch dig a new directory?"
+msgstr "¿La rama cava un directorio nuevo?"
+
+#: src/find-gnu/README.md:65
+msgctxt "s-b9ca7a48003a-0019"
+msgid "yes: b17 to b01, or after a card of 40 or fewer slashes, the next dice"
+msgstr "sí: de b17 a b01, o tras una tarjeta de 40 barras o menos, el siguiente dado"
+
+#: src/find-gnu/README.md:65
+msgctxt "s-64feb061e315-0020"
+msgid "-exec digs it; at b00, -fprintf writes SQL to fd 3: depth is the total, mtime the week"
+msgstr "-exec lo cava; en b00, -fprintf escribe SQL en fd 3: depth es el total y mtime la semana"
+
+#: src/find-gnu/README.md:66
+msgctxt "s-7eb2d44ad983-0021"
+msgid "find reads this directory's entries after visiting it, and finds the new one"
+msgstr "find lee las entradas de este directorio después de visitarlo y encuentra la nueva"
+
+#: src/find-gnu/README.md:68
+msgctxt "s-0d06b078052b-0022"
+msgid "no: b00 with 41 or more slashes in the path"
+msgstr "no: b00 con 41 o más barras diagonales en la ruta"
+
+#: src/find-gnu/README.md:68
+msgctxt "s-08cc8ae7b1b7-0023"
+msgid "The last row is written, nothing is dug, the walk ends; sqlite3 reads fd 3"
+msgstr "Se escribe la última fila, no se excava nada y el recorrido termina; sqlite3 lee fd 3"
+
+#: src/find-gnu/README.md:71
+msgctxt "s-d4bebd37cebd-0024"
+msgid "**What this shows:** the same trick as [⟦CODE_0001⟧](⟦DEST_0002⟧), with GNU extras that remove bookkeeping. ⟦CODE_0003⟧ can write to its own file descriptor, ⟦CODE_0004⟧ is the directory depth, and ⟦CODE_0005⟧ formats the modification time as the ISO week. So the depth *is* the total, and no digit-by-digit arithmetic is needed."
+msgstr "**Qué muestra:** el mismo truco que [⟦CODE_0001⟧](⟦DEST_0002⟧), con extras de GNU que eliminan el trabajo de contabilidad. ⟦CODE_0003⟧ puede escribir en su propio descriptor de archivo, ⟦CODE_0004⟧ es la profundidad del directorio y ⟦CODE_0005⟧ da formato a la hora de modificación como semana ISO. Así, la profundidad *es* el total y no hace falta aritmética dígito por dígito."
+
+#: src/find-gnu/README.md:73
+msgctxt "s-d9e69a2061a6-0025"
+msgid "**Why this mechanism matters:** the stop rule is a regular expression on the path, \"at least 41 slashes\". GNU find also has an optimizer that may reorder tests. An effect pins the order, so the program gives the same answer at every optimization level. That is tested, not promised."
+msgstr "**Por qué importa este mecanismo:** la regla de parada es una expresión regular sobre la ruta: \"al menos 41 barras\". GNU find también tiene un optimizador que puede reordenar las pruebas. Un efecto fija el orden, así que el programa da la misma respuesta en cada nivel de optimización. Eso se comprueba con pruebas; no es una promesa."
+
+#: src/find-gnu/README.md:75
+msgctxt "s-7f97d965b4c0-0026"
+msgid "How the stunt works"
+msgstr "Cómo funciona el truco"
+
+#: src/find-gnu/README.md:77
+msgctxt "s-75f107c19c92-0027"
+msgid "Read [how the portable entry works](⟦DEST_0001⟧) first. It explains why the walk goes into the directory that ⟦CODE_0002⟧ just made, and why ⟦CODE_0003⟧ in a pattern can count. This page covers only what the GNU extras change."
+msgstr "Lee primero [cómo funciona la entrada portable](⟦DEST_0001⟧). Explica por qué el recorrido entra en el directorio que ⟦CODE_0002⟧ acaba de crear y por qué ⟦CODE_0003⟧ en un patrón puede contar. Esta página cubre solo lo que cambian las extensiones de GNU."
+
+#: src/find-gnu/README.md:79
+msgctxt "s-67517df5c9ca-0028"
+msgid "**One directory is one hour, with no extra bookkeeping.** In the portable entry a path has three kinds of directory, and the running total is spelled out digit by digit. Here the first hour of a card is the dice directory itself (six random characters), and the remaining hours are ⟦CODE_0001⟧ down to ⟦CODE_0002⟧. So the depth of a directory *is* the number of hours so far."
+msgstr "**Un directorio es una hora, sin contabilidad adicional.** En la entrada portátil una ruta tiene tres tipos de directorio y el total acumulado se escribe dígito por dígito. Aquí la primera hora de una tarjeta es el propio directorio de dados (seis caracteres aleatorios) y las horas restantes van desde ⟦CODE_0001⟧ hasta ⟦CODE_0002⟧. Así, la profundidad de un directorio *es* el número de horas hasta ese punto."
+
+#: src/find-gnu/README.md:81
+msgctxt "s-e4dd520a254d-0029"
+msgid "⟦SEP_0001⟧ Job ⟦SEP_0002⟧ Done by ⟦SEP_0003⟧"
+msgstr "⟦SEP_0001⟧ Tarea ⟦SEP_0002⟧ Hecha por ⟦SEP_0003⟧"
+
+#: src/find-gnu/README.md:83
+msgctxt "s-2f8168b11439-0030"
+msgid "⟦SEP_0001⟧ Loop ⟦SEP_0002⟧ the walk, as before ⟦SEP_0003⟧"
+msgstr "⟦SEP_0001⟧ Bucle ⟦SEP_0002⟧ el recorrido, como antes ⟦SEP_0003⟧"
+
+#: src/find-gnu/README.md:84
+msgctxt "s-8d9aba1fba0b-0031"
+msgid "⟦SEP_0003⟧ Randomness ⟦SEP_0004⟧ ⟦CODE_0001⟧; ⟦CODE_0002⟧ reads the last character. Y and Z are re-rolled on the character before, exactly as in the portable entry ⟦SEP_0005⟧"
+msgstr "⟦SEP_0003⟧ Aleatoriedad ⟦SEP_0004⟧ ⟦CODE_0001⟧; ⟦CODE_0002⟧ lee el último carácter. Y y Z se vuelven a sortear con el carácter anterior, exactamente como en la entrada portable ⟦SEP_0005⟧"
+
+#: src/find-gnu/README.md:85
+msgctxt "s-5cfc6dbbd170-0032"
+msgid "⟦SEP_0004⟧ Countdown ⟦SEP_0005⟧ ⟦CODE_0001⟧, one branch per value (⟦CODE_0002⟧ to ⟦CODE_0003⟧). The names are unique to the countdown, so no path pattern is needed ⟦SEP_0006⟧"
+msgstr "⟦SEP_0004⟧ Cuenta regresiva ⟦SEP_0005⟧ ⟦CODE_0001⟧, una rama por valor (de ⟦CODE_0002⟧ a ⟦CODE_0003⟧). Los nombres son exclusivos de la cuenta regresiva, así que no hace falta un patrón de ruta ⟦SEP_0006⟧"
+
+#: src/find-gnu/README.md:86
+msgctxt "s-28deb4ce6824-0033"
+msgid "⟦SEP_0003⟧ Running total ⟦SEP_0004⟧ **⟦CODE_0001⟧**. ⟦CODE_0002⟧ is the depth of the file, and the depth is the total ⟦SEP_0005⟧"
+msgstr "⟦SEP_0003⟧ Total acumulado ⟦SEP_0004⟧ **⟦CODE_0001⟧**. ⟦CODE_0002⟧ es la profundidad del archivo y la profundidad es el total ⟦SEP_0005⟧"
+
+#: src/find-gnu/README.md:87
+msgctxt "s-a5a75a3fecbb-0034"
+msgid "⟦SEP_0003⟧ ISO week ⟦SEP_0004⟧ **⟦CODE_0001⟧**: the modification time of the new directory, formatted with the ISO year and week. No ⟦CODE_0002⟧, because making a directory touches its clock ⟦SEP_0005⟧"
+msgstr "⟦SEP_0003⟧ Semana ISO ⟦SEP_0004⟧ **⟦CODE_0001⟧**: la hora de modificación del directorio nuevo, con formato de año y semana ISO. Sin ⟦CODE_0002⟧, porque crear un directorio toca su reloj ⟦SEP_0005⟧"
+
+#: src/find-gnu/README.md:88
+msgctxt "s-b9523754bb8f-0035"
+msgid "⟦SEP_0002⟧ Category order ⟦SEP_0003⟧ **⟦CODE_0001⟧**: \"at least two six-character names in the path\" is \"at least the second card\". One regular expression per category ⟦SEP_0004⟧"
+msgstr "⟦SEP_0002⟧ Orden de las categorías ⟦SEP_0003⟧ **⟦CODE_0001⟧**: \"al menos dos nombres de seis caracteres en la ruta\" equivale a \"al menos la segunda tarjeta\". Una expresión regular por categoría ⟦SEP_0004⟧"
+
+#: src/find-gnu/README.md:89
+msgctxt "s-4e9b8b335086-0036"
+msgid "⟦SEP_0002⟧ Stop rule ⟦SEP_0003⟧ **⟦CODE_0001⟧**: \"at least 41 slashes\" is \"the total is over 40\". When it matches, nothing more is dug and the walk ends ⟦SEP_0004⟧"
+msgstr "⟦SEP_0002⟧ Regla de parada ⟦SEP_0003⟧ **⟦CODE_0001⟧**: \"al menos 41 barras\" significa \"el total pasa de 40\". Cuando hay una coincidencia, no se excava nada más y el recorrido termina ⟦SEP_0004⟧"
+
+#: src/find-gnu/README.md:90
+msgctxt "s-8a76f3b8b18f-0037"
+msgid "⟦SEP_0004⟧ Output ⟦SEP_0005⟧ **⟦CODE_0001⟧**: the SQL goes to file descriptor 3. ⟦CODE_0002⟧ still prints each path it makes, but that goes to stdout, and the host sends stdout to ⟦CODE_0003⟧. The portable entry needs a comment trick for this ⟦SEP_0006⟧"
+msgstr "⟦SEP_0004⟧ Salida ⟦SEP_0005⟧ **⟦CODE_0001⟧**: el SQL va al descriptor de archivo 3. ⟦CODE_0002⟧ sigue imprimiendo cada ruta que crea, pero eso va a stdout. El anfitrión envía stdout a ⟦CODE_0003⟧. La entrada portátil necesita un truco de comentario para esto ⟦SEP_0006⟧"
+
+#: src/find-gnu/README.md:91
+msgctxt "s-84259f95216c-0038"
+msgid "⟦SEP_0003⟧ Persistence ⟦SEP_0004⟧ ⟦CODE_0001⟧ reads fd 3 through a pipe and holds the ⟦CODE_0002⟧ constraints ⟦SEP_0005⟧"
+msgstr "⟦SEP_0003⟧ Persistencia ⟦SEP_0004⟧ ⟦CODE_0001⟧ lee el fd 3 a través de una tubería y mantiene las restricciones ⟦CODE_0002⟧ ⟦SEP_0005⟧"
+
+#: src/find-gnu/README.md:93
+msgctxt "s-55ca58d83c57-0039"
+msgid "The host line is ⟦CODE_0001⟧: fd 3 becomes the pipe, and stdout becomes the bit bucket."
+msgstr "La línea del anfitrión es ⟦CODE_0001⟧: fd 3 pasa a ser la tubería y stdout pasa a ser el sumidero de bits."
+
+#: src/find-gnu/README.md:95
+msgctxt "s-2484b1608d53-0040"
+msgid "⟦CODE_0001⟧ runs only two programs, ⟦CODE_0002⟧ and ⟦CODE_0003⟧. No ⟦CODE_0004⟧, no ⟦CODE_0005⟧."
+msgstr "⟦CODE_0001⟧ ejecuta solo dos programas, ⟦CODE_0002⟧ y ⟦CODE_0003⟧. Ni ⟦CODE_0004⟧ ni ⟦CODE_0005⟧."
+
+#: src/find-gnu/README.md:97
+msgctxt "s-bccefd1fb2b9-0041"
+msgid "The optimizer"
+msgstr "El optimizador"
+
+#: src/find-gnu/README.md:99
+msgctxt "s-dbaee2b1f0fd-0042"
+msgid "GNU find has a cost-based optimizer (⟦CODE_0001⟧ to ⟦CODE_0002⟧) that reorders tests: cheap ones first, likely failures first in an ⟦CODE_0003⟧ chain, likely successes first in an ⟦CODE_0004⟧ chain. The manual promises it never changes the result and never reorders a side effect against another. This entry puts it to work and then tries to catch it."
+msgstr "GNU find tiene un optimizador basado en costo (de ⟦CODE_0001⟧ a ⟦CODE_0002⟧) que reordena las pruebas: primero las de bajo costo, primero los fallos probables en una cadena de ⟦CODE_0003⟧ y primero los éxitos probables en una cadena de ⟦CODE_0004⟧. El manual promete que nunca cambia el resultado y que nunca reordena un efecto secundario respecto de otro. Esta entrada lo pone a trabajar y luego intenta sorprenderlo en un error."
+
+#: src/find-gnu/README.md:101
+msgctxt "s-09ff245f87f0-0043"
+msgid "⟦CODE_0001⟧ runs the whole demo at ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧ and ⟦CODE_0005⟧, 15 random runs and 7 forced-dice scenarios at each. The answers are always right."
+msgstr "⟦CODE_0001⟧ ejecuta toda la demostración en ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧ y ⟦CODE_0005⟧, con 15 ejecuciones aleatorias y 7 escenarios de dados forzados en cada uno. Las respuestas son siempre correctas."
+
+#: src/find-gnu/README.md:102
+msgctxt "s-b4b011abf4c9-0044"
+msgid "⟦CODE_0001⟧ prints the expression tree after optimization. For this line the tree at ⟦CODE_0002⟧ and at ⟦CODE_0003⟧ is **identical**: 3,610 lines, no difference. The optimizer has nothing to move, because every branch is a test followed by an effect (⟦CODE_0004⟧), and an effect pins the order."
+msgstr "⟦CODE_0001⟧ imprime el árbol de expresiones después de la optimización. Para esta línea, el árbol en ⟦CODE_0002⟧ y en ⟦CODE_0003⟧ es **idéntico**: 3610 líneas, sin ninguna diferencia. El optimizador no tiene nada que mover, porque cada rama es una prueba seguida de un efecto (⟦CODE_0004⟧) y un efecto fija el orden."
+
+#: src/find-gnu/README.md:103
+msgctxt "s-8e187d719c1e-0045"
+msgid "We also looked for a case the manual does not spell out: a pure test written *after* an ⟦CODE_0001⟧ (⟦CODE_0002⟧). At every level, ⟦CODE_0003⟧ ran on every file, so the tests were not moved in front of the effect."
+msgstr "También buscamos un caso que el manual no detalla: una prueba pura escrita *después* de un ⟦CODE_0001⟧ (⟦CODE_0002⟧). En cada nivel, ⟦CODE_0003⟧ se ejecutó en cada archivo, así que las pruebas no se movieron delante del efecto."
+
+#: src/find-gnu/README.md:105
+msgctxt "s-ec2ea8b42579-0046"
+msgid "So we did not find a way to make the optimizer change the answer. A well-demonstrated nothing is still a finding."
+msgstr "Así que no encontramos ninguna forma de lograr que el optimizador cambie la respuesta. Una nada bien demostrada sigue siendo un hallazgo."
+
+#: src/find-gnu/README.md:107
+msgctxt "s-093ea6d52c2f-0047"
+msgid "The profiler"
+msgstr "El perfilador"
+
+#: src/find-gnu/README.md:109
+msgctxt "s-ae25fb09cb80-0048"
+msgid "⟦CODE_0001⟧ passes ⟦CODE_0002⟧ to find, and find prints, for every test in the program, how often it *really* succeeded. It is find's own profile of your program. The optimizer's guesses are flat (every ⟦CODE_0003⟧ or ⟦CODE_0004⟧ is assumed to succeed about 80% of the time), and the real rates are far from that."
+msgstr "⟦CODE_0001⟧ pasa ⟦CODE_0002⟧ a find, y find imprime, para cada prueba del programa, con qué frecuencia tuvo éxito *de verdad*. Es el perfil propio de find para tu programa. Las estimaciones del optimizador son uniformes (se supone que cada ⟦CODE_0003⟧ o ⟦CODE_0004⟧ tiene éxito en cerca del 80 % de los casos) y las tasas reales están lejos de ese valor."
+
+#: src/find-gnu/README.md:111
+msgctxt "s-339cc2c18f83-0049"
+msgid "What ⟦CODE_0001⟧ enforces"
+msgstr "Qué impone ⟦CODE_0001⟧"
+
+#: src/find-gnu/README.md:113
+msgctxt "s-962c1890cde9-0050"
+msgid "⟦CODE_0001⟧ needs GNU find. The line must be exactly one ⟦CODE_0002⟧, with no ⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧, ⟦CODE_0006⟧ or ⟦CODE_0007⟧ anywhere in ⟦CODE_0008⟧. Its primaries must be exactly ⟦CODE_0009⟧, ⟦CODE_0010⟧, ⟦CODE_0011⟧, ⟦CODE_0012⟧, ⟦CODE_0013⟧, ⟦CODE_0014⟧, ⟦CODE_0015⟧ and ⟦CODE_0016⟧. ⟦CODE_0017⟧ may run only ⟦CODE_0018⟧ and ⟦CODE_0019⟧. There may be no ⟦CODE_0020⟧, ⟦CODE_0021⟧, ⟦CODE_0022⟧, ⟦CODE_0023⟧, ⟦CODE_0024⟧ or ⟦CODE_0025⟧. The line must be what ⟦CODE_0026⟧ prints."
+msgstr "⟦CODE_0001⟧ necesita GNU find. La línea debe ser exactamente un ⟦CODE_0002⟧, sin ⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧, ⟦CODE_0006⟧ ni ⟦CODE_0007⟧ en ningún lugar de ⟦CODE_0008⟧. Sus primarios deben ser exactamente ⟦CODE_0009⟧, ⟦CODE_0010⟧, ⟦CODE_0011⟧, ⟦CODE_0012⟧, ⟦CODE_0013⟧, ⟦CODE_0014⟧, ⟦CODE_0015⟧ y ⟦CODE_0016⟧. ⟦CODE_0017⟧ solo puede ejecutar ⟦CODE_0018⟧ y ⟦CODE_0019⟧. No puede haber ⟦CODE_0020⟧, ⟦CODE_0021⟧, ⟦CODE_0022⟧, ⟦CODE_0023⟧, ⟦CODE_0024⟧ ni ⟦CODE_0025⟧. La línea debe ser lo que imprime ⟦CODE_0026⟧."
+
+#: src/find-gnu/README.md:115
+msgctxt "s-dfbdca88eaa8-0051"
+msgid "Then, at each optimizer level from ⟦CODE_0001⟧ to ⟦CODE_0002⟧, it runs the demo 15 times and checks hours 10 to 19, categories in order, running totals, ⟦CODE_0003⟧ on every row, an ISO week that matches ⟦CODE_0004⟧, a stop exactly when the total passes 40, one stop-rule error on stderr and nothing else, SQLite rows that match the printed ones, and an empty scratch folder afterward. Over the 60 runs, at least eight different hour values must show up."
+msgstr "Luego, en cada nivel de optimización de ⟦CODE_0001⟧ a ⟦CODE_0002⟧, ejecuta la demo 15 veces y comprueba las horas de 10 a 19, las categorías en orden, los totales acumulados, ⟦CODE_0003⟧ en cada fila, una semana ISO que coincida con ⟦CODE_0004⟧, una parada justo cuando el total pasa de 40, un solo error de la regla de parada en stderr y nada más, filas de SQLite que coincidan con las impresas, y una carpeta temporal vacía al final. En las 60 ejecuciones deben aparecer al menos ocho valores de horas distintos."
+
+#: src/find-gnu/README.md:117
+msgctxt "s-fd1b2d415311-0052"
+msgid "At every level it also forces the dice with a fake ⟦CODE_0001⟧ first on ⟦CODE_0002⟧: seven scenarios that cover the tens and units digits, a total of exactly 40 (which must continue), and the re-roll paths. The answers must not depend on the ⟦CODE_0003⟧ level. Then ⟦CODE_0004⟧ must print success rates and leave the answers unchanged. Last, SQLite must refuse a non-demo row."
+msgstr "En cada nivel, además, fuerza los dados primero con un ⟦CODE_0001⟧ falso en ⟦CODE_0002⟧: siete escenarios que cubren las cifras de las decenas y de las unidades, un total de exactamente 40 (que debe continuar) y los caminos de nueva tirada. Las respuestas no deben depender del nivel de ⟦CODE_0003⟧. Después, ⟦CODE_0004⟧ debe imprimir tasas de éxito y dejar las respuestas sin cambios. Por último, SQLite debe rechazar una fila que no sea de demostración."
+
+#: src/find-gnu/README.md:119
+msgctxt "s-5a0ad00b10fc-0053"
+msgid "Gotchas worth knowing"
+msgstr "Trampas que conviene conocer"
+
+#: src/find-gnu/README.md:121
+msgctxt "s-fb21448de6d1-0054"
+msgid "**GNU only.** ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧ with ⟦CODE_0005⟧ and ⟦CODE_0006⟧ are GNU extensions, and we ran this entry only on GNU find 4.9. Everything here is **implementation-permitted**, and the walk-into-new-directories trick is still **accidentally exploited**, as in the portable entry."
+msgstr "**Solo GNU.** ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧ con ⟦CODE_0005⟧ y ⟦CODE_0006⟧ son extensiones de GNU, y ejecutamos esta entrada solo con GNU find 4.9. Todo lo de aquí está **permitido por la implementación**, y el truco de entrar en los directorios nuevos sigue **aprovechado por accidente**, como en la entrada portable."
+
+#: src/find-gnu/README.md:122
+msgctxt "s-8ec6b8aef7a4-0055"
+msgid "**⟦CODE_0001⟧ would end find sooner, and it is not used.** When find stops with ⟦CODE_0002⟧ it exits at once and skips the ⟦CODE_0003⟧ summary (we measured: zero lines with ⟦CODE_0004⟧, two without). So the stop rule here is \"dig nothing more\", and find runs out of tree by itself."
+msgstr "**⟦CODE_0001⟧ haría que find terminara antes y no se usa.** Cuando find se detiene con ⟦CODE_0002⟧, sale de inmediato y omite el resumen de ⟦CODE_0003⟧ (lo medimos: con ⟦CODE_0004⟧ salen cero líneas; sin él, dos). Así que la regla de parada aquí es \"no excavar más\", y find agota el árbol por sí mismo."
+
+#: src/find-gnu/README.md:123
+msgctxt "s-048d1c7395ae-0056"
+msgid "**⟦CODE_0001⟧ must be a pipe.** find opens an output file with truncation. If fd 3 were your terminal's capture file, each run would erase what was there before. The host always pipes it. Two ⟦CODE_0002⟧ calls with the same file name share one stream, so the pieces of one SQL statement stay in order."
+msgstr "**⟦CODE_0001⟧ debe ser una tubería.** find abre un archivo de salida y lo trunca. Si fd 3 fuera el archivo de captura de tu terminal, cada ejecución borraría lo que había antes. El anfitrión siempre lo envía por una tubería. Dos llamadas a ⟦CODE_0002⟧ con el mismo nombre de archivo comparten un solo flujo, así que las partes de una sentencia SQL se mantienen en orden."
+
+#: src/find-gnu/README.md:124
+msgctxt "s-1ad0e83f08c0-0057"
+msgid "**⟦CODE_0001⟧ is positional.** It applies only to the ⟦CODE_0002⟧ tests that come after it, so the line puts it first."
+msgstr "**⟦CODE_0001⟧ es posicional.** Solo se aplica a las pruebas ⟦CODE_0002⟧ que vienen después, por eso la línea lo pone primero."
+
+#: src/find-gnu/README.md:125
+msgctxt "s-098093f19043-0058"
+msgid "**⟦CODE_0001⟧ counts from the start directory.** The start directory ⟦CODE_0002⟧ is depth 0, the first dice directory is depth 1, so the depth of the last hour in a card is exactly the total."
+msgstr "**⟦CODE_0001⟧ cuenta desde el directorio de inicio.** El directorio de inicio ⟦CODE_0002⟧ tiene profundidad 0 y el primer directorio de dados tiene profundidad 1. Por eso, la profundidad de la última hora de una tarjeta es exactamente el total."
+
+#: src/find-gnu/README.md:126
+msgctxt "s-cc55ec954bf2-0059"
+msgid "**⟦CODE_0001⟧ is not used, on purpose.** The manual says ⟦CODE_0002⟧ reads its reference file's time *once*, when the command line is parsed. A reference file that ⟦CODE_0003⟧ changes later would not be seen again, so it cannot be a live counter."
+msgstr "**⟦CODE_0001⟧ no se usa, a propósito.** El manual dice que ⟦CODE_0002⟧ lee la hora de su archivo de referencia *una sola vez*, cuando analiza la línea de comandos. Un archivo de referencia que ⟦CODE_0003⟧ cambie después no se volvería a ver, así que no puede ser un contador en vivo."
+
+#: src/find-gnu/README.md:127
+msgctxt "s-bb0331a932e1-0060"
+msgid "**⟦CODE_0001⟧ is not used.** It would let one ⟦CODE_0002⟧ hand its list to another, but this program has no list to hand over: the tree is the data, and it is made as the walk goes."
+msgstr "**⟦CODE_0001⟧ no se usa.** Permitiría que un ⟦CODE_0002⟧ pasara su lista a otro, pero este programa no tiene ninguna lista que pasar: los datos son el árbol, y el árbol se construye a medida que avanza el recorrido."
+
+#: src/find-gnu/README.md:128
+msgctxt "s-53405c79fa1c-0061"
+msgid "**The line is still long.** About 3 KB, with the countdown (17 branches) and the dice (21 branches) written out. GNU find has no variables either."
+msgstr "**La línea sigue siendo larga.** Mide unos 3 KB, con la cuenta regresiva (17 ramas) y los dados (21 ramas) escritos por completo. GNU find tampoco tiene variables."
+
+#: src/find-gnu/README.md:132
+msgctxt "s-40ddb79ac33a-0062"
+msgid "See the [root README](⟦DEST_0001⟧) for how this compares to the other entries, and [⟦CODE_0002⟧](⟦DEST_0003⟧) if you want to write your own."
+msgstr "Consulta el [README raíz](⟦DEST_0001⟧) para ver cómo se compara esta entrada con las demás, y [⟦CODE_0002⟧](⟦DEST_0003⟧) si quieres escribir la tuya."

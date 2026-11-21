@@ -1,6 +1,6 @@
 ---
 name: "Ex"
-teaches: "that an editor's registers can hold a program: a line of text is copied into a register and run with @, and the editor's own marks and line addresses do the arithmetic."
+teaches: "que los registros de un editor pueden contener un programa: una línea de texto se copia en un registro y se ejecuta con @ y las marcas y las direcciones de línea del propio editor hacen la aritmética."
 kind: weird
 languages: [ex, sqlite]
 lesson: "lenguajes/editores.md#a-program-you-can-edit"
@@ -8,18 +8,18 @@ loop-by: self-modifying-control
 evaluation: eager
 assurance: implementation-permitted
 pairs-with: ed-weird
-machine: "A register machine whose registers are editor marks, and whose program is a register that runs itself"
-state: "The marks (where we are on a tape of numbered lines), the first line of the buffer (the next card), and registers a, d and n"
+machine: "Una máquina de registros cuyos registros son marcas del editor y cuyo programa es un registro que se ejecuta a sí mismo"
+state: "Las marcas (dónde estamos en una cinta de líneas numeradas), la primera línea del búfer (la siguiente tarjeta) y los registros a, d y n"
 tags: [capability-security, computation-versus-orchestration, homoiconicity, interpreter-and-virtual-machine, language-specification, operational-semantics, portability, program-counter, reflection-and-metaprogramming, register-machine, self-modifying-code, state, state-encoding, weird-machine]
 ---
-# Ex: a program you can edit
+# Ex: un programa que puedes editar
 
-**Teaches you:** that an editor's registers can hold a program: a line of text is copied into a register and run with @, and the editor's own marks and line addresses do the arithmetic.
+**Te enseña:** que los registros de un editor pueden contener un programa: una línea de texto se copia en un registro y se ejecuta con @, y las marcas y las direcciones de línea del propio editor hacen la aritmética.
 
-> **DEMO ONLY.** Fictional time cards, written to a scratch SQLite file under `$XDG_DATA_HOME/ExWeird/`.
-> Nothing here touches real time reporting.
+> **DEMO ONLY.** Tarjetas de horas ficticias, escritas en un archivo SQLite temporal dentro de `$XDG_DATA_HOME/ExWeird/`.
+> Nada de esto toca el registro de horas real.
 
-`ex` is the command language of the `vi` editor. It is a line editor like [`ed`](../ed-weird/README.md), with extra powers: **named registers** that hold text, an **`@` command that runs a register as Ex commands**, **marks** that remember a line, and several commands on one line, separated by bars. This entry uses those powers to build something that `ed` cannot: a program that is stored as text, copied into a register, and run, and that decides its own next step by copying a line of *data* into a register and running that too.
+`ex` es el lenguaje de comandos del editor `vi`. Es un editor de líneas como [`ed`](../ed-weird/README.md), con poderes extra: **registros con nombre** que guardan texto, un **comando `@` que ejecuta un registro como comandos Ex**, **marcas** que recuerdan una línea y varios comandos en una sola línea, separados por barras. Esta entrada usa esos poderes para construir algo que `ed` no puede: un programa guardado como texto, copiado en un registro y ejecutado. Ese programa decide su propio paso siguiente: copia una línea de *datos* en un registro y también la ejecuta.
 
 ```text
 $ ex -s dice.txt < timecards.ex
@@ -28,11 +28,11 @@ Coding 13 30
 Debugging 19 49
 ```
 
-There is no global command in the program, no regular expression test, no loop statement and no error. The loop is a register that runs itself.
+El programa no tiene ningún comando global, ninguna prueba de expresión regular, ninguna sentencia de bucle y ningún error. El bucle es un registro que se ejecuta a sí mismo.
 
-## Run it
+## Ejecútalo
 
-You need an **Ex**: **nvi** (a 4.4BSD POSIX ex/vi; 1.81.6 was tested, and it is what the sandbox has) or **Vim** in Ex mode (9.1 was tested). Ubuntu's own `ex` is Vim. You also need a POSIX shell, `tr`, `head`, `fold`, `date` and `sqlite3`.
+Necesitas un **Ex**: **nvi** (un ex/vi POSIX de 4.4BSD; se probó la versión 1.81.6, que es la que tiene el entorno aislado (*sandbox*) que limita el acceso al sistema anfitrión) o **Vim** en modo Ex (se probó la versión 9.1). El `ex` propio de Ubuntu es Vim. También necesitas un intérprete de comandos (*shell*) POSIX, el programa que ejecuta los comandos que escribes, `tr`, `head`, `fold`, `date` y `sqlite3`.
 
 ```bash
 cd src/ex-weird
@@ -43,48 +43,48 @@ printf '7\n3\n9\n0\n5\n' > /tmp/dice.txt; ex -s -u NONE /tmp/dice.txt < timecard
 ./check.sh                               # every rule below, against the ex you have
 ```
 
-Records go to `$XDG_DATA_HOME/ExWeird/demo-timecards.db` (default `~/.local/share/ExWeird/`).
+Los registros van a `$XDG_DATA_HOME/ExWeird/demo-timecards.db` (por defecto, `~/.local/share/ExWeird/`).
 
-## Run it in a container
+## Ejecútalo en un contenedor
 
-Prerequisite: Docker, set up once as described in [`SANDBOX-SETUP.md`](../../SANDBOX-SETUP.md#docker).
+Requisito previo: Docker, instalado una sola vez como se describe en [`SANDBOX-SETUP.md`](../../SANDBOX-SETUP.md#docker).
 
 ```bash
 sandbox/container/run-image.sh src/ex-weird
 ```
 
-It builds this folder's [`Dockerfile`](Dockerfile) and runs the result with no network, a read-only file system and user `nobody`. The image holds nvi and sqlite3 on a minimal Ubuntu.
+Construye el [`Dockerfile`](Dockerfile) de esta carpeta y ejecuta el resultado sin red, con un sistema de archivos de solo lectura y con el usuario `nobody`. La imagen contiene nvi y sqlite3 sobre un Ubuntu mínimo.
 
-## Program Flow
+## Flujo del programa
 
 ```mermaid
 flowchart TD
-    accTitle: ex-weird: a register that holds the command that runs it again
-    accDescr: A flowchart. The launcher gives Ex five digits as cards. The script adds a tape of sixty lines under the cards, and the program as one line of text, which it copies into register a. Running register a starts the loop. The first card's digit is rewritten into a command that moves the mark t down the tape, and running it adds the hours. The program prints the row, using the total from the tape line under the mark. It copies that tape line's instruction into register n and deletes the used card. Running register n then does what the tape line says. Up to 40, the line says to run register a again. Above 40, the line is a comment, so nothing runs and the script ends.
-    A["Launcher gives five digits; the script adds a 60-line tape and the program as one line, copied into register a"] --> B["Run @a: rewrite the first card's digit into a command, 't+17 k t"]
-    B --> C["Run that command: mark t moves down the tape, and that is the addition"]
-    C --> D["Print the row: the card and the total on the tape line under mark t"]
-    D --> E["Copy that tape line's instruction into register n, delete the used card"]
-    E --> F{{"Run @n: what does the tape line say?"}}
-    F -->|"@a: total is 40 or less"| B
-    F -->|"a quote mark: a comment, total is over 40"| G["Nothing runs: the script ends and the launcher loads the rows"]
+    accTitle: ex-weird: un registro que guarda el comando que lo ejecuta de nuevo
+    accDescr: Un diagrama de flujo. El lanzador entrega a Ex cinco dígitos como tarjetas. El script añade bajo las tarjetas una cinta de sesenta líneas y el programa como una sola línea de texto, que copia en el registro a. Ejecutar el registro a inicia el bucle. El dígito de la primera tarjeta se reescribe como un comando que baja la marca t por la cinta, y ejecutarlo suma las horas. El programa imprime la fila con el total de la línea de la cinta que está bajo la marca. Copia la instrucción de esa línea de la cinta en el registro n y borra la tarjeta usada. Después, ejecutar el registro n hace lo que dice la línea de la cinta. Si el total no pasa de 40, la línea indica ejecutar de nuevo el registro a. Si pasa de 40, la línea es un comentario, así que no se ejecuta nada y el script termina.
+    A["El lanzador da cinco dígitos; el script añade una cinta de 60 líneas y el programa como una sola línea, copiada en el registro a"] --> B["Ejecuta @a: reescribe el dígito de la primera tarjeta como un comando, 't+17 k t"]
+    B --> C["Ejecuta ese comando: la marca t baja por la cinta y esa es la suma"]
+    C --> D["Imprime la fila: la tarjeta y el total en la línea de la cinta bajo la marca t"]
+    D --> E["Copia la instrucción de esa línea de la cinta en el registro n y elimina la tarjeta usada"]
+    E --> F{{"Ejecución @n: ¿qué dice la línea de la cinta?"}}
+    F -->|"@a: el total no pasa de 40"| B
+    F -->|"una comilla: un comentario, el total pasa de 40"| G["No se ejecuta nada: el script termina y el lanzador carga las filas"]
 ```
 
-**What this shows:** Ex keeps state outside the text, in marks, and it can run a register as a command. The position of mark `t` on a tape *is* the running total. The tape line under it holds the next instruction: `@a`, which means "go round again", or a quote mark, which Ex reads as a comment.
+**Qué muestra:** Ex guarda el estado fuera del texto, en marcas. También puede ejecutar un registro como comando. La posición de la marca `t` en una cinta *es* el total acumulado. La línea de la cinta que está debajo contiene la siguiente instrucción: `@a` (que significa "da otra vuelta") o una comilla, que Ex lee como comentario.
 
-**Why this mechanism matters:** this is self-modifying code. The program writes the command that does its arithmetic, and the stop rule is the place on the tape where `@a` turns into a comment. Nothing in the program says "40" anywhere except in how the tape is laid out.
+**Por qué importa este mecanismo:** este es código que se modifica a sí mismo. El programa escribe el comando que hace su aritmética, y la regla de parada es el lugar de la cinta donde `@a` se convierte en un comentario. Nada en el programa dice "40" en ninguna parte, salvo en cómo está dispuesta la cinta.
 
-## How the stunt works
+## Cómo funciona el truco
 
-Read [`timecards.ex`](timecards.ex) from top to bottom. Its comments say what each part does.
+Lee [`timecards.ex`](timecards.ex) de principio a fin. Sus comentarios dicen qué hace cada parte.
 
-### The registers are marks
+### Los registros son marcas
 
-`ed` keeps its state in the *text* of the buffer. Ex also has state outside the text: **marks**. `k t` puts a mark called `t` on a line, and `'t` is that line as an address. The mark follows its line when lines above it are added or removed. Address arithmetic works on marks, so `'t+17` is "seventeen lines below mark `t`". The command `'t+17k t` puts the mark there. That is **t = t + 17**, with no number anywhere except in the text of the address.
+`ed` guarda su estado en el *texto* del búfer. Ex también tiene estado fuera del texto: las **marcas**. `k t` pone una marca llamada `t` en una línea, y `'t` es esa línea como dirección. La marca sigue a su línea cuando se agregan o se quitan líneas por encima de ella. La aritmética de direcciones funciona con marcas, así que `'t+17` es "diecisiete líneas debajo de la marca `t`". El comando `'t+17k t` pone la marca ahí. Eso es **t = t + 17**, sin ningún número en ninguna parte salvo en el texto de la dirección.
 
-### The tape
+### La cinta
 
-Under the five cards the program adds a tape of sixty lines. A line is `total instruction`:
+Debajo de las cinco tarjetas el programa añade una cinta de sesenta líneas. Cada línea es `total instruction`:
 
 ```text
 0 @a
@@ -97,84 +97,84 @@ Under the five cards the program adds a tape of sixty lines. A line is `total in
 59 "
 ```
 
-The position of mark `t` on the tape *is* the running total. The text of the line under it is the total as decimal digits, and a *next instruction*. Up to 40 the instruction is `@a`: go on. Above 40 it is a quote mark, which Ex reads as a comment: do nothing. **The limit of 40 is the place where `@a` stops on the tape.** Nothing in the program says "40".
+La posición de la marca `t` en la cinta *es* el total acumulado. El texto de la línea que está debajo es el total en dígitos decimales y una *instrucción siguiente*. Mientras el total no pase de 40, la instrucción es `@a`: continúa. Cuando el total pasa de 40, la instrucción es una comilla, que Ex lee como un comentario: no hace nada. **El límite de 40 es el lugar de la cinta donde se detiene `@a`.** Nada en el programa dice "40".
 
-### The program
+### El programa
 
-The program is one line of text. The script adds it to the buffer after the tape, copies it into register `a` (`'s+1ya a`), and removes it (`'s+1d`). Then `@a` runs it. The bars are line breaks. In order:
+El programa es una línea de texto. El script la agrega al búfer después de la cinta, la copia en el registro `a` (`'s+1ya a`) y la elimina (`'s+1d`). Luego `@a` la ejecuta. Las barras son saltos de línea. En orden:
 
-| Step | What it does |
+| Paso | Qué hace |
 |---|---|
-| `1t$` | Copy the first card, `Meetings 7`, to the end of the buffer |
-| `$s/^.* \([0-9]\)$/'t+1\1k t/` | Rewrite the copy into a *command*: `'t+17k t`. The card's digit became text that Ex can run |
-| `$ya d`, `$d` | Copy the command into register `d`, and remove it from the buffer |
-| `1s/ \([0-9]\)$/ 1\1/` | Turn the digit of the card into hours: `Meetings 17` |
-| `@d` | **Run register `d`.** Mark `t` moves 17 lines down the tape. This is the addition |
-| `1t$`, `'tt$`, `$s/ .*$//`, `$-1,$j`, `$p` | Copy the card. Copy the tape line under mark `t`. Keep only its total. Join the two (Ex's join puts a space between them). Print the row: `Meetings 17 17` |
-| `'tt$`, `$s/^[0-9]* //`, `$ya n`, `$d` | Copy the tape line to the end of the buffer again. Strip the leading total and its space, yank the remaining instruction into register `n`, then delete the temporary line |
-| `1d` | The card is used up. The next card is now line 1 |
-| `@n` | **Run register `n`.** On the tape it says `@a`, so the program runs again. Above 40 it says `"`, and nothing runs |
+| `1t$` | Copia la primera tarjeta, `Meetings 7`, al final del búfer |
+| `$s/^.* \([0-9]\)$/'t+1\1k t/` | Reescribe la copia como un *comando*: `'t+17k t`. El dígito de la tarjeta se convirtió en texto que Ex puede ejecutar |
+| `$ya d`, `$d` | Copia el comando en el registro `d` y quítalo del búfer |
+| `1s/ \([0-9]\)$/ 1\1/` | Convierte el dígito de la tarjeta en horas: `Meetings 17` |
+| `@d` | **Ejecuta el registro `d`.** La marca `t` baja 17 líneas por la cinta. Esta es la suma |
+| `1t$`, `'tt$`, `$s/ .*$//`, `$-1,$j`, `$p` | Copia la tarjeta. Copia la línea de la cinta bajo la marca `t`. Conserva solo su total. Une las dos (la orden join de Ex pone un espacio entre ellas). Imprime la fila: `Meetings 17 17` |
+| `'tt$`, `$s/^[0-9]* //`, `$ya n`, `$d` | Copia de nuevo la línea de la cinta al final del búfer. Quita el total inicial y su espacio, copia la instrucción restante en el registro `n` y borra la línea temporal |
+| `1d` | La tarjeta se ha agotado. La siguiente tarjeta pasa a ser la línea 1 |
+| `@n` | **Registro de ejecución `n`.** En la cinta dice `@a`, así que el programa se ejecuta otra vez. Con más de 40 dice `"` y no se ejecuta nada |
 
-| Job | Done by |
+| Tarea | Hecho por |
 |---|---|
-| Loop | Register `n` holds `@a`, so the program calls itself |
-| Category order | Line addresses (`1s`, `2s`, ...), as in the ed entry |
-| Random hours | The launcher gives Ex five digits. A substitution makes each into a command |
-| Running total | The mark `t`, moved by a command that the program wrote itself |
-| Decimal total | The text of the tape line under the mark |
-| Stop rule | The tape: the first line whose instruction is a comment |
-| Output | `$p` |
-| Persistence | `sqlite3`, with `CHECK` constraints |
+| Bucle | El registro `n` contiene `@a`, así que el programa se llama a sí mismo |
+| Orden de las categorías | Direcciones de línea (`1s`, `2s`, ...), como en la entrada de ed |
+| Horas aleatorias | El lanzador entrega cinco dígitos a Ex. Una sustitución convierte cada uno en un comando |
+| Total acumulado | La marca `t`, movida por un comando que el propio programa escribió |
+| Total decimal | El texto de la línea de la cinta que está bajo la marca |
+| Regla de parada | La cinta: la primera línea cuya instrucción es un comentario |
+| Salida | `$p` |
+| Persistencia | `sqlite3`, con restricciones `CHECK` |
 
-The launcher, [`timecards.sh`](timecards.sh), has four jobs: five random digits, run Ex, load the rows into SQLite with the week, and show them. It has no arithmetic, no `awk`, no `sed` and no loop. It also checks every line that Ex prints: anything that is not a card row is an error, except one known note from nvi (see the gotchas).
+El lanzador, [`timecards.sh`](timecards.sh), tiene cuatro tareas: generar cinco dígitos aleatorios, ejecutar Ex, cargar las filas en SQLite con la semana y mostrarlas. No tiene aritmética, `awk`, `sed` ni bucle. También revisa cada línea que imprime Ex: cualquier cosa que no sea una fila de tarjeta es un error, salvo una nota conocida de nvi (consulta las trampas comunes).
 
-### What is different from the ed entry
+### Qué cambia respecto de la entrada de ed
 
 | | [`ed-weird`](../ed-weird/README.md) | `ex-weird` |
 |---|---|---|
-| State | Text: rows of `x` marks | The mark `t` (a position), and a tape of lines |
-| Addition | Join two lines, so the marks sit side by side | Move a mark by an address |
-| Control | One global command; a failed `s` is an "if" | A register that runs itself; the tape says whether to run it again |
-| Program text | The script | The script, *and* text that the program writes and then runs |
-| Stop rule | A regular expression over the marks (`x\{41,\}`) | A line of data on the tape |
-| Decimal output | Ten rewrite rules for marks to digits | The tape already has the digits |
+| Estado | Texto: filas de marcas `x` | La marca `t` (una posición) y una cinta de líneas |
+| Suma | Une dos líneas para que las marcas queden una al lado de la otra | Mueve una marca mediante una dirección |
+| Control | Un comando global; un `s` fallido es un "si" | Un registro que se ejecuta a sí mismo; la cinta indica si hay que ejecutarlo de nuevo |
+| Texto del programa | El script | El script *y* el texto que el programa escribe y luego ejecuta |
+| Regla de parada | Una expresión regular sobre las marcas (`x\{41,\}`) | Una línea de datos en la cinta |
+| Salida decimal | Diez reglas de reescritura que convierten marcas en dígitos | La cinta ya tiene los dígitos |
 
-## Why this is weird
+## Por qué es raro
 
-`ex` was made to edit text. It has no function, no `if` and no loop. What it does have is **code that is just text**. A register can hold a command, and `@` runs it. So a program can write its own next instruction, as a string, and run it. That is the same idea as `eval` in a scripting language, built from a text editor. It is also a jump table: the next step is looked up by *address*, in the data.
+`ex` se creó para editar texto. No tiene funciones, `if` ni bucles. Lo que sí tiene es **código que es solo texto**. Un registro puede guardar un comando y `@` lo ejecuta. Así, un programa puede escribir su propia instrucción siguiente, como una cadena de texto y ejecutarla. Es la misma idea que `eval` en un lenguaje de scripts, construida con un editor de texto. También es una tabla de saltos: el siguiente paso se busca por *dirección*, en los datos.
 
-### An interactive session and a batch run
+### Una sesión interactiva y una ejecución por lotes
 
-Normally you use Ex by typing a command and looking at the result: you move around, you see lines, you change your mind. The entry runs the same commands with **no one watching**. `-s` says "silent: do not show the usual messages". The commands come from a file on standard input, so every step must be right the first time. That is why the comments in the script matter more than they do for a one-off edit.
+Normalmente usas Ex así: escribes un comando y miras el resultado. Te mueves por el texto, ves líneas y cambias de opinión. La entrada ejecuta los mismos comandos **sin que nadie mire**. `-s` significa "silencioso: no muestres los mensajes habituales". Los comandos vienen de un archivo por la entrada estándar, así que cada paso debe ser correcto a la primera. Por eso los comentarios del script importan más que en una edición puntual.
 
-## What `check.sh` enforces
+## Qué impone `check.sh`
 
-`check.sh` runs against whichever `ex` you have, and says which one it found.
+`check.sh` se ejecuta con cualquier `ex` que tengas e indica cuál encontró.
 
-- **The constraint is real.** `timecards.sh` has no arithmetic, no `awk`, no `sed`, no `expr` and no loop, and starts the editor once. `timecards.ex` has **no `g` or `v` command**, no shell escape and no file command. The tape has 41 go rows and 19 stop rows. The program ends with exactly one `@n`, and `@a` is started once.
-- **The rules of the challenge.** 25 random runs: categories in order, hours 10 to 19, correct totals, a stop at the first total over 40 with the crossing card kept, `DEMO ONLY` everywhere, exit status 0 and nothing on stderr.
-- **An independent simulation.** A separate model (a short awk program) gives the rows for each dice sequence. The entry agrees on all 1,024 sequences over the digits 0, 4, 5 and 9, and on 400 random ones.
-- **Perturbations.** Move the boundary on the tape to 30 and the run stops after 30. Move it to 45, and eleven-hour dice give five cards. Swap two category lines and the categories swap. Delete the last `@n` and only one card runs. Make every tape instruction a comment and only one card runs.
-- **Dialects.** Five measured differences between Ex implementations (below), checked for the one you have.
-- **The schema.** SQLite refuses a non-demo row, 9 hours and a fifth category. The launcher refuses four dice and a non-digit.
+- **La restricción es real.** `timecards.sh` no tiene aritmética, ni `awk`, ni `sed`, ni `expr` ni bucle. Inicia el editor una vez. `timecards.ex` **no tiene ningún comando `g` ni `v`**, ni escape al intérprete de comandos (*shell*, el programa que recibe y ejecuta comandos del sistema), ni comando de archivos. La cinta tiene 41 filas go y 19 filas stop. El programa termina con exactamente un `@n`, y `@a` se inicia una vez.
+- **Las reglas del reto.** 25 ejecuciones aleatorias: categorías en orden, de 10 a 19 horas, totales correctos, una parada en el primer total que pasa de 40 con la tarjeta que lo cruza conservada, `DEMO ONLY` en todas partes, estado de salida 0 y nada en stderr.
+- **Una simulación independiente.** Un modelo aparte (un programa corto en awk) da las filas de cada secuencia de dados. La entrada coincide en las 1024 secuencias formadas con los dígitos 0, 4, 5 y 9 y también en 400 secuencias aleatorias.
+- **Perturbaciones.** Mueve el límite de la cinta a 30 y la ejecución se detiene después de 30. Muévelo a 45 y los dados de once horas dan cinco tarjetas. Intercambia dos líneas de categoría y las categorías se intercambian. Elimina el último `@n` y se ejecuta solo una tarjeta. Convierte cada instrucción de la cinta en un comentario y se ejecuta solo una tarjeta.
+- **Dialectos.** Cinco diferencias medidas entre las implementaciones de Ex (abajo), comprobadas para la que tengas.
+- **El esquema.** SQLite rechaza una fila que no sea de demostración, 9 horas y una quinta categoría. El lanzador rechaza cuatro dados y un carácter que no sea un dígito.
 
-## Gotchas worth knowing
+## Trampas que conviene conocer
 
-- **Which Ex?** There is no one Ex. We ran the program on **nvi 1.81.6** (a descendant of the 4.4BSD editor that the POSIX `ex` description is based on) and on **Vim 9.1** in Ex mode (`ex -s -u NONE -N`), and both give the same answers. That is **implementation-permitted**: we tested these two, we did not test conformance to the standard. `@` (run a buffer), `k` (mark), `ya` (yank), `t` (copy), `j` (join), the bar and the `"` comment are all described for Ex in POSIX, as far as we can tell from reading it (we did not run a conformance suite). The program uses these and nothing else.
-- **Where POSIX Ex ends and Vim begins.** The program uses no Vim extension. `-u NONE` and `-N` are Vim's options, to keep your `.vimrc` out of it. The launcher adds them when it sees Vim. Do not call Vim "Ex": it is a bigger editor that has an Ex mode.
-- **Five differences that the program avoids.** The check measures each one.
-  1. **Register order.** nvi runs a register of several lines from the **last line to the first**. Vim runs it from the first to the last. This is why the program is **one line**, with bars.
-  2. **Nested global commands.** A global command inside a register that was started from a global command works in nvi and is refused by Vim. The program has no global command.
-  3. **Printing.** In nvi a bare address (`2`, `+1`) prints the line it moves to. Vim prints nothing. The program moves its mark with `k`, which never prints.
-  4. **Errors.** After the first error, nvi stops reading the script and exits with status 1. Vim carries on, and exits with status 1 at the end. The program makes no error on purpose, because a failed search or a backward address range would end it in nvi.
-  5. **Backward ranges.** `'t,2` with the mark below line 2 is an error in nvi (`The second address is smaller than the first`). Vim prints nothing and does not stop.
-- **nvi says things on standard output.** Its messages go to stdout, not stderr. When it has no terminal (a pipe, a container) it prints `Error: stderr: Inappropriate ioctl for device` first. The launcher drops that one known line, and fails on any other line that is not a card row.
-- **nvi needs a recovery folder.** It will not start if it cannot write to `/var/tmp/vi.recover`. The sandbox images link that folder to `/tmp`, because the sandbox root is read-only. That is a fact about the images, and it is the only change they needed for this entry.
-- **Ex's join adds a space.** `$-1,$j` puts `Meetings 17` and `17` together as `Meetings 17 17`. The `j` of `ed` does not add one. Both are specified: that is a difference between the two languages, not a quirk.
-- **A comment is an instruction.** The tape's "stop" instruction is a quote mark. That works because Ex reads `"` as a comment, in a register as well as in a file.
-- **A mark that sits on a deleted line is gone.** The program never deletes the line under mark `t`. It deletes only the card line (line 1) and its own scratch lines at the end of the buffer.
-- **The tape is data, and it is long.** Sixty lines, one per possible total from 0 to 59. The longest run ends at 40 + 19 = 59. A different limit needs a different tape, and nothing computes one.
+- **¿Qué Ex?** No existe un único Ex. Ejecutamos el programa en **nvi 1.81.6** (un descendiente del editor de 4.4BSD en el que se basa la descripción de `ex` en POSIX) y en **Vim 9.1** en modo Ex (`ex -s -u NONE -N`). Ambos dan las mismas respuestas. Eso es **permitido por la implementación**: probamos estos dos y no probamos la conformidad con el estándar. `@` (ejecutar un búfer), `k` (marcar), `ya` (copiar al registro, *yank*), `t` (copiar líneas), `j` (unir), la barra y el comentario `"` están descritos para Ex en POSIX, hasta donde podemos saber al leerlo (no ejecutamos un conjunto de pruebas de conformidad). El programa usa estos y nada más.
+- **Dónde termina POSIX Ex y dónde empieza Vim.** El programa no usa ninguna extensión de Vim. `-u NONE` y `-N` son opciones de Vim para mantener tu `.vimrc` fuera de él. El lanzador las agrega cuando detecta Vim. No llames "Ex" a Vim: es un editor más grande que tiene un modo Ex.
+- **Cinco diferencias que el programa evita.** La comprobación mide cada una.
+  1. **Orden del registro.** nvi ejecuta un registro de varias líneas **de la última línea a la primera**. Vim lo ejecuta de la primera a la última. Por eso el programa es de **una línea**, con barras.
+  2. **Comandos globales anidados.** Un comando global dentro de un registro que se inició desde un comando global funciona en nvi y Vim lo rechaza. El programa no tiene ningún comando global.
+  3. **Impresión.** En nvi una dirección sola (`2`, `+1`) imprime la línea a la que se mueve. Vim no imprime nada. El programa mueve su marca con `k`, que nunca imprime.
+  4. **Errores.** Tras el primer error, nvi deja de leer el script y sale con estado 1. Vim continúa y sale con estado 1 al final. El programa no provoca ningún error a propósito, porque una búsqueda fallida o un rango de direcciones hacia atrás terminaría el programa en nvi.
+  5. **Rangos hacia atrás.** `'t,2` con la marca debajo de la línea 2 es un error en nvi (`The second address is smaller than the first`). Vim no imprime nada y no se detiene.
+- **nvi escribe en la salida estándar.** Sus mensajes van a stdout, no a stderr. Cuando no tiene terminal (una tubería o un contenedor) imprime primero `Error: stderr: Inappropriate ioctl for device`. El lanzador descarta esa única línea conocida y falla con cualquier otra línea que no sea una fila de tarjeta.
+- **nvi necesita una carpeta de recuperación.** No arranca si no puede escribir en `/var/tmp/vi.recover`. Las imágenes del entorno aislado enlazan esa carpeta con `/tmp`, porque la raíz del entorno aislado es de solo lectura. Es un hecho sobre las imágenes y es el único cambio que necesitaron para esta entrada.
+- **La unión de Ex añade un espacio.** `$-1,$j` junta `Meetings 17` y `17` como `Meetings 17 17`. En `ed`, `j` no añade ninguno. Ambos comportamientos están especificados: es una diferencia entre los dos lenguajes, no una rareza.
+- **Un comentario es una instrucción.** La instrucción "parar" de la cinta es una comilla. Funciona porque Ex lee `"` como un comentario, tanto en un registro como en un archivo.
+- **Una marca que está en una línea borrada desaparece.** El programa nunca borra la línea bajo la marca `t`. Borra solo la línea de la tarjeta (línea 1) y sus propias líneas de trabajo al final del búfer.
+- **La cinta es de datos y es larga.** Sesenta líneas, una por cada total posible de 0 a 59. La ejecución más larga termina en 40 + 19 = 59. Un límite distinto necesita otra cinta. Nada calcula una.
 
 ---
 
-See the [root README](../../README.md#the-results-so-far) for how this compares to the other entries, and [`RETO.md`](../../RETO.md) if you want to write your own.
+Consulta el [README raíz](../../README.md#the-results-so-far) para ver cómo se compara esta entrada con las otras y consulta [`RETO.md`](../../RETO.md) si quieres escribir la tuya.

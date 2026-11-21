@@ -68,7 +68,7 @@ Each picture below is the `## Program Flow` section of an entry's README, copied
 
 ### Program flow of `find-gnu`
 
-From [`find-gnu`](../../src/find-gnu/README.md) ([source section](../../src/find-gnu/README.md#program-flow)).
+From [`find-gnu`](../../src/find-gnu/README.md) ([source section](../../src/find-gnu/README.md#flujo-del-programa)).
 
 ```mermaid
 flowchart TD
