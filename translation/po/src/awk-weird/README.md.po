@@ -295,7 +295,7 @@ msgstr "**Registro vacío final.** Un archivo que termina en un salto de línea 
 #: src/awk-weird/README.md:131
 msgctxt "s-d2858e512e35-0057"
 msgid "**The run id** is the epoch seconds and the awk's process id."
-msgstr "**El id de ejecución** es los segundos de época más el id de proceso de awk."
+msgstr "**El id de ejecución** son los segundos de época y el id de proceso de awk."
 
 #: src/awk-weird/README.md:132
 msgctxt "s-8e1da7a397ac-0058"

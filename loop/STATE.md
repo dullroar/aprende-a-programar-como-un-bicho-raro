@@ -1,8 +1,8 @@
 # loop/STATE.md (keep to 60 lines; refreshed by every iteration)
 
 - **Edition:** v4-es.0-rc1 (working)    **English SHA:** 48a4429c0a22b2aac628b256a50c07d1816bcb80
-- **Iteration:** 112    **Stage:** 4 (bulk translation)    **Last result:** iter 112 P4-audit-1 done (5 segments sampled; 2 minor findings; review-fix tasks P4-fix-1, P4-fix-2). Next: P4-fix-1
-- **Tasks:** todo 66 | doing 0 | done 82 | blocked 0 | skipped 0 (recount with the queue files)
+- **Iteration:** 113    **Stage:** 4 (bulk translation)    **Last result:** iter 113 P4-fix-1 done (awk-weird run-id agreement and connective). Next: P4-fix-2
+- **Tasks:** todo 65 | doing 0 | done 83 | blocked 0 | skipped 0 (recount with the queue files)
 - **Next task:** run `python3 tools/next_task.py` (PO files live at translation/po/<path>.po, written by tools/apply.py --init)
 - **Budget:** spent $0.00 of $100; iterations 0 of 300
 - **Translate progress:** segments accepted 1835 / total 8827 (7394 prose + 1433 Mermaid labels) ; files done 30 / 212 (src/haskell-weird, src/haskell, src/javascript-events READMEs, src/find-posix, src/forth-weird READMEs, src/ex-weird, src/find-gnu, src/cobol-weird, src/cobol, src/ed-weird READMEs, src/awk-weird, src/awk, src/cmake READMEs, src/RustChallenge1, src/apl-weird, src/apl READMEs, curriculum and study-guide title pages, src/GoChallenge1, JavaChallenge1, KotlinChallenge1, LinqChallenge1, LinqChallenge2, ModernChallenge1, PythonChallenge1 READMEs, src/forth/README.md, lessons/cs-source/concepts/recursion.md, lessons/study-guides/languages/forth.md, docs/curriculum.md, lessons/study-guides/languages/apl.md)
