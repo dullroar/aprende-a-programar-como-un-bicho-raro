@@ -1,0 +1,48 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lessons/cs-source/concepts/state.md:2
+msgctxt "s-a3b50c476732-0000"
+msgid "State"
+msgstr "Estado"
+
+#: lessons/cs-source/concepts/state.md:6
+msgctxt "s-279dde859833-0001"
+msgid "State is whatever a program remembers between steps. Without it, nothing could be computed. The interesting question is *where it lives*: in variables, on a stack, on the heap, in a file, in a database, in an environment variable, over the network. This book's first goal is to ask that question about every program. The answers here are surprising. State lives in the target of a ⟦CODE_0001⟧, in one line of text, in which files exist on disk, in the captures of a regex, in the text of functions, in the input stream and in the depth of trigger recursion. See the table in [By goal](⟦DEST_0002⟧)."
+msgstr "El estado es todo lo que un programa recuerda entre un paso y otro. Sin él, no se podría calcular nada. La pregunta interesante es *dónde vive*: en variables, en una pila, en el montón, en un archivo, en una base de datos, en una variable de entorno o en la red. El primer objetivo de este libro es hacer esa pregunta sobre cada programa. Las respuestas aquí sorprenden. El estado vive en el destino de un ⟦CODE_0001⟧, en una línea de texto, en los archivos que existen en el disco, en las capturas de una expresión regular, en el texto de las funciones, en el flujo de entrada y en la profundidad de la recursión de los disparadores. Mira la tabla en [Por objetivo](⟦DEST_0002⟧)."
+
+#: lessons/cs-source/concepts/state.md:8
+msgctxt "s-e28c8f81fa7a-0002"
+msgid "**Use it when:** make state explicit, small and close to where it is used."
+msgstr "**Úsalo cuando:** quieras un estado explícito, pequeño y cercano al lugar donde se usa."
+
+#: lessons/cs-source/concepts/state.md:9
+msgctxt "s-a71376f23cdf-0003"
+msgid "**Avoid hidden and global state.** It is hard to test, hard to share and hard to reason about."
+msgstr "**Evita el estado oculto y el estado global.** Es difícil de probar, de compartir y de razonar."
+
+#: lessons/cs-source/concepts/state.md:11
+msgctxt "s-250de292f56f-0004"
+msgid "**Read more:**"
+msgstr "**Más información:**"
+
+#: lessons/cs-source/concepts/state.md:13
+msgctxt "s-d2946352191f-0005"
+msgid "[State (computer science)](⟦DEST_0001⟧)) (Wikipedia)"
+msgstr "[Estado (informática)](⟦DEST_0001⟧)) (Wikipedia)"
+
+#: lessons/cs-source/concepts/state.md:14
+msgctxt "s-b6b5b57e438c-0006"
+msgid "[File system](⟦DEST_0001⟧) (Wikipedia), where the Make entry keeps its state"
+msgstr "[Sistema de archivos](⟦DEST_0001⟧) (Wikipedia), donde la entrada de Make guarda su estado"
+
+#: lessons/cs-source/concepts/state.md:15
+msgctxt "s-72cdeda4ee78-0007"
+msgid "[Global variable](⟦DEST_0001⟧) (Wikipedia)"
+msgstr "[Variable global](⟦DEST_0001⟧) (Wikipedia)"
