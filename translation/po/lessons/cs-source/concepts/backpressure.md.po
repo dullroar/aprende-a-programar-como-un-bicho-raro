@@ -1,0 +1,43 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lessons/cs-source/concepts/backpressure.md:2
+msgctxt "s-17e49371512d-0000"
+msgid "Backpressure"
+msgstr "Contrapresión"
+
+#: lessons/cs-source/concepts/backpressure.md:6
+msgctxt "s-fc36a63820c4-0001"
+msgid "**Backpressure** is how a slow consumer tells a fast producer to wait. An event source announces things at its own speed. If the consumer cannot keep up, either a queue grows without a limit until memory runs out, or events are dropped. Backpressure turns that into a conversation: a bounded buffer, a stream that pauses its source or a *pull*, where the consumer asks for one value when it is ready."
+msgstr "La **contrapresión** es la forma en que un consumidor lento le pide a un productor rápido que espere. Una fuente de eventos emite avisos a su propio ritmo. Si el consumidor no puede seguirle el ritmo, la cola crece sin límite hasta agotar la memoria o se descartan eventos. La contrapresión convierte eso en una conversación. Puede usar un búfer acotado, un flujo que pausa su fuente o un mecanismo de *demanda* (*pull*), en el que el consumidor pide un valor cuando está listo."
+
+#: lessons/cs-source/concepts/backpressure.md:8
+msgctxt "s-27803130dab2-0002"
+msgid "A pull is the simplest backpressure, and ⟦MACRO_0001⟧ is one: it cannot be flooded, because nothing is drawn until something asks. ⟦MACRO_0002⟧ has no backpressure and does not need it: each card waits for the previous card, so producer and consumer are one program. ⟦MACRO_0003⟧ shows the missing half. tar keeps writing records, and so keeps calling the clock, after the machine is done. Those ticks only count as idle, because there is no way to ask tar to stop."
+msgstr "La demanda es la forma más sencilla de contrapresión y ⟦MACRO_0001⟧ la usa. No se puede saturar porque no extrae nada hasta que alguien lo pide. ⟦MACRO_0002⟧ no tiene contrapresión ni la necesita. Cada tarjeta espera a la anterior, así que el productor y el consumidor son un solo programa. ⟦MACRO_0003⟧ muestra qué pasa sin esa señal. tar sigue escribiendo registros y, por tanto, sigue consultando el reloj después de que la máquina termina. Esos pulsos solo cuentan como inactividad, porque no hay forma de pedirle a tar que se detenga."
+
+#: lessons/cs-source/concepts/backpressure.md:10
+msgctxt "s-cc0bca410d6f-0003"
+msgid "**Use it when:** the producer's speed is not under your control."
+msgstr "**Úsala cuando:** no controles la velocidad del productor."
+
+#: lessons/cs-source/concepts/backpressure.md:11
+msgctxt "s-b7c45fc2f9ba-0004"
+msgid "**Avoid it when:** the producer and consumer are one sequential program. A plain loop is enough."
+msgstr "**Evítala cuando:** el productor y el consumidor sean un solo programa secuencial. Basta un bucle sencillo."
+
+#: lessons/cs-source/concepts/backpressure.md:13
+msgctxt "s-250de292f56f-0005"
+msgid "**Read more:**"
+msgstr "**Lee más:**"
+
+#: lessons/cs-source/concepts/backpressure.md:15
+msgctxt "s-1b38aae65235-0006"
+msgid "[Back pressure](⟦DEST_0001⟧) (Wikipedia)"
+msgstr "[Contrapresión](⟦DEST_0001⟧) (Wikipedia)"

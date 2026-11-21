@@ -1,32 +1,32 @@
 ---
-title: "The call stack"
+title: "La pila de llamadas"
 chapter: 6
 order: 20
 ---
-The call stack is a stack of *frames*. Each active function call has one, holding its return address and its local variables. It exists so that functions can call functions, and recursion works. For most programmers the call stack *is* "where am I in the program". Several entries live without it, or work around it. A sed script has no calls at all. m4 and Make repeat by reading text again. The trigger recursion in [[entry:tcl-weird]] is limited by the database, not by a stack you can see.
+La pila de llamadas es una pila de *marcos*. Cada llamada a una función que sigue activa tiene un marco. Este guarda su dirección de retorno y sus variables locales. Así una función puede llamar a otra y la recursión funciona. Para la mayoría de los programadores, la pila de llamadas *es* la respuesta a "¿en qué parte del programa estoy?". Varias entradas prescinden de ella o la esquivan. Un script de sed no hace llamadas. m4 y Make repiten al volver a leer texto. En [[entry:tcl-weird]], el límite a la recursión de disparadores lo impone la base de datos y no una pila que puedas ver.
 
 ```mermaid
 flowchart TB
-    accTitle: The call stack records where execution is and what each active call still needs
-    accDescr: Two parts. On the left is a call stack with three frames, with the newest frame on top. The top frame is saveRow, with its argument, its local variable and a return address into drawCard. Below it is drawCard, with its locals and a return address into main. At the bottom is main, with its locals and a return address into the runtime. On the right are the returns in order. First saveRow returns and its frame is removed. Then drawCard returns. Then main returns.
-    subgraph STACK["Call stack"]
+    accTitle: La pila de llamadas registra dónde va la ejecución y qué le falta a cada llamada activa
+    accDescr: Dos partes. A la izquierda hay una pila de llamadas con tres marcos. El más reciente está arriba. El marco superior es de saveRow. Contiene su argumento, su variable local y una dirección de retorno a drawCard. Debajo está el de drawCard, con sus variables locales y una dirección de retorno a main. Abajo está el de main, con sus variables locales y una dirección de retorno al entorno de ejecución. A la derecha están los retornos en orden. Primero retorna saveRow y se retira su marco. Luego retorna drawCard. Por último retorna main.
+    subgraph STACK["Pila de llamadas"]
         direction TB
-        f3["top: saveRow(card). Locals: sql. Return into drawCard"] ~~~ f2["drawCard(). Locals: hours, category. Return into main"] ~~~ f1["bottom: main(). Locals: total, rows. Return into the runtime"]
+        f3["arriba: saveRow(card). Locales: sql. Retorna a drawCard"] ~~~ f2["drawCard(). Locales: hours, category. Retorna a main"] ~~~ f1["abajo: main(). Locales: total, rows. Retorna al entorno de ejecución"]
     end
-    subgraph RET["Returns, in order"]
+    subgraph RET["Retornos, en orden"]
         direction TB
-        r1["1. saveRow returns, frame removed"] --> r2["2. drawCard returns, frame removed"] --> r3["3. main returns, stack empty"]
+        r1["1. retorna saveRow y se retira su marco"] --> r2["2. retorna drawCard y se retira su marco"] --> r3["3. retorna main y la pila queda vacía"]
     end
     STACK ~~~ RET
 ```
 
-Each active call owns one frame, and the newest frame is on top. When `saveRow` returns, its frame is removed and execution continues at the return address it stored, which is inside `drawCard`. The names here are examples, and the exact layout of a frame differs between languages and processors. The general idea of a stack is in [[stack-data-structure]].
+Cada llamada activa tiene su propio marco y el marco más reciente queda arriba. Cuando `saveRow` retorna, se retira su marco. La ejecución sigue en la dirección de retorno que guardaba el marco, dentro de `drawCard`. Los nombres son ejemplos. La estructura exacta de un marco varía entre lenguajes y procesadores. Consulta [[stack-data-structure]] para ver la idea general de una pila.
 
-- **Use it when:** you read a stack trace, or you reason about recursion depth.
-- **Avoid it when:** the recursion depth has no bound. A stack overflow ends the program, and in unsafe languages it can become a security hole.
+- **Úsala cuando:** leas una traza de pila o razones sobre la profundidad de la recursión.
+- **Evítala cuando:** la profundidad de la recursión no tenga límite. Un desbordamiento de pila termina el programa. En lenguajes sin garantías de seguridad, puede abrir una brecha de seguridad.
 
-**Read more:**
+**Lee más:**
 
-- [Call stack](https://en.wikipedia.org/wiki/Call_stack) (Wikipedia)
-- [Stack buffer overflow](https://en.wikipedia.org/wiki/Stack_buffer_overflow) (Wikipedia)
-- [Tail call](https://en.wikipedia.org/wiki/Tail_call) (Wikipedia)
+- [Pila de llamadas](https://en.wikipedia.org/wiki/Call_stack) (Wikipedia)
+- [Desbordamiento de búfer en la pila](https://en.wikipedia.org/wiki/Stack_buffer_overflow) (Wikipedia)
+- [Llamada de cola](https://en.wikipedia.org/wiki/Tail_call) (Wikipedia)

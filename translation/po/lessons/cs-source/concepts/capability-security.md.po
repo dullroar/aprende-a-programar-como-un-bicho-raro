@@ -1,0 +1,53 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lessons/cs-source/concepts/capability-security.md:2
+msgctxt "s-115bb4b42686-0000"
+msgid "Capability and authority"
+msgstr "Capacidad y autoridad"
+
+#: lessons/cs-source/concepts/capability-security.md:6
+msgctxt "s-d02f9e2237a8-0001"
+msgid "Who can do what is a question about **authority**, not only about data. A file that cannot do anything on its own gains power when something with authority agrees to act on it. The old rule of **capability security** is that you should hold only the authority you need, and that authority should come from what you were handed, not from what you can name."
+msgstr "Quién puede hacer qué es una cuestión de **autoridad**, además de datos. Un archivo que por sí solo no puede hacer nada gana poder cuando algo con autoridad acepta actuar sobre él. La antigua regla de la **seguridad basada en capacidades** dice que solo debes tener la autoridad que necesitas. Esa autoridad debe venir de lo que te entregaron y no de lo que puedes nombrar."
+
+#: lessons/cs-source/concepts/capability-security.md:8
+msgctxt "s-d39b3f8d647c-0002"
+msgid "⟦MACRO_0001⟧ shows it in one line. An archive cannot register a hook for itself. ⟦CODE_0002⟧ writes files and runs nothing, and ⟦CODE_0003⟧ starts a program for each member. The authority to run something is in the command that the *operator* typed, so the trust boundary is that command. ⟦MACRO_0004⟧ and ⟦MACRO_0005⟧ make a similar choice about the editors. GNU ed allows a shell escape (⟦CODE_0006⟧) inside a global command list, and Ex has ⟦CODE_0007⟧ and file commands too. Both programs avoid them, and their check scripts enforce that. The reason is not that the commands are bad. A program that can run a shell can do anything, and one that cannot is much easier to reason about. See also ⟦MACRO_0008⟧ and ⟦MACRO_0009⟧."
+msgstr "⟦MACRO_0001⟧ lo muestra en una línea. Un archivo de almacenamiento no puede registrar su propio gancho. ⟦CODE_0002⟧ escribe archivos y no ejecuta nada. ⟦CODE_0003⟧ inicia un programa por cada miembro. La autoridad para ejecutar algo está en el comando que escribió el *operador*, así que ese comando es la frontera de confianza. ⟦MACRO_0004⟧ y ⟦MACRO_0005⟧ hacen una elección similar con los editores. GNU ed permite escapar al intérprete de comandos (*shell*) con ⟦CODE_0006⟧ dentro de una lista de comandos global. Ex también tiene ⟦CODE_0007⟧ y comandos para archivos. Ambos programas los evitan y sus scripts de comprobación lo hacen cumplir. La razón no es que los comandos sean malos. Un programa que puede ejecutar un intérprete de comandos puede hacer cualquier cosa. Si no puede ejecutarlo, es mucho más fácil razonar sobre el programa. Consulta también ⟦MACRO_0008⟧ y ⟦MACRO_0009⟧."
+
+#: lessons/cs-source/concepts/capability-security.md:10
+msgctxt "s-de3f52b2006c-0003"
+msgid "**Use it when:** you design an interface that runs something on someone's behalf. Ask what authority each caller carries, and give the callee no more."
+msgstr "**Úsala cuando:** diseñes una interfaz que ejecute algo en nombre de otra persona. Pregunta qué autoridad tiene quien hace cada llamada y no concedas más a quien la recibe."
+
+#: lessons/cs-source/concepts/capability-security.md:11
+msgctxt "s-8e8bdc561ba2-0004"
+msgid "**Avoid it when:** you treat \"it is only data\" as a reason to stop thinking. Data is inert only until a consumer with authority acts on it."
+msgstr "**Evítala cuando:** tomes \"solo son datos\" como motivo para dejar de pensar. Los datos son inertes hasta que un consumidor con autoridad actúa sobre ellos."
+
+#: lessons/cs-source/concepts/capability-security.md:13
+msgctxt "s-250de292f56f-0005"
+msgid "**Read more:**"
+msgstr "**Lee más:**"
+
+#: lessons/cs-source/concepts/capability-security.md:15
+msgctxt "s-470f32e3527a-0006"
+msgid "[Capability-based security](⟦DEST_0001⟧) (Wikipedia)"
+msgstr "[Seguridad basada en capacidades](⟦DEST_0001⟧) (Wikipedia)"
+
+#: lessons/cs-source/concepts/capability-security.md:16
+msgctxt "s-94e2057f181f-0007"
+msgid "[Principle of least privilege](⟦DEST_0001⟧) (Wikipedia)"
+msgstr "[Principio de mínimo privilegio](⟦DEST_0001⟧) (Wikipedia)"
+
+#: lessons/cs-source/concepts/capability-security.md:17
+msgctxt "s-45332ffc59b2-0008"
+msgid "[Confused deputy problem](⟦DEST_0001⟧) (Wikipedia)"
+msgstr "[Problema del delegado confundido](⟦DEST_0001⟧) (Wikipedia)"

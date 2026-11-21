@@ -1,27 +1,27 @@
 ---
-title: "Backtracking"
+title: "Retroceso"
 chapter: 7
 order: 60
 ---
-Backtracking is a systematic search. Try a choice, go on, and if you get stuck, undo the choice and try the next one. It exists for problems with many possible answers and some rules to prune them: puzzles, parsing and pattern matching. Perl, PCRE2 and .NET regex engines work this way. The entries in this repository turn it around: *do the work in side effects, then fail on purpose.* The match returns false only after every row has been written. What survives the failure is the whole lesson. Perl's `local` variables are restored, but its `INSERT` and `print` calls cannot be undone. [[entry:regex-dotnet]] cannot play this game at all, because a failed .NET match throws its captures away.
+El retroceso es una búsqueda sistemática. Prueba una opción y sigue. Si te atascas, deshaz la elección y prueba la siguiente. Sirve para problemas con muchas respuestas posibles y reglas para descartar algunas: acertijos, análisis sintáctico y búsqueda de coincidencias con patrones. Los motores de expresiones regulares de Perl, PCRE2 y .NET funcionan así. Las entradas de este repositorio le dan la vuelta: *haz el trabajo mediante efectos secundarios y luego provoca un fallo a propósito.* La coincidencia devuelve falso solo después de escribir todas las filas. Lo que sobrevive al fallo es toda la lección. El motor restaura las variables `local` de Perl, pero no puede deshacer sus llamadas a `INSERT` y `print`. [[entry:regex-dotnet]] no puede jugar a esto porque .NET descarta las capturas de una coincidencia fallida.
 
 ```mermaid
 flowchart TB
-    accTitle: Backtracking searches by trying one path and retreating to the last open choice when the path fails
-    accDescr: A small search tree. From the start there are two choices, A and B. Step 1, the search tries A and goes to A1. Step 2, A1 is a dead end. Step 3, the search backtracks to the start, the last choice with an alternative left, shown as a dotted arrow. Step 4, it tries B and goes to B1. Step 5, B1 succeeds.
-    S(["Start: two choices"]) -->|"1. try A"| A["A"]
-    A --> A1["2. A1: dead end"]
-    A1 -.->|"3. backtrack to the last open choice"| S
-    S -->|"4. try B"| B["B"]
-    B --> B1(["5. B1: success"])
+    accTitle: El retroceso prueba un camino y, si este falla, vuelve a la última elección con alternativas
+    accDescr: Un árbol de búsqueda pequeño. Desde el inicio hay dos opciones, A y B. Paso 1: la búsqueda prueba A y va a A1. Paso 2: A1 no tiene salida. Paso 3: la búsqueda retrocede al inicio, la última elección con una alternativa pendiente. Una flecha punteada indica ese retroceso. Paso 4: prueba B y va a B1. Paso 5: B1 tiene éxito.
+    S(["Inicio: dos opciones"]) -->|"1. prueba A"| A["A"]
+    A --> A1["2. A1: sin salida"]
+    A1 -.->|"3. vuelve a la última elección abierta"| S
+    S -->|"4. prueba B"| B["B"]
+    B --> B1(["5. B1: éxito"])
 ```
 
-The search remembers the choices that still have untried alternatives. When a path fails, it goes back to the most recent one. Here that is the start, where `B` is still open. Undoing a choice undoes the search's own state, not the outside world. As the paragraph above says, a row written along a failed path stays written.
+La búsqueda recuerda las elecciones que aún tienen alternativas sin probar. Cuando falla un camino, vuelve a la más reciente. Aquí vuelve al inicio, donde `B` sigue pendiente. Deshacer una elección revierte el estado de la búsqueda, pero no el mundo exterior. Como dice el párrafo anterior, una fila escrita en un camino fallido queda escrita.
 
-- **Use it when:** the search space is small, or you can prune it early.
-- **Avoid it when:** effects cannot be undone, or when the input comes from an attacker (see [[redos]]).
+- **Úsalo cuando:** el espacio de búsqueda sea pequeño o puedas reducirlo pronto.
+- **Evítalo cuando:** los efectos no se puedan deshacer o la entrada de datos venga de un atacante (consulta [[redos]]).
 
-**Read more:**
+**Lee más:**
 
-- [Backtracking](https://en.wikipedia.org/wiki/Backtracking) (Wikipedia)
-- [Regular expression](https://en.wikipedia.org/wiki/Regular_expression) (Wikipedia)
+- [Retroceso](https://en.wikipedia.org/wiki/Backtracking) (Wikipedia)
+- [Expresión regular](https://en.wikipedia.org/wiki/Regular_expression) (Wikipedia)

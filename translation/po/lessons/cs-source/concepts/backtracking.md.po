@@ -1,0 +1,98 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lessons/cs-source/concepts/backtracking.md:2
+msgctxt "s-4b8f0d6a961e-0000"
+msgid "Backtracking"
+msgstr "Retroceso"
+
+#: lessons/cs-source/concepts/backtracking.md:6
+msgctxt "s-cdcfd31b3e44-0001"
+msgid "Backtracking is a systematic search. Try a choice, go on, and if you get stuck, undo the choice and try the next one. It exists for problems with many possible answers and some rules to prune them: puzzles, parsing and pattern matching. Perl, PCRE2 and .NET regex engines work this way. The entries in this repository turn it around: *do the work in side effects, then fail on purpose.* The match returns false only after every row has been written. What survives the failure is the whole lesson. Perl's ⟦CODE_0001⟧ variables are restored, but its ⟦CODE_0002⟧ and ⟦CODE_0003⟧ calls cannot be undone. ⟦MACRO_0004⟧ cannot play this game at all, because a failed .NET match throws its captures away."
+msgstr "El retroceso es una búsqueda sistemática. Prueba una opción y sigue. Si te atascas, deshaz la elección y prueba la siguiente. Sirve para problemas con muchas respuestas posibles y reglas para descartar algunas: acertijos, análisis sintáctico y búsqueda de coincidencias con patrones. Los motores de expresiones regulares de Perl, PCRE2 y .NET funcionan así. Las entradas de este repositorio le dan la vuelta: *haz el trabajo mediante efectos secundarios y luego provoca un fallo a propósito.* La coincidencia devuelve falso solo después de escribir todas las filas. Lo que sobrevive al fallo es toda la lección. El motor restaura las variables ⟦CODE_0001⟧ de Perl, pero no puede deshacer sus llamadas a ⟦CODE_0002⟧ y ⟦CODE_0003⟧. ⟦MACRO_0004⟧ no puede jugar a esto porque .NET descarta las capturas de una coincidencia fallida."
+
+#: lessons/cs-source/concepts/backtracking.md:10
+msgctxt "s-34d6d8a43285-0002"
+msgid "Backtracking searches by trying one path and retreating to the last open choice when the path fails"
+msgstr "El retroceso prueba un camino y, si este falla, vuelve a la última elección con alternativas"
+
+#: lessons/cs-source/concepts/backtracking.md:11
+msgctxt "s-ee08a78cbabe-0003"
+msgid "A small search tree. From the start there are two choices, A and B. Step 1, the search tries A and goes to A1. Step 2, A1 is a dead end. Step 3, the search backtracks to the start, the last choice with an alternative left, shown as a dotted arrow. Step 4, it tries B and goes to B1. Step 5, B1 succeeds."
+msgstr "Un árbol de búsqueda pequeño. Desde el inicio hay dos opciones, A y B. Paso 1: la búsqueda prueba A y va a A1. Paso 2: A1 no tiene salida. Paso 3: la búsqueda retrocede al inicio, la última elección con una alternativa pendiente. Una flecha punteada indica ese retroceso. Paso 4: prueba B y va a B1. Paso 5: B1 tiene éxito."
+
+#: lessons/cs-source/concepts/backtracking.md:12
+msgctxt "s-ba263635d6e4-0004"
+msgid "Start: two choices"
+msgstr "Inicio: dos opciones"
+
+#: lessons/cs-source/concepts/backtracking.md:12
+msgctxt "s-55a9279ed687-0005"
+msgid "1. try A"
+msgstr "1. prueba A"
+
+#: lessons/cs-source/concepts/backtracking.md:12
+msgctxt "s-559aead08264-0006"
+msgid "A"
+msgstr "A"
+
+#: lessons/cs-source/concepts/backtracking.md:13
+msgctxt "s-fc8a985226f9-0007"
+msgid "2. A1: dead end"
+msgstr "2. A1: sin salida"
+
+#: lessons/cs-source/concepts/backtracking.md:14
+msgctxt "s-df0ea332eabb-0008"
+msgid "3. backtrack to the last open choice"
+msgstr "3. vuelve a la última elección abierta"
+
+#: lessons/cs-source/concepts/backtracking.md:15
+msgctxt "s-2e3d3fbe35ce-0009"
+msgid "4. try B"
+msgstr "4. prueba B"
+
+#: lessons/cs-source/concepts/backtracking.md:15
+msgctxt "s-df7e70e50215-0010"
+msgid "B"
+msgstr "B"
+
+#: lessons/cs-source/concepts/backtracking.md:16
+msgctxt "s-775d729c47a8-0011"
+msgid "5. B1: success"
+msgstr "5. B1: éxito"
+
+#: lessons/cs-source/concepts/backtracking.md:19
+msgctxt "s-2c1a47f989c0-0012"
+msgid "The search remembers the choices that still have untried alternatives. When a path fails, it goes back to the most recent one. Here that is the start, where ⟦CODE_0001⟧ is still open. Undoing a choice undoes the search's own state, not the outside world. As the paragraph above says, a row written along a failed path stays written."
+msgstr "La búsqueda recuerda las elecciones que aún tienen alternativas sin probar. Cuando falla un camino, vuelve a la más reciente. Aquí vuelve al inicio, donde ⟦CODE_0001⟧ sigue pendiente. Deshacer una elección revierte el estado de la búsqueda, pero no el mundo exterior. Como dice el párrafo anterior, una fila escrita en un camino fallido queda escrita."
+
+#: lessons/cs-source/concepts/backtracking.md:21
+msgctxt "s-02f3fcfe0489-0013"
+msgid "**Use it when:** the search space is small, or you can prune it early."
+msgstr "**Úsalo cuando:** el espacio de búsqueda sea pequeño o puedas reducirlo pronto."
+
+#: lessons/cs-source/concepts/backtracking.md:22
+msgctxt "s-aa0483d6ba07-0014"
+msgid "**Avoid it when:** effects cannot be undone, or when the input comes from an attacker (see ⟦MACRO_0001⟧)."
+msgstr "**Evítalo cuando:** los efectos no se puedan deshacer o la entrada de datos venga de un atacante (consulta ⟦MACRO_0001⟧)."
+
+#: lessons/cs-source/concepts/backtracking.md:24
+msgctxt "s-250de292f56f-0015"
+msgid "**Read more:**"
+msgstr "**Lee más:**"
+
+#: lessons/cs-source/concepts/backtracking.md:26
+msgctxt "s-7d6432636d8f-0016"
+msgid "[Backtracking](⟦DEST_0001⟧) (Wikipedia)"
+msgstr "[Retroceso](⟦DEST_0001⟧) (Wikipedia)"
+
+#: lessons/cs-source/concepts/backtracking.md:27
+msgctxt "s-e489a24ef59f-0017"
+msgid "[Regular expression](⟦DEST_0001⟧) (Wikipedia)"
+msgstr "[Expresión regular](⟦DEST_0001⟧) (Wikipedia)"

@@ -1,15 +1,15 @@
 ---
-title: "Code review"
+title: "Revisión de código"
 chapter: 1
 order: 50
 applies-to: all
-applies-because: "Every entry README has a How the stunt works section, the plain-English account that a reviewer reads the code against, and the gate refuses a new entry without it."
+applies-because: "El README de cada entrada tiene una sección Cómo funciona el truco. Es la explicación en lenguaje claro que el revisor contrasta con el código. El control rechaza toda entrada nueva que carezca de esa sección."
 ---
-Code review means that another person reads your code before it is accepted. It exists because tests only check what you thought to test, while a reader may notice what you did not think of. Here the review has a specific shape: the README must contain a plain-English **How the stunt works** section, and reviewers (people and AI helpers) are asked to translate the code into plain words and list everything it can touch. If the reviewer cannot follow the entry, it is not merged, however clever it is.
+En una revisión de código, otra persona lee tu código antes de que se acepte. Existe porque las pruebas solo comprueban lo que se te ocurrió probar. Un lector puede notar algo que se te pasó. Aquí la revisión tiene una forma concreta: el README debe incluir la sección **Cómo funciona el truco** en lenguaje claro. Los revisores (personas y asistentes de IA) deben explicar el código en palabras sencillas y hacer una lista de todo lo que puede tocar. Si el revisor no puede seguir la entrada, esta no se integra, por ingeniosa que sea.
 
-- **Use it when:** for every change, and most of all for unusual code.
-- **Avoid relying on it alone:** tired people miss things, and invisible characters hide from eyes. Combine review with automatic checks such as `sandbox/scope-check.sh`.
+- **Úsala cuando:** hagas cualquier cambio, sobre todo si el código es inusual.
+- **Evita depender solo de ella:** el cansancio hace que se pasen cosas por alto y los caracteres invisibles escapan a la vista. Combina la revisión con controles automáticos como `sandbox/scope-check.sh`.
 
-**Read more:**
+**Lee más:**
 
-- [Code review](https://en.wikipedia.org/wiki/Code_review) (Wikipedia)
+- [Revisión de código](https://en.wikipedia.org/wiki/Code_review) (Wikipedia)

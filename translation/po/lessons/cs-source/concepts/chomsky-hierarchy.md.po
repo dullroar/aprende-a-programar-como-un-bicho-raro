@@ -1,0 +1,48 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lessons/cs-source/concepts/chomsky-hierarchy.md:2
+msgctxt "s-b7c73cbd590d-0000"
+msgid "The Chomsky hierarchy"
+msgstr "La jerarquía de Chomsky"
+
+#: lessons/cs-source/concepts/chomsky-hierarchy.md:6
+msgctxt "s-bb11f5d35427-0001"
+msgid "In 1956 Noam Chomsky sorted formal languages into four classes by power: regular, context-free, context-sensitive and unrestricted. Each class needs a stronger machine to recognize it: a finite automaton, a pushdown automaton (a finite machine plus a stack), a bounded Turing machine and a full Turing machine. It exists to answer a practical question: *how much machine does this notation need?* A regular expression, in the classic sense, cannot check that brackets are balanced, because that needs a stack. Real regex engines go beyond the classic class. .NET's balancing groups in ⟦MACRO_0001⟧ give the engine a stack of captures, and that is exactly the extra power."
+msgstr "En 1956 Noam Chomsky ordenó los lenguajes formales en cuatro clases según su potencia: regulares, libres de contexto, sensibles al contexto y sin restricciones. Cada clase necesita una máquina más potente que la anterior. En orden, son un autómata finito, un autómata con pila (una máquina finita más una pila), una máquina de Turing acotada y una sin límites. La jerarquía responde una pregunta práctica: *¿cuánta máquina necesita esta notación?* Una expresión regular clásica no puede comprobar si los corchetes están balanceados, porque para eso necesita una pila. Los motores reales de expresiones regulares van más allá de la clase clásica. Los grupos de balanceo de .NET en ⟦MACRO_0001⟧ le dan al motor una pila de capturas. Esa es exactamente la potencia adicional."
+
+#: lessons/cs-source/concepts/chomsky-hierarchy.md:8
+msgctxt "s-ddc50b3b4e51-0002"
+msgid "**Use it when:** you choose a parsing tool, or you wonder whether a pattern can do the job."
+msgstr "**Úsala cuando:** elijas una herramienta de análisis sintáctico o te preguntes si basta un patrón."
+
+#: lessons/cs-source/concepts/chomsky-hierarchy.md:9
+msgctxt "s-0499ac4dbbf2-0003"
+msgid "**Avoid it when:** you need to parse nested formats such as HTML with a plain regular expression."
+msgstr "**Evita usarla cuando:** necesites hacer el análisis sintáctico de formatos anidados como HTML con una expresión regular simple."
+
+#: lessons/cs-source/concepts/chomsky-hierarchy.md:11
+msgctxt "s-250de292f56f-0004"
+msgid "**Read more:**"
+msgstr "**Lee más:**"
+
+#: lessons/cs-source/concepts/chomsky-hierarchy.md:13
+msgctxt "s-2430cbca3fe2-0005"
+msgid "[Chomsky hierarchy](⟦DEST_0001⟧) (Wikipedia)"
+msgstr "[Jerarquía de Chomsky](⟦DEST_0001⟧) (Wikipedia)"
+
+#: lessons/cs-source/concepts/chomsky-hierarchy.md:14
+msgctxt "s-515ddd11224f-0006"
+msgid "[Formal language](⟦DEST_0001⟧) (Wikipedia)"
+msgstr "[Lenguaje formal](⟦DEST_0001⟧) (Wikipedia)"
+
+#: lessons/cs-source/concepts/chomsky-hierarchy.md:15
+msgctxt "s-a219b628591d-0007"
+msgid "[Pushdown automaton](⟦DEST_0001⟧) (Wikipedia)"
+msgstr "[Autómata con pila](⟦DEST_0001⟧) (Wikipedia)"

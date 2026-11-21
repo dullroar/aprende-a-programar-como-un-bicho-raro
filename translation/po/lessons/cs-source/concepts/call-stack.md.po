@@ -1,0 +1,158 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lessons/cs-source/concepts/call-stack.md:2
+msgctxt "s-dd15c04eaac3-0000"
+msgid "The call stack"
+msgstr "La pila de llamadas"
+
+#: lessons/cs-source/concepts/call-stack.md:6
+msgctxt "s-42d489a594e7-0001"
+msgid ""
+"The call stack is a stack of *frames*. Each active function call has one, "
+"holding its return address and its local variables. It exists so that "
+"functions can call functions, and recursion works. For most programmers the "
+"call stack *is* \"where am I in the program\". Several entries live without "
+"it, or work around it. A sed script has no calls at all. m4 and Make repeat "
+"by reading text again. The trigger recursion in ⟦MACRO_0001⟧ is limited by "
+"the database, not by a stack you can see."
+msgstr ""
+"La pila de llamadas es una pila de *marcos*. Cada llamada a una función que "
+"sigue activa tiene un marco. Este guarda su dirección de retorno y sus "
+"variables locales. Así una función puede llamar a otra y la recursión "
+"funciona. Para la mayoría de los programadores, la pila de llamadas *es* la "
+"respuesta a \"¿en qué parte del programa estoy?\". Varias entradas "
+"prescinden de ella o la esquivan. Un script de sed no hace llamadas. m4 y "
+"Make repiten al volver a leer texto. En ⟦MACRO_0001⟧, el límite a la "
+"recursión de disparadores lo impone la base de datos y no una pila que "
+"puedas ver."
+
+#: lessons/cs-source/concepts/call-stack.md:10
+msgctxt "s-8078ad52ee5f-0002"
+msgid ""
+"The call stack records where execution is and what each active call still "
+"needs"
+msgstr ""
+"La pila de llamadas registra dónde va la ejecución y qué le falta a cada "
+"llamada activa"
+
+#: lessons/cs-source/concepts/call-stack.md:11
+msgctxt "s-2323931449bd-0003"
+msgid ""
+"Two parts. On the left is a call stack with three frames, with the newest "
+"frame on top. The top frame is saveRow, with its argument, its local "
+"variable and a return address into drawCard. Below it is drawCard, with its "
+"locals and a return address into main. At the bottom is main, with its "
+"locals and a return address into the runtime. On the right are the returns "
+"in order. First saveRow returns and its frame is removed. Then drawCard "
+"returns. Then main returns."
+msgstr ""
+"Dos partes. A la izquierda hay una pila de llamadas con tres marcos. El más "
+"reciente está arriba. El marco superior es de saveRow. Contiene su "
+"argumento, su variable local y una dirección de retorno a drawCard. Debajo "
+"está el de drawCard, con sus variables locales y una dirección de retorno a "
+"main. Abajo está el de main, con sus variables locales y una dirección de "
+"retorno al entorno de ejecución. A la derecha están los retornos en orden. "
+"Primero retorna saveRow y se retira su marco. Luego retorna drawCard. Por "
+"último retorna main."
+
+#: lessons/cs-source/concepts/call-stack.md:12
+msgctxt "s-76b3f5f3a3f2-0004"
+msgid "Call stack"
+msgstr "Pila de llamadas"
+
+#: lessons/cs-source/concepts/call-stack.md:14
+msgctxt "s-afbb7d4760a9-0005"
+msgid "top: saveRow(card). Locals: sql. Return into drawCard"
+msgstr "arriba: saveRow(card). Locales: sql. Retorna a drawCard"
+
+#: lessons/cs-source/concepts/call-stack.md:14
+msgctxt "s-392c9a7f513a-0006"
+msgid "drawCard(). Locals: hours, category. Return into main"
+msgstr "drawCard(). Locales: hours, category. Retorna a main"
+
+#: lessons/cs-source/concepts/call-stack.md:14
+msgctxt "s-21222a6ffb12-0007"
+msgid "bottom: main(). Locals: total, rows. Return into the runtime"
+msgstr "abajo: main(). Locales: total, rows. Retorna al entorno de ejecución"
+
+#: lessons/cs-source/concepts/call-stack.md:16
+msgctxt "s-02cf5c9f7970-0008"
+msgid "Returns, in order"
+msgstr "Retornos, en orden"
+
+#: lessons/cs-source/concepts/call-stack.md:18
+msgctxt "s-1266a05cf157-0009"
+msgid "1. saveRow returns, frame removed"
+msgstr "1. retorna saveRow y se retira su marco"
+
+#: lessons/cs-source/concepts/call-stack.md:18
+msgctxt "s-0aead417a31a-0010"
+msgid "2. drawCard returns, frame removed"
+msgstr "2. retorna drawCard y se retira su marco"
+
+#: lessons/cs-source/concepts/call-stack.md:18
+msgctxt "s-21f5ffdac4d0-0011"
+msgid "3. main returns, stack empty"
+msgstr "3. retorna main y la pila queda vacía"
+
+#: lessons/cs-source/concepts/call-stack.md:23
+msgctxt "s-b6610464fe64-0012"
+msgid ""
+"Each active call owns one frame, and the newest frame is on top. When "
+"⟦CODE_0001⟧ returns, its frame is removed and execution continues at the "
+"return address it stored, which is inside ⟦CODE_0002⟧. The names here are "
+"examples, and the exact layout of a frame differs between languages and "
+"processors. The general idea of a stack is in ⟦MACRO_0003⟧."
+msgstr ""
+"Cada llamada activa tiene su propio marco y el marco más reciente queda "
+"arriba. Cuando ⟦CODE_0001⟧ retorna, se retira su marco. La ejecución sigue "
+"en la dirección de retorno que guardaba el marco, dentro de ⟦CODE_0002⟧. Los"
+" nombres son ejemplos. La estructura exacta de un marco varía entre "
+"lenguajes y procesadores. Consulta ⟦MACRO_0003⟧ para ver la idea general de "
+"una pila."
+
+#: lessons/cs-source/concepts/call-stack.md:25
+msgctxt "s-dec3901b0449-0013"
+msgid ""
+"**Use it when:** you read a stack trace, or you reason about recursion "
+"depth."
+msgstr ""
+"**Úsala cuando:** leas una traza de pila o razones sobre la profundidad de "
+"la recursión."
+
+#: lessons/cs-source/concepts/call-stack.md:26
+msgctxt "s-873f4944b95f-0014"
+msgid ""
+"**Avoid it when:** the recursion depth has no bound. A stack overflow ends "
+"the program, and in unsafe languages it can become a security hole."
+msgstr ""
+"**Evítala cuando:** la profundidad de la recursión no tenga límite. Un "
+"desbordamiento de pila termina el programa. En lenguajes sin garantías de "
+"seguridad, puede abrir una brecha de seguridad."
+
+#: lessons/cs-source/concepts/call-stack.md:28
+msgctxt "s-250de292f56f-0015"
+msgid "**Read more:**"
+msgstr "**Lee más:**"
+
+#: lessons/cs-source/concepts/call-stack.md:30
+msgctxt "s-a14be636fac8-0016"
+msgid "[Call stack](⟦DEST_0001⟧) (Wikipedia)"
+msgstr "[Pila de llamadas](⟦DEST_0001⟧) (Wikipedia)"
+
+#: lessons/cs-source/concepts/call-stack.md:31
+msgctxt "s-ce57ad8f1689-0017"
+msgid "[Stack buffer overflow](⟦DEST_0001⟧) (Wikipedia)"
+msgstr "[Desbordamiento de búfer en la pila](⟦DEST_0001⟧) (Wikipedia)"
+
+#: lessons/cs-source/concepts/call-stack.md:32
+msgctxt "s-ba85517b22b7-0018"
+msgid "[Tail call](⟦DEST_0001⟧) (Wikipedia)"
+msgstr "[Llamada de cola](⟦DEST_0001⟧) (Wikipedia)"

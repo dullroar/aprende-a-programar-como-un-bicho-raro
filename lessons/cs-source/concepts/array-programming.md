@@ -1,28 +1,28 @@
 ---
-title: "Array programming"
+title: "Programación con arreglos"
 chapter: 4
 order: 80
 ---
-Array programming applies an operation to a whole array at once. Scalars stretch to match, and explicit loops mostly disappear. Kenneth Iverson invented APL for this in the 1960s, and the idea lives on in J, K, R, MATLAB and NumPy. It exists because it makes the code short and because hardware can do many elements at the same time (SIMD, GPUs). [[entry:apl]] shows the style: five random draws, a running sum `+\` and a take-while replace the loop. You describe the full answer, then trim it.
+La programación con arreglos aplica una operación a todo un arreglo de una vez. Los escalares se extienden para ajustarse al arreglo y los bucles explícitos casi desaparecen. Kenneth Iverson inventó APL para esto en los años 1960 y la idea sigue viva en J, K, R, MATLAB y NumPy. Existe porque acorta el código y porque el hardware puede procesar muchos elementos a la vez (SIMD y GPU). [[entry:apl]] muestra el estilo. Cinco extracciones al azar, una suma acumulada `+\` y una selección que se detiene cuando deja de cumplirse la condición sustituyen al bucle. Describe la respuesta completa y luego recórtala.
 
 ```mermaid
 flowchart TB
-    accTitle: Array programming describes bulk transformations on whole vectors, often replacing explicit control flow
-    accDescr: A pipeline of whole arrays with no loop. The hours array is 19, 16, 19, 11. A running sum gives the totals 19, 35, 54, 65. Comparing every total with 40 gives the flags 1, 1, 0, 0. Summing the flags gives 2, and adding 1 gives 3 cards to keep. Taking 3 items from the hours gives 19, 16, 19.
-    H["hours: 19 16 19 11"] -->|"running sum"| T["totals: 19 35 54 65"]
-    T -->|"compare every total with 40"| F["at most 40: 1 1 0 0"]
-    F -->|"sum the flags, add 1"| N["cards to keep: 3"]
-    N -->|"take 3 from hours"| K["kept: 19 16 19"]
+    accTitle: La programación con arreglos describe transformaciones en bloque sobre vectores completos y a menudo sustituye al flujo de control explícito
+    accDescr: Una canalización de arreglos completos sin bucle. El arreglo de horas es 19, 16, 19, 11. Una suma acumulada da los totales 19, 35, 54, 65. Al comparar cada total con 40 se obtienen las banderas 1, 1, 0, 0. La suma de las banderas da 2. Añade 1 y obtienes 3 tarjetas que conservar. Si tomas 3 elementos del arreglo de horas, obtienes 19, 16, 19.
+    H["horas: 19 16 19 11"] -->|"suma acumulada"| T["totales: 19 35 54 65"]
+    T -->|"compara cada total con 40"| F["40 como máximo: 1 1 0 0"]
+    F -->|"suma las banderas y añade 1"| N["tarjetas que se conservan: 3"]
+    N -->|"toma 3 del arreglo de horas"| K["se conservan: 19 16 19"]
 ```
 
-Read the picture from top to bottom. Each step is one operation on a whole array, and no step is a loop. The comparison gives a flag for every total at once. The number of flags that are 1, plus one, is the number of cards to keep, because the card that crosses 40 is kept too. [[entry:apl]] works this way. The numbers here are only an example, and the idea does not depend on APL's symbols.
+Lee la imagen de arriba abajo. Cada paso es una operación sobre un arreglo completo. Ningún paso es un bucle. La comparación da una bandera para cada total, todas a la vez. Cada bandera indica si el total cumple la condición. Cuenta las banderas con valor 1 y añade uno. Ese es el número de tarjetas que se conservan, porque también se guarda la tarjeta con la que el total pasa de 40. [[entry:apl]] funciona así. Estos números solo son un ejemplo. La idea no depende de los símbolos de APL.
 
-- **Use it when:** you work with numbers, tables and signals.
-- **Avoid it when:** the algorithm is inherently one step after another, or the intermediate arrays are too big for memory. Also remember that a dense notation is hard for a team that does not read it.
+- **Úsala cuando:** trabajes con números, tablas y señales.
+- **Evítala cuando:** el algoritmo deba avanzar un paso tras otro o los arreglos intermedios no quepan en memoria. Recuerda también que una notación densa es difícil para un equipo que no la sabe leer.
 
-**Read more:**
+**Lee más:**
 
-- [Array programming](https://en.wikipedia.org/wiki/Array_programming) (Wikipedia)
-- [APL (programming language)](https://en.wikipedia.org/wiki/APL_(programming_language)) (Wikipedia)
+- [Programación con arreglos](https://en.wikipedia.org/wiki/Array_programming) (Wikipedia)
+- [APL (lenguaje de programación)](https://en.wikipedia.org/wiki/APL_(programming_language)) (Wikipedia)
 - [Kenneth E. Iverson](https://en.wikipedia.org/wiki/Kenneth_E._Iverson) (Wikipedia)
-- [Single instruction, multiple data](https://en.wikipedia.org/wiki/Single_instruction,_multiple_data) (Wikipedia)
+- [Una instrucción, múltiples datos](https://en.wikipedia.org/wiki/Single_instruction,_multiple_data) (Wikipedia)

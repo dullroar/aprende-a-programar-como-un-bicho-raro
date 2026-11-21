@@ -1,0 +1,43 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lessons/cs-source/concepts/code-review.md:2
+msgctxt "s-3d2006711d4c-0000"
+msgid "Code review"
+msgstr "Revisión de código"
+
+#: lessons/cs-source/concepts/code-review.md:6
+msgctxt "s-adb3a0c5e15f-0001"
+msgid "Every entry README has a How the stunt works section, the plain-English account that a reviewer reads the code against, and the gate refuses a new entry without it."
+msgstr "El README de cada entrada tiene una sección Cómo funciona el truco. Es la explicación en lenguaje claro que el revisor contrasta con el código. El control rechaza toda entrada nueva que carezca de esa sección."
+
+#: lessons/cs-source/concepts/code-review.md:8
+msgctxt "s-0836b4036858-0002"
+msgid "Code review means that another person reads your code before it is accepted. It exists because tests only check what you thought to test, while a reader may notice what you did not think of. Here the review has a specific shape: the README must contain a plain-English **How the stunt works** section, and reviewers (people and AI helpers) are asked to translate the code into plain words and list everything it can touch. If the reviewer cannot follow the entry, it is not merged, however clever it is."
+msgstr "En una revisión de código, otra persona lee tu código antes de que se acepte. Existe porque las pruebas solo comprueban lo que se te ocurrió probar. Un lector puede notar algo que se te pasó. Aquí la revisión tiene una forma concreta: el README debe incluir la sección **Cómo funciona el truco** en lenguaje claro. Los revisores (personas y asistentes de IA) deben explicar el código en palabras sencillas y hacer una lista de todo lo que puede tocar. Si el revisor no puede seguir la entrada, esta no se integra, por ingeniosa que sea."
+
+#: lessons/cs-source/concepts/code-review.md:10
+msgctxt "s-ead2a937717a-0003"
+msgid "**Use it when:** for every change, and most of all for unusual code."
+msgstr "**Úsala cuando:** hagas cualquier cambio, sobre todo si el código es inusual."
+
+#: lessons/cs-source/concepts/code-review.md:11
+msgctxt "s-a4708c6085ed-0004"
+msgid "**Avoid relying on it alone:** tired people miss things, and invisible characters hide from eyes. Combine review with automatic checks such as ⟦CODE_0001⟧."
+msgstr "**Evita depender solo de ella:** el cansancio hace que se pasen cosas por alto y los caracteres invisibles escapan a la vista. Combina la revisión con controles automáticos como ⟦CODE_0001⟧."
+
+#: lessons/cs-source/concepts/code-review.md:13
+msgctxt "s-250de292f56f-0005"
+msgid "**Read more:**"
+msgstr "**Lee más:**"
+
+#: lessons/cs-source/concepts/code-review.md:15
+msgctxt "s-9e00ae4f3cd9-0006"
+msgid "[Code review](⟦DEST_0001⟧) (Wikipedia)"
+msgstr "[Revisión de código](⟦DEST_0001⟧) (Wikipedia)"

@@ -1,0 +1,92 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lessons/cs-source/concepts/category-theory.md:2
+msgctxt "s-74a7b61879ea-0000"
+msgid "Category theory"
+msgstr "Teoría de categorías"
+
+#: lessons/cs-source/concepts/category-theory.md:6
+msgctxt "s-a66a4897ca2a-0001"
+msgid "Category theory is the mathematics of **things and the arrows between them**, and of how arrows compose. A **category** has *objects* and *morphisms* (arrows). Each morphism goes from one object to another. Two rules hold:"
+msgstr "La teoría de categorías estudia la matemática de las **cosas y las flechas entre ellas** y cómo se componen esas flechas. Una **categoría** tiene *objetos* y *morfismos* (flechas). Cada morfismo va de un objeto a otro. Se cumplen dos reglas:"
+
+#: lessons/cs-source/concepts/category-theory.md:8
+msgctxt "s-c610f418a9ea-0002"
+msgid ""
+"**Identity.** Every object has an arrow to itself that changes nothing: ⟦CODE_0001⟧.\n"
+"2. **Composition.** If ⟦CODE_0002⟧ and ⟦CODE_0003⟧, then ⟦CODE_0004⟧ exists. Composition is associative: ⟦CODE_0005⟧. And ⟦CODE_0006⟧."
+msgstr ""
+"**Identidad.** Cada objeto tiene una flecha hacia sí mismo que no cambia nada: ⟦CODE_0001⟧.\n"
+"2. **Composición.** Si ⟦CODE_0002⟧ y ⟦CODE_0003⟧, entonces existe ⟦CODE_0004⟧. La composición es asociativa: ⟦CODE_0005⟧. Y ⟦CODE_0006⟧."
+
+#: lessons/cs-source/concepts/category-theory.md:11
+msgctxt "s-a92b5ee9472a-0003"
+msgid "In programming, the usual category has *types* as objects and *functions* as arrows. The rules then say something you already use: you can chain functions, you can wrap a chain in parentheses wherever you like, and a function that returns its input changes nothing."
+msgstr "En programación, la categoría habitual tiene *tipos* como objetos y *funciones* como flechas. Las reglas dicen algo que ya usas. Puedes encadenar funciones y agrupar la cadena con paréntesis donde quieras. Una función que devuelve su entrada de datos no cambia nada."
+
+#: lessons/cs-source/concepts/category-theory.md:25
+msgctxt "s-cb968c293e45-0004"
+msgid "Three honest warnings come with the vocabulary:"
+msgstr "El vocabulario viene con tres advertencias sinceras:"
+
+#: lessons/cs-source/concepts/category-theory.md:27
+msgctxt "s-a6a8e09b7f6b-0005"
+msgid "**It is a lens, not a label.** You can *describe* many pipelines as arrows between types. That does not make every LINQ operator, every ⟦CODE_0001⟧ or every ⟦CODE_0002⟧ a formal part of a category. A claim such as \"this is a functor\" is a claim with laws, and the laws must hold."
+msgstr "**Sirve para mirar, no para etiquetar.** Puedes *describir* muchas canalizaciones como flechas entre tipos. Eso no convierte a cada operador de LINQ, cada ⟦CODE_0001⟧ o cada ⟦CODE_0002⟧ en parte formal de una categoría. Una afirmación como \"esto es un funtor\" trae consigo leyes que se deben cumplir."
+
+#: lessons/cs-source/concepts/category-theory.md:28
+msgctxt "s-7fb7a6299ccd-0006"
+msgid "**Syntax is not structure.** Two operations both called ⟦CODE_0001⟧ can differ in laziness, in order of effects and in what they do to an empty input. Same name, same shape, different behavior. The laws decide, and the names do not."
+msgstr "**La sintaxis no es la estructura.** Dos operaciones llamadas ⟦CODE_0001⟧ pueden diferir en el grado de evaluación perezosa, en el orden de sus efectos y en lo que hacen con una entrada de datos vacía. Mismo nombre, misma forma, distinto comportamiento. Las leyes deciden y los nombres no."
+
+#: lessons/cs-source/concepts/category-theory.md:29
+msgctxt "s-6266cee8d52c-0007"
+msgid "**A round trip is not an isomorphism by default.** An *isomorphism* is a pair of arrows ⟦CODE_0001⟧ and ⟦CODE_0002⟧ with ⟦CODE_0003⟧ and ⟦CODE_0004⟧. An encoder and a decoder (see ⟦MACRO_0005⟧) form one only if both laws hold. Many codecs keep the second law only on some values."
+msgstr "**Un viaje de ida y vuelta no implica un isomorfismo.** Un *isomorfismo* es un par de flechas ⟦CODE_0001⟧ y ⟦CODE_0002⟧ con ⟦CODE_0003⟧ y ⟦CODE_0004⟧. Un codificador y un decodificador (consulta ⟦MACRO_0005⟧) forman uno solo si se cumplen ambas leyes. Muchos códecs solo cumplen la segunda ley para algunos valores."
+
+#: lessons/cs-source/concepts/category-theory.md:31
+msgctxt "s-bd5107f6857b-0008"
+msgid "This book uses the ideas where an entry gives them something real to hold. ⟦MACRO_0001⟧ composes small pure functions. ⟦MACRO_0002⟧ chains query operators. The next pages, ⟦MACRO_0003⟧ and ⟦MACRO_0004⟧, name two of the laws that make such chains safe to rearrange."
+msgstr "Este libro usa las ideas donde una entrada les da algo concreto a lo que aferrarse. ⟦MACRO_0001⟧ compone funciones puras pequeñas. ⟦MACRO_0002⟧ encadena operadores de consulta. Las páginas siguientes, ⟦MACRO_0003⟧ y ⟦MACRO_0004⟧, nombran dos leyes que permiten reorganizar esas cadenas con seguridad."
+
+#: lessons/cs-source/concepts/category-theory.md:33
+msgctxt "s-fefe447b7f84-0009"
+msgid "**Use it when:** you want to say precisely what a pipeline preserves, or when two designs look alike and you need to know if they behave alike."
+msgstr "**Úsala cuando:** quieras decir con precisión qué conserva una canalización. También cuando dos diseños se parezcan y necesites saber si se comportan igual."
+
+#: lessons/cs-source/concepts/category-theory.md:34
+msgctxt "s-8d226fb8b6e3-0010"
+msgid "**Avoid it when:** the vocabulary replaces the explanation. If a plain sentence says the same thing, write the sentence."
+msgstr "**Evítala cuando:** el vocabulario sustituya a la explicación. Si una frase sencilla dice lo mismo, escribe esa frase."
+
+#: lessons/cs-source/concepts/category-theory.md:36
+msgctxt "s-250de292f56f-0011"
+msgid "**Read more:**"
+msgstr "**Lee más:**"
+
+#: lessons/cs-source/concepts/category-theory.md:38
+msgctxt "s-09448f9e8437-0012"
+msgid "[Category theory](⟦DEST_0001⟧) (Wikipedia)"
+msgstr "[Teoría de categorías](⟦DEST_0001⟧) (Wikipedia)"
+
+#: lessons/cs-source/concepts/category-theory.md:39
+msgctxt "s-1e942c64592d-0013"
+msgid "[Category (mathematics)](⟦DEST_0001⟧)) (Wikipedia)"
+msgstr "[Categoría (matemáticas)](⟦DEST_0001⟧)) (Wikipedia)"
+
+#: lessons/cs-source/concepts/category-theory.md:40
+msgctxt "s-d63257494323-0014"
+msgid "[Function composition](⟦DEST_0001⟧) (Wikipedia)"
+msgstr "[Composición de funciones](⟦DEST_0001⟧) (Wikipedia)"
+
+#: lessons/cs-source/concepts/category-theory.md:41
+msgctxt "s-277d0d21ca98-0015"
+msgid "[Isomorphism](⟦DEST_0001⟧) (Wikipedia)"
+msgstr "[Isomorfismo](⟦DEST_0001⟧) (Wikipedia)"

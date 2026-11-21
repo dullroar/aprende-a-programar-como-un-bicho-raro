@@ -1,0 +1,118 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lessons/cs-source/concepts/continuation.md:2
+msgctxt "s-476b8c158dae-0000"
+msgid "Continuations"
+msgstr "Continuaciones"
+
+#: lessons/cs-source/concepts/continuation.md:6
+msgctxt "s-a9dcff5ea0b5-0001"
+msgid "A continuation is \"the rest of the computation\" from some point, treated as a value. If you could pause a program and ask \"what will you do next?\", the answer is the continuation. In *continuation-passing style* every function takes an extra argument, a function that says what to do with the result. It exists because early exit, exceptions, generators, backtracking and ⟦CODE_0001⟧/⟦CODE_0002⟧ can all be written as ordinary function calls once \"what next?\" is a value. The entries here choose \"what next?\" on purpose. COBOL's ⟦CODE_0003⟧ rewrites it. Forth's ⟦CODE_0004⟧ rewinds it. Make's restart is \"the rest of the build, again\"."
+msgstr "Una continuación es \"el resto del cálculo\" a partir de un punto, tratado como un valor. Si pudieras pausar un programa y preguntar \"¿qué harás después?\", la respuesta sería la continuación. En el *estilo de paso de continuaciones*, cada función recibe un argumento extra: una función que indica qué hacer con el resultado. Existe porque permite expresar la salida anticipada, las excepciones, los generadores, el retroceso y ⟦CODE_0001⟧/⟦CODE_0002⟧ con llamadas a funciones comunes. Basta con que \"¿qué sigue?\" sea un valor. Las entradas de aquí eligen a propósito \"¿qué sigue?\". El ⟦CODE_0003⟧ de COBOL reescribe la respuesta. El ⟦CODE_0004⟧ de Forth la rebobina. El reinicio de Make es \"el resto de la compilación, otra vez\"."
+
+#: lessons/cs-source/concepts/continuation.md:10
+msgctxt "s-9dac639d4e2f-0002"
+msgid "A continuation names the remaining computation; a normal call merely returns to its caller"
+msgstr "Una continuación identifica lo que falta por calcular. Una llamada común solo retorna a quien la hizo"
+
+#: lessons/cs-source/concepts/continuation.md:11
+msgctxt "s-9dba12b605bc-0003"
+msgid "Two parallel panels. In an ordinary call, the caller does A, calls B, B finishes, and control returns to the caller, which does C. The caller's stack keeps the return point. With an explicit continuation, the program does A, captures K, the value that stands for what to do next, runs something else, later invokes K, and then does C. K is drawn as a separate box because it is a value that stands for pending control."
+msgstr "Dos paneles en paralelo. En una llamada común, quien llama hace A y luego llama a B. B termina y devuelve el control a quien lo llamó, que hace C. La pila de quien llama guarda el punto de retorno. Con una continuación explícita, el programa hace A y captura K, el valor que representa lo que sigue. Ejecuta otra cosa, invoca K más tarde y luego hace C. K aparece en un cuadro aparte porque es un valor que representa el control pendiente."
+
+#: lessons/cs-source/concepts/continuation.md:12
+msgctxt "s-4ac2e0e81a0b-0004"
+msgid "Explicit continuation"
+msgstr "Continuación explícita"
+
+#: lessons/cs-source/concepts/continuation.md:13
+msgctxt "s-d5f688ea2f89-0005"
+msgid "Do A"
+msgstr "Haz A"
+
+#: lessons/cs-source/concepts/continuation.md:13
+msgctxt "s-637d72430611-0006"
+msgid "capture K: what to do next"
+msgstr "captura K: lo que sigue"
+
+#: lessons/cs-source/concepts/continuation.md:13
+msgctxt "s-8474bea81952-0007"
+msgid "run something else"
+msgstr "ejecuta otra cosa"
+
+#: lessons/cs-source/concepts/continuation.md:13
+msgctxt "s-17123acf73fe-0008"
+msgid "invoke K"
+msgstr "invoca K"
+
+#: lessons/cs-source/concepts/continuation.md:13
+msgctxt "s-df2e6d45bdf8-0009"
+msgid "Do C"
+msgstr "Haz C"
+
+#: lessons/cs-source/concepts/continuation.md:15
+msgctxt "s-6ab7cb32b898-0010"
+msgid "Ordinary call and return"
+msgstr "Llamada y retorno comunes"
+
+#: lessons/cs-source/concepts/continuation.md:16
+msgctxt "s-6d382d7f178f-0011"
+msgid "Caller: do A"
+msgstr "Quien llama: haz A"
+
+#: lessons/cs-source/concepts/continuation.md:16
+msgctxt "s-1daa664c316b-0012"
+msgid "call B: return point stays on the stack"
+msgstr "llama a B: el punto de retorno queda en la pila"
+
+#: lessons/cs-source/concepts/continuation.md:16
+msgctxt "s-f90377eaa294-0013"
+msgid "B finishes"
+msgstr "B termina"
+
+#: lessons/cs-source/concepts/continuation.md:16
+msgctxt "s-7c92f5e3e65f-0014"
+msgid "Caller: do C"
+msgstr "Quien llama: haz C"
+
+#: lessons/cs-source/concepts/continuation.md:20
+msgctxt "s-54e992f4c2a6-0015"
+msgid "On the left the return point is hidden in the caller's stack, and the callee cannot name it. On the right it is a value, ⟦CODE_0001⟧, that can be stored, handed on and used later (or not at all). COBOL's mutable ⟦CODE_0002⟧ target, Forth's ⟦CODE_0003⟧ and Make's restart state are *analogies* for control that is held outside the call stack. None of them captures a first-class continuation, and an ordinary callback or closure is not one either."
+msgstr "A la izquierda, el punto de retorno queda oculto en la pila de quien llama. La función llamada no puede nombrarlo. A la derecha es un valor, ⟦CODE_0001⟧, que se puede guardar, pasar y usar después (o nunca). El destino mutable de ⟦CODE_0002⟧ en COBOL, ⟦CODE_0003⟧ en Forth y el estado de reinicio de Make son *analogías* del control guardado fuera de la pila de llamadas. Ninguno captura una continuación de primera clase. Una función de devolución de llamada (*callback*) común o una clausura (*closure*) tampoco lo son."
+
+#: lessons/cs-source/concepts/continuation.md:22
+msgctxt "s-3b9add4f6796-0016"
+msgid "**Use it when:** you write a compiler, an async library or a web framework with callbacks."
+msgstr "**Úsala cuando:** escribas un compilador, una biblioteca asíncrona o un marco de trabajo web con funciones de devolución de llamada."
+
+#: lessons/cs-source/concepts/continuation.md:23
+msgctxt "s-dbbb383f8ca6-0017"
+msgid "**Avoid it when:** you write by hand in a language without tail calls. The code becomes callbacks inside callbacks, and the stack grows."
+msgstr "**Evítala cuando:** programes a mano en un lenguaje sin llamadas de cola. El código se vuelve una serie de funciones de devolución de llamada anidadas. La pila crece."
+
+#: lessons/cs-source/concepts/continuation.md:25
+msgctxt "s-250de292f56f-0018"
+msgid "**Read more:**"
+msgstr "**Lee más:**"
+
+#: lessons/cs-source/concepts/continuation.md:27
+msgctxt "s-7ded42f1c1c4-0019"
+msgid "[Continuation](⟦DEST_0001⟧) (Wikipedia)"
+msgstr "[Continuación](⟦DEST_0001⟧) (Wikipedia)"
+
+#: lessons/cs-source/concepts/continuation.md:28
+msgctxt "s-f7f7115c3515-0020"
+msgid "[Continuation-passing style](⟦DEST_0001⟧) (Wikipedia)"
+msgstr "[Estilo de paso de continuaciones](⟦DEST_0001⟧) (Wikipedia)"
+
+#: lessons/cs-source/concepts/continuation.md:29
+msgctxt "s-8c7db7ba0e7d-0021"
+msgid "[Call-with-current-continuation](⟦DEST_0001⟧) (Wikipedia)"
+msgstr "[Llamada con la continuación actual](⟦DEST_0001⟧) (Wikipedia)"

@@ -1,43 +1,43 @@
 ---
-title: "Computation versus orchestration"
+title: "Cálculo frente a orquestación"
 chapter: 2
 order: 120
 ---
-Two jobs hide in every program. **Computation** makes new values: the sum, the stop decision, the next card. **Orchestration** decides what runs next, and in what order: the loop, the callbacks, the dispatch. When an entry says "the regex engine does the work" or "tar is the loop", the useful question is which of the two jobs it means.
+En cada programa se esconden dos tareas. El **cálculo** produce valores nuevos: la suma, la decisión de detenerse o la siguiente tarjeta. La **orquestación** decide qué se ejecuta después y en qué orden: el bucle, las funciones de devolución de llamada (*callbacks*) o el despacho. Cuando una entrada dice "el motor de expresiones regulares hace el trabajo" o "tar es el bucle", pregunta a cuál de las dos tareas se refiere.
 
-The entries answer it differently:
+Las entradas responden de distintas maneras:
 
-- In [[entry:tar-gnu]] tar *orchestrates*: it walks the members in order. A small dispatcher *computes*: it gives the five record types a meaning. The program's data (the dice, the order, the limit) is in the archive.
-- In [[entry:tar-gnu-weird]] tar supplies only *time*: one tick per record. A single SQL transaction computes everything else.
-- In [[entry:ed-weird]] and [[entry:ex-weird]] a launcher does the *edges* (five random digits, a database write) and the editor does the computing and the sequencing.
-- In [[entry:regex-pcre2]] the regex engine orchestrates by matching and backtracking, and a bodiless C dispatcher computes what each callout means. [[entry:xaml]] lets the parser orchestrate: document order is the order of execution.
-- In [[entry:javascript-weird]] the consumer orchestrates (it asks for the next card) and three closures compute. The impure parts, such as the database, the clock and the screen, sit at the edge.
+- En [[entry:tar-gnu]], tar *orquesta*: recorre los miembros en orden. Un despachador pequeño *calcula*: le da sentido a cada uno de los cinco tipos de registro. Los datos del programa (los dados, el orden y el límite) están en el archivo.
+- En [[entry:tar-gnu-weird]], tar solo aporta el *tiempo*: un pulso por registro. Una sola transacción SQL calcula todo lo demás.
+- En [[entry:ed-weird]] y [[entry:ex-weird]], un lanzador se ocupa de los *extremos* (cinco dígitos al azar y una escritura en la base de datos). El editor hace los cálculos y ordena los pasos.
+- En [[entry:regex-pcre2]], el motor de expresiones regulares orquesta mediante coincidencias y retrocesos. Un despachador de C sin cuerpo calcula qué significa cada callout. [[entry:xaml]] deja que el analizador sintáctico orqueste: el orden del documento determina el orden de ejecución.
+- En [[entry:javascript-weird]], el consumidor orquesta (pide la siguiente tarjeta) y tres clausuras calculan. Las partes impuras, como la base de datos, el reloj y la pantalla, quedan en el borde.
 
-Naming the split tells you where a bug can be, what to test and what an attacker would take over. It also keeps a stunt honest: if the "weird" part only orchestrates while an ordinary program computes, it is a costume change.
+Nombrar esa división te dice dónde puede estar un bicho, qué probar y de qué tomaría control un atacante. También aclara el truco. Si la parte "rara" solo orquesta mientras un programa común calcula, lo único que cambia es el disfraz.
 
 ```mermaid
 sequenceDiagram
-    accTitle: Choosing the next run is not the same as doing the computation
-    accDescr: A sequence diagram with three participants, the orchestrator or host, the computing worker, and the stored state or output. The host chooses when to invoke or resume the worker. The worker reads the state, applies one computational rule, writes a result or the next state, and replies done or needs another step. If another step is needed, the host schedules another invocation.
-    participant H as Orchestrator / host
-    participant W as Computing machine / worker
-    participant D as Stored state or output
-    H->>W: choose when to invoke or resume
-    W->>D: read state
-    D-->>W: current state
-    Note over W: apply one computational rule
-    W->>D: write result / next state
-    W-->>H: done, or needs another step
-    H->>W: if another step is needed, schedule another invocation
-    Note over H,W: two separate jobs
+    accTitle: Elegir la siguiente ejecución es distinto de hacer el cálculo
+    accDescr: Un diagrama de secuencia con tres participantes: el orquestador o anfitrión, el trabajador que calcula y el estado guardado o la salida. El anfitrión elige cuándo invocar o reanudar al trabajador. El trabajador lee el estado y aplica una regla de cálculo. Luego escribe un resultado o el estado siguiente e indica si terminó o necesita otro paso. Si hace falta otro paso, el anfitrión programa otra invocación.
+    participant H as Orquestador / anfitrión
+    participant W as Máquina de cálculo / trabajador
+    participant D as Estado guardado o salida
+    H->>W: elige cuándo invocar o reanudar
+    W->>D: lee el estado
+    D-->>W: estado actual
+    Note over W: aplica una regla de cálculo
+    W->>D: escribe el resultado o el siguiente estado
+    W-->>H: terminó o necesita otro paso
+    H->>W: si hace falta otro paso, programa otra invocación
+    Note over H,W: dos tareas distintas
 ```
 
-The host decides *when*, and the worker decides *what the next value is*. In [[entry:tar-gnu-weird]] tar's checkpoints play the host and one SQL transaction is the worker. In [[entry:tar-gnu]] tar walks the archive and a dispatcher gives each record a meaning. The picture shows two *roles*. One piece of software may play both, and an orchestrator may compute too.
+El anfitrión decide *cuándo* y el trabajador decide *cuál es el siguiente valor*. En [[entry:tar-gnu-weird]], los puntos de control de tar hacen de anfitrión y una transacción SQL hace de trabajador. En [[entry:tar-gnu]], tar recorre el archivo y un despachador le da sentido a cada registro. La imagen muestra dos *papeles*. Un componente de software puede cumplir ambos. Un orquestador también puede calcular.
 
-- **Use it when:** you review an unusual design, or write a test that must prove that a named tool does the interesting work.
-- **Avoid it when:** the two are the same thing, as in a pure expression. Do not invent a split.
+- **Usa la distinción cuando:** revises un diseño inusual o escribas una prueba que deba demostrar que una herramienta específica hace el trabajo de interés.
+- **Evita la distinción cuando:** las dos tareas sean la misma, como en una expresión pura. No inventes una separación.
 
-**Read more:**
+**Lee más:**
 
-- [Separation of concerns](https://en.wikipedia.org/wiki/Separation_of_concerns) (Wikipedia)
-- [Orchestration (computing)](https://en.wikipedia.org/wiki/Orchestration_(computing)) (Wikipedia)
+- [Separación de responsabilidades](https://en.wikipedia.org/wiki/Separation_of_concerns) (Wikipedia)
+- [Orquestación (informática)](https://en.wikipedia.org/wiki/Orchestration_(computing)) (Wikipedia)

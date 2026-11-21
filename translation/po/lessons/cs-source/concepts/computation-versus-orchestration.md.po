@@ -1,0 +1,148 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lessons/cs-source/concepts/computation-versus-orchestration.md:2
+msgctxt "s-f1ab8815858b-0000"
+msgid "Computation versus orchestration"
+msgstr "Cálculo frente a orquestación"
+
+#: lessons/cs-source/concepts/computation-versus-orchestration.md:6
+msgctxt "s-136e0f75b3e6-0001"
+msgid "Two jobs hide in every program. **Computation** makes new values: the sum, the stop decision, the next card. **Orchestration** decides what runs next, and in what order: the loop, the callbacks, the dispatch. When an entry says \"the regex engine does the work\" or \"tar is the loop\", the useful question is which of the two jobs it means."
+msgstr "En cada programa se esconden dos tareas. El **cálculo** produce valores nuevos: la suma, la decisión de detenerse o la siguiente tarjeta. La **orquestación** decide qué se ejecuta después y en qué orden: el bucle, las funciones de devolución de llamada (*callbacks*) o el despacho. Cuando una entrada dice \"el motor de expresiones regulares hace el trabajo\" o \"tar es el bucle\", pregunta a cuál de las dos tareas se refiere."
+
+#: lessons/cs-source/concepts/computation-versus-orchestration.md:8
+msgctxt "s-81ddb14d5c3d-0002"
+msgid "The entries answer it differently:"
+msgstr "Las entradas responden de distintas maneras:"
+
+#: lessons/cs-source/concepts/computation-versus-orchestration.md:10
+msgctxt "s-5ae8bc56e997-0003"
+msgid "In ⟦MACRO_0001⟧ tar *orchestrates*: it walks the members in order. A small dispatcher *computes*: it gives the five record types a meaning. The program's data (the dice, the order, the limit) is in the archive."
+msgstr "En ⟦MACRO_0001⟧, tar *orquesta*: recorre los miembros en orden. Un despachador pequeño *calcula*: le da sentido a cada uno de los cinco tipos de registro. Los datos del programa (los dados, el orden y el límite) están en el archivo."
+
+#: lessons/cs-source/concepts/computation-versus-orchestration.md:11
+msgctxt "s-113faa5e6620-0004"
+msgid "In ⟦MACRO_0001⟧ tar supplies only *time*: one tick per record. A single SQL transaction computes everything else."
+msgstr "En ⟦MACRO_0001⟧, tar solo aporta el *tiempo*: un pulso por registro. Una sola transacción SQL calcula todo lo demás."
+
+#: lessons/cs-source/concepts/computation-versus-orchestration.md:12
+msgctxt "s-6691afab434b-0005"
+msgid "In ⟦MACRO_0001⟧ and ⟦MACRO_0002⟧ a launcher does the *edges* (five random digits, a database write) and the editor does the computing and the sequencing."
+msgstr "En ⟦MACRO_0001⟧ y ⟦MACRO_0002⟧, un lanzador se ocupa de los *extremos* (cinco dígitos al azar y una escritura en la base de datos). El editor hace los cálculos y ordena los pasos."
+
+#: lessons/cs-source/concepts/computation-versus-orchestration.md:13
+msgctxt "s-5276ddef8b04-0006"
+msgid "In ⟦MACRO_0001⟧ the regex engine orchestrates by matching and backtracking, and a bodiless C dispatcher computes what each callout means. ⟦MACRO_0002⟧ lets the parser orchestrate: document order is the order of execution."
+msgstr "En ⟦MACRO_0001⟧, el motor de expresiones regulares orquesta mediante coincidencias y retrocesos. Un despachador de C sin cuerpo calcula qué significa cada callout. ⟦MACRO_0002⟧ deja que el analizador sintáctico orqueste: el orden del documento determina el orden de ejecución."
+
+#: lessons/cs-source/concepts/computation-versus-orchestration.md:14
+msgctxt "s-61430993c844-0007"
+msgid "In ⟦MACRO_0001⟧ the consumer orchestrates (it asks for the next card) and three closures compute. The impure parts, such as the database, the clock and the screen, sit at the edge."
+msgstr "En ⟦MACRO_0001⟧, el consumidor orquesta (pide la siguiente tarjeta) y tres clausuras calculan. Las partes impuras, como la base de datos, el reloj y la pantalla, quedan en el borde."
+
+#: lessons/cs-source/concepts/computation-versus-orchestration.md:16
+msgctxt "s-1b794eaffa34-0008"
+msgid "Naming the split tells you where a bug can be, what to test and what an attacker would take over. It also keeps a stunt honest: if the \"weird\" part only orchestrates while an ordinary program computes, it is a costume change."
+msgstr "Nombrar esa división te dice dónde puede estar un bicho, qué probar y de qué tomaría control un atacante. También aclara el truco. Si la parte \"rara\" solo orquesta mientras un programa común calcula, lo único que cambia es el disfraz."
+
+#: lessons/cs-source/concepts/computation-versus-orchestration.md:20
+msgctxt "s-adabb257bdf4-0009"
+msgid "Choosing the next run is not the same as doing the computation"
+msgstr "Elegir la siguiente ejecución es distinto de hacer el cálculo"
+
+#: lessons/cs-source/concepts/computation-versus-orchestration.md:21
+msgctxt "s-42d8c22a6a4c-0010"
+msgid "A sequence diagram with three participants, the orchestrator or host, the computing worker, and the stored state or output. The host chooses when to invoke or resume the worker. The worker reads the state, applies one computational rule, writes a result or the next state, and replies done or needs another step. If another step is needed, the host schedules another invocation."
+msgstr "Un diagrama de secuencia con tres participantes: el orquestador o anfitrión, el trabajador que calcula y el estado guardado o la salida. El anfitrión elige cuándo invocar o reanudar al trabajador. El trabajador lee el estado y aplica una regla de cálculo. Luego escribe un resultado o el estado siguiente e indica si terminó o necesita otro paso. Si hace falta otro paso, el anfitrión programa otra invocación."
+
+#: lessons/cs-source/concepts/computation-versus-orchestration.md:22
+msgctxt "s-02a7cf681148-0011"
+msgid "Orchestrator / host"
+msgstr "Orquestador / anfitrión"
+
+#: lessons/cs-source/concepts/computation-versus-orchestration.md:23
+msgctxt "s-e7ba5fb9b098-0012"
+msgid "Computing machine / worker"
+msgstr "Máquina de cálculo / trabajador"
+
+#: lessons/cs-source/concepts/computation-versus-orchestration.md:24
+msgctxt "s-5ac9ae08ec0e-0013"
+msgid "Stored state or output"
+msgstr "Estado guardado o salida"
+
+#: lessons/cs-source/concepts/computation-versus-orchestration.md:25
+msgctxt "s-5e37326d7f02-0014"
+msgid "choose when to invoke or resume"
+msgstr "elige cuándo invocar o reanudar"
+
+#: lessons/cs-source/concepts/computation-versus-orchestration.md:26
+msgctxt "s-7f4c78a5fc08-0015"
+msgid "read state"
+msgstr "lee el estado"
+
+#: lessons/cs-source/concepts/computation-versus-orchestration.md:27
+msgctxt "s-3edfe0291df0-0016"
+msgid "current state"
+msgstr "estado actual"
+
+#: lessons/cs-source/concepts/computation-versus-orchestration.md:28
+msgctxt "s-34d813b0b1fc-0017"
+msgid "apply one computational rule"
+msgstr "aplica una regla de cálculo"
+
+#: lessons/cs-source/concepts/computation-versus-orchestration.md:29
+msgctxt "s-aeb19f93833d-0018"
+msgid "write result / next state"
+msgstr "escribe el resultado o el siguiente estado"
+
+#: lessons/cs-source/concepts/computation-versus-orchestration.md:30
+msgctxt "s-f98c76bff43b-0019"
+msgid "done, or needs another step"
+msgstr "terminó o necesita otro paso"
+
+#: lessons/cs-source/concepts/computation-versus-orchestration.md:31
+msgctxt "s-00effec77b37-0020"
+msgid "if another step is needed, schedule another invocation"
+msgstr "si hace falta otro paso, programa otra invocación"
+
+#: lessons/cs-source/concepts/computation-versus-orchestration.md:32
+msgctxt "s-e1507d724c5d-0021"
+msgid "two separate jobs"
+msgstr "dos tareas distintas"
+
+#: lessons/cs-source/concepts/computation-versus-orchestration.md:35
+msgctxt "s-e0a4151b1fc7-0022"
+msgid "The host decides *when*, and the worker decides *what the next value is*. In ⟦MACRO_0001⟧ tar's checkpoints play the host and one SQL transaction is the worker. In ⟦MACRO_0002⟧ tar walks the archive and a dispatcher gives each record a meaning. The picture shows two *roles*. One piece of software may play both, and an orchestrator may compute too."
+msgstr "El anfitrión decide *cuándo* y el trabajador decide *cuál es el siguiente valor*. En ⟦MACRO_0001⟧, los puntos de control de tar hacen de anfitrión y una transacción SQL hace de trabajador. En ⟦MACRO_0002⟧, tar recorre el archivo y un despachador le da sentido a cada registro. La imagen muestra dos *papeles*. Un componente de software puede cumplir ambos. Un orquestador también puede calcular."
+
+#: lessons/cs-source/concepts/computation-versus-orchestration.md:37
+msgctxt "s-53b9f41abfb8-0023"
+msgid "**Use it when:** you review an unusual design, or write a test that must prove that a named tool does the interesting work."
+msgstr "**Usa la distinción cuando:** revises un diseño inusual o escribas una prueba que deba demostrar que una herramienta específica hace el trabajo de interés."
+
+#: lessons/cs-source/concepts/computation-versus-orchestration.md:38
+msgctxt "s-0ad628ab5583-0024"
+msgid "**Avoid it when:** the two are the same thing, as in a pure expression. Do not invent a split."
+msgstr "**Evita la distinción cuando:** las dos tareas sean la misma, como en una expresión pura. No inventes una separación."
+
+#: lessons/cs-source/concepts/computation-versus-orchestration.md:40
+msgctxt "s-250de292f56f-0025"
+msgid "**Read more:**"
+msgstr "**Lee más:**"
+
+#: lessons/cs-source/concepts/computation-versus-orchestration.md:42
+msgctxt "s-023dff5b9d33-0026"
+msgid "[Separation of concerns](⟦DEST_0001⟧) (Wikipedia)"
+msgstr "[Separación de responsabilidades](⟦DEST_0001⟧) (Wikipedia)"
+
+#: lessons/cs-source/concepts/computation-versus-orchestration.md:43
+msgctxt "s-682de74a586e-0027"
+msgid "[Orchestration (computing)](⟦DEST_0001⟧)) (Wikipedia)"
+msgstr "[Orquestación (informática)](⟦DEST_0001⟧)) (Wikipedia)"

@@ -1,15 +1,15 @@
 ---
-title: "The Chomsky hierarchy"
+title: "La jerarquía de Chomsky"
 chapter: 5
 order: 10
 ---
-In 1956 Noam Chomsky sorted formal languages into four classes by power: regular, context-free, context-sensitive and unrestricted. Each class needs a stronger machine to recognize it: a finite automaton, a pushdown automaton (a finite machine plus a stack), a bounded Turing machine and a full Turing machine. It exists to answer a practical question: *how much machine does this notation need?* A regular expression, in the classic sense, cannot check that brackets are balanced, because that needs a stack. Real regex engines go beyond the classic class. .NET's balancing groups in [[entry:regex-dotnet]] give the engine a stack of captures, and that is exactly the extra power.
+En 1956 Noam Chomsky ordenó los lenguajes formales en cuatro clases según su potencia: regulares, libres de contexto, sensibles al contexto y sin restricciones. Cada clase necesita una máquina más potente que la anterior. En orden, son un autómata finito, un autómata con pila (una máquina finita más una pila), una máquina de Turing acotada y una sin límites. La jerarquía responde una pregunta práctica: *¿cuánta máquina necesita esta notación?* Una expresión regular clásica no puede comprobar si los corchetes están balanceados, porque para eso necesita una pila. Los motores reales de expresiones regulares van más allá de la clase clásica. Los grupos de balanceo de .NET en [[entry:regex-dotnet]] le dan al motor una pila de capturas. Esa es exactamente la potencia adicional.
 
-- **Use it when:** you choose a parsing tool, or you wonder whether a pattern can do the job.
-- **Avoid it when:** you need to parse nested formats such as HTML with a plain regular expression.
+- **Úsala cuando:** elijas una herramienta de análisis sintáctico o te preguntes si basta un patrón.
+- **Evita usarla cuando:** necesites hacer el análisis sintáctico de formatos anidados como HTML con una expresión regular simple.
 
-**Read more:**
+**Lee más:**
 
-- [Chomsky hierarchy](https://en.wikipedia.org/wiki/Chomsky_hierarchy) (Wikipedia)
-- [Formal language](https://en.wikipedia.org/wiki/Formal_language) (Wikipedia)
-- [Pushdown automaton](https://en.wikipedia.org/wiki/Pushdown_automaton) (Wikipedia)
+- [Jerarquía de Chomsky](https://en.wikipedia.org/wiki/Chomsky_hierarchy) (Wikipedia)
+- [Lenguaje formal](https://en.wikipedia.org/wiki/Formal_language) (Wikipedia)
+- [Autómata con pila](https://en.wikipedia.org/wiki/Pushdown_automaton) (Wikipedia)

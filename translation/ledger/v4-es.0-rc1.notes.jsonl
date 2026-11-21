@@ -1243,3 +1243,18 @@
 {"segment_id": "s-57acc2ad335e-0084", "ts": "2026-11-21T15:07:34Z", "findings": [], "playful_note": "Preserves the delayed reveal as the point of the exercise."}
 {"segment_id": "s-56af0099ca4f-0001", "ts": "2026-11-21T15:09:11Z", "findings": ["I7: banned rendering 'callback' for glossary term callback"]}
 {"segment_id": "s-bb07710edf15-0003", "ts": "2026-11-21T15:09:11Z", "findings": [], "playful_note": "Keeps the button-window misdirection and makes the notification the decision-maker."}
+{"segment_id": "s-d0cdbeea597d-0001", "ts": "2026-11-21T15:13:32Z", "findings": ["I14: English phase letter 'R' survives in prose (use {{phase.4.letter}})"]}
+{"segment_id": "s-3e18a4700f4e-0019", "ts": "2026-11-21T15:13:32Z", "findings": ["I9: target equals the English source", "TRANSLATE: the reply is the English text unchanged"]}
+{"segment_id": "s-cdcfd31b3e44-0001", "ts": "2026-11-21T15:13:32Z", "findings": ["I7: banned rendering 'falla' for glossary term failure"]}
+{"segment_id": "s-5858b3da84b6-0017", "ts": "2026-11-21T15:13:32Z", "findings": ["TRANSLATE: the reply is the English text unchanged"]}
+{"segment_id": "s-afbb7d4760a9-0005", "ts": "2026-11-21T15:13:33Z", "findings": ["I7: glossary term card must be rendered 'tarjeta'"]}
+{"segment_id": "s-392c9a7f513a-0006", "ts": "2026-11-21T15:13:33Z", "findings": ["I7: glossary term hours must be rendered 'horas'"]}
+{"segment_id": "s-21222a6ffb12-0007", "ts": "2026-11-21T15:13:33Z", "findings": ["I7: glossary term row must be rendered 'fila'"]}
+{"segment_id": "s-397ed03549c8-0020", "ts": "2026-11-21T15:14:58Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-f6e8ea2653a8-0001", "ts": "2026-11-21T15:16:05Z", "findings": ["I7: glossary term pull must be rendered 'demanda (pull)'"]}
+{"segment_id": "s-983fe3c4835e-0019", "ts": "2026-11-21T15:16:05Z", "findings": ["I7: glossary term process must be rendered 'proceso'"]}
+{"segment_id": "s-d0cdbeea597d-0001", "ts": "2026-11-21T15:17:06Z", "findings": ["I14: English phase letter 'R' survives in prose (use {{phase.4.letter}})"]}
+{"segment_id": "s-3e18a4700f4e-0019", "ts": "2026-11-21T15:17:06Z", "findings": ["I9: target equals the English source", "TRANSLATE: the reply is the English text unchanged"]}
+{"segment_id": "s-397ed03549c8-0020", "ts": "2026-11-21T15:17:08Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-f6e8ea2653a8-0001", "ts": "2026-11-21T15:17:08Z", "findings": ["I7: glossary term pull must be rendered 'demanda (pull)'"]}
+{"segment_id": "s-983fe3c4835e-0019", "ts": "2026-11-21T15:17:08Z", "findings": ["I7: glossary term process must be rendered 'proceso'"]}

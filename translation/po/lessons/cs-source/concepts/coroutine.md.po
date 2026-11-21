@@ -1,0 +1,181 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lessons/cs-source/concepts/coroutine.md:2
+msgctxt "s-57d592c480ed-0000"
+msgid "Coroutines"
+msgstr "Corrutinas"
+
+#: lessons/cs-source/concepts/coroutine.md:6
+msgctxt "s-685a5488c0eb-0001"
+msgid ""
+"A coroutine is a function that can pause in the middle and resume later, "
+"with its local variables intact. Ordinary functions run from start to "
+"finish. A coroutine can hand a value to its caller, wait and carry on when "
+"asked. It exists for producers and consumers, for generators and for "
+"cooperative multitasking (⟦CODE_0001⟧/⟦CODE_0002⟧ is built on the idea). "
+"Several entries are coroutines wearing a different hat. A Rust iterator made"
+" with ⟦CODE_0003⟧, a Kotlin ⟦CODE_0004⟧ and Python's ⟦CODE_0005⟧ each "
+"produce the next value only when the loop asks for it."
+msgstr ""
+"Una corrutina es una función que puede pausarse a mitad de su ejecución y "
+"reanudarse después con sus variables locales intactas. Las funciones comunes"
+" se ejecutan de principio a fin. Una corrutina puede entregar un valor a "
+"quien la llamó, esperar y seguir cuando se lo pidan. Sirve para productores "
+"y consumidores, para generadores y para la multitarea cooperativa "
+"(⟦CODE_0001⟧/⟦CODE_0002⟧ se basa en esta idea). Varias entradas son "
+"corrutinas disfrazadas. Un iterador de Rust hecho con ⟦CODE_0003⟧, un "
+"⟦CODE_0004⟧ de Kotlin y el ⟦CODE_0005⟧ de Python producen el siguiente valor"
+" solo cuando el bucle lo pide."
+
+#: lessons/cs-source/concepts/coroutine.md:10
+msgctxt "s-f70fd0f005e5-0002"
+msgid ""
+"Coroutines suspend and resume cooperatively, keeping their own local state "
+"between yields"
+msgstr ""
+"Las corrutinas se suspenden y se reanudan de forma cooperativa. Conservan su"
+" estado local entre cesiones de control"
+
+#: lessons/cs-source/concepts/coroutine.md:11
+msgctxt "s-12bb64600b8d-0003"
+msgid ""
+"A sequence diagram with a caller and two coroutines, A and B. The caller "
+"starts A. A runs and yields to B. B runs and yields back to A. A resumes "
+"just after its yield, with its local variables intact, runs more, and yields"
+" to B again. B resumes just after its own yield. B yields back to A, A "
+"finishes and returns to the caller. Only one routine runs at a time, and "
+"control moves only when a routine yields."
+msgstr ""
+"Un diagrama de secuencia con un llamador y dos corrutinas, A y B. El "
+"llamador inicia A. A se ejecuta y cede el control a B. B se ejecuta y "
+"devuelve el control a A. A se reanuda justo después de ceder, con sus "
+"variables locales intactas. Sigue ejecutándose y vuelve a ceder el control a"
+" B. B se reanuda justo después de su propia cesión. B devuelve el control a "
+"A. A termina y retorna al llamador. Solo se ejecuta una rutina a la vez y el"
+" control cambia solo cuando una rutina lo cede."
+
+#: lessons/cs-source/concepts/coroutine.md:12
+msgctxt "s-9bc9b83c11dd-0004"
+msgid "Caller"
+msgstr "Llamador"
+
+#: lessons/cs-source/concepts/coroutine.md:13
+msgctxt "s-05effb66c748-0005"
+msgid "Coroutine A"
+msgstr "Corrutina A"
+
+#: lessons/cs-source/concepts/coroutine.md:14
+msgctxt "s-62349c473537-0006"
+msgid "Coroutine B"
+msgstr "Corrutina B"
+
+#: lessons/cs-source/concepts/coroutine.md:15
+msgctxt "s-cced28c6dc3f-0007"
+msgid "start"
+msgstr "inicia"
+
+#: lessons/cs-source/concepts/coroutine.md:16
+msgctxt "s-c58467a12748-0008"
+msgid "runs until its first yield"
+msgstr "se ejecuta hasta que cede el control"
+
+#: lessons/cs-source/concepts/coroutine.md:17
+msgctxt "s-15445a4dda52-0009"
+msgid "yield to B"
+msgstr "cede el control a B"
+
+#: lessons/cs-source/concepts/coroutine.md:18
+msgctxt "s-96c0acde61c4-0010"
+msgid "starts, runs until its first yield"
+msgstr "inicia y se ejecuta hasta que cede"
+
+#: lessons/cs-source/concepts/coroutine.md:19
+msgctxt "s-a3cc9f28b9c4-0011"
+msgid "yield back to A"
+msgstr "devuelve el control a A"
+
+#: lessons/cs-source/concepts/coroutine.md:20
+msgctxt "s-2ce58ff8771b-0012"
+msgid "resumes after its yield, locals intact"
+msgstr "se reanuda tras ceder, con sus variables intactas"
+
+#: lessons/cs-source/concepts/coroutine.md:21
+msgctxt "s-bdf373107166-0013"
+msgid "yield to B again"
+msgstr "vuelve a ceder el control a B"
+
+#: lessons/cs-source/concepts/coroutine.md:22
+msgctxt "s-ef4effd39d22-0014"
+msgid "resumes after its yield, not from the top"
+msgstr "se reanuda tras ceder, sin volver al inicio"
+
+#: lessons/cs-source/concepts/coroutine.md:23
+msgctxt "s-a3cc9f28b9c4-0015"
+msgid "yield back to A"
+msgstr "devuelve el control a A"
+
+#: lessons/cs-source/concepts/coroutine.md:24
+msgctxt "s-bd3bf0448076-0016"
+msgid "finishes, returns to the caller"
+msgstr "termina y retorna al llamador"
+
+#: lessons/cs-source/concepts/coroutine.md:25
+msgctxt "s-615254a6ff74-0017"
+msgid "one runs at a time: nothing preempts it"
+msgstr "solo se ejecuta una a la vez: nada la interrumpe"
+
+#: lessons/cs-source/concepts/coroutine.md:28
+msgctxt "s-9c202497eae3-0018"
+msgid ""
+"Control moves only when a coroutine yields, so only one routine runs at a "
+"time. That is the difference from threads: nothing preempts a coroutine, and"
+" nothing runs in parallel. A coroutine that resumes continues after its last"
+" ⟦CODE_0001⟧, with its local variables as it left them. An ordinary call "
+"would start again from the top."
+msgstr ""
+"El control cambia solo cuando una corrutina lo cede, así que solo se ejecuta"
+" una rutina a la vez. Esa es la diferencia con los hilos. Nada interrumpe a "
+"una corrutina para quitarle el control y nada se ejecuta en paralelo. Una "
+"corrutina que se reanuda sigue después de su último ⟦CODE_0001⟧, con sus "
+"variables locales tal como las dejó. Una llamada común volvería a empezar "
+"desde el principio."
+
+#: lessons/cs-source/concepts/coroutine.md:30
+msgctxt "s-983fe3c4835e-0019"
+msgid ""
+"**Use it when:** you process a stream, or you want two pieces of code to "
+"take turns without threads."
+msgstr ""
+"**Úsala cuando:** proceses un flujo o quieras que dos partes del código se "
+"turnen sin hilos."
+
+#: lessons/cs-source/concepts/coroutine.md:31
+msgctxt "s-fc7bea496666-0020"
+msgid ""
+"**Avoid it when:** you need real parallelism, or when the many pause points "
+"make the program hard to follow."
+msgstr ""
+"**Evítala cuando:** necesites paralelismo real o los muchos puntos de pausa "
+"dificulten seguir el programa."
+
+#: lessons/cs-source/concepts/coroutine.md:33
+msgctxt "s-250de292f56f-0021"
+msgid "**Read more:**"
+msgstr "**Lee más:**"
+
+#: lessons/cs-source/concepts/coroutine.md:35
+msgctxt "s-b7b005db0377-0022"
+msgid "[Coroutine](⟦DEST_0001⟧) (Wikipedia)"
+msgstr "[Corrutina](⟦DEST_0001⟧) (Wikipedia)"
+
+#: lessons/cs-source/concepts/coroutine.md:36
+msgctxt "s-4169da9cd2a0-0023"
+msgid "⟦MACRO_0001⟧ in \"Evaluation and demand\""
+msgstr "⟦MACRO_0001⟧ en \"Evaluación y demanda\""

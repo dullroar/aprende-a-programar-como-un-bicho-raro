@@ -104,3 +104,4 @@
 127 P4-fix-4 done accepted F004, named the regular expression as the builder of the capture stack through the .NET README PO, and passed scoped and working-tree fast verification.
 128 P4-lessons-cs-source-chapters-1 done applied 87 segments across nine authored chapters, recorded 13 humor entries and five scoped exceptions, and passed scoped and working-tree fast verification including both translated diagrams.
 129 P4-lessons-cs-source-chapters-2 done applied 85 segments, recorded eight humor entries and SI-019/SI-020, and passed scoped and working-tree verification with diagrams at 12.00 and 11.55 pt.
+130 P4-lessons-cs-source-concepts-1 done Applied 257 segments across 17 authored concepts, recorded 20 humor entries, eight scoped exceptions and SI-021, and passed scoped completeness, scoped fast and working-tree fast verification, including all eight diagrams.

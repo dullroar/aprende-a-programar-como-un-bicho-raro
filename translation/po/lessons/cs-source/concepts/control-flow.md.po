@@ -1,0 +1,71 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lessons/cs-source/concepts/control-flow.md:2
+msgctxt "s-96b91a496ba7-0000"
+msgid "Control flow"
+msgstr "Flujo de control"
+
+#: lessons/cs-source/concepts/control-flow.md:6
+msgctxt "s-f6e8ea2653a8-0001"
+msgid ""
+"Control flow is the order in which a program's steps run: one after another,"
+" a choice between branches, a repetition, a call and a return, or a jump. It"
+" exists as a separate idea because \"what happens next?\" is a different "
+"question from \"what is the data?\". Most languages weld control flow to two"
+" things: the *program counter* and the *call stack*. The entries in this "
+"repository pull it loose and keep it somewhere else. In COBOL it lives in "
+"the target of a ⟦CODE_0001⟧. In Forth it lives in the text interpreter's "
+"parse position. In Make it lives in which files exist. Seeing it move is the"
+" best way to understand that it is a thing you can name."
+msgstr ""
+"El flujo de control es el orden en que se ejecutan los pasos de un programa."
+" Los pasos pueden ejecutarse en secuencia, tomar una rama, repetirse, llamar"
+" y retornar o saltar. Es una idea aparte porque \"¿qué pasa después?\" es "
+"una pregunta distinta de \"¿cuáles son los datos?\". La mayoría de los "
+"lenguajes sueldan el flujo de control a dos piezas: el *contador de "
+"programa* y la *pila de llamadas*. Las entradas de este repositorio lo "
+"sueltan y lo guardan en otro sitio. En COBOL vive en el destino de un "
+"⟦CODE_0001⟧. En Forth vive en la posición de lectura del intérprete de "
+"texto. En Make vive en qué archivos existen. Verlo cambiar de sitio es la "
+"mejor forma de entender que puedes nombrarlo."
+
+#: lessons/cs-source/concepts/control-flow.md:8
+msgctxt "s-187ed19b792b-0002"
+msgid ""
+"**Use it when:** you ask, about any program, \"where does 'what runs next' "
+"live?\""
+msgstr ""
+"**Úsalo cuando:** te preguntes, sobre cualquier programa, \"¿dónde vive lo "
+"que decide qué se ejecuta después?\"."
+
+#: lessons/cs-source/concepts/control-flow.md:9
+msgctxt "s-487372cb127b-0003"
+msgid ""
+"**Avoid it when:** the mechanism hides control flow from debugging tools. A "
+"debugger shows the call stack. It does not show a rewritten line of text."
+msgstr ""
+"**Evítalo cuando:** el mecanismo oculte el flujo de control a las "
+"herramientas de depuración. Un depurador muestra la pila de llamadas. No "
+"muestra una línea de texto reescrita."
+
+#: lessons/cs-source/concepts/control-flow.md:11
+msgctxt "s-250de292f56f-0004"
+msgid "**Read more:**"
+msgstr "**Lee más:**"
+
+#: lessons/cs-source/concepts/control-flow.md:13
+msgctxt "s-5d4fa696927b-0005"
+msgid "[Control flow](⟦DEST_0001⟧) (Wikipedia)"
+msgstr "[Flujo de control](⟦DEST_0001⟧) (Wikipedia)"
+
+#: lessons/cs-source/concepts/control-flow.md:14
+msgctxt "s-8baf562023b6-0006"
+msgid "[Control-flow graph](⟦DEST_0001⟧) (Wikipedia)"
+msgstr "[Grafo de flujo de control](⟦DEST_0001⟧) (Wikipedia)"

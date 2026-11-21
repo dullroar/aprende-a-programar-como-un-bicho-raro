@@ -1,0 +1,53 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lessons/cs-source/concepts/arbitrary-code-execution.md:2
+msgctxt "s-a731594c18f9-0000"
+msgid "Arbitrary code execution"
+msgstr "Ejecución de código arbitrario"
+
+#: lessons/cs-source/concepts/arbitrary-code-execution.md:6
+msgctxt "s-4863d9e5c5f3-0001"
+msgid "Arbitrary code execution means that an attacker makes a program run instructions its author never intended. It is usually an accident: a buffer overflow, an injected string, a file format that is more powerful than anyone noticed. It matters here because many entries in this repository do the same thing *on purpose, in a safe place*. XAML's ⟦CODE_0001⟧ calls methods while the file is parsed. Perl's ⟦CODE_0002⟧ runs code in the middle of a match. Tcl's ⟦CODE_0003⟧ hook runs code that is stored in a database row. The mechanism is always the same: **data is read as code**."
+msgstr "La ejecución de código arbitrario ocurre cuando un atacante hace que un programa ejecute instrucciones que su autor nunca previó. Suele ocurrir por accidente: un desbordamiento de búfer, una cadena de texto inyectada o un formato de archivo más potente de lo que se creía. Aquí importa porque muchas entradas del repositorio hacen lo mismo *a propósito, en un lugar seguro*. El ⟦CODE_0001⟧ de XAML llama a métodos durante el análisis del archivo. La construcción ⟦CODE_0002⟧ de Perl ejecuta código en mitad de una coincidencia. El gancho ⟦CODE_0003⟧ de Tcl ejecuta código guardado en una fila de la base de datos. El mecanismo siempre es el mismo: **se leen datos como código**."
+
+#: lessons/cs-source/concepts/arbitrary-code-execution.md:8
+msgctxt "s-a0242732c403-0002"
+msgid "**Use this idea when:** you review any feature that \"evaluates\" something: ⟦CODE_0001⟧, templates, deserializers, macro expanders, plugin loaders."
+msgstr "**Usa esta idea cuando:** revises cualquier función que \"evalúe\" algo: ⟦CODE_0001⟧, plantillas, deserializadores, expansores de macros o cargadores de complementos."
+
+#: lessons/cs-source/concepts/arbitrary-code-execution.md:9
+msgctxt "s-d1c5aa323f31-0003"
+msgid "**Avoid the technique when:** the input comes from someone you do not trust. If you need extension points, offer a small, declared interface (a plugin API, or a tiny expression language) instead of a general ⟦CODE_0001⟧."
+msgstr "**Evita la técnica cuando:** la entrada de datos venga de alguien en quien no confías. Si necesitas puntos de extensión, ofrece una interfaz pequeña y declarada (una API de complementos o un lenguaje de expresiones mínimo) en lugar de un ⟦CODE_0001⟧ general."
+
+#: lessons/cs-source/concepts/arbitrary-code-execution.md:11
+msgctxt "s-250de292f56f-0004"
+msgid "**Read more:**"
+msgstr "**Lee más:**"
+
+#: lessons/cs-source/concepts/arbitrary-code-execution.md:13
+msgctxt "s-286ec3be659a-0005"
+msgid "[Arbitrary code execution](⟦DEST_0001⟧) (Wikipedia)"
+msgstr "[Ejecución de código arbitrario](⟦DEST_0001⟧) (Wikipedia)"
+
+#: lessons/cs-source/concepts/arbitrary-code-execution.md:14
+msgctxt "s-2ac88169ccff-0006"
+msgid "[Code injection](⟦DEST_0001⟧) (Wikipedia)"
+msgstr "[Inyección de código](⟦DEST_0001⟧) (Wikipedia)"
+
+#: lessons/cs-source/concepts/arbitrary-code-execution.md:15
+msgctxt "s-efd6a0dd8483-0007"
+msgid "[Code injection](⟦DEST_0001⟧) (OWASP), with examples and defenses"
+msgstr "[Inyección de código](⟦DEST_0001⟧) (OWASP), con ejemplos y defensas"
+
+#: lessons/cs-source/concepts/arbitrary-code-execution.md:16
+msgctxt "s-e92e40451dce-0008"
+msgid "[⟦CODE_0001⟧](⟦DEST_0002⟧) (MDN), whose page opens its warning with \"Never use direct eval()!\""
+msgstr "[⟦CODE_0001⟧](⟦DEST_0002⟧) (MDN), cuya advertencia empieza con \"¡Nunca uses eval() directo!\""

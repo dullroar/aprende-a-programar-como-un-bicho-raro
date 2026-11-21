@@ -1,9 +1,9 @@
 ---
-title: "Closures and lexical environments"
+title: "Clausuras y entornos léxicos"
 chapter: 6
 order: 45
 ---
-A **closure** is a function together with the variables it was made next to. Those variables are its **lexical environment**: the names that were in scope where the function was written. The function keeps them alive after the code that made them has finished. That is why a function can remember a count, a total or a seed between calls, and why nothing else can reach them.
+Una **clausura** (*closure*) es una función junto con las variables que tenía a su alrededor al crearse. Esas variables son su **entorno léxico**: los nombres que estaban en el ámbito donde se escribió la función. La función las mantiene vivas después de que termina el código que las creó. Por eso una función puede recordar un conteo, un total o una semilla entre llamadas y nada más puede acceder a esos datos.
 
 ```js
 const counter = () => { let n = 0; return () => ++n; };   // `n` lives on, inside the returned function
@@ -12,30 +12,30 @@ const next = counter(); next(); next();                   // 1, then 2
 
 ```mermaid
 flowchart TB
-    accTitle: Two closures may share code without sharing captured state
-    accDescr: The function code is shared. Calling the counter factory the first time makes closure A, which points to its own private environment holding n A. Calling A once sets n A to 1, and calling it again sets n A to 2. Calling the factory a second time makes closure B, which points to its own separate environment holding n B. Calling B once sets n B to 1, and n A is not changed. The factory call can return, and each environment lives while its closure can be reached.
-    CODE["shared function code: add 1 to n, return n"]
+    accTitle: Dos clausuras pueden compartir código sin compartir el estado capturado
+    accDescr: Las funciones comparten el código. La primera llamada a la fábrica de contadores crea la clausura A, que apunta a su entorno privado con n A. La primera llamada a A pone n A en 1 y la siguiente lo pone en 2. La segunda llamada a la fábrica crea la clausura B, que apunta a su propio entorno con n B. Al llamar a B una vez, n B queda en 1 y n A no cambia. La llamada a la fábrica puede retornar. Cada entorno sigue vivo mientras se pueda acceder a su clausura.
+    CODE["Código compartido de la función: suma 1 a n y devuelve n"]
     CODE -.-> CA
     CODE -.-> CB
-    CB["closure B (from factory call 2)"] --> EB0["environment B: n = 0"] -->|"B()"| EB1["n = 1"]
-    CA["closure A (from factory call 1)"] --> EA0["environment A: n = 0"] -->|"A()"| EA1["n = 1"] -->|"A()"| EA2["n = 2"]
+    CB["clausura B (llamada 2 a la fábrica)"] --> EB0["entorno B: n = 0"] -->|"B()"| EB1["n = 1"]
+    CA["clausura A (llamada 1 a la fábrica)"] --> EA0["entorno A: n = 0"] -->|"A()"| EA1["n = 1"] -->|"A()"| EA2["n = 2"]
 ```
 
-Each box under a closure is that closure's *own* environment. The number is not copied into the code when the closure is made. The factory's call frame can return, and the captured variable lives on while the closure can be reached. These are two different factory calls. Two functions made in *one* factory call over the same variable would share it, as described below.
+Cada cuadro debajo de una clausura es su *propio* entorno. Al crear la clausura, el número no se copia al código. El marco de la llamada a la fábrica puede retirarse y la variable capturada sigue viva mientras se pueda acceder a la clausura. Son dos llamadas distintas a la fábrica. Dos funciones creadas en *una sola* llamada a la fábrica que capturaran la misma variable la compartirían, como se explica abajo.
 
-Be exact about three things:
+Sé preciso en tres puntos:
 
-- **A closure captures variables, not values.** Two closures over the same variable share it, and a change made by one is seen by the other. Each call to a factory such as `counter()` makes a *new* variable, so two counters never share state. C# lambdas behave the same way.
-- **Lambda syntax is not a closure.** `x => x + 1` uses no outside variable, so there is nothing interesting to capture. An arrow function that updates a variable that outlives the call is a closure that matters.
-- **A closure is not a continuation.** You can call it again and it does the *next* step. You cannot hand it "the rest of the computation", resume it in the middle of something or go back. See [[continuation]]. Nor is `this` a captured variable: a method that uses `this.n` loses its `n` when you detach it from its object, and a closure keeps its variable.
+- **Una clausura captura variables, no valores.** Dos clausuras que capturan la misma variable la comparten. Si una la cambia, la otra ve el cambio. Cada llamada a una fábrica como `counter()` crea una variable *nueva*, así que dos contadores nunca comparten estado. Las lambdas de C# se comportan igual.
+- **La sintaxis lambda no es una clausura.** `x => x + 1` no usa ninguna variable externa, así que no hay nada interesante que capturar. Una función flecha que actualiza una variable que sobrevive a la llamada sí es una clausura que importa.
+- **Una clausura no es una continuación.** Puedes volver a llamarla y ejecutará el paso *siguiente*. No puedes entregarle "el resto del cálculo", reanudarla a mitad de algo ni volver atrás. Consulta [[continuation]]. `this` tampoco es una variable capturada. Un método que usa `this.n` pierde su `n` cuando lo separas de su objeto, mientras que una clausura conserva su variable.
 
-The environment lives as long as the function can be reached. When nothing refers to the function any more, the engine may collect it, and its variables with it. [[entry:javascript-weird]] builds its whole algorithm from three closures (a seeded number source, a card machine and an iterator around it), and its check script proves each claim on this page, including the lifetime one, with a `WeakRef` and a forced garbage collection. [[entry:javascript]] uses a closure over the seed for its random numbers. [[entry:RustChallenge1]] and [[entry:ModernChallenge1]] use closures (and a C# lambda) to move work into places that expect a value.
+El entorno vive mientras se pueda acceder a la función. Cuando nada apunta a la función, el motor puede recuperar su memoria y la de sus variables. [[entry:javascript-weird]] arma todo su algoritmo con tres clausuras: una fuente de números con semilla, una máquina de tarjetas y un iterador que la envuelve. Su script de comprobación demuestra cada afirmación de esta página, incluida la del tiempo de vida, con un `WeakRef` y una recolección de basura forzada. [[entry:javascript]] usa una clausura que captura la semilla de sus números aleatorios. [[entry:RustChallenge1]] y [[entry:ModernChallenge1]] usan clausuras (y una lambda de C#) para llevar trabajo a lugares que esperan un valor.
 
-- **Use it when:** you need private state without a class, a function that is configured once and called many times or a callback that must remember something.
-- **Avoid it when:** the hidden state makes the program hard to test or to read. Captured variables do not show up in a debugger the way fields do, and a long chain of closures is hard to follow.
+- **Úsala cuando:** necesites estado privado sin una clase, una función que configuras una vez y llamas muchas veces o una función de devolución de llamada (*callback*) que deba recordar algo.
+- **Evítala cuando:** el estado oculto haga difícil probar o leer el programa. Las variables capturadas no aparecen en el depurador como los campos. Una cadena larga de clausuras es difícil de seguir.
 
-**Read more:**
+**Lee más:**
 
-- [Closure (computer programming)](https://en.wikipedia.org/wiki/Closure_(computer_programming)) (Wikipedia)
-- [Scope (computer science)](https://en.wikipedia.org/wiki/Scope_(computer_science)) (Wikipedia)
-- [Closures](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Closures) (MDN)
+- [Clausura (programación)](https://en.wikipedia.org/wiki/Closure_(computer_programming)) (Wikipedia)
+- [Ámbito (ciencias de la computación)](https://en.wikipedia.org/wiki/Scope_(computer_science)) (Wikipedia)
+- [Clausuras](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Closures) (MDN)

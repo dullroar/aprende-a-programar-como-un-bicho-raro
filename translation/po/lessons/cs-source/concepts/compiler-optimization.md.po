@@ -1,0 +1,48 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lessons/cs-source/concepts/compiler-optimization.md:2
+msgctxt "s-8a5efe19016d-0000"
+msgid "Optimizers"
+msgstr "Optimizadores"
+
+#: lessons/cs-source/concepts/compiler-optimization.md:6
+msgctxt "s-5af0270dd7b1-0001"
+msgid "An optimizing compiler rewrites your program so that it runs faster or uses less memory, but it must keep the *observable behavior* that the language defines (the \"as-if\" rule). It exists so that you can write clear code and still get fast code. The leak is that anything the language does not count as observable may disappear. In ⟦MACRO_0001⟧ callouts only mean something if the engine visits them, and the optimizer may skip them. So the program compiles the pattern with ⟦CODE_0002⟧, ⟦CODE_0003⟧ and ⟦CODE_0004⟧, and it does not use the JIT, which has no callout support."
+msgstr "Un compilador optimizador reescribe tu programa para que se ejecute más rápido o use menos memoria. Debe conservar el *comportamiento observable* que define el lenguaje (la regla \"como si\"). Así puedes escribir código claro y aun así obtener código rápido. La fuga está en que todo lo que el lenguaje no considera observable puede desaparecer. En ⟦MACRO_0001⟧, los callouts solo tienen efecto si el motor pasa por ellos. El optimizador puede saltárselos. Por eso el programa compila el patrón con ⟦CODE_0002⟧, ⟦CODE_0003⟧ y ⟦CODE_0004⟧. Tampoco usa el JIT, que no admite callouts."
+
+#: lessons/cs-source/concepts/compiler-optimization.md:8
+msgctxt "s-8ce5b78e13b1-0002"
+msgid "**Use it when:** trust it for pure code, and measure before you hand-optimize."
+msgstr "**Úsalo cuando:** trabajes con código puro. Confía en el optimizador y mide antes de optimizar a mano."
+
+#: lessons/cs-source/concepts/compiler-optimization.md:9
+msgctxt "s-131e98da0feb-0003"
+msgid "**Avoid it when:** correctness depends on effects the language can discard."
+msgstr "**Evítalo cuando:** la corrección dependa de efectos que el lenguaje puede descartar."
+
+#: lessons/cs-source/concepts/compiler-optimization.md:11
+msgctxt "s-250de292f56f-0004"
+msgid "**Read more:**"
+msgstr "**Lee más:**"
+
+#: lessons/cs-source/concepts/compiler-optimization.md:13
+msgctxt "s-8851b5e43457-0005"
+msgid "[Optimizing compiler](⟦DEST_0001⟧) (Wikipedia)"
+msgstr "[Compilador optimizador](⟦DEST_0001⟧) (Wikipedia)"
+
+#: lessons/cs-source/concepts/compiler-optimization.md:14
+msgctxt "s-c71ba2416d89-0006"
+msgid "[As-if rule](⟦DEST_0001⟧) (Wikipedia)"
+msgstr "[Regla \"como si\"](⟦DEST_0001⟧) (Wikipedia)"
+
+#: lessons/cs-source/concepts/compiler-optimization.md:15
+msgctxt "s-453444778478-0007"
+msgid "[Dead-code elimination](⟦DEST_0001⟧) (Wikipedia)"
+msgstr "[Eliminación de código muerto](⟦DEST_0001⟧) (Wikipedia)"

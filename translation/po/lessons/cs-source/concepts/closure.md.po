@@ -1,0 +1,236 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lessons/cs-source/concepts/closure.md:2
+msgctxt "s-21a074c8c5b3-0000"
+msgid "Closures and lexical environments"
+msgstr "Clausuras y entornos léxicos"
+
+#: lessons/cs-source/concepts/closure.md:6
+msgctxt "s-71413dca3024-0001"
+msgid ""
+"A **closure** is a function together with the variables it was made next to."
+" Those variables are its **lexical environment**: the names that were in "
+"scope where the function was written. The function keeps them alive after "
+"the code that made them has finished. That is why a function can remember a "
+"count, a total or a seed between calls, and why nothing else can reach them."
+msgstr ""
+"Una **clausura** (*closure*) es una función junto con las variables que "
+"tenía a su alrededor al crearse. Esas variables son su **entorno léxico**: "
+"los nombres que estaban en el ámbito donde se escribió la función. La "
+"función las mantiene vivas después de que termina el código que las creó. "
+"Por eso una función puede recordar un conteo, un total o una semilla entre "
+"llamadas y nada más puede acceder a esos datos."
+
+#: lessons/cs-source/concepts/closure.md:15
+msgctxt "s-4e8dea100d8a-0002"
+msgid "Two closures may share code without sharing captured state"
+msgstr ""
+"Dos clausuras pueden compartir código sin compartir el estado capturado"
+
+#: lessons/cs-source/concepts/closure.md:16
+msgctxt "s-a2d664a412f4-0003"
+msgid ""
+"The function code is shared. Calling the counter factory the first time "
+"makes closure A, which points to its own private environment holding n A. "
+"Calling A once sets n A to 1, and calling it again sets n A to 2. Calling "
+"the factory a second time makes closure B, which points to its own separate "
+"environment holding n B. Calling B once sets n B to 1, and n A is not "
+"changed. The factory call can return, and each environment lives while its "
+"closure can be reached."
+msgstr ""
+"Las funciones comparten el código. La primera llamada a la fábrica de "
+"contadores crea la clausura A, que apunta a su entorno privado con n A. La "
+"primera llamada a A pone n A en 1 y la siguiente lo pone en 2. La segunda "
+"llamada a la fábrica crea la clausura B, que apunta a su propio entorno con "
+"n B. Al llamar a B una vez, n B queda en 1 y n A no cambia. La llamada a la "
+"fábrica puede retornar. Cada entorno sigue vivo mientras se pueda acceder a "
+"su clausura."
+
+#: lessons/cs-source/concepts/closure.md:17
+msgctxt "s-ea9387face0c-0004"
+msgid "shared function code: add 1 to n, return n"
+msgstr "Código compartido de la función: suma 1 a n y devuelve n"
+
+#: lessons/cs-source/concepts/closure.md:20
+msgctxt "s-1806cea0b15c-0005"
+msgid "closure B (from factory call 2)"
+msgstr "clausura B (llamada 2 a la fábrica)"
+
+#: lessons/cs-source/concepts/closure.md:20
+msgctxt "s-b496771b9976-0006"
+msgid "environment B: n = 0"
+msgstr "entorno B: n = 0"
+
+#: lessons/cs-source/concepts/closure.md:20
+msgctxt "s-4d56403cbc7e-0007"
+msgid "B()"
+msgstr "B()"
+
+#: lessons/cs-source/concepts/closure.md:20
+msgctxt "s-f96630922dfc-0008"
+msgid "n = 1"
+msgstr "n = 1"
+
+#: lessons/cs-source/concepts/closure.md:21
+msgctxt "s-49b6eba5a6f6-0009"
+msgid "closure A (from factory call 1)"
+msgstr "clausura A (llamada 1 a la fábrica)"
+
+#: lessons/cs-source/concepts/closure.md:21
+msgctxt "s-d40ba82a1d0e-0010"
+msgid "environment A: n = 0"
+msgstr "entorno A: n = 0"
+
+#: lessons/cs-source/concepts/closure.md:21
+msgctxt "s-b9ee44d39137-0011"
+msgid "A()"
+msgstr "A()"
+
+#: lessons/cs-source/concepts/closure.md:21
+msgctxt "s-f96630922dfc-0012"
+msgid "n = 1"
+msgstr "n = 1"
+
+#: lessons/cs-source/concepts/closure.md:21
+msgctxt "s-b9ee44d39137-0013"
+msgid "A()"
+msgstr "A()"
+
+#: lessons/cs-source/concepts/closure.md:21
+msgctxt "s-0d3332659264-0014"
+msgid "n = 2"
+msgstr "n = 2"
+
+#: lessons/cs-source/concepts/closure.md:24
+msgctxt "s-dcb5e41df970-0015"
+msgid ""
+"Each box under a closure is that closure's *own* environment. The number is "
+"not copied into the code when the closure is made. The factory's call frame "
+"can return, and the captured variable lives on while the closure can be "
+"reached. These are two different factory calls. Two functions made in *one* "
+"factory call over the same variable would share it, as described below."
+msgstr ""
+"Cada cuadro debajo de una clausura es su *propio* entorno. Al crear la "
+"clausura, el número no se copia al código. El marco de la llamada a la "
+"fábrica puede retirarse y la variable capturada sigue viva mientras se pueda"
+" acceder a la clausura. Son dos llamadas distintas a la fábrica. Dos "
+"funciones creadas en *una sola* llamada a la fábrica que capturaran la misma"
+" variable la compartirían, como se explica abajo."
+
+#: lessons/cs-source/concepts/closure.md:26
+msgctxt "s-f60f0e6f55be-0016"
+msgid "Be exact about three things:"
+msgstr "Sé preciso en tres puntos:"
+
+#: lessons/cs-source/concepts/closure.md:28
+msgctxt "s-4083755dfb71-0017"
+msgid ""
+"**A closure captures variables, not values.** Two closures over the same "
+"variable share it, and a change made by one is seen by the other. Each call "
+"to a factory such as ⟦CODE_0001⟧ makes a *new* variable, so two counters "
+"never share state. C# lambdas behave the same way."
+msgstr ""
+"**Una clausura captura variables, no valores.** Dos clausuras que capturan "
+"la misma variable la comparten. Si una la cambia, la otra ve el cambio. Cada"
+" llamada a una fábrica como ⟦CODE_0001⟧ crea una variable *nueva*, así que "
+"dos contadores nunca comparten estado. Las lambdas de C# se comportan igual."
+
+#: lessons/cs-source/concepts/closure.md:29
+msgctxt "s-ca98703be657-0018"
+msgid ""
+"**Lambda syntax is not a closure.** ⟦CODE_0001⟧ uses no outside variable, so"
+" there is nothing interesting to capture. An arrow function that updates a "
+"variable that outlives the call is a closure that matters."
+msgstr ""
+"**La sintaxis lambda no es una clausura.** ⟦CODE_0001⟧ no usa ninguna "
+"variable externa, así que no hay nada interesante que capturar. Una función "
+"flecha que actualiza una variable que sobrevive a la llamada sí es una "
+"clausura que importa."
+
+#: lessons/cs-source/concepts/closure.md:30
+msgctxt "s-72aa058f375d-0019"
+msgid ""
+"**A closure is not a continuation.** You can call it again and it does the "
+"*next* step. You cannot hand it \"the rest of the computation\", resume it "
+"in the middle of something or go back. See ⟦MACRO_0001⟧. Nor is ⟦CODE_0002⟧ "
+"a captured variable: a method that uses ⟦CODE_0003⟧ loses its ⟦CODE_0004⟧ "
+"when you detach it from its object, and a closure keeps its variable."
+msgstr ""
+"**Una clausura no es una continuación.** Puedes volver a llamarla y "
+"ejecutará el paso *siguiente*. No puedes entregarle \"el resto del "
+"cálculo\", reanudarla a mitad de algo ni volver atrás. Consulta "
+"⟦MACRO_0001⟧. ⟦CODE_0002⟧ tampoco es una variable capturada. Un método que "
+"usa ⟦CODE_0003⟧ pierde su ⟦CODE_0004⟧ cuando lo separas de su objeto, "
+"mientras que una clausura conserva su variable."
+
+#: lessons/cs-source/concepts/closure.md:32
+msgctxt "s-397ed03549c8-0020"
+msgid ""
+"The environment lives as long as the function can be reached. When nothing "
+"refers to the function any more, the engine may collect it, and its "
+"variables with it. ⟦MACRO_0001⟧ builds its whole algorithm from three "
+"closures (a seeded number source, a card machine and an iterator around it),"
+" and its check script proves each claim on this page, including the lifetime"
+" one, with a ⟦CODE_0002⟧ and a forced garbage collection. ⟦MACRO_0003⟧ uses "
+"a closure over the seed for its random numbers. ⟦MACRO_0004⟧ and "
+"⟦MACRO_0005⟧ use closures (and a C# lambda) to move work into places that "
+"expect a value."
+msgstr ""
+"El entorno vive mientras se pueda acceder a la función. Cuando nada apunta a"
+" la función, el motor puede recuperar su memoria y la de sus variables. "
+"⟦MACRO_0001⟧ arma todo su algoritmo con tres clausuras: una fuente de "
+"números con semilla, una máquina de tarjetas y un iterador que la envuelve. "
+"Su script de comprobación demuestra cada afirmación de esta página, incluida"
+" la del tiempo de vida, con un ⟦CODE_0002⟧ y una recolección de basura "
+"forzada. ⟦MACRO_0003⟧ usa una clausura que captura la semilla de sus números"
+" aleatorios. ⟦MACRO_0004⟧ y ⟦MACRO_0005⟧ usan clausuras (y una lambda de C#)"
+" para llevar trabajo a lugares que esperan un valor."
+
+#: lessons/cs-source/concepts/closure.md:34
+msgctxt "s-9673b2209dbb-0021"
+msgid ""
+"**Use it when:** you need private state without a class, a function that is "
+"configured once and called many times or a callback that must remember "
+"something."
+msgstr ""
+"**Úsala cuando:** necesites estado privado sin una clase, una función que "
+"configuras una vez y llamas muchas veces o una función de devolución de "
+"llamada (*callback*) que deba recordar algo."
+
+#: lessons/cs-source/concepts/closure.md:35
+msgctxt "s-48200c7f9053-0022"
+msgid ""
+"**Avoid it when:** the hidden state makes the program hard to test or to "
+"read. Captured variables do not show up in a debugger the way fields do, and"
+" a long chain of closures is hard to follow."
+msgstr ""
+"**Evítala cuando:** el estado oculto haga difícil probar o leer el programa."
+" Las variables capturadas no aparecen en el depurador como los campos. Una "
+"cadena larga de clausuras es difícil de seguir."
+
+#: lessons/cs-source/concepts/closure.md:37
+msgctxt "s-250de292f56f-0023"
+msgid "**Read more:**"
+msgstr "**Lee más:**"
+
+#: lessons/cs-source/concepts/closure.md:39
+msgctxt "s-69965ba3a0e5-0024"
+msgid "[Closure (computer programming)](⟦DEST_0001⟧)) (Wikipedia)"
+msgstr "[Clausura (programación)](⟦DEST_0001⟧)) (Wikipedia)"
+
+#: lessons/cs-source/concepts/closure.md:40
+msgctxt "s-823f858500e7-0025"
+msgid "[Scope (computer science)](⟦DEST_0001⟧)) (Wikipedia)"
+msgstr "[Ámbito (ciencias de la computación)](⟦DEST_0001⟧)) (Wikipedia)"
+
+#: lessons/cs-source/concepts/closure.md:41
+msgctxt "s-f0753644ea07-0026"
+msgid "[Closures](⟦DEST_0001⟧) (MDN)"
+msgstr "[Clausuras](⟦DEST_0001⟧) (MDN)"

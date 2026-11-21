@@ -1,14 +1,14 @@
 ---
-title: "Category theory"
+title: "Teoría de categorías"
 chapter: 5
 order: 120
 ---
-Category theory is the mathematics of **things and the arrows between them**, and of how arrows compose. A **category** has *objects* and *morphisms* (arrows). Each morphism goes from one object to another. Two rules hold:
+La teoría de categorías estudia la matemática de las **cosas y las flechas entre ellas** y cómo se componen esas flechas. Una **categoría** tiene *objetos* y *morfismos* (flechas). Cada morfismo va de un objeto a otro. Se cumplen dos reglas:
 
-1. **Identity.** Every object has an arrow to itself that changes nothing: `id`.
-2. **Composition.** If `f : A → B` and `g : B → C`, then `g ∘ f : A → C` exists. Composition is associative: `h ∘ (g ∘ f) = (h ∘ g) ∘ f`. And `f ∘ id = f = id ∘ f`.
+1. **Identidad.** Cada objeto tiene una flecha hacia sí mismo que no cambia nada: `id`.
+2. **Composición.** Si `f : A → B` y `g : B → C`, entonces existe `g ∘ f : A → C`. La composición es asociativa: `h ∘ (g ∘ f) = (h ∘ g) ∘ f`. Y `f ∘ id = f = id ∘ f`.
 
-In programming, the usual category has *types* as objects and *functions* as arrows. The rules then say something you already use: you can chain functions, you can wrap a chain in parentheses wherever you like, and a function that returns its input changes nothing.
+En programación, la categoría habitual tiene *tipos* como objetos y *funciones* como flechas. Las reglas dicen algo que ya usas. Puedes encadenar funciones y agrupar la cadena con paréntesis donde quieras. Una función que devuelve su entrada de datos no cambia nada.
 
 ```haskell
 -- Haskell: composition is a function, and the laws are things you can test.
@@ -22,20 +22,20 @@ compose = lambda g, f: lambda x: g(f(x))
 assert compose(str, lambda n: n + 1)(41) == "42"
 ```
 
-Three honest warnings come with the vocabulary:
+El vocabulario viene con tres advertencias sinceras:
 
-- **It is a lens, not a label.** You can *describe* many pipelines as arrows between types. That does not make every LINQ operator, every `map` or every `INSERT ... SELECT` a formal part of a category. A claim such as "this is a functor" is a claim with laws, and the laws must hold.
-- **Syntax is not structure.** Two operations both called `map` can differ in laziness, in order of effects and in what they do to an empty input. Same name, same shape, different behavior. The laws decide, and the names do not.
-- **A round trip is not an isomorphism by default.** An *isomorphism* is a pair of arrows `f` and `g` with `g ∘ f = id` and `f ∘ g = id`. An encoder and a decoder (see [[serialization-deserialization-pickling]]) form one only if both laws hold. Many codecs keep the second law only on some values.
+- **Sirve para mirar, no para etiquetar.** Puedes *describir* muchas canalizaciones como flechas entre tipos. Eso no convierte a cada operador de LINQ, cada `map` o cada `INSERT ... SELECT` en parte formal de una categoría. Una afirmación como "esto es un funtor" trae consigo leyes que se deben cumplir.
+- **La sintaxis no es la estructura.** Dos operaciones llamadas `map` pueden diferir en el grado de evaluación perezosa, en el orden de sus efectos y en lo que hacen con una entrada de datos vacía. Mismo nombre, misma forma, distinto comportamiento. Las leyes deciden y los nombres no.
+- **Un viaje de ida y vuelta no implica un isomorfismo.** Un *isomorfismo* es un par de flechas `f` y `g` con `g ∘ f = id` y `f ∘ g = id`. Un codificador y un decodificador (consulta [[serialization-deserialization-pickling]]) forman uno solo si se cumplen ambas leyes. Muchos códecs solo cumplen la segunda ley para algunos valores.
 
-This book uses the ideas where an entry gives them something real to hold. [[entry:haskell]] composes small pure functions. [[entry:LinqChallenge1]] chains query operators. The next pages, [[functor]] and [[monoid-and-fold]], name two of the laws that make such chains safe to rearrange.
+Este libro usa las ideas donde una entrada les da algo concreto a lo que aferrarse. [[entry:haskell]] compone funciones puras pequeñas. [[entry:LinqChallenge1]] encadena operadores de consulta. Las páginas siguientes, [[functor]] y [[monoid-and-fold]], nombran dos leyes que permiten reorganizar esas cadenas con seguridad.
 
-- **Use it when:** you want to say precisely what a pipeline preserves, or when two designs look alike and you need to know if they behave alike.
-- **Avoid it when:** the vocabulary replaces the explanation. If a plain sentence says the same thing, write the sentence.
+- **Úsala cuando:** quieras decir con precisión qué conserva una canalización. También cuando dos diseños se parezcan y necesites saber si se comportan igual.
+- **Evítala cuando:** el vocabulario sustituya a la explicación. Si una frase sencilla dice lo mismo, escribe esa frase.
 
-**Read more:**
+**Lee más:**
 
-- [Category theory](https://en.wikipedia.org/wiki/Category_theory) (Wikipedia)
-- [Category (mathematics)](https://en.wikipedia.org/wiki/Category_(mathematics)) (Wikipedia)
-- [Function composition](https://en.wikipedia.org/wiki/Function_composition) (Wikipedia)
-- [Isomorphism](https://en.wikipedia.org/wiki/Isomorphism) (Wikipedia)
+- [Teoría de categorías](https://en.wikipedia.org/wiki/Category_theory) (Wikipedia)
+- [Categoría (matemáticas)](https://en.wikipedia.org/wiki/Category_(mathematics)) (Wikipedia)
+- [Composición de funciones](https://en.wikipedia.org/wiki/Function_composition) (Wikipedia)
+- [Isomorfismo](https://en.wikipedia.org/wiki/Isomorphism) (Wikipedia)

@@ -1,0 +1,103 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lessons/cs-source/concepts/build-automation.md:2
+msgctxt "s-6c6b8619e08c-0000"
+msgid "Build automation"
+msgstr "Automatización de la compilación"
+
+#: lessons/cs-source/concepts/build-automation.md:6
+msgctxt "s-aeea1098174a-0001"
+msgid "Build automation tools rebuild only what changed, and they do it in dependency order. Make, created at Bell Labs in 1976, is the classic example. CMake and Gradle are modern ones. They exist because compiling everything every time is slow, and building in the wrong order is wrong. The state of a build is *files*: which exist, and which are newer than what they depend on. That makes a build tool a strange computer. ⟦MACRO_0001⟧ counts with files that are created one per pass, and loops by making Make read a generated makefile again. ⟦MACRO_0002⟧ loops with a ⟦CODE_0003⟧ whose regex leaves its results in variables."
+msgstr "Las herramientas de automatización de la compilación solo reconstruyen lo que cambió y siguen el orden de las dependencias. El ejemplo clásico es Make, creado en Bell Labs en 1976. CMake y Gradle son ejemplos modernos. Existen porque compilar todo cada vez es lento y porque compilar en el orden equivocado da mal resultado. El estado de una compilación son *archivos*: cuáles existen y cuáles son más recientes que sus dependencias. Eso convierte a una herramienta de compilación en una computadora extraña. ⟦MACRO_0001⟧ cuenta con archivos que crea de uno en uno en cada vuelta. Para repetir el bucle, hace que Make vuelva a leer un makefile generado. ⟦MACRO_0002⟧ forma un bucle con un ⟦CODE_0003⟧ cuya expresión regular deja los resultados en variables."
+
+#: lessons/cs-source/concepts/build-automation.md:10
+msgctxt "s-070a361dcd4d-0002"
+msgid "A build tool is a dependency-driven scheduler that chooses what to run from the graph and the changed inputs"
+msgstr "Una herramienta de compilación planifica según las dependencias. Usa el grafo y las entradas que cambiaron para elegir qué ejecutar"
+
+#: lessons/cs-source/concepts/build-automation.md:11
+msgctxt "s-643af3973f8d-0003"
+msgid "A build graph with five files. The files source.tc and config.mk feed stage-1. Stage-1 feeds stage-2, and stage-2 feeds final. The file source.tc has just been edited, so it is drawn with a thick border and it is newer than stage-1. The tool therefore rebuilds stage-1, then stage-2, then final, in that order. The file config.mk is unchanged and plays no part in the decision."
+msgstr "Un grafo de compilación con cinco archivos. Los archivos source.tc y config.mk alimentan a stage-1. Stage-1 alimenta a stage-2 y stage-2 alimenta a final. El archivo source.tc acaba de cambiar. Se dibuja con un borde grueso y es más reciente que stage-1. Por eso la herramienta recompila stage-1, luego stage-2 y por último final, en ese orden. El archivo config.mk sigue igual y no influye en la decisión."
+
+#: lessons/cs-source/concepts/build-automation.md:12
+msgctxt "s-4683d7148ccb-0004"
+msgid "source.tc: edited, newer"
+msgstr "source.tc: editado, más reciente"
+
+#: lessons/cs-source/concepts/build-automation.md:12
+msgctxt "s-804f51f71254-0005"
+msgid "newer"
+msgstr "más reciente"
+
+#: lessons/cs-source/concepts/build-automation.md:12
+msgctxt "s-c96098b48024-0006"
+msgid "stage-1: rebuild"
+msgstr "stage-1: recompilar"
+
+#: lessons/cs-source/concepts/build-automation.md:13
+msgctxt "s-6926441fd8b2-0007"
+msgid "config.mk: unchanged"
+msgstr "config.mk: sin cambios"
+
+#: lessons/cs-source/concepts/build-automation.md:14
+msgctxt "s-76fc8cf5449a-0008"
+msgid "rebuilt, so newer"
+msgstr "recompilado, ahora más reciente"
+
+#: lessons/cs-source/concepts/build-automation.md:14
+msgctxt "s-d6b66eaa5da0-0009"
+msgid "stage-2: rebuild"
+msgstr "stage-2: recompilar"
+
+#: lessons/cs-source/concepts/build-automation.md:15
+msgctxt "s-76fc8cf5449a-0010"
+msgid "rebuilt, so newer"
+msgstr "recompilado, ahora más reciente"
+
+#: lessons/cs-source/concepts/build-automation.md:15
+msgctxt "s-abb8d47cdf56-0011"
+msgid "final: rebuild"
+msgstr "final: recompilar"
+
+#: lessons/cs-source/concepts/build-automation.md:20
+msgctxt "s-e8e7dbab65d2-0012"
+msgid "The tool compares file dates along the arrows. ⟦CODE_0001⟧ is newer than ⟦CODE_0002⟧, so ⟦CODE_0003⟧ is stale and is rebuilt. That makes it newer than ⟦CODE_0004⟧, and so on down the chain. ⟦CODE_0005⟧ did not change, so it causes no work. The tool decides what to run and in what order. It does not pass values from step to step as ⟦MACRO_0006⟧ does. Some entries use this decision machinery as a loop: ⟦MACRO_0007⟧ remakes a generated makefile and then starts the walk again."
+msgstr "La herramienta compara las fechas de los archivos siguiendo las flechas. ⟦CODE_0001⟧ es más reciente que ⟦CODE_0002⟧, así que ⟦CODE_0003⟧ queda obsoleto y se recompila. Así se vuelve más reciente que ⟦CODE_0004⟧ y el proceso sigue por la cadena. ⟦CODE_0005⟧ no cambió, así que no hay trabajo por hacer ahí. La herramienta decide qué ejecutar y en qué orden. No pasa valores de un paso al siguiente como lo hace ⟦MACRO_0006⟧. Algunas entradas convierten este mecanismo de decisión en un bucle. ⟦MACRO_0007⟧ vuelve a crear un makefile generado y luego empieza de nuevo el recorrido."
+
+#: lessons/cs-source/concepts/build-automation.md:22
+msgctxt "s-9bcc796a69ec-0013"
+msgid "**Use it when:** you compile, package or generate files from other files."
+msgstr "**Úsala cuando:** compiles, empaquetes o generes archivos a partir de otros archivos."
+
+#: lessons/cs-source/concepts/build-automation.md:23
+msgctxt "s-64109acf620d-0014"
+msgid "**Avoid as a general computer.** Timestamps can be coarse (WSL and some file systems), and a build that depends on hidden state is not reproducible."
+msgstr "**Evita usarla como computadora de propósito general.** Las marcas de tiempo pueden tener poca resolución (WSL y algunos sistemas de archivos). Una compilación que depende de estado oculto no es reproducible."
+
+#: lessons/cs-source/concepts/build-automation.md:25
+msgctxt "s-250de292f56f-0015"
+msgid "**Read more:**"
+msgstr "**Lee más:**"
+
+#: lessons/cs-source/concepts/build-automation.md:27
+msgctxt "s-64ffb0ba9e8a-0016"
+msgid "[Build automation](⟦DEST_0001⟧) (Wikipedia)"
+msgstr "[Automatización de la compilación](⟦DEST_0001⟧) (Wikipedia)"
+
+#: lessons/cs-source/concepts/build-automation.md:28
+msgctxt "s-5858b3da84b6-0017"
+msgid "[Make (software)](⟦DEST_0001⟧)) (Wikipedia)"
+msgstr "[Make (programa)](⟦DEST_0001⟧)) (Wikipedia)"
+
+#: lessons/cs-source/concepts/build-automation.md:29
+msgctxt "s-c870fb36df4a-0018"
+msgid "[Reproducible builds](⟦DEST_0001⟧) (Wikipedia), the idea behind this book's deterministic build"
+msgstr "[Compilaciones reproducibles](⟦DEST_0001⟧) (Wikipedia), la idea detrás de la compilación determinista de este libro"
