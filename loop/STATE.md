@@ -1,8 +1,8 @@
 # loop/STATE.md (keep to 60 lines; refreshed by every iteration)
 
 - **Edition:** v4-es.0-rc1 (working)    **English SHA:** 48a4429c0a22b2aac628b256a50c07d1816bcb80
-- **Iteration:** 103    **Stage:** 3C (editorial-review rework before bulk translation)    **Last result:** iter 103 P3C-015 done (src/PythonChallenge1/README.md corrected through its PO: sentencia and adaptación, step literal in three labels, valor centinela, 6 dispositions, SI-017 logged, diagram 12.0 pt). Next: P3C-016 audit, then P3C-017 gate
-- **Tasks:** todo 73 | doing 0 | done 73 | blocked 0 | skipped 0 (recount with the queue files)
+- **Iteration:** 104    **Stage:** 3C (editorial-review rework before bulk translation)    **Last result:** iter 104 P3C-016 done (audit of the 12 corrected files in translation/reviews/p3c-audit.md: 0 critical, 0 major, 2 minor notes already recorded). Next: P3C-017 gate
+- **Tasks:** todo 72 | doing 0 | done 74 | blocked 0 | skipped 0 (recount with the queue files)
 - **Next task:** run `python3 tools/next_task.py` (PO files live at translation/po/<path>.po, written by tools/apply.py --init)
 - **Budget:** spent $0.00 of $100; iterations 0 of 300
 - **Translate progress:** segments accepted 836 / total 8827 (7394 prose + 1433 Mermaid labels) ; files done 14 / 212 (curriculum and study-guide title pages, src/GoChallenge1, JavaChallenge1, KotlinChallenge1, LinqChallenge1, LinqChallenge2, ModernChallenge1, PythonChallenge1 READMEs, src/forth/README.md, lessons/cs-source/concepts/recursion.md, lessons/study-guides/languages/forth.md, docs/curriculum.md, lessons/study-guides/languages/apl.md)
