@@ -1,14 +1,14 @@
 # loop/STATE.md (keep to 60 lines; refreshed by every iteration)
 
 - **Edition:** v4-es.0-rc1 (working)    **English SHA:** 48a4429c0a22b2aac628b256a50c07d1816bcb80
-- **Iteration:** 93    **Stage:** 3C (editorial-review rework before bulk translation)    **Last result:** iter 93 P3C-005 done (recursion.md corrected through its PO; 9 more dispositions in translation/reviews/chatgpt-editorial-2026-11-20-dispositions.jsonl, append the next file's rows to it; glossary +base case, +tail call). Next: P3C-006..015 file corrections (verify --fast lists their I7/I21/I23-I25 findings), then P3C-016
-- **Tasks:** todo 82 | doing 0 | done 64 | blocked 0 | skipped 0 (recount with the queue files)
+- **Iteration:** 94    **Stage:** 3C (editorial-review rework before bulk translation)    **Last result:** iter 94 P3C-006 done (study-guide apl.md corrected through its PO; 17 more dispositions in translation/reviews/chatgpt-editorial-2026-11-20-dispositions.jsonl, append the next file's rows to it; "Depuración (Debugging)" row-heading convention for forth.md too; SI-011). Next: P3C-007..015 file corrections (verify --fast lists their I7/I21/I23-I25 findings), then P3C-016
+- **Tasks:** todo 81 | doing 0 | done 65 | blocked 0 | skipped 0 (recount with the queue files)
 - **Next task:** run `python3 tools/next_task.py` (PO files live at translation/po/<path>.po, written by tools/apply.py --init)
 - **Budget:** spent $0.00 of $100; iterations 0 of 300
 - **Translate progress:** segments accepted 836 / total 8827 (7394 prose + 1433 Mermaid labels) ; files done 14 / 212 (curriculum and study-guide title pages, src/GoChallenge1, JavaChallenge1, KotlinChallenge1, LinqChallenge1, LinqChallenge2, ModernChallenge1, PythonChallenge1 READMEs, src/forth/README.md, lessons/cs-source/concepts/recursion.md, lessons/study-guides/languages/forth.md, docs/curriculum.md, lessons/study-guides/languages/apl.md)
 - **Last audit:** none    **Next audit due after:** 8 translate tasks
 - **Gates:** P0 passed (iter 17)  P1 passed (iter 23)  P2 passed (iter 47)  P3 passed (iter 58)  P3B passed (iter 85)  P4 -  P5 -  P6 -  P7A -
-- **Open provisional decisions:** 5 (acronym BICHO; glossary choices; house style N=29 calibrated; schema/segment-id formats; same-tier reviewer kept after recall test)    **Blockers:** 0    **Source issues:** 10 (translation/source-issues.md)
+- **Open provisional decisions:** 5 (acronym BICHO; glossary choices; house style N=29 calibrated; schema/segment-id formats; same-tier reviewer kept after recall test)    **Blockers:** 0    **Source issues:** 11 (translation/source-issues.md)
 
 ## Traps to remember (details live in SIGNS.md)
 

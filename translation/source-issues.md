@@ -18,6 +18,7 @@ First batch: logged from the external editorial review of 2026-11-20 (`review/in
 | SI-008 | `src/KotlinChallenge1/README.md:88` | "no three-part `for` and no semicolons" | "No semicolons" is shorthand for the missing three-clause `for` header. Kotlin allows semicolons as statement separators. | Say "no three-clause `for` header". | open |
 | SI-009 | `src/forth/README.md:3` and `:17` | "a stack language needs one `begin ... until` and a pipe to be a whole program" | Overgeneralizes: the sentence describes this program, not stack languages. | Say "this Forth program needs one `begin ... until` and a pipe to be whole". | open |
 | SI-010 | `src/forth/README.md:48` | The diagram `accDescr` says "Then over-40 leaves a flag on the stack". | It drops the `?` of the word `over-40?`, which the diagram label and the code keep. | Write `over-40?` in the `accDescr`. | open |
+| SI-011 | `lessons/study-guides/languages/apl.md:54` | "a card builds the next card's text with `⎕FX` and runs it with `⍎`". | `⎕FX` does not build the text: the card constructs the text, `⎕FX` defines a function from it, and `⍎` evaluates the name to call it. | Say "builds the next card's text, defines it with `⎕FX` and runs it with `⍎`". | open |
 
 ## Notes for translators
 
