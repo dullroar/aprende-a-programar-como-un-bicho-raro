@@ -1,0 +1,187 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lessons/cs-source/concepts/short-circuit-evaluation.md:2
+msgctxt "s-849de3e4b8eb-0000"
+msgid "Short-circuit evaluation"
+msgstr "Evaluación de cortocircuito"
+
+#: lessons/cs-source/concepts/short-circuit-evaluation.md:6
+msgctxt "s-160633cd3233-0001"
+msgid ""
+"Short-circuit evaluation means that ⟦CODE_0001⟧ and ⟦CODE_0002⟧ stop as soon"
+" as the answer is known. In ⟦CODE_0003⟧, if ⟦CODE_0004⟧ is false, "
+"⟦CODE_0005⟧ never runs. It exists for speed, and for a very useful habit: "
+"guard first, then act (⟦CODE_0006⟧). The same idea can be a loop. In "
+"⟦MACRO_0007⟧ the ⟦CODE_0008⟧ method combination calls methods one after "
+"another and stops at the first one that returns a true value. A class "
+"hierarchy becomes the loop, and ⟦CODE_0009⟧ becomes the stop rule."
+msgstr ""
+"La evaluación de cortocircuito significa que ⟦CODE_0001⟧ y ⟦CODE_0002⟧ paran"
+" en cuanto se conoce la respuesta. En ⟦CODE_0003⟧, si ⟦CODE_0004⟧ es falso, "
+"⟦CODE_0005⟧ nunca se ejecuta. Sirve para ganar velocidad y para un hábito "
+"muy útil: comprueba la condición de protección antes de actuar "
+"(⟦CODE_0006⟧). La misma idea puede convertirse en un bucle. En ⟦MACRO_0007⟧ "
+"la combinación de métodos ⟦CODE_0008⟧ llama a los métodos uno tras otro y se"
+" detiene en el primero que devuelve un valor verdadero. La jerarquía de "
+"clases se convierte en el bucle y ⟦CODE_0009⟧ en la regla de parada."
+
+#: lessons/cs-source/concepts/short-circuit-evaluation.md:10
+msgctxt "s-d2d533a22aae-0002"
+msgid ""
+"Short-circuiting is control flow that can suppress work and side effects"
+msgstr ""
+"El cortocircuito es un flujo de control que puede omitir trabajo y efectos "
+"secundarios"
+
+#: lessons/cs-source/concepts/short-circuit-evaluation.md:11
+msgctxt "s-559f306fdcef-0003"
+msgid ""
+"Two panels. In the first, false AND expensive() evaluates the left side, "
+"which is false. A false left side makes AND false whatever the right side "
+"is, so the result is false and the call to expensive() is skipped. In the "
+"second, true OR expensive() evaluates the left side, which is true. A true "
+"left side makes OR true whatever the right side is, so the result is true "
+"and the call to expensive() is skipped. In both panels the skipped call is "
+"drawn with a dashed border and an arrow that is never followed."
+msgstr ""
+"Dos paneles. En el primero, false AND expensive() evalúa el lado izquierdo, "
+"que es false. Si el lado izquierdo es false, el resultado de AND es false "
+"sea cual sea el lado derecho. El resultado es false y no se llama a "
+"expensive(). En el segundo, true OR expensive() evalúa el lado izquierdo, "
+"que es true. Si el lado izquierdo es true, el resultado de OR es true sea "
+"cual sea el lado derecho. El resultado es true y no se llama a expensive(). "
+"En ambos paneles, la llamada omitida tiene un borde discontinuo y una flecha"
+" que nunca se sigue."
+
+#: lessons/cs-source/concepts/short-circuit-evaluation.md:12
+msgctxt "s-f2bacb2d583e-0004"
+msgid "false AND expensive()"
+msgstr "false AND expensive()"
+
+#: lessons/cs-source/concepts/short-circuit-evaluation.md:14
+msgctxt "s-7d200aad0e0c-0005"
+msgid "left side: false"
+msgstr "lado izquierdo: false"
+
+#: lessons/cs-source/concepts/short-circuit-evaluation.md:14
+msgctxt "s-bbec15cc573a-0006"
+msgid "false AND anything is false"
+msgstr "false AND cualquier valor da false"
+
+#: lessons/cs-source/concepts/short-circuit-evaluation.md:15
+msgctxt "s-9f1378de4d43-0007"
+msgid "answer known"
+msgstr "respuesta conocida"
+
+#: lessons/cs-source/concepts/short-circuit-evaluation.md:15
+msgctxt "s-77092e80f2e5-0008"
+msgid "result: false"
+msgstr "resultado: false"
+
+#: lessons/cs-source/concepts/short-circuit-evaluation.md:16
+msgctxt "s-389595a44dc9-0009"
+msgid "skipped"
+msgstr "se omite"
+
+#: lessons/cs-source/concepts/short-circuit-evaluation.md:16
+msgctxt "s-1eb44f237b2c-0010"
+msgid "expensive(): never runs"
+msgstr "expensive(): nunca se ejecuta"
+
+#: lessons/cs-source/concepts/short-circuit-evaluation.md:18
+msgctxt "s-8551b67ebd18-0011"
+msgid "true OR expensive()"
+msgstr "true OR expensive()"
+
+#: lessons/cs-source/concepts/short-circuit-evaluation.md:20
+msgctxt "s-19283e2700a7-0012"
+msgid "left side: true"
+msgstr "lado izquierdo: true"
+
+#: lessons/cs-source/concepts/short-circuit-evaluation.md:20
+msgctxt "s-81e57b3482e5-0013"
+msgid "true OR anything is true"
+msgstr "true OR cualquier valor da true"
+
+#: lessons/cs-source/concepts/short-circuit-evaluation.md:21
+msgctxt "s-9f1378de4d43-0014"
+msgid "answer known"
+msgstr "respuesta conocida"
+
+#: lessons/cs-source/concepts/short-circuit-evaluation.md:21
+msgctxt "s-6569217bd0dd-0015"
+msgid "result: true"
+msgstr "resultado: true"
+
+#: lessons/cs-source/concepts/short-circuit-evaluation.md:22
+msgctxt "s-389595a44dc9-0016"
+msgid "skipped"
+msgstr "se omite"
+
+#: lessons/cs-source/concepts/short-circuit-evaluation.md:22
+msgctxt "s-1eb44f237b2c-0017"
+msgid "expensive(): never runs"
+msgstr "expensive(): nunca se ejecuta"
+
+#: lessons/cs-source/concepts/short-circuit-evaluation.md:29
+msgctxt "s-78559b0eff78-0018"
+msgid ""
+"In both panels the left operand settles the answer, so the right operand is "
+"skipped. Anything it would have done, such as a slow query, a write or a "
+"printed line, does not happen. That is why ⟦CODE_0001⟧ is safe. It also "
+"means that an effect in the right operand is not a promise. See "
+"⟦MACRO_0002⟧."
+msgstr ""
+"En ambos paneles, el operando izquierdo determina la respuesta y el derecho "
+"se omite. Nada de lo que haría llega a ocurrir, ya sea una consulta lenta, "
+"una escritura o la impresión de una línea. Por eso ⟦CODE_0001⟧ es seguro. "
+"También significa que un efecto en el operando derecho no está asegurado. "
+"Consulta ⟦MACRO_0002⟧."
+
+#: lessons/cs-source/concepts/short-circuit-evaluation.md:31
+msgctxt "s-5cb6b2c1236a-0019"
+msgid ""
+"**Use it when:** you guard a risky operation, or pick the first good answer."
+msgstr ""
+"**Úsala cuando:** protejas una operación arriesgada o elijas la primera "
+"respuesta válida."
+
+#: lessons/cs-source/concepts/short-circuit-evaluation.md:32
+msgctxt "s-c3343e4ef53a-0020"
+msgid ""
+"**Avoid it when:** the second operand has an effect you expect to always "
+"happen. It silently will not."
+msgstr ""
+"**Evítala cuando:** esperes que un efecto del segundo operando ocurra "
+"siempre. Puede no ocurrir y no habrá aviso."
+
+#: lessons/cs-source/concepts/short-circuit-evaluation.md:34
+msgctxt "s-250de292f56f-0021"
+msgid "**Read more:**"
+msgstr "**Lee más:**"
+
+#: lessons/cs-source/concepts/short-circuit-evaluation.md:36
+msgctxt "s-76f52714d42f-0022"
+msgid "[Short-circuit evaluation](⟦DEST_0001⟧) (Wikipedia)"
+msgstr "[Evaluación de cortocircuito](⟦DEST_0001⟧) (Wikipedia)"
+
+#: lessons/cs-source/concepts/short-circuit-evaluation.md:37
+msgctxt "s-0a4730746761-0023"
+msgid "[Common Lisp Object System](⟦DEST_0001⟧) (Wikipedia)"
+msgstr "[Sistema de objetos de Common Lisp](⟦DEST_0001⟧) (Wikipedia)"
+
+#: lessons/cs-source/concepts/short-circuit-evaluation.md:38
+msgctxt "s-92707efeacb3-0024"
+msgid ""
+"[Logical AND (⟦CODE_0001⟧)](⟦DEST_0002⟧) (MDN), which describes short-"
+"circuiting in plain words"
+msgstr ""
+"[AND lógico (⟦CODE_0001⟧)](⟦DEST_0002⟧) (MDN), que explica el cortocircuito "
+"en palabras sencillas"

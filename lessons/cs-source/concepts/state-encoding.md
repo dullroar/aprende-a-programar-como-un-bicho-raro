@@ -1,14 +1,14 @@
 ---
-title: "Representing state"
+title: "Cómo representar el estado"
 chapter: 2
 order: 30
 ---
-Any state must be written down in something. A number can be tally marks (unary), digits (decimal or binary) or even a single huge integer that encodes a whole program (Gödel numbering). The choice of *representation* decides what is easy. Tally marks are easy to rewrite with find-and-replace, but long. In [[entry:regex-sed]] the whole program state is one line of text, and numbers are rows of marks that substitutions grow and shrink. COBOL's `PIC` clauses are also a representation: the picture of a field decides its size, rounding and range.
+Todo estado debe quedar escrito en algún medio. Un número puede ser marcas de conteo (unario), cifras (decimales o binarias) o incluso un solo entero enorme que codifica todo un programa (numeración de Gödel). La elección de *representación* determina qué resulta fácil. Las marcas de conteo son fáciles de reescribir con buscar y reemplazar, pero ocupan mucho. En [[entry:regex-sed]] todo el estado del programa es una línea de texto. Los números son filas de marcas que las sustituciones alargan y acortan. Las cláusulas `PIC` de COBOL también son una representación: la máscara de un campo determina su tamaño, redondeo y rango.
 
-- **Use it when:** your medium has no numbers or no variables, and you must decide for yourself what "a count" looks like.
-- **Avoid unary for large numbers:** one million needs one million marks.
+- **Úsala cuando:** tu medio no tenga números o variables y debas decidir cómo se representa "una cuenta".
+- **Evita el sistema unario para números grandes:** un millón requiere un millón de marcas.
 
-**Read more:**
+**Lee más:**
 
-- [Unary numeral system](https://en.wikipedia.org/wiki/Unary_numeral_system) (Wikipedia)
-- [Gödel numbering](https://en.wikipedia.org/wiki/G%C3%B6del_numbering) (Wikipedia)
+- [Sistema de numeración unario](https://en.wikipedia.org/wiki/Unary_numeral_system) (Wikipedia)
+- [Numeración de Gödel](https://en.wikipedia.org/wiki/G%C3%B6del_numbering) (Wikipedia)

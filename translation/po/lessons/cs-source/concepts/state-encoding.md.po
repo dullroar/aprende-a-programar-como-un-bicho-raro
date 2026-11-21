@@ -1,0 +1,43 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lessons/cs-source/concepts/state-encoding.md:2
+msgctxt "s-f02dc51e46a3-0000"
+msgid "Representing state"
+msgstr "Cómo representar el estado"
+
+#: lessons/cs-source/concepts/state-encoding.md:6
+msgctxt "s-47668fbb6628-0001"
+msgid "Any state must be written down in something. A number can be tally marks (unary), digits (decimal or binary) or even a single huge integer that encodes a whole program (Gödel numbering). The choice of *representation* decides what is easy. Tally marks are easy to rewrite with find-and-replace, but long. In ⟦MACRO_0001⟧ the whole program state is one line of text, and numbers are rows of marks that substitutions grow and shrink. COBOL's ⟦CODE_0002⟧ clauses are also a representation: the picture of a field decides its size, rounding and range."
+msgstr "Todo estado debe quedar escrito en algún medio. Un número puede ser marcas de conteo (unario), cifras (decimales o binarias) o incluso un solo entero enorme que codifica todo un programa (numeración de Gödel). La elección de *representación* determina qué resulta fácil. Las marcas de conteo son fáciles de reescribir con buscar y reemplazar, pero ocupan mucho. En ⟦MACRO_0001⟧ todo el estado del programa es una línea de texto. Los números son filas de marcas que las sustituciones alargan y acortan. Las cláusulas ⟦CODE_0002⟧ de COBOL también son una representación: la máscara de un campo determina su tamaño, redondeo y rango."
+
+#: lessons/cs-source/concepts/state-encoding.md:8
+msgctxt "s-fcf9c80d6545-0002"
+msgid "**Use it when:** your medium has no numbers or no variables, and you must decide for yourself what \"a count\" looks like."
+msgstr "**Úsala cuando:** tu medio no tenga números o variables y debas decidir cómo se representa \"una cuenta\"."
+
+#: lessons/cs-source/concepts/state-encoding.md:9
+msgctxt "s-2e4380002fa9-0003"
+msgid "**Avoid unary for large numbers:** one million needs one million marks."
+msgstr "**Evita el sistema unario para números grandes:** un millón requiere un millón de marcas."
+
+#: lessons/cs-source/concepts/state-encoding.md:11
+msgctxt "s-250de292f56f-0004"
+msgid "**Read more:**"
+msgstr "**Lee más:**"
+
+#: lessons/cs-source/concepts/state-encoding.md:13
+msgctxt "s-02d681ebaa17-0005"
+msgid "[Unary numeral system](⟦DEST_0001⟧) (Wikipedia)"
+msgstr "[Sistema de numeración unario](⟦DEST_0001⟧) (Wikipedia)"
+
+#: lessons/cs-source/concepts/state-encoding.md:14
+msgctxt "s-a04081200e8e-0006"
+msgid "[Gödel numbering](⟦DEST_0001⟧) (Wikipedia)"
+msgstr "[Numeración de Gödel](⟦DEST_0001⟧) (Wikipedia)"

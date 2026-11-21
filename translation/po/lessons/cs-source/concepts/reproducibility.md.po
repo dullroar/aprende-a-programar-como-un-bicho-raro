@@ -1,0 +1,48 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lessons/cs-source/concepts/reproducibility.md:2
+msgctxt "s-70b6fd62a927-0000"
+msgid "Reproducibility and deterministic builds"
+msgstr "Reproducibilidad y compilaciones deterministas"
+
+#: lessons/cs-source/concepts/reproducibility.md:6
+msgctxt "s-9bdc2d2a0780-0001"
+msgid "A result is **reproducible** if the same inputs give the same answer, every time and on every machine. A build is **deterministic** if the same sources give the same bytes. Both depend on writing down everything that is an input: the seed, the order of the items, the versions of the tools, the time. What you forget to write down is where the difference comes from."
+msgstr "Un resultado es **reproducible** si la misma entrada de datos da la misma respuesta cada vez y en cualquier máquina. Una compilación es **determinista** si las mismas fuentes producen los mismos bytes. Ambas propiedades dependen de anotar todo lo que forma parte de la entrada: la semilla, el orden de los elementos, las versiones de las herramientas y la hora. De lo que olvides anotar saldrá la diferencia."
+
+#: lessons/cs-source/concepts/reproducibility.md:8
+msgctxt "s-aabe0c3a9e16-0002"
+msgid "The book you are reading is built this way: every list is sorted, nothing reads the clock and the build date is fixed in a metadata file, so the same sources give the same bytes. The entries use the idea in four ways. ⟦MACRO_0001⟧ writes a tar archive in a fixed format with a fixed order, time and owner, so the same seed makes the same archive, byte for byte, which ⟦CODE_0002⟧ checks. ⟦MACRO_0003⟧ makes a run a function of a seed and the archive's layout. ⟦MACRO_0004⟧ and ⟦MACRO_0005⟧ replay a run with ⟦CODE_0006⟧, because ⟦CODE_0007⟧ cannot be seeded and a small closure over a number can. Each one says what \"the same\" means: the bytes, the structure or the behavior (see ⟦MACRO_0008⟧)."
+msgstr "La compilación del libro que lees funciona así: ordena cada lista, nada consulta el reloj y un archivo de metadatos fija la fecha de compilación. Por eso las mismas fuentes dan los mismos bytes. Las entradas aplican la idea de cuatro maneras. ⟦MACRO_0001⟧ escribe un archivo tar con formato, orden, hora y propietario fijos. La misma semilla produce el mismo archivo byte por byte, como comprueba ⟦CODE_0002⟧. En ⟦MACRO_0003⟧, la ejecución es función de una semilla y de la disposición del archivo. ⟦MACRO_0004⟧ y ⟦MACRO_0005⟧ repiten una ejecución con ⟦CODE_0006⟧. No puedes fijar una semilla para ⟦CODE_0007⟧, pero sí para una pequeña clausura (*closure*) que captura un número. Cada entrada dice qué significa \"lo mismo\": los bytes, la estructura o el comportamiento (consulta ⟦MACRO_0008⟧)."
+
+#: lessons/cs-source/concepts/reproducibility.md:10
+msgctxt "s-0877fc8e8091-0003"
+msgid "**Use it when:** you must debug, test or audit a result later. Make the inputs explicit, and record the seed."
+msgstr "**Úsala cuando:** debas depurar, probar o auditar un resultado más tarde. Explicita la entrada de datos y registra la semilla."
+
+#: lessons/cs-source/concepts/reproducibility.md:11
+msgctxt "s-0ec2a2d211db-0004"
+msgid "**Avoid it when:** you confuse it with determinism of *everything*. A run is reproducible in the ways you named, and not in the ones you did not, such as the date in a week number near New Year."
+msgstr "**Evita confundirla** con el determinismo de *todo*. Una ejecución es reproducible en los aspectos que indicaste. Los demás quedan fuera, como la fecha asociada a un número de semana cerca de Año Nuevo."
+
+#: lessons/cs-source/concepts/reproducibility.md:13
+msgctxt "s-250de292f56f-0005"
+msgid "**Read more:**"
+msgstr "**Lee más:**"
+
+#: lessons/cs-source/concepts/reproducibility.md:15
+msgctxt "s-68218a22230e-0006"
+msgid "[Reproducible builds](⟦DEST_0001⟧) (Wikipedia)"
+msgstr "[Compilaciones reproducibles](⟦DEST_0001⟧) (Wikipedia)"
+
+#: lessons/cs-source/concepts/reproducibility.md:16
+msgctxt "s-f7f5e94c4357-0007"
+msgid "[Deterministic algorithm](⟦DEST_0001⟧) (Wikipedia)"
+msgstr "[Algoritmo determinista](⟦DEST_0001⟧) (Wikipedia)"

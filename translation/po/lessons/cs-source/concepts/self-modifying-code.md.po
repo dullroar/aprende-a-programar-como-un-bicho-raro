@@ -1,0 +1,43 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lessons/cs-source/concepts/self-modifying-code.md:2
+msgctxt "s-d937826debe9-0000"
+msgid "Self-modifying code"
+msgstr "Código automodificable"
+
+#: lessons/cs-source/concepts/self-modifying-code.md:6
+msgctxt "s-d249d6f6c58f-0001"
+msgid "Self-modifying code changes its own instructions while it runs. Early computers did it to save scarce memory. Today the idea lives on in just-in-time compilers, in program loaders and in malware that hides itself. In this repository it is a way to move control flow into the program text. ⟦MACRO_0001⟧ reads a function's source with ⟦CODE_0002⟧, rewrites it and defines the new version with ⟦CODE_0003⟧. ⟦MACRO_0004⟧ changes a ⟦CODE_0005⟧ with ⟦CODE_0006⟧. ⟦MACRO_0007⟧ keeps procedure source in a database table and defines it on demand."
+msgstr "El código automodificable cambia sus propias instrucciones mientras se ejecuta. Las primeras computadoras lo hacían para ahorrar memoria, que era escasa. Hoy la idea sigue viva en los compiladores en tiempo de ejecución, los cargadores de programas y el software malicioso que se oculta. En este repositorio es una forma de trasladar el flujo de control al texto del programa. ⟦MACRO_0001⟧ lee el código fuente de una función con ⟦CODE_0002⟧, lo reescribe y define la nueva versión con ⟦CODE_0003⟧. ⟦MACRO_0004⟧ cambia un ⟦CODE_0005⟧ con ⟦CODE_0006⟧. ⟦MACRO_0007⟧ guarda el código fuente del procedimiento en una tabla de la base de datos y lo define bajo demanda."
+
+#: lessons/cs-source/concepts/self-modifying-code.md:8
+msgctxt "s-aaf60f616406-0002"
+msgid "**Use it when:** you generate code at a clear boundary: write text, compile it, run it. That is what JIT compilers and code generators do."
+msgstr "**Úsalo cuando:** generes código con un límite claro: escribe el texto, compílalo y ejecútalo. Eso hacen los compiladores JIT (compilación justo a tiempo) y los generadores de código."
+
+#: lessons/cs-source/concepts/self-modifying-code.md:9
+msgctxt "s-f46389a5f70f-0003"
+msgid "**Avoid it in hand-written programs.** Debuggers, caches and security tools (some systems forbid memory that is both writable and executable) all assume that code does not change."
+msgstr "**Evítalo en los programas escritos a mano.** Los depuradores, las cachés y las herramientas de seguridad suponen que el código no cambia (algunos sistemas prohíben que una zona de memoria sea escribible y ejecutable a la vez)."
+
+#: lessons/cs-source/concepts/self-modifying-code.md:11
+msgctxt "s-250de292f56f-0004"
+msgid "**Read more:**"
+msgstr "**Lee más:**"
+
+#: lessons/cs-source/concepts/self-modifying-code.md:13
+msgctxt "s-8ad487e9a878-0005"
+msgid "[Self-modifying code](⟦DEST_0001⟧) (Wikipedia)"
+msgstr "[Código automodificable](⟦DEST_0001⟧) (Wikipedia)"
+
+#: lessons/cs-source/concepts/self-modifying-code.md:14
+msgctxt "s-15930586d09f-0006"
+msgid "[Just-in-time compilation](⟦DEST_0001⟧) (Wikipedia)"
+msgstr "[Compilación en tiempo de ejecución](⟦DEST_0001⟧) (Wikipedia)"

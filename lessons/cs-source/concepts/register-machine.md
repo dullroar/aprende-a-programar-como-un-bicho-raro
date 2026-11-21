@@ -1,33 +1,33 @@
 ---
-title: "Register machines and counter machines"
+title: "Máquinas de registros y máquinas de contadores"
 chapter: 2
 order: 70
 ---
-A register machine stores its values in a few numbered boxes called registers. Real processors are register machines. The smallest version, a *counter machine*, has only two operations: add one to a register, or subtract one and jump if the result is zero. It exists as a thinking tool: it is simple enough to prove things about, yet powerful enough to compute anything (two counters are enough). Several entries are register machines in disguise. CMake's `CMAKE_MATCH_1` to `CMAKE_MATCH_5` are the registers of [[entry:cmake]]. .NET's balancing groups, in [[entry:regex-dotnet]], are a counter.
+Una máquina de registros guarda sus valores en unas pocas casillas numeradas que se llaman registros. Los procesadores reales son máquinas de registros. La versión más pequeña, una *máquina de contadores*, solo tiene dos operaciones: sumar uno a un registro o restarle uno y saltar si el resultado es cero. Sirve para razonar. Es lo bastante simple como para demostrar sus propiedades y lo bastante potente como para calcular cualquier cosa (bastan dos contadores). Varias entradas son máquinas de registros disfrazadas. En CMake, de `CMAKE_MATCH_1` a `CMAKE_MATCH_5` son los registros de [[entry:cmake]]. Los grupos de equilibrio de .NET en [[entry:regex-dotnet]] forman un contador.
 
 ```mermaid
 flowchart TB
-    accTitle: A register machine names its storage cells; a counter machine needs only increment, decrement and a zero test
-    accDescr: Two panels. In the register machine, registers R1 and R2 hold 19 and 23. The instruction ADD R1, R2 into R1 leaves R1 holding 42 and R2 still holding 23. In the counter machine, counters C1 and C2 start at 2 and 0. A loop decrements C1, increments C2 and tests C1 for zero. If C1 is not zero, the loop runs again. When C1 reaches zero, C1 is 0 and C2 is 2.
-    subgraph CNT["Counter machine"]
+    accTitle: Una máquina de registros identifica sus celdas. Una máquina de contadores solo necesita sumar, restar y comprobar si llega a cero
+    accDescr: Dos paneles. En la máquina de registros, los registros R1 y R2 contienen 19 y 23. La instrucción ADD R1, R2 guarda el resultado en R1. R1 queda con 42 y R2 conserva 23. En la máquina de contadores, C1 y C2 empiezan en 2 y 0. Un bucle decrementa C1, incrementa C2 y comprueba si C1 vale cero. Si C1 no vale cero, el bucle se ejecuta de nuevo. Cuando C1 llega a cero, C1 vale 0 y C2 vale 2.
+    subgraph CNT["Máquina de contadores"]
         direction TB
         c1["C1 = 2, C2 = 0"] --> c2["DEC C1, INC C2"]
-        c2 --> c3{{"C1 is zero?"}}
-        c3 -->|"no: loop"| c2
-        c3 -->|"yes"| c4["C1 = 0, C2 = 2"]
+        c2 --> c3{{"¿C1 vale cero?"}}
+        c3 -->|"no: repite el bucle"| c2
+        c3 -->|"sí"| c4["C1 = 0, C2 = 2"]
     end
-    subgraph REG["Register machine"]
+    subgraph REG["Máquina de registros"]
         direction TB
-        r1["R1 = 19, R2 = 23"] -->|"ADD R1, R2 into R1"| r2["R1 = 42, R2 = 23"]
+        r1["R1 = 19, R2 = 23"] -->|"ADD R1, R2 a R1"| r2["R1 = 42, R2 = 23"]
     end
 ```
 
-On the left, the instruction names its cells (`R1` and `R2`). On the right, the machine has two counters and three moves: count down, count up and test for zero. Moving a count from `C1` to `C2` takes one pass of the loop for each unit, so a counter machine is slow on purpose. What it shows is how little machinery is enough.
+A la izquierda, la instrucción nombra sus celdas (`R1` y `R2`). A la derecha, la máquina tiene dos contadores y tres acciones: contar hacia abajo, contar hacia arriba y comprobar si el valor es cero. Pasar la cuenta de `C1` a `C2` requiere una vuelta del bucle por unidad. Por eso una máquina de contadores es lenta a propósito. Muestra con qué poca maquinaria basta.
 
-- **Use it when:** you want to explain what a strange system *is*, by finding its registers.
-- **Avoid it as a coding style:** it is a model for reasoning, not a way to write programs.
+- **Úsala cuando:** quieras explicar qué *es* un sistema insólito al identificar sus registros.
+- **Evítala como estilo de programación:** es un modelo para razonar, no una forma de escribir programas.
 
-**Read more:**
+**Lee más:**
 
-- [Register machine](https://en.wikipedia.org/wiki/Register_machine) (Wikipedia)
-- [Counter machine](https://en.wikipedia.org/wiki/Counter_machine) (Wikipedia)
+- [Máquina de registros](https://en.wikipedia.org/wiki/Register_machine) (Wikipedia)
+- [Máquina de contadores](https://en.wikipedia.org/wiki/Counter_machine) (Wikipedia)

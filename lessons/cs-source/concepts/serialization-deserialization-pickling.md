@@ -1,55 +1,55 @@
 ---
-title: "Serialization, deserialization and object pickling"
+title: "Serialización, deserialización y pickling de objetos"
 chapter: 6
 order: 90
 ---
-**Serialization** turns something abstract into bytes that you can store or send: an object, a state, a list of instructions. **Deserialization** reads the bytes back. These are two separate acts, and a third act hides behind them: **interpretation**, which gives the decoded data an effect. You can parse a file and do nothing with it. You can also parse a file and run it. Most of the danger in this topic lives in the gap between the two.
+La **serialización** convierte algo abstracto en bytes que puedes guardar o enviar: un objeto, un estado o una lista de instrucciones. La **deserialización** vuelve a leer esos bytes. Son dos actos distintos y detrás acecha un tercero: la **interpretación**, que da un efecto a los datos decodificados. Puedes analizar un archivo y no hacer nada con él. También puedes analizar un archivo y ejecutarlo. Casi todo el peligro está en la distancia entre esas dos acciones.
 
-**Object pickling** is serialization of an object graph. Python's `pickle` writes the *recipe* to rebuild an object: which class, which arguments, which attributes. Reading a pickle can call any function the recipe names, so unpickling bytes you do not trust runs the sender's code. The Python documentation says so in a warning box. A serialized **program** is the same idea one level up: source text, a syntax tree, bytecode or a small instruction stream stored as records. [[entry:tar-gnu]] stores a program as the members of a tar archive: each member name is an instruction, each member body is its operand. [[entry:tcl-weird]] stores Tcl source in SQLite rows and runs it on demand. [[entry:apl-weird]] reads a function's source, rewrites it and defines the copy. [[entry:xaml]] stores an object graph as markup that a parser turns into live objects.
+El **pickling de objetos** es la serialización de un grafo de objetos. `pickle` de Python escribe la *receta* para reconstruir un objeto: qué clase, qué argumentos y qué atributos. Leer un pickle puede llamar a cualquier función que indique la receta. Por eso deserializar bytes no confiables con pickle ejecuta código del remitente. La documentación de Python lo dice en un recuadro de advertencia. Un **programa** serializado es la misma idea un nivel más arriba: texto fuente, árbol sintáctico, código de bytes o una secuencia corta de instrucciones guardada como registros. [[entry:tar-gnu]] guarda un programa en los miembros de un archivo tar: cada nombre de miembro es una instrucción y cada cuerpo es su operando. [[entry:tcl-weird]] guarda código fuente Tcl en filas de SQLite y lo ejecuta bajo demanda. [[entry:apl-weird]] lee el código fuente de una función, lo reescribe y define la copia. [[entry:xaml]] guarda un grafo de objetos como marcado que un analizador sintáctico convierte en objetos activos.
 
-What does a round trip keep? Be exact, because "the same" has four different meanings:
+¿Qué conserva un viaje de ida y vuelta? Sé preciso, porque "lo mismo" tiene cuatro significados distintos:
 
-- **Byte identity.** `encode(decode(bytes))` gives the same bytes. [[entry:tar-gnu]] builds a byte-identical archive from the same seed, because it fixes the order, the times and the owners.
-- **Structural equality.** The decoded structure has the same fields and values. The inspector in [[entry:tar-gnu]] and the database rows agree on every card.
-- **Behavioral equivalence.** Running the decoded program gives the same results. Two runs of one archive, in two fresh databases, give the same cards.
-- **Continuation or live-state preservation.** A paused process, with its stack, its open files and its position, resumes where it stopped. This is a much stronger promise. Almost no format makes it, and the tar entries do not claim it.
+- **Identidad de bytes.** `encode(decode(bytes))` da los mismos bytes. [[entry:tar-gnu]] crea un archivo idéntico byte por byte si parte de la misma semilla, porque fija el orden, las horas y los propietarios.
+- **Igualdad estructural.** La estructura decodificada tiene los mismos campos y valores. El inspector de [[entry:tar-gnu]] y las filas de la base de datos coinciden en cada tarjeta.
+- **Equivalencia de comportamiento.** Ejecutar el programa decodificado da los mismos resultados. Dos ejecuciones de un archivo en dos bases de datos nuevas producen las mismas tarjetas.
+- **Conservación de la continuación o del estado activo.** Un proceso en pausa, con su pila, sus archivos abiertos y su posición, se reanuda donde se detuvo. Es una promesa mucho más fuerte. Casi ningún formato la hace y las entradas de tar tampoco hacen esa afirmación.
 
 ```mermaid
 flowchart TB
-    accTitle: "Round-trip" does not mean one single kind of sameness
-    accDescr: Four separate promises, drawn as four cards with no order between them, inside one frame labeled specify and test the promise you mean. Byte identity says encoding the decoded bytes gives the same bytes under the stated codec rules. Structural equality says decoding the encoded value gives the same fields and values. Behavioral equivalence says running the decoded program gives the same observable behavior. Live continuation preservation says a restored process resumes from its paused state.
-    subgraph P["Specify and test the promise you mean"]
+    accTitle: "Ida y vuelta" no significa una sola clase de igualdad
+    accDescr: Cuatro promesas distintas, dibujadas como cuatro tarjetas sin orden entre ellas. Las rodea un recuadro que dice: indica y prueba la promesa que quieres hacer. La identidad de bytes dice que codificar los bytes decodificados da los mismos bytes según las reglas de codificación indicadas. La igualdad estructural dice que al decodificar el valor codificado se obtienen los mismos campos y valores. La equivalencia de comportamiento dice que ejecutar el programa decodificado da el mismo comportamiento observable. Conservar la continuación activa significa que un proceso restaurado se reanuda desde el estado en el que quedó en pausa.
+    subgraph P["Indica y prueba tu promesa"]
         direction TB
-        C1["Byte identity: encode(decode(bytes)) == bytes, under the stated codec and canonical form"]
-        C2["Structural equality: decode(encode(x)) has the same fields and values"]
-        C3["Behavioral equivalence: running the decoded program gives the same observable behavior"]
-        C4["Live continuation preservation: a restored process resumes from its paused state"]
+        C1["Identidad de bytes: encode(decode(bytes)) == bytes según el códec y la forma canónica indicados"]
+        C2["Igualdad estructural: decode(encode(x)) tiene los mismos campos y valores"]
+        C3["Equivalencia de comportamiento: el programa decodificado se comporta igual al ejecutarse"]
+        C4["Conservación de la continuación activa: el proceso restaurado se reanuda desde el estado en pausa"]
         C1 ~~~ C2 ~~~ C3 ~~~ C4
     end
 ```
 
-The four cards are separate promises, and none implies another. Equal bytes do not promise that a program behaves the same, and a serializer that keeps every field does not resume a process. [[entry:tar-gnu]], [[entry:tcl-weird]], [[entry:apl-weird]], [[entry:xaml]] and Python's `pickle` each make a different one of them. Do not forget that deserializing may itself run code (see Security, next).
+Las cuatro tarjetas representan promesas distintas y ninguna implica otra. Que los bytes sean iguales no promete que un programa se comporte igual. Un serializador que conserva todos los campos tampoco reanuda un proceso. [[entry:tar-gnu]], [[entry:tcl-weird]], [[entry:apl-weird]], [[entry:xaml]] y `pickle` de Python hacen promesas distintas. Recuerda que la propia deserialización puede ejecutar código (consulta la siguiente sección, Seguridad).
 
-`decode(encode(x))` may keep some of these and lose others. A JSON round trip keeps the structure and loses the object's identity, its methods and its undefined values. State what you promise before you promise it.
+`decode(encode(x))` puede conservar algunas de estas propiedades y perder otras. Una ida y vuelta en JSON conserva la estructura y pierde la identidad del objeto, sus métodos y sus valores indefinidos. Di qué prometes antes de prometerlo.
 
-**Security.** Bytes are inert until a consumer gives them meaning. A tar archive cannot register a hook for itself: `tar -xf` only writes files, and it is the operator's `--to-command` option that makes tar start a program for each member. JSON is not "safe by nature" either. It is only data, until a consumer passes a field to `eval`, a shell or a SQL string. Unsafe deserialization attacks chain the *reconstruction callbacks* that a format allows (constructors, `__reduce__`, `readObject`) into code that does something the author did not plan. The defenses are old and boring. Do not deserialize untrusted bytes into live objects. Check every record against a strict grammar. Refuse what you do not know. Run the consumer with the least privilege it needs.
+**Seguridad.** Los bytes son inertes hasta que un consumidor les da significado. Un archivo tar no puede registrar un gancho por sí mismo: `tar -xf` solo escribe archivos. La opción `--to-command` que pasa el operador hace que tar inicie un programa por cada miembro. JSON tampoco es "seguro por naturaleza". Solo son datos hasta que un consumidor pasa un campo a `eval`, a un intérprete de comandos (*shell*) o a una cadena de texto SQL. Los ataques de deserialización insegura encadenan las *funciones de devolución de llamada* (*callbacks*) que el formato permite al reconstruir (constructores, `__reduce__`, `readObject`). Así ejecutan código que hace algo que el autor no había previsto. Las defensas ya son viejas y aburridas. No deserialices bytes no confiables para obtener objetos activos. Comprueba cada registro con una gramática estricta. Rechaza lo que no conozcas. Ejecuta el consumidor con el mínimo privilegio que necesite.
 
-**Category theory.** An encoder and a decoder are functions that should compose to something with a stated law: `decode ∘ encode = id` on the values you care about. That is true for some types and some formats, false for others (a format may map two values to one string). Do not call a codec an isomorphism unless you can prove the law in both directions; [[category-theory]] says what the word asks of you.
+**Teoría de categorías.** Un codificador y un decodificador son funciones cuya composición debería cumplir una ley explícita: `decode ∘ encode = id` para los valores que te interesan. Eso vale para algunos tipos y formatos, pero no para otros (un formato puede asignar dos valores a una misma cadena de texto). No llames isomorfismo a un códec a menos que puedas demostrar la ley en ambas direcciones. [[category-theory]] explica qué te exige esa palabra.
 
-| | What the bytes hold | What the consumer rebuilds | Can code run while reading? | Where the trust boundary is |
+| | Qué guardan los bytes | Qué reconstruye el consumidor | ¿Puede ejecutarse código durante la lectura? | Dónde está la frontera de confianza |
 | --- | --- | --- | --- | --- |
-| Python `pickle` | A recipe: classes, arguments, state | Live Python objects | Yes, by design | Around the bytes: never read pickles you did not write |
-| JSON | Numbers, strings, lists, maps | Plain data | No, unless your code interprets a field | Inside your code that uses the fields |
-| tar | Files: names, bytes, sizes, times, modes | Files on disk, or a stream of members | No, unless the operator passes `--to-command` or `--checkpoint-action` | In the command line the operator wrote |
+| Python `pickle` | Una receta: clases, argumentos y estado | Objetos activos de Python | Sí, por diseño | Alrededor de los bytes: nunca leas pickles que no hayas escrito |
+| JSON | Números, cadenas de texto, listas y mapas | Solo datos | No, salvo que tu código interprete un campo | En el código que usa los campos |
+| tar | Archivos: nombres, bytes, tamaños, horas y modos | Archivos en disco o un flujo de miembros | No, salvo que el operador pase `--to-command` o `--checkpoint-action` | En la línea de comandos que escribió el operador |
 
-- **Use it when:** you must store a state, send a value or ship a program, and you can state which kind of "same" you need back.
-- **Avoid it when:** the bytes come from someone you do not trust and the format can rebuild arbitrary objects. Use a data-only format and a strict parser.
+- **Úsala cuando:** debas guardar un estado, enviar un valor o distribuir un programa y puedas decir en qué sentido esperas recuperar "lo mismo".
+- **Evítala cuando:** los bytes vengan de alguien en quien no confías y el formato pueda reconstruir objetos arbitrarios. Usa un formato que solo represente datos y un analizador sintáctico estricto.
 
-**Read more:**
+**Lee más:**
 
-- [Serialization](https://en.wikipedia.org/wiki/Serialization) (Wikipedia)
+- [Serialización](https://en.wikipedia.org/wiki/Serialization) (Wikipedia)
 - [Pickle (Python)](https://en.wikipedia.org/wiki/Pickle_(Python)) (Wikipedia)
-- [Tar (computing)](https://en.wikipedia.org/wiki/Tar_(computing)) (Wikipedia)
-- [Deserialization of untrusted data](https://owasp.org/www-community/vulnerabilities/Deserialization_of_untrusted_data) (OWASP)
-- [Deserialization Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Deserialization_Cheat_Sheet.html) (OWASP)
+- [Tar (informática)](https://en.wikipedia.org/wiki/Tar_(computing)) (Wikipedia)
+- [Deserialización de datos no confiables](https://owasp.org/www-community/vulnerabilities/Deserialization_of_untrusted_data) (OWASP)
+- [Guía rápida de deserialización](https://cheatsheetseries.owasp.org/cheatsheets/Deserialization_Cheat_Sheet.html) (OWASP)
 - [`JSON`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON) (MDN)

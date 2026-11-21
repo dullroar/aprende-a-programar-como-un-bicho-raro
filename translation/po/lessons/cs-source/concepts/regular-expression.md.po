@@ -1,0 +1,53 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lessons/cs-source/concepts/regular-expression.md:2
+msgctxt "s-a04b7d1898d4-0000"
+msgid "Regular expressions"
+msgstr "Expresiones regulares"
+
+#: lessons/cs-source/concepts/regular-expression.md:6
+msgctxt "s-eabfbf81407d-0001"
+msgid "A regular expression is a compact pattern for a set of strings. Stephen Kleene described the idea in the 1950s. Ken Thompson put it into text editors, and from there it reached ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧ and every modern language. It exists because searching text is one of the most common jobs there is. Modern \"regex\" engines add features such as backreferences, lookaround and code callouts. Most of them work by *backtracking*: they try a path, and if it fails they go back and try another. That design makes the engine powerful, and it makes some patterns very slow. This repository uses five engines as five different computers. See [the regular-expression lesson](⟦DEST_0004⟧)."
+msgstr "Una expresión regular es un patrón compacto para un conjunto de cadenas de texto. Stephen Kleene describió la idea en la década de 1950. Ken Thompson la incorporó a los editores de texto. De allí llegó a ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧ y a todos los lenguajes modernos. Existe porque buscar texto es una de las tareas más comunes. Los motores modernos de expresiones regulares añaden funciones como las referencias hacia atrás, las comprobaciones de contexto y las llamadas a código (*callouts*). La mayoría funciona por *retroceso*: prueba un camino y, si falla, retrocede y prueba otro. Ese diseño le da potencia al motor y hace que algunos patrones sean muy lentos. Este repositorio usa cinco motores como cinco computadoras distintas. Consulta [la lección sobre expresiones regulares](⟦DEST_0004⟧)."
+
+#: lessons/cs-source/concepts/regular-expression.md:8
+msgctxt "s-342191cd75aa-0002"
+msgid "**Use it when:** you tokenize, validate a simple format or search logs."
+msgstr "**Úsalas cuando:** separes texto en unidades, valides un formato simple o busques en registros."
+
+#: lessons/cs-source/concepts/regular-expression.md:9
+msgctxt "s-e501b759c082-0003"
+msgid "**Avoid it when:** the data is nested, or when an attacker chooses the input and the engine backtracks (see ⟦MACRO_0001⟧)."
+msgstr "**Evítalas cuando:** los datos estén anidados o un atacante elija la entrada de datos y el motor use retroceso (consulta ⟦MACRO_0001⟧)."
+
+#: lessons/cs-source/concepts/regular-expression.md:11
+msgctxt "s-250de292f56f-0004"
+msgid "**Read more:**"
+msgstr "**Lee más:**"
+
+#: lessons/cs-source/concepts/regular-expression.md:13
+msgctxt "s-e489a24ef59f-0005"
+msgid "[Regular expression](⟦DEST_0001⟧) (Wikipedia)"
+msgstr "[Expresión regular](⟦DEST_0001⟧) (Wikipedia)"
+
+#: lessons/cs-source/concepts/regular-expression.md:14
+msgctxt "s-5a240b031a96-0006"
+msgid "[Thompson's construction](⟦DEST_0001⟧) (Wikipedia)"
+msgstr "[Construcción de Thompson](⟦DEST_0001⟧) (Wikipedia)"
+
+#: lessons/cs-source/concepts/regular-expression.md:15
+msgctxt "s-74872ce77ed9-0007"
+msgid "[Kleene star](⟦DEST_0001⟧) (Wikipedia)"
+msgstr "[Estrella de Kleene](⟦DEST_0001⟧) (Wikipedia)"
+
+#: lessons/cs-source/concepts/regular-expression.md:16
+msgctxt "s-3bd39f7492e7-0008"
+msgid "[Regular expressions](⟦DEST_0001⟧) (MDN), a practical guide to the notation"
+msgstr "[Expresiones regulares](⟦DEST_0001⟧) (MDN), una guía práctica de la notación"

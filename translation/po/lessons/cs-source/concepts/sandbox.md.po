@@ -1,0 +1,84 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lessons/cs-source/concepts/sandbox.md:2
+msgctxt "s-67fc62497e85-0000"
+msgid "Sandbox"
+msgstr "Entorno aislado"
+
+#: lessons/cs-source/concepts/sandbox.md:6
+msgctxt "s-106c72ce5d41-0001"
+msgid ""
+"Every entry documents a Linux container or Windows Sandbox command. Where an"
+" entry supplies a check script, see its README for how to run the checks."
+msgstr ""
+"Cada entrada documenta un comando para un contenedor de Linux o para Windows"
+" Sandbox. Si una entrada incluye un script de comprobación, consulta su "
+"README para saber cómo ejecutar las comprobaciones."
+
+#: lessons/cs-source/concepts/sandbox.md:8
+msgctxt "s-fb9bb07761c7-0002"
+msgid ""
+"A sandbox is a restricted place where untrusted code can run without being "
+"trusted. The code gets a small, fenced area: little memory, no network, no "
+"access to your files. It exists because \"read every line first\" does not "
+"scale, and because a clever program can hide what it does. Every entry here "
+"runs in one. The Linux sandbox has no network, a read-only system and an "
+"unprivileged user. Windows entries use Windows Sandbox. See "
+"[⟦CODE_0001⟧](⟦DEST_0002⟧)."
+msgstr ""
+"Un entorno aislado (*sandbox*) es un espacio que limita el acceso al sistema"
+" anfitrión. Allí puedes ejecutar código en el que no confías. El código "
+"recibe un espacio pequeño y cercado: poca memoria, sin red y sin acceso a "
+"tus archivos. Existe porque \"lee primero cada línea\" no funciona a gran "
+"escala y porque un programa astuto puede ocultar lo que hace. Aquí todas las"
+" entradas se ejecutan en uno. El entorno aislado de Linux no tiene red, usa "
+"un sistema de solo lectura y ejecuta el código con un usuario sin "
+"privilegios. Las entradas de Windows usan Windows Sandbox. Consulta "
+"[⟦CODE_0001⟧](⟦DEST_0002⟧)."
+
+#: lessons/cs-source/concepts/sandbox.md:10
+msgctxt "s-4a29a432d5b5-0003"
+msgid ""
+"**Use it when:** you run code you did not write, or code that handles input "
+"you did not write."
+msgstr ""
+"**Úsalo cuando:** ejecutes código que no escribiste o código que procese una"
+" entrada de datos que no escribiste."
+
+#: lessons/cs-source/concepts/sandbox.md:11
+msgctxt "s-00d1bb1bb168-0004"
+msgid ""
+"**Avoid trusting it blindly:** sandboxes have escape bugs, and they cannot "
+"protect the data you hand in or take out. Use one layer among several "
+"(*defense in depth*), and still read the code."
+msgstr ""
+"**Evita confiar a ciegas:** los entornos aislados tienen bichos que permiten"
+" escapar y no pueden proteger los datos que les das o que sacas de ellos. "
+"Usa el entorno como una capa entre varias (*defensa en profundidad*) y lee "
+"el código de todos modos."
+
+#: lessons/cs-source/concepts/sandbox.md:13
+msgctxt "s-250de292f56f-0005"
+msgid "**Read more:**"
+msgstr "**Lee más:**"
+
+#: lessons/cs-source/concepts/sandbox.md:15
+msgctxt "s-55a6a46aa315-0006"
+msgid "[Sandbox (computer security)](⟦DEST_0001⟧)) (Wikipedia)"
+msgstr "[Entorno aislado (seguridad informática)](⟦DEST_0001⟧)) (Wikipedia)"
+
+#: lessons/cs-source/concepts/sandbox.md:16
+msgctxt "s-10ff4275404e-0007"
+msgid ""
+"[Operating-system-level virtualization](⟦DEST_0001⟧), the idea behind "
+"containers (Wikipedia)"
+msgstr ""
+"[Virtualización a nivel del sistema operativo](⟦DEST_0001⟧), la idea detrás "
+"de los contenedores (Wikipedia)"

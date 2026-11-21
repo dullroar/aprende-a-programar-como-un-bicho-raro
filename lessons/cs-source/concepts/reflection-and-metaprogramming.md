@@ -1,15 +1,15 @@
 ---
-title: "Reflection and metaprogramming"
+title: "Reflexión y metaprogramación"
 chapter: 6
 order: 60
 ---
-*Reflection* means a program inspects or changes its own structure while it runs: it finds a type by name, lists methods, calls one. *Metaprogramming* means a program writes or transforms programs. They exist because frameworks need them: serializers, test runners, dependency injection and plugin systems all find code they have never seen. XAML works by reflection: a type name in the markup becomes an object. Common Lisp's metaobject protocol lets [[entry:lisp-weird]] ask which methods apply to a call. The cost is that tools and optimizers cannot see through it, and a name that comes from data can become an attack.
+La *reflexión* permite que un programa examine o cambie su propia estructura mientras se ejecuta. Puede buscar un tipo por su nombre, listar métodos y llamar a uno. La *metaprogramación* permite que un programa escriba o transforme programas. Existen porque los marcos de trabajo las necesitan. Los serializadores, los ejecutores de pruebas, la inyección de dependencias y los sistemas de complementos encuentran código que nunca han visto. XAML funciona por reflexión: un nombre de tipo en el marcado se convierte en un objeto. El protocolo de metaobjetos de Common Lisp permite que [[entry:lisp-weird]] consulte qué métodos se aplican a una llamada. El costo es que las herramientas y los optimizadores no pueden ver qué ocurre por dentro. Un nombre que proviene de los datos puede dar pie a un ataque.
 
-- **Use it when:** at the boundaries of a framework, where code must be found by name.
-- **Avoid it in business logic.** If names come from outside, accept only an explicit list.
+- **Úsalas cuando:** debas buscar código por nombre en los límites de un marco de trabajo.
+- **Evítalas en la lógica de negocio.** Si los nombres vienen de fuera, acepta solo los de una lista explícita.
 
-**Read more:**
+**Lee más:**
 
-- [Reflective programming](https://en.wikipedia.org/wiki/Reflective_programming) (Wikipedia)
-- [Metaprogramming](https://en.wikipedia.org/wiki/Metaprogramming) (Wikipedia)
-- [Metaobject](https://en.wikipedia.org/wiki/Metaobject) (Wikipedia)
+- [Programación reflexiva](https://en.wikipedia.org/wiki/Reflective_programming) (Wikipedia)
+- [Metaprogramación](https://en.wikipedia.org/wiki/Metaprogramming) (Wikipedia)
+- [Metaobjeto](https://en.wikipedia.org/wiki/Metaobject) (Wikipedia)

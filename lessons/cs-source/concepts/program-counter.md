@@ -1,14 +1,14 @@
 ---
-title: "The program counter"
+title: "El contador de programa"
 chapter: 3
 order: 30
 ---
-The program counter is a register that holds the address of the next instruction. After each step it moves forward by one, unless a jump sets it somewhere else. It exists because a machine needs to know "where am I?". Every interpreter has one, even if it has a different name. In [[entry:forth-weird]] the role is played by `>in`, the position of the text interpreter in the current line. The program *moves `>in` backward* to repeat itself. In [[entry:cobol-weird]] it is the destination of one `GO TO`.
+El contador de programa es un registro que guarda la dirección de la siguiente instrucción. Tras cada paso avanza una posición, salvo que un salto le asigne otra. Existe porque una máquina necesita saber "¿dónde estoy?". Todo intérprete tiene uno, aunque lleve otro nombre. En [[entry:forth-weird]] ese papel lo cumple `>in`, la posición de lectura del intérprete de texto en la línea actual. El programa *mueve `>in` hacia atrás* para repetirse. En [[entry:cobol-weird]] es el destino de un `GO TO`.
 
-- **Use this idea when:** you debug, or write an interpreter, a debugger or a virtual machine. These are the cases where reaching for the "where am I" value is legitimate.
-- **Avoid it when:** ordinary application code would need direct access to it.
+- **Usa esta idea cuando:** depures o escribas un intérprete, un depurador o una máquina virtual. En esos casos tiene sentido consultar el valor que responde a "¿dónde estoy?".
+- **Evítalo cuando:** el código común de una aplicación necesite acceder directamente al contador.
 
-**Read more:**
+**Lee más:**
 
-- [Program counter](https://en.wikipedia.org/wiki/Program_counter) (Wikipedia)
-- [Interpreter (computing)](https://en.wikipedia.org/wiki/Interpreter_(computing)) (Wikipedia)
+- [Contador de programa](https://en.wikipedia.org/wiki/Program_counter) (Wikipedia)
+- [Intérprete (informática)](https://en.wikipedia.org/wiki/Interpreter_(computing)) (Wikipedia)

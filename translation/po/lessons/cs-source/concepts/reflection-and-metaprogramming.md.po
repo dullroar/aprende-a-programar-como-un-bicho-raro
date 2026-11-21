@@ -1,0 +1,48 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lessons/cs-source/concepts/reflection-and-metaprogramming.md:2
+msgctxt "s-f773c122a88b-0000"
+msgid "Reflection and metaprogramming"
+msgstr "Reflexión y metaprogramación"
+
+#: lessons/cs-source/concepts/reflection-and-metaprogramming.md:6
+msgctxt "s-1b15c582396c-0001"
+msgid "*Reflection* means a program inspects or changes its own structure while it runs: it finds a type by name, lists methods, calls one. *Metaprogramming* means a program writes or transforms programs. They exist because frameworks need them: serializers, test runners, dependency injection and plugin systems all find code they have never seen. XAML works by reflection: a type name in the markup becomes an object. Common Lisp's metaobject protocol lets ⟦MACRO_0001⟧ ask which methods apply to a call. The cost is that tools and optimizers cannot see through it, and a name that comes from data can become an attack."
+msgstr "La *reflexión* permite que un programa examine o cambie su propia estructura mientras se ejecuta. Puede buscar un tipo por su nombre, listar métodos y llamar a uno. La *metaprogramación* permite que un programa escriba o transforme programas. Existen porque los marcos de trabajo las necesitan. Los serializadores, los ejecutores de pruebas, la inyección de dependencias y los sistemas de complementos encuentran código que nunca han visto. XAML funciona por reflexión: un nombre de tipo en el marcado se convierte en un objeto. El protocolo de metaobjetos de Common Lisp permite que ⟦MACRO_0001⟧ consulte qué métodos se aplican a una llamada. El costo es que las herramientas y los optimizadores no pueden ver qué ocurre por dentro. Un nombre que proviene de los datos puede dar pie a un ataque."
+
+#: lessons/cs-source/concepts/reflection-and-metaprogramming.md:8
+msgctxt "s-b173af94dfac-0002"
+msgid "**Use it when:** at the boundaries of a framework, where code must be found by name."
+msgstr "**Úsalas cuando:** debas buscar código por nombre en los límites de un marco de trabajo."
+
+#: lessons/cs-source/concepts/reflection-and-metaprogramming.md:9
+msgctxt "s-e4eb4a1ad1b2-0003"
+msgid "**Avoid it in business logic.** If names come from outside, accept only an explicit list."
+msgstr "**Evítalas en la lógica de negocio.** Si los nombres vienen de fuera, acepta solo los de una lista explícita."
+
+#: lessons/cs-source/concepts/reflection-and-metaprogramming.md:11
+msgctxt "s-250de292f56f-0004"
+msgid "**Read more:**"
+msgstr "**Lee más:**"
+
+#: lessons/cs-source/concepts/reflection-and-metaprogramming.md:13
+msgctxt "s-ab39d9d557f7-0005"
+msgid "[Reflective programming](⟦DEST_0001⟧) (Wikipedia)"
+msgstr "[Programación reflexiva](⟦DEST_0001⟧) (Wikipedia)"
+
+#: lessons/cs-source/concepts/reflection-and-metaprogramming.md:14
+msgctxt "s-733b53047085-0006"
+msgid "[Metaprogramming](⟦DEST_0001⟧) (Wikipedia)"
+msgstr "[Metaprogramación](⟦DEST_0001⟧) (Wikipedia)"
+
+#: lessons/cs-source/concepts/reflection-and-metaprogramming.md:15
+msgctxt "s-83e4614b1cbf-0007"
+msgid "[Metaobject](⟦DEST_0001⟧) (Wikipedia)"
+msgstr "[Metaobjeto](⟦DEST_0001⟧) (Wikipedia)"

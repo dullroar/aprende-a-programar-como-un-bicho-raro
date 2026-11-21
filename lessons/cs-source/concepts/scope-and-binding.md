@@ -1,34 +1,34 @@
 ---
-title: "Scope and binding"
+title: "Ámbito y enlace de nombres"
 chapter: 6
 order: 40
 ---
-*Scope* is the part of a program where a name can be seen. *Binding* is the link between a name and a value. Most languages use *lexical* scope: a name means what it means where it is written. Some use *dynamic* scope: a name means whatever the most recent caller set. Dynamic scope can be useful, and it can be dangerous. In [[entry:apl-weird]] dynamic scope would let a rewritten function overwrite its parent's variables, so each generated header redeclares its locals. In Tcl, `uplevel` runs code in the scope of another stack frame. [[entry:tcl-weird]] uses `uplevel #0`, which means the global scope. In m4 and Make, every name is global.
+El *ámbito* es la parte de un programa donde un nombre es visible. El *enlace* es la asociación entre un nombre y un valor. La mayoría de los lenguajes usa el ámbito *léxico*: el significado de un nombre depende de dónde está escrito. Algunos usan el ámbito *dinámico*: el nombre significa lo que le asignó el invocador más reciente. El ámbito dinámico puede ser útil y también peligroso. En [[entry:apl-weird]] permitiría que una función reescrita sobrescribiera las variables de su función padre. Por eso cada encabezado generado vuelve a declarar sus variables locales. En Tcl, `uplevel` ejecuta código en el ámbito de otro marco de pila. [[entry:tcl-weird]] usa `uplevel #0`, que indica el ámbito global. En m4 y Make todos los nombres son globales.
 
 ```mermaid
 flowchart TB
-    accTitle: Scope sets the search region for a name, and binding is the value the name resolves to
-    accDescr: Two nested boxes. The outer scope binds x to 10 and y to 20. The inner scope, drawn inside it, binds x to 99. An expression x plus y runs inside the inner scope. The lookup for x finds x equals 99 in the inner scope first, so the outer x is shadowed. The lookup for y finds nothing in the inner scope, so it goes outward and finds y equals 20. The result is 99 plus 20, which is 119.
-    subgraph OUT["Outer scope"]
+    accTitle: El ámbito fija dónde se busca un nombre. El enlace es el valor al que remite el nombre
+    accDescr: Dos recuadros anidados. El ámbito exterior enlaza x con 10 e y con 20. El ámbito interior, dibujado dentro del exterior, enlaza x con 99. La expresión x más y se evalúa en el ámbito interior. La búsqueda de x encuentra primero x igual a 99 en el ámbito interior. Esa x oculta la del ámbito exterior. La búsqueda de y no encuentra nada en el ámbito interior, así que sigue hacia afuera y encuentra y igual a 20. El resultado es 99 más 20, que da 119.
+    subgraph OUT["Ámbito exterior"]
         direction TB
-        ox["x = 10 (shadowed)"] ~~~ oy["y = 20"]
-        subgraph INN["Inner scope"]
+        ox["x = 10 (oculta)"] ~~~ oy["y = 20"]
+        subgraph INN["Ámbito interior"]
             direction TB
             ix["x = 99"] ~~~ use["x + y = 99 + 20 = 119"]
         end
     end
-    use -->|"x: found here, first"| ix
-    use -->|"y: not here, look outward"| oy
+    use -->|"x: aparece primero aquí"| ix
+    use -->|"y: busca afuera"| oy
 ```
 
-A name is looked up in the innermost scope first, then outward. Here `x` is found at once in the inner scope, which *shadows* the outer `x = 10`. The name `y` is not bound in the inner scope, so the search goes outward. The scope decides where to look, and the binding is what the search finds. This picture is lexical scope: the boxes are the nesting of the source text.
+La búsqueda de un nombre empieza en el ámbito más interno y sigue hacia afuera. Aquí la búsqueda encuentra `x` de inmediato en el ámbito interior. Ese enlace *oculta* el `x = 10` exterior. El nombre `y` no tiene enlace en el ámbito interior, así que la búsqueda sigue hacia afuera. El ámbito decide dónde buscar y el enlace es lo que la búsqueda encuentra. El dibujo muestra el ámbito léxico: los recuadros representan cómo se anida el texto fuente.
 
-- **Use it when:** lexical scope, almost always. It lets you read a function without knowing its callers.
-- **Avoid it when:** a name would need dynamic or global scope without a deliberate, documented reason.
+- **Usa el ámbito léxico** casi siempre. Te permite leer una función sin saber quién la llama.
+- **Evítalo cuando:** un nombre necesite un ámbito dinámico o global sin un motivo deliberado y documentado.
 
-**Read more:**
+**Lee más:**
 
-- [Scope (computer programming)](https://en.wikipedia.org/wiki/Scope_(computer_programming)) (Wikipedia)
-- [Name binding](https://en.wikipedia.org/wiki/Name_binding) (Wikipedia)
-- [Closure (computer programming)](https://en.wikipedia.org/wiki/Closure_(computer_programming)) (Wikipedia)
-- [Scope](https://developer.mozilla.org/en-US/docs/Glossary/Scope) (MDN glossary)
+- [Ámbito (programación informática)](https://en.wikipedia.org/wiki/Scope_(computer_programming)) (Wikipedia)
+- [Enlace de nombres](https://en.wikipedia.org/wiki/Name_binding) (Wikipedia)
+- [Clausura (programación informática)](https://en.wikipedia.org/wiki/Closure_(computer_programming)) (Wikipedia)
+- [Ámbito](https://developer.mozilla.org/en-US/docs/Glossary/Scope) (glosario de MDN)

@@ -1,0 +1,43 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lessons/cs-source/concepts/program-counter.md:2
+msgctxt "s-2e5225b11e76-0000"
+msgid "The program counter"
+msgstr "El contador de programa"
+
+#: lessons/cs-source/concepts/program-counter.md:6
+msgctxt "s-c8bbca46511d-0001"
+msgid "The program counter is a register that holds the address of the next instruction. After each step it moves forward by one, unless a jump sets it somewhere else. It exists because a machine needs to know \"where am I?\". Every interpreter has one, even if it has a different name. In ⟦MACRO_0001⟧ the role is played by ⟦CODE_0002⟧, the position of the text interpreter in the current line. The program *moves ⟦CODE_0003⟧ backward* to repeat itself. In ⟦MACRO_0004⟧ it is the destination of one ⟦CODE_0005⟧."
+msgstr "El contador de programa es un registro que guarda la dirección de la siguiente instrucción. Tras cada paso avanza una posición, salvo que un salto le asigne otra. Existe porque una máquina necesita saber \"¿dónde estoy?\". Todo intérprete tiene uno, aunque lleve otro nombre. En ⟦MACRO_0001⟧ ese papel lo cumple ⟦CODE_0002⟧, la posición de lectura del intérprete de texto en la línea actual. El programa *mueve ⟦CODE_0003⟧ hacia atrás* para repetirse. En ⟦MACRO_0004⟧ es el destino de un ⟦CODE_0005⟧."
+
+#: lessons/cs-source/concepts/program-counter.md:8
+msgctxt "s-75e18a323125-0002"
+msgid "**Use this idea when:** you debug, or write an interpreter, a debugger or a virtual machine. These are the cases where reaching for the \"where am I\" value is legitimate."
+msgstr "**Usa esta idea cuando:** depures o escribas un intérprete, un depurador o una máquina virtual. En esos casos tiene sentido consultar el valor que responde a \"¿dónde estoy?\"."
+
+#: lessons/cs-source/concepts/program-counter.md:9
+msgctxt "s-5d97e32d3b17-0003"
+msgid "**Avoid it when:** ordinary application code would need direct access to it."
+msgstr "**Evítalo cuando:** el código común de una aplicación necesite acceder directamente al contador."
+
+#: lessons/cs-source/concepts/program-counter.md:11
+msgctxt "s-250de292f56f-0004"
+msgid "**Read more:**"
+msgstr "**Lee más:**"
+
+#: lessons/cs-source/concepts/program-counter.md:13
+msgctxt "s-706e880ca005-0005"
+msgid "[Program counter](⟦DEST_0001⟧) (Wikipedia)"
+msgstr "[Contador de programa](⟦DEST_0001⟧) (Wikipedia)"
+
+#: lessons/cs-source/concepts/program-counter.md:14
+msgctxt "s-9598d45a488e-0006"
+msgid "[Interpreter (computing)](⟦DEST_0001⟧)) (Wikipedia)"
+msgstr "[Intérprete (informática)](⟦DEST_0001⟧)) (Wikipedia)"

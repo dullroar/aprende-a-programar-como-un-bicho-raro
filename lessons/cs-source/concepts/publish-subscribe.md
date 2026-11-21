@@ -1,16 +1,16 @@
 ---
-title: "Publish and subscribe"
+title: "Publicación y suscripción"
 chapter: 10
 order: 30
 ---
-In **publish and subscribe**, a *producer* announces that something happened, and any number of *consumers* that registered an interest are called. The producer does not know who they are, and the consumers do not know who produced the event. That is the whole point: the two sides can change independently. Message queues, browser events and Node's `EventEmitter` all follow this shape.
+En el modelo de **publicación y suscripción**, un *productor* anuncia que ocurrió algo. El mecanismo llama a cualquier cantidad de *consumidores* que hayan registrado su interés. El productor no sabe quiénes son y los consumidores no saben quién produjo el evento. De eso se trata: cada parte puede cambiar por su cuenta. Las colas de mensajes, los eventos del navegador y `EventEmitter` de Node siguen este modelo.
 
-The idea has two halves that are easy to confuse. *Who is called* is decided by registration (the table of listeners). *When they are called* is decided by the mechanism: an `EventEmitter` calls them at once and in order, and a message broker may deliver them later and somewhere else. [[entry:javascript-events]] uses an emitter in the plainest way, with one listener per event, and its README says honestly that with exactly one listener the indirection buys nothing. A SQLite trigger in [[entry:tcl-weird]] is a subscription to "a row was inserted". The checkpoint action in [[entry:tar-gnu-weird]] is a subscription with one subscriber.
+La idea tiene dos partes fáciles de confundir. El registro (la tabla de escuchadores de eventos) decide *a quién se llama*. El mecanismo decide *cuándo se les llama*: un `EventEmitter` los llama de inmediato y en orden, mientras que un intermediario de mensajes puede entregarles los mensajes más tarde y en otro lugar. [[entry:javascript-events]] usa un emisor de la forma más sencilla, con un escuchador de eventos por evento. Su README admite que con exactamente un escuchador de eventos la indirección no aporta nada. Un disparador de SQLite en [[entry:tcl-weird]] es una suscripción a "se insertó una fila". La acción del punto de control en [[entry:tar-gnu-weird]] es una suscripción con un solo suscriptor.
 
-- **Use it when:** more than one party may care, or the sender must not know who.
-- **Avoid it when:** there is one receiver. A function call is shorter, and a debugger can step through it.
+- **Úsalo cuando:** pueda interesarle a más de una parte o el remitente no deba saber a quién le interesa.
+- **Evítalo cuando:** haya un solo receptor. Una llamada a una función es más corta y un depurador puede recorrerla paso a paso.
 
-**Read more:**
+**Lee más:**
 
-- [Publish-subscribe pattern](https://en.wikipedia.org/wiki/Publish%E2%80%93subscribe_pattern) (Wikipedia)
-- [Events: EventEmitter](https://nodejs.org/api/events.html) (Node.js documentation)
+- [Patrón de publicación y suscripción](https://en.wikipedia.org/wiki/Publish%E2%80%93subscribe_pattern) (Wikipedia)
+- [Eventos: EventEmitter](https://nodejs.org/api/events.html) (documentación de Node.js)

@@ -1,0 +1,87 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lessons/cs-source/concepts/publish-subscribe.md:2
+msgctxt "s-d27138a89989-0000"
+msgid "Publish and subscribe"
+msgstr "Publicación y suscripción"
+
+#: lessons/cs-source/concepts/publish-subscribe.md:6
+msgctxt "s-2f4fa90d048e-0001"
+msgid ""
+"In **publish and subscribe**, a *producer* announces that something "
+"happened, and any number of *consumers* that registered an interest are "
+"called. The producer does not know who they are, and the consumers do not "
+"know who produced the event. That is the whole point: the two sides can "
+"change independently. Message queues, browser events and Node's ⟦CODE_0001⟧ "
+"all follow this shape."
+msgstr ""
+"En el modelo de **publicación y suscripción**, un *productor* anuncia que "
+"ocurrió algo. El mecanismo llama a cualquier cantidad de *consumidores* que "
+"hayan registrado su interés. El productor no sabe quiénes son y los "
+"consumidores no saben quién produjo el evento. De eso se trata: cada parte "
+"puede cambiar por su cuenta. Las colas de mensajes, los eventos del "
+"navegador y ⟦CODE_0001⟧ de Node siguen este modelo."
+
+#: lessons/cs-source/concepts/publish-subscribe.md:8
+msgctxt "s-c38f43644301-0002"
+msgid ""
+"The idea has two halves that are easy to confuse. *Who is called* is decided"
+" by registration (the table of listeners). *When they are called* is decided"
+" by the mechanism: an ⟦CODE_0001⟧ calls them at once and in order, and a "
+"message broker may deliver them later and somewhere else. ⟦MACRO_0002⟧ uses "
+"an emitter in the plainest way, with one listener per event, and its README "
+"says honestly that with exactly one listener the indirection buys nothing. A"
+" SQLite trigger in ⟦MACRO_0003⟧ is a subscription to \"a row was inserted\"."
+" The checkpoint action in ⟦MACRO_0004⟧ is a subscription with one "
+"subscriber."
+msgstr ""
+"La idea tiene dos partes fáciles de confundir. El registro (la tabla de "
+"escuchadores de eventos) decide *a quién se llama*. El mecanismo decide "
+"*cuándo se les llama*: un ⟦CODE_0001⟧ los llama de inmediato y en orden, "
+"mientras que un intermediario de mensajes puede entregarles los mensajes más"
+" tarde y en otro lugar. ⟦MACRO_0002⟧ usa un emisor de la forma más sencilla,"
+" con un escuchador de eventos por evento. Su README admite que con "
+"exactamente un escuchador de eventos la indirección no aporta nada. Un "
+"disparador de SQLite en ⟦MACRO_0003⟧ es una suscripción a \"se insertó una "
+"fila\". La acción del punto de control en ⟦MACRO_0004⟧ es una suscripción "
+"con un solo suscriptor."
+
+#: lessons/cs-source/concepts/publish-subscribe.md:10
+msgctxt "s-984b70f9eb7d-0003"
+msgid ""
+"**Use it when:** more than one party may care, or the sender must not know "
+"who."
+msgstr ""
+"**Úsalo cuando:** pueda interesarle a más de una parte o el remitente no "
+"deba saber a quién le interesa."
+
+#: lessons/cs-source/concepts/publish-subscribe.md:11
+msgctxt "s-00ec7aad24ef-0004"
+msgid ""
+"**Avoid it when:** there is one receiver. A function call is shorter, and a "
+"debugger can step through it."
+msgstr ""
+"**Evítalo cuando:** haya un solo receptor. Una llamada a una función es más "
+"corta y un depurador puede recorrerla paso a paso."
+
+#: lessons/cs-source/concepts/publish-subscribe.md:13
+msgctxt "s-250de292f56f-0005"
+msgid "**Read more:**"
+msgstr "**Lee más:**"
+
+#: lessons/cs-source/concepts/publish-subscribe.md:15
+msgctxt "s-1056c0cd9e3d-0006"
+msgid "[Publish-subscribe pattern](⟦DEST_0001⟧) (Wikipedia)"
+msgstr "[Patrón de publicación y suscripción](⟦DEST_0001⟧) (Wikipedia)"
+
+#: lessons/cs-source/concepts/publish-subscribe.md:16
+msgctxt "s-9339f2ec19ad-0007"
+msgid "[Events: EventEmitter](⟦DEST_0001⟧) (Node.js documentation)"
+msgstr "[Eventos: EventEmitter](⟦DEST_0001⟧) (documentación de Node.js)"

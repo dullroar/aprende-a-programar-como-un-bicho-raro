@@ -1,0 +1,164 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lessons/cs-source/concepts/register-machine.md:2
+msgctxt "s-9d4e7261d377-0000"
+msgid "Register machines and counter machines"
+msgstr "Máquinas de registros y máquinas de contadores"
+
+#: lessons/cs-source/concepts/register-machine.md:6
+msgctxt "s-94cf2354335c-0001"
+msgid ""
+"A register machine stores its values in a few numbered boxes called "
+"registers. Real processors are register machines. The smallest version, a "
+"*counter machine*, has only two operations: add one to a register, or "
+"subtract one and jump if the result is zero. It exists as a thinking tool: "
+"it is simple enough to prove things about, yet powerful enough to compute "
+"anything (two counters are enough). Several entries are register machines in"
+" disguise. CMake's ⟦CODE_0001⟧ to ⟦CODE_0002⟧ are the registers of "
+"⟦MACRO_0003⟧. .NET's balancing groups, in ⟦MACRO_0004⟧, are a counter."
+msgstr ""
+"Una máquina de registros guarda sus valores en unas pocas casillas numeradas"
+" que se llaman registros. Los procesadores reales son máquinas de registros."
+" La versión más pequeña, una *máquina de contadores*, solo tiene dos "
+"operaciones: sumar uno a un registro o restarle uno y saltar si el resultado"
+" es cero. Sirve para razonar. Es lo bastante simple como para demostrar sus "
+"propiedades y lo bastante potente como para calcular cualquier cosa (bastan "
+"dos contadores). Varias entradas son máquinas de registros disfrazadas. En "
+"CMake, de ⟦CODE_0001⟧ a ⟦CODE_0002⟧ son los registros de ⟦MACRO_0003⟧. Los "
+"grupos de equilibrio de .NET en ⟦MACRO_0004⟧ forman un contador."
+
+#: lessons/cs-source/concepts/register-machine.md:10
+msgctxt "s-05c2d79033db-0002"
+msgid ""
+"A register machine names its storage cells; a counter machine needs only "
+"increment, decrement and a zero test"
+msgstr ""
+"Una máquina de registros identifica sus celdas. Una máquina de contadores "
+"solo necesita sumar, restar y comprobar si llega a cero"
+
+#: lessons/cs-source/concepts/register-machine.md:11
+msgctxt "s-dc2a5741e8a5-0003"
+msgid ""
+"Two panels. In the register machine, registers R1 and R2 hold 19 and 23. The"
+" instruction ADD R1, R2 into R1 leaves R1 holding 42 and R2 still holding "
+"23. In the counter machine, counters C1 and C2 start at 2 and 0. A loop "
+"decrements C1, increments C2 and tests C1 for zero. If C1 is not zero, the "
+"loop runs again. When C1 reaches zero, C1 is 0 and C2 is 2."
+msgstr ""
+"Dos paneles. En la máquina de registros, los registros R1 y R2 contienen 19 "
+"y 23. La instrucción ADD R1, R2 guarda el resultado en R1. R1 queda con 42 y"
+" R2 conserva 23. En la máquina de contadores, C1 y C2 empiezan en 2 y 0. Un "
+"bucle decrementa C1, incrementa C2 y comprueba si C1 vale cero. Si C1 no "
+"vale cero, el bucle se ejecuta de nuevo. Cuando C1 llega a cero, C1 vale 0 y"
+" C2 vale 2."
+
+#: lessons/cs-source/concepts/register-machine.md:12
+msgctxt "s-8806c4f1ffde-0004"
+msgid "Counter machine"
+msgstr "Máquina de contadores"
+
+#: lessons/cs-source/concepts/register-machine.md:14
+msgctxt "s-4d9292ebb84f-0005"
+msgid "C1 = 2, C2 = 0"
+msgstr "C1 = 2, C2 = 0"
+
+#: lessons/cs-source/concepts/register-machine.md:14
+msgctxt "s-599daa3dc4c7-0006"
+msgid "DEC C1, INC C2"
+msgstr "DEC C1, INC C2"
+
+#: lessons/cs-source/concepts/register-machine.md:15
+msgctxt "s-afeca60fe8d5-0007"
+msgid "C1 is zero?"
+msgstr "¿C1 vale cero?"
+
+#: lessons/cs-source/concepts/register-machine.md:16
+msgctxt "s-755a4564a52b-0008"
+msgid "no: loop"
+msgstr "no: repite el bucle"
+
+#: lessons/cs-source/concepts/register-machine.md:17
+msgctxt "s-8a798890fe93-0009"
+msgid "yes"
+msgstr "sí"
+
+#: lessons/cs-source/concepts/register-machine.md:17
+msgctxt "s-56f55f30524f-0010"
+msgid "C1 = 0, C2 = 2"
+msgstr "C1 = 0, C2 = 2"
+
+#: lessons/cs-source/concepts/register-machine.md:19
+msgctxt "s-e625e43cae65-0011"
+msgid "Register machine"
+msgstr "Máquina de registros"
+
+#: lessons/cs-source/concepts/register-machine.md:21
+msgctxt "s-f7a6300c1952-0012"
+msgid "R1 = 19, R2 = 23"
+msgstr "R1 = 19, R2 = 23"
+
+#: lessons/cs-source/concepts/register-machine.md:21
+msgctxt "s-bbf6b7537363-0013"
+msgid "ADD R1, R2 into R1"
+msgstr "ADD R1, R2 a R1"
+
+#: lessons/cs-source/concepts/register-machine.md:21
+msgctxt "s-1000358d589c-0014"
+msgid "R1 = 42, R2 = 23"
+msgstr "R1 = 42, R2 = 23"
+
+#: lessons/cs-source/concepts/register-machine.md:25
+msgctxt "s-ba821a1159c4-0015"
+msgid ""
+"On the left, the instruction names its cells (⟦CODE_0001⟧ and ⟦CODE_0002⟧). "
+"On the right, the machine has two counters and three moves: count down, "
+"count up and test for zero. Moving a count from ⟦CODE_0003⟧ to ⟦CODE_0004⟧ "
+"takes one pass of the loop for each unit, so a counter machine is slow on "
+"purpose. What it shows is how little machinery is enough."
+msgstr ""
+"A la izquierda, la instrucción nombra sus celdas (⟦CODE_0001⟧ y "
+"⟦CODE_0002⟧). A la derecha, la máquina tiene dos contadores y tres acciones:"
+" contar hacia abajo, contar hacia arriba y comprobar si el valor es cero. "
+"Pasar la cuenta de ⟦CODE_0003⟧ a ⟦CODE_0004⟧ requiere una vuelta del bucle "
+"por unidad. Por eso una máquina de contadores es lenta a propósito. Muestra "
+"con qué poca maquinaria basta."
+
+#: lessons/cs-source/concepts/register-machine.md:27
+msgctxt "s-ab8479dda763-0016"
+msgid ""
+"**Use it when:** you want to explain what a strange system *is*, by finding "
+"its registers."
+msgstr ""
+"**Úsala cuando:** quieras explicar qué *es* un sistema insólito al "
+"identificar sus registros."
+
+#: lessons/cs-source/concepts/register-machine.md:28
+msgctxt "s-5e6b5191d81e-0017"
+msgid ""
+"**Avoid it as a coding style:** it is a model for reasoning, not a way to "
+"write programs."
+msgstr ""
+"**Evítala como estilo de programación:** es un modelo para razonar, no una "
+"forma de escribir programas."
+
+#: lessons/cs-source/concepts/register-machine.md:30
+msgctxt "s-250de292f56f-0018"
+msgid "**Read more:**"
+msgstr "**Lee más:**"
+
+#: lessons/cs-source/concepts/register-machine.md:32
+msgctxt "s-5c1d4e2d139d-0019"
+msgid "[Register machine](⟦DEST_0001⟧) (Wikipedia)"
+msgstr "[Máquina de registros](⟦DEST_0001⟧) (Wikipedia)"
+
+#: lessons/cs-source/concepts/register-machine.md:33
+msgctxt "s-f8bd79f6cbc7-0020"
+msgid "[Counter machine](⟦DEST_0001⟧) (Wikipedia)"
+msgstr "[Máquina de contadores](⟦DEST_0001⟧) (Wikipedia)"

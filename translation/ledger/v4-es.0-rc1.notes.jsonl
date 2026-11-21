@@ -1315,3 +1315,23 @@
 {"segment_id": "s-fbfd1d3ec133-0023", "ts": "2026-11-21T15:32:25Z", "findings": ["TRANSLATE: the reply is the English text unchanged"]}
 {"segment_id": "s-1d2bd07b84e5-0008", "ts": "2026-11-21T15:32:26Z", "findings": ["I25: '80%': write a non-breaking space before % (80 %)"]}
 {"segment_id": "s-c15fc8a8af76-0006", "ts": "2026-11-21T15:32:26Z", "findings": ["TRANSLATE: the reply is the English text unchanged"]}
+{"segment_id": "s-1056c0cd9e3d-0006", "ts": "2026-11-21T15:36:53Z", "findings": ["I25: '80%': write a non-breaking space before % (80 %)"]}
+{"segment_id": "s-86a8638f3bac-0001", "ts": "2026-11-21T15:36:53Z", "findings": ["I7: glossary term stack must be rendered 'pila'", "I7: glossary term stack-overflow must be rendered 'desbordamiento de pila'"]}
+{"segment_id": "s-4b362bd478e0-0012", "ts": "2026-11-21T15:36:54Z", "findings": ["I25: comma before a simple 'y' ('que aquí equivale a la repetibilidad, y no de X'): no comma before a simple o or y"]}
+{"segment_id": "s-599daa3dc4c7-0006", "ts": "2026-11-21T15:36:54Z", "findings": ["I9: target equals the English source", "TRANSLATE: the reply is the English text unchanged"]}
+{"segment_id": "s-106c72ce5d41-0001", "ts": "2026-11-21T15:39:06Z", "findings": ["I7: glossary term sandbox must be rendered 'entorno aislado (*sandbox*)'"]}
+{"segment_id": "s-1910df226f27-0004", "ts": "2026-11-21T15:39:07Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-65f5e94b486f-0007", "ts": "2026-11-21T15:39:07Z", "findings": ["I7: glossary term claim must be rendered 'afirmación'"]}
+{"segment_id": "s-f1658b9f81ea-0016", "ts": "2026-11-21T15:39:07Z", "findings": ["I7: glossary term state must be rendered 'estado'"]}
+{"segment_id": "s-24bd3c94241e-0027", "ts": "2026-11-21T15:39:07Z", "findings": ["TRANSLATE: the reply is the English text unchanged"]}
+{"segment_id": "s-134ae4737355-0031", "ts": "2026-11-21T15:39:07Z", "findings": ["TRANSLATE: the reply is the English text unchanged"]}
+{"segment_id": "s-f2bacb2d583e-0004", "ts": "2026-11-21T15:39:07Z", "findings": ["I9: looks English: 1 of 3 words are English function words", "TRANSLATE: the reply is the English text unchanged"]}
+{"segment_id": "s-8551b67ebd18-0011", "ts": "2026-11-21T15:39:07Z", "findings": ["I9: looks English: 1 of 3 words are English function words", "TRANSLATE: the reply is the English text unchanged"]}
+{"segment_id": "s-8c2d4db6605b-0014", "ts": "2026-11-21T15:39:07Z", "findings": ["I7: banned rendering 'emparejamiento' for glossary term match"]}
+{"segment_id": "s-0c1c64a738b1-0013", "ts": "2026-11-21T15:39:08Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-86a8638f3bac-0001", "ts": "2026-11-21T15:39:57Z", "findings": ["I7: glossary term stack must be rendered 'pila'", "I7: glossary term stack-overflow must be rendered 'desbordamiento de pila'"]}
+{"segment_id": "s-106c72ce5d41-0001", "ts": "2026-11-21T15:39:57Z", "findings": ["I7: glossary term sandbox must be rendered 'entorno aislado (*sandbox*)'"]}
+{"segment_id": "s-1910df226f27-0004", "ts": "2026-11-21T15:39:58Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-f1658b9f81ea-0016", "ts": "2026-11-21T15:39:58Z", "findings": ["I7: glossary term state must be rendered 'estado'"]}
+{"segment_id": "s-24bd3c94241e-0027", "ts": "2026-11-21T15:39:58Z", "findings": ["TRANSLATE: the reply is the English text unchanged"]}
+{"segment_id": "s-134ae4737355-0031", "ts": "2026-11-21T15:39:58Z", "findings": ["TRANSLATE: the reply is the English text unchanged"]}

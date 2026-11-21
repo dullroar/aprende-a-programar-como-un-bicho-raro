@@ -1,37 +1,37 @@
 ---
-title: "Stack machines"
+title: "Máquinas de pila"
 chapter: 2
 order: 60
 ---
-A stack machine keeps its working values on a stack. An instruction takes its inputs from the top and puts its result back. There are no named registers. It exists because the instructions can be tiny (`+` needs no operands) and a compiler can generate them easily. That is why the JVM, .NET's IL, WebAssembly, PostScript and Forth all use the idea. In [[entry:forth-weird]] the data stack is the *only* memory: the program has no `variable` at all.
+Una máquina de pila guarda sus valores de trabajo en una pila. Una instrucción toma sus entradas de la cima y deja allí su resultado. No hay registros con nombre. Existe porque las instrucciones pueden ser diminutas (`+` no necesita operandos) y un compilador puede generarlas con facilidad. Por eso la JVM, el IL de .NET, WebAssembly, PostScript y Forth usan la idea. En [[entry:forth-weird]] la pila de datos es la *única* memoria: el programa no tiene ningún `variable`.
 
 ```mermaid
 flowchart TB
-    accTitle: Stack machines compute by pushing and popping values at the top of a LIFO stack
-    accDescr: Three snapshots of a stack, top to bottom, each drawn from the stack's bottom on the left to its top on the right. At the start the stack holds 19 with 23 on top. The instruction ADD pops the top two values and pushes their sum, so the stack holds only 42. Then PUSH 10 puts 10 on top, and the stack holds 42 with 10 on top. Every step touches only the top of the stack, and no instruction names a location.
-    subgraph S1["Start (bottom on the left, top on the right)"]
+    accTitle: Las máquinas de pila calculan al apilar y desapilar valores en la cima de una pila LIFO: lo último en entrar sale primero
+    accDescr: Tres vistas de una pila, de arriba abajo, cada una con la base a la izquierda y la cima a la derecha. Al principio la pila contiene 19 con 23 en la cima. La instrucción ADD desapila los dos valores de la cima y apila su suma. La pila queda solo con 42. Luego PUSH 10 pone 10 en la cima. La pila contiene 42 con 10 en la cima. Cada paso solo toca la cima de la pila y ninguna instrucción nombra una posición.
+    subgraph S1["Inicio (base a la izquierda, cima a la derecha)"]
         direction LR
-        a1["19"] ~~~ a2["23 (top)"]
+        a1["19"] ~~~ a2["23 (cima)"]
     end
-    subgraph S2["After ADD"]
+    subgraph S2["Después de ADD"]
         direction LR
-        b1["42 (top)"]
+        b1["42 (cima)"]
     end
-    subgraph S3["After PUSH 10"]
+    subgraph S3["Después de PUSH 10"]
         direction LR
-        c1["42"] ~~~ c2["10 (top)"]
+        c1["42"] ~~~ c2["10 (cima)"]
     end
-    S1 -->|"ADD: pop two values, push their sum"| S2
-    S2 -->|"PUSH 10: push one value"| S3
+    S1 -->|"ADD: desapila dos valores y apila la suma"| S2
+    S2 -->|"PUSH 10: apila un valor"| S3
 ```
 
-Read the picture from top to bottom. `ADD` does not say where its inputs are: it pops the top two values and pushes one result. A real stack machine still has other memory (the JVM has local variables and a heap, for example). The stack only holds the values that the next instruction needs.
+Lee el dibujo de arriba abajo. `ADD` no dice dónde están sus entradas: desapila los dos valores de la cima y apila un resultado. Una máquina de pila real también tiene otra memoria (la JVM tiene variables locales y un montículo, por ejemplo). La pila solo guarda los valores que necesita la siguiente instrucción.
 
-- **Use it when:** you build a small virtual machine or interpreter, or you want compact code.
-- **Avoid it when:** you need random access to many values. Shuffling the stack with `dup`, `swap` and `rot` becomes unreadable fast.
+- **Úsala cuando:** construyas una máquina virtual pequeña o un intérprete, o quieras código compacto.
+- **Evítala cuando:** necesites acceso aleatorio a muchos valores. El código que reordena la pila con `dup`, `swap` y `rot` pronto se vuelve ilegible.
 
-**Read more:**
+**Lee más:**
 
-- [Stack machine](https://en.wikipedia.org/wiki/Stack_machine) (Wikipedia)
-- [Reverse Polish notation](https://en.wikipedia.org/wiki/Reverse_Polish_notation) (Wikipedia)
-- [Forth (programming language)](https://en.wikipedia.org/wiki/Forth_(programming_language)) (Wikipedia)
+- [Máquina de pila](https://en.wikipedia.org/wiki/Stack_machine) (Wikipedia)
+- [Notación polaca inversa](https://en.wikipedia.org/wiki/Reverse_Polish_notation) (Wikipedia)
+- [Forth (lenguaje de programación)](https://en.wikipedia.org/wiki/Forth_(programming_language)) (Wikipedia)

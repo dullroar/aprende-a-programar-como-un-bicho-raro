@@ -1,0 +1,108 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lessons/cs-source/concepts/stack-data-structure.md:2
+msgctxt "s-ee69a7e2f1b0-0000"
+msgid "The stack as a data structure"
+msgstr "La pila como estructura de datos"
+
+#: lessons/cs-source/concepts/stack-data-structure.md:6
+msgctxt "s-adb095751831-0001"
+msgid "A stack is a pile where you add and remove at the top only: last in, first out. It is the right shape for anything nested: undo, expression evaluation, bracket matching and backtracking. In this repository the stack appears in two unusual places. In ⟦MACRO_0001⟧ the data stack is the only memory. In ⟦MACRO_0002⟧ *balancing groups* push a capture when they see an opening mark and pop one when they see a closing mark. A stack of marks is a counter, so a regex can compare two counts."
+msgstr "Una pila es un montón donde solo agregas y retiras elementos por la cima: el último en entrar es el primero en salir. Sirve cuando hay anidamiento: deshacer acciones, evaluar expresiones, emparejar delimitadores y aplicar retroceso. En este repositorio la pila aparece en dos lugares insólitos. En ⟦MACRO_0001⟧ la pila de datos es la única memoria. En ⟦MACRO_0002⟧ los *grupos de equilibrio* apilan una captura al ver una marca de apertura y la desapilan al ver una de cierre. Una pila de marcas sirve de contador, así que una expresión regular puede comparar dos recuentos."
+
+#: lessons/cs-source/concepts/stack-data-structure.md:10
+msgctxt "s-48166d1b7f80-0002"
+msgid "A stack is last-in, first-out, and only the top element can be pushed or popped"
+msgstr "En una pila sale primero lo último que entró. Solo puedes apilar o desapilar por la cima"
+
+#: lessons/cs-source/concepts/stack-data-structure.md:11
+msgctxt "s-b3a14ad639c9-0003"
+msgid "Three snapshots of a stack, top to bottom, each drawn from the stack's bottom on the left to its top on the right. At the start the stack holds only A. After push B and push C it holds A, B and C, with C on top. Two pops then return C first and B second, leaving only A. The most recent push is always the first to come back out."
+msgstr "Tres vistas de una pila, de arriba abajo, cada una con la base a la izquierda y la cima a la derecha. Al principio la pila solo contiene A. Tras apilar B y luego C, contiene A, B y C, con C en la cima. Al desapilar dos veces, sale C primero y B después. Solo queda A. Lo último que se apila siempre es lo primero que vuelve a salir."
+
+#: lessons/cs-source/concepts/stack-data-structure.md:12
+msgctxt "s-53695d34cd08-0004"
+msgid "Start (bottom on the left, top on the right)"
+msgstr "Inicio (base a la izquierda, cima a la derecha)"
+
+#: lessons/cs-source/concepts/stack-data-structure.md:14
+msgctxt "s-65891e5d1698-0005"
+msgid "A (top)"
+msgstr "A (cima)"
+
+#: lessons/cs-source/concepts/stack-data-structure.md:16
+msgctxt "s-7a57c0d9727d-0006"
+msgid "After two pushes"
+msgstr "Tras apilar dos veces"
+
+#: lessons/cs-source/concepts/stack-data-structure.md:18
+msgctxt "s-559aead08264-0007"
+msgid "A"
+msgstr "A"
+
+#: lessons/cs-source/concepts/stack-data-structure.md:18
+msgctxt "s-df7e70e50215-0008"
+msgid "B"
+msgstr "B"
+
+#: lessons/cs-source/concepts/stack-data-structure.md:18
+msgctxt "s-7be70ca336c0-0009"
+msgid "C (top)"
+msgstr "C (cima)"
+
+#: lessons/cs-source/concepts/stack-data-structure.md:20
+msgctxt "s-26edd645632b-0010"
+msgid "After two pops"
+msgstr "Tras desapilar dos veces"
+
+#: lessons/cs-source/concepts/stack-data-structure.md:22
+msgctxt "s-65891e5d1698-0011"
+msgid "A (top)"
+msgstr "A (cima)"
+
+#: lessons/cs-source/concepts/stack-data-structure.md:24
+msgctxt "s-7ee858a6291c-0012"
+msgid "push B, then push C"
+msgstr "apila B y luego C"
+
+#: lessons/cs-source/concepts/stack-data-structure.md:25
+msgctxt "s-ab0fb037a625-0013"
+msgid "pop gives C, pop gives B"
+msgstr "al desapilar sale C y luego B"
+
+#: lessons/cs-source/concepts/stack-data-structure.md:28
+msgctxt "s-8c2d4db6605b-0014"
+msgid "Only the top can be reached. A push adds on top and a pop removes from the top, so the last item in is the first one out. ⟦MACRO_0001⟧ is one use of this structure, with frames as the items. Undo lists, bracket matching and the data stack of ⟦MACRO_0002⟧ are others."
+msgstr "Solo puedes acceder a la cima. Apilar agrega un elemento en la cima y desapilar lo retira de allí. Así, el último en entrar es el primero en salir. ⟦MACRO_0001⟧ usa esta estructura con marcos como elementos. Las listas para deshacer acciones, la comprobación de pares de delimitadores y la pila de datos de ⟦MACRO_0002⟧ son otros usos."
+
+#: lessons/cs-source/concepts/stack-data-structure.md:30
+msgctxt "s-5238ffce8729-0015"
+msgid "**Use it when:** the problem is nested, or you must undo in reverse order."
+msgstr "**Úsala cuando:** el problema tenga elementos anidados o debas deshacer acciones en orden inverso."
+
+#: lessons/cs-source/concepts/stack-data-structure.md:31
+msgctxt "s-89e57b1a8011-0016"
+msgid "**Avoid it when:** you need random access or first-in, first-out order. Use an array or a queue."
+msgstr "**Evítala cuando:** necesites acceso aleatorio o que el primero en entrar sea el primero en salir. Usa un arreglo o una cola."
+
+#: lessons/cs-source/concepts/stack-data-structure.md:33
+msgctxt "s-250de292f56f-0017"
+msgid "**Read more:**"
+msgstr "**Lee más:**"
+
+#: lessons/cs-source/concepts/stack-data-structure.md:35
+msgctxt "s-e3ec2433fba5-0018"
+msgid "[Stack (abstract data type)](⟦DEST_0001⟧)) (Wikipedia)"
+msgstr "[Pila (tipo abstracto de datos)](⟦DEST_0001⟧)) (Wikipedia)"
+
+#: lessons/cs-source/concepts/stack-data-structure.md:36
+msgctxt "s-a219b628591d-0019"
+msgid "[Pushdown automaton](⟦DEST_0001⟧) (Wikipedia)"
+msgstr "[Autómata de pila](⟦DEST_0001⟧) (Wikipedia)"

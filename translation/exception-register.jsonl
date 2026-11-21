@@ -249,3 +249,12 @@
 {"id":"EXC-249","segment":"s-dd956f3b26ad-0010","invariant":"I7","reason":"LOOP(2) is a literal macro invocation, not the noun loop.","task":"P4-lessons-cs-source-concepts-3"}
 {"id":"EXC-250","segment":"s-1d2bd07b84e5-0008","invariant":"I25","reason":"The percent sign belongs to URL percent encoding (%80) in the pinned Wikipedia destination. Changing it would break the protected URL.","task":"P4-lessons-cs-source-concepts-3"}
 {"id":"EXC-251","segment":"s-ac5d3671dc48-0001","invariant":"I7","reason":"Builds means instantiates objects during parsing. The glossary sense of compilation does not apply.","task":"P4-lessons-cs-source-concepts-3"}
+{"id":"EXC-252","segment":"s-1056c0cd9e3d-0006","invariant":"I25","reason":"The percent sign belongs to percent encoding (%80) inside the protected Wikipedia URL.","task":"P4-lessons-cs-source-concepts-4"}
+{"id":"EXC-253","segment":"s-86a8638f3bac-0001","invariant":"I7","reason":"Stack Overflow is the name of the affected website. The glossary entries for stack and stack overflow concern the data structure and runtime error.","task":"P4-lessons-cs-source-concepts-4"}
+{"id":"EXC-254","segment":"s-599daa3dc4c7-0006","invariant":"I9","reason":"This diagram label is a literal pair of instructions, DEC C1 and INC C2, with no prose to translate.","task":"P4-lessons-cs-source-concepts-4"}
+{"id":"EXC-255","segment":"s-106c72ce5d41-0001","invariant":"I7","reason":"Windows Sandbox is the product name. The following definition supplies the first-use gloss for the generic concept.","task":"P4-lessons-cs-source-concepts-4"}
+{"id":"EXC-256","segment":"s-1910df226f27-0004","invariant":"I7","reason":"Builds here means creates a tar archive, not compiles sources.","task":"P4-lessons-cs-source-concepts-4"}
+{"id":"EXC-257","segment":"s-f1658b9f81ea-0016","invariant":"I7","reason":"State is an imperative verb meaning to specify a promise, not the noun for retained program data.","task":"P4-lessons-cs-source-concepts-4"}
+{"id":"EXC-258","segment":"s-f2bacb2d583e-0004","invariant":"I9","reason":"The label is the exact pseudocode expression false AND expensive().","task":"P4-lessons-cs-source-concepts-4"}
+{"id":"EXC-259","segment":"s-8551b67ebd18-0011","invariant":"I9","reason":"The label is the exact pseudocode expression true OR expensive().","task":"P4-lessons-cs-source-concepts-4"}
+{"id":"EXC-260","segment":"s-0c1c64a738b1-0013","invariant":"I7","reason":"Build is a verb meaning to construct a virtual machine or interpreter, not compilation.","task":"P4-lessons-cs-source-concepts-4"}

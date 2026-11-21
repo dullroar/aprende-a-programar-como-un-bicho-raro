@@ -1,0 +1,82 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lessons/cs-source/concepts/redos.md:2
+msgctxt "s-94890a5267eb-0000"
+msgid "Regular-expression denial of service"
+msgstr "Denegación de servicio mediante expresiones regulares"
+
+#: lessons/cs-source/concepts/redos.md:6
+msgctxt "s-86a8638f3bac-0001"
+msgid ""
+"ReDoS (regular-expression denial of service) is an attack that sends an "
+"input on which a backtracking regex engine takes exponential, or very long, "
+"time. A pattern such as ⟦CODE_0001⟧ is fine on most strings and terrible on "
+"a long run of ⟦CODE_0002⟧ characters followed by ⟦CODE_0003⟧. It exists "
+"because a backtracking engine tries every way to match before it gives up. "
+"Real outages have come from this: a regex in a web firewall rule took down "
+"Cloudflare in 2019, and one on whitespace slowed Stack Overflow in 2016. The"
+" mitigations are simple: use an engine that matches in linear time (RE2, "
+"Rust's ⟦CODE_0004⟧, .NET's ⟦CODE_0005⟧ option), set a match timeout and "
+"limit the input length."
+msgstr ""
+"ReDoS (denegación de servicio mediante expresiones regulares) es un ataque "
+"que envía una entrada de datos con la que un motor de expresiones regulares "
+"con retroceso tarda un tiempo exponencial o muy largo. Un patrón como "
+"⟦CODE_0001⟧ funciona bien con la mayoría de las cadenas de texto y pésimo "
+"con una secuencia larga de caracteres ⟦CODE_0002⟧ seguida de ⟦CODE_0003⟧. El"
+" ataque existe porque un motor de retroceso prueba todas las formas de "
+"hallar una coincidencia antes de rendirse. Esto ha causado interrupciones "
+"reales: una expresión regular en una regla de un cortafuegos web tumbó "
+"Cloudflare en 2019. Otra, que buscaba espacios en blanco, ralentizó Stack "
+"Overflow en 2016. Las medidas de mitigación son sencillas: usa un motor que "
+"halle coincidencias en tiempo lineal (RE2, ⟦CODE_0004⟧ de Rust o la opción "
+"⟦CODE_0005⟧ de .NET). Fija un tiempo máximo para hallar una coincidencia y "
+"limita la longitud de la entrada."
+
+#: lessons/cs-source/concepts/redos.md:8
+msgctxt "s-38b334fd7c92-0002"
+msgid ""
+"**Use the knowledge when:** any regex meets data that you do not control."
+msgstr ""
+"**Aplica este conocimiento cuando:** cualquier expresión regular procese "
+"datos que tú no controlas."
+
+#: lessons/cs-source/concepts/redos.md:9
+msgctxt "s-3facda2f48e9-0003"
+msgid ""
+"**Avoid it when:** an overlapping pattern has nested quantifiers or a user "
+"submits an unreviewed pattern."
+msgstr ""
+"**Evítalo cuando:** un patrón con solapamientos tenga cuantificadores "
+"anidados o un usuario envíe un patrón sin revisar."
+
+#: lessons/cs-source/concepts/redos.md:11
+msgctxt "s-250de292f56f-0004"
+msgid "**Read more:**"
+msgstr "**Lee más:**"
+
+#: lessons/cs-source/concepts/redos.md:13
+msgctxt "s-c4541a420be8-0005"
+msgid "[Regular expression denial of service](⟦DEST_0001⟧) (Wikipedia)"
+msgstr ""
+"[Denegación de servicio mediante una expresión regular](⟦DEST_0001⟧) "
+"(Wikipedia)"
+
+#: lessons/cs-source/concepts/redos.md:14
+msgctxt "s-333c003b052b-0006"
+msgid "[Algorithmic complexity attack](⟦DEST_0001⟧) (Wikipedia)"
+msgstr "[Ataque de complejidad algorítmica](⟦DEST_0001⟧) (Wikipedia)"
+
+#: lessons/cs-source/concepts/redos.md:15
+msgctxt "s-75638f30f1ff-0007"
+msgid "[Regular expression Denial of Service: ReDoS](⟦DEST_0001⟧) (OWASP)"
+msgstr ""
+"[Denegación de servicio mediante una expresión regular: ReDoS](⟦DEST_0001⟧) "
+"(OWASP)"

@@ -1,15 +1,15 @@
 ---
-title: "Regular-expression denial of service"
+title: "Denegación de servicio mediante expresiones regulares"
 chapter: 8
 order: 70
 ---
-ReDoS (regular-expression denial of service) is an attack that sends an input on which a backtracking regex engine takes exponential, or very long, time. A pattern such as `(a+)+$` is fine on most strings and terrible on a long run of `a` characters followed by `!`. It exists because a backtracking engine tries every way to match before it gives up. Real outages have come from this: a regex in a web firewall rule took down Cloudflare in 2019, and one on whitespace slowed Stack Overflow in 2016. The mitigations are simple: use an engine that matches in linear time (RE2, Rust's `regex`, .NET's `NonBacktracking` option), set a match timeout and limit the input length.
+ReDoS (denegación de servicio mediante expresiones regulares) es un ataque que envía una entrada de datos con la que un motor de expresiones regulares con retroceso tarda un tiempo exponencial o muy largo. Un patrón como `(a+)+$` funciona bien con la mayoría de las cadenas de texto y pésimo con una secuencia larga de caracteres `a` seguida de `!`. El ataque existe porque un motor de retroceso prueba todas las formas de hallar una coincidencia antes de rendirse. Esto ha causado interrupciones reales: una expresión regular en una regla de un cortafuegos web tumbó Cloudflare en 2019. Otra, que buscaba espacios en blanco, ralentizó Stack Overflow en 2016. Las medidas de mitigación son sencillas: usa un motor que halle coincidencias en tiempo lineal (RE2, `regex` de Rust o la opción `NonBacktracking` de .NET). Fija un tiempo máximo para hallar una coincidencia y limita la longitud de la entrada.
 
-- **Use the knowledge when:** any regex meets data that you do not control.
-- **Avoid it when:** an overlapping pattern has nested quantifiers or a user submits an unreviewed pattern.
+- **Aplica este conocimiento cuando:** cualquier expresión regular procese datos que tú no controlas.
+- **Evítalo cuando:** un patrón con solapamientos tenga cuantificadores anidados o un usuario envíe un patrón sin revisar.
 
-**Read more:**
+**Lee más:**
 
-- [Regular expression denial of service](https://en.wikipedia.org/wiki/Regular_expression_denial_of_service) (Wikipedia)
-- [Algorithmic complexity attack](https://en.wikipedia.org/wiki/Algorithmic_complexity_attack) (Wikipedia)
-- [Regular expression Denial of Service: ReDoS](https://owasp.org/www-community/attacks/Regular_expression_Denial_of_Service_-_ReDoS) (OWASP)
+- [Denegación de servicio mediante una expresión regular](https://en.wikipedia.org/wiki/Regular_expression_denial_of_service) (Wikipedia)
+- [Ataque de complejidad algorítmica](https://en.wikipedia.org/wiki/Algorithmic_complexity_attack) (Wikipedia)
+- [Denegación de servicio mediante una expresión regular: ReDoS](https://owasp.org/www-community/attacks/Regular_expression_Denial_of_Service_-_ReDoS) (OWASP)

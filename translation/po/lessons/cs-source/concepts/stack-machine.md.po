@@ -1,0 +1,151 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lessons/cs-source/concepts/stack-machine.md:2
+msgctxt "s-39d55d3dd5b7-0000"
+msgid "Stack machines"
+msgstr "Máquinas de pila"
+
+#: lessons/cs-source/concepts/stack-machine.md:6
+msgctxt "s-726a70f0c097-0001"
+msgid ""
+"A stack machine keeps its working values on a stack. An instruction takes "
+"its inputs from the top and puts its result back. There are no named "
+"registers. It exists because the instructions can be tiny (⟦CODE_0001⟧ needs"
+" no operands) and a compiler can generate them easily. That is why the JVM, "
+".NET's IL, WebAssembly, PostScript and Forth all use the idea. In "
+"⟦MACRO_0002⟧ the data stack is the *only* memory: the program has no "
+"⟦CODE_0003⟧ at all."
+msgstr ""
+"Una máquina de pila guarda sus valores de trabajo en una pila. Una "
+"instrucción toma sus entradas de la cima y deja allí su resultado. No hay "
+"registros con nombre. Existe porque las instrucciones pueden ser diminutas "
+"(⟦CODE_0001⟧ no necesita operandos) y un compilador puede generarlas con "
+"facilidad. Por eso la JVM, el IL de .NET, WebAssembly, PostScript y Forth "
+"usan la idea. En ⟦MACRO_0002⟧ la pila de datos es la *única* memoria: el "
+"programa no tiene ningún ⟦CODE_0003⟧."
+
+#: lessons/cs-source/concepts/stack-machine.md:10
+msgctxt "s-31cc1dbafcb3-0002"
+msgid ""
+"Stack machines compute by pushing and popping values at the top of a LIFO "
+"stack"
+msgstr ""
+"Las máquinas de pila calculan al apilar y desapilar valores en la cima de "
+"una pila LIFO: lo último en entrar sale primero"
+
+#: lessons/cs-source/concepts/stack-machine.md:11
+msgctxt "s-ee0cd7516996-0003"
+msgid ""
+"Three snapshots of a stack, top to bottom, each drawn from the stack's "
+"bottom on the left to its top on the right. At the start the stack holds 19 "
+"with 23 on top. The instruction ADD pops the top two values and pushes their"
+" sum, so the stack holds only 42. Then PUSH 10 puts 10 on top, and the stack"
+" holds 42 with 10 on top. Every step touches only the top of the stack, and "
+"no instruction names a location."
+msgstr ""
+"Tres vistas de una pila, de arriba abajo, cada una con la base a la "
+"izquierda y la cima a la derecha. Al principio la pila contiene 19 con 23 en"
+" la cima. La instrucción ADD desapila los dos valores de la cima y apila su "
+"suma. La pila queda solo con 42. Luego PUSH 10 pone 10 en la cima. La pila "
+"contiene 42 con 10 en la cima. Cada paso solo toca la cima de la pila y "
+"ninguna instrucción nombra una posición."
+
+#: lessons/cs-source/concepts/stack-machine.md:12
+msgctxt "s-53695d34cd08-0004"
+msgid "Start (bottom on the left, top on the right)"
+msgstr "Inicio (base a la izquierda, cima a la derecha)"
+
+#: lessons/cs-source/concepts/stack-machine.md:14
+msgctxt "s-808407f1aec6-0005"
+msgid "23 (top)"
+msgstr "23 (cima)"
+
+#: lessons/cs-source/concepts/stack-machine.md:16
+msgctxt "s-cbbbd9069379-0006"
+msgid "After ADD"
+msgstr "Después de ADD"
+
+#: lessons/cs-source/concepts/stack-machine.md:18
+msgctxt "s-cd76571dc5c7-0007"
+msgid "42 (top)"
+msgstr "42 (cima)"
+
+#: lessons/cs-source/concepts/stack-machine.md:20
+msgctxt "s-ff4f60120700-0008"
+msgid "After PUSH 10"
+msgstr "Después de PUSH 10"
+
+#: lessons/cs-source/concepts/stack-machine.md:22
+msgctxt "s-6fb4138cde00-0009"
+msgid "10 (top)"
+msgstr "10 (cima)"
+
+#: lessons/cs-source/concepts/stack-machine.md:24
+msgctxt "s-33d3592b18ea-0010"
+msgid "ADD: pop two values, push their sum"
+msgstr "ADD: desapila dos valores y apila la suma"
+
+#: lessons/cs-source/concepts/stack-machine.md:25
+msgctxt "s-b33ec11afda3-0011"
+msgid "PUSH 10: push one value"
+msgstr "PUSH 10: apila un valor"
+
+#: lessons/cs-source/concepts/stack-machine.md:28
+msgctxt "s-b3ca74af030c-0012"
+msgid ""
+"Read the picture from top to bottom. ⟦CODE_0001⟧ does not say where its "
+"inputs are: it pops the top two values and pushes one result. A real stack "
+"machine still has other memory (the JVM has local variables and a heap, for "
+"example). The stack only holds the values that the next instruction needs."
+msgstr ""
+"Lee el dibujo de arriba abajo. ⟦CODE_0001⟧ no dice dónde están sus entradas:"
+" desapila los dos valores de la cima y apila un resultado. Una máquina de "
+"pila real también tiene otra memoria (la JVM tiene variables locales y un "
+"montículo, por ejemplo). La pila solo guarda los valores que necesita la "
+"siguiente instrucción."
+
+#: lessons/cs-source/concepts/stack-machine.md:30
+msgctxt "s-0c1c64a738b1-0013"
+msgid ""
+"**Use it when:** you build a small virtual machine or interpreter, or you "
+"want compact code."
+msgstr ""
+"**Úsala cuando:** construyas una máquina virtual pequeña o un intérprete, o "
+"quieras código compacto."
+
+#: lessons/cs-source/concepts/stack-machine.md:31
+msgctxt "s-dc4ebbf8bfd7-0014"
+msgid ""
+"**Avoid it when:** you need random access to many values. Shuffling the "
+"stack with ⟦CODE_0001⟧, ⟦CODE_0002⟧ and ⟦CODE_0003⟧ becomes unreadable fast."
+msgstr ""
+"**Evítala cuando:** necesites acceso aleatorio a muchos valores. El código "
+"que reordena la pila con ⟦CODE_0001⟧, ⟦CODE_0002⟧ y ⟦CODE_0003⟧ pronto se "
+"vuelve ilegible."
+
+#: lessons/cs-source/concepts/stack-machine.md:33
+msgctxt "s-250de292f56f-0015"
+msgid "**Read more:**"
+msgstr "**Lee más:**"
+
+#: lessons/cs-source/concepts/stack-machine.md:35
+msgctxt "s-83578426c557-0016"
+msgid "[Stack machine](⟦DEST_0001⟧) (Wikipedia)"
+msgstr "[Máquina de pila](⟦DEST_0001⟧) (Wikipedia)"
+
+#: lessons/cs-source/concepts/stack-machine.md:36
+msgctxt "s-a401691bb208-0017"
+msgid "[Reverse Polish notation](⟦DEST_0001⟧) (Wikipedia)"
+msgstr "[Notación polaca inversa](⟦DEST_0001⟧) (Wikipedia)"
+
+#: lessons/cs-source/concepts/stack-machine.md:37
+msgctxt "s-88da9389589a-0018"
+msgid "[Forth (programming language)](⟦DEST_0001⟧)) (Wikipedia)"
+msgstr "[Forth (lenguaje de programación)](⟦DEST_0001⟧)) (Wikipedia)"

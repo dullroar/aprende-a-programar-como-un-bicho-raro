@@ -1,16 +1,16 @@
 ---
-title: "Regular expressions"
+title: "Expresiones regulares"
 chapter: 5
 order: 20
 ---
-A regular expression is a compact pattern for a set of strings. Stephen Kleene described the idea in the 1950s. Ken Thompson put it into text editors, and from there it reached `grep`, `sed`, `awk` and every modern language. It exists because searching text is one of the most common jobs there is. Modern "regex" engines add features such as backreferences, lookaround and code callouts. Most of them work by *backtracking*: they try a path, and if it fails they go back and try another. That design makes the engine powerful, and it makes some patterns very slow. This repository uses five engines as five different computers. See [the regular-expression lesson](../lenguajes/regex.md).
+Una expresión regular es un patrón compacto para un conjunto de cadenas de texto. Stephen Kleene describió la idea en la década de 1950. Ken Thompson la incorporó a los editores de texto. De allí llegó a `grep`, `sed`, `awk` y a todos los lenguajes modernos. Existe porque buscar texto es una de las tareas más comunes. Los motores modernos de expresiones regulares añaden funciones como las referencias hacia atrás, las comprobaciones de contexto y las llamadas a código (*callouts*). La mayoría funciona por *retroceso*: prueba un camino y, si falla, retrocede y prueba otro. Ese diseño le da potencia al motor y hace que algunos patrones sean muy lentos. Este repositorio usa cinco motores como cinco computadoras distintas. Consulta [la lección sobre expresiones regulares](../lenguajes/regex.md).
 
-- **Use it when:** you tokenize, validate a simple format or search logs.
-- **Avoid it when:** the data is nested, or when an attacker chooses the input and the engine backtracks (see [[redos]]).
+- **Úsalas cuando:** separes texto en unidades, valides un formato simple o busques en registros.
+- **Evítalas cuando:** los datos estén anidados o un atacante elija la entrada de datos y el motor use retroceso (consulta [[redos]]).
 
-**Read more:**
+**Lee más:**
 
-- [Regular expression](https://en.wikipedia.org/wiki/Regular_expression) (Wikipedia)
-- [Thompson's construction](https://en.wikipedia.org/wiki/Thompson%27s_construction) (Wikipedia)
-- [Kleene star](https://en.wikipedia.org/wiki/Kleene_star) (Wikipedia)
-- [Regular expressions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_expressions) (MDN), a practical guide to the notation
+- [Expresión regular](https://en.wikipedia.org/wiki/Regular_expression) (Wikipedia)
+- [Construcción de Thompson](https://en.wikipedia.org/wiki/Thompson%27s_construction) (Wikipedia)
+- [Estrella de Kleene](https://en.wikipedia.org/wiki/Kleene_star) (Wikipedia)
+- [Expresiones regulares](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_expressions) (MDN), una guía práctica de la notación

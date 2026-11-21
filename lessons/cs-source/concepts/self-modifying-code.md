@@ -1,14 +1,14 @@
 ---
-title: "Self-modifying code"
+title: "Código automodificable"
 chapter: 3
 order: 80
 ---
-Self-modifying code changes its own instructions while it runs. Early computers did it to save scarce memory. Today the idea lives on in just-in-time compilers, in program loaders and in malware that hides itself. In this repository it is a way to move control flow into the program text. [[entry:apl-weird]] reads a function's source with `⎕CR`, rewrites it and defines the new version with `⎕FX`. [[entry:cobol-weird]] changes a `GO TO` with `ALTER`. [[entry:tcl-weird]] keeps procedure source in a database table and defines it on demand.
+El código automodificable cambia sus propias instrucciones mientras se ejecuta. Las primeras computadoras lo hacían para ahorrar memoria, que era escasa. Hoy la idea sigue viva en los compiladores en tiempo de ejecución, los cargadores de programas y el software malicioso que se oculta. En este repositorio es una forma de trasladar el flujo de control al texto del programa. [[entry:apl-weird]] lee el código fuente de una función con `⎕CR`, lo reescribe y define la nueva versión con `⎕FX`. [[entry:cobol-weird]] cambia un `GO TO` con `ALTER`. [[entry:tcl-weird]] guarda el código fuente del procedimiento en una tabla de la base de datos y lo define bajo demanda.
 
-- **Use it when:** you generate code at a clear boundary: write text, compile it, run it. That is what JIT compilers and code generators do.
-- **Avoid it in hand-written programs.** Debuggers, caches and security tools (some systems forbid memory that is both writable and executable) all assume that code does not change.
+- **Úsalo cuando:** generes código con un límite claro: escribe el texto, compílalo y ejecútalo. Eso hacen los compiladores JIT (compilación justo a tiempo) y los generadores de código.
+- **Evítalo en los programas escritos a mano.** Los depuradores, las cachés y las herramientas de seguridad suponen que el código no cambia (algunos sistemas prohíben que una zona de memoria sea escribible y ejecutable a la vez).
 
-**Read more:**
+**Lee más:**
 
-- [Self-modifying code](https://en.wikipedia.org/wiki/Self-modifying_code) (Wikipedia)
-- [Just-in-time compilation](https://en.wikipedia.org/wiki/Just-in-time_compilation) (Wikipedia)
+- [Código automodificable](https://en.wikipedia.org/wiki/Self-modifying_code) (Wikipedia)
+- [Compilación en tiempo de ejecución](https://en.wikipedia.org/wiki/Just-in-time_compilation) (Wikipedia)
