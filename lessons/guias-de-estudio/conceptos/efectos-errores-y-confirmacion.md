@@ -1,175 +1,175 @@
-# Effects, errors and commitment study guide
+# Guía de estudio de efectos, errores y confirmación
 
-## What this guide is for
+## Para qué sirve esta guía
 
-A program that does nothing outside itself is an expensive heater. Useful programs print, write files and insert rows, and then something goes wrong. This guide asks: **which effects survive a failure, and what truly commits?** The book's entries make the question concrete, because several of them end by *failing on purpose*: a regex match returns "no match" after saving a transaction, a constraint violation is the stop rule, an exit status of 1 means success.
+Un programa que no hace nada fuera de sí mismo es un calefactor caro. Los programas útiles imprimen, escriben archivos e insertan filas y entonces algo sale mal. Esta guía pregunta: **¿qué efectos sobreviven a un fallo y qué se confirma de verdad?** Las entradas del libro vuelven concreta la pregunta, porque varias terminan *fallando a propósito*. Una coincidencia de expresión regular devuelve "sin coincidencia" después de guardar una transacción. Una violación de restricción es la regla de parada. Un estado de salida 1 significa éxito.
 
-When you finish, you should be able to:
+Cuando termines, deberías poder:
 
-1. Distinguish an effect that is *rolled back* (a database transaction), one that is *unwound* (Perl's `local`) and one that *stays done* (a printed row, a file write, a process already run).
-2. Explain what a commit is and why it is the point of no return, and identify the commit in each of several entries.
-3. Explain why lazy effects and a closed resource break a commit, using the Haskell and PCRE2 examples.
-4. Explain how an error can be a *signal*: a size error, a constraint violation, an exit status.
-5. Say what a failed callback, a failed match and a failed process each look like from outside.
-6. Label claims as guaranteed, implementation-permitted or accidentally exploited.
+1. Distinguir un efecto *revertido* (transacción de base de datos), uno *desenrollado* (el `local` de Perl) y uno que *queda hecho* (fila impresa, escritura en archivo, proceso ya ejecutado).
+2. Explicar qué es una confirmación y por qué es el punto sin retorno, e identificar la confirmación en varias entradas.
+3. Explicar por qué los efectos perezosos y un recurso cerrado rompen una confirmación, con los ejemplos de Haskell y PCRE2.
+4. Explicar cómo un error puede ser una *señal*: un error de tamaño, una violación de restricción, un estado de salida.
+5. Decir cómo se ve desde fuera una función de devolución de llamada fallida, una coincidencia fallida y un proceso fallido.
+6. Etiquetar afirmaciones como garantizado, permitido por la implementación o aprovechado por accidente.
 
-**Scope limits.** The guide uses facts checked in the language guides and the exercises. It does not teach database internals or exception hierarchies. Its source chapter is [Effects, errors and commitment](../../informatica/07-efectos-errores-y-confirmacion.md).
+**Límites del alcance.** La guía usa hechos comprobados en las guías de lenguaje y en los ejercicios. No enseña el funcionamiento interno de las bases de datos ni las jerarquías de excepciones. Su capítulo de origen es [Efectos, errores y confirmación](../../informatica/07-efectos-errores-y-confirmacion.md).
 
-## Before you begin
+## Antes de empezar
 
-**Safety model.** The cards are fictional **DEMO ONLY** data. Programs can write to local scratch files or databases and can start processes. Read the source first and run it in the sandbox first, for example `sandbox/container/run-image.sh src/regex-perl`. Work on copies ([Running things safely](../../exercises.md#running-things-safely)). Failure experiments may leave half-written scratch files, so use a copy and a scratch data folder.
+**Modelo de seguridad.** Las tarjetas son datos ficticios marcados con **DEMO ONLY**. Los programas pueden escribir en archivos o bases de datos locales de prueba y pueden iniciar procesos. Lee primero el código fuente y ejecútalo antes en un entorno aislado (*sandbox*) que limita el acceso al sistema anfitrión, por ejemplo `sandbox/container/run-image.sh src/regex-perl`. Trabaja con copias ([Ejecutar cosas con seguridad](../../exercises.md#running-things-safely)). Los experimentos de fallo pueden dejar archivos de prueba escritos a medias, así que usa una copia y una carpeta de datos de prueba.
 
-**Prediction rule.** Before each failure experiment, write down three lists: what will be *undone*, what will *stay* and what you will *see on the terminal*. They are usually different.
+**Regla de predicción.** Antes de cada experimento de fallo, escribe tres listas: qué se *deshará*, qué *permanecerá* y qué *verás en la terminal*. Suelen ser distintas.
 
-**Vocabulary.**
+**Vocabulario.**
 
-| Term | Meaning here |
+| Término | Significado aquí |
 | --- | --- |
-| Side effect | A change beyond returning a value: printing, writing a row, starting a process. |
-| Transaction | A group of operations that all happen or none happen. |
-| Commit | The point at which a change becomes final. |
-| Rollback | Undoing the uncommitted changes of a transaction. It does not undo effects outside it. |
-| Integrity constraint | A rule the database enforces on every write, such as `CHECK(demo_only=1)`. |
-| Exit status | A number a process returns to say how it ended. |
+| Efecto secundario | Un cambio que va más allá de devolver un valor: imprimir, escribir una fila, iniciar un proceso. |
+| Transacción | Un grupo de operaciones que ocurren todas o no ocurre ninguna. |
+| Confirmación | El punto en que un cambio se vuelve definitivo. |
+| Reversión | Deshacer los cambios no confirmados de una transacción. No deshace los efectos que ocurren fuera de ella. |
+| Restricción de integridad | Una regla que la base de datos aplica en cada escritura, como `CHECK(demo_only=1)`. |
+| Estado de salida | Un número que devuelve un proceso para indicar cómo terminó. |
 
-## The shared challenge
+## El reto compartido
 
-The [challenge specification](../../introduccion.md#what-the-challenge-does) calls for cards with a category and 10 to 19 whole hours. Categories cycle through Meetings, Coding, Debugging and Learning. Add each card's hours to the running total. Stop when the total passes 40. Keep the **first card that takes the total over 40**. A total of exactly 40 continues. Four 10-hour cards need a fifth card, in the Meetings category. Conforming runs finish with 3 to 5 cards and a total of 41 to 59 hours.
+La [especificación del reto](../../introduccion.md#what-the-challenge-does) pide tarjetas con una categoría y de 10 a 19 horas enteras. Las categorías se repiten en ciclo: `Meetings`, `Coding`, `Debugging` y `Learning`. Suma las horas de cada tarjeta al total acumulado. Detente cuando el total pasa de 40. Conserva la **primera tarjeta con la que el total pasa de 40**. Un total de exactamente 40 continúa. Cuatro tarjetas de 10 horas necesitan una quinta tarjeta, de la categoría `Meetings`. Las ejecuciones conformes tienen de 3 a 5 tarjetas y un total de 41 a 59 horas.
 
-Check the *rows shown*, the *rows saved* and the *summary* separately. A SQLite table can enforce `CHECK(demo_only=1)`. A TSV writer applies its own rules. Some demos save in one transaction. pcre2grep saves in separate calls. .NET reports `captured` for the regex result. The summary is a claim about the run. This guide tests it against the effects.
+Comprueba por separado las *filas mostradas*, las *filas guardadas* y el *resumen*. Una tabla de SQLite puede aplicar `CHECK(demo_only=1)`. Un escritor de TSV aplica sus propias reglas. Algunas demos guardan en una sola transacción. pcre2grep guarda en llamadas separadas. .NET informa `captured` como resultado de la expresión regular. El resumen es una afirmación sobre la ejecución. Esta guía la contrasta con los efectos.
 
-## The machine to identify
+## La máquina que hay que identificar
 
-Here the five questions are about *effects*.
+Aquí las cinco preguntas tratan de los *efectos*.
 
-**What repeats.** The effect-producing step: a card is made, printed and saved. In most entries it repeats until the stop rule fires. In `haskell-weird`, the effect is inside each lazy cell, so it repeats as cells are forced.
+**Qué se repite.** El paso que produce el efecto: se crea una tarjeta, se imprime y se guarda. En la mayoría de las entradas se repite hasta que salta la regla de parada. En `haskell-weird`, el efecto está dentro de cada celda perezosa, así que se repite a medida que se fuerzan las celdas.
 
-**Where state lives.** Effects live in three places that fail differently. *Inside the transaction*: the saved rows. *Outside it*: printed rows, files, process output. *In the engine*: the backtracking state that unwinds (Perl's `local`), against the state that does not (a PCRE2 C struct).
+**Dónde vive el estado.** Los efectos viven en tres lugares que fallan de forma distinta. *Dentro de la transacción*: las filas guardadas. *Fuera de ella*: las filas impresas, los archivos y la salida de los procesos. *En el motor*: el estado de retroceso que se desenrolla (el `local` de Perl), frente al estado que no se desenrolla (una estructura C de PCRE2).
 
-**What advances the next step.** In effectful code the order of effects follows the order of *evaluation*, which in lazy or callback-driven programs is not the order of the source text. A tar callback ignores the exit status of the command it runs, so a failed tick advances nothing.
+**Qué hace avanzar el paso siguiente.** En el código con efectos, el orden de los efectos sigue el orden de *evaluación*. En programas perezosos o dirigidos por funciones de devolución de llamada, ese orden no coincide con el del texto fuente. Una función de devolución de llamada de tar ignora el estado de salida del comando que ejecuta, así que un tic fallido no hace avanzar nada.
 
-**What stops it.** An effect can stop a run by *failing*: a constraint violation (`stop rule fired: total exceeds 40`), a size error that is handled, a vetoed callout branch, a halted flag, an exit status. Stopping by failure only works if the failure is *distinguishable* from a real error.
+**Qué lo detiene.** Un efecto puede detener una ejecución *fallando*. Por ejemplo: una violación de restricción (`stop rule fired: total exceeds 40`), un error de tamaño controlado, una rama de callout vetada, una bandera de parada o un estado de salida. Detenerse por fallo solo funciona si el fallo es *distinguible* de un error real.
 
-**What commits.** Some entries issue one SQLite `COMMIT` after the loop. In pcre2grep, separate SQLite connections autocommit as the helper statements finish. CMake and Make issue their final stop-rule probe after the card writes. The .NET host appends a TSV report after the match. The PCRE2 C host writes and closes a TSV in callouts before the final failure. For ed and Ex, SQLite receives the rows from the launcher after the editor finishes.
+**Qué confirma.** Algunas entradas emiten un solo `COMMIT` de SQLite después del bucle. En pcre2grep, las conexiones separadas de SQLite confirman automáticamente cuando terminan las sentencias auxiliares. CMake y Make emiten su sondeo final de la regla de parada después de las escrituras de las tarjetas. El anfitrión de .NET añade un informe TSV después de la coincidencia. El anfitrión de PCRE2 en C escribe y cierra un TSV en los callouts antes del fallo final. En ed y Ex, SQLite recibe las filas del lanzador cuando el editor termina.
 
 <!-- diagram-source: lessons/cs-source/concepts/transaction.md#block-1 -->
 
 ```mermaid
 sequenceDiagram
-    accTitle: The database rolls back its transaction, not every effect the program caused
-    accDescr: A sequence diagram with the program, the SQLite database and the outside world. In the success case the program begins, writes card 1, writes card 2 and commits, and both cards are visible. In the failure case the program begins and writes card 1. It sends a notification to the outside world, which is not part of the transaction. Then an error occurs and the program rolls back, so neither card is visible. SQLite cannot unsend the notification.
-    participant P as Program
-    participant DB as SQLite database
-    participant X as Outside world
-    alt success
+    accTitle: La base de datos revierte su transacción, no todos los efectos que causó el programa
+    accDescr: Un diagrama de secuencia con el programa, la base de datos SQLite y el mundo exterior. En el caso de éxito, el programa inicia la transacción, escribe la tarjeta 1, escribe la tarjeta 2 y confirma, y ambas tarjetas quedan visibles. En el caso de fallo, el programa inicia la transacción y escribe la tarjeta 1. Envía una notificación al mundo exterior, que no forma parte de la transacción. Luego ocurre un error y el programa revierte, así que ninguna tarjeta queda visible. SQLite no puede deshacer el envío de la notificación.
+    participant P as Programa
+    participant DB as Base de datos SQLite
+    participant X as Mundo exterior
+    alt éxito
         P->>DB: BEGIN
-        P->>DB: write card 1
-        P->>DB: write card 2
+        P->>DB: escribir tarjeta 1
+        P->>DB: escribir tarjeta 2
         P->>DB: COMMIT
-        Note over DB: both cards visible
-    else error before commit
+        Note over DB: ambas tarjetas visibles
+    else error antes de confirmar
         P->>DB: BEGIN
-        P->>DB: write card 1
-        P->>X: send notification / print / write external file
+        P->>DB: escribir tarjeta 1
+        P->>X: enviar notificación / imprimir / escribir archivo externo
         Note over P: error
         P->>DB: ROLLBACK
-        Note over DB: neither card visible
-        Note over X: cannot be rolled back by SQLite
+        Note over DB: ninguna tarjeta visible
+        Note over X: SQLite no puede revertirlo
     end
 ```
 
-The book's picture: the database rolls back its transaction, not every effect the program caused. A notification sent before the error stays sent.
+La imagen del libro: la base de datos revierte su transacción, no todos los efectos que causó el programa. Una notificación enviada antes del error sigue enviada.
 
-## Trace one run
+## Traza una ejecución
 
-The decisive trace here is of a *failure*. For each entry the table gives the failure that a verified exercise or scratch run produced, and the three lists.
+La traza decisiva aquí es la de un *fallo*. Para cada entrada, la tabla da el fallo que produjo un ejercicio verificado o una ejecución de prueba, y las tres listas.
 
-| Entry and failure | Undone | Stays | Seen from outside |
+| Entrada y fallo | Deshecho | Permanece | Visto desde fuera |
 | --- | --- | --- | --- |
-| `haskell-weird`, count made lazy (B2) | nothing: no commit | the first card printed | `handle is closed`, and the summary line printed garbage before the crash |
-| `regex-dotnet`, append `(?!)` (B8) | every capture | the host still appends an empty-run report | `match returned: false`, `total=0 entries=0`, exit 1 |
-| `regex-pcre2grep`, relative callout path (B8) | nothing happened | nothing | **no output, exit 0**: a callout that cannot start looks like a vetoed branch |
-| `regex-perl` normal run | `local` total and index | printed rows, the `INSERT`s, the transaction | the match returns *false*, and the data is saved |
-| `regex-pcre2` normal run | nothing is rewound | the file, the rows, the summary | `pcre2_match returned -1`, and the data is saved |
-| `make-gnu`, delete `@:` (B4) | no card file written to be remade | nothing | `entries=0`, `re-executed 0 times` |
-| `tcl-weird`, recursion off (B12) | the second trigger firing never happens | card 2 was inserted and counted | one row printed, `entries=2` |
-| `tar-gnu-weird`, clock too short (B17) | the third card is never closed | two cards | `the clock ran out`, exit 3 |
-| `cobol-weird`, size error | the overflowing add leaves the field | the card is recorded first | the handler rewires `NEXT-CARD`: an *error as the stop rule* |
-| `javascript-events`, a listener throws | an uncommitted insert: `ROLLBACK` once | rows already printed | `timecards: <message>` and exit 1 |
+| `haskell-weird`, conteo vuelto perezoso (B2) | nada: sin confirmación | se imprimió la primera tarjeta | `handle is closed`, y la línea de resumen imprimió basura antes del cierre abrupto |
+| `regex-dotnet`, añadir `(?!)` (B8) | todas las capturas | el anfitrión aún añade un informe de una ejecución vacía | `match returned: false`, `total=0 entries=0`, estado de salida 1 |
+| `regex-pcre2grep`, ruta relativa del callout (B8) | no ocurrió nada | nada | **sin salida, estado de salida 0**: un callout que no puede iniciarse parece una rama vetada |
+| `regex-perl` ejecución normal | `local` total e índice | filas impresas, los `INSERT`, la transacción | la coincidencia devuelve *falso* y los datos se guardan |
+| `regex-pcre2` ejecución normal | no se revierte nada | el archivo, las filas, el resumen | `pcre2_match returned -1` y los datos se guardan |
+| `make-gnu`, borrar `@:` (B4) | no se escribió ningún archivo de tarjetas que haya que rehacer | nada | `entries=0`, `re-executed 0 times` |
+| `tcl-weird`, recursión desactivada (B12) | el segundo disparador nunca se activa | la tarjeta 2 se insertó y se contó | se imprimió una fila, `entries=2` |
+| `tar-gnu-weird`, reloj demasiado corto (B17) | la tercera tarjeta nunca se cierra | dos tarjetas | `the clock ran out`, estado de salida 3 |
+| `cobol-weird`, error de tamaño | la suma que desborda deja el campo | la tarjeta se registra primero | el manejador reconecta `NEXT-CARD`: un *error como regla de parada* |
+| `javascript-events`, un escuchador de eventos lanza una excepción | una inserción sin confirmar: `ROLLBACK` una vez | filas ya impresas | `timecards: <message>` y estado de salida 1 |
 
-**Reading the table.** The SQLite inserts and prints in Perl and the file writes in the C callouts survive final match failure. In .NET the engine returns only match state. A failed match leaves the host no card captures, though the host still writes its report header and summary. In the pcre2grep relative-path experiment the initial helper fails to start, so there are no rows or output.
+**Cómo leer la tabla.** Las inserciones de SQLite, las impresiones en Perl y las escrituras de archivos en los callouts de C sobreviven al fallo final de la coincidencia. En .NET el motor solo devuelve el estado de la coincidencia. Una coincidencia fallida no deja capturas de tarjetas al anfitrión, aunque este aún escribe su encabezado de informe y su resumen. En el experimento de ruta relativa de pcre2grep, el proceso auxiliar inicial no logra iniciarse, así que no hay filas ni salida.
 
-**The three kinds of "error as a signal".** In `cobol-weird`, `ON SIZE ERROR` is local arithmetic error control: the field is too small, the clause runs and the program takes it as the stop rule. In `make-gnu` and `cmake`, the last statement inserts `total <= 40` into a `CHECK(ok=1)` column: SQLite refuses, prints a named constraint error on stderr and the run goes on to print its summary. The entry's check requires that error to appear *exactly once*. The pcre2grep wrapper maps the engine's no-match status 1 to success. The sed program deliberately exits 1 too; its wrapper also requires SQLite to exit 0.
+**Los tres tipos de "error como señal".** En `cobol-weird`, `ON SIZE ERROR` es un control local de errores aritméticos: el campo es demasiado pequeño, la cláusula se ejecuta y el programa la toma como regla de parada. En `make-gnu` y `cmake`, la última sentencia inserta `total <= 40` en una columna `CHECK(ok=1)`. SQLite la rechaza, imprime en stderr un error de restricción con nombre y la ejecución sigue hasta imprimir su resumen. La comprobación de la entrada exige que ese error aparezca *exactamente una vez*. El envoltorio de pcre2grep convierte en éxito el estado 1 de "sin coincidencia" del motor. El programa de sed también termina a propósito con estado 1. Su envoltorio exige además que SQLite termine con 0.
 
-**Exactly 40.** The boundary shows what the commit can claim. Before the five-name fix, a regex or `for`-header run that stopped at four cards with a total of exactly 40 still committed and printed `# committed total=40 entries=4`, and the shared checker rejected it. The entry's own claim of success and the shared check disagree: "committed" says the *data was saved*, and the checker asks whether the *rule* was obeyed. Commit is not correctness.
+**Exactamente 40.** El límite muestra qué puede afirmar la confirmación. Antes de la corrección de los cinco nombres, una ejecución de regex o con encabezado `for` podía detenerse con cuatro tarjetas y un total de exactamente 40. Aun así confirmaba e imprimía `# committed total=40 entries=4`. El comprobador compartido la rechazaba. La afirmación de éxito de la propia entrada y el comprobador compartido discrepan: "confirmado" dice que los *datos se guardaron*, y el comprobador pregunta si se cumplió la *regla*. La confirmación no es corrección.
 
-## Compare the ordinary and weird designs
+## Compara los diseños ordinarios y los raros
 
-| Dimension | Ordinary: do the work, then save | Effects inside the machinery |
+| Dimensión | Ordinario: hacer el trabajo y luego guardar | Efectos dentro de la maquinaria |
 | --- | --- | --- |
-| **Representation** | Compute a list, then write it | A write per step, as the engine runs |
-| **Observability** | Inspect the list before saving | The terminal and the database may disagree mid-run |
-| **Tests** | Compare the final list with the database | Compare printed rows, database rows and the summary: the checkers do all three |
-| **Debugging** | A failure means nothing was saved | A failure leaves *some* effects: you must know which |
-| **Portability** | Standard I/O | Depends on whether the failure semantics are specified (a callout's exit status, a checkpoint's) |
-| **Cost** | A buffer of cards | Partial effects, and the risk of reporting success for a partial run |
+| **Representación** | Calcular una lista y luego escribirla | Una escritura por paso, mientras el motor se ejecuta |
+| **Observabilidad** | Inspeccionar la lista antes de guardar | La terminal y la base de datos pueden discrepar a mitad de la ejecución |
+| **Pruebas** | Comparar la lista final con la base de datos | Comparar las filas impresas, las filas de la base de datos y el resumen: los comprobadores hacen las tres cosas |
+| **Debugging** | Un fallo significa que no se guardó nada | Un fallo deja *algunos* efectos: debes saber cuáles |
+| **Portabilidad** | E/S estándar | Depende de si la semántica del fallo está especificada (el estado de salida de un callout, el de un punto de control) |
+| **Costo** | Un búfer de tarjetas | Efectos parciales y el riesgo de informar éxito por una ejecución parcial |
 
-The ordinary `haskell` entry builds the whole SQL script as a pure string, runs `sqlite3` and only then prints the rows. The weird entry prints as it goes. Both commit once, but only the first guarantees that *what is printed is what was saved*.
+La entrada ordinaria `haskell` construye todo el script SQL como una cadena de texto pura, ejecuta `sqlite3` y solo entonces imprime las filas. La entrada rara imprime sobre la marcha. Ambas confirman una sola vez, pero solo la primera garantiza que *lo que se imprime es lo que se guardó*.
 
-## What the exercises demonstrate
+## Qué demuestran los ejercicios
 
-| Exercise | Predict first | What the evidence shows |
+| Ejercicio | Predice primero | Qué muestra la evidencia |
 | --- | --- | --- |
-| [B2. Haskell: break the laziness](../../exercises.md#b2-haskell-break-the-laziness-verified) | Make `entries` lazy. | `handle is closed`. Forcing after the resource closed. |
-| [B8. Regex: what survives a failed match](../../exercises.md#b8-regex-what-survives-a-failed-match-verified) | `(?!)` on .NET; a relative path in pcre2grep. | The failed .NET match supplies no card captures, and the host writes a zero-row report. In pcre2grep the helper failure is silent. |
-| [B12. Tcl: edit the program in the database](../../exercises.md#b12-tcl-edit-the-program-in-the-database-verified) | Turn recursive triggers off. | One row printed, `entries=2`. |
-| [B17. tar, weirder: predict the clock](../../exercises.md#b17-tar-weirder-predict-the-clock-verified) | Run with a layout one tick short. | `the clock ran out`, exit 3, two cards. A short clock stalls instead of erroring. |
-| [A1. Read the rows](../../exercises.md#a1-read-the-rows-verified) | Which card crossed 40? | The output alone proves "total before the last card is at most 40". |
-| [F. Prove a README claim](../../exercises.md#f-prove-a-readme-claim-verified) | Can your test fail? | A claim needs a negative control. |
+| [B2. Haskell: rompe la pereza](../../exercises.md#b2-haskell-break-the-laziness-verified) | Haz perezoso `entries`. | `handle is closed`. Forzar después de que el recurso se cerró. |
+| [B8. Regex: qué sobrevive a una coincidencia fallida](../../exercises.md#b8-regex-what-survives-a-failed-match-verified) | `(?!)` en .NET; una ruta relativa en pcre2grep. | La coincidencia fallida de .NET no entrega capturas de tarjetas, y el anfitrión escribe un informe de cero filas. En pcre2grep el fallo del proceso auxiliar es silencioso. |
+| [B12. Tcl: edita el programa en la base de datos](../../exercises.md#b12-tcl-edit-the-program-in-the-database-verified) | Desactiva los disparadores recursivos. | Se imprime una fila, `entries=2`. |
+| [B17. tar, más raro: predice el reloj](../../exercises.md#b17-tar-weirder-predict-the-clock-verified) | Ejecuta con un diseño corto por un tic. | `the clock ran out`, estado de salida 3, dos tarjetas. Un reloj corto se atasca en lugar de dar error. |
+| [A1. Lee las filas](../../exercises.md#a1-read-the-rows-verified) | ¿Qué tarjeta pasó de 40? | La salida por sí sola prueba que "el total antes de la última tarjeta es como máximo 40". |
+| [F. Demuestra una afirmación de un README](../../exercises.md#f-prove-a-readme-claim-verified) | ¿Puede fallar tu prueba? | Una afirmación necesita un control negativo. |
 
-## Failure modes, costs and boundaries
+## Modos de fallo, costos y límites
 
-| Behavior | Label | Why |
+| Comportamiento | Etiqueta | Por qué |
 | --- | --- | --- |
-| A transaction's uncommitted changes are undone by rollback, but not effects outside it | **guaranteed** | Database semantics. |
-| A size error leaves the receiving field unchanged | **guaranteed** | Specified COBOL semantics. |
-| Perl unwinds `local` on backtracking, not prints | **guaranteed** | Documented Perl. |
-| A failed .NET `Match` supplies no card captures | **guaranteed** within the .NET regex API | B8 exercises this property. The host can still write its empty-run report. |
-| A normal insert of 0 into `demo_only INTEGER NOT NULL CHECK(demo_only=1)` fails | **guaranteed** with SQLite constraint checks enabled | SQLite enforces the declared column constraints. The TSV entries use no such constraint. |
-| `SYSTEM` returns a raw wait status (exit 3 appears as 768) | **implementation-permitted** | A host detail of the tested COBOL runtime. |
-| tar ignores the checkpoint command's exit status | **accidentally exploited** | Observed on the tested releases. The entry makes the machine safe against it. |
-| `pcre2grep` cannot tell a callout that failed to start from a vetoed branch | **implementation-permitted** | Its own design, and the cause of B8's silent result. |
-| SQLite refuses an insert that violates a `CHECK`, and prints a named error | **guaranteed** | Database semantics. The entries *choose* to let that message be the stop rule's announcement, and require it exactly once. |
+| Los cambios no confirmados de una transacción se deshacen con la reversión, pero no los efectos fuera de ella | **garantizado** | Semántica de las bases de datos. |
+| Un error de tamaño deja sin cambios el campo receptor | **garantizado** | Semántica especificada de COBOL. |
+| Perl desenrolla `local` en el retroceso, no las impresiones | **garantizado** | Perl documentado. |
+| Un `Match` fallido de .NET no entrega capturas de tarjetas | **garantizado** dentro de la API de expresiones regulares de .NET | El ejercicio B8 demuestra esta propiedad. El anfitrión aún puede escribir su informe de una ejecución vacía. |
+| Una inserción normal de 0 en `demo_only INTEGER NOT NULL CHECK(demo_only=1)` falla | **garantizado** con las comprobaciones de restricciones de SQLite activadas | SQLite aplica las restricciones de columna declaradas. Las entradas de TSV no usan ninguna restricción así. |
+| `SYSTEM` devuelve un estado de espera sin procesar (el estado de salida 3 aparece como 768) | **permitido por la implementación** | Un detalle del anfitrión del entorno de ejecución de COBOL probado. |
+| tar ignora el estado de salida del comando de punto de control | **aprovechado por accidente** | Observado en las versiones probadas. La entrada hace que la máquina sea segura frente a ello. |
+| `pcre2grep` no puede distinguir un callout que no logró iniciarse de una rama vetada | **permitido por la implementación** | Es su propio diseño y la causa del resultado silencioso de B8. |
+| SQLite rechaza una inserción que viola un `CHECK` e imprime un error con nombre | **garantizado** | Semántica de las bases de datos. Las entradas *eligen* que ese mensaje sea el anuncio de la regla de parada y lo exigen exactamente una vez. |
 
-**Costs to state.**
+**Costos que debes declarar.**
 
-- **Reporting success for partial work.** The summary line says `committed` whatever happened. The checkers compare it with the rows.
-- **Silent failure.** A callout that does not start, a failed `s`, a clock that is too short, a recipe that expands to nothing: all stop quietly.
-- **Effects outside the transaction.** Anything printed, sent or written elsewhere is not rolled back.
-- **Idempotence.** Rerunning an entry adds *another* run to the database. The tables keep every run's history. A retry is not harmless.
-- **Where this is legitimate.** An error used as a normal signal is standard in shell scripts (`grep` exits 1 for "no match") and in constraint-based design. The stunt is ending a program that way.
+- **Informar éxito por un trabajo parcial.** La línea de resumen dice `committed` pase lo que pase. Los comprobadores la comparan con las filas.
+- **Fallo silencioso.** Un callout que no se inicia, un `s` fallido, un reloj demasiado corto, una receta que se expande a nada: todos se detienen en silencio.
+- **Efectos fuera de la transacción.** Nada de lo que se imprime, envía o escribe en otro lugar se revierte.
+- **Idempotencia.** Volver a ejecutar una entrada añade *otra* ejecución a la base de datos. Las tablas conservan el historial de cada ejecución. Reintentar no es inofensivo.
+- **Dónde es legítimo.** Un error usado como señal normal es habitual en los scripts del intérprete de comandos (*shell*) y en el diseño basado en restricciones. Por ejemplo, `grep` termina con estado 1 para "sin coincidencia". La acrobacia consiste en terminar un programa de esa manera.
 
-## Connections across the repository
+## Conexiones a lo largo del repositorio
 
-- **Language guides.** [Haskell](../lenguajes/haskell.md), [Regex engines and sed](../lenguajes/motores-de-regex-y-sed.md), [Make and CMake](../lenguajes/make-y-cmake.md), [COBOL](../lenguajes/cobol.md), [Tcl](../lenguajes/tcl.md), [tar](../lenguajes/tar.md), [JavaScript](../lenguajes/javascript.md) and [ed and Ex](../lenguajes/ed-y-ex.md) each have a failure case above.
-- **Demand.** [Evaluation, demand and laziness](evaluacion-demanda-y-pereza.md) is why lazy effects commit late.
-- **Authority.** [Reading adversarial programs](lectura-de-programas-adversariales.md): the database's `CHECK` is data-level authority.
-- **Portability.** [Portability, abstraction and cost](portabilidad-abstraccion-y-costo.md) covers which failure semantics are promised.
-- **In the book.** [Side effects](../../informatica/07-efectos-errores-y-confirmacion.md#side-effects), [Exception handling](../../informatica/07-efectos-errores-y-confirmacion.md#exception-handling), [Exit status](../../informatica/07-efectos-errores-y-confirmacion.md#exit-status), [Integrity constraints](../../informatica/07-efectos-errores-y-confirmacion.md#integrity-constraints), [Backtracking](../../informatica/07-efectos-errores-y-confirmacion.md#backtracking), [The cut](../../informatica/07-efectos-errores-y-confirmacion.md#the-cut-committing-to-a-choice), [Transactions](../../informatica/07-efectos-errores-y-confirmacion.md#transactions) and [Idempotence](../../informatica/07-efectos-errores-y-confirmacion.md#idempotence).
+- **Guías de lenguaje.** [Haskell](../lenguajes/haskell.md), [Motores de expresiones regulares y sed](../lenguajes/motores-de-regex-y-sed.md), [Make y CMake](../lenguajes/make-y-cmake.md), [COBOL](../lenguajes/cobol.md), [Tcl](../lenguajes/tcl.md), [tar](../lenguajes/tar.md), [JavaScript](../lenguajes/javascript.md) y [ed y Ex](../lenguajes/ed-y-ex.md) tienen cada una un caso de fallo más arriba.
+- **Demanda.** [Evaluación, demanda y pereza](evaluacion-demanda-y-pereza.md) explica por qué los efectos perezosos se confirman tarde.
+- **Autoridad.** [Lectura de programas adversariales](lectura-de-programas-adversariales.md): el `CHECK` de la base de datos es autoridad a nivel de datos.
+- **Portabilidad.** [Portabilidad, abstracción y costo](portabilidad-abstraccion-y-costo.md) trata qué semánticas de fallo se prometen.
+- **En el libro.** [Efectos secundarios](../../informatica/07-efectos-errores-y-confirmacion.md#side-effects), [Manejo de excepciones](../../informatica/07-efectos-errores-y-confirmacion.md#exception-handling), [Estado de salida](../../informatica/07-efectos-errores-y-confirmacion.md#exit-status), [Restricciones de integridad](../../informatica/07-efectos-errores-y-confirmacion.md#integrity-constraints), [Retroceso](../../informatica/07-efectos-errores-y-confirmacion.md#backtracking), [El corte](../../informatica/07-efectos-errores-y-confirmacion.md#the-cut-committing-to-a-choice), [Transacciones](../../informatica/07-efectos-errores-y-confirmacion.md#transactions) e [Idempotencia](../../informatica/07-efectos-errores-y-confirmacion.md#idempotence).
 
-## Self-check
+## Autoevaluación
 
-Answer each question in your own words before you read the italic text. Say what evidence would support each answer.
+Responde cada pregunta con tus propias palabras antes de leer el texto en cursiva. Di qué evidencia respaldaría cada respuesta.
 
-1. **Trace.** In `regex-perl`, the match ends by returning false after three cards. Which of these survive: the `INSERT`s, the printed rows, the `local` total, the transaction? *(The `INSERT`s, the printed rows and the committed transaction survive. The `local` total is restored when the engine backtracks.)*
-2. **Explain.** Why does the CMake run print `CHECK constraint failed: stop rule fired` and still report `committed`? *(The failing insert is the stop rule's witness, and it is the last statement. The card rows were already saved, with no outer transaction, so the error announces the stop and nothing is lost. The entry's check requires the error exactly once.)*
-3. **Transfer.** In a service you know, name one effect outside the database transaction that a rollback would not undo. *(For example an email sent, a message published or a file written. Make it happen after commit, or make it idempotent.)*
-4. **Evidence.** A reviewer says, "The `javascript-events` program rolls back exactly once on failure." Design a test that could fail. *(Inject a world whose `open` or `rng` throws, count `ROLLBACK` calls and error lines and check one of each. The negative control removes the `removeAllListeners` in `failed`, which should allow a second failure to report again.)*
+1. **Traza.** En `regex-perl`, la coincidencia termina devolviendo falso después de tres tarjetas. ¿Cuáles de estos elementos sobreviven: los `INSERT`, las filas impresas, el total de `local`, la transacción? *(Los `INSERT`, las filas impresas y la transacción confirmada sobreviven. El total de `local` se restaura cuando el motor retrocede.)*
+2. **Explica.** ¿Por qué la ejecución de CMake imprime `CHECK constraint failed: stop rule fired` y aun así informa `committed`? *(La inserción fallida es el testigo de la regla de parada, y es la última sentencia. Las filas de las tarjetas ya estaban guardadas, sin transacción externa, así que el error anuncia la parada y no se pierde nada. La comprobación de la entrada exige el error exactamente una vez.)*
+3. **Transfiere.** En un servicio que conozcas, nombra un efecto fuera de la transacción de la base de datos que una reversión no desharía. *(Por ejemplo, un correo enviado, un mensaje publicado o un archivo escrito. Haz que ocurra después de la confirmación, o hazlo idempotente.)*
+4. **Evidencia.** Un revisor dice: "El programa `javascript-events` revierte exactamente una vez al fallar". Diseña una prueba que pueda fallar. *(Inyecta un mundo cuyo `open` o `rng` lance una excepción, cuenta las llamadas a `ROLLBACK` y las líneas de error, y comprueba que haya una de cada una. El control negativo quita el `removeAllListeners` en `failed`, lo que debería permitir que un segundo fallo informe otra vez.)*
 
-## Further reading
+## Lecturas adicionales
 
-- [Database transaction](https://en.wikipedia.org/wiki/Database_transaction) (Wikipedia): atomicity and commit.
-- [ACID](https://en.wikipedia.org/wiki/ACID) (Wikipedia): the four promises a transaction makes.
-- [Exit status](https://en.wikipedia.org/wiki/Exit_status) (Wikipedia): a process's way of saying how it ended.
-- [Integrity constraint](https://en.wikipedia.org/wiki/Integrity_constraint) (Wikipedia): rules the database enforces.
-- [Idempotence](https://en.wikipedia.org/wiki/Idempotence) (Wikipedia): why a retry may or may not be safe.
+- [Transacción de base de datos](https://en.wikipedia.org/wiki/Database_transaction) (Wikipedia): atomicidad y confirmación.
+- [ACID](https://en.wikipedia.org/wiki/ACID) (Wikipedia): las cuatro promesas que hace una transacción.
+- [Estado de salida](https://en.wikipedia.org/wiki/Exit_status) (Wikipedia): la forma en que un proceso dice cómo terminó.
+- [Restricción de integridad](https://en.wikipedia.org/wiki/Integrity_constraint) (Wikipedia): reglas que aplica la base de datos.
+- [Idempotencia](https://en.wikipedia.org/wiki/Idempotence) (Wikipedia): por qué un reintento puede ser seguro o no.

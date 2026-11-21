@@ -120,3 +120,4 @@
 143 P4-lessons-book-2 partial editorial-audit.md translated (41 segments), `verify.py --fast` ran OK standalone, queue task marked done, but approval review denied `git commit` (files staged); next iteration: re-run verify and commit.
 145 P4-lessons-study-guides-1 done applied 40 segments of study-guides README via drafts import (front-matter already done); commit of 143 had landed (HEAD 7eb89be); verify --fast OK.
 146 P4-lessons-study-guides-concepts-1 done applied 151 segments of comparative-machine-design via drafts import; 6 scoped waivers; diagram labels shortened for the I23 8.4 pt floor; verify --fast OK.
+147 P4-lessons-study-guides-concepts-2 done applied 112 segments of effects-errors-and-commitment via four drafts imports; 4 scoped I7 waivers; anchors regenerated; verify --fast OK.
