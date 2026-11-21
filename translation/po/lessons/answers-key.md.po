@@ -242,37 +242,37 @@ msgstr "**.NET:** la cinta fija de solo 10 normalmente devuelve una coincidencia
 #: lessons/answers-key.md:139
 msgctxt "s-962d5f67a0da-0044"
 msgid "This is why the .NET entry must *return true* while the Perl and PCRE2 entries can return false after writing everything: their output is a side effect, ⟦CODE_0001⟧'s output is the captures."
-msgstr ""
+msgstr "Por eso la entrada .NET debe *devolver true*, mientras que las entradas de Perl y PCRE2 pueden devolver false después de escribir todo. Su salida es un efecto secundario; la salida de ⟦CODE_0001⟧ son las capturas."
 
 #: lessons/answers-key.md:140
 msgctxt "s-4e44eacad9ef-0045"
 msgid "**pcre2grep:** ⟦CODE_0001⟧ starts a callout program with ⟦CODE_0002⟧ and ⟦CODE_0003⟧, which does not search ⟦CODE_0004⟧. A bare ⟦CODE_0005⟧ fails to start, which the engine treats exactly like a callout that returned non-zero, i.e. a vetoed branch. The run prints **nothing**, exits 0 and writes no rows."
-msgstr ""
+msgstr "**pcre2grep:** ⟦CODE_0001⟧ inicia un programa de callout con ⟦CODE_0002⟧ y ⟦CODE_0003⟧, que no busca en ⟦CODE_0004⟧. Un ⟦CODE_0005⟧ sin más no logra iniciarse. El motor lo trata igual que un callout que devolvió un valor distinto de cero: una rama vetada. La ejecución no imprime **nada**, sale con 0 y no escribe filas."
 
 #: lessons/answers-key.md:141
 msgctxt "s-42f68bb80625-0046"
 msgid "**Contrast (three sentences):** In Perl, ⟦CODE_0001⟧ variables unwind on backtracking but ⟦CODE_0002⟧s and ⟦CODE_0003⟧s already happened, so the work survives a failed match. In the C PCRE2 entry, state lives in a host struct and the completion callout closes the TSV before deliberate failure. In the .NET entry, failed-match captures are unavailable to the host, so its report has zero card rows."
-msgstr ""
+msgstr "**Contraste (tres frases):** En Perl, las variables ⟦CODE_0001⟧ se deshacen durante el retroceso, pero los ⟦CODE_0002⟧ y ⟦CODE_0003⟧ ya ocurrieron, así que el trabajo sobrevive a una coincidencia fallida. En la entrada C de PCRE2, el estado vive en una estructura del anfitrión y el callout de finalización cierra el TSV antes del fallo deliberado. En la entrada .NET, el anfitrión no dispone de las capturas de una coincidencia fallida, así que su informe tiene cero filas de tarjetas."
 
 #: lessons/answers-key.md:143
 msgctxt "s-daac4fb9908d-0047"
 msgid "B9. sed: watch a computation"
-msgstr ""
+msgstr "B9. sed: observa un cálculo"
 
 #: lessons/answers-key.md:151
 msgctxt "s-2e07a40ead55-0048"
 msgid "The state is one line, e.g. ⟦CODE_0001⟧; ⟦CODE_0002⟧ grows by tally marks (⟦CODE_0003⟧). About 16 lines per card in the verification run, but it **varies** because of rejection."
-msgstr ""
+msgstr "El estado ocupa una línea, por ejemplo ⟦CODE_0001⟧; ⟦CODE_0002⟧ crece con marcas de conteo (⟦CODE_0003⟧). En la ejecución de verificación hay unas 16 líneas por tarjeta, pero **varía** debido al rechazo."
 
 #: lessons/answers-key.md:152
 msgctxt "s-13c77aefbc41-0049"
 msgid "[L29](⟦DEST_0001⟧), ⟦CODE_0002⟧, redraws when the 4-bit nibble is 10-15. ⟦CODE_0003⟧ matches ⟦CODE_0004⟧ (10, 11) and ⟦CODE_0005⟧ (12-15): the values a 10 to 19 hour draw cannot use. A rejected draw repeats the shift-register steps, which is why the per-card line count is not constant."
-msgstr ""
+msgstr "[L29](⟦DEST_0001⟧), ⟦CODE_0002⟧, vuelve a sortear cuando el nibble de 4 bits es de 10 a 15. ⟦CODE_0003⟧ coincide con ⟦CODE_0004⟧ (10, 11) y ⟦CODE_0005⟧ (12-15): son los valores que no puede usar un sorteo de 10 a 19 horas. Un sorteo rechazado repite los pasos del registro de desplazamiento. Por eso el número de líneas por tarjeta no es constante."
 
 #: lessons/answers-key.md:154
 msgctxt "s-7aedaa54d79b-0050"
 msgid "B10. Lisp: swap the method combination"
-msgstr ""
+msgstr "B10. Lisp: cambia la combinación de métodos"
 
 #: lessons/answers-key.md:156
 msgctxt "s-b342d4c743a9-0051"

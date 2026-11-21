@@ -136,11 +136,11 @@ La semilla 42 da `16 11 11 15 11`. Un `System.Random` con una semilla fija es un
   # captured total=0 entries=0 DEMO ONLY
   ```
 
-  This is why the .NET entry must *return true* while the Perl and PCRE2 entries can return false after writing everything: their output is a side effect, `regex-dotnet`'s output is the captures.
-- **pcre2grep:** `pcre2grep` starts a callout program with `fork` and `execv`, which does not search `PATH`. A bare `sqlite3` fails to start, which the engine treats exactly like a callout that returned non-zero, i.e. a vetoed branch. The run prints **nothing**, exits 0 and writes no rows.
-- **Contrast (three sentences):** In Perl, `local` variables unwind on backtracking but `print`s and `INSERT`s already happened, so the work survives a failed match. In the C PCRE2 entry, state lives in a host struct and the completion callout closes the TSV before deliberate failure. In the .NET entry, failed-match captures are unavailable to the host, so its report has zero card rows.
+  Por eso la entrada .NET debe *devolver true*, mientras que las entradas de Perl y PCRE2 pueden devolver false después de escribir todo. Su salida es un efecto secundario; la salida de `regex-dotnet` son las capturas.
+- **pcre2grep:** `pcre2grep` inicia un programa de callout con `fork` y `execv`, que no busca en `PATH`. Un `sqlite3` sin más no logra iniciarse. El motor lo trata igual que un callout que devolvió un valor distinto de cero: una rama vetada. La ejecución no imprime **nada**, sale con 0 y no escribe filas.
+- **Contraste (tres frases):** En Perl, las variables `local` se deshacen durante el retroceso, pero los `print` y `INSERT` ya ocurrieron, así que el trabajo sobrevive a una coincidencia fallida. En la entrada C de PCRE2, el estado vive en una estructura del anfitrión y el callout de finalización cierra el TSV antes del fallo deliberado. En la entrada .NET, el anfitrión no dispone de las capturas de una coincidencia fallida, así que su informe tiene cero filas de tarjetas.
 
-## B9. sed: watch a computation
+## B9. sed: observa un cálculo
 
 ```bash
 lessons/tools/run-in-sandbox.sh -e TRACE=1 src/regex-sed ./timecards.sh 2> trace.txt
@@ -148,10 +148,10 @@ grep -c 'tot:' trace.txt                  # e.g. 48 for a three-card run
 grep -E 'tot:#{41}' trace.txt | tail -1   # the final state: 41+ tally marks
 ```
 
-- The state is one line, e.g. `run:... k:### rng:0110101000001111 cats:Coding,... tot: n: c:Meetings`; `tot:` grows by tally marks (`#`). About 16 lines per card in the verification run, but it **varies** because of rejection.
-- [L29](../src/regex-sed/timecards.sed#L29), `/ rng:1(01|1)/b draw`, redraws when the 4-bit nibble is 10-15. `1(01|1)` matches `101x` (10, 11) and `11xx` (12-15): the values a 10 to 19 hour draw cannot use. A rejected draw repeats the shift-register steps, which is why the per-card line count is not constant.
+- El estado ocupa una línea, por ejemplo `run:... k:### rng:0110101000001111 cats:Coding,... tot: n: c:Meetings`; `tot:` crece con marcas de conteo (`#`). En la ejecución de verificación hay unas 16 líneas por tarjeta, pero **varía** debido al rechazo.
+- [L29](../src/regex-sed/timecards.sed#L29), `/ rng:1(01|1)/b draw`, vuelve a sortear cuando el nibble de 4 bits es de 10 a 15. `1(01|1)` coincide con `101x` (10, 11) y `11xx` (12-15): son los valores que no puede usar un sorteo de 10 a 19 horas. Un sorteo rechazado repite los pasos del registro de desplazamiento. Por eso el número de líneas por tarjeta no es constante.
 
-## B10. Lisp: swap the method combination
+## B10. Lisp: cambia la combinación de métodos
 
 1. With `progn` in both places every run deals **all five cards**, because `progn` calls every applicable method and ignores their return values:
 
