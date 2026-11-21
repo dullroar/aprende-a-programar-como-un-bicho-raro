@@ -130,3 +130,4 @@
 154 P4-lessons-study-guides-concepts-6 done reading-adversarial-programs study guide translated (91 segments) via drafts import; 3 scoped I7 waivers; verify --fast OK.
 155 P4-lessons-study-guides-concepts-6 done committed the iteration-154 work (985b93b); verify --fast OK.
 157 P4-lessons-study-guides-concepts-7 done state-and-control-beyond-variables study guide (104 segments) finished from iteration-156 PO; 1 scoped I7 waiver; verify --fast OK.
+158 P4-lessons-study-guides-languages-1 done apl study guide was already fully translated (P3/P3C-006, P4-src-3 sync; 114/114 PO entries, 0 fuzzy); release-level file_problems clean and verify --fast OK, so only the queue status changed.
