@@ -2137,3 +2137,20 @@
 {"segment_id": "s-942b0c21c819-0065", "ts": "2026-11-21T19:27:11Z", "findings": ["TRANSLATE: the reply is the English text unchanged"]}
 {"segment_id": "s-fe1cde8498c8-0067", "ts": "2026-11-21T19:27:11Z", "findings": ["TRANSLATE: the reply is the English text unchanged"]}
 {"segment_id": "s-87d9e31bff8d-0112", "ts": "2026-11-21T19:27:11Z", "findings": ["I7: glossary term state must be rendered 'estado'"]}
+{"segment_id": "s-fd30675d31a9-0002", "ts": "2026-11-21T19:33:37Z", "findings": ["I12: sentence of 36 words (limit 29): Esta guía lee dos programas en Tcl: [X](..."]}
+{"segment_id": "s-5bcd37b52524-0005", "ts": "2026-11-21T19:33:37Z", "findings": ["I7: glossary term scope must be rendered 'ámbito'"]}
+{"segment_id": "s-8f546d574061-0007", "ts": "2026-11-21T19:33:37Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-12fe095c2faf-0019", "ts": "2026-11-21T19:33:37Z", "findings": ["I12: sentence of 31 words (limit 29): Se inserta una tarjeta solo si el total ..."]}
+{"segment_id": "s-29671fb08685-0022", "ts": "2026-11-21T19:33:37Z", "findings": ["I12: sentence of 35 words (limit 29): El número de tarjeta no es un contador: ..."]}
+{"segment_id": "s-9d607f026b88-0027", "ts": "2026-11-21T19:33:37Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-5698d43a065f-0034", "ts": "2026-11-21T19:33:37Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-5973c4a0a0c9-0056", "ts": "2026-11-21T19:33:37Z", "findings": ["I7: glossary term table must be rendered 'tabla'"]}
+{"segment_id": "s-46c96569cbe4-0076", "ts": "2026-11-21T19:33:37Z", "findings": ["I25: comma before a simple 'y' ('34 y 46, y el bucle sale'): no comma before a simple o or y"]}
+{"segment_id": "s-405c1b857089-0078", "ts": "2026-11-21T19:33:37Z", "findings": ["I7: glossary term compare-ordinary-weird must be rendered 'Compara los diseños ordinarios y los raros'"]}
+{"segment_id": "s-7dec673bf957-0085", "ts": "2026-11-21T19:33:37Z", "findings": ["I7: glossary term callback must be rendered 'función de devolución de llamada'", "I7: banned rendering 'llamada de vuelta' for glossary term callback"]}
+{"segment_id": "s-1fda83cc590e-0086", "ts": "2026-11-21T19:33:37Z", "findings": ["I25: comma before a simple 'y' ('SQLite y Tcl, y cada uno llama al otro'): no comma before a simple o or y"]}
+{"segment_id": "s-a9492fa2b426-0090", "ts": "2026-11-21T19:33:37Z", "findings": ["I25: comma before a simple 'y' ('50, y el verificador compartido las acepta'): no comma before a simple o or y"]}
+{"segment_id": "s-50f7c4b0e962-0099", "ts": "2026-11-21T19:33:37Z", "findings": ["I3: digit token 000 appears 1 time(s) in the source, 0 in the target", "I3: digit token 1 appears 1 time(s) in the source, 0 in the target", "I3: digit token 1000 appears 0 time(s) in the source, 1 in the target"]}
+{"segment_id": "s-87d9e31bff8d-0105", "ts": "2026-11-21T19:33:37Z", "findings": ["I7: glossary term state must be rendered 'estado'"]}
+{"segment_id": "s-534085b7ea72-0111", "ts": "2026-11-21T19:33:37Z", "findings": ["I7: banned rendering 'condición' for glossary term state", "I12: sentence of 38 words (limit 29): El disparador es la misma idea que la co..."]}
+{"segment_id": "s-2dfea8f8bfac-0118", "ts": "2026-11-21T19:33:37Z", "findings": ["I12: sentence of 31 words (limit 29): El disparador imprime la tarjeta 1 e ins..."]}

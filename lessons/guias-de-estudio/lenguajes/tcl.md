@@ -1,120 +1,120 @@
-# Tcl study guide
+# Guía de estudio de Tcl
 
-## What this guide is for
+## Para qué sirve esta guía
 
-This guide reads two Tcl programs: [`src/tcl`](../../../src/tcl/README.md), an ordinary `while` loop in one procedure, and [`src/tcl-weird`](../../../src/tcl-weird/README.md), where the program is *rows in a SQLite table* and one `INSERT` starts it. The weird program defines no Tcl loop and no Tcl procedure that deals or prints a card: the loop is a recursive SQLite trigger, and the code lives as text that Tcl's `unknown` handler fetches on demand. The question is: **if code is just a string, who may write the string, and which engine decides what runs next?**
+Esta guía lee dos programas en Tcl. Uno es [`src/tcl`](../../../src/tcl/README.md), un bucle `while` ordinario dentro de un procedimiento. El otro es [`src/tcl-weird`](../../../src/tcl-weird/README.md), donde el programa son *filas de una tabla de SQLite* y un solo `INSERT` lo pone en marcha. El programa raro no define ningún bucle de Tcl ni ningún procedimiento de Tcl que reparta o imprima una tarjeta. El bucle es un disparador recursivo de SQLite, y el código vive como texto que el manejador `unknown` de Tcl recupera a demanda. La pregunta es: **si el código es solo una cadena de texto, ¿quién puede escribirla y qué motor decide lo que se ejecuta después?**
 
-When you finish, you should be able to:
+Al terminar, deberías poder:
 
-1. Explain Tcl's command model: everything is a command whose arguments are strings, and an unknown command goes to `unknown`.
-2. Explain how `tcl-weird`'s three hooks work together: an SQL function that calls Tcl, an `unknown` handler that defines procedures from table rows and a trigger that inserts the next card.
-3. Trace both programs through the same three cards, naming which engine acts at each step.
-4. Explain why `PRAGMA recursive_triggers = ON` is the loop, and what the `WHERE` in the trigger is.
-5. Name the trust boundary in this design and explain why it holds here.
-6. Label each behavior as guaranteed, implementation-permitted or accidentally exploited.
+1. Explicar el modelo de comandos de Tcl: todo es un comando cuyos argumentos son cadenas de texto, y un comando desconocido va a `unknown`.
+2. Explicar cómo trabajan juntos los tres ganchos de `tcl-weird`. Son una función SQL que llama a Tcl, un manejador `unknown` que define procedimientos con filas de la tabla y un disparador que inserta la tarjeta siguiente.
+3. Hacer la traza de ambos programas a través de las mismas tres tarjetas, nombrando qué motor actúa en cada paso.
+4. Explicar por qué `PRAGMA recursive_triggers = ON` es el bucle y qué es el `WHERE` del disparador.
+5. Nombrar la frontera de confianza de este diseño y explicar por qué se sostiene aquí.
+6. Etiquetar cada comportamiento como garantizado, permitido por la implementación o aprovechado por accidente.
 
-**Scope limits.** You need to read Tcl (braces group, brackets substitute, `$` reads a variable) and basic SQL. The guide does not teach Tk (the optional window is also built from table rows) or SQLite's query planner. It uses Tcl 8.6 with the `sqlite3` package. The book's page is [Tcl](../../lenguajes/tcl.md). For ideas, see [Database triggers](../../informatica/06-estado-mas-alla-de-las-variables.md#database-triggers), [Arbitrary code execution](../../informatica/01-lectura-de-un-programa-adversarial.md#arbitrary-code-execution) and [Homoiconicity: code as data](../../informatica/06-estado-mas-alla-de-las-variables.md#homoiconicity-code-as-data).
+**Límites del alcance.** Necesitas saber leer Tcl (las llaves agrupan, los corchetes sustituyen, `$` lee una variable) y SQL básico. La guía no enseña Tk (la ventana opcional también se construye con filas de tabla) ni el planificador de consultas de SQLite. Usa Tcl 8.6 con el paquete `sqlite3`. La página del libro es [Tcl](../../lenguajes/tcl.md). Para ver las ideas, consulta [Disparadores de base de datos](../../informatica/06-estado-mas-alla-de-las-variables.md#database-triggers), [Ejecución de código arbitrario](../../informatica/01-lectura-de-un-programa-adversarial.md#arbitrary-code-execution) y [Homoiconicidad: código como datos](../../informatica/06-estado-mas-alla-de-las-variables.md#homoiconicity-code-as-data).
 
-## Before you begin
+## Antes de empezar
 
-**Safety model.** Every entry writes fictional **DEMO ONLY** data to a scratch SQLite file. `tcl-weird` runs *text from a table as code*. That is safe here only because the program builds the table itself, in memory, in the same file. Read the source before you run it, and run it in the sandbox first:
+**Modelo de seguridad.** Cada entrada escribe datos ficticios marcados con **DEMO ONLY** en un archivo SQLite desechable. `tcl-weird` ejecuta *texto de una tabla como código*. Eso es seguro aquí solo porque el programa construye la tabla él mismo, en memoria, en el mismo archivo. Lee el código fuente antes de ejecutarlo, y ejecútalo primero en el entorno aislado (*sandbox*):
 
 ```bash
 sandbox/container/run-image.sh src/tcl
 sandbox/container/run-image.sh src/tcl-weird
 ```
 
-Edit only copies ([Running things safely](../../exercises.md#running-things-safely)). When you edit `tcl-weird`, you are editing a Tcl program *inside a SQL string inside a Tcl script*, so braces nest and nothing is substituted until the text is run.
+Edita solo copias ([Ejecutar cosas de forma segura](../../exercises.md#running-things-safely)). Cuando editas `tcl-weird`, editas un programa en Tcl *dentro de una cadena de texto SQL dentro de un script de Tcl*. Por eso las llaves se anidan y nada se sustituye hasta que se ejecuta el texto.
 
-**Prediction rule.** Before each run, write down which engine (Tcl, SQLite) acts at each step, and what each prints. In this program the engines hand control to each other.
+**Regla de predicción.** Antes de cada ejecución, anota qué motor (Tcl o SQLite) actúa en cada paso y qué imprime cada uno. En este programa los motores se pasan el control el uno al otro.
 
-**Vocabulary.**
+**Vocabulario.**
 
-| Term | Meaning here |
+| Término | Significado aquí |
 | --- | --- |
-| Command | A Tcl word followed by arguments. Even `if` and `while` are commands. |
-| `unknown` | The command Tcl calls when a command name does not exist. |
-| Trigger | SQL code that SQLite runs automatically when a row is inserted, updated or deleted. |
-| Recursive trigger | A trigger whose action fires itself again. SQLite allows it only with `PRAGMA recursive_triggers = ON`. |
-| `TEMP` | A table or trigger that lives only as long as this database connection. |
+| Comando | Una palabra de Tcl seguida de argumentos. Incluso `if` y `while` son comandos. |
+| `unknown` | El comando al que llama Tcl cuando no existe un comando con ese nombre. |
+| Disparador | Código SQL que SQLite ejecuta automáticamente cuando se inserta, actualiza o borra una fila. |
+| Disparador recursivo | Un disparador cuya acción lo activa de nuevo. SQLite lo permite solo con `PRAGMA recursive_triggers = ON`. |
+| `TEMP` | Una tabla o un disparador que vive solo mientras dura esta conexión con la base de datos. |
 
-## The shared challenge
+## El reto compartido
 
-The [challenge specification](../../introduccion.md#what-the-challenge-does) calls for cards with a category and 10 to 19 whole hours. Categories cycle through Meetings, Coding, Debugging and Learning. Add each card's hours to the running total. Stop when the total passes 40. Keep the **first card that takes the total over 40**. A total of exactly 40 continues. Four 10-hour cards need a fifth card, in the Meetings category. Conforming runs finish with 3 to 5 cards and a total of 41 to 59 hours.
+La [especificación del reto](../../introduccion.md#what-the-challenge-does) pide tarjetas con una categoría y de 10 a 19 horas enteras. Las categorías se repiten en ciclo: `Meetings`, `Coding`, `Debugging` y `Learning`. Suma las horas de cada tarjeta al total acumulado. Detente cuando el total pasa de 40. Conserva la **primera tarjeta con la que el total pasa de 40**. Un total de exactamente 40 continúa. Cuatro tarjetas de 10 horas necesitan una quinta tarjeta, de la categoría `Meetings`. Las ejecuciones conformes tienen de 3 a 5 tarjetas y un total de 41 a 59 horas.
 
-Both Tcl entries save the cards in one SQLite transaction and print a summary. Tcl writes the boundary two ways. In `tcl`, `while {$total <= $limit}` ([L40](../../../src/tcl/timecards.tcl#L40)): true for 40, so the loop repeats. In `tcl-weird`, the trigger inserts the next card `WHERE NEW.running_total <= 40` ([L113](../../../src/tcl-weird/timecards.tcl#L113)). A card is inserted only if the *previous* card's total was at most 40, so the crossing card is the last one inserted.
+Las dos entradas de Tcl guardan las tarjetas en una transacción de SQLite e imprimen un resumen. Tcl escribe la frontera de dos maneras. En `tcl`, `while {$total <= $limit}` ([L40](../../../src/tcl/timecards.tcl#L40)): se cumple con 40, así que el bucle se repite. En `tcl-weird`, el disparador inserta la tarjeta siguiente `WHERE NEW.running_total <= 40` ([L113](../../../src/tcl-weird/timecards.tcl#L113)). Se inserta una tarjeta solo si el total de la tarjeta *anterior* era de 40 o menos. Por eso la tarjeta que cruza el tope es la última que se inserta.
 
-## The machine to identify
+## La máquina que hay que identificar
 
-**What repeats.** In `tcl`, a `while` loop in the procedure `draw`. In `tcl-weird`, a trigger: inserting a card fires `next_card`, which inserts another card, which fires `next_card` again ([L104-114](../../../src/tcl-weird/timecards.tcl#L104-L114)). SQLite does the repeating.
+**Qué se repite.** En `tcl`, un bucle `while` en el procedimiento `draw`. En `tcl-weird`, un disparador: insertar una tarjeta activa `next_card`, que inserta otra tarjeta, que vuelve a activar `next_card` ([L104-114](../../../src/tcl-weird/timecards.tcl#L104-L114)). SQLite hace la repetición.
 
-**Where state lives.** In `tcl`, in local variables (`total`, `cards`). In `tcl-weird`, in *the table*. The card number is not a counter: the category is looked up as `count(*)` of the run's existing rows plus one, and the total is carried in the inserted row's `running_total`. The next step reads the row that caused it, `NEW`.
+**Dónde vive el estado.** En `tcl`, en variables locales (`total`, `cards`). En `tcl-weird`, en *la tabla*. El número de tarjeta no es un contador. La categoría se busca como `count(*)` de las filas que ya tiene la ejecución más uno, y el total viaja en el `running_total` de la fila insertada. El paso siguiente lee la fila que lo causó, `NEW`.
 
-**What advances the next step.** In `tcl`, the loop. In `tcl-weird`, the end of the trigger's own `INSERT`, which fires the trigger for the new row.
+**Qué hace avanzar el paso siguiente.** En `tcl`, el bucle. En `tcl-weird`, el final del propio `INSERT` del disparador, que activa el disparador para la fila nueva.
 
-**What stops it.** In `tcl`, the loop condition. In `tcl-weird`, the trigger's `WHERE NEW.running_total <= 40`: when it is false the `INSERT ... SELECT` yields no rows, so nothing is inserted and the chain ends.
+**Qué lo detiene.** En `tcl`, la condición del bucle. En `tcl-weird`, el `WHERE NEW.running_total <= 40` del disparador: cuando es falso, el `INSERT ... SELECT` no devuelve filas, así que no se inserta nada y la cadena termina.
 
-**What commits.** In `tcl`, `save` writes the finished list in one `db transaction`. In `tcl-weird`, the whole chain of triggered inserts runs inside one `db transaction` that wraps the starting `INSERT` ([L129-137](../../../src/tcl-weird/timecards.tcl#L129-L137)). The rows are *printed* by the `born` procedure as each card is inserted, so a row can be printed before the transaction commits.
+**Qué confirma.** En `tcl`, `save` escribe la lista terminada en un solo `db transaction`. En `tcl-weird`, toda la cadena de inserciones disparadas se ejecuta dentro de un solo `db transaction` que envuelve el `INSERT` inicial ([L129-137](../../../src/tcl-weird/timecards.tcl#L129-L137)). El procedimiento `born` *imprime* las filas a medida que se inserta cada tarjeta, así que una fila puede imprimirse antes de que la transacción se confirme.
 
 <!-- diagram-source: src/tcl/README.md#program-flow -->
 
 ```mermaid
 flowchart TD
-    accTitle: tcl: an ordinary while loop in a namespace, then one transaction
-    accDescr: A flowchart. The main procedure parses the arguments with a while, lassign and switch loop, seeds the random generator from the clock and the process id, and calls draw. The draw procedure is a while loop. While the total is at or under the limit, it draws hours, adds them to the total with incr, picks the next category, and appends a card as a dict. When the total is over the limit, the save procedure opens SQLite and writes all the cards inside one transaction. Then the program prints the cards. Only if asked does it build a Tk window with a treeview.
-    A["main: parse argv, seed rand from the clock and pid"] --> B{{"draw: while total <= limit?"}}
-    B -->|yes| C["randomHours, incr total, pick a category, lappend a card as a dict"]
+    accTitle: tcl: un bucle while en un espacio de nombres y luego una transacción
+    accDescr: Diagrama de flujo. El procedimiento principal analiza los argumentos con un bucle while, lassign y switch. Inicializa el generador aleatorio con el reloj y el id de proceso y llama a draw. El procedimiento draw es un bucle while. Mientras el total no supere el límite, sortea las horas, las suma al total con incr, elige la siguiente categoría y agrega una tarjeta como dict. Cuando el total supera el límite, el procedimiento save abre SQLite y escribe todas las tarjetas en una sola transacción. Luego el programa imprime las tarjetas. Solo si se le pide crea una ventana Tk con un treeview.
+    A["main: analiza argv e inicializa rand con el reloj y pid"] --> B{{"draw: while ¿se cumple total <= limit?"}}
+    B -->|Sí| C["randomHours, incr total, elige categoría y lappend de la tarjeta como dict"]
     C --> B
-    B -->|no| D["save: db transaction inserts every card with bound parameters"]
-    D --> E["Print the cards; build the Tk treeview only if --gui was given"]
+    B -->|No| D["save: una sola transacción (db transaction) inserta cada tarjeta con parámetros enlazados"]
+    D --> E["Imprime las tarjetas. Crea el treeview de Tk solo con --gui"]
 ```
 
-The first diagram is an ordinary loop in a procedure.
+El primer diagrama es un bucle ordinario dentro de un procedimiento.
 
 <!-- diagram-source: src/tcl-weird/README.md#program-flow -->
 
 ```mermaid
 sequenceDiagram
-    accTitle: tcl-weird: a recursive SQLite trigger calls Tcl procs that are fetched from a table
-    accDescr: A sequence diagram. The Tcl host installs three hooks and inserts the first card. Each insert fires a trigger in SQLite. The trigger calls the SQL function tcl, which calls back into Tcl. The first time the Tcl side asks for a command such as born, the command does not exist, so Tcl calls unknown. The unknown handler reads the proc's text from the tcl_code table, defines the proc and retries the call. The call prints the row. The trigger then inserts the next card, but only while the total of the card just inserted is 40 or less. That insert fires the trigger again. When the total is over 40, nothing is inserted, and control returns to the host, which prints the summary.
-    participant H as Tcl host
-    participant D as SQLite and the next_card trigger
-    participant U as unknown handler
-    participant T as tcl_code table
-    H->>D: INSERT the first card
-    loop each INSERT fires the trigger, while the total is 40 or less
-        D->>H: SQL function tcl calls the Tcl command born
-        H->>U: born does not exist yet, so Tcl calls unknown
-        U->>T: look up the proc's params and body
-        T-->>U: the text of the proc
-        U->>H: define the proc, retry the call
-        H-->>D: the row is printed
-        D->>D: INSERT the next card: the trigger fires again
+    accTitle: tcl-weird: un disparador recursivo de SQLite llama a procedimientos Tcl recuperados de una tabla
+    accDescr: Diagrama de secuencia. El anfitrión Tcl instala tres interceptores e inserta la primera tarjeta. Cada inserción activa un disparador en SQLite. El disparador llama a la función SQL tcl, que a su vez llama a Tcl. Cuando Tcl pide por primera vez un comando como born, este no existe y Tcl llama a unknown. El manejador unknown lee el texto del procedimiento en la tabla tcl_code. Define el procedimiento y repite la llamada. La llamada imprime la fila. El disparador inserta la siguiente tarjeta solo mientras el total de la tarjeta recién insertada sea de 40 o menos. Esa inserción vuelve a activar el disparador. Si el total pasa de 40, no se inserta nada. El control vuelve al anfitrión, que imprime el resumen.
+    participant H as Anfitrión Tcl
+    participant D as SQLite y el disparador next_card
+    participant U as Manejador unknown
+    participant T as Tabla tcl_code
+    H->>D: INSERT de la primera tarjeta
+    loop Cada INSERT activa el disparador mientras el total es de 40 o menos
+        D->>H: La función SQL tcl llama al comando Tcl born
+        H->>U: born aún no existe: Tcl llama a unknown
+        U->>T: Busca los parámetros y el cuerpo
+        T-->>U: Texto del procedimiento
+        U->>H: Define el procedimiento y repite la llamada
+        H-->>D: Se imprime la fila
+        D->>D: INSERT de la siguiente tarjeta: se repite el disparo
     end
-    D-->>H: total is over 40, no insert: the trigger chain ends
-    H->>H: print the summary
+    D-->>H: El total pasa de 40: cesan las inserciones y los disparos
+    H->>H: Imprime el resumen
 ```
 
-The second is SQLite's trigger firing itself, with Tcl called back at every step. The next diagram adds what the source diagram leaves out: where the code *comes from*, and who can write it.
+El segundo es el disparador de SQLite activándose a sí mismo, con una llamada de vuelta a Tcl en cada paso. El diagrama siguiente añade lo que omite el diagrama de origen: de dónde *viene* el código y quién puede escribirlo.
 
 <!-- diagram-new: authority-boundary - shows where the Tcl text comes from and which party may write it, which the source diagram omits -->
 
 ```mermaid
 flowchart TD
-    accTitle: tcl-weird: the program text comes from a table that only the program writes
-    accDescr: A flowchart of the trust boundary. The Tcl script creates a TEMP table named tcl_code in memory and fills it with its own procedure bodies. When SQL calls the tcl function with a command name, Tcl runs that command. If the command does not exist, the unknown handler looks the name up in the tcl_code table, defines a procedure from the row, and runs it. A note says that anyone who could write a row into tcl_code could make unknown run their text as Tcl, so the boundary holds only because the table is private to this connection and built by the program itself.
-    A["Script: CREATE TEMP TABLE tcl_code, INSERT its own procedure bodies"] --> B["SQL calls tcl with a command name"]
-    B --> C{{"Does that Tcl command exist?"}}
-    C -->|yes| D["Run it"]
-    C -->|no| E["unknown: SELECT params, body FROM tcl_code WHERE name matches"]
-    E --> F["proc name params body: the row's text becomes a procedure"]
+    accTitle: tcl-weird: el texto del programa viene de una tabla en la que solo escribe el programa
+    accDescr: Un diagrama de flujo de la frontera de confianza. El script de Tcl crea en memoria una tabla TEMP llamada tcl_code y la llena con los cuerpos de sus propios procedimientos. Cuando SQL llama a la función tcl con el nombre de un comando, Tcl ejecuta ese comando. Si el comando no existe, el manejador unknown busca el nombre en la tabla tcl_code, define un procedimiento a partir de la fila y lo ejecuta. Una nota dice que quien pudiera escribir una fila en tcl_code podría hacer que unknown ejecute su texto como Tcl. La frontera se sostiene solo porque la tabla es privada de esta conexión y la construye el propio programa.
+    A["Script: CREATE TEMP TABLE tcl_code (la tabla), INSERT de sus propios cuerpos de procedimiento"] --> B["SQL llama a tcl con un nombre de comando"]
+    B --> C{{"¿Existe ese comando de Tcl?"}}
+    C -->|Sí| D["Ejecútalo"]
+    C -->|No| E["unknown: SELECT params, body FROM tcl_code, donde name coincide"]
+    E --> F["proc name params body: el texto de la fila se convierte en un procedimiento"]
     F --> D
-    G["Boundary: who can write a row into tcl_code?"] -.-> E
+    G["Frontera: ¿quién puede escribir una fila en tcl_code?"] -.-> E
 ```
 
-## Trace one run
+## Traza una ejecución
 
-The programs draw random hours. For this trace, use hours **15, 19, 12**. The trace comes from a scratch copy of `tcl-weird` that ran in the sandbox. In the copy, the SQL string for the `hours` row contained a lookup in a fixed list. The `hours` and `born` rows each logged to standard error. The log lines appear first in this output.
+Los programas sortean horas al azar. Para esta traza, usa las horas **15, 19, 12**. La traza sale de una copia de trabajo de `tcl-weird` que se ejecutó en el entorno aislado. En la copia, la cadena de texto SQL de la fila `hours` contenía una búsqueda en una lista fija. Las filas `hours` y `born` escribían cada una en la salida de error estándar. Las líneas de registro aparecen primero en esta salida.
 
 ```text
 # DEMO ONLY run <id>
@@ -131,88 +131,88 @@ Debugging	12	46	DEMO ONLY
 # every proc that ran was fetched from SQLite by unknown: born category hours init runid week
 ```
 
-(The ISO-week column was removed. Standard output and standard error are separate streams, so their relative order in a terminal capture is not the order of events. The *order of the log lines among themselves* is the order of events.)
+(Se quitó la columna de la semana ISO. La salida estándar y la salida de error estándar son flujos separados. Por eso su orden relativo en una captura de la terminal no es el orden de los eventos. El *orden de las líneas de registro entre sí* sí es el orden de los eventos.)
 
-| Step | Engine acts | What happens | State after |
+| Paso | Actúa el motor | Qué ocurre | Estado después |
 | --- | --- | --- | --- |
-| 0 | Tcl | `db eval {SELECT tcl('init')}`: `unknown` fetches `init` from the table and runs it | procedures defined: `init` |
-| 1 | SQLite | An `UPDATE draw SET h = tcl('hours')` draws the hours into the one-row TEMP table: Tcl asks `unknown` for `hours`, and gets 15. The starting `INSERT ... SELECT` reads `h` from `draw` twice, as the hours and as the total | card 1 row: 15 hours, total 15 |
-| 2 | SQLite trigger | `AFTER INSERT` fires `next_card`. It calls `born` (prints card 1), then `UPDATE draw` draws the next hours (19), guarded by `WHERE 15 <= 40`: true | card 2 inserted |
-| 3 | SQLite trigger | Fires again on card 2 (19 hours, total 34). `born` prints it. The guarded `UPDATE` draws 12. `34 <= 40`: true | card 3 inserted |
-| 4 | SQLite trigger | Fires on card 3 (12 hours, total 46). `born` prints it. `46 <= 40`: **false**, so the `UPDATE` draws nothing and the `INSERT ... SELECT` produces no row | chain ends |
-| 5 | Tcl | The transaction commits. Tcl runs a `SELECT count(*), max(running_total)` and prints the summary | 3 entries, total 46 |
+| 0 | Tcl | `db eval {SELECT tcl('init')}`: `unknown` recupera `init` de la tabla y lo ejecuta | procedimientos definidos: `init` |
+| 1 | SQLite | Un `UPDATE draw SET h = tcl('hours')` sortea las horas y las guarda en la tabla TEMP de una fila: Tcl le pide a `unknown` el valor `hours` y obtiene 15. El `INSERT ... SELECT` inicial lee `h` de `draw` dos veces, como las horas y como el total | fila de la tarjeta 1: 15 horas, total 15 |
+| 2 | Disparador de SQLite | `AFTER INSERT` activa `next_card`. Llama a `born` (imprime la tarjeta 1) y luego `UPDATE draw` sortea las horas siguientes (19), bajo la condición `WHERE 15 <= 40`: verdadera | se inserta la tarjeta 2 |
+| 3 | Disparador de SQLite | Se activa de nuevo con la tarjeta 2 (19 horas, total 34). `born` la imprime. El `UPDATE` protegido por la condición sortea 12. `34 <= 40`: verdadera | se inserta la tarjeta 3 |
+| 4 | Disparador de SQLite | Se activa con la tarjeta 3 (12 horas, total 46). `born` la imprime. `46 <= 40`: **falsa**, así que el `UPDATE` no sortea nada y el `INSERT ... SELECT` no produce ninguna fila | la cadena termina |
+| 5 | Tcl | La transacción se confirma. Tcl ejecuta un `SELECT count(*), max(running_total)` e imprime el resumen | 3 entradas, total 46 |
 
-The procedures fetched from the table were `born`, `category`, `hours`, `init`, `runid` and `week`: exactly the ones that were *called*. The table held more text than ran.
+Los procedimientos recuperados de la tabla fueron `born`, `category`, `hours`, `init`, `runid` y `week`: exactamente los que se *llamaron*. La tabla contenía más texto del que se ejecutó.
 
-**Plain `tcl`.** The loop runs `randomHours`, adds to `total`, appends a dict and tests `$total <= $limit`. The test is after the draw in program order and before the next draw, which is why the crossing card is kept ([L32-34](../../../src/tcl/timecards.tcl#L32-L34)). With 15, 19, 12 the totals are 15, 34 and 46, and the loop exits.
+**`tcl` a secas.** El bucle ejecuta `randomHours`, suma a `total`, agrega un dict y comprueba `$total <= $limit`. La comprobación va después del sorteo en el orden del programa y antes del sorteo siguiente. Por eso se conserva la tarjeta que cruza el tope ([L32-34](../../../src/tcl/timecards.tcl#L32-L34)). Con 15, 19, 12 los totales son 15, 34 y 46. Luego el bucle sale.
 
-**Exactly 40.** With four 10-hour cards, the fourth card has total 40, `40 <= 40` is true and the trigger inserts a fifth. Exercise B12 step 2 shows five rows at 10, 20, 30, 40, 50.
+**Exactamente 40.** Con cuatro tarjetas de 10 horas, la cuarta tarjeta tiene total 40, `40 <= 40` es verdadera y el disparador inserta una quinta. El ejercicio B12, paso 2, muestra cinco filas con 10, 20, 30, 40, 50.
 
-## Compare the ordinary and weird designs
+## Compara los diseños ordinarios y los raros
 
-| Dimension | `tcl` | `tcl-weird` |
+| Dimensión | `tcl` | `tcl-weird` |
 | --- | --- | --- |
-| **Representation** | A procedure with a loop and a list of dicts. | Rows. The program is data in `tcl_code`, the loop is a trigger and the window (with `--gui`) is also rows. |
-| **Observability** | Print `$cards`. | You must read the table and the trigger. The procedures that deal and print cards do not exist until something calls them. |
-| **Tests** | Call `timecards::draw`. | Run the whole thing. The stop rule is a `WHERE` inside a trigger, not testable alone. |
-| **Debugging** | Standard Tcl stack traces. | A Tcl error inside an SQL function is reported through SQLite, and the stack mixes `unknown`, `uplevel` and `db eval`. |
-| **Portability** | Tcl 8.6 and the `sqlite3` package. | The same, plus SQLite's trigger and recursion semantics, and SQLite's rule that a TEMP trigger's bare table name resolves to the table in `main`. |
-| **Cost** | A loop. | One trigger firing per card, with a Tcl callback at each. The recursion depth is limited (1000 by default), and the challenge needs 3 to 5. |
+| **Representación** | Un procedimiento con un bucle y una lista de dicts. | Filas. El programa son datos en `tcl_code`, el bucle es un disparador y la ventana (con `--gui`) también son filas. |
+| **Observabilidad** | Imprime `$cards`. | Tienes que leer la tabla y el disparador. Los procedimientos que reparten e imprimen tarjetas no existen hasta que algo los llama. |
+| **Pruebas** | Llama a `timecards::draw`. | Ejecuta todo. La regla de parada es un `WHERE` dentro de un disparador y no se puede probar sola. |
+| **Debugging** | Trazas de pila normales de Tcl. | Un error de Tcl dentro de una función SQL se informa a través de SQLite. La pila mezcla `unknown`, `uplevel` y `db eval`. |
+| **Portabilidad** | Tcl 8.6 y el paquete `sqlite3`. | Lo mismo, más la semántica de los disparadores y de la recursión de SQLite. Además, la regla de SQLite según la cual el nombre simple de tabla en un disparador TEMP se resuelve a la tabla de `main`. |
+| **Costo** | Un bucle. | Un disparo del disparador por tarjeta, con una función de devolución de llamada de Tcl en cada uno. La profundidad de recursión está limitada (1000 de forma predeterminada). El reto necesita de 3 a 5. |
 
-The difference to remember: `tcl` has *one* engine and `tcl-weird` has *two*, SQLite and Tcl, and each calls the other. The control moves between them, and neither has the whole picture.
+La diferencia que hay que recordar: `tcl` tiene *un* motor y `tcl-weird` tiene *dos*. Son SQLite y Tcl. Cada uno llama al otro. El control pasa de uno a otro, y ninguno tiene la imagen completa.
 
-## What the exercises demonstrate
+## Qué demuestran los ejercicios
 
-| Exercise | Predict first | What the evidence shows |
+| Ejercicio | Predice primero | Qué muestra la evidencia |
 | --- | --- | --- |
-| [B12. Tcl: edit the program in the database](../../exercises.md#b12-tcl-edit-the-program-in-the-database-verified), step 1 | Set `recursive_triggers` to `OFF`. How many rows print? How many does the summary count? | One row prints and the summary says `entries=2`. The trigger fired once, card 2 was inserted and counted, but an insert made by a trigger does not fire the trigger again unless recursion is enabled. The pragma *is* the loop. |
-| B12, step 2 | Change the `hours` row's body to `expr {10}`. | Exactly five rows, totals 10, 20, 30, 40, 50, and the shared checker passes. The run does not stop at 40, because exactly 40 continues. You edited text inside an SQL string, not a Tcl procedure. |
-| B12, the three hooks | Name them. Which did you change in step 2? | An SQL function that calls Tcl, the `unknown` handler and the trigger. Step 2 changed the *data that `unknown` serves*. |
-| [C1. Weird next to boring](../../exercises.md#c1-weird-next-to-boring-verified) | In which program can you see the rule in one place? | `tcl`: the `while` condition. `tcl-weird`: the `WHERE` in a trigger, three layers deep. |
-| [F. Prove a README claim](../../exercises.md#f-prove-a-readme-claim-verified) | The README says each card's hours are drawn once. Can you test it? | Yes: count the calls of the `hours` procedure (the entry's `check.sh` does) and compare with the number of cards. The negative control is a variant that calls `tcl('hours')` in both places, which makes the count twice the card count and fails the check. This replaced an earlier dependence on SQLite's evaluation order. |
+| [B12. Tcl: edita el programa en la base de datos](../../exercises.md#b12-tcl-edit-the-program-in-the-database-verified), paso 1 | Pon `recursive_triggers` en `OFF`. ¿Cuántas filas se imprimen? ¿Cuántas cuenta el resumen? | Se imprime una fila y el resumen dice `entries=2`. El disparador se activó una vez y la tarjeta 2 se insertó y se contó. Pero una inserción hecha por un disparador no vuelve a activarlo a menos que la recursión esté habilitada. El pragma *es* el bucle. |
+| B12, paso 2 | Cambia el cuerpo de la fila `hours` a `expr {10}`. | Exactamente cinco filas, con totales 10, 20, 30, 40, 50. El verificador compartido las acepta. La ejecución no se detiene en 40, porque un total de exactamente 40 continúa. Editaste texto dentro de una cadena de texto SQL, no un procedimiento de Tcl. |
+| B12, los tres ganchos | Nómbralos. ¿Cuál cambiaste en el paso 2? | Una función SQL que llama a Tcl, el manejador `unknown` y el disparador. El paso 2 cambió *los datos que sirve `unknown`*. |
+| [C1. Lo raro junto a lo aburrido](../../exercises.md#c1-weird-next-to-boring-verified) | ¿En qué programa puedes ver la regla en un solo lugar? | `tcl`: la condición `while`. `tcl-weird`: el `WHERE` en un disparador, a tres capas de profundidad. |
+| [F. Demuestra una afirmación del README](../../exercises.md#f-prove-a-readme-claim-verified) | El README dice que las horas de cada tarjeta se sortean una sola vez. ¿Puedes comprobarlo? | Sí: cuenta las llamadas al procedimiento `hours` (lo hace el `check.sh` de la entrada) y compáralas con el número de tarjetas. El control negativo es una variante que llama a `tcl('hours')` en los dos lugares: la cuenta pasa a ser el doble del número de tarjetas y la comprobación falla. Esto reemplazó una dependencia anterior del orden de evaluación de SQLite. |
 
-## Failure modes, costs and boundaries
+## Modos de fallo, costos y límites
 
-| Behavior | Label | Why |
+| Comportamiento | Etiqueta | Por qué |
 | --- | --- | --- |
-| Tcl calls `unknown` for a command that does not exist | **guaranteed** | A documented Tcl hook. |
-| A command's arguments are strings, and code can be built and run as text | **guaranteed** | Tcl's core model. |
-| An SQLite trigger fires for each inserted row, and a trigger's own inserts fire triggers only with `recursive_triggers` on | **guaranteed** | Documented SQLite behavior. Verified by B12 step 1. |
-| The trigger chain must fit the configured SQLite depth limit | **implementation-permitted** | SQLite documents a default maximum of 1,000. A particular build or connection can set a different limit. This entry needs only 3 to 5 steps. |
-| The same hours appear as `h` and inside `NEW.running_total + h` | **guaranteed** by design (after the fix) | The hours are written into the one-row TEMP table `draw` and read from it twice. Before the fix they came from a subquery whose function SQLite happened to evaluate once per row, which it does not promise for non-deterministic functions (**accidentally exploited**). The entry's `check.sh` now counts the calls of the `hours` procedure: one per card. |
-| `TEMP` tables and triggers disappear with the connection | **guaranteed** | Documented. It keeps the program out of the file on disk. |
-| `INSERT INTO main.demo_timecards` is rejected inside a trigger, so the trigger body uses the bare name | **implementation-permitted** | SQLite's rule about qualified names in triggers. The `TEMP` trigger resolves the bare name to the one table in `main`. |
-| Tk keeps `tclsh` alive after the script ends | **implementation-permitted** | Why the script ends with `destroy .`. |
+| Tcl llama a `unknown` para un comando que no existe | **garantizado** | Un gancho documentado de Tcl. |
+| Los argumentos de un comando son cadenas de texto, y el código se puede construir y ejecutar como texto | **garantizado** | El modelo central de Tcl. |
+| Un disparador de SQLite se activa por cada fila insertada. Las inserciones del propio disparador activan disparadores solo con `recursive_triggers` activado | **garantizado** | Comportamiento documentado de SQLite. Verificado por el paso 1 de B12. |
+| La cadena de disparadores debe caber en el límite de profundidad configurado de SQLite | **permitido por la implementación** | SQLite documenta un máximo predeterminado de 1,000. Una compilación o conexión concreta puede fijar otro límite. Esta entrada solo necesita de 3 a 5 pasos. |
+| Las mismas horas aparecen como `h` y dentro de `NEW.running_total + h` | **garantizado** por diseño (tras la corrección) | Las horas se escriben en la tabla TEMP de una fila `draw` y se leen de ella dos veces. Antes de la corrección venían de una subconsulta. SQLite evaluaba su función una vez por fila por casualidad, algo que no promete para las funciones no deterministas (**aprovechado por accidente**). El `check.sh` de la entrada ahora cuenta las llamadas al procedimiento `hours`: una por tarjeta. |
+| Las tablas y los disparadores `TEMP` desaparecen con la conexión | **garantizado** | Está documentado. Mantiene el programa fuera del archivo en disco. |
+| `INSERT INTO main.demo_timecards` se rechaza dentro de un disparador, así que el cuerpo del disparador usa el nombre simple | **permitido por la implementación** | La regla de SQLite sobre los nombres calificados en los disparadores. El disparador `TEMP` resuelve el nombre simple a la única tabla de `main`. |
+| Tk mantiene vivo `tclsh` después de que termina el script | **permitido por la implementación** | Por qué el script termina con `destroy .`. |
 
-**The trust boundary.** `unknown` runs whatever text is in the table. In `tcl-weird` the table is built by the program itself, in memory, in a `TEMP` table and filled from literals in the script. Nobody else can write to it. That is the entire defense. If the table were a normal table in the file on disk, anyone able to edit the database could make the program run their Tcl. This is the same lesson as the book's threat-model examples: treat anything that is read as code as code. See [Arbitrary code execution](../../informatica/01-lectura-de-un-programa-adversarial.md#arbitrary-code-execution).
+**La frontera de confianza.** `unknown` ejecuta el texto que haya en la tabla. En `tcl-weird` la tabla la construye el propio programa, en memoria, como tabla `TEMP` que se llena con literales del script. Nadie más puede escribir en ella. Esa es toda la defensa. Si la tabla fuera una tabla normal en el archivo en disco, cualquiera que pudiera editar la base de datos podría hacer que el programa ejecute su Tcl. Es la misma lección que los ejemplos de modelo de amenazas del libro: trata como código todo lo que se lee como código. Consulta [Ejecución de código arbitrario](../../informatica/01-lectura-de-un-programa-adversarial.md#arbitrary-code-execution).
 
-**Costs to state.**
+**Costos que declarar.**
 
-- **Two engines, two stacks.** An error in a procedure shows a trace that mixes Tcl and SQLite frames.
-- **Order of evaluation belongs to SQLite, so the program does not depend on it.** An earlier version used a subquery and relied on one function call per row. It now draws the hours into the one-row TEMP table `draw` first, and `check.sh` counts the calls (one per card). The check was also run against a variant that calls the function twice, and failed there.
-- **Hidden control flow.** Reading the top-level script tells you almost nothing about what runs. The loop is in a `CREATE TRIGGER` statement.
-- **Where the technique is legitimate.** Triggers are how databases enforce rules and keep audit trails. `unknown` is how Tcl implements autoloading. Putting both to work as a loop is a stunt.
+- **Dos motores, dos pilas.** Un error en un procedimiento muestra una traza que mezcla marcos de Tcl y de SQLite.
+- **El orden de evaluación pertenece a SQLite, así que el programa no depende de él.** Una versión anterior usaba una subconsulta y se apoyaba en una llamada de función por fila. Ahora sortea primero las horas en la tabla TEMP de una fila `draw`. Además, `check.sh` cuenta las llamadas (una por tarjeta). La comprobación también se ejecutó contra una variante que llama dos veces a la función. Allí falló.
+- **Flujo de control oculto.** Leer el script de nivel superior no te dice casi nada de lo que se ejecuta. El bucle está en una sentencia `CREATE TRIGGER`.
+- **Dónde la técnica es legítima.** Los disparadores son la forma en que las bases de datos hacen cumplir reglas y llevan pistas de auditoría. `unknown` es la forma en que Tcl implementa la carga automática. Poner ambos a trabajar como bucle es una acrobacia.
 
-## Connections across the repository
+## Conexiones a lo largo del repositorio
 
-- **A rule that fires the next step.** The trigger is the same idea as the `88`-level condition in [COBOL](cobol.md) and the `or` combination in [Common Lisp](common-lisp.md): the next step comes from a *declared rule*, not from a statement you can see in order. The concept guide [State and control beyond variables](../conceptos/estado-y-control-mas-alla-de-las-variables.md) compares them.
-- **Code as data, in other languages.** [APL](apl.md) writes its own functions as text with `⎕FX`. Tcl fetches them from a table. [XAML in the C# guide](csharp-linq-xaml-y-adaptaciones.md) runs methods while it parses markup.
-- **A boundary you must defend.** [Reading adversarial programs](../conceptos/lectura-de-programas-adversariales.md) uses this entry and the XAML and tar entries as its main examples of "data that is also code".
-- **Transactions and commit.** The whole trigger chain runs in one `db transaction`, as in [Effects, errors and commitment](../conceptos/efectos-errores-y-confirmacion.md), while the printing does not roll back.
-- **In the book.** [Tcl](../../lenguajes/tcl.md), [Database triggers](../../informatica/06-estado-mas-alla-de-las-variables.md#database-triggers) and [Arbitrary code execution](../../informatica/01-lectura-de-un-programa-adversarial.md#arbitrary-code-execution).
+- **Una regla que activa el paso siguiente.** El disparador es la misma idea que la declaración de nivel `88` en [COBOL](cobol.md) y la combinación `or` en [Common Lisp](common-lisp.md). El paso siguiente sale de una *regla declarada*, no de una sentencia que puedas ver en orden. La guía de concepto [Estado y control más allá de las variables](../conceptos/estado-y-control-mas-alla-de-las-variables.md) las compara.
+- **Código como datos, en otros lenguajes.** [APL](apl.md) escribe sus propias funciones como texto con `⎕FX`. Tcl las recupera de una tabla. [XAML en la guía de C#](csharp-linq-xaml-y-adaptaciones.md) ejecuta métodos mientras analiza el marcado.
+- **Una frontera que debes defender.** [Lectura de programas adversariales](../conceptos/lectura-de-programas-adversariales.md) usa esta entrada y las de XAML y tar como sus ejemplos principales de "datos que también son código".
+- **Transacciones y confirmación.** Toda la cadena de disparadores se ejecuta en un solo `db transaction`, como en [Efectos, errores y confirmación](../conceptos/efectos-errores-y-confirmacion.md), mientras que la impresión no se revierte.
+- **En el libro.** [Tcl](../../lenguajes/tcl.md), [Disparadores de base de datos](../../informatica/06-estado-mas-alla-de-las-variables.md#database-triggers) y [Ejecución de código arbitrario](../../informatica/01-lectura-de-un-programa-adversarial.md#arbitrary-code-execution).
 
-## Self-check
+## Autoevaluación
 
-Answer each question in your own words before you read the italic text. Say what evidence would support each answer.
+Responde cada pregunta con tus propias palabras antes de leer el texto en cursiva. Di qué evidencia respaldaría cada respuesta.
 
-1. **Trace.** In `tcl-weird`, hours are 12, 14, 13, 11 (totals 12, 26, 39, 50). For each card, say whether the trigger inserts a next card. *(After card 1 (total 12): yes. After card 2 (26): yes. After card 3 (39): yes. After card 4 (50): no, because `50 <= 40` is false. Four cards, the fourth is the crossing card.)*
-2. **Explain.** Why does `PRAGMA recursive_triggers = OFF` give exactly one printed row and `entries=2`? *(The starting `INSERT` fires the trigger once. The trigger prints card 1 and inserts card 2, but a trigger's own insert does not fire the trigger again, so card 2 is never printed. The summary counts both rows.)*
-3. **Transfer.** In a relational database you use, which feature would play the part of the trigger-as-loop, and what would limit the depth? *(A recursive trigger or a recursive common table expression. In both cases the engine caps the recursion depth.)*
-4. **Evidence.** A reviewer says, "Every procedure `tcl-weird` runs comes from the table." Design a test that could fail. *(Check that the list of fetched procedures printed at the end contains `born`, `category`, `hours`, `init`, `runid` and `week`, and that none of them is defined by a `proc` in the script. The negative control is to define one of them in the script: it should then be missing from the fetched list, because `unknown` is never called for it.)*
+1. **Traza.** En `tcl-weird`, las horas son 12, 14, 13, 11 (totales 12, 26, 39, 50). Para cada tarjeta, di si el disparador inserta una tarjeta siguiente. *(Tras la tarjeta 1 (total 12): sí. Tras la tarjeta 2 (26): sí. Tras la tarjeta 3 (39): sí. Tras la tarjeta 4 (50): no, porque `50 <= 40` es falso. Cuatro tarjetas. La cuarta es la que cruza el tope.)*
+2. **Explica.** ¿Por qué `PRAGMA recursive_triggers = OFF` da exactamente una fila impresa y `entries=2`? *(El `INSERT` inicial activa el disparador una vez. El disparador imprime la tarjeta 1 e inserta la tarjeta 2. Pero la inserción propia de un disparador no lo activa de nuevo, así que la tarjeta 2 nunca se imprime. El resumen cuenta las dos filas.)*
+3. **Transfiere.** En una base de datos relacional que uses, ¿qué característica haría el papel del disparador como bucle y qué limitaría la profundidad? *(Un disparador recursivo o una expresión de tabla común recursiva. En ambos casos el motor limita la profundidad de la recursión.)*
+4. **Evidencia.** Un revisor dice: "Todo procedimiento que `tcl-weird` ejecuta viene de la tabla". Diseña una prueba que pueda fallar. *(Comprueba que la lista de procedimientos recuperados que se imprime al final contiene `born`, `category`, `hours`, `init`, `runid` y `week`. Comprueba también que ninguno está definido por un `proc` en el script. El control negativo es definir uno de ellos en el script: entonces debería faltar en la lista recuperada, porque `unknown` nunca se llama para él.)*
 
-## Further reading
+## Lecturas adicionales
 
-- [Tcl](https://en.wikipedia.org/wiki/Tcl) (Wikipedia): the language, and why "everything is a string" shapes it.
-- [Database trigger](https://en.wikipedia.org/wiki/Database_trigger) (Wikipedia): what triggers are for and where they cause surprises.
-- [Code injection](https://owasp.org/www-community/attacks/Code_Injection) (OWASP): the general risk when text becomes code, which `unknown` makes concrete.
-- [Database triggers](../../informatica/06-estado-mas-alla-de-las-variables.md#database-triggers) and [Arbitrary code execution](../../informatica/01-lectura-de-un-programa-adversarial.md#arbitrary-code-execution) (this book): the concepts behind this entry.
+- [Tcl](https://en.wikipedia.org/wiki/Tcl) (Wikipedia): el lenguaje y por qué "todo es una cadena de texto" lo define.
+- [Disparador de base de datos](https://en.wikipedia.org/wiki/Database_trigger) (Wikipedia): para qué sirven los disparadores y dónde causan sorpresas.
+- [Inyección de código](https://owasp.org/www-community/attacks/Code_Injection) (OWASP): el riesgo general cuando el texto se convierte en código, que `unknown` vuelve concreto.
+- [Disparadores de base de datos](../../informatica/06-estado-mas-alla-de-las-variables.md#database-triggers) y [Ejecución de código arbitrario](../../informatica/01-lectura-de-un-programa-adversarial.md#arbitrary-code-execution) (este libro): los conceptos detrás de esta entrada.

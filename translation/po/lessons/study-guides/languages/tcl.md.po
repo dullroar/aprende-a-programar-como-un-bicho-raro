@@ -1,0 +1,648 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lessons/study-guides/languages/tcl.md:1
+msgctxt "s-8efddf74e855-0000"
+msgid "Tcl study guide"
+msgstr "Guía de estudio de Tcl"
+
+#: lessons/study-guides/languages/tcl.md:3
+msgctxt "s-4e718de9279e-0001"
+msgid "What this guide is for"
+msgstr "Para qué sirve esta guía"
+
+#: lessons/study-guides/languages/tcl.md:5
+msgctxt "s-fd30675d31a9-0002"
+msgid "This guide reads two Tcl programs: [⟦CODE_0001⟧](⟦DEST_0002⟧), an ordinary ⟦CODE_0003⟧ loop in one procedure, and [⟦CODE_0004⟧](⟦DEST_0005⟧), where the program is *rows in a SQLite table* and one ⟦CODE_0006⟧ starts it. The weird program defines no Tcl loop and no Tcl procedure that deals or prints a card: the loop is a recursive SQLite trigger, and the code lives as text that Tcl's ⟦CODE_0007⟧ handler fetches on demand. The question is: **if code is just a string, who may write the string, and which engine decides what runs next?**"
+msgstr "Esta guía lee dos programas en Tcl. Uno es [⟦CODE_0001⟧](⟦DEST_0002⟧), un bucle ⟦CODE_0003⟧ ordinario dentro de un procedimiento. El otro es [⟦CODE_0004⟧](⟦DEST_0005⟧), donde el programa son *filas de una tabla de SQLite* y un solo ⟦CODE_0006⟧ lo pone en marcha. El programa raro no define ningún bucle de Tcl ni ningún procedimiento de Tcl que reparta o imprima una tarjeta. El bucle es un disparador recursivo de SQLite, y el código vive como texto que el manejador ⟦CODE_0007⟧ de Tcl recupera a demanda. La pregunta es: **si el código es solo una cadena de texto, ¿quién puede escribirla y qué motor decide lo que se ejecuta después?**"
+
+#: lessons/study-guides/languages/tcl.md:7
+msgctxt "s-d84bcb27c154-0003"
+msgid "When you finish, you should be able to:"
+msgstr "Al terminar, deberías poder:"
+
+#: lessons/study-guides/languages/tcl.md:9
+msgctxt "s-a3f0c396eba1-0004"
+msgid ""
+"Explain Tcl's command model: everything is a command whose arguments are strings, and an unknown command goes to ⟦CODE_0001⟧.\n"
+"2. Explain how ⟦CODE_0002⟧'s three hooks work together: an SQL function that calls Tcl, an ⟦CODE_0003⟧ handler that defines procedures from table rows and a trigger that inserts the next card.\n"
+"3. Trace both programs through the same three cards, naming which engine acts at each step.\n"
+"4. Explain why ⟦CODE_0004⟧ is the loop, and what the ⟦CODE_0005⟧ in the trigger is.\n"
+"5. Name the trust boundary in this design and explain why it holds here.\n"
+"6. Label each behavior as guaranteed, implementation-permitted or accidentally exploited."
+msgstr ""
+"Explicar el modelo de comandos de Tcl: todo es un comando cuyos argumentos son cadenas de texto, y un comando desconocido va a ⟦CODE_0001⟧.\n"
+"2. Explicar cómo trabajan juntos los tres ganchos de ⟦CODE_0002⟧. Son una función SQL que llama a Tcl, un manejador ⟦CODE_0003⟧ que define procedimientos con filas de la tabla y un disparador que inserta la tarjeta siguiente.\n"
+"3. Hacer la traza de ambos programas a través de las mismas tres tarjetas, nombrando qué motor actúa en cada paso.\n"
+"4. Explicar por qué ⟦CODE_0004⟧ es el bucle y qué es el ⟦CODE_0005⟧ del disparador.\n"
+"5. Nombrar la frontera de confianza de este diseño y explicar por qué se sostiene aquí.\n"
+"6. Etiquetar cada comportamiento como garantizado, permitido por la implementación o aprovechado por accidente."
+
+#: lessons/study-guides/languages/tcl.md:16
+msgctxt "s-5bcd37b52524-0005"
+msgid "**Scope limits.** You need to read Tcl (braces group, brackets substitute, ⟦CODE_0001⟧ reads a variable) and basic SQL. The guide does not teach Tk (the optional window is also built from table rows) or SQLite's query planner. It uses Tcl 8.6 with the ⟦CODE_0002⟧ package. The book's page is [Tcl](⟦DEST_0003⟧). For ideas, see [Database triggers](⟦DEST_0004⟧), [Arbitrary code execution](⟦DEST_0005⟧) and [Homoiconicity: code as data](⟦DEST_0006⟧)."
+msgstr "**Límites del alcance.** Necesitas saber leer Tcl (las llaves agrupan, los corchetes sustituyen, ⟦CODE_0001⟧ lee una variable) y SQL básico. La guía no enseña Tk (la ventana opcional también se construye con filas de tabla) ni el planificador de consultas de SQLite. Usa Tcl 8.6 con el paquete ⟦CODE_0002⟧. La página del libro es [Tcl](⟦DEST_0003⟧). Para ver las ideas, consulta [Disparadores de base de datos](⟦DEST_0004⟧), [Ejecución de código arbitrario](⟦DEST_0005⟧) y [Homoiconicidad: código como datos](⟦DEST_0006⟧)."
+
+#: lessons/study-guides/languages/tcl.md:18
+msgctxt "s-d5bfdd7d989d-0006"
+msgid "Before you begin"
+msgstr "Antes de empezar"
+
+#: lessons/study-guides/languages/tcl.md:20
+msgctxt "s-8f546d574061-0007"
+msgid "**Safety model.** Every entry writes fictional **⟦DNT_0001⟧** data to a scratch SQLite file. ⟦CODE_0002⟧ runs *text from a table as code*. That is safe here only because the program builds the table itself, in memory, in the same file. Read the source before you run it, and run it in the sandbox first:"
+msgstr "**Modelo de seguridad.** Cada entrada escribe datos ficticios marcados con **⟦DNT_0001⟧** en un archivo SQLite desechable. ⟦CODE_0002⟧ ejecuta *texto de una tabla como código*. Eso es seguro aquí solo porque el programa construye la tabla él mismo, en memoria, en el mismo archivo. Lee el código fuente antes de ejecutarlo, y ejecútalo primero en el entorno aislado (*sandbox*):"
+
+#: lessons/study-guides/languages/tcl.md:27
+msgctxt "s-15b340297cc1-0008"
+msgid "Edit only copies ([Running things safely](⟦DEST_0001⟧)). When you edit ⟦CODE_0002⟧, you are editing a Tcl program *inside a SQL string inside a Tcl script*, so braces nest and nothing is substituted until the text is run."
+msgstr "Edita solo copias ([Ejecutar cosas de forma segura](⟦DEST_0001⟧)). Cuando editas ⟦CODE_0002⟧, editas un programa en Tcl *dentro de una cadena de texto SQL dentro de un script de Tcl*. Por eso las llaves se anidan y nada se sustituye hasta que se ejecuta el texto."
+
+#: lessons/study-guides/languages/tcl.md:29
+msgctxt "s-3fdfd0afe51a-0009"
+msgid "**Prediction rule.** Before each run, write down which engine (Tcl, SQLite) acts at each step, and what each prints. In this program the engines hand control to each other."
+msgstr "**Regla de predicción.** Antes de cada ejecución, anota qué motor (Tcl o SQLite) actúa en cada paso y qué imprime cada uno. En este programa los motores se pasan el control el uno al otro."
+
+#: lessons/study-guides/languages/tcl.md:31
+msgctxt "s-2dd18ffddf3e-0010"
+msgid "**Vocabulary.**"
+msgstr "**Vocabulario.**"
+
+#: lessons/study-guides/languages/tcl.md:33
+msgctxt "s-790e521777f0-0011"
+msgid "⟦SEP_0001⟧ Term ⟦SEP_0002⟧ Meaning here ⟦SEP_0003⟧"
+msgstr "⟦SEP_0001⟧ Término ⟦SEP_0002⟧ Significado aquí ⟦SEP_0003⟧"
+
+#: lessons/study-guides/languages/tcl.md:35
+msgctxt "s-0cf4cbefc8c6-0012"
+msgid "⟦SEP_0003⟧ Command ⟦SEP_0004⟧ A Tcl word followed by arguments. Even ⟦CODE_0001⟧ and ⟦CODE_0002⟧ are commands. ⟦SEP_0005⟧"
+msgstr "⟦SEP_0003⟧ Comando ⟦SEP_0004⟧ Una palabra de Tcl seguida de argumentos. Incluso ⟦CODE_0001⟧ y ⟦CODE_0002⟧ son comandos. ⟦SEP_0005⟧"
+
+#: lessons/study-guides/languages/tcl.md:36
+msgctxt "s-fe5bab37ee07-0013"
+msgid "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ The command Tcl calls when a command name does not exist. ⟦SEP_0004⟧"
+msgstr "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ El comando al que llama Tcl cuando no existe un comando con ese nombre. ⟦SEP_0004⟧"
+
+#: lessons/study-guides/languages/tcl.md:37
+msgctxt "s-253d9a320e96-0014"
+msgid "⟦SEP_0001⟧ Trigger ⟦SEP_0002⟧ SQL code that SQLite runs automatically when a row is inserted, updated or deleted. ⟦SEP_0003⟧"
+msgstr "⟦SEP_0001⟧ Disparador ⟦SEP_0002⟧ Código SQL que SQLite ejecuta automáticamente cuando se inserta, actualiza o borra una fila. ⟦SEP_0003⟧"
+
+#: lessons/study-guides/languages/tcl.md:38
+msgctxt "s-c66ff4596068-0015"
+msgid "⟦SEP_0002⟧ Recursive trigger ⟦SEP_0003⟧ A trigger whose action fires itself again. SQLite allows it only with ⟦CODE_0001⟧. ⟦SEP_0004⟧"
+msgstr "⟦SEP_0002⟧ Disparador recursivo ⟦SEP_0003⟧ Un disparador cuya acción lo activa de nuevo. SQLite lo permite solo con ⟦CODE_0001⟧. ⟦SEP_0004⟧"
+
+#: lessons/study-guides/languages/tcl.md:39
+msgctxt "s-74fca49e4239-0016"
+msgid "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ A table or trigger that lives only as long as this database connection. ⟦SEP_0004⟧"
+msgstr "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ Una tabla o un disparador que vive solo mientras dura esta conexión con la base de datos. ⟦SEP_0004⟧"
+
+#: lessons/study-guides/languages/tcl.md:41
+msgctxt "s-ae7d69ef2745-0017"
+msgid "The shared challenge"
+msgstr "El reto compartido"
+
+#: lessons/study-guides/languages/tcl.md:43
+msgctxt "s-78a7d749b03d-0018"
+msgid "The [challenge specification](⟦DEST_0001⟧) calls for cards with a category and 10 to 19 whole hours. Categories cycle through ⟦DNT_0002⟧, ⟦DNT_0003⟧, ⟦DNT_0004⟧ and ⟦DNT_0005⟧. Add each card's hours to the running total. Stop when the total passes 40. Keep the **first card that takes the total over 40**. A total of exactly 40 continues. Four 10-hour cards need a fifth card, in the ⟦DNT_0006⟧ category. Conforming runs finish with 3 to 5 cards and a total of 41 to 59 hours."
+msgstr "La [especificación del reto](⟦DEST_0001⟧) pide tarjetas con una categoría y de 10 a 19 horas enteras. Las categorías se repiten en ciclo: `⟦DNT_0002⟧`, `⟦DNT_0003⟧`, `⟦DNT_0004⟧` y `⟦DNT_0005⟧`. Suma las horas de cada tarjeta al total acumulado. Detente cuando el total pasa de 40. Conserva la **primera tarjeta con la que el total pasa de 40**. Un total de exactamente 40 continúa. Cuatro tarjetas de 10 horas necesitan una quinta tarjeta, de la categoría `⟦DNT_0006⟧`. Las ejecuciones conformes tienen de 3 a 5 tarjetas y un total de 41 a 59 horas."
+
+#: lessons/study-guides/languages/tcl.md:45
+msgctxt "s-12fe095c2faf-0019"
+msgid "Both Tcl entries save the cards in one SQLite transaction and print a summary. Tcl writes the boundary two ways. In ⟦CODE_0001⟧, ⟦CODE_0002⟧ ([L40](⟦DEST_0003⟧)): true for 40, so the loop repeats. In ⟦CODE_0004⟧, the trigger inserts the next card ⟦CODE_0005⟧ ([L113](⟦DEST_0006⟧)). A card is inserted only if the *previous* card's total was at most 40, so the crossing card is the last one inserted."
+msgstr "Las dos entradas de Tcl guardan las tarjetas en una transacción de SQLite e imprimen un resumen. Tcl escribe la frontera de dos maneras. En ⟦CODE_0001⟧, ⟦CODE_0002⟧ ([L40](⟦DEST_0003⟧)): se cumple con 40, así que el bucle se repite. En ⟦CODE_0004⟧, el disparador inserta la tarjeta siguiente ⟦CODE_0005⟧ ([L113](⟦DEST_0006⟧)). Se inserta una tarjeta solo si el total de la tarjeta *anterior* era de 40 o menos. Por eso la tarjeta que cruza el tope es la última que se inserta."
+
+#: lessons/study-guides/languages/tcl.md:47
+msgctxt "s-9f148b367e02-0020"
+msgid "The machine to identify"
+msgstr "La máquina que hay que identificar"
+
+#: lessons/study-guides/languages/tcl.md:49
+msgctxt "s-02fd222f46a6-0021"
+msgid "**What repeats.** In ⟦CODE_0001⟧, a ⟦CODE_0002⟧ loop in the procedure ⟦CODE_0003⟧. In ⟦CODE_0004⟧, a trigger: inserting a card fires ⟦CODE_0005⟧, which inserts another card, which fires ⟦CODE_0006⟧ again ([L104-114](⟦DEST_0007⟧)). SQLite does the repeating."
+msgstr "**Qué se repite.** En ⟦CODE_0001⟧, un bucle ⟦CODE_0002⟧ en el procedimiento ⟦CODE_0003⟧. En ⟦CODE_0004⟧, un disparador: insertar una tarjeta activa ⟦CODE_0005⟧, que inserta otra tarjeta, que vuelve a activar ⟦CODE_0006⟧ ([L104-114](⟦DEST_0007⟧)). SQLite hace la repetición."
+
+#: lessons/study-guides/languages/tcl.md:51
+msgctxt "s-29671fb08685-0022"
+msgid "**Where state lives.** In ⟦CODE_0001⟧, in local variables (⟦CODE_0002⟧, ⟦CODE_0003⟧). In ⟦CODE_0004⟧, in *the table*. The card number is not a counter: the category is looked up as ⟦CODE_0005⟧ of the run's existing rows plus one, and the total is carried in the inserted row's ⟦CODE_0006⟧. The next step reads the row that caused it, ⟦CODE_0007⟧."
+msgstr "**Dónde vive el estado.** En ⟦CODE_0001⟧, en variables locales (⟦CODE_0002⟧, ⟦CODE_0003⟧). En ⟦CODE_0004⟧, en *la tabla*. El número de tarjeta no es un contador. La categoría se busca como ⟦CODE_0005⟧ de las filas que ya tiene la ejecución más uno, y el total viaja en el ⟦CODE_0006⟧ de la fila insertada. El paso siguiente lee la fila que lo causó, ⟦CODE_0007⟧."
+
+#: lessons/study-guides/languages/tcl.md:53
+msgctxt "s-052146b6d6be-0023"
+msgid "**What advances the next step.** In ⟦CODE_0001⟧, the loop. In ⟦CODE_0002⟧, the end of the trigger's own ⟦CODE_0003⟧, which fires the trigger for the new row."
+msgstr "**Qué hace avanzar el paso siguiente.** En ⟦CODE_0001⟧, el bucle. En ⟦CODE_0002⟧, el final del propio ⟦CODE_0003⟧ del disparador, que activa el disparador para la fila nueva."
+
+#: lessons/study-guides/languages/tcl.md:55
+msgctxt "s-7e27b0083cfc-0024"
+msgid "**What stops it.** In ⟦CODE_0001⟧, the loop condition. In ⟦CODE_0002⟧, the trigger's ⟦CODE_0003⟧: when it is false the ⟦CODE_0004⟧ yields no rows, so nothing is inserted and the chain ends."
+msgstr "**Qué lo detiene.** En ⟦CODE_0001⟧, la condición del bucle. En ⟦CODE_0002⟧, el ⟦CODE_0003⟧ del disparador: cuando es falso, el ⟦CODE_0004⟧ no devuelve filas, así que no se inserta nada y la cadena termina."
+
+#: lessons/study-guides/languages/tcl.md:57
+msgctxt "s-b34008a46c21-0025"
+msgid "**What commits.** In ⟦CODE_0001⟧, ⟦CODE_0002⟧ writes the finished list in one ⟦CODE_0003⟧. In ⟦CODE_0004⟧, the whole chain of triggered inserts runs inside one ⟦CODE_0005⟧ that wraps the starting ⟦CODE_0006⟧ ([L129-137](⟦DEST_0007⟧)). The rows are *printed* by the ⟦CODE_0008⟧ procedure as each card is inserted, so a row can be printed before the transaction commits."
+msgstr "**Qué confirma.** En ⟦CODE_0001⟧, ⟦CODE_0002⟧ escribe la lista terminada en un solo ⟦CODE_0003⟧. En ⟦CODE_0004⟧, toda la cadena de inserciones disparadas se ejecuta dentro de un solo ⟦CODE_0005⟧ que envuelve el ⟦CODE_0006⟧ inicial ([L129-137](⟦DEST_0007⟧)). El procedimiento ⟦CODE_0008⟧ *imprime* las filas a medida que se inserta cada tarjeta, así que una fila puede imprimirse antes de que la transacción se confirme."
+
+#: lessons/study-guides/languages/tcl.md:63
+msgctxt "s-863623d963a7-0026"
+msgid "tcl: an ordinary while loop in a namespace, then one transaction"
+msgstr "tcl: un bucle while en un espacio de nombres y luego una transacción"
+
+#: lessons/study-guides/languages/tcl.md:64
+msgctxt "s-9d607f026b88-0027"
+msgid "A flowchart. The main procedure parses the arguments with a while, lassign and switch loop, seeds the random generator from the clock and the process id, and calls draw. The draw procedure is a while loop. While the total is at or under the limit, it draws hours, adds them to the total with incr, picks the next category, and appends a card as a dict. When the total is over the limit, the save procedure opens SQLite and writes all the cards inside one transaction. Then the program prints the cards. Only if asked does it build a Tk window with a treeview."
+msgstr "Diagrama de flujo. El procedimiento principal analiza los argumentos con un bucle while, lassign y switch. Inicializa el generador aleatorio con el reloj y el id de proceso y llama a draw. El procedimiento draw es un bucle while. Mientras el total no supere el límite, sortea las horas, las suma al total con incr, elige la siguiente categoría y agrega una tarjeta como dict. Cuando el total supera el límite, el procedimiento save abre SQLite y escribe todas las tarjetas en una sola transacción. Luego el programa imprime las tarjetas. Solo si se le pide crea una ventana Tk con un treeview."
+
+#: lessons/study-guides/languages/tcl.md:65
+msgctxt "s-0fe2a41e6b6b-0028"
+msgid "main: parse argv, seed rand from the clock and pid"
+msgstr "main: analiza argv e inicializa rand con el reloj y pid"
+
+#: lessons/study-guides/languages/tcl.md:65
+msgctxt "s-297d7685685d-0029"
+msgid "draw: while total <= limit?"
+msgstr "draw: while ¿se cumple total <= limit?"
+
+#: lessons/study-guides/languages/tcl.md:66
+msgctxt "s-8a798890fe93-0030"
+msgid "yes"
+msgstr "Sí"
+
+#: lessons/study-guides/languages/tcl.md:66
+msgctxt "s-866a203b9045-0031"
+msgid "randomHours, incr total, pick a category, lappend a card as a dict"
+msgstr "randomHours, incr total, elige categoría y lappend de la tarjeta como dict"
+
+#: lessons/study-guides/languages/tcl.md:68
+msgctxt "s-9390298f3fb0-0032"
+msgid "no"
+msgstr "No"
+
+#: lessons/study-guides/languages/tcl.md:68
+msgctxt "s-abfd3cf9afcf-0033"
+msgid "save: db transaction inserts every card with bound parameters"
+msgstr "save: una sola transacción (db transaction) inserta cada tarjeta con parámetros enlazados"
+
+#: lessons/study-guides/languages/tcl.md:69
+msgctxt "s-5698d43a065f-0034"
+msgid "Print the cards; build the Tk treeview only if --gui was given"
+msgstr "Imprime las tarjetas. Crea el treeview de Tk solo con --gui"
+
+#: lessons/study-guides/languages/tcl.md:72
+msgctxt "s-9d23a2b66b70-0035"
+msgid "The first diagram is an ordinary loop in a procedure."
+msgstr "El primer diagrama es un bucle ordinario dentro de un procedimiento."
+
+#: lessons/study-guides/languages/tcl.md:78
+msgctxt "s-121083d19571-0036"
+msgid "tcl-weird: a recursive SQLite trigger calls Tcl procs that are fetched from a table"
+msgstr "tcl-weird: un disparador recursivo de SQLite llama a procedimientos Tcl recuperados de una tabla"
+
+#: lessons/study-guides/languages/tcl.md:79
+msgctxt "s-4360e08c9042-0037"
+msgid "A sequence diagram. The Tcl host installs three hooks and inserts the first card. Each insert fires a trigger in SQLite. The trigger calls the SQL function tcl, which calls back into Tcl. The first time the Tcl side asks for a command such as born, the command does not exist, so Tcl calls unknown. The unknown handler reads the proc's text from the tcl_code table, defines the proc and retries the call. The call prints the row. The trigger then inserts the next card, but only while the total of the card just inserted is 40 or less. That insert fires the trigger again. When the total is over 40, nothing is inserted, and control returns to the host, which prints the summary."
+msgstr "Diagrama de secuencia. El anfitrión Tcl instala tres interceptores e inserta la primera tarjeta. Cada inserción activa un disparador en SQLite. El disparador llama a la función SQL tcl, que a su vez llama a Tcl. Cuando Tcl pide por primera vez un comando como born, este no existe y Tcl llama a unknown. El manejador unknown lee el texto del procedimiento en la tabla tcl_code. Define el procedimiento y repite la llamada. La llamada imprime la fila. El disparador inserta la siguiente tarjeta solo mientras el total de la tarjeta recién insertada sea de 40 o menos. Esa inserción vuelve a activar el disparador. Si el total pasa de 40, no se inserta nada. El control vuelve al anfitrión, que imprime el resumen."
+
+#: lessons/study-guides/languages/tcl.md:80
+msgctxt "s-6023705eaecc-0038"
+msgid "Tcl host"
+msgstr "Anfitrión Tcl"
+
+#: lessons/study-guides/languages/tcl.md:81
+msgctxt "s-8495ea5eddc0-0039"
+msgid "SQLite and the next_card trigger"
+msgstr "SQLite y el disparador next_card"
+
+#: lessons/study-guides/languages/tcl.md:82
+msgctxt "s-8ab79589b8f6-0040"
+msgid "unknown handler"
+msgstr "Manejador unknown"
+
+#: lessons/study-guides/languages/tcl.md:83
+msgctxt "s-e8f922791e69-0041"
+msgid "tcl_code table"
+msgstr "Tabla tcl_code"
+
+#: lessons/study-guides/languages/tcl.md:84
+msgctxt "s-95b9c4468811-0042"
+msgid "INSERT the first card"
+msgstr "INSERT de la primera tarjeta"
+
+#: lessons/study-guides/languages/tcl.md:85
+msgctxt "s-81dfdf185a28-0043"
+msgid "each INSERT fires the trigger, while the total is 40 or less"
+msgstr "Cada INSERT activa el disparador mientras el total es de 40 o menos"
+
+#: lessons/study-guides/languages/tcl.md:86
+msgctxt "s-cf0a8ebe69d8-0044"
+msgid "SQL function tcl calls the Tcl command born"
+msgstr "La función SQL tcl llama al comando Tcl born"
+
+#: lessons/study-guides/languages/tcl.md:87
+msgctxt "s-a1e43cf31e26-0045"
+msgid "born does not exist yet, so Tcl calls unknown"
+msgstr "born aún no existe: Tcl llama a unknown"
+
+#: lessons/study-guides/languages/tcl.md:88
+msgctxt "s-94fc873fdc23-0046"
+msgid "look up the proc's params and body"
+msgstr "Busca los parámetros y el cuerpo"
+
+#: lessons/study-guides/languages/tcl.md:89
+msgctxt "s-d174d610a8a0-0047"
+msgid "the text of the proc"
+msgstr "Texto del procedimiento"
+
+#: lessons/study-guides/languages/tcl.md:90
+msgctxt "s-2191577557e3-0048"
+msgid "define the proc, retry the call"
+msgstr "Define el procedimiento y repite la llamada"
+
+#: lessons/study-guides/languages/tcl.md:91
+msgctxt "s-01a125b9deac-0049"
+msgid "the row is printed"
+msgstr "Se imprime la fila"
+
+#: lessons/study-guides/languages/tcl.md:92
+msgctxt "s-c017e69b4d40-0050"
+msgid "INSERT the next card: the trigger fires again"
+msgstr "INSERT de la siguiente tarjeta: se repite el disparo"
+
+#: lessons/study-guides/languages/tcl.md:94
+msgctxt "s-e21355536745-0051"
+msgid "total is over 40, no insert: the trigger chain ends"
+msgstr "El total pasa de 40: cesan las inserciones y los disparos"
+
+#: lessons/study-guides/languages/tcl.md:95
+msgctxt "s-e519d169ca3d-0052"
+msgid "print the summary"
+msgstr "Imprime el resumen"
+
+#: lessons/study-guides/languages/tcl.md:98
+msgctxt "s-56f96576126e-0053"
+msgid "The second is SQLite's trigger firing itself, with Tcl called back at every step. The next diagram adds what the source diagram leaves out: where the code *comes from*, and who can write it."
+msgstr "El segundo es el disparador de SQLite activándose a sí mismo, con una llamada de vuelta a Tcl en cada paso. El diagrama siguiente añade lo que omite el diagrama de origen: de dónde *viene* el código y quién puede escribirlo."
+
+#: lessons/study-guides/languages/tcl.md:104
+msgctxt "s-604f8a330073-0054"
+msgid "tcl-weird: the program text comes from a table that only the program writes"
+msgstr "tcl-weird: el texto del programa viene de una tabla en la que solo escribe el programa"
+
+#: lessons/study-guides/languages/tcl.md:105
+msgctxt "s-f47eef3e8e9e-0055"
+msgid "A flowchart of the trust boundary. The Tcl script creates a TEMP table named tcl_code in memory and fills it with its own procedure bodies. When SQL calls the tcl function with a command name, Tcl runs that command. If the command does not exist, the unknown handler looks the name up in the tcl_code table, defines a procedure from the row, and runs it. A note says that anyone who could write a row into tcl_code could make unknown run their text as Tcl, so the boundary holds only because the table is private to this connection and built by the program itself."
+msgstr "Un diagrama de flujo de la frontera de confianza. El script de Tcl crea en memoria una tabla TEMP llamada tcl_code y la llena con los cuerpos de sus propios procedimientos. Cuando SQL llama a la función tcl con el nombre de un comando, Tcl ejecuta ese comando. Si el comando no existe, el manejador unknown busca el nombre en la tabla tcl_code, define un procedimiento a partir de la fila y lo ejecuta. Una nota dice que quien pudiera escribir una fila en tcl_code podría hacer que unknown ejecute su texto como Tcl. La frontera se sostiene solo porque la tabla es privada de esta conexión y la construye el propio programa."
+
+#: lessons/study-guides/languages/tcl.md:106
+msgctxt "s-5973c4a0a0c9-0056"
+msgid "Script: CREATE TEMP TABLE tcl_code, INSERT its own procedure bodies"
+msgstr "Script: CREATE TEMP TABLE tcl_code (la tabla), INSERT de sus propios cuerpos de procedimiento"
+
+#: lessons/study-guides/languages/tcl.md:106
+msgctxt "s-7917f71b5a94-0057"
+msgid "SQL calls tcl with a command name"
+msgstr "SQL llama a tcl con un nombre de comando"
+
+#: lessons/study-guides/languages/tcl.md:107
+msgctxt "s-9daa671cf9ba-0058"
+msgid "Does that Tcl command exist?"
+msgstr "¿Existe ese comando de Tcl?"
+
+#: lessons/study-guides/languages/tcl.md:108
+msgctxt "s-8a798890fe93-0059"
+msgid "yes"
+msgstr "Sí"
+
+#: lessons/study-guides/languages/tcl.md:108
+msgctxt "s-958ca26c6a61-0060"
+msgid "Run it"
+msgstr "Ejecútalo"
+
+#: lessons/study-guides/languages/tcl.md:109
+msgctxt "s-9390298f3fb0-0061"
+msgid "no"
+msgstr "No"
+
+#: lessons/study-guides/languages/tcl.md:109
+msgctxt "s-142b7613131b-0062"
+msgid "unknown: SELECT params, body FROM tcl_code WHERE name matches"
+msgstr "unknown: SELECT params, body FROM tcl_code, donde name coincide"
+
+#: lessons/study-guides/languages/tcl.md:110
+msgctxt "s-9cd4003cc237-0063"
+msgid "proc name params body: the row's text becomes a procedure"
+msgstr "proc name params body: el texto de la fila se convierte en un procedimiento"
+
+#: lessons/study-guides/languages/tcl.md:112
+msgctxt "s-e019cfcb6970-0064"
+msgid "Boundary: who can write a row into tcl_code?"
+msgstr "Frontera: ¿quién puede escribir una fila en tcl_code?"
+
+#: lessons/study-guides/languages/tcl.md:115
+msgctxt "s-67a72cdadc6f-0065"
+msgid "Trace one run"
+msgstr "Traza una ejecución"
+
+#: lessons/study-guides/languages/tcl.md:117
+msgctxt "s-614930d68111-0066"
+msgid "The programs draw random hours. For this trace, use hours **15, 19, 12**. The trace comes from a scratch copy of ⟦CODE_0001⟧ that ran in the sandbox. In the copy, the SQL string for the ⟦CODE_0002⟧ row contained a lookup in a fixed list. The ⟦CODE_0003⟧ and ⟦CODE_0004⟧ rows each logged to standard error. The log lines appear first in this output."
+msgstr "Los programas sortean horas al azar. Para esta traza, usa las horas **15, 19, 12**. La traza sale de una copia de trabajo de ⟦CODE_0001⟧ que se ejecutó en el entorno aislado. En la copia, la cadena de texto SQL de la fila ⟦CODE_0002⟧ contenía una búsqueda en una lista fija. Las filas ⟦CODE_0003⟧ y ⟦CODE_0004⟧ escribían cada una en la salida de error estándar. Las líneas de registro aparecen primero en esta salida."
+
+#: lessons/study-guides/languages/tcl.md:134
+msgctxt "s-27c89ddf4ffd-0067"
+msgid "(The ISO-week column was removed. Standard output and standard error are separate streams, so their relative order in a terminal capture is not the order of events. The *order of the log lines among themselves* is the order of events.)"
+msgstr "(Se quitó la columna de la semana ISO. La salida estándar y la salida de error estándar son flujos separados. Por eso su orden relativo en una captura de la terminal no es el orden de los eventos. El *orden de las líneas de registro entre sí* sí es el orden de los eventos.)"
+
+#: lessons/study-guides/languages/tcl.md:136
+msgctxt "s-6fa8818ee13c-0068"
+msgid "⟦SEP_0001⟧ Step ⟦SEP_0002⟧ Engine acts ⟦SEP_0003⟧ What happens ⟦SEP_0004⟧ State after ⟦SEP_0005⟧"
+msgstr "⟦SEP_0001⟧ Paso ⟦SEP_0002⟧ Actúa el motor ⟦SEP_0003⟧ Qué ocurre ⟦SEP_0004⟧ Estado después ⟦SEP_0005⟧"
+
+#: lessons/study-guides/languages/tcl.md:138
+msgctxt "s-6f050fe92dff-0069"
+msgid "⟦SEP_0005⟧ 0 ⟦SEP_0006⟧ Tcl ⟦SEP_0007⟧ ⟦CODE_0001⟧: ⟦CODE_0002⟧ fetches ⟦CODE_0003⟧ from the table and runs it ⟦SEP_0008⟧ procedures defined: ⟦CODE_0004⟧ ⟦SEP_0009⟧"
+msgstr "⟦SEP_0005⟧ 0 ⟦SEP_0006⟧ Tcl ⟦SEP_0007⟧ ⟦CODE_0001⟧: ⟦CODE_0002⟧ recupera ⟦CODE_0003⟧ de la tabla y lo ejecuta ⟦SEP_0008⟧ procedimientos definidos: ⟦CODE_0004⟧ ⟦SEP_0009⟧"
+
+#: lessons/study-guides/languages/tcl.md:139
+msgctxt "s-2591abd73645-0070"
+msgid "⟦SEP_0007⟧ 1 ⟦SEP_0008⟧ SQLite ⟦SEP_0009⟧ An ⟦CODE_0001⟧ draws the hours into the one-row TEMP table: Tcl asks ⟦CODE_0002⟧ for ⟦CODE_0003⟧, and gets 15. The starting ⟦CODE_0004⟧ reads ⟦CODE_0005⟧ from ⟦CODE_0006⟧ twice, as the hours and as the total ⟦SEP_0010⟧ card 1 row: 15 hours, total 15 ⟦SEP_0011⟧"
+msgstr "⟦SEP_0007⟧ 1 ⟦SEP_0008⟧ SQLite ⟦SEP_0009⟧ Un ⟦CODE_0001⟧ sortea las horas y las guarda en la tabla TEMP de una fila: Tcl le pide a ⟦CODE_0002⟧ el valor ⟦CODE_0003⟧ y obtiene 15. El ⟦CODE_0004⟧ inicial lee ⟦CODE_0005⟧ de ⟦CODE_0006⟧ dos veces, como las horas y como el total ⟦SEP_0010⟧ fila de la tarjeta 1: 15 horas, total 15 ⟦SEP_0011⟧"
+
+#: lessons/study-guides/languages/tcl.md:140
+msgctxt "s-1abc8dc79b95-0071"
+msgid "⟦SEP_0006⟧ 2 ⟦SEP_0007⟧ SQLite trigger ⟦SEP_0008⟧ ⟦CODE_0001⟧ fires ⟦CODE_0002⟧. It calls ⟦CODE_0003⟧ (prints card 1), then ⟦CODE_0004⟧ draws the next hours (19), guarded by ⟦CODE_0005⟧: true ⟦SEP_0009⟧ card 2 inserted ⟦SEP_0010⟧"
+msgstr "⟦SEP_0006⟧ 2 ⟦SEP_0007⟧ Disparador de SQLite ⟦SEP_0008⟧ ⟦CODE_0001⟧ activa ⟦CODE_0002⟧. Llama a ⟦CODE_0003⟧ (imprime la tarjeta 1) y luego ⟦CODE_0004⟧ sortea las horas siguientes (19), bajo la condición ⟦CODE_0005⟧: verdadera ⟦SEP_0009⟧ se inserta la tarjeta 2 ⟦SEP_0010⟧"
+
+#: lessons/study-guides/languages/tcl.md:141
+msgctxt "s-e127e75568e2-0072"
+msgid "⟦SEP_0004⟧ 3 ⟦SEP_0005⟧ SQLite trigger ⟦SEP_0006⟧ Fires again on card 2 (19 hours, total 34). ⟦CODE_0001⟧ prints it. The guarded ⟦CODE_0002⟧ draws 12. ⟦CODE_0003⟧: true ⟦SEP_0007⟧ card 3 inserted ⟦SEP_0008⟧"
+msgstr "⟦SEP_0004⟧ 3 ⟦SEP_0005⟧ Disparador de SQLite ⟦SEP_0006⟧ Se activa de nuevo con la tarjeta 2 (19 horas, total 34). ⟦CODE_0001⟧ la imprime. El ⟦CODE_0002⟧ protegido por la condición sortea 12. ⟦CODE_0003⟧: verdadera ⟦SEP_0007⟧ se inserta la tarjeta 3 ⟦SEP_0008⟧"
+
+#: lessons/study-guides/languages/tcl.md:142
+msgctxt "s-3a37bbbd7c6f-0073"
+msgid "⟦SEP_0005⟧ 4 ⟦SEP_0006⟧ SQLite trigger ⟦SEP_0007⟧ Fires on card 3 (12 hours, total 46). ⟦CODE_0001⟧ prints it. ⟦CODE_0002⟧: **false**, so the ⟦CODE_0003⟧ draws nothing and the ⟦CODE_0004⟧ produces no row ⟦SEP_0008⟧ chain ends ⟦SEP_0009⟧"
+msgstr "⟦SEP_0005⟧ 4 ⟦SEP_0006⟧ Disparador de SQLite ⟦SEP_0007⟧ Se activa con la tarjeta 3 (12 horas, total 46). ⟦CODE_0001⟧ la imprime. ⟦CODE_0002⟧: **falsa**, así que el ⟦CODE_0003⟧ no sortea nada y el ⟦CODE_0004⟧ no produce ninguna fila ⟦SEP_0008⟧ la cadena termina ⟦SEP_0009⟧"
+
+#: lessons/study-guides/languages/tcl.md:143
+msgctxt "s-8ed2a8f26ea6-0074"
+msgid "⟦SEP_0002⟧ 5 ⟦SEP_0003⟧ Tcl ⟦SEP_0004⟧ The transaction commits. Tcl runs a ⟦CODE_0001⟧ and prints the summary ⟦SEP_0005⟧ 3 entries, total 46 ⟦SEP_0006⟧"
+msgstr "⟦SEP_0002⟧ 5 ⟦SEP_0003⟧ Tcl ⟦SEP_0004⟧ La transacción se confirma. Tcl ejecuta un ⟦CODE_0001⟧ e imprime el resumen ⟦SEP_0005⟧ 3 entradas, total 46 ⟦SEP_0006⟧"
+
+#: lessons/study-guides/languages/tcl.md:145
+msgctxt "s-d7eaa21dbe0e-0075"
+msgid "The procedures fetched from the table were ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧ and ⟦CODE_0006⟧: exactly the ones that were *called*. The table held more text than ran."
+msgstr "Los procedimientos recuperados de la tabla fueron ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧ y ⟦CODE_0006⟧: exactamente los que se *llamaron*. La tabla contenía más texto del que se ejecutó."
+
+#: lessons/study-guides/languages/tcl.md:147
+msgctxt "s-46c96569cbe4-0076"
+msgid "**Plain ⟦CODE_0001⟧.** The loop runs ⟦CODE_0002⟧, adds to ⟦CODE_0003⟧, appends a dict and tests ⟦CODE_0004⟧. The test is after the draw in program order and before the next draw, which is why the crossing card is kept ([L32-34](⟦DEST_0005⟧)). With 15, 19, 12 the totals are 15, 34 and 46, and the loop exits."
+msgstr "**⟦CODE_0001⟧ a secas.** El bucle ejecuta ⟦CODE_0002⟧, suma a ⟦CODE_0003⟧, agrega un dict y comprueba ⟦CODE_0004⟧. La comprobación va después del sorteo en el orden del programa y antes del sorteo siguiente. Por eso se conserva la tarjeta que cruza el tope ([L32-34](⟦DEST_0005⟧)). Con 15, 19, 12 los totales son 15, 34 y 46. Luego el bucle sale."
+
+#: lessons/study-guides/languages/tcl.md:149
+msgctxt "s-515d0cf2b327-0077"
+msgid "**Exactly 40.** With four 10-hour cards, the fourth card has total 40, ⟦CODE_0001⟧ is true and the trigger inserts a fifth. Exercise B12 step 2 shows five rows at 10, 20, 30, 40, 50."
+msgstr "**Exactamente 40.** Con cuatro tarjetas de 10 horas, la cuarta tarjeta tiene total 40, ⟦CODE_0001⟧ es verdadera y el disparador inserta una quinta. El ejercicio B12, paso 2, muestra cinco filas con 10, 20, 30, 40, 50."
+
+#: lessons/study-guides/languages/tcl.md:151
+msgctxt "s-405c1b857089-0078"
+msgid "Compare the ordinary and weird designs"
+msgstr "Compara los diseños ordinarios y los raros"
+
+#: lessons/study-guides/languages/tcl.md:153
+msgctxt "s-9204ec69398a-0079"
+msgid "⟦SEP_0003⟧ Dimension ⟦SEP_0004⟧ ⟦CODE_0001⟧ ⟦SEP_0005⟧ ⟦CODE_0002⟧ ⟦SEP_0006⟧"
+msgstr "⟦SEP_0003⟧ Dimensión ⟦SEP_0004⟧ ⟦CODE_0001⟧ ⟦SEP_0005⟧ ⟦CODE_0002⟧ ⟦SEP_0006⟧"
+
+#: lessons/study-guides/languages/tcl.md:155
+msgctxt "s-fc096ff16d74-0080"
+msgid "⟦SEP_0003⟧ **Representation** ⟦SEP_0004⟧ A procedure with a loop and a list of dicts. ⟦SEP_0005⟧ Rows. The program is data in ⟦CODE_0001⟧, the loop is a trigger and the window (with ⟦CODE_0002⟧) is also rows. ⟦SEP_0006⟧"
+msgstr "⟦SEP_0003⟧ **Representación** ⟦SEP_0004⟧ Un procedimiento con un bucle y una lista de dicts. ⟦SEP_0005⟧ Filas. El programa son datos en ⟦CODE_0001⟧, el bucle es un disparador y la ventana (con ⟦CODE_0002⟧) también son filas. ⟦SEP_0006⟧"
+
+#: lessons/study-guides/languages/tcl.md:156
+msgctxt "s-83ee64dc4118-0081"
+msgid "⟦SEP_0002⟧ **Observability** ⟦SEP_0003⟧ Print ⟦CODE_0001⟧. ⟦SEP_0004⟧ You must read the table and the trigger. The procedures that deal and print cards do not exist until something calls them. ⟦SEP_0005⟧"
+msgstr "⟦SEP_0002⟧ **Observabilidad** ⟦SEP_0003⟧ Imprime ⟦CODE_0001⟧. ⟦SEP_0004⟧ Tienes que leer la tabla y el disparador. Los procedimientos que reparten e imprimen tarjetas no existen hasta que algo los llama. ⟦SEP_0005⟧"
+
+#: lessons/study-guides/languages/tcl.md:157
+msgctxt "s-18c65c925db6-0082"
+msgid "⟦SEP_0003⟧ **Tests** ⟦SEP_0004⟧ Call ⟦CODE_0001⟧. ⟦SEP_0005⟧ Run the whole thing. The stop rule is a ⟦CODE_0002⟧ inside a trigger, not testable alone. ⟦SEP_0006⟧"
+msgstr "⟦SEP_0003⟧ **Pruebas** ⟦SEP_0004⟧ Llama a ⟦CODE_0001⟧. ⟦SEP_0005⟧ Ejecuta todo. La regla de parada es un ⟦CODE_0002⟧ dentro de un disparador y no se puede probar sola. ⟦SEP_0006⟧"
+
+#: lessons/study-guides/languages/tcl.md:158
+msgctxt "s-00e51d05491a-0083"
+msgid "⟦SEP_0005⟧ **⟦DNT_0001⟧** ⟦SEP_0006⟧ Standard Tcl stack traces. ⟦SEP_0007⟧ A Tcl error inside an SQL function is reported through SQLite, and the stack mixes ⟦CODE_0002⟧, ⟦CODE_0003⟧ and ⟦CODE_0004⟧. ⟦SEP_0008⟧"
+msgstr "⟦SEP_0005⟧ **⟦DNT_0001⟧** ⟦SEP_0006⟧ Trazas de pila normales de Tcl. ⟦SEP_0007⟧ Un error de Tcl dentro de una función SQL se informa a través de SQLite. La pila mezcla ⟦CODE_0002⟧, ⟦CODE_0003⟧ y ⟦CODE_0004⟧. ⟦SEP_0008⟧"
+
+#: lessons/study-guides/languages/tcl.md:159
+msgctxt "s-6bb1adf41641-0084"
+msgid "⟦SEP_0003⟧ **Portability** ⟦SEP_0004⟧ Tcl 8.6 and the ⟦CODE_0001⟧ package. ⟦SEP_0005⟧ The same, plus SQLite's trigger and recursion semantics, and SQLite's rule that a TEMP trigger's bare table name resolves to the table in ⟦CODE_0002⟧. ⟦SEP_0006⟧"
+msgstr "⟦SEP_0003⟧ **Portabilidad** ⟦SEP_0004⟧ Tcl 8.6 y el paquete ⟦CODE_0001⟧. ⟦SEP_0005⟧ Lo mismo, más la semántica de los disparadores y de la recursión de SQLite. Además, la regla de SQLite según la cual el nombre simple de tabla en un disparador TEMP se resuelve a la tabla de ⟦CODE_0002⟧. ⟦SEP_0006⟧"
+
+#: lessons/study-guides/languages/tcl.md:160
+msgctxt "s-7dec673bf957-0085"
+msgid "⟦SEP_0001⟧ **Cost** ⟦SEP_0002⟧ A loop. ⟦SEP_0003⟧ One trigger firing per card, with a Tcl callback at each. The recursion depth is limited (1000 by default), and the challenge needs 3 to 5. ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ **Costo** ⟦SEP_0002⟧ Un bucle. ⟦SEP_0003⟧ Un disparo del disparador por tarjeta, con una función de devolución de llamada de Tcl en cada uno. La profundidad de recursión está limitada (1000 de forma predeterminada). El reto necesita de 3 a 5. ⟦SEP_0004⟧"
+
+#: lessons/study-guides/languages/tcl.md:162
+msgctxt "s-1fda83cc590e-0086"
+msgid "The difference to remember: ⟦CODE_0001⟧ has *one* engine and ⟦CODE_0002⟧ has *two*, SQLite and Tcl, and each calls the other. The control moves between them, and neither has the whole picture."
+msgstr "La diferencia que hay que recordar: ⟦CODE_0001⟧ tiene *un* motor y ⟦CODE_0002⟧ tiene *dos*. Son SQLite y Tcl. Cada uno llama al otro. El control pasa de uno a otro, y ninguno tiene la imagen completa."
+
+#: lessons/study-guides/languages/tcl.md:164
+msgctxt "s-716cae37520b-0087"
+msgid "What the exercises demonstrate"
+msgstr "Qué demuestran los ejercicios"
+
+#: lessons/study-guides/languages/tcl.md:166
+msgctxt "s-d6a3ec9d5ed0-0088"
+msgid "⟦SEP_0001⟧ Exercise ⟦SEP_0002⟧ Predict first ⟦SEP_0003⟧ What the evidence shows ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ Ejercicio ⟦SEP_0002⟧ Predice primero ⟦SEP_0003⟧ Qué muestra la evidencia ⟦SEP_0004⟧"
+
+#: lessons/study-guides/languages/tcl.md:168
+msgctxt "s-4ae9f7b1bf05-0089"
+msgid "⟦SEP_0005⟧ [B12. Tcl: edit the program in the database](⟦DEST_0001⟧), step 1 ⟦SEP_0006⟧ Set ⟦CODE_0002⟧ to ⟦CODE_0003⟧. How many rows print? How many does the summary count? ⟦SEP_0007⟧ One row prints and the summary says ⟦CODE_0004⟧. The trigger fired once, card 2 was inserted and counted, but an insert made by a trigger does not fire the trigger again unless recursion is enabled. The pragma *is* the loop. ⟦SEP_0008⟧"
+msgstr "⟦SEP_0005⟧ [B12. Tcl: edita el programa en la base de datos](⟦DEST_0001⟧), paso 1 ⟦SEP_0006⟧ Pon ⟦CODE_0002⟧ en ⟦CODE_0003⟧. ¿Cuántas filas se imprimen? ¿Cuántas cuenta el resumen? ⟦SEP_0007⟧ Se imprime una fila y el resumen dice ⟦CODE_0004⟧. El disparador se activó una vez y la tarjeta 2 se insertó y se contó. Pero una inserción hecha por un disparador no vuelve a activarlo a menos que la recursión esté habilitada. El pragma *es* el bucle. ⟦SEP_0008⟧"
+
+#: lessons/study-guides/languages/tcl.md:169
+msgctxt "s-a9492fa2b426-0090"
+msgid "⟦SEP_0003⟧ B12, step 2 ⟦SEP_0004⟧ Change the ⟦CODE_0001⟧ row's body to ⟦CODE_0002⟧. ⟦SEP_0005⟧ Exactly five rows, totals 10, 20, 30, 40, 50, and the shared checker passes. The run does not stop at 40, because exactly 40 continues. You edited text inside an SQL string, not a Tcl procedure. ⟦SEP_0006⟧"
+msgstr "⟦SEP_0003⟧ B12, paso 2 ⟦SEP_0004⟧ Cambia el cuerpo de la fila ⟦CODE_0001⟧ a ⟦CODE_0002⟧. ⟦SEP_0005⟧ Exactamente cinco filas, con totales 10, 20, 30, 40, 50. El verificador compartido las acepta. La ejecución no se detiene en 40, porque un total de exactamente 40 continúa. Editaste texto dentro de una cadena de texto SQL, no un procedimiento de Tcl. ⟦SEP_0006⟧"
+
+#: lessons/study-guides/languages/tcl.md:170
+msgctxt "s-1dd24a27c379-0091"
+msgid "⟦SEP_0003⟧ B12, the three hooks ⟦SEP_0004⟧ Name them. Which did you change in step 2? ⟦SEP_0005⟧ An SQL function that calls Tcl, the ⟦CODE_0001⟧ handler and the trigger. Step 2 changed the *data that ⟦CODE_0002⟧ serves*. ⟦SEP_0006⟧"
+msgstr "⟦SEP_0003⟧ B12, los tres ganchos ⟦SEP_0004⟧ Nómbralos. ¿Cuál cambiaste en el paso 2? ⟦SEP_0005⟧ Una función SQL que llama a Tcl, el manejador ⟦CODE_0001⟧ y el disparador. El paso 2 cambió *los datos que sirve ⟦CODE_0002⟧*. ⟦SEP_0006⟧"
+
+#: lessons/study-guides/languages/tcl.md:171
+msgctxt "s-edff82337887-0092"
+msgid "⟦SEP_0006⟧ [C1. Weird next to boring](⟦DEST_0001⟧) ⟦SEP_0007⟧ In which program can you see the rule in one place? ⟦SEP_0008⟧ ⟦CODE_0002⟧: the ⟦CODE_0003⟧ condition. ⟦CODE_0004⟧: the ⟦CODE_0005⟧ in a trigger, three layers deep. ⟦SEP_0009⟧"
+msgstr "⟦SEP_0006⟧ [C1. Lo raro junto a lo aburrido](⟦DEST_0001⟧) ⟦SEP_0007⟧ ¿En qué programa puedes ver la regla en un solo lugar? ⟦SEP_0008⟧ ⟦CODE_0002⟧: la condición ⟦CODE_0003⟧. ⟦CODE_0004⟧: el ⟦CODE_0005⟧ en un disparador, a tres capas de profundidad. ⟦SEP_0009⟧"
+
+#: lessons/study-guides/languages/tcl.md:172
+msgctxt "s-494b8b83224b-0093"
+msgid "⟦SEP_0005⟧ [F. Prove a README claim](⟦DEST_0001⟧) ⟦SEP_0006⟧ The README says each card's hours are drawn once. Can you test it? ⟦SEP_0007⟧ Yes: count the calls of the ⟦CODE_0002⟧ procedure (the entry's ⟦CODE_0003⟧ does) and compare with the number of cards. The negative control is a variant that calls ⟦CODE_0004⟧ in both places, which makes the count twice the card count and fails the check. This replaced an earlier dependence on SQLite's evaluation order. ⟦SEP_0008⟧"
+msgstr "⟦SEP_0005⟧ [F. Demuestra una afirmación del README](⟦DEST_0001⟧) ⟦SEP_0006⟧ El README dice que las horas de cada tarjeta se sortean una sola vez. ¿Puedes comprobarlo? ⟦SEP_0007⟧ Sí: cuenta las llamadas al procedimiento ⟦CODE_0002⟧ (lo hace el ⟦CODE_0003⟧ de la entrada) y compáralas con el número de tarjetas. El control negativo es una variante que llama a ⟦CODE_0004⟧ en los dos lugares: la cuenta pasa a ser el doble del número de tarjetas y la comprobación falla. Esto reemplazó una dependencia anterior del orden de evaluación de SQLite. ⟦SEP_0008⟧"
+
+#: lessons/study-guides/languages/tcl.md:174
+msgctxt "s-4fe97c469cdb-0094"
+msgid "Failure modes, costs and boundaries"
+msgstr "Modos de fallo, costos y límites"
+
+#: lessons/study-guides/languages/tcl.md:176
+msgctxt "s-621aac5615e3-0095"
+msgid "⟦SEP_0001⟧ Behavior ⟦SEP_0002⟧ Label ⟦SEP_0003⟧ Why ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ Comportamiento ⟦SEP_0002⟧ Etiqueta ⟦SEP_0003⟧ Por qué ⟦SEP_0004⟧"
+
+#: lessons/study-guides/languages/tcl.md:178
+msgctxt "s-0f0f387ad870-0096"
+msgid "⟦SEP_0002⟧ Tcl calls ⟦CODE_0001⟧ for a command that does not exist ⟦SEP_0003⟧ **guaranteed** ⟦SEP_0004⟧ A documented Tcl hook. ⟦SEP_0005⟧"
+msgstr "⟦SEP_0002⟧ Tcl llama a ⟦CODE_0001⟧ para un comando que no existe ⟦SEP_0003⟧ **garantizado** ⟦SEP_0004⟧ Un gancho documentado de Tcl. ⟦SEP_0005⟧"
+
+#: lessons/study-guides/languages/tcl.md:179
+msgctxt "s-8ffb56cd9a36-0097"
+msgid "⟦SEP_0001⟧ A command's arguments are strings, and code can be built and run as text ⟦SEP_0002⟧ **guaranteed** ⟦SEP_0003⟧ Tcl's core model. ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ Los argumentos de un comando son cadenas de texto, y el código se puede construir y ejecutar como texto ⟦SEP_0002⟧ **garantizado** ⟦SEP_0003⟧ El modelo central de Tcl. ⟦SEP_0004⟧"
+
+#: lessons/study-guides/languages/tcl.md:180
+msgctxt "s-ddca4612bad6-0098"
+msgid "⟦SEP_0002⟧ An SQLite trigger fires for each inserted row, and a trigger's own inserts fire triggers only with ⟦CODE_0001⟧ on ⟦SEP_0003⟧ **guaranteed** ⟦SEP_0004⟧ Documented SQLite behavior. Verified by B12 step 1. ⟦SEP_0005⟧"
+msgstr "⟦SEP_0002⟧ Un disparador de SQLite se activa por cada fila insertada. Las inserciones del propio disparador activan disparadores solo con ⟦CODE_0001⟧ activado ⟦SEP_0003⟧ **garantizado** ⟦SEP_0004⟧ Comportamiento documentado de SQLite. Verificado por el paso 1 de B12. ⟦SEP_0005⟧"
+
+#: lessons/study-guides/languages/tcl.md:181
+msgctxt "s-50f7c4b0e962-0099"
+msgid "⟦SEP_0001⟧ The trigger chain must fit the configured SQLite depth limit ⟦SEP_0002⟧ **implementation-permitted** ⟦SEP_0003⟧ SQLite documents a default maximum of 1,000. A particular build or connection can set a different limit. This entry needs only 3 to 5 steps. ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ La cadena de disparadores debe caber en el límite de profundidad configurado de SQLite ⟦SEP_0002⟧ **permitido por la implementación** ⟦SEP_0003⟧ SQLite documenta un máximo predeterminado de 1,000. Una compilación o conexión concreta puede fijar otro límite. Esta entrada solo necesita de 3 a 5 pasos. ⟦SEP_0004⟧"
+
+#: lessons/study-guides/languages/tcl.md:182
+msgctxt "s-0bd1f2b08eca-0100"
+msgid "⟦SEP_0006⟧ The same hours appear as ⟦CODE_0001⟧ and inside ⟦CODE_0002⟧ ⟦SEP_0007⟧ **guaranteed** by design (after the fix) ⟦SEP_0008⟧ The hours are written into the one-row TEMP table ⟦CODE_0003⟧ and read from it twice. Before the fix they came from a subquery whose function SQLite happened to evaluate once per row, which it does not promise for non-deterministic functions (**accidentally exploited**). The entry's ⟦CODE_0004⟧ now counts the calls of the ⟦CODE_0005⟧ procedure: one per card. ⟦SEP_0009⟧"
+msgstr "⟦SEP_0006⟧ Las mismas horas aparecen como ⟦CODE_0001⟧ y dentro de ⟦CODE_0002⟧ ⟦SEP_0007⟧ **garantizado** por diseño (tras la corrección) ⟦SEP_0008⟧ Las horas se escriben en la tabla TEMP de una fila ⟦CODE_0003⟧ y se leen de ella dos veces. Antes de la corrección venían de una subconsulta. SQLite evaluaba su función una vez por fila por casualidad, algo que no promete para las funciones no deterministas (**aprovechado por accidente**). El ⟦CODE_0004⟧ de la entrada ahora cuenta las llamadas al procedimiento ⟦CODE_0005⟧: una por tarjeta. ⟦SEP_0009⟧"
+
+#: lessons/study-guides/languages/tcl.md:183
+msgctxt "s-774258c10b13-0101"
+msgid "⟦SEP_0002⟧ ⟦CODE_0001⟧ tables and triggers disappear with the connection ⟦SEP_0003⟧ **guaranteed** ⟦SEP_0004⟧ Documented. It keeps the program out of the file on disk. ⟦SEP_0005⟧"
+msgstr "⟦SEP_0002⟧ Las tablas y los disparadores ⟦CODE_0001⟧ desaparecen con la conexión ⟦SEP_0003⟧ **garantizado** ⟦SEP_0004⟧ Está documentado. Mantiene el programa fuera del archivo en disco. ⟦SEP_0005⟧"
+
+#: lessons/study-guides/languages/tcl.md:184
+msgctxt "s-31585720e89e-0102"
+msgid "⟦SEP_0004⟧ ⟦CODE_0001⟧ is rejected inside a trigger, so the trigger body uses the bare name ⟦SEP_0005⟧ **implementation-permitted** ⟦SEP_0006⟧ SQLite's rule about qualified names in triggers. The ⟦CODE_0002⟧ trigger resolves the bare name to the one table in ⟦CODE_0003⟧. ⟦SEP_0007⟧"
+msgstr "⟦SEP_0004⟧ ⟦CODE_0001⟧ se rechaza dentro de un disparador, así que el cuerpo del disparador usa el nombre simple ⟦SEP_0005⟧ **permitido por la implementación** ⟦SEP_0006⟧ La regla de SQLite sobre los nombres calificados en los disparadores. El disparador ⟦CODE_0002⟧ resuelve el nombre simple a la única tabla de ⟦CODE_0003⟧. ⟦SEP_0007⟧"
+
+#: lessons/study-guides/languages/tcl.md:185
+msgctxt "s-7180be172d36-0103"
+msgid "⟦SEP_0003⟧ Tk keeps ⟦CODE_0001⟧ alive after the script ends ⟦SEP_0004⟧ **implementation-permitted** ⟦SEP_0005⟧ Why the script ends with ⟦CODE_0002⟧. ⟦SEP_0006⟧"
+msgstr "⟦SEP_0003⟧ Tk mantiene vivo ⟦CODE_0001⟧ después de que termina el script ⟦SEP_0004⟧ **permitido por la implementación** ⟦SEP_0005⟧ Por qué el script termina con ⟦CODE_0002⟧. ⟦SEP_0006⟧"
+
+#: lessons/study-guides/languages/tcl.md:187
+msgctxt "s-e2589cfaa8da-0104"
+msgid "**The trust boundary.** ⟦CODE_0001⟧ runs whatever text is in the table. In ⟦CODE_0002⟧ the table is built by the program itself, in memory, in a ⟦CODE_0003⟧ table and filled from literals in the script. Nobody else can write to it. That is the entire defense. If the table were a normal table in the file on disk, anyone able to edit the database could make the program run their Tcl. This is the same lesson as the book's threat-model examples: treat anything that is read as code as code. See [Arbitrary code execution](⟦DEST_0004⟧)."
+msgstr "**La frontera de confianza.** ⟦CODE_0001⟧ ejecuta el texto que haya en la tabla. En ⟦CODE_0002⟧ la tabla la construye el propio programa, en memoria, como tabla ⟦CODE_0003⟧ que se llena con literales del script. Nadie más puede escribir en ella. Esa es toda la defensa. Si la tabla fuera una tabla normal en el archivo en disco, cualquiera que pudiera editar la base de datos podría hacer que el programa ejecute su Tcl. Es la misma lección que los ejemplos de modelo de amenazas del libro: trata como código todo lo que se lee como código. Consulta [Ejecución de código arbitrario](⟦DEST_0004⟧)."
+
+#: lessons/study-guides/languages/tcl.md:189
+msgctxt "s-87d9e31bff8d-0105"
+msgid "**Costs to state.**"
+msgstr "**Costos que declarar.**"
+
+#: lessons/study-guides/languages/tcl.md:191
+msgctxt "s-07fda635ed36-0106"
+msgid "**Two engines, two stacks.** An error in a procedure shows a trace that mixes Tcl and SQLite frames."
+msgstr "**Dos motores, dos pilas.** Un error en un procedimiento muestra una traza que mezcla marcos de Tcl y de SQLite."
+
+#: lessons/study-guides/languages/tcl.md:192
+msgctxt "s-f1aeff50e083-0107"
+msgid "**Order of evaluation belongs to SQLite, so the program does not depend on it.** An earlier version used a subquery and relied on one function call per row. It now draws the hours into the one-row TEMP table ⟦CODE_0001⟧ first, and ⟦CODE_0002⟧ counts the calls (one per card). The check was also run against a variant that calls the function twice, and failed there."
+msgstr "**El orden de evaluación pertenece a SQLite, así que el programa no depende de él.** Una versión anterior usaba una subconsulta y se apoyaba en una llamada de función por fila. Ahora sortea primero las horas en la tabla TEMP de una fila ⟦CODE_0001⟧. Además, ⟦CODE_0002⟧ cuenta las llamadas (una por tarjeta). La comprobación también se ejecutó contra una variante que llama dos veces a la función. Allí falló."
+
+#: lessons/study-guides/languages/tcl.md:193
+msgctxt "s-d069b51da2ce-0108"
+msgid "**Hidden control flow.** Reading the top-level script tells you almost nothing about what runs. The loop is in a ⟦CODE_0001⟧ statement."
+msgstr "**Flujo de control oculto.** Leer el script de nivel superior no te dice casi nada de lo que se ejecuta. El bucle está en una sentencia ⟦CODE_0001⟧."
+
+#: lessons/study-guides/languages/tcl.md:194
+msgctxt "s-311f090edfa0-0109"
+msgid "**Where the technique is legitimate.** Triggers are how databases enforce rules and keep audit trails. ⟦CODE_0001⟧ is how Tcl implements autoloading. Putting both to work as a loop is a stunt."
+msgstr "**Dónde la técnica es legítima.** Los disparadores son la forma en que las bases de datos hacen cumplir reglas y llevan pistas de auditoría. ⟦CODE_0001⟧ es la forma en que Tcl implementa la carga automática. Poner ambos a trabajar como bucle es una acrobacia."
+
+#: lessons/study-guides/languages/tcl.md:196
+msgctxt "s-061eb6da82a8-0110"
+msgid "Connections across the repository"
+msgstr "Conexiones a lo largo del repositorio"
+
+#: lessons/study-guides/languages/tcl.md:198
+msgctxt "s-534085b7ea72-0111"
+msgid "**A rule that fires the next step.** The trigger is the same idea as the ⟦CODE_0001⟧-level condition in [COBOL](⟦DEST_0002⟧) and the ⟦CODE_0003⟧ combination in [Common Lisp](⟦DEST_0004⟧): the next step comes from a *declared rule*, not from a statement you can see in order. The concept guide [State and control beyond variables](⟦DEST_0005⟧) compares them."
+msgstr "**Una regla que activa el paso siguiente.** El disparador es la misma idea que la declaración de nivel ⟦CODE_0001⟧ en [COBOL](⟦DEST_0002⟧) y la combinación ⟦CODE_0003⟧ en [Common Lisp](⟦DEST_0004⟧). El paso siguiente sale de una *regla declarada*, no de una sentencia que puedas ver en orden. La guía de concepto [Estado y control más allá de las variables](⟦DEST_0005⟧) las compara."
+
+#: lessons/study-guides/languages/tcl.md:199
+msgctxt "s-fd7d28b04ea4-0112"
+msgid "**Code as data, in other languages.** [APL](⟦DEST_0001⟧) writes its own functions as text with ⟦CODE_0002⟧. Tcl fetches them from a table. [XAML in the C# guide](⟦DEST_0003⟧) runs methods while it parses markup."
+msgstr "**Código como datos, en otros lenguajes.** [APL](⟦DEST_0001⟧) escribe sus propias funciones como texto con ⟦CODE_0002⟧. Tcl las recupera de una tabla. [XAML en la guía de C#](⟦DEST_0003⟧) ejecuta métodos mientras analiza el marcado."
+
+#: lessons/study-guides/languages/tcl.md:200
+msgctxt "s-9e9291d6d06f-0113"
+msgid "**A boundary you must defend.** [Reading adversarial programs](⟦DEST_0001⟧) uses this entry and the XAML and tar entries as its main examples of \"data that is also code\"."
+msgstr "**Una frontera que debes defender.** [Lectura de programas adversariales](⟦DEST_0001⟧) usa esta entrada y las de XAML y tar como sus ejemplos principales de \"datos que también son código\"."
+
+#: lessons/study-guides/languages/tcl.md:201
+msgctxt "s-5edb6ecb663c-0114"
+msgid "**Transactions and commit.** The whole trigger chain runs in one ⟦CODE_0001⟧, as in [Effects, errors and commitment](⟦DEST_0002⟧), while the printing does not roll back."
+msgstr "**Transacciones y confirmación.** Toda la cadena de disparadores se ejecuta en un solo ⟦CODE_0001⟧, como en [Efectos, errores y confirmación](⟦DEST_0002⟧), mientras que la impresión no se revierte."
+
+#: lessons/study-guides/languages/tcl.md:202
+msgctxt "s-4c7fcda5d950-0115"
+msgid "**In the book.** [Tcl](⟦DEST_0001⟧), [Database triggers](⟦DEST_0002⟧) and [Arbitrary code execution](⟦DEST_0003⟧)."
+msgstr "**En el libro.** [Tcl](⟦DEST_0001⟧), [Disparadores de base de datos](⟦DEST_0002⟧) y [Ejecución de código arbitrario](⟦DEST_0003⟧)."
+
+#: lessons/study-guides/languages/tcl.md:204
+msgctxt "s-50944288ce61-0116"
+msgid "Self-check"
+msgstr "Autoevaluación"
+
+#: lessons/study-guides/languages/tcl.md:206
+msgctxt "s-274e192b952c-0117"
+msgid "Answer each question in your own words before you read the italic text. Say what evidence would support each answer."
+msgstr "Responde cada pregunta con tus propias palabras antes de leer el texto en cursiva. Di qué evidencia respaldaría cada respuesta."
+
+#: lessons/study-guides/languages/tcl.md:208
+msgctxt "s-2dfea8f8bfac-0118"
+msgid ""
+"**Trace.** In ⟦CODE_0001⟧, hours are 12, 14, 13, 11 (totals 12, 26, 39, 50). For each card, say whether the trigger inserts a next card. *(After card 1 (total 12): yes. After card 2 (26): yes. After card 3 (39): yes. After card 4 (50): no, because ⟦CODE_0002⟧ is false. Four cards, the fourth is the crossing card.)*\n"
+"2. **Explain.** Why does ⟦CODE_0003⟧ give exactly one printed row and ⟦CODE_0004⟧? *(The starting ⟦CODE_0005⟧ fires the trigger once. The trigger prints card 1 and inserts card 2, but a trigger's own insert does not fire the trigger again, so card 2 is never printed. The summary counts both rows.)*\n"
+"3. **Transfer.** In a relational database you use, which feature would play the part of the trigger-as-loop, and what would limit the depth? *(A recursive trigger or a recursive common table expression. In both cases the engine caps the recursion depth.)*\n"
+"4. **Evidence.** A reviewer says, \"Every procedure ⟦CODE_0006⟧ runs comes from the table.\" Design a test that could fail. *(Check that the list of fetched procedures printed at the end contains ⟦CODE_0007⟧, ⟦CODE_0008⟧, ⟦CODE_0009⟧, ⟦CODE_0010⟧, ⟦CODE_0011⟧ and ⟦CODE_0012⟧, and that none of them is defined by a ⟦CODE_0013⟧ in the script. The negative control is to define one of them in the script: it should then be missing from the fetched list, because ⟦CODE_0014⟧ is never called for it.)*"
+msgstr ""
+"**Traza.** En ⟦CODE_0001⟧, las horas son 12, 14, 13, 11 (totales 12, 26, 39, 50). Para cada tarjeta, di si el disparador inserta una tarjeta siguiente. *(Tras la tarjeta 1 (total 12): sí. Tras la tarjeta 2 (26): sí. Tras la tarjeta 3 (39): sí. Tras la tarjeta 4 (50): no, porque ⟦CODE_0002⟧ es falso. Cuatro tarjetas. La cuarta es la que cruza el tope.)*\n"
+"2. **Explica.** ¿Por qué ⟦CODE_0003⟧ da exactamente una fila impresa y ⟦CODE_0004⟧? *(El ⟦CODE_0005⟧ inicial activa el disparador una vez. El disparador imprime la tarjeta 1 e inserta la tarjeta 2. Pero la inserción propia de un disparador no lo activa de nuevo, así que la tarjeta 2 nunca se imprime. El resumen cuenta las dos filas.)*\n"
+"3. **Transfiere.** En una base de datos relacional que uses, ¿qué característica haría el papel del disparador como bucle y qué limitaría la profundidad? *(Un disparador recursivo o una expresión de tabla común recursiva. En ambos casos el motor limita la profundidad de la recursión.)*\n"
+"4. **Evidencia.** Un revisor dice: \"Todo procedimiento que ⟦CODE_0006⟧ ejecuta viene de la tabla\". Diseña una prueba que pueda fallar. *(Comprueba que la lista de procedimientos recuperados que se imprime al final contiene ⟦CODE_0007⟧, ⟦CODE_0008⟧, ⟦CODE_0009⟧, ⟦CODE_0010⟧, ⟦CODE_0011⟧ y ⟦CODE_0012⟧. Comprueba también que ninguno está definido por un ⟦CODE_0013⟧ en el script. El control negativo es definir uno de ellos en el script: entonces debería faltar en la lista recuperada, porque ⟦CODE_0014⟧ nunca se llama para él.)*"
+
+#: lessons/study-guides/languages/tcl.md:213
+msgctxt "s-4082f515b2f4-0119"
+msgid "Further reading"
+msgstr "Lecturas adicionales"
+
+#: lessons/study-guides/languages/tcl.md:215
+msgctxt "s-e93d65543ce4-0120"
+msgid "[Tcl](⟦DEST_0001⟧) (Wikipedia): the language, and why \"everything is a string\" shapes it."
+msgstr "[Tcl](⟦DEST_0001⟧) (Wikipedia): el lenguaje y por qué \"todo es una cadena de texto\" lo define."
+
+#: lessons/study-guides/languages/tcl.md:216
+msgctxt "s-0a89b96dbace-0121"
+msgid "[Database trigger](⟦DEST_0001⟧) (Wikipedia): what triggers are for and where they cause surprises."
+msgstr "[Disparador de base de datos](⟦DEST_0001⟧) (Wikipedia): para qué sirven los disparadores y dónde causan sorpresas."
+
+#: lessons/study-guides/languages/tcl.md:217
+msgctxt "s-179e7e8965ac-0122"
+msgid "[Code injection](⟦DEST_0001⟧) (OWASP): the general risk when text becomes code, which ⟦CODE_0002⟧ makes concrete."
+msgstr "[Inyección de código](⟦DEST_0001⟧) (OWASP): el riesgo general cuando el texto se convierte en código, que ⟦CODE_0002⟧ vuelve concreto."
+
+#: lessons/study-guides/languages/tcl.md:218
+msgctxt "s-a5e0cbf6f6dc-0123"
+msgid "[Database triggers](⟦DEST_0001⟧) and [Arbitrary code execution](⟦DEST_0002⟧) (this book): the concepts behind this entry."
+msgstr "[Disparadores de base de datos](⟦DEST_0001⟧) y [Ejecución de código arbitrario](⟦DEST_0002⟧) (este libro): los conceptos detrás de esta entrada."
