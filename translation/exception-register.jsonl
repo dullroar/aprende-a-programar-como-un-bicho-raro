@@ -313,3 +313,8 @@
 {"id":"EXC-313","segment":"s-9103e496684b-0034","invariant":"I7","reason":"'builds a tape' is the verb (the host constructs a data structure), not the noun 'build' (compilación)","task":"P4-lessons-study-guides-concepts-4"}
 {"id":"EXC-314","segment":"s-87d9e31bff8d-0065","invariant":"I7","reason":"'state' is the verb (declare), not the noun 'state' (estado); 'Costos que debes enunciar' is correct","task":"P4-lessons-study-guides-concepts-4"}
 {"id":"EXC-315","segment":"s-9103e496684b-0034","invariant":"I7","reason":"'register' (a CMake register variable) is not the glossary noun 'entry' (entrada); registro here names the CMake register, not a book entry","task":"P4-lessons-study-guides-concepts-4"}
+{"id":"EXC-316","segment":"s-ab11d4f32111-0005","invariant":"I7","reason":"scope is the noun in the fixed heading 'Límites del alcance' (glossary scope-limits), not the programming term ámbito","task":"P4-lessons-study-guides-concepts-5"}
+{"id":"EXC-317","segment":"s-87d9e31bff8d-0078","invariant":"I7","reason":"'state' is the verb 'declarar' in 'Costs to state', not the noun estado","task":"P4-lessons-study-guides-concepts-5"}
+{"id":"EXC-318","segment":"s-25693566f8a1-0087","invariant":"I7","reason":"'lists' is the verb 'enumera', not the noun lista","task":"P4-lessons-study-guides-concepts-5"}
+{"id":"EXC-319","segment":"s-c2984a13d175-0040","invariant":"I7","reason":"'builds' is the verb (construye una variante), not the noun build/compilación","task":"P4-lessons-study-guides-concepts-5"}
+{"id":"EXC-320","segment":"s-cb95e5fb214d-0050","invariant":"I7","reason":"'assurance' occurs only inside the compound term 'assurance tally', whose approved rendering is 'recuento de garantías'","task":"P4-lessons-study-guides-concepts-5"}

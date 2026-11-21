@@ -1655,3 +1655,16 @@
 {"segment_id": "s-ca94b2a7bcb4-0005", "ts": "2026-11-21T16:58:42Z", "findings": ["I7: glossary term scope must be rendered 'ámbito'"]}
 {"segment_id": "s-9103e496684b-0034", "ts": "2026-11-21T16:58:42Z", "findings": ["I7: banned rendering 'registro' for glossary term entry", "I7: glossary term build must be rendered 'compilación'"]}
 {"segment_id": "s-87d9e31bff8d-0065", "ts": "2026-11-21T16:58:42Z", "findings": ["I7: glossary term state must be rendered 'estado'"]}
+{"segment_id": "s-58d107190c2b-0002", "ts": "2026-11-21T17:01:05Z", "findings": ["I25: comma before a simple 'y' ('Toda abstracción oculta algo, y tarde o temprano lo oculto a'): no comma before a simple o or y"]}
+{"segment_id": "s-ab11d4f32111-0005", "ts": "2026-11-21T17:01:05Z", "findings": ["I7: glossary term scope must be rendered 'ámbito'"]}
+{"segment_id": "s-e9903ea885ee-0013", "ts": "2026-11-21T17:01:05Z", "findings": ["I25: comma before a simple 'y' ('| Aprovechado por accidente | Funciona, y nadie lo prometió'): no comma before a simple o or y"]}
+{"segment_id": "s-fa3bc77ff8d8-0018", "ts": "2026-11-21T17:01:05Z", "findings": ["I7: glossary term reader must be rendered 'lector'", "I12: sentence of 30 words (limit 29): Las semanas fijas de LINQ no necesitan v..."]}
+{"segment_id": "s-edf5fc7fb26d-0023", "ts": "2026-11-21T17:01:05Z", "findings": ["I12: sentence of 34 words (limit 29): En uno que depende del anfitrión, una *f..."]}
+{"segment_id": "s-c2984a13d175-0040", "ts": "2026-11-21T17:02:31Z", "findings": ["I3: digit token 000 appears 1 time(s) in the source, 0 in the target", "I3: digit token 10 appears 2 time(s) in the source, 1 in the target", "I3: digit token 10.000 appears 0 time(s) in the source, 1 in the target", "I3: digit token 9 appears 1 time(s) in the source, 0 in the target", "I3: digit token 9.999 appears 0 time(s) in the source, 1 in the target", "I3: digit token 999 appears 1 time(s) in the source, 0 in the target", "I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-cb95e5fb214d-0050", "ts": "2026-11-21T17:02:31Z", "findings": ["I7: glossary term assurance must be rendered 'grado de garantía'"]}
+{"segment_id": "s-87d9e31bff8d-0078", "ts": "2026-11-21T17:02:31Z", "findings": ["I7: glossary term state must be rendered 'estado'"]}
+{"segment_id": "s-25693566f8a1-0087", "ts": "2026-11-21T17:03:25Z", "findings": ["I7: glossary term list must be rendered 'lista'"]}
+{"segment_id": "s-c2984a13d175-0040", "ts": "2026-11-21T17:03:44Z", "findings": ["I7: glossary term build must be rendered 'compilación'", "I12: sentence of 31 words (limit 29): Una entrada que lo ignoraba (cuatro nomb..."]}
+{"segment_id": "s-cb95e5fb214d-0050", "ts": "2026-11-21T17:03:44Z", "findings": ["I7: glossary term assurance-tally must be rendered 'recuento de garantías'"]}
+{"segment_id": "s-c2984a13d175-0040", "ts": "2026-11-21T17:04:08Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-cb95e5fb214d-0050", "ts": "2026-11-21T17:04:08Z", "findings": ["I7: glossary term assurance must be rendered 'grado de garantía'"]}

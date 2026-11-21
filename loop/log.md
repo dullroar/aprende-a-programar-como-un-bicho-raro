@@ -124,3 +124,5 @@
 148 P4-lessons-study-guides-concepts-3 done evaluation-demand-and-laziness (106) and events-callbacks-and-reactive-control (98) study guides translated; 12 scoped I7 waivers
 149 P4-lessons-study-guides-concepts-3 done committed the iteration-148 work left in the tree; verify --fast OK.
 150 P4-lessons-study-guides-concepts-4 done formal-languages-and-weird-machines study guide translated (85 segments) via drafts import; 3 scoped I7 waivers; verify --fast OK.
+151 P4-lessons-study-guides-concepts-5 done portability-abstraction-and-cost study guide translated (98 segments) via drafts import; 5 scoped I7 waivers; verify --fast OK.
+152 P4-lessons-study-guides-concepts-5 done committed the iteration-151 work left staged in the tree; verify --fast OK.

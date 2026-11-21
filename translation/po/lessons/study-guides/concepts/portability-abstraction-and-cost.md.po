@@ -1,0 +1,518 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lessons/study-guides/concepts/portability-abstraction-and-cost.md:1
+msgctxt "s-7eb1c1051f37-0000"
+msgid "Portability, abstraction and cost study guide"
+msgstr "Guía de estudio de portabilidad, abstracción y costo"
+
+#: lessons/study-guides/concepts/portability-abstraction-and-cost.md:3
+msgctxt "s-4e718de9279e-0001"
+msgid "What this guide is for"
+msgstr "Para qué sirve esta guía"
+
+#: lessons/study-guides/concepts/portability-abstraction-and-cost.md:5
+msgctxt "s-58d107190c2b-0002"
+msgid "Every abstraction hides something, and sooner or later the hidden thing shows. A language standard promises some behavior, allows more and says nothing about the rest. This guide asks: **what is promised, what is host-dependent and what is a performance cliff?** The book tags every lesson with one of three labels, and this guide teaches you to *choose* the label, by the evidence you can produce."
+msgstr "Toda abstracción oculta algo. Tarde o temprano, lo oculto aparece. Un estándar de lenguaje promete cierto comportamiento, permite más y no dice nada del resto. Esta guía pregunta: **¿qué se promete, qué depende del anfitrión y qué es un precipicio de rendimiento?** El libro etiqueta cada lección con una de tres etiquetas, y esta guía te enseña a *elegir* la etiqueta según la evidencia que puedas producir."
+
+#: lessons/study-guides/concepts/portability-abstraction-and-cost.md:7
+msgctxt "s-d84bcb27c154-0003"
+msgid "When you finish, you should be able to:"
+msgstr "Cuando termines, deberías poder:"
+
+#: lessons/study-guides/concepts/portability-abstraction-and-cost.md:9
+msgctxt "s-140a66d4f09d-0004"
+msgid ""
+"Define guaranteed, implementation-permitted and accidentally exploited behavior, and give an example of each from the entries.\n"
+"2. Say what evidence supports each label: a specification, a tested implementation, an observation.\n"
+"3. Predict what happens when a program that depends on one implementation runs on another, and say whether the failure will be loud or silent.\n"
+"4. Recognize a performance cliff (backtracking, re-enumeration, repeated copying) and say what input triggers it.\n"
+"5. Explain what a reproducibility check can prove, and what it cannot.\n"
+"6. Apply Hyrum's law to a feature nobody promised and say what you would write down."
+msgstr ""
+"Definir el comportamiento garantizado, el permitido por la implementación y el aprovechado por accidente, y dar un ejemplo de cada uno tomado de las entradas.\n"
+"2. Decir qué evidencia respalda cada etiqueta: una especificación, una implementación probada, una observación.\n"
+"3. Predecir qué ocurre cuando un programa que depende de una implementación se ejecuta en otra, y decir si el fallo será ruidoso o silencioso.\n"
+"4. Reconocer un precipicio de rendimiento (retroceso, volver a enumerar, copias repetidas) y decir qué entrada lo dispara.\n"
+"5. Explicar qué puede demostrar una comprobación de reproducibilidad y qué no.\n"
+"6. Aplicar la ley de Hyrum a una función que nadie prometió y decir qué dejarías por escrito."
+
+#: lessons/study-guides/concepts/portability-abstraction-and-cost.md:16
+msgctxt "s-ab11d4f32111-0005"
+msgid "**Scope limits.** The guide is about *claims*: how to word them and test them. It does not teach compiler internals or complexity theory. Its source chapter is [Abstraction leaks and implementation dependence](⟦DEST_0001⟧)."
+msgstr "**Límites del alcance.** La guía trata de *afirmaciones*: cómo formularlas y comprobarlas. No enseña el funcionamiento interno de los compiladores ni la teoría de la complejidad. Su capítulo de origen es [Fugas de abstracción y dependencia de la implementación](⟦DEST_0001⟧)."
+
+#: lessons/study-guides/concepts/portability-abstraction-and-cost.md:18
+msgctxt "s-d5bfdd7d989d-0006"
+msgid "Before you begin"
+msgstr "Antes de empezar"
+
+#: lessons/study-guides/concepts/portability-abstraction-and-cost.md:20
+msgctxt "s-a1a18110a7af-0007"
+msgid "**Safety model.** The cards are fictional **⟦DNT_0001⟧** data. Programs can write to local scratch files or databases and can start processes. Read the source first and run it in the sandbox first, for example ⟦CODE_0002⟧. Work on copies ([Running things safely](⟦DEST_0003⟧)). Never run a runaway experiment outside a timeout: use ⟦CODE_0004⟧, and do not run ⟦CODE_0005⟧ under mawk on ⟦CODE_0006⟧."
+msgstr "**Modelo de seguridad.** Las tarjetas son datos ficticios marcados con **⟦DNT_0001⟧**. Los programas pueden escribir en archivos o bases de datos locales de prueba y pueden iniciar procesos. Lee primero el código fuente y ejecútalo antes en un entorno aislado (*sandbox*) que limita el acceso al sistema anfitrión, por ejemplo ⟦CODE_0002⟧. Trabaja con copias ([Ejecutar cosas con seguridad](⟦DEST_0003⟧)). Nunca ejecutes un experimento descontrolado fuera de un límite de tiempo: usa ⟦CODE_0004⟧, y no ejecutes ⟦CODE_0005⟧ con mawk en ⟦CODE_0006⟧."
+
+#: lessons/study-guides/concepts/portability-abstraction-and-cost.md:22
+msgctxt "s-08bf2d3ee10f-0008"
+msgid "**Prediction rule.** For each claim you make, write the evidence that would show it is *false*. A claim with no such evidence is a hope."
+msgstr "**Regla de predicción.** Por cada afirmación que hagas, escribe la evidencia que demostraría que es *falsa*. Una afirmación sin esa evidencia es una esperanza."
+
+#: lessons/study-guides/concepts/portability-abstraction-and-cost.md:24
+msgctxt "s-2dd18ffddf3e-0009"
+msgid "**Vocabulary.**"
+msgstr "**Vocabulario.**"
+
+#: lessons/study-guides/concepts/portability-abstraction-and-cost.md:26
+msgctxt "s-790e521777f0-0010"
+msgid "⟦SEP_0001⟧ Term ⟦SEP_0002⟧ Meaning here ⟦SEP_0003⟧"
+msgstr "⟦SEP_0001⟧ Término ⟦SEP_0002⟧ Significado aquí ⟦SEP_0003⟧"
+
+#: lessons/study-guides/concepts/portability-abstraction-and-cost.md:28
+msgctxt "s-cb53c0bdb856-0011"
+msgid "⟦SEP_0001⟧ Guaranteed ⟦SEP_0002⟧ A specification or documented semantics promises it. ⟦SEP_0003⟧"
+msgstr "⟦SEP_0001⟧ Garantizado ⟦SEP_0002⟧ Una especificación o una semántica documentada lo promete. ⟦SEP_0003⟧"
+
+#: lessons/study-guides/concepts/portability-abstraction-and-cost.md:29
+msgctxt "s-c61035c9897e-0012"
+msgid "⟦SEP_0001⟧ Implementation-permitted ⟦SEP_0002⟧ One implementation, platform or version allows it. ⟦SEP_0003⟧"
+msgstr "⟦SEP_0001⟧ Permitido por la implementación ⟦SEP_0002⟧ Una implementación, plataforma o versión lo permite. ⟦SEP_0003⟧"
+
+#: lessons/study-guides/concepts/portability-abstraction-and-cost.md:30
+msgctxt "s-e9903ea885ee-0013"
+msgid "⟦SEP_0001⟧ Accidentally exploited ⟦SEP_0002⟧ It works, and nobody promised it. ⟦SEP_0003⟧"
+msgstr "⟦SEP_0001⟧ Aprovechado por accidente ⟦SEP_0002⟧ Funciona; nadie lo prometió. ⟦SEP_0003⟧"
+
+#: lessons/study-guides/concepts/portability-abstraction-and-cost.md:31
+msgctxt "s-a12698896e03-0014"
+msgid "⟦SEP_0001⟧ Hyrum's law ⟦SEP_0002⟧ With enough users, every observable behavior of a system will be depended on by somebody. ⟦SEP_0003⟧"
+msgstr "⟦SEP_0001⟧ Ley de Hyrum ⟦SEP_0002⟧ Con suficientes usuarios, alguien dependerá de cada comportamiento observable de un sistema. ⟦SEP_0003⟧"
+
+#: lessons/study-guides/concepts/portability-abstraction-and-cost.md:32
+msgctxt "s-c3b0f7d4fbbe-0015"
+msgid "⟦SEP_0001⟧ Performance cliff ⟦SEP_0002⟧ An input at which cost jumps from small to enormous. ⟦SEP_0003⟧"
+msgstr "⟦SEP_0001⟧ Precipicio de rendimiento ⟦SEP_0002⟧ Una entrada en la que el costo pasa de pequeño a enorme. ⟦SEP_0003⟧"
+
+#: lessons/study-guides/concepts/portability-abstraction-and-cost.md:34
+msgctxt "s-ae7d69ef2745-0016"
+msgid "The shared challenge"
+msgstr "El reto compartido"
+
+#: lessons/study-guides/concepts/portability-abstraction-and-cost.md:36
+msgctxt "s-78a7d749b03d-0017"
+msgid "The [challenge specification](⟦DEST_0001⟧) calls for cards with a category and 10 to 19 whole hours. Categories cycle through ⟦DNT_0002⟧, ⟦DNT_0003⟧, ⟦DNT_0004⟧ and ⟦DNT_0005⟧. Add each card's hours to the running total. Stop when the total passes 40. Keep the **first card that takes the total over 40**. A total of exactly 40 continues. Four 10-hour cards need a fifth card, in the ⟦DNT_0006⟧ category. Conforming runs finish with 3 to 5 cards and a total of 41 to 59 hours."
+msgstr "La [especificación del reto](⟦DEST_0001⟧) pide tarjetas con una categoría y de 10 a 19 horas enteras. Las categorías se repiten en ciclo: `⟦DNT_0002⟧`, `⟦DNT_0003⟧`, `⟦DNT_0004⟧` y `⟦DNT_0005⟧`. Suma las horas de cada tarjeta al total acumulado. Detente cuando el total pasa de 40. Conserva la **primera tarjeta con la que el total pasa de 40**. Un total de exactamente 40 continúa. Cuatro tarjetas de 10 horas necesitan una quinta tarjeta, de la categoría `⟦DNT_0006⟧`. Las ejecuciones conformes tienen de 3 a 5 tarjetas y un total de 41 a 59 horas."
+
+#: lessons/study-guides/concepts/portability-abstraction-and-cost.md:38
+msgctxt "s-fa3bc77ff8d8-0018"
+msgid "For a portability reader, the entries have host dependencies hiding in the clock, random source, storage and toolchain. Find which ones your entry actually uses. The fixed LINQ weeks need no random draws, and the C PCRE2 and .NET regex examples need a writable TSV path. The shared checker ⟦CODE_0001⟧ tests the numeric report for runs that implement the challenge."
+msgstr "Para un lector atento a la portabilidad, las entradas esconden dependencias del anfitrión en el reloj, la fuente de aleatoriedad, el almacenamiento y la cadena de herramientas. Averigua cuáles usa de verdad tu entrada. Las semanas fijas de LINQ no necesitan valores aleatorios. Los ejemplos de C con PCRE2 y de expresiones regulares de .NET necesitan una ruta TSV con permiso de escritura. El verificador compartido ⟦CODE_0001⟧ comprueba el informe numérico de las ejecuciones que implementan el reto."
+
+#: lessons/study-guides/concepts/portability-abstraction-and-cost.md:40
+msgctxt "s-9f148b367e02-0019"
+msgid "The machine to identify"
+msgstr "La máquina que hay que identificar"
+
+#: lessons/study-guides/concepts/portability-abstraction-and-cost.md:42
+msgctxt "s-35546f0fec5c-0020"
+msgid "For portability, the five questions become questions about *dependencies*."
+msgstr "Desde la portabilidad, las cinco preguntas pasan a ser preguntas sobre *dependencias*."
+
+#: lessons/study-guides/concepts/portability-abstraction-and-cost.md:44
+msgctxt "s-c1fa5b1314e8-0021"
+msgid "**What repeats.** The same dependency, many times: the random source and the clock. Most entries call ⟦CODE_0001⟧ or an equivalent, so the ISO week is a repeated host lookup. The Make entry reads ⟦CODE_0002⟧ instead of calling ⟦CODE_0003⟧, and the COBOL and JavaScript entries compute it by arithmetic."
+msgstr "**Qué se repite.** La misma dependencia, muchas veces: la fuente de aleatoriedad y el reloj. La mayoría de las entradas llama a ⟦CODE_0001⟧ o a un equivalente, así que la semana ISO es una consulta repetida al anfitrión. La entrada de Make lee ⟦CODE_0002⟧ en lugar de llamar a ⟦CODE_0003⟧, y las de COBOL y JavaScript la calculan con aritmética."
+
+#: lessons/study-guides/concepts/portability-abstraction-and-cost.md:46
+msgctxt "s-d9334134784c-0022"
+msgid "**Where state lives.** In the host: environment variables (⟦CODE_0001⟧, ⟦CODE_0002⟧), the clock, ⟦CODE_0003⟧, the filesystem. A pinned seed (⟦CODE_0004⟧, ⟦CODE_0005⟧, ⟦CODE_0006⟧, ⟦CODE_0007⟧) moves the randomness into the caller."
+msgstr "**Dónde vive el estado.** En el anfitrión: variables de entorno (⟦CODE_0001⟧, ⟦CODE_0002⟧), el reloj, ⟦CODE_0003⟧, el sistema de archivos. Una semilla fija (⟦CODE_0004⟧, ⟦CODE_0005⟧, ⟦CODE_0006⟧, ⟦CODE_0007⟧) pasa la aleatoriedad a quien llama."
+
+#: lessons/study-guides/concepts/portability-abstraction-and-cost.md:48
+msgctxt "s-edf5fc7fb26d-0023"
+msgid "**What advances the next step.** In a portable program, the language. In a host-dependent one, a *feature of one implementation*: GNU Make's restart, GNU tar's checkpoint, gawk's ⟦CODE_0001⟧, GnuCOBOL's ⟦CODE_0002⟧, PCRE2 callouts."
+msgstr "**Qué hace avanzar el paso siguiente.** En un programa portable, el lenguaje. En uno que depende del anfitrión, una *función de una sola implementación*. Son estas: el reinicio de GNU Make, el punto de control de GNU tar, ⟦CODE_0001⟧ de gawk, ⟦CODE_0002⟧ de GnuCOBOL, los *callouts* de PCRE2."
+
+#: lessons/study-guides/concepts/portability-abstraction-and-cost.md:50
+msgctxt "s-49850c56df9a-0024"
+msgid "**What stops it.** The stop rule is usually portable. The failure modes are not: a missing feature may stop the program loudly, or let it succeed with the wrong answer."
+msgstr "**Qué lo detiene.** La regla de parada suele ser portable. Los modos de fallo no: una función ausente puede detener el programa de forma ruidosa o dejar que termine con la respuesta equivocada."
+
+#: lessons/study-guides/concepts/portability-abstraction-and-cost.md:52
+msgctxt "s-fa430acbd45d-0025"
+msgid "**What commits.** Check the storage dependency before predicting failure. An entry that calls the ⟦CODE_0001⟧ command needs it on the host; a linked SQLite library or a plain TSV writer has a different failure boundary."
+msgstr "**Qué confirma.** Revisa la dependencia de almacenamiento antes de predecir el fallo. Una entrada que llama al comando ⟦CODE_0001⟧ lo necesita en el anfitrión; una biblioteca SQLite enlazada o un simple escritor de TSV tiene otro límite de fallo."
+
+#: lessons/study-guides/concepts/portability-abstraction-and-cost.md:54
+msgctxt "s-67a72cdadc6f-0026"
+msgid "Trace one run"
+msgstr "Traza una ejecución"
+
+#: lessons/study-guides/concepts/portability-abstraction-and-cost.md:56
+msgctxt "s-b7438d6533a7-0027"
+msgid "Here are the same three cards, 15, 19 and 12, made by *different implementations of the same algorithm*, to show what a name does and does not promise."
+msgstr "Aquí van las mismas tres tarjetas, 15, 19 y 12, producidas por *implementaciones distintas del mismo algoritmo*, para mostrar qué promete un nombre y qué no."
+
+#: lessons/study-guides/concepts/portability-abstraction-and-cost.md:58
+msgctxt "s-a852828011ec-0028"
+msgid "⟦SEP_0001⟧ Entry ⟦SEP_0002⟧ Generator ⟦SEP_0003⟧ Pinned input ⟦SEP_0004⟧ Hours ⟦SEP_0005⟧"
+msgstr "⟦SEP_0001⟧ Entrada ⟦SEP_0002⟧ Generador ⟦SEP_0003⟧ Entrada de datos fijada ⟦SEP_0004⟧ Horas ⟦SEP_0005⟧"
+
+#: lessons/study-guides/concepts/portability-abstraction-and-cost.md:60
+msgctxt "s-044d9fa12292-0029"
+msgid "⟦SEP_0006⟧ ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧ ⟦SEP_0007⟧ Park-Miller (48271), hours ⟦CODE_0004⟧ ⟦SEP_0008⟧ ⟦CODE_0005⟧ ⟦SEP_0009⟧ 15, 19, 12 ⟦SEP_0010⟧"
+msgstr "⟦SEP_0006⟧ ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧ ⟦SEP_0007⟧ Park-Miller (48271), horas ⟦CODE_0004⟧ ⟦SEP_0008⟧ ⟦CODE_0005⟧ ⟦SEP_0009⟧ 15, 19, 12 ⟦SEP_0010⟧"
+
+#: lessons/study-guides/concepts/portability-abstraction-and-cost.md:61
+msgctxt "s-495e0d1e091e-0030"
+msgid "⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ Park-Miller (48271), same extraction ⟦SEP_0005⟧ ⟦CODE_0002⟧ ⟦SEP_0006⟧ 15, 19, 12 ⟦SEP_0007⟧"
+msgstr "⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ Park-Miller (48271), misma extracción ⟦SEP_0005⟧ ⟦CODE_0002⟧ ⟦SEP_0006⟧ 15, 19, 12 ⟦SEP_0007⟧"
+
+#: lessons/study-guides/concepts/portability-abstraction-and-cost.md:62
+msgctxt "s-fafb8a31a1f2-0031"
+msgid "⟦SEP_0004⟧ ⟦CODE_0001⟧ ⟦SEP_0005⟧ Park-Miller (16807), Schrage's trick, hours ⟦CODE_0002⟧ ⟦SEP_0006⟧ ⟦CODE_0003⟧ ⟦SEP_0007⟧ 15, 19, 12 ⟦SEP_0008⟧"
+msgstr "⟦SEP_0004⟧ ⟦CODE_0001⟧ ⟦SEP_0005⟧ Park-Miller (16807), truco de Schrage, horas ⟦CODE_0002⟧ ⟦SEP_0006⟧ ⟦CODE_0003⟧ ⟦SEP_0007⟧ 15, 19, 12 ⟦SEP_0008⟧"
+
+#: lessons/study-guides/concepts/portability-abstraction-and-cost.md:63
+msgctxt "s-64b23c20253c-0032"
+msgid "⟦SEP_0004⟧ ⟦CODE_0001⟧, ⟦CODE_0002⟧ ⟦SEP_0005⟧ none: the launcher supplies five digits ⟦SEP_0006⟧ ⟦CODE_0003⟧ ⟦SEP_0007⟧ 15, 19, 12, 10, 10 ⟦SEP_0008⟧"
+msgstr "⟦SEP_0004⟧ ⟦CODE_0001⟧, ⟦CODE_0002⟧ ⟦SEP_0005⟧ ninguno: el lanzador aporta cinco dígitos ⟦SEP_0006⟧ ⟦CODE_0003⟧ ⟦SEP_0007⟧ 15, 19, 12, 10, 10 ⟦SEP_0008⟧"
+
+#: lessons/study-guides/concepts/portability-abstraction-and-cost.md:64
+msgctxt "s-a49fd914d7f0-0033"
+msgid "⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ the builder writes the hours ⟦SEP_0005⟧ ⟦CODE_0002⟧ ⟦SEP_0006⟧ 15, 19, 12 ⟦SEP_0007⟧"
+msgstr "⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ el constructor escribe las horas ⟦SEP_0005⟧ ⟦CODE_0002⟧ ⟦SEP_0006⟧ 15, 19, 12 ⟦SEP_0007⟧"
+
+#: lessons/study-guides/concepts/portability-abstraction-and-cost.md:65
+msgctxt "s-ac1067dd5de2-0034"
+msgid "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ a 16-bit shift register ⟦SEP_0004⟧ the README's seed gives 15, 14, 14 ⟦SEP_0005⟧ not 15, 19, 12 ⟦SEP_0006⟧"
+msgstr "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ un registro de desplazamiento de 16 bits ⟦SEP_0004⟧ la semilla del README da 15, 14, 14 ⟦SEP_0005⟧ no 15, 19, 12 ⟦SEP_0006⟧"
+
+#: lessons/study-guides/concepts/portability-abstraction-and-cost.md:67
+msgctxt "s-0e835a043bf4-0035"
+msgid "Every row was run in the sandbox or in a scratch folder. Two of them name \"Park-Miller\" and are *not* the same: the multiplier differs (48271 against 16807) and so does the way a digit is taken from the state. The m4 seed that gives 15, 19, 12 is 230 and the JavaScript seed is 1105. \"The same generator\" is a claim about a *name*. The only portable promise is the one you test: the same seed gives the same cards *in the same program*."
+msgstr "Cada fila se ejecutó en el entorno aislado o en una carpeta de prueba. Dos de ellas se llaman \"Park-Miller\" y *no* son iguales: el multiplicador difiere (48271 frente a 16807) y también la forma de tomar un dígito del estado. La semilla de m4 que da 15, 19, 12 es 230 y la de JavaScript es 1105. \"El mismo generador\" es una afirmación sobre un *nombre*. La única promesa portable es la que pruebas: la misma semilla da las mismas tarjetas *en el mismo programa*."
+
+#: lessons/study-guides/concepts/portability-abstraction-and-cost.md:69
+msgctxt "s-85e6db26a1e7-0036"
+msgid "**Where portability fails silently.** Three facts, from a verified exercise and from the entries' own READMEs:"
+msgstr "**Dónde falla en silencio la portabilidad.** Tres hechos, tomados de un ejercicio verificado y de los README de las propias entradas:"
+
+#: lessons/study-guides/concepts/portability-abstraction-and-cost.md:71
+msgctxt "s-62a614b20694-0037"
+msgid "Run ⟦CODE_0001⟧ under **mawk** on a finite digit file: ⟦CODE_0002⟧, no error, exit 0 (B13). mawk has no ⟦CODE_0003⟧, so every record is skipped."
+msgstr "Ejecuta ⟦CODE_0001⟧ con **mawk** sobre un archivo finito de dígitos: ⟦CODE_0002⟧, sin error, estado de salida 0 (B13). mawk no tiene ⟦CODE_0003⟧, así que omite cada registro."
+
+#: lessons/study-guides/concepts/portability-abstraction-and-cost.md:72
+msgctxt "s-3423627c6b70-0038"
+msgid "Run the ed script under **busybox ed**: it cannot run it, and the entry's check says so. That is the *loud* kind."
+msgstr "Ejecuta el script de ed con **busybox ed**: no puede ejecutarlo, y la comprobación de la entrada lo dice. Ese es el fallo *ruidoso*."
+
+#: lessons/study-guides/concepts/portability-abstraction-and-cost.md:73
+msgctxt "s-7f8f4f17bf6e-0039"
+msgid "Run ⟦CODE_0001⟧ on **BSD or macOS tar**: there is no ⟦CODE_0002⟧, so it fails. Also loud."
+msgstr "Ejecuta ⟦CODE_0001⟧ con **tar de BSD o macOS**: no existe ⟦CODE_0002⟧, así que falla. También es ruidoso."
+
+#: lessons/study-guides/concepts/portability-abstraction-and-cost.md:75
+msgctxt "s-c2984a13d175-0040"
+msgid "**Exactly 40.** The boundary is a portability test of the *specification*. An entry that ignored it (four names, as the regex and ⟦CODE_0001⟧-header entries did until they were fixed) agreed with the other entries 9,999 runs in 10,000. A claim of \"the same challenge\" held for most runs and failed at the edge. A test suite that samples random runs almost never finds it. Forcing the edge does: each fixed entry's ⟦CODE_0002⟧ now builds an all-10-hour variant. ⟦CODE_0003⟧ still has the four-card limit."
+msgstr "**Exactamente 40.** El límite es una prueba de portabilidad de la *especificación*. Una entrada que lo ignoraba coincidía con las demás en 9 999 de 10 000 ejecuciones. Eran cuatro nombres: las entradas de regex y con encabezado ⟦CODE_0001⟧ hasta que se corrigieron. Una afirmación de \"el mismo reto\" valía para la mayoría de las ejecuciones y fallaba en el borde. Un conjunto de pruebas que muestrea ejecuciones aleatorias casi nunca lo encuentra. Forzar el borde sí: el ⟦CODE_0002⟧ de cada entrada corregida ahora construye una variante con todas las tarjetas de 10 horas. ⟦CODE_0003⟧ sigue teniendo el límite de cuatro tarjetas."
+
+#: lessons/study-guides/concepts/portability-abstraction-and-cost.md:77
+msgctxt "s-405c1b857089-0041"
+msgid "Compare the ordinary and weird designs"
+msgstr "Compara los diseños ordinarios y los raros"
+
+#: lessons/study-guides/concepts/portability-abstraction-and-cost.md:79
+msgctxt "s-b8069d6a6303-0042"
+msgid "⟦SEP_0001⟧ Dimension ⟦SEP_0002⟧ Idiomatic entries ⟦SEP_0003⟧ Weird entries ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ Dimensión ⟦SEP_0002⟧ Entradas idiomáticas ⟦SEP_0003⟧ Entradas raras ⟦SEP_0004⟧"
+
+#: lessons/study-guides/concepts/portability-abstraction-and-cost.md:81
+msgctxt "s-c7e15933f739-0043"
+msgid "⟦SEP_0001⟧ **Representation** ⟦SEP_0002⟧ Standard language features ⟦SEP_0003⟧ A feature of one implementation, or a use nobody promised ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ **Representación** ⟦SEP_0002⟧ Funciones estándar del lenguaje ⟦SEP_0003⟧ Una función de una sola implementación, o un uso que nadie prometió ⟦SEP_0004⟧"
+
+#: lessons/study-guides/concepts/portability-abstraction-and-cost.md:82
+msgctxt "s-9eccccaa092e-0044"
+msgid "⟦SEP_0001⟧ **Observability** ⟦SEP_0002⟧ The standard's diagnostics ⟦SEP_0003⟧ The README's own measurements: \"tested on GNU tar 1.34 and 1.35\" ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ **Observabilidad** ⟦SEP_0002⟧ Los diagnósticos del estándar ⟦SEP_0003⟧ Las mediciones del propio README: \"probado en GNU tar 1.34 y 1.35\" ⟦SEP_0004⟧"
+
+#: lessons/study-guides/concepts/portability-abstraction-and-cost.md:83
+msgctxt "s-e9aa36dca61a-0045"
+msgid "⟦SEP_0002⟧ **Tests** ⟦SEP_0003⟧ Check the result ⟦SEP_0004⟧ Check the result *and* the constraint (banned words, one ⟦CODE_0001⟧ count, a mutation that must change behavior) ⟦SEP_0005⟧"
+msgstr "⟦SEP_0002⟧ **Pruebas** ⟦SEP_0003⟧ Comprueban el resultado ⟦SEP_0004⟧ Comprueban el resultado *y* la restricción (palabras prohibidas, una sola cuenta de ⟦CODE_0001⟧, una mutación que debe cambiar el comportamiento) ⟦SEP_0005⟧"
+
+#: lessons/study-guides/concepts/portability-abstraction-and-cost.md:84
+msgctxt "s-4afe6cb4b63c-0046"
+msgid "⟦SEP_0002⟧ **⟦DNT_0001⟧** ⟦SEP_0003⟧ Standard ⟦SEP_0004⟧ The question \"does this fail loud or silent?\" ⟦SEP_0005⟧"
+msgstr "⟦SEP_0002⟧ **⟦DNT_0001⟧** ⟦SEP_0003⟧ Estándar ⟦SEP_0004⟧ La pregunta \"¿esto falla con ruido o en silencio?\" ⟦SEP_0005⟧"
+
+#: lessons/study-guides/concepts/portability-abstraction-and-cost.md:85
+msgctxt "s-eb01100d48a3-0047"
+msgid "⟦SEP_0001⟧ **Portability** ⟦SEP_0002⟧ Broad ⟦SEP_0003⟧ Narrow, and the README says how narrow ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ **Portabilidad** ⟦SEP_0002⟧ Amplia ⟦SEP_0003⟧ Estrecha; el README dice cuánto ⟦SEP_0004⟧"
+
+#: lessons/study-guides/concepts/portability-abstraction-and-cost.md:86
+msgctxt "s-00da40baf564-0048"
+msgid "⟦SEP_0001⟧ **Cost** ⟦SEP_0002⟧ Normal ⟦SEP_0003⟧ A cliff may be the point ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ **Costo** ⟦SEP_0002⟧ Normal ⟦SEP_0003⟧ Un precipicio puede ser el propósito ⟦SEP_0004⟧"
+
+#: lessons/study-guides/concepts/portability-abstraction-and-cost.md:88
+msgctxt "s-5f09ec557f43-0049"
+msgid "The ⟦CODE_0001⟧ key of each README records the weakest dependency of the mechanism. Source, manuals and tests support the individual claims."
+msgstr "La clave ⟦CODE_0001⟧ del README de cada entrada registra la dependencia más débil del mecanismo. El código fuente, los manuales y las pruebas respaldan las afirmaciones individuales."
+
+#: lessons/study-guides/concepts/portability-abstraction-and-cost.md:90
+msgctxt "s-cb95e5fb214d-0050"
+msgid "⟦SEP_0001⟧ Assurance tally ⟦SEP_0002⟧ Entries ⟦SEP_0003⟧"
+msgstr "⟦SEP_0001⟧ Recuento de garantías ⟦SEP_0002⟧ Entradas ⟦SEP_0003⟧"
+
+#: lessons/study-guides/concepts/portability-abstraction-and-cost.md:92
+msgctxt "s-3ffea705f5d3-0051"
+msgid "⟦SEP_0002⟧ **17** entries are guaranteed ⟦SEP_0003⟧ The ports, the LINQ entries, plain COBOL, Haskell, Forth, Lisp and awk, the JavaScript entries and ⟦CODE_0001⟧. ⟦SEP_0004⟧"
+msgstr "⟦SEP_0002⟧ **17** entradas tienen el grado garantizado ⟦SEP_0003⟧ Las versiones portadas, las entradas de LINQ, COBOL simple, Haskell, Forth, Lisp y awk, las entradas de JavaScript y ⟦CODE_0001⟧. ⟦SEP_0004⟧"
+
+#: lessons/study-guides/concepts/portability-abstraction-and-cost.md:93
+msgctxt "s-478d6c838ba3-0052"
+msgid "⟦SEP_0012⟧ **16** are implementation-permitted ⟦SEP_0013⟧ APL, ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧, ⟦CODE_0006⟧, ⟦CODE_0007⟧, ⟦CODE_0008⟧, ⟦CODE_0009⟧, both tar entries, Tcl, ⟦CODE_0010⟧ and ⟦CODE_0011⟧. ⟦SEP_0014⟧"
+msgstr "⟦SEP_0012⟧ **16** tienen el grado permitido por la implementación ⟦SEP_0013⟧ APL, ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧, ⟦CODE_0006⟧, ⟦CODE_0007⟧, ⟦CODE_0008⟧, ⟦CODE_0009⟧, las dos entradas de tar, Tcl, ⟦CODE_0010⟧ y ⟦CODE_0011⟧. ⟦SEP_0014⟧"
+
+#: lessons/study-guides/concepts/portability-abstraction-and-cost.md:94
+msgctxt "s-7eb7b5823cb0-0053"
+msgid "⟦SEP_0008⟧ **7** are accidentally exploited ⟦SEP_0009⟧ ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧, ⟦CODE_0006⟧ and ⟦CODE_0007⟧. ⟦SEP_0010⟧"
+msgstr "⟦SEP_0008⟧ **7** tienen el grado aprovechado por accidente ⟦SEP_0009⟧ ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧, ⟦CODE_0006⟧ y ⟦CODE_0007⟧. ⟦SEP_0010⟧"
+
+#: lessons/study-guides/concepts/portability-abstraction-and-cost.md:96
+msgctxt "s-d9caa4549191-0054"
+msgid "An earlier version of ⟦CODE_0001⟧ depended on SQLite's evaluation order. The current entry draws the hours into a table."
+msgstr "Una versión anterior de ⟦CODE_0001⟧ dependía del orden de evaluación de SQLite. La entrada actual sortea las horas en una tabla."
+
+#: lessons/study-guides/concepts/portability-abstraction-and-cost.md:98
+msgctxt "s-716cae37520b-0055"
+msgid "What the exercises demonstrate"
+msgstr "Qué demuestran los ejercicios"
+
+#: lessons/study-guides/concepts/portability-abstraction-and-cost.md:100
+msgctxt "s-d6a3ec9d5ed0-0056"
+msgid "⟦SEP_0001⟧ Exercise ⟦SEP_0002⟧ Predict first ⟦SEP_0003⟧ What the evidence shows ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ Ejercicio ⟦SEP_0002⟧ Predice primero ⟦SEP_0003⟧ Qué muestra la evidencia ⟦SEP_0004⟧"
+
+#: lessons/study-guides/concepts/portability-abstraction-and-cost.md:102
+msgctxt "s-9b9d0adffefa-0057"
+msgid "⟦SEP_0003⟧ [B13. AWK: the missing RT](⟦DEST_0001⟧) ⟦SEP_0004⟧ Run under mawk on a finite file. ⟦SEP_0005⟧ Zero cards, exit 0: a silent failure of \"portable-looking\" code. ⟦CODE_0002⟧ is implementation-permitted. ⟦SEP_0006⟧"
+msgstr "⟦SEP_0003⟧ [B13. AWK: el RT que falta](⟦DEST_0001⟧) ⟦SEP_0004⟧ Ejecuta con mawk sobre un archivo finito. ⟦SEP_0005⟧ Cero tarjetas, estado de salida 0: un fallo silencioso de código que \"parece portable\". ⟦CODE_0002⟧ es permitido por la implementación. ⟦SEP_0006⟧"
+
+#: lessons/study-guides/concepts/portability-abstraction-and-cost.md:103
+msgctxt "s-c90578e45a9a-0058"
+msgid "⟦SEP_0005⟧ [B4. Make: remove the no-op, and override the clock](⟦DEST_0001⟧), step 2 ⟦SEP_0006⟧ ⟦CODE_0002⟧: which ISO week? ⟦SEP_0007⟧ ⟦CODE_0003⟧, which agrees with ⟦CODE_0004⟧. A clock that can be fixed can be tested. ⟦SEP_0008⟧"
+msgstr "⟦SEP_0005⟧ [B4. Make: quita la operación nula y anula el reloj](⟦DEST_0001⟧), paso 2 ⟦SEP_0006⟧ ⟦CODE_0002⟧: ¿qué semana ISO? ⟦SEP_0007⟧ ⟦CODE_0003⟧, que coincide con ⟦CODE_0004⟧. Un reloj que se puede fijar se puede probar. ⟦SEP_0008⟧"
+
+#: lessons/study-guides/concepts/portability-abstraction-and-cost.md:104
+msgctxt "s-71cfa0a783a3-0059"
+msgid "⟦SEP_0006⟧ [B20. JavaScript](⟦DEST_0001⟧), step 4 ⟦SEP_0007⟧ ⟦CODE_0002⟧ and ⟦CODE_0003⟧: which week? ⟦SEP_0008⟧ ⟦CODE_0004⟧ and ⟦CODE_0005⟧. The ISO year can differ from the calendar year near New Year. ⟦SEP_0009⟧"
+msgstr "⟦SEP_0006⟧ [B20. JavaScript](⟦DEST_0001⟧), paso 4 ⟦SEP_0007⟧ ⟦CODE_0002⟧ y ⟦CODE_0003⟧: ¿qué semana? ⟦SEP_0008⟧ ⟦CODE_0004⟧ y ⟦CODE_0005⟧. El año ISO puede diferir del año del calendario cerca de Año Nuevo. ⟦SEP_0009⟧"
+
+#: lessons/study-guides/concepts/portability-abstraction-and-cost.md:105
+msgctxt "s-186081df1762-0060"
+msgid "⟦SEP_0003⟧ [B15. GNU find: move the stop rule, read the profile](⟦DEST_0001⟧) ⟦SEP_0004⟧ ⟦CODE_0002⟧: what does find print? ⟦SEP_0005⟧ A real success rate for each test, and find's own guess is far off. An optimizer's estimate is not the behavior. ⟦SEP_0006⟧"
+msgstr "⟦SEP_0003⟧ [B15. GNU find: mueve la regla de parada, lee el perfil](⟦DEST_0001⟧) ⟦SEP_0004⟧ ⟦CODE_0002⟧: ¿qué imprime find? ⟦SEP_0005⟧ Una tasa de éxito real para cada prueba; la estimación del propio find está muy lejos. La estimación de un optimizador no es el comportamiento. ⟦SEP_0006⟧"
+
+#: lessons/study-guides/concepts/portability-abstraction-and-cost.md:106
+msgctxt "s-18c57f9f8cd1-0061"
+msgid "⟦SEP_0004⟧ [B17. tar, weirder: predict the clock](⟦DEST_0001⟧) ⟦SEP_0005⟧ Predict the ticks for ⟦CODE_0002⟧. ⟦SEP_0006⟧ ⟦CODE_0003⟧. A rule measured on GNU tar, then predicted by a simulation. ⟦SEP_0007⟧"
+msgstr "⟦SEP_0004⟧ [B17. tar, más raro: predice el reloj](⟦DEST_0001⟧) ⟦SEP_0005⟧ Predice los tics de ⟦CODE_0002⟧. ⟦SEP_0006⟧ ⟦CODE_0003⟧. Una regla medida en GNU tar y luego predicha por una simulación. ⟦SEP_0007⟧"
+
+#: lessons/study-guides/concepts/portability-abstraction-and-cost.md:107
+msgctxt "s-7fa8cee6f989-0062"
+msgid "⟦SEP_0002⟧ [F. Prove a README claim](⟦DEST_0001⟧) ⟦SEP_0003⟧ Can you make the claim fail? ⟦SEP_0004⟧ A negative control separates a claim from an observation. ⟦SEP_0005⟧"
+msgstr "⟦SEP_0002⟧ [F. Demuestra una afirmación del README](⟦DEST_0001⟧) ⟦SEP_0003⟧ ¿Puedes hacer que la afirmación falle? ⟦SEP_0004⟧ Un control negativo separa una afirmación de una observación. ⟦SEP_0005⟧"
+
+#: lessons/study-guides/concepts/portability-abstraction-and-cost.md:109
+msgctxt "s-4fe97c469cdb-0063"
+msgid "Failure modes, costs and boundaries"
+msgstr "Modos de fallo, costos y límites"
+
+#: lessons/study-guides/concepts/portability-abstraction-and-cost.md:111
+msgctxt "s-621aac5615e3-0064"
+msgid "⟦SEP_0001⟧ Behavior ⟦SEP_0002⟧ Label ⟦SEP_0003⟧ Why ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ Comportamiento ⟦SEP_0002⟧ Etiqueta ⟦SEP_0003⟧ Por qué ⟦SEP_0004⟧"
+
+#: lessons/study-guides/concepts/portability-abstraction-and-cost.md:113
+msgctxt "s-35c3d138ddc6-0065"
+msgid "⟦SEP_0002⟧ ⟦CODE_0001⟧ wraps on overflow (Haskell's generator) ⟦SEP_0003⟧ **guaranteed** ⟦SEP_0004⟧ Documented. ⟦SEP_0005⟧"
+msgstr "⟦SEP_0002⟧ ⟦CODE_0001⟧ da la vuelta al desbordarse (generador de Haskell) ⟦SEP_0003⟧ **garantizado** ⟦SEP_0004⟧ Documentado. ⟦SEP_0005⟧"
+
+#: lessons/study-guides/concepts/portability-abstraction-and-cost.md:114
+msgctxt "s-a0511bbb04a3-0066"
+msgid "⟦SEP_0001⟧ COBOL's size error leaves the field unchanged ⟦SEP_0002⟧ **guaranteed** ⟦SEP_0003⟧ Specified. ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ El error de tamaño de COBOL deja el campo sin cambios ⟦SEP_0002⟧ **garantizado** ⟦SEP_0003⟧ Especificado. ⟦SEP_0004⟧"
+
+#: lessons/study-guides/concepts/portability-abstraction-and-cost.md:115
+msgctxt "s-cc8564161c3a-0067"
+msgid "⟦SEP_0001⟧ COBOL's unhandled overflow drops the leading digit ⟦SEP_0002⟧ **implementation-permitted** ⟦SEP_0003⟧ The tested build; the standard promises no usable result. ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ El desbordamiento sin tratar de COBOL descarta el dígito inicial ⟦SEP_0002⟧ **permitido por la implementación** ⟦SEP_0003⟧ La compilación probada; el estándar no promete ningún resultado utilizable. ⟦SEP_0004⟧"
+
+#: lessons/study-guides/concepts/portability-abstraction-and-cost.md:116
+msgctxt "s-1550744d7141-0068"
+msgid "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ **implementation-permitted** ⟦SEP_0004⟧ Deleted from the standard in 2002; GnuCOBOL still runs it. ⟦SEP_0005⟧"
+msgstr "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ **permitido por la implementación** ⟦SEP_0004⟧ Eliminado del estándar en 2002; GnuCOBOL todavía lo ejecuta. ⟦SEP_0005⟧"
+
+#: lessons/study-guides/concepts/portability-abstraction-and-cost.md:117
+msgctxt "s-ed59079cd235-0069"
+msgid "⟦SEP_0004⟧ m4's ⟦CODE_0001⟧ is 32-bit ⟦SEP_0005⟧ **implementation-permitted** ⟦SEP_0006⟧ GNU m4 1.4.x. ⟦CODE_0002⟧ gives ⟦CODE_0003⟧ silently. ⟦SEP_0007⟧"
+msgstr "⟦SEP_0004⟧ El ⟦CODE_0001⟧ de m4 es de 32 bits ⟦SEP_0005⟧ **permitido por la implementación** ⟦SEP_0006⟧ GNU m4 1.4.x. ⟦CODE_0002⟧ da ⟦CODE_0003⟧ en silencio. ⟦SEP_0007⟧"
+
+#: lessons/study-guides/concepts/portability-abstraction-and-cost.md:118
+msgctxt "s-4239a38f0c97-0070"
+msgid "⟦SEP_0001⟧ GNU tar's checkpoint callbacks and record counting ⟦SEP_0002⟧ **implementation-permitted** ⟦SEP_0003⟧ Documented GNU options. The counts were measured on 1.34 and 1.35. ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ Las funciones de devolución de llamada de los puntos de control de GNU tar y su conteo de registros ⟦SEP_0002⟧ **permitido por la implementación** ⟦SEP_0003⟧ Opciones documentadas de GNU. Los conteos se midieron en 1.34 y 1.35. ⟦SEP_0004⟧"
+
+#: lessons/study-guides/concepts/portability-abstraction-and-cost.md:119
+msgctxt "s-2f1bc143dbd8-0071"
+msgid "⟦SEP_0001⟧ Listing a tar archive gives a different tick count from creating it ⟦SEP_0002⟧ **accidentally exploited** knowledge ⟦SEP_0003⟧ Tar skips data it need not read. Nobody promises it. ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ Listar un archivo tar da una cuenta de tics distinta de la de crearlo ⟦SEP_0002⟧ conocimiento **aprovechado por accidente** ⟦SEP_0003⟧ Tar omite los datos que no necesita leer. Nadie lo promete. ⟦SEP_0004⟧"
+
+#: lessons/study-guides/concepts/portability-abstraction-and-cost.md:120
+msgctxt "s-3696dbbcdec7-0072"
+msgid "⟦SEP_0004⟧ POSIX ⟦CODE_0001⟧ substitutes ⟦CODE_0002⟧ as a whole argument ⟦SEP_0005⟧ **guaranteed** within POSIX syntax ⟦SEP_0006⟧ POSIX leaves substitution inside a longer argument such as ⟦CODE_0003⟧ unspecified; GNU find 4.9, bfs 3.1.2 and busybox 1.36.1 do it in the tested entry. ⟦SEP_0007⟧"
+msgstr "⟦SEP_0004⟧ ⟦CODE_0001⟧ de POSIX sustituye ⟦CODE_0002⟧ como argumento completo ⟦SEP_0005⟧ **garantizado** dentro de la sintaxis POSIX ⟦SEP_0006⟧ POSIX deja sin especificar la sustitución dentro de un argumento más largo, como ⟦CODE_0003⟧; GNU find 4.9, bfs 3.1.2 y busybox 1.36.1 la hacen en la entrada probada. ⟦SEP_0007⟧"
+
+#: lessons/study-guides/concepts/portability-abstraction-and-cost.md:121
+msgctxt "s-ae09976e8fec-0073"
+msgid "⟦SEP_0002⟧ ⟦CODE_0001⟧ visits a directory created while traversal is in progress ⟦SEP_0003⟧ **accidentally exploited** ⟦SEP_0004⟧ Observed on those same three implementations. POSIX gives no traversal promise for a change made during the walk. This is the weaker dependency and determines the README label. ⟦SEP_0005⟧"
+msgstr "⟦SEP_0002⟧ ⟦CODE_0001⟧ visita un directorio creado mientras el recorrido está en curso ⟦SEP_0003⟧ **aprovechado por accidente** ⟦SEP_0004⟧ Observado en esas mismas tres implementaciones. POSIX no promete nada sobre el recorrido cuando algo cambia durante él. Esta es la dependencia más débil y determina la etiqueta del README. ⟦SEP_0005⟧"
+
+#: lessons/study-guides/concepts/portability-abstraction-and-cost.md:122
+msgctxt "s-70f5629d37bd-0074"
+msgid "⟦SEP_0001⟧ .NET balancing groups remove a capture from another group ⟦SEP_0002⟧ **guaranteed** within the documented .NET API ⟦SEP_0003⟧ The .NET engine documents it. The guarantee applies to that engine and makes no portability promise for other regex implementations. ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ Los grupos de equilibrio de .NET quitan una captura de otro grupo ⟦SEP_0002⟧ **garantizado** dentro de la API documentada de .NET ⟦SEP_0003⟧ El motor de .NET lo documenta. La garantía vale para ese motor y no promete portabilidad a otras implementaciones de expresiones regulares. ⟦SEP_0004⟧"
+
+#: lessons/study-guides/concepts/portability-abstraction-and-cost.md:123
+msgctxt "s-44ce4fa9edaa-0075"
+msgid "⟦SEP_0003⟧ The ⟦CODE_0001⟧ callout script feature ⟦SEP_0004⟧ **implementation-permitted** ⟦SEP_0005⟧ A build option. Ubuntu's own ⟦CODE_0002⟧ lacks it. ⟦SEP_0006⟧"
+msgstr "⟦SEP_0003⟧ La función de script de *callout* ⟦CODE_0001⟧ ⟦SEP_0004⟧ **permitido por la implementación** ⟦SEP_0005⟧ Una opción de compilación. El ⟦CODE_0002⟧ propio de Ubuntu no la tiene. ⟦SEP_0006⟧"
+
+#: lessons/study-guides/concepts/portability-abstraction-and-cost.md:124
+msgctxt "s-d98999bc2669-0076"
+msgid "⟦SEP_0001⟧ Make's restart used as a loop ⟦SEP_0002⟧ **accidentally exploited** ⟦SEP_0003⟧ Hyrum's law: a feature used for what it was not for. ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ El reinicio de Make usado como bucle ⟦SEP_0002⟧ **aprovechado por accidente** ⟦SEP_0003⟧ Ley de Hyrum: una función usada para algo para lo que no fue hecha. ⟦SEP_0004⟧"
+
+#: lessons/study-guides/concepts/portability-abstraction-and-cost.md:125
+msgctxt "s-be081fd76b8c-0077"
+msgid "⟦SEP_0001⟧ A sed regex used as a clock ⟦SEP_0002⟧ **accidentally exploited** ⟦SEP_0003⟧ A performance cliff, and it varies by CPU. ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ Una expresión regular de sed usada como reloj ⟦SEP_0002⟧ **aprovechado por accidente** ⟦SEP_0003⟧ Un precipicio de rendimiento; varía según la CPU. ⟦SEP_0004⟧"
+
+#: lessons/study-guides/concepts/portability-abstraction-and-cost.md:127
+msgctxt "s-87d9e31bff8d-0078"
+msgid "**Costs to state.**"
+msgstr "**Costos que declarar.**"
+
+#: lessons/study-guides/concepts/portability-abstraction-and-cost.md:129
+msgctxt "s-e0da9c7efe1a-0079"
+msgid "**Performance cliffs.** A regex that is fast on every test can take a year on one bad input. The sed entry uses a catastrophic pattern as a 50 ms clock. CMake's regex has no counted repetition, so \"at most 40\" written as forty optional groups would backtrack exponentially on failure. LINQ re-enumeration multiplies effects. m4 copies its growing SQL script at each card. See [Regular-expression denial of service](⟦DEST_0001⟧) and [Performance cliffs and time complexity](⟦DEST_0002⟧)."
+msgstr "**Precipicios de rendimiento.** Una expresión regular rápida en todas las pruebas puede tardar un año con una sola entrada de datos mala. La entrada de sed usa un patrón catastrófico como reloj de 50 ms. La expresión regular de CMake no tiene repetición contada, así que escribir \"como máximo 40\" como cuarenta grupos opcionales retrocedería de forma exponencial al fallar. Volver a enumerar en LINQ multiplica los efectos. m4 copia su script SQL creciente en cada tarjeta. Consulta [Denegación de servicio mediante expresiones regulares](⟦DEST_0001⟧) y [Precipicios de rendimiento y complejidad temporal](⟦DEST_0002⟧)."
+
+#: lessons/study-guides/concepts/portability-abstraction-and-cost.md:130
+msgctxt "s-1e793395070c-0080"
+msgid "**Reproducibility has limits.** A fixed clock and a fixed seed make a run repeatable. They prove nothing about a different host. Make's ⟦CODE_0001⟧, the JavaScript ⟦CODE_0002⟧ and ⟦CODE_0003⟧ and ⟦CODE_0004⟧ for the book's build each fix one input. The book's PDF and EPUB are byte-reproducible for the same pandoc and WeasyPrint versions."
+msgstr "**La reproducibilidad tiene límites.** Un reloj fijo y una semilla fija hacen repetible una ejecución. No prueban nada sobre otro anfitrión. ⟦CODE_0001⟧ de Make, ⟦CODE_0002⟧ de JavaScript y ⟦CODE_0003⟧ y ⟦CODE_0004⟧ de la compilación del libro fijan cada uno una entrada. El PDF y el EPUB del libro se reproducen byte a byte con las mismas versiones de pandoc y WeasyPrint."
+
+#: lessons/study-guides/concepts/portability-abstraction-and-cost.md:131
+msgctxt "s-ff13562eafa1-0081"
+msgid "**Hyrum's law.** If the README does not say which behavior is promised, users will depend on the observed one. The READMEs name what they measured, and the labels are the discipline."
+msgstr "**Ley de Hyrum.** Si el README no dice qué comportamiento se promete, los usuarios dependerán del observado. Los README nombran lo que midieron; las etiquetas son la disciplina."
+
+#: lessons/study-guides/concepts/portability-abstraction-and-cost.md:132
+msgctxt "s-420128a3a7b7-0082"
+msgid "**Where this is legitimate.** Using an implementation's extension is ordinary engineering if you write down that you did. The risk is not the extension, it is the silence."
+msgstr "**Dónde es legítimo.** Usar la extensión de una implementación es ingeniería corriente si dejas por escrito que lo hiciste. El riesgo no es la extensión, es el silencio."
+
+#: lessons/study-guides/concepts/portability-abstraction-and-cost.md:134
+msgctxt "s-061eb6da82a8-0083"
+msgid "Connections across the repository"
+msgstr "Conexiones a lo largo del repositorio"
+
+#: lessons/study-guides/concepts/portability-abstraction-and-cost.md:136
+msgctxt "s-1be6c71323ff-0084"
+msgid "**Language guides.** [COBOL](⟦DEST_0001⟧), [Make and CMake](⟦DEST_0002⟧), [Regex engines and sed](⟦DEST_0003⟧), [m4](⟦DEST_0004⟧), [tar](⟦DEST_0005⟧) and [ed and Ex](⟦DEST_0006⟧) give the evidence behind each label."
+msgstr "**Guías de lenguaje.** [COBOL](⟦DEST_0001⟧), [Make y CMake](⟦DEST_0002⟧), [Motores de regex y sed](⟦DEST_0003⟧), [m4](⟦DEST_0004⟧), [tar](⟦DEST_0005⟧) y [ed y Ex](⟦DEST_0006⟧) dan la evidencia detrás de cada etiqueta."
+
+#: lessons/study-guides/concepts/portability-abstraction-and-cost.md:137
+msgctxt "s-7f624b10c154-0085"
+msgid "**Reading safely.** [Reading adversarial programs](⟦DEST_0001⟧): a missing feature that fails silently is also a security question."
+msgstr "**Lectura segura.** [Lectura de programas adversariales](⟦DEST_0001⟧): una función ausente que falla en silencio también es una cuestión de seguridad."
+
+#: lessons/study-guides/concepts/portability-abstraction-and-cost.md:138
+msgctxt "s-9f9fff675168-0086"
+msgid "**Effects.** [Effects, errors and commitment](⟦DEST_0001⟧) asks which failure semantics are promised."
+msgstr "**Efectos.** [Efectos, errores y confirmación](⟦DEST_0001⟧) pregunta qué semántica de fallo se promete."
+
+#: lessons/study-guides/concepts/portability-abstraction-and-cost.md:139
+msgctxt "s-25693566f8a1-0087"
+msgid "**The comparison.** [Comparative machine design](⟦DEST_0001⟧) lists every entry with its label."
+msgstr "**La comparación.** [Diseño comparado de máquinas](⟦DEST_0001⟧) enumera cada entrada con su etiqueta."
+
+#: lessons/study-guides/concepts/portability-abstraction-and-cost.md:140
+msgctxt "s-26f7a9ff97c4-0088"
+msgid "**In the book.** [Leaky abstractions](⟦DEST_0001⟧), [Undefined, unspecified and implementation-defined behavior](⟦DEST_0002⟧), [Portability](⟦DEST_0003⟧), [Hyrum's law](⟦DEST_0004⟧) and [Reproducibility and deterministic builds](⟦DEST_0005⟧)."
+msgstr "**En el libro.** [Abstracciones con fugas](⟦DEST_0001⟧), [Comportamiento indefinido, no especificado y definido por la implementación](⟦DEST_0002⟧), [Portabilidad](⟦DEST_0003⟧), [Ley de Hyrum](⟦DEST_0004⟧) y [Reproducibilidad y compilaciones deterministas](⟦DEST_0005⟧)."
+
+#: lessons/study-guides/concepts/portability-abstraction-and-cost.md:142
+msgctxt "s-50944288ce61-0089"
+msgid "Self-check"
+msgstr "Autoevaluación"
+
+#: lessons/study-guides/concepts/portability-abstraction-and-cost.md:144
+msgctxt "s-274e192b952c-0090"
+msgid "Answer each question in your own words before you read the italic text. Say what evidence would support each answer."
+msgstr "Responde cada pregunta con tus propias palabras antes de leer el texto en cursiva. Di qué evidencia respaldaría cada respuesta."
+
+#: lessons/study-guides/concepts/portability-abstraction-and-cost.md:146
+msgctxt "s-b361ce1dd17e-0091"
+msgid ""
+"**Trace.** ⟦CODE_0001⟧ and ⟦CODE_0002⟧ both give hours 15, 19, 12. Does it follow that the two programs share a generator? *(No. Both use a Park-Miller recurrence, but with different multipliers and different digit extraction. The seeds were found separately. Equal output on one seed is a coincidence of the search.)*\n"
+"2. **Explain.** Why is a loud portability failure better than a silent one, and which does mawk give for ⟦CODE_0003⟧? *(A loud failure stops you before you trust a wrong result. mawk gives a silent one: zero cards, exit 0.)*\n"
+"3. **Transfer.** You depend on ⟦CODE_0004⟧ in a script. Which label do you give that dependency, and what would you write down? *(Implementation-permitted: GNU ⟦CODE_0005⟧ and compatible. Write down the tool, the minimum version and what the ISO year does near New Year.)*\n"
+"4. **Evidence.** A README says, \"GNU tar counts 21 ticks when creating a 21-block archive.\" Design a test that could fail. Which label applies to the claim? *(Create archives of several sizes, blocking factors and intervals, and compare tar's tick count with ⟦CODE_0006⟧. The negative control is listing the archive, which gives a different count. The claim is implementation-permitted, and the listing behavior is accidentally exploited knowledge.)*"
+msgstr ""
+"**Traza.** ⟦CODE_0001⟧ y ⟦CODE_0002⟧ dan las horas 15, 19, 12. ¿Se deduce que los dos programas comparten un generador? *(No. Ambos usan una recurrencia de Park-Miller, pero con multiplicadores distintos y distinta extracción de dígitos. Las semillas se encontraron por separado. Una salida igual con una semilla es una coincidencia de la búsqueda.)*\n"
+"2. **Explica.** ¿Por qué es mejor un fallo de portabilidad ruidoso que uno silencioso, y cuál da mawk con ⟦CODE_0003⟧? *(Un fallo ruidoso te detiene antes de que confíes en un resultado equivocado. mawk da uno silencioso: cero tarjetas, estado de salida 0.)*\n"
+"3. **Transfiere.** Dependes de ⟦CODE_0004⟧ en un script. ¿Qué etiqueta le das a esa dependencia y qué dejarías por escrito? *(Permitido por la implementación: GNU ⟦CODE_0005⟧ y los compatibles. Escribe la herramienta, la versión mínima y qué hace el año ISO cerca de Año Nuevo.)*\n"
+"4. **Evidencia.** Un README dice: \"GNU tar cuenta 21 tics al crear un archivo de 21 bloques.\" Diseña una prueba que pueda fallar. ¿Qué etiqueta se aplica a la afirmación? *(Crea archivos de varios tamaños, factores de bloqueo e intervalos y compara la cuenta de tics de tar con ⟦CODE_0006⟧. El control negativo es listar el archivo, que da otra cuenta. La afirmación tiene la etiqueta permitido por la implementación, y el comportamiento al listar es conocimiento aprovechado por accidente.)*"
+
+#: lessons/study-guides/concepts/portability-abstraction-and-cost.md:151
+msgctxt "s-4082f515b2f4-0092"
+msgid "Further reading"
+msgstr "Lecturas adicionales"
+
+#: lessons/study-guides/concepts/portability-abstraction-and-cost.md:153
+msgctxt "s-00a780afaacd-0093"
+msgid "[Software portability](⟦DEST_0001⟧) (Wikipedia): what makes software move between platforms."
+msgstr "[Portabilidad del software](⟦DEST_0001⟧) (Wikipedia): qué hace que el software se mueva entre plataformas."
+
+#: lessons/study-guides/concepts/portability-abstraction-and-cost.md:154
+msgctxt "s-86f0cde91722-0094"
+msgid "[Undefined behavior](⟦DEST_0001⟧) (Wikipedia): the strongest case of \"nobody promised\"."
+msgstr "[Comportamiento indefinido](⟦DEST_0001⟧) (Wikipedia): el caso más fuerte de \"nadie lo prometió\"."
+
+#: lessons/study-guides/concepts/portability-abstraction-and-cost.md:155
+msgctxt "s-9f2ddb2027c5-0095"
+msgid "[Hyrum's law](⟦DEST_0001⟧) (Wikipedia): why observable behavior becomes a contract."
+msgstr "[Ley de Hyrum](⟦DEST_0001⟧) (Wikipedia): por qué el comportamiento observable se vuelve un contrato."
+
+#: lessons/study-guides/concepts/portability-abstraction-and-cost.md:156
+msgctxt "s-a7368fab1842-0096"
+msgid "[Reproducible builds](⟦DEST_0001⟧) (Wikipedia): what a fixed input can prove."
+msgstr "[Compilaciones reproducibles](⟦DEST_0001⟧) (Wikipedia): qué puede demostrar una entrada fija."
+
+#: lessons/study-guides/concepts/portability-abstraction-and-cost.md:157
+msgctxt "s-7d051c8e45c8-0097"
+msgid "[Regular expression denial of service](⟦DEST_0001⟧) (OWASP): how a cliff becomes an attack."
+msgstr "[Denegación de servicio mediante expresiones regulares](⟦DEST_0001⟧) (OWASP): cómo un precipicio se vuelve un ataque."
