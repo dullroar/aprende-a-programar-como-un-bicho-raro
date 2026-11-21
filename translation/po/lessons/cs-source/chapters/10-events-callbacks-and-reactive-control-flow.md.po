@@ -1,0 +1,433 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lessons/cs-source/chapters/10-events-callbacks-and-reactive-control-flow.md:2
+msgctxt "s-472ad36fbc84-0000"
+msgid "Events, callbacks and reactive control flow"
+msgstr "Eventos, funciones de devolución de llamada y flujo de control reactivo"
+
+#: lessons/cs-source/chapters/10-events-callbacks-and-reactive-control-flow.md:4
+msgctxt "s-56af0099ca4f-0001"
+msgid "For an advanced reading path with traces and experiments, see the [events, callbacks and reactive control study guide](⟦DEST_0001⟧)."
+msgstr "Para una ruta de lectura avanzada con trazas y experimentos, consulta la [guía de estudio sobre eventos, funciones de devolución de llamada y control reactivo](⟦DEST_0001⟧). Una función de devolución de llamada (*callback*) es una función que se entrega para que otro código la llame."
+
+#: lessons/cs-source/chapters/10-events-callbacks-and-reactive-control-flow.md:6
+msgctxt "s-7936ffc88e9a-0002"
+msgid "Every entry in this book answers one question: **who chooses what runs next?** In a ⟦CODE_0001⟧ loop, the loop chooses. In a lazy pipeline, whoever asks for the next value chooses. In this chapter, something else chooses: an *event*. A program registers small functions, and something else calls them when something happens. The program does not say when."
+msgstr "Cada entrada de este libro responde una pregunta: **¿quién decide qué se ejecuta después?** En un bucle ⟦CODE_0001⟧, el bucle decide. En una canalización con evaluación perezosa, decide quien pide el siguiente valor. En este capítulo decide otra cosa: un *evento*, un aviso de que ocurrió algo. Un programa registra funciones pequeñas y otra parte del sistema las llama cuando ocurre algo. El programa no dice cuándo."
+
+#: lessons/cs-source/chapters/10-events-callbacks-and-reactive-control-flow.md:8
+msgctxt "s-bb07710edf15-0003"
+msgid "That sounds like a window with buttons, but it is a general way to build control flow, and this book has it in small, honest forms. ⟦MACRO_0001⟧ is built from nothing else: ten listeners on one emitter, and no loop statement. The other chapters show how code is chosen by a counter, a demand or a rewrite. This one shows what changes when a *notification* does the choosing."
+msgstr "Eso suena a una ventana con botones, pero es una forma general de organizar el flujo de control. Este libro la muestra con ejemplos pequeños y sin trucos ocultos. ⟦MACRO_0001⟧ usa solo diez escuchadores de eventos en un emisor. Un escuchador es una función que se registra para un evento y el emisor anuncia el evento. No hay ninguna sentencia de bucle. Los demás capítulos muestran cómo un contador, una demanda o una reescritura decide qué código se ejecuta. Este muestra qué cambia cuando la que decide es una *notificación*."
+
+#: lessons/cs-source/chapters/10-events-callbacks-and-reactive-control-flow.md:10
+msgctxt "s-4c341eac6eb9-0004"
+msgid "Who chooses what runs next?"
+msgstr "¿Quién decide qué se ejecuta después?"
+
+#: lessons/cs-source/chapters/10-events-callbacks-and-reactive-control-flow.md:12
+msgctxt "s-6c8d5c2ebe67-0005"
+msgid "Three answers appear in the entries for the same job (draw cards until the total passes 40):"
+msgstr "Las entradas dan tres respuestas para la misma tarea (dejar de sacar tarjetas cuando el total pasa de 40):"
+
+#: lessons/cs-source/chapters/10-events-callbacks-and-reactive-control-flow.md:14
+msgctxt "s-289073400182-0006"
+msgid "**The program chooses** (a loop). ⟦CODE_0001⟧. The program asks itself the question before every card. ⟦MACRO_0002⟧ and ⟦MACRO_0003⟧ work this way."
+msgstr "**El programa decide** (un bucle). ⟦CODE_0001⟧. El programa se hace la pregunta antes de cada tarjeta. ⟦MACRO_0002⟧ y ⟦MACRO_0003⟧ funcionan así."
+
+#: lessons/cs-source/chapters/10-events-callbacks-and-reactive-control-flow.md:15
+msgctxt "s-5042396319ca-0007"
+msgid "**The consumer chooses** (a pull). Nothing happens until someone asks for the next value. ⟦MACRO_0001⟧ and ⟦MACRO_0002⟧ work this way. The asking is the loop."
+msgstr "**El consumidor decide** (por demanda). No ocurre nada hasta que alguien pide el siguiente valor. ⟦MACRO_0001⟧ y ⟦MACRO_0002⟧ funcionan así. Pedir una y otra vez es el bucle."
+
+#: lessons/cs-source/chapters/10-events-callbacks-and-reactive-control-flow.md:16
+msgctxt "s-d7d81b4b6494-0008"
+msgid "**The producer chooses** (a push). Something announces \"this happened\", and every function that registered for it runs. ⟦MACRO_0001⟧ works this way, and so does ⟦MACRO_0002⟧: tar announces \"one more record written\", and a state machine takes one step."
+msgstr "**El productor decide** (por envío). Algo anuncia \"esto ocurrió\" y se ejecutan todas las funciones que se registraron para ese aviso. ⟦MACRO_0001⟧ funciona así. También ⟦MACRO_0002⟧: tar anuncia \"se escribió un registro más\" y una máquina de estados avanza un paso."
+
+#: lessons/cs-source/chapters/10-events-callbacks-and-reactive-control-flow.md:18
+msgctxt "s-fcccbf6ea9d1-0009"
+msgid "The two ways to know that something happened are **polling** and **notification**. Polling is a loop that asks \"is it there yet?\" again and again. Notification is a registration: \"call me when it is there\". Polling costs time while nothing happens. Notification costs *structure*: the order of the program is now spread over the places where things are registered and announced."
+msgstr "Hay dos formas de saber que algo ocurrió: **sondeo** y **notificación**. El sondeo es un bucle que pregunta \"¿ya está?\" una y otra vez. La notificación requiere registrarse: \"llámame cuando esté\". En el sondeo, el costo es el tiempo que pasa sin que ocurra nada. En la notificación, el costo es de *estructura*: el orden del programa queda repartido entre los lugares donde se registran y se anuncian los avisos."
+
+#: lessons/cs-source/chapters/10-events-callbacks-and-reactive-control-flow.md:20
+msgctxt "s-a60705ee04f2-0010"
+msgid "Three ways to run the same cards"
+msgstr "Tres formas de ejecutar el mismo proceso con las tarjetas"
+
+#: lessons/cs-source/chapters/10-events-callbacks-and-reactive-control-flow.md:22
+msgctxt "s-8caa589daa50-0011"
+msgid "⟦SEP_0001⟧ ⟦SEP_0002⟧ A loop ⟦SEP_0003⟧ A synchronous emitter ⟦SEP_0004⟧ Scheduled events ⟦SEP_0005⟧"
+msgstr "⟦SEP_0001⟧ ⟦SEP_0002⟧ Un bucle ⟦SEP_0003⟧ Un emisor síncrono ⟦SEP_0004⟧ Eventos programados ⟦SEP_0005⟧"
+
+#: lessons/cs-source/chapters/10-events-callbacks-and-reactive-control-flow.md:24
+msgctxt "s-25151304205d-0012"
+msgid "⟦SEP_0005⟧ Example ⟦SEP_0006⟧ ⟦MACRO_0001⟧ ⟦SEP_0007⟧ The same listeners, with ⟦CODE_0002⟧ in place of ⟦CODE_0003⟧ ⟦SEP_0008⟧ ⟦MACRO_0004⟧ ⟦SEP_0009⟧"
+msgstr "⟦SEP_0005⟧ Ejemplo ⟦SEP_0006⟧ ⟦MACRO_0001⟧ ⟦SEP_0007⟧ Los mismos escuchadores de eventos, con ⟦CODE_0002⟧ en lugar de ⟦CODE_0003⟧ ⟦SEP_0008⟧ ⟦MACRO_0004⟧ ⟦SEP_0009⟧"
+
+#: lessons/cs-source/chapters/10-events-callbacks-and-reactive-control-flow.md:25
+msgctxt "s-42c8b38ae2ad-0013"
+msgid "⟦SEP_0003⟧ Who starts the next card ⟦SEP_0004⟧ The ⟦CODE_0001⟧ statement ⟦SEP_0005⟧ The last listener, by calling ⟦CODE_0002⟧ ⟦SEP_0006⟧ The last listener, by asking the event loop ⟦SEP_0007⟧"
+msgstr "⟦SEP_0003⟧ Quién inicia la siguiente tarjeta ⟦SEP_0004⟧ La sentencia ⟦CODE_0001⟧ ⟦SEP_0005⟧ El último escuchador de eventos, que llama a ⟦CODE_0002⟧ ⟦SEP_0006⟧ El último escuchador de eventos, que se lo pide al bucle de eventos ⟦SEP_0007⟧"
+
+#: lessons/cs-source/chapters/10-events-callbacks-and-reactive-control-flow.md:26
+msgctxt "s-566d4c9b7bf5-0014"
+msgid "⟦SEP_0001⟧ The call stack between two cards ⟦SEP_0002⟧ Empty ⟦SEP_0003⟧ **Grows** by a few frames for every card ⟦SEP_0004⟧ Empty ⟦SEP_0005⟧"
+msgstr "⟦SEP_0001⟧ La pila de llamadas (que guarda las llamadas activas) entre dos tarjetas ⟦SEP_0002⟧ Vacía ⟦SEP_0003⟧ **Crece** unos cuantos marcos por cada tarjeta ⟦SEP_0004⟧ Vacía ⟦SEP_0005⟧"
+
+#: lessons/cs-source/chapters/10-events-callbacks-and-reactive-control-flow.md:27
+msgctxt "s-09683c7247eb-0015"
+msgid "⟦SEP_0002⟧ A run of a million cards ⟦SEP_0003⟧ Fine ⟦SEP_0004⟧ ⟦CODE_0001⟧ ⟦SEP_0005⟧ Fine ⟦SEP_0006⟧"
+msgstr "⟦SEP_0002⟧ Una ejecución de un millón de tarjetas ⟦SEP_0003⟧ Sin problemas ⟦SEP_0004⟧ ⟦CODE_0001⟧ ⟦SEP_0005⟧ Sin problemas ⟦SEP_0006⟧"
+
+#: lessons/cs-source/chapters/10-events-callbacks-and-reactive-control-flow.md:28
+msgctxt "s-aea6840de744-0016"
+msgid "⟦SEP_0002⟧ A listener that throws ⟦SEP_0003⟧ Not applicable ⟦SEP_0004⟧ The exception goes to the caller of ⟦CODE_0001⟧, up through every card before it ⟦SEP_0005⟧ The exception goes to the scheduled callback, so each listener catches its own ⟦SEP_0006⟧"
+msgstr "⟦SEP_0002⟧ Un escuchador de eventos que lanza una excepción ⟦SEP_0003⟧ No aplica ⟦SEP_0004⟧ La excepción sube a quien llamó a ⟦CODE_0001⟧ y pasa por todas las tarjetas anteriores ⟦SEP_0005⟧ La excepción llega a la función de devolución de llamada programada, así que cada escuchador captura la suya ⟦SEP_0006⟧"
+
+#: lessons/cs-source/chapters/10-events-callbacks-and-reactive-control-flow.md:29
+msgctxt "s-b1544531ecb3-0017"
+msgid "⟦SEP_0001⟧ Who else can run between two cards ⟦SEP_0002⟧ Nobody ⟦SEP_0003⟧ Nobody ⟦SEP_0004⟧ Anything on the event loop: timers, I/O, other listeners ⟦SEP_0005⟧"
+msgstr "⟦SEP_0001⟧ Qué más se puede ejecutar entre dos tarjetas ⟦SEP_0002⟧ Nada ⟦SEP_0003⟧ Nada ⟦SEP_0004⟧ Cualquier tarea del bucle de eventos: temporizadores, entrada y salida (I/O) u otros escuchadores de eventos ⟦SEP_0005⟧"
+
+#: lessons/cs-source/chapters/10-events-callbacks-and-reactive-control-flow.md:31
+msgctxt "s-0fba7eeffb58-0018"
+msgid "The middle column is the trap. It *looks* like events, and it behaves like a recursion. In Node, ⟦CODE_0001⟧ calls every listener of the event, in the order they were registered, **before it returns**. A listener that emits again makes the stack deeper. The event loop is not involved at all. Only a call to something like ⟦CODE_0002⟧ hands the next step to the event loop, and then the stack unwinds first."
+msgstr "La columna del medio tiene trampa. *Parece* un caso de eventos, pero se comporta como una recursión. En Node, ⟦CODE_0001⟧ llama a todos los escuchadores del evento en el orden en que se registraron **antes de retornar**. Si un escuchador de eventos vuelve a emitir, la pila crece. El bucle de eventos no interviene en absoluto. Solo una llamada a algo como ⟦CODE_0002⟧ le deja el siguiente paso al bucle de eventos. Primero se vacía la pila."
+
+#: lessons/cs-source/chapters/10-events-callbacks-and-reactive-control-flow.md:33
+msgctxt "s-eff55e492c13-0019"
+msgid "A trace you can read"
+msgstr "Lee una traza"
+
+#: lessons/cs-source/chapters/10-events-callbacks-and-reactive-control-flow.md:35
+msgctxt "s-5e2ca60f47c0-0020"
+msgid "One run of ⟦MACRO_0001⟧ with three cards of 19 hours, with ⟦CODE_0002⟧ where an ⟦CODE_0003⟧ starts and ⟦CODE_0004⟧ where it returns:"
+msgstr "Una ejecución de ⟦MACRO_0001⟧ con tres tarjetas de 19 horas. ⟦CODE_0002⟧ marca el inicio de un ⟦CODE_0003⟧ y ⟦CODE_0004⟧ marca su retorno:"
+
+#: lessons/cs-source/chapters/10-events-callbacks-and-reactive-control-flow.md:47
+msgctxt "s-47ab116c39bc-0021"
+msgid "The nesting is the call stack. Inside one turn the events are *calls*: ⟦CODE_0001⟧ runs inside ⟦CODE_0002⟧, and ⟦CODE_0003⟧ cannot return until it has. Between turns the stack is empty, and the event loop is back in charge. The picture:"
+msgstr "El anidamiento muestra la pila de llamadas. Dentro de un turno, los eventos son *llamadas*: ⟦CODE_0001⟧ se ejecuta dentro de ⟦CODE_0002⟧ y ⟦CODE_0003⟧ no puede retornar hasta que termine esa llamada. Entre turnos, la pila queda vacía y el bucle de eventos retoma el control. El diagrama:"
+
+#: lessons/cs-source/chapters/10-events-callbacks-and-reactive-control-flow.md:51
+msgctxt "s-ff88af615858-0022"
+msgid "One turn of scheduled events: emit nests, the event loop separates turns"
+msgstr "Un turno de eventos programados. emit anida llamadas y el bucle de eventos separa los turnos"
+
+#: lessons/cs-source/chapters/10-events-callbacks-and-reactive-control-flow.md:52
+msgctxt "s-4c1397e4ee6f-0023"
+msgid "A sequence diagram. The event loop starts a turn by calling the generate listener. That listener emits card-created, so the emitter calls the card-created listener inside it. That listener emits card-saved, so the emitter calls the card-saved listener inside it. Each listener then returns, in the reverse order, so the stack unwinds. The last listener has asked the event loop for the next turn with setImmediate. The event loop starts the next turn only after the stack is empty."
+msgstr "Diagrama de secuencia. El bucle de eventos inicia un turno al llamar al escuchador de eventos de generate. Ese escuchador emite card-created, así que el emisor llama al escuchador de card-created dentro de la llamada en curso. Ese escuchador emite card-saved y el emisor llama al escuchador de card-saved dentro de esa llamada. Los escuchadores retornan en orden inverso y así se vacía la pila. El último escuchador le pidió al bucle de eventos el siguiente turno con setImmediate. El bucle de eventos solo inicia ese turno cuando la pila está vacía."
+
+#: lessons/cs-source/chapters/10-events-callbacks-and-reactive-control-flow.md:53
+msgctxt "s-ddb496fea2fc-0024"
+msgid "Event loop"
+msgstr "Bucle de eventos"
+
+#: lessons/cs-source/chapters/10-events-callbacks-and-reactive-control-flow.md:54
+msgctxt "s-e4371dff1745-0025"
+msgid "generate listener"
+msgstr "Escuchador de eventos de generate"
+
+#: lessons/cs-source/chapters/10-events-callbacks-and-reactive-control-flow.md:55
+msgctxt "s-e69868ea2ef7-0026"
+msgid "card-created listener"
+msgstr "Escuchador de eventos de card-created"
+
+#: lessons/cs-source/chapters/10-events-callbacks-and-reactive-control-flow.md:56
+msgctxt "s-59e6f88635ba-0027"
+msgid "card-saved listener"
+msgstr "Escuchador de eventos de card-saved"
+
+#: lessons/cs-source/chapters/10-events-callbacks-and-reactive-control-flow.md:57
+msgctxt "s-d78b0b6960ad-0028"
+msgid "a turn begins"
+msgstr "Empieza un turno"
+
+#: lessons/cs-source/chapters/10-events-callbacks-and-reactive-control-flow.md:58
+msgctxt "s-528800cd5b54-0029"
+msgid "emit card-created: the call is nested"
+msgstr "emit card-created: llamada anidada"
+
+#: lessons/cs-source/chapters/10-events-callbacks-and-reactive-control-flow.md:59
+msgctxt "s-75754c602534-0030"
+msgid "emit card-saved: nested again"
+msgstr "emit card-saved: otra llamada anidada"
+
+#: lessons/cs-source/chapters/10-events-callbacks-and-reactive-control-flow.md:60
+msgctxt "s-6ff08e036165-0031"
+msgid "setImmediate asks for the next turn"
+msgstr "setImmediate pide el siguiente turno"
+
+#: lessons/cs-source/chapters/10-events-callbacks-and-reactive-control-flow.md:61
+msgctxt "s-153b2a38cb4a-0032"
+msgid "returns"
+msgstr "Retorna"
+
+#: lessons/cs-source/chapters/10-events-callbacks-and-reactive-control-flow.md:62
+msgctxt "s-153b2a38cb4a-0033"
+msgid "returns"
+msgstr "Retorna"
+
+#: lessons/cs-source/chapters/10-events-callbacks-and-reactive-control-flow.md:63
+msgctxt "s-ce64d2bcba99-0034"
+msgid "returns: the stack is empty"
+msgstr "Retorna: pila vacía"
+
+#: lessons/cs-source/chapters/10-events-callbacks-and-reactive-control-flow.md:64
+msgctxt "s-9aef781b19aa-0035"
+msgid "the next turn begins only now"
+msgstr "Solo ahora empieza el siguiente turno"
+
+#: lessons/cs-source/chapters/10-events-callbacks-and-reactive-control-flow.md:67
+msgctxt "s-a37e0fc92b49-0036"
+msgid "Node's rules that matter here"
+msgstr "Qué reglas de Node importan aquí"
+
+#: lessons/cs-source/chapters/10-events-callbacks-and-reactive-control-flow.md:69
+msgctxt "s-1d3a965ac187-0037"
+msgid "The sources are the Node.js [⟦CODE_0001⟧ documentation](⟦DEST_0002⟧) and its guide to the [event loop, timers and ⟦CODE_0003⟧](⟦DEST_0004⟧)."
+msgstr "Las fuentes son la [documentación de ⟦CODE_0001⟧](⟦DEST_0002⟧) de Node.js y su guía sobre el [bucle de eventos, los temporizadores y ⟦CODE_0003⟧](⟦DEST_0004⟧)."
+
+#: lessons/cs-source/chapters/10-events-callbacks-and-reactive-control-flow.md:71
+msgctxt "s-df03b3f17370-0038"
+msgid "**⟦CODE_0001⟧ is synchronous.** Listeners run in registration order, before ⟦CODE_0002⟧ returns. This is documented, so it is a promise and not an accident."
+msgstr "**⟦CODE_0001⟧ es síncrono.** Los escuchadores de eventos se ejecutan en el orden en que se registraron, antes de que ⟦CODE_0002⟧ retorne. La documentación lo promete. No ocurre por accidente."
+
+#: lessons/cs-source/chapters/10-events-callbacks-and-reactive-control-flow.md:72
+msgctxt "s-5f472fb0f9ae-0039"
+msgid "**The name ⟦CODE_0001⟧ is special.** ⟦CODE_0002⟧ with no listener *throws* ⟦CODE_0003⟧. Every other name with no listener does nothing."
+msgstr "**El nombre ⟦CODE_0001⟧ es especial.** Si no hay un escuchador de eventos, ⟦CODE_0002⟧ *lanza* ⟦CODE_0003⟧. Si no hay un escuchador para cualquier otro nombre, no pasa nada."
+
+#: lessons/cs-source/chapters/10-events-callbacks-and-reactive-control-flow.md:73
+msgctxt "s-7f7342258a16-0040"
+msgid "**A copy of the listener list is made for each ⟦CODE_0001⟧.** A listener that removes listeners (or adds some) changes the *next* emit, not the one in flight."
+msgstr "**Cada ⟦CODE_0001⟧ usa una copia de la lista de escuchadores de eventos.** Si un escuchador quita o agrega escuchadores, cambia lo que hará el *siguiente* emit. La emisión en curso no cambia."
+
+#: lessons/cs-source/chapters/10-events-callbacks-and-reactive-control-flow.md:74
+msgctxt "s-527d43dd84cd-0041"
+msgid "**Timers, immediates and microtasks have an order**, and it is not the order you might guess. After the current code finishes, Node runs ⟦CODE_0001⟧ callbacks, then promise callbacks (microtasks), and then goes round the event loop: expired timers, then I/O callbacks, then ⟦CODE_0002⟧ callbacks and so on. When ⟦CODE_0003⟧ and ⟦CODE_0004⟧ are called from the main module, which runs first is *not promised*: it depends on how fast the process started. Inside an I/O callback, ⟦CODE_0005⟧ always runs first. This is implementation-dependent behavior of the kind that ⟦MACRO_0006⟧ describes, so ⟦MACRO_0007⟧ uses ⟦CODE_0008⟧ alone and never depends on the order between two of them."
+msgstr "**Los temporizadores, los trabajos inmediatos y las microtareas tienen un orden** que quizá no esperas. Cuando termina el código actual, Node ejecuta las funciones de devolución de llamada de ⟦CODE_0001⟧ y luego las de las promesas (microtareas). Después recorre el bucle de eventos: primero los temporizadores vencidos, luego las funciones de devolución de llamada de entrada y salida, después las de ⟦CODE_0002⟧ y así sucesivamente. Si el módulo principal llama a ⟦CODE_0003⟧ y ⟦CODE_0004⟧, *no hay garantía* de cuál se ejecuta primero: depende de cuánto tardó en arrancar el proceso. Dentro de una función de devolución de llamada de entrada y salida, ⟦CODE_0005⟧ siempre se ejecuta primero. Este comportamiento depende de la implementación. Es del tipo que describe ⟦MACRO_0006⟧. Por eso ⟦MACRO_0007⟧ usa solo ⟦CODE_0008⟧ y nunca depende del orden entre los dos."
+
+#: lessons/cs-source/chapters/10-events-callbacks-and-reactive-control-flow.md:75
+msgctxt "s-6759a96c4d46-0042"
+msgid "**An ⟦CODE_0001⟧ listener's failure is not caught by a ⟦CODE_0002⟧ around ⟦CODE_0003⟧.** The listener returns a promise, and ⟦CODE_0004⟧ has already returned. The option ⟦CODE_0005⟧ turns such a rejection into an ⟦CODE_0006⟧ event."
+msgstr "**Un ⟦CODE_0002⟧ alrededor de ⟦CODE_0003⟧ no captura el fallo de un escuchador de eventos ⟦CODE_0001⟧.** El escuchador devuelve una promesa y ⟦CODE_0004⟧ ya retornó. La opción ⟦CODE_0005⟧ convierte ese rechazo en un evento ⟦CODE_0006⟧."
+
+#: lessons/cs-source/chapters/10-events-callbacks-and-reactive-control-flow.md:76
+msgctxt "s-6f17c9c1c2ca-0043"
+msgid "**Listeners need an owner.** A listener that nobody removes can keep a whole object alive. Node warns when one event has more than ten listeners, because that is usually a leak. A timer or an immediate left behind can keep the process from ending. ⟦MACRO_0001⟧ ends by removing every listener, and its lab checks that no timer or immediate is left."
+msgstr "**Alguien debe hacerse cargo de los escuchadores de eventos.** Un escuchador que nadie retira puede mantener vivo un objeto entero. Node avisa cuando un evento tiene más de diez escuchadores, porque eso suele indicar una fuga. Un temporizador o un trabajo inmediato pendiente puede impedir que el proceso termine. Al terminar, ⟦MACRO_0001⟧ retira todos los escuchadores. Su laboratorio comprueba que no quede ningún temporizador ni trabajo inmediato."
+
+#: lessons/cs-source/chapters/10-events-callbacks-and-reactive-control-flow.md:78
+msgctxt "s-3998f27f40da-0044"
+msgid "State machines, reentrancy and ending"
+msgstr "Máquinas de estados, reentrada y finalización"
+
+#: lessons/cs-source/chapters/10-events-callbacks-and-reactive-control-flow.md:80
+msgctxt "s-7e682d4ed339-0045"
+msgid "A program of listeners is a ⟦MACRO_0001⟧: a state, and moves that events trigger. ⟦MACRO_0002⟧ keeps its state in one object that only listeners touch, and each listener is one transition. Two questions decide whether such a program is sound."
+msgstr "Un programa de escuchadores de eventos es un ⟦MACRO_0001⟧: tiene un estado y los eventos provocan transiciones. ⟦MACRO_0002⟧ guarda su estado en un solo objeto al que solo acceden los escuchadores. Cada escuchador es una transición. Dos preguntas permiten saber si un programa así está bien construido."
+
+#: lessons/cs-source/chapters/10-events-callbacks-and-reactive-control-flow.md:82
+msgctxt "s-0e9c511d8ec0-0046"
+msgid "**Can a listener be called again while it is still running?** That is *reentrancy*. A synchronous ⟦CODE_0001⟧ allows it: a listener emits an event whose listener emits the first event again. The synchronous column above is exactly that, and its price is the stack. The scheduled version cannot be re-entered, because the next card is a new turn."
+msgstr "**¿Se puede volver a llamar a un escuchador de eventos mientras aún se ejecuta?** Eso es la *reentrada*. Un ⟦CODE_0001⟧ síncrono lo permite: un escuchador emite un evento y el escuchador de ese evento vuelve a emitir el primero. Eso es justo lo que ocurre en la columna síncrona de arriba. La pila paga el precio. La versión programada no admite esa reentrada porque la siguiente tarjeta se procesa en otro turno."
+
+#: lessons/cs-source/chapters/10-events-callbacks-and-reactive-control-flow.md:84
+msgctxt "s-a30bb774486e-0047"
+msgid "**Does it end?** A chain of events that never stops is a loop that nobody can see. The program must have one listener that does *not* announce the next step, and it must tidy up: roll back what was not committed, close the database, remove the listeners and stop the timers. In ⟦MACRO_0001⟧ that is ⟦CODE_0002⟧ (or ⟦CODE_0003⟧), and then ⟦CODE_0004⟧ removes everything."
+msgstr "**¿Termina?** Una cadena de eventos que nunca se detiene es un bucle que nadie ve. El programa debe tener un escuchador de eventos que *no* anuncie el siguiente paso. También debe revertir lo que no se confirmó, cerrar la base de datos, retirar los escuchadores y detener los temporizadores. En ⟦MACRO_0001⟧ esa función corresponde a ⟦CODE_0002⟧ (o a ⟦CODE_0003⟧). Luego ⟦CODE_0004⟧ retira todo."
+
+#: lessons/cs-source/chapters/10-events-callbacks-and-reactive-control-flow.md:86
+msgctxt "s-3028fd2f5512-0048"
+msgid "A listener cannot pause in the middle and be resumed, so a chain of listeners is not a ⟦MACRO_0001⟧. Each listener runs to its end and returns, and the next one starts fresh. State has to live outside them. The same is true for a ⟦MACRO_0002⟧ used as a callback: it keeps variables, but not a *place* to resume."
+msgstr "Un escuchador de eventos no puede pausarse a mitad de camino y reanudarse después. Por eso una cadena de escuchadores no es una ⟦MACRO_0001⟧. Cada escuchador se ejecuta hasta el final y retorna. El siguiente empieza de cero. El estado debe quedar fuera de los escuchadores. Lo mismo ocurre con un ⟦MACRO_0002⟧ que se usa como función de devolución de llamada: conserva variables, pero no conserva un *punto* para reanudar la ejecución."
+
+#: lessons/cs-source/chapters/10-events-callbacks-and-reactive-control-flow.md:88
+msgctxt "s-1a44cd6ae5c8-0049"
+msgid "Backpressure, and when events are the wrong tool"
+msgstr "Contrapresión y cuándo conviene evitar los eventos"
+
+#: lessons/cs-source/chapters/10-events-callbacks-and-reactive-control-flow.md:90
+msgctxt "s-b2e6708b7980-0050"
+msgid "An event source announces things at its own speed. Events have no way to say \"slower\". If the producer is faster than the consumer, the queue grows without a limit, or events are dropped. **Backpressure** is the way a consumer pushes back. A pull is the simplest form of it, because the consumer asks for one value when it is ready: ⟦MACRO_0001⟧ cannot be flooded, since nothing is drawn until ⟦CODE_0002⟧ is called. ⟦MACRO_0003⟧ shows the opposite. tar keeps writing records and calling the clock after the machine is done, and those ticks only count as idle."
+msgstr "Una fuente de eventos anuncia lo que ocurre a su propio ritmo. Los eventos no tienen cómo decir \"más despacio\". Si el productor va más rápido que el consumidor, la cola crece sin límite o se pierden eventos. La **contrapresión** permite que el consumidor frene al productor. La demanda es la forma más simple: el consumidor pide un valor cuando está listo. ⟦MACRO_0001⟧ no se puede saturar, porque no extrae nada hasta que alguien llama a ⟦CODE_0002⟧. ⟦MACRO_0003⟧ muestra lo contrario. tar sigue escribiendo registros y llamando al reloj después de que la máquina termina. Esos tics solo cuentan como inactividad."
+
+#: lessons/cs-source/chapters/10-events-callbacks-and-reactive-control-flow.md:94
+msgctxt "s-8a8425c14cc7-0051"
+msgid "Notification is not flow control: backpressure must be designed"
+msgstr "Avisar no regula el flujo. La contrapresión se diseña"
+
+#: lessons/cs-source/chapters/10-events-callbacks-and-reactive-control-flow.md:95
+msgctxt "s-c3cfc473d77c-0052"
+msgid "Two panels. In unregulated push, a fast producer sends events into a queue holding 1, 2, 3, 4 and so on, which keeps growing, and a slow consumer reads from it, so the queue grows or events are dropped. In consumer-controlled pull, the consumer is ready, requests one item, the producer emits one, the consumer processes it and requests the next, so the consumer determines the pace."
+msgstr "Dos paneles. En el envío sin regulación, un productor rápido manda eventos a una cola con 1, 2, 3, 4 y así sucesivamente. La cola sigue creciendo mientras un consumidor lento lee de ella. Por eso la cola crece o se pierden eventos. En el flujo por demanda, el consumidor pide un elemento cuando está listo. El productor emite uno. El consumidor lo procesa y pide el siguiente, así que marca el ritmo."
+
+#: lessons/cs-source/chapters/10-events-callbacks-and-reactive-control-flow.md:96
+msgctxt "s-b976ad782924-0053"
+msgid "Consumer-controlled pull"
+msgstr "Demanda del consumidor"
+
+#: lessons/cs-source/chapters/10-events-callbacks-and-reactive-control-flow.md:97
+msgctxt "s-391389e1f134-0054"
+msgid "consumer: ready?"
+msgstr "Consumidor: ¿listo?"
+
+#: lessons/cs-source/chapters/10-events-callbacks-and-reactive-control-flow.md:97
+msgctxt "s-3aa82307a4f6-0055"
+msgid "request one item"
+msgstr "Pide un elemento"
+
+#: lessons/cs-source/chapters/10-events-callbacks-and-reactive-control-flow.md:97
+msgctxt "s-e8f175898db3-0056"
+msgid "producer emits one"
+msgstr "El productor emite uno"
+
+#: lessons/cs-source/chapters/10-events-callbacks-and-reactive-control-flow.md:97
+msgctxt "s-c57e0b8842d0-0057"
+msgid "consumer processes"
+msgstr "El consumidor lo procesa"
+
+#: lessons/cs-source/chapters/10-events-callbacks-and-reactive-control-flow.md:97
+msgctxt "s-3fd2b6c8b21a-0058"
+msgid "request next item"
+msgstr "Pide el siguiente"
+
+#: lessons/cs-source/chapters/10-events-callbacks-and-reactive-control-flow.md:99
+msgctxt "s-d9238cbaaec9-0059"
+msgid "Unregulated push"
+msgstr "Envío sin regulación"
+
+#: lessons/cs-source/chapters/10-events-callbacks-and-reactive-control-flow.md:100
+msgctxt "s-d654337719d8-0060"
+msgid "fast producer"
+msgstr "Productor rápido"
+
+#: lessons/cs-source/chapters/10-events-callbacks-and-reactive-control-flow.md:100
+msgctxt "s-862417b9e7c3-0061"
+msgid "events"
+msgstr "eventos"
+
+#: lessons/cs-source/chapters/10-events-callbacks-and-reactive-control-flow.md:100
+msgctxt "s-9ab70ca32483-0062"
+msgid "queue: 1, 2, 3, 4, ... grows, or events are dropped"
+msgstr "Cola: 1, 2, 3, 4, ... Crece o pierde eventos"
+
+#: lessons/cs-source/chapters/10-events-callbacks-and-reactive-control-flow.md:100
+msgctxt "s-ffb9ca47c849-0063"
+msgid "slow consumer"
+msgstr "Consumidor lento"
+
+#: lessons/cs-source/chapters/10-events-callbacks-and-reactive-control-flow.md:104
+msgctxt "s-7e0540a71c48-0064"
+msgid "Telling the consumer \"something happened\" does not tell the producer to slow down. On the left nothing limits the rate. On the right the consumer's request is the limit. A bounded queue or a stream with pause and resume can also push back. Plain Node ⟦CODE_0001⟧ has no backpressure, and a synchronous ⟦CODE_0002⟧ is a call and not a queue. The trace above is about the order of calls, and this picture is about their *rates*."
+msgstr "Decirle al consumidor \"ocurrió algo\" no le dice al productor que baje el ritmo. A la izquierda, nada limita el ritmo. A la derecha, lo limita la solicitud del consumidor. Una cola acotada o un flujo que se pueda pausar y reanudar también pueden ejercer contrapresión. El ⟦CODE_0001⟧ básico de Node carece de contrapresión. Un ⟦CODE_0002⟧ síncrono es una llamada, no una cola. La traza de arriba muestra el orden de las llamadas. Este diagrama muestra sus *ritmos*."
+
+#: lessons/cs-source/chapters/10-events-callbacks-and-reactive-control-flow.md:106
+msgctxt "s-9cd223d8c209-0065"
+msgid "⟦MACRO_0001⟧ is safe from the flood for a plain reason: each card waits for the one before it, so the producer and the consumer are the same program. A real event source, such as a network socket, needs a bounded queue or a stream."
+msgstr "⟦MACRO_0001⟧ evita la avalancha por una razón sencilla: cada tarjeta espera a la anterior, así que el productor y el consumidor son el mismo programa. Una fuente real de eventos, como un socket de red, necesita una cola acotada o un flujo."
+
+#: lessons/cs-source/chapters/10-events-callbacks-and-reactive-control-flow.md:108
+msgctxt "s-fe6819709bd5-0066"
+msgid "Events are also the wrong tool when:"
+msgstr "Los eventos tampoco convienen cuando:"
+
+#: lessons/cs-source/chapters/10-events-callbacks-and-reactive-control-flow.md:110
+msgctxt "s-3988b214e80d-0067"
+msgid "there is exactly one listener, and it is always the same one. A function call says the same thing, is shorter and a debugger can step through it;"
+msgstr "hay exactamente un escuchador de eventos y siempre es el mismo. Una llamada a una función dice lo mismo y es más corta. Un depurador permite recorrerla paso a paso;"
+
+#: lessons/cs-source/chapters/10-events-callbacks-and-reactive-control-flow.md:111
+msgctxt "s-5c6fc320aeea-0068"
+msgid "the order must be obvious. With events it is in the names and in the order of registration;"
+msgstr "el orden debe ser evidente. Con eventos, el orden está en los nombres y en la secuencia de registro;"
+
+#: lessons/cs-source/chapters/10-events-callbacks-and-reactive-control-flow.md:112
+msgctxt "s-dacd7a90379f-0069"
+msgid "you need a result back. An event announces, and it does not answer."
+msgstr "necesitas que te devuelvan un resultado. Un evento anuncia algo y no responde."
+
+#: lessons/cs-source/chapters/10-events-callbacks-and-reactive-control-flow.md:114
+msgctxt "s-c4e1a2cd294e-0070"
+msgid "Events in this repository, and what is only a look-alike"
+msgstr "Eventos en este repositorio y casos que solo se les parecen"
+
+#: lessons/cs-source/chapters/10-events-callbacks-and-reactive-control-flow.md:116
+msgctxt "s-f4054a50e2d6-0071"
+msgid "Not every callback is an event, and not every window is event-driven. The table says what each entry really has."
+msgstr "No toda función de devolución de llamada es un evento ni toda ventana se rige por eventos. La tabla muestra qué tiene realmente cada entrada."
+
+#: lessons/cs-source/chapters/10-events-callbacks-and-reactive-control-flow.md:118
+msgctxt "s-3674b3e34e7c-0072"
+msgid "⟦SEP_0001⟧ Entry ⟦SEP_0002⟧ What it has ⟦SEP_0003⟧ Is the program event-driven? ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ Entrada ⟦SEP_0002⟧ Qué tiene ⟦SEP_0003⟧ ¿El programa se rige por eventos? ⟦SEP_0004⟧"
+
+#: lessons/cs-source/chapters/10-events-callbacks-and-reactive-control-flow.md:120
+msgctxt "s-0575efe9a17d-0073"
+msgid "⟦SEP_0003⟧ ⟦MACRO_0001⟧ ⟦SEP_0004⟧ Ten listeners on one emitter; ⟦CODE_0002⟧ between cards; a pulse timer ⟦SEP_0005⟧ **Yes.** The listeners are the program ⟦SEP_0006⟧"
+msgstr "⟦SEP_0003⟧ ⟦MACRO_0001⟧ ⟦SEP_0004⟧ Diez escuchadores de eventos en un emisor, ⟦CODE_0002⟧ entre tarjetas y un temporizador para el pulso ⟦SEP_0005⟧ **Sí.** Los escuchadores de eventos son el programa ⟦SEP_0006⟧"
+
+#: lessons/cs-source/chapters/10-events-callbacks-and-reactive-control-flow.md:121
+msgctxt "s-c7b5ef449800-0074"
+msgid "⟦SEP_0004⟧ ⟦MACRO_0001⟧ ⟦SEP_0005⟧ A ⟦CODE_0002⟧ statement, then a ⟦CODE_0003⟧ callback for the pulse ⟦SEP_0006⟧ Only the pulse. The cards are a loop ⟦SEP_0007⟧"
+msgstr "⟦SEP_0004⟧ ⟦MACRO_0001⟧ ⟦SEP_0005⟧ Una sentencia ⟦CODE_0002⟧ y luego una función de devolución de llamada de ⟦CODE_0003⟧ para el pulso ⟦SEP_0006⟧ Solo el pulso. Un bucle procesa las tarjetas ⟦SEP_0007⟧"
+
+#: lessons/cs-source/chapters/10-events-callbacks-and-reactive-control-flow.md:122
+msgctxt "s-79a1a9b9ccff-0075"
+msgid "⟦SEP_0002⟧ ⟦MACRO_0001⟧ ⟦SEP_0003⟧ A pull pipeline, then the same timer ⟦SEP_0004⟧ Only the pulse. The cards are pulled ⟦SEP_0005⟧"
+msgstr "⟦SEP_0002⟧ ⟦MACRO_0001⟧ ⟦SEP_0003⟧ Una canalización por demanda y luego el mismo temporizador ⟦SEP_0004⟧ Solo el pulso. Las tarjetas se obtienen bajo demanda ⟦SEP_0005⟧"
+
+#: lessons/cs-source/chapters/10-events-callbacks-and-reactive-control-flow.md:123
+msgctxt "s-9cd29215c835-0076"
+msgid "⟦SEP_0002⟧ ⟦MACRO_0001⟧ ⟦SEP_0003⟧ tar runs a command at every checkpoint ⟦SEP_0004⟧ **Yes.** A callback from outside moves a state machine one step. There is no loop in the program ⟦SEP_0005⟧"
+msgstr "⟦SEP_0002⟧ ⟦MACRO_0001⟧ ⟦SEP_0003⟧ tar ejecuta un comando en cada punto de control ⟦SEP_0004⟧ **Sí.** Una función de devolución de llamada externa hace que una máquina de estados avance un paso. No hay bucle en el programa ⟦SEP_0005⟧"
+
+#: lessons/cs-source/chapters/10-events-callbacks-and-reactive-control-flow.md:124
+msgctxt "s-e4f5e7207d7b-0077"
+msgid "⟦SEP_0002⟧ ⟦MACRO_0001⟧ ⟦SEP_0003⟧ The engine calls a function at every callout ⟦SEP_0004⟧ A **callback**, but a synchronous one: it is a call from the engine, not a queued event ⟦SEP_0005⟧"
+msgstr "⟦SEP_0002⟧ ⟦MACRO_0001⟧ ⟦SEP_0003⟧ El motor llama a una función en cada callout ⟦SEP_0004⟧ Una **función de devolución de llamada** síncrona. El motor la llama directamente, sin poner un evento en una cola ⟦SEP_0005⟧"
+
+#: lessons/cs-source/chapters/10-events-callbacks-and-reactive-control-flow.md:125
+msgctxt "s-595f00e79791-0078"
+msgid "⟦SEP_0002⟧ ⟦MACRO_0001⟧ ⟦SEP_0003⟧ A trigger calls an SQL function, which calls Tcl ⟦SEP_0004⟧ A **callback chain** on one call stack. The database dispatches, and nothing waits in a queue ⟦SEP_0005⟧"
+msgstr "⟦SEP_0002⟧ ⟦MACRO_0001⟧ ⟦SEP_0003⟧ Un disparador llama a una función de SQL que a su vez llama a Tcl ⟦SEP_0004⟧ Una **cadena de funciones de devolución de llamada** en una sola pila de llamadas. La base de datos despacha las llamadas y nada espera en una cola ⟦SEP_0005⟧"
+
+#: lessons/cs-source/chapters/10-events-callbacks-and-reactive-control-flow.md:126
+msgctxt "s-46a2f6ce203d-0079"
+msgid "⟦SEP_0007⟧ ⟦MACRO_0001⟧, ⟦MACRO_0002⟧, ⟦MACRO_0003⟧ ⟦SEP_0008⟧ A WPF window with its message loop (⟦CODE_0004⟧) and an animation that is started by a ⟦CODE_0005⟧ trigger ⟦SEP_0009⟧ **No.** The UI framework has an event loop, and an animation is declared, not subscribed to. The cards come from a ⟦CODE_0006⟧ statement, a LINQ pipeline and a parser ⟦SEP_0010⟧"
+msgstr "⟦SEP_0007⟧ ⟦MACRO_0001⟧, ⟦MACRO_0002⟧, ⟦MACRO_0003⟧ ⟦SEP_0008⟧ Una ventana de WPF con su bucle de mensajes (⟦CODE_0004⟧) y una animación iniciada por un disparador ⟦CODE_0005⟧ ⟦SEP_0009⟧ **No.** La infraestructura de la interfaz de usuario tiene un bucle de eventos. El programa declara una animación, sin suscribirse a ella. Las tarjetas salen de una sentencia ⟦CODE_0006⟧, una canalización de LINQ y un analizador sintáctico ⟦SEP_0010⟧"
+
+#: lessons/cs-source/chapters/10-events-callbacks-and-reactive-control-flow.md:127
+msgctxt "s-a6b9b806fe4f-0080"
+msgid "⟦SEP_0005⟧ ⟦MACRO_0001⟧, ⟦MACRO_0002⟧ ⟦SEP_0006⟧ A Tk ⟦CODE_0003⟧ and a GLib ⟦CODE_0004⟧, with a timer that moves a color ⟦SEP_0007⟧ **No.** The same: a window runs its own loop, and the cards are made before it opens ⟦SEP_0008⟧"
+msgstr "⟦SEP_0005⟧ ⟦MACRO_0001⟧, ⟦MACRO_0002⟧ ⟦SEP_0006⟧ Un ⟦CODE_0003⟧ de Tk y un ⟦CODE_0004⟧ de GLib, con un temporizador que cambia un color ⟦SEP_0007⟧ **No.** Igual que antes: la ventana ejecuta su propio bucle y las tarjetas se crean antes de abrirla ⟦SEP_0008⟧"
+
+#: lessons/cs-source/chapters/10-events-callbacks-and-reactive-control-flow.md:128
+msgctxt "s-6a8f12cded3c-0081"
+msgid "⟦SEP_0005⟧ ⟦MACRO_0001⟧, ⟦MACRO_0002⟧, ⟦MACRO_0003⟧ ⟦SEP_0006⟧ A modal Swing dialog with a timer that fades the colors (Java, Kotlin), and a page served to the browser (Go) ⟦SEP_0007⟧ **No.** The window opens at the end, and the cards come from a ⟦CODE_0004⟧ statement or a sequence ⟦SEP_0008⟧"
+msgstr "⟦SEP_0005⟧ ⟦MACRO_0001⟧, ⟦MACRO_0002⟧, ⟦MACRO_0003⟧ ⟦SEP_0006⟧ Un cuadro de diálogo modal de Swing con un temporizador que atenúa los colores (Java, Kotlin) y una página que se sirve al navegador (Go) ⟦SEP_0007⟧ **No.** La ventana se abre al final y las tarjetas salen de una sentencia ⟦CODE_0004⟧ o de una secuencia ⟦SEP_0008⟧"
+
+#: lessons/cs-source/chapters/10-events-callbacks-and-reactive-control-flow.md:130
+msgctxt "s-07ace98aa14c-0082"
+msgid "An animation framework, data binding and a window's own loop are *mechanisms* that use events. They do not make the program that starts them event-driven. The test is simple: **does the card logic run because an event arrived?** If the answer is \"no, a loop or a pipeline runs it, and then it opens a window\", the entry is a loop with a window."
+msgstr "Una infraestructura de animación, el enlace de datos y el propio bucle de una ventana son *mecanismos* que usan eventos. Eso no hace que el programa que los inicia se rija por eventos. La prueba es sencilla: **¿la lógica de las tarjetas se ejecuta porque llegó un evento?** Si la respuesta es \"no, la ejecuta un bucle o una canalización y luego se abre una ventana\", la entrada es un bucle con ventana."
+
+#: lessons/cs-source/chapters/10-events-callbacks-and-reactive-control-flow.md:132
+msgctxt "s-172983eb6066-0083"
+msgid "Predict, then run"
+msgstr "Predice y luego ejecuta"
+
+#: lessons/cs-source/chapters/10-events-callbacks-and-reactive-control-flow.md:134
+msgctxt "s-57acc2ad335e-0084"
+msgid "[Exercise B22](⟦DEST_0001⟧) asks you to write the trace of a run *before* you see it, to predict what ⟦CODE_0002⟧ and ⟦CODE_0003⟧ print and to remove the scheduling boundary and watch a million cards run out of stack. Do the prediction on paper first. The surprise is the point."
+msgstr "El [ejercicio B22](⟦DEST_0001⟧) te pide que escribas la traza de una ejecución *antes* de verla y que predigas qué imprimen ⟦CODE_0002⟧ y ⟦CODE_0003⟧. También te pide que quites la separación entre turnos y veas cómo un millón de tarjetas agotan la pila. Haz primero la predicción en papel. La gracia está en la sorpresa."

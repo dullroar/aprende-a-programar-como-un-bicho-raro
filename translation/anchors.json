@@ -1414,77 +1414,77 @@
     {
      "en": "Who chooses what runs next?",
      "en_id": "who-chooses-what-runs-next",
-     "es": "Who chooses what runs next?",
-     "es_id": "who-chooses-what-runs-next",
+     "es": "¿Quién decide qué se ejecuta después?",
+     "es_id": "quién-decide-qué-se-ejecuta-después",
      "level": 2,
      "line": 10
     },
     {
      "en": "Three ways to run the same cards",
      "en_id": "three-ways-to-run-the-same-cards",
-     "es": "Three ways to run the same cards",
-     "es_id": "three-ways-to-run-the-same-cards",
+     "es": "Tres formas de ejecutar el mismo proceso con las tarjetas",
+     "es_id": "tres-formas-de-ejecutar-el-mismo-proceso-con-las-tarjetas",
      "level": 2,
      "line": 20
     },
     {
      "en": "A trace you can read",
      "en_id": "a-trace-you-can-read",
-     "es": "A trace you can read",
-     "es_id": "a-trace-you-can-read",
+     "es": "Lee una traza",
+     "es_id": "lee-una-traza",
      "level": 2,
      "line": 33
     },
     {
      "en": "Node's rules that matter here",
      "en_id": "nodes-rules-that-matter-here",
-     "es": "Node's rules that matter here",
-     "es_id": "nodes-rules-that-matter-here",
+     "es": "Qué reglas de Node importan aquí",
+     "es_id": "qué-reglas-de-node-importan-aquí",
      "level": 2,
      "line": 67
     },
     {
      "en": "State machines, reentrancy and ending",
      "en_id": "state-machines-reentrancy-and-ending",
-     "es": "State machines, reentrancy and ending",
-     "es_id": "state-machines-reentrancy-and-ending",
+     "es": "Máquinas de estados, reentrada y finalización",
+     "es_id": "máquinas-de-estados-reentrada-y-finalización",
      "level": 2,
      "line": 78
     },
     {
      "en": "Backpressure, and when events are the wrong tool",
      "en_id": "backpressure-and-when-events-are-the-wrong-tool",
-     "es": "Backpressure, and when events are the wrong tool",
-     "es_id": "backpressure-and-when-events-are-the-wrong-tool",
+     "es": "Contrapresión y cuándo conviene evitar los eventos",
+     "es_id": "contrapresión-y-cuándo-conviene-evitar-los-eventos",
      "level": 2,
      "line": 88
     },
     {
      "en": "Events in this repository, and what is only a look-alike",
      "en_id": "events-in-this-repository-and-what-is-only-a-look-alike",
-     "es": "Events in this repository, and what is only a look-alike",
-     "es_id": "events-in-this-repository-and-what-is-only-a-look-alike",
+     "es": "Eventos en este repositorio y casos que solo se les parecen",
+     "es_id": "eventos-en-este-repositorio-y-casos-que-solo-se-les-parecen",
      "level": 2,
      "line": 114
     },
     {
      "en": "Predict, then run",
      "en_id": "predict-then-run",
-     "es": "Predict, then run",
-     "es_id": "predict-then-run",
+     "es": "Predice y luego ejecuta",
+     "es_id": "predice-y-luego-ejecuta",
      "level": 2,
      "line": 132
     }
    ],
    "map": {
-    "a-trace-you-can-read": "a-trace-you-can-read",
-    "backpressure-and-when-events-are-the-wrong-tool": "backpressure-and-when-events-are-the-wrong-tool",
-    "events-in-this-repository-and-what-is-only-a-look-alike": "events-in-this-repository-and-what-is-only-a-look-alike",
-    "nodes-rules-that-matter-here": "nodes-rules-that-matter-here",
-    "predict-then-run": "predict-then-run",
-    "state-machines-reentrancy-and-ending": "state-machines-reentrancy-and-ending",
-    "three-ways-to-run-the-same-cards": "three-ways-to-run-the-same-cards",
-    "who-chooses-what-runs-next": "who-chooses-what-runs-next"
+    "a-trace-you-can-read": "lee-una-traza",
+    "backpressure-and-when-events-are-the-wrong-tool": "contrapresión-y-cuándo-conviene-evitar-los-eventos",
+    "events-in-this-repository-and-what-is-only-a-look-alike": "eventos-en-este-repositorio-y-casos-que-solo-se-les-parecen",
+    "nodes-rules-that-matter-here": "qué-reglas-de-node-importan-aquí",
+    "predict-then-run": "predice-y-luego-ejecuta",
+    "state-machines-reentrancy-and-ending": "máquinas-de-estados-reentrada-y-finalización",
+    "three-ways-to-run-the-same-cards": "tres-formas-de-ejecutar-el-mismo-proceso-con-las-tarjetas",
+    "who-chooses-what-runs-next": "quién-decide-qué-se-ejecuta-después"
    }
   },
   "lessons/cs-source/concepts/arbitrary-code-execution.md": {

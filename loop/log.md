@@ -103,3 +103,4 @@
 126 P4-fix-3 done accepted F003, clarified the fifth-card total through the PCRE2 README PO, and passed scoped and working-tree fast verification.
 127 P4-fix-4 done accepted F004, named the regular expression as the builder of the capture stack through the .NET README PO, and passed scoped and working-tree fast verification.
 128 P4-lessons-cs-source-chapters-1 done applied 87 segments across nine authored chapters, recorded 13 humor entries and five scoped exceptions, and passed scoped and working-tree fast verification including both translated diagrams.
+129 P4-lessons-cs-source-chapters-2 done applied 85 segments, recorded eight humor entries and SI-019/SI-020, and passed scoped and working-tree verification with diagrams at 12.00 and 11.55 pt.

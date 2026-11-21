@@ -1,38 +1,38 @@
 ---
-title: "Events, callbacks and reactive control flow"
+title: "Eventos, funciones de devolución de llamada y flujo de control reactivo"
 ---
-For an advanced reading path with traces and experiments, see the [events, callbacks and reactive control study guide](../guias-de-estudio/conceptos/eventos-retrollamadas-y-control-reactivo.md).
+Para una ruta de lectura avanzada con trazas y experimentos, consulta la [guía de estudio sobre eventos, funciones de devolución de llamada y control reactivo](../guias-de-estudio/conceptos/eventos-retrollamadas-y-control-reactivo.md). Una función de devolución de llamada (*callback*) es una función que se entrega para que otro código la llame.
 
-Every entry in this book answers one question: **who chooses what runs next?** In a `for` loop, the loop chooses. In a lazy pipeline, whoever asks for the next value chooses. In this chapter, something else chooses: an *event*. A program registers small functions, and something else calls them when something happens. The program does not say when.
+Cada entrada de este libro responde una pregunta: **¿quién decide qué se ejecuta después?** En un bucle `for`, el bucle decide. En una canalización con evaluación perezosa, decide quien pide el siguiente valor. En este capítulo decide otra cosa: un *evento*, un aviso de que ocurrió algo. Un programa registra funciones pequeñas y otra parte del sistema las llama cuando ocurre algo. El programa no dice cuándo.
 
-That sounds like a window with buttons, but it is a general way to build control flow, and this book has it in small, honest forms. [[entry:javascript-events]] is built from nothing else: ten listeners on one emitter, and no loop statement. The other chapters show how code is chosen by a counter, a demand or a rewrite. This one shows what changes when a *notification* does the choosing.
+Eso suena a una ventana con botones, pero es una forma general de organizar el flujo de control. Este libro la muestra con ejemplos pequeños y sin trucos ocultos. [[entry:javascript-events]] usa solo diez escuchadores de eventos en un emisor. Un escuchador es una función que se registra para un evento y el emisor anuncia el evento. No hay ninguna sentencia de bucle. Los demás capítulos muestran cómo un contador, una demanda o una reescritura decide qué código se ejecuta. Este muestra qué cambia cuando la que decide es una *notificación*.
 
-## Who chooses what runs next?
+## ¿Quién decide qué se ejecuta después?
 
-Three answers appear in the entries for the same job (draw cards until the total passes 40):
+Las entradas dan tres respuestas para la misma tarea (dejar de sacar tarjetas cuando el total pasa de 40):
 
-- **The program chooses** (a loop). `while (total <= 40) { ... }`. The program asks itself the question before every card. [[entry:javascript]] and [[entry:cobol]] work this way.
-- **The consumer chooses** (a pull). Nothing happens until someone asks for the next value. [[entry:javascript-weird]] and [[entry:haskell]] work this way. The asking is the loop.
-- **The producer chooses** (a push). Something announces "this happened", and every function that registered for it runs. [[entry:javascript-events]] works this way, and so does [[entry:tar-gnu-weird]]: tar announces "one more record written", and a state machine takes one step.
+- **El programa decide** (un bucle). `while (total <= 40) { ... }`. El programa se hace la pregunta antes de cada tarjeta. [[entry:javascript]] y [[entry:cobol]] funcionan así.
+- **El consumidor decide** (por demanda). No ocurre nada hasta que alguien pide el siguiente valor. [[entry:javascript-weird]] y [[entry:haskell]] funcionan así. Pedir una y otra vez es el bucle.
+- **El productor decide** (por envío). Algo anuncia "esto ocurrió" y se ejecutan todas las funciones que se registraron para ese aviso. [[entry:javascript-events]] funciona así. También [[entry:tar-gnu-weird]]: tar anuncia "se escribió un registro más" y una máquina de estados avanza un paso.
 
-The two ways to know that something happened are **polling** and **notification**. Polling is a loop that asks "is it there yet?" again and again. Notification is a registration: "call me when it is there". Polling costs time while nothing happens. Notification costs *structure*: the order of the program is now spread over the places where things are registered and announced.
+Hay dos formas de saber que algo ocurrió: **sondeo** y **notificación**. El sondeo es un bucle que pregunta "¿ya está?" una y otra vez. La notificación requiere registrarse: "llámame cuando esté". En el sondeo, el costo es el tiempo que pasa sin que ocurra nada. En la notificación, el costo es de *estructura*: el orden del programa queda repartido entre los lugares donde se registran y se anuncian los avisos.
 
-## Three ways to run the same cards
+## Tres formas de ejecutar el mismo proceso con las tarjetas
 
-| | A loop | A synchronous emitter | Scheduled events |
+| | Un bucle | Un emisor síncrono | Eventos programados |
 |---|---|---|---|
-| Example | [[entry:javascript]] | The same listeners, with `emit('generate')` in place of `later('generate')` | [[entry:javascript-events]] |
-| Who starts the next card | The `for` statement | The last listener, by calling `emit` | The last listener, by asking the event loop |
-| The call stack between two cards | Empty | **Grows** by a few frames for every card | Empty |
-| A run of a million cards | Fine | `RangeError: Maximum call stack size exceeded` | Fine |
-| A listener that throws | Not applicable | The exception goes to the caller of `emit`, up through every card before it | The exception goes to the scheduled callback, so each listener catches its own |
-| Who else can run between two cards | Nobody | Nobody | Anything on the event loop: timers, I/O, other listeners |
+| Ejemplo | [[entry:javascript]] | Los mismos escuchadores de eventos, con `emit('generate')` en lugar de `later('generate')` | [[entry:javascript-events]] |
+| Quién inicia la siguiente tarjeta | La sentencia `for` | El último escuchador de eventos, que llama a `emit` | El último escuchador de eventos, que se lo pide al bucle de eventos |
+| La pila de llamadas (que guarda las llamadas activas) entre dos tarjetas | Vacía | **Crece** unos cuantos marcos por cada tarjeta | Vacía |
+| Una ejecución de un millón de tarjetas | Sin problemas | `RangeError: Maximum call stack size exceeded` | Sin problemas |
+| Un escuchador de eventos que lanza una excepción | No aplica | La excepción sube a quien llamó a `emit` y pasa por todas las tarjetas anteriores | La excepción llega a la función de devolución de llamada programada, así que cada escuchador captura la suya |
+| Qué más se puede ejecutar entre dos tarjetas | Nada | Nada | Cualquier tarea del bucle de eventos: temporizadores, entrada y salida (I/O) u otros escuchadores de eventos |
 
-The middle column is the trap. It *looks* like events, and it behaves like a recursion. In Node, `EventEmitter.emit()` calls every listener of the event, in the order they were registered, **before it returns**. A listener that emits again makes the stack deeper. The event loop is not involved at all. Only a call to something like `setImmediate()` hands the next step to the event loop, and then the stack unwinds first.
+La columna del medio tiene trampa. *Parece* un caso de eventos, pero se comporta como una recursión. En Node, `EventEmitter.emit()` llama a todos los escuchadores del evento en el orden en que se registraron **antes de retornar**. Si un escuchador de eventos vuelve a emitir, la pila crece. El bucle de eventos no interviene en absoluto. Solo una llamada a algo como `setImmediate()` le deja el siguiente paso al bucle de eventos. Primero se vacía la pila.
 
-## A trace you can read
+## Lee una traza
 
-One run of [[entry:javascript-events]] with three cards of 19 hours, with `>name` where an `emit` starts and `<name` where it returns:
+Una ejecución de [[entry:javascript-events]] con tres tarjetas de 19 horas. `>name` marca el inicio de un `emit` y `<name` marca su retorno:
 
 ```text
 >start <start                              <- turn 1: asks for the first card, returns
@@ -44,91 +44,91 @@ One run of [[entry:javascript-events]] with three cards of 19 hours, with `>name
 <done <finished <total-updated <card-saved <card-created <generate   <- turn 4: card 3 (57 hours)
 ```
 
-The nesting is the call stack. Inside one turn the events are *calls*: `card-created` runs inside `generate`, and `generate` cannot return until it has. Between turns the stack is empty, and the event loop is back in charge. The picture:
+El anidamiento muestra la pila de llamadas. Dentro de un turno, los eventos son *llamadas*: `card-created` se ejecuta dentro de `generate` y `generate` no puede retornar hasta que termine esa llamada. Entre turnos, la pila queda vacía y el bucle de eventos retoma el control. El diagrama:
 
 ```mermaid
 sequenceDiagram
-    accTitle: One turn of scheduled events: emit nests, the event loop separates turns
-    accDescr: A sequence diagram. The event loop starts a turn by calling the generate listener. That listener emits card-created, so the emitter calls the card-created listener inside it. That listener emits card-saved, so the emitter calls the card-saved listener inside it. Each listener then returns, in the reverse order, so the stack unwinds. The last listener has asked the event loop for the next turn with setImmediate. The event loop starts the next turn only after the stack is empty.
-    participant L as Event loop
-    participant G as generate listener
-    participant C as card-created listener
-    participant S as card-saved listener
-    L->>G: a turn begins
-    G->>C: emit card-created: the call is nested
-    C->>S: emit card-saved: nested again
-    S-->>L: setImmediate asks for the next turn
-    S-->>C: returns
-    C-->>G: returns
-    G-->>L: returns: the stack is empty
-    Note over L: the next turn begins only now
+    accTitle: Un turno de eventos programados. emit anida llamadas y el bucle de eventos separa los turnos
+    accDescr: Diagrama de secuencia. El bucle de eventos inicia un turno al llamar al escuchador de eventos de generate. Ese escuchador emite card-created, así que el emisor llama al escuchador de card-created dentro de la llamada en curso. Ese escuchador emite card-saved y el emisor llama al escuchador de card-saved dentro de esa llamada. Los escuchadores retornan en orden inverso y así se vacía la pila. El último escuchador le pidió al bucle de eventos el siguiente turno con setImmediate. El bucle de eventos solo inicia ese turno cuando la pila está vacía.
+    participant L as Bucle de eventos
+    participant G as Escuchador de eventos de generate
+    participant C as Escuchador de eventos de card-created
+    participant S as Escuchador de eventos de card-saved
+    L->>G: Empieza un turno
+    G->>C: emit card-created: llamada anidada
+    C->>S: emit card-saved: otra llamada anidada
+    S-->>L: setImmediate pide el siguiente turno
+    S-->>C: Retorna
+    C-->>G: Retorna
+    G-->>L: Retorna: pila vacía
+    Note over L: Solo ahora empieza el siguiente turno
 ```
 
-## Node's rules that matter here
+## Qué reglas de Node importan aquí
 
-The sources are the Node.js [`events` documentation](https://nodejs.org/api/events.html) and its guide to the [event loop, timers and `process.nextTick()`](https://nodejs.org/en/learn/asynchronous-work/event-loop-timers-and-nexttick).
+Las fuentes son la [documentación de `events`](https://nodejs.org/api/events.html) de Node.js y su guía sobre el [bucle de eventos, los temporizadores y `process.nextTick()`](https://nodejs.org/en/learn/asynchronous-work/event-loop-timers-and-nexttick).
 
-- **`emit()` is synchronous.** Listeners run in registration order, before `emit` returns. This is documented, so it is a promise and not an accident.
-- **The name `error` is special.** `emit('error', e)` with no listener *throws* `e`. Every other name with no listener does nothing.
-- **A copy of the listener list is made for each `emit`.** A listener that removes listeners (or adds some) changes the *next* emit, not the one in flight.
-- **Timers, immediates and microtasks have an order**, and it is not the order you might guess. After the current code finishes, Node runs `process.nextTick` callbacks, then promise callbacks (microtasks), and then goes round the event loop: expired timers, then I/O callbacks, then `setImmediate` callbacks and so on. When `setTimeout(fn, 0)` and `setImmediate(fn)` are called from the main module, which runs first is *not promised*: it depends on how fast the process started. Inside an I/O callback, `setImmediate` always runs first. This is implementation-dependent behavior of the kind that [[hyrums-law]] describes, so [[entry:javascript-events]] uses `setImmediate` alone and never depends on the order between two of them.
-- **An `async` listener's failure is not caught by a `try` around `emit`.** The listener returns a promise, and `emit` has already returned. The option `captureRejections` turns such a rejection into an `error` event.
-- **Listeners need an owner.** A listener that nobody removes can keep a whole object alive. Node warns when one event has more than ten listeners, because that is usually a leak. A timer or an immediate left behind can keep the process from ending. [[entry:javascript-events]] ends by removing every listener, and its lab checks that no timer or immediate is left.
+- **`emit()` es síncrono.** Los escuchadores de eventos se ejecutan en el orden en que se registraron, antes de que `emit` retorne. La documentación lo promete. No ocurre por accidente.
+- **El nombre `error` es especial.** Si no hay un escuchador de eventos, `emit('error', e)` *lanza* `e`. Si no hay un escuchador para cualquier otro nombre, no pasa nada.
+- **Cada `emit` usa una copia de la lista de escuchadores de eventos.** Si un escuchador quita o agrega escuchadores, cambia lo que hará el *siguiente* emit. La emisión en curso no cambia.
+- **Los temporizadores, los trabajos inmediatos y las microtareas tienen un orden** que quizá no esperas. Cuando termina el código actual, Node ejecuta las funciones de devolución de llamada de `process.nextTick` y luego las de las promesas (microtareas). Después recorre el bucle de eventos: primero los temporizadores vencidos, luego las funciones de devolución de llamada de entrada y salida, después las de `setImmediate` y así sucesivamente. Si el módulo principal llama a `setTimeout(fn, 0)` y `setImmediate(fn)`, *no hay garantía* de cuál se ejecuta primero: depende de cuánto tardó en arrancar el proceso. Dentro de una función de devolución de llamada de entrada y salida, `setImmediate` siempre se ejecuta primero. Este comportamiento depende de la implementación. Es del tipo que describe [[hyrums-law]]. Por eso [[entry:javascript-events]] usa solo `setImmediate` y nunca depende del orden entre los dos.
+- **Un `try` alrededor de `emit` no captura el fallo de un escuchador de eventos `async`.** El escuchador devuelve una promesa y `emit` ya retornó. La opción `captureRejections` convierte ese rechazo en un evento `error`.
+- **Alguien debe hacerse cargo de los escuchadores de eventos.** Un escuchador que nadie retira puede mantener vivo un objeto entero. Node avisa cuando un evento tiene más de diez escuchadores, porque eso suele indicar una fuga. Un temporizador o un trabajo inmediato pendiente puede impedir que el proceso termine. Al terminar, [[entry:javascript-events]] retira todos los escuchadores. Su laboratorio comprueba que no quede ningún temporizador ni trabajo inmediato.
 
-## State machines, reentrancy and ending
+## Máquinas de estados, reentrada y finalización
 
-A program of listeners is a [[transition-system]]: a state, and moves that events trigger. [[entry:javascript-events]] keeps its state in one object that only listeners touch, and each listener is one transition. Two questions decide whether such a program is sound.
+Un programa de escuchadores de eventos es un [[transition-system]]: tiene un estado y los eventos provocan transiciones. [[entry:javascript-events]] guarda su estado en un solo objeto al que solo acceden los escuchadores. Cada escuchador es una transición. Dos preguntas permiten saber si un programa así está bien construido.
 
-**Can a listener be called again while it is still running?** That is *reentrancy*. A synchronous `emit` allows it: a listener emits an event whose listener emits the first event again. The synchronous column above is exactly that, and its price is the stack. The scheduled version cannot be re-entered, because the next card is a new turn.
+**¿Se puede volver a llamar a un escuchador de eventos mientras aún se ejecuta?** Eso es la *reentrada*. Un `emit` síncrono lo permite: un escuchador emite un evento y el escuchador de ese evento vuelve a emitir el primero. Eso es justo lo que ocurre en la columna síncrona de arriba. La pila paga el precio. La versión programada no admite esa reentrada porque la siguiente tarjeta se procesa en otro turno.
 
-**Does it end?** A chain of events that never stops is a loop that nobody can see. The program must have one listener that does *not* announce the next step, and it must tidy up: roll back what was not committed, close the database, remove the listeners and stop the timers. In [[entry:javascript-events]] that is `finished` (or `failed`), and then `done` removes everything.
+**¿Termina?** Una cadena de eventos que nunca se detiene es un bucle que nadie ve. El programa debe tener un escuchador de eventos que *no* anuncie el siguiente paso. También debe revertir lo que no se confirmó, cerrar la base de datos, retirar los escuchadores y detener los temporizadores. En [[entry:javascript-events]] esa función corresponde a `finished` (o a `failed`). Luego `done` retira todo.
 
-A listener cannot pause in the middle and be resumed, so a chain of listeners is not a [[coroutine]]. Each listener runs to its end and returns, and the next one starts fresh. State has to live outside them. The same is true for a [[closure]] used as a callback: it keeps variables, but not a *place* to resume.
+Un escuchador de eventos no puede pausarse a mitad de camino y reanudarse después. Por eso una cadena de escuchadores no es una [[coroutine]]. Cada escuchador se ejecuta hasta el final y retorna. El siguiente empieza de cero. El estado debe quedar fuera de los escuchadores. Lo mismo ocurre con un [[closure]] que se usa como función de devolución de llamada: conserva variables, pero no conserva un *punto* para reanudar la ejecución.
 
-## Backpressure, and when events are the wrong tool
+## Contrapresión y cuándo conviene evitar los eventos
 
-An event source announces things at its own speed. Events have no way to say "slower". If the producer is faster than the consumer, the queue grows without a limit, or events are dropped. **Backpressure** is the way a consumer pushes back. A pull is the simplest form of it, because the consumer asks for one value when it is ready: [[entry:javascript-weird]] cannot be flooded, since nothing is drawn until `next()` is called. [[entry:tar-gnu-weird]] shows the opposite. tar keeps writing records and calling the clock after the machine is done, and those ticks only count as idle.
+Una fuente de eventos anuncia lo que ocurre a su propio ritmo. Los eventos no tienen cómo decir "más despacio". Si el productor va más rápido que el consumidor, la cola crece sin límite o se pierden eventos. La **contrapresión** permite que el consumidor frene al productor. La demanda es la forma más simple: el consumidor pide un valor cuando está listo. [[entry:javascript-weird]] no se puede saturar, porque no extrae nada hasta que alguien llama a `next()`. [[entry:tar-gnu-weird]] muestra lo contrario. tar sigue escribiendo registros y llamando al reloj después de que la máquina termina. Esos tics solo cuentan como inactividad.
 
 ```mermaid
 flowchart TB
-    accTitle: Notification is not flow control: backpressure must be designed
-    accDescr: Two panels. In unregulated push, a fast producer sends events into a queue holding 1, 2, 3, 4 and so on, which keeps growing, and a slow consumer reads from it, so the queue grows or events are dropped. In consumer-controlled pull, the consumer is ready, requests one item, the producer emits one, the consumer processes it and requests the next, so the consumer determines the pace.
-    subgraph PULL["Consumer-controlled pull"]
-        RDY["consumer: ready?"] --> REQ["request one item"] --> EMIT["producer emits one"] --> PROC["consumer processes"] --> NXT["request next item"]
+    accTitle: Avisar no regula el flujo. La contrapresión se diseña
+    accDescr: Dos paneles. En el envío sin regulación, un productor rápido manda eventos a una cola con 1, 2, 3, 4 y así sucesivamente. La cola sigue creciendo mientras un consumidor lento lee de ella. Por eso la cola crece o se pierden eventos. En el flujo por demanda, el consumidor pide un elemento cuando está listo. El productor emite uno. El consumidor lo procesa y pide el siguiente, así que marca el ritmo.
+    subgraph PULL["Demanda del consumidor"]
+        RDY["Consumidor: ¿listo?"] --> REQ["Pide un elemento"] --> EMIT["El productor emite uno"] --> PROC["El consumidor lo procesa"] --> NXT["Pide el siguiente"]
     end
-    subgraph PUSH["Unregulated push"]
-        FP["fast producer"] -->|"events"| Q["queue: 1, 2, 3, 4, ... grows, or events are dropped"] --> SC["slow consumer"]
+    subgraph PUSH["Envío sin regulación"]
+        FP["Productor rápido"] -->|"eventos"| Q["Cola: 1, 2, 3, 4, ... Crece o pierde eventos"] --> SC["Consumidor lento"]
     end
 ```
 
-Telling the consumer "something happened" does not tell the producer to slow down. On the left nothing limits the rate. On the right the consumer's request is the limit. A bounded queue or a stream with pause and resume can also push back. Plain Node `EventEmitter` has no backpressure, and a synchronous `emit()` is a call and not a queue. The trace above is about the order of calls, and this picture is about their *rates*.
+Decirle al consumidor "ocurrió algo" no le dice al productor que baje el ritmo. A la izquierda, nada limita el ritmo. A la derecha, lo limita la solicitud del consumidor. Una cola acotada o un flujo que se pueda pausar y reanudar también pueden ejercer contrapresión. El `EventEmitter` básico de Node carece de contrapresión. Un `emit()` síncrono es una llamada, no una cola. La traza de arriba muestra el orden de las llamadas. Este diagrama muestra sus *ritmos*.
 
-[[entry:javascript-events]] is safe from the flood for a plain reason: each card waits for the one before it, so the producer and the consumer are the same program. A real event source, such as a network socket, needs a bounded queue or a stream.
+[[entry:javascript-events]] evita la avalancha por una razón sencilla: cada tarjeta espera a la anterior, así que el productor y el consumidor son el mismo programa. Una fuente real de eventos, como un socket de red, necesita una cola acotada o un flujo.
 
-Events are also the wrong tool when:
+Los eventos tampoco convienen cuando:
 
-- there is exactly one listener, and it is always the same one. A function call says the same thing, is shorter and a debugger can step through it;
-- the order must be obvious. With events it is in the names and in the order of registration;
-- you need a result back. An event announces, and it does not answer.
+- hay exactamente un escuchador de eventos y siempre es el mismo. Una llamada a una función dice lo mismo y es más corta. Un depurador permite recorrerla paso a paso;
+- el orden debe ser evidente. Con eventos, el orden está en los nombres y en la secuencia de registro;
+- necesitas que te devuelvan un resultado. Un evento anuncia algo y no responde.
 
-## Events in this repository, and what is only a look-alike
+## Eventos en este repositorio y casos que solo se les parecen
 
-Not every callback is an event, and not every window is event-driven. The table says what each entry really has.
+No toda función de devolución de llamada es un evento ni toda ventana se rige por eventos. La tabla muestra qué tiene realmente cada entrada.
 
-| Entry | What it has | Is the program event-driven? |
+| Entrada | Qué tiene | ¿El programa se rige por eventos? |
 |---|---|---|
-| [[entry:javascript-events]] | Ten listeners on one emitter; `setImmediate` between cards; a pulse timer | **Yes.** The listeners are the program |
-| [[entry:javascript]] | A `for` statement, then a `setInterval` callback for the pulse | Only the pulse. The cards are a loop |
-| [[entry:javascript-weird]] | A pull pipeline, then the same timer | Only the pulse. The cards are pulled |
-| [[entry:tar-gnu-weird]] | tar runs a command at every checkpoint | **Yes.** A callback from outside moves a state machine one step. There is no loop in the program |
-| [[entry:regex-pcre2]] | The engine calls a function at every callout | A **callback**, but a synchronous one: it is a call from the engine, not a queued event |
-| [[entry:tcl-weird]] | A trigger calls an SQL function, which calls Tcl | A **callback chain** on one call stack. The database dispatches, and nothing waits in a queue |
-| [[entry:ModernChallenge1]], [[entry:LinqChallenge1]], [[entry:xaml]] | A WPF window with its message loop (`Application.Run`) and an animation that is started by a `Loaded` trigger | **No.** The UI framework has an event loop, and an animation is declared, not subscribed to. The cards come from a `for` statement, a LINQ pipeline and a parser |
-| [[entry:PythonChallenge1]], [[entry:RustChallenge1]] | A Tk `mainloop` and a GLib `MainLoop`, with a timer that moves a color | **No.** The same: a window runs its own loop, and the cards are made before it opens |
-| [[entry:JavaChallenge1]], [[entry:KotlinChallenge1]], [[entry:GoChallenge1]] | A modal Swing dialog with a timer that fades the colors (Java, Kotlin), and a page served to the browser (Go) | **No.** The window opens at the end, and the cards come from a `for` statement or a sequence |
+| [[entry:javascript-events]] | Diez escuchadores de eventos en un emisor, `setImmediate` entre tarjetas y un temporizador para el pulso | **Sí.** Los escuchadores de eventos son el programa |
+| [[entry:javascript]] | Una sentencia `for` y luego una función de devolución de llamada de `setInterval` para el pulso | Solo el pulso. Un bucle procesa las tarjetas |
+| [[entry:javascript-weird]] | Una canalización por demanda y luego el mismo temporizador | Solo el pulso. Las tarjetas se obtienen bajo demanda |
+| [[entry:tar-gnu-weird]] | tar ejecuta un comando en cada punto de control | **Sí.** Una función de devolución de llamada externa hace que una máquina de estados avance un paso. No hay bucle en el programa |
+| [[entry:regex-pcre2]] | El motor llama a una función en cada callout | Una **función de devolución de llamada** síncrona. El motor la llama directamente, sin poner un evento en una cola |
+| [[entry:tcl-weird]] | Un disparador llama a una función de SQL que a su vez llama a Tcl | Una **cadena de funciones de devolución de llamada** en una sola pila de llamadas. La base de datos despacha las llamadas y nada espera en una cola |
+| [[entry:ModernChallenge1]], [[entry:LinqChallenge1]], [[entry:xaml]] | Una ventana de WPF con su bucle de mensajes (`Application.Run`) y una animación iniciada por un disparador `Loaded` | **No.** La infraestructura de la interfaz de usuario tiene un bucle de eventos. El programa declara una animación, sin suscribirse a ella. Las tarjetas salen de una sentencia `for`, una canalización de LINQ y un analizador sintáctico |
+| [[entry:PythonChallenge1]], [[entry:RustChallenge1]] | Un `mainloop` de Tk y un `MainLoop` de GLib, con un temporizador que cambia un color | **No.** Igual que antes: la ventana ejecuta su propio bucle y las tarjetas se crean antes de abrirla |
+| [[entry:JavaChallenge1]], [[entry:KotlinChallenge1]], [[entry:GoChallenge1]] | Un cuadro de diálogo modal de Swing con un temporizador que atenúa los colores (Java, Kotlin) y una página que se sirve al navegador (Go) | **No.** La ventana se abre al final y las tarjetas salen de una sentencia `for` o de una secuencia |
 
-An animation framework, data binding and a window's own loop are *mechanisms* that use events. They do not make the program that starts them event-driven. The test is simple: **does the card logic run because an event arrived?** If the answer is "no, a loop or a pipeline runs it, and then it opens a window", the entry is a loop with a window.
+Una infraestructura de animación, el enlace de datos y el propio bucle de una ventana son *mecanismos* que usan eventos. Eso no hace que el programa que los inicia se rija por eventos. La prueba es sencilla: **¿la lógica de las tarjetas se ejecuta porque llegó un evento?** Si la respuesta es "no, la ejecuta un bucle o una canalización y luego se abre una ventana", la entrada es un bucle con ventana.
 
-## Predict, then run
+## Predice y luego ejecuta
 
-[Exercise B22](../exercises.md#b22-javascript-event-driven-predict-the-trace-then-remove-the-boundary-verified) asks you to write the trace of a run *before* you see it, to predict what `emit` and `setImmediate` print and to remove the scheduling boundary and watch a million cards run out of stack. Do the prediction on paper first. The surprise is the point.
+El [ejercicio B22](../exercises.md#b22-javascript-event-driven-predict-the-trace-then-remove-the-boundary-verified) te pide que escribas la traza de una ejecución *antes* de verla y que predigas qué imprimen `emit` y `setImmediate`. También te pide que quites la separación entre turnos y veas cómo un millón de tarjetas agotan la pila. Haz primero la predicción en papel. La gracia está en la sorpresa.
