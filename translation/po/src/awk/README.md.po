@@ -1,0 +1,301 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/awk/README.md:2
+msgctxt "s-cac670adb2da-0000"
+msgid "AWK"
+msgstr "AWK"
+
+#: src/awk/README.md:3
+msgctxt "s-78fe15443001-0001"
+msgid "that portable AWK can build records out of fields and stream its output through a pipe, with arrays and parameter-local variables for state."
+msgstr "que AWK portable puede construir registros a partir de campos y enviar su salida por una tubería, con arreglos y variables locales de parámetro para el estado."
+
+#: src/awk/README.md:11
+msgctxt "s-c295524518d6-0002"
+msgid "Ordinary: a ⟦CODE_0001⟧ loop in ⟦CODE_0002⟧, with a pipe to sqlite3 as the output"
+msgstr "Ordinario: un bucle ⟦CODE_0001⟧ en ⟦CODE_0002⟧, con una tubería a sqlite3 como salida"
+
+#: src/awk/README.md:12
+msgctxt "s-9ac15ea24566-0003"
+msgid "Arrays and parameter-local variables"
+msgstr "Arreglos y variables locales de parámetro"
+
+#: src/awk/README.md:15
+msgctxt "s-cac670adb2da-0004"
+msgid "AWK"
+msgstr "AWK"
+
+#: src/awk/README.md:17
+msgctxt "s-e033128924ef-0005"
+msgid "**Teaches you:** that portable AWK can build records out of fields and stream its output through a pipe, with arrays and parameter-local variables for state."
+msgstr "**Te enseña:** que AWK portable puede construir registros a partir de campos y enviar su salida por una tubería, con arreglos y variables locales declaradas como parámetros para el estado."
+
+#: src/awk/README.md:19
+msgctxt "s-5ca333b42af1-0006"
+msgid "**⟦DNT_0001⟧.** Fictional timecards in a scratch SQLite file. No connection to any real time-reporting system."
+msgstr "**⟦DNT_0001⟧.** Tarjetas de horas ficticias en un archivo SQLite temporal. Sin conexión con ningún sistema real de registro de horas."
+
+#: src/awk/README.md:21
+msgctxt "s-187463bb0222-0007"
+msgid "This is the straight version, the one that shows how AWK is *meant* to be written. The challenge (\"add 10 to 19 hour cards until the total passes 40\") is one ⟦CODE_0001⟧ loop; everything else in [⟦CODE_0002⟧](⟦DEST_0003⟧) is a small function that does one job. It is **portable POSIX awk**: it runs unchanged under gawk, mawk, the one-true-awk (BWK awk) and busybox awk. The weird version, which hands the loop to awk's own main loop and reads dice from ⟦CODE_0004⟧, is [⟦CODE_0005⟧](⟦DEST_0006⟧)."
+msgstr "Esta es la versión directa, la que muestra cómo AWK está *pensado* para escribirse. El reto (\"suma tarjetas de 10 a 19 horas hasta que el total pase de 40\") es un solo bucle ⟦CODE_0001⟧; todo lo demás en [⟦CODE_0002⟧](⟦DEST_0003⟧) es una función pequeña que hace una sola tarea. Es **awk POSIX portable**: se ejecuta sin cambios en gawk, mawk, one-true-awk (BWK awk) y busybox awk. La versión rara, que delega el bucle en el bucle principal del propio awk y lee los dados de ⟦CODE_0004⟧, es [⟦CODE_0005⟧](⟦DEST_0006⟧)."
+
+#: src/awk/README.md:23
+msgctxt "s-958ca26c6a61-0008"
+msgid "Run it"
+msgstr "Ejecútalo"
+
+#: src/awk/README.md:25
+msgctxt "s-b7d3e3f7b15d-0009"
+msgid "You need any POSIX ⟦CODE_0001⟧, ⟦CODE_0002⟧, and the usual ⟦CODE_0003⟧, ⟦CODE_0004⟧ and ⟦CODE_0005⟧."
+msgstr "Necesitas cualquier ⟦CODE_0001⟧ compatible con POSIX, ⟦CODE_0002⟧ y los habituales ⟦CODE_0003⟧, ⟦CODE_0004⟧ y ⟦CODE_0005⟧."
+
+#: src/awk/README.md:33
+msgctxt "s-afb63f975a9f-0010"
+msgid "Records go to ⟦CODE_0001⟧ (default ⟦CODE_0002⟧). A run looks like this:"
+msgstr "Los registros van a ⟦CODE_0001⟧ (por defecto ⟦CODE_0002⟧). Una ejecución se ve así:"
+
+#: src/awk/README.md:44
+msgctxt "s-c74ea9dc9cd2-0011"
+msgid "What it does"
+msgstr "Qué hace"
+
+#: src/awk/README.md:46
+msgctxt "s-13dfe9f4a2df-0012"
+msgid "It draws cards of 10 to 19 hours, cycling through ⟦DNT_0001⟧, ⟦DNT_0002⟧, ⟦DNT_0003⟧ and ⟦DNT_0004⟧, until the running total is greater than 40 (the card that crosses the line is kept), prints each row, and saves all of them to SQLite in one transaction."
+msgstr "Saca tarjetas de 10 a 19 horas y recorre en ciclo ⟦DNT_0001⟧, ⟦DNT_0002⟧, ⟦DNT_0003⟧ y ⟦DNT_0004⟧ hasta que el total acumulado pasa de 40 (se conserva la tarjeta que cruza la línea); imprime cada fila y guarda todas en SQLite en una sola transacción."
+
+#: src/awk/README.md:48
+msgctxt "s-0dcb373c2dff-0013"
+msgid "Program Flow"
+msgstr "Flujo del programa"
+
+#: src/awk/README.md:52
+msgctxt "s-160d0a8d3559-0014"
+msgid "awk: a generator in BEGIN, with a while loop and a pipe to sqlite3"
+msgstr "awk: un generador en BEGIN, con un bucle while y una tubería hacia sqlite3"
+
+#: src/awk/README.md:53
+msgctxt "s-c0f5e624efb2-0015"
+msgid "A flowchart. awk has no input, so everything runs in the BEGIN rule. BEGIN asks the shell for the ISO week, seeds the random generator, splits the category names into an array and opens a pipe to sqlite3. A while loop tests whether the total is at or under the limit. If so, it draws hours, adds them to the total, picks the next category, prints the row, and prints an INSERT to the pipe. When the total is over the limit, awk closes the pipe, which commits the transaction, and prints the summary."
+msgstr "Un diagrama de flujo. awk no tiene entrada de datos, así que todo se ejecuta en la regla BEGIN. BEGIN pide la semana ISO al intérprete de comandos. BEGIN inicializa el generador aleatorio, divide los nombres de las categorías en un arreglo y abre una tubería hacia sqlite3. Un bucle while comprueba si el total es menor o igual que el límite. Si es así, sortea las horas, las suma al total, elige la siguiente categoría, imprime la fila e imprime un INSERT en la tubería. Cuando el total pasa del límite, awk cierra la tubería (lo que confirma la transacción) e imprime el resumen."
+
+#: src/awk/README.md:54
+msgctxt "s-b773da56f336-0016"
+msgid "BEGIN: week from date, srand from /dev/urandom, split categories, open the pipe to sqlite3"
+msgstr "BEGIN: semana desde date, srand desde /dev/urandom, dividir categorías, abrir la tubería a sqlite3"
+
+#: src/awk/README.md:54
+msgctxt "s-aa6263ba863c-0017"
+msgid "while: total <= LIMIT?"
+msgstr "while: ¿total <= LIMIT?"
+
+#: src/awk/README.md:55
+msgctxt "s-8a798890fe93-0018"
+msgid "yes"
+msgstr "sí"
+
+#: src/awk/README.md:55
+msgctxt "s-7fa3f897fc4e-0019"
+msgid "random_hours, total += hours, pick the next category"
+msgstr "random_hours, total += hours, elige la siguiente categoría"
+
+#: src/awk/README.md:56
+msgctxt "s-cade3ae69d47-0020"
+msgid "print the row by assigning fields; print the INSERT to the pipe"
+msgstr "imprime la fila asignando los campos; imprime el INSERT en la tubería"
+
+#: src/awk/README.md:58
+msgctxt "s-9390298f3fb0-0021"
+msgid "no"
+msgstr "no"
+
+#: src/awk/README.md:58
+msgctxt "s-7c661316bd46-0022"
+msgid "close the pipe: sqlite3 commits"
+msgstr "cierra la tubería: sqlite3 confirma la transacción"
+
+#: src/awk/README.md:59
+msgctxt "s-c77eca3fe5e8-0023"
+msgid "Print the summary"
+msgstr "Imprime el resumen"
+
+#: src/awk/README.md:62
+msgctxt "s-3456e4a5cefb-0024"
+msgid "**What this shows:** the idiomatic shape of an AWK generator. There is no input, so ⟦CODE_0001⟧ does everything, and an ordinary ⟦CODE_0002⟧ is the loop. The test comes before each draw, so the card that crosses 40 is the last one added."
+msgstr "**Qué muestra:** la forma idiomática de un generador en AWK. No hay entrada de datos, así que ⟦CODE_0001⟧ hace todo el trabajo y un ⟦CODE_0002⟧ ordinario es el bucle. La prueba va antes de cada extracción, así que la tarjeta que pasa de 40 es la última que se suma."
+
+#: src/awk/README.md:64
+msgctxt "s-d2c1bd5c923f-0025"
+msgid "**Why this mechanism matters:** the pipe is an output stream with a name. ⟦CODE_0001⟧ starts ⟦CODE_0002⟧ once and streams SQL to it, and ⟦CODE_0003⟧ is what flushes it and returns its exit status. AWK's real loop, the one over input records, is not used here. The weird sibling [⟦CODE_0004⟧](⟦DEST_0005⟧) uses it."
+msgstr "**Por qué importa este mecanismo:** la tubería es un flujo de salida con nombre. ⟦CODE_0001⟧ inicia ⟦CODE_0002⟧ una sola vez y le envía SQL de forma continua, y ⟦CODE_0003⟧ es lo que la vacía y devuelve su estado de salida. El programa no usa el bucle real de AWK, el que recorre los registros de entrada. El hermano raro [⟦CODE_0004⟧](⟦DEST_0005⟧) sí lo usa."
+
+#: src/awk/README.md:66
+msgctxt "s-7f97d965b4c0-0026"
+msgid "How the stunt works"
+msgstr "Cómo funciona el truco"
+
+#: src/awk/README.md:68
+msgctxt "s-97a83b575c8f-0027"
+msgid "An AWK program is a list of ⟦CODE_0001⟧ rules that run once per input record, plus ⟦CODE_0002⟧ and ⟦CODE_0003⟧ rules. This program has **no input**, so everything happens in ⟦CODE_0004⟧, which is the idiomatic shape for a generator."
+msgstr "Un programa AWK es una lista de reglas ⟦CODE_0001⟧ que se ejecutan una vez por registro de entrada, más las reglas ⟦CODE_0002⟧ y ⟦CODE_0003⟧. Este programa **no tiene entrada de datos**, así que todo ocurre en ⟦CODE_0004⟧, que es la forma idiomática de un generador."
+
+#: src/awk/README.md:70
+msgctxt "s-d9fb6226401f-0028"
+msgid ""
+"**Functions with locals in the parameter list.** AWK has no local-variable syntax: extra parameters *are* the locals, by convention written after a gap (⟦CODE_0001⟧). Any variable not in the list is global, which is why a function's parameters should not reuse the names the ⟦CODE_0002⟧ block uses; ⟦CODE_0003⟧ warns about it, and ⟦CODE_0004⟧ runs that lint.\n"
+"2. **⟦CODE_0005⟧: a command as a data source.** ⟦CODE_0006⟧ runs a shell command and reads its first output line; ⟦CODE_0007⟧ is required before you can run it again.\n"
+"3. **⟦CODE_0008⟧.** ⟦CODE_0009⟧ is in ⟦CODE_0010⟧, so ⟦CODE_0011⟧ is 0 to 9 and ⟦CODE_0012⟧ makes it 10 to 19. The seed comes from ⟦CODE_0013⟧ through ⟦CODE_0014⟧ and goes to ⟦CODE_0015⟧: without that, ⟦CODE_0016⟧ repeats in most awks.\n"
+"4. **Arrays.** ⟦CODE_0017⟧ fills an array indexed from **1**. ⟦CODE_0018⟧ picks the next one and counts the card in the same expression.\n"
+"5. **The challenge.**"
+msgstr ""
+"**Funciones con variables locales en la lista de parámetros.** AWK no tiene sintaxis para variables locales: los parámetros extra *son* las locales, y por convención se escriben después de un espacio (⟦CODE_0001⟧). Toda variable que no está en la lista es global; por eso los parámetros de una función no deben reutilizar los nombres que usa el bloque ⟦CODE_0002⟧. ⟦CODE_0003⟧ avisa de ese problema y ⟦CODE_0004⟧ ejecuta esa revisión.\n"
+"2. **⟦CODE_0005⟧: un comando como fuente de datos.** ⟦CODE_0006⟧ ejecuta un comando del intérprete de comandos (*shell*), el programa que recibe y ejecuta comandos escritos como texto, y lee la primera línea de su salida; necesitas ⟦CODE_0007⟧ antes de poder ejecutarlo otra vez.\n"
+"3. **⟦CODE_0008⟧.** ⟦CODE_0009⟧ está en ⟦CODE_0010⟧, así que ⟦CODE_0011⟧ va de 0 a 9 y ⟦CODE_0012⟧ lo deja de 10 a 19. La semilla viene de ⟦CODE_0013⟧ mediante ⟦CODE_0014⟧ y va a ⟦CODE_0015⟧: sin eso, ⟦CODE_0016⟧ se repite en la mayoría de las implementaciones de AWK.\n"
+"4. **Arreglos.** ⟦CODE_0017⟧ llena un arreglo indexado desde **1**. ⟦CODE_0018⟧ elige la siguiente tarjeta y la cuenta en la misma expresión.\n"
+"5. **El reto.**"
+
+#: src/awk/README.md:84
+msgctxt "s-b32a056ff076-0029"
+msgid ""
+"The test is made before each draw, so the card that crosses 40 is the last one added.\n"
+"6. **Fields as a record builder.** ⟦CODE_0001⟧ assigns ⟦CODE_0002⟧ to ⟦CODE_0003⟧; assigning to a field rebuilds ⟦CODE_0004⟧ joined with ⟦CODE_0005⟧, which ⟦CODE_0006⟧ set to a tab, and ⟦CODE_0007⟧ with no arguments prints it. No ⟦CODE_0008⟧ format string, no manual joining.\n"
+"7. **A pipe as an output stream.** ⟦CODE_0009⟧ starts ⟦CODE_0010⟧ once and streams SQL to it; the same command string is the same pipe. ⟦CODE_0011⟧ flushes it and returns the command's exit status, which the program checks (see the gotcha on ⟦CODE_0012⟧ below).\n"
+"8. **Quoting.** ⟦CODE_0013⟧ wraps a path as one shell word by ⟦CODE_0014⟧ting on ⟦CODE_0015⟧ and joining with ⟦CODE_0016⟧; ⟦CODE_0017⟧ doubles the quotes in a string. Both are done with plain string operations, because ⟦CODE_0018⟧ replacement strings treat backslashes differently in different awks."
+msgstr ""
+"La prueba ocurre antes de cada sorteo, así que la tarjeta que pasa de 40 es la última que se agrega.\n"
+"6. **Los campos como constructor de registros.** ⟦CODE_0001⟧ asigna ⟦CODE_0002⟧ a ⟦CODE_0003⟧; asignar a un campo reconstruye ⟦CODE_0004⟧ unido con ⟦CODE_0005⟧, que ⟦CODE_0006⟧ define como una tabulación y ⟦CODE_0007⟧ sin argumentos lo imprime. Sin cadena de formato ⟦CODE_0008⟧ y sin unión manual.\n"
+"7. **Una tubería como flujo de salida.** ⟦CODE_0009⟧ inicia ⟦CODE_0010⟧ una sola vez y le envía SQL de forma continua; la misma cadena de texto de comando es la misma tubería. ⟦CODE_0011⟧ la vacía y devuelve el estado de salida del comando, que el programa comprueba (consulta la trampa sobre ⟦CODE_0012⟧ más abajo).\n"
+"8. **Comillas.** ⟦CODE_0013⟧ envuelve una ruta como una sola palabra del intérprete de comandos. Para ello usa ⟦CODE_0014⟧ para dividir en ⟦CODE_0015⟧ y une con ⟦CODE_0016⟧; ⟦CODE_0017⟧ duplica las comillas de una cadena de texto. Ambas se hacen con operaciones simples con cadenas de texto, porque las cadenas de reemplazo de ⟦CODE_0018⟧ tratan las barras invertidas de forma distinta en distintos awks."
+
+#: src/awk/README.md:89
+msgctxt "s-c307ae374e6b-0030"
+msgid "Why this is idiomatic"
+msgstr "Por qué esto es idiomático"
+
+#: src/awk/README.md:91
+msgctxt "s-4980a1e424f5-0031"
+msgid "**Small functions** with their locals declared, and constants written in capitals."
+msgstr "**Funciones pequeñas** con sus variables locales declaradas y constantes escritas en mayúsculas."
+
+#: src/awk/README.md:92
+msgctxt "s-e5edeb66ac0f-0032"
+msgid "**⟦CODE_0001⟧ for a program without input**, and ⟦CODE_0002⟧ for the environment."
+msgstr "**⟦CODE_0001⟧ para un programa sin entrada de datos** y ⟦CODE_0002⟧ para el entorno."
+
+#: src/awk/README.md:93
+msgctxt "s-51d0aa0f1af7-0033"
+msgid "**Arrays and ⟦CODE_0001⟧** for the lookup table; ⟦CODE_0002⟧/⟦CODE_0003⟧ for formatted text; the field-assignment idiom for a delimited row."
+msgstr "**Arreglos y ⟦CODE_0001⟧** para la tabla de consulta; ⟦CODE_0002⟧/⟦CODE_0003⟧ para texto con formato; el modismo de asignación de campos para una fila delimitada."
+
+#: src/awk/README.md:94
+msgctxt "s-f0385dab10a4-0034"
+msgid "**Pipes and ⟦CODE_0001⟧** for talking to other programs, the way AWK programs have since the 1970s."
+msgstr "**Tuberías y ⟦CODE_0001⟧** para comunicarse con otros programas, como hacen los programas AWK desde la década de 1970."
+
+#: src/awk/README.md:95
+msgctxt "s-5504abcc200e-0035"
+msgid "**Only POSIX features**: no ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧ or arrays of arrays. Time comes from ⟦CODE_0005⟧."
+msgstr "**Solo funciones POSIX**: sin ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧ ni ⟦CODE_0004⟧ y sin arreglos de arreglos. La hora viene de ⟦CODE_0005⟧."
+
+#: src/awk/README.md:97
+msgctxt "s-81b1eee1fbb4-0036"
+msgid "What you can learn"
+msgstr "Qué puedes aprender"
+
+#: src/awk/README.md:99
+msgctxt "s-b1d6dee82b4d-0037"
+msgid "That AWK's local variables are extra parameters, and why that matters for naming."
+msgstr "Que las variables locales de AWK son parámetros adicionales y por qué eso importa al elegir nombres."
+
+#: src/awk/README.md:100
+msgctxt "s-fef76c607360-0038"
+msgid "⟦CODE_0001⟧ and the fields are one data structure: assigning either rebuilds the other."
+msgstr "⟦CODE_0001⟧ y los campos son una sola estructura de datos: si asignas uno, AWK reconstruye el otro."
+
+#: src/awk/README.md:101
+msgctxt "s-ad8b994e3ef1-0039"
+msgid "⟦CODE_0001⟧ from a command and ⟦CODE_0002⟧ to reuse it."
+msgstr "⟦CODE_0001⟧ desde un comando y ⟦CODE_0002⟧ para reutilizarlo."
+
+#: src/awk/README.md:102
+msgctxt "s-510ac10a2f95-0040"
+msgid "Why you always seed ⟦CODE_0001⟧."
+msgstr "Por qué siempre inicializas ⟦CODE_0001⟧ con una semilla."
+
+#: src/awk/README.md:103
+msgctxt "s-3b39abc751dd-0041"
+msgid "Which AWK features are POSIX and which are GNU: this file is a small list of the portable ones."
+msgstr "Qué características de AWK son POSIX y cuáles son GNU: este archivo es una lista breve de las portables."
+
+#: src/awk/README.md:105
+msgctxt "s-5a0ad00b10fc-0042"
+msgid "Gotchas worth knowing"
+msgstr "Trampas que conviene conocer"
+
+#: src/awk/README.md:107
+msgctxt "s-dc38e339d7bd-0043"
+msgid "**Arrays from ⟦CODE_0001⟧ start at 1**, not 0."
+msgstr "**Los arreglos de ⟦CODE_0001⟧ empiezan en 1**, no en 0."
+
+#: src/awk/README.md:108
+msgctxt "s-8d45e3c6d9b4-0044"
+msgid "**Uninitialized variables are ⟦CODE_0001⟧ and ⟦CODE_0002⟧ at once.** ⟦CODE_0003⟧ and ⟦CODE_0004⟧ are set to 0 anyway, for readers and for the linter."
+msgstr "**Las variables sin inicializar son ⟦CODE_0001⟧ y ⟦CODE_0002⟧ a la vez.** Aun así, el código asigna 0 a ⟦CODE_0003⟧ y ⟦CODE_0004⟧, para los lectores y para el linter."
+
+#: src/awk/README.md:109
+msgctxt "s-e2e9e8ddc031-0045"
+msgid "**⟦CODE_0001⟧ with no argument seeds from the time of day**, which gives two runs started in the same second the same numbers; hence the ⟦CODE_0002⟧ seed."
+msgstr "**⟦CODE_0001⟧ sin argumento toma la semilla de la hora del día**, y eso da los mismos números a dos ejecuciones iniciadas en el mismo segundo; de ahí la semilla ⟦CODE_0002⟧."
+
+#: src/awk/README.md:110
+msgctxt "s-180cda56ba04-0046"
+msgid "**⟦CODE_0001⟧ of a pipe returns different things in different awks.** Tested here: gawk and mawk return the command's exit status; busybox returns the raw wait status (exit status times 256, so still non-zero on failure); the one-true-awk build tested returns 0 whatever happened, so there a failing ⟦CODE_0002⟧ would go unnoticed. The program's ⟦CODE_0003⟧ test is right for the first three; for a fourth awk, check what ⟦CODE_0004⟧ gives you."
+msgstr "**⟦CODE_0001⟧ de una tubería devuelve resultados distintos en distintos awk.** Probado aquí: gawk y mawk devuelven el estado de salida del comando; busybox devuelve el estado de espera sin procesar (el estado de salida multiplicado por 256, así que sigue siendo distinto de cero si hay un fallo); la compilación de one-true-awk que se probó devuelve 0 pase lo que pase, así que allí un ⟦CODE_0002⟧ con fallo pasaría inadvertido. La prueba de ⟦CODE_0003⟧ del programa es correcta para los tres primeros; con un cuarto awk, comprueba qué te da ⟦CODE_0004⟧."
+
+#: src/awk/README.md:111
+msgctxt "s-ce76636d5fae-0047"
+msgid "**A path containing a double quote or newline** is not supported."
+msgstr "**Una ruta que contenga comillas dobles o un salto de línea** no es compatible."
+
+#: src/awk/README.md:112
+msgctxt "s-0bfbd9f4ec9c-0048"
+msgid "**SQL by string building** is safe here only because every value is a number computed here or one of four fixed words. ⟦CODE_0001⟧ is there anyway; do not copy this for untrusted input."
+msgstr "**El SQL construido con cadenas de texto** es seguro aquí solo porque cada valor es un número calculado aquí o una de cuatro palabras fijas. ⟦CODE_0001⟧ está presente de todos modos; no copies esto para entradas de datos no confiables."
+
+#: src/awk/README.md:113
+msgctxt "s-6e03847853b2-0049"
+msgid "**Formatting.** There is no formatter for AWK. ⟦CODE_0001⟧ exists but rewrites the layout and drops most comments, so it is used here only as a parser check. The layout (four spaces, a comment above each function) is by hand."
+msgstr "**Formato.** No existe un formateador para AWK. ⟦CODE_0001⟧ existe, pero reescribe la disposición y elimina la mayoría de los comentarios; por eso aquí solo se usa para comprobar el analizador sintáctico. La disposición (cuatro espacios y un comentario sobre cada función) se hace a mano."
+
+#: src/awk/README.md:115
+msgctxt "s-339cc2c18f83-0050"
+msgid "What ⟦CODE_0001⟧ enforces"
+msgstr "Qué exige ⟦CODE_0001⟧"
+
+#: src/awk/README.md:117
+msgctxt "s-62bdf0b53e33-0051"
+msgid "The ⟦CODE_0001⟧ marker is there; no network-looking text; the challenge is a ⟦CODE_0002⟧; ⟦CODE_0003⟧ has no complaints (so no GNU extensions and no shadowed variables). Then 25 real runs, under **each** awk found (gawk, mawk, the one-true-awk, busybox awk when installed), each checked for sane records (hours 10 to 19, categories in order, correct running totals, stopping exactly when the total passes 40) with SQLite agreeing with the printed output."
+msgstr "Está el marcador ⟦CODE_0001⟧; no hay texto que parezca de red; el reto es un ⟦CODE_0002⟧; ⟦CODE_0003⟧ no se queja de nada (es decir, no hay extensiones de GNU ni variables sombreadas). Después vienen 25 ejecuciones reales con **cada** awk que se encuentre (gawk, mawk, el one-true-awk y el awk de busybox si está instalado). En cada ejecución se comprueba que los registros sean coherentes (horas de 10 a 19, categorías en orden, totales acumulados correctos y parada justo cuando el total pasa de 40), y que SQLite coincida con la salida impresa."
+
+#: src/awk/README.md:119
+msgctxt "s-254f0c660db3-0052"
+msgid "Run it in a container"
+msgstr "Ejecútalo en un contenedor"
+
+#: src/awk/README.md:121
+msgctxt "s-b3c91dd20065-0053"
+msgid "Prerequisite: Docker, set up once as described in [⟦CODE_0001⟧](⟦DEST_0002⟧). The ⟦CODE_0003⟧ base image comes from ⟦CODE_0004⟧."
+msgstr "Requisito previo: Docker, que configuras una sola vez como se describe en [⟦CODE_0001⟧](⟦DEST_0002⟧). La imagen base ⟦CODE_0003⟧ viene de ⟦CODE_0004⟧."
+
+#: src/awk/README.md:127
+msgctxt "s-28c1c7f46870-0054"
+msgid "It builds this folder's [⟦CODE_0001⟧](⟦DEST_0002⟧) and runs the result (under mawk, to show the portability) with no network, a read-only file system and user ⟦CODE_0003⟧, then prints the output and a read-only look at the rows it wrote. The image holds gawk, mawk and sqlite3 on a minimal Ubuntu."
+msgstr "Compila el [⟦CODE_0001⟧](⟦DEST_0002⟧) de esta carpeta y ejecuta el resultado (con mawk, para mostrar la portabilidad) sin red, con un sistema de archivos de solo lectura y con el usuario ⟦CODE_0003⟧. Después muestra la salida y una vista de solo lectura de las filas que escribió. La imagen incluye gawk, mawk y sqlite3 sobre un Ubuntu mínimo."

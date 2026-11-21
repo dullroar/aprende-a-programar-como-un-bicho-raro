@@ -1,0 +1,338 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/awk-weird/README.md:2
+msgctxt "s-cac670adb2da-0000"
+msgid "AWK"
+msgstr "AWK"
+
+#: src/awk-weird/README.md:3
+msgctxt "s-07e3fb761e5f-0001"
+msgid "that a regular expression as the record separator turns a stream of random bytes into dice, and that awk's implicit main loop plus one pattern is a whole program."
+msgstr "que una expresión regular como separador de registros convierte un flujo de bytes aleatorios en dados y que el bucle principal implícito de awk más un patrón es un programa completo."
+
+#: src/awk-weird/README.md:11
+msgctxt "s-8c30f8a248df-0002"
+msgid "A record-processing loop that you can aim at any byte stream"
+msgstr "Un bucle que procesa registros y que puedes dirigir a cualquier flujo de bytes"
+
+#: src/awk-weird/README.md:12
+msgctxt "s-ec21fc004ca0-0003"
+msgid "The input stream and the record separator ⟦CODE_0001⟧"
+msgstr "El flujo de entrada de datos y el separador de registros ⟦CODE_0001⟧"
+
+#: src/awk-weird/README.md:15
+msgctxt "s-aa2c6cc69534-0004"
+msgid "AWK, weirder"
+msgstr "AWK, más raro"
+
+#: src/awk-weird/README.md:17
+msgctxt "s-b6abc9c7c371-0005"
+msgid "**Teaches you:** that a regular expression as the record separator turns a stream of random bytes into dice, and that awk's implicit main loop plus one pattern is a whole program."
+msgstr "**Te enseña:** que una expresión regular como separador de registros convierte un flujo de bytes aleatorios en dados, y que el bucle principal implícito de awk más un patrón es un programa completo."
+
+#: src/awk-weird/README.md:19
+msgctxt "s-5ca333b42af1-0006"
+msgid "**⟦DNT_0001⟧.** Fictional timecards in a scratch SQLite file. No connection to any real time-reporting system."
+msgstr "**⟦DNT_0001⟧.** Tarjetas de horas ficticias en un archivo SQLite temporal. Sin conexión con ningún sistema real de registro de horas."
+
+#: src/awk-weird/README.md:21
+msgctxt "s-96ee0527da00-0007"
+msgid "There is **no loop, no ⟦CODE_0001⟧, no function, and no random-number generator** in [⟦CODE_0002⟧](⟦DEST_0003⟧). awk reads ⟦CODE_0004⟧; the record separator is the regular expression ⟦CODE_0005⟧, so every record is a stretch of random bytes that ends at a random digit, and gawk puts that digit in ⟦CODE_0006⟧. A digit is a die roll and a record is a card. The loop is awk's own read-a-record loop, and the stop rule is one pattern with an ⟦CODE_0007⟧ action: ⟦CODE_0008⟧."
+msgstr "**No hay bucle, ni ⟦CODE_0001⟧, ni función, ni generador de números aleatorios** en [⟦CODE_0002⟧](⟦DEST_0003⟧). awk lee ⟦CODE_0004⟧; el separador de registros es la expresión regular ⟦CODE_0005⟧, así que cada registro es un tramo de bytes aleatorios que termina en un dígito aleatorio, y gawk guarda ese dígito en ⟦CODE_0006⟧. Un dígito es una tirada de dado y un registro es una tarjeta. El bucle es el propio bucle de awk que lee un registro tras otro, y la regla de parada es un solo patrón con una acción ⟦CODE_0007⟧: ⟦CODE_0008⟧."
+
+#: src/awk-weird/README.md:23
+msgctxt "s-feb49dfeb9db-0008"
+msgid "Without the database, the whole challenge is one line:"
+msgstr "Sin la base de datos, todo el reto es una sola línea:"
+
+#: src/awk-weird/README.md:30
+msgctxt "s-8c7a258777de-0009"
+msgid "The straight version is [⟦CODE_0001⟧](⟦DEST_0002⟧)."
+msgstr "La versión directa es [⟦CODE_0001⟧](⟦DEST_0002⟧)."
+
+#: src/awk-weird/README.md:32
+msgctxt "s-958ca26c6a61-0010"
+msgid "Run it"
+msgstr "Ejecútalo"
+
+#: src/awk-weird/README.md:34
+msgctxt "s-0e623bde8421-0011"
+msgid "You need **GNU awk** (⟦CODE_0001⟧, tested with 5.2.1) and ⟦CODE_0002⟧."
+msgstr "Necesitas **GNU awk** (⟦CODE_0001⟧, probado con 5.2.1) y ⟦CODE_0002⟧."
+
+#: src/awk-weird/README.md:43
+msgctxt "s-02905c24d609-0012"
+msgid "Records go to ⟦CODE_0001⟧ (default ⟦CODE_0002⟧). A run looks like this:"
+msgstr "Los registros van a ⟦CODE_0001⟧ (por defecto ⟦CODE_0002⟧). Una ejecución se ve así:"
+
+#: src/awk-weird/README.md:54
+msgctxt "s-4cd818ace4c4-0013"
+msgid "Because the input is a file operand, the program is **reproducible**: ⟦CODE_0001⟧ always gives ⟦DNT_0002⟧ 15/15, ⟦DNT_0003⟧ 15/30, ⟦DNT_0004⟧ 15/45. The digits ⟦CODE_0005⟧ give 13, 18, 12 hours and stop at 43. ⟦CODE_0006⟧ does this with hundreds of digits."
+msgstr "Como la entrada de datos es un operando de archivo, el programa es **reproducible**: ⟦CODE_0001⟧ siempre da ⟦DNT_0002⟧ 15/15, ⟦DNT_0003⟧ 15/30, ⟦DNT_0004⟧ 15/45. Los dígitos ⟦CODE_0005⟧ dan 13, 18 y 12 horas; el programa se detiene en 43. ⟦CODE_0006⟧ hace lo mismo con cientos de dígitos."
+
+#: src/awk-weird/README.md:56
+msgctxt "s-0dcb373c2dff-0014"
+msgid "Program Flow"
+msgstr "Flujo del programa"
+
+#: src/awk-weird/README.md:60
+msgctxt "s-a97748c45058-0015"
+msgid "awk-weird: awk's own record loop over /dev/urandom, with a regex as the record separator"
+msgstr "awk-weird: el propio bucle de registros de awk sobre /dev/urandom, con una expresión regular como separador de registros"
+
+#: src/awk-weird/README.md:61
+msgctxt "s-2d3fbd644371-0016"
+msgid "A flowchart. BEGIN sets the record separator to the regular expression for a digit, adds /dev/urandom as the default input file, and opens a pipe to sqlite3. awk then reads a record, which is the bytes up to the next digit, and RT holds that digit. Rule 1 skips a record with an empty RT. Rule 2 sets the hours to 10 plus the digit and adds them to the total. Rule 3 assigns the card to the record, which re-splits it into fields. Rules 4 and 5 print an INSERT to the pipe and print the row. The last rule exits when the total is over 40, and awk goes on to read the next record when it is not. The exit runs END, which commits and prints the summary."
+msgstr "Un diagrama de flujo. BEGIN establece el separador de registros como la expresión regular de un dígito, añade /dev/urandom como archivo de entrada predeterminado y abre una tubería hacia sqlite3. Luego awk lee un registro, que son los bytes hasta el siguiente dígito, y RT contiene ese dígito. La regla 1 omite un registro con RT vacío. La regla 2 fija las horas en 10 más el dígito y las suma al total. La regla 3 asigna la tarjeta al registro, lo que lo divide de nuevo en campos. Las reglas 4 y 5 imprimen un INSERT en la tubería e imprimen la fila. La última regla sale cuando el total pasa de 40; si no, awk pasa a leer el siguiente registro. Al salir se ejecuta END, que confirma la transacción e imprime el resumen."
+
+#: src/awk-weird/README.md:62
+msgctxt "s-86be80bf63ed-0017"
+msgid "BEGIN: RS is [0-9], /dev/urandom added to ARGV, sqlite3 pipe opened"
+msgstr "BEGIN: RS es [0-9], se añade /dev/urandom a ARGV, se abre una tubería a sqlite3"
+
+#: src/awk-weird/README.md:62
+msgctxt "s-fccf817c547f-0018"
+msgid "awk reads a record: the bytes up to the next digit, and RT is that digit"
+msgstr "awk lee un registro: los bytes hasta el siguiente dígito, y RT es ese dígito"
+
+#: src/awk-weird/README.md:63
+msgctxt "s-f5cbdf8066a8-0019"
+msgid "Rules 1 to 3: skip empty RT; hours = 10 + RT, add to total; build the card in the fields"
+msgstr "Reglas de 1 a 3: omite RT vacío; hours = 10 + RT, suma al total; construye la tarjeta en los campos"
+
+#: src/awk-weird/README.md:64
+msgctxt "s-64854120c384-0020"
+msgid "Rules 4 and 5: print the INSERT to the pipe, print the row"
+msgstr "Reglas 4 y 5: imprime el INSERT en la tubería; imprime la fila"
+
+#: src/awk-weird/README.md:65
+msgctxt "s-95914fc7a4aa-0021"
+msgid "Last rule: t ≥ 41?"
+msgstr "Última regla: ¿t ≥ 41?"
+
+#: src/awk-weird/README.md:66
+msgctxt "s-9390298f3fb0-0022"
+msgid "no"
+msgstr "no"
+
+#: src/awk-weird/README.md:67
+msgctxt "s-8a798890fe93-0023"
+msgid "yes"
+msgstr "sí"
+
+#: src/awk-weird/README.md:67
+msgctxt "s-53eb0518e2ae-0024"
+msgid "exit: END commits, closes the pipe, prints the summary"
+msgstr "exit: END confirma la transacción, cierra la tubería e imprime el resumen"
+
+#: src/awk-weird/README.md:70
+msgctxt "s-88627e04eaca-0025"
+msgid "**What this shows:** the loop is the loop that every AWK program has: read a record, run every rule in order, read the next. The program has no ⟦CODE_0001⟧ and no ⟦CODE_0002⟧. A record separator that is a regular expression turns the random bytes into dice, and the digit that ended the record (⟦CODE_0003⟧) is the die."
+msgstr "**Qué muestra:** el bucle es el que tiene todo programa AWK: lee un registro, ejecuta todas las reglas en orden y lee el siguiente. El programa no tiene ⟦CODE_0001⟧ ni ⟦CODE_0002⟧. Un separador de registros que es una expresión regular convierte los bytes aleatorios en dados, y el dígito que terminó el registro (⟦CODE_0003⟧) es el dado."
+
+#: src/awk-weird/README.md:72
+msgctxt "s-7a91e9144791-0026"
+msgid "**Why this mechanism matters:** the stop rule is a bare pattern, ⟦CODE_0001⟧, and it is the last rule, so the crossing card has already passed through every earlier rule. The input is ⟦CODE_0002⟧, which never ends, so only ⟦CODE_0003⟧ can stop the loop. Compare [⟦CODE_0004⟧](⟦DEST_0005⟧), which loops in ⟦CODE_0006⟧."
+msgstr "**Por qué importa este mecanismo:** la regla de parada es un patrón sin acción, ⟦CODE_0001⟧, que además es la última regla, así que la tarjeta que cruza el límite ya pasó por todas las reglas anteriores. La entrada de datos es ⟦CODE_0002⟧, que nunca termina, así que solo ⟦CODE_0003⟧ puede detener el bucle. Compara [⟦CODE_0004⟧](⟦DEST_0005⟧), que usa un bucle en ⟦CODE_0006⟧."
+
+#: src/awk-weird/README.md:74
+msgctxt "s-7f97d965b4c0-0027"
+msgid "How the stunt works"
+msgstr "Cómo funciona el truco"
+
+#: src/awk-weird/README.md:76
+msgctxt "s-28b0ced883e2-0028"
+msgid "Read the rules in order: awk runs **every rule whose pattern matches, for every record, top to bottom**."
+msgstr "Lee las reglas en orden: awk ejecuta **cada regla cuyo patrón coincide, para cada registro, de arriba abajo**."
+
+#: src/awk-weird/README.md:78
+msgctxt "s-57ace0b10cd1-0029"
+msgid "1. The separator is a regular expression, and the terminator is yours"
+msgstr "1. El separador es una expresión regular; el terminador lo eliges tú"
+
+#: src/awk-weird/README.md:80
+msgctxt "s-35adb7a01e81-0030"
+msgid "⟦CODE_0001⟧. In POSIX awk, ⟦CODE_0002⟧ is one character. In gawk (and in several other awks), a longer value is a **regular expression**, and gawk stores the text that matched in ⟦CODE_0003⟧. Read ⟦CODE_0004⟧ with that and the stream is cut after every digit byte. About 10 in 256 bytes are digits, uniformly spread over ⟦CODE_0005⟧-⟦CODE_0006⟧, so ⟦CODE_0007⟧ is a uniform random digit and a card is the junk before it (ignored). ⟦CODE_0008⟧ is hours from 10 to 19. No ⟦CODE_0009⟧, no seed, no LCG. (I counted 20,000 records in C, UTF-8 and ⟦CODE_0010⟧ locales: each digit turned up about 2,000 times.)"
+msgstr "⟦CODE_0001⟧. En POSIX awk, ⟦CODE_0002⟧ es un solo carácter. En gawk (y en otros awk) un valor más largo es una **expresión regular**, y gawk guarda el texto que coincidió en ⟦CODE_0003⟧. Lee ⟦CODE_0004⟧ con esa regla y el flujo se corta después de cada byte que es un dígito. Unos 10 de cada 256 bytes son dígitos, repartidos de manera uniforme de ⟦CODE_0005⟧ a ⟦CODE_0006⟧. Por eso ⟦CODE_0007⟧ es un dígito aleatorio uniforme y una tarjeta es la basura que hay antes de él (se ignora). ⟦CODE_0008⟧ son horas de 10 a 19. Sin ⟦CODE_0009⟧, sin semilla, sin LCG. (Conté 20 000 registros en las configuraciones regionales C, UTF-8 y ⟦CODE_0010⟧: cada dígito apareció unas 2 000 veces.)"
+
+#: src/awk-weird/README.md:82
+msgctxt "s-55dea9a71c3b-0031"
+msgid "2. One record is one card"
+msgstr "2. Un registro es una tarjeta"
+
+#: src/awk-weird/README.md:89
+msgctxt "s-700f62b37264-0032"
+msgid "An assignment is an expression, so ⟦CODE_0001⟧ sets ⟦CODE_0002⟧ and adds it to ⟦CODE_0003⟧ in one statement (both start as \"\" which is 0, no initialization needed). Assigning to ⟦CODE_0004⟧ makes awk **re-split** the record into fields with ⟦CODE_0005⟧, which ⟦CODE_0006⟧ set to a comma: ⟦CODE_0007⟧ is the category, ⟦CODE_0008⟧ the hours, ⟦CODE_0009⟧ the total, ⟦CODE_0010⟧ the week."
+msgstr "Una asignación es una expresión, así que ⟦CODE_0001⟧ asigna ⟦CODE_0002⟧ y lo suma a ⟦CODE_0003⟧ en una sola sentencia (ambos empiezan como \"\", que vale 0, así que no necesitan inicialización). Asignar a ⟦CODE_0004⟧ hace que awk **vuelva a dividir** el registro en campos con ⟦CODE_0005⟧, que ⟦CODE_0006⟧ fijó en una coma: ⟦CODE_0007⟧ es la categoría, ⟦CODE_0008⟧ las horas, ⟦CODE_0009⟧ el total y ⟦CODE_0010⟧ la semana."
+
+#: src/awk-weird/README.md:91
+msgctxt "s-b967b0d0961e-0033"
+msgid "3. The same fields, three ways"
+msgstr "3. Los mismos campos, de tres maneras"
+
+#: src/awk-weird/README.md:93
+msgctxt "s-cb2fcc4ecfcd-0034"
+msgid "**Rule 4:** an ⟦CODE_0001⟧ built from ⟦CODE_0002⟧..⟦CODE_0003⟧, printed to ⟦CODE_0004⟧, a pipe to ⟦CODE_0005⟧."
+msgstr "**Regla 4:** un ⟦CODE_0001⟧ construido a partir de ⟦CODE_0002⟧..⟦CODE_0003⟧, impreso en ⟦CODE_0004⟧, una tubería hacia ⟦CODE_0005⟧."
+
+#: src/awk-weird/README.md:94
+msgctxt "s-59e07d275350-0035"
+msgid "**Rule 5:** ⟦CODE_0001⟧. ⟦CODE_0002⟧ looks like a no-op, and is the famous AWK way to force a rebuild of ⟦CODE_0003⟧ joined by ⟦CODE_0004⟧: the commas become tabs, so the human-readable row is the same record with a different separator."
+msgstr "**Regla 5:** ⟦CODE_0001⟧. ⟦CODE_0002⟧ parece una operación nula y es la forma famosa en AWK de forzar la reconstrucción de ⟦CODE_0003⟧ unidos por ⟦CODE_0004⟧. Las comas se convierten en tabulaciones, así que la fila legible para personas es el mismo registro con otro separador."
+
+#: src/awk-weird/README.md:95
+msgctxt "s-5ea5f66a4eca-0036"
+msgid "The ⟦CODE_0001⟧ rule is in the table: ⟦CODE_0002⟧."
+msgstr "La regla ⟦CODE_0001⟧ está en la tabla: ⟦CODE_0002⟧."
+
+#: src/awk-weird/README.md:97
+msgctxt "s-05a45e706138-0037"
+msgid "4. The stop rule is a bare pattern"
+msgstr "4. La regla de parada es un patrón sin acción"
+
+#: src/awk-weird/README.md:103
+msgctxt "s-849ab6e74ca1-0038"
+msgid "⟦CODE_0001⟧ in a main rule ends input and runs ⟦CODE_0002⟧, which commits and closes the pipe. The card that crossed the line has already been through rules 2 to 5, so it is kept without any special case. It is the last rule so that the card has been written before the program stops."
+msgstr "⟦CODE_0001⟧ en una regla principal termina la entrada de datos y ejecuta ⟦CODE_0002⟧, que confirma la transacción y cierra la tubería. La tarjeta que cruzó la línea ya pasó por las reglas de 2 a 5, así que se conserva sin ningún caso especial. Es la última regla para que la tarjeta ya se haya escrito antes de que el programa se detenga."
+
+#: src/awk-weird/README.md:105
+msgctxt "s-8236add94ed0-0039"
+msgid "5. No ⟦CODE_0001⟧, no loop"
+msgstr "5. Sin ⟦CODE_0001⟧, sin bucle"
+
+#: src/awk-weird/README.md:107
+msgctxt "s-1d66d9b967e7-0040"
+msgid "The empty last record of a finite file (the text after the last digit, e.g. a trailing newline) has an **empty ⟦CODE_0001⟧**. Rule 1, ⟦CODE_0002⟧, is a pattern with ⟦CODE_0003⟧ that makes it not a card."
+msgstr "El último registro vacío de un archivo finito (el texto después del último dígito, por ejemplo un salto de línea final) tiene un **⟦CODE_0001⟧ vacío**. La regla 1, ⟦CODE_0002⟧, es un patrón con ⟦CODE_0003⟧ que hace que no sea una tarjeta."
+
+#: src/awk-weird/README.md:108
+msgctxt "s-19b89a253631-0041"
+msgid "The default input is added in ⟦CODE_0001⟧ with arithmetic instead of an ⟦CODE_0002⟧: ⟦CODE_0003⟧. ⟦CODE_0004⟧ is 1 when no file was named and 0 otherwise, so the new argument only counts when needed. awk reads files named in ⟦CODE_0005⟧, so editing ⟦CODE_0006⟧ in ⟦CODE_0007⟧ is how a program chooses its own input."
+msgstr "La entrada de datos predeterminada se agrega en ⟦CODE_0001⟧ con aritmética en lugar de un ⟦CODE_0002⟧: ⟦CODE_0003⟧. ⟦CODE_0004⟧ vale 1 cuando no se nombró ningún archivo y 0 en caso contrario, así que el argumento nuevo solo cuenta cuando hace falta. awk lee los archivos nombrados en ⟦CODE_0005⟧, así que editar ⟦CODE_0006⟧ en ⟦CODE_0007⟧ es la forma en que un programa elige su propia entrada de datos."
+
+#: src/awk-weird/README.md:109
+msgctxt "s-9d1df0f96772-0042"
+msgid "The database directory uses ⟦CODE_0001⟧, an expression and not a statement."
+msgstr "El directorio de la base de datos usa ⟦CODE_0001⟧, una expresión y no una sentencia."
+
+#: src/awk-weird/README.md:111
+msgctxt "s-fff646ea1f30-0043"
+msgid "Why this is weird"
+msgstr "Por qué es raro"
+
+#: src/awk-weird/README.md:113
+msgctxt "s-7d03264fb3dc-0044"
+msgid "AWK is a language where **the program is the body of a loop you did not write**. Here the loop is over a random byte stream cut up by a regular expression, and the language's built-in record machinery takes the place of a random-number generator. Most AWK programmers know ⟦CODE_0001⟧ as \"newline, or maybe an empty line for paragraph mode\", and never use ⟦CODE_0002⟧. Seeing ⟦CODE_0003⟧ on ⟦CODE_0004⟧ is a real \"wait, you can DO that?\" moment."
+msgstr "AWK es un lenguaje en el que **el programa es el cuerpo de un bucle que tú no escribiste**. Aquí el bucle recorre un flujo aleatorio de bytes cortado por una expresión regular, y la maquinaria de registros incorporada del lenguaje ocupa el lugar de un generador de números aleatorios. La mayoría de los programadores de AWK conocen ⟦CODE_0001⟧ como \"nueva línea, o quizá una línea vacía en el modo de párrafo\", y nunca usan ⟦CODE_0002⟧. Ver ⟦CODE_0003⟧ sobre ⟦CODE_0004⟧ es un verdadero momento de \"espera, ¿se puede HACER eso?\"."
+
+#: src/awk-weird/README.md:115
+msgctxt "s-53cde1b2ab68-0045"
+msgid "You should not do this in production because: it is a GNU extension; the program's behavior depends on a device file; \"random digit\" is hidden inside an I/O setting; and the stream, not the program, decides how long it runs (a finite file simply ends early, as ⟦CODE_0001⟧ shows)."
+msgstr "No deberías hacer esto en producción porque: es una extensión de GNU; el comportamiento del programa depende de un archivo de dispositivo; el \"dígito aleatorio\" queda oculto dentro de una configuración de E/S; y el flujo, no el programa, decide cuánto dura la ejecución (un archivo finito simplemente termina antes, como muestra ⟦CODE_0001⟧)."
+
+#: src/awk-weird/README.md:117
+msgctxt "s-81b1eee1fbb4-0046"
+msgid "What you can learn"
+msgstr "Qué puedes aprender"
+
+#: src/awk-weird/README.md:119
+msgctxt "s-f654fd39fbb1-0047"
+msgid "⟦CODE_0001⟧ as a regular expression, and ⟦CODE_0002⟧ (gawk), and that **⟦CODE_0003⟧ applies to every read**, not only to your input file. The first draft of this program printed an empty week: ⟦CODE_0004⟧ read ⟦CODE_0005⟧'s output with ⟦CODE_0006⟧ already set, so the record ended at the first digit of the year. The ⟦CODE_0007⟧ call now comes first in ⟦CODE_0008⟧."
+msgstr "⟦CODE_0001⟧ como expresión regular, ⟦CODE_0002⟧ (gawk) y que **⟦CODE_0003⟧ se aplica a cada lectura**, no solo a tu archivo de entrada. El primer borrador de este programa imprimió una semana vacía: ⟦CODE_0004⟧ leyó la salida de ⟦CODE_0005⟧ con ⟦CODE_0006⟧ ya definido, así que el registro terminó en el primer dígito del año. La llamada a ⟦CODE_0007⟧ ahora va primero en ⟦CODE_0008⟧."
+
+#: src/awk-weird/README.md:120
+msgctxt "s-b64f71372853-0048"
+msgid "That every rule runs for every record, in order, and that ⟦CODE_0001⟧ and ⟦CODE_0002⟧ are the control flow."
+msgstr "Que cada regla se ejecuta para cada registro en orden y que ⟦CODE_0001⟧ y ⟦CODE_0002⟧ son el flujo de control."
+
+#: src/awk-weird/README.md:121
+msgctxt "s-ef790c3acdfd-0049"
+msgid "⟦CODE_0001⟧ assignment re-splits; field assignment (⟦CODE_0002⟧) rebuilds ⟦CODE_0003⟧ with ⟦CODE_0004⟧. ⟦CODE_0005⟧ and ⟦CODE_0006⟧ are independent."
+msgstr "La asignación a ⟦CODE_0001⟧ vuelve a dividir los campos; la asignación a un campo (⟦CODE_0002⟧) reconstruye ⟦CODE_0003⟧ con ⟦CODE_0004⟧. ⟦CODE_0005⟧ y ⟦CODE_0006⟧ son independientes."
+
+#: src/awk-weird/README.md:122
+msgctxt "s-94467fdbf5a9-0050"
+msgid "Assignment is an expression (⟦CODE_0001⟧), and a comparison is the number 0 or 1 (⟦CODE_0002⟧)."
+msgstr "La asignación es una expresión (⟦CODE_0001⟧) y una comparación es el número 0 o 1 (⟦CODE_0002⟧)."
+
+#: src/awk-weird/README.md:123
+msgctxt "s-2bd5465636eb-0051"
+msgid "Editing ⟦CODE_0001⟧/⟦CODE_0002⟧ in ⟦CODE_0003⟧ to choose input files."
+msgstr "Edita ⟦CODE_0001⟧/⟦CODE_0002⟧ en ⟦CODE_0003⟧ para elegir los archivos de entrada."
+
+#: src/awk-weird/README.md:124
+msgctxt "s-904f16e99326-0052"
+msgid "That a finite input makes the program a *function of its input*: swap the file and the dice change."
+msgstr "Que una entrada de datos finita hace del programa una *función de su entrada*: cambia el archivo y cambian los dados."
+
+#: src/awk-weird/README.md:126
+msgctxt "s-5a0ad00b10fc-0053"
+msgid "Gotchas worth knowing"
+msgstr "Trampas que conviene conocer"
+
+#: src/awk-weird/README.md:128
+msgctxt "s-151eece60481-0054"
+msgid "**gawk only.** The GNU-specific parts: ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧. A regex ⟦CODE_0004⟧ is not POSIX but mawk, the one-true-awk and busybox awk all accepted ⟦CODE_0005⟧ when tried here; none of them has ⟦CODE_0006⟧, so they cannot see *which* digit ended the record, and the trick needs exactly that. Worse, the failure is not an error: under mawk ⟦CODE_0007⟧ is always empty, so rule 1 skips every record and the stop rule never fires. On ⟦CODE_0008⟧ mawk 1.3.4 keeps reading until it dies with ⟦CODE_0009⟧ (tried under a 400 MB limit, which it hit after about a thousand records); on a finite digit file it prints a header and ⟦CODE_0010⟧. Do not run this under another awk without a memory limit and a timeout. ⟦CODE_0011⟧ reports the extensions."
+msgstr "**Solo gawk.** Las partes específicas de GNU: ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧. Una regex ⟦CODE_0004⟧ no es POSIX, pero mawk, one-true-awk y el awk de busybox aceptaron ⟦CODE_0005⟧ en las pruebas hechas aquí. Ninguno de ellos tiene ⟦CODE_0006⟧, así que no pueden ver *cuál* dígito terminó el registro, y el truco necesita justo eso. Peor aún, el fallo no es un error: con mawk, ⟦CODE_0007⟧ siempre está vacío, así que la regla 1 omite todos los registros y la regla de parada nunca se activa. Con ⟦CODE_0008⟧, mawk 1.3.4 sigue leyendo hasta que termina con ⟦CODE_0009⟧ (probado con un límite de 400 MB, que agotó tras unos mil registros). Con un archivo finito de dígitos, imprime un encabezado y ⟦CODE_0010⟧. No ejecutes esto con otro awk sin un límite de memoria y un tiempo máximo. ⟦CODE_0011⟧ informa de las extensiones."
+
+#: src/awk-weird/README.md:129
+msgctxt "s-96292c551562-0055"
+msgid "**A finite input can end before the total passes 40.** ⟦CODE_0001⟧ never does. With a file, the program stops at end of input and reports whatever total it reached (⟦CODE_0002⟧ tests ⟦CODE_0003⟧ and gets 2 cards, 23 hours)."
+msgstr "**Una entrada de datos finita puede terminar antes de que el total pase de 40.** ⟦CODE_0001⟧ nunca termina. Con un archivo, el programa se detiene al final de la entrada de datos e informa del total que haya acumulado (⟦CODE_0002⟧ prueba ⟦CODE_0003⟧ y obtiene 2 tarjetas, 23 horas)."
+
+#: src/awk-weird/README.md:130
+msgctxt "s-906a7abf9911-0056"
+msgid "**Trailing empty record.** A file ending in a newline makes one extra record with empty ⟦CODE_0001⟧; rule 1 handles it. Without rule 1 it would count as a 10-hour card."
+msgstr "**Registro vacío final.** Un archivo que termina en un salto de línea genera un registro extra con ⟦CODE_0001⟧ vacío; la regla 1 se encarga de él. Sin la regla 1, ese registro contaría como una tarjeta de 10 horas."
+
+#: src/awk-weird/README.md:131
+msgctxt "s-d2858e512e35-0057"
+msgid "**The run id** is the epoch seconds and the awk's process id."
+msgstr "**El id de ejecución** es los segundos de época más el id de proceso de awk."
+
+#: src/awk-weird/README.md:132
+msgctxt "s-8e1da7a397ac-0058"
+msgid "**A directory name containing a single quote** breaks the ⟦CODE_0001⟧ and ⟦CODE_0002⟧ command lines here (the straight version quotes properly)."
+msgstr "**Un nombre de directorio que contiene una comilla simple** rompe las líneas de comandos de ⟦CODE_0001⟧ y ⟦CODE_0002⟧ en esta versión (la versión recta entrecomilla bien)."
+
+#: src/awk-weird/README.md:133
+msgctxt "s-253a9552d386-0059"
+msgid "**Locale.** Digit bytes are never part of a multibyte sequence, and the digit counts above were uniform in every locale tried; ⟦CODE_0001⟧ is not needed."
+msgstr "**Configuración regional.** Los bytes de los dígitos nunca forman parte de una secuencia multibyte y los recuentos de dígitos anteriores fueron uniformes en todas las configuraciones regionales probadas; no hace falta ⟦CODE_0001⟧."
+
+#: src/awk-weird/README.md:134
+msgctxt "s-85453b452186-0060"
+msgid "**Formatting.** No AWK formatter exists; the layout is by hand, one rule per line group with a comment above each rule."
+msgstr "**Formato.** No existe ningún formateador para AWK; el diseño es manual, con una regla por grupo de líneas y un comentario encima de cada regla."
+
+#: src/awk-weird/README.md:136
+msgctxt "s-339cc2c18f83-0061"
+msgid "What ⟦CODE_0001⟧ enforces"
+msgstr "Qué exige ⟦CODE_0001⟧"
+
+#: src/awk-weird/README.md:138
+msgctxt "s-bd935aec832d-0062"
+msgid "With comments removed: none of ⟦CODE_0001⟧; ⟦CODE_0002⟧; a bare ⟦CODE_0003⟧; ⟦CODE_0004⟧ as the default input. Then 30 random digit strings, fed in four shapes (no separators, trailing newline, spaces between, letters and lines between), each compared card by card with an independent computation in bash. A short stream ending in a newline must stop cleanly. The one-liner in the header comment is extracted and run against a fixed digit stream. Moving the pattern to ⟦CODE_0005⟧ must change a stream of 5s from 3 cards to 6, proving the pattern is the stop rule. Finally 25 real runs on ⟦CODE_0006⟧ are checked for sane records with SQLite agreeing with the output."
+msgstr "Con los comentarios eliminados, no aparece ninguno de estos: ⟦CODE_0001⟧; ⟦CODE_0002⟧; un ⟦CODE_0003⟧ sin más; ⟦CODE_0004⟧ como entrada de datos predeterminada. Después, 30 cadenas de texto de dígitos aleatorios, que se pasan en cuatro formas (sin separadores, con salto de línea final, con espacios entre los dígitos, con letras y líneas entre ellos), y cada una se compara tarjeta por tarjeta con un cálculo independiente en bash. Un flujo corto que termina en un salto de línea debe detenerse de forma limpia. Se extrae el comando de una línea del comentario de encabezado y se ejecuta con un flujo fijo de dígitos. Mover el patrón a ⟦CODE_0005⟧ debe hacer que un flujo de 5 pase de 3 tarjetas a 6, lo que demuestra que el patrón es la regla de parada. Por último, se revisa que 25 ejecuciones reales con ⟦CODE_0006⟧ produzcan registros coherentes y que SQLite coincida con la salida."
+
+#: src/awk-weird/README.md:140
+msgctxt "s-254f0c660db3-0063"
+msgid "Run it in a container"
+msgstr "Ejecútalo en un contenedor"
+
+#: src/awk-weird/README.md:142
+msgctxt "s-b3c91dd20065-0064"
+msgid "Prerequisite: Docker, set up once as described in [⟦CODE_0001⟧](⟦DEST_0002⟧). The ⟦CODE_0003⟧ base image comes from ⟦CODE_0004⟧."
+msgstr "Requisito previo: Docker, configurado una sola vez como se describe en [⟦CODE_0001⟧](⟦DEST_0002⟧). La imagen base ⟦CODE_0003⟧ proviene de ⟦CODE_0004⟧."
+
+#: src/awk-weird/README.md:148
+msgctxt "s-94d140d152f6-0065"
+msgid "The image holds gawk and sqlite3 on a minimal Ubuntu."
+msgstr "La imagen incluye gawk y sqlite3 sobre un Ubuntu mínimo."

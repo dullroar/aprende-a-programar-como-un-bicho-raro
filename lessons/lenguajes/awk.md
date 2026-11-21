@@ -107,7 +107,7 @@ Each picture below is the `## Program Flow` section of an entry's README, copied
 
 ### Program flow of `awk`
 
-From [`awk`](../../src/awk/README.md) ([source section](../../src/awk/README.md#program-flow)).
+From [`awk`](../../src/awk/README.md) ([source section](../../src/awk/README.md#flujo-del-programa)).
 
 ```mermaid
 flowchart TD
@@ -127,7 +127,7 @@ flowchart TD
 
 ### Program flow of `awk-weird`
 
-From [`awk-weird`](../../src/awk-weird/README.md) ([source section](../../src/awk-weird/README.md#program-flow)).
+From [`awk-weird`](../../src/awk-weird/README.md) ([source section](../../src/awk-weird/README.md#flujo-del-programa)).
 
 ```mermaid
 flowchart TD

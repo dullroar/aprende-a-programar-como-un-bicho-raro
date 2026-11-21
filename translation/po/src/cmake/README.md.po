@@ -1,0 +1,322 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/cmake/README.md:2
+msgctxt "s-e7efda826b6d-0000"
+msgid "CMake"
+msgstr "CMake"
+
+#: src/cmake/README.md:3
+msgctxt "s-5e410e3d77a7-0001"
+msgid "that ⟦CODE_0001⟧ and a regex can form a tiny register machine."
+msgstr "que ⟦CODE_0001⟧ y una expresión regular pueden formar una pequeña máquina de registros."
+
+#: src/cmake/README.md:11
+msgctxt "s-30f66dee1f37-0002"
+msgid "A register machine"
+msgstr "Una máquina de registros"
+
+#: src/cmake/README.md:12
+msgctxt "s-f792c6f728f2-0003"
+msgid "⟦CODE_0001⟧..⟦CODE_0002⟧, rebuilt every pass"
+msgstr "⟦CODE_0001⟧..⟦CODE_0002⟧, reconstruido en cada pasada"
+
+#: src/cmake/README.md:15
+msgctxt "s-55ebe1eaf429-0004"
+msgid "CMake: ⟦CODE_0001⟧, with ⟦CODE_0002⟧ and a regex"
+msgstr "CMake: ⟦CODE_0001⟧, con ⟦CODE_0002⟧ y una expresión regular"
+
+#: src/cmake/README.md:17
+msgctxt "s-1e1a2f80b137-0005"
+msgid "**Teaches you:** that ⟦CODE_0001⟧ and a regex can form a tiny register machine."
+msgstr "**Te enseña:** que ⟦CODE_0001⟧ y una regex pueden formar una pequeña máquina de registros."
+
+#: src/cmake/README.md:19
+msgctxt "s-1543d78ff8bf-0006"
+msgid ""
+"**⟦DNT_0001⟧.** Fictional time cards, written to a scratch SQLite file under ⟦CODE_0002⟧.\n"
+"Nothing here touches real time reporting."
+msgstr ""
+"**⟦DNT_0001⟧.** Tarjetas de tiempo ficticias, escritas en un archivo SQLite temporal dentro de ⟦CODE_0002⟧.\n"
+"Nada de esto toca el registro de horas real."
+
+#: src/cmake/README.md:22
+msgctxt "s-958ca26c6a61-0007"
+msgid "Run it"
+msgstr "Ejecútalo"
+
+#: src/cmake/README.md:40
+msgctxt "s-0dcb373c2dff-0008"
+msgid "Program Flow"
+msgstr "Flujo del programa"
+
+#: src/cmake/README.md:44
+msgctxt "s-09d48cb09dc6-0009"
+msgid "cmake: one while with an empty body, whose condition is a register machine"
+msgstr "cmake: un while con cuerpo vacío, cuya condición es una máquina de registros"
+
+#: src/cmake/README.md:45
+msgctxt "s-89a315f138d5-0010"
+msgid "A flowchart. Before the loop, the host draws a tape of nine random digits and stores it in the CMAKE_MATCH variables, which are the registers. Each time around, while re-expands its condition. The first test says no if the total so far plus the last card matches a literal of 41 x characters. The second test builds a subject string and a pattern out of the previous captures, splices in the last digit, and matches, which captures the next hours row and rewrites all the registers. If both tests pass, the empty body runs and the loop goes round again. If a test fails, the loop ends, and the host reads the log, picks the ISO week, writes SQLite and plays the glow."
+msgstr "Un diagrama de flujo. Antes del bucle, el anfitrión genera una cinta de nueve dígitos aleatorios y la guarda en las variables CMAKE_MATCH, que son los registros. En cada vuelta, while vuelve a expandir su condición. La primera prueba responde que no si el total acumulado más la última tarjeta coincide con un literal de 41 caracteres x. La segunda prueba construye una cadena de texto sujeto y un patrón a partir de las capturas anteriores, inserta el último dígito y ejecuta la coincidencia. Esa coincidencia captura la siguiente fila de horas y reescribe todos los registros. Si ambas pruebas pasan, se ejecuta el cuerpo vacío y el bucle da otra vuelta. Si una prueba falla, el bucle termina y el anfitrión lee el log, elige la semana ISO, escribe en SQLite y reproduce el resplandor."
+
+#: src/cmake/README.md:46
+msgctxt "s-8ff5356f7c8c-0011"
+msgid "Host: draw 9 random digits and store them in the CMAKE_MATCH variables"
+msgstr "Anfitrión: elige 9 dígitos al azar y guárdalos en las variables CMAKE_MATCH"
+
+#: src/cmake/README.md:46
+msgctxt "s-90e8d836ac62-0012"
+msgid "while re-expands its condition"
+msgstr "while vuelve a expandir su condición"
+
+#: src/cmake/README.md:47
+msgctxt "s-495c8eaf9a5e-0013"
+msgid "Test 1: does total plus last card match 41 x's?"
+msgstr "Prueba 1: ¿el total más la última tarjeta coincide con 41 x?"
+
+#: src/cmake/README.md:48
+msgctxt "s-84cefc74e25d-0014"
+msgid "yes: over 40"
+msgstr "sí: más de 40"
+
+#: src/cmake/README.md:48
+msgctxt "s-1192ab0430f7-0015"
+msgid "Loop ends: the host reads the log, picks the week, writes SQLite, plays the glow"
+msgstr "Fin del bucle: el anfitrión lee el log, elige la semana, escribe en SQLite y reproduce el resplandor"
+
+#: src/cmake/README.md:49
+msgctxt "s-9390298f3fb0-0016"
+msgid "no"
+msgstr "no"
+
+#: src/cmake/README.md:49
+msgctxt "s-ae5b5a8af0b5-0017"
+msgid "Test 2: MATCHES on a subject built from the last captures"
+msgstr "Prueba 2: MATCHES sobre un sujeto construido a partir de las últimas capturas"
+
+#: src/cmake/README.md:50
+msgctxt "s-485be9cf2ff8-0018"
+msgid "match: the registers now hold the new total and card"
+msgstr "coincidencia: los registros ahora contienen el nuevo total y la tarjeta"
+
+#: src/cmake/README.md:50
+msgctxt "s-f4bc948d685c-0019"
+msgid "Empty body"
+msgstr "Cuerpo vacío"
+
+#: src/cmake/README.md:52
+msgctxt "s-29e23c349448-0020"
+msgid "no match: the registers are cleared"
+msgstr "sin coincidencia: se borran los registros"
+
+#: src/cmake/README.md:55
+msgctxt "s-023d17ae0072-0021"
+msgid "**What this shows:** ⟦CODE_0001⟧ re-expands its condition on every pass, and ⟦CODE_0002⟧ stores its captures in ordinary variables. So the condition can build its next subject out of its last captures, and the *match* is the program. Numbers are runs of ⟦CODE_0003⟧, and the stop rule is a 41-character literal."
+msgstr "**Qué muestra:** ⟦CODE_0001⟧ vuelve a expandir su condición en cada pasada, y ⟦CODE_0002⟧ guarda sus capturas en variables ordinarias. Así, la condición puede construir su siguiente cadena de entrada a partir de sus últimas capturas, y la *coincidencia* es el programa. Los números son secuencias de ⟦CODE_0003⟧, y la regla de parada es un literal de 41 caracteres."
+
+#: src/cmake/README.md:57
+msgctxt "s-81b53e1c0060-0022"
+msgid "**Why this mechanism matters:** the loop has an empty body and a register machine for a condition. Test 1 must run first, because a failed match clears the registers and a successful one rewrites them, so the main match has to run last for its captures to survive. ⟦CODE_0001⟧ does not stop at the first false test: on the final pass, when test 1 has already said stop, test 2 still runs, and that is what moves the last card into the log (⟦CODE_0002⟧). The registers then also hold one more hours lookup that is never reported. CMake's documentation does not promise that both operands are evaluated, so this is accidentally exploited. Swapping the two tests gives a run with zero cards."
+msgstr "**Por qué importa este mecanismo:** el bucle tiene un cuerpo vacío y una máquina de registros como condición. La prueba 1 debe ejecutarse primero, porque una coincidencia fallida borra los registros y una exitosa los reescribe; por eso la coincidencia principal debe ejecutarse al final para que sus capturas sobrevivan. ⟦CODE_0001⟧ no se detiene en la primera prueba falsa: en la pasada final, cuando la prueba 1 ya indicó que se detenga, la prueba 2 aún se ejecuta, y eso es lo que mueve la última tarjeta al log (⟦CODE_0002⟧). Entonces los registros también guardan una búsqueda de horas más que nunca se informa. La documentación de CMake no promete que se evalúen ambos operandos, así que este comportamiento es aprovechado por accidente. Si intercambias las dos pruebas, obtienes una ejecución con cero tarjetas."
+
+#: src/cmake/README.md:59
+msgctxt "s-7f97d965b4c0-0023"
+msgid "How the stunt works"
+msgstr "Cómo funciona el truco"
+
+#: src/cmake/README.md:61
+msgctxt "s-11d3eb27129e-0024"
+msgid ""
+"An earlier version of this file was a normal script: ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧. That is ⟦CODE_0004⟧\n"
+"in CMake's accent, so it was thrown away. The program is now **one ⟦CODE_0005⟧ with an empty body**. Everything that\n"
+"decides anything lives in its condition:"
+msgstr ""
+"Una versión anterior de este archivo era un script normal: ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧. Eso es ⟦CODE_0004⟧\n"
+"con acento de CMake, así que la descartamos. Ahora el programa es **un ⟦CODE_0005⟧ con el cuerpo vacío**. Todo lo que\n"
+"decide algo vive en su condición:"
+
+#: src/cmake/README.md:76
+msgctxt "s-7521aed02166-0025"
+msgid ""
+"CMake's ⟦CODE_0001⟧/⟦CODE_0002⟧ ⟦CODE_0003⟧ stores its capture groups in the ordinary variables ⟦CODE_0004⟧, and a\n"
+"⟦CODE_0005⟧ **re-expands its condition on every pass**. So the condition can build its subject string and its pattern out\n"
+"of the previous pass's captures. That is a register machine, and the match is the program:"
+msgstr "En CMake, ⟦CODE_0001⟧/⟦CODE_0002⟧ ⟦CODE_0003⟧ guarda sus grupos de captura en las variables ordinarias ⟦CODE_0004⟧, y un ⟦CODE_0005⟧ **vuelve a expandir su condición en cada pasada**. Así, la condición puede construir su cadena de texto de entrada y su patrón a partir de las capturas de la pasada anterior. Eso es una máquina de registros y la coincidencia es el programa:"
+
+#: src/cmake/README.md:80
+msgctxt "s-3076eeb8ced4-0026"
+msgid "⟦SEP_0001⟧ Piece ⟦SEP_0002⟧ What it is ⟦SEP_0003⟧"
+msgstr "⟦SEP_0001⟧ Pieza ⟦SEP_0002⟧ Qué es ⟦SEP_0003⟧"
+
+#: src/cmake/README.md:82
+msgctxt "s-06359b3abaa9-0027"
+msgid "⟦SEP_0002⟧ State ⟦SEP_0003⟧ numbers are runs of ⟦CODE_0001⟧: 1 = total so far, 2 = the digit peeked last pass, 3 = rest of the digit tape, 4 = the log of finished cards, 5 = hours of the card added last pass ⟦SEP_0004⟧"
+msgstr "⟦SEP_0002⟧ Estado ⟦SEP_0003⟧ números son secuencias de ⟦CODE_0001⟧: 1 = total hasta ahora, 2 = el dígito consultado en la última pasada, 3 = el resto de la cinta de dígitos, 4 = el registro de las tarjetas terminadas, 5 = horas de la tarjeta agregada en la última pasada ⟦SEP_0004⟧"
+
+#: src/cmake/README.md:83
+msgctxt "s-02eaf5bec2d1-0028"
+msgid "⟦SEP_0003⟧ Hours 10 to 19 ⟦SEP_0004⟧ the table ⟦CODE_0001⟧ is *in the subject*; the pattern splices the previous pass's digit in (⟦CODE_0002⟧) and captures that row. The staircase is the 10 to 19 ⟦SEP_0005⟧"
+msgstr "⟦SEP_0003⟧ Horas por tarjeta, de 10 a 19 ⟦SEP_0004⟧ la tabla ⟦CODE_0001⟧ está *en el sujeto*; el patrón inserta el dígito de la pasada anterior (⟦CODE_0002⟧) y captura esa fila. La escalera es la de 10 a 19 horas por tarjeta ⟦SEP_0005⟧"
+
+#: src/cmake/README.md:84
+msgctxt "s-2e0486488eb1-0029"
+msgid "⟦SEP_0002⟧ Running total ⟦SEP_0003⟧ the next subject starts with ⟦CODE_0001⟧: string concatenation of unary numbers ⟦SEP_0004⟧"
+msgstr "⟦SEP_0002⟧ Total acumulado ⟦SEP_0003⟧ el siguiente sujeto empieza con ⟦CODE_0001⟧: concatenación de cadenas de texto de números unarios ⟦SEP_0004⟧"
+
+#: src/cmake/README.md:85
+msgctxt "s-680b29bc7a05-0030"
+msgid "⟦SEP_0003⟧ Stop rule ⟦SEP_0004⟧ the first test: ⟦CODE_0001⟧ (total so far + last card matches a **41-character literal**). Exactly 40 continues. Mutating the literal changes the behavior (⟦CODE_0002⟧ does) ⟦SEP_0005⟧"
+msgstr "⟦SEP_0003⟧ Regla de parada ⟦SEP_0004⟧ la primera prueba: ⟦CODE_0001⟧ (el total hasta ahora + la última tarjeta coincide con un **literal de 41 caracteres**). Un total de exactamente 40 continúa. Mutar el literal cambia el comportamiento (⟦CODE_0002⟧ lo hace) ⟦SEP_0005⟧"
+
+#: src/cmake/README.md:86
+msgctxt "s-d83bccfd42df-0031"
+msgid "⟦SEP_0001⟧ Loop control ⟦SEP_0002⟧ the loop ends when the match says no. The regex stunt entries' \"return no match, on purpose\" is simply what stops this one ⟦SEP_0003⟧"
+msgstr "⟦SEP_0001⟧ Control del bucle ⟦SEP_0002⟧ el bucle termina cuando la coincidencia dice que no. El \"no devolver ninguna coincidencia, a propósito\" de las entradas de acrobacias con regex es justo lo que detiene este bucle ⟦SEP_0003⟧"
+
+#: src/cmake/README.md:87
+msgctxt "s-f14c1290dfab-0032"
+msgid "⟦SEP_0001⟧ Order of tests ⟦SEP_0002⟧ the stop test goes **first**: a match that fails clears every register and one that succeeds rewrites them, so the main match must run last for its captures to be the ones that survive ⟦SEP_0003⟧"
+msgstr "⟦SEP_0001⟧ Orden de las pruebas ⟦SEP_0002⟧ la prueba de parada va **primero**: una coincidencia que falla borra todos los registros y una que tiene éxito los reescribe, así que la coincidencia principal debe ejecutarse al final para que sus capturas sean las que sobrevivan ⟦SEP_0003⟧"
+
+#: src/cmake/README.md:89
+msgctxt "s-7c7fa8b5c1c8-0033"
+msgid ""
+"The host is deliberately small, like the other entries' hosts: before the loop it draws a tape of 9 random digits and\n"
+"puts them in the registers (⟦CODE_0001⟧); after the loop it reads the log (lengths of ⟦CODE_0002⟧ runs are the\n"
+"hours), picks the ISO week, writes SQLite and plays the glow. ⟦CODE_0003⟧ fails if the file has a ⟦CODE_0004⟧,\n"
+"⟦CODE_0005⟧, ⟦CODE_0006⟧ or ⟦CODE_0007⟧, anything between ⟦CODE_0008⟧ and ⟦CODE_0009⟧, or any computation\n"
+"(⟦CODE_0010⟧, ⟦CODE_0011⟧, ⟦CODE_0012⟧, ⟦CODE_0013⟧ surgery) before the loop."
+msgstr ""
+"El anfitrión es deliberadamente pequeño, como los anfitriones de las otras entradas: antes del bucle sortea una cinta de 9 dígitos aleatorios y\n"
+"los pone en los registros (⟦CODE_0001⟧); después del bucle lee el log (las longitudes de las ejecuciones de ⟦CODE_0002⟧ son las\n"
+"horas), elige la semana ISO, escribe en SQLite y reproduce el resplandor. ⟦CODE_0003⟧ falla si el archivo tiene un ⟦CODE_0004⟧,\n"
+"⟦CODE_0005⟧, ⟦CODE_0006⟧ o ⟦CODE_0007⟧, cualquier cosa entre ⟦CODE_0008⟧ y ⟦CODE_0009⟧ o cualquier cálculo\n"
+"(⟦CODE_0010⟧, ⟦CODE_0011⟧, ⟦CODE_0012⟧, cirugía de ⟦CODE_0013⟧) antes del bucle."
+
+#: src/cmake/README.md:95
+msgctxt "s-339cc2c18f83-0034"
+msgid "What ⟦CODE_0001⟧ enforces"
+msgstr "Qué impone ⟦CODE_0001⟧"
+
+#: src/cmake/README.md:97
+msgctxt "s-9b887a4b2615-0035"
+msgid "⟦CODE_0001⟧ makes sure the stunt is real. The whole program must be exactly one ⟦CODE_0002⟧ whose body is empty, with nothing between the condition and ⟦CODE_0003⟧. There may be no ⟦CODE_0004⟧, ⟦CODE_0005⟧, ⟦CODE_0006⟧, ⟦CODE_0007⟧, ⟦CODE_0008⟧ or ⟦CODE_0009⟧, and nothing before the loop may compute (no ⟦CODE_0010⟧, ⟦CODE_0011⟧, ⟦CODE_0012⟧ or ⟦CODE_0013⟧ surgery except drawing the digit tape). The only programs the file may start are ⟦CODE_0014⟧, ⟦CODE_0015⟧ (for ⟦CODE_0016⟧) and CMake itself (for ⟦CODE_0017⟧)."
+msgstr "⟦CODE_0001⟧ comprueba que la proeza sea real. Todo el programa debe ser exactamente un ⟦CODE_0002⟧ con el cuerpo vacío, sin nada entre la condición y ⟦CODE_0003⟧. No puede haber ⟦CODE_0004⟧, ⟦CODE_0005⟧, ⟦CODE_0006⟧, ⟦CODE_0007⟧, ⟦CODE_0008⟧ ni ⟦CODE_0009⟧ y nada antes del bucle puede calcular (ni manipulación con ⟦CODE_0010⟧, ⟦CODE_0011⟧, ⟦CODE_0012⟧ ni ⟦CODE_0013⟧, salvo dibujar la cinta de dígitos). Los únicos programas que el archivo puede iniciar son ⟦CODE_0014⟧, ⟦CODE_0015⟧ (para ⟦CODE_0016⟧) y el propio CMake (para ⟦CODE_0017⟧)."
+
+#: src/cmake/README.md:99
+msgctxt "s-0ea0b71fc887-0036"
+msgid "Then it runs the program 25 times in an empty working directory, which must stay empty. Each run must print as many rows as it has entries, report that the empty loop went around once per entry, and keep the usual rules (hours 10 to 19, categories in order, running totals right, ⟦CODE_0001⟧ on every row, a stop exactly when the total passes 40, an ISO week that matches SQLite's). The stop-rule error must appear on stderr exactly once and nothing else may. The database must agree with the output and must hold no probe rows or scratch ⟦CODE_0002⟧ files."
+msgstr "Después, la prueba ejecuta el programa 25 veces en un directorio de trabajo vacío, que debe seguir vacío. Cada ejecución debe imprimir tantas filas como entradas tiene, informar que el bucle vacío dio una vuelta por entrada y mantener las reglas de siempre (horas de 10 a 19, categorías en orden, totales acumulados correctos, ⟦CODE_0001⟧ en cada fila, una parada exactamente cuando el total pasa de 40, una semana ISO que coincide con la de SQLite). El error de la regla de parada debe aparecer en stderr exactamente una vez y no puede aparecer nada más. La base de datos debe coincidir con la salida y no debe contener filas de sondeo ni archivos ⟦CODE_0002⟧ temporales."
+
+#: src/cmake/README.md:101
+msgctxt "s-4dca0af4ed2f-0037"
+msgid "Three more tests follow. A sweep of year boundaries (using ⟦CODE_0001⟧) compares the ISO week with ⟦CODE_0002⟧. The glow must be silent in a pipe, and on a pseudo-terminal it must draw 24 frames in 1 to 3 seconds. And a mutation test changes the 41-character stop literal to 51 and expects some total to go over the legal maximum of 59, which proves that the literal is the stop rule. Last, a non-demo row must be refused."
+msgstr "Siguen tres pruebas más. Un barrido de límites de año (con ⟦CODE_0001⟧) compara la semana ISO con ⟦CODE_0002⟧. El *glow* debe ser silencioso en una tubería. En un pseudoterminal debe dibujar 24 fotogramas en un tiempo de 1 a 3 segundos. Además, una prueba de mutación cambia a 51 el literal de parada de 41 caracteres. Esa prueba espera que algún total supere el máximo legal de 59. Eso prueba que el literal es la regla de parada. Por último, debe rechazarse una fila que no sea de demostración."
+
+#: src/cmake/README.md:103
+msgctxt "s-5a0ad00b10fc-0038"
+msgid "Gotchas worth knowing"
+msgstr "Trampas que conviene conocer"
+
+#: src/cmake/README.md:105
+msgctxt "s-89faaf22d675-0039"
+msgid ""
+"**CMake's regex has no counted repetition** (⟦CODE_0001⟧ is not supported; the test is literally 41 x's). It also has no\n"
+"lookahead and no backreferences, so a pattern parameterized by a *register* (⟦CODE_0002⟧) is the only way to\n"
+"do a lookup. A tempting ⟦CODE_0003⟧ x 40 for \"at most 40\" would backtrack exponentially on failure, hence the\n"
+"separate literal test."
+msgstr ""
+"**La expresión regular de CMake no admite repetición contada** (⟦CODE_0001⟧ no es compatible; la prueba consiste literalmente en 41 letras x). Tampoco tiene *lookahead*\n"
+"ni referencias inversas, así que un patrón parametrizado por un *registro* (⟦CODE_0002⟧) es la única forma de\n"
+"hacer una búsqueda. Un tentador ⟦CODE_0003⟧ x 40 para \"como máximo 40\" retrocedería de forma exponencial ante un fallo. De ahí la\n"
+"prueba literal separada."
+
+#: src/cmake/README.md:109
+msgctxt "s-8f715892066c-0040"
+msgid ""
+"**The hours are looked up one pass late.** Pass *j* peeks the digit for card *j+1* and looks up the hours of card\n"
+"*j* (peeked in pass *j-1*), so the very first digit is part of the seed."
+msgstr ""
+"**Las horas se consultan con un paso de retraso.** El paso *j* observa el dígito de la tarjeta *j+1* y consulta las horas de la tarjeta\n"
+"*j* (observado en el paso *j-1*). Por eso el primer dígito forma parte de la semilla."
+
+#: src/cmake/README.md:111
+msgctxt "s-782ebfa4a91d-0041"
+msgid ""
+"**The tape has 9 digits** so it can never run dry (at most 5 cards, 6 digits used). Four 10-hour cards total exactly\n"
+"40, which continues, so the fifth card wraps its category to ⟦DNT_0001⟧."
+msgstr ""
+"**La cinta tiene 9 dígitos**, así que nunca puede agotarse (como máximo 5 tarjetas y 6 dígitos usados). Cuatro tarjetas de 10 horas suman exactamente\n"
+"40, un total que continúa, así que la categoría de la quinta tarjeta da la vuelta y vuelve a ⟦DNT_0001⟧."
+
+#: src/cmake/README.md:113
+msgctxt "s-c2bfdfdf10e0-0042"
+msgid ""
+"**The host still reports.** Printing the rows, the SQLite writes, the ISO week and the glow are ordinary CMake\n"
+"after the loop (⟦CODE_0001⟧ knows ⟦CODE_0002⟧ but not ⟦CODE_0003⟧, so the ISO year is patched by hand from the month and\n"
+"week). Output cannot happen from inside a condition. This is the \"tiny host reports a result\" allowance."
+msgstr ""
+"**El anfitrión sigue informando.** La impresión de las filas, las escrituras en SQLite, la semana ISO y el resplandor son CMake ordinario\n"
+"después del bucle (⟦CODE_0001⟧ conoce ⟦CODE_0002⟧ pero no ⟦CODE_0003⟧, así que el año ISO se corrige a mano a partir del mes y\n"
+"la semana). La salida no puede ocurrir dentro de una condición. Esta es la concesión del \"anfitrión diminuto que informa un resultado\"."
+
+#: src/cmake/README.md:116
+msgctxt "s-92c425e4a4ba-0043"
+msgid ""
+"**Local time**, like the SQLite-based entries (the Make entry is UTC). ⟦CODE_0001⟧ sweeps year boundaries against\n"
+"⟦CODE_0002⟧ using ⟦CODE_0003⟧."
+msgstr ""
+"**Hora local**, como las entradas basadas en SQLite (la entrada de Make está en UTC). ⟦CODE_0001⟧ recorre los límites de año y los contrasta con\n"
+"⟦CODE_0002⟧ mediante ⟦CODE_0003⟧."
+
+#: src/cmake/README.md:118
+msgctxt "s-869866f2cf04-0044"
+msgid ""
+"**⟦CODE_0001⟧ goes to stderr**, hence the ⟦CODE_0002⟧ writes. ⟦CODE_0003⟧ inherits stdout, so SQLite's\n"
+"header and CHECK error arrive in order."
+msgstr "**⟦CODE_0001⟧ va a stderr**, por eso las escrituras de ⟦CODE_0002⟧. ⟦CODE_0003⟧ hereda stdout, así que el encabezado de SQLite y el error de CHECK llegan en orden."
+
+#: src/cmake/README.md:120
+msgctxt "s-50e0ec5e12e7-0045"
+msgid ""
+"**⟦CODE_0001⟧ treats ⟦CODE_0002⟧ as its own subcommand separator**, so the ⟦CODE_0003⟧ command line contains none (CMake lists are\n"
+"⟦CODE_0004⟧-separated, so this needs care)."
+msgstr ""
+"**⟦CODE_0001⟧ trata ⟦CODE_0002⟧ como su propio separador de subcomandos**, así que la línea de comandos de ⟦CODE_0003⟧ no contiene ninguno (las listas de CMake se separan con\n"
+"⟦CODE_0004⟧, por eso esto requiere cuidado)."
+
+#: src/cmake/README.md:122
+msgctxt "s-e321505b67f1-0046"
+msgid ""
+"The only programs started are ⟦CODE_0001⟧, ⟦CODE_0002⟧ (POP) and CMake itself (for its own ⟦CODE_0003⟧); ⟦CODE_0004⟧\n"
+"asserts that."
+msgstr ""
+"Los únicos programas que se inician son ⟦CODE_0001⟧, ⟦CODE_0002⟧ (POP) y CMake (para su propio ⟦CODE_0003⟧); ⟦CODE_0004⟧\n"
+"lo comprueba."
+
+#: src/cmake/README.md:127
+msgctxt "s-40ddb79ac33a-0047"
+msgid "See the [root README](⟦DEST_0001⟧) for how this compares to the other entries, and [⟦CODE_0002⟧](⟦DEST_0003⟧) if you want to write your own."
+msgstr "Consulta el [README raíz](⟦DEST_0001⟧) para ver cómo se compara con las otras entradas, y [⟦CODE_0002⟧](⟦DEST_0003⟧) si quieres escribir el tuyo."
+
+#: src/cmake/README.md:129
+msgctxt "s-254f0c660db3-0048"
+msgid "Run it in a container"
+msgstr "Ejecuta el ejemplo en un contenedor"
+
+#: src/cmake/README.md:131
+msgctxt "s-643df015c8a2-0049"
+msgid "Prerequisite: Docker, set up once as described in [⟦CODE_0001⟧](⟦DEST_0002⟧)."
+msgstr "Requisito previo: Docker, configurado una sola vez como se describe en [⟦CODE_0001⟧](⟦DEST_0002⟧)."
+
+#: src/cmake/README.md:137
+msgctxt "s-3b27faace16f-0050"
+msgid "It builds this folder's [⟦CODE_0001⟧](⟦DEST_0002⟧) and runs the result with no network, a read-only file system and user ⟦CODE_0003⟧, then prints the output and a read-only look at the rows it wrote. The image holds CMake and sqlite3 on a minimal Ubuntu. It has no compiler and no Make."
+msgstr "Construye el [⟦CODE_0001⟧](⟦DEST_0002⟧) de esta carpeta y ejecuta el resultado sin red, con un sistema de archivos de solo lectura y con el usuario ⟦CODE_0003⟧. Luego imprime la salida y una vista de solo lectura de las filas que escribió. La imagen contiene CMake y sqlite3 sobre un Ubuntu mínimo. No tiene compilador ni Make."

@@ -9738,131 +9738,131 @@
     {
      "en": "AWK, weirder",
      "en_id": "awk-weirder",
-     "es": "AWK, weirder",
-     "es_id": "awk-weirder",
+     "es": "AWK, más raro",
+     "es_id": "awk-más-raro",
      "level": 1,
      "line": 15
     },
     {
      "en": "Run it",
      "en_id": "run-it",
-     "es": "Run it",
-     "es_id": "run-it",
+     "es": "Ejecútalo",
+     "es_id": "ejecútalo",
      "level": 2,
      "line": 32
     },
     {
      "en": "Program Flow",
      "en_id": "program-flow",
-     "es": "Program Flow",
-     "es_id": "program-flow",
+     "es": "Flujo del programa",
+     "es_id": "flujo-del-programa",
      "level": 2,
      "line": 56
     },
     {
      "en": "How the stunt works",
      "en_id": "how-the-stunt-works",
-     "es": "How the stunt works",
-     "es_id": "how-the-stunt-works",
+     "es": "Cómo funciona el truco",
+     "es_id": "cómo-funciona-el-truco",
      "level": 2,
      "line": 74
     },
     {
      "en": "1. The separator is a regular expression, and the terminator is yours",
      "en_id": "1-the-separator-is-a-regular-expression-and-the-terminator-is-yours",
-     "es": "1. The separator is a regular expression, and the terminator is yours",
-     "es_id": "1-the-separator-is-a-regular-expression-and-the-terminator-is-yours",
+     "es": "1. El separador es una expresión regular; el terminador lo eliges tú",
+     "es_id": "1-el-separador-es-una-expresión-regular-el-terminador-lo-eliges-tú",
      "level": 3,
      "line": 78
     },
     {
      "en": "2. One record is one card",
      "en_id": "2-one-record-is-one-card",
-     "es": "2. One record is one card",
-     "es_id": "2-one-record-is-one-card",
+     "es": "2. Un registro es una tarjeta",
+     "es_id": "2-un-registro-es-una-tarjeta",
      "level": 3,
      "line": 82
     },
     {
      "en": "3. The same fields, three ways",
      "en_id": "3-the-same-fields-three-ways",
-     "es": "3. The same fields, three ways",
-     "es_id": "3-the-same-fields-three-ways",
+     "es": "3. Los mismos campos, de tres maneras",
+     "es_id": "3-los-mismos-campos-de-tres-maneras",
      "level": 3,
      "line": 91
     },
     {
      "en": "4. The stop rule is a bare pattern",
      "en_id": "4-the-stop-rule-is-a-bare-pattern",
-     "es": "4. The stop rule is a bare pattern",
-     "es_id": "4-the-stop-rule-is-a-bare-pattern",
+     "es": "4. La regla de parada es un patrón sin acción",
+     "es_id": "4-la-regla-de-parada-es-un-patrón-sin-acción",
      "level": 3,
      "line": 97
     },
     {
      "en": "5. No `if`, no loop",
      "en_id": "5-no-if-no-loop",
-     "es": "5. No `if`, no loop",
-     "es_id": "5-no-if-no-loop",
+     "es": "5. Sin `if`, sin bucle",
+     "es_id": "5-sin-if-sin-bucle",
      "level": 3,
      "line": 105
     },
     {
      "en": "Why this is weird",
      "en_id": "why-this-is-weird",
-     "es": "Why this is weird",
-     "es_id": "why-this-is-weird",
+     "es": "Por qué es raro",
+     "es_id": "por-qué-es-raro",
      "level": 2,
      "line": 111
     },
     {
      "en": "What you can learn",
      "en_id": "what-you-can-learn",
-     "es": "What you can learn",
-     "es_id": "what-you-can-learn",
+     "es": "Qué puedes aprender",
+     "es_id": "qué-puedes-aprender",
      "level": 2,
      "line": 117
     },
     {
      "en": "Gotchas worth knowing",
      "en_id": "gotchas-worth-knowing",
-     "es": "Gotchas worth knowing",
-     "es_id": "gotchas-worth-knowing",
+     "es": "Trampas que conviene conocer",
+     "es_id": "trampas-que-conviene-conocer",
      "level": 2,
      "line": 126
     },
     {
      "en": "What `check.sh` enforces",
      "en_id": "what-checksh-enforces",
-     "es": "What `check.sh` enforces",
-     "es_id": "what-checksh-enforces",
+     "es": "Qué exige `check.sh`",
+     "es_id": "qué-exige-checksh",
      "level": 2,
      "line": 136
     },
     {
      "en": "Run it in a container",
      "en_id": "run-it-in-a-container",
-     "es": "Run it in a container",
-     "es_id": "run-it-in-a-container",
+     "es": "Ejecútalo en un contenedor",
+     "es_id": "ejecútalo-en-un-contenedor",
      "level": 2,
      "line": 140
     }
    ],
    "map": {
-    "1-the-separator-is-a-regular-expression-and-the-terminator-is-yours": "1-the-separator-is-a-regular-expression-and-the-terminator-is-yours",
-    "2-one-record-is-one-card": "2-one-record-is-one-card",
-    "3-the-same-fields-three-ways": "3-the-same-fields-three-ways",
-    "4-the-stop-rule-is-a-bare-pattern": "4-the-stop-rule-is-a-bare-pattern",
-    "5-no-if-no-loop": "5-no-if-no-loop",
-    "awk-weirder": "awk-weirder",
-    "gotchas-worth-knowing": "gotchas-worth-knowing",
-    "how-the-stunt-works": "how-the-stunt-works",
-    "program-flow": "program-flow",
-    "run-it": "run-it",
-    "run-it-in-a-container": "run-it-in-a-container",
-    "what-checksh-enforces": "what-checksh-enforces",
-    "what-you-can-learn": "what-you-can-learn",
-    "why-this-is-weird": "why-this-is-weird"
+    "1-the-separator-is-a-regular-expression-and-the-terminator-is-yours": "1-el-separador-es-una-expresión-regular-el-terminador-lo-eliges-tú",
+    "2-one-record-is-one-card": "2-un-registro-es-una-tarjeta",
+    "3-the-same-fields-three-ways": "3-los-mismos-campos-de-tres-maneras",
+    "4-the-stop-rule-is-a-bare-pattern": "4-la-regla-de-parada-es-un-patrón-sin-acción",
+    "5-no-if-no-loop": "5-sin-if-sin-bucle",
+    "awk-weirder": "awk-más-raro",
+    "gotchas-worth-knowing": "trampas-que-conviene-conocer",
+    "how-the-stunt-works": "cómo-funciona-el-truco",
+    "program-flow": "flujo-del-programa",
+    "run-it": "ejecútalo",
+    "run-it-in-a-container": "ejecútalo-en-un-contenedor",
+    "what-checksh-enforces": "qué-exige-checksh",
+    "what-you-can-learn": "qué-puedes-aprender",
+    "why-this-is-weird": "por-qué-es-raro"
    }
   },
   "src/awk/README.md": {
@@ -9878,87 +9878,87 @@
     {
      "en": "Run it",
      "en_id": "run-it",
-     "es": "Run it",
-     "es_id": "run-it",
+     "es": "Ejecútalo",
+     "es_id": "ejecútalo",
      "level": 2,
      "line": 23
     },
     {
      "en": "What it does",
      "en_id": "what-it-does",
-     "es": "What it does",
-     "es_id": "what-it-does",
+     "es": "Qué hace",
+     "es_id": "qué-hace",
      "level": 2,
      "line": 44
     },
     {
      "en": "Program Flow",
      "en_id": "program-flow",
-     "es": "Program Flow",
-     "es_id": "program-flow",
+     "es": "Flujo del programa",
+     "es_id": "flujo-del-programa",
      "level": 2,
      "line": 48
     },
     {
      "en": "How the stunt works",
      "en_id": "how-the-stunt-works",
-     "es": "How the stunt works",
-     "es_id": "how-the-stunt-works",
+     "es": "Cómo funciona el truco",
+     "es_id": "cómo-funciona-el-truco",
      "level": 2,
      "line": 66
     },
     {
      "en": "Why this is idiomatic",
      "en_id": "why-this-is-idiomatic",
-     "es": "Why this is idiomatic",
-     "es_id": "why-this-is-idiomatic",
+     "es": "Por qué esto es idiomático",
+     "es_id": "por-qué-esto-es-idiomático",
      "level": 2,
      "line": 89
     },
     {
      "en": "What you can learn",
      "en_id": "what-you-can-learn",
-     "es": "What you can learn",
-     "es_id": "what-you-can-learn",
+     "es": "Qué puedes aprender",
+     "es_id": "qué-puedes-aprender",
      "level": 2,
      "line": 97
     },
     {
      "en": "Gotchas worth knowing",
      "en_id": "gotchas-worth-knowing",
-     "es": "Gotchas worth knowing",
-     "es_id": "gotchas-worth-knowing",
+     "es": "Trampas que conviene conocer",
+     "es_id": "trampas-que-conviene-conocer",
      "level": 2,
      "line": 105
     },
     {
      "en": "What `check.sh` enforces",
      "en_id": "what-checksh-enforces",
-     "es": "What `check.sh` enforces",
-     "es_id": "what-checksh-enforces",
+     "es": "Qué exige `check.sh`",
+     "es_id": "qué-exige-checksh",
      "level": 2,
      "line": 115
     },
     {
      "en": "Run it in a container",
      "en_id": "run-it-in-a-container",
-     "es": "Run it in a container",
-     "es_id": "run-it-in-a-container",
+     "es": "Ejecútalo en un contenedor",
+     "es_id": "ejecútalo-en-un-contenedor",
      "level": 2,
      "line": 119
     }
    ],
    "map": {
     "awk": "awk",
-    "gotchas-worth-knowing": "gotchas-worth-knowing",
-    "how-the-stunt-works": "how-the-stunt-works",
-    "program-flow": "program-flow",
-    "run-it": "run-it",
-    "run-it-in-a-container": "run-it-in-a-container",
-    "what-checksh-enforces": "what-checksh-enforces",
-    "what-it-does": "what-it-does",
-    "what-you-can-learn": "what-you-can-learn",
-    "why-this-is-idiomatic": "why-this-is-idiomatic"
+    "gotchas-worth-knowing": "trampas-que-conviene-conocer",
+    "how-the-stunt-works": "cómo-funciona-el-truco",
+    "program-flow": "flujo-del-programa",
+    "run-it": "ejecútalo",
+    "run-it-in-a-container": "ejecútalo-en-un-contenedor",
+    "what-checksh-enforces": "qué-exige-checksh",
+    "what-it-does": "qué-hace",
+    "what-you-can-learn": "qué-puedes-aprender",
+    "why-this-is-idiomatic": "por-qué-esto-es-idiomático"
    }
   },
   "src/cmake/README.md": {
@@ -9966,68 +9966,68 @@
     {
      "en": "CMake: `for (seed; test; iterate) ;`, with `while()` and a regex",
      "en_id": "cmake-for-seed-test-iterate--with-while-and-a-regex",
-     "es": "CMake: `for (seed; test; iterate) ;`, with `while()` and a regex",
-     "es_id": "cmake-for-seed-test-iterate--with-while-and-a-regex",
+     "es": "CMake: `for (seed; test; iterate) ;`, con `while()` y una expresión regular",
+     "es_id": "cmake-for-seed-test-iterate--con-while-y-una-expresión-regular",
      "level": 1,
      "line": 15
     },
     {
      "en": "Run it",
      "en_id": "run-it",
-     "es": "Run it",
-     "es_id": "run-it",
+     "es": "Ejecútalo",
+     "es_id": "ejecútalo",
      "level": 2,
      "line": 22
     },
     {
      "en": "Program Flow",
      "en_id": "program-flow",
-     "es": "Program Flow",
-     "es_id": "program-flow",
+     "es": "Flujo del programa",
+     "es_id": "flujo-del-programa",
      "level": 2,
      "line": 40
     },
     {
      "en": "How the stunt works",
      "en_id": "how-the-stunt-works",
-     "es": "How the stunt works",
-     "es_id": "how-the-stunt-works",
+     "es": "Cómo funciona el truco",
+     "es_id": "cómo-funciona-el-truco",
      "level": 2,
      "line": 59
     },
     {
      "en": "What `check.sh` enforces",
      "en_id": "what-checksh-enforces",
-     "es": "What `check.sh` enforces",
-     "es_id": "what-checksh-enforces",
+     "es": "Qué impone `check.sh`",
+     "es_id": "qué-impone-checksh",
      "level": 2,
      "line": 95
     },
     {
      "en": "Gotchas worth knowing",
      "en_id": "gotchas-worth-knowing",
-     "es": "Gotchas worth knowing",
-     "es_id": "gotchas-worth-knowing",
+     "es": "Trampas que conviene conocer",
+     "es_id": "trampas-que-conviene-conocer",
      "level": 2,
      "line": 103
     },
     {
      "en": "Run it in a container",
      "en_id": "run-it-in-a-container",
-     "es": "Run it in a container",
-     "es_id": "run-it-in-a-container",
+     "es": "Ejecuta el ejemplo en un contenedor",
+     "es_id": "ejecuta-el-ejemplo-en-un-contenedor",
      "level": 2,
      "line": 129
     }
    ],
    "map": {
-    "cmake-for-seed-test-iterate--with-while-and-a-regex": "cmake-for-seed-test-iterate--with-while-and-a-regex",
-    "gotchas-worth-knowing": "gotchas-worth-knowing",
-    "how-the-stunt-works": "how-the-stunt-works",
-    "program-flow": "program-flow",
-    "run-it": "run-it",
-    "run-it-in-a-container": "run-it-in-a-container",
-    "what-checksh-enforces": "what-checksh-enforces"
+    "cmake-for-seed-test-iterate--with-while-and-a-regex": "cmake-for-seed-test-iterate--con-while-y-una-expresión-regular",
+    "gotchas-worth-knowing": "trampas-que-conviene-conocer",
+    "how-the-stunt-works": "cómo-funciona-el-truco",
+    "program-flow": "flujo-del-programa",
+    "run-it": "ejecútalo",
+    "run-it-in-a-container": "ejecuta-el-ejemplo-en-un-contenedor",
+    "what-checksh-enforces": "qué-impone-checksh"
    }
   },
   "src/cobol-weird/README.md": {

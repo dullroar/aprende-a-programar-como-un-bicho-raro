@@ -100,3 +100,13 @@
 {"id":"EXC-100","segment":"s-2fd43ea64375-0047","invariant":"I7","reason":"'VS Code' is a product name, not the noun code","task":"P4-src-3"}
 {"id":"EXC-101","segment":"s-97180c9402e1-0060","invariant":"I7","reason":"'It builds' is the verb (builds the Dockerfile into an image), not the noun build/compilation","task":"P4-src-3"}
 {"id":"EXC-102","segment":"s-c1a3455a70bb-0044","invariant":"I7","reason":"'Card N+1' is a function identifier in a Mermaid label copied verbatim from the apl README diagram, kept literal (I21), not the card noun; same waiver as the README segment","task":"P4-src-3"}
+{"id":"EXC-103","segment":"s-f5cbdf8066a8-0019","invariant":"I7","reason":"'hours = 10 + RT' is code (the variable hours in the AWK program) inside a Mermaid label, and 'build the card' is the verb, not the noun build/compilation","task":"P4-src-4"}
+{"id":"EXC-104","segment":"s-78fe15443001-0001","invariant":"I7","reason":"'can build records out of fields' is the verb build (construir), not the noun build/compilation","task":"P4-src-4"}
+{"id":"EXC-105","segment":"s-e033128924ef-0005","invariant":"I7","reason":"'can build records out of fields' is the verb build (construir), not the noun build/compilation","task":"P4-src-4"}
+{"id":"EXC-106","segment":"s-7fa3f897fc4e-0019","invariant":"I7","reason":"'total += hours' is code (the variable hours) inside a Mermaid label, kept literal, not the time unit","task":"P4-src-4"}
+{"id":"EXC-107","segment":"s-28c1c7f46870-0054","invariant":"I7","reason":"'It builds' is the verb (builds the Dockerfile into an image), not the noun build/compilation","task":"P4-src-4"}
+{"id":"EXC-108","segment":"s-89a315f138d5-0010","invariant":"I7","reason":"'builds a subject string' is the verb build (construir), not the noun build/compilation","task":"P4-src-4"}
+{"id":"EXC-109","segment":"s-023d17ae0072-0021","invariant":"I7","reason":"'can build its next subject' is the verb build (construir), not the noun build/compilation","task":"P4-src-4"}
+{"id":"EXC-110","segment":"s-3b27faace16f-0050","invariant":"I7","reason":"'It builds' is the verb (builds the Dockerfile into an image), not the noun build/compilation","task":"P4-src-4"}
+{"id":"EXC-111","segment":"s-7521aed02166-0025","invariant":"I7","reason":"'the condition can build its subject string' is the verb build (construir), not the noun build/compilation","task":"P4-src-4"}
+{"id":"EXC-112","segment":"s-aa6263ba863c-0017","invariant":"I9","reason":"Mermaid label 'while: total <= LIMIT?' is code (the keyword while and the variable names LIMIT, total) kept literal; only the question marks are punctuation, written as ¿...?","task":"P4-src-4"}

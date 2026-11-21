@@ -1,6 +1,6 @@
 ---
 name: "AWK"
-teaches: "that portable AWK can build records out of fields and stream its output through a pipe, with arrays and parameter-local variables for state."
+teaches: "que AWK portable puede construir registros a partir de campos y enviar su salida por una tubería, con arreglos y variables locales de parámetro para el estado."
 kind: idiomatic
 languages: [awk]
 lesson: "lenguajes/awk.md"
@@ -8,21 +8,21 @@ loop-by: input-driven
 evaluation: eager
 assurance: guaranteed
 pairs-with: awk-weird
-machine: "Ordinary: a `while` loop in `BEGIN`, with a pipe to sqlite3 as the output"
-state: "Arrays and parameter-local variables"
+machine: "Ordinario: un bucle `while` en `BEGIN`, con una tubería a sqlite3 como salida"
+state: "Arreglos y variables locales de parámetro"
 tags: [control-flow, declarative-programming, domain-specific-language, regular-expression]
 ---
 # AWK
 
-**Teaches you:** that portable AWK can build records out of fields and stream its output through a pipe, with arrays and parameter-local variables for state.
+**Te enseña:** que AWK portable puede construir registros a partir de campos y enviar su salida por una tubería, con arreglos y variables locales declaradas como parámetros para el estado.
 
-> **DEMO ONLY.** Fictional timecards in a scratch SQLite file. No connection to any real time-reporting system.
+> **DEMO ONLY.** Tarjetas de horas ficticias en un archivo SQLite temporal. Sin conexión con ningún sistema real de registro de horas.
 
-This is the straight version, the one that shows how AWK is *meant* to be written. The challenge ("add 10 to 19 hour cards until the total passes 40") is one `while` loop; everything else in [`timecards.awk`](timecards.awk) is a small function that does one job. It is **portable POSIX awk**: it runs unchanged under gawk, mawk, the one-true-awk (BWK awk) and busybox awk. The weird version, which hands the loop to awk's own main loop and reads dice from `/dev/urandom`, is [`awk-weird`](../awk-weird/README.md).
+Esta es la versión directa, la que muestra cómo AWK está *pensado* para escribirse. El reto ("suma tarjetas de 10 a 19 horas hasta que el total pase de 40") es un solo bucle `while`; todo lo demás en [`timecards.awk`](timecards.awk) es una función pequeña que hace una sola tarea. Es **awk POSIX portable**: se ejecuta sin cambios en gawk, mawk, one-true-awk (BWK awk) y busybox awk. La versión rara, que delega el bucle en el bucle principal del propio awk y lee los dados de `/dev/urandom`, es [`awk-weird`](../awk-weird/README.md).
 
-## Run it
+## Ejecútalo
 
-You need any POSIX `awk`, `sqlite3`, and the usual `date`, `od` and `mkdir`.
+Necesitas cualquier `awk` compatible con POSIX, `sqlite3` y los habituales `date`, `od` y `mkdir`.
 
 ```bash
 cd src/awk
@@ -30,7 +30,7 @@ awk -f timecards.awk
 ./check.sh                    # runs the check under every awk it finds; AWKS='gawk|mawk' ./check.sh to choose
 ```
 
-Records go to `$XDG_DATA_HOME/Awk/demo-timecards.db` (default `~/.local/share/Awk/`). A run looks like this:
+Los registros van a `$XDG_DATA_HOME/Awk/demo-timecards.db` (por defecto `~/.local/share/Awk/`). Una ejecución se ve así:
 
 ```text
 # DEMO ONLY run 1794861273-1655779341
@@ -41,37 +41,37 @@ Debugging	10	46	2026-W47	DEMO ONLY
 # a BEGIN-only awk program: arrays, a pipe to sqlite3, and fields rebuilding each row
 ```
 
-## What it does
+## Qué hace
 
-It draws cards of 10 to 19 hours, cycling through Meetings, Coding, Debugging and Learning, until the running total is greater than 40 (the card that crosses the line is kept), prints each row, and saves all of them to SQLite in one transaction.
+Saca tarjetas de 10 a 19 horas y recorre en ciclo Meetings, Coding, Debugging y Learning hasta que el total acumulado pasa de 40 (se conserva la tarjeta que cruza la línea); imprime cada fila y guarda todas en SQLite en una sola transacción.
 
-## Program Flow
+## Flujo del programa
 
 ```mermaid
 flowchart TD
-    accTitle: awk: a generator in BEGIN, with a while loop and a pipe to sqlite3
-    accDescr: A flowchart. awk has no input, so everything runs in the BEGIN rule. BEGIN asks the shell for the ISO week, seeds the random generator, splits the category names into an array and opens a pipe to sqlite3. A while loop tests whether the total is at or under the limit. If so, it draws hours, adds them to the total, picks the next category, prints the row, and prints an INSERT to the pipe. When the total is over the limit, awk closes the pipe, which commits the transaction, and prints the summary.
-    A["BEGIN: week from date, srand from /dev/urandom, split categories, open the pipe to sqlite3"] --> B{{"while: total <= LIMIT?"}}
-    B -->|yes| C["random_hours, total += hours, pick the next category"]
-    C --> D["print the row by assigning fields; print the INSERT to the pipe"]
+    accTitle: awk: un generador en BEGIN, con un bucle while y una tubería hacia sqlite3
+    accDescr: Un diagrama de flujo. awk no tiene entrada de datos, así que todo se ejecuta en la regla BEGIN. BEGIN pide la semana ISO al intérprete de comandos. BEGIN inicializa el generador aleatorio, divide los nombres de las categorías en un arreglo y abre una tubería hacia sqlite3. Un bucle while comprueba si el total es menor o igual que el límite. Si es así, sortea las horas, las suma al total, elige la siguiente categoría, imprime la fila e imprime un INSERT en la tubería. Cuando el total pasa del límite, awk cierra la tubería (lo que confirma la transacción) e imprime el resumen.
+    A["BEGIN: semana desde date, srand desde /dev/urandom, dividir categorías, abrir la tubería a sqlite3"] --> B{{"while: ¿total <= LIMIT?"}}
+    B -->|sí| C["random_hours, total += hours, elige la siguiente categoría"]
+    C --> D["imprime la fila asignando los campos; imprime el INSERT en la tubería"]
     D --> B
-    B -->|no| E["close the pipe: sqlite3 commits"]
-    E --> F["Print the summary"]
+    B -->|no| E["cierra la tubería: sqlite3 confirma la transacción"]
+    E --> F["Imprime el resumen"]
 ```
 
-**What this shows:** the idiomatic shape of an AWK generator. There is no input, so `BEGIN` does everything, and an ordinary `while` is the loop. The test comes before each draw, so the card that crosses 40 is the last one added.
+**Qué muestra:** la forma idiomática de un generador en AWK. No hay entrada de datos, así que `BEGIN` hace todo el trabajo y un `while` ordinario es el bucle. La prueba va antes de cada extracción, así que la tarjeta que pasa de 40 es la última que se suma.
 
-**Why this mechanism matters:** the pipe is an output stream with a name. `print ... | sqlite` starts `sqlite3` once and streams SQL to it, and `close` is what flushes it and returns its exit status. AWK's real loop, the one over input records, is not used here. The weird sibling [`awk-weird`](../awk-weird/README.md) uses it.
+**Por qué importa este mecanismo:** la tubería es un flujo de salida con nombre. `print ... | sqlite` inicia `sqlite3` una sola vez y le envía SQL de forma continua, y `close` es lo que la vacía y devuelve su estado de salida. El programa no usa el bucle real de AWK, el que recorre los registros de entrada. El hermano raro [`awk-weird`](../awk-weird/README.md) sí lo usa.
 
-## How the stunt works
+## Cómo funciona el truco
 
-An AWK program is a list of `pattern { action }` rules that run once per input record, plus `BEGIN` and `END` rules. This program has **no input**, so everything happens in `BEGIN`, which is the idiomatic shape for a generator.
+Un programa AWK es una lista de reglas `pattern { action }` que se ejecutan una vez por registro de entrada, más las reglas `BEGIN` y `END`. Este programa **no tiene entrada de datos**, así que todo ocurre en `BEGIN`, que es la forma idiomática de un generador.
 
-1. **Functions with locals in the parameter list.** AWK has no local-variable syntax: extra parameters *are* the locals, by convention written after a gap (`function command_line(command,    line)`). Any variable not in the list is global, which is why a function's parameters should not reuse the names the `BEGIN` block uses; `gawk --lint` warns about it, and `check.sh` runs that lint.
-2. **`command_line`: a command as a data source.** `command | getline line` runs a shell command and reads its first output line; `close(command)` is required before you can run it again.
-3. **`random_hours`.** `rand()` is in `[0, 1)`, so `int(rand() * 10)` is 0 to 9 and `HOURS_MIN + ...` makes it 10 to 19. The seed comes from `/dev/urandom` through `od` and goes to `srand`: without that, `rand()` repeats in most awks.
-4. **Arrays.** `split("Meetings Coding Debugging Learning", CATEGORY, " ")` fills an array indexed from **1**. `CATEGORY[cards++ % 4 + 1]` picks the next one and counts the card in the same expression.
-5. **The challenge.**
+1. **Funciones con variables locales en la lista de parámetros.** AWK no tiene sintaxis para variables locales: los parámetros extra *son* las locales, y por convención se escriben después de un espacio (`function command_line(command,    line)`). Toda variable que no está en la lista es global; por eso los parámetros de una función no deben reutilizar los nombres que usa el bloque `BEGIN`. `gawk --lint` avisa de ese problema y `check.sh` ejecuta esa revisión.
+2. **`command_line`: un comando como fuente de datos.** `command | getline line` ejecuta un comando del intérprete de comandos (*shell*), el programa que recibe y ejecuta comandos escritos como texto, y lee la primera línea de su salida; necesitas `close(command)` antes de poder ejecutarlo otra vez.
+3. **`random_hours`.** `rand()` está en `[0, 1)`, así que `int(rand() * 10)` va de 0 a 9 y `HOURS_MIN + ...` lo deja de 10 a 19. La semilla viene de `/dev/urandom` mediante `od` y va a `srand`: sin eso, `rand()` se repite en la mayoría de las implementaciones de AWK.
+4. **Arreglos.** `split("Meetings Coding Debugging Learning", CATEGORY, " ")` llena un arreglo indexado desde **1**. `CATEGORY[cards++ % 4 + 1]` elige la siguiente tarjeta y la cuenta en la misma expresión.
+5. **El reto.**
    ```awk
    while (total <= LIMIT) {
        hours = random_hours()
@@ -81,47 +81,47 @@ An AWK program is a list of `pattern { action }` rules that run once per input r
        print sql_insert(run, category, hours, total, week) | sqlite
    }
    ```
-   The test is made before each draw, so the card that crosses 40 is the last one added.
-6. **Fields as a record builder.** `print_row` assigns `$1` to `$5`; assigning to a field rebuilds `$0` joined with `OFS`, which `BEGIN` set to a tab, and `print` with no arguments prints it. No `printf` format string, no manual joining.
-7. **A pipe as an output stream.** `print ... | sqlite` starts `sqlite3` once and streams SQL to it; the same command string is the same pipe. `close(sqlite)` flushes it and returns the command's exit status, which the program checks (see the gotcha on `close` below).
-8. **Quoting.** `shell_quote` wraps a path as one shell word by `split`ting on `'` and joining with `'\''`; `sql_quote` doubles the quotes in a string. Both are done with plain string operations, because `gsub` replacement strings treat backslashes differently in different awks.
+   La prueba ocurre antes de cada sorteo, así que la tarjeta que pasa de 40 es la última que se agrega.
+6. **Los campos como constructor de registros.** `print_row` asigna `$1` a `$5`; asignar a un campo reconstruye `$0` unido con `OFS`, que `BEGIN` define como una tabulación y `print` sin argumentos lo imprime. Sin cadena de formato `printf` y sin unión manual.
+7. **Una tubería como flujo de salida.** `print ... | sqlite` inicia `sqlite3` una sola vez y le envía SQL de forma continua; la misma cadena de texto de comando es la misma tubería. `close(sqlite)` la vacía y devuelve el estado de salida del comando, que el programa comprueba (consulta la trampa sobre `close` más abajo).
+8. **Comillas.** `shell_quote` envuelve una ruta como una sola palabra del intérprete de comandos. Para ello usa `split` para dividir en `'` y une con `'\''`; `sql_quote` duplica las comillas de una cadena de texto. Ambas se hacen con operaciones simples con cadenas de texto, porque las cadenas de reemplazo de `gsub` tratan las barras invertidas de forma distinta en distintos awks.
 
-## Why this is idiomatic
+## Por qué esto es idiomático
 
-- **Small functions** with their locals declared, and constants written in capitals.
-- **`BEGIN` for a program without input**, and `ENVIRON` for the environment.
-- **Arrays and `split`** for the lookup table; `printf`/`sprintf` for formatted text; the field-assignment idiom for a delimited row.
-- **Pipes and `close`** for talking to other programs, the way AWK programs have since the 1970s.
-- **Only POSIX features**: no `strftime`, `systime`, `gensub`, `RT` or arrays of arrays. Time comes from `date(1)`.
+- **Funciones pequeñas** con sus variables locales declaradas y constantes escritas en mayúsculas.
+- **`BEGIN` para un programa sin entrada de datos** y `ENVIRON` para el entorno.
+- **Arreglos y `split`** para la tabla de consulta; `printf`/`sprintf` para texto con formato; el modismo de asignación de campos para una fila delimitada.
+- **Tuberías y `close`** para comunicarse con otros programas, como hacen los programas AWK desde la década de 1970.
+- **Solo funciones POSIX**: sin `strftime`, `systime`, `gensub` ni `RT` y sin arreglos de arreglos. La hora viene de `date(1)`.
 
-## What you can learn
+## Qué puedes aprender
 
-- That AWK's local variables are extra parameters, and why that matters for naming.
-- `$0` and the fields are one data structure: assigning either rebuilds the other.
-- `getline` from a command and `close` to reuse it.
-- Why you always seed `rand()`.
-- Which AWK features are POSIX and which are GNU: this file is a small list of the portable ones.
+- Que las variables locales de AWK son parámetros adicionales y por qué eso importa al elegir nombres.
+- `$0` y los campos son una sola estructura de datos: si asignas uno, AWK reconstruye el otro.
+- `getline` desde un comando y `close` para reutilizarlo.
+- Por qué siempre inicializas `rand()` con una semilla.
+- Qué características de AWK son POSIX y cuáles son GNU: este archivo es una lista breve de las portables.
 
-## Gotchas worth knowing
+## Trampas que conviene conocer
 
-- **Arrays from `split` start at 1**, not 0.
-- **Uninitialized variables are `""` and `0` at once.** `total` and `cards` are set to 0 anyway, for readers and for the linter.
-- **`srand()` with no argument seeds from the time of day**, which gives two runs started in the same second the same numbers; hence the `/dev/urandom` seed.
-- **`close()` of a pipe returns different things in different awks.** Tested here: gawk and mawk return the command's exit status; busybox returns the raw wait status (exit status times 256, so still non-zero on failure); the one-true-awk build tested returns 0 whatever happened, so there a failing `sqlite3` would go unnoticed. The program's `!= 0` test is right for the first three; for a fourth awk, check what `close` gives you.
-- **A path containing a double quote or newline** is not supported.
-- **SQL by string building** is safe here only because every value is a number computed here or one of four fixed words. `sql_quote` is there anyway; do not copy this for untrusted input.
-- **Formatting.** There is no formatter for AWK. `gawk --pretty-print` exists but rewrites the layout and drops most comments, so it is used here only as a parser check. The layout (four spaces, a comment above each function) is by hand.
+- **Los arreglos de `split` empiezan en 1**, no en 0.
+- **Las variables sin inicializar son `""` y `0` a la vez.** Aun así, el código asigna 0 a `total` y `cards`, para los lectores y para el linter.
+- **`srand()` sin argumento toma la semilla de la hora del día**, y eso da los mismos números a dos ejecuciones iniciadas en el mismo segundo; de ahí la semilla `/dev/urandom`.
+- **`close()` de una tubería devuelve resultados distintos en distintos awk.** Probado aquí: gawk y mawk devuelven el estado de salida del comando; busybox devuelve el estado de espera sin procesar (el estado de salida multiplicado por 256, así que sigue siendo distinto de cero si hay un fallo); la compilación de one-true-awk que se probó devuelve 0 pase lo que pase, así que allí un `sqlite3` con fallo pasaría inadvertido. La prueba de `!= 0` del programa es correcta para los tres primeros; con un cuarto awk, comprueba qué te da `close`.
+- **Una ruta que contenga comillas dobles o un salto de línea** no es compatible.
+- **El SQL construido con cadenas de texto** es seguro aquí solo porque cada valor es un número calculado aquí o una de cuatro palabras fijas. `sql_quote` está presente de todos modos; no copies esto para entradas de datos no confiables.
+- **Formato.** No existe un formateador para AWK. `gawk --pretty-print` existe, pero reescribe la disposición y elimina la mayoría de los comentarios; por eso aquí solo se usa para comprobar el analizador sintáctico. La disposición (cuatro espacios y un comentario sobre cada función) se hace a mano.
 
-## What `check.sh` enforces
+## Qué exige `check.sh`
 
-The `DEMO ONLY` marker is there; no network-looking text; the challenge is a `while (total <= LIMIT)`; `gawk --lint --posix` has no complaints (so no GNU extensions and no shadowed variables). Then 25 real runs, under **each** awk found (gawk, mawk, the one-true-awk, busybox awk when installed), each checked for sane records (hours 10 to 19, categories in order, correct running totals, stopping exactly when the total passes 40) with SQLite agreeing with the printed output.
+Está el marcador `DEMO ONLY`; no hay texto que parezca de red; el reto es un `while (total <= LIMIT)`; `gawk --lint --posix` no se queja de nada (es decir, no hay extensiones de GNU ni variables sombreadas). Después vienen 25 ejecuciones reales con **cada** awk que se encuentre (gawk, mawk, el one-true-awk y el awk de busybox si está instalado). En cada ejecución se comprueba que los registros sean coherentes (horas de 10 a 19, categorías en orden, totales acumulados correctos y parada justo cuando el total pasa de 40), y que SQLite coincida con la salida impresa.
 
-## Run it in a container
+## Ejecútalo en un contenedor
 
-Prerequisite: Docker, set up once as described in [`SANDBOX-SETUP.md`](../../SANDBOX-SETUP.md#docker). The `cc-rt-awk` base image comes from `sandbox/container/build-bases.sh`.
+Requisito previo: Docker, que configuras una sola vez como se describe en [`SANDBOX-SETUP.md`](../../SANDBOX-SETUP.md#docker). La imagen base `cc-rt-awk` viene de `sandbox/container/build-bases.sh`.
 
 ```bash
 sandbox/container/run-image.sh src/awk
 ```
 
-It builds this folder's [`Dockerfile`](Dockerfile) and runs the result (under mawk, to show the portability) with no network, a read-only file system and user `nobody`, then prints the output and a read-only look at the rows it wrote. The image holds gawk, mawk and sqlite3 on a minimal Ubuntu.
+Compila el [`Dockerfile`](Dockerfile) de esta carpeta y ejecuta el resultado (con mawk, para mostrar la portabilidad) sin red, con un sistema de archivos de solo lectura y con el usuario `nobody`. Después muestra la salida y una vista de solo lectura de las filas que escribió. La imagen incluye gawk, mawk y sqlite3 sobre un Ubuntu mínimo.

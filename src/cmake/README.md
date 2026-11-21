@@ -1,6 +1,6 @@
 ---
 name: "CMake"
-teaches: "that `while()` and a regex can form a tiny register machine."
+teaches: "que `while()` y una expresión regular pueden formar una pequeña máquina de registros."
 kind: weird
 languages: [cmake]
 lesson: "lenguajes/make-cmake.md#cmake"
@@ -8,18 +8,18 @@ loop-by: loop-statement
 evaluation: eager
 assurance: accidentally-exploited
 pairs-with: make-gnu
-machine: "A register machine"
-state: "`CMAKE_MATCH_1`..`5`, rebuilt every pass"
+machine: "Una máquina de registros"
+state: "`CMAKE_MATCH_1`..`5`, reconstruido en cada pasada"
 tags: [build-automation, control-flow, domain-specific-language, hyrums-law, register-machine, regular-expression, state]
 ---
-# CMake: `for (seed; test; iterate) ;`, with `while()` and a regex
+# CMake: `for (seed; test; iterate) ;`, con `while()` y una expresión regular
 
-**Teaches you:** that `while()` and a regex can form a tiny register machine.
+**Te enseña:** que `while()` y una regex pueden formar una pequeña máquina de registros.
 
-> **DEMO ONLY.** Fictional time cards, written to a scratch SQLite file under `$XDG_DATA_HOME/CmakeChallenge/`.
-> Nothing here touches real time reporting.
+> **DEMO ONLY.** Tarjetas de tiempo ficticias, escritas en un archivo SQLite temporal dentro de `$XDG_DATA_HOME/CmakeChallenge/`.
+> Nada de esto toca el registro de horas real.
 
-## Run it
+## Ejecútalo
 
 ```bash
 cmake -P timecards.cmake            # one run (glows if stdout is a terminal, silent in a pipe)
@@ -37,30 +37,30 @@ Runtime error near line 4: CHECK constraint failed: stop rule fired: total excee
 # an empty while() went round 3 times, once per card
 ```
 
-## Program Flow
+## Flujo del programa
 
 ```mermaid
 flowchart TD
-    accTitle: cmake: one while with an empty body, whose condition is a register machine
-    accDescr: A flowchart. Before the loop, the host draws a tape of nine random digits and stores it in the CMAKE_MATCH variables, which are the registers. Each time around, while re-expands its condition. The first test says no if the total so far plus the last card matches a literal of 41 x characters. The second test builds a subject string and a pattern out of the previous captures, splices in the last digit, and matches, which captures the next hours row and rewrites all the registers. If both tests pass, the empty body runs and the loop goes round again. If a test fails, the loop ends, and the host reads the log, picks the ISO week, writes SQLite and plays the glow.
-    A["Host: draw 9 random digits and store them in the CMAKE_MATCH variables"] --> B{{"while re-expands its condition"}}
-    B --> C{{"Test 1: does total plus last card match 41 x's?"}}
-    C -->|"yes: over 40"| G["Loop ends: the host reads the log, picks the week, writes SQLite, plays the glow"]
-    C -->|no| D{{"Test 2: MATCHES on a subject built from the last captures"}}
-    D -->|"match: the registers now hold the new total and card"| E["Empty body"]
+    accTitle: cmake: un while con cuerpo vacío, cuya condición es una máquina de registros
+    accDescr: Un diagrama de flujo. Antes del bucle, el anfitrión genera una cinta de nueve dígitos aleatorios y la guarda en las variables CMAKE_MATCH, que son los registros. En cada vuelta, while vuelve a expandir su condición. La primera prueba responde que no si el total acumulado más la última tarjeta coincide con un literal de 41 caracteres x. La segunda prueba construye una cadena de texto sujeto y un patrón a partir de las capturas anteriores, inserta el último dígito y ejecuta la coincidencia. Esa coincidencia captura la siguiente fila de horas y reescribe todos los registros. Si ambas pruebas pasan, se ejecuta el cuerpo vacío y el bucle da otra vuelta. Si una prueba falla, el bucle termina y el anfitrión lee el log, elige la semana ISO, escribe en SQLite y reproduce el resplandor.
+    A["Anfitrión: elige 9 dígitos al azar y guárdalos en las variables CMAKE_MATCH"] --> B{{"while vuelve a expandir su condición"}}
+    B --> C{{"Prueba 1: ¿el total más la última tarjeta coincide con 41 x?"}}
+    C -->|"sí: más de 40"| G["Fin del bucle: el anfitrión lee el log, elige la semana, escribe en SQLite y reproduce el resplandor"]
+    C -->|no| D{{"Prueba 2: MATCHES sobre un sujeto construido a partir de las últimas capturas"}}
+    D -->|"coincidencia: los registros ahora contienen el nuevo total y la tarjeta"| E["Cuerpo vacío"]
     E --> B
-    D -->|"no match: the registers are cleared"| G
+    D -->|"sin coincidencia: se borran los registros"| G
 ```
 
-**What this shows:** `while()` re-expands its condition on every pass, and `MATCHES` stores its captures in ordinary variables. So the condition can build its next subject out of its last captures, and the *match* is the program. Numbers are runs of `x`, and the stop rule is a 41-character literal.
+**Qué muestra:** `while()` vuelve a expandir su condición en cada pasada, y `MATCHES` guarda sus capturas en variables ordinarias. Así, la condición puede construir su siguiente cadena de entrada a partir de sus últimas capturas, y la *coincidencia* es el programa. Los números son secuencias de `x`, y la regla de parada es un literal de 41 caracteres.
 
-**Why this mechanism matters:** the loop has an empty body and a register machine for a condition. Test 1 must run first, because a failed match clears the registers and a successful one rewrites them, so the main match has to run last for its captures to survive. `AND` does not stop at the first false test: on the final pass, when test 1 has already said stop, test 2 still runs, and that is what moves the last card into the log (`CMAKE_MATCH_4`). The registers then also hold one more hours lookup that is never reported. CMake's documentation does not promise that both operands are evaluated, so this is accidentally exploited. Swapping the two tests gives a run with zero cards.
+**Por qué importa este mecanismo:** el bucle tiene un cuerpo vacío y una máquina de registros como condición. La prueba 1 debe ejecutarse primero, porque una coincidencia fallida borra los registros y una exitosa los reescribe; por eso la coincidencia principal debe ejecutarse al final para que sus capturas sobrevivan. `AND` no se detiene en la primera prueba falsa: en la pasada final, cuando la prueba 1 ya indicó que se detenga, la prueba 2 aún se ejecuta, y eso es lo que mueve la última tarjeta al log (`CMAKE_MATCH_4`). Entonces los registros también guardan una búsqueda de horas más que nunca se informa. La documentación de CMake no promete que se evalúen ambos operandos, así que este comportamiento es aprovechado por accidente. Si intercambias las dos pruebas, obtienes una ejecución con cero tarjetas.
 
-## How the stunt works
+## Cómo funciona el truco
 
-An earlier version of this file was a normal script: `while()`, `math(EXPR)`, `list(GET)`. That is `RunEverything()`
-in CMake's accent, so it was thrown away. The program is now **one `while()` with an empty body**. Everything that
-decides anything lives in its condition:
+Una versión anterior de este archivo era un script normal: `while()`, `math(EXPR)`, `list(GET)`. Eso es `RunEverything()`
+con acento de CMake, así que la descartamos. Ahora el programa es **un `while()` con el cuerpo vacío**. Todo lo que
+decide algo vive en su condición:
 
 ```cmake
 while(NOT "${CMAKE_MATCH_1}${CMAKE_MATCH_5}" MATCHES "^xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
@@ -73,65 +73,62 @@ while(NOT "${CMAKE_MATCH_1}${CMAKE_MATCH_5}" MATCHES "^xxxxxxxxxxxxxxxxxxxxxxxxx
 endwhile()
 ```
 
-CMake's `if()`/`while()` `MATCHES` stores its capture groups in the ordinary variables `CMAKE_MATCH_1..`, and a
-`while()` **re-expands its condition on every pass**. So the condition can build its subject string and its pattern out
-of the previous pass's captures. That is a register machine, and the match is the program:
+En CMake, `if()`/`while()` `MATCHES` guarda sus grupos de captura en las variables ordinarias `CMAKE_MATCH_1..`, y un `while()` **vuelve a expandir su condición en cada pasada**. Así, la condición puede construir su cadena de texto de entrada y su patrón a partir de las capturas de la pasada anterior. Eso es una máquina de registros y la coincidencia es el programa:
 
-| Piece | What it is |
+| Pieza | Qué es |
 |---|---|
-| State | numbers are runs of `x`: 1 = total so far, 2 = the digit peeked last pass, 3 = rest of the digit tape, 4 = the log of finished cards, 5 = hours of the card added last pass |
-| Hours 10 to 19 | the table `0:xxxxxxxxxx|1:xxxxxxxxxxx|...` is *in the subject*; the pattern splices the previous pass's digit in (`${CMAKE_MATCH_2}:`) and captures that row. The staircase is the 10 to 19 |
-| Running total | the next subject starts with `${CMAKE_MATCH_1}${CMAKE_MATCH_5}`: string concatenation of unary numbers |
-| Stop rule | the first test: `NOT` (total so far + last card matches a **41-character literal**). Exactly 40 continues. Mutating the literal changes the behavior (`check.sh` does) |
-| Loop control | the loop ends when the match says no. The regex stunt entries' "return no match, on purpose" is simply what stops this one |
-| Order of tests | the stop test goes **first**: a match that fails clears every register and one that succeeds rewrites them, so the main match must run last for its captures to be the ones that survive |
+| Estado | números son secuencias de `x`: 1 = total hasta ahora, 2 = el dígito consultado en la última pasada, 3 = el resto de la cinta de dígitos, 4 = el registro de las tarjetas terminadas, 5 = horas de la tarjeta agregada en la última pasada |
+| Horas por tarjeta, de 10 a 19 | la tabla `0:xxxxxxxxxx|1:xxxxxxxxxxx|...` está *en el sujeto*; el patrón inserta el dígito de la pasada anterior (`${CMAKE_MATCH_2}:`) y captura esa fila. La escalera es la de 10 a 19 horas por tarjeta |
+| Total acumulado | el siguiente sujeto empieza con `${CMAKE_MATCH_1}${CMAKE_MATCH_5}`: concatenación de cadenas de texto de números unarios |
+| Regla de parada | la primera prueba: `NOT` (el total hasta ahora + la última tarjeta coincide con un **literal de 41 caracteres**). Un total de exactamente 40 continúa. Mutar el literal cambia el comportamiento (`check.sh` lo hace) |
+| Control del bucle | el bucle termina cuando la coincidencia dice que no. El "no devolver ninguna coincidencia, a propósito" de las entradas de acrobacias con regex es justo lo que detiene este bucle |
+| Orden de las pruebas | la prueba de parada va **primero**: una coincidencia que falla borra todos los registros y una que tiene éxito los reescribe, así que la coincidencia principal debe ejecutarse al final para que sus capturas sean las que sobrevivan |
 
-The host is deliberately small, like the other entries' hosts: before the loop it draws a tape of 9 random digits and
-puts them in the registers (`set(CMAKE_MATCH_n ...)`); after the loop it reads the log (lengths of `x` runs are the
-hours), picks the ISO week, writes SQLite and plays the glow. `check.sh` fails if the file has a `function()`,
-`macro()`, `include()` or `cmake_language()`, anything between `while()` and `endwhile()`, or any computation
-(`math`, `list`, `foreach`, `string` surgery) before the loop.
+El anfitrión es deliberadamente pequeño, como los anfitriones de las otras entradas: antes del bucle sortea una cinta de 9 dígitos aleatorios y
+los pone en los registros (`set(CMAKE_MATCH_n ...)`); después del bucle lee el log (las longitudes de las ejecuciones de `x` son las
+horas), elige la semana ISO, escribe en SQLite y reproduce el resplandor. `check.sh` falla si el archivo tiene un `function()`,
+`macro()`, `include()` o `cmake_language()`, cualquier cosa entre `while()` y `endwhile()` o cualquier cálculo
+(`math`, `list`, `foreach`, cirugía de `string`) antes del bucle.
 
-## What `check.sh` enforces
+## Qué impone `check.sh`
 
-`check.sh` makes sure the stunt is real. The whole program must be exactly one `while()` whose body is empty, with nothing between the condition and `endwhile()`. There may be no `function`, `macro`, `include`, `cmake_language`, `add_custom` or `variable_watch`, and nothing before the loop may compute (no `math`, `list`, `foreach` or `string` surgery except drawing the digit tape). The only programs the file may start are `sqlite3`, `wt.exe` (for `POP`) and CMake itself (for `-E sleep`).
+`check.sh` comprueba que la proeza sea real. Todo el programa debe ser exactamente un `while()` con el cuerpo vacío, sin nada entre la condición y `endwhile()`. No puede haber `function`, `macro`, `include`, `cmake_language`, `add_custom` ni `variable_watch` y nada antes del bucle puede calcular (ni manipulación con `math`, `list`, `foreach` ni `string`, salvo dibujar la cinta de dígitos). Los únicos programas que el archivo puede iniciar son `sqlite3`, `wt.exe` (para `POP`) y el propio CMake (para `-E sleep`).
 
-Then it runs the program 25 times in an empty working directory, which must stay empty. Each run must print as many rows as it has entries, report that the empty loop went around once per entry, and keep the usual rules (hours 10 to 19, categories in order, running totals right, `DEMO ONLY` on every row, a stop exactly when the total passes 40, an ISO week that matches SQLite's). The stop-rule error must appear on stderr exactly once and nothing else may. The database must agree with the output and must hold no probe rows or scratch `.sql` files.
+Después, la prueba ejecuta el programa 25 veces en un directorio de trabajo vacío, que debe seguir vacío. Cada ejecución debe imprimir tantas filas como entradas tiene, informar que el bucle vacío dio una vuelta por entrada y mantener las reglas de siempre (horas de 10 a 19, categorías en orden, totales acumulados correctos, `DEMO ONLY` en cada fila, una parada exactamente cuando el total pasa de 40, una semana ISO que coincide con la de SQLite). El error de la regla de parada debe aparecer en stderr exactamente una vez y no puede aparecer nada más. La base de datos debe coincidir con la salida y no debe contener filas de sondeo ni archivos `.sql` temporales.
 
-Three more tests follow. A sweep of year boundaries (using `SOURCE_DATE_EPOCH`) compares the ISO week with `date -u`. The glow must be silent in a pipe, and on a pseudo-terminal it must draw 24 frames in 1 to 3 seconds. And a mutation test changes the 41-character stop literal to 51 and expects some total to go over the legal maximum of 59, which proves that the literal is the stop rule. Last, a non-demo row must be refused.
+Siguen tres pruebas más. Un barrido de límites de año (con `SOURCE_DATE_EPOCH`) compara la semana ISO con `date -u`. El *glow* debe ser silencioso en una tubería. En un pseudoterminal debe dibujar 24 fotogramas en un tiempo de 1 a 3 segundos. Además, una prueba de mutación cambia a 51 el literal de parada de 41 caracteres. Esa prueba espera que algún total supere el máximo legal de 59. Eso prueba que el literal es la regla de parada. Por último, debe rechazarse una fila que no sea de demostración.
 
-## Gotchas worth knowing
+## Trampas que conviene conocer
 
-- **CMake's regex has no counted repetition** (`x{41}` is not supported; the test is literally 41 x's). It also has no
-  lookahead and no backreferences, so a pattern parameterized by a *register* (`${CMAKE_MATCH_2}:`) is the only way to
-  do a lookup. A tempting `(x?x?x?...)` x 40 for "at most 40" would backtrack exponentially on failure, hence the
-  separate literal test.
-- **The hours are looked up one pass late.** Pass *j* peeks the digit for card *j+1* and looks up the hours of card
-  *j* (peeked in pass *j-1*), so the very first digit is part of the seed.
-- **The tape has 9 digits** so it can never run dry (at most 5 cards, 6 digits used). Four 10-hour cards total exactly
-  40, which continues, so the fifth card wraps its category to Meetings.
-- **The host still reports.** Printing the rows, the SQLite writes, the ISO week and the glow are ordinary CMake
-  after the loop (`string(TIMESTAMP)` knows `%V` but not `%G`, so the ISO year is patched by hand from the month and
-  week). Output cannot happen from inside a condition. This is the "tiny host reports a result" allowance.
-- **Local time**, like the SQLite-based entries (the Make entry is UTC). `check.sh` sweeps year boundaries against
-  `date -u` using `SOURCE_DATE_EPOCH`.
-- **`message()` goes to stderr**, hence the `/dev/stdout` writes. `execute_process` inherits stdout, so SQLite's
-  header and CHECK error arrive in order.
-- **`wt.exe` treats `;` as its own subcommand separator**, so the `POP` command line contains none (CMake lists are
-  `;`-separated, so this needs care).
-- The only programs started are `sqlite3`, `wt.exe` (POP) and CMake itself (for its own `-E sleep`); `check.sh`
-  asserts that.
+- **La expresión regular de CMake no admite repetición contada** (`x{41}` no es compatible; la prueba consiste literalmente en 41 letras x). Tampoco tiene *lookahead*
+  ni referencias inversas, así que un patrón parametrizado por un *registro* (`${CMAKE_MATCH_2}:`) es la única forma de
+  hacer una búsqueda. Un tentador `(x?x?x?...)` x 40 para "como máximo 40" retrocedería de forma exponencial ante un fallo. De ahí la
+  prueba literal separada.
+- **Las horas se consultan con un paso de retraso.** El paso *j* observa el dígito de la tarjeta *j+1* y consulta las horas de la tarjeta
+  *j* (observado en el paso *j-1*). Por eso el primer dígito forma parte de la semilla.
+- **La cinta tiene 9 dígitos**, así que nunca puede agotarse (como máximo 5 tarjetas y 6 dígitos usados). Cuatro tarjetas de 10 horas suman exactamente
+  40, un total que continúa, así que la categoría de la quinta tarjeta da la vuelta y vuelve a Meetings.
+- **El anfitrión sigue informando.** La impresión de las filas, las escrituras en SQLite, la semana ISO y el resplandor son CMake ordinario
+  después del bucle (`string(TIMESTAMP)` conoce `%V` pero no `%G`, así que el año ISO se corrige a mano a partir del mes y
+  la semana). La salida no puede ocurrir dentro de una condición. Esta es la concesión del "anfitrión diminuto que informa un resultado".
+- **Hora local**, como las entradas basadas en SQLite (la entrada de Make está en UTC). `check.sh` recorre los límites de año y los contrasta con
+  `date -u` mediante `SOURCE_DATE_EPOCH`.
+- **`message()` va a stderr**, por eso las escrituras de `/dev/stdout`. `execute_process` hereda stdout, así que el encabezado de SQLite y el error de CHECK llegan en orden.
+- **`wt.exe` trata `;` como su propio separador de subcomandos**, así que la línea de comandos de `POP` no contiene ninguno (las listas de CMake se separan con
+  `;`, por eso esto requiere cuidado).
+- Los únicos programas que se inician son `sqlite3`, `wt.exe` (POP) y CMake (para su propio `-E sleep`); `check.sh`
+  lo comprueba.
 
 ---
 
-See the [root README](../../README.md#the-results-so-far) for how this compares to the other entries, and [`RETO.md`](../../RETO.md) if you want to write your own.
+Consulta el [README raíz](../../README.md#the-results-so-far) para ver cómo se compara con las otras entradas, y [`RETO.md`](../../RETO.md) si quieres escribir el tuyo.
 
-## Run it in a container
+## Ejecuta el ejemplo en un contenedor
 
-Prerequisite: Docker, set up once as described in [`SANDBOX-SETUP.md`](../../SANDBOX-SETUP.md#docker).
+Requisito previo: Docker, configurado una sola vez como se describe en [`SANDBOX-SETUP.md`](../../SANDBOX-SETUP.md#docker).
 
 ```bash
 sandbox/container/run-image.sh src/cmake
 ```
 
-It builds this folder's [`Dockerfile`](Dockerfile) and runs the result with no network, a read-only file system and user `nobody`, then prints the output and a read-only look at the rows it wrote. The image holds CMake and sqlite3 on a minimal Ubuntu. It has no compiler and no Make.
+Construye el [`Dockerfile`](Dockerfile) de esta carpeta y ejecuta el resultado sin red, con un sistema de archivos de solo lectura y con el usuario `nobody`. Luego imprime la salida y una vista de solo lectura de las filas que escribió. La imagen contiene CMake y sqlite3 sobre un Ubuntu mínimo. No tiene compilador ni Make.

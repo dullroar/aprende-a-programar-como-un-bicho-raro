@@ -124,7 +124,7 @@ Each picture below is the `## Program Flow` section of an entry's README, copied
 
 ### Program flow of `cmake`
 
-From [`cmake`](../../src/cmake/README.md) ([source section](../../src/cmake/README.md#program-flow)).
+From [`cmake`](../../src/cmake/README.md) ([source section](../../src/cmake/README.md#flujo-del-programa)).
 
 ```mermaid
 flowchart TD
