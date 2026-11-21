@@ -707,8 +707,8 @@
     {
      "en": "Answer key",
      "en_id": "answer-key",
-     "es": "Answer key",
-     "es_id": "answer-key",
+     "es": "Clave de respuestas",
+     "es_id": "clave-de-respuestas",
      "level": 1,
      "line": 1
     },
@@ -971,7 +971,7 @@
    ],
    "map": {
     "a1-read-the-rows": "a1-read-the-rows",
-    "answer-key": "answer-key",
+    "answer-key": "clave-de-respuestas",
     "b1-cobol-predict-then-break-alter": "b1-cobol-predict-then-break-alter",
     "b10-lisp-swap-the-method-combination": "b10-lisp-swap-the-method-combination",
     "b11-m4-quote-the-recursion": "b11-m4-quote-the-recursion",

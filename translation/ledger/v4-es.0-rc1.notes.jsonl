@@ -2165,3 +2165,4 @@
 {"segment_id": "s-44949e9a117a-0011", "ts": "2026-11-21T19:41:49Z", "findings": ["placeholders_seen does not list the placeholders of translated_text in order"]}
 {"segment_id": "s-157b20b061a0-0012", "ts": "2026-11-21T19:41:49Z", "findings": ["placeholders_seen does not list the placeholders of translated_text in order"]}
 {"segment_id": "s-926c639f471e-0013", "ts": "2026-11-21T19:41:49Z", "findings": ["placeholders_seen does not list the placeholders of translated_text in order"]}
+{"segment_id": "s-7a6a7d42a849-0004", "ts": "2026-11-21T19:43:47Z", "findings": ["I7: glossary term sandbox must be rendered 'entorno aislado (*sandbox*)'"]}

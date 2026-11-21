@@ -1,13 +1,13 @@
-# Answer key
+# Clave de respuestas
 
-Worked solutions for the [exercises](exercises.md). **Try the exercise first**: write your prediction down, run it and only then read here.
+Soluciones desarrolladas para los [ejercicios](exercises.md). **Primero intenta el ejercicio**: escribe tu predicción, ejecútalo y solo entonces lee aquí.
 
-Every solution below was run against the real entries:
+Todas las soluciones siguientes se ejecutaron con las entradas reales:
 
-- Docker exercises by [`tools/verify-exercises.sh`](tools/verify-exercises.sh) (every mutation is made on a *copy* of the entry);
-- Windows Sandbox exercises by [`tools/verify-windows.ps1`](tools/verify-windows.ps1) on Windows 11 Pro.
+- Ejercicios de Docker mediante [`tools/verify-exercises.sh`](tools/verify-exercises.sh) (cada modificación se hace en una *copia* de la entrada);
+- Ejercicios de Windows Sandbox, un entorno aislado (*sandbox*) que limita el acceso al sistema anfitrión, mediante [`tools/verify-windows.ps1`](tools/verify-windows.ps1) en Windows 11 Pro.
 
-Output is random, so numbers here are *examples*. What is guaranteed is the **property** each exercise asks you to observe. Folder variables: `WORK=$(mktemp -d)`, and `cp -r src/<entry> "$WORK/"` before you edit.
+La salida es aleatoria, así que los números aquí son *ejemplos*. Lo que está garantizado es la **propiedad** que cada ejercicio te pide observar. Variables de carpeta: `WORK=$(mktemp -d)` y `cp -r src/<entry> "$WORK/"` antes de editar.
 
 ## A1. Read the rows
 

@@ -1,0 +1,714 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lessons/answers-key.md:1
+msgctxt "s-c0dd4061bb00-0000"
+msgid "Answer key"
+msgstr "Clave de respuestas"
+
+#: lessons/answers-key.md:3
+msgctxt "s-9eae0e6e9b43-0001"
+msgid "Worked solutions for the [exercises](⟦DEST_0001⟧). **Try the exercise first**: write your prediction down, run it and only then read here."
+msgstr "Soluciones desarrolladas para los [ejercicios](⟦DEST_0001⟧). **Primero intenta el ejercicio**: escribe tu predicción, ejecútalo y solo entonces lee aquí."
+
+#: lessons/answers-key.md:5
+msgctxt "s-507e5bf12022-0002"
+msgid "Every solution below was run against the real entries:"
+msgstr "Todas las soluciones siguientes se ejecutaron con las entradas reales:"
+
+#: lessons/answers-key.md:7
+msgctxt "s-e179f3bdf36c-0003"
+msgid "Docker exercises by [⟦CODE_0001⟧](⟦DEST_0002⟧) (every mutation is made on a *copy* of the entry);"
+msgstr "Ejercicios de Docker mediante [⟦CODE_0001⟧](⟦DEST_0002⟧) (cada modificación se hace en una *copia* de la entrada);"
+
+#: lessons/answers-key.md:8
+msgctxt "s-7a6a7d42a849-0004"
+msgid "Windows Sandbox exercises by [⟦CODE_0001⟧](⟦DEST_0002⟧) on Windows 11 Pro."
+msgstr "Ejercicios de Windows Sandbox, un entorno aislado (*sandbox*) que limita el acceso al sistema anfitrión, mediante [⟦CODE_0001⟧](⟦DEST_0002⟧) en Windows 11 Pro."
+
+#: lessons/answers-key.md:10
+msgctxt "s-1be9256c0954-0005"
+msgid "Output is random, so numbers here are *examples*. What is guaranteed is the **property** each exercise asks you to observe. Folder variables: ⟦CODE_0001⟧, and ⟦CODE_0002⟧ before you edit."
+msgstr "La salida es aleatoria, así que los números aquí son *ejemplos*. Lo que está garantizado es la **propiedad** que cada ejercicio te pide observar. Variables de carpeta: ⟦CODE_0001⟧ y ⟦CODE_0002⟧ antes de editar."
+
+#: lessons/answers-key.md:12
+msgctxt "s-698a3de6394d-0006"
+msgid "A1. Read the rows"
+msgstr ""
+
+#: lessons/answers-key.md:14
+msgctxt "s-c6523d2d565a-0007"
+msgid "Example output from ⟦CODE_0001⟧:"
+msgstr ""
+
+#: lessons/answers-key.md:23
+msgctxt "s-eff92ad4f0f8-0008"
+msgid "The card that crosses is the first whose running total is **over 40**; the total before it is always **at most 40** (otherwise the run would have stopped earlier). The totals can end anywhere from 41 to 59."
+msgstr ""
+
+#: lessons/answers-key.md:24
+msgctxt "s-a905bb9d58da-0009"
+msgid "Exactly 40 continues under the challenge rule. Four 10-hour cards total exactly 40, so a conforming run keeps a fifth card. The former four-name ceiling in the regex and ⟦CODE_0001⟧-header entries has been fixed. See the [intro](⟦DEST_0002⟧) for the four-pass XAML ceiling and the fixed LINQ demos. [⟦CODE_0003⟧](⟦DEST_0004⟧) prints no running-total column, so ⟦CODE_0005⟧ adds the hours itself."
+msgstr ""
+
+#: lessons/answers-key.md:26
+msgctxt "s-3ba71624646e-0010"
+msgid "B1. COBOL: predict, then break ⟦CODE_0001⟧"
+msgstr ""
+
+#: lessons/answers-key.md:36
+msgctxt "s-3b92b84eed16-0011"
+msgid "**Prediction:** ⟦CODE_0001⟧ is ⟦CODE_0002⟧. It overflows when ⟦CODE_0003⟧ reaches 100, i.e. when ⟦CODE_0004⟧. So the run stops on the first card that takes the total **above 50**. (With the original 59 it is over 40.)"
+msgstr ""
+
+#: lessons/answers-key.md:37
+msgctxt "s-611e37f57c68-0012"
+msgid "The run ends with totals from 51 to 69; ⟦CODE_0001⟧ passes. The entry's own ⟦CODE_0002⟧ fails because it hard-codes 40."
+msgstr ""
+
+#: lessons/answers-key.md:38
+msgctxt "s-de1881a509ec-0013"
+msgid "**⟦CODE_0001⟧ inside ⟦CODE_0002⟧:** the *build* fails, because ⟦CODE_0003⟧ may only rewrite a paragraph that is exactly one ⟦CODE_0004⟧:"
+msgstr ""
+
+#: lessons/answers-key.md:44
+msgctxt "s-f3d804429d36-0014"
+msgid "(five of these, one per ⟦CODE_0001⟧). The compiler has to know that the paragraph's only content is a jump whose target it can patch."
+msgstr ""
+
+#: lessons/answers-key.md:46
+msgctxt "s-5fd611acc548-0015"
+msgid "B2. Haskell: break the laziness"
+msgstr ""
+
+#: lessons/answers-key.md:48
+msgctxt "s-31bcd073ba01-0016"
+msgid "⟦CODE_0001⟧ (a lazy binding) ends the run with:"
+msgstr ""
+
+#: lessons/answers-key.md:54
+msgctxt "s-17500432aca3-0017"
+msgid ""
+"Nothing demands the cards until the summary line is printed, which is *after* the ⟦CODE_0001⟧ and after the pipe to ⟦CODE_0002⟧ was closed; forcing a cell then fires its effect on a closed handle. ⟦CODE_0003⟧ fails (a row or two, no summary).\n"
+"2. Replacing ⟦CODE_0004⟧ with ⟦CODE_0005⟧ does **not** hang. It dies at once with:"
+msgstr ""
+
+#: lessons/answers-key.md:61
+msgctxt "s-182586a0b02d-0018"
+msgid "Without the interleave, building the list of actions pattern-matches ⟦CODE_0001⟧, which needs ⟦CODE_0002⟧, which ⟦CODE_0003⟧ has not produced yet. (Only the first row, ⟦CODE_0004⟧, is printed before the loop is detected.) The ⟦CODE_0005⟧ has to sit *inside* the deferred action."
+msgstr ""
+
+#: lessons/answers-key.md:63
+msgctxt "s-2210d2c216b3-0019"
+msgid "B3. Forth: move the anchor"
+msgstr ""
+
+#: lessons/answers-key.md:65
+msgctxt "s-1c18d0a26f03-0020"
+msgid "**(a)** ⟦CODE_0001⟧ on its own line, then ⟦CODE_0002⟧: **works**. ⟦CODE_0003⟧ captures the position *after* the ⟦CODE_0004⟧, and the rewind jumps back to that anchor, which is after the ⟦CODE_0005⟧. So ⟦CODE_0006⟧ is never re-executed. ⟦CODE_0007⟧ passes."
+msgstr ""
+
+#: lessons/answers-key.md:66
+msgctxt "s-860b0de0eae8-0021"
+msgid "**(b)** ⟦CODE_0001⟧: the anchor is now *before* ⟦CODE_0002⟧, so every rewind reruns ⟦CODE_0003⟧ and pushes a fresh zero state. The total restarts from zero on every pass, and the stop rule never fires. With ⟦CODE_0004⟧ you get hundreds of rows (678 in the verification run), every row has total = hours, and there is no ⟦CODE_0005⟧ line."
+msgstr ""
+
+#: lessons/answers-key.md:67
+msgctxt "s-53c35df2629d-0022"
+msgid "**(c)** ⟦CODE_0001⟧ to ⟦CODE_0002⟧: ⟦CODE_0003⟧ passes (stops when the total reaches 51)."
+msgstr ""
+
+#: lessons/answers-key.md:68
+msgctxt "s-0ff7ba4f0dff-0023"
+msgid "**Why only (b)?** The parse position is a program counter: where it jumps back to decides which tokens are the loop body. State must stay *outside* the body (before the anchor)."
+msgstr ""
+
+#: lessons/answers-key.md:70
+msgctxt "s-f163fae749c3-0024"
+msgid "B4. Make: remove the no-op, and override the clock"
+msgstr ""
+
+#: lessons/answers-key.md:72
+msgctxt "s-17d81dca9bed-0025"
+msgid "Without ⟦CODE_0001⟧ the recipe ⟦CODE_0002⟧ expands to nothing, so Make runs no command and **does not count the makefile as remade**. It never restarts, so no card is ever included:"
+msgstr ""
+
+#: lessons/answers-key.md:79
+msgctxt "s-17660a91699b-0026"
+msgid ""
+"The card file *was* written at expansion time, but Make only notices a remade makefile when a command ran. (⟦CODE_0001⟧ fails: \"unexpected stderr\".)\n"
+"2. ⟦CODE_0002⟧ prints rows labelled ⟦CODE_0003⟧. ⟦CODE_0004⟧ prints ⟦CODE_0005⟧."
+msgstr ""
+
+#: lessons/answers-key.md:82
+msgctxt "s-4dccb4e4a0ef-0027"
+msgid "B5. CMake: mutate the literal"
+msgstr ""
+
+#: lessons/answers-key.md:84
+msgctxt "s-cb39d53a09be-0028"
+msgid "With 31 ⟦CODE_0001⟧s (⟦CODE_0002⟧) the loop stops once the total reaches 31, i.e. **passes 30**. ⟦CODE_0003⟧ passes on every run; with the default limit of 40 it passes only when the final total happens to be 41 or more, so do not rely on it. ⟦CODE_0004⟧ fails because the entry's own check expects 40."
+msgstr ""
+
+#: lessons/answers-key.md:86
+msgctxt "s-416fb652a738-0029"
+msgid "The stop test must come **first** in the condition because a failed ⟦CODE_0001⟧ clears every ⟦CODE_0002⟧ register and a successful one rewrites them. The *main* match has to run last for its captures to be the ones that survive into the next pass."
+msgstr ""
+
+#: lessons/answers-key.md:88
+msgctxt "s-39116ae53a59-0030"
+msgid "B6. APL: the off-by-one rewrite"
+msgstr ""
+
+#: lessons/answers-key.md:90
+msgctxt "s-2ed84a7a9e29-0031"
+msgid "⟦CODE_0001⟧ drops only the header and *three* gene lines, so the child's body keeps its parent's ⟦CODE_0002⟧ gene (the fourth). Every child resets its running total to just its own hours, and ⟦CODE_0003⟧ is always 1. The program recurses until the timeout:"
+msgstr ""
+
+#: lessons/answers-key.md:99
+msgctxt "s-b799b7d57c85-0032"
+msgid "On the laptop used for the 2026-11-16 rerun the recursion filled the container's 2 GB memory limit first, so the run ended with ⟦CODE_0001⟧ (exit 137) after about 2,000 lines instead of the timeout. Either way it never reaches ⟦CODE_0002⟧; which one you see depends on the machine."
+msgstr ""
+
+#: lessons/answers-key.md:101
+msgctxt "s-480e41197a9d-0033"
+msgid ""
+"That is why [⟦CODE_0001⟧](⟦DEST_0002⟧) runs under ⟦CODE_0003⟧: this failure is silent and structural.\n"
+"2. ⟦CODE_0004⟧ gives an ⟦CODE_0005⟧ on ⟦CODE_0006⟧, the line ⟦CODE_0007⟧. ⟦CODE_0008⟧ counts categories from 0 (⟦CODE_0009⟧, ⟦CODE_0010⟧), which is a valid index only with origin 0. No rows are printed."
+msgstr ""
+
+#: lessons/answers-key.md:104
+msgctxt "s-ed1cb04becc5-0034"
+msgid "B7. LINQ: enumerate twice"
+msgstr ""
+
+#: lessons/answers-key.md:106
+msgctxt "s-c0c46a784d2c-0035"
+msgid "The program (also in [⟦CODE_0001⟧](⟦DEST_0002⟧)):"
+msgstr ""
+
+#: lessons/answers-key.md:121
+msgctxt "s-407d320629ff-0036"
+msgid "⟦SEP_0002⟧ Step ⟦SEP_0003⟧ ⟦CODE_0001⟧ lines ⟦SEP_0004⟧ Why ⟦SEP_0005⟧"
+msgstr ""
+
+#: lessons/answers-key.md:123
+msgctxt "s-4b82b8c5ecc7-0037"
+msgid "⟦SEP_0002⟧ (a) declare ⟦SEP_0003⟧ 0 ⟦SEP_0004⟧ ⟦CODE_0001⟧ is **deferred**: it builds a description, not a result. ⟦SEP_0005⟧"
+msgstr ""
+
+#: lessons/answers-key.md:124
+msgctxt "s-514b38be1009-0038"
+msgid "⟦SEP_0002⟧ (b) ⟦CODE_0001⟧ ⟦SEP_0003⟧ 3 ⟦SEP_0004⟧ Enumerating runs the lambda once per element. ⟦SEP_0005⟧"
+msgstr ""
+
+#: lessons/answers-key.md:125
+msgctxt "s-c6a2a98dfdc1-0039"
+msgid "⟦SEP_0003⟧ (c) ⟦CODE_0001⟧ and ⟦CODE_0002⟧ ⟦SEP_0004⟧ 6 ⟦SEP_0005⟧ Each enumeration reruns the pipeline and every side effect in it. ⟦SEP_0006⟧"
+msgstr ""
+
+#: lessons/answers-key.md:126
+msgctxt "s-427d6cb826c6-0040"
+msgid "⟦SEP_0003⟧ (d) ⟦CODE_0001⟧ then sum the list ⟦SEP_0004⟧ 3 ⟦SEP_0005⟧ ⟦CODE_0002⟧ is eager and snapshots the values; summing a list reruns nothing. ⟦SEP_0006⟧"
+msgstr ""
+
+#: lessons/answers-key.md:128
+msgctxt "s-52e4262eba7b-0041"
+msgid "Seed 42 gives ⟦CODE_0001⟧. A ⟦CODE_0002⟧ with a fixed seed is a deterministic sequence, and the ⟦CODE_0003⟧ file creates ⟦CODE_0004⟧ with no other entropy, so every run produces the same cards. The eager operator that forces the lazy tail in ⟦CODE_0005⟧ is the final ⟦CODE_0006⟧. In ⟦CODE_0007⟧, the enclosing ⟦CODE_0008⟧ evaluates its condition each turn. ⟦CODE_0009⟧ consumes the deferred projection during that condition test, before the comparison can decide whether to continue."
+msgstr ""
+
+#: lessons/answers-key.md:130
+msgctxt "s-3db4bc645f18-0042"
+msgid "B8. Regex: what survives a failed match"
+msgstr ""
+
+#: lessons/answers-key.md:132
+msgctxt "s-4d620efcfae7-0043"
+msgid "**.NET:** the fixed all-10 tape normally returns a successful match with five rows, total 50 and exit status 0. With ⟦CODE_0001⟧ appended, ⟦CODE_0002⟧ is false and the failed match exposes no captures. The host exits 1 after printing and appending a report containing only its header and summary."
+msgstr ""
+
+#: lessons/answers-key.md:139
+msgctxt "s-962d5f67a0da-0044"
+msgid "This is why the .NET entry must *return true* while the Perl and PCRE2 entries can return false after writing everything: their output is a side effect, ⟦CODE_0001⟧'s output is the captures."
+msgstr ""
+
+#: lessons/answers-key.md:140
+msgctxt "s-4e44eacad9ef-0045"
+msgid "**pcre2grep:** ⟦CODE_0001⟧ starts a callout program with ⟦CODE_0002⟧ and ⟦CODE_0003⟧, which does not search ⟦CODE_0004⟧. A bare ⟦CODE_0005⟧ fails to start, which the engine treats exactly like a callout that returned non-zero, i.e. a vetoed branch. The run prints **nothing**, exits 0 and writes no rows."
+msgstr ""
+
+#: lessons/answers-key.md:141
+msgctxt "s-42f68bb80625-0046"
+msgid "**Contrast (three sentences):** In Perl, ⟦CODE_0001⟧ variables unwind on backtracking but ⟦CODE_0002⟧s and ⟦CODE_0003⟧s already happened, so the work survives a failed match. In the C PCRE2 entry, state lives in a host struct and the completion callout closes the TSV before deliberate failure. In the .NET entry, failed-match captures are unavailable to the host, so its report has zero card rows."
+msgstr ""
+
+#: lessons/answers-key.md:143
+msgctxt "s-daac4fb9908d-0047"
+msgid "B9. sed: watch a computation"
+msgstr ""
+
+#: lessons/answers-key.md:151
+msgctxt "s-2e07a40ead55-0048"
+msgid "The state is one line, e.g. ⟦CODE_0001⟧; ⟦CODE_0002⟧ grows by tally marks (⟦CODE_0003⟧). About 16 lines per card in the verification run, but it **varies** because of rejection."
+msgstr ""
+
+#: lessons/answers-key.md:152
+msgctxt "s-13c77aefbc41-0049"
+msgid "[L29](⟦DEST_0001⟧), ⟦CODE_0002⟧, redraws when the 4-bit nibble is 10-15. ⟦CODE_0003⟧ matches ⟦CODE_0004⟧ (10, 11) and ⟦CODE_0005⟧ (12-15): the values a 10 to 19 hour draw cannot use. A rejected draw repeats the shift-register steps, which is why the per-card line count is not constant."
+msgstr ""
+
+#: lessons/answers-key.md:154
+msgctxt "s-7aedaa54d79b-0050"
+msgid "B10. Lisp: swap the method combination"
+msgstr ""
+
+#: lessons/answers-key.md:156
+msgctxt "s-b342d4c743a9-0051"
+msgid "With ⟦CODE_0001⟧ in both places every run deals **all five cards**, because ⟦CODE_0002⟧ calls every applicable method and ignores their return values:"
+msgstr ""
+
+#: lessons/answers-key.md:164
+msgctxt "s-6709a08a45b0-0052"
+msgid ""
+"The totals end anywhere from 50 to 95. The method count says ⟦CODE_0001⟧ because the note counts methods qualified ⟦CODE_0002⟧, and there are none now. ⟦CODE_0003⟧ fails on your copy because it insists on ⟦CODE_0004⟧. (The unmodified entry's own check runs this same mutation to prove ⟦CODE_0005⟧ is the stop rule.)\n"
+"2. Changing only the generic function leaves five methods with a qualifier that ⟦CODE_0006⟧ does not accept. SBCL warns:"
+msgstr ""
+
+#: lessons/answers-key.md:174
+msgctxt "s-a9d0db9f83ba-0053"
+msgid ""
+"A method's qualifiers have to match its generic function's combination: the combination is the generic function's choice, not the method's.\n"
+"3. With ⟦CODE_0001⟧ there are always five rows and a total of at most 95. The program stops because it **runs out of classes**, not because the rule was met; ⟦CODE_0002⟧ fails with ⟦CODE_0003⟧. Five is the most it can deal: cards are at least 10 hours, so four cards total at least 40, and a fifth always crosses 40. A limit of 100 needs eleven classes (ten cards of 10 total exactly 100, so an eleventh must cross), so you would add ⟦CODE_0004⟧ forms and renumber."
+msgstr ""
+
+#: lessons/answers-key.md:176
+msgctxt "s-e148bdc1e3b4-0054"
+msgid "**The stop rule is ⟦CODE_0001⟧**, and the program does not fail without it, because ⟦CODE_0002⟧ is a valid combination: the program just never stops early. A silent change of meaning is the whole risk of the technique."
+msgstr ""
+
+#: lessons/answers-key.md:178
+msgctxt "s-df468c6178f8-0055"
+msgid "B11. m4: quote the recursion"
+msgstr ""
+
+#: lessons/answers-key.md:180
+msgctxt "s-af0bf4f4fcfe-0056"
+msgid "Same seed, same cards:"
+msgstr ""
+
+#: lessons/answers-key.md:188
+msgctxt "s-268c353e956b-0057"
+msgid ""
+"Only the run id (⟦CODE_0001⟧: the clock and the seed) can differ. The generator is the Park-Miller formula and nothing else supplies randomness. ⟦CODE_0002⟧ ([L34](⟦DEST_0003⟧)) creates a random seed only when you have not already defined one.\n"
+"2. Unbracketed, ⟦CODE_0004⟧ is *called while ⟦CODE_0005⟧'s arguments are being collected*, so every call makes another call before ⟦CODE_0006⟧ can choose anything. m4 expands arguments before it runs the macro. With ⟦CODE_0007⟧ the run ends in a timeout (exit 124) and prints nothing: m4 buffers its output and was killed before it flushed. With ⟦CODE_0008⟧:"
+msgstr ""
+
+#: lessons/answers-key.md:195
+msgctxt "s-71e6d1d30c7f-0058"
+msgid ""
+"and exit status 1. The brackets turn ⟦CODE_0001⟧ into text that is only expanded when ⟦CODE_0002⟧ returns it, after the test; that is the only stop rule the program has.\n"
+"3. ⟦CODE_0003⟧: the run stops on the first card that takes the total above 60. ⟦CODE_0004⟧ passes."
+msgstr ""
+
+#: lessons/answers-key.md:198
+msgctxt "s-19adddd99d73-0059"
+msgid "B12. Tcl: edit the program in the database"
+msgstr ""
+
+#: lessons/answers-key.md:200
+msgctxt "s-5a2e9ec8d122-0060"
+msgid "With ⟦CODE_0001⟧ the first ⟦CODE_0002⟧ fires the trigger once; the trigger inserts card 2; **that** insert does not fire the trigger again, because a trigger does not fire itself unless recursion is on. So card 1 is printed (by ⟦CODE_0003⟧ in the trigger), card 2 is in the database but was never printed:"
+msgstr ""
+
+#: lessons/answers-key.md:207
+msgctxt "s-aa9f6d21fcf4-0061"
+msgid ""
+"⟦CODE_0001⟧ fails: \"final total 17 does not pass 40\", and the summary line disagrees with the single row.\n"
+"2. The text of the ⟦CODE_0002⟧ row is the Tcl program for the dice. With ⟦CODE_0003⟧ every card is 10 hours:"
+msgstr ""
+
+#: lessons/answers-key.md:219
+msgctxt "s-6d240e91453b-0062"
+msgid "The trigger's rule is ⟦CODE_0001⟧, so a total of exactly 40 draws another card (the same reason as in A1). ⟦CODE_0002⟧ passes: five cards of 10 hours is a legal run."
+msgstr ""
+
+#: lessons/answers-key.md:220
+msgctxt "s-b20ccf9f1629-0063"
+msgid "**The three hooks:** ⟦CODE_0001⟧ (SQL calls Tcl), the ⟦CODE_0002⟧ override (the table is the library) and the recursive trigger (the loop). In step 2 you changed a row that ⟦CODE_0003⟧ fetches: the *program* changed without editing a line of Tcl."
+msgstr ""
+
+#: lessons/answers-key.md:222
+msgctxt "s-e25a69bfe2b8-0064"
+msgid "B13. AWK: the missing ⟦CODE_0001⟧"
+msgstr ""
+
+#: lessons/answers-key.md:224
+msgctxt "s-6a48ad589922-0065"
+msgid "The digit file is ⟦CODE_0001⟧ followed by a newline. With ⟦CODE_0002⟧ the records are: ⟦CODE_0003⟧ ending in ⟦CODE_0004⟧ (RT=1), ⟦CODE_0005⟧ ending in ⟦CODE_0006⟧ (RT=2) and ⟦CODE_0007⟧ with **no** digit after it (RT is empty)."
+msgstr ""
+
+#: lessons/answers-key.md:226
+msgctxt "s-1fa561563133-0066"
+msgid "Dice 1 and 2 make hours 11 and 12:"
+msgstr ""
+
+#: lessons/answers-key.md:234
+msgctxt "s-a811fc40225c-0067"
+msgid ""
+"The third record is skipped by rule 1, ⟦CODE_0001⟧.\n"
+"2. Without the guard the third record is dealt like the others, and ⟦CODE_0002⟧ with an empty ⟦CODE_0003⟧ is ⟦CODE_0004⟧: a phantom card, ⟦CODE_0005⟧, ⟦CODE_0006⟧. It is a real INSERT too.\n"
+"3. mawk has no ⟦CODE_0007⟧. The variable is never set, so ⟦CODE_0008⟧ is true for **every** record, rule 1 skips them all, ⟦CODE_0009⟧ never grows and ⟦CODE_0010⟧ never fires:"
+msgstr ""
+
+#: lessons/answers-key.md:242
+msgctxt "s-6547533db853-0068"
+msgid ""
+"No error, exit 0. On ⟦CODE_0001⟧ the same program never stops and mawk reads until it runs out of memory (verified under a 400 MB limit). A program that *looks* portable and silently computes nothing is worse than one that crashes. ⟦CODE_0002⟧ is a gawk extension (**implementation-permitted**) outside POSIX.\n"
+"4. ⟦CODE_0003⟧: the run stops on the first card that takes the total above 80, and ⟦CODE_0004⟧ passes. The pattern *is* the stop rule: ⟦CODE_0005⟧ makes the same edit on a stream of 5s to prove it (three cards become six)."
+msgstr ""
+
+#: lessons/answers-key.md:245
+msgctxt "s-c04578a1f4cb-0069"
+msgid "B14. find: rig the dice"
+msgstr ""
+
+#: lessons/answers-key.md:247
+msgctxt "s-0e0af817f5ba-0070"
+msgid "The fake ⟦CODE_0001⟧ makes the dice. The walk reads the last character of each six-character name, in the pattern ⟦CODE_0002⟧."
+msgstr ""
+
+#: lessons/answers-key.md:249
+msgctxt "s-82768f316445-0071"
+msgid "⟦CODE_0001⟧ is in group 9, so each card is 19 hours:"
+msgstr ""
+
+#: lessons/answers-key.md:258
+msgctxt "s-7873e8370b36-0072"
+msgid ""
+"The first total, 19, is the digit sequence 1 ... 9, 0 ... 9: the path has one directory named ⟦CODE_0001⟧, and the last digit is 9. After the third card the path has five of them, so the tens digit is 5 and the stop rule fires.\n"
+"2. ⟦CODE_0002⟧ ends in ⟦CODE_0003⟧, which is not one of the 60 good characters, so the walk tries the character before it. That is ⟦CODE_0004⟧, in the group ⟦CODE_0005⟧: 13 hours. The totals are 13, 26, 39 and 52. The stop rule says \"over 40\", and 39 is not, so a fourth card is made. The categories are ⟦CODE_0006⟧, ⟦CODE_0007⟧, ⟦CODE_0008⟧, ⟦CODE_0009⟧.\n"
+"3. ⟦CODE_0010⟧: ⟦CODE_0011⟧ is thrown away, and so is ⟦CODE_0012⟧ before it. The last branch of the table is the default: 10 hours. The totals are 10, 20, 30, 40 and 50. The stop rule is \"five directories named ⟦CODE_0013⟧, or four of them and a last digit that is not ⟦CODE_0014⟧\". At 40 the path has four of them and the last digit is ⟦CODE_0015⟧, so it continues. The fifth card is ⟦CODE_0016⟧ again."
+msgstr ""
+
+#: lessons/answers-key.md:262
+msgctxt "s-297ba1dce8eb-0073"
+msgid "B15. GNU find: move the stop rule, read the profile"
+msgstr ""
+
+#: lessons/answers-key.md:264
+msgctxt "s-e1d6eff15696-0074"
+msgid ""
+"⟦CODE_0001⟧ matches a path with at least 31 slashes. The start directory ⟦CODE_0002⟧ is depth 0, and the end of a card is at depth equal to the running total, so the test is true exactly when the total is 31 or more, which is \"over 30\". ⟦CODE_0003⟧ passes. The entry's own ⟦CODE_0004⟧ fails, because the seven forced-dice scenarios (for example ⟦CODE_0005⟧, five cards) now stop after fewer cards. The stop rule is that one number, because depth is the total.\n"
+"2. With ⟦CODE_0006⟧, find prints its profile on stderr after the walk. Each test shows ⟦CODE_0007⟧ (the optimizer's flat guess) and ⟦CODE_0008⟧. The ⟦CODE_0009⟧ test succeeds once per card, so ⟦CODE_0010⟧ equals the number of rows. The guess is far off because the optimizer has no idea that most directories are named ⟦CODE_0011⟧ and only one in about 15 ends a card."
+msgstr ""
+
+#: lessons/answers-key.md:267
+msgctxt "s-aed5f2ec88b3-0075"
+msgid "B16. tar: read the program, then run it"
+msgstr ""
+
+#: lessons/answers-key.md:269
+msgctxt "s-afacc0de3906-0076"
+msgid ""
+"Four cards run: 12, 24, 36 and 48. The total passes 40 at the fourth card, so the fifth slot (⟦CODE_0001⟧) and the ⟦CODE_0002⟧ members after the halt are read and ignored. The trace table shows ⟦CODE_0003⟧ for them.\n"
+"2. Changing ⟦CODE_0004⟧ to ⟦CODE_0005⟧ in ⟦CODE_0006⟧ makes the halt happen after the second card (24 is over 20). Nothing in ⟦CODE_0007⟧ changed: the limit is data, in the archive. ⟦CODE_0008⟧ passes. Order matters: tar reads members in the order they are in the archive, so a repack in a different order is a different program.\n"
+"3. ⟦CODE_0009⟧ marks ⟦CODE_0010⟧ as ⟦CODE_0011⟧ and exits 4. ⟦CODE_0012⟧ asks the inspector first, so it exits 4, prints that nothing was run and starts no tar. No ⟦CODE_0013⟧ appears. A plain ⟦CODE_0014⟧ writes ⟦CODE_0015⟧ as an inert file and runs nothing, because an archive cannot register a hook for itself. **Parsing** was done by ⟦CODE_0016⟧ and ⟦CODE_0017⟧ inside ⟦CODE_0018⟧, and by tar again inside ⟦CODE_0019⟧. **Running** happened only in ⟦CODE_0020⟧, in ⟦CODE_0021⟧. The trust boundary is the command line the operator typed."
+msgstr ""
+
+#: lessons/answers-key.md:273
+msgctxt "s-3aad373a6fa3-0077"
+msgid "B17. tar, weirder: predict the clock"
+msgstr ""
+
+#: lessons/answers-key.md:275
+msgctxt "s-6685857c0a85-0078"
+msgid ""
+"With 45 ticks the machine reaches 45 hours of work, but the third card needs the 46th. It prints the two closed cards (⟦CODE_0001⟧, ⟦CODE_0002⟧), reports ⟦CODE_0003⟧ and exits 3. With 46 ticks it finishes: three cards, total 46, exit 0.\n"
+"2. ⟦CODE_0004⟧: 92 records, one callback every second record, so 46 callbacks and the run finishes. ⟦CODE_0005⟧: 45 callbacks, and it stalls. ⟦CODE_0006⟧ is the record number, so the last value in the finished run is 92 and ⟦CODE_0007⟧ shows it, while the machine has counted 46 hours. The check script says this as: last ⟦CODE_0008⟧ = ticks x K.\n"
+"3. 260 blocks at ⟦CODE_0009⟧ are 65 records, so ⟦CODE_0010⟧ ticks. The same three cards, a total of 46, and 65 - 46 = 19 idle ticks. The tape is 65 × 2,048 = 133,120 bytes.\n"
+"4. The payload is zeros, and the only other bytes are the member's header (a name and some numbers; 74 non-zero bytes in the test run). Nothing reads the content for its meaning. Only the size counts, because the size decides how many records tar writes."
+msgstr ""
+
+#: lessons/answers-key.md:280
+msgctxt "s-e9d4e3d9685f-0079"
+msgid "B18. ed: move the stop rule and break the cleanup"
+msgstr ""
+
+#: lessons/answers-key.md:282
+msgctxt "s-fde3819daf3d-0080"
+msgid ""
+"⟦CODE_0001⟧: five cards of 10 hours, totals 10, 20, 30, 40, 50. The run continues at 40, because 40 is not over 40, and the fifth card gets the category of line 5, ⟦CODE_0002⟧ (the category list is ⟦DNT_0003⟧, ⟦DNT_0004⟧, ⟦DNT_0005⟧, ⟦DNT_0006⟧, ⟦DNT_0007⟧). ⟦CODE_0008⟧: three cards of 19 hours, 19, 38, 57.\n"
+"2. ⟦CODE_0009⟧ is 13 hours a card. With ⟦CODE_0010⟧: 13, 26, 39, 52, four cards. With ⟦CODE_0011⟧: 13, 26, 39, three cards, because 39 is over 30 and the bar becomes a bang. ⟦CODE_0012⟧ passes. The stop rule is the regular expression over the marks.\n"
+"3. The output has a fifth line, ⟦CODE_0013⟧. At card 4 the total is 52, so the ledger line has a ⟦CODE_0014⟧. Card 5 joins with it, the Dead rule rewrites the joined line to ⟦CODE_0015⟧ plus the marks, and the decimal rules print the total. With the cleanup in place ⟦CODE_0016⟧ removes it. **Features:** step 1 is the rewrite table and the addressing (a changed number of marks), step 2 is a regular expression interval, step 3 is ⟦CODE_0017⟧ with ⟦CODE_0018⟧."
+msgstr ""
+
+#: lessons/answers-key.md:286
+msgctxt "s-49c5349ef8b3-0081"
+msgid "B19. Ex: move the limit on the tape and cut the loop"
+msgstr ""
+
+#: lessons/answers-key.md:288
+msgctxt "s-8afaad8797a2-0082"
+msgid ""
+"⟦CODE_0001⟧ is eleven hours a card: totals 11, 22, 33, 44. After card 4 the mark is on tape row 44, whose instruction is the comment, so the run ends. Four cards.\n"
+"2. With rows 41 to 45 changed from ⟦CODE_0002⟧ to ⟦CODE_0003⟧, row 44 now continues. The fifth card brings the total to 55, which is row 55: still a comment. Five cards: 11, 22, 33, 44, 55. ⟦CODE_0004⟧ passes. One edit of data moved the stop rule.\n"
+"3. Without the final ⟦CODE_0005⟧ the program ends after one card: ⟦CODE_0006⟧ for ⟦CODE_0007⟧. Nothing starts the program again.\n"
+"4. The loop is ⟦CODE_0008⟧, the last command on the program line. Register ⟦CODE_0009⟧ holds the text of the tape line, minus the total. The first row whose text is ⟦CODE_0010⟧ (the row for 41) is where it stops, and the limit of 40 is nowhere in the program: it is the boundary on the tape."
+msgstr ""
+
+#: lessons/answers-key.md:293
+msgctxt "s-7a6ecdcdf22b-0083"
+msgid "B20. JavaScript: read the clauses, move the limit and fail the structure check"
+msgstr ""
+
+#: lessons/answers-key.md:295
+msgctxt "s-ac12f0d31572-0084"
+msgid ""
+"⟦CODE_0001⟧ gives hours 12, 17 and 17: totals 12, 29 and 46. The third card crosses 40 and is kept. The first test sees 0, the second 12, the third 29 (all 40 or less), and the fourth sees 46 and stops.\n"
+"2. With ⟦CODE_0002⟧: the test sees 0 and 12 (go on) and then 29 (over 20), so two cards: 12 and 29. The crossing card is the second.\n"
+"3. The extra statement is legal JavaScript, and the program runs. ⟦CODE_0003⟧ reports ⟦CODE_0004⟧. That is the proof that the stunt's rule is checked, and not just claimed.\n"
+"4. 2026-12-31 is a Thursday, and 2026 starts on a Thursday, so it has 53 weeks: ⟦CODE_0005⟧. 2024-12-30 is a Monday, in the week whose Thursday is 2025-01-02, so it is ⟦CODE_0006⟧."
+msgstr ""
+
+#: lessons/answers-key.md:300
+msgctxt "s-8fe6ebaa6138-0085"
+msgid "B21. JavaScript, weirder: move the stop rule in a closure and watch the demand"
+msgstr ""
+
+#: lessons/answers-key.md:302
+msgctxt "s-f19841db72e6-0086"
+msgid ""
+"12 tests pass.\n"
+"2. With ⟦CODE_0001⟧ and ⟦CODE_0002⟧ the totals are 12 and 29, so the machine is over after the second card: two cards. The lab then shows 7 failures and 5 passes. The failures are the tests that use the number 40 or the seed's three cards: the crossing card, exactly 40, the draw count, replay and the like. The five passing tests (two environments, lazy versus eager ⟦CODE_0003⟧, closure lifetime, closure versus ⟦CODE_0004⟧, closure versus continuation) are about how closures behave, and not about when this machine stops. A closure's rules do not depend on what the closure is for.\n"
+"3. ⟦CODE_0005⟧, ⟦CODE_0006⟧, ⟦CODE_0007⟧. The pipeline is only a description until ⟦CODE_0008⟧ asks. ⟦CODE_0009⟧ stops after one value, so the machine is asked once, and the hours source is called once.\n"
+"4. ⟦CODE_0010⟧ prints ⟦CODE_0011⟧ twice, then ⟦CODE_0012⟧: the machine's total is 15 after the first card and 30 after the second."
+msgstr ""
+
+#: lessons/answers-key.md:307
+msgctxt "s-3c9465f4bab2-0087"
+msgid "B22. JavaScript, event-driven: predict the trace, then remove the boundary"
+msgstr ""
+
+#: lessons/answers-key.md:309
+msgctxt "s-858a5eb65242-0088"
+msgid ""
+"14 tests pass.\n"
+"2. ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧. ⟦CODE_0004⟧ is a plain call: it runs both of its listeners on the call stack and then returns. ⟦CODE_0005⟧ puts the function on the event loop's queue, and Node runs it after the current code, here after the last ⟦CODE_0006⟧.\n"
+"3. ⟦CODE_0007⟧, ⟦CODE_0008⟧, ⟦CODE_0009⟧, then one turn per card. A turn starts with ⟦CODE_0010⟧ and nests ⟦CODE_0011⟧, ⟦CODE_0012⟧ and ⟦CODE_0013⟧ inside it, so each ⟦CODE_0014⟧ is closed by its ⟦CODE_0015⟧ in the reverse order. In the third turn, ⟦CODE_0016⟧ finds the total (57) over 40 and emits ⟦CODE_0017⟧, which emits ⟦CODE_0018⟧: ⟦CODE_0019⟧ sit inside ⟦CODE_0020⟧. ⟦CODE_0021⟧ comes before the first ⟦CODE_0022⟧: ⟦CODE_0023⟧ asked for the first card with ⟦CODE_0024⟧, so the card is made on a later turn.\n"
+"4. Without ⟦CODE_0025⟧, ⟦CODE_0026⟧ calls ⟦CODE_0027⟧ inside itself, and the stack never unwinds between cards. 40 hours is three or four cards, so a normal run is fine, and the cards are the same. The lab shows 12 passes and 2 failures: the trace test fails, because each ⟦CODE_0028⟧ now sits inside the previous ⟦CODE_0029⟧ and not in a turn of its own, and the stack-depth test fails, because the stack is deeper at every card. The scan finds ⟦CODE_0030⟧ and fails. With ⟦CODE_0031⟧ the stack runs out after a few thousand cards, a ⟦CODE_0032⟧ goes to the ⟦CODE_0033⟧ listener, and it prints one line, ⟦CODE_0034⟧, with status 1. With the boundary back and ⟦CODE_0035⟧, the same call is flat and finishes with status 0."
+msgstr ""
+
+#: lessons/answers-key.md:314
+msgctxt "s-d5678a3ac1a0-0089"
+msgid "C1. Weird next to boring"
+msgstr ""
+
+#: lessons/answers-key.md:316
+msgctxt "s-dd3d988a44ba-0090"
+msgid "Measured with the verification script (non-comment lines):"
+msgstr ""
+
+#: lessons/answers-key.md:318
+msgctxt "s-2ca2be69a8bf-0091"
+msgid "⟦SEP_0001⟧ Pair ⟦SEP_0002⟧ Idiomatic ⟦SEP_0003⟧ Weird ⟦SEP_0004⟧"
+msgstr ""
+
+#: lessons/answers-key.md:320
+msgctxt "s-89d60f289603-0092"
+msgid "⟦SEP_0001⟧ COBOL ⟦SEP_0002⟧ 156 ⟦SEP_0003⟧ 170 ⟦SEP_0004⟧"
+msgstr ""
+
+#: lessons/answers-key.md:321
+msgctxt "s-9972ed0e75c9-0093"
+msgid "⟦SEP_0001⟧ Haskell ⟦SEP_0002⟧ 91 ⟦SEP_0003⟧ 108 ⟦SEP_0004⟧"
+msgstr ""
+
+#: lessons/answers-key.md:322
+msgctxt "s-11d8cdee2e76-0094"
+msgid "⟦SEP_0001⟧ Forth ⟦SEP_0002⟧ 97 ⟦SEP_0003⟧ 84 ⟦SEP_0004⟧"
+msgstr ""
+
+#: lessons/answers-key.md:323
+msgctxt "s-b48071fc081d-0095"
+msgid "⟦SEP_0001⟧ APL ⟦SEP_0002⟧ 41 ⟦SEP_0003⟧ 47 ⟦SEP_0004⟧"
+msgstr ""
+
+#: lessons/answers-key.md:324
+msgctxt "s-11d546626b4d-0096"
+msgid "⟦SEP_0001⟧ Lisp ⟦SEP_0002⟧ 150 ⟦SEP_0003⟧ 110 ⟦SEP_0004⟧"
+msgstr ""
+
+#: lessons/answers-key.md:325
+msgctxt "s-2553f79c2b75-0097"
+msgid "⟦SEP_0001⟧ Tcl ⟦SEP_0002⟧ 138 ⟦SEP_0003⟧ 118 ⟦SEP_0004⟧"
+msgstr ""
+
+#: lessons/answers-key.md:326
+msgctxt "s-cdf4bc656727-0098"
+msgid "⟦SEP_0001⟧ AWK ⟦SEP_0002⟧ 85 ⟦SEP_0003⟧ 41 ⟦SEP_0004⟧"
+msgstr ""
+
+#: lessons/answers-key.md:328
+msgctxt "s-2618fe2f5c44-0099"
+msgid "Sample comparison for Haskell: the idiomatic ⟦CODE_0001⟧ is one **pure function** (⟦CODE_0002⟧), so a unit test needs no database, and a debugger shows plain lists. The weird version cannot be tested without running its effects and the order of effects depends on the consumer; but it can do something the idiomatic one cannot: *write each row exactly when that card is first demanded*, with no loop or accumulator in the program. It is the right choice for a lazy streaming library or a teaching demo, not for application code."
+msgstr ""
+
+#: lessons/answers-key.md:330
+msgctxt "s-f31c1544dec8-0100"
+msgid "Forth is the instructive exception: the weird version is *shorter* because it deletes the ⟦CODE_0001⟧s and the word that updates them, trading them for stack discipline."
+msgstr ""
+
+#: lessons/answers-key.md:332
+msgctxt "s-96c52627a3bf-0101"
+msgid "Lisp, Tcl and AWK also come out shorter in the weird version, but mostly because the weird versions *do less*, not because the stunt is more compact: ⟦CODE_0001⟧ works out the ISO week itself (calendar arithmetic, plus an optional date argument and a ⟦CODE_0002⟧ struct) where ⟦CODE_0003⟧ just asks ⟦CODE_0004⟧; ⟦CODE_0005⟧ has a namespace with separate ⟦CODE_0006⟧, ⟦CODE_0007⟧, ⟦CODE_0008⟧ and window procs where ⟦CODE_0009⟧ has two procs and some SQL; ⟦CODE_0010⟧ has six helper functions where ⟦CODE_0011⟧ has none. Line count measures what each program carries, not how hard it is to understand (the weird entries put the difficulty into comments and READMEs). Counts include blank lines and exclude comment-only lines."
+msgstr ""
+
+#: lessons/answers-key.md:334
+msgctxt "s-382074968995-0102"
+msgid "C2. Make the constraint real"
+msgstr ""
+
+#: lessons/answers-key.md:336
+msgctxt "s-dde358d532c2-0103"
+msgid "A reference check, [⟦CODE_0001⟧](⟦DEST_0002⟧):"
+msgstr ""
+
+#: lessons/answers-key.md:346
+msgctxt "s-aef93e963875-0104"
+msgid "Run against the real file it prints ⟦CODE_0001⟧. The three mutations (verified):"
+msgstr ""
+
+#: lessons/answers-key.md:354
+msgctxt "s-192bdc278aa4-0105"
+msgid "A ⟦CODE_0001⟧ placed after a ⟦CODE_0002⟧ on a line is stripped first, so it does not trigger."
+msgstr ""
+
+#: lessons/answers-key.md:356
+msgctxt "s-d9e98f53d692-0106"
+msgid "C3. A loop whose state is not a variable"
+msgstr ""
+
+#: lessons/answers-key.md:362
+msgctxt "s-ed6bab52ac66-0107"
+msgid "The loop is awk's **implicit main loop**: it runs the rule once per input record. The state (\"how many times\") lives in the *input stream*, which the caller controls (⟦CODE_0001⟧ supplies N records). ⟦CODE_0002⟧ only counts. No ⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧, ⟦CODE_0006⟧ or ⟦CODE_0007⟧ appears. Verified for N = 1, 3, 10. Knowledge level: **guaranteed**: POSIX defines the record-processing model."
+msgstr ""
+
+#: lessons/answers-key.md:364
+msgctxt "s-2cfe80f42560-0108"
+msgid "D. Port the challenge"
+msgstr ""
+
+#: lessons/answers-key.md:366
+msgctxt "s-80b414b23d4c-0109"
+msgid "A complete reference answer in awk is in [⟦CODE_0001⟧](⟦DEST_0002⟧): ⟦CODE_0003⟧, a ⟦CODE_0004⟧ and a ⟦CODE_0005⟧. Run it:"
+msgstr ""
+
+#: lessons/answers-key.md:373
+msgctxt "s-08a2e2ff635b-0110"
+msgid "How it satisfies the criteria:"
+msgstr ""
+
+#: lessons/answers-key.md:375
+msgctxt "s-db0b57125963-0111"
+msgid "⟦SEP_0001⟧ Criterion ⟦SEP_0002⟧ How ⟦SEP_0003⟧"
+msgstr ""
+
+#: lessons/answers-key.md:377
+msgctxt "s-683344530efd-0112"
+msgid "⟦SEP_0003⟧ The stop rule is the trick ⟦SEP_0004⟧ ⟦CODE_0001⟧ is a *pattern*; the five records come from ⟦CODE_0002⟧, and once the total passes 40 no later record matches. Five records always suffice (5 × 10 ≥ 50). ⟦SEP_0005⟧"
+msgstr ""
+
+#: lessons/answers-key.md:378
+msgctxt "s-d3daf2862528-0113"
+msgid "⟦SEP_0005⟧ ⟦DNT_0001⟧ enforced ⟦SEP_0006⟧ ⟦CODE_0002⟧ in the table; ⟦CODE_0003⟧ tries to insert ⟦CODE_0004⟧ and fails if it is accepted. ⟦SEP_0007⟧"
+msgstr ""
+
+#: lessons/answers-key.md:379
+msgctxt "s-29f649196364-0114"
+msgid "⟦SEP_0003⟧ 25 runs, varied hours ⟦SEP_0004⟧ ⟦CODE_0001⟧ loops 25 times, compares the printed rows with the ⟦CODE_0002⟧ line and the SQLite row count and requires at least 5 distinct hour values. ⟦SEP_0005⟧"
+msgstr ""
+
+#: lessons/answers-key.md:380
+msgctxt "s-6e0fb04c0ef6-0115"
+msgid "⟦SEP_0008⟧ Constraint is real ⟦SEP_0009⟧ ⟦CODE_0001⟧ strips comments and strings and fails on ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧, ⟦CODE_0006⟧ or ⟦CODE_0007⟧. ⟦SEP_0010⟧"
+msgstr ""
+
+#: lessons/answers-key.md:382
+msgctxt "s-f4cb6f1b8bb8-0116"
+msgid "Verified mutations: adding a ⟦CODE_0001⟧ loop makes the check fail; making the hours constant (⟦CODE_0002⟧) makes it fail (fewer than five distinct hour values)."
+msgstr ""
+
+#: lessons/answers-key.md:384
+msgctxt "s-3b87dd93928c-0117"
+msgid "E1. Run and read the evidence (Windows Sandbox)"
+msgstr ""
+
+#: lessons/answers-key.md:391
+msgctxt "s-e34ac7b37094-0118"
+msgid "Verified output highlights:"
+msgstr ""
+
+#: lessons/answers-key.md:403
+msgctxt "s-792ece1386df-0119"
+msgid "Fixed-data entries: the LINQ ones always total exactly 40 hours (a fixed work week). Random: ⟦CODE_0001⟧ and every other entry; ⟦CODE_0002⟧ is *seeded* random (⟦CODE_0003⟧), so it is the same every run. Needs the .NET 10 SDK on the host."
+msgstr ""
+
+#: lessons/answers-key.md:405
+msgctxt "s-d8383a3cc59b-0120"
+msgid "E2. Change the XAML interpreter's seed"
+msgstr ""
+
+#: lessons/answers-key.md:407
+msgctxt "s-b0c220a23cf9-0121"
+msgid "Replacing ⟦CODE_0001⟧ with ⟦CODE_0002⟧ in ⟦CODE_0003⟧ and running it in Windows Sandbox still passes (the window is shown and closed by the harness). The sandbox does not print the hours, so read them with the B7 program: seed 42 gives ⟦CODE_0004⟧; ⟦CODE_0005⟧ gives a different sequence. The same seed always gives the same sequence because ⟦CODE_0006⟧ is deterministic given its seed."
+msgstr ""
+
+#: lessons/answers-key.md:409
+msgctxt "s-2f5306060ac5-0122"
+msgid "\"The variable\" is the ⟦CODE_0001⟧ resource plus the **carrier arrays**: each ⟦CODE_0002⟧ call fills a ⟦CODE_0003⟧/⟦CODE_0004⟧ in place and the next one reads it. The loop is unrolled (four copied passes, per the [README](⟦DEST_0005⟧)) because XAML has no loop construct: the file needs one copy of the draw-and-store sequence per card."
+msgstr ""
+
+#: lessons/answers-key.md:411
+msgctxt "s-0681eea11164-0123"
+msgid "F. Prove a README claim"
+msgstr ""
+
+#: lessons/answers-key.md:413
+msgctxt "s-8799110befa0-0124"
+msgid "Claim, from [⟦CODE_0001⟧](⟦DEST_0002⟧): \"⟦CODE_0003⟧ is not enough: ⟦CODE_0004⟧ drops the card that crosses the line, and the challenge needs it. ⟦CODE_0005⟧ hands back both halves.\""
+msgstr ""
+
+#: lessons/answers-key.md:432
+msgctxt "s-162cbd0c87cf-0125"
+msgid "Negative control: change the limit to ⟦CODE_0001⟧ and ⟦CODE_0002⟧ returns all four totals. **Tag: guaranteed**, since both functions are specified by the Haskell ⟦CODE_0003⟧, and your test does not depend on the implementation."
+msgstr ""
+
+#: lessons/answers-key.md:434
+msgctxt "s-2aacdef0d7f0-0126"
+msgid "F2. Trojan Source: hide a character, then find it"
+msgstr ""
+
+#: lessons/answers-key.md:436
+msgctxt "s-abff9db7086c-0127"
+msgid ""
+"⟦CODE_0001⟧ prints ⟦CODE_0002⟧. The first line holds ⟦CODE_0003⟧ followed by U+200B, a character with no shape, so the string has five visible letters (⟦CODE_0004⟧) and one invisible character: it is not equal to ⟦CODE_0005⟧. The second line compares it with the plain word. A reader who sees ⟦CODE_0006⟧ expects ⟦CODE_0007⟧.\n"
+"2. The scan prints line 1, ⟦CODE_0008⟧, and there is one more character between the ⟦CODE_0009⟧ and the closing quote that your terminal draws as nothing (that is the point). ⟦CODE_0010⟧ shows ⟦CODE_0011⟧: UTF-8 for U+200B is the three bytes E2 80 8B, which is ⟦CODE_0012⟧ in octal.\n"
+"3. ⟦CODE_0013⟧ has no hit, and prints ⟦CODE_0014⟧. The scan fires on the character and on nothing else.\n"
+"4. No file in ⟦CODE_0015⟧ matches. APL glyphs are visible, so a reviewer sees them. Banning every non-ASCII character would also ban APL and every non-English name, and it would not stop an attacker who uses an ASCII look-alike. The defense is to ban what has no visible shape. The label is **implementation-permitted**: the rule is written down (⟦CODE_0016⟧, the line that sets ⟦CODE_0017⟧), its mechanism is ⟦CODE_0018⟧ and its Unicode tables, and the character class lists only the characters we know about, so a new invisible character in a future Unicode version would not be caught until the list is updated."
+msgstr ""
+
+#: lessons/answers-key.md:441
+msgctxt "s-6d17cfcb473c-0128"
+msgid "G. Open challenges"
+msgstr ""
+
+#: lessons/answers-key.md:443
+msgctxt "s-2e43b3321408-0129"
+msgid "No answers: these are unsolved. If you close one, send it in."
+msgstr ""

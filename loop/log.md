@@ -150,3 +150,4 @@
 176 P4-audit-6 done five length-weighted segments sampled (seed 175, 1095-entry pool); 4 pass, 1 minor finding F007 (one-time sandbox gloss missing in the 7 language guides of this batch) queued as P4-fix-7; see translation/reviews/p4-audit-6.md
 177 P4-fix-7 done added the sandbox definition at first use in seven guides via PO and regenerated; verify --fast OK.
 178 P4-lessons-1 done translated 16 lessons index segments; corrected unsupported acceptance flag; fast verification and anchors check passed.
+179 P4-lessons-2 partial accepted and applied answers key segments 1 to 6; resume at 7; scoped and full fast verification passed.
