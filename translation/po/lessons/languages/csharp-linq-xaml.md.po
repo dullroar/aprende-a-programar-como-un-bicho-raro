@@ -330,22 +330,22 @@ msgstr "**⟦CODE_0001⟧ tiene una semilla fija** en los archivos ⟦CODE_0002�
 #: lessons/languages/csharp-linq-xaml.md:111
 msgctxt "s-5c066bdb2de4-0064"
 msgid "**⟦CODE_0001⟧ has ⟦CODE_0002⟧**, so the files are loaded at run time, never compiled. That *is* the point."
-msgstr ""
+msgstr "**⟦CODE_0001⟧ tiene ⟦CODE_0002⟧**, así que los archivos se cargan en tiempo de ejecución y nunca se compilan. Ese *es* el propósito."
 
 #: lessons/languages/csharp-linq-xaml.md:112
 msgctxt "s-33b0c73fcb0c-0065"
 msgid "**Three flavors**: ⟦CODE_0001⟧ (only .NET types, saves XML), ⟦CODE_0002⟧, ⟦CODE_0003⟧. The stop rule is a SQL ⟦CODE_0004⟧ clause or a SQLite trigger."
-msgstr ""
+msgstr "**Tres variantes**: ⟦CODE_0001⟧ (solo tipos .NET, guarda XML), ⟦CODE_0002⟧, ⟦CODE_0003⟧. La regla de parada es una cláusula SQL ⟦CODE_0004⟧ o un disparador de SQLite."
 
 #: lessons/languages/csharp-linq-xaml.md:114
 msgctxt "s-d2bbf037de84-0066"
 msgid "What did we just learn?"
-msgstr ""
+msgstr "¿Qué acabamos de aprender?"
 
 #: lessons/languages/csharp-linq-xaml.md:116
 msgctxt "s-913a22598ad6-0067"
 msgid "XAML is supposed to *describe* a tree of objects. The parser does not enforce that: given ⟦CODE_0001⟧ and a few built-in types, parsing and executing become the same act. A 2013 Web Forms [blog post](⟦DEST_0002⟧) pushed the same idea (a chart with no code-behind), so the lineage is real."
-msgstr ""
+msgstr "Se supone que XAML *describe* un árbol de objetos. El analizador sintáctico no lo impone: con ⟦CODE_0001⟧ y algunos tipos integrados, el análisis sintáctico y la ejecución se vuelven el mismo acto. Una [entrada de blog](⟦DEST_0002⟧) sobre Web Forms de 2013 impulsó la misma idea (un gráfico sin código subyacente), así que el linaje es real."
 
 #: lessons/languages/csharp-linq-xaml.md:118
 msgctxt "s-146b2efe970c-0068"

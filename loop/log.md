@@ -179,3 +179,4 @@
 205 P4-lessons-languages-2 partial accepted and applied C# guide segments 51 to 54; resume at 55; scoped and working-tree fast checks and anchors check passed.
 206 P4-lessons-languages-2 partial accepted and applied C# guide segments 55 to 59; resume at 60; scoped and working-tree fast checks passed.
 207 P4-lessons-languages-2 partial accepted and applied C# guide segments 60 to 63; resume at 64; scoped and working-tree fast checks and anchors check passed.
+208 P4-lessons-languages-2 partial accepted and applied C# guide segments 64 to 67; resume at 68; scoped and working-tree fast checks and anchors check passed.

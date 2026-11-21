@@ -108,12 +108,12 @@ Consulta los [ejercicios](../exercises.md#b7-linq-enumerate-twice-verified).
 - **El bucle está desenrollado**: cuatro pasadas copiadas y pegadas. "Cuatro categorías" está incorporado al marcado, así que esta entrada puede repartir como máximo cuatro tarjetas. Con la semilla incluida (`Random(42)`: 16, 11, 11, 15 horas), siempre reparte cuatro y termina en 53. Por eso nunca ocurre el caso en que cuatro tarjetas suman un total de exactamente 40 (que debería continuar hasta una quinta). Es la única entrada con ese límite.
 - **La ramificación la hace SQL o `DataTable`**, no los disparadores de WPF.
 - **`Random(42)` tiene una semilla fija** en los archivos `.xaml`, así que las horas son las mismas en cada ejecución.
-- **`XamlChallenge1.csproj` has `<Page Remove="**/*.xaml" />`**, so the files are loaded at run time, never compiled. That *is* the point.
-- **Three flavors**: `strict.xaml` (only .NET types, saves XML), `sqlite.xaml`, `efcore.xaml`. The stop rule is a SQL `WHERE` clause or a SQLite trigger.
+- **`XamlChallenge1.csproj` tiene `<Page Remove="**/*.xaml" />`**, así que los archivos se cargan en tiempo de ejecución y nunca se compilan. Ese *es* el propósito.
+- **Tres variantes**: `strict.xaml` (solo tipos .NET, guarda XML), `sqlite.xaml`, `efcore.xaml`. La regla de parada es una cláusula SQL `WHERE` o un disparador de SQLite.
 
-### What did we just learn?
+### ¿Qué acabamos de aprender?
 
-XAML is supposed to *describe* a tree of objects. The parser does not enforce that: given `ObjectDataProvider` and a few built-in types, parsing and executing become the same act. A 2013 Web Forms [blog post](../../docs/graficos-de-barras-apiladas.md) pushed the same idea (a chart with no code-behind), so the lineage is real.
+Se supone que XAML *describe* un árbol de objetos. El analizador sintáctico no lo impone: con `ObjectDataProvider` y algunos tipos integrados, el análisis sintáctico y la ejecución se vuelven el mismo acto. Una [entrada de blog](../../docs/graficos-de-barras-apiladas.md) sobre Web Forms de 2013 impulsó la misma idea (un gráfico sin código subyacente), así que el linaje es real.
 
 Tags: `ObjectDataProvider` calling methods on construction is **guaranteed** by WPF's documentation; relying on document-order evaluation and in-place carrier arrays is **accidentally exploited**.
 
