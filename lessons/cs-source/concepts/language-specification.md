@@ -1,15 +1,15 @@
 ---
-title: "Specification versus implementation"
+title: "Especificación frente a implementación"
 chapter: 1
 order: 70
 ---
-A language specification says what programs *mean*. An implementation is one particular program that tries to follow it. The two can differ, and the difference is where this book lives. Each lesson tags a trick as **guaranteed** (the specification promises it), **implementation-permitted** (one compiler or platform allows it) or **accidentally exploited** (it works today, and nobody promised it). The IETF gave engineers a useful vocabulary for the same idea: MUST, SHOULD and MAY, defined in RFC 2119. A specification that uses those words carefully tells you exactly how much you can lean on it.
+La especificación de un lenguaje dice qué *significan* los programas. Una implementación es un programa concreto que intenta seguirla. Pueden diferir y en esa diferencia vive este libro. Cada lección etiqueta un truco como **garantizado** (la especificación lo promete) o **permitido por la implementación** (un compilador o una plataforma lo permite). La tercera etiqueta es **aprovechado por accidente** (hoy funciona y nadie lo prometió). El IETF dio a los ingenieros un vocabulario útil para la misma idea: MUST, SHOULD y MAY, definidos en el RFC 2119. Una especificación que usa esas palabras con cuidado te dice con exactitud cuánto puedes confiar en ella.
 
-- **Use it when:** before you rely on any behavior, ask which of the three kinds of promise stands behind it.
-- **Avoid it when:** you need performance evidence. A run on one machine establishes only what happened there.
+- **Úsala cuando:** vayas a depender de un comportamiento. Pregunta cuál de las tres clases de promesa lo respalda.
+- **Evítala cuando:** necesites evidencia de rendimiento. Una ejecución en una máquina solo demuestra lo que sucedió allí.
 
-**Read more:**
+**Lee más:**
 
-- [Programming language specification](https://en.wikipedia.org/wiki/Programming_language_specification) (Wikipedia)
-- [RFC 2119: key words for use in RFCs](https://www.rfc-editor.org/rfc/rfc2119), two pages that fix the meaning of MUST, SHOULD and MAY
-- [[undefined-behavior]] and [[hyrums-law]] in "Abstraction leaks and implementation dependence"
+- [Especificación de lenguajes de programación](https://en.wikipedia.org/wiki/Programming_language_specification) (Wikipedia)
+- [RFC 2119: palabras clave para el uso en los RFC](https://www.rfc-editor.org/rfc/rfc2119), dos páginas que fijan el significado de MUST, SHOULD y MAY
+- [[undefined-behavior]] y [[hyrums-law]] en "Fugas de abstracción y dependencia de la implementación"

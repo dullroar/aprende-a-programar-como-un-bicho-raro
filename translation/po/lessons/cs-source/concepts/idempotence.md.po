@@ -1,0 +1,123 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lessons/cs-source/concepts/idempotence.md:2
+msgctxt "s-60f4320df6e3-0000"
+msgid "Idempotence"
+msgstr "Idempotencia"
+
+#: lessons/cs-source/concepts/idempotence.md:6
+msgctxt "s-3cbed0aad875-0001"
+msgid "An operation is idempotent if doing it twice has the same effect as doing it once. It exists because networks and machines fail, and the safest recovery is \"try again\". If a retry is harmless, you can retry without fear. HTTP defines ⟦CODE_0001⟧ and ⟦CODE_0002⟧ as idempotent (RFC 9110, section 9.2.2) and ⟦CODE_0003⟧ as not. In this repository the check scripts delete and recreate their scratch data, so a second run starts from the same place as the first. A build tool is the same: run ⟦CODE_0004⟧ twice, and the second run should do nothing."
+msgstr "Una operación es idempotente si hacerla dos veces tiene el mismo efecto que hacerla una vez. Las redes y las máquinas fallan. De ahí la idempotencia: la forma más segura de recuperarse es \"vuelve a intentarlo\". Si repetir es inocuo, puedes hacerlo sin miedo. HTTP define ⟦CODE_0001⟧ y ⟦CODE_0002⟧ como idempotentes (RFC 9110, sección 9.2.2). ⟦CODE_0003⟧ queda fuera de esa categoría. En este repositorio, los scripts de comprobación borran y vuelven a crear sus datos temporales. Así, la segunda ejecución parte del mismo punto que la primera. Lo mismo ocurre con una herramienta de compilación. Ejecuta ⟦CODE_0004⟧ dos veces y la segunda ejecución no debería hacer nada."
+
+#: lessons/cs-source/concepts/idempotence.md:10
+msgctxt "s-71168611b13b-0002"
+msgid "Retrying set leaves the same state; retrying increment changes it again"
+msgstr "Volver a asignar conserva el estado y volver a incrementar lo cambia"
+
+#: lessons/cs-source/concepts/idempotence.md:11
+msgctxt "s-af414d6e19dd-0003"
+msgid "Two matched lanes with the same repeated command. In the idempotent lane, status is pending, then set status to done makes it done, then set status to done again leaves it still done. In the non-idempotent lane, the counter is 0, then increment makes it 1, then increment again makes it 2."
+msgstr "Dos recorridos paralelos repiten su respectivo comando. En el idempotente, status vale pending. Al asignarle done pasa a done. Si vuelves a asignarle done, sigue en done. En el otro, counter empieza en 0, pasa a 1 al incrementarlo y a 2 al incrementarlo otra vez."
+
+#: lessons/cs-source/concepts/idempotence.md:12
+msgctxt "s-a98ebd7f5dcd-0004"
+msgid "Not idempotent: increment"
+msgstr "No idempotente: incrementar"
+
+#: lessons/cs-source/concepts/idempotence.md:13
+msgctxt "s-9480d6f97970-0005"
+msgid "counter = 0"
+msgstr "counter = 0"
+
+#: lessons/cs-source/concepts/idempotence.md:13
+msgctxt "s-f679230253e5-0006"
+msgid "increment"
+msgstr "incrementar"
+
+#: lessons/cs-source/concepts/idempotence.md:13
+msgctxt "s-7a7a281a5986-0007"
+msgid "counter = 1"
+msgstr "counter = 1"
+
+#: lessons/cs-source/concepts/idempotence.md:13
+msgctxt "s-89941ef66165-0008"
+msgid "increment again"
+msgstr "volver a incrementar"
+
+#: lessons/cs-source/concepts/idempotence.md:13
+msgctxt "s-d952093bb68d-0009"
+msgid "counter = 2"
+msgstr "counter = 2"
+
+#: lessons/cs-source/concepts/idempotence.md:15
+msgctxt "s-45afef38b45c-0010"
+msgid "Idempotent: set"
+msgstr "Idempotente: asignar"
+
+#: lessons/cs-source/concepts/idempotence.md:16
+msgctxt "s-cffc56c74530-0011"
+msgid "status = pending"
+msgstr "status = pending"
+
+#: lessons/cs-source/concepts/idempotence.md:16
+msgctxt "s-5e10abfe0b55-0012"
+msgid "set status = done"
+msgstr "asignar done a status"
+
+#: lessons/cs-source/concepts/idempotence.md:16
+msgctxt "s-588d9b20e231-0013"
+msgid "status = done"
+msgstr "status = done"
+
+#: lessons/cs-source/concepts/idempotence.md:16
+msgctxt "s-95a2bb62756a-0014"
+msgid "set done again"
+msgstr "reasignar done"
+
+#: lessons/cs-source/concepts/idempotence.md:16
+msgctxt "s-de4eb27b82d7-0015"
+msgid "still done"
+msgstr "sigue en done"
+
+#: lessons/cs-source/concepts/idempotence.md:20
+msgctxt "s-9d1c9effb785-0016"
+msgid "For an operation ⟦CODE_0001⟧ on a state ⟦CODE_0002⟧, idempotence means ⟦CODE_0003⟧. The question is what the second call does to the *state*, not whether the two return values match. Compare the clock in ⟦MACRO_0004⟧: calling ⟦CODE_0005⟧ twice can give different answers, but that alone does not make it non-idempotent, because it changes nothing."
+msgstr "Para una operación ⟦CODE_0001⟧ sobre un estado ⟦CODE_0002⟧, la idempotencia significa ⟦CODE_0003⟧. Fíjate en qué le hace la segunda llamada al *estado*, en vez de fijarte en si los dos valores de retorno coinciden. Compara con el reloj de ⟦MACRO_0004⟧. Llamar a ⟦CODE_0005⟧ dos veces puede dar respuestas distintas. Eso por sí solo no le quita la idempotencia, porque no cambia nada."
+
+#: lessons/cs-source/concepts/idempotence.md:22
+msgctxt "s-3fef62cda5d7-0017"
+msgid "**Use it when:** you design an API, a job queue or a deployment script."
+msgstr "**Úsala cuando:** diseñes una API, una cola de trabajos o un script de despliegue."
+
+#: lessons/cs-source/concepts/idempotence.md:23
+msgctxt "s-36f3f1cdf73c-0018"
+msgid "**Avoid assuming it:** \"add one to the counter\" is not idempotent. When an operation cannot be, give each request a unique key and ignore repeats."
+msgstr "**Evita darla por sentada:** \"suma uno al contador\" no es idempotente. Si la operación no puede serlo, asigna a cada solicitud una clave única e ignora las repeticiones."
+
+#: lessons/cs-source/concepts/idempotence.md:25
+msgctxt "s-250de292f56f-0019"
+msgid "**Read more:**"
+msgstr "**Lee más:**"
+
+#: lessons/cs-source/concepts/idempotence.md:27
+msgctxt "s-4c5b236957d1-0020"
+msgid "[Idempotence](⟦DEST_0001⟧) (Wikipedia)"
+msgstr "[Idempotencia](⟦DEST_0001⟧) (Wikipedia)"
+
+#: lessons/cs-source/concepts/idempotence.md:28
+msgctxt "s-279cde591c17-0021"
+msgid "[Idempotent](⟦DEST_0001⟧) (MDN glossary)"
+msgstr "[Idempotente](⟦DEST_0001⟧) (glosario de MDN)"
+
+#: lessons/cs-source/concepts/idempotence.md:29
+msgctxt "s-8943eb3b67e5-0022"
+msgid "[RFC 9110, section 9.2.2: idempotent methods](⟦DEST_0001⟧)"
+msgstr "[RFC 9110, sección 9.2.2: métodos idempotentes](⟦DEST_0001⟧)"

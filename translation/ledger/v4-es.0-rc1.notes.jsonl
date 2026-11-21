@@ -1291,3 +1291,27 @@
 {"segment_id": "s-2102c710e7b6-0005", "ts": "2026-11-21T15:25:01Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
 {"segment_id": "s-8575d4b52072-0010", "ts": "2026-11-21T15:25:01Z", "findings": ["TRANSLATE: the reply is the English text unchanged"]}
 {"segment_id": "s-efba93bf0baa-0003", "ts": "2026-11-21T15:25:01Z", "findings": ["I21: identifier 'step' must stay literal (the English names it here); describe around it, never translate it"]}
+{"segment_id": "s-3cbed0aad875-0001", "ts": "2026-11-21T15:29:10Z", "findings": ["I3: digit token 2 appears 0 time(s) in the source, 2 in the target"]}
+{"segment_id": "s-9d1c9effb785-0016", "ts": "2026-11-21T15:29:10Z", "findings": ["I3: digit token 2 appears 0 time(s) in the source, 2 in the target"]}
+{"segment_id": "s-36f3f1cdf73c-0018", "ts": "2026-11-21T15:29:10Z", "findings": ["I3: digit token 1 appears 0 time(s) in the source, 1 in the target"]}
+{"segment_id": "s-3d46353d3a98-0002", "ts": "2026-11-21T15:29:10Z", "findings": ["I3: digit token 4 appears 0 time(s) in the source, 1 in the target"]}
+{"segment_id": "s-35d10f7e2351-0001", "ts": "2026-11-21T15:29:10Z", "findings": ["I3: digit token 2 appears 0 time(s) in the source, 1 in the target"]}
+{"segment_id": "s-415ae43f3515-0001", "ts": "2026-11-21T15:29:10Z", "findings": ["I3: digit token 2 appears 0 time(s) in the source, 1 in the target"]}
+{"segment_id": "s-8b6f2e8ebfa7-0002", "ts": "2026-11-21T15:29:11Z", "findings": ["I3: digit token 3 appears 0 time(s) in the source, 1 in the target"]}
+{"segment_id": "s-171317197421-0006", "ts": "2026-11-21T15:29:11Z", "findings": ["I3: digit token 2 appears 0 time(s) in the source, 1 in the target"]}
+{"segment_id": "s-da94e12390bf-0018", "ts": "2026-11-21T15:30:24Z", "findings": ["I7: glossary term cost must be rendered 'costo'"]}
+{"segment_id": "s-fbfd1d3ec133-0023", "ts": "2026-11-21T15:30:25Z", "findings": ["TRANSLATE: the reply is the English text unchanged"]}
+{"segment_id": "s-1ced7f8e431e-0003", "ts": "2026-11-21T15:30:25Z", "findings": ["I7: banned rendering 'falla' for glossary term failure"]}
+{"segment_id": "s-6f1a6fd57c00-0004", "ts": "2026-11-21T15:30:25Z", "findings": ["I7: glossary term loop must be rendered 'bucle'"]}
+{"segment_id": "s-dd956f3b26ad-0010", "ts": "2026-11-21T15:30:25Z", "findings": ["I7: glossary term loop must be rendered 'bucle'"]}
+{"segment_id": "s-d09a7027fb14-0006", "ts": "2026-11-21T15:30:26Z", "findings": ["TRANSLATE: the reply is the English text unchanged"]}
+{"segment_id": "s-859c7fcfc873-0003", "ts": "2026-11-21T15:31:27Z", "findings": ["I7: banned rendering 'extraño' for glossary term weird-program"]}
+{"segment_id": "s-1d2bd07b84e5-0008", "ts": "2026-11-21T15:31:27Z", "findings": ["I25: '80%': write a non-breaking space before % (80 %)"]}
+{"segment_id": "s-678f06fcdb48-0007", "ts": "2026-11-21T15:31:27Z", "findings": ["TRANSLATE: the reply is the English text unchanged"]}
+{"segment_id": "s-14ec97c50809-0011", "ts": "2026-11-21T15:31:28Z", "findings": ["TRANSLATE: the reply is the English text unchanged"]}
+{"segment_id": "s-c15fc8a8af76-0006", "ts": "2026-11-21T15:31:28Z", "findings": ["TRANSLATE: the reply is the English text unchanged"]}
+{"segment_id": "s-ac5d3671dc48-0001", "ts": "2026-11-21T15:31:28Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-65d6a10fede6-0006", "ts": "2026-11-21T15:31:28Z", "findings": ["TRANSLATE: the reply is the English text unchanged"]}
+{"segment_id": "s-fbfd1d3ec133-0023", "ts": "2026-11-21T15:32:25Z", "findings": ["TRANSLATE: the reply is the English text unchanged"]}
+{"segment_id": "s-1d2bd07b84e5-0008", "ts": "2026-11-21T15:32:26Z", "findings": ["I25: '80%': write a non-breaking space before % (80 %)"]}
+{"segment_id": "s-c15fc8a8af76-0006", "ts": "2026-11-21T15:32:26Z", "findings": ["TRANSLATE: the reply is the English text unchanged"]}

@@ -245,3 +245,7 @@
 {"id":"EXC-245","segment":"s-efba93bf0baa-0003","invariant":"I21","reason":"Each step means each step in the diagrammed exchange, not a function or variable named step. The diagram uses next and yield.","task":"P4-lessons-cs-source-concepts-2"}
 {"id":"EXC-246","segment":"s-f10d5130b3ed-0001","invariant":"I7","reason":"Build means construct a list or construct code as data. The source is about metaprogramming, not compilation.","task":"P4-lessons-cs-source-concepts-2"}
 {"id":"EXC-247","segment":"s-9a1f3a0235d9-0003","invariant":"I7","reason":"Builds code means generates source code as data, not compiles it.","task":"P4-lessons-cs-source-concepts-2"}
+{"id":"EXC-248","segment":"s-6f1a6fd57c00-0004","invariant":"I7","reason":"LOOP(3) is the literal macro invocation shown in the diagram. The glossary rule for the noun loop misreads it.","task":"P4-lessons-cs-source-concepts-3"}
+{"id":"EXC-249","segment":"s-dd956f3b26ad-0010","invariant":"I7","reason":"LOOP(2) is a literal macro invocation, not the noun loop.","task":"P4-lessons-cs-source-concepts-3"}
+{"id":"EXC-250","segment":"s-1d2bd07b84e5-0008","invariant":"I25","reason":"The percent sign belongs to URL percent encoding (%80) in the pinned Wikipedia destination. Changing it would break the protected URL.","task":"P4-lessons-cs-source-concepts-3"}
+{"id":"EXC-251","segment":"s-ac5d3671dc48-0001","invariant":"I7","reason":"Builds means instantiates objects during parsing. The glossary sense of compilation does not apply.","task":"P4-lessons-cs-source-concepts-3"}

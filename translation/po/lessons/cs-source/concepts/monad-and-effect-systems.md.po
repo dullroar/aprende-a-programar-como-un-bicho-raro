@@ -1,0 +1,78 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lessons/cs-source/concepts/monad-and-effect-systems.md:2
+msgctxt "s-8d81f9407f79-0000"
+msgid "Monads and effect systems"
+msgstr "Mónadas y sistemas de efectos"
+
+#: lessons/cs-source/concepts/monad-and-effect-systems.md:6
+msgctxt "s-98674fec71f4-0001"
+msgid ""
+"Pure functional languages have a neat answer to side effects: describe the "
+"effect as a *value*, and let the runtime perform it. In Haskell an "
+"⟦CODE_0001⟧ action is such a value. A **monad** is the pattern that chains "
+"these actions in order (\"do this, then use its result to decide the next "
+"thing\"). An *effect system* goes further and records the possible effects "
+"in the type. The idea exists so that you can still test and reason about the"
+" pure parts. ⟦MACRO_0002⟧ breaks the pattern on purpose. ⟦CODE_0003⟧ lets "
+"*reading* a list element perform input and output, which is exactly what the"
+" type system tries to prevent. The program stays correct only because card "
+"*n* cannot be read before card *n−1*."
+msgstr ""
+"Los lenguajes funcionales puros tienen una respuesta ingeniosa a los efectos"
+" secundarios: describe el efecto como un *valor* y deja que el entorno de "
+"ejecución lo lleve a cabo. En Haskell, una acción ⟦CODE_0001⟧ es un valor de"
+" ese tipo. Una **mónada** es el patrón que encadena estas acciones en orden "
+"(\"haz esto y usa el resultado para decidir qué hacer después\"). Un "
+"*sistema de efectos* va más allá y registra los efectos posibles en el tipo."
+" Así todavía puedes probar las partes puras y razonar sobre ellas. "
+"⟦MACRO_0002⟧ rompe el patrón a propósito. ⟦CODE_0003⟧ deja que la mera "
+"*lectura* de un elemento de la lista realice operaciones de entrada de datos"
+" y salida. Es justo lo que el sistema de tipos intenta impedir. El programa "
+"sigue siendo correcto solo porque no se puede leer la tarjeta *n* antes de "
+"la tarjeta *n−1*."
+
+#: lessons/cs-source/concepts/monad-and-effect-systems.md:8
+msgctxt "s-281fce1553aa-0002"
+msgid ""
+"**Use it when:** in Haskell, or any language where effects are tracked, you "
+"want them visible in signatures."
+msgstr ""
+"**Úsalos cuando:** quieras que los efectos se vean en las firmas, en Haskell"
+" o en cualquier lenguaje que lleve cuenta de ellos."
+
+#: lessons/cs-source/concepts/monad-and-effect-systems.md:9
+msgctxt "s-f79c17bfc795-0003"
+msgid ""
+"**Avoid ⟦CODE_0001⟧ and ⟦CODE_0002⟧** except deep inside a library, with a "
+"comment that explains why it is safe."
+msgstr ""
+"**Evita ⟦CODE_0001⟧ y ⟦CODE_0002⟧** salvo en lo más interno de una "
+"biblioteca, con un comentario que explique por qué es seguro."
+
+#: lessons/cs-source/concepts/monad-and-effect-systems.md:11
+msgctxt "s-250de292f56f-0004"
+msgid "**Read more:**"
+msgstr "**Lee más:**"
+
+#: lessons/cs-source/concepts/monad-and-effect-systems.md:13
+msgctxt "s-4b9e133137f1-0005"
+msgid "[Monad (functional programming)](⟦DEST_0001⟧)) (Wikipedia)"
+msgstr "[Mónada (programación funcional)](⟦DEST_0001⟧)) (Wikipedia)"
+
+#: lessons/cs-source/concepts/monad-and-effect-systems.md:14
+msgctxt "s-bcc326ef8b2c-0006"
+msgid "[Effect system](⟦DEST_0001⟧) (Wikipedia)"
+msgstr "[Sistema de efectos](⟦DEST_0001⟧) (Wikipedia)"
+
+#: lessons/cs-source/concepts/monad-and-effect-systems.md:15
+msgctxt "s-678f06fcdb48-0007"
+msgid "[Haskell](⟦DEST_0001⟧) (Wikipedia)"
+msgstr "[Haskell](⟦DEST_0001⟧) (Wikipedia)"

@@ -1,0 +1,48 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lessons/cs-source/concepts/interpreter-and-virtual-machine.md:2
+msgctxt "s-923a6193d002-0000"
+msgid "Interpreters and virtual machines"
+msgstr "Intérpretes y máquinas virtuales"
+
+#: lessons/cs-source/concepts/interpreter-and-virtual-machine.md:6
+msgctxt "s-37fe5a1e3d57-0001"
+msgid "An **interpreter** reads a program as data and does what it says, step by step. A **virtual machine** is an interpreter for a small, fixed instruction set. Both are the same trick: a *representation* (text, records, bytes) plus a *program that gives it behavior*. Take the interpreter away and the representation is only data."
+msgstr "Un **intérprete** lee un programa como datos y hace lo que este indica, paso a paso. Una **máquina virtual** es un intérprete para un conjunto pequeño y fijo de instrucciones. Ambos se valen del mismo truco: una *representación* (texto, registros o bytes) junto con un *programa que le da comportamiento*. Quita el intérprete y solo quedan los datos."
+
+#: lessons/cs-source/concepts/interpreter-and-virtual-machine.md:8
+msgctxt "s-3d46353d3a98-0002"
+msgid "Several entries are interpreters in small. In ⟦MACRO_0001⟧ the program is the members of a tar archive, and a dispatcher of about 80 lines gives four record types their meaning. It checks every record against a strict grammar and refuses an unknown one. In ⟦MACRO_0002⟧ Tcl source is stored in SQLite rows, and an overridden ⟦CODE_0003⟧ command fetches and runs it. In ⟦MACRO_0004⟧ the parser that loads a document is the interpreter that runs it. In ⟦MACRO_0005⟧ callout strings are opcodes, and a bodiless C function is the dispatcher. In ⟦MACRO_0006⟧ Ex is the interpreter and a register of text is the program, which the program rewrites and runs again. The question to ask of each is the same: what is the representation, what is the interpreter and who chose to run the one with the other?"
+msgstr "Varias entradas son intérpretes a pequeña escala. En ⟦MACRO_0001⟧, el programa está formado por los miembros de un archivo tar. Un despachador de unas 80 líneas da sentido a cuatro tipos de registro. Comprueba cada registro contra una gramática estricta y rechaza los que no reconoce. En ⟦MACRO_0002⟧, el código fuente Tcl se guarda en filas de SQLite. Una versión redefinida del comando ⟦CODE_0003⟧ lo recupera y lo ejecuta. En ⟦MACRO_0004⟧, el analizador sintáctico que carga el documento es el intérprete que lo ejecuta. En ⟦MACRO_0005⟧, las cadenas de texto de los callouts son códigos de operación y una función de C sin cuerpo actúa como despachador. En ⟦MACRO_0006⟧, Ex es el intérprete y un registro de texto es el programa. El propio programa lo reescribe y lo vuelve a ejecutar. En cada caso, hazte la misma pregunta. ¿Cuál es la representación, cuál es el intérprete y quién decidió ejecutar la primera con el segundo?"
+
+#: lessons/cs-source/concepts/interpreter-and-virtual-machine.md:10
+msgctxt "s-0890a4c1ad6f-0003"
+msgid "**Use it when:** a program is easier to change as data than as code, or you want a small, safe language for others to write in."
+msgstr "**Úsalos cuando:** sea más fácil modificar un programa como datos que como código o quieras que otros escriban en un lenguaje pequeño y seguro."
+
+#: lessons/cs-source/concepts/interpreter-and-virtual-machine.md:11
+msgctxt "s-6dd5dab96144-0004"
+msgid "**Avoid it when:** the data comes from someone you do not trust and the interpreter is general. A strict grammar and a fixed set of instructions are what keep a data format from becoming a way in."
+msgstr "**Evítalos cuando:** los datos vengan de alguien en quien no confías y el intérprete sea de propósito general. Una gramática estricta y un conjunto fijo de instrucciones impiden que un formato de datos se convierta en una vía de entrada."
+
+#: lessons/cs-source/concepts/interpreter-and-virtual-machine.md:13
+msgctxt "s-250de292f56f-0005"
+msgid "**Read more:**"
+msgstr "**Lee más:**"
+
+#: lessons/cs-source/concepts/interpreter-and-virtual-machine.md:15
+msgctxt "s-9598d45a488e-0006"
+msgid "[Interpreter (computing)](⟦DEST_0001⟧)) (Wikipedia)"
+msgstr "[Intérprete (informática)](⟦DEST_0001⟧)) (Wikipedia)"
+
+#: lessons/cs-source/concepts/interpreter-and-virtual-machine.md:16
+msgctxt "s-5c91b23a1997-0007"
+msgid "[Virtual machine](⟦DEST_0001⟧) (Wikipedia)"
+msgstr "[Máquina virtual](⟦DEST_0001⟧) (Wikipedia)"

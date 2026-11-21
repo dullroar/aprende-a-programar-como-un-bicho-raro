@@ -1,16 +1,16 @@
 ---
-title: "Markup languages"
+title: "Lenguajes de marcado"
 chapter: 5
 order: 80
 ---
-A markup language is text with annotations that describe its structure: HTML, XML, Markdown, XAML. It exists so that people and tools can share one document, and so that content stays separate from presentation. XAML describes a tree of user-interface objects, and a loader creates the objects. The danger is a format that can name *types* and *methods*. Then loading a file means running code chosen by the file's author. That is the idea behind many deserialization attacks, and it is exactly what [[entry:xaml]] does on purpose: all the behavior of that program lives in one markup file and runs while the file is parsed.
+Un lenguaje de marcado es texto con anotaciones que describen su estructura: HTML, XML, Markdown y XAML. Permite que personas y herramientas compartan un mismo documento y que el contenido quede separado de la presentación. XAML describe un árbol de objetos de interfaz de usuario y un cargador crea los objetos. Un formato que puede nombrar *tipos* y *métodos* entraña un peligro. En ese caso, cargar un archivo significa ejecutar código que eligió su autor. Esa es la idea detrás de muchos ataques de deserialización. Es justo lo que hace [[entry:xaml]] a propósito. Todo el comportamiento del programa está en un solo archivo de marcado y se ejecuta durante su análisis sintáctico.
 
-- **Use it when:** you describe documents or data that both humans and tools must read.
-- **Avoid it when:** an untrusted document can choose arbitrary types or call arbitrary methods. Use an allowlist.
+- **Úsalo cuando:** describas documentos o datos que deban leer tanto las personas como las herramientas.
+- **Evítalo cuando:** un documento no confiable pueda elegir tipos arbitrarios o llamar a métodos arbitrarios. Usa una lista de elementos permitidos.
 
-**Read more:**
+**Lee más:**
 
-- [Markup language](https://en.wikipedia.org/wiki/Markup_language) (Wikipedia)
+- [Lenguaje de marcado](https://en.wikipedia.org/wiki/Markup_language) (Wikipedia)
 - [XAML](https://en.wikipedia.org/wiki/XAML) (Wikipedia)
-- [XML external entity attack](https://en.wikipedia.org/wiki/XML_external_entity_attack) (Wikipedia)
-- [Deserialization cheat sheet](https://cheatsheetseries.owasp.org/cheatsheets/Deserialization_Cheat_Sheet.html) (OWASP), on loading data safely
+- [Ataque de entidad externa XML](https://en.wikipedia.org/wiki/XML_external_entity_attack) (Wikipedia)
+- [Guía rápida de deserialización](https://cheatsheetseries.owasp.org/cheatsheets/Deserialization_Cheat_Sheet.html) (OWASP), sobre cómo cargar datos con seguridad

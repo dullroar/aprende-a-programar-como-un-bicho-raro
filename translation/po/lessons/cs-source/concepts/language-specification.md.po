@@ -1,0 +1,48 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lessons/cs-source/concepts/language-specification.md:2
+msgctxt "s-60981ca7a5cf-0000"
+msgid "Specification versus implementation"
+msgstr "Especificación frente a implementación"
+
+#: lessons/cs-source/concepts/language-specification.md:6
+msgctxt "s-64c455a92e69-0001"
+msgid "A language specification says what programs *mean*. An implementation is one particular program that tries to follow it. The two can differ, and the difference is where this book lives. Each lesson tags a trick as **guaranteed** (the specification promises it), **implementation-permitted** (one compiler or platform allows it) or **accidentally exploited** (it works today, and nobody promised it). The IETF gave engineers a useful vocabulary for the same idea: MUST, SHOULD and MAY, defined in RFC 2119. A specification that uses those words carefully tells you exactly how much you can lean on it."
+msgstr "La especificación de un lenguaje dice qué *significan* los programas. Una implementación es un programa concreto que intenta seguirla. Pueden diferir y en esa diferencia vive este libro. Cada lección etiqueta un truco como **garantizado** (la especificación lo promete) o **permitido por la implementación** (un compilador o una plataforma lo permite). La tercera etiqueta es **aprovechado por accidente** (hoy funciona y nadie lo prometió). El IETF dio a los ingenieros un vocabulario útil para la misma idea: MUST, SHOULD y MAY, definidos en el RFC 2119. Una especificación que usa esas palabras con cuidado te dice con exactitud cuánto puedes confiar en ella."
+
+#: lessons/cs-source/concepts/language-specification.md:8
+msgctxt "s-8b6f2e8ebfa7-0002"
+msgid "**Use it when:** before you rely on any behavior, ask which of the three kinds of promise stands behind it."
+msgstr "**Úsala cuando:** vayas a depender de un comportamiento. Pregunta cuál de las tres clases de promesa lo respalda."
+
+#: lessons/cs-source/concepts/language-specification.md:9
+msgctxt "s-7da96c151fb7-0003"
+msgid "**Avoid it when:** you need performance evidence. A run on one machine establishes only what happened there."
+msgstr "**Evítala cuando:** necesites evidencia de rendimiento. Una ejecución en una máquina solo demuestra lo que sucedió allí."
+
+#: lessons/cs-source/concepts/language-specification.md:11
+msgctxt "s-250de292f56f-0004"
+msgid "**Read more:**"
+msgstr "**Lee más:**"
+
+#: lessons/cs-source/concepts/language-specification.md:13
+msgctxt "s-407e7d7b4206-0005"
+msgid "[Programming language specification](⟦DEST_0001⟧) (Wikipedia)"
+msgstr "[Especificación de lenguajes de programación](⟦DEST_0001⟧) (Wikipedia)"
+
+#: lessons/cs-source/concepts/language-specification.md:14
+msgctxt "s-171317197421-0006"
+msgid "[RFC 2119: key words for use in RFCs](⟦DEST_0001⟧), two pages that fix the meaning of MUST, SHOULD and MAY"
+msgstr "[RFC 2119: palabras clave para el uso en los RFC](⟦DEST_0001⟧), dos páginas que fijan el significado de MUST, SHOULD y MAY"
+
+#: lessons/cs-source/concepts/language-specification.md:15
+msgctxt "s-3bcebaf8bbed-0007"
+msgid "⟦MACRO_0001⟧ and ⟦MACRO_0002⟧ in \"Abstraction leaks and implementation dependence\""
+msgstr "⟦MACRO_0001⟧ y ⟦MACRO_0002⟧ en \"Fugas de abstracción y dependencia de la implementación\""

@@ -1,14 +1,14 @@
 ---
-title: "Invariants"
+title: "Invariantes"
 chapter: 2
 order: 40
 ---
-An invariant is a fact that stays true at every step. It exists because you cannot test every possible state of a program, but you *can* prove two things: the fact is true at the start, and every step keeps it true. Then it is true forever. In this repository a database rule such as `CHECK(demo_only=1)` is an invariant of the data: a non-demo row cannot exist. Each `check.sh` tries to break it, to show that the rule is real. Loop invariants work the same way: "the total so far equals the sum of the cards drawn".
+Una invariante es un hecho que sigue siendo cierto en cada paso. No puedes probar todos los estados posibles de un programa. Pero *sí* puedes demostrar dos cosas: el hecho es cierto al inicio y cada paso lo mantiene cierto. Entonces lo es para siempre. En este repositorio, una regla de la base de datos como `CHECK(demo_only=1)` es una invariante de los datos. No puede existir una fila ajena a la demostración. Cada `check.sh` intenta romper la invariante para demostrar que la regla se cumple. Las invariantes de bucle funcionan igual: "el total hasta ahora equivale a la suma de las tarjetas que ya sacaste".
 
-- **Use it when:** you design a loop, a data schema, a concurrent algorithm or an assertion.
-- **Avoid it when:** the claim cannot be checked or is too weak to help.
+- **Úsala cuando:** diseñes un bucle, un esquema de datos, un algoritmo concurrente o una aserción.
+- **Evítala cuando:** no puedas comprobar la afirmación o sea demasiado débil para servir.
 
-**Read more:**
+**Lee más:**
 
-- [Invariant (computer science)](https://en.wikipedia.org/wiki/Invariant_(computer_science)) (Wikipedia)
-- [Loop invariant](https://en.wikipedia.org/wiki/Loop_invariant) (Wikipedia)
+- [Invariante (informática)](https://en.wikipedia.org/wiki/Invariant_(computer_science)) (Wikipedia)
+- [Invariante de bucle](https://en.wikipedia.org/wiki/Loop_invariant) (Wikipedia)

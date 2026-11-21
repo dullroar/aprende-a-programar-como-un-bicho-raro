@@ -1,0 +1,48 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lessons/cs-source/concepts/langsec.md:2
+msgctxt "s-22bbd356f3f2-0000"
+msgid "Language-theoretic security"
+msgstr "Seguridad basada en teoría de lenguajes"
+
+#: lessons/cs-source/concepts/langsec.md:6
+msgctxt "s-415ae43f3515-0001"
+msgid "Language-theoretic security (LangSec) is a way of thinking about security. Every input format is a formal language, and the code that reads it is that language's recognizer. Many attacks work because two parsers read the same bytes differently, or because the input language is so powerful that no one can say what it will do. The advice follows from that: keep formats simple (see ⟦MACRO_0001⟧), parse completely *before* acting and use one well-tested parser. It also criticizes the old \"robustness principle\", *be liberal in what you accept*, because being liberal creates more meanings for the same bytes. The IETF has revisited that principle too."
+msgstr "La seguridad basada en teoría de lenguajes (LangSec) es una forma de pensar en la seguridad. Cada formato de entrada de datos es un lenguaje formal: el código que lo lee es el encargado de reconocerlo. Muchos ataques funcionan porque dos analizadores sintácticos leen los mismos bytes de forma distinta. Otros funcionan porque el lenguaje de entrada es tan potente que nadie puede decir qué hará. De ahí el consejo: mantén los formatos simples (consulta ⟦MACRO_0001⟧) y termina todo el análisis sintáctico *antes* de actuar. Usa un solo analizador sintáctico bien probado. Este enfoque también critica el viejo \"principio de robustez\", *sé flexible con lo que aceptas*, porque la flexibilidad da más significados a los mismos bytes. El IETF también ha vuelto a examinar ese principio."
+
+#: lessons/cs-source/concepts/langsec.md:8
+msgctxt "s-9e7e40cca0ae-0002"
+msgid "**Use it when:** you design a file format, a protocol or an API, or you review code that reads input."
+msgstr "**Úsala cuando:** diseñes un formato de archivo, un protocolo o una API o revises código que lee una entrada de datos."
+
+#: lessons/cs-source/concepts/langsec.md:9
+msgctxt "s-3f69f190d695-0003"
+msgid "**Avoid it when:** the design would require accepting \"almost valid\" input or mixing parsing with processing."
+msgstr "**Evítala cuando:** el diseño exija aceptar una entrada de datos \"casi válida\" o mezclar el análisis sintáctico con el procesamiento."
+
+#: lessons/cs-source/concepts/langsec.md:11
+msgctxt "s-250de292f56f-0004"
+msgid "**Read more:**"
+msgstr "**Lee más:**"
+
+#: lessons/cs-source/concepts/langsec.md:13
+msgctxt "s-9dd4a837c112-0005"
+msgid "[Language-theoretic security](⟦DEST_0001⟧) (Wikipedia)"
+msgstr "[Seguridad basada en teoría de lenguajes](⟦DEST_0001⟧) (Wikipedia)"
+
+#: lessons/cs-source/concepts/langsec.md:14
+msgctxt "s-e529693015c0-0006"
+msgid "[Robustness principle](⟦DEST_0001⟧) (Wikipedia)"
+msgstr "[Principio de robustez](⟦DEST_0001⟧) (Wikipedia)"
+
+#: lessons/cs-source/concepts/langsec.md:15
+msgctxt "s-cfccc93c6ec5-0007"
+msgid "[RFC 9413: Maintaining Robust Protocols](⟦DEST_0001⟧), a modern IETF view of the principle"
+msgstr "[RFC 9413: Cómo mantener protocolos robustos](⟦DEST_0001⟧), la visión moderna del principio según el IETF"

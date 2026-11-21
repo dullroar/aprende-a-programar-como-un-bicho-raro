@@ -1,0 +1,182 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lessons/cs-source/concepts/lazy-evaluation.md:2
+msgctxt "s-2a9ea4c872f1-0000"
+msgid "Lazy evaluation"
+msgstr "Evaluación perezosa"
+
+#: lessons/cs-source/concepts/lazy-evaluation.md:6
+msgctxt "s-4c91290bafcf-0001"
+msgid ""
+"Lazy evaluation delays a computation until its result is needed, and then "
+"remembers the answer. The waiting computation is called a *thunk*. It exists"
+" so that you can describe the *whole* answer and then take only what you "
+"want. In ⟦MACRO_0001⟧ one ⟦CODE_0002⟧ over an infinite lazy list is the "
+"entire stop rule. The price is that \"when does this run?\" becomes hard to "
+"answer. In ⟦MACRO_0003⟧ the list elements perform input and output, so "
+"*reading the list* is what does the work. Reading too early or too late "
+"changes the result."
+msgstr ""
+"La evaluación perezosa aplaza un cálculo hasta que se necesita su resultado."
+" Entonces guarda la respuesta. El cálculo pendiente se llama *thunk*. Así "
+"puedes describir la respuesta *entera* y tomar solo lo que quieres. En "
+"⟦MACRO_0001⟧, un solo ⟦CODE_0002⟧ sobre una lista perezosa infinita es toda "
+"la regla de parada. El precio es que cuesta responder \"¿cuándo se ejecuta "
+"esto?\". En ⟦MACRO_0003⟧, los elementos de la lista realizan operaciones de "
+"entrada de datos y salida. Así que el trabajo se hace al *leer la lista*. "
+"Leer demasiado pronto o demasiado tarde cambia el resultado."
+
+#: lessons/cs-source/concepts/lazy-evaluation.md:10
+msgctxt "s-5985f7ff06b5-0002"
+msgid ""
+"Lazy evaluation turns possible work into deferred work, and only demanded "
+"parts become real"
+msgstr ""
+"Evaluación perezosa: el trabajo se aplaza y solo se realiza lo que se pide"
+
+#: lessons/cs-source/concepts/lazy-evaluation.md:11
+msgctxt "s-18bdc756a8e4-0003"
+msgid ""
+"Three columns, one for each cell of a list. Cell A starts as a thunk. The "
+"first demand evaluates it to 19, and the value is stored and shared for "
+"later use. Cell B starts as a thunk. The second demand evaluates it to 23, "
+"and the value is stored. Cell C starts as a thunk, is never demanded, and is"
+" never evaluated."
+msgstr ""
+"Tres columnas, una por cada celda de una lista. La celda A empieza como un "
+"thunk. La primera demanda lo evalúa a 19. El valor se guarda y se comparte "
+"para usarlo después. La celda B empieza como un thunk. La segunda demanda lo"
+" evalúa a 23 y guarda el valor. La celda C empieza como un thunk. Nadie lo "
+"pide y nunca se evalúa."
+
+#: lessons/cs-source/concepts/lazy-evaluation.md:12
+msgctxt "s-e022b842c0dd-0004"
+msgid "Cell C"
+msgstr "Celda C"
+
+#: lessons/cs-source/concepts/lazy-evaluation.md:14
+msgctxt "s-adde9bb0b021-0005"
+msgid "thunk"
+msgstr "thunk"
+
+#: lessons/cs-source/concepts/lazy-evaluation.md:14
+msgctxt "s-0f8ce6711632-0006"
+msgid "no demand"
+msgstr "sin demanda"
+
+#: lessons/cs-source/concepts/lazy-evaluation.md:14
+msgctxt "s-9b9e318988a9-0007"
+msgid "never evaluated"
+msgstr "sin evaluar"
+
+#: lessons/cs-source/concepts/lazy-evaluation.md:16
+msgctxt "s-246e673b66ab-0008"
+msgid "Cell B"
+msgstr "Celda B"
+
+#: lessons/cs-source/concepts/lazy-evaluation.md:18
+msgctxt "s-adde9bb0b021-0009"
+msgid "thunk"
+msgstr "thunk"
+
+#: lessons/cs-source/concepts/lazy-evaluation.md:18
+msgctxt "s-719f79a1a20d-0010"
+msgid "2nd demand"
+msgstr "2.ª demanda"
+
+#: lessons/cs-source/concepts/lazy-evaluation.md:18
+msgctxt "s-538f0f4362db-0011"
+msgid "evaluate: 23"
+msgstr "evalúa a 23"
+
+#: lessons/cs-source/concepts/lazy-evaluation.md:18
+msgctxt "s-c81f88088c98-0012"
+msgid "23, stored"
+msgstr "23, guardado"
+
+#: lessons/cs-source/concepts/lazy-evaluation.md:20
+msgctxt "s-45b3d8285b72-0013"
+msgid "Cell A"
+msgstr "Celda A"
+
+#: lessons/cs-source/concepts/lazy-evaluation.md:22
+msgctxt "s-adde9bb0b021-0014"
+msgid "thunk"
+msgstr "thunk"
+
+#: lessons/cs-source/concepts/lazy-evaluation.md:22
+msgctxt "s-4b4391009191-0015"
+msgid "1st demand"
+msgstr "1.ª demanda"
+
+#: lessons/cs-source/concepts/lazy-evaluation.md:22
+msgctxt "s-e8a2ad3bc216-0016"
+msgid "evaluate: 19"
+msgstr "evalúa a 19"
+
+#: lessons/cs-source/concepts/lazy-evaluation.md:22
+msgctxt "s-85b87e8b2de4-0017"
+msgid "19, stored and shared"
+msgstr "19, guardado y compartido"
+
+#: lessons/cs-source/concepts/lazy-evaluation.md:26
+msgctxt "s-da94e12390bf-0018"
+msgid ""
+"A thunk is a promise to compute a value. Demanding a cell runs its thunk "
+"once and stores the value, so a second demand for ⟦CODE_0001⟧ costs nothing."
+" Cell ⟦CODE_0002⟧ is never demanded, so its work never happens. Storing the "
+"value is part of lazy evaluation in the strict sense. A pipeline that only "
+"delays work, such as a generator, may compute the same value again on each "
+"pass. See ⟦MACRO_0003⟧."
+msgstr ""
+"Un thunk promete calcular un valor. La demanda de una celda ejecuta una vez "
+"su thunk y guarda el valor. Así que otra demanda de ⟦CODE_0001⟧ no tiene "
+"costo. Nadie pide la celda ⟦CODE_0002⟧ y su cálculo nunca se hace. Guardar "
+"el valor es parte de la evaluación perezosa en sentido estricto. Una "
+"canalización que solo aplaza el trabajo, como un generador, puede volver a "
+"calcular el mismo valor en cada pasada. Consulta ⟦MACRO_0003⟧."
+
+#: lessons/cs-source/concepts/lazy-evaluation.md:28
+msgctxt "s-010548d8d410-0019"
+msgid ""
+"**Use it when:** the code is pure (no effects), you want infinite sequences "
+"or some results may not be needed."
+msgstr ""
+"**Úsala cuando:** el código sea puro (sin efectos), quieras secuencias "
+"infinitas o quizá no necesites ciertos resultados."
+
+#: lessons/cs-source/concepts/lazy-evaluation.md:29
+msgctxt "s-6455f8e3307e-0020"
+msgid ""
+"**Avoid it when:** effects are involved, or when memory matters. A pile of "
+"unevaluated thunks can use a lot of it (a *space leak*)."
+msgstr ""
+"**Evítala cuando:** haya efectos o importe el uso de memoria. Una pila de "
+"thunks sin evaluar puede usar mucha memoria (una *fuga de espacio*)."
+
+#: lessons/cs-source/concepts/lazy-evaluation.md:31
+msgctxt "s-250de292f56f-0021"
+msgid "**Read more:**"
+msgstr "**Lee más:**"
+
+#: lessons/cs-source/concepts/lazy-evaluation.md:33
+msgctxt "s-d5026012fa30-0022"
+msgid "[Lazy evaluation](⟦DEST_0001⟧) (Wikipedia)"
+msgstr "[Evaluación perezosa](⟦DEST_0001⟧) (Wikipedia)"
+
+#: lessons/cs-source/concepts/lazy-evaluation.md:34
+msgctxt "s-fbfd1d3ec133-0023"
+msgid "[Thunk](⟦DEST_0001⟧) (Wikipedia)"
+msgstr "[Thunk](⟦DEST_0001⟧) (Wikipedia)"
+
+#: lessons/cs-source/concepts/lazy-evaluation.md:35
+msgctxt "s-2c889b358308-0024"
+msgid "[Graph reduction](⟦DEST_0001⟧) (Wikipedia)"
+msgstr "[Reducción de grafos](⟦DEST_0001⟧) (Wikipedia)"

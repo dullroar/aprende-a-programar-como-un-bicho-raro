@@ -1,14 +1,14 @@
 ---
-title: "Integrity constraints"
+title: "Restricciones de integridad"
 chapter: 7
 order: 50
 ---
-An integrity constraint is a rule that the database itself enforces: `NOT NULL`, `UNIQUE`, `FOREIGN KEY`, `CHECK`. It exists because "we validate in the application" is only as good as every application. A constraint makes bad data *impossible*, not just unlikely. In this repository `CHECK(demo_only=1)` appears in nearly every entry: a table where a non-demo row cannot exist, which each `check.sh` tries to violate. Here constraints are also used as a stop rule (a violation ends the run) and as a guarantee. The second use is the one to keep in real programs.
+Una restricción de integridad es una regla que la propia base de datos hace cumplir: `NOT NULL`, `UNIQUE`, `FOREIGN KEY` y `CHECK`. Existe porque "validamos en la aplicación" solo funciona si todas las aplicaciones validan. Una restricción hace que los datos incorrectos sean *imposibles*, no solo improbables. En este repositorio, `CHECK(demo_only=1)` aparece en casi todas las entradas. En esa tabla no puede existir una fila ajena a la demostración y cada `check.sh` intenta infringir la regla. Aquí las restricciones sirven como regla de parada (una infracción termina la ejecución) y como garantía. Conserva el segundo uso en los programas reales.
 
-- **Use it when:** a rule must hold no matter who writes the data. See also [[invariant]].
-- **Avoid it when:** users need validation messages they can act on. Complex rules that need triggers are also a poor fit for a simple constraint.
+- **Úsala cuando:** una regla deba cumplirse sin importar quién escriba los datos. Consulta también [[invariant]].
+- **Evítala cuando:** los usuarios necesiten mensajes de validación que les indiquen qué hacer. Una restricción simple tampoco sirve bien para reglas complejas que requieren disparadores.
 
-**Read more:**
+**Lee más:**
 
-- [Integrity constraint](https://en.wikipedia.org/wiki/Integrity_constraint) (Wikipedia)
-- [Check constraint](https://en.wikipedia.org/wiki/Check_constraint) (Wikipedia)
+- [Restricción de integridad](https://en.wikipedia.org/wiki/Integrity_constraint) (Wikipedia)
+- [Restricción de comprobación](https://en.wikipedia.org/wiki/Check_constraint) (Wikipedia)

@@ -1,14 +1,14 @@
 ---
-title: "Hyrum's law"
+title: "Ley de Hyrum"
 chapter: 8
 order: 50
 ---
-Hyrum's law says: with enough users of an interface, *every* observable behavior of it will be depended on by somebody, whatever the documentation promises. Hyrum Wright, a software engineer at Google, put the observation into words. It explains the third tag in this book, **accidentally exploited**. GNU Make documents that it restarts after it remakes an included makefile, but it never promised that you could use that as a loop. CMake's `MATCHES` clears every `CMAKE_MATCH` variable after a failed match, and that is observed behavior, not a promise. The entries lean on both. Maintainers know the law too. Go, for example, randomizes the order of map iteration on purpose, so that nobody can rely on it.
+La ley de Hyrum dice que, si una interfaz tiene suficientes usuarios, alguien dependerá de *cada* comportamiento observable, sin importar lo que prometa la documentación. Hyrum Wright, ingeniero de software en Google, formuló esta observación. La ley explica la tercera etiqueta del libro, **aprovechado por accidente**. GNU Make documenta que se reinicia después de rehacer un makefile incluido. Nunca prometió que pudieras usar ese comportamiento como bucle. Cuando no hay coincidencia, `MATCHES` de CMake borra todas las variables `CMAKE_MATCH`. Es un comportamiento observado, sin garantía. Las entradas se apoyan en ambos comportamientos. Los mantenedores también conocen la ley. Go, por ejemplo, cambia al azar el orden de iteración de los mapas para que nadie dependa de él.
 
-- **Use it when:** you change a library (someone depends on the old behavior), and you decide whether to rely on an undocumented one (write it down, and add a test).
-- **Avoid it when:** code that others depend on would need behavior that nobody promised.
+- **Úsala cuando:** cambies una biblioteca (alguien depende del comportamiento anterior) o decidas si puedes depender de un comportamiento sin documentar (anótalo y agrega una prueba).
+- **Evítala cuando:** el código del que otros dependen necesite un comportamiento que nadie prometió.
 
-**Read more:**
+**Lee más:**
 
-- [Hyrum's law](https://en.wikipedia.org/wiki/Hyrum%27s_law) (Wikipedia)
-- [Backward compatibility](https://en.wikipedia.org/wiki/Backward_compatibility) (Wikipedia)
+- [Ley de Hyrum](https://en.wikipedia.org/wiki/Hyrum%27s_law) (Wikipedia)
+- [Compatibilidad con versiones anteriores](https://en.wikipedia.org/wiki/Backward_compatibility) (Wikipedia)

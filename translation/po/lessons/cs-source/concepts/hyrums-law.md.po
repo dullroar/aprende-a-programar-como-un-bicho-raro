@@ -1,0 +1,43 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lessons/cs-source/concepts/hyrums-law.md:2
+msgctxt "s-efe7f53f0d7f-0000"
+msgid "Hyrum's law"
+msgstr "Ley de Hyrum"
+
+#: lessons/cs-source/concepts/hyrums-law.md:6
+msgctxt "s-61d51e0183df-0001"
+msgid "Hyrum's law says: with enough users of an interface, *every* observable behavior of it will be depended on by somebody, whatever the documentation promises. Hyrum Wright, a software engineer at Google, put the observation into words. It explains the third tag in this book, **accidentally exploited**. GNU Make documents that it restarts after it remakes an included makefile, but it never promised that you could use that as a loop. CMake's ⟦CODE_0001⟧ clears every ⟦CODE_0002⟧ variable after a failed match, and that is observed behavior, not a promise. The entries lean on both. Maintainers know the law too. Go, for example, randomizes the order of map iteration on purpose, so that nobody can rely on it."
+msgstr "La ley de Hyrum dice que, si una interfaz tiene suficientes usuarios, alguien dependerá de *cada* comportamiento observable, sin importar lo que prometa la documentación. Hyrum Wright, ingeniero de software en Google, formuló esta observación. La ley explica la tercera etiqueta del libro, **aprovechado por accidente**. GNU Make documenta que se reinicia después de rehacer un makefile incluido. Nunca prometió que pudieras usar ese comportamiento como bucle. Cuando no hay coincidencia, ⟦CODE_0001⟧ de CMake borra todas las variables ⟦CODE_0002⟧. Es un comportamiento observado, sin garantía. Las entradas se apoyan en ambos comportamientos. Los mantenedores también conocen la ley. Go, por ejemplo, cambia al azar el orden de iteración de los mapas para que nadie dependa de él."
+
+#: lessons/cs-source/concepts/hyrums-law.md:8
+msgctxt "s-43fa5d26c8f2-0002"
+msgid "**Use it when:** you change a library (someone depends on the old behavior), and you decide whether to rely on an undocumented one (write it down, and add a test)."
+msgstr "**Úsala cuando:** cambies una biblioteca (alguien depende del comportamiento anterior) o decidas si puedes depender de un comportamiento sin documentar (anótalo y agrega una prueba)."
+
+#: lessons/cs-source/concepts/hyrums-law.md:9
+msgctxt "s-ceae1edbadae-0003"
+msgid "**Avoid it when:** code that others depend on would need behavior that nobody promised."
+msgstr "**Evítala cuando:** el código del que otros dependen necesite un comportamiento que nadie prometió."
+
+#: lessons/cs-source/concepts/hyrums-law.md:11
+msgctxt "s-250de292f56f-0004"
+msgid "**Read more:**"
+msgstr "**Lee más:**"
+
+#: lessons/cs-source/concepts/hyrums-law.md:13
+msgctxt "s-39468cee818e-0005"
+msgid "[Hyrum's law](⟦DEST_0001⟧) (Wikipedia)"
+msgstr "[Ley de Hyrum](⟦DEST_0001⟧) (Wikipedia)"
+
+#: lessons/cs-source/concepts/hyrums-law.md:14
+msgctxt "s-9e4da5ad4e28-0006"
+msgid "[Backward compatibility](⟦DEST_0001⟧) (Wikipedia)"
+msgstr "[Compatibilidad con versiones anteriores](⟦DEST_0001⟧) (Wikipedia)"

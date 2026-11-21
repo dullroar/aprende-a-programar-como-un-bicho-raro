@@ -106,3 +106,4 @@
 129 P4-lessons-cs-source-chapters-2 done applied 85 segments, recorded eight humor entries and SI-019/SI-020, and passed scoped and working-tree verification with diagrams at 12.00 and 11.55 pt.
 130 P4-lessons-cs-source-concepts-1 done Applied 257 segments across 17 authored concepts, recorded 20 humor entries, eight scoped exceptions and SI-021, and passed scoped completeness, scoped fast and working-tree fast verification, including all eight diagrams.
 131 P4-lessons-cs-source-concepts-2 done Applied 243 segments across 19 authored concepts, recorded 26 humor entries, 11 scoped exceptions and SI-022, and passed scoped completeness, scoped fast and working-tree fast verification including eight diagrams.
+132 P4-lessons-cs-source-concepts-3 done Applied 223 segments across 21 authored concepts, recorded 24 humor entries, four scoped exceptions and SI-023, and passed scoped completeness, scoped fast and working-tree fast verification including four diagrams.

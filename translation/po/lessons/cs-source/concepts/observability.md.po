@@ -1,0 +1,67 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lessons/cs-source/concepts/observability.md:2
+msgctxt "s-a37c93100e7c-0000"
+msgid "Observability"
+msgstr "Observabilidad"
+
+#: lessons/cs-source/concepts/observability.md:6
+msgctxt "s-bc36fd0bc612-0001"
+msgid ""
+"Observability is how much of a system's inside you can learn from the "
+"outside: through output, logs and traces. It exists because you cannot fix "
+"what you cannot see. Several entries have a trace switch for this reason. "
+"For example, ⟦CODE_0001⟧ in ⟦MACRO_0002⟧ prints the whole program state at "
+"every step. But watching can change what you watch. In a lazy language, "
+"printing a value *forces* it, so the act of looking makes the computation "
+"happen. Programmers call a bug that vanishes when you look at it a "
+"*heisenbug*."
+msgstr ""
+"La observabilidad mide cuánto puedes saber del interior de un sistema desde "
+"fuera, por sus salidas, registros y trazas. Existe porque no puedes arreglar"
+" lo que no ves. Por eso varias entradas tienen una opción para activar la "
+"traza. Por ejemplo, ⟦CODE_0001⟧ en ⟦MACRO_0002⟧ imprime todo el estado del "
+"programa en cada paso. Pero mirar puede cambiar lo que miras. En un lenguaje"
+" con evaluación perezosa, imprimir un valor *fuerza* su evaluación. Así, el "
+"mero hecho de mirar provoca el cálculo. Los programadores llaman *heisenbug*"
+" al bicho que desaparece cuando vas a verlo."
+
+#: lessons/cs-source/concepts/observability.md:8
+msgctxt "s-e86d4eb657af-0002"
+msgid ""
+"**Use it when:** you design anything you will have to debug later. Log state"
+" changes, not only errors."
+msgstr ""
+"**Úsala cuando:** diseñes algo que luego tendrás que depurar. Registra los "
+"cambios de estado además de los errores."
+
+#: lessons/cs-source/concepts/observability.md:9
+msgctxt "s-4ec0c52a7c05-0003"
+msgid ""
+"**Avoid it when:** the observation would record secrets. Account for the "
+"cost and any effect of observation."
+msgstr ""
+"**Evítala cuando:** la observación pueda dejar secretos registrados. Ten en "
+"cuenta el costo y cualquier efecto de observar."
+
+#: lessons/cs-source/concepts/observability.md:11
+msgctxt "s-250de292f56f-0004"
+msgid "**Read more:**"
+msgstr "**Lee más:**"
+
+#: lessons/cs-source/concepts/observability.md:13
+msgctxt "s-ac39695450fb-0005"
+msgid "[Observability (software)](⟦DEST_0001⟧)) (Wikipedia)"
+msgstr "[Observabilidad (software)](⟦DEST_0001⟧)) (Wikipedia)"
+
+#: lessons/cs-source/concepts/observability.md:14
+msgctxt "s-c15fc8a8af76-0006"
+msgid "[Heisenbug](⟦DEST_0001⟧) (Wikipedia)"
+msgstr "[Heisenbug](⟦DEST_0001⟧) (Wikipedia)"

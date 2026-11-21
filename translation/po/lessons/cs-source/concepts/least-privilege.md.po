@@ -1,0 +1,43 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lessons/cs-source/concepts/least-privilege.md:2
+msgctxt "s-f8fb988b596b-0000"
+msgid "Principle of least privilege"
+msgstr "Principio de mínimo privilegio"
+
+#: lessons/cs-source/concepts/least-privilege.md:6
+msgctxt "s-6d258c5a91cd-0001"
+msgid "The principle of least privilege says that every part of a system should get only the permissions it needs, and no more. It exists because every program has bugs. When a bug is exploited, the damage is limited to what that part was allowed to do. In this repository the runtime containers run as the unprivileged user ⟦CODE_0001⟧, with no network and a read-only file system. If an entry misbehaves, it has almost nothing to misbehave *with*."
+msgstr "El principio de mínimo privilegio dice que cada parte de un sistema debe recibir solo los permisos que necesita. Existe porque todo programa tiene bichos. Si alguien aprovecha un bicho, el daño se limita a lo que esa parte tenía permiso de hacer. En este repositorio, los contenedores de ejecución funcionan con el usuario sin privilegios ⟦CODE_0001⟧, sin red y con un sistema de archivos de solo lectura. Si una entrada se porta mal, casi no tiene *con qué* hacerlo."
+
+#: lessons/cs-source/concepts/least-privilege.md:8
+msgctxt "s-84d9320e4c88-0002"
+msgid "**Use it when:** always. It is the default for accounts, services, containers, API tokens and file permissions."
+msgstr "**Úsalo cuando:** siempre. Es la regla predeterminada para cuentas, servicios, contenedores, tokens de API y permisos de archivo."
+
+#: lessons/cs-source/concepts/least-privilege.md:9
+msgctxt "s-1ced7f8e431e-0003"
+msgid "**Avoid its failure mode:** if a task fails for lack of permission, grant exactly that permission. Do not \"fix\" it by running as root."
+msgstr "**Evita su modo de fallo:** si una tarea sufre un fallo por falta de un permiso, concede justo ese permiso. No lo \"arregles\" ejecutándola como root."
+
+#: lessons/cs-source/concepts/least-privilege.md:11
+msgctxt "s-250de292f56f-0004"
+msgid "**Read more:**"
+msgstr "**Lee más:**"
+
+#: lessons/cs-source/concepts/least-privilege.md:13
+msgctxt "s-94e2057f181f-0005"
+msgid "[Principle of least privilege](⟦DEST_0001⟧) (Wikipedia)"
+msgstr "[Principio de mínimo privilegio](⟦DEST_0001⟧) (Wikipedia)"
+
+#: lessons/cs-source/concepts/least-privilege.md:14
+msgctxt "s-16f00d6cf1a6-0006"
+msgid "[RFC 4949: Internet Security Glossary](⟦DEST_0001⟧), which defines the term (search the page for \"least privilege\")"
+msgstr "[RFC 4949: glosario de seguridad en Internet](⟦DEST_0001⟧), que define el término (busca \"least privilege\" en la página)"

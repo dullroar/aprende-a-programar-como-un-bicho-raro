@@ -1,0 +1,82 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lessons/cs-source/concepts/parsing.md:2
+msgctxt "s-3bdead763923-0000"
+msgid "Parsing"
+msgstr "Análisis sintáctico"
+
+#: lessons/cs-source/concepts/parsing.md:6
+msgctxt "s-ac5d3671dc48-0001"
+msgid ""
+"Parsing turns text into structure, following a grammar. It exists because "
+"programs and data arrive as flat text, and the computer needs a tree. There "
+"are hand-written *recursive descent* parsers and generated ones. Every XML, "
+"JSON or programming-language tool has one. JSON is a good example of a "
+"format whose grammar is written down exactly (RFC 8259). Parsing is also "
+"where input becomes dangerous, because it is the first code that touches "
+"untrusted data. Two entries show a parser that does more than read. "
+"⟦MACRO_0001⟧'s text interpreter parses a word and runs it at once, so the "
+"program can move its own parse position. ⟦MACRO_0002⟧'s parser builds "
+"objects *and calls methods* while it reads the file."
+msgstr ""
+"El análisis sintáctico convierte texto en una estructura según una "
+"gramática. Existe porque los programas y los datos llegan como texto plano "
+"pero la computadora necesita un árbol. Hay analizadores sintácticos de "
+"*descenso recursivo* escritos a mano y otros que se generan. Toda "
+"herramienta de XML, JSON o de un lenguaje de programación tiene uno. JSON "
+"ilustra cómo se documenta con exactitud la gramática de un formato (RFC "
+"8259). En el análisis sintáctico también se vuelve peligrosa la entrada de "
+"datos: ahí está el primer código que toca datos no confiables. Dos entradas "
+"muestran analizadores que hacen más que leer. En ⟦MACRO_0001⟧, el intérprete"
+" de texto analiza una palabra y la ejecuta enseguida. Así, el programa puede"
+" cambiar la posición de lectura del intérprete. En ⟦MACRO_0002⟧, el "
+"analizador sintáctico crea objetos *y llama a métodos* mientras lee el "
+"archivo."
+
+#: lessons/cs-source/concepts/parsing.md:8
+msgctxt "s-f1de5b033369-0002"
+msgid ""
+"**Use it when:** you accept any structured input. Use a real parser and a "
+"real grammar."
+msgstr ""
+"**Úsalo cuando:** aceptes una entrada de datos estructurados. Usa un "
+"verdadero analizador sintáctico y una gramática real."
+
+#: lessons/cs-source/concepts/parsing.md:9
+msgctxt "s-ad5b9613f603-0003"
+msgid ""
+"**Avoid it when:** a shortcut with ⟦CODE_0001⟧ or a regular expression would"
+" miss nested structure. Keep effects separate from parsing."
+msgstr ""
+"**Evita los atajos con ⟦CODE_0001⟧ o una expresión regular:** pueden pasar "
+"por alto una estructura anidada. Mantén los efectos separados del análisis "
+"sintáctico."
+
+#: lessons/cs-source/concepts/parsing.md:11
+msgctxt "s-250de292f56f-0004"
+msgid "**Read more:**"
+msgstr "**Lee más:**"
+
+#: lessons/cs-source/concepts/parsing.md:13
+msgctxt "s-de9a40133799-0005"
+msgid "[Parsing](⟦DEST_0001⟧) (Wikipedia)"
+msgstr "[Análisis sintáctico](⟦DEST_0001⟧) (Wikipedia)"
+
+#: lessons/cs-source/concepts/parsing.md:14
+msgctxt "s-cda2aaaa2a00-0006"
+msgid "[Recursive descent parser](⟦DEST_0001⟧) (Wikipedia)"
+msgstr ""
+"[Analizador sintáctico de descenso recursivo](⟦DEST_0001⟧) (Wikipedia)"
+
+#: lessons/cs-source/concepts/parsing.md:15
+msgctxt "s-cd6fa71bdd1b-0007"
+msgid "[RFC 8259: the JSON format](⟦DEST_0001⟧), a small, precise grammar"
+msgstr ""
+"[RFC 8259: el formato JSON](⟦DEST_0001⟧), una gramática breve y precisa"

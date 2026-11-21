@@ -1,0 +1,113 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lessons/cs-source/concepts/markov-algorithm.md:2
+msgctxt "s-5bd23ffdc4a7-0000"
+msgid "Markov algorithms"
+msgstr "Algoritmos de Markov"
+
+#: lessons/cs-source/concepts/markov-algorithm.md:6
+msgctxt "s-85c3aa1f6d78-0001"
+msgid "A Markov algorithm is a list of find-and-replace rules, in order. Look for the first rule whose pattern appears in the text, replace it and start again from the top. Stop when no rule applies (or when a rule says \"stop\"). The Russian mathematician Andrey Markov Jr. described it in the 1950s, and it can compute anything a Turing machine can. It exists to show that *rewriting text is computing*. ⟦MACRO_0001⟧ is exactly this: one line of text, and a script of substitutions that rewrite it until nothing matches. The line is the whole memory."
+msgstr "Un algoritmo de Markov es una lista ordenada de reglas de búsqueda y reemplazo. Busca la primera regla cuyo patrón aparezca en el texto. Reemplaza esa coincidencia y vuelve al principio de la lista. Detente cuando no se aplique ninguna regla o una regla diga \"detente\". El matemático ruso Andréi Márkov hijo lo describió en la década de 1950. Puede calcular todo lo que puede calcular una máquina de Turing. Su propósito es mostrar que *reescribir texto es computar*. ⟦MACRO_0001⟧ es justo eso: una línea de texto y un script de sustituciones que la reescriben hasta que no hay coincidencia. Toda la memoria cabe en esa línea."
+
+#: lessons/cs-source/concepts/markov-algorithm.md:10
+msgctxt "s-dead1a4f39c1-0002"
+msgid "A Markov algorithm applies the first rule that matches, again and again, until a terminal rule or no match"
+msgstr "Un algoritmo de Markov aplica la primera regla con coincidencia hasta llegar a una regla terminal o quedarse sin coincidencias"
+
+#: lessons/cs-source/concepts/markov-algorithm.md:11
+msgctxt "s-5952db5a2bca-0003"
+msgid "An ordered rule list is shown above a trace. Rule 1 turns AA into A. Rule 2 turns BA into AB. Rule 3 turns B into B and stops. The text BAA matches both rule 1 and rule 2, but rule 1 comes first, so it wins and the text becomes BA. Now only rule 2 matches, and the text becomes AB. Rules 1 and 2 no longer match, rule 3 matches and is terminal, so the algorithm halts with AB."
+msgstr "Una lista ordenada de reglas encima de una traza. La regla 1 convierte AA en A. La 2 convierte BA en AB. La 3 convierte B en B y se detiene. El texto BAA tiene coincidencias con las reglas 1 y 2. Gana la regla 1 porque va primero y el texto pasa a ser BA. Ahora solo hay coincidencia con la regla 2 y el texto pasa a ser AB. Ya no hay coincidencia con las reglas 1 y 2. Como hay coincidencia con la regla 3 y es terminal, el algoritmo se detiene con AB."
+
+#: lessons/cs-source/concepts/markov-algorithm.md:12
+msgctxt "s-dcf5c03c5d4f-0004"
+msgid "Rules, always tried from the top"
+msgstr "Reglas, siempre desde el principio"
+
+#: lessons/cs-source/concepts/markov-algorithm.md:14
+msgctxt "s-17833efa397a-0005"
+msgid "1: AA becomes A"
+msgstr "1: AA se convierte en A"
+
+#: lessons/cs-source/concepts/markov-algorithm.md:14
+msgctxt "s-29d7a976808d-0006"
+msgid "2: BA becomes AB"
+msgstr "2: BA se convierte en AB"
+
+#: lessons/cs-source/concepts/markov-algorithm.md:14
+msgctxt "s-ae751d142628-0007"
+msgid "3: B becomes B, then stop"
+msgstr "3: B queda en B y se detiene"
+
+#: lessons/cs-source/concepts/markov-algorithm.md:16
+msgctxt "s-d5a5c85fb1f1-0008"
+msgid "Text: BAA (rules 1 and 2 both match)"
+msgstr "Texto: BAA, coincidencia con reglas 1 y 2"
+
+#: lessons/cs-source/concepts/markov-algorithm.md:16
+msgctxt "s-462a727b6196-0009"
+msgid "rule 1 comes first"
+msgstr "la regla 1 va primero"
+
+#: lessons/cs-source/concepts/markov-algorithm.md:16
+msgctxt "s-f6114805d125-0010"
+msgid "Text: BA"
+msgstr "Texto: BA"
+
+#: lessons/cs-source/concepts/markov-algorithm.md:17
+msgctxt "s-adb3b5d322ce-0011"
+msgid "rule 2"
+msgstr "regla 2"
+
+#: lessons/cs-source/concepts/markov-algorithm.md:17
+msgctxt "s-bd0ac733ecee-0012"
+msgid "Text: AB"
+msgstr "Texto: AB"
+
+#: lessons/cs-source/concepts/markov-algorithm.md:18
+msgctxt "s-44639e087a5e-0013"
+msgid "rule 3: terminal"
+msgstr "regla 3: terminal"
+
+#: lessons/cs-source/concepts/markov-algorithm.md:18
+msgctxt "s-d1fa00aeec65-0014"
+msgid "Halt with AB"
+msgstr "Se detiene con AB"
+
+#: lessons/cs-source/concepts/markov-algorithm.md:22
+msgctxt "s-620fe864edd4-0015"
+msgid "The order of the rules decides, not the place in the text. ⟦CODE_0001⟧ matches rules 1 and 2, and rule 1 wins because it is first. After each rewrite the search for a rule starts again at rule 1. The run ends when a terminal rule applies (rule 3 here) or when no rule matches. Other rewriting systems, such as those in ⟦MACRO_0002⟧, do not all pick rules this way."
+msgstr "Lo que decide es el orden de las reglas, no la posición en el texto. ⟦CODE_0001⟧ tiene coincidencias con las reglas 1 y 2 y gana la regla 1 porque es la primera. Tras cada reescritura, la búsqueda de una regla vuelve a empezar por la regla 1. La ejecución termina cuando se aplica una regla terminal (aquí, la regla 3) o cuando no hay coincidencia con ninguna regla. Otros sistemas de reescritura, como los de ⟦MACRO_0002⟧, no siempre eligen las reglas así."
+
+#: lessons/cs-source/concepts/markov-algorithm.md:24
+msgctxt "s-a6cfbd9549a0-0016"
+msgid "**Use it when:** you transform or normalize text, or when you want to teach that a program can be \"just rules\"."
+msgstr "**Úsalo cuando:** transformes o normalices texto o quieras enseñar que un programa puede ser \"solo reglas\"."
+
+#: lessons/cs-source/concepts/markov-algorithm.md:25
+msgctxt "s-066f860d47b7-0017"
+msgid "**Avoid it for large programs:** rule order *is* the control flow, which is hard to reason about, and speed is hard to predict."
+msgstr "**Evítalo en programas grandes:** el orden de las reglas *es* el flujo de control. Cuesta razonar sobre él y cuesta predecir la velocidad."
+
+#: lessons/cs-source/concepts/markov-algorithm.md:27
+msgctxt "s-250de292f56f-0018"
+msgid "**Read more:**"
+msgstr "**Lee más:**"
+
+#: lessons/cs-source/concepts/markov-algorithm.md:29
+msgctxt "s-14277998b740-0019"
+msgid "[Markov algorithm](⟦DEST_0001⟧) (Wikipedia)"
+msgstr "[Algoritmo de Markov](⟦DEST_0001⟧) (Wikipedia)"
+
+#: lessons/cs-source/concepts/markov-algorithm.md:30
+msgctxt "s-da24de2a2f3c-0020"
+msgid "⟦MACRO_0001⟧ in \"Formal languages as computational substrates\""
+msgstr "⟦MACRO_0001⟧ en \"Los lenguajes formales como sustratos de cómputo\""

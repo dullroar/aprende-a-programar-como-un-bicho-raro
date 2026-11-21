@@ -1,0 +1,70 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lessons/cs-source/concepts/portability.md:2
+msgctxt "s-ce0790d23112-0000"
+msgid "Portability"
+msgstr "Portabilidad"
+
+#: lessons/cs-source/concepts/portability.md:6
+msgctxt "s-75f091c5d016-0001"
+msgid ""
+"Software is portable if it runs correctly in more than one environment: "
+"another operating system, another implementation of the same language, "
+"another version. It exists as a goal because your users do not all have your"
+" machine. The usual tools are a written standard, a thin layer over the "
+"differences and tests on more than one platform. The entries here have "
+"honest examples. The POSIX AWK subset runs everywhere, but a regular "
+"expression as the record separator is a gawk extension. On mawk, "
+"⟦MACRO_0001⟧ reads forever. ⟦CODE_0002⟧ returns different values in "
+"different awks. The ⟦CODE_0003⟧ in Ubuntu is built without callout scripts."
+msgstr ""
+"El software es portable si se ejecuta bien en más de un entorno: otro "
+"sistema operativo, otra implementación del mismo lenguaje u otra versión. La"
+" portabilidad es un objetivo porque tus usuarios no tienen todos tu misma "
+"máquina. Las herramientas habituales son un estándar escrito, una capa "
+"delgada que cubra las diferencias y pruebas en más de una plataforma. Aquí "
+"las entradas ofrecen ejemplos honestos. El subconjunto POSIX de AWK se "
+"ejecuta en todas partes. Pero usar una expresión regular como separador de "
+"registros es una extensión de gawk. En mawk, ⟦MACRO_0001⟧ lee sin parar. "
+"⟦CODE_0002⟧ devuelve valores distintos según la implementación de AWK. El "
+"⟦CODE_0003⟧ de Ubuntu se compila sin scripts de callout."
+
+#: lessons/cs-source/concepts/portability.md:8
+msgctxt "s-ce5451c141a4-0002"
+msgid ""
+"**Use it when:** you write for users you do not control. Pick a standard and"
+" test on at least two implementations."
+msgstr ""
+"**Úsala cuando:** escribas para usuarios cuyo entorno no controlas. Elige un"
+" estándar y prueba al menos dos implementaciones."
+
+#: lessons/cs-source/concepts/portability.md:9
+msgctxt "s-a3fbc1ea83b1-0003"
+msgid ""
+"**Avoid it as dogma:** when a stunt needs one implementation, name it, pin "
+"its version and say so in the README."
+msgstr ""
+"**Evita tomarla como dogma:** si un truco requiere una implementación "
+"concreta, nómbrala, fija su versión e indícalo en el README."
+
+#: lessons/cs-source/concepts/portability.md:11
+msgctxt "s-250de292f56f-0004"
+msgid "**Read more:**"
+msgstr "**Lee más:**"
+
+#: lessons/cs-source/concepts/portability.md:13
+msgctxt "s-1c227b047a7e-0005"
+msgid "[Software portability](⟦DEST_0001⟧) (Wikipedia)"
+msgstr "[Portabilidad del software](⟦DEST_0001⟧) (Wikipedia)"
+
+#: lessons/cs-source/concepts/portability.md:14
+msgctxt "s-65d6a10fede6-0006"
+msgid "[POSIX](⟦DEST_0001⟧) (Wikipedia)"
+msgstr "[POSIX](⟦DEST_0001⟧) (Wikipedia)"

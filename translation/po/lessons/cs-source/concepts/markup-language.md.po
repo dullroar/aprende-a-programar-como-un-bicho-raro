@@ -1,0 +1,83 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lessons/cs-source/concepts/markup-language.md:2
+msgctxt "s-36f83d02de0a-0000"
+msgid "Markup languages"
+msgstr "Lenguajes de marcado"
+
+#: lessons/cs-source/concepts/markup-language.md:6
+msgctxt "s-b73ceffd5819-0001"
+msgid ""
+"A markup language is text with annotations that describe its structure: "
+"HTML, XML, Markdown, XAML. It exists so that people and tools can share one "
+"document, and so that content stays separate from presentation. XAML "
+"describes a tree of user-interface objects, and a loader creates the "
+"objects. The danger is a format that can name *types* and *methods*. Then "
+"loading a file means running code chosen by the file's author. That is the "
+"idea behind many deserialization attacks, and it is exactly what "
+"⟦MACRO_0001⟧ does on purpose: all the behavior of that program lives in one "
+"markup file and runs while the file is parsed."
+msgstr ""
+"Un lenguaje de marcado es texto con anotaciones que describen su estructura:"
+" HTML, XML, Markdown y XAML. Permite que personas y herramientas compartan "
+"un mismo documento y que el contenido quede separado de la presentación. "
+"XAML describe un árbol de objetos de interfaz de usuario y un cargador crea "
+"los objetos. Un formato que puede nombrar *tipos* y *métodos* entraña un "
+"peligro. En ese caso, cargar un archivo significa ejecutar código que eligió"
+" su autor. Esa es la idea detrás de muchos ataques de deserialización. Es "
+"justo lo que hace ⟦MACRO_0001⟧ a propósito. Todo el comportamiento del "
+"programa está en un solo archivo de marcado y se ejecuta durante su análisis"
+" sintáctico."
+
+#: lessons/cs-source/concepts/markup-language.md:8
+msgctxt "s-ee9719138b83-0002"
+msgid ""
+"**Use it when:** you describe documents or data that both humans and tools "
+"must read."
+msgstr ""
+"**Úsalo cuando:** describas documentos o datos que deban leer tanto las "
+"personas como las herramientas."
+
+#: lessons/cs-source/concepts/markup-language.md:9
+msgctxt "s-d8bcb9f4f8ac-0003"
+msgid ""
+"**Avoid it when:** an untrusted document can choose arbitrary types or call "
+"arbitrary methods. Use an allowlist."
+msgstr ""
+"**Evítalo cuando:** un documento no confiable pueda elegir tipos arbitrarios"
+" o llamar a métodos arbitrarios. Usa una lista de elementos permitidos."
+
+#: lessons/cs-source/concepts/markup-language.md:11
+msgctxt "s-250de292f56f-0004"
+msgid "**Read more:**"
+msgstr "**Lee más:**"
+
+#: lessons/cs-source/concepts/markup-language.md:13
+msgctxt "s-d158954aa044-0005"
+msgid "[Markup language](⟦DEST_0001⟧) (Wikipedia)"
+msgstr "[Lenguaje de marcado](⟦DEST_0001⟧) (Wikipedia)"
+
+#: lessons/cs-source/concepts/markup-language.md:14
+msgctxt "s-d09a7027fb14-0006"
+msgid "[XAML](⟦DEST_0001⟧) (Wikipedia)"
+msgstr "[XAML](⟦DEST_0001⟧) (Wikipedia)"
+
+#: lessons/cs-source/concepts/markup-language.md:15
+msgctxt "s-fa84697d0f2a-0007"
+msgid "[XML external entity attack](⟦DEST_0001⟧) (Wikipedia)"
+msgstr "[Ataque de entidad externa XML](⟦DEST_0001⟧) (Wikipedia)"
+
+#: lessons/cs-source/concepts/markup-language.md:16
+msgctxt "s-f0cafbb2ba6a-0008"
+msgid ""
+"[Deserialization cheat sheet](⟦DEST_0001⟧) (OWASP), on loading data safely"
+msgstr ""
+"[Guía rápida de deserialización](⟦DEST_0001⟧) (OWASP), sobre cómo cargar "
+"datos con seguridad"

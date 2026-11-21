@@ -1,14 +1,14 @@
 ---
-title: "Observability"
+title: "Observabilidad"
 chapter: 2
 order: 50
 ---
-Observability is how much of a system's inside you can learn from the outside: through output, logs and traces. It exists because you cannot fix what you cannot see. Several entries have a trace switch for this reason. For example, `TRACE=1 ./timecards.sh` in [[entry:regex-sed]] prints the whole program state at every step. But watching can change what you watch. In a lazy language, printing a value *forces* it, so the act of looking makes the computation happen. Programmers call a bug that vanishes when you look at it a *heisenbug*.
+La observabilidad mide cuánto puedes saber del interior de un sistema desde fuera, por sus salidas, registros y trazas. Existe porque no puedes arreglar lo que no ves. Por eso varias entradas tienen una opción para activar la traza. Por ejemplo, `TRACE=1 ./timecards.sh` en [[entry:regex-sed]] imprime todo el estado del programa en cada paso. Pero mirar puede cambiar lo que miras. En un lenguaje con evaluación perezosa, imprimir un valor *fuerza* su evaluación. Así, el mero hecho de mirar provoca el cálculo. Los programadores llaman *heisenbug* al bicho que desaparece cuando vas a verlo.
 
-- **Use it when:** you design anything you will have to debug later. Log state changes, not only errors.
-- **Avoid it when:** the observation would record secrets. Account for the cost and any effect of observation.
+- **Úsala cuando:** diseñes algo que luego tendrás que depurar. Registra los cambios de estado además de los errores.
+- **Evítala cuando:** la observación pueda dejar secretos registrados. Ten en cuenta el costo y cualquier efecto de observar.
 
-**Read more:**
+**Lee más:**
 
-- [Observability (software)](https://en.wikipedia.org/wiki/Observability_(software)) (Wikipedia)
+- [Observabilidad (software)](https://en.wikipedia.org/wiki/Observability_(software)) (Wikipedia)
 - [Heisenbug](https://en.wikipedia.org/wiki/Heisenbug) (Wikipedia)

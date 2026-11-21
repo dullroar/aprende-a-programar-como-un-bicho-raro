@@ -1,14 +1,14 @@
 ---
-title: "Leaky abstractions"
+title: "Abstracciones con fugas"
 chapter: 8
 order: 10
 ---
-An abstraction hides details so that you can think at a higher level. A *leaky* abstraction lets the hidden details show through when something goes wrong, or when speed matters. Joel Spolsky named the "Law of Leaky Abstractions" in 2002: every non-trivial abstraction leaks, at least a little. This book is a collection of leaks, found on purpose. "Matching text" leaks its backtracking cost. A build tool's "dependency" leaks file timestamps. LINQ's "query" leaks the limits of its SQL provider. You do not need to give up the abstraction. You need to know one layer below it.
+Una abstracción oculta detalles para que puedas pensar a un nivel más alto. Una abstracción *con fugas* deja ver lo que oculta cuando algo falla o cuando importa la velocidad. En 2002 Joel Spolsky acuñó la "ley de las abstracciones con fugas": toda abstracción no trivial deja escapar algo, al menos un poco. Este libro es una colección de fugas que buscamos a propósito. La "búsqueda de coincidencias de texto" deja entrever el costo del retroceso. Una "dependencia" de una herramienta de compilación deja ver las marcas de tiempo de los archivos. La "consulta" de LINQ deja ver los límites de su proveedor de SQL. Puedes seguir usando la abstracción. Solo necesitas conocer la capa que tiene debajo.
 
-- **Use it when:** you learn a tool: ask "what is under this, and when will it show?"
-- **Avoid it when:** correctness depends on a leak you cannot document.
+- **Úsala cuando:** aprendas a manejar una herramienta. Pregúntate "¿qué tiene debajo y cuándo se dejará ver?".
+- **Evita depender de una fuga cuando:** de ella dependa la corrección y no puedas documentarla.
 
-**Read more:**
+**Lee más:**
 
-- [Leaky abstraction](https://en.wikipedia.org/wiki/Leaky_abstraction) (Wikipedia)
-- [Abstraction (computer science)](https://en.wikipedia.org/wiki/Abstraction_(computer_science)) (Wikipedia)
+- [Abstracción con fugas](https://en.wikipedia.org/wiki/Leaky_abstraction) (Wikipedia)
+- [Abstracción (informática)](https://en.wikipedia.org/wiki/Abstraction_(computer_science)) (Wikipedia)

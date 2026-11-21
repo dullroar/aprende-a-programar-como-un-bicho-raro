@@ -1,16 +1,16 @@
 ---
-title: "Operational semantics"
+title: "Semántica operacional"
 chapter: 2
 order: 110
 ---
-**Operational semantics** says what a program means by saying how it runs: what a machine's *state* is, and what *one step* does to it. A language is then a set of rules of the form "in this state, this construct moves the machine to that state". It is the most direct way to answer "what does this actually do?", and it is what you do when you read a program one transition at a time.
+La **semántica operacional** explica qué significa un programa al decir cómo se ejecuta: cuál es el *estado* de una máquina y qué efecto tiene *un paso* en él. Así, un lenguaje es un conjunto de reglas como "en este estado, esta construcción lleva la máquina a ese otro estado". Es la forma más directa de responder "¿qué hace esto en realidad?". Es lo que haces cuando lees un programa una transición a la vez.
 
-Every entry that names its machine could be described this way. Three do it on the page. [[entry:tar-gnu-weird]] has one row of registers (the hours worked, the target, the total, the seed, a done flag) and one transition, run once per tar checkpoint. [[entry:javascript]] is the three clauses of a `for`: initialize once, then test, body, update, test, body, update. Its README traces one card through them. [[entry:ex-weird]] has marks and registers as its state, and each command line moves them.
+Puedes describir así cada entrada que nombra su máquina. Tres lo hacen en su propia página. [[entry:tar-gnu-weird]] tiene una fila de registros (las horas trabajadas, el objetivo, el total, la semilla y una bandera de fin). Tiene una transición que se ejecuta una vez por cada punto de control de tar. [[entry:javascript]] consta de las tres cláusulas de un `for`: inicializa una vez y después sigue con prueba, cuerpo, actualización, prueba, cuerpo, actualización. Su README sigue la traza de una tarjeta a través de esos pasos. [[entry:ex-weird]] tiene como estado las marcas y los registros. Cada línea de comandos cambia ese estado.
 
-- **Use it when:** you must explain, or check, exactly what a strange construct does. Write down the state and the step, and run it by hand.
-- **Avoid it when:** you need to compare programs by what they compute and not by how. Then you want a semantics that ignores the steps.
+- **Úsala cuando:** debas explicar o comprobar con exactitud qué hace una construcción extraña. Escribe el estado y el paso. Después ejecútalo a mano.
+- **Evítala cuando:** necesites comparar programas por lo que calculan y no por cómo lo calculan. En ese caso, usa una semántica que ignore los pasos.
 
-**Read more:**
+**Lee más:**
 
-- [Operational semantics](https://en.wikipedia.org/wiki/Operational_semantics) (Wikipedia)
-- [Transition system](https://en.wikipedia.org/wiki/Transition_system) (Wikipedia)
+- [Semántica operacional](https://en.wikipedia.org/wiki/Operational_semantics) (Wikipedia)
+- [Sistema de transiciones](https://en.wikipedia.org/wiki/Transition_system) (Wikipedia)

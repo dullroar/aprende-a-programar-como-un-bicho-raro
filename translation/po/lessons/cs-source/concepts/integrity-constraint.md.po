@@ -1,0 +1,43 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lessons/cs-source/concepts/integrity-constraint.md:2
+msgctxt "s-085c1584e572-0000"
+msgid "Integrity constraints"
+msgstr "Restricciones de integridad"
+
+#: lessons/cs-source/concepts/integrity-constraint.md:6
+msgctxt "s-9d1cfbb6be47-0001"
+msgid "An integrity constraint is a rule that the database itself enforces: ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧. It exists because \"we validate in the application\" is only as good as every application. A constraint makes bad data *impossible*, not just unlikely. In this repository ⟦CODE_0005⟧ appears in nearly every entry: a table where a non-demo row cannot exist, which each ⟦CODE_0006⟧ tries to violate. Here constraints are also used as a stop rule (a violation ends the run) and as a guarantee. The second use is the one to keep in real programs."
+msgstr "Una restricción de integridad es una regla que la propia base de datos hace cumplir: ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧ y ⟦CODE_0004⟧. Existe porque \"validamos en la aplicación\" solo funciona si todas las aplicaciones validan. Una restricción hace que los datos incorrectos sean *imposibles*, no solo improbables. En este repositorio, ⟦CODE_0005⟧ aparece en casi todas las entradas. En esa tabla no puede existir una fila ajena a la demostración y cada ⟦CODE_0006⟧ intenta infringir la regla. Aquí las restricciones sirven como regla de parada (una infracción termina la ejecución) y como garantía. Conserva el segundo uso en los programas reales."
+
+#: lessons/cs-source/concepts/integrity-constraint.md:8
+msgctxt "s-86f9a5897194-0002"
+msgid "**Use it when:** a rule must hold no matter who writes the data. See also ⟦MACRO_0001⟧."
+msgstr "**Úsala cuando:** una regla deba cumplirse sin importar quién escriba los datos. Consulta también ⟦MACRO_0001⟧."
+
+#: lessons/cs-source/concepts/integrity-constraint.md:9
+msgctxt "s-058cd51f926e-0003"
+msgid "**Avoid it when:** users need validation messages they can act on. Complex rules that need triggers are also a poor fit for a simple constraint."
+msgstr "**Evítala cuando:** los usuarios necesiten mensajes de validación que les indiquen qué hacer. Una restricción simple tampoco sirve bien para reglas complejas que requieren disparadores."
+
+#: lessons/cs-source/concepts/integrity-constraint.md:11
+msgctxt "s-250de292f56f-0004"
+msgid "**Read more:**"
+msgstr "**Lee más:**"
+
+#: lessons/cs-source/concepts/integrity-constraint.md:13
+msgctxt "s-f9f7247942fc-0005"
+msgid "[Integrity constraint](⟦DEST_0001⟧) (Wikipedia)"
+msgstr "[Restricción de integridad](⟦DEST_0001⟧) (Wikipedia)"
+
+#: lessons/cs-source/concepts/integrity-constraint.md:14
+msgctxt "s-16f878a0e3a5-0006"
+msgid "[Check constraint](⟦DEST_0001⟧) (Wikipedia)"
+msgstr "[Restricción de comprobación](⟦DEST_0001⟧) (Wikipedia)"

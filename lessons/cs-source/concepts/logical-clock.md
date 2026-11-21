@@ -1,16 +1,16 @@
 ---
-title: "Logical clocks and event ordering"
+title: "Relojes lógicos y orden de los eventos"
 chapter: 3
 order: 100
 ---
-A **logical clock** counts *events*, not seconds. It answers "what happened before what?" and "how many steps have passed?" without asking how long anything took. Distributed systems use logical clocks because real clocks on different machines disagree. A program can also use one on a single machine, to make its behavior independent of speed.
+Un **reloj lógico** cuenta *eventos* en vez de segundos. Responde "¿qué ocurrió antes que qué?" y "¿cuántos pasos han pasado?" sin preguntar cuánto duró nada. Los sistemas distribuidos usan relojes lógicos porque los relojes reales de distintas máquinas discrepan. Un programa también puede usar uno en una sola máquina para que su comportamiento no dependa de la velocidad.
 
-In [[entry:tar-gnu-weird]] one tar checkpoint is one hour of work. The clock is the number of records tar has written, and `check.sh` predicts the result of a run from the archive's layout alone. A faster or a slower machine makes no difference. A longer archive gives more ticks, a shorter one stalls the program, and a different checkpoint interval changes the count in a way the check calculates in advance. One detail is easy to miss: `TAR_CHECKPOINT` counts *records* (with `--checkpoint=2` it reads 2, 4, 6), while the machine counts *calls*. They are two clocks, and the entry says which one it uses. [[entry:make-gnu]] has a counter of a similar kind: `MAKE_RESTARTS` counts rounds of the build, not time.
+En [[entry:tar-gnu-weird]], un punto de control de tar equivale a una hora de trabajo. El reloj es el número de registros que tar ha escrito. `check.sh` predice el resultado de una ejecución solo a partir de la disposición del archivo. Da igual si la máquina es más rápida o más lenta. Un archivo más largo da más pulsos y uno más corto atasca el programa. Otro intervalo entre puntos de control cambia el recuento y la comprobación calcula de antemano ese cambio. Hay un detalle que es fácil pasar por alto. `TAR_CHECKPOINT` cuenta *registros* (con `--checkpoint=2` lee 2, 4, 6), mientras que la máquina cuenta *llamadas*. Son dos relojes y la entrada dice cuál usa. [[entry:make-gnu]] tiene un contador similar. `MAKE_RESTARTS` cuenta rondas de compilación en vez de tiempo.
 
-- **Use it when:** you need to order events, to make a run repeatable or to test timing without waiting.
-- **Avoid it when:** the real duration is the thing you need. A logical clock cannot tell you how long anything took.
+- **Úsalo cuando:** necesites ordenar eventos, repetir una ejecución con el mismo resultado o probar la temporización sin esperar.
+- **Evítalo cuando:** necesites la duración real. Un reloj lógico no te puede decir cuánto duró algo.
 
-**Read more:**
+**Lee más:**
 
-- [Logical clock](https://en.wikipedia.org/wiki/Logical_clock) (Wikipedia)
-- [Lamport timestamp](https://en.wikipedia.org/wiki/Lamport_timestamp) (Wikipedia)
+- [Reloj lógico](https://en.wikipedia.org/wiki/Logical_clock) (Wikipedia)
+- [Marca de tiempo de Lamport](https://en.wikipedia.org/wiki/Lamport_timestamp) (Wikipedia)

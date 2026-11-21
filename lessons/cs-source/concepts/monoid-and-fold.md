@@ -1,22 +1,22 @@
 ---
-title: "Monoids and folds"
+title: "Monoides y plegados"
 chapter: 4
 order: 100
 ---
-A **monoid** is a type with an *associative* combining operation and an *identity* value. Integers with `+` and `0` are a monoid. So are strings with concatenation and `""`. A **fold** (also called `reduce` or `Aggregate`) collapses a list into one value by combining the items one at a time, starting from a seed.
+Un **monoide** es un tipo con una operación de combinación *asociativa* y un valor *neutro*. Los enteros con `+` y `0` forman un monoide. También lo forman las cadenas de texto con la concatenación y `""`. Un **plegado** (también llamado `reduce` o `Aggregate`) reduce una lista a un solo valor. Parte de un valor inicial y combina los elementos uno por uno.
 
-When the operation is associative, the grouping does not matter: `(a + b) + c = a + (b + c)`. That lets a fold be split across threads, or restarted from a partial result. When there is an identity, the fold of an empty list has a sensible answer: the seed.
+Si la operación es asociativa, da igual cómo agrupes los elementos: `(a + b) + c = a + (b + c)`. Eso permite repartir un plegado entre hilos o reanudarlo desde un resultado parcial. Si hay un valor neutro, el plegado de una lista vacía tiene un resultado razonable: el valor inicial.
 
-A **scan** (`scanl` in Haskell) is a fold that keeps every partial result: `scanl (+) 0 [10,12,15]` is `[0,10,22,37]`. A running total is a scan. [[entry:haskell]] uses `scanl1` to get every running total of the card hours, then `span` to take the cards until one crosses 40. A fold gives only the last total, and cannot say where to stop. In JavaScript, `reduce` is a fold. It cannot stop early by itself, because it must walk the whole array (it has no `break`). Stopping needs `some`, `find`, a generator or a different tool. [[entry:javascript-weird]] shows each of these.
+Un **barrido** (`scanl` en Haskell) es un plegado que conserva cada resultado parcial: `scanl (+) 0 [10,12,15]` es `[0,10,22,37]`. Un total acumulado es un barrido. [[entry:haskell]] usa `scanl1` para obtener cada total acumulado de las horas de las tarjetas. Luego usa `span` para tomar tarjetas hasta la que hace que el total pase de 40. Un plegado solo da el último total y no puede indicar dónde detenerse. En JavaScript, `reduce` es un plegado. No puede detenerse antes por sí solo, porque debe recorrer todo el arreglo (no tiene `break`). Para detenerse hace falta `some`, `find`, un generador u otra herramienta. [[entry:javascript-weird]] muestra cada opción.
 
-An associative operation is not the same as a commutative one. `"ab" + "c"` is not `"c" + "ab"`. Folds over non-commutative monoids depend on order.
+Una operación asociativa difiere de una conmutativa. `"ab" + "c"` no es `"c" + "ab"`. Los plegados sobre monoides no conmutativos dependen del orden.
 
-- **Use it when:** you accumulate a result, and you want to know whether it can be split, merged or restarted.
-- **Avoid it when:** you need the first item that satisfies a test. A fold that cannot stop early does too much work, or too much of the wrong work.
+- **Úsalo cuando:** acumules un resultado y quieras saber si puedes dividirlo, combinarlo o reiniciar el cálculo.
+- **Evítalo cuando:** necesites el primer elemento que pase una prueba. Un plegado que no se puede detener antes de tiempo hace trabajo de más o hace demasiado trabajo que no sirve.
 
-**Read more:**
+**Lee más:**
 
-- [Monoid](https://en.wikipedia.org/wiki/Monoid) (Wikipedia)
-- [Fold (higher-order function)](https://en.wikipedia.org/wiki/Fold_(higher-order_function)) (Wikipedia)
-- [Prefix sum](https://en.wikipedia.org/wiki/Prefix_sum) (Wikipedia)
+- [Monoide](https://en.wikipedia.org/wiki/Monoid) (Wikipedia)
+- [Plegado (función de orden superior)](https://en.wikipedia.org/wiki/Fold_(higher-order_function)) (Wikipedia)
+- [Suma acumulada](https://en.wikipedia.org/wiki/Prefix_sum) (Wikipedia)
 - [`Array.prototype.reduce()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce) (MDN)

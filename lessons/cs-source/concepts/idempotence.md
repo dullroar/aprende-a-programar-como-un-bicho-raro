@@ -1,29 +1,29 @@
 ---
-title: "Idempotence"
+title: "Idempotencia"
 chapter: 7
 order: 90
 ---
-An operation is idempotent if doing it twice has the same effect as doing it once. It exists because networks and machines fail, and the safest recovery is "try again". If a retry is harmless, you can retry without fear. HTTP defines `PUT` and `DELETE` as idempotent (RFC 9110, section 9.2.2) and `POST` as not. In this repository the check scripts delete and recreate their scratch data, so a second run starts from the same place as the first. A build tool is the same: run `make` twice, and the second run should do nothing.
+Una operación es idempotente si hacerla dos veces tiene el mismo efecto que hacerla una vez. Las redes y las máquinas fallan. De ahí la idempotencia: la forma más segura de recuperarse es "vuelve a intentarlo". Si repetir es inocuo, puedes hacerlo sin miedo. HTTP define `PUT` y `DELETE` como idempotentes (RFC 9110, sección 9.2.2). `POST` queda fuera de esa categoría. En este repositorio, los scripts de comprobación borran y vuelven a crear sus datos temporales. Así, la segunda ejecución parte del mismo punto que la primera. Lo mismo ocurre con una herramienta de compilación. Ejecuta `make` dos veces y la segunda ejecución no debería hacer nada.
 
 ```mermaid
 flowchart TB
-    accTitle: Retrying set leaves the same state; retrying increment changes it again
-    accDescr: Two matched lanes with the same repeated command. In the idempotent lane, status is pending, then set status to done makes it done, then set status to done again leaves it still done. In the non-idempotent lane, the counter is 0, then increment makes it 1, then increment again makes it 2.
-    subgraph INC["Not idempotent: increment"]
-        C0["counter = 0"] -->|"increment"| C1["counter = 1"] -->|"increment again"| C2["counter = 2"]
+    accTitle: Volver a asignar conserva el estado y volver a incrementar lo cambia
+    accDescr: Dos recorridos paralelos repiten su respectivo comando. En el idempotente, status vale pending. Al asignarle done pasa a done. Si vuelves a asignarle done, sigue en done. En el otro, counter empieza en 0, pasa a 1 al incrementarlo y a 2 al incrementarlo otra vez.
+    subgraph INC["No idempotente: incrementar"]
+        C0["counter = 0"] -->|"incrementar"| C1["counter = 1"] -->|"volver a incrementar"| C2["counter = 2"]
     end
-    subgraph SET["Idempotent: set"]
-        S0["status = pending"] -->|"set status = done"| S1["status = done"] -->|"set done again"| S2["still done"]
+    subgraph SET["Idempotente: asignar"]
+        S0["status = pending"] -->|"asignar done a status"| S1["status = done"] -->|"reasignar done"| S2["sigue en done"]
     end
 ```
 
-For an operation `f` on a state `s`, idempotence means `f(f(s)) = f(s)`. The question is what the second call does to the *state*, not whether the two return values match. Compare the clock in [[referential-transparency]]: calling `now()` twice can give different answers, but that alone does not make it non-idempotent, because it changes nothing.
+Para una operación `f` sobre un estado `s`, la idempotencia significa `f(f(s)) = f(s)`. Fíjate en qué le hace la segunda llamada al *estado*, en vez de fijarte en si los dos valores de retorno coinciden. Compara con el reloj de [[referential-transparency]]. Llamar a `now()` dos veces puede dar respuestas distintas. Eso por sí solo no le quita la idempotencia, porque no cambia nada.
 
-- **Use it when:** you design an API, a job queue or a deployment script.
-- **Avoid assuming it:** "add one to the counter" is not idempotent. When an operation cannot be, give each request a unique key and ignore repeats.
+- **Úsala cuando:** diseñes una API, una cola de trabajos o un script de despliegue.
+- **Evita darla por sentada:** "suma uno al contador" no es idempotente. Si la operación no puede serlo, asigna a cada solicitud una clave única e ignora las repeticiones.
 
-**Read more:**
+**Lee más:**
 
-- [Idempotence](https://en.wikipedia.org/wiki/Idempotence) (Wikipedia)
-- [Idempotent](https://developer.mozilla.org/en-US/docs/Glossary/Idempotent) (MDN glossary)
-- [RFC 9110, section 9.2.2: idempotent methods](https://www.rfc-editor.org/rfc/rfc9110)
+- [Idempotencia](https://en.wikipedia.org/wiki/Idempotence) (Wikipedia)
+- [Idempotente](https://developer.mozilla.org/en-US/docs/Glossary/Idempotent) (glosario de MDN)
+- [RFC 9110, sección 9.2.2: métodos idempotentes](https://www.rfc-editor.org/rfc/rfc9110)

@@ -1,0 +1,43 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lessons/cs-source/concepts/leaky-abstraction.md:2
+msgctxt "s-829dc37b8dd0-0000"
+msgid "Leaky abstractions"
+msgstr "Abstracciones con fugas"
+
+#: lessons/cs-source/concepts/leaky-abstraction.md:6
+msgctxt "s-639791ef6d8d-0001"
+msgid "An abstraction hides details so that you can think at a higher level. A *leaky* abstraction lets the hidden details show through when something goes wrong, or when speed matters. Joel Spolsky named the \"Law of Leaky Abstractions\" in 2002: every non-trivial abstraction leaks, at least a little. This book is a collection of leaks, found on purpose. \"Matching text\" leaks its backtracking cost. A build tool's \"dependency\" leaks file timestamps. LINQ's \"query\" leaks the limits of its SQL provider. You do not need to give up the abstraction. You need to know one layer below it."
+msgstr "Una abstracción oculta detalles para que puedas pensar a un nivel más alto. Una abstracción *con fugas* deja ver lo que oculta cuando algo falla o cuando importa la velocidad. En 2002 Joel Spolsky acuñó la \"ley de las abstracciones con fugas\": toda abstracción no trivial deja escapar algo, al menos un poco. Este libro es una colección de fugas que buscamos a propósito. La \"búsqueda de coincidencias de texto\" deja entrever el costo del retroceso. Una \"dependencia\" de una herramienta de compilación deja ver las marcas de tiempo de los archivos. La \"consulta\" de LINQ deja ver los límites de su proveedor de SQL. Puedes seguir usando la abstracción. Solo necesitas conocer la capa que tiene debajo."
+
+#: lessons/cs-source/concepts/leaky-abstraction.md:8
+msgctxt "s-8c08d8d2c35f-0002"
+msgid "**Use it when:** you learn a tool: ask \"what is under this, and when will it show?\""
+msgstr "**Úsala cuando:** aprendas a manejar una herramienta. Pregúntate \"¿qué tiene debajo y cuándo se dejará ver?\"."
+
+#: lessons/cs-source/concepts/leaky-abstraction.md:9
+msgctxt "s-f2037341daef-0003"
+msgid "**Avoid it when:** correctness depends on a leak you cannot document."
+msgstr "**Evita depender de una fuga cuando:** de ella dependa la corrección y no puedas documentarla."
+
+#: lessons/cs-source/concepts/leaky-abstraction.md:11
+msgctxt "s-250de292f56f-0004"
+msgid "**Read more:**"
+msgstr "**Lee más:**"
+
+#: lessons/cs-source/concepts/leaky-abstraction.md:13
+msgctxt "s-dd3c1fff4508-0005"
+msgid "[Leaky abstraction](⟦DEST_0001⟧) (Wikipedia)"
+msgstr "[Abstracción con fugas](⟦DEST_0001⟧) (Wikipedia)"
+
+#: lessons/cs-source/concepts/leaky-abstraction.md:14
+msgctxt "s-a12b292d00b7-0006"
+msgid "[Abstraction (computer science)](⟦DEST_0001⟧)) (Wikipedia)"
+msgstr "[Abstracción (informática)](⟦DEST_0001⟧)) (Wikipedia)"

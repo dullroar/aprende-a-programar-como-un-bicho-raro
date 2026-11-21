@@ -1,0 +1,117 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lessons/cs-source/concepts/monoid-and-fold.md:2
+msgctxt "s-eb9ea424deb0-0000"
+msgid "Monoids and folds"
+msgstr "Monoides y plegados"
+
+#: lessons/cs-source/concepts/monoid-and-fold.md:6
+msgctxt "s-dfbd9b2a6c3b-0001"
+msgid ""
+"A **monoid** is a type with an *associative* combining operation and an "
+"*identity* value. Integers with ⟦CODE_0001⟧ and ⟦CODE_0002⟧ are a monoid. So"
+" are strings with concatenation and ⟦CODE_0003⟧. A **fold** (also called "
+"⟦CODE_0004⟧ or ⟦CODE_0005⟧) collapses a list into one value by combining the"
+" items one at a time, starting from a seed."
+msgstr ""
+"Un **monoide** es un tipo con una operación de combinación *asociativa* y un"
+" valor *neutro*. Los enteros con ⟦CODE_0001⟧ y ⟦CODE_0002⟧ forman un "
+"monoide. También lo forman las cadenas de texto con la concatenación y "
+"⟦CODE_0003⟧. Un **plegado** (también llamado ⟦CODE_0004⟧ o ⟦CODE_0005⟧) "
+"reduce una lista a un solo valor. Parte de un valor inicial y combina los "
+"elementos uno por uno."
+
+#: lessons/cs-source/concepts/monoid-and-fold.md:8
+msgctxt "s-dd65241f412c-0002"
+msgid ""
+"When the operation is associative, the grouping does not matter: "
+"⟦CODE_0001⟧. That lets a fold be split across threads, or restarted from a "
+"partial result. When there is an identity, the fold of an empty list has a "
+"sensible answer: the seed."
+msgstr ""
+"Si la operación es asociativa, da igual cómo agrupes los elementos: "
+"⟦CODE_0001⟧. Eso permite repartir un plegado entre hilos o reanudarlo desde "
+"un resultado parcial. Si hay un valor neutro, el plegado de una lista vacía "
+"tiene un resultado razonable: el valor inicial."
+
+#: lessons/cs-source/concepts/monoid-and-fold.md:10
+msgctxt "s-1c1cd2a53b12-0003"
+msgid ""
+"A **scan** (⟦CODE_0001⟧ in Haskell) is a fold that keeps every partial "
+"result: ⟦CODE_0002⟧ is ⟦CODE_0003⟧. A running total is a scan. ⟦MACRO_0004⟧ "
+"uses ⟦CODE_0005⟧ to get every running total of the card hours, then "
+"⟦CODE_0006⟧ to take the cards until one crosses 40. A fold gives only the "
+"last total, and cannot say where to stop. In JavaScript, ⟦CODE_0007⟧ is a "
+"fold. It cannot stop early by itself, because it must walk the whole array "
+"(it has no ⟦CODE_0008⟧). Stopping needs ⟦CODE_0009⟧, ⟦CODE_0010⟧, a "
+"generator or a different tool. ⟦MACRO_0011⟧ shows each of these."
+msgstr ""
+"Un **barrido** (⟦CODE_0001⟧ en Haskell) es un plegado que conserva cada "
+"resultado parcial: ⟦CODE_0002⟧ es ⟦CODE_0003⟧. Un total acumulado es un "
+"barrido. ⟦MACRO_0004⟧ usa ⟦CODE_0005⟧ para obtener cada total acumulado de "
+"las horas de las tarjetas. Luego usa ⟦CODE_0006⟧ para tomar tarjetas hasta "
+"la que hace que el total pase de 40. Un plegado solo da el último total y no"
+" puede indicar dónde detenerse. En JavaScript, ⟦CODE_0007⟧ es un plegado. No"
+" puede detenerse antes por sí solo, porque debe recorrer todo el arreglo (no"
+" tiene ⟦CODE_0008⟧). Para detenerse hace falta ⟦CODE_0009⟧, ⟦CODE_0010⟧, un "
+"generador u otra herramienta. ⟦MACRO_0011⟧ muestra cada opción."
+
+#: lessons/cs-source/concepts/monoid-and-fold.md:12
+msgctxt "s-fd77e3c9573a-0004"
+msgid ""
+"An associative operation is not the same as a commutative one. ⟦CODE_0001⟧ "
+"is not ⟦CODE_0002⟧. Folds over non-commutative monoids depend on order."
+msgstr ""
+"Una operación asociativa difiere de una conmutativa. ⟦CODE_0001⟧ no es "
+"⟦CODE_0002⟧. Los plegados sobre monoides no conmutativos dependen del orden."
+
+#: lessons/cs-source/concepts/monoid-and-fold.md:14
+msgctxt "s-76695d691af2-0005"
+msgid ""
+"**Use it when:** you accumulate a result, and you want to know whether it "
+"can be split, merged or restarted."
+msgstr ""
+"**Úsalo cuando:** acumules un resultado y quieras saber si puedes dividirlo,"
+" combinarlo o reiniciar el cálculo."
+
+#: lessons/cs-source/concepts/monoid-and-fold.md:15
+msgctxt "s-01b23f1143a6-0006"
+msgid ""
+"**Avoid it when:** you need the first item that satisfies a test. A fold "
+"that cannot stop early does too much work, or too much of the wrong work."
+msgstr ""
+"**Evítalo cuando:** necesites el primer elemento que pase una prueba. Un "
+"plegado que no se puede detener antes de tiempo hace trabajo de más o hace "
+"demasiado trabajo que no sirve."
+
+#: lessons/cs-source/concepts/monoid-and-fold.md:17
+msgctxt "s-250de292f56f-0007"
+msgid "**Read more:**"
+msgstr "**Lee más:**"
+
+#: lessons/cs-source/concepts/monoid-and-fold.md:19
+msgctxt "s-e5ad837b2bac-0008"
+msgid "[Monoid](⟦DEST_0001⟧) (Wikipedia)"
+msgstr "[Monoide](⟦DEST_0001⟧) (Wikipedia)"
+
+#: lessons/cs-source/concepts/monoid-and-fold.md:20
+msgctxt "s-42aa66eec6fb-0009"
+msgid "[Fold (higher-order function)](⟦DEST_0001⟧)) (Wikipedia)"
+msgstr "[Plegado (función de orden superior)](⟦DEST_0001⟧)) (Wikipedia)"
+
+#: lessons/cs-source/concepts/monoid-and-fold.md:21
+msgctxt "s-93d9e96f6bee-0010"
+msgid "[Prefix sum](⟦DEST_0001⟧) (Wikipedia)"
+msgstr "[Suma acumulada](⟦DEST_0001⟧) (Wikipedia)"
+
+#: lessons/cs-source/concepts/monoid-and-fold.md:22
+msgctxt "s-14ec97c50809-0011"
+msgid "[⟦CODE_0001⟧](⟦DEST_0002⟧) (MDN)"
+msgstr "[⟦CODE_0001⟧](⟦DEST_0002⟧) (MDN)"

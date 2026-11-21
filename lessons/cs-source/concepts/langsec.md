@@ -1,15 +1,15 @@
 ---
-title: "Language-theoretic security"
+title: "Seguridad basada en teoría de lenguajes"
 chapter: 5
 order: 100
 ---
-Language-theoretic security (LangSec) is a way of thinking about security. Every input format is a formal language, and the code that reads it is that language's recognizer. Many attacks work because two parsers read the same bytes differently, or because the input language is so powerful that no one can say what it will do. The advice follows from that: keep formats simple (see [[turing-completeness]]), parse completely *before* acting and use one well-tested parser. It also criticizes the old "robustness principle", *be liberal in what you accept*, because being liberal creates more meanings for the same bytes. The IETF has revisited that principle too.
+La seguridad basada en teoría de lenguajes (LangSec) es una forma de pensar en la seguridad. Cada formato de entrada de datos es un lenguaje formal: el código que lo lee es el encargado de reconocerlo. Muchos ataques funcionan porque dos analizadores sintácticos leen los mismos bytes de forma distinta. Otros funcionan porque el lenguaje de entrada es tan potente que nadie puede decir qué hará. De ahí el consejo: mantén los formatos simples (consulta [[turing-completeness]]) y termina todo el análisis sintáctico *antes* de actuar. Usa un solo analizador sintáctico bien probado. Este enfoque también critica el viejo "principio de robustez", *sé flexible con lo que aceptas*, porque la flexibilidad da más significados a los mismos bytes. El IETF también ha vuelto a examinar ese principio.
 
-- **Use it when:** you design a file format, a protocol or an API, or you review code that reads input.
-- **Avoid it when:** the design would require accepting "almost valid" input or mixing parsing with processing.
+- **Úsala cuando:** diseñes un formato de archivo, un protocolo o una API o revises código que lee una entrada de datos.
+- **Evítala cuando:** el diseño exija aceptar una entrada de datos "casi válida" o mezclar el análisis sintáctico con el procesamiento.
 
-**Read more:**
+**Lee más:**
 
-- [Language-theoretic security](https://en.wikipedia.org/wiki/Language-theoretic_security) (Wikipedia)
-- [Robustness principle](https://en.wikipedia.org/wiki/Robustness_principle) (Wikipedia)
-- [RFC 9413: Maintaining Robust Protocols](https://www.rfc-editor.org/rfc/rfc9413), a modern IETF view of the principle
+- [Seguridad basada en teoría de lenguajes](https://en.wikipedia.org/wiki/Language-theoretic_security) (Wikipedia)
+- [Principio de robustez](https://en.wikipedia.org/wiki/Robustness_principle) (Wikipedia)
+- [RFC 9413: Cómo mantener protocolos robustos](https://www.rfc-editor.org/rfc/rfc9413), la visión moderna del principio según el IETF

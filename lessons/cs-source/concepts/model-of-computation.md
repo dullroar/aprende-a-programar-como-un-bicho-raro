@@ -1,17 +1,17 @@
 ---
-title: "Models of computation"
+title: "Modelos de cómputo"
 chapter: 2
 order: 10
 applies-to: has:machine
-applies-because: "Each of these entries states, in its machine and state fields, what kind of machine it really is and where its state lives, which is the habit this concept teaches."
+applies-because: "Cada una de estas entradas indica en sus campos machine y state qué clase de máquina es en realidad y dónde vive su estado. Ese es el hábito que enseña este concepto."
 ---
-A model of computation is a precise description of what "computing" means: what one step is, and what memory exists. It exists because you cannot prove anything about "a computer" in general. You need rules small enough to reason about. Then you can ask: what can this model compute, and how fast? Famous models are the Turing machine, the lambda calculus, register machines and string-rewriting systems. This chapter uses a simple habit: **name the machine**. When a regex engine, a build tool or a markup file starts to compute, ask what kind of machine it has become.
+Un modelo de cómputo describe con precisión qué significa "computar": en qué consiste un paso y qué memoria existe. No puedes demostrar nada sobre "una computadora" en términos generales. Por eso necesitas reglas sencillas que te permitan razonar. Entonces puedes preguntar "¿qué puede calcular este modelo y con qué rapidez?". Algunos modelos conocidos son la máquina de Turing, el cálculo lambda, las máquinas de registros y los sistemas de reescritura de cadenas de texto. En este capítulo seguimos un hábito sencillo: **nombra la máquina**. Cuando un motor de expresiones regulares, una herramienta de compilación o un archivo de marcado empiece a computar, pregunta en qué clase de máquina se ha convertido.
 
-- **Use it when:** you want to explain what a strange system really is, or to argue that it can (or cannot) do something.
-- **Avoid it when:** you need to describe actual hardware. A Turing machine has an infinite tape. Your laptop does not.
+- **Úsalo cuando:** quieras explicar qué es en realidad un sistema insólito o argumentar que puede o no puede hacer algo.
+- **Evítalo cuando:** necesites describir hardware real. Una máquina de Turing tiene una cinta infinita. Tu computadora portátil no.
 
-**Read more:**
+**Lee más:**
 
-- [Model of computation](https://en.wikipedia.org/wiki/Model_of_computation) (Wikipedia)
-- [Abstract machine](https://en.wikipedia.org/wiki/Abstract_machine) (Wikipedia)
-- [Church–Turing thesis](https://en.wikipedia.org/wiki/Church%E2%80%93Turing_thesis) (Wikipedia)
+- [Modelo de cómputo](https://en.wikipedia.org/wiki/Model_of_computation) (Wikipedia)
+- [Máquina abstracta](https://en.wikipedia.org/wiki/Abstract_machine) (Wikipedia)
+- [Tesis de Church–Turing](https://en.wikipedia.org/wiki/Church%E2%80%93Turing_thesis) (Wikipedia)

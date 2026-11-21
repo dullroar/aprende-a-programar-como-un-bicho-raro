@@ -1,0 +1,48 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lessons/cs-source/concepts/operational-semantics.md:2
+msgctxt "s-21daf70a2b60-0000"
+msgid "Operational semantics"
+msgstr "Semántica operacional"
+
+#: lessons/cs-source/concepts/operational-semantics.md:6
+msgctxt "s-da8aaf1c09cc-0001"
+msgid "**Operational semantics** says what a program means by saying how it runs: what a machine's *state* is, and what *one step* does to it. A language is then a set of rules of the form \"in this state, this construct moves the machine to that state\". It is the most direct way to answer \"what does this actually do?\", and it is what you do when you read a program one transition at a time."
+msgstr "La **semántica operacional** explica qué significa un programa al decir cómo se ejecuta: cuál es el *estado* de una máquina y qué efecto tiene *un paso* en él. Así, un lenguaje es un conjunto de reglas como \"en este estado, esta construcción lleva la máquina a ese otro estado\". Es la forma más directa de responder \"¿qué hace esto en realidad?\". Es lo que haces cuando lees un programa una transición a la vez."
+
+#: lessons/cs-source/concepts/operational-semantics.md:8
+msgctxt "s-71f5837aae88-0002"
+msgid "Every entry that names its machine could be described this way. Three do it on the page. ⟦MACRO_0001⟧ has one row of registers (the hours worked, the target, the total, the seed, a done flag) and one transition, run once per tar checkpoint. ⟦MACRO_0002⟧ is the three clauses of a ⟦CODE_0003⟧: initialize once, then test, body, update, test, body, update. Its README traces one card through them. ⟦MACRO_0004⟧ has marks and registers as its state, and each command line moves them."
+msgstr "Puedes describir así cada entrada que nombra su máquina. Tres lo hacen en su propia página. ⟦MACRO_0001⟧ tiene una fila de registros (las horas trabajadas, el objetivo, el total, la semilla y una bandera de fin). Tiene una transición que se ejecuta una vez por cada punto de control de tar. ⟦MACRO_0002⟧ consta de las tres cláusulas de un ⟦CODE_0003⟧: inicializa una vez y después sigue con prueba, cuerpo, actualización, prueba, cuerpo, actualización. Su README sigue la traza de una tarjeta a través de esos pasos. ⟦MACRO_0004⟧ tiene como estado las marcas y los registros. Cada línea de comandos cambia ese estado."
+
+#: lessons/cs-source/concepts/operational-semantics.md:10
+msgctxt "s-e0cc4b3fb9f7-0003"
+msgid "**Use it when:** you must explain, or check, exactly what a strange construct does. Write down the state and the step, and run it by hand."
+msgstr "**Úsala cuando:** debas explicar o comprobar con exactitud qué hace una construcción extraña. Escribe el estado y el paso. Después ejecútalo a mano."
+
+#: lessons/cs-source/concepts/operational-semantics.md:11
+msgctxt "s-bbc11d7249dc-0004"
+msgid "**Avoid it when:** you need to compare programs by what they compute and not by how. Then you want a semantics that ignores the steps."
+msgstr "**Evítala cuando:** necesites comparar programas por lo que calculan y no por cómo lo calculan. En ese caso, usa una semántica que ignore los pasos."
+
+#: lessons/cs-source/concepts/operational-semantics.md:13
+msgctxt "s-250de292f56f-0005"
+msgid "**Read more:**"
+msgstr "**Lee más:**"
+
+#: lessons/cs-source/concepts/operational-semantics.md:15
+msgctxt "s-4655c5217e8b-0006"
+msgid "[Operational semantics](⟦DEST_0001⟧) (Wikipedia)"
+msgstr "[Semántica operacional](⟦DEST_0001⟧) (Wikipedia)"
+
+#: lessons/cs-source/concepts/operational-semantics.md:16
+msgctxt "s-1bb721e4edad-0007"
+msgid "[Transition system](⟦DEST_0001⟧) (Wikipedia)"
+msgstr "[Sistema de transiciones](⟦DEST_0001⟧) (Wikipedia)"

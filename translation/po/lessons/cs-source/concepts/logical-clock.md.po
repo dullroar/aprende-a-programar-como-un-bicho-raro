@@ -1,0 +1,48 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lessons/cs-source/concepts/logical-clock.md:2
+msgctxt "s-8a3f04a2a107-0000"
+msgid "Logical clocks and event ordering"
+msgstr "Relojes lógicos y orden de los eventos"
+
+#: lessons/cs-source/concepts/logical-clock.md:6
+msgctxt "s-e0704355f88e-0001"
+msgid "A **logical clock** counts *events*, not seconds. It answers \"what happened before what?\" and \"how many steps have passed?\" without asking how long anything took. Distributed systems use logical clocks because real clocks on different machines disagree. A program can also use one on a single machine, to make its behavior independent of speed."
+msgstr "Un **reloj lógico** cuenta *eventos* en vez de segundos. Responde \"¿qué ocurrió antes que qué?\" y \"¿cuántos pasos han pasado?\" sin preguntar cuánto duró nada. Los sistemas distribuidos usan relojes lógicos porque los relojes reales de distintas máquinas discrepan. Un programa también puede usar uno en una sola máquina para que su comportamiento no dependa de la velocidad."
+
+#: lessons/cs-source/concepts/logical-clock.md:8
+msgctxt "s-3508b0eac80f-0002"
+msgid "In ⟦MACRO_0001⟧ one tar checkpoint is one hour of work. The clock is the number of records tar has written, and ⟦CODE_0002⟧ predicts the result of a run from the archive's layout alone. A faster or a slower machine makes no difference. A longer archive gives more ticks, a shorter one stalls the program, and a different checkpoint interval changes the count in a way the check calculates in advance. One detail is easy to miss: ⟦CODE_0003⟧ counts *records* (with ⟦CODE_0004⟧ it reads 2, 4, 6), while the machine counts *calls*. They are two clocks, and the entry says which one it uses. ⟦MACRO_0005⟧ has a counter of a similar kind: ⟦CODE_0006⟧ counts rounds of the build, not time."
+msgstr "En ⟦MACRO_0001⟧, un punto de control de tar equivale a una hora de trabajo. El reloj es el número de registros que tar ha escrito. ⟦CODE_0002⟧ predice el resultado de una ejecución solo a partir de la disposición del archivo. Da igual si la máquina es más rápida o más lenta. Un archivo más largo da más pulsos y uno más corto atasca el programa. Otro intervalo entre puntos de control cambia el recuento y la comprobación calcula de antemano ese cambio. Hay un detalle que es fácil pasar por alto. ⟦CODE_0003⟧ cuenta *registros* (con ⟦CODE_0004⟧ lee 2, 4, 6), mientras que la máquina cuenta *llamadas*. Son dos relojes y la entrada dice cuál usa. ⟦MACRO_0005⟧ tiene un contador similar. ⟦CODE_0006⟧ cuenta rondas de compilación en vez de tiempo."
+
+#: lessons/cs-source/concepts/logical-clock.md:10
+msgctxt "s-6b2e8a7409c5-0003"
+msgid "**Use it when:** you need to order events, to make a run repeatable or to test timing without waiting."
+msgstr "**Úsalo cuando:** necesites ordenar eventos, repetir una ejecución con el mismo resultado o probar la temporización sin esperar."
+
+#: lessons/cs-source/concepts/logical-clock.md:11
+msgctxt "s-8bbdeffb0570-0004"
+msgid "**Avoid it when:** the real duration is the thing you need. A logical clock cannot tell you how long anything took."
+msgstr "**Evítalo cuando:** necesites la duración real. Un reloj lógico no te puede decir cuánto duró algo."
+
+#: lessons/cs-source/concepts/logical-clock.md:13
+msgctxt "s-250de292f56f-0005"
+msgid "**Read more:**"
+msgstr "**Lee más:**"
+
+#: lessons/cs-source/concepts/logical-clock.md:15
+msgctxt "s-ad289340572d-0006"
+msgid "[Logical clock](⟦DEST_0001⟧) (Wikipedia)"
+msgstr "[Reloj lógico](⟦DEST_0001⟧) (Wikipedia)"
+
+#: lessons/cs-source/concepts/logical-clock.md:16
+msgctxt "s-111ba70e9a2a-0007"
+msgid "[Lamport timestamp](⟦DEST_0001⟧) (Wikipedia)"
+msgstr "[Marca de tiempo de Lamport](⟦DEST_0001⟧) (Wikipedia)"

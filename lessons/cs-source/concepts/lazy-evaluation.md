@@ -1,35 +1,35 @@
 ---
-title: "Lazy evaluation"
+title: "Evaluación perezosa"
 chapter: 4
 order: 30
 ---
-Lazy evaluation delays a computation until its result is needed, and then remembers the answer. The waiting computation is called a *thunk*. It exists so that you can describe the *whole* answer and then take only what you want. In [[entry:haskell]] one `span` over an infinite lazy list is the entire stop rule. The price is that "when does this run?" becomes hard to answer. In [[entry:haskell-weird]] the list elements perform input and output, so *reading the list* is what does the work. Reading too early or too late changes the result.
+La evaluación perezosa aplaza un cálculo hasta que se necesita su resultado. Entonces guarda la respuesta. El cálculo pendiente se llama *thunk*. Así puedes describir la respuesta *entera* y tomar solo lo que quieres. En [[entry:haskell]], un solo `span` sobre una lista perezosa infinita es toda la regla de parada. El precio es que cuesta responder "¿cuándo se ejecuta esto?". En [[entry:haskell-weird]], los elementos de la lista realizan operaciones de entrada de datos y salida. Así que el trabajo se hace al *leer la lista*. Leer demasiado pronto o demasiado tarde cambia el resultado.
 
 ```mermaid
 flowchart TB
-    accTitle: Lazy evaluation turns possible work into deferred work, and only demanded parts become real
-    accDescr: Three columns, one for each cell of a list. Cell A starts as a thunk. The first demand evaluates it to 19, and the value is stored and shared for later use. Cell B starts as a thunk. The second demand evaluates it to 23, and the value is stored. Cell C starts as a thunk, is never demanded, and is never evaluated.
-    subgraph C["Cell C"]
+    accTitle: Evaluación perezosa: el trabajo se aplaza y solo se realiza lo que se pide
+    accDescr: Tres columnas, una por cada celda de una lista. La celda A empieza como un thunk. La primera demanda lo evalúa a 19. El valor se guarda y se comparte para usarlo después. La celda B empieza como un thunk. La segunda demanda lo evalúa a 23 y guarda el valor. La celda C empieza como un thunk. Nadie lo pide y nunca se evalúa.
+    subgraph C["Celda C"]
         direction TB
-        c1["thunk"] -.->|"no demand"| c2["never evaluated"]
+        c1["thunk"] -.->|"sin demanda"| c2["sin evaluar"]
     end
-    subgraph B["Cell B"]
+    subgraph B["Celda B"]
         direction TB
-        b1["thunk"] -->|"2nd demand"| b2["evaluate: 23"] --> b3["23, stored"]
+        b1["thunk"] -->|"2.ª demanda"| b2["evalúa a 23"] --> b3["23, guardado"]
     end
-    subgraph A["Cell A"]
+    subgraph A["Celda A"]
         direction TB
-        a1["thunk"] -->|"1st demand"| a2["evaluate: 19"] --> a3["19, stored and shared"]
+        a1["thunk"] -->|"1.ª demanda"| a2["evalúa a 19"] --> a3["19, guardado y compartido"]
     end
 ```
 
-A thunk is a promise to compute a value. Demanding a cell runs its thunk once and stores the value, so a second demand for `A` costs nothing. Cell `C` is never demanded, so its work never happens. Storing the value is part of lazy evaluation in the strict sense. A pipeline that only delays work, such as a generator, may compute the same value again on each pass. See [[generators]].
+Un thunk promete calcular un valor. La demanda de una celda ejecuta una vez su thunk y guarda el valor. Así que otra demanda de `A` no tiene costo. Nadie pide la celda `C` y su cálculo nunca se hace. Guardar el valor es parte de la evaluación perezosa en sentido estricto. Una canalización que solo aplaza el trabajo, como un generador, puede volver a calcular el mismo valor en cada pasada. Consulta [[generators]].
 
-- **Use it when:** the code is pure (no effects), you want infinite sequences or some results may not be needed.
-- **Avoid it when:** effects are involved, or when memory matters. A pile of unevaluated thunks can use a lot of it (a *space leak*).
+- **Úsala cuando:** el código sea puro (sin efectos), quieras secuencias infinitas o quizá no necesites ciertos resultados.
+- **Evítala cuando:** haya efectos o importe el uso de memoria. Una pila de thunks sin evaluar puede usar mucha memoria (una *fuga de espacio*).
 
-**Read more:**
+**Lee más:**
 
-- [Lazy evaluation](https://en.wikipedia.org/wiki/Lazy_evaluation) (Wikipedia)
+- [Evaluación perezosa](https://en.wikipedia.org/wiki/Lazy_evaluation) (Wikipedia)
 - [Thunk](https://en.wikipedia.org/wiki/Thunk) (Wikipedia)
-- [Graph reduction](https://en.wikipedia.org/wiki/Graph_reduction) (Wikipedia)
+- [Reducción de grafos](https://en.wikipedia.org/wiki/Graph_reduction) (Wikipedia)

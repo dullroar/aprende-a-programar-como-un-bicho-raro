@@ -1,0 +1,43 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lessons/cs-source/concepts/invariant.md:2
+msgctxt "s-5de0e9744c29-0000"
+msgid "Invariants"
+msgstr "Invariantes"
+
+#: lessons/cs-source/concepts/invariant.md:6
+msgctxt "s-35d10f7e2351-0001"
+msgid "An invariant is a fact that stays true at every step. It exists because you cannot test every possible state of a program, but you *can* prove two things: the fact is true at the start, and every step keeps it true. Then it is true forever. In this repository a database rule such as ⟦CODE_0001⟧ is an invariant of the data: a non-demo row cannot exist. Each ⟦CODE_0002⟧ tries to break it, to show that the rule is real. Loop invariants work the same way: \"the total so far equals the sum of the cards drawn\"."
+msgstr "Una invariante es un hecho que sigue siendo cierto en cada paso. No puedes probar todos los estados posibles de un programa. Pero *sí* puedes demostrar dos cosas: el hecho es cierto al inicio y cada paso lo mantiene cierto. Entonces lo es para siempre. En este repositorio, una regla de la base de datos como ⟦CODE_0001⟧ es una invariante de los datos. No puede existir una fila ajena a la demostración. Cada ⟦CODE_0002⟧ intenta romper la invariante para demostrar que la regla se cumple. Las invariantes de bucle funcionan igual: \"el total hasta ahora equivale a la suma de las tarjetas que ya sacaste\"."
+
+#: lessons/cs-source/concepts/invariant.md:8
+msgctxt "s-a13450727ebb-0002"
+msgid "**Use it when:** you design a loop, a data schema, a concurrent algorithm or an assertion."
+msgstr "**Úsala cuando:** diseñes un bucle, un esquema de datos, un algoritmo concurrente o una aserción."
+
+#: lessons/cs-source/concepts/invariant.md:9
+msgctxt "s-36e6cfafb826-0003"
+msgid "**Avoid it when:** the claim cannot be checked or is too weak to help."
+msgstr "**Evítala cuando:** no puedas comprobar la afirmación o sea demasiado débil para servir."
+
+#: lessons/cs-source/concepts/invariant.md:11
+msgctxt "s-250de292f56f-0004"
+msgid "**Read more:**"
+msgstr "**Lee más:**"
+
+#: lessons/cs-source/concepts/invariant.md:13
+msgctxt "s-3dbd1a07f8f2-0005"
+msgid "[Invariant (computer science)](⟦DEST_0001⟧)) (Wikipedia)"
+msgstr "[Invariante (informática)](⟦DEST_0001⟧)) (Wikipedia)"
+
+#: lessons/cs-source/concepts/invariant.md:14
+msgctxt "s-9b43c21e1237-0006"
+msgid "[Loop invariant](⟦DEST_0001⟧) (Wikipedia)"
+msgstr "[Invariante de bucle](⟦DEST_0001⟧) (Wikipedia)"

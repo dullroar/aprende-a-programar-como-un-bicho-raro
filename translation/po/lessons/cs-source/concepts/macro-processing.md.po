@@ -1,0 +1,161 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lessons/cs-source/concepts/macro-processing.md:2
+msgctxt "s-2d52a289f330-0000"
+msgid "Macros and text expansion"
+msgstr "Macros y expansión de texto"
+
+#: lessons/cs-source/concepts/macro-processing.md:6
+msgctxt "s-f93ab99438ed-0001"
+msgid ""
+"A macro is a name that is replaced by text, or by code, *before* the real "
+"language sees it. The C preprocessor is the best-known one. m4 is a general "
+"macro processor. Lisp macros work on code as data, not as text. They exist "
+"to let you build abstractions that functions cannot: repeated boilerplate, "
+"new syntax, code generated at compile time. ⟦MACRO_0001⟧ has no loop "
+"statement and no variable. It builds a loop from a macro whose replacement "
+"text contains itself, so the output is scanned again. ⟦MACRO_0002⟧ uses a "
+"⟦CODE_0003⟧ macro to write five similar classes and methods, at compile "
+"time."
+msgstr ""
+"Una macro es un nombre que se sustituye por texto o código *antes* de que lo"
+" vea el lenguaje propiamente dicho. El preprocesador de C es el ejemplo más "
+"conocido. m4 es un procesador de macros de propósito general. Las macros de "
+"Lisp tratan el código como datos, en vez de texto. Permiten crear "
+"abstracciones fuera del alcance de las funciones: plantillas repetitivas, "
+"sintaxis nueva y código generado durante la compilación. ⟦MACRO_0001⟧ no "
+"tiene sentencias de bucle ni variables. Arma un bucle con una macro que "
+"aparece en su propio texto de reemplazo. Así, el analizador vuelve a leer la"
+" salida. ⟦MACRO_0002⟧ usa una macro ⟦CODE_0003⟧ para escribir cinco clases y"
+" métodos similares durante la compilación."
+
+#: lessons/cs-source/concepts/macro-processing.md:10
+msgctxt "s-bc9836cae7f3-0002"
+msgid ""
+"Macro expansion becomes computation when expanded text is read again and can"
+" trigger further expansion"
+msgstr ""
+"La expansión de macros se vuelve cómputo cuando la salida se vuelve a leer y"
+" puede causar otra expansión"
+
+#: lessons/cs-source/concepts/macro-processing.md:11
+msgctxt "s-e05a4d17fd89-0003"
+msgid ""
+"A feedback loop. The scanner reads input text such as LOOP(3). If the text "
+"is not a macro call, it is copied to the output. If it is a macro call, the "
+"expander substitutes the replacement text, which can contain another macro "
+"call such as LOOP(2). An arrow sends the expanded text back to the scanner, "
+"which reads it again. Expansion continues until the replacement text holds "
+"no more macro calls, so only plain text reaches the output."
+msgstr ""
+"Un bucle de retroalimentación. El analizador lee texto de entrada de datos "
+"como LOOP(3). Si el texto no es una llamada a una macro, lo copia a la "
+"salida. Si lo es, el expansor pone en su lugar el texto de reemplazo. Ese "
+"texto puede contener otra llamada a una macro, como LOOP(2). Una flecha "
+"devuelve el texto expandido al analizador, que lo lee otra vez. La expansión"
+" sigue hasta que no quedan llamadas a macros en el texto de reemplazo. Así, "
+"solo llega texto simple a la salida."
+
+#: lessons/cs-source/concepts/macro-processing.md:12
+msgctxt "s-6f1a6fd57c00-0004"
+msgid "Input text: LOOP(3)"
+msgstr "Texto de entrada de datos: LOOP(3)"
+
+#: lessons/cs-source/concepts/macro-processing.md:12
+msgctxt "s-82b2f47b87e4-0005"
+msgid "Scanner reads the text"
+msgstr "El analizador lee el texto"
+
+#: lessons/cs-source/concepts/macro-processing.md:13
+msgctxt "s-5d444c100afe-0006"
+msgid "Is it a macro call?"
+msgstr "¿Llamada a una macro?"
+
+#: lessons/cs-source/concepts/macro-processing.md:14
+msgctxt "s-84fbba99cf25-0007"
+msgid "no: copy it"
+msgstr "no: copiar"
+
+#: lessons/cs-source/concepts/macro-processing.md:14
+msgctxt "s-41d52a55d0b3-0008"
+msgid "Plain text output"
+msgstr "Salida de texto simple"
+
+#: lessons/cs-source/concepts/macro-processing.md:15
+msgctxt "s-8a798890fe93-0009"
+msgid "yes"
+msgstr "sí"
+
+#: lessons/cs-source/concepts/macro-processing.md:15
+msgctxt "s-dd956f3b26ad-0010"
+msgid "Expander substitutes: body, then LOOP(2)"
+msgstr "Expansor: cuerpo, luego LOOP(2)"
+
+#: lessons/cs-source/concepts/macro-processing.md:16
+msgctxt "s-354a96f4d1b4-0011"
+msgid "expanded text is read again"
+msgstr "se vuelve a leer el texto expandido"
+
+#: lessons/cs-source/concepts/macro-processing.md:19
+msgctxt "s-dcee79740949-0012"
+msgid ""
+"The important arrow is the one that goes back. The expander does not just "
+"print its replacement text. It puts the text back in front of the scanner, "
+"so a macro call inside the replacement is expanded too. Here ⟦CODE_0001⟧ "
+"leaves ⟦CODE_0002⟧ behind, and the process ends when the replacement holds "
+"no macro call. ⟦MACRO_0003⟧ works this way. Other macro systems may not read"
+" their own output again."
+msgstr ""
+"La flecha importante es la que vuelve atrás. El expansor no se limita a "
+"imprimir el texto de reemplazo. Lo devuelve al analizador, que también "
+"expande cualquier llamada a una macro que aparezca en ese texto. Aquí "
+"⟦CODE_0001⟧ deja ⟦CODE_0002⟧. El proceso termina cuando el reemplazo queda "
+"sin llamadas a macros. ⟦MACRO_0003⟧ funciona así. Otros sistemas de macros "
+"quizá no vuelvan a leer su propia salida."
+
+#: lessons/cs-source/concepts/macro-processing.md:21
+msgctxt "s-8091ce30153d-0013"
+msgid ""
+"**Use it when:** you generate repetitive code, or define a small language on"
+" top of a bigger one."
+msgstr ""
+"**Úsalas cuando:** generes código repetitivo o definas un lenguaje pequeño "
+"sobre otro mayor."
+
+#: lessons/cs-source/concepts/macro-processing.md:22
+msgctxt "s-3f3350034cc0-0014"
+msgid ""
+"**Avoid it when:** a plain function would do. Macro bugs are hard to debug, "
+"and text macros can capture names by accident. Lisp-style *hygienic* macros "
+"reduce this danger."
+msgstr ""
+"**Evítalas cuando:** baste una función común. Cuesta depurar los bichos de "
+"las macros y las macros de texto pueden capturar nombres por accidente. Las "
+"macros *higiénicas* al estilo de Lisp reducen ese peligro."
+
+#: lessons/cs-source/concepts/macro-processing.md:24
+msgctxt "s-250de292f56f-0015"
+msgid "**Read more:**"
+msgstr "**Lee más:**"
+
+#: lessons/cs-source/concepts/macro-processing.md:26
+msgctxt "s-455536d36083-0016"
+msgid "[Macro (computer science)](⟦DEST_0001⟧)) (Wikipedia)"
+msgstr "[Macro (informática)](⟦DEST_0001⟧)) (Wikipedia)"
+
+#: lessons/cs-source/concepts/macro-processing.md:27
+msgctxt "s-6ee3d50a6b21-0017"
+msgid "[M4 (computer language)](⟦DEST_0001⟧)) (Wikipedia)"
+msgstr "[M4 (lenguaje de programación)](⟦DEST_0001⟧)) (Wikipedia)"
+
+#: lessons/cs-source/concepts/macro-processing.md:28
+msgctxt "s-e78c8f669c41-0018"
+msgid "[Hygienic macro](⟦DEST_0001⟧) (Wikipedia)"
+msgstr "[Macro higiénica](⟦DEST_0001⟧) (Wikipedia)"
