@@ -145,27 +145,27 @@ msgstr "La ejecución diferida y el truco de convertir void en valor"
 #: lessons/languages/csharp-linq-xaml.md:53
 msgctxt "s-2c138c1938d5-0027"
 msgid "A note before the code: the two LINQ entries are **not** the shared challenge. They draw no random hours. Their work week is five fixed 8-hour days, capped so that the total is exactly 40.0 hours and no card crosses the line, because they teach deferred execution rather than the stop rule."
-msgstr ""
+msgstr "Una nota antes del código: las dos entradas LINQ **no** son el reto compartido. No extraen horas aleatorias. Su semana laboral tiene cinco días fijos de 8 horas. El límite deja el total en exactamente 40.0 horas y ninguna tarjeta cruza el límite. Estas entradas enseñan la ejecución diferida, no la regla de parada."
 
 #: lessons/languages/csharp-linq-xaml.md:55
 msgctxt "s-c7cc8fb427fd-0028"
 msgid "LinqChallenge1: one fluent chain"
-msgstr ""
+msgstr "LinqChallenge1: una cadena fluida"
 
 #: lessons/languages/csharp-linq-xaml.md:57
 msgctxt "s-ceb775c33ee9-0029"
 msgid "One ⟦CODE_0001⟧-terminated expression statement, built from LINQ calls, starting at [⟦CODE_0002⟧ L45](⟦DEST_0003⟧) and ending in ⟦CODE_0004⟧ that forces the lazy tail. Stages:"
-msgstr ""
+msgstr "Una sentencia de expresión terminada en ⟦CODE_0001⟧ se construye con llamadas LINQ. Empieza en [⟦CODE_0002⟧ L45](⟦DEST_0003⟧) y termina en ⟦CODE_0004⟧, que fuerza la cola diferida. Etapas:"
 
 #: lessons/languages/csharp-linq-xaml.md:59
 msgctxt "s-c3a1316c7911-0030"
 msgid "⟦SEP_0001⟧ Stage ⟦SEP_0002⟧ Operator ⟦SEP_0003⟧ Lesson ⟦SEP_0004⟧"
-msgstr ""
+msgstr "⟦SEP_0001⟧ Etapa ⟦SEP_0002⟧ Operador ⟦SEP_0003⟧ Lección ⟦SEP_0004⟧"
 
 #: lessons/languages/csharp-linq-xaml.md:61
 msgctxt "s-267bb87d1c30-0031"
 msgid "⟦SEP_0005⟧ 1 ⟦SEP_0006⟧ ⟦CODE_0001⟧ over a fixed work week, ⟦CODE_0002⟧ inside ⟦CODE_0003⟧ ⟦SEP_0007⟧ ⟦CODE_0004⟧ is **eager**; it runs first. ⟦SEP_0008⟧"
-msgstr ""
+msgstr "⟦SEP_0005⟧ 1 ⟦SEP_0006⟧ ⟦CODE_0001⟧ sobre una semana laboral fija, ⟦CODE_0002⟧ dentro de ⟦CODE_0003⟧ ⟦SEP_0007⟧ ⟦CODE_0004⟧ es de **evaluación inmediata**; se ejecuta primero. ⟦SEP_0008⟧"
 
 #: lessons/languages/csharp-linq-xaml.md:62
 msgctxt "s-31647e0aaf4e-0032"

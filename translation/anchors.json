@@ -4150,8 +4150,8 @@
     {
      "en": "LinqChallenge1: one fluent chain",
      "en_id": "linqchallenge1-one-fluent-chain",
-     "es": "LinqChallenge1: one fluent chain",
-     "es_id": "linqchallenge1-one-fluent-chain",
+     "es": "LinqChallenge1: una cadena fluida",
+     "es_id": "linqchallenge1-una-cadena-fluida",
      "level": 3,
      "line": 55
     },
@@ -4335,7 +4335,7 @@
     "how-each-program-runs": "how-each-program-runs",
     "how-is-that-even-possible": "how-is-that-even-possible",
     "how-the-hell-does-that-work": "cómo-demonios-funciona-eso",
-    "linqchallenge1-one-fluent-chain": "linqchallenge1-one-fluent-chain",
+    "linqchallenge1-one-fluent-chain": "linqchallenge1-una-cadena-fluida",
     "linqchallenge2-query-syntax-all-the-way-down": "linqchallenge2-query-syntax-all-the-way-down",
     "now-break-it-yourself": "now-break-it-yourself",
     "program-flow-of-gochallenge1": "program-flow-of-gochallenge1",

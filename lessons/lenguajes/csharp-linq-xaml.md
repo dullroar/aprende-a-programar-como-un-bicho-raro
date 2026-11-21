@@ -50,15 +50,15 @@ Usos legítimos: ninguno para el encabezado tal como está escrito. Las *ideas* 
 
 ## La ejecución diferida y el truco de convertir void en valor
 
-A note before the code: the two LINQ entries are **not** the shared challenge. They draw no random hours. Their work week is five fixed 8-hour days, capped so that the total is exactly 40.0 hours and no card crosses the line, because they teach deferred execution rather than the stop rule.
+Una nota antes del código: las dos entradas LINQ **no** son el reto compartido. No extraen horas aleatorias. Su semana laboral tiene cinco días fijos de 8 horas. El límite deja el total en exactamente 40.0 horas y ninguna tarjeta cruza el límite. Estas entradas enseñan la ejecución diferida, no la regla de parada.
 
-### LinqChallenge1: one fluent chain
+### LinqChallenge1: una cadena fluida
 
-One `;`-terminated expression statement, built from LINQ calls, starting at [`Program.cs` L45](../../src/LinqChallenge1/Program.cs#L45) and ending in `.Aggregate(...)` that forces the lazy tail. Stages:
+Una sentencia de expresión terminada en `;` se construye con llamadas LINQ. Empieza en [`Program.cs` L45](../../src/LinqChallenge1/Program.cs#L45) y termina en `.Aggregate(...)`, que fuerza la cola diferida. Etapas:
 
-| Stage | Operator | Lesson |
+| Etapa | Operador | Lección |
 | --- | --- | --- |
-| 1 | `Aggregate` over a fixed work week, `ctx.Add(...)` inside `new Func<...>(() => {...}).Invoke()` | `Aggregate` is **eager**; it runs first. |
+| 1 | `Aggregate` sobre una semana laboral fija, `ctx.Add(...)` dentro de `new Func<...>(() => {...}).Invoke()` | `Aggregate` es de **evaluación inmediata**; se ejecuta primero. |
 | tuple | `(..., ctx.SaveChanges())` ([L66-68](../../src/LinqChallenge1/Program.cs#L66-L68)) | Tuple elements evaluate **left to right**, which sequences the save after every entity is tracked. |
 | 2 | `Enumerable.Repeat(x, 1).SelectMany(...)` and `.AsEnumerable()` ([L72-78](../../src/LinqChallenge1/Program.cs#L72-L78)) | The `IQueryable<T>` to `IEnumerable<T>` boundary: EF translates `Where/OrderBy/Select` to SQL, and `AsEnumerable()` is where it stops. |
 | 3-5 | `Aggregate`, `Select` builds the WPF window, `Select` pulses and calls `Application.Run()` | Lazy `Select` stages do nothing until enumerated. |
