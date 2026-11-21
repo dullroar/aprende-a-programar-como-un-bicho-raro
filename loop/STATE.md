@@ -1,9 +1,9 @@
 # loop/STATE.md (keep to 60 lines; refreshed by every iteration)
 
 - **Edition:** v4-es.0-rc1 (working)    **English SHA:** 48a4429c0a22b2aac628b256a50c07d1816bcb80
-- **Iteration:** 122    **Stage:** 4 (bulk translation)    **Last result:** iter 122 P4-src-15 done (Tcl and XAML READMEs).
-- **Tasks:** todo 74 | doing 0 | done 92 | blocked 0 | skipped 0 (recount with the queue files)
-- **Next task:** P4-chk-1 (entry README editorial checkpoint).
+- **Iteration:** 123    **Stage:** 4 (bulk translation)    **Last result:** iter 123 P4-chk-1 done (entry README editorial checkpoint).
+- **Tasks:** todo 73 | doing 0 | done 93 | blocked 0 | skipped 0 (recount with the queue files)
+- **Next task:** P4-lessons-cs-source-1, after the external review and removal of `loop/STOP`. See `review/CHECKPOINT-entry-READMEs.md`.
 - **Budget:** driver-reported $89.4099 of $100 through the Claude run, with Codex session cost unavailable
 - **Translate progress:** segments accepted 2974 / total 8827 (7394 prose + 1433 Mermaid labels) ; files done 46 / 212 (recounted nonempty, non-fuzzy PO entries and complete files). Latest: src/tcl-weird, src/tcl and src/xaml READMEs.
 - **Last audit:** P4-audit-1 (iter 112, translation/reviews/p4-audit-1.md)    **Next audit due after:** P4-lessons-cs-source-1

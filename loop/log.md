@@ -97,3 +97,4 @@
 121 P4-src-14 partial Both GNU tar READMEs applied (179 segments), humor and anchors updated, targeted and full verify --fast passed with diagrams at 9.71 pt and 11.25 pt. Git staging denied on read-only .git/index.lock; verified edits retained and task returned to todo.
 121 P4-src-14 done verified 179 GNU tar segments and both diagrams on the host, then staged and committed the preserved Codex CLI work.
 122 P4-src-15 done translated 181 Tcl and XAML README segments, recorded SI-018, regenerated anchors and relinked three files. Targeted and working-tree fast verification passed, with diagrams at 9.06, 12.00 and 9.55 pt.
+123 P4-chk-1 done release-mode checks passed for 46 translated files and the frozen lock; linked all 40 READMEs in the editorial checkpoint and set loop/STOP.
