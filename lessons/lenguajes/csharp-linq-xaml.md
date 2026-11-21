@@ -91,11 +91,11 @@ Consulta los [ejercicios](../exercises.md#b7-linq-enumerate-twice-verified).
 
 ## XAML
 
-[`xaml/Loader.cs` L10-15](../../src/xaml/Loader.cs#L10-L15) is a single expression: `new Application().Run((Window)XamlReader.Load(File.OpenRead(args[0])))`. Everything else is in the `.xaml` file, and it runs **while the file is parsed**.
+[`xaml/Loader.cs` L10-15](../../src/xaml/Loader.cs#L10-L15) es una sola expresión: `new Application().Run((Window)XamlReader.Load(File.OpenRead(args[0])))`. Todo lo demás está en el archivo `.xaml` y se ejecuta **mientras se analiza el archivo**.
 
-### How is that even possible?
+### ¿Cómo es posible siquiera?
 
-| Mechanism | Role |
+| Mecanismo | Papel |
 | --- | --- |
 | `XamlReader.Load` | the interpreter: parsing *is* running |
 | `ObjectDataProvider` | the instruction: constructs any object, calls any method, fires when parsed. Document order is the program counter. |

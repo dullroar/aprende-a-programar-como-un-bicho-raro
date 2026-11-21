@@ -265,22 +265,22 @@ msgstr "Consulta los [ejercicios](⟦DEST_0001⟧)."
 #: lessons/languages/csharp-linq-xaml.md:92
 msgctxt "s-48922183e96a-0051"
 msgid "XAML"
-msgstr ""
+msgstr "XAML"
 
 #: lessons/languages/csharp-linq-xaml.md:94
 msgctxt "s-ac8985d55fa6-0052"
 msgid "[⟦CODE_0001⟧ L10-15](⟦DEST_0002⟧) is a single expression: ⟦CODE_0003⟧. Everything else is in the ⟦CODE_0004⟧ file, and it runs **while the file is parsed**."
-msgstr ""
+msgstr "[⟦CODE_0001⟧ L10-15](⟦DEST_0002⟧) es una sola expresión: ⟦CODE_0003⟧. Todo lo demás está en el archivo ⟦CODE_0004⟧ y se ejecuta **mientras se analiza el archivo**."
 
 #: lessons/languages/csharp-linq-xaml.md:96
 msgctxt "s-b3fa9ef58de3-0053"
 msgid "How is that even possible?"
-msgstr ""
+msgstr "¿Cómo es posible siquiera?"
 
 #: lessons/languages/csharp-linq-xaml.md:98
 msgctxt "s-36a859ab3665-0054"
 msgid "⟦SEP_0001⟧ Mechanism ⟦SEP_0002⟧ Role ⟦SEP_0003⟧"
-msgstr ""
+msgstr "⟦SEP_0001⟧ Mecanismo ⟦SEP_0002⟧ Papel ⟦SEP_0003⟧"
 
 #: lessons/languages/csharp-linq-xaml.md:100
 msgctxt "s-bc5ecfa1973f-0055"
