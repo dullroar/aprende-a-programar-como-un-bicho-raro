@@ -10035,86 +10035,86 @@
     {
      "en": "COBOL, weirder",
      "en_id": "cobol-weirder",
-     "es": "COBOL, weirder",
-     "es_id": "cobol-weirder",
+     "es": "COBOL, más raro",
+     "es_id": "cobol-más-raro",
      "level": 1,
      "line": 16
     },
     {
      "en": "Run it",
      "en_id": "run-it",
-     "es": "Run it",
-     "es_id": "run-it",
+     "es": "Ejecútalo",
+     "es_id": "ejecútalo",
      "level": 2,
      "line": 26
     },
     {
      "en": "Program Flow",
      "en_id": "program-flow",
-     "es": "Program Flow",
-     "es_id": "program-flow",
+     "es": "Flujo del programa",
+     "es_id": "flujo-del-programa",
      "level": 2,
      "line": 47
     },
     {
      "en": "How the stunt works",
      "en_id": "how-the-stunt-works",
-     "es": "How the stunt works",
-     "es_id": "how-the-stunt-works",
+     "es": "Cómo funciona el truco",
+     "es_id": "cómo-funciona-el-truco",
      "level": 2,
      "line": 73
     },
     {
      "en": "What this version refuses to use, and the honest price",
      "en_id": "what-this-version-refuses-to-use-and-the-honest-price",
-     "es": "What this version refuses to use, and the honest price",
-     "es_id": "what-this-version-refuses-to-use-and-the-honest-price",
+     "es": "Qué se niega a usar esta versión y su precio real",
+     "es_id": "qué-se-niega-a-usar-esta-versión-y-su-precio-real",
      "level": 3,
      "line": 99
     },
     {
      "en": "Where the program reaches outside itself",
      "en_id": "where-the-program-reaches-outside-itself",
-     "es": "Where the program reaches outside itself",
-     "es_id": "where-the-program-reaches-outside-itself",
+     "es": "Dónde sale el programa de sí mismo",
+     "es_id": "dónde-sale-el-programa-de-sí-mismo",
      "level": 3,
      "line": 107
     },
     {
      "en": "What `check.sh` enforces",
      "en_id": "what-checksh-enforces",
-     "es": "What `check.sh` enforces",
-     "es_id": "what-checksh-enforces",
+     "es": "Qué impone `check.sh`",
+     "es_id": "qué-impone-checksh",
      "level": 2,
      "line": 111
     },
     {
      "en": "Gotchas worth knowing",
      "en_id": "gotchas-worth-knowing",
-     "es": "Gotchas worth knowing",
-     "es_id": "gotchas-worth-knowing",
+     "es": "Trampas que conviene conocer",
+     "es_id": "trampas-que-conviene-conocer",
      "level": 2,
      "line": 115
     },
     {
      "en": "Run it in a container",
      "en_id": "run-it-in-a-container",
-     "es": "Run it in a container",
-     "es_id": "run-it-in-a-container",
+     "es": "Ejecuta el programa en un contenedor",
+     "es_id": "ejecuta-el-programa-en-un-contenedor",
      "level": 2,
      "line": 123
     }
    ],
    "map": {
-    "cobol-weirder": "cobol-weirder",
-    "gotchas-worth-knowing": "gotchas-worth-knowing",
-    "how-the-stunt-works": "how-the-stunt-works",
-    "program-flow": "program-flow",
-    "run-it": "run-it",
-    "run-it-in-a-container": "run-it-in-a-container",
-    "what-checksh-enforces": "what-checksh-enforces",
-    "what-this-version-refuses-to-use-and-the-honest-price": "what-this-version-refuses-to-use-and-the-honest-price",
-    "where-the-program-reaches-outside-itself": "where-the-program-reaches-outside-itself"
+    "cobol-weirder": "cobol-más-raro",
+    "gotchas-worth-knowing": "trampas-que-conviene-conocer",
+    "how-the-stunt-works": "cómo-funciona-el-truco",
+    "program-flow": "flujo-del-programa",
+    "run-it": "ejecútalo",
+    "run-it-in-a-container": "ejecuta-el-programa-en-un-contenedor",
+    "what-checksh-enforces": "qué-impone-checksh",
+    "what-this-version-refuses-to-use-and-the-honest-price": "qué-se-niega-a-usar-esta-versión-y-su-precio-real",
+    "where-the-program-reaches-outside-itself": "dónde-sale-el-programa-de-sí-mismo"
    }
   },
   "src/cobol/README.md": {
@@ -10130,69 +10130,69 @@
     {
      "en": "Run it",
      "en_id": "run-it",
-     "es": "Run it",
-     "es_id": "run-it",
+     "es": "Ejecútalo",
+     "es_id": "ejecútalo",
      "level": 2,
      "line": 23
     },
     {
      "en": "Program Flow",
      "en_id": "program-flow",
-     "es": "Program Flow",
-     "es_id": "program-flow",
+     "es": "Flujo del programa",
+     "es_id": "flujo-del-programa",
      "level": 2,
      "line": 45
     },
     {
      "en": "How the stunt works",
      "en_id": "how-the-stunt-works",
-     "es": "How the stunt works",
-     "es_id": "how-the-stunt-works",
+     "es": "Cómo funciona el truco",
+     "es_id": "cómo-funciona-el-truco",
      "level": 2,
      "line": 63
     },
     {
      "en": "Where the program reaches outside itself",
      "en_id": "where-the-program-reaches-outside-itself",
-     "es": "Where the program reaches outside itself",
-     "es_id": "where-the-program-reaches-outside-itself",
+     "es": "Dónde accede el programa al exterior",
+     "es_id": "dónde-accede-el-programa-al-exterior",
      "level": 3,
      "line": 80
     },
     {
      "en": "What `check.sh` enforces",
      "en_id": "what-checksh-enforces",
-     "es": "What `check.sh` enforces",
-     "es_id": "what-checksh-enforces",
+     "es": "Qué impone `check.sh`",
+     "es_id": "qué-impone-checksh",
      "level": 2,
      "line": 89
     },
     {
      "en": "Gotchas worth knowing",
      "en_id": "gotchas-worth-knowing",
-     "es": "Gotchas worth knowing",
-     "es_id": "gotchas-worth-knowing",
+     "es": "Trampas que conviene conocer",
+     "es_id": "trampas-que-conviene-conocer",
      "level": 2,
      "line": 93
     },
     {
      "en": "Run it in a container",
      "en_id": "run-it-in-a-container",
-     "es": "Run it in a container",
-     "es_id": "run-it-in-a-container",
+     "es": "Ejecuta el programa en un contenedor",
+     "es_id": "ejecuta-el-programa-en-un-contenedor",
      "level": 2,
      "line": 103
     }
    ],
    "map": {
     "cobol": "cobol",
-    "gotchas-worth-knowing": "gotchas-worth-knowing",
-    "how-the-stunt-works": "how-the-stunt-works",
-    "program-flow": "program-flow",
-    "run-it": "run-it",
-    "run-it-in-a-container": "run-it-in-a-container",
-    "what-checksh-enforces": "what-checksh-enforces",
-    "where-the-program-reaches-outside-itself": "where-the-program-reaches-outside-itself"
+    "gotchas-worth-knowing": "trampas-que-conviene-conocer",
+    "how-the-stunt-works": "cómo-funciona-el-truco",
+    "program-flow": "flujo-del-programa",
+    "run-it": "ejecútalo",
+    "run-it-in-a-container": "ejecuta-el-programa-en-un-contenedor",
+    "what-checksh-enforces": "qué-impone-checksh",
+    "where-the-program-reaches-outside-itself": "dónde-accede-el-programa-al-exterior"
    }
   },
   "src/ed-weird/README.md": {
@@ -10200,95 +10200,95 @@
     {
      "en": "ed: the buffer is the machine",
      "en_id": "ed-the-buffer-is-the-machine",
-     "es": "ed: the buffer is the machine",
-     "es_id": "ed-the-buffer-is-the-machine",
+     "es": "ed: el búfer es la máquina",
+     "es_id": "ed-el-búfer-es-la-máquina",
      "level": 1,
      "line": 15
     },
     {
      "en": "Run it",
      "en_id": "run-it",
-     "es": "Run it",
-     "es_id": "run-it",
+     "es": "Ejecútalo",
+     "es_id": "ejecútalo",
      "level": 2,
      "line": 33
     },
     {
      "en": "Run it in a container",
      "en_id": "run-it-in-a-container",
-     "es": "Run it in a container",
-     "es_id": "run-it-in-a-container",
+     "es": "Ejecútalo en un contenedor",
+     "es_id": "ejecútalo-en-un-contenedor",
      "level": 2,
      "line": 47
     },
     {
      "en": "Program Flow",
      "en_id": "program-flow",
-     "es": "Program Flow",
-     "es_id": "program-flow",
+     "es": "Flujo del programa",
+     "es_id": "flujo-del-programa",
      "level": 2,
      "line": 57
     },
     {
      "en": "How the stunt works",
      "en_id": "how-the-stunt-works",
-     "es": "How the stunt works",
-     "es_id": "how-the-stunt-works",
+     "es": "Cómo funciona el truco",
+     "es_id": "cómo-funciona-el-truco",
      "level": 2,
      "line": 77
     },
     {
      "en": "Step 4: the run",
      "en_id": "step-4-the-run",
-     "es": "Step 4: the run",
-     "es_id": "step-4-the-run",
+     "es": "Paso 4: la ejecución",
+     "es_id": "paso-4-la-ejecución",
      "level": 3,
      "line": 90
     },
     {
      "en": "Why there are no `if` commands",
      "en_id": "why-there-are-no-if-commands",
-     "es": "Why there are no `if` commands",
-     "es_id": "why-there-are-no-if-commands",
+     "es": "Por qué no hay comandos `if`",
+     "es_id": "por-qué-no-hay-comandos-if",
      "level": 3,
      "line": 100
     },
     {
      "en": "Why this is weird",
      "en_id": "why-this-is-weird",
-     "es": "Why this is weird",
-     "es_id": "why-this-is-weird",
+     "es": "Por qué es raro",
+     "es_id": "por-qué-es-raro",
      "level": 2,
      "line": 116
     },
     {
      "en": "What `check.sh` enforces",
      "en_id": "what-checksh-enforces",
-     "es": "What `check.sh` enforces",
-     "es_id": "what-checksh-enforces",
+     "es": "Qué impone `check.sh`",
+     "es_id": "qué-impone-checksh",
      "level": 2,
      "line": 120
     },
     {
      "en": "Gotchas worth knowing",
      "en_id": "gotchas-worth-knowing",
-     "es": "Gotchas worth knowing",
-     "es_id": "gotchas-worth-knowing",
+     "es": "Trampas que conviene conocer",
+     "es_id": "trampas-que-conviene-conocer",
      "level": 2,
      "line": 132
     }
    ],
    "map": {
-    "ed-the-buffer-is-the-machine": "ed-the-buffer-is-the-machine",
-    "gotchas-worth-knowing": "gotchas-worth-knowing",
-    "how-the-stunt-works": "how-the-stunt-works",
-    "program-flow": "program-flow",
-    "run-it": "run-it",
-    "run-it-in-a-container": "run-it-in-a-container",
-    "step-4-the-run": "step-4-the-run",
-    "what-checksh-enforces": "what-checksh-enforces",
-    "why-there-are-no-if-commands": "why-there-are-no-if-commands",
-    "why-this-is-weird": "why-this-is-weird"
+    "ed-the-buffer-is-the-machine": "ed-el-búfer-es-la-máquina",
+    "gotchas-worth-knowing": "trampas-que-conviene-conocer",
+    "how-the-stunt-works": "cómo-funciona-el-truco",
+    "program-flow": "flujo-del-programa",
+    "run-it": "ejecútalo",
+    "run-it-in-a-container": "ejecútalo-en-un-contenedor",
+    "step-4-the-run": "paso-4-la-ejecución",
+    "what-checksh-enforces": "qué-impone-checksh",
+    "why-there-are-no-if-commands": "por-qué-no-hay-comandos-if",
+    "why-this-is-weird": "por-qué-es-raro"
    }
   },
   "src/ex-weird/README.md": {

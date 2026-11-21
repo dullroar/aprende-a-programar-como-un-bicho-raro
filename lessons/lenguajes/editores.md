@@ -33,7 +33,7 @@ Seventy lines of ed commands. A launcher that supplies five random digits and st
 - **A failed `s` is an `if`.** Inside a global command it does nothing, and does not stop the list. So each substitution means "if the line looks like this, rewrite it".
 - **The stop rule is a regular expression.** `x\{41,\}` is "41 or more marks". The bar before the marks becomes a bang, and the next card sees the bang and turns into a `Dead` line.
 
-The [README](../../src/ed-weird/README.md#how-the-stunt-works) has the full table.
+The [README](../../src/ed-weird/README.md#cómo-funciona-el-truco) has the full table.
 
 **A rewrite system with a different control.** [`regex-sed`](regex.md#gnu-sed) also rewrites text, but sed has a branch command and can loop until no rule applies. ed cannot. Its only repeat is `g`, and its only choice is a substitution that may not match.
 
@@ -108,7 +108,7 @@ Each picture below is the `## Program Flow` section of an entry's README, copied
 
 ### Program flow of `ed-weird`
 
-From [`ed-weird`](../../src/ed-weird/README.md) ([source section](../../src/ed-weird/README.md#program-flow)).
+From [`ed-weird`](../../src/ed-weird/README.md) ([source section](../../src/ed-weird/README.md#flujo-del-programa)).
 
 ```mermaid
 flowchart TD

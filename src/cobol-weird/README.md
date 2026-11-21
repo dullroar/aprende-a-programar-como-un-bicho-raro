@@ -1,6 +1,6 @@
 ---
 name: "COBOL"
-teaches: "that a program can rewrite its own control flow and that structured programming makes such changes easier to trace."
+teaches: "que un programa puede reescribir su propio flujo de control y que la programación estructurada facilita trazar esos cambios."
 kind: weird
 languages: [cobol]
 lesson: "lenguajes/cobol.md#alter"
@@ -8,24 +8,24 @@ loop-by: self-modifying-control
 evaluation: eager
 assurance: implementation-permitted
 pairs-with: cobol
-machine: "A program whose jump targets are mutable"
-state: "The target of one `GO TO`"
+machine: "Un programa cuyos destinos de salto son mutables"
+state: "El destino de un `GO TO`"
 tags: [control-flow, exception-handling, goto-and-structured-programming, program-counter, self-modifying-code, state, undefined-behavior]
 analogies: [continuation]
 ---
-# COBOL, weirder
+# COBOL, más raro
 
-**Teaches you:** that a program can rewrite its own control flow and that structured programming makes such changes easier to trace.
+**Te enseña:** que un programa puede reescribir su propio flujo de control y que la programación estructurada facilita trazar esos cambios.
 
-> **DEMO ONLY.** Fictional timecards in a scratch SQLite file. No connection to any real time-reporting system.
+> **DEMO ONLY.** Tarjetas de horas ficticias en un archivo SQLite temporal. Sin conexión con ningún sistema real de registro de horas.
 
-The [plain COBOL version](../cobol/README.md) loops with `PERFORM ... UNTIL`. This one has no `IF`, no `PERFORM`, no `EVALUATE`, no `UNTIL` and no `MOD` to rotate the categories. Control flow is `GO TO` and **`ALTER`**, a statement that changes where a `GO TO` jumps *while the program runs*. `ALTER` was declared obsolete in 1985 and deleted from the COBOL standard in 2002. GnuCOBOL still runs it, and warns five times.
+La [versión simple de COBOL](../cobol/README.md) hace un bucle con `PERFORM ... UNTIL`. Esta no tiene `IF`, `PERFORM`, `EVALUATE`, `UNTIL` ni `MOD` para rotar las categorías. El flujo de control es `GO TO` y **`ALTER`**, una sentencia que cambia el lugar al que salta un `GO TO` *mientras el programa se ejecuta*. `ALTER` se declaró obsoleto en 1985 y se eliminó del estándar de COBOL en 2002. GnuCOBOL aún lo ejecuta y emite cinco advertencias.
 
-The stop rule isn't a comparison either. It's a two-digit number overflowing.
+La regla de parada tampoco es una comparación. Es un número de dos dígitos que se desborda.
 
-## Run it
+## Ejecútalo
 
-You need GnuCOBOL (`cobc`, 3.1 or later; `sudo apt install gnucobol` on Ubuntu) and `sqlite3`.
+Necesitas GnuCOBOL (`cobc`, versión 3.1 o posterior; `sudo apt install gnucobol` en Ubuntu) y `sqlite3`.
 
 ```bash
 cd src/cobol-weird
@@ -33,7 +33,7 @@ cobc -xj timecards.cob      # compile and run; leaves a ./timecards binary (git-
 ./check.sh                  # set COBC=/path/to/cobc if it is not on your PATH
 ```
 
-Records go to `$XDG_DATA_HOME/CobolWeird/demo-timecards.db` (default `~/.local/share/CobolWeird/`). A run looks like this:
+Los registros van a `$XDG_DATA_HOME/CobolWeird/demo-timecards.db` (por defecto, `~/.local/share/CobolWeird/`). Una ejecución se ve así:
 
 ```text
 # DEMO ONLY run 2026111414014239-12663
@@ -44,18 +44,18 @@ Debugging	19	54	2026-W46	DEMO ONLY
 # no IF, no PERFORM: ALTER kept rewiring one GO TO, and a two-digit field overflowing pulled the plug
 ```
 
-## Program Flow
+## Flujo del programa
 
 ```mermaid
 stateDiagram-v2
-    accTitle: cobol-weird: the target of one GO TO is the loop
-    accDescr: A state diagram. The state is the current target of the single GO TO in the NEXT-CARD paragraph. It starts as Meetings. Each category paragraph rewrites it to the next category with ALTER, so the cycle is Meetings, Coding, Debugging, Learning, and back to Meetings. When the two-digit headroom field overflows, ON SIZE ERROR rewrites the target to FINISH-RUN, which commits the script and stops.
+    accTitle: cobol-weird: el destino de un solo GO TO es el bucle
+    accDescr: Un diagrama de estados. El estado es el destino actual del único GO TO del párrafo NEXT-CARD. Empieza como Meetings. Cada párrafo de categoría lo reescribe con ALTER para apuntar a la categoría siguiente, así que el ciclo es Meetings, Coding, Debugging, Learning y de nuevo Meetings. Cuando el campo de margen de dos dígitos se desborda, ON SIZE ERROR reescribe el destino a FINISH-RUN, que hace la confirmación de la transacción del script y se detiene.
     state "Meetings" as M
     state "Coding" as C
     state "Debugging" as D
     state "Learning" as L
     state "FINISH-RUN" as F
-    state "NEXT-CARD's GO TO jumps to" as T {
+    state "El GO TO de NEXT-CARD salta a" as T {
         [*] --> M
         M --> C : ALTER
         C --> D : ALTER
@@ -66,25 +66,25 @@ stateDiagram-v2
     F --> [*] : COMMIT, sqlite3, STOP RUN
 ```
 
-**What this shows:** the state of this program is the target of one `GO TO`. Each card, the category paragraph named by the target runs, rewrites the target with `ALTER` to the next category, and falls into `RECORD-CARD`, which jumps back to `NEXT-CARD`. The source text of that `GO TO` never changes. The jump does.
+**Qué muestra:** el estado de este programa es el destino de un solo `GO TO`. En cada tarjeta, el párrafo de categoría que indica el destino se ejecuta, reescribe el destino con `ALTER` para que apunte a la categoría siguiente y pasa a `RECORD-CARD`, que salta de nuevo a `NEXT-CARD`. El texto fuente de ese `GO TO` no cambia nunca. El salto sí cambia.
 
-**Why this mechanism matters:** there is no loop condition to draw. The exit is another rewrite: when `WS-HEADROOM` overflows, `ON SIZE ERROR` points the same `GO TO` at `FINISH-RUN`. Compare the plain [`cobol`](../cobol/README.md) entry, where a `PERFORM ... UNTIL` tests a condition.
+**Por qué importa este mecanismo:** no hay ninguna condición de bucle que dibujar. La salida es otra reescritura: cuando `WS-HEADROOM` se desborda, `ON SIZE ERROR` apunta el mismo `GO TO` a `FINISH-RUN`. Compara la entrada simple [`cobol`](../cobol/README.md), donde `PERFORM ... UNTIL` prueba una condición.
 
-## How the stunt works
+## Cómo funciona el truco
 
-COBOL paragraphs run in the order they're written, falling from one into the next, unless a `GO TO` sends control somewhere else. So [`timecards.cob`](timecards.cob) reads top to bottom: set-up paragraphs fall through into the loop, and the loop ends by jumping to the last paragraph.
+Los párrafos de COBOL se ejecutan en el orden en que están escritos. Pasan de uno al siguiente, a menos que un `GO TO` envíe el control a otra parte. Así, [`timecards.cob`](timecards.cob) se lee de arriba abajo: los párrafos de preparación continúan en el bucle y el bucle termina con un salto al último párrafo.
 
-1. **The switchboard.** The loop is one paragraph containing one statement:
+1. **La central telefónica.** El bucle es un párrafo que contiene una sentencia:
 
    ```cobol
    NEXT-CARD.
        GO TO MEETINGS-CARD.
    ```
 
-   A paragraph that is exactly one `GO TO` is the only thing `ALTER` is allowed to change. `ALTER NEXT-CARD TO PROCEED TO CODING-CARD` rewrites that `GO TO`'s target, so the next time control reaches `NEXT-CARD` it goes to `CODING-CARD` instead. The source code never changes; the running program's jump does.
-2. **The categories rotate by rewiring.** Each category's paragraph names itself, `ALTER`s `NEXT-CARD` to the category after it, and jumps to `RECORD-CARD`. Meetings points it at Coding, Coding at Debugging, Debugging at Learning, and Learning back at Meetings. Nothing counts cards modulo 4. Which category comes next exists only as the current target of one `GO TO`.
-3. **`RECORD-CARD` does one card** (draws the hours, adds them to the total, prints the row, writes the `INSERT`) and ends with `GO TO NEXT-CARD`. So the loop is: `NEXT-CARD` jumps to whichever category it currently points at, that category re-points it and runs `RECORD-CARD`, which jumps back to `NEXT-CARD`.
-4. **The tripwire is the stop rule.** `WS-HEADROOM` is `PIC 99`, two decimal digits, and starts at 59. Just before `GO TO NEXT-CARD`, each card's hours are added to it:
+   Un párrafo que es exactamente un `GO TO` es lo único que `ALTER` puede cambiar. `ALTER NEXT-CARD TO PROCEED TO CODING-CARD` reescribe el destino de ese `GO TO`, así que la próxima vez que el control llegue a `NEXT-CARD` salta a `CODING-CARD` en su lugar. El código fuente nunca cambia; lo que cambia es el salto del programa en ejecución.
+2. **Las categorías rotan por reconexión.** El párrafo de cada categoría se nombra a sí mismo, usa `ALTER` para apuntar `NEXT-CARD` a la categoría siguiente y salta a `RECORD-CARD`. Meetings lo apunta a Coding, Coding a Debugging, Debugging a Learning y Learning de vuelta a Meetings. Nada cuenta tarjetas módulo 4. La categoría siguiente existe solo como el destino actual de un `GO TO`.
+3. **`RECORD-CARD` procesa una tarjeta** (sortea las horas, las suma al total, imprime la fila, escribe `INSERT`) y termina con `GO TO NEXT-CARD`. Así que el bucle es este: `NEXT-CARD` salta a la categoría a la que apunta en ese momento, esa categoría lo vuelve a apuntar y ejecuta `RECORD-CARD`, que salta de vuelta a `NEXT-CARD`.
+4. **El cable trampa es la regla de parada.** `WS-HEADROOM` es `PIC 99`, tiene dos dígitos decimales y empieza en 59. Justo antes de `GO TO NEXT-CARD`, el programa le suma las horas de cada tarjeta:
 
    ```cobol
    ADD WS-HOURS TO WS-HEADROOM
@@ -93,39 +93,39 @@ COBOL paragraphs run in the order they're written, falling from one into the nex
    END-ADD
    ```
 
-   59 + total fits in two digits while the total is 40 or less. The add that would take it to 100 or more is a *size error*. COBOL then leaves the field unchanged and runs the `ON SIZE ERROR` clause, which `ALTER`s `NEXT-CARD` one last time, to `FINISH-RUN`. The `GO TO NEXT-CARD` that follows is the same statement as it was every earlier time, but now it ends the run. Four 10-hour cards make 59 + 40 = 99, which still fits, so a fifth card is drawn, exactly as the rule requires.
-5. **`FINISH-RUN`** commits the SQL script through `sqlite3` and prints the summary.
+   59 + total cabe en dos dígitos mientras el total no pase de 40. La suma que lo llevaría a 100 o más es un *error de tamaño*. Entonces COBOL deja el campo sin cambios y ejecuta la cláusula `ON SIZE ERROR`, que aplica `ALTER` a `NEXT-CARD` una última vez, para `FINISH-RUN`. Lo que sigue, `GO TO NEXT-CARD`, es la misma sentencia que las veces anteriores, pero ahora termina la ejecución. Cuatro tarjetas de 10 horas suman 59 + 40 = 99, que todavía cabe, así que se saca una quinta tarjeta, exactamente como exige la regla.
+5. **`FINISH-RUN`** confirma el script SQL mediante `sqlite3` e imprime el resumen.
 
-### What this version refuses to use, and the honest price
+### Qué se niega a usar esta versión y su precio real
 
-`check.sh` strips comments and string literals and then fails if `IF`, `PERFORM`, `EVALUATE`, `UNTIL`, `VARYING`, `DEPENDING`, `SEARCH` or `WHEN` appears. It also insists on exactly five `ALTER`s and exactly one `ON SIZE ERROR`. Two places still needed a decision without `IF`:
+`check.sh` elimina los comentarios y las cadenas de texto literales, y luego falla si aparece `IF`, `PERFORM`, `EVALUATE`, `UNTIL`, `VARYING`, `DEPENDING`, `SEARCH` o `WHEN`. También exige exactamente cinco `ALTER` y exactamente un `ON SIZE ERROR`. Dos lugares aún necesitaban una decisión sin `IF`:
 
-- **`ON SIZE ERROR` is a conditional.** It's the one decision in the program, and it's the stop rule itself. It's a decision triggered by arithmetic running out of digits, not by a comparison anyone wrote.
-- **Choosing the data folder.** `$XDG_DATA_HOME` if set, else `$HOME/.local/share`. Both paths go in a two-entry table, and the subscript is `1 + MIN(length of XDG_DATA_HOME, 1)`. Data picks the entry; nothing branches.
-- **A failed `sqlite3` can't skip the summary.** Without `IF`, the shell command does the reporting instead (`... || { echo ... >&2; exit 1; }`), and its exit status becomes the program's exit code, divided by 256 because `SYSTEM` returns the raw wait status. A failed run still prints the `# committed` line, but on a failed run it also prints an error on stderr and exits 1.
+- **`ON SIZE ERROR` es un condicional.** Es la única decisión del programa y es la propia regla de parada. Es una decisión que se activa cuando la aritmética se queda sin dígitos, no por una comparación que alguien escribió.
+- **Elegir la carpeta de datos.** `$XDG_DATA_HOME` si está definida; si no, `$HOME/.local/share`. Las dos rutas van en una tabla de dos entradas y el subíndice es `1 + MIN(length of XDG_DATA_HOME, 1)`. Los datos eligen la entrada; no hay ninguna rama.
+- **Cuando `sqlite3` falla, no puede omitir el resumen.** Sin `IF`, el comando del intérprete de comandos (*shell*, el programa que recibe y ejecuta comandos) hace el reporte en su lugar (`... || { echo ... >&2; exit 1; }`), y su estado de salida pasa a ser el estado de salida del programa, dividido entre 256 porque `SYSTEM` devuelve el estado de espera en bruto. Una ejecución fallida sigue imprimiendo la línea `# committed`, pero en una ejecución fallida también imprime un error en stderr y termina con 1.
 
-### Where the program reaches outside itself
+### Dónde sale el programa de sí mismo
 
-The same as the plain version: `CALL "C$GETPID"` for the run id and seed, `CALL "SYSTEM"` once for `mkdir -p` and once to run `sqlite3` on the finished script, and `CHECK(demo_only=1)` in the table, which `check.sh` tests.
+Igual que en la versión simple: `CALL "C$GETPID"` para el id de ejecución y la semilla, `CALL "SYSTEM"` una vez para `mkdir -p` y otra para ejecutar `sqlite3` sobre el script terminado y `CHECK(demo_only=1)` en la tabla, que `check.sh` prueba.
 
-## What `check.sh` enforces
+## Qué impone `check.sh`
 
-`check.sh` first checks the source. The file has the `DEMO ONLY` marker and no network-looking text, and no line goes past column 72 (fixed format). With comments and string literals removed, none of `IF`, `PERFORM`, `EVALUATE`, `UNTIL`, `VARYING`, `DEPENDING`, `SEARCH` or `WHEN` may appear. There must be exactly five `ALTER`s (four categories and the stop) and exactly one `ON SIZE ERROR` (the stop rule). It then builds the program once and runs it 25 times with the usual checks, including an ISO week that agrees with `date(1)`. SQLite must agree with the printed rows, and the runs must differ from each other. Last, it tries to insert a non-demo row and expects SQLite to refuse it, which proves that `CHECK(demo_only=1)` is real.
+`check.sh` revisa primero el código fuente. El archivo tiene el marcador `DEMO ONLY`, no contiene texto que parezca de red y ninguna línea pasa de la columna 72 (formato fijo). Una vez quitados los comentarios y las cadenas de texto literales, no debe aparecer ninguno de `IF`, `PERFORM`, `EVALUATE`, `UNTIL`, `VARYING`, `DEPENDING`, `SEARCH` ni `WHEN`. Debe haber exactamente cinco `ALTER` (cuatro categorías y la parada) y exactamente un `ON SIZE ERROR` (la regla de parada). Después compila el programa una vez y lo ejecuta 25 veces con las comprobaciones habituales, incluida una semana ISO que coincide con `date(1)`. SQLite debe coincidir con las filas impresas, y las ejecuciones deben diferir entre sí. Por último, intenta insertar una fila que no es de demostración y espera que SQLite la rechace, lo cual prueba que `CHECK(demo_only=1)` es real.
 
-## Gotchas worth knowing
+## Trampas que conviene conocer
 
-- **`ALTER` only works on a one-`GO TO` paragraph.** That's why `NEXT-CARD` has nothing else in it. Put a `DISPLAY` in there and the compiler refuses the `ALTER`.
-- **The program's state is partly in its jumps.** A debugger showing `WS-*` variables can't tell you which category is next; you have to know what `NEXT-CARD` was last altered to. This is precisely the complaint that got `ALTER` removed: you can't understand a paragraph by reading it.
-- **A size error leaves the target unchanged.** That's the standard behavior, and why `WS-HEADROOM` doesn't need resetting. Without an `ON SIZE ERROR` clause, the add would instead quietly drop the leading digit (99 + 1 = 00).
-- **`-Wall` shows five `ALTER is obsolete` warnings.** They're the point.
-- **SQL by string building is a bad habit.** It's safe here only because every value is a number computed by the program or one of four fixed words. Don't copy it.
+- **`ALTER` solo funciona con un párrafo de un solo `GO TO`.** Por eso `NEXT-CARD` no contiene nada más. Pon un `DISPLAY` ahí dentro y el compilador rechaza el `ALTER`.
+- **Parte del estado del programa está en sus saltos.** Un depurador que muestra las variables `WS-*` no puede decirte cuál es la siguiente categoría; tienes que saber a qué se alteró `NEXT-CARD` por última vez. Esta es precisamente la queja que llevó a eliminar `ALTER`: no puedes entender un párrafo leyéndolo.
+- **Un error de tamaño deja el destino sin cambios.** Es el comportamiento estándar y explica por qué `WS-HEADROOM` no necesita reiniciarse. Sin una cláusula `ON SIZE ERROR`, la suma descartaría en cambio, sin avisar, el dígito inicial (99 + 1 = 00).
+- **`-Wall` muestra cinco advertencias de `ALTER is obsolete`.** Son el objetivo.
+- **Construir SQL con cadenas de texto es un mal hábito.** Aquí es seguro solo porque cada valor es un número que calcula el programa o una de cuatro palabras fijas. No lo copies.
 
-## Run it in a container
+## Ejecuta el programa en un contenedor
 
-Prerequisite: Docker, set up once as described in [`SANDBOX-SETUP.md`](../../SANDBOX-SETUP.md#docker).
+Requisito previo: Docker, configurado una sola vez como se describe en [`SANDBOX-SETUP.md`](../../SANDBOX-SETUP.md#docker).
 
 ```bash
 sandbox/container/run-image.sh src/cobol-weird
 ```
 
-It builds this folder's [`Dockerfile`](Dockerfile) and runs the result with no network, a read-only file system and user `nobody`, then prints the output and a read-only look at the rows it wrote. The image holds the compiled program, GnuCOBOL's runtime library (libcob) and sqlite3 on a minimal Ubuntu. It has no compiler and no package manager.
+Compila el [`Dockerfile`](Dockerfile) de esta carpeta y ejecuta el resultado sin red, con un sistema de archivos de solo lectura y el usuario `nobody`. Después imprime la salida y una vista de solo lectura de las filas que escribió. La imagen contiene el programa compilado, la biblioteca de ejecución de GnuCOBOL (libcob) y sqlite3 sobre un Ubuntu mínimo. No tiene compilador ni administrador de paquetes.

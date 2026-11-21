@@ -110,3 +110,20 @@
 {"id":"EXC-110","segment":"s-3b27faace16f-0050","invariant":"I7","reason":"'It builds' is the verb (builds the Dockerfile into an image), not the noun build/compilation","task":"P4-src-4"}
 {"id":"EXC-111","segment":"s-7521aed02166-0025","invariant":"I7","reason":"'the condition can build its subject string' is the verb build (construir), not the noun build/compilation","task":"P4-src-4"}
 {"id":"EXC-112","segment":"s-aa6263ba863c-0017","invariant":"I9","reason":"Mermaid label 'while: total <= LIMIT?' is code (the keyword while and the variable names LIMIT, total) kept literal; only the question marks are punctuation, written as ¿...?","task":"P4-src-4"}
+{"id":"EXC-113","segment":"s-42d048695631-0014","invariant":"I7","reason":"card appears only inside the COBOL paragraph identifier NEXT-CARD, which stays literal","task":"P4-src-5"}
+{"id":"EXC-114","segment":"s-02aa4cc4fe71-0016","invariant":"I7","reason":"card appears only inside the identifier NEXT-CARD in a diagram label, which stays literal","task":"P4-src-5"}
+{"id":"EXC-115","segment":"s-5669695a70a5-0021","invariant":"I9","reason":"diagram label made only of COBOL statement keywords (ON SIZE ERROR, ALTER); code is never translated","task":"P4-src-5"}
+{"id":"EXC-116","segment":"s-16d8bd9c4202-0022","invariant":"I9","reason":"diagram label made only of code tokens (COMMIT, sqlite3, STOP RUN); code is never translated","task":"P4-src-5"}
+{"id":"EXC-117","segment":"s-771ea7627f5f-0038","invariant":"I7","reason":"builds is a verb here (the check script compiles and runs the program), not the noun build","task":"P4-src-5"}
+{"id":"EXC-118","segment":"s-97e3efd9e54c-0047","invariant":"I7","reason":"builds is a verb here (the script compiles the Dockerfile image), not the noun build","task":"P4-src-5"}
+{"id":"EXC-119","segment":"s-2c871c0a2b8c-0015","invariant":"I10","reason":"OVER-FORTY? is a COBOL condition-name identifier whose literal question mark is part of the code token, not a Spanish question","task":"P4-src-5"}
+{"id":"EXC-120","segment":"s-e270bb9c0ef9-0017","invariant":"I7","reason":"card appears only inside the paragraph identifier DRAW-CARD, which stays literal","task":"P4-src-5"}
+{"id":"EXC-121","segment":"s-8063f52f8de4-0021","invariant":"I7","reason":"diagram label made only of COBOL statement tokens (DISPLAY summary, STOP RUN); code is never translated","task":"P4-src-5"}
+{"id":"EXC-122","segment":"s-2aa973d41fd3-0035","invariant":"I7","reason":"builds is a verb here (the check script compiles and runs the program), not the noun build","task":"P4-src-5"}
+{"id":"EXC-123","segment":"s-97e3efd9e54c-0046","invariant":"I7","reason":"builds is a verb here (the script compiles the Dockerfile image), not the noun build","task":"P4-src-5"}
+{"id":"EXC-124","segment":"s-9c1623f0d38e-0000","invariant":"I9","reason":"heading is the command name ed, a program name that stays literal","task":"P4-src-5"}
+{"id":"EXC-125","segment":"s-5cc7aa1a3d20-0014","invariant":"I7","reason":"builds is a verb here (the script compiles the Dockerfile image), not the noun build","task":"P4-src-5"}
+{"id":"EXC-126","segment":"s-4aafa852326a-0024","invariant":"I10","reason":"! is the literal ed marker character in a diagram label, not an exclamation","task":"P4-src-5"}
+{"id":"EXC-127","segment":"s-955323dc2296-0059","invariant":"I3","reason":"1,024 is written 1024 in Spanish (no thousands separator on four digits); the check splits the English token at the comma","task":"P4-src-5"}
+{"id":"EXC-128","segment":"s-79842337c7f3-0034","invariant":"I7","reason":"exit code is the glossary term exit-status (estado de salida), whose banned rendering is código de salida; the bare word code is not the standalone term code here","task":"P4-src-5"}
+{"id":"EXC-129","segment":"s-8063f52f8de4-0021","invariant":"I9","reason":"diagram label made only of COBOL statement tokens (DISPLAY summary, STOP RUN); code is never translated","task":"P4-src-5"}

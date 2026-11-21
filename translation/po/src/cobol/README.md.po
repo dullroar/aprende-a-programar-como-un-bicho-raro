@@ -1,0 +1,253 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/cobol/README.md:2
+msgctxt "s-d29900b5259d-0000"
+msgid "COBOL"
+msgstr "COBOL"
+
+#: src/cobol/README.md:3
+msgctxt "s-7c9d548b4f3c-0001"
+msgid "that a stop rule can be declared as data, and that a number's picture can do your rounding."
+msgstr "que una regla de parada se puede declarar como datos y que la *picture* de un número puede encargarse de tu redondeo."
+
+#: src/cobol/README.md:11
+msgctxt "s-a0c407920910-0002"
+msgid "Ordinary: a structured ⟦CODE_0001⟧ loop that asks the data for the stop rule"
+msgstr "Ordinario: un bucle estructurado ⟦CODE_0001⟧ que pide a los datos la regla de parada"
+
+#: src/cobol/README.md:12
+msgctxt "s-f56dcc193d33-0003"
+msgid "⟦CODE_0001⟧ and its 88-level name ⟦CODE_0002⟧"
+msgstr "⟦CODE_0001⟧ y su nombre de nivel 88 ⟦CODE_0002⟧"
+
+#: src/cobol/README.md:15
+msgctxt "s-d29900b5259d-0004"
+msgid "COBOL"
+msgstr "COBOL"
+
+#: src/cobol/README.md:17
+msgctxt "s-e30cffb0bb3c-0005"
+msgid "**Teaches you:** that a stop rule can be declared as data, and that a number's picture can do your rounding."
+msgstr "**Te enseña:** que una regla de parada se puede declarar como datos, y que la imagen de un número puede encargarse de tu redondeo."
+
+#: src/cobol/README.md:19
+msgctxt "s-5ca333b42af1-0006"
+msgid "**⟦DNT_0001⟧.** Fictional timecards in a scratch SQLite file. No connection to any real time-reporting system."
+msgstr "**⟦DNT_0001⟧.** Tarjetas de horas ficticias en un archivo SQLite temporal. No tienen conexión con ningún sistema real de registro de horas."
+
+#: src/cobol/README.md:21
+msgctxt "s-8a69fc69a5cf-0007"
+msgid "COBOL (1959) was built for exactly this kind of program: records, totals and a report. The challenge (\"add 10 to 19 hour cards until the total passes 40\") is one statement in the ⟦CODE_0001⟧, ⟦CODE_0002⟧. The rule itself isn't in the procedure code at all. ⟦CODE_0003⟧ is declared in the ⟦CODE_0004⟧, on the total."
+msgstr "COBOL (1959) se diseñó justo para este tipo de programa: registros, totales y un informe. El reto (\"suma tarjetas de 10 a 19 horas hasta que el total pase de 40\") es una sola sentencia en ⟦CODE_0001⟧, ⟦CODE_0002⟧. La regla en sí no aparece en absoluto en el código de procedimiento. ⟦CODE_0003⟧ se declara en ⟦CODE_0004⟧, sobre el total."
+
+#: src/cobol/README.md:23
+msgctxt "s-958ca26c6a61-0008"
+msgid "Run it"
+msgstr "Ejecútalo"
+
+#: src/cobol/README.md:25
+msgctxt "s-c562b3b15d91-0009"
+msgid "You need GnuCOBOL (⟦CODE_0001⟧, 3.1 or later; ⟦CODE_0002⟧ on Ubuntu) and ⟦CODE_0003⟧."
+msgstr "Necesitas GnuCOBOL (⟦CODE_0001⟧, versión 3.1 o posterior; ⟦CODE_0002⟧ en Ubuntu) y ⟦CODE_0003⟧."
+
+#: src/cobol/README.md:33
+msgctxt "s-a6f00d066fd4-0010"
+msgid "Records go to ⟦CODE_0001⟧ (default ⟦CODE_0002⟧). A run looks like this:"
+msgstr "Los registros van a ⟦CODE_0001⟧ (por defecto, ⟦CODE_0002⟧). Una ejecución se ve así:"
+
+#: src/cobol/README.md:45
+msgctxt "s-0dcb373c2dff-0011"
+msgid "Program Flow"
+msgstr "Flujo del programa"
+
+#: src/cobol/README.md:49
+msgctxt "s-67a1ffce7515-0012"
+msgid "cobol: PERFORM UNTIL with the stop rule declared as data"
+msgstr "cobol: PERFORM UNTIL con la regla de parada declarada como datos"
+
+#: src/cobol/README.md:50
+msgctxt "s-030edbd243c5-0013"
+msgid "A flowchart. Set-up and open-script run once. Then PERFORM DRAW-CARD repeats until the 88-level condition OVER-FORTY, declared on WS-TOTAL, is true. Each pass draws a card, adds its hours to the total, prints the row and writes an INSERT line. When OVER-FORTY is true the loop ends, the script is committed with sqlite3, and the run stops."
+msgstr "Un diagrama de flujo. Set-up y open-script se ejecutan una sola vez. Después, PERFORM DRAW-CARD se repite hasta que la condición de nivel 88 OVER-FORTY, declarada sobre WS-TOTAL, sea verdadera. Cada pasada toma una tarjeta, suma sus horas al total, imprime la fila y escribe una línea INSERT. Cuando OVER-FORTY es verdadera, el bucle termina, el script se confirma con sqlite3 y la ejecución se detiene."
+
+#: src/cobol/README.md:51
+msgctxt "s-bdc2991591ee-0014"
+msgid "SET-UP, OPEN-SCRIPT: seed, ISO week, folder, SQL file"
+msgstr "SET-UP, OPEN-SCRIPT: semilla, semana ISO, carpeta, archivo SQL"
+
+#: src/cobol/README.md:51
+msgctxt "s-2c871c0a2b8c-0015"
+msgid "OVER-FORTY? WS-TOTAL in 41 to 99"
+msgstr "OVER-FORTY? WS-TOTAL de 41 a 99"
+
+#: src/cobol/README.md:52
+msgctxt "s-1ea442a134b2-0016"
+msgid "No"
+msgstr "No"
+
+#: src/cobol/README.md:52
+msgctxt "s-e270bb9c0ef9-0017"
+msgid "DRAW-CARD: category from MOD of WS-ENTRIES, hours, ADD to WS-TOTAL"
+msgstr "DRAW-CARD: categoría a partir de MOD de WS-ENTRIES, horas, ADD a WS-TOTAL"
+
+#: src/cobol/README.md:53
+msgctxt "s-aa81c155fb8f-0018"
+msgid "DISPLAY the row, WRITE the INSERT line"
+msgstr "Muestra la fila con DISPLAY y escribe la línea INSERT con WRITE"
+
+#: src/cobol/README.md:55
+msgctxt "s-85a39ab345d6-0019"
+msgid "Yes"
+msgstr "Sí"
+
+#: src/cobol/README.md:55
+msgctxt "s-13ee30c89efb-0020"
+msgid "COMMIT-SCRIPT: run sqlite3"
+msgstr "COMMIT-SCRIPT: ejecuta sqlite3"
+
+#: src/cobol/README.md:56
+msgctxt "s-8063f52f8de4-0021"
+msgid "DISPLAY summary, STOP RUN"
+msgstr "DISPLAY summary, STOP RUN"
+
+#: src/cobol/README.md:59
+msgctxt "s-f147bc981918-0022"
+msgid "**What this shows:** a conventional structured loop. ⟦CODE_0001⟧ tests the condition before every pass, so the test is a real node and the cycle is a real edge."
+msgstr "**Qué muestra:** un bucle estructurado convencional. ⟦CODE_0001⟧ evalúa la condición antes de cada pasada, así que la prueba es un nodo real y el ciclo es una arista real."
+
+#: src/cobol/README.md:61
+msgctxt "s-8871d02accbb-0023"
+msgid "**Why this mechanism matters:** the stop rule is data, not code. ⟦CODE_0001⟧ is an 88-level name for the values 41 to 99 of ⟦CODE_0002⟧, so the loop asks the data whether to go on. The weird sibling [⟦CODE_0003⟧](⟦DEST_0004⟧) has no such test."
+msgstr "**Por qué importa este mecanismo:** la regla de parada son datos, no código. ⟦CODE_0001⟧ es un nombre de nivel 88 para los valores de 41 a 99 de ⟦CODE_0002⟧, así que el bucle pregunta a los datos si debe continuar. El hermano raro [⟦CODE_0003⟧](⟦DEST_0004⟧) no tiene esa prueba."
+
+#: src/cobol/README.md:63
+msgctxt "s-7f97d965b4c0-0024"
+msgid "How the stunt works"
+msgstr "Cómo funciona el truco"
+
+#: src/cobol/README.md:65
+msgctxt "s-5524be5310cd-0025"
+msgid "A COBOL program has four *divisions*, always in the same order: ⟦CODE_0001⟧ (its name), ⟦CODE_0002⟧ (which files it uses), ⟦CODE_0003⟧ (every variable, with its exact shape) and ⟦CODE_0004⟧ (the code). Read [⟦CODE_0005⟧](⟦DEST_0006⟧) top to bottom with this beside it."
+msgstr "Un programa COBOL tiene cuatro *divisiones*, siempre en el mismo orden: ⟦CODE_0001⟧ (su nombre), ⟦CODE_0002⟧ (qué archivos usa), ⟦CODE_0003⟧ (cada variable, con su forma exacta) y ⟦CODE_0004⟧ (el código). Lee [⟦CODE_0005⟧](⟦DEST_0006⟧) de arriba abajo con esto al lado."
+
+#: src/cobol/README.md:67
+msgctxt "s-61f56b630a24-0026"
+msgid "**The stop rule is data.** In the ⟦CODE_0001⟧:"
+msgstr "**La regla de parada es un dato.** En ⟦CODE_0001⟧:"
+
+#: src/cobol/README.md:74
+msgctxt "s-5ac255e45990-0027"
+msgid ""
+"⟦CODE_0001⟧ (\"picture\") says the total is exactly two decimal digits. The ⟦CODE_0002⟧ line under it is a *condition name*. It doesn't store anything. It names a range of ⟦CODE_0003⟧'s values, and using ⟦CODE_0004⟧ anywhere asks whether the total is currently in that range. So the loop, ⟦CODE_0005⟧, holds no comparison. Change the rule and you edit the data description, not the code.\n"
+"2. **The picture does the rounding.** ⟦CODE_0006⟧ produces something from 10.0 to 19.99. ⟦CODE_0007⟧ is ⟦CODE_0008⟧, two digits with no decimal places, so storing into it simply drops the fraction. Nothing calls a floor function: the field's shape gives 10 to 19. COBOL arithmetic is decimal, not binary floating point, which is why money still runs on it.\n"
+"3. **One string, seen twice.** The four category names are four 9-character ⟦CODE_0009⟧s in ⟦CODE_0010⟧. ⟦CODE_0011⟧ lays a second description over the same 36 bytes: ⟦CODE_0012⟧, an array. ⟦CODE_0013⟧ picks ⟦CODE_0014⟧. COBOL subscripts start at 1.\n"
+"4. **The SQL is a record file.** ⟦CODE_0015⟧ declares a file whose name is in a variable, and ⟦CODE_0016⟧ describes its record: one 400-character line. The program ⟦CODE_0017⟧s a ⟦CODE_0018⟧, a ⟦CODE_0019⟧, one ⟦CODE_0020⟧ per card and a ⟦CODE_0021⟧ to it, ⟦CODE_0022⟧s it, and only then hands the whole script to ⟦CODE_0023⟧. So every run lands in one transaction, or not at all.\n"
+"5. **The ISO week is arithmetic.** COBOL has date functions but no ISO week. ⟦CODE_0024⟧ counts days from 1601-01-01, which was a Monday, so ⟦CODE_0025⟧ is 0 on Mondays. An ISO week belongs to the year its Thursday falls in, and week 1 is the one holding that year's first Thursday. ⟦CODE_0026⟧ is those two facts in four ⟦CODE_0027⟧s. It was checked against ⟦CODE_0028⟧ for every day from 2020 to 2030, including the week-53 years, and ⟦CODE_0029⟧ compares it again on every run."
+msgstr ""
+"⟦CODE_0001⟧ (\"picture\") dice que el total tiene exactamente dos dígitos decimales. La línea ⟦CODE_0002⟧ que va debajo es un *nombre de condición*. No almacena nada. Nombra un rango de valores de ⟦CODE_0003⟧, y usar ⟦CODE_0004⟧ en cualquier parte pregunta si el total está ahora en ese rango. Así, el bucle, ⟦CODE_0005⟧, no contiene ninguna comparación. Si cambias la regla, editas la descripción de los datos, no el código.\n"
+"2. **La *picture* hace el redondeo.** ⟦CODE_0006⟧ produce un valor de 10.0 a 19.99. ⟦CODE_0007⟧ es ⟦CODE_0008⟧, dos dígitos sin decimales, así que almacenar en él simplemente descarta la fracción. Nada llama a una función de redondeo hacia abajo: la forma del campo da de 10 a 19 horas por tarjeta. La aritmética de COBOL es decimal, no de punto flotante binario, y por eso el dinero aún funciona con ella.\n"
+"3. **Una cadena de texto, vista dos veces.** Los cuatro nombres de categoría son cuatro ⟦CODE_0009⟧ de 9 caracteres en ⟦CODE_0010⟧. ⟦CODE_0011⟧ superpone una segunda descripción sobre los mismos 36 bytes: ⟦CODE_0012⟧, un arreglo. ⟦CODE_0013⟧ elige ⟦CODE_0014⟧. Los subíndices de COBOL empiezan en 1.\n"
+"4. **El SQL es un archivo de registros.** ⟦CODE_0015⟧ declara un archivo cuyo nombre está en una variable, y ⟦CODE_0016⟧ describe su registro: una línea de 400 caracteres. El programa escribe en él con ⟦CODE_0017⟧ un ⟦CODE_0018⟧, un ⟦CODE_0019⟧, un ⟦CODE_0020⟧ por tarjeta y un ⟦CODE_0021⟧, lo cierra con ⟦CODE_0022⟧ y solo entonces entrega todo el script a ⟦CODE_0023⟧. Así, cada ejecución queda en una transacción o no queda en ninguna.\n"
+"5. **La semana ISO es aritmética.** COBOL tiene funciones de fecha, pero ninguna de semana ISO. ⟦CODE_0024⟧ cuenta los días desde 1601-01-01, que fue lunes, así que ⟦CODE_0025⟧ es 0 los lunes. Una semana ISO pertenece al año en que cae su jueves, y la semana 1 es la que contiene el primer jueves de ese año. ⟦CODE_0026⟧ expresa esos dos hechos en cuatro ⟦CODE_0027⟧. Se comprobó contra ⟦CODE_0028⟧ para todos los días de 2020 a 2030, incluidos los años de 53 semanas, y ⟦CODE_0029⟧ lo compara de nuevo en cada ejecución."
+
+#: src/cobol/README.md:80
+msgctxt "s-b1ce1f2a2969-0028"
+msgid "Where the program reaches outside itself"
+msgstr "Dónde accede el programa al exterior"
+
+#: src/cobol/README.md:82
+msgctxt "s-17e874d84940-0029"
+msgid "⟦SEP_0001⟧ Line ⟦SEP_0002⟧ Why ⟦SEP_0003⟧"
+msgstr "⟦SEP_0001⟧ Línea ⟦SEP_0002⟧ Por qué ⟦SEP_0003⟧"
+
+#: src/cobol/README.md:84
+msgctxt "s-8012d8aed038-0030"
+msgid "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ The process id, added to the timestamp for the run id, so two runs in the same hundredth of a second still differ. Also mixed into the random seed ⟦SEP_0004⟧"
+msgstr "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ El identificador del proceso, que se suma a la marca de tiempo para formar el identificador de la ejecución, de modo que dos ejecuciones en la misma centésima de segundo sigan siendo distintas. También se mezcla en la semilla aleatoria. ⟦SEP_0004⟧"
+
+#: src/cobol/README.md:85
+msgctxt "s-04515d28a73a-0031"
+msgid "⟦SEP_0004⟧ ⟦CODE_0001⟧ in ⟦CODE_0002⟧ ⟦SEP_0005⟧ Runs ⟦CODE_0003⟧ on the data folder before the script file is opened in it ⟦SEP_0006⟧"
+msgstr "⟦SEP_0004⟧ ⟦CODE_0001⟧ en ⟦CODE_0002⟧ ⟦SEP_0005⟧ Ejecuta ⟦CODE_0003⟧ en la carpeta de datos antes de abrir en ella el archivo de script ⟦SEP_0006⟧"
+
+#: src/cobol/README.md:86
+msgctxt "s-9bc5dc1e41cb-0032"
+msgid "⟦SEP_0005⟧ ⟦CODE_0001⟧ in ⟦CODE_0002⟧ ⟦SEP_0006⟧ Runs ⟦CODE_0003⟧. The script is deleted only if ⟦CODE_0004⟧ succeeded. Otherwise the program prints where it is and exits 1 ⟦SEP_0007⟧"
+msgstr "⟦SEP_0005⟧ ⟦CODE_0001⟧ en ⟦CODE_0002⟧ ⟦SEP_0006⟧ Ejecuta ⟦CODE_0003⟧. El script se elimina solo si ⟦CODE_0004⟧ tuvo éxito. De lo contrario, el programa imprime dónde está y termina con código 1 ⟦SEP_0007⟧"
+
+#: src/cobol/README.md:87
+msgctxt "s-eb9ebbf2171a-0033"
+msgid "⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ Makes a non-demo row unrepresentable in the table. ⟦CODE_0002⟧ tries to insert one and expects SQLite to refuse ⟦SEP_0005⟧"
+msgstr "⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ Hace imposible representar en la tabla una fila que no sea de demostración. ⟦CODE_0002⟧ intenta insertar una y espera que SQLite la rechace ⟦SEP_0005⟧"
+
+#: src/cobol/README.md:89
+msgctxt "s-339cc2c18f83-0034"
+msgid "What ⟦CODE_0001⟧ enforces"
+msgstr "Qué impone ⟦CODE_0001⟧"
+
+#: src/cobol/README.md:91
+msgctxt "s-2aa973d41fd3-0035"
+msgid "⟦CODE_0001⟧ first checks the source. The file has the ⟦CODE_0002⟧ marker and no network-looking text, and no line goes past column 72 (fixed format). The stop rule must really be the 88-level ⟦CODE_0003⟧ on the total, and there must be exactly one ⟦CODE_0004⟧. It builds the program once (binaries are never committed), then runs it 25 times with the same checks on every run: categories in order, hours from 10 to 19, running totals that add up, a stop exactly when the total passes 40, and an ISO week that agrees with ⟦CODE_0005⟧. SQLite must agree with the printed rows, and the 25 runs must be 25 different runs with at least six different hour values. Last, it tries to insert a non-demo row and expects SQLite to refuse it, which proves that ⟦CODE_0006⟧ is real."
+msgstr "⟦CODE_0001⟧ primero revisa el código fuente. El archivo tiene el marcador ⟦CODE_0002⟧, no contiene texto con aspecto de red y ninguna línea pasa de la columna 72 (formato fijo). La regla de parada debe ser realmente el ⟦CODE_0003⟧ de nivel 88 sobre el total, y debe haber exactamente un ⟦CODE_0004⟧. Compila el programa una vez (los binarios nunca se suben al repositorio) y luego lo ejecuta 25 veces, con las mismas comprobaciones en cada ejecución: categorías en orden, horas de 10 a 19, totales acumulados que suman bien, una parada exactamente cuando el total pasa de 40 y una semana ISO que coincide con ⟦CODE_0005⟧. SQLite debe coincidir con las filas impresas, y las 25 ejecuciones deben ser 25 ejecuciones distintas con al menos seis valores de horas distintos. Al final, intenta insertar una fila que no es de demostración y espera que SQLite la rechace, lo que demuestra que ⟦CODE_0006⟧ es real."
+
+#: src/cobol/README.md:93
+msgctxt "s-5a0ad00b10fc-0036"
+msgid "Gotchas worth knowing"
+msgstr "Trampas que conviene conocer"
+
+#: src/cobol/README.md:95
+msgctxt "s-e1a6f44eef8f-0037"
+msgid "**Columns matter.** This is *fixed format*, from punched cards: columns 1-6 were a sequence number, a ⟦CODE_0001⟧ in column 7 makes a comment, division and paragraph names start in column 8 (\"area A\"), statements start in column 12 (\"area B\"), and **nothing past column 72 is read**. A long line is silently cut, not rejected. ⟦CODE_0002⟧ fails if any line is longer than 72. GnuCOBOL also accepts ⟦CODE_0003⟧, which drops all of this."
+msgstr "**Las columnas importan.** Este es el *formato fijo*, que viene de las tarjetas perforadas: las columnas de 1 a 6 eran un número de secuencia, un ⟦CODE_0001⟧ en la columna 7 crea un comentario, los nombres de división y de párrafo empiezan en la columna 8 (\"área A\"), las sentencias empiezan en la columna 12 (\"área B\") y **no se lee nada después de la columna 72**. Una línea larga se corta en silencio, no se rechaza. ⟦CODE_0002⟧ falla si alguna línea es más larga que 72. GnuCOBOL también acepta ⟦CODE_0003⟧, que elimina todo esto."
+
+#: src/cobol/README.md:96
+msgctxt "s-05eb5b4fff6b-0038"
+msgid "**⟦CODE_0001⟧ doesn't clear its target.** It writes from the left and leaves whatever was already to the right. That's why every reused buffer gets ⟦CODE_0002⟧ first."
+msgstr "**⟦CODE_0001⟧ no limpia su destino.** Escribe desde la izquierda y deja a la derecha lo que ya había. Por eso cada búfer que se reutiliza recibe primero ⟦CODE_0002⟧."
+
+#: src/cobol/README.md:97
+msgctxt "s-84861e523540-0039"
+msgid "**Some names are taken.** COBOL has hundreds of reserved words. ⟦CODE_0001⟧ is one in GnuCOBOL, which is why the tab character is ⟦CODE_0002⟧."
+msgstr "**Algunos nombres ya están ocupados.** COBOL tiene cientos de palabras reservadas. ⟦CODE_0001⟧ es una de ellas en GnuCOBOL, y por eso el carácter de tabulación es ⟦CODE_0002⟧."
+
+#: src/cobol/README.md:98
+msgctxt "s-d973b7b5fc3a-0040"
+msgid "**⟦CODE_0001⟧ returns the raw wait status.** An exit code of 3 comes back as 768 (3 × 256). This file only compares it with zero."
+msgstr "**⟦CODE_0001⟧ devuelve el estado de espera sin procesar.** Un código de salida 3 llega como 768 (3 × 256). Este archivo solo lo compara con cero."
+
+#: src/cobol/README.md:99
+msgctxt "s-cdc76b950383-0041"
+msgid "**⟦CODE_0001⟧ blanks the field when the variable is unset.** It doesn't leave it alone, so the ⟦CODE_0002⟧ that falls back to ⟦CODE_0003⟧ tests for spaces."
+msgstr "**⟦CODE_0001⟧ deja el campo en blanco cuando la variable no está definida.** No lo deja intacto, así que el ⟦CODE_0002⟧ que recurre a ⟦CODE_0003⟧ comprueba si hay espacios."
+
+#: src/cobol/README.md:100
+msgctxt "s-d9a1f67d5ee8-0042"
+msgid "**Ubuntu's compiler prints a ⟦CODE_0001⟧ warning** on every compile. It comes from ⟦CODE_0002⟧'s C flags meeting Ubuntu's GCC defaults, and it's harmless."
+msgstr "**El compilador de Ubuntu imprime una advertencia ⟦CODE_0001⟧** en cada compilación. Aparece porque las banderas de C de ⟦CODE_0002⟧ se combinan con los valores predeterminados de GCC en Ubuntu, y es inofensiva."
+
+#: src/cobol/README.md:101
+msgctxt "s-690d96f963ec-0043"
+msgid "**SQL by string building is a bad habit.** It's safe here only because every value is a number computed by the program or one of four fixed words. Don't copy it."
+msgstr "**Construir SQL con cadenas de texto es un mal hábito.** Aquí es seguro solo porque cada valor es un número que calcula el programa o una de cuatro palabras fijas. No lo copies."
+
+#: src/cobol/README.md:103
+msgctxt "s-254f0c660db3-0044"
+msgid "Run it in a container"
+msgstr "Ejecuta el programa en un contenedor"
+
+#: src/cobol/README.md:105
+msgctxt "s-643df015c8a2-0045"
+msgid "Prerequisite: Docker, set up once as described in [⟦CODE_0001⟧](⟦DEST_0002⟧)."
+msgstr "Requisito previo: Docker, configurado una sola vez como se describe en [⟦CODE_0001⟧](⟦DEST_0002⟧)."
+
+#: src/cobol/README.md:111
+msgctxt "s-97e3efd9e54c-0046"
+msgid "It builds this folder's [⟦CODE_0001⟧](⟦DEST_0002⟧) and runs the result with no network, a read-only file system and user ⟦CODE_0003⟧, then prints the output and a read-only look at the rows it wrote. The image holds the compiled program, GnuCOBOL's runtime library (libcob) and sqlite3 on a minimal Ubuntu. It has no compiler and no package manager."
+msgstr "Construye el [⟦CODE_0001⟧](⟦DEST_0002⟧) de esta carpeta y ejecuta el resultado sin red, con un sistema de archivos de solo lectura y el usuario ⟦CODE_0003⟧. Después imprime la salida y una vista de solo lectura de las filas que escribió. La imagen contiene el programa compilado, la biblioteca de ejecución de GnuCOBOL (libcob) y sqlite3 sobre un Ubuntu mínimo. No tiene compilador ni gestor de paquetes."

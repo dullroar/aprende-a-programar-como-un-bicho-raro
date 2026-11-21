@@ -1,0 +1,397 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/ed-weird/README.md:2
+msgctxt "s-9c1623f0d38e-0000"
+msgid "ed"
+msgstr "ed"
+
+#: src/ed-weird/README.md:3
+msgctxt "s-d5af36723146-0001"
+msgid "that a line editor is a rewriting machine: lines are the data, addresses are the program, and a failed substitution inside a global command is an ⟦ESC_0001⟧if⟦ESC_0002⟧."
+msgstr "que un editor de líneas es una máquina de reescritura: las líneas son los datos, las direcciones son el programa y una sustitución fallida dentro de un comando global es un ⟦ESC_0001⟧if⟦ESC_0002⟧."
+
+#: src/ed-weird/README.md:11
+msgctxt "s-734fc777d733-0002"
+msgid "A string-rewriting machine with line addresses"
+msgstr "Una máquina que reescribe cadenas de texto con direcciones de línea"
+
+#: src/ed-weird/README.md:12
+msgctxt "s-14833ca9471e-0003"
+msgid "The editor buffer: one line per card, and marks (x) that are added by joining lines"
+msgstr "El búfer del editor: una línea por tarjeta y marcas (x) que se añaden al unir líneas"
+
+#: src/ed-weird/README.md:15
+msgctxt "s-b149072f1bbb-0004"
+msgid "ed: the buffer is the machine"
+msgstr "ed: el búfer es la máquina"
+
+#: src/ed-weird/README.md:17
+msgctxt "s-e84d50d593f7-0005"
+msgid "**Teaches you:** that a line editor is a rewriting machine: lines are the data, addresses are the program, and a failed substitution inside a global command is an \"if\"."
+msgstr "**Te enseña:** que un editor de líneas es una máquina de reescritura: las líneas son los datos, las direcciones son el programa y una sustitución fallida dentro de un comando global es un \"si\"."
+
+#: src/ed-weird/README.md:19
+msgctxt "s-6837153861d7-0006"
+msgid ""
+"**⟦DNT_0001⟧.** Fictional time cards, written to a scratch SQLite file under ⟦CODE_0002⟧.\n"
+"Nothing here touches real time reporting."
+msgstr ""
+"**⟦DNT_0001⟧.** Tarjetas de horas ficticias, escritas en un archivo SQLite temporal bajo ⟦CODE_0002⟧.\n"
+"Nada de esto toca el registro real de horas."
+
+#: src/ed-weird/README.md:22
+msgctxt "s-e47ca29c94af-0007"
+msgid "The program is a file of about 45 ⟦CODE_0001⟧ commands. ⟦CODE_0002⟧ is the 1970s line editor that ⟦CODE_0003⟧, ⟦CODE_0004⟧ and ⟦CODE_0005⟧ come from. It has no variable, no arithmetic and no loop statement. The only thing it does is change lines of text. This entry makes it generate time cards anyway. The buffer holds five random digits when ⟦CODE_0006⟧ starts. When ⟦CODE_0007⟧ ends, the buffer holds the rows."
+msgstr "El programa es un archivo de unos 45 comandos ⟦CODE_0001⟧. ⟦CODE_0002⟧ es el editor de líneas de la década de 1970 del que provienen ⟦CODE_0003⟧, ⟦CODE_0004⟧ y ⟦CODE_0005⟧. No tiene variables, aritmética ni sentencias de bucle. Lo único que hace es cambiar líneas de texto. Esta entrada consigue que genere tarjetas de horas de todos modos. El búfer contiene cinco dígitos aleatorios cuando ⟦CODE_0006⟧ empieza. Cuando ⟦CODE_0007⟧ termina, el búfer contiene las filas."
+
+#: src/ed-weird/README.md:31
+msgctxt "s-5de61305b6fc-0008"
+msgid "Its partner, [⟦CODE_0001⟧](⟦DEST_0002⟧), uses the richer language that ⟦CODE_0003⟧ is built on: registers, marks and ⟦CODE_0004⟧. Here every number is made by writing marks (⟦CODE_0005⟧) next to each other and by rewriting text. A launcher gives ⟦CODE_0006⟧ its five digits and stores the rows afterwards. It does no arithmetic."
+msgstr "Su par, [⟦CODE_0001⟧](⟦DEST_0002⟧), usa el lenguaje más rico sobre el que se construye ⟦CODE_0003⟧: registros, marcas y ⟦CODE_0004⟧. Aquí cada número se forma escribiendo marcas (⟦CODE_0005⟧) una junto a otra y reescribiendo texto. Un lanzador le da a ⟦CODE_0006⟧ sus cinco dígitos y después guarda las filas. No hace ninguna aritmética."
+
+#: src/ed-weird/README.md:33
+msgctxt "s-958ca26c6a61-0009"
+msgid "Run it"
+msgstr "Ejecútalo"
+
+#: src/ed-weird/README.md:35
+msgctxt "s-0baa6dd370e7-0010"
+msgid "You need **GNU ed** (1.20.1 was tested), a POSIX shell, ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧ and ⟦CODE_0005⟧."
+msgstr "Necesitas **GNU ed** (se probó la versión 1.20.1), un intérprete de comandos (*shell*) POSIX —el programa que ejecuta tus comandos—, ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧ y ⟦CODE_0005⟧."
+
+#: src/ed-weird/README.md:45
+msgctxt "s-0d231791567c-0011"
+msgid "Records go to ⟦CODE_0001⟧ (default ⟦CODE_0002⟧)."
+msgstr "Los registros van a ⟦CODE_0001⟧ (por defecto, ⟦CODE_0002⟧)."
+
+#: src/ed-weird/README.md:47
+msgctxt "s-254f0c660db3-0012"
+msgid "Run it in a container"
+msgstr "Ejecútalo en un contenedor"
+
+#: src/ed-weird/README.md:49
+msgctxt "s-643df015c8a2-0013"
+msgid "Prerequisite: Docker, set up once as described in [⟦CODE_0001⟧](⟦DEST_0002⟧)."
+msgstr "Requisito previo: Docker, configurado una sola vez como se describe en [⟦CODE_0001⟧](⟦DEST_0002⟧)."
+
+#: src/ed-weird/README.md:55
+msgctxt "s-5cc7aa1a3d20-0014"
+msgid "It builds this folder's [⟦CODE_0001⟧](⟦DEST_0002⟧) and runs the result with no network, a read-only file system and user ⟦CODE_0003⟧. The image holds GNU ed and sqlite3 on a minimal Ubuntu."
+msgstr "Construye el [⟦CODE_0001⟧](⟦DEST_0002⟧) de esta carpeta y ejecuta el resultado sin red, con un sistema de archivos de solo lectura y con el usuario ⟦CODE_0003⟧. La imagen contiene GNU ed y sqlite3 sobre un Ubuntu mínimo."
+
+#: src/ed-weird/README.md:57
+msgctxt "s-0dcb373c2dff-0015"
+msgid "Program Flow"
+msgstr "Flujo del programa"
+
+#: src/ed-weird/README.md:61
+msgctxt "s-6019c2759872-0016"
+msgid "ed-weird: one global command over a text buffer"
+msgstr "ed-weird: un comando global sobre un búfer de texto"
+
+#: src/ed-weird/README.md:62
+msgctxt "s-8c1275e9b147-0017"
+msgid "A flowchart. The launcher gives ed five random digits as a buffer of five lines. The script adds a category to each line by line address, rewrites each digit into hours and a run of marks with a table of substitutions, and adds a ledger line above the first card. Then one global command visits every card line in buffer order. For each card it copies the ledger above, joins the lines, and merges the marks, which adds the hours. Guarded substitutions then turn the ledger bar into an exclamation mark when there are 41 or more marks, and turn any card after that into a dead card. When all cards are visited, ed deletes the dead and start lines, rewrites marks into decimal, and prints the rows. The launcher loads them into SQLite."
+msgstr "Un diagrama de flujo. El lanzador entrega a ed cinco dígitos aleatorios como un búfer de cinco líneas. El script añade una categoría a cada línea según su dirección de línea, reescribe cada dígito como horas y una serie de marcas con una tabla de sustituciones, y añade una línea de registro encima de la primera tarjeta. Luego un comando global visita cada línea de tarjeta en el orden del búfer. Para cada tarjeta, copia el registro de arriba, une las líneas y fusiona las marcas, lo que suma las horas. Después, unas sustituciones condicionadas cambian la barra del registro por un signo de exclamación cuando hay 41 marcas o más, y convierten en tarjeta muerta cualquier tarjeta posterior. Cuando se han visitado todas las tarjetas, ed borra las líneas muertas y la de inicio, reescribe las marcas en decimal e imprime las filas. El lanzador las carga en SQLite."
+
+#: src/ed-weird/README.md:63
+msgctxt "s-b80862418f8a-0018"
+msgid "Launcher: five random digits become ed's buffer, one line per card"
+msgstr "Lanzador: cinco dígitos aleatorios se convierten en el búfer de ed, una línea por tarjeta"
+
+#: src/ed-weird/README.md:63
+msgctxt "s-8bd16c51170c-0019"
+msgid "Rewrite tables: line addresses add categories, a digit becomes hours as marks"
+msgstr "Tablas de reescritura: las direcciones de línea añaden categorías; un dígito se convierte en horas como marcas"
+
+#: src/ed-weird/README.md:64
+msgctxt "s-82abacb632e8-0020"
+msgid "Add a ledger line above the first card"
+msgstr "Añade una línea de libro mayor encima de la primera tarjeta"
+
+#: src/ed-weird/README.md:65
+msgctxt "s-64cbc2bcba6a-0021"
+msgid "g: is there another card line to visit?"
+msgstr "g: ¿hay otra línea de tarjeta que visitar?"
+
+#: src/ed-weird/README.md:66
+msgctxt "s-8a798890fe93-0022"
+msgid "yes"
+msgstr "sí"
+
+#: src/ed-weird/README.md:66
+msgctxt "s-c6b220102685-0023"
+msgid "Copy the ledger above, join, merge the marks: adding is writing marks side by side"
+msgstr "Copia el registro de arriba, une, fusiona las marcas: sumar es escribir marcas una al lado de otra"
+
+#: src/ed-weird/README.md:67
+msgctxt "s-4aafa852326a-0024"
+msgid "Guarded substitutions: 41 or more marks turn the bar into !, a card after ! becomes Dead"
+msgstr "Sustituciones con guarda: 41 o más marcas convierten la barra en !, una tarjeta después de ! pasa a ser Dead"
+
+#: src/ed-weird/README.md:69
+msgctxt "s-9390298f3fb0-0025"
+msgid "no"
+msgstr "no"
+
+#: src/ed-weird/README.md:69
+msgctxt "s-e58053964608-0026"
+msgid "Delete Dead and Start lines, marks to decimal, print the rows"
+msgstr "Elimina las líneas Dead y Start, pasa las marcas a decimal, imprime las filas"
+
+#: src/ed-weird/README.md:70
+msgctxt "s-4f7b88a05edc-0027"
+msgid "Launcher loads the rows into SQLite"
+msgstr "El lanzador carga las filas en SQLite"
+
+#: src/ed-weird/README.md:73
+msgctxt "s-914a0b3f8970-0028"
+msgid "**What this shows:** ⟦CODE_0001⟧ has one loop, the global command ⟦CODE_0002⟧, and it has no ⟦CODE_0003⟧. A substitution that finds nothing to replace does nothing, so each guarded substitution means \"if the line has this pattern, rewrite it\". The state is text: marks that are added by writing them side by side."
+msgstr "**Qué muestra:** ⟦CODE_0001⟧ tiene un solo bucle (el comando global ⟦CODE_0002⟧) y no tiene ⟦CODE_0003⟧. Una sustitución que no encuentra nada que reemplazar no hace nada; por eso cada sustitución con guarda significa \"si la línea tiene este patrón, reescríbela\". El estado es texto: marcas que se añaden al escribirlas una junto a otra."
+
+#: src/ed-weird/README.md:75
+msgctxt "s-431262939da2-0029"
+msgid "**Why this mechanism matters:** the stop rule is a regex over the ledger (41 or more marks), and it runs *after* the card is written, so the crossing card is kept. The ⟦CODE_0001⟧ that it writes is a state that later cards read. It is the whole memory of \"we are over\"."
+msgstr "**Por qué importa este mecanismo:** la regla de parada es una expresión regular sobre el registro (41 marcas o más) y se ejecuta *después* de escribir la tarjeta, así que la tarjeta del cruce se conserva. ⟦CODE_0001⟧, que la regla escribe, es un estado que leen las tarjetas posteriores. Es toda la memoria de \"estamos por encima\"."
+
+#: src/ed-weird/README.md:77
+msgctxt "s-7f97d965b4c0-0030"
+msgid "How the stunt works"
+msgstr "Cómo funciona el truco"
+
+#: src/ed-weird/README.md:79
+msgctxt "s-e73a7876d4d4-0031"
+msgid "Read [⟦CODE_0001⟧](⟦DEST_0002⟧) from top to bottom. It has six steps."
+msgstr "Lee [⟦CODE_0001⟧](⟦DEST_0002⟧) de principio a fin. Tiene seis pasos."
+
+#: src/ed-weird/README.md:81
+msgctxt "s-f9364b21a388-0032"
+msgid "⟦SEP_0002⟧ Step ⟦SEP_0003⟧ What ⟦CODE_0001⟧ does ⟦SEP_0004⟧ Which ed feature does the work ⟦SEP_0005⟧"
+msgstr "⟦SEP_0002⟧ Paso ⟦SEP_0003⟧ Qué hace ⟦CODE_0001⟧ ⟦SEP_0004⟧ Qué función de ed hace el trabajo ⟦SEP_0005⟧"
+
+#: src/ed-weird/README.md:83
+msgctxt "s-6029d8ebeeb8-0033"
+msgid "⟦SEP_0003⟧ 1. Categories ⟦SEP_0004⟧ ⟦CODE_0001⟧, ⟦CODE_0002⟧, and so on ⟦SEP_0005⟧ **Addresses.** Line 1 is the first card. The order of the categories is the order of the line numbers ⟦SEP_0006⟧"
+msgstr "⟦SEP_0003⟧ 1. Categorías ⟦SEP_0004⟧ ⟦CODE_0001⟧, ⟦CODE_0002⟧ y así sucesivamente ⟦SEP_0005⟧ **Direcciones.** La línea 1 es la primera tarjeta. El orden de las categorías es el orden de los números de línea ⟦SEP_0006⟧"
+
+#: src/ed-weird/README.md:84
+msgctxt "s-8c5b1b4ba1e2-0034"
+msgid "⟦SEP_0003⟧ 2. Hours ⟦SEP_0004⟧ ⟦CODE_0001⟧: ten rules, one per digit ⟦SEP_0005⟧ **A rewrite table.** The digit 7 becomes the hours ⟦CODE_0002⟧ and seventeen marks (ten, plus seven) ⟦SEP_0006⟧"
+msgstr "⟦SEP_0003⟧ 2. Horas ⟦SEP_0004⟧ ⟦CODE_0001⟧: diez reglas, una por dígito ⟦SEP_0005⟧ **Una tabla de reescritura.** El dígito 7 se convierte en las horas ⟦CODE_0002⟧ y diecisiete marcas (diez más siete) ⟦SEP_0006⟧"
+
+#: src/ed-weird/README.md:85
+msgctxt "s-01554f0ce598-0035"
+msgid "⟦SEP_0003⟧ 3. The ledger ⟦SEP_0004⟧ ⟦CODE_0001⟧, then ⟦CODE_0002⟧ ⟦SEP_0005⟧ **Text input.** A line above the first card that says \"the total so far is nothing\" ⟦SEP_0006⟧"
+msgstr "⟦SEP_0003⟧ 3. El libro de cuentas ⟦SEP_0004⟧ ⟦CODE_0001⟧, luego ⟦CODE_0002⟧ ⟦SEP_0005⟧ **Entrada de datos de texto.** Una línea encima de la primera tarjeta que dice \"el total hasta ahora es nada\" ⟦SEP_0006⟧"
+
+#: src/ed-weird/README.md:86
+msgctxt "s-aeaab12b7bc1-0036"
+msgid "⟦SEP_0002⟧ 4. The run ⟦SEP_0003⟧ One ⟦CODE_0001⟧ command over the card lines ⟦SEP_0004⟧ **The global command.** The only loop in the program, and it is ed's own ⟦SEP_0005⟧"
+msgstr "⟦SEP_0002⟧ 4. La ejecución ⟦SEP_0003⟧ Un comando ⟦CODE_0001⟧ sobre las líneas de las tarjetas ⟦SEP_0004⟧ **El comando global.** El único bucle del programa es el propio de ed ⟦SEP_0005⟧"
+
+#: src/ed-weird/README.md:87
+msgctxt "s-f90e33cc0193-0037"
+msgid "⟦SEP_0003⟧ 5. Cleanup ⟦SEP_0004⟧ ⟦CODE_0001⟧, ⟦CODE_0002⟧ ⟦SEP_0005⟧ **Deleting lines** that match a pattern ⟦SEP_0006⟧"
+msgstr "⟦SEP_0003⟧ 5. Limpieza ⟦SEP_0004⟧ ⟦CODE_0001⟧, ⟦CODE_0002⟧ ⟦SEP_0005⟧ **Eliminar líneas** que coinciden con un patrón ⟦SEP_0006⟧"
+
+#: src/ed-weird/README.md:88
+msgctxt "s-fb19bcdae494-0038"
+msgid "⟦SEP_0002⟧ 6. Decimals ⟦SEP_0003⟧ ⟦CODE_0001⟧, and so on ⟦SEP_0004⟧ **A rewrite table** again: fifty marks become the digit 5 ⟦SEP_0005⟧"
+msgstr "⟦SEP_0002⟧ 6. Decimales ⟦SEP_0003⟧ ⟦CODE_0001⟧ y así sucesivamente ⟦SEP_0004⟧ **Una tabla de reescritura** otra vez: cincuenta marcas se convierten en el dígito 5 ⟦SEP_0005⟧"
+
+#: src/ed-weird/README.md:90
+msgctxt "s-49826f52edbd-0039"
+msgid "Step 4: the run"
+msgstr "Paso 4: la ejecución"
+
+#: src/ed-weird/README.md:92
+msgctxt "s-5d85500b1715-0040"
+msgid "For every card line, in buffer order, ed does five things (they are the lines of the global command's list):"
+msgstr "Para cada línea de tarjeta, en el orden del búfer, ed hace cinco cosas (son las líneas de la lista del comando global):"
+
+#: src/ed-weird/README.md:94
+msgctxt "s-93bf262f5b40-0041"
+msgid ""
+"⟦CODE_0001⟧ copies the line above (the ledger so far) to just under the card.\n"
+"2. ⟦CODE_0002⟧ joins the card and the copy into one line: ⟦CODE_0003⟧.\n"
+"3. A substitution keeps the card's name and hours and puts the two sets of marks together after a bar: ⟦CODE_0004⟧. **Adding is writing marks side by side.** Each processed card is the ledger for the next one.\n"
+"4. A second substitution handles a ledger that has a ⟦CODE_0005⟧ instead of a ⟦CODE_0006⟧. The ⟦CODE_0007⟧ means that the total already passed 40. The card becomes ⟦CODE_0008⟧ plus the same marks, so that every later card dies too.\n"
+"5. A third substitution fires when there are 41 or more marks after the bar: ⟦CODE_0009⟧. The bar becomes ⟦CODE_0010⟧. **That is the stop rule.** It runs *after* the card is written, so the crossing card is kept."
+msgstr ""
+"⟦CODE_0001⟧ copia la línea de arriba (el registro acumulado hasta ahora) justo debajo de la tarjeta.\n"
+"2. ⟦CODE_0002⟧ une la tarjeta y la copia en una sola línea: ⟦CODE_0003⟧.\n"
+"3. Una sustitución conserva el nombre y las horas de la tarjeta y junta los dos conjuntos de marcas después de una barra: ⟦CODE_0004⟧. **Sumar es escribir marcas una al lado de otra.** Cada tarjeta procesada es el registro para la siguiente.\n"
+"4. Una segunda sustitución trata un registro que tiene ⟦CODE_0005⟧ en lugar de ⟦CODE_0006⟧. El ⟦CODE_0007⟧ significa que el total ya pasó de 40. La tarjeta se convierte en ⟦CODE_0008⟧ más las mismas marcas, de modo que todas las tarjetas posteriores también mueren.\n"
+"5. Una tercera sustitución se activa cuando hay 41 o más marcas después de la barra: ⟦CODE_0009⟧. La barra se convierte en ⟦CODE_0010⟧. **Esa es la regla de parada.** Se ejecuta *después* de escribir la tarjeta, así que la tarjeta que cruza el límite se conserva."
+
+#: src/ed-weird/README.md:100
+msgctxt "s-bdec111181f7-0042"
+msgid "Why there are no ⟦CODE_0001⟧ commands"
+msgstr "Por qué no hay comandos ⟦CODE_0001⟧"
+
+#: src/ed-weird/README.md:102
+msgctxt "s-a760d8ff0622-0043"
+msgid "⟦CODE_0001⟧ has no ⟦CODE_0002⟧. It has something just as good. **A substitution that finds nothing to replace does nothing, and does not stop the global command.** That is true inside ⟦CODE_0003⟧: ⟦CODE_0004⟧ on a line without an ⟦CODE_0005⟧ is silently skipped. So ⟦CODE_0006⟧ means \"if the line has the pattern, rewrite it\". The three substitutions above are three guarded rewrites, and in each card only the ones that apply fire. A failed *address* (⟦CODE_0007⟧) is different: that is an error, and it stops the command list. The entry uses the first kind and never the second."
+msgstr "⟦CODE_0001⟧ no tiene ⟦CODE_0002⟧. Tiene algo igual de bueno. **Una sustitución que no encuentra nada que reemplazar no hace nada y no detiene el comando global.** Esto es cierto dentro de ⟦CODE_0003⟧: ⟦CODE_0004⟧ en una línea sin ⟦CODE_0005⟧ se omite en silencio. Por eso ⟦CODE_0006⟧ significa \"si la línea tiene el patrón, reescríbela\". Las tres sustituciones anteriores son tres reescrituras protegidas, y en cada tarjeta solo se activan las que se aplican. Una *dirección* fallida (⟦CODE_0007⟧) es distinta: eso es un error y detiene la lista de comandos. La entrada usa el primer tipo y nunca el segundo."
+
+#: src/ed-weird/README.md:104
+msgctxt "s-e4dd520a254d-0044"
+msgid "⟦SEP_0001⟧ Job ⟦SEP_0002⟧ Done by ⟦SEP_0003⟧"
+msgstr "⟦SEP_0001⟧ Tarea ⟦SEP_0002⟧ Se hace con ⟦SEP_0003⟧"
+
+#: src/ed-weird/README.md:106
+msgctxt "s-1dc9a49a11e0-0045"
+msgid "⟦SEP_0002⟧ Loop ⟦SEP_0003⟧ ⟦CODE_0001⟧: one global command over the card lines ⟦SEP_0004⟧"
+msgstr "⟦SEP_0002⟧ Bucle ⟦SEP_0003⟧ ⟦CODE_0001⟧: un comando global sobre las líneas de las tarjetas ⟦SEP_0004⟧"
+
+#: src/ed-weird/README.md:107
+msgctxt "s-8f7b678ab0e0-0046"
+msgid "⟦SEP_0003⟧ Category order ⟦SEP_0004⟧ Line addresses (⟦CODE_0001⟧, ⟦CODE_0002⟧, ...) ⟦SEP_0005⟧"
+msgstr "⟦SEP_0003⟧ Orden de las categorías ⟦SEP_0004⟧ Direcciones de línea (⟦CODE_0001⟧, ⟦CODE_0002⟧, ...) ⟦SEP_0005⟧"
+
+#: src/ed-weird/README.md:108
+msgctxt "s-142b423db55e-0047"
+msgid "⟦SEP_0001⟧ Random hours ⟦SEP_0002⟧ The launcher gives ed five digits. ed turns each into 10 + the digit as text ⟦SEP_0003⟧"
+msgstr "⟦SEP_0001⟧ Horas aleatorias ⟦SEP_0002⟧ El lanzador da cinco dígitos a ed. ed convierte cada uno en 10 + el dígito como texto ⟦SEP_0003⟧"
+
+#: src/ed-weird/README.md:109
+msgctxt "s-70b1375a3838-0048"
+msgid "⟦SEP_0001⟧ Running total ⟦SEP_0002⟧ Joining lines: marks side by side ⟦SEP_0003⟧"
+msgstr "⟦SEP_0001⟧ Total acumulado ⟦SEP_0002⟧ Unión de líneas: marcas una al lado de otra ⟦SEP_0003⟧"
+
+#: src/ed-weird/README.md:110
+msgctxt "s-38e5857b0017-0049"
+msgid "⟦SEP_0002⟧ Stop rule ⟦SEP_0003⟧ ⟦CODE_0001⟧: a regular expression over the marks ⟦SEP_0004⟧"
+msgstr "⟦SEP_0002⟧ Regla de parada ⟦SEP_0003⟧ ⟦CODE_0001⟧: una expresión regular sobre las marcas ⟦SEP_0004⟧"
+
+#: src/ed-weird/README.md:111
+msgctxt "s-f0d3fac1e705-0050"
+msgid "⟦SEP_0002⟧ Output ⟦SEP_0003⟧ ⟦CODE_0001⟧, after the rewrite rules of step 6 ⟦SEP_0004⟧"
+msgstr "⟦SEP_0002⟧ Salida ⟦SEP_0003⟧ ⟦CODE_0001⟧, después de las reglas de reescritura del paso 6 ⟦SEP_0004⟧"
+
+#: src/ed-weird/README.md:112
+msgctxt "s-a905b8c28681-0051"
+msgid "⟦SEP_0003⟧ Persistence ⟦SEP_0004⟧ ⟦CODE_0001⟧, with ⟦CODE_0002⟧ constraints ⟦SEP_0005⟧"
+msgstr "⟦SEP_0003⟧ Persistencia ⟦SEP_0004⟧ ⟦CODE_0001⟧, con restricciones ⟦CODE_0002⟧ ⟦SEP_0005⟧"
+
+#: src/ed-weird/README.md:114
+msgctxt "s-a4391e242ce0-0052"
+msgid "The launcher, [⟦CODE_0001⟧](⟦DEST_0002⟧), has four jobs: five random digits (⟦CODE_0003⟧ from ⟦CODE_0004⟧), run ⟦CODE_0005⟧, load the rows into SQLite with the week, and show them. It has no arithmetic, no ⟦CODE_0006⟧, no ⟦CODE_0007⟧ and no loop. ⟦CODE_0008⟧ makes sure of that."
+msgstr "El lanzador, [⟦CODE_0001⟧](⟦DEST_0002⟧), tiene cuatro tareas: generar cinco dígitos aleatorios (⟦CODE_0003⟧ de ⟦CODE_0004⟧), ejecutar ⟦CODE_0005⟧, cargar las filas en SQLite con la semana y mostrarlas. No tiene aritmética ni ⟦CODE_0006⟧ ni ⟦CODE_0007⟧ ni bucle. ⟦CODE_0008⟧ se asegura de ello."
+
+#: src/ed-weird/README.md:116
+msgctxt "s-fff646ea1f30-0053"
+msgid "Why this is weird"
+msgstr "Por qué es raro"
+
+#: src/ed-weird/README.md:118
+msgctxt "s-770749ac4097-0054"
+msgid "⟦CODE_0001⟧ was made to edit files by hand over a slow teleprinter. Its commands are terse so that you can type fewer characters. Using it as a computer means that you treat the commands as a **rewrite system**: rules on text that fire when their pattern matches. This is the same idea as [⟦CODE_0002⟧](⟦DEST_0003⟧), which has ⟦CODE_0004⟧ rewrite one line until no rule applies. The difference is the control. ⟦CODE_0005⟧ has a branch command and a loop. ⟦CODE_0006⟧ has neither, so every repeat has to come from the global command, and every choice from a substitution that may or may not match."
+msgstr "⟦CODE_0001⟧ se creó para editar archivos a mano a través de un teletipo lento. Sus comandos son escuetos para que teclees menos caracteres. Usarlo como computadora significa tratar los comandos como un **sistema de reescritura**: reglas sobre texto que se activan cuando su patrón coincide. Es la misma idea que [⟦CODE_0002⟧](⟦DEST_0003⟧), donde ⟦CODE_0004⟧ reescribe una línea hasta que no se aplica ninguna regla. La diferencia es el control. ⟦CODE_0005⟧ tiene un comando de rama y un bucle. ⟦CODE_0006⟧ no tiene ninguno de los dos, así que cada repetición debe venir del comando global y cada elección debe venir de una sustitución que puede coincidir o no."
+
+#: src/ed-weird/README.md:120
+msgctxt "s-339cc2c18f83-0055"
+msgid "What ⟦CODE_0001⟧ enforces"
+msgstr "Qué impone ⟦CODE_0001⟧"
+
+#: src/ed-weird/README.md:122
+msgctxt "s-5273d5ee3a33-0056"
+msgid "⟦CODE_0001⟧ needs GNU ed and sqlite3."
+msgstr "⟦CODE_0001⟧ necesita GNU ed y sqlite3."
+
+#: src/ed-weird/README.md:124
+msgctxt "s-f173e2177c4c-0057"
+msgid "**The constraint is real.** ⟦CODE_0001⟧ has no arithmetic, no ⟦CODE_0002⟧, no ⟦CODE_0003⟧, no ⟦CODE_0004⟧ and no loop, and starts ⟦CODE_0005⟧ once. ⟦CODE_0006⟧ has no shell escape (⟦CODE_0007⟧) and no file command (⟦CODE_0008⟧, ⟦CODE_0009⟧, ⟦CODE_0010⟧, ⟦CODE_0011⟧). One global command is the run."
+msgstr "**La restricción es real.** ⟦CODE_0001⟧ no tiene aritmética ni ⟦CODE_0002⟧ ni ⟦CODE_0003⟧ ni ⟦CODE_0004⟧ ni bucles, y inicia ⟦CODE_0005⟧ una sola vez. ⟦CODE_0006⟧ no tiene escape al intérprete de comandos (*shell*, el programa que ejecuta comandos del sistema; ⟦CODE_0007⟧) ni comandos de archivo (⟦CODE_0008⟧, ⟦CODE_0009⟧, ⟦CODE_0010⟧, ⟦CODE_0011⟧). Un solo comando global es la ejecución."
+
+#: src/ed-weird/README.md:125
+msgctxt "s-79f0c1f791dc-0058"
+msgid "**The rules of the challenge.** 25 random runs: categories in order, hours 10 to 19, correct totals, a stop at the first total over 40 with the crossing card kept, ⟦CODE_0001⟧ everywhere, an empty stderr and no scratch left behind."
+msgstr "**Las reglas del reto.** 25 ejecuciones aleatorias: categorías en orden, de 10 a 19 horas, totales correctos, una parada en el primer total de más de 40 con la tarjeta que lo supera conservada, ⟦CODE_0001⟧ en todas partes, un stderr vacío y ningún archivo temporal sobrante."
+
+#: src/ed-weird/README.md:126
+msgctxt "s-955323dc2296-0059"
+msgid "**An independent simulation.** A separate model (a short awk program) says which rows each dice sequence must give. The entry must agree on all 1,024 sequences over the digits 0, 4, 5 and 9, which include totals of exactly 40 and 41, and 400 random ones."
+msgstr "**Una simulación independiente.** Un modelo aparte (un programa corto en awk) indica qué filas debe dar cada secuencia de dados. La entrada debe coincidir en las 1024 secuencias formadas con los dígitos 0, 4, 5 y 9, que incluyen totales de exactamente 40 y 41, y en 400 secuencias aleatorias."
+
+#: src/ed-weird/README.md:127
+msgctxt "s-4fa43a167383-0060"
+msgid "**Perturbations.** A copy of the program with ⟦CODE_0001⟧ changed to ⟦CODE_0002⟧ stops after 30 instead of 40. A copy with ⟦CODE_0003⟧ stops after 50. A copy with the first two category lines swapped has the first two categories swapped. A copy without the ⟦CODE_0004⟧ rule keeps cards after the crossing one. A copy without the cleanup prints ⟦CODE_0005⟧ rows. The stop rule is in the ed program, and nowhere else."
+msgstr "**Perturbaciones.** Una copia del programa con ⟦CODE_0001⟧ cambiado a ⟦CODE_0002⟧ se detiene después de 30 en lugar de 40. Una copia con ⟦CODE_0003⟧ se detiene después de 50. Una copia con las dos primeras líneas de categoría intercambiadas tiene las dos primeras categorías intercambiadas. Una copia sin la regla ⟦CODE_0004⟧ conserva tarjetas después de la que cruza el límite. Una copia sin la limpieza imprime ⟦CODE_0005⟧ filas. La regla de parada está en el programa ed y en ningún otro lugar."
+
+#: src/ed-weird/README.md:128
+msgctxt "s-77b1f4c360c5-0061"
+msgid "**Walls.** A global command inside a global command is refused (⟦CODE_0001⟧). A blank line in an ed script is a command and not a separator, so the program uses ⟦CODE_0002⟧ comments. A failed ⟦CODE_0003⟧ inside ⟦CODE_0004⟧ is silent, and a failed address is an error with exit status 1."
+msgstr "**Barreras.** Un comando global dentro de otro comando global se rechaza (⟦CODE_0001⟧). En un script de ed, una línea en blanco es un comando y no un separador, así que el programa usa comentarios ⟦CODE_0002⟧. Un ⟦CODE_0003⟧ fallido dentro de ⟦CODE_0004⟧ es silencioso, y una dirección fallida es un error con estado de salida 1."
+
+#: src/ed-weird/README.md:129
+msgctxt "s-b384fa2e11dd-0062"
+msgid "**Another ed.** busybox ⟦CODE_0001⟧ (in the sandbox image) cannot run the program, and the check asserts that."
+msgstr "**Otro ed.** El ⟦CODE_0001⟧ de busybox, incluido en la imagen de un entorno aislado (*sandbox*) que limita el acceso al sistema anfitrión, no puede ejecutar el programa y la comprobación lo verifica."
+
+#: src/ed-weird/README.md:130
+msgctxt "s-eec2c6fd003a-0063"
+msgid "**The schema.** SQLite refuses a non-demo row, 9 hours and a fifth category. The launcher refuses four dice and a non-digit."
+msgstr "**El esquema.** SQLite rechaza una fila que no sea de demostración, 9 horas y una quinta categoría. El lanzador rechaza cuatro dados y un carácter que no sea un dígito."
+
+#: src/ed-weird/README.md:132
+msgctxt "s-5a0ad00b10fc-0064"
+msgid "Gotchas worth knowing"
+msgstr "Trampas que conviene conocer"
+
+#: src/ed-weird/README.md:134
+msgctxt "s-55ea7e3b0979-0065"
+msgid "**GNU ed only.** We tested GNU ed 1.20.1. The program uses ⟦CODE_0001⟧ comments, ⟦CODE_0002⟧, back-references, ⟦CODE_0003⟧ intervals and ⟦CODE_0004⟧. POSIX specifies most of these, but busybox ed 1.36.1 (in the check image) has none of ⟦CODE_0005⟧, ⟦CODE_0006⟧, ⟦CODE_0007⟧, ⟦CODE_0008⟧, ⟦CODE_0009⟧ or ⟦CODE_0010⟧, has no ⟦CODE_0011⟧ comments, and cannot substitute on ⟦CODE_0012⟧, on a group or on an interval. So it cannot run the program, and the check says so. This is **implementation-permitted**."
+msgstr "**Solo GNU ed.** Probamos GNU ed 1.20.1. El programa usa comentarios ⟦CODE_0001⟧, ⟦CODE_0002⟧, referencias hacia atrás, intervalos ⟦CODE_0003⟧ y ⟦CODE_0004⟧. POSIX especifica la mayoría de estos elementos, pero busybox ed 1.36.1 (en la imagen de comprobación) no tiene ninguno de ⟦CODE_0005⟧, ⟦CODE_0006⟧, ⟦CODE_0007⟧, ⟦CODE_0008⟧, ⟦CODE_0009⟧ ni ⟦CODE_0010⟧, no tiene comentarios ⟦CODE_0011⟧ y no puede sustituir en ⟦CODE_0012⟧, en un grupo ni en un intervalo. Por eso no puede ejecutar el programa, y la comprobación lo indica. Esto es **permitido por la implementación**."
+
+#: src/ed-weird/README.md:135
+msgctxt "s-33dc12b1f8d9-0066"
+msgid "**The silent failed ⟦CODE_0001⟧ is accidentally exploited.** The GNU manual says that the command list \"stops on the first error\" and does not say that a failed substitution inside it is not an error. It is not one, on 1.20.1. Without that, there is no ⟦CODE_0002⟧. (The manual's ⟦CODE_0003⟧ option, \"exit with 0 status even if a command fails\", mentions a substitution that finds nothing as an example of a failure, at the top level. The check script confirms that exit status is 0 here.) Do not count on this in another ed."
+msgstr "**El ⟦CODE_0001⟧ fallido y silencioso es aprovechado por accidente.** El manual de GNU dice que la lista de comandos \"se detiene en el primer error\" y no dice que una sustitución fallida dentro de ella no sea un error. No lo es en la versión 1.20.1. Sin eso, no hay ⟦CODE_0002⟧. (La opción ⟦CODE_0003⟧ del manual, \"salir con estado 0 aunque un comando falle\", menciona una sustitución que no encuentra nada como ejemplo de fallo, en el nivel superior. El script de verificación confirma que aquí el estado de salida es 0.) No cuentes con esto en otro ed."
+
+#: src/ed-weird/README.md:136
+msgctxt "s-989e41cab91d-0067"
+msgid "**A blank line is a command.** An empty line means \"print the next line\", and it errors at the end of the buffer. This is why the program uses ⟦CODE_0001⟧ lines to separate its steps."
+msgstr "**Una línea en blanco es un comando.** Una línea vacía significa \"imprime la línea siguiente\" y produce un error al final del búfer. Por eso el programa usa líneas ⟦CODE_0001⟧ para separar sus pasos."
+
+#: src/ed-weird/README.md:137
+msgctxt "s-d13b67832885-0068"
+msgid "**ed writes its errors to standard output.** With ⟦CODE_0001⟧ as the first command, a failed command prints ⟦CODE_0002⟧ and then a reason. Both go to stdout, so the launcher checks ed's exit status (1 on an error), and a stray ⟦CODE_0003⟧ in the rows would fail the database load."
+msgstr "**ed escribe sus errores en la salida estándar.** Con ⟦CODE_0001⟧ como primer comando, un comando fallido imprime ⟦CODE_0002⟧ y luego un motivo. Ambos van a stdout, así que el lanzador comprueba el estado de salida de ed (1 si hay un error). Un ⟦CODE_0003⟧ suelto en las filas haría fallar la carga de la base de datos."
+
+#: src/ed-weird/README.md:138
+msgctxt "s-2af83f5545a2-0069"
+msgid "**⟦CODE_0001⟧ goes to stdout, too.** If the buffer file does not end with a newline, ed says so on stdout even with ⟦CODE_0002⟧. The launcher adds the newline."
+msgstr "**⟦CODE_0001⟧ también va a stdout.** Si el archivo del búfer no termina con un salto de línea, ed lo avisa en stdout incluso con ⟦CODE_0002⟧. El lanzador agrega el salto de línea."
+
+#: src/ed-weird/README.md:139
+msgctxt "s-d461a67a16d1-0070"
+msgid "**GNU ed allows ⟦CODE_0001⟧ in a command list. We do not use it.** The manual says \"any commands are allowed, except ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧ and ⟦CODE_0005⟧\", so a shell escape would work inside a global list. Using one would turn this into a shell program. The check forbids it."
+msgstr "**GNU ed permite ⟦CODE_0001⟧ en una lista de comandos. Nosotros no lo usamos.** El manual dice \"se permite cualquier comando, excepto ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧ y ⟦CODE_0005⟧\", así que un escape al intérprete de comandos (*shell*, el programa que ejecuta comandos del sistema) funcionaría dentro de una lista global. Usar uno convertiría esto en un programa del intérprete de comandos. La comprobación lo prohíbe."
+
+#: src/ed-weird/README.md:140
+msgctxt "s-10ffc213c945-0071"
+msgid "**Positions matter.** ⟦CODE_0001⟧ and ⟦CODE_0002⟧ reach the ledger by position: it is the line directly above the card. If anything put another line between them, every total would be wrong. This is why the ledger line is created before the run starts, and why dead cards stay in place until the cleanup."
+msgstr "**Las posiciones importan.** ⟦CODE_0001⟧ y ⟦CODE_0002⟧ llegan al libro de registro por posición: es la línea justo encima de la tarjeta. Si algo pusiera otra línea entre las dos, todos los totales serían incorrectos. Por eso la línea del libro de registro se crea antes de que empiece la ejecución, y por eso las tarjetas muertas permanecen en su lugar hasta la limpieza."
+
+#: src/ed-weird/README.md:141
+msgctxt "s-4c21825801cb-0072"
+msgid "**Unary is slow.** Totals are strings of up to 59 marks. A million would be a million characters."
+msgstr "**Unario es lento.** Los totales son cadenas de texto de hasta 59 marcas. Un millón serían un millón de caracteres."
+
+#: src/ed-weird/README.md:142
+msgctxt "s-a855c1e94ce8-0073"
+msgid "**The dice are the launcher's.** Randomness is the one thing ed cannot do, so it is the one thing the launcher does."
+msgstr "**Los dados son del lanzador.** La aleatoriedad es lo único que ed no puede hacer, así que es lo único que hace el lanzador."
+
+#: src/ed-weird/README.md:146
+msgctxt "s-40ddb79ac33a-0074"
+msgid "See the [root README](⟦DEST_0001⟧) for how this compares to the other entries, and [⟦CODE_0002⟧](⟦DEST_0003⟧) if you want to write your own."
+msgstr "Consulta el [README raíz](⟦DEST_0001⟧) para ver cómo se compara con las otras entradas y [⟦CODE_0002⟧](⟦DEST_0003⟧) si quieres escribir la tuya."

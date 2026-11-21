@@ -1,0 +1,260 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/cobol-weird/README.md:2
+msgctxt "s-d29900b5259d-0000"
+msgid "COBOL"
+msgstr "COBOL"
+
+#: src/cobol-weird/README.md:3
+msgctxt "s-ea89c4d89800-0001"
+msgid "that a program can rewrite its own control flow and that structured programming makes such changes easier to trace."
+msgstr "que un programa puede reescribir su propio flujo de control y que la programación estructurada facilita trazar esos cambios."
+
+#: src/cobol-weird/README.md:11
+msgctxt "s-9d9ef6649295-0002"
+msgid "A program whose jump targets are mutable"
+msgstr "Un programa cuyos destinos de salto son mutables"
+
+#: src/cobol-weird/README.md:12
+msgctxt "s-394056df5dd0-0003"
+msgid "The target of one ⟦CODE_0001⟧"
+msgstr "El destino de un ⟦CODE_0001⟧"
+
+#: src/cobol-weird/README.md:16
+msgctxt "s-3731fb444f76-0004"
+msgid "COBOL, weirder"
+msgstr "COBOL, más raro"
+
+#: src/cobol-weird/README.md:18
+msgctxt "s-3e6f97903409-0005"
+msgid "**Teaches you:** that a program can rewrite its own control flow and that structured programming makes such changes easier to trace."
+msgstr "**Te enseña:** que un programa puede reescribir su propio flujo de control y que la programación estructurada facilita trazar esos cambios."
+
+#: src/cobol-weird/README.md:20
+msgctxt "s-5ca333b42af1-0006"
+msgid "**⟦DNT_0001⟧.** Fictional timecards in a scratch SQLite file. No connection to any real time-reporting system."
+msgstr "**⟦DNT_0001⟧.** Tarjetas de horas ficticias en un archivo SQLite temporal. Sin conexión con ningún sistema real de registro de horas."
+
+#: src/cobol-weird/README.md:22
+msgctxt "s-a7ea6bc1927b-0007"
+msgid "The [plain COBOL version](⟦DEST_0001⟧) loops with ⟦CODE_0002⟧. This one has no ⟦CODE_0003⟧, no ⟦CODE_0004⟧, no ⟦CODE_0005⟧, no ⟦CODE_0006⟧ and no ⟦CODE_0007⟧ to rotate the categories. Control flow is ⟦CODE_0008⟧ and **⟦CODE_0009⟧**, a statement that changes where a ⟦CODE_0010⟧ jumps *while the program runs*. ⟦CODE_0011⟧ was declared obsolete in 1985 and deleted from the COBOL standard in 2002. GnuCOBOL still runs it, and warns five times."
+msgstr "La [versión simple de COBOL](⟦DEST_0001⟧) hace un bucle con ⟦CODE_0002⟧. Esta no tiene ⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧, ⟦CODE_0006⟧ ni ⟦CODE_0007⟧ para rotar las categorías. El flujo de control es ⟦CODE_0008⟧ y **⟦CODE_0009⟧**, una sentencia que cambia el lugar al que salta un ⟦CODE_0010⟧ *mientras el programa se ejecuta*. ⟦CODE_0011⟧ se declaró obsoleto en 1985 y se eliminó del estándar de COBOL en 2002. GnuCOBOL aún lo ejecuta y emite cinco advertencias."
+
+#: src/cobol-weird/README.md:24
+msgctxt "s-5272fd7ba534-0008"
+msgid "The stop rule isn't a comparison either. It's a two-digit number overflowing."
+msgstr "La regla de parada tampoco es una comparación. Es un número de dos dígitos que se desborda."
+
+#: src/cobol-weird/README.md:26
+msgctxt "s-958ca26c6a61-0009"
+msgid "Run it"
+msgstr "Ejecútalo"
+
+#: src/cobol-weird/README.md:28
+msgctxt "s-c562b3b15d91-0010"
+msgid "You need GnuCOBOL (⟦CODE_0001⟧, 3.1 or later; ⟦CODE_0002⟧ on Ubuntu) and ⟦CODE_0003⟧."
+msgstr "Necesitas GnuCOBOL (⟦CODE_0001⟧, versión 3.1 o posterior; ⟦CODE_0002⟧ en Ubuntu) y ⟦CODE_0003⟧."
+
+#: src/cobol-weird/README.md:36
+msgctxt "s-c3305f649804-0011"
+msgid "Records go to ⟦CODE_0001⟧ (default ⟦CODE_0002⟧). A run looks like this:"
+msgstr "Los registros van a ⟦CODE_0001⟧ (por defecto, ⟦CODE_0002⟧). Una ejecución se ve así:"
+
+#: src/cobol-weird/README.md:47
+msgctxt "s-0dcb373c2dff-0012"
+msgid "Program Flow"
+msgstr "Flujo del programa"
+
+#: src/cobol-weird/README.md:51
+msgctxt "s-b3cdf86c8e55-0013"
+msgid "cobol-weird: the target of one GO TO is the loop"
+msgstr "cobol-weird: el destino de un solo GO TO es el bucle"
+
+#: src/cobol-weird/README.md:52
+msgctxt "s-42d048695631-0014"
+msgid "A state diagram. The state is the current target of the single GO TO in the NEXT-CARD paragraph. It starts as ⟦DNT_0001⟧. Each category paragraph rewrites it to the next category with ALTER, so the cycle is ⟦DNT_0002⟧, ⟦DNT_0003⟧, ⟦DNT_0004⟧, ⟦DNT_0005⟧, and back to ⟦DNT_0006⟧. When the two-digit headroom field overflows, ON SIZE ERROR rewrites the target to FINISH-RUN, which commits the script and stops."
+msgstr "Un diagrama de estados. El estado es el destino actual del único GO TO del párrafo NEXT-CARD. Empieza como ⟦DNT_0001⟧. Cada párrafo de categoría lo reescribe con ALTER para apuntar a la categoría siguiente, así que el ciclo es ⟦DNT_0002⟧, ⟦DNT_0003⟧, ⟦DNT_0004⟧, ⟦DNT_0005⟧ y de nuevo ⟦DNT_0006⟧. Cuando el campo de margen de dos dígitos se desborda, ON SIZE ERROR reescribe el destino a FINISH-RUN, que hace la confirmación de la transacción del script y se detiene."
+
+#: src/cobol-weird/README.md:57
+msgctxt "s-9d3b81398d3e-0015"
+msgid "FINISH-RUN"
+msgstr "FINISH-RUN"
+
+#: src/cobol-weird/README.md:58
+msgctxt "s-02aa4cc4fe71-0016"
+msgid "NEXT-CARD's GO TO jumps to"
+msgstr "El GO TO de NEXT-CARD salta a"
+
+#: src/cobol-weird/README.md:60
+msgctxt "s-958ef1655f5b-0017"
+msgid "ALTER"
+msgstr "ALTER"
+
+#: src/cobol-weird/README.md:61
+msgctxt "s-958ef1655f5b-0018"
+msgid "ALTER"
+msgstr "ALTER"
+
+#: src/cobol-weird/README.md:62
+msgctxt "s-958ef1655f5b-0019"
+msgid "ALTER"
+msgstr "ALTER"
+
+#: src/cobol-weird/README.md:63
+msgctxt "s-958ef1655f5b-0020"
+msgid "ALTER"
+msgstr "ALTER"
+
+#: src/cobol-weird/README.md:65
+msgctxt "s-5669695a70a5-0021"
+msgid "ON SIZE ERROR, ALTER"
+msgstr "ON SIZE ERROR, ALTER"
+
+#: src/cobol-weird/README.md:66
+msgctxt "s-16d8bd9c4202-0022"
+msgid "COMMIT, sqlite3, STOP RUN"
+msgstr "COMMIT, sqlite3, STOP RUN"
+
+#: src/cobol-weird/README.md:69
+msgctxt "s-f60e2f7782b5-0023"
+msgid "**What this shows:** the state of this program is the target of one ⟦CODE_0001⟧. Each card, the category paragraph named by the target runs, rewrites the target with ⟦CODE_0002⟧ to the next category, and falls into ⟦CODE_0003⟧, which jumps back to ⟦CODE_0004⟧. The source text of that ⟦CODE_0005⟧ never changes. The jump does."
+msgstr "**Qué muestra:** el estado de este programa es el destino de un solo ⟦CODE_0001⟧. En cada tarjeta, el párrafo de categoría que indica el destino se ejecuta, reescribe el destino con ⟦CODE_0002⟧ para que apunte a la categoría siguiente y pasa a ⟦CODE_0003⟧, que salta de nuevo a ⟦CODE_0004⟧. El texto fuente de ese ⟦CODE_0005⟧ no cambia nunca. El salto sí cambia."
+
+#: src/cobol-weird/README.md:71
+msgctxt "s-344f21f3c87f-0024"
+msgid "**Why this mechanism matters:** there is no loop condition to draw. The exit is another rewrite: when ⟦CODE_0001⟧ overflows, ⟦CODE_0002⟧ points the same ⟦CODE_0003⟧ at ⟦CODE_0004⟧. Compare the plain [⟦CODE_0005⟧](⟦DEST_0006⟧) entry, where a ⟦CODE_0007⟧ tests a condition."
+msgstr "**Por qué importa este mecanismo:** no hay ninguna condición de bucle que dibujar. La salida es otra reescritura: cuando ⟦CODE_0001⟧ se desborda, ⟦CODE_0002⟧ apunta el mismo ⟦CODE_0003⟧ a ⟦CODE_0004⟧. Compara la entrada simple [⟦CODE_0005⟧](⟦DEST_0006⟧), donde ⟦CODE_0007⟧ prueba una condición."
+
+#: src/cobol-weird/README.md:73
+msgctxt "s-7f97d965b4c0-0025"
+msgid "How the stunt works"
+msgstr "Cómo funciona el truco"
+
+#: src/cobol-weird/README.md:75
+msgctxt "s-e973d0408ee0-0026"
+msgid "COBOL paragraphs run in the order they're written, falling from one into the next, unless a ⟦CODE_0001⟧ sends control somewhere else. So [⟦CODE_0002⟧](⟦DEST_0003⟧) reads top to bottom: set-up paragraphs fall through into the loop, and the loop ends by jumping to the last paragraph."
+msgstr "Los párrafos de COBOL se ejecutan en el orden en que están escritos. Pasan de uno al siguiente, a menos que un ⟦CODE_0001⟧ envíe el control a otra parte. Así, [⟦CODE_0002⟧](⟦DEST_0003⟧) se lee de arriba abajo: los párrafos de preparación continúan en el bucle y el bucle termina con un salto al último párrafo."
+
+#: src/cobol-weird/README.md:77
+msgctxt "s-d41bfd68583e-0027"
+msgid "**The switchboard.** The loop is one paragraph containing one statement:"
+msgstr "**La central telefónica.** El bucle es un párrafo que contiene una sentencia:"
+
+#: src/cobol-weird/README.md:84
+msgctxt "s-b75583b135a8-0028"
+msgid ""
+"A paragraph that is exactly one ⟦CODE_0001⟧ is the only thing ⟦CODE_0002⟧ is allowed to change. ⟦CODE_0003⟧ rewrites that ⟦CODE_0004⟧'s target, so the next time control reaches ⟦CODE_0005⟧ it goes to ⟦CODE_0006⟧ instead. The source code never changes; the running program's jump does.\n"
+"2. **The categories rotate by rewiring.** Each category's paragraph names itself, ⟦CODE_0007⟧s ⟦CODE_0008⟧ to the category after it, and jumps to ⟦CODE_0009⟧. ⟦DNT_0010⟧ points it at ⟦DNT_0011⟧, ⟦DNT_0012⟧ at ⟦DNT_0013⟧, ⟦DNT_0014⟧ at ⟦DNT_0015⟧, and ⟦DNT_0016⟧ back at ⟦DNT_0017⟧. Nothing counts cards modulo 4. Which category comes next exists only as the current target of one ⟦CODE_0018⟧.\n"
+"3. **⟦CODE_0019⟧ does one card** (draws the hours, adds them to the total, prints the row, writes the ⟦CODE_0020⟧) and ends with ⟦CODE_0021⟧. So the loop is: ⟦CODE_0022⟧ jumps to whichever category it currently points at, that category re-points it and runs ⟦CODE_0023⟧, which jumps back to ⟦CODE_0024⟧.\n"
+"4. **The tripwire is the stop rule.** ⟦CODE_0025⟧ is ⟦CODE_0026⟧, two decimal digits, and starts at 59. Just before ⟦CODE_0027⟧, each card's hours are added to it:"
+msgstr ""
+"Un párrafo que es exactamente un ⟦CODE_0001⟧ es lo único que ⟦CODE_0002⟧ puede cambiar. ⟦CODE_0003⟧ reescribe el destino de ese ⟦CODE_0004⟧, así que la próxima vez que el control llegue a ⟦CODE_0005⟧ salta a ⟦CODE_0006⟧ en su lugar. El código fuente nunca cambia; lo que cambia es el salto del programa en ejecución.\n"
+"2. **Las categorías rotan por reconexión.** El párrafo de cada categoría se nombra a sí mismo, usa ⟦CODE_0007⟧ para apuntar ⟦CODE_0008⟧ a la categoría siguiente y salta a ⟦CODE_0009⟧. ⟦DNT_0010⟧ lo apunta a ⟦DNT_0011⟧, ⟦DNT_0012⟧ a ⟦DNT_0013⟧, ⟦DNT_0014⟧ a ⟦DNT_0015⟧ y ⟦DNT_0016⟧ de vuelta a ⟦DNT_0017⟧. Nada cuenta tarjetas módulo 4. La categoría siguiente existe solo como el destino actual de un ⟦CODE_0018⟧.\n"
+"3. **⟦CODE_0019⟧ procesa una tarjeta** (sortea las horas, las suma al total, imprime la fila, escribe ⟦CODE_0020⟧) y termina con ⟦CODE_0021⟧. Así que el bucle es este: ⟦CODE_0022⟧ salta a la categoría a la que apunta en ese momento, esa categoría lo vuelve a apuntar y ejecuta ⟦CODE_0023⟧, que salta de vuelta a ⟦CODE_0024⟧.\n"
+"4. **El cable trampa es la regla de parada.** ⟦CODE_0025⟧ es ⟦CODE_0026⟧, tiene dos dígitos decimales y empieza en 59. Justo antes de ⟦CODE_0027⟧, el programa le suma las horas de cada tarjeta:"
+
+#: src/cobol-weird/README.md:96
+msgctxt "s-b34ab1e8125b-0029"
+msgid ""
+"59 + total fits in two digits while the total is 40 or less. The add that would take it to 100 or more is a *size error*. COBOL then leaves the field unchanged and runs the ⟦CODE_0001⟧ clause, which ⟦CODE_0002⟧s ⟦CODE_0003⟧ one last time, to ⟦CODE_0004⟧. The ⟦CODE_0005⟧ that follows is the same statement as it was every earlier time, but now it ends the run. Four 10-hour cards make 59 + 40 = 99, which still fits, so a fifth card is drawn, exactly as the rule requires.\n"
+"5. **⟦CODE_0006⟧** commits the SQL script through ⟦CODE_0007⟧ and prints the summary."
+msgstr ""
+"59 + total cabe en dos dígitos mientras el total no pase de 40. La suma que lo llevaría a 100 o más es un *error de tamaño*. Entonces COBOL deja el campo sin cambios y ejecuta la cláusula ⟦CODE_0001⟧, que aplica ⟦CODE_0002⟧ a ⟦CODE_0003⟧ una última vez, para ⟦CODE_0004⟧. Lo que sigue, ⟦CODE_0005⟧, es la misma sentencia que las veces anteriores, pero ahora termina la ejecución. Cuatro tarjetas de 10 horas suman 59 + 40 = 99, que todavía cabe, así que se saca una quinta tarjeta, exactamente como exige la regla.\n"
+"5. **⟦CODE_0006⟧** confirma el script SQL mediante ⟦CODE_0007⟧ e imprime el resumen."
+
+#: src/cobol-weird/README.md:99
+msgctxt "s-9bf435bb9968-0030"
+msgid "What this version refuses to use, and the honest price"
+msgstr "Qué se niega a usar esta versión y su precio real"
+
+#: src/cobol-weird/README.md:101
+msgctxt "s-bebcb51f07bf-0031"
+msgid "⟦CODE_0001⟧ strips comments and string literals and then fails if ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧, ⟦CODE_0006⟧, ⟦CODE_0007⟧, ⟦CODE_0008⟧ or ⟦CODE_0009⟧ appears. It also insists on exactly five ⟦CODE_0010⟧s and exactly one ⟦CODE_0011⟧. Two places still needed a decision without ⟦CODE_0012⟧:"
+msgstr "⟦CODE_0001⟧ elimina los comentarios y las cadenas de texto literales, y luego falla si aparece ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧, ⟦CODE_0006⟧, ⟦CODE_0007⟧, ⟦CODE_0008⟧ o ⟦CODE_0009⟧. También exige exactamente cinco ⟦CODE_0010⟧ y exactamente un ⟦CODE_0011⟧. Dos lugares aún necesitaban una decisión sin ⟦CODE_0012⟧:"
+
+#: src/cobol-weird/README.md:103
+msgctxt "s-9fa9607b3fc2-0032"
+msgid "**⟦CODE_0001⟧ is a conditional.** It's the one decision in the program, and it's the stop rule itself. It's a decision triggered by arithmetic running out of digits, not by a comparison anyone wrote."
+msgstr "**⟦CODE_0001⟧ es un condicional.** Es la única decisión del programa y es la propia regla de parada. Es una decisión que se activa cuando la aritmética se queda sin dígitos, no por una comparación que alguien escribió."
+
+#: src/cobol-weird/README.md:104
+msgctxt "s-bdfe7be57727-0033"
+msgid "**Choosing the data folder.** ⟦CODE_0001⟧ if set, else ⟦CODE_0002⟧. Both paths go in a two-entry table, and the subscript is ⟦CODE_0003⟧. Data picks the entry; nothing branches."
+msgstr "**Elegir la carpeta de datos.** ⟦CODE_0001⟧ si está definida; si no, ⟦CODE_0002⟧. Las dos rutas van en una tabla de dos entradas y el subíndice es ⟦CODE_0003⟧. Los datos eligen la entrada; no hay ninguna rama."
+
+#: src/cobol-weird/README.md:105
+msgctxt "s-79842337c7f3-0034"
+msgid "**A failed ⟦CODE_0001⟧ can't skip the summary.** Without ⟦CODE_0002⟧, the shell command does the reporting instead (⟦CODE_0003⟧), and its exit status becomes the program's exit code, divided by 256 because ⟦CODE_0004⟧ returns the raw wait status. A failed run still prints the ⟦CODE_0005⟧ line, but on a failed run it also prints an error on stderr and exits 1."
+msgstr "**Cuando ⟦CODE_0001⟧ falla, no puede omitir el resumen.** Sin ⟦CODE_0002⟧, el comando del intérprete de comandos (*shell*, el programa que recibe y ejecuta comandos) hace el reporte en su lugar (⟦CODE_0003⟧), y su estado de salida pasa a ser el estado de salida del programa, dividido entre 256 porque ⟦CODE_0004⟧ devuelve el estado de espera en bruto. Una ejecución fallida sigue imprimiendo la línea ⟦CODE_0005⟧, pero en una ejecución fallida también imprime un error en stderr y termina con 1."
+
+#: src/cobol-weird/README.md:107
+msgctxt "s-b1ce1f2a2969-0035"
+msgid "Where the program reaches outside itself"
+msgstr "Dónde sale el programa de sí mismo"
+
+#: src/cobol-weird/README.md:109
+msgctxt "s-897b23cf9ad8-0036"
+msgid "The same as the plain version: ⟦CODE_0001⟧ for the run id and seed, ⟦CODE_0002⟧ once for ⟦CODE_0003⟧ and once to run ⟦CODE_0004⟧ on the finished script, and ⟦CODE_0005⟧ in the table, which ⟦CODE_0006⟧ tests."
+msgstr "Igual que en la versión simple: ⟦CODE_0001⟧ para el id de ejecución y la semilla, ⟦CODE_0002⟧ una vez para ⟦CODE_0003⟧ y otra para ejecutar ⟦CODE_0004⟧ sobre el script terminado y ⟦CODE_0005⟧ en la tabla, que ⟦CODE_0006⟧ prueba."
+
+#: src/cobol-weird/README.md:111
+msgctxt "s-339cc2c18f83-0037"
+msgid "What ⟦CODE_0001⟧ enforces"
+msgstr "Qué impone ⟦CODE_0001⟧"
+
+#: src/cobol-weird/README.md:113
+msgctxt "s-771ea7627f5f-0038"
+msgid "⟦CODE_0001⟧ first checks the source. The file has the ⟦CODE_0002⟧ marker and no network-looking text, and no line goes past column 72 (fixed format). With comments and string literals removed, none of ⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧, ⟦CODE_0006⟧, ⟦CODE_0007⟧, ⟦CODE_0008⟧, ⟦CODE_0009⟧ or ⟦CODE_0010⟧ may appear. There must be exactly five ⟦CODE_0011⟧s (four categories and the stop) and exactly one ⟦CODE_0012⟧ (the stop rule). It then builds the program once and runs it 25 times with the usual checks, including an ISO week that agrees with ⟦CODE_0013⟧. SQLite must agree with the printed rows, and the runs must differ from each other. Last, it tries to insert a non-demo row and expects SQLite to refuse it, which proves that ⟦CODE_0014⟧ is real."
+msgstr "⟦CODE_0001⟧ revisa primero el código fuente. El archivo tiene el marcador ⟦CODE_0002⟧, no contiene texto que parezca de red y ninguna línea pasa de la columna 72 (formato fijo). Una vez quitados los comentarios y las cadenas de texto literales, no debe aparecer ninguno de ⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧, ⟦CODE_0006⟧, ⟦CODE_0007⟧, ⟦CODE_0008⟧, ⟦CODE_0009⟧ ni ⟦CODE_0010⟧. Debe haber exactamente cinco ⟦CODE_0011⟧ (cuatro categorías y la parada) y exactamente un ⟦CODE_0012⟧ (la regla de parada). Después compila el programa una vez y lo ejecuta 25 veces con las comprobaciones habituales, incluida una semana ISO que coincide con ⟦CODE_0013⟧. SQLite debe coincidir con las filas impresas, y las ejecuciones deben diferir entre sí. Por último, intenta insertar una fila que no es de demostración y espera que SQLite la rechace, lo cual prueba que ⟦CODE_0014⟧ es real."
+
+#: src/cobol-weird/README.md:115
+msgctxt "s-5a0ad00b10fc-0039"
+msgid "Gotchas worth knowing"
+msgstr "Trampas que conviene conocer"
+
+#: src/cobol-weird/README.md:117
+msgctxt "s-fb4d4194c527-0040"
+msgid "**⟦CODE_0001⟧ only works on a one-⟦CODE_0002⟧ paragraph.** That's why ⟦CODE_0003⟧ has nothing else in it. Put a ⟦CODE_0004⟧ in there and the compiler refuses the ⟦CODE_0005⟧."
+msgstr "**⟦CODE_0001⟧ solo funciona con un párrafo de un solo ⟦CODE_0002⟧.** Por eso ⟦CODE_0003⟧ no contiene nada más. Pon un ⟦CODE_0004⟧ ahí dentro y el compilador rechaza el ⟦CODE_0005⟧."
+
+#: src/cobol-weird/README.md:118
+msgctxt "s-feeefb8e08f4-0041"
+msgid "**The program's state is partly in its jumps.** A debugger showing ⟦CODE_0001⟧ variables can't tell you which category is next; you have to know what ⟦CODE_0002⟧ was last altered to. This is precisely the complaint that got ⟦CODE_0003⟧ removed: you can't understand a paragraph by reading it."
+msgstr "**Parte del estado del programa está en sus saltos.** Un depurador que muestra las variables ⟦CODE_0001⟧ no puede decirte cuál es la siguiente categoría; tienes que saber a qué se alteró ⟦CODE_0002⟧ por última vez. Esta es precisamente la queja que llevó a eliminar ⟦CODE_0003⟧: no puedes entender un párrafo leyéndolo."
+
+#: src/cobol-weird/README.md:119
+msgctxt "s-0629beea8172-0042"
+msgid "**A size error leaves the target unchanged.** That's the standard behavior, and why ⟦CODE_0001⟧ doesn't need resetting. Without an ⟦CODE_0002⟧ clause, the add would instead quietly drop the leading digit (99 + 1 = 00)."
+msgstr "**Un error de tamaño deja el destino sin cambios.** Es el comportamiento estándar y explica por qué ⟦CODE_0001⟧ no necesita reiniciarse. Sin una cláusula ⟦CODE_0002⟧, la suma descartaría en cambio, sin avisar, el dígito inicial (99 + 1 = 00)."
+
+#: src/cobol-weird/README.md:120
+msgctxt "s-34c1cf3d055c-0043"
+msgid "**⟦CODE_0001⟧ shows five ⟦CODE_0002⟧ warnings.** They're the point."
+msgstr "**⟦CODE_0001⟧ muestra cinco advertencias de ⟦CODE_0002⟧.** Son el objetivo."
+
+#: src/cobol-weird/README.md:121
+msgctxt "s-690d96f963ec-0044"
+msgid "**SQL by string building is a bad habit.** It's safe here only because every value is a number computed by the program or one of four fixed words. Don't copy it."
+msgstr "**Construir SQL con cadenas de texto es un mal hábito.** Aquí es seguro solo porque cada valor es un número que calcula el programa o una de cuatro palabras fijas. No lo copies."
+
+#: src/cobol-weird/README.md:123
+msgctxt "s-254f0c660db3-0045"
+msgid "Run it in a container"
+msgstr "Ejecuta el programa en un contenedor"
+
+#: src/cobol-weird/README.md:125
+msgctxt "s-643df015c8a2-0046"
+msgid "Prerequisite: Docker, set up once as described in [⟦CODE_0001⟧](⟦DEST_0002⟧)."
+msgstr "Requisito previo: Docker, configurado una sola vez como se describe en [⟦CODE_0001⟧](⟦DEST_0002⟧)."
+
+#: src/cobol-weird/README.md:131
+msgctxt "s-97e3efd9e54c-0047"
+msgid "It builds this folder's [⟦CODE_0001⟧](⟦DEST_0002⟧) and runs the result with no network, a read-only file system and user ⟦CODE_0003⟧, then prints the output and a read-only look at the rows it wrote. The image holds the compiled program, GnuCOBOL's runtime library (libcob) and sqlite3 on a minimal Ubuntu. It has no compiler and no package manager."
+msgstr "Compila el [⟦CODE_0001⟧](⟦DEST_0002⟧) de esta carpeta y ejecuta el resultado sin red, con un sistema de archivos de solo lectura y el usuario ⟦CODE_0003⟧. Después imprime la salida y una vista de solo lectura de las filas que escribió. La imagen contiene el programa compilado, la biblioteca de ejecución de GnuCOBOL (libcob) y sqlite3 sobre un Ubuntu mínimo. No tiene compilador ni administrador de paquetes."

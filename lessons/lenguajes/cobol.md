@@ -76,7 +76,7 @@ See [exercises](../exercises.md#b1-cobol-predict-then-break-alter-verified): pre
 - **Fixed format.** Columns 1-6 were a sequence number; `*` in column 7 is a comment; division and paragraph names start in column 8 ("area A"), statements in column 12 ("area B"); **nothing past column 72 is read**. A long line is silently truncated, not rejected. `check.sh` rejects lines over 72 ([`cobol-weird/check.sh`](../../src/cobol-weird/check.sh)).
 - **`STRING` does not clear its target.** It writes from the left and leaves old bytes to the right, so reused buffers need `MOVE SPACES` first.
 - **Reserved words are everywhere.** `TAB` is reserved in GnuCOBOL, which is why the tab character is `WS-TAB`.
-- **`SYSTEM` returns the raw wait status**: an exit code of 3 comes back as 768. [`cobol-weird`](../../src/cobol-weird/README.md#how-the-stunt-works) divides by 256 to recover it.
+- **`SYSTEM` returns the raw wait status**: an exit code of 3 comes back as 768. [`cobol-weird`](../../src/cobol-weird/README.md#cómo-funciona-el-truco) divides by 256 to recover it.
 - **`ACCEPT ... FROM ENVIRONMENT` blanks the field** when the variable is unset, rather than leaving it alone.
 - **The ISO week has to be hand-built.** COBOL has date functions but no ISO week; `FUNCTION INTEGER-OF-DATE` counts from 1601-01-01 (a Monday), and the Thursday rule is four `COMPUTE`s. The README notes it was checked against `date +%G-W%V` for 2020-2030.
 - **Choosing without `IF`.** [`cobol-weird` L119](../../src/cobol-weird/timecards.cob#L119): `COMPUTE WS-BASE-IX = 1 + FUNCTION MIN(WS-XDG-LENGTH, 1)` picks one of two table entries by data alone.
@@ -98,7 +98,7 @@ Each picture below is the `## Program Flow` section of an entry's README, copied
 
 ### Program flow of `cobol`
 
-From [`cobol`](../../src/cobol/README.md) ([source section](../../src/cobol/README.md#program-flow)).
+From [`cobol`](../../src/cobol/README.md) ([source section](../../src/cobol/README.md#flujo-del-programa)).
 
 ```mermaid
 flowchart TD
@@ -118,7 +118,7 @@ flowchart TD
 
 ### Program flow of `cobol-weird`
 
-From [`cobol-weird`](../../src/cobol-weird/README.md) ([source section](../../src/cobol-weird/README.md#program-flow)).
+From [`cobol-weird`](../../src/cobol-weird/README.md) ([source section](../../src/cobol-weird/README.md#flujo-del-programa)).
 
 ```mermaid
 stateDiagram-v2
