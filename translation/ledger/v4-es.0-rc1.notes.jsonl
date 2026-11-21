@@ -1668,3 +1668,26 @@
 {"segment_id": "s-cb95e5fb214d-0050", "ts": "2026-11-21T17:03:44Z", "findings": ["I7: glossary term assurance-tally must be rendered 'recuento de garantías'"]}
 {"segment_id": "s-c2984a13d175-0040", "ts": "2026-11-21T17:04:08Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
 {"segment_id": "s-cb95e5fb214d-0050", "ts": "2026-11-21T17:04:08Z", "findings": ["I7: glossary term assurance must be rendered 'grado de garantía'"]}
+{"segment_id": "s-7c994b509d47-0004", "ts": "2026-11-21T17:08:51Z", "findings": ["I25: comma before a simple 'y' ('X y X, y decir qué la rompería'): no comma before a simple o or y"]}
+{"segment_id": "s-03eeb82595b4-0005", "ts": "2026-11-21T17:08:51Z", "findings": ["I7: glossary term scope must be rendered 'ámbito'"]}
+{"segment_id": "s-037ffbc53dd8-0007", "ts": "2026-11-21T17:08:51Z", "findings": ["I7: banned rendering 'registro' for glossary term entry"]}
+{"segment_id": "s-6c55f1bbc93c-0008", "ts": "2026-11-21T17:08:51Z", "findings": ["I25: comma before a simple 'y' ('X y X, y en Windows X'): no comma before a simple o or y"]}
+{"segment_id": "s-a0bc0067b9de-0019", "ts": "2026-11-21T17:08:51Z", "findings": ["I7: banned phrase 'llegar a 40' (timecard rule)"]}
+{"segment_id": "s-e21d0b67929c-0027", "ts": "2026-11-21T17:08:51Z", "findings": ["I7: glossary term exercise must be rendered 'ejercicio'"]}
+{"segment_id": "s-aa6e86ea21d1-0029", "ts": "2026-11-21T17:08:51Z", "findings": ["I12: sentence of 30 words (limit 29): Aquí tienes la misma ejecución de tres t..."]}
+{"segment_id": "s-7c994b509d47-0004", "ts": "2026-11-21T17:08:54Z", "findings": ["I25: comma before a simple 'y' ('X y X, y decir qué la rompería'): no comma before a simple o or y"]}
+{"segment_id": "s-03eeb82595b4-0005", "ts": "2026-11-21T17:08:54Z", "findings": ["I7: glossary term scope must be rendered 'ámbito'"]}
+{"segment_id": "s-037ffbc53dd8-0007", "ts": "2026-11-21T17:08:54Z", "findings": ["I7: banned rendering 'registro' for glossary term entry"]}
+{"segment_id": "s-6c55f1bbc93c-0008", "ts": "2026-11-21T17:08:54Z", "findings": ["I25: comma before a simple 'y' ('X y X, y en Windows X'): no comma before a simple o or y"]}
+{"segment_id": "s-a0bc0067b9de-0019", "ts": "2026-11-21T17:08:54Z", "findings": ["I7: banned phrase 'llegar a 40' (timecard rule)"]}
+{"segment_id": "s-e21d0b67929c-0027", "ts": "2026-11-21T17:08:54Z", "findings": ["I7: glossary term exercise must be rendered 'ejercicio'"]}
+{"segment_id": "s-aa6e86ea21d1-0029", "ts": "2026-11-21T17:08:54Z", "findings": ["I12: sentence of 30 words (limit 29): Aquí tienes la misma ejecución de tres t..."]}
+{"segment_id": "s-03eeb82595b4-0005", "ts": "2026-11-21T17:09:21Z", "findings": ["I7: glossary term scope must be rendered 'ámbito'"]}
+{"segment_id": "s-0ba93f7ec1c1-0041", "ts": "2026-11-21T17:10:46Z", "findings": ["I7: glossary term cost must be rendered 'costo'"]}
+{"segment_id": "s-f392ad704be0-0067", "ts": "2026-11-21T17:10:46Z", "findings": ["I25: comma before a simple 'y' ('mawk no lo tiene, y B13 muestra qué ocurre'): no comma before a simple o or y"]}
+{"segment_id": "s-a69e53262f28-0068", "ts": "2026-11-21T17:10:46Z", "findings": ["I7: banned phrase 'seguro' (assurance label)"]}
+{"segment_id": "s-87d9e31bff8d-0070", "ts": "2026-11-21T17:10:46Z", "findings": ["I7: glossary term state must be rendered 'estado'"]}
+{"segment_id": "s-1e6436233a1b-0081", "ts": "2026-11-21T17:10:46Z", "findings": ["I25: comma before a simple 'y' ('**Estado y control, y la comparación'): no comma before a simple o or y"]}
+{"segment_id": "s-c0ff59c3727b-0085", "ts": "2026-11-21T17:10:46Z", "findings": ["I7: glossary term build must be rendered 'compilación'", "I7: banned phrase 'seguro' (assurance label)", "I7: banned phrase 'garantizada' (assurance label)"]}
+{"segment_id": "s-87d9e31bff8d-0070", "ts": "2026-11-21T17:10:55Z", "findings": ["I7: glossary term state must be rendered 'estado'"]}
+{"segment_id": "s-c0ff59c3727b-0085", "ts": "2026-11-21T17:10:55Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}

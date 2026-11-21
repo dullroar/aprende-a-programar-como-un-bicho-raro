@@ -318,3 +318,6 @@
 {"id":"EXC-318","segment":"s-25693566f8a1-0087","invariant":"I7","reason":"'lists' is the verb 'enumera', not the noun lista","task":"P4-lessons-study-guides-concepts-5"}
 {"id":"EXC-319","segment":"s-c2984a13d175-0040","invariant":"I7","reason":"'builds' is the verb (construye una variante), not the noun build/compilación","task":"P4-lessons-study-guides-concepts-5"}
 {"id":"EXC-320","segment":"s-cb95e5fb214d-0050","invariant":"I7","reason":"'assurance' occurs only inside the compound term 'assurance tally', whose approved rendering is 'recuento de garantías'","task":"P4-lessons-study-guides-concepts-5"}
+{"id":"EXC-321","segment":"s-03eeb82595b4-0005","invariant":"I7","reason":"'Scope limits' names how far the guide reaches (alcance), not variable scope (ámbito); same as EXC-005.","task":"P4-lessons-study-guides-concepts-6"}
+{"id":"EXC-322","segment":"s-87d9e31bff8d-0070","invariant":"I7","reason":"'state' is the verb (declarar los costos), not the noun state (estado).","task":"P4-lessons-study-guides-concepts-6"}
+{"id":"EXC-323","segment":"s-c0ff59c3727b-0085","invariant":"I7","reason":"'Build' is the imperative verb (Crea archivos tar), not the noun build (compilación).","task":"P4-lessons-study-guides-concepts-6"}
