@@ -35,7 +35,7 @@ Your working directory is the root of the Spanish repo. The design is in `transl
    - Update the counters in `loop/STATE.md` (keep it at most 60 lines).
    - If you learned something that would stop a future iteration repeating a mistake, add one rule to `loop/SIGNS.md` (one line, imperative, specific).
    - Add any default you took to `loop/decisions-provisional.md`.
-7. **Commit.** `git add -- <task files>` and `git commit -m "loop(<task-id>): <summary>"`, ending the message with the attribution trailer the environment requires. If the pre-commit hook rejects the commit, fix the cause; do not bypass the hook with `--no-verify`.
+7. **Commit.** `git add -- <task files>` and `git commit -m "loop(<task-id>): <summary>"`, ending the message with the attribution trailer the environment requires. For Codex, if the sandbox blocks the unchanged verifier or a scoped Git command, request automatic approval review for that exact command. If review denies it, preserve the task files and record a partial handoff. If the pre-commit hook rejects the commit, fix the cause; do not bypass the hook with `--no-verify`.
 8. **Exit.** Print exactly one final line: `LOOP-RESULT: <task-id> <done|blocked|partial>`. Do not begin another task.
 
 ## Quality bar for translation tasks

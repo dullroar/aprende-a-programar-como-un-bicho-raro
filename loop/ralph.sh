@@ -69,7 +69,7 @@ DEFAULT_AGENT_CMD='claude -p --output-format json --model sonnet --max-budget-us
 ENGLISH_DIR="$(cfg english_clone_path "")"
 [ -n "$ENGLISH_DIR" ] && [ -d "$ENGLISH_DIR" ] && DEFAULT_AGENT_CMD="$DEFAULT_AGENT_CMD --add-dir \"$ENGLISH_DIR\""
 if [ "$agent" = codex ]; then
-  DEFAULT_AGENT_CMD='codex -a never exec --sandbox workspace-write --color never --json -'
+  DEFAULT_AGENT_CMD='codex exec --approve-for-me --color never --json -'
 fi
 AGENT_CMD="${AGENT_CMD:-$DEFAULT_AGENT_CMD}"
 export RALPH_AGENT="$agent"

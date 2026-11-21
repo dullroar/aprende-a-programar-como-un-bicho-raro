@@ -21,9 +21,10 @@ exit. Restart either runner with `--resume` to clear that pause. An editorial
 using the checkpoint instructions. Check `loop/STATE.md`,
 `python3 tools/next_task.py --counts`, and the latest driver output for status.
 
-Both CLIs use their existing sign-ins. Codex runs with workspace-write
-sandboxing and approval policy `never`. If local policy blocks a required
-operation, keep the partial work and report the specific operation. The usage
+Both CLIs use their existing sign-ins. Codex runs with workspace-write sandboxing and automatic approval review.
+Request review for a scoped Git operation or the unchanged verifier if the
+sandbox blocks it. If review denies a required operation, keep the partial
+work and report the specific operation. The usage
 ledger records the agent and tokens reported by the CLI. The shared USD cap
 uses only costs the CLIs report. Codex token entries have no dollar amount.
 
