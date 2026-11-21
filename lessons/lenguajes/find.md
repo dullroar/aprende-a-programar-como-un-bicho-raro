@@ -33,14 +33,14 @@ Un `find` de unos 5.7 KB, sin `-delete`, sin `-printf`, sin `-regex` ni intérpr
 
 El [README](../../src/find-posix/README.md#cómo-funciona-el-truco) tiene la tabla completa de tareas y [`build-line.py`](../../src/find-posix/build-line.py) muestra las tablas en forma legible.
 
-**The GNU version lets find do the arithmetic.** [`find-gnu`](../../src/find-gnu/README.md) uses the same walk, but GNU find can measure things for you. `%d` prints the depth of a directory, and one directory is one hour, so the depth *is* the running total. `%TG-W%TV` prints the ISO week of the new directory's modification time. `-regex` replaces the glob tables with `([^/]*/){41}.*` ("at least 41 slashes", the stop rule). `-fprintf /dev/fd/3` sends the SQL to its own file descriptor. The line is about 3 KB instead of 5.7 KB.
+**La versión GNU deja que find haga la aritmética.** [`find-gnu`](../../src/find-gnu/README.md) usa el mismo recorrido, pero GNU find puede medir cosas por ti. `%d` imprime la profundidad de un directorio. Un directorio es una hora, así que la profundidad *es* el total acumulado. `%TG-W%TV` imprime la semana ISO de la fecha de modificación del directorio nuevo. `-regex` sustituye las tablas de patrones glob por `([^/]*/){41}.*` ("al menos 41 barras", la regla de parada). `-fprintf /dev/fd/3` envía el SQL a su propio descriptor de archivo. La línea ocupa unos 3 KB en lugar de 5.7 KB.
 
-**The optimizer has nothing to move.** `-O3` reorders tests, but never across a side effect. In this program every branch is a test followed by an effect, so the expression tree at `-O0` and at `-O3` is identical, and `-D rates` (find's own profile) shows why the optimizer's flat 80% guesses are wrong here.
+**El optimizador no tiene nada que mover.** `-O3` reordena las pruebas, pero nunca a través de un efecto secundario. En este programa cada rama es una prueba seguida de un efecto. Por eso, el árbol de expresiones es idéntico en `-O0` y en `-O3`. Además, `-D rates` (el perfil del propio find) muestra por qué las estimaciones uniformes del 80 % del optimizador son incorrectas aquí.
 
-### What did we just learn?
+### ¿Qué acabamos de aprender?
 
-- **A traversal order is a contract, or it is a habit.** Here it is a habit. It works on GNU find, bfs and busybox, and POSIX does not say it must.
-- **A path pattern is a tiny parser.** With one wildcard that crosses `/`, you can count, look up and test the last segment.
+- **Un orden de recorrido es un contrato o es una costumbre.** Aquí es una costumbre. Funciona en GNU find, bfs y busybox, pero POSIX no dice que deba hacerlo.
+- **Un patrón de ruta es un analizador sintáctico diminuto.** Con un comodín que cruza `/`, puedes contar, buscar y comprobar el último segmento.
 - **Make the names carry the state.** In a language with no variables, the file system is the memory.
 - **Short-circuit evaluation is a program counter.** Which branch runs next is decided by which test failed.
 - **A tool's own measurements can be your values.** Depth and file time did, in one directive each, what ten-row tables did in the portable version.
