@@ -20,7 +20,7 @@ msgstr "Para qué sirve esta guía"
 #: lessons/study-guides/languages/forth.md:5
 msgctxt "s-8d456849907c-0002"
 msgid "This guide reads two Forth programs: [⟦CODE_0001⟧](⟦DEST_0002⟧), which uses a normal ⟦CODE_0003⟧ loop and two variables, and [⟦CODE_0004⟧](⟦DEST_0005⟧), which has no loop word and no variable. Its loop is a line of source text that the interpreter reads again because a word moved the parse position backwards. The question is: **what can serve as a program counter, and what can serve as memory?**"
-msgstr "Esta guía lee dos programas en Forth. El primero, [⟦CODE_0001⟧](⟦DEST_0002⟧), usa un bucle ⟦CODE_0003⟧ normal y dos variables. El segundo, [⟦CODE_0004⟧](⟦DEST_0005⟧), no tiene ninguna palabra de bucle ni ninguna variable. El bucle del segundo es una línea de texto fuente que el intérprete vuelve a leer, porque una palabra movió la posición de análisis hacia atrás. La pregunta es: **¿qué puede servir como contador de programa y qué puede servir como memoria?**"
+msgstr "En esta guía analizarás dos programas en Forth. El primero, [⟦CODE_0001⟧](⟦DEST_0002⟧), usa un bucle ⟦CODE_0003⟧ normal y dos variables. El segundo, [⟦CODE_0004⟧](⟦DEST_0005⟧), no tiene ninguna palabra de bucle ni ninguna variable. Su bucle es una línea de texto fuente que el intérprete vuelve a leer, porque una palabra movió la posición de lectura hacia atrás. La pregunta es: **¿qué puede servir como contador de programa y qué puede servir como memoria?**"
 
 #: lessons/study-guides/languages/forth.md:7
 msgctxt "s-d84bcb27c154-0003"
@@ -36,16 +36,16 @@ msgid ""
 "4. Explain why the weird loop works only on an input line, and why moving the anchor changes the machine.\n"
 "5. Label each behavior as guaranteed, implementation-permitted or accidentally exploited."
 msgstr ""
-"Lee un comentario de efecto de pila y úsalo para trazar qué hace una palabra a la pila de datos.\n"
-"2. Explica qué es ⟦CODE_0001⟧ y por qué cambiarlo vuelve a ejecutar texto que ya se leyó.\n"
-"3. Traza el programa raro a lo largo de tres tarjetas. Nombra el contenido de la pila y el valor de ⟦CODE_0002⟧ en cada paso.\n"
-"4. Explica por qué el bucle raro funciona solo en una línea de entrada de datos, y por qué mover el ancla cambia la máquina.\n"
-"5. Etiqueta cada comportamiento como garantizado, permitido por la implementación o aprovechado por accidente."
+"Leer un comentario de efecto de pila y usarlo para trazar qué efecto tiene una palabra sobre la pila de datos.\n"
+"2. Explicar qué es ⟦CODE_0001⟧ y por qué cambiarlo vuelve a ejecutar texto que ya se leyó.\n"
+"3. Trazar el programa raro a lo largo de tres tarjetas, nombrando el contenido de la pila y el valor de ⟦CODE_0002⟧ en cada paso.\n"
+"4. Explicar por qué el bucle raro funciona solo en una línea de entrada y por qué mover el ancla cambia la máquina.\n"
+"5. Etiquetar cada comportamiento como garantizado, permitido por la implementación o aprovechado por accidente."
 
 #: lessons/study-guides/languages/forth.md:15
 msgctxt "s-cbf955794f8a-0005"
 msgid "**Scope limits.** This guide does not teach Forth syntax from scratch. You need to know that words pop their inputs from a data stack and push their results, and that a definition is written ⟦CODE_0001⟧. It uses Gforth 0.7.3 or later. It does not cover the SQLite pipe or ⟦CODE_0002⟧ beyond what the trace needs."
-msgstr "**Límites del alcance.** Esta guía no enseña la sintaxis de Forth desde cero. Necesitas saber que las palabras sacan sus entradas de datos de una pila de datos y apilan sus resultados, y que una definición se escribe ⟦CODE_0001⟧. Usa Gforth 0.7.3 o posterior. No cubre la tubería de SQLite ni ⟦CODE_0002⟧ más allá de lo que la traza necesita."
+msgstr "**Límites del alcance.** Esta guía no enseña la sintaxis de Forth desde cero. Necesitas saber que las palabras toman sus argumentos de la pila de datos y apilan sus resultados, y que una definición se escribe ⟦CODE_0001⟧. Usa Gforth 0.7.3 o posterior. No cubre la tubería de SQLite ni ⟦CODE_0002⟧ más allá de lo que la traza necesita."
 
 #: lessons/study-guides/languages/forth.md:17
 msgctxt "s-1663e4e3b114-0006"
@@ -60,12 +60,12 @@ msgstr "Antes de empezar"
 #: lessons/study-guides/languages/forth.md:21
 msgctxt "s-89843ad14e3b-0008"
 msgid "**Safety model.** Every entry writes fictional **⟦DNT_0001⟧** data. The Forth programs start a shell process that creates a folder and runs ⟦CODE_0002⟧. Read the source before you run it, and run it in the sandbox first:"
-msgstr "**Modelo de seguridad.** Cada entrada escribe datos ficticios de **⟦DNT_0001⟧**. Los programas de Forth inician un proceso de shell que crea una carpeta y ejecuta ⟦CODE_0002⟧. Lee el código fuente antes de ejecutarlo y ejecútalo primero en el entorno aislado (*sandbox*), un espacio separado donde un error no daña tu equipo:"
+msgstr "**Modelo de seguridad.** Cada entrada escribe datos ficticios de **⟦DNT_0001⟧**. Los programas de Forth inician un proceso del intérprete de comandos (*shell*) que crea una carpeta y ejecuta ⟦CODE_0002⟧. Lee el código fuente antes de ejecutarlo y ejecútalo primero en un entorno aislado (*sandbox*) que limita el acceso al sistema anfitrión:"
 
 #: lessons/study-guides/languages/forth.md:28
 msgctxt "s-c9166f841101-0009"
 msgid "Edit only copies ([Running things safely](⟦DEST_0001⟧)). Set ⟦CODE_0002⟧ for exercises where the loop might continue indefinitely. A run that exceeds that limit prints ⟦CODE_0003⟧."
-msgstr "Edita solo copias ([Running things safely](⟦DEST_0001⟧)). Define ⟦CODE_0002⟧ en los ejercicios donde el bucle pueda continuar indefinidamente. Una ejecución que supere ese límite imprime ⟦CODE_0003⟧."
+msgstr "Edita solo copias ([Cómo ejecutar los ejemplos de forma segura](⟦DEST_0001⟧)). Define ⟦CODE_0002⟧ en los ejercicios donde el bucle pueda continuar indefinidamente. Una ejecución que supere ese límite imprime ⟦CODE_0003⟧."
 
 #: lessons/study-guides/languages/forth.md:30
 msgctxt "s-d251b908eab7-0010"
@@ -85,7 +85,7 @@ msgstr "⟦SEP_0001⟧ Término ⟦SEP_0002⟧ Significado aquí ⟦SEP_0003⟧"
 #: lessons/study-guides/languages/forth.md:36
 msgctxt "s-ec1de1226703-0013"
 msgid "⟦SEP_0001⟧ Data stack ⟦SEP_0002⟧ Where words take their inputs and leave their results. The weird program's only memory. ⟦SEP_0003⟧"
-msgstr "⟦SEP_0001⟧ Pila de datos ⟦SEP_0002⟧ Donde las palabras toman sus entradas de datos y dejan sus resultados. La única memoria del programa raro. ⟦SEP_0003⟧"
+msgstr "⟦SEP_0001⟧ Pila de datos ⟦SEP_0002⟧ Donde las palabras toman sus argumentos y dejan sus resultados. La única memoria del programa raro. ⟦SEP_0003⟧"
 
 #: lessons/study-guides/languages/forth.md:37
 msgctxt "s-108e88856c9b-0014"
@@ -95,7 +95,7 @@ msgstr "⟦SEP_0003⟧ Pila de retorno ⟦SEP_0004⟧ Una segunda pila. Una pala
 #: lessons/study-guides/languages/forth.md:38
 msgctxt "s-0084e53848bd-0015"
 msgid "⟦SEP_0002⟧ Stack effect ⟦SEP_0003⟧ A comment like ⟦CODE_0001⟧: the stack before, then after. It is convention, not enforced. ⟦SEP_0004⟧"
-msgstr "⟦SEP_0002⟧ Efecto de pila ⟦SEP_0003⟧ Un comentario como ⟦CODE_0001⟧: la pila antes y después. Es una convención y no se impone. ⟦SEP_0004⟧"
+msgstr "⟦SEP_0002⟧ Efecto de pila ⟦SEP_0003⟧ Un comentario como ⟦CODE_0001⟧: la pila antes y después. Es una convención y el intérprete no verifica ese comentario. ⟦SEP_0004⟧"
 
 #: lessons/study-guides/languages/forth.md:39
 msgctxt "s-c0bc5064b2e1-0016"
@@ -105,7 +105,7 @@ msgstr "⟦SEP_0001⟧ Intérprete de texto ⟦SEP_0002⟧ El bucle que lee una 
 #: lessons/study-guides/languages/forth.md:40
 msgctxt "s-af3e5d060739-0017"
 msgid "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ A variable holding the text interpreter's current offset into the input line. ⟦SEP_0004⟧"
-msgstr "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ Una variable que guarda la posición actual del intérprete de texto dentro de la línea de entrada de datos. ⟦SEP_0004⟧"
+msgstr "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ Una variable que guarda la posición de lectura actual del intérprete de texto, como desplazamiento en el búfer de entrada. ⟦SEP_0004⟧"
 
 #: lessons/study-guides/languages/forth.md:42
 msgctxt "s-ae7d69ef2745-0018"
@@ -135,22 +135,22 @@ msgstr "**Qué se repite.** En ⟦CODE_0001⟧, un bucle ⟦CODE_0002⟧ dentro 
 #: lessons/study-guides/languages/forth.md:52
 msgctxt "s-815db49b384d-0023"
 msgid "**Where state lives.** In ⟦CODE_0001⟧, two variables, ⟦CODE_0002⟧ and ⟦CODE_0003⟧, and a few values. In ⟦CODE_0004⟧, the data stack, and only the data stack. The file contains no ⟦CODE_0005⟧ at all. Between passes, the stack holds three numbers: ⟦CODE_0006⟧, where ⟦CODE_0007⟧ is the number of cards so far, ⟦CODE_0008⟧ is the running total, and ⟦CODE_0009⟧ is the ⟦CODE_0010⟧ value to return to."
-msgstr "**Dónde vive el estado.** En ⟦CODE_0001⟧, dos variables, ⟦CODE_0002⟧ y ⟦CODE_0003⟧, y unos pocos valores. En ⟦CODE_0004⟧, la pila de datos, y solo la pila de datos. El archivo no contiene ningún ⟦CODE_0005⟧. Entre pasadas, la pila guarda tres números: ⟦CODE_0006⟧. Aquí ⟦CODE_0007⟧ es el número de tarjetas hasta ahora, ⟦CODE_0008⟧ es el total acumulado y ⟦CODE_0009⟧ es el valor de ⟦CODE_0010⟧ al que se debe volver."
+msgstr "**Dónde vive el estado.** En ⟦CODE_0001⟧, dos variables (⟦CODE_0002⟧ y ⟦CODE_0003⟧) y unos pocos valores. En ⟦CODE_0004⟧, la pila de datos y solo la pila de datos. El archivo no usa la palabra ⟦CODE_0005⟧. Entre pasadas, la pila guarda tres números: ⟦CODE_0006⟧. Aquí ⟦CODE_0007⟧ es el número de tarjetas hasta ahora, ⟦CODE_0008⟧ es el total acumulado y ⟦CODE_0009⟧ es el valor de ⟦CODE_0010⟧ al que se debe volver."
 
 #: lessons/study-guides/languages/forth.md:54
 msgctxt "s-7a445ed1cc34-0024"
 msgid "**What advances the next step.** In ⟦CODE_0001⟧, ⟦CODE_0002⟧ consumes a flag that ⟦CODE_0003⟧ leaves on the stack, and either repeats or exits the loop. In ⟦CODE_0004⟧, the text interpreter simply reads the next word on the line. The loop exists because the word ⟦CODE_0005⟧ can move the interpreter's position *backwards*. The program counter is ⟦CODE_0006⟧."
-msgstr "**Qué hace avanzar el paso siguiente.** En ⟦CODE_0001⟧, ⟦CODE_0002⟧ consume una bandera que ⟦CODE_0003⟧ deja en la pila, y repite el bucle o sale de él. En ⟦CODE_0004⟧, el intérprete de texto simplemente lee la palabra siguiente de la línea. El bucle existe porque la palabra ⟦CODE_0005⟧ puede mover la posición del intérprete *hacia atrás*. El contador de programa es ⟦CODE_0006⟧."
+msgstr "**Qué hace avanzar el paso siguiente.** En ⟦CODE_0001⟧, ⟦CODE_0002⟧ consume una bandera que ⟦CODE_0003⟧ deja en la pila, y repite el bucle o sale de él. En ⟦CODE_0004⟧, el intérprete de texto simplemente lee la palabra siguiente de la línea. El bucle existe porque la palabra ⟦CODE_0005⟧ puede mover la posición de lectura del intérprete *hacia atrás*. El contador de programa es ⟦CODE_0006⟧."
 
 #: lessons/study-guides/languages/forth.md:56
 msgctxt "s-8d9ba8475425-0025"
 msgid "**What stops it.** In ⟦CODE_0001⟧, ⟦CODE_0002⟧ receives a true flag. In ⟦CODE_0003⟧, ⟦CODE_0004⟧ computes the flag ⟦CODE_0005⟧ (true, all bits set) while the total is 40 or less and ⟦CODE_0006⟧ otherwise, and uses it to mask the distance back to the anchor. When the flag is ⟦CODE_0007⟧ the distance becomes ⟦CODE_0008⟧, ⟦CODE_0009⟧ does not move and the interpreter reads on to the next line."
-msgstr "**Qué lo detiene.** En ⟦CODE_0001⟧, ⟦CODE_0002⟧ recibe una bandera verdadera. En ⟦CODE_0003⟧, ⟦CODE_0004⟧ calcula la bandera ⟦CODE_0005⟧ (verdadero, con todos los bits activados) mientras el total no pasa de 40, y ⟦CODE_0006⟧ en caso contrario. Después usa esa bandera para enmascarar la distancia de regreso al ancla. Cuando la bandera es ⟦CODE_0007⟧, la distancia pasa a ser ⟦CODE_0008⟧, ⟦CODE_0009⟧ no se mueve y el intérprete sigue leyendo la línea siguiente."
+msgstr "**Qué lo detiene.** En ⟦CODE_0001⟧, la condición detiene el bucle: ⟦CODE_0002⟧ recibe una bandera verdadera. En ⟦CODE_0003⟧, el predicado permite otra pasada. ⟦CODE_0004⟧ calcula la bandera ⟦CODE_0005⟧ (verdadero, con todos los bits activados) mientras el total no pasa de 40, y ⟦CODE_0006⟧ en caso contrario. Después usa esa bandera para enmascarar la distancia de regreso al ancla. Cuando la bandera es ⟦CODE_0007⟧, la distancia pasa a ser ⟦CODE_0008⟧, ⟦CODE_0009⟧ no se mueve y el intérprete sigue leyendo la línea siguiente."
 
 #: lessons/study-guides/languages/forth.md:58
 msgctxt "s-77570fb78774-0026"
 msgid "**What commits.** The same in both: ⟦CODE_0001⟧ text goes through a pipe to ⟦CODE_0002⟧ as each card is made, between a ⟦CODE_0003⟧ and a ⟦CODE_0004⟧, and the commit happens once after the last card. The rows printed on the terminal are separate and already visible. The weird program has no branch to skip the commit, because there is no ⟦CODE_0005⟧: it reaches the commit because it reaches the end of the loop line."
-msgstr "**Qué confirma.** Es igual en ambos: el texto de ⟦CODE_0001⟧ pasa por una tubería a ⟦CODE_0002⟧ cada vez que se crea una tarjeta, entre un ⟦CODE_0003⟧ y un ⟦CODE_0004⟧. La confirmación ocurre una sola vez, después de la última tarjeta. Las filas impresas en la terminal son independientes y ya están visibles. El programa raro no tiene ninguna rama para omitir la confirmación, porque no hay ⟦CODE_0005⟧. Llega a la confirmación porque llega al final de la línea del bucle."
+msgstr "**Qué confirma.** Es igual en ambos: el texto de ⟦CODE_0001⟧ pasa por una tubería a ⟦CODE_0002⟧ cada vez que se crea una tarjeta, entre un ⟦CODE_0003⟧ y un ⟦CODE_0004⟧. La confirmación ocurre una sola vez, después de la última tarjeta. Las filas impresas son independientes y ya se ven en la terminal. El programa raro no tiene ninguna rama para omitir la confirmación, porque no hay ⟦CODE_0005⟧. Llega a la confirmación porque llega al final de la línea del bucle."
 
 #: lessons/study-guides/languages/forth.md:64
 msgctxt "s-9fef4d3c6c79-0027"
@@ -205,7 +205,7 @@ msgstr "main: confirma la transacción, cierra la tubería, informa"
 #: lessons/study-guides/languages/forth.md:74
 msgctxt "s-5886ca2c7275-0037"
 msgid "The first diagram is a loop with a flag test. The flag is computed *after* the card, so the crossing card is kept."
-msgstr "El primer diagrama es un bucle con una prueba de bandera. La bandera se calcula *después* de la tarjeta, así que se conserva la tarjeta que cruza el límite."
+msgstr "El primer diagrama es un bucle con una prueba de bandera. La bandera se calcula *después* de la tarjeta, así que se conserva la tarjeta con la que el total pasa del límite."
 
 #: lessons/study-guides/languages/forth.md:80
 msgctxt "s-195f18145769-0038"
@@ -215,7 +215,7 @@ msgstr "forth-weird: el intérprete de texto lee las mismas palabras otra vez"
 #: lessons/study-guides/languages/forth.md:81
 msgctxt "s-0c4427c0641f-0039"
 msgid "A flowchart. The Forth text interpreter reads one line: zero zero, then at-in fetch, then step, then rewind-question. Zero zero pushes the card number and the total. At-in fetch pushes the parse position, which is the anchor. The word step runs one card with the anchor kept on the return stack. The word rewind-question makes a flag, minus one while the total is 40 or less, and zero otherwise. It combines the flag with the distance back to the anchor, and adds that to the parse position. If the flag was true, the parse position is back at the anchor, so the interpreter reads step again. If it was false, the parse position is unchanged, and the interpreter goes on to drop, commit and report."
-msgstr "Un diagrama de flujo. El intérprete de texto de Forth lee una línea: cero cero, luego at-in fetch, luego step, luego rewind-question. Cero cero apila el número de tarjeta y el total. At-in fetch apila la posición de análisis, que es el ancla. La palabra step ejecuta una tarjeta con el ancla guardada en la pila de retorno. La palabra rewind-question crea una bandera: menos uno mientras el total no pasa de 40, y cero en caso contrario. Combina la bandera con la distancia de vuelta al ancla y suma el resultado a la posición de análisis. Si la bandera era verdadera, la posición de análisis vuelve al ancla, así que el intérprete lee step otra vez. Si era falsa, la posición de análisis no cambia y el intérprete sigue con drop, commit y report."
+msgstr "Un diagrama de flujo. El intérprete de texto de Forth lee una línea: cero cero, luego at-in fetch, luego step, luego rewind-question. Cero cero apila el número de tarjeta y el total. At-in fetch lee la posición de lectura actual y la apila: es el ancla. La palabra step ejecuta una tarjeta con el ancla guardada en la pila de retorno. La palabra rewind-question crea una bandera: menos uno mientras el total no pasa de 40, y cero en caso contrario. Combina la bandera con la distancia hasta el ancla mediante una operación AND y suma el resultado a la posición de lectura. Si la bandera era verdadera, la posición de lectura vuelve al ancla, así que el intérprete lee step otra vez. Si era falsa, la posición de lectura no cambia y el intérprete sigue con drop, commit y report."
 
 #: lessons/study-guides/languages/forth.md:82
 msgctxt "s-cd09c7687d9b-0040"
@@ -235,12 +235,12 @@ msgstr "El intérprete lee rewind?: la bandera es -1 mientras el total no pasa d
 #: lessons/study-guides/languages/forth.md:84
 msgctxt "s-6b8e80f26eb7-0043"
 msgid "Distance back to the anchor AND flag, added to the parse position ⟦ENT_0001⟧in"
-msgstr "Distancia de regreso al ancla Y la bandera, sumada a la posición de análisis ⟦ENT_0001⟧in"
+msgstr "Distancia de regreso al ancla combinada con la bandera mediante AND, sumada a la posición de lectura ⟦ENT_0001⟧in"
 
 #: lessons/study-guides/languages/forth.md:85
 msgctxt "s-96aff09ba44c-0044"
 msgid "Is the parse position back at the anchor?"
-msgstr "¿Volvió la posición de análisis al ancla?"
+msgstr "¿Volvió la posición de lectura al ancla?"
 
 #: lessons/study-guides/languages/forth.md:86
 msgctxt "s-b42d6b3be249-0045"
@@ -260,7 +260,7 @@ msgstr "El intérprete sigue leyendo: descarta el ancla, confirma, informa"
 #: lessons/study-guides/languages/forth.md:90
 msgctxt "s-a487c82ac937-0048"
 msgid "The second has no test that chooses between two *statements*. The loop edge exists because ⟦CODE_0001⟧ is set back to the anchor. The only \"decision\" is arithmetic on the flag."
-msgstr "El segundo no tiene ninguna prueba que elija entre dos *instrucciones*. La arista del bucle existe porque ⟦CODE_0001⟧ vuelve a fijarse en el ancla. La única \"decisión\" es aritmética sobre la bandera."
+msgstr "El segundo no tiene ninguna prueba que elija entre dos *sentencias*. La arista del bucle existe porque ⟦CODE_0001⟧ vuelve a fijarse en el ancla. La única \"decisión\" es aritmética sobre la bandera."
 
 #: lessons/study-guides/languages/forth.md:92
 msgctxt "s-67a72cdadc6f-0049"
@@ -270,12 +270,12 @@ msgstr "Traza una ejecución"
 #: lessons/study-guides/languages/forth.md:94
 msgctxt "s-09f0520d9c5c-0050"
 msgid "The programs draw random hours. Use hours **15, 19, 12** for the trace. To check it against real behavior, a scratch copy of ⟦CODE_0001⟧ was run in the sandbox with the random-hours step replaced by a fixed table (15, 19, 12) and with three print statements added: the stack and ⟦CODE_0002⟧ after each ⟦CODE_0003⟧, and ⟦CODE_0004⟧ before and after ⟦CODE_0005⟧. The values below are what it printed."
-msgstr "Los programas eligen horas al azar. Usa las horas **15, 19, 12** para la traza. Para comprobar la traza con el comportamiento real, se ejecutó una copia de prueba de ⟦CODE_0001⟧ en el entorno aislado (*sandbox*). Un entorno aislado es un espacio separado donde el código no afecta al resto del sistema. En esa copia, el paso de horas aleatorias se reemplazó por una tabla fija (15, 19, 12). Además, se añadieron tres instrucciones de impresión: la pila y ⟦CODE_0002⟧ después de cada ⟦CODE_0003⟧, y ⟦CODE_0004⟧ antes y después de ⟦CODE_0005⟧. Los valores de abajo son lo que se imprimió."
+msgstr "Los programas eligen horas al azar. Usa las horas **15, 19, 12** para la traza. Para comprobar la traza con el comportamiento real, se ejecutó una copia de prueba de ⟦CODE_0001⟧ en el entorno aislado. En esa copia, el paso que elige las horas al azar se reemplazó por una tabla fija (15, 19, 12). También se añadieron tres sentencias de impresión: la pila y ⟦CODE_0002⟧ después de cada ⟦CODE_0003⟧, y ⟦CODE_0004⟧ antes y después de ⟦CODE_0005⟧. Estos son los valores impresos."
 
 #: lessons/study-guides/languages/forth.md:96
 msgctxt "s-916098ca8eaa-0051"
 msgid "The line being interpreted is line 101: ⟦CODE_0001⟧. Offsets count characters from the start of that line."
-msgstr "La línea que se interpreta es la línea 101: ⟦CODE_0001⟧. Los desfases cuentan caracteres desde el inicio de esa línea."
+msgstr "La línea que se interpreta es la línea 101: ⟦CODE_0001⟧. Los desplazamientos cuentan caracteres desde el inicio de esa línea."
 
 #: lessons/study-guides/languages/forth.md:98
 msgctxt "s-b12bf104e02f-0052"
@@ -315,7 +315,7 @@ msgstr "⟦SEP_0004⟧ Después de ⟦CODE_0001⟧, pasada 3 ⟦SEP_0005⟧ ⟦C
 #: lessons/study-guides/languages/forth.md:106
 msgctxt "s-565e3e6574f0-0059"
 msgid "⟦SEP_0005⟧ ⟦CODE_0001⟧, pass 3 ⟦SEP_0006⟧ flag is ⟦CODE_0002⟧ (46 is not below 41) ⟦SEP_0007⟧ 23, then **23** ⟦SEP_0008⟧ The distance is masked to 0. ⟦CODE_0003⟧ does not move. The interpreter reads on and runs ⟦CODE_0004⟧ on the next line. ⟦SEP_0009⟧"
-msgstr "⟦SEP_0005⟧ ⟦CODE_0001⟧, pasada 3 ⟦SEP_0006⟧ la bandera es ⟦CODE_0002⟧ (46 no es menor que 41) ⟦SEP_0007⟧ 23, luego **23** ⟦SEP_0008⟧ La distancia se enmascara a 0. ⟦CODE_0003⟧ no se mueve. El intérprete sigue leyendo y ejecuta ⟦CODE_0004⟧ en la línea siguiente. ⟦SEP_0009⟧"
+msgstr "⟦SEP_0005⟧ ⟦CODE_0001⟧, pasada 3 ⟦SEP_0006⟧ la bandera es ⟦CODE_0002⟧ (46 no es menor que 41) ⟦SEP_0007⟧ 23, luego **23** ⟦SEP_0008⟧ La máscara deja la distancia en 0. ⟦CODE_0003⟧ no se mueve. El intérprete sigue leyendo y ejecuta ⟦CODE_0004⟧ en la línea siguiente. ⟦SEP_0009⟧"
 
 #: lessons/study-guides/languages/forth.md:108
 msgctxt "s-37aa0f571f08-0060"
@@ -325,17 +325,17 @@ msgstr "La ejecución de prueba imprimió estas tarjetas: ⟦CODE_0001⟧, ⟦CO
 #: lessons/study-guides/languages/forth.md:110
 msgctxt "s-347925002e77-0061"
 msgid "Two things to notice. First, ⟦CODE_0001⟧ is 15 after every ⟦CODE_0002⟧ and 23 at every ⟦CODE_0003⟧. The text interpreter does not \"know\" it is in a loop: it reads the same characters in the same places each time. Second, the numbers 10, 15 and 23 are offsets into one specific line. Edit the spaces on line 101 and the offsets change, but the anchor, which is read at run time, follows. That is why the program survives reformatting and why it fails if you read the anchor *after* the state (see the exercise below)."
-msgstr "Fíjate en dos cosas. Primero, ⟦CODE_0001⟧ vale 15 después de cada ⟦CODE_0002⟧ y 23 en cada ⟦CODE_0003⟧. El intérprete de texto no \"sabe\" que está en un bucle: lee los mismos caracteres en los mismos lugares cada vez. Segundo, los números 10, 15 y 23 son desplazamientos dentro de una línea concreta. Edita los espacios de la línea 101 y los desplazamientos cambian, pero el ancla, que se lee en tiempo de ejecución, los sigue. Por eso el programa sobrevive al reformateo y por eso falla si lees el ancla *después* del estado (consulta el ejercicio de abajo)."
+msgstr "Fíjate en dos cosas. Primero, ⟦CODE_0001⟧ vale 15 después de cada ⟦CODE_0002⟧ y 23 en cada ⟦CODE_0003⟧. El intérprete de texto no \"sabe\" que está en un bucle: lee los mismos caracteres en los mismos lugares cada vez. Segundo, los números 10, 15 y 23 son desplazamientos dentro de una línea concreta. Edita los espacios de la línea 101 y los desplazamientos cambian, pero el ancla se calcula de nuevo en tiempo de ejecución a partir de la posición real. Por eso el programa sobrevive al reformateo y por eso falla si lees el ancla *después* del estado (consulta el ejercicio de abajo)."
 
 #: lessons/study-guides/languages/forth.md:112
 msgctxt "s-573a7ac69a2c-0062"
 msgid "**The plain program for comparison.** ⟦CODE_0001⟧ executes ⟦CODE_0002⟧, then ⟦CODE_0003⟧ leaves ⟦CODE_0004⟧ as a flag, and ⟦CODE_0005⟧ consumes it. With hours 15, 19, 12 the totals are 15, 34, 46, and the flags are false, false, true. The variables ⟦CODE_0006⟧ and ⟦CODE_0007⟧ hold 46 and 3 at the end."
-msgstr "**El programa simple para comparar.** ⟦CODE_0001⟧ ejecuta ⟦CODE_0002⟧, luego ⟦CODE_0003⟧ deja ⟦CODE_0004⟧ como bandera, y ⟦CODE_0005⟧ la consume. Con las horas 15, 19 y 12, los totales son 15, 34 y 46, y las banderas son falso, falso y verdadero. Las variables ⟦CODE_0006⟧ y ⟦CODE_0007⟧ contienen 46 y 3 al final."
+msgstr "**El programa simple para comparar.** ⟦CODE_0001⟧ ejecuta ⟦CODE_0002⟧, luego ⟦CODE_0003⟧ deja ⟦CODE_0004⟧ como bandera y ⟦CODE_0005⟧ la consume. Con las horas 15, 19 y 12, los totales son 15, 34 y 46. Las banderas son falso, falso y verdadero. Las variables ⟦CODE_0006⟧ y ⟦CODE_0007⟧ contienen 46 y 3 al final."
 
 #: lessons/study-guides/languages/forth.md:114
 msgctxt "s-6b6b70cf2a87-0063"
 msgid "**Exactly 40.** With hours 10, 10, 10, 10 the totals are 10, 20, 30, 40. At 40 the weird flag is ⟦CODE_0001⟧ (40 < 41), so the interpreter rewinds and a fifth card is drawn. Predict the fifth card's category before you check: the category is chosen by ⟦CODE_0002⟧ modulo 4 ([L29](⟦DEST_0003⟧)), and ⟦CODE_0004⟧ is 4."
-msgstr "**Exactamente 40.** Con las horas 10, 10, 10, 10, los totales son 10, 20, 30, 40. Con un total de 40, la bandera rara es ⟦CODE_0001⟧ (40 < 41), así que el intérprete retrocede y saca una quinta tarjeta. Predice la categoría de la quinta tarjeta antes de comprobarla: la categoría se elige con ⟦CODE_0002⟧ módulo 4 ([L29](⟦DEST_0003⟧)), y ⟦CODE_0004⟧ es 4."
+msgstr "**Exactamente 40.** Con las horas 10, 10, 10, 10, los totales son 10, 20, 30, 40. Con un total de 40, la bandera del programa raro es ⟦CODE_0001⟧ (40 < 41), así que el intérprete retrocede y saca una quinta tarjeta. Predice la categoría de la quinta tarjeta antes de comprobarla: la categoría se elige con ⟦CODE_0002⟧ módulo 4 ([L29](⟦DEST_0003⟧)) y ⟦CODE_0004⟧ es 4."
 
 #: lessons/study-guides/languages/forth.md:116
 msgctxt "s-405c1b857089-0064"
@@ -350,12 +350,12 @@ msgstr "⟦SEP_0003⟧ Dimensión ⟦SEP_0004⟧ ⟦CODE_0001⟧ ⟦SEP_0005⟧ 
 #: lessons/study-guides/languages/forth.md:120
 msgctxt "s-d458d6b77060-0066"
 msgid "⟦SEP_0002⟧ **Representation** ⟦SEP_0003⟧ State in two named variables. Loop is ⟦CODE_0001⟧. ⟦SEP_0004⟧ State is three numbers on the data stack. Loop is a rewound parse position. ⟦SEP_0005⟧"
-msgstr "⟦SEP_0002⟧ **Representación** ⟦SEP_0003⟧ El estado está en dos variables con nombre. El bucle es ⟦CODE_0001⟧. ⟦SEP_0004⟧ El estado son tres números en la pila de datos. El bucle es una posición de análisis rebobinada. ⟦SEP_0005⟧"
+msgstr "⟦SEP_0002⟧ **Representación** ⟦SEP_0003⟧ El estado está en dos variables con nombre. El bucle es ⟦CODE_0001⟧. ⟦SEP_0004⟧ El estado son tres números en la pila de datos. El bucle se forma cuando el intérprete retrocede en el búfer. ⟦SEP_0005⟧"
 
 #: lessons/study-guides/languages/forth.md:121
 msgctxt "s-82a262bcc6dc-0067"
 msgid "⟦SEP_0004⟧ **Observability** ⟦SEP_0005⟧ Inspect ⟦CODE_0001⟧ and ⟦CODE_0002⟧ at any time. ⟦SEP_0006⟧ The state exists only as stack depth and order. ⟦CODE_0003⟧ prints it, but nothing has a name. A wrong stack effect shows up as garbage several words later. ⟦SEP_0007⟧"
-msgstr "⟦SEP_0004⟧ **Observabilidad** ⟦SEP_0005⟧ Inspecciona ⟦CODE_0001⟧ y ⟦CODE_0002⟧ en cualquier momento. ⟦SEP_0006⟧ El estado existe solo como profundidad de la pila y orden. ⟦CODE_0003⟧ lo imprime, pero nada tiene nombre. Un efecto de pila incorrecto aparece como basura varias palabras después. ⟦SEP_0007⟧"
+msgstr "⟦SEP_0004⟧ **Observabilidad** ⟦SEP_0005⟧ Inspecciona ⟦CODE_0001⟧ y ⟦CODE_0002⟧ en cualquier momento. ⟦SEP_0006⟧ El estado existe solo como profundidad de la pila y orden: solo puedes identificar los valores por su posición en la pila. ⟦CODE_0003⟧ lo imprime, pero nada tiene nombre. Un efecto de pila incorrecto aparece como basura varias palabras después. ⟦SEP_0007⟧"
 
 #: lessons/study-guides/languages/forth.md:122
 msgctxt "s-64c523374d37-0068"
@@ -365,22 +365,22 @@ msgstr "⟦SEP_0005⟧ **Pruebas** ⟦SEP_0006⟧ Llama a ⟦CODE_0001⟧ despu�
 #: lessons/study-guides/languages/forth.md:123
 msgctxt "s-113f0c49e702-0069"
 msgid "⟦SEP_0003⟧ **⟦DNT_0001⟧** ⟦SEP_0004⟧ Standard: trace the variables. ⟦SEP_0005⟧ The program counter is data. A debugger that shows the stack but not ⟦CODE_0002⟧ cannot say where it will read next. ⟦SEP_0006⟧"
-msgstr "⟦SEP_0003⟧ **⟦DNT_0001⟧** ⟦SEP_0004⟧ Estándar: haz la traza de las variables. ⟦SEP_0005⟧ El contador de programa es un dato. Un depurador que muestra la pila, pero no ⟦CODE_0002⟧, no puede decir dónde leerá a continuación. ⟦SEP_0006⟧"
+msgstr "⟦SEP_0003⟧ **Depuración** (⟦DNT_0001⟧) ⟦SEP_0004⟧ Estándar: haz la traza de las variables. ⟦SEP_0005⟧ El contador de programa es un dato. Un depurador que muestra la pila, pero no ⟦CODE_0002⟧, no puede decir dónde leerá a continuación. ⟦SEP_0006⟧"
 
 #: lessons/study-guides/languages/forth.md:124
 msgctxt "s-29525c4dfe40-0070"
 msgid "⟦SEP_0002⟧ **Portability** ⟦SEP_0003⟧ Standard Forth control words in a definition. ⟦SEP_0004⟧ Depends on ⟦CODE_0001⟧ being writable and on the interpreter rereading the same line. The program works because input comes from a file line by line. ⟦SEP_0005⟧"
-msgstr "⟦SEP_0002⟧ **Portabilidad** ⟦SEP_0003⟧ Palabras de control de Forth estándar dentro de una definición. ⟦SEP_0004⟧ Depende de que ⟦CODE_0001⟧ se pueda escribir y de que el intérprete vuelva a leer la misma línea. El programa funciona porque la entrada de datos viene de un archivo, línea por línea. ⟦SEP_0005⟧"
+msgstr "⟦SEP_0002⟧ **Portabilidad** ⟦SEP_0003⟧ Palabras de control de Forth estándar dentro de una definición. ⟦SEP_0004⟧ Depende de que ⟦CODE_0001⟧ se pueda escribir y de que el intérprete vuelva a leer la misma línea. El programa funciona porque la entrada viene de un archivo, línea por línea. ⟦SEP_0005⟧"
 
 #: lessons/study-guides/languages/forth.md:125
 msgctxt "s-3c09c704c3cb-0071"
 msgid "⟦SEP_0001⟧ **Cost** ⟦SEP_0002⟧ Normal. ⟦SEP_0003⟧ Each pass re-parses the words (a dictionary lookup per word). A typing mistake in the stack effects gives silent wrong data, not an error. ⟦SEP_0004⟧"
-msgstr "⟦SEP_0001⟧ **Costo** ⟦SEP_0002⟧ Normal. ⟦SEP_0003⟧ Cada pasada vuelve a analizar las palabras (una búsqueda en el diccionario por palabra). Un error de tipos en los efectos de pila da datos incorrectos en silencio, sin producir un error. ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ **Costo** ⟦SEP_0002⟧ Normal. ⟦SEP_0003⟧ Cada pasada vuelve a analizar las palabras (una búsqueda en el diccionario por palabra). Un error de tecleo en los efectos de pila da datos incorrectos en silencio, sin producir un error. ⟦SEP_0004⟧"
 
 #: lessons/study-guides/languages/forth.md:127
 msgctxt "s-8da0616c0055-0072"
 msgid "Forth's standard says control words such as ⟦CODE_0001⟧ work only inside definitions, so the plain program must wrap its loop in ⟦CODE_0002⟧. The weird program goes the other way: it uses the *interpreter's* loop, which needs no definition."
-msgstr "El estándar de Forth dice que las palabras de control como ⟦CODE_0001⟧ funcionan solo dentro de definiciones, así que el programa normal debe envolver su bucle en ⟦CODE_0002⟧. El programa raro hace lo contrario: usa el bucle del *intérprete*, que no necesita ninguna definición."
+msgstr "El estándar de Forth dice que las palabras de control como ⟦CODE_0001⟧ funcionan solo dentro de definiciones. Por eso el programa normal debe encerrar su bucle en la definición de ⟦CODE_0002⟧. El programa raro hace lo contrario: usa el bucle del *intérprete*, que no necesita ninguna definición."
 
 #: lessons/study-guides/languages/forth.md:129
 msgctxt "s-716cae37520b-0073"
@@ -405,7 +405,7 @@ msgstr "⟦SEP_0004⟧ B3, cambio (b) ⟦SEP_0005⟧ Escribe la línea como ⟦C
 #: lessons/study-guides/languages/forth.md:135
 msgctxt "s-0e9bc8ec49b3-0077"
 msgid "⟦SEP_0005⟧ B3, change (c) ⟦SEP_0006⟧ Change ⟦CODE_0001⟧ to ⟦CODE_0002⟧. What is the new stop rule? ⟦SEP_0007⟧ The stop rule becomes \"total passes 50\" and ⟦CODE_0003⟧ passes. The limit lives in one constant inside ⟦CODE_0004⟧. ⟦SEP_0008⟧"
-msgstr "⟦SEP_0005⟧ B3, cambio (c) ⟦SEP_0006⟧ Cambia ⟦CODE_0001⟧ a ⟦CODE_0002⟧. ¿Cuál es la nueva regla de parada? ⟦SEP_0007⟧ La regla de parada queda como \"el total pasa de 50\" y ⟦CODE_0003⟧ pasa. El límite vive en una sola constante dentro de ⟦CODE_0004⟧. ⟦SEP_0008⟧"
+msgstr "⟦SEP_0005⟧ B3, cambio (c) ⟦SEP_0006⟧ Cambia ⟦CODE_0001⟧ a ⟦CODE_0002⟧. ¿Cuál es la nueva regla de parada? ⟦SEP_0007⟧ La regla de parada queda como \"el total pasa de 50\" y ⟦CODE_0003⟧ pasa. El límite se expresa mediante una sola constante dentro de ⟦CODE_0004⟧. ⟦SEP_0008⟧"
 
 #: lessons/study-guides/languages/forth.md:136
 msgctxt "s-97a357426f62-0078"
@@ -415,7 +415,7 @@ msgstr "⟦SEP_0004⟧ [C2. Haz real la restricción](⟦DEST_0001⟧) ⟦SEP_00
 #: lessons/study-guides/languages/forth.md:137
 msgctxt "s-eaee40b0065a-0079"
 msgid "⟦SEP_0006⟧ [C1. Weird next to boring](⟦DEST_0001⟧) ⟦SEP_0007⟧ In which program can you name the loop's state? ⟦SEP_0008⟧ ⟦CODE_0002⟧ names it (⟦CODE_0003⟧, ⟦CODE_0004⟧). ⟦CODE_0005⟧ has three unnamed numbers and a parse position. ⟦SEP_0009⟧"
-msgstr "⟦SEP_0006⟧ [C1. Lo raro junto a lo aburrido](⟦DEST_0001⟧) ⟦SEP_0007⟧ ¿En qué programa puedes nombrar el estado del bucle? ⟦SEP_0008⟧ ⟦CODE_0002⟧ lo nombra (⟦CODE_0003⟧, ⟦CODE_0004⟧). ⟦CODE_0005⟧ tiene tres números sin nombre y una posición de análisis. ⟦SEP_0009⟧"
+msgstr "⟦SEP_0006⟧ [C1. Lo raro junto a lo aburrido](⟦DEST_0001⟧) ⟦SEP_0007⟧ ¿En qué programa puedes nombrar el estado del bucle? ⟦SEP_0008⟧ ⟦CODE_0002⟧ lo nombra (⟦CODE_0003⟧, ⟦CODE_0004⟧). ⟦CODE_0005⟧ tiene tres números sin nombre y una posición de lectura. ⟦SEP_0009⟧"
 
 #: lessons/study-guides/languages/forth.md:139
 msgctxt "s-6a264488eca2-0080"
@@ -435,22 +435,22 @@ msgstr "⟦SEP_0001⟧ Comportamiento ⟦SEP_0002⟧ Etiqueta ⟦SEP_0003⟧ Por
 #: lessons/study-guides/languages/forth.md:145
 msgctxt "s-cc7840768b86-0083"
 msgid "⟦SEP_0001⟧ Words take inputs from and leave outputs on a data stack, per their stack effects ⟦SEP_0002⟧ **guaranteed** ⟦SEP_0003⟧ The core model of the language. ⟦SEP_0004⟧"
-msgstr "⟦SEP_0001⟧ Las palabras toman entradas de datos de una pila de datos y dejan salidas en ella, según sus efectos en la pila ⟦SEP_0002⟧ **garantizado** ⟦SEP_0003⟧ El modelo central del lenguaje. ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ Las palabras toman sus argumentos de una pila de datos y dejan sus salidas en ella, según sus efectos de pila ⟦SEP_0002⟧ **garantizado** ⟦SEP_0003⟧ El modelo central del lenguaje. ⟦SEP_0004⟧"
 
 #: lessons/study-guides/languages/forth.md:146
 msgctxt "s-c0672c4055b1-0084"
 msgid "⟦SEP_0003⟧ ⟦CODE_0001⟧ holds an offset into the current input buffer, and writing it changes where the interpreter reads next ⟦SEP_0004⟧ **guaranteed** that ⟦CODE_0002⟧ exists, holds the parse offset and can be written ⟦SEP_0005⟧ That is its documented purpose. Keeping the new value inside the current line is the program's own responsibility, and this program does. ⟦SEP_0006⟧"
-msgstr "⟦SEP_0003⟧ ⟦CODE_0001⟧ contiene un desplazamiento dentro del búfer de entrada de datos actual, y escribir en él cambia dónde lee el intérprete a continuación ⟦SEP_0004⟧ **garantizado** que ⟦CODE_0002⟧ existe, contiene el desplazamiento de análisis y se puede escribir ⟦SEP_0005⟧ Ese es su propósito documentado. Mantener el nuevo valor dentro de la línea actual es responsabilidad del propio programa, y este programa lo hace. ⟦SEP_0006⟧"
+msgstr "⟦SEP_0003⟧ ⟦CODE_0001⟧ contiene un desplazamiento dentro del búfer de entrada actual, y escribir en él cambia dónde lee el intérprete a continuación ⟦SEP_0004⟧ **garantizado** que ⟦CODE_0002⟧ existe, contiene el desplazamiento en el búfer de entrada y se puede escribir ⟦SEP_0005⟧ Ese es su propósito documentado. Mantener el nuevo valor dentro de la línea actual es responsabilidad del propio programa, y este programa lo hace. ⟦SEP_0006⟧"
 
 #: lessons/study-guides/languages/forth.md:147
 msgctxt "s-84318d77a3df-0085"
 msgid "⟦SEP_0005⟧ ⟦CODE_0001⟧ is true and ⟦CODE_0002⟧ is false, so ⟦CODE_0003⟧ can mask a number with a flag ⟦SEP_0006⟧ **guaranteed** ⟦SEP_0007⟧ Forth flags are all-bits-set or zero. A word that returns ⟦CODE_0004⟧ for true would break the trick. ⟦SEP_0008⟧"
-msgstr "⟦SEP_0005⟧ ⟦CODE_0001⟧ es verdadero y ⟦CODE_0002⟧ es falso, así que ⟦CODE_0003⟧ puede enmascarar un número con una bandera ⟦SEP_0006⟧ **garantizado** ⟦SEP_0007⟧ Las banderas de Forth tienen todos los bits activados o son cero. Una palabra que devuelva ⟦CODE_0004⟧ para verdadero rompería el truco. ⟦SEP_0008⟧"
+msgstr "⟦SEP_0005⟧ ⟦CODE_0001⟧ es verdadero y ⟦CODE_0002⟧ es falso, así que ⟦CODE_0003⟧ puede enmascarar un número con una bandera ⟦SEP_0006⟧ **garantizado** ⟦SEP_0007⟧ Las banderas de Forth tienen todos los bits activados o son cero. Una palabra que devuelva ⟦CODE_0004⟧ para verdadero rompería el truco de la máscara, porque ese valor no tiene todos los bits activados. ⟦SEP_0008⟧"
 
 #: lessons/study-guides/languages/forth.md:148
 msgctxt "s-35630db5eca5-0086"
 msgid "⟦SEP_0002⟧ The input comes from a file one line at a time, so ⟦CODE_0001⟧ is relative to *that line* ⟦SEP_0003⟧ **implementation-permitted** ⟦SEP_0004⟧ How the line buffer is refilled is the system's business. The program has been checked with Gforth. ⟦SEP_0005⟧"
-msgstr "⟦SEP_0002⟧ La entrada de datos viene de un archivo, una línea a la vez, así que ⟦CODE_0001⟧ es relativo a *esa línea* ⟦SEP_0003⟧ **permitido por la implementación** ⟦SEP_0004⟧ El sistema decide cómo se vuelve a llenar el búfer de línea. Se comprobó el programa con Gforth. ⟦SEP_0005⟧"
+msgstr "⟦SEP_0002⟧ La entrada viene de un archivo, una línea a la vez, así que ⟦CODE_0001⟧ es relativo a *esa línea* ⟦SEP_0003⟧ **permitido por la implementación** ⟦SEP_0004⟧ El sistema decide cómo se vuelve a llenar el búfer de línea. El programa se verificó con Gforth. ⟦SEP_0005⟧"
 
 #: lessons/study-guides/languages/forth.md:149
 msgctxt "s-90fb0de2d9d1-0087"
@@ -465,7 +465,7 @@ msgstr "⟦SEP_0002⟧ La semana ISO viene de ⟦CODE_0001⟧ ejecutado a travé
 #: lessons/study-guides/languages/forth.md:152
 msgctxt "s-d8f59c2b3f46-0089"
 msgid "No behavior in the Forth entries is merely accidentally exploited. The closest is the dependence on the exact offset above: it is observable, tested and documented in the README, but a different Forth could place the anchor one character away. For this program that would be harmless, because rewinding to the delimiter or to the word start rereads the same text."
-msgstr "Ningún comportamiento de las entradas de Forth es solo aprovechado por accidente. Lo más cercano es la dependencia del desplazamiento exacto de arriba. Ese desplazamiento es observable, está probado y está documentado en el README. Aun así, otro Forth podría colocar el ancla a un carácter de distancia. Para este programa eso sería inofensivo, porque retroceder hasta el delimitador o hasta el inicio de la palabra vuelve a leer el mismo texto."
+msgstr "Ningún comportamiento de las entradas de Forth es solo aprovechado por accidente. Lo más cercano es la dependencia del desplazamiento exacto de arriba. Ese desplazamiento se puede observar, se probó y se documentó en el README. Aun así, otro Forth podría colocar el ancla a un carácter de distancia. Para este programa eso sería inofensivo, porque retroceder hasta el delimitador o hasta el inicio de la palabra vuelve a leer el mismo texto."
 
 #: lessons/study-guides/languages/forth.md:154
 msgctxt "s-87d9e31bff8d-0090"
@@ -475,17 +475,17 @@ msgstr "**Costos que debes declarar.**"
 #: lessons/study-guides/languages/forth.md:156
 msgctxt "s-074a2fd6c755-0091"
 msgid "**The same rewind inside a definition does not work.** Once a line is compiled into a word, the text interpreter is no longer reading it. The loop needs the *interpreter*. The book's note: this works because the words are read from an input line."
-msgstr "**El mismo retroceso dentro de una definición no funciona.** Una vez que una línea se compila en una palabra, el intérprete de texto ya no la lee. El bucle necesita el *intérprete*. La nota del libro: esto funciona porque las palabras se leen desde una línea de entrada de datos."
+msgstr "**El mismo retroceso dentro de una definición no funciona.** Una vez que una línea se compila en una palabra, el intérprete de texto ya no la lee. El bucle necesita el *intérprete*. La nota del libro: esto funciona porque las palabras se leen desde una línea de entrada."
 
 #: lessons/study-guides/languages/forth.md:157
 msgctxt "s-de1b1b3a8f61-0092"
 msgid "**Silent stack errors.** Stack effects are comments, and nothing enforces them. One word that leaves one extra number turns the next pass's total into the wrong number."
-msgstr "**Errores silenciosos de la pila.** Los efectos de pila son comentarios, y nada los hace cumplir. Una palabra que deja un número de más convierte el total del turno siguiente en un número equivocado."
+msgstr "**Errores silenciosos de la pila.** Los efectos de pila se documentan en comentarios y el intérprete no los comprueba. Una palabra que deja un número de más convierte el total de la pasada siguiente en un número equivocado."
 
 #: lessons/study-guides/languages/forth.md:158
 msgctxt "s-5fb4c349d8a7-0093"
 msgid "**The program counter can be corrupted by ordinary data.** ⟦CODE_0001⟧ adds a *computed number* to ⟦CODE_0002⟧. A bug in that computation reads the wrong text, not an error message."
-msgstr "**Datos comunes pueden corromper el contador de programa.** ⟦CODE_0001⟧ suma un *número calculado* a ⟦CODE_0002⟧. Un bicho en ese cálculo lee el texto equivocado y no produce un mensaje de error."
+msgstr "**Datos comunes pueden corromper el contador de programa.** ⟦CODE_0001⟧ suma un *número calculado* a ⟦CODE_0002⟧. Un bicho en ese cálculo hace que el intérprete lea otro fragmento de texto sin avisar, en lugar de mostrar un mensaje de error."
 
 #: lessons/study-guides/languages/forth.md:159
 msgctxt "s-3b2b0f370bfe-0094"
@@ -500,7 +500,7 @@ msgstr "Conexiones a lo largo del repositorio"
 #: lessons/study-guides/languages/forth.md:163
 msgctxt "s-5fc042c15c42-0096"
 msgid "**Parse position as control state.** [COBOL](⟦DEST_0001⟧) stores the next step in a jump target. [Make and CMake](⟦DEST_0002⟧) store it in which files exist and in regex captures. [Tcl](⟦DEST_0003⟧) stores it in a database trigger. The concept guide [State and control beyond variables](⟦DEST_0004⟧) compares them with one worksheet."
-msgstr "**La posición de análisis como estado de control.** [COBOL](⟦DEST_0001⟧) guarda el siguiente paso en un destino de salto. [Make y CMake](⟦DEST_0002⟧) lo guardan en qué archivos existen y en las capturas de regex. [Tcl](⟦DEST_0003⟧) lo guarda en un disparador de base de datos. La guía de concepto [Estado y control más allá de las variables](⟦DEST_0004⟧) los compara con una sola hoja de trabajo."
+msgstr "**La posición de lectura como estado de control.** [COBOL](⟦DEST_0001⟧) guarda el siguiente paso en un destino de salto. [Make y CMake](⟦DEST_0002⟧) lo guardan en qué archivos existen y en las capturas de regex. [Tcl](⟦DEST_0003⟧) lo guarda en un disparador de base de datos. La guía de concepto [Estado y control más allá de las variables](⟦DEST_0004⟧) los compara con una sola hoja de trabajo."
 
 #: lessons/study-guides/languages/forth.md:164
 msgctxt "s-d5bfd1a6203b-0097"
@@ -540,10 +540,10 @@ msgid ""
 "3. **Transfer.** The program counter of the weird machine is ⟦CODE_0010⟧. Name the program counter, or the closest thing to one, of the COBOL weird entry and of the Make entry. *(COBOL: the current target of ⟦CODE_0011⟧'s ⟦CODE_0012⟧, plus the normal fall-through from paragraph to paragraph. Make: the set of ⟦CODE_0013⟧ files that exist, which decides whether Make restarts. The concept guide on state and control develops both.)*\n"
 "4. **Evidence.** A reviewer says, \"The position of the anchor alone determines whether the loop stops.\" Design a test that could fail. Compare two edits. Predict which one prevents the loop from stopping. *(Move ⟦CODE_0014⟧ after ⟦CODE_0015⟧: the state resets each pass and it does not stop. Move ⟦CODE_0016⟧ to its own earlier line: it still passes. Run both with ⟦CODE_0017⟧.)*"
 msgstr ""
-"**Traza.** En el programa raro, las horas son 11, 11, 11, 11. Da la pila ⟦CODE_0001⟧ después de ⟦CODE_0002⟧ por cuarta vez y la bandera de ⟦CODE_0003⟧. ¿El programa saca una quinta tarjeta? *(Pila ⟦CODE_0004⟧. La bandera es ⟦CODE_0005⟧, porque 44 no es menor que 41. No saca una quinta tarjeta. Los totales son 11, 22, 33, 44, y la cuarta tarjeta es la tarjeta de cruce.)*\n"
+"**Traza.** En el programa raro, las horas son 11, 11, 11, 11. Da la pila ⟦CODE_0001⟧ después de ⟦CODE_0002⟧ por cuarta vez y la bandera de ⟦CODE_0003⟧. ¿El programa saca una quinta tarjeta? *(Pila ⟦CODE_0004⟧. La bandera es ⟦CODE_0005⟧, porque 44 no es menor que 41. No saca una quinta tarjeta. Los totales son 11, 22, 33, 44, y la cuarta tarjeta es aquella con la que el total pasa del límite.)*\n"
 "2. **Explica.** ¿Por qué el ancla se mantiene en la pila de retorno mientras se ejecuta ⟦CODE_0006⟧, y no en la pila de datos? *(⟦CODE_0007⟧ cambia la profundidad de la pila de datos: consume el número de tarjeta y el total, y los reemplaza. Dejar el ancla en la pila de retorno la aparta del camino, y ⟦CODE_0008⟧ la recupera con ⟦CODE_0009⟧.)*\n"
-"3. **Transfiere.** El contador de programa de la máquina rara (*weird machine*: la máquina que el programa raro forma con sus propias piezas) es ⟦CODE_0010⟧. Nombra el contador de programa, o lo más parecido a uno, de la entrada rara de COBOL y de la entrada de Make. *(COBOL: el destino actual de ⟦CODE_0012⟧ en ⟦CODE_0011⟧, más el paso normal de un párrafo al siguiente. Make: el conjunto de archivos ⟦CODE_0013⟧ que existen, que decide si Make se reinicia. La guía de concepto sobre estado y control desarrolla ambos.)*\n"
-"4. **Evidencia.** Un revisor dice: \"Solo la posición del ancla determina si el bucle se detiene\". Diseña una prueba que pueda fallar. Compara dos ediciones. Predice cuál impide que el bucle se detenga. *(Mueve ⟦CODE_0014⟧ después de ⟦CODE_0015⟧: el estado se reinicia en cada pasada y el bucle no se detiene. Mueve ⟦CODE_0016⟧ a una línea propia anterior: sigue pasando. Ejecuta ambas con ⟦CODE_0017⟧.)*"
+"3. **Transfiere.** El contador de programa de la máquina rara (*weird machine*: la máquina que el programa raro forma con sus propias piezas) es ⟦CODE_0010⟧. Nombra el contador de programa (o lo más parecido a uno) de la entrada rara de COBOL y de la de Make. *(COBOL: el destino actual de ⟦CODE_0012⟧ en ⟦CODE_0011⟧, más el paso normal de un párrafo al siguiente. Make: el conjunto de archivos ⟦CODE_0013⟧ que existen, que decide si Make se reinicia. La guía de concepto sobre estado y control desarrolla ambos.)*\n"
+"4. **Evidencia.** Un revisor dice: \"Solo la posición del ancla determina si el bucle se detiene\". Diseña una prueba que pueda fallar. Compara dos ediciones. Predice cuál impide que el bucle se detenga. *(Mueve ⟦CODE_0014⟧ después de ⟦CODE_0015⟧: el estado se reinicia en cada pasada y el bucle no se detiene. Mueve ⟦CODE_0016⟧ a una línea propia anterior: sigue superando la comprobación. Ejecuta ambas con ⟦CODE_0017⟧.)*"
 
 #: lessons/study-guides/languages/forth.md:178
 msgctxt "s-4082f515b2f4-0104"

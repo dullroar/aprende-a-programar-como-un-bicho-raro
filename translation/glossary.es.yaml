@@ -559,9 +559,9 @@ terms:
     banned: [artículo, "ítem", "registro"]
     note: "Do not confuse with 'entrada' as input; the context disambiguates, and input is 'entrada de datos' only when the English says input."
   - id: input
-    en: input
+    en: "input (data given to a program or a function)"
     es: entrada de datos
-    note: "Use 'entrada de datos' when the English means input and 'entrada' could be read as a book entry."
+    note: "Use 'entrada de datos' for data given to a program or a function. Use 'entrada' alone for an input line or an input buffer that holds source text (Forth), and 'argumentos' for what a word takes from the stack (review Part D, forth.md). The parenthesized en gives I7 no regex: the sense depends on context."
   - id: output
     en: output
     es: salida

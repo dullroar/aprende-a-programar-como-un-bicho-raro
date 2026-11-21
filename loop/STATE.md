@@ -1,8 +1,8 @@
 # loop/STATE.md (keep to 60 lines; refreshed by every iteration)
 
 - **Edition:** v4-es.0-rc1 (working)    **English SHA:** 48a4429c0a22b2aac628b256a50c07d1816bcb80
-- **Iteration:** 94    **Stage:** 3C (editorial-review rework before bulk translation)    **Last result:** iter 94 P3C-006 done (study-guide apl.md corrected through its PO; 17 more dispositions in translation/reviews/chatgpt-editorial-2026-11-20-dispositions.jsonl, append the next file's rows to it; "Depuración (Debugging)" row-heading convention for forth.md too; SI-011). Next: P3C-007..015 file corrections (verify --fast lists their I7/I21/I23-I25 findings), then P3C-016
-- **Tasks:** todo 81 | doing 0 | done 65 | blocked 0 | skipped 0 (recount with the queue files)
+- **Iteration:** 95    **Stage:** 3C (editorial-review rework before bulk translation)    **Last result:** iter 95 P3C-007 done (forth.md corrected through its PO; glossary `input` row now context-sensitive; 20 more dispositions in the same dispositions file; guide diagram 1 alt text and the forth-weird README sync are carried by P3C-008 and the forth-weird README translation). Next: P3C-008..015 file corrections (verify --fast lists their I7/I21/I23-I25 findings), then P3C-016
+- **Tasks:** todo 80 | doing 0 | done 66 | blocked 0 | skipped 0 (recount with the queue files)
 - **Next task:** run `python3 tools/next_task.py` (PO files live at translation/po/<path>.po, written by tools/apply.py --init)
 - **Budget:** spent $0.00 of $100; iterations 0 of 300
 - **Translate progress:** segments accepted 836 / total 8827 (7394 prose + 1433 Mermaid labels) ; files done 14 / 212 (curriculum and study-guide title pages, src/GoChallenge1, JavaChallenge1, KotlinChallenge1, LinqChallenge1, LinqChallenge2, ModernChallenge1, PythonChallenge1 READMEs, src/forth/README.md, lessons/cs-source/concepts/recursion.md, lessons/study-guides/languages/forth.md, docs/curriculum.md, lessons/study-guides/languages/apl.md)
