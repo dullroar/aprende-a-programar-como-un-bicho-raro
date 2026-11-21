@@ -121,6 +121,17 @@ class QueueTests(unittest.TestCase):
         tasks, problems = nt.load_queue(self.q)
         self.assertTrue(any("unknown task nope" in p for p in problems))
 
+    def test_amend_can_set_tier_only(self):
+        self.write("seed.jsonl", [t("A")])
+        self.write("generated/a.jsonl", [{"amend": "A", "set": {"tier": "light"}}])
+        tasks, problems = nt.load_queue(self.q)
+        self.assertEqual(problems, [])
+        self.assertEqual(tasks[0]["tier"], "light")
+        self.write("generated/a.jsonl", [{"amend": "A", "set": {"status": "done"}}])
+        tasks, problems = nt.load_queue(self.q)
+        self.assertTrue(any("may only set tier" in p for p in problems))
+        self.assertNotIn("tier", tasks[0])
+
     def test_main_exit_codes(self):
         self.write("seed.jsonl", [t("A")])
         self.assertEqual(nt.main(["--queue", self.q, "--id"]), 0)

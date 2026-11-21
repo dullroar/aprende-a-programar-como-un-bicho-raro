@@ -62,3 +62,17 @@ The import validates the reply schema, English segment IDs and placeholders,
 and the same invariants as the Claude backend. It writes checkpointable PO
 entries and provenance. Resolve fuzzy entries, regenerate the file and
 anchors, and run the task's normal gates before committing.
+
+## Models and tiers
+
+The model is chosen per iteration, not hard-coded. `loop/CONFIG.yaml` lists, for each agent, a
+`standard` and a `light` model (and a reasoning effort for Codex and Copilot). Before each iteration
+the driver previews the task `tools/next_task.py` will hand out and picks the tier: `light` only when
+the task says `"tier": "light"` (queue amendment `{"amend": ID, "set": {"tier": "light"}}`) or its
+kind is in `tier_light_kinds`, and only on its first attempt. `TIER_OVERRIDE=standard|light` in the
+environment forces a tier. The driver prints a `starting:` line with the task, tier and requested
+model, and after the run a `model evidence:` line with the model the CLI **reported** (Claude
+`modelUsage`, Copilot model-call events, Codex's session file), flagging a `MISMATCH`. Claude Code
+also uses a small helper model for side calls, so a second Claude model in that line is normal.
+Both are stored in `loop/ledger/usage.jsonl`; `python3 tools/model_report.py` summarizes them.
+Edit CONFIG.yaml only while the driver is stopped (it reads the file at start-up).

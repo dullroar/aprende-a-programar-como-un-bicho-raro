@@ -2,7 +2,8 @@
 """tools/next_task.py: print the next eligible task of the loop queue.
 
 Queue = loop/queue/seed.jsonl plus loop/queue/generated/*.jsonl. A generated record of the form
-{"amend": "<task-id>", "add_deps": [...]} adds dependencies to an existing task (used to make the
+{"amend": "<task-id>", "add_deps": [...]} adds dependencies to an existing task, and
+{"amend": "<task-id>", "set": {"tier": "light"}} chooses the cheaper model tier for it (loop/ralph.sh) (used to make the
 Phase 4 gate wait for every generated task); it is not a task itself.
 
 Eligible: status "todo" (or "doing" with a claim older than 60 minutes: stale, may be reclaimed)
@@ -79,6 +80,11 @@ def load_queue(queue_dir=DEFAULT_QUEUE):
         for d in a.get("add_deps", []):
             if d not in target["deps"]:
                 target["deps"].append(d)
+        for key, value in (a.get("set") or {}).items():
+            if key == "tier" and value in ("standard", "light"):
+                target["tier"] = value
+            else:
+                problems.append(f"amend of {a['amend']} may only set tier to standard or light (got {key}={value!r})")
     return tasks, problems
 
 

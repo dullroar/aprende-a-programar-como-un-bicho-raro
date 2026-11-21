@@ -37,3 +37,22 @@ audit_sample_size: 5
 # ---- quality bars ----
 seeded_fault_recall_bar: 0.95
 sentence_word_limit_N: 29                 # calibrated on the pilot (P3-006): 25 x 1.160 (9422 English, 10927 Spanish words); see translation/pilot-calibration.md
+
+# ---- models per agent and tier (revision 5; read by ralph.sh at start-up) ----
+# The driver previews the next task and picks a tier: "light" only if the task has "tier": "light"
+# (set it with a queue amendment {"amend": ID, "set": {"tier": "light"}}) or its kind is listed
+# below, and only on its first attempt; a retried task always gets the standard model. Empty value =
+# the CLI's own default. Check what actually ran with: python3 tools/model_report.py
+# Claude: sonnet / haiku are aliases. Copilot ids as the CLI logs them (claude-sonnet-5.5, claude-haiku-5.5; verify with
+#   a smoke run when the monthly quota is back). Codex: see `codex debug models` (gpt-6.1-terra, gpt-6-luna, gpt-6.2-sol, ...).
+tier_light_kinds: packet
+claude_model_standard: sonnet
+claude_model_light: haiku
+copilot_model_standard: claude-sonnet-5.5
+copilot_model_light: claude-haiku-5.5
+copilot_effort_standard:
+copilot_effort_light:
+codex_model_standard: gpt-6.1-terra
+codex_model_light: gpt-6-luna
+codex_effort_standard: medium
+codex_effort_light: low
