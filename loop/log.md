@@ -152,3 +152,4 @@
 178 P4-lessons-1 done translated 16 lessons index segments; corrected unsupported acceptance flag; fast verification and anchors check passed.
 179 P4-lessons-2 partial accepted and applied answers key segments 1 to 6; resume at 7; scoped and full fast verification passed.
 180 P4-lessons-2 partial accepted and applied answers key segments 7 to 15; resume at 16; scoped and full fast verification passed.
+181 P4-lessons-2 partial accepted and applied answers key segments 16 to 23; resume at 24; scoped and working-tree fast verification passed.

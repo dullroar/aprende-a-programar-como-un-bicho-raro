@@ -85,12 +85,12 @@ msgstr "(cinco de estos, uno por ⟦CODE_0001⟧). El compilador debe saber que 
 #: lessons/answers-key.md:46
 msgctxt "s-5fd611acc548-0015"
 msgid "B2. Haskell: break the laziness"
-msgstr ""
+msgstr "B2. Haskell: rompe la evaluación perezosa"
 
 #: lessons/answers-key.md:48
 msgctxt "s-31bcd073ba01-0016"
 msgid "⟦CODE_0001⟧ (a lazy binding) ends the run with:"
-msgstr ""
+msgstr "⟦CODE_0001⟧ (un enlace perezoso) termina la ejecución con:"
 
 #: lessons/answers-key.md:54
 msgctxt "s-17500432aca3-0017"
@@ -98,31 +98,33 @@ msgid ""
 "Nothing demands the cards until the summary line is printed, which is *after* the ⟦CODE_0001⟧ and after the pipe to ⟦CODE_0002⟧ was closed; forcing a cell then fires its effect on a closed handle. ⟦CODE_0003⟧ fails (a row or two, no summary).\n"
 "2. Replacing ⟦CODE_0004⟧ with ⟦CODE_0005⟧ does **not** hang. It dies at once with:"
 msgstr ""
+"Nada demanda las tarjetas hasta que se imprime la línea de resumen. Esto ocurre *después* de ⟦CODE_0001⟧ y después de cerrar la tubería hacia ⟦CODE_0002⟧. Al forzar una celda se dispara su efecto sobre un manejador cerrado. ⟦CODE_0003⟧ falla (una o dos filas, sin resumen).\n"
+"2. Reemplazar ⟦CODE_0004⟧ por ⟦CODE_0005⟧ **no** se cuelga. Termina de inmediato con:"
 
 #: lessons/answers-key.md:61
 msgctxt "s-182586a0b02d-0018"
 msgid "Without the interleave, building the list of actions pattern-matches ⟦CODE_0001⟧, which needs ⟦CODE_0002⟧, which ⟦CODE_0003⟧ has not produced yet. (Only the first row, ⟦CODE_0004⟧, is printed before the loop is detected.) The ⟦CODE_0005⟧ has to sit *inside* the deferred action."
-msgstr ""
+msgstr "Sin intercalar, construir la lista de acciones compara ⟦CODE_0001⟧ con un patrón. Esto necesita ⟦CODE_0002⟧, que ⟦CODE_0003⟧ aún no ha producido. (Solo se imprime la primera fila, ⟦CODE_0004⟧, antes de detectar el bucle). ⟦CODE_0005⟧ debe estar *dentro* de la acción diferida."
 
 #: lessons/answers-key.md:63
 msgctxt "s-2210d2c216b3-0019"
 msgid "B3. Forth: move the anchor"
-msgstr ""
+msgstr "B3. Forth: mueve el ancla"
 
 #: lessons/answers-key.md:65
 msgctxt "s-1c18d0a26f03-0020"
 msgid "**(a)** ⟦CODE_0001⟧ on its own line, then ⟦CODE_0002⟧: **works**. ⟦CODE_0003⟧ captures the position *after* the ⟦CODE_0004⟧, and the rewind jumps back to that anchor, which is after the ⟦CODE_0005⟧. So ⟦CODE_0006⟧ is never re-executed. ⟦CODE_0007⟧ passes."
-msgstr ""
+msgstr "**(a)** ⟦CODE_0001⟧ en su propia línea, seguido de ⟦CODE_0002⟧: **funciona**. ⟦CODE_0003⟧ captura la posición *después* de ⟦CODE_0004⟧. El retroceso salta a esa ancla, que está después de ⟦CODE_0005⟧. Por eso ⟦CODE_0006⟧ nunca se vuelve a ejecutar. ⟦CODE_0007⟧ pasa."
 
 #: lessons/answers-key.md:66
 msgctxt "s-860b0de0eae8-0021"
 msgid "**(b)** ⟦CODE_0001⟧: the anchor is now *before* ⟦CODE_0002⟧, so every rewind reruns ⟦CODE_0003⟧ and pushes a fresh zero state. The total restarts from zero on every pass, and the stop rule never fires. With ⟦CODE_0004⟧ you get hundreds of rows (678 in the verification run), every row has total = hours, and there is no ⟦CODE_0005⟧ line."
-msgstr ""
+msgstr "**(b)** ⟦CODE_0001⟧: el ancla está ahora *antes* de ⟦CODE_0002⟧. Cada retroceso vuelve a ejecutar ⟦CODE_0003⟧ y apila un nuevo estado cero. El total vuelve a cero en cada pasada y la regla de parada nunca se activa. Con ⟦CODE_0004⟧ obtienes cientos de filas (678 en la ejecución de verificación). Cada fila tiene total = horas y no hay línea ⟦CODE_0005⟧."
 
 #: lessons/answers-key.md:67
 msgctxt "s-53c35df2629d-0022"
 msgid "**(c)** ⟦CODE_0001⟧ to ⟦CODE_0002⟧: ⟦CODE_0003⟧ passes (stops when the total reaches 51)."
-msgstr ""
+msgstr "**(c)** ⟦CODE_0001⟧ a ⟦CODE_0002⟧: ⟦CODE_0003⟧ pasa (se detiene cuando el total llega a 51)."
 
 #: lessons/answers-key.md:68
 msgctxt "s-0ff7ba4f0dff-0023"

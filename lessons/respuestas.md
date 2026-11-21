@@ -43,28 +43,28 @@ timecards.cob:158: error: 'NEXT-CARD' is not an alterable paragraph
 
   (cinco de estos, uno por `ALTER`). El compilador debe saber que el único contenido del párrafo es un salto cuyo destino puede modificar.
 
-## B2. Haskell: break the laziness
+## B2. Haskell: rompe la evaluación perezosa
 
-1. `let entries = length cards` (a lazy binding) ends the run with:
+1. `let entries = length cards` (un enlace perezoso) termina la ejecución con:
 
    ```text
    timecards: fd:5: hPutStr: illegal operation (handle is closed)
    ```
 
-   Nothing demands the cards until the summary line is printed, which is *after* the `COMMIT` and after the pipe to `sqlite3` was closed; forcing a cell then fires its effect on a closed handle. `check-demo.sh` fails (a row or two, no summary).
-2. Replacing `unsafeInterleaveIO $ case ...` with `id $ case ...` does **not** hang. It dies at once with:
+   Nada demanda las tarjetas hasta que se imprime la línea de resumen. Esto ocurre *después* de `COMMIT` y después de cerrar la tubería hacia `sqlite3`. Al forzar una celda se dispara su efecto sobre un manejador cerrado. `check-demo.sh` falla (una o dos filas, sin resumen).
+2. Reemplazar `unsafeInterleaveIO $ case ...` por `id $ case ...` **no** se cuelga. Termina de inmediato con:
 
    ```text
    timecards: cyclic evaluation in fixIO
    ```
 
-   Without the interleave, building the list of actions pattern-matches `before`, which needs `cards`, which `fixIO` has not produced yet. (Only the first row, `Meetings 10 10`, is printed before the loop is detected.) The `case` has to sit *inside* the deferred action.
+   Sin intercalar, construir la lista de acciones compara `before` con un patrón. Esto necesita `cards`, que `fixIO` aún no ha producido. (Solo se imprime la primera fila, `Meetings 10 10`, antes de detectar el bucle). `case` debe estar *dentro* de la acción diferida.
 
-## B3. Forth: move the anchor
+## B3. Forth: mueve el ancla
 
-- **(a)** `0 0` on its own line, then `>in @ step rewind?`: **works**. `>in @` captures the position *after* the `@`, and the rewind jumps back to that anchor, which is after the `0 0`. So `0 0` is never re-executed. `check-demo.sh` passes.
-- **(b)** `>in @ 0 0 step rewind?`: the anchor is now *before* `0 0`, so every rewind reruns `0 0` and pushes a fresh zero state. The total restarts from zero on every pass, and the stop rule never fires. With `SANDBOX_TIMEOUT=30` you get hundreds of rows (678 in the verification run), every row has total = hours, and there is no `# committed` line.
-- **(c)** `41 <` to `51 <`: `check-demo.sh out.txt 50` passes (stops when the total reaches 51).
+- **(a)** `0 0` en su propia línea, seguido de `>in @ step rewind?`: **funciona**. `>in @` captura la posición *después* de `@`. El retroceso salta a esa ancla, que está después de `0 0`. Por eso `0 0` nunca se vuelve a ejecutar. `check-demo.sh` pasa.
+- **(b)** `>in @ 0 0 step rewind?`: el ancla está ahora *antes* de `0 0`. Cada retroceso vuelve a ejecutar `0 0` y apila un nuevo estado cero. El total vuelve a cero en cada pasada y la regla de parada nunca se activa. Con `SANDBOX_TIMEOUT=30` obtienes cientos de filas (678 en la ejecución de verificación). Cada fila tiene total = horas y no hay línea `# committed`.
+- **(c)** `41 <` a `51 <`: `check-demo.sh out.txt 50` pasa (se detiene cuando el total llega a 51).
 - **Why only (b)?** The parse position is a program counter: where it jumps back to decides which tokens are the loop body. State must stay *outside* the body (before the anchor).
 
 ## B4. Make: remove the no-op, and override the clock
