@@ -35,7 +35,7 @@ msgstr "AWK"
 #: src/awk/README.md:17
 msgctxt "s-e033128924ef-0005"
 msgid "**Teaches you:** that portable AWK can build records out of fields and stream its output through a pipe, with arrays and parameter-local variables for state."
-msgstr "**Te enseña:** que AWK portable puede construir registros a partir de campos y enviar su salida por una tubería, con arreglos y variables locales declaradas como parámetros para el estado."
+msgstr "**Te enseña:** que AWK portable puede construir registros a partir de campos y enviar su salida por una tubería, con arreglos y variables locales de parámetro para el estado."
 
 #: src/awk/README.md:19
 msgctxt "s-5ca333b42af1-0006"

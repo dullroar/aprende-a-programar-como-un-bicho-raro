@@ -14,7 +14,7 @@ tags: [control-flow, declarative-programming, domain-specific-language, regular-
 ---
 # AWK
 
-**Te enseña:** que AWK portable puede construir registros a partir de campos y enviar su salida por una tubería, con arreglos y variables locales declaradas como parámetros para el estado.
+**Te enseña:** que AWK portable puede construir registros a partir de campos y enviar su salida por una tubería, con arreglos y variables locales de parámetro para el estado.
 
 > **DEMO ONLY.** Tarjetas de horas ficticias en un archivo SQLite temporal. Sin conexión con ningún sistema real de registro de horas.
 
