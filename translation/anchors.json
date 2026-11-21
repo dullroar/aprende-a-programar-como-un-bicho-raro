@@ -875,8 +875,8 @@
     {
      "en": "B20. JavaScript: read the clauses, move the limit and fail the structure check",
      "en_id": "b20-javascript-read-the-clauses-move-the-limit-and-fail-the-structure-check",
-     "es": "B20. JavaScript: read the clauses, move the limit and fail the structure check",
-     "es_id": "b20-javascript-read-the-clauses-move-the-limit-and-fail-the-structure-check",
+     "es": "B20. JavaScript: lee las cláusulas, mueve el límite y haz fallar la comprobación de estructura",
+     "es_id": "b20-javascript-lee-las-cláusulas-mueve-el-límite-y-haz-fallar-la-comprobación-de-estructura",
      "level": 2,
      "line": 293
     },
@@ -984,7 +984,7 @@
     "b18-ed-move-the-stop-rule-and-break-the-cleanup": "b18-ed-mueve-la-regla-de-parada-y-rompe-la-limpieza",
     "b19-ex-move-the-limit-on-the-tape-and-cut-the-loop": "b19-ex-mueve-el-límite-en-la-cinta-y-corta-el-bucle",
     "b2-haskell-break-the-laziness": "b2-haskell-rompe-la-evaluación-perezosa",
-    "b20-javascript-read-the-clauses-move-the-limit-and-fail-the-structure-check": "b20-javascript-read-the-clauses-move-the-limit-and-fail-the-structure-check",
+    "b20-javascript-read-the-clauses-move-the-limit-and-fail-the-structure-check": "b20-javascript-lee-las-cláusulas-mueve-el-límite-y-haz-fallar-la-comprobación-de-estructura",
     "b21-javascript-weirder-move-the-stop-rule-in-a-closure-and-watch-the-demand": "b21-javascript-weirder-move-the-stop-rule-in-a-closure-and-watch-the-demand",
     "b22-javascript-event-driven-predict-the-trace-then-remove-the-boundary": "b22-javascript-event-driven-predict-the-trace-then-remove-the-boundary",
     "b3-forth-move-the-anchor": "b3-forth-mueve-el-ancla",

@@ -505,7 +505,7 @@ msgstr ""
 #: lessons/answers-key.md:293
 msgctxt "s-7a6ecdcdf22b-0083"
 msgid "B20. JavaScript: read the clauses, move the limit and fail the structure check"
-msgstr ""
+msgstr "B20. JavaScript: lee las cláusulas, mueve el límite y haz fallar la comprobación de estructura"
 
 #: lessons/answers-key.md:295
 msgctxt "s-ac12f0d31572-0084"
@@ -515,6 +515,10 @@ msgid ""
 "3. The extra statement is legal JavaScript, and the program runs. ⟦CODE_0003⟧ reports ⟦CODE_0004⟧. That is the proof that the stunt's rule is checked, and not just claimed.\n"
 "4. 2026-12-31 is a Thursday, and 2026 starts on a Thursday, so it has 53 weeks: ⟦CODE_0005⟧. 2024-12-30 is a Monday, in the week whose Thursday is 2025-01-02, so it is ⟦CODE_0006⟧."
 msgstr ""
+"⟦CODE_0001⟧ da las horas 12, 17 y 17: totales de 12, 29 y 46. La tercera tarjeta pasa de 40 y se conserva. La primera prueba ve 0, la segunda 12, la tercera 29 (todos 40 o menos) y la cuarta ve 46 y se detiene.\n"
+"2. Con ⟦CODE_0002⟧: la prueba ve 0 y 12 (continúa) y luego 29 (más de 20), así que son dos tarjetas: 12 y 29. La tarjeta que pasa el límite es la segunda.\n"
+"3. La sentencia adicional es JavaScript válido y el programa se ejecuta. ⟦CODE_0003⟧ informa ⟦CODE_0004⟧. Esa es la prueba de que se comprueba la regla del truco y no solo se afirma.\n"
+"4. 2026-12-31 es jueves y 2026 empieza en jueves, así que tiene 53 semanas: ⟦CODE_0005⟧. 2024-12-30 es lunes, en la semana cuyo jueves es 2025-01-02, así que es ⟦CODE_0006⟧."
 
 #: lessons/answers-key.md:300
 msgctxt "s-8fe6ebaa6138-0085"

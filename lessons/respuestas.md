@@ -290,12 +290,12 @@ El `mktemp` falso produce los dados. El recorrido lee el último carácter de ca
 3. Sin el `|@n` final el programa termina después de una tarjeta: `Meetings 15 15` para `DICE="5 5 5 5 5"`. Nada inicia el programa de nuevo.
 4. El bucle es `@n`, el último comando de la línea del programa. El registro `n` contiene el texto de la línea de la cinta, menos el total. Se detiene en la primera fila cuyo texto es `"` (la fila correspondiente a 41). El límite de 40 no está en ninguna parte del programa: es la frontera en la cinta.
 
-## B20. JavaScript: read the clauses, move the limit and fail the structure check
+## B20. JavaScript: lee las cláusulas, mueve el límite y haz fallar la comprobación de estructura
 
-1. `SEED=42` gives hours 12, 17 and 17: totals 12, 29 and 46. The third card crosses 40 and is kept. The first test sees 0, the second 12, the third 29 (all 40 or less), and the fourth sees 46 and stops.
-2. With `<= 20`: the test sees 0 and 12 (go on) and then 29 (over 20), so two cards: 12 and 29. The crossing card is the second.
-3. The extra statement is legal JavaScript, and the program runs. `check-structure.mjs` reports `FAIL: the body must be empty`. That is the proof that the stunt's rule is checked, and not just claimed.
-4. 2026-12-31 is a Thursday, and 2026 starts on a Thursday, so it has 53 weeks: `2026-W53`. 2024-12-30 is a Monday, in the week whose Thursday is 2025-01-02, so it is `2025-W01`.
+1. `SEED=42` da las horas 12, 17 y 17: totales de 12, 29 y 46. La tercera tarjeta pasa de 40 y se conserva. La primera prueba ve 0, la segunda 12, la tercera 29 (todos 40 o menos) y la cuarta ve 46 y se detiene.
+2. Con `<= 20`: la prueba ve 0 y 12 (continúa) y luego 29 (más de 20), así que son dos tarjetas: 12 y 29. La tarjeta que pasa el límite es la segunda.
+3. La sentencia adicional es JavaScript válido y el programa se ejecuta. `check-structure.mjs` informa `FAIL: the body must be empty`. Esa es la prueba de que se comprueba la regla del truco y no solo se afirma.
+4. 2026-12-31 es jueves y 2026 empieza en jueves, así que tiene 53 semanas: `2026-W53`. 2024-12-30 es lunes, en la semana cuyo jueves es 2025-01-02, así que es `2025-W01`.
 
 ## B21. JavaScript, weirder: move the stop rule in a closure and watch the demand
 
