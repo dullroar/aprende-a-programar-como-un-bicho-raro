@@ -121,3 +121,5 @@
 145 P4-lessons-study-guides-1 done applied 40 segments of study-guides README via drafts import (front-matter already done); commit of 143 had landed (HEAD 7eb89be); verify --fast OK.
 146 P4-lessons-study-guides-concepts-1 done applied 151 segments of comparative-machine-design via drafts import; 6 scoped waivers; diagram labels shortened for the I23 8.4 pt floor; verify --fast OK.
 147 P4-lessons-study-guides-concepts-2 done applied 112 segments of effects-errors-and-commitment via four drafts imports; 4 scoped I7 waivers; anchors regenerated; verify --fast OK.
+148 P4-lessons-study-guides-concepts-3 done evaluation-demand-and-laziness (106) and events-callbacks-and-reactive-control (98) study guides translated; 12 scoped I7 waivers
+149 P4-lessons-study-guides-concepts-3 done committed the iteration-148 work left in the tree; verify --fast OK.

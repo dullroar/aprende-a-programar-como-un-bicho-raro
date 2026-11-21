@@ -1,0 +1,528 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lessons/study-guides/concepts/events-callbacks-and-reactive-control.md:1
+msgctxt "s-a4b38580d725-0000"
+msgid "Events, callbacks and reactive control study guide"
+msgstr "Guía de estudio de eventos, funciones de devolución de llamada y control reactivo"
+
+#: lessons/study-guides/concepts/events-callbacks-and-reactive-control.md:3
+msgctxt "s-4e718de9279e-0001"
+msgid "What this guide is for"
+msgstr "Para qué sirve esta guía"
+
+#: lessons/study-guides/concepts/events-callbacks-and-reactive-control.md:5
+msgctxt "s-831950eb91de-0002"
+msgid "\"What runs next?\" has three answers in this repository. *The program chooses*: a loop asks itself before every card. *The consumer chooses*: a pull, where nothing happens until someone asks. *The producer chooses*: a push, where something announces that it happened and every function that registered for it runs. This guide is about the third. The core question is: **who owns the next turn, and what does reentrancy change?**"
+msgstr "\"¿Qué se ejecuta después?\" tiene tres respuestas en este repositorio. *El programa decide*: un bucle se lo pregunta a sí mismo antes de cada tarjeta. *El consumidor decide*: una demanda (*pull*), donde no pasa nada hasta que alguien pide. *El productor decide*: un *push*, donde algo anuncia que ocurrió y se ejecuta cada función registrada para él. Esta guía trata de la tercera. La pregunta central es: **¿quién es dueño del siguiente turno y qué cambia la reentrada?**"
+
+#: lessons/study-guides/concepts/events-callbacks-and-reactive-control.md:7
+msgctxt "s-d84bcb27c154-0003"
+msgid "When you finish, you should be able to:"
+msgstr "Cuando termines, deberías poder:"
+
+#: lessons/study-guides/concepts/events-callbacks-and-reactive-control.md:9
+msgctxt "s-4d4d9d673cab-0004"
+msgid ""
+"Say, for an entry, whether the program, the consumer or the producer chooses what runs next.\n"
+"2. Explain the difference between a synchronous ⟦CODE_0001⟧ and a call that hands the next step to the event loop, and what each does to the call stack.\n"
+"3. Trace ⟦CODE_0002⟧ through three cards, naming the turns and the nesting depth.\n"
+"4. Explain reentrancy: what happens when a callback triggers the thing that called it, and how the entries prevent or limit it.\n"
+"5. Tell a real event from a look-alike (a window's own loop, a trigger, a callout).\n"
+"6. Label claims as guaranteed, implementation-permitted or accidentally exploited."
+msgstr ""
+"Decir, para una entrada, si el programa, el consumidor o el productor decide qué se ejecuta después.\n"
+"2. Explicar la diferencia entre un ⟦CODE_0001⟧ síncrono y una llamada que entrega el paso siguiente al bucle de eventos, y qué hace cada uno a la pila de llamadas.\n"
+"3. Hacer la traza de ⟦CODE_0002⟧ a lo largo de tres tarjetas y nombrar los turnos y la profundidad de anidamiento.\n"
+"4. Explicar la reentrada: qué pasa cuando una función de devolución de llamada (*callback*) dispara aquello que la llamó, y cómo lo evitan o lo limitan las entradas.\n"
+"5. Distinguir un evento real de uno que lo imita (el bucle propio de una ventana, un disparador o un callout).\n"
+"6. Etiquetar afirmaciones como garantizado, permitido por la implementación o aprovechado por accidente."
+
+#: lessons/study-guides/concepts/events-callbacks-and-reactive-control.md:16
+msgctxt "s-56939a3d04fc-0005"
+msgid "**Scope limits.** The guide uses Node.js's ⟦CODE_0001⟧ as the main example and compares it with other callback mechanisms in the entries. It does not teach GUI frameworks, async/await or reactive libraries. Its source chapter is [Events, callbacks and reactive control flow](⟦DEST_0002⟧)."
+msgstr "**Límites del alcance.** La guía usa el ⟦CODE_0001⟧ de Node.js como ejemplo principal y lo compara con otros mecanismos de funciones de devolución de llamada de las entradas. No enseña marcos de trabajo de GUI, async/await ni bibliotecas reactivas. Su capítulo de origen es [Eventos, funciones de devolución de llamada y flujo de control reactivo](⟦DEST_0002⟧)."
+
+#: lessons/study-guides/concepts/events-callbacks-and-reactive-control.md:18
+msgctxt "s-d5bfdd7d989d-0006"
+msgid "Before you begin"
+msgstr "Antes de empezar"
+
+#: lessons/study-guides/concepts/events-callbacks-and-reactive-control.md:20
+msgctxt "s-217394c322d9-0007"
+msgid "**Safety model.** The cards are fictional **⟦DNT_0001⟧** data. Programs can write to local scratch files or databases and can start processes or timers. Read the source first and run it in the sandbox first (⟦CODE_0002⟧). Work on copies ([Running things safely](⟦DEST_0003⟧)). A deliberately removed turn boundary can crash a run: use a scratch data folder."
+msgstr "**Modelo de seguridad.** Las tarjetas son datos ficticios marcados con **⟦DNT_0001⟧**. Los programas pueden escribir en archivos o bases de datos locales de prueba y pueden iniciar procesos o temporizadores. Lee primero el código fuente y ejecútalo antes en un entorno aislado (*sandbox*) que limita el acceso al sistema anfitrión (⟦CODE_0002⟧). Trabaja con copias ([Ejecutar cosas con seguridad](⟦DEST_0003⟧)). Un límite de turno quitado a propósito puede hacer fallar una ejecución: usa una carpeta de datos de prueba."
+
+#. I12: sentence of 32 words (limit 29): Antes de cada ejecución, escribe el
+#. *ord...
+#: lessons/study-guides/concepts/events-callbacks-and-reactive-control.md:22
+msgctxt "s-14bbd2ad0988-0008"
+msgid "**Prediction rule.** Before each run, write the *order* of events and mark which arrows are plain calls (the stack grows) and which are hops to a later turn (the stack unwinds). In this topic the order is the program."
+msgstr "**Regla de predicción.** Antes de cada ejecución, escribe el *orden* de los eventos. Marca qué flechas son llamadas simples (la pila crece) y cuáles son saltos a un turno posterior (la pila se desenrolla). En este tema el orden es el programa."
+
+#: lessons/study-guides/concepts/events-callbacks-and-reactive-control.md:24
+msgctxt "s-2dd18ffddf3e-0009"
+msgid "**Vocabulary.**"
+msgstr "**Vocabulario.**"
+
+#: lessons/study-guides/concepts/events-callbacks-and-reactive-control.md:26
+msgctxt "s-790e521777f0-0010"
+msgid "⟦SEP_0001⟧ Term ⟦SEP_0002⟧ Meaning here ⟦SEP_0003⟧"
+msgstr "⟦SEP_0001⟧ Término ⟦SEP_0002⟧ Significado aquí ⟦SEP_0003⟧"
+
+#: lessons/study-guides/concepts/events-callbacks-and-reactive-control.md:28
+msgctxt "s-677ef956dae7-0011"
+msgid "⟦SEP_0001⟧ Callback ⟦SEP_0002⟧ A function you hand to someone else, to be called later or from elsewhere. ⟦SEP_0003⟧"
+msgstr "⟦SEP_0001⟧ Función de devolución de llamada ⟦SEP_0002⟧ Una función que entregas a otra parte para que se llame más tarde o desde otro lugar. ⟦SEP_0003⟧"
+
+#: lessons/study-guides/concepts/events-callbacks-and-reactive-control.md:29
+msgctxt "s-510beaf63333-0012"
+msgid "⟦SEP_0001⟧ Event ⟦SEP_0002⟧ An announcement that something happened. ⟦SEP_0003⟧"
+msgstr "⟦SEP_0001⟧ Evento ⟦SEP_0002⟧ Un aviso de que algo ocurrió. ⟦SEP_0003⟧"
+
+#: lessons/study-guides/concepts/events-callbacks-and-reactive-control.md:30
+msgctxt "s-80cdefd319d0-0013"
+msgid "⟦SEP_0001⟧ Emitter ⟦SEP_0002⟧ An object that calls the listeners registered for an event. ⟦SEP_0003⟧"
+msgstr "⟦SEP_0001⟧ Emisor ⟦SEP_0002⟧ Un objeto que llama a los escuchadores de eventos registrados para un evento. ⟦SEP_0003⟧"
+
+#: lessons/study-guides/concepts/events-callbacks-and-reactive-control.md:31
+msgctxt "s-5c743c4be7b1-0014"
+msgid "⟦SEP_0002⟧ Turn ⟦SEP_0003⟧ One pass of the event loop. Work queued with ⟦CODE_0001⟧ runs on a later turn. ⟦SEP_0004⟧"
+msgstr "⟦SEP_0002⟧ Turno ⟦SEP_0003⟧ Una pasada del bucle de eventos. El trabajo puesto en cola con ⟦CODE_0001⟧ se ejecuta en un turno posterior. ⟦SEP_0004⟧"
+
+#: lessons/study-guides/concepts/events-callbacks-and-reactive-control.md:32
+msgctxt "s-c90612a02fa7-0015"
+msgid "⟦SEP_0001⟧ Reentrancy ⟦SEP_0002⟧ A callback running while the thing that triggered it is still in progress. ⟦SEP_0003⟧"
+msgstr "⟦SEP_0001⟧ Reentrada ⟦SEP_0002⟧ Una función de devolución de llamada que se ejecuta mientras lo que la disparó sigue en curso. ⟦SEP_0003⟧"
+
+#: lessons/study-guides/concepts/events-callbacks-and-reactive-control.md:33
+msgctxt "s-a32c98893c0b-0016"
+msgid "⟦SEP_0001⟧ Backpressure ⟦SEP_0002⟧ A way for a slow consumer to slow a producer. ⟦SEP_0003⟧"
+msgstr "⟦SEP_0001⟧ Contrapresión (*backpressure*) ⟦SEP_0002⟧ Una forma de que un consumidor lento frene a un productor. ⟦SEP_0003⟧"
+
+#: lessons/study-guides/concepts/events-callbacks-and-reactive-control.md:35
+msgctxt "s-ae7d69ef2745-0017"
+msgid "The shared challenge"
+msgstr "El reto compartido"
+
+#: lessons/study-guides/concepts/events-callbacks-and-reactive-control.md:37
+msgctxt "s-78a7d749b03d-0018"
+msgid "The [challenge specification](⟦DEST_0001⟧) calls for cards with a category and 10 to 19 whole hours. Categories cycle through ⟦DNT_0002⟧, ⟦DNT_0003⟧, ⟦DNT_0004⟧ and ⟦DNT_0005⟧. Add each card's hours to the running total. Stop when the total passes 40. Keep the **first card that takes the total over 40**. A total of exactly 40 continues. Four 10-hour cards need a fifth card, in the ⟦DNT_0006⟧ category. Conforming runs finish with 3 to 5 cards and a total of 41 to 59 hours."
+msgstr "La [especificación del reto](⟦DEST_0001⟧) pide tarjetas con una categoría y de 10 a 19 horas enteras. Las categorías se repiten en ciclo: `⟦DNT_0002⟧`, `⟦DNT_0003⟧`, `⟦DNT_0004⟧` y `⟦DNT_0005⟧`. Suma las horas de cada tarjeta al total acumulado. Detente cuando el total pasa de 40. Conserva la **primera tarjeta con la que el total pasa de 40**. Un total de exactamente 40 continúa. Cuatro tarjetas de 10 horas necesitan una quinta tarjeta, de la categoría `⟦DNT_0006⟧`. Las ejecuciones conformes tienen de 3 a 5 tarjetas y un total de 41 a 59 horas."
+
+#. I12: sentence of 32 words (limit 29): En el programa de eventos la regla es
+#. un...
+#: lessons/study-guides/concepts/events-callbacks-and-reactive-control.md:39
+msgctxt "s-035bc06951b0-0019"
+msgid "In the events program the rule is one line: ⟦CODE_0001⟧ emits ⟦CODE_0002⟧ when ⟦CODE_0003⟧ (so 40 is not over), and otherwise schedules ⟦CODE_0004⟧ for a later turn. The category of card *n* is ⟦CODE_0005⟧, so a fifth card is ⟦DNT_0006⟧ again. The program takes a ⟦CODE_0007⟧ object (⟦CODE_0008⟧, ⟦CODE_0009⟧, ⟦CODE_0010⟧, ...) so a test can inject its own."
+msgstr "En el programa de eventos la regla es una línea: ⟦CODE_0001⟧ emite ⟦CODE_0002⟧ cuando ⟦CODE_0003⟧ (así que un total de exactamente 40 continúa). De lo contrario, programa ⟦CODE_0004⟧ para un turno posterior. La categoría de la tarjeta *n* es ⟦CODE_0005⟧, así que una quinta tarjeta vuelve a ser ⟦DNT_0006⟧. El programa recibe un objeto ⟦CODE_0007⟧ (⟦CODE_0008⟧, ⟦CODE_0009⟧, ⟦CODE_0010⟧, ...) para que una prueba pueda inyectar el suyo."
+
+#: lessons/study-guides/concepts/events-callbacks-and-reactive-control.md:41
+msgctxt "s-9f148b367e02-0020"
+msgid "The machine to identify"
+msgstr "La máquina que hay que identificar"
+
+#: lessons/study-guides/concepts/events-callbacks-and-reactive-control.md:43
+msgctxt "s-4b58e134bed0-0021"
+msgid "**What repeats.** A cycle of events: ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧ and back to ⟦CODE_0005⟧. No statement repeats. Each event's listener does one small thing and emits the next event."
+msgstr "**Qué se repite.** Un ciclo de eventos: ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧ y de vuelta a ⟦CODE_0005⟧. No se repite ninguna sentencia. Cada evento tiene un escuchador de eventos que hace una cosa pequeña y emite el evento siguiente."
+
+#. I25: comma before a simple 'y' ('que comparten los escuchadores de eventos,
+#. y en los *registr'): no comma before a simple o or y
+#: lessons/study-guides/concepts/events-callbacks-and-reactive-control.md:45
+msgctxt "s-e8ba0ece005d-0022"
+msgid "**Where state lives.** In one object ⟦CODE_0001⟧ (⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧, ⟦CODE_0006⟧) shared by the listeners, and in the emitter's *registrations*: which listeners exist is part of the program. Removing every listener at the end (⟦CODE_0007⟧) is how the program makes itself unable to run again."
+msgstr "**Dónde vive el estado.** En un objeto ⟦CODE_0001⟧ (⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧, ⟦CODE_0006⟧) que comparten los escuchadores de eventos y en los *registros* del emisor: qué escuchadores existen forma parte del programa. Quitar todos los escuchadores al final (⟦CODE_0007⟧) es la forma en que el programa se vuelve incapaz de ejecutarse otra vez."
+
+#: lessons/study-guides/concepts/events-callbacks-and-reactive-control.md:47
+msgctxt "s-a6ae334ec8d1-0023"
+msgid "**What advances the next step.** A plain ⟦CODE_0001⟧ calls every listener *now*, before it returns, in registration order. ⟦CODE_0002⟧ calls ⟦CODE_0003⟧, so the next step waits for a new turn. Two kinds of arrow, two different machines."
+msgstr "**Qué hace avanzar el paso siguiente.** Un ⟦CODE_0001⟧ simple llama a cada escuchador de eventos *ahora*, antes de regresar, en el orden de registro. ⟦CODE_0002⟧ llama a ⟦CODE_0003⟧, así que el paso siguiente espera a un turno nuevo. Dos tipos de flecha, dos máquinas distintas."
+
+#: lessons/study-guides/concepts/events-callbacks-and-reactive-control.md:49
+msgctxt "s-662077f76fe1-0024"
+msgid "**What stops it.** ⟦CODE_0001⟧ emits ⟦CODE_0002⟧ instead of scheduling another ⟦CODE_0003⟧. After ⟦CODE_0004⟧, ⟦CODE_0005⟧ removes every listener."
+msgstr "**Qué lo detiene.** ⟦CODE_0001⟧ emite ⟦CODE_0002⟧ en lugar de programar otro ⟦CODE_0003⟧. Después de ⟦CODE_0004⟧, ⟦CODE_0005⟧ quita todos los escuchadores de eventos."
+
+#. I12: sentence of 38 words (limit 29): Una excepción lanzada en cualquier
+#. escuc...
+#: lessons/study-guides/concepts/events-callbacks-and-reactive-control.md:51
+msgctxt "s-5ad5fedbb9ff-0025"
+msgid "**What commits.** ⟦CODE_0001⟧ runs ⟦CODE_0002⟧, ⟦CODE_0003⟧ inserts a row synchronously (⟦CODE_0004⟧ is synchronous) and ⟦CODE_0005⟧ runs ⟦CODE_0006⟧. A throw in any listener is caught and emitted as ⟦CODE_0007⟧, which runs ⟦CODE_0008⟧ *once*, and removes all listeners so that a second failure finds nobody to tell."
+msgstr "**Qué confirma.** ⟦CODE_0001⟧ ejecuta ⟦CODE_0002⟧, ⟦CODE_0003⟧ inserta una fila de forma síncrona (⟦CODE_0004⟧ es síncrono) y ⟦CODE_0005⟧ ejecuta ⟦CODE_0006⟧. Una excepción lanzada en cualquier escuchador de eventos se captura y se emite como ⟦CODE_0007⟧. Eso ejecuta ⟦CODE_0008⟧ *una vez* y quita todos los escuchadores, de modo que un segundo fallo no encuentra a nadie a quien avisar."
+
+#: lessons/study-guides/concepts/events-callbacks-and-reactive-control.md:57
+msgctxt "s-ff88af615858-0026"
+msgid "One turn of scheduled events: emit nests, the event loop separates turns"
+msgstr "Un turno de eventos programados: emit anida las llamadas y el bucle de eventos separa los turnos"
+
+#: lessons/study-guides/concepts/events-callbacks-and-reactive-control.md:58
+msgctxt "s-4c1397e4ee6f-0027"
+msgid "A sequence diagram. The event loop starts a turn by calling the generate listener. That listener emits card-created, so the emitter calls the card-created listener inside it. That listener emits card-saved, so the emitter calls the card-saved listener inside it. Each listener then returns, in the reverse order, so the stack unwinds. The last listener has asked the event loop for the next turn with setImmediate. The event loop starts the next turn only after the stack is empty."
+msgstr "Un diagrama de secuencia. El bucle de eventos inicia un turno al llamar al escuchador de eventos generate. Ese escuchador emite card-created, así que el emisor llama al escuchador de eventos card-created dentro de él. Ese escuchador emite card-saved, así que el emisor llama al escuchador de eventos card-saved dentro de él. Luego cada escuchador regresa, en orden inverso, así que la pila se desenrolla. El último escuchador le ha pedido al bucle de eventos el turno siguiente con setImmediate. El bucle de eventos inicia el turno siguiente solo cuando la pila está vacía."
+
+#: lessons/study-guides/concepts/events-callbacks-and-reactive-control.md:59
+msgctxt "s-ddb496fea2fc-0028"
+msgid "Event loop"
+msgstr "Bucle de eventos"
+
+#: lessons/study-guides/concepts/events-callbacks-and-reactive-control.md:60
+msgctxt "s-e4371dff1745-0029"
+msgid "generate listener"
+msgstr "escuchador generate"
+
+#: lessons/study-guides/concepts/events-callbacks-and-reactive-control.md:61
+msgctxt "s-e69868ea2ef7-0030"
+msgid "card-created listener"
+msgstr "escuchador card-created"
+
+#: lessons/study-guides/concepts/events-callbacks-and-reactive-control.md:62
+msgctxt "s-59e6f88635ba-0031"
+msgid "card-saved listener"
+msgstr "escuchador card-saved"
+
+#: lessons/study-guides/concepts/events-callbacks-and-reactive-control.md:63
+msgctxt "s-d78b0b6960ad-0032"
+msgid "a turn begins"
+msgstr "empieza un turno"
+
+#: lessons/study-guides/concepts/events-callbacks-and-reactive-control.md:64
+msgctxt "s-528800cd5b54-0033"
+msgid "emit card-created: the call is nested"
+msgstr "emit card-created: llamada anidada"
+
+#: lessons/study-guides/concepts/events-callbacks-and-reactive-control.md:65
+msgctxt "s-75754c602534-0034"
+msgid "emit card-saved: nested again"
+msgstr "emit card-saved: anidada otra vez"
+
+#: lessons/study-guides/concepts/events-callbacks-and-reactive-control.md:66
+msgctxt "s-6ff08e036165-0035"
+msgid "setImmediate asks for the next turn"
+msgstr "setImmediate pide el turno siguiente"
+
+#: lessons/study-guides/concepts/events-callbacks-and-reactive-control.md:67
+msgctxt "s-153b2a38cb4a-0036"
+msgid "returns"
+msgstr "regresa"
+
+#: lessons/study-guides/concepts/events-callbacks-and-reactive-control.md:68
+msgctxt "s-153b2a38cb4a-0037"
+msgid "returns"
+msgstr "regresa"
+
+#: lessons/study-guides/concepts/events-callbacks-and-reactive-control.md:69
+msgctxt "s-ce64d2bcba99-0038"
+msgid "returns: the stack is empty"
+msgstr "regresa: pila vacía"
+
+#: lessons/study-guides/concepts/events-callbacks-and-reactive-control.md:70
+msgctxt "s-9aef781b19aa-0039"
+msgid "the next turn begins only now"
+msgstr "el turno siguiente empieza ahora"
+
+#: lessons/study-guides/concepts/events-callbacks-and-reactive-control.md:73
+msgctxt "s-aeedbd150118-0040"
+msgid "The book's picture of one turn of scheduled events: ⟦CODE_0001⟧ nests, and the event loop separates turns. The trace below follows it with real numbers."
+msgstr "La imagen del libro de un turno de eventos programados: ⟦CODE_0001⟧ anida y el bucle de eventos separa los turnos. La traza siguiente la sigue con números reales."
+
+#: lessons/study-guides/concepts/events-callbacks-and-reactive-control.md:75
+msgctxt "s-67a72cdadc6f-0041"
+msgid "Trace one run"
+msgstr "Traza una ejecución"
+
+#: lessons/study-guides/concepts/events-callbacks-and-reactive-control.md:77
+msgctxt "s-520214c49eb7-0042"
+msgid "With ⟦CODE_0001⟧ the hours are 15, 19, 12. A scratch script wrapped the entry's ⟦CODE_0002⟧ and ⟦CODE_0003⟧ to log each emit (indented by depth) and each hop. The run printed:"
+msgstr "Con ⟦CODE_0001⟧ las horas son 15, 19, 12. Un script de prueba envolvió ⟦CODE_0002⟧ y ⟦CODE_0003⟧ de la entrada para registrar cada emisión (con sangría según la profundidad) y cada salto. La ejecución imprimió:"
+
+#: lessons/study-guides/concepts/events-callbacks-and-reactive-control.md:100
+msgctxt "s-6bb306df0280-0043"
+msgid "(Rows and the summary appear between these lines in the real output.) Read three facts from it. **⟦CODE_0001⟧ returned before any card existed**: the first card is made on turn 2. **Each card is its own turn**, four emits deep, and the stack unwinds before the next turn. **The last turn is different**: the total is 46, so ⟦CODE_0002⟧ emits ⟦CODE_0003⟧ directly, and ⟦CODE_0004⟧ and ⟦CODE_0005⟧ nest one and two levels deeper. The commit runs inside the same turn, before anything else can intervene."
+msgstr "(Las filas y el resumen aparecen entre estas líneas en la salida real.) Lee tres hechos en ella. **⟦CODE_0001⟧ regresó antes de que existiera cualquier tarjeta**: la primera tarjeta se crea en el turno 2. **Cada tarjeta es su propio turno**, con cuatro emisiones de profundidad, y la pila se desenrolla antes del turno siguiente. **El último turno es distinto**: el total es 46, así que ⟦CODE_0002⟧ emite ⟦CODE_0003⟧ directamente, y ⟦CODE_0004⟧ y ⟦CODE_0005⟧ anidan uno y dos niveles más hondo. La confirmación de la transacción se ejecuta dentro del mismo turno, antes de que pueda intervenir nada más."
+
+#: lessons/study-guides/concepts/events-callbacks-and-reactive-control.md:102
+msgctxt "s-91b504080141-0044"
+msgid "⟦SEP_0001⟧ Turn ⟦SEP_0002⟧ What runs ⟦SEP_0003⟧ Stack depth at deepest ⟦SEP_0004⟧ Total after ⟦SEP_0005⟧"
+msgstr "⟦SEP_0001⟧ Turno ⟦SEP_0002⟧ Qué se ejecuta ⟦SEP_0003⟧ Profundidad de la pila en su punto más hondo ⟦SEP_0004⟧ Total después ⟦SEP_0005⟧"
+
+#: lessons/study-guides/concepts/events-callbacks-and-reactive-control.md:104
+msgctxt "s-acae57d8dd9b-0045"
+msgid "⟦SEP_0004⟧ 1 ⟦SEP_0005⟧ ⟦CODE_0001⟧: open, ⟦CODE_0002⟧, queue ⟦CODE_0003⟧ ⟦SEP_0006⟧ 1 ⟦SEP_0007⟧ 0 ⟦SEP_0008⟧"
+msgstr "⟦SEP_0004⟧ 1 ⟦SEP_0005⟧ ⟦CODE_0001⟧: abrir, ⟦CODE_0002⟧, poner ⟦CODE_0003⟧ en cola ⟦SEP_0006⟧ 1 ⟦SEP_0007⟧ 0 ⟦SEP_0008⟧"
+
+#: lessons/study-guides/concepts/events-callbacks-and-reactive-control.md:107
+msgctxt "s-2789c1002ff1-0046"
+msgid "⟦SEP_0004⟧ 4 ⟦SEP_0005⟧ ⟦DNT_0001⟧ 12, then ⟦CODE_0002⟧ and ⟦CODE_0003⟧ ⟦SEP_0006⟧ 6 ⟦SEP_0007⟧ 46 ⟦SEP_0008⟧"
+msgstr "⟦SEP_0004⟧ 4 ⟦SEP_0005⟧ ⟦DNT_0001⟧ 12, luego ⟦CODE_0002⟧ y ⟦CODE_0003⟧ ⟦SEP_0006⟧ 6 ⟦SEP_0007⟧ 46 ⟦SEP_0008⟧"
+
+#: lessons/study-guides/concepts/events-callbacks-and-reactive-control.md:109
+msgctxt "s-b4e32998fd0d-0047"
+msgid "**The same cards, three machines.** The book compares a loop, a synchronous emitter and scheduled events. All produce the same rows for a small run. They differ when the run is large: the loop and the scheduled events keep the stack flat, while the synchronous emitter adds a few frames per card."
+msgstr "**Las mismas tarjetas, tres máquinas.** El libro compara un bucle, un emisor síncrono y eventos programados. Todos producen las mismas filas en una ejecución pequeña. Difieren cuando la ejecución es grande: el bucle y los eventos programados mantienen la pila plana, mientras que el emisor síncrono añade unos pocos marcos por tarjeta."
+
+#: lessons/study-guides/concepts/events-callbacks-and-reactive-control.md:111
+msgctxt "s-6199dfca85fb-0048"
+msgid "**Exactly 40.** With four 10-hour cards the total is 40, and ⟦CODE_0001⟧ is false, so ⟦CODE_0002⟧ schedules a fifth ⟦CODE_0003⟧. This program has no fixed list of four names, so it continues."
+msgstr "**Exactamente 40.** Con cuatro tarjetas de 10 horas el total es 40, y ⟦CODE_0001⟧ es falso, así que ⟦CODE_0002⟧ programa una quinta ⟦CODE_0003⟧. Este programa no tiene una lista fija de cuatro nombres, así que continúa."
+
+#: lessons/study-guides/concepts/events-callbacks-and-reactive-control.md:113
+msgctxt "s-405c1b857089-0049"
+msgid "Compare the ordinary and weird designs"
+msgstr "Compara los diseños ordinarios y los raros"
+
+#: lessons/study-guides/concepts/events-callbacks-and-reactive-control.md:115
+msgctxt "s-2b9f5523df5b-0050"
+msgid "⟦SEP_0002⟧ Dimension ⟦SEP_0003⟧ A loop ⟦SEP_0004⟧ ⟦CODE_0001⟧ ⟦SEP_0005⟧ Other callback entries ⟦SEP_0006⟧"
+msgstr "⟦SEP_0002⟧ Dimensión ⟦SEP_0003⟧ Un bucle ⟦SEP_0004⟧ ⟦CODE_0001⟧ ⟦SEP_0005⟧ Otras entradas con funciones de devolución de llamada ⟦SEP_0006⟧"
+
+#: lessons/study-guides/concepts/events-callbacks-and-reactive-control.md:117
+msgctxt "s-736663870e5a-0051"
+msgid "⟦SEP_0001⟧ **Representation** ⟦SEP_0002⟧ A statement ⟦SEP_0003⟧ Listeners registered on an emitter ⟦SEP_0004⟧ PCRE2 callouts, tar checkpoints, SQLite triggers ⟦SEP_0005⟧"
+msgstr "⟦SEP_0001⟧ **Representación** ⟦SEP_0002⟧ Una sentencia ⟦SEP_0003⟧ Escuchadores de eventos registrados en un emisor ⟦SEP_0004⟧ Callouts de PCRE2, puntos de control de tar, disparadores de SQLite ⟦SEP_0005⟧"
+
+#: lessons/study-guides/concepts/events-callbacks-and-reactive-control.md:118
+msgctxt "s-ec5437e5f628-0052"
+msgid "⟦SEP_0003⟧ **Observability** ⟦SEP_0004⟧ Step the loop ⟦SEP_0005⟧ Log every ⟦CODE_0001⟧: the whole program is its event trace ⟦SEP_0006⟧ Callouts: print in the dispatcher. tar: the tick count. Triggers: the ⟦CODE_0002⟧ log. ⟦SEP_0007⟧"
+msgstr "⟦SEP_0003⟧ **Observabilidad** ⟦SEP_0004⟧ Avanza el bucle paso a paso ⟦SEP_0005⟧ Registra cada ⟦CODE_0001⟧: el programa entero es su traza de eventos ⟦SEP_0006⟧ Callouts: imprime en el despachador. tar: la cuenta de ticks. Disparadores: el registro de ⟦CODE_0002⟧. ⟦SEP_0007⟧"
+
+#: lessons/study-guides/concepts/events-callbacks-and-reactive-control.md:119
+msgctxt "s-ecfd18770473-0053"
+msgid "⟦SEP_0006⟧ **Tests** ⟦SEP_0007⟧ Call the function ⟦SEP_0008⟧ Inject a ⟦CODE_0001⟧: a fake ⟦CODE_0002⟧, a synchronous ⟦CODE_0003⟧, a recording ⟦CODE_0004⟧ ⟦SEP_0009⟧ ⟦CODE_0005⟧ with a simulation (tar), mutation (PCRE2 flags) ⟦SEP_0010⟧"
+msgstr "⟦SEP_0006⟧ **Pruebas** ⟦SEP_0007⟧ Llamar a la función ⟦SEP_0008⟧ Inyectar un ⟦CODE_0001⟧: un ⟦CODE_0002⟧ falso, un ⟦CODE_0003⟧ síncrono, un ⟦CODE_0004⟧ que registra ⟦SEP_0009⟧ ⟦CODE_0005⟧ con una simulación (tar), mutación (banderas de PCRE2) ⟦SEP_0010⟧"
+
+#: lessons/study-guides/concepts/events-callbacks-and-reactive-control.md:120
+msgctxt "s-ac55e1872774-0054"
+msgid "⟦SEP_0003⟧ **⟦DNT_0001⟧** ⟦SEP_0004⟧ A stack trace ⟦SEP_0005⟧ A throw travels *up* through ⟦CODE_0002⟧ to whoever called it, which may be a scheduled callback nobody waits for ⟦SEP_0006⟧ Errors mix the host's stack with the engine's ⟦SEP_0007⟧"
+msgstr "⟦SEP_0003⟧ **⟦DNT_0001⟧** ⟦SEP_0004⟧ Una traza de pila ⟦SEP_0005⟧ Una excepción lanzada viaja *hacia arriba* por ⟦CODE_0002⟧ hasta quien la llamó, que puede ser una función de devolución de llamada programada que nadie espera ⟦SEP_0006⟧ Los errores mezclan la pila del anfitrión con la del motor ⟦SEP_0007⟧"
+
+#: lessons/study-guides/concepts/events-callbacks-and-reactive-control.md:121
+msgctxt "s-feb7bd214eb8-0055"
+msgid "⟦SEP_0003⟧ **Portability** ⟦SEP_0004⟧ Any language ⟦SEP_0005⟧ Node's ⟦CODE_0001⟧ semantics (listener order, synchronous ⟦CODE_0002⟧) ⟦SEP_0006⟧ GNU tar's checkpoints, PCRE2's callouts ⟦SEP_0007⟧"
+msgstr "⟦SEP_0003⟧ **Portabilidad** ⟦SEP_0004⟧ Cualquier lenguaje ⟦SEP_0005⟧ La semántica de ⟦CODE_0001⟧ de Node (orden de los escuchadores de eventos, ⟦CODE_0002⟧ síncrono) ⟦SEP_0006⟧ Los puntos de control de GNU tar, los callouts de PCRE2 ⟦SEP_0007⟧"
+
+#: lessons/study-guides/concepts/events-callbacks-and-reactive-control.md:122
+msgctxt "s-c4c2834b86a5-0056"
+msgid "⟦SEP_0001⟧ **Cost** ⟦SEP_0002⟧ Normal ⟦SEP_0003⟧ A hop per card, a flat stack ⟦SEP_0004⟧ Per-tick process starts, per-callout calls ⟦SEP_0005⟧"
+msgstr "⟦SEP_0001⟧ **Costo** ⟦SEP_0002⟧ Normal ⟦SEP_0003⟧ Un salto por tarjeta, una pila plana ⟦SEP_0004⟧ Inicio de procesos por tick, llamadas por callout ⟦SEP_0005⟧"
+
+#: lessons/study-guides/concepts/events-callbacks-and-reactive-control.md:124
+msgctxt "s-dc9dd4be5f89-0057"
+msgid "**Who owns the next turn.** In ⟦CODE_0001⟧, the *runtime* owns it: after ⟦CODE_0002⟧, the event loop decides when the next ⟦CODE_0003⟧ runs, and anything else on the loop (timers, I/O) may run first. In ⟦CODE_0004⟧, *tar* owns it: it calls the tick once per record, and the program cannot stop it. In PCRE2, the *engine* owns it: it calls a callout when the pattern reaches that point. In each, the program is a set of callbacks and the environment holds the loop."
+msgstr "**Quién es dueño del turno siguiente.** En ⟦CODE_0001⟧, lo es el *entorno de ejecución*: después de ⟦CODE_0002⟧, el bucle de eventos decide cuándo se ejecuta el siguiente ⟦CODE_0003⟧. Cualquier otra cosa del bucle (temporizadores, E/S) puede ejecutarse antes. En ⟦CODE_0004⟧, lo es *tar*: llama al tick una vez por registro, y el programa no puede detenerlo. En PCRE2, lo es el *motor*: llama a un callout cuando el patrón llega a ese punto. En cada caso, el programa es un conjunto de funciones de devolución de llamada y el entorno sostiene el bucle."
+
+#: lessons/study-guides/concepts/events-callbacks-and-reactive-control.md:126
+msgctxt "s-716cae37520b-0058"
+msgid "What the exercises demonstrate"
+msgstr "Qué demuestran los ejercicios"
+
+#: lessons/study-guides/concepts/events-callbacks-and-reactive-control.md:128
+msgctxt "s-d6a3ec9d5ed0-0059"
+msgid "⟦SEP_0001⟧ Exercise ⟦SEP_0002⟧ Predict first ⟦SEP_0003⟧ What the evidence shows ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ Ejercicio ⟦SEP_0002⟧ Predice primero ⟦SEP_0003⟧ Qué muestra la evidencia ⟦SEP_0004⟧"
+
+#: lessons/study-guides/concepts/events-callbacks-and-reactive-control.md:130
+msgctxt "s-0ad4b0560ac4-0060"
+msgid "⟦SEP_0010⟧ [B22. JavaScript, event-driven](⟦DEST_0001⟧), step 2 ⟦SEP_0011⟧ ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧: what order? ⟦SEP_0012⟧ ⟦CODE_0005⟧, ⟦CODE_0006⟧, ⟦CODE_0007⟧. ⟦CODE_0008⟧ calls before it returns, and ⟦CODE_0009⟧ only asks. ⟦SEP_0013⟧"
+msgstr "⟦SEP_0010⟧ [B22. JavaScript, dirigido por eventos](⟦DEST_0001⟧), paso 2 ⟦SEP_0011⟧ ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧: ¿en qué orden? ⟦SEP_0012⟧ ⟦CODE_0005⟧, ⟦CODE_0006⟧, ⟦CODE_0007⟧. ⟦CODE_0008⟧ llama antes de regresar y ⟦CODE_0009⟧ solo pide. ⟦SEP_0013⟧"
+
+#: lessons/study-guides/concepts/events-callbacks-and-reactive-control.md:131
+msgctxt "s-4481e35c1353-0061"
+msgid "⟦SEP_0004⟧ B22, step 3 ⟦SEP_0005⟧ The trace of three 19-hour cards. ⟦SEP_0006⟧ ⟦CODE_0001⟧, then three turns, with ⟦CODE_0002⟧ before the first ⟦CODE_0003⟧. ⟦SEP_0007⟧"
+msgstr "⟦SEP_0004⟧ B22, paso 3 ⟦SEP_0005⟧ La traza de tres tarjetas de 19 horas. ⟦SEP_0006⟧ ⟦CODE_0001⟧, luego tres turnos, con ⟦CODE_0002⟧ antes del primer ⟦CODE_0003⟧. ⟦SEP_0007⟧"
+
+#: lessons/study-guides/concepts/events-callbacks-and-reactive-control.md:132
+msgctxt "s-c2019a933945-0062"
+msgid "⟦SEP_0005⟧ B22, step 4 ⟦SEP_0006⟧ Replace ⟦CODE_0001⟧ with ⟦CODE_0002⟧. ⟦SEP_0007⟧ A normal run still works. The lab fails two tests, and a very long run prints ⟦CODE_0003⟧ and exits 1. With the boundary back and ⟦CODE_0004⟧, about 2000 cards run and nothing prints. ⟦SEP_0008⟧"
+msgstr "⟦SEP_0005⟧ B22, paso 4 ⟦SEP_0006⟧ Reemplaza ⟦CODE_0001⟧ por ⟦CODE_0002⟧. ⟦SEP_0007⟧ Una ejecución normal sigue funcionando. El laboratorio falla dos pruebas y una ejecución muy larga imprime ⟦CODE_0003⟧ y sale con 1. Con el límite de vuelta y ⟦CODE_0004⟧, unas 2000 tarjetas se ejecutan y no se imprime nada. ⟦SEP_0008⟧"
+
+#: lessons/study-guides/concepts/events-callbacks-and-reactive-control.md:133
+msgctxt "s-a4d3143cd450-0063"
+msgid "⟦SEP_0005⟧ [B17. tar, weirder: predict the clock](⟦DEST_0001⟧) ⟦SEP_0006⟧ ⟦CODE_0002⟧ against ⟦CODE_0003⟧. ⟦SEP_0007⟧ Callbacks the program does not control: too few and the machine stalls, with ⟦CODE_0004⟧ and exit 3. ⟦SEP_0008⟧"
+msgstr "⟦SEP_0005⟧ [B17. tar, más raro: predice el reloj](⟦DEST_0001⟧) ⟦SEP_0006⟧ ⟦CODE_0002⟧ frente a ⟦CODE_0003⟧. ⟦SEP_0007⟧ Funciones de devolución de llamada que el programa no controla: con muy pocas, la máquina se atasca, con ⟦CODE_0004⟧ y estado de salida 3. ⟦SEP_0008⟧"
+
+#: lessons/study-guides/concepts/events-callbacks-and-reactive-control.md:134
+msgctxt "s-93380e22f3fc-0064"
+msgid "⟦SEP_0004⟧ [B12. Tcl: edit the program in the database](⟦DEST_0001⟧) ⟦SEP_0005⟧ ⟦CODE_0002⟧. ⟦SEP_0006⟧ One row printed, ⟦CODE_0003⟧: a trigger's own insert does not re-fire a trigger unless recursion is enabled. Reentrancy is opt-in. ⟦SEP_0007⟧"
+msgstr "⟦SEP_0004⟧ [B12. Tcl: edita el programa en la base de datos](⟦DEST_0001⟧) ⟦SEP_0005⟧ ⟦CODE_0002⟧. ⟦SEP_0006⟧ Se imprimió una fila, ⟦CODE_0003⟧: la inserción propia de un disparador no vuelve a activar un disparador a menos que se habilite la recursión. La reentrada hay que activarla de forma expresa. ⟦SEP_0007⟧"
+
+#: lessons/study-guides/concepts/events-callbacks-and-reactive-control.md:135
+msgctxt "s-9d58f83e1c67-0065"
+msgid "⟦SEP_0004⟧ [B21. JavaScript, weirder](⟦DEST_0001⟧) ⟦SEP_0005⟧ ⟦CODE_0002⟧ against ⟦CODE_0003⟧. ⟦SEP_0006⟧ The pull version: the consumer decides how many cards exist. ⟦SEP_0007⟧"
+msgstr "⟦SEP_0004⟧ [B21. JavaScript, más raro](⟦DEST_0001⟧) ⟦SEP_0005⟧ ⟦CODE_0002⟧ frente a ⟦CODE_0003⟧. ⟦SEP_0006⟧ La versión por demanda: el consumidor decide cuántas tarjetas existen. ⟦SEP_0007⟧"
+
+#: lessons/study-guides/concepts/events-callbacks-and-reactive-control.md:137
+msgctxt "s-4fe97c469cdb-0066"
+msgid "Failure modes, costs and boundaries"
+msgstr "Modos de fallo, costos y límites"
+
+#: lessons/study-guides/concepts/events-callbacks-and-reactive-control.md:139
+msgctxt "s-621aac5615e3-0067"
+msgid "⟦SEP_0001⟧ Behavior ⟦SEP_0002⟧ Label ⟦SEP_0003⟧ Why ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ Comportamiento ⟦SEP_0002⟧ Etiqueta ⟦SEP_0003⟧ Por qué ⟦SEP_0004⟧"
+
+#: lessons/study-guides/concepts/events-callbacks-and-reactive-control.md:141
+msgctxt "s-56c3edd0018d-0068"
+msgid "⟦SEP_0002⟧ ⟦CODE_0001⟧ calls listeners synchronously, in registration order, before it returns ⟦SEP_0003⟧ **guaranteed** ⟦SEP_0004⟧ Documented Node.js behavior. ⟦SEP_0005⟧"
+msgstr "⟦SEP_0002⟧ ⟦CODE_0001⟧ llama a los escuchadores de eventos de forma síncrona, en orden de registro, antes de regresar ⟦SEP_0003⟧ **garantizado** ⟦SEP_0004⟧ Comportamiento documentado de Node.js. ⟦SEP_0005⟧"
+
+#: lessons/study-guides/concepts/events-callbacks-and-reactive-control.md:142
+msgctxt "s-d771c330ff65-0069"
+msgid "⟦SEP_0005⟧ ⟦CODE_0001⟧ with no ⟦CODE_0002⟧ listener throws ⟦CODE_0003⟧ ⟦SEP_0006⟧ **guaranteed** ⟦SEP_0007⟧ Documented. The program turns it into ⟦CODE_0004⟧. ⟦SEP_0008⟧"
+msgstr "⟦SEP_0005⟧ ⟦CODE_0001⟧ sin un escuchador de eventos de ⟦CODE_0002⟧ lanza ⟦CODE_0003⟧ ⟦SEP_0006⟧ **garantizado** ⟦SEP_0007⟧ Está documentado. El programa lo convierte en ⟦CODE_0004⟧. ⟦SEP_0008⟧"
+
+#: lessons/study-guides/concepts/events-callbacks-and-reactive-control.md:143
+msgctxt "s-af5c54dc0e75-0070"
+msgid "⟦SEP_0002⟧ ⟦CODE_0001⟧ runs its callback on a later turn ⟦SEP_0003⟧ **guaranteed** ⟦SEP_0004⟧ Documented scheduling. ⟦SEP_0005⟧"
+msgstr "⟦SEP_0002⟧ ⟦CODE_0001⟧ ejecuta su función de devolución de llamada en un turno posterior ⟦SEP_0003⟧ **garantizado** ⟦SEP_0004⟧ Programación documentada. ⟦SEP_0005⟧"
+
+#: lessons/study-guides/concepts/events-callbacks-and-reactive-control.md:144
+msgctxt "s-a3a5f57c9988-0071"
+msgid "⟦SEP_0003⟧ ⟦CODE_0001⟧ is synchronous ⟦SEP_0004⟧ **implementation-permitted** ⟦SEP_0005⟧ A property of the built-in module. The ⟦CODE_0002⟧ guarantee depends on it. ⟦SEP_0006⟧"
+msgstr "⟦SEP_0003⟧ ⟦CODE_0001⟧ es síncrono ⟦SEP_0004⟧ **permitido por la implementación** ⟦SEP_0005⟧ Una propiedad del módulo integrado. La garantía de ⟦CODE_0002⟧ depende de ella. ⟦SEP_0006⟧"
+
+#: lessons/study-guides/concepts/events-callbacks-and-reactive-control.md:145
+msgctxt "s-2d3cd7cef418-0072"
+msgid "⟦SEP_0001⟧ tar runs one callback per record written and ignores its exit status ⟦SEP_0002⟧ **implementation-permitted** (the callback) and **accidentally exploited** (the exit status) ⟦SEP_0003⟧ Documented GNU option; the exit-status behavior is observed. ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ tar ejecuta una función de devolución de llamada por registro escrito e ignora su estado de salida ⟦SEP_0002⟧ **permitido por la implementación** (la función de devolución de llamada) y **aprovechado por accidente** (el estado de salida) ⟦SEP_0003⟧ Opción documentada de GNU; el comportamiento del estado de salida se observó. ⟦SEP_0004⟧"
+
+#: lessons/study-guides/concepts/events-callbacks-and-reactive-control.md:146
+msgctxt "s-696cd0a52fef-0073"
+msgid "⟦SEP_0001⟧ SQLite limits trigger recursion (1000 by default) ⟦SEP_0002⟧ **guaranteed** ⟦SEP_0003⟧ The challenge needs 3 to 5. ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ SQLite limita la recursión de los disparadores (1000 por defecto) ⟦SEP_0002⟧ **garantizado** ⟦SEP_0003⟧ El reto necesita de 3 a 5. ⟦SEP_0004⟧"
+
+#: lessons/study-guides/concepts/events-callbacks-and-reactive-control.md:147
+msgctxt "s-63f7a8025013-0074"
+msgid "⟦SEP_0001⟧ A PCRE2 callout's return value: 0 continue, positive fail the path, negative abort ⟦SEP_0002⟧ **guaranteed** ⟦SEP_0003⟧ Documented API. ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ El valor de retorno de un callout de PCRE2: 0 continúa, positivo hace fallar el camino, negativo aborta ⟦SEP_0002⟧ **garantizado** ⟦SEP_0003⟧ API documentada. ⟦SEP_0004⟧"
+
+#: lessons/study-guides/concepts/events-callbacks-and-reactive-control.md:149
+msgctxt "s-87d9e31bff8d-0075"
+msgid "**Costs to state.**"
+msgstr "**Costos que hay que declarar.**"
+
+#: lessons/study-guides/concepts/events-callbacks-and-reactive-control.md:151
+msgctxt "s-5ea8a6162646-0076"
+msgid "**The trap in the middle.** A synchronous emitter *looks* like events and behaves like recursion. It is correct for the sizes you test and fails at a size you do not."
+msgstr "**La trampa del medio.** Un emisor síncrono *parece* eventos y se comporta como recursión. Es correcto para los tamaños que pruebas y falla con un tamaño que no pruebas."
+
+#: lessons/study-guides/concepts/events-callbacks-and-reactive-control.md:152
+msgctxt "s-bc7d504809f2-0077"
+msgid "**Throws have no caller.** A throw inside a scheduled callback would end the process. Each listener catches it and emits ⟦CODE_0001⟧."
+msgstr "**Las excepciones lanzadas no tienen quien las llame.** Una excepción lanzada dentro de una función de devolución de llamada programada terminaría el proceso. Cada escuchador de eventos la captura y emite ⟦CODE_0001⟧."
+
+#: lessons/study-guides/concepts/events-callbacks-and-reactive-control.md:153
+msgctxt "s-99d3bd08647d-0078"
+msgid "**Hidden order.** Listener order is registration order. Reordering registrations changes the program."
+msgstr "**Orden oculto.** El orden de los escuchadores de eventos es el orden de registro. Reordenar los registros cambia el programa."
+
+#: lessons/study-guides/concepts/events-callbacks-and-reactive-control.md:154
+msgctxt "s-f2a6f49f84d8-0079"
+msgid "**Backpressure.** A push has no brake: a producer announces whether or not anyone is ready. The events program is self-paced (one card per turn), and the pull program lets the consumer set the pace. See [Backpressure](⟦DEST_0001⟧)."
+msgstr "**Contrapresión.** Un push no tiene freno: un productor anuncia haya o no alguien listo. El programa de eventos marca su propio ritmo (una tarjeta por turno), y el programa por demanda deja que el consumidor fije el ritmo. Consulta [Contrapresión](⟦DEST_0001⟧)."
+
+#: lessons/study-guides/concepts/events-callbacks-and-reactive-control.md:155
+msgctxt "s-ef13eefcf853-0080"
+msgid "**Look-alikes.** A window's own loop (⟦CODE_0001⟧, Tk, GTK) pumps a dispatcher, but nothing in the logic subscribes to anything. The XAML ⟦CODE_0002⟧ trigger only starts an animation. These are counterexamples in the book, not events."
+msgstr "**Imitaciones.** El bucle propio de una ventana (⟦CODE_0001⟧, Tk, GTK) alimenta un bucle de mensajes, pero nada en la lógica se suscribe a nada. El disparador ⟦CODE_0002⟧ de XAML solo inicia una animación. Son contraejemplos del libro, no eventos."
+
+#: lessons/study-guides/concepts/events-callbacks-and-reactive-control.md:156
+msgctxt "s-cd37af97785d-0081"
+msgid "**Where this is legitimate.** User interfaces, servers and pipelines are event-driven. Making a card generator out of an emitter is a stunt that shows how."
+msgstr "**Dónde es legítimo.** Las interfaces de usuario, los servidores y las canalizaciones están dirigidos por eventos. Hacer un generador de tarjetas con un emisor es una acrobacia que muestra cómo."
+
+#: lessons/study-guides/concepts/events-callbacks-and-reactive-control.md:158
+msgctxt "s-061eb6da82a8-0082"
+msgid "Connections across the repository"
+msgstr "Conexiones a lo largo del repositorio"
+
+#: lessons/study-guides/concepts/events-callbacks-and-reactive-control.md:160
+msgctxt "s-6af725924d23-0083"
+msgid "**The JavaScript guide.** [JavaScript](⟦DEST_0001⟧) traces all three styles. This guide generalizes B22."
+msgstr "**La guía de JavaScript.** [JavaScript](⟦DEST_0001⟧) traza los tres estilos. Esta guía generaliza B22."
+
+#: lessons/study-guides/concepts/events-callbacks-and-reactive-control.md:161
+msgctxt "s-14611bca4960-0084"
+msgid "**Callbacks that the engine owns.** [Regex engines and sed](⟦DEST_0001⟧) (PCRE2 callouts) and [tar](⟦DEST_0002⟧) (checkpoints) are synchronous callbacks from a host, not an event loop."
+msgstr "**Funciones de devolución de llamada que posee el motor.** [Motores de expresiones regulares y sed](⟦DEST_0001⟧) (callouts de PCRE2) y [tar](⟦DEST_0002⟧) (puntos de control) son funciones de devolución de llamada síncronas de un anfitrión, no un bucle de eventos."
+
+#: lessons/study-guides/concepts/events-callbacks-and-reactive-control.md:162
+msgctxt "s-6178aac34c5d-0085"
+msgid "**Triggers as reentrancy.** [Tcl](⟦DEST_0001⟧) uses a recursive trigger as a loop."
+msgstr "**Disparadores como reentrada.** [Tcl](⟦DEST_0001⟧) usa un disparador recursivo como bucle."
+
+#: lessons/study-guides/concepts/events-callbacks-and-reactive-control.md:163
+msgctxt "s-249e7ca7a14e-0086"
+msgid "**Thread affinity.** [C#, LINQ, XAML and ports](⟦DEST_0001⟧) covers the dispatcher and the STA thread."
+msgstr "**Afinidad de hilo.** [C#, LINQ, XAML y adaptaciones](⟦DEST_0001⟧) trata el despachador de WPF y el hilo STA."
+
+#: lessons/study-guides/concepts/events-callbacks-and-reactive-control.md:164
+msgctxt "s-695b2afd1479-0087"
+msgid "**Demand and state.** [Evaluation, demand and laziness](⟦DEST_0001⟧) is the pull version of this question, and [State and control beyond variables](⟦DEST_0002⟧) asks where each step is stored."
+msgstr "**Demanda y estado.** [Evaluación, demanda y pereza](⟦DEST_0001⟧) es la versión por demanda de esta pregunta, y [Estado y control más allá de las variables](⟦DEST_0002⟧) pregunta dónde se guarda cada paso."
+
+#: lessons/study-guides/concepts/events-callbacks-and-reactive-control.md:165
+msgctxt "s-2b4b945d2396-0088"
+msgid "**In the book.** [Event-driven programming](⟦DEST_0001⟧), [Callbacks](⟦DEST_0002⟧), [Publish and subscribe](⟦DEST_0003⟧), [The event loop and scheduling turns](⟦DEST_0004⟧) and [Backpressure](⟦DEST_0005⟧)."
+msgstr "**En el libro.** [Programación dirigida por eventos](⟦DEST_0001⟧), [Funciones de devolución de llamada](⟦DEST_0002⟧), [Publicación y suscripción](⟦DEST_0003⟧), [El bucle de eventos y los turnos de programación](⟦DEST_0004⟧) y [Contrapresión](⟦DEST_0005⟧)."
+
+#: lessons/study-guides/concepts/events-callbacks-and-reactive-control.md:167
+msgctxt "s-50944288ce61-0089"
+msgid "Self-check"
+msgstr "Autoevaluación"
+
+#: lessons/study-guides/concepts/events-callbacks-and-reactive-control.md:169
+msgctxt "s-274e192b952c-0090"
+msgid "Answer each question in your own words before you read the italic text. Say what evidence would support each answer."
+msgstr "Responde cada pregunta con tus propias palabras antes de leer el texto en cursiva. Di qué evidencia respaldaría cada respuesta."
+
+#. I25: comma before a simple 'y' ('como en B22, y luego verifica la
+#. profundidad máxima'): no comma before a simple o or y
+#: lessons/study-guides/concepts/events-callbacks-and-reactive-control.md:171
+msgctxt "s-0067934f5336-0091"
+msgid ""
+"**Trace.** In ⟦CODE_0001⟧, hours are 12, 14, 13, 11 (totals 12, 26, 39, 50). How many turns does the run take, and in which does ⟦CODE_0002⟧ run? *(Five turns: one for ⟦CODE_0003⟧, then one per card. ⟦CODE_0004⟧ runs in turn 5, nested inside ⟦CODE_0005⟧, because the fourth card makes 50.)*\n"
+"2. **Explain.** What goes wrong if ⟦CODE_0006⟧ calls ⟦CODE_0007⟧ instead of ⟦CODE_0008⟧? *(Every card adds a few frames to the call stack, because each ⟦CODE_0009⟧ returns only after the whole rest of the run. A long run exceeds the stack limit and fails with ⟦CODE_0010⟧.)*\n"
+"3. **Transfer.** In a language you use, what plays the part of ⟦CODE_0011⟧, the call that ends a stack and starts a new turn? *(For example ⟦CODE_0012⟧, ⟦CODE_0013⟧, ⟦CODE_0014⟧, a message posted to a dispatcher or a goroutine started with ⟦CODE_0015⟧.)*\n"
+"4. **Evidence.** A reviewer says, \"The events program keeps a flat stack for any number of cards.\" Design a test that could fail. *(Wrap ⟦CODE_0016⟧ with a depth counter and run with a very large ⟦CODE_0017⟧, as in B22, then assert the maximum depth. The negative control is the version with the boundary removed, whose depth grows with the number of cards.)*"
+msgstr ""
+"**Traza.** En ⟦CODE_0001⟧, las horas son 12, 14, 13, 11 (totales 12, 26, 39, 50). ¿Cuántos turnos dura la ejecución y en cuál se ejecuta ⟦CODE_0002⟧? *(Cinco turnos: uno para ⟦CODE_0003⟧ y luego uno por tarjeta. ⟦CODE_0004⟧ se ejecuta en el turno 5, anidado dentro de ⟦CODE_0005⟧, porque la cuarta tarjeta hace 50.)*\n"
+"2. **Explica.** ¿Qué sale mal si ⟦CODE_0006⟧ llama a ⟦CODE_0007⟧ en lugar de ⟦CODE_0008⟧? *(Cada tarjeta añade unos pocos marcos a la pila de llamadas, porque cada ⟦CODE_0009⟧ regresa solo después de todo el resto de la ejecución. Una ejecución larga excede el límite de la pila y falla con ⟦CODE_0010⟧.)*\n"
+"3. **Transfiere.** En un lenguaje que uses, ¿qué hace el papel de ⟦CODE_0011⟧, la llamada que termina una pila y empieza un turno nuevo? *(Por ejemplo ⟦CODE_0012⟧, ⟦CODE_0013⟧, ⟦CODE_0014⟧, un mensaje enviado a un despachador de WPF o una goroutine iniciada con ⟦CODE_0015⟧.)*\n"
+"4. **Evidencia.** Un revisor dice: \"El programa de eventos mantiene una pila plana para cualquier número de tarjetas.\" Diseña una prueba que pueda fallar. *(Envuelve ⟦CODE_0016⟧ con un contador de profundidad y ejecuta con un ⟦CODE_0017⟧ muy grande, como en B22 y luego verifica la profundidad máxima. El control negativo es la versión con el límite quitado, cuya profundidad crece con el número de tarjetas.)*"
+
+#: lessons/study-guides/concepts/events-callbacks-and-reactive-control.md:176
+msgctxt "s-4082f515b2f4-0092"
+msgid "Further reading"
+msgstr "Lecturas adicionales"
+
+#: lessons/study-guides/concepts/events-callbacks-and-reactive-control.md:178
+msgctxt "s-253f500d0d41-0093"
+msgid "[Event loop](⟦DEST_0001⟧) (Wikipedia): the idea behind turns."
+msgstr "[Bucle de eventos](⟦DEST_0001⟧) (Wikipedia): la idea detrás de los turnos."
+
+#: lessons/study-guides/concepts/events-callbacks-and-reactive-control.md:179
+msgctxt "s-b6f4b19520db-0094"
+msgid "[The Node.js event loop](⟦DEST_0001⟧) (Node.js): the runtime's own account of ⟦CODE_0002⟧ and turns."
+msgstr "[El bucle de eventos de Node.js](⟦DEST_0001⟧) (Node.js): la explicación del propio entorno de ejecución sobre ⟦CODE_0002⟧ y los turnos."
+
+#: lessons/study-guides/concepts/events-callbacks-and-reactive-control.md:180
+msgctxt "s-20a843e0bb9f-0095"
+msgid "[Events](⟦DEST_0001⟧) (Node.js): the ⟦CODE_0002⟧ documentation, including synchronous ⟦CODE_0003⟧ and the special ⟦CODE_0004⟧ event."
+msgstr "[Eventos](⟦DEST_0001⟧) (Node.js): la documentación de ⟦CODE_0002⟧, que incluye ⟦CODE_0003⟧ síncrono y el evento especial ⟦CODE_0004⟧."
+
+#: lessons/study-guides/concepts/events-callbacks-and-reactive-control.md:181
+msgctxt "s-61ba48ded4ec-0096"
+msgid "[Callback (computer programming)](⟦DEST_0001⟧)) (Wikipedia): the general idea."
+msgstr "[Función de devolución de llamada (programación)](⟦DEST_0001⟧)) (Wikipedia): la idea general."
+
+#: lessons/study-guides/concepts/events-callbacks-and-reactive-control.md:182
+msgctxt "s-a394f881f82f-0097"
+msgid "[Back pressure](⟦DEST_0001⟧) (Wikipedia): why a push needs a brake."
+msgstr "[Contrapresión](⟦DEST_0001⟧) (Wikipedia): por qué un push necesita un freno."

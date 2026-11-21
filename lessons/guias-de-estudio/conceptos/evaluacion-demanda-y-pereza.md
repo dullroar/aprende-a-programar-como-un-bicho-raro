@@ -1,165 +1,165 @@
-# Evaluation, demand and laziness study guide
+# Guía de estudio de evaluación, demanda y pereza
 
-## What this guide is for
+## Para qué sirve esta guía
 
-This guide asks one question of every entry: **who demands work, and when?** The same three cards can be produced by computing everything and trimming, by computing exactly what is asked for, by describing a query that runs again each time or by a consumer that pulls one card at a time. The effects differ. When the work has side effects, "when" decides which rows exist.
+Esta guía hace una pregunta a cada entrada: **¿quién exige trabajo y cuándo?** Las mismas tres tarjetas admiten cuatro estrategias. Se puede calcular todo y recortar. Se puede calcular justo lo que se pide. Se puede describir una consulta que se ejecuta de nuevo cada vez. O un consumidor puede extraer, por demanda (*pull*), una tarjeta a la vez. Los efectos difieren. Cuando el trabajo tiene efectos secundarios, el "cuándo" decide qué filas existen.
 
-When you finish, you should be able to:
+Cuando termines, deberías poder:
 
-1. Define eager, lazy by need, deferred and pull evaluation, and say which entries use which.
-2. For a given entry, say how many values it *draws* to produce three cards, and which of them were never used.
-3. Explain why a lazy evaluator remembers a value and a deferred pipeline recomputes it, and give the evidence.
-4. Explain how short-circuit evaluation can serve as a stop rule, and why it is not the same in every language.
-5. Predict what changes when a forcing point moves relative to a resource's lifetime.
-6. Label claims as guaranteed, implementation-permitted or accidentally exploited.
+1. Definir la evaluación inmediata, la perezosa, la diferida y la de demanda y decir qué entradas usan cuál.
+2. Para una entrada dada, decir cuántos valores *extrae* para producir tres tarjetas y cuáles de ellos nunca se usaron.
+3. Explicar por qué un evaluador perezoso recuerda un valor y una canalización diferida lo recalcula, y dar la evidencia.
+4. Explicar cómo la evaluación de cortocircuito puede servir de regla de parada y por qué no es igual en todos los lenguajes.
+5. Predecir qué cambia cuando se mueve el punto donde hay que forzar un valor respecto a la vida útil de un recurso.
+6. Etiquetar afirmaciones como garantizado, permitido por la implementación o aprovechado por accidente.
 
-**Scope limits.** The guide compares entries using facts verified in the language guides. It does not teach monads, category theory or the type systems involved. Its source chapter is [Evaluation and demand](../../informatica/04-evaluacion-y-demanda.md). For events, a push-style cousin, see [Events, callbacks and reactive control](eventos-retrollamadas-y-control-reactivo.md).
+**Límites del alcance.** La guía compara las entradas con hechos comprobados en las guías de lenguaje. No enseña mónadas, teoría de categorías ni los sistemas de tipos que intervienen. Su capítulo de origen es [Evaluación y demanda](../../informatica/04-evaluacion-y-demanda.md). Para los eventos, un pariente de estilo *push*, consulta [Eventos, funciones de devolución de llamada y control reactivo](eventos-retrollamadas-y-control-reactivo.md).
 
-## Before you begin
+## Antes de empezar
 
-**Safety model.** The cards are fictional **DEMO ONLY** data. Programs can write to local scratch files or databases and can start processes. Read the source first and run it in the sandbox first (`sandbox/container/run-image.sh src/haskell-weird`). Work on copies ([Running things safely](../../exercises.md#running-things-safely)).
+**Modelo de seguridad.** Las tarjetas son datos ficticios marcados con **DEMO ONLY**. Los programas pueden escribir en archivos o bases de datos locales de prueba y pueden iniciar procesos. Lee primero el código fuente y ejecútalo antes en un entorno aislado (*sandbox*) que limita el acceso al sistema anfitrión (`sandbox/container/run-image.sh src/haskell-weird`). Trabaja con copias ([Ejecutar cosas con seguridad](../../exercises.md#running-things-safely)).
 
-**Prediction rule.** Before each run, write how many hours values will be *drawn*, and what will have *happened* at each moment. In this topic the order of effects is part of the answer.
+**Regla de predicción.** Antes de cada ejecución, escribe cuántos valores de horas se *extraerán* y qué habrá *ocurrido* en cada momento. En este tema el orden de los efectos forma parte de la respuesta.
 
-**Vocabulary.**
+**Vocabulario.**
 
-| Term | Meaning here |
+| Término | Significado aquí |
 | --- | --- |
-| Eager | Compute when written: all values, now. |
-| Lazy (by need) | Compute when first demanded, then remember the result. |
-| Deferred | Describe now, run when something enumerates and run again each time. |
-| Pull | A consumer asks for the next value. |
-| Forcing | Evaluating a suspended computation, as far as the demand needs. |
+| Evaluación inmediata | Calcular al escribir: todos los valores, ahora. |
+| Perezosa (por necesidad) | Calcular cuando se pide por primera vez y recordar el resultado. |
+| Diferida | Describir ahora, ejecutar cuando algo enumera y volver a ejecutar cada vez. |
+| Demanda | Un consumidor pide el siguiente valor. |
+| Forzar | Evaluar un cálculo suspendido, hasta donde lo exige la demanda. |
 
-## The shared challenge
+## El reto compartido
 
-The [challenge specification](../../introduccion.md#what-the-challenge-does) calls for cards with a category and 10 to 19 whole hours. Categories cycle through Meetings, Coding, Debugging and Learning. Add each card's hours to the running total. Stop when the total passes 40. Keep the **first card that takes the total over 40**. A total of exactly 40 continues. Four 10-hour cards need a fifth card, in the Meetings category. Conforming runs finish with 3 to 5 cards and a total of 41 to 59 hours.
+La [especificación del reto](../../introduccion.md#what-the-challenge-does) pide tarjetas con una categoría y de 10 a 19 horas enteras. Las categorías se repiten en ciclo: `Meetings`, `Coding`, `Debugging` y `Learning`. Suma las horas de cada tarjeta al total acumulado. Detente cuando el total pasa de 40. Conserva la **primera tarjeta con la que el total pasa de 40**. Un total de exactamente 40 continúa. Cuatro tarjetas de 10 horas necesitan una quinta tarjeta, de la categoría `Meetings`. Las ejecuciones conformes tienen de 3 a 5 tarjetas y un total de 41 a 59 horas.
 
-For implementations that follow the numeric rule, *the consumer wants cards until the total passes 40, and the crossing card must exist*. The two fixed-week LINQ entries instead end at 40 hours, so the generator in the trace below is a separate teaching experiment. The crossing card is the awkward one, because you only know a card crosses by building it. Every strategy has to answer "how many values did I produce to find out?" That count is the clearest measure of what each strategy costs.
+En las implementaciones que siguen la regla numérica, *el consumidor quiere tarjetas hasta que el total pasa de 40, y la tarjeta que cruza debe existir*. Las dos entradas de LINQ con semana fija terminan, en cambio, con 40 horas, así que el generador de la traza siguiente es un experimento didáctico aparte. La tarjeta que cruza es la incómoda, porque solo sabes que una tarjeta cruza si la construyes. Toda estrategia debe responder: "¿cuántos valores produje para averiguarlo?" Esa cuenta es la medida más clara del costo de cada estrategia.
 
-## The machine to identify
+## La máquina que hay que identificar
 
-**What repeats.** In an eager program, a loop or an array primitive. In a lazy program, *demand*: each request for the next element runs one step. In a deferred program, each enumeration reruns the pipeline.
+**Qué se repite.** En un programa de evaluación inmediata, un bucle o una primitiva de arreglo. En un programa perezoso, la *demanda*: cada petición del siguiente elemento ejecuta un paso. En un programa diferido, cada enumeración vuelve a ejecutar la canalización.
 
-**Where state lives.** Eager: in variables or arrays. Lazy: in suspended computations that remember their value (Haskell). Deferred: nowhere, apart from the pipeline description, which is why enumerating twice repeats the effects. Pull: in the iterator's closure (`javascript-weird`).
+**Dónde vive el estado.** Evaluación inmediata: en variables o arreglos. Perezosa: en cálculos suspendidos que recuerdan su valor (Haskell). Diferida: en ninguna parte, salvo la descripción de la canalización, y por eso enumerar dos veces repite los efectos. Demanda: en la clausura (*closure*) del iterador (`javascript-weird`).
 
-**What advances the next step.** The consumer. In `haskell`, `span`. In `javascript-weird`, `toArray`. In LINQ, the final `Aggregate` or `ToList`. In an eager program, the program counter.
+**Qué hace avanzar el paso siguiente.** El consumidor. En `haskell`, `span`. En `javascript-weird`, `toArray`. En LINQ, el `Aggregate` o el `ToList` final. En un programa de evaluación inmediata, el contador de programa.
 
-**What stops it.** The consumer *stops asking*, or an end marker answers (the machine says `undefined`). For Lisp's `or`, the first true result stops further methods from running.
+**Qué lo detiene.** El consumidor *deja de pedir* o responde un marcador de fin (la máquina dice `undefined`). En el `or` de Lisp, el primer resultado verdadero impide que se ejecuten más métodos.
 
-**What commits.** The point at which an effect becomes permanent. When effects live inside lazy values (`haskell-weird`), the commit depends on *when the values are forced*.
+**Qué confirma.** El punto en que un efecto se vuelve permanente. Cuando los efectos viven dentro de valores perezosos (`haskell-weird`), la confirmación de la transacción depende de *cuándo se fuerzan los valores*.
 
 <!-- diagram-source: lessons/cs-source/chapters/04-evaluation-and-demand.md#block-1 -->
 
 ```mermaid
 flowchart TB
-    accTitle: The same requested prefix can entail different work
-    accDescr: Three lanes show a consumer that asks for only the first two elements of a sequence of five. In the eager lane, all five values 1 to 5 are computed first, the consumer takes 1 and 2, and 3 to 5 were computed but unused. In the lazy by-need lane, thunks are built, 1 is demanded, evaluated and cached, 2 is demanded, evaluated and cached, and 3 to 5 are never evaluated. In the deferred pipeline lane, the pipeline is defined and no work happens, then enumerating computes and yields 1 and 2, and enumerating again may repeat the work because deferred is not automatically memoized.
-    subgraph DEFER["Deferred, like LINQ"]
-        D1["define: no work yet"] --> D2["enumerate: 1, 2"] --> D3["enumerate again: may redo"]
+    accTitle: El mismo prefijo pedido puede implicar trabajo distinto
+    accDescr: Tres carriles muestran un consumidor que pide solo los dos primeros elementos de una secuencia de cinco. En el carril de evaluación inmediata se calculan primero los cinco valores de 1 a 5. El consumidor toma 1 y 2, y de 3 a 5 se calcularon pero no se usaron. En el carril perezoso por necesidad se construyen thunks. Se pide 1, se evalúa y se guarda en caché; se pide 2, se evalúa y se guarda en caché. De 3 a 5 nunca se evalúan. En el carril de la canalización diferida, la canalización se define y no ocurre ningún trabajo. Luego, al enumerar, se calculan y se producen 1 y 2. Enumerar otra vez puede repetir el trabajo, porque lo diferido no se memoiza de forma automática.
+    subgraph DEFER["Diferido, como LINQ"]
+        D1["definir: sin trabajo"] --> D2["enumerar: 1, 2"] --> D3["enumerar otra vez: repite"]
     end
-    subgraph LAZY["Lazy, by need"]
-        L1["build thunks"] --> L2["demand 1: cache"] --> L3["demand 2: cache"] --> L4["3 to 5: never run"]
+    subgraph LAZY["Perezoso, a pedido"]
+        L1["armar thunks"] --> L2["demanda 1: caché"] --> L3["demanda 2: caché"] --> L4["de 3 a 5: sin ejecutar"]
     end
-    subgraph EAGER["Eager, like an array"]
-        E1["construct"] --> E2["compute 1 to 5"] --> E3["consumer takes 1, 2"] --> E4["3 to 5: unused"]
+    subgraph EAGER["Inmediato, como arreglo"]
+        E1["construir"] --> E2["calcular de 1 a 5"] --> E3["consumidor toma 1, 2"] --> E4["de 3 a 5: sin usar"]
     end
     classDef unused stroke-dasharray: 5 3
     class E4,L4,D3 unused
 ```
 
-The book's picture: the same requested prefix, three lanes. The eager lane computes all and trims, the lazy lane computes only what is demanded and the deferred lane may redo the work when enumerated again.
+La imagen del libro: el mismo prefijo pedido, tres carriles. El carril de evaluación inmediata calcula todo y recorta, el perezoso calcula solo lo que se pide y el diferido puede rehacer el trabajo al enumerar otra vez.
 
-## Trace one run
+## Traza una ejecución
 
-For hours 15, 19, 12 the question is "how many values were drawn to produce three cards?" Each number below was observed in a run, or is stated as read from the code.
+Para las horas 15, 19, 12 la pregunta es "¿cuántos valores se extrajeron para producir tres tarjetas?" Cada número de abajo se observó en una ejecución, o se indica como leído del código.
 
-| Entry | Strategy | Values drawn for 3 kept cards | Evidence |
+| Entrada | Estrategia | Valores extraídos para 3 tarjetas conservadas | Evidencia |
 | --- | --- | ---: | --- |
-| `apl` | eager, whole array | **5** drawn, 2 discarded | the program draws five up front (`?5⍴10`), and the scan and take trim them |
-| `haskell` and `haskell-weird` | lazy by need | **3** | a scratch run with `[15, 19, 12] ++ error "a 4th card was demanded"` finished normally in both |
-| `ModernChallenge1` and the plain Node header | eager conditions | **3** | source: C# immediately enumerates a deferred projection with `Sum()`; Node immediately applies `reduce`. Both test the total before the next draw. |
-| Scratch LINQ generator with `TakeWhile` keeping the crossing card | deferred, pull | **4** | a scratch console run printed four `drew` lines: the test must see the card after the crossing card fail |
-| `javascript-weird` | pull | **3** draws, **4** asks | the machine answered four times; the fourth said `undefined` |
-| `lisp-weird` | method chain, `or` | **3** | three methods ran, two did not |
-| `cmake` | regex pass, no short-circuit | **4** lookups | the final registers held a fourth lookup (10 hours) that was never logged |
-| `tar-gnu`, `ed-weird`, `ex-weird` | up-front draws | **5** drawn, 3 count | the builder or launcher draws five values first |
-| `m4` | rescanning | **3** | three expansions of `tc_card` |
+| `apl` | inmediata, arreglo completo | **5** extraídos, 2 descartados | el programa extrae cinco por adelantado (`?5⍴10`), y el *scan* y el *take* los recortan |
+| `haskell` y `haskell-weird` | perezosa por necesidad | **3** | una ejecución de prueba con `[15, 19, 12] ++ error "a 4th card was demanded"` terminó con normalidad en ambos |
+| `ModernChallenge1` y el encabezado simple de Node | condiciones de evaluación inmediata | **3** | fuente: C# enumera de inmediato una proyección diferida con `Sum()`; Node aplica de inmediato `reduce`. Ambos comprueban el total antes de la siguiente extracción. |
+| Generador LINQ de prueba con `TakeWhile` que conserva la tarjeta que cruza | diferida, por demanda | **4** | una ejecución de consola de prueba imprimió cuatro líneas `drew`: la prueba debe ver fallar la tarjeta posterior a la que cruza |
+| `javascript-weird` | demanda | **3** extracciones, **4** peticiones | la máquina respondió cuatro veces; la cuarta dijo `undefined` |
+| `lisp-weird` | cadena de métodos, `or` | **3** | se ejecutaron tres métodos y dos no |
+| `cmake` | pasada de expresión regular, sin cortocircuito | **4** búsquedas | los registros finales contenían una cuarta búsqueda (10 horas) que nunca se registró |
+| `tar-gnu`, `ed-weird`, `ex-weird` | extracciones por adelantado | **5** extraídos, 3 cuentan | el constructor o el lanzador extrae primero cinco valores |
+| `m4` | reescaneo | **3** | tres expansiones de `tc_card` |
 
-Read the column by strategy. The Haskell implementations draw exactly what their predicate needs. APL draws up to the worst-case bound before testing the total and trims. An eager driver can also work one card at a time, as the C# and Node headers do. **Deferred pipelines** can overshoot by one because a test needs to see a value before it can refuse it. **CMake** overshoots by one for a different reason: both operands of its `AND` ran.
+Lee la columna por estrategia. Las implementaciones de Haskell extraen exactamente lo que necesita su predicado. APL extrae hasta la cota del peor caso antes de probar el total y luego recorta. Un controlador de evaluación inmediata también puede trabajar una tarjeta a la vez, como hacen los encabezados de C# y Node. Las **canalizaciones diferidas** pueden extraer un valor de más, porque una prueba necesita ver un valor antes de poder rechazarlo. **CMake** extrae uno de más por otra razón: se ejecutaron los dos operandos de su `AND`.
 
-**The Haskell timing, in order.** In `haskell-weird`, `sheet` returns at once and nothing has run. Then `evaluate (length cards)` forces cell 1 (effect: print and insert), cell 2, cell 3, and `span` stops without forcing cell 4. Only after that does `COMMIT` and `hClose` run. If the count were lazy, the cells would be forced after `hClose`, and the first insert would fail with `handle is closed`. The *same* cells, forced at a different moment, give a different program.
+**La secuencia temporal de Haskell, en orden.** En `haskell-weird`, `sheet` regresa de inmediato y nada se ha ejecutado. Después `evaluate (length cards)` fuerza la celda 1 (efecto: imprimir e insertar), la celda 2, la celda 3, y `span` se detiene sin forzar la celda 4. Solo después se ejecutan `COMMIT` y `hClose`. Si la cuenta fuera perezosa, las celdas se forzarían después de `hClose`, y la primera inserción fallaría con `handle is closed`. Las *mismas* celdas, forzadas en otro momento, dan un programa distinto.
 
-**Remembered against rerun.** In the B7 experiment, `q.Sum()` then `q.ToList()` printed the effects six times (0, 3, 6, 3 lines for the four steps). A Haskell cell is forced at most once, so the same pair of demands would run its effects once.
+**Recordar frente a repetir.** En el experimento B7, `q.Sum()` y luego `q.ToList()` imprimieron los efectos seis veces (0, 3, 6, 3 líneas para los cuatro pasos). Una celda de Haskell se fuerza como máximo una vez, así que el mismo par de demandas ejecutaría sus efectos una sola vez.
 
-**Exactly 40.** In the challenged entries, a comparison that continues at 40 still needs another name or slot to draw from. XAML can run out of passes while the total is exactly 40 (see [Comparative machine design](diseno-comparativo-de-maquinas.md)). The boundary shows a hidden dependency: the stop rule depends on a *supply* (names, dice) as well as a test.
+**Exactamente 40.** En las entradas del reto, una comparación que continúa cuando el total es 40 aún necesita otro nombre o ranura de donde extraer. XAML puede quedarse sin pasadas mientras el total es exactamente 40 (consulta [Diseño comparativo de máquinas](diseno-comparativo-de-maquinas.md)). El límite muestra una dependencia oculta: la regla de parada depende de un *suministro* (nombres, dados) además de una prueba.
 
-## Compare the ordinary and weird designs
+## Compara los diseños ordinarios y los raros
 
-| Dimension | Eager and ordinary | Lazy, deferred or pull |
+| Dimensión | Inmediato y ordinario | Perezoso, diferido o por demanda |
 | --- | --- | --- |
-| **Representation** | Values and loops | Descriptions: lists, queries, closures |
-| **Observability** | Print a value, and it is there | Printing may force it, and forcing may fire effects |
-| **Tests** | Call and compare | Control the consumer, or inject the effect (`sheet` takes `onBirth`) |
-| **Debugging** | Step through | Which consumer demanded this, and when? |
-| **Portability** | Standard | Iterator helpers (Node 22+), LINQ providers, GHC's `unsafeInterleaveIO` |
-| **Cost** | Computes extras | Defers cost, but can overshoot by one, rerun or hold a resource open |
+| **Representación** | Valores y bucles | Descripciones: listas, consultas, clausuras |
+| **Observabilidad** | Imprimes un valor y ahí está | Imprimir puede forzarlo, y forzar puede disparar efectos |
+| **Pruebas** | Llamar y comparar | Controla al consumidor, o inyecta el efecto (`sheet` recibe `onBirth`) |
+| **Debugging** | Avanzar paso a paso | ¿Qué consumidor exigió esto y cuándo? |
+| **Portabilidad** | Estándar | Ayudantes de iterador (Node 22 o posterior), proveedores de LINQ, el `unsafeInterleaveIO` de GHC |
+| **Costo** | Calcula de más | Difiere el costo, pero puede extraer uno de más, volver a ejecutar o mantener abierto un recurso |
 
-The three non-eager strategies fail differently. A lazy value *remembers*, so a late force still gives the same answer, but may run at a bad moment. A deferred pipeline *forgets*, so an extra enumeration repeats work and effects. A pull iterator *depends on the consumer*, so a changed consumer changes how many cards exist (`take(1)` against `take(2)` in exercise B21).
+Las tres estrategias que no son de evaluación inmediata fallan de forma distinta. Un valor perezoso *recuerda*, así que un forzado tardío aún da la misma respuesta, pero puede ejecutarse en un mal momento. Una canalización diferida *olvida*, así que una enumeración extra repite trabajo y efectos. Un iterador por demanda *depende del consumidor*, así que cambiar de consumidor cambia cuántas tarjetas existen (`take(1)` frente a `take(2)` en el ejercicio B21).
 
-## What the exercises demonstrate
+## Qué demuestran los ejercicios
 
-| Exercise | Predict first | What the evidence shows |
+| Ejercicio | Predice primero | Qué muestra la evidencia |
 | --- | --- | --- |
-| [B2. Haskell: break the laziness](../../exercises.md#b2-haskell-break-the-laziness-verified) | Make `entries` a lazy `let`. | `handle is closed`: the cards were demanded after the pipe closed. |
-| [B7. LINQ: enumerate twice](../../exercises.md#b7-linq-enumerate-twice-verified) | How many `effect` lines for (a) to (d)? | 0, 3, 6, 3. |
-| [B21. JavaScript, weirder](../../exercises.md#b21-javascript-weirder-move-the-stop-rule-in-a-closure-and-watch-the-demand-verified) | `take(1)` against `take(2)`: how many `drawn` lines? | One and two. The consumer decides how many cards exist. |
-| [B11. m4: quote the recursion](../../exercises.md#b11-m4-quote-the-recursion-verified) | Remove the brackets around `tc_card()`. | An endless run (timeout) or `recursion limit exceeded`. m4 expands arguments before the call. |
-| [B10. Lisp: swap the method combination](../../exercises.md#b10-lisp-swap-the-method-combination-verified) | Replace `or` with `progn`. | Five cards on every run: no short-circuit, no stop. |
+| [B2. Haskell: rompe la pereza](../../exercises.md#b2-haskell-break-the-laziness-verified) | Haz que `entries` sea un `let` perezoso. | `handle is closed`: las tarjetas se pidieron después de cerrar la tubería. |
+| [B7. LINQ: enumera dos veces](../../exercises.md#b7-linq-enumerate-twice-verified) | ¿Cuántas líneas `effect` hay de (a) a (d)? | 0, 3, 6, 3. |
+| [B21. JavaScript, más raro](../../exercises.md#b21-javascript-weirder-move-the-stop-rule-in-a-closure-and-watch-the-demand-verified) | `take(1)` frente a `take(2)`: ¿cuántas líneas `drawn`? | Una y dos. El consumidor decide cuántas tarjetas existen. |
+| [B11. m4: cita la recursión](../../exercises.md#b11-m4-quote-the-recursion-verified) | Quita los corchetes de `tc_card()`. | Una ejecución sin fin (tiempo agotado) o `recursion limit exceeded`. m4 expande los argumentos antes de la llamada. |
+| [B10. Lisp: cambia la combinación de métodos](../../exercises.md#b10-lisp-swap-the-method-combination-verified) | Reemplaza `or` por `progn`. | Cinco tarjetas en cada ejecución: sin cortocircuito y sin parada. |
 
-## Failure modes, costs and boundaries
+## Modos de fallo, costos y límites
 
-| Behavior | Label | Why |
+| Comportamiento | Etiqueta | Por qué |
 | --- | --- | --- |
-| `span` and `take` read only as much of a list as they must | **guaranteed** | Haskell's non-strict semantics. |
-| A lazy value is forced at most once | **guaranteed** (sharing) | The usual call-by-need semantics; GHC implements it, and the language report leaves some freedom. |
-| `unsafeInterleaveIO` defers its action until the result is demanded | **guaranteed** | Documented, and "unsafe" because of what it does not promise. |
-| Where that effect lands relative to unrelated effects | **implementation-permitted** | The program is correct because of data dependence. |
-| The LINQ-to-Objects `Select` in B7 defers its projection and another enumeration does the work again | **guaranteed** for the pipeline shown | B7 runs the effect zero times at construction, three times per full enumeration. Terminal `Sum()` immediately enumerates in the C# condition. |
-| `reduce` cannot stop early | **guaranteed** | It visits every element. |
-| `emit()` is synchronous and `setImmediate` is a later turn | **guaranteed** | Documented Node.js behavior. |
-| Lisp's `or` stops at the first true method | **guaranteed** | Standard method combination. |
-| CMake's `AND` evaluates both operands | **accidentally exploited** | Observed; not promised in the documentation as far as the guide could find, and the program needs it. |
-| m4 expands arguments before the call | **guaranteed** | Documented. It is the stop rule. |
+| `span` y `take` leen de una lista solo lo que deben | **garantizado** | La semántica no estricta de Haskell. |
+| Un valor perezoso se fuerza como máximo una vez | **garantizado** (compartición) | La semántica habitual de llamada por necesidad; GHC la implementa, y el informe del lenguaje deja cierta libertad. |
+| `unsafeInterleaveIO` difiere su acción hasta que se pide el resultado | **garantizado** | Está documentado, y es "unsafe" por lo que no promete. |
+| Dónde cae ese efecto respecto a efectos no relacionados | **permitido por la implementación** | El programa es correcto por la dependencia de datos. |
+| El `Select` de LINQ to Objects en B7 difiere su proyección y otra enumeración repite el trabajo | **garantizado** para la canalización mostrada | B7 ejecuta el efecto cero veces al construir y tres veces por enumeración completa. El `Sum()` terminal enumera de inmediato en la condición de C#. |
+| `reduce` no puede detenerse antes | **garantizado** | Visita todos los elementos. |
+| `emit()` es síncrono y `setImmediate` es un turno posterior | **garantizado** | Comportamiento documentado de Node.js. |
+| El `or` de Lisp se detiene en el primer método verdadero | **garantizado** | Combinación de métodos estándar. |
+| El `AND` de CMake evalúa los dos operandos | **aprovechado por accidente** | Observado; hasta donde la guía pudo encontrar, la documentación no lo promete y el programa lo necesita. |
+| m4 expande los argumentos antes de la llamada | **garantizado** | Está documentado. Es la regla de parada. |
 
-**Costs to state.**
+**Costos que hay que declarar.**
 
-- **Effects in lazy values.** The order of effects follows the consumer. That is the whole hazard of lazy I/O.
-- **Overshoot.** A test cannot refuse a value it has not seen. The crossing card forces *one more look* in some strategies.
-- **Resource lifetime.** A value that depends on an open handle is valid only while the handle is open.
-- **Reuse.** Deferred pipelines recompute. Materialize with `ToList` when the effects must run once.
-- **Where laziness is legitimate.** Streams, infinite structures, short-circuit conditions and iterators are ordinary tools.
+- **Efectos en valores perezosos.** El orden de los efectos sigue al consumidor. Ese es todo el peligro de la E/S perezosa.
+- **Extraer de más.** Una prueba no puede rechazar un valor que no ha visto. En algunas estrategias, la tarjeta que cruza fuerza *una mirada más*.
+- **Vida útil del recurso.** Un valor que depende de un manejador abierto solo es válido mientras el manejador sigue abierto.
+- **Reutilización.** Las canalizaciones diferidas recalculan. Materializa con `ToList` cuando los efectos deban ejecutarse una sola vez.
+- **Dónde la pereza es legítima.** Los flujos, las estructuras infinitas, las condiciones de cortocircuito y los iteradores son herramientas corrientes.
 
-## Connections across the repository
+## Conexiones a lo largo del repositorio
 
-- **Language guides.** [Haskell](../lenguajes/haskell.md), [C#, LINQ, XAML and ports](../lenguajes/csharp-linq-xaml-y-adaptaciones.md), [JavaScript](../lenguajes/javascript.md), [APL](../lenguajes/apl.md), [Common Lisp](../lenguajes/common-lisp.md), [m4](../lenguajes/m4.md) and [Make and CMake](../lenguajes/make-y-cmake.md) each trace one of these.
-- **State.** [State and control beyond variables](estado-y-control-mas-alla-de-las-variables.md) asks where the next step is stored. Demand is one answer: a data dependence.
-- **Commit.** [Effects, errors and commitment](efectos-errores-y-confirmacion.md) asks which effects survive.
-- **Events.** [Events, callbacks and reactive control](eventos-retrollamadas-y-control-reactivo.md) is the push version of this question.
-- **In the book.** [Evaluation strategies](../../informatica/04-evaluacion-y-demanda.md#evaluation-strategies), [Lazy evaluation](../../informatica/04-evaluacion-y-demanda.md#lazy-evaluation), [Deferred execution](../../informatica/04-evaluacion-y-demanda.md#deferred-execution), [Short-circuit evaluation](../../informatica/04-evaluacion-y-demanda.md#short-circuit-evaluation) and [Referential transparency](../../informatica/04-evaluacion-y-demanda.md#referential-transparency).
+- **Guías de lenguaje.** [Haskell](../lenguajes/haskell.md), [C#, LINQ, XAML y adaptaciones](../lenguajes/csharp-linq-xaml-y-adaptaciones.md), [JavaScript](../lenguajes/javascript.md), [APL](../lenguajes/apl.md), [Common Lisp](../lenguajes/common-lisp.md), [m4](../lenguajes/m4.md) y [Make y CMake](../lenguajes/make-y-cmake.md) trazan cada una una de estas estrategias.
+- **Estado.** [Estado y control más allá de las variables](estado-y-control-mas-alla-de-las-variables.md) pregunta dónde se guarda el paso siguiente. La demanda es una respuesta: una dependencia de datos.
+- **Confirmación.** [Efectos, errores y confirmación](efectos-errores-y-confirmacion.md) pregunta qué efectos sobreviven.
+- **Eventos.** [Eventos, funciones de devolución de llamada y control reactivo](eventos-retrollamadas-y-control-reactivo.md) es la versión *push* de esta pregunta.
+- **En el libro.** [Estrategias de evaluación](../../informatica/04-evaluacion-y-demanda.md#evaluation-strategies), [Evaluación perezosa](../../informatica/04-evaluacion-y-demanda.md#lazy-evaluation), [Ejecución diferida](../../informatica/04-evaluacion-y-demanda.md#deferred-execution), [Evaluación de cortocircuito](../../informatica/04-evaluacion-y-demanda.md#short-circuit-evaluation) y [Transparencia referencial](../../informatica/04-evaluacion-y-demanda.md#referential-transparency).
 
-## Self-check
+## Autoevaluación
 
-Answer each question in your own words before you read the italic text. Say what evidence would support each answer.
+Responde cada pregunta con tus propias palabras antes de leer el texto en cursiva. Di qué evidencia respaldaría cada respuesta.
 
-1. **Trace.** Hours are 10, 10, 10, 10, 14. How many values does `haskell`, `apl` and a LINQ `TakeWhile` generator draw? *(Haskell: 5. The totals go 10, 20, 30, 40, 54 and `span` forces five cards. APL: 5, all of the up-front draws. The generator: 6. `TakeWhile` keeps the fifth card, the crossing card, and must draw a sixth to see its test fail.)*
-2. **Explain.** Why does a lazy `let entries = length cards` crash `haskell-weird`, when `evaluate (length cards)` does not? *(The lazy binding is not forced until the summary line, which runs after the pipe is closed. `evaluate` forces it before `COMMIT` and `hClose`.)*
-3. **Transfer.** In a language you use, which operation forces a lazy collection into a list, and where would you put it to keep effects inside a transaction? *(For example `toArray`, `ToList`, `list(...)` or `collect`. Put it inside the transaction, before the commit.)*
-4. **Evidence.** A reviewer says, "`take 1 over` never forces a fourth card." Design a test that could fail. *(Replace the hours with a fixed list whose tail is an error, as the scratch run did. The negative control is a variant that matches one cell past the crossing card, where the error must fire.)*
+1. **Traza.** Las horas son 10, 10, 10, 10, 14. ¿Cuántos valores extraen `haskell`, `apl` y un generador LINQ `TakeWhile`? *(Haskell: 5. Los totales van 10, 20, 30, 40, 54 y `span` fuerza cinco tarjetas. APL: 5, todas extracciones por adelantado. El generador: 6. `TakeWhile` conserva la quinta tarjeta, la que cruza, y debe extraer una sexta para ver fallar su prueba.)*
+2. **Explica.** ¿Por qué un `let entries = length cards` perezoso hace fallar a `haskell-weird`, cuando `evaluate (length cards)` no? *(El enlace perezoso no se fuerza hasta la línea de resumen, que se ejecuta después de cerrar la tubería. `evaluate` lo fuerza antes de `COMMIT` y `hClose`.)*
+3. **Transfiere.** En un lenguaje que uses, ¿qué operación fuerza una colección perezosa a convertirse en lista, y dónde la pondrías para mantener los efectos dentro de una transacción? *(Por ejemplo `toArray`, `ToList`, `list(...)` o `collect`. Ponla dentro de la transacción, antes de la confirmación de la transacción.)*
+4. **Evidencia.** Un revisor dice: "`take 1 over` nunca fuerza una cuarta tarjeta." Diseña una prueba que pueda fallar. *(Reemplaza las horas por una lista fija cuya cola sea un error, como hizo la ejecución de prueba. El control negativo es una variante con coincidencia en una celda más allá de la tarjeta que cruza, donde el error debe dispararse.)*
 
-## Further reading
+## Lecturas adicionales
 
-- [Evaluation strategy](https://en.wikipedia.org/wiki/Evaluation_strategy) (Wikipedia): call-by-value, call-by-name and call-by-need.
-- [Lazy evaluation](https://en.wikipedia.org/wiki/Lazy_evaluation) (Wikipedia): thunks, sharing and infinite structures.
-- [Short-circuit evaluation](https://en.wikipedia.org/wiki/Short-circuit_evaluation) (Wikipedia): `and` and `or` as control flow.
-- [Iterators and generators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_generators) (MDN): the pull protocol in JavaScript.
+- [Estrategia de evaluación](https://en.wikipedia.org/wiki/Evaluation_strategy) (Wikipedia): llamada por valor, llamada por nombre y llamada por necesidad.
+- [Evaluación perezosa](https://en.wikipedia.org/wiki/Lazy_evaluation) (Wikipedia): thunks, compartición y estructuras infinitas.
+- [Evaluación de cortocircuito](https://en.wikipedia.org/wiki/Short-circuit_evaluation) (Wikipedia): `and` y `or` como flujo de control.
+- [Iteradores y generadores](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_generators) (MDN): el protocolo de demanda en JavaScript.

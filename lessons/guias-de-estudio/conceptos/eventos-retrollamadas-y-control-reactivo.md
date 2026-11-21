@@ -1,80 +1,80 @@
-# Events, callbacks and reactive control study guide
+# Guía de estudio de eventos, funciones de devolución de llamada y control reactivo
 
-## What this guide is for
+## Para qué sirve esta guía
 
-"What runs next?" has three answers in this repository. *The program chooses*: a loop asks itself before every card. *The consumer chooses*: a pull, where nothing happens until someone asks. *The producer chooses*: a push, where something announces that it happened and every function that registered for it runs. This guide is about the third. The core question is: **who owns the next turn, and what does reentrancy change?**
+"¿Qué se ejecuta después?" tiene tres respuestas en este repositorio. *El programa decide*: un bucle se lo pregunta a sí mismo antes de cada tarjeta. *El consumidor decide*: una demanda (*pull*), donde no pasa nada hasta que alguien pide. *El productor decide*: un *push*, donde algo anuncia que ocurrió y se ejecuta cada función registrada para él. Esta guía trata de la tercera. La pregunta central es: **¿quién es dueño del siguiente turno y qué cambia la reentrada?**
 
-When you finish, you should be able to:
+Cuando termines, deberías poder:
 
-1. Say, for an entry, whether the program, the consumer or the producer chooses what runs next.
-2. Explain the difference between a synchronous `emit()` and a call that hands the next step to the event loop, and what each does to the call stack.
-3. Trace `javascript-events` through three cards, naming the turns and the nesting depth.
-4. Explain reentrancy: what happens when a callback triggers the thing that called it, and how the entries prevent or limit it.
-5. Tell a real event from a look-alike (a window's own loop, a trigger, a callout).
-6. Label claims as guaranteed, implementation-permitted or accidentally exploited.
+1. Decir, para una entrada, si el programa, el consumidor o el productor decide qué se ejecuta después.
+2. Explicar la diferencia entre un `emit()` síncrono y una llamada que entrega el paso siguiente al bucle de eventos, y qué hace cada uno a la pila de llamadas.
+3. Hacer la traza de `javascript-events` a lo largo de tres tarjetas y nombrar los turnos y la profundidad de anidamiento.
+4. Explicar la reentrada: qué pasa cuando una función de devolución de llamada (*callback*) dispara aquello que la llamó, y cómo lo evitan o lo limitan las entradas.
+5. Distinguir un evento real de uno que lo imita (el bucle propio de una ventana, un disparador o un callout).
+6. Etiquetar afirmaciones como garantizado, permitido por la implementación o aprovechado por accidente.
 
-**Scope limits.** The guide uses Node.js's `EventEmitter` as the main example and compares it with other callback mechanisms in the entries. It does not teach GUI frameworks, async/await or reactive libraries. Its source chapter is [Events, callbacks and reactive control flow](../../informatica/10-eventos-retrollamadas-y-flujo-de-control-reactivo.md).
+**Límites del alcance.** La guía usa el `EventEmitter` de Node.js como ejemplo principal y lo compara con otros mecanismos de funciones de devolución de llamada de las entradas. No enseña marcos de trabajo de GUI, async/await ni bibliotecas reactivas. Su capítulo de origen es [Eventos, funciones de devolución de llamada y flujo de control reactivo](../../informatica/10-eventos-retrollamadas-y-flujo-de-control-reactivo.md).
 
-## Before you begin
+## Antes de empezar
 
-**Safety model.** The cards are fictional **DEMO ONLY** data. Programs can write to local scratch files or databases and can start processes or timers. Read the source first and run it in the sandbox first (`sandbox/container/run-image.sh src/javascript-events`). Work on copies ([Running things safely](../../exercises.md#running-things-safely)). A deliberately removed turn boundary can crash a run: use a scratch data folder.
+**Modelo de seguridad.** Las tarjetas son datos ficticios marcados con **DEMO ONLY**. Los programas pueden escribir en archivos o bases de datos locales de prueba y pueden iniciar procesos o temporizadores. Lee primero el código fuente y ejecútalo antes en un entorno aislado (*sandbox*) que limita el acceso al sistema anfitrión (`sandbox/container/run-image.sh src/javascript-events`). Trabaja con copias ([Ejecutar cosas con seguridad](../../exercises.md#running-things-safely)). Un límite de turno quitado a propósito puede hacer fallar una ejecución: usa una carpeta de datos de prueba.
 
-**Prediction rule.** Before each run, write the *order* of events and mark which arrows are plain calls (the stack grows) and which are hops to a later turn (the stack unwinds). In this topic the order is the program.
+**Regla de predicción.** Antes de cada ejecución, escribe el *orden* de los eventos. Marca qué flechas son llamadas simples (la pila crece) y cuáles son saltos a un turno posterior (la pila se desenrolla). En este tema el orden es el programa.
 
-**Vocabulary.**
+**Vocabulario.**
 
-| Term | Meaning here |
+| Término | Significado aquí |
 | --- | --- |
-| Callback | A function you hand to someone else, to be called later or from elsewhere. |
-| Event | An announcement that something happened. |
-| Emitter | An object that calls the listeners registered for an event. |
-| Turn | One pass of the event loop. Work queued with `setImmediate` runs on a later turn. |
-| Reentrancy | A callback running while the thing that triggered it is still in progress. |
-| Backpressure | A way for a slow consumer to slow a producer. |
+| Función de devolución de llamada | Una función que entregas a otra parte para que se llame más tarde o desde otro lugar. |
+| Evento | Un aviso de que algo ocurrió. |
+| Emisor | Un objeto que llama a los escuchadores de eventos registrados para un evento. |
+| Turno | Una pasada del bucle de eventos. El trabajo puesto en cola con `setImmediate` se ejecuta en un turno posterior. |
+| Reentrada | Una función de devolución de llamada que se ejecuta mientras lo que la disparó sigue en curso. |
+| Contrapresión (*backpressure*) | Una forma de que un consumidor lento frene a un productor. |
 
-## The shared challenge
+## El reto compartido
 
-The [challenge specification](../../introduccion.md#what-the-challenge-does) calls for cards with a category and 10 to 19 whole hours. Categories cycle through Meetings, Coding, Debugging and Learning. Add each card's hours to the running total. Stop when the total passes 40. Keep the **first card that takes the total over 40**. A total of exactly 40 continues. Four 10-hour cards need a fifth card, in the Meetings category. Conforming runs finish with 3 to 5 cards and a total of 41 to 59 hours.
+La [especificación del reto](../../introduccion.md#what-the-challenge-does) pide tarjetas con una categoría y de 10 a 19 horas enteras. Las categorías se repiten en ciclo: `Meetings`, `Coding`, `Debugging` y `Learning`. Suma las horas de cada tarjeta al total acumulado. Detente cuando el total pasa de 40. Conserva la **primera tarjeta con la que el total pasa de 40**. Un total de exactamente 40 continúa. Cuatro tarjetas de 10 horas necesitan una quinta tarjeta, de la categoría `Meetings`. Las ejecuciones conformes tienen de 3 a 5 tarjetas y un total de 41 a 59 horas.
 
-In the events program the rule is one line: `total-updated` emits `finished` when `total > limit` (so 40 is not over), and otherwise schedules `generate` for a later turn. The category of card *n* is `(n - 1) % 4`, so a fifth card is Meetings again. The program takes a `world` object (`rng`, `schedule`, `open`, ...) so a test can inject its own.
+En el programa de eventos la regla es una línea: `total-updated` emite `finished` cuando `total > limit` (así que un total de exactamente 40 continúa). De lo contrario, programa `generate` para un turno posterior. La categoría de la tarjeta *n* es `(n - 1) % 4`, así que una quinta tarjeta vuelve a ser Meetings. El programa recibe un objeto `world` (`rng`, `schedule`, `open`, ...) para que una prueba pueda inyectar el suyo.
 
-## The machine to identify
+## La máquina que hay que identificar
 
-**What repeats.** A cycle of events: `generate`, `card-created`, `card-saved`, `total-updated` and back to `generate`. No statement repeats. Each event's listener does one small thing and emits the next event.
+**Qué se repite.** Un ciclo de eventos: `generate`, `card-created`, `card-saved`, `total-updated` y de vuelta a `generate`. No se repite ninguna sentencia. Cada evento tiene un escuchador de eventos que hace una cosa pequeña y emite el evento siguiente.
 
-**Where state lives.** In one object `s` (`n`, `total`, `db`, `frame`, `stop`) shared by the listeners, and in the emitter's *registrations*: which listeners exist is part of the program. Removing every listener at the end (`removeAllListeners`) is how the program makes itself unable to run again.
+**Dónde vive el estado.** En un objeto `s` (`n`, `total`, `db`, `frame`, `stop`) que comparten los escuchadores de eventos y en los *registros* del emisor: qué escuchadores existen forma parte del programa. Quitar todos los escuchadores al final (`removeAllListeners`) es la forma en que el programa se vuelve incapaz de ejecutarse otra vez.
 
-**What advances the next step.** A plain `emit` calls every listener *now*, before it returns, in registration order. `later(name)` calls `setImmediate`, so the next step waits for a new turn. Two kinds of arrow, two different machines.
+**Qué hace avanzar el paso siguiente.** Un `emit` simple llama a cada escuchador de eventos *ahora*, antes de regresar, en el orden de registro. `later(name)` llama a `setImmediate`, así que el paso siguiente espera a un turno nuevo. Dos tipos de flecha, dos máquinas distintas.
 
-**What stops it.** `total-updated` emits `finished` instead of scheduling another `generate`. After `finished`, `done` removes every listener.
+**Qué lo detiene.** `total-updated` emite `finished` en lugar de programar otro `generate`. Después de `finished`, `done` quita todos los escuchadores de eventos.
 
-**What commits.** `start` runs `BEGIN`, `card-created` inserts a row synchronously (`node:sqlite` is synchronous) and `finished` runs `COMMIT`. A throw in any listener is caught and emitted as `failed`, which runs `ROLLBACK` *once*, and removes all listeners so that a second failure finds nobody to tell.
+**Qué confirma.** `start` ejecuta `BEGIN`, `card-created` inserta una fila de forma síncrona (`node:sqlite` es síncrono) y `finished` ejecuta `COMMIT`. Una excepción lanzada en cualquier escuchador de eventos se captura y se emite como `failed`. Eso ejecuta `ROLLBACK` *una vez* y quita todos los escuchadores, de modo que un segundo fallo no encuentra a nadie a quien avisar.
 
 <!-- diagram-source: lessons/cs-source/chapters/10-events-callbacks-and-reactive-control-flow.md#block-1 -->
 
 ```mermaid
 sequenceDiagram
-    accTitle: One turn of scheduled events: emit nests, the event loop separates turns
-    accDescr: A sequence diagram. The event loop starts a turn by calling the generate listener. That listener emits card-created, so the emitter calls the card-created listener inside it. That listener emits card-saved, so the emitter calls the card-saved listener inside it. Each listener then returns, in the reverse order, so the stack unwinds. The last listener has asked the event loop for the next turn with setImmediate. The event loop starts the next turn only after the stack is empty.
-    participant L as Event loop
-    participant G as generate listener
-    participant C as card-created listener
-    participant S as card-saved listener
-    L->>G: a turn begins
-    G->>C: emit card-created: the call is nested
-    C->>S: emit card-saved: nested again
-    S-->>L: setImmediate asks for the next turn
-    S-->>C: returns
-    C-->>G: returns
-    G-->>L: returns: the stack is empty
-    Note over L: the next turn begins only now
+    accTitle: Un turno de eventos programados: emit anida las llamadas y el bucle de eventos separa los turnos
+    accDescr: Un diagrama de secuencia. El bucle de eventos inicia un turno al llamar al escuchador de eventos generate. Ese escuchador emite card-created, así que el emisor llama al escuchador de eventos card-created dentro de él. Ese escuchador emite card-saved, así que el emisor llama al escuchador de eventos card-saved dentro de él. Luego cada escuchador regresa, en orden inverso, así que la pila se desenrolla. El último escuchador le ha pedido al bucle de eventos el turno siguiente con setImmediate. El bucle de eventos inicia el turno siguiente solo cuando la pila está vacía.
+    participant L as Bucle de eventos
+    participant G as escuchador generate
+    participant C as escuchador card-created
+    participant S as escuchador card-saved
+    L->>G: empieza un turno
+    G->>C: emit card-created: llamada anidada
+    C->>S: emit card-saved: anidada otra vez
+    S-->>L: setImmediate pide el turno siguiente
+    S-->>C: regresa
+    C-->>G: regresa
+    G-->>L: regresa: pila vacía
+    Note over L: el turno siguiente empieza ahora
 ```
 
-The book's picture of one turn of scheduled events: `emit` nests, and the event loop separates turns. The trace below follows it with real numbers.
+La imagen del libro de un turno de eventos programados: `emit` anida y el bucle de eventos separa los turnos. La traza siguiente la sigue con números reales.
 
-## Trace one run
+## Traza una ejecución
 
-With `SEED=1105` the hours are 15, 19, 12. A scratch script wrapped the entry's `emit` and `schedule` to log each emit (indented by depth) and each hop. The run printed:
+Con `SEED=1105` las horas son 15, 19, 12. Un script de prueba envolvió `emit` y `schedule` de la entrada para registrar cada emisión (con sangría según la profundidad) y cada salto. La ejecución imprimió:
 
 ```text
 --- event loop turn 1 ---
@@ -97,86 +97,86 @@ emit generate
           emit done
 ```
 
-(Rows and the summary appear between these lines in the real output.) Read three facts from it. **`emit start` returned before any card existed**: the first card is made on turn 2. **Each card is its own turn**, four emits deep, and the stack unwinds before the next turn. **The last turn is different**: the total is 46, so `total-updated` emits `finished` directly, and `finished` and `done` nest one and two levels deeper. The commit runs inside the same turn, before anything else can intervene.
+(Las filas y el resumen aparecen entre estas líneas en la salida real.) Lee tres hechos en ella. **`emit start` regresó antes de que existiera cualquier tarjeta**: la primera tarjeta se crea en el turno 2. **Cada tarjeta es su propio turno**, con cuatro emisiones de profundidad, y la pila se desenrolla antes del turno siguiente. **El último turno es distinto**: el total es 46, así que `total-updated` emite `finished` directamente, y `finished` y `done` anidan uno y dos niveles más hondo. La confirmación de la transacción se ejecuta dentro del mismo turno, antes de que pueda intervenir nada más.
 
-| Turn | What runs | Stack depth at deepest | Total after |
+| Turno | Qué se ejecuta | Profundidad de la pila en su punto más hondo | Total después |
 | --- | --- | ---: | ---: |
-| 1 | `start`: open, `BEGIN`, queue `generate` | 1 | 0 |
+| 1 | `start`: abrir, `BEGIN`, poner `generate` en cola | 1 | 0 |
 | 2 | Meetings 15 | 4 | 15 |
 | 3 | Coding 19 | 4 | 34 |
-| 4 | Debugging 12, then `finished` and `done` | 6 | 46 |
+| 4 | Debugging 12, luego `finished` y `done` | 6 | 46 |
 
-**The same cards, three machines.** The book compares a loop, a synchronous emitter and scheduled events. All produce the same rows for a small run. They differ when the run is large: the loop and the scheduled events keep the stack flat, while the synchronous emitter adds a few frames per card.
+**Las mismas tarjetas, tres máquinas.** El libro compara un bucle, un emisor síncrono y eventos programados. Todos producen las mismas filas en una ejecución pequeña. Difieren cuando la ejecución es grande: el bucle y los eventos programados mantienen la pila plana, mientras que el emisor síncrono añade unos pocos marcos por tarjeta.
 
-**Exactly 40.** With four 10-hour cards the total is 40, and `40 > 40` is false, so `total-updated` schedules a fifth `generate`. This program has no fixed list of four names, so it continues.
+**Exactamente 40.** Con cuatro tarjetas de 10 horas el total es 40, y `40 > 40` es falso, así que `total-updated` programa una quinta `generate`. Este programa no tiene una lista fija de cuatro nombres, así que continúa.
 
-## Compare the ordinary and weird designs
+## Compara los diseños ordinarios y los raros
 
-| Dimension | A loop | `javascript-events` | Other callback entries |
+| Dimensión | Un bucle | `javascript-events` | Otras entradas con funciones de devolución de llamada |
 | --- | --- | --- | --- |
-| **Representation** | A statement | Listeners registered on an emitter | PCRE2 callouts, tar checkpoints, SQLite triggers |
-| **Observability** | Step the loop | Log every `emit`: the whole program is its event trace | Callouts: print in the dispatcher. tar: the tick count. Triggers: the `born` log. |
-| **Tests** | Call the function | Inject a `world`: a fake `rng`, a synchronous `schedule`, a recording `out` | `check.sh` with a simulation (tar), mutation (PCRE2 flags) |
-| **Debugging** | A stack trace | A throw travels *up* through `emit` to whoever called it, which may be a scheduled callback nobody waits for | Errors mix the host's stack with the engine's |
-| **Portability** | Any language | Node's `EventEmitter` semantics (listener order, synchronous `emit`) | GNU tar's checkpoints, PCRE2's callouts |
-| **Cost** | Normal | A hop per card, a flat stack | Per-tick process starts, per-callout calls |
+| **Representación** | Una sentencia | Escuchadores de eventos registrados en un emisor | Callouts de PCRE2, puntos de control de tar, disparadores de SQLite |
+| **Observabilidad** | Avanza el bucle paso a paso | Registra cada `emit`: el programa entero es su traza de eventos | Callouts: imprime en el despachador. tar: la cuenta de ticks. Disparadores: el registro de `born`. |
+| **Pruebas** | Llamar a la función | Inyectar un `world`: un `rng` falso, un `schedule` síncrono, un `out` que registra | `check.sh` con una simulación (tar), mutación (banderas de PCRE2) |
+| **Debugging** | Una traza de pila | Una excepción lanzada viaja *hacia arriba* por `emit` hasta quien la llamó, que puede ser una función de devolución de llamada programada que nadie espera | Los errores mezclan la pila del anfitrión con la del motor |
+| **Portabilidad** | Cualquier lenguaje | La semántica de `EventEmitter` de Node (orden de los escuchadores de eventos, `emit` síncrono) | Los puntos de control de GNU tar, los callouts de PCRE2 |
+| **Costo** | Normal | Un salto por tarjeta, una pila plana | Inicio de procesos por tick, llamadas por callout |
 
-**Who owns the next turn.** In `javascript-events`, the *runtime* owns it: after `setImmediate`, the event loop decides when the next `generate` runs, and anything else on the loop (timers, I/O) may run first. In `tar-gnu-weird`, *tar* owns it: it calls the tick once per record, and the program cannot stop it. In PCRE2, the *engine* owns it: it calls a callout when the pattern reaches that point. In each, the program is a set of callbacks and the environment holds the loop.
+**Quién es dueño del turno siguiente.** En `javascript-events`, lo es el *entorno de ejecución*: después de `setImmediate`, el bucle de eventos decide cuándo se ejecuta el siguiente `generate`. Cualquier otra cosa del bucle (temporizadores, E/S) puede ejecutarse antes. En `tar-gnu-weird`, lo es *tar*: llama al tick una vez por registro, y el programa no puede detenerlo. En PCRE2, lo es el *motor*: llama a un callout cuando el patrón llega a ese punto. En cada caso, el programa es un conjunto de funciones de devolución de llamada y el entorno sostiene el bucle.
 
-## What the exercises demonstrate
+## Qué demuestran los ejercicios
 
-| Exercise | Predict first | What the evidence shows |
+| Ejercicio | Predice primero | Qué muestra la evidencia |
 | --- | --- | --- |
-| [B22. JavaScript, event-driven](../../exercises.md#b22-javascript-event-driven-predict-the-trace-then-remove-the-boundary-verified), step 2 | `listener`, `after emit`, `immediate`: what order? | `listener`, `after emit`, `immediate`. `emit()` calls before it returns, and `setImmediate()` only asks. |
-| B22, step 3 | The trace of three 19-hour cards. | `>start <start main is done`, then three turns, with `<start` before the first `>generate`. |
-| B22, step 4 | Replace `later('generate')` with `events.emit('generate')`. | A normal run still works. The lab fails two tests, and a very long run prints `Maximum call stack size exceeded` and exits 1. With the boundary back and `limit: 30_000`, about 2000 cards run and nothing prints. |
-| [B17. tar, weirder: predict the clock](../../exercises.md#b17-tar-weirder-predict-the-clock-verified) | `--ticks 45` against `46`. | Callbacks the program does not control: too few and the machine stalls, with `the clock ran out` and exit 3. |
-| [B12. Tcl: edit the program in the database](../../exercises.md#b12-tcl-edit-the-program-in-the-database-verified) | `recursive_triggers = OFF`. | One row printed, `entries=2`: a trigger's own insert does not re-fire a trigger unless recursion is enabled. Reentrancy is opt-in. |
-| [B21. JavaScript, weirder](../../exercises.md#b21-javascript-weirder-move-the-stop-rule-in-a-closure-and-watch-the-demand-verified) | `take(1)` against `take(2)`. | The pull version: the consumer decides how many cards exist. |
+| [B22. JavaScript, dirigido por eventos](../../exercises.md#b22-javascript-event-driven-predict-the-trace-then-remove-the-boundary-verified), paso 2 | `listener`, `after emit`, `immediate`: ¿en qué orden? | `listener`, `after emit`, `immediate`. `emit()` llama antes de regresar y `setImmediate()` solo pide. |
+| B22, paso 3 | La traza de tres tarjetas de 19 horas. | `>start <start main is done`, luego tres turnos, con `<start` antes del primer `>generate`. |
+| B22, paso 4 | Reemplaza `later('generate')` por `events.emit('generate')`. | Una ejecución normal sigue funcionando. El laboratorio falla dos pruebas y una ejecución muy larga imprime `Maximum call stack size exceeded` y sale con 1. Con el límite de vuelta y `limit: 30_000`, unas 2000 tarjetas se ejecutan y no se imprime nada. |
+| [B17. tar, más raro: predice el reloj](../../exercises.md#b17-tar-weirder-predict-the-clock-verified) | `--ticks 45` frente a `46`. | Funciones de devolución de llamada que el programa no controla: con muy pocas, la máquina se atasca, con `the clock ran out` y estado de salida 3. |
+| [B12. Tcl: edita el programa en la base de datos](../../exercises.md#b12-tcl-edit-the-program-in-the-database-verified) | `recursive_triggers = OFF`. | Se imprimió una fila, `entries=2`: la inserción propia de un disparador no vuelve a activar un disparador a menos que se habilite la recursión. La reentrada hay que activarla de forma expresa. |
+| [B21. JavaScript, más raro](../../exercises.md#b21-javascript-weirder-move-the-stop-rule-in-a-closure-and-watch-the-demand-verified) | `take(1)` frente a `take(2)`. | La versión por demanda: el consumidor decide cuántas tarjetas existen. |
 
-## Failure modes, costs and boundaries
+## Modos de fallo, costos y límites
 
-| Behavior | Label | Why |
+| Comportamiento | Etiqueta | Por qué |
 | --- | --- | --- |
-| `emit()` calls listeners synchronously, in registration order, before it returns | **guaranteed** | Documented Node.js behavior. |
-| `emit('error', e)` with no `error` listener throws `e` | **guaranteed** | Documented. The program turns it into `failed`. |
-| `setImmediate` runs its callback on a later turn | **guaranteed** | Documented scheduling. |
-| `node:sqlite` is synchronous | **implementation-permitted** | A property of the built-in module. The `card-saved` guarantee depends on it. |
-| tar runs one callback per record written and ignores its exit status | **implementation-permitted** (the callback) and **accidentally exploited** (the exit status) | Documented GNU option; the exit-status behavior is observed. |
-| SQLite limits trigger recursion (1000 by default) | **guaranteed** | The challenge needs 3 to 5. |
-| A PCRE2 callout's return value: 0 continue, positive fail the path, negative abort | **guaranteed** | Documented API. |
+| `emit()` llama a los escuchadores de eventos de forma síncrona, en orden de registro, antes de regresar | **garantizado** | Comportamiento documentado de Node.js. |
+| `emit('error', e)` sin un escuchador de eventos de `error` lanza `e` | **garantizado** | Está documentado. El programa lo convierte en `failed`. |
+| `setImmediate` ejecuta su función de devolución de llamada en un turno posterior | **garantizado** | Programación documentada. |
+| `node:sqlite` es síncrono | **permitido por la implementación** | Una propiedad del módulo integrado. La garantía de `card-saved` depende de ella. |
+| tar ejecuta una función de devolución de llamada por registro escrito e ignora su estado de salida | **permitido por la implementación** (la función de devolución de llamada) y **aprovechado por accidente** (el estado de salida) | Opción documentada de GNU; el comportamiento del estado de salida se observó. |
+| SQLite limita la recursión de los disparadores (1000 por defecto) | **garantizado** | El reto necesita de 3 a 5. |
+| El valor de retorno de un callout de PCRE2: 0 continúa, positivo hace fallar el camino, negativo aborta | **garantizado** | API documentada. |
 
-**Costs to state.**
+**Costos que hay que declarar.**
 
-- **The trap in the middle.** A synchronous emitter *looks* like events and behaves like recursion. It is correct for the sizes you test and fails at a size you do not.
-- **Throws have no caller.** A throw inside a scheduled callback would end the process. Each listener catches it and emits `failed`.
-- **Hidden order.** Listener order is registration order. Reordering registrations changes the program.
-- **Backpressure.** A push has no brake: a producer announces whether or not anyone is ready. The events program is self-paced (one card per turn), and the pull program lets the consumer set the pace. See [Backpressure](../../informatica/10-eventos-retrollamadas-y-flujo-de-control-reactivo.md#backpressure).
-- **Look-alikes.** A window's own loop (`Application.Run`, Tk, GTK) pumps a dispatcher, but nothing in the logic subscribes to anything. The XAML `Loaded` trigger only starts an animation. These are counterexamples in the book, not events.
-- **Where this is legitimate.** User interfaces, servers and pipelines are event-driven. Making a card generator out of an emitter is a stunt that shows how.
+- **La trampa del medio.** Un emisor síncrono *parece* eventos y se comporta como recursión. Es correcto para los tamaños que pruebas y falla con un tamaño que no pruebas.
+- **Las excepciones lanzadas no tienen quien las llame.** Una excepción lanzada dentro de una función de devolución de llamada programada terminaría el proceso. Cada escuchador de eventos la captura y emite `failed`.
+- **Orden oculto.** El orden de los escuchadores de eventos es el orden de registro. Reordenar los registros cambia el programa.
+- **Contrapresión.** Un push no tiene freno: un productor anuncia haya o no alguien listo. El programa de eventos marca su propio ritmo (una tarjeta por turno), y el programa por demanda deja que el consumidor fije el ritmo. Consulta [Contrapresión](../../informatica/10-eventos-retrollamadas-y-flujo-de-control-reactivo.md#backpressure).
+- **Imitaciones.** El bucle propio de una ventana (`Application.Run`, Tk, GTK) alimenta un bucle de mensajes, pero nada en la lógica se suscribe a nada. El disparador `Loaded` de XAML solo inicia una animación. Son contraejemplos del libro, no eventos.
+- **Dónde es legítimo.** Las interfaces de usuario, los servidores y las canalizaciones están dirigidos por eventos. Hacer un generador de tarjetas con un emisor es una acrobacia que muestra cómo.
 
-## Connections across the repository
+## Conexiones a lo largo del repositorio
 
-- **The JavaScript guide.** [JavaScript](../lenguajes/javascript.md) traces all three styles. This guide generalizes B22.
-- **Callbacks that the engine owns.** [Regex engines and sed](../lenguajes/motores-de-regex-y-sed.md) (PCRE2 callouts) and [tar](../lenguajes/tar.md) (checkpoints) are synchronous callbacks from a host, not an event loop.
-- **Triggers as reentrancy.** [Tcl](../lenguajes/tcl.md) uses a recursive trigger as a loop.
-- **Thread affinity.** [C#, LINQ, XAML and ports](../lenguajes/csharp-linq-xaml-y-adaptaciones.md) covers the dispatcher and the STA thread.
-- **Demand and state.** [Evaluation, demand and laziness](evaluacion-demanda-y-pereza.md) is the pull version of this question, and [State and control beyond variables](estado-y-control-mas-alla-de-las-variables.md) asks where each step is stored.
-- **In the book.** [Event-driven programming](../../informatica/10-eventos-retrollamadas-y-flujo-de-control-reactivo.md#event-driven-programming), [Callbacks](../../informatica/10-eventos-retrollamadas-y-flujo-de-control-reactivo.md#callbacks), [Publish and subscribe](../../informatica/10-eventos-retrollamadas-y-flujo-de-control-reactivo.md#publish-and-subscribe), [The event loop and scheduling turns](../../informatica/10-eventos-retrollamadas-y-flujo-de-control-reactivo.md#the-event-loop-and-scheduling-turns) and [Backpressure](../../informatica/10-eventos-retrollamadas-y-flujo-de-control-reactivo.md#backpressure).
+- **La guía de JavaScript.** [JavaScript](../lenguajes/javascript.md) traza los tres estilos. Esta guía generaliza B22.
+- **Funciones de devolución de llamada que posee el motor.** [Motores de expresiones regulares y sed](../lenguajes/motores-de-regex-y-sed.md) (callouts de PCRE2) y [tar](../lenguajes/tar.md) (puntos de control) son funciones de devolución de llamada síncronas de un anfitrión, no un bucle de eventos.
+- **Disparadores como reentrada.** [Tcl](../lenguajes/tcl.md) usa un disparador recursivo como bucle.
+- **Afinidad de hilo.** [C#, LINQ, XAML y adaptaciones](../lenguajes/csharp-linq-xaml-y-adaptaciones.md) trata el despachador de WPF y el hilo STA.
+- **Demanda y estado.** [Evaluación, demanda y pereza](evaluacion-demanda-y-pereza.md) es la versión por demanda de esta pregunta, y [Estado y control más allá de las variables](estado-y-control-mas-alla-de-las-variables.md) pregunta dónde se guarda cada paso.
+- **En el libro.** [Programación dirigida por eventos](../../informatica/10-eventos-retrollamadas-y-flujo-de-control-reactivo.md#event-driven-programming), [Funciones de devolución de llamada](../../informatica/10-eventos-retrollamadas-y-flujo-de-control-reactivo.md#callbacks), [Publicación y suscripción](../../informatica/10-eventos-retrollamadas-y-flujo-de-control-reactivo.md#publish-and-subscribe), [El bucle de eventos y los turnos de programación](../../informatica/10-eventos-retrollamadas-y-flujo-de-control-reactivo.md#the-event-loop-and-scheduling-turns) y [Contrapresión](../../informatica/10-eventos-retrollamadas-y-flujo-de-control-reactivo.md#backpressure).
 
-## Self-check
+## Autoevaluación
 
-Answer each question in your own words before you read the italic text. Say what evidence would support each answer.
+Responde cada pregunta con tus propias palabras antes de leer el texto en cursiva. Di qué evidencia respaldaría cada respuesta.
 
-1. **Trace.** In `javascript-events`, hours are 12, 14, 13, 11 (totals 12, 26, 39, 50). How many turns does the run take, and in which does `finished` run? *(Five turns: one for `start`, then one per card. `finished` runs in turn 5, nested inside `total-updated`, because the fourth card makes 50.)*
-2. **Explain.** What goes wrong if `total-updated` calls `events.emit('generate')` instead of `later('generate')`? *(Every card adds a few frames to the call stack, because each `emit` returns only after the whole rest of the run. A long run exceeds the stack limit and fails with `Maximum call stack size exceeded`.)*
-3. **Transfer.** In a language you use, what plays the part of `setImmediate`, the call that ends a stack and starts a new turn? *(For example `setTimeout(fn, 0)`, `queueMicrotask`, `asyncio.create_task`, a message posted to a dispatcher or a goroutine started with `go`.)*
-4. **Evidence.** A reviewer says, "The events program keeps a flat stack for any number of cards." Design a test that could fail. *(Wrap `emit` with a depth counter and run with a very large `limit`, as in B22, then assert the maximum depth. The negative control is the version with the boundary removed, whose depth grows with the number of cards.)*
+1. **Traza.** En `javascript-events`, las horas son 12, 14, 13, 11 (totales 12, 26, 39, 50). ¿Cuántos turnos dura la ejecución y en cuál se ejecuta `finished`? *(Cinco turnos: uno para `start` y luego uno por tarjeta. `finished` se ejecuta en el turno 5, anidado dentro de `total-updated`, porque la cuarta tarjeta hace 50.)*
+2. **Explica.** ¿Qué sale mal si `total-updated` llama a `events.emit('generate')` en lugar de `later('generate')`? *(Cada tarjeta añade unos pocos marcos a la pila de llamadas, porque cada `emit` regresa solo después de todo el resto de la ejecución. Una ejecución larga excede el límite de la pila y falla con `Maximum call stack size exceeded`.)*
+3. **Transfiere.** En un lenguaje que uses, ¿qué hace el papel de `setImmediate`, la llamada que termina una pila y empieza un turno nuevo? *(Por ejemplo `setTimeout(fn, 0)`, `queueMicrotask`, `asyncio.create_task`, un mensaje enviado a un despachador de WPF o una goroutine iniciada con `go`.)*
+4. **Evidencia.** Un revisor dice: "El programa de eventos mantiene una pila plana para cualquier número de tarjetas." Diseña una prueba que pueda fallar. *(Envuelve `emit` con un contador de profundidad y ejecuta con un `limit` muy grande, como en B22 y luego verifica la profundidad máxima. El control negativo es la versión con el límite quitado, cuya profundidad crece con el número de tarjetas.)*
 
-## Further reading
+## Lecturas adicionales
 
-- [Event loop](https://en.wikipedia.org/wiki/Event_loop) (Wikipedia): the idea behind turns.
-- [The Node.js event loop](https://nodejs.org/en/learn/asynchronous-work/event-loop-timers-and-nexttick) (Node.js): the runtime's own account of `setImmediate` and turns.
-- [Events](https://nodejs.org/api/events.html) (Node.js): the `EventEmitter` documentation, including synchronous `emit` and the special `error` event.
-- [Callback (computer programming)](https://en.wikipedia.org/wiki/Callback_(computer_programming)) (Wikipedia): the general idea.
-- [Back pressure](https://en.wikipedia.org/wiki/Back_pressure) (Wikipedia): why a push needs a brake.
+- [Bucle de eventos](https://en.wikipedia.org/wiki/Event_loop) (Wikipedia): la idea detrás de los turnos.
+- [El bucle de eventos de Node.js](https://nodejs.org/en/learn/asynchronous-work/event-loop-timers-and-nexttick) (Node.js): la explicación del propio entorno de ejecución sobre `setImmediate` y los turnos.
+- [Eventos](https://nodejs.org/api/events.html) (Node.js): la documentación de `EventEmitter`, que incluye `emit` síncrono y el evento especial `error`.
+- [Función de devolución de llamada (programación)](https://en.wikipedia.org/wiki/Callback_(computer_programming)) (Wikipedia): la idea general.
+- [Contrapresión](https://en.wikipedia.org/wiki/Back_pressure) (Wikipedia): por qué un push necesita un freno.
