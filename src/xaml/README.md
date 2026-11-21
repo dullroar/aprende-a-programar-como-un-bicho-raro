@@ -1,6 +1,6 @@
 ---
 name: "XAML"
-teaches: "that a markup parser can run a program while it describes a UI."
+teaches: "que un analizador sintáctico de marcado puede ejecutar un programa mientras describe una interfaz de usuario."
 kind: weird
 languages: [xaml, c-sharp]
 lesson: "lenguajes/csharp-linq-xaml.md#xaml"
@@ -8,26 +8,26 @@ loop-by: document-order
 evaluation: declarative
 assurance: accidentally-exploited
 pairs-with: ModernChallenge1
-machine: "An object-graph constructor that runs methods as it parses"
-state: "Document order, plus \"carrier\" arrays"
+machine: "Un constructor de grafos de objetos que ejecuta métodos durante el análisis sintáctico"
+state: "El orden del documento y los arreglos \"portadores\""
 tags: [arbitrary-code-execution, computation-versus-orchestration, declarative-programming, interpreter-and-virtual-machine, langsec, markup-language, parsing, reflection-and-metaprogramming, serialization-deserialization-pickling, side-effect, state, threat-model, weird-machine]
 counterexamples: [event-driven-programming]
 ---
-# XAML challenge: the program isn't even C# code
+# Reto de XAML: el programa ni siquiera es código C#
 
-**Teaches you:** that a markup parser can run a program while it describes a UI.
+**Te enseña:** que un analizador sintáctico de marcado puede ejecutar un programa mientras describe una interfaz de usuario.
 
-XAML is supposed to describe a user interface: a tree of objects, declared, not executed. This entry treats that promise as a dare. The C# in this folder is a single expression that hands a `.xaml` file to the XAML parser:
+Se supone que XAML describe una interfaz de usuario: un árbol de objetos que se declara sin ejecutarlo. Esta entrada toma esa promesa como un reto. El código C# de esta carpeta se reduce a una sola expresión. Esa expresión entrega un archivo `.xaml` al analizador sintáctico de XAML:
 
 ```csharp
 new Application().Run((Window)XamlReader.Load(File.OpenRead(args[0])));
 ```
 
-Every piece of behavior - the random draws, the arithmetic, the stop rule, the database writes, a background thread, the fade animation - lives inside the `.xaml` file, and all of it runs **while the file is being parsed**. There is no code-behind and no event handler anywhere in this folder.
+Todo el comportamiento reside en el archivo `.xaml`: los sorteos, la aritmética, la regla de parada, las escrituras en la base de datos, un hilo en segundo plano y el fundido. Todo se ejecuta **mientras se analiza el archivo**. En toda la carpeta no hay código subyacente ni manejadores de eventos.
 
-## Run it
+## Ejecútalo
 
-You need Windows and the .NET 10 SDK.
+Necesitas Windows y el SDK de .NET 10.
 
 ```powershell
 cd src\xaml
@@ -36,73 +36,73 @@ dotnet run -- sqlite.xaml     # talks to SQLite directly from XAML
 dotnet run -- efcore.xaml     # EF Core: TimeCards.Add and SaveChanges, from XAML
 ```
 
-Records land in `src\xaml\data`; delete that folder to start fresh (the stop rule counts rows already saved). The window says **DEMO ONLY**: nothing here touches a real time-reporting system.
+Los registros se guardan en `src\xaml\data`. Borra esa carpeta para empezar de cero (la regla de parada cuenta las filas ya guardadas). La ventana dice **DEMO ONLY**: nada aquí interactúa con un sistema real de registro de horas.
 
-![XAML demo window](../../docs/images/xaml-demo.png)
+![Ventana de demostración de XAML](../../docs/images/xaml-demo.png)
 
-## Program Flow
+## Flujo del programa
 
 ```mermaid
 sequenceDiagram
-    accTitle: xaml: parsing the file is running the program
-    accDescr: A sequence diagram of efcore.xaml. Loader.Main creates the data folder and calls XamlReader.Load. The XAML parser builds the nodes in document order, and each ObjectDataProvider fires as soon as it is built. Four unrolled passes each draw a random number into a carrier array, build a card from it, and insert it with EF Core. A SQL trigger deletes a row if the earlier rows already total more than 40. The parser returns the finished window. Application.Run then shows the window, a Loaded event trigger starts the fade storyboard, and the run ends when the window closes.
+    accTitle: xaml: el análisis sintáctico del archivo ejecuta el programa
+    accDescr: Diagrama de secuencia de efcore.xaml. Loader.Main crea la carpeta de datos y llama a XamlReader.Load. El analizador sintáctico de XAML crea los nodos en el orden del documento. Cada ObjectDataProvider se activa en cuanto se crea. En cada una de las cuatro pasadas desenrolladas, se sortea un número y se guarda en un arreglo portador. Con ese número se crea una tarjeta que EF Core inserta. Un disparador SQL borra la fila si el total de las filas anteriores pasa de 40. El analizador devuelve la ventana terminada. Application.Run muestra la ventana y un disparador del evento Loaded inicia la secuencia de animación del fundido. La ejecución termina cuando se cierra la ventana.
     participant L as Loader.Main
-    participant P as XAML parser
-    participant O as ObjectDataProvider nodes
-    participant D as SQLite and its trigger
-    participant W as Window and dispatcher
-    L->>P: XamlReader.Load(file)
-    loop four copies, in document order
-        P->>O: build the next provider node: it fires at once
-        O->>D: random hours, via a carrier array, then Add and SaveChanges
-        D-->>D: trigger deletes the row if earlier rows total over 40
+    participant P as Analizador sintáctico de XAML
+    participant O as Nodos ObjectDataProvider
+    participant D as SQLite y su disparador
+    participant W as Ventana y despachador de WPF
+    L->>P: Carga el archivo: XamlReader.Load(file)
+    loop Cuatro copias en el orden del documento
+        P->>O: El siguiente nodo proveedor se activa al crearse
+        O->>D: Horas al azar vía arreglo portador y luego Add y SaveChanges
+        D-->>D: Borra la fila si el total anterior pasa de 40
     end
-    P-->>L: the finished Window object
-    L->>W: Application.Run(window)
-    W-->>W: Loaded event trigger starts the fade storyboard
-    W-->>L: the window closes and Run returns
+    P-->>L: Objeto Window terminado
+    L->>W: Llama a Application.Run(window)
+    W-->>W: El evento Loaded dispara el fundido
+    W-->>L: Se cierra la ventana y Run retorna
 ```
 
-**What this shows:** there is no loop and no stop rule in the markup's control flow. The parser walks the document once, from top to bottom, and each provider does its work at the moment it is built. The four passes are four copies, and the 40-hour limit is a trigger inside SQLite, which removes a row that comes too late.
+**Qué muestra:** no hay bucle ni regla de parada en el flujo de control del marcado. El analizador sintáctico recorre el documento una sola vez, de arriba abajo. Cada proveedor hace su trabajo en cuanto se crea. Cada una de las cuatro pasadas es una copia. El límite de 40 horas lo aplica un disparador de SQLite que elimina las filas que llegan demasiado tarde.
 
-**Why this mechanism matters:** the program counter is document order. The only event in the picture is the `Loaded` trigger, and it only starts an animation. The program's logic does not subscribe to anything. This is a parser used as an interpreter, not event-driven code. Shown here is `efcore.xaml`; `strict.xaml` and `sqlite.xaml` share the shape.
+**Por qué importa este mecanismo:** el orden del documento hace de contador de programa, es decir, indica qué se ejecuta a continuación. El único evento en el diagrama es el que activa el disparador `Loaded`. Este solo inicia una animación. La lógica del programa no se suscribe a nada. Aquí el analizador sintáctico hace de intérprete y el código no responde a eventos. El diagrama muestra `efcore.xaml`. `strict.xaml` y `sqlite.xaml` tienen la misma estructura.
 
-## How the stunt works
+## Cómo funciona el truco
 
-A markup language has no `for`, no `if`, and no assignment - in theory. In practice, WPF's XAML parser ships with a few features that, combined, add up to a small interpreter:
+En teoría, un lenguaje de marcado no tiene `for`, `if` ni asignación. En la práctica, el analizador sintáctico de XAML de WPF trae algunas funciones que juntas forman un pequeño intérprete:
 
-- **`XamlReader.Load` is the interpreter.** The `.xaml` file is the program; parsing it *is* running it.
-- **`ObjectDataProvider` is the instruction.** It can construct any object and call any method, and it fires the moment it is parsed. Document order becomes the program counter.
-- **`Refresh` is the goto.** One provider can rerun another one. The call is passed through an `x:Array` so that XAML does not try to unwrap it first.
-- **"Carrier" arrays are the variables.** One `ObjectDataProvider` call fills a `char[]` or `byte[]` in place; the next one reads it back. That is how a random number travels from `Random.Next` into a SQL parameter, an XML element, or an EF Core entity.
-- **Expression engines are the ALU.** `DataTable.Compute("Sum(h)")`, `DataView.RowFilter`, and SQL itself do the arithmetic and the conditionals. A SQL string inside a XAML attribute is still XAML.
-- **A `Thread` is built entirely in markup**, using `Delegate.CreateDelegate`, then started and joined - all as `ObjectDataProvider` calls. The window's fade is an ordinary WPF `Storyboard`.
+- **`XamlReader.Load` es el intérprete.** El archivo `.xaml` es el programa. Su análisis sintáctico *es* su ejecución.
+- **`ObjectDataProvider` es la instrucción.** Puede construir cualquier objeto y llamar a cualquier método. Se activa en cuanto el analizador lo procesa. El orden del documento se convierte en el contador de programa.
+- **`Refresh` hace de goto.** Un proveedor puede volver a ejecutar otro. La llamada pasa por un `x:Array` para que XAML no intente desenvolverla primero.
+- **Los arreglos "portadores" son las variables.** Una llamada a `ObjectDataProvider` llena un `char[]` o un `byte[]` in situ, directamente en el mismo arreglo. La siguiente llamada lee el arreglo. Así viaja un número aleatorio desde `Random.Next` a un parámetro SQL, un elemento XML o una entidad de EF Core.
+- **Los motores de expresiones hacen de ALU, la unidad aritmética y lógica.** `DataTable.Compute("Sum(h)")`, `DataView.RowFilter` y el propio SQL se encargan de la aritmética y las condiciones. Una cadena de texto SQL dentro de un atributo XAML sigue siendo XAML.
+- **El marcado por sí solo crea un `Thread`**, con `Delegate.CreateDelegate`. Luego se inicia y se espera a que termine. Todo se hace con llamadas a `ObjectDataProvider`. El fundido de la ventana usa un `Storyboard` normal de WPF.
 
-## Gotchas worth knowing
+## Trampas que conviene conocer
 
-Obfuscation is not the same as lying, so here is what the trick actually costs:
+Ofuscar no es lo mismo que mentir. Este es el costo real del truco:
 
-- **The loop is unrolled, not looped.** There is no loop construct anywhere in these files - only four copy-pasted passes. "Four categories" is baked into the markup, not computed.
-- **At most four cards, so "exactly 40 continues" is out of reach here.** Every other entry that cycles or repeats its categories deals a fifth card when four cards total exactly 40. This one has four passes and no fifth, so a hypothetical run of four 10-hour cards would stop at 40. The files seed `Random(42)`, whose first four hours are 16, 11, 11 and 15 (total 53, so the fourth card crosses and the trigger keeps it), so the shipped files always deal exactly four cards and never meet the case. A different seed (exercise E2) could. A fifth pass is not hard to write, but it could not be tested here, because the entry needs Windows and WPF, so it has not been added.
-- **Conditional *effects* come from the expression engines**, not from WPF's `Trigger`/`DataTrigger` system. `DataTable.Compute` and SQL branch on data; XAML triggers are not used for program logic here.
-- **Three files, three flavors of the same program.** `strict.xaml` uses nothing outside .NET itself, so it saves XML rather than a database. `sqlite.xaml` adds the SQLite package. `efcore.xaml` adds EF Core, through two small model classes copied from the [C# original](../ModernChallenge1/README.md).
+- **El bucle se desenrolla en vez de repetirse.** En estos archivos no hay ninguna estructura de bucle. Solo hay cuatro pasadas copiadas y pegadas. Las "cuatro categorías" están escritas en el marcado y no se calculan.
+- **Hay como máximo cuatro tarjetas, así que aquí no se cumple la regla "un total de exactamente 40 continúa".** Las otras entradas que repiten las categorías en ciclo o por duplicación sacan una quinta tarjeta cuando cuatro suman exactamente 40. Esta tiene cuatro pasadas y ninguna quinta. Por eso, una ejecución hipotética de cuatro tarjetas de 10 horas se detendría en 40. Los archivos fijan la semilla de `Random(42)`. Los cuatro primeros sorteos dan 16, 11, 11 y 15 horas (total de 53, así que con la cuarta tarjeta el total pasa del tope y el disparador la conserva). Los archivos incluidos siempre sacan exactamente cuatro tarjetas y nunca se topan con el caso. Con otra semilla (ejercicio E2) podría ocurrir. Es fácil escribir una quinta pasada. Aquí no se pudo probar porque la entrada requiere Windows y WPF, así que no se agregó.
+- **Los *efectos* condicionales provienen de los motores de expresiones** y no del sistema `Trigger`/`DataTrigger` de WPF. `DataTable.Compute` y SQL eligen una rama según los datos. Aquí la lógica del programa no usa disparadores de XAML.
+- **Tres archivos, tres sabores del mismo programa.** `strict.xaml` solo usa .NET, así que guarda XML en vez de usar una base de datos. `sqlite.xaml` agrega el paquete de SQLite. `efcore.xaml` agrega EF Core con dos clases de modelo pequeñas, copiadas del [original en C#](../ModernChallenge1/README.md).
 
-## Why this is weird
+## Por qué es raro
 
-XAML's job is to *describe* a UI tree, declaratively, so a designer tool can read and write it without running any code. This entry shows what happens once you notice the parser does not actually enforce that: given the right combination of built-in types, parsing a file and running a program become the same act. It is not a technique to reuse - it is what happens when you take "XAML is just data" at its word and then push until it stops being true.
+El trabajo de XAML es *describir* un árbol de interfaz de forma declarativa. Así, una herramienta de diseño puede leerlo y escribirlo sin ejecutar código. Esta entrada muestra qué pasa al descubrir que el analizador sintáctico no impone esa restricción. Con la combinación adecuada de tipos incorporados, el análisis sintáctico de un archivo y la ejecución de un programa se vuelven el mismo acto. La técnica no es para reutilizarla. Es lo que ocurre si tomas al pie de la letra "XAML es solo datos" e insistes hasta que deja de ser cierto.
 
-The idea is older than this repo. A [2013 blog post](../../docs/graficos-de-barras-apiladas.md) did the same thing on ASP.NET Web Forms: it built a stacked bar chart with no code-behind, just a SQL `PIVOT` and markup. That post is where the XAML entry came from. Microsoft never gives up on an idea.
+La idea es anterior a este repositorio. Una [entrada de blog de 2013](../../docs/graficos-de-barras-apiladas.md) hizo lo mismo con ASP.NET Web Forms. Creó un gráfico de barras apiladas sin código subyacente, solo con un `PIVOT` de SQL y marcado. De ahí salió la entrada de XAML. Microsoft jamás deja escapar una idea.
 
 ---
 
-See the [root README](../../README.md) for how this compares to the other entries, and [`RETO.md`](../../RETO.md) if you want to write your own.
+Consulta el [README de la raíz del repositorio](../../README.md) para comparar esta entrada con las demás. Si quieres escribir la tuya, consulta [`RETO.md`](../../RETO.md).
 
-## Run it in Windows Sandbox
+## Ejecútalo en Windows Sandbox
 
-Prerequisites: Windows Sandbox and this entry's toolchain on your machine, set up once as described in [`SANDBOX-SETUP.md`](../../SANDBOX-SETUP.md#windows-sandbox).
+Requisitos previos: Windows Sandbox, un entorno aislado (*sandbox*) que limita el acceso al sistema anfitrión. También necesitas las herramientas de esta entrada en tu máquina. Configura ambos una vez según [`SANDBOX-SETUP.md`](../../SANDBOX-SETUP.md#windows-sandbox).
 
 ```powershell
 sandbox\windows\run.ps1 src\xaml -RunArgs strict.xaml
 ```
 
-It runs the entry in a throwaway VM with networking off, screenshots the window, asks it to close, and prints what it saved.
+Ejecuta la entrada en una máquina virtual desechable con la red desactivada. Toma una captura de la ventana, le pide que se cierre e imprime lo que guardó.

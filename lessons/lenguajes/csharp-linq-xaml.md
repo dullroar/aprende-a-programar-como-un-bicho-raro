@@ -318,7 +318,7 @@ flowchart TD
 
 ### Program flow of `xaml`
 
-From [`xaml`](../../src/xaml/README.md) ([source section](../../src/xaml/README.md#program-flow)).
+From [`xaml`](../../src/xaml/README.md) ([source section](../../src/xaml/README.md#flujo-del-programa)).
 
 ```mermaid
 sequenceDiagram

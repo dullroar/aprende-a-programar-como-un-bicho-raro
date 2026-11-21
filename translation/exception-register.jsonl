@@ -201,3 +201,15 @@
 {"id":"EXC-201","segment":"s-b497919550ab-0014","invariant":"I7","reason":"English builds is a verb about creating a Docker image. Construye la imagen names the action without implying that the script compiles the image.","task":"P4-src-14"}
 {"id":"EXC-202","segment":"s-bb486cd37afa-0056","invariant":"I7","reason":"Registro means an archive record, distinct from the book entrada. Builds means creating tar archives for a test; no compilation takes place.","task":"P4-src-14"}
 {"id":"EXC-203","segment":"s-8ea5906e2da3-0074","invariant":"I7","reason":"Flags is a reporting verb. The inspector señala archive members; it does not set a bandera.","task":"P4-src-14"}
+{"id":"EXC-204","segment":"s-6d2738b50dec-0046","invariant":"I7","reason":"Build means constructing a runtime window with SELECT, so use 'arma', not 'compilación'.","task":"P4-src-15"}
+{"id":"EXC-205","segment":"s-89bc97920d5a-0076","invariant":"I7","reason":"Build refers to creating the container image from the Dockerfile, not compiling the program.","task":"P4-src-15"}
+{"id":"EXC-206","segment":"s-9d607f026b88-0016","invariant":"I7","reason":"Build means creating the runtime Tk window, not compilation.","task":"P4-src-15"}
+{"id":"EXC-207","segment":"s-5698d43a065f-0023","invariant":"I7","reason":"Build means creating the runtime treeview, not compilation.","task":"P4-src-15"}
+{"id":"EXC-208","segment":"s-a2c44e4e627b-0028","invariant":"I3","reason":"English '2,000' and Spanish '2000' are the same count. The lint tokenizes the English thousands separator as two numbers.","task":"P4-src-15"}
+{"id":"EXC-209","segment":"s-613a64e55a52-0048","invariant":"I3","reason":"English '2,000' and Spanish '2000' are the same count. The lint tokenizes the English thousands separator as two numbers.","task":"P4-src-15"}
+{"id":"EXC-210","segment":"s-e4cc70952bcb-0051","invariant":"I7","reason":"Build refers to creating the container image from the Dockerfile, not compiling the program.","task":"P4-src-15"}
+{"id":"EXC-211","segment":"s-0e33c599399a-0011","invariant":"I10","reason":"The exclamation mark belongs to Markdown image syntax ![...], not a Spanish exclamation.","task":"P4-src-15"}
+{"id":"EXC-212","segment":"s-81a18e88482a-0014","invariant":"I7","reason":"Build here means creating object nodes and a card during runtime, not compilation.","task":"P4-src-15"}
+{"id":"EXC-213","segment":"s-30f7006fdea5-0022","invariant":"I7","reason":"Build here means creating the next provider node during parsing, not compilation.","task":"P4-src-15"}
+{"id":"EXC-214","segment":"s-b41c50ab7de6-0049","invariant":"I7","reason":"Windows Sandbox is a product name in this heading. The first prose occurrence carries the approved gloss.","task":"P4-src-15"}
+{"id":"EXC-215","segment":"s-a2c44e4e627b-0028","invariant":"I7","reason":"Build means creating a ttk::treeview at runtime, not compilation.","task":"P4-src-15"}

@@ -1,6 +1,6 @@
 ---
 name: "Tcl"
-teaches: "that Tcl code is just strings, so it can live in a database and be fetched, defined and run on demand, with SQLite triggers as the control flow."
+teaches: "que el código Tcl se compone solo de cadenas de texto. Por eso puede residir en una base de datos, recuperarse, definirse y ejecutarse bajo demanda. Los disparadores de SQLite determinan el flujo de control."
 kind: weird
 languages: [tcl, sqlite]
 lesson: "lenguajes/tcl.md#sqlite-as-the-program"
@@ -8,24 +8,24 @@ loop-by: dispatch-and-triggers
 evaluation: eager
 assurance: implementation-permitted
 pairs-with: tcl
-machine: "A string-command interpreter whose command lookup can be hooked"
-state: "A TEMP table of proc source, and the depth of trigger recursion"
+machine: "Un intérprete de comandos en forma de cadenas de texto que permite interceptar la búsqueda de comandos"
+state: "Una tabla TEMP con el código fuente de los procedimientos y la profundidad de la recursión de los disparadores"
 tags: [arbitrary-code-execution, callback, control-flow, database-trigger, homoiconicity, interpreter-and-virtual-machine, recursion, reflection-and-metaprogramming, scope-and-binding, serialization-deserialization-pickling, state]
 analogies: [publish-subscribe]
 ---
-# Tcl, weirder
+# Tcl, todavía más raro
 
-**Teaches you:** that Tcl code is just strings, so it can live in a database and be fetched, defined and run on demand, with SQLite triggers as the control flow.
+**Te enseña:** que el código Tcl se compone solo de cadenas de texto. Por eso puede residir en una base de datos, recuperarse, definirse y ejecutarse bajo demanda. Los disparadores de SQLite determinan el flujo de control.
 
-> **DEMO ONLY.** Fictional timecards in a scratch SQLite file. No connection to any real time-reporting system.
+> **DEMO ONLY.** Tarjetas de horas ficticias en un archivo temporal de SQLite. Sin conexión con ningún sistema real de registro de horas.
 
-[`timecards.tcl`](timecards.tcl) defines **no Tcl loop and no Tcl proc that deals or prints a card**. The program is rows in a SQLite table. One `INSERT` of card 1 brings it to life: a **recursive trigger** inserts the next card until the total is over 40, and each insert calls Tcl procs that exist only as TEXT in a table, pulled into the interpreter on demand by an overridden `unknown`. With `--gui`, even the window is a handful of rows.
+[`timecards.tcl`](timecards.tcl) **no define ningún bucle en Tcl ni ningún procedimiento de Tcl que saque o imprima una tarjeta**. El programa está en las filas de una tabla de SQLite. Basta un `INSERT` de la tarjeta 1 para ponerlo en marcha. Un **disparador recursivo** inserta la siguiente tarjeta mientras el total no pasa de 40. Cada inserción llama a procedimientos de Tcl que solo existen como TEXT en una tabla. Una versión redefinida de `unknown` los carga en el intérprete bajo demanda. Con `--gui`, hasta la ventana se reduce a unas cuantas filas.
 
-The straight version is [`tcl`](../tcl/README.md).
+La versión convencional está en [`tcl`](../tcl/README.md).
 
-## Run it
+## Ejecútalo
 
-You need Tcl 8.6 (`tclsh`) with the `sqlite3` Tcl package (Ubuntu: `tcl8.6`, `libsqlite3-tcl`), and `tk8.6` for `--gui`.
+Necesitas Tcl 8.6 (`tclsh`) con el paquete Tcl `sqlite3` (Ubuntu: `tcl8.6`, `libsqlite3-tcl`). Para `--gui` necesitas `tk8.6`.
 
 ```bash
 cd src/tcl-weird
@@ -34,7 +34,7 @@ tclsh timecards.tcl --gui --seconds 3      # also a window, built from rows; clo
 ./check.sh                                 # set TCLSH=/path/to/tclsh if it is not on your PATH
 ```
 
-Records go to `$XDG_DATA_HOME/TclWeird/demo-timecards.db` (default `~/.local/share/TclWeird/`). A run looks like this:
+Los registros se guardan en `$XDG_DATA_HOME/TclWeird/demo-timecards.db` (`~/.local/share/TclWeird/` de forma predeterminada). Una ejecución se ve así:
 
 ```text
 # DEMO ONLY run 1794860980-15
@@ -47,50 +47,50 @@ Debugging	17	45	2026-W47	DEMO ONLY
 # the window was built from 8 rows of the ui table
 ```
 
-The `unknown:` line is real introspection: the `unknown` handler records each name it defines, and the list is printed at the end. The last line appears only with `--gui`. **Headless:** Tk needs an X display; `xvfb-run -a tclsh timecards.tcl --gui --seconds 1` works, and the container image below runs on Xvfb and screenshots the window.
+La línea `unknown:` muestra introspección real: el programa examina su propio funcionamiento. El manejador `unknown` registra cada nombre que define. Al final se imprime la lista. La última línea solo aparece con `--gui`. **Sin pantalla:** Tk necesita una pantalla X. `xvfb-run -a tclsh timecards.tcl --gui --seconds 1` funciona y la imagen de contenedor de abajo se ejecuta en Xvfb y toma una captura de la ventana.
 
-## Program Flow
+## Flujo del programa
 
 ```mermaid
 sequenceDiagram
-    accTitle: tcl-weird: a recursive SQLite trigger calls Tcl procs that are fetched from a table
-    accDescr: A sequence diagram. The Tcl host installs three hooks and inserts the first card. Each insert fires a trigger in SQLite. The trigger calls the SQL function tcl, which calls back into Tcl. The first time the Tcl side asks for a command such as born, the command does not exist, so Tcl calls unknown. The unknown handler reads the proc's text from the tcl_code table, defines the proc and retries the call. The call prints the row. The trigger then inserts the next card, but only while the total of the card just inserted is 40 or less. That insert fires the trigger again. When the total is over 40, nothing is inserted, and control returns to the host, which prints the summary.
-    participant H as Tcl host
-    participant D as SQLite and the next_card trigger
-    participant U as unknown handler
-    participant T as tcl_code table
-    H->>D: INSERT the first card
-    loop each INSERT fires the trigger, while the total is 40 or less
-        D->>H: SQL function tcl calls the Tcl command born
-        H->>U: born does not exist yet, so Tcl calls unknown
-        U->>T: look up the proc's params and body
-        T-->>U: the text of the proc
-        U->>H: define the proc, retry the call
-        H-->>D: the row is printed
-        D->>D: INSERT the next card: the trigger fires again
+    accTitle: tcl-weird: un disparador recursivo de SQLite llama a procedimientos Tcl recuperados de una tabla
+    accDescr: Diagrama de secuencia. El anfitrión Tcl instala tres interceptores e inserta la primera tarjeta. Cada inserción activa un disparador en SQLite. El disparador llama a la función SQL tcl, que a su vez llama a Tcl. Cuando Tcl pide por primera vez un comando como born, este no existe y Tcl llama a unknown. El manejador unknown lee el texto del procedimiento en la tabla tcl_code. Define el procedimiento y repite la llamada. La llamada imprime la fila. El disparador inserta la siguiente tarjeta solo mientras el total de la tarjeta recién insertada sea de 40 o menos. Esa inserción vuelve a activar el disparador. Si el total pasa de 40, no se inserta nada. El control vuelve al anfitrión, que imprime el resumen.
+    participant H as Anfitrión Tcl
+    participant D as SQLite y el disparador next_card
+    participant U as Manejador unknown
+    participant T as Tabla tcl_code
+    H->>D: INSERT de la primera tarjeta
+    loop Cada INSERT activa el disparador mientras el total es de 40 o menos
+        D->>H: La función SQL tcl llama al comando Tcl born
+        H->>U: born aún no existe: Tcl llama a unknown
+        U->>T: Busca los parámetros y el cuerpo
+        T-->>U: Texto del procedimiento
+        U->>H: Define el procedimiento y repite la llamada
+        H-->>D: Se imprime la fila
+        D->>D: INSERT de la siguiente tarjeta: se repite el disparo
     end
-    D-->>H: total is over 40, no insert: the trigger chain ends
-    H->>H: print the summary
+    D-->>H: El total pasa de 40: cesan las inserciones y los disparos
+    H->>H: Imprime el resumen
 ```
 
-**What this shows:** the loop is a trigger that inserts a row and so fires itself, and every number and printed line comes from Tcl code stored as text in a table. The first call of a proc takes the long way, through `unknown` and the table, and later calls find the proc defined.
+**Qué muestra:** el bucle es un disparador que inserta una fila y así vuelve a activarse. Cada número y cada línea impresa provienen de código Tcl guardado como texto en una tabla. La primera llamada a un procedimiento da un rodeo por `unknown` y la tabla. Las demás ya encuentran el procedimiento definido.
 
-**Why this mechanism matters:** the database is dispatching, but it is not an event queue. The trigger runs synchronously inside the `INSERT`, and the recursion is the loop. The `WHERE` on the trigger's insert is the stop rule. Control moves between three layers (Tcl, SQL, Tcl) on one call stack.
+**Por qué importa este mecanismo:** la base de datos dirige las llamadas, pero no es una cola de eventos. El disparador se ejecuta de forma síncrona dentro de `INSERT`. La recursión hace de bucle. El `WHERE` de la inserción del disparador es la regla de parada. El control pasa por tres capas (Tcl, SQL, Tcl) en una sola pila de llamadas.
 
-## How the stunt works
+## Cómo funciona el truco
 
-Three hooks, then a program written in SQL.
+Tres interceptores y luego un programa escrito en SQL.
 
-### Hook 1: SQL that can call Tcl
+### Interceptor 1: SQL puede llamar a Tcl
 
 ```tcl
 proc call {command args} { $command {*}$args }
 db function tcl call
 ```
 
-`db function name script` registers a Tcl command as an **SQL function**. From now on any SQL, including SQL inside a trigger, can say `tcl('hours')` or `tcl('category', 3)`, and SQLite calls back into the interpreter: `call hours`, `call category 3`. `{*}$args` is Tcl's "expand this list into separate words".
+`db function name script` registra un comando Tcl como **función SQL**. A partir de ahí, cualquier código SQL, incluso el de un disparador, puede usar `tcl('hours')` o `tcl('category', 3)`. SQLite vuelve al intérprete y llama a `call hours` o `call category 3`, respectivamente. En Tcl, `{*}$args` significa "expande esta lista en palabras separadas".
 
-### Hook 2: the database is the library path
+### Interceptor 2: la base de datos sirve de ruta de búsqueda de bibliotecas
 
 ```tcl
 rename unknown _unknown
@@ -105,9 +105,9 @@ proc unknown {name args} {
 }
 ```
 
-When Tcl is asked to run a command that does not exist, it calls a command named `unknown`, which is how `auto_load` and abbreviation of commands in the interactive shell work. This one is replaced: it looks the name up in the `tcl_code` table, creates the proc with `proc $name $params $body`, using the row's text as the body, and **retries the call**. The proc exists from then on; the next call does not touch the database. Anything not in the table is passed to the original handler, so real typos still fail properly.
+Si le pides a Tcl que ejecute un comando que no existe, llama a un comando llamado `unknown`. Así funcionan `auto_load` y las abreviaturas de comandos en el intérprete de comandos interactivo (*shell*). Esta versión lo sustituye: busca el nombre en la tabla `tcl_code` y crea el procedimiento con `proc $name $params $body`. Usa el texto de la fila como cuerpo y **repite la llamada**. A partir de ahí, el procedimiento ya existe. La siguiente llamada no toca la base de datos. Todo lo que no aparece en la tabla pasa al manejador original. Así, los errores de escritura siguen produciendo el fallo esperado.
 
-### Hook 3: the program is a TEMP table and a TEMP trigger
+### Interceptor 3: el programa es una tabla TEMP y un disparador TEMP
 
 ```sql
 CREATE TEMP TABLE tcl_code(name TEXT PRIMARY KEY, params TEXT, body TEXT);
@@ -117,9 +117,9 @@ INSERT INTO tcl_code VALUES
     ('born', 'category hours total week', 'puts [join [list $category ...] \t] ...'), ...
 ```
 
-Tcl code *is* text, so it fits in a column. (`TEMP` tables and triggers belong to the connection and vanish when it closes, so the file on disk contains only the timecards; `check.sh` verifies that.) The program is three languages deep in one file: Tcl, around SQL, around Tcl. Braces nest, and Tcl substitutes nothing inside them, so the text arrives intact.
+El código Tcl *es* texto, así que cabe en una columna. (Las tablas y los disparadores `TEMP` pertenecen a la conexión y desaparecen al cerrarla. Por eso el archivo en disco solo contiene las tarjetas de horas. `check.sh` lo verifica). El programa anida tres capas de lenguaje en un archivo: Tcl contiene SQL, que a su vez contiene Tcl. Las llaves se anidan y Tcl no sustituye nada dentro de ellas. Así llega intacto el texto.
 
-### The loop is a trigger
+### El bucle es un disparador
 
 ```sql
 CREATE TEMP TRIGGER next_card AFTER INSERT ON main.demo_timecards
@@ -134,9 +134,9 @@ BEGIN
 END;
 ```
 
-When a row is inserted, the trigger fires. It first calls `born` (print the row and, if there is a window, add a table row), then draws the next card's hours into a one-row TEMP table, `draw`, and inserts the next card **if the total is 40 or less**: that `WHERE` is the stop rule. The hours go through `draw` because they are used twice, as the hours and in the running total, and a table row holds one value no matter how often SQLite evaluates a function. That insert fires the same trigger again, which is allowed because of `PRAGMA recursive_triggers = ON`; without it SQLite refuses to let a trigger trigger itself. The recursion depth *is* the number of cards.
+El disparador se activa al insertar una fila. Primero llama a `born` (imprime la fila y, si hay ventana, agrega una fila a la tabla). Luego sortea las horas de la siguiente tarjeta y las guarda en `draw`, una tabla TEMP de una fila. Inserta la siguiente tarjeta **si el total es de 40 o menos**: ese `WHERE` es la regla de parada. Las horas pasan por `draw` porque se usan dos veces, como horas y en el total acumulado. Una fila guarda un solo valor por más veces que SQLite evalúe una función. La inserción vuelve a activar el mismo disparador. `PRAGMA recursive_triggers = ON` lo permite. Sin esa opción, SQLite impide que un disparador se active a sí mismo. La profundidad de la recursión *es* el número de tarjetas.
 
-### The one statement
+### Una sola sentencia
 
 ```tcl
 db eval {SELECT tcl('init')}                       ;# seeds rand()
@@ -150,9 +150,9 @@ db transaction {
 }
 ```
 
-That is the whole of the running program: insert card 1. Everything after is the trigger calling Tcl and Tcl, on demand, being loaded from the table that the trigger is looking at.
+Eso es todo lo que ejecuta el programa: insertar la tarjeta 1. Después, el disparador llama a Tcl y los procedimientos Tcl se cargan bajo demanda desde la tabla que consulta el disparador.
 
-### `--gui`: widgets as rows
+### `--gui`: controles de interfaz en filas
 
 ```sql
 CREATE TEMP TABLE ui(id INTEGER PRIMARY KEY, command TEXT);
@@ -161,54 +161,54 @@ INSERT INTO ui(command) VALUES
     ('.cards heading category -text Category'), ... ('pack .cards ...'), ('ttk::label .note -textvariable ::summary'), ...
 ```
 
-`SELECT tcl('uplevel', '#0', command) FROM ui ORDER BY id` runs each row at the global level: one SELECT builds the window. When `born` runs it checks `info commands .cards`, and if the widget exists, it inserts a row into it, so the table fills in as the trigger fires; `update` repaints and `after 400` slows it enough to watch.
+`SELECT tcl('uplevel', '#0', command) FROM ui ORDER BY id` ejecuta cada fila en el ámbito global. Un solo SELECT arma la ventana. Cuando se ejecuta `born`, comprueba `info commands .cards`. Si el control existe, inserta una fila en él y la tabla se llena cada vez que se activa el disparador. `update` redibuja la ventana y `after 400` reduce el ritmo lo suficiente para verlo.
 
-## Why this is weird
+## Por qué es raro
 
-Tcl's basic claim is "everything is a string", and this program takes it literally: the procedures are strings in a table, the loop is a feature of the database, and the interpreter's own missing-command hook is the loader. The SQL calls Tcl, and Tcl calls the SQL, and *which* of them is "the program" depends on where you stand. A Tcl programmer will recognize `unknown` and `uplevel`; very few will have seen them used as a database-backed autoloader. A SQL programmer will recognize a recursive trigger and be surprised that it is the only loop.
+La afirmación de partida de Tcl es que "todo es una cadena de texto". Este programa la toma al pie de la letra. Los procedimientos son cadenas de texto en una tabla y el bucle es una función de la base de datos. El propio mecanismo del intérprete para comandos inexistentes hace de cargador. SQL llama a Tcl y Tcl llama a SQL. *Cuál* de los dos es "el programa" depende de dónde te pares. Quien programe en Tcl reconocerá `unknown` y `uplevel`. Muy pocos los habrán visto funcionar como cargador automático desde una base de datos. Quien programe en SQL reconocerá un disparador recursivo y se sorprenderá de que sea el único bucle.
 
-Why you might get fired: the control flow of a program is hidden in a trigger and a pragma, procedures cannot be found with grep or a debugger's source view, `unknown` hooks make typos in other people's code confusing, and the first time someone runs this against a *shared* database, every insert fires interpreter calls. Do not store code in a data table that other people can write to.
+Por qué podrían despedirte: el flujo de control de un programa queda oculto en un disparador y un pragma. Ni grep ni la vista del código fuente de un depurador encuentran los procedimientos. Los interceptores de `unknown` vuelven confusos los errores de escritura en el código ajeno. En cuanto alguien ejecute esto contra una base de datos *compartida*, cada inserción hará llamadas al intérprete. No guardes código en una tabla de datos donde otras personas puedan escribir.
 
-## What you can learn
+## Qué puedes aprender
 
-- `unknown` and how Tcl autoloading actually works; `rename`, `tailcall`, and `uplevel` for transparent wrappers.
-- `proc` as a *runtime* operation: a proc is created by calling a command with a string body.
-- `{*}` expansion, `uplevel #0`, and `info commands` as a feature test.
-- The `sqlite3` package's `db function`, which exposes any Tcl command to SQL.
-- Recursive triggers (`PRAGMA recursive_triggers`), `TEMP` triggers and tables, and that a trigger body may contain a `SELECT` (its result is discarded, but its function calls still run).
-- That `$name` inside a SQL string literal inside Tcl braces is just text. The bound-variable rule only applies to the SQL itself, which is why code with `$n` in it can be stored.
+- `unknown` y cómo funciona realmente la carga automática en Tcl. `rename`, `tailcall` y `uplevel` permiten envolver comandos de forma transparente.
+- `proc` como operación *en tiempo de ejecución*: una llamada a un comando crea un procedimiento cuyo cuerpo es una cadena de texto.
+- La expansión `{*}`, `uplevel #0` y el uso de `info commands` para comprobar si una función está disponible.
+- `db function` del paquete `sqlite3`, que expone cualquier comando Tcl a SQL.
+- Los disparadores recursivos (`PRAGMA recursive_triggers`) y los disparadores y tablas `TEMP`. El cuerpo de un disparador puede contener un `SELECT`. SQLite descarta el resultado, pero ejecuta las llamadas a funciones.
+- `$name` es solo texto cuando aparece en un literal de cadena de texto de SQL dentro de llaves de Tcl. La regla de variables enlazadas solo rige en el propio SQL. Por eso se puede guardar código que contenga `$n`.
 
-## Proof that the mechanisms do the work
+## Prueba de que los mecanismos hacen el trabajo
 
-`check.sh` demonstrates it by editing copies of the file:
+`check.sh` lo demuestra al editar copias del archivo:
 
-- **Recursion.** Change `PRAGMA recursive_triggers = ON` to `OFF` and exactly one card is announced, not the three to five: the trigger fires for card 1 only.
-- **Code in the table.** Replace the text of the `hours` row with `expr {19}` and every run prints three cards of 19 hours: the hours come from the row, not from anywhere in the Tcl.
-- **Autoloading.** The run reports `born category hours init runid week` as fetched by `unknown`, and a static check shows only two procs (`call` and `unknown`) are defined in Tcl at all.
-- **No loop command.** With comments removed, none of `while`, `for`, `foreach`, `lmap`, `dict for` appears in the file.
-- **Nothing left behind.** After a run the file's `sqlite_master` lists only `demo_timecards`.
+- **Recursión.** Cambia `PRAGMA recursive_triggers = ON` por `OFF` y se anuncia exactamente una tarjeta en vez de entre tres y cinco. El disparador solo se activa para la tarjeta 1.
+- **Código en la tabla.** Sustituye por `expr {19}` el texto de la fila `hours`. Cada ejecución imprime tres tarjetas de 19 horas: las horas salen de la fila y de ninguna parte del código Tcl.
+- **Carga automática.** La ejecución informa que `unknown` recuperó `born category hours init runid week`. Una comprobación estática muestra que solo se definen dos procedimientos en Tcl (`call` y `unknown`).
+- **Ningún comando de bucle.** Si quitas los comentarios, en el archivo no aparece ninguno de estos comandos: `while`, `for`, `foreach`, `lmap` y `dict for`.
+- **No quedan rastros.** Tras una ejecución, `sqlite_master` del archivo solo lista `demo_timecards`.
 
-## Gotchas worth knowing
+## Trampas que conviene conocer
 
-- **A function result that is used twice is drawn once and stored.** The hours appear twice in the new row (as the hours and inside the running total). Called twice, a random function would give two different values and the running total would stop adding up. An earlier version put the call in a subquery and relied on SQLite evaluating it once per row, which SQLite does not promise for non-deterministic functions. Now the hours are written into the one-row TEMP table `draw` and read from it twice, and `check.sh` counts the calls of the `hours` procedure and requires one per card.
-- **Qualified names in triggers.** `INSERT INTO main.demo_timecards` is rejected inside a trigger ("qualified table names are not allowed"), so the trigger body uses the bare name. The trigger is `TEMP`, so the bare name resolves to the one table in `main`.
-- **A tclsh that has loaded Tk does not exit** at the end of the script while the main window exists, so the script ends with `destroy .`.
-- **Depth.** SQLite limits trigger recursion (1000 by default); the challenge needs 3 to 5.
-- **Trust.** `unknown` runs whatever text is in the table. Here the table is built by the program itself in memory; this is not a pattern for data other people can edit.
-- **Requirements.** The program needs the Tcl `sqlite3` package and, for the window, Tk. It was tested with Tcl 8.6.14 and SQLite 3.45.
-- **Formatting.** No Tcl formatter was available; the layout is by hand. The SQL is laid out like the SQL in the other entries.
+- **Si el resultado de una función se usa dos veces, se sortea una vez y se guarda.** Las horas aparecen dos veces en la fila nueva (como horas y dentro del total acumulado). Si se llamara dos veces a una función aleatoria, daría dos valores distintos y el total acumulado dejaría de cuadrar. Una versión anterior ponía la llamada en una subconsulta y dependía de que SQLite la evaluara una vez por fila. SQLite no promete eso para funciones no deterministas. Ahora las horas se escriben en `draw`, una tabla TEMP de una fila. De ahí se leen dos veces. `check.sh` cuenta las llamadas al procedimiento `hours` y exige una por tarjeta.
+- **Nombres calificados en los disparadores.** SQLite rechaza `INSERT INTO main.demo_timecards` dentro de un disparador ("qualified table names are not allowed"). Por eso el cuerpo usa el nombre sin calificar. El disparador es `TEMP`, así que ese nombre corresponde a la única tabla de `main`.
+- **Si tclsh cargó Tk, no sale** al terminar el script mientras exista la ventana principal. Por eso el script termina con `destroy .`.
+- **Profundidad.** SQLite limita la recursión de los disparadores (1000 por defecto). El reto necesita de 3 a 5 niveles.
+- **Confianza.** `unknown` ejecuta cualquier texto que esté en la tabla. Aquí el propio programa arma la tabla en memoria. Este patrón no se debe usar con datos que otras personas puedan editar.
+- **Requisitos.** El programa necesita el paquete Tcl `sqlite3` y, para la ventana, Tk. Se probó con Tcl 8.6.14 y SQLite 3.45.
+- **Formato.** No había un formateador para Tcl. El formato se aplicó a mano. El SQL sigue el formato de las otras entradas.
 
-## What `check.sh` enforces
+## Qué comprueba `check.sh`
 
-Everything in the previous section, then a `--gui --seconds 1` run under Xvfb (skipped, and said so, where neither Xvfb nor a `DISPLAY` exists) that must report the window built from 8 rows, then 25 real runs checked for sane records (hours 10 to 19, categories in order, correct totals, stopping when the total passes 40) with SQLite agreeing with the output.
+Comprueba todo lo anterior. Luego ejecuta `--gui --seconds 1` con Xvfb y exige que se informe que la ventana se armó con 8 filas. Si no hay Xvfb ni `DISPLAY`, omite esa ejecución y lo indica. Después comprueba los registros de 25 ejecuciones reales: de 10 a 19 horas, categorías en orden, totales correctos y parada cuando el total pasa de 40. SQLite debe coincidir con la salida.
 
-## Run it in a container
+## Ejecútalo en un contenedor
 
-Prerequisite: Docker, set up once as described in [`SANDBOX-SETUP.md`](../../SANDBOX-SETUP.md#docker). The `cc-rt-tcl` base image comes from `sandbox/container/build-bases.sh`.
+Requisito previo: Docker, configurado una sola vez según [`SANDBOX-SETUP.md`](../../SANDBOX-SETUP.md#docker). La imagen base `cc-rt-tcl` proviene de `sandbox/container/build-bases.sh`.
 
 ```bash
 sandbox/container/run-image.sh src/tcl-weird
 sandbox/container/run-image.sh --out ./results src/tcl-weird    # the folder must be writable by user nobody
 ```
 
-It builds this folder's [`Dockerfile`](Dockerfile), runs `--gui` on a virtual display with no network, a read-only file system and user `nobody`, takes a screenshot of the window, and prints the output and the rows written. The image holds Tcl/Tk, the Tcl sqlite3 package and sqlite3 on a minimal Ubuntu.
+Construye la imagen con [`Dockerfile`](Dockerfile) de esta carpeta. Ejecuta `--gui` en una pantalla virtual sin red, con un sistema de archivos de solo lectura y el usuario `nobody`. Toma una captura de la ventana e imprime la salida y las filas escritas. La imagen contiene Tcl/Tk, el paquete Tcl sqlite3 y sqlite3 sobre un Ubuntu mínimo.

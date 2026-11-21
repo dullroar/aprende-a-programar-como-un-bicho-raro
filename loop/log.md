@@ -96,3 +96,4 @@
 120 P4-src-13 done Perl and GNU sed READMEs translated (51 and 132 segments); Codex added 118 sed drafts after the Claude quota stop; 6 scoped sed glossary waivers; Perl overview and diagram label aligned, anchors regenerated and links reapplied; verify --fast OK.
 121 P4-src-14 partial Both GNU tar READMEs applied (179 segments), humor and anchors updated, targeted and full verify --fast passed with diagrams at 9.71 pt and 11.25 pt. Git staging denied on read-only .git/index.lock; verified edits retained and task returned to todo.
 121 P4-src-14 done verified 179 GNU tar segments and both diagrams on the host, then staged and committed the preserved Codex CLI work.
+122 P4-src-15 done translated 181 Tcl and XAML README segments, recorded SI-018, regenerated anchors and relinked three files. Targeted and working-tree fast verification passed, with diagrams at 9.06, 12.00 and 9.55 pt.

@@ -1,0 +1,393 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/tcl-weird/README.md:2
+msgctxt "s-c4ca517fd660-0000"
+msgid "Tcl"
+msgstr "Tcl"
+
+#: src/tcl-weird/README.md:3
+msgctxt "s-1f1d9c99804e-0001"
+msgid "that Tcl code is just strings, so it can live in a database and be fetched, defined and run on demand, with SQLite triggers as the control flow."
+msgstr "que el código Tcl se compone solo de cadenas de texto. Por eso puede residir en una base de datos, recuperarse, definirse y ejecutarse bajo demanda. Los disparadores de SQLite determinan el flujo de control."
+
+#: src/tcl-weird/README.md:11
+msgctxt "s-a76a432279a1-0002"
+msgid "A string-command interpreter whose command lookup can be hooked"
+msgstr "Un intérprete de comandos en forma de cadenas de texto que permite interceptar la búsqueda de comandos"
+
+#: src/tcl-weird/README.md:12
+msgctxt "s-2fa4e18032bf-0003"
+msgid "A TEMP table of proc source, and the depth of trigger recursion"
+msgstr "Una tabla TEMP con el código fuente de los procedimientos y la profundidad de la recursión de los disparadores"
+
+#: src/tcl-weird/README.md:16
+msgctxt "s-3930033c55a2-0004"
+msgid "Tcl, weirder"
+msgstr "Tcl, todavía más raro"
+
+#: src/tcl-weird/README.md:18
+msgctxt "s-d175f2129e03-0005"
+msgid "**Teaches you:** that Tcl code is just strings, so it can live in a database and be fetched, defined and run on demand, with SQLite triggers as the control flow."
+msgstr "**Te enseña:** que el código Tcl se compone solo de cadenas de texto. Por eso puede residir en una base de datos, recuperarse, definirse y ejecutarse bajo demanda. Los disparadores de SQLite determinan el flujo de control."
+
+#: src/tcl-weird/README.md:20
+msgctxt "s-5ca333b42af1-0006"
+msgid "**⟦DNT_0001⟧.** Fictional timecards in a scratch SQLite file. No connection to any real time-reporting system."
+msgstr "**⟦DNT_0001⟧.** Tarjetas de horas ficticias en un archivo temporal de SQLite. Sin conexión con ningún sistema real de registro de horas."
+
+#: src/tcl-weird/README.md:22
+msgctxt "s-f8fbb460a81b-0007"
+msgid "[⟦CODE_0001⟧](⟦DEST_0002⟧) defines **no Tcl loop and no Tcl proc that deals or prints a card**. The program is rows in a SQLite table. One ⟦CODE_0003⟧ of card 1 brings it to life: a **recursive trigger** inserts the next card until the total is over 40, and each insert calls Tcl procs that exist only as TEXT in a table, pulled into the interpreter on demand by an overridden ⟦CODE_0004⟧. With ⟦CODE_0005⟧, even the window is a handful of rows."
+msgstr "[⟦CODE_0001⟧](⟦DEST_0002⟧) **no define ningún bucle en Tcl ni ningún procedimiento de Tcl que saque o imprima una tarjeta**. El programa está en las filas de una tabla de SQLite. Basta un ⟦CODE_0003⟧ de la tarjeta 1 para ponerlo en marcha. Un **disparador recursivo** inserta la siguiente tarjeta mientras el total no pasa de 40. Cada inserción llama a procedimientos de Tcl que solo existen como TEXT en una tabla. Una versión redefinida de ⟦CODE_0004⟧ los carga en el intérprete bajo demanda. Con ⟦CODE_0005⟧, hasta la ventana se reduce a unas cuantas filas."
+
+#: src/tcl-weird/README.md:24
+msgctxt "s-4b2d0a61d2fc-0008"
+msgid "The straight version is [⟦CODE_0001⟧](⟦DEST_0002⟧)."
+msgstr "La versión convencional está en [⟦CODE_0001⟧](⟦DEST_0002⟧)."
+
+#: src/tcl-weird/README.md:26
+msgctxt "s-958ca26c6a61-0009"
+msgid "Run it"
+msgstr "Ejecútalo"
+
+#: src/tcl-weird/README.md:28
+msgctxt "s-b9ffd97e54d2-0010"
+msgid "You need Tcl 8.6 (⟦CODE_0001⟧) with the ⟦CODE_0002⟧ Tcl package (Ubuntu: ⟦CODE_0003⟧, ⟦CODE_0004⟧), and ⟦CODE_0005⟧ for ⟦CODE_0006⟧."
+msgstr "Necesitas Tcl 8.6 (⟦CODE_0001⟧) con el paquete Tcl ⟦CODE_0002⟧ (Ubuntu: ⟦CODE_0003⟧, ⟦CODE_0004⟧). Para ⟦CODE_0006⟧ necesitas ⟦CODE_0005⟧."
+
+#: src/tcl-weird/README.md:37
+msgctxt "s-de93db67e101-0011"
+msgid "Records go to ⟦CODE_0001⟧ (default ⟦CODE_0002⟧). A run looks like this:"
+msgstr "Los registros se guardan en ⟦CODE_0001⟧ (⟦CODE_0002⟧ de forma predeterminada). Una ejecución se ve así:"
+
+#: src/tcl-weird/README.md:50
+msgctxt "s-623a8527010a-0012"
+msgid "The ⟦CODE_0001⟧ line is real introspection: the ⟦CODE_0002⟧ handler records each name it defines, and the list is printed at the end. The last line appears only with ⟦CODE_0003⟧. **Headless:** Tk needs an X display; ⟦CODE_0004⟧ works, and the container image below runs on Xvfb and screenshots the window."
+msgstr "La línea ⟦CODE_0001⟧ muestra introspección real: el programa examina su propio funcionamiento. El manejador ⟦CODE_0002⟧ registra cada nombre que define. Al final se imprime la lista. La última línea solo aparece con ⟦CODE_0003⟧. **Sin pantalla:** Tk necesita una pantalla X. ⟦CODE_0004⟧ funciona y la imagen de contenedor de abajo se ejecuta en Xvfb y toma una captura de la ventana."
+
+#: src/tcl-weird/README.md:52
+msgctxt "s-0dcb373c2dff-0013"
+msgid "Program Flow"
+msgstr "Flujo del programa"
+
+#: src/tcl-weird/README.md:56
+msgctxt "s-121083d19571-0014"
+msgid "tcl-weird: a recursive SQLite trigger calls Tcl procs that are fetched from a table"
+msgstr "tcl-weird: un disparador recursivo de SQLite llama a procedimientos Tcl recuperados de una tabla"
+
+#: src/tcl-weird/README.md:57
+msgctxt "s-4360e08c9042-0015"
+msgid "A sequence diagram. The Tcl host installs three hooks and inserts the first card. Each insert fires a trigger in SQLite. The trigger calls the SQL function tcl, which calls back into Tcl. The first time the Tcl side asks for a command such as born, the command does not exist, so Tcl calls unknown. The unknown handler reads the proc's text from the tcl_code table, defines the proc and retries the call. The call prints the row. The trigger then inserts the next card, but only while the total of the card just inserted is 40 or less. That insert fires the trigger again. When the total is over 40, nothing is inserted, and control returns to the host, which prints the summary."
+msgstr "Diagrama de secuencia. El anfitrión Tcl instala tres interceptores e inserta la primera tarjeta. Cada inserción activa un disparador en SQLite. El disparador llama a la función SQL tcl, que a su vez llama a Tcl. Cuando Tcl pide por primera vez un comando como born, este no existe y Tcl llama a unknown. El manejador unknown lee el texto del procedimiento en la tabla tcl_code. Define el procedimiento y repite la llamada. La llamada imprime la fila. El disparador inserta la siguiente tarjeta solo mientras el total de la tarjeta recién insertada sea de 40 o menos. Esa inserción vuelve a activar el disparador. Si el total pasa de 40, no se inserta nada. El control vuelve al anfitrión, que imprime el resumen."
+
+#: src/tcl-weird/README.md:58
+msgctxt "s-6023705eaecc-0016"
+msgid "Tcl host"
+msgstr "Anfitrión Tcl"
+
+#: src/tcl-weird/README.md:59
+msgctxt "s-8495ea5eddc0-0017"
+msgid "SQLite and the next_card trigger"
+msgstr "SQLite y el disparador next_card"
+
+#: src/tcl-weird/README.md:60
+msgctxt "s-8ab79589b8f6-0018"
+msgid "unknown handler"
+msgstr "Manejador unknown"
+
+#: src/tcl-weird/README.md:61
+msgctxt "s-e8f922791e69-0019"
+msgid "tcl_code table"
+msgstr "Tabla tcl_code"
+
+#: src/tcl-weird/README.md:62
+msgctxt "s-95b9c4468811-0020"
+msgid "INSERT the first card"
+msgstr "INSERT de la primera tarjeta"
+
+#: src/tcl-weird/README.md:63
+msgctxt "s-81dfdf185a28-0021"
+msgid "each INSERT fires the trigger, while the total is 40 or less"
+msgstr "Cada INSERT activa el disparador mientras el total es de 40 o menos"
+
+#: src/tcl-weird/README.md:64
+msgctxt "s-cf0a8ebe69d8-0022"
+msgid "SQL function tcl calls the Tcl command born"
+msgstr "La función SQL tcl llama al comando Tcl born"
+
+#: src/tcl-weird/README.md:65
+msgctxt "s-a1e43cf31e26-0023"
+msgid "born does not exist yet, so Tcl calls unknown"
+msgstr "born aún no existe: Tcl llama a unknown"
+
+#: src/tcl-weird/README.md:66
+msgctxt "s-94fc873fdc23-0024"
+msgid "look up the proc's params and body"
+msgstr "Busca los parámetros y el cuerpo"
+
+#: src/tcl-weird/README.md:67
+msgctxt "s-d174d610a8a0-0025"
+msgid "the text of the proc"
+msgstr "Texto del procedimiento"
+
+#: src/tcl-weird/README.md:68
+msgctxt "s-2191577557e3-0026"
+msgid "define the proc, retry the call"
+msgstr "Define el procedimiento y repite la llamada"
+
+#: src/tcl-weird/README.md:69
+msgctxt "s-01a125b9deac-0027"
+msgid "the row is printed"
+msgstr "Se imprime la fila"
+
+#: src/tcl-weird/README.md:70
+msgctxt "s-c017e69b4d40-0028"
+msgid "INSERT the next card: the trigger fires again"
+msgstr "INSERT de la siguiente tarjeta: se repite el disparo"
+
+#: src/tcl-weird/README.md:72
+msgctxt "s-e21355536745-0029"
+msgid "total is over 40, no insert: the trigger chain ends"
+msgstr "El total pasa de 40: cesan las inserciones y los disparos"
+
+#: src/tcl-weird/README.md:73
+msgctxt "s-e519d169ca3d-0030"
+msgid "print the summary"
+msgstr "Imprime el resumen"
+
+#: src/tcl-weird/README.md:76
+msgctxt "s-010be8bdc597-0031"
+msgid "**What this shows:** the loop is a trigger that inserts a row and so fires itself, and every number and printed line comes from Tcl code stored as text in a table. The first call of a proc takes the long way, through ⟦CODE_0001⟧ and the table, and later calls find the proc defined."
+msgstr "**Qué muestra:** el bucle es un disparador que inserta una fila y así vuelve a activarse. Cada número y cada línea impresa provienen de código Tcl guardado como texto en una tabla. La primera llamada a un procedimiento da un rodeo por ⟦CODE_0001⟧ y la tabla. Las demás ya encuentran el procedimiento definido."
+
+#: src/tcl-weird/README.md:78
+msgctxt "s-890018f957aa-0032"
+msgid "**Why this mechanism matters:** the database is dispatching, but it is not an event queue. The trigger runs synchronously inside the ⟦CODE_0001⟧, and the recursion is the loop. The ⟦CODE_0002⟧ on the trigger's insert is the stop rule. Control moves between three layers (Tcl, SQL, Tcl) on one call stack."
+msgstr "**Por qué importa este mecanismo:** la base de datos dirige las llamadas, pero no es una cola de eventos. El disparador se ejecuta de forma síncrona dentro de ⟦CODE_0001⟧. La recursión hace de bucle. El ⟦CODE_0002⟧ de la inserción del disparador es la regla de parada. El control pasa por tres capas (Tcl, SQL, Tcl) en una sola pila de llamadas."
+
+#: src/tcl-weird/README.md:80
+msgctxt "s-7f97d965b4c0-0033"
+msgid "How the stunt works"
+msgstr "Cómo funciona el truco"
+
+#: src/tcl-weird/README.md:82
+msgctxt "s-bbb60380c16e-0034"
+msgid "Three hooks, then a program written in SQL."
+msgstr "Tres interceptores y luego un programa escrito en SQL."
+
+#: src/tcl-weird/README.md:84
+msgctxt "s-92e744d2717d-0035"
+msgid "Hook 1: SQL that can call Tcl"
+msgstr "Interceptor 1: SQL puede llamar a Tcl"
+
+#: src/tcl-weird/README.md:91
+msgctxt "s-dfe14385d51a-0036"
+msgid "⟦CODE_0001⟧ registers a Tcl command as an **SQL function**. From now on any SQL, including SQL inside a trigger, can say ⟦CODE_0002⟧ or ⟦CODE_0003⟧, and SQLite calls back into the interpreter: ⟦CODE_0004⟧, ⟦CODE_0005⟧. ⟦CODE_0006⟧ is Tcl's \"expand this list into separate words\"."
+msgstr "⟦CODE_0001⟧ registra un comando Tcl como **función SQL**. A partir de ahí, cualquier código SQL, incluso el de un disparador, puede usar ⟦CODE_0002⟧ o ⟦CODE_0003⟧. SQLite vuelve al intérprete y llama a ⟦CODE_0004⟧ o ⟦CODE_0005⟧, respectivamente. En Tcl, ⟦CODE_0006⟧ significa \"expande esta lista en palabras separadas\"."
+
+#: src/tcl-weird/README.md:93
+msgctxt "s-6cda6d04977e-0037"
+msgid "Hook 2: the database is the library path"
+msgstr "Interceptor 2: la base de datos sirve de ruta de búsqueda de bibliotecas"
+
+#: src/tcl-weird/README.md:108
+msgctxt "s-70fc127bd77c-0038"
+msgid "When Tcl is asked to run a command that does not exist, it calls a command named ⟦CODE_0001⟧, which is how ⟦CODE_0002⟧ and abbreviation of commands in the interactive shell work. This one is replaced: it looks the name up in the ⟦CODE_0003⟧ table, creates the proc with ⟦CODE_0004⟧, using the row's text as the body, and **retries the call**. The proc exists from then on; the next call does not touch the database. Anything not in the table is passed to the original handler, so real typos still fail properly."
+msgstr "Si le pides a Tcl que ejecute un comando que no existe, llama a un comando llamado ⟦CODE_0001⟧. Así funcionan ⟦CODE_0002⟧ y las abreviaturas de comandos en el intérprete de comandos interactivo (*shell*). Esta versión lo sustituye: busca el nombre en la tabla ⟦CODE_0003⟧ y crea el procedimiento con ⟦CODE_0004⟧. Usa el texto de la fila como cuerpo y **repite la llamada**. A partir de ahí, el procedimiento ya existe. La siguiente llamada no toca la base de datos. Todo lo que no aparece en la tabla pasa al manejador original. Así, los errores de escritura siguen produciendo el fallo esperado."
+
+#: src/tcl-weird/README.md:110
+msgctxt "s-93082e927729-0039"
+msgid "Hook 3: the program is a TEMP table and a TEMP trigger"
+msgstr "Interceptor 3: el programa es una tabla TEMP y un disparador TEMP"
+
+#: src/tcl-weird/README.md:120
+msgctxt "s-d4be26dda4ec-0040"
+msgid "Tcl code *is* text, so it fits in a column. (⟦CODE_0001⟧ tables and triggers belong to the connection and vanish when it closes, so the file on disk contains only the timecards; ⟦CODE_0002⟧ verifies that.) The program is three languages deep in one file: Tcl, around SQL, around Tcl. Braces nest, and Tcl substitutes nothing inside them, so the text arrives intact."
+msgstr "El código Tcl *es* texto, así que cabe en una columna. (Las tablas y los disparadores ⟦CODE_0001⟧ pertenecen a la conexión y desaparecen al cerrarla. Por eso el archivo en disco solo contiene las tarjetas de horas. ⟦CODE_0002⟧ lo verifica). El programa anida tres capas de lenguaje en un archivo: Tcl contiene SQL, que a su vez contiene Tcl. Las llaves se anidan y Tcl no sustituye nada dentro de ellas. Así llega intacto el texto."
+
+#: src/tcl-weird/README.md:122
+msgctxt "s-df6ada1d8f05-0041"
+msgid "The loop is a trigger"
+msgstr "El bucle es un disparador"
+
+#: src/tcl-weird/README.md:137
+msgctxt "s-547127354d85-0042"
+msgid "When a row is inserted, the trigger fires. It first calls ⟦CODE_0001⟧ (print the row and, if there is a window, add a table row), then draws the next card's hours into a one-row TEMP table, ⟦CODE_0002⟧, and inserts the next card **if the total is 40 or less**: that ⟦CODE_0003⟧ is the stop rule. The hours go through ⟦CODE_0004⟧ because they are used twice, as the hours and in the running total, and a table row holds one value no matter how often SQLite evaluates a function. That insert fires the same trigger again, which is allowed because of ⟦CODE_0005⟧; without it SQLite refuses to let a trigger trigger itself. The recursion depth *is* the number of cards."
+msgstr "El disparador se activa al insertar una fila. Primero llama a ⟦CODE_0001⟧ (imprime la fila y, si hay ventana, agrega una fila a la tabla). Luego sortea las horas de la siguiente tarjeta y las guarda en ⟦CODE_0002⟧, una tabla TEMP de una fila. Inserta la siguiente tarjeta **si el total es de 40 o menos**: ese ⟦CODE_0003⟧ es la regla de parada. Las horas pasan por ⟦CODE_0004⟧ porque se usan dos veces, como horas y en el total acumulado. Una fila guarda un solo valor por más veces que SQLite evalúe una función. La inserción vuelve a activar el mismo disparador. ⟦CODE_0005⟧ lo permite. Sin esa opción, SQLite impide que un disparador se active a sí mismo. La profundidad de la recursión *es* el número de tarjetas."
+
+#: src/tcl-weird/README.md:139
+msgctxt "s-aef4bcc2f6c0-0043"
+msgid "The one statement"
+msgstr "Una sola sentencia"
+
+#: src/tcl-weird/README.md:153
+msgctxt "s-58a84315da23-0044"
+msgid "That is the whole of the running program: insert card 1. Everything after is the trigger calling Tcl and Tcl, on demand, being loaded from the table that the trigger is looking at."
+msgstr "Eso es todo lo que ejecuta el programa: insertar la tarjeta 1. Después, el disparador llama a Tcl y los procedimientos Tcl se cargan bajo demanda desde la tabla que consulta el disparador."
+
+#: src/tcl-weird/README.md:155
+msgctxt "s-35e489c701ce-0045"
+msgid "⟦CODE_0001⟧: widgets as rows"
+msgstr "⟦CODE_0001⟧: controles de interfaz en filas"
+
+#: src/tcl-weird/README.md:164
+msgctxt "s-6d2738b50dec-0046"
+msgid "⟦CODE_0001⟧ runs each row at the global level: one SELECT builds the window. When ⟦CODE_0002⟧ runs it checks ⟦CODE_0003⟧, and if the widget exists, it inserts a row into it, so the table fills in as the trigger fires; ⟦CODE_0004⟧ repaints and ⟦CODE_0005⟧ slows it enough to watch."
+msgstr "⟦CODE_0001⟧ ejecuta cada fila en el ámbito global. Un solo SELECT arma la ventana. Cuando se ejecuta ⟦CODE_0002⟧, comprueba ⟦CODE_0003⟧. Si el control existe, inserta una fila en él y la tabla se llena cada vez que se activa el disparador. ⟦CODE_0004⟧ redibuja la ventana y ⟦CODE_0005⟧ reduce el ritmo lo suficiente para verlo."
+
+#: src/tcl-weird/README.md:166
+msgctxt "s-fff646ea1f30-0047"
+msgid "Why this is weird"
+msgstr "Por qué es raro"
+
+#: src/tcl-weird/README.md:168
+msgctxt "s-38a34e2cae8d-0048"
+msgid "Tcl's basic claim is \"everything is a string\", and this program takes it literally: the procedures are strings in a table, the loop is a feature of the database, and the interpreter's own missing-command hook is the loader. The SQL calls Tcl, and Tcl calls the SQL, and *which* of them is \"the program\" depends on where you stand. A Tcl programmer will recognize ⟦CODE_0001⟧ and ⟦CODE_0002⟧; very few will have seen them used as a database-backed autoloader. A SQL programmer will recognize a recursive trigger and be surprised that it is the only loop."
+msgstr "La afirmación de partida de Tcl es que \"todo es una cadena de texto\". Este programa la toma al pie de la letra. Los procedimientos son cadenas de texto en una tabla y el bucle es una función de la base de datos. El propio mecanismo del intérprete para comandos inexistentes hace de cargador. SQL llama a Tcl y Tcl llama a SQL. *Cuál* de los dos es \"el programa\" depende de dónde te pares. Quien programe en Tcl reconocerá ⟦CODE_0001⟧ y ⟦CODE_0002⟧. Muy pocos los habrán visto funcionar como cargador automático desde una base de datos. Quien programe en SQL reconocerá un disparador recursivo y se sorprenderá de que sea el único bucle."
+
+#: src/tcl-weird/README.md:170
+msgctxt "s-4702bbd0b2a6-0049"
+msgid "Why you might get fired: the control flow of a program is hidden in a trigger and a pragma, procedures cannot be found with grep or a debugger's source view, ⟦CODE_0001⟧ hooks make typos in other people's code confusing, and the first time someone runs this against a *shared* database, every insert fires interpreter calls. Do not store code in a data table that other people can write to."
+msgstr "Por qué podrían despedirte: el flujo de control de un programa queda oculto en un disparador y un pragma. Ni grep ni la vista del código fuente de un depurador encuentran los procedimientos. Los interceptores de ⟦CODE_0001⟧ vuelven confusos los errores de escritura en el código ajeno. En cuanto alguien ejecute esto contra una base de datos *compartida*, cada inserción hará llamadas al intérprete. No guardes código en una tabla de datos donde otras personas puedan escribir."
+
+#: src/tcl-weird/README.md:172
+msgctxt "s-81b1eee1fbb4-0050"
+msgid "What you can learn"
+msgstr "Qué puedes aprender"
+
+#: src/tcl-weird/README.md:174
+msgctxt "s-dc71ec94f757-0051"
+msgid "⟦CODE_0001⟧ and how Tcl autoloading actually works; ⟦CODE_0002⟧, ⟦CODE_0003⟧, and ⟦CODE_0004⟧ for transparent wrappers."
+msgstr "⟦CODE_0001⟧ y cómo funciona realmente la carga automática en Tcl. ⟦CODE_0002⟧, ⟦CODE_0003⟧ y ⟦CODE_0004⟧ permiten envolver comandos de forma transparente."
+
+#: src/tcl-weird/README.md:175
+msgctxt "s-ba56a124fc4a-0052"
+msgid "⟦CODE_0001⟧ as a *runtime* operation: a proc is created by calling a command with a string body."
+msgstr "⟦CODE_0001⟧ como operación *en tiempo de ejecución*: una llamada a un comando crea un procedimiento cuyo cuerpo es una cadena de texto."
+
+#: src/tcl-weird/README.md:176
+msgctxt "s-0496b116625e-0053"
+msgid "⟦CODE_0001⟧ expansion, ⟦CODE_0002⟧, and ⟦CODE_0003⟧ as a feature test."
+msgstr "La expansión ⟦CODE_0001⟧, ⟦CODE_0002⟧ y el uso de ⟦CODE_0003⟧ para comprobar si una función está disponible."
+
+#: src/tcl-weird/README.md:177
+msgctxt "s-d6691399415d-0054"
+msgid "The ⟦CODE_0001⟧ package's ⟦CODE_0002⟧, which exposes any Tcl command to SQL."
+msgstr "⟦CODE_0002⟧ del paquete ⟦CODE_0001⟧, que expone cualquier comando Tcl a SQL."
+
+#: src/tcl-weird/README.md:178
+msgctxt "s-607204a42ae9-0055"
+msgid "Recursive triggers (⟦CODE_0001⟧), ⟦CODE_0002⟧ triggers and tables, and that a trigger body may contain a ⟦CODE_0003⟧ (its result is discarded, but its function calls still run)."
+msgstr "Los disparadores recursivos (⟦CODE_0001⟧) y los disparadores y tablas ⟦CODE_0002⟧. El cuerpo de un disparador puede contener un ⟦CODE_0003⟧. SQLite descarta el resultado, pero ejecuta las llamadas a funciones."
+
+#: src/tcl-weird/README.md:179
+msgctxt "s-fc65f7e54a9d-0056"
+msgid "That ⟦CODE_0001⟧ inside a SQL string literal inside Tcl braces is just text. The bound-variable rule only applies to the SQL itself, which is why code with ⟦CODE_0002⟧ in it can be stored."
+msgstr "⟦CODE_0001⟧ es solo texto cuando aparece en un literal de cadena de texto de SQL dentro de llaves de Tcl. La regla de variables enlazadas solo rige en el propio SQL. Por eso se puede guardar código que contenga ⟦CODE_0002⟧."
+
+#: src/tcl-weird/README.md:181
+msgctxt "s-fce7357d7597-0057"
+msgid "Proof that the mechanisms do the work"
+msgstr "Prueba de que los mecanismos hacen el trabajo"
+
+#: src/tcl-weird/README.md:183
+msgctxt "s-940eda84043f-0058"
+msgid "⟦CODE_0001⟧ demonstrates it by editing copies of the file:"
+msgstr "⟦CODE_0001⟧ lo demuestra al editar copias del archivo:"
+
+#: src/tcl-weird/README.md:185
+msgctxt "s-44c2176abf11-0059"
+msgid "**Recursion.** Change ⟦CODE_0001⟧ to ⟦CODE_0002⟧ and exactly one card is announced, not the three to five: the trigger fires for card 1 only."
+msgstr "**Recursión.** Cambia ⟦CODE_0001⟧ por ⟦CODE_0002⟧ y se anuncia exactamente una tarjeta en vez de entre tres y cinco. El disparador solo se activa para la tarjeta 1."
+
+#: src/tcl-weird/README.md:186
+msgctxt "s-76b84396fae3-0060"
+msgid "**Code in the table.** Replace the text of the ⟦CODE_0001⟧ row with ⟦CODE_0002⟧ and every run prints three cards of 19 hours: the hours come from the row, not from anywhere in the Tcl."
+msgstr "**Código en la tabla.** Sustituye por ⟦CODE_0002⟧ el texto de la fila ⟦CODE_0001⟧. Cada ejecución imprime tres tarjetas de 19 horas: las horas salen de la fila y de ninguna parte del código Tcl."
+
+#: src/tcl-weird/README.md:187
+msgctxt "s-4299c085f152-0061"
+msgid "**Autoloading.** The run reports ⟦CODE_0001⟧ as fetched by ⟦CODE_0002⟧, and a static check shows only two procs (⟦CODE_0003⟧ and ⟦CODE_0004⟧) are defined in Tcl at all."
+msgstr "**Carga automática.** La ejecución informa que ⟦CODE_0002⟧ recuperó ⟦CODE_0001⟧. Una comprobación estática muestra que solo se definen dos procedimientos en Tcl (⟦CODE_0003⟧ y ⟦CODE_0004⟧)."
+
+#: src/tcl-weird/README.md:188
+msgctxt "s-c3aa39f41c2d-0062"
+msgid "**No loop command.** With comments removed, none of ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧ appears in the file."
+msgstr "**Ningún comando de bucle.** Si quitas los comentarios, en el archivo no aparece ninguno de estos comandos: ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧ y ⟦CODE_0005⟧."
+
+#: src/tcl-weird/README.md:189
+msgctxt "s-4edbd88e2b5c-0063"
+msgid "**Nothing left behind.** After a run the file's ⟦CODE_0001⟧ lists only ⟦CODE_0002⟧."
+msgstr "**No quedan rastros.** Tras una ejecución, ⟦CODE_0001⟧ del archivo solo lista ⟦CODE_0002⟧."
+
+#: src/tcl-weird/README.md:191
+msgctxt "s-5a0ad00b10fc-0064"
+msgid "Gotchas worth knowing"
+msgstr "Trampas que conviene conocer"
+
+#: src/tcl-weird/README.md:193
+msgctxt "s-eb0f1d2ec2e7-0065"
+msgid "**A function result that is used twice is drawn once and stored.** The hours appear twice in the new row (as the hours and inside the running total). Called twice, a random function would give two different values and the running total would stop adding up. An earlier version put the call in a subquery and relied on SQLite evaluating it once per row, which SQLite does not promise for non-deterministic functions. Now the hours are written into the one-row TEMP table ⟦CODE_0001⟧ and read from it twice, and ⟦CODE_0002⟧ counts the calls of the ⟦CODE_0003⟧ procedure and requires one per card."
+msgstr "**Si el resultado de una función se usa dos veces, se sortea una vez y se guarda.** Las horas aparecen dos veces en la fila nueva (como horas y dentro del total acumulado). Si se llamara dos veces a una función aleatoria, daría dos valores distintos y el total acumulado dejaría de cuadrar. Una versión anterior ponía la llamada en una subconsulta y dependía de que SQLite la evaluara una vez por fila. SQLite no promete eso para funciones no deterministas. Ahora las horas se escriben en ⟦CODE_0001⟧, una tabla TEMP de una fila. De ahí se leen dos veces. ⟦CODE_0002⟧ cuenta las llamadas al procedimiento ⟦CODE_0003⟧ y exige una por tarjeta."
+
+#: src/tcl-weird/README.md:194
+msgctxt "s-f49d52bf9a7d-0066"
+msgid "**Qualified names in triggers.** ⟦CODE_0001⟧ is rejected inside a trigger (\"qualified table names are not allowed\"), so the trigger body uses the bare name. The trigger is ⟦CODE_0002⟧, so the bare name resolves to the one table in ⟦CODE_0003⟧."
+msgstr "**Nombres calificados en los disparadores.** SQLite rechaza ⟦CODE_0001⟧ dentro de un disparador (\"qualified table names are not allowed\"). Por eso el cuerpo usa el nombre sin calificar. El disparador es ⟦CODE_0002⟧, así que ese nombre corresponde a la única tabla de ⟦CODE_0003⟧."
+
+#: src/tcl-weird/README.md:195
+msgctxt "s-6953f6a472ca-0067"
+msgid "**A tclsh that has loaded Tk does not exit** at the end of the script while the main window exists, so the script ends with ⟦CODE_0001⟧."
+msgstr "**Si tclsh cargó Tk, no sale** al terminar el script mientras exista la ventana principal. Por eso el script termina con ⟦CODE_0001⟧."
+
+#: src/tcl-weird/README.md:196
+msgctxt "s-5ffdfc14990b-0068"
+msgid "**Depth.** SQLite limits trigger recursion (1000 by default); the challenge needs 3 to 5."
+msgstr "**Profundidad.** SQLite limita la recursión de los disparadores (1000 por defecto). El reto necesita de 3 a 5 niveles."
+
+#: src/tcl-weird/README.md:197
+msgctxt "s-9af3618d16e7-0069"
+msgid "**Trust.** ⟦CODE_0001⟧ runs whatever text is in the table. Here the table is built by the program itself in memory; this is not a pattern for data other people can edit."
+msgstr "**Confianza.** ⟦CODE_0001⟧ ejecuta cualquier texto que esté en la tabla. Aquí el propio programa arma la tabla en memoria. Este patrón no se debe usar con datos que otras personas puedan editar."
+
+#: src/tcl-weird/README.md:198
+msgctxt "s-28b72838e7e3-0070"
+msgid "**Requirements.** The program needs the Tcl ⟦CODE_0001⟧ package and, for the window, Tk. It was tested with Tcl 8.6.14 and SQLite 3.45."
+msgstr "**Requisitos.** El programa necesita el paquete Tcl ⟦CODE_0001⟧ y, para la ventana, Tk. Se probó con Tcl 8.6.14 y SQLite 3.45."
+
+#: src/tcl-weird/README.md:199
+msgctxt "s-0c4dcf8f2457-0071"
+msgid "**Formatting.** No Tcl formatter was available; the layout is by hand. The SQL is laid out like the SQL in the other entries."
+msgstr "**Formato.** No había un formateador para Tcl. El formato se aplicó a mano. El SQL sigue el formato de las otras entradas."
+
+#: src/tcl-weird/README.md:201
+msgctxt "s-339cc2c18f83-0072"
+msgid "What ⟦CODE_0001⟧ enforces"
+msgstr "Qué comprueba ⟦CODE_0001⟧"
+
+#: src/tcl-weird/README.md:203
+msgctxt "s-c61afa85940d-0073"
+msgid "Everything in the previous section, then a ⟦CODE_0001⟧ run under Xvfb (skipped, and said so, where neither Xvfb nor a ⟦CODE_0002⟧ exists) that must report the window built from 8 rows, then 25 real runs checked for sane records (hours 10 to 19, categories in order, correct totals, stopping when the total passes 40) with SQLite agreeing with the output."
+msgstr "Comprueba todo lo anterior. Luego ejecuta ⟦CODE_0001⟧ con Xvfb y exige que se informe que la ventana se armó con 8 filas. Si no hay Xvfb ni ⟦CODE_0002⟧, omite esa ejecución y lo indica. Después comprueba los registros de 25 ejecuciones reales: de 10 a 19 horas, categorías en orden, totales correctos y parada cuando el total pasa de 40. SQLite debe coincidir con la salida."
+
+#: src/tcl-weird/README.md:205
+msgctxt "s-254f0c660db3-0074"
+msgid "Run it in a container"
+msgstr "Ejecútalo en un contenedor"
+
+#: src/tcl-weird/README.md:207
+msgctxt "s-3cb82be2cee8-0075"
+msgid "Prerequisite: Docker, set up once as described in [⟦CODE_0001⟧](⟦DEST_0002⟧). The ⟦CODE_0003⟧ base image comes from ⟦CODE_0004⟧."
+msgstr "Requisito previo: Docker, configurado una sola vez según [⟦CODE_0001⟧](⟦DEST_0002⟧). La imagen base ⟦CODE_0003⟧ proviene de ⟦CODE_0004⟧."
+
+#: src/tcl-weird/README.md:214
+msgctxt "s-89bc97920d5a-0076"
+msgid "It builds this folder's [⟦CODE_0001⟧](⟦DEST_0002⟧), runs ⟦CODE_0003⟧ on a virtual display with no network, a read-only file system and user ⟦CODE_0004⟧, takes a screenshot of the window, and prints the output and the rows written. The image holds Tcl/Tk, the Tcl sqlite3 package and sqlite3 on a minimal Ubuntu."
+msgstr "Construye la imagen con [⟦CODE_0001⟧](⟦DEST_0002⟧) de esta carpeta. Ejecuta ⟦CODE_0003⟧ en una pantalla virtual sin red, con un sistema de archivos de solo lectura y el usuario ⟦CODE_0004⟧. Toma una captura de la ventana e imprime la salida y las filas escritas. La imagen contiene Tcl/Tk, el paquete Tcl sqlite3 y sqlite3 sobre un Ubuntu mínimo."

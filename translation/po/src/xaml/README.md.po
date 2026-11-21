@@ -1,0 +1,268 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/xaml/README.md:2
+msgctxt "s-48922183e96a-0000"
+msgid "XAML"
+msgstr "XAML"
+
+#: src/xaml/README.md:3
+msgctxt "s-2fb7464dab98-0001"
+msgid "that a markup parser can run a program while it describes a UI."
+msgstr "que un analizador sintáctico de marcado puede ejecutar un programa mientras describe una interfaz de usuario."
+
+#: src/xaml/README.md:11
+msgctxt "s-390081adcd0e-0002"
+msgid "An object-graph constructor that runs methods as it parses"
+msgstr "Un constructor de grafos de objetos que ejecuta métodos durante el análisis sintáctico"
+
+#: src/xaml/README.md:12
+msgctxt "s-9138848be41b-0003"
+msgid "Document order, plus ⟦ESC_0001⟧carrier⟦ESC_0002⟧ arrays"
+msgstr "El orden del documento y los arreglos ⟦ESC_0001⟧portadores⟦ESC_0002⟧"
+
+#: src/xaml/README.md:16
+msgctxt "s-d7dc064fbf1c-0004"
+msgid "XAML challenge: the program isn't even C# code"
+msgstr "Reto de XAML: el programa ni siquiera es código C#"
+
+#: src/xaml/README.md:18
+msgctxt "s-eb9b4c9d56e4-0005"
+msgid "**Teaches you:** that a markup parser can run a program while it describes a UI."
+msgstr "**Te enseña:** que un analizador sintáctico de marcado puede ejecutar un programa mientras describe una interfaz de usuario."
+
+#: src/xaml/README.md:20
+msgctxt "s-93910f78e558-0006"
+msgid "XAML is supposed to describe a user interface: a tree of objects, declared, not executed. This entry treats that promise as a dare. The C# in this folder is a single expression that hands a ⟦CODE_0001⟧ file to the XAML parser:"
+msgstr "Se supone que XAML describe una interfaz de usuario: un árbol de objetos que se declara sin ejecutarlo. Esta entrada toma esa promesa como un reto. El código C# de esta carpeta se reduce a una sola expresión. Esa expresión entrega un archivo ⟦CODE_0001⟧ al analizador sintáctico de XAML:"
+
+#: src/xaml/README.md:26
+msgctxt "s-65c43a84fb8e-0007"
+msgid "Every piece of behavior - the random draws, the arithmetic, the stop rule, the database writes, a background thread, the fade animation - lives inside the ⟦CODE_0001⟧ file, and all of it runs **while the file is being parsed**. There is no code-behind and no event handler anywhere in this folder."
+msgstr "Todo el comportamiento reside en el archivo ⟦CODE_0001⟧: los sorteos, la aritmética, la regla de parada, las escrituras en la base de datos, un hilo en segundo plano y el fundido. Todo se ejecuta **mientras se analiza el archivo**. En toda la carpeta no hay código subyacente ni manejadores de eventos."
+
+#: src/xaml/README.md:28
+msgctxt "s-958ca26c6a61-0008"
+msgid "Run it"
+msgstr "Ejecútalo"
+
+#: src/xaml/README.md:30
+msgctxt "s-5d88f16bb5d0-0009"
+msgid "You need Windows and the .NET 10 SDK."
+msgstr "Necesitas Windows y el SDK de .NET 10."
+
+#: src/xaml/README.md:39
+msgctxt "s-acf2f9f84be1-0010"
+msgid "Records land in ⟦CODE_0001⟧; delete that folder to start fresh (the stop rule counts rows already saved). The window says **⟦DNT_0002⟧**: nothing here touches a real time-reporting system."
+msgstr "Los registros se guardan en ⟦CODE_0001⟧. Borra esa carpeta para empezar de cero (la regla de parada cuenta las filas ya guardadas). La ventana dice **⟦DNT_0002⟧**: nada aquí interactúa con un sistema real de registro de horas."
+
+#: src/xaml/README.md:41
+msgctxt "s-0e33c599399a-0011"
+msgid "![XAML demo window](⟦DEST_0001⟧)"
+msgstr "![Ventana de demostración de XAML](⟦DEST_0001⟧)"
+
+#: src/xaml/README.md:43
+msgctxt "s-0dcb373c2dff-0012"
+msgid "Program Flow"
+msgstr "Flujo del programa"
+
+#: src/xaml/README.md:47
+msgctxt "s-aacd2ca1e310-0013"
+msgid "xaml: parsing the file is running the program"
+msgstr "xaml: el análisis sintáctico del archivo ejecuta el programa"
+
+#: src/xaml/README.md:48
+msgctxt "s-81a18e88482a-0014"
+msgid "A sequence diagram of efcore.xaml. Loader.Main creates the data folder and calls XamlReader.Load. The XAML parser builds the nodes in document order, and each ObjectDataProvider fires as soon as it is built. Four unrolled passes each draw a random number into a carrier array, build a card from it, and insert it with EF Core. A SQL trigger deletes a row if the earlier rows already total more than 40. The parser returns the finished window. Application.Run then shows the window, a Loaded event trigger starts the fade storyboard, and the run ends when the window closes."
+msgstr "Diagrama de secuencia de efcore.xaml. Loader.Main crea la carpeta de datos y llama a XamlReader.Load. El analizador sintáctico de XAML crea los nodos en el orden del documento. Cada ObjectDataProvider se activa en cuanto se crea. En cada una de las cuatro pasadas desenrolladas, se sortea un número y se guarda en un arreglo portador. Con ese número se crea una tarjeta que EF Core inserta. Un disparador SQL borra la fila si el total de las filas anteriores pasa de 40. El analizador devuelve la ventana terminada. Application.Run muestra la ventana y un disparador del evento Loaded inicia la secuencia de animación del fundido. La ejecución termina cuando se cierra la ventana."
+
+#: src/xaml/README.md:49
+msgctxt "s-fec9c373de26-0015"
+msgid "Loader.Main"
+msgstr "Loader.Main"
+
+#: src/xaml/README.md:50
+msgctxt "s-ca7e957e5bc5-0016"
+msgid "XAML parser"
+msgstr "Analizador sintáctico de XAML"
+
+#: src/xaml/README.md:51
+msgctxt "s-604937f2d90d-0017"
+msgid "ObjectDataProvider nodes"
+msgstr "Nodos ObjectDataProvider"
+
+#: src/xaml/README.md:52
+msgctxt "s-7060870b0fb9-0018"
+msgid "SQLite and its trigger"
+msgstr "SQLite y su disparador"
+
+#: src/xaml/README.md:53
+msgctxt "s-02eecfce218d-0019"
+msgid "Window and dispatcher"
+msgstr "Ventana y despachador de WPF"
+
+#: src/xaml/README.md:54
+msgctxt "s-2c6ce628d00a-0020"
+msgid "XamlReader.Load(file)"
+msgstr "Carga el archivo: XamlReader.Load(file)"
+
+#: src/xaml/README.md:55
+msgctxt "s-38dbd33e89cc-0021"
+msgid "four copies, in document order"
+msgstr "Cuatro copias en el orden del documento"
+
+#: src/xaml/README.md:56
+msgctxt "s-30f7006fdea5-0022"
+msgid "build the next provider node: it fires at once"
+msgstr "El siguiente nodo proveedor se activa al crearse"
+
+#: src/xaml/README.md:57
+msgctxt "s-5997f1a8f6ab-0023"
+msgid "random hours, via a carrier array, then Add and SaveChanges"
+msgstr "Horas al azar vía arreglo portador y luego Add y SaveChanges"
+
+#: src/xaml/README.md:58
+msgctxt "s-a6dd903af968-0024"
+msgid "trigger deletes the row if earlier rows total over 40"
+msgstr "Borra la fila si el total anterior pasa de 40"
+
+#: src/xaml/README.md:60
+msgctxt "s-dd416f87d168-0025"
+msgid "the finished Window object"
+msgstr "Objeto Window terminado"
+
+#: src/xaml/README.md:61
+msgctxt "s-5d920155aef1-0026"
+msgid "Application.Run(window)"
+msgstr "Llama a Application.Run(window)"
+
+#: src/xaml/README.md:62
+msgctxt "s-d0592762480b-0027"
+msgid "Loaded event trigger starts the fade storyboard"
+msgstr "El evento Loaded dispara el fundido"
+
+#: src/xaml/README.md:63
+msgctxt "s-efeb796ab8c7-0028"
+msgid "the window closes and Run returns"
+msgstr "Se cierra la ventana y Run retorna"
+
+#: src/xaml/README.md:66
+msgctxt "s-813f05145b49-0029"
+msgid "**What this shows:** there is no loop and no stop rule in the markup's control flow. The parser walks the document once, from top to bottom, and each provider does its work at the moment it is built. The four passes are four copies, and the 40-hour limit is a trigger inside SQLite, which removes a row that comes too late."
+msgstr "**Qué muestra:** no hay bucle ni regla de parada en el flujo de control del marcado. El analizador sintáctico recorre el documento una sola vez, de arriba abajo. Cada proveedor hace su trabajo en cuanto se crea. Cada una de las cuatro pasadas es una copia. El límite de 40 horas lo aplica un disparador de SQLite que elimina las filas que llegan demasiado tarde."
+
+#: src/xaml/README.md:68
+msgctxt "s-6f7a1570585d-0030"
+msgid "**Why this mechanism matters:** the program counter is document order. The only event in the picture is the ⟦CODE_0001⟧ trigger, and it only starts an animation. The program's logic does not subscribe to anything. This is a parser used as an interpreter, not event-driven code. Shown here is ⟦CODE_0002⟧; ⟦CODE_0003⟧ and ⟦CODE_0004⟧ share the shape."
+msgstr "**Por qué importa este mecanismo:** el orden del documento hace de contador de programa, es decir, indica qué se ejecuta a continuación. El único evento en el diagrama es el que activa el disparador ⟦CODE_0001⟧. Este solo inicia una animación. La lógica del programa no se suscribe a nada. Aquí el analizador sintáctico hace de intérprete y el código no responde a eventos. El diagrama muestra ⟦CODE_0002⟧. ⟦CODE_0003⟧ y ⟦CODE_0004⟧ tienen la misma estructura."
+
+#: src/xaml/README.md:70
+msgctxt "s-7f97d965b4c0-0031"
+msgid "How the stunt works"
+msgstr "Cómo funciona el truco"
+
+#: src/xaml/README.md:72
+msgctxt "s-02d095cbfc21-0032"
+msgid "A markup language has no ⟦CODE_0001⟧, no ⟦CODE_0002⟧, and no assignment - in theory. In practice, WPF's XAML parser ships with a few features that, combined, add up to a small interpreter:"
+msgstr "En teoría, un lenguaje de marcado no tiene ⟦CODE_0001⟧, ⟦CODE_0002⟧ ni asignación. En la práctica, el analizador sintáctico de XAML de WPF trae algunas funciones que juntas forman un pequeño intérprete:"
+
+#: src/xaml/README.md:74
+msgctxt "s-8f6e2fbc4cba-0033"
+msgid "**⟦CODE_0001⟧ is the interpreter.** The ⟦CODE_0002⟧ file is the program; parsing it *is* running it."
+msgstr "**⟦CODE_0001⟧ es el intérprete.** El archivo ⟦CODE_0002⟧ es el programa. Su análisis sintáctico *es* su ejecución."
+
+#: src/xaml/README.md:75
+msgctxt "s-86aa48835075-0034"
+msgid "**⟦CODE_0001⟧ is the instruction.** It can construct any object and call any method, and it fires the moment it is parsed. Document order becomes the program counter."
+msgstr "**⟦CODE_0001⟧ es la instrucción.** Puede construir cualquier objeto y llamar a cualquier método. Se activa en cuanto el analizador lo procesa. El orden del documento se convierte en el contador de programa."
+
+#: src/xaml/README.md:76
+msgctxt "s-4405d39466fc-0035"
+msgid "**⟦CODE_0001⟧ is the goto.** One provider can rerun another one. The call is passed through an ⟦CODE_0002⟧ so that XAML does not try to unwrap it first."
+msgstr "**⟦CODE_0001⟧ hace de goto.** Un proveedor puede volver a ejecutar otro. La llamada pasa por un ⟦CODE_0002⟧ para que XAML no intente desenvolverla primero."
+
+#: src/xaml/README.md:77
+msgctxt "s-3dce06550184-0036"
+msgid "**\"Carrier\" arrays are the variables.** One ⟦CODE_0001⟧ call fills a ⟦CODE_0002⟧ or ⟦CODE_0003⟧ in place; the next one reads it back. That is how a random number travels from ⟦CODE_0004⟧ into a SQL parameter, an XML element, or an EF Core entity."
+msgstr "**Los arreglos \"portadores\" son las variables.** Una llamada a ⟦CODE_0001⟧ llena un ⟦CODE_0002⟧ o un ⟦CODE_0003⟧ in situ, directamente en el mismo arreglo. La siguiente llamada lee el arreglo. Así viaja un número aleatorio desde ⟦CODE_0004⟧ a un parámetro SQL, un elemento XML o una entidad de EF Core."
+
+#: src/xaml/README.md:78
+msgctxt "s-af7d526abb1a-0037"
+msgid "**Expression engines are the ALU.** ⟦CODE_0001⟧, ⟦CODE_0002⟧, and SQL itself do the arithmetic and the conditionals. A SQL string inside a XAML attribute is still XAML."
+msgstr "**Los motores de expresiones hacen de ALU, la unidad aritmética y lógica.** ⟦CODE_0001⟧, ⟦CODE_0002⟧ y el propio SQL se encargan de la aritmética y las condiciones. Una cadena de texto SQL dentro de un atributo XAML sigue siendo XAML."
+
+#: src/xaml/README.md:79
+msgctxt "s-40d06a40a294-0038"
+msgid "**A ⟦CODE_0001⟧ is built entirely in markup**, using ⟦CODE_0002⟧, then started and joined - all as ⟦CODE_0003⟧ calls. The window's fade is an ordinary WPF ⟦CODE_0004⟧."
+msgstr "**El marcado por sí solo crea un ⟦CODE_0001⟧**, con ⟦CODE_0002⟧. Luego se inicia y se espera a que termine. Todo se hace con llamadas a ⟦CODE_0003⟧. El fundido de la ventana usa un ⟦CODE_0004⟧ normal de WPF."
+
+#: src/xaml/README.md:81
+msgctxt "s-5a0ad00b10fc-0039"
+msgid "Gotchas worth knowing"
+msgstr "Trampas que conviene conocer"
+
+#: src/xaml/README.md:83
+msgctxt "s-5e3770190475-0040"
+msgid "Obfuscation is not the same as lying, so here is what the trick actually costs:"
+msgstr "Ofuscar no es lo mismo que mentir. Este es el costo real del truco:"
+
+#: src/xaml/README.md:85
+msgctxt "s-132ef9b2028e-0041"
+msgid "**The loop is unrolled, not looped.** There is no loop construct anywhere in these files - only four copy-pasted passes. \"Four categories\" is baked into the markup, not computed."
+msgstr "**El bucle se desenrolla en vez de repetirse.** En estos archivos no hay ninguna estructura de bucle. Solo hay cuatro pasadas copiadas y pegadas. Las \"cuatro categorías\" están escritas en el marcado y no se calculan."
+
+#: src/xaml/README.md:86
+msgctxt "s-6dcf7a85468f-0042"
+msgid "**At most four cards, so \"exactly 40 continues\" is out of reach here.** Every other entry that cycles or repeats its categories deals a fifth card when four cards total exactly 40. This one has four passes and no fifth, so a hypothetical run of four 10-hour cards would stop at 40. The files seed ⟦CODE_0001⟧, whose first four hours are 16, 11, 11 and 15 (total 53, so the fourth card crosses and the trigger keeps it), so the shipped files always deal exactly four cards and never meet the case. A different seed (exercise E2) could. A fifth pass is not hard to write, but it could not be tested here, because the entry needs Windows and WPF, so it has not been added."
+msgstr "**Hay como máximo cuatro tarjetas, así que aquí no se cumple la regla \"un total de exactamente 40 continúa\".** Las otras entradas que repiten las categorías en ciclo o por duplicación sacan una quinta tarjeta cuando cuatro suman exactamente 40. Esta tiene cuatro pasadas y ninguna quinta. Por eso, una ejecución hipotética de cuatro tarjetas de 10 horas se detendría en 40. Los archivos fijan la semilla de ⟦CODE_0001⟧. Los cuatro primeros sorteos dan 16, 11, 11 y 15 horas (total de 53, así que con la cuarta tarjeta el total pasa del tope y el disparador la conserva). Los archivos incluidos siempre sacan exactamente cuatro tarjetas y nunca se topan con el caso. Con otra semilla (ejercicio E2) podría ocurrir. Es fácil escribir una quinta pasada. Aquí no se pudo probar porque la entrada requiere Windows y WPF, así que no se agregó."
+
+#: src/xaml/README.md:87
+msgctxt "s-ad520d412c39-0043"
+msgid "**Conditional *effects* come from the expression engines**, not from WPF's ⟦CODE_0001⟧/⟦CODE_0002⟧ system. ⟦CODE_0003⟧ and SQL branch on data; XAML triggers are not used for program logic here."
+msgstr "**Los *efectos* condicionales provienen de los motores de expresiones** y no del sistema ⟦CODE_0001⟧/⟦CODE_0002⟧ de WPF. ⟦CODE_0003⟧ y SQL eligen una rama según los datos. Aquí la lógica del programa no usa disparadores de XAML."
+
+#: src/xaml/README.md:88
+msgctxt "s-896362a13c88-0044"
+msgid "**Three files, three flavors of the same program.** ⟦CODE_0001⟧ uses nothing outside .NET itself, so it saves XML rather than a database. ⟦CODE_0002⟧ adds the SQLite package. ⟦CODE_0003⟧ adds EF Core, through two small model classes copied from the [C# original](⟦DEST_0004⟧)."
+msgstr "**Tres archivos, tres sabores del mismo programa.** ⟦CODE_0001⟧ solo usa .NET, así que guarda XML en vez de usar una base de datos. ⟦CODE_0002⟧ agrega el paquete de SQLite. ⟦CODE_0003⟧ agrega EF Core con dos clases de modelo pequeñas, copiadas del [original en C#](⟦DEST_0004⟧)."
+
+#: src/xaml/README.md:90
+msgctxt "s-fff646ea1f30-0045"
+msgid "Why this is weird"
+msgstr "Por qué es raro"
+
+#: src/xaml/README.md:92
+msgctxt "s-492f84453a1c-0046"
+msgid "XAML's job is to *describe* a UI tree, declaratively, so a designer tool can read and write it without running any code. This entry shows what happens once you notice the parser does not actually enforce that: given the right combination of built-in types, parsing a file and running a program become the same act. It is not a technique to reuse - it is what happens when you take \"XAML is just data\" at its word and then push until it stops being true."
+msgstr "El trabajo de XAML es *describir* un árbol de interfaz de forma declarativa. Así, una herramienta de diseño puede leerlo y escribirlo sin ejecutar código. Esta entrada muestra qué pasa al descubrir que el analizador sintáctico no impone esa restricción. Con la combinación adecuada de tipos incorporados, el análisis sintáctico de un archivo y la ejecución de un programa se vuelven el mismo acto. La técnica no es para reutilizarla. Es lo que ocurre si tomas al pie de la letra \"XAML es solo datos\" e insistes hasta que deja de ser cierto."
+
+#: src/xaml/README.md:94
+msgctxt "s-a1b2588ecbbe-0047"
+msgid "The idea is older than this repo. A [2013 blog post](⟦DEST_0001⟧) did the same thing on ASP.NET Web Forms: it built a stacked bar chart with no code-behind, just a SQL ⟦CODE_0002⟧ and markup. That post is where the XAML entry came from. Microsoft never gives up on an idea."
+msgstr "La idea es anterior a este repositorio. Una [entrada de blog de 2013](⟦DEST_0001⟧) hizo lo mismo con ASP.NET Web Forms. Creó un gráfico de barras apiladas sin código subyacente, solo con un ⟦CODE_0002⟧ de SQL y marcado. De ahí salió la entrada de XAML. Microsoft jamás deja escapar una idea."
+
+#: src/xaml/README.md:98
+msgctxt "s-d93d79683716-0048"
+msgid "See the [root README](⟦DEST_0001⟧) for how this compares to the other entries, and [⟦CODE_0002⟧](⟦DEST_0003⟧) if you want to write your own."
+msgstr "Consulta el [README de la raíz del repositorio](⟦DEST_0001⟧) para comparar esta entrada con las demás. Si quieres escribir la tuya, consulta [⟦CODE_0002⟧](⟦DEST_0003⟧)."
+
+#: src/xaml/README.md:100
+msgctxt "s-b41c50ab7de6-0049"
+msgid "Run it in Windows Sandbox"
+msgstr "Ejecútalo en Windows Sandbox"
+
+#: src/xaml/README.md:102
+msgctxt "s-4c7e274e3b4c-0050"
+msgid "Prerequisites: Windows Sandbox and this entry's toolchain on your machine, set up once as described in [⟦CODE_0001⟧](⟦DEST_0002⟧)."
+msgstr "Requisitos previos: Windows Sandbox, un entorno aislado (*sandbox*) que limita el acceso al sistema anfitrión. También necesitas las herramientas de esta entrada en tu máquina. Configura ambos una vez según [⟦CODE_0001⟧](⟦DEST_0002⟧)."
+
+#: src/xaml/README.md:108
+msgctxt "s-c3db77564ae8-0051"
+msgid "It runs the entry in a throwaway VM with networking off, screenshots the window, asks it to close, and prints what it saved."
+msgstr "Ejecuta la entrada en una máquina virtual desechable con la red desactivada. Toma una captura de la ventana, le pide que se cierre e imprime lo que guardó."

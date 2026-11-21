@@ -1,6 +1,6 @@
 ---
 name: "Tcl"
-teaches: "that idiomatic Tcl uses procedures in a namespace, dicts for records, braced `expr` and `db eval` to bind Tcl variables into SQL."
+teaches: "que el Tcl idiomático agrupa los procedimientos en un espacio de nombres y usa diccionarios para los registros. Usa `expr` entre llaves y `db eval` para enlazar variables Tcl en SQL."
 kind: idiomatic
 languages: [tcl]
 lesson: "lenguajes/tcl.md"
@@ -8,21 +8,21 @@ loop-by: loop-statement
 evaluation: eager
 assurance: implementation-permitted
 pairs-with: tcl-weird
-machine: "Ordinary: a `while` loop that draws first and saves afterwards"
-state: "Dicts and Tcl variables, saved in one `db transaction`"
+machine: "Convencional: un bucle `while` que primero sortea y después guarda"
+state: "Diccionarios y variables Tcl que se guardan en un solo `db transaction`"
 tags: [reflection-and-metaprogramming, scope-and-binding, transaction]
 ---
 # Tcl
 
-**Teaches you:** that idiomatic Tcl uses procedures in a namespace, dicts for records, braced `expr` and `db eval` to bind Tcl variables into SQL.
+**Te enseña:** que el Tcl idiomático agrupa los procedimientos en un espacio de nombres y usa diccionarios para los registros. Usa `expr` entre llaves y `db eval` para enlazar variables Tcl en SQL.
 
-> **DEMO ONLY.** Fictional timecards in a scratch SQLite file. No connection to any real time-reporting system.
+> **DEMO ONLY.** Tarjetas de horas ficticias en un archivo temporal de SQLite. Sin conexión con ningún sistema real de registro de horas.
 
-This is the straight version, the one that shows how Tcl is *meant* to be written. The challenge ("add 10 to 19 hour cards until the total passes 40") is one `while` loop in the proc `timecards::draw`; everything else in [`timecards.tcl`](timecards.tcl) is a small proc that does one job. There is an optional Tk window. The weird version, where the loop is a recursive SQL trigger and the code lives in the database, is [`tcl-weird`](../tcl-weird/README.md).
+Esta es la versión convencional, la que muestra cómo se *suele* escribir Tcl. El reto ("agrega tarjetas de 10 a 19 horas y detente cuando el total pasa de 40") se resuelve con un bucle `while` en el procedimiento `timecards::draw`. El resto de [`timecards.tcl`](timecards.tcl) son procedimientos breves que hacen una sola tarea cada uno. Hay una ventana Tk opcional. La versión rara está en [`tcl-weird`](../tcl-weird/README.md). Allí el bucle es un disparador SQL recursivo y el código reside en la base de datos.
 
-## Run it
+## Ejecútalo
 
-You need Tcl 8.6 (`tclsh`) with the `sqlite3` Tcl package (Ubuntu: `tcl8.6` and `libsqlite3-tcl`). You need Tk (`tk8.6`) only for `--gui`.
+Necesitas Tcl 8.6 (`tclsh`) con el paquete Tcl `sqlite3` (Ubuntu: `tcl8.6` y `libsqlite3-tcl`). Solo necesitas Tk (`tk8.6`) para `--gui`.
 
 ```bash
 cd src/tcl
@@ -32,7 +32,7 @@ tclsh timecards.tcl --gui --seconds 3    # ...or let it close itself after 3 sec
 ./check.sh                               # set TCLSH=/path/to/tclsh if it is not on your PATH
 ```
 
-Records go to `$XDG_DATA_HOME/Tcl/demo-timecards.db` (default `~/.local/share/Tcl/`). A run looks like this:
+Los registros se guardan en `$XDG_DATA_HOME/Tcl/demo-timecards.db` (`~/.local/share/Tcl/` de forma predeterminada). Una ejecución se ve así:
 
 ```text
 # DEMO ONLY run 1794860932-15
@@ -44,34 +44,34 @@ Learning	16	54	2026-W47	DEMO ONLY
 # one while loop, cards as dicts, and db eval binding Tcl variables as SQL parameters
 ```
 
-With `--gui` a small table window appears, with a "DEMO ONLY" line under it. **Headless:** Tk needs an X display. Without one, run it under `xvfb-run -a tclsh timecards.tcl --gui --seconds 1`; the container image below does exactly that and takes a screenshot. The text version needs no display, and Tk is not even loaded unless you ask.
+Con `--gui` aparece una ventana pequeña con una tabla y debajo la línea "DEMO ONLY". **Sin pantalla:** Tk necesita una pantalla X. Si no tienes una, ejecútalo bajo `xvfb-run -a tclsh timecards.tcl --gui --seconds 1`. La imagen de contenedor de abajo hace eso mismo y toma una captura de pantalla. La versión de texto no requiere pantalla. Solo carga Tk si lo pides.
 
-## What it does
+## Qué hace
 
-It draws cards of 10 to 19 hours, cycling through Meetings, Coding, Debugging and Learning, until the running total is greater than 40 (the card that crosses the line is kept), prints each card, and saves them to SQLite in one transaction.
+El programa sortea de 10 a 19 horas por tarjeta. Las categorías se repiten en ciclo: `Meetings` (reuniones), `Coding` (programación), `Debugging` (depuración) y `Learning` (aprendizaje). Se detiene cuando el total acumulado pasa de 40 y conserva la primera tarjeta con la que el total pasa del tope. Imprime cada tarjeta y las guarda en SQLite en una sola transacción.
 
-## Program Flow
+## Flujo del programa
 
 ```mermaid
 flowchart TD
-    accTitle: tcl: an ordinary while loop in a namespace, then one transaction
-    accDescr: A flowchart. The main procedure parses the arguments with a while, lassign and switch loop, seeds the random generator from the clock and the process id, and calls draw. The draw procedure is a while loop. While the total is at or under the limit, it draws hours, adds them to the total with incr, picks the next category, and appends a card as a dict. When the total is over the limit, the save procedure opens SQLite and writes all the cards inside one transaction. Then the program prints the cards. Only if asked does it build a Tk window with a treeview.
-    A["main: parse argv, seed rand from the clock and pid"] --> B{{"draw: while total <= limit?"}}
-    B -->|yes| C["randomHours, incr total, pick a category, lappend a card as a dict"]
+    accTitle: tcl: un bucle while en un espacio de nombres y luego una transacción
+    accDescr: Diagrama de flujo. El procedimiento principal analiza los argumentos con un bucle while, lassign y switch. Inicializa el generador aleatorio con el reloj y el id de proceso y llama a draw. El procedimiento draw es un bucle while. Mientras el total no supere el límite, sortea las horas, las suma al total con incr, elige la siguiente categoría y agrega una tarjeta como dict. Cuando el total supera el límite, el procedimiento save abre SQLite y escribe todas las tarjetas en una sola transacción. Luego el programa imprime las tarjetas. Solo si se le pide crea una ventana Tk con un treeview.
+    A["main: analiza argv e inicializa rand con el reloj y pid"] --> B{{"draw: while ¿se cumple total <= limit?"}}
+    B -->|Sí| C["randomHours, incr total, elige categoría y lappend de la tarjeta como dict"]
     C --> B
-    B -->|no| D["save: db transaction inserts every card with bound parameters"]
-    D --> E["Print the cards; build the Tk treeview only if --gui was given"]
+    B -->|No| D["save: una sola transacción (db transaction) inserta cada tarjeta con parámetros enlazados"]
+    D --> E["Imprime las tarjetas. Crea el treeview de Tk solo con --gui"]
 ```
 
-**What this shows:** the conventional Tcl shape. A `while` is the loop, a dict is the card, and `db transaction` makes the save all-or-nothing. A guard around `main` lets the checks `source` the file and test `draw` in the same process.
+**Qué muestra:** la estructura convencional de Tcl. Un `while` es el bucle, un dict es la tarjeta y `db transaction` hace que se guarde todo o nada. Una condición de entrada en torno a `main` permite que las comprobaciones carguen el archivo con `source` y prueben `draw` en el mismo proceso.
 
-**Why this mechanism matters:** the program draws first and saves afterwards, so the card list is complete before the database sees it. Tcl's `while` re-evaluates its test each pass, and the test comes before the draw, so the crossing card is kept. The weird sibling [`tcl-weird`](../tcl-weird/README.md) moves the loop into the database.
+**Por qué importa este mecanismo:** el programa primero sortea y después guarda. Así la lista de tarjetas está completa antes de que llegue a la base de datos. El `while` de Tcl vuelve a evaluar su condición en cada pasada. Como la evalúa antes de sortear, conserva la tarjeta que hace que el total supere el límite. La variante rara [`tcl-weird`](../tcl-weird/README.md) traslada el bucle a la base de datos.
 
-## How the stunt works
+## Cómo funciona el truco
 
-1. **A namespace for the rules.** `namespace eval timecards { variable ... }` holds the categories and limits; every proc is `timecards::name`. That is how a one-file Tcl program avoids polluting the global namespace.
-2. **`randomHours`.** `expr {$minHours + int(rand() * ($maxHours - $minHours + 1))}`. Always brace the expression: Tcl would otherwise substitute and then parse it a second time, which is slower (no bytecode) and a classic injection hole.
-3. **`draw`, the challenge.**
+1. **Un espacio de nombres para las reglas.** `namespace eval timecards { variable ... }` guarda las categorías y los límites. Cada procedimiento se llama `timecards::name`. Así un programa Tcl de un solo archivo evita contaminar el espacio de nombres global.
+2. **`randomHours`.** `expr {$minHours + int(rand() * ($maxHours - $minHours + 1))}`. Pon siempre la expresión entre llaves. Sin ellas, Tcl haría sustituciones y volvería a analizar la expresión. Eso es más lento (sin bytecode) y abre una vía clásica para la inyección de código.
+3. **`draw`, el reto.**
    ```tcl
    while {$total <= $limit} {
        set hours [randomHours]
@@ -80,49 +80,49 @@ flowchart TD
        lappend cards [dict create category $category hours $hours total $total]
    }
    ```
-   The test is made *before* each draw, so the card that pushes the total over 40 is the last one added: that is why it is kept. A card is a **dict** (a key-value list with a real data structure behind it).
-4. **`save`.** `sqlite3 [namespace current]::db path` makes a *command* named `db`; everything you do to the database is a subcommand. `db transaction {...}` commits or rolls back for you. In `db eval {INSERT ... VALUES ($runId, $category, ...)}` the `$names` are **bound parameters**: Tcl hands the *values* to SQLite instead of pasting text into the SQL, so there is no quoting problem. `dict with card { ... }` unpacks a card's keys into local variables first, so the names are just there to bind.
-5. **`try ... finally`** closes the database even when something fails.
-6. **`main`** parses `--gui` and `--seconds` with a `while`/`lassign`/`switch` loop (the standard way to walk `argv`), seeds `rand()` from the microsecond clock and the process id, draws, saves and prints.
-7. **The guard.** `if {[info exists argv0] && [file normalize $argv0] eq [file normalize [info script]]}` runs `main` only when the file is the script. That is the Tcl `if __name__ == "__main__"`, and it is what lets `check.sh` `source` the file and unit-test `draw` 2,000 times in one process.
-8. **Tk, only if asked.** `package require Tk` happens inside `showWindow`. It builds a `ttk::treeview` with a heading and a row per card.
+   La prueba se hace *antes* de cada sorteo. Por eso, la primera tarjeta con la que el total pasa de 40 es la última que se agrega y se conserva. Una tarjeta es un **dict** (una lista de pares clave-valor con una estructura de datos real por debajo).
+4. **`save`.** `sqlite3 [namespace current]::db path` crea un *comando* llamado `db`. Toda operación sobre la base de datos es un subcomando. `db transaction {...}` se encarga de la confirmación de la transacción o la revierte. En `db eval {INSERT ... VALUES ($runId, $category, ...)}`, los `$names` son **parámetros enlazados**. Tcl entrega los *valores* a SQLite en vez de pegar texto en SQL, así que las comillas no son un problema. Primero `dict with card { ... }` desglosa las claves de una tarjeta en variables locales. Los nombres solo sirven para el enlace.
+5. **`try ... finally`** cierra la base de datos incluso si algo falla.
+6. **`main`** analiza `--gui` y `--seconds` con un bucle `while`/`lassign`/`switch` (la forma habitual de recorrer `argv`). Inicializa `rand()` con el reloj de microsegundos y el id de proceso. Luego sortea, guarda e imprime.
+7. **La condición de entrada.** `if {[info exists argv0] && [file normalize $argv0] eq [file normalize [info script]]}` ejecuta `main` solo cuando el archivo se ejecuta como script. Es el `if __name__ == "__main__"` de Tcl. Permite que `check.sh` cargue el archivo con `source` y haga una prueba unitaria de `draw` 2000 veces en un solo proceso.
+8. **Tk, solo si lo pides.** `package require Tk` ocurre dentro de `showWindow`. Crea un `ttk::treeview` con un encabezado y una fila por tarjeta.
 
-## Why this is idiomatic
+## Por qué es idiomático
 
-- **Everything is a command**, and the program is a set of procs, namespaced, with comments saying what each returns.
-- **Braced everything**: `expr {...}`, `while {...}`, `if {...}`; no unbraced expressions anywhere (`check.sh` greps for them).
-- **Dicts for records, lists for sequences**, `lindex`/`lappend`/`llength` rather than index arithmetic on strings.
-- **Variables as SQL parameters** instead of string building.
-- **Resource safety** with `try ... finally`, and `db transaction` for atomicity.
-- **Tk is optional and lazy**, and uses the themed `ttk::` widgets rather than the 1990s ones.
+- **Todo es un comando** y el programa es un conjunto de procedimientos dentro de un espacio de nombres. Los comentarios dicen qué devuelve cada uno.
+- **Todo entre llaves**: `expr {...}`, `while {...}` y `if {...}`. No hay expresiones sin llaves (`check.sh` las busca con grep).
+- **Diccionarios para registros y listas para secuencias**, `lindex`/`lappend`/`llength` en vez de hacer aritmética con índices de cadenas de texto.
+- **Variables como parámetros SQL** en vez de armar cadenas de texto.
+- **Uso seguro de recursos** con `try ... finally` y `db transaction` para garantizar la atomicidad, es decir, guardar todo o nada.
+- **Tk es opcional y se carga bajo demanda**. Usa los controles con tema de `ttk::` en vez de los de los años 1990.
 
-## What you can learn
+## Qué puedes aprender
 
-- Tcl's rule that *everything is a string* and what that costs and buys: why `expr` needs braces, why `{*}` ("expand") exists, why `$` and `[ ]` are the only substitutions.
-- `namespace eval`, `variable`, `proc ns::name`, and `namespace current`.
+- La regla de Tcl de que *todo es una cadena de texto* y qué costos y ventajas trae. Por qué `expr` necesita llaves, por qué existe `{*}` ("expande") y por qué `$` y `[ ]` son las únicas sustituciones.
+- `namespace eval`, `variable`, `proc ns::name` y `namespace current`.
 - `dict create`, `dict get`, `dict with`.
-- The `sqlite3` package's command-per-database model, `eval`, `transaction`, bound variables.
-- The `info script` / `argv0` guard for a file that is both a program and a library.
+- El modelo de un comando por base de datos del paquete `sqlite3`, `eval`, `transaction` y las variables enlazadas.
+- La condición de entrada `info script` / `argv0` para un archivo que es a la vez programa y biblioteca.
 
-## Gotchas worth knowing
+## Trampas que conviene conocer
 
-- **A tclsh that has loaded Tk does not exit when the script ends** while the main window exists. `showWindow` ends with `destroy .` for that reason; without it the process hangs (this showed up under `xvfb-run`).
-- **ISO weeks.** `clock format -format %G-W%V` gives the ISO-8601 year and week. `%Y` and `%U` are different things and disagree around New Year.
-- **`rand()` is not cryptographic**, and Tcl seeds it per process; `srand` is called explicitly so two programs started in the same second do not share a seed.
-- **The `sqlite3` package is not in Tcl itself.** It is a separate package (`libsqlite3-tcl`, or the `sqlite3` Tcl extension built with SQLite).
-- **Formatting.** Tcl has no standard formatter or linter here (`nagelfar` was not available); the layout follows the Tcl Style Guide by hand (4 spaces, braces on the same line, procs documented above their definition). `check.sh` confirms the file is a *complete* Tcl script (`info complete`) and that every `expr` is braced.
+- **Si tclsh cargó Tk, no sale al terminar el script** mientras exista la ventana principal. Por eso `showWindow` termina con `destroy .`. Sin él, el proceso queda colgado (esto se observó con `xvfb-run`).
+- **Semanas ISO.** `clock format -format %G-W%V` da el año y la semana según ISO-8601. `%Y` y `%U` dan cosas distintas y no coinciden en torno al Año Nuevo.
+- **`rand()` no es criptográfico** y Tcl lo inicializa por proceso. Se llama a `srand` de forma explícita para que dos programas iniciados en el mismo segundo no compartan semilla.
+- **El paquete `sqlite3` no viene con Tcl.** Es un paquete aparte (`libsqlite3-tcl` o la extensión Tcl `sqlite3` compilada con SQLite).
+- **Formato.** Aquí Tcl no cuenta con un formateador ni un analizador de estilo estándar (`nagelfar` no estaba disponible). El formato se aplicó a mano según la guía de estilo de Tcl. Usa 4 espacios, llaves en la misma línea y documentación encima de cada definición de procedimiento. `check.sh` confirma que el archivo es un script Tcl *completo* (`info complete`) y que cada `expr` va entre llaves.
 
-## What `check.sh` enforces
+## Qué comprueba `check.sh`
 
-The `DEMO ONLY` marker is there; no network-looking text; `draw` is a `while` on the limit; no unbraced `expr`; the file is a complete script. It then sources the file and calls `draw` 2,000 times, each deal checked: hours 10 to 19, no card after the total passed 40, correct running totals, categories in order, 3 to 5 cards. If Xvfb (or a `DISPLAY`) is present it runs `--gui --seconds 1`; otherwise it says "gui: SKIPPED". Finally 25 real runs are checked for sane records with SQLite agreeing with the printed output.
+Comprueba que aparece el marcador `DEMO ONLY` y que ningún texto hace pensar en acceso a la red. `draw` es un `while` sobre el límite. No hay `expr` sin llaves. El archivo es un script completo. Después carga el archivo y llama a `draw` 2000 veces. En cada reparto comprueba de 10 a 19 horas por tarjeta, totales acumulados correctos, categorías en orden y de 3 a 5 tarjetas. Comprueba que no salga otra tarjeta cuando el total pasa de 40. Si hay Xvfb (o `DISPLAY`), ejecuta `--gui --seconds 1`. Si no, dice "gui: SKIPPED". Por último, comprueba los registros de 25 ejecuciones reales y que SQLite coincida con la salida impresa.
 
-## Run it in a container
+## Ejecútalo en un contenedor
 
-Prerequisite: Docker, set up once as described in [`SANDBOX-SETUP.md`](../../SANDBOX-SETUP.md#docker). The `cc-rt-tcl` base image comes from `sandbox/container/build-bases.sh`.
+Requisito previo: Docker, configurado una sola vez según [`SANDBOX-SETUP.md`](../../SANDBOX-SETUP.md#docker). La imagen base `cc-rt-tcl` proviene de `sandbox/container/build-bases.sh`.
 
 ```bash
 sandbox/container/run-image.sh src/tcl
 sandbox/container/run-image.sh --out ./results src/tcl     # copies screenshot.png and the rows there (the folder must be writable by user nobody)
 ```
 
-It builds this folder's [`Dockerfile`](Dockerfile) and runs `--gui` on a virtual display (Xvfb) with no network, a read-only file system and user `nobody`, takes a screenshot of the window, and prints the output and a read-only look at the rows written. The image holds Tcl/Tk, the Tcl sqlite3 package and sqlite3 on a minimal Ubuntu.
+Construye la imagen con [`Dockerfile`](Dockerfile) de esta carpeta. Ejecuta `--gui` en una pantalla virtual (Xvfb) sin red, con un sistema de archivos de solo lectura y el usuario `nobody`. Toma una captura de la ventana e imprime la salida y una vista de solo lectura de las filas escritas. La imagen contiene Tcl/Tk, el paquete Tcl sqlite3 y sqlite3 sobre un Ubuntu mínimo.

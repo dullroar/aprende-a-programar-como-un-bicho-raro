@@ -1172,3 +1172,39 @@
 {"segment_id": "s-8ea5906e2da3-0074", "ts": "2026-11-21T14:29:59Z", "findings": ["I7: glossary term flag must be rendered 'bandera'"]}
 {"segment_id": "s-3dd94760d863-0089", "ts": "2026-11-21T14:29:59Z", "findings": [], "playful_note": "Conserva la imagen de tirar los dados y el contraste entre preparar los datos y ejecutar el programa."}
 {"segment_id": "s-57c0fe3891ab-0091", "ts": "2026-11-21T14:29:59Z", "findings": [], "playful_note": "Conserva la imagen del movimiento de los datos sin calcar la referencia a la plomería."}
+{"segment_id": "s-7f97d965b4c0-0033", "ts": "2026-11-21T14:39:01Z", "findings": [], "playful_note": "Conserva el guiño al presentar la técnica como un truco."}
+{"segment_id": "s-6d2738b50dec-0046", "ts": "2026-11-21T14:39:01Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-fff646ea1f30-0047", "ts": "2026-11-21T14:39:01Z", "findings": [], "playful_note": "Mantiene la rareza como motivo central de la entrada."}
+{"segment_id": "s-5a0ad00b10fc-0064", "ts": "2026-11-21T14:39:01Z", "findings": [], "playful_note": "Conserva el aviso informal sobre dificultades concretas."}
+{"segment_id": "s-eb0f1d2ec2e7-0065", "ts": "2026-11-21T14:39:01Z", "findings": ["I25: comma before a simple 'y' ('una tabla TEMP de una fila, y se leen dos veces'): no comma before a simple o or y"]}
+{"segment_id": "s-89bc97920d5a-0076", "ts": "2026-11-21T14:39:01Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-9d607f026b88-0016", "ts": "2026-11-21T14:39:02Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-297d7685685d-0018", "ts": "2026-11-21T14:39:02Z", "findings": ["I9: looks English: 1 of 4 words are English function words"]}
+{"segment_id": "s-abfd3cf9afcf-0022", "ts": "2026-11-21T14:39:02Z", "findings": ["I7: glossary term transaction must be rendered 'transacción'"]}
+{"segment_id": "s-5698d43a065f-0023", "ts": "2026-11-21T14:39:02Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-7f97d965b4c0-0026", "ts": "2026-11-21T14:39:02Z", "findings": [], "playful_note": "Conserva el guiño al presentar la técnica como un truco."}
+{"segment_id": "s-a2c44e4e627b-0028", "ts": "2026-11-21T14:39:02Z", "findings": ["I3: digit token 000 appears 1 time(s) in the source, 0 in the target", "I3: digit token 2 appears 1 time(s) in the source, 0 in the target", "I3: digit token 2000 appears 0 time(s) in the source, 1 in the target", "I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-ea6749cfa020-0035", "ts": "2026-11-21T14:39:02Z", "findings": ["I3: digit token 1990 appears 1 time(s) in the source, 0 in the target"]}
+{"segment_id": "s-5a0ad00b10fc-0041", "ts": "2026-11-21T14:39:02Z", "findings": [], "playful_note": "Conserva el aviso informal sobre dificultades concretas."}
+{"segment_id": "s-613a64e55a52-0048", "ts": "2026-11-21T14:39:02Z", "findings": ["I3: digit token 000 appears 1 time(s) in the source, 0 in the target", "I3: digit token 2 appears 1 time(s) in the source, 0 in the target", "I3: digit token 2000 appears 0 time(s) in the source, 1 in the target"]}
+{"segment_id": "s-e4cc70952bcb-0051", "ts": "2026-11-21T14:39:02Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-0e33c599399a-0011", "ts": "2026-11-21T14:39:02Z", "findings": ["I10: '!' without '¡'"]}
+{"segment_id": "s-81a18e88482a-0014", "ts": "2026-11-21T14:39:02Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-2c6ce628d00a-0020", "ts": "2026-11-21T14:39:02Z", "findings": ["I7: glossary term file must be rendered 'archivo'", "TRANSLATE: the reply is the English text unchanged"]}
+{"segment_id": "s-30f7006fdea5-0022", "ts": "2026-11-21T14:39:02Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-5d920155aef1-0026", "ts": "2026-11-21T14:39:02Z", "findings": ["TRANSLATE: the reply is the English text unchanged"]}
+{"segment_id": "s-7f97d965b4c0-0031", "ts": "2026-11-21T14:39:02Z", "findings": [], "playful_note": "Conserva el guiño al presentar la técnica como un truco."}
+{"segment_id": "s-5a0ad00b10fc-0039", "ts": "2026-11-21T14:39:02Z", "findings": [], "playful_note": "Conserva el aviso informal sobre dificultades concretas."}
+{"segment_id": "s-fff646ea1f30-0045", "ts": "2026-11-21T14:39:02Z", "findings": [], "playful_note": "Mantiene la rareza como motivo central de la entrada."}
+{"segment_id": "s-b41c50ab7de6-0049", "ts": "2026-11-21T14:39:02Z", "findings": ["I7: glossary term sandbox must be rendered 'entorno aislado (*sandbox*)'"]}
+{"segment_id": "s-6d2738b50dec-0046", "ts": "2026-11-21T14:40:16Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-89bc97920d5a-0076", "ts": "2026-11-21T14:40:16Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-9d607f026b88-0016", "ts": "2026-11-21T14:40:16Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-5698d43a065f-0023", "ts": "2026-11-21T14:40:16Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-a2c44e4e627b-0028", "ts": "2026-11-21T14:40:16Z", "findings": ["I3: digit token 000 appears 1 time(s) in the source, 0 in the target", "I3: digit token 2 appears 1 time(s) in the source, 0 in the target", "I3: digit token 2000 appears 0 time(s) in the source, 1 in the target", "I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-613a64e55a52-0048", "ts": "2026-11-21T14:40:16Z", "findings": ["I3: digit token 000 appears 1 time(s) in the source, 0 in the target", "I3: digit token 2 appears 1 time(s) in the source, 0 in the target", "I3: digit token 2000 appears 0 time(s) in the source, 1 in the target"]}
+{"segment_id": "s-e4cc70952bcb-0051", "ts": "2026-11-21T14:40:16Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-0e33c599399a-0011", "ts": "2026-11-21T14:40:16Z", "findings": ["I10: '!' without '¡'"]}
+{"segment_id": "s-81a18e88482a-0014", "ts": "2026-11-21T14:40:16Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-30f7006fdea5-0022", "ts": "2026-11-21T14:40:16Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-b41c50ab7de6-0049", "ts": "2026-11-21T14:40:16Z", "findings": ["I7: glossary term sandbox must be rendered 'entorno aislado (*sandbox*)'"]}

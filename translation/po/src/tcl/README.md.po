@@ -1,0 +1,484 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/tcl/README.md:2
+msgctxt "s-c4ca517fd660-0000"
+msgid "Tcl"
+msgstr "Tcl"
+
+#: src/tcl/README.md:3
+msgctxt "s-992c37c29f6f-0001"
+msgid ""
+"that idiomatic Tcl uses procedures in a namespace, dicts for records, braced"
+" ⟦CODE_0001⟧ and ⟦CODE_0002⟧ to bind Tcl variables into SQL."
+msgstr ""
+"que el Tcl idiomático agrupa los procedimientos en un espacio de nombres y "
+"usa diccionarios para los registros. Usa ⟦CODE_0001⟧ entre llaves y "
+"⟦CODE_0002⟧ para enlazar variables Tcl en SQL."
+
+#: src/tcl/README.md:11
+msgctxt "s-513a061a1f26-0002"
+msgid "Ordinary: a ⟦CODE_0001⟧ loop that draws first and saves afterwards"
+msgstr ""
+"Convencional: un bucle ⟦CODE_0001⟧ que primero sortea y después guarda"
+
+#: src/tcl/README.md:12
+msgctxt "s-e7471d62913c-0003"
+msgid "Dicts and Tcl variables, saved in one ⟦CODE_0001⟧"
+msgstr "Diccionarios y variables Tcl que se guardan en un solo ⟦CODE_0001⟧"
+
+#: src/tcl/README.md:15
+msgctxt "s-c4ca517fd660-0004"
+msgid "Tcl"
+msgstr "Tcl"
+
+#: src/tcl/README.md:17
+msgctxt "s-b9caf3d33e9e-0005"
+msgid ""
+"**Teaches you:** that idiomatic Tcl uses procedures in a namespace, dicts "
+"for records, braced ⟦CODE_0001⟧ and ⟦CODE_0002⟧ to bind Tcl variables into "
+"SQL."
+msgstr ""
+"**Te enseña:** que el Tcl idiomático agrupa los procedimientos en un espacio"
+" de nombres y usa diccionarios para los registros. Usa ⟦CODE_0001⟧ entre "
+"llaves y ⟦CODE_0002⟧ para enlazar variables Tcl en SQL."
+
+#: src/tcl/README.md:19
+msgctxt "s-5ca333b42af1-0006"
+msgid ""
+"**⟦DNT_0001⟧.** Fictional timecards in a scratch SQLite file. No connection "
+"to any real time-reporting system."
+msgstr ""
+"**⟦DNT_0001⟧.** Tarjetas de horas ficticias en un archivo temporal de "
+"SQLite. Sin conexión con ningún sistema real de registro de horas."
+
+#: src/tcl/README.md:21
+msgctxt "s-394d012e5ab7-0007"
+msgid ""
+"This is the straight version, the one that shows how Tcl is *meant* to be "
+"written. The challenge (\"add 10 to 19 hour cards until the total passes "
+"40\") is one ⟦CODE_0001⟧ loop in the proc ⟦CODE_0002⟧; everything else in "
+"[⟦CODE_0003⟧](⟦DEST_0004⟧) is a small proc that does one job. There is an "
+"optional Tk window. The weird version, where the loop is a recursive SQL "
+"trigger and the code lives in the database, is [⟦CODE_0005⟧](⟦DEST_0006⟧)."
+msgstr ""
+"Esta es la versión convencional, la que muestra cómo se *suele* escribir "
+"Tcl. El reto (\"agrega tarjetas de 10 a 19 horas y detente cuando el total "
+"pasa de 40\") se resuelve con un bucle ⟦CODE_0001⟧ en el procedimiento "
+"⟦CODE_0002⟧. El resto de [⟦CODE_0003⟧](⟦DEST_0004⟧) son procedimientos "
+"breves que hacen una sola tarea cada uno. Hay una ventana Tk opcional. La "
+"versión rara está en [⟦CODE_0005⟧](⟦DEST_0006⟧). Allí el bucle es un "
+"disparador SQL recursivo y el código reside en la base de datos."
+
+#: src/tcl/README.md:23
+msgctxt "s-958ca26c6a61-0008"
+msgid "Run it"
+msgstr "Ejecútalo"
+
+#: src/tcl/README.md:25
+msgctxt "s-948818f88b6c-0009"
+msgid ""
+"You need Tcl 8.6 (⟦CODE_0001⟧) with the ⟦CODE_0002⟧ Tcl package (Ubuntu: "
+"⟦CODE_0003⟧ and ⟦CODE_0004⟧). You need Tk (⟦CODE_0005⟧) only for "
+"⟦CODE_0006⟧."
+msgstr ""
+"Necesitas Tcl 8.6 (⟦CODE_0001⟧) con el paquete Tcl ⟦CODE_0002⟧ (Ubuntu: "
+"⟦CODE_0003⟧ y ⟦CODE_0004⟧). Solo necesitas Tk (⟦CODE_0005⟧) para "
+"⟦CODE_0006⟧."
+
+#: src/tcl/README.md:35
+msgctxt "s-e1efefb126c9-0010"
+msgid ""
+"Records go to ⟦CODE_0001⟧ (default ⟦CODE_0002⟧). A run looks like this:"
+msgstr ""
+"Los registros se guardan en ⟦CODE_0001⟧ (⟦CODE_0002⟧ de forma "
+"predeterminada). Una ejecución se ve así:"
+
+#: src/tcl/README.md:47
+msgctxt "s-45b8a3c3109c-0011"
+msgid ""
+"With ⟦CODE_0001⟧ a small table window appears, with a \"⟦DNT_0002⟧\" line "
+"under it. **Headless:** Tk needs an X display. Without one, run it under "
+"⟦CODE_0003⟧; the container image below does exactly that and takes a "
+"screenshot. The text version needs no display, and Tk is not even loaded "
+"unless you ask."
+msgstr ""
+"Con ⟦CODE_0001⟧ aparece una ventana pequeña con una tabla y debajo la línea "
+"\"⟦DNT_0002⟧\". **Sin pantalla:** Tk necesita una pantalla X. Si no tienes "
+"una, ejecútalo bajo ⟦CODE_0003⟧. La imagen de contenedor de abajo hace eso "
+"mismo y toma una captura de pantalla. La versión de texto no requiere "
+"pantalla. Solo carga Tk si lo pides."
+
+#: src/tcl/README.md:49
+msgctxt "s-c74ea9dc9cd2-0012"
+msgid "What it does"
+msgstr "Qué hace"
+
+#: src/tcl/README.md:51
+msgctxt "s-6a6fb69ec12a-0013"
+msgid ""
+"It draws cards of 10 to 19 hours, cycling through ⟦DNT_0001⟧, ⟦DNT_0002⟧, "
+"⟦DNT_0003⟧ and ⟦DNT_0004⟧, until the running total is greater than 40 (the "
+"card that crosses the line is kept), prints each card, and saves them to "
+"SQLite in one transaction."
+msgstr ""
+"El programa sortea de 10 a 19 horas por tarjeta. Las categorías se repiten "
+"en ciclo: `⟦DNT_0001⟧` (reuniones), `⟦DNT_0002⟧` (programación), "
+"`⟦DNT_0003⟧` (depuración) y `⟦DNT_0004⟧` (aprendizaje). Se detiene cuando el"
+" total acumulado pasa de 40 y conserva la primera tarjeta con la que el "
+"total pasa del tope. Imprime cada tarjeta y las guarda en SQLite en una sola"
+" transacción."
+
+#: src/tcl/README.md:53
+msgctxt "s-0dcb373c2dff-0014"
+msgid "Program Flow"
+msgstr "Flujo del programa"
+
+#: src/tcl/README.md:57
+msgctxt "s-863623d963a7-0015"
+msgid "tcl: an ordinary while loop in a namespace, then one transaction"
+msgstr "tcl: un bucle while en un espacio de nombres y luego una transacción"
+
+#: src/tcl/README.md:58
+msgctxt "s-9d607f026b88-0016"
+msgid ""
+"A flowchart. The main procedure parses the arguments with a while, lassign "
+"and switch loop, seeds the random generator from the clock and the process "
+"id, and calls draw. The draw procedure is a while loop. While the total is "
+"at or under the limit, it draws hours, adds them to the total with incr, "
+"picks the next category, and appends a card as a dict. When the total is "
+"over the limit, the save procedure opens SQLite and writes all the cards "
+"inside one transaction. Then the program prints the cards. Only if asked "
+"does it build a Tk window with a treeview."
+msgstr ""
+"Diagrama de flujo. El procedimiento principal analiza los argumentos con un "
+"bucle while, lassign y switch. Inicializa el generador aleatorio con el "
+"reloj y el id de proceso y llama a draw. El procedimiento draw es un bucle "
+"while. Mientras el total no supere el límite, sortea las horas, las suma al "
+"total con incr, elige la siguiente categoría y agrega una tarjeta como dict."
+" Cuando el total supera el límite, el procedimiento save abre SQLite y "
+"escribe todas las tarjetas en una sola transacción. Luego el programa "
+"imprime las tarjetas. Solo si se le pide crea una ventana Tk con un "
+"treeview."
+
+#: src/tcl/README.md:59
+msgctxt "s-0fe2a41e6b6b-0017"
+msgid "main: parse argv, seed rand from the clock and pid"
+msgstr "main: analiza argv e inicializa rand con el reloj y pid"
+
+#: src/tcl/README.md:59
+msgctxt "s-297d7685685d-0018"
+msgid "draw: while total <= limit?"
+msgstr "draw: while ¿se cumple total <= limit?"
+
+#: src/tcl/README.md:60
+msgctxt "s-8a798890fe93-0019"
+msgid "yes"
+msgstr "Sí"
+
+#: src/tcl/README.md:60
+msgctxt "s-866a203b9045-0020"
+msgid "randomHours, incr total, pick a category, lappend a card as a dict"
+msgstr ""
+"randomHours, incr total, elige categoría y lappend de la tarjeta como dict"
+
+#: src/tcl/README.md:62
+msgctxt "s-9390298f3fb0-0021"
+msgid "no"
+msgstr "No"
+
+#: src/tcl/README.md:62
+msgctxt "s-abfd3cf9afcf-0022"
+msgid "save: db transaction inserts every card with bound parameters"
+msgstr ""
+"save: una sola transacción (db transaction) inserta cada tarjeta con "
+"parámetros enlazados"
+
+#: src/tcl/README.md:63
+msgctxt "s-5698d43a065f-0023"
+msgid "Print the cards; build the Tk treeview only if --gui was given"
+msgstr "Imprime las tarjetas. Crea el treeview de Tk solo con --gui"
+
+#: src/tcl/README.md:66
+msgctxt "s-1f6bb38a2fdb-0024"
+msgid ""
+"**What this shows:** the conventional Tcl shape. A ⟦CODE_0001⟧ is the loop, "
+"a dict is the card, and ⟦CODE_0002⟧ makes the save all-or-nothing. A guard "
+"around ⟦CODE_0003⟧ lets the checks ⟦CODE_0004⟧ the file and test ⟦CODE_0005⟧"
+" in the same process."
+msgstr ""
+"**Qué muestra:** la estructura convencional de Tcl. Un ⟦CODE_0001⟧ es el "
+"bucle, un dict es la tarjeta y ⟦CODE_0002⟧ hace que se guarde todo o nada. "
+"Una condición de entrada en torno a ⟦CODE_0003⟧ permite que las "
+"comprobaciones carguen el archivo con ⟦CODE_0004⟧ y prueben ⟦CODE_0005⟧ en "
+"el mismo proceso."
+
+#: src/tcl/README.md:68
+msgctxt "s-baac6c6c8265-0025"
+msgid ""
+"**Why this mechanism matters:** the program draws first and saves "
+"afterwards, so the card list is complete before the database sees it. Tcl's "
+"⟦CODE_0001⟧ re-evaluates its test each pass, and the test comes before the "
+"draw, so the crossing card is kept. The weird sibling "
+"[⟦CODE_0002⟧](⟦DEST_0003⟧) moves the loop into the database."
+msgstr ""
+"**Por qué importa este mecanismo:** el programa primero sortea y después "
+"guarda. Así la lista de tarjetas está completa antes de que llegue a la base"
+" de datos. El ⟦CODE_0001⟧ de Tcl vuelve a evaluar su condición en cada "
+"pasada. Como la evalúa antes de sortear, conserva la tarjeta que hace que el"
+" total supere el límite. La variante rara [⟦CODE_0002⟧](⟦DEST_0003⟧) "
+"traslada el bucle a la base de datos."
+
+#: src/tcl/README.md:70
+msgctxt "s-7f97d965b4c0-0026"
+msgid "How the stunt works"
+msgstr "Cómo funciona el truco"
+
+#: src/tcl/README.md:72
+msgctxt "s-af63f010702e-0027"
+msgid ""
+"**A namespace for the rules.** ⟦CODE_0001⟧ holds the categories and limits; every proc is ⟦CODE_0002⟧. That is how a one-file Tcl program avoids polluting the global namespace.\n"
+"2. **⟦CODE_0003⟧.** ⟦CODE_0004⟧. Always brace the expression: Tcl would otherwise substitute and then parse it a second time, which is slower (no bytecode) and a classic injection hole.\n"
+"3. **⟦CODE_0005⟧, the challenge.**"
+msgstr ""
+"**Un espacio de nombres para las reglas.** ⟦CODE_0001⟧ guarda las categorías y los límites. Cada procedimiento se llama ⟦CODE_0002⟧. Así un programa Tcl de un solo archivo evita contaminar el espacio de nombres global.\n"
+"2. **⟦CODE_0003⟧.** ⟦CODE_0004⟧. Pon siempre la expresión entre llaves. Sin ellas, Tcl haría sustituciones y volvería a analizar la expresión. Eso es más lento (sin bytecode) y abre una vía clásica para la inyección de código.\n"
+"3. **⟦CODE_0005⟧, el reto.**"
+
+#: src/tcl/README.md:83
+msgctxt "s-a2c44e4e627b-0028"
+msgid ""
+"The test is made *before* each draw, so the card that pushes the total over 40 is the last one added: that is why it is kept. A card is a **dict** (a key-value list with a real data structure behind it).\n"
+"4. **⟦CODE_0001⟧.** ⟦CODE_0002⟧ makes a *command* named ⟦CODE_0003⟧; everything you do to the database is a subcommand. ⟦CODE_0004⟧ commits or rolls back for you. In ⟦CODE_0005⟧ the ⟦CODE_0006⟧ are **bound parameters**: Tcl hands the *values* to SQLite instead of pasting text into the SQL, so there is no quoting problem. ⟦CODE_0007⟧ unpacks a card's keys into local variables first, so the names are just there to bind.\n"
+"5. **⟦CODE_0008⟧** closes the database even when something fails.\n"
+"6. **⟦CODE_0009⟧** parses ⟦CODE_0010⟧ and ⟦CODE_0011⟧ with a ⟦CODE_0012⟧/⟦CODE_0013⟧/⟦CODE_0014⟧ loop (the standard way to walk ⟦CODE_0015⟧), seeds ⟦CODE_0016⟧ from the microsecond clock and the process id, draws, saves and prints.\n"
+"7. **The guard.** ⟦CODE_0017⟧ runs ⟦CODE_0018⟧ only when the file is the script. That is the Tcl ⟦CODE_0019⟧, and it is what lets ⟦CODE_0020⟧ ⟦CODE_0021⟧ the file and unit-test ⟦CODE_0022⟧ 2,000 times in one process.\n"
+"8. **Tk, only if asked.** ⟦CODE_0023⟧ happens inside ⟦CODE_0024⟧. It builds a ⟦CODE_0025⟧ with a heading and a row per card."
+msgstr ""
+"La prueba se hace *antes* de cada sorteo. Por eso, la primera tarjeta con la que el total pasa de 40 es la última que se agrega y se conserva. Una tarjeta es un **dict** (una lista de pares clave-valor con una estructura de datos real por debajo).\n"
+"4. **⟦CODE_0001⟧.** ⟦CODE_0002⟧ crea un *comando* llamado ⟦CODE_0003⟧. Toda operación sobre la base de datos es un subcomando. ⟦CODE_0004⟧ se encarga de la confirmación de la transacción o la revierte. En ⟦CODE_0005⟧, los ⟦CODE_0006⟧ son **parámetros enlazados**. Tcl entrega los *valores* a SQLite en vez de pegar texto en SQL, así que las comillas no son un problema. Primero ⟦CODE_0007⟧ desglosa las claves de una tarjeta en variables locales. Los nombres solo sirven para el enlace.\n"
+"5. **⟦CODE_0008⟧** cierra la base de datos incluso si algo falla.\n"
+"6. **⟦CODE_0009⟧** analiza ⟦CODE_0010⟧ y ⟦CODE_0011⟧ con un bucle ⟦CODE_0012⟧/⟦CODE_0013⟧/⟦CODE_0014⟧ (la forma habitual de recorrer ⟦CODE_0015⟧). Inicializa ⟦CODE_0016⟧ con el reloj de microsegundos y el id de proceso. Luego sortea, guarda e imprime.\n"
+"7. **La condición de entrada.** ⟦CODE_0017⟧ ejecuta ⟦CODE_0018⟧ solo cuando el archivo se ejecuta como script. Es el ⟦CODE_0019⟧ de Tcl. Permite que ⟦CODE_0020⟧ cargue el archivo con ⟦CODE_0021⟧ y haga una prueba unitaria de ⟦CODE_0022⟧ 2000 veces en un solo proceso.\n"
+"8. **Tk, solo si lo pides.** ⟦CODE_0023⟧ ocurre dentro de ⟦CODE_0024⟧. Crea un ⟦CODE_0025⟧ con un encabezado y una fila por tarjeta."
+
+#: src/tcl/README.md:90
+msgctxt "s-c307ae374e6b-0029"
+msgid "Why this is idiomatic"
+msgstr "Por qué es idiomático"
+
+#: src/tcl/README.md:92
+msgctxt "s-b10c5aef3772-0030"
+msgid ""
+"**Everything is a command**, and the program is a set of procs, namespaced, "
+"with comments saying what each returns."
+msgstr ""
+"**Todo es un comando** y el programa es un conjunto de procedimientos dentro"
+" de un espacio de nombres. Los comentarios dicen qué devuelve cada uno."
+
+#: src/tcl/README.md:93
+msgctxt "s-01548f76d2a9-0031"
+msgid ""
+"**Braced everything**: ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧; no unbraced "
+"expressions anywhere (⟦CODE_0004⟧ greps for them)."
+msgstr ""
+"**Todo entre llaves**: ⟦CODE_0001⟧, ⟦CODE_0002⟧ y ⟦CODE_0003⟧. No hay "
+"expresiones sin llaves (⟦CODE_0004⟧ las busca con grep)."
+
+#: src/tcl/README.md:94
+msgctxt "s-a2e8ab09b624-0032"
+msgid ""
+"**Dicts for records, lists for sequences**, "
+"⟦CODE_0001⟧/⟦CODE_0002⟧/⟦CODE_0003⟧ rather than index arithmetic on strings."
+msgstr ""
+"**Diccionarios para registros y listas para secuencias**, "
+"⟦CODE_0001⟧/⟦CODE_0002⟧/⟦CODE_0003⟧ en vez de hacer aritmética con índices "
+"de cadenas de texto."
+
+#: src/tcl/README.md:95
+msgctxt "s-0f41040159f6-0033"
+msgid "**Variables as SQL parameters** instead of string building."
+msgstr "**Variables como parámetros SQL** en vez de armar cadenas de texto."
+
+#: src/tcl/README.md:96
+msgctxt "s-d2e74d76491f-0034"
+msgid "**Resource safety** with ⟦CODE_0001⟧, and ⟦CODE_0002⟧ for atomicity."
+msgstr ""
+"**Uso seguro de recursos** con ⟦CODE_0001⟧ y ⟦CODE_0002⟧ para garantizar la "
+"atomicidad, es decir, guardar todo o nada."
+
+#: src/tcl/README.md:97
+msgctxt "s-ea6749cfa020-0035"
+msgid ""
+"**Tk is optional and lazy**, and uses the themed ⟦CODE_0001⟧ widgets rather "
+"than the 1990s ones."
+msgstr ""
+"**Tk es opcional y se carga bajo demanda**. Usa los controles con tema de "
+"⟦CODE_0001⟧ en vez de los de los años 1990."
+
+#: src/tcl/README.md:99
+msgctxt "s-81b1eee1fbb4-0036"
+msgid "What you can learn"
+msgstr "Qué puedes aprender"
+
+#: src/tcl/README.md:101
+msgctxt "s-482110792f0c-0037"
+msgid ""
+"Tcl's rule that *everything is a string* and what that costs and buys: why "
+"⟦CODE_0001⟧ needs braces, why ⟦CODE_0002⟧ (\"expand\") exists, why "
+"⟦CODE_0003⟧ and ⟦CODE_0004⟧ are the only substitutions."
+msgstr ""
+"La regla de Tcl de que *todo es una cadena de texto* y qué costos y ventajas"
+" trae. Por qué ⟦CODE_0001⟧ necesita llaves, por qué existe ⟦CODE_0002⟧ "
+"(\"expande\") y por qué ⟦CODE_0003⟧ y ⟦CODE_0004⟧ son las únicas "
+"sustituciones."
+
+#: src/tcl/README.md:102
+msgctxt "s-00969e57b843-0038"
+msgid "⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧, and ⟦CODE_0004⟧."
+msgstr "⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧ y ⟦CODE_0004⟧."
+
+#: src/tcl/README.md:104
+msgctxt "s-2f59011f0a31-0039"
+msgid ""
+"The ⟦CODE_0001⟧ package's command-per-database model, ⟦CODE_0002⟧, "
+"⟦CODE_0003⟧, bound variables."
+msgstr ""
+"El modelo de un comando por base de datos del paquete ⟦CODE_0001⟧, "
+"⟦CODE_0002⟧, ⟦CODE_0003⟧ y las variables enlazadas."
+
+#: src/tcl/README.md:105
+msgctxt "s-dfde1f7f40df-0040"
+msgid ""
+"The ⟦CODE_0001⟧ / ⟦CODE_0002⟧ guard for a file that is both a program and a "
+"library."
+msgstr ""
+"La condición de entrada ⟦CODE_0001⟧ / ⟦CODE_0002⟧ para un archivo que es a "
+"la vez programa y biblioteca."
+
+#: src/tcl/README.md:107
+msgctxt "s-5a0ad00b10fc-0041"
+msgid "Gotchas worth knowing"
+msgstr "Trampas que conviene conocer"
+
+#: src/tcl/README.md:109
+msgctxt "s-4688a407b2fc-0042"
+msgid ""
+"**A tclsh that has loaded Tk does not exit when the script ends** while the "
+"main window exists. ⟦CODE_0001⟧ ends with ⟦CODE_0002⟧ for that reason; "
+"without it the process hangs (this showed up under ⟦CODE_0003⟧)."
+msgstr ""
+"**Si tclsh cargó Tk, no sale al terminar el script** mientras exista la "
+"ventana principal. Por eso ⟦CODE_0001⟧ termina con ⟦CODE_0002⟧. Sin él, el "
+"proceso queda colgado (esto se observó con ⟦CODE_0003⟧)."
+
+#: src/tcl/README.md:110
+msgctxt "s-0e3c63c677a4-0043"
+msgid ""
+"**ISO weeks.** ⟦CODE_0001⟧ gives the ISO-8601 year and week. ⟦CODE_0002⟧ and"
+" ⟦CODE_0003⟧ are different things and disagree around New Year."
+msgstr ""
+"**Semanas ISO.** ⟦CODE_0001⟧ da el año y la semana según ISO-8601. "
+"⟦CODE_0002⟧ y ⟦CODE_0003⟧ dan cosas distintas y no coinciden en torno al Año"
+" Nuevo."
+
+#: src/tcl/README.md:111
+msgctxt "s-01b1f08a0672-0044"
+msgid ""
+"**⟦CODE_0001⟧ is not cryptographic**, and Tcl seeds it per process; "
+"⟦CODE_0002⟧ is called explicitly so two programs started in the same second "
+"do not share a seed."
+msgstr ""
+"**⟦CODE_0001⟧ no es criptográfico** y Tcl lo inicializa por proceso. Se "
+"llama a ⟦CODE_0002⟧ de forma explícita para que dos programas iniciados en "
+"el mismo segundo no compartan semilla."
+
+#: src/tcl/README.md:112
+msgctxt "s-570956ec3e18-0045"
+msgid ""
+"**The ⟦CODE_0001⟧ package is not in Tcl itself.** It is a separate package "
+"(⟦CODE_0002⟧, or the ⟦CODE_0003⟧ Tcl extension built with SQLite)."
+msgstr ""
+"**El paquete ⟦CODE_0001⟧ no viene con Tcl.** Es un paquete aparte "
+"(⟦CODE_0002⟧ o la extensión Tcl ⟦CODE_0003⟧ compilada con SQLite)."
+
+#: src/tcl/README.md:113
+msgctxt "s-629c90af12ca-0046"
+msgid ""
+"**Formatting.** Tcl has no standard formatter or linter here (⟦CODE_0001⟧ "
+"was not available); the layout follows the Tcl Style Guide by hand (4 "
+"spaces, braces on the same line, procs documented above their definition). "
+"⟦CODE_0002⟧ confirms the file is a *complete* Tcl script (⟦CODE_0003⟧) and "
+"that every ⟦CODE_0004⟧ is braced."
+msgstr ""
+"**Formato.** Aquí Tcl no cuenta con un formateador ni un analizador de "
+"estilo estándar (⟦CODE_0001⟧ no estaba disponible). El formato se aplicó a "
+"mano según la guía de estilo de Tcl. Usa 4 espacios, llaves en la misma "
+"línea y documentación encima de cada definición de procedimiento. "
+"⟦CODE_0002⟧ confirma que el archivo es un script Tcl *completo* "
+"(⟦CODE_0003⟧) y que cada ⟦CODE_0004⟧ va entre llaves."
+
+#: src/tcl/README.md:115
+msgctxt "s-339cc2c18f83-0047"
+msgid "What ⟦CODE_0001⟧ enforces"
+msgstr "Qué comprueba ⟦CODE_0001⟧"
+
+#: src/tcl/README.md:117
+msgctxt "s-613a64e55a52-0048"
+msgid ""
+"The ⟦CODE_0001⟧ marker is there; no network-looking text; ⟦CODE_0002⟧ is a "
+"⟦CODE_0003⟧ on the limit; no unbraced ⟦CODE_0004⟧; the file is a complete "
+"script. It then sources the file and calls ⟦CODE_0005⟧ 2,000 times, each "
+"deal checked: hours 10 to 19, no card after the total passed 40, correct "
+"running totals, categories in order, 3 to 5 cards. If Xvfb (or a "
+"⟦CODE_0006⟧) is present it runs ⟦CODE_0007⟧; otherwise it says \"gui: "
+"SKIPPED\". Finally 25 real runs are checked for sane records with SQLite "
+"agreeing with the printed output."
+msgstr ""
+"Comprueba que aparece el marcador ⟦CODE_0001⟧ y que ningún texto hace pensar"
+" en acceso a la red. ⟦CODE_0002⟧ es un ⟦CODE_0003⟧ sobre el límite. No hay "
+"⟦CODE_0004⟧ sin llaves. El archivo es un script completo. Después carga el "
+"archivo y llama a ⟦CODE_0005⟧ 2000 veces. En cada reparto comprueba de 10 a "
+"19 horas por tarjeta, totales acumulados correctos, categorías en orden y de"
+" 3 a 5 tarjetas. Comprueba que no salga otra tarjeta cuando el total pasa de"
+" 40. Si hay Xvfb (o ⟦CODE_0006⟧), ejecuta ⟦CODE_0007⟧. Si no, dice \"gui: "
+"SKIPPED\". Por último, comprueba los registros de 25 ejecuciones reales y "
+"que SQLite coincida con la salida impresa."
+
+#: src/tcl/README.md:119
+msgctxt "s-254f0c660db3-0049"
+msgid "Run it in a container"
+msgstr "Ejecútalo en un contenedor"
+
+#: src/tcl/README.md:121
+msgctxt "s-3cb82be2cee8-0050"
+msgid ""
+"Prerequisite: Docker, set up once as described in "
+"[⟦CODE_0001⟧](⟦DEST_0002⟧). The ⟦CODE_0003⟧ base image comes from "
+"⟦CODE_0004⟧."
+msgstr ""
+"Requisito previo: Docker, configurado una sola vez según "
+"[⟦CODE_0001⟧](⟦DEST_0002⟧). La imagen base ⟦CODE_0003⟧ proviene de "
+"⟦CODE_0004⟧."
+
+#: src/tcl/README.md:128
+msgctxt "s-e4cc70952bcb-0051"
+msgid ""
+"It builds this folder's [⟦CODE_0001⟧](⟦DEST_0002⟧) and runs ⟦CODE_0003⟧ on a"
+" virtual display (Xvfb) with no network, a read-only file system and user "
+"⟦CODE_0004⟧, takes a screenshot of the window, and prints the output and a "
+"read-only look at the rows written. The image holds Tcl/Tk, the Tcl sqlite3 "
+"package and sqlite3 on a minimal Ubuntu."
+msgstr ""
+"Construye la imagen con [⟦CODE_0001⟧](⟦DEST_0002⟧) de esta carpeta. Ejecuta "
+"⟦CODE_0003⟧ en una pantalla virtual (Xvfb) sin red, con un sistema de "
+"archivos de solo lectura y el usuario ⟦CODE_0004⟧. Toma una captura de la "
+"ventana e imprime la salida y una vista de solo lectura de las filas "
+"escritas. La imagen contiene Tcl/Tk, el paquete Tcl sqlite3 y sqlite3 sobre "
+"un Ubuntu mínimo."

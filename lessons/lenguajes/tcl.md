@@ -104,7 +104,7 @@ Each picture below is the `## Program Flow` section of an entry's README, copied
 
 ### Program flow of `tcl`
 
-From [`tcl`](../../src/tcl/README.md) ([source section](../../src/tcl/README.md#program-flow)).
+From [`tcl`](../../src/tcl/README.md) ([source section](../../src/tcl/README.md#flujo-del-programa)).
 
 ```mermaid
 flowchart TD
@@ -123,7 +123,7 @@ flowchart TD
 
 ### Program flow of `tcl-weird`
 
-From [`tcl-weird`](../../src/tcl-weird/README.md) ([source section](../../src/tcl-weird/README.md#program-flow)).
+From [`tcl-weird`](../../src/tcl-weird/README.md) ([source section](../../src/tcl-weird/README.md#flujo-del-programa)).
 
 ```mermaid
 sequenceDiagram
