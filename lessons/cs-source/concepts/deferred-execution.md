@@ -1,15 +1,15 @@
 ---
-title: "Deferred execution"
+title: "Ejecución diferida"
 chapter: 4
 order: 50
 ---
-Deferred execution means that you describe a query or a pipeline now, and it runs later, when someone asks for the results. In C#'s LINQ, `Where` and `Select` do no work by themselves. The work happens when a `foreach`, `ToList` or `Aggregate` reads the sequence. It exists so that pipelines can be composed cheaply, and so that a provider (such as Entity Framework) can translate the whole query into SQL. The surprises are real. The query runs *again* each time it is read, effects inside it happen late, and a variable captured by the query may have changed by then. [[entry:LinqChallenge1]] and [[entry:LinqChallenge2]] put effects inside the pipeline on purpose, and a final eager operator forces them.
+Con la ejecución diferida describes ahora una consulta o una canalización. La consulta o la canalización se ejecuta más tarde, cuando alguien pide los resultados. En LINQ de C#, `Where` y `Select` no hacen ningún trabajo por sí solos. El trabajo ocurre cuando `foreach`, `ToList` o `Aggregate` lee la secuencia. Así puedes combinar canalizaciones con poco costo y un proveedor (como Entity Framework) puede traducir la consulta completa a SQL. Sí que hay sorpresas. La consulta se ejecuta *de nuevo* en cada lectura. Sus efectos ocurren tarde y para entonces una variable que captura puede haber cambiado. [[entry:LinqChallenge1]] y [[entry:LinqChallenge2]] ponen efectos dentro de la canalización a propósito. Un operador final de evaluación inmediata fuerza su ejecución.
 
-- **Use it when:** you build queries and transformations that are free of effects.
-- **Avoid it when:** a stage has side effects. Decide who forces the pipeline, and when.
+- **Úsala cuando:** armes consultas y transformaciones sin efectos.
+- **Evítala cuando:** una etapa tenga efectos secundarios. Decide quién fuerza la ejecución de la canalización y cuándo.
 
-**Read more:**
+**Lee más:**
 
-- [Language Integrated Query](https://en.wikipedia.org/wiki/Language_Integrated_Query) (Wikipedia)
-- [Lazy evaluation](https://en.wikipedia.org/wiki/Lazy_evaluation) (Wikipedia)
-- [Iterator](https://en.wikipedia.org/wiki/Iterator) (Wikipedia)
+- [Consulta integrada en el lenguaje](https://en.wikipedia.org/wiki/Language_Integrated_Query) (Wikipedia)
+- [Evaluación perezosa](https://en.wikipedia.org/wiki/Lazy_evaluation) (Wikipedia)
+- [Iterador](https://en.wikipedia.org/wiki/Iterator) (Wikipedia)

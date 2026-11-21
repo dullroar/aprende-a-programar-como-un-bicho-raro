@@ -1,0 +1,58 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lessons/cs-source/concepts/event-driven-programming.md:2
+msgctxt "s-35100698ce54-0000"
+msgid "Event-driven programming"
+msgstr "Programación dirigida por eventos"
+
+#: lessons/cs-source/concepts/event-driven-programming.md:6
+msgctxt "s-03e395f9f76d-0001"
+msgid "In **event-driven programming** the program does not decide when its code runs. Something else produces *events*, and the program registers *callbacks* that run when one arrives. The flow of control is inverted: you do not call the framework, it calls you. Graphical interfaces, servers and timers work this way."
+msgstr "En la **programación dirigida por eventos**, el programa no decide cuándo se ejecuta su código. Otro componente produce *eventos* y el programa registra *funciones de devolución de llamada* (*callbacks*), funciones que se ejecutan cuando llega un evento. El flujo de control se invierte: tú no llamas al marco de trabajo. Él te llama a ti. Así funcionan las interfaces gráficas, los servidores y los temporizadores."
+
+#: lessons/cs-source/concepts/event-driven-programming.md:8
+msgctxt "s-6a08c7d84d46-0002"
+msgid "⟦MACRO_0001⟧ is the plainest case in this repo: its ten listeners are the whole program, and each one emits the event that the next one waits for. ⟦MACRO_0002⟧ is the other plain case. tar writes an archive, and every 512 bytes it calls a command. The command has no loop and no idea how many times it will be called. It moves a state machine one step. Change the archive's layout, and the same program gets a different number of events. ⟦MACRO_0003⟧ and ⟦MACRO_0004⟧ show a small, real one: after all the cards are saved, a ⟦CODE_0005⟧ timer calls a function every 600 milliseconds to pulse the ⟦DNT_0006⟧ line. The calls only happen after the synchronous code has finished, because JavaScript runs on one thread and its **event loop** runs a callback only when nothing else is running. A redirected run starts no timer, so Node has no event to wait for and exits at once."
+msgstr "⟦MACRO_0001⟧ es el caso más claro del repositorio: sus diez escuchadores de eventos forman todo el programa. Cada uno emite el evento que espera el siguiente. ⟦MACRO_0002⟧ es el otro caso claro. tar escribe un archivo y llama a un comando cada 512 bytes. El comando no tiene bucle ni sabe cuántas veces lo llamarán. Avanza un paso en una máquina de estados. Cambia la disposición del archivo y el mismo programa recibe una cantidad distinta de eventos. ⟦MACRO_0003⟧ y ⟦MACRO_0004⟧ muestran un caso real pequeño. Después de guardar todas las tarjetas, un temporizador ⟦CODE_0005⟧ llama a una función cada 600 milisegundos para actualizar la línea ⟦DNT_0006⟧ con cada pulso. Las llamadas solo ocurren después de que termina el código síncrono. JavaScript se ejecuta en un solo hilo y su **bucle de eventos** ejecuta una función de devolución de llamada solo cuando no hay nada más en ejecución. Una ejecución con salida redirigida no inicia ningún temporizador. Así Node no tiene ningún evento que esperar y sale de inmediato."
+
+#: lessons/cs-source/concepts/event-driven-programming.md:10
+msgctxt "s-e854a362b758-0003"
+msgid "A window is not enough to make a program event-driven. The WPF, Tk, GLib and Swing entries start a UI loop, but their cards come from a ⟦CODE_0001⟧ statement, a pipeline or a parser, so they are counterexamples."
+msgstr "Una ventana no basta para que un programa se guíe por eventos. Las entradas de WPF, Tk, GLib y Swing inician un bucle de interfaz. Pero sus tarjetas provienen de una sentencia ⟦CODE_0001⟧, una canalización o un analizador sintáctico, así que son contraejemplos."
+
+#: lessons/cs-source/concepts/event-driven-programming.md:12
+msgctxt "s-3c53f87c2984-0004"
+msgid "**Use it when:** the work is a reaction to things that arrive: clicks, requests, ticks, files."
+msgstr "**Úsala cuando:** el trabajo consista en reaccionar a lo que llega: clics, solicitudes, pulsos o archivos."
+
+#: lessons/cs-source/concepts/event-driven-programming.md:13
+msgctxt "s-615d7bc3c722-0005"
+msgid "**Avoid it when:** the order matters and the callbacks hide it. A chain of callbacks is hard to read and harder to test."
+msgstr "**Evítala cuando:** el orden importe y las funciones de devolución de llamada lo oculten. Una cadena de funciones de devolución de llamada es difícil de leer y aún más difícil de probar."
+
+#: lessons/cs-source/concepts/event-driven-programming.md:15
+msgctxt "s-250de292f56f-0006"
+msgid "**Read more:**"
+msgstr "**Lee más:**"
+
+#: lessons/cs-source/concepts/event-driven-programming.md:17
+msgctxt "s-fe6ed55a4a57-0007"
+msgid "[Event-driven programming](⟦DEST_0001⟧) (Wikipedia)"
+msgstr "[Programación dirigida por eventos](⟦DEST_0001⟧) (Wikipedia)"
+
+#: lessons/cs-source/concepts/event-driven-programming.md:18
+msgctxt "s-41625fa0909e-0008"
+msgid "[The event loop](⟦DEST_0001⟧) (MDN)"
+msgstr "[El bucle de eventos](⟦DEST_0001⟧) (MDN)"
+
+#: lessons/cs-source/concepts/event-driven-programming.md:19
+msgctxt "s-9339f2ec19ad-0009"
+msgid "[Events: EventEmitter](⟦DEST_0001⟧) (Node.js documentation)"
+msgstr "[Eventos: EventEmitter](⟦DEST_0001⟧) (documentación de Node.js)"

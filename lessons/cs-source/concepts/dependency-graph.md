@@ -1,29 +1,29 @@
 ---
-title: "Dependency graphs"
+title: "Grafos de dependencias"
 chapter: 6
 order: 70
 ---
-A dependency graph has a node for each thing and an arrow for "this needs that". If there are no cycles, it is a directed acyclic graph, and a *topological sort* gives an order that always works: build the needed things first. It exists so that tools do only the work that is needed, in the right order, and in parallel where they can. Make, package managers, spreadsheets and schedulers are all dependency engines. What is unusual in [[entry:make-gnu]] is that the graph can *change while it is being walked*: Make remakes an included makefile, then starts over with the new graph. That restart is the loop.
+Un grafo de dependencias tiene un nodo por elemento y una flecha para decir "esto necesita aquello". Si no tiene ciclos, es un grafo dirigido acíclico. Una *ordenación topológica* da un orden que siempre funciona: primero construye lo que los demás elementos necesitan. Así las herramientas hacen solo el trabajo necesario, en el orden correcto y en paralelo cuando pueden. Make, los gestores de paquetes, las hojas de cálculo y los planificadores son motores de dependencias. Lo inusual de [[entry:make-gnu]] es que el grafo puede *cambiar durante el recorrido*: Make vuelve a generar un makefile incluido y empieza de nuevo con el grafo nuevo. Ese reinicio es el bucle.
 
 ```mermaid
 flowchart LR
-    accTitle: A dependency graph captures what must be recomputed when an input changes
-    accDescr: A graph in which each arrow runs from an input to the thing built from it. Raw cards and categories both feed rows. Rows feeds report and chart. The categories node has changed, and it is drawn with a thick border. Everything downstream of categories must be recomputed, which is rows, report and chart. Raw cards is not downstream of the change, so its old value is reused.
-    raw["raw cards: unchanged, reused"] --> rows["rows: recompute"]
-    cat["categories: changed"] --> rows
-    rows --> rep["report: recompute"]
-    rows --> chart["chart: recompute"]
+    accTitle: Un grafo de dependencias indica qué se debe recalcular cuando cambia una entrada de datos
+    accDescr: Cada flecha de este grafo va de una entrada de datos al elemento que se construye a partir de ella. Tanto las tarjetas sin procesar como las categorías alimentan las filas. Las filas alimentan el informe y la gráfica. El nodo de categorías cambió y tiene un borde grueso. Hay que recalcular todo lo que depende de categorías: filas, informe y gráfica. Las tarjetas sin procesar no dependen del cambio, así que se reutiliza su valor anterior.
+    raw["tarjetas sin procesar: intactas, se reutilizan"] --> rows["filas: recalcular"]
+    cat["categorías: cambiaron"] --> rows
+    rows --> rep["informe: recalcular"]
+    rows --> chart["gráfica: recalcular"]
     classDef changed stroke-width: 4px
     class cat changed
 ```
 
-Each arrow here runs from an input to the thing built from it, so a change travels along the arrows. (Some books draw the arrow the other way, from a thing to what it needs. The facts are the same.) Only `categories` changed, so only what is downstream of it must be redone. `raw cards` keeps its old result. The graph says what *must* be recomputed, not when values arrive. For that, see [[dataflow-programming]].
+Aquí cada flecha va de una entrada de datos al elemento que se construye a partir de ella. Así los cambios viajan por las flechas. (Algunos libros dibujan la flecha al revés, de un elemento al que necesita. Los hechos son los mismos). Solo cambió `categories`, así que solo hay que rehacer lo que depende de ese nodo. `raw cards` conserva su resultado anterior. El grafo dice qué se *debe* recalcular, pero no cuándo llegan los valores. Para eso, consulta [[dataflow-programming]].
 
-- **Use it when:** any problem of the form "A must come before B".
-- **Avoid it when:** the dependencies form a cycle or the graph leaves some dependencies implicit. A hidden dependency gives wrong incremental builds.
+- **Úsalo cuando:** el problema tenga la forma "A debe ir antes de B".
+- **Evítalo cuando:** las dependencias formen un ciclo o el grafo deje algunas implícitas. Una dependencia oculta da resultados incorrectos en las compilaciones incrementales.
 
-**Read more:**
+**Lee más:**
 
-- [Dependency graph](https://en.wikipedia.org/wiki/Dependency_graph) (Wikipedia)
-- [Directed acyclic graph](https://en.wikipedia.org/wiki/Directed_acyclic_graph) (Wikipedia)
-- [Topological sorting](https://en.wikipedia.org/wiki/Topological_sorting) (Wikipedia)
+- [Grafo de dependencias](https://en.wikipedia.org/wiki/Dependency_graph) (Wikipedia)
+- [Grafo dirigido acíclico](https://en.wikipedia.org/wiki/Directed_acyclic_graph) (Wikipedia)
+- [Ordenación topológica](https://en.wikipedia.org/wiki/Topological_sorting) (Wikipedia)

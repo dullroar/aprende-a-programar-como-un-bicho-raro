@@ -1,0 +1,140 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lessons/cs-source/concepts/database-trigger.md:2
+msgctxt "s-37280e5e8fa9-0000"
+msgid "Database triggers"
+msgstr "Disparadores de base de datos"
+
+#: lessons/cs-source/concepts/database-trigger.md:6
+msgctxt "s-5f9ff190c5b5-0001"
+msgid ""
+"A trigger is code that the database runs by itself when a row is inserted, "
+"updated or deleted. It exists to keep rules close to the data: audit logs, "
+"derived columns, checks that a ⟦CODE_0001⟧ constraint cannot express. In "
+"⟦MACRO_0002⟧ a trigger is the loop. Each insert fires the trigger, which "
+"inserts the next row, until a ⟦CODE_0003⟧ clause finds nothing to insert. "
+"The cost is invisible control flow. Nothing in the application code says "
+"\"this also happens\", and the order and depth of triggers can surprise you."
+msgstr ""
+"Un disparador es código que la base de datos ejecuta por sí sola al "
+"insertar, actualizar o borrar una fila. Sirve para mantener las reglas cerca"
+" de los datos: registros de auditoría, columnas derivadas y comprobaciones "
+"que una restricción ⟦CODE_0001⟧ no puede expresar. En ⟦MACRO_0002⟧ un "
+"disparador hace de bucle. Cada inserción activa el disparador, que inserta "
+"la siguiente fila hasta que una cláusula ⟦CODE_0003⟧ no encuentra nada que "
+"insertar. El costo es un flujo de control invisible. Nada en el código de la"
+" aplicación dice \"esto también ocurre\". El orden y la profundidad de los "
+"disparadores pueden sorprenderte."
+
+#: lessons/cs-source/concepts/database-trigger.md:10
+msgctxt "s-20ab044eba2d-0002"
+msgid ""
+"A trigger is code the database runs in response to a table event, and the "
+"changed data becomes the next step"
+msgstr ""
+"Un disparador es código que la base de datos ejecuta en respuesta a un "
+"evento de tabla. Los datos que cambian dan lugar al siguiente paso"
+
+#: lessons/cs-source/concepts/database-trigger.md:11
+msgctxt "s-bdf8888abcd6-0003"
+msgid ""
+"A flowchart of a recursive trigger. Host code runs a single INSERT, and the "
+"host code contains no loop. The insert is a table event, which fires the "
+"trigger. The trigger checks its condition. If the condition selects a row, "
+"the trigger action inserts the next row, which is a new table event that "
+"fires the trigger again. If the condition selects nothing, the chain ends."
+msgstr ""
+"Diagrama de flujo de un disparador recursivo. El código anfitrión ejecuta un"
+" solo INSERT y no contiene ningún bucle. La inserción es un evento de tabla "
+"que activa el disparador. El disparador comprueba su condición. Si la "
+"condición selecciona una fila, el disparador inserta la siguiente fila. Ese "
+"nuevo evento de tabla vuelve a activar el disparador. Si la condición no "
+"selecciona nada, la cadena termina."
+
+#: lessons/cs-source/concepts/database-trigger.md:12
+msgctxt "s-9c935c0e9191-0004"
+msgid "Host code: one INSERT, no loop"
+msgstr "Código anfitrión: un INSERT, sin bucle"
+
+#: lessons/cs-source/concepts/database-trigger.md:12
+msgctxt "s-a42197690deb-0005"
+msgid "Table event: a row is inserted"
+msgstr "Evento de tabla: se inserta una fila"
+
+#: lessons/cs-source/concepts/database-trigger.md:13
+msgctxt "s-1fa2fa31761d-0006"
+msgid "Trigger fires: does its condition select a row?"
+msgstr "Disparador: ¿la condición selecciona una fila?"
+
+#: lessons/cs-source/concepts/database-trigger.md:14
+msgctxt "s-70a41c0a54ca-0007"
+msgid "yes: the trigger inserts the next row"
+msgstr "sí: el disparador inserta la siguiente fila"
+
+#: lessons/cs-source/concepts/database-trigger.md:15
+msgctxt "s-2ea98542d099-0008"
+msgid "no: nothing to insert"
+msgstr "no: nada que insertar"
+
+#: lessons/cs-source/concepts/database-trigger.md:15
+msgctxt "s-2ca543218a86-0009"
+msgid "Chain ends"
+msgstr "Fin de la cadena"
+
+#: lessons/cs-source/concepts/database-trigger.md:18
+msgctxt "s-1b6a75dd4ac1-0010"
+msgid ""
+"The host code runs one ⟦CODE_0001⟧ and has no loop. The trigger belongs to "
+"the table, so each insert is an event that fires it. The trigger's own "
+"⟦CODE_0002⟧ is another event, and that is how one change causes the next. A "
+"chain like this ends only because the condition finally selects no row. "
+"Databases are careful about it. SQLite does not let a trigger fire itself "
+"unless ⟦CODE_0003⟧ is on, and ⟦MACRO_0004⟧ turns it on on purpose."
+msgstr ""
+"El código anfitrión ejecuta un solo ⟦CODE_0001⟧ y no tiene bucle. El "
+"disparador pertenece a la tabla, así que cada inserción es un evento que lo "
+"activa. El ⟦CODE_0002⟧ del disparador también es un evento. Así un cambio "
+"causa el siguiente. Una cadena así solo termina porque al final la condición"
+" no selecciona ninguna fila. Las bases de datos toman precauciones. SQLite "
+"solo permite que un disparador se active a sí mismo si ⟦CODE_0003⟧ está "
+"habilitado. ⟦MACRO_0004⟧ lo habilita a propósito."
+
+#: lessons/cs-source/concepts/database-trigger.md:20
+msgctxt "s-b60cdfb6ca8e-0011"
+msgid ""
+"**Use it when:** for audit trails and rules that must hold whoever writes "
+"the data."
+msgstr ""
+"**Úsalo cuando:** necesites registros de auditoría o reglas que deban "
+"cumplirse sin importar quién escriba los datos."
+
+#: lessons/cs-source/concepts/database-trigger.md:21
+msgctxt "s-f692fa4c62ac-0012"
+msgid ""
+"**Avoid it when:** you are tempted to put business workflows in triggers, or"
+" to use them as a program loop (as this entry does, on purpose)."
+msgstr ""
+"**Evítalo cuando:** quieras meter procesos de negocio en disparadores o "
+"usarlos como bucle del programa (como hace esta entrada a propósito)."
+
+#: lessons/cs-source/concepts/database-trigger.md:23
+msgctxt "s-250de292f56f-0013"
+msgid "**Read more:**"
+msgstr "**Lee más:**"
+
+#: lessons/cs-source/concepts/database-trigger.md:25
+msgctxt "s-86c7c3188ec5-0014"
+msgid "[Database trigger](⟦DEST_0001⟧) (Wikipedia)"
+msgstr "[Disparador de base de datos](⟦DEST_0001⟧) (Wikipedia)"
+
+#: lessons/cs-source/concepts/database-trigger.md:26
+msgctxt "s-e291cc05ddc9-0015"
+msgid "[SQLite](⟦DEST_0001⟧) (Wikipedia)"
+msgstr "[SQLite](⟦DEST_0001⟧) (Wikipedia)"

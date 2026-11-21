@@ -1,19 +1,19 @@
 ---
-title: "Event-driven programming"
+title: "Programación dirigida por eventos"
 chapter: 10
 order: 10
 ---
-In **event-driven programming** the program does not decide when its code runs. Something else produces *events*, and the program registers *callbacks* that run when one arrives. The flow of control is inverted: you do not call the framework, it calls you. Graphical interfaces, servers and timers work this way.
+En la **programación dirigida por eventos**, el programa no decide cuándo se ejecuta su código. Otro componente produce *eventos* y el programa registra *funciones de devolución de llamada* (*callbacks*), funciones que se ejecutan cuando llega un evento. El flujo de control se invierte: tú no llamas al marco de trabajo. Él te llama a ti. Así funcionan las interfaces gráficas, los servidores y los temporizadores.
 
-[[entry:javascript-events]] is the plainest case in this repo: its ten listeners are the whole program, and each one emits the event that the next one waits for. [[entry:tar-gnu-weird]] is the other plain case. tar writes an archive, and every 512 bytes it calls a command. The command has no loop and no idea how many times it will be called. It moves a state machine one step. Change the archive's layout, and the same program gets a different number of events. [[entry:javascript]] and [[entry:javascript-weird]] show a small, real one: after all the cards are saved, a `setInterval` timer calls a function every 600 milliseconds to pulse the DEMO ONLY line. The calls only happen after the synchronous code has finished, because JavaScript runs on one thread and its **event loop** runs a callback only when nothing else is running. A redirected run starts no timer, so Node has no event to wait for and exits at once.
+[[entry:javascript-events]] es el caso más claro del repositorio: sus diez escuchadores de eventos forman todo el programa. Cada uno emite el evento que espera el siguiente. [[entry:tar-gnu-weird]] es el otro caso claro. tar escribe un archivo y llama a un comando cada 512 bytes. El comando no tiene bucle ni sabe cuántas veces lo llamarán. Avanza un paso en una máquina de estados. Cambia la disposición del archivo y el mismo programa recibe una cantidad distinta de eventos. [[entry:javascript]] y [[entry:javascript-weird]] muestran un caso real pequeño. Después de guardar todas las tarjetas, un temporizador `setInterval` llama a una función cada 600 milisegundos para actualizar la línea DEMO ONLY con cada pulso. Las llamadas solo ocurren después de que termina el código síncrono. JavaScript se ejecuta en un solo hilo y su **bucle de eventos** ejecuta una función de devolución de llamada solo cuando no hay nada más en ejecución. Una ejecución con salida redirigida no inicia ningún temporizador. Así Node no tiene ningún evento que esperar y sale de inmediato.
 
-A window is not enough to make a program event-driven. The WPF, Tk, GLib and Swing entries start a UI loop, but their cards come from a `for` statement, a pipeline or a parser, so they are counterexamples.
+Una ventana no basta para que un programa se guíe por eventos. Las entradas de WPF, Tk, GLib y Swing inician un bucle de interfaz. Pero sus tarjetas provienen de una sentencia `for`, una canalización o un analizador sintáctico, así que son contraejemplos.
 
-- **Use it when:** the work is a reaction to things that arrive: clicks, requests, ticks, files.
-- **Avoid it when:** the order matters and the callbacks hide it. A chain of callbacks is hard to read and harder to test.
+- **Úsala cuando:** el trabajo consista en reaccionar a lo que llega: clics, solicitudes, pulsos o archivos.
+- **Evítala cuando:** el orden importe y las funciones de devolución de llamada lo oculten. Una cadena de funciones de devolución de llamada es difícil de leer y aún más difícil de probar.
 
-**Read more:**
+**Lee más:**
 
-- [Event-driven programming](https://en.wikipedia.org/wiki/Event-driven_programming) (Wikipedia)
-- [The event loop](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Event_loop) (MDN)
-- [Events: EventEmitter](https://nodejs.org/api/events.html) (Node.js documentation)
+- [Programación dirigida por eventos](https://en.wikipedia.org/wiki/Event-driven_programming) (Wikipedia)
+- [El bucle de eventos](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Event_loop) (MDN)
+- [Eventos: EventEmitter](https://nodejs.org/api/events.html) (documentación de Node.js)

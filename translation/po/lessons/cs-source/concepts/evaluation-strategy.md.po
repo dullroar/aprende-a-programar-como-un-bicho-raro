@@ -1,0 +1,48 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lessons/cs-source/concepts/evaluation-strategy.md:2
+msgctxt "s-3442dbebfbef-0000"
+msgid "Evaluation strategies"
+msgstr "Estrategias de evaluación"
+
+#: lessons/cs-source/concepts/evaluation-strategy.md:6
+msgctxt "s-eed703df2c8e-0001"
+msgid "An evaluation strategy answers one question: *when* is an argument computed? Before the call (call by value, also called eager)? When it is first needed, and then remembered (call by need, also called lazy)? Every time it is used (call by name)? It exists because the answer changes what a program means as soon as there are effects or infinite data. ⟦CODE_0001⟧ looks the same in every language. It does not behave the same. This whole chapter is about that gap: ⟦MACRO_0002⟧ is lazy, ⟦MACRO_0003⟧ is eager and LINQ is *deferred*."
+msgstr "Una estrategia de evaluación responde a una pregunta: ¿*cuándo* se calcula un argumento? ¿Antes de la llamada (llamada por valor, también llamada evaluación inmediata)? ¿La primera vez que hace falta, para luego guardar el resultado (llamada por necesidad, también llamada evaluación perezosa)? ¿Cada vez que se usa (llamada por nombre)? La respuesta cambia el significado de un programa en cuanto hay efectos o datos infinitos. ⟦CODE_0001⟧ se ve igual en todos los lenguajes. Su comportamiento cambia. Todo este capítulo trata esa diferencia: ⟦MACRO_0002⟧ usa evaluación perezosa, ⟦MACRO_0003⟧ usa evaluación inmediata y LINQ usa ejecución *diferida*."
+
+#: lessons/cs-source/concepts/evaluation-strategy.md:8
+msgctxt "s-a9020cd8e55f-0002"
+msgid "**Use it when:** you read any unfamiliar language. Find its default strategy first."
+msgstr "**Úsala cuando:** leas un lenguaje que no conoces. Averigua primero cuál es su estrategia predeterminada."
+
+#: lessons/cs-source/concepts/evaluation-strategy.md:9
+msgctxt "s-c6cafbcfd00d-0003"
+msgid "**Avoid assuming** that your habits from one language apply in another."
+msgstr "**Evita suponer** que tus hábitos de un lenguaje se aplican en otro."
+
+#: lessons/cs-source/concepts/evaluation-strategy.md:11
+msgctxt "s-250de292f56f-0004"
+msgid "**Read more:**"
+msgstr "**Lee más:**"
+
+#: lessons/cs-source/concepts/evaluation-strategy.md:13
+msgctxt "s-2c1a41736244-0005"
+msgid "[Evaluation strategy](⟦DEST_0001⟧) (Wikipedia)"
+msgstr "[Estrategia de evaluación](⟦DEST_0001⟧) (Wikipedia)"
+
+#: lessons/cs-source/concepts/evaluation-strategy.md:14
+msgctxt "s-b2405151c1f2-0006"
+msgid "[Call-by-need](⟦DEST_0001⟧) (Wikipedia)"
+msgstr "[Llamada por necesidad](⟦DEST_0001⟧) (Wikipedia)"
+
+#: lessons/cs-source/concepts/evaluation-strategy.md:15
+msgctxt "s-6a715fdf4ccc-0007"
+msgid "[Call-by-name](⟦DEST_0001⟧) (Wikipedia)"
+msgstr "[Llamada por nombre](⟦DEST_0001⟧) (Wikipedia)"

@@ -1,0 +1,113 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lessons/cs-source/concepts/fixed-point-iteration.md:2
+msgctxt "s-c464de162741-0000"
+msgid "Fixed-point iteration"
+msgstr "Iteración de punto fijo"
+
+#: lessons/cs-source/concepts/fixed-point-iteration.md:6
+msgctxt "s-c6c788b5332e-0001"
+msgid "A *fixed point* of a function is a value that the function leaves unchanged: f(x) = x. Fixed-point iteration finds one by applying the function again and again until nothing changes. It exists because many problems are really \"keep going until it settles\": balance an equation, compute a closure, or simplify an expression. This repository is full of it. ⟦MACRO_0001⟧ applies substitutions until none matches. ⟦MACRO_0002⟧ remakes its own makefile until the makefile is up to date. A compiler's optimizer does the same, passing over the code until no more improvements appear."
+msgstr "Un *punto fijo* de una función es un valor que la función deja intacto: f(x) = x. La iteración de punto fijo encuentra uno al aplicar la función una y otra vez hasta que nada cambia. Sirve porque muchos problemas se resumen en \"sigue hasta que se estabilice\": balancear una ecuación, calcular una clausura matemática o simplificar una expresión. El repositorio está lleno de casos. ⟦MACRO_0001⟧ aplica sustituciones hasta que ninguna coincide. ⟦MACRO_0002⟧ vuelve a generar su propio makefile hasta que está al día. El optimizador de un compilador hace lo mismo: recorre el código hasta que ya no encuentra mejoras."
+
+#: lessons/cs-source/concepts/fixed-point-iteration.md:10
+msgctxt "s-65e17b697c5e-0002"
+msgid "Fixed-point iteration means keep transforming until one more pass changes nothing"
+msgstr "La iteración de punto fijo transforma el valor hasta que otra pasada lo deja intacto"
+
+#: lessons/cs-source/concepts/fixed-point-iteration.md:11
+msgctxt "s-5e1eff2e9a91-0003"
+msgid "A chain of values, top to bottom. The start value x0 goes through f to give x1, through f again to give x2, and through f again to give x-star. Applying f to x-star gives x-star again, so the value is unchanged. Because the output equals the input, the iteration stops. That unchanged value is the fixed point."
+msgstr "Cadena de valores de arriba abajo. El valor inicial x0 pasa por f y da x1. Pasa otra vez por f y da x2. Pasa una vez más por f y da x estrella. Al aplicar f a x estrella se obtiene de nuevo x estrella, así que el valor queda intacto. La salida es igual a la entrada de datos y por eso termina la iteración. El valor que no cambia es el punto fijo."
+
+#: lessons/cs-source/concepts/fixed-point-iteration.md:12
+msgctxt "s-faef95e0e6e2-0004"
+msgid "x0: start"
+msgstr "x0: inicio"
+
+#: lessons/cs-source/concepts/fixed-point-iteration.md:12
+msgctxt "s-cd7ae88e5fe5-0005"
+msgid "apply f"
+msgstr "aplica f"
+
+#: lessons/cs-source/concepts/fixed-point-iteration.md:12
+msgctxt "s-ec31682fde56-0006"
+msgid "x1"
+msgstr "x1"
+
+#: lessons/cs-source/concepts/fixed-point-iteration.md:12
+msgctxt "s-cd7ae88e5fe5-0007"
+msgid "apply f"
+msgstr "aplica f"
+
+#: lessons/cs-source/concepts/fixed-point-iteration.md:12
+msgctxt "s-844ecc08164e-0008"
+msgid "x2"
+msgstr "x2"
+
+#: lessons/cs-source/concepts/fixed-point-iteration.md:12
+msgctxt "s-cd7ae88e5fe5-0009"
+msgid "apply f"
+msgstr "aplica f"
+
+#: lessons/cs-source/concepts/fixed-point-iteration.md:12
+msgctxt "s-f017608dfcdd-0010"
+msgid "x*"
+msgstr "x*"
+
+#: lessons/cs-source/concepts/fixed-point-iteration.md:13
+msgctxt "s-cd7ae88e5fe5-0011"
+msgid "apply f"
+msgstr "aplica f"
+
+#: lessons/cs-source/concepts/fixed-point-iteration.md:13
+msgctxt "s-4892839abe51-0012"
+msgid "x*: unchanged"
+msgstr "x*: sin cambio"
+
+#: lessons/cs-source/concepts/fixed-point-iteration.md:14
+msgctxt "s-1e00e490f07f-0013"
+msgid "output equals input: stop"
+msgstr "salida igual a la entrada de datos: fin"
+
+#: lessons/cs-source/concepts/fixed-point-iteration.md:14
+msgctxt "s-0f4860071347-0014"
+msgid "Fixed point: f(x*) = x*"
+msgstr "Punto fijo: f(x*) = x*"
+
+#: lessons/cs-source/concepts/fixed-point-iteration.md:17
+msgctxt "s-01aba41863bc-0015"
+msgid "Every pass applies the same function ⟦CODE_0001⟧. The run stops when a pass returns its own input, so that ⟦CODE_0002⟧. The value ⟦CODE_0003⟧ does not have to be a number. It can be a line of text (as in ⟦MACRO_0004⟧), a makefile or a piece of code. A real program also needs a limit, in case the values never settle."
+msgstr "Cada pasada aplica la misma función ⟦CODE_0001⟧. La ejecución se detiene cuando una pasada devuelve su propia entrada de datos, de modo que ⟦CODE_0002⟧. El valor ⟦CODE_0003⟧ no tiene que ser un número. Puede ser una línea de texto (como en ⟦MACRO_0004⟧), un makefile o un fragmento de código. Un programa real también necesita un límite por si los valores nunca se estabilizan."
+
+#: lessons/cs-source/concepts/fixed-point-iteration.md:19
+msgctxt "s-99080523f358-0016"
+msgid "**Use it when:** each step is a clear improvement and \"no change\" is a clear signal to stop."
+msgstr "**Úsala cuando:** cada paso sea una mejora clara y \"sin cambios\" sea una señal clara para detenerse."
+
+#: lessons/cs-source/concepts/fixed-point-iteration.md:20
+msgctxt "s-2f8702e9f36d-0017"
+msgid "**Avoid it when:** the process might never settle. It can bounce between two states forever. Always add a limit, or a timeout. The sandbox gives every ⟦CODE_0001⟧ a time limit."
+msgstr "**Evítala cuando:** el proceso quizá nunca se estabilice. Puede rebotar sin fin entre dos estados. Añade siempre un límite, que puede ser de tiempo. El entorno aislado (*sandbox*), que limita el acceso al sistema anfitrión, da a cada ⟦CODE_0001⟧ un límite de tiempo."
+
+#: lessons/cs-source/concepts/fixed-point-iteration.md:22
+msgctxt "s-250de292f56f-0018"
+msgid "**Read more:**"
+msgstr "**Lee más:**"
+
+#: lessons/cs-source/concepts/fixed-point-iteration.md:24
+msgctxt "s-b1f8ec3079db-0019"
+msgid "[Fixed-point iteration](⟦DEST_0001⟧) (Wikipedia)"
+msgstr "[Iteración de punto fijo](⟦DEST_0001⟧) (Wikipedia)"
+
+#: lessons/cs-source/concepts/fixed-point-iteration.md:25
+msgctxt "s-bf079872ffe7-0020"
+msgid "[Fixed point (mathematics)](⟦DEST_0001⟧)) (Wikipedia)"
+msgstr "[Punto fijo (matemáticas)](⟦DEST_0001⟧)) (Wikipedia)"

@@ -1,0 +1,140 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lessons/cs-source/concepts/exit-status.md:2
+msgctxt "s-f69b3d7f77a6-0000"
+msgid "Exit status"
+msgstr "Estado de salida"
+
+#: lessons/cs-source/concepts/exit-status.md:6
+msgctxt "s-23c0d106a276-0001"
+msgid ""
+"An exit status is the number that a finished process hands back to whoever "
+"started it. On Unix, ⟦CODE_0001⟧ means success and anything else means "
+"failure, in the range 0 to 255. It exists so that programs can be glued "
+"together: ⟦CODE_0002⟧, ⟦CODE_0003⟧ and ⟦CODE_0004⟧ in a shell all read it. "
+"It is also a control signal in this repository. In ⟦MACRO_0005⟧ the exit "
+"code of a small program steers the regex match. In ⟦MACRO_0006⟧ the script "
+"exits ⟦CODE_0007⟧ on purpose, and the wrapper maps that back to success. "
+"Every ⟦CODE_0008⟧ exits non-zero on any failure, so the sandbox gate can "
+"judge a run without reading it."
+msgstr ""
+"Un estado de salida es el número que un proceso, al finalizar, devuelve a "
+"quien lo inició. En Unix, ⟦CODE_0001⟧ indica éxito y cualquier otro valor "
+"indica un fallo, en el rango de 0 a 255. Sirve para enlazar programas: "
+"⟦CODE_0002⟧, ⟦CODE_0003⟧ y ⟦CODE_0004⟧ en un intérprete de comandos "
+"(*shell*) leen ese estado. También es una señal de control en este "
+"repositorio. En ⟦MACRO_0005⟧ el estado de salida de un programa pequeño "
+"dirige la coincidencia de la expresión regular. En ⟦MACRO_0006⟧ el script "
+"sale con ⟦CODE_0007⟧ a propósito y el envoltorio lo interpreta como éxito. "
+"Cada ⟦CODE_0008⟧ sale con un valor distinto de cero ante cualquier fallo. "
+"Así el control del entorno aislado (*sandbox*), que limita el acceso al "
+"sistema anfitrión, puede evaluar una ejecución sin leerla."
+
+#: lessons/cs-source/concepts/exit-status.md:10
+msgctxt "s-1729d981ae7b-0002"
+msgid ""
+"Exit status is a tiny interface in which one small code tells the caller "
+"which branch to take"
+msgstr ""
+"El estado de salida es una interfaz diminuta: un código pequeño indica a "
+"quien llama qué rama tomar"
+
+#: lessons/cs-source/concepts/exit-status.md:11
+msgctxt "s-c4589391b978-0003"
+msgid ""
+"A command runs and exits with a status code. The caller, usually a shell, "
+"reads the code. If the status is 0, it takes the success path, so in cmd1 "
+"and cmd2 the second command runs. If the status is anything from 1 to 255, "
+"it takes the failure path, so in cmd1 or fallback the fallback runs."
+msgstr ""
+"Un comando se ejecuta y sale con un código de estado. Quien lo llama, por lo"
+" general un intérprete de comandos, lee el código. Si el estado es 0, toma "
+"la ruta de éxito. Así, en cmd1 y cmd2 se ejecuta el segundo comando. Si el "
+"estado está entre 1 y 255, toma la ruta de fallo. Así, en cmd1 o fallback se"
+" ejecuta fallback."
+
+#: lessons/cs-source/concepts/exit-status.md:12
+msgctxt "s-d60b84c4bf2b-0004"
+msgid "cmd1 runs, then exits"
+msgstr "cmd1 se ejecuta y sale"
+
+#: lessons/cs-source/concepts/exit-status.md:12
+msgctxt "s-bb23b176737e-0005"
+msgid "exit status"
+msgstr "estado de salida"
+
+#: lessons/cs-source/concepts/exit-status.md:12
+msgctxt "s-3fbd301819e4-0006"
+msgid "Caller reads it: is it 0?"
+msgstr "Quien llama lo lee: ¿es 0?"
+
+#: lessons/cs-source/concepts/exit-status.md:13
+msgctxt "s-aa8f19309977-0007"
+msgid "yes: 0"
+msgstr "sí: 0"
+
+#: lessons/cs-source/concepts/exit-status.md:13
+msgctxt "s-0d1876df916a-0008"
+msgid "success path: cmd1 && cmd2 runs cmd2"
+msgstr "éxito: cmd1 && cmd2 ejecuta cmd2"
+
+#: lessons/cs-source/concepts/exit-status.md:14
+msgctxt "s-9c092ae1093f-0009"
+msgid "no: 1 to 255"
+msgstr "no: de 1 a 255"
+
+#: lessons/cs-source/concepts/exit-status.md:14
+msgctxt "s-b7fd02a2aec9-0010"
+msgid "failure path: cmd1 || fallback runs fallback"
+msgstr "fallo: cmd1 || fallback ejecuta fallback"
+
+#: lessons/cs-source/concepts/exit-status.md:17
+msgctxt "s-1aac06a28da5-0011"
+msgid ""
+"The status is one small number. The caller does not learn what went wrong, "
+"only which branch to take. In ⟦CODE_0001⟧ the shell runs ⟦CODE_0002⟧ after a"
+" 0. In ⟦CODE_0003⟧ it runs ⟦CODE_0004⟧ after any other value. A shell "
+"⟦CODE_0005⟧ reads the same status. A program that needs to say more must "
+"also print a message or write a file."
+msgstr ""
+"El estado es un solo número pequeño. Quien llama solo aprende qué rama "
+"tomar, sin saber qué salió mal. En ⟦CODE_0001⟧ el intérprete de comandos "
+"ejecuta ⟦CODE_0002⟧ tras un 0. En ⟦CODE_0003⟧ ejecuta ⟦CODE_0004⟧ tras "
+"cualquier otro valor. Un ⟦CODE_0005⟧ del intérprete de comandos lee el mismo"
+" estado. Un programa que necesite decir más también debe imprimir un mensaje"
+" o escribir un archivo."
+
+#: lessons/cs-source/concepts/exit-status.md:19
+msgctxt "s-0427914be2d7-0012"
+msgid ""
+"**Use it when:** scripts and tools that other tools call. Document what each"
+" code means."
+msgstr ""
+"**Úsalo cuando:** otras herramientas llamen a tus scripts o herramientas. "
+"Documenta qué significa cada código."
+
+#: lessons/cs-source/concepts/exit-status.md:20
+msgctxt "s-461695aa32d1-0013"
+msgid ""
+"**Avoid it when:** you need to return rich data or preserve a number outside"
+" the platform's exit-status range."
+msgstr ""
+"**Evítalo cuando:** necesites devolver datos más ricos o conservar un número"
+" fuera del rango de estados de salida de la plataforma."
+
+#: lessons/cs-source/concepts/exit-status.md:22
+msgctxt "s-250de292f56f-0014"
+msgid "**Read more:**"
+msgstr "**Lee más:**"
+
+#: lessons/cs-source/concepts/exit-status.md:24
+msgctxt "s-1951c38c846a-0015"
+msgid "[Exit status](⟦DEST_0001⟧) (Wikipedia)"
+msgstr "[Estado de salida](⟦DEST_0001⟧) (Wikipedia)"

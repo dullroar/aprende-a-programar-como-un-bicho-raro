@@ -1,0 +1,158 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lessons/cs-source/concepts/cut.md:2
+msgctxt "s-db78ac9e8d50-0000"
+msgid "The cut: committing to a choice"
+msgstr "El corte: cómo fijar una elección"
+
+#: lessons/cs-source/concepts/cut.md:6
+msgctxt "s-a639224bf05e-0001"
+msgid ""
+"The *cut* is a Prolog idea: once the program has passed this point, commit "
+"to the choices made so far and discard the alternatives. It exists for speed"
+" and for determinism: you do not want a search to explore, or repeat, work "
+"you already know is settled. Regex engines have the same tools: PCRE's "
+"⟦CODE_0001⟧, atomic groups and possessive quantifiers. ⟦MACRO_0002⟧ and its "
+"siblings end the pattern with ⟦CODE_0003⟧. Without ⟦CODE_0004⟧ the engine "
+"would retry shorter loops, and the finalizer would run more than once. "
+"Prolog programmers distinguish \"green\" cuts (only speed) from \"red\" cuts"
+" (they change the answer)."
+msgstr ""
+"El *corte* es una idea de Prolog: una vez que el programa pasa por ese "
+"punto, conserva las opciones elegidas hasta allí y descarta las demás. Sirve"
+" para ganar velocidad y determinismo: no quieres que la búsqueda explore "
+"alternativas o repita trabajo que ya das por resuelto. Los motores de "
+"expresiones regulares tienen las mismas herramientas: ⟦CODE_0001⟧ de PCRE, "
+"grupos atómicos y cuantificadores posesivos. ⟦MACRO_0002⟧ y las entradas "
+"afines terminan el patrón con ⟦CODE_0003⟧. Sin ⟦CODE_0004⟧ el motor volvería"
+" a probar con bucles más cortos y ejecutaría el finalizador más de una vez. "
+"Quienes programan en Prolog distinguen los cortes \"verdes\" (solo ganan "
+"velocidad) de los cortes \"rojos\" (cambian la respuesta)."
+
+#: lessons/cs-source/concepts/cut.md:10
+msgctxt "s-67769bf512a9-0002"
+msgid ""
+"The cut changes the search space itself, so abandoned alternatives are no "
+"longer considered"
+msgstr ""
+"El corte cambia el espacio de búsqueda: las alternativas descartadas dejan "
+"de considerarse"
+
+#: lessons/cs-source/concepts/cut.md:11
+msgctxt "s-c52fc1737811-0003"
+msgid ""
+"A search tree with a cut. From the start there are two choices, A and B. The"
+" search takes A and reaches the cut, which commits to A. Choice B is drawn "
+"with a dashed border and marked pruned, because the cut removed it, and "
+"plain backtracking would have tried it later. After the cut, the search can "
+"still try the alternatives that come after the cut, A1 and then A2. A1 is a "
+"dead end and A2 succeeds. If A2 had failed as well, the whole search would "
+"fail and B would still never be tried."
+msgstr ""
+"Árbol de búsqueda con un corte. Al inicio hay dos opciones, A y B. La "
+"búsqueda toma A y llega al corte, que la compromete con A. La opción B tiene"
+" un borde discontinuo y está marcada como podada. El corte la eliminó, pero "
+"el retroceso simple la habría probado más tarde. Tras el corte, la búsqueda "
+"aún puede probar las alternativas posteriores, A1 y luego A2. A1 no tiene "
+"salida y A2 tiene éxito. Si A2 también fallara, la búsqueda entera fallaría "
+"sin llegar a probar B."
+
+#: lessons/cs-source/concepts/cut.md:12
+msgctxt "s-ba263635d6e4-0004"
+msgid "Start: two choices"
+msgstr "Inicio: dos opciones"
+
+#: lessons/cs-source/concepts/cut.md:12
+msgctxt "s-55a9279ed687-0005"
+msgid "1. try A"
+msgstr "1. Prueba A"
+
+#: lessons/cs-source/concepts/cut.md:12
+msgctxt "s-559aead08264-0006"
+msgid "A"
+msgstr "A"
+
+#: lessons/cs-source/concepts/cut.md:13
+msgctxt "s-268dac0e26a1-0007"
+msgid "CUT: commit to A"
+msgstr "CORTE: conserva A"
+
+#: lessons/cs-source/concepts/cut.md:14
+msgctxt "s-b37e47ca50d6-0008"
+msgid "A1: dead end"
+msgstr "A1: sin salida"
+
+#: lessons/cs-source/concepts/cut.md:15
+msgctxt "s-a9bafefea9e0-0009"
+msgid "A2: success"
+msgstr "A2: éxito"
+
+#: lessons/cs-source/concepts/cut.md:16
+msgctxt "s-c5494b8a61eb-0010"
+msgid "B is cut off"
+msgstr "Se corta B"
+
+#: lessons/cs-source/concepts/cut.md:16
+msgctxt "s-f144a9c87f24-0011"
+msgid "B: pruned, never tried"
+msgstr "B: podada, sin probar"
+
+#: lessons/cs-source/concepts/cut.md:21
+msgctxt "s-46072a1c11a3-0012"
+msgid ""
+"Compare this picture with plain backtracking. There, ⟦CODE_0001⟧ would be "
+"tried after ⟦CODE_0002⟧ failed. Here the cut commits to ⟦CODE_0003⟧ first, "
+"so ⟦CODE_0004⟧ is pruned. After the cut the search can still try the "
+"alternatives that come *after* it (⟦CODE_0005⟧, then ⟦CODE_0006⟧). If all of"
+" them fail, the whole search fails. It does not go back to ⟦CODE_0007⟧. That"
+" is what \"the cut changes the search space\" means. Prolog's cut also "
+"discards choices made earlier in the same clause, and the picture shows only"
+" the simplest case."
+msgstr ""
+"Compara este dibujo con el retroceso simple. En ese caso, la búsqueda "
+"probaría ⟦CODE_0001⟧ si fallara ⟦CODE_0002⟧. Aquí el corte conserva primero "
+"⟦CODE_0003⟧ y poda ⟦CODE_0004⟧. La búsqueda aún puede probar las "
+"alternativas que vienen *después* del corte (⟦CODE_0005⟧ y luego "
+"⟦CODE_0006⟧). Si todas fallan, falla toda la búsqueda. No vuelve a "
+"⟦CODE_0007⟧. Eso significa que \"el corte cambia el espacio de búsqueda\". "
+"El corte de Prolog también descarta las opciones elegidas antes en la misma "
+"cláusula. El dibujo muestra solo el caso más sencillo."
+
+#: lessons/cs-source/concepts/cut.md:23
+msgctxt "s-27a5c699803d-0013"
+msgid ""
+"**Use it when:** you know that later failure should never lead to a retry."
+msgstr ""
+"**Úsalo cuando:** sepas que un fallo posterior nunca debe llevar a otro "
+"intento."
+
+#: lessons/cs-source/concepts/cut.md:24
+msgctxt "s-5f493cd1a119-0014"
+msgid ""
+"**Avoid it when:** you are not sure which kind of cut you have. A red cut "
+"hides a logic change inside a speed trick."
+msgstr ""
+"**Evítalo cuando:** no sepas qué tipo de corte tienes. Un corte rojo esconde"
+" un cambio de lógica en un truco para ganar velocidad."
+
+#: lessons/cs-source/concepts/cut.md:26
+msgctxt "s-250de292f56f-0015"
+msgid "**Read more:**"
+msgstr "**Lee más:**"
+
+#: lessons/cs-source/concepts/cut.md:28
+msgctxt "s-ba16cfd72aac-0016"
+msgid "[Cut (logic programming)](⟦DEST_0001⟧)) (Wikipedia)"
+msgstr "[Corte (programación lógica)](⟦DEST_0001⟧)) (Wikipedia)"
+
+#: lessons/cs-source/concepts/cut.md:29
+msgctxt "s-18adedc8081f-0017"
+msgid "[Prolog](⟦DEST_0001⟧) (Wikipedia)"
+msgstr "[Prolog](⟦DEST_0001⟧) (Wikipedia)"

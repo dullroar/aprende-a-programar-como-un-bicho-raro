@@ -1,19 +1,19 @@
 ---
-title: "First-class and higher-order functions"
+title: "Funciones de primera clase y de orden superior"
 chapter: 4
 order: 85
 ---
-A language has **first-class functions** when a function is a value: you can store it, pass it as an argument, return it from another function and keep it in a data structure. A **higher-order function** is a function that takes a function, returns one or both. `map`, `filter` and `reduce` take functions. A function that builds a configured function, such as a counter factory, returns one.
+Un lenguaje tiene **funciones de primera clase** cuando una función es un valor. Puedes guardarla, pasarla como argumento, devolverla desde otra función y almacenarla en una estructura de datos. Una **función de orden superior** recibe una función, devuelve una función o hace ambas cosas. `map`, `filter` y `reduce` reciben funciones. Una función que construye otra ya configurada, como una fábrica de contadores, devuelve una función.
 
-It exists because it lets you separate *what to do to each item* from *how to walk the items*. The walk can then be lazy, eager, parallel or early-stopping, and the code that says what to do does not change. [[entry:haskell]] describes the cards with `zipWith3` and `scanl1`. [[entry:LinqChallenge1]] chains `Select` and `Aggregate`. [[entry:RustChallenge1]] steers a loop with iterators and closures. [[entry:javascript-weird]] is built the same way throughout: a pipeline of `map` calls that take closures, ended by `toArray`, and a `reduce` over the finished list.
+La idea existe porque permite separar *qué hacer con cada elemento* de *cómo recorrer los elementos*. El recorrido puede usar evaluación perezosa o inmediata, ir en paralelo o detenerse antes. El código que dice qué hacer queda igual. [[entry:haskell]] describe las tarjetas con `zipWith3` y `scanl1`. [[entry:LinqChallenge1]] encadena `Select` y `Aggregate`. [[entry:RustChallenge1]] dirige un bucle con iteradores y clausuras (*closure*), funciones que conservan acceso a su entorno. [[entry:javascript-weird]] sigue la misma forma de principio a fin: una canalización de llamadas a `map` que reciben clausuras y que termina con `toArray`, seguida de un `reduce` sobre la lista completa.
 
-The price is a different kind of reading. When the walk is hidden in a library call, you cannot see in what order the callbacks run, how many times or whether the walk stops early. That matters when the callback has an effect. `reduce` cannot stop early, `some` can, and the lazy `map` of an iterator runs one value at a time while an array's `map` finishes each stage before the next one begins ([[entry:javascript-weird]] shows both orders).
+El precio es que hay que leer el código de otro modo. Cuando el recorrido queda oculto en una llamada de biblioteca, no ves en qué orden ni cuántas veces se ejecutan las funciones de devolución de llamada (*callback*). Tampoco ves si el recorrido se detiene antes de terminar. Eso importa cuando la función de devolución de llamada tiene un efecto. `reduce` no puede detenerse antes, pero `some` sí. El `map` perezoso de un iterador procesa un valor a la vez. El `map` de un arreglo termina cada etapa antes de que empiece la siguiente ([[entry:javascript-weird]] muestra ambos órdenes).
 
-- **Use it when:** the work on each item is separate from the walk, or you want to reuse one walk with many callbacks.
-- **Avoid it when:** the callback has hidden effects and the order matters. Write the order down, or use a plain loop and say why.
+- **Úsalas cuando:** el trabajo de cada elemento sea independiente del recorrido o quieras reutilizar un recorrido con muchas funciones de devolución de llamada.
+- **Evítalas cuando:** la función de devolución de llamada tenga efectos ocultos y el orden importe. Anota el orden o usa un bucle sencillo y explica por qué.
 
-**Read more:**
+**Lee más:**
 
-- [First-class function](https://en.wikipedia.org/wiki/First-class_function) (Wikipedia)
-- [Higher-order function](https://en.wikipedia.org/wiki/Higher-order_function) (Wikipedia)
-- [Functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions) (MDN)
+- [Función de primera clase](https://en.wikipedia.org/wiki/First-class_function) (Wikipedia)
+- [Función de orden superior](https://en.wikipedia.org/wiki/Higher-order_function) (Wikipedia)
+- [Funciones](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions) (MDN)

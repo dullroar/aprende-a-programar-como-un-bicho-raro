@@ -1,0 +1,74 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lessons/cs-source/concepts/homoiconicity.md:2
+msgctxt "s-c602098f0734-0000"
+msgid "Homoiconicity: code as data"
+msgstr "Homoiconicidad: código como datos"
+
+#: lessons/cs-source/concepts/homoiconicity.md:6
+msgctxt "s-f10d5130b3ed-0001"
+msgid ""
+"A language is *homoiconic* when its programs are written in its own data "
+"structures. In Lisp, code is a list, so a macro is just a program that "
+"builds a list. Tcl goes a different way, with \"everything is a string\", "
+"and APL treats a function as a character matrix. In Forth the program is a "
+"stream of words that the interpreter can read. The idea exists because it "
+"makes metaprogramming simple: if code is data, you can inspect it, build it "
+"and change it with the tools you already have. ⟦MACRO_0001⟧ reads its own "
+"source with ⟦CODE_0002⟧, rewrites it and defines the copy with ⟦CODE_0003⟧."
+msgstr ""
+"Un lenguaje es *homoicónico* cuando sus programas se escriben en sus propias"
+" estructuras de datos. En Lisp el código es una lista, así que una macro es "
+"solo un programa que construye una lista. Tcl toma otro camino con \"todo es"
+" una cadena de texto\". APL trata una función como una matriz de caracteres."
+" En Forth el programa es un flujo de palabras que el intérprete puede leer. "
+"La idea simplifica la metaprogramación: si el código es dato, puedes "
+"inspeccionarlo, crearlo y cambiarlo con tus herramientas de siempre. "
+"⟦MACRO_0001⟧ lee su propio código fuente con ⟦CODE_0002⟧, lo reescribe y "
+"define la copia con ⟦CODE_0003⟧."
+
+#: lessons/cs-source/concepts/homoiconicity.md:8
+msgctxt "s-9b892aa0af98-0002"
+msgid ""
+"**Use it when:** you write macros, code transformers or small languages."
+msgstr ""
+"**Úsala cuando:** escribas macros, transformadores de código o lenguajes "
+"pequeños."
+
+#: lessons/cs-source/concepts/homoiconicity.md:9
+msgctxt "s-9a1f3a0235d9-0003"
+msgid ""
+"**Avoid it when:** tools must understand your code without running it. "
+"Static analyzers and refactoring tools find it hard to follow code that "
+"builds code."
+msgstr ""
+"**Evítala cuando:** las herramientas deban entender tu código sin "
+"ejecutarlo. A los analizadores estáticos y las herramientas de "
+"refactorización les cuesta seguir el código que construye código."
+
+#: lessons/cs-source/concepts/homoiconicity.md:11
+msgctxt "s-250de292f56f-0004"
+msgid "**Read more:**"
+msgstr "**Lee más:**"
+
+#: lessons/cs-source/concepts/homoiconicity.md:13
+msgctxt "s-88250cbe782b-0005"
+msgid "[Homoiconicity](⟦DEST_0001⟧) (Wikipedia)"
+msgstr "[Homoiconicidad](⟦DEST_0001⟧) (Wikipedia)"
+
+#: lessons/cs-source/concepts/homoiconicity.md:14
+msgctxt "s-911c86b92193-0006"
+msgid "[Lisp (programming language)](⟦DEST_0001⟧)) (Wikipedia)"
+msgstr "[Lisp (lenguaje de programación)](⟦DEST_0001⟧)) (Wikipedia)"
+
+#: lessons/cs-source/concepts/homoiconicity.md:15
+msgctxt "s-733b53047085-0007"
+msgid "[Metaprogramming](⟦DEST_0001⟧) (Wikipedia)"
+msgstr "[Metaprogramación](⟦DEST_0001⟧) (Wikipedia)"

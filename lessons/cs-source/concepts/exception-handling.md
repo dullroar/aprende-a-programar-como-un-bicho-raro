@@ -1,33 +1,33 @@
 ---
-title: "Exception handling"
+title: "Manejo de excepciones"
 chapter: 7
 order: 30
 ---
-Exception handling is a language feature for errors: raise a signal, unwind the stack and let a handler deal with it. It exists to keep the normal path of the code free of error checks. COBOL has an older, simpler form. `ON SIZE ERROR` runs when an arithmetic result does not fit the field, and the field stays unchanged. In [[entry:cobol-weird]] that overflow *is* the stop rule: a two-digit counter overflows on purpose, and the error branch ends the loop. Errors as control flow work, but they hide the real design from the next reader.
+El manejo de excepciones es una función del lenguaje para tratar errores: lanza una señal, desenrolla la pila y deja que un manejador se ocupe de ella. Así el recorrido normal del código queda libre de comprobaciones de errores. COBOL tiene una forma más antigua y sencilla. `ON SIZE ERROR` se ejecuta cuando un resultado aritmético no cabe en el campo, que queda intacto. En [[entry:cobol-weird]] ese desbordamiento *es* la regla de parada: un contador de dos dígitos se desborda a propósito y la rama de error termina el bucle. Usar errores como flujo de control funciona, pero le oculta el diseño real al siguiente lector.
 
 ```mermaid
 sequenceDiagram
-    accTitle: Exceptions alter control flow by unwinding outward until a handler accepts them
-    accDescr: A sequence diagram of three nested calls. The function main, which has a try and catch, calls process, and process calls save. Save throws an exception. The exception does not return to process in the normal way. It passes through process, which has no handler, so the rest of process is skipped. It reaches main, where the catch block handles it. After the handler, normal flow continues in main. The normal return statements of save and process never run.
-    participant M as main: try and catch
+    accTitle: Las excepciones alteran el flujo de control: desenrollan la pila hasta que un manejador las acepta
+    accDescr: Diagrama de secuencia de tres llamadas anidadas. La función main, que tiene un try y un catch, llama a process. A su vez, process llama a save. La función save lanza una excepción. La excepción no vuelve a process por la vía normal. Atraviesa process, que no tiene manejador, así que se omite el resto de process. Llega a main, donde la maneja el bloque catch. Tras el manejador, el flujo normal continúa en main. Las sentencias de retorno normal de save y process nunca se ejecutan.
+    participant M as main: try y catch
     participant P as process
     participant S as save
-    M->>P: call
-    P->>S: call
-    Note over S: throws an exception
-    S--xP: unwinds, no normal return
-    Note over P: no handler, the rest is skipped
-    P--xM: unwinds, no normal return
-    Note over M: catch block runs
-    Note over M: normal flow resumes after the try
+    M->>P: llamada
+    P->>S: llamada
+    Note over S: lanza una excepción
+    S--xP: desenrolla sin retorno normal
+    Note over P: sin manejador, se omite el resto
+    P--xM: desenrolla sin retorno normal
+    Note over M: se ejecuta el bloque catch
+    Note over M: el flujo normal sigue tras el try
 ```
 
-The normal `return` of `save` and `process` never runs. The exception passes outward through each call until a `catch` accepts it, and then normal flow resumes after the `try` in `main`. If nothing catches it, it leaves the program. Unwinding only moves control. It does not undo what the skipped code already did: a row that `save` wrote stays written, unless a transaction rolls it back (see [[transaction]]).
+El `return` normal de `save` y `process` nunca se ejecuta. La excepción sale de cada llamada hasta que un `catch` la acepta. Entonces el flujo normal se reanuda tras el `try` en `main`. Si nada la atrapa, sale del programa. Desenrollar la pila solo desplaza el control. No deshace lo que ya hizo el código que se omite. Una fila que escribió `save` queda escrita, salvo que una transacción revierta el cambio (consulta [[transaction]]).
 
-- **Use it when:** something truly unexpected happens, and the caller can recover or must be told.
-- **Avoid it when:** the "error" is a normal, frequent outcome (such as "end of input"), or when you catch everything and move on in silence.
+- **Úsalo cuando:** ocurra algo realmente inesperado y quien llama pueda recuperarse o deba enterarse.
+- **Evítalo cuando:** el "error" sea un resultado normal y frecuente (como "fin de la entrada de datos") o cuando atrapes todo y sigas sin avisar.
 
-**Read more:**
+**Lee más:**
 
-- [Exception handling](https://en.wikipedia.org/wiki/Exception_handling) (Wikipedia)
-- [Fail-fast system](https://en.wikipedia.org/wiki/Fail-fast_system) (Wikipedia)
+- [Manejo de excepciones](https://en.wikipedia.org/wiki/Exception_handling) (Wikipedia)
+- [Sistema de fallo rápido](https://en.wikipedia.org/wiki/Fail-fast_system) (Wikipedia)

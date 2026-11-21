@@ -1,0 +1,93 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lessons/cs-source/concepts/dataflow-programming.md:2
+msgctxt "s-e755ebd95548-0000"
+msgid "Dataflow programming"
+msgstr "Programación por flujo de datos"
+
+#: lessons/cs-source/concepts/dataflow-programming.md:6
+msgctxt "s-ec023627a6d2-0001"
+msgid "In **dataflow programming** you describe how values flow from one step to the next, and the order of execution follows from the data: a step runs when its input is ready, or when its output is asked for. A spreadsheet is the familiar example. A LINQ query and an iterator pipeline are small ones. The program is a graph of steps, and the machine decides when each runs."
+msgstr "En la **programación por flujo de datos** describes cómo fluyen los valores de un paso al siguiente. Los datos determinan el orden de ejecución: un paso se ejecuta cuando su entrada de datos está lista o cuando alguien pide su salida. Una hoja de cálculo es el ejemplo conocido. Una consulta de LINQ y una canalización de iteradores son ejemplos pequeños. El programa es un grafo de pasos. La máquina decide cuándo ejecutar cada uno."
+
+#: lessons/cs-source/concepts/dataflow-programming.md:10
+msgctxt "s-1ee9e40ce471-0002"
+msgid "In a dataflow view, edges carry values and nodes fire when the needed inputs arrive"
+msgstr "En la vista de flujo de datos, las aristas transportan valores y los nodos se activan cuando reciben los entradas de datos que necesitan"
+
+#: lessons/cs-source/concepts/dataflow-programming.md:11
+msgctxt "s-33defe985787-0003"
+msgid "A small graph. The sources hours and categories feed the graph. Hours feeds a running total node and a pair node. Categories feeds the pair node. The pair node needs both of its inputs, so it fires only when an hour and a category have both arrived. The running total and the pairs both feed a stop node, which keeps rows until the total is over 40. The stop node feeds the output node, rows. Arrows are data dependencies, not a call order."
+msgstr "Un grafo pequeño. Las fuentes horas y categorías alimentan el grafo. Horas alimenta el nodo del total acumulado y el nodo del par. Categorías alimenta el nodo del par. El nodo del par necesita sus dos entradas de datos. Solo se activa cuando llegan una hora y una categoría. Tanto el total acumulado como los pares alimentan el nodo de parada, que conserva filas hasta que el total pasa de 40. El nodo de parada alimenta el nodo de salida, filas. Las flechas indican dependencias de datos, no un orden de llamadas."
+
+#: lessons/cs-source/concepts/dataflow-programming.md:12
+msgctxt "s-404314b1f4bd-0004"
+msgid "hours"
+msgstr "horas"
+
+#: lessons/cs-source/concepts/dataflow-programming.md:12
+msgctxt "s-285f01adda3c-0005"
+msgid "running total"
+msgstr "total acumulado"
+
+#: lessons/cs-source/concepts/dataflow-programming.md:13
+msgctxt "s-b06169a1862d-0006"
+msgid "pair: fires when both inputs arrive"
+msgstr "par: se activa con ambas entradas de datos"
+
+#: lessons/cs-source/concepts/dataflow-programming.md:14
+msgctxt "s-a6216ea03e57-0007"
+msgid "categories"
+msgstr "categorías"
+
+#: lessons/cs-source/concepts/dataflow-programming.md:15
+msgctxt "s-80fae73556e1-0008"
+msgid "keep rows until total is over 40"
+msgstr "conserva filas hasta que el total pasa de 40"
+
+#: lessons/cs-source/concepts/dataflow-programming.md:17
+msgctxt "s-bc51e9e65d79-0009"
+msgid "rows"
+msgstr "filas"
+
+#: lessons/cs-source/concepts/dataflow-programming.md:20
+msgctxt "s-5bcddae0379c-0010"
+msgid "Each arrow is a data dependency: the node at the head needs a value from the node at the tail. The ⟦CODE_0001⟧ node has two inputs, so it cannot fire until both have arrived. The picture does not say which node a program calls first. The arrival of values decides. ⟦MACRO_0002⟧ also draws arrows between things, but there the arrows say what to redo after a change."
+msgstr "Cada flecha es una dependencia de datos: el nodo en la punta necesita un valor del nodo en la base. El nodo ⟦CODE_0001⟧ tiene dos entradas de datos y solo puede activarse cuando llegan ambas. El dibujo no dice qué nodo llama primero un programa. La llegada de valores lo decide. ⟦MACRO_0002⟧ también dibuja flechas entre elementos, pero allí indican qué rehacer después de un cambio."
+
+#: lessons/cs-source/concepts/dataflow-programming.md:22
+msgctxt "s-fd9141320496-0011"
+msgid "It matters here because several entries move control out of statements and into such a graph. In ⟦MACRO_0001⟧ and ⟦MACRO_0002⟧ a query describes the cards, and the final operator asks for them. In ⟦MACRO_0003⟧ the pipeline ⟦CODE_0004⟧ is a chain of steps, and each card flows through all of them before the next one is asked for. ⟦MACRO_0005⟧ has a related shape: a dependency graph decides what runs and in what order. That is *dependency*, which is not the same as the flow of data, so it is an analogy here."
+msgstr "Esto importa aquí porque varias entradas trasladan el control de las sentencias a un grafo de este tipo. En ⟦MACRO_0001⟧ y ⟦MACRO_0002⟧ una consulta describe las tarjetas y el operador final las pide. En ⟦MACRO_0003⟧ la canalización ⟦CODE_0004⟧ es una cadena de pasos. Cada tarjeta pasa por todos antes de que se pida la siguiente. ⟦MACRO_0005⟧ tiene una forma parecida: un grafo de dependencias decide qué se ejecuta y en qué orden. Eso es *dependencia*, algo distinto del flujo de datos. Aquí sirve de analogía."
+
+#: lessons/cs-source/concepts/dataflow-programming.md:24
+msgctxt "s-7da24e74bb0e-0012"
+msgid "**Use it when:** the problem is a series of transformations, and you want the order to follow the dependencies."
+msgstr "**Úsala cuando:** el problema sea una serie de transformaciones y quieras que las dependencias determinen el orden."
+
+#: lessons/cs-source/concepts/dataflow-programming.md:25
+msgctxt "s-2bff648cc8f0-0013"
+msgid "**Avoid it when:** the steps have effects whose order matters. A dataflow graph hides the order, and an effect that depends on it becomes a bug."
+msgstr "**Evítala cuando:** los pasos tengan efectos cuyo orden importe. El grafo de flujo de datos oculta el orden y un efecto que depende de él se convierte en un bicho."
+
+#: lessons/cs-source/concepts/dataflow-programming.md:27
+msgctxt "s-250de292f56f-0014"
+msgid "**Read more:**"
+msgstr "**Lee más:**"
+
+#: lessons/cs-source/concepts/dataflow-programming.md:29
+msgctxt "s-1db248084834-0015"
+msgid "[Dataflow programming](⟦DEST_0001⟧) (Wikipedia)"
+msgstr "[Programación por flujo de datos](⟦DEST_0001⟧) (Wikipedia)"
+
+#: lessons/cs-source/concepts/dataflow-programming.md:30
+msgctxt "s-b11b27f79d68-0016"
+msgid "[Pipeline (software)](⟦DEST_0001⟧)) (Wikipedia)"
+msgstr "[Canalización (software)](⟦DEST_0001⟧)) (Wikipedia)"

@@ -1,14 +1,14 @@
 ---
-title: "Declarative programming"
+title: "Programación declarativa"
 chapter: 5
 order: 60
 ---
-Declarative programming says *what* you want, not *how* to get it. SQL, HTML, CSS, Make, regular expressions and AWK's pattern column are all declarative. It exists because a tool that knows the goal can choose the method: a database picks the query plan, and `make` picks the build order. The trap is the belief that "declarative" means "harmless". When a declarative notation can name a function and give it arguments, it is one step from being a program. XAML's `ObjectDataProvider` and Make's `include` are examples, and [[entry:xaml]] and [[entry:make-gnu]] show where that step leads.
+La programación declarativa dice *qué* quieres, no *cómo* obtenerlo. SQL, HTML, CSS, Make, las expresiones regulares y la columna de patrones de AWK son declarativos. Una herramienta que conoce la meta puede elegir el método: una base de datos elige el plan de consulta y `make` elige el orden de compilación. La trampa es creer que "declarativo" significa "inofensivo". Cuando una notación declarativa puede nombrar una función y pasarle argumentos, está a un paso de ser un programa. Sirven de ejemplo `ObjectDataProvider` de XAML y `include` de Make. [[entry:xaml]] y [[entry:make-gnu]] muestran adónde lleva ese paso.
 
-- **Use it when:** the task is a query, a configuration or a build. Let the tool optimize.
-- **Avoid it when:** you cannot control what an untrusted file can call. Check what it is allowed to call.
+- **Úsala cuando:** la tarea sea una consulta, una configuración o una compilación. Deja que la herramienta optimice.
+- **Evítala cuando:** no puedas controlar qué puede llamar un archivo no confiable. Comprueba qué llamadas tiene permitidas.
 
-**Read more:**
+**Lee más:**
 
-- [Declarative programming](https://en.wikipedia.org/wiki/Declarative_programming) (Wikipedia)
-- [Rule of least power](https://en.wikipedia.org/wiki/Rule_of_least_power) (Wikipedia)
+- [Programación declarativa](https://en.wikipedia.org/wiki/Declarative_programming) (Wikipedia)
+- [Regla de la menor potencia](https://en.wikipedia.org/wiki/Rule_of_least_power) (Wikipedia)

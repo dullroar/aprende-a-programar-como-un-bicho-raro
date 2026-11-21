@@ -1,0 +1,74 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lessons/cs-source/concepts/goto-and-structured-programming.md:2
+msgctxt "s-bdb8731cfb34-0000"
+msgid "Goto and structured programming"
+msgstr "Goto y programación estructurada"
+
+#: lessons/cs-source/concepts/goto-and-structured-programming.md:6
+msgctxt "s-dfb32558ec9c-0001"
+msgid ""
+"⟦CODE_0001⟧ jumps to any other place in the program. In 1966 Böhm and "
+"Jacopini proved that you never *need* it: sequence, choice and loops are "
+"enough for any computation. In 1968 Edsger Dijkstra wrote the famous letter "
+"\"Go To Statement Considered Harmful\". Structured programming won because "
+"you can reason about a block with one way in and one way out. COBOL's "
+"⟦CODE_0002⟧ goes the opposite way: it changes where a ⟦CODE_0003⟧ points "
+"*while the program runs*. ⟦MACRO_0004⟧ uses it as its loop. The statement "
+"was later removed from the COBOL standard. GnuCOBOL still runs it."
+msgstr ""
+"⟦CODE_0001⟧ salta a cualquier otro lugar del programa. En 1966 Böhm y "
+"Jacopini demostraron que nunca lo *necesitas*: la secuencia, la selección y "
+"los bucles bastan para cualquier cómputo. En 1968 Edsger Dijkstra escribió "
+"la famosa carta *Consideraciones sobre el daño que causa la sentencia Go "
+"To*. La programación estructurada se impuso porque puedes razonar sobre un "
+"bloque con una sola entrada y una sola salida. ⟦CODE_0002⟧ de COBOL va en la"
+" dirección contraria: cambia el destino de un ⟦CODE_0003⟧ *mientras el "
+"programa se ejecuta*. ⟦MACRO_0004⟧ lo usa como bucle. Más tarde retiraron "
+"esa sentencia del estándar de COBOL. GnuCOBOL todavía la ejecuta."
+
+#: lessons/cs-source/concepts/goto-and-structured-programming.md:8
+msgctxt "s-6f2425c6e787-0002"
+msgid ""
+"**Use ⟦CODE_0001⟧ when:** in a few honest cases, such as one clean exit for "
+"error handling in C, or in generated code and state machines."
+msgstr ""
+"**Usa ⟦CODE_0001⟧ cuando:** haya una razón de peso, como una única salida "
+"limpia para manejar errores en C o su uso en código generado y máquinas de "
+"estados."
+
+#: lessons/cs-source/concepts/goto-and-structured-programming.md:9
+msgctxt "s-1a88c8d1394e-0003"
+msgid ""
+"**Avoid it when:** a target computed or changed at run time would make the "
+"code hard to read."
+msgstr ""
+"**Evítalo cuando:** un destino calculado o modificado durante la ejecución "
+"dificulte la lectura del código."
+
+#: lessons/cs-source/concepts/goto-and-structured-programming.md:11
+msgctxt "s-250de292f56f-0004"
+msgid "**Read more:**"
+msgstr "**Lee más:**"
+
+#: lessons/cs-source/concepts/goto-and-structured-programming.md:13
+msgctxt "s-f2017570a398-0005"
+msgid "[Goto](⟦DEST_0001⟧) (Wikipedia)"
+msgstr "[Goto](⟦DEST_0001⟧) (Wikipedia)"
+
+#: lessons/cs-source/concepts/goto-and-structured-programming.md:14
+msgctxt "s-ce47b947b355-0006"
+msgid "[Structured program theorem](⟦DEST_0001⟧) (Wikipedia)"
+msgstr "[Teorema de la programación estructurada](⟦DEST_0001⟧) (Wikipedia)"
+
+#: lessons/cs-source/concepts/goto-and-structured-programming.md:15
+msgctxt "s-b54dfb07372a-0007"
+msgid "[Considered harmful](⟦DEST_0001⟧) (Wikipedia)"
+msgstr "[Considerado perjudicial](⟦DEST_0001⟧) (Wikipedia)"

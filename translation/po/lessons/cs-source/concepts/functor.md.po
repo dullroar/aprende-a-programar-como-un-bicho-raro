@@ -1,0 +1,119 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lessons/cs-source/concepts/functor.md:2
+msgctxt "s-91c7211d4d3e-0000"
+msgid "Functors and mapping"
+msgstr "Funtores y mapeo"
+
+#: lessons/cs-source/concepts/functor.md:6
+msgctxt "s-d1187d4a5bdf-0001"
+msgid ""
+"A **functor** is a container type with a ⟦CODE_0001⟧ that applies a function"
+" to the values inside *without changing the container's shape*. To count as "
+"a functor, ⟦CODE_0002⟧ must obey two laws:"
+msgstr ""
+"Un **funtor** es un tipo de contenedor con un ⟦CODE_0001⟧ que aplica una "
+"función a los valores que contiene *sin cambiar la forma del contenedor*. "
+"Para que sea un funtor, ⟦CODE_0002⟧ debe cumplir dos leyes:"
+
+#: lessons/cs-source/concepts/functor.md:8
+msgctxt "s-7277f695ed6d-0002"
+msgid ""
+"**Identity:** ⟦CODE_0001⟧. Mapping a function that changes nothing changes "
+"nothing."
+msgstr ""
+"**Identidad:** ⟦CODE_0001⟧. Aplicar una función que no cambia nada deja todo"
+" igual."
+
+#: lessons/cs-source/concepts/functor.md:9
+msgctxt "s-78e15abf4b6c-0003"
+msgid ""
+"**Composition:** ⟦CODE_0001⟧. Mapping two functions in one pass equals "
+"mapping them one after the other."
+msgstr ""
+"**Composición:** ⟦CODE_0001⟧. Aplicar dos funciones en una pasada equivale a"
+" aplicarlas una tras otra."
+
+#: lessons/cs-source/concepts/functor.md:11
+msgctxt "s-6df15bca28f3-0004"
+msgid ""
+"Lists, ⟦CODE_0001⟧ and functions themselves are functors in Haskell "
+"(⟦CODE_0002⟧). JavaScript's ⟦CODE_0003⟧, LINQ's ⟦CODE_0004⟧ and a Kotlin "
+"⟦CODE_0005⟧ all *look* like this. Whether each one really obeys the laws "
+"depends on what the function does. If the function has a side effect, or "
+"reads a counter, the second law fails in practice: the effects happen in a "
+"different order. ⟦CODE_0006⟧ runs ⟦CODE_0007⟧ three times and then "
+"⟦CODE_0008⟧ three times. A lazy sequence interleaves them: ⟦CODE_0009⟧. With"
+" pure functions you cannot tell the difference. With effects you can. "
+"⟦MACRO_0010⟧ saves a row inside a ⟦CODE_0011⟧, so the lazy order is the "
+"program, and its check script shows both orders."
+msgstr ""
+"En Haskell las listas, ⟦CODE_0001⟧ y las funciones mismas son funtores "
+"(⟦CODE_0002⟧). ⟦CODE_0003⟧ de JavaScript, ⟦CODE_0004⟧ de LINQ y un "
+"⟦CODE_0005⟧ de Kotlin *parecen* funcionar así. Que cada uno cumpla las leyes"
+" depende de lo que haga la función. Si la función tiene un efecto secundario"
+" o lee un contador, la segunda ley falla en la práctica: los efectos ocurren"
+" en distinto orden. ⟦CODE_0006⟧ ejecuta ⟦CODE_0007⟧ tres veces y luego "
+"⟦CODE_0008⟧ tres veces. Una secuencia perezosa los intercala: ⟦CODE_0009⟧. "
+"Con funciones puras no puedes ver la diferencia. Con efectos sí. "
+"⟦MACRO_0010⟧ guarda una fila dentro de un ⟦CODE_0011⟧. Así, el orden de "
+"evaluación perezosa define el programa y su script de comprobación muestra "
+"ambos órdenes."
+
+#: lessons/cs-source/concepts/functor.md:13
+msgctxt "s-2102c710e7b6-0005"
+msgid ""
+"Laziness differs too. Python's ⟦CODE_0001⟧ and a LINQ ⟦CODE_0002⟧ are lazy "
+"and run nothing until asked. JavaScript's ⟦CODE_0003⟧ is eager and builds "
+"the whole result at once. Haskell's ⟦CODE_0004⟧ on a list is lazy again. The"
+" type of ⟦CODE_0005⟧ is the same in all of them. The *evaluation* is not."
+msgstr ""
+"La evaluación perezosa también varía. ⟦CODE_0001⟧ de Python y un ⟦CODE_0002⟧"
+" de LINQ son perezosos y no ejecutan nada hasta que alguien lo pide. "
+"⟦CODE_0003⟧ de JavaScript usa evaluación inmediata y construye todo el "
+"resultado de una vez. ⟦CODE_0004⟧ de Haskell aplicado a una lista vuelve a "
+"ser perezoso. El tipo de ⟦CODE_0005⟧ es el mismo en todos los casos. La "
+"*evaluación* cambia."
+
+#: lessons/cs-source/concepts/functor.md:15
+msgctxt "s-4ef3764550a6-0006"
+msgid ""
+"**Use it when:** you want to change every value in a structure and keep the "
+"structure, and you want a rule that says when two pipelines are "
+"interchangeable."
+msgstr ""
+"**Úsalo cuando:** quieras cambiar cada valor de una estructura y conservar "
+"la estructura. También cuando quieras una regla para saber cuándo puedes "
+"intercambiar dos canalizaciones."
+
+#: lessons/cs-source/concepts/functor.md:16
+msgctxt "s-0ddaf710893d-0007"
+msgid ""
+"**Avoid it when:** the function has effects. Use a loop or an effect-aware "
+"operation, and say so, so that the reader knows the order matters."
+msgstr ""
+"**Evítalo cuando:** la función tenga efectos. Usa un bucle o una operación "
+"que tenga en cuenta los efectos. Dilo para que el lector sepa que el orden "
+"importa."
+
+#: lessons/cs-source/concepts/functor.md:18
+msgctxt "s-250de292f56f-0008"
+msgid "**Read more:**"
+msgstr "**Lee más:**"
+
+#: lessons/cs-source/concepts/functor.md:20
+msgctxt "s-02de1111108a-0009"
+msgid "[Functor](⟦DEST_0001⟧) (Wikipedia)"
+msgstr "[Funtor](⟦DEST_0001⟧) (Wikipedia)"
+
+#: lessons/cs-source/concepts/functor.md:21
+msgctxt "s-8575d4b52072-0010"
+msgid "[⟦CODE_0001⟧](⟦DEST_0002⟧) (MDN)"
+msgstr "[⟦CODE_0001⟧](⟦DEST_0002⟧) (MDN)"

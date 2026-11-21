@@ -1,0 +1,75 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lessons/cs-source/concepts/deferred-execution.md:2
+msgctxt "s-4f61bbaeee80-0000"
+msgid "Deferred execution"
+msgstr "Ejecución diferida"
+
+#: lessons/cs-source/concepts/deferred-execution.md:6
+msgctxt "s-ff900c5e8fd2-0001"
+msgid ""
+"Deferred execution means that you describe a query or a pipeline now, and it"
+" runs later, when someone asks for the results. In C#'s LINQ, ⟦CODE_0001⟧ "
+"and ⟦CODE_0002⟧ do no work by themselves. The work happens when a "
+"⟦CODE_0003⟧, ⟦CODE_0004⟧ or ⟦CODE_0005⟧ reads the sequence. It exists so "
+"that pipelines can be composed cheaply, and so that a provider (such as "
+"Entity Framework) can translate the whole query into SQL. The surprises are "
+"real. The query runs *again* each time it is read, effects inside it happen "
+"late, and a variable captured by the query may have changed by then. "
+"⟦MACRO_0006⟧ and ⟦MACRO_0007⟧ put effects inside the pipeline on purpose, "
+"and a final eager operator forces them."
+msgstr ""
+"Con la ejecución diferida describes ahora una consulta o una canalización. "
+"La consulta o la canalización se ejecuta más tarde, cuando alguien pide los "
+"resultados. En LINQ de C#, ⟦CODE_0001⟧ y ⟦CODE_0002⟧ no hacen ningún trabajo"
+" por sí solos. El trabajo ocurre cuando ⟦CODE_0003⟧, ⟦CODE_0004⟧ o "
+"⟦CODE_0005⟧ lee la secuencia. Así puedes combinar canalizaciones con poco "
+"costo y un proveedor (como Entity Framework) puede traducir la consulta "
+"completa a SQL. Sí que hay sorpresas. La consulta se ejecuta *de nuevo* en "
+"cada lectura. Sus efectos ocurren tarde y para entonces una variable que "
+"captura puede haber cambiado. ⟦MACRO_0006⟧ y ⟦MACRO_0007⟧ ponen efectos "
+"dentro de la canalización a propósito. Un operador final de evaluación "
+"inmediata fuerza su ejecución."
+
+#: lessons/cs-source/concepts/deferred-execution.md:8
+msgctxt "s-e766928d9481-0002"
+msgid ""
+"**Use it when:** you build queries and transformations that are free of "
+"effects."
+msgstr "**Úsala cuando:** armes consultas y transformaciones sin efectos."
+
+#: lessons/cs-source/concepts/deferred-execution.md:9
+msgctxt "s-fbaf86fcb777-0003"
+msgid ""
+"**Avoid it when:** a stage has side effects. Decide who forces the pipeline,"
+" and when."
+msgstr ""
+"**Evítala cuando:** una etapa tenga efectos secundarios. Decide quién fuerza"
+" la ejecución de la canalización y cuándo."
+
+#: lessons/cs-source/concepts/deferred-execution.md:11
+msgctxt "s-250de292f56f-0004"
+msgid "**Read more:**"
+msgstr "**Lee más:**"
+
+#: lessons/cs-source/concepts/deferred-execution.md:13
+msgctxt "s-fda6c6446b26-0005"
+msgid "[Language Integrated Query](⟦DEST_0001⟧) (Wikipedia)"
+msgstr "[Consulta integrada en el lenguaje](⟦DEST_0001⟧) (Wikipedia)"
+
+#: lessons/cs-source/concepts/deferred-execution.md:14
+msgctxt "s-d5026012fa30-0006"
+msgid "[Lazy evaluation](⟦DEST_0001⟧) (Wikipedia)"
+msgstr "[Evaluación perezosa](⟦DEST_0001⟧) (Wikipedia)"
+
+#: lessons/cs-source/concepts/deferred-execution.md:15
+msgctxt "s-26901ffe5d08-0007"
+msgid "[Iterator](⟦DEST_0001⟧) (Wikipedia)"
+msgstr "[Iterador](⟦DEST_0001⟧) (Wikipedia)"

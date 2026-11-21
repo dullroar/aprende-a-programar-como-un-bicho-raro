@@ -1,0 +1,43 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lessons/cs-source/concepts/eager-evaluation.md:2
+msgctxt "s-65aa4cbf69ee-0000"
+msgid "Eager evaluation"
+msgstr "Evaluación inmediata"
+
+#: lessons/cs-source/concepts/eager-evaluation.md:6
+msgctxt "s-dbbb9f849875-0001"
+msgid "Eager evaluation computes a value as soon as the code asks for it. It is the default in most languages. It exists because it is simple: cost and order are easy to predict, and effects happen exactly where you wrote them. ⟦MACRO_0001⟧ is eager in a strong sense: each primitive works on a whole array at once. The entry draws five numbers, a bound that can never be too small, although it often needs fewer. \"Draw more than enough, then trim\" replaces a loop that decides when to stop."
+msgstr "La evaluación inmediata calcula un valor en cuanto el código lo pide. Es la opción predeterminada en la mayoría de los lenguajes. Su ventaja es la sencillez: el costo y el orden son fáciles de predecir y los efectos ocurren justo donde los escribiste. ⟦MACRO_0001⟧ evalúa de inmediato en un sentido fuerte: cada primitiva trabaja sobre un arreglo entero a la vez. La entrada saca cinco números, un límite que nunca se queda corto aunque a menudo necesite menos. \"Saca de sobra y recorta\" sustituye al bucle que decide cuándo parar."
+
+#: lessons/cs-source/concepts/eager-evaluation.md:8
+msgctxt "s-42110f1e608e-0002"
+msgid "**Use it when:** you need a predictable order of effects, or when the result will certainly be used."
+msgstr "**Úsala cuando:** necesites un orden predecible de los efectos o sepas con certeza que se usará el resultado."
+
+#: lessons/cs-source/concepts/eager-evaluation.md:9
+msgctxt "s-f29e5960bc24-0003"
+msgid "**Avoid it when:** the work might be wasted, or the source is huge or infinite."
+msgstr "**Evítala cuando:** el trabajo pueda desperdiciarse o la fuente sea enorme o infinita."
+
+#: lessons/cs-source/concepts/eager-evaluation.md:11
+msgctxt "s-250de292f56f-0004"
+msgid "**Read more:**"
+msgstr "**Lee más:**"
+
+#: lessons/cs-source/concepts/eager-evaluation.md:13
+msgctxt "s-731154a640e0-0005"
+msgid "[Eager evaluation](⟦DEST_0001⟧) (Wikipedia)"
+msgstr "[Evaluación inmediata](⟦DEST_0001⟧) (Wikipedia)"
+
+#: lessons/cs-source/concepts/eager-evaluation.md:14
+msgctxt "s-9d0f0e93f2d4-0006"
+msgid "⟦MACRO_0001⟧, the opposite idea"
+msgstr "⟦MACRO_0001⟧, la idea opuesta"

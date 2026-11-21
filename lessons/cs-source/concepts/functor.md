@@ -1,21 +1,21 @@
 ---
-title: "Functors and mapping"
+title: "Funtores y mapeo"
 chapter: 4
 order: 90
 ---
-A **functor** is a container type with a `map` that applies a function to the values inside *without changing the container's shape*. To count as a functor, `map` must obey two laws:
+Un **funtor** es un tipo de contenedor con un `map` que aplica una función a los valores que contiene *sin cambiar la forma del contenedor*. Para que sea un funtor, `map` debe cumplir dos leyes:
 
-- **Identity:** `map(id, xs) = xs`. Mapping a function that changes nothing changes nothing.
-- **Composition:** `map(g ∘ f, xs) = map(g, map(f, xs))`. Mapping two functions in one pass equals mapping them one after the other.
+- **Identidad:** `map(id, xs) = xs`. Aplicar una función que no cambia nada deja todo igual.
+- **Composición:** `map(g ∘ f, xs) = map(g, map(f, xs))`. Aplicar dos funciones en una pasada equivale a aplicarlas una tras otra.
 
-Lists, `Maybe` and functions themselves are functors in Haskell (`fmap`). JavaScript's `Array.prototype.map`, LINQ's `Select` and a Kotlin `Sequence.map` all *look* like this. Whether each one really obeys the laws depends on what the function does. If the function has a side effect, or reads a counter, the second law fails in practice: the effects happen in a different order. `[1,2,3].map(f).map(g)` runs `f` three times and then `g` three times. A lazy sequence interleaves them: `f(1), g(1), f(2), g(2), …`. With pure functions you cannot tell the difference. With effects you can. [[entry:javascript-weird]] saves a row inside a `map`, so the lazy order is the program, and its check script shows both orders.
+En Haskell las listas, `Maybe` y las funciones mismas son funtores (`fmap`). `Array.prototype.map` de JavaScript, `Select` de LINQ y un `Sequence.map` de Kotlin *parecen* funcionar así. Que cada uno cumpla las leyes depende de lo que haga la función. Si la función tiene un efecto secundario o lee un contador, la segunda ley falla en la práctica: los efectos ocurren en distinto orden. `[1,2,3].map(f).map(g)` ejecuta `f` tres veces y luego `g` tres veces. Una secuencia perezosa los intercala: `f(1), g(1), f(2), g(2), …`. Con funciones puras no puedes ver la diferencia. Con efectos sí. [[entry:javascript-weird]] guarda una fila dentro de un `map`. Así, el orden de evaluación perezosa define el programa y su script de comprobación muestra ambos órdenes.
 
-Laziness differs too. Python's `map` and a LINQ `Select` are lazy and run nothing until asked. JavaScript's `Array.prototype.map` is eager and builds the whole result at once. Haskell's `fmap` on a list is lazy again. The type of `map` is the same in all of them. The *evaluation* is not.
+La evaluación perezosa también varía. `map` de Python y un `Select` de LINQ son perezosos y no ejecutan nada hasta que alguien lo pide. `Array.prototype.map` de JavaScript usa evaluación inmediata y construye todo el resultado de una vez. `fmap` de Haskell aplicado a una lista vuelve a ser perezoso. El tipo de `map` es el mismo en todos los casos. La *evaluación* cambia.
 
-- **Use it when:** you want to change every value in a structure and keep the structure, and you want a rule that says when two pipelines are interchangeable.
-- **Avoid it when:** the function has effects. Use a loop or an effect-aware operation, and say so, so that the reader knows the order matters.
+- **Úsalo cuando:** quieras cambiar cada valor de una estructura y conservar la estructura. También cuando quieras una regla para saber cuándo puedes intercambiar dos canalizaciones.
+- **Evítalo cuando:** la función tenga efectos. Usa un bucle o una operación que tenga en cuenta los efectos. Dilo para que el lector sepa que el orden importa.
 
-**Read more:**
+**Lee más:**
 
-- [Functor](https://en.wikipedia.org/wiki/Functor) (Wikipedia)
+- [Funtor](https://en.wikipedia.org/wiki/Functor) (Wikipedia)
 - [`Array.prototype.map()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) (MDN)

@@ -1,30 +1,30 @@
 ---
-title: "Dataflow programming"
+title: "Programación por flujo de datos"
 chapter: 4
 order: 110
 ---
-In **dataflow programming** you describe how values flow from one step to the next, and the order of execution follows from the data: a step runs when its input is ready, or when its output is asked for. A spreadsheet is the familiar example. A LINQ query and an iterator pipeline are small ones. The program is a graph of steps, and the machine decides when each runs.
+En la **programación por flujo de datos** describes cómo fluyen los valores de un paso al siguiente. Los datos determinan el orden de ejecución: un paso se ejecuta cuando su entrada de datos está lista o cuando alguien pide su salida. Una hoja de cálculo es el ejemplo conocido. Una consulta de LINQ y una canalización de iteradores son ejemplos pequeños. El programa es un grafo de pasos. La máquina decide cuándo ejecutar cada uno.
 
 ```mermaid
 flowchart TB
-    accTitle: In a dataflow view, edges carry values and nodes fire when the needed inputs arrive
-    accDescr: A small graph. The sources hours and categories feed the graph. Hours feeds a running total node and a pair node. Categories feeds the pair node. The pair node needs both of its inputs, so it fires only when an hour and a category have both arrived. The running total and the pairs both feed a stop node, which keeps rows until the total is over 40. The stop node feeds the output node, rows. Arrows are data dependencies, not a call order.
-    H(["hours"]) --> T["running total"]
-    H --> P["pair: fires when both inputs arrive"]
-    K(["categories"]) --> P
-    T --> S["keep rows until total is over 40"]
+    accTitle: En la vista de flujo de datos, las aristas transportan valores y los nodos se activan cuando reciben los entradas de datos que necesitan
+    accDescr: Un grafo pequeño. Las fuentes horas y categorías alimentan el grafo. Horas alimenta el nodo del total acumulado y el nodo del par. Categorías alimenta el nodo del par. El nodo del par necesita sus dos entradas de datos. Solo se activa cuando llegan una hora y una categoría. Tanto el total acumulado como los pares alimentan el nodo de parada, que conserva filas hasta que el total pasa de 40. El nodo de parada alimenta el nodo de salida, filas. Las flechas indican dependencias de datos, no un orden de llamadas.
+    H(["horas"]) --> T["total acumulado"]
+    H --> P["par: se activa con ambas entradas de datos"]
+    K(["categorías"]) --> P
+    T --> S["conserva filas hasta que el total pasa de 40"]
     P --> S
-    S --> R(["rows"])
+    S --> R(["filas"])
 ```
 
-Each arrow is a data dependency: the node at the head needs a value from the node at the tail. The `pair` node has two inputs, so it cannot fire until both have arrived. The picture does not say which node a program calls first. The arrival of values decides. [[dependency-graph]] also draws arrows between things, but there the arrows say what to redo after a change.
+Cada flecha es una dependencia de datos: el nodo en la punta necesita un valor del nodo en la base. El nodo `pair` tiene dos entradas de datos y solo puede activarse cuando llegan ambas. El dibujo no dice qué nodo llama primero un programa. La llegada de valores lo decide. [[dependency-graph]] también dibuja flechas entre elementos, pero allí indican qué rehacer después de un cambio.
 
-It matters here because several entries move control out of statements and into such a graph. In [[entry:LinqChallenge1]] and [[entry:LinqChallenge2]] a query describes the cards, and the final operator asks for them. In [[entry:javascript-weird]] the pipeline `Iterator.from(...).map(...).map(...).toArray()` is a chain of steps, and each card flows through all of them before the next one is asked for. [[entry:make-gnu]] has a related shape: a dependency graph decides what runs and in what order. That is *dependency*, which is not the same as the flow of data, so it is an analogy here.
+Esto importa aquí porque varias entradas trasladan el control de las sentencias a un grafo de este tipo. En [[entry:LinqChallenge1]] y [[entry:LinqChallenge2]] una consulta describe las tarjetas y el operador final las pide. En [[entry:javascript-weird]] la canalización `Iterator.from(...).map(...).map(...).toArray()` es una cadena de pasos. Cada tarjeta pasa por todos antes de que se pida la siguiente. [[entry:make-gnu]] tiene una forma parecida: un grafo de dependencias decide qué se ejecuta y en qué orden. Eso es *dependencia*, algo distinto del flujo de datos. Aquí sirve de analogía.
 
-- **Use it when:** the problem is a series of transformations, and you want the order to follow the dependencies.
-- **Avoid it when:** the steps have effects whose order matters. A dataflow graph hides the order, and an effect that depends on it becomes a bug.
+- **Úsala cuando:** el problema sea una serie de transformaciones y quieras que las dependencias determinen el orden.
+- **Evítala cuando:** los pasos tengan efectos cuyo orden importe. El grafo de flujo de datos oculta el orden y un efecto que depende de él se convierte en un bicho.
 
-**Read more:**
+**Lee más:**
 
-- [Dataflow programming](https://en.wikipedia.org/wiki/Dataflow_programming) (Wikipedia)
-- [Pipeline (software)](https://en.wikipedia.org/wiki/Pipeline_(software)) (Wikipedia)
+- [Programación por flujo de datos](https://en.wikipedia.org/wiki/Dataflow_programming) (Wikipedia)
+- [Canalización (software)](https://en.wikipedia.org/wiki/Pipeline_(software)) (Wikipedia)

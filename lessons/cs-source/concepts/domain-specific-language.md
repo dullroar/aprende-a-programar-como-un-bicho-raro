@@ -1,14 +1,14 @@
 ---
-title: "Domain-specific languages"
+title: "Lenguajes específicos de dominio"
 chapter: 5
 order: 70
 ---
-A domain-specific language (DSL) is a small language for one kind of job. SQL is for queries, regular expressions for patterns, Make for builds, AWK for records, LINQ query syntax for collections. It exists because a tool that speaks the vocabulary of the problem is shorter, easier to read and often safer than general code. There is a classic danger. Users ask for variables, then conditions, then loops and the DSL grows into a general language by accident, with fewer tools and worse error messages. Programmers call this the *inner-platform effect*. Most entries here are DSLs that crossed that line, which is why they were fun to write.
+Un lenguaje específico de dominio (DSL) es un lenguaje pequeño para una clase de tarea. SQL sirve para consultas, las expresiones regulares para patrones, Make para compilaciones, AWK para registros y la sintaxis de consultas de LINQ para colecciones. Una herramienta que habla con el vocabulario del problema es más breve, más fácil de leer y a menudo más segura que el código de propósito general. Hay un peligro clásico. Los usuarios piden variables, luego condiciones y después bucles. Sin querer, el DSL acaba convertido en un lenguaje de propósito general, con menos herramientas y peores mensajes de error. Quienes programan lo llaman el *efecto de plataforma interna*. La mayoría de las entradas de aquí son DSL que cruzaron esa línea. Por eso fue divertido escribirlas.
 
-- **Use it when:** the domain has a stable vocabulary and many people use it.
-- **Avoid it when:** a library in a normal language does the same job. If your DSL needs loops, think again about embedding it in a general language.
+- **Úsalos cuando:** el dominio tenga un vocabulario estable y lo usen muchas personas.
+- **Evítalos cuando:** una biblioteca en un lenguaje común haga lo mismo. Si tu DSL necesita bucles, vuelve a considerar la posibilidad de integrarlo en un lenguaje de propósito general.
 
-**Read more:**
+**Lee más:**
 
-- [Domain-specific language](https://en.wikipedia.org/wiki/Domain-specific_language) (Wikipedia)
-- [Inner-platform effect](https://en.wikipedia.org/wiki/Inner-platform_effect) (Wikipedia)
+- [Lenguaje específico de dominio](https://en.wikipedia.org/wiki/Domain-specific_language) (Wikipedia)
+- [Efecto de plataforma interna](https://en.wikipedia.org/wiki/Inner-platform_effect) (Wikipedia)

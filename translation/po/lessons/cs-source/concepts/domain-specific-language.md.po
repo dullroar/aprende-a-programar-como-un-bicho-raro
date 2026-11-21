@@ -1,0 +1,43 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lessons/cs-source/concepts/domain-specific-language.md:2
+msgctxt "s-7fed774a40cc-0000"
+msgid "Domain-specific languages"
+msgstr "Lenguajes específicos de dominio"
+
+#: lessons/cs-source/concepts/domain-specific-language.md:6
+msgctxt "s-e71d889edc46-0001"
+msgid "A domain-specific language (DSL) is a small language for one kind of job. SQL is for queries, regular expressions for patterns, Make for builds, AWK for records, LINQ query syntax for collections. It exists because a tool that speaks the vocabulary of the problem is shorter, easier to read and often safer than general code. There is a classic danger. Users ask for variables, then conditions, then loops and the DSL grows into a general language by accident, with fewer tools and worse error messages. Programmers call this the *inner-platform effect*. Most entries here are DSLs that crossed that line, which is why they were fun to write."
+msgstr "Un lenguaje específico de dominio (DSL) es un lenguaje pequeño para una clase de tarea. SQL sirve para consultas, las expresiones regulares para patrones, Make para compilaciones, AWK para registros y la sintaxis de consultas de LINQ para colecciones. Una herramienta que habla con el vocabulario del problema es más breve, más fácil de leer y a menudo más segura que el código de propósito general. Hay un peligro clásico. Los usuarios piden variables, luego condiciones y después bucles. Sin querer, el DSL acaba convertido en un lenguaje de propósito general, con menos herramientas y peores mensajes de error. Quienes programan lo llaman el *efecto de plataforma interna*. La mayoría de las entradas de aquí son DSL que cruzaron esa línea. Por eso fue divertido escribirlas."
+
+#: lessons/cs-source/concepts/domain-specific-language.md:8
+msgctxt "s-67bb5625a4be-0002"
+msgid "**Use it when:** the domain has a stable vocabulary and many people use it."
+msgstr "**Úsalos cuando:** el dominio tenga un vocabulario estable y lo usen muchas personas."
+
+#: lessons/cs-source/concepts/domain-specific-language.md:9
+msgctxt "s-5e3c3333292f-0003"
+msgid "**Avoid it when:** a library in a normal language does the same job. If your DSL needs loops, think again about embedding it in a general language."
+msgstr "**Evítalos cuando:** una biblioteca en un lenguaje común haga lo mismo. Si tu DSL necesita bucles, vuelve a considerar la posibilidad de integrarlo en un lenguaje de propósito general."
+
+#: lessons/cs-source/concepts/domain-specific-language.md:11
+msgctxt "s-250de292f56f-0004"
+msgid "**Read more:**"
+msgstr "**Lee más:**"
+
+#: lessons/cs-source/concepts/domain-specific-language.md:13
+msgctxt "s-3ec5a9fafd2a-0005"
+msgid "[Domain-specific language](⟦DEST_0001⟧) (Wikipedia)"
+msgstr "[Lenguaje específico de dominio](⟦DEST_0001⟧) (Wikipedia)"
+
+#: lessons/cs-source/concepts/domain-specific-language.md:14
+msgctxt "s-a1fee7009e8f-0006"
+msgid "[Inner-platform effect](⟦DEST_0001⟧) (Wikipedia)"
+msgstr "[Efecto de plataforma interna](⟦DEST_0001⟧) (Wikipedia)"

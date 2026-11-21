@@ -1,0 +1,195 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lessons/cs-source/concepts/generators.md:2
+msgctxt "s-55a34f31dc37-0000"
+msgid "Iterators and generators"
+msgstr "Iteradores y generadores"
+
+#: lessons/cs-source/concepts/generators.md:6
+msgctxt "s-f809b4b985b7-0001"
+msgid ""
+"An *iterator* is an object that answers \"give me the next one\". A "
+"*generator* is a function you write as ordinary straight-line code that "
+"hands out values one at a time with ⟦CODE_0001⟧. Both exist so that you can "
+"handle a sequence that is too big to store, or has no end, and so that the "
+"code that produces values stays separate from the code that uses them. Four "
+"entries are built on the idea: Rust's ⟦CODE_0002⟧, Kotlin's ⟦CODE_0003⟧, "
+"Python's ⟦CODE_0004⟧ and Haskell's lazy lists. In each one, the loop "
+"\"stops\" because the consumer stops asking. JavaScript spells the idea out "
+"as the **iteration protocol**: an iterable has a ⟦CODE_0005⟧ method that "
+"answers an object with a ⟦CODE_0006⟧ method, and ⟦CODE_0007⟧ answers "
+"⟦CODE_0008⟧. ⟦MACRO_0009⟧ writes one by hand around a closure, and a "
+"consumer such as ⟦CODE_0010⟧ or ⟦CODE_0011⟧ decides how many values ever "
+"exist. It also shows the one-shot trap: a second pass over the same iterator"
+" finds it already used up."
+msgstr ""
+"Un *iterador* es un objeto que responde a \"dame el siguiente\". Un "
+"*generador* es una función que escribes como código secuencial común y que "
+"entrega valores de uno en uno con ⟦CODE_0001⟧. Ambos permiten manejar "
+"secuencias demasiado grandes para almacenarlas o que no tienen fin. También "
+"separan el código que produce los valores del que los usa. Cuatro entradas "
+"se basan en la idea: ⟦CODE_0002⟧ de Rust, ⟦CODE_0003⟧ de Kotlin, ⟦CODE_0004⟧"
+" de Python y las listas perezosas de Haskell. En cada una, el bucle \"se "
+"detiene\" porque el consumidor deja de pedir. JavaScript detalla la idea en "
+"el **protocolo de iteración**: un iterable tiene un método ⟦CODE_0005⟧ que "
+"devuelve un objeto con un método ⟦CODE_0006⟧. ⟦CODE_0007⟧ devuelve "
+"⟦CODE_0008⟧. ⟦MACRO_0009⟧ escribe uno a mano con una clausura (*closure*), "
+"una función que conserva acceso a su entorno. Un consumidor como ⟦CODE_0010⟧"
+" o ⟦CODE_0011⟧ decide cuántos valores llegan a existir. También muestra la "
+"trampa del único recorrido: en una segunda pasada por el mismo iterador ya "
+"no queda nada."
+
+#: lessons/cs-source/concepts/generators.md:10
+msgctxt "s-42b1c0ddecfe-0002"
+msgid ""
+"Generators answer one next-value request at a time, resuming from where they"
+" last yielded"
+msgstr ""
+"Los generadores responden a cada pedido del siguiente valor desde el punto "
+"donde entregaron el anterior"
+
+#: lessons/cs-source/concepts/generators.md:11
+msgctxt "s-efba93bf0baa-0003"
+msgid ""
+"A sequence diagram with a consumer and a generator. The consumer calls next."
+" The generator runs to its first yield and hands back 19. The consumer calls"
+" next again, and the generator resumes after the yield and hands back 23. "
+"Another call gives 17. On the fourth call the generator has nothing left and"
+" signals done. The consumer drives every step, and the generator keeps its "
+"internal state between yields."
+msgstr ""
+"Diagrama de secuencia con un consumidor y un generador. El consumidor llama "
+"a next. El generador se ejecuta hasta su primer yield y devuelve 19. El "
+"consumidor vuelve a llamar a next. El generador continúa tras el yield y "
+"devuelve 23. Otra llamada da 17. En la cuarta llamada el generador ya no "
+"tiene nada que entregar y señala done. El consumidor dirige cada paso y el "
+"generador conserva su estado interno entre yield."
+
+#: lessons/cs-source/concepts/generators.md:12
+msgctxt "s-3fdb18587034-0004"
+msgid "Consumer"
+msgstr "Consumidor"
+
+#: lessons/cs-source/concepts/generators.md:13
+msgctxt "s-1ade60abe93f-0005"
+msgid "Generator"
+msgstr "Generador"
+
+#: lessons/cs-source/concepts/generators.md:14
+msgctxt "s-faa91ee90040-0006"
+msgid "next()"
+msgstr "next()"
+
+#: lessons/cs-source/concepts/generators.md:15
+msgctxt "s-67619ff6fe98-0007"
+msgid "yield 19"
+msgstr "yield 19"
+
+#: lessons/cs-source/concepts/generators.md:16
+msgctxt "s-faa91ee90040-0008"
+msgid "next()"
+msgstr "next()"
+
+#: lessons/cs-source/concepts/generators.md:17
+msgctxt "s-8221972ba995-0009"
+msgid "resumes after the last yield"
+msgstr "continúa tras el último yield"
+
+#: lessons/cs-source/concepts/generators.md:18
+msgctxt "s-ade462501a76-0010"
+msgid "yield 23"
+msgstr "yield 23"
+
+#: lessons/cs-source/concepts/generators.md:19
+msgctxt "s-faa91ee90040-0011"
+msgid "next()"
+msgstr "next()"
+
+#: lessons/cs-source/concepts/generators.md:20
+msgctxt "s-2bb655481fee-0012"
+msgid "yield 17"
+msgstr "yield 17"
+
+#: lessons/cs-source/concepts/generators.md:21
+msgctxt "s-faa91ee90040-0013"
+msgid "next()"
+msgstr "next()"
+
+#: lessons/cs-source/concepts/generators.md:22
+msgctxt "s-a4c3ed04a95a-0014"
+msgid "done"
+msgstr "done"
+
+#: lessons/cs-source/concepts/generators.md:23
+msgctxt "s-e28105131ac7-0015"
+msgid "internal state is kept between yields"
+msgstr "conserva el estado interno entre yield"
+
+#: lessons/cs-source/concepts/generators.md:26
+msgctxt "s-d9d80379ceba-0016"
+msgid ""
+"The consumer asks and the generator answers. This is *pull*: nothing runs "
+"until ⟦CODE_0001⟧ is called, and the generator does only enough work to "
+"reach its next ⟦CODE_0002⟧. A push design, such as a callback, would draw "
+"the arrows the other way (see ⟦MACRO_0003⟧). The consumer can also stop "
+"early by not asking again."
+msgstr ""
+"El consumidor pide y el generador responde. Esto es *demanda* (*pull*): nada"
+" se ejecuta hasta que alguien llama a ⟦CODE_0001⟧. El generador solo trabaja"
+" lo suficiente para llegar al siguiente ⟦CODE_0002⟧. Un diseño por envío, "
+"como el que usa una función de devolución de llamada (*callback*), dibujaría"
+" las flechas al revés (consulta ⟦MACRO_0003⟧). El consumidor también puede "
+"detenerse antes si no vuelve a pedir."
+
+#: lessons/cs-source/concepts/generators.md:28
+msgctxt "s-b99380d703b1-0017"
+msgid ""
+"**Use it when:** you stream data, or describe an unlimited series and take a"
+" prefix."
+msgstr ""
+"**Úsalos cuando:** manejes un flujo de datos o describas una serie sin "
+"límite y tomes su parte inicial."
+
+#: lessons/cs-source/concepts/generators.md:29
+msgctxt "s-61dbe9c0574f-0018"
+msgid ""
+"**Avoid it when:** the iterator has hidden effects or callers expect to "
+"reuse a one-shot iterator."
+msgstr ""
+"**Evítalos cuando:** el iterador tenga efectos ocultos o quien lo llama "
+"espere reutilizar un iterador de un solo recorrido."
+
+#: lessons/cs-source/concepts/generators.md:31
+msgctxt "s-250de292f56f-0019"
+msgid "**Read more:**"
+msgstr "**Lee más:**"
+
+#: lessons/cs-source/concepts/generators.md:33
+msgctxt "s-26901ffe5d08-0020"
+msgid "[Iterator](⟦DEST_0001⟧) (Wikipedia)"
+msgstr "[Iterador](⟦DEST_0001⟧) (Wikipedia)"
+
+#: lessons/cs-source/concepts/generators.md:34
+msgctxt "s-df2aa0ccc233-0021"
+msgid "[Generator (computer programming)](⟦DEST_0001⟧)) (Wikipedia)"
+msgstr "[Generador (programación)](⟦DEST_0001⟧)) (Wikipedia)"
+
+#: lessons/cs-source/concepts/generators.md:35
+msgctxt "s-a2e2a3189bba-0022"
+msgid "[Stream (computing)](⟦DEST_0001⟧)) (Wikipedia)"
+msgstr "[Flujo (informática)](⟦DEST_0001⟧)) (Wikipedia)"
+
+#: lessons/cs-source/concepts/generators.md:36
+msgctxt "s-a08ca335e818-0023"
+msgid ""
+"[Iterators and generators](⟦DEST_0001⟧) (MDN), a clear tutorial on the idea"
+msgstr ""
+"[Iteradores y generadores](⟦DEST_0001⟧) (MDN), un tutorial claro sobre la "
+"idea"

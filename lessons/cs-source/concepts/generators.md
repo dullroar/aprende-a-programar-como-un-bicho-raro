@@ -1,36 +1,36 @@
 ---
-title: "Iterators and generators"
+title: "Iteradores y generadores"
 chapter: 4
 order: 60
 ---
-An *iterator* is an object that answers "give me the next one". A *generator* is a function you write as ordinary straight-line code that hands out values one at a time with `yield`. Both exist so that you can handle a sequence that is too big to store, or has no end, and so that the code that produces values stays separate from the code that uses them. Four entries are built on the idea: Rust's `successors`, Kotlin's `generateSequence`, Python's `iter(step, False)` and Haskell's lazy lists. In each one, the loop "stops" because the consumer stops asking. JavaScript spells the idea out as the **iteration protocol**: an iterable has a `[Symbol.iterator]()` method that answers an object with a `next()` method, and `next()` answers `{ value, done }`. [[entry:javascript-weird]] writes one by hand around a closure, and a consumer such as `toArray()` or `take(1)` decides how many values ever exist. It also shows the one-shot trap: a second pass over the same iterator finds it already used up.
+Un *iterador* es un objeto que responde a "dame el siguiente". Un *generador* es una función que escribes como código secuencial común y que entrega valores de uno en uno con `yield`. Ambos permiten manejar secuencias demasiado grandes para almacenarlas o que no tienen fin. También separan el código que produce los valores del que los usa. Cuatro entradas se basan en la idea: `successors` de Rust, `generateSequence` de Kotlin, `iter(step, False)` de Python y las listas perezosas de Haskell. En cada una, el bucle "se detiene" porque el consumidor deja de pedir. JavaScript detalla la idea en el **protocolo de iteración**: un iterable tiene un método `[Symbol.iterator]()` que devuelve un objeto con un método `next()`. `next()` devuelve `{ value, done }`. [[entry:javascript-weird]] escribe uno a mano con una clausura (*closure*), una función que conserva acceso a su entorno. Un consumidor como `toArray()` o `take(1)` decide cuántos valores llegan a existir. También muestra la trampa del único recorrido: en una segunda pasada por el mismo iterador ya no queda nada.
 
 ```mermaid
 sequenceDiagram
-    accTitle: Generators answer one next-value request at a time, resuming from where they last yielded
-    accDescr: A sequence diagram with a consumer and a generator. The consumer calls next. The generator runs to its first yield and hands back 19. The consumer calls next again, and the generator resumes after the yield and hands back 23. Another call gives 17. On the fourth call the generator has nothing left and signals done. The consumer drives every step, and the generator keeps its internal state between yields.
-    participant C as Consumer
-    participant G as Generator
+    accTitle: Los generadores responden a cada pedido del siguiente valor desde el punto donde entregaron el anterior
+    accDescr: Diagrama de secuencia con un consumidor y un generador. El consumidor llama a next. El generador se ejecuta hasta su primer yield y devuelve 19. El consumidor vuelve a llamar a next. El generador continúa tras el yield y devuelve 23. Otra llamada da 17. En la cuarta llamada el generador ya no tiene nada que entregar y señala done. El consumidor dirige cada paso y el generador conserva su estado interno entre yield.
+    participant C as Consumidor
+    participant G as Generador
     C->>G: next()
     G-->>C: yield 19
     C->>G: next()
-    Note right of G: resumes after the last yield
+    Note right of G: continúa tras el último yield
     G-->>C: yield 23
     C->>G: next()
     G-->>C: yield 17
     C->>G: next()
     G-->>C: done
-    Note right of G: internal state is kept between yields
+    Note right of G: conserva el estado interno entre yield
 ```
 
-The consumer asks and the generator answers. This is *pull*: nothing runs until `next()` is called, and the generator does only enough work to reach its next `yield`. A push design, such as a callback, would draw the arrows the other way (see [[callback]]). The consumer can also stop early by not asking again.
+El consumidor pide y el generador responde. Esto es *demanda* (*pull*): nada se ejecuta hasta que alguien llama a `next()`. El generador solo trabaja lo suficiente para llegar al siguiente `yield`. Un diseño por envío, como el que usa una función de devolución de llamada (*callback*), dibujaría las flechas al revés (consulta [[callback]]). El consumidor también puede detenerse antes si no vuelve a pedir.
 
-- **Use it when:** you stream data, or describe an unlimited series and take a prefix.
-- **Avoid it when:** the iterator has hidden effects or callers expect to reuse a one-shot iterator.
+- **Úsalos cuando:** manejes un flujo de datos o describas una serie sin límite y tomes su parte inicial.
+- **Evítalos cuando:** el iterador tenga efectos ocultos o quien lo llama espere reutilizar un iterador de un solo recorrido.
 
-**Read more:**
+**Lee más:**
 
-- [Iterator](https://en.wikipedia.org/wiki/Iterator) (Wikipedia)
-- [Generator (computer programming)](https://en.wikipedia.org/wiki/Generator_(computer_programming)) (Wikipedia)
-- [Stream (computing)](https://en.wikipedia.org/wiki/Stream_(computing)) (Wikipedia)
-- [Iterators and generators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_generators) (MDN), a clear tutorial on the idea
+- [Iterador](https://en.wikipedia.org/wiki/Iterator) (Wikipedia)
+- [Generador (programación)](https://en.wikipedia.org/wiki/Generator_(computer_programming)) (Wikipedia)
+- [Flujo (informática)](https://en.wikipedia.org/wiki/Stream_(computing)) (Wikipedia)
+- [Iteradores y generadores](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_generators) (MDN), un tutorial claro sobre la idea

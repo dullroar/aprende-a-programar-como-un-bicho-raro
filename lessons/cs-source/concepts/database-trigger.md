@@ -1,26 +1,26 @@
 ---
-title: "Database triggers"
+title: "Disparadores de base de datos"
 chapter: 6
 order: 80
 ---
-A trigger is code that the database runs by itself when a row is inserted, updated or deleted. It exists to keep rules close to the data: audit logs, derived columns, checks that a `CHECK` constraint cannot express. In [[entry:tcl-weird]] a trigger is the loop. Each insert fires the trigger, which inserts the next row, until a `WHERE` clause finds nothing to insert. The cost is invisible control flow. Nothing in the application code says "this also happens", and the order and depth of triggers can surprise you.
+Un disparador es código que la base de datos ejecuta por sí sola al insertar, actualizar o borrar una fila. Sirve para mantener las reglas cerca de los datos: registros de auditoría, columnas derivadas y comprobaciones que una restricción `CHECK` no puede expresar. En [[entry:tcl-weird]] un disparador hace de bucle. Cada inserción activa el disparador, que inserta la siguiente fila hasta que una cláusula `WHERE` no encuentra nada que insertar. El costo es un flujo de control invisible. Nada en el código de la aplicación dice "esto también ocurre". El orden y la profundidad de los disparadores pueden sorprenderte.
 
 ```mermaid
 flowchart TB
-    accTitle: A trigger is code the database runs in response to a table event, and the changed data becomes the next step
-    accDescr: A flowchart of a recursive trigger. Host code runs a single INSERT, and the host code contains no loop. The insert is a table event, which fires the trigger. The trigger checks its condition. If the condition selects a row, the trigger action inserts the next row, which is a new table event that fires the trigger again. If the condition selects nothing, the chain ends.
-    H["Host code: one INSERT, no loop"] --> E["Table event: a row is inserted"]
-    E --> T{{"Trigger fires: does its condition select a row?"}}
-    T -->|"yes: the trigger inserts the next row"| E
-    T -->|"no: nothing to insert"| X(["Chain ends"])
+    accTitle: Un disparador es código que la base de datos ejecuta en respuesta a un evento de tabla. Los datos que cambian dan lugar al siguiente paso
+    accDescr: Diagrama de flujo de un disparador recursivo. El código anfitrión ejecuta un solo INSERT y no contiene ningún bucle. La inserción es un evento de tabla que activa el disparador. El disparador comprueba su condición. Si la condición selecciona una fila, el disparador inserta la siguiente fila. Ese nuevo evento de tabla vuelve a activar el disparador. Si la condición no selecciona nada, la cadena termina.
+    H["Código anfitrión: un INSERT, sin bucle"] --> E["Evento de tabla: se inserta una fila"]
+    E --> T{{"Disparador: ¿la condición selecciona una fila?"}}
+    T -->|"sí: el disparador inserta la siguiente fila"| E
+    T -->|"no: nada que insertar"| X(["Fin de la cadena"])
 ```
 
-The host code runs one `INSERT` and has no loop. The trigger belongs to the table, so each insert is an event that fires it. The trigger's own `INSERT` is another event, and that is how one change causes the next. A chain like this ends only because the condition finally selects no row. Databases are careful about it. SQLite does not let a trigger fire itself unless `PRAGMA recursive_triggers` is on, and [[entry:tcl-weird]] turns it on on purpose.
+El código anfitrión ejecuta un solo `INSERT` y no tiene bucle. El disparador pertenece a la tabla, así que cada inserción es un evento que lo activa. El `INSERT` del disparador también es un evento. Así un cambio causa el siguiente. Una cadena así solo termina porque al final la condición no selecciona ninguna fila. Las bases de datos toman precauciones. SQLite solo permite que un disparador se active a sí mismo si `PRAGMA recursive_triggers` está habilitado. [[entry:tcl-weird]] lo habilita a propósito.
 
-- **Use it when:** for audit trails and rules that must hold whoever writes the data.
-- **Avoid it when:** you are tempted to put business workflows in triggers, or to use them as a program loop (as this entry does, on purpose).
+- **Úsalo cuando:** necesites registros de auditoría o reglas que deban cumplirse sin importar quién escriba los datos.
+- **Evítalo cuando:** quieras meter procesos de negocio en disparadores o usarlos como bucle del programa (como hace esta entrada a propósito).
 
-**Read more:**
+**Lee más:**
 
-- [Database trigger](https://en.wikipedia.org/wiki/Database_trigger) (Wikipedia)
+- [Disparador de base de datos](https://en.wikipedia.org/wiki/Database_trigger) (Wikipedia)
 - [SQLite](https://en.wikipedia.org/wiki/SQLite) (Wikipedia)

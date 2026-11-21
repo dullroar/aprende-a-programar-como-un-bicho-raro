@@ -1,0 +1,43 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lessons/cs-source/concepts/declarative-programming.md:2
+msgctxt "s-a5bc8b386db6-0000"
+msgid "Declarative programming"
+msgstr "Programación declarativa"
+
+#: lessons/cs-source/concepts/declarative-programming.md:6
+msgctxt "s-a7e1d3a312ce-0001"
+msgid "Declarative programming says *what* you want, not *how* to get it. SQL, HTML, CSS, Make, regular expressions and AWK's pattern column are all declarative. It exists because a tool that knows the goal can choose the method: a database picks the query plan, and ⟦CODE_0001⟧ picks the build order. The trap is the belief that \"declarative\" means \"harmless\". When a declarative notation can name a function and give it arguments, it is one step from being a program. XAML's ⟦CODE_0002⟧ and Make's ⟦CODE_0003⟧ are examples, and ⟦MACRO_0004⟧ and ⟦MACRO_0005⟧ show where that step leads."
+msgstr "La programación declarativa dice *qué* quieres, no *cómo* obtenerlo. SQL, HTML, CSS, Make, las expresiones regulares y la columna de patrones de AWK son declarativos. Una herramienta que conoce la meta puede elegir el método: una base de datos elige el plan de consulta y ⟦CODE_0001⟧ elige el orden de compilación. La trampa es creer que \"declarativo\" significa \"inofensivo\". Cuando una notación declarativa puede nombrar una función y pasarle argumentos, está a un paso de ser un programa. Sirven de ejemplo ⟦CODE_0002⟧ de XAML y ⟦CODE_0003⟧ de Make. ⟦MACRO_0004⟧ y ⟦MACRO_0005⟧ muestran adónde lleva ese paso."
+
+#: lessons/cs-source/concepts/declarative-programming.md:8
+msgctxt "s-239928e96f09-0002"
+msgid "**Use it when:** the task is a query, a configuration or a build. Let the tool optimize."
+msgstr "**Úsala cuando:** la tarea sea una consulta, una configuración o una compilación. Deja que la herramienta optimice."
+
+#: lessons/cs-source/concepts/declarative-programming.md:9
+msgctxt "s-d12ff8b51d3c-0003"
+msgid "**Avoid it when:** you cannot control what an untrusted file can call. Check what it is allowed to call."
+msgstr "**Evítala cuando:** no puedas controlar qué puede llamar un archivo no confiable. Comprueba qué llamadas tiene permitidas."
+
+#: lessons/cs-source/concepts/declarative-programming.md:11
+msgctxt "s-250de292f56f-0004"
+msgid "**Read more:**"
+msgstr "**Lee más:**"
+
+#: lessons/cs-source/concepts/declarative-programming.md:13
+msgctxt "s-d9c006f8fee9-0005"
+msgid "[Declarative programming](⟦DEST_0001⟧) (Wikipedia)"
+msgstr "[Programación declarativa](⟦DEST_0001⟧) (Wikipedia)"
+
+#: lessons/cs-source/concepts/declarative-programming.md:14
+msgctxt "s-da026d0c9514-0006"
+msgid "[Rule of least power](⟦DEST_0001⟧) (Wikipedia)"
+msgstr "[Regla de la menor potencia](⟦DEST_0001⟧) (Wikipedia)"

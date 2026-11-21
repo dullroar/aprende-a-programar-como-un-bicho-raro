@@ -1,19 +1,19 @@
 ---
-title: "The event loop and scheduling turns"
+title: "El bucle de eventos y la planificación de turnos"
 chapter: 10
 order: 40
 ---
-An **event loop** is a loop that waits for something to happen and then runs the code registered for it, one piece at a time. It exists so that one thread can do many things without blocking: while one piece waits for a file or a timer, another can run. Each pass of the loop runs a callback to its end. That is a **turn**. The next turn starts only when the call stack is empty.
+Un **bucle de eventos** espera a que suceda algo y ejecuta el código registrado para ese evento, una parte a la vez. Así un hilo puede hacer muchas cosas sin bloquearse: mientras una parte espera un archivo o un temporizador, otra puede ejecutarse. En cada vuelta del bucle, una función de devolución de llamada (*callback*) se ejecuta hasta el final. Eso es un **turno**. El turno siguiente solo empieza cuando la pila de llamadas está vacía.
 
-This is why `setImmediate()` is useful in [[entry:javascript-events]]. It does not call the function. It puts the function on the loop's queue, and Node runs it on a later turn, after the stack has unwound and after anything else that was waiting. Compare an `emit()`, which is a call on the *current* stack. The difference is what keeps a million cards from becoming a million nested calls. In [[entry:javascript]] and [[entry:javascript-weird]], the loop is the reason a pulse timer runs *after* the synchronous work is done, and the reason a redirected run exits at once: with no timer registered, the loop has nothing to wait for.
+Por eso `setImmediate()` es útil en [[entry:javascript-events]]. No llama a la función. La pone en la cola del bucle y Node la ejecuta en un turno posterior, después de que se ha desenrollado la pila y de que se ha ejecutado todo lo demás que estaba en espera. Compara con `emit()`, que hace una llamada en la pila *actual*. Esa diferencia evita que un millón de tarjetas se conviertan en un millón de llamadas anidadas. En [[entry:javascript]] y [[entry:javascript-weird]], el bucle hace que un temporizador de pulsos se ejecute *después* del trabajo síncrono. También explica por qué una ejecución con salida redirigida sale de inmediato: sin un temporizador registrado, el bucle no tiene nada que esperar.
 
-User-interface toolkits run the same kind of loop. The WPF dispatcher (`Application.Run` in [[entry:ModernChallenge1]] and [[entry:LinqChallenge1]]), Tk's `mainloop` in [[entry:PythonChallenge1]] and GLib's `MainLoop` in [[entry:RustChallenge1]] each wait for events and call handlers. In those entries the loop only displays the window. The cards were made before it started.
+Las bibliotecas de interfaz de usuario ejecutan el mismo tipo de bucle. Lo hacen el despachador de WPF (`Application.Run` en [[entry:ModernChallenge1]] y [[entry:LinqChallenge1]]), `mainloop` de Tk en [[entry:PythonChallenge1]] y `MainLoop` de GLib en [[entry:RustChallenge1]]. Cada uno espera eventos y llama a sus manejadores. En esas entradas el bucle solo muestra la ventana. Las tarjetas ya se habían creado cuando empezó.
 
-- **Use it when:** many slow, independent things must share a thread.
-- **Avoid it when:** a callback runs for a long time. Nothing else runs on that thread while it does, so one slow turn stalls every other.
+- **Úsalo cuando:** muchas tareas lentas e independientes deban compartir un hilo.
+- **Evítalo cuando:** una función de devolución de llamada tarde mucho en ejecutarse. En ese lapso no se ejecuta nada más en el hilo. Un turno lento retrasa a todos los demás.
 
-**Read more:**
+**Lee más:**
 
-- [Event loop](https://en.wikipedia.org/wiki/Event_loop) (Wikipedia)
-- [The event loop](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Event_loop) (MDN)
-- [The Node.js event loop, timers and process.nextTick()](https://nodejs.org/en/learn/asynchronous-work/event-loop-timers-and-nexttick) (Node.js documentation)
+- [Bucle de eventos](https://en.wikipedia.org/wiki/Event_loop) (Wikipedia)
+- [El bucle de eventos](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Event_loop) (MDN)
+- [El bucle de eventos de Node.js, los temporizadores y process.nextTick()](https://nodejs.org/en/learn/asynchronous-work/event-loop-timers-and-nexttick) (documentación de Node.js)

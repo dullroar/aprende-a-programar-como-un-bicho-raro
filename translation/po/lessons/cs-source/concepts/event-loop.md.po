@@ -1,0 +1,111 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lessons/cs-source/concepts/event-loop.md:2
+msgctxt "s-715d312d3502-0000"
+msgid "The event loop and scheduling turns"
+msgstr "El bucle de eventos y la planificación de turnos"
+
+#: lessons/cs-source/concepts/event-loop.md:6
+msgctxt "s-f8abec642b0a-0001"
+msgid ""
+"An **event loop** is a loop that waits for something to happen and then runs"
+" the code registered for it, one piece at a time. It exists so that one "
+"thread can do many things without blocking: while one piece waits for a file"
+" or a timer, another can run. Each pass of the loop runs a callback to its "
+"end. That is a **turn**. The next turn starts only when the call stack is "
+"empty."
+msgstr ""
+"Un **bucle de eventos** espera a que suceda algo y ejecuta el código "
+"registrado para ese evento, una parte a la vez. Así un hilo puede hacer "
+"muchas cosas sin bloquearse: mientras una parte espera un archivo o un "
+"temporizador, otra puede ejecutarse. En cada vuelta del bucle, una función "
+"de devolución de llamada (*callback*) se ejecuta hasta el final. Eso es un "
+"**turno**. El turno siguiente solo empieza cuando la pila de llamadas está "
+"vacía."
+
+#: lessons/cs-source/concepts/event-loop.md:8
+msgctxt "s-2dfe6687911c-0002"
+msgid ""
+"This is why ⟦CODE_0001⟧ is useful in ⟦MACRO_0002⟧. It does not call the "
+"function. It puts the function on the loop's queue, and Node runs it on a "
+"later turn, after the stack has unwound and after anything else that was "
+"waiting. Compare an ⟦CODE_0003⟧, which is a call on the *current* stack. The"
+" difference is what keeps a million cards from becoming a million nested "
+"calls. In ⟦MACRO_0004⟧ and ⟦MACRO_0005⟧, the loop is the reason a pulse "
+"timer runs *after* the synchronous work is done, and the reason a redirected"
+" run exits at once: with no timer registered, the loop has nothing to wait "
+"for."
+msgstr ""
+"Por eso ⟦CODE_0001⟧ es útil en ⟦MACRO_0002⟧. No llama a la función. La pone "
+"en la cola del bucle y Node la ejecuta en un turno posterior, después de que"
+" se ha desenrollado la pila y de que se ha ejecutado todo lo demás que "
+"estaba en espera. Compara con ⟦CODE_0003⟧, que hace una llamada en la pila "
+"*actual*. Esa diferencia evita que un millón de tarjetas se conviertan en un"
+" millón de llamadas anidadas. En ⟦MACRO_0004⟧ y ⟦MACRO_0005⟧, el bucle hace "
+"que un temporizador de pulsos se ejecute *después* del trabajo síncrono. "
+"También explica por qué una ejecución con salida redirigida sale de "
+"inmediato: sin un temporizador registrado, el bucle no tiene nada que "
+"esperar."
+
+#: lessons/cs-source/concepts/event-loop.md:10
+msgctxt "s-bb4814ad0325-0003"
+msgid ""
+"User-interface toolkits run the same kind of loop. The WPF dispatcher "
+"(⟦CODE_0001⟧ in ⟦MACRO_0002⟧ and ⟦MACRO_0003⟧), Tk's ⟦CODE_0004⟧ in "
+"⟦MACRO_0005⟧ and GLib's ⟦CODE_0006⟧ in ⟦MACRO_0007⟧ each wait for events and"
+" call handlers. In those entries the loop only displays the window. The "
+"cards were made before it started."
+msgstr ""
+"Las bibliotecas de interfaz de usuario ejecutan el mismo tipo de bucle. Lo "
+"hacen el despachador de WPF (⟦CODE_0001⟧ en ⟦MACRO_0002⟧ y ⟦MACRO_0003⟧), "
+"⟦CODE_0004⟧ de Tk en ⟦MACRO_0005⟧ y ⟦CODE_0006⟧ de GLib en ⟦MACRO_0007⟧. "
+"Cada uno espera eventos y llama a sus manejadores. En esas entradas el bucle"
+" solo muestra la ventana. Las tarjetas ya se habían creado cuando empezó."
+
+#: lessons/cs-source/concepts/event-loop.md:12
+msgctxt "s-fb9ba2227997-0004"
+msgid "**Use it when:** many slow, independent things must share a thread."
+msgstr ""
+"**Úsalo cuando:** muchas tareas lentas e independientes deban compartir un "
+"hilo."
+
+#: lessons/cs-source/concepts/event-loop.md:13
+msgctxt "s-8cdf7091a2a3-0005"
+msgid ""
+"**Avoid it when:** a callback runs for a long time. Nothing else runs on "
+"that thread while it does, so one slow turn stalls every other."
+msgstr ""
+"**Evítalo cuando:** una función de devolución de llamada tarde mucho en "
+"ejecutarse. En ese lapso no se ejecuta nada más en el hilo. Un turno lento "
+"retrasa a todos los demás."
+
+#: lessons/cs-source/concepts/event-loop.md:15
+msgctxt "s-250de292f56f-0006"
+msgid "**Read more:**"
+msgstr "**Lee más:**"
+
+#: lessons/cs-source/concepts/event-loop.md:17
+msgctxt "s-29e762e50631-0007"
+msgid "[Event loop](⟦DEST_0001⟧) (Wikipedia)"
+msgstr "[Bucle de eventos](⟦DEST_0001⟧) (Wikipedia)"
+
+#: lessons/cs-source/concepts/event-loop.md:18
+msgctxt "s-41625fa0909e-0008"
+msgid "[The event loop](⟦DEST_0001⟧) (MDN)"
+msgstr "[El bucle de eventos](⟦DEST_0001⟧) (MDN)"
+
+#: lessons/cs-source/concepts/event-loop.md:19
+msgctxt "s-2f677e74f145-0009"
+msgid ""
+"[The Node.js event loop, timers and process.nextTick()](⟦DEST_0001⟧) "
+"(Node.js documentation)"
+msgstr ""
+"[El bucle de eventos de Node.js, los temporizadores y "
+"process.nextTick()](⟦DEST_0001⟧) (documentación de Node.js)"

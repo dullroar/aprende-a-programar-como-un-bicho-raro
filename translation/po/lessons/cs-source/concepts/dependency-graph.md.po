@@ -1,0 +1,140 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lessons/cs-source/concepts/dependency-graph.md:2
+msgctxt "s-4a58bed4e465-0000"
+msgid "Dependency graphs"
+msgstr "Grafos de dependencias"
+
+#: lessons/cs-source/concepts/dependency-graph.md:6
+msgctxt "s-29824c6ab339-0001"
+msgid ""
+"A dependency graph has a node for each thing and an arrow for \"this needs "
+"that\". If there are no cycles, it is a directed acyclic graph, and a "
+"*topological sort* gives an order that always works: build the needed things"
+" first. It exists so that tools do only the work that is needed, in the "
+"right order, and in parallel where they can. Make, package managers, "
+"spreadsheets and schedulers are all dependency engines. What is unusual in "
+"⟦MACRO_0001⟧ is that the graph can *change while it is being walked*: Make "
+"remakes an included makefile, then starts over with the new graph. That "
+"restart is the loop."
+msgstr ""
+"Un grafo de dependencias tiene un nodo por elemento y una flecha para decir "
+"\"esto necesita aquello\". Si no tiene ciclos, es un grafo dirigido "
+"acíclico. Una *ordenación topológica* da un orden que siempre funciona: "
+"primero construye lo que los demás elementos necesitan. Así las herramientas"
+" hacen solo el trabajo necesario, en el orden correcto y en paralelo cuando "
+"pueden. Make, los gestores de paquetes, las hojas de cálculo y los "
+"planificadores son motores de dependencias. Lo inusual de ⟦MACRO_0001⟧ es "
+"que el grafo puede *cambiar durante el recorrido*: Make vuelve a generar un "
+"makefile incluido y empieza de nuevo con el grafo nuevo. Ese reinicio es el "
+"bucle."
+
+#: lessons/cs-source/concepts/dependency-graph.md:10
+msgctxt "s-ea9e49fac33f-0002"
+msgid ""
+"A dependency graph captures what must be recomputed when an input changes"
+msgstr ""
+"Un grafo de dependencias indica qué se debe recalcular cuando cambia una "
+"entrada de datos"
+
+#: lessons/cs-source/concepts/dependency-graph.md:11
+msgctxt "s-e3818a43c4da-0003"
+msgid ""
+"A graph in which each arrow runs from an input to the thing built from it. "
+"Raw cards and categories both feed rows. Rows feeds report and chart. The "
+"categories node has changed, and it is drawn with a thick border. Everything"
+" downstream of categories must be recomputed, which is rows, report and "
+"chart. Raw cards is not downstream of the change, so its old value is "
+"reused."
+msgstr ""
+"Cada flecha de este grafo va de una entrada de datos al elemento que se "
+"construye a partir de ella. Tanto las tarjetas sin procesar como las "
+"categorías alimentan las filas. Las filas alimentan el informe y la gráfica."
+" El nodo de categorías cambió y tiene un borde grueso. Hay que recalcular "
+"todo lo que depende de categorías: filas, informe y gráfica. Las tarjetas "
+"sin procesar no dependen del cambio, así que se reutiliza su valor anterior."
+
+#: lessons/cs-source/concepts/dependency-graph.md:12
+msgctxt "s-4c77ad8117c6-0004"
+msgid "raw cards: unchanged, reused"
+msgstr "tarjetas sin procesar: intactas, se reutilizan"
+
+#: lessons/cs-source/concepts/dependency-graph.md:12
+msgctxt "s-c1818c8d6c3f-0005"
+msgid "rows: recompute"
+msgstr "filas: recalcular"
+
+#: lessons/cs-source/concepts/dependency-graph.md:13
+msgctxt "s-5914787b5d10-0006"
+msgid "categories: changed"
+msgstr "categorías: cambiaron"
+
+#: lessons/cs-source/concepts/dependency-graph.md:14
+msgctxt "s-5e018fe1d535-0007"
+msgid "report: recompute"
+msgstr "informe: recalcular"
+
+#: lessons/cs-source/concepts/dependency-graph.md:15
+msgctxt "s-610f86ced7aa-0008"
+msgid "chart: recompute"
+msgstr "gráfica: recalcular"
+
+#: lessons/cs-source/concepts/dependency-graph.md:20
+msgctxt "s-56ea17ac305c-0009"
+msgid ""
+"Each arrow here runs from an input to the thing built from it, so a change "
+"travels along the arrows. (Some books draw the arrow the other way, from a "
+"thing to what it needs. The facts are the same.) Only ⟦CODE_0001⟧ changed, "
+"so only what is downstream of it must be redone. ⟦CODE_0002⟧ keeps its old "
+"result. The graph says what *must* be recomputed, not when values arrive. "
+"For that, see ⟦MACRO_0003⟧."
+msgstr ""
+"Aquí cada flecha va de una entrada de datos al elemento que se construye a "
+"partir de ella. Así los cambios viajan por las flechas. (Algunos libros "
+"dibujan la flecha al revés, de un elemento al que necesita. Los hechos son "
+"los mismos). Solo cambió ⟦CODE_0001⟧, así que solo hay que rehacer lo que "
+"depende de ese nodo. ⟦CODE_0002⟧ conserva su resultado anterior. El grafo "
+"dice qué se *debe* recalcular, pero no cuándo llegan los valores. Para eso, "
+"consulta ⟦MACRO_0003⟧."
+
+#: lessons/cs-source/concepts/dependency-graph.md:22
+msgctxt "s-7de827a25afc-0010"
+msgid "**Use it when:** any problem of the form \"A must come before B\"."
+msgstr "**Úsalo cuando:** el problema tenga la forma \"A debe ir antes de B\"."
+
+#: lessons/cs-source/concepts/dependency-graph.md:23
+msgctxt "s-2d2a5d4ed26c-0011"
+msgid ""
+"**Avoid it when:** the dependencies form a cycle or the graph leaves some "
+"dependencies implicit. A hidden dependency gives wrong incremental builds."
+msgstr ""
+"**Evítalo cuando:** las dependencias formen un ciclo o el grafo deje algunas"
+" implícitas. Una dependencia oculta da resultados incorrectos en las "
+"compilaciones incrementales."
+
+#: lessons/cs-source/concepts/dependency-graph.md:25
+msgctxt "s-250de292f56f-0012"
+msgid "**Read more:**"
+msgstr "**Lee más:**"
+
+#: lessons/cs-source/concepts/dependency-graph.md:27
+msgctxt "s-1f0bdaffb263-0013"
+msgid "[Dependency graph](⟦DEST_0001⟧) (Wikipedia)"
+msgstr "[Grafo de dependencias](⟦DEST_0001⟧) (Wikipedia)"
+
+#: lessons/cs-source/concepts/dependency-graph.md:28
+msgctxt "s-dfc50f1112d1-0014"
+msgid "[Directed acyclic graph](⟦DEST_0001⟧) (Wikipedia)"
+msgstr "[Grafo dirigido acíclico](⟦DEST_0001⟧) (Wikipedia)"
+
+#: lessons/cs-source/concepts/dependency-graph.md:29
+msgctxt "s-9e228a526c6c-0015"
+msgid "[Topological sorting](⟦DEST_0001⟧) (Wikipedia)"
+msgstr "[Ordenación topológica](⟦DEST_0001⟧) (Wikipedia)"

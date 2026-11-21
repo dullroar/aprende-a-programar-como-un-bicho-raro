@@ -103,3 +103,4 @@
 - Name the total explicitly at a card-count boundary and name the actor explicitly when a Spanish relative clause can reverse who performs a technical action.
 - Probe top-level `process.nextTick` and promise ordering separately in CommonJS and ES modules before recording a Node ordering claim as an English source issue.
 - For PCRE2 JIT source issues, distinguish support for callouts from support for `callout_flags`; check the installed `pcre2callout(3)` and `pcre2jit(3)` manuals.
+- Check `setImmediate()` ordering from inside an I/O callback before treating earlier queued timers as ahead of it.

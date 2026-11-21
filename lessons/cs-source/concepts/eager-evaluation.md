@@ -1,14 +1,14 @@
 ---
-title: "Eager evaluation"
+title: "Evaluación inmediata"
 chapter: 4
 order: 20
 ---
-Eager evaluation computes a value as soon as the code asks for it. It is the default in most languages. It exists because it is simple: cost and order are easy to predict, and effects happen exactly where you wrote them. [[entry:apl]] is eager in a strong sense: each primitive works on a whole array at once. The entry draws five numbers, a bound that can never be too small, although it often needs fewer. "Draw more than enough, then trim" replaces a loop that decides when to stop.
+La evaluación inmediata calcula un valor en cuanto el código lo pide. Es la opción predeterminada en la mayoría de los lenguajes. Su ventaja es la sencillez: el costo y el orden son fáciles de predecir y los efectos ocurren justo donde los escribiste. [[entry:apl]] evalúa de inmediato en un sentido fuerte: cada primitiva trabaja sobre un arreglo entero a la vez. La entrada saca cinco números, un límite que nunca se queda corto aunque a menudo necesite menos. "Saca de sobra y recorta" sustituye al bucle que decide cuándo parar.
 
-- **Use it when:** you need a predictable order of effects, or when the result will certainly be used.
-- **Avoid it when:** the work might be wasted, or the source is huge or infinite.
+- **Úsala cuando:** necesites un orden predecible de los efectos o sepas con certeza que se usará el resultado.
+- **Evítala cuando:** el trabajo pueda desperdiciarse o la fuente sea enorme o infinita.
 
-**Read more:**
+**Lee más:**
 
-- [Eager evaluation](https://en.wikipedia.org/wiki/Eager_evaluation) (Wikipedia)
-- [[lazy-evaluation]], the opposite idea
+- [Evaluación inmediata](https://en.wikipedia.org/wiki/Eager_evaluation) (Wikipedia)
+- [[lazy-evaluation]], la idea opuesta

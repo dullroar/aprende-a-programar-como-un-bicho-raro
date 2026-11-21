@@ -1258,3 +1258,36 @@
 {"segment_id": "s-397ed03549c8-0020", "ts": "2026-11-21T15:17:08Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
 {"segment_id": "s-f6e8ea2653a8-0001", "ts": "2026-11-21T15:17:08Z", "findings": ["I7: glossary term pull must be rendered 'demanda (pull)'"]}
 {"segment_id": "s-983fe3c4835e-0019", "ts": "2026-11-21T15:17:08Z", "findings": ["I7: glossary term process must be rendered 'proceso'"]}
+{"segment_id": "s-db78ac9e8d50-0000", "ts": "2026-11-21T15:21:18Z", "findings": ["I7: banned rendering 'compromiso' for glossary term commit-transaction"]}
+{"segment_id": "s-18adedc8081f-0017", "ts": "2026-11-21T15:21:18Z", "findings": ["TRANSLATE: the reply is the English text unchanged"]}
+{"segment_id": "s-1b6a75dd4ac1-0010", "ts": "2026-11-21T15:21:19Z", "findings": ["I7: glossary term row must be rendered 'fila'"]}
+{"segment_id": "s-e291cc05ddc9-0015", "ts": "2026-11-21T15:21:19Z", "findings": ["TRANSLATE: the reply is the English text unchanged"]}
+{"segment_id": "s-e766928d9481-0002", "ts": "2026-11-21T15:21:19Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-29824c6ab339-0001", "ts": "2026-11-21T15:21:20Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-03e395f9f76d-0001", "ts": "2026-11-21T15:22:19Z", "findings": ["I7: banned rendering 'callback' for glossary term callback"]}
+{"segment_id": "s-2f677e74f145-0009", "ts": "2026-11-21T15:22:20Z", "findings": ["I7: glossary term process must be rendered 'proceso'"]}
+{"segment_id": "s-c400a38b37a9-0003", "ts": "2026-11-21T15:22:20Z", "findings": ["I7: glossary term process must be rendered 'proceso'"]}
+{"segment_id": "s-19ed40bf62c3-0005", "ts": "2026-11-21T15:22:20Z", "findings": ["I7: glossary term process must be rendered 'proceso'"]}
+{"segment_id": "s-23c0d106a276-0001", "ts": "2026-11-21T15:23:47Z", "findings": ["I7: glossary term code must be rendered 'código'"]}
+{"segment_id": "s-33c84faa21de-0001", "ts": "2026-11-21T15:23:47Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-2102c710e7b6-0005", "ts": "2026-11-21T15:23:47Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-8575d4b52072-0010", "ts": "2026-11-21T15:23:47Z", "findings": ["TRANSLATE: the reply is the English text unchanged"]}
+{"segment_id": "s-efba93bf0baa-0003", "ts": "2026-11-21T15:23:48Z", "findings": ["I21: identifier 'step' must stay literal (the English names it here); describe around it, never translate it"]}
+{"segment_id": "s-f2017570a398-0005", "ts": "2026-11-21T15:23:48Z", "findings": ["TRANSLATE: the reply is the English text unchanged"]}
+{"segment_id": "s-f10d5130b3ed-0001", "ts": "2026-11-21T15:23:48Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-9a1f3a0235d9-0003", "ts": "2026-11-21T15:23:48Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-18adedc8081f-0017", "ts": "2026-11-21T15:24:49Z", "findings": ["TRANSLATE: the reply is the English text unchanged"]}
+{"segment_id": "s-1b6a75dd4ac1-0010", "ts": "2026-11-21T15:24:49Z", "findings": ["I7: glossary term row must be rendered 'fila'"]}
+{"segment_id": "s-e291cc05ddc9-0015", "ts": "2026-11-21T15:24:49Z", "findings": ["TRANSLATE: the reply is the English text unchanged"]}
+{"segment_id": "s-29824c6ab339-0001", "ts": "2026-11-21T15:24:49Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-03e395f9f76d-0001", "ts": "2026-11-21T15:24:50Z", "findings": ["I7: banned rendering 'callback' for glossary term callback"]}
+{"segment_id": "s-2f677e74f145-0009", "ts": "2026-11-21T15:24:50Z", "findings": ["I7: glossary term process must be rendered 'proceso'"]}
+{"segment_id": "s-2102c710e7b6-0005", "ts": "2026-11-21T15:24:50Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-8575d4b52072-0010", "ts": "2026-11-21T15:24:50Z", "findings": ["TRANSLATE: the reply is the English text unchanged"]}
+{"segment_id": "s-efba93bf0baa-0003", "ts": "2026-11-21T15:24:50Z", "findings": ["I21: identifier 'step' must stay literal (the English names it here); describe around it, never translate it"]}
+{"segment_id": "s-e291cc05ddc9-0015", "ts": "2026-11-21T15:25:00Z", "findings": ["TRANSLATE: the reply is the English text unchanged"]}
+{"segment_id": "s-29824c6ab339-0001", "ts": "2026-11-21T15:25:00Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-2f677e74f145-0009", "ts": "2026-11-21T15:25:01Z", "findings": ["I7: glossary term process must be rendered 'proceso'"]}
+{"segment_id": "s-2102c710e7b6-0005", "ts": "2026-11-21T15:25:01Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-8575d4b52072-0010", "ts": "2026-11-21T15:25:01Z", "findings": ["TRANSLATE: the reply is the English text unchanged"]}
+{"segment_id": "s-efba93bf0baa-0003", "ts": "2026-11-21T15:25:01Z", "findings": ["I21: identifier 'step' must stay literal (the English names it here); describe around it, never translate it"]}

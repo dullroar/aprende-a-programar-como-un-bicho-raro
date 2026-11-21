@@ -1,14 +1,14 @@
 # loop/STATE.md (keep to 60 lines; refreshed by every iteration)
 
 - **Edition:** v4-es.0-rc1 (working)    **English SHA:** 48a4429c0a22b2aac628b256a50c07d1816bcb80
-- **Iteration:** 130    **Stage:** 4 (bulk translation)    **Last result:** iter 130 P4-lessons-cs-source-concepts-1 done (17 concept pages verified).
-- **Tasks:** todo 68 | doing 0 | done 100 | blocked 0 | skipped 0 (recount with the queue files)
-- **Next task:** P4-lessons-cs-source-concepts-2 (Translate lessons/cs-source/concepts/cut.md .. lessons/cs-source/concepts/homoiconicity.md (19 files), about 3986 words).
+- **Iteration:** 131    **Stage:** 4 (bulk translation)    **Last result:** iter 131 P4-lessons-cs-source-concepts-2 done (19 concept pages verified).
+- **Tasks:** todo 67 | doing 0 | done 101 | blocked 0 | skipped 0 (recount with the queue files)
+- **Next task:** P4-lessons-cs-source-concepts-3 (Translate lessons/cs-source/concepts/hyrums-law.md .. lessons/cs-source/concepts/portability.md (21 files), about 3866 words).
 - **Budget:** driver-reported $89.4099 of $100 through the Claude run, with Codex session cost unavailable
-- **Translate progress:** segments accepted 3407 / total 8827 (7394 prose + 1433 Mermaid labels) ; files done 74 / 212 (nonempty, non-fuzzy PO entries and complete files). Latest: lessons/cs-source/concepts/coroutine.md.
+- **Translate progress:** segments accepted 3650 / total 8827 (7394 prose + 1433 Mermaid labels) ; files done 93 / 212 (nonempty, non-fuzzy PO entries and complete files). Latest: lessons/cs-source/concepts/homoiconicity.md.
 - **Last audit:** P4-audit-2 (iter 125, translation/reviews/p4-audit-2.md)    **Next audit due:** P4-audit-3
 - **Gates:** P0 passed (iter 17)  P1 passed (iter 23)  P2 passed (iter 47)  P3 passed (iter 58)  P3B passed (iter 85)  P3C passed (iter 105)  P4 -  P5 -  P6 -  P7A -
-- **Open provisional decisions:** 5 (acronym BICHO; glossary choices; house style N=29 calibrated; schema/segment-id formats; same-tier reviewer kept after recall test)    **Blockers:** 0    **Source issues:** 21 (translation/source-issues.md)
+- **Open provisional decisions:** 5 (acronym BICHO; glossary choices; house style N=29 calibrated; schema/segment-id formats; same-tier reviewer kept after recall test)    **Blockers:** 0    **Source issues:** 22 (translation/source-issues.md)
 
 ## Traps to remember (details live in SIGNS.md)
 

@@ -1,0 +1,169 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lessons/cs-source/concepts/exception-handling.md:2
+msgctxt "s-1408e071af20-0000"
+msgid "Exception handling"
+msgstr "Manejo de excepciones"
+
+#: lessons/cs-source/concepts/exception-handling.md:6
+msgctxt "s-d10a68f9b083-0001"
+msgid ""
+"Exception handling is a language feature for errors: raise a signal, unwind "
+"the stack and let a handler deal with it. It exists to keep the normal path "
+"of the code free of error checks. COBOL has an older, simpler form. "
+"⟦CODE_0001⟧ runs when an arithmetic result does not fit the field, and the "
+"field stays unchanged. In ⟦MACRO_0002⟧ that overflow *is* the stop rule: a "
+"two-digit counter overflows on purpose, and the error branch ends the loop. "
+"Errors as control flow work, but they hide the real design from the next "
+"reader."
+msgstr ""
+"El manejo de excepciones es una función del lenguaje para tratar errores: "
+"lanza una señal, desenrolla la pila y deja que un manejador se ocupe de "
+"ella. Así el recorrido normal del código queda libre de comprobaciones de "
+"errores. COBOL tiene una forma más antigua y sencilla. ⟦CODE_0001⟧ se "
+"ejecuta cuando un resultado aritmético no cabe en el campo, que queda "
+"intacto. En ⟦MACRO_0002⟧ ese desbordamiento *es* la regla de parada: un "
+"contador de dos dígitos se desborda a propósito y la rama de error termina "
+"el bucle. Usar errores como flujo de control funciona, pero le oculta el "
+"diseño real al siguiente lector."
+
+#: lessons/cs-source/concepts/exception-handling.md:10
+msgctxt "s-39d06b583bce-0002"
+msgid ""
+"Exceptions alter control flow by unwinding outward until a handler accepts "
+"them"
+msgstr ""
+"Las excepciones alteran el flujo de control: desenrollan la pila hasta que "
+"un manejador las acepta"
+
+#: lessons/cs-source/concepts/exception-handling.md:11
+msgctxt "s-c400a38b37a9-0003"
+msgid ""
+"A sequence diagram of three nested calls. The function main, which has a try"
+" and catch, calls process, and process calls save. Save throws an exception."
+" The exception does not return to process in the normal way. It passes "
+"through process, which has no handler, so the rest of process is skipped. It"
+" reaches main, where the catch block handles it. After the handler, normal "
+"flow continues in main. The normal return statements of save and process "
+"never run."
+msgstr ""
+"Diagrama de secuencia de tres llamadas anidadas. La función main, que tiene "
+"un try y un catch, llama a process. A su vez, process llama a save. La "
+"función save lanza una excepción. La excepción no vuelve a process por la "
+"vía normal. Atraviesa process, que no tiene manejador, así que se omite el "
+"resto de process. Llega a main, donde la maneja el bloque catch. Tras el "
+"manejador, el flujo normal continúa en main. Las sentencias de retorno "
+"normal de save y process nunca se ejecutan."
+
+#: lessons/cs-source/concepts/exception-handling.md:12
+msgctxt "s-5f4590a28789-0004"
+msgid "main: try and catch"
+msgstr "main: try y catch"
+
+#: lessons/cs-source/concepts/exception-handling.md:13
+msgctxt "s-19ed40bf62c3-0005"
+msgid "process"
+msgstr "process"
+
+#: lessons/cs-source/concepts/exception-handling.md:14
+msgctxt "s-157dca92e425-0006"
+msgid "save"
+msgstr "save"
+
+#: lessons/cs-source/concepts/exception-handling.md:15
+msgctxt "s-7edb360f06ac-0007"
+msgid "call"
+msgstr "llamada"
+
+#: lessons/cs-source/concepts/exception-handling.md:16
+msgctxt "s-7edb360f06ac-0008"
+msgid "call"
+msgstr "llamada"
+
+#: lessons/cs-source/concepts/exception-handling.md:17
+msgctxt "s-59b780178acb-0009"
+msgid "throws an exception"
+msgstr "lanza una excepción"
+
+#: lessons/cs-source/concepts/exception-handling.md:18
+msgctxt "s-64ccaa3afa3d-0010"
+msgid "unwinds, no normal return"
+msgstr "desenrolla sin retorno normal"
+
+#: lessons/cs-source/concepts/exception-handling.md:19
+msgctxt "s-9a55f663b10d-0011"
+msgid "no handler, the rest is skipped"
+msgstr "sin manejador, se omite el resto"
+
+#: lessons/cs-source/concepts/exception-handling.md:20
+msgctxt "s-64ccaa3afa3d-0012"
+msgid "unwinds, no normal return"
+msgstr "desenrolla sin retorno normal"
+
+#: lessons/cs-source/concepts/exception-handling.md:21
+msgctxt "s-381593c489b2-0013"
+msgid "catch block runs"
+msgstr "se ejecuta el bloque catch"
+
+#: lessons/cs-source/concepts/exception-handling.md:22
+msgctxt "s-8f2d4885d825-0014"
+msgid "normal flow resumes after the try"
+msgstr "el flujo normal sigue tras el try"
+
+#: lessons/cs-source/concepts/exception-handling.md:25
+msgctxt "s-537466d290e0-0015"
+msgid ""
+"The normal ⟦CODE_0001⟧ of ⟦CODE_0002⟧ and ⟦CODE_0003⟧ never runs. The "
+"exception passes outward through each call until a ⟦CODE_0004⟧ accepts it, "
+"and then normal flow resumes after the ⟦CODE_0005⟧ in ⟦CODE_0006⟧. If "
+"nothing catches it, it leaves the program. Unwinding only moves control. It "
+"does not undo what the skipped code already did: a row that ⟦CODE_0007⟧ "
+"wrote stays written, unless a transaction rolls it back (see ⟦MACRO_0008⟧)."
+msgstr ""
+"El ⟦CODE_0001⟧ normal de ⟦CODE_0002⟧ y ⟦CODE_0003⟧ nunca se ejecuta. La "
+"excepción sale de cada llamada hasta que un ⟦CODE_0004⟧ la acepta. Entonces "
+"el flujo normal se reanuda tras el ⟦CODE_0005⟧ en ⟦CODE_0006⟧. Si nada la "
+"atrapa, sale del programa. Desenrollar la pila solo desplaza el control. No "
+"deshace lo que ya hizo el código que se omite. Una fila que escribió "
+"⟦CODE_0007⟧ queda escrita, salvo que una transacción revierta el cambio "
+"(consulta ⟦MACRO_0008⟧)."
+
+#: lessons/cs-source/concepts/exception-handling.md:27
+msgctxt "s-382e961801c1-0016"
+msgid ""
+"**Use it when:** something truly unexpected happens, and the caller can "
+"recover or must be told."
+msgstr ""
+"**Úsalo cuando:** ocurra algo realmente inesperado y quien llama pueda "
+"recuperarse o deba enterarse."
+
+#: lessons/cs-source/concepts/exception-handling.md:28
+msgctxt "s-e39a7a33f58a-0017"
+msgid ""
+"**Avoid it when:** the \"error\" is a normal, frequent outcome (such as "
+"\"end of input\"), or when you catch everything and move on in silence."
+msgstr ""
+"**Evítalo cuando:** el \"error\" sea un resultado normal y frecuente (como "
+"\"fin de la entrada de datos\") o cuando atrapes todo y sigas sin avisar."
+
+#: lessons/cs-source/concepts/exception-handling.md:30
+msgctxt "s-250de292f56f-0018"
+msgid "**Read more:**"
+msgstr "**Lee más:**"
+
+#: lessons/cs-source/concepts/exception-handling.md:32
+msgctxt "s-eeb4e4c71d1b-0019"
+msgid "[Exception handling](⟦DEST_0001⟧) (Wikipedia)"
+msgstr "[Manejo de excepciones](⟦DEST_0001⟧) (Wikipedia)"
+
+#: lessons/cs-source/concepts/exception-handling.md:33
+msgctxt "s-5350ed869a1f-0020"
+msgid "[Fail-fast system](⟦DEST_0001⟧) (Wikipedia)"
+msgstr "[Sistema de fallo rápido](⟦DEST_0001⟧) (Wikipedia)"
