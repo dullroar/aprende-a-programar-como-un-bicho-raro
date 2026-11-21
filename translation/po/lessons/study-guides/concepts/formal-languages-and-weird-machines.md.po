@@ -1,0 +1,453 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lessons/study-guides/concepts/formal-languages-and-weird-machines.md:1
+msgctxt "s-32deb9e137cf-0000"
+msgid "Formal languages and weird machines study guide"
+msgstr "Guía de estudio de lenguajes formales y máquinas raras"
+
+#: lessons/study-guides/concepts/formal-languages-and-weird-machines.md:3
+msgctxt "s-4e718de9279e-0001"
+msgid "What this guide is for"
+msgstr "Para qué sirve esta guía"
+
+#: lessons/study-guides/concepts/formal-languages-and-weird-machines.md:5
+msgctxt "s-c786c039dfb1-0002"
+msgid "A notation is built for one job. A regular expression matches text, a Makefile orders a build, XAML describes a window, ⟦CODE_0001⟧ edits a buffer, tar packs files. The recurring surprise of the repository is that each of these also turns out to be a computer. This guide asks: **when does a notation become an executable substrate, and how much machine does each one need?**"
+msgstr "Una notación se crea para un trabajo. Una expresión regular busca texto, un Makefile ordena una compilación, XAML describe una ventana, ⟦CODE_0001⟧ edita un búfer y tar empaqueta archivos. La sorpresa recurrente del repositorio es que cada una de ellas también resulta ser una computadora. Esta guía pregunta: **¿cuándo se convierte una notación en un sustrato ejecutable y cuánta máquina necesita cada una?**"
+
+#: lessons/study-guides/concepts/formal-languages-and-weird-machines.md:7
+msgctxt "s-d84bcb27c154-0003"
+msgid "When you finish, you should be able to:"
+msgstr "Cuando termines, deberías poder:"
+
+#: lessons/study-guides/concepts/formal-languages-and-weird-machines.md:9
+msgctxt "s-e599c49f2f9c-0004"
+msgid ""
+"Place a notation on the Chomsky hierarchy and say what extra power turns a matcher into a computer: a stack, a counter, code blocks, callouts, a rewrite loop or a restart.\n"
+"2. Explain why one regex match always finishes while a loop of substitutions may not, and why that matters for what the entries can claim.\n"
+"3. Describe the *substrate* of each entry: what its alphabet is, what its rules are and what plays memory.\n"
+"4. Explain \"weird machine\" and \"language-theoretic security\" with an example from the entries, and say what a defender should do.\n"
+"5. Say what each machine cannot do, with evidence: the old four-name ceiling, the missing counted repetition, the failed .NET ⟦CODE_0001⟧ that exposes nothing.\n"
+"6. Label claims as guaranteed, implementation-permitted or accidentally exploited."
+msgstr ""
+"Ubicar una notación en la jerarquía de Chomsky. Decir qué poder extra convierte un buscador en una computadora: una pila, un contador, bloques de código, callouts, un bucle de reescritura o un reinicio.\n"
+"2. Explicar por qué una coincidencia de una expresión regular siempre termina y un bucle de sustituciones puede no terminar. Explicar por qué eso importa para lo que pueden afirmar las entradas.\n"
+"3. Describir el *sustrato* de cada entrada: cuál es su alfabeto, cuáles son sus reglas y qué hace de memoria.\n"
+"4. Explicar \"máquina rara\" (*weird machine*): la computación que un procesador de entradas realiza más allá de lo que sus autores previeron. Explicar \"seguridad basada en teoría de lenguajes\" con un ejemplo de las entradas. Decir qué debería hacer quien defiende.\n"
+"5. Decir qué no puede hacer cada máquina, con evidencia: el antiguo techo de cuatro nombres, la repetición contada que falta, el ⟦CODE_0001⟧ fallido de .NET que no expone nada.\n"
+"6. Etiquetar afirmaciones como garantizado, permitido por la implementación o aprovechado por accidente."
+
+#: lessons/study-guides/concepts/formal-languages-and-weird-machines.md:16
+msgctxt "s-ca94b2a7bcb4-0005"
+msgid "**Scope limits.** The guide is about the *relationship between a notation and the machine it can express*. It is not a course in automata theory: it names the levels and uses them. Its source chapter is [Formal languages as computational substrates](⟦DEST_0001⟧)."
+msgstr "**Límites del alcance.** La guía trata de la *relación entre una notación y la máquina que puede expresar*. No es un curso de teoría de autómatas: nombra los niveles y los usa. Su capítulo de origen es [Lenguajes formales como sustratos computacionales](⟦DEST_0001⟧)."
+
+#: lessons/study-guides/concepts/formal-languages-and-weird-machines.md:18
+msgctxt "s-d5bfdd7d989d-0006"
+msgid "Before you begin"
+msgstr "Antes de empezar"
+
+#: lessons/study-guides/concepts/formal-languages-and-weird-machines.md:20
+msgctxt "s-6726a7a6cc18-0007"
+msgid "**Safety model.** The cards are fictional **⟦DNT_0001⟧** data. Here a notation can cause effects through Perl in a pattern, C in a callout, Tcl read from a table or .NET methods invoked by XAML. Read the source first and run it in the sandbox first, for example ⟦CODE_0002⟧. Work on copies, and run any sed or regex experiment in a scratch folder ([Running things safely](⟦DEST_0003⟧))."
+msgstr "**Modelo de seguridad.** Las tarjetas son datos ficticios marcados con **⟦DNT_0001⟧**. Aquí una notación puede causar efectos mediante Perl en un patrón, C en un callout, Tcl leído de una tabla o métodos de .NET invocados por XAML. Lee primero el código fuente y ejecútalo antes en un entorno aislado (*sandbox*) que limita el acceso al sistema anfitrión, por ejemplo ⟦CODE_0002⟧. Trabaja con copias y ejecuta cualquier experimento con sed o con una expresión regular en una carpeta temporal ([Ejecutar cosas con seguridad](⟦DEST_0003⟧))."
+
+#: lessons/study-guides/concepts/formal-languages-and-weird-machines.md:22
+msgctxt "s-54ffc0fd6c0a-0008"
+msgid "**Prediction rule.** Before each run, write what the notation can *represent* and what it cannot, then see whether the program ran into that limit."
+msgstr "**Regla de predicción.** Antes de cada ejecución, escribe qué puede *representar* la notación y qué no. Después mira si el programa chocó con ese límite."
+
+#: lessons/study-guides/concepts/formal-languages-and-weird-machines.md:24
+msgctxt "s-2dd18ffddf3e-0009"
+msgid "**Vocabulary.**"
+msgstr "**Vocabulario.**"
+
+#: lessons/study-guides/concepts/formal-languages-and-weird-machines.md:26
+msgctxt "s-790e521777f0-0010"
+msgid "⟦SEP_0001⟧ Term ⟦SEP_0002⟧ Meaning here ⟦SEP_0003⟧"
+msgstr "⟦SEP_0001⟧ Término ⟦SEP_0002⟧ Significado aquí ⟦SEP_0003⟧"
+
+#: lessons/study-guides/concepts/formal-languages-and-weird-machines.md:28
+msgctxt "s-e5c313d9494e-0011"
+msgid "⟦SEP_0001⟧ Formal language ⟦SEP_0002⟧ A set of strings defined by strict rules that a machine can process. ⟦SEP_0003⟧"
+msgstr "⟦SEP_0001⟧ Lenguaje formal ⟦SEP_0002⟧ Un conjunto de cadenas de texto definido por reglas estrictas que una máquina puede procesar. ⟦SEP_0003⟧"
+
+#: lessons/study-guides/concepts/formal-languages-and-weird-machines.md:29
+msgctxt "s-5d78fb2e0ff0-0012"
+msgid "⟦SEP_0001⟧ Chomsky hierarchy ⟦SEP_0002⟧ A ladder of language classes by the machine they need: regular, context-free, context-sensitive, recursively enumerable. ⟦SEP_0003⟧"
+msgstr "⟦SEP_0001⟧ Jerarquía de Chomsky ⟦SEP_0002⟧ Una escalera de clases de lenguajes según la máquina que necesitan: regular, libre de contexto, sensible al contexto y recursivamente enumerable. ⟦SEP_0003⟧"
+
+#: lessons/study-guides/concepts/formal-languages-and-weird-machines.md:30
+msgctxt "s-5d0edb1499ec-0013"
+msgid "⟦SEP_0001⟧ Substrate ⟦SEP_0002⟧ The notation plus its engine, used as a machine. ⟦SEP_0003⟧"
+msgstr "⟦SEP_0001⟧ Sustrato ⟦SEP_0002⟧ La notación junto con su motor, usada como una máquina. ⟦SEP_0003⟧"
+
+#: lessons/study-guides/concepts/formal-languages-and-weird-machines.md:31
+msgctxt "s-8749441ebd69-0014"
+msgid "⟦SEP_0001⟧ Weird machine ⟦SEP_0002⟧ The computation that an input processor performs *beyond* what its authors intended. ⟦SEP_0003⟧"
+msgstr "⟦SEP_0001⟧ Máquina rara ⟦SEP_0002⟧ La computación que un procesador de entrada de datos realiza *más allá* de lo que sus autores previeron. ⟦SEP_0003⟧"
+
+#: lessons/study-guides/concepts/formal-languages-and-weird-machines.md:32
+msgctxt "s-f9584beb2266-0015"
+msgid "⟦SEP_0001⟧ Language-theoretic security ⟦SEP_0002⟧ The idea that an input language more powerful than its authors realized makes reading the input the same as running a program. ⟦SEP_0003⟧"
+msgstr "⟦SEP_0001⟧ Seguridad basada en teoría de lenguajes ⟦SEP_0002⟧ La idea de que un lenguaje de entrada de datos más potente de lo que creían sus autores convierte leer la entrada en ejecutar un programa. ⟦SEP_0003⟧"
+
+#: lessons/study-guides/concepts/formal-languages-and-weird-machines.md:34
+msgctxt "s-ae7d69ef2745-0016"
+msgid "The shared challenge"
+msgstr "El reto compartido"
+
+#: lessons/study-guides/concepts/formal-languages-and-weird-machines.md:36
+msgctxt "s-78a7d749b03d-0017"
+msgid "The [challenge specification](⟦DEST_0001⟧) calls for cards with a category and 10 to 19 whole hours. Categories cycle through ⟦DNT_0002⟧, ⟦DNT_0003⟧, ⟦DNT_0004⟧ and ⟦DNT_0005⟧. Add each card's hours to the running total. Stop when the total passes 40. Keep the **first card that takes the total over 40**. A total of exactly 40 continues. Four 10-hour cards need a fifth card, in the ⟦DNT_0006⟧ category. Conforming runs finish with 3 to 5 cards and a total of 41 to 59 hours."
+msgstr "La [especificación del reto](⟦DEST_0001⟧) pide tarjetas con una categoría y de 10 a 19 horas enteras. Las categorías se repiten en ciclo: `⟦DNT_0002⟧`, `⟦DNT_0003⟧`, `⟦DNT_0004⟧` y `⟦DNT_0005⟧`. Suma las horas de cada tarjeta al total acumulado. Detente cuando el total pasa de 40. Conserva la **primera tarjeta con la que el total pasa de 40**. Un total de exactamente 40 continúa. Cuatro tarjetas de 10 horas necesitan una quinta tarjeta, de la categoría `⟦DNT_0006⟧`. Las ejecuciones conformes tienen de 3 a 5 tarjetas y un total de 41 a 59 horas."
+
+#: lessons/study-guides/concepts/formal-languages-and-weird-machines.md:38
+msgctxt "s-419ea06bd3f2-0018"
+msgid "For a formal-language reader the challenge needs two capabilities: *counting* (compare a total with 40) and *repetition with memory* (carry the total from one card to the next). A pure regular expression has neither. Every entry in this guide supplies them by borrowing a mechanism: a stack, tally marks, a restart, a host. The boundary is exact: a total of 40 must *continue*, so the machine must tell 40 from 41."
+msgstr "Para un lector de lenguajes formales, el reto exige dos capacidades: *contar* (comparar un total con 40) y *repetir con memoria* (llevar el total a la tarjeta siguiente). Una expresión regular pura no tiene ninguna. Cada entrada de esta guía las aporta tomando algo prestado: una pila, marcas de conteo, un reinicio o un anfitrión. El límite es exacto: un total de 40 debe *continuar*, así que la máquina debe distinguir 40 de 41."
+
+#: lessons/study-guides/concepts/formal-languages-and-weird-machines.md:40
+msgctxt "s-9f148b367e02-0019"
+msgid "The machine to identify"
+msgstr "La máquina que hay que identificar"
+
+#: lessons/study-guides/concepts/formal-languages-and-weird-machines.md:42
+msgctxt "s-afa365f3b228-0020"
+msgid "For each entry, ask what plays each role."
+msgstr "Para cada entrada, pregunta qué hace cada papel."
+
+#: lessons/study-guides/concepts/formal-languages-and-weird-machines.md:44
+msgctxt "s-596b88feaef9-0021"
+msgid "**What repeats.** In a *searching* substrate (Perl, PCRE2, pcre2grep, .NET), a quantifier over a pattern; the engine explores paths. In a *rewriting* substrate (sed, m4, ed), a loop that applies rules until none matches. In a *restarting* substrate (Make), the engine reruns itself. In a *parsing* substrate (XAML), a walk over the document."
+msgstr "**Qué se repite.** En un sustrato de *búsqueda* (Perl, PCRE2, pcre2grep, .NET), un cuantificador sobre un patrón: el motor explora caminos. En un sustrato de *reescritura* (sed, m4, ed), un bucle que aplica reglas hasta que ninguna coincide. En un sustrato de *reinicio* (Make), el motor se vuelve a ejecutar a sí mismo. En un sustrato de *análisis sintáctico* (XAML), un recorrido del documento."
+
+#: lessons/study-guides/concepts/formal-languages-and-weird-machines.md:46
+msgctxt "s-c64d11ecfe85-0022"
+msgid "**Where state lives.** In a captured stack (.NET: ⟦CODE_0001⟧ is the budget, ⟦CODE_0002⟧ is the total), in the text itself (sed: ⟦CODE_0003⟧ marks; ed: ⟦CODE_0004⟧ marks), in captures rebuilt every pass (CMake), in the host (a C struct for PCRE2, SQLite for pcre2grep) or in files (Make)."
+msgstr "**Dónde vive el estado.** En una pila de capturas (.NET: ⟦CODE_0001⟧ es el presupuesto y ⟦CODE_0002⟧ es el total), en el propio texto (sed: marcas ⟦CODE_0003⟧; ed: marcas ⟦CODE_0004⟧). También en capturas reconstruidas en cada pasada (CMake), en el anfitrión (una estructura de C para PCRE2, SQLite para pcre2grep) o en archivos (Make)."
+
+#: lessons/study-guides/concepts/formal-languages-and-weird-machines.md:48
+msgctxt "s-6e5b21caec3c-0023"
+msgid "**What advances the next step.** The engine's own control: backtracking, the rewrite loop, the restart, the parser."
+msgstr "**Qué hace avanzar el paso siguiente.** El control propio del motor: el retroceso, el bucle de reescritura, el reinicio o el analizador sintáctico."
+
+#: lessons/study-guides/concepts/formal-languages-and-weird-machines.md:50
+msgctxt "s-e3f26f318d11-0024"
+msgid "**What stops it.** A pattern that fails (⟦CODE_0001⟧), a pattern that stops matching (⟦CODE_0002⟧), a rule that writes nothing (Make), a literal of a given length (CMake), a finite supply (four names, five dice)."
+msgstr "**Qué lo detiene.** Un patrón que falla (⟦CODE_0001⟧) o que deja de coincidir (⟦CODE_0002⟧). Una regla que no escribe nada (Make). Un literal de cierta longitud (CMake). Un suministro finito (cuatro nombres, cinco dados)."
+
+#: lessons/study-guides/concepts/formal-languages-and-weird-machines.md:52
+msgctxt "s-2a25ca148ce8-0025"
+msgid "**What commits.** The .NET pattern must return a successful match for its host to get card captures for the TSV. The PCRE2 callouts write the TSV during the match, and the Perl code blocks write to SQLite. Those effects survive a failed final match."
+msgstr "**Qué confirma.** El patrón de .NET debe devolver una coincidencia exitosa para que su anfitrión obtenga las capturas de las tarjetas para el TSV. Los callouts de PCRE2 escriben el TSV durante la coincidencia y los bloques de código de Perl escriben en SQLite. Esos efectos sobreviven a una coincidencia final fallida."
+
+#: lessons/study-guides/concepts/formal-languages-and-weird-machines.md:54
+msgctxt "s-67a72cdadc6f-0026"
+msgid "Trace one run"
+msgstr "Traza una ejecución"
+
+#: lessons/study-guides/concepts/formal-languages-and-weird-machines.md:56
+msgctxt "s-4c45118707d4-0027"
+msgid "Here is how three cards, 15, 19 and 12, look in four substrates. Each was verified by running a scratch copy."
+msgstr "Así se ven tres tarjetas, de 15, 19 y 12 horas, en cuatro sustratos. Cada una se verificó ejecutando una copia de prueba."
+
+#: lessons/study-guides/concepts/formal-languages-and-weird-machines.md:58
+msgctxt "s-61d54328ab70-0028"
+msgid "⟦SEP_0001⟧ Substrate ⟦SEP_0002⟧ Representation of the total after card 2 ⟦SEP_0003⟧ Stop test on card 3 ⟦SEP_0004⟧ What the engine does at the end ⟦SEP_0005⟧"
+msgstr "⟦SEP_0001⟧ Sustrato ⟦SEP_0002⟧ Representación del total después de la tarjeta 2 ⟦SEP_0003⟧ Prueba de parada en la tarjeta 3 ⟦SEP_0004⟧ Qué hace el motor al final ⟦SEP_0005⟧"
+
+#: lessons/study-guides/concepts/formal-languages-and-weird-machines.md:60
+msgctxt "s-ccfd8d9ddc49-0029"
+msgid "⟦SEP_0006⟧ .NET regex ⟦SEP_0007⟧ 7 tokens left on the budget stack ⟦CODE_0001⟧, 34 on the total stack ⟦CODE_0002⟧ ⟦SEP_0008⟧ ⟦CODE_0003⟧: ⟦CODE_0004⟧ is empty after card 3, so ⟦CODE_0005⟧ fails the pass ⟦SEP_0009⟧ the match *succeeds*; the host reads the captures ⟦SEP_0010⟧"
+msgstr "⟦SEP_0006⟧ Regex de .NET ⟦SEP_0007⟧ 7 fichas restantes en la pila del presupuesto ⟦CODE_0001⟧ y 34 en la pila del total ⟦CODE_0002⟧ ⟦SEP_0008⟧ ⟦CODE_0003⟧: ⟦CODE_0004⟧ queda vacía tras la tarjeta 3, así que ⟦CODE_0005⟧ hace fallar la pasada ⟦SEP_0009⟧ la coincidencia *tiene éxito*; el anfitrión lee las capturas ⟦SEP_0010⟧"
+
+#: lessons/study-guides/concepts/formal-languages-and-weird-machines.md:61
+msgctxt "s-05b9552c508b-0030"
+msgid "⟦SEP_0006⟧ PCRE2 callouts ⟦SEP_0007⟧ ⟦CODE_0001⟧ in a C struct ⟦SEP_0008⟧ the ⟦CODE_0002⟧ callout returns 1 for ⟦CODE_0003⟧ ⟦SEP_0009⟧ ⟦CODE_0004⟧, then ⟦CODE_0005⟧: the match returns \"no match\" after all the work ⟦SEP_0010⟧"
+msgstr "⟦SEP_0006⟧ Callouts de PCRE2 ⟦SEP_0007⟧ ⟦CODE_0001⟧ en una estructura de C ⟦SEP_0008⟧ el callout ⟦CODE_0002⟧ devuelve 1 para ⟦CODE_0003⟧ ⟦SEP_0009⟧ ⟦CODE_0004⟧ y luego ⟦CODE_0005⟧: la coincidencia devuelve \"sin coincidencia\" después de todo el trabajo ⟦SEP_0010⟧"
+
+#: lessons/study-guides/concepts/formal-languages-and-weird-machines.md:62
+msgctxt "s-ba723eff821e-0031"
+msgid "⟦SEP_0005⟧ sed ⟦SEP_0006⟧ ⟦CODE_0001⟧ followed by 34 ⟦CODE_0002⟧ marks in one line ⟦SEP_0007⟧ ⟦CODE_0003⟧ matches (43 marks in the seed-based run) ⟦SEP_0008⟧ ⟦CODE_0004⟧; sed exits 1 on purpose ⟦SEP_0009⟧"
+msgstr "⟦SEP_0005⟧ sed ⟦SEP_0006⟧ ⟦CODE_0001⟧ seguido de 34 marcas ⟦CODE_0002⟧ en una línea ⟦SEP_0007⟧ ⟦CODE_0003⟧ coincide (43 marcas en la ejecución basada en semilla) ⟦SEP_0008⟧ ⟦CODE_0004⟧; sed termina con estado 1 a propósito ⟦SEP_0009⟧"
+
+#: lessons/study-guides/concepts/formal-languages-and-weird-machines.md:63
+msgctxt "s-d64f44ce1bbb-0032"
+msgid "⟦SEP_0008⟧ CMake ⟦SEP_0009⟧ ⟦CODE_0001⟧: 15 ⟦CODE_0002⟧, ⟦CODE_0003⟧: 19 ⟦CODE_0004⟧ ⟦SEP_0010⟧ ⟦CODE_0005⟧ (46 ⟦CODE_0006⟧ matches the 41-⟦CODE_0007⟧ literal) ⟦SEP_0011⟧ the loop ends, but the main match still ran ⟦SEP_0012⟧"
+msgstr "⟦SEP_0008⟧ CMake ⟦SEP_0009⟧ ⟦CODE_0001⟧: 15 ⟦CODE_0002⟧, ⟦CODE_0003⟧: 19 ⟦CODE_0004⟧ ⟦SEP_0010⟧ ⟦CODE_0005⟧ (46 ⟦CODE_0006⟧ coinciden con el literal de 41 ⟦CODE_0007⟧) ⟦SEP_0011⟧ el bucle termina, pero la coincidencia principal ya se ejecutó ⟦SEP_0012⟧"
+
+#: lessons/study-guides/concepts/formal-languages-and-weird-machines.md:65
+msgctxt "s-2eb9040d9ca2-0033"
+msgid "Read the second row: a PCRE2 pattern that \"fails\" is the program's *success*, because the effects survived. In the first row the opposite holds: the pattern must succeed, because a failed .NET match exposes nothing."
+msgstr "Lee la segunda fila: un patrón de PCRE2 que \"falla\" es el *éxito* del programa, porque los efectos sobrevivieron. En la primera fila ocurre lo contrario: el patrón debe tener éxito, porque una coincidencia fallida de .NET no expone nada."
+
+#: lessons/study-guides/concepts/formal-languages-and-weird-machines.md:67
+msgctxt "s-9103e496684b-0034"
+msgid "**What the notation cannot do.** The .NET entry cannot draw random numbers or write a file, so the host builds a tape of five unary fields and appends the report from the capture collections. The sed entry has no numbers at all, so a random generator is a 16-character string of ⟦CODE_0001⟧ and ⟦CODE_0002⟧. The CMake regex has no counted repetition, no lookahead and no backreferences, so the stop test is a literal of 41 ⟦CODE_0003⟧s, and a pattern parameterized by a register is the only way to look something up."
+msgstr "**Lo que la notación no puede hacer.** La entrada de .NET no puede generar números aleatorios ni escribir un archivo. Por eso el anfitrión construye una cinta de cinco campos unarios y añade el informe a partir de las colecciones de capturas. La entrada de sed no tiene números en absoluto, así que un generador aleatorio es una cadena de texto de 16 caracteres de ⟦CODE_0001⟧ y ⟦CODE_0002⟧. La regex de CMake no tiene repetición contada, ni anticipación, ni referencias hacia atrás. Por eso la prueba de parada es un literal de 41 ⟦CODE_0003⟧ y un patrón parametrizado por un registro es la única forma de consultar algo."
+
+#: lessons/study-guides/concepts/formal-languages-and-weird-machines.md:69
+msgctxt "s-dda4101e1833-0035"
+msgid "**Exactly 40.** A substrate can express \"continue at 40\" only if it can tell 40 from 41. A budget of 41 tokens, a literal of 41 marks and a tape line for 40 all do. But the *supply* is finite in several: the category names in a subject, a ⟦CODE_0001⟧ list, the unrolled XAML passes. With four names, a run of four 10-hour cards ended at exactly 40, which the shared checker rejects. The notation was powerful enough to *count* to 41 and not powerful enough to *supply* a fifth name. The regex entries now carry five names and prove it in their checks; ⟦CODE_0002⟧, with four unrolled passes, still has the limit."
+msgstr "**Exactamente 40.** Un sustrato puede expresar \"continúa con 40\" solo si distingue 40 de 41. Un presupuesto de 41 fichas, un literal de 41 marcas y una línea de cinta para 40 lo logran. Pero el *suministro* es finito en varios: los nombres de categoría en un asunto, una lista ⟦CODE_0001⟧ y las pasadas desenrolladas de XAML. Con cuatro nombres, una ejecución de cuatro tarjetas de 10 horas terminaba con un total de exactamente 40, que el verificador compartido rechaza. La notación era lo bastante potente para *contar* hasta 41 y no lo bastante para *suministrar* un quinto nombre. Las entradas de regex ahora llevan cinco nombres y lo demuestran en sus verificaciones; ⟦CODE_0002⟧, con cuatro pasadas desenrolladas, aún tiene el límite."
+
+#: lessons/study-guides/concepts/formal-languages-and-weird-machines.md:71
+msgctxt "s-405c1b857089-0036"
+msgid "Compare the ordinary and weird designs"
+msgstr "Compara los diseños ordinarios y los raros"
+
+#: lessons/study-guides/concepts/formal-languages-and-weird-machines.md:73
+msgctxt "s-0b5e1aa97d33-0037"
+msgid "⟦SEP_0001⟧ Dimension ⟦SEP_0002⟧ Notation used as intended ⟦SEP_0003⟧ Notation used as a machine ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ Dimensión ⟦SEP_0002⟧ Notación usada como se pensó ⟦SEP_0003⟧ Notación usada como máquina ⟦SEP_0004⟧"
+
+#: lessons/study-guides/concepts/formal-languages-and-weird-machines.md:75
+msgctxt "s-1c1f017000e0-0038"
+msgid "⟦SEP_0001⟧ **Representation** ⟦SEP_0002⟧ A pattern, a build graph, a UI tree ⟦SEP_0003⟧ The same text, plus the engine's side effects ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ **Representación** ⟦SEP_0002⟧ Un patrón, un grafo de compilación, un árbol de interfaz ⟦SEP_0003⟧ El mismo texto, más los efectos secundarios del motor ⟦SEP_0004⟧"
+
+#: lessons/study-guides/concepts/formal-languages-and-weird-machines.md:76
+msgctxt "s-ada50f98d949-0039"
+msgid "⟦SEP_0002⟧ **Observability** ⟦SEP_0003⟧ Match, build, render ⟦SEP_0004⟧ The state is in captures, marks or files: ⟦CODE_0001⟧ in sed prints the whole machine ⟦SEP_0005⟧"
+msgstr "⟦SEP_0002⟧ **Observabilidad** ⟦SEP_0003⟧ Coincidencia, compilación, renderizado ⟦SEP_0004⟧ El estado está en capturas, marcas o archivos: ⟦CODE_0001⟧ en sed imprime toda la máquina ⟦SEP_0005⟧"
+
+#: lessons/study-guides/concepts/formal-languages-and-weird-machines.md:77
+msgctxt "s-c4f62f4eef66-0040"
+msgid "⟦SEP_0002⟧ **Tests** ⟦SEP_0003⟧ Test against inputs ⟦SEP_0004⟧ A second implementation predicts it (tar's awk simulation), or a mutation proves the rule is real (the 41-⟦CODE_0001⟧ literal changed to 51) ⟦SEP_0005⟧"
+msgstr "⟦SEP_0002⟧ **Pruebas** ⟦SEP_0003⟧ Probar con entradas de datos ⟦SEP_0004⟧ Una segunda implementación lo predice (la simulación con awk de tar) o una mutación demuestra que la regla es real (el literal de 41 ⟦CODE_0001⟧ cambiado a 51) ⟦SEP_0005⟧"
+
+#: lessons/study-guides/concepts/formal-languages-and-weird-machines.md:78
+msgctxt "s-9ab33685cb0c-0041"
+msgid "⟦SEP_0003⟧ **⟦DNT_0001⟧** ⟦SEP_0004⟧ The tool's own diagnostics ⟦SEP_0005⟧ A silent no-op: a failed ⟦CODE_0002⟧, a failed match, a recipe that expands to nothing ⟦SEP_0006⟧"
+msgstr "⟦SEP_0003⟧ **⟦DNT_0001⟧** ⟦SEP_0004⟧ Los diagnósticos propios de la herramienta ⟦SEP_0005⟧ Una operación nula silenciosa: un ⟦CODE_0002⟧ fallido, una coincidencia fallida, una receta que se expande a nada ⟦SEP_0006⟧"
+
+#: lessons/study-guides/concepts/formal-languages-and-weird-machines.md:79
+msgctxt "s-5dd2072bc9fa-0042"
+msgid "⟦SEP_0005⟧ **Portability** ⟦SEP_0006⟧ A standard notation ⟦SEP_0007⟧ An engine's extension: PCRE2 callouts, Perl ⟦CODE_0001⟧, GNU sed's ⟦CODE_0002⟧ and ⟦CODE_0003⟧ intervals, gawk's ⟦CODE_0004⟧ ⟦SEP_0008⟧"
+msgstr "⟦SEP_0005⟧ **Portabilidad** ⟦SEP_0006⟧ Una notación estándar ⟦SEP_0007⟧ Una extensión de un motor: los callouts de PCRE2, el ⟦CODE_0001⟧ de Perl, los intervalos ⟦CODE_0002⟧ y ⟦CODE_0003⟧ de GNU sed, el ⟦CODE_0004⟧ de gawk ⟦SEP_0008⟧"
+
+#: lessons/study-guides/concepts/formal-languages-and-weird-machines.md:80
+msgctxt "s-0fd1a5bcd22d-0043"
+msgid "⟦SEP_0001⟧ **Cost** ⟦SEP_0002⟧ Normal ⟦SEP_0003⟧ Backtracking can be catastrophic; the sed entry uses that as a clock ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ **Costo** ⟦SEP_0002⟧ Normal ⟦SEP_0003⟧ El retroceso puede ser catastrófico; la entrada de sed lo usa como reloj ⟦SEP_0004⟧"
+
+#: lessons/study-guides/concepts/formal-languages-and-weird-machines.md:82
+msgctxt "s-ff451b75c14b-0044"
+msgid "**One match against a loop of substitutions.** A single regex match, with a fixed input and no code hooks, always finishes: the engine tries a bounded number of paths. The entries that use *backtracking search* are exploring, and abandon branches. A sed program that rewrites a string over and over is a different model: it is a rewriting system, and a loop of substitutions can run forever. That is why the sed entry's stop rule must be real, and why the ed and Ex scripts keep a bound (five dice, a 60-line tape)."
+msgstr "**Una coincidencia frente a un bucle de sustituciones.** Una sola coincidencia de regex, con una entrada de datos fija y sin ganchos de código, siempre termina: el motor prueba un número acotado de caminos. Las entradas que usan *búsqueda con retroceso* están explorando y abandonan ramas. Un programa de sed que reescribe una cadena de texto una y otra vez es un modelo distinto: un sistema de reescritura. Un bucle de sustituciones puede ejecutarse para siempre. Por eso la regla de parada de la entrada de sed debe ser real. Por eso los scripts de ed y Ex mantienen una cota (cinco dados, una cinta de 60 líneas)."
+
+#: lessons/study-guides/concepts/formal-languages-and-weird-machines.md:84
+msgctxt "s-716cae37520b-0045"
+msgid "What the exercises demonstrate"
+msgstr "Qué demuestran los ejercicios"
+
+#: lessons/study-guides/concepts/formal-languages-and-weird-machines.md:86
+msgctxt "s-d6a3ec9d5ed0-0046"
+msgid "⟦SEP_0001⟧ Exercise ⟦SEP_0002⟧ Predict first ⟦SEP_0003⟧ What the evidence shows ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ Ejercicio ⟦SEP_0002⟧ Predice primero ⟦SEP_0003⟧ Qué muestra la evidencia ⟦SEP_0004⟧"
+
+#: lessons/study-guides/concepts/formal-languages-and-weird-machines.md:88
+msgctxt "s-18ea75b32421-0047"
+msgid "⟦SEP_0005⟧ [B8. Regex: what survives a failed match](⟦DEST_0001⟧) ⟦SEP_0006⟧ Append ⟦CODE_0002⟧ to the .NET pattern. ⟦SEP_0007⟧ ⟦CODE_0003⟧, ⟦CODE_0004⟧: the notation's only output is its captures. ⟦SEP_0008⟧"
+msgstr "⟦SEP_0005⟧ [B8. Regex: qué sobrevive a una coincidencia fallida](⟦DEST_0001⟧) ⟦SEP_0006⟧ Añade ⟦CODE_0002⟧ al patrón de .NET. ⟦SEP_0007⟧ ⟦CODE_0003⟧, ⟦CODE_0004⟧: la única salida de la notación son sus capturas. ⟦SEP_0008⟧"
+
+#: lessons/study-guides/concepts/formal-languages-and-weird-machines.md:89
+msgctxt "s-49e3460918fa-0048"
+msgid "⟦SEP_0002⟧ [B9. sed: watch a computation](⟦DEST_0001⟧) ⟦SEP_0003⟧ How many state lines per card? ⟦SEP_0004⟧ Many, not constant: a rejected draw repeats a step. A rewriting machine shows its whole state. ⟦SEP_0005⟧"
+msgstr "⟦SEP_0002⟧ [B9. sed: observa una computación](⟦DEST_0001⟧) ⟦SEP_0003⟧ ¿Cuántas líneas de estado hay por tarjeta? ⟦SEP_0004⟧ Muchas, no una cantidad constante: un sorteo rechazado repite un paso. Una máquina de reescritura muestra todo su estado. ⟦SEP_0005⟧"
+
+#: lessons/study-guides/concepts/formal-languages-and-weird-machines.md:90
+msgctxt "s-6cc1117baeda-0049"
+msgid "⟦SEP_0003⟧ [B5. CMake: mutate the literal](⟦DEST_0001⟧) ⟦SEP_0004⟧ Shorten the 41-⟦CODE_0002⟧ literal to 31. ⟦SEP_0005⟧ The stop rule moves: the literal is the rule. ⟦SEP_0006⟧"
+msgstr "⟦SEP_0003⟧ [B5. CMake: muta el literal](⟦DEST_0001⟧) ⟦SEP_0004⟧ Acorta a 31 el literal de 41 ⟦CODE_0002⟧. ⟦SEP_0005⟧ La regla de parada se mueve: el literal es la regla. ⟦SEP_0006⟧"
+
+#: lessons/study-guides/concepts/formal-languages-and-weird-machines.md:91
+msgctxt "s-c78d3157e41f-0050"
+msgid "⟦SEP_0002⟧ [B11. m4: quote the recursion](⟦DEST_0001⟧) ⟦SEP_0003⟧ Remove the brackets. ⟦SEP_0004⟧ A runaway: the macro processor expands arguments before it calls the macro. ⟦SEP_0005⟧"
+msgstr "⟦SEP_0002⟧ [B11. m4: entrecomilla la recursión](⟦DEST_0001⟧) ⟦SEP_0003⟧ Quita los corchetes. ⟦SEP_0004⟧ Una ejecución desbocada: el procesador de macros expande los argumentos antes de llamar a la macro. ⟦SEP_0005⟧"
+
+#: lessons/study-guides/concepts/formal-languages-and-weird-machines.md:92
+msgctxt "s-2d41e5fa28fc-0051"
+msgid "⟦SEP_0004⟧ [B18. ed: move the stop rule and break the cleanup](⟦DEST_0001⟧) ⟦SEP_0005⟧ Change ⟦CODE_0002⟧ to ⟦CODE_0003⟧. ⟦SEP_0006⟧ The run stops after the first total over 30. One repeat count in a regex is the rule. ⟦SEP_0007⟧"
+msgstr "⟦SEP_0004⟧ [B18. ed: mueve la regla de parada y rompe la limpieza](⟦DEST_0001⟧) ⟦SEP_0005⟧ Cambia ⟦CODE_0002⟧ por ⟦CODE_0003⟧. ⟦SEP_0006⟧ La ejecución se detiene tras el primer total que pasa de 30. Un solo contador de repeticiones en una regex es la regla. ⟦SEP_0007⟧"
+
+#: lessons/study-guides/concepts/formal-languages-and-weird-machines.md:93
+msgctxt "s-72818698848e-0052"
+msgid "⟦SEP_0002⟧ [C2. Make the constraint real](⟦DEST_0001⟧) ⟦SEP_0003⟧ Write a check that bans loop words in Forth. ⟦SEP_0004⟧ It must strip comments and strings first: a constraint check is itself a parser. ⟦SEP_0005⟧"
+msgstr "⟦SEP_0002⟧ [C2. Haz real la restricción](⟦DEST_0001⟧) ⟦SEP_0003⟧ Escribe una verificación que prohíba las palabras de bucle en Forth. ⟦SEP_0004⟧ Debe quitar primero los comentarios y las cadenas de texto: una verificación de restricciones es en sí un analizador sintáctico. ⟦SEP_0005⟧"
+
+#: lessons/study-guides/concepts/formal-languages-and-weird-machines.md:95
+msgctxt "s-4fe97c469cdb-0053"
+msgid "Failure modes, costs and boundaries"
+msgstr "Modos de fallo, costos y límites"
+
+#: lessons/study-guides/concepts/formal-languages-and-weird-machines.md:97
+msgctxt "s-621aac5615e3-0054"
+msgid "⟦SEP_0001⟧ Behavior ⟦SEP_0002⟧ Label ⟦SEP_0003⟧ Why ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ Comportamiento ⟦SEP_0002⟧ Etiqueta ⟦SEP_0003⟧ Por qué ⟦SEP_0004⟧"
+
+#: lessons/study-guides/concepts/formal-languages-and-weird-machines.md:99
+msgctxt "s-6e144a2a4832-0055"
+msgid "⟦SEP_0001⟧ .NET balancing groups pop one capture stack and push another ⟦SEP_0002⟧ **guaranteed** ⟦SEP_0003⟧ Documented .NET regex behavior. A stack takes the engine beyond regular languages. ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ Los grupos de equilibrio de .NET sacan de una pila de capturas y meten en otra ⟦SEP_0002⟧ **garantizado** ⟦SEP_0003⟧ Comportamiento documentado de las regex de .NET. Una pila lleva al motor más allá de los lenguajes regulares. ⟦SEP_0004⟧"
+
+#: lessons/study-guides/concepts/formal-languages-and-weird-machines.md:100
+msgctxt "s-e309fcb43b09-0056"
+msgid "⟦SEP_0002⟧ A failed .NET ⟦CODE_0001⟧ exposes no captures ⟦SEP_0003⟧ **guaranteed** ⟦SEP_0004⟧ Verified in B8. ⟦SEP_0005⟧"
+msgstr "⟦SEP_0002⟧ Un ⟦CODE_0001⟧ fallido de .NET no expone capturas ⟦SEP_0003⟧ **garantizado** ⟦SEP_0004⟧ Verificado en B8. ⟦SEP_0005⟧"
+
+#: lessons/study-guides/concepts/formal-languages-and-weird-machines.md:101
+msgctxt "s-a0c4cdc0c2cc-0057"
+msgid "⟦SEP_0001⟧ PCRE2 callouts call host code, and a positive return fails the path ⟦SEP_0002⟧ **guaranteed** ⟦SEP_0003⟧ Documented API. ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ Los callouts de PCRE2 llaman al código del anfitrión, y un valor de retorno positivo hace fallar el camino ⟦SEP_0002⟧ **garantizado** ⟦SEP_0003⟧ API documentada. ⟦SEP_0004⟧"
+
+#: lessons/study-guides/concepts/formal-languages-and-weird-machines.md:102
+msgctxt "s-503abdf8c13a-0058"
+msgid "⟦SEP_0001⟧ Callouts are only visited if the optimizer does not skip them ⟦SEP_0002⟧ **implementation-permitted** ⟦SEP_0003⟧ The entry sets flags and avoids the JIT; it did not test what the optimizer would elide without them. ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ Los callouts solo se visitan si el optimizador no los omite ⟦SEP_0002⟧ **permitido por la implementación** ⟦SEP_0003⟧ La entrada fija banderas y evita el JIT; no probó qué omitiría el optimizador sin ellas. ⟦SEP_0004⟧"
+
+#: lessons/study-guides/concepts/formal-languages-and-weird-machines.md:103
+msgctxt "s-c62233f98889-0059"
+msgid "⟦SEP_0002⟧ Perl code blocks run during a match, and ⟦CODE_0001⟧ is undone on backtracking ⟦SEP_0003⟧ **guaranteed** ⟦SEP_0004⟧ Documented Perl. ⟦SEP_0005⟧"
+msgstr "⟦SEP_0002⟧ Los bloques de código de Perl se ejecutan durante una coincidencia, y ⟦CODE_0001⟧ se deshace con el retroceso ⟦SEP_0003⟧ **garantizado** ⟦SEP_0004⟧ Perl documentado. ⟦SEP_0005⟧"
+
+#: lessons/study-guides/concepts/formal-languages-and-weird-machines.md:104
+msgctxt "s-5cef6fceaf48-0060"
+msgid "⟦SEP_0002⟧ A failed ⟦CODE_0001⟧ clears CMake's registers ⟦SEP_0003⟧ **implementation-permitted** ⟦SEP_0004⟧ Observed, not promised in so many words. ⟦SEP_0005⟧"
+msgstr "⟦SEP_0002⟧ Un ⟦CODE_0001⟧ fallido vacía los registros de CMake ⟦SEP_0003⟧ **permitido por la implementación** ⟦SEP_0004⟧ Observado, no prometido con esas palabras. ⟦SEP_0005⟧"
+
+#: lessons/study-guides/concepts/formal-languages-and-weird-machines.md:105
+msgctxt "s-e32840ffd4ae-0061"
+msgid "⟦SEP_0002⟧ CMake evaluates both operands of ⟦CODE_0001⟧ ⟦SEP_0003⟧ **accidentally exploited** ⟦SEP_0004⟧ Observed, and needed to log the last card. ⟦SEP_0005⟧"
+msgstr "⟦SEP_0002⟧ CMake evalúa los dos operandos de ⟦CODE_0001⟧ ⟦SEP_0003⟧ **aprovechado por accidente** ⟦SEP_0004⟧ Observado, y necesario para registrar la última tarjeta. ⟦SEP_0005⟧"
+
+#: lessons/study-guides/concepts/formal-languages-and-weird-machines.md:106
+msgctxt "s-747e8882c284-0062"
+msgid "⟦SEP_0003⟧ gawk's ⟦CODE_0001⟧ as a regular expression, with ⟦CODE_0002⟧ ⟦SEP_0004⟧ **implementation-permitted** ⟦SEP_0005⟧ gawk only. mawk silently gives zero cards (B13). ⟦SEP_0006⟧"
+msgstr "⟦SEP_0003⟧ El ⟦CODE_0001⟧ de gawk como expresión regular, con ⟦CODE_0002⟧ ⟦SEP_0004⟧ **permitido por la implementación** ⟦SEP_0005⟧ Solo en gawk. mawk produce cero tarjetas en silencio (B13). ⟦SEP_0006⟧"
+
+#: lessons/study-guides/concepts/formal-languages-and-weird-machines.md:107
+msgctxt "s-c3c4959e89b3-0063"
+msgid "⟦SEP_0001⟧ A sed backtracking regex takes about 50 ms per frame ⟦SEP_0002⟧ **accidentally exploited** ⟦SEP_0003⟧ A performance cliff used as a clock. It varies by machine. ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ Una regex con retroceso en sed tarda unos 50 ms por cuadro ⟦SEP_0002⟧ **aprovechado por accidente** ⟦SEP_0003⟧ Un precipicio de rendimiento usado como reloj. Varía según la máquina. ⟦SEP_0004⟧"
+
+#: lessons/study-guides/concepts/formal-languages-and-weird-machines.md:108
+msgctxt "s-1ef18b197bf9-0064"
+msgid "⟦SEP_0003⟧ The ⟦CODE_0001⟧ runs ⟦CODE_0002⟧ methods when parsing ⟦SEP_0004⟧ **accidentally exploited** ⟦SEP_0005⟧ A UI language used as an interpreter. ⟦SEP_0006⟧"
+msgstr "⟦SEP_0003⟧ El ⟦CODE_0001⟧ ejecuta métodos ⟦CODE_0002⟧ durante el análisis sintáctico ⟦SEP_0004⟧ **aprovechado por accidente** ⟦SEP_0005⟧ Un lenguaje de interfaz usado como intérprete. ⟦SEP_0006⟧"
+
+#: lessons/study-guides/concepts/formal-languages-and-weird-machines.md:110
+msgctxt "s-87d9e31bff8d-0065"
+msgid "**Costs to state.**"
+msgstr "**Costos que debes enunciar.**"
+
+#: lessons/study-guides/concepts/formal-languages-and-weird-machines.md:112
+msgctxt "s-08b206cfbc85-0066"
+msgid "**Language-theoretic security.** If an input language is more powerful than its authors realized, reading the input is running a program. XAML's parser is the case in this repository. The defense is the *rule of least power*: accept the weakest language that does the job, and parse it before acting on it ([Language-theoretic security](⟦DEST_0001⟧))."
+msgstr "**Seguridad basada en teoría de lenguajes.** Si un lenguaje de entrada de datos es más potente de lo que sus autores creían, leer la entrada es ejecutar un programa. El analizador sintáctico de XAML es el caso de este repositorio. La defensa es la *regla del menor poder*. Acepta el lenguaje más débil que haga el trabajo y analízalo antes de actuar sobre él ([Seguridad basada en teoría de lenguajes](⟦DEST_0001⟧))."
+
+#: lessons/study-guides/concepts/formal-languages-and-weird-machines.md:113
+msgctxt "s-f4a11229ece2-0067"
+msgid "**A weird machine is made of unintended states.** The entries do it deliberately, in a sandbox, to teach. The defender's task is to find the weird machine before an attacker does ([Weird machines](⟦DEST_0001⟧))."
+msgstr "**Una máquina rara está hecha de estados no previstos.** Las entradas lo hacen a propósito, en un entorno aislado, para enseñar. La tarea de quien defiende es encontrar la máquina rara antes que un atacante ([Máquinas raras](⟦DEST_0001⟧))."
+
+#: lessons/study-guides/concepts/formal-languages-and-weird-machines.md:114
+msgctxt "s-c393e763c098-0068"
+msgid "**Hidden limits.** A finite tape or list is a design limit that behaves like a semantic one at the boundary."
+msgstr "**Límites ocultos.** Una cinta o una lista finita es un límite de diseño que, en la frontera, se comporta como un límite semántico."
+
+#: lessons/study-guides/concepts/formal-languages-and-weird-machines.md:115
+msgctxt "s-ecfbb7066d24-0069"
+msgid "**Where this is legitimate.** Using a regex to *tokenize*, a build tool to *generate* sources, a macro processor to *configure* are all ordinary. The stunt is demanding a whole program from the notation."
+msgstr "**Dónde es legítimo.** Usar una regex para *tokenizar*, una herramienta de compilación para *generar* fuentes y un procesador de macros para *configurar* es algo corriente. La acrobacia consiste en exigirle a la notación un programa completo."
+
+#: lessons/study-guides/concepts/formal-languages-and-weird-machines.md:117
+msgctxt "s-061eb6da82a8-0070"
+msgid "Connections across the repository"
+msgstr "Conexiones a lo largo del repositorio"
+
+#: lessons/study-guides/concepts/formal-languages-and-weird-machines.md:119
+msgctxt "s-505008886178-0071"
+msgid "**The language guides.** [Regex engines and sed](⟦DEST_0001⟧), [Make and CMake](⟦DEST_0002⟧), [m4](⟦DEST_0003⟧), [ed and Ex](⟦DEST_0004⟧), [tar](⟦DEST_0005⟧) and [C#, LINQ, XAML and ports](⟦DEST_0006⟧) each trace one substrate."
+msgstr "**Las guías de lenguaje.** [Motores de regex y sed](⟦DEST_0001⟧), [Make y CMake](⟦DEST_0002⟧), [m4](⟦DEST_0003⟧), [ed y Ex](⟦DEST_0004⟧), [tar](⟦DEST_0005⟧) y [C#, LINQ, XAML y adaptaciones](⟦DEST_0006⟧) trazan cada una un sustrato."
+
+#: lessons/study-guides/concepts/formal-languages-and-weird-machines.md:120
+msgctxt "s-8825819b8a33-0072"
+msgid "**State and control.** [State and control beyond variables](⟦DEST_0001⟧) says where each substrate keeps its program counter."
+msgstr "**Estado y control.** [Estado y control más allá de las variables](⟦DEST_0001⟧) dice dónde guarda cada sustrato su contador de programa."
+
+#: lessons/study-guides/concepts/formal-languages-and-weird-machines.md:121
+msgctxt "s-7ec62f2e3fb3-0073"
+msgid "**Reading safely.** [Reading adversarial programs](⟦DEST_0001⟧) takes \"an input language is a program\" as its main example."
+msgstr "**Lectura segura.** [Lectura de programas adversariales](⟦DEST_0001⟧) toma \"un lenguaje de entrada de datos es un programa\" como su ejemplo principal."
+
+#: lessons/study-guides/concepts/formal-languages-and-weird-machines.md:122
+msgctxt "s-5439b7251b72-0074"
+msgid "**Cost.** [Portability, abstraction and cost](⟦DEST_0001⟧) covers the backtracking cliff and the implementation extensions."
+msgstr "**Costo.** [Portabilidad, abstracción y costo](⟦DEST_0001⟧) cubre el precipicio del retroceso y las extensiones de las implementaciones."
+
+#: lessons/study-guides/concepts/formal-languages-and-weird-machines.md:123
+msgctxt "s-d0ef52786b07-0075"
+msgid "**In the book.** [The Chomsky hierarchy](⟦DEST_0001⟧), [Regular expressions](⟦DEST_0002⟧), [Term and string rewriting](⟦DEST_0003⟧), [Macros and text expansion](⟦DEST_0004⟧) and [Build automation](⟦DEST_0005⟧)."
+msgstr "**En el libro.** [La jerarquía de Chomsky](⟦DEST_0001⟧), [Expresiones regulares](⟦DEST_0002⟧), [Reescritura de términos y de cadenas de texto](⟦DEST_0003⟧), [Macros y expansión de texto](⟦DEST_0004⟧) y [Automatización de la compilación](⟦DEST_0005⟧)."
+
+#: lessons/study-guides/concepts/formal-languages-and-weird-machines.md:125
+msgctxt "s-50944288ce61-0076"
+msgid "Self-check"
+msgstr "Autoevaluación"
+
+#: lessons/study-guides/concepts/formal-languages-and-weird-machines.md:127
+msgctxt "s-274e192b952c-0077"
+msgid "Answer each question in your own words before you read the italic text. Say what evidence would support each answer."
+msgstr "Responde cada pregunta con tus propias palabras antes de leer el texto en cursiva. Di qué evidencia respaldaría cada respuesta."
+
+#: lessons/study-guides/concepts/formal-languages-and-weird-machines.md:129
+msgctxt "s-b6e7ea3491d9-0078"
+msgid ""
+"**Trace.** In the .NET entry the draws are 15, 19, 12, 17. Give the budget tokens left after each pass and say which pass ends the loop. *(26, then 7, then 0. After the third pass ⟦CODE_0001⟧ is empty, so the next pass takes ⟦CODE_0002⟧ and the loop ends. The fourth draw is ignored.)*\n"
+"2. **Explain.** Why does the PCRE2 pattern end in ⟦CODE_0003⟧ and ⟦CODE_0004⟧, and what does each do? *(⟦CODE_0005⟧ stops the engine from retrying shorter loops, so the ⟦CODE_0006⟧ callout runs once. ⟦CODE_0007⟧ makes the whole match lose after the work is done, which is the signature move.)*\n"
+"3. **Transfer.** Name an input language in a system you use that is more powerful than it looks, and say how you would apply the rule of least power. *(For example a template language, a spreadsheet formula or a config format with ⟦CODE_0008⟧. Replace it with a weaker declared format, or parse it with a strict grammar before acting.)*\n"
+"4. **Evidence.** A reviewer says, \"The .NET pattern itself cannot write a row.\" Design a test that could fail. *(Check that ⟦CODE_0009⟧ has exactly one ⟦CODE_0010⟧, no ⟦CODE_0011⟧ or ⟦CODE_0012⟧ and that every file write is in host code after the match, which the entry's ⟦CODE_0013⟧ does. The negative control is a copy with a ⟦CODE_0014⟧, which the check must reject.)*"
+msgstr ""
+"**Traza.** En la entrada de .NET los sorteos son 15, 19, 12 y 17. Indica las fichas del presupuesto que quedan tras cada pasada y di qué pasada termina el bucle. *(26, luego 7 y luego 0. Después de la tercera pasada ⟦CODE_0001⟧ está vacía, así que la pasada siguiente toma ⟦CODE_0002⟧ y el bucle termina. El cuarto sorteo se ignora.)*\n"
+"2. **Explica.** ¿Por qué el patrón de PCRE2 termina en ⟦CODE_0003⟧ y ⟦CODE_0004⟧, y qué hace cada uno? *(⟦CODE_0005⟧ impide que el motor reintente bucles más cortos, así que el callout ⟦CODE_0006⟧ se ejecuta una vez. ⟦CODE_0007⟧ hace que toda la coincidencia pierda cuando el trabajo ya está hecho, que es la jugada característica.)*\n"
+"3. **Transfiere.** Nombra un lenguaje de entrada de datos de un sistema que uses que sea más potente de lo que parece y di cómo aplicarías la regla del menor poder. *(Por ejemplo un lenguaje de plantillas, una fórmula de hoja de cálculo o un formato de configuración con ⟦CODE_0008⟧. Reemplázalo por un formato declarado más débil o analízalo con una gramática estricta antes de actuar.)*\n"
+"4. **Evidencia.** Un revisor dice: \"El patrón de .NET no puede escribir una fila por sí mismo.\" Diseña una prueba que pueda fallar. *(Verifica que ⟦CODE_0009⟧ tenga exactamente un ⟦CODE_0010⟧ y ningún ⟦CODE_0011⟧ ni ⟦CODE_0012⟧. Verifica que toda escritura de archivos esté en el código del anfitrión después de la coincidencia, que es lo que hace el ⟦CODE_0013⟧ de la entrada. El control negativo es una copia con un ⟦CODE_0014⟧, que la verificación debe rechazar.)*"
+
+#: lessons/study-guides/concepts/formal-languages-and-weird-machines.md:134
+msgctxt "s-4082f515b2f4-0079"
+msgid "Further reading"
+msgstr "Lecturas adicionales"
+
+#: lessons/study-guides/concepts/formal-languages-and-weird-machines.md:136
+msgctxt "s-7f1e9810ed04-0080"
+msgid "[Chomsky hierarchy](⟦DEST_0001⟧) (Wikipedia): the ladder of language classes."
+msgstr "[Jerarquía de Chomsky](⟦DEST_0001⟧) (Wikipedia): la escalera de clases de lenguajes."
+
+#: lessons/study-guides/concepts/formal-languages-and-weird-machines.md:137
+msgctxt "s-d10d7d0fba75-0081"
+msgid "[Pushdown automaton](⟦DEST_0001⟧) (Wikipedia): the machine a stack adds to a regular language."
+msgstr "[Autómata de pila](⟦DEST_0001⟧) (Wikipedia): la máquina que una pila añade a un lenguaje regular."
+
+#: lessons/study-guides/concepts/formal-languages-and-weird-machines.md:138
+msgctxt "s-62c6390606d3-0082"
+msgid "[Weird machine](⟦DEST_0001⟧) (Wikipedia): unintended computation in input handling."
+msgstr "[Máquina rara](⟦DEST_0001⟧) (Wikipedia): computación no prevista en el manejo de entrada de datos."
+
+#: lessons/study-guides/concepts/formal-languages-and-weird-machines.md:139
+msgctxt "s-896b9b715caf-0083"
+msgid "[Rule of least power](⟦DEST_0001⟧) (Wikipedia): why a weaker input language is safer."
+msgstr "[Regla del menor poder](⟦DEST_0001⟧) (Wikipedia): por qué un lenguaje de entrada de datos más débil es más seguro."
+
+#: lessons/study-guides/concepts/formal-languages-and-weird-machines.md:140
+msgctxt "s-54c10b98eaa5-0084"
+msgid "[Markov algorithm](⟦DEST_0001⟧) (Wikipedia): the formal model behind sed's find-and-replace machine."
+msgstr "[Algoritmo de Markov](⟦DEST_0001⟧) (Wikipedia): el modelo formal detrás de la máquina de buscar y reemplazar de sed."

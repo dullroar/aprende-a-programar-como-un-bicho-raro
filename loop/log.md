@@ -123,3 +123,4 @@
 147 P4-lessons-study-guides-concepts-2 done applied 112 segments of effects-errors-and-commitment via four drafts imports; 4 scoped I7 waivers; anchors regenerated; verify --fast OK.
 148 P4-lessons-study-guides-concepts-3 done evaluation-demand-and-laziness (106) and events-callbacks-and-reactive-control (98) study guides translated; 12 scoped I7 waivers
 149 P4-lessons-study-guides-concepts-3 done committed the iteration-148 work left in the tree; verify --fast OK.
+150 P4-lessons-study-guides-concepts-4 done formal-languages-and-weird-machines study guide translated (85 segments) via drafts import; 3 scoped I7 waivers; verify --fast OK.
