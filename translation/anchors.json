@@ -9174,8 +9174,8 @@
     {
      "en": "LINQ challenge, Variant A: one fluent method-chain statement",
      "en_id": "linq-challenge-variant-a-one-fluent-method-chain-statement",
-     "es": "Reto de LINQ, variante A: una sola instrucción con una cadena fluida de métodos",
-     "es_id": "reto-de-linq-variante-a-una-sola-instrucción-con-una-cadena-fluida-de-métodos",
+     "es": "Reto de LINQ, variante A: una sola sentencia con una cadena fluida de métodos",
+     "es_id": "reto-de-linq-variante-a-una-sola-sentencia-con-una-cadena-fluida-de-métodos",
      "level": 1,
      "line": 17
     },
@@ -9247,7 +9247,7 @@
    "map": {
     "gotchas-worth-knowing": "trampas-que-conviene-conocer",
     "how-the-stunt-works": "cómo-funciona-el-truco",
-    "linq-challenge-variant-a-one-fluent-method-chain-statement": "reto-de-linq-variante-a-una-sola-instrucción-con-una-cadena-fluida-de-métodos",
+    "linq-challenge-variant-a-one-fluent-method-chain-statement": "reto-de-linq-variante-a-una-sola-sentencia-con-una-cadena-fluida-de-métodos",
     "program-flow": "flujo-del-programa",
     "run-it": "ejecútalo",
     "run-it-in-windows-sandbox": "ejecútalo-en-windows-sandbox",

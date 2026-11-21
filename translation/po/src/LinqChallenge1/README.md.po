@@ -30,7 +30,7 @@ msgstr "Dentro de los enumeradores de las etapas y en la base de datos"
 #: src/LinqChallenge1/README.md:17
 msgctxt "s-8793b15aec18-0004"
 msgid "LINQ challenge, Variant A: one fluent method-chain statement"
-msgstr "Reto de LINQ, variante A: una sola instrucción con una cadena fluida de métodos"
+msgstr "Reto de LINQ, variante A: una sola sentencia con una cadena fluida de métodos"
 
 #: src/LinqChallenge1/README.md:19
 msgctxt "s-4e3f3effb0db-0005"
@@ -45,7 +45,7 @@ msgstr "**No es el reto compartido.** Esta entrada no genera horas al azar: su s
 #: src/LinqChallenge1/README.md:23
 msgctxt "s-ca6a2bcad7d6-0007"
 msgid "One ⟦CODE_0001⟧-terminated expression statement, built entirely from LINQ method calls. It generates a fixed 40-hour timecard, tracks and saves it through EF Core and SQLite, crosses the ⟦CODE_0002⟧ → ⟦CODE_0003⟧ boundary, and builds, shows, pulses, and closes a WPF **⟦DNT_0004⟧** terminal window - all inside that one statement. No ⟦CODE_0005⟧-style helper does the real work; ⟦CODE_0006⟧ only sets up the STA thread, the ⟦CODE_0007⟧, and the ⟦CODE_0008⟧ before calling it."
-msgstr "Una sola instrucción de expresión terminada en ⟦CODE_0001⟧, construida por completo con llamadas a métodos LINQ. Genera una tarjeta de horas fija de 40 horas, la rastrea y la guarda con EF Core y SQLite, cruza la frontera ⟦CODE_0002⟧ → ⟦CODE_0003⟧, y construye, muestra, hace latir y cierra una ventana de terminal WPF **⟦DNT_0004⟧** - todo dentro de esa sola instrucción. Ningún método auxiliar al estilo de ⟦CODE_0005⟧ hace el trabajo real; ⟦CODE_0006⟧ solo prepara el hilo STA, el ⟦CODE_0007⟧ y el ⟦CODE_0008⟧ antes de llamarla."
+msgstr "Una sola sentencia de expresión terminada en ⟦CODE_0001⟧, construida por completo con llamadas a métodos LINQ. Genera una tarjeta de horas fija de 40 horas, la rastrea y la guarda con EF Core y SQLite, cruza la frontera ⟦CODE_0002⟧ → ⟦CODE_0003⟧, y construye, muestra, hace palpitar y cierra una ventana de terminal WPF **⟦DNT_0004⟧** - todo dentro de esa sola sentencia. Ninguna función auxiliar al estilo de ⟦CODE_0005⟧ hace el trabajo real; ⟦CODE_0006⟧ solo prepara el hilo STA, el ⟦CODE_0007⟧ y el ⟦CODE_0008⟧ antes de llamarla."
 
 #: src/LinqChallenge1/README.md:25
 msgctxt "s-958ca26c6a61-0008"
@@ -70,12 +70,12 @@ msgstr "Ejecútalo en Windows Sandbox"
 #: src/LinqChallenge1/README.md:43
 msgctxt "s-4c7e274e3b4c-0012"
 msgid "Prerequisites: Windows Sandbox and this entry's toolchain on your machine, set up once as described in [⟦CODE_0001⟧](⟦DEST_0002⟧)."
-msgstr "Requisitos previos: Windows Sandbox (un entorno aislado, *sandbox*, donde ejecutas programas sin afectar el resto de tu sistema) y la cadena de herramientas de esta entrada en tu máquina, configurados una sola vez como se describe en [⟦CODE_0001⟧](⟦DEST_0002⟧)."
+msgstr "Requisitos previos: Windows Sandbox (un entorno aislado, o *sandbox*, que limita el acceso al sistema anfitrión) y la cadena de herramientas de esta entrada en tu máquina. Configura ambos una sola vez como se describe en [⟦CODE_0001⟧](⟦DEST_0002⟧)."
 
 #: src/LinqChallenge1/README.md:49
 msgctxt "s-96c8f11566d8-0013"
 msgid "It runs the entry in a throwaway VM with networking off, screenshots the window, asks it to close, and prints what it saved. This entry has a ⟦CODE_0001⟧, so that is what runs."
-msgstr "Ejecuta la entrada en una máquina virtual (VM) desechable con la red desactivada, captura una imagen de la ventana, le pide que se cierre e imprime lo que guardó. Esta entrada tiene un ⟦CODE_0001⟧, así que eso es lo que se ejecuta."
+msgstr "Ejecuta la entrada en una máquina virtual (VM) desechable con la red desactivada, hace una captura de pantalla de la ventana, le pide que se cierre e imprime lo que guardó. Esta entrada tiene un ⟦CODE_0001⟧, así que el script ejecuta ese archivo."
 
 #: src/LinqChallenge1/README.md:51
 msgctxt "s-0dcb373c2dff-0014"
@@ -85,62 +85,62 @@ msgstr "Flujo del programa"
 #: src/LinqChallenge1/README.md:55
 msgctxt "s-2adfc2a9086c-0015"
 msgid "LinqChallenge1: an eager fold first, then a lazy tail that the last Aggregate forces"
-msgstr "LinqChallenge1: un pliegue (*fold*) ansioso primero y después una cola perezosa que el último Aggregate fuerza"
+msgstr "LinqChallenge1: una reducción (*fold*) de evaluación inmediata primero y después etapas diferidas que el último Aggregate fuerza"
 
 #: src/LinqChallenge1/README.md:56
 msgctxt "s-989c13754935-0016"
 msgid "A flowchart with two groups. The eager group runs first because it is the innermost argument. An Aggregate folds the five fixed days into tracked entities and refuses a day that would pass 40 hours, and then the tuple calls SaveChanges. The deferred group is a chain of LINQ stages that does nothing until asked. The final Aggregate asks. That pulls the EF Core query and the return to objects, then a second Aggregate that folds the saved rows into a report, then the stage that builds and shows the window, then the stage that starts the pulse and calls Application.Run, which pumps the dispatcher until the window closes."
-msgstr "Un diagrama de flujo con dos grupos. El grupo eager se ejecuta primero porque es el argumento más interno. Un Aggregate pliega los cinco días fijos en entidades rastreadas y rechaza un día que pasaría de 40 horas, y después la tupla llama a SaveChanges. El grupo deferred es una cadena de etapas LINQ que no hace nada hasta que se le pide. El último Aggregate lo pide. Esa demanda (pull) activa la consulta de EF Core y el retorno a objetos, luego un segundo Aggregate que pliega las filas guardadas en un informe, luego la etapa que compila y muestra la ventana, y luego la etapa que inicia el pulso y llama a Application.Run, que mantiene en marcha el dispatcher hasta que se cierra la ventana."
+msgstr "Un diagrama de flujo con dos grupos. El grupo de evaluación inmediata se ejecuta primero porque es el argumento más interno. Un Aggregate acumula los cinco días fijos en entidades rastreadas y rechaza un día que pasaría de 40 horas, y después la tupla llama a SaveChanges. El grupo de ejecución diferida es una cadena de etapas LINQ que no hace nada hasta que se le pide. El Aggregate final lo pide. Esa demanda (pull) activa la consulta de EF Core y el retorno a objetos, luego un segundo Aggregate que reduce las filas guardadas a un informe, luego la etapa que construye y muestra la ventana, y luego la etapa que inicia el pulso y llama a Application.Run, que mantiene en marcha el despachador de WPF hasta que se cierra la ventana."
 
 #: src/LinqChallenge1/README.md:57
 msgctxt "s-977cd518cc81-0017"
 msgid "Eager: runs first, as the innermost argument"
-msgstr "Inmediata (*eager*): se ejecuta primero, como el argumento más interno"
+msgstr "Evaluación inmediata"
 
 #: src/LinqChallenge1/README.md:58
 msgctxt "s-7eb5780a0dae-0018"
 msgid "Aggregate: fold the five fixed days into tracked entities, refuse a day that passes 40 h"
-msgstr "Aggregate: acumula los cinco días fijos en entidades rastreadas y rechaza un día que pasa de 40 h"
+msgstr "Aggregate: acumula días y rechaza lo que pasa de 40 h"
 
 #: src/LinqChallenge1/README.md:58
 msgctxt "s-9a7383040309-0019"
 msgid "Tuple element: SaveChanges runs after every entity is tracked"
-msgstr "Elemento de tupla: SaveChanges se ejecuta después de que cada entidad esté rastreada"
+msgstr "SaveChanges: guarda las entidades"
 
 #: src/LinqChallenge1/README.md:60
 msgctxt "s-04fb89b926f0-0020"
 msgid "Deferred: nothing runs until the final Aggregate asks"
-msgstr "Diferido: nada se ejecuta hasta que el Aggregate final lo pide"
+msgstr "Ejecución diferida: espera al Aggregate final"
 
 #: src/LinqChallenge1/README.md:61
 msgctxt "s-4c84502cb4cf-0021"
 msgid "Repeat 1 then SelectMany: EF Core query, then AsEnumerable"
-msgstr "Repite 1 y después SelectMany: consulta de EF Core y después AsEnumerable"
+msgstr "Repeat 1 y SelectMany: EF Core y AsEnumerable"
 
 #: src/LinqChallenge1/README.md:61
 msgctxt "s-08275778a777-0022"
 msgid "Aggregate: fold the saved rows into a report"
-msgstr "Aggregate: pliega las filas guardadas en un informe"
+msgstr "Aggregate: reduce las filas a un informe"
 
 #: src/LinqChallenge1/README.md:62
 msgctxt "s-c5ba09ceeac5-0023"
 msgid "Select: build and show the WPF window"
-msgstr "Select: compila y muestra la ventana WPF"
+msgstr "Select: construye y muestra la ventana WPF"
 
 #: src/LinqChallenge1/README.md:63
 msgctxt "s-1071fae62639-0024"
 msgid "Select: start the pulse, Application.Run pumps the dispatcher until the window closes"
-msgstr "Select: inicia el pulso, Application.Run mantiene en marcha el despachador hasta que se cierra la ventana"
+msgstr "Select: inicia el pulso y llama a Application.Run"
 
 #: src/LinqChallenge1/README.md:66
 msgctxt "s-b50aceefe4f3-0025"
 msgid "Final Aggregate: the demand that forces the whole tail"
-msgstr "Aggregate final: la demanda que fuerza toda la cola"
+msgstr "Aggregate final: la demanda"
 
 #: src/LinqChallenge1/README.md:66
 msgctxt "s-725aca9fc384-0026"
 msgid "pulls"
-msgstr "demanda (pull)"
+msgstr "demanda"
 
 #: src/LinqChallenge1/README.md:69
 msgctxt "s-8f8cc622754f-0027"
@@ -150,7 +150,7 @@ msgstr "**Qué muestra:** todo el programa es una sola expresión, así que el o
 #: src/LinqChallenge1/README.md:71
 msgctxt "s-d9777f556035-0028"
 msgid "**Why this mechanism matters:** this is the difference between a query as a description and a query as an execution. ⟦CODE_0001⟧ turns one value into a one-element sequence so that each stage can stay a real ⟦CODE_0002⟧ operator. Every ⟦CODE_0003⟧ call is wrapped to return a value, as the ⟦CODE_0004⟧-to-value trick (a section of this README) explains."
-msgstr "**Por qué importa este mecanismo:** esta es la diferencia entre una consulta como descripción y una consulta como ejecución. ⟦CODE_0001⟧ convierte un valor en una secuencia de un elemento para que cada etapa pueda seguir siendo un operador ⟦CODE_0002⟧ real. Cada llamada a ⟦CODE_0003⟧ se envuelve para que devuelva un valor, como explica el truco de ⟦CODE_0004⟧ a valor (una sección de este README)."
+msgstr "**Por qué importa este mecanismo:** esta es la diferencia entre una consulta como descripción y una consulta como ejecución. ⟦CODE_0001⟧ convierte un valor en una secuencia de un elemento para que cada etapa pueda seguir siendo un operador ⟦CODE_0002⟧ real. Cada llamada a un método que devuelve ⟦CODE_0003⟧ se envuelve para que devuelva un valor, como explica el truco de ⟦CODE_0004⟧ a valor (una sección de este README)."
 
 #: src/LinqChallenge1/README.md:73
 msgctxt "s-7f97d965b4c0-0029"
@@ -160,7 +160,7 @@ msgstr "Cómo funciona el truco"
 #: src/LinqChallenge1/README.md:75
 msgctxt "s-9011ebb9414c-0030"
 msgid "The fixed work week (⟦CODE_0001⟧, five 8-hour days: Planning / Implementation / Review / Testing / Documentation) and the challenge statement live in [⟦CODE_0002⟧](⟦DEST_0003⟧). Reading top to bottom, the one statement is:"
-msgstr "La semana fija de trabajo (⟦CODE_0001⟧, cinco días de 8 horas: Planificación / Implementación / Revisión / Pruebas / Documentación) y el enunciado del reto están en [⟦CODE_0002⟧](⟦DEST_0003⟧). Si lo lees de arriba abajo, el enunciado único es:"
+msgstr "La semana fija de trabajo (⟦CODE_0001⟧, cinco días de 8 horas: Planning / Implementation / Review / Testing / Documentation, es decir, planificación, implementación, revisión, pruebas y documentación) y la sentencia del reto están en [⟦CODE_0002⟧](⟦DEST_0003⟧). Si la sigues de arriba abajo, la sentencia única es:"
 
 #: src/LinqChallenge1/README.md:77
 msgctxt "s-0e49e4421342-0031"
@@ -180,7 +180,7 @@ msgstr "⟦SEP_0003⟧ - ⟦SEP_0004⟧ tupla ⟦CODE_0001⟧ ⟦SEP_0005⟧ Los
 #: src/LinqChallenge1/README.md:81
 msgctxt "s-47db7185efb9-0034"
 msgid "⟦SEP_0007⟧ 2 ⟦SEP_0008⟧ ⟦CODE_0001⟧ ⟦SEP_0009⟧ Crosses from the in-memory fold into EF Core's ⟦CODE_0002⟧ (⟦CODE_0003⟧/⟦CODE_0004⟧/⟦CODE_0005⟧ - all SQL-translatable), then explicitly back with ⟦CODE_0006⟧. The outer sequence has exactly one element, so the query runs exactly once. ⟦SEP_0010⟧"
-msgstr "⟦SEP_0007⟧ 2 ⟦SEP_0008⟧ ⟦CODE_0001⟧ ⟦SEP_0009⟧ Pasa del *fold* en memoria al ⟦CODE_0002⟧ de EF Core (⟦CODE_0003⟧/⟦CODE_0004⟧/⟦CODE_0005⟧: todos traducibles a SQL) y vuelve de forma explícita con ⟦CODE_0006⟧. La secuencia externa tiene exactamente un elemento, así que la consulta se ejecuta exactamente una vez. ⟦SEP_0010⟧"
+msgstr "⟦SEP_0007⟧ 2 ⟦SEP_0008⟧ ⟦CODE_0001⟧ ⟦SEP_0009⟧ Pasa de la reducción en memoria al ⟦CODE_0002⟧ de EF Core (⟦CODE_0003⟧/⟦CODE_0004⟧/⟦CODE_0005⟧: todos traducibles a SQL) y vuelve de forma explícita con ⟦CODE_0006⟧. La secuencia externa tiene exactamente un elemento, así que la consulta se ejecuta exactamente una vez. ⟦SEP_0010⟧"
 
 #: src/LinqChallenge1/README.md:82
 msgctxt "s-7ab88972bb89-0035"
@@ -195,12 +195,12 @@ msgstr "⟦SEP_0002⟧ 4 ⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ Construye
 #: src/LinqChallenge1/README.md:84
 msgctxt "s-4407344fc4ba-0037"
 msgid "⟦SEP_0005⟧ 5 ⟦SEP_0006⟧ ⟦CODE_0001⟧ ⟦SEP_0007⟧ Starts a finite pulse (⟦CODE_0002⟧, ⟦CODE_0003⟧, three repeats), then calls ⟦CODE_0004⟧ to pump the dispatcher until the completion handler closes the window and shuts the app down. ⟦SEP_0008⟧"
-msgstr "⟦SEP_0005⟧ 5 ⟦SEP_0006⟧ ⟦CODE_0001⟧ ⟦SEP_0007⟧ Inicia un pulso finito (⟦CODE_0002⟧, ⟦CODE_0003⟧, tres repeticiones) y luego llama a ⟦CODE_0004⟧ para mantener en marcha el dispatcher hasta que el manejador de finalización cierre la ventana y termine la aplicación. ⟦SEP_0008⟧"
+msgstr "⟦SEP_0005⟧ 5 ⟦SEP_0006⟧ ⟦CODE_0001⟧ ⟦SEP_0007⟧ Inicia un pulso finito (⟦CODE_0002⟧, ⟦CODE_0003⟧, tres repeticiones) y luego llama a ⟦CODE_0004⟧ para mantener en marcha el despachador de WPF hasta que el manejador de finalización cierre la ventana y termine la aplicación. ⟦SEP_0008⟧"
 
 #: src/LinqChallenge1/README.md:85
 msgctxt "s-0a820253eafa-0038"
 msgid "⟦SEP_0002⟧ final ⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ Forces the whole lazy tail (stages 2-5) to actually execute. ⟦SEP_0005⟧"
-msgstr "⟦SEP_0002⟧ final ⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ Obliga a que toda la cola perezosa (etapas de 2 a 5) se ejecute de verdad. ⟦SEP_0005⟧"
+msgstr "⟦SEP_0002⟧ final ⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ Obliga a que todas las etapas diferidas (de la 2 a la 5) se ejecuten de verdad. ⟦SEP_0005⟧"
 
 #: src/LinqChallenge1/README.md:87
 msgctxt "s-c386fd6f4ca1-0039"
@@ -210,7 +210,7 @@ msgstr "El truco de ⟦CODE_0001⟧ a valor"
 #: src/LinqChallenge1/README.md:89
 msgctxt "s-db4fd510d55f-0040"
 msgid "WPF and EF Core are full of ⟦CODE_0001⟧ methods - ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧, ⟦CODE_0006⟧ - and a LINQ chain only has room for values. Every side effect above sits inside an inline ⟦CODE_0007⟧, immediately invoked right where the chain needs its return value. It is a deliberate compromise, not a recommendation: ordinary code would just write a statement."
-msgstr "WPF y EF Core están llenos de métodos ⟦CODE_0001⟧ - ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧, ⟦CODE_0006⟧ - y una cadena LINQ solo tiene espacio para valores. Cada efecto secundario de arriba está dentro de un ⟦CODE_0007⟧ en línea, que se invoca de inmediato justo donde la cadena necesita su valor de retorno. Es un compromiso deliberado, no una recomendación: el código normal simplemente escribiría una instrucción."
+msgstr "WPF y EF Core están llenos de métodos ⟦CODE_0001⟧ (⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧, ⟦CODE_0006⟧) y una cadena LINQ solo tiene espacio para valores. Cada efecto secundario de arriba está dentro de un ⟦CODE_0007⟧ en línea, que se invoca de inmediato justo donde la cadena necesita su valor de retorno. Es un compromiso deliberado, no una recomendación: el código normal simplemente escribiría una sentencia."
 
 #: src/LinqChallenge1/README.md:91
 msgctxt "s-75844d7c8a2b-0041"
@@ -220,7 +220,7 @@ msgstr "Por qué dos llamadas ⟦CODE_0001⟧ anidadas"
 #: src/LinqChallenge1/README.md:93
 msgctxt "s-afc35ede7c3a-0042"
 msgid "C# only allows a handful of expression shapes as a top-level expression statement - invocation, object creation, assignment, increment/decrement, ⟦CODE_0001⟧ - not an arbitrary ⟦CODE_0002⟧ or ⟦CODE_0003⟧ expression. That rules out binding intermediate stages to a pattern-matched local (⟦CODE_0004⟧) at the top level: the statement has to *end* in an invocation. So the program does not name the fold result or the report. Instead, each one is nested directly as the argument to the next ⟦CODE_0005⟧. That call turns a single computed value back into a one-element sequence, so the next stage can stay a genuine LINQ operator (⟦CODE_0006⟧, ⟦CODE_0007⟧) and not a bare method call. The whole statement is one deeply nested expression tree whose outermost call is ⟦CODE_0008⟧ - an invocation, which is legal."
-msgstr "C# solo permite unas pocas formas de expresión como instrucción de expresión en el nivel superior: invocación, creación de objeto, asignación, incremento/decremento, ⟦CODE_0001⟧. No permite una expresión ⟦CODE_0002⟧ o ⟦CODE_0003⟧ arbitraria. Eso excluye enlazar etapas intermedias a una variable local creada con un patrón (⟦CODE_0004⟧) en el nivel superior: la instrucción debe *terminar* en una invocación. Por eso el programa no da nombre al resultado del *fold* ni al informe. En su lugar, cada uno se anida directamente como argumento del siguiente ⟦CODE_0005⟧. Esa llamada convierte un único valor calculado otra vez en una secuencia de un elemento. Así, la siguiente etapa puede seguir siendo un operador LINQ genuino (⟦CODE_0006⟧, ⟦CODE_0007⟧) y no una simple llamada a un método. Toda la instrucción es un único árbol de expresiones muy anidado, cuya llamada más externa es ⟦CODE_0008⟧: una invocación, que está permitida."
+msgstr "C# solo permite unas pocas formas de expresión como sentencia de expresión en el nivel superior: invocación, creación de objeto, asignación, incremento/decremento, ⟦CODE_0001⟧. No permite una expresión ⟦CODE_0002⟧ o ⟦CODE_0003⟧ arbitraria. Eso excluye enlazar etapas intermedias a una variable local creada con un patrón (⟦CODE_0004⟧) en el nivel superior: la sentencia debe *terminar* en una invocación. Por eso el programa no da nombre al resultado de la reducción ni al informe. En su lugar, cada uno se anida directamente como argumento del siguiente ⟦CODE_0005⟧. Esa llamada convierte un único valor calculado otra vez en una secuencia de un elemento. Así, la siguiente etapa puede seguir siendo un operador LINQ genuino (⟦CODE_0006⟧, ⟦CODE_0007⟧) y no una simple llamada a un método. Toda la sentencia es un único árbol de expresiones muy anidado, cuya llamada más externa es ⟦CODE_0008⟧: una invocación, que está permitida."
 
 #: src/LinqChallenge1/README.md:95
 msgctxt "s-a315f4633f5a-0043"
@@ -230,7 +230,7 @@ msgstr "Qué impone ⟦CODE_0001⟧"
 #: src/LinqChallenge1/README.md:97
 msgctxt "s-4e22179f17d7-0044"
 msgid "⟦CODE_0001⟧ first makes sure no orchestration helper hides the workflow: ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧ and ⟦CODE_0006⟧ may not appear in ⟦CODE_0007⟧. Then it builds the project and runs it against a throwaway data folder, with a hard 15-second timeout in case the dispatcher gets stuck. The program must exit with code 0 and print ⟦CODE_0008⟧. All five rows (2024-01-01 to 2024-01-05, 8.0h each, Planning to Documentation) must be in the report, and ⟦CODE_0009⟧ must exist."
-msgstr "⟦CODE_0001⟧ primero verifica que ningún ayudante de orquestación oculte el flujo de trabajo: ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧ y ⟦CODE_0006⟧ no deben aparecer en ⟦CODE_0007⟧. Después compila el proyecto y lo ejecuta con una carpeta de datos desechable, con un tiempo límite estricto de 15 segundos por si el despachador se atasca. El programa debe terminar con código 0 e imprimir ⟦CODE_0008⟧. Las cinco filas (de 2024-01-01 a 2024-01-05, 8.0h cada una, de Planning a Documentation) deben aparecer en el informe, y ⟦CODE_0009⟧ debe existir."
+msgstr "⟦CODE_0001⟧ primero verifica que ninguna función auxiliar de orquestación oculte el flujo de trabajo: ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧ y ⟦CODE_0006⟧ no deben aparecer en ⟦CODE_0007⟧. Después compila el proyecto y lo ejecuta con una carpeta de datos desechable, con un tiempo límite estricto de 15 segundos por si el despachador se atasca. El programa debe terminar con código 0 e imprimir ⟦CODE_0008⟧. Las cinco filas (de 2024-01-01 a 2024-01-05, 8.0h cada una, de Planning a Documentation) deben aparecer en el informe y ⟦CODE_0009⟧ debe existir."
 
 #: src/LinqChallenge1/README.md:99
 msgctxt "s-5a0ad00b10fc-0045"
@@ -240,24 +240,24 @@ msgstr "Trampas que conviene conocer"
 #: src/LinqChallenge1/README.md:101
 msgctxt "s-dd52d742010d-0046"
 msgid "⟦CODE_0001⟧ is called once, eagerly, at the point where the outer ⟦CODE_0002⟧ call evaluates its argument - before any of the lazy LINQ-to-Objects/EF stages begin enumerating. That is still entirely inside the one statement. It is just not deferred to the final ⟦CODE_0003⟧'s enumeration, the way ⟦CODE_0004⟧/⟦CODE_0005⟧ stages are. ⟦CODE_0006⟧ is an eager LINQ operator by definition, so some eagerness here is unavoidable."
-msgstr "⟦CODE_0001⟧ se llama una sola vez, de forma inmediata, en el punto en que la llamada externa a ⟦CODE_0002⟧ evalúa su argumento, antes de que empiece a enumerar cualquiera de las etapas diferidas de LINQ-to-Objects/EF. Eso sigue estando dentro de la misma sentencia. Solo que no se difiere hasta la enumeración del ⟦CODE_0003⟧ final, como sí ocurre con las etapas ⟦CODE_0004⟧/⟦CODE_0005⟧. ⟦CODE_0006⟧ es, por definición, un operador LINQ de evaluación inmediata, así que aquí cierta evaluación inmediata es inevitable."
+msgstr "⟦CODE_0001⟧ se llama una sola vez, de forma inmediata, en el punto en que la llamada externa a ⟦CODE_0002⟧ evalúa su argumento, antes de que empiece a enumerar cualquiera de las etapas diferidas de LINQ-to-Objects/EF. Eso sigue estando dentro de la misma sentencia. Solo que no se difiere hasta que el ⟦CODE_0003⟧ final recorre la secuencia, como sí ocurre con las etapas ⟦CODE_0004⟧/⟦CODE_0005⟧. ⟦CODE_0006⟧ es, por definición, un operador LINQ de evaluación inmediata, así que aquí cierta evaluación inmediata es inevitable."
 
 #: src/LinqChallenge1/README.md:102
 msgctxt "s-b1c6d6afde72-0047"
 msgid "The accumulator state in both ⟦CODE_0001⟧ calls is mutated in place (⟦CODE_0002⟧) rather than rebuilt immutably. That mirrors the mutation shortcut the original ⟦CODE_0003⟧ takes with ⟦CODE_0004⟧, and is called out here for the same reason: it is a pragmatic shortcut, not a LINQ-purity claim."
-msgstr "El estado del acumulador en ambas llamadas a ⟦CODE_0001⟧ se modifica en el lugar (⟦CODE_0002⟧) en lugar de reconstruirse de forma inmutable. Esto refleja el atajo de mutación que toma el ⟦CODE_0003⟧ original con ⟦CODE_0004⟧. Se señala aquí por la misma razón: es un atajo pragmático, no una afirmación de pureza de LINQ."
+msgstr "El estado del acumulador en ambas llamadas a ⟦CODE_0001⟧ se modifica directamente (⟦CODE_0002⟧) en lugar de reconstruirse de forma inmutable. Esto refleja el atajo de mutación que toma el ⟦CODE_0003⟧ original con ⟦CODE_0004⟧. Se señala aquí por la misma razón: es un atajo pragmático, no una afirmación de pureza de LINQ."
 
 #: src/LinqChallenge1/README.md:103
 msgctxt "s-545b31947332-0048"
 msgid "⟦CODE_0001⟧ (no window argument) is called from inside a ⟦CODE_0002⟧ lambda, which is what actually pumps WPF dispatcher messages so the window paints and the animation ticks. ⟦CODE_0003⟧ is set to ⟦CODE_0004⟧ so the animation's ⟦CODE_0005⟧ handler, not an implicit \"last window closed\" rule, decides when the app (and ⟦CODE_0006⟧) exits."
-msgstr "Se llama a ⟦CODE_0001⟧ (sin argumento de ventana) desde dentro de una lambda ⟦CODE_0002⟧. Eso es lo que realmente procesa los mensajes del *dispatcher* de WPF, de modo que la ventana se dibuja y la animación avanza. ⟦CODE_0003⟧ se establece en ⟦CODE_0004⟧ para que el manejador ⟦CODE_0005⟧ de la animación, y no una regla implícita de \"última ventana cerrada\", decida cuándo termina la aplicación (y ⟦CODE_0006⟧)."
+msgstr "Se llama a ⟦CODE_0001⟧ (sin argumento de ventana) desde dentro de una lambda pasada a ⟦CODE_0002⟧. Eso es lo que realmente procesa los mensajes del despachador de WPF, de modo que la ventana se dibuja y la animación avanza. ⟦CODE_0003⟧ se establece en ⟦CODE_0004⟧ para que el manejador ⟦CODE_0005⟧ de la animación, y no una regla implícita de \"última ventana cerrada\", decida cuándo termina la aplicación (y ⟦CODE_0006⟧)."
 
 #: src/LinqChallenge1/README.md:104
 msgctxt "s-a73192dbb9af-0049"
 msgid "⟦CODE_0001⟧ calls inside the window-creation stage exist purely so ⟦CODE_0002⟧ can verify the persisted report from stdout, without needing a SQLite CLI tool on the test machine."
-msgstr "Las llamadas a ⟦CODE_0001⟧ dentro de la etapa de creación de la ventana existen únicamente para que ⟦CODE_0002⟧ pueda verificar el informe guardado desde stdout, sin necesitar una herramienta de línea de comandos de SQLite en la máquina de pruebas."
+msgstr "Las llamadas a ⟦CODE_0001⟧ dentro de la etapa de creación de la ventana existen únicamente para que ⟦CODE_0002⟧ pueda verificar el informe de los datos guardados a partir de la salida estándar, sin necesitar una herramienta de línea de comandos de SQLite en la máquina de pruebas."
 
 #: src/LinqChallenge1/README.md:106
 msgctxt "s-e38745fd56f9-0050"
 msgid "See [the root README](⟦DEST_0001⟧) for how this compares to the other one-statement entries, and [⟦CODE_0002⟧](⟦DEST_0003⟧) for the query-expression variant of the same idea."
-msgstr "Consulta [el README raíz](⟦DEST_0001⟧) para ver cómo se compara esto con las otras entradas de una sola instrucción, y [⟦CODE_0002⟧](⟦DEST_0003⟧) para la variante de la misma idea con expresión de consulta."
+msgstr "Consulta [el README raíz](⟦DEST_0001⟧) para ver cómo se compara esto con las otras entradas de una sola sentencia, y [⟦CODE_0002⟧](⟦DEST_0003⟧) para la variante de la misma idea con expresión de consulta."

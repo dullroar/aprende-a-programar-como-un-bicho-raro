@@ -1,8 +1,8 @@
 # loop/STATE.md (keep to 60 lines; refreshed by every iteration)
 
 - **Edition:** v4-es.0-rc1 (working)    **English SHA:** 48a4429c0a22b2aac628b256a50c07d1816bcb80
-- **Iteration:** 99    **Stage:** 3C (editorial-review rework before bulk translation)    **Last result:** iter 99 P3C-011 done (src/KotlinChallenge1/README.md corrected through its PO: sentencia, adaptación, Cuerpo vacío del for, Cadena de llamadas a also, let { false } literal, JAR and Gradle Wrapper, directorio de usuario de Gradle, one sandbox gloss, 7 dispositions). Next: P3C-012..015 file corrections, then P3C-016
-- **Tasks:** todo 76 | doing 0 | done 70 | blocked 0 | skipped 0 (recount with the queue files)
+- **Iteration:** 100    **Stage:** 3C (editorial-review rework before bulk translation)    **Last result:** iter 100 P3C-012 done (src/LinqChallenge1/README.md corrected through its PO: sentencia de expresión, evaluación inmediata, despachador de WPF, diagram labels shortened to 12.0 pt, demanda edge label, 8 dispositions, 2 I21 waivers). Next: P3C-013..015 file corrections, then P3C-016
+- **Tasks:** todo 75 | doing 0 | done 71 | blocked 0 | skipped 0 (recount with the queue files)
 - **Next task:** run `python3 tools/next_task.py` (PO files live at translation/po/<path>.po, written by tools/apply.py --init)
 - **Budget:** spent $0.00 of $100; iterations 0 of 300
 - **Translate progress:** segments accepted 836 / total 8827 (7394 prose + 1433 Mermaid labels) ; files done 14 / 212 (curriculum and study-guide title pages, src/GoChallenge1, JavaChallenge1, KotlinChallenge1, LinqChallenge1, LinqChallenge2, ModernChallenge1, PythonChallenge1 READMEs, src/forth/README.md, lessons/cs-source/concepts/recursion.md, lessons/study-guides/languages/forth.md, docs/curriculum.md, lessons/study-guides/languages/apl.md)

@@ -1,11 +1,9 @@
 # loop/log.md
-
 1 P0-001 done English clone at pinned SHA verified (HEAD file read; Bash denied mid-iteration); translation/source.json written
 4 P0-002 blocked Bash permission denied for extracting the English tree into the repo; nothing imported
 5 - done-with-blockers no eligible task (all remaining depend on blocked P0-002); wrote HANDOFF.md and DONE
 6 P0-002 blocked Bash denied again for English tree import (tar); nothing imported
 7 P0-002 done English tree imported (git archive | tar, single command); .gitignore merged; upstream remote fetch-only
-
 8 P0-003 done tools/inventory.py + 17 tests; file set matches English tree; repaired P0-002 import (9 nested .gitignore + tracked .pyc)
 9 P0-004 done tools/lock_code.py + 22 tests; 230 frozen files locked; pre-commit hook installed; inventory --check repaired (requirements-es.txt owned)
 10 P0-005 done tools/baseline.py + 6 tests; 14/14 English CI gates exit 0; translation/baseline.md written (caveats: diagrams from cache, 2 PDF-009 warnings, no Java)
@@ -76,3 +74,4 @@
 97 P3C-009 done src/GoChallenge1/README.md corrected through its PO (55 segments): sentencia and adaptación terms, tabla comparativa, 'Haz clic en Close', interfaz local (one *loopback* gloss), script-hace-la-compilación wording, Post/Lock/Append/Unlock/Spawn/After kept literal in labels and accDescr, Seq receives already-evaluated arguments, || right operand explained, sandbox glossed once; code-span, PATH/sqlite3 and 'cierras la pestaña' items rejected; 15 dispositions; diagram renders at 11.4 pt; verify --fast OK
 98 P3C-010 done src/JavaChallenge1/README.md corrected through its PO (110 segments): sentencia and adaptación, program list in the indicative with an explicit subject, 'parpadea suavemente', JAR and Gradle Wrapper, directorio de usuario de Gradle, one sandbox gloss, arista punteada (hilo kept for I7), intervalo for tick, Estructura anónima, interfaz local; I25 comma-before-y and NBSP-before-% fixes the new lints raised; code-span, slice/porción, five-positions and Double.isNaN rewrites rejected (SI-003 already logs it); 17 dispositions; diagram renders at 12.0 pt; verify --fast OK
 99 P3C-011 done src/KotlinChallenge1/README.md corrected through its PO (51 segments): sentencia and adaptación, 'Cuerpo vacío del for', 'Cadena de llamadas a also' (identifier literal), 'la llamada a let { false }' (I21 rejects a dotted token), pull kept as 'demanda (pull)' (I7), JAR and Gradle Wrapper, directorio de usuario de Gradle, one sandbox gloss, I25 comma fix; code-span and added first-iteration explanation rejected (SI-008 already logs no-semicolons); 7 dispositions; diagram renders at 12.0 pt; verify --fast OK
+100 P3C-012 done src/LinqChallenge1/README.md corrected through its PO (51 segments): sentencia de expresión, función auxiliar, evaluación inmediata and etapas diferidas, reducción (*fold*), despachador de WPF, one sandbox gloss with imperative set-up sentence, edge label 'demanda' (render failure fixed), diagram labels shortened but keeping Aggregate/1/AsEnumerable/40 (I21, I3, I7) so it renders at 12.0 pt; teaches line already identical; 8 dispositions; 2 I21 waivers for dotted calls in table rows; verify --fast OK
