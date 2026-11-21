@@ -220,27 +220,27 @@ msgstr "**Los límites entre proveedores son reales.** Todo lo anterior a ⟦COD
 #: lessons/languages/csharp-linq-xaml.md:77
 msgctxt "s-6012d197de37-0042"
 msgid "**Side effects in a lazy pipeline are a bug magnet**, and the entries make that visible."
-msgstr ""
+msgstr "**Los efectos secundarios en una canalización diferida son un imán para los bichos**, y las entradas lo hacen visible."
 
 #: lessons/languages/csharp-linq-xaml.md:79
 msgctxt "s-15bfd3a9b2bb-0043"
 msgid "Tags: deferred vs. immediate execution of each operator is **guaranteed** (documented). Tuple left-to-right evaluation is **guaranteed** by the C# spec. EF translating a given expression is **implementation-permitted** and depends on the provider."
-msgstr ""
+msgstr "Etiquetas: el comportamiento de ejecución diferida o inmediata de cada operador está **garantizado** (documentado). El orden de evaluación de izquierda a derecha de las tuplas está **garantizado** por la especificación de C#. El comportamiento por el cual EF traduce una expresión dada está **permitido por la implementación** y depende del proveedor."
 
 #: lessons/languages/csharp-linq-xaml.md:81
 msgctxt "s-299b7a6f9cbe-0044"
 msgid "Do this in production and you're fired"
-msgstr ""
+msgstr "Haz esto en producción y estás despedido"
 
 #: lessons/languages/csharp-linq-xaml.md:83
 msgctxt "s-f5b992b2eb3a-0045"
 msgid "**Hidden mutation.** Both ⟦CODE_0001⟧ accumulators are mutated in place (⟦CODE_0002⟧) - a pragmatic shortcut, not LINQ purity."
-msgstr ""
+msgstr "**Mutación oculta.** Ambos acumuladores ⟦CODE_0001⟧ se modifican in situ (⟦CODE_0002⟧). Es un atajo pragmático, no la pureza de LINQ."
 
 #: lessons/languages/csharp-linq-xaml.md:84
 msgctxt "s-e0552e754dbb-0046"
 msgid "**Re-enumeration runs the effects again.** A query with a side effect in a ⟦CODE_0001⟧ that is enumerated twice does the side effect twice."
-msgstr ""
+msgstr "**La enumeración repetida ejecuta de nuevo los efectos.** Una consulta con un efecto secundario en un ⟦CODE_0001⟧ que se enumera dos veces ejecuta el efecto secundario dos veces."
 
 #: lessons/languages/csharp-linq-xaml.md:85
 msgctxt "s-3da105dba771-0047"

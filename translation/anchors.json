@@ -4174,8 +4174,8 @@
     {
      "en": "Do this in production and you're fired",
      "en_id": "do-this-in-production-and-youre-fired-1",
-     "es": "Do this in production and you're fired",
-     "es_id": "do-this-in-production-and-youre-fired",
+     "es": "Haz esto en producción y estás despedido",
+     "es_id": "haz-esto-en-producción-y-estás-despedido-1",
      "level": 3,
      "line": 81
     },
@@ -4330,7 +4330,7 @@
     "computer-science-behind-this-page": "computer-science-behind-this-page",
     "deferred-execution-and-the-void-to-value-trick": "la-ejecución-diferida-y-el-truco-de-convertir-void-en-valor",
     "do-this-in-production-and-youre-fired": "haz-esto-en-producción-y-estás-despedido",
-    "do-this-in-production-and-youre-fired-1": "do-this-in-production-and-youre-fired",
+    "do-this-in-production-and-youre-fired-1": "haz-esto-en-producción-y-estás-despedido-1",
     "honest-fine-print": "honest-fine-print",
     "how-each-program-runs": "how-each-program-runs",
     "how-is-that-even-possible": "how-is-that-even-possible",

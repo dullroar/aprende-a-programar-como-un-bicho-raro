@@ -74,14 +74,14 @@ Desde [`LinqChallenge2/Program.cs` L53](../../src/LinqChallenge2/Program.cs#L53)
 
 - **LINQ es una canalización de ejecución, no solo un lenguaje de consulta.** Las etapas de evaluación inmediata o diferida y el proveedor (SQL u objetos) que ejecuta cada una determinan *cuándo ocurren tus efectos secundarios*. Mira la misma pregunta en [Haskell](haskell.md#lazy-io-as-control-flow).
 - **Los límites entre proveedores son reales.** Todo lo anterior a `AsEnumerable()` se convierte en SQL; todo lo posterior es C# que se ejecuta en tu proceso.
-- **Side effects in a lazy pipeline are a bug magnet**, and the entries make that visible.
+- **Los efectos secundarios en una canalización diferida son un imán para los bichos**, y las entradas lo hacen visible.
 
-Tags: deferred vs. immediate execution of each operator is **guaranteed** (documented). Tuple left-to-right evaluation is **guaranteed** by the C# spec. EF translating a given expression is **implementation-permitted** and depends on the provider.
+Etiquetas: el comportamiento de ejecución diferida o inmediata de cada operador está **garantizado** (documentado). El orden de evaluación de izquierda a derecha de las tuplas está **garantizado** por la especificación de C#. El comportamiento por el cual EF traduce una expresión dada está **permitido por la implementación** y depende del proveedor.
 
-### Do this in production and you're fired
+### Haz esto en producción y estás despedido
 
-- **Hidden mutation.** Both `Aggregate` accumulators are mutated in place (`list.Add`) - a pragmatic shortcut, not LINQ purity.
-- **Re-enumeration runs the effects again.** A query with a side effect in a `Select` that is enumerated twice does the side effect twice.
+- **Mutación oculta.** Ambos acumuladores `Aggregate` se modifican in situ (`list.Add`). Es un atajo pragmático, no la pureza de LINQ.
+- **La enumeración repetida ejecuta de nuevo los efectos.** Una consulta con un efecto secundario en un `Select` que se enumera dos veces ejecuta el efecto secundario dos veces.
 - **UI thread affinity.** Building and pumping a WPF window from inside a `Select` lambda only works because of the STA thread and `Application.Run()`; `ShutdownMode` is `OnExplicitShutdown` so the animation's `Completed` handler, not "last window closed", ends the app.
 - **Fixed data.** Both LINQ entries generate a *fixed* five 8-hour-day work week, not random 10 to 19 hour cards. See [blocking problems](../problemas-bloqueantes.md#c-and-linq).
 
