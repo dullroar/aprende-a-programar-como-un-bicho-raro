@@ -1208,3 +1208,4 @@
 {"segment_id": "s-81a18e88482a-0014", "ts": "2026-11-21T14:40:16Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
 {"segment_id": "s-30f7006fdea5-0022", "ts": "2026-11-21T14:40:16Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
 {"segment_id": "s-b41c50ab7de6-0049", "ts": "2026-11-21T14:40:16Z", "findings": ["I7: glossary term sandbox must be rendered 'entorno aislado (*sandbox*)'"]}
+{"segment_id": "s-499fe1efa6a6-0001", "ts": "2026-11-21T14:51:05Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}

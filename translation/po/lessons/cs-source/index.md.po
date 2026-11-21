@@ -1,0 +1,28 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lessons/cs-source/index.md:1
+msgctxt "s-039474a2967d-0000"
+msgid "Most computing books teach you *a language*. This part teaches you the *ideas* that the languages share. Each idea gets a short, plain explanation: why it exists, why people use it, when it is a good choice and when it is not. Then you see which entries in this repository use it, and you can go and read the code."
+msgstr "La mayoría de los libros de informática te enseñan *un lenguaje*. Esta parte te enseña las *ideas* que comparten los lenguajes. Para cada idea hay una explicación breve y sencilla. Verás por qué existe, por qué se usa y cuándo conviene usarla. También verás cuándo no conviene. Luego verás qué entradas de este repositorio usan esa idea y podrás leer el código."
+
+#: lessons/cs-source/index.md:3
+msgctxt "s-499fe1efa6a6-0001"
+msgid "The ideas are grouped into eight groups that build on each other, from \"what is a machine?\" to \"what happens when the machine's rules leak?\". A ninth group puts entries side by side, so you can see that very different programs play the same role. A tenth group returns to control flow with one more answer to \"what runs next?\": an event. Read them in order, or jump to a concept in the index at the end of this page."
+msgstr "Las ideas se organizan en ocho grupos. Cada grupo se apoya en los anteriores. Las preguntas van desde \"¿Qué es una máquina?\" hasta \"¿Qué pasa cuando se filtran las reglas de la máquina?\". Un noveno grupo pone las entradas lado a lado para que veas que programas muy distintos desempeñan el mismo papel. Un décimo grupo vuelve al flujo de control con otra respuesta a \"¿Qué se ejecuta después?\": un evento. Lee los grupos en orden o salta a un concepto en el índice al final de esta página."
+
+#: lessons/cs-source/index.md:5
+msgctxt "s-9c403aa8fc27-0002"
+msgid "Links in each concept go to Wikipedia first. Other links go only to sources that are old, stable and free to reuse, such as IETF RFCs, OWASP and MDN. If you want to add to the book, tag your own entry: see [⟦CODE_0001⟧](⟦DEST_0002⟧)."
+msgstr "Los primeros enlaces de cada concepto llevan a Wikipedia. Los demás solo llevan a fuentes antiguas, estables y de libre reutilización, como los RFC del IETF, OWASP y MDN. Si quieres contribuir al libro, etiqueta tu propia entrada. Consulta [⟦CODE_0001⟧](⟦DEST_0002⟧)."
+
+#: lessons/cs-source/index.md:7
+msgctxt "s-191aab0505ca-0003"
+msgid "The next two parts read the same material from other directions: [By language](⟦DEST_0001⟧) follows each language in turn, and [By solution patterns](⟦DEST_0002⟧) follows the mechanisms."
+msgstr "Las dos partes siguientes examinan el mismo material desde otras perspectivas. [Por lenguaje](⟦DEST_0001⟧) recorre los lenguajes uno por uno. [Por patrones de solución](⟦DEST_0002⟧) recorre los mecanismos."

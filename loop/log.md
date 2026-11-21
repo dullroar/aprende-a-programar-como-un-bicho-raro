@@ -98,3 +98,4 @@
 121 P4-src-14 done verified 179 GNU tar segments and both diagrams on the host, then staged and committed the preserved Codex CLI work.
 122 P4-src-15 done translated 181 Tcl and XAML README segments, recorded SI-018, regenerated anchors and relinked three files. Targeted and working-tree fast verification passed, with diagrams at 9.06, 12.00 and 9.55 pt.
 123 P4-chk-1 done release-mode checks passed for 46 translated files and the frozen lock; linked all 40 READMEs in the editorial checkpoint and set loop/STOP.
+124 P4-lessons-cs-source-1 done applied all four computer science index source segments, recorded EXC-216 and passed scoped and working-tree fast verification.

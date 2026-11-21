@@ -213,3 +213,4 @@
 {"id":"EXC-213","segment":"s-30f7006fdea5-0022","invariant":"I7","reason":"Build here means creating the next provider node during parsing, not compilation.","task":"P4-src-15"}
 {"id":"EXC-214","segment":"s-b41c50ab7de6-0049","invariant":"I7","reason":"Windows Sandbox is a product name in this heading. The first prose occurrence carries the approved gloss.","task":"P4-src-15"}
 {"id":"EXC-215","segment":"s-a2c44e4e627b-0028","invariant":"I7","reason":"Build means creating a ttk::treeview at runtime, not compilation.","task":"P4-src-15"}
+{"id":"EXC-216","segment":"s-499fe1efa6a6-0001","invariant":"I7","reason":"In 'eight groups that build on each other', the groups of ideas depend on earlier groups. No compilation takes place.","task":"P4-lessons-cs-source-1"}
