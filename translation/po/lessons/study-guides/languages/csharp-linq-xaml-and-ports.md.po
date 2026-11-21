@@ -1,0 +1,789 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:1
+msgctxt "s-66823296e852-0000"
+msgid "C#, LINQ, XAML and ports study guide"
+msgstr "Guía de estudio de C#, LINQ, XAML y adaptaciones"
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:3
+msgctxt "s-4e718de9279e-0001"
+msgid "What this guide is for"
+msgstr "Para qué sirve esta guía"
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:5
+msgctxt "s-6594dabf3d4e-0002"
+msgid "This guide reads the repository's C# family and its one-statement ports as one study: the original [⟦CODE_0001⟧](⟦DEST_0002⟧) (a ⟦CODE_0003⟧ statement with an empty body), the two LINQ entries [⟦CODE_0004⟧](⟦DEST_0005⟧) and [⟦CODE_0006⟧](⟦DEST_0007⟧), the markup interpreter [⟦CODE_0008⟧](⟦DEST_0009⟧) and the ports to [Java](⟦DEST_0010⟧), [Go](⟦DEST_0011⟧), [Kotlin](⟦DEST_0012⟧), [Python](⟦DEST_0013⟧) and [Rust](⟦DEST_0014⟧). The question is: **when one statement, one expression or one document is the whole program, what is each slot of the construct for, when does each part run and who owns the thread it runs on?**"
+msgstr "Esta guía estudia en conjunto la familia C# del repositorio y sus adaptaciones de una sola sentencia. Incluye el original [⟦CODE_0001⟧](⟦DEST_0002⟧) (una sentencia ⟦CODE_0003⟧ con el cuerpo vacío). Incluye también las dos entradas LINQ [⟦CODE_0004⟧](⟦DEST_0005⟧) y [⟦CODE_0006⟧](⟦DEST_0007⟧), el intérprete de marcado [⟦CODE_0008⟧](⟦DEST_0009⟧) y las adaptaciones a [Java](⟦DEST_0010⟧), [Go](⟦DEST_0011⟧), [Kotlin](⟦DEST_0012⟧), [Python](⟦DEST_0013⟧) y [Rust](⟦DEST_0014⟧). La pregunta es: **cuando una sentencia, una expresión o un documento es todo el programa, ¿para qué sirve cada ranura de la construcción? ¿Cuándo se ejecuta cada parte y quién es dueño del hilo en que se ejecuta?**"
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:7
+msgctxt "s-d84bcb27c154-0003"
+msgid "When you finish, you should be able to:"
+msgstr "Al terminar, deberías poder:"
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:9
+msgctxt "s-e8b7a853f6c6-0004"
+msgid ""
+"Name the three slots of the ⟦CODE_0001⟧ header (initializer, condition, iterator) and say what each carries in the original and in each port.\n"
+"2. Explain deferred execution: what a LINQ query holds, when it runs and why enumerating twice runs it twice.\n"
+"3. Explain where a provider boundary is (⟦CODE_0002⟧ to ⟦CODE_0003⟧) and why the position of ⟦CODE_0004⟧ matters.\n"
+"4. Explain how a markup parser can run a program, and why the loop in the XAML files had to be unrolled.\n"
+"5. Explain thread affinity: why WPF needs an STA thread and a dispatcher, and why the original guards EF Core's context with a mutex.\n"
+"6. Label each behavior as guaranteed, implementation-permitted or accidentally exploited, and say which claims were run and which were only read."
+msgstr ""
+"Nombrar las tres ranuras del encabezado ⟦CODE_0001⟧ (inicializador, condición e iterador) y decir qué lleva cada una en el original y en cada adaptación.\n"
+"2. Explicar la ejecución diferida: qué guarda una consulta LINQ, cuándo se ejecuta y por qué enumerarla dos veces la ejecuta dos veces.\n"
+"3. Explicar dónde está el límite del proveedor (de ⟦CODE_0002⟧ a ⟦CODE_0003⟧) y por qué importa la posición de ⟦CODE_0004⟧.\n"
+"4. Explicar cómo un analizador sintáctico de marcado puede ejecutar un programa y por qué hubo que desenrollar el bucle en los archivos XAML.\n"
+"5. Explicar la afinidad de hilo: por qué WPF necesita un hilo STA y un despachador, y por qué el original protege el contexto de EF Core con un mutex.\n"
+"6. Etiquetar cada comportamiento como garantizado, permitido por la implementación o aprovechado por accidente, y decir qué afirmaciones se ejecutaron y cuáles solo se leyeron."
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:16
+msgctxt "s-8c851ed5c3bf-0005"
+msgid "**Scope limits.** You need to read C# 9 or later and know what LINQ is. The guide does not teach WPF layout, EF Core mapping, Swing or Tk. It uses .NET 10. The book's page is [C#, LINQ and XAML (plus the one-statement ports)](⟦DEST_0001⟧). For ideas, see [Deferred execution](⟦DEST_0002⟧), [Thread safety and thread affinity](⟦DEST_0003⟧) and [Reading an adversarial program](⟦DEST_0004⟧)."
+msgstr "**Límites del alcance.** Necesitas leer C# 9 o posterior y saber qué es LINQ. La guía no enseña el diseño de WPF, el mapeo de EF Core, Swing ni Tk. Usa .NET 10. La página del libro es [C#, LINQ y XAML (más las adaptaciones de una sola sentencia)](⟦DEST_0001⟧). Para las ideas, consulta [Ejecución diferida](⟦DEST_0002⟧), [Seguridad entre hilos y afinidad de hilo](⟦DEST_0003⟧) y [Lectura de un programa adversarial](⟦DEST_0004⟧)."
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:18
+msgctxt "s-9d7e913da9e9-0006"
+msgid "**What was run for this guide.** The WPF, EF Core, XAML, Swing, Tk and GTK parts need Windows or a display and were **not run here**. Their traces are read from the source and marked \"read\". Two things *were* run: a console reduction of the ⟦CODE_0001⟧ header (WPF and EF removed, .NET 10), and the exercise-B7 deferred-execution experiment. Everything else is labeled."
+msgstr "**Qué se ejecutó para esta guía.** Las partes de WPF, EF Core, XAML, Swing, Tk y GTK necesitan Windows o una pantalla, y **no se ejecutaron aquí**. Sus trazas se leen del código fuente y se marcan como \"leído\". Se ejecutaron dos cosas: una reducción en consola del encabezado ⟦CODE_0001⟧ (sin WPF ni EF, con .NET 10) y el experimento de ejecución diferida del ejercicio B7. Todo lo demás está etiquetado."
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:20
+msgctxt "s-d5bfdd7d989d-0007"
+msgid "Before you begin"
+msgstr "Antes de empezar"
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:22
+msgctxt "s-9d25958a2f0e-0008"
+msgid "**Safety model.** Every entry writes fictional **⟦DNT_0001⟧** data to a local database or file, and none connects to a real time-reporting system. The XAML entry is the dangerous one: it runs *methods during parsing*, and a markup file that does this is a program. The book's [threat-model example](⟦DEST_0002⟧) and the repository's related project [xaml-write-and-run](⟦DEST_0003⟧) show what that makes possible. Read the source first, and run the WPF entries only in Windows Sandbox:"
+msgstr "**Modelo de seguridad.** Toda entrada escribe datos ficticios de **⟦DNT_0001⟧** en una base de datos o un archivo locales, y ninguna se conecta a un sistema real de reporte de horas. La entrada XAML es la peligrosa: ejecuta *métodos durante el análisis sintáctico*, y un archivo de marcado que hace eso es un programa. El [ejemplo del modelo de amenazas](⟦DEST_0002⟧) del libro y el proyecto relacionado del repositorio [xaml-write-and-run](⟦DEST_0003⟧) muestran lo que eso hace posible. Lee primero el código fuente y ejecuta las entradas de WPF solo en Windows Sandbox:"
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:29
+msgctxt "s-e018b8b4b31c-0009"
+msgid "The ports for Go, Java, Kotlin, Python and Rust run in the Linux sandbox with ⟦CODE_0001⟧. Edit only copies ([Running things safely](⟦DEST_0002⟧))."
+msgstr "Las adaptaciones a Go, Java, Kotlin, Python y Rust se ejecutan en el entorno aislado (*sandbox*) de Linux, que limita el acceso al sistema anfitrión, con ⟦CODE_0001⟧. Edita solo copias ([Ejecutar cosas con seguridad](⟦DEST_0002⟧))."
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:31
+msgctxt "s-3bb9acbfbbe9-0010"
+msgid "**Prediction rule.** Before each run, write down what runs *first*, what is deferred and on which thread. In this family the order of evaluation is the program."
+msgstr "**Regla de predicción.** Antes de cada ejecución, anota qué se ejecuta *primero*, qué queda diferido y en qué hilo. En esta familia el orden de evaluación es el programa."
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:33
+msgctxt "s-2dd18ffddf3e-0011"
+msgid "**Vocabulary.**"
+msgstr "**Vocabulario.**"
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:35
+msgctxt "s-790e521777f0-0012"
+msgid "⟦SEP_0001⟧ Term ⟦SEP_0002⟧ Meaning here ⟦SEP_0003⟧"
+msgstr "⟦SEP_0001⟧ Término ⟦SEP_0002⟧ Significado aquí ⟦SEP_0003⟧"
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:37
+msgctxt "s-b04af511bdbf-0013"
+msgid "⟦SEP_0001⟧ Deferred execution ⟦SEP_0002⟧ A query is a description. It runs when something enumerates it, and again each time. ⟦SEP_0003⟧"
+msgstr "⟦SEP_0001⟧ Ejecución diferida ⟦SEP_0002⟧ Una consulta es una descripción. Se ejecuta cuando algo la enumera, y otra vez cada vez que se enumera. ⟦SEP_0003⟧"
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:38
+msgctxt "s-5b3bc1a7891c-0014"
+msgid "⟦SEP_0002⟧ Provider ⟦SEP_0003⟧ The thing that turns a query into work: LINQ to Objects runs it in memory, EF Core's ⟦CODE_0001⟧ translates it to SQL. ⟦SEP_0004⟧"
+msgstr "⟦SEP_0002⟧ Proveedor ⟦SEP_0003⟧ Lo que convierte una consulta en trabajo: LINQ to Objects la ejecuta en memoria; el ⟦CODE_0001⟧ de EF Core la traduce a SQL. ⟦SEP_0004⟧"
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:39
+msgctxt "s-da1a7f8624fd-0015"
+msgid "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ A WPF type that constructs an object and calls a method *when it is parsed*. ⟦SEP_0004⟧"
+msgstr "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ Un tipo de WPF que construye un objeto y llama a un método *durante el análisis sintáctico*. ⟦SEP_0004⟧"
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:40
+msgctxt "s-cde88c2dff38-0016"
+msgid "⟦SEP_0001⟧ STA / dispatcher ⟦SEP_0002⟧ A single-threaded apartment, and WPF's message queue. UI objects belong to the thread that made them. ⟦SEP_0003⟧"
+msgstr "⟦SEP_0001⟧ STA / despachador de WPF ⟦SEP_0002⟧ Un apartamento de un solo hilo (*single-threaded apartment*) y la cola de mensajes de WPF. Los objetos de la interfaz pertenecen al hilo que los creó. ⟦SEP_0003⟧"
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:42
+msgctxt "s-ae7d69ef2745-0017"
+msgid "The shared challenge"
+msgstr "El reto compartido"
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:44
+msgctxt "s-78a7d749b03d-0018"
+msgid "The [challenge specification](⟦DEST_0001⟧) calls for cards with a category and 10 to 19 whole hours. Categories cycle through ⟦DNT_0002⟧, ⟦DNT_0003⟧, ⟦DNT_0004⟧ and ⟦DNT_0005⟧. Add each card's hours to the running total. Stop when the total passes 40. Keep the **first card that takes the total over 40**. A total of exactly 40 continues. Four 10-hour cards need a fifth card, in the ⟦DNT_0006⟧ category. Conforming runs finish with 3 to 5 cards and a total of 41 to 59 hours."
+msgstr "La [especificación del reto](⟦DEST_0001⟧) pide tarjetas con una categoría y de 10 a 19 horas enteras. Las categorías se repiten en ciclo: `⟦DNT_0002⟧`, `⟦DNT_0003⟧`, `⟦DNT_0004⟧` y `⟦DNT_0005⟧`. Suma las horas de cada tarjeta al total acumulado. Detente cuando el total pasa de 40. Conserva la **primera tarjeta con la que el total pasa de 40**. Un total de exactamente 40 continúa. Cuatro tarjetas de 10 horas necesitan una quinta tarjeta, de la categoría `⟦DNT_0006⟧`. Las ejecuciones conformes tienen de 3 a 5 tarjetas y un total de 41 a 59 horas."
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:46
+msgctxt "s-e1e0060d84b5-0019"
+msgid "The two LINQ demos and XAML depart from that contract. The older four-name headers explain how the same edge case used to affect the ports."
+msgstr "Las dos demos de LINQ y XAML se apartan de ese contrato. Los encabezados antiguos de cuatro nombres explican cómo afectaba antes el mismo caso límite a las adaptaciones."
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:48
+msgctxt "s-874a5dd005ab-0020"
+msgid ""
+"**⟦CODE_0001⟧ and ⟦CODE_0002⟧ do not draw random hours.** Their work week is five fixed 8-hour days, and they refuse any day that would push the total over 40. The result is exactly 40.0 hours over five rows, every run. They teach deferred execution, not the stop rule. Exercise E1 states this.\n"
+"2. **The ⟦CODE_0003⟧-header entries used to stop after four cards, and ⟦CODE_0004⟧ still does.** The original and the Java, Go, Kotlin, Python and Rust ports test ⟦CODE_0005⟧ and take each category once. In ⟦CODE_0006⟧ the condition is ⟦CODE_0007⟧, where ⟦CODE_0008⟧ is a one-pass enumerator. With four category names, a reduction of that header run in a console project with every card worth 10 hours stopped with ⟦CODE_0009⟧: one run in 10,000 for random hours, and a contradiction of \"exactly 40 continues\". The 2008 original had four names, and the entry READMEs described that faithfully. It is now fixed in ⟦CODE_0010⟧ and in all five ports by a fifth name (⟦CODE_0011⟧ repeats). After the fix, the same reduction stops with ⟦CODE_0012⟧, the C# project builds, Rust's unit tests pass (they now assert that exactly 40 continues) and Go, Java and Kotlin compile. The XAML entry's four unrolled passes still have the ceiling: a fifth pass could not be tested without Windows, so it was not added. With the shipped seed (⟦CODE_0013⟧: 16, 11, 11, 15) it deals four cards and ends at 53, so the case never arises unless you change the seed (exercise E2).\n"
+"3. **Storage depends on the XAML variant.** The EF Core variant has a SQLite trigger that deletes a row if the earlier rows already total over 40. The direct SQLite variant puts the equivalent test in the insert statement. Both keep the crossing card. The strict variant writes XML. See [where entries differ](⟦DEST_0014⟧)."
+msgstr ""
+"**⟦CODE_0001⟧ y ⟦CODE_0002⟧ no sortean horas al azar.** Su semana laboral son cinco días fijos de 8 horas, y rechazan cualquier día que haga que el total pase de 40. El resultado es exactamente 40.0 horas en cinco filas, en cada ejecución. Enseñan la ejecución diferida, no la regla de parada. El ejercicio E1 lo indica.\n"
+"2. **Las entradas con encabezado ⟦CODE_0003⟧ solían detenerse tras cuatro tarjetas, y ⟦CODE_0004⟧ todavía lo hace.** El original y las adaptaciones a Java, Go, Kotlin, Python y Rust prueban ⟦CODE_0005⟧ y toman cada categoría una sola vez. En ⟦CODE_0006⟧ la condición es ⟦CODE_0007⟧, donde ⟦CODE_0008⟧ es un enumerador de una sola pasada. Con cuatro nombres de categoría, una reducción de ese encabezado ejecutada en un proyecto de consola, con todas las tarjetas de 10 horas, se detuvo con ⟦CODE_0009⟧. Eso ocurre una vez de cada 10,000 con horas al azar y contradice la regla de que un total de exactamente 40 continúa. El original de 2008 tenía cuatro nombres, y los README de las entradas lo describían con fidelidad. Ahora está corregido en ⟦CODE_0010⟧ y en las cinco adaptaciones con un quinto nombre (⟦CODE_0011⟧ se repite). Tras la corrección, la misma reducción se detiene con ⟦CODE_0012⟧. El proyecto de C# compila. Las pruebas unitarias de Rust pasan (ahora afirman que un total de exactamente 40 continúa). Go, Java y Kotlin compilan. Las cuatro pasadas desenrolladas de la entrada XAML conservan el techo. No se pudo probar una quinta pasada sin Windows, así que no se agregó. Con la semilla incluida (⟦CODE_0013⟧: 16, 11, 11, 15) reparte cuatro tarjetas y termina en 53. Por eso el caso nunca se da, salvo que cambies la semilla (ejercicio E2).\n"
+"3. **El almacenamiento depende de la variante de XAML.** La variante con EF Core tiene un disparador de SQLite que borra una fila si las filas anteriores ya suman más de 40. La variante de SQLite directo pone la prueba equivalente en la sentencia de inserción. Ambas conservan la tarjeta que cruza el tope. La variante estricta escribe XML. Consulta [dónde difieren las entradas](⟦DEST_0014⟧)."
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:52
+msgctxt "s-9f148b367e02-0021"
+msgid "The machine to identify"
+msgstr "La máquina que hay que identificar"
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:54
+msgctxt "s-132a861c87bb-0022"
+msgid "**What repeats.** In ⟦CODE_0001⟧, the ⟦CODE_0002⟧ header: one statement, an empty body and three slots that do all the work. In ⟦CODE_0003⟧, nothing repeats: one expression is a chain of LINQ operators, and ⟦CODE_0004⟧ folds. In ⟦CODE_0005⟧, the same, in query syntax. In ⟦CODE_0006⟧, *nothing*: four copied passes, in document order. In the ports: a three-clause ⟦CODE_0007⟧ (Java, Go), ⟦CODE_0008⟧ (Kotlin), ⟦CODE_0009⟧ (Python), ⟦CODE_0010⟧ (Rust)."
+msgstr "**Qué se repite.** En ⟦CODE_0001⟧, el encabezado ⟦CODE_0002⟧: una sentencia, un cuerpo vacío y tres ranuras que hacen todo el trabajo. En ⟦CODE_0003⟧, nada se repite: una expresión es una cadena de operadores LINQ y ⟦CODE_0004⟧ reduce (*fold*). En ⟦CODE_0005⟧, lo mismo, con sintaxis de consulta. En ⟦CODE_0006⟧, *nada*: cuatro pasadas copiadas, en el orden del documento. En las adaptaciones: un ⟦CODE_0007⟧ de tres cláusulas (Java, Go), ⟦CODE_0008⟧ (Kotlin), ⟦CODE_0009⟧ (Python), ⟦CODE_0010⟧ (Rust)."
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:56
+msgctxt "s-6e885280ca7c-0023"
+msgid "**Where state lives.** In ⟦CODE_0001⟧, in one anonymous object in the initializer slot (hours list, category enumerator, database context, random source, WPF application, mutex). A ⟦CODE_0002⟧ initializer allows one declaration, and an anonymous object is the one declaration that holds many kinds of state. In the LINQ entries, in ⟦CODE_0003⟧ accumulators and in EF Core's change tracker. In ⟦CODE_0004⟧, in \"carrier\" arrays: one provider fills a ⟦CODE_0005⟧ or ⟦CODE_0006⟧, the next reads it. In Rust, in an immutable batch: \"adding\" a card returns a new batch."
+msgstr "**Dónde vive el estado.** En ⟦CODE_0001⟧, en un objeto anónimo en la ranura del inicializador (lista de horas, enumerador de categorías, contexto de base de datos, generador aleatorio, aplicación WPF, mutex). Un inicializador ⟦CODE_0002⟧ admite una sola declaración, y un objeto anónimo es la única declaración que contiene muchos tipos de estado. En las entradas LINQ, en los acumuladores de ⟦CODE_0003⟧ y en el rastreador de cambios de EF Core. En ⟦CODE_0004⟧, en arreglos \"portadores\": un proveedor llena un ⟦CODE_0005⟧ o un ⟦CODE_0006⟧ y el siguiente lo lee. En Rust, en un lote inmutable: \"agregar\" una tarjeta devuelve un lote nuevo."
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:58
+msgctxt "s-34828ce9f6d7-0024"
+msgid "**What advances the next step.** In the ⟦CODE_0001⟧ family, the iterator slot: draw hours and save one card. In the LINQ entries, the final ⟦CODE_0002⟧, which *demands* the lazy tail. In ⟦CODE_0003⟧, the parser reaching the next node."
+msgstr "**Qué hace avanzar el paso siguiente.** En la familia ⟦CODE_0001⟧, la ranura del iterador: sortea horas y guarda una tarjeta. En las entradas LINQ, el ⟦CODE_0002⟧ final, que *demanda* las etapas diferidas. En ⟦CODE_0003⟧, el analizador sintáctico al llegar al nodo siguiente."
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:60
+msgctxt "s-9a7debfea8a7-0025"
+msgid "**What stops it.** In the ⟦CODE_0001⟧ family, the condition slot: when the total passes 40 (or the categories run out), the conditional's else branch shows the window and returns ⟦CODE_0002⟧. In the LINQ entries, a prefix cap (⟦CODE_0003⟧ recomputes a running total, or ⟦CODE_0004⟧ refuses a day). In ⟦CODE_0005⟧, the trigger deletes late rows. In Rust, ⟦CODE_0006⟧ returns ⟦CODE_0007⟧."
+msgstr "**Qué lo detiene.** En la familia ⟦CODE_0001⟧, la ranura de la condición. Cuando el total pasa de 40 (o se acaban las categorías), la rama else del condicional muestra la ventana y devuelve ⟦CODE_0002⟧. En las entradas LINQ, un tope aplicado a un prefijo (⟦CODE_0003⟧ recalcula un total acumulado; ⟦CODE_0004⟧ rechaza un día). En ⟦CODE_0005⟧, el disparador borra las filas tardías. En Rust, ⟦CODE_0006⟧ devuelve ⟦CODE_0007⟧."
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:62
+msgctxt "s-0122119eb48f-0026"
+msgid "**What commits.** In ⟦CODE_0001⟧, each card is added to EF Core's context under a mutex and saved; the window is shown after the loop. In ⟦CODE_0002⟧, tracked entities are saved by one ⟦CODE_0003⟧ *eagerly*, inside the one statement but before the lazy stages. XAML providers invoke ⟦CODE_0004⟧ and ⟦CODE_0005⟧ in the EF Core variant, ⟦CODE_0006⟧ in the direct SQLite variant and ⟦CODE_0007⟧ in the strict variant."
+msgstr "**Qué confirma.** En ⟦CODE_0001⟧, cada tarjeta se agrega al contexto de EF Core bajo un mutex y se guarda. La ventana se muestra después del bucle. En ⟦CODE_0002⟧, un único ⟦CODE_0003⟧ guarda las entidades rastreadas con evaluación inmediata, dentro de la única sentencia pero antes de las etapas diferidas. Los proveedores de XAML invocan ⟦CODE_0004⟧ y ⟦CODE_0005⟧ en la variante de EF Core, ⟦CODE_0006⟧ en la variante de SQLite directo y ⟦CODE_0007⟧ en la variante estricta."
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:68
+msgctxt "s-e859753de2e4-0027"
+msgid "ModernChallenge1: a for statement whose false branch runs the WPF message loop"
+msgstr "ModernChallenge1: una sentencia for cuya rama falsa ejecuta el bucle de mensajes de WPF"
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:69
+msgctxt "s-17502b086883-0028"
+msgid "A flowchart. The initializer builds one anonymous object with the EF Core context, a category enumerator, a WPF Application, a Mutex and an XElement. The condition is true while the LINQ sum is 40 or less and MoveNext succeeds. Then the empty body runs and the iterator draws hours, adds a row to the context and starts a thread that waits on the Mutex and saves through MethodInfo.Invoke. When the condition is false, XamlReader.Load builds the window from a string and the XElement becomes its DoubleAnimation. Application.Run then runs the WPF message loop until the window closes, and IsNaN of its result is false, so the for ends."
+msgstr "Un diagrama de flujo. El inicializador construye un objeto anónimo con el contexto de EF Core, un enumerador de categorías, una Application de WPF, un Mutex y un XElement. La condición es verdadera mientras la suma de LINQ no pasa de 40 y MoveNext tiene éxito. Entonces se ejecuta el cuerpo vacío y el iterador sortea horas, agrega una fila al contexto e inicia un hilo que espera en el Mutex y guarda mediante MethodInfo.Invoke. Cuando la condición es falsa, XamlReader.Load construye la ventana a partir de una cadena de texto y el XElement se convierte en su DoubleAnimation. Después Application.Run ejecuta el bucle de mensajes de WPF hasta que se cierra la ventana. IsNaN de su resultado es false, así que el for termina."
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:70
+msgctxt "s-46d64ea40555-0029"
+msgid "Initializer: anonymous object holds EF context, enumerator, WPF Application, Mutex, XElement"
+msgstr "Inicializador: un objeto anónimo contiene el contexto de EF, el enumerador, la Application de WPF, el Mutex y el XElement"
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:70
+msgctxt "s-52802a150b88-0030"
+msgid "Condition: LINQ Sum <= 40 and MoveNext()?"
+msgstr "Condición: ¿LINQ Sum <= 40 y MoveNext()?"
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:71
+msgctxt "s-b5bea41b6c62-0031"
+msgid "true"
+msgstr "true"
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:71
+msgctxt "s-f4bc948d685c-0032"
+msgid "Empty body"
+msgstr "Cuerpo vacío"
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:72
+msgctxt "s-d46b287a5763-0033"
+msgid "Iterator: draw hours, add a row, start a Thread"
+msgstr "Iterador: sortea horas, agrega una fila e inicia un hilo"
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:74
+msgctxt "s-06c2c63db6b3-0034"
+msgid "Thread: Mutex.WaitOne, SaveChanges via MethodInfo.Invoke, ReleaseMutex"
+msgstr "Hilo: Mutex.WaitOne, SaveChanges mediante MethodInfo.Invoke, ReleaseMutex"
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:75
+msgctxt "s-fcbcf165908d-0035"
+msgid "false"
+msgstr "false"
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:75
+msgctxt "s-6fd9115565f9-0036"
+msgid "XamlReader.Load builds the window from a string; the XElement is its DoubleAnimation"
+msgstr "XamlReader.Load construye la ventana a partir de una cadena de texto; el XElement es su DoubleAnimation"
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:76
+msgctxt "s-ebf376cd33c9-0037"
+msgid "Application.Run: the WPF message loop runs until the window closes"
+msgstr "Application.Run: el bucle de mensajes de WPF se ejecuta hasta que la ventana se cierra"
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:77
+msgctxt "s-2be7e83d329f-0038"
+msgid "Double.IsNaN of the result is false: the for ends"
+msgstr "Double.IsNaN del resultado es false: el for termina"
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:80
+msgctxt "s-9d7e2ee23cf0-0039"
+msgid "The original's flow is a loop with a conditional exit. Its condition is eager: the query expression constructs a deferred ⟦CODE_0001⟧, then the terminal ⟦CODE_0002⟧ enumerates it immediately, on that condition check. This is the same placement of work as JavaScript's ⟦CODE_0003⟧. The LINQ demos below have deferred stages of their own and use terminal operators to run them."
+msgstr "El flujo del original es un bucle con una salida condicional. Su condición es de evaluación inmediata: la expresión de consulta construye un ⟦CODE_0001⟧ diferido, y el ⟦CODE_0002⟧ terminal lo enumera de inmediato, en esa comprobación de la condición. Es la misma colocación del trabajo que el ⟦CODE_0003⟧ de JavaScript. Las demos de LINQ siguientes tienen etapas diferidas propias y usan operadores terminales para ejecutarlas."
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:86
+msgctxt "s-2adfc2a9086c-0040"
+msgid "LinqChallenge1: an eager fold first, then a lazy tail that the last Aggregate forces"
+msgstr "LinqChallenge1: una reducción (*fold*) de evaluación inmediata primero y después etapas diferidas que el último Aggregate fuerza"
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:87
+msgctxt "s-989c13754935-0041"
+msgid "A flowchart with two groups. The eager group runs first because it is the innermost argument. An Aggregate folds the five fixed days into tracked entities and refuses a day that would pass 40 hours, and then the tuple calls SaveChanges. The deferred group is a chain of LINQ stages that does nothing until asked. The final Aggregate asks. That pulls the EF Core query and the return to objects, then a second Aggregate that folds the saved rows into a report, then the stage that builds and shows the window, then the stage that starts the pulse and calls Application.Run, which pumps the dispatcher until the window closes."
+msgstr "Un diagrama de flujo con dos grupos. El grupo de evaluación inmediata se ejecuta primero porque es el argumento más interno. Un Aggregate acumula los cinco días fijos en entidades rastreadas y rechaza un día que pasaría de 40 horas, y después la tupla llama a SaveChanges. El grupo de ejecución diferida es una cadena de etapas LINQ que no hace nada hasta que se le pide. El Aggregate final lo pide. Esa demanda (pull) activa la consulta de EF Core y el retorno a objetos, luego un segundo Aggregate que reduce las filas guardadas a un informe, luego la etapa que construye y muestra la ventana, y luego la etapa que inicia el pulso y llama a Application.Run, que mantiene en marcha el despachador de WPF hasta que se cierra la ventana."
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:88
+msgctxt "s-977cd518cc81-0042"
+msgid "Eager: runs first, as the innermost argument"
+msgstr "Evaluación inmediata"
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:89
+msgctxt "s-7eb5780a0dae-0043"
+msgid "Aggregate: fold the five fixed days into tracked entities, refuse a day that passes 40 h"
+msgstr "Aggregate: acumula días y rechaza lo que pasa de 40 h"
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:89
+msgctxt "s-9a7383040309-0044"
+msgid "Tuple element: SaveChanges runs after every entity is tracked"
+msgstr "SaveChanges: guarda las entidades"
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:91
+msgctxt "s-04fb89b926f0-0045"
+msgid "Deferred: nothing runs until the final Aggregate asks"
+msgstr "Ejecución diferida: espera al Aggregate final"
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:92
+msgctxt "s-4c84502cb4cf-0046"
+msgid "Repeat 1 then SelectMany: EF Core query, then AsEnumerable"
+msgstr "Repeat 1 y SelectMany: EF Core y AsEnumerable"
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:92
+msgctxt "s-08275778a777-0047"
+msgid "Aggregate: fold the saved rows into a report"
+msgstr "Aggregate: reduce las filas a un informe"
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:93
+msgctxt "s-c5ba09ceeac5-0048"
+msgid "Select: build and show the WPF window"
+msgstr "Select: construye y muestra la ventana WPF"
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:94
+msgctxt "s-1071fae62639-0049"
+msgid "Select: start the pulse, Application.Run pumps the dispatcher until the window closes"
+msgstr "Select: inicia el pulso y llama a Application.Run"
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:97
+msgctxt "s-b50aceefe4f3-0050"
+msgid "Final Aggregate: the demand that forces the whole tail"
+msgstr "Aggregate final: la demanda"
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:97
+msgctxt "s-725aca9fc384-0051"
+msgid "pulls"
+msgstr "demanda"
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:100
+msgctxt "s-e0cc435ba38e-0052"
+msgid "LinqChallenge1 has no loop. It has an eager group that runs first, and a lazy group that the last ⟦CODE_0001⟧ pulls."
+msgstr "LinqChallenge1 no tiene bucle. Tiene un grupo de evaluación inmediata que se ejecuta primero y un grupo diferido que el último ⟦CODE_0001⟧ pone en marcha con una demanda (pull)."
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:106
+msgctxt "s-77685a4ca1b0-0053"
+msgid "LinqChallenge2: query syntax over the five fixed days, forced by one Single"
+msgstr "LinqChallenge2: sintaxis de consulta sobre los cinco días fijos, forzada por un único Single"
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:107
+msgctxt "s-5d69f9119900-0054"
+msgid "A flowchart. The first query ranges over the five fixed days. Its where clause recomputes the running total as a prefix sum, with no accumulator, and keeps a day only while the total is 40 or less. A let clause wraps the EF Core Add in a one-row query to get a value from a void call. SaveChanges follows. The second query ranges over the EF Core query for this run, crossing to objects with AsEnumerable. An Aggregate folds the saved rows into a report. Further let clauses, each a one-row query, build the window and the pulse. A final Single forces the lazy pipeline to run and returns its one value."
+msgstr "Un diagrama de flujo. La primera consulta recorre los cinco días fijos. Su cláusula where recalcula, sin acumulador, la suma acumulada de horas hasta ese día y conserva un día solo mientras ese total no pasa de 40. Una cláusula let envuelve el Add de EF Core en una consulta de una fila para obtener un valor de una llamada void. SaveChanges se ejecuta después, cuando EF Core ya rastrea las entidades. La segunda consulta recorre la consulta de EF Core de esta ejecución y pasa a objetos con AsEnumerable. Un Aggregate reduce las filas guardadas a un informe. Otras cláusulas let, cada una con una consulta de una fila, construyen la ventana y el pulso. Un Single final obliga a ejecutar la canalización perezosa y devuelve su único valor."
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:108
+msgctxt "s-4ecee0492c7c-0055"
+msgid "from day in WorkWeek: the five fixed days"
+msgstr "from day in WorkWeek: los cinco días fijos"
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:108
+msgctxt "s-966e59cd3aaa-0056"
+msgid "where: prefix sum of hours up to this day is 40 or less"
+msgstr "where: la suma acumulada de horas hasta este día es como máximo 40"
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:109
+msgctxt "s-8d76a700bb78-0057"
+msgid "let tracked: a one-row query wraps ctx.Timecards.Add"
+msgstr "let tracked: una consulta de una fila envuelve ctx.Timecards.Add"
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:110
+msgctxt "s-a4a265a76dda-0058"
+msgid "SaveChanges, after all days are tracked"
+msgstr "SaveChanges: se ejecuta cuando EF Core ya rastrea las entidades"
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:111
+msgctxt "s-5cc29a4ad136-0059"
+msgid "from persisted in the EF query, AsEnumerable: crossing to objects"
+msgstr "from persisted in: la consulta de EF; AsEnumerable: paso a objetos"
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:112
+msgctxt "s-08275778a777-0060"
+msgid "Aggregate: fold the saved rows into a report"
+msgstr "Aggregate: reduce las filas guardadas a un informe"
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:113
+msgctxt "s-a296386aacb3-0061"
+msgid "let window, let pulse: each a one-row query around a void WPF call"
+msgstr "let window, let pulse: cada una, una consulta de una fila alrededor de una llamada de WPF que devuelve void"
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:114
+msgctxt "s-1117ada4187e-0062"
+msgid "Single: forces the lazy pipeline and returns its one value"
+msgstr "Single: fuerza la canalización perezosa y devuelve su único valor"
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:117
+msgctxt "s-4b3141badbe2-0063"
+msgid "LinqChallenge2 is the same idea in query syntax, which the compiler rewrites into the same method calls."
+msgstr "LinqChallenge2 es la misma idea en sintaxis de consulta, que el compilador reescribe como las mismas llamadas a métodos."
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:123
+msgctxt "s-aacd2ca1e310-0064"
+msgid "xaml: parsing the file is running the program"
+msgstr "xaml: el análisis sintáctico del archivo ejecuta el programa"
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:124
+msgctxt "s-81a18e88482a-0065"
+msgid "A sequence diagram of efcore.xaml. Loader.Main creates the data folder and calls XamlReader.Load. The XAML parser builds the nodes in document order, and each ObjectDataProvider fires as soon as it is built. Four unrolled passes each draw a random number into a carrier array, build a card from it, and insert it with EF Core. A SQL trigger deletes a row if the earlier rows already total more than 40. The parser returns the finished window. Application.Run then shows the window, a Loaded event trigger starts the fade storyboard, and the run ends when the window closes."
+msgstr "Diagrama de secuencia de efcore.xaml. Loader.Main crea la carpeta de datos y llama a XamlReader.Load. El analizador sintáctico de XAML crea los nodos en el orden del documento. Cada ObjectDataProvider se activa en cuanto se crea. En cada una de las cuatro pasadas desenrolladas, se sortea un número y se guarda en un arreglo portador. Con ese número se crea una tarjeta que EF Core inserta. Un disparador SQL borra la fila si el total de las filas anteriores pasa de 40. El analizador devuelve la ventana terminada. Application.Run muestra la ventana y un disparador del evento Loaded inicia la secuencia de animación del fundido. La ejecución termina cuando se cierra la ventana."
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:125
+msgctxt "s-fec9c373de26-0066"
+msgid "Loader.Main"
+msgstr "Loader.Main"
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:126
+msgctxt "s-ca7e957e5bc5-0067"
+msgid "XAML parser"
+msgstr "Analizador sintáctico de XAML"
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:127
+msgctxt "s-604937f2d90d-0068"
+msgid "ObjectDataProvider nodes"
+msgstr "Nodos ObjectDataProvider"
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:128
+msgctxt "s-7060870b0fb9-0069"
+msgid "SQLite and its trigger"
+msgstr "SQLite y su disparador"
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:129
+msgctxt "s-02eecfce218d-0070"
+msgid "Window and dispatcher"
+msgstr "Ventana y despachador de WPF"
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:130
+msgctxt "s-2c6ce628d00a-0071"
+msgid "XamlReader.Load(file)"
+msgstr "Carga el archivo: XamlReader.Load(file)"
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:131
+msgctxt "s-38dbd33e89cc-0072"
+msgid "four copies, in document order"
+msgstr "Cuatro copias en el orden del documento"
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:132
+msgctxt "s-30f7006fdea5-0073"
+msgid "build the next provider node: it fires at once"
+msgstr "El siguiente nodo proveedor se activa al crearse"
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:133
+msgctxt "s-5997f1a8f6ab-0074"
+msgid "random hours, via a carrier array, then Add and SaveChanges"
+msgstr "Horas al azar vía arreglo portador y luego Add y SaveChanges"
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:134
+msgctxt "s-a6dd903af968-0075"
+msgid "trigger deletes the row if earlier rows total over 40"
+msgstr "Borra la fila si el total anterior pasa de 40"
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:136
+msgctxt "s-dd416f87d168-0076"
+msgid "the finished Window object"
+msgstr "Objeto Window terminado"
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:137
+msgctxt "s-5d920155aef1-0077"
+msgid "Application.Run(window)"
+msgstr "Llama a Application.Run(window)"
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:138
+msgctxt "s-d0592762480b-0078"
+msgid "Loaded event trigger starts the fade storyboard"
+msgstr "El evento Loaded dispara el fundido"
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:139
+msgctxt "s-efeb796ab8c7-0079"
+msgid "the window closes and Run returns"
+msgstr "Se cierra la ventana y Run retorna"
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:142
+msgctxt "s-3f8357d9e178-0080"
+msgid "The XAML flow has no loop edge. The parser walks the document once."
+msgstr "El flujo de XAML no tiene arista de bucle. El analizador sintáctico recorre el documento una sola vez."
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:144
+msgctxt "s-67a72cdadc6f-0081"
+msgid "Trace one run"
+msgstr "Traza una ejecución"
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:146
+msgctxt "s-dc5764d5a1fd-0082"
+msgid "**⟦CODE_0001⟧: the header slots (header reduced and run).** With hours 15, 19, 12 the evaluations are:"
+msgstr "**⟦CODE_0001⟧: las ranuras del encabezado (encabezado reducido y ejecutado).** Con las horas 15, 19 y 12, las evaluaciones son:"
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:148
+msgctxt "s-629bda05167c-0083"
+msgid "⟦SEP_0002⟧ Evaluation ⟦SEP_0003⟧ Condition: ⟦CODE_0001⟧ ⟦SEP_0004⟧ Iterator slot (after the empty body) ⟦SEP_0005⟧ Sum after ⟦SEP_0006⟧"
+msgstr "⟦SEP_0002⟧ Evaluación ⟦SEP_0003⟧ Condición: ⟦CODE_0001⟧ ⟦SEP_0004⟧ Ranura del iterador (después del cuerpo vacío) ⟦SEP_0005⟧ Suma después ⟦SEP_0006⟧"
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:150
+msgctxt "s-05bee2a88156-0084"
+msgid "⟦SEP_0005⟧ 1 ⟦SEP_0006⟧ ⟦CODE_0001⟧ true, ⟦CODE_0002⟧ gives ⟦DNT_0003⟧: **true** ⟦SEP_0007⟧ Add 15 hours, card ⟦DNT_0004⟧ ⟦SEP_0008⟧ 15 ⟦SEP_0009⟧"
+msgstr "⟦SEP_0005⟧ 1 ⟦SEP_0006⟧ ⟦CODE_0001⟧ es true, ⟦CODE_0002⟧ da ⟦DNT_0003⟧: **true** ⟦SEP_0007⟧ Se suman 15 horas, tarjeta ⟦DNT_0004⟧ ⟦SEP_0008⟧ 15 ⟦SEP_0009⟧"
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:151
+msgctxt "s-5b552e93915e-0085"
+msgid "⟦SEP_0005⟧ 2 ⟦SEP_0006⟧ ⟦CODE_0001⟧ true, ⟦CODE_0002⟧ gives ⟦DNT_0003⟧ ⟦SEP_0007⟧ Add 19, ⟦DNT_0004⟧ ⟦SEP_0008⟧ 34 ⟦SEP_0009⟧"
+msgstr "⟦SEP_0005⟧ 2 ⟦SEP_0006⟧ ⟦CODE_0001⟧ es true, ⟦CODE_0002⟧ da ⟦DNT_0003⟧ ⟦SEP_0007⟧ Se suman 19, ⟦DNT_0004⟧ ⟦SEP_0008⟧ 34 ⟦SEP_0009⟧"
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:152
+msgctxt "s-da277eed4ba6-0086"
+msgid "⟦SEP_0005⟧ 3 ⟦SEP_0006⟧ ⟦CODE_0001⟧ true, ⟦CODE_0002⟧ gives ⟦DNT_0003⟧ ⟦SEP_0007⟧ Add 12, ⟦DNT_0004⟧ ⟦SEP_0008⟧ 46 ⟦SEP_0009⟧"
+msgstr "⟦SEP_0005⟧ 3 ⟦SEP_0006⟧ ⟦CODE_0001⟧ es true, ⟦CODE_0002⟧ da ⟦DNT_0003⟧ ⟦SEP_0007⟧ Se suman 12, ⟦DNT_0004⟧ ⟦SEP_0008⟧ 46 ⟦SEP_0009⟧"
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:153
+msgctxt "s-56fd6c98a27f-0087"
+msgid "⟦SEP_0005⟧ 4 ⟦SEP_0006⟧ ⟦CODE_0001⟧ false: ⟦CODE_0002⟧ **short-circuits**, ⟦CODE_0003⟧ is not called ⟦SEP_0007⟧ none ⟦SEP_0008⟧ else branch: show the window, return ⟦CODE_0004⟧ ⟦SEP_0009⟧"
+msgstr "⟦SEP_0005⟧ 4 ⟦SEP_0006⟧ ⟦CODE_0001⟧ es false: ⟦CODE_0002⟧ **hace cortocircuito** y no se llama a ⟦CODE_0003⟧ ⟦SEP_0007⟧ ninguna ⟦SEP_0008⟧ rama else: muestra la ventana y devuelve ⟦CODE_0004⟧ ⟦SEP_0009⟧"
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:155
+msgctxt "s-de426dc03206-0088"
+msgid "The category enumerator advances only when the total test passes, so it is consumed exactly once per card. In the all-10 reduction, with four names (before the fix) evaluation 5 was ⟦CODE_0001⟧ true and ⟦CODE_0002⟧ returned ⟦CODE_0003⟧ (the enumerator was exhausted), which stopped the loop at total 40. With five names the same evaluation returns the fifth name, a fifth 10-hour card is added, and evaluation 6 sees ⟦CODE_0004⟧ false and stops. The slot to name: the category enumerator is hidden state in the *condition*."
+msgstr "El enumerador de categorías avanza solo cuando la prueba del total tiene éxito, así que se consume exactamente una vez por tarjeta. En la reducción con todas las tarjetas de 10 horas y cuatro nombres (antes de la corrección), la evaluación 5 daba ⟦CODE_0001⟧ true. Entonces ⟦CODE_0002⟧ devolvía ⟦CODE_0003⟧ (el enumerador estaba agotado) y el bucle se detenía con un total de 40. Con cinco nombres, la misma evaluación devuelve el quinto nombre y se agrega una quinta tarjeta de 10 horas. La evaluación 6 ve ⟦CODE_0004⟧ false y se detiene. La ranura que hay que nombrar: el enumerador de categorías es estado oculto en la *condición*."
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:157
+msgctxt "s-2f0c4ac51a7c-0089"
+msgid "**LINQ: deferred execution (run).** The B7 experiment declares ⟦CODE_0001⟧. In a console project it printed:"
+msgstr "**LINQ: ejecución diferida (ejecutado).** El experimento B7 declara ⟦CODE_0001⟧. En un proyecto de consola imprimió:"
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:166
+msgctxt "s-713e1bd80b37-0090"
+msgid "Running the [B7 console fixture](⟦DEST_0001⟧) with .NET SDK 10.0.401 reproduces 0, 3, 6 and 3 effect lines. ⟦CODE_0002⟧ stores a description; each enumeration runs it again. A second experiment is this guide's own. It builds a lazy generator of cards (15, 19, 12, 10, 10) and takes ⟦CODE_0003⟧, which keeps the crossing card. It printed *four* ⟦CODE_0004⟧ lines for three kept cards. To keep the crossing card, ⟦CODE_0005⟧ must look at the card *after* it to see the test fail, so the generator drew one card too many. Haskell's ⟦CODE_0006⟧ has no such cost (see [Haskell](⟦DEST_0007⟧)). A cap that retains the crossing card without over-drawing needs a stateful iterator, such as the weird JavaScript machine's ⟦CODE_0008⟧ flag, or an ⟦CODE_0009⟧ that refuses."
+msgstr "Al ejecutar la [prueba de consola B7](⟦DEST_0001⟧) con el SDK de .NET 10.0.401 se reproducen 0, 3, 6 y 3 líneas de efecto. ⟦CODE_0002⟧ guarda una descripción; cada enumeración la ejecuta de nuevo. Un segundo experimento es propio de esta guía. Construye un generador perezoso de tarjetas (15, 19, 12, 10, 10) y toma ⟦CODE_0003⟧, que conserva la tarjeta que cruza el tope. Imprimió *cuatro* líneas ⟦CODE_0004⟧ para tres tarjetas conservadas. Para conservar esa tarjeta, ⟦CODE_0005⟧ debe mirar la tarjeta *siguiente* y ver que la prueba falla, así que el generador sorteó una tarjeta de más. El ⟦CODE_0006⟧ de Haskell no tiene ese costo (consulta [Haskell](⟦DEST_0007⟧)). Un tope que conserva esa tarjeta sin sortear de más necesita un iterador con estado. Un ejemplo es la bandera ⟦CODE_0008⟧ de la máquina rara de JavaScript. Otro es un ⟦CODE_0009⟧ que rechaza."
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:168
+msgctxt "s-4f8a0dac5111-0091"
+msgid "**⟦CODE_0001⟧: eager first, lazy second (read).** The innermost ⟦CODE_0002⟧ folds the five fixed days into tracked entities and runs first, because it is the innermost argument. The tuple ⟦CODE_0003⟧ evaluates left to right, so ⟦CODE_0004⟧ runs after every entity is tracked. Then a chain of ⟦CODE_0005⟧ and ⟦CODE_0006⟧ stages does nothing until the final ⟦CODE_0007⟧ pulls: query, fold, build the window, pulse and ⟦CODE_0008⟧. The reported total is 40.0 for five rows."
+msgstr "**⟦CODE_0001⟧: evaluación inmediata primero, diferida después (leído).** El ⟦CODE_0002⟧ más interno reduce los cinco días fijos a entidades rastreadas y se ejecuta primero, porque es el argumento más interno. La tupla ⟦CODE_0003⟧ se evalúa de izquierda a derecha, así que ⟦CODE_0004⟧ se ejecuta después de que todas las entidades estén rastreadas. Luego viene una cadena de etapas ⟦CODE_0005⟧ y ⟦CODE_0006⟧. No hace nada hasta que el ⟦CODE_0007⟧ final la pone en marcha con una demanda (pull). Esa demanda recorre la consulta, la reducción, la construcción de la ventana, el pulso y ⟦CODE_0008⟧. El total informado es 40.0 para cinco filas."
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:170
+msgctxt "s-95e995b53ed2-0092"
+msgid "**⟦CODE_0001⟧: document order (read).** With hours 15, 19, 12 and a fourth draw of 14: pass 1 inserts 15 (total 15), pass 2 inserts 19, pass 3 inserts 12, pass 4 inserts 14. A trigger on insert deletes any row whose earlier rows already total over 40. Rows 1 to 3 have earlier totals of 0, 15 and 34, so they stay. Row 4's earlier rows total 46, so it is deleted. Three cards remain. The parser then returns the window."
+msgstr "**⟦CODE_0001⟧: el orden del documento (leído).** Las horas son 15, 19 y 12, con un cuarto sorteo de 14. La pasada 1 inserta 15 (total 15). La pasada 2 inserta 19. La pasada 3 inserta 12. La pasada 4 inserta 14. Un disparador de inserción borra toda fila cuyas filas anteriores ya suman más de 40. Las filas 1 a 3 tienen totales anteriores de 0, 15 y 34, así que se quedan. Las filas anteriores a la fila 4 suman 46, así que se borra. Quedan tres tarjetas. Entonces el analizador sintáctico devuelve la ventana."
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:172
+msgctxt "s-405c1b857089-0093"
+msgid "Compare the ordinary and weird designs"
+msgstr "Compara los diseños ordinarios y los raros"
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:174
+msgctxt "s-50ecf3cfdc8a-0094"
+msgid "⟦SEP_0003⟧ Dimension ⟦SEP_0004⟧ Ordinary program ⟦SEP_0005⟧ ⟦CODE_0001⟧ ⟦SEP_0006⟧ LINQ entries ⟦SEP_0007⟧ ⟦CODE_0002⟧ ⟦SEP_0008⟧"
+msgstr "⟦SEP_0003⟧ Dimensión ⟦SEP_0004⟧ Programa ordinario ⟦SEP_0005⟧ ⟦CODE_0001⟧ ⟦SEP_0006⟧ Entradas LINQ ⟦SEP_0007⟧ ⟦CODE_0002⟧ ⟦SEP_0008⟧"
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:176
+msgctxt "s-7458d073c057-0095"
+msgid "⟦SEP_0004⟧ **Representation** ⟦SEP_0005⟧ A loop and a list ⟦SEP_0006⟧ ⟦CODE_0001⟧ with an empty body; state in an anonymous object ⟦SEP_0007⟧ One expression: LINQ operators and ⟦CODE_0002⟧ ⟦SEP_0008⟧ A document of ⟦CODE_0003⟧ nodes ⟦SEP_0009⟧"
+msgstr "⟦SEP_0004⟧ **Representación** ⟦SEP_0005⟧ Un bucle y una lista ⟦SEP_0006⟧ ⟦CODE_0001⟧ con cuerpo vacío; estado en un objeto anónimo ⟦SEP_0007⟧ Una expresión: operadores LINQ y ⟦CODE_0002⟧ ⟦SEP_0008⟧ Un documento de nodos ⟦CODE_0003⟧ ⟦SEP_0009⟧"
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:177
+msgctxt "s-66504ebded03-0096"
+msgid "⟦SEP_0001⟧ **Observability** ⟦SEP_0002⟧ Debugger on a loop ⟦SEP_0003⟧ Same, but the real work is in the header ⟦SEP_0004⟧ The expression's *order* is the program, and a breakpoint sees only one statement ⟦SEP_0005⟧ Parsing is running: nothing to step through but the parser ⟦SEP_0006⟧"
+msgstr "⟦SEP_0001⟧ **Observabilidad** ⟦SEP_0002⟧ Depurador sobre un bucle ⟦SEP_0003⟧ Igual, pero el trabajo real está en el encabezado ⟦SEP_0004⟧ El *orden* de la expresión es el programa, y un punto de interrupción ve solo una sentencia ⟦SEP_0005⟧ El análisis sintáctico es ejecución: no hay nada que recorrer paso a paso salvo el analizador sintáctico ⟦SEP_0006⟧"
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:178
+msgctxt "s-1b92c492832e-0097"
+msgid "⟦SEP_0004⟧ **Tests** ⟦SEP_0005⟧ Unit-test a function ⟦SEP_0006⟧ ⟦CODE_0001⟧-style structural checks ⟦SEP_0007⟧ ⟦CODE_0002⟧ forbids helper names such as ⟦CODE_0003⟧ and checks the persisted 40.0 h ⟦SEP_0008⟧ Windows Sandbox run: the harness closes the window ⟦SEP_0009⟧"
+msgstr "⟦SEP_0004⟧ **Pruebas** ⟦SEP_0005⟧ Prueba unitaria de una función ⟦SEP_0006⟧ Comprobaciones estructurales al estilo de ⟦CODE_0001⟧ ⟦SEP_0007⟧ ⟦CODE_0002⟧ prohíbe nombres auxiliares como ⟦CODE_0003⟧ y comprueba las 40.0 h persistidas ⟦SEP_0008⟧ Ejecución en Windows Sandbox: el arnés cierra la ventana ⟦SEP_0009⟧"
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:179
+msgctxt "s-e3aafc46d77c-0098"
+msgid "⟦SEP_0002⟧ **⟦DNT_0001⟧** ⟦SEP_0003⟧ Standard ⟦SEP_0004⟧ Standard ⟦SEP_0005⟧ Deferred stages hide when effects run ⟦SEP_0006⟧ A bad provider fails at *parse time*, and the error points at markup ⟦SEP_0007⟧"
+msgstr "⟦SEP_0002⟧ **⟦DNT_0001⟧** ⟦SEP_0003⟧ Estándar ⟦SEP_0004⟧ Estándar ⟦SEP_0005⟧ Las etapas diferidas ocultan cuándo se ejecutan los efectos ⟦SEP_0006⟧ Un proveedor defectuoso falla en el *momento del análisis sintáctico*, y el error apunta al marcado ⟦SEP_0007⟧"
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:180
+msgctxt "s-278d1379bb2f-0099"
+msgid "⟦SEP_0002⟧ **Portability** ⟦SEP_0003⟧ Any C# ⟦SEP_0004⟧ Windows only (WPF) ⟦SEP_0005⟧ Windows only (WPF, EF Core, SQLite) ⟦SEP_0006⟧ Windows only; ⟦CODE_0001⟧ needs only .NET, the others add packages ⟦SEP_0007⟧"
+msgstr "⟦SEP_0002⟧ **Portabilidad** ⟦SEP_0003⟧ Cualquier C# ⟦SEP_0004⟧ Solo Windows (WPF) ⟦SEP_0005⟧ Solo Windows (WPF, EF Core, SQLite) ⟦SEP_0006⟧ Solo Windows; ⟦CODE_0001⟧ solo necesita .NET, las demás añaden paquetes ⟦SEP_0007⟧"
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:181
+msgctxt "s-e107d58bfa21-0100"
+msgid "⟦SEP_0001⟧ **Cost** ⟦SEP_0002⟧ Normal ⟦SEP_0003⟧ Normal ⟦SEP_0004⟧ Re-enumeration reruns effects ⟦SEP_0005⟧ The loop is unrolled: four copies, with the category count baked into the markup ⟦SEP_0006⟧"
+msgstr "⟦SEP_0001⟧ **Costo** ⟦SEP_0002⟧ Normal ⟦SEP_0003⟧ Normal ⟦SEP_0004⟧ Enumerar de nuevo vuelve a ejecutar los efectos ⟦SEP_0005⟧ El bucle está desenrollado: cuatro copias, con el número de categorías fijado en el marcado ⟦SEP_0006⟧"
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:183
+msgctxt "s-88cdf327e11f-0101"
+msgid "The ports, side by side"
+msgstr "Las adaptaciones, lado a lado"
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:185
+msgctxt "s-d2458c1fe9a8-0102"
+msgid "All five ports keep \"one statement, empty body\". Each finds its own three clauses. The result uses the port's host interface: for example, Go serves its summary over local HTTP."
+msgstr "Las cinco adaptaciones conservan \"una sentencia, cuerpo vacío\". Cada una encuentra sus propias tres cláusulas. El resultado usa la interfaz del anfitrión de cada adaptación; por ejemplo, Go sirve su resumen por HTTP local."
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:187
+msgctxt "s-d76d0e42820e-0103"
+msgid "⟦SEP_0001⟧ Port ⟦SEP_0002⟧ Header mechanism ⟦SEP_0003⟧ State holder ⟦SEP_0004⟧ Stop test ⟦SEP_0005⟧"
+msgstr "⟦SEP_0001⟧ Adaptación ⟦SEP_0002⟧ Mecanismo del encabezado ⟦SEP_0003⟧ Contenedor del estado ⟦SEP_0004⟧ Prueba de parada ⟦SEP_0005⟧"
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:189
+msgctxt "s-c6ca26e6d159-0104"
+msgid "⟦SEP_0003⟧ Java ⟦SEP_0004⟧ ⟦CODE_0001⟧ ⟦SEP_0005⟧ anonymous class ⟦SEP_0006⟧ ⟦CODE_0002⟧ ⟦SEP_0007⟧"
+msgstr "⟦SEP_0003⟧ Java ⟦SEP_0004⟧ ⟦CODE_0001⟧ ⟦SEP_0005⟧ clase anónima ⟦SEP_0006⟧ ⟦CODE_0002⟧ ⟦SEP_0007⟧"
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:190
+msgctxt "s-7205703d66b9-0105"
+msgid "⟦SEP_0006⟧ Go ⟦SEP_0007⟧ a real three-clause ⟦CODE_0001⟧ ⟦SEP_0008⟧ a struct; helpers such as ⟦CODE_0002⟧ and ⟦CODE_0003⟧ in ⟦CODE_0004⟧ ⟦SEP_0009⟧ ⟦CODE_0005⟧ ⟦SEP_0010⟧"
+msgstr "⟦SEP_0006⟧ Go ⟦SEP_0007⟧ un ⟦CODE_0001⟧ real de tres cláusulas ⟦SEP_0008⟧ una estructura; auxiliares como ⟦CODE_0002⟧ y ⟦CODE_0003⟧ en ⟦CODE_0004⟧ ⟦SEP_0009⟧ ⟦CODE_0005⟧ ⟦SEP_0010⟧"
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:191
+msgctxt "s-dd53cd98197b-0106"
+msgid "⟦SEP_0005⟧ Kotlin ⟦SEP_0006⟧ ⟦CODE_0001⟧; a ⟦CODE_0002⟧ from ⟦CODE_0003⟧ ends it ⟦SEP_0007⟧ a class with a category iterator ⟦SEP_0008⟧ ⟦CODE_0004⟧; the body runs once before the first check ⟦SEP_0009⟧"
+msgstr "⟦SEP_0005⟧ Kotlin ⟦SEP_0006⟧ ⟦CODE_0001⟧; un ⟦CODE_0002⟧ desde ⟦CODE_0003⟧ lo termina ⟦SEP_0007⟧ una clase con un iterador de categorías ⟦SEP_0008⟧ ⟦CODE_0004⟧; el cuerpo se ejecuta una vez antes de la primera comprobación ⟦SEP_0009⟧"
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:192
+msgctxt "s-ea3923c6d474-0107"
+msgid "⟦SEP_0004⟧ Python ⟦SEP_0005⟧ ⟦CODE_0001⟧ ⟦SEP_0006⟧ an object holding a ⟦CODE_0002⟧ of categories ⟦SEP_0007⟧ ⟦CODE_0003⟧ ⟦SEP_0008⟧"
+msgstr "⟦SEP_0004⟧ Python ⟦SEP_0005⟧ ⟦CODE_0001⟧ ⟦SEP_0006⟧ un objeto que contiene un ⟦CODE_0002⟧ de categorías ⟦SEP_0007⟧ ⟦CODE_0003⟧ ⟦SEP_0008⟧"
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:193
+msgctxt "s-f40d2ab54f6b-0108"
+msgid "⟦SEP_0005⟧ Rust ⟦SEP_0006⟧ ⟦CODE_0001⟧ ⟦SEP_0007⟧ an immutable ⟦CODE_0002⟧; adding a card returns a new batch ⟦SEP_0008⟧ ⟦CODE_0003⟧ returns ⟦CODE_0004⟧ ⟦SEP_0009⟧"
+msgstr "⟦SEP_0005⟧ Rust ⟦SEP_0006⟧ ⟦CODE_0001⟧ ⟦SEP_0007⟧ un ⟦CODE_0002⟧ inmutable; agregar una tarjeta devuelve un lote nuevo ⟦SEP_0008⟧ ⟦CODE_0003⟧ devuelve ⟦CODE_0004⟧ ⟦SEP_0009⟧"
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:195
+msgctxt "s-f60edaf6a293-0109"
+msgid "The ports show that the \"bodiless loop\" is a *shape*, not a C# feature. What carries the weight differs: an anonymous object, a struct plus hidden helpers, a lazy sequence, a function called until it returns ⟦CODE_0001⟧ or an iterator of values. Go needed helpers because it is statement-oriented, and its README says so as the cost of the port."
+msgstr "Las adaptaciones muestran que el \"bucle sin cuerpo\" es una *forma*, no una característica de C#. Cambia lo que carga con el peso. Puede ser un objeto anónimo, una estructura con auxiliares ocultos o una secuencia perezosa. También puede ser una función a la que se llama hasta que devuelve ⟦CODE_0001⟧ o un iterador de valores. Go necesitó auxiliares porque está orientado a sentencias, y su README lo dice como el costo de la adaptación."
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:197
+msgctxt "s-716cae37520b-0110"
+msgid "What the exercises demonstrate"
+msgstr "Qué demuestran los ejercicios"
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:199
+msgctxt "s-d6a3ec9d5ed0-0111"
+msgid "⟦SEP_0001⟧ Exercise ⟦SEP_0002⟧ Predict first ⟦SEP_0003⟧ What the evidence shows ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ Ejercicio ⟦SEP_0002⟧ Predice primero ⟦SEP_0003⟧ Qué muestra la evidencia ⟦SEP_0004⟧"
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:201
+msgctxt "s-05508265c075-0112"
+msgid "⟦SEP_0010⟧ [B7. LINQ: enumerate twice](⟦DEST_0001⟧) ⟦SEP_0011⟧ How many ⟦CODE_0002⟧ lines after (a) declaring ⟦CODE_0003⟧, (b) one ⟦CODE_0004⟧, (c) ⟦CODE_0005⟧ and ⟦CODE_0006⟧, (d) ⟦CODE_0007⟧ then ⟦CODE_0008⟧ on the list? ⟦SEP_0012⟧ 0, 3, 6, 3. ⟦CODE_0009⟧ is deferred, and each enumeration reruns it. Verified in this guide too. ⟦SEP_0013⟧"
+msgstr "⟦SEP_0010⟧ [B7. LINQ: enumerar dos veces](⟦DEST_0001⟧) ⟦SEP_0011⟧ ¿Cuántas líneas ⟦CODE_0002⟧ hay después de (a) declarar ⟦CODE_0003⟧, (b) un ⟦CODE_0004⟧, (c) ⟦CODE_0005⟧ y ⟦CODE_0006⟧, (d) ⟦CODE_0007⟧ y luego ⟦CODE_0008⟧ sobre la lista? ⟦SEP_0012⟧ 0, 3, 6, 3. ⟦CODE_0009⟧ es diferido y cada enumeración lo vuelve a ejecutar. También se verificó en esta guía. ⟦SEP_0013⟧"
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:202
+msgctxt "s-b4ff63f419dc-0113"
+msgid "⟦SEP_0004⟧ B7, the seed ⟦SEP_0005⟧ The five hours for seed 42? ⟦SEP_0006⟧ ⟦CODE_0001⟧. A seeded ⟦CODE_0002⟧ gives the same cards on every run, which is why a ⟦CODE_0003⟧ file seeded with 42 is reproducible. ⟦SEP_0007⟧"
+msgstr "⟦SEP_0004⟧ B7, la semilla ⟦SEP_0005⟧ ¿Cuáles son las cinco horas para la semilla 42? ⟦SEP_0006⟧ ⟦CODE_0001⟧. Un ⟦CODE_0002⟧ con semilla da las mismas tarjetas en cada ejecución, y por eso un archivo ⟦CODE_0003⟧ con la semilla 42 es reproducible. ⟦SEP_0007⟧"
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:203
+msgctxt "s-8570a57f7a83-0114"
+msgid "⟦SEP_0003⟧ B7, the eager operator ⟦SEP_0004⟧ Which operator in ⟦CODE_0001⟧ is eager and forces the lazy stages after it? ⟦SEP_0005⟧ ⟦CODE_0002⟧. ⟦SEP_0006⟧"
+msgstr "⟦SEP_0003⟧ B7, el operador de evaluación inmediata ⟦SEP_0004⟧ ¿Qué operador de ⟦CODE_0001⟧ es de evaluación inmediata y fuerza las etapas diferidas que le siguen? ⟦SEP_0005⟧ ⟦CODE_0002⟧. ⟦SEP_0006⟧"
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:204
+msgctxt "s-7e8a2c3ac73b-0115"
+msgid "⟦SEP_0004⟧ [E1. Run and read the evidence](⟦DEST_0001⟧) (Windows) ⟦SEP_0005⟧ Which entry's rows total exactly 40 because the data is fixed? ⟦SEP_0006⟧ ⟦CODE_0002⟧. ⟦CODE_0003⟧ is the random one. ⟦SEP_0007⟧"
+msgstr "⟦SEP_0004⟧ [E1. Ejecuta y lee la evidencia](⟦DEST_0001⟧) (Windows) ⟦SEP_0005⟧ ¿Las filas de qué entrada dan un total de exactamente 40 porque los datos son fijos? ⟦SEP_0006⟧ ⟦CODE_0002⟧. ⟦CODE_0003⟧ es la aleatoria. ⟦SEP_0007⟧"
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:205
+msgctxt "s-d2a49a7f9eea-0116"
+msgid "⟦SEP_0007⟧ [E2. Change the XAML interpreter's seed](⟦DEST_0001⟧) (Windows) ⟦SEP_0008⟧ Change ⟦CODE_0002⟧ to ⟦CODE_0003⟧ in ⟦CODE_0004⟧. Do the hours change? ⟦SEP_0009⟧ Yes, and the same sequence every run of the same seed. The loop was unrolled four times because XAML has no loop (and a fifth pass has not been added, so ⟦CODE_0005⟧ is the one entry that cannot deal a fifth card), and the ⟦CODE_0006⟧ carriers play the part of variables. ⟦SEP_0010⟧"
+msgstr "⟦SEP_0007⟧ [E2. Cambia la semilla del intérprete de XAML](⟦DEST_0001⟧) (Windows) ⟦SEP_0008⟧ Cambia ⟦CODE_0002⟧ por ⟦CODE_0003⟧ en ⟦CODE_0004⟧. ¿Cambian las horas? ⟦SEP_0009⟧ Sí, y la misma secuencia en cada ejecución con la misma semilla. El bucle se desenrolló cuatro veces porque XAML no tiene bucle. No se agregó una quinta pasada, así que ⟦CODE_0005⟧ es la única entrada que no puede repartir una quinta tarjeta. Los portadores ⟦CODE_0006⟧ hacen el papel de variables. ⟦SEP_0010⟧"
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:206
+msgctxt "s-8a2ad552bd2b-0117"
+msgid "⟦SEP_0003⟧ [C1. Weird next to boring](⟦DEST_0001⟧) ⟦SEP_0004⟧ Compare ⟦CODE_0002⟧ with an ordinary C# loop. ⟦SEP_0005⟧ Same output contract; the original exposes its state in one anonymous object. ⟦SEP_0006⟧"
+msgstr "⟦SEP_0003⟧ [C1. Lo raro junto a lo aburrido](⟦DEST_0001⟧) ⟦SEP_0004⟧ Compara ⟦CODE_0002⟧ con un bucle ordinario de C#. ⟦SEP_0005⟧ Mismo contrato de salida; el original expone su estado en un único objeto anónimo. ⟦SEP_0006⟧"
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:208
+msgctxt "s-4fe97c469cdb-0118"
+msgid "Failure modes, costs and boundaries"
+msgstr "Modos de fallo, costos y límites"
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:210
+msgctxt "s-621aac5615e3-0119"
+msgid "⟦SEP_0001⟧ Behavior ⟦SEP_0002⟧ Label ⟦SEP_0003⟧ Why ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ Comportamiento ⟦SEP_0002⟧ Etiqueta ⟦SEP_0003⟧ Por qué ⟦SEP_0004⟧"
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:212
+msgctxt "s-86777e2ddc45-0120"
+msgid "⟦SEP_0004⟧ The B7 ⟦CODE_0001⟧ projection runs on enumeration, and the effect runs again on a second enumeration of that pipeline ⟦SEP_0005⟧ **guaranteed** ⟦SEP_0006⟧ The LINQ-to-Objects ⟦CODE_0002⟧ contract; verified by B7. In the header, ⟦CODE_0003⟧ enumerates the projection during every check. ⟦SEP_0007⟧"
+msgstr "⟦SEP_0004⟧ La proyección ⟦CODE_0001⟧ de B7 se ejecuta al enumerarla, y el efecto se vuelve a ejecutar en una segunda enumeración de esa canalización ⟦SEP_0005⟧ **garantizado** ⟦SEP_0006⟧ El contrato ⟦CODE_0002⟧ de LINQ to Objects; verificado por B7. En el encabezado, ⟦CODE_0003⟧ enumera la proyección en cada comprobación. ⟦SEP_0007⟧"
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:213
+msgctxt "s-a4bcc6c1b108-0121"
+msgid "⟦SEP_0002⟧ ⟦CODE_0001⟧ is eager ⟦SEP_0003⟧ **guaranteed** ⟦SEP_0004⟧ By definition: it consumes the sequence. ⟦SEP_0005⟧"
+msgstr "⟦SEP_0002⟧ ⟦CODE_0001⟧ es de evaluación inmediata ⟦SEP_0003⟧ **garantizado** ⟦SEP_0004⟧ Por definición: consume la secuencia. ⟦SEP_0005⟧"
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:214
+msgctxt "s-3efe005f7879-0122"
+msgid "⟦SEP_0002⟧ Tuple elements evaluate left to right ⟦SEP_0003⟧ **guaranteed** ⟦SEP_0004⟧ C# language rule. It is why ⟦CODE_0001⟧ runs after the entities are tracked. ⟦SEP_0005⟧"
+msgstr "⟦SEP_0002⟧ Los elementos de una tupla se evalúan de izquierda a derecha ⟦SEP_0003⟧ **garantizado** ⟦SEP_0004⟧ Regla del lenguaje C#. Por eso ⟦CODE_0001⟧ se ejecuta después de rastrear las entidades. ⟦SEP_0005⟧"
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:215
+msgctxt "s-2b25164086c5-0123"
+msgid "⟦SEP_0002⟧ ⟦CODE_0001⟧ short-circuits ⟦SEP_0003⟧ **guaranteed** ⟦SEP_0004⟧ C# language rule. It is why the category enumerator advances once per card. ⟦SEP_0005⟧"
+msgstr "⟦SEP_0002⟧ ⟦CODE_0001⟧ hace cortocircuito ⟦SEP_0003⟧ **garantizado** ⟦SEP_0004⟧ Regla del lenguaje C#. Por eso el enumerador de categorías avanza una vez por tarjeta. ⟦SEP_0005⟧"
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:216
+msgctxt "s-4a57bd673c24-0124"
+msgid "⟦SEP_0003⟧ ⟦CODE_0001⟧ operators translate to SQL until ⟦CODE_0002⟧, then run in memory ⟦SEP_0004⟧ **implementation-permitted** ⟦SEP_0005⟧ Provider behavior: what EF Core can translate is its own business, and a boundary in the wrong place changes where work runs. ⟦SEP_0006⟧"
+msgstr "⟦SEP_0003⟧ Los operadores ⟦CODE_0001⟧ se traducen a SQL hasta ⟦CODE_0002⟧ y luego se ejecutan en memoria ⟦SEP_0004⟧ **permitido por la implementación** ⟦SEP_0005⟧ Comportamiento del proveedor: lo que EF Core puede traducir es cosa suya, y un límite mal colocado cambia dónde se ejecuta el trabajo. ⟦SEP_0006⟧"
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:217
+msgctxt "s-c4b9f7ee29dc-0125"
+msgid "⟦SEP_0003⟧ ⟦CODE_0001⟧ runs ⟦CODE_0002⟧ methods at parse time ⟦SEP_0004⟧ **accidentally exploited** ⟦SEP_0005⟧ The XAML README classifies it so. WPF documents a declarative UI. Running a program is a side effect of how the parser constructs objects. ⟦SEP_0006⟧"
+msgstr "⟦SEP_0003⟧ ⟦CODE_0001⟧ ejecuta métodos ⟦CODE_0002⟧ en el momento del análisis sintáctico ⟦SEP_0004⟧ **aprovechado por accidente** ⟦SEP_0005⟧ El README de XAML lo clasifica así. WPF documenta una interfaz de usuario declarativa. Ejecutar un programa es un efecto secundario de cómo el analizador sintáctico construye los objetos. ⟦SEP_0006⟧"
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:218
+msgctxt "s-15dffce29401-0126"
+msgid "⟦SEP_0003⟧ ⟦CODE_0001⟧ reruns a provider, and an ⟦CODE_0002⟧ stops the parser unwrapping the call ⟦SEP_0004⟧ **accidentally exploited** ⟦SEP_0005⟧ Observed behavior the entry relies on. ⟦SEP_0006⟧"
+msgstr "⟦SEP_0003⟧ ⟦CODE_0001⟧ vuelve a ejecutar un proveedor, y un ⟦CODE_0002⟧ impide que el analizador sintáctico desenvuelva la llamada ⟦SEP_0004⟧ **aprovechado por accidente** ⟦SEP_0005⟧ Comportamiento observado en el que se apoya la entrada. ⟦SEP_0006⟧"
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:219
+msgctxt "s-100f53c61c75-0127"
+msgid "⟦SEP_0002⟧ A ⟦CODE_0001⟧ initializer takes one declaration, so state goes in one anonymous object ⟦SEP_0003⟧ **guaranteed** ⟦SEP_0004⟧ A C# grammar rule. ⟦SEP_0005⟧"
+msgstr "⟦SEP_0002⟧ Un inicializador ⟦CODE_0001⟧ admite una declaración, así que el estado va en un objeto anónimo ⟦SEP_0003⟧ **garantizado** ⟦SEP_0004⟧ Una regla de la gramática de C#. ⟦SEP_0005⟧"
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:220
+msgctxt "s-39636f684cec-0128"
+msgid "⟦SEP_0002⟧ ⟦CODE_0001⟧ is safe to use from several threads ⟦SEP_0003⟧ **guaranteed** ⟦SEP_0004⟧ Documented. ⟦SEP_0005⟧"
+msgstr "⟦SEP_0002⟧ ⟦CODE_0001⟧ admite el uso desde varios hilos ⟦SEP_0003⟧ **garantizado** ⟦SEP_0004⟧ Está documentado. ⟦SEP_0005⟧"
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:221
+msgctxt "s-0acf21befaaf-0129"
+msgid "⟦SEP_0003⟧ WPF objects belong to the thread that created them, and ⟦CODE_0001⟧ pumps the dispatcher ⟦SEP_0004⟧ **guaranteed** ⟦SEP_0005⟧ WPF's threading model. ⟦CODE_0002⟧ is required. ⟦SEP_0006⟧"
+msgstr "⟦SEP_0003⟧ Los objetos de WPF pertenecen al hilo que los creó, y ⟦CODE_0001⟧ mantiene en marcha el despachador de WPF ⟦SEP_0004⟧ **garantizado** ⟦SEP_0005⟧ El modelo de hilos de WPF. Se requiere ⟦CODE_0002⟧. ⟦SEP_0006⟧"
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:222
+msgctxt "s-7cb6afb967ce-0130"
+msgid "⟦SEP_0002⟧ A named ⟦CODE_0001⟧ can guard EF Core's non-thread-safe context ⟦SEP_0003⟧ **implementation-permitted** ⟦SEP_0004⟧ It works as a cross-thread lock. The original keeps a background thread only as \"a historic contrast\". ⟦SEP_0005⟧"
+msgstr "⟦SEP_0002⟧ Un ⟦CODE_0001⟧ con nombre puede proteger el contexto de EF Core, que no admite el acceso desde varios hilos ⟦SEP_0003⟧ **permitido por la implementación** ⟦SEP_0004⟧ Funciona como un bloqueo entre hilos. El original mantiene un hilo en segundo plano solo como \"un contraste histórico\". ⟦SEP_0005⟧"
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:224
+msgctxt "s-87d9e31bff8d-0131"
+msgid "**Costs to state.**"
+msgstr "**Costos que hay que declarar.**"
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:226
+msgctxt "s-58984dfa11c5-0132"
+msgid "**Thread affinity is part of the design.** The original saves on a background thread and guards EF Core's context with a mutex, because the context is not thread-safe. The window must be created and run on the STA thread. In the LINQ entries ⟦CODE_0001⟧ is called from inside a ⟦CODE_0002⟧ lambda, which is what pumps the dispatcher so the window paints. See [Thread safety and thread affinity](⟦DEST_0003⟧)."
+msgstr "**La afinidad de hilo forma parte del diseño.** El original guarda en un hilo en segundo plano y protege el contexto de EF Core con un mutex, porque el contexto no admite el acceso desde varios hilos. La ventana debe crearse y ejecutarse en el hilo STA. En las entradas LINQ se llama a ⟦CODE_0001⟧ desde una lambda ⟦CODE_0002⟧. Eso mantiene en marcha el despachador de WPF para que la ventana se dibuje. Consulta [Seguridad entre hilos y afinidad de hilo](⟦DEST_0003⟧)."
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:227
+msgctxt "s-8b096c942a9b-0133"
+msgid "**The provider boundary moves work.** A ⟦CODE_0001⟧ that EF Core can translate runs in the database. The same ⟦CODE_0002⟧ after ⟦CODE_0003⟧ runs in memory over every row."
+msgstr "**El límite del proveedor mueve el trabajo.** Un ⟦CODE_0001⟧ que EF Core puede traducir se ejecuta en la base de datos. El mismo ⟦CODE_0002⟧ después de ⟦CODE_0003⟧ se ejecuta en memoria sobre todas las filas."
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:228
+msgctxt "s-8d2b2a8a6e12-0134"
+msgid "**Hidden eagerness.** ⟦CODE_0001⟧ runs at one specific moment in the one statement, not at the final enumeration. \"All lazy\" is not true even of the lazy entry."
+msgstr "**Evaluación inmediata oculta.** ⟦CODE_0001⟧ se ejecuta en un momento concreto de la única sentencia, no en la enumeración final. \"Todo perezoso\" no es cierto ni siquiera en la entrada perezosa."
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:229
+msgctxt "s-5e034abb11d6-0135"
+msgid "**A parser that runs code.** Any program that loads XAML from a source it does not control is running that source. The XAML entry's own README says so."
+msgstr "**Un analizador sintáctico que ejecuta código.** Cualquier programa que carga XAML de una fuente que no controla está ejecutando esa fuente. El propio README de la entrada XAML lo dice."
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:230
+msgctxt "s-229c0d8ee3f8-0136"
+msgid "**Where the techniques are legitimate.** Deferred queries, providers and the dispatcher are ordinary. A statement made of one ⟦CODE_0001⟧ is a classroom exercise from 2008."
+msgstr "**Dónde son legítimas las técnicas.** Las consultas diferidas, los proveedores y el despachador de WPF son habituales. Una sentencia hecha de un solo ⟦CODE_0001⟧ es un ejercicio de clase de 2008."
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:232
+msgctxt "s-061eb6da82a8-0137"
+msgid "Connections across the repository"
+msgstr "Conexiones a lo largo del repositorio"
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:234
+msgctxt "s-dc5b9bfe9d45-0138"
+msgid "**The same question as Haskell and JavaScript.** Deferred LINQ pipelines, lazy lists in [Haskell](⟦DEST_0001⟧) and pull iteration in [JavaScript](⟦DEST_0002⟧) all ask when a description runs. [Evaluation, demand and laziness](⟦DEST_0003⟧) compares them. The difference worth remembering: Haskell remembers a computed value, and LINQ reruns."
+msgstr "**La misma pregunta que en Haskell y JavaScript.** Las canalizaciones LINQ diferidas, las listas perezosas de [Haskell](⟦DEST_0001⟧) y la iteración por demanda (pull) de [JavaScript](⟦DEST_0002⟧) preguntan lo mismo: cuándo se ejecuta una descripción. [Evaluación, demanda y pereza](⟦DEST_0003⟧) las compara. La diferencia que conviene recordar: Haskell recuerda un valor calculado y LINQ vuelve a ejecutar."
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:235
+msgctxt "s-fac4570f01cc-0139"
+msgid "**Document order as the program.** The XAML entry, [tar](⟦DEST_0001⟧) and [Tcl](⟦DEST_0002⟧) all make data into a program. The concept guide [Reading adversarial programs](⟦DEST_0003⟧) takes them as one case."
+msgstr "**El orden del documento como programa.** La entrada XAML, [tar](⟦DEST_0001⟧) y [Tcl](⟦DEST_0002⟧) convierten datos en un programa. La guía de concepto [Lectura de programas adversariales](⟦DEST_0003⟧) las toma como un solo caso."
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:236
+msgctxt "s-21ee56aaa270-0140"
+msgid "**The same four-card ceiling, now fixed.** The regex entries in [Regex engines and sed](⟦DEST_0001⟧) had it too, and were fixed the same way. [Comparative machine design](⟦DEST_0002⟧) lists which entries obey \"exactly 40 continues\"."
+msgstr "**El mismo techo de cuatro tarjetas, ya corregido.** Las entradas de regex de [Motores de regex y sed](⟦DEST_0001⟧) también lo tenían y se corrigieron del mismo modo. [Diseño comparativo de máquinas](⟦DEST_0002⟧) da la lista de las entradas que cumplen que un total de exactamente 40 continúa."
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:237
+msgctxt "s-7447d1bdcda9-0141"
+msgid "**Threads and callbacks.** [Events, callbacks and reactive control](⟦DEST_0001⟧) compares who owns the next turn, which is what the dispatcher decides here."
+msgstr "**Hilos y funciones de devolución de llamada.** [Eventos, funciones de devolución de llamada y control reactivo](⟦DEST_0001⟧) compara quién es dueño del turno siguiente, que es lo que decide aquí el despachador de WPF."
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:238
+msgctxt "s-9b59af69709e-0142"
+msgid "**In the book.** [C#, LINQ and XAML](⟦DEST_0001⟧), [Deferred execution](⟦DEST_0002⟧), [Domain-specific languages](⟦DEST_0003⟧) and [Arbitrary code execution](⟦DEST_0004⟧)."
+msgstr "**En el libro.** [C#, LINQ y XAML](⟦DEST_0001⟧), [Ejecución diferida](⟦DEST_0002⟧), [Lenguajes específicos de dominio](⟦DEST_0003⟧) y [Ejecución arbitraria de código](⟦DEST_0004⟧)."
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:240
+msgctxt "s-50944288ce61-0143"
+msgid "Self-check"
+msgstr "Autoevaluación"
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:242
+msgctxt "s-274e192b952c-0144"
+msgid "Answer each question in your own words before you read the italic text. Say what evidence would support each answer."
+msgstr "Responde cada pregunta con tus propias palabras antes de leer el texto en cursiva. Di qué evidencia respaldaría cada respuesta."
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:244
+msgctxt "s-10dbe7c73134-0145"
+msgid ""
+"**Trace.** In the ⟦CODE_0001⟧ header, hours are 13, 14, 13, 10. Give the sum when each condition runs, and say when ⟦CODE_0002⟧ is called. *(Conditions see sums 0, 13, 27, 40, then 50. ⟦CODE_0003⟧ is called on the first four, giving ⟦DNT_0004⟧, ⟦DNT_0005⟧, ⟦DNT_0006⟧ and ⟦DNT_0007⟧. The fifth condition has sum 50, so ⟦CODE_0008⟧ skips ⟦CODE_0009⟧. The fourth card is the crossing card.)*\n"
+"2. **Explain.** Why does ⟦CODE_0010⟧ followed by ⟦CODE_0011⟧ print the effects twice? What does that predict for the C# header? *(Each call enumerates the ⟦CODE_0012⟧ pipeline, so its effects run twice. In the header, each condition check constructs and immediately sums its projection, so the sum is computed before any next draw. Materializing the B7 projection with ⟦CODE_0013⟧ lets later consumers reuse its results.)*\n"
+"3. **Transfer.** Which construct in Python plays the part of the C# ⟦CODE_0014⟧ header's condition slot in ⟦CODE_0015⟧? *(The sentinel: the loop ends when ⟦CODE_0016⟧ returns ⟦CODE_0017⟧, so the stop test lives inside the function that makes the next card.)*\n"
+"4. **Evidence.** A reviewer says, \"Four 10-hour cards in a ⟦CODE_0018⟧-header entry continue to a fifth.\" Design a test that could fail. *(Reproduce the header with all-10 hours, as the reduction above did, and check for five cards and a total of 50. The negative control is the header with four names, which stops at four cards and 40. The reduction was run for C#. Rust's unit tests assert it directly, and Go, Java and Kotlin were only compiled, so for those it is read from the source.)*"
+msgstr ""
+"**Traza.** En el encabezado ⟦CODE_0001⟧, las horas son 13, 14, 13 y 10. Da la suma cuando se ejecuta cada condición y di cuándo se llama a ⟦CODE_0002⟧. *(Las condiciones ven las sumas 0, 13, 27, 40 y luego 50. Se llama a ⟦CODE_0003⟧ en las cuatro primeras y da ⟦DNT_0004⟧, ⟦DNT_0005⟧, ⟦DNT_0006⟧ y ⟦DNT_0007⟧. La quinta condición tiene la suma 50, así que ⟦CODE_0008⟧ omite ⟦CODE_0009⟧. La cuarta tarjeta es la que cruza el tope.)*\n"
+"2. **Explica.** ¿Por qué ⟦CODE_0010⟧ seguido de ⟦CODE_0011⟧ imprime los efectos dos veces? ¿Qué predice eso para el encabezado de C#? *(Cada llamada enumera la canalización ⟦CODE_0012⟧, así que sus efectos se ejecutan dos veces. En el encabezado, cada comprobación de la condición construye su proyección y la suma de inmediato, así que la suma se calcula antes de cualquier sorteo siguiente. Materializar la proyección de B7 con ⟦CODE_0013⟧ permite que los consumidores posteriores reutilicen sus resultados.)*\n"
+"3. **Transfiere.** ¿Qué construcción de Python hace el papel de la ranura de condición del encabezado ⟦CODE_0014⟧ de C# en ⟦CODE_0015⟧? *(El centinela: el bucle termina cuando ⟦CODE_0016⟧ devuelve ⟦CODE_0017⟧, así que la prueba de parada vive dentro de la función que produce la tarjeta siguiente.)*\n"
+"4. **Evidencia.** Una revisora dice: \"Cuatro tarjetas de 10 horas en una entrada con encabezado ⟦CODE_0018⟧ continúan con una quinta\". Diseña una prueba que pueda fallar. *(Reproduce el encabezado con todas las horas en 10, como hizo la reducción anterior, y comprueba que haya cinco tarjetas y un total de 50. El control negativo es el encabezado con cuatro nombres, que se detiene en cuatro tarjetas y 40. La reducción se ejecutó para C#. Las pruebas unitarias de Rust lo afirman directamente, y Go, Java y Kotlin solo se compilaron, así que en esos casos se lee del código fuente.)*"
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:249
+msgctxt "s-4082f515b2f4-0146"
+msgid "Further reading"
+msgstr "Lecturas adicionales"
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:251
+msgctxt "s-13985cdf2e6b-0147"
+msgid "[Language Integrated Query](⟦DEST_0001⟧) (Wikipedia): LINQ and its query syntax."
+msgstr "[Consulta integrada en el lenguaje](⟦DEST_0001⟧) (Wikipedia): LINQ y su sintaxis de consulta."
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:252
+msgctxt "s-0a0d73837682-0148"
+msgid "[Lazy evaluation](⟦DEST_0001⟧) (Wikipedia): the general idea behind deferred execution."
+msgstr "[Evaluación perezosa](⟦DEST_0001⟧) (Wikipedia): la idea general detrás de la ejecución diferida."
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:253
+msgctxt "s-80a276800b0c-0149"
+msgid "[XAML](⟦DEST_0001⟧) (Wikipedia): what XAML is for, and what its parser was never meant to be."
+msgstr "[XAML](⟦DEST_0001⟧) (Wikipedia): para qué sirve XAML y para qué nunca se pensó su analizador sintáctico."
+
+#: lessons/study-guides/languages/csharp-linq-xaml-and-ports.md:254
+msgctxt "s-b5ff721baf1c-0150"
+msgid "[Thread safety and thread affinity](⟦DEST_0001⟧) and [Deferred execution](⟦DEST_0002⟧) (this book): the two ideas that carry this family."
+msgstr "[Seguridad entre hilos y afinidad de hilo](⟦DEST_0001⟧) y [Ejecución diferida](⟦DEST_0002⟧) (este libro): las dos ideas que sostienen esta familia."

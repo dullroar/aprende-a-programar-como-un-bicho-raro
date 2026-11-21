@@ -1,160 +1,160 @@
-# C#, LINQ, XAML and ports study guide
+# Guía de estudio de C#, LINQ, XAML y adaptaciones
 
-## What this guide is for
+## Para qué sirve esta guía
 
-This guide reads the repository's C# family and its one-statement ports as one study: the original [`ModernChallenge1`](../../../src/ModernChallenge1/README.md) (a `for` statement with an empty body), the two LINQ entries [`LinqChallenge1`](../../../src/LinqChallenge1/README.md) and [`LinqChallenge2`](../../../src/LinqChallenge2/README.md), the markup interpreter [`xaml`](../../../src/xaml/README.md) and the ports to [Java](../../../src/JavaChallenge1/README.md), [Go](../../../src/GoChallenge1/README.md), [Kotlin](../../../src/KotlinChallenge1/README.md), [Python](../../../src/PythonChallenge1/README.md) and [Rust](../../../src/RustChallenge1/README.md). The question is: **when one statement, one expression or one document is the whole program, what is each slot of the construct for, when does each part run and who owns the thread it runs on?**
+Esta guía estudia en conjunto la familia C# del repositorio y sus adaptaciones de una sola sentencia. Incluye el original [`ModernChallenge1`](../../../src/ModernChallenge1/README.md) (una sentencia `for` con el cuerpo vacío). Incluye también las dos entradas LINQ [`LinqChallenge1`](../../../src/LinqChallenge1/README.md) y [`LinqChallenge2`](../../../src/LinqChallenge2/README.md), el intérprete de marcado [`xaml`](../../../src/xaml/README.md) y las adaptaciones a [Java](../../../src/JavaChallenge1/README.md), [Go](../../../src/GoChallenge1/README.md), [Kotlin](../../../src/KotlinChallenge1/README.md), [Python](../../../src/PythonChallenge1/README.md) y [Rust](../../../src/RustChallenge1/README.md). La pregunta es: **cuando una sentencia, una expresión o un documento es todo el programa, ¿para qué sirve cada ranura de la construcción? ¿Cuándo se ejecuta cada parte y quién es dueño del hilo en que se ejecuta?**
 
-When you finish, you should be able to:
+Al terminar, deberías poder:
 
-1. Name the three slots of the `for` header (initializer, condition, iterator) and say what each carries in the original and in each port.
-2. Explain deferred execution: what a LINQ query holds, when it runs and why enumerating twice runs it twice.
-3. Explain where a provider boundary is (`IQueryable` to `IEnumerable`) and why the position of `AsEnumerable()` matters.
-4. Explain how a markup parser can run a program, and why the loop in the XAML files had to be unrolled.
-5. Explain thread affinity: why WPF needs an STA thread and a dispatcher, and why the original guards EF Core's context with a mutex.
-6. Label each behavior as guaranteed, implementation-permitted or accidentally exploited, and say which claims were run and which were only read.
+1. Nombrar las tres ranuras del encabezado `for` (inicializador, condición e iterador) y decir qué lleva cada una en el original y en cada adaptación.
+2. Explicar la ejecución diferida: qué guarda una consulta LINQ, cuándo se ejecuta y por qué enumerarla dos veces la ejecuta dos veces.
+3. Explicar dónde está el límite del proveedor (de `IQueryable` a `IEnumerable`) y por qué importa la posición de `AsEnumerable()`.
+4. Explicar cómo un analizador sintáctico de marcado puede ejecutar un programa y por qué hubo que desenrollar el bucle en los archivos XAML.
+5. Explicar la afinidad de hilo: por qué WPF necesita un hilo STA y un despachador, y por qué el original protege el contexto de EF Core con un mutex.
+6. Etiquetar cada comportamiento como garantizado, permitido por la implementación o aprovechado por accidente, y decir qué afirmaciones se ejecutaron y cuáles solo se leyeron.
 
-**Scope limits.** You need to read C# 9 or later and know what LINQ is. The guide does not teach WPF layout, EF Core mapping, Swing or Tk. It uses .NET 10. The book's page is [C#, LINQ and XAML (plus the one-statement ports)](../../lenguajes/csharp-linq-xaml.md). For ideas, see [Deferred execution](../../informatica/04-evaluacion-y-demanda.md#deferred-execution), [Thread safety and thread affinity](../../informatica/07-efectos-errores-y-confirmacion.md#thread-safety-and-thread-affinity) and [Reading an adversarial program](../../informatica/01-lectura-de-un-programa-adversarial.md).
+**Límites del alcance.** Necesitas leer C# 9 o posterior y saber qué es LINQ. La guía no enseña el diseño de WPF, el mapeo de EF Core, Swing ni Tk. Usa .NET 10. La página del libro es [C#, LINQ y XAML (más las adaptaciones de una sola sentencia)](../../lenguajes/csharp-linq-xaml.md). Para las ideas, consulta [Ejecución diferida](../../informatica/04-evaluacion-y-demanda.md#deferred-execution), [Seguridad entre hilos y afinidad de hilo](../../informatica/07-efectos-errores-y-confirmacion.md#thread-safety-and-thread-affinity) y [Lectura de un programa adversarial](../../informatica/01-lectura-de-un-programa-adversarial.md).
 
-**What was run for this guide.** The WPF, EF Core, XAML, Swing, Tk and GTK parts need Windows or a display and were **not run here**. Their traces are read from the source and marked "read". Two things *were* run: a console reduction of the `for` header (WPF and EF removed, .NET 10), and the exercise-B7 deferred-execution experiment. Everything else is labeled.
+**Qué se ejecutó para esta guía.** Las partes de WPF, EF Core, XAML, Swing, Tk y GTK necesitan Windows o una pantalla, y **no se ejecutaron aquí**. Sus trazas se leen del código fuente y se marcan como "leído". Se ejecutaron dos cosas: una reducción en consola del encabezado `for` (sin WPF ni EF, con .NET 10) y el experimento de ejecución diferida del ejercicio B7. Todo lo demás está etiquetado.
 
-## Before you begin
+## Antes de empezar
 
-**Safety model.** Every entry writes fictional **DEMO ONLY** data to a local database or file, and none connects to a real time-reporting system. The XAML entry is the dangerous one: it runs *methods during parsing*, and a markup file that does this is a program. The book's [threat-model example](../../informatica/01-lectura-de-un-programa-adversarial.md#threat-model) and the repository's related project [xaml-write-and-run](https://github.com/dullroar/xaml-write-and-run) show what that makes possible. Read the source first, and run the WPF entries only in Windows Sandbox:
+**Modelo de seguridad.** Toda entrada escribe datos ficticios de **DEMO ONLY** en una base de datos o un archivo locales, y ninguna se conecta a un sistema real de reporte de horas. La entrada XAML es la peligrosa: ejecuta *métodos durante el análisis sintáctico*, y un archivo de marcado que hace eso es un programa. El [ejemplo del modelo de amenazas](../../informatica/01-lectura-de-un-programa-adversarial.md#threat-model) del libro y el proyecto relacionado del repositorio [xaml-write-and-run](https://github.com/dullroar/xaml-write-and-run) muestran lo que eso hace posible. Lee primero el código fuente y ejecuta las entradas de WPF solo en Windows Sandbox:
 
 ```powershell
 sandbox\windows\run.ps1 src\LinqChallenge1
 sandbox\windows\run.ps1 src\xaml -RunArgs strict.xaml
 ```
 
-The ports for Go, Java, Kotlin, Python and Rust run in the Linux sandbox with `sandbox/container/run-image.sh src/<entry>`. Edit only copies ([Running things safely](../../exercises.md#running-things-safely)).
+Las adaptaciones a Go, Java, Kotlin, Python y Rust se ejecutan en el entorno aislado (*sandbox*) de Linux, que limita el acceso al sistema anfitrión, con `sandbox/container/run-image.sh src/<entry>`. Edita solo copias ([Ejecutar cosas con seguridad](../../exercises.md#running-things-safely)).
 
-**Prediction rule.** Before each run, write down what runs *first*, what is deferred and on which thread. In this family the order of evaluation is the program.
+**Regla de predicción.** Antes de cada ejecución, anota qué se ejecuta *primero*, qué queda diferido y en qué hilo. En esta familia el orden de evaluación es el programa.
 
-**Vocabulary.**
+**Vocabulario.**
 
-| Term | Meaning here |
+| Término | Significado aquí |
 | --- | --- |
-| Deferred execution | A query is a description. It runs when something enumerates it, and again each time. |
-| Provider | The thing that turns a query into work: LINQ to Objects runs it in memory, EF Core's `IQueryable` translates it to SQL. |
-| `ObjectDataProvider` | A WPF type that constructs an object and calls a method *when it is parsed*. |
-| STA / dispatcher | A single-threaded apartment, and WPF's message queue. UI objects belong to the thread that made them. |
+| Ejecución diferida | Una consulta es una descripción. Se ejecuta cuando algo la enumera, y otra vez cada vez que se enumera. |
+| Proveedor | Lo que convierte una consulta en trabajo: LINQ to Objects la ejecuta en memoria; el `IQueryable` de EF Core la traduce a SQL. |
+| `ObjectDataProvider` | Un tipo de WPF que construye un objeto y llama a un método *durante el análisis sintáctico*. |
+| STA / despachador de WPF | Un apartamento de un solo hilo (*single-threaded apartment*) y la cola de mensajes de WPF. Los objetos de la interfaz pertenecen al hilo que los creó. |
 
-## The shared challenge
+## El reto compartido
 
-The [challenge specification](../../introduccion.md#what-the-challenge-does) calls for cards with a category and 10 to 19 whole hours. Categories cycle through Meetings, Coding, Debugging and Learning. Add each card's hours to the running total. Stop when the total passes 40. Keep the **first card that takes the total over 40**. A total of exactly 40 continues. Four 10-hour cards need a fifth card, in the Meetings category. Conforming runs finish with 3 to 5 cards and a total of 41 to 59 hours.
+La [especificación del reto](../../introduccion.md#what-the-challenge-does) pide tarjetas con una categoría y de 10 a 19 horas enteras. Las categorías se repiten en ciclo: `Meetings`, `Coding`, `Debugging` y `Learning`. Suma las horas de cada tarjeta al total acumulado. Detente cuando el total pasa de 40. Conserva la **primera tarjeta con la que el total pasa de 40**. Un total de exactamente 40 continúa. Cuatro tarjetas de 10 horas necesitan una quinta tarjeta, de la categoría `Meetings`. Las ejecuciones conformes tienen de 3 a 5 tarjetas y un total de 41 a 59 horas.
 
-The two LINQ demos and XAML depart from that contract. The older four-name headers explain how the same edge case used to affect the ports.
+Las dos demos de LINQ y XAML se apartan de ese contrato. Los encabezados antiguos de cuatro nombres explican cómo afectaba antes el mismo caso límite a las adaptaciones.
 
-1. **`LinqChallenge1` and `LinqChallenge2` do not draw random hours.** Their work week is five fixed 8-hour days, and they refuse any day that would push the total over 40. The result is exactly 40.0 hours over five rows, every run. They teach deferred execution, not the stop rule. Exercise E1 states this.
-2. **The `for`-header entries used to stop after four cards, and `xaml` still does.** The original and the Java, Go, Kotlin, Python and Rust ports test `total <= 40 && a category remains` and take each category once. In `ModernChallenge1` the condition is `Sum() <= 40d && i.categories.MoveNext()`, where `categories` is a one-pass enumerator. With four category names, a reduction of that header run in a console project with every card worth 10 hours stopped with `stop: total 40 after 4 cards`: one run in 10,000 for random hours, and a contradiction of "exactly 40 continues". The 2008 original had four names, and the entry READMEs described that faithfully. It is now fixed in `ModernChallenge1` and in all five ports by a fifth name (`Meetings` repeats). After the fix, the same reduction stops with `stop: total 50 after 5 cards`, the C# project builds, Rust's unit tests pass (they now assert that exactly 40 continues) and Go, Java and Kotlin compile. The XAML entry's four unrolled passes still have the ceiling: a fifth pass could not be tested without Windows, so it was not added. With the shipped seed (`Random(42)`: 16, 11, 11, 15) it deals four cards and ends at 53, so the case never arises unless you change the seed (exercise E2).
-3. **Storage depends on the XAML variant.** The EF Core variant has a SQLite trigger that deletes a row if the earlier rows already total over 40. The direct SQLite variant puts the equivalent test in the insert statement. Both keep the crossing card. The strict variant writes XML. See [where entries differ](../../introduccion.md#where-entries-differ).
+1. **`LinqChallenge1` y `LinqChallenge2` no sortean horas al azar.** Su semana laboral son cinco días fijos de 8 horas, y rechazan cualquier día que haga que el total pase de 40. El resultado es exactamente 40.0 horas en cinco filas, en cada ejecución. Enseñan la ejecución diferida, no la regla de parada. El ejercicio E1 lo indica.
+2. **Las entradas con encabezado `for` solían detenerse tras cuatro tarjetas, y `xaml` todavía lo hace.** El original y las adaptaciones a Java, Go, Kotlin, Python y Rust prueban `total <= 40 && a category remains` y toman cada categoría una sola vez. En `ModernChallenge1` la condición es `Sum() <= 40d && i.categories.MoveNext()`, donde `categories` es un enumerador de una sola pasada. Con cuatro nombres de categoría, una reducción de ese encabezado ejecutada en un proyecto de consola, con todas las tarjetas de 10 horas, se detuvo con `stop: total 40 after 4 cards`. Eso ocurre una vez de cada 10,000 con horas al azar y contradice la regla de que un total de exactamente 40 continúa. El original de 2008 tenía cuatro nombres, y los README de las entradas lo describían con fidelidad. Ahora está corregido en `ModernChallenge1` y en las cinco adaptaciones con un quinto nombre (`Meetings` se repite). Tras la corrección, la misma reducción se detiene con `stop: total 50 after 5 cards`. El proyecto de C# compila. Las pruebas unitarias de Rust pasan (ahora afirman que un total de exactamente 40 continúa). Go, Java y Kotlin compilan. Las cuatro pasadas desenrolladas de la entrada XAML conservan el techo. No se pudo probar una quinta pasada sin Windows, así que no se agregó. Con la semilla incluida (`Random(42)`: 16, 11, 11, 15) reparte cuatro tarjetas y termina en 53. Por eso el caso nunca se da, salvo que cambies la semilla (ejercicio E2).
+3. **El almacenamiento depende de la variante de XAML.** La variante con EF Core tiene un disparador de SQLite que borra una fila si las filas anteriores ya suman más de 40. La variante de SQLite directo pone la prueba equivalente en la sentencia de inserción. Ambas conservan la tarjeta que cruza el tope. La variante estricta escribe XML. Consulta [dónde difieren las entradas](../../introduccion.md#where-entries-differ).
 
-## The machine to identify
+## La máquina que hay que identificar
 
-**What repeats.** In `ModernChallenge1`, the `for` header: one statement, an empty body and three slots that do all the work. In `LinqChallenge1`, nothing repeats: one expression is a chain of LINQ operators, and `Aggregate` folds. In `LinqChallenge2`, the same, in query syntax. In `xaml`, *nothing*: four copied passes, in document order. In the ports: a three-clause `for` (Java, Go), `generateSequence` (Kotlin), `iter(step, False)` (Python), `std::iter::successors` (Rust).
+**Qué se repite.** En `ModernChallenge1`, el encabezado `for`: una sentencia, un cuerpo vacío y tres ranuras que hacen todo el trabajo. En `LinqChallenge1`, nada se repite: una expresión es una cadena de operadores LINQ y `Aggregate` reduce (*fold*). En `LinqChallenge2`, lo mismo, con sintaxis de consulta. En `xaml`, *nada*: cuatro pasadas copiadas, en el orden del documento. En las adaptaciones: un `for` de tres cláusulas (Java, Go), `generateSequence` (Kotlin), `iter(step, False)` (Python), `std::iter::successors` (Rust).
 
-**Where state lives.** In `ModernChallenge1`, in one anonymous object in the initializer slot (hours list, category enumerator, database context, random source, WPF application, mutex). A `for` initializer allows one declaration, and an anonymous object is the one declaration that holds many kinds of state. In the LINQ entries, in `Aggregate` accumulators and in EF Core's change tracker. In `xaml`, in "carrier" arrays: one provider fills a `char[]` or `byte[]`, the next reads it. In Rust, in an immutable batch: "adding" a card returns a new batch.
+**Dónde vive el estado.** En `ModernChallenge1`, en un objeto anónimo en la ranura del inicializador (lista de horas, enumerador de categorías, contexto de base de datos, generador aleatorio, aplicación WPF, mutex). Un inicializador `for` admite una sola declaración, y un objeto anónimo es la única declaración que contiene muchos tipos de estado. En las entradas LINQ, en los acumuladores de `Aggregate` y en el rastreador de cambios de EF Core. En `xaml`, en arreglos "portadores": un proveedor llena un `char[]` o un `byte[]` y el siguiente lo lee. En Rust, en un lote inmutable: "agregar" una tarjeta devuelve un lote nuevo.
 
-**What advances the next step.** In the `for` family, the iterator slot: draw hours and save one card. In the LINQ entries, the final `Aggregate`, which *demands* the lazy tail. In `xaml`, the parser reaching the next node.
+**Qué hace avanzar el paso siguiente.** En la familia `for`, la ranura del iterador: sortea horas y guarda una tarjeta. En las entradas LINQ, el `Aggregate` final, que *demanda* las etapas diferidas. En `xaml`, el analizador sintáctico al llegar al nodo siguiente.
 
-**What stops it.** In the `for` family, the condition slot: when the total passes 40 (or the categories run out), the conditional's else branch shows the window and returns `false`. In the LINQ entries, a prefix cap (`where` recomputes a running total, or `Aggregate` refuses a day). In `xaml`, the trigger deletes late rows. In Rust, `extended` returns `None`.
+**Qué lo detiene.** En la familia `for`, la ranura de la condición. Cuando el total pasa de 40 (o se acaban las categorías), la rama else del condicional muestra la ventana y devuelve `false`. En las entradas LINQ, un tope aplicado a un prefijo (`where` recalcula un total acumulado; `Aggregate` rechaza un día). En `xaml`, el disparador borra las filas tardías. En Rust, `extended` devuelve `None`.
 
-**What commits.** In `ModernChallenge1`, each card is added to EF Core's context under a mutex and saved; the window is shown after the loop. In `LinqChallenge1`, tracked entities are saved by one `SaveChanges()` *eagerly*, inside the one statement but before the lazy stages. XAML providers invoke `Add` and `SaveChanges` in the EF Core variant, `ExecuteNonQuery` in the direct SQLite variant and `WriteXml` in the strict variant.
+**Qué confirma.** En `ModernChallenge1`, cada tarjeta se agrega al contexto de EF Core bajo un mutex y se guarda. La ventana se muestra después del bucle. En `LinqChallenge1`, un único `SaveChanges()` guarda las entidades rastreadas con evaluación inmediata, dentro de la única sentencia pero antes de las etapas diferidas. Los proveedores de XAML invocan `Add` y `SaveChanges` en la variante de EF Core, `ExecuteNonQuery` en la variante de SQLite directo y `WriteXml` en la variante estricta.
 
 <!-- diagram-source: src/ModernChallenge1/README.md#program-flow -->
 
 ```mermaid
 flowchart TD
-    accTitle: ModernChallenge1: a for statement whose false branch runs the WPF message loop
-    accDescr: A flowchart. The initializer builds one anonymous object with the EF Core context, a category enumerator, a WPF Application, a Mutex and an XElement. The condition is true while the LINQ sum is 40 or less and MoveNext succeeds. Then the empty body runs and the iterator draws hours, adds a row to the context and starts a thread that waits on the Mutex and saves through MethodInfo.Invoke. When the condition is false, XamlReader.Load builds the window from a string and the XElement becomes its DoubleAnimation. Application.Run then runs the WPF message loop until the window closes, and IsNaN of its result is false, so the for ends.
-    A["Initializer: anonymous object holds EF context, enumerator, WPF Application, Mutex, XElement"] --> B{{"Condition: LINQ Sum <= 40 and MoveNext()?"}}
-    B -->|true| C["Empty body"]
-    C --> D["Iterator: draw hours, add a row, start a Thread"]
+    accTitle: ModernChallenge1: una sentencia for cuya rama falsa ejecuta el bucle de mensajes de WPF
+    accDescr: Un diagrama de flujo. El inicializador construye un objeto anónimo con el contexto de EF Core, un enumerador de categorías, una Application de WPF, un Mutex y un XElement. La condición es verdadera mientras la suma de LINQ no pasa de 40 y MoveNext tiene éxito. Entonces se ejecuta el cuerpo vacío y el iterador sortea horas, agrega una fila al contexto e inicia un hilo que espera en el Mutex y guarda mediante MethodInfo.Invoke. Cuando la condición es falsa, XamlReader.Load construye la ventana a partir de una cadena de texto y el XElement se convierte en su DoubleAnimation. Después Application.Run ejecuta el bucle de mensajes de WPF hasta que se cierra la ventana. IsNaN de su resultado es false, así que el for termina.
+    A["Inicializador: un objeto anónimo contiene el contexto de EF, el enumerador, la Application de WPF, el Mutex y el XElement"] --> B{{"Condición: ¿LINQ Sum <= 40 y MoveNext()?"}}
+    B -->|true| C["Cuerpo vacío"]
+    C --> D["Iterador: sortea horas, agrega una fila e inicia un hilo"]
     D --> B
-    D -.-> T["Thread: Mutex.WaitOne, SaveChanges via MethodInfo.Invoke, ReleaseMutex"]
-    B -->|false| E["XamlReader.Load builds the window from a string; the XElement is its DoubleAnimation"]
-    E --> F["Application.Run: the WPF message loop runs until the window closes"]
-    F --> G["Double.IsNaN of the result is false: the for ends"]
+    D -.-> T["Hilo: Mutex.WaitOne, SaveChanges mediante MethodInfo.Invoke, ReleaseMutex"]
+    B -->|false| E["XamlReader.Load construye la ventana a partir de una cadena de texto; el XElement es su DoubleAnimation"]
+    E --> F["Application.Run: el bucle de mensajes de WPF se ejecuta hasta que la ventana se cierra"]
+    F --> G["Double.IsNaN del resultado es false: el for termina"]
 ```
 
-The original's flow is a loop with a conditional exit. Its condition is eager: the query expression constructs a deferred `Select`, then the terminal `Sum()` enumerates it immediately, on that condition check. This is the same placement of work as JavaScript's `reduce`. The LINQ demos below have deferred stages of their own and use terminal operators to run them.
+El flujo del original es un bucle con una salida condicional. Su condición es de evaluación inmediata: la expresión de consulta construye un `Select` diferido, y el `Sum()` terminal lo enumera de inmediato, en esa comprobación de la condición. Es la misma colocación del trabajo que el `reduce` de JavaScript. Las demos de LINQ siguientes tienen etapas diferidas propias y usan operadores terminales para ejecutarlas.
 
 <!-- diagram-source: src/LinqChallenge1/README.md#program-flow -->
 
 ```mermaid
 flowchart TD
-    accTitle: LinqChallenge1: an eager fold first, then a lazy tail that the last Aggregate forces
-    accDescr: A flowchart with two groups. The eager group runs first because it is the innermost argument. An Aggregate folds the five fixed days into tracked entities and refuses a day that would pass 40 hours, and then the tuple calls SaveChanges. The deferred group is a chain of LINQ stages that does nothing until asked. The final Aggregate asks. That pulls the EF Core query and the return to objects, then a second Aggregate that folds the saved rows into a report, then the stage that builds and shows the window, then the stage that starts the pulse and calls Application.Run, which pumps the dispatcher until the window closes.
-    subgraph E["Eager: runs first, as the innermost argument"]
-        A["Aggregate: fold the five fixed days into tracked entities, refuse a day that passes 40 h"] --> B["Tuple element: SaveChanges runs after every entity is tracked"]
+    accTitle: LinqChallenge1: una reducción (*fold*) de evaluación inmediata primero y después etapas diferidas que el último Aggregate fuerza
+    accDescr: Un diagrama de flujo con dos grupos. El grupo de evaluación inmediata se ejecuta primero porque es el argumento más interno. Un Aggregate acumula los cinco días fijos en entidades rastreadas y rechaza un día que pasaría de 40 horas, y después la tupla llama a SaveChanges. El grupo de ejecución diferida es una cadena de etapas LINQ que no hace nada hasta que se le pide. El Aggregate final lo pide. Esa demanda (pull) activa la consulta de EF Core y el retorno a objetos, luego un segundo Aggregate que reduce las filas guardadas a un informe, luego la etapa que construye y muestra la ventana, y luego la etapa que inicia el pulso y llama a Application.Run, que mantiene en marcha el despachador de WPF hasta que se cierra la ventana.
+    subgraph E["Evaluación inmediata"]
+        A["Aggregate: acumula días y rechaza lo que pasa de 40 h"] --> B["SaveChanges: guarda las entidades"]
     end
-    subgraph D["Deferred: nothing runs until the final Aggregate asks"]
-        C["Repeat 1 then SelectMany: EF Core query, then AsEnumerable"] --> F["Aggregate: fold the saved rows into a report"]
-        F --> G["Select: build and show the WPF window"]
-        G --> H["Select: start the pulse, Application.Run pumps the dispatcher until the window closes"]
+    subgraph D["Ejecución diferida: espera al Aggregate final"]
+        C["Repeat 1 y SelectMany: EF Core y AsEnumerable"] --> F["Aggregate: reduce las filas a un informe"]
+        F --> G["Select: construye y muestra la ventana WPF"]
+        G --> H["Select: inicia el pulso y llama a Application.Run"]
     end
     B --> C
-    Z["Final Aggregate: the demand that forces the whole tail"] -.->|pulls| C
+    Z["Aggregate final: la demanda"] -.->|demanda| C
 ```
 
-LinqChallenge1 has no loop. It has an eager group that runs first, and a lazy group that the last `Aggregate` pulls.
+LinqChallenge1 no tiene bucle. Tiene un grupo de evaluación inmediata que se ejecuta primero y un grupo diferido que el último `Aggregate` pone en marcha con una demanda (pull).
 
 <!-- diagram-source: src/LinqChallenge2/README.md#program-flow -->
 
 ```mermaid
 flowchart TD
-    accTitle: LinqChallenge2: query syntax over the five fixed days, forced by one Single
-    accDescr: A flowchart. The first query ranges over the five fixed days. Its where clause recomputes the running total as a prefix sum, with no accumulator, and keeps a day only while the total is 40 or less. A let clause wraps the EF Core Add in a one-row query to get a value from a void call. SaveChanges follows. The second query ranges over the EF Core query for this run, crossing to objects with AsEnumerable. An Aggregate folds the saved rows into a report. Further let clauses, each a one-row query, build the window and the pulse. A final Single forces the lazy pipeline to run and returns its one value.
-    A["from day in WorkWeek: the five fixed days"] --> B["where: prefix sum of hours up to this day is 40 or less"]
-    B --> C["let tracked: a one-row query wraps ctx.Timecards.Add"]
-    C --> D["SaveChanges, after all days are tracked"]
-    D --> E["from persisted in the EF query, AsEnumerable: crossing to objects"]
-    E --> F["Aggregate: fold the saved rows into a report"]
-    F --> G["let window, let pulse: each a one-row query around a void WPF call"]
-    G --> H["Single: forces the lazy pipeline and returns its one value"]
+    accTitle: LinqChallenge2: sintaxis de consulta sobre los cinco días fijos, forzada por un único Single
+    accDescr: Un diagrama de flujo. La primera consulta recorre los cinco días fijos. Su cláusula where recalcula, sin acumulador, la suma acumulada de horas hasta ese día y conserva un día solo mientras ese total no pasa de 40. Una cláusula let envuelve el Add de EF Core en una consulta de una fila para obtener un valor de una llamada void. SaveChanges se ejecuta después, cuando EF Core ya rastrea las entidades. La segunda consulta recorre la consulta de EF Core de esta ejecución y pasa a objetos con AsEnumerable. Un Aggregate reduce las filas guardadas a un informe. Otras cláusulas let, cada una con una consulta de una fila, construyen la ventana y el pulso. Un Single final obliga a ejecutar la canalización perezosa y devuelve su único valor.
+    A["from day in WorkWeek: los cinco días fijos"] --> B["where: la suma acumulada de horas hasta este día es como máximo 40"]
+    B --> C["let tracked: una consulta de una fila envuelve ctx.Timecards.Add"]
+    C --> D["SaveChanges: se ejecuta cuando EF Core ya rastrea las entidades"]
+    D --> E["from persisted in: la consulta de EF; AsEnumerable: paso a objetos"]
+    E --> F["Aggregate: reduce las filas guardadas a un informe"]
+    F --> G["let window, let pulse: cada una, una consulta de una fila alrededor de una llamada de WPF que devuelve void"]
+    G --> H["Single: fuerza la canalización perezosa y devuelve su único valor"]
 ```
 
-LinqChallenge2 is the same idea in query syntax, which the compiler rewrites into the same method calls.
+LinqChallenge2 es la misma idea en sintaxis de consulta, que el compilador reescribe como las mismas llamadas a métodos.
 
 <!-- diagram-source: src/xaml/README.md#program-flow -->
 
 ```mermaid
 sequenceDiagram
-    accTitle: xaml: parsing the file is running the program
-    accDescr: A sequence diagram of efcore.xaml. Loader.Main creates the data folder and calls XamlReader.Load. The XAML parser builds the nodes in document order, and each ObjectDataProvider fires as soon as it is built. Four unrolled passes each draw a random number into a carrier array, build a card from it, and insert it with EF Core. A SQL trigger deletes a row if the earlier rows already total more than 40. The parser returns the finished window. Application.Run then shows the window, a Loaded event trigger starts the fade storyboard, and the run ends when the window closes.
+    accTitle: xaml: el análisis sintáctico del archivo ejecuta el programa
+    accDescr: Diagrama de secuencia de efcore.xaml. Loader.Main crea la carpeta de datos y llama a XamlReader.Load. El analizador sintáctico de XAML crea los nodos en el orden del documento. Cada ObjectDataProvider se activa en cuanto se crea. En cada una de las cuatro pasadas desenrolladas, se sortea un número y se guarda en un arreglo portador. Con ese número se crea una tarjeta que EF Core inserta. Un disparador SQL borra la fila si el total de las filas anteriores pasa de 40. El analizador devuelve la ventana terminada. Application.Run muestra la ventana y un disparador del evento Loaded inicia la secuencia de animación del fundido. La ejecución termina cuando se cierra la ventana.
     participant L as Loader.Main
-    participant P as XAML parser
-    participant O as ObjectDataProvider nodes
-    participant D as SQLite and its trigger
-    participant W as Window and dispatcher
-    L->>P: XamlReader.Load(file)
-    loop four copies, in document order
-        P->>O: build the next provider node: it fires at once
-        O->>D: random hours, via a carrier array, then Add and SaveChanges
-        D-->>D: trigger deletes the row if earlier rows total over 40
+    participant P as Analizador sintáctico de XAML
+    participant O as Nodos ObjectDataProvider
+    participant D as SQLite y su disparador
+    participant W as Ventana y despachador de WPF
+    L->>P: Carga el archivo: XamlReader.Load(file)
+    loop Cuatro copias en el orden del documento
+        P->>O: El siguiente nodo proveedor se activa al crearse
+        O->>D: Horas al azar vía arreglo portador y luego Add y SaveChanges
+        D-->>D: Borra la fila si el total anterior pasa de 40
     end
-    P-->>L: the finished Window object
-    L->>W: Application.Run(window)
-    W-->>W: Loaded event trigger starts the fade storyboard
-    W-->>L: the window closes and Run returns
+    P-->>L: Objeto Window terminado
+    L->>W: Llama a Application.Run(window)
+    W-->>W: El evento Loaded dispara el fundido
+    W-->>L: Se cierra la ventana y Run retorna
 ```
 
-The XAML flow has no loop edge. The parser walks the document once.
+El flujo de XAML no tiene arista de bucle. El analizador sintáctico recorre el documento una sola vez.
 
-## Trace one run
+## Traza una ejecución
 
-**`ModernChallenge1`: the header slots (header reduced and run).** With hours 15, 19, 12 the evaluations are:
+**`ModernChallenge1`: las ranuras del encabezado (encabezado reducido y ejecutado).** Con las horas 15, 19 y 12, las evaluaciones son:
 
-| Evaluation | Condition: `Sum() <= 40 && MoveNext()` | Iterator slot (after the empty body) | Sum after |
+| Evaluación | Condición: `Sum() <= 40 && MoveNext()` | Ranura del iterador (después del cuerpo vacío) | Suma después |
 | --- | --- | --- | ---: |
-| 1 | `0 <= 40` true, `MoveNext()` gives Meetings: **true** | Add 15 hours, card Meetings | 15 |
-| 2 | `15 <= 40` true, `MoveNext()` gives Coding | Add 19, Coding | 34 |
-| 3 | `34 <= 40` true, `MoveNext()` gives Debugging | Add 12, Debugging | 46 |
-| 4 | `46 <= 40` false: `&&` **short-circuits**, `MoveNext()` is not called | none | else branch: show the window, return `false` |
+| 1 | `0 <= 40` es true, `MoveNext()` da Meetings: **true** | Se suman 15 horas, tarjeta Meetings | 15 |
+| 2 | `15 <= 40` es true, `MoveNext()` da Coding | Se suman 19, Coding | 34 |
+| 3 | `34 <= 40` es true, `MoveNext()` da Debugging | Se suman 12, Debugging | 46 |
+| 4 | `46 <= 40` es false: `&&` **hace cortocircuito** y no se llama a `MoveNext()` | ninguna | rama else: muestra la ventana y devuelve `false` |
 
-The category enumerator advances only when the total test passes, so it is consumed exactly once per card. In the all-10 reduction, with four names (before the fix) evaluation 5 was `40 <= 40` true and `MoveNext()` returned `false` (the enumerator was exhausted), which stopped the loop at total 40. With five names the same evaluation returns the fifth name, a fifth 10-hour card is added, and evaluation 6 sees `50 <= 40` false and stops. The slot to name: the category enumerator is hidden state in the *condition*.
+El enumerador de categorías avanza solo cuando la prueba del total tiene éxito, así que se consume exactamente una vez por tarjeta. En la reducción con todas las tarjetas de 10 horas y cuatro nombres (antes de la corrección), la evaluación 5 daba `40 <= 40` true. Entonces `MoveNext()` devolvía `false` (el enumerador estaba agotado) y el bucle se detenía con un total de 40. Con cinco nombres, la misma evaluación devuelve el quinto nombre y se agrega una quinta tarjeta de 10 horas. La evaluación 6 ve `50 <= 40` false y se detiene. La ranura que hay que nombrar: el enumerador de categorías es estado oculto en la *condición*.
 
-**LINQ: deferred execution (run).** The B7 experiment declares `q = Enumerable.Range(1, 3).Select(i => { print "effect i"; return i; })`. In a console project it printed:
+**LINQ: ejecución diferida (ejecutado).** El experimento B7 declara `q = Enumerable.Range(1, 3).Select(i => { print "effect i"; return i; })`. En un proyecto de consola imprimió:
 
 ```text
 declared q:             (no effect lines)
@@ -163,92 +163,92 @@ q.Sum() then q.ToList():  effect 1..3, then effect 1..3 again
 q.ToList() once, then Sum on the list:  effect 1..3 once
 ```
 
-Running the [B7 console fixture](../../solutions/b7-linq/Program.cs) with .NET SDK 10.0.401 reproduces 0, 3, 6 and 3 effect lines. `Select` stores a description; each enumeration runs it again. A second experiment is this guide's own. It builds a lazy generator of cards (15, 19, 12, 10, 10) and takes `TakeWhile(c => c.total - c.hours <= 40)`, which keeps the crossing card. It printed *four* `drew` lines for three kept cards. To keep the crossing card, `TakeWhile` must look at the card *after* it to see the test fail, so the generator drew one card too many. Haskell's `span` has no such cost (see [Haskell](haskell.md)). A cap that retains the crossing card without over-drawing needs a stateful iterator, such as the weird JavaScript machine's `over` flag, or an `Aggregate` that refuses.
+Al ejecutar la [prueba de consola B7](../../solutions/b7-linq/Program.cs) con el SDK de .NET 10.0.401 se reproducen 0, 3, 6 y 3 líneas de efecto. `Select` guarda una descripción; cada enumeración la ejecuta de nuevo. Un segundo experimento es propio de esta guía. Construye un generador perezoso de tarjetas (15, 19, 12, 10, 10) y toma `TakeWhile(c => c.total - c.hours <= 40)`, que conserva la tarjeta que cruza el tope. Imprimió *cuatro* líneas `drew` para tres tarjetas conservadas. Para conservar esa tarjeta, `TakeWhile` debe mirar la tarjeta *siguiente* y ver que la prueba falla, así que el generador sorteó una tarjeta de más. El `span` de Haskell no tiene ese costo (consulta [Haskell](haskell.md)). Un tope que conserva esa tarjeta sin sortear de más necesita un iterador con estado. Un ejemplo es la bandera `over` de la máquina rara de JavaScript. Otro es un `Aggregate` que rechaza.
 
-**`LinqChallenge1`: eager first, lazy second (read).** The innermost `Aggregate` folds the five fixed days into tracked entities and runs first, because it is the innermost argument. The tuple `(..., ctx.SaveChanges())` evaluates left to right, so `SaveChanges()` runs after every entity is tracked. Then a chain of `Select` and `SelectMany` stages does nothing until the final `Aggregate` pulls: query, fold, build the window, pulse and `Application.Run`. The reported total is 40.0 for five rows.
+**`LinqChallenge1`: evaluación inmediata primero, diferida después (leído).** El `Aggregate` más interno reduce los cinco días fijos a entidades rastreadas y se ejecuta primero, porque es el argumento más interno. La tupla `(..., ctx.SaveChanges())` se evalúa de izquierda a derecha, así que `SaveChanges()` se ejecuta después de que todas las entidades estén rastreadas. Luego viene una cadena de etapas `Select` y `SelectMany`. No hace nada hasta que el `Aggregate` final la pone en marcha con una demanda (pull). Esa demanda recorre la consulta, la reducción, la construcción de la ventana, el pulso y `Application.Run`. El total informado es 40.0 para cinco filas.
 
-**`xaml`: document order (read).** With hours 15, 19, 12 and a fourth draw of 14: pass 1 inserts 15 (total 15), pass 2 inserts 19, pass 3 inserts 12, pass 4 inserts 14. A trigger on insert deletes any row whose earlier rows already total over 40. Rows 1 to 3 have earlier totals of 0, 15 and 34, so they stay. Row 4's earlier rows total 46, so it is deleted. Three cards remain. The parser then returns the window.
+**`xaml`: el orden del documento (leído).** Las horas son 15, 19 y 12, con un cuarto sorteo de 14. La pasada 1 inserta 15 (total 15). La pasada 2 inserta 19. La pasada 3 inserta 12. La pasada 4 inserta 14. Un disparador de inserción borra toda fila cuyas filas anteriores ya suman más de 40. Las filas 1 a 3 tienen totales anteriores de 0, 15 y 34, así que se quedan. Las filas anteriores a la fila 4 suman 46, así que se borra. Quedan tres tarjetas. Entonces el analizador sintáctico devuelve la ventana.
 
-## Compare the ordinary and weird designs
+## Compara los diseños ordinarios y los raros
 
-| Dimension | Ordinary program | `ModernChallenge1` | LINQ entries | `xaml` |
+| Dimensión | Programa ordinario | `ModernChallenge1` | Entradas LINQ | `xaml` |
 | --- | --- | --- | --- | --- |
-| **Representation** | A loop and a list | `for` with an empty body; state in an anonymous object | One expression: LINQ operators and `Aggregate` | A document of `ObjectDataProvider` nodes |
-| **Observability** | Debugger on a loop | Same, but the real work is in the header | The expression's *order* is the program, and a breakpoint sees only one statement | Parsing is running: nothing to step through but the parser |
-| **Tests** | Unit-test a function | `check.ps1`-style structural checks | `check.ps1` forbids helper names such as `RunEverything` and checks the persisted 40.0 h | Windows Sandbox run: the harness closes the window |
-| **Debugging** | Standard | Standard | Deferred stages hide when effects run | A bad provider fails at *parse time*, and the error points at markup |
-| **Portability** | Any C# | Windows only (WPF) | Windows only (WPF, EF Core, SQLite) | Windows only; `strict.xaml` needs only .NET, the others add packages |
-| **Cost** | Normal | Normal | Re-enumeration reruns effects | The loop is unrolled: four copies, with the category count baked into the markup |
+| **Representación** | Un bucle y una lista | `for` con cuerpo vacío; estado en un objeto anónimo | Una expresión: operadores LINQ y `Aggregate` | Un documento de nodos `ObjectDataProvider` |
+| **Observabilidad** | Depurador sobre un bucle | Igual, pero el trabajo real está en el encabezado | El *orden* de la expresión es el programa, y un punto de interrupción ve solo una sentencia | El análisis sintáctico es ejecución: no hay nada que recorrer paso a paso salvo el analizador sintáctico |
+| **Pruebas** | Prueba unitaria de una función | Comprobaciones estructurales al estilo de `check.ps1` | `check.ps1` prohíbe nombres auxiliares como `RunEverything` y comprueba las 40.0 h persistidas | Ejecución en Windows Sandbox: el arnés cierra la ventana |
+| **Debugging** | Estándar | Estándar | Las etapas diferidas ocultan cuándo se ejecutan los efectos | Un proveedor defectuoso falla en el *momento del análisis sintáctico*, y el error apunta al marcado |
+| **Portabilidad** | Cualquier C# | Solo Windows (WPF) | Solo Windows (WPF, EF Core, SQLite) | Solo Windows; `strict.xaml` solo necesita .NET, las demás añaden paquetes |
+| **Costo** | Normal | Normal | Enumerar de nuevo vuelve a ejecutar los efectos | El bucle está desenrollado: cuatro copias, con el número de categorías fijado en el marcado |
 
-### The ports, side by side
+### Las adaptaciones, lado a lado
 
-All five ports keep "one statement, empty body". Each finds its own three clauses. The result uses the port's host interface: for example, Go serves its summary over local HTTP.
+Las cinco adaptaciones conservan "una sentencia, cuerpo vacío". Cada una encuentra sus propias tres cláusulas. El resultado usa la interfaz del anfitrión de cada adaptación; por ejemplo, Go sirve su resumen por HTTP local.
 
-| Port | Header mechanism | State holder | Stop test |
+| Adaptación | Mecanismo del encabezado | Contenedor del estado | Prueba de parada |
 | --- | --- | --- | --- |
-| Java | `for (init; condition; update) { }` | anonymous class | `sum <= 40d && categories.hasNext()` |
-| Go | a real three-clause `for` | a struct; helpers such as `Seq` and `After` in `helpers.go` | `Sum(i.hours) <= 40 && len(i.categories) > 0` |
-| Kotlin | `for (pass in generateSequence(...) { ... })`; a `null` from `takeIf` ends it | a class with a category iterator | `totalHours.sum() <= 40.0 && categories.hasNext()`; the body runs once before the first check |
-| Python | `for _ in iter(<lambda>, False):` | an object holding a `deque` of categories | `sum(...) <= 40 and categories` |
-| Rust | `for _ in std::iter::successors(...) {}` | an immutable `DemoBatch`; adding a card returns a new batch | `extended` returns `None` |
+| Java | `for (init; condition; update) { }` | clase anónima | `sum <= 40d && categories.hasNext()` |
+| Go | un `for` real de tres cláusulas | una estructura; auxiliares como `Seq` y `After` en `helpers.go` | `Sum(i.hours) <= 40 && len(i.categories) > 0` |
+| Kotlin | `for (pass in generateSequence(...) { ... })`; un `null` desde `takeIf` lo termina | una clase con un iterador de categorías | `totalHours.sum() <= 40.0 && categories.hasNext()`; el cuerpo se ejecuta una vez antes de la primera comprobación |
+| Python | `for _ in iter(<lambda>, False):` | un objeto que contiene un `deque` de categorías | `sum(...) <= 40 and categories` |
+| Rust | `for _ in std::iter::successors(...) {}` | un `DemoBatch` inmutable; agregar una tarjeta devuelve un lote nuevo | `extended` devuelve `None` |
 
-The ports show that the "bodiless loop" is a *shape*, not a C# feature. What carries the weight differs: an anonymous object, a struct plus hidden helpers, a lazy sequence, a function called until it returns `False` or an iterator of values. Go needed helpers because it is statement-oriented, and its README says so as the cost of the port.
+Las adaptaciones muestran que el "bucle sin cuerpo" es una *forma*, no una característica de C#. Cambia lo que carga con el peso. Puede ser un objeto anónimo, una estructura con auxiliares ocultos o una secuencia perezosa. También puede ser una función a la que se llama hasta que devuelve `False` o un iterador de valores. Go necesitó auxiliares porque está orientado a sentencias, y su README lo dice como el costo de la adaptación.
 
-## What the exercises demonstrate
+## Qué demuestran los ejercicios
 
-| Exercise | Predict first | What the evidence shows |
+| Ejercicio | Predice primero | Qué muestra la evidencia |
 | --- | --- | --- |
-| [B7. LINQ: enumerate twice](../../exercises.md#b7-linq-enumerate-twice-verified) | How many `effect` lines after (a) declaring `q`, (b) one `q.Sum()`, (c) `Sum` and `ToList`, (d) `ToList` then `Sum` on the list? | 0, 3, 6, 3. `Select` is deferred, and each enumeration reruns it. Verified in this guide too. |
-| B7, the seed | The five hours for seed 42? | `16 11 11 15 11`. A seeded `Random` gives the same cards on every run, which is why a `.xaml` file seeded with 42 is reproducible. |
-| B7, the eager operator | Which operator in `LinqChallenge1` is eager and forces the lazy stages after it? | `Aggregate`. |
-| [E1. Run and read the evidence](../../exercises.md#e1-run-and-read-the-evidence) (Windows) | Which entry's rows total exactly 40 because the data is fixed? | `LinqChallenge1`. `xaml` is the random one. |
-| [E2. Change the XAML interpreter's seed](../../exercises.md#e2-change-the-xaml-interpreters-seed) (Windows) | Change `42` to `7` in `strict.xaml`. Do the hours change? | Yes, and the same sequence every run of the same seed. The loop was unrolled four times because XAML has no loop (and a fifth pass has not been added, so `xaml` is the one entry that cannot deal a fifth card), and the `x:Array` carriers play the part of variables. |
-| [C1. Weird next to boring](../../exercises.md#c1-weird-next-to-boring-verified) | Compare `ModernChallenge1` with an ordinary C# loop. | Same output contract; the original exposes its state in one anonymous object. |
+| [B7. LINQ: enumerar dos veces](../../exercises.md#b7-linq-enumerate-twice-verified) | ¿Cuántas líneas `effect` hay después de (a) declarar `q`, (b) un `q.Sum()`, (c) `Sum` y `ToList`, (d) `ToList` y luego `Sum` sobre la lista? | 0, 3, 6, 3. `Select` es diferido y cada enumeración lo vuelve a ejecutar. También se verificó en esta guía. |
+| B7, la semilla | ¿Cuáles son las cinco horas para la semilla 42? | `16 11 11 15 11`. Un `Random` con semilla da las mismas tarjetas en cada ejecución, y por eso un archivo `.xaml` con la semilla 42 es reproducible. |
+| B7, el operador de evaluación inmediata | ¿Qué operador de `LinqChallenge1` es de evaluación inmediata y fuerza las etapas diferidas que le siguen? | `Aggregate`. |
+| [E1. Ejecuta y lee la evidencia](../../exercises.md#e1-run-and-read-the-evidence) (Windows) | ¿Las filas de qué entrada dan un total de exactamente 40 porque los datos son fijos? | `LinqChallenge1`. `xaml` es la aleatoria. |
+| [E2. Cambia la semilla del intérprete de XAML](../../exercises.md#e2-change-the-xaml-interpreters-seed) (Windows) | Cambia `42` por `7` en `strict.xaml`. ¿Cambian las horas? | Sí, y la misma secuencia en cada ejecución con la misma semilla. El bucle se desenrolló cuatro veces porque XAML no tiene bucle. No se agregó una quinta pasada, así que `xaml` es la única entrada que no puede repartir una quinta tarjeta. Los portadores `x:Array` hacen el papel de variables. |
+| [C1. Lo raro junto a lo aburrido](../../exercises.md#c1-weird-next-to-boring-verified) | Compara `ModernChallenge1` con un bucle ordinario de C#. | Mismo contrato de salida; el original expone su estado en un único objeto anónimo. |
 
-## Failure modes, costs and boundaries
+## Modos de fallo, costos y límites
 
-| Behavior | Label | Why |
+| Comportamiento | Etiqueta | Por qué |
 | --- | --- | --- |
-| The B7 `Enumerable.Select` projection runs on enumeration, and the effect runs again on a second enumeration of that pipeline | **guaranteed** | The LINQ-to-Objects `Select` contract; verified by B7. In the header, `Sum()` enumerates the projection during every check. |
-| `Aggregate` is eager | **guaranteed** | By definition: it consumes the sequence. |
-| Tuple elements evaluate left to right | **guaranteed** | C# language rule. It is why `SaveChanges()` runs after the entities are tracked. |
-| `&&` short-circuits | **guaranteed** | C# language rule. It is why the category enumerator advances once per card. |
-| `IQueryable` operators translate to SQL until `AsEnumerable()`, then run in memory | **implementation-permitted** | Provider behavior: what EF Core can translate is its own business, and a boundary in the wrong place changes where work runs. |
-| `XamlReader.Load` runs `ObjectDataProvider` methods at parse time | **accidentally exploited** | The XAML README classifies it so. WPF documents a declarative UI. Running a program is a side effect of how the parser constructs objects. |
-| `Refresh` reruns a provider, and an `x:Array` stops the parser unwrapping the call | **accidentally exploited** | Observed behavior the entry relies on. |
-| A `for` initializer takes one declaration, so state goes in one anonymous object | **guaranteed** | A C# grammar rule. |
-| `Random.Shared` is safe to use from several threads | **guaranteed** | Documented. |
-| WPF objects belong to the thread that created them, and `Application.Run` pumps the dispatcher | **guaranteed** | WPF's threading model. `[STAThread]` is required. |
-| A named `Mutex` can guard EF Core's non-thread-safe context | **implementation-permitted** | It works as a cross-thread lock. The original keeps a background thread only as "a historic contrast". |
+| La proyección `Enumerable.Select` de B7 se ejecuta al enumerarla, y el efecto se vuelve a ejecutar en una segunda enumeración de esa canalización | **garantizado** | El contrato `Select` de LINQ to Objects; verificado por B7. En el encabezado, `Sum()` enumera la proyección en cada comprobación. |
+| `Aggregate` es de evaluación inmediata | **garantizado** | Por definición: consume la secuencia. |
+| Los elementos de una tupla se evalúan de izquierda a derecha | **garantizado** | Regla del lenguaje C#. Por eso `SaveChanges()` se ejecuta después de rastrear las entidades. |
+| `&&` hace cortocircuito | **garantizado** | Regla del lenguaje C#. Por eso el enumerador de categorías avanza una vez por tarjeta. |
+| Los operadores `IQueryable` se traducen a SQL hasta `AsEnumerable()` y luego se ejecutan en memoria | **permitido por la implementación** | Comportamiento del proveedor: lo que EF Core puede traducir es cosa suya, y un límite mal colocado cambia dónde se ejecuta el trabajo. |
+| `XamlReader.Load` ejecuta métodos `ObjectDataProvider` en el momento del análisis sintáctico | **aprovechado por accidente** | El README de XAML lo clasifica así. WPF documenta una interfaz de usuario declarativa. Ejecutar un programa es un efecto secundario de cómo el analizador sintáctico construye los objetos. |
+| `Refresh` vuelve a ejecutar un proveedor, y un `x:Array` impide que el analizador sintáctico desenvuelva la llamada | **aprovechado por accidente** | Comportamiento observado en el que se apoya la entrada. |
+| Un inicializador `for` admite una declaración, así que el estado va en un objeto anónimo | **garantizado** | Una regla de la gramática de C#. |
+| `Random.Shared` admite el uso desde varios hilos | **garantizado** | Está documentado. |
+| Los objetos de WPF pertenecen al hilo que los creó, y `Application.Run` mantiene en marcha el despachador de WPF | **garantizado** | El modelo de hilos de WPF. Se requiere `[STAThread]`. |
+| Un `Mutex` con nombre puede proteger el contexto de EF Core, que no admite el acceso desde varios hilos | **permitido por la implementación** | Funciona como un bloqueo entre hilos. El original mantiene un hilo en segundo plano solo como "un contraste histórico". |
 
-**Costs to state.**
+**Costos que hay que declarar.**
 
-- **Thread affinity is part of the design.** The original saves on a background thread and guards EF Core's context with a mutex, because the context is not thread-safe. The window must be created and run on the STA thread. In the LINQ entries `Application.Run()` is called from inside a `Select` lambda, which is what pumps the dispatcher so the window paints. See [Thread safety and thread affinity](../../informatica/07-efectos-errores-y-confirmacion.md#thread-safety-and-thread-affinity).
-- **The provider boundary moves work.** A `where` that EF Core can translate runs in the database. The same `where` after `AsEnumerable()` runs in memory over every row.
-- **Hidden eagerness.** `SaveChanges()` runs at one specific moment in the one statement, not at the final enumeration. "All lazy" is not true even of the lazy entry.
-- **A parser that runs code.** Any program that loads XAML from a source it does not control is running that source. The XAML entry's own README says so.
-- **Where the techniques are legitimate.** Deferred queries, providers and the dispatcher are ordinary. A statement made of one `for` is a classroom exercise from 2008.
+- **La afinidad de hilo forma parte del diseño.** El original guarda en un hilo en segundo plano y protege el contexto de EF Core con un mutex, porque el contexto no admite el acceso desde varios hilos. La ventana debe crearse y ejecutarse en el hilo STA. En las entradas LINQ se llama a `Application.Run()` desde una lambda `Select`. Eso mantiene en marcha el despachador de WPF para que la ventana se dibuje. Consulta [Seguridad entre hilos y afinidad de hilo](../../informatica/07-efectos-errores-y-confirmacion.md#thread-safety-and-thread-affinity).
+- **El límite del proveedor mueve el trabajo.** Un `where` que EF Core puede traducir se ejecuta en la base de datos. El mismo `where` después de `AsEnumerable()` se ejecuta en memoria sobre todas las filas.
+- **Evaluación inmediata oculta.** `SaveChanges()` se ejecuta en un momento concreto de la única sentencia, no en la enumeración final. "Todo perezoso" no es cierto ni siquiera en la entrada perezosa.
+- **Un analizador sintáctico que ejecuta código.** Cualquier programa que carga XAML de una fuente que no controla está ejecutando esa fuente. El propio README de la entrada XAML lo dice.
+- **Dónde son legítimas las técnicas.** Las consultas diferidas, los proveedores y el despachador de WPF son habituales. Una sentencia hecha de un solo `for` es un ejercicio de clase de 2008.
 
-## Connections across the repository
+## Conexiones a lo largo del repositorio
 
-- **The same question as Haskell and JavaScript.** Deferred LINQ pipelines, lazy lists in [Haskell](haskell.md) and pull iteration in [JavaScript](javascript.md) all ask when a description runs. [Evaluation, demand and laziness](../conceptos/evaluacion-demanda-y-pereza.md) compares them. The difference worth remembering: Haskell remembers a computed value, and LINQ reruns.
-- **Document order as the program.** The XAML entry, [tar](tar.md) and [Tcl](tcl.md) all make data into a program. The concept guide [Reading adversarial programs](../conceptos/lectura-de-programas-adversariales.md) takes them as one case.
-- **The same four-card ceiling, now fixed.** The regex entries in [Regex engines and sed](motores-de-regex-y-sed.md) had it too, and were fixed the same way. [Comparative machine design](../conceptos/diseno-comparativo-de-maquinas.md) lists which entries obey "exactly 40 continues".
-- **Threads and callbacks.** [Events, callbacks and reactive control](../conceptos/eventos-retrollamadas-y-control-reactivo.md) compares who owns the next turn, which is what the dispatcher decides here.
-- **In the book.** [C#, LINQ and XAML](../../lenguajes/csharp-linq-xaml.md), [Deferred execution](../../informatica/04-evaluacion-y-demanda.md#deferred-execution), [Domain-specific languages](../../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#domain-specific-languages) and [Arbitrary code execution](../../informatica/01-lectura-de-un-programa-adversarial.md#arbitrary-code-execution).
+- **La misma pregunta que en Haskell y JavaScript.** Las canalizaciones LINQ diferidas, las listas perezosas de [Haskell](haskell.md) y la iteración por demanda (pull) de [JavaScript](javascript.md) preguntan lo mismo: cuándo se ejecuta una descripción. [Evaluación, demanda y pereza](../conceptos/evaluacion-demanda-y-pereza.md) las compara. La diferencia que conviene recordar: Haskell recuerda un valor calculado y LINQ vuelve a ejecutar.
+- **El orden del documento como programa.** La entrada XAML, [tar](tar.md) y [Tcl](tcl.md) convierten datos en un programa. La guía de concepto [Lectura de programas adversariales](../conceptos/lectura-de-programas-adversariales.md) las toma como un solo caso.
+- **El mismo techo de cuatro tarjetas, ya corregido.** Las entradas de regex de [Motores de regex y sed](motores-de-regex-y-sed.md) también lo tenían y se corrigieron del mismo modo. [Diseño comparativo de máquinas](../conceptos/diseno-comparativo-de-maquinas.md) da la lista de las entradas que cumplen que un total de exactamente 40 continúa.
+- **Hilos y funciones de devolución de llamada.** [Eventos, funciones de devolución de llamada y control reactivo](../conceptos/eventos-retrollamadas-y-control-reactivo.md) compara quién es dueño del turno siguiente, que es lo que decide aquí el despachador de WPF.
+- **En el libro.** [C#, LINQ y XAML](../../lenguajes/csharp-linq-xaml.md), [Ejecución diferida](../../informatica/04-evaluacion-y-demanda.md#deferred-execution), [Lenguajes específicos de dominio](../../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#domain-specific-languages) y [Ejecución arbitraria de código](../../informatica/01-lectura-de-un-programa-adversarial.md#arbitrary-code-execution).
 
-## Self-check
+## Autoevaluación
 
-Answer each question in your own words before you read the italic text. Say what evidence would support each answer.
+Responde cada pregunta con tus propias palabras antes de leer el texto en cursiva. Di qué evidencia respaldaría cada respuesta.
 
-1. **Trace.** In the `ModernChallenge1` header, hours are 13, 14, 13, 10. Give the sum when each condition runs, and say when `MoveNext()` is called. *(Conditions see sums 0, 13, 27, 40, then 50. `MoveNext()` is called on the first four, giving Meetings, Coding, Debugging and Learning. The fifth condition has sum 50, so `&&` skips `MoveNext()`. The fourth card is the crossing card.)*
-2. **Explain.** Why does `q.Sum()` followed by `q.ToList()` print the effects twice? What does that predict for the C# header? *(Each call enumerates the `Select` pipeline, so its effects run twice. In the header, each condition check constructs and immediately sums its projection, so the sum is computed before any next draw. Materializing the B7 projection with `ToList()` lets later consumers reuse its results.)*
-3. **Transfer.** Which construct in Python plays the part of the C# `for` header's condition slot in `iter(step, False)`? *(The sentinel: the loop ends when `step` returns `False`, so the stop test lives inside the function that makes the next card.)*
-4. **Evidence.** A reviewer says, "Four 10-hour cards in a `for`-header entry continue to a fifth." Design a test that could fail. *(Reproduce the header with all-10 hours, as the reduction above did, and check for five cards and a total of 50. The negative control is the header with four names, which stops at four cards and 40. The reduction was run for C#. Rust's unit tests assert it directly, and Go, Java and Kotlin were only compiled, so for those it is read from the source.)*
+1. **Traza.** En el encabezado `ModernChallenge1`, las horas son 13, 14, 13 y 10. Da la suma cuando se ejecuta cada condición y di cuándo se llama a `MoveNext()`. *(Las condiciones ven las sumas 0, 13, 27, 40 y luego 50. Se llama a `MoveNext()` en las cuatro primeras y da Meetings, Coding, Debugging y Learning. La quinta condición tiene la suma 50, así que `&&` omite `MoveNext()`. La cuarta tarjeta es la que cruza el tope.)*
+2. **Explica.** ¿Por qué `q.Sum()` seguido de `q.ToList()` imprime los efectos dos veces? ¿Qué predice eso para el encabezado de C#? *(Cada llamada enumera la canalización `Select`, así que sus efectos se ejecutan dos veces. En el encabezado, cada comprobación de la condición construye su proyección y la suma de inmediato, así que la suma se calcula antes de cualquier sorteo siguiente. Materializar la proyección de B7 con `ToList()` permite que los consumidores posteriores reutilicen sus resultados.)*
+3. **Transfiere.** ¿Qué construcción de Python hace el papel de la ranura de condición del encabezado `for` de C# en `iter(step, False)`? *(El centinela: el bucle termina cuando `step` devuelve `False`, así que la prueba de parada vive dentro de la función que produce la tarjeta siguiente.)*
+4. **Evidencia.** Una revisora dice: "Cuatro tarjetas de 10 horas en una entrada con encabezado `for` continúan con una quinta". Diseña una prueba que pueda fallar. *(Reproduce el encabezado con todas las horas en 10, como hizo la reducción anterior, y comprueba que haya cinco tarjetas y un total de 50. El control negativo es el encabezado con cuatro nombres, que se detiene en cuatro tarjetas y 40. La reducción se ejecutó para C#. Las pruebas unitarias de Rust lo afirman directamente, y Go, Java y Kotlin solo se compilaron, así que en esos casos se lee del código fuente.)*
 
-## Further reading
+## Lecturas adicionales
 
-- [Language Integrated Query](https://en.wikipedia.org/wiki/Language_Integrated_Query) (Wikipedia): LINQ and its query syntax.
-- [Lazy evaluation](https://en.wikipedia.org/wiki/Lazy_evaluation) (Wikipedia): the general idea behind deferred execution.
-- [XAML](https://en.wikipedia.org/wiki/Extensible_Application_Markup_Language) (Wikipedia): what XAML is for, and what its parser was never meant to be.
-- [Thread safety and thread affinity](../../informatica/07-efectos-errores-y-confirmacion.md#thread-safety-and-thread-affinity) and [Deferred execution](../../informatica/04-evaluacion-y-demanda.md#deferred-execution) (this book): the two ideas that carry this family.
+- [Consulta integrada en el lenguaje](https://en.wikipedia.org/wiki/Language_Integrated_Query) (Wikipedia): LINQ y su sintaxis de consulta.
+- [Evaluación perezosa](https://en.wikipedia.org/wiki/Lazy_evaluation) (Wikipedia): la idea general detrás de la ejecución diferida.
+- [XAML](https://en.wikipedia.org/wiki/Extensible_Application_Markup_Language) (Wikipedia): para qué sirve XAML y para qué nunca se pensó su analizador sintáctico.
+- [Seguridad entre hilos y afinidad de hilo](../../informatica/07-efectos-errores-y-confirmacion.md#thread-safety-and-thread-affinity) y [Ejecución diferida](../../informatica/04-evaluacion-y-demanda.md#deferred-execution) (este libro): las dos ideas que sostienen esta familia.

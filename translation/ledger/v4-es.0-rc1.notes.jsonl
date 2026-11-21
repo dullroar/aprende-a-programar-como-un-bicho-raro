@@ -1816,3 +1816,52 @@
 {"segment_id": "s-5373085210e7-0044", "ts": "2026-11-21T18:22:22Z", "findings": ["I7: glossary term card must be rendered 'tarjeta'"]}
 {"segment_id": "s-b0f5fcb23650-0047", "ts": "2026-11-21T18:22:22Z", "findings": ["I7: glossary term method must be rendered 'método'"]}
 {"segment_id": "s-760534379865-0053", "ts": "2026-11-21T18:22:22Z", "findings": ["I7: glossary term pipe must be rendered 'tubería'"]}
+{"segment_id": "s-6594dabf3d4e-0002", "ts": "2026-11-21T18:29:07Z", "findings": ["I12: sentence of 38 words (limit 29): La pregunta es: **cuando una sentencia, ..."]}
+{"segment_id": "s-e8b7a853f6c6-0004", "ts": "2026-11-21T18:29:07Z", "findings": ["I12: sentence of 31 words (limit 29): Explicar la afinidad de hilo: por qué WP..."]}
+{"segment_id": "s-8c851ed5c3bf-0005", "ts": "2026-11-21T18:29:07Z", "findings": ["I7: glossary term scope must be rendered 'ámbito'"]}
+{"segment_id": "s-9d25958a2f0e-0008", "ts": "2026-11-21T18:29:07Z", "findings": ["I7: glossary term sandbox must be rendered 'entorno aislado (*sandbox*)'", "I7: banned rendering 'registro' for glossary term entry"]}
+{"segment_id": "s-5b3bc1a7891c-0014", "ts": "2026-11-21T18:29:07Z", "findings": ["I7: glossary term object must be rendered 'objeto'"]}
+{"segment_id": "s-874a5dd005ab-0020", "ts": "2026-11-21T18:29:07Z", "findings": ["I3: digit token 40 appears 4 time(s) in the source, 5 in the target", "I7: glossary term state must be rendered 'estado'", "I7: banned rendering 'condición' for glossary term state", "I7: glossary term build must be rendered 'compilación'", "I12: sentence of 36 words (limit 29): Tras la corrección, la misma reducción s..."]}
+{"segment_id": "s-9a7debfea8a7-0025", "ts": "2026-11-21T18:29:07Z", "findings": ["I12: sentence of 31 words (limit 29): En la familia X, la ranura de la condici...", "I25: comma before a simple 'o' ('X recalcula un total acumulado, o X rechaza un día'): no comma before a simple o or y"]}
+{"segment_id": "s-17502b086883-0028", "ts": "2026-11-21T18:29:07Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-6fd9115565f9-0036", "ts": "2026-11-21T18:29:07Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-989c13754935-0041", "ts": "2026-11-21T18:29:07Z", "findings": ["I7: glossary term build must be rendered 'compilación'", "I12: sentence of 61 words (limit 29): Esa demanda (pull) activa la consulta de..."]}
+{"segment_id": "s-c5ba09ceeac5-0048", "ts": "2026-11-21T18:29:07Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-5d69f9119900-0054", "ts": "2026-11-21T18:29:07Z", "findings": ["I7: glossary term running-total must be rendered 'total acumulado'", "I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-4ecee0492c7c-0055", "ts": "2026-11-21T18:29:07Z", "findings": ["I9: looks English: 2 of 8 words are English function words"]}
+{"segment_id": "s-8d76a700bb78-0057", "ts": "2026-11-21T18:29:07Z", "findings": ["I7: glossary term timecard must be rendered 'tarjeta de horas'"]}
+{"segment_id": "s-81a18e88482a-0065", "ts": "2026-11-21T18:29:07Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-30f7006fdea5-0073", "ts": "2026-11-21T18:29:07Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-de426dc03206-0088", "ts": "2026-11-21T18:29:07Z", "findings": ["I7: banned rendering 'condición' for glossary term state", "I12: sentence of 41 words (limit 29): En la reducción con todas las tarjetas d..."]}
+{"segment_id": "s-713e1bd80b37-0090", "ts": "2026-11-21T18:29:07Z", "findings": ["I3: digit token 40 appears 0 time(s) in the source, 1 in the target", "I7: glossary term build must be rendered 'compilación'", "I12: sentence of 30 words (limit 29): Un tope que conserva esa tarjeta sin sor..."]}
+{"segment_id": "s-4f8a0dac5111-0091", "ts": "2026-11-21T18:29:07Z", "findings": ["I7: glossary term build must be rendered 'compilación'", "I12: sentence of 33 words (limit 29): Luego una cadena de etapas X y X no hace..."]}
+{"segment_id": "s-95e995b53ed2-0092", "ts": "2026-11-21T18:29:08Z", "findings": ["I12: sentence of 36 words (limit 29): Con las horas 15, 19 y 12 y un cuarto so..."]}
+{"segment_id": "s-1b92c492832e-0097", "ts": "2026-11-21T18:29:08Z", "findings": ["I7: glossary term sandbox must be rendered 'entorno aislado (*sandbox*)'"]}
+{"segment_id": "s-d2458c1fe9a8-0102", "ts": "2026-11-21T18:29:08Z", "findings": ["I7: glossary term host must be rendered 'anfitrión'"]}
+{"segment_id": "s-f60edaf6a293-0109", "ts": "2026-11-21T18:29:08Z", "findings": ["I12: sentence of 33 words (limit 29): Lo que sostiene el peso cambia: un objet..."]}
+{"segment_id": "s-05508265c075-0112", "ts": "2026-11-21T18:29:08Z", "findings": ["I25: comma before a simple 'y' ('X es diferido, y cada enumeración lo vuelve a ejecutar'): no comma before a simple o or y"]}
+{"segment_id": "s-7e8a2c3ac73b-0115", "ts": "2026-11-21T18:29:08Z", "findings": ["I7: glossary term total must be rendered 'total'"]}
+{"segment_id": "s-d2a49a7f9eea-0116", "ts": "2026-11-21T18:29:08Z", "findings": ["I12: sentence of 41 words (limit 29): El bucle se desenrolló cuatro veces porq..."]}
+{"segment_id": "s-86777e2ddc45-0120", "ts": "2026-11-21T18:29:08Z", "findings": ["I7: glossary term object must be rendered 'objeto'"]}
+{"segment_id": "s-58984dfa11c5-0132", "ts": "2026-11-21T18:29:08Z", "findings": ["I12: sentence of 31 words (limit 29): En las entradas LINQ se llama a X desde ..."]}
+{"segment_id": "s-dc5b9bfe9d45-0138", "ts": "2026-11-21T18:29:08Z", "findings": ["I25: comma before a simple 'y' ('Haskell recuerda un valor calculado, y LINQ vuelve a ejecuta'): no comma before a simple o or y"]}
+{"segment_id": "s-21ee56aaa270-0140", "ts": "2026-11-21T18:29:08Z", "findings": ["I7: glossary term list must be rendered 'lista'"]}
+{"segment_id": "s-10dbe7c73134-0145", "ts": "2026-11-21T18:29:08Z", "findings": ["I3: digit token 40 appears 2 time(s) in the source, 3 in the target"]}
+{"segment_id": "s-8c851ed5c3bf-0005", "ts": "2026-11-21T18:30:51Z", "findings": ["I7: glossary term scope must be rendered 'ámbito'"]}
+{"segment_id": "s-9d25958a2f0e-0008", "ts": "2026-11-21T18:30:51Z", "findings": ["I7: glossary term sandbox must be rendered 'entorno aislado (*sandbox*)'"]}
+{"segment_id": "s-5b3bc1a7891c-0014", "ts": "2026-11-21T18:30:51Z", "findings": ["I7: glossary term object must be rendered 'objeto'"]}
+{"segment_id": "s-874a5dd005ab-0020", "ts": "2026-11-21T18:30:51Z", "findings": ["I7: glossary term state must be rendered 'estado'", "I7: banned rendering 'condición' for glossary term state", "I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-17502b086883-0028", "ts": "2026-11-21T18:30:51Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-6fd9115565f9-0036", "ts": "2026-11-21T18:30:51Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-989c13754935-0041", "ts": "2026-11-21T18:30:51Z", "findings": ["I7: glossary term build must be rendered 'compilación'", "I12: sentence of 61 words (limit 29): Esa demanda (pull) activa la consulta de..."]}
+{"segment_id": "s-c5ba09ceeac5-0048", "ts": "2026-11-21T18:30:51Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-5d69f9119900-0054", "ts": "2026-11-21T18:30:51Z", "findings": ["I7: glossary term running-total must be rendered 'total acumulado'", "I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-4ecee0492c7c-0055", "ts": "2026-11-21T18:30:51Z", "findings": ["I9: looks English: 2 of 8 words are English function words"]}
+{"segment_id": "s-8d76a700bb78-0057", "ts": "2026-11-21T18:30:51Z", "findings": ["I7: glossary term timecard must be rendered 'tarjeta de horas'"]}
+{"segment_id": "s-81a18e88482a-0065", "ts": "2026-11-21T18:30:51Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-30f7006fdea5-0073", "ts": "2026-11-21T18:30:51Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-de426dc03206-0088", "ts": "2026-11-21T18:30:51Z", "findings": ["I7: banned rendering 'condición' for glossary term state"]}
+{"segment_id": "s-713e1bd80b37-0090", "ts": "2026-11-21T18:30:51Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-4f8a0dac5111-0091", "ts": "2026-11-21T18:30:51Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-1b92c492832e-0097", "ts": "2026-11-21T18:30:51Z", "findings": ["I7: glossary term sandbox must be rendered 'entorno aislado (*sandbox*)'"]}
+{"segment_id": "s-86777e2ddc45-0120", "ts": "2026-11-21T18:30:51Z", "findings": ["I7: glossary term object must be rendered 'objeto'"]}
