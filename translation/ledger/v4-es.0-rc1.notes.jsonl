@@ -1924,3 +1924,46 @@
 {"segment_id": "s-5e3bcdfbf845-0031", "ts": "2026-11-21T18:51:10Z", "findings": ["REGISTER: playful segment H005 has status 'pending' in the humor register"], "playful_note": "Conserva el efecto del original: A playful dare. Invites the reader to change the program and watch it fail."}
 {"segment_id": "s-a6b58da9d4cd-0043", "ts": "2026-11-21T18:51:10Z", "findings": ["REGISTER: playful segment H007 has status 'pending' in the humor register"], "playful_note": "Conserva el efecto del original: Sets the strange program beside its ordinary equivalent. 'Boring' is affectionate teasing; echoes 'weird' in the title."}
 {"segment_id": "s-c08a852d0dbe-0045", "ts": "2026-11-21T18:51:10Z", "findings": ["REGISTER: playful segment H006 has status 'pending' in the humor register"], "playful_note": "Conserva el efecto del original: Ironic: calls the program a terrible idea, then asks for the honest engineering case."}
+{"segment_id": "s-68d6587df0db-0002", "ts": "2026-11-21T18:56:31Z", "findings": ["I12: sentence of 41 words (limit 29): Esta guía lee dos programas de Haskell q..."]}
+{"segment_id": "s-a0d938b5f5e1-0004", "ts": "2026-11-21T18:56:31Z", "findings": ["I7: glossary term forcing must be rendered 'forzar'"]}
+{"segment_id": "s-78e55fee647d-0005", "ts": "2026-11-21T18:56:31Z", "findings": ["I7: glossary term scope must be rendered 'ámbito'"]}
+{"segment_id": "s-381043f2df4b-0027", "ts": "2026-11-21T18:56:32Z", "findings": ["I7: glossary term build must be rendered 'compilación'", "I25: comma before a simple 'y' ('El X lo escribe después X, y X cierra el flujo'): no comma before a simple o or y"]}
+{"segment_id": "s-a166a2fed26b-0033", "ts": "2026-11-21T18:56:32Z", "findings": ["I7: glossary term card must be rendered 'tarjeta'"]}
+{"segment_id": "s-541d74dc65ff-0039", "ts": "2026-11-21T18:56:32Z", "findings": ["I12: sentence of 30 words (limit 29): Como cada celda está envuelta en unsafeI..."]}
+{"segment_id": "s-310d8d9265f1-0078", "ts": "2026-11-21T18:56:32Z", "findings": ["I7: glossary term cost must be rendered 'costo'"]}
+{"segment_id": "s-9e53ca5f6222-0087", "ts": "2026-11-21T18:56:32Z", "findings": ["I7: glossary term forcing must be rendered 'forzar'"]}
+{"segment_id": "s-a8e3203c49a5-0100", "ts": "2026-11-21T18:56:32Z", "findings": ["I7: glossary term forcing must be rendered 'forzar'"]}
+{"segment_id": "s-15b947d171d6-0104", "ts": "2026-11-21T18:56:32Z", "findings": ["I7: glossary term card must be rendered 'tarjeta'"]}
+{"segment_id": "s-1296f2a4d382-0110", "ts": "2026-11-21T18:56:32Z", "findings": ["I12: sentence of 34 words (limit 29): Este programa es correcto solo porque ca..."]}
+{"segment_id": "s-887e253f362f-0111", "ts": "2026-11-21T18:56:32Z", "findings": ["I25: comma before a simple 'y' ('así que la espina se construye, y construirla fuerza las cel'): no comma before a simple o or y"]}
+{"segment_id": "s-87d9e31bff8d-0115", "ts": "2026-11-21T18:56:32Z", "findings": ["I7: glossary term state must be rendered 'estado'"]}
+{"segment_id": "s-bca55fee810e-0117", "ts": "2026-11-21T18:56:32Z", "findings": ["I7: banned rendering 'falla' for glossary term failure"]}
+{"segment_id": "s-ee4668a21816-0118", "ts": "2026-11-21T18:56:32Z", "findings": ["I25: comma before a simple 'o' ('Leer X desde dos hilos, o añadir un consumidor antes de X'): no comma before a simple o or y"]}
+{"segment_id": "s-c00b658d3722-0123", "ts": "2026-11-21T18:56:32Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-720bb30b9940-0129", "ts": "2026-11-21T18:56:32Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-ffefedf810b4-0134", "ts": "2026-11-21T18:56:32Z", "findings": ["I7: glossary term step must be rendered 'paso'"]}
+{"segment_id": "s-68d6587df0db-0002", "ts": "2026-11-21T18:56:35Z", "findings": ["I12: sentence of 41 words (limit 29): Esta guía lee dos programas de Haskell q..."]}
+{"segment_id": "s-a0d938b5f5e1-0004", "ts": "2026-11-21T18:56:35Z", "findings": ["I7: glossary term forcing must be rendered 'forzar'"]}
+{"segment_id": "s-78e55fee647d-0005", "ts": "2026-11-21T18:56:35Z", "findings": ["I7: glossary term scope must be rendered 'ámbito'"]}
+{"segment_id": "s-381043f2df4b-0027", "ts": "2026-11-21T18:56:35Z", "findings": ["I7: glossary term build must be rendered 'compilación'", "I25: comma before a simple 'y' ('El X lo escribe después X, y X cierra el flujo'): no comma before a simple o or y"]}
+{"segment_id": "s-a166a2fed26b-0033", "ts": "2026-11-21T18:56:35Z", "findings": ["I7: glossary term card must be rendered 'tarjeta'"]}
+{"segment_id": "s-541d74dc65ff-0039", "ts": "2026-11-21T18:56:35Z", "findings": ["I12: sentence of 30 words (limit 29): Como cada celda está envuelta en unsafeI..."]}
+{"segment_id": "s-310d8d9265f1-0078", "ts": "2026-11-21T18:56:35Z", "findings": ["I7: glossary term cost must be rendered 'costo'"]}
+{"segment_id": "s-9e53ca5f6222-0087", "ts": "2026-11-21T18:56:35Z", "findings": ["I7: glossary term forcing must be rendered 'forzar'"]}
+{"segment_id": "s-a8e3203c49a5-0100", "ts": "2026-11-21T18:56:35Z", "findings": ["I7: glossary term forcing must be rendered 'forzar'"]}
+{"segment_id": "s-15b947d171d6-0104", "ts": "2026-11-21T18:56:35Z", "findings": ["I7: glossary term card must be rendered 'tarjeta'"]}
+{"segment_id": "s-1296f2a4d382-0110", "ts": "2026-11-21T18:56:35Z", "findings": ["I12: sentence of 34 words (limit 29): Este programa es correcto solo porque ca..."]}
+{"segment_id": "s-887e253f362f-0111", "ts": "2026-11-21T18:56:35Z", "findings": ["I25: comma before a simple 'y' ('así que la espina se construye, y construirla fuerza las cel'): no comma before a simple o or y"]}
+{"segment_id": "s-87d9e31bff8d-0115", "ts": "2026-11-21T18:56:35Z", "findings": ["I7: glossary term state must be rendered 'estado'"]}
+{"segment_id": "s-bca55fee810e-0117", "ts": "2026-11-21T18:56:35Z", "findings": ["I7: banned rendering 'falla' for glossary term failure"]}
+{"segment_id": "s-ee4668a21816-0118", "ts": "2026-11-21T18:56:35Z", "findings": ["I25: comma before a simple 'o' ('Leer X desde dos hilos, o añadir un consumidor antes de X'): no comma before a simple o or y"]}
+{"segment_id": "s-c00b658d3722-0123", "ts": "2026-11-21T18:56:35Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-720bb30b9940-0129", "ts": "2026-11-21T18:56:35Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-ffefedf810b4-0134", "ts": "2026-11-21T18:56:35Z", "findings": ["I7: glossary term step must be rendered 'paso'"]}
+{"segment_id": "s-78e55fee647d-0005", "ts": "2026-11-21T18:57:21Z", "findings": ["I7: glossary term scope must be rendered 'ámbito'"]}
+{"segment_id": "s-381043f2df4b-0027", "ts": "2026-11-21T18:57:21Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-a166a2fed26b-0033", "ts": "2026-11-21T18:57:21Z", "findings": ["I7: glossary term card must be rendered 'tarjeta'"]}
+{"segment_id": "s-87d9e31bff8d-0115", "ts": "2026-11-21T18:57:21Z", "findings": ["I7: glossary term state must be rendered 'estado'"]}
+{"segment_id": "s-c00b658d3722-0123", "ts": "2026-11-21T18:57:21Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-720bb30b9940-0129", "ts": "2026-11-21T18:57:21Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-ffefedf810b4-0134", "ts": "2026-11-21T18:57:21Z", "findings": ["I7: glossary term step must be rendered 'paso'"]}

@@ -1,130 +1,130 @@
-# Haskell study guide
+# Guía de estudio de Haskell
 
-## What this guide is for
+## Para qué sirve esta guía
 
-This guide reads two Haskell programs that solve the time-card challenge with no loop: [`src/haskell`](../../../src/haskell/README.md), which is one pure function over infinite lists, and [`src/haskell-weird`](../../../src/haskell-weird/README.md), where *reading* the list is what performs the effects. The question is: **who demands work, and when?**
+Esta guía lee dos programas de Haskell que resuelven el reto de las tarjetas de horas sin ningún bucle. [`src/haskell`](../../../src/haskell/README.md) es una sola función pura sobre listas infinitas. En [`src/haskell-weird`](../../../src/haskell-weird/README.md), *leer* la lista es lo que ejecuta los efectos. La pregunta es: **¿quién demanda trabajo y cuándo?**
 
-When you finish, you should be able to:
+Al terminar, deberías poder:
 
-1. Explain how `span` turns "how much of an infinite list I read" into a stop rule, and why `takeWhile` would give the wrong answer.
-2. Say which parts of each program are *demanded* in a given step, and which are never built.
-3. Explain what `unsafeInterleaveIO` adds, and why that is where the program stops being referentially transparent.
-4. Predict what happens when a forcing point moves relative to the lifetime of a resource (the pipe to `sqlite3`).
-5. Label each behavior as guaranteed, implementation-permitted or accidentally exploited.
+1. Explicar cómo `span` convierte "cuánto de una lista infinita leo" en una regla de parada, y por qué `takeWhile` daría la respuesta equivocada.
+2. Decir qué partes de cada programa se *demandan* en un paso dado y cuáles nunca se construyen.
+3. Explicar qué añade `unsafeInterleaveIO` y por qué ahí el programa deja de ser referencialmente transparente.
+4. Predecir qué ocurre cuando el momento de forzar una celda se mueve respecto a la vida de un recurso (la tubería hacia `sqlite3`).
+5. Etiquetar cada comportamiento como garantizado, permitido por la implementación o aprovechado por accidente.
 
-**Scope limits.** You need to read Haskell type signatures and know what `map`, `zip` and `fix` do. The guide does not teach monads, the type classes in the source or the SQL. It uses GHC's `runghc`; the programs need only packages that ship with GHC.
+**Límites del alcance.** Necesitas saber leer las firmas de tipos de Haskell y saber qué hacen `map`, `zip` y `fix`. La guía no enseña las mónadas, las clases de tipos del código fuente ni el SQL. Usa el `runghc` de GHC; los programas solo necesitan paquetes que se distribuyen con GHC.
 
-The matching book material is [Haskell](../../lenguajes/haskell.md), and for the idea itself, [Evaluation and demand](../../informatica/04-evaluacion-y-demanda.md).
+El material correspondiente del libro es [Haskell](../../lenguajes/haskell.md) y, para la idea en sí, [Evaluación y demanda](../../informatica/04-evaluacion-y-demanda.md).
 
-## Before you begin
+## Antes de empezar
 
-**Safety model.** Every entry writes fictional **DEMO ONLY** records to a scratch SQLite file. Both programs start the `sqlite3` process, so read the source first and run it in the sandbox first:
+**Modelo de seguridad.** Cada entrada escribe registros ficticios marcados con **DEMO ONLY** en un archivo SQLite de trabajo. Ambos programas inician el proceso `sqlite3`, así que lee primero el código fuente y ejecútalo primero en el entorno aislado (*sandbox*):
 
 ```bash
 sandbox/container/run-image.sh src/haskell
 sandbox/container/run-image.sh src/haskell-weird
 ```
 
-Work on a copy for any edit ([Running things safely](../../exercises.md#running-things-safely)). Output is random, so compare properties, not numbers.
+Trabaja sobre una copia para cualquier edición ([Ejecutar cosas de forma segura](../../exercises.md#running-things-safely)). La salida es aleatoria, así que compara propiedades, no números.
 
-**Prediction rule.** Before each run, write down (a) which list cells will be forced, (b) which effects will fire and (c) what output would prove you wrong.
+**Regla de predicción.** Antes de cada ejecución, anota (a) qué celdas de la lista se forzarán, (b) qué efectos se dispararán y (c) qué salida demostraría que te equivocas.
 
-**Vocabulary.**
+**Vocabulario.**
 
-| Term | Meaning here |
+| Término | Significado aquí |
 | --- | --- |
-| Lazy / non-strict | A value is computed only when something demands it. |
-| Thunk | A suspended computation that stands in for a value until it is forced. |
-| Forcing | Evaluating a thunk, as far as the demanding code needs (usually to its outermost constructor). |
-| `fix` | `fix f = f (fix f)`: gives a function its own result, so a value can be defined in terms of itself. |
-| `unsafeInterleaveIO` | Defers an IO action until its *result* is demanded. |
+| Perezoso / no estricto | Un valor se calcula solo cuando algo lo demanda. |
+| Thunk | Un cálculo suspendido que ocupa el lugar de un valor hasta que se fuerza. |
+| Forzar | Evaluar un thunk hasta donde lo necesite el código que lo demanda (normalmente hasta su constructor más externo). |
+| `fix` | `fix f = f (fix f)`: da a una función su propio resultado, así que un valor puede definirse en términos de sí mismo. |
+| `unsafeInterleaveIO` | Aplaza una acción de IO hasta que se demanda su *resultado*. |
 
-## The shared challenge
+## El reto compartido
 
-The [challenge specification](../../introduccion.md#what-the-challenge-does) calls for cards with a category and 10 to 19 whole hours. Categories cycle through Meetings, Coding, Debugging and Learning. Add each card's hours to the running total. Stop when the total passes 40. Keep the **first card that takes the total over 40**. A total of exactly 40 continues. Four 10-hour cards need a fifth card, in the Meetings category. Conforming runs finish with 3 to 5 cards and a total of 41 to 59 hours.
+La [especificación del reto](../../introduccion.md#what-the-challenge-does) pide tarjetas con una categoría y de 10 a 19 horas enteras. Las categorías se repiten en ciclo: `Meetings`, `Coding`, `Debugging` y `Learning`. Suma las horas de cada tarjeta al total acumulado. Detente cuando el total pasa de 40. Conserva la **primera tarjeta con la que el total pasa de 40**. Un total de exactamente 40 continúa. Cuatro tarjetas de 10 horas necesitan una quinta tarjeta, de la categoría `Meetings`. Las ejecuciones conformes tienen de 3 a 5 tarjetas y un total de 41 a 59 horas.
 
-Both Haskell entries save the cards in one SQLite transaction and print a summary. In Haskell the rule appears as the predicate `(<= 40)` inside `span`. That detail matters. `<= 40` is true for exactly 40, so exactly 40 stays in the "under" half and the next card is read. The crossing card is the *first element of the other half*, which is why the program writes `under ++ take 1 over`.
+Ambas entradas de Haskell guardan las tarjetas en una sola transacción de SQLite e imprimen un resumen. En Haskell la regla aparece como el predicado `(<= 40)` dentro de `span`. Ese detalle importa. `<= 40` es verdadero para exactamente 40, así que un total de exactamente 40 se queda en la mitad "under" y se lee la tarjeta siguiente. La tarjeta que cruza el límite es el *primer elemento de la otra mitad*, y por eso el programa escribe `under ++ take 1 over`.
 
-## The machine to identify
+## La máquina que hay que identificar
 
-Both programs are demand-driven. The difference is what a demand *does*.
+Ambos programas se mueven por la demanda. La diferencia es lo que *hace* una demanda.
 
-**What repeats.** Nothing repeats in a statement. The lists are infinite (`cycle [minBound ..]`, and a random stream), so "repeating" is the consumer asking for one more element. In `haskell`, `span` is the consumer ([L56-59](../../../src/haskell/timecards.hs#L56-L59)). In `haskell-weird`, `span` inside `untilOver40` is the consumer too ([L82-85](../../../src/haskell-weird/timecards.hs#L82-L85)).
+**Qué se repite.** Nada se repite en una sentencia. Las listas son infinitas (`cycle [minBound ..]` y un flujo aleatorio), así que "repetir" es que el consumidor pida un elemento más. En `haskell`, `span` es el consumidor ([L56-59](../../../src/haskell/timecards.hs#L56-L59)). En `haskell-weird`, `span` dentro de `untilOver40` también es el consumidor ([L82-85](../../../src/haskell-weird/timecards.hs#L82-L85)).
 
-**Where state lives.** In `haskell`, state is *position in lists*: the running total is `scanl1 (+) hs` over the hours ([L49](../../../src/haskell/timecards.hs#L49)), so each card carries its own total. In `haskell-weird`, the total of card *n* is read off card *n-1*, an element of the list being built. `fixIO` hands `sheet` its own result before it exists ([L74-78](../../../src/haskell-weird/timecards.hs#L74-L78)). The random stream is also self-referential: `fix (\xs -> seed : map next xs)` ([L53](../../../src/haskell-weird/timecards.hs#L53)).
+**Dónde vive el estado.** En `haskell`, el estado es la *posición en las listas*: el total acumulado es `scanl1 (+) hs` sobre las horas ([L49](../../../src/haskell/timecards.hs#L49)), así que cada tarjeta lleva su propio total. En `haskell-weird`, el total de la tarjeta *n* se lee de la tarjeta *n-1*, un elemento de la lista que se está construyendo. `fixIO` entrega a `sheet` su propio resultado antes de que exista ([L74-78](../../../src/haskell-weird/timecards.hs#L74-L78)). El flujo aleatorio también se refiere a sí mismo: `fix (\xs -> seed : map next xs)` ([L53](../../../src/haskell-weird/timecards.hs#L53)).
 
-**What advances the next step.** The consumer's demand. Forcing cell *n* needs the hours (from the stream) and the total (from card *n-1*). There is no counter and no accumulator. Data dependence supplies the order.
+**Qué hace avanzar el paso siguiente.** La demanda del consumidor. Forzar la celda *n* necesita las horas (del flujo) y el total (de la tarjeta *n-1*). No hay contador ni acumulador. La dependencia de datos pone el orden.
 
-**What stops it.** The consumer stops asking. `span` returns when the predicate first fails, and `take 1 over` takes only the crossing card. No later cell is ever forced.
+**Qué lo detiene.** El consumidor deja de pedir. `span` termina cuando el predicado falla por primera vez, y `take 1 over` toma solo la tarjeta que cruza el límite. Nunca se fuerza ninguna celda posterior.
 
-**What commits.** The two programs differ most here. `haskell` builds the whole SQL script as a pure string, runs `sqlite3` on it with `readProcess` and only then prints the rows ([L103-120](../../../src/haskell/timecards.hs#L103-L120)). In `haskell-weird`, each forced cell *prints its row and writes its `INSERT` to an open pipe* as a side effect. The `COMMIT` is written afterwards by `main`, and `hClose` ends the stream ([L144-146](../../../src/haskell-weird/timecards.hs#L144-L146)). The rows on the terminal are not part of the transaction, and a row can be printed before the transaction is committed.
+**Qué confirma.** Aquí es donde más se diferencian los dos programas. `haskell` construye todo el script SQL como una cadena de texto, ejecuta `sqlite3` sobre ella con `readProcess` y solo entonces imprime las filas ([L103-120](../../../src/haskell/timecards.hs#L103-L120)). En `haskell-weird`, cada celda forzada *imprime su fila y escribe su `INSERT` en una tubería abierta* como efecto secundario. El `COMMIT` lo escribe después `main`. Luego `hClose` cierra el flujo ([L144-146](../../../src/haskell-weird/timecards.hs#L144-L146)). Las filas que salen en el terminal no forman parte de la transacción, y una fila puede imprimirse antes de confirmar la transacción.
 
 <!-- diagram-source: src/haskell/README.md#program-flow -->
 
 ```mermaid
 flowchart TD
-    accTitle: haskell: infinite lists that are read only as far as span demands
-    accDescr: A flowchart of data and demand. The function rolls is an infinite list of hours made with iterate. The categories are an infinite cycle. A running sum of the hours gives the totals. The function zipWith3 glues the categories, hours and totals into allCards, an infinite list of cards, none of them built yet. The function span asks for one card at a time and stops at the first card whose total is over 40. The result keeps the cards before it and the first card over 40. The function main then pipes the INSERTs to sqlite3 and prints the rows.
-    A["rolls: an infinite list of hours, from iterate next seed"] --> C["scanl1 (+): the running totals"]
+    accTitle: haskell: listas infinitas que se leen solo hasta donde llega la demanda de span
+    accDescr: Un diagrama de flujo de datos y demanda. La función rolls es una lista infinita de horas, creada con iterate. Las categorías forman un ciclo infinito. Una suma acumulada de las horas da los totales. La función zipWith3 une las categorías, las horas y los totales en allCards, una lista infinita de tarjetas, ninguna construida todavía. La función span pide una tarjeta a la vez y se detiene en la primera tarjeta cuyo total pasa de 40. El resultado conserva las tarjetas anteriores y la primera tarjeta con más de 40. Después, la función main pasa los INSERT por una tubería a sqlite3 e imprime las filas.
+    A["rolls: una lista infinita de horas, a partir de iterate next seed"] --> C["scanl1 (+): los totales acumulados"]
     A --> D
-    B["cycle of the four categories: repeats forever"] --> D
-    C --> D["zipWith3 Card: allCards, an infinite list, none of it built yet"]
-    D --> E["span (total <= 40): asks for one card at a time, stops at the first that fails"]
-    E --> F["under ++ take 1 over: the cards before 40 and the crossing card"]
-    F --> G["main: pipe the INSERTs to sqlite3, print the rows"]
+    B["ciclo de las cuatro categorías: se repite sin fin"] --> D
+    C --> D["zipWith3 Card: allCards, una lista infinita de la que todavía no se ha construido nada"]
+    D --> E["span (total <= 40): pide una tarjeta a la vez y se detiene en la primera que no cumple la condición"]
+    E --> F["under ++ take 1 over: las tarjetas antes de 40 y la que lo cruza"]
+    F --> G["main: envía los INSERT a sqlite3 mediante una tubería e imprime las filas"]
 ```
 
-Data flows left to right through descriptions, and demand flows the other way, from `span` back to the lists. Only the demanded prefix is ever built.
+Los datos fluyen de izquierda a derecha por las descripciones, y la demanda fluye en sentido contrario, desde `span` hacia las listas. Solo se construye el prefijo demandado.
 
 <!-- diagram-source: src/haskell-weird/README.md#program-flow -->
 
 ```mermaid
 sequenceDiagram
-    accTitle: haskell-weird: reading a cell of a lazy list runs that card's effect
-    accDescr: A sequence diagram. The consumer, span in untilOver40, demands the next cell of the lazy list of cards. The cell needs the hours from the random stream and the running total of the previous card. Because every cell is wrapped in unsafeInterleaveIO, the effect for that card runs now, when the cell is demanded: it prints the row and writes the INSERT to the pipe. The cell then returns the card to the consumer. The consumer tests the running total. While it is 40 or less, it demands the next cell. At the first card over 40, the consumer stops demanding, so no later effect ever runs, and main commits.
-    participant S as span, the consumer
-    participant C as the next cell of the list
-    participant R as the random stream and the previous card
-    participant E as onBirth, the card's effect
-    loop while the running total is 40 or less
-        S->>C: demand the next card
-        C->>R: need the hours, and the total of the previous card
-        R-->>C: hours and total, already known
-        C->>E: unsafeInterleaveIO runs the effect now
-        E-->>E: print the row and write the INSERT to the pipe
-        C-->>S: the card
+    accTitle: haskell-weird: leer una celda de una lista perezosa ejecuta el efecto de esa tarjeta
+    accDescr: Un diagrama de secuencia. El consumidor, span en untilOver40, demanda la siguiente celda de la lista perezosa de tarjetas. La celda necesita las horas del flujo aleatorio y el total acumulado de la tarjeta anterior. Como cada celda está envuelta en unsafeInterleaveIO, el efecto de esa tarjeta se ejecuta ahora, cuando se demanda la celda: imprime la fila y escribe el INSERT en la tubería. Después, la celda devuelve la tarjeta al consumidor. El consumidor comprueba el total acumulado. Mientras el total no pase de 40, demanda la siguiente celda. En la primera tarjeta que pasa de 40, el consumidor deja de demandar, así que ningún efecto posterior se ejecuta nunca, y main confirma la transacción.
+    participant S as span, el consumidor
+    participant C as la siguiente celda de la lista
+    participant R as el flujo aleatorio y la tarjeta anterior
+    participant E as onBirth, el efecto de la tarjeta
+    loop mientras el total acumulado sea 40 o menos
+        S->>C: demanda la siguiente tarjeta
+        C->>R: necesitan las horas y el total de la tarjeta anterior
+        R-->>C: las horas y el total, ya conocidos
+        C->>E: unsafeInterleaveIO ejecuta el efecto ahora
+        E-->>E: imprime la fila y escribe el INSERT en la tubería
+        C-->>S: la tarjeta
     end
-    Note over S: the first card over 40 is returned and kept. No later cell is demanded, so no later effect runs
-    S-->>S: main commits and reports
+    Note over S: se devuelve y se conserva la primera tarjeta que pasa de 40. No se pide ninguna celda posterior, así que no se ejecuta ningún efecto posterior
+    S-->>S: main confirma la transacción e informa
 ```
 
-Here a demand has a *consequence*: the effect runs in the middle of the evaluation. The next diagram is new. It adds what the source diagram leaves out, the lifetime of the pipe.
+Aquí una demanda tiene una *consecuencia*: el efecto se ejecuta en medio de la evaluación. El diagrama siguiente es nuevo. Añade lo que el diagrama de origen deja fuera: la vida útil de la tubería.
 
 <!-- diagram-new: lazy-demand-trace - shows when the cells are forced relative to hClose, which the source diagram omits -->
 
 ```mermaid
 sequenceDiagram
-    accTitle: haskell-weird: when the cards are forced decides whether the pipe is still open
-    accDescr: A sequence diagram of main in haskell-weird. Main writes BEGIN and the schema to the pipe. It calls sheet, which returns at once because no cell has been forced. Main then evaluates the length of the kept cards. That forces each cell in turn, up to the crossing card, and each forced cell prints its row and writes its INSERT to the open pipe. Then main writes COMMIT, closes the pipe, waits for sqlite3 and prints the summary. A note says that with a lazy count the cells would be forced after the pipe closed, and the first INSERT would fail with handle is closed.
+    accTitle: haskell-weird: el momento en que se fuerzan las tarjetas decide si la tubería sigue abierta
+    accDescr: Un diagrama de secuencia de main en haskell-weird. Primero, main escribe BEGIN y el esquema en la tubería. Llama a sheet, que regresa de inmediato porque ninguna celda se ha forzado. Después main evalúa la longitud de las tarjetas conservadas. Eso fuerza cada celda por turno, hasta la tarjeta que cruza el límite, y cada celda forzada imprime su fila y escribe su INSERT en la tubería abierta. Luego main escribe COMMIT, cierra la tubería, espera a sqlite3 e imprime el resumen. Una nota dice que con un conteo perezoso las celdas se forzarían después de cerrar la tubería, y el primer INSERT fallaría con handle is closed.
     participant M as main
-    participant L as the lazy list of cards
-    participant P as the pipe to sqlite3
-    M->>P: BEGIN and the schema
-    M->>L: sheet returns at once: no cell is forced
-    M->>L: evaluate the length of the kept cards
-    loop each cell, up to the crossing card
-        L->>P: the card's effect: print the row, write the INSERT
+    participant L as la lista perezosa de tarjetas
+    participant P as la tubería hacia sqlite3
+    M->>P: BEGIN y el esquema
+    M->>L: sheet regresa de inmediato: no se fuerza ninguna celda
+    M->>L: evalúa la longitud de las tarjetas conservadas
+    loop cada celda, hasta la tarjeta que cruza el límite
+        L->>P: el efecto de la tarjeta: imprime la fila, escribe el INSERT
     end
-    L-->>M: the count
+    L-->>M: el conteo
     M->>P: COMMIT
     M->>P: hClose
-    Note over M,P: a lazy count would force the cells after hClose
-    M-->>M: the summary line
+    Note over M,P: un conteo perezoso forzaría las celdas después de hClose
+    M-->>M: la línea del resumen
 ```
 
-## Trace one run
+## Traza una ejecución
 
-The programs draw random hours. For a trace, use hours **15, 19, 12**. To check the trace against real behavior, scratch copies of both programs were run in the sandbox with the random stream replaced by `[15, 19, 12] ++ error "a 4th card was demanded"`. If any code had forced a fourth hours value, the program would have crashed with that message. Neither did. The weird copy also printed a marker to standard error each time a card's effect fired:
+Los programas sortean horas al azar. Para la traza, usa las horas **15, 19, 12**. Para comprobar la traza con el comportamiento real, se ejecutaron copias de trabajo de ambos programas en el entorno aislado. En ellas, el flujo aleatorio se sustituyó por `[15, 19, 12] ++ error "a 4th card was demanded"`. Si algún código hubiera forzado un cuarto valor de horas, el programa habría fallado con ese mensaje. Ninguno lo hizo. La copia rara también imprimió un marcador en el error estándar cada vez que se disparaba el efecto de una tarjeta:
 
 ```text
 # DEMO ONLY run <id>
@@ -137,99 +137,99 @@ Debugging	12	46	DEMO ONLY
 # committed total=46 entries=3 DEMO ONLY
 ```
 
-(The ISO-week column was removed for width.) Both copies finished normally with three rows and total 46. The tables below name the *demand*, which is the decisive state in a lazy program.
+(Se quitó la columna de la semana ISO para ahorrar ancho.) Ambas copias terminaron con normalidad, con tres filas y un total de 46. Las tablas siguientes nombran la *demanda*, que es el estado decisivo en un programa perezoso.
 
-**`haskell`: what `span` forces.** `span p xs` tests one element at a time.
+**`haskell`: qué fuerza `span`.** `span p xs` prueba un elemento a la vez.
 
-| Step | `span` demands | The test `total <= 40` | Result |
+| Paso | `span` demanda | La prueba `total <= 40` | Resultado |
 | --- | --- | --- | --- |
-| 1 | cell 1: Meetings, 15 hours, total 15 | true | goes in `under` |
-| 2 | cell 2: Coding, 19 hours, total 34 | true | goes in `under` |
-| 3 | cell 3: Debugging, 12 hours, total 46 | **false** | becomes the head of `over`, and `span` stops |
-| after | `take 1 over` takes cell 3 | none | no cell 4 is demanded, so the 4th hours value is never evaluated |
+| 1 | celda 1: Meetings, 15 horas, total 15 | verdadero | entra en `under` |
+| 2 | celda 2: Coding, 19 horas, total 34 | verdadero | entra en `under` |
+| 3 | celda 3: Debugging, 12 horas, total 46 | **falso** | pasa a ser la cabeza de `over`, y `span` se detiene |
+| después | `take 1 over` toma la celda 3 | ninguna | no se demanda la celda 4, así que el 4.º valor de horas nunca se evalúa |
 
-The crossing card is already built when `span` rejects it, because the predicate needed its total. That is why the "retain the crossing card" rule costs nothing: `take 1 over` returns an element that exists. It is also why `takeWhile` is wrong here. `takeWhile (<= 40)` stops at the same place but throws the crossing card away.
+La tarjeta que cruza el límite ya está construida cuando `span` la rechaza, porque el predicado necesitó su total. Por eso la regla de "conservar la tarjeta que cruza el límite" no tiene ningún costo:`take 1 over` devuelve un elemento que ya existe. También por eso `takeWhile` es incorrecto aquí. `takeWhile (<= 40)` se detiene en el mismo punto, pero descarta la tarjeta que cruza el límite.
 
-**`haskell-weird`: what each demand does.**
+**`haskell-weird`: qué hace cada demanda.**
 
-| Step | Demand | Needs | Effect fired now | Pipe state |
+| Paso | Demanda | Necesita | Efecto disparado ahora | Estado de la tubería |
 | --- | --- | --- | --- | --- |
-| 0 | `sheet` called | nothing | none: the list is only a promise | open, BEGIN and schema written |
-| 1 | `span` forces cell 1 | hours 15, previous total 0 | row 1 printed, INSERT 1 written | open |
-| 2 | `span` forces cell 2 | hours 19, total 15 from card 1 | row 2 printed, INSERT 2 written | open |
-| 3 | `span` forces cell 3 | hours 12, total 34 from card 2 | row 3 printed, INSERT 3 written | open |
-| 4 | `span` sees 46 > 40 and stops | none | **none**: cell 4 is never forced | open |
-| 5 | `main` writes `COMMIT`, then `hClose` | none | transaction committed | closed |
+| 0 | se llama a `sheet` | nada | ninguno: la lista es solo una promesa | abierta, BEGIN y el esquema escritos |
+| 1 | `span` fuerza la celda 1 | horas 15, total anterior 0 | fila 1 impresa, INSERT 1 escrito | abierta |
+| 2 | `span` fuerza la celda 2 | horas 19, total 15 de la tarjeta 1 | fila 2 impresa, INSERT 2 escrito | abierta |
+| 3 | `span` fuerza la celda 3 | horas 12, total 34 de la tarjeta 2 | fila 3 impresa, INSERT 3 escrito | abierta |
+| 4 | `span` ve 46 > 40 y se detiene | nada | **ninguno**: la celda 4 nunca se fuerza | abierta |
+| 5 | `main` escribe `COMMIT` y luego `hClose` | nada | transacción confirmada | cerrada |
 
-**The same cells, forced too late.** Move step 5 *before* the forcing and the effects have nowhere to go. In the repository's own history the first draft counted with `let entries = length cards`. That binding is lazy, so nothing forced the cards until the summary line was printed, after the pipe was closed. The output began `# committed total=` and crashed with `handle is closed`. The fix is `entries <- evaluate (length cards)` ([L144](../../../src/haskell-weird/timecards.hs#L144)). `evaluate` is not decoration: it is the line that decides *when* the rows exist.
+**Las mismas celdas, forzadas demasiado tarde.** Mueve el paso 5 *antes* de forzar las tarjetas y los efectos no tienen adónde ir. En el propio historial del repositorio, el primer borrador contaba con `let entries = length cards`. Ese enlace es perezoso, así que nada forzó las tarjetas hasta que se imprimió la línea del resumen, después de cerrar la tubería. La salida empezó con `# committed total=` y falló con `handle is closed`. La solución es `entries <- evaluate (length cards)` ([L144](../../../src/haskell-weird/timecards.hs#L144)). `evaluate` no es decoración: es la línea que decide *cuándo* existen las filas.
 
-**Exactly 40.** With four 10-hour cards the totals are 10, 20, 30, 40. The test `40 <= 40` is true, so card 4 goes in `under`, and `span` demands card 5. Its total is at least 50, so it is the crossing card. Predict the category of card 5, then check yourself. (`cycle [minBound ..]` repeats from `Meetings`.)
+**Exactamente 40.** Con cuatro tarjetas de 10 horas, los totales son 10, 20, 30, 40. La prueba `40 <= 40` es verdadera, así que la tarjeta 4 entra en `under`, y `span` demanda la tarjeta 5. Su total es de al menos 50, así que es la tarjeta que cruza el límite. Predice la categoría de la tarjeta 5 y luego compruébalo. (`cycle [minBound ..]` se repite desde `Meetings`.)
 
-## Compare the ordinary and weird designs
+## Compara los diseños ordinarios y los raros
 
-| Dimension | `haskell` | `haskell-weird` |
+| Dimensión | `haskell` | `haskell-weird` |
 | --- | --- | --- |
-| **Representation** | The whole challenge is one pure function, `timecards :: Word64 -> [Card]`. Output and SQL are derived from its result. | The list of cards *is* the program. Each cell carries an `IO` action that runs when the cell is forced. |
-| **Observability** | Deterministic: the same seed always gives the same list, and you can print it. | The list looks pure and is not. Looking at `cards` in a debugger forces cells and fires effects. |
-| **Tests** | Call `timecards seed` and check the list. No I/O is needed. | The effect is injected (`sheet` takes `onBirth`), so a test can pass a recorder instead of a pipe. But the order of effects depends on the consumer, so you must drive it too. |
-| **Debugging** | Standard. A wrong value has one pure cause. | The *order of effects* is decided by the evaluator. A change that adds a second consumer, or a different consumer, changes what is written. |
-| **Portability** | Plain Haskell 2010 plus the GHC-shipped `time`, `directory`, `process` and `unix` packages. | The same packages, plus `unsafeInterleaveIO` and `fixIO`, which are GHC library functions with documented but delicate behavior. |
-| **Cost** | A list is built lazily, so a few cards are built. Output happens after the SQL is generated. | Effects interleave with evaluation, so a failure part-way leaves partial output and a half-written pipe. |
+| **Representación** | Todo el reto es una sola función pura, `timecards :: Word64 -> [Card]`. La salida y el SQL se derivan de su resultado. | La lista de tarjetas *es* el programa. Cada celda lleva una acción de `IO` que se ejecuta cuando se fuerza la celda. |
+| **Observabilidad** | Determinista: la misma semilla da siempre la misma lista, y puedes imprimirla. | La lista parece pura y no lo es. Mirar `cards` en un depurador fuerza celdas y dispara efectos. |
+| **Pruebas** | Llama a `timecards seed` y comprueba la lista. No hace falta E/S. | El efecto se inyecta (`sheet` recibe `onBirth`), así que una prueba puede pasar un registrador en lugar de una tubería. Pero el orden de los efectos depende del consumidor, así que también debes controlarlo. |
+| **Debugging** | Estándar. Un valor incorrecto tiene una sola causa pura. | El *orden de los efectos* lo decide el evaluador. Un cambio que añade un segundo consumidor, o un consumidor distinto, cambia lo que se escribe. |
+| **Portabilidad** | Haskell 2010 a secas más los paquetes `time`, `directory`, `process` y `unix` que distribuye GHC. | Los mismos paquetes, más `unsafeInterleaveIO` y `fixIO`, que son funciones de la biblioteca de GHC con un comportamiento documentado pero delicado. |
+| **Costo** | Una lista se construye de forma perezosa, así que se construyen pocas tarjetas. La salida ocurre después de generar el SQL. | Los efectos se intercalan con la evaluación, así que un fallo a medias deja una salida parcial y una tubería escrita a medias. |
 
-The weird version gives up an important property: you can no longer treat an expression as a value. In the idiomatic version, `timecards seed` can be evaluated twice and gives the same thing, and nothing happens in the world. In the weird version, evaluating a cell is an *event*.
+La versión rara renuncia a una propiedad importante: ya no puedes tratar una expresión como un valor. En la versión idiomática, `timecards seed` puede evaluarse dos veces y da lo mismo, y no pasa nada en el mundo. En la versión rara, evaluar una celda es un *evento*.
 
-## What the exercises demonstrate
+## Qué demuestran los ejercicios
 
-| Exercise | Predict first | What the evidence shows |
+| Ejercicio | Predice primero | Qué muestra la evidencia |
 | --- | --- | --- |
-| [B2. Haskell: break the laziness](../../exercises.md#b2-haskell-break-the-laziness-verified), change 1 | What happens when `evaluate (length cards)` becomes a lazy `let`? | The output contains `handle is closed` and the shared checker fails. The cards were demanded *after* the pipe closed. Forcing order is part of the program's meaning once effects are involved. |
-| B2, change 2 | What happens if `unsafeInterleaveIO` is removed from `lazily`? Does it hang? | It stops with `cyclic evaluation in fixIO`, not a hang. The list of actions is now forced before the list of cards exists, so each value needs the other. |
-| [C1. Weird next to boring](../../exercises.md#c1-weird-next-to-boring-verified) | In each program, what would a test need to control? | A pure function is tested by calling it. A lazy-effect list is tested by controlling its consumer. |
-| [F. Prove a README claim](../../exercises.md#f-prove-a-readme-claim-verified) | Will a lazily evaluated `span` ever demand a fourth card? | The book's worked solution tests "`takeWhile` is not enough." A good evidence test needs a negative control: show that the test fails when the claim is false. |
-| *Guide experiment* (verified in the sandbox) | In a scratch copy, replace the random stream with `[15, 19, 12] ++ error "a 4th card was demanded"`. Will the program crash? | It does not. Three effects fire and no more. This is direct evidence that `take 1 over` does not force the cell after the crossing card. It is not in the book's exercise list, so treat it as this guide's own. |
+| [B2. Haskell: rompe la pereza](../../exercises.md#b2-haskell-break-the-laziness-verified), cambio 1 | ¿Qué pasa cuando `evaluate (length cards)` se convierte en un `let` perezoso? | La salida contiene `handle is closed` y el verificador compartido falla. Las tarjetas se demandaron *después* de cerrar la tubería. Una vez que hay efectos, el orden de forzar las celdas forma parte del significado del programa. |
+| B2, cambio 2 | ¿Qué pasa si se quita `unsafeInterleaveIO` de `lazily`? ¿Se cuelga? | Se detiene con `cyclic evaluation in fixIO`, no se cuelga. La lista de acciones se fuerza ahora antes de que exista la lista de tarjetas, así que cada valor necesita al otro. |
+| [C1. Lo raro junto a lo aburrido](../../exercises.md#c1-weird-next-to-boring-verified) | En cada programa, ¿qué necesitaría controlar una prueba? | Una función pura se prueba llamándola. Una lista de efectos perezosos se prueba controlando a su consumidor. |
+| [F. Demuestra una afirmación del README](../../exercises.md#f-prove-a-readme-claim-verified) | ¿Demandará alguna vez un `span` evaluado de forma perezosa una cuarta tarjeta? | La solución resuelta del libro prueba que "`takeWhile` no basta". Una buena prueba de evidencia necesita un control negativo: mostrar que la prueba falla cuando la afirmación es falsa. |
+| *Experimento de la guía* (verificado en el entorno aislado) | En una copia de trabajo, sustituye el flujo aleatorio por `[15, 19, 12] ++ error "a 4th card was demanded"`. ¿Fallará el programa? | No falla. Se disparan tres efectos y ninguno más. Es evidencia directa de que `take 1 over` no fuerza la celda posterior a la tarjeta que cruza el límite. No está en la lista de ejercicios del libro, así que trátalo como propio de esta guía. |
 
-## Failure modes, costs and boundaries
+## Modos de fallo, costos y límites
 
-| Behavior | Label | Why |
+| Comportamiento | Etiqueta | Por qué |
 | --- | --- | --- |
-| `span` and `take` read only as much of a list as their result needs | **guaranteed** | Non-strict semantics of Haskell. Verified by the error-tail experiment. |
-| Total of card *n* depends on card *n-1*, so cell *n* cannot be forced first | **guaranteed** | A data dependence in the program. It is why the program is correct, whatever the evaluator does. |
-| `unsafeInterleaveIO` runs its action when its result is demanded, not before | **guaranteed** | The library documents this contract. The word "unsafe" in the name is about what the contract does *not* say. |
-| Where an interleaved effect lands relative to *unrelated* effects | **implementation-permitted** | The language does not order them. This program is correct only because each cell depends on the one before it, so the order of the card effects follows from data dependence, not from a promise by the evaluator. |
-| `evaluate (length cards)` forces every kept cell before `COMMIT` | **guaranteed** | `evaluate` forces to weak head normal form, and `length` walks the spine, so the spine is built, and building it forces the cells. The exact wording of this chain matters: change one link and the effects move. |
-| `fixIO` hands a function the result it is still building | **guaranteed** | The library documents it. Forcing that result too early is an error you see at run time (`cyclic evaluation in fixIO`), which is what exercise B2 change 2 produces. |
-| The 64-bit generator wraps around at the width of `Word64` | **guaranteed** | Documented wraparound of the type. The generator uses Knuth's constants and the high bits. |
+| `span` y `take` leen de una lista solo lo que necesita su resultado | **garantizado** | Semántica no estricta de Haskell. Verificado con el experimento de la cola con error. |
+| El total de la tarjeta *n* depende de la tarjeta *n-1*, así que la celda *n* no puede forzarse primero | **garantizado** | Una dependencia de datos del programa. Es la razón por la que el programa es correcto, haga lo que haga el evaluador. |
+| `unsafeInterleaveIO` ejecuta su acción cuando se demanda su resultado, no antes | **garantizado** | La biblioteca documenta este contrato. La palabra "unsafe" del nombre se refiere a lo que el contrato *no* dice. |
+| Dónde cae un efecto intercalado respecto a efectos *no relacionados* | **permitido por la implementación** | El lenguaje no los ordena. Este programa es correcto solo porque cada celda depende de la anterior. Por eso el orden de los efectos de las tarjetas sale de la dependencia de datos, no de una promesa del evaluador. |
+| `evaluate (length cards)` fuerza todas las celdas conservadas antes de `COMMIT` | **garantizado** | `evaluate` fuerza hasta la forma normal de cabeza débil, y `length` recorre la espina, así que la espina se construye y construirla fuerza las celdas. La redacción exacta de esta cadena importa: cambia un eslabón y los efectos se mueven. |
+| `fixIO` entrega a una función el resultado que aún está construyendo | **garantizado** | La biblioteca lo documenta. Forzar ese resultado demasiado pronto es un error que ves en tiempo de ejecución (`cyclic evaluation in fixIO`), que es lo que produce el cambio 2 del ejercicio B2. |
+| El generador de 64 bits da la vuelta al llegar al ancho de `Word64` | **garantizado** | Desbordamiento cíclico documentado del tipo. El generador usa las constantes de Knuth y los bits altos. |
 
-No behavior here is *accidentally exploited* in the book's sense: nothing relies on an effect nobody promised. The weird entry sits as close to that line as the Haskell entries get, which is why the unrelated-effects row matters.
+Ningún comportamiento de aquí es *aprovechado por accidente* en el sentido del libro: nada depende de un efecto que nadie prometió. La entrada rara se acerca a ese límite todo lo que lo hacen las entradas de Haskell, y por eso importa la fila de los efectos no relacionados.
 
-**Costs to state.**
+**Costos que declarar.**
 
-- **The pipe lifetime is an invisible dependency.** Nothing in the type of `cards :: [Card]` says "valid only while this handle is open". This is the same hazard that made people move from lazy `getContents` to streaming libraries.
-- **Partial failure.** If a card's effect fails halfway, rows have already been printed. The transaction is protected by SQLite, but the terminal is not.
-- **A second consumer breaks it.** Calling `length cards` twice is harmless because cells run only once. Reading `cards` from two threads, or adding a consumer before `COMMIT`, changes when effects run.
-- **Where the technique is legitimate.** Lazy streaming of large input is real. Knot-tying (`fix`) is a respectable technique for circular data and memo tables.
+- **La vida de la tubería es una dependencia invisible.** Nada en el tipo de `cards :: [Card]` dice "válido solo mientras este manejador esté abierto". Es el mismo riesgo que hizo que la gente pasara del `getContents` perezoso a las bibliotecas de procesamiento por flujos.
+- **Fallo parcial.** Si el efecto de una tarjeta sufre un fallo a medias, ya se han impreso filas. SQLite protege la transacción, pero el terminal no está protegido.
+- **Un segundo consumidor lo rompe.** Llamar a `length cards` dos veces es inofensivo porque las celdas se ejecutan una sola vez. Leer `cards` desde dos hilos o añadir un consumidor antes de `COMMIT` cambia cuándo se ejecutan los efectos.
+- **Dónde es legítima la técnica.** El flujo perezoso de entradas grandes es real. Atar el nudo (`fix`) es una técnica respetable para datos circulares y tablas de memoización.
 
-## Connections across the repository
+## Conexiones a lo largo del repositorio
 
-- **The same question as LINQ.** [C#, LINQ, XAML and ports](csharp-linq-xaml-y-adaptaciones.md) asks "when does a description run?" with deferred execution. A LINQ pipeline reruns when enumerated again, while a Haskell cell is evaluated once and remembered.
-- **Pull iteration in JavaScript.** [JavaScript](javascript.md)'s lazy iterator in `javascript-weird` is a consumer that pulls one card at a time. The mechanism differs and the shape of the stop rule is the same.
-- **Array languages go the other way.** [APL](apl.md) is eager: it builds more values than it needs and trims the result.
-- **A stop rule as structure.** [COBOL](cobol.md) declares the rule on the data. Haskell chooses it by how much it reads. CMake uses a literal 41 characters long. All three avoid a visible loop condition.
-- **Concept guides.** [Evaluation, demand and laziness](../conceptos/evaluacion-demanda-y-pereza.md) puts Haskell, LINQ and JavaScript on one scale. [Effects, errors and commitment](../conceptos/efectos-errores-y-confirmacion.md) explains what survives a failure.
-- **In the book.** [Haskell](../../lenguajes/haskell.md) and [Evaluation and demand](../../informatica/04-evaluacion-y-demanda.md).
+- **La misma pregunta que en LINQ.** [C#, LINQ, XAML y adaptaciones](csharp-linq-xaml-y-adaptaciones.md) pregunta "¿cuándo se ejecuta una descripción?" con ejecución diferida. Una canalización de LINQ se vuelve a ejecutar cuando se enumera de nuevo, mientras que una celda de Haskell se evalúa una sola vez y se recuerda.
+- **Iteración por demanda (pull) en JavaScript.** El iterador perezoso de [JavaScript](javascript.md) en `javascript-weird` es un consumidor que demanda una tarjeta a la vez. El mecanismo es distinto y la forma de la regla de parada es la misma.
+- **Los lenguajes de arreglos van en sentido contrario.** [APL](apl.md) usa evaluación inmediata: construye más valores de los que necesita y recorta el resultado.
+- **Una regla de parada como estructura.** [COBOL](cobol.md) declara la regla sobre los datos. Haskell la elige según cuánto lee. CMake usa un literal de 41 caracteres de largo. Los tres evitan una condición de bucle visible.
+- **Guías de concepto.** [Evaluación, demanda y pereza](../conceptos/evaluacion-demanda-y-pereza.md) pone a Haskell, LINQ y JavaScript en una misma escala. [Efectos, errores y confirmación](../conceptos/efectos-errores-y-confirmacion.md) explica qué sobrevive a un fallo.
+- **En el libro.** [Haskell](../../lenguajes/haskell.md) y [Evaluación y demanda](../../informatica/04-evaluacion-y-demanda.md).
 
-## Self-check
+## Autoevaluación
 
-Answer each question in your own words before you read the italic text. Say what evidence would support each answer.
+Responde cada pregunta con tus propias palabras antes de leer el texto en cursiva. Di qué evidencia respaldaría cada respuesta.
 
-1. **Trace.** Hours are 10, 10, 10, 10, 14. For `haskell`, list the cards `span` forces, say which one is the crossing card and say how many cards the final list has. *(Five cards are forced. Totals 10, 20, 30, 40, 54. The fifth, Meetings with 14 hours, is the crossing card. The final list has five cards.)*
-2. **Explain.** In `haskell-weird`, why does the program not need a counter or an accumulator to know card *n*'s total? Which language feature makes `cards` usable before it exists? *(Each card's total is read from the previous card, an element of the same list. `fixIO` passes the list to `sheet` lazily, so reading card *n-1* works once that cell exists.)*
-3. **Transfer.** In a language with generators, such as the JavaScript or Python entries, which construct plays the part of `span`, and what is the equivalent of "stop demanding"? *(The consumer that pulls from the generator, and stopping means not calling `next` again. A `for` loop that breaks is the usual form.)*
-4. **Evidence.** A reviewer says, "`take 1 over` never builds a fourth card." Design a test that could fail. What is the negative control? *(Replace the hours stream with a fixed list whose tail is an error that fires if forced. The program must finish. For the control, write a variant that pattern-matches one cell past the crossing card. The error must then fire.)*
+1. **Traza.** Las horas son 10, 10, 10, 10, 14. Para `haskell`, enumera las tarjetas que fuerza `span`, di cuál es la tarjeta que cruza el límite y di cuántas tarjetas tiene la lista final. *(Se fuerzan cinco tarjetas. Los totales son 10, 20, 30, 40, 54. La quinta, Meetings con 14 horas, es la tarjeta que cruza el límite. La lista final tiene cinco tarjetas.)*
+2. **Explica.** En `haskell-weird`, ¿por qué el programa no necesita un contador ni un acumulador para saber el total de la tarjeta *n*? ¿Qué característica del lenguaje permite usar `cards` antes de que exista? *(El total de cada tarjeta se lee de la tarjeta anterior, un elemento de la misma lista. `fixIO` pasa la lista a `sheet` de forma perezosa, así que leer la tarjeta *n-1* funciona una vez que esa celda existe.)*
+3. **Transfiere.** En un lenguaje con generadores, como las entradas de JavaScript o de Python, ¿qué construcción hace el papel de `span` y cuál es el equivalente de "dejar de demandar"? *(El consumidor que demanda elementos al generador, y detenerse significa no volver a llamar a `next`. Un bucle `for` que se interrumpe es la forma habitual.)*
+4. **Evidencia.** Un revisor dice: "`take 1 over` nunca construye una cuarta tarjeta". Diseña una prueba que pueda fallar. ¿Cuál es el control negativo? *(Sustituye el flujo de horas por una lista fija cuya cola sea un error que se dispara si se fuerza. El programa debe terminar. Para el control, escribe una variante que haga correspondencia de patrones con una celda más allá de la tarjeta que cruza el límite. Entonces el error debe dispararse.)*
 
-## Further reading
+## Lecturas adicionales
 
-- [Lazy evaluation](https://en.wikipedia.org/wiki/Lazy_evaluation) (Wikipedia): call-by-need, thunks and sharing, with the vocabulary used here.
-- [Referential transparency](https://en.wikipedia.org/wiki/Referential_transparency) (Wikipedia): the property `unsafeInterleaveIO` stops honoring.
-- [Evaluation and demand](../../informatica/04-evaluacion-y-demanda.md) (this book): the same ideas across Haskell, LINQ, APL and JavaScript, with the table of every entry's strategy.
-- [Monads and effect systems](../../informatica/07-efectos-errores-y-confirmacion.md#monads-and-effect-systems) (this book): the usual, safe way Haskell keeps effects in order, which `unsafeInterleaveIO` deliberately steps around.
+- [Evaluación perezosa](https://en.wikipedia.org/wiki/Lazy_evaluation) (Wikipedia): llamada por necesidad, thunks y compartición, con el vocabulario que se usa aquí.
+- [Transparencia referencial](https://en.wikipedia.org/wiki/Referential_transparency) (Wikipedia): la propiedad que `unsafeInterleaveIO` deja de respetar.
+- [Evaluación y demanda](../../informatica/04-evaluacion-y-demanda.md) (este libro): las mismas ideas en Haskell, LINQ, APL y JavaScript, con la tabla de la estrategia de cada entrada.
+- [Mónadas y sistemas de efectos](../../informatica/07-efectos-errores-y-confirmacion.md#monads-and-effect-systems) (este libro): la forma habitual y segura en que Haskell mantiene en orden los efectos, y que `unsafeInterleaveIO` rodea a propósito.

@@ -129,7 +129,7 @@ Acceptance criteria:
 
 ### B6. APL: the off-by-one rewrite (verified)
 
-**Lesson:** [APL, self-modifying functions](lenguajes/apl.md#self-modifying-functions-apl-weird). **Entry:** a copy of `src/apl-weird`.
+**Lesson:** [APL, self-modifying functions](lenguajes/apl.md#funciones-que-se-modifican-a-sí-mismas-apl-weird). **Entry:** a copy of `src/apl-weird`.
 
 1. **Predict:** change `,5↓⊂[1]` to `,4↓⊂[1]` on [L53](../src/apl-weird/timecards.apl#L53). What does each child keep from its parent?
 2. Run it with `SANDBOX_TIMEOUT=40`.
@@ -228,7 +228,7 @@ Acceptance criteria:
 
 ### B13. AWK: the missing `RT` (verified)
 
-**Lesson:** [AWK](lenguajes/awk.md#records-from-a-random-byte-stream-awk-weird). **Entry:** copies of `src/awk-weird`.
+**Lesson:** [AWK](lenguajes/awk.md#registros-a-partir-de-un-flujo-de-bytes-aleatorios-awk-weird). **Entry:** copies of `src/awk-weird`.
 
 1. **Predict:** on a copy, make a digit file `printf '1 2\n' > d.txt` in the copy's folder and run `lessons/tools/run-in-sandbox.sh <copy> gawk -f timecards.awk d.txt`. What are the cards? (Dice: `10 + RT`.)
 2. **Predict:** on a fresh copy, delete rule 1, the line `RT == "" { next }` ([L52](../src/awk-weird/timecards.awk#L52)), and run the same command.

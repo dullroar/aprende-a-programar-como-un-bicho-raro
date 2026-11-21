@@ -91,9 +91,9 @@ Each track stores "what happens next" somewhere that is not a loop counter: in t
 | --- | --- |
 | Balancing-group capture stacks | [regex](lenguajes/regex.md#net-balancing-groups): [`regex-dotnet`](../src/regex-dotnet/README.md) |
 | Arrays, and nothing hidden | [apl](lenguajes/apl.md): [`apl`](../src/apl/README.md) |
-| Arrays, and the source text of functions | [apl](lenguajes/apl.md#self-modifying-functions-apl-weird): [`apl-weird`](../src/apl-weird/README.md) |
+| Arrays, and the source text of functions | [apl](lenguajes/apl.md#funciones-que-se-modifican-a-sí-mismas-apl-weird): [`apl-weird`](../src/apl-weird/README.md) |
 | Arrays and parameter-local variables | [awk](lenguajes/awk.md): [`awk`](../src/awk/README.md) |
-| The input stream and the record separator `RS` | [awk](lenguajes/awk.md#records-from-a-random-byte-stream-awk-weird): [`awk-weird`](../src/awk-weird/README.md) |
+| The input stream and the record separator `RS` | [awk](lenguajes/awk.md#registros-a-partir-de-un-flujo-de-bytes-aleatorios-awk-weird): [`awk-weird`](../src/awk-weird/README.md) |
 | Fields of one anonymous object | [csharp-linq-xaml](lenguajes/csharp-linq-xaml.md#the-original-modernchallenge1): [`ModernChallenge1`](../src/ModernChallenge1/README.md) |
 | `CMAKE_MATCH_1`..`5`, rebuilt every pass | [make-cmake](lenguajes/make-cmake.md#cmake): [`cmake`](../src/cmake/README.md) |
 | `WS-TOTAL` and its 88-level name `OVER-FORTY` | [cobol](lenguajes/cobol.md): [`cobol`](../src/cobol/README.md) |
@@ -173,11 +173,11 @@ LINQ, Haskell and XAML each put an effect inside something that looks like a pur
 | Arithmetic overflow *is* the stop rule: `ON SIZE ERROR` | [COBOL](lenguajes/cobol.md#alter) |
 | A program's exit code steers the match | [pcre2grep](lenguajes/regex.md#pcre2grep-exit-codes-as-control-flow) |
 | A process exits 1 on purpose, and the wrapper maps it back to 0 | [sed](lenguajes/regex.md#gnu-sed) |
-| A runaway program is caught by a timeout, not an error | [`apl-weird`](lenguajes/apl.md#self-modifying-functions-apl-weird), and [m4](lenguajes/m4.md) when a quote is missing |
+| A runaway program is caught by a timeout, not an error | [`apl-weird`](lenguajes/apl.md#funciones-que-se-modifican-a-sí-mismas-apl-weird), and [m4](lenguajes/m4.md) when a quote is missing |
 | A return value short-circuits a chain of methods (`or`) | [Lisp weird](lenguajes/lisp.md#method-combination-as-control-flow) |
-| A pattern stops matching and an `exit` ends the loop | [AWK weird](lenguajes/awk.md#records-from-a-random-byte-stream-awk-weird) |
+| A pattern stops matching and an `exit` ends the loop | [AWK weird](lenguajes/awk.md#registros-a-partir-de-un-flujo-de-bytes-aleatorios-awk-weird) |
 | An `INSERT ... SELECT ... WHERE` that selects nothing ends a recursive trigger | [Tcl weird](lenguajes/tcl.md#sqlite-as-the-program) |
-| A missing guard does not fail: it counts a phantom card (empty `RT`) or no cards at all (mawk) | [AWK weird](lenguajes/awk.md#do-this-in-production-and-youre-fired) |
+| A missing guard does not fail: it counts a phantom card (empty `RT`) or no cards at all (mawk) | [AWK weird](lenguajes/awk.md#haz-esto-en-producción-y-estás-despedido) |
 | An unexpected failure code is deliberately *not* "no match" (`PCRE2_ERROR_CALLOUT`, not `-1`) | [PCRE2](lenguajes/regex.md#pcre2-callouts-as-an-instruction-set) |
 
 Notice that **`CHECK(demo_only=1)` appears in nearly every entry**: a table that makes a non-demo row unrepresentable, which each `check.sh` tries to violate. That is error handling used as a *guarantee* rather than a control flow, and a pattern worth keeping.
@@ -203,7 +203,7 @@ The same bytes can be read without running anything, and ordinary `tar -xf` only
 | The layout of an archive: how many records tar writes | Tar's checkpoints are a clock, and a state machine takes one step per tick | [`tar-gnu-weird`](../src/tar-gnu-weird/README.md), [tar](lenguajes/tar.md#the-archive-is-the-clock) |
 | Rows in a SQLite table | An overridden `unknown` fetches Tcl source and evaluates it | [`tcl-weird`](../src/tcl-weird/README.md), [Tcl](lenguajes/tcl.md#sqlite-as-the-program) |
 | A line of text in an editor buffer, copied into a register | Ex runs the register, and the program reads its next instruction from a tape of lines | [`ex-weird`](../src/ex-weird/README.md), [editors](lenguajes/editores.md#a-program-you-can-edit) |
-| The source text of a function | `⎕CR` writes it out, the function rewrites it and `⎕FX` defines the copy | [`apl-weird`](../src/apl-weird/README.md), [APL](lenguajes/apl.md#self-modifying-functions-apl-weird) |
+| The source text of a function | `⎕CR` writes it out, the function rewrites it and `⎕FX` defines the copy | [`apl-weird`](../src/apl-weird/README.md), [APL](lenguajes/apl.md#funciones-que-se-modifican-a-sí-mismas-apl-weird) |
 
 The question that separates them: *can you read the program without running it?* In `tar-gnu` you can, with the inspector, because tar extraction alone runs nothing. In `tcl-weird` and `ex-weird` the reading and the running are the same act, so there is no safe way to look except to read the text yourself.
 
