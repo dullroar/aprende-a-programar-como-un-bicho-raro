@@ -2003,3 +2003,28 @@
 {"segment_id": "s-aa7ff66a02ca-0091", "ts": "2026-11-21T19:09:13Z", "findings": ["I12: sentence of 31 words (limit 29): *(Una llamada de cola, en la que la últi..."]}
 {"segment_id": "s-cbfce4e17b7f-0005", "ts": "2026-11-21T19:09:45Z", "findings": ["I7: glossary term scope must be rendered 'ámbito'"]}
 {"segment_id": "s-87d9e31bff8d-0077", "ts": "2026-11-21T19:09:45Z", "findings": ["I7: glossary term state must be rendered 'estado'"]}
+{"segment_id": "s-258ef7d0f54e-0002", "ts": "2026-11-21T19:14:12Z", "findings": ["I7: banned rendering 'condición' for glossary term state", "I12: sentence of 46 words (limit 29): Esta guía lee dos programas de herramien..."]}
+{"segment_id": "s-db378c533eb4-0005", "ts": "2026-11-21T19:14:12Z", "findings": ["I7: glossary term scope must be rendered 'ámbito'"]}
+{"segment_id": "s-11c6bbf7f2fd-0008", "ts": "2026-11-21T19:14:12Z", "findings": ["I25: comma before a simple 'y' ('ambos inician X, y Make ejecuta X y X'): no comma before a simple o or y"]}
+{"segment_id": "s-12ed65cbfb7e-0010", "ts": "2026-11-21T19:14:12Z", "findings": ["I25: comma before a simple 'y' ('o qué guardará cada X, y qué esperarías ver si te equivocara'): no comma before a simple o or y"]}
+{"segment_id": "s-40ec006b7192-0015", "ts": "2026-11-21T19:14:12Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-cfc54e601ea4-0020", "ts": "2026-11-21T19:14:12Z", "findings": ["I12: sentence of 30 words (limit 29): Los dos programas escriben los números e..."]}
+{"segment_id": "s-4631bb0e870f-0030", "ts": "2026-11-21T19:14:12Z", "findings": ["I7: glossary term build must be rendered 'compilación'", "I12: sentence of 33 words (limit 29): En X, X vuelve a expandir su condición e..."]}
+{"segment_id": "s-54ceef477b2b-0032", "ts": "2026-11-21T19:14:12Z", "findings": ["I7: banned rendering 'falla' for glossary term failure", "I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-89a315f138d5-0046", "ts": "2026-11-21T19:14:12Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-36a23cc3fe8c-0060", "ts": "2026-11-21T19:14:12Z", "findings": ["TRANSLATE: the reply is the English text unchanged"]}
+{"segment_id": "s-76978038ac9b-0071", "ts": "2026-11-21T19:14:12Z", "findings": ["I12: sentence of 34 words (limit 29): El dígito 5 está en la semilla, y la pas..."]}
+{"segment_id": "s-516d5d815bb8-0077", "ts": "2026-11-21T19:14:12Z", "findings": ["I7: banned rendering 'registro' for glossary term entry"]}
+{"segment_id": "s-87d9e31bff8d-0107", "ts": "2026-11-21T19:14:12Z", "findings": ["I7: glossary term state must be rendered 'estado'"]}
+{"segment_id": "s-ad5a0e0eac5d-0109", "ts": "2026-11-21T19:14:12Z", "findings": ["I12: sentence of 36 words (limit 29): **Make expande cada línea de una receta ..."]}
+{"segment_id": "s-10cb01a19dc5-0121", "ts": "2026-11-21T19:14:12Z", "findings": ["I12: sentence of 33 words (limit 29): Las pasadas 0 a 3 escriben cada una un a...", "I12: sentence of 32 words (limit 29): *(El X que escribe la tarjeta se ejecuta...", "I12: sentence of 31 words (limit 29): La coincidencia principal fija los regis..."]}
+{"segment_id": "s-2f518eeda8fb-0124", "ts": "2026-11-21T19:14:12Z", "findings": ["I7: glossary term host must be rendered 'anfitrión'", "I12: sentence of 32 words (limit 29): El manual de CMake describe las condicio..."]}
+{"segment_id": "s-0c5c99225ec2-0125", "ts": "2026-11-21T19:14:12Z", "findings": ["I7: glossary term statement must be rendered 'sentencia'"]}
+{"segment_id": "s-db378c533eb4-0005", "ts": "2026-11-21T19:15:05Z", "findings": ["I7: glossary term scope must be rendered 'ámbito'"]}
+{"segment_id": "s-4631bb0e870f-0030", "ts": "2026-11-21T19:15:05Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-54ceef477b2b-0032", "ts": "2026-11-21T19:15:05Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-89a315f138d5-0046", "ts": "2026-11-21T19:15:05Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-36a23cc3fe8c-0060", "ts": "2026-11-21T19:15:05Z", "findings": ["TRANSLATE: the reply is the English text unchanged"]}
+{"segment_id": "s-516d5d815bb8-0077", "ts": "2026-11-21T19:15:05Z", "findings": ["I7: banned rendering 'registro' for glossary term entry"]}
+{"segment_id": "s-87d9e31bff8d-0107", "ts": "2026-11-21T19:15:05Z", "findings": ["I7: glossary term state must be rendered 'estado'"]}
+{"segment_id": "s-0c5c99225ec2-0125", "ts": "2026-11-21T19:15:06Z", "findings": ["I7: glossary term statement must be rendered 'sentencia'"]}

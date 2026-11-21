@@ -1,0 +1,666 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lessons/study-guides/languages/make-and-cmake.md:1
+msgctxt "s-69911ca286db-0000"
+msgid "Make and CMake study guide"
+msgstr "Guía de estudio de Make y CMake"
+
+#: lessons/study-guides/languages/make-and-cmake.md:3
+msgctxt "s-4e718de9279e-0001"
+msgid "What this guide is for"
+msgstr "Para qué sirve esta guía"
+
+#: lessons/study-guides/languages/make-and-cmake.md:5
+msgctxt "s-258ef7d0f54e-0002"
+msgid "This guide reads two build-tool programs that have no loop statement: [⟦CODE_0001⟧](⟦DEST_0002⟧), where GNU Make *restarts itself* once per card, and [⟦CODE_0003⟧](⟦DEST_0004⟧), where one ⟦CODE_0005⟧ with an empty body runs a register machine inside its condition. The question is: **when the tool, not the program, decides what runs next, where does the program's state live?**"
+msgstr "Esta guía lee dos programas de herramientas de compilación que no tienen sentencia de bucle. En [⟦CODE_0001⟧](⟦DEST_0002⟧), GNU Make *se reinicia a sí mismo* una vez por tarjeta. En [⟦CODE_0003⟧](⟦DEST_0004⟧), un solo ⟦CODE_0005⟧ con cuerpo vacío ejecuta una máquina de registros dentro de su expresión de control. La pregunta es la siguiente. **Cuando decide la herramienta, y no el programa, qué se ejecuta a continuación, ¿dónde vive el estado del programa?**"
+
+#: lessons/study-guides/languages/make-and-cmake.md:7
+msgctxt "s-d84bcb27c154-0003"
+msgid "When you finish, you should be able to:"
+msgstr "Al terminar, deberías poder:"
+
+#: lessons/study-guides/languages/make-and-cmake.md:9
+msgctxt "s-cad749c9ab7c-0004"
+msgid ""
+"Explain what makes GNU Make re-execute itself, and why the file system is the state.\n"
+"2. Explain what ⟦CODE_0001⟧ leaves behind in ⟦CODE_0002⟧ to ⟦CODE_0003⟧, and why those variables can act as registers.\n"
+"3. Trace each program through the same three cards, naming the state before and after each pass.\n"
+"4. Explain why each stop rule is a *length* (41 words or 41 characters) rather than a comparison.\n"
+"5. Label each behavior as guaranteed, implementation-permitted or accidentally exploited, and say what a reproducibility check can and cannot prove."
+msgstr ""
+"Explicar qué hace que GNU Make se vuelva a ejecutar a sí mismo, y por qué el sistema de archivos es el estado.\n"
+"2. Explicar qué deja ⟦CODE_0001⟧ en ⟦CODE_0002⟧ a ⟦CODE_0003⟧, y por qué esas variables pueden actuar como registros.\n"
+"3. Hacer la traza de cada programa con las mismas tres tarjetas, nombrando el estado antes y después de cada pasada.\n"
+"4. Explicar por qué cada regla de parada es una *longitud* (41 palabras o 41 caracteres) y no una comparación.\n"
+"5. Etiquetar cada comportamiento como garantizado, permitido por la implementación o aprovechado por accidente, y decir qué puede y qué no puede demostrar una comprobación de reproducibilidad."
+
+#: lessons/study-guides/languages/make-and-cmake.md:15
+msgctxt "s-db378c533eb4-0005"
+msgid "**Scope limits.** You need to read a Makefile and know that ⟦CODE_0001⟧ expands a function or variable. You need to know that CMake runs scripts with ⟦CODE_0002⟧. This guide does not teach the calendar arithmetic in the Make entry (which computes an ISO week without a shell), the animated glow or Windows Terminal support. It uses GNU Make and CMake 3.19 or later."
+msgstr "**Límites del alcance.** Necesitas saber leer un Makefile y saber que ⟦CODE_0001⟧ expande una función o una variable. Necesitas saber que CMake ejecuta scripts con ⟦CODE_0002⟧. Esta guía no enseña la aritmética de calendario de la entrada de Make (que calcula una semana ISO sin intérprete de comandos (*shell*)). Tampoco enseña el resplandor animado ni la compatibilidad con Windows Terminal. Usa GNU Make y CMake 3.19 o posterior."
+
+#: lessons/study-guides/languages/make-and-cmake.md:17
+msgctxt "s-59d5eb46824c-0006"
+msgid "The book's page is [Make and CMake](⟦DEST_0001⟧). For the ideas, see [Build automation](⟦DEST_0002⟧), [Dependency graphs](⟦DEST_0003⟧) and [Fixed-point iteration](⟦DEST_0004⟧)."
+msgstr "La página del libro es [Make y CMake](⟦DEST_0001⟧). Para las ideas, consulta [Automatización de la compilación](⟦DEST_0002⟧), [Grafos de dependencias](⟦DEST_0003⟧) e [Iteración de punto fijo](⟦DEST_0004⟧)."
+
+#: lessons/study-guides/languages/make-and-cmake.md:19
+msgctxt "s-d5bfdd7d989d-0007"
+msgid "Before you begin"
+msgstr "Antes de empezar"
+
+#: lessons/study-guides/languages/make-and-cmake.md:21
+msgctxt "s-11c6bbf7f2fd-0008"
+msgid "**Safety model.** Every entry writes fictional **⟦DNT_0001⟧** data to a scratch SQLite file. Make and CMake are programs that *run other programs*: both start ⟦CODE_0002⟧, and Make runs ⟦CODE_0003⟧ and ⟦CODE_0004⟧. Read the source before you run it, and run it in the sandbox first:"
+msgstr "**Modelo de seguridad.** Cada entrada escribe datos ficticios marcados con **⟦DNT_0001⟧** en un archivo SQLite de trabajo. Make y CMake son programas que *ejecutan otros programas*. Ambos inician ⟦CODE_0002⟧. Make ejecuta además ⟦CODE_0003⟧ y ⟦CODE_0004⟧. Lee el código fuente antes de ejecutarlo. Ejecútalo primero en el entorno aislado (*sandbox*):"
+
+#: lessons/study-guides/languages/make-and-cmake.md:28
+msgctxt "s-a214c0deec8b-0009"
+msgid "Work on a copy for any edit ([Running things safely](⟦DEST_0001⟧)). The Make entry refuses to start if it finds a leftover ⟦CODE_0002⟧ file from an interrupted run: ⟦CODE_0003⟧ removes them."
+msgstr "Edita solo copias ([Ejecutar cosas de forma segura](⟦DEST_0001⟧)). La entrada de Make se niega a empezar si encuentra archivos ⟦CODE_0002⟧ sobrantes de una ejecución interrumpida: ⟦CODE_0003⟧ los elimina."
+
+#: lessons/study-guides/languages/make-and-cmake.md:30
+msgctxt "s-12ed65cbfb7e-0010"
+msgid "**Prediction rule.** Before each run, write down which files will exist when each pass starts, or what each ⟦CODE_0001⟧ will hold, and what you would expect to see if you were wrong."
+msgstr "**Regla de predicción.** Antes de cada ejecución, anota qué archivos existirán cuando empiece cada pasada, o qué guardará cada ⟦CODE_0001⟧ y qué esperarías ver si te equivocaras."
+
+#: lessons/study-guides/languages/make-and-cmake.md:32
+msgctxt "s-2dd18ffddf3e-0011"
+msgid "**Vocabulary.**"
+msgstr "**Vocabulario.**"
+
+#: lessons/study-guides/languages/make-and-cmake.md:34
+msgctxt "s-790e521777f0-0012"
+msgid "⟦SEP_0001⟧ Term ⟦SEP_0002⟧ Meaning here ⟦SEP_0003⟧"
+msgstr "⟦SEP_0001⟧ Término ⟦SEP_0002⟧ Significado aquí ⟦SEP_0003⟧"
+
+#: lessons/study-guides/languages/make-and-cmake.md:36
+msgctxt "s-f925c843acaf-0013"
+msgid "⟦SEP_0001⟧ Remake ⟦SEP_0002⟧ GNU Make's step of bringing a *makefile itself* up to date. If it was rebuilt, Make re-executes itself. ⟦SEP_0003⟧"
+msgstr "⟦SEP_0001⟧ Rehacer ⟦SEP_0002⟧ El paso en que GNU Make pone al día el *propio makefile*. Si se rehízo, Make se vuelve a ejecutar a sí mismo. ⟦SEP_0003⟧"
+
+#: lessons/study-guides/languages/make-and-cmake.md:37
+msgctxt "s-8664260b9a6d-0014"
+msgid "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ A variable that Make sets to the number of times it has re-executed itself. ⟦SEP_0004⟧"
+msgstr "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ Una variable que Make fija al número de veces que se ha vuelto a ejecutar a sí mismo. ⟦SEP_0004⟧"
+
+#: lessons/study-guides/languages/make-and-cmake.md:38
+msgctxt "s-40ec006b7192-0015"
+msgid "⟦SEP_0002⟧ Pattern rule ⟦SEP_0003⟧ A rule with ⟦CODE_0001⟧ that says how to build any file matching a name. ⟦SEP_0004⟧"
+msgstr "⟦SEP_0002⟧ Regla de patrón ⟦SEP_0003⟧ Una regla con ⟦CODE_0001⟧ que dice cómo hacer la compilación de cualquier archivo cuyo nombre coincida. ⟦SEP_0004⟧"
+
+#: lessons/study-guides/languages/make-and-cmake.md:39
+msgctxt "s-6b55b05ef202-0016"
+msgid "⟦SEP_0004⟧ ⟦CODE_0001⟧ ⟦SEP_0005⟧ CMake variables that hold capture group *n* after a successful ⟦CODE_0002⟧ or ⟦CODE_0003⟧. ⟦SEP_0006⟧"
+msgstr "⟦SEP_0004⟧ ⟦CODE_0001⟧ ⟦SEP_0005⟧ Variables de CMake que guardan el grupo de captura *n* después de un ⟦CODE_0002⟧ o un ⟦CODE_0003⟧ que coincide. ⟦SEP_0006⟧"
+
+#: lessons/study-guides/languages/make-and-cmake.md:40
+msgctxt "s-f36c5a649583-0017"
+msgid "⟦SEP_0002⟧ Unary ⟦SEP_0003⟧ A number written as that many copies of one symbol. Both programs count in ⟦CODE_0001⟧. ⟦SEP_0004⟧"
+msgstr "⟦SEP_0002⟧ Unario ⟦SEP_0003⟧ Un número escrito como esa cantidad de copias de un solo símbolo. Ambos programas cuentan en ⟦CODE_0001⟧. ⟦SEP_0004⟧"
+
+#: lessons/study-guides/languages/make-and-cmake.md:42
+msgctxt "s-ae7d69ef2745-0018"
+msgid "The shared challenge"
+msgstr "El reto compartido"
+
+#: lessons/study-guides/languages/make-and-cmake.md:44
+msgctxt "s-78a7d749b03d-0019"
+msgid "The [challenge specification](⟦DEST_0001⟧) calls for cards with a category and 10 to 19 whole hours. Categories cycle through ⟦DNT_0002⟧, ⟦DNT_0003⟧, ⟦DNT_0004⟧ and ⟦DNT_0005⟧. Add each card's hours to the running total. Stop when the total passes 40. Keep the **first card that takes the total over 40**. A total of exactly 40 continues. Four 10-hour cards need a fifth card, in the ⟦DNT_0006⟧ category. Conforming runs finish with 3 to 5 cards and a total of 41 to 59 hours."
+msgstr "La [especificación del reto](⟦DEST_0001⟧) pide tarjetas con una categoría y de 10 a 19 horas enteras. Las categorías se repiten en ciclo: `⟦DNT_0002⟧`, `⟦DNT_0003⟧`, `⟦DNT_0004⟧` y `⟦DNT_0005⟧`. Suma las horas de cada tarjeta al total acumulado. Detente cuando el total pasa de 40. Conserva la **primera tarjeta con la que el total pasa de 40**. Un total de exactamente 40 continúa. Cuatro tarjetas de 10 horas necesitan una quinta tarjeta, de la categoría `⟦DNT_0006⟧`. Las ejecuciones conformes tienen de 3 a 5 tarjetas y un total de 41 a 59 horas."
+
+#: lessons/study-guides/languages/make-and-cmake.md:46
+msgctxt "s-cfc54e601ea4-0020"
+msgid "Both programs report a result from SQLite after the draw. The stop-rule probe is its own statement: its expected failure leaves the card rows in place. Both programs write numbers in unary, so the stop rule becomes a question about length, and the boundary is easy to get wrong by one. In Make the test is *\"does a 41st word exist?\"* (⟦CODE_0001⟧, [L111](⟦DEST_0002⟧)). In CMake it is *\"does the total match 41 ⟦CODE_0003⟧ characters?\"* ([L41](⟦DEST_0004⟧)). A total of 40 has no 41st word and does not match 41 characters, so both continue."
+msgstr "Ambos programas informan de un resultado de SQLite después del sorteo. La sonda de la regla de parada es una sentencia aparte: su fallo esperado deja las filas de las tarjetas in situ. Los dos programas escriben los números en unario. Así la regla de parada se vuelve una pregunta sobre la longitud, y es fácil equivocarse por uno en el límite. En Make la prueba es *\"¿existe una palabra 41?\"* (⟦CODE_0001⟧, [L111](⟦DEST_0002⟧)). En CMake es *\"¿el total coincide con 41 caracteres ⟦CODE_0003⟧?\"* ([L41](⟦DEST_0004⟧)). Un total de 40 no tiene palabra 41 y no coincide con 41 caracteres, así que ambos continúan."
+
+#: lessons/study-guides/languages/make-and-cmake.md:48
+msgctxt "s-9f148b367e02-0021"
+msgid "The machine to identify"
+msgstr "La máquina que hay que identificar"
+
+#: lessons/study-guides/languages/make-and-cmake.md:50
+msgctxt "s-98f29c6cb12c-0022"
+msgid "**What repeats.** In ⟦CODE_0001⟧, the *whole Make process*: Make reads the makefile, includes every ⟦CODE_0002⟧ file written so far and may write one more. In ⟦CODE_0003⟧, a ⟦CODE_0004⟧ with an empty body: only its condition does any work ([L41-54](⟦DEST_0005⟧))."
+msgstr "**Qué se repite.** En ⟦CODE_0001⟧, el *proceso completo de Make*: Make lee el makefile, incluye todos los archivos ⟦CODE_0002⟧ escritos hasta ahora y puede escribir uno más. En ⟦CODE_0003⟧, un ⟦CODE_0004⟧ con cuerpo vacío: solo su condición hace trabajo ([L41-54](⟦DEST_0005⟧))."
+
+#: lessons/study-guides/languages/make-and-cmake.md:52
+msgctxt "s-d6db6c50a930-0023"
+msgid "**Where state lives.** In ⟦CODE_0001⟧, state is in the set of existing files (⟦CODE_0002⟧, ⟦CODE_0003⟧ and so on) and in ⟦CODE_0004⟧. Each file holds one card in two variable assignments, such as ⟦CODE_0005⟧ and ⟦CODE_0006⟧."
+msgstr "**Dónde vive el estado.** En ⟦CODE_0001⟧, el estado está en el conjunto de archivos que existen (⟦CODE_0002⟧, ⟦CODE_0003⟧ y así sucesivamente) y en ⟦CODE_0004⟧. Cada archivo guarda una tarjeta en dos asignaciones de variable, como ⟦CODE_0005⟧ y ⟦CODE_0006⟧."
+
+#: lessons/study-guides/languages/make-and-cmake.md:54
+msgctxt "s-ecea0ef00cce-0024"
+msgid "In ⟦CODE_0001⟧, five variables hold state ([L28-32](⟦DEST_0002⟧)). The program does not declare these variables. All numbers are runs of ⟦CODE_0003⟧."
+msgstr "En ⟦CODE_0001⟧, cinco variables guardan el estado ([L28-32](⟦DEST_0002⟧)). El programa no declara esas variables. Todos los números son series de ⟦CODE_0003⟧."
+
+#: lessons/study-guides/languages/make-and-cmake.md:56
+msgctxt "s-b98758b6761b-0025"
+msgid "⟦CODE_0001⟧ holds the total so far."
+msgstr "⟦CODE_0001⟧ guarda el total hasta ahora."
+
+#: lessons/study-guides/languages/make-and-cmake.md:57
+msgctxt "s-d91be61799a5-0026"
+msgid "⟦CODE_0001⟧ holds the digit inspected on the last pass."
+msgstr "⟦CODE_0001⟧ guarda el dígito inspeccionado en la última pasada."
+
+#: lessons/study-guides/languages/make-and-cmake.md:58
+msgctxt "s-5254cf7d2c6d-0027"
+msgid "⟦CODE_0001⟧ holds the rest of the random digit tape."
+msgstr "⟦CODE_0001⟧ guarda el resto de la cinta de dígitos aleatorios."
+
+#: lessons/study-guides/languages/make-and-cmake.md:59
+msgctxt "s-6b7ec8347a6c-0028"
+msgid "⟦CODE_0001⟧ holds the log of finished cards."
+msgstr "⟦CODE_0001⟧ guarda el log de las tarjetas terminadas."
+
+#: lessons/study-guides/languages/make-and-cmake.md:60
+msgctxt "s-3c94ae0db585-0029"
+msgid "⟦CODE_0001⟧ holds the hours of the card added on the last pass."
+msgstr "⟦CODE_0001⟧ guarda las horas de la tarjeta añadida en la última pasada."
+
+#: lessons/study-guides/languages/make-and-cmake.md:62
+msgctxt "s-4631bb0e870f-0030"
+msgid "**What advances the next step.** In ⟦CODE_0001⟧, a file that gets *written*. A makefile that has been remade makes Make start over, and the pattern rule ⟦CODE_0002⟧ writes the next card file ([L110-111](⟦DEST_0003⟧)). In ⟦CODE_0004⟧, ⟦CODE_0005⟧ re-expands its condition on every pass, and the condition builds its next subject string and pattern out of the previous pass's captures."
+msgstr "**Qué hace avanzar el paso siguiente.** En ⟦CODE_0001⟧, un archivo que se *escribe*. Un makefile que se ha rehecho obliga a Make a empezar de nuevo, y la regla de patrón ⟦CODE_0002⟧ escribe el siguiente archivo de tarjeta ([L110-111](⟦DEST_0003⟧)). En ⟦CODE_0004⟧, ⟦CODE_0005⟧ vuelve a expandir su condición en cada pasada. La condición construye su siguiente cadena de texto sujeto y su patrón a partir de las capturas de la pasada anterior."
+
+#: lessons/study-guides/languages/make-and-cmake.md:64
+msgctxt "s-c52278fb43f6-0031"
+msgid "**What stops it.** In ⟦CODE_0001⟧, the rule *declines to write a file*. If a 41st word exists, the recipe expands to nothing, no file appears, Make has nothing to restart for, and the default goal ⟦CODE_0002⟧ runs. In ⟦CODE_0003⟧, the first of the two tests in the condition: ⟦CODE_0004⟧ (total plus last card matches 41 ⟦CODE_0005⟧s). Or the main ⟦CODE_0006⟧ fails."
+msgstr "**Qué lo detiene.** En ⟦CODE_0001⟧, la regla *se niega a escribir un archivo*. Si existe una palabra 41, la receta se expande a nada, no aparece ningún archivo, Make no tiene nada que reiniciar y se ejecuta la meta predeterminada ⟦CODE_0002⟧. En ⟦CODE_0003⟧, la primera de las dos pruebas de la condición: ⟦CODE_0004⟧ (el total más la última tarjeta coincide con 41 ⟦CODE_0005⟧). O falla el ⟦CODE_0006⟧ principal."
+
+#: lessons/study-guides/languages/make-and-cmake.md:66
+msgctxt "s-54ceef477b2b-0032"
+msgid "**What commits.** Both build a SQL script, then hand it to ⟦CODE_0001⟧: Make writes ⟦CODE_0002⟧ with ⟦CODE_0003⟧ and runs ⟦CODE_0004⟧; CMake does the same with ⟦CODE_0005⟧ and ⟦CODE_0006⟧. The script's last statement tests the stop rule *inside SQLite*: it inserts ⟦CODE_0007⟧ into a table whose only column has ⟦CODE_0008⟧. When the rule is right, the insert fails and SQLite prints a named constraint error on stderr. That message is the stop rule announcing itself, not a program failure. The rows on the terminal are printed by the tool, not by SQLite."
+msgstr "**Qué confirma.** Ambos arman un script SQL y se lo entregan a ⟦CODE_0001⟧: Make escribe ⟦CODE_0002⟧ con ⟦CODE_0003⟧ y ejecuta ⟦CODE_0004⟧; CMake hace lo mismo con ⟦CODE_0005⟧ y ⟦CODE_0006⟧. La última sentencia del script prueba la regla de parada *dentro de SQLite*: inserta ⟦CODE_0007⟧ en una tabla cuya única columna tiene ⟦CODE_0008⟧. Cuando la regla es correcta, la inserción termina en fallo y SQLite imprime en stderr un error de restricción con nombre. Ese mensaje es la regla de parada anunciándose, no un fallo del programa. Las filas de la terminal las imprime la herramienta, no SQLite."
+
+#: lessons/study-guides/languages/make-and-cmake.md:72
+msgctxt "s-46808f543bdb-0033"
+msgid "make-gnu: Make restarts itself once per card"
+msgstr "make-gnu: Make se reinicia a sí mismo una vez por tarjeta"
+
+#: lessons/study-guides/languages/make-and-cmake.md:73
+msgctxt "s-b6c082f8cce6-0034"
+msgid "A flowchart. Make reads the makefile and includes every .tc-N.mk file written so far. A pattern rule checks whether the running total, held as a list of x words, is 40 or less. If it is, the rule writes the next .tc-N.mk file. A makefile that was remade makes Make re-execute itself, and MAKE_RESTARTS counts the passes. If the total is over 40, the rule writes nothing, so nothing is remade, Make stops restarting, and the default goal all runs. It prints the report through a chain of phony targets, plays a glow on a terminal, and hands the SQL script to sqlite3."
+msgstr "Un diagrama de flujo. Make lee el makefile e incluye todos los archivos .tc-N.mk escritos hasta ahora. Una regla de patrón comprueba si el total acumulado, guardado como una lista de palabras x, no pasa de 40. Si es así, la regla escribe el siguiente archivo .tc-N.mk. Un makefile regenerado hace que Make se vuelva a ejecutar, y MAKE_RESTARTS cuenta las pasadas. Si el total pasa de 40, la regla no escribe nada, así que no se regenera nada, Make deja de reiniciarse y se ejecuta la meta predeterminada all. Esta imprime el informe mediante una cadena de objetivos phony, muestra un resplandor en una terminal y entrega el script SQL a sqlite3."
+
+#: lessons/study-guides/languages/make-and-cmake.md:74
+msgctxt "s-73aa5ba1904a-0035"
+msgid "Make reads the makefile and includes every .tc-N.mk written so far"
+msgstr "Make lee el makefile e incluye todos los .tc-N.mk escritos hasta ahora"
+
+#: lessons/study-guides/languages/make-and-cmake.md:74
+msgctxt "s-cd17e27c3347-0036"
+msgid "Is the total, a list of x words, 40 or less?"
+msgstr "¿El total, una lista de x palabras, es de 40 o menos?"
+
+#: lessons/study-guides/languages/make-and-cmake.md:75
+msgctxt "s-8a798890fe93-0037"
+msgid "yes"
+msgstr "sí"
+
+#: lessons/study-guides/languages/make-and-cmake.md:75
+msgctxt "s-8579aa1da0b3-0038"
+msgid "A pattern rule writes the next .tc-N.mk file with the next card"
+msgstr "Una regla de patrón escribe el siguiente archivo .tc-N.mk con la siguiente tarjeta"
+
+#: lessons/study-guides/languages/make-and-cmake.md:76
+msgctxt "s-5676434e6d50-0039"
+msgid "A file was remade, so Make re-executes itself: MAKE_RESTARTS goes up by one"
+msgstr "Se rehízo un archivo, así que Make se vuelve a ejecutar a sí mismo: MAKE_RESTARTS aumenta en uno"
+
+#: lessons/study-guides/languages/make-and-cmake.md:78
+msgctxt "s-0c756c1159a7-0040"
+msgid "no: the 41st word exists"
+msgstr "no: existe la palabra 41"
+
+#: lessons/study-guides/languages/make-and-cmake.md:78
+msgctxt "s-4b94e12050bf-0041"
+msgid "Nothing is remade: Make stops restarting"
+msgstr "No se rehace nada: Make deja de reiniciarse"
+
+#: lessons/study-guides/languages/make-and-cmake.md:79
+msgctxt "s-dd800f95286f-0042"
+msgid "all runs: phony targets print the report, a glow plays on a terminal"
+msgstr "all se ejecuta: los objetivos phony imprimen el informe y se reproduce un brillo en una terminal"
+
+#: lessons/study-guides/languages/make-and-cmake.md:80
+msgctxt "s-d3322daf6fdc-0043"
+msgid "sqlite3 reads the script that Make wrote"
+msgstr "sqlite3 lee el script que escribió Make"
+
+#: lessons/study-guides/languages/make-and-cmake.md:83
+msgctxt "s-022b681ba6ef-0044"
+msgid "The Make loop is a cycle through the file system: read the files, write one more, restart. The state is the set of files that exist."
+msgstr "El bucle de Make es un ciclo a través del sistema de archivos: leer los archivos, escribir uno más, reiniciar. El estado es el conjunto de archivos que existen."
+
+#: lessons/study-guides/languages/make-and-cmake.md:89
+msgctxt "s-09d48cb09dc6-0045"
+msgid "cmake: one while with an empty body, whose condition is a register machine"
+msgstr "cmake: un while con cuerpo vacío, cuya condición es una máquina de registros"
+
+#: lessons/study-guides/languages/make-and-cmake.md:90
+msgctxt "s-89a315f138d5-0046"
+msgid "A flowchart. Before the loop, the host draws a tape of nine random digits and stores it in the CMAKE_MATCH variables, which are the registers. Each time around, while re-expands its condition. The first test says no if the total so far plus the last card matches a literal of 41 x characters. The second test builds a subject string and a pattern out of the previous captures, splices in the last digit, and matches, which captures the next hours row and rewrites all the registers. If both tests pass, the empty body runs and the loop goes round again. If a test fails, the loop ends, and the host reads the log, picks the ISO week, writes SQLite and plays the glow."
+msgstr "Un diagrama de flujo. Antes del bucle, el anfitrión genera una cinta de nueve dígitos aleatorios y la guarda en las variables CMAKE_MATCH, que son los registros. En cada vuelta, while vuelve a expandir su condición. La primera prueba responde que no si el total acumulado más la última tarjeta coincide con un literal de 41 caracteres x. La segunda prueba construye una cadena de texto sujeto y un patrón a partir de las capturas anteriores, inserta el último dígito y ejecuta la coincidencia. Esa coincidencia captura la siguiente fila de horas y reescribe todos los registros. Si ambas pruebas pasan, se ejecuta el cuerpo vacío y el bucle da otra vuelta. Si una prueba falla, el bucle termina y el anfitrión lee el log, elige la semana ISO, escribe en SQLite y reproduce el resplandor."
+
+#: lessons/study-guides/languages/make-and-cmake.md:91
+msgctxt "s-8ff5356f7c8c-0047"
+msgid "Host: draw 9 random digits and store them in the CMAKE_MATCH variables"
+msgstr "Anfitrión: elige 9 dígitos al azar y guárdalos en las variables CMAKE_MATCH"
+
+#: lessons/study-guides/languages/make-and-cmake.md:91
+msgctxt "s-90e8d836ac62-0048"
+msgid "while re-expands its condition"
+msgstr "while vuelve a expandir su condición"
+
+#: lessons/study-guides/languages/make-and-cmake.md:92
+msgctxt "s-495c8eaf9a5e-0049"
+msgid "Test 1: does total plus last card match 41 x's?"
+msgstr "Prueba 1: ¿el total más la última tarjeta coincide con 41 x?"
+
+#: lessons/study-guides/languages/make-and-cmake.md:93
+msgctxt "s-84cefc74e25d-0050"
+msgid "yes: over 40"
+msgstr "sí: más de 40"
+
+#: lessons/study-guides/languages/make-and-cmake.md:93
+msgctxt "s-1192ab0430f7-0051"
+msgid "Loop ends: the host reads the log, picks the week, writes SQLite, plays the glow"
+msgstr "Fin del bucle: el anfitrión lee el log, elige la semana, escribe en SQLite y reproduce el resplandor"
+
+#: lessons/study-guides/languages/make-and-cmake.md:94
+msgctxt "s-9390298f3fb0-0052"
+msgid "no"
+msgstr "no"
+
+#: lessons/study-guides/languages/make-and-cmake.md:94
+msgctxt "s-ae5b5a8af0b5-0053"
+msgid "Test 2: MATCHES on a subject built from the last captures"
+msgstr "Prueba 2: MATCHES sobre un sujeto construido a partir de las últimas capturas"
+
+#: lessons/study-guides/languages/make-and-cmake.md:95
+msgctxt "s-485be9cf2ff8-0054"
+msgid "match: the registers now hold the new total and card"
+msgstr "coincidencia: los registros ahora contienen el nuevo total y la tarjeta"
+
+#: lessons/study-guides/languages/make-and-cmake.md:95
+msgctxt "s-f4bc948d685c-0055"
+msgid "Empty body"
+msgstr "Cuerpo vacío"
+
+#: lessons/study-guides/languages/make-and-cmake.md:97
+msgctxt "s-29e23c349448-0056"
+msgid "no match: the registers are cleared"
+msgstr "sin coincidencia: se borran los registros"
+
+#: lessons/study-guides/languages/make-and-cmake.md:100
+msgctxt "s-c9616e735eb5-0057"
+msgid "The CMake loop is a cycle through one expression. The test boxes are in the order the source uses. That order is not decoration, as the trace shows."
+msgstr "El bucle de CMake es un ciclo a través de una sola expresión. Las cajas de prueba están en el orden en que las usa el código fuente. Ese orden no es decoración, como muestra la traza."
+
+#: lessons/study-guides/languages/make-and-cmake.md:102
+msgctxt "s-67a72cdadc6f-0058"
+msgid "Trace one run"
+msgstr "Traza una ejecución"
+
+#: lessons/study-guides/languages/make-and-cmake.md:104
+msgctxt "s-415b20d204d5-0059"
+msgid "The programs draw random hours. Use hours **15, 19, 12** for the trace. To check it against real behavior, scratch copies were run in the sandbox with the random digits replaced by fixed ones and with print statements added."
+msgstr "Los programas sacan horas aleatorias. Usa las horas **15, 19, 12** para la traza. Para comprobarla con el comportamiento real, se ejecutaron copias de trabajo en el entorno aislado con los dígitos aleatorios sustituidos por otros fijos y con sentencias de impresión añadidas."
+
+#: lessons/study-guides/languages/make-and-cmake.md:106
+msgctxt "s-36a23cc3fe8c-0060"
+msgid "GNU Make"
+msgstr "GNU Make"
+
+#: lessons/study-guides/languages/make-and-cmake.md:108
+msgctxt "s-b6f1a8aab5ef-0061"
+msgid "The scratch copy printed one line at the top of every Make process. The Make clock was fixed with ⟦CODE_0001⟧. The output was:"
+msgstr "La copia de trabajo imprimió una línea al principio de cada proceso de Make. El reloj de Make se fijó con ⟦CODE_0001⟧. La salida fue:"
+
+#: lessons/study-guides/languages/make-and-cmake.md:119
+msgctxt "s-91966e8538dd-0062"
+msgid "⟦SEP_0002⟧ Pass (⟦CODE_0001⟧) ⟦SEP_0003⟧ Files at the start ⟦SEP_0004⟧ Total ⟦SEP_0005⟧ Rule fires? ⟦SEP_0006⟧ What happens ⟦SEP_0007⟧"
+msgstr "⟦SEP_0002⟧ Pasada (⟦CODE_0001⟧) ⟦SEP_0003⟧ Archivos al empezar ⟦SEP_0004⟧ Total ⟦SEP_0005⟧ ¿Se activa la regla? ⟦SEP_0006⟧ Qué pasa ⟦SEP_0007⟧"
+
+#: lessons/study-guides/languages/make-and-cmake.md:121
+msgctxt "s-2369be024010-0063"
+msgid "⟦SEP_0003⟧ 0 ⟦SEP_0004⟧ none ⟦SEP_0005⟧ 0 ⟦SEP_0006⟧ yes ⟦SEP_0007⟧ Writes ⟦CODE_0001⟧ with ⟦DNT_0002⟧ and 15 hours. A file was remade, so Make restarts. ⟦SEP_0008⟧"
+msgstr "⟦SEP_0003⟧ 0 ⟦SEP_0004⟧ ninguno ⟦SEP_0005⟧ 0 ⟦SEP_0006⟧ sí ⟦SEP_0007⟧ Escribe ⟦CODE_0001⟧ con ⟦DNT_0002⟧ y 15 horas. Se rehízo un archivo, así que Make se reinicia. ⟦SEP_0008⟧"
+
+#: lessons/study-guides/languages/make-and-cmake.md:122
+msgctxt "s-0d565ffcee76-0064"
+msgid "⟦SEP_0004⟧ 1 ⟦SEP_0005⟧ ⟦CODE_0001⟧ ⟦SEP_0006⟧ 15 ⟦SEP_0007⟧ yes ⟦SEP_0008⟧ Writes ⟦CODE_0002⟧, ⟦DNT_0003⟧, 19 hours. Restart. ⟦SEP_0009⟧"
+msgstr "⟦SEP_0004⟧ 1 ⟦SEP_0005⟧ ⟦CODE_0001⟧ ⟦SEP_0006⟧ 15 ⟦SEP_0007⟧ sí ⟦SEP_0008⟧ Escribe ⟦CODE_0002⟧, ⟦DNT_0003⟧, 19 horas. Reinicio. ⟦SEP_0009⟧"
+
+#: lessons/study-guides/languages/make-and-cmake.md:123
+msgctxt "s-b7b23e239a38-0065"
+msgid "⟦SEP_0005⟧ 2 ⟦SEP_0006⟧ ⟦CODE_0001⟧, ⟦CODE_0002⟧ ⟦SEP_0007⟧ 34 ⟦SEP_0008⟧ yes ⟦SEP_0009⟧ Writes ⟦CODE_0003⟧, ⟦DNT_0004⟧, 12 hours. Restart. ⟦SEP_0010⟧"
+msgstr "⟦SEP_0005⟧ 2 ⟦SEP_0006⟧ ⟦CODE_0001⟧, ⟦CODE_0002⟧ ⟦SEP_0007⟧ 34 ⟦SEP_0008⟧ sí ⟦SEP_0009⟧ Escribe ⟦CODE_0003⟧, ⟦DNT_0004⟧, 12 horas. Reinicio. ⟦SEP_0010⟧"
+
+#: lessons/study-guides/languages/make-and-cmake.md:124
+msgctxt "s-67e0828f51fb-0066"
+msgid "⟦SEP_0002⟧ 3 ⟦SEP_0003⟧ all three ⟦SEP_0004⟧ 46 ⟦SEP_0005⟧ **no**: the 41st word exists ⟦SEP_0006⟧ Nothing is written. No restart. The goal ⟦CODE_0001⟧ runs and prints the report. ⟦SEP_0007⟧"
+msgstr "⟦SEP_0002⟧ 3 ⟦SEP_0003⟧ los tres ⟦SEP_0004⟧ 46 ⟦SEP_0005⟧ **no**: existe la palabra 41 ⟦SEP_0006⟧ No se escribe nada. No hay reinicio. La meta ⟦CODE_0001⟧ se ejecuta e imprime el informe. ⟦SEP_0007⟧"
+
+#: lessons/study-guides/languages/make-and-cmake.md:126
+msgctxt "s-781c06a1d9ec-0067"
+msgid "Pass 3 is the stop. The crossing card (12 hours, from ⟦CODE_0001⟧) was written at the end of pass 2, when the total was 34. The rule checks the total *before* it writes, so it cannot refuse to write the crossing card. It can only refuse to write the card *after* it. That is the same shape as \"retain the first card over 40\", seen from the other side."
+msgstr "La pasada 3 es la parada. La tarjeta que cruza el tope (12 horas, de ⟦CODE_0001⟧) se escribió al final de la pasada 2, cuando el total era 34. La regla comprueba el total *antes* de escribir, así que no puede negarse a escribir la tarjeta que cruza el tope. Solo puede negarse a escribir la tarjeta *siguiente*. Es la misma forma que \"conserva la primera tarjeta que pasa de 40\", vista desde el otro lado."
+
+#: lessons/study-guides/languages/make-and-cmake.md:128
+msgctxt "s-e7efda826b6d-0068"
+msgid "CMake"
+msgstr "CMake"
+
+#: lessons/study-guides/languages/make-and-cmake.md:130
+msgctxt "s-52487092af7b-0069"
+msgid "The scratch copy replaced the random tape with the digits 5, 9, 2 (so hours 15, 19, 12) and printed the registers after each pass. ⟦CODE_0001⟧ is written ⟦CODE_0002⟧ to ⟦CODE_0003⟧ below."
+msgstr "La copia de trabajo sustituyó la cinta aleatoria por los dígitos 5, 9, 2 (es decir, las horas 15, 19, 12) e imprimió los registros después de cada pasada. Más abajo, ⟦CODE_0001⟧ se abrevia de ⟦CODE_0002⟧ a ⟦CODE_0003⟧."
+
+#: lessons/study-guides/languages/make-and-cmake.md:142
+msgctxt "s-8f7c6e336afc-0070"
+msgid "(Lengths are the number of ⟦CODE_0001⟧ characters or dashes. The lines are reformatted for width.)"
+msgstr "(Las longitudes son el número de caracteres ⟦CODE_0001⟧ o de guiones. Las líneas se reformatearon para ajustarlas al ancho.)"
+
+#: lessons/study-guides/languages/make-and-cmake.md:144
+msgctxt "s-76978038ac9b-0071"
+msgid "Read it this way. **The hours of a card are looked up one pass late.** The digit 5 is in the seed, and pass 1 looks it up in the table inside the subject (the row ⟦CODE_0001⟧) and finds 15 ⟦CODE_0002⟧s, while peeking the next digit, 9. Pass 2 looks up 9 and finds 19. Pass 3 looks up 2 and finds 12."
+msgstr "Léelo así. **Las horas de una tarjeta se buscan con una pasada de retraso.** El dígito 5 está en la semilla. La pasada 1 lo busca en la tabla dentro del sujeto (la fila ⟦CODE_0001⟧), encuentra 15 ⟦CODE_0002⟧ y mira por adelantado el dígito siguiente, 9. La pasada 2 busca 9 y encuentra 19. La pasada 3 busca 2 y encuentra 12."
+
+#: lessons/study-guides/languages/make-and-cmake.md:146
+msgctxt "s-84421b57a055-0072"
+msgid "⟦SEP_0002⟧ Evaluation ⟦SEP_0003⟧ Test 1: total + last card, 41 ⟦CODE_0001⟧s? ⟦SEP_0004⟧ Test 2 result ⟦SEP_0005⟧ State after ⟦SEP_0006⟧"
+msgstr "⟦SEP_0002⟧ Evaluación ⟦SEP_0003⟧ Prueba 1: total + última tarjeta, ¿41 ⟦CODE_0001⟧? ⟦SEP_0004⟧ Resultado de la prueba 2 ⟦SEP_0005⟧ Estado después ⟦SEP_0006⟧"
+
+#: lessons/study-guides/languages/make-and-cmake.md:148
+msgctxt "s-51344845dace-0073"
+msgid "⟦SEP_0002⟧ 1 ⟦SEP_0003⟧ 0 ⟦CODE_0001⟧s: no, so continue ⟦SEP_0004⟧ matches; looks up digit 5 ⟦SEP_0005⟧ last card 15, total 0 ⟦SEP_0006⟧"
+msgstr "⟦SEP_0002⟧ 1 ⟦SEP_0003⟧ 0 ⟦CODE_0001⟧: no, así que continúa ⟦SEP_0004⟧ coincide; busca el dígito 5 ⟦SEP_0005⟧ última tarjeta 15, total 0 ⟦SEP_0006⟧"
+
+#: lessons/study-guides/languages/make-and-cmake.md:149
+msgctxt "s-175960de64c3-0074"
+msgid "⟦SEP_0002⟧ 2 ⟦SEP_0003⟧ 15 ⟦CODE_0001⟧s: no ⟦SEP_0004⟧ matches; looks up 9 ⟦SEP_0005⟧ last card 19, total 15 ⟦SEP_0006⟧"
+msgstr "⟦SEP_0002⟧ 2 ⟦SEP_0003⟧ 15 ⟦CODE_0001⟧: no ⟦SEP_0004⟧ coincide; busca el 9 ⟦SEP_0005⟧ última tarjeta 19, total 15 ⟦SEP_0006⟧"
+
+#: lessons/study-guides/languages/make-and-cmake.md:150
+msgctxt "s-9a66622b259b-0075"
+msgid "⟦SEP_0002⟧ 3 ⟦SEP_0003⟧ 34 ⟦CODE_0001⟧s: no ⟦SEP_0004⟧ matches; looks up 2 ⟦SEP_0005⟧ last card 12, total 34 ⟦SEP_0006⟧"
+msgstr "⟦SEP_0002⟧ 3 ⟦SEP_0003⟧ 34 ⟦CODE_0001⟧: no ⟦SEP_0004⟧ coincide; busca el 2 ⟦SEP_0005⟧ última tarjeta 12, total 34 ⟦SEP_0006⟧"
+
+#: lessons/study-guides/languages/make-and-cmake.md:151
+msgctxt "s-1fe0a534686c-0076"
+msgid "⟦SEP_0002⟧ 4 ⟦SEP_0003⟧ 46 ⟦CODE_0001⟧s: **yes**, so the loop ends ⟦SEP_0004⟧ *also ran* ⟦SEP_0005⟧ log now holds all three cards; last card is a fourth, unused lookup (10) ⟦SEP_0006⟧"
+msgstr "⟦SEP_0002⟧ 4 ⟦SEP_0003⟧ 46 ⟦CODE_0001⟧: **sí**, así que el bucle termina ⟦SEP_0004⟧ *también se ejecutó* ⟦SEP_0005⟧ el log ya guarda las tres tarjetas; la última tarjeta es una cuarta búsqueda sin usar (10) ⟦SEP_0006⟧"
+
+#: lessons/study-guides/languages/make-and-cmake.md:153
+msgctxt "s-516d5d815bb8-0077"
+msgid "The last row is the surprise, and it is why this program is classed as accidentally exploited. The condition is ⟦CODE_0001⟧. When the stop test says stop, the loop ends, but the *main match still ran in that same evaluation*, with the registers from pass 3. The log after pass 3 had only two cards (length 37 is ⟦CODE_0002⟧, 15 ⟦CODE_0003⟧, ⟦CODE_0004⟧, 19 ⟦CODE_0005⟧, ⟦CODE_0006⟧). The third card, 12 hours, moves into the log only in evaluation 4. The program needs the main match to run when the loop ends, because that is how the last card gets logged. The fifth register then holds a fourth lookup (10 hours) that the host never reports, because the host reads only the log (⟦CODE_0007⟧). I could not find a promise in the CMake documentation that both operands of ⟦CODE_0008⟧ are always evaluated, so treat this as observed, not guaranteed. The entry's source comment and README now record this dependence."
+msgstr "La última fila es la sorpresa, y por eso este programa se clasifica como aprovechado por accidente. La condición es ⟦CODE_0001⟧. Cuando la prueba de parada dice que pares, el bucle termina, pero la *coincidencia principal se ejecutó igualmente en esa misma evaluación*, con los registros de la pasada 3. El log después de la pasada 3 tenía solo dos tarjetas (la longitud 37 es ⟦CODE_0002⟧, 15 ⟦CODE_0003⟧, ⟦CODE_0004⟧, 19 ⟦CODE_0005⟧, ⟦CODE_0006⟧). La tercera tarjeta, de 12 horas, pasa al log solo en la evaluación 4. El programa necesita que la coincidencia principal se ejecute cuando termina el bucle, porque así se registra la última tarjeta. El quinto registro guarda entonces una cuarta búsqueda (10 horas) que el anfitrión nunca informa, porque solo lee el log (⟦CODE_0007⟧). No encontré en la documentación de CMake ninguna promesa de que los dos operandos de ⟦CODE_0008⟧ se evalúen siempre, así que trátalo como observado, no como garantizado. El comentario del código fuente de la entrada y su README ahora registran esta dependencia."
+
+#: lessons/study-guides/languages/make-and-cmake.md:155
+msgctxt "s-54134a31effe-0078"
+msgid "**Exactly 40.** With hours 10, 10, 10, 10, the total after four cards is 40 ⟦CODE_0001⟧s, which does not match 41 characters. The loop continues, and a fifth card is looked up."
+msgstr "**Exactamente 40.** Con las horas 10, 10, 10, 10, el total después de cuatro tarjetas es 40 ⟦CODE_0001⟧, que no coincide con 41 caracteres. El bucle continúa y se busca una quinta tarjeta."
+
+#: lessons/study-guides/languages/make-and-cmake.md:157
+msgctxt "s-405c1b857089-0079"
+msgid "Compare the ordinary and weird designs"
+msgstr "Compara los diseños ordinarios y los raros"
+
+#: lessons/study-guides/languages/make-and-cmake.md:159
+msgctxt "s-110acae267f9-0080"
+msgid "The \"ordinary\" version of each is the program the authors threw away or wrote first. For CMake it is a ⟦CODE_0001⟧ loop with ⟦CODE_0002⟧ and ⟦CODE_0003⟧. The README records discarding it because it was \"⟦CODE_0004⟧ in CMake's accent\". For Make there is no ordinary version in the repository: Make has no loop. The comparison below is between the tool's *intended* job (a dependency graph) and what these programs make it do."
+msgstr "La versión \"ordinaria\" de cada programa es la que los autores descartaron o escribieron primero. Para CMake es un bucle ⟦CODE_0001⟧ con ⟦CODE_0002⟧ y ⟦CODE_0003⟧. El README dice que se descartó porque era \"⟦CODE_0004⟧ con acento de CMake\". Para Make no hay versión ordinaria en el repositorio: Make no tiene bucle. La comparación de abajo es entre el trabajo *previsto* de la herramienta (un grafo de dependencias) y lo que estos programas le hacen hacer."
+
+#: lessons/study-guides/languages/make-and-cmake.md:161
+msgctxt "s-d368ab64c19d-0081"
+msgid "⟦SEP_0003⟧ Dimension ⟦SEP_0004⟧ Make as intended ⟦SEP_0005⟧ ⟦CODE_0001⟧ ⟦SEP_0006⟧ ⟦CODE_0002⟧ ⟦SEP_0007⟧"
+msgstr "⟦SEP_0003⟧ Dimensión ⟦SEP_0004⟧ Make como se diseñó ⟦SEP_0005⟧ ⟦CODE_0001⟧ ⟦SEP_0006⟧ ⟦CODE_0002⟧ ⟦SEP_0007⟧"
+
+#: lessons/study-guides/languages/make-and-cmake.md:163
+msgctxt "s-63e345c3230c-0082"
+msgid "⟦SEP_0003⟧ **Representation** ⟦SEP_0004⟧ A graph: targets, prerequisites, recipes. ⟦SEP_0005⟧ Numbers are lists of ⟦CODE_0001⟧. Control is \"a file appeared\". ⟦SEP_0006⟧ Numbers are strings of ⟦CODE_0002⟧. Control is a regex match whose captures feed the next match. ⟦SEP_0007⟧"
+msgstr "⟦SEP_0003⟧ **Representación** ⟦SEP_0004⟧ Un grafo: objetivos, prerrequisitos, recetas. ⟦SEP_0005⟧ Los números son listas de ⟦CODE_0001⟧. El control es \"apareció un archivo\". ⟦SEP_0006⟧ Los números son cadenas de texto de ⟦CODE_0002⟧. El control es una coincidencia de regex cuyas capturas alimentan la siguiente coincidencia. ⟦SEP_0007⟧"
+
+#: lessons/study-guides/languages/make-and-cmake.md:164
+msgctxt "s-b8bcf8985c8f-0083"
+msgid "⟦SEP_0004⟧ **Observability** ⟦SEP_0005⟧ ⟦CODE_0001⟧ shows what would run. ⟦SEP_0006⟧ The state is the files in the directory. ⟦CODE_0002⟧ and ⟦CODE_0003⟧ show it. ⟦SEP_0007⟧ The state is hidden in variables the program never declares. You must print them (as the scratch run did) to see them. ⟦SEP_0008⟧"
+msgstr "⟦SEP_0004⟧ **Observabilidad** ⟦SEP_0005⟧ ⟦CODE_0001⟧ muestra lo que se ejecutaría. ⟦SEP_0006⟧ El estado son los archivos del directorio. ⟦CODE_0002⟧ y ⟦CODE_0003⟧ lo muestran. ⟦SEP_0007⟧ El estado está oculto en variables que el programa nunca declara. Hay que imprimirlas (como hizo la ejecución de trabajo) para verlas. ⟦SEP_0008⟧"
+
+#: lessons/study-guides/languages/make-and-cmake.md:165
+msgctxt "s-0db893502e2a-0084"
+msgid "⟦SEP_0003⟧ **Tests** ⟦SEP_0004⟧ Build a target; compare output. ⟦SEP_0005⟧ ⟦CODE_0001⟧ runs Make 25 times in an empty directory and requires the directory to be empty afterward. ⟦SEP_0006⟧ ⟦CODE_0002⟧ runs it 25 times and mutates the 41-character literal to 51, then expects totals to go over the legal maximum. ⟦SEP_0007⟧"
+msgstr "⟦SEP_0003⟧ **Pruebas** ⟦SEP_0004⟧ Haz la compilación de un objetivo y compara la salida. ⟦SEP_0005⟧ ⟦CODE_0001⟧ ejecuta Make 25 veces en un directorio vacío y exige que el directorio quede vacío después. ⟦SEP_0006⟧ ⟦CODE_0002⟧ lo ejecuta 25 veces y muta el literal de 41 caracteres a 51; luego espera que los totales superen el máximo legal. ⟦SEP_0007⟧"
+
+#: lessons/study-guides/languages/make-and-cmake.md:166
+msgctxt "s-3918f795081b-0085"
+msgid "⟦SEP_0004⟧ **⟦DNT_0001⟧** ⟦SEP_0005⟧ Read the dependency graph. ⟦SEP_0006⟧ A crashed run leaves ⟦CODE_0002⟧ behind and the next ⟦CODE_0003⟧ refuses to start. ⟦SEP_0007⟧ A condition that fails clears every register: a typo in the stop test may produce an empty report, not an error. ⟦SEP_0008⟧"
+msgstr "⟦SEP_0004⟧ **⟦DNT_0001⟧** ⟦SEP_0005⟧ Lee el grafo de dependencias. ⟦SEP_0006⟧ Una ejecución interrumpida deja ⟦CODE_0002⟧ atrás y el siguiente ⟦CODE_0003⟧ se niega a empezar. ⟦SEP_0007⟧ Una condición que falla borra todos los registros: un error tipográfico en la prueba de parada puede dar un informe vacío, no un error. ⟦SEP_0008⟧"
+
+#: lessons/study-guides/languages/make-and-cmake.md:167
+msgctxt "s-16429d544ac0-0086"
+msgid "⟦SEP_0005⟧ **Portability** ⟦SEP_0006⟧ GNU Make and POSIX Make differ on many details. ⟦SEP_0007⟧ Uses GNU extensions (⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧). Reads ⟦CODE_0004⟧ for entropy and the clock, so it is Linux-specific. ⟦SEP_0008⟧ Needs CMake 3.19 or later. Its regex has no counted repetition, no lookahead, no backreferences. ⟦SEP_0009⟧"
+msgstr "⟦SEP_0005⟧ **Portabilidad** ⟦SEP_0006⟧ GNU Make y POSIX Make difieren en muchos detalles. ⟦SEP_0007⟧ Usa extensiones de GNU (⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧). Lee ⟦CODE_0004⟧ para la entropía y el reloj, así que es específico de Linux. ⟦SEP_0008⟧ Necesita CMake 3.19 o posterior. Su regex no tiene repetición contada, ni anticipación (*lookahead*), ni retrorreferencias. ⟦SEP_0009⟧"
+
+#: lessons/study-guides/languages/make-and-cmake.md:168
+msgctxt "s-0f4eff18c16a-0087"
+msgid "⟦SEP_0002⟧ **Cost** ⟦SEP_0003⟧ Normal. ⟦SEP_0004⟧ Make restarts once per card and the unary arithmetic is slow in proportion to the numbers (the ruler is 60,000 words long). ⟦SEP_0005⟧ Cheap, but a tempting 40-way ⟦CODE_0001⟧ for \"at most 40\" would backtrack exponentially on failure. ⟦SEP_0006⟧"
+msgstr "⟦SEP_0002⟧ **Costo** ⟦SEP_0003⟧ Normal. ⟦SEP_0004⟧ Make se reinicia una vez por tarjeta y la aritmética unaria es lenta en proporción a los números (la regla mide 60 000 palabras). ⟦SEP_0005⟧ Es barato, pero un ⟦CODE_0001⟧ de 40 ramas, tentador para \"como máximo 40\", retrocedería de forma exponencial al fallar. ⟦SEP_0006⟧"
+
+#: lessons/study-guides/languages/make-and-cmake.md:170
+msgctxt "s-1d4f327d3cbc-0088"
+msgid "**Reproducibility.** The programs show two different answers to the question of what depends on the clock. Make reads the clock from ⟦CODE_0001⟧ and lets you override it (⟦CODE_0002⟧), so the week in the output is a pure function of the override. CMake asks ⟦CODE_0003⟧, which honors ⟦CODE_0004⟧. The *cards* are random in both, so a reproducibility check can fix the week but not the totals. What the check proves is bounded by what it controls."
+msgstr "**Reproducibilidad.** Los programas dan dos respuestas distintas a la pregunta de qué depende del reloj. Make lee el reloj de ⟦CODE_0001⟧ y deja anularlo (⟦CODE_0002⟧), así que la semana de la salida es una función pura de la anulación. CMake pregunta a ⟦CODE_0003⟧, que respeta ⟦CODE_0004⟧. Las *tarjetas* son aleatorias en ambos, así que una comprobación de reproducibilidad puede fijar la semana pero no los totales. Lo que demuestra la comprobación está limitado por lo que controla."
+
+#: lessons/study-guides/languages/make-and-cmake.md:172
+msgctxt "s-716cae37520b-0089"
+msgid "What the exercises demonstrate"
+msgstr "Qué demuestran los ejercicios"
+
+#: lessons/study-guides/languages/make-and-cmake.md:174
+msgctxt "s-d6a3ec9d5ed0-0090"
+msgid "⟦SEP_0001⟧ Exercise ⟦SEP_0002⟧ Predict first ⟦SEP_0003⟧ What the evidence shows ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ Ejercicio ⟦SEP_0002⟧ Predice primero ⟦SEP_0003⟧ Qué muestra la evidencia ⟦SEP_0004⟧"
+
+#: lessons/study-guides/languages/make-and-cmake.md:176
+msgctxt "s-b8a4707a8e3d-0091"
+msgid "⟦SEP_0006⟧ [B4. Make: remove the no-op, and override the clock](⟦DEST_0001⟧), step 1 ⟦SEP_0007⟧ Delete the trailing ⟦CODE_0002⟧ from the recipe. What happens? ⟦SEP_0008⟧ The run ends ⟦CODE_0003⟧ and ⟦CODE_0004⟧. The card file is written while the recipe line is *expanded*, but Make restarts only if a command *ran*. A recipe that expands to nothing is not a remake. The ⟦CODE_0005⟧ is the one place the loop needs a shell at all. ⟦SEP_0009⟧"
+msgstr "⟦SEP_0006⟧ [B4. Make: quita la operación nula y anula el reloj](⟦DEST_0001⟧), paso 1 ⟦SEP_0007⟧ Borra el ⟦CODE_0002⟧ final de la receta. ¿Qué pasa? ⟦SEP_0008⟧ La ejecución termina ⟦CODE_0003⟧ y ⟦CODE_0004⟧. El archivo de la tarjeta se escribe mientras la línea de la receta se *expande*, pero Make solo se reinicia si *se ejecutó* un comando. Una receta que se expande a nada no es un rehacer. El ⟦CODE_0005⟧ es el único lugar donde el bucle necesita un intérprete de comandos. ⟦SEP_0009⟧"
+
+#: lessons/study-guides/languages/make-and-cmake.md:177
+msgctxt "s-eb597bf8a1c2-0092"
+msgid "⟦SEP_0004⟧ B4, step 2 ⟦SEP_0005⟧ Run with ⟦CODE_0001⟧. Which ISO week do you expect? ⟦SEP_0006⟧ ⟦CODE_0002⟧, which agrees with ⟦CODE_0003⟧. The clock is an input you can fix. ⟦SEP_0007⟧"
+msgstr "⟦SEP_0004⟧ B4, paso 2 ⟦SEP_0005⟧ Ejecuta con ⟦CODE_0001⟧. ¿Qué semana ISO esperas? ⟦SEP_0006⟧ ⟦CODE_0002⟧, que coincide con ⟦CODE_0003⟧. El reloj es una entrada de datos que puedes fijar. ⟦SEP_0007⟧"
+
+#: lessons/study-guides/languages/make-and-cmake.md:178
+msgctxt "s-35ba8ae8e43e-0093"
+msgid "⟦SEP_0003⟧ [B5. CMake: mutate the literal](⟦DEST_0001⟧) ⟦SEP_0004⟧ Shorten the 41-⟦CODE_0002⟧ literal to 31. What is the new stop rule? ⟦SEP_0005⟧ Stop on the first total over 30. The shared checker passes with limit 30, and the entry's own check fails. The literal *is* the stop rule. ⟦SEP_0006⟧"
+msgstr "⟦SEP_0003⟧ [B5. CMake: muta el literal](⟦DEST_0001⟧) ⟦SEP_0004⟧ Acorta el literal de 41 ⟦CODE_0002⟧ a 31. ¿Cuál es la nueva regla de parada? ⟦SEP_0005⟧ Detenerse en el primer total que pasa de 30. El verificador compartido pasa con el límite 30, y la comprobación propia de la entrada falla. El literal *es* la regla de parada. ⟦SEP_0006⟧"
+
+#: lessons/study-guides/languages/make-and-cmake.md:179
+msgctxt "s-dc8681862915-0094"
+msgid "⟦SEP_0002⟧ B5, the order question ⟦SEP_0003⟧ Why must the stop test come first in the ⟦CODE_0001⟧ condition? ⟦SEP_0004⟧ The first test's match clears or rewrites the capture registers. The main match must run last so its captures are the ones that survive. The scratch trace shows the consequence: the main match runs even on the final evaluation. ⟦SEP_0005⟧"
+msgstr "⟦SEP_0002⟧ B5, la pregunta del orden ⟦SEP_0003⟧ ¿Por qué la prueba de parada debe ir primero en la condición de ⟦CODE_0001⟧? ⟦SEP_0004⟧ La coincidencia de la primera prueba borra o reescribe los registros de captura. La coincidencia principal debe ejecutarse al final para que sus capturas sean las que sobreviven. La traza de trabajo muestra la consecuencia: la coincidencia principal se ejecuta incluso en la última evaluación. ⟦SEP_0005⟧"
+
+#: lessons/study-guides/languages/make-and-cmake.md:180
+msgctxt "s-1eac8bb506ca-0095"
+msgid "⟦SEP_0003⟧ [C1. Weird next to boring](⟦DEST_0001⟧) ⟦SEP_0004⟧ What is the state of each program, and who can read it? ⟦SEP_0005⟧ Make's state is files, readable with ⟦CODE_0002⟧. CMake's is five hidden variables, readable only if you print them without disturbing them (see below). ⟦SEP_0006⟧"
+msgstr "⟦SEP_0003⟧ [C1. Lo raro junto a lo aburrido](⟦DEST_0001⟧) ⟦SEP_0004⟧ ¿Cuál es el estado de cada programa y quién puede leerlo? ⟦SEP_0005⟧ El estado de Make son archivos, que se leen con ⟦CODE_0002⟧. El de CMake son cinco variables ocultas, que solo se leen si las imprimes sin alterarlas (mira abajo). ⟦SEP_0006⟧"
+
+#: lessons/study-guides/languages/make-and-cmake.md:182
+msgctxt "s-04502a5c7068-0096"
+msgid "**A trap when instrumenting CMake.** The scratch run first printed the registers with a helper that called ⟦CODE_0001⟧. That command *also* writes ⟦CODE_0002⟧, so it erased the registers and the loop ended at once, with zero cards. Looking at this program changes it unless you look through commands that do not touch the registers. ⟦CODE_0003⟧ does not, and it is what the trace above used."
+msgstr "**Una trampa al instrumentar CMake.** La ejecución de trabajo imprimió primero los registros con una función auxiliar que llamaba a ⟦CODE_0001⟧. Ese comando *también* escribe ⟦CODE_0002⟧, así que borró los registros y el bucle terminó al instante, con cero tarjetas. Mirar este programa lo cambia, salvo que mires con comandos que no tocan los registros. ⟦CODE_0003⟧ no los toca, y es lo que usó la traza anterior."
+
+#: lessons/study-guides/languages/make-and-cmake.md:184
+msgctxt "s-4fe97c469cdb-0097"
+msgid "Failure modes, costs and boundaries"
+msgstr "Modos de fallo, costos y límites"
+
+#: lessons/study-guides/languages/make-and-cmake.md:186
+msgctxt "s-621aac5615e3-0098"
+msgid "⟦SEP_0001⟧ Behavior ⟦SEP_0002⟧ Label ⟦SEP_0003⟧ Why ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ Comportamiento ⟦SEP_0002⟧ Etiqueta ⟦SEP_0003⟧ Por qué ⟦SEP_0004⟧"
+
+#: lessons/study-guides/languages/make-and-cmake.md:188
+msgctxt "s-d63efc6f9e31-0099"
+msgid "⟦SEP_0002⟧ Make re-executes itself after it remakes an included makefile, and ⟦CODE_0001⟧ counts the restarts ⟦SEP_0003⟧ **implementation-permitted** ⟦SEP_0004⟧ Documented GNU Make behavior (see \"Remaking Makefiles\" in the GNU Make manual, linked below). It is a GNU feature, not POSIX. ⟦SEP_0005⟧"
+msgstr "⟦SEP_0002⟧ Make se vuelve a ejecutar tras rehacer un makefile incluido, y ⟦CODE_0001⟧ cuenta los reinicios ⟦SEP_0003⟧ **permitido por la implementación** ⟦SEP_0004⟧ Comportamiento documentado de GNU Make (mira \"Remaking Makefiles\" en el manual de GNU Make, enlazado abajo). Es una característica de GNU, no de POSIX. ⟦SEP_0005⟧"
+
+#: lessons/study-guides/languages/make-and-cmake.md:189
+msgctxt "s-01e7e3934b54-0100"
+msgid "⟦SEP_0001⟧ Using that restart, triggered by a file the rule creates, as a loop ⟦SEP_0002⟧ **accidentally exploited** ⟦SEP_0003⟧ This is the book's own example of the label. The feature exists to keep generated makefiles current. Nobody promised it for counting cards. ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ Usar ese reinicio, provocado por un archivo que crea la regla, como un bucle ⟦SEP_0002⟧ **aprovechado por accidente** ⟦SEP_0003⟧ Es el ejemplo propio del libro para esta etiqueta. La característica existe para mantener al día los makefiles generados. Nadie prometió que sirviera para contar tarjetas. ⟦SEP_0004⟧"
+
+#: lessons/study-guides/languages/make-and-cmake.md:190
+msgctxt "s-7ddaf2045e87-0101"
+msgid "⟦SEP_0002⟧ A recipe that expands to nothing does not count as remaking the file ⟦SEP_0003⟧ **accidentally exploited** ⟦SEP_0004⟧ The loop needs it, and it is observed rather than promised. Verified in exercise B4: delete ⟦CODE_0001⟧ and the restart never happens. ⟦SEP_0005⟧"
+msgstr "⟦SEP_0002⟧ Una receta que se expande a nada no cuenta como rehacer el archivo ⟦SEP_0003⟧ **aprovechado por accidente** ⟦SEP_0004⟧ El bucle lo necesita, y se observó en lugar de estar prometido. Se verificó en el ejercicio B4: borra ⟦CODE_0001⟧ y el reinicio nunca ocurre. ⟦SEP_0005⟧"
+
+#: lessons/study-guides/languages/make-and-cmake.md:191
+msgctxt "s-c97265fda1e0-0102"
+msgid "⟦SEP_0001⟧ A file going from missing to present is an unambiguous change; a rewritten file may look unchanged on a filesystem with coarse timestamps ⟦SEP_0002⟧ **implementation-permitted** ⟦SEP_0003⟧ The README records that its first design rewrote one state file and restarted only once, on WSL. One file per pass avoids the problem. ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ Un archivo que pasa de faltar a estar presente es un cambio inequívoco; un archivo reescrito puede parecer intacto en un sistema de archivos con marcas de tiempo gruesas ⟦SEP_0002⟧ **permitido por la implementación** ⟦SEP_0003⟧ El README registra que su primer diseño reescribía un solo archivo de estado y se reiniciaba solo una vez, en WSL. Un archivo por pasada evita el problema. ⟦SEP_0004⟧"
+
+#: lessons/study-guides/languages/make-and-cmake.md:192
+msgctxt "s-63c36f58db1c-0103"
+msgid "⟦SEP_0004⟧ ⟦CODE_0001⟧ sets ⟦CODE_0002⟧, and ⟦CODE_0003⟧ re-expands its condition each pass ⟦SEP_0005⟧ **guaranteed** by the documentation ⟦SEP_0006⟧ Both are documented. ⟦SEP_0007⟧"
+msgstr "⟦SEP_0004⟧ ⟦CODE_0001⟧ fija ⟦CODE_0002⟧, y ⟦CODE_0003⟧ vuelve a expandir su condición en cada pasada ⟦SEP_0005⟧ **garantizado** por la documentación ⟦SEP_0006⟧ Ambos están documentados. ⟦SEP_0007⟧"
+
+#: lessons/study-guides/languages/make-and-cmake.md:193
+msgctxt "s-55e02edb64e3-0104"
+msgid "⟦SEP_0001⟧ A failed match clears every register ⟦SEP_0002⟧ **implementation-permitted** ⟦SEP_0003⟧ Observed, not promised in so many words. ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ Una coincidencia fallida borra todos los registros ⟦SEP_0002⟧ **permitido por la implementación** ⟦SEP_0003⟧ Observado, no prometido con esas palabras. ⟦SEP_0004⟧"
+
+#: lessons/study-guides/languages/make-and-cmake.md:194
+msgctxt "s-9056bfd0e5dc-0105"
+msgid "⟦SEP_0001⟧ The main match runs in the same evaluation where the stop test says stop ⟦SEP_0002⟧ **accidentally exploited** ⟦SEP_0003⟧ Observed in the scratch trace. The program needs it to log the last card. I found no promise of it in the CMake documentation. ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ La coincidencia principal se ejecuta en la misma evaluación en la que la prueba de parada dice que pares ⟦SEP_0002⟧ **aprovechado por accidente** ⟦SEP_0003⟧ Observado en la traza de trabajo. El programa lo necesita para registrar la última tarjeta. No encontré ninguna promesa de ello en la documentación de CMake. ⟦SEP_0004⟧"
+
+#: lessons/study-guides/languages/make-and-cmake.md:195
+msgctxt "s-2f44d0e19c8c-0106"
+msgid "⟦SEP_0005⟧ Reading ⟦CODE_0001⟧, ⟦CODE_0002⟧ and the kernel's uuid with ⟦CODE_0003⟧ ⟦SEP_0006⟧ **implementation-permitted** ⟦SEP_0007⟧ Linux only. It is how the Make entry avoids ⟦CODE_0004⟧. ⟦SEP_0008⟧"
+msgstr "⟦SEP_0005⟧ Leer ⟦CODE_0001⟧, ⟦CODE_0002⟧ y el uuid del núcleo con ⟦CODE_0003⟧ ⟦SEP_0006⟧ **permitido por la implementación** ⟦SEP_0007⟧ Solo en Linux. Es como la entrada de Make evita ⟦CODE_0004⟧. ⟦SEP_0008⟧"
+
+#: lessons/study-guides/languages/make-and-cmake.md:197
+msgctxt "s-87d9e31bff8d-0107"
+msgid "**Costs to state.**"
+msgstr "**Costos que conviene declarar.**"
+
+#: lessons/study-guides/languages/make-and-cmake.md:199
+msgctxt "s-86ddea3e32f3-0108"
+msgid "**The state is outside the program.** In Make, a crashed or interrupted run leaves files behind, and the next run reads them as real cards. The entry refuses to start rather than trust them. That is a *protection against its own control state being polluted*."
+msgstr "**El estado está fuera del programa.** En Make, una ejecución interrumpida o fallida deja archivos atrás, y la siguiente ejecución los lee como tarjetas reales. La entrada se niega a empezar en lugar de fiarse de ellos. Es una *protección contra la contaminación de su propio estado de control*."
+
+#: lessons/study-guides/languages/make-and-cmake.md:200
+msgctxt "s-ad5a0e0eac5d-0109"
+msgid "**Make expands every line of a recipe before it runs any of them**, so the report must be a chain of phony targets (⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧) to keep SQLite's header and the rows in order."
+msgstr "**Make expande cada línea de una receta antes de ejecutar ninguna.** Por eso el informe debe ser una cadena de objetivos phony (⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧), para mantener en orden el encabezado y las filas de SQLite."
+
+#: lessons/study-guides/languages/make-and-cmake.md:201
+msgctxt "s-4645453e4622-0110"
+msgid "**CMake output cannot happen inside a condition.** Printing, SQL and the ISO week are ordinary CMake after the loop. This is the \"tiny host reports a result\" allowance."
+msgstr "**La salida de CMake no puede ocurrir dentro de una condición.** La impresión, el SQL y la semana ISO son CMake ordinario después del bucle. Es la concesión del \"pequeño anfitrión que informa de un resultado\"."
+
+#: lessons/study-guides/languages/make-and-cmake.md:202
+msgctxt "s-b6fcc4cb66cc-0111"
+msgid "**Tests that look inside can break the machine.** See the trap above."
+msgstr "**Las pruebas que miran por dentro pueden romper la máquina.** Mira la trampa de arriba."
+
+#: lessons/study-guides/languages/make-and-cmake.md:203
+msgctxt "s-2ad318e82ea0-0112"
+msgid "**Where the technique is legitimate.** Make restarting itself is exactly how automatic dependency generation works. CMake regex captures legitimately parse versions and paths. The stunt uses the same features for arithmetic."
+msgstr "**Dónde es legítima la técnica.** Que Make se reinicie a sí mismo es exactamente como funciona la generación automática de dependencias. Las capturas de regex de CMake sirven legítimamente para analizar versiones y rutas. La acrobacia usa las mismas características para hacer aritmética."
+
+#: lessons/study-guides/languages/make-and-cmake.md:205
+msgctxt "s-061eb6da82a8-0113"
+msgid "Connections across the repository"
+msgstr "Conexiones a lo largo del repositorio"
+
+#: lessons/study-guides/languages/make-and-cmake.md:207
+msgctxt "s-e365a4082c01-0114"
+msgid "**Control state outside variables.** [COBOL](⟦DEST_0001⟧) keeps it in a jump target and [Forth](⟦DEST_0002⟧) in a parse position. Make keeps it in files and CMake in captures. [Tcl](⟦DEST_0003⟧) keeps it in a database trigger. The concept guide [State and control beyond variables](⟦DEST_0004⟧) lines them up."
+msgstr "**El estado de control fuera de las variables.** [COBOL](⟦DEST_0001⟧) lo guarda en un destino de salto y [Forth](⟦DEST_0002⟧) en una posición de análisis. Make lo guarda en archivos y CMake en capturas. [Tcl](⟦DEST_0003⟧) lo guarda en un disparador de base de datos. La guía de concepto [Estado y control más allá de las variables](⟦DEST_0004⟧) los alinea."
+
+#: lessons/study-guides/languages/make-and-cmake.md:208
+msgctxt "s-777dfd53c644-0115"
+msgid "**Rewriting until nothing changes.** [m4](⟦DEST_0001⟧) rescans its output, and [sed](⟦DEST_0002⟧) can loop with a branch. Make's restart is the same fixed-point idea with files as the text."
+msgstr "**Reescribir hasta que nada cambie.** [m4](⟦DEST_0001⟧) reescanea su salida y [sed](⟦DEST_0002⟧) puede hacer un bucle con una rama. El reinicio de Make es la misma idea de punto fijo, con archivos en lugar de texto."
+
+#: lessons/study-guides/languages/make-and-cmake.md:209
+msgctxt "s-db35d6dbf89e-0116"
+msgid "**A regex that is the program.** [Regex engines and sed](⟦DEST_0001⟧) puts the loop inside a single match. CMake lets the loop re-expand a regex on every pass."
+msgstr "**Una regex que es el programa.** [Motores de regex y sed](⟦DEST_0001⟧) pone el bucle dentro de una sola coincidencia. CMake deja que el bucle vuelva a expandir una regex en cada pasada."
+
+#: lessons/study-guides/languages/make-and-cmake.md:210
+msgctxt "s-182561af5c80-0117"
+msgid "**Reproducibility.** [Portability, abstraction and cost](⟦DEST_0001⟧) covers deterministic builds and what a fixed clock does and does not prove."
+msgstr "**Reproducibilidad.** [Portabilidad, abstracción y costo](⟦DEST_0001⟧) trata las compilaciones deterministas y lo que un reloj fijo demuestra y no demuestra."
+
+#: lessons/study-guides/languages/make-and-cmake.md:211
+msgctxt "s-754d76318fcd-0118"
+msgid "**In the book.** [Make and CMake](⟦DEST_0001⟧), [Build automation](⟦DEST_0002⟧) and [Dependency graphs](⟦DEST_0003⟧)."
+msgstr "**En el libro.** [Make y CMake](⟦DEST_0001⟧), [Automatización de la compilación](⟦DEST_0002⟧) y [Grafos de dependencias](⟦DEST_0003⟧)."
+
+#: lessons/study-guides/languages/make-and-cmake.md:213
+msgctxt "s-50944288ce61-0119"
+msgid "Self-check"
+msgstr "Autoevaluación"
+
+#: lessons/study-guides/languages/make-and-cmake.md:215
+msgctxt "s-274e192b952c-0120"
+msgid "Answer each question in your own words before you read the italic text. Say what evidence would support each answer."
+msgstr "Responde cada pregunta con tus propias palabras antes de leer el texto en cursiva. Di qué evidencia respaldaría cada respuesta."
+
+#: lessons/study-guides/languages/make-and-cmake.md:217
+msgctxt "s-10cb01a19dc5-0121"
+msgid ""
+"**Trace.** In ⟦CODE_0001⟧, hours are 11, 11, 11, 11 (total 44). How many times does Make re-execute itself, and in which pass does the rule decline to write? *(Four times. Passes 0 to 3 each write one card file, and in pass 4 the total is 44, so the 41st word exists and the rule writes nothing. ⟦CODE_0002⟧ is 4 at the end.)*\n"
+"2. **Explain.** Why does deleting ⟦CODE_0003⟧ from the recipe give ⟦CODE_0004⟧? *(The ⟦CODE_0005⟧ that writes the card runs while the recipe line is expanded, but if the line expands to no command, Make treats the file as not remade. No file counts as remade, so Make never restarts and the first pass reports zero cards.)*\n"
+"3. **Transfer.** Suppose the CMake condition were written with the main match first and the stop test second. Predict the output. *(The run reports zero cards. This was checked in a scratch copy. The main match sets the registers, then the stop test's own ⟦CODE_0006⟧, which has no capture groups and fails on the small total, clears all of them. The next evaluation starts from empty registers and the loop ends. The first order exists so that the match whose captures you need runs last.)*\n"
+"4. **Evidence.** A reviewer says, \"Make's loop needs a shell exactly once.\" Design a test that could fail. What is the negative control? *(Check that the only commands in the recipes are ⟦CODE_0007⟧, ⟦CODE_0008⟧, ⟦CODE_0009⟧, ⟦CODE_0010⟧ and the no-op ⟦CODE_0011⟧, which the entry's ⟦CODE_0012⟧ does. For a control, add a ⟦CODE_0013⟧ and expect the check to fail. The claim is the entry's own and is classified as implementation-permitted.)*"
+msgstr ""
+"**Traza.** En ⟦CODE_0001⟧, las horas son 11, 11, 11, 11 (total 44). ¿Cuántas veces se vuelve a ejecutar Make a sí mismo y en qué pasada se niega la regla a escribir? *(Cuatro veces. Las pasadas 0 a 3 escriben cada una un archivo de tarjeta. En la pasada 4 el total es 44, así que existe la palabra 41 y la regla no escribe nada. ⟦CODE_0002⟧ vale 4 al final.)*\n"
+"2. **Explica.** ¿Por qué borrar ⟦CODE_0003⟧ de la receta da ⟦CODE_0004⟧? *(El ⟦CODE_0005⟧ que escribe la tarjeta se ejecuta mientras la línea de la receta se expande. Si la línea se expande a ningún comando, Make trata el archivo como no rehecho. Ningún archivo cuenta como rehecho, así que Make nunca se reinicia y la primera pasada informa cero tarjetas.)*\n"
+"3. **Transfiere.** Supón que la condición de CMake se escribiera con la coincidencia principal primero y la prueba de parada después. Predice la salida. *(La ejecución informa cero tarjetas. Esto se comprobó en una copia de trabajo. La coincidencia principal fija los registros. Luego el ⟦CODE_0006⟧ de la propia prueba de parada, que no tiene grupos de captura, falla con el total pequeño y los borra todos. La siguiente evaluación empieza con registros vacíos y el bucle termina. El primer orden existe para que la coincidencia cuyas capturas necesitas se ejecute al final.)*\n"
+"4. **Evidencia.** Un revisor dice: \"El bucle de Make necesita un intérprete de comandos exactamente una vez\". Diseña una prueba que pueda fallar. ¿Cuál es el control negativo? *(Comprueba que los únicos comandos de las recetas son ⟦CODE_0007⟧, ⟦CODE_0008⟧, ⟦CODE_0009⟧, ⟦CODE_0010⟧ y la operación nula ⟦CODE_0011⟧, que es lo que hace el ⟦CODE_0012⟧ de la entrada. Como control, añade un ⟦CODE_0013⟧ y espera que la comprobación falle. La afirmación es de la propia entrada y se clasifica como permitida por la implementación.)*"
+
+#: lessons/study-guides/languages/make-and-cmake.md:222
+msgctxt "s-4082f515b2f4-0122"
+msgid "Further reading"
+msgstr "Lecturas adicionales"
+
+#: lessons/study-guides/languages/make-and-cmake.md:224
+msgctxt "s-ba515726e9de-0123"
+msgid "[Make (software)](⟦DEST_0001⟧)) (Wikipedia): what Make is for and how its dependency rules work."
+msgstr "[Make (software)](⟦DEST_0001⟧)) (Wikipedia): para qué sirve Make y cómo funcionan sus reglas de dependencia."
+
+#: lessons/study-guides/languages/make-and-cmake.md:225
+msgctxt "s-2f518eeda8fb-0124"
+msgid "[CMake](⟦DEST_0001⟧) (Wikipedia): a broad orientation. The CMake manual describes ⟦CODE_0002⟧ and ⟦CODE_0003⟧ conditions, but its host is not on this book's allowlist, so read it from your installed copy with ⟦CODE_0004⟧."
+msgstr "[CMake](⟦DEST_0001⟧) (Wikipedia): una orientación general. El manual de CMake describe las condiciones ⟦CODE_0002⟧ y ⟦CODE_0003⟧. Pero su anfitrión no está en la lista de permitidos de este libro, así que léelo en tu copia instalada con ⟦CODE_0004⟧."
+
+#: lessons/study-guides/languages/make-and-cmake.md:226
+msgctxt "s-0c5c99225ec2-0125"
+msgid "[Remaking Makefiles](⟦DEST_0001⟧) (GNU Make manual): the official statement that Make re-executes itself after it remakes an included makefile. Everything in the Make entry rests on it."
+msgstr "[Remaking Makefiles](⟦DEST_0001⟧) (manual de GNU Make): la declaración oficial de que Make se vuelve a ejecutar tras rehacer un makefile incluido. Todo lo de la entrada de Make descansa en ella."
+
+#: lessons/study-guides/languages/make-and-cmake.md:227
+msgctxt "s-bb9ce1cf6b35-0126"
+msgid "[Reproducible builds](⟦DEST_0001⟧) (Wikipedia): why a build that reads the clock needs an override like ⟦CODE_0002⟧."
+msgstr "[Compilaciones reproducibles](⟦DEST_0001⟧) (Wikipedia): por qué una compilación que lee el reloj necesita una anulación como ⟦CODE_0002⟧."
+
+#: lessons/study-guides/languages/make-and-cmake.md:228
+msgctxt "s-9c80024e1266-0127"
+msgid "[Fixed-point iteration](⟦DEST_0001⟧) and [Reproducibility and deterministic builds](⟦DEST_0002⟧) (this book): the two ideas these programs lean on."
+msgstr "[Iteración de punto fijo](⟦DEST_0001⟧) y [Reproducibilidad y compilaciones deterministas](⟦DEST_0002⟧) (este libro): las dos ideas en las que se apoyan estos programas."

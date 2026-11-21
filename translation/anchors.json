@@ -8190,113 +8190,113 @@
     {
      "en": "m4 study guide",
      "en_id": "m4-study-guide",
-     "es": "m4 study guide",
-     "es_id": "m4-study-guide",
+     "es": "Guía de estudio de m4",
+     "es_id": "guía-de-estudio-de-m4",
      "level": 1,
      "line": 1
     },
     {
      "en": "What this guide is for",
      "en_id": "what-this-guide-is-for",
-     "es": "What this guide is for",
-     "es_id": "what-this-guide-is-for",
+     "es": "Para qué sirve esta guía",
+     "es_id": "para-qué-sirve-esta-guía",
      "level": 2,
      "line": 3
     },
     {
      "en": "Before you begin",
      "en_id": "before-you-begin",
-     "es": "Before you begin",
-     "es_id": "before-you-begin",
+     "es": "Antes de empezar",
+     "es_id": "antes-de-empezar",
      "level": 2,
      "line": 18
     },
     {
      "en": "The shared challenge",
      "en_id": "the-shared-challenge",
-     "es": "The shared challenge",
-     "es_id": "the-shared-challenge",
+     "es": "El reto compartido",
+     "es_id": "el-reto-compartido",
      "level": 2,
      "line": 40
     },
     {
      "en": "The machine to identify",
      "en_id": "the-machine-to-identify",
-     "es": "The machine to identify",
-     "es_id": "the-machine-to-identify",
+     "es": "La máquina que hay que identificar",
+     "es_id": "la-máquina-que-hay-que-identificar",
      "level": 2,
      "line": 46
     },
     {
      "en": "Trace one run",
      "en_id": "trace-one-run",
-     "es": "Trace one run",
-     "es_id": "trace-one-run",
+     "es": "Traza una ejecución",
+     "es_id": "traza-una-ejecución",
      "level": 2,
      "line": 76
     },
     {
      "en": "Compare the ordinary and weird designs",
      "en_id": "compare-the-ordinary-and-weird-designs",
-     "es": "Compare the ordinary and weird designs",
-     "es_id": "compare-the-ordinary-and-weird-designs",
+     "es": "Compara los diseños ordinarios y los raros",
+     "es_id": "compara-los-diseños-ordinarios-y-los-raros",
      "level": 2,
      "line": 92
     },
     {
      "en": "What the exercises demonstrate",
      "en_id": "what-the-exercises-demonstrate",
-     "es": "What the exercises demonstrate",
-     "es_id": "what-the-exercises-demonstrate",
+     "es": "Qué demuestran los ejercicios",
+     "es_id": "qué-demuestran-los-ejercicios",
      "level": 2,
      "line": 109
     },
     {
      "en": "Failure modes, costs and boundaries",
      "en_id": "failure-modes-costs-and-boundaries",
-     "es": "Failure modes, costs and boundaries",
-     "es_id": "failure-modes-costs-and-boundaries",
+     "es": "Modos de fallo, costos y límites",
+     "es_id": "modos-de-fallo-costos-y-límites",
      "level": 2,
      "line": 121
     },
     {
      "en": "Connections across the repository",
      "en_id": "connections-across-the-repository",
-     "es": "Connections across the repository",
-     "es_id": "connections-across-the-repository",
+     "es": "Conexiones a lo largo del repositorio",
+     "es_id": "conexiones-a-lo-largo-del-repositorio",
      "level": 2,
      "line": 143
     },
     {
      "en": "Self-check",
      "en_id": "self-check",
-     "es": "Self-check",
-     "es_id": "self-check",
+     "es": "Autoevaluación",
+     "es_id": "autoevaluación",
      "level": 2,
      "line": 151
     },
     {
      "en": "Further reading",
      "en_id": "further-reading",
-     "es": "Further reading",
-     "es_id": "further-reading",
+     "es": "Lecturas adicionales",
+     "es_id": "lecturas-adicionales",
      "level": 2,
      "line": 160
     }
    ],
    "map": {
-    "before-you-begin": "before-you-begin",
-    "compare-the-ordinary-and-weird-designs": "compare-the-ordinary-and-weird-designs",
-    "connections-across-the-repository": "connections-across-the-repository",
-    "failure-modes-costs-and-boundaries": "failure-modes-costs-and-boundaries",
-    "further-reading": "further-reading",
-    "m4-study-guide": "m4-study-guide",
-    "self-check": "self-check",
-    "the-machine-to-identify": "the-machine-to-identify",
-    "the-shared-challenge": "the-shared-challenge",
-    "trace-one-run": "trace-one-run",
-    "what-the-exercises-demonstrate": "what-the-exercises-demonstrate",
-    "what-this-guide-is-for": "what-this-guide-is-for"
+    "before-you-begin": "antes-de-empezar",
+    "compare-the-ordinary-and-weird-designs": "compara-los-diseños-ordinarios-y-los-raros",
+    "connections-across-the-repository": "conexiones-a-lo-largo-del-repositorio",
+    "failure-modes-costs-and-boundaries": "modos-de-fallo-costos-y-límites",
+    "further-reading": "lecturas-adicionales",
+    "m4-study-guide": "guía-de-estudio-de-m4",
+    "self-check": "autoevaluación",
+    "the-machine-to-identify": "la-máquina-que-hay-que-identificar",
+    "the-shared-challenge": "el-reto-compartido",
+    "trace-one-run": "traza-una-ejecución",
+    "what-the-exercises-demonstrate": "qué-demuestran-los-ejercicios",
+    "what-this-guide-is-for": "para-qué-sirve-esta-guía"
    }
   },
   "lessons/study-guides/languages/make-and-cmake.md": {
