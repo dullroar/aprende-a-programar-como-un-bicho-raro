@@ -4094,8 +4094,8 @@
     {
      "en": "C#, LINQ and XAML (plus the one-statement ports)",
      "en_id": "c-linq-and-xaml-plus-the-one-statement-ports",
-     "es": "C#, LINQ and XAML (plus the one-statement ports)",
-     "es_id": "c-linq-and-xaml-plus-the-one-statement-ports",
+     "es": "C#, LINQ y XAML (más las adaptaciones de una sola sentencia)",
+     "es_id": "c-linq-y-xaml-más-las-adaptaciones-de-una-sola-sentencia",
      "level": 1,
      "line": 1
     },
@@ -4326,7 +4326,7 @@
    ],
    "map": {
     "behold-the-monstrosity": "behold-the-monstrosity",
-    "c-linq-and-xaml-plus-the-one-statement-ports": "c-linq-and-xaml-plus-the-one-statement-ports",
+    "c-linq-and-xaml-plus-the-one-statement-ports": "c-linq-y-xaml-más-las-adaptaciones-de-una-sola-sentencia",
     "computer-science-behind-this-page": "computer-science-behind-this-page",
     "deferred-execution-and-the-void-to-value-trick": "deferred-execution-and-the-void-to-value-trick",
     "do-this-in-production-and-youre-fired": "do-this-in-production-and-youre-fired",

@@ -1,0 +1,413 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lessons/languages/csharp-linq-xaml.md:1
+msgctxt "s-e4da803388d9-0000"
+msgid "C#, LINQ and XAML (plus the one-statement ports)"
+msgstr "C#, LINQ y XAML (más las adaptaciones de una sola sentencia)"
+
+#: lessons/languages/csharp-linq-xaml.md:3
+msgctxt "s-482dcad97e58-0001"
+msgid "Entries: [⟦CODE_0001⟧](⟦DEST_0002⟧), [⟦CODE_0003⟧](⟦DEST_0004⟧), [⟦CODE_0005⟧](⟦DEST_0006⟧), [⟦CODE_0007⟧](⟦DEST_0008⟧) and the ports [⟦CODE_0009⟧](⟦DEST_0010⟧), [⟦CODE_0011⟧](⟦DEST_0012⟧), [⟦CODE_0013⟧](⟦DEST_0014⟧), [⟦CODE_0015⟧](⟦DEST_0016⟧), [⟦CODE_0017⟧](⟦DEST_0018⟧)."
+msgstr "Entradas: [⟦CODE_0001⟧](⟦DEST_0002⟧), [⟦CODE_0003⟧](⟦DEST_0004⟧), [⟦CODE_0005⟧](⟦DEST_0006⟧), [⟦CODE_0007⟧](⟦DEST_0008⟧) y las adaptaciones [⟦CODE_0009⟧](⟦DEST_0010⟧), [⟦CODE_0011⟧](⟦DEST_0012⟧), [⟦CODE_0013⟧](⟦DEST_0014⟧), [⟦CODE_0015⟧](⟦DEST_0016⟧), [⟦CODE_0017⟧](⟦DEST_0018⟧)."
+
+#: lessons/languages/csharp-linq-xaml.md:5
+msgctxt "s-56fc20a3f457-0002"
+msgid "For an advanced reading path with traces and experiments, see the [C#, LINQ, XAML and ports study guide](⟦DEST_0001⟧)."
+msgstr "Para una ruta de lectura avanzada con trazas y experimentos, consulta la [guía de estudio de C#, LINQ, XAML y adaptaciones](⟦DEST_0001⟧)."
+
+#: lessons/languages/csharp-linq-xaml.md:7
+msgctxt "s-96ff835e8a57-0003"
+msgid "C# is the *canonical* language of the repo: the challenge began as a 2008 classroom exercise showing off C# 3.0 and .NET 3.x features. It is also where the [blocking problems](⟦DEST_0001⟧) are measured from."
+msgstr ""
+
+#: lessons/languages/csharp-linq-xaml.md:9
+msgctxt "s-a1d640a91c8b-0004"
+msgid "This survey covers the original C# entry, the LINQ and XAML variants and the one-statement ports. The examples use the lesson steps that fit each mechanism."
+msgstr ""
+
+#: lessons/languages/csharp-linq-xaml.md:11
+msgctxt "s-8b2a197c7ec0-0005"
+msgid "The original: ModernChallenge1"
+msgstr ""
+
+#: lessons/languages/csharp-linq-xaml.md:13
+msgctxt "s-cc9cfaabc50d-0006"
+msgid "Behold the monstrosity"
+msgstr ""
+
+#: lessons/languages/csharp-linq-xaml.md:20
+msgctxt "s-1f8560806e4d-0007"
+msgid "A WPF window fades in and out. ⟦CODE_0001⟧ holds exactly one ⟦CODE_0002⟧ whose body is empty ([⟦CODE_0003⟧ L132](⟦DEST_0004⟧): ⟦CODE_0005⟧)."
+msgstr ""
+
+#: lessons/languages/csharp-linq-xaml.md:22
+msgctxt "s-415f5fa29cf9-0008"
+msgid "How the hell does that work?"
+msgstr ""
+
+#: lessons/languages/csharp-linq-xaml.md:24
+msgctxt "s-6135b7e28257-0009"
+msgid "Read the ⟦CODE_0001⟧ header as a tiny language of three slots."
+msgstr ""
+
+#: lessons/languages/csharp-linq-xaml.md:26
+msgctxt "s-c093546beec1-0010"
+msgid "⟦SEP_0001⟧ Clause ⟦SEP_0002⟧ Where ⟦SEP_0003⟧ What lives there ⟦SEP_0004⟧"
+msgstr ""
+
+#: lessons/languages/csharp-linq-xaml.md:28
+msgctxt "s-dd2a682da5d9-0011"
+msgid "⟦SEP_0009⟧ **Initializer** ⟦SEP_0010⟧ [L37-58](⟦DEST_0001⟧) ⟦SEP_0011⟧ One ⟦CODE_0002⟧ anonymous object holding all state: EF Core context, ⟦CODE_0003⟧, category enumerator, WPF ⟦CODE_0004⟧, a ⟦CODE_0005⟧, an ⟦CODE_0006⟧ that becomes a ⟦CODE_0007⟧. A ⟦CODE_0008⟧ initializer allows one declaration, so the anonymous object is the one legal container. ⟦SEP_0012⟧"
+msgstr ""
+
+#: lessons/languages/csharp-linq-xaml.md:29
+msgctxt "s-971e3ad80ea0-0012"
+msgid "⟦SEP_0003⟧ **Condition** ⟦SEP_0004⟧ [L66-98](⟦DEST_0001⟧) ⟦SEP_0005⟧ ⟦CODE_0002⟧. While the total is 40 or less the loop continues. Once it is not, the condition builds and shows the window inline and returns false. ⟦SEP_0006⟧"
+msgstr ""
+
+#: lessons/languages/csharp-linq-xaml.md:30
+msgctxt "s-6ac76b71d59e-0013"
+msgid "⟦SEP_0007⟧ **Iterator** ⟦SEP_0008⟧ [L106-130](⟦DEST_0001⟧) ⟦SEP_0009⟧ Draws hours, adds a row to EF Core and starts a background ⟦CODE_0002⟧ that calls ⟦CODE_0003⟧, ⟦CODE_0004⟧ and ⟦CODE_0005⟧ *through ⟦CODE_0006⟧*. ⟦SEP_0010⟧"
+msgstr ""
+
+#: lessons/languages/csharp-linq-xaml.md:32
+msgctxt "s-574ea85e27cf-0014"
+msgid "Each test of the ⟦CODE_0001⟧ condition immediately needs a number. The LINQ projection can defer enumeration, and the terminal ⟦CODE_0002⟧ immediately enumerates it in the same condition test. The [Node port](⟦DEST_0003⟧) also computes its total eagerly, using ⟦CODE_0004⟧ over the array."
+msgstr ""
+
+#: lessons/languages/csharp-linq-xaml.md:34
+msgctxt "s-6daad14f3a96-0015"
+msgid "The window is built from a string of raw XAML via ⟦CODE_0001⟧ at run time ([L77](⟦DEST_0002⟧))."
+msgstr ""
+
+#: lessons/languages/csharp-linq-xaml.md:36
+msgctxt "s-d2bbf037de84-0016"
+msgid "What did we just learn?"
+msgstr ""
+
+#: lessons/languages/csharp-linq-xaml.md:38
+msgctxt "s-d2398b866593-0017"
+msgid "⟦CODE_0001⟧ is three expressions plus a body, and the body is optional."
+msgstr ""
+
+#: lessons/languages/csharp-linq-xaml.md:39
+msgctxt "s-54d2d7922a6b-0018"
+msgid "An **anonymous type** is a way to pack mixed state into one expression."
+msgstr ""
+
+#: lessons/languages/csharp-linq-xaml.md:40
+msgctxt "s-901754d16ffb-0019"
+msgid "A ⟦CODE_0001⟧ side effect can be turned into a value with a ⟦CODE_0002⟧ invoked in place. That is the move every later entry reuses."
+msgstr ""
+
+#: lessons/languages/csharp-linq-xaml.md:42
+msgctxt "s-299b7a6f9cbe-0020"
+msgid "Do this in production and you're fired"
+msgstr ""
+
+#: lessons/languages/csharp-linq-xaml.md:44
+msgctxt "s-09d904d88f80-0021"
+msgid "**⟦CODE_0001⟧ is not thread-safe.** The ⟦CODE_0002⟧ exists only to keep the thread-plus-reflection shape working at all ([README](⟦DEST_0003⟧)); it is a historical artifact."
+msgstr ""
+
+#: lessons/languages/csharp-linq-xaml.md:45
+msgctxt "s-a84a688a73e1-0022"
+msgid "**Reflection and a thread add nothing.** They are a deliberate 2008-style time capsule; modern code would ⟦CODE_0001⟧."
+msgstr ""
+
+#: lessons/languages/csharp-linq-xaml.md:46
+msgctxt "s-5ba087031964-0023"
+msgid "**WPF needs ⟦CODE_0001⟧** and a single UI thread ([L30](⟦DEST_0002⟧))."
+msgstr ""
+
+#: lessons/languages/csharp-linq-xaml.md:47
+msgctxt "s-d72c58e7166d-0024"
+msgid "**Readability, testing, debugging**: nothing in that ⟦CODE_0001⟧ header can be stepped through, unit-tested or reused."
+msgstr ""
+
+#: lessons/languages/csharp-linq-xaml.md:49
+msgctxt "s-5bc705ef8e7c-0025"
+msgid "Legitimate uses: none for the header as written. The *ideas* (state in an object, pure queries over a list, effects at the edge) are ordinary."
+msgstr ""
+
+#: lessons/languages/csharp-linq-xaml.md:51
+msgctxt "s-e51197c1f093-0026"
+msgid "Deferred execution and the void-to-value trick"
+msgstr ""
+
+#: lessons/languages/csharp-linq-xaml.md:53
+msgctxt "s-2c138c1938d5-0027"
+msgid "A note before the code: the two LINQ entries are **not** the shared challenge. They draw no random hours. Their work week is five fixed 8-hour days, capped so that the total is exactly 40.0 hours and no card crosses the line, because they teach deferred execution rather than the stop rule."
+msgstr ""
+
+#: lessons/languages/csharp-linq-xaml.md:55
+msgctxt "s-c7cc8fb427fd-0028"
+msgid "LinqChallenge1: one fluent chain"
+msgstr ""
+
+#: lessons/languages/csharp-linq-xaml.md:57
+msgctxt "s-ceb775c33ee9-0029"
+msgid "One ⟦CODE_0001⟧-terminated expression statement, built from LINQ calls, starting at [⟦CODE_0002⟧ L45](⟦DEST_0003⟧) and ending in ⟦CODE_0004⟧ that forces the lazy tail. Stages:"
+msgstr ""
+
+#: lessons/languages/csharp-linq-xaml.md:59
+msgctxt "s-c3a1316c7911-0030"
+msgid "⟦SEP_0001⟧ Stage ⟦SEP_0002⟧ Operator ⟦SEP_0003⟧ Lesson ⟦SEP_0004⟧"
+msgstr ""
+
+#: lessons/languages/csharp-linq-xaml.md:61
+msgctxt "s-267bb87d1c30-0031"
+msgid "⟦SEP_0005⟧ 1 ⟦SEP_0006⟧ ⟦CODE_0001⟧ over a fixed work week, ⟦CODE_0002⟧ inside ⟦CODE_0003⟧ ⟦SEP_0007⟧ ⟦CODE_0004⟧ is **eager**; it runs first. ⟦SEP_0008⟧"
+msgstr ""
+
+#: lessons/languages/csharp-linq-xaml.md:62
+msgctxt "s-31647e0aaf4e-0032"
+msgid "⟦SEP_0003⟧ tuple ⟦SEP_0004⟧ ⟦CODE_0001⟧ ([L66-68](⟦DEST_0002⟧)) ⟦SEP_0005⟧ Tuple elements evaluate **left to right**, which sequences the save after every entity is tracked. ⟦SEP_0006⟧"
+msgstr ""
+
+#: lessons/languages/csharp-linq-xaml.md:63
+msgctxt "s-dd6d6037b099-0033"
+msgid "⟦SEP_0008⟧ 2 ⟦SEP_0009⟧ ⟦CODE_0001⟧ and ⟦CODE_0002⟧ ([L72-78](⟦DEST_0003⟧)) ⟦SEP_0010⟧ The ⟦CODE_0004⟧ to ⟦CODE_0005⟧ boundary: EF translates ⟦CODE_0006⟧ to SQL, and ⟦CODE_0007⟧ is where it stops. ⟦SEP_0011⟧"
+msgstr ""
+
+#: lessons/languages/csharp-linq-xaml.md:64
+msgctxt "s-920459831906-0034"
+msgid "⟦SEP_0006⟧ 3-5 ⟦SEP_0007⟧ ⟦CODE_0001⟧, ⟦CODE_0002⟧ builds the WPF window, ⟦CODE_0003⟧ pulses and calls ⟦CODE_0004⟧ ⟦SEP_0008⟧ Lazy ⟦CODE_0005⟧ stages do nothing until enumerated. ⟦SEP_0009⟧"
+msgstr ""
+
+#: lessons/languages/csharp-linq-xaml.md:65
+msgctxt "s-1967b7982af5-0035"
+msgid "⟦SEP_0002⟧ final ⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ An eager operator at the end drags the whole lazy pipeline through. ⟦SEP_0005⟧"
+msgstr ""
+
+#: lessons/languages/csharp-linq-xaml.md:67
+msgctxt "s-76cb4a65bb48-0036"
+msgid "Why two nested ⟦CODE_0001⟧? C# allows only a few expression shapes as a statement (invocation, assignment, ⟦CODE_0002⟧...), not ⟦CODE_0003⟧. So each stage is nested directly as the argument to the next ⟦CODE_0004⟧, which turns a single value back into a one-element sequence so the next step can stay a LINQ operator."
+msgstr ""
+
+#: lessons/languages/csharp-linq-xaml.md:69
+msgctxt "s-6512b902719b-0037"
+msgid "LinqChallenge2: query syntax all the way down"
+msgstr ""
+
+#: lessons/languages/csharp-linq-xaml.md:71
+msgctxt "s-04effa219b20-0038"
+msgid "[⟦CODE_0001⟧ L53](⟦DEST_0002⟧) onward is the same demo as nearly all ⟦CODE_0003⟧/⟦CODE_0004⟧/⟦CODE_0005⟧/⟦CODE_0006⟧. Where a ⟦CODE_0007⟧ has to smuggle in a ⟦CODE_0008⟧ call ([L71-72](⟦DEST_0009⟧)), it is wrapped in a throwaway one-row query: ⟦CODE_0010⟧. Turtles all the way down, on purpose. Things that cannot be query syntax (⟦CODE_0011⟧, ⟦CODE_0012⟧, ⟦CODE_0013⟧, ⟦CODE_0014⟧, ⟦CODE_0015⟧, ⟦CODE_0016⟧) are listed in the [README](⟦DEST_0017⟧)."
+msgstr ""
+
+#: lessons/languages/csharp-linq-xaml.md:73
+msgctxt "s-d2bbf037de84-0039"
+msgid "What did we just learn?"
+msgstr ""
+
+#: lessons/languages/csharp-linq-xaml.md:75
+msgctxt "s-25434173a964-0040"
+msgid "**LINQ is an execution pipeline, not just a query language.** Which stages are eager, which are lazy and which provider (SQL vs. objects) runs each one decide *when your side effects happen*. See the same question in [Haskell](⟦DEST_0001⟧)."
+msgstr ""
+
+#: lessons/languages/csharp-linq-xaml.md:76
+msgctxt "s-f7ee57e8cb03-0041"
+msgid "**Provider boundaries are real.** Everything before ⟦CODE_0001⟧ becomes SQL; everything after is C# running in your process."
+msgstr ""
+
+#: lessons/languages/csharp-linq-xaml.md:77
+msgctxt "s-6012d197de37-0042"
+msgid "**Side effects in a lazy pipeline are a bug magnet**, and the entries make that visible."
+msgstr ""
+
+#: lessons/languages/csharp-linq-xaml.md:79
+msgctxt "s-15bfd3a9b2bb-0043"
+msgid "Tags: deferred vs. immediate execution of each operator is **guaranteed** (documented). Tuple left-to-right evaluation is **guaranteed** by the C# spec. EF translating a given expression is **implementation-permitted** and depends on the provider."
+msgstr ""
+
+#: lessons/languages/csharp-linq-xaml.md:81
+msgctxt "s-299b7a6f9cbe-0044"
+msgid "Do this in production and you're fired"
+msgstr ""
+
+#: lessons/languages/csharp-linq-xaml.md:83
+msgctxt "s-f5b992b2eb3a-0045"
+msgid "**Hidden mutation.** Both ⟦CODE_0001⟧ accumulators are mutated in place (⟦CODE_0002⟧) - a pragmatic shortcut, not LINQ purity."
+msgstr ""
+
+#: lessons/languages/csharp-linq-xaml.md:84
+msgctxt "s-e0552e754dbb-0046"
+msgid "**Re-enumeration runs the effects again.** A query with a side effect in a ⟦CODE_0001⟧ that is enumerated twice does the side effect twice."
+msgstr ""
+
+#: lessons/languages/csharp-linq-xaml.md:85
+msgctxt "s-3da105dba771-0047"
+msgid "**UI thread affinity.** Building and pumping a WPF window from inside a ⟦CODE_0001⟧ lambda only works because of the STA thread and ⟦CODE_0002⟧; ⟦CODE_0003⟧ is ⟦CODE_0004⟧ so the animation's ⟦CODE_0005⟧ handler, not \"last window closed\", ends the app."
+msgstr ""
+
+#: lessons/languages/csharp-linq-xaml.md:86
+msgctxt "s-3b60f25b5904-0048"
+msgid "**Fixed data.** Both LINQ entries generate a *fixed* five 8-hour-day work week, not random 10 to 19 hour cards. See [blocking problems](⟦DEST_0001⟧)."
+msgstr ""
+
+#: lessons/languages/csharp-linq-xaml.md:88
+msgctxt "s-5e3bcdfbf845-0049"
+msgid "Now break it yourself"
+msgstr ""
+
+#: lessons/languages/csharp-linq-xaml.md:90
+msgctxt "s-15ae7dbd42c8-0050"
+msgid "See [exercises](⟦DEST_0001⟧)."
+msgstr ""
+
+#: lessons/languages/csharp-linq-xaml.md:92
+msgctxt "s-48922183e96a-0051"
+msgid "XAML"
+msgstr ""
+
+#: lessons/languages/csharp-linq-xaml.md:94
+msgctxt "s-ac8985d55fa6-0052"
+msgid "[⟦CODE_0001⟧ L10-15](⟦DEST_0002⟧) is a single expression: ⟦CODE_0003⟧. Everything else is in the ⟦CODE_0004⟧ file, and it runs **while the file is parsed**."
+msgstr ""
+
+#: lessons/languages/csharp-linq-xaml.md:96
+msgctxt "s-b3fa9ef58de3-0053"
+msgid "How is that even possible?"
+msgstr ""
+
+#: lessons/languages/csharp-linq-xaml.md:98
+msgctxt "s-36a859ab3665-0054"
+msgid "⟦SEP_0001⟧ Mechanism ⟦SEP_0002⟧ Role ⟦SEP_0003⟧"
+msgstr ""
+
+#: lessons/languages/csharp-linq-xaml.md:100
+msgctxt "s-bc5ecfa1973f-0055"
+msgid "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ the interpreter: parsing *is* running ⟦SEP_0004⟧"
+msgstr ""
+
+#: lessons/languages/csharp-linq-xaml.md:101
+msgctxt "s-eab9e6d70cd6-0056"
+msgid "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ the instruction: constructs any object, calls any method, fires when parsed. Document order is the program counter. ⟦SEP_0004⟧"
+msgstr ""
+
+#: lessons/languages/csharp-linq-xaml.md:102
+msgctxt "s-bc584cbf300a-0057"
+msgid "⟦SEP_0008⟧ \"Carrier\" arrays ⟦SEP_0009⟧ the variables: one provider fills a ⟦CODE_0001⟧ or ⟦CODE_0002⟧ in place, the next reads it back ([⟦CODE_0003⟧ L15-30](⟦DEST_0004⟧) shows the chain ⟦CODE_0005⟧ -> ⟦CODE_0006⟧ -> ⟦CODE_0007⟧) ⟦SEP_0010⟧"
+msgstr ""
+
+#: lessons/languages/csharp-linq-xaml.md:103
+msgctxt "s-e12ad2c50007-0058"
+msgid "⟦SEP_0003⟧ Expression engines (⟦CODE_0001⟧, ⟦CODE_0002⟧, SQL) ⟦SEP_0004⟧ the ALU and the conditionals ⟦SEP_0005⟧"
+msgstr ""
+
+#: lessons/languages/csharp-linq-xaml.md:104
+msgctxt "s-989738932855-0059"
+msgid "⟦SEP_0003⟧ ⟦CODE_0001⟧ in markup ⟦SEP_0004⟧ a ⟦CODE_0002⟧, built, started and joined from XAML ⟦SEP_0005⟧"
+msgstr ""
+
+#: lessons/languages/csharp-linq-xaml.md:106
+msgctxt "s-7ec4d0950704-0060"
+msgid "Honest fine print"
+msgstr ""
+
+#: lessons/languages/csharp-linq-xaml.md:108
+msgctxt "s-6791ddd02d41-0061"
+msgid "**The loop is unrolled**: four copy-pasted passes. \"Four categories\" is baked into the markup, so this entry can deal at most four cards. With the shipped seed (⟦CODE_0001⟧: 16, 11, 11, 15 hours) it always deals four and ends at 53, so the case where four cards total exactly 40 (which should continue to a fifth) never arises. It is the only entry with that limit."
+msgstr ""
+
+#: lessons/languages/csharp-linq-xaml.md:109
+msgctxt "s-8635c6d45874-0062"
+msgid "**The branching is done by SQL or ⟦CODE_0001⟧**, not by WPF triggers."
+msgstr ""
+
+#: lessons/languages/csharp-linq-xaml.md:110
+msgctxt "s-60e3459db047-0063"
+msgid "**⟦CODE_0001⟧ is fixed-seeded** in the ⟦CODE_0002⟧ files, so the hours are the same on every run."
+msgstr ""
+
+#: lessons/languages/csharp-linq-xaml.md:111
+msgctxt "s-5c066bdb2de4-0064"
+msgid "**⟦CODE_0001⟧ has ⟦CODE_0002⟧**, so the files are loaded at run time, never compiled. That *is* the point."
+msgstr ""
+
+#: lessons/languages/csharp-linq-xaml.md:112
+msgctxt "s-33b0c73fcb0c-0065"
+msgid "**Three flavors**: ⟦CODE_0001⟧ (only .NET types, saves XML), ⟦CODE_0002⟧, ⟦CODE_0003⟧. The stop rule is a SQL ⟦CODE_0004⟧ clause or a SQLite trigger."
+msgstr ""
+
+#: lessons/languages/csharp-linq-xaml.md:114
+msgctxt "s-d2bbf037de84-0066"
+msgid "What did we just learn?"
+msgstr ""
+
+#: lessons/languages/csharp-linq-xaml.md:116
+msgctxt "s-913a22598ad6-0067"
+msgid "XAML is supposed to *describe* a tree of objects. The parser does not enforce that: given ⟦CODE_0001⟧ and a few built-in types, parsing and executing become the same act. A 2013 Web Forms [blog post](⟦DEST_0002⟧) pushed the same idea (a chart with no code-behind), so the lineage is real."
+msgstr ""
+
+#: lessons/languages/csharp-linq-xaml.md:118
+msgctxt "s-146b2efe970c-0068"
+msgid "Tags: ⟦CODE_0001⟧ calling methods on construction is **guaranteed** by WPF's documentation; relying on document-order evaluation and in-place carrier arrays is **accidentally exploited**."
+msgstr ""
+
+#: lessons/languages/csharp-linq-xaml.md:120
+msgctxt "s-62f879aa4938-0069"
+msgid "**Fired in production**: arbitrary method invocation from a markup file is a code-execution surface. Loading untrusted XAML with ⟦CODE_0001⟧ is a well-known risk. Any tooling (designers, linters) assumes the file is data."
+msgstr ""
+
+#: lessons/languages/csharp-linq-xaml.md:122
+msgctxt "s-009a38489985-0070"
+msgid "The one-statement ports: same trick, different machinery"
+msgstr ""
+
+#: lessons/languages/csharp-linq-xaml.md:124
+msgctxt "s-5283dac799f7-0071"
+msgid "Ken's ports keep the bodiless-loop rule and swap in each language's own parts. A good exercise is to find each language's three clauses."
+msgstr ""
+
+#: lessons/languages/csharp-linq-xaml.md:126
+msgctxt "s-18eb941a47a1-0072"
+msgid "⟦SEP_0001⟧ Port ⟦SEP_0002⟧ Header mechanism ⟦SEP_0003⟧ Quirk worth stealing ⟦SEP_0004⟧"
+msgstr ""
+
+#: lessons/languages/csharp-linq-xaml.md:128
+msgctxt "s-1512fb6ea37a-0073"
+msgid "⟦SEP_0003⟧ [Java](⟦DEST_0001⟧) ⟦SEP_0004⟧ ⟦CODE_0002⟧ header; anonymous class holds state; Swing window assembled from Spring XML with SpEL ⟦SEP_0005⟧ A text block of XML as the UI; the README has a side-by-side of all four ports ⟦SEP_0006⟧"
+msgstr ""
+
+#: lessons/languages/csharp-linq-xaml.md:129
+msgctxt "s-21e3a919e607-0074"
+msgid "⟦SEP_0004⟧ [Kotlin](⟦DEST_0001⟧) ⟦SEP_0005⟧ ⟦CODE_0002⟧; a null from ⟦CODE_0003⟧ ends the sequence ⟦SEP_0006⟧ The body runs once before the first check, a documented difference ⟦SEP_0007⟧"
+msgstr ""
+
+#: lessons/languages/csharp-linq-xaml.md:130
+msgctxt "s-169f5b69208e-0075"
+msgid "⟦SEP_0006⟧ [Python](⟦DEST_0001⟧) ⟦SEP_0007⟧ ⟦CODE_0002⟧ ⟦SEP_0008⟧ No ⟦CODE_0003⟧ loops, so a tuple plus ⟦CODE_0004⟧ stands in for the comma operator; Tk widgets built from an XML string with ⟦CODE_0005⟧ ⟦SEP_0009⟧"
+msgstr ""
+
+#: lessons/languages/csharp-linq-xaml.md:131
+msgctxt "s-303551692936-0076"
+msgid "⟦SEP_0006⟧ [Go](⟦DEST_0001⟧) ⟦SEP_0007⟧ a real three-clause ⟦CODE_0002⟧; helpers like ⟦CODE_0003⟧ and ⟦CODE_0004⟧ in ⟦CODE_0005⟧ ⟦SEP_0008⟧ Statement-only operations had to be hidden in a helper file, the stated cost of the Go version ⟦SEP_0009⟧"
+msgstr ""
+
+#: lessons/languages/csharp-linq-xaml.md:132
+msgctxt "s-b944b4e999ac-0077"
+msgid "⟦SEP_0011⟧ [Rust](⟦DEST_0001⟧) ⟦SEP_0012⟧ ⟦CODE_0002⟧ ([⟦CODE_0003⟧ L19](⟦DEST_0004⟧)) ⟦SEP_0013⟧ No ⟦CODE_0005⟧, ⟦CODE_0006⟧ or ⟦CODE_0007⟧ in ⟦CODE_0008⟧; ⟦CODE_0009⟧ stands in for ⟦CODE_0010⟧; a test scans the source to enforce it ⟦SEP_0014⟧"
+msgstr ""
+
+#: lessons/languages/csharp-linq-xaml.md:134
+msgctxt "s-c08a852d0dbe-0078"
+msgid "Under what circumstances would this terrible idea become reasonable?"
+msgstr ""
+
+#: lessons/languages/csharp-linq-xaml.md:136
+msgctxt "s-6f0b1a39f5c3-0079"
+msgid "Putting everything in a ⟦CODE_0001⟧ header: never. But knowing that LINQ is lazy, that ⟦CODE_0002⟧ and ⟦CODE_0003⟧ are different worlds, that ⟦CODE_0004⟧ is not thread-safe and that XAML's parser can call methods are all things you want to learn *before* the production bug that teaches them."
+msgstr ""
+
+#: lessons/languages/csharp-linq-xaml.md:349
+msgctxt "s-ac0e260e97bf-0080"
+msgid "Computer science behind this page"
+msgstr ""

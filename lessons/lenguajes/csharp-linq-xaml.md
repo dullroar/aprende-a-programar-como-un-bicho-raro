@@ -1,8 +1,8 @@
-# C#, LINQ and XAML (plus the one-statement ports)
+# C#, LINQ y XAML (más las adaptaciones de una sola sentencia)
 
-Entries: [`src/ModernChallenge1`](../../src/ModernChallenge1/README.md), [`src/LinqChallenge1`](../../src/LinqChallenge1/README.md), [`src/LinqChallenge2`](../../src/LinqChallenge2/README.md), [`src/xaml`](../../src/xaml/README.md) and the ports [`src/JavaChallenge1`](../../src/JavaChallenge1/README.md), [`src/KotlinChallenge1`](../../src/KotlinChallenge1/README.md), [`src/PythonChallenge1`](../../src/PythonChallenge1/README.md), [`src/GoChallenge1`](../../src/GoChallenge1/README.md), [`src/RustChallenge1`](../../src/RustChallenge1/README.md).
+Entradas: [`src/ModernChallenge1`](../../src/ModernChallenge1/README.md), [`src/LinqChallenge1`](../../src/LinqChallenge1/README.md), [`src/LinqChallenge2`](../../src/LinqChallenge2/README.md), [`src/xaml`](../../src/xaml/README.md) y las adaptaciones [`src/JavaChallenge1`](../../src/JavaChallenge1/README.md), [`src/KotlinChallenge1`](../../src/KotlinChallenge1/README.md), [`src/PythonChallenge1`](../../src/PythonChallenge1/README.md), [`src/GoChallenge1`](../../src/GoChallenge1/README.md), [`src/RustChallenge1`](../../src/RustChallenge1/README.md).
 
-For an advanced reading path with traces and experiments, see the [C#, LINQ, XAML and ports study guide](../guias-de-estudio/lenguajes/csharp-linq-xaml-y-adaptaciones.md).
+Para una ruta de lectura avanzada con trazas y experimentos, consulta la [guía de estudio de C#, LINQ, XAML y adaptaciones](../guias-de-estudio/lenguajes/csharp-linq-xaml-y-adaptaciones.md).
 
 C# is the *canonical* language of the repo: the challenge began as a 2008 classroom exercise showing off C# 3.0 and .NET 3.x features. It is also where the [blocking problems](../problemas-bloqueantes.md) are measured from.
 
