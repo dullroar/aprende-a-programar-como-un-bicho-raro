@@ -466,8 +466,8 @@
     {
      "en": "Scope",
      "en_id": "scope",
-     "es": "Ámbito",
-     "es_id": "ámbito",
+     "es": "Alcance",
+     "es_id": "alcance",
      "level": 2,
      "line": 173
     }
@@ -481,7 +481,7 @@
     "how-to-think-about-problem-solving-differently": "cómo-pensar-de-otra-manera-sobre-la-resolución-de-problemas",
     "old-languages-real-problems": "lenguajes-antiguos-problemas-reales",
     "rubric": "rúbrica",
-    "scope": "ámbito",
+    "scope": "alcance",
     "the-log": "el-registro",
     "the-semester-as-an-algorithm": "el-semestre-como-algoritmo",
     "week-by-week": "semana-a-semana",
