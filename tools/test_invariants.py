@@ -89,8 +89,9 @@ class Base(unittest.TestCase):
 
 
 class TestTable(unittest.TestCase):
-    def test_all_sixteen_documented(self):
-        self.assertEqual(["I%d" % n for n in range(1, 17)], list(inv.TABLE))
+    def test_all_documented(self):
+        # I1 to I16 here, I17 to I20 are tools/pathcheck.py, I21 to I26 are tools/prose_lint.py
+        self.assertEqual(["I%d" % n for n in list(range(1, 17)) + list(range(21, 27))], list(inv.TABLE))
 
     def test_list_cli(self):
         buf = io.StringIO()

@@ -152,6 +152,8 @@ def route(path, classes):
         acts.append(("cmd", ("fixtures", ["python3", "-I", "tools/fixture_check.py"])))
     elif path == "translation/path-map.yaml" or path == "translation/path-names.es.yaml":
         acts.append(("cmd", ("path map", ["python3", "tools/pathmap.py", "--check"])))
+    elif path in ("translation/identifiers.yaml", "translation/style-lint.yaml"):
+        acts.append(("test", "tools/test_prose_lint.py"))       # the lint configs: the tests load the real files
     elif path == "translation/dnt.txt":
         acts.append(("cmd", ("dnt", ["python3", "-I", "tools/dnt.py", "--check"])))
     elif path == "translation/humor-register.jsonl":

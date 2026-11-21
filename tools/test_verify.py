@@ -81,6 +81,8 @@ class RoutingTests(unittest.TestCase):
     def test_checkers_for_owned_data(self):
         kinds = lambda p: [a[0] for a in verify.route(p, ["owned"])]  # noqa: E731
         self.assertEqual(kinds("translation/glossary.es.yaml"), ["cmd"])
+        self.assertEqual(kinds("translation/identifiers.yaml"), ["test"])
+        self.assertEqual(kinds("translation/style-lint.yaml"), ["test"])
         self.assertEqual(kinds("translation/prompts/translate.md"), ["cmd"])
         self.assertEqual(kinds("lessons/book/locale/es.yaml"), ["locale"])
         self.assertEqual(kinds("translation/humor-register.jsonl"), ["jsonl", "cmd"])

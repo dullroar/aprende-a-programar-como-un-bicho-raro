@@ -1,0 +1,66 @@
+# identifiers.yaml: names that exist in the code and stay literal in prose-bearing fields (house style B2, invariant I21).
+#
+# A rule says: when the ENGLISH segment matches `en`, the SPANISH segment must contain `literal` as a whole token.
+#   literal  the exact text that must survive (case-sensitive, including a trailing "?" or a leading "/")
+#   en       regex over the English segment text; default: the literal as a whole token
+#   kinds    segment kinds the rule applies to: mermaid_label (node and edge labels, accTitle, accDescr), table_row,
+#            paragraph, list_item, heading, frontmatter; default: every kind
+#   roles    for mermaid_label only: label, edge, accDescr, accTitle, ...; default: every role
+#   files    English paths (fnmatch patterns) the rule applies to; default: every file
+#
+# Add a rule when a review or a lint finds a name that was translated ("also" -> "tambien", "step" -> "paso").
+# A name that is also an ordinary English word ("also", "step", "where", "let") needs an `en` that names the context.
+# Words from dnt.txt are protected by I8; this file covers names that are not on that list.
+
+identifiers:
+  # Kotlin scope function in a diagram label
+  - literal: also
+    en: '\balso chain\b'
+    kinds: [mermaid_label]
+  # Python iter(step, False): the function is called step
+  - literal: step
+    en: '\bstep(?:\(|\)|,| returns| again|:)|\bthe word step\b|\breturns step\b|\band step\b'
+    kinds: [mermaid_label]
+  # LINQ query keywords
+  - literal: where
+    en: '^where:'
+    kinds: [mermaid_label]
+  - literal: from persisted in
+    en: '\bfrom persisted in\b'
+  - literal: let
+    en: '\blet (?:tracked|window|pulse|false)\b'
+    kinds: [mermaid_label]
+  # Forth word: the label keeps its "?", the accDescr (English) writes it without
+  - literal: over-40?
+    en: 'over-40\?'
+    kinds: [mermaid_label]
+    roles: [label, edge]
+  - literal: over-40
+    en: 'over-40'
+    kinds: [mermaid_label]
+    roles: [accDescr]
+  # Names of functions, methods and words (CamelCase names are never ordinary words)
+  - literal: SaveChanges
+  - literal: Aggregate
+    kinds: [mermaid_label, table_row]
+  - literal: AsEnumerable
+  - literal: SelectMany
+  - literal: ShowDialog
+  - literal: WaitForSaves
+  - literal: Double.IsNaN
+  - literal: /closed
+    en: '/closed\b'
+    kinds: [mermaid_label]
+  - literal: Seq
+    en: '\bSeq runs\b'
+    kinds: [mermaid_label]
+  - literal: After
+    en: '^After:'
+    kinds: [mermaid_label]
+  - literal: Post
+    en: '^Post:'
+    kinds: [mermaid_label]
+  # APL and Forth symbols in prose-bearing fields
+  - literal: ⎕CR
+  - literal: ⎕FX
+  - literal: ⍎

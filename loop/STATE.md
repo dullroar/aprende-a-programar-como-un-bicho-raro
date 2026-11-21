@@ -1,8 +1,8 @@
 # loop/STATE.md (keep to 60 lines; refreshed by every iteration)
 
 - **Edition:** v4-es.0-rc1 (working)    **English SHA:** 48a4429c0a22b2aac628b256a50c07d1816bcb80
-- **Iteration:** 89    **Stage:** 3C (editorial-review rework before bulk translation)    **Last result:** iter 89 P3C-001 done (glossary Part C, house-style B1-B8, prompts v2, source-issues SI-001..010). Next: P3C-002/003 tooling, then P3C-004..015 file corrections; at P5 fix test_cs's hard-coded English heading via the catalog
-- **Tasks:** todo 86 | doing 0 | done 60 | blocked 0 | skipped 0 (recount with the queue files)
+- **Iteration:** 90    **Stage:** 3C (editorial-review rework before bulk translation)    **Last result:** iter 90 P3C-002 done (tools/prose_lint.py I21-I26 + 15 negative fixtures; the 12 translated files now report the expected findings). Next: P3C-003 (cs.py contract, anchors, title pages), then P3C-004..015 file corrections; at P5 fix test_cs's hard-coded English heading via the catalog
+- **Tasks:** todo 85 | doing 0 | done 61 | blocked 0 | skipped 0 (recount with the queue files)
 - **Next task:** run `python3 tools/next_task.py` (PO files live at translation/po/<path>.po, written by tools/apply.py --init)
 - **Budget:** spent $0.00 of $100; iterations 0 of 300
 - **Translate progress:** segments accepted 836 / total 8827 (7394 prose + 1433 Mermaid labels) ; files done 12 / 212 (src/GoChallenge1, JavaChallenge1, KotlinChallenge1, LinqChallenge1, LinqChallenge2, ModernChallenge1, PythonChallenge1 READMEs, src/forth/README.md, lessons/cs-source/concepts/recursion.md, lessons/study-guides/languages/forth.md, docs/curriculum.md, lessons/study-guides/languages/apl.md)

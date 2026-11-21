@@ -106,6 +106,91 @@ flowchart TB
 """
 
 
+# The second control pair (item 13, review lints I21 to I26): names that stay literal in labels, a range with its unit, one
+# gloss, a typographic percent, a table and a diagram whose edge label has no parenthesis. <NB> is a non-breaking space.
+EN_B = """---
+name: Review fixture
+assurance: guaranteed
+kind: concept
+---
+
+# Chaining and units
+
+Each card has 10 to 19 hours per card. The target is 30% of the week.
+
+Run it in the sandbox.
+
+Use the sandbox again.
+
+| Name | Meaning |
+|------|---------|
+| `x` | one |
+
+```text
+out
+```
+
+```mermaid
+flowchart TB
+    accTitle: The chain
+    accDescr: A flowchart. The also chain runs, then over-40 leaves a flag.
+    A["also chain: lock, add hours"] --> B{"over-40? leaves a flag"}
+    B -->|yes| C["where: prefix sum is 40 or less"]
+    B -->|no| D["from persisted in the query"]
+    C --> E["step returns False"]
+    D --> E
+```
+"""
+
+ES_B = """---
+name: Review fixture
+assurance: guaranteed
+kind: concept
+---
+
+# Encadenar y medir
+
+Cada tarjeta tiene de 10 a 19 horas por tarjeta. El objetivo es el 30<NB>% de la semana.
+
+Ejecútalo en el entorno aislado (*sandbox*).
+
+Usa de nuevo el entorno aislado.
+
+| Nombre | Significado |
+|--------|-------------|
+| `x` | uno |
+
+```text
+out
+```
+
+```mermaid
+flowchart TB
+    accTitle: La cadena
+    accDescr: Un diagrama de flujo. La cadena also corre y luego over-40 deja una bandera.
+    A["cadena de also: bloquea, suma horas"] --> B{"over-40? deja una bandera"}
+    B -->|sí| C["where: la suma acumulada es 40 o menos"]
+    B -->|no| D["from persisted in de la consulta de EF: pasamos a objetos"]
+    C --> E["step devuelve False"]
+    D --> E
+```
+""".replace("<NB>", chr(0xA0))
+
+
+def file_b_fixture(old, new, count=1, after=False):
+    """A mutation of the second control's Spanish text: the control with `old` replaced by `new` (a stale fixture is loud).
+    `after` edits the finished file instead (a hand edit that the PO layer would refuse, such as a dropped table cell)."""
+    old, new = old.replace("<NB>", chr(0xA0)), new.replace("<NB>", chr(0xA0))
+
+    def run():
+        if old not in ES_B:
+            raise AssertionError("fixture is stale: %r is not in the control" % old)
+        if after:
+            return file_problems(ES_B, EN_B, after=swap(old, new, count))
+        return file_problems(ES_B.replace(old, new, count), EN_B)
+    return run
+
+
 # ------------------------------------------------------------------------------------------ plumbing
 
 def build_po(en_text, es_text, rel=REL):
@@ -569,6 +654,38 @@ def catalog():
     add(12, "path-readme-renamed", "README.md is renamed", "path", "I20", path_fixture(readme_renamed))
     add(12, "path-english-word-kept", "a renamed file keeps English words in its name", "path", "I18",
         path_fixture(english_word_kept))
+    # 13. Editorial-review lints (review-decisions-2026-11-20.md Part E): identifiers, units, diagrams, glosses, typography, layout.
+    add(13, "ident-also-translated", "`also` in a label becomes 'también'", "file", "I21",
+        file_b_fixture('"cadena de also: bloquea, suma horas"', '"También encadena: bloquea, suma horas"'))
+    add(13, "ident-step-translated", "`step` in a label becomes 'paso'", "file", "I21",
+        file_b_fixture('"step devuelve False"', '"paso devuelve False"'))
+    add(13, "ident-where-translated", "`where` in a label becomes 'donde'", "file", "I21",
+        file_b_fixture('"where: la suma acumulada', '"donde: la suma acumulada'))
+    add(13, "ident-from-persisted-in-translated", "`from persisted in` becomes 'de persistido en'", "file", "I21",
+        file_b_fixture('"from persisted in de la consulta de EF', '"de persistido en la consulta de EF'))
+    add(13, "ident-over40-question-mark-dropped", "`over-40?` loses its question mark", "file", "I21",
+        file_b_fixture('"over-40? deja una bandera"', '"over-40 deja una bandera"'))
+    add(13, "ident-over40-accdescr-translated", "`over-40` in the accDescr is translated", "file", "I21",
+        file_b_fixture("luego over-40 deja", "luego sobre-40 deja"))
+    add(13, "units-range-takes-cards", "'de 10 a 19 horas por tarjeta' becomes 'de 10 a 19 tarjetas'", "file", "I22",
+        file_b_fixture("de 10 a 19 horas por tarjeta", "de 10 a 19 tarjetas"))
+    add(13, "units-range-without-unit", "the 10 to 19 range loses its unit", "file", "I22",
+        file_b_fixture("de 10 a 19 horas por tarjeta", "de 10 a 19"))
+    add(13, "diagram-edge-label-parenthesis", "an edge label carries an unquoted parenthesis", "file", "I23",
+        file_b_fixture("B -->|sí| C", "B -->|sí (parar)| C"))
+    add(13, "gloss-repeated", "the sandbox gloss is written a second time in the same file", "file", "I24",
+        file_b_fixture("Usa de nuevo el entorno aislado.", "Usa de nuevo el entorno aislado (*sandbox*)."))
+    add(13, "guarantee-added", "the translator adds 'donde un error no daña tu equipo'", "file", "I24",
+        file_b_fixture("Ejecútalo en el entorno aislado (*sandbox*).",
+                       "Ejecútalo en el entorno aislado (*sandbox*), donde un error no daña tu equipo."))
+    add(13, "typography-percent-plain-space", "'30<NB>%' becomes '30 %' with a plain space", "file", "I25",
+        file_b_fixture("30<NB>%", "30 %"))
+    add(13, "typography-comma-before-y", "a comma is written before a simple 'y'", "file", "I25",
+        file_b_fixture("Usa de nuevo el entorno aislado.", "Usa el entorno aislado, y sal."))
+    add(13, "layout-table-cell-dropped", "a table row loses a cell", "file", "I26",
+        file_b_fixture("| `x` | uno |", "| `x` |", after=True))
+    add(13, "layout-fence-kind-changed", "a fenced block changes its kind (text to console)", "file", "I26",
+        file_b_fixture("```text\nout", "```console\nout", after=True))
     return F
 
 
@@ -585,6 +702,7 @@ def run_fixture(fx):
 def control_problems():
     """Every control must be clean: a gate that fails on the good input proves nothing about the bad input."""
     out = ["file: " + p for p in file_problems(ES)]
+    out += ["file B: " + p for p in file_problems(ES_B, EN_B)]
     out += ["guide: " + p for p in guide_problems()]
     out += ["curriculum en: " + p for p in curriculum_problems()]
     out += ["curriculum es: " + p for p in curriculum_problems({}, "es")]
@@ -605,7 +723,7 @@ def run_all():
             out.append("fixture %s is broken: %s" % (fx.id, err))
         elif not problems:
             out.append("fixture %s (plan %s item %d: %s) did not fail: the gate is disarmed"
-                       % (fx.id, "10.2" if fx.item <= 11 else "5.6", fx.item, fx.title))
+                       % (fx.id, "10.2" if fx.item <= 11 else "5.6" if fx.item == 12 else "the editorial review, Part E", fx.item, fx.title))
         elif not any(fx.expect in p for p in problems):
             out.append("fixture %s failed, but not with %s: %s" % (fx.id, fx.expect, problems[0]))
     return out

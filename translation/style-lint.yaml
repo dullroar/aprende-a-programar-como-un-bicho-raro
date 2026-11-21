@@ -1,0 +1,39 @@
+# style-lint.yaml: phrase lists for the prose lints of tools/prose_lint.py (house style B1, B3, B5, B6).
+
+# B3: absolute claims the translator must not add. A Spanish phrase is a finding only when the English segment does
+# not make a matching claim (`en` is a regex over the English segment; omit it to flag the phrase whenever it appears
+# and the English has no absolute word at all).
+absolute_claims:
+  - es: "no puede dañar"
+    en: 'cannot harm|can.t harm|never harm'
+  - es: "no puede dañarte"
+    en: 'cannot harm|can.t harm|never harm'
+  - es: "no daña"
+    en: 'does not harm|doesn.t harm|never harm|no harm'
+  - es: "no afecta a tu sistema"
+    en: 'does not affect your system|never touches your system'
+  - es: "sin ningún riesgo"
+    en: 'no risk|risk-free'
+  - es: "sin riesgo"
+    en: 'no risk|risk-free'
+  - es: "completamente seguro"
+    en: 'completely safe|entirely safe'
+  - es: "totalmente seguro"
+    en: 'completely safe|entirely safe|totally safe'
+  - es: "100 % seguro"
+    en: '100 ?% safe'
+  - es: "no hay ningún riesgo"
+    en: 'no risk'
+  - es: "nunca se publica nada"
+    en: 'nothing is ever published|never publishes anything'
+  - es: "nunca se publica"
+    en: 'never published|never publishes|is never pushed'
+  - es: "donde un error no daña"
+    en: 'a mistake cannot harm|where a mistake does not harm'
+  - es: "no puede causar daño"
+    en: 'cannot cause harm|cannot do harm'
+  - es: "es imposible que"
+    en: 'it is impossible|impossible for'
+
+# B3/B5: a first-use gloss is a parenthesized italic term, "entorno aislado (*sandbox*)". It appears once per file.
+gloss_pattern: '\(\*[^*\n]{2,40}\*\)'

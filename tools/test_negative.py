@@ -25,7 +25,7 @@ def fixture(run, expect="I13", ident="x", item=1):
 
 class Catalog(unittest.TestCase):
     def test_every_item_of_plan_10_2_has_a_fixture(self):
-        self.assertEqual(sorted({f.item for f in CATALOG}), list(range(1, 13)))   # 12 = plan 5.6, the path invariants I17 to I20
+        self.assertEqual(sorted({f.item for f in CATALOG}), list(range(1, 14)))   # 12 = plan 5.6 (I17 to I20), 13 = editorial review Part E (I21 to I26)
 
     def test_ids_are_unique_and_every_fixture_names_its_check(self):
         ids = [f.id for f in CATALOG]
@@ -130,7 +130,11 @@ class TheCatalogCanFail(unittest.TestCase):
 
 class ReleaseWiring(unittest.TestCase):
     def test_verify_release_runs_the_catalog(self):
-        with mock.patch.object(negative, "run_all", return_value=["fixture x did not fail"]):
+        # the wiring only: the pilot breakage control runs on the real pilot files, which carry findings until P3C-004 to 015
+        import breakage_pilot
+        import resume_test
+        with mock.patch.object(negative, "run_all", return_value=["fixture x did not fail"]), \
+                mock.patch.object(breakage_pilot, "run_all", return_value=[]), mock.patch.object(resume_test, "run_all", return_value=[]):
             self.assertEqual(verify.negative_problems(), ["fixture x did not fail"])
 
     def test_verify_release_source_calls_it(self):

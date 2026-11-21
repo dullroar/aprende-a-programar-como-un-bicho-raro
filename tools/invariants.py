@@ -52,6 +52,7 @@ import enpath  # noqa: E402
 import mask  # noqa: E402
 import mermaid  # noqa: E402
 import phase_lint  # noqa: E402
+import prose_lint  # noqa: E402
 import segment  # noqa: E402
 
 TRANSLATION = os.path.join(ROOT, "translation")
@@ -73,6 +74,7 @@ TABLE = {
     "I15": "Humor register status recorded",
     "I16": "Segment coverage",
 }
+TABLE.update(prose_lint.TABLE)      # I21 to I26: the editorial lints of tools/prose_lint.py (I17 to I20 are tools/pathcheck.py)
 
 Finding = namedtuple("Finding", "inv where msg")
 
@@ -102,7 +104,7 @@ class Context:
     """Everything the checks read besides the two texts. Build it once; tests build small ones by hand."""
 
     def __init__(self, dnt=(), glossary=None, cat=None, humor=None, exceptions=None, anchor_map=None,
-                 sentence_limit=28, tier_of=None, phase_names=None, lang_cat=None, exercise_prefixes=()):
+                 sentence_limit=28, tier_of=None, phase_names=None, lang_cat=None, exercise_prefixes=(), prose=None):
         self.dnt = list(dnt)
         self.terms = []                       # [(en regex, es text, banned list, id)]
         self.banned_phrases = []              # [(phrase, label)] extra banned phrases (frozen wording)
@@ -116,6 +118,7 @@ class Context:
         self.tier_of = tier_of or (lambda rel: "T2")
         self.phase_names = phase_names or []  # English phase names to hunt for (Weird, Execution, ...)
         self.exercise_prefixes = list(exercise_prefixes)  # letters that start exercise IDs (phase_lint, I14)
+        self.prose = prose or prose_lint.Config()         # identifier rules, absolute claims, gloss pattern (I21 to I26)
 
     def load_glossary(self, data):
         plain = re.compile(r"^[A-Za-z][A-Za-z' -]*$")
@@ -171,7 +174,8 @@ def load_context(lang="es", root=ROOT):
                    lang_cat=en_cat, humor=humor, exceptions=exceptions,
                    sentence_limit=int(cfg.get("sentence_word_limit_N", 28)), tier_of=tier_of_path,
                    phase_names=[n for n in names if isinstance(n, str)],
-                   exercise_prefixes=phase_lint.load_prefixes(os.path.join(tr, "phase-letters.json")))
+                   exercise_prefixes=phase_lint.load_prefixes(os.path.join(tr, "phase-letters.json")),
+                   prose=prose_lint.load_config(root, render=True))
 
 
 def tier_of_path(rel):
@@ -327,10 +331,12 @@ def has_catalog_lead_in(src, ctx):
                            for k in ctx.lang_cat.keys())
 
 
-def i7(src, target, ctx):
+def i7(src, target, ctx, rel=""):
     out = []
     src_words = prose(src.masked)
-    low = prose(target).lower()
+    low = prose(target)
+    src_words, low = prose_lint.without_identifiers(src, rel, ctx.prose, src_words, low)   # a kept name is not a rendering
+    low = low.lower()
     if has_catalog_lead_in(src, ctx):
         src_words = LEAD_IN_RE.sub(" ", src_words, count=1)
         low = LEAD_IN_RE.sub(" ", low, count=1)
@@ -397,8 +403,11 @@ def paired_marks(text):
     return out
 
 
-def i10(src, target, tgt_text):
-    out = [Finding("I10", "", p) for p in paired_marks(strip_ph(target))]
+def i10(src, target, tgt_text, ctx=None, rel=""):
+    marks = strip_ph(target)
+    if ctx is not None:
+        marks = prose_lint.without_identifiers(src, rel, ctx.prose, marks, marks)[1]       # the "?" of `over-40?` is a name
+    out = [Finding("I10", "", p) for p in paired_marks(marks)]
     for ch in BAD_QUOTES:
         if ch in strip_ph(target) and ch not in src.masked:
             out.append(Finding("I10", "", "curly or angle quote %r (use straight quotes)" % ch))
@@ -585,14 +594,15 @@ def check_segment(src, target, ctx, rel="", raw=None):
     findings += i3(src, target)
     if src.kind != "mermaid_label":
         findings += i4(src.text, tgt_text, ctx)
-    findings += i7(src, target, ctx)
+    findings += i7(src, target, ctx, rel)
     findings += i8(src.text, tgt_text, ctx)
     findings += i9(src, target)
-    findings += i10(src, target, tgt_text)
+    findings += i10(src, target, tgt_text, ctx, rel)
     findings += i11(src, target, tgt_text, ctx, rel)
     findings += i12(src, target, rel, ctx)
     findings += i14(src, target, ctx, raw)
     findings += i15(src, tgt_text, ctx)
+    findings += [Finding(h.inv, "", h.msg) for h in prose_lint.segment_hits(src, tgt_text, rel, ctx.prose)]
     return [f._replace(where=src.id) for f in findings if not ctx.waived(src.id, f.inv)]
 
 
@@ -781,6 +791,7 @@ def check_files(en_text, es_text, rel="", ctx=None):
         for x, y in zip(ba, bb):
             if bold_spans(x.masked).__len__() != bold_spans(y.masked).__len__():
                 out.append(Finding("I11", "%s:%d" % (rel, x.start + 1), "bold spans differ"))
+    out += [Finding(h.inv, rel, h.msg) for h in prose_lint.file_hits(en_text, es_text, ctx.prose)]
     return out
 
 
