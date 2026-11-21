@@ -1,107 +1,107 @@
-# ed and Ex study guide
+# Guía de estudio de ed y Ex
 
-## What this guide is for
+## Para qué sirve esta guía
 
-This guide examines two scripts that solve the challenge in a text buffer. In [`src/ed-weird`](../../../src/ed-weird/README.md), categories are line addresses and hours are rewrite rules. One global command runs the program. In [`src/ex-weird`](../../../src/ex-weird/README.md), a register holds the program. A tape in the buffer holds the stop rule and a mark is the program counter. **Where are the addresses, registers and program counter when the program edits a buffer?**
+Esta guía examina dos scripts que resuelven el reto en un búfer de texto. En [`src/ed-weird`](../../../src/ed-weird/README.md), las categorías son direcciones de línea y las horas son reglas de reescritura. Un solo comando global ejecuta el programa. En [`src/ex-weird`](../../../src/ex-weird/README.md), un registro guarda el programa. Una cinta en el búfer guarda la regla de parada y una marca es el contador de programa. **¿Dónde están las direcciones, los registros y el contador de programa cuando el programa edita un búfer?**
 
-When you finish, you should be able to:
+Al terminar, deberías poder:
 
-1. Explain what a line address, a mark and a register are in `ed` and `ex` and what each one stores.
-2. Explain why a failed substitution inside a global command is an `if`, not an error.
-3. Trace both programs through the same five dice, naming the buffer contents at each stage.
-4. Explain how the Ex program's loop works: a register runs a register, and the tape decides whether the next run is a command or a comment.
-5. Explain why five dice are always enough, and how the launcher and the editor divide the work.
-6. Label each behavior as guaranteed, implementation-permitted or accidentally exploited.
+1. Explicar qué son una dirección de línea, una marca y un registro en `ed` y `ex`, y qué guarda cada uno.
+2. Explicar por qué una sustitución fallida dentro de un comando global es un `if`, no un error.
+3. Trazar ambos programas con los mismos cinco dados, y nombrar el contenido del búfer en cada etapa.
+4. Explicar cómo funciona el bucle del programa de Ex: un registro ejecuta un registro, y la cinta decide si la siguiente ejecución es un comando o un comentario.
+5. Explicar por qué cinco dados siempre bastan, y cómo se reparten el trabajo el lanzador y el editor.
+6. Etiquetar cada comportamiento como garantizado, permitido por la implementación o aprovechado por accidente.
 
-**Scope limits.** You need to read basic `ed` commands: `s/re/new/`, `g/re/cmd`, `a`, `d`, `j`, `t`, `p`. The guide does not teach every Ex command, the SQL or Vim. It uses POSIX `ed` and `ex` as shipped in the sandbox (nvi for Ex; Vim in Ex mode works with different flags). The book's page is [ed and Ex](../../lenguajes/editores.md). For ideas, see [Computation versus orchestration](../../informatica/02-que-cuenta-como-maquina.md#computation-versus-orchestration), [Capability and authority](../../informatica/01-lectura-de-un-programa-adversarial.md#capability-and-authority) and [Representing state](../../informatica/02-que-cuenta-como-maquina.md#representing-state).
+**Límites del alcance.** Necesitas leer comandos básicos de `ed`: `s/re/new/`, `g/re/cmd`, `a`, `d`, `j`, `t`, `p`. La guía no enseña todos los comandos de Ex, ni el SQL ni Vim. Usa `ed` y `ex` de POSIX tal como se entregan en el entorno aislado (*sandbox*). Ese entorno limita el acceso al sistema anfitrión. Para Ex se usa nvi (Vim en modo Ex funciona con otras banderas). La página del libro es [ed y Ex](../../lenguajes/editores.md). Para las ideas, consulta [Cómputo frente a orquestación](../../informatica/02-que-cuenta-como-maquina.md#computation-versus-orchestration), [Capacidad y autoridad](../../informatica/01-lectura-de-un-programa-adversarial.md#capability-and-authority) y [Representar el estado](../../informatica/02-que-cuenta-como-maquina.md#representing-state).
 
-## Before you begin
+## Antes de empezar
 
-**Safety model.** Every entry writes fictional **DEMO ONLY** data to a scratch SQLite file. Editors can run shell commands: `ed` and `ex` both accept `!command`, and an editor script is a program with the authority of whoever runs it. The scripts here do not shell out, and a launcher script keeps the editor and SQLite apart. Read the source before you run it, and run it in the sandbox first:
+**Modelo de seguridad.** Cada entrada escribe datos ficticios marcados con **DEMO ONLY** en un archivo SQLite de trabajo. Los editores pueden ejecutar comandos de un intérprete de comandos (*shell*). `ed` y `ex` aceptan ambos `!command`. Un script de editor es un programa con la autoridad de quien lo ejecuta. Los scripts de aquí no llaman a un intérprete de comandos, y un script lanzador mantiene separados el editor y SQLite. Lee el código fuente antes de ejecutarlo y ejecútalo primero en el entorno aislado:
 
 ```bash
 sandbox/container/run-image.sh src/ed-weird
 sandbox/container/run-image.sh src/ex-weird
 ```
 
-Edit only copies ([Running things safely](../../exercises.md#running-things-safely)). Both launchers accept `DICE="a b c d e"`: five digits, each card's hours being 10 plus its digit. Use `DICE="5 9 2 0 0"` for hours 15, 19, 12, 10, 10.
+Edita solo copias ([Ejecutar cosas de forma segura](../../exercises.md#running-things-safely)). Ambos lanzadores aceptan `DICE="a b c d e"`: cinco dígitos, y las horas de cada tarjeta son 10 más su dígito. Usa `DICE="5 9 2 0 0"` para las horas 15, 19, 12, 10, 10.
 
-**Prediction rule.** Before each run, write the buffer, line by line, as you expect it to look after each stage.
+**Regla de predicción.** Antes de cada ejecución, escribe el búfer, línea por línea, como esperas que quede después de cada etapa.
 
-**Vocabulary.**
+**Vocabulario.**
 
-| Term | Meaning here |
+| Término | Significado aquí |
 | --- | --- |
-| Buffer | The text the editor holds: one line per card at the start. |
-| Address | A line number, or a pattern, that says which lines a command applies to. |
-| `g/re/cmd` | Run `cmd` on every line that matches `re`. |
-| Mark | A named position in the buffer, stored in a register-like slot. Ex uses `k t` to set one and `'t` to go to it. |
-| Register | A named store of text. In Ex, `@a` *runs* register `a` as commands. |
+| Búfer | El texto que guarda el editor: una línea por tarjeta al principio. |
+| Dirección | Un número de línea, o un patrón, que dice a qué líneas se aplica un comando. |
+| `g/re/cmd` | Ejecuta `cmd` en cada línea que coincide con `re`. |
+| Marca | Una posición con nombre en el búfer, guardada en una ranura parecida a un registro. Ex usa `k t` para fijar una y `'t` para ir a ella. |
+| Registro | Un almacén de texto con nombre. En Ex, `@a` *ejecuta* el registro `a` como comandos. |
 
-## The shared challenge
+## El reto compartido
 
-The [challenge specification](../../introduccion.md#what-the-challenge-does) calls for cards with a category and 10 to 19 whole hours. Categories cycle through Meetings, Coding, Debugging and Learning. Add each card's hours to the running total. Stop when the total passes 40. Keep the **first card that takes the total over 40**. A total of exactly 40 continues. Four 10-hour cards need a fifth card, in the Meetings category. Conforming runs finish with 3 to 5 cards and a total of 41 to 59 hours.
+La [especificación del reto](../../introduccion.md#what-the-challenge-does) pide tarjetas con una categoría y de 10 a 19 horas enteras. Las categorías se repiten en ciclo: `Meetings`, `Coding`, `Debugging` y `Learning`. Suma las horas de cada tarjeta al total acumulado. Detente cuando el total pasa de 40. Conserva la **primera tarjeta con la que el total pasa de 40**. Un total de exactamente 40 continúa. Cuatro tarjetas de 10 horas necesitan una quinta tarjeta, de la categoría `Meetings`. Las ejecuciones conformes tienen de 3 a 5 tarjetas y un total de 41 a 59 horas.
 
-The launchers load the editor output into SQLite. Both scripts limit the input the same way: the launcher supplies **five** dice, because five cards of at least 10 hours always reach 50. The editor script decides how many of the five count. ed marks the first card whose marks reach 41 (`x\{41,\}`, [L46](../../../src/ed-weird/timecards.ed#L46)) and turns every later card into a "Dead" card. Ex reads a tape line for each new total: lines 0 to 40 say `@a` (go on), and lines 41 to 59 say `"` (a comment: do nothing) ([L53](../../../src/ex-weird/timecards.ex#L53)). A total of exactly 40 reads tape line 40, which says go on.
+Los lanzadores cargan la salida del editor en SQLite. Ambos scripts limitan la entrada de datos de la misma manera: el lanzador da **cinco** dados, porque cinco tarjetas de al menos 10 horas siempre llegan a 50. El script del editor decide cuántos de los cinco cuentan. ed marca la primera tarjeta cuyas marcas llegan a 41 (`x\{41,\}`, [L46](../../../src/ed-weird/timecards.ed#L46)) y convierte cada tarjeta posterior en una tarjeta "Dead". Ex lee una línea de la cinta por cada total nuevo. Las líneas de 0 a 40 dicen `@a` (sigue) y las líneas de 41 a 59 dicen `"` (un comentario: no hagas nada) ([L53](../../../src/ex-weird/timecards.ex#L53)). Un total de exactamente 40 lee la línea 40 de la cinta, que dice que siga.
 
-## The machine to identify
+## La máquina que hay que identificar
 
-The launcher draws five digits, loads the editor and afterwards stores the rows in SQLite. It is orchestration, not computing: "every card, total and stop decision is made by ed" (or Ex). See [Computation versus orchestration](../../informatica/02-que-cuenta-como-maquina.md#computation-versus-orchestration).
+El lanzador sortea cinco dígitos, carga el editor y después guarda las filas en SQLite. Es orquestación, no cómputo: "ed toma cada decisión sobre las tarjetas, el total y la parada" (o Ex). Consulta [Cómputo frente a orquestación](../../informatica/02-que-cuenta-como-maquina.md#computation-versus-orchestration).
 
-**What repeats.** In `ed-weird`, one global command over the card lines, in buffer order: `g/^[A-Za-z]* [0-9][0-9] x*$/` ([L42-46](../../../src/ed-weird/timecards.ed#L42-L46)). The global command is ed's own loop. In `ex-weird`, `@n`: the register `n` runs the program again, so the program runs itself ([L91](../../../src/ex-weird/timecards.ex#L91)).
+**Qué se repite.** En `ed-weird`, un comando global sobre las líneas de tarjeta, en el orden del búfer: `g/^[A-Za-z]* [0-9][0-9] x*$/` ([L42-46](../../../src/ed-weird/timecards.ed#L42-L46)). El comando global es el bucle propio de ed. En `ex-weird`, `@n`: el registro `n` ejecuta el programa otra vez, así que el programa se ejecuta a sí mismo ([L91](../../../src/ex-weird/timecards.ex#L91)).
 
-**Where state lives.** In `ed-weird`, in the text of the lines: a card is `Name hours marks`, and the running total is the number of `x` marks. A "ledger" line above the first card holds the total so far. Adding is writing marks side by side. In `ex-weird`, in a *position*: a mark `t` says where on the 60-line tape we are, and moving it down by the card's hours is the addition. The tape line under the mark has the total as its number.
+**Dónde vive el estado.** En `ed-weird`, en el texto de las líneas: una tarjeta es `Name hours marks` y el total acumulado es el número de marcas `x`. Una línea de "libro mayor" encima de la primera tarjeta guarda el total hasta ese punto. Sumar es escribir marcas una junto a otra. En `ex-weird`, en una *posición*. Una marca `t` dice en qué punto de la cinta de 60 líneas estamos. Bajarla tantas líneas como horas tiene la tarjeta es la suma. La línea de la cinta bajo la marca tiene el total como número.
 
-**What advances the next step.** In `ed-weird`, the global command visits the next card line. In `ex-weird`, `@n` runs the instruction that was copied from the tape line under the mark.
+**Qué hace avanzar el paso siguiente.** En `ed-weird`, el comando global visita la siguiente línea de tarjeta. En `ex-weird`, `@n` ejecuta la instrucción que se copió de la línea de la cinta bajo la marca.
 
-**What stops it.** In `ed-weird`, three substitutions in the global command are guarded by their own patterns. The first needs a ledger that says "40 or less" (`|`). The second needs a ledger that says "already over" (`!`) and turns the card into `Dead`, and the third turns `|` into `!` when the marks reach 41. In `ex-weird`, the tape line under the mark is `"` once the total is 41 or more, so `@n` runs a comment and nothing happens.
+**Qué lo detiene.** En `ed-weird`, tres sustituciones del comando global están protegidas por sus propios patrones. La primera necesita un libro mayor que diga "40 o menos" (`|`). La segunda necesita un libro mayor que diga "ya se pasó" (`!`) y convierte la tarjeta en `Dead`. La tercera cambia `|` por `!` cuando las marcas llegan a 41. En `ex-weird`, la línea de la cinta bajo la marca es `"` cuando el total es 41 o más, así que `@n` ejecuta un comentario y no pasa nada.
 
-**What commits.** The editor commits nothing. It prints rows to standard output, and the launcher loads them into SQLite in one operation, with the `CHECK` constraints that enforce DEMO ONLY and the hours range. The "commit" is in the launcher: this is a clean example of an authority boundary. The editor has no database access, and the database has no editor access.
+**Qué confirma.** El editor no confirma nada. Imprime filas en la salida estándar. El lanzador las carga en SQLite en una sola operación, con las restricciones `CHECK` que hacen cumplir DEMO ONLY y el rango de horas. La confirmación de la transacción ocurre en el lanzador: es un ejemplo limpio de frontera de autoridad. El editor no tiene acceso a la base de datos, y la base de datos no tiene acceso al editor.
 
 <!-- diagram-source: src/ed-weird/README.md#program-flow -->
 
 ```mermaid
 flowchart TD
-    accTitle: ed-weird: one global command over a text buffer
-    accDescr: A flowchart. The launcher gives ed five random digits as a buffer of five lines. The script adds a category to each line by line address, rewrites each digit into hours and a run of marks with a table of substitutions, and adds a ledger line above the first card. Then one global command visits every card line in buffer order. For each card it copies the ledger above, joins the lines, and merges the marks, which adds the hours. Guarded substitutions then turn the ledger bar into an exclamation mark when there are 41 or more marks, and turn any card after that into a dead card. When all cards are visited, ed deletes the dead and start lines, rewrites marks into decimal, and prints the rows. The launcher loads them into SQLite.
-    A["Launcher: five random digits become ed's buffer, one line per card"] --> B["Rewrite tables: line addresses add categories, a digit becomes hours as marks"]
-    B --> C["Add a ledger line above the first card"]
-    C --> D{{"g: is there another card line to visit?"}}
-    D -->|yes| E["Copy the ledger above, join, merge the marks: adding is writing marks side by side"]
-    E --> F["Guarded substitutions: 41 or more marks turn the bar into !, a card after ! becomes Dead"]
+    accTitle: ed-weird: un comando global sobre un búfer de texto
+    accDescr: Un diagrama de flujo. El lanzador entrega a ed cinco dígitos aleatorios como un búfer de cinco líneas. El script añade una categoría a cada línea según su dirección de línea, reescribe cada dígito como horas y una serie de marcas con una tabla de sustituciones, y añade una línea de registro encima de la primera tarjeta. Luego un comando global visita cada línea de tarjeta en el orden del búfer. Para cada tarjeta, copia el registro de arriba, une las líneas y fusiona las marcas, lo que suma las horas. Después, unas sustituciones condicionadas cambian la barra del registro por un signo de exclamación cuando hay 41 marcas o más, y convierten en tarjeta muerta cualquier tarjeta posterior. Cuando se han visitado todas las tarjetas, ed borra las líneas muertas y la de inicio, reescribe las marcas en decimal e imprime las filas. El lanzador las carga en SQLite.
+    A["Lanzador: cinco dígitos aleatorios se convierten en el búfer de ed, una línea por tarjeta"] --> B["Tablas de reescritura: las direcciones de línea añaden categorías; un dígito se convierte en horas como marcas"]
+    B --> C["Añade una línea de libro mayor encima de la primera tarjeta"]
+    C --> D{{"g: ¿hay otra línea de tarjeta que visitar?"}}
+    D -->|sí| E["Copia el registro de arriba, une, fusiona las marcas: sumar es escribir marcas una al lado de otra"]
+    E --> F["Sustituciones con guarda: 41 o más marcas convierten la barra en !, una tarjeta después de ! pasa a ser Dead"]
     F --> D
-    D -->|no| G["Delete Dead and Start lines, marks to decimal, print the rows"]
-    G --> H["Launcher loads the rows into SQLite"]
+    D -->|no| G["Elimina las líneas Dead y Start, pasa las marcas a decimal, imprime las filas"]
+    G --> H["El lanzador carga las filas en SQLite"]
 ```
 
-The ed diagram is a pipeline of rewrites over lines, with one global command in the middle.
+El diagrama de ed es una canalización de reescrituras sobre líneas, con un comando global en el centro.
 
 <!-- diagram-source: src/ex-weird/README.md#program-flow -->
 
 ```mermaid
 flowchart TD
-    accTitle: ex-weird: a register that holds the command that runs it again
-    accDescr: A flowchart. The launcher gives Ex five digits as cards. The script adds a tape of sixty lines under the cards, and the program as one line of text, which it copies into register a. Running register a starts the loop. The first card's digit is rewritten into a command that moves the mark t down the tape, and running it adds the hours. The program prints the row, using the total from the tape line under the mark. It copies that tape line's instruction into register n and deletes the used card. Running register n then does what the tape line says. Up to 40, the line says to run register a again. Above 40, the line is a comment, so nothing runs and the script ends.
-    A["Launcher gives five digits; the script adds a 60-line tape and the program as one line, copied into register a"] --> B["Run @a: rewrite the first card's digit into a command, 't+17 k t"]
-    B --> C["Run that command: mark t moves down the tape, and that is the addition"]
-    C --> D["Print the row: the card and the total on the tape line under mark t"]
-    D --> E["Copy that tape line's instruction into register n, delete the used card"]
-    E --> F{{"Run @n: what does the tape line say?"}}
-    F -->|"@a: total is 40 or less"| B
-    F -->|"a quote mark: a comment, total is over 40"| G["Nothing runs: the script ends and the launcher loads the rows"]
+    accTitle: ex-weird: un registro que guarda el comando que lo ejecuta de nuevo
+    accDescr: Un diagrama de flujo. El lanzador entrega a Ex cinco dígitos como tarjetas. El script añade bajo las tarjetas una cinta de sesenta líneas y el programa como una sola línea de texto, que copia en el registro a. Ejecutar el registro a inicia el bucle. El dígito de la primera tarjeta se reescribe como un comando que baja la marca t por la cinta, y ejecutarlo suma las horas. El programa imprime la fila con el total de la línea de la cinta que está bajo la marca. Copia la instrucción de esa línea de la cinta en el registro n y borra la tarjeta usada. Después, ejecutar el registro n hace lo que dice la línea de la cinta. Si el total no pasa de 40, la línea indica ejecutar de nuevo el registro a. Si pasa de 40, la línea es un comentario, así que no se ejecuta nada y el script termina.
+    A["El lanzador da cinco dígitos; el script añade una cinta de 60 líneas y el programa como una sola línea, copiada en el registro a"] --> B["Ejecuta @a: reescribe el dígito de la primera tarjeta como un comando, 't+17 k t"]
+    B --> C["Ejecuta ese comando: la marca t baja por la cinta y esa es la suma"]
+    C --> D["Imprime la fila: la tarjeta y el total en la línea de la cinta bajo la marca t"]
+    D --> E["Copia la instrucción de esa línea de la cinta en el registro n y elimina la tarjeta usada"]
+    E --> F{{"Ejecución @n: ¿qué dice la línea de la cinta?"}}
+    F -->|"@a: el total no pasa de 40"| B
+    F -->|"una comilla: un comentario, el total pasa de 40"| G["No se ejecuta nada: el script termina y el lanzador carga las filas"]
 ```
 
-The Ex diagram has a cycle that goes through a register, and the cycle ends when the register holds a comment.
+El diagrama de Ex tiene un ciclo que pasa por un registro, y el ciclo termina cuando el registro guarda un comentario.
 
-## Trace one run
+## Traza una ejecución
 
-Use `DICE="5 9 2 0 0"`: hours 15, 19, 12, 10, 10. Both traces were produced by running scratch copies of the scripts in the sandbox with a few print commands added.
+Usa `DICE="5 9 2 0 0"`: horas 15, 19, 12, 10, 10. Ambas trazas se produjeron ejecutando copias de trabajo de los scripts en el entorno aislado, con algunos comandos de impresión añadidos.
 
-On GNU ed 1.20.1 and Vim Ex 9.1, the launchers with `DICE="5 9 2 0 0"` reproduced 15, 34 and 46 on stdout and in SQLite 3.45.1. The Ex tape can be inspected in a scratch copy by adding `'tp` immediately after `@d`.
+En GNU ed 1.20.1 y Vim Ex 9.1, los lanzadores con `DICE="5 9 2 0 0"` reprodujeron 15, 34 y 46 en la salida estándar y en SQLite 3.45.1. La cinta de Ex se puede inspeccionar en una copia de trabajo si añades `'tp` justo después de `@d`.
 
-### ed: the buffer after each stage
+### ed: el búfer después de cada etapa
 
-The scratch copy printed the buffer (`,p`) after each stage:
+La copia de trabajo imprimió el búfer (`,p`) después de cada etapa:
 
 ```text
 after step 1 (categories are addresses):        after step 2 (hours as rewrite rules):
@@ -112,7 +112,7 @@ Learning 0                                      Learning 10 xxxxxxxxxx
 Meetings 0                                      Meetings 10 xxxxxxxxxx
 ```
 
-After step 3 a ledger line `Start 0|` sits at the top. After step 4 (the global command), with the marks shortened here to counts, the buffer was:
+Después del paso 3 hay una línea de libro mayor `Start 0|` al principio. Después del paso 4 (el comando global), con las marcas abreviadas aquí como cuentas, el búfer era:
 
 ```text
 Start 0|
@@ -123,21 +123,21 @@ Dead 0!(46 x)
 Dead 0!(46 x)
 ```
 
-After step 5 the `Dead` and `Start` lines are deleted and a decimal rewrite turns marks into digits. The final output was `Meetings 15 15`, `Coding 19 34`, `Debugging 12 46`.
+Después del paso 5 se borran las líneas `Dead` y `Start`, y una reescritura decimal convierte las marcas en dígitos. La salida final fue `Meetings 15 15`, `Coding 19 34`, `Debugging 12 46`.
 
-| Card | Ledger above it | Substitution that fires | Result |
+| Tarjeta | Libro mayor sobre ella | Sustitución que se activa | Resultado |
 | --- | --- | --- | --- |
-| Meetings 15 | `Start 0\|` | the first: ledger has `\|` | `Meetings 15\|` and 15 marks |
-| Coding 19 | `...\|` (15 marks) | the first | `Coding 19\|` and 34 marks |
-| Debugging 12 | `...\|` (34 marks) | the first, then the third: marks reach 41 | `Debugging 12!` and 46 marks: the `!` means "over" |
-| Learning 10 | `...!` | the second: ledger has `!` | `Dead 0!` and 46 marks |
-| Meetings 10 | `...!` | the second | `Dead 0!` |
+| Meetings 15 | `Start 0\|` | la primera: el libro mayor tiene `\|` | `Meetings 15\|` y 15 marcas |
+| Coding 19 | `...\|` (15 marcas) | la primera | `Coding 19\|` y 34 marcas |
+| Debugging 12 | `...\|` (34 marcas) | la primera y luego la tercera: las marcas llegan a 41 | `Debugging 12!` y 46 marcas: el `!` significa "ya se pasó" |
+| Learning 10 | `...!` | la segunda: el libro mayor tiene `!` | `Dead 0!` y 46 marcas |
+| Meetings 10 | `...!` | la segunda | `Dead 0!` |
 
-The crossing card (Debugging) is kept because the *third* substitution marks it, and every later card sees `!` and dies. A failed `s` inside a `g` command does nothing and is not an error, so the three substitutions act as an `if`/`else if` chain by whichever pattern matches.
+La tarjeta que cruza el tope (Debugging) se conserva porque la *tercera* sustitución la marca, y cada tarjeta posterior ve `!` y muere. Una `s` fallida dentro de un comando `g` no hace nada y no es un error. Así, las tres sustituciones actúan como una cadena `if`/`else if` según el patrón que coincida.
 
-### Ex: the mark on the tape
+### Ex: la marca en la cinta
 
-The scratch copy of the Ex program added one command (`'tp`, "print the line with mark `t`") after each addition. It printed:
+La copia de trabajo del programa de Ex añadió un comando (`'tp`, "imprime la línea con la marca `t`") después de cada suma. Imprimió:
 
 ```text
 15 @a
@@ -148,89 +148,89 @@ Coding 19 34
 Debugging 12 46
 ```
 
-After card 1 the tape line is `15 @a`. The script copies that line to the end of the buffer, strips the leading digits and space with `$s/^[0-9]* //`, then yanks the remaining `@a` into register `n` and deletes the copy ([source](../../../src/ex-weird/timecards.ex#L85-L88)). This is a second copy of the tape line. The first copy supplied the total for the printed row. After card 3 the tape line is `46 "`, so `n` receives only the comment and `@n` ends the run.
+Después de la tarjeta 1, la línea de la cinta es `15 @a`. El script copia esa línea al final del búfer y quita los dígitos iniciales y el espacio con `$s/^[0-9]* //`. Luego copia el resto, `@a`, en el registro `n` y borra la copia ([fuente](../../../src/ex-weird/timecards.ex#L85-L88)). Esta es una segunda copia de la línea de la cinta. La primera copia dio el total de la fila impresa. Después de la tarjeta 3, la línea de la cinta es `46 "`, así que `n` recibe solo el comentario y `@n` termina la ejecución.
 
-| Pass | Mark `t` before | Card hours | Mark `t` after (= total) | Tape instruction | What `@n` runs |
+| Pasada | Marca `t` antes | Horas de la tarjeta | Marca `t` después (= total) | Instrucción de la cinta | Qué ejecuta `@n` |
 | --- | ---: | ---: | ---: | --- | --- |
-| 1 | 0 | 15 | 15 | `@a` | register `a` again: the next pass |
-| 2 | 15 | 19 | 34 | `@a` | the next pass |
-| 3 | 34 | 12 | 46 | `"` | a comment: **stop** |
+| 1 | 0 | 15 | 15 | `@a` | el registro `a` otra vez: la siguiente pasada |
+| 2 | 15 | 19 | 34 | `@a` | la siguiente pasada |
+| 3 | 34 | 12 | 46 | `"` | un comentario: **parada** |
 
-Adding is moving the mark down the tape by the card's hours. The tape has a line for every total from 0 to 59, so the total *is* the position. Dice 4 and 5 are never used.
+Sumar es bajar la marca por la cinta tantas líneas como horas tiene la tarjeta. La cinta tiene una línea para cada total de 0 a 59, así que el total *es* la posición. Los dados 4 y 5 nunca se usan.
 
-**Exactly 40.** With `DICE="0 0 0 0 0"` (all 10 hours) the totals are 10, 20, 30, 40, 50. The tape line for 40 says `@a`, so a fifth card is drawn, with category Meetings (B18 step 1, B19 step 1). Both scripts bound the run at five cards, which is exactly the worst case.
+**Exactamente 40.** Con `DICE="0 0 0 0 0"` (todas de 10 horas) los totales son 10, 20, 30, 40, 50. La línea de la cinta para 40 dice `@a`, así que se saca una quinta tarjeta, con la categoría Meetings (B18 paso 1, B19 paso 1). Ambos scripts limitan la ejecución a cinco tarjetas, que es justo el peor caso.
 
-## Compare the ordinary and weird designs
+## Compara los diseños ordinarios y los raros
 
-| Dimension | Ordinary program | `ed-weird` | `ex-weird` |
+| Dimensión | Programa ordinario | `ed-weird` | `ex-weird` |
 | --- | --- | --- | --- |
-| **Representation** | Variables and a loop | Text lines; numbers are runs of `x` | A tape of lines; a total is a position |
-| **Observability** | Print the variable | `,p` shows the whole machine at any stage | `'tp` shows the tape line; registers and marks must be printed on purpose |
-| **Tests** | Unit-test a function | `DICE` fixes the input, so output is testable | Same; `EX_PROGRAM` swaps the script |
-| **Debugging** | Step | Insert `,p` anywhere | The program is a register that is rewritten as it runs, so print its contents |
-| **Portability** | One language | GNU ed only: busybox ed cannot run it | Needs an Ex with marks, registers and `@`: nvi works, Vim needs `-s -u NONE -N` |
-| **Cost** | None | Three rule tables of ten rewrites | A 60-line tape, and a limit that cannot exceed it |
+| **Representación** | Variables y un bucle | Líneas de texto; los números son series de `x` | Una cinta de líneas; un total es una posición |
+| **Observabilidad** | Imprime la variable | `,p` muestra toda la máquina en cualquier etapa | `'tp` muestra la línea de la cinta; los registros y las marcas hay que imprimirlos a propósito |
+| **Pruebas** | Prueba unitaria de una función | `DICE` fija la entrada de datos, así que la salida se puede probar | Igual; `EX_PROGRAM` cambia el script |
+| **Debugging** | Paso | Inserta `,p` donde quieras | El programa es un registro que se reescribe mientras se ejecuta, así que imprime su contenido |
+| **Portabilidad** | Un solo lenguaje | Solo GNU ed: busybox ed no puede ejecutarlo | Necesita un Ex con marcas, registros y `@`: nvi funciona, Vim necesita `-s -u NONE -N` |
+| **Costo** | Ninguno | Tres tablas de reglas de diez reescrituras | Una cinta de 60 líneas y un límite que no puede superarla |
 
-The two scripts split the same job differently. ed represents *what was added* (marks), and Ex represents *where we are* (a position). That is the difference between keeping a tally and keeping a ruler.
+Los dos scripts reparten el mismo trabajo de forma distinta. ed representa *qué se sumó* (marcas) y Ex representa *dónde estamos* (una posición). Esa es la diferencia entre llevar un recuento y llevar una regla graduada.
 
-## What the exercises demonstrate
+## Qué demuestran los ejercicios
 
-| Exercise | Predict first | What the evidence shows |
+| Ejercicio | Predice primero | Qué muestra la evidencia |
 | --- | --- | --- |
-| [B18. ed: move the stop rule and break the cleanup](../../exercises.md#b18-ed-move-the-stop-rule-and-break-the-cleanup-verified), step 1 | `DICE="0 0 0 0 0"` and `"9 9 9 9 9"`: how many cards? | Five (10, 20, 30, 40, 50) and three (19, 38, 57). Exactly 40 does not stop the run, and the fifth category wraps to Meetings. |
-| B18, step 2 | Change `x\{41,\}` to `x\{31,\}`. | The run stops after the first total over 30. One number in a regular expression moved the stop rule. |
-| B18, step 3 | Delete `g/^Dead /d`. | An extra line `Dead 0 52`. The `Dead` rule stops cards from counting. The cleanup only hides them. |
-| [B19. Ex: move the limit on the tape and cut the loop](../../exercises.md#b19-ex-move-the-limit-on-the-tape-and-cut-the-loop-verified), steps 1-2 | `DICE="1 1 1 1 1"`: how many cards? Then make the tape say "go on" up to 45. | Four cards (11, 22, 33, 44), then five (11 to 55). The program did not change: only a line of data did. |
-| B19, step 3 | Remove `\|@n`. | One card. Nothing runs register `n`, so the program never starts itself again. |
-| [C1. Weird next to boring](../../exercises.md#c1-weird-next-to-boring-verified) | In which script is the stop rule data? | In Ex, it is a line of the tape. In ed, it is a pattern. |
+| [B18. ed: mueve la regla de parada y rompe la limpieza](../../exercises.md#b18-ed-move-the-stop-rule-and-break-the-cleanup-verified), paso 1 | `DICE="0 0 0 0 0"` y `"9 9 9 9 9"`: ¿cuántas tarjetas? | Cinco (10, 20, 30, 40, 50) y tres (19, 38, 57). Un total de exactamente 40 no detiene la ejecución, y la quinta categoría vuelve a Meetings. |
+| B18, paso 2 | Cambia `x\{41,\}` por `x\{31,\}`. | La ejecución se detiene después del primer total que pasa de 30. Un número en una expresión regular movió la regla de parada. |
+| B18, paso 3 | Borra `g/^Dead /d`. | Una línea extra `Dead 0 52`. La regla `Dead` impide que las tarjetas cuenten. La limpieza solo las oculta. |
+| [B19. Ex: mueve el límite en la cinta y corta el bucle](../../exercises.md#b19-ex-move-the-limit-on-the-tape-and-cut-the-loop-verified), pasos 1-2 | `DICE="1 1 1 1 1"`: ¿cuántas tarjetas? Luego haz que la cinta diga "sigue" hasta 45. | Cuatro tarjetas (11, 22, 33, 44) y luego cinco (de 11 a 55). El programa no cambió: solo cambió una línea de datos. |
+| B19, paso 3 | Quita `\|@n`. | Una tarjeta. Nada ejecuta el registro `n`, así que el programa nunca vuelve a iniciarse solo. |
+| [C1. Lo raro junto a lo aburrido](../../exercises.md#c1-weird-next-to-boring-verified) | ¿En qué script es dato la regla de parada? | En Ex, es una línea de la cinta. En ed, es un patrón. |
 
-A good one-sentence answer for B18: the `g` command made the loop, the failed `s` made the `if` and the regular expression's repeat count made the limit.
+Una buena respuesta de una frase para B18 es esta. El comando `g` hizo el bucle, la `s` fallida hizo el `if` y el conteo de repeticiones de la expresión regular hizo el límite.
 
-## Failure modes, costs and boundaries
+## Modos de fallo, costos y límites
 
-| Behavior | Label | Why |
+| Comportamiento | Etiqueta | Por qué |
 | --- | --- | --- |
-| A `g/re/cmd` command runs `cmd` on every matching line | **guaranteed** | Documented ed behavior. |
-| A failed `s` inside a `g` command does nothing and does not stop the command | **accidentally exploited** | The entry's README classifies it so. The GNU manual says a command list stops on the first error, and does not say that a substitution that finds nothing is not an error. On GNU ed 1.20.1 it is not, and without that there is no `if`. |
-| The program runs on GNU ed | **implementation-permitted** | The README tested GNU ed 1.20.1. busybox ed has none of `t`, `m`, `j`, `g`, `v` or `Q`, no `#` comments and cannot substitute on `^`, so it cannot run the script, and the check says so. |
-| `x\{41,\}` (an interval in a basic regular expression) | **implementation-permitted** | POSIX BRE, and supported by GNU ed. busybox ed does not support intervals. |
-| Marks, registers and `@` in Ex | **implementation-permitted** | Part of Ex as implemented by nvi and Vim. Register contents and the exact `@` semantics differ in small ways. |
-| A line that starts with `"` is a comment in Ex | **guaranteed** by the Ex language | It is what makes a tape line a "stop". |
-| nvi prints `Error: stderr: Inappropriate ioctl for device` when it has no terminal | **implementation-permitted** | A known message the launcher filters. Anything else that is not a row is an error. |
-| Vim in Ex mode needs `-s -u NONE -N` | **implementation-permitted** | The launcher chooses flags by the editor's `--version`. |
-| Five dice always suffice | **guaranteed** | Arithmetic: five cards of at least 10 hours reach 50. |
-| The tape ends at 59, matching the maximum total | **guaranteed** by the challenge's range | A change to the hours range would need a longer tape. |
+| Un comando `g/re/cmd` ejecuta `cmd` en cada línea coincidente | **garantizado** | Comportamiento documentado de ed. |
+| Una `s` fallida dentro de un comando `g` no hace nada y no detiene el comando | **aprovechado por accidente** | El README de la entrada la clasifica así. El manual de GNU dice que una lista de comandos se detiene en el primer error. No dice que una sustitución que no encuentra nada no sea un error. En GNU ed 1.20.1 no lo es y sin eso no hay `if`. |
+| El programa se ejecuta en GNU ed | **permitido por la implementación** | El README probó GNU ed 1.20.1. busybox ed no tiene ninguno de `t`, `m`, `j`, `g`, `v` ni `Q`. Tampoco tiene comentarios `#` y no puede sustituir en `^`. Por eso no puede ejecutar el script, y la comprobación lo dice. |
+| `x\{41,\}` (un intervalo en una expresión regular básica) | **permitido por la implementación** | BRE de POSIX, y GNU ed lo admite. busybox ed no admite intervalos. |
+| Marcas, registros y `@` en Ex | **permitido por la implementación** | Forman parte de Ex tal como lo implementan nvi y Vim. El contenido de los registros y la semántica exacta de `@` difieren en detalles pequeños. |
+| Una línea que empieza con `"` es un comentario en Ex | **garantizado** por el lenguaje Ex | Es lo que hace que una línea de la cinta sea una "parada". |
+| nvi imprime `Error: stderr: Inappropriate ioctl for device` cuando no tiene terminal | **permitido por la implementación** | Un mensaje conocido que el lanzador filtra. Cualquier otra cosa que no sea una fila es un error. |
+| Vim en modo Ex necesita `-s -u NONE -N` | **permitido por la implementación** | El lanzador elige las banderas según el `--version` del editor. |
+| Cinco dados siempre bastan | **garantizado** | Aritmética: cinco tarjetas de al menos 10 horas llegan a 50. |
+| La cinta termina en 59, igual que el total máximo | **garantizado** por el rango del reto | Un cambio en el rango de horas necesitaría una cinta más larga. |
 
-Most of this is documented features used as documented. The exception is the silent failed `s`, which the ed README classifies as accidentally exploited: the `if` that the whole chain depends on is behavior of one implementation, not a promise. The unusual part elsewhere is the *combination*, such as using a register as both a program and a loop.
+La mayor parte de esto son funciones documentadas usadas como se documentan. La excepción es la `s` fallida y silenciosa, que el README de ed clasifica como comportamiento aprovechado por accidente. El `if` del que depende toda la cadena es comportamiento de una sola implementación, no una promesa. Lo inusual en el resto es la *combinación*, como usar un registro a la vez como programa y como bucle.
 
-**Costs to state.**
+**Costos que debes poder enunciar.**
 
-- **An editor script has the authority of its caller.** `!` runs a shell. The scripts avoid it, and the launcher is the only part that talks to SQLite. See [Capability and authority](../../informatica/01-lectura-de-un-programa-adversarial.md#capability-and-authority).
-- **A silent no-op is easy to write.** A failed `s` inside `g` does nothing without a message, so a typo in a pattern looks like a program that works and does nothing.
-- **The state is hard to see in Ex.** Marks and registers are not in the buffer. You must print them.
-- **A hard ceiling.** The ed script holds at most five cards and the Ex tape at most 59, which are the limits of the challenge. Raising the limit needs a longer tape and more dice (see the Lisp guide for the same shape).
-- **Where this is legitimate.** `ed` scripts are real tools for batch edits, and `ex` scripts are used in build and migration tools. The loops and registers are the stunt.
+- **Un script de editor tiene la autoridad de quien lo llama.** `!` ejecuta un intérprete de comandos. Los scripts lo evitan, y el lanzador es la única parte que habla con SQLite. Consulta [Capacidad y autoridad](../../informatica/01-lectura-de-un-programa-adversarial.md#capability-and-authority).
+- **Es fácil escribir una operación nula silenciosa.** Una `s` fallida dentro de `g` no hace nada y no da ningún mensaje. Así, un error tipográfico en un patrón parece un programa que funciona y no hace nada.
+- **El estado es difícil de ver en Ex.** Las marcas y los registros no están en el búfer. Hay que imprimirlos.
+- **Un techo duro.** El script de ed admite cinco tarjetas como máximo y la cinta de Ex, 59, que son los límites del reto. Subir el límite necesita una cinta más larga y más dados (consulta la guía de Lisp para la misma forma).
+- **Dónde es legítimo.** Los scripts de `ed` son herramientas reales para ediciones por lotes, y los scripts de `ex` se usan en herramientas de compilación y de migración. Los bucles y los registros son la acrobacia.
 
-## Connections across the repository
+## Conexiones a lo largo del repositorio
 
-- **A data-driven program counter.** In Ex, the position on a tape *is* the total and the stop rule is a line of text. [COBOL](cobol.md) stores the next step in a jump target, [Forth](forth.md) in the parse position and [Make and CMake](make-y-cmake.md) in files and captures. The concept guide [State and control beyond variables](../conceptos/estado-y-control-mas-alla-de-las-variables.md) lines these up.
-- **Rewriting as arithmetic.** ed adds by writing marks side by side, as the sed entry in [Regex engines and sed](motores-de-regex-y-sed.md) does with `#`. Both are string-rewriting machines.
-- **A failed match as an `if`.** The failed `s` inside `g` is the same move as the failed `MATCHES` in CMake and the failed pass in the regex entries, and like the CMake behavior it is accidentally exploited.
-- **Orchestration against computation.** The launcher is the same kind of host as the one in [tar](tar.md): the real work is the tool, and the shell glues it to SQLite.
-- **In the book.** [ed and Ex](../../lenguajes/editores.md), [Markov algorithms](../../informatica/02-que-cuenta-como-maquina.md#markov-algorithms) and [Term and string rewriting](../../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#term-and-string-rewriting).
+- **Un contador de programa guiado por datos.** En Ex, la posición en una cinta *es* el total y la regla de parada es una línea de texto. [COBOL](cobol.md) guarda el paso siguiente en un destino de salto, [Forth](forth.md) en la posición de análisis y [Make y CMake](make-y-cmake.md) en archivos y capturas. La guía de concepto [Estado y control más allá de las variables](../conceptos/estado-y-control-mas-alla-de-las-variables.md) los alinea.
+- **Reescribir como aritmética.** ed suma escribiendo marcas una junto a otra, como hace la entrada de sed en [Motores de regex y sed](motores-de-regex-y-sed.md) con `#`. Ambas son máquinas que reescriben cadenas de texto.
+- **Una coincidencia fallida como `if`.** La `s` fallida dentro de `g` es la misma jugada que el `MATCHES` fallido en CMake y que la pasada fallida en las entradas de regex. Como el comportamiento de CMake, es un comportamiento aprovechado por accidente.
+- **Orquestación frente a cómputo.** El lanzador es el mismo tipo de anfitrión que el de [tar](tar.md): el trabajo real lo hace la herramienta, y el intérprete de comandos la une con SQLite.
+- **En el libro.** [ed y Ex](../../lenguajes/editores.md), [Algoritmos de Markov](../../informatica/02-que-cuenta-como-maquina.md#markov-algorithms) y [Reescritura de términos y de cadenas de texto](../../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#term-and-string-rewriting).
 
-## Self-check
+## Autoevaluación
 
-Answer each question in your own words before you read the italic text. Say what evidence would support each answer.
+Responde cada pregunta con tus propias palabras antes de leer el texto en cursiva. Di qué evidencia respaldaría cada respuesta.
 
-1. **Trace.** `DICE="2 2 2 2 2"` (hours 12 each). For the Ex script, give the mark position after each pass and the tape instruction there. *(Positions 12, 24, 36, 48. Instructions `@a`, `@a`, `@a`, `"`. Four cards, the fourth is the crossing card, and the fifth die is unused.)*
-2. **Explain.** Why does a `Dead` card keep the `!` and the marks? *(The `Dead` rule copies the ledger's `!` and marks onto the card, so the next card sees a ledger with `!` and dies too. The rule passes the "already over" state down the buffer.)*
-3. **Transfer.** The Ex tape stores the stop rule as 60 lines of data. What does a language with ordinary variables use instead, and what is the trade-off? *(A comparison on a variable. It is shorter and easier to read, and it cannot be changed by editing a line of data while the program is not running.)*
-4. **Evidence.** A reviewer says, "These scripts never run a shell command." Design a test that could fail. *(Search the script for `!` commands outside comments and strings, as `check.sh` style tests do for banned words. The negative control is a copy with an added `!true`, which the test must flag.)*
+1. **Traza.** `DICE="2 2 2 2 2"` (12 horas cada una). Para el script de Ex, da la posición de la marca después de cada pasada y la instrucción de la cinta en ese punto. *(Posiciones 12, 24, 36, 48. Instrucciones `@a`, `@a`, `@a`, `"`. Cuatro tarjetas, la cuarta es la tarjeta que cruza el tope, y el quinto dado no se usa.)*
+2. **Explica.** ¿Por qué una tarjeta `Dead` conserva el `!` y las marcas? *(La regla `Dead` copia el `!` y las marcas del libro mayor en la tarjeta, así que la tarjeta siguiente ve un libro mayor con `!` y también muere. La regla pasa el estado "ya se pasó" por el búfer hacia abajo.)*
+3. **Transfiere.** La cinta de Ex guarda la regla de parada como 60 líneas de datos. ¿Qué usa en su lugar un lenguaje con variables ordinarias, y cuál es la contrapartida? *(Una comparación sobre una variable. Es más corta y más fácil de leer, y no se puede cambiar editando una línea de datos mientras el programa no se está ejecutando.)*
+4. **Evidencia.** Una revisora dice: "Estos scripts nunca ejecutan un comando del intérprete de comandos". Diseña una prueba que pueda fallar. *(Busca en el script comandos `!` fuera de comentarios y cadenas de texto, como hacen las pruebas de estilo `check.sh` con las palabras prohibidas. El control negativo es una copia con un `!true` añadido, que la prueba debe señalar.)*
 
-## Further reading
+## Lecturas adicionales
 
-- [ed (text editor)](https://en.wikipedia.org/wiki/Ed_(text_editor)) (Wikipedia): the line editor, its history and why `g/re/p` became `grep`.
-- [Ex (text editor)](https://en.wikipedia.org/wiki/Ex_(text_editor)) (Wikipedia): the line editor under `vi`.
-- [Markov algorithm](https://en.wikipedia.org/wiki/Markov_algorithm) (Wikipedia): the model behind rewriting marks to add.
-- [Computation versus orchestration](../../informatica/02-que-cuenta-como-maquina.md#computation-versus-orchestration) (this book): where the line between editor and launcher falls.
+- [ed (editor de texto)](https://en.wikipedia.org/wiki/Ed_(text_editor)) (Wikipedia): el editor de líneas, su historia y por qué `g/re/p` pasó a ser `grep`.
+- [Ex (editor de texto)](https://en.wikipedia.org/wiki/Ex_(text_editor)) (Wikipedia): el editor de líneas que hay bajo `vi`.
+- [Algoritmo de Markov](https://en.wikipedia.org/wiki/Markov_algorithm) (Wikipedia): el modelo que hay detrás de reescribir marcas para sumar.
+- [Cómputo frente a orquestación](../../informatica/02-que-cuenta-como-maquina.md#computation-versus-orchestration) (este libro): dónde cae la línea entre el editor y el lanzador.

@@ -1865,3 +1865,26 @@
 {"segment_id": "s-4f8a0dac5111-0091", "ts": "2026-11-21T18:30:51Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
 {"segment_id": "s-1b92c492832e-0097", "ts": "2026-11-21T18:30:51Z", "findings": ["I7: glossary term sandbox must be rendered 'entorno aislado (*sandbox*)'"]}
 {"segment_id": "s-86777e2ddc45-0120", "ts": "2026-11-21T18:30:51Z", "findings": ["I7: glossary term object must be rendered 'objeto'"]}
+{"segment_id": "s-e90e857f583d-0005", "ts": "2026-11-21T18:36:02Z", "findings": ["I7: glossary term scope must be rendered 'ámbito'", "I12: sentence of 33 words (limit 29): Usa X y X de POSIX tal como se entregan ..."]}
+{"segment_id": "s-fb9a16bbaaad-0007", "ts": "2026-11-21T18:36:02Z", "findings": ["I12: sentence of 32 words (limit 29): Los editores pueden ejecutar comandos de..."]}
+{"segment_id": "s-f0eec9fb750d-0019", "ts": "2026-11-21T18:36:02Z", "findings": ["I12: sentence of 35 words (limit 29): Ex lee una línea de la cinta por cada to..."]}
+{"segment_id": "s-21b8ba130c5f-0023", "ts": "2026-11-21T18:36:02Z", "findings": ["I12: sentence of 31 words (limit 29): En X, en una *posición*: una marca X dic..."]}
+{"segment_id": "s-640fc1640164-0026", "ts": "2026-11-21T18:36:02Z", "findings": ["I12: sentence of 30 words (limit 29): Imprime filas en la salida estándar, y e..."]}
+{"segment_id": "s-8c1275e9b147-0028", "ts": "2026-11-21T18:36:02Z", "findings": ["I12: sentence of 39 words (limit 29): El script añade una categoría a cada lín..."]}
+{"segment_id": "s-4aafa852326a-0035", "ts": "2026-11-21T18:36:02Z", "findings": ["I10: '!' without '¡'", "I10: '!' without '¡'"]}
+{"segment_id": "s-d5d992548f15-0065", "ts": "2026-11-21T18:36:02Z", "findings": ["I12: sentence of 31 words (limit 29): Una X fallida dentro de un comando X no ..."]}
+{"segment_id": "s-a6b7236d9190-0068", "ts": "2026-11-21T18:36:02Z", "findings": ["I12: sentence of 32 words (limit 29): El script copia esa línea al final del b..."]}
+{"segment_id": "s-9a6bf22d35bd-0092", "ts": "2026-11-21T18:36:02Z", "findings": ["I12: sentence of 32 words (limit 29): Una buena respuesta de una frase para B1..."]}
+{"segment_id": "s-3de5f9ae4a21-0096", "ts": "2026-11-21T18:36:02Z", "findings": ["I12: sentence of 30 words (limit 29): El manual de GNU dice que una lista de c...", "I25: comma before a simple 'y' ('1 no lo es, y sin eso no hay X'): no comma before a simple o or y"]}
+{"segment_id": "s-6fc739854db8-0097", "ts": "2026-11-21T18:36:02Z", "findings": ["I12: sentence of 34 words (limit 29): busybox ed no tiene ninguno de X, X, X, ..."]}
+{"segment_id": "s-245156799421-0105", "ts": "2026-11-21T18:36:02Z", "findings": ["I12: sentence of 36 words (limit 29): La excepción es la X fallida y silencios..."]}
+{"segment_id": "s-87d9e31bff8d-0106", "ts": "2026-11-21T18:36:02Z", "findings": ["I7: glossary term state must be rendered 'estado'"]}
+{"segment_id": "s-453199cb46b5-0108", "ts": "2026-11-21T18:36:02Z", "findings": ["I12: sentence of 31 words (limit 29): Una X fallida dentro de X no hace nada y..."]}
+{"segment_id": "s-fd7df0506fb2-0115", "ts": "2026-11-21T18:36:02Z", "findings": ["I12: sentence of 38 words (limit 29): La X fallida dentro de X es la misma jug..."]}
+{"segment_id": "s-33f0c29d8b64-0117", "ts": "2026-11-21T18:36:02Z", "findings": ["I7: glossary term string must be rendered 'cadena de texto'"]}
+{"segment_id": "s-70703252b57b-0120", "ts": "2026-11-21T18:36:02Z", "findings": ["I7: glossary term string must be rendered 'cadena de texto'", "I7: glossary term flag must be rendered 'bandera'"]}
+{"segment_id": "s-e90e857f583d-0005", "ts": "2026-11-21T18:36:46Z", "findings": ["I7: glossary term scope must be rendered 'ámbito'"]}
+{"segment_id": "s-8c1275e9b147-0028", "ts": "2026-11-21T18:36:46Z", "findings": ["I12: sentence of 39 words (limit 29): El script añade una categoría a cada lín..."]}
+{"segment_id": "s-4aafa852326a-0035", "ts": "2026-11-21T18:36:46Z", "findings": ["I10: '!' without '¡'", "I10: '!' without '¡'"]}
+{"segment_id": "s-87d9e31bff8d-0106", "ts": "2026-11-21T18:36:46Z", "findings": ["I7: glossary term state must be rendered 'estado'"]}
+{"segment_id": "s-70703252b57b-0120", "ts": "2026-11-21T18:36:46Z", "findings": ["I7: glossary term flag must be rendered 'bandera'"]}

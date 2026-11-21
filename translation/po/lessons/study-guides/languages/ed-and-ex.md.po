@@ -1,0 +1,658 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lessons/study-guides/languages/ed-and-ex.md:1
+msgctxt "s-342bcdd0c620-0000"
+msgid "ed and Ex study guide"
+msgstr "Guía de estudio de ed y Ex"
+
+#: lessons/study-guides/languages/ed-and-ex.md:3
+msgctxt "s-4e718de9279e-0001"
+msgid "What this guide is for"
+msgstr "Para qué sirve esta guía"
+
+#: lessons/study-guides/languages/ed-and-ex.md:5
+msgctxt "s-3bdd6cb52839-0002"
+msgid "This guide examines two scripts that solve the challenge in a text buffer. In [⟦CODE_0001⟧](⟦DEST_0002⟧), categories are line addresses and hours are rewrite rules. One global command runs the program. In [⟦CODE_0003⟧](⟦DEST_0004⟧), a register holds the program. A tape in the buffer holds the stop rule and a mark is the program counter. **Where are the addresses, registers and program counter when the program edits a buffer?**"
+msgstr "Esta guía examina dos scripts que resuelven el reto en un búfer de texto. En [⟦CODE_0001⟧](⟦DEST_0002⟧), las categorías son direcciones de línea y las horas son reglas de reescritura. Un solo comando global ejecuta el programa. En [⟦CODE_0003⟧](⟦DEST_0004⟧), un registro guarda el programa. Una cinta en el búfer guarda la regla de parada y una marca es el contador de programa. **¿Dónde están las direcciones, los registros y el contador de programa cuando el programa edita un búfer?**"
+
+#: lessons/study-guides/languages/ed-and-ex.md:7
+msgctxt "s-d84bcb27c154-0003"
+msgid "When you finish, you should be able to:"
+msgstr "Al terminar, deberías poder:"
+
+#: lessons/study-guides/languages/ed-and-ex.md:9
+msgctxt "s-f3d603c12e6a-0004"
+msgid ""
+"Explain what a line address, a mark and a register are in ⟦CODE_0001⟧ and ⟦CODE_0002⟧ and what each one stores.\n"
+"2. Explain why a failed substitution inside a global command is an ⟦CODE_0003⟧, not an error.\n"
+"3. Trace both programs through the same five dice, naming the buffer contents at each stage.\n"
+"4. Explain how the Ex program's loop works: a register runs a register, and the tape decides whether the next run is a command or a comment.\n"
+"5. Explain why five dice are always enough, and how the launcher and the editor divide the work.\n"
+"6. Label each behavior as guaranteed, implementation-permitted or accidentally exploited."
+msgstr ""
+"Explicar qué son una dirección de línea, una marca y un registro en ⟦CODE_0001⟧ y ⟦CODE_0002⟧, y qué guarda cada uno.\n"
+"2. Explicar por qué una sustitución fallida dentro de un comando global es un ⟦CODE_0003⟧, no un error.\n"
+"3. Trazar ambos programas con los mismos cinco dados, y nombrar el contenido del búfer en cada etapa.\n"
+"4. Explicar cómo funciona el bucle del programa de Ex: un registro ejecuta un registro, y la cinta decide si la siguiente ejecución es un comando o un comentario.\n"
+"5. Explicar por qué cinco dados siempre bastan, y cómo se reparten el trabajo el lanzador y el editor.\n"
+"6. Etiquetar cada comportamiento como garantizado, permitido por la implementación o aprovechado por accidente."
+
+#: lessons/study-guides/languages/ed-and-ex.md:16
+msgctxt "s-e90e857f583d-0005"
+msgid "**Scope limits.** You need to read basic ⟦CODE_0001⟧ commands: ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧, ⟦CODE_0006⟧, ⟦CODE_0007⟧, ⟦CODE_0008⟧. The guide does not teach every Ex command, the SQL or Vim. It uses POSIX ⟦CODE_0009⟧ and ⟦CODE_0010⟧ as shipped in the sandbox (nvi for Ex; Vim in Ex mode works with different flags). The book's page is [ed and Ex](⟦DEST_0011⟧). For ideas, see [Computation versus orchestration](⟦DEST_0012⟧), [Capability and authority](⟦DEST_0013⟧) and [Representing state](⟦DEST_0014⟧)."
+msgstr "**Límites del alcance.** Necesitas leer comandos básicos de ⟦CODE_0001⟧: ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧, ⟦CODE_0006⟧, ⟦CODE_0007⟧, ⟦CODE_0008⟧. La guía no enseña todos los comandos de Ex, ni el SQL ni Vim. Usa ⟦CODE_0009⟧ y ⟦CODE_0010⟧ de POSIX tal como se entregan en el entorno aislado (*sandbox*). Ese entorno limita el acceso al sistema anfitrión. Para Ex se usa nvi (Vim en modo Ex funciona con otras banderas). La página del libro es [ed y Ex](⟦DEST_0011⟧). Para las ideas, consulta [Cómputo frente a orquestación](⟦DEST_0012⟧), [Capacidad y autoridad](⟦DEST_0013⟧) y [Representar el estado](⟦DEST_0014⟧)."
+
+#: lessons/study-guides/languages/ed-and-ex.md:18
+msgctxt "s-d5bfdd7d989d-0006"
+msgid "Before you begin"
+msgstr "Antes de empezar"
+
+#: lessons/study-guides/languages/ed-and-ex.md:20
+msgctxt "s-fb9a16bbaaad-0007"
+msgid "**Safety model.** Every entry writes fictional **⟦DNT_0001⟧** data to a scratch SQLite file. Editors can run shell commands: ⟦CODE_0002⟧ and ⟦CODE_0003⟧ both accept ⟦CODE_0004⟧, and an editor script is a program with the authority of whoever runs it. The scripts here do not shell out, and a launcher script keeps the editor and SQLite apart. Read the source before you run it, and run it in the sandbox first:"
+msgstr "**Modelo de seguridad.** Cada entrada escribe datos ficticios marcados con **⟦DNT_0001⟧** en un archivo SQLite de trabajo. Los editores pueden ejecutar comandos de un intérprete de comandos (*shell*). ⟦CODE_0002⟧ y ⟦CODE_0003⟧ aceptan ambos ⟦CODE_0004⟧. Un script de editor es un programa con la autoridad de quien lo ejecuta. Los scripts de aquí no llaman a un intérprete de comandos, y un script lanzador mantiene separados el editor y SQLite. Lee el código fuente antes de ejecutarlo y ejecútalo primero en el entorno aislado:"
+
+#: lessons/study-guides/languages/ed-and-ex.md:27
+msgctxt "s-bc874dbd3bba-0008"
+msgid "Edit only copies ([Running things safely](⟦DEST_0001⟧)). Both launchers accept ⟦CODE_0002⟧: five digits, each card's hours being 10 plus its digit. Use ⟦CODE_0003⟧ for hours 15, 19, 12, 10, 10."
+msgstr "Edita solo copias ([Ejecutar cosas de forma segura](⟦DEST_0001⟧)). Ambos lanzadores aceptan ⟦CODE_0002⟧: cinco dígitos, y las horas de cada tarjeta son 10 más su dígito. Usa ⟦CODE_0003⟧ para las horas 15, 19, 12, 10, 10."
+
+#: lessons/study-guides/languages/ed-and-ex.md:29
+msgctxt "s-7c6471d2ef84-0009"
+msgid "**Prediction rule.** Before each run, write the buffer, line by line, as you expect it to look after each stage."
+msgstr "**Regla de predicción.** Antes de cada ejecución, escribe el búfer, línea por línea, como esperas que quede después de cada etapa."
+
+#: lessons/study-guides/languages/ed-and-ex.md:31
+msgctxt "s-2dd18ffddf3e-0010"
+msgid "**Vocabulary.**"
+msgstr "**Vocabulario.**"
+
+#: lessons/study-guides/languages/ed-and-ex.md:33
+msgctxt "s-790e521777f0-0011"
+msgid "⟦SEP_0001⟧ Term ⟦SEP_0002⟧ Meaning here ⟦SEP_0003⟧"
+msgstr "⟦SEP_0001⟧ Término ⟦SEP_0002⟧ Significado aquí ⟦SEP_0003⟧"
+
+#: lessons/study-guides/languages/ed-and-ex.md:35
+msgctxt "s-c32de23fdd91-0012"
+msgid "⟦SEP_0001⟧ Buffer ⟦SEP_0002⟧ The text the editor holds: one line per card at the start. ⟦SEP_0003⟧"
+msgstr "⟦SEP_0001⟧ Búfer ⟦SEP_0002⟧ El texto que guarda el editor: una línea por tarjeta al principio. ⟦SEP_0003⟧"
+
+#: lessons/study-guides/languages/ed-and-ex.md:36
+msgctxt "s-241174fcc43d-0013"
+msgid "⟦SEP_0001⟧ Address ⟦SEP_0002⟧ A line number, or a pattern, that says which lines a command applies to. ⟦SEP_0003⟧"
+msgstr "⟦SEP_0001⟧ Dirección ⟦SEP_0002⟧ Un número de línea, o un patrón, que dice a qué líneas se aplica un comando. ⟦SEP_0003⟧"
+
+#: lessons/study-guides/languages/ed-and-ex.md:37
+msgctxt "s-0b14149effb2-0014"
+msgid "⟦SEP_0004⟧ ⟦CODE_0001⟧ ⟦SEP_0005⟧ Run ⟦CODE_0002⟧ on every line that matches ⟦CODE_0003⟧. ⟦SEP_0006⟧"
+msgstr "⟦SEP_0004⟧ ⟦CODE_0001⟧ ⟦SEP_0005⟧ Ejecuta ⟦CODE_0002⟧ en cada línea que coincide con ⟦CODE_0003⟧. ⟦SEP_0006⟧"
+
+#: lessons/study-guides/languages/ed-and-ex.md:38
+msgctxt "s-2655726ee43d-0015"
+msgid "⟦SEP_0003⟧ Mark ⟦SEP_0004⟧ A named position in the buffer, stored in a register-like slot. Ex uses ⟦CODE_0001⟧ to set one and ⟦CODE_0002⟧ to go to it. ⟦SEP_0005⟧"
+msgstr "⟦SEP_0003⟧ Marca ⟦SEP_0004⟧ Una posición con nombre en el búfer, guardada en una ranura parecida a un registro. Ex usa ⟦CODE_0001⟧ para fijar una y ⟦CODE_0002⟧ para ir a ella. ⟦SEP_0005⟧"
+
+#: lessons/study-guides/languages/ed-and-ex.md:39
+msgctxt "s-4efd20dcf77d-0016"
+msgid "⟦SEP_0003⟧ Register ⟦SEP_0004⟧ A named store of text. In Ex, ⟦CODE_0001⟧ *runs* register ⟦CODE_0002⟧ as commands. ⟦SEP_0005⟧"
+msgstr "⟦SEP_0003⟧ Registro ⟦SEP_0004⟧ Un almacén de texto con nombre. En Ex, ⟦CODE_0001⟧ *ejecuta* el registro ⟦CODE_0002⟧ como comandos. ⟦SEP_0005⟧"
+
+#: lessons/study-guides/languages/ed-and-ex.md:41
+msgctxt "s-ae7d69ef2745-0017"
+msgid "The shared challenge"
+msgstr "El reto compartido"
+
+#: lessons/study-guides/languages/ed-and-ex.md:43
+msgctxt "s-78a7d749b03d-0018"
+msgid "The [challenge specification](⟦DEST_0001⟧) calls for cards with a category and 10 to 19 whole hours. Categories cycle through ⟦DNT_0002⟧, ⟦DNT_0003⟧, ⟦DNT_0004⟧ and ⟦DNT_0005⟧. Add each card's hours to the running total. Stop when the total passes 40. Keep the **first card that takes the total over 40**. A total of exactly 40 continues. Four 10-hour cards need a fifth card, in the ⟦DNT_0006⟧ category. Conforming runs finish with 3 to 5 cards and a total of 41 to 59 hours."
+msgstr "La [especificación del reto](⟦DEST_0001⟧) pide tarjetas con una categoría y de 10 a 19 horas enteras. Las categorías se repiten en ciclo: `⟦DNT_0002⟧`, `⟦DNT_0003⟧`, `⟦DNT_0004⟧` y `⟦DNT_0005⟧`. Suma las horas de cada tarjeta al total acumulado. Detente cuando el total pasa de 40. Conserva la **primera tarjeta con la que el total pasa de 40**. Un total de exactamente 40 continúa. Cuatro tarjetas de 10 horas necesitan una quinta tarjeta, de la categoría `⟦DNT_0006⟧`. Las ejecuciones conformes tienen de 3 a 5 tarjetas y un total de 41 a 59 horas."
+
+#: lessons/study-guides/languages/ed-and-ex.md:45
+msgctxt "s-f0eec9fb750d-0019"
+msgid "The launchers load the editor output into SQLite. Both scripts limit the input the same way: the launcher supplies **five** dice, because five cards of at least 10 hours always reach 50. The editor script decides how many of the five count. ed marks the first card whose marks reach 41 (⟦CODE_0001⟧, [L46](⟦DEST_0002⟧)) and turns every later card into a \"Dead\" card. Ex reads a tape line for each new total: lines 0 to 40 say ⟦CODE_0003⟧ (go on), and lines 41 to 59 say ⟦CODE_0004⟧ (a comment: do nothing) ([L53](⟦DEST_0005⟧)). A total of exactly 40 reads tape line 40, which says go on."
+msgstr "Los lanzadores cargan la salida del editor en SQLite. Ambos scripts limitan la entrada de datos de la misma manera: el lanzador da **cinco** dados, porque cinco tarjetas de al menos 10 horas siempre llegan a 50. El script del editor decide cuántos de los cinco cuentan. ed marca la primera tarjeta cuyas marcas llegan a 41 (⟦CODE_0001⟧, [L46](⟦DEST_0002⟧)) y convierte cada tarjeta posterior en una tarjeta \"Dead\". Ex lee una línea de la cinta por cada total nuevo. Las líneas de 0 a 40 dicen ⟦CODE_0003⟧ (sigue) y las líneas de 41 a 59 dicen ⟦CODE_0004⟧ (un comentario: no hagas nada) ([L53](⟦DEST_0005⟧)). Un total de exactamente 40 lee la línea 40 de la cinta, que dice que siga."
+
+#: lessons/study-guides/languages/ed-and-ex.md:47
+msgctxt "s-9f148b367e02-0020"
+msgid "The machine to identify"
+msgstr "La máquina que hay que identificar"
+
+#: lessons/study-guides/languages/ed-and-ex.md:49
+msgctxt "s-8b5ecc27f451-0021"
+msgid "The launcher draws five digits, loads the editor and afterwards stores the rows in SQLite. It is orchestration, not computing: \"every card, total and stop decision is made by ed\" (or Ex). See [Computation versus orchestration](⟦DEST_0001⟧)."
+msgstr "El lanzador sortea cinco dígitos, carga el editor y después guarda las filas en SQLite. Es orquestación, no cómputo: \"ed toma cada decisión sobre las tarjetas, el total y la parada\" (o Ex). Consulta [Cómputo frente a orquestación](⟦DEST_0001⟧)."
+
+#: lessons/study-guides/languages/ed-and-ex.md:51
+msgctxt "s-133352fe0b5f-0022"
+msgid "**What repeats.** In ⟦CODE_0001⟧, one global command over the card lines, in buffer order: ⟦CODE_0002⟧ ([L42-46](⟦DEST_0003⟧)). The global command is ed's own loop. In ⟦CODE_0004⟧, ⟦CODE_0005⟧: the register ⟦CODE_0006⟧ runs the program again, so the program runs itself ([L91](⟦DEST_0007⟧))."
+msgstr "**Qué se repite.** En ⟦CODE_0001⟧, un comando global sobre las líneas de tarjeta, en el orden del búfer: ⟦CODE_0002⟧ ([L42-46](⟦DEST_0003⟧)). El comando global es el bucle propio de ed. En ⟦CODE_0004⟧, ⟦CODE_0005⟧: el registro ⟦CODE_0006⟧ ejecuta el programa otra vez, así que el programa se ejecuta a sí mismo ([L91](⟦DEST_0007⟧))."
+
+#: lessons/study-guides/languages/ed-and-ex.md:53
+msgctxt "s-21b8ba130c5f-0023"
+msgid "**Where state lives.** In ⟦CODE_0001⟧, in the text of the lines: a card is ⟦CODE_0002⟧, and the running total is the number of ⟦CODE_0003⟧ marks. A \"ledger\" line above the first card holds the total so far. Adding is writing marks side by side. In ⟦CODE_0004⟧, in a *position*: a mark ⟦CODE_0005⟧ says where on the 60-line tape we are, and moving it down by the card's hours is the addition. The tape line under the mark has the total as its number."
+msgstr "**Dónde vive el estado.** En ⟦CODE_0001⟧, en el texto de las líneas: una tarjeta es ⟦CODE_0002⟧ y el total acumulado es el número de marcas ⟦CODE_0003⟧. Una línea de \"libro mayor\" encima de la primera tarjeta guarda el total hasta ese punto. Sumar es escribir marcas una junto a otra. En ⟦CODE_0004⟧, en una *posición*. Una marca ⟦CODE_0005⟧ dice en qué punto de la cinta de 60 líneas estamos. Bajarla tantas líneas como horas tiene la tarjeta es la suma. La línea de la cinta bajo la marca tiene el total como número."
+
+#: lessons/study-guides/languages/ed-and-ex.md:55
+msgctxt "s-243d49732c09-0024"
+msgid "**What advances the next step.** In ⟦CODE_0001⟧, the global command visits the next card line. In ⟦CODE_0002⟧, ⟦CODE_0003⟧ runs the instruction that was copied from the tape line under the mark."
+msgstr "**Qué hace avanzar el paso siguiente.** En ⟦CODE_0001⟧, el comando global visita la siguiente línea de tarjeta. En ⟦CODE_0002⟧, ⟦CODE_0003⟧ ejecuta la instrucción que se copió de la línea de la cinta bajo la marca."
+
+#: lessons/study-guides/languages/ed-and-ex.md:57
+msgctxt "s-bc21fbda97fc-0025"
+msgid "**What stops it.** In ⟦CODE_0001⟧, three substitutions in the global command are guarded by their own patterns. The first needs a ledger that says \"40 or less\" (⟦CODE_0002⟧). The second needs a ledger that says \"already over\" (⟦CODE_0003⟧) and turns the card into ⟦CODE_0004⟧, and the third turns ⟦CODE_0005⟧ into ⟦CODE_0006⟧ when the marks reach 41. In ⟦CODE_0007⟧, the tape line under the mark is ⟦CODE_0008⟧ once the total is 41 or more, so ⟦CODE_0009⟧ runs a comment and nothing happens."
+msgstr "**Qué lo detiene.** En ⟦CODE_0001⟧, tres sustituciones del comando global están protegidas por sus propios patrones. La primera necesita un libro mayor que diga \"40 o menos\" (⟦CODE_0002⟧). La segunda necesita un libro mayor que diga \"ya se pasó\" (⟦CODE_0003⟧) y convierte la tarjeta en ⟦CODE_0004⟧. La tercera cambia ⟦CODE_0005⟧ por ⟦CODE_0006⟧ cuando las marcas llegan a 41. En ⟦CODE_0007⟧, la línea de la cinta bajo la marca es ⟦CODE_0008⟧ cuando el total es 41 o más, así que ⟦CODE_0009⟧ ejecuta un comentario y no pasa nada."
+
+#: lessons/study-guides/languages/ed-and-ex.md:59
+msgctxt "s-640fc1640164-0026"
+msgid "**What commits.** The editor commits nothing. It prints rows to standard output, and the launcher loads them into SQLite in one operation, with the ⟦CODE_0001⟧ constraints that enforce ⟦DNT_0002⟧ and the hours range. The \"commit\" is in the launcher: this is a clean example of an authority boundary. The editor has no database access, and the database has no editor access."
+msgstr "**Qué confirma.** El editor no confirma nada. Imprime filas en la salida estándar. El lanzador las carga en SQLite en una sola operación, con las restricciones ⟦CODE_0001⟧ que hacen cumplir ⟦DNT_0002⟧ y el rango de horas. La confirmación de la transacción ocurre en el lanzador: es un ejemplo limpio de frontera de autoridad. El editor no tiene acceso a la base de datos, y la base de datos no tiene acceso al editor."
+
+#: lessons/study-guides/languages/ed-and-ex.md:65
+msgctxt "s-6019c2759872-0027"
+msgid "ed-weird: one global command over a text buffer"
+msgstr "ed-weird: un comando global sobre un búfer de texto"
+
+#: lessons/study-guides/languages/ed-and-ex.md:66
+msgctxt "s-8c1275e9b147-0028"
+msgid "A flowchart. The launcher gives ed five random digits as a buffer of five lines. The script adds a category to each line by line address, rewrites each digit into hours and a run of marks with a table of substitutions, and adds a ledger line above the first card. Then one global command visits every card line in buffer order. For each card it copies the ledger above, joins the lines, and merges the marks, which adds the hours. Guarded substitutions then turn the ledger bar into an exclamation mark when there are 41 or more marks, and turn any card after that into a dead card. When all cards are visited, ed deletes the dead and start lines, rewrites marks into decimal, and prints the rows. The launcher loads them into SQLite."
+msgstr "Un diagrama de flujo. El lanzador entrega a ed cinco dígitos aleatorios como un búfer de cinco líneas. El script añade una categoría a cada línea según su dirección de línea, reescribe cada dígito como horas y una serie de marcas con una tabla de sustituciones, y añade una línea de registro encima de la primera tarjeta. Luego un comando global visita cada línea de tarjeta en el orden del búfer. Para cada tarjeta, copia el registro de arriba, une las líneas y fusiona las marcas, lo que suma las horas. Después, unas sustituciones condicionadas cambian la barra del registro por un signo de exclamación cuando hay 41 marcas o más, y convierten en tarjeta muerta cualquier tarjeta posterior. Cuando se han visitado todas las tarjetas, ed borra las líneas muertas y la de inicio, reescribe las marcas en decimal e imprime las filas. El lanzador las carga en SQLite."
+
+#: lessons/study-guides/languages/ed-and-ex.md:67
+msgctxt "s-b80862418f8a-0029"
+msgid "Launcher: five random digits become ed's buffer, one line per card"
+msgstr "Lanzador: cinco dígitos aleatorios se convierten en el búfer de ed, una línea por tarjeta"
+
+#: lessons/study-guides/languages/ed-and-ex.md:67
+msgctxt "s-8bd16c51170c-0030"
+msgid "Rewrite tables: line addresses add categories, a digit becomes hours as marks"
+msgstr "Tablas de reescritura: las direcciones de línea añaden categorías; un dígito se convierte en horas como marcas"
+
+#: lessons/study-guides/languages/ed-and-ex.md:68
+msgctxt "s-82abacb632e8-0031"
+msgid "Add a ledger line above the first card"
+msgstr "Añade una línea de libro mayor encima de la primera tarjeta"
+
+#: lessons/study-guides/languages/ed-and-ex.md:69
+msgctxt "s-64cbc2bcba6a-0032"
+msgid "g: is there another card line to visit?"
+msgstr "g: ¿hay otra línea de tarjeta que visitar?"
+
+#: lessons/study-guides/languages/ed-and-ex.md:70
+msgctxt "s-8a798890fe93-0033"
+msgid "yes"
+msgstr "sí"
+
+#: lessons/study-guides/languages/ed-and-ex.md:70
+msgctxt "s-c6b220102685-0034"
+msgid "Copy the ledger above, join, merge the marks: adding is writing marks side by side"
+msgstr "Copia el registro de arriba, une, fusiona las marcas: sumar es escribir marcas una al lado de otra"
+
+#: lessons/study-guides/languages/ed-and-ex.md:71
+msgctxt "s-4aafa852326a-0035"
+msgid "Guarded substitutions: 41 or more marks turn the bar into !, a card after ! becomes Dead"
+msgstr "Sustituciones con guarda: 41 o más marcas convierten la barra en !, una tarjeta después de ! pasa a ser Dead"
+
+#: lessons/study-guides/languages/ed-and-ex.md:73
+msgctxt "s-9390298f3fb0-0036"
+msgid "no"
+msgstr "no"
+
+#: lessons/study-guides/languages/ed-and-ex.md:73
+msgctxt "s-e58053964608-0037"
+msgid "Delete Dead and Start lines, marks to decimal, print the rows"
+msgstr "Elimina las líneas Dead y Start, pasa las marcas a decimal, imprime las filas"
+
+#: lessons/study-guides/languages/ed-and-ex.md:74
+msgctxt "s-4f7b88a05edc-0038"
+msgid "Launcher loads the rows into SQLite"
+msgstr "El lanzador carga las filas en SQLite"
+
+#: lessons/study-guides/languages/ed-and-ex.md:77
+msgctxt "s-12fe937cd127-0039"
+msgid "The ed diagram is a pipeline of rewrites over lines, with one global command in the middle."
+msgstr "El diagrama de ed es una canalización de reescrituras sobre líneas, con un comando global en el centro."
+
+#: lessons/study-guides/languages/ed-and-ex.md:83
+msgctxt "s-fad149abf823-0040"
+msgid "ex-weird: a register that holds the command that runs it again"
+msgstr "ex-weird: un registro que guarda el comando que lo ejecuta de nuevo"
+
+#: lessons/study-guides/languages/ed-and-ex.md:84
+msgctxt "s-f818756b86e0-0041"
+msgid "A flowchart. The launcher gives Ex five digits as cards. The script adds a tape of sixty lines under the cards, and the program as one line of text, which it copies into register a. Running register a starts the loop. The first card's digit is rewritten into a command that moves the mark t down the tape, and running it adds the hours. The program prints the row, using the total from the tape line under the mark. It copies that tape line's instruction into register n and deletes the used card. Running register n then does what the tape line says. Up to 40, the line says to run register a again. Above 40, the line is a comment, so nothing runs and the script ends."
+msgstr "Un diagrama de flujo. El lanzador entrega a Ex cinco dígitos como tarjetas. El script añade bajo las tarjetas una cinta de sesenta líneas y el programa como una sola línea de texto, que copia en el registro a. Ejecutar el registro a inicia el bucle. El dígito de la primera tarjeta se reescribe como un comando que baja la marca t por la cinta, y ejecutarlo suma las horas. El programa imprime la fila con el total de la línea de la cinta que está bajo la marca. Copia la instrucción de esa línea de la cinta en el registro n y borra la tarjeta usada. Después, ejecutar el registro n hace lo que dice la línea de la cinta. Si el total no pasa de 40, la línea indica ejecutar de nuevo el registro a. Si pasa de 40, la línea es un comentario, así que no se ejecuta nada y el script termina."
+
+#: lessons/study-guides/languages/ed-and-ex.md:85
+msgctxt "s-172838ef444d-0042"
+msgid "Launcher gives five digits; the script adds a 60-line tape and the program as one line, copied into register a"
+msgstr "El lanzador da cinco dígitos; el script añade una cinta de 60 líneas y el programa como una sola línea, copiada en el registro a"
+
+#: lessons/study-guides/languages/ed-and-ex.md:85
+msgctxt "s-6739f6b91d08-0043"
+msgid "Run @a: rewrite the first card's digit into a command, 't+17 k t"
+msgstr "Ejecuta @a: reescribe el dígito de la primera tarjeta como un comando, 't+17 k t"
+
+#: lessons/study-guides/languages/ed-and-ex.md:86
+msgctxt "s-b50fbcb4e41b-0044"
+msgid "Run that command: mark t moves down the tape, and that is the addition"
+msgstr "Ejecuta ese comando: la marca t baja por la cinta y esa es la suma"
+
+#: lessons/study-guides/languages/ed-and-ex.md:87
+msgctxt "s-ec87a8cd28ba-0045"
+msgid "Print the row: the card and the total on the tape line under mark t"
+msgstr "Imprime la fila: la tarjeta y el total en la línea de la cinta bajo la marca t"
+
+#: lessons/study-guides/languages/ed-and-ex.md:88
+msgctxt "s-bae7c635ca49-0046"
+msgid "Copy that tape line's instruction into register n, delete the used card"
+msgstr "Copia la instrucción de esa línea de la cinta en el registro n y elimina la tarjeta usada"
+
+#: lessons/study-guides/languages/ed-and-ex.md:89
+msgctxt "s-6724af16d250-0047"
+msgid "Run @n: what does the tape line say?"
+msgstr "Ejecución @n: ¿qué dice la línea de la cinta?"
+
+#: lessons/study-guides/languages/ed-and-ex.md:90
+msgctxt "s-94f23df3c054-0048"
+msgid "@a: total is 40 or less"
+msgstr "@a: el total no pasa de 40"
+
+#: lessons/study-guides/languages/ed-and-ex.md:91
+msgctxt "s-3d0c7487ebec-0049"
+msgid "a quote mark: a comment, total is over 40"
+msgstr "una comilla: un comentario, el total pasa de 40"
+
+#: lessons/study-guides/languages/ed-and-ex.md:91
+msgctxt "s-c984996f4a7f-0050"
+msgid "Nothing runs: the script ends and the launcher loads the rows"
+msgstr "No se ejecuta nada: el script termina y el lanzador carga las filas"
+
+#: lessons/study-guides/languages/ed-and-ex.md:94
+msgctxt "s-d43600ecf540-0051"
+msgid "The Ex diagram has a cycle that goes through a register, and the cycle ends when the register holds a comment."
+msgstr "El diagrama de Ex tiene un ciclo que pasa por un registro, y el ciclo termina cuando el registro guarda un comentario."
+
+#: lessons/study-guides/languages/ed-and-ex.md:96
+msgctxt "s-67a72cdadc6f-0052"
+msgid "Trace one run"
+msgstr "Traza una ejecución"
+
+#: lessons/study-guides/languages/ed-and-ex.md:98
+msgctxt "s-feeb581a5557-0053"
+msgid "Use ⟦CODE_0001⟧: hours 15, 19, 12, 10, 10. Both traces were produced by running scratch copies of the scripts in the sandbox with a few print commands added."
+msgstr "Usa ⟦CODE_0001⟧: horas 15, 19, 12, 10, 10. Ambas trazas se produjeron ejecutando copias de trabajo de los scripts en el entorno aislado, con algunos comandos de impresión añadidos."
+
+#: lessons/study-guides/languages/ed-and-ex.md:100
+msgctxt "s-9b9a14f10573-0054"
+msgid "On GNU ed 1.20.1 and Vim Ex 9.1, the launchers with ⟦CODE_0001⟧ reproduced 15, 34 and 46 on stdout and in SQLite 3.45.1. The Ex tape can be inspected in a scratch copy by adding ⟦CODE_0002⟧ immediately after ⟦CODE_0003⟧."
+msgstr "En GNU ed 1.20.1 y Vim Ex 9.1, los lanzadores con ⟦CODE_0001⟧ reprodujeron 15, 34 y 46 en la salida estándar y en SQLite 3.45.1. La cinta de Ex se puede inspeccionar en una copia de trabajo si añades ⟦CODE_0002⟧ justo después de ⟦CODE_0003⟧."
+
+#: lessons/study-guides/languages/ed-and-ex.md:102
+msgctxt "s-ea9840c9327e-0055"
+msgid "ed: the buffer after each stage"
+msgstr "ed: el búfer después de cada etapa"
+
+#: lessons/study-guides/languages/ed-and-ex.md:104
+msgctxt "s-d7980350ae21-0056"
+msgid "The scratch copy printed the buffer (⟦CODE_0001⟧) after each stage:"
+msgstr "La copia de trabajo imprimió el búfer (⟦CODE_0001⟧) después de cada etapa:"
+
+#: lessons/study-guides/languages/ed-and-ex.md:115
+msgctxt "s-f6fca4b3c847-0057"
+msgid "After step 3 a ledger line ⟦CODE_0001⟧ sits at the top. After step 4 (the global command), with the marks shortened here to counts, the buffer was:"
+msgstr "Después del paso 3 hay una línea de libro mayor ⟦CODE_0001⟧ al principio. Después del paso 4 (el comando global), con las marcas abreviadas aquí como cuentas, el búfer era:"
+
+#: lessons/study-guides/languages/ed-and-ex.md:126
+msgctxt "s-7a4455963d79-0058"
+msgid "After step 5 the ⟦CODE_0001⟧ and ⟦CODE_0002⟧ lines are deleted and a decimal rewrite turns marks into digits. The final output was ⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧."
+msgstr "Después del paso 5 se borran las líneas ⟦CODE_0001⟧ y ⟦CODE_0002⟧, y una reescritura decimal convierte las marcas en dígitos. La salida final fue ⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧."
+
+#: lessons/study-guides/languages/ed-and-ex.md:128
+msgctxt "s-3f586d3899e4-0059"
+msgid "⟦SEP_0001⟧ Card ⟦SEP_0002⟧ Ledger above it ⟦SEP_0003⟧ Substitution that fires ⟦SEP_0004⟧ Result ⟦SEP_0005⟧"
+msgstr "⟦SEP_0001⟧ Tarjeta ⟦SEP_0002⟧ Libro mayor sobre ella ⟦SEP_0003⟧ Sustitución que se activa ⟦SEP_0004⟧ Resultado ⟦SEP_0005⟧"
+
+#: lessons/study-guides/languages/ed-and-ex.md:130
+msgctxt "s-25ad71184afc-0060"
+msgid "⟦SEP_0005⟧ ⟦DNT_0001⟧ 15 ⟦SEP_0006⟧ ⟦CODE_0002⟧ ⟦SEP_0007⟧ the first: ledger has ⟦CODE_0003⟧ ⟦SEP_0008⟧ ⟦CODE_0004⟧ and 15 marks ⟦SEP_0009⟧"
+msgstr "⟦SEP_0005⟧ ⟦DNT_0001⟧ 15 ⟦SEP_0006⟧ ⟦CODE_0002⟧ ⟦SEP_0007⟧ la primera: el libro mayor tiene ⟦CODE_0003⟧ ⟦SEP_0008⟧ ⟦CODE_0004⟧ y 15 marcas ⟦SEP_0009⟧"
+
+#: lessons/study-guides/languages/ed-and-ex.md:131
+msgctxt "s-e7b695a43706-0061"
+msgid "⟦SEP_0004⟧ ⟦DNT_0001⟧ 19 ⟦SEP_0005⟧ ⟦CODE_0002⟧ (15 marks) ⟦SEP_0006⟧ the first ⟦SEP_0007⟧ ⟦CODE_0003⟧ and 34 marks ⟦SEP_0008⟧"
+msgstr "⟦SEP_0004⟧ ⟦DNT_0001⟧ 19 ⟦SEP_0005⟧ ⟦CODE_0002⟧ (15 marcas) ⟦SEP_0006⟧ la primera ⟦SEP_0007⟧ ⟦CODE_0003⟧ y 34 marcas ⟦SEP_0008⟧"
+
+#: lessons/study-guides/languages/ed-and-ex.md:132
+msgctxt "s-492be4775c73-0062"
+msgid "⟦SEP_0005⟧ ⟦DNT_0001⟧ 12 ⟦SEP_0006⟧ ⟦CODE_0002⟧ (34 marks) ⟦SEP_0007⟧ the first, then the third: marks reach 41 ⟦SEP_0008⟧ ⟦CODE_0003⟧ and 46 marks: the ⟦CODE_0004⟧ means \"over\" ⟦SEP_0009⟧"
+msgstr "⟦SEP_0005⟧ ⟦DNT_0001⟧ 12 ⟦SEP_0006⟧ ⟦CODE_0002⟧ (34 marcas) ⟦SEP_0007⟧ la primera y luego la tercera: las marcas llegan a 41 ⟦SEP_0008⟧ ⟦CODE_0003⟧ y 46 marcas: el ⟦CODE_0004⟧ significa \"ya se pasó\" ⟦SEP_0009⟧"
+
+#: lessons/study-guides/languages/ed-and-ex.md:133
+msgctxt "s-bfbc7b606bf1-0063"
+msgid "⟦SEP_0005⟧ ⟦DNT_0001⟧ 10 ⟦SEP_0006⟧ ⟦CODE_0002⟧ ⟦SEP_0007⟧ the second: ledger has ⟦CODE_0003⟧ ⟦SEP_0008⟧ ⟦CODE_0004⟧ and 46 marks ⟦SEP_0009⟧"
+msgstr "⟦SEP_0005⟧ ⟦DNT_0001⟧ 10 ⟦SEP_0006⟧ ⟦CODE_0002⟧ ⟦SEP_0007⟧ la segunda: el libro mayor tiene ⟦CODE_0003⟧ ⟦SEP_0008⟧ ⟦CODE_0004⟧ y 46 marcas ⟦SEP_0009⟧"
+
+#: lessons/study-guides/languages/ed-and-ex.md:134
+msgctxt "s-b273a67ff7c9-0064"
+msgid "⟦SEP_0004⟧ ⟦DNT_0001⟧ 10 ⟦SEP_0005⟧ ⟦CODE_0002⟧ ⟦SEP_0006⟧ the second ⟦SEP_0007⟧ ⟦CODE_0003⟧ ⟦SEP_0008⟧"
+msgstr "⟦SEP_0004⟧ ⟦DNT_0001⟧ 10 ⟦SEP_0005⟧ ⟦CODE_0002⟧ ⟦SEP_0006⟧ la segunda ⟦SEP_0007⟧ ⟦CODE_0003⟧ ⟦SEP_0008⟧"
+
+#: lessons/study-guides/languages/ed-and-ex.md:136
+msgctxt "s-d5d992548f15-0065"
+msgid "The crossing card (⟦DNT_0001⟧) is kept because the *third* substitution marks it, and every later card sees ⟦CODE_0002⟧ and dies. A failed ⟦CODE_0003⟧ inside a ⟦CODE_0004⟧ command does nothing and is not an error, so the three substitutions act as an ⟦CODE_0005⟧/⟦CODE_0006⟧ chain by whichever pattern matches."
+msgstr "La tarjeta que cruza el tope (⟦DNT_0001⟧) se conserva porque la *tercera* sustitución la marca, y cada tarjeta posterior ve ⟦CODE_0002⟧ y muere. Una ⟦CODE_0003⟧ fallida dentro de un comando ⟦CODE_0004⟧ no hace nada y no es un error. Así, las tres sustituciones actúan como una cadena ⟦CODE_0005⟧/⟦CODE_0006⟧ según el patrón que coincida."
+
+#: lessons/study-guides/languages/ed-and-ex.md:138
+msgctxt "s-5c1413796104-0066"
+msgid "Ex: the mark on the tape"
+msgstr "Ex: la marca en la cinta"
+
+#: lessons/study-guides/languages/ed-and-ex.md:140
+msgctxt "s-1be7d410881e-0067"
+msgid "The scratch copy of the Ex program added one command (⟦CODE_0001⟧, \"print the line with mark ⟦CODE_0002⟧\") after each addition. It printed:"
+msgstr "La copia de trabajo del programa de Ex añadió un comando (⟦CODE_0001⟧, \"imprime la línea con la marca ⟦CODE_0002⟧\") después de cada suma. Imprimió:"
+
+#: lessons/study-guides/languages/ed-and-ex.md:151
+msgctxt "s-a6b7236d9190-0068"
+msgid "After card 1 the tape line is ⟦CODE_0001⟧. The script copies that line to the end of the buffer, strips the leading digits and space with ⟦CODE_0002⟧, then yanks the remaining ⟦CODE_0003⟧ into register ⟦CODE_0004⟧ and deletes the copy ([source](⟦DEST_0005⟧)). This is a second copy of the tape line. The first copy supplied the total for the printed row. After card 3 the tape line is ⟦CODE_0006⟧, so ⟦CODE_0007⟧ receives only the comment and ⟦CODE_0008⟧ ends the run."
+msgstr "Después de la tarjeta 1, la línea de la cinta es ⟦CODE_0001⟧. El script copia esa línea al final del búfer y quita los dígitos iniciales y el espacio con ⟦CODE_0002⟧. Luego copia el resto, ⟦CODE_0003⟧, en el registro ⟦CODE_0004⟧ y borra la copia ([fuente](⟦DEST_0005⟧)). Esta es una segunda copia de la línea de la cinta. La primera copia dio el total de la fila impresa. Después de la tarjeta 3, la línea de la cinta es ⟦CODE_0006⟧, así que ⟦CODE_0007⟧ recibe solo el comentario y ⟦CODE_0008⟧ termina la ejecución."
+
+#: lessons/study-guides/languages/ed-and-ex.md:153
+msgctxt "s-2b112a818b80-0069"
+msgid "⟦SEP_0004⟧ Pass ⟦SEP_0005⟧ Mark ⟦CODE_0001⟧ before ⟦SEP_0006⟧ Card hours ⟦SEP_0007⟧ Mark ⟦CODE_0002⟧ after (= total) ⟦SEP_0008⟧ Tape instruction ⟦SEP_0009⟧ What ⟦CODE_0003⟧ runs ⟦SEP_0010⟧"
+msgstr "⟦SEP_0004⟧ Pasada ⟦SEP_0005⟧ Marca ⟦CODE_0001⟧ antes ⟦SEP_0006⟧ Horas de la tarjeta ⟦SEP_0007⟧ Marca ⟦CODE_0002⟧ después (= total) ⟦SEP_0008⟧ Instrucción de la cinta ⟦SEP_0009⟧ Qué ejecuta ⟦CODE_0003⟧ ⟦SEP_0010⟧"
+
+#: lessons/study-guides/languages/ed-and-ex.md:155
+msgctxt "s-eaa9029311a8-0070"
+msgid "⟦SEP_0003⟧ 1 ⟦SEP_0004⟧ 0 ⟦SEP_0005⟧ 15 ⟦SEP_0006⟧ 15 ⟦SEP_0007⟧ ⟦CODE_0001⟧ ⟦SEP_0008⟧ register ⟦CODE_0002⟧ again: the next pass ⟦SEP_0009⟧"
+msgstr "⟦SEP_0003⟧ 1 ⟦SEP_0004⟧ 0 ⟦SEP_0005⟧ 15 ⟦SEP_0006⟧ 15 ⟦SEP_0007⟧ ⟦CODE_0001⟧ ⟦SEP_0008⟧ el registro ⟦CODE_0002⟧ otra vez: la siguiente pasada ⟦SEP_0009⟧"
+
+#: lessons/study-guides/languages/ed-and-ex.md:156
+msgctxt "s-ec8b7d79fa54-0071"
+msgid "⟦SEP_0002⟧ 2 ⟦SEP_0003⟧ 15 ⟦SEP_0004⟧ 19 ⟦SEP_0005⟧ 34 ⟦SEP_0006⟧ ⟦CODE_0001⟧ ⟦SEP_0007⟧ the next pass ⟦SEP_0008⟧"
+msgstr "⟦SEP_0002⟧ 2 ⟦SEP_0003⟧ 15 ⟦SEP_0004⟧ 19 ⟦SEP_0005⟧ 34 ⟦SEP_0006⟧ ⟦CODE_0001⟧ ⟦SEP_0007⟧ la siguiente pasada ⟦SEP_0008⟧"
+
+#: lessons/study-guides/languages/ed-and-ex.md:157
+msgctxt "s-dce0c6270aa3-0072"
+msgid "⟦SEP_0002⟧ 3 ⟦SEP_0003⟧ 34 ⟦SEP_0004⟧ 12 ⟦SEP_0005⟧ 46 ⟦SEP_0006⟧ ⟦CODE_0001⟧ ⟦SEP_0007⟧ a comment: **stop** ⟦SEP_0008⟧"
+msgstr "⟦SEP_0002⟧ 3 ⟦SEP_0003⟧ 34 ⟦SEP_0004⟧ 12 ⟦SEP_0005⟧ 46 ⟦SEP_0006⟧ ⟦CODE_0001⟧ ⟦SEP_0007⟧ un comentario: **parada** ⟦SEP_0008⟧"
+
+#: lessons/study-guides/languages/ed-and-ex.md:159
+msgctxt "s-694f37572253-0073"
+msgid "Adding is moving the mark down the tape by the card's hours. The tape has a line for every total from 0 to 59, so the total *is* the position. Dice 4 and 5 are never used."
+msgstr "Sumar es bajar la marca por la cinta tantas líneas como horas tiene la tarjeta. La cinta tiene una línea para cada total de 0 a 59, así que el total *es* la posición. Los dados 4 y 5 nunca se usan."
+
+#: lessons/study-guides/languages/ed-and-ex.md:161
+msgctxt "s-e31aa5e572ee-0074"
+msgid "**Exactly 40.** With ⟦CODE_0001⟧ (all 10 hours) the totals are 10, 20, 30, 40, 50. The tape line for 40 says ⟦CODE_0002⟧, so a fifth card is drawn, with category ⟦DNT_0003⟧ (B18 step 1, B19 step 1). Both scripts bound the run at five cards, which is exactly the worst case."
+msgstr "**Exactamente 40.** Con ⟦CODE_0001⟧ (todas de 10 horas) los totales son 10, 20, 30, 40, 50. La línea de la cinta para 40 dice ⟦CODE_0002⟧, así que se saca una quinta tarjeta, con la categoría ⟦DNT_0003⟧ (B18 paso 1, B19 paso 1). Ambos scripts limitan la ejecución a cinco tarjetas, que es justo el peor caso."
+
+#: lessons/study-guides/languages/ed-and-ex.md:163
+msgctxt "s-405c1b857089-0075"
+msgid "Compare the ordinary and weird designs"
+msgstr "Compara los diseños ordinarios y los raros"
+
+#: lessons/study-guides/languages/ed-and-ex.md:165
+msgctxt "s-9207273e9183-0076"
+msgid "⟦SEP_0003⟧ Dimension ⟦SEP_0004⟧ Ordinary program ⟦SEP_0005⟧ ⟦CODE_0001⟧ ⟦SEP_0006⟧ ⟦CODE_0002⟧ ⟦SEP_0007⟧"
+msgstr "⟦SEP_0003⟧ Dimensión ⟦SEP_0004⟧ Programa ordinario ⟦SEP_0005⟧ ⟦CODE_0001⟧ ⟦SEP_0006⟧ ⟦CODE_0002⟧ ⟦SEP_0007⟧"
+
+#: lessons/study-guides/languages/ed-and-ex.md:167
+msgctxt "s-bf6ba77cecbd-0077"
+msgid "⟦SEP_0002⟧ **Representation** ⟦SEP_0003⟧ Variables and a loop ⟦SEP_0004⟧ Text lines; numbers are runs of ⟦CODE_0001⟧ ⟦SEP_0005⟧ A tape of lines; a total is a position ⟦SEP_0006⟧"
+msgstr "⟦SEP_0002⟧ **Representación** ⟦SEP_0003⟧ Variables y un bucle ⟦SEP_0004⟧ Líneas de texto; los números son series de ⟦CODE_0001⟧ ⟦SEP_0005⟧ Una cinta de líneas; un total es una posición ⟦SEP_0006⟧"
+
+#: lessons/study-guides/languages/ed-and-ex.md:168
+msgctxt "s-d4fd7931c35d-0078"
+msgid "⟦SEP_0003⟧ **Observability** ⟦SEP_0004⟧ Print the variable ⟦SEP_0005⟧ ⟦CODE_0001⟧ shows the whole machine at any stage ⟦SEP_0006⟧ ⟦CODE_0002⟧ shows the tape line; registers and marks must be printed on purpose ⟦SEP_0007⟧"
+msgstr "⟦SEP_0003⟧ **Observabilidad** ⟦SEP_0004⟧ Imprime la variable ⟦SEP_0005⟧ ⟦CODE_0001⟧ muestra toda la máquina en cualquier etapa ⟦SEP_0006⟧ ⟦CODE_0002⟧ muestra la línea de la cinta; los registros y las marcas hay que imprimirlos a propósito ⟦SEP_0007⟧"
+
+#: lessons/study-guides/languages/ed-and-ex.md:169
+msgctxt "s-fb5dfb8ea42d-0079"
+msgid "⟦SEP_0003⟧ **Tests** ⟦SEP_0004⟧ Unit-test a function ⟦SEP_0005⟧ ⟦CODE_0001⟧ fixes the input, so output is testable ⟦SEP_0006⟧ Same; ⟦CODE_0002⟧ swaps the script ⟦SEP_0007⟧"
+msgstr "⟦SEP_0003⟧ **Pruebas** ⟦SEP_0004⟧ Prueba unitaria de una función ⟦SEP_0005⟧ ⟦CODE_0001⟧ fija la entrada de datos, así que la salida se puede probar ⟦SEP_0006⟧ Igual; ⟦CODE_0002⟧ cambia el script ⟦SEP_0007⟧"
+
+#: lessons/study-guides/languages/ed-and-ex.md:170
+msgctxt "s-c0fc1ea50b2f-0080"
+msgid "⟦SEP_0003⟧ **⟦DNT_0001⟧** ⟦SEP_0004⟧ Step ⟦SEP_0005⟧ Insert ⟦CODE_0002⟧ anywhere ⟦SEP_0006⟧ The program is a register that is rewritten as it runs, so print its contents ⟦SEP_0007⟧"
+msgstr "⟦SEP_0003⟧ **⟦DNT_0001⟧** ⟦SEP_0004⟧ Paso ⟦SEP_0005⟧ Inserta ⟦CODE_0002⟧ donde quieras ⟦SEP_0006⟧ El programa es un registro que se reescribe mientras se ejecuta, así que imprime su contenido ⟦SEP_0007⟧"
+
+#: lessons/study-guides/languages/ed-and-ex.md:171
+msgctxt "s-e9aa425851f9-0081"
+msgid "⟦SEP_0003⟧ **Portability** ⟦SEP_0004⟧ One language ⟦SEP_0005⟧ GNU ed only: busybox ed cannot run it ⟦SEP_0006⟧ Needs an Ex with marks, registers and ⟦CODE_0001⟧: nvi works, Vim needs ⟦CODE_0002⟧ ⟦SEP_0007⟧"
+msgstr "⟦SEP_0003⟧ **Portabilidad** ⟦SEP_0004⟧ Un solo lenguaje ⟦SEP_0005⟧ Solo GNU ed: busybox ed no puede ejecutarlo ⟦SEP_0006⟧ Necesita un Ex con marcas, registros y ⟦CODE_0001⟧: nvi funciona, Vim necesita ⟦CODE_0002⟧ ⟦SEP_0007⟧"
+
+#: lessons/study-guides/languages/ed-and-ex.md:172
+msgctxt "s-d7a175868c1a-0082"
+msgid "⟦SEP_0001⟧ **Cost** ⟦SEP_0002⟧ None ⟦SEP_0003⟧ Three rule tables of ten rewrites ⟦SEP_0004⟧ A 60-line tape, and a limit that cannot exceed it ⟦SEP_0005⟧"
+msgstr "⟦SEP_0001⟧ **Costo** ⟦SEP_0002⟧ Ninguno ⟦SEP_0003⟧ Tres tablas de reglas de diez reescrituras ⟦SEP_0004⟧ Una cinta de 60 líneas y un límite que no puede superarla ⟦SEP_0005⟧"
+
+#: lessons/study-guides/languages/ed-and-ex.md:174
+msgctxt "s-01e0cc85c466-0083"
+msgid "The two scripts split the same job differently. ed represents *what was added* (marks), and Ex represents *where we are* (a position). That is the difference between keeping a tally and keeping a ruler."
+msgstr "Los dos scripts reparten el mismo trabajo de forma distinta. ed representa *qué se sumó* (marcas) y Ex representa *dónde estamos* (una posición). Esa es la diferencia entre llevar un recuento y llevar una regla graduada."
+
+#: lessons/study-guides/languages/ed-and-ex.md:176
+msgctxt "s-716cae37520b-0084"
+msgid "What the exercises demonstrate"
+msgstr "Qué demuestran los ejercicios"
+
+#: lessons/study-guides/languages/ed-and-ex.md:178
+msgctxt "s-d6a3ec9d5ed0-0085"
+msgid "⟦SEP_0001⟧ Exercise ⟦SEP_0002⟧ Predict first ⟦SEP_0003⟧ What the evidence shows ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ Ejercicio ⟦SEP_0002⟧ Predice primero ⟦SEP_0003⟧ Qué muestra la evidencia ⟦SEP_0004⟧"
+
+#: lessons/study-guides/languages/ed-and-ex.md:180
+msgctxt "s-e21221975646-0086"
+msgid "⟦SEP_0005⟧ [B18. ed: move the stop rule and break the cleanup](⟦DEST_0001⟧), step 1 ⟦SEP_0006⟧ ⟦CODE_0002⟧ and ⟦CODE_0003⟧: how many cards? ⟦SEP_0007⟧ Five (10, 20, 30, 40, 50) and three (19, 38, 57). Exactly 40 does not stop the run, and the fifth category wraps to ⟦DNT_0004⟧. ⟦SEP_0008⟧"
+msgstr "⟦SEP_0005⟧ [B18. ed: mueve la regla de parada y rompe la limpieza](⟦DEST_0001⟧), paso 1 ⟦SEP_0006⟧ ⟦CODE_0002⟧ y ⟦CODE_0003⟧: ¿cuántas tarjetas? ⟦SEP_0007⟧ Cinco (10, 20, 30, 40, 50) y tres (19, 38, 57). Un total de exactamente 40 no detiene la ejecución, y la quinta categoría vuelve a ⟦DNT_0004⟧. ⟦SEP_0008⟧"
+
+#: lessons/study-guides/languages/ed-and-ex.md:181
+msgctxt "s-0aa152f377a4-0087"
+msgid "⟦SEP_0003⟧ B18, step 2 ⟦SEP_0004⟧ Change ⟦CODE_0001⟧ to ⟦CODE_0002⟧. ⟦SEP_0005⟧ The run stops after the first total over 30. One number in a regular expression moved the stop rule. ⟦SEP_0006⟧"
+msgstr "⟦SEP_0003⟧ B18, paso 2 ⟦SEP_0004⟧ Cambia ⟦CODE_0001⟧ por ⟦CODE_0002⟧. ⟦SEP_0005⟧ La ejecución se detiene después del primer total que pasa de 30. Un número en una expresión regular movió la regla de parada. ⟦SEP_0006⟧"
+
+#: lessons/study-guides/languages/ed-and-ex.md:182
+msgctxt "s-1395460d005e-0088"
+msgid "⟦SEP_0004⟧ B18, step 3 ⟦SEP_0005⟧ Delete ⟦CODE_0001⟧. ⟦SEP_0006⟧ An extra line ⟦CODE_0002⟧. The ⟦CODE_0003⟧ rule stops cards from counting. The cleanup only hides them. ⟦SEP_0007⟧"
+msgstr "⟦SEP_0004⟧ B18, paso 3 ⟦SEP_0005⟧ Borra ⟦CODE_0001⟧. ⟦SEP_0006⟧ Una línea extra ⟦CODE_0002⟧. La regla ⟦CODE_0003⟧ impide que las tarjetas cuenten. La limpieza solo las oculta. ⟦SEP_0007⟧"
+
+#: lessons/study-guides/languages/ed-and-ex.md:183
+msgctxt "s-888ec49a6044-0089"
+msgid "⟦SEP_0003⟧ [B19. Ex: move the limit on the tape and cut the loop](⟦DEST_0001⟧), steps 1-2 ⟦SEP_0004⟧ ⟦CODE_0002⟧: how many cards? Then make the tape say \"go on\" up to 45. ⟦SEP_0005⟧ Four cards (11, 22, 33, 44), then five (11 to 55). The program did not change: only a line of data did. ⟦SEP_0006⟧"
+msgstr "⟦SEP_0003⟧ [B19. Ex: mueve el límite en la cinta y corta el bucle](⟦DEST_0001⟧), pasos 1-2 ⟦SEP_0004⟧ ⟦CODE_0002⟧: ¿cuántas tarjetas? Luego haz que la cinta diga \"sigue\" hasta 45. ⟦SEP_0005⟧ Cuatro tarjetas (11, 22, 33, 44) y luego cinco (de 11 a 55). El programa no cambió: solo cambió una línea de datos. ⟦SEP_0006⟧"
+
+#: lessons/study-guides/languages/ed-and-ex.md:184
+msgctxt "s-f7b6ebb5d1e3-0090"
+msgid "⟦SEP_0003⟧ B19, step 3 ⟦SEP_0004⟧ Remove ⟦CODE_0001⟧. ⟦SEP_0005⟧ One card. Nothing runs register ⟦CODE_0002⟧, so the program never starts itself again. ⟦SEP_0006⟧"
+msgstr "⟦SEP_0003⟧ B19, paso 3 ⟦SEP_0004⟧ Quita ⟦CODE_0001⟧. ⟦SEP_0005⟧ Una tarjeta. Nada ejecuta el registro ⟦CODE_0002⟧, así que el programa nunca vuelve a iniciarse solo. ⟦SEP_0006⟧"
+
+#: lessons/study-guides/languages/ed-and-ex.md:185
+msgctxt "s-8e6d0612b23d-0091"
+msgid "⟦SEP_0002⟧ [C1. Weird next to boring](⟦DEST_0001⟧) ⟦SEP_0003⟧ In which script is the stop rule data? ⟦SEP_0004⟧ In Ex, it is a line of the tape. In ed, it is a pattern. ⟦SEP_0005⟧"
+msgstr "⟦SEP_0002⟧ [C1. Lo raro junto a lo aburrido](⟦DEST_0001⟧) ⟦SEP_0003⟧ ¿En qué script es dato la regla de parada? ⟦SEP_0004⟧ En Ex, es una línea de la cinta. En ed, es un patrón. ⟦SEP_0005⟧"
+
+#: lessons/study-guides/languages/ed-and-ex.md:187
+msgctxt "s-9a6bf22d35bd-0092"
+msgid "A good one-sentence answer for B18: the ⟦CODE_0001⟧ command made the loop, the failed ⟦CODE_0002⟧ made the ⟦CODE_0003⟧ and the regular expression's repeat count made the limit."
+msgstr "Una buena respuesta de una frase para B18 es esta. El comando ⟦CODE_0001⟧ hizo el bucle, la ⟦CODE_0002⟧ fallida hizo el ⟦CODE_0003⟧ y el conteo de repeticiones de la expresión regular hizo el límite."
+
+#: lessons/study-guides/languages/ed-and-ex.md:189
+msgctxt "s-4fe97c469cdb-0093"
+msgid "Failure modes, costs and boundaries"
+msgstr "Modos de fallo, costos y límites"
+
+#: lessons/study-guides/languages/ed-and-ex.md:191
+msgctxt "s-621aac5615e3-0094"
+msgid "⟦SEP_0001⟧ Behavior ⟦SEP_0002⟧ Label ⟦SEP_0003⟧ Why ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ Comportamiento ⟦SEP_0002⟧ Etiqueta ⟦SEP_0003⟧ Por qué ⟦SEP_0004⟧"
+
+#: lessons/study-guides/languages/ed-and-ex.md:193
+msgctxt "s-2df579c4e7b9-0095"
+msgid "⟦SEP_0003⟧ A ⟦CODE_0001⟧ command runs ⟦CODE_0002⟧ on every matching line ⟦SEP_0004⟧ **guaranteed** ⟦SEP_0005⟧ Documented ed behavior. ⟦SEP_0006⟧"
+msgstr "⟦SEP_0003⟧ Un comando ⟦CODE_0001⟧ ejecuta ⟦CODE_0002⟧ en cada línea coincidente ⟦SEP_0004⟧ **garantizado** ⟦SEP_0005⟧ Comportamiento documentado de ed. ⟦SEP_0006⟧"
+
+#: lessons/study-guides/languages/ed-and-ex.md:194
+msgctxt "s-3de5f9ae4a21-0096"
+msgid "⟦SEP_0004⟧ A failed ⟦CODE_0001⟧ inside a ⟦CODE_0002⟧ command does nothing and does not stop the command ⟦SEP_0005⟧ **accidentally exploited** ⟦SEP_0006⟧ The entry's README classifies it so. The GNU manual says a command list stops on the first error, and does not say that a substitution that finds nothing is not an error. On GNU ed 1.20.1 it is not, and without that there is no ⟦CODE_0003⟧. ⟦SEP_0007⟧"
+msgstr "⟦SEP_0004⟧ Una ⟦CODE_0001⟧ fallida dentro de un comando ⟦CODE_0002⟧ no hace nada y no detiene el comando ⟦SEP_0005⟧ **aprovechado por accidente** ⟦SEP_0006⟧ El README de la entrada la clasifica así. El manual de GNU dice que una lista de comandos se detiene en el primer error. No dice que una sustitución que no encuentra nada no sea un error. En GNU ed 1.20.1 no lo es y sin eso no hay ⟦CODE_0003⟧. ⟦SEP_0007⟧"
+
+#: lessons/study-guides/languages/ed-and-ex.md:195
+msgctxt "s-6fc739854db8-0097"
+msgid "⟦SEP_0009⟧ The program runs on GNU ed ⟦SEP_0010⟧ **implementation-permitted** ⟦SEP_0011⟧ The README tested GNU ed 1.20.1. busybox ed has none of ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧ or ⟦CODE_0006⟧, no ⟦CODE_0007⟧ comments and cannot substitute on ⟦CODE_0008⟧, so it cannot run the script, and the check says so. ⟦SEP_0012⟧"
+msgstr "⟦SEP_0009⟧ El programa se ejecuta en GNU ed ⟦SEP_0010⟧ **permitido por la implementación** ⟦SEP_0011⟧ El README probó GNU ed 1.20.1. busybox ed no tiene ninguno de ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧ ni ⟦CODE_0006⟧. Tampoco tiene comentarios ⟦CODE_0007⟧ y no puede sustituir en ⟦CODE_0008⟧. Por eso no puede ejecutar el script, y la comprobación lo dice. ⟦SEP_0012⟧"
+
+#: lessons/study-guides/languages/ed-and-ex.md:196
+msgctxt "s-a8084bdff12d-0098"
+msgid "⟦SEP_0002⟧ ⟦CODE_0001⟧ (an interval in a basic regular expression) ⟦SEP_0003⟧ **implementation-permitted** ⟦SEP_0004⟧ POSIX BRE, and supported by GNU ed. busybox ed does not support intervals. ⟦SEP_0005⟧"
+msgstr "⟦SEP_0002⟧ ⟦CODE_0001⟧ (un intervalo en una expresión regular básica) ⟦SEP_0003⟧ **permitido por la implementación** ⟦SEP_0004⟧ BRE de POSIX, y GNU ed lo admite. busybox ed no admite intervalos. ⟦SEP_0005⟧"
+
+#: lessons/study-guides/languages/ed-and-ex.md:197
+msgctxt "s-ce1a441aaabe-0099"
+msgid "⟦SEP_0003⟧ Marks, registers and ⟦CODE_0001⟧ in Ex ⟦SEP_0004⟧ **implementation-permitted** ⟦SEP_0005⟧ Part of Ex as implemented by nvi and Vim. Register contents and the exact ⟦CODE_0002⟧ semantics differ in small ways. ⟦SEP_0006⟧"
+msgstr "⟦SEP_0003⟧ Marcas, registros y ⟦CODE_0001⟧ en Ex ⟦SEP_0004⟧ **permitido por la implementación** ⟦SEP_0005⟧ Forman parte de Ex tal como lo implementan nvi y Vim. El contenido de los registros y la semántica exacta de ⟦CODE_0002⟧ difieren en detalles pequeños. ⟦SEP_0006⟧"
+
+#: lessons/study-guides/languages/ed-and-ex.md:198
+msgctxt "s-9029d0a4c6a3-0100"
+msgid "⟦SEP_0002⟧ A line that starts with ⟦CODE_0001⟧ is a comment in Ex ⟦SEP_0003⟧ **guaranteed** by the Ex language ⟦SEP_0004⟧ It is what makes a tape line a \"stop\". ⟦SEP_0005⟧"
+msgstr "⟦SEP_0002⟧ Una línea que empieza con ⟦CODE_0001⟧ es un comentario en Ex ⟦SEP_0003⟧ **garantizado** por el lenguaje Ex ⟦SEP_0004⟧ Es lo que hace que una línea de la cinta sea una \"parada\". ⟦SEP_0005⟧"
+
+#: lessons/study-guides/languages/ed-and-ex.md:199
+msgctxt "s-8bc66129b7c5-0101"
+msgid "⟦SEP_0002⟧ nvi prints ⟦CODE_0001⟧ when it has no terminal ⟦SEP_0003⟧ **implementation-permitted** ⟦SEP_0004⟧ A known message the launcher filters. Anything else that is not a row is an error. ⟦SEP_0005⟧"
+msgstr "⟦SEP_0002⟧ nvi imprime ⟦CODE_0001⟧ cuando no tiene terminal ⟦SEP_0003⟧ **permitido por la implementación** ⟦SEP_0004⟧ Un mensaje conocido que el lanzador filtra. Cualquier otra cosa que no sea una fila es un error. ⟦SEP_0005⟧"
+
+#: lessons/study-guides/languages/ed-and-ex.md:200
+msgctxt "s-b9b586e5a6f7-0102"
+msgid "⟦SEP_0003⟧ Vim in Ex mode needs ⟦CODE_0001⟧ ⟦SEP_0004⟧ **implementation-permitted** ⟦SEP_0005⟧ The launcher chooses flags by the editor's ⟦CODE_0002⟧. ⟦SEP_0006⟧"
+msgstr "⟦SEP_0003⟧ Vim en modo Ex necesita ⟦CODE_0001⟧ ⟦SEP_0004⟧ **permitido por la implementación** ⟦SEP_0005⟧ El lanzador elige las banderas según el ⟦CODE_0002⟧ del editor. ⟦SEP_0006⟧"
+
+#: lessons/study-guides/languages/ed-and-ex.md:201
+msgctxt "s-de1409c6eef7-0103"
+msgid "⟦SEP_0001⟧ Five dice always suffice ⟦SEP_0002⟧ **guaranteed** ⟦SEP_0003⟧ Arithmetic: five cards of at least 10 hours reach 50. ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ Cinco dados siempre bastan ⟦SEP_0002⟧ **garantizado** ⟦SEP_0003⟧ Aritmética: cinco tarjetas de al menos 10 horas llegan a 50. ⟦SEP_0004⟧"
+
+#: lessons/study-guides/languages/ed-and-ex.md:202
+msgctxt "s-ea80fa50b2c6-0104"
+msgid "⟦SEP_0001⟧ The tape ends at 59, matching the maximum total ⟦SEP_0002⟧ **guaranteed** by the challenge's range ⟦SEP_0003⟧ A change to the hours range would need a longer tape. ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ La cinta termina en 59, igual que el total máximo ⟦SEP_0002⟧ **garantizado** por el rango del reto ⟦SEP_0003⟧ Un cambio en el rango de horas necesitaría una cinta más larga. ⟦SEP_0004⟧"
+
+#: lessons/study-guides/languages/ed-and-ex.md:204
+msgctxt "s-245156799421-0105"
+msgid "Most of this is documented features used as documented. The exception is the silent failed ⟦CODE_0001⟧, which the ed README classifies as accidentally exploited: the ⟦CODE_0002⟧ that the whole chain depends on is behavior of one implementation, not a promise. The unusual part elsewhere is the *combination*, such as using a register as both a program and a loop."
+msgstr "La mayor parte de esto son funciones documentadas usadas como se documentan. La excepción es la ⟦CODE_0001⟧ fallida y silenciosa, que el README de ed clasifica como comportamiento aprovechado por accidente. El ⟦CODE_0002⟧ del que depende toda la cadena es comportamiento de una sola implementación, no una promesa. Lo inusual en el resto es la *combinación*, como usar un registro a la vez como programa y como bucle."
+
+#: lessons/study-guides/languages/ed-and-ex.md:206
+msgctxt "s-87d9e31bff8d-0106"
+msgid "**Costs to state.**"
+msgstr "**Costos que debes poder enunciar.**"
+
+#: lessons/study-guides/languages/ed-and-ex.md:208
+msgctxt "s-f0203381edb6-0107"
+msgid "**An editor script has the authority of its caller.** ⟦CODE_0001⟧ runs a shell. The scripts avoid it, and the launcher is the only part that talks to SQLite. See [Capability and authority](⟦DEST_0002⟧)."
+msgstr "**Un script de editor tiene la autoridad de quien lo llama.** ⟦CODE_0001⟧ ejecuta un intérprete de comandos. Los scripts lo evitan, y el lanzador es la única parte que habla con SQLite. Consulta [Capacidad y autoridad](⟦DEST_0002⟧)."
+
+#: lessons/study-guides/languages/ed-and-ex.md:209
+msgctxt "s-453199cb46b5-0108"
+msgid "**A silent no-op is easy to write.** A failed ⟦CODE_0001⟧ inside ⟦CODE_0002⟧ does nothing without a message, so a typo in a pattern looks like a program that works and does nothing."
+msgstr "**Es fácil escribir una operación nula silenciosa.** Una ⟦CODE_0001⟧ fallida dentro de ⟦CODE_0002⟧ no hace nada y no da ningún mensaje. Así, un error tipográfico en un patrón parece un programa que funciona y no hace nada."
+
+#: lessons/study-guides/languages/ed-and-ex.md:210
+msgctxt "s-f598db5dbbbc-0109"
+msgid "**The state is hard to see in Ex.** Marks and registers are not in the buffer. You must print them."
+msgstr "**El estado es difícil de ver en Ex.** Las marcas y los registros no están en el búfer. Hay que imprimirlos."
+
+#: lessons/study-guides/languages/ed-and-ex.md:211
+msgctxt "s-8645f5e251f6-0110"
+msgid "**A hard ceiling.** The ed script holds at most five cards and the Ex tape at most 59, which are the limits of the challenge. Raising the limit needs a longer tape and more dice (see the Lisp guide for the same shape)."
+msgstr "**Un techo duro.** El script de ed admite cinco tarjetas como máximo y la cinta de Ex, 59, que son los límites del reto. Subir el límite necesita una cinta más larga y más dados (consulta la guía de Lisp para la misma forma)."
+
+#: lessons/study-guides/languages/ed-and-ex.md:212
+msgctxt "s-206a60408635-0111"
+msgid "**Where this is legitimate.** ⟦CODE_0001⟧ scripts are real tools for batch edits, and ⟦CODE_0002⟧ scripts are used in build and migration tools. The loops and registers are the stunt."
+msgstr "**Dónde es legítimo.** Los scripts de ⟦CODE_0001⟧ son herramientas reales para ediciones por lotes, y los scripts de ⟦CODE_0002⟧ se usan en herramientas de compilación y de migración. Los bucles y los registros son la acrobacia."
+
+#: lessons/study-guides/languages/ed-and-ex.md:214
+msgctxt "s-061eb6da82a8-0112"
+msgid "Connections across the repository"
+msgstr "Conexiones a lo largo del repositorio"
+
+#: lessons/study-guides/languages/ed-and-ex.md:216
+msgctxt "s-35ccfcaaf1d5-0113"
+msgid "**A data-driven program counter.** In Ex, the position on a tape *is* the total and the stop rule is a line of text. [COBOL](⟦DEST_0001⟧) stores the next step in a jump target, [Forth](⟦DEST_0002⟧) in the parse position and [Make and CMake](⟦DEST_0003⟧) in files and captures. The concept guide [State and control beyond variables](⟦DEST_0004⟧) lines these up."
+msgstr "**Un contador de programa guiado por datos.** En Ex, la posición en una cinta *es* el total y la regla de parada es una línea de texto. [COBOL](⟦DEST_0001⟧) guarda el paso siguiente en un destino de salto, [Forth](⟦DEST_0002⟧) en la posición de análisis y [Make y CMake](⟦DEST_0003⟧) en archivos y capturas. La guía de concepto [Estado y control más allá de las variables](⟦DEST_0004⟧) los alinea."
+
+#: lessons/study-guides/languages/ed-and-ex.md:217
+msgctxt "s-f6d91298b58c-0114"
+msgid "**Rewriting as arithmetic.** ed adds by writing marks side by side, as the sed entry in [Regex engines and sed](⟦DEST_0001⟧) does with ⟦CODE_0002⟧. Both are string-rewriting machines."
+msgstr "**Reescribir como aritmética.** ed suma escribiendo marcas una junto a otra, como hace la entrada de sed en [Motores de regex y sed](⟦DEST_0001⟧) con ⟦CODE_0002⟧. Ambas son máquinas que reescriben cadenas de texto."
+
+#: lessons/study-guides/languages/ed-and-ex.md:218
+msgctxt "s-fd7df0506fb2-0115"
+msgid "**A failed match as an ⟦CODE_0001⟧.** The failed ⟦CODE_0002⟧ inside ⟦CODE_0003⟧ is the same move as the failed ⟦CODE_0004⟧ in CMake and the failed pass in the regex entries, and like the CMake behavior it is accidentally exploited."
+msgstr "**Una coincidencia fallida como ⟦CODE_0001⟧.** La ⟦CODE_0002⟧ fallida dentro de ⟦CODE_0003⟧ es la misma jugada que el ⟦CODE_0004⟧ fallido en CMake y que la pasada fallida en las entradas de regex. Como el comportamiento de CMake, es un comportamiento aprovechado por accidente."
+
+#: lessons/study-guides/languages/ed-and-ex.md:219
+msgctxt "s-dcef6f7df73d-0116"
+msgid "**Orchestration against computation.** The launcher is the same kind of host as the one in [tar](⟦DEST_0001⟧): the real work is the tool, and the shell glues it to SQLite."
+msgstr "**Orquestación frente a cómputo.** El lanzador es el mismo tipo de anfitrión que el de [tar](⟦DEST_0001⟧): el trabajo real lo hace la herramienta, y el intérprete de comandos la une con SQLite."
+
+#: lessons/study-guides/languages/ed-and-ex.md:220
+msgctxt "s-33f0c29d8b64-0117"
+msgid "**In the book.** [ed and Ex](⟦DEST_0001⟧), [Markov algorithms](⟦DEST_0002⟧) and [Term and string rewriting](⟦DEST_0003⟧)."
+msgstr "**En el libro.** [ed y Ex](⟦DEST_0001⟧), [Algoritmos de Markov](⟦DEST_0002⟧) y [Reescritura de términos y de cadenas de texto](⟦DEST_0003⟧)."
+
+#: lessons/study-guides/languages/ed-and-ex.md:222
+msgctxt "s-50944288ce61-0118"
+msgid "Self-check"
+msgstr "Autoevaluación"
+
+#: lessons/study-guides/languages/ed-and-ex.md:224
+msgctxt "s-274e192b952c-0119"
+msgid "Answer each question in your own words before you read the italic text. Say what evidence would support each answer."
+msgstr "Responde cada pregunta con tus propias palabras antes de leer el texto en cursiva. Di qué evidencia respaldaría cada respuesta."
+
+#: lessons/study-guides/languages/ed-and-ex.md:226
+msgctxt "s-70703252b57b-0120"
+msgid ""
+"**Trace.** ⟦CODE_0001⟧ (hours 12 each). For the Ex script, give the mark position after each pass and the tape instruction there. *(Positions 12, 24, 36, 48. Instructions ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧. Four cards, the fourth is the crossing card, and the fifth die is unused.)*\n"
+"2. **Explain.** Why does a ⟦CODE_0006⟧ card keep the ⟦CODE_0007⟧ and the marks? *(The ⟦CODE_0008⟧ rule copies the ledger's ⟦CODE_0009⟧ and marks onto the card, so the next card sees a ledger with ⟦CODE_0010⟧ and dies too. The rule passes the \"already over\" state down the buffer.)*\n"
+"3. **Transfer.** The Ex tape stores the stop rule as 60 lines of data. What does a language with ordinary variables use instead, and what is the trade-off? *(A comparison on a variable. It is shorter and easier to read, and it cannot be changed by editing a line of data while the program is not running.)*\n"
+"4. **Evidence.** A reviewer says, \"These scripts never run a shell command.\" Design a test that could fail. *(Search the script for ⟦CODE_0011⟧ commands outside comments and strings, as ⟦CODE_0012⟧ style tests do for banned words. The negative control is a copy with an added ⟦CODE_0013⟧, which the test must flag.)*"
+msgstr ""
+"**Traza.** ⟦CODE_0001⟧ (12 horas cada una). Para el script de Ex, da la posición de la marca después de cada pasada y la instrucción de la cinta en ese punto. *(Posiciones 12, 24, 36, 48. Instrucciones ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧. Cuatro tarjetas, la cuarta es la tarjeta que cruza el tope, y el quinto dado no se usa.)*\n"
+"2. **Explica.** ¿Por qué una tarjeta ⟦CODE_0006⟧ conserva el ⟦CODE_0007⟧ y las marcas? *(La regla ⟦CODE_0008⟧ copia el ⟦CODE_0009⟧ y las marcas del libro mayor en la tarjeta, así que la tarjeta siguiente ve un libro mayor con ⟦CODE_0010⟧ y también muere. La regla pasa el estado \"ya se pasó\" por el búfer hacia abajo.)*\n"
+"3. **Transfiere.** La cinta de Ex guarda la regla de parada como 60 líneas de datos. ¿Qué usa en su lugar un lenguaje con variables ordinarias, y cuál es la contrapartida? *(Una comparación sobre una variable. Es más corta y más fácil de leer, y no se puede cambiar editando una línea de datos mientras el programa no se está ejecutando.)*\n"
+"4. **Evidencia.** Una revisora dice: \"Estos scripts nunca ejecutan un comando del intérprete de comandos\". Diseña una prueba que pueda fallar. *(Busca en el script comandos ⟦CODE_0011⟧ fuera de comentarios y cadenas de texto, como hacen las pruebas de estilo ⟦CODE_0012⟧ con las palabras prohibidas. El control negativo es una copia con un ⟦CODE_0013⟧ añadido, que la prueba debe señalar.)*"
+
+#: lessons/study-guides/languages/ed-and-ex.md:231
+msgctxt "s-4082f515b2f4-0121"
+msgid "Further reading"
+msgstr "Lecturas adicionales"
+
+#: lessons/study-guides/languages/ed-and-ex.md:233
+msgctxt "s-b39cce4223cf-0122"
+msgid "[ed (text editor)](⟦DEST_0001⟧)) (Wikipedia): the line editor, its history and why ⟦CODE_0002⟧ became ⟦CODE_0003⟧."
+msgstr "[ed (editor de texto)](⟦DEST_0001⟧)) (Wikipedia): el editor de líneas, su historia y por qué ⟦CODE_0002⟧ pasó a ser ⟦CODE_0003⟧."
+
+#: lessons/study-guides/languages/ed-and-ex.md:234
+msgctxt "s-2a74d2d3dd0d-0123"
+msgid "[Ex (text editor)](⟦DEST_0001⟧)) (Wikipedia): the line editor under ⟦CODE_0002⟧."
+msgstr "[Ex (editor de texto)](⟦DEST_0001⟧)) (Wikipedia): el editor de líneas que hay bajo ⟦CODE_0002⟧."
+
+#: lessons/study-guides/languages/ed-and-ex.md:235
+msgctxt "s-b1bf616e522e-0124"
+msgid "[Markov algorithm](⟦DEST_0001⟧) (Wikipedia): the model behind rewriting marks to add."
+msgstr "[Algoritmo de Markov](⟦DEST_0001⟧) (Wikipedia): el modelo que hay detrás de reescribir marcas para sumar."
+
+#: lessons/study-guides/languages/ed-and-ex.md:236
+msgctxt "s-3f0e7c450718-0125"
+msgid "[Computation versus orchestration](⟦DEST_0001⟧) (this book): where the line between editor and launcher falls."
+msgstr "[Cómputo frente a orquestación](⟦DEST_0001⟧) (este libro): dónde cae la línea entre el editor y el lanzador."
