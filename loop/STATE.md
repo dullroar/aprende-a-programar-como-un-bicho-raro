@@ -1,8 +1,8 @@
 # loop/STATE.md (keep to 60 lines; refreshed by every iteration)
 
 - **Edition:** v4-es.0-rc1 (working)    **English SHA:** 48a4429c0a22b2aac628b256a50c07d1816bcb80
-- **Iteration:** 166    **Stage:** 4 (bulk translation)    **Last result:** iter 166 P4-fix-5 done (frozen assurance label restored in the COBOL guide; P4-fix-6 still todo).
-- **Tasks:** todo 45 | doing 0 | done 125 | blocked 0 | skipped 0 (recount with the queue files)
+- **Iteration:** 167    **Stage:** 4 (bulk translation)    **Last result:** iter 167 P4-fix-6 done (finding F006 rejected, no change: the code spans come from the I11-enforced catalog text).
+- **Tasks:** todo 44 | doing 0 | done 126 | blocked 0 | skipped 0 (recount with the queue files)
 - **Next task:** run python3 tools/next_task.py (see loop/queue/generated/translate.jsonl).
 - **Budget:** driver-reported $89.4099 of $100 through the Claude run, with Codex session cost unavailable
 - **Translate progress:** segments accepted 5684 / total 8827 (7394 prose + 1433 Mermaid labels) ; files done 168 / 212 (nonempty, non-fuzzy PO entries and complete files). Latest: lessons/study-guides/languages/ed-and-ex.md.
