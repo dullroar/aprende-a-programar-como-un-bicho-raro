@@ -1,0 +1,676 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/regex-sed/README.md:2
+msgctxt "s-54b5664f5c87-0000"
+msgid "GNU sed"
+msgstr "GNU sed"
+
+#: src/regex-sed/README.md:3
+msgctxt "s-510210457e97-0001"
+msgid "that a program can be one line of text that substitutions rewrite until none applies: a Markov algorithm, with a catastrophic-backtracking regex as its clock."
+msgstr "que un programa puede ser una línea de texto que las sustituciones reescriben hasta que ninguna se aplique: un algoritmo de Markov, con una expresión regular de retroceso catastrófico como reloj."
+
+#: src/regex-sed/README.md:10
+msgctxt "s-529323e84be5-0002"
+msgid "A string-rewriting system (a Markov algorithm)"
+msgstr "Un sistema de reescritura de cadenas de texto (un algoritmo de Markov)"
+
+#: src/regex-sed/README.md:11
+msgctxt "s-3aa48d8b98d1-0003"
+msgid "One line of text, rewritten until no rule applies"
+msgstr "Una línea de texto, reescrita hasta que ninguna regla se aplique"
+
+#: src/regex-sed/README.md:15
+msgctxt "s-cb867c0c9a75-0004"
+msgid "Regex challenge, Track 4: GNU sed (the program is one line of text, rewritten until it's done)"
+msgstr "Reto de regex, ruta 4: GNU sed (el programa es una línea de texto que se reescribe hasta terminar)"
+
+#: src/regex-sed/README.md:17
+msgctxt "s-40bef13fa27c-0005"
+msgid "One ⟦CODE_0001⟧ command runs the whole timecard demo, writes the records to a real SQLite transaction, pulses a banner, and then **exits 1**. There are no variables, no numbers and no arithmetic anywhere in it. The entire program state is a single line of text, and every step is a regex substitution on that line. This entry goes beyond the original regex plan (it lives in git history as ⟦CODE_0002⟧), but it follows the same rules. **⟦DNT_0003⟧**: the records are fictional and go to a scratch SQLite file, with no connection to any real time-reporting system."
+msgstr "Un solo comando ⟦CODE_0001⟧ ejecuta toda la demostración de la tarjeta de horas. Escribe los datos en una transacción real de SQLite, hace latir un banner y después **termina con código de salida 1**. No hay variables, números ni aritmética en ninguna parte. Todo el estado del programa es una sola línea de texto, y cada paso es una sustitución con regex sobre esa línea. Esta entrada va más allá del plan original de regex (vive en el historial de git como ⟦CODE_0002⟧), pero sigue las mismas reglas. **⟦DNT_0003⟧**: los datos son ficticios y van a un archivo SQLite temporal, sin conexión con ningún sistema real de reporte de horas."
+
+#: src/regex-sed/README.md:19
+msgctxt "s-958ca26c6a61-0006"
+msgid "Run it"
+msgstr "Ejecútalo"
+
+#: src/regex-sed/README.md:21
+msgctxt "s-854030e2e5d5-0007"
+msgid "You need GNU sed (Ubuntu's default), ⟦CODE_0001⟧ (⟦CODE_0002⟧) and coreutils' ⟦CODE_0003⟧ (9.x on Ubuntu 24.04). Under WSL 2:"
+msgstr "Necesitas GNU sed (el predeterminado de Ubuntu), ⟦CODE_0001⟧ (⟦CODE_0002⟧) y el ⟦CODE_0003⟧ de coreutils (9.x en Ubuntu 24.04). En WSL 2:"
+
+#: src/regex-sed/README.md:30
+msgctxt "s-7798127f99c1-0008"
+msgid "Records go to ⟦CODE_0001⟧ (default ⟦CODE_0002⟧). Delete that directory to start over. A run looks like this, followed by a three-second pulse on a real terminal:"
+msgstr "Los registros se guardan en ⟦CODE_0001⟧ (valor predeterminado: ⟦CODE_0002⟧). Elimina ese directorio para empezar de nuevo. Así se ve una ejecución, seguida de un pulso de tres segundos en una terminal real:"
+
+#: src/regex-sed/README.md:41
+msgctxt "s-0dcb373c2dff-0009"
+msgid "Program Flow"
+msgstr "Flujo del programa"
+
+#: src/regex-sed/README.md:45
+msgctxt "s-e277d3104f83-0010"
+msgid "regex-sed: one line of text, rewritten by substitutions with labels and jumps"
+msgstr "regex-sed: una línea de texto, reescrita por sustituciones con etiquetas y saltos"
+
+#: src/regex-sed/README.md:46
+msgctxt "s-dbad975ae6fb-0011"
+msgid "A flowchart. sed reads one tape line and rewrites it into the program state. At the label entry, two address tests decide whether to go to done: forty-one or more tally marks in the total, or no categories left. Otherwise the next category is moved to the current slot. At draw, substitutions rewrite a 16-bit shift register in the line until a digit is available. The digit becomes tally marks that are added to the total. The label dec rewrites marks into decimal. The label row prints the row and writes an INSERT to file descriptor 3. Control jumps back to entry. At done, the summary is printed and COMMIT is written to file descriptor 3. On a terminal, a catastrophic backtracking match is the clock for the pulse. sed then exits with status 1 on purpose."
+msgstr "Un diagrama de flujo. sed lee una línea de cinta y la reescribe para formar el estado del programa. En la etiqueta de entrada entry, dos pruebas de dirección deciden si saltar a done: el total tiene cuarenta y una marcas de conteo o más, o no quedan categorías. Si ninguna se cumple, la siguiente categoría pasa a la posición actual. En draw, las sustituciones reescriben un registro de desplazamiento de 16 bits en la línea hasta que hay un dígito disponible. El dígito se convierte en marcas de conteo que se suman al total. La etiqueta dec reescribe las marcas en decimal. En la etiqueta row, sed imprime la fila y escribe un INSERT en el descriptor de archivo 3. El control vuelve a la etiqueta entry. En done, sed imprime el resumen y escribe COMMIT en el descriptor de archivo 3. En una terminal, una coincidencia con retroceso catastrófico hace de reloj para el pulso. Luego sed termina a propósito con estado de salida 1."
+
+#: src/regex-sed/README.md:47
+msgctxt "s-da5d9aee014a-0012"
+msgid "Read the tape line and rewrite it into the program state"
+msgstr "Lee la línea de la cinta y reescríbela en el estado del programa"
+
+#: src/regex-sed/README.md:47
+msgctxt "s-5c35bdb294a0-0013"
+msgid "entry: 41 or more # marks in the total, or no categories left?"
+msgstr "entrada: ¿41 o más marcas # en el total o no quedan categorías?"
+
+#: src/regex-sed/README.md:48
+msgctxt "s-9390298f3fb0-0014"
+msgid "no"
+msgstr "no"
+
+#: src/regex-sed/README.md:48
+msgctxt "s-913eba0e8d44-0015"
+msgid "Move the next category into the current slot"
+msgstr "Mueve la siguiente categoría a la ranura actual"
+
+#: src/regex-sed/README.md:49
+msgctxt "s-351d307214d6-0016"
+msgid "draw and step: rewrite the 16-bit shift register until a digit comes out"
+msgstr "draw y step: reescribe el registro de desplazamiento de 16 bits hasta que salga un dígito"
+
+#: src/regex-sed/README.md:50
+msgctxt "s-b4b2233e95f5-0017"
+msgid "Turn the digit into tally marks and append them to the total"
+msgstr "Convierte el dígito en marcas y añádelas al total"
+
+#: src/regex-sed/README.md:51
+msgctxt "s-40f1c4a29654-0018"
+msgid "dec and row: marks to decimal, print the row, write the INSERT to fd 3"
+msgstr "dec y row: convierte a decimal, imprime la fila y escribe INSERT en el descriptor 3"
+
+#: src/regex-sed/README.md:53
+msgctxt "s-8a798890fe93-0019"
+msgid "yes"
+msgstr "sí"
+
+#: src/regex-sed/README.md:53
+msgctxt "s-beaf167a0297-0020"
+msgid "done: print the summary, write COMMIT to fd 3"
+msgstr "done: imprime el resumen y escribe COMMIT en el descriptor 3"
+
+#: src/regex-sed/README.md:54
+msgctxt "s-051f43dd54d4-0021"
+msgid "On a terminal: pulse, timed by a regex that backtracks for a while"
+msgstr "En terminal: pulso al ritmo del retroceso de una expresión regular"
+
+#: src/regex-sed/README.md:55
+msgctxt "s-96957d79ba00-0022"
+msgid "Q1: sed exits 1 on purpose; sqlite3 reads fd 3"
+msgstr "Q1: sed termina a propósito con estado 1. sqlite3 lee el descriptor 3"
+
+#: src/regex-sed/README.md:58
+msgctxt "s-58a839c1be00-0023"
+msgid "**What this shows:** the only memory is one line of text, and every step is a substitution on it. The jumps (⟦CODE_0001⟧ and ⟦CODE_0002⟧) with address tests make a program counter. The loop is the jump from ⟦CODE_0003⟧ back to ⟦CODE_0004⟧, and the stop rule is a regex that matches 41 tally marks."
+msgstr "**Qué muestra:** la única memoria es una línea de texto y cada paso es una sustitución en ella. Los saltos (⟦CODE_0001⟧ y ⟦CODE_0002⟧) y las pruebas de dirección forman un contador de programa. El bucle vuelve de ⟦CODE_0003⟧ a ⟦CODE_0004⟧. La regla de parada usa una expresión regular que encuentra 41 marcas de conteo."
+
+#: src/regex-sed/README.md:60
+msgctxt "s-c76e95bfe457-0024"
+msgid "**Why this mechanism matters:** this is a rewriting system, the Markov-algorithm model: there are no variables and no numbers. The other regex entries make one match do the work. This one makes many substitutions do it, and uses a slow match only as a clock."
+msgstr "**Por qué importa este mecanismo:** es un sistema de reescritura, el modelo del algoritmo de Markov. No tiene variables ni números. Las otras entradas de expresiones regulares hacen el trabajo con una sola coincidencia. Esta hace el trabajo con muchas sustituciones y usa una coincidencia lenta solo como reloj."
+
+#: src/regex-sed/README.md:62
+msgctxt "s-7f97d965b4c0-0025"
+msgid "How the stunt works"
+msgstr "Cómo funciona el truco"
+
+#: src/regex-sed/README.md:64
+msgctxt "s-283b8252157a-0026"
+msgid "The other regex entries make **one match** do the work. The engine's quantifiers and backtracking are the loop, and a host language (Perl code blocks, a C struct, SQLite) does the arithmetic. This entry takes the opposite approach: **many small substitutions, one after another, on a single string**. Nothing outside that string holds any state. Random numbers, addition, comparison and decimal formatting are all done by rewriting text. That is an old and well-understood model of computation, the Markov algorithm."
+msgstr "Las otras entradas de expresiones regulares hacen el trabajo con **una sola coincidencia**. Los cuantificadores del motor y el retroceso forman el bucle. Un lenguaje anfitrión (bloques de código Perl, una estructura de C, SQLite) hace la aritmética. Esta entrada hace lo contrario: **muchas sustituciones pequeñas, una tras otra, en una sola cadena de texto**. Nada fuera de esa cadena guarda estado. Los números aleatorios, la suma, la comparación y el formato decimal salen de reescribir texto. Es un modelo de cómputo antiguo y bien entendido, el algoritmo de Markov."
+
+#: src/regex-sed/README.md:66
+msgctxt "s-3564dc8e3121-0027"
+msgid "Markov algorithms: computing by find-and-replace"
+msgstr "Algoritmos de Markov: calcular con buscar y reemplazar"
+
+#: src/regex-sed/README.md:68
+msgctxt "s-eb247492574a-0028"
+msgid "A **Markov algorithm** (Andrey Markov Jr. called them *normal algorithms*, in the early 1950s; not the Markov of Markov chains) is a program made of nothing but an ordered list of rewrite rules, ⟦CODE_0001⟧. It runs like this:"
+msgstr "Un **algoritmo de Markov** es un programa que consta solo de una lista ordenada de reglas de reescritura, ⟦CODE_0001⟧. Andréi Márkov hijo los llamó *algoritmos normales* a principios de la década de 1950. Es otro Márkov, distinto del de las cadenas de Markov. El programa se ejecuta así:"
+
+#: src/regex-sed/README.md:70
+msgctxt "s-5f0dd47cac41-0029"
+msgid ""
+"Look through the rules **in order** and find the first one whose pattern appears anywhere in the string.\n"
+"2. Replace the **leftmost** occurrence of that pattern with the rule's replacement.\n"
+"3. If that rule is marked as terminating, stop. Otherwise go back to step 1 and **start again from the first rule**.\n"
+"4. If no rule's pattern appears in the string, stop."
+msgstr ""
+"Examina las reglas **en orden** y encuentra la primera cuyo patrón aparezca en cualquier lugar de la cadena de texto.\n"
+"2. Reemplaza la aparición **más a la izquierda** de ese patrón por el reemplazo de la regla.\n"
+"3. Si esa regla está marcada como terminal, detente. Si no, vuelve al paso 1 y **empieza otra vez por la primera regla**.\n"
+"4. Si en la cadena de texto no aparece el patrón de ninguna regla, detente."
+
+#: src/regex-sed/README.md:75
+msgctxt "s-d655da940c86-0030"
+msgid "That's the whole model: no variables, no memory but the string, no instructions but \"replace this with that.\" And it is **Turing-complete**. Anything a computer can compute, some list of rewrite rules can compute too, given a long enough string."
+msgstr "Eso es todo el modelo: sin variables, sin más memoria que la cadena de texto y sin más instrucciones que \"reemplaza esto por aquello\". Y es **Turing-completo**. Con una cadena de texto lo bastante larga, alguna lista de reglas de reescritura puede calcular todo lo que puede calcular una computadora."
+
+#: src/regex-sed/README.md:77
+msgctxt "s-441f8a576423-0031"
+msgid "A tiny example: binary to unary"
+msgstr "Un ejemplo pequeño: de binario a unario"
+
+#: src/regex-sed/README.md:79
+msgctxt "s-98116c5c130c-0032"
+msgid "Three rules convert a binary number into that many tally marks:"
+msgstr "Tres reglas convierten un número binario en esa misma cantidad de marcas de conteo:"
+
+#: src/regex-sed/README.md:81
+msgctxt "s-539bd296d4d6-0033"
+msgid "⟦SEP_0001⟧ # ⟦SEP_0002⟧ Rule ⟦SEP_0003⟧ Meaning ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ # ⟦SEP_0002⟧ Regla ⟦SEP_0003⟧ Significado ⟦SEP_0004⟧"
+
+#: src/regex-sed/README.md:83
+msgctxt "s-66d1cb3cfe7c-0034"
+msgid "⟦SEP_0004⟧ 1 ⟦SEP_0005⟧ ⟦CODE_0001⟧ → ⟦CODE_0002⟧ ⟦SEP_0006⟧ a mark passing a ⟦CODE_0003⟧ to its right doubles (moving a digit one place left in binary doubles its value) ⟦SEP_0007⟧"
+msgstr "⟦SEP_0004⟧ 1 ⟦SEP_0005⟧ ⟦CODE_0001⟧ → ⟦CODE_0002⟧ ⟦SEP_0006⟧ Una marca se duplica al pasar un ⟦CODE_0003⟧ que está a su derecha (en binario, mover un dígito un lugar a la izquierda duplica su valor) ⟦SEP_0007⟧"
+
+#: src/regex-sed/README.md:84
+msgctxt "s-d768117fc1f6-0035"
+msgid "⟦SEP_0005⟧ 2 ⟦SEP_0006⟧ ⟦CODE_0001⟧ → ⟦CODE_0002⟧ ⟦SEP_0007⟧ a ⟦CODE_0003⟧ becomes a ⟦CODE_0004⟧ with one mark ⟦SEP_0008⟧"
+msgstr "⟦SEP_0005⟧ 2 ⟦SEP_0006⟧ ⟦CODE_0001⟧ → ⟦CODE_0002⟧ ⟦SEP_0007⟧ Un ⟦CODE_0003⟧ se convierte en un ⟦CODE_0004⟧ con una marca ⟦SEP_0008⟧"
+
+#: src/regex-sed/README.md:85
+msgctxt "s-65ea4d666150-0036"
+msgid "⟦SEP_0004⟧ 3 ⟦SEP_0005⟧ ⟦CODE_0001⟧ → *(nothing)* ⟦SEP_0006⟧ once no marks are left of any ⟦CODE_0002⟧, delete the ⟦CODE_0003⟧s ⟦SEP_0007⟧"
+msgstr "⟦SEP_0004⟧ 3 ⟦SEP_0005⟧ ⟦CODE_0001⟧ → *(nada)* ⟦SEP_0006⟧ Cuando ya no queden marcas a la izquierda de ningún ⟦CODE_0002⟧, elimina cada ⟦CODE_0003⟧ ⟦SEP_0007⟧"
+
+#: src/regex-sed/README.md:87
+msgctxt "s-62e8fbf061f0-0037"
+msgid "Run on ⟦CODE_0001⟧ (five), always restarting from rule 1:"
+msgstr "Ejecútalo con ⟦CODE_0001⟧ (cinco) y vuelve siempre a la regla 1:"
+
+#: src/regex-sed/README.md:89
+msgctxt "s-e8a92fc88130-0038"
+msgid "⟦SEP_0001⟧ String ⟦SEP_0002⟧ Rule applied ⟦SEP_0003⟧"
+msgstr "⟦SEP_0001⟧ Cadena de texto ⟦SEP_0002⟧ Regla aplicada ⟦SEP_0003⟧"
+
+#: src/regex-sed/README.md:91
+msgctxt "s-9cbdc97e9e61-0039"
+msgid "⟦SEP_0004⟧ ⟦CODE_0001⟧ ⟦SEP_0005⟧ 2: the first ⟦CODE_0002⟧ becomes ⟦CODE_0003⟧ ⟦SEP_0006⟧"
+msgstr "⟦SEP_0004⟧ ⟦CODE_0001⟧ ⟦SEP_0005⟧ 2: el primer ⟦CODE_0002⟧ se convierte en ⟦CODE_0003⟧ ⟦SEP_0006⟧"
+
+#: src/regex-sed/README.md:92
+msgctxt "s-1c4023f2a6c4-0040"
+msgid "⟦SEP_0004⟧ ⟦CODE_0001⟧ ⟦SEP_0005⟧ 1: ⟦CODE_0002⟧ becomes ⟦CODE_0003⟧ ⟦SEP_0006⟧"
+msgstr "⟦SEP_0004⟧ ⟦CODE_0001⟧ ⟦SEP_0005⟧ 1: ⟦CODE_0002⟧ se convierte en ⟦CODE_0003⟧ ⟦SEP_0006⟧"
+
+#: src/regex-sed/README.md:93
+msgctxt "s-73c34c558c75-0041"
+msgid "⟦SEP_0004⟧ ⟦CODE_0001⟧ ⟦SEP_0005⟧ 2: no ⟦CODE_0002⟧, so the next ⟦CODE_0003⟧ ⟦SEP_0006⟧"
+msgstr "⟦SEP_0004⟧ ⟦CODE_0001⟧ ⟦SEP_0005⟧ 2: no hay ⟦CODE_0002⟧, así que le toca al siguiente ⟦CODE_0003⟧ ⟦SEP_0006⟧"
+
+#: src/regex-sed/README.md:96
+msgctxt "s-b71af37a94a8-0042"
+msgid "⟦SEP_0005⟧ ⟦CODE_0001⟧ ⟦SEP_0006⟧ 3: no ⟦CODE_0002⟧ or ⟦CODE_0003⟧ left, delete a ⟦CODE_0004⟧ ⟦SEP_0007⟧"
+msgstr "⟦SEP_0005⟧ ⟦CODE_0001⟧ ⟦SEP_0006⟧ 3: no quedan ⟦CODE_0002⟧ ni ⟦CODE_0003⟧. Elimina un ⟦CODE_0004⟧ ⟦SEP_0007⟧"
+
+#: src/regex-sed/README.md:99
+msgctxt "s-ea23c5a77928-0043"
+msgid "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ no rule applies: stop. Five marks ⟦SEP_0004⟧"
+msgstr "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ No se aplica ninguna regla. Detente. Quedan cinco marcas ⟦SEP_0004⟧"
+
+#: src/regex-sed/README.md:101
+msgctxt "s-6a6b30ff94d1-0044"
+msgid "The same algorithm in sed"
+msgstr "El mismo algoritmo en sed"
+
+#: src/regex-sed/README.md:103
+msgctxt "s-b6b2f170ddc0-0045"
+msgid "sed can run a Markov algorithm almost exactly as it is written. ⟦CODE_0001⟧ replaces the leftmost match, and ⟦CODE_0002⟧ (\"jump to ⟦CODE_0003⟧ if the last substitution matched\") supplies the \"start again from the first rule\":"
+msgstr "sed puede ejecutar un algoritmo de Markov casi tal como está escrito. ⟦CODE_0001⟧ reemplaza la coincidencia más a la izquierda. ⟦CODE_0002⟧ (\"salta a ⟦CODE_0003⟧ si la última sustitución encontró una coincidencia\") hace que se vuelva a \"empezar por la primera regla\":"
+
+#: src/regex-sed/README.md:115
+msgctxt "s-c6f386178b4e-0046"
+msgid "⟦CODE_0001⟧ prints ⟦CODE_0002⟧. (I ran this, and ⟦CODE_0003⟧ shows exactly the nine strings in the table above.)"
+msgstr "⟦CODE_0001⟧ imprime ⟦CODE_0002⟧. (Lo ejecuté y ⟦CODE_0003⟧ muestra exactamente las nueve cadenas de texto de la tabla anterior.)"
+
+#: src/regex-sed/README.md:117
+msgctxt "s-a10c0207090c-0047"
+msgid "How ⟦CODE_0001⟧ relates to that"
+msgstr "Cómo se relaciona ⟦CODE_0001⟧ con ese modelo"
+
+#: src/regex-sed/README.md:119
+msgctxt "s-b21e830a6f6b-0048"
+msgid "⟦CODE_0001⟧ is not written as one flat Markov rule list. That would work in principle, but it would be thousands of rules and unreadable even by this entry's standards. It is a **Markov-style machine with a program counter**: the string is still the only memory and every operation is still a substitution, but labels and jumps (⟦CODE_0002⟧, ⟦CODE_0003⟧) decide which group of rules runs next. Inside the groups, pure Markov behavior shows up all over:"
+msgstr "⟦CODE_0001⟧ no está escrito como una sola lista plana de reglas de Markov. Eso funcionaría en principio, pero tendría miles de reglas y sería ilegible hasta para esta entrada. Es una **máquina al estilo de Markov con un contador de programa**. La cadena de texto sigue siendo la única memoria y toda operación sigue siendo una sustitución. Las etiquetas y los saltos (⟦CODE_0002⟧, ⟦CODE_0003⟧) deciden qué grupo de reglas se ejecuta después. Dentro de los grupos, el comportamiento puro de Markov aparece por todas partes:"
+
+#: src/regex-sed/README.md:121
+msgctxt "s-1411cc6c9980-0049"
+msgid "The **lookup tables** (bits to digit, digit to tally marks, tally marks to decimal) are ordered rule lists where the first rule that matches wins."
+msgstr "Las **tablas de consulta** (de bits a dígito, de dígito a marcas de conteo y de marcas de conteo a decimal) son listas ordenadas de reglas. Gana la primera regla con una coincidencia."
+
+#: src/regex-sed/README.md:122
+msgctxt "s-6aec2905e961-0050"
+msgid "The **XOR** is a three-rule rewriting system: delete the ⟦CODE_0001⟧s, then an odd number of ⟦CODE_0002⟧s becomes ⟦CODE_0003⟧ and an even number becomes ⟦CODE_0004⟧."
+msgstr "El **XOR** es un sistema de reescritura de tres reglas: se eliminan los ⟦CODE_0001⟧, luego una cantidad impar de ⟦CODE_0002⟧ se convierte en ⟦CODE_0003⟧ y una cantidad par en ⟦CODE_0004⟧."
+
+#: src/regex-sed/README.md:123
+msgctxt "s-511e45cc92db-0051"
+msgid "The **loops** (⟦CODE_0001⟧) are \"keep applying this group while its pattern still matches,\" which is the Markov restart in a different form."
+msgstr "Los **bucles** (⟦CODE_0001⟧) significan \"sigue aplicando este grupo mientras haya una coincidencia con su patrón\". Es otra forma de reiniciar un algoritmo de Markov."
+
+#: src/regex-sed/README.md:124
+msgctxt "s-1016f87582d1-0052"
+msgid "Every **decision** is \"does this pattern occur in the string?\" That's step 1 of a Markov algorithm, used as an ⟦CODE_0001⟧."
+msgstr "Cada **decisión** pregunta \"¿aparece este patrón en la cadena de texto?\". Es el paso 1 de un algoritmo de Markov, usado como ⟦CODE_0001⟧."
+
+#: src/regex-sed/README.md:126
+msgctxt "s-cd23d8edd79d-0053"
+msgid "The program state: one line of text"
+msgstr "El estado del programa: una línea de texto"
+
+#: src/regex-sed/README.md:128
+msgctxt "s-1e29caea3729-0054"
+msgid "⟦CODE_0001⟧ writes one line (the *tape*) and runs one ⟦CODE_0002⟧ command on it:"
+msgstr "⟦CODE_0001⟧ escribe una línea (la *cinta*) y ejecuta un comando ⟦CODE_0002⟧ sobre ella:"
+
+#: src/regex-sed/README.md:134
+msgctxt "s-c31a1f15e367-0055"
+msgid "The first substitution validates it and adds the rest of the state. From then on, the pattern space looks like this, and it is the entire computer:"
+msgstr "La primera sustitución valida la línea y agrega el resto del estado. A partir de ahí, el espacio de patrones se ve así y constituye toda la computadora:"
+
+#: src/regex-sed/README.md:140
+msgctxt "s-023b746fc158-0056"
+msgid "⟦SEP_0001⟧ Field ⟦SEP_0002⟧ Holds ⟦SEP_0003⟧ Represented as ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ Campo ⟦SEP_0002⟧ Contenido ⟦SEP_0003⟧ Representación ⟦SEP_0004⟧"
+
+#: src/regex-sed/README.md:142
+msgctxt "s-84f5c7f4b947-0057"
+msgid "⟦SEP_0003⟧ ⟦CODE_0001⟧, ⟦CODE_0002⟧ ⟦SEP_0004⟧ run id, ISO week ⟦SEP_0005⟧ text from the host, copied into the output ⟦SEP_0006⟧"
+msgstr "⟦SEP_0003⟧ ⟦CODE_0001⟧, ⟦CODE_0002⟧ ⟦SEP_0004⟧ id de ejecución, semana ISO ⟦SEP_0005⟧ texto del anfitrión que se copia a la salida ⟦SEP_0006⟧"
+
+#: src/regex-sed/README.md:143
+msgctxt "s-f63af6a41917-0058"
+msgid "⟦SEP_0004⟧ ⟦CODE_0001⟧ ⟦SEP_0005⟧ is stdout a terminal (for the pulse) ⟦SEP_0006⟧ ⟦CODE_0002⟧'s exit status, ⟦CODE_0003⟧ = yes ⟦SEP_0007⟧"
+msgstr "⟦SEP_0004⟧ ⟦CODE_0001⟧ ⟦SEP_0005⟧ si stdout es una terminal (para el pulso) ⟦SEP_0006⟧ estado de salida de ⟦CODE_0002⟧, ⟦CODE_0003⟧ = sí ⟦SEP_0007⟧"
+
+#: src/regex-sed/README.md:144
+msgctxt "s-a298b263b181-0059"
+msgid "⟦SEP_0004⟧ ⟦CODE_0001⟧ ⟦SEP_0005⟧ dump the state at each step? ⟦SEP_0006⟧ ⟦CODE_0002⟧ / ⟦CODE_0003⟧ ⟦SEP_0007⟧"
+msgstr "⟦SEP_0004⟧ ⟦CODE_0001⟧ ⟦SEP_0005⟧ ¿Volcar el estado en cada paso? ⟦SEP_0006⟧ ⟦CODE_0002⟧ / ⟦CODE_0003⟧ ⟦SEP_0007⟧"
+
+#: src/regex-sed/README.md:145
+msgctxt "s-54e257f491f9-0060"
+msgid "⟦SEP_0004⟧ ⟦CODE_0001⟧ ⟦SEP_0005⟧ the random number generator ⟦SEP_0006⟧ 16 characters of ⟦CODE_0002⟧/⟦CODE_0003⟧: a shift register ⟦SEP_0007⟧"
+msgstr "⟦SEP_0004⟧ ⟦CODE_0001⟧ ⟦SEP_0005⟧ el generador de números aleatorios ⟦SEP_0006⟧ 16 caracteres ⟦CODE_0002⟧/⟦CODE_0003⟧: un registro de desplazamiento ⟦SEP_0007⟧"
+
+#: src/regex-sed/README.md:146
+msgctxt "s-203ca23c6a33-0061"
+msgid "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ categories not yet used ⟦SEP_0004⟧ a comma list, consumed from the front ⟦SEP_0005⟧"
+msgstr "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ categorías aún sin usar ⟦SEP_0004⟧ una lista separada por comas que se consume desde el principio ⟦SEP_0005⟧"
+
+#: src/regex-sed/README.md:147
+msgctxt "s-c8e254bd21ca-0062"
+msgid "⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ the running total ⟦SEP_0005⟧ **tally marks**: 15 hours is ⟦CODE_0002⟧ ⟦SEP_0006⟧"
+msgstr "⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ el total acumulado ⟦SEP_0005⟧ **marcas de conteo**: 15 horas se representan con ⟦CODE_0002⟧ ⟦SEP_0006⟧"
+
+#: src/regex-sed/README.md:148
+msgctxt "s-ec0cf4fdb3ae-0063"
+msgid "⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ entries so far ⟦SEP_0005⟧ tally marks: ⟦CODE_0002⟧ is 3 ⟦SEP_0006⟧"
+msgstr "⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ entradas hasta ahora ⟦SEP_0005⟧ marcas de conteo: ⟦CODE_0002⟧ representa 3 ⟦SEP_0006⟧"
+
+#: src/regex-sed/README.md:149
+msgctxt "s-bc011565b108-0064"
+msgid "⟦SEP_0006⟧ ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧ ⟦SEP_0007⟧ scratch registers ⟦SEP_0008⟧ appear and disappear during one iteration (see the trace) ⟦SEP_0009⟧"
+msgstr "⟦SEP_0006⟧ ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧ ⟦SEP_0007⟧ registros auxiliares ⟦SEP_0008⟧ aparecen y desaparecen durante una iteración (ver la traza) ⟦SEP_0009⟧"
+
+#: src/regex-sed/README.md:150
+msgctxt "s-4c93d951f256-0065"
+msgid "⟦SEP_0004⟧ ⟦CODE_0001⟧ ⟦SEP_0005⟧ return address for the decimal-printing subroutine ⟦SEP_0006⟧ the text ⟦CODE_0002⟧ or ⟦CODE_0003⟧ at the front ⟦SEP_0007⟧"
+msgstr "⟦SEP_0004⟧ ⟦CODE_0001⟧ ⟦SEP_0005⟧ dirección de retorno de la subrutina que imprime en decimal ⟦SEP_0006⟧ el texto ⟦CODE_0002⟧ o ⟦CODE_0003⟧ al principio ⟦SEP_0007⟧"
+
+#: src/regex-sed/README.md:152
+msgctxt "s-ad34557d64ae-0066"
+msgid "⟦CODE_0001⟧ prints this line at the top of each iteration and after each shift-register step. For the full story, GNU sed can show every command and the string after it:"
+msgstr "⟦CODE_0001⟧ imprime esta línea al inicio de cada iteración y después de cada paso del registro de desplazamiento. Para ver todo el proceso, GNU sed puede mostrar cada comando y la cadena de texto que deja:"
+
+#: src/regex-sed/README.md:159
+msgctxt "s-1d07d5aa1505-0067"
+msgid "That fixed seed always produces the run shown at the top of this README. The trace below is taken from that ⟦CODE_0001⟧ output."
+msgstr "Esa semilla fija siempre produce la ejecución que aparece al principio de este README. La traza de abajo proviene de esa salida de ⟦CODE_0001⟧."
+
+#: src/regex-sed/README.md:161
+msgctxt "s-11a0e9e7a5da-0068"
+msgid "One iteration, traced step by step"
+msgstr "Traza una iteración paso a paso"
+
+#: src/regex-sed/README.md:163
+msgctxt "s-53892b091526-0069"
+msgid "This is the **second** iteration of that run: it books *⟦DNT_0001⟧, 14 hours*, taking the total from 15 to 29. It's a good one to follow because its first random draw is **rejected** and redrawn. It takes 137 sed commands, 58 of them substitutions that actually matched. In the snapshots below, ⟦CODE_0002⟧ stands for the unchanging prefix ⟦CODE_0003⟧."
+msgstr "Esta es la **segunda** iteración de esa ejecución: registra *⟦DNT_0001⟧, 14 horas* y el total pasa de 15 a 29. Conviene seguirla porque el programa **rechaza** la primera extracción aleatoria y hace otra. Usa 137 comandos de sed, de los cuales 58 son sustituciones que sí tuvieron una coincidencia. En las instantáneas de abajo, ⟦CODE_0002⟧ representa el prefijo ⟦CODE_0003⟧, que no cambia."
+
+#: src/regex-sed/README.md:165
+msgctxt "s-91b49190e85b-0070"
+msgid "Step 1: the loop head and the stop rule"
+msgstr "Paso 1: inicio del bucle y regla de parada"
+
+#: src/regex-sed/README.md:178
+msgctxt "s-291ffa68aecc-0071"
+msgid "The second line prints the state if tracing is on. The third is the **stop rule**: if the total contains 41 marks, it's over 40, so jump to the finish. Here it has 15, so no match. The fourth stops if the category list is empty, and it isn't. Two \"comparisons,\" and neither one compares numbers. Each asks whether a pattern occurs."
+msgstr "La segunda línea imprime el estado si la traza está activada. La tercera es la **regla de parada**: si el total contiene 41 marcas, pasa de 40 y el programa salta al final. Aquí tiene 15, así que no hay coincidencia. La cuarta detiene el programa si la lista de categorías está vacía. Aquí no lo está. Son dos \"comparaciones\" y ninguna compara números. Cada una comprueba si aparece un patrón."
+
+#: src/regex-sed/README.md:180
+msgctxt "s-47712104e62b-0072"
+msgid "Step 2: take the next category"
+msgstr "Paso 2: toma la categoría siguiente"
+
+#: src/regex-sed/README.md:186
+msgctxt "s-1e54c5bf96a3-0073"
+msgid "The first category moves off the list into a scratch field ⟦CODE_0001⟧ at the end:"
+msgstr "La primera categoría sale de la lista y pasa a un campo auxiliar ⟦CODE_0001⟧ al final:"
+
+#: src/regex-sed/README.md:192
+msgctxt "s-6556d73b9aad-0074"
+msgid "Step 3: draw a random nibble (four shift-register steps)"
+msgstr "Paso 3: extrae un grupo aleatorio de cuatro bits (cuatro pasos del registro de desplazamiento)"
+
+#: src/regex-sed/README.md:199
+msgctxt "s-9dde751cc2a4-0075"
+msgid "A counter ⟦CODE_0001⟧ (four marks, four steps) is inserted. Then the ⟦CODE_0002⟧ group runs once per mark. Here is the **first step** in full:"
+msgstr "El programa inserta un contador ⟦CODE_0001⟧ (cuatro marcas, cuatro pasos). Luego ejecuta el grupo ⟦CODE_0002⟧ una vez por marca. Aquí está el **primer paso** completo:"
+
+#: src/regex-sed/README.md:206
+msgctxt "s-969d039d97ac-0076"
+msgid "This *copies* the four **tap bits** (characters 11, 13, 14 and 16) into a scratch field ⟦CODE_0001⟧. The register ⟦CODE_0002⟧ has taps ⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧, ⟦CODE_0006⟧:"
+msgstr "Esto *copia* los cuatro **bits de realimentación** (caracteres 11, 13, 14 y 16) en un campo auxiliar ⟦CODE_0001⟧. Los bits de realimentación del registro ⟦CODE_0002⟧ son ⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧ y ⟦CODE_0006⟧:"
+
+#: src/regex-sed/README.md:218
+msgctxt "s-41c60a2155f3-0077"
+msgid "That's **XOR, done by rewriting**. First the ⟦CODE_0001⟧s are deleted (⟦CODE_0002⟧ becomes ⟦CODE_0003⟧). Then an odd number of ⟦CODE_0004⟧s becomes ⟦CODE_0005⟧ (no match here) and an even number becomes ⟦CODE_0006⟧ (match). The XOR of ⟦CODE_0007⟧ is ⟦CODE_0008⟧."
+msgstr "Eso es **XOR mediante reescritura**. Primero, se eliminan los ⟦CODE_0001⟧ (⟦CODE_0002⟧ se convierte en ⟦CODE_0003⟧). Después, una cantidad impar de ⟦CODE_0004⟧ se convierte en ⟦CODE_0005⟧ (aquí no hay coincidencia) y una cantidad par se convierte en ⟦CODE_0006⟧ (sí hay coincidencia). El XOR de ⟦CODE_0007⟧ es ⟦CODE_0008⟧."
+
+#: src/regex-sed/README.md:226
+msgctxt "s-6376b9458bc4-0078"
+msgid "The **shift**: the new bit goes on the front, the last bit falls off the end, and ⟦CODE_0001⟧ disappears. One counter mark is removed, and if any remain, it loops:"
+msgstr "Así funciona el **desplazamiento**: el nuevo bit entra por el principio, el último sale por el final y ⟦CODE_0001⟧ desaparece. El programa elimina una marca del contador y, si queda alguna, repite el bucle:"
+
+#: src/regex-sed/README.md:232
+msgctxt "s-50270f024df4-0079"
+msgid "The three remaining steps go the same way:"
+msgstr "Los tres pasos restantes funcionan igual:"
+
+#: src/regex-sed/README.md:234
+msgctxt "s-fb7d926a3830-0080"
+msgid "⟦SEP_0003⟧ Step ⟦SEP_0004⟧ Register before ⟦SEP_0005⟧ Tap bits → ⟦CODE_0001⟧ ⟦SEP_0006⟧ ⟦CODE_0002⟧s dropped ⟦SEP_0007⟧ XOR ⟦SEP_0008⟧ Register after ⟦SEP_0009⟧"
+msgstr "⟦SEP_0003⟧ Paso ⟦SEP_0004⟧ Registro antes ⟦SEP_0005⟧ Bits de realimentación → ⟦CODE_0001⟧ ⟦SEP_0006⟧ Sin los ⟦CODE_0002⟧ ⟦SEP_0007⟧ XOR ⟦SEP_0008⟧ Registro después ⟦SEP_0009⟧"
+
+#: src/regex-sed/README.md:241
+msgctxt "s-59a7cd5a1335-0081"
+msgid "After four steps, the first four characters are four brand-new bits: ⟦CODE_0001⟧, which is 10."
+msgstr "Después de cuatro pasos, los cuatro primeros caracteres son cuatro bits nuevos: ⟦CODE_0001⟧, que equivale a 10."
+
+#: src/regex-sed/README.md:243
+msgctxt "s-bc3d5d0783ea-0082"
+msgid "Step 4: reject and redraw"
+msgstr "Paso 4: rechaza la extracción y haz otra"
+
+#: src/regex-sed/README.md:250
+msgctxt "s-4a5ac0285569-0083"
+msgid "The empty counter is removed. A digit must be 0-9, so ⟦CODE_0001⟧ through ⟦CODE_0002⟧ (10-15) are rejected. In binary those are exactly the nibbles that start with ⟦CODE_0003⟧ or ⟦CODE_0004⟧, so the regex ⟦CODE_0005⟧ matches them, and it matches here. **Jump back to ⟦CODE_0006⟧** and run four more steps:"
+msgstr "El programa elimina el contador vacío. Un dígito debe estar entre 0 y 9, así que el programa rechaza el intervalo de ⟦CODE_0001⟧ a ⟦CODE_0002⟧ (de 10 a 15). En binario, son justo los grupos de cuatro bits que empiezan con ⟦CODE_0003⟧ o ⟦CODE_0004⟧. La regex ⟦CODE_0005⟧ encuentra una coincidencia con esos grupos, como en este caso. **Vuelve a ⟦CODE_0006⟧** y ejecuta cuatro pasos más:"
+
+#: src/regex-sed/README.md:252
+msgctxt "s-fb7d926a3830-0084"
+msgid "⟦SEP_0003⟧ Step ⟦SEP_0004⟧ Register before ⟦SEP_0005⟧ Tap bits → ⟦CODE_0001⟧ ⟦SEP_0006⟧ ⟦CODE_0002⟧s dropped ⟦SEP_0007⟧ XOR ⟦SEP_0008⟧ Register after ⟦SEP_0009⟧"
+msgstr "⟦SEP_0003⟧ Paso ⟦SEP_0004⟧ Registro antes ⟦SEP_0005⟧ Bits de realimentación → ⟦CODE_0001⟧ ⟦SEP_0006⟧ Sin los ⟦CODE_0002⟧ ⟦SEP_0007⟧ XOR ⟦SEP_0008⟧ Registro después ⟦SEP_0009⟧"
+
+#: src/regex-sed/README.md:259
+msgctxt "s-c548c5bc1d27-0085"
+msgid "⟦CODE_0001⟧ doesn't match ⟦CODE_0002⟧, so execution continues."
+msgstr "No hay coincidencia entre ⟦CODE_0001⟧ y ⟦CODE_0002⟧, así que la ejecución continúa."
+
+#: src/regex-sed/README.md:261
+msgctxt "s-2b4beb7efb20-0086"
+msgid "Step 5: bits to a digit (a lookup table)"
+msgstr "Paso 5: convierte los bits en un dígito (una tabla de consulta)"
+
+#: src/regex-sed/README.md:271
+msgctxt "s-30f2c47e663e-0087"
+msgid "The nibble is copied to the end as ⟦CODE_0001⟧, and a ten-rule lookup table rewrites it. Rules for ⟦CODE_0002⟧ through ⟦CODE_0003⟧ don't match, then ⟦CODE_0004⟧ becomes ⟦CODE_0005⟧, and the remaining rules don't match either:"
+msgstr "El programa copia el grupo de cuatro bits al final como ⟦CODE_0001⟧ y una tabla de consulta de diez reglas lo reescribe. Las reglas de ⟦CODE_0002⟧ a ⟦CODE_0003⟧ no tienen coincidencias. Luego ⟦CODE_0004⟧ se convierte en ⟦CODE_0005⟧ y las reglas restantes tampoco tienen coincidencias:"
+
+#: src/regex-sed/README.md:277
+msgctxt "s-736aa0f5c7eb-0088"
+msgid "The hours are now *the text* ⟦CODE_0001⟧ followed by ⟦CODE_0002⟧. Nothing ever adds 10 to 4."
+msgstr "Ahora las horas son *el texto* ⟦CODE_0001⟧ seguido de ⟦CODE_0002⟧. El programa nunca suma 10 a 4."
+
+#: src/regex-sed/README.md:279
+msgctxt "s-40a6de116ce2-0089"
+msgid "Step 6: the digit to tally marks (another lookup table)"
+msgstr "Paso 6: convierte el dígito en marcas de conteo (otra tabla de consulta)"
+
+#: src/regex-sed/README.md:289
+msgctxt "s-77c8b4fc2473-0090"
+msgid "A scratch field ⟦CODE_0001⟧ starts as ten marks plus the digit (⟦CODE_0002⟧). The table replaces the trailing ⟦CODE_0003⟧ with four more marks:"
+msgstr "Un campo auxiliar ⟦CODE_0001⟧ empieza con diez marcas más el dígito (⟦CODE_0002⟧). La tabla sustituye el ⟦CODE_0003⟧ final por cuatro marcas más:"
+
+#: src/regex-sed/README.md:295
+msgctxt "s-3fa879994fd3-0091"
+msgid "Step 7: addition is concatenation"
+msgstr "Paso 7: la suma es concatenación"
+
+#: src/regex-sed/README.md:302
+msgctxt "s-4a44d6441757-0092"
+msgid "The 14 marks in ⟦CODE_0001⟧ move onto the end of the 15 in ⟦CODE_0002⟧. That is the entire addition. The entry count gets one more ⟦CODE_0003⟧:"
+msgstr "Las 14 marcas de ⟦CODE_0001⟧ pasan al final de las 15 de ⟦CODE_0002⟧. Eso es todo lo que hace la suma. El contador de entradas recibe un ⟦CODE_0003⟧ más:"
+
+#: src/regex-sed/README.md:308
+msgctxt "s-f676dd5179f8-0093"
+msgid "Step 8: save the state and build the output row"
+msgstr "Paso 8: guarda el estado y arma la fila de salida"
+
+#: src/regex-sed/README.md:316
+msgctxt "s-b07681da16d0-0094"
+msgid "sed has one spare buffer, the **hold space**. ⟦CODE_0001⟧ copies the whole state into it, because the next substitution destroys the pattern space by rewriting it into the output row. The row still has the total in tally marks, and the run id is tucked on after a newline for later:"
+msgstr "sed tiene un búfer auxiliar, el **espacio de retención**. ⟦CODE_0001⟧ copia allí todo el estado porque la siguiente sustitución destruye el espacio de patrones al convertirlo en la fila de salida. La fila conserva el total en marcas de conteo. El id de ejecución queda después de un salto de línea para usarlo más adelante:"
+
+#: src/regex-sed/README.md:323
+msgctxt "s-b2ae1f0829c6-0095"
+msgid "⟦CODE_0001⟧ at the front is a **return address**. sed has no call or return, so the caller writes where to come back to into the text, then jumps to the subroutine."
+msgstr "El ⟦CODE_0001⟧ inicial es una **dirección de retorno**. sed no tiene llamadas ni retornos. Por eso, quien llama escribe en el texto adónde debe volver y luego salta a la subrutina."
+
+#: src/regex-sed/README.md:325
+msgctxt "s-5e94c1292310-0096"
+msgid "Step 9: the subroutine, tally marks to decimal"
+msgstr "Paso 9: la subrutina convierte las marcas de conteo a decimal"
+
+#: src/regex-sed/README.md:341
+msgctxt "s-cadb42ca64b3-0097"
+msgid "Every ten marks become one ⟦CODE_0001⟧ (⟦CODE_0002⟧). The second rule adds a ⟦CODE_0003⟧ when there are tens but no units left over, which isn't the case here. A units table turns the nine leftover marks into ⟦CODE_0004⟧, and a tens table turns ⟦CODE_0005⟧ into ⟦CODE_0006⟧:"
+msgstr "Cada diez marcas se convierten en un ⟦CODE_0001⟧ (⟦CODE_0002⟧). La segunda regla añade un ⟦CODE_0003⟧ cuando hay decenas y no quedan unidades, algo que aquí no ocurre. Una tabla de unidades convierte las nueve marcas que sobran en ⟦CODE_0004⟧ y una tabla de decenas convierte ⟦CODE_0005⟧ en ⟦CODE_0006⟧:"
+
+#: src/regex-sed/README.md:348
+msgctxt "s-e3895200e405-0098"
+msgid "Then the subroutine \"returns\": it matches ⟦CODE_0001⟧ against the text and jumps to ⟦CODE_0002⟧."
+msgstr "Luego la subrutina \"retorna\": busca una coincidencia de ⟦CODE_0001⟧ en el texto y salta a ⟦CODE_0002⟧."
+
+#: src/regex-sed/README.md:350
+msgctxt "s-77ee708bcd7b-0099"
+msgid "Step 10: print the row, then turn it into SQL"
+msgstr "Paso 10: imprime la fila y conviértela en SQL"
+
+#: src/regex-sed/README.md:359
+msgctxt "s-aeab9a9acc03-0100"
+msgid "⟦CODE_0001⟧ prints the pattern space only up to the first newline, so the screen gets just the row:"
+msgstr "⟦CODE_0001⟧ imprime el espacio de patrones solo hasta el primer salto de línea. La pantalla recibe únicamente la fila:"
+
+#: src/regex-sed/README.md:365
+msgctxt "s-74ca54a95c44-0101"
+msgid "Then the same text is rewritten into an ⟦CODE_0001⟧, using the run id after the newline, and the substitution's ⟦CODE_0002⟧ flag writes it to fd 3, which the host has piped into ⟦CODE_0003⟧:"
+msgstr "Después, el mismo texto se convierte en un ⟦CODE_0001⟧ con el id de ejecución que sigue al salto de línea. La bandera ⟦CODE_0002⟧ de la sustitución lo escribe en el descriptor de archivo 3, que el anfitrión conectó por una tubería a ⟦CODE_0003⟧:"
+
+#: src/regex-sed/README.md:371
+msgctxt "s-963b3b33ee5c-0102"
+msgid "Step 11: restore the state and loop"
+msgstr "Paso 11: restaura el estado y vuelve al inicio del bucle"
+
+#: src/regex-sed/README.md:379
+msgctxt "s-bacff2715eb1-0103"
+msgid "⟦CODE_0001⟧ copies the saved state back from the hold space, the per-entry scratch fields are deleted, and execution jumps to the top. The next iteration starts with:"
+msgstr "⟦CODE_0001⟧ recupera el estado guardado del espacio de retención. Se borran los campos auxiliares de cada entrada y la ejecución vuelve al inicio. La siguiente iteración empieza con:"
+
+#: src/regex-sed/README.md:385
+msgctxt "s-deed37c3dc49-0104"
+msgid "The third iteration books ⟦DNT_0001⟧ 14, for a total of 43. Then step 1's stop rule finds 41 marks in a row, and ⟦CODE_0002⟧ ends the loop."
+msgstr "La tercera iteración registra ⟦DNT_0001⟧ 14, para un total de 43. Luego la regla de parada del paso 1 encuentra 41 marcas seguidas y ⟦CODE_0002⟧ termina el bucle."
+
+#: src/regex-sed/README.md:387
+msgctxt "s-aa03b688552e-0105"
+msgid "Finishing: the summary, the pulse, and exit 1"
+msgstr "El cierre: el resumen, el pulso y la salida con estado 1"
+
+#: src/regex-sed/README.md:389
+msgctxt "s-aef95d4aad8a-0106"
+msgid "After the loop, ⟦CODE_0001⟧ builds the summary line, borrows the same ⟦CODE_0002⟧ subroutine (with ⟦CODE_0003⟧), prints it, and sends ⟦CODE_0004⟧ down fd 3. If sed never got that far, SQLite would roll the whole run back at end of input, so a half-finished run leaves no rows."
+msgstr "Después del bucle, ⟦CODE_0001⟧ arma la línea de resumen y reutiliza la misma subrutina ⟦CODE_0002⟧ (con ⟦CODE_0003⟧). Después imprime la línea y envía ⟦CODE_0004⟧ por el descriptor de archivo 3. Si sed no llegara hasta ahí, SQLite revertiría toda la ejecución al terminar la entrada de datos. Así, una ejecución a medias no deja filas."
+
+#: src/regex-sed/README.md:391
+msgctxt "s-2dceef7b49ef-0107"
+msgid "**The pulse** runs only if ⟦CODE_0001⟧. sed has no ⟦CODE_0002⟧, so each frame is timed by making the regex engine **grind**: the state is swapped out for ⟦CODE_0003⟧, and ⟦CODE_0004⟧ is tested against it. That can never match (a ⟦CODE_0005⟧ is always in the way), but glibc's backreference matcher tries every way of splitting the ⟦CODE_0006⟧s before giving up, roughly 50 ms per frame on the test machine. Then the state comes back, the next shade is read off a list of 60 gray levels appended to it, and the banner is redrawn in place with ⟦CODE_0007⟧ (cursor up). This is the denial-of-service-shaped worst case that regex engines are criticized for, used as a clock."
+msgstr "**El pulso** se ejecuta solo si ⟦CODE_0001⟧. sed no tiene ⟦CODE_0002⟧, así que el motor de regex tiene que **sudar** para marcar el tiempo de cada cuadro: se cambia el estado por ⟦CODE_0003⟧ y se prueba ⟦CODE_0004⟧ con ese texto. Nunca puede haber una coincidencia (siempre estorba un ⟦CODE_0005⟧), pero el motor de glibc para coincidencias con referencias hacia atrás prueba todas las divisiones posibles de los ⟦CODE_0006⟧ antes de rendirse. En la máquina de prueba, esto tarda unos 50 ms por cuadro. Luego se restaura el estado, se lee el siguiente tono de la lista de 60 niveles de gris añadida al estado y se vuelve a dibujar el banner in situ con ⟦CODE_0007⟧ (mueve el cursor hacia arriba). El peor caso por el que se critica a los motores de regex, que parece una denegación de servicio, aquí sirve de reloj."
+
+#: src/regex-sed/README.md:393
+msgctxt "s-0ed06562381b-0108"
+msgid "Finally ⟦CODE_0001⟧ quits with exit status 1. In shell terms the program \"fails\" after doing all of its work. That is the sed form of the signature move."
+msgstr "Por último, ⟦CODE_0001⟧ termina con estado de salida 1. Para el intérprete de comandos (*shell*), el programa \"falla\" después de hacer todo su trabajo. Esa es la versión en sed de la maniobra distintiva."
+
+#: src/regex-sed/README.md:395
+msgctxt "s-c617481a36bf-0109"
+msgid "Why this is a different exercise from the other regex entries"
+msgstr "Por qué este ejercicio difiere de las otras entradas de regex"
+
+#: src/regex-sed/README.md:397
+msgctxt "s-d0f53941d860-0110"
+msgid "**The regex entries borrow a computer, but sed is one.** In Perl, PCRE2 and pcre2grep, the pattern supplies the control flow (looping, branching, stopping), but the arithmetic happens in Perl, C or SQLite. Here there's nowhere else to go, so randomness, addition, comparison and number formatting are all text rewriting."
+msgstr "**Las entradas de regex toman prestada una computadora, pero sed es una.** En Perl, PCRE2 y pcre2grep, el patrón aporta el flujo de control (bucles, bifurcaciones y parada), pero la aritmética se hace en Perl, C o SQLite. Aquí no hay adónde más ir. El azar, la suma, la comparación y el formato de números se resuelven al reescribir texto."
+
+#: src/regex-sed/README.md:398
+msgctxt "s-b03f3b4cff9d-0111"
+msgid "**It's a different model of computation.** The other entries use *backtracking search*: one match explores paths and abandons branches. This one is a *rewriting system*. A single regex match always finishes, because its input is fixed and it can only try a bounded number of paths. Rewriting a string over and over in a loop is Turing-complete. The other entries show a regex engine *driving* a program; this one shows substitution *being* one."
+msgstr "**Es un modelo de cómputo distinto.** Las otras entradas usan *búsqueda con retroceso*: una coincidencia explora caminos y abandona ramas. Esta usa un *sistema de reescritura*. Una sola coincidencia de regex siempre termina porque la entrada de datos es fija y solo puede probar una cantidad limitada de caminos. Reescribir una cadena de texto una y otra vez en un bucle es Turing-completo. Las otras entradas muestran un motor de regex *que dirige* un programa. Esta muestra una sustitución *que es* un programa."
+
+#: src/regex-sed/README.md:399
+msgctxt "s-f7891748711a-0112"
+msgid "**You can see the entire machine.** Perl's state is in hidden variables and PCRE2's is in C memory. Here every bit of state, including the return address, is in one printable line."
+msgstr "**Puedes ver toda la máquina.** Perl guarda su estado en variables ocultas y PCRE2 lo guarda en memoria de C. Aquí todo el estado, incluida la dirección de retorno, cabe en una sola línea que se puede imprimir."
+
+#: src/regex-sed/README.md:400
+msgctxt "s-4bf8fd89fd19-0113"
+msgid "**The data structures had to be invented.** Integers are tally marks, addition is concatenation, ⟦CODE_0001⟧ is \"does ⟦CODE_0002⟧ match,\" XOR is deleting zeros and checking whether the count of ⟦CODE_0003⟧s is odd, a random number generator is a 16-character string, and a function call is a return address written into the text."
+msgstr "**Hubo que inventar las estructuras de datos.** Los enteros son marcas de conteo y la suma es concatenación. ⟦CODE_0001⟧ equivale a \"¿hay una coincidencia con ⟦CODE_0002⟧?\". XOR consiste en borrar los ceros y comprobar si la cantidad de ⟦CODE_0003⟧ es impar. Un generador de números aleatorios es una cadena de texto de 16 caracteres y una llamada a una función es una dirección de retorno escrita en el texto."
+
+#: src/regex-sed/README.md:401
+msgctxt "s-f6b3fcde7963-0114"
+msgid "**Each regex is simple; the composition is what's hard.** The Perl and PCRE2 entries are one monstrous pattern each. Here almost every regex is short and readable on its own, and the baffling part is that 137 of them in a row book one timecard."
+msgstr "**Cada regex es simple, pero lo difícil es combinarlas.** Las entradas de Perl y PCRE2 tienen un patrón monstruoso cada una. Aquí casi cada regex es corta y se entiende por sí sola. Lo desconcertante es que hacen falta 137 seguidas para registrar una tarjeta de horas."
+
+#: src/regex-sed/README.md:403
+msgctxt "s-339cc2c18f83-0115"
+msgid "What ⟦CODE_0001⟧ enforces"
+msgstr "Qué hace cumplir ⟦CODE_0001⟧"
+
+#: src/regex-sed/README.md:405
+msgctxt "s-302a02595342-0116"
+msgid "⟦CODE_0001⟧ checks the host first: exactly one ⟦CODE_0002⟧ command, and no ⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧, ⟦CODE_0006⟧, ⟦CODE_0007⟧ or ⟦CODE_0008⟧. Then it checks the sed script. It may use no ⟦CODE_0009⟧, ⟦CODE_0010⟧, ⟦CODE_0011⟧ or ⟦CODE_0012⟧ command and no ⟦CODE_0013⟧ flag, and the only files it may write are file descriptor 3 (the SQL) and stderr (the trace). The script must exit with status 1 (the \"returns false\" move) and with status 2 on a malformed tape, and the same seed must always give the same timecards."
+msgstr "⟦CODE_0001⟧ comprueba primero el anfitrión: exactamente un comando ⟦CODE_0002⟧ y ningún ⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧, ⟦CODE_0006⟧, ⟦CODE_0007⟧ ni ⟦CODE_0008⟧. Luego comprueba el script de sed. El script no puede usar ningún comando ⟦CODE_0009⟧, ⟦CODE_0010⟧, ⟦CODE_0011⟧ u ⟦CODE_0012⟧ ni la bandera ⟦CODE_0013⟧. Solo puede escribir en el descriptor de archivo 3 (el SQL) y en stderr (la traza). El script debe terminar con estado 1 (la maniobra de \"devuelve falso\") y con estado 2 si la cinta está mal formada. Una misma semilla siempre debe dar las mismas tarjetas de horas."
+
+#: src/regex-sed/README.md:407
+msgctxt "s-c631a24de2bc-0117"
+msgid "Then it proves that exactly 40 continues: a copy of the script whose draw always yields hours of 10 must deal five cards, the fifth ⟦CODE_0001⟧, ending at 50. Then it runs the real thing 25 times. In every run, each running total must equal the previous one plus the hours, hours must be from 10 to 19, the program must stop as soon as the total passes 40, and the summary must agree with the rows. SQLite must agree with the output, the database must hold 25 distinct runs, and the hours must show at least six different values, so the shift register is not stuck. Last, a non-demo row must be refused."
+msgstr "Luego demuestra que un total de exactamente 40 continúa: una copia del script cuya extracción siempre da 10 horas debe repartir cinco tarjetas. La quinta es ⟦CODE_0001⟧ y el total termina en 50. Después ejecuta el script real 25 veces. En cada ejecución, cada total acumulado debe ser igual al anterior más las horas y estas deben ir de 10 a 19 horas. El programa debe detenerse en cuanto el total pasa de 40 y el resumen debe coincidir con las filas. SQLite debe coincidir con la salida y la base de datos debe guardar 25 ejecuciones distintas. Debe haber al menos seis valores distintos de horas, de modo que el registro de desplazamiento no esté atascado. Por último, se debe rechazar una fila ajena a la demostración."
+
+#: src/regex-sed/README.md:409
+msgctxt "s-5a0ad00b10fc-0118"
+msgid "Gotchas worth knowing"
+msgstr "Trampas que conviene conocer"
+
+#: src/regex-sed/README.md:411
+msgctxt "s-eff7851d0c4f-0119"
+msgid "**Never run ⟦CODE_0001⟧ without its ⟦CODE_0002⟧ redirect.** The script writes its SQL with ⟦CODE_0003⟧. Run directly, for example ⟦CODE_0004⟧ from a harness that leaves fd 3 closed, the descriptor number 3 can be the *script file itself* (sed opens it first), and ⟦CODE_0005⟧ then opens and overwrites it with SQL. This happened once, while the study guides were being checked, and it destroyed the script until it was restored from Git. Use ⟦CODE_0006⟧, or give sed an explicit ⟦CODE_0007⟧ target, as ⟦CODE_0008⟧ does (⟦CODE_0009⟧ or a pipe to ⟦CODE_0010⟧)."
+msgstr "**Nunca ejecutes ⟦CODE_0001⟧ sin la redirección ⟦CODE_0002⟧.** El script escribe su SQL con ⟦CODE_0003⟧. Si lo ejecutas directamente, por ejemplo con ⟦CODE_0004⟧ desde un sistema de pruebas que deja cerrado el descriptor de archivo 3, el descriptor número 3 puede corresponder al *propio archivo del script* (sed lo abre primero). Entonces ⟦CODE_0005⟧ lo abre y lo sobrescribe con SQL. Esto ocurrió una vez durante la revisión de las guías de estudio. El script se perdió hasta que se restauró desde Git. Usa ⟦CODE_0006⟧ o dale a sed un destino ⟦CODE_0007⟧ explícito, como hace ⟦CODE_0008⟧ (⟦CODE_0009⟧ o una tubería a ⟦CODE_0010⟧)."
+
+#: src/regex-sed/README.md:412
+msgctxt "s-728161f982f8-0120"
+msgid "**sed has a goto.** ⟦CODE_0001⟧ and ⟦CODE_0002⟧ jump, which the Perl and PCRE entries don't have. Those entries had to get their loops out of quantifiers and backtracking, which is arguably the stricter constraint. Here almost every jump is behind an address (⟦CODE_0003⟧), so a regex match still makes every decision, but the structure is a rewriting machine with a program counter, not a single match."
+msgstr "**sed tiene un goto.** ⟦CODE_0001⟧ y ⟦CODE_0002⟧ hacen saltos, algo que las entradas de Perl y PCRE no tienen. Esas entradas tuvieron que construir sus bucles con cuantificadores y retroceso, lo que podría ser una restricción más estricta. Aquí casi todos los saltos dependen de una dirección (⟦CODE_0003⟧), así que una coincidencia de regex sigue determinando cada decisión. Pero la estructura es una máquina de reescritura con un contador de programa en vez de una sola coincidencia."
+
+#: src/regex-sed/README.md:413
+msgctxt "s-9cd9a631867d-0121"
+msgid "**\"Returning false\" is weaker.** In Perl and PCRE the *match itself* reports failure after doing the work. sed has no match result that spans the whole program, so the closest equivalent is the process exit status."
+msgstr "**\"Devolver falso\" tiene un sentido más débil.** En Perl y PCRE, la *propia coincidencia* indica un fallo después de hacer el trabajo. sed no tiene un resultado de coincidencia que abarque todo el programa. Lo más cercano es el estado de salida del proceso."
+
+#: src/regex-sed/README.md:414
+msgctxt "s-efdf63ccf4dc-0122"
+msgid "**The randomness is a toy.** The host seeds the shift register with 16 bits from ⟦CODE_0001⟧ (an all-zero seed, which would stick the register, is replaced inside sed). After that, every draw is sed rewriting ⟦CODE_0002⟧s and ⟦CODE_0003⟧s. The taps (16, 14, 13, 11) give the maximal period of 65,535, but the same seed always gives the same timecards, and ⟦CODE_0004⟧ relies on that. It is not a good random number generator, which suits a ⟦DNT_0005⟧ program."
+msgstr "**El azar es de juguete.** El anfitrión siembra el registro de desplazamiento con 16 bits de ⟦CODE_0001⟧ (sed reemplaza internamente una semilla de puros ceros, que atascaría el registro). Después, en cada extracción sed reescribe los ⟦CODE_0002⟧ y los ⟦CODE_0003⟧. Los bits de realimentación (16, 14, 13, 11) dan el periodo máximo de 65 535, pero una misma semilla siempre da las mismas tarjetas de horas. ⟦CODE_0004⟧ depende de eso. Es un mal generador de números aleatorios, algo apropiado para un programa ⟦DNT_0005⟧."
+
+#: src/regex-sed/README.md:415
+msgctxt "s-a69fd481be1c-0123"
+msgid "**The host is not nothing.** ⟦CODE_0001⟧ creates the scratch directory, works out whether stdout is a terminal (⟦CODE_0002⟧, passed in as ⟦CODE_0003⟧/⟦CODE_0004⟧ because sed can't ask), writes the tape, wires fd 3 into ⟦CODE_0005⟧, and maps sed's exit status 1 to 0 so that \"failed on purpose\" doesn't look like an error. It has no loop and no ⟦CODE_0006⟧, and ⟦CODE_0007⟧ enforces both."
+msgstr "**El anfitrión hace su parte.** ⟦CODE_0001⟧ crea el directorio temporal y determina si stdout es una terminal (⟦CODE_0002⟧, pasado como ⟦CODE_0003⟧/⟦CODE_0004⟧ porque sed no puede consultarlo). Escribe la cinta, conecta el descriptor de archivo 3 a ⟦CODE_0005⟧ y convierte el estado de salida 1 de sed en 0, para que \"falló a propósito\" no parezca un error. No tiene ningún bucle ni ⟦CODE_0006⟧. ⟦CODE_0007⟧ comprueba ambas condiciones."
+
+#: src/regex-sed/README.md:416
+msgctxt "s-4cd18b2bf9e2-0124"
+msgid "**No shell-outs.** GNU sed can run commands (⟦CODE_0001⟧ and ⟦CODE_0002⟧) and read files (⟦CODE_0003⟧, ⟦CODE_0004⟧). ⟦CODE_0005⟧ rejects all of those, and rejects any ⟦CODE_0006⟧ target other than fd 3 and stderr. I tested that each injected violation makes it fail. The checks are greps over the script, not a sandbox (⟦CODE_0007⟧ would also forbid the ⟦CODE_0008⟧ this entry needs)."
+msgstr "**Sin llamadas al intérprete de comandos.** GNU sed puede ejecutar comandos (⟦CODE_0001⟧ y ⟦CODE_0002⟧) y leer archivos (⟦CODE_0003⟧, ⟦CODE_0004⟧). ⟦CODE_0005⟧ rechaza todo eso y también cualquier destino de ⟦CODE_0006⟧ que no sea el descriptor de archivo 3 o stderr. Probé que cada infracción introducida hace fallar la comprobación. Las comprobaciones buscan patrones en el script con grep y no constituyen un entorno aislado (*sandbox*) que limite el acceso al sistema anfitrión (⟦CODE_0007⟧ también prohibiría el ⟦CODE_0008⟧ que necesita esta entrada)."
+
+#: src/regex-sed/README.md:417
+msgctxt "s-e4d9bccb02ee-0125"
+msgid "**The pulse speed depends on the machine.** The backtracking clock was calibrated on one WSL 2 machine at roughly 3 seconds for 60 frames. A slower CPU pulses slower. The time grows steeply with the length of the ⟦CODE_0001⟧ tape inside ⟦CODE_0002⟧, so shorten it if the pulse drags. Pipes and ⟦CODE_0003⟧ skip the pulse entirely."
+msgstr "**La velocidad del pulso depende de la máquina.** El reloj de retroceso se calibró en una máquina con WSL 2 a unos 3 segundos por 60 cuadros. Con una CPU más lenta, el pulso se ralentiza. El tiempo aumenta mucho con la longitud de la cinta ⟦CODE_0001⟧ dentro de ⟦CODE_0002⟧. Acórtala si el pulso va lento. Las tuberías y ⟦CODE_0003⟧ omiten por completo el pulso."
+
+#: src/regex-sed/README.md:418
+msgctxt "s-a67f90cd5033-0126"
+msgid "**GNU only.** ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧ and ⟦CODE_0006⟧ intervals are GNU extensions. macOS/BSD sed won't run this."
+msgstr "**Solo GNU.** ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧ y los intervalos ⟦CODE_0006⟧ son extensiones de GNU. El sed de macOS/BSD no ejecuta esto."
+
+#: src/regex-sed/README.md:419
+msgctxt "s-fb43aaece2da-0127"
+msgid "SQL is built by pasting text into strings. That's safe here only because every value is a run id the host built from digits, a week from ⟦CODE_0001⟧, one of four fixed category names, or a number sed produced from tally marks. Don't copy the habit."
+msgstr "El SQL se arma al pegar texto en cadenas de texto. Aquí eso solo es seguro porque cada valor es un id de ejecución que el anfitrión formó con dígitos, una semana de ⟦CODE_0001⟧, uno de cuatro nombres de categoría fijos o un número que sed obtuvo de marcas de conteo. No copies esa costumbre."
+
+#: src/regex-sed/README.md:420
+msgctxt "s-243155425eac-0128"
+msgid "⟦CODE_0001⟧ is ⟦CODE_0002⟧, so two runs in the same second from the same PID would collide. It's a toy."
+msgstr "⟦CODE_0001⟧ es ⟦CODE_0002⟧, así que dos ejecuciones del mismo PID en el mismo segundo entrarían en conflicto. Es un juguete."
+
+#: src/regex-sed/README.md:422
+msgctxt "s-254f0c660db3-0129"
+msgid "Run it in a container"
+msgstr "Ejecútalo en un contenedor"
+
+#: src/regex-sed/README.md:424
+msgctxt "s-643df015c8a2-0130"
+msgid "Prerequisite: Docker, set up once as described in [⟦CODE_0001⟧](⟦DEST_0002⟧)."
+msgstr "Requisito previo: configura Docker una sola vez como se describe en [⟦CODE_0001⟧](⟦DEST_0002⟧)."
+
+#: src/regex-sed/README.md:430
+msgctxt "s-cb9f7fdfa85b-0131"
+msgid "It builds this folder's [⟦CODE_0001⟧](⟦DEST_0002⟧) and runs the result with no network, a read-only file system and user ⟦CODE_0003⟧, then prints the output and a read-only look at the rows it wrote. The image holds GNU sed, bash and coreutils (from the Ubuntu base) and sqlite3. It has no compiler and no package manager."
+msgstr "El script hace la compilación a partir del [⟦CODE_0001⟧](⟦DEST_0002⟧) de este directorio y ejecuta el resultado sin red, con un sistema de archivos de solo lectura y con el usuario ⟦CODE_0003⟧. Luego imprime la salida y muestra en modo de solo lectura las filas que escribió. La imagen contiene GNU sed, bash y coreutils (del sistema base Ubuntu), además de sqlite3. No incluye compilador ni gestor de paquetes."

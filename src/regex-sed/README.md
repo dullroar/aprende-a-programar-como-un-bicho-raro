@@ -1,24 +1,24 @@
 ---
 name: "GNU sed"
-teaches: "that a program can be one line of text that substitutions rewrite until none applies: a Markov algorithm, with a catastrophic-backtracking regex as its clock."
+teaches: "que un programa puede ser una línea de texto que las sustituciones reescriben hasta que ninguna se aplique: un algoritmo de Markov, con una expresión regular de retroceso catastrófico como reloj."
 kind: weird
 languages: [sed, regex]
 lesson: "lenguajes/regex.md#gnu-sed"
 loop-by: rewrite-and-rescan
 evaluation: rewriting
 assurance: accidentally-exploited
-machine: "A string-rewriting system (a Markov algorithm)"
-state: "One line of text, rewritten until no rule applies"
+machine: "Un sistema de reescritura de cadenas de texto (un algoritmo de Markov)"
+state: "Una línea de texto, reescrita hasta que ninguna regla se aplique"
 tags: [exit-status, fixed-point-iteration, markov-algorithm, redos, regular-expression, state, state-encoding, term-rewriting, time-complexity, turing-completeness]
 analogies: [serialization-deserialization-pickling, turing-machine]
 ---
-# Regex challenge, Track 4: GNU sed (the program is one line of text, rewritten until it's done)
+# Reto de regex, ruta 4: GNU sed (el programa es una línea de texto que se reescribe hasta terminar)
 
-One `sed` command runs the whole timecard demo, writes the records to a real SQLite transaction, pulses a banner, and then **exits 1**. There are no variables, no numbers and no arithmetic anywhere in it. The entire program state is a single line of text, and every step is a regex substitution on that line. This entry goes beyond the original regex plan (it lives in git history as `plans/regex.md`), but it follows the same rules. **DEMO ONLY**: the records are fictional and go to a scratch SQLite file, with no connection to any real time-reporting system.
+Un solo comando `sed` ejecuta toda la demostración de la tarjeta de horas. Escribe los datos en una transacción real de SQLite, hace latir un banner y después **termina con código de salida 1**. No hay variables, números ni aritmética en ninguna parte. Todo el estado del programa es una sola línea de texto, y cada paso es una sustitución con regex sobre esa línea. Esta entrada va más allá del plan original de regex (vive en el historial de git como `plans/regex.md`), pero sigue las mismas reglas. **DEMO ONLY**: los datos son ficticios y van a un archivo SQLite temporal, sin conexión con ningún sistema real de reporte de horas.
 
-## Run it
+## Ejecútalo
 
-You need GNU sed (Ubuntu's default), `sqlite3` (`sudo apt install sqlite3`) and coreutils' `basenc` (9.x on Ubuntu 24.04). Under WSL 2:
+Necesitas GNU sed (el predeterminado de Ubuntu), `sqlite3` (`sudo apt install sqlite3`) y el `basenc` de coreutils (9.x en Ubuntu 24.04). En WSL 2:
 
 ```bash
 cd src/regex-sed
@@ -27,7 +27,7 @@ TRACE=1 ./timecards.sh    # also dump the program state (the line of text) to st
 ./check.sh                # 25 runs plus static checks, asserts the rules below
 ```
 
-Records go to `$XDG_DATA_HOME/RegexSed/demo-timecards.db` (default `~/.local/share/RegexSed/`). Delete that directory to start over. A run looks like this, followed by a three-second pulse on a real terminal:
+Los registros se guardan en `$XDG_DATA_HOME/RegexSed/demo-timecards.db` (valor predeterminado: `~/.local/share/RegexSed/`). Elimina ese directorio para empezar de nuevo. Así se ve una ejecución, seguida de un pulso de tres segundos en una terminal real:
 
 ```text
 # DEMO ONLY run 1794625386-3788
@@ -38,69 +38,69 @@ Debugging	14	43	2026-W46	DEMO ONLY
 # sed now exits with status 1 (failure), on purpose
 ```
 
-## Program Flow
+## Flujo del programa
 
 ```mermaid
 flowchart TD
-    accTitle: regex-sed: one line of text, rewritten by substitutions with labels and jumps
-    accDescr: A flowchart. sed reads one tape line and rewrites it into the program state. At the label entry, two address tests decide whether to go to done: forty-one or more tally marks in the total, or no categories left. Otherwise the next category is moved to the current slot. At draw, substitutions rewrite a 16-bit shift register in the line until a digit is available. The digit becomes tally marks that are added to the total. The label dec rewrites marks into decimal. The label row prints the row and writes an INSERT to file descriptor 3. Control jumps back to entry. At done, the summary is printed and COMMIT is written to file descriptor 3. On a terminal, a catastrophic backtracking match is the clock for the pulse. sed then exits with status 1 on purpose.
-    A["Read the tape line and rewrite it into the program state"] --> B{{"entry: 41 or more # marks in the total, or no categories left?"}}
-    B -->|no| C["Move the next category into the current slot"]
-    C --> D["draw and step: rewrite the 16-bit shift register until a digit comes out"]
-    D --> E["Turn the digit into tally marks and append them to the total"]
-    E --> F["dec and row: marks to decimal, print the row, write the INSERT to fd 3"]
+    accTitle: regex-sed: una línea de texto, reescrita por sustituciones con etiquetas y saltos
+    accDescr: Un diagrama de flujo. sed lee una línea de cinta y la reescribe para formar el estado del programa. En la etiqueta de entrada entry, dos pruebas de dirección deciden si saltar a done: el total tiene cuarenta y una marcas de conteo o más, o no quedan categorías. Si ninguna se cumple, la siguiente categoría pasa a la posición actual. En draw, las sustituciones reescriben un registro de desplazamiento de 16 bits en la línea hasta que hay un dígito disponible. El dígito se convierte en marcas de conteo que se suman al total. La etiqueta dec reescribe las marcas en decimal. En la etiqueta row, sed imprime la fila y escribe un INSERT en el descriptor de archivo 3. El control vuelve a la etiqueta entry. En done, sed imprime el resumen y escribe COMMIT en el descriptor de archivo 3. En una terminal, una coincidencia con retroceso catastrófico hace de reloj para el pulso. Luego sed termina a propósito con estado de salida 1.
+    A["Lee la línea de la cinta y reescríbela en el estado del programa"] --> B{{"entrada: ¿41 o más marcas # en el total o no quedan categorías?"}}
+    B -->|no| C["Mueve la siguiente categoría a la ranura actual"]
+    C --> D["draw y step: reescribe el registro de desplazamiento de 16 bits hasta que salga un dígito"]
+    D --> E["Convierte el dígito en marcas y añádelas al total"]
+    E --> F["dec y row: convierte a decimal, imprime la fila y escribe INSERT en el descriptor 3"]
     F --> B
-    B -->|yes| G["done: print the summary, write COMMIT to fd 3"]
-    G --> H["On a terminal: pulse, timed by a regex that backtracks for a while"]
-    H --> I["Q1: sed exits 1 on purpose; sqlite3 reads fd 3"]
+    B -->|sí| G["done: imprime el resumen y escribe COMMIT en el descriptor 3"]
+    G --> H["En terminal: pulso al ritmo del retroceso de una expresión regular"]
+    H --> I["Q1: sed termina a propósito con estado 1. sqlite3 lee el descriptor 3"]
 ```
 
-**What this shows:** the only memory is one line of text, and every step is a substitution on it. The jumps (`b` and `t`) with address tests make a program counter. The loop is the jump from `row` back to `entry`, and the stop rule is a regex that matches 41 tally marks.
+**Qué muestra:** la única memoria es una línea de texto y cada paso es una sustitución en ella. Los saltos (`b` y `t`) y las pruebas de dirección forman un contador de programa. El bucle vuelve de `row` a `entry`. La regla de parada usa una expresión regular que encuentra 41 marcas de conteo.
 
-**Why this mechanism matters:** this is a rewriting system, the Markov-algorithm model: there are no variables and no numbers. The other regex entries make one match do the work. This one makes many substitutions do it, and uses a slow match only as a clock.
+**Por qué importa este mecanismo:** es un sistema de reescritura, el modelo del algoritmo de Markov. No tiene variables ni números. Las otras entradas de expresiones regulares hacen el trabajo con una sola coincidencia. Esta hace el trabajo con muchas sustituciones y usa una coincidencia lenta solo como reloj.
 
-## How the stunt works
+## Cómo funciona el truco
 
-The other regex entries make **one match** do the work. The engine's quantifiers and backtracking are the loop, and a host language (Perl code blocks, a C struct, SQLite) does the arithmetic. This entry takes the opposite approach: **many small substitutions, one after another, on a single string**. Nothing outside that string holds any state. Random numbers, addition, comparison and decimal formatting are all done by rewriting text. That is an old and well-understood model of computation, the Markov algorithm.
+Las otras entradas de expresiones regulares hacen el trabajo con **una sola coincidencia**. Los cuantificadores del motor y el retroceso forman el bucle. Un lenguaje anfitrión (bloques de código Perl, una estructura de C, SQLite) hace la aritmética. Esta entrada hace lo contrario: **muchas sustituciones pequeñas, una tras otra, en una sola cadena de texto**. Nada fuera de esa cadena guarda estado. Los números aleatorios, la suma, la comparación y el formato decimal salen de reescribir texto. Es un modelo de cómputo antiguo y bien entendido, el algoritmo de Markov.
 
-### Markov algorithms: computing by find-and-replace
+### Algoritmos de Markov: calcular con buscar y reemplazar
 
-A **Markov algorithm** (Andrey Markov Jr. called them *normal algorithms*, in the early 1950s; not the Markov of Markov chains) is a program made of nothing but an ordered list of rewrite rules, `pattern → replacement`. It runs like this:
+Un **algoritmo de Markov** es un programa que consta solo de una lista ordenada de reglas de reescritura, `pattern → replacement`. Andréi Márkov hijo los llamó *algoritmos normales* a principios de la década de 1950. Es otro Márkov, distinto del de las cadenas de Markov. El programa se ejecuta así:
 
-1. Look through the rules **in order** and find the first one whose pattern appears anywhere in the string.
-2. Replace the **leftmost** occurrence of that pattern with the rule's replacement.
-3. If that rule is marked as terminating, stop. Otherwise go back to step 1 and **start again from the first rule**.
-4. If no rule's pattern appears in the string, stop.
+1. Examina las reglas **en orden** y encuentra la primera cuyo patrón aparezca en cualquier lugar de la cadena de texto.
+2. Reemplaza la aparición **más a la izquierda** de ese patrón por el reemplazo de la regla.
+3. Si esa regla está marcada como terminal, detente. Si no, vuelve al paso 1 y **empieza otra vez por la primera regla**.
+4. Si en la cadena de texto no aparece el patrón de ninguna regla, detente.
 
-That's the whole model: no variables, no memory but the string, no instructions but "replace this with that." And it is **Turing-complete**. Anything a computer can compute, some list of rewrite rules can compute too, given a long enough string.
+Eso es todo el modelo: sin variables, sin más memoria que la cadena de texto y sin más instrucciones que "reemplaza esto por aquello". Y es **Turing-completo**. Con una cadena de texto lo bastante larga, alguna lista de reglas de reescritura puede calcular todo lo que puede calcular una computadora.
 
-#### A tiny example: binary to unary
+#### Un ejemplo pequeño: de binario a unario
 
-Three rules convert a binary number into that many tally marks:
+Tres reglas convierten un número binario en esa misma cantidad de marcas de conteo:
 
-| # | Rule | Meaning |
+| # | Regla | Significado |
 |---|---|---|
-| 1 | `\|0` → `0\|\|` | a mark passing a `0` to its right doubles (moving a digit one place left in binary doubles its value) |
-| 2 | `1` → `0\|` | a `1` becomes a `0` with one mark |
-| 3 | `0` → *(nothing)* | once no marks are left of any `0`, delete the `0`s |
+| 1 | `\|0` → `0\|\|` | Una marca se duplica al pasar un `0` que está a su derecha (en binario, mover un dígito un lugar a la izquierda duplica su valor) |
+| 2 | `1` → `0\|` | Un `1` se convierte en un `0` con una marca |
+| 3 | `0` → *(nada)* | Cuando ya no queden marcas a la izquierda de ningún `0`, elimina cada `0` |
 
-Run on `101` (five), always restarting from rule 1:
+Ejecútalo con `101` (cinco) y vuelve siempre a la regla 1:
 
-| String | Rule applied |
+| Cadena de texto | Regla aplicada |
 |---|---|
-| `101` | 2: the first `1` becomes `0\|` |
-| `0\|01` | 1: `\|0` becomes `0\|\|` |
-| `00\|\|1` | 2: no `\|0`, so the next `1` |
+| `101` | 2: el primer `1` se convierte en `0\|` |
+| `0\|01` | 1: `\|0` se convierte en `0\|\|` |
+| `00\|\|1` | 2: no hay `\|0`, así que le toca al siguiente `1` |
 | `00\|\|0\|` | 1 |
 | `00\|0\|\|\|` | 1 |
-| `000\|\|\|\|\|` | 3: no `\|0` or `1` left, delete a `0` |
+| `000\|\|\|\|\|` | 3: no quedan `\|0` ni `1`. Elimina un `0` |
 | `00\|\|\|\|\|` | 3 |
 | `0\|\|\|\|\|` | 3 |
-| `\|\|\|\|\|` | no rule applies: stop. Five marks |
+| `\|\|\|\|\|` | No se aplica ninguna regla. Detente. Quedan cinco marcas |
 
-#### The same algorithm in sed
+#### El mismo algoritmo en sed
 
-sed can run a Markov algorithm almost exactly as it is written. `s` replaces the leftmost match, and `t top` ("jump to `top` if the last substitution matched") supplies the "start again from the first rule":
+sed puede ejecutar un algoritmo de Markov casi tal como está escrito. `s` reemplaza la coincidencia más a la izquierda. `t top` ("salta a `top` si la última sustitución encontró una coincidencia") hace que se vuelva a "empezar por la primera regla":
 
 ```sed
 :top
@@ -112,57 +112,57 @@ s/0//
 t top
 ```
 
-`echo 101 | sed -f b2u.sed` prints `|||||`. (I ran this, and `sed --debug` shows exactly the nine strings in the table above.)
+`echo 101 | sed -f b2u.sed` imprime `|||||`. (Lo ejecuté y `sed --debug` muestra exactamente las nueve cadenas de texto de la tabla anterior.)
 
-#### How `timecards.sed` relates to that
+#### Cómo se relaciona `timecards.sed` con ese modelo
 
-`timecards.sed` is not written as one flat Markov rule list. That would work in principle, but it would be thousands of rules and unreadable even by this entry's standards. It is a **Markov-style machine with a program counter**: the string is still the only memory and every operation is still a substitution, but labels and jumps (`b`, `/regex/b`) decide which group of rules runs next. Inside the groups, pure Markov behavior shows up all over:
+`timecards.sed` no está escrito como una sola lista plana de reglas de Markov. Eso funcionaría en principio, pero tendría miles de reglas y sería ilegible hasta para esta entrada. Es una **máquina al estilo de Markov con un contador de programa**. La cadena de texto sigue siendo la única memoria y toda operación sigue siendo una sustitución. Las etiquetas y los saltos (`b`, `/regex/b`) deciden qué grupo de reglas se ejecuta después. Dentro de los grupos, el comportamiento puro de Markov aparece por todas partes:
 
-- The **lookup tables** (bits to digit, digit to tally marks, tally marks to decimal) are ordered rule lists where the first rule that matches wins.
-- The **XOR** is a three-rule rewriting system: delete the `0`s, then an odd number of `1`s becomes `1` and an even number becomes `0`.
-- The **loops** (`/ k:#/b step`) are "keep applying this group while its pattern still matches," which is the Markov restart in a different form.
-- Every **decision** is "does this pattern occur in the string?" That's step 1 of a Markov algorithm, used as an `if`.
+- Las **tablas de consulta** (de bits a dígito, de dígito a marcas de conteo y de marcas de conteo a decimal) son listas ordenadas de reglas. Gana la primera regla con una coincidencia.
+- El **XOR** es un sistema de reescritura de tres reglas: se eliminan los `0`, luego una cantidad impar de `1` se convierte en `1` y una cantidad par en `0`.
+- Los **bucles** (`/ k:#/b step`) significan "sigue aplicando este grupo mientras haya una coincidencia con su patrón". Es otra forma de reiniciar un algoritmo de Markov.
+- Cada **decisión** pregunta "¿aparece este patrón en la cadena de texto?". Es el paso 1 de un algoritmo de Markov, usado como `if`.
 
-### The program state: one line of text
+### El estado del programa: una línea de texto
 
-`timecards.sh` writes one line (the *tape*) and runs one `sed` command on it:
+`timecards.sh` escribe una línea (la *cinta*) y ejecuta un comando `sed` sobre ella:
 
 ```text
 run:1794625386-3788 wk:2026-W46 rng:1011001110100101 tty:1 trace:0
 ```
 
-The first substitution validates it and adds the rest of the state. From then on, the pattern space looks like this, and it is the entire computer:
+La primera sustitución valida la línea y agrega el resto del estado. A partir de ahí, el espacio de patrones se ve así y constituye toda la computadora:
 
 ```text
 run:1794625386-3788 wk:2026-W46 tty:1 trace:0 rng:0101101100111010 cats:Coding,Debugging,Learning,Meetings, tot:############### n:%
 ```
 
-| Field | Holds | Represented as |
+| Campo | Contenido | Representación |
 |---|---|---|
-| `run:`, `wk:` | run id, ISO week | text from the host, copied into the output |
-| `tty:` | is stdout a terminal (for the pulse) | `tty -s`'s exit status, `0` = yes |
-| `trace:` | dump the state at each step? | `0` / `1` |
-| `rng:` | the random number generator | 16 characters of `0`/`1`: a shift register |
-| `cats:` | categories not yet used | a comma list, consumed from the front |
-| `tot:` | the running total | **tally marks**: 15 hours is `###############` |
-| `n:` | entries so far | tally marks: `%%%` is 3 |
-| `k:`, `x:`, `c:`, `d:`, `D:` | scratch registers | appear and disappear during one iteration (see the trace) |
-| `ret:` | return address for the decimal-printing subroutine | the text `ret:row` or `ret:sum` at the front |
+| `run:`, `wk:` | id de ejecución, semana ISO | texto del anfitrión que se copia a la salida |
+| `tty:` | si stdout es una terminal (para el pulso) | estado de salida de `tty -s`, `0` = sí |
+| `trace:` | ¿Volcar el estado en cada paso? | `0` / `1` |
+| `rng:` | el generador de números aleatorios | 16 caracteres `0`/`1`: un registro de desplazamiento |
+| `cats:` | categorías aún sin usar | una lista separada por comas que se consume desde el principio |
+| `tot:` | el total acumulado | **marcas de conteo**: 15 horas se representan con `###############` |
+| `n:` | entradas hasta ahora | marcas de conteo: `%%%` representa 3 |
+| `k:`, `x:`, `c:`, `d:`, `D:` | registros auxiliares | aparecen y desaparecen durante una iteración (ver la traza) |
+| `ret:` | dirección de retorno de la subrutina que imprime en decimal | el texto `ret:row` o `ret:sum` al principio |
 
-`TRACE=1` prints this line at the top of each iteration and after each shift-register step. For the full story, GNU sed can show every command and the string after it:
+`TRACE=1` imprime esta línea al inicio de cada iteración y después de cada paso del registro de desplazamiento. Para ver todo el proceso, GNU sed puede mostrar cada comando y la cadena de texto que deja:
 
 ```bash
 echo 'run:1794625386-3788 wk:2026-W46 rng:1011001110100101 tty:1 trace:0' \
   | sed --debug -nE -f timecards.sed 3>/dev/null | less
 ```
 
-That fixed seed always produces the run shown at the top of this README. The trace below is taken from that `--debug` output.
+Esa semilla fija siempre produce la ejecución que aparece al principio de este README. La traza de abajo proviene de esa salida de `--debug`.
 
-### One iteration, traced step by step
+### Traza una iteración paso a paso
 
-This is the **second** iteration of that run: it books *Coding, 14 hours*, taking the total from 15 to 29. It's a good one to follow because its first random draw is **rejected** and redrawn. It takes 137 sed commands, 58 of them substitutions that actually matched. In the snapshots below, `…` stands for the unchanging prefix `run:1794625386-3788 wk:2026-W46 tty:1 trace:0`.
+Esta es la **segunda** iteración de esa ejecución: registra *Coding, 14 horas* y el total pasa de 15 a 29. Conviene seguirla porque el programa **rechaza** la primera extracción aleatoria y hace otra. Usa 137 comandos de sed, de los cuales 58 son sustituciones que sí tuvieron una coincidencia. En las instantáneas de abajo, `…` representa el prefijo `run:1794625386-3788 wk:2026-W46 tty:1 trace:0`, que no cambia.
 
-#### Step 1: the loop head and the stop rule
+#### Paso 1: inicio del bucle y regla de parada
 
 ```text
 … rng:0101101100111010 cats:Coding,Debugging,Learning,Meetings, tot:############### n:%
@@ -175,35 +175,35 @@ This is the **second** iteration of that run: it books *Coding, 14 hours*, takin
 / cats: /b done
 ```
 
-The second line prints the state if tracing is on. The third is the **stop rule**: if the total contains 41 marks, it's over 40, so jump to the finish. Here it has 15, so no match. The fourth stops if the category list is empty, and it isn't. Two "comparisons," and neither one compares numbers. Each asks whether a pattern occurs.
+La segunda línea imprime el estado si la traza está activada. La tercera es la **regla de parada**: si el total contiene 41 marcas, pasa de 40 y el programa salta al final. Aquí tiene 15, así que no hay coincidencia. La cuarta detiene el programa si la lista de categorías está vacía. Aquí no lo está. Son dos "comparaciones" y ninguna compara números. Cada una comprueba si aparece un patrón.
 
-#### Step 2: take the next category
+#### Paso 2: toma la categoría siguiente
 
 ```sed
 s/ cats:([A-Za-z]+),(.*)$/ cats:\2 c:\1/
 ```
 
-The first category moves off the list into a scratch field `c:` at the end:
+La primera categoría sale de la lista y pasa a un campo auxiliar `c:` al final:
 
 ```text
 … rng:0101101100111010 cats:Debugging,Learning,Meetings, tot:############### n:% c:Coding
 ```
 
-#### Step 3: draw a random nibble (four shift-register steps)
+#### Paso 3: extrae un grupo aleatorio de cuatro bits (cuatro pasos del registro de desplazamiento)
 
 ```sed
 :draw
 s/ rng:/ k:#### rng:/
 ```
 
-A counter `k:####` (four marks, four steps) is inserted. Then the `:step` group runs once per mark. Here is the **first step** in full:
+El programa inserta un contador `k:####` (cuatro marcas, cuatro pasos). Luego ejecuta el grupo `:step` una vez por marca. Aquí está el **primer paso** completo:
 
 ```sed
 :step
 s/ rng:([01]{10})([01])([01])([01])([01])([01])([01]) / rng:\1\2\3\4\5\6\7 x:\2\4\5\7 /
 ```
 
-This *copies* the four **tap bits** (characters 11, 13, 14 and 16) into a scratch field `x:`. The register `0101101100111010` has taps `1`, `1`, `0`, `0`:
+Esto *copia* los cuatro **bits de realimentación** (caracteres 11, 13, 14 y 16) en un campo auxiliar `x:`. Los bits de realimentación del registro `0101101100111010` son `1`, `1`, `0` y `0`:
 
 ```text
 … k:#### rng:0101101100111010 x:1100 cats:…
@@ -215,7 +215,7 @@ s/ x:(11)*1 / x:1 /
 s/ x:(11)* / x:0 /
 ```
 
-That's **XOR, done by rewriting**. First the `0`s are deleted (`x:1100` becomes `x:11`). Then an odd number of `1`s becomes `x:1` (no match here) and an even number becomes `x:0` (match). The XOR of `1,1,0,0` is `0`.
+Eso es **XOR mediante reescritura**. Primero, se eliminan los `0` (`x:1100` se convierte en `x:11`). Después, una cantidad impar de `1` se convierte en `x:1` (aquí no hay coincidencia) y una cantidad par se convierte en `x:0` (sí hay coincidencia). El XOR de `1,1,0,0` es `0`.
 
 ```sed
 s/ rng:([01]{15})[01] x:([01]) / rng:\2\1 /
@@ -223,42 +223,42 @@ s/ k:#/ k:/
 / k:#/b step
 ```
 
-The **shift**: the new bit goes on the front, the last bit falls off the end, and `x:` disappears. One counter mark is removed, and if any remain, it loops:
+Así funciona el **desplazamiento**: el nuevo bit entra por el principio, el último sale por el final y `x:` desaparece. El programa elimina una marca del contador y, si queda alguna, repite el bucle:
 
 ```text
 … k:### rng:0010110110011101 cats:…
 ```
 
-The three remaining steps go the same way:
+Los tres pasos restantes funcionan igual:
 
-| Step | Register before | Tap bits → `x:` | `0`s dropped | XOR | Register after |
+| Paso | Registro antes | Bits de realimentación → `x:` | Sin los `0` | XOR | Registro después |
 |---|---|---|---|---|---|
 | 1 | `0101101100111010` | `1100` | `11` | `0` | `0010110110011101` |
 | 2 | `0010110110011101` | `0111` | `111` | `1` | `1001011011001110` |
 | 3 | `1001011011001110` | `0110` | `11` | `0` | `0100101101100111` |
 | 4 | `0100101101100111` | `1011` | `111` | `1` | **`1010`**`010110110011` |
 
-After four steps, the first four characters are four brand-new bits: `1010`, which is 10.
+Después de cuatro pasos, los cuatro primeros caracteres son cuatro bits nuevos: `1010`, que equivale a 10.
 
-#### Step 4: reject and redraw
+#### Paso 4: rechaza la extracción y haz otra
 
 ```sed
 s/ k: / /
 / rng:1(01|1)/b draw
 ```
 
-The empty counter is removed. A digit must be 0-9, so `1010` through `1111` (10-15) are rejected. In binary those are exactly the nibbles that start with `101` or `11`, so the regex `1(01|1)` matches them, and it matches here. **Jump back to `:draw`** and run four more steps:
+El programa elimina el contador vacío. Un dígito debe estar entre 0 y 9, así que el programa rechaza el intervalo de `1010` a `1111` (de 10 a 15). En binario, son justo los grupos de cuatro bits que empiezan con `101` o `11`. La regex `1(01|1)` encuentra una coincidencia con esos grupos, como en este caso. **Vuelve a `:draw`** y ejecuta cuatro pasos más:
 
-| Step | Register before | Tap bits → `x:` | `0`s dropped | XOR | Register after |
+| Paso | Registro antes | Bits de realimentación → `x:` | Sin los `0` | XOR | Registro después |
 |---|---|---|---|---|---|
 | 5 | `1010010110110011` | `1001` | `11` | `0` | `0101001011011001` |
 | 6 | `0101001011011001` | `0101` | `11` | `0` | `0010100101101100` |
 | 7 | `0010100101101100` | `1110` | `111` | `1` | `1001010010110110` |
 | 8 | `1001010010110110` | `1010` | `11` | `0` | **`0100`**`101001011011` |
 
-`0100` doesn't match `1(01|1)`, so execution continues.
+No hay coincidencia entre `0100` y `1(01|1)`, así que la ejecución continúa.
 
-#### Step 5: bits to a digit (a lookup table)
+#### Paso 5: convierte los bits en un dígito (una tabla de consulta)
 
 ```sed
 s/ rng:([01]{4})(.*)$/ rng:\1\2 d:\1/
@@ -268,15 +268,15 @@ s/ d:0001$/ d:1/
 s/ d:1001$/ d:9/
 ```
 
-The nibble is copied to the end as `d:0100`, and a ten-rule lookup table rewrites it. Rules for `0000` through `0011` don't match, then `d:0100` becomes `d:4`, and the remaining rules don't match either:
+El programa copia el grupo de cuatro bits al final como `d:0100` y una tabla de consulta de diez reglas lo reescribe. Las reglas de `0000` a `0011` no tienen coincidencias. Luego `d:0100` se convierte en `d:4` y las reglas restantes tampoco tienen coincidencias:
 
 ```text
 … rng:0100101001011011 cats:Debugging,Learning,Meetings, tot:############### n:% c:Coding d:4
 ```
 
-The hours are now *the text* `1` followed by `4`. Nothing ever adds 10 to 4.
+Ahora las horas son *el texto* `1` seguido de `4`. El programa nunca suma 10 a 4.
 
-#### Step 6: the digit to tally marks (another lookup table)
+#### Paso 6: convierte el dígito en marcas de conteo (otra tabla de consulta)
 
 ```sed
 s/ d:([0-9])$/ d:\1 D:##########\1/
@@ -286,26 +286,26 @@ s/ D:(#*)4$/ D:\1####/
 …
 ```
 
-A scratch field `D:` starts as ten marks plus the digit (`D:##########4`). The table replaces the trailing `4` with four more marks:
+Un campo auxiliar `D:` empieza con diez marcas más el dígito (`D:##########4`). La tabla sustituye el `4` final por cuatro marcas más:
 
 ```text
 … tot:############### n:% c:Coding d:4 D:##############
 ```
 
-#### Step 7: addition is concatenation
+#### Paso 7: la suma es concatenación
 
 ```sed
 s/ tot:(#*) (.*) D:(#*)$/ tot:\1\3 \2/
 s/ n:(%*) / n:\1% /
 ```
 
-The 14 marks in `D:` move onto the end of the 15 in `tot:`. That is the entire addition. The entry count gets one more `%`:
+Las 14 marcas de `D:` pasan al final de las 15 de `tot:`. Eso es todo lo que hace la suma. El contador de entradas recibe un `%` más:
 
 ```text
 … tot:############################# n:%% c:Coding d:4
 ```
 
-#### Step 8: save the state and build the output row
+#### Paso 8: guarda el estado y arma la fila de salida
 
 ```sed
 h
@@ -313,16 +313,16 @@ s/^run:([^ ]+) wk:([^ ]+) .* tot:(#+) .* c:([A-Za-z]+) d:([0-9])$/ret:row \4\t1\
 b dec
 ```
 
-sed has one spare buffer, the **hold space**. `h` copies the whole state into it, because the next substitution destroys the pattern space by rewriting it into the output row. The row still has the total in tally marks, and the run id is tucked on after a newline for later:
+sed tiene un búfer auxiliar, el **espacio de retención**. `h` copia allí todo el estado porque la siguiente sustitución destruye el espacio de patrones al convertirlo en la fila de salida. La fila conserva el total en marcas de conteo. El id de ejecución queda después de un salto de línea para usarlo más adelante:
 
 ```text
 ret:row Coding	14	#############################	2026-W46	DEMO ONLY
 1794625386-3788
 ```
 
-`ret:row` at the front is a **return address**. sed has no call or return, so the caller writes where to come back to into the text, then jumps to the subroutine.
+El `ret:row` inicial es una **dirección de retorno**. sed no tiene llamadas ni retornos. Por eso, quien llama escribe en el texto adónde debe volver y luego salta a la subrutina.
 
-#### Step 9: the subroutine, tally marks to decimal
+#### Paso 9: la subrutina convierte las marcas de conteo a decimal
 
 ```sed
 :dec
@@ -338,16 +338,16 @@ s/@/1/
 /^ret:sum /b sum
 ```
 
-Every ten marks become one `@` (`@@#########`). The second rule adds a `0` when there are tens but no units left over, which isn't the case here. A units table turns the nine leftover marks into `9`, and a tens table turns `@@` into `2`:
+Cada diez marcas se convierten en un `@` (`@@#########`). La segunda regla añade un `0` cuando hay decenas y no quedan unidades, algo que aquí no ocurre. Una tabla de unidades convierte las nueve marcas que sobran en `9` y una tabla de decenas convierte `@@` en `2`:
 
 ```text
 ret:row Coding	14	29	2026-W46	DEMO ONLY
 1794625386-3788
 ```
 
-Then the subroutine "returns": it matches `^ret:row ` against the text and jumps to `:row`.
+Luego la subrutina "retorna": busca una coincidencia de `^ret:row ` en el texto y salta a `:row`.
 
-#### Step 10: print the row, then turn it into SQL
+#### Paso 10: imprime la fila y conviértela en SQL
 
 ```sed
 :row
@@ -356,19 +356,19 @@ P
 s/^([A-Za-z]+)\t([0-9]+)\t([0-9]+)\t([^\t]+)\tDEMO ONLY\n(.*)$/INSERT INTO demo_timecards(…) VALUES('\5','\1',\2,\3,'\4',datetime('now','localtime'));/w /dev/fd/3
 ```
 
-`P` prints the pattern space only up to the first newline, so the screen gets just the row:
+`P` imprime el espacio de patrones solo hasta el primer salto de línea. La pantalla recibe únicamente la fila:
 
 ```text
 Coding	14	29	2026-W46	DEMO ONLY
 ```
 
-Then the same text is rewritten into an `INSERT`, using the run id after the newline, and the substitution's `w` flag writes it to fd 3, which the host has piped into `sqlite3`:
+Después, el mismo texto se convierte en un `INSERT` con el id de ejecución que sigue al salto de línea. La bandera `w` de la sustitución lo escribe en el descriptor de archivo 3, que el anfitrión conectó por una tubería a `sqlite3`:
 
 ```sql
 INSERT INTO demo_timecards(run_id,category,hours,running_total,iso_week,created_at) VALUES('1794625386-3788','Coding',14,29,'2026-W46',datetime('now','localtime'));
 ```
 
-#### Step 11: restore the state and loop
+#### Paso 11: restaura el estado y vuelve al inicio del bucle
 
 ```sed
 g
@@ -376,55 +376,55 @@ s/ c:[A-Za-z]+ d:[0-9]$//
 b entry
 ```
 
-`g` copies the saved state back from the hold space, the per-entry scratch fields are deleted, and execution jumps to the top. The next iteration starts with:
+`g` recupera el estado guardado del espacio de retención. Se borran los campos auxiliares de cada entrada y la ejecución vuelve al inicio. La siguiente iteración empieza con:
 
 ```text
 … rng:0100101001011011 cats:Debugging,Learning,Meetings, tot:############################# n:%%
 ```
 
-The third iteration books Debugging 14, for a total of 43. Then step 1's stop rule finds 41 marks in a row, and `b done` ends the loop.
+La tercera iteración registra Debugging 14, para un total de 43. Luego la regla de parada del paso 1 encuentra 41 marcas seguidas y `b done` termina el bucle.
 
-### Finishing: the summary, the pulse, and exit 1
+### El cierre: el resumen, el pulso y la salida con estado 1
 
-After the loop, `:done` builds the summary line, borrows the same `:dec` subroutine (with `ret:sum`), prints it, and sends `COMMIT;` down fd 3. If sed never got that far, SQLite would roll the whole run back at end of input, so a half-finished run leaves no rows.
+Después del bucle, `:done` arma la línea de resumen y reutiliza la misma subrutina `:dec` (con `ret:sum`). Después imprime la línea y envía `COMMIT;` por el descriptor de archivo 3. Si sed no llegara hasta ahí, SQLite revertiría toda la ejecución al terminar la entrada de datos. Así, una ejecución a medias no deja filas.
 
-**The pulse** runs only if `tty:0`. sed has no `sleep`, so each frame is timed by making the regex engine **grind**: the state is swapped out for `aaa…acb`, and `/^(a+)\1*(a+)\2*b/` is tested against it. That can never match (a `c` is always in the way), but glibc's backreference matcher tries every way of splitting the `a`s before giving up, roughly 50 ms per frame on the test machine. Then the state comes back, the next shade is read off a list of 60 gray levels appended to it, and the banner is redrawn in place with `\x1b[A` (cursor up). This is the denial-of-service-shaped worst case that regex engines are criticized for, used as a clock.
+**El pulso** se ejecuta solo si `tty:0`. sed no tiene `sleep`, así que el motor de regex tiene que **sudar** para marcar el tiempo de cada cuadro: se cambia el estado por `aaa…acb` y se prueba `/^(a+)\1*(a+)\2*b/` con ese texto. Nunca puede haber una coincidencia (siempre estorba un `c`), pero el motor de glibc para coincidencias con referencias hacia atrás prueba todas las divisiones posibles de los `a` antes de rendirse. En la máquina de prueba, esto tarda unos 50 ms por cuadro. Luego se restaura el estado, se lee el siguiente tono de la lista de 60 niveles de gris añadida al estado y se vuelve a dibujar el banner in situ con `\x1b[A` (mueve el cursor hacia arriba). El peor caso por el que se critica a los motores de regex, que parece una denegación de servicio, aquí sirve de reloj.
 
-Finally `Q1` quits with exit status 1. In shell terms the program "fails" after doing all of its work. That is the sed form of the signature move.
+Por último, `Q1` termina con estado de salida 1. Para el intérprete de comandos (*shell*), el programa "falla" después de hacer todo su trabajo. Esa es la versión en sed de la maniobra distintiva.
 
-## Why this is a different exercise from the other regex entries
+## Por qué este ejercicio difiere de las otras entradas de regex
 
-- **The regex entries borrow a computer, but sed is one.** In Perl, PCRE2 and pcre2grep, the pattern supplies the control flow (looping, branching, stopping), but the arithmetic happens in Perl, C or SQLite. Here there's nowhere else to go, so randomness, addition, comparison and number formatting are all text rewriting.
-- **It's a different model of computation.** The other entries use *backtracking search*: one match explores paths and abandons branches. This one is a *rewriting system*. A single regex match always finishes, because its input is fixed and it can only try a bounded number of paths. Rewriting a string over and over in a loop is Turing-complete. The other entries show a regex engine *driving* a program; this one shows substitution *being* one.
-- **You can see the entire machine.** Perl's state is in hidden variables and PCRE2's is in C memory. Here every bit of state, including the return address, is in one printable line.
-- **The data structures had to be invented.** Integers are tally marks, addition is concatenation, `> 40` is "does `#{41}` match," XOR is deleting zeros and checking whether the count of `1`s is odd, a random number generator is a 16-character string, and a function call is a return address written into the text.
-- **Each regex is simple; the composition is what's hard.** The Perl and PCRE2 entries are one monstrous pattern each. Here almost every regex is short and readable on its own, and the baffling part is that 137 of them in a row book one timecard.
+- **Las entradas de regex toman prestada una computadora, pero sed es una.** En Perl, PCRE2 y pcre2grep, el patrón aporta el flujo de control (bucles, bifurcaciones y parada), pero la aritmética se hace en Perl, C o SQLite. Aquí no hay adónde más ir. El azar, la suma, la comparación y el formato de números se resuelven al reescribir texto.
+- **Es un modelo de cómputo distinto.** Las otras entradas usan *búsqueda con retroceso*: una coincidencia explora caminos y abandona ramas. Esta usa un *sistema de reescritura*. Una sola coincidencia de regex siempre termina porque la entrada de datos es fija y solo puede probar una cantidad limitada de caminos. Reescribir una cadena de texto una y otra vez en un bucle es Turing-completo. Las otras entradas muestran un motor de regex *que dirige* un programa. Esta muestra una sustitución *que es* un programa.
+- **Puedes ver toda la máquina.** Perl guarda su estado en variables ocultas y PCRE2 lo guarda en memoria de C. Aquí todo el estado, incluida la dirección de retorno, cabe en una sola línea que se puede imprimir.
+- **Hubo que inventar las estructuras de datos.** Los enteros son marcas de conteo y la suma es concatenación. `> 40` equivale a "¿hay una coincidencia con `#{41}`?". XOR consiste en borrar los ceros y comprobar si la cantidad de `1` es impar. Un generador de números aleatorios es una cadena de texto de 16 caracteres y una llamada a una función es una dirección de retorno escrita en el texto.
+- **Cada regex es simple, pero lo difícil es combinarlas.** Las entradas de Perl y PCRE2 tienen un patrón monstruoso cada una. Aquí casi cada regex es corta y se entiende por sí sola. Lo desconcertante es que hacen falta 137 seguidas para registrar una tarjeta de horas.
 
-## What `check.sh` enforces
+## Qué hace cumplir `check.sh`
 
-`check.sh` checks the host first: exactly one `sed` command, and no `for`, `while`, `until`, `select`, `if` or `case`. Then it checks the sed script. It may use no `e`, `r`, `R` or `W` command and no `s///e` flag, and the only files it may write are file descriptor 3 (the SQL) and stderr (the trace). The script must exit with status 1 (the "returns false" move) and with status 2 on a malformed tape, and the same seed must always give the same timecards.
+`check.sh` comprueba primero el anfitrión: exactamente un comando `sed` y ningún `for`, `while`, `until`, `select`, `if` ni `case`. Luego comprueba el script de sed. El script no puede usar ningún comando `e`, `r`, `R` u `W` ni la bandera `s///e`. Solo puede escribir en el descriptor de archivo 3 (el SQL) y en stderr (la traza). El script debe terminar con estado 1 (la maniobra de "devuelve falso") y con estado 2 si la cinta está mal formada. Una misma semilla siempre debe dar las mismas tarjetas de horas.
 
-Then it proves that exactly 40 continues: a copy of the script whose draw always yields hours of 10 must deal five cards, the fifth `Meetings`, ending at 50. Then it runs the real thing 25 times. In every run, each running total must equal the previous one plus the hours, hours must be from 10 to 19, the program must stop as soon as the total passes 40, and the summary must agree with the rows. SQLite must agree with the output, the database must hold 25 distinct runs, and the hours must show at least six different values, so the shift register is not stuck. Last, a non-demo row must be refused.
+Luego demuestra que un total de exactamente 40 continúa: una copia del script cuya extracción siempre da 10 horas debe repartir cinco tarjetas. La quinta es `Meetings` y el total termina en 50. Después ejecuta el script real 25 veces. En cada ejecución, cada total acumulado debe ser igual al anterior más las horas y estas deben ir de 10 a 19 horas. El programa debe detenerse en cuanto el total pasa de 40 y el resumen debe coincidir con las filas. SQLite debe coincidir con la salida y la base de datos debe guardar 25 ejecuciones distintas. Debe haber al menos seis valores distintos de horas, de modo que el registro de desplazamiento no esté atascado. Por último, se debe rechazar una fila ajena a la demostración.
 
-## Gotchas worth knowing
+## Trampas que conviene conocer
 
-- **Never run `timecards.sed` without its `3>` redirect.** The script writes its SQL with `w /dev/fd/3`. Run directly, for example `sed -nEu -f timecards.sed < tape` from a harness that leaves fd 3 closed, the descriptor number 3 can be the *script file itself* (sed opens it first), and `w /dev/fd/3` then opens and overwrites it with SQL. This happened once, while the study guides were being checked, and it destroyed the script until it was restored from Git. Use `timecards.sh`, or give sed an explicit `3>` target, as `check.sh` does (`3>/dev/null` or a pipe to `sqlite3`).
-- **sed has a goto.** `b` and `t` jump, which the Perl and PCRE entries don't have. Those entries had to get their loops out of quantifiers and backtracking, which is arguably the stricter constraint. Here almost every jump is behind an address (`/regex/b label`), so a regex match still makes every decision, but the structure is a rewriting machine with a program counter, not a single match.
-- **"Returning false" is weaker.** In Perl and PCRE the *match itself* reports failure after doing the work. sed has no match result that spans the whole program, so the closest equivalent is the process exit status.
-- **The randomness is a toy.** The host seeds the shift register with 16 bits from `/dev/urandom` (an all-zero seed, which would stick the register, is replaced inside sed). After that, every draw is sed rewriting `0`s and `1`s. The taps (16, 14, 13, 11) give the maximal period of 65,535, but the same seed always gives the same timecards, and `check.sh` relies on that. It is not a good random number generator, which suits a DEMO ONLY program.
-- **The host is not nothing.** `timecards.sh` creates the scratch directory, works out whether stdout is a terminal (`tty -s`, passed in as `tty:0`/`tty:1` because sed can't ask), writes the tape, wires fd 3 into `sqlite3`, and maps sed's exit status 1 to 0 so that "failed on purpose" doesn't look like an error. It has no loop and no `if`, and `check.sh` enforces both.
-- **No shell-outs.** GNU sed can run commands (`e` and `s///e`) and read files (`r`, `R`). `check.sh` rejects all of those, and rejects any `w` target other than fd 3 and stderr. I tested that each injected violation makes it fail. The checks are greps over the script, not a sandbox (`sed --sandbox` would also forbid the `w` this entry needs).
-- **The pulse speed depends on the machine.** The backtracking clock was calibrated on one WSL 2 machine at roughly 3 seconds for 60 frames. A slower CPU pulses slower. The time grows steeply with the length of the `a…` tape inside `timecards.sed`, so shorten it if the pulse drags. Pipes and `check.sh` skip the pulse entirely.
-- **GNU only.** `T`, `Q`, `--debug`, `\x1b`, `\t` and `-E` intervals are GNU extensions. macOS/BSD sed won't run this.
-- SQL is built by pasting text into strings. That's safe here only because every value is a run id the host built from digits, a week from `date`, one of four fixed category names, or a number sed produced from tally marks. Don't copy the habit.
-- `run_id` is `epoch-pid`, so two runs in the same second from the same PID would collide. It's a toy.
+- **Nunca ejecutes `timecards.sed` sin la redirección `3>`.** El script escribe su SQL con `w /dev/fd/3`. Si lo ejecutas directamente, por ejemplo con `sed -nEu -f timecards.sed < tape` desde un sistema de pruebas que deja cerrado el descriptor de archivo 3, el descriptor número 3 puede corresponder al *propio archivo del script* (sed lo abre primero). Entonces `w /dev/fd/3` lo abre y lo sobrescribe con SQL. Esto ocurrió una vez durante la revisión de las guías de estudio. El script se perdió hasta que se restauró desde Git. Usa `timecards.sh` o dale a sed un destino `3>` explícito, como hace `check.sh` (`3>/dev/null` o una tubería a `sqlite3`).
+- **sed tiene un goto.** `b` y `t` hacen saltos, algo que las entradas de Perl y PCRE no tienen. Esas entradas tuvieron que construir sus bucles con cuantificadores y retroceso, lo que podría ser una restricción más estricta. Aquí casi todos los saltos dependen de una dirección (`/regex/b label`), así que una coincidencia de regex sigue determinando cada decisión. Pero la estructura es una máquina de reescritura con un contador de programa en vez de una sola coincidencia.
+- **"Devolver falso" tiene un sentido más débil.** En Perl y PCRE, la *propia coincidencia* indica un fallo después de hacer el trabajo. sed no tiene un resultado de coincidencia que abarque todo el programa. Lo más cercano es el estado de salida del proceso.
+- **El azar es de juguete.** El anfitrión siembra el registro de desplazamiento con 16 bits de `/dev/urandom` (sed reemplaza internamente una semilla de puros ceros, que atascaría el registro). Después, en cada extracción sed reescribe los `0` y los `1`. Los bits de realimentación (16, 14, 13, 11) dan el periodo máximo de 65 535, pero una misma semilla siempre da las mismas tarjetas de horas. `check.sh` depende de eso. Es un mal generador de números aleatorios, algo apropiado para un programa DEMO ONLY.
+- **El anfitrión hace su parte.** `timecards.sh` crea el directorio temporal y determina si stdout es una terminal (`tty -s`, pasado como `tty:0`/`tty:1` porque sed no puede consultarlo). Escribe la cinta, conecta el descriptor de archivo 3 a `sqlite3` y convierte el estado de salida 1 de sed en 0, para que "falló a propósito" no parezca un error. No tiene ningún bucle ni `if`. `check.sh` comprueba ambas condiciones.
+- **Sin llamadas al intérprete de comandos.** GNU sed puede ejecutar comandos (`e` y `s///e`) y leer archivos (`r`, `R`). `check.sh` rechaza todo eso y también cualquier destino de `w` que no sea el descriptor de archivo 3 o stderr. Probé que cada infracción introducida hace fallar la comprobación. Las comprobaciones buscan patrones en el script con grep y no constituyen un entorno aislado (*sandbox*) que limite el acceso al sistema anfitrión (`sed --sandbox` también prohibiría el `w` que necesita esta entrada).
+- **La velocidad del pulso depende de la máquina.** El reloj de retroceso se calibró en una máquina con WSL 2 a unos 3 segundos por 60 cuadros. Con una CPU más lenta, el pulso se ralentiza. El tiempo aumenta mucho con la longitud de la cinta `a…` dentro de `timecards.sed`. Acórtala si el pulso va lento. Las tuberías y `check.sh` omiten por completo el pulso.
+- **Solo GNU.** `T`, `Q`, `--debug`, `\x1b`, `\t` y los intervalos `-E` son extensiones de GNU. El sed de macOS/BSD no ejecuta esto.
+- El SQL se arma al pegar texto en cadenas de texto. Aquí eso solo es seguro porque cada valor es un id de ejecución que el anfitrión formó con dígitos, una semana de `date`, uno de cuatro nombres de categoría fijos o un número que sed obtuvo de marcas de conteo. No copies esa costumbre.
+- `run_id` es `epoch-pid`, así que dos ejecuciones del mismo PID en el mismo segundo entrarían en conflicto. Es un juguete.
 
-## Run it in a container
+## Ejecútalo en un contenedor
 
-Prerequisite: Docker, set up once as described in [`SANDBOX-SETUP.md`](../../SANDBOX-SETUP.md#docker).
+Requisito previo: configura Docker una sola vez como se describe en [`SANDBOX-SETUP.md`](../../SANDBOX-SETUP.md#docker).
 
 ```bash
 sandbox/container/run-image.sh src/regex-sed
 ```
 
-It builds this folder's [`Dockerfile`](Dockerfile) and runs the result with no network, a read-only file system and user `nobody`, then prints the output and a read-only look at the rows it wrote. The image holds GNU sed, bash and coreutils (from the Ubuntu base) and sqlite3. It has no compiler and no package manager.
+El script hace la compilación a partir del [`Dockerfile`](Dockerfile) de este directorio y ejecuta el resultado sin red, con un sistema de archivos de solo lectura y con el usuario `nobody`. Luego imprime la salida y muestra en modo de solo lectura las filas que escribió. La imagen contiene GNU sed, bash y coreutils (del sistema base Ubuntu), además de sqlite3. No incluye compilador ni gestor de paquetes.

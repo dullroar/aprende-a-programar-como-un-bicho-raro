@@ -186,3 +186,11 @@
 {"id":"EXC-186","segment":"s-622b8c2e1d90-0014","invariant":"I7","reason":"'builds' is the verb (the script compiles and runs the folder's program), not the noun build the glossary renders as compilación","task":"P4-src-12"}
 {"id":"EXC-187","segment":"s-5d80b6fd3780-0030","invariant":"I7","reason":"'exit code' is rendered estado de salida (the glossary bans código de salida); the 'code' flagged is that noun inside the term, not the word code","task":"P4-src-12"}
 {"id":"EXC-188","segment":"s-fb0d23a83650-0039","invariant":"I7","reason":"'Book' is the verb (record one entry, the name of the book callout), not the noun book the glossary renders as libro","task":"P4-src-12"}
+{"id":"EXC-189","segment":"s-cf6046ff0e81-0012","invariant":"I7","reason":"English 'builds' is the verb (builds this folder's Dockerfile), not the noun 'build' the glossary renders as compilación","task":"P4-src-13"}
+{"id":"EXC-190","segment":"s-c85b5717b439-0015","invariant":"I7","reason":"'falla' is the verb 'fails' (when the pass fails); the banned rendering applies to the noun failure, which the text renders as fallo","task":"P4-src-13"}
+{"id":"EXC-191","segment":"s-dbad975ae6fb-0011","invariant":"I7","reason":"Entry is rendered entrada in the diagram label. Registro de desplazamiento names the distinct technical concept shift register.","task":"P4-src-13"}
+{"id":"EXC-192","segment":"s-53892b091526-0069","invariant":"I7","reason":"Books is the verb for recording a timecard entry. Registra preserves that meaning.","task":"P4-src-13"}
+{"id":"EXC-193","segment":"s-f676dd5179f8-0093","invariant":"I7","reason":"Build means assemble an output row, with no compilation.","task":"P4-src-13"}
+{"id":"EXC-194","segment":"s-deed37c3dc49-0104","invariant":"I7","reason":"Books means records timecards and in a row means consecutively. Registra and seguidas preserve those meanings.","task":"P4-src-13"}
+{"id":"EXC-195","segment":"s-aef95d4aad8a-0106","invariant":"I7","reason":"Build means assemble status lines, with no compilation.","task":"P4-src-13"}
+{"id":"EXC-196","segment":"s-f6b3fcde7963-0114","invariant":"I7","reason":"Books means records timecards and in a row means consecutively. Registra and seguidas preserve those meanings.","task":"P4-src-13"}

@@ -16,7 +16,7 @@ This survey compares five engines. The Perl example works through the mechanism 
 | **PCRE2** | one `pcre2_match` call | Callout strings `(?C"book")` are opcodes for a bodiless C dispatcher | [`timecards.c` L24-26](../../src/regex-pcre2/timecards.c#L24-L26) |
 | **pcre2grep** | one command line, no custom code | Callout scripts name programs to run, and their **exit codes steer the match** | [`timecards.sh` L14-20](../../src/regex-pcre2grep/timecards.sh#L14-L20) |
 | **.NET** | a pattern of balancing groups only | Capture *stacks* make a counter | [`Program.cs` L13](../../src/regex-dotnet/Program.cs#L13) |
-| **GNU sed** | one line of text, rewritten | A [Markov algorithm](../../src/regex-sed/README.md#markov-algorithms-computing-by-find-and-replace): find-and-replace as a computer | [`timecards.sed`](../../src/regex-sed/timecards.sed) |
+| **GNU sed** | one line of text, rewritten | A [Markov algorithm](../../src/regex-sed/README.md#algoritmos-de-markov-calcular-con-buscar-y-reemplazar): find-and-replace as a computer | [`timecards.sed`](../../src/regex-sed/timecards.sed) |
 
 ## Perl: code inside the match
 
@@ -146,7 +146,7 @@ flowchart TD
 
 ### Program flow of `regex-sed`
 
-From [`regex-sed`](../../src/regex-sed/README.md) ([source section](../../src/regex-sed/README.md#program-flow)).
+From [`regex-sed`](../../src/regex-sed/README.md) ([source section](../../src/regex-sed/README.md#flujo-del-programa)).
 
 ```mermaid
 flowchart TD
@@ -222,7 +222,7 @@ flowchart TD
 
 ### Program flow of `regex-perl`
 
-From [`regex-perl`](../../src/regex-perl/README.md) ([source section](../../src/regex-perl/README.md#program-flow)).
+From [`regex-perl`](../../src/regex-perl/README.md) ([source section](../../src/regex-perl/README.md#flujo-del-programa)).
 
 ```mermaid
 flowchart TD
