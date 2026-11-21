@@ -1,12 +1,12 @@
 # loop/STATE.md (keep to 60 lines; refreshed by every iteration)
 
 - **Edition:** v4-es.0-rc1 (working)    **English SHA:** 48a4429c0a22b2aac628b256a50c07d1816bcb80
-- **Iteration:** 164    **Stage:** 4 (bulk translation)    **Last result:** iter 164 P4-lessons-study-guides-languages-6 done (forth guide already translated in Phase 3; verified, status only).
-- **Tasks:** todo 45 | doing 0 | done 123 | blocked 0 | skipped 0 (recount with the queue files)
+- **Iteration:** 165    **Stage:** 4 (bulk translation)    **Last result:** iter 165 P4-audit-5 done (5 segments sampled; 2 minor findings queued as P4-fix-5, P4-fix-6).
+- **Tasks:** todo 46 | doing 0 | done 124 | blocked 0 | skipped 0 (recount with the queue files)
 - **Next task:** run python3 tools/next_task.py (see loop/queue/generated/translate.jsonl).
 - **Budget:** driver-reported $89.4099 of $100 through the Claude run, with Codex session cost unavailable
 - **Translate progress:** segments accepted 5684 / total 8827 (7394 prose + 1433 Mermaid labels) ; files done 168 / 212 (nonempty, non-fuzzy PO entries and complete files). Latest: lessons/study-guides/languages/ed-and-ex.md.
-- **Last audit:** P4-audit-4 (iter 153, translation/reviews/p4-audit-4.md)    **Next audit due:** P4-audit-5
+- **Last audit:** P4-audit-5 (iter 165, translation/reviews/p4-audit-5.md)    **Next audit due:** the next P4-audit task in the queue
 - **Gates:** P0 passed (iter 17)  P1 passed (iter 23)  P2 passed (iter 47)  P3 passed (iter 58)  P3B passed (iter 85)  P3C passed (iter 105)  P4 -  P5 -  P6 -  P7A -
 - **Open provisional decisions:** 5 (acronym BICHO; glossary choices; house style N=29 calibrated; schema/segment-id formats; same-tier reviewer kept after recall test)    **Blockers:** 0    **Source issues:** 26 (translation/source-issues.md)
 
