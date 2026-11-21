@@ -298,6 +298,35 @@ def dest_map(en_text, rel, doc):
     return out
 
 
+_DOC_CACHE = {}
+
+
+def stored_document(root=ROOT):
+    """translation/anchors.json of the real checkout, read once per process; None for another root, a missing file or an
+    unreadable one (the early phases have none: then fragments are left as they are)."""
+    if root != ROOT:
+        return None
+    if root not in _DOC_CACHE:
+        try:
+            _DOC_CACHE[root] = load()
+        except (OSError, AnchorError, ValueError):
+            _DOC_CACHE[root] = None
+    return _DOC_CACHE[root]
+
+
+def layout_text(text, rel, layer=None, root=ROOT):
+    """`text` (English layout and English fragments) as it reads in this checkout: references to renamed paths in the Spanish
+    layout (enpath.remap_text), then the fragment of every internal link re-aimed at the heading id of the target in this
+    edition (anchors.json). Identity when the layer is not moved. The one function apply.py (writing) and verify.py (checking)
+    share, so a file is never right for one and wrong for the other."""
+    layer = layer or enpath.load(root)
+    new = enpath.remap_text(text, rel, layer, root)
+    doc = stored_document(root) if layer.moved else None
+    if doc is None or not rel.endswith(".md"):
+        return new
+    return remap_text(new, layer.english(rel), doc, None, layer)
+
+
 def check_links(rel, es_text, doc, layer=None):
     """Problems for the internal links of one Spanish file: each fragment must be an id of the target file."""
     problems = []

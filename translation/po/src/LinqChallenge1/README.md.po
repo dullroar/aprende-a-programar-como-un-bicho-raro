@@ -35,7 +35,7 @@ msgstr "Reto de LINQ, variante A: una sola instrucción con una cadena fluida de
 #: src/LinqChallenge1/README.md:19
 msgctxt "s-4e3f3effb0db-0005"
 msgid "**Teaches you:** that a chain of LINQ methods can express the entire program."
-msgstr "**Te enseña:** que una cadena de métodos de LINQ puede expresar todo el programa."
+msgstr "**Te enseña:** que una cadena de métodos de LINQ puede expresar el programa completo."
 
 #: src/LinqChallenge1/README.md:21
 msgctxt "s-b042049778fc-0006"

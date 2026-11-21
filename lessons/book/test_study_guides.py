@@ -364,6 +364,33 @@ class SpanishContract(unittest.TestCase):
         for category in ("Meetings", "Coding", "Debugging", "Learning"):
             self.assertIn(f"`{category}`", sg.SHARED_CHALLENGE)    # the four categories are data: always in code font, never translated
 
+    def intro_with(self, heading):
+        """Write the scratch intro with this challenge heading, at the Spanish name and at the name this checkout's layout reads."""
+        es = sg.catalog.load("es", layout="spanish")
+        for names in (es, sg.CAT):
+            path = os.path.join(self.repo, *names.path("lessons/intro.md").split("/"))
+            old = open(path, encoding="utf-8").read() if os.path.isfile(path) else None
+            self.addCleanup(lambda p=path, o=old: open(p, "w", encoding="utf-8").write(o) if o is not None else os.remove(p))
+            os.makedirs(os.path.dirname(path), exist_ok=True)
+            with open(path, "w", encoding="utf-8") as f:
+                f.write("# Introducción\n\n## %s\n\nTexto.\n" % heading)
+
+    def test_the_shared_paragraph_link_follows_the_intro_heading_as_it_is_now(self):
+        """P3C-003: the link names the id of the intro's challenge heading. Translated intro: the catalog heading's id. Intro still
+        in English: the English id (a link to a heading that does not exist would be broken). Neither: the catalog id, so it fails."""
+        english_link = self.GOOD.replace("#qué-hace-el-reto", "#what-the-challenge-does")
+        self.assertNotEqual(english_link, self.GOOD)
+        self.assertEqual(sg.challenge_anchor(self.repo), "qué-hace-el-reto")
+        self.assertEqual(self.problems(self.GOOD), [])
+        self.assertProblem(english_link, "must start with the standard paragraph")         # translated intro: the English id is stale
+        self.intro_with("What the challenge does")
+        self.assertEqual(sg.challenge_anchor(self.repo), "what-the-challenge-does")
+        self.assertEqual(self.problems(english_link), [])
+        self.assertProblem(self.GOOD, "must start with the standard paragraph")             # English intro: the Spanish id would not resolve
+        self.intro_with("Otro título")
+        self.assertEqual(sg.challenge_anchor(self.repo), "qué-hace-el-reto")
+        self.assertProblem(english_link, "must start with the standard paragraph")
+
     def test_the_catalog_paragraph_links_to_the_intro_heading_it_names(self):
         self.assertEqual(sg.CHALLENGE_HEADING, "Qué hace el reto")
         self.assertIn("(../../" + INTRO + "#qué-hace-el-reto)", sg.SHARED_CHALLENGE)

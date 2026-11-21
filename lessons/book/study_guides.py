@@ -92,6 +92,21 @@ def set_language(lang):
     GUIDES = os.path.join(LESSONS, cat.lessons_path("study-guides"))
     CANONICAL_HOMES = ("src/", "lessons/cs-source/", cat.path("lessons/intro.md"))
 
+def challenge_anchor(repo=None):
+    """The fragment the shared-challenge link must carry: the id of the introduction's challenge heading AS THE INTRODUCTION IS
+    NOW. The catalog says what the translated heading is (study_guides.challenge_heading); until the introduction is translated it
+    still has the English heading, and a link to a heading that does not exist is worse than one to the English id. Once the
+    introduction is translated, `apply.py --relink` re-aims every source at the catalog heading and this returns its id."""
+    wanted = slug(CHALLENGE_HEADING)
+    path = os.path.join(repo or REPO, "lessons", CAT.lessons_path("intro.md"))
+    if not os.path.isfile(path):
+        return wanted
+    ids = {slug(nfc(m.group(1))) for m in re.finditer(r"^## (.+?)\s*$", read(path), re.M)}
+    if wanted in ids:
+        return wanted
+    english = slug(nfc(catalog.load("en").text("study_guides.challenge_heading")))
+    return english if english in ids else wanted
+
 # A new (non-canonical) diagram is allowed only for a relationship the source diagram does not show.
 NEW_DIAGRAM_KINDS = ("cross-language-state", "lazy-demand-trace", "transaction-boundary", "authority-boundary")
 
@@ -334,7 +349,7 @@ def check_guide(rel, text, repo=None):
     if "DEMO ONLY" not in text or SANDBOX_WORD not in low:
         add(f"must state the safety model: DEMO ONLY data and sandbox-first execution (the word '{SANDBOX_WORD}')")
     first_paragraph = re.split(r"\n\s*\n", shared.strip(), maxsplit=1)[0]
-    if " ".join(first_paragraph.split()) != SHARED_CHALLENGE:
+    if " ".join(first_paragraph.split()) != SHARED_CHALLENGE.replace("#" + slug(CHALLENGE_HEADING) + ")", "#" + challenge_anchor(repo) + ")"):
         add(f'"{SECTIONS[S_CHALLENGE]}" must start with the standard paragraph, including the exactly 40 rule')
     if EXACT_FORTY not in shared:
         add(f"'{SECTIONS[S_CHALLENGE]}' must say that a total of exactly 40 continues")

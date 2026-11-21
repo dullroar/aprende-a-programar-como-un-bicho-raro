@@ -139,6 +139,9 @@ cs:
     demonstrates: "demuestra"
     analogy: "analogía"
     counterexample: "contraejemplo"
+  # The fixed "Teaches you" line of an entry README and the word its `teaches:` front matter starts with ("que ..." in Spanish).
+  teaches_prefix: "que"
+  teaches_label: "Te enseña:"
   # Table column headers.
   header:
     language_tool: "Lenguaje o herramienta"

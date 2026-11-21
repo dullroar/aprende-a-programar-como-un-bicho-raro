@@ -41,7 +41,7 @@ The window is built from a string of raw XAML via `XamlReader.Load` at run time 
 
 ### Do this in production and you're fired
 
-- **`DbContext` is not thread-safe.** The `Mutex` exists only to keep the thread-plus-reflection shape working at all ([README](../../src/ModernChallenge1/README.md#gotchas-worth-knowing)); it is a historical artifact.
+- **`DbContext` is not thread-safe.** The `Mutex` exists only to keep the thread-plus-reflection shape working at all ([README](../../src/ModernChallenge1/README.md#trampas-que-conviene-conocer)); it is a historical artifact.
 - **Reflection and a thread add nothing.** They are a deliberate 2008-style time capsule; modern code would `await SaveChangesAsync()`.
 - **WPF needs `[STAThread]`** and a single UI thread ([L30](../../src/ModernChallenge1/Program.cs#L30)).
 - **Readability, testing, debugging**: nothing in that `for` header can be stepped through, unit-tested or reused.
@@ -142,7 +142,7 @@ Each picture below is the `## Program Flow` section of an entry's README, copied
 
 ### Program flow of `ModernChallenge1`
 
-From [`ModernChallenge1`](../../src/ModernChallenge1/README.md) ([source section](../../src/ModernChallenge1/README.md#program-flow)).
+From [`ModernChallenge1`](../../src/ModernChallenge1/README.md) ([source section](../../src/ModernChallenge1/README.md#flujo-del-programa)).
 
 ```mermaid
 flowchart TD
@@ -164,7 +164,7 @@ flowchart TD
 
 ### Program flow of `GoChallenge1`
 
-From [`GoChallenge1`](../../src/GoChallenge1/README.md) ([source section](../../src/GoChallenge1/README.md#program-flow)).
+From [`GoChallenge1`](../../src/GoChallenge1/README.md) ([source section](../../src/GoChallenge1/README.md#flujo-del-programa)).
 
 ```mermaid
 flowchart TD
@@ -187,7 +187,7 @@ flowchart TD
 
 ### Program flow of `JavaChallenge1`
 
-From [`JavaChallenge1`](../../src/JavaChallenge1/README.md) ([source section](../../src/JavaChallenge1/README.md#program-flow)).
+From [`JavaChallenge1`](../../src/JavaChallenge1/README.md) ([source section](../../src/JavaChallenge1/README.md#flujo-del-programa)).
 
 ```mermaid
 flowchart TD
@@ -209,7 +209,7 @@ flowchart TD
 
 ### Program flow of `KotlinChallenge1`
 
-From [`KotlinChallenge1`](../../src/KotlinChallenge1/README.md) ([source section](../../src/KotlinChallenge1/README.md#program-flow)).
+From [`KotlinChallenge1`](../../src/KotlinChallenge1/README.md) ([source section](../../src/KotlinChallenge1/README.md#flujo-del-programa)).
 
 ```mermaid
 flowchart TD
@@ -230,7 +230,7 @@ flowchart TD
 
 ### Program flow of `LinqChallenge1`
 
-From [`LinqChallenge1`](../../src/LinqChallenge1/README.md) ([source section](../../src/LinqChallenge1/README.md#program-flow)).
+From [`LinqChallenge1`](../../src/LinqChallenge1/README.md) ([source section](../../src/LinqChallenge1/README.md#flujo-del-programa)).
 
 ```mermaid
 flowchart TD
@@ -254,7 +254,7 @@ flowchart TD
 
 ### Program flow of `LinqChallenge2`
 
-From [`LinqChallenge2`](../../src/LinqChallenge2/README.md) ([source section](../../src/LinqChallenge2/README.md#program-flow)).
+From [`LinqChallenge2`](../../src/LinqChallenge2/README.md) ([source section](../../src/LinqChallenge2/README.md#flujo-del-programa)).
 
 ```mermaid
 flowchart TD
@@ -275,7 +275,7 @@ flowchart TD
 
 ### Program flow of `PythonChallenge1`
 
-From [`PythonChallenge1`](../../src/PythonChallenge1/README.md) ([source section](../../src/PythonChallenge1/README.md#program-flow)).
+From [`PythonChallenge1`](../../src/PythonChallenge1/README.md) ([source section](../../src/PythonChallenge1/README.md#flujo-del-programa)).
 
 ```mermaid
 flowchart TD

@@ -500,7 +500,7 @@ def i12(src, target, rel, ctx):
     if ctx.tier_of(rel) != "T1":
         return []
     out = []
-    for s in sentences(strip_ph_keep_words(target)):
+    for s in sentences(strip_ph_keep_words(block_breaks(target, src))):
         n = word_count(s)
         if n > ctx.sentence_limit:
             out.append(Finding("I12", "", "sentence of %d words (limit %d): %s..." % (n, ctx.sentence_limit, s[:40])))
@@ -510,6 +510,19 @@ def i12(src, target, rel, ctx):
 
 
 SEP_RE = re.compile(r"⟦SEP_[0-9]{4}⟧")
+
+
+BLOCK_TAG_RE = re.compile(r"<(?:/?(?:p|h[1-6]|div|section|li|ul|ol|tr|td|th|table|blockquote)\b|br\b)", re.I)
+
+
+def block_breaks(text, src):
+    """A line break or the start or end of a block-level HTML element (`<br/>`, `</p>`, `<h1>`, `<section>`) ends a sentence, so
+    the lines of a title page are not one long sentence. Inline tags (`<em>`, `<span>`, `<a>`) do not."""
+    mapping = getattr(src, "mapping", None) or {}
+    for ph, original in mapping.items():
+        if ph.startswith("⟦HTML_") and BLOCK_TAG_RE.match(original):
+            text = text.replace(ph, " . ")
+    return text
 
 
 def strip_ph_keep_words(text):

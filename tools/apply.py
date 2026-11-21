@@ -26,6 +26,10 @@ Usage:
   python3 -I tools/apply.py --init FILE.md [--identity] [--po PO]    create a PO (empty msgstr, or identity)
   python3 -I tools/apply.py FILE.md [--po PO] [--out OUT|-|--write] [--lang es] [--lenient]
                                        apply a PO file (no --out/--write = dry run with counts only)
+  python3 -I tools/apply.py --relink [--write] [FILE.md ...]
+                                       re-aim the link fragments of every hand-written file (or the named ones) after
+                                       `anchors.py --generate`: the file is its PO applied (or the English text) through
+                                       anchors.layout_text; prints the files that change, writes them with --write
 """
 import os
 import sys
@@ -36,6 +40,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
 sys.path.insert(0, HERE)
 sys.path.insert(0, os.path.join(ROOT, "lessons", "book", "locale"))
+import anchors  # noqa: E402
 import catalog  # noqa: E402
 import enpath  # noqa: E402
 import segment  # noqa: E402
@@ -185,8 +190,47 @@ def identity_files(files, root=ROOT, layer=None):
     return bad
 
 
+def expected_text(rel, path, cat=None, root=ROOT):
+    """What the working file with English key `rel` must contain: its PO applied to the English text (the English text when
+    there is no PO), through anchors.layout_text. The same text verify.py compares the file with."""
+    text = source_text(rel, path)
+    po_path = po_path_for(rel)
+    if os.path.isfile(po_path):
+        text, _ = apply_text(text, load_po(po_path), rel, cat or catalog.load(DEFAULT_LANG), strict=False)
+    return anchors.layout_text(text, rel, None, root)
+
+
+def relink(files, write=False, root=ROOT):
+    """Bring the link fragments of `files` (English keys or paths; every authored file by default) in line with
+    translation/anchors.json. Returns the English keys of the files that differ from their expected text."""
+    layer = enpath.load(root)
+    cat = catalog.load(DEFAULT_LANG)
+    changed = []
+    for arg in files or segment.authored_files(root):
+        rel_key, full = enpath.locate(arg, root, layer)
+        if not rel_key.endswith(".md") or not os.path.isfile(full):
+            continue
+        want = expected_text(rel_key, full, cat, root)
+        if segment.read_raw(full) != want:
+            changed.append(rel_key)
+            if write:
+                write_text(full, want)
+    return changed
+
+
 def main(argv):
     args = argv[1:]
+    if "--relink" in args:
+        rest = [a for a in args if a not in ("--relink", "--write")]
+        try:
+            changed = relink(rest, write="--write" in args)
+        except (ApplyError, catalog.CatalogError, OSError) as e:
+            print("FAIL %s" % e)
+            return 1
+        for rel_key in changed:
+            print("%s %s" % ("relinked" if "--write" in args else "would change", rel_key))
+        print("relink: %d file(s) %s" % (len(changed), "written" if "--write" in args else "differ"))
+        return 0
     if not args:
         print(__doc__.split("Usage:")[1].rstrip())
         return 2
@@ -243,7 +287,7 @@ def main(argv):
     except (ApplyError, catalog.CatalogError, OSError) as e:
         print("FAIL %s" % e)
         return 1
-    out = enpath.remap_text(out, rp)            # references to renamed paths are written in the layout of the checkout
+    out = anchors.layout_text(out, rp)          # renamed paths in the layout of the checkout, fragments of the translated headings
     if flag_write:
         write_text(src, out)
     elif out_arg and out_arg != "-":

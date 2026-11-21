@@ -59,7 +59,7 @@ WORD_KEYS = (
      "program_flow_heading", "program_flow_intro", "program_flow_of", "program_flow_from", "opener_title", "opener_chapters",
      "opener_index", "index_title", "index_intro", "index_concepts", "index_languages", "index_entries", "index_roles",
      "index_language_line", "study_guides_heading", "study_guides_intro", "study_guides_languages", "study_guides_concepts",
-     "stale_phrases.1", "stale_phrases.2"]
+     "stale_phrases.1", "stale_phrases.2", "teaches_prefix", "teaches_label"]
     + ["assurance." + k for k in ("guaranteed", "implementation_permitted", "accidentally_exploited")]
     + ["relation." + k for k in ("demonstrates", "analogy", "counterexample")]
     + ["header." + k for k in ("language_tool", "real_machine", "state_lives_long", "lesson", "place", "entry", "name", "evaluation",
@@ -91,6 +91,11 @@ def set_language(lang):
                         "accidentally-exploited": words["assurance.accidentally_exploited"]}
     RELATION = {k: words["relation." + k] for k in ("demonstrates", "analogy", "counterexample")}
     STALE_PHRASES = (words["stale_phrases.1"].lower(), words["stale_phrases.2"].lower())
+
+
+def teaches_line(body):
+    """The README's fixed bold lead-in line (the printed label comes from the catalog, cs.teaches_label); None if absent."""
+    return re.search(r"^\*\*" + re.escape(W["teaches_label"]) + r"\*\* (.+)$", body, re.M)
 
 
 def fill(key, **values):
@@ -308,8 +313,8 @@ class Model:
         for d, e in sorted(self.entries.items()):
             w = f"src/{d}/README.md"
             teaches = e.get("teaches")
-            if isinstance(teaches, str) and not teaches.startswith("that "):
-                p.add(w, "'teaches' must start with a lowercase 'that' clause")
+            if isinstance(teaches, str) and not teaches.startswith(W["teaches_prefix"] + " "):
+                p.add(w, f"'teaches' must start with a lowercase {W['teaches_prefix']!r} clause")
             if e.get("kind") not in KINDS and "kind" in e:
                 p.add(w, f"kind must be one of {KINDS}")
             if e.get("assurance") not in ASSURANCE and "assurance" in e:
@@ -342,9 +347,9 @@ class Model:
                 p.add(w, f"pairs-with {e['pairs-with']!r} is not an entry")
             if "lesson" in e:
                 self._check_lesson(w, e["lesson"])
-            m = re.search(r"^\*\*Teaches you:\*\* (.+)$", e["_body"], re.M)
+            m = teaches_line(e["_body"])
             if m and "teaches" in e and m.group(1).strip() != e["teaches"]:
-                p.add(w, "'teaches' differs from the README's **Teaches you:** line; make them identical")
+                p.add(w, f"'teaches' differs from the README's **{W['teaches_label']}** line; make them identical")
         for cid, c in sorted(self.concepts.items()):
             w = f"concept {cid}"
             if not re.fullmatch(r"[a-z][a-z0-9-]*", cid):
@@ -558,8 +563,14 @@ def blk_roles(model, L, expand):
         parts.append(f"## {r['title']}\n\n{body}")
     return "\n\n".join(parts)
 
+def on_page(e, lesson_file):
+    """Is the lesson page of entry `e` the page a generated block names? The page in the `lesson:` front matter is written in the
+    layout of this edition; the BEGIN GENERATED marker may name it by its English key or by its path here, so both go to the
+    English key before they are compared."""
+    return E(e["lesson"].partition("#")[0]) == E(lesson_file)
+
 def blk_concepts_of(model, L, lesson_file):
-    ids = sorted({t for e in model.entries.values() if e["lesson"].partition("#")[0] == lesson_file for t in e["tags"]},
+    ids = sorted({t for e in model.entries.values() if on_page(e, lesson_file) for t in e["tags"]},
                  key=lambda t: (model.concepts[t]["chapter"], model.concepts[t]["order"]))
     if not ids:
         return ""
@@ -585,7 +596,7 @@ def rebase_links(text, entry_dir, L, problems):
 def blk_program_flow(model, L, lesson_file):
     """The Program Flow sections of the entries whose lesson page is `lesson_file`, copied from their READMEs. GitHub draws the
     Mermaid; the book build turns each fence into a rendered figure."""
-    es = sorted_entries(model, lambda e: e["lesson"].partition("#")[0] == lesson_file and e.get("_flow"))
+    es = sorted_entries(model, lambda e: on_page(e, lesson_file) and e.get("_flow"))
     if not es:
         return ""
     parts = ["## " + W["program_flow_heading"], fill("program_flow_intro", link=f"{L.lessons(P('intro.md'))}#{CHALLENGE_ANCHOR}")]

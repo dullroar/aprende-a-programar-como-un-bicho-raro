@@ -15,7 +15,7 @@ analogies: [coroutine]
 ---
 # Una sola instrucción, edición Kotlin
 
-Esta es la adaptación a Kotlin que hizo Ken del reto en C# de Jim Lehmer. Es una de cuatro adaptaciones hermanas, junto con [Java](../JavaChallenge1/README.md), [Python](../PythonChallenge1/README.md) y [Go](../GoChallenge1/README.md). El README de Java explica [qué hace cada versión](../JavaChallenge1/README.md#what-every-version-does) y tiene la [comparación lado a lado](../JavaChallenge1/README.md#side-by-side) de las cuatro.
+Esta es la adaptación a Kotlin que hizo Ken del reto en C# de Jim Lehmer. Es una de cuatro adaptaciones hermanas, junto con [Java](../JavaChallenge1/README.md), [Python](../PythonChallenge1/README.md) y [Go](../GoChallenge1/README.md). El README de Java explica [qué hace cada versión](../JavaChallenge1/README.md#qué-hacen-todas-las-versiones) y tiene la [comparación lado a lado](../JavaChallenge1/README.md#lado-a-lado) de las cuatro.
 
 La restricción: `main` contiene exactamente una instrucción, un bucle `for` con el cuerpo vacío. Esto es una acrobacia con la mecánica de las expresiones, no es buen código de producción. Nada de esto se conecta con un sistema real de registro de horas: las tarjetas están marcadas como `is_demo`.
 

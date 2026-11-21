@@ -82,7 +82,7 @@ Each picture below is the `## Program Flow` section of an entry's README, copied
 
 ### Program flow of `forth`
 
-From [`forth`](../../src/forth/README.md) ([source section](../../src/forth/README.md#program-flow)).
+From [`forth`](../../src/forth/README.md) ([source section](../../src/forth/README.md#flujo-del-programa)).
 
 ```mermaid
 flowchart TD

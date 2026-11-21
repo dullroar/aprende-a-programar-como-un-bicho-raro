@@ -544,6 +544,7 @@ Folders below `src/`, `sandbox/` and `gradle/` are kept (frozen trees) and are n
 ## Warnings
 
 - lessons/answers-key.md: file name answers-key.md appears in frozen lessons/tools/verify-exercises.sh (check it is not a path)
+- word 'adaptaciones' in a Spanish path is not in the glossary (P3B-002 adds it): lessons/study-guides/languages/csharp-linq-xaml-and-ports.md
 - word 'adversariales' in a Spanish path is not in the glossary (P3B-002 adds it): lessons/study-guides/concepts/reading-adversarial-programs.md
 - word 'comparativos' in a Spanish path is not in the glossary (P3B-002 adds it): lessons/cs/09-comparative-case-studies.md
 - word 'conceptos' in a Spanish path is not in the glossary (P3B-002 adds it): lessons/study-guides/concepts/comparative-machine-design.md
@@ -556,6 +557,5 @@ Folders below `src/`, `sandbox/` and `gradle/` are kept (frozen trees) and are n
 - word 'patrones' in a Spanish path is not in the glossary (P3B-002 adds it): lessons/patterns.md
 - word 'programas' in a Spanish path is not in the glossary (P3B-002 adds it): lessons/study-guides/concepts/reading-adversarial-programs.md
 - word 'raras' in a Spanish path is not in the glossary (P3B-002 adds it): lessons/study-guides/concepts/formal-languages-and-weird-machines.md
-- word 'retrollamadas' in a Spanish path is not in the glossary (P3B-002 adds it): lessons/cs/10-events-callbacks-and-reactive-control-flow.md
 - word 'sustratos' in a Spanish path is not in the glossary (P3B-002 adds it): lessons/cs/05-formal-languages-as-computational-substrates.md
 - word 'variables' in a Spanish path is not in the glossary (P3B-002 adds it): lessons/cs/06-state-beyond-variables.md

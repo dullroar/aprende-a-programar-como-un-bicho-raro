@@ -254,6 +254,20 @@ def file_fixture(es_edit=None, after=None, en_edit=None, po_edit=None, ctx_edit=
     return run
 
 
+def stale_fragment_problems(rel="src/GoChallenge1/README.md"):
+    """verify's report for a REAL translated file whose links into a translated heading still carry the English fragment
+    (renamed paths are remapped, anchors are not): the PO applied through anchors.layout_text is the only text that passes."""
+    import apply as apply_mod
+    import enpath
+    import verify
+    e = env()
+    en = verify.english_text(e.cfg, rel)
+    po = apply_mod.load_po(apply_mod.po_path_for(rel))
+    applied, _ = apply_mod.apply_text(en, po, rel, e.cat, strict=False)
+    stale = enpath.remap_text(applied, rel)
+    return verify.check_file(rel, en, stale, po, e.ctx, False, e.cat, verify.layout_remap(rel, ROOT))
+
+
 def lock_problems(mutate, rel="src/forth/timecards.fs"):
     """check_lock on a one-file mini repo: a real frozen file and its row of translation/locked-code.sha256."""
     import lock_code
@@ -602,6 +616,9 @@ def catalog():
     # 8. A link fragment broken only on GitHub while the PDF link still works.
     add(8, "fragment-not-remapped", "the heading is translated but the link keeps the English fragment", "file", "I4",
         file_fixture(ctx_edit=set_anchor_map({"#evidence-questions": "#preguntas-de-evidencia"})))
+
+    add(8, "stale-fragment-in-a-real-file", "a translated README keeps the English fragment of a link into a translated heading", "file", "I16",
+        stale_fragment_problems)
 
     add(8, "guide-link-fragment-broken", "a guide link to an exercise heading no longer resolves", "tool", "missing heading",
         guide_fixture(subst(r"\(\.\./\.\./exercises\.md#a1-read-the-rows-verified\)", "(../../exercises.md#a1-no-such-heading)")))

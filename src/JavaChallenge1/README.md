@@ -15,7 +15,7 @@ analogies: [closure]
 ---
 # Una sola instrucción, edición Java
 
-Port a Java del reto en C# de Jim Lehmer, hecho por Ken. Es uno de cuatro ports hermanos, junto con [Kotlin](../KotlinChallenge1/README.md), [Python](../PythonChallenge1/README.md) y [Go](../GoChallenge1/README.md), escritos para poder comparar los lenguajes. Este README también contiene la [comparación lado a lado](#side-by-side) de los cuatro.
+Port a Java del reto en C# de Jim Lehmer, hecho por Ken. Es uno de cuatro ports hermanos, junto con [Kotlin](../KotlinChallenge1/README.md), [Python](../PythonChallenge1/README.md) y [Go](../GoChallenge1/README.md), escritos para poder comparar los lenguajes. Este README también contiene la [comparación lado a lado](#lado-a-lado) de los cuatro.
 
 La restricción: `main` contiene exactamente una sentencia, un bucle `for` con el cuerpo vacío. La cabecera del bucle hace todo el trabajo. Esto es una acrobacia con la mecánica de las expresiones. No es un patrón de arquitectura y no es buen código de producción.
 

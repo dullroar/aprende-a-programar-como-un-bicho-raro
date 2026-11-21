@@ -490,6 +490,19 @@ class TestI12(Base):
         sep = ph("SEP", 1)
         self.assertTrue(inv.i12(first("a"), "%s uno dos tres cuatro cinco seis siete %s" % (sep, sep), "g.md", ctx))
 
+    def test_block_level_html_ends_a_sentence_but_inline_html_does_not(self):
+        """A title page is lines of HTML: `</p><p>` and `<br/>` end a sentence (P3C-003), `<em>` and `<span>` do not."""
+        ctx = make_ctx(tier_of=lambda rel: "T1", sentence_limit=5)
+        def target(src_text):
+            src = first(src_text)
+            return src, src.masked.replace("alpha beta gamma", "uno dos tres cuatro").replace("delta epsilon zeta", "cinco seis siete ocho")
+        src, tgt = target("<p>alpha beta gamma</p><p>delta epsilon zeta</p>")
+        self.assertEqual([], inv.i12(src, tgt, "g.md", ctx))
+        src, tgt = target("<p>alpha beta gamma<br/>delta epsilon zeta</p>")
+        self.assertEqual([], inv.i12(src, tgt, "g.md", ctx))
+        src, tgt = target("<p><em>alpha beta gamma</em> <span>delta epsilon zeta</span></p>")
+        self.assertTrue(inv.i12(src, tgt, "g.md", ctx))              # negative: inline tags join the words into one sentence
+
     def test_fail_usted(self):
         self.assertFires(self.run_seg("Run it now.", "Ejecute usted el programa.", tier_of=lambda rel: "T1"), "I12")
 

@@ -16,7 +16,7 @@ counterexamples: [event-driven-programming]
 ---
 # Reto de LINQ, variante A: una sola instrucción con una cadena fluida de métodos
 
-**Te enseña:** que una cadena de métodos de LINQ puede expresar todo el programa.
+**Te enseña:** que una cadena de métodos de LINQ puede expresar el programa completo.
 
 > **No es el reto compartido.** Esta entrada no genera horas al azar: su semana laboral tiene cinco días fijos de 8 horas, con un tope para que el total sea exactamente 40.0 horas y ninguna tarjeta cruce la línea. Enseña la ejecución diferida y las cadenas de métodos de LINQ, no la regla de parada "conserva la primera tarjeta que pasa de 40".
 

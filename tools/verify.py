@@ -197,9 +197,10 @@ def check_lock(root, full=False):
 
 def layout_remap(rel, root=ROOT):
     """The `remap` argument of check_file for the file with English key `rel` in the checkout `root`."""
+    import anchors
     import enpath
     layer = enpath.load(root)
-    return lambda text: enpath.remap_text(text, rel, layer)
+    return lambda text: anchors.layout_text(text, rel, layer, root)
 
 
 def check_file(rel, en_text, es_text, po, ctx, release, cat=None, remap=None):

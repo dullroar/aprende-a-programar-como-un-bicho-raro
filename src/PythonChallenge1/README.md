@@ -16,7 +16,7 @@ counterexamples: [event-driven-programming]
 ---
 # Una instrucción, edición Python
 
-Es el port a Python que hizo Ken del reto en C# de Jim Lehmer. Es uno de cuatro ports hermanos, junto con [Java](../JavaChallenge1/README.md), [Kotlin](../KotlinChallenge1/README.md) y [Go](../GoChallenge1/README.md). El README de Java tiene [lo que hace cada versión](../JavaChallenge1/README.md#what-every-version-does) y la [comparación lado a lado](../JavaChallenge1/README.md#side-by-side) de las cuatro.
+Es el port a Python que hizo Ken del reto en C# de Jim Lehmer. Es uno de cuatro ports hermanos, junto con [Java](../JavaChallenge1/README.md), [Kotlin](../KotlinChallenge1/README.md) y [Go](../GoChallenge1/README.md). El README de Java tiene [lo que hace cada versión](../JavaChallenge1/README.md#qué-hacen-todas-las-versiones) y la [comparación lado a lado](../JavaChallenge1/README.md#lado-a-lado) de las cuatro.
 
 La restricción: `main` contiene exactamente una instrucción, un bucle `for` con el cuerpo vacío. Es una acrobacia con la mecánica de las expresiones, no un buen código de producción. Nada de esto se conecta con un sistema real de registro de horas: las tarjetas están marcadas con `is_demo`.
 

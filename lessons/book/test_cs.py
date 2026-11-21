@@ -94,7 +94,7 @@ class TestRepositoryAsItIs(Base):
     def test_teaches_line_matches_the_frontmatter_for_every_entry(self):
         m = cs.Model()
         for d, e in m.entries.items():
-            hit = re.search(r"^\*\*Teaches you:\*\* (.+)$", e["_body"], re.M)
+            hit = cs.teaches_line(e["_body"])
             if hit:
                 self.assertEqual(hit.group(1).strip(), e["teaches"], d)
 
@@ -151,6 +151,7 @@ class TestTheLintersRefuse(Base):
         self.edit("src/tar-gnu/README.md", lambda s: s.replace("tags: [", "tags: [not-a-concept, ", 1))
         self.assertTrue(any("not-a-concept" in p for p in self.problems()), self.problems())
 
+    # English words over the real files (this class reads in English); the Spanish contract is TestSpanishTeachesContract.
     def test_teaches_needs_a_that_clause(self):
         self.edit("src/tar-gnu/README.md", lambda s: s.replace('teaches: "that a', 'teaches: "A', 1))
         self.assertTrue(any("'teaches' must start" in p for p in self.problems()), self.problems())
@@ -186,6 +187,53 @@ class TestEnglishWordsAreUnchanged(Base):
         self.assertIn("## Index of roles: what plays the loop", files["index.md"])
     def test_the_challenge_anchor_is_the_one_the_book_has_always_used(self):
         self.assertEqual(cs.CHALLENGE_ANCHOR, "what-the-challenge-does")
+
+class TestSpanishTeachesContract(Base):
+    """The `teaches:` contract in Spanish (P3C-003): the prefix "que" and the printed label "Te enseña:" come from the catalog,
+    so a Spanish entry is held to the same rules as an English one. The scratch README of LinqChallenge1 is given Spanish
+    front matter and a Spanish lead-in line (whatever language the real file is in), so the tests do not depend on how much of
+    the book is translated."""
+    LANG = "es"
+    README = "src/LinqChallenge1/README.md"
+    FRONT = "que una cadena de métodos de LINQ puede expresar el programa completo."
+
+    def setUp(self):
+        super().setUp()
+        def spanish(s):
+            s = re.sub(r'^teaches: ".*"$', lambda m: 'teaches: "%s"' % self.FRONT, s, count=1, flags=re.M)
+            return re.sub(r"^\*\*(?:Teaches you:|Te enseña:)\*\* .*$", lambda m: "**Te enseña:** " + self.FRONT, s, count=1, flags=re.M)
+        path = os.path.join(self.tmp, self.README)       # not self.edit: the real file may already be exactly this
+        with open(path, encoding="utf-8") as f:
+            text = f.read()
+        with open(path, "w", encoding="utf-8") as f:
+            f.write(spanish(text))
+    def teaches_problems(self):
+        return [p for p in self.problems() if p.startswith("src/LinqChallenge1/") and "teaches" in p]
+    def test_the_words_are_the_catalog_words(self):
+        self.assertEqual((cs.W["teaches_prefix"], cs.W["teaches_label"]), ("que", "Te enseña:"))
+    def test_a_spanish_entry_that_follows_the_contract_is_clean(self):
+        self.assertEqual(self.teaches_problems(), [])
+        self.assertIsNotNone(cs.teaches_line(cs.Model().entries["LinqChallenge1"]["_body"]))     # the line is found, so it was compared
+    def test_the_english_label_is_not_the_spanish_label(self):
+        self.assertIsNone(cs.teaches_line("**Teaches you:** that a thing."))
+        self.assertIsNotNone(cs.teaches_line("**Te enseña:** que una cosa."))
+        cs.set_language("en")
+        self.assertIsNotNone(cs.teaches_line("**Teaches you:** that a thing."))
+        self.assertIsNone(cs.teaches_line("**Te enseña:** que una cosa."))
+    def test_a_spanish_teaches_without_que_is_refused(self):
+        self.edit(self.README, lambda s: s.replace('teaches: "que una', 'teaches: "una', 1))
+        self.assertTrue(any("must start with a lowercase 'que' clause" in p for p in self.teaches_problems()), self.teaches_problems())
+    def test_an_english_that_does_not_pass_in_spanish(self):
+        self.edit(self.README, lambda s: s.replace('teaches: "que una', 'teaches: "that a', 1))
+        self.assertTrue(any("'que'" in p for p in self.teaches_problems()), self.teaches_problems())
+    def test_regression_line_3_differs_from_line_19(self):
+        """The mismatch the first review found in LinqChallenge1 ("el programa completo" against "todo el programa")."""
+        self.edit(self.README, lambda s: s.replace("**Te enseña:** " + self.FRONT, "**Te enseña:** " + self.FRONT.replace("el programa completo", "todo el programa"), 1))
+        self.assertTrue(any("'teaches' differs from the README's **Te enseña:** line" in p for p in self.teaches_problems()), self.teaches_problems())
+    def test_the_english_lead_in_is_not_compared_in_spanish(self):
+        """In Spanish the line "**Teaches you:**" is not the contract line (it is an untranslated leftover): nothing is compared."""
+        self.edit(self.README, lambda s: s.replace("**Te enseña:** ", "**Teaches you:** that something else. ", 1))
+        self.assertEqual(self.teaches_problems(), [])
 
 class TestSpanishWords(Base):
     """BOOK_LANG=es over the English sources: every word the generator adds is Spanish, the shape and the links do not change."""
@@ -393,6 +441,24 @@ class TestRenamedLayout(Base):
         self.assertTrue(os.path.isfile(os.path.join(self.tmp, "lessons", "indice.md")))
         self.assertFalse(os.path.exists(os.path.join(self.tmp, "lessons", "cs")))
         self.assertEqual(cs.drift(cs.generate_all(cs.Model())), [])
+
+    def test_a_block_marker_may_name_its_page_by_the_english_key_or_the_path_here(self):
+        """The committed Spanish pages keep the English key in `BEGIN GENERATED program-flow:languages/forth.md` while the
+        entries' `lesson:` names the page where it is (lenguajes/forth.md): both must fill the block (P3C-003 found it empty)."""
+        here, key = cs.P("languages/forth.md"), "languages/forth.md"
+        self.assertNotEqual(here, key)
+        page = os.path.join(self.tmp, "lessons", here)
+        text = cs.read(page).replace(":" + here, ":" + key)       # the layout respelling above touched only some markers
+        def blocks(marker_page):
+            with open(page, "w", encoding="utf-8") as f:
+                f.write(re.sub(r"(GENERATED [\w-]+:)" + re.escape(key), lambda m: m.group(1) + marker_page, text))
+            return cs.generate_blocks(cs.Model(), key)
+        by_key, by_path = blocks(key), blocks(here)
+        self.assertIn("src/forth/README.md#", by_key)               # the entry's program flow is in the block
+        self.assertIn("```mermaid", by_key)
+        self.assertEqual(by_key.replace(":" + key, ":" + here), by_path)
+        other = blocks("languages/apl.md")                          # negative: a marker for another page fills nothing of forth's
+        self.assertNotIn("src/forth/README.md#", other)
 
     def test_opener_and_index_links_use_the_renamed_names(self):
         files = cs.generate_all(cs.Model())

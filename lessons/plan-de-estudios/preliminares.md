@@ -4,8 +4,8 @@
   The curriculum is short, so the copyright notice sits on the title page and the full MIT text stays in LICENSE.
 -->
 <section class="titlepage">
-<h1 class="book-title">Learn Programming the Weird Way! <span class="book-version">Curriculum</span></h1>
-<p class="book-subtitle">A 16-week course in computer science through odd languages.<br/>A companion to <em>Learn Programming the Weird Way!</em> v4 and its study guides.</p>
+<h1 class="book-title">¡Aprende a programar como un bicho raro! <span class="book-version">Plan de estudios</span></h1>
+<p class="book-subtitle">Un curso de 16 semanas de informática con lenguajes raros.<br/>Complemento de <em>¡Aprende a programar como un bicho raro!</em> v4 y de sus guías de estudio.</p>
 <p class="book-authors">Jim Lehmer<br/>Ken Astl</p>
-<p style="margin-top: 3em; font-size: 9pt; color: #444;">Copyright &#169; 2026 Jim Lehmer and Ken Astl. Released under the MIT License.<br/>Source: <a href="{{REPOSITORY_WEB_URL}}">{{REPOSITORY_WEB_LABEL}}</a></p>
+<p style="margin-top: 3em; font-size: 9pt; color: #444;">Copyright &#169; 2026 Jim Lehmer y Ken Astl. Publicado bajo la licencia MIT.<br/>Código fuente: <a href="{{REPOSITORY_WEB_URL}}">{{REPOSITORY_WEB_LABEL}}</a></p>
 </section>

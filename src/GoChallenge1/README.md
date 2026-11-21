@@ -1,6 +1,6 @@
 ---
 name: "Go"
-teaches: "un solo `for` de tres partes con un cuerpo vacío puede ejecutar todo el programa en Go."
+teaches: "que un solo `for` de tres partes con un cuerpo vacío puede ejecutar todo el programa en Go."
 kind: port
 languages: [go]
 lesson: "lenguajes/csharp-linq-xaml.md#the-one-statement-ports-same-trick-different-machinery"
@@ -14,7 +14,7 @@ tags: [control-flow, side-effect, thread-safety]
 ---
 # Una instrucción, edición Go
 
-Port de Ken en Go del reto en C# de Jim Lehmer. Es uno de cuatro ports hermanos, junto con [Java](../JavaChallenge1/README.md), [Kotlin](../KotlinChallenge1/README.md) y [Python](../PythonChallenge1/README.md). El README de Java explica [qué hace cada versión](../JavaChallenge1/README.md#what-every-version-does) y tiene la [comparación lado a lado](../JavaChallenge1/README.md#side-by-side) de las cuatro.
+Port de Ken en Go del reto en C# de Jim Lehmer. Es uno de cuatro ports hermanos, junto con [Java](../JavaChallenge1/README.md), [Kotlin](../KotlinChallenge1/README.md) y [Python](../PythonChallenge1/README.md). El README de Java explica [qué hace cada versión](../JavaChallenge1/README.md#qué-hacen-todas-las-versiones) y tiene la [comparación lado a lado](../JavaChallenge1/README.md#lado-a-lado) de las cuatro.
 
 La restricción: `main` contiene exactamente una instrucción, un bucle `for` con el cuerpo vacío. Esto es una acrobacia sobre la mecánica de las expresiones, no un buen código de producción. Nada de aquí se conecta con un sistema real de registro de horas: las tarjetas están marcadas con `is_demo`.
 

@@ -331,5 +331,43 @@ class WholeTreeTests(unittest.TestCase):
                 an.ANCHORS_PATH = old
 
 
+class TestLayoutText(unittest.TestCase):
+    """anchors.layout_text, the one function apply.py writes with and verify.py checks with (P3C-003): a link into a translated
+    heading is re-aimed, an unknown fragment is left, and the English layer is left alone. Reads the real checkout."""
+    GO = "src/GoChallenge1/README.md"
+
+    def test_a_fragment_that_names_a_translated_heading_is_re_aimed(self):
+        spanish = an.stored_document()["files"]["src/JavaChallenge1/README.md"]["map"]["side-by-side"]
+        self.assertNotEqual(spanish, "side-by-side")            # the target heading is translated
+        out = an.layout_text("See [the table](../JavaChallenge1/README.md#side-by-side).", self.GO)
+        self.assertEqual(out, "See [the table](../JavaChallenge1/README.md#%s)." % spanish)
+
+    def test_a_fragment_that_is_not_a_heading_stays(self):
+        text = "See [x](../JavaChallenge1/README.md#no-such-heading)."
+        self.assertEqual(an.layout_text(text, self.GO), text)
+
+    def test_code_and_the_english_layer_are_left_alone(self):
+        fenced = "```md\n[x](../JavaChallenge1/README.md#side-by-side)\n```\n"
+        self.assertEqual(an.layout_text(fenced, self.GO), fenced)
+        import enpath
+        english = enpath.PathLayer()
+        link = "[x](../JavaChallenge1/README.md#side-by-side)"
+        self.assertEqual(an.layout_text(link, self.GO, english), link)
+
+    def test_another_root_has_no_document(self):
+        self.assertIsNone(an.stored_document(os.path.join(ROOT, "no-such-root")))
+
+    def test_the_translated_files_are_what_relink_expects(self):
+        """No translated file may keep an English fragment: apply.relink finds nothing to change. (A tampered file is caught by
+        verify.py as I16, which test_verify.py covers; here the expected text must differ from the stale one.)"""
+        import apply
+        self.assertEqual(apply.relink(["src/JavaChallenge1/README.md", self.GO, "src/KotlinChallenge1/README.md"]), [])
+        path = os.path.join(ROOT, "src", "GoChallenge1", "README.md")
+        with open(path, encoding="utf-8", newline="") as f:
+            current = f.read()
+        self.assertNotIn("#side-by-side", current)
+        self.assertIn("README.md#" + an.stored_document()["files"]["src/JavaChallenge1/README.md"]["map"]["side-by-side"], current)
+
+
 if __name__ == "__main__":
     unittest.main()
