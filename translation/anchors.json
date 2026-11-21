@@ -9096,8 +9096,8 @@
     {
      "en": "One Statement, Kotlin Edition",
      "en_id": "one-statement-kotlin-edition",
-     "es": "Una sola instrucción, edición Kotlin",
-     "es_id": "una-sola-instrucción-edición-kotlin",
+     "es": "Una sola sentencia, edición Kotlin",
+     "es_id": "una-sola-sentencia-edición-kotlin",
      "level": 1,
      "line": 16
     },
@@ -9162,7 +9162,7 @@
     "gotchas-worth-knowing": "trampas-que-conviene-conocer",
     "how-the-stunt-works": "cómo-funciona-el-truco",
     "layout": "estructura",
-    "one-statement-kotlin-edition": "una-sola-instrucción-edición-kotlin",
+    "one-statement-kotlin-edition": "una-sola-sentencia-edición-kotlin",
     "program-flow": "flujo-del-programa",
     "run-it": "ejecútalo",
     "run-it-in-a-container": "ejecútalo-en-un-contenedor",
