@@ -75,7 +75,7 @@ No `for`, no `while`, no `this`. The algorithm is three closures of one line eac
 - **Demand decides.** Nothing is drawn until something asks. `take(1)` draws one card. `toArray()` draws all of them.
 - **`reduce` is the fold that cannot stop.** It runs for every element. So it adds up the finished list, and the stop is done somewhere else.
 
-The [README](../../src/javascript-weird/README.md#how-the-stunt-works) has the closure diagram, a table of five ways to stop and a comparison of the C# original, the bodiless `for` and this one.
+The [README](../../src/javascript-weird/README.md#cómo-funciona-el-truco) has the closure diagram, a table of five ways to stop and a comparison of the C# original, the bodiless `for` and this one.
 
 ### What did we just learn?
 
@@ -206,7 +206,7 @@ sequenceDiagram
 
 ### Program flow of `javascript-weird`
 
-From [`javascript-weird`](../../src/javascript-weird/README.md) ([source section](../../src/javascript-weird/README.md#program-flow)).
+From [`javascript-weird`](../../src/javascript-weird/README.md) ([source section](../../src/javascript-weird/README.md#flujo-del-programa)).
 
 ```mermaid
 sequenceDiagram

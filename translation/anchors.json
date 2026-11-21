@@ -11109,131 +11109,131 @@
     {
      "en": "JavaScript, weirder: closures all the way down",
      "en_id": "javascript-weirder-closures-all-the-way-down",
-     "es": "JavaScript, weirder: closures all the way down",
-     "es_id": "javascript-weirder-closures-all-the-way-down",
+     "es": "JavaScript, más raro: clausuras hasta el fondo",
+     "es_id": "javascript-más-raro-clausuras-hasta-el-fondo",
      "level": 1,
      "line": 17
     },
     {
      "en": "Run it",
      "en_id": "run-it",
-     "es": "Run it",
-     "es_id": "run-it",
+     "es": "Ejecútalo",
+     "es_id": "ejecútalo",
      "level": 2,
      "line": 47
     },
     {
      "en": "Run it in a container",
      "en_id": "run-it-in-a-container",
-     "es": "Run it in a container",
-     "es_id": "run-it-in-a-container",
+     "es": "Ejecútalo en un contenedor",
+     "es_id": "ejecútalo-en-un-contenedor",
      "level": 2,
      "line": 60
     },
     {
      "en": "Program Flow",
      "en_id": "program-flow",
-     "es": "Program Flow",
-     "es_id": "program-flow",
+     "es": "Flujo del programa",
+     "es_id": "flujo-del-programa",
      "level": 2,
      "line": 71
     },
     {
      "en": "How the stunt works",
      "en_id": "how-the-stunt-works",
-     "es": "How the stunt works",
-     "es_id": "how-the-stunt-works",
+     "es": "Cómo funciona el truco",
+     "es_id": "cómo-funciona-el-truco",
      "level": 2,
      "line": 97
     },
     {
      "en": "Three closures",
      "en_id": "three-closures",
-     "es": "Three closures",
-     "es_id": "three-closures",
+     "es": "Tres clausuras",
+     "es_id": "tres-clausuras",
      "level": 3,
      "line": 99
     },
     {
      "en": "Demand is the loop",
      "en_id": "demand-is-the-loop",
-     "es": "Demand is the loop",
-     "es_id": "demand-is-the-loop",
+     "es": "La demanda es el bucle",
+     "es_id": "la-demanda-es-el-bucle",
      "level": 3,
      "line": 122
     },
     {
      "en": "What `map` and `reduce` do here, exactly",
      "en_id": "what-map-and-reduce-do-here-exactly",
-     "es": "What `map` and `reduce` do here, exactly",
-     "es_id": "what-map-and-reduce-do-here-exactly",
+     "es": "Qué hacen exactamente `map` y `reduce` aquí",
+     "es_id": "qué-hacen-exactamente-map-y-reduce-aquí",
      "level": 3,
      "line": 136
     },
     {
      "en": "Five ways to stop (each one tested)",
      "en_id": "five-ways-to-stop-each-one-tested",
-     "es": "Five ways to stop (each one tested)",
-     "es_id": "five-ways-to-stop-each-one-tested",
+     "es": "Cinco formas de detenerse (cada una probada)",
+     "es_id": "cinco-formas-de-detenerse-cada-una-probada",
      "level": 3,
      "line": 142
     },
     {
      "en": "Where does the program live, and what makes the next step run?",
      "en_id": "where-does-the-program-live-and-what-makes-the-next-step-run",
-     "es": "Where does the program live, and what makes the next step run?",
-     "es_id": "where-does-the-program-live-and-what-makes-the-next-step-run",
+     "es": "¿Dónde vive el programa y qué hace que se ejecute el paso siguiente?",
+     "es_id": "dónde-vive-el-programa-y-qué-hace-que-se-ejecute-el-paso-siguiente",
      "level": 3,
      "line": 152
     },
     {
      "en": "Closures, lambdas, `this` and continuations",
      "en_id": "closures-lambdas-this-and-continuations",
-     "es": "Closures, lambdas, `this` and continuations",
-     "es_id": "closures-lambdas-this-and-continuations",
+     "es": "Clausuras, lambdas, `this` y continuaciones",
+     "es_id": "clausuras-lambdas-this-y-continuaciones",
      "level": 3,
      "line": 165
     },
     {
      "en": "Effects stay at the leaves",
      "en_id": "effects-stay-at-the-leaves",
-     "es": "Effects stay at the leaves",
-     "es_id": "effects-stay-at-the-leaves",
+     "es": "Los efectos se quedan en las hojas",
+     "es_id": "los-efectos-se-quedan-en-las-hojas",
      "level": 3,
      "line": 173
     },
     {
      "en": "What `check.sh` enforces",
      "en_id": "what-checksh-enforces",
-     "es": "What `check.sh` enforces",
-     "es_id": "what-checksh-enforces",
+     "es": "Qué exige `check.sh`",
+     "es_id": "qué-exige-checksh",
      "level": 2,
      "line": 177
     },
     {
      "en": "Gotchas worth knowing",
      "en_id": "gotchas-worth-knowing",
-     "es": "Gotchas worth knowing",
-     "es_id": "gotchas-worth-knowing",
+     "es": "Trampas que conviene conocer",
+     "es_id": "trampas-que-conviene-conocer",
      "level": 2,
      "line": 186
     }
    ],
    "map": {
-    "closures-lambdas-this-and-continuations": "closures-lambdas-this-and-continuations",
-    "demand-is-the-loop": "demand-is-the-loop",
-    "effects-stay-at-the-leaves": "effects-stay-at-the-leaves",
-    "five-ways-to-stop-each-one-tested": "five-ways-to-stop-each-one-tested",
-    "gotchas-worth-knowing": "gotchas-worth-knowing",
-    "how-the-stunt-works": "how-the-stunt-works",
-    "javascript-weirder-closures-all-the-way-down": "javascript-weirder-closures-all-the-way-down",
-    "program-flow": "program-flow",
-    "run-it": "run-it",
-    "run-it-in-a-container": "run-it-in-a-container",
-    "three-closures": "three-closures",
-    "what-checksh-enforces": "what-checksh-enforces",
-    "what-map-and-reduce-do-here-exactly": "what-map-and-reduce-do-here-exactly",
-    "where-does-the-program-live-and-what-makes-the-next-step-run": "where-does-the-program-live-and-what-makes-the-next-step-run"
+    "closures-lambdas-this-and-continuations": "clausuras-lambdas-this-y-continuaciones",
+    "demand-is-the-loop": "la-demanda-es-el-bucle",
+    "effects-stay-at-the-leaves": "los-efectos-se-quedan-en-las-hojas",
+    "five-ways-to-stop-each-one-tested": "cinco-formas-de-detenerse-cada-una-probada",
+    "gotchas-worth-knowing": "trampas-que-conviene-conocer",
+    "how-the-stunt-works": "cómo-funciona-el-truco",
+    "javascript-weirder-closures-all-the-way-down": "javascript-más-raro-clausuras-hasta-el-fondo",
+    "program-flow": "flujo-del-programa",
+    "run-it": "ejecútalo",
+    "run-it-in-a-container": "ejecútalo-en-un-contenedor",
+    "three-closures": "tres-clausuras",
+    "what-checksh-enforces": "qué-exige-checksh",
+    "what-map-and-reduce-do-here-exactly": "qué-hacen-exactamente-map-y-reduce-aquí",
+    "where-does-the-program-live-and-what-makes-the-next-step-run": "dónde-vive-el-programa-y-qué-hace-que-se-ejecute-el-paso-siguiente"
    }
   },
   "src/javascript/README.md": {

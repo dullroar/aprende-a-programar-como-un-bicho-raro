@@ -1,6 +1,6 @@
 ---
 name: "JavaScript"
-teaches: "that a closure is a state machine: a function plus the variables it was made next to, pulled one step at a time by an iterator, with reduce as the one fold that cannot stop."
+teaches: "que una clausura (*closure*) es una máquina de estados: una función más las variables junto a las que se creó, a la que un iterador hace avanzar un paso a la vez, con reduce como el único pliegue que no puede detenerse."
 kind: weird
 languages: [javascript, sqlite]
 lesson: "lenguajes/javascript.md#closures-all-the-way-down"
@@ -8,20 +8,20 @@ loop-by: lazy-demand
 evaluation: lazy
 assurance: guaranteed
 pairs-with: javascript
-machine: "A closure-backed state machine, pulled by a lazy iterator"
-state: "Variables captured by closures: the generator's number, and the machine's card count, total and stop flag"
+machine: "Una máquina de estados basada en una clausura, avanzada por un iterador perezoso"
+state: "Variables capturadas por clausuras: el número del generador; de la máquina, la cantidad de tarjetas, el total y la bandera de parada"
 tags: [callback, closure, computation-versus-orchestration, dataflow-programming, deferred-execution, eager-evaluation, event-driven-programming, event-loop, first-class-and-higher-order-functions, functor, generators, invariant, lazy-evaluation, monoid-and-fold, referential-transparency, reproducibility, scope-and-binding, short-circuit-evaluation, side-effect, state]
 analogies: [category-theory, coroutine, backpressure]
 counterexamples: [continuation]
 ---
-# JavaScript, weirder: closures all the way down
+# JavaScript, más raro: clausuras hasta el fondo
 
-**Teaches you:** that a closure is a state machine: a function plus the variables it was made next to, pulled one step at a time by an iterator, with reduce as the one fold that cannot stop.
+**Te enseña:** que una clausura es una máquina de estados: una función más las variables junto a las que se creó, que un iterador hace avanzar un paso a la vez, con reduce como el único pliegue que no puede detenerse.
 
-> **DEMO ONLY.** Fictional time cards, written to a scratch SQLite file under `$XDG_DATA_HOME/JavaScriptWeird/`.
-> Nothing here touches real time reporting.
+> **DEMO ONLY.** Tarjetas de horas ficticias, escritas en un archivo SQLite temporal bajo `$XDG_DATA_HOME/JavaScriptWeird/`.
+> Nada de esto toca el registro de horas real.
 
-The [conventional entry](../javascript/README.md) is a `for` statement with an empty body. This one has **no loop statement at all**, and no `this`. The algorithm is three small closures in [`core.mjs`](core.mjs), and the program in [`timecards.mjs`](timecards.mjs) is one expression that pulls cards through them:
+La [entrada convencional](../javascript/README.md) es una sentencia `for` con cuerpo vacío. Esta entrada no tiene **ninguna sentencia de bucle en absoluto**, ni `this`. El algoritmo son tres clausuras pequeñas en [`core.mjs`](core.mjs) y el programa en [`timecards.mjs`](timecards.mjs) es una expresión que demanda tarjetas a través de ellas:
 
 ```js
 const records = Iterator.from(cards(machine(hoursFrom(seed))))   // three closures, nested
@@ -42,11 +42,11 @@ Total simulated hours: 46.0
 Saved locally for the modernization exercise.
 ```
 
-This is the **weird** entry of a pair. Read the pair as three steps: the [C# original](../ModernChallenge1/README.md), the [bodiless `for` in Node](../javascript/README.md), and this.
+Esta es la entrada **rara** de un par. Lee el par como tres pasos: el [original en C#](../ModernChallenge1/README.md), el [`for` sin cuerpo en Node](../javascript/README.md) y esta.
 
-## Run it
+## Ejecútalo
 
-You need **Node.js 24 or newer**: it has `node:sqlite` and the *iterator helpers* (`Iterator.from`, `map`, `some`, `take`, `toArray`), both built in. There is no `npm install`.
+Necesitas **Node.js 24 o más reciente**: incluye `node:sqlite` y los métodos auxiliares de iteradores (*iterator helpers*: `Iterator.from`, `map`, `some`, `take`, `toArray`), ambos integrados. No hay `npm install`.
 
 ```bash
 cd src/javascript-weird
@@ -55,50 +55,50 @@ node --expose-gc --test check.mjs        # the closure lab: 12 tests that prove 
 ./check.sh                               # everything below (needs sqlite3 and GNU date, and `script` for the terminal tests)
 ```
 
-Records go to `$XDG_DATA_HOME/JavaScriptWeird/demo-timecards.db` (default `~/.local/share/JavaScriptWeird/`).
+Los registros van a `$XDG_DATA_HOME/JavaScriptWeird/demo-timecards.db` (por defecto `~/.local/share/JavaScriptWeird/`).
 
-## Run it in a container
+## Ejecútalo en un contenedor
 
-Prerequisite: Docker, set up once as described in [`SANDBOX-SETUP.md`](../../SANDBOX-SETUP.md#docker).
+Requisito previo: Docker, configurado una sola vez como se describe en [`SANDBOX-SETUP.md`](../../SANDBOX-SETUP.md#docker).
 
 ```bash
 sandbox/container/run-image.sh src/javascript-weird          # the plain, CI-style output
 sandbox/container/run-image.sh --tty src/javascript-weird    # with a terminal: watch the DEMO ONLY line pulse
 ```
 
-It builds this folder's [`Dockerfile`](Dockerfile) and runs the result with no network, a read-only file system and user `nobody`.
+Compila el [`Dockerfile`](Dockerfile) de esta carpeta y ejecuta el resultado sin red, con un sistema de archivos de solo lectura y con el usuario `nobody`.
 
-## Program Flow
+## Flujo del programa
 
 ```mermaid
 sequenceDiagram
-    accTitle: javascript-weird: demand pulls each card through three closures and two maps
-    accDescr: A sequence diagram of pull. The call toArray demands a value from the second map, which demands one from the first map, which demands one from the cards iterator. The cards iterator calls the machine closure, which calls the hours closure for a number and moves the generator state. The machine adds the hours to its captured total and sets its stop flag if the total is over 40, and returns the card. The card travels back up: the first map stamps it with the user and week, the second map saves it to SQLite, and toArray collects it. Then toArray demands again. After the crossing card, the machine answers undefined, the iterator answers done, and toArray stops.
+    accTitle: javascript-weird: la demanda (pull) hace pasar cada tarjeta por tres clausuras y dos map
+    accDescr: Un diagrama de secuencia de la demanda (pull). La llamada toArray demanda un valor al segundo map, que demanda uno al primer map, que demanda uno al iterador de tarjetas. El iterador de tarjetas llama a la clausura de la máquina, que llama a la clausura de horas para obtener un número y mueve el estado del generador. La máquina suma las horas a su total capturado, activa su bandera de parada si el total pasa de 40 y devuelve la tarjeta. La tarjeta sube de vuelta: el primer map le pone el usuario y la semana, el segundo map la guarda en SQLite y toArray la recopila. Luego toArray vuelve a demandar. Después de la tarjeta que cruza, la máquina responde undefined, el iterador responde done y toArray se detiene.
     participant T as toArray
     participant S as map save
     participant P as map stamp
-    participant C as cards, machine and hoursFrom
-    loop until the iterator says done
+    participant C as cards, machine y hoursFrom
+    loop hasta que el iterador indique que terminó
         T->>S: next
-        S->>P: next
-        P->>C: next: the machine calls hoursFrom
-        C-->>C: hours drawn, total and over updated
-        C-->>P: value: card
-        P-->>S: record stamped with user and week
-        S-->>T: record, saved to SQLite
+        S->>P: siguiente
+        P->>C: siguiente: la máquina llama a hoursFrom
+        C-->>C: horas extraídas, total y exceso actualizados
+        C-->>P: valor: tarjeta
+        P-->>S: registro marcado con el usuario y la semana
+        S-->>T: registro, guardado en SQLite
     end
-    Note over C,T: after the crossing card the machine answers undefined, cards answers done, and toArray stops
+    Note over C,T: después de la tarjeta de cruce, la máquina responde undefined, cards responde done y toArray se detiene
 ```
 
-**What this shows:** demand flows *up* the pipeline and cards flow *down* it. Nothing is drawn until `toArray()` asks, and each ask pulls one card all the way through: drawn, stamped, saved. The loop is the consumer asking again. The three closures (`cards`, `machine`, `hoursFrom`) are one column here, because each is called by the one before it.
+**Qué muestra:** la demanda fluye *hacia arriba* por la canalización y las tarjetas fluyen *hacia abajo*. No se saca nada hasta que `toArray()` lo pide, y cada petición hace pasar una tarjeta por todo el recorrido: sacada, sellada, guardada. El bucle es el consumidor que vuelve a pedir. Una clausura es una función que conserva las variables del lugar donde se creó. Las tres clausuras (`cards`, `machine`, `hoursFrom`) forman aquí una sola columna, porque cada una es llamada por la anterior.
 
-**Why this mechanism matters:** the state lives in closures: the generator's number, and the machine's count, total and stop flag. Nothing else can reach it. The stop rule is a captured variable, `over`, set in the same call that makes the crossing card. Compare [`javascript`](../javascript/README.md), where a `for` statement drives the same work, and [`javascript-events`](../javascript-events/README.md), where listeners do.
+**Por qué importa este mecanismo:** el estado vive en clausuras: el número del generador y el conteo, el total y la bandera de parada de la máquina. Nada más puede acceder a él. La regla de parada es una variable capturada, `over`, que se asigna en la misma llamada que crea la tarjeta que cruza. Compara [`javascript`](../javascript/README.md), donde una sentencia `for` impulsa el mismo trabajo, y [`javascript-events`](../javascript-events/README.md), donde lo hacen los escuchadores de eventos.
 
-## How the stunt works
+## Cómo funciona el truco
 
-### Three closures
+### Tres clausuras
 
-A **closure** is a function together with the variables it was made next to. [`core.mjs`](core.mjs) has three, each made by another function:
+Una **clausura** es una función junto con las variables junto a las que se creó. [`core.mjs`](core.mjs) tiene tres, cada una creada por otra función:
 
 ```text
  hoursFrom(42)                  machine(hoursFrom(42))                cards(machine(...))
@@ -111,89 +111,89 @@ A **closure** is a function together with the variables it was made next to. [`c
  Nobody can read state, n, total or over. The only way to move them is to call the function.
 ```
 
-| Closure | Captured variables | One call does |
+| Clausura | Variables capturadas | Una llamada hace |
 |---|---|---|
-| `hoursFrom(seed)` | `state` | Moves `state` (Park-Miller) and answers 10 to 19 |
-| `machine(nextHours)` | `n`, `total`, `over` | Asks for hours, adds them to `total`, sets `over = total > 40`, and answers the card. After the card that took the total over 40, it answers `undefined` forever |
-| `cards(next)` | none of its own: it holds `next` | Wraps the machine in the **iteration protocol**: `next()` answers `{ value: card, done: false }`, or `{ done: true }` when the machine has no card |
+| `hoursFrom(seed)` | `state` | Avanza `state` (Park-Miller) y responde de 10 a 19 horas por tarjeta |
+| `machine(nextHours)` | `n`, `total`, `over` | Pide las horas, las suma a `total`, establece `over = total > 40` y responde con la tarjeta. Después de la tarjeta que hizo que el total pasara de 40, responde `undefined` para siempre |
+| `cards(next)` | ninguno propio: guarda `next` | Envuelve la máquina en el **protocolo de iteración**: `next()` responde `{ value: card, done: false }`, o `{ done: true }` cuando la máquina no tiene tarjeta |
 
-**The stop rule is `over = total > 40`.** It is a variable inside a closure, set in the same call that makes the crossing card. So the crossing card is the last one, and it is included.
+**La regla de parada es `over = total > 40`.** Es una variable dentro de una clausura. Se asigna en la misma llamada que crea la tarjeta que cruza el límite. Así, la tarjeta que cruza el límite es la última y se incluye.
 
-### Demand is the loop
+### La demanda es el bucle
 
-Nothing is drawn until something asks. [`timecards.mjs`](timecards.mjs) builds a pipeline of lazy steps (`Iterator.from`, then two `map`s) and ends it with `.toArray()`, which asks for every value until the iterator says `done`. Each ask pulls **one** card all the way through: drawn, stamped, saved. Then the next ask starts. Replace `toArray()` with `take(1).toArray()` and exactly one card is drawn. `check.mjs` counts the draws to prove it.
+No se saca nada hasta que algo lo pide. [`timecards.mjs`](timecards.mjs) construye una canalización de pasos perezosos (`Iterator.from` y luego dos `map`) y la termina con `.toArray()`, que pide todos los valores hasta que el iterador dice `done`. Cada demanda lleva **una** tarjeta por toda la canalización: sacada, sellada, guardada. Luego empieza la siguiente demanda. Reemplaza `toArray()` por `take(1).toArray()` y se saca exactamente una tarjeta. `check.mjs` cuenta las tarjetas sacadas para demostrarlo.
 
-| Job | Done by |
+| Tarea | Quién la hace |
 |---|---|
-| Loop | The consumer's demand: `toArray()` calls `next()` until `done` |
-| Random hours | `hoursFrom`: a closure over one number |
-| Running total, category order, stop rule | `machine`: a closure over `n`, `total`, `over` |
-| Turning a card into a record | `.map(stamp(user, week))`: a closure over the user and the week |
-| Saving | `.map(save)`: a closure over the prepared statement. It saves and returns the record, so it can sit in a pipeline |
-| The final sum | `reduce`, over the finished list |
-| Output | `console.log`, and a `setInterval` pulse on a terminal |
+| Bucle | La demanda del consumidor: `toArray()` llama a `next()` hasta que `done` |
+| Horas aleatorias | `hoursFrom`: una clausura sobre un número |
+| Total acumulado, orden de las categorías, regla de parada | `machine`: una clausura sobre `n`, `total` y `over` |
+| Convertir una tarjeta en un registro | `.map(stamp(user, week))`: una clausura sobre el usuario y la semana |
+| Guardado | `.map(save)`: una clausura sobre la sentencia preparada. Guarda y devuelve el registro, así que puede ir en una canalización |
+| La suma final | `reduce`, sobre la lista terminada |
+| Salida | `console.log` y un pulso de `setInterval` en una terminal |
 
-### What `map` and `reduce` do here, exactly
+### Qué hacen exactamente `map` y `reduce` aquí
 
-- **`map` (twice)** derives records from cards, and then saves each one. It runs *lazily*: the helpers on an iterator do one value at a time, so a card is stamped and saved before the next card exists.
-- **`reduce`** adds up the hours of the *finished* list. It is not used to stop. `reduce` cannot stop: it walks every element (`check.mjs` counts the calls). That is why it comes after `toArray()`.
-- **No `flatMap`.** There is nothing for it to expand. We did not add one to have one.
+- **`map` (dos veces)** deriva registros a partir de las tarjetas y luego guarda cada uno. Se ejecuta de forma *perezosa*: los métodos auxiliares de un iterador procesan un valor a la vez, así que el programa sella y guarda una tarjeta antes de que exista la siguiente.
+- **`reduce`** suma las horas de la lista *terminada*. No se usa para detenerse. `reduce` no puede detenerse: recorre todos los elementos (`check.mjs` cuenta las llamadas). Por eso va después de `toArray()`.
+- **Sin `flatMap`.** No hay nada que expandir. No añadimos uno solo para tener uno.
 
-### Five ways to stop (each one tested)
+### Cinco formas de detenerse (cada una probada)
 
-| Way | Stops early? | What `check.mjs` shows | Used here? |
+| Forma | ¿Se detiene antes? | Qué muestra `check.mjs` | ¿Se usa aquí? |
 |---|---|---|---|
-| `reduce` with a "done" flag | **No.** The callback runs for every element | Five elements, five calls, though the answer was settled after three | Only after the list is complete |
-| A bound drawn up front (`Array.from({ length: 5 }, machine)`) | By guessing | Five slots asked for, two of them empty. The program would draw more than it uses | No |
-| `some` / `find` on the iterator | **Yes.** They ask only while the answer is "no" | Three draws for three cards | No (the machine already ends the stream) |
-| The source says `done` (a custom iterable) | **Yes**, and the consumer need not know | The machine answers `undefined` after the crossing card; it never asks for more hours | **Yes** |
-| `throw` from the callback | Yes, and it is the wrong tool | `reduce` ends, with an exception that something must catch. Control flow by error | No |
+| `reduce` con una bandera "done" | **No.** La función de devolución de llamada (*callback*), la función que pasas a otra para que esta la invoque, se ejecuta para cada elemento | Cinco elementos, cinco llamadas, aunque la respuesta quedó decidida después de tres | Solo después de que la lista esté completa |
+| Un límite sorteado de antemano (`Array.from({ length: 5 }, machine)`) | Adivinando | Se piden cinco casillas y dos quedan vacías. El programa sortearía más de lo que usa | No |
+| `some` / `find` en el iterador | **Sí.** Preguntan solo mientras la respuesta es "no" | Tres extracciones para tres tarjetas | No (la máquina ya termina el flujo) |
+| La fuente dice `done` (un iterable personalizado) | **Sí**, y el consumidor no necesita saberlo | La máquina responde `undefined` después de la tarjeta que cruza el límite; nunca pide más horas | **Sí** |
+| `throw` desde la función de devolución de llamada (*callback*: una función que pasas a otra para que esta la llame después) | Sí, y es la herramienta equivocada | `reduce` termina con una excepción que algo debe capturar. Flujo de control por error | No |
 
-### Where does the program live, and what makes the next step run?
+### ¿Dónde vive el programa y qué hace que se ejecute el paso siguiente?
 
-| | C# original | JavaScript, bodiless `for` | JavaScript, closures |
+| | C# original | JavaScript, `for` sin cuerpo | JavaScript, clausuras |
 |---|---|---|---|
-| Where the program lives | In the three clauses of a `for` | In the three clauses of a `for` | In three closures and one expression |
-| Where the state lives | Fields of an anonymous object | Properties of an object literal | **Captured variables**, which nothing else can reach |
-| What makes the next step run | The `for` statement: test, body, iterator | The `for` statement | **The consumer's demand**: `next()` |
-| What stops it | A condition that is false | A condition that is false | A closure that says `done` |
-| When a card is made | When the iterator clause runs | When the iterator clause runs | When something asks for it |
-| Can you run it again? | Run the program again | Run the program again | A new machine replays it; the old one is spent |
+| Dónde vive el programa | En las tres cláusulas de un `for` | En las tres cláusulas de un `for` | En tres clausuras y una expresión |
+| Dónde vive el estado | Campos de un objeto anónimo | Propiedades de un literal de objeto | **Variables capturadas**, a las que nada más puede acceder |
+| Qué hace que se ejecute el siguiente paso | La sentencia `for`: condición, cuerpo, iterador | La sentencia `for` | **La demanda del consumidor**: `next()` |
+| Qué lo detiene | Una condición falsa | Una condición falsa | Una clausura que dice `done` |
+| Cuando se crea una tarjeta | Cuando se ejecuta la cláusula del iterador | Cuando se ejecuta la cláusula del iterador | Cuando algo lo pide |
+| ¿Puedes ejecutarlo de nuevo? | Ejecuta el programa de nuevo | Ejecuta el programa de nuevo | Una máquina nueva lo repite; la anterior está agotada |
 
-The **lazy-versus-eager** question has the same shape as in two other entries. In [`LinqChallenge1`](../LinqChallenge1/README.md) a query is a *description* that runs when something enumerates it, and enumerating it twice runs it twice. In [`haskell`](../haskell/README.md) a list is made on demand, and an infinite list is fine because only a prefix is forced. Here the iterator is closer to Haskell's list and unlike LINQ's query in one way: **it is spent**. The machine is a closure with a position, so a second pass finds it already over. To start again you make a new machine from the same seed.
+La cuestión de **evaluación perezosa frente a evaluación ansiosa** tiene la misma forma que en otras dos entradas. En [`LinqChallenge1`](../LinqChallenge1/README.md) una consulta es una *descripción* que se ejecuta cuando algo la enumera, y enumerarla dos veces la ejecuta dos veces. En [`haskell`](../haskell/README.md) una lista se crea bajo demanda, y una lista infinita no es problema porque solo se fuerza un prefijo. Aquí el iterador se parece más a la lista de Haskell y se diferencia de la consulta de LINQ en un aspecto: **está agotado**. La máquina es una clausura con una posición, así que una segunda pasada la encuentra ya terminada. Para empezar de nuevo, crea una máquina nueva a partir de la misma semilla.
 
-### Closures, lambdas, `this` and continuations
+### Clausuras, lambdas, `this` y continuaciones
 
-- **A closure is not the same as lambda syntax.** An arrow function that uses no outside variable (`x => x + 1`) is not an interesting closure. `() => (total += hours)` is: it changes a variable that lives past the call.
-- **A closure captures variables, not values.** That is also true for a C# lambda. If two closures capture the same `let`, they share it. A new call to a factory (`machine(...)`) makes new variables, so two machines never share state (`check.mjs` interleaves two).
-- **`this` is not a captured variable.** A method that uses `this.n` loses its `n` the moment you pull it off its object (`check.mjs` shows the `TypeError`). A closure keeps its variable.
-- **A closure is not a continuation.** You can call it again, and it does the next step. You cannot hand it a place to *resume in the middle* of something, and you cannot go back. A generator function, or an explicit continuation, is a different tool.
-- **The environment lives as long as the function can be reached.** A function nobody refers to is collected, and its variables go with it. `check.mjs` proves both halves with a `WeakRef` and a forced garbage collection (`node --expose-gc`).
+- **Una clausura no es lo mismo que la sintaxis lambda.** Una clausura es una función que conserva las variables del lugar donde se creó. Una función flecha que no usa ninguna variable externa (`x => x + 1`) no es una clausura interesante. `() => (total += hours)` sí lo es: cambia una variable que sigue viva después de la llamada.
+- **Una clausura captura variables, no valores.** Eso también es cierto para una lambda de C#. Si dos clausuras capturan el mismo `let`, lo comparten. Cada llamada nueva a una fábrica (`machine(...)`) crea variables nuevas, así que dos máquinas nunca comparten estado (`check.mjs` intercala dos).
+- **`this` no es una variable capturada.** Un método que usa `this.n` pierde su `n` en cuanto lo sacas de su objeto (`check.mjs` muestra el `TypeError`). Una clausura conserva su variable.
+- **Una clausura no es una continuación.** Una clausura es una función que conserva las variables del entorno donde se creó. Puedes llamarla otra vez y hace el siguiente paso. No puedes darle un lugar para *reanudar en medio* de algo y no puedes retroceder. Una función generadora o una continuación explícita es una herramienta distinta.
+- **El entorno vive mientras se pueda alcanzar la función.** Una función a la que nadie hace referencia se recolecta, y sus variables se van con ella. `check.mjs` demuestra las dos mitades con un `WeakRef` y una recolección de basura forzada (`node --expose-gc`).
 
-### Effects stay at the leaves
+### Los efectos se quedan en las hojas
 
-`core.mjs` imports nothing, and has no `console`, no clock, no timer and no `process`. It is pure in the sense that matters: given the same hours it always makes the same cards, and `check-static.mjs` checks that it has no I/O, no clock and no timer. `timecards.mjs` holds the impure parts: the seed, the date, the database, the screen and the pulse. Each one is a small closure. The pulse starts after everything is saved, only on a terminal, and is the only thing that keeps the event loop alive: with redirected output there is no timer and Node exits at once.
+`core.mjs` no importa nada y no tiene `console`, reloj, temporizador ni `process`. Su pureza es la que importa: con las mismas horas siempre crea las mismas tarjetas, y `check-static.mjs` comprueba que no tiene E/S, reloj ni temporizador. `timecards.mjs` contiene las partes impuras: la semilla, la fecha, la base de datos, la pantalla y el pulso. Cada una es una clausura pequeña: una función que recuerda las variables del entorno donde nació. El pulso empieza después de guardar todo, solo en una terminal, y es lo único que mantiene vivo el bucle de eventos: con la salida redirigida no hay temporizador y Node termina de inmediato.
 
-## What `check.sh` enforces
+## Qué exige `check.sh`
 
-- **The constraint is real.** `check-static.mjs` scans both files with comments and strings blanked out. There is no `for`, `while` or `do`, no `forEach` (a loop in disguise), no `eval`, no `Function`, no `this`, and no network, process or vm module. `core.mjs` uses no `process`, `console`, `Date`, `Math`, `crypto`, timer or `import`. `Symbol.iterator`, `Iterator.from`, `map`, `reduce` and `toArray` really are used. Eight mutants (a `while`, a `for`, `eval`, `console` and the clock in the pure core, `this`, `forEach`, `node:child_process`) are rejected.
-- **The closure lab (`check.mjs`).** Twelve tests: captured state persists and is private, two machines do not share state, a seed replays and a machine cannot be rewound, the crossing card is kept and exactly 40 goes on, nothing is drawn until something asks, lazy `map` interleaves the stages while an array `map` does not, `reduce` runs for every element, `some` stops, a `throw` stops a `reduce`, an iteration cannot be repeated (a new machine can), closure lifetime under a forced garbage collection, closure versus `this`, and closure versus continuation.
-- **The rules of the challenge.** 25 random runs: categories in order, hours 10 to 19, correct running totals, a stop right after the first total over 40, `DEMO ONLY` everywhere, nothing on stderr, no escape codes in redirected output. In SQLite: only demo rows, the current user, and every `running_total` equal to the sum of the hours so far.
-- **Seeds.** `SEED=42` twice gives the same cards. Twelve seeds match a separate model of the generator in awk, and a seed whose first four cards make exactly 40 must get a fifth.
-- **The ISO week** agrees with GNU `date` on ten dates, and **the pulse** behaves on a pseudo-terminal, with `NO_COLOR`, with `TERM=dumb`, and when redirected.
-- **Errors and the schema.** An unwritable data folder ends with a non-zero status. SQLite refuses a non-demo row or run, 9 hours and a fifth category.
+- **La restricción es real.** `check-static.mjs` analiza los dos archivos tras dejar en blanco los comentarios y las cadenas de texto. No hay `for`, `while` ni `do`, ni `forEach` (un bucle disfrazado), ni `eval`, ni `Function`, ni `this`, ni módulos de red, de proceso ni de vm. `core.mjs` no usa `process`, `console`, `Date`, `Math`, `crypto`, temporizadores ni `import`. `Symbol.iterator`, `Iterator.from`, `map`, `reduce` y `toArray` sí se usan de verdad. Se rechazan ocho mutantes (un `while`, un `for`, `eval`, `console` y el reloj en el núcleo puro, `this`, `forEach`, `node:child_process`).
+- **El laboratorio de clausuras (`check.mjs`).** Doce pruebas: el estado capturado persiste y es privado, dos máquinas no comparten estado, una semilla se reproduce y una máquina no se puede rebobinar, la tarjeta que cruza el límite se conserva y un total de exactamente 40 continúa, no se saca nada hasta que algo lo pide, `map` perezoso intercala las etapas mientras que `map` de un arreglo no, `reduce` se ejecuta para cada elemento, `some` se detiene, un `throw` detiene un `reduce`, una iteración no se puede repetir (una máquina nueva sí), la vida útil de una clausura bajo una recolección de basura forzada, clausura frente a `this` y clausura frente a continuación.
+- **Las reglas del reto.** 25 ejecuciones aleatorias: categorías en orden, horas de 10 a 19, totales acumulados correctos, una parada justo después del primer total que pasa de 40, `DEMO ONLY` en todas partes, nada en stderr, ningún código de escape en la salida redirigida. En SQLite: solo filas de demostración, el usuario actual y cada `running_total` igual a la suma de las horas hasta ese momento.
+- **Semillas.** `SEED=42` dos veces da las mismas tarjetas. Doce semillas coinciden con un modelo aparte del generador en awk, y una semilla cuyas primeras cuatro tarjetas suman exactamente 40 debe recibir una quinta.
+- **La semana ISO** coincide con `date` de GNU en diez fechas, y **el pulso** se comporta bien en una pseudoterminal, con `NO_COLOR`, con `TERM=dumb` y cuando se redirige.
+- **Errores y esquema.** Una carpeta de datos sin permiso de escritura termina con un estado distinto de cero. SQLite rechaza una fila o una ejecución que no sea de demostración, 9 horas y una quinta categoría.
 
-## Gotchas worth knowing
+## Trampas que conviene conocer
 
-- **Iterator helpers need Node 22 or newer.** They are part of ECMAScript 2025, so the language **guarantees** them, and the closures. `node:sqlite` is a Node API, not part of the language. We tested Node 24.15 and 24.22.
-- **`map` with effects is a trick, and a deliberate one.** A pure `map` does not care in what order it runs. This one saves a record in each call, so the lazy order (card 1 is saved before card 2 is drawn) is the program. With an array, `cards.map(stamp).map(save)` would draw all the cards first and save them afterwards: same rows, different order of effects, and no way to stop at 40 without a separate step. The check shows the difference.
-- **The first `done` is final.** `{ done: true }` from `next()` ends the iteration, and the helpers never call `next()` again. The machine is also safe if someone does: it answers `undefined` and asks for no more hours.
-- **`WeakRef` is only a hint, and the GC test is the one fragile test.** An engine may keep an object as long as it likes. The test forces a collection with `--expose-gc` and retries a few times. It passed 25 of 25 runs on Node 24.15. Treat a failure there as the GC test, not as a bug in the program.
-- **The generator is not a generator.** `cards` is a hand-written iterable: an object with a `[Symbol.iterator]` method and a `next` method. A `function*` would be shorter, but it has a program counter inside it, and it would hide the closure. Both are in the book: this one shows the protocol.
-- **An iterator is not replayable.** `[...it]` twice gives the cards and then nothing, as in the check. That is the opposite of an array and of a LINQ query.
-- **`this` is gone on purpose.** It was in the conventional entry, only so that `clearInterval(this)` could stop the timer. Here a closure over `id` does that.
-- **The pulse timer is the one callback with state of its own.** Its `frame` and `id` are captured by the timer callback and nothing else, which is exactly the point of this entry.
+- **Los métodos auxiliares de iteradores necesitan Node 22 o posterior.** Son parte de ECMAScript 2025, así que el lenguaje los **garantiza** y garantiza también las clausuras. `node:sqlite` es una API de Node, no parte del lenguaje. Probamos Node 24.15 y 24.22.
+- **`map` con efectos es un truco y además deliberado.** Un `map` puro no depende del orden en que se ejecuta. Este guarda un registro en cada llamada, así que el orden perezoso (la tarjeta 1 se guarda antes de sacar la tarjeta 2) es el programa. Con un arreglo, `cards.map(stamp).map(save)` sacaría primero todas las tarjetas y las guardaría después. Las filas serían las mismas, pero el orden de los efectos cambiaría y no habría forma de parar en 40 sin un paso aparte. La comprobación muestra la diferencia.
+- **El primer `done` es definitivo.** `{ done: true }` de `next()` termina la iteración, y las funciones auxiliares nunca vuelven a llamar a `next()`. La máquina también es segura si alguien lo hace: responde `undefined` y no pide más horas.
+- **`WeakRef` es solo una pista, y la prueba del GC es la única prueba frágil.** Un motor puede conservar un objeto todo el tiempo que quiera. La prueba fuerza una recolección con `--expose-gc` y reintenta unas cuantas veces. Pasó en 25 de 25 ejecuciones en Node 24.15. Trata un fallo ahí como un fallo de la prueba del GC, no como un bicho en el programa.
+- **El generador no es un generador.** `cards` es un iterable escrito a mano: un objeto con un método `[Symbol.iterator]` y un método `next`. Un `function*` sería más corto, pero tiene dentro un contador de programa y ocultaría la clausura, las variables que una función conserva del ámbito donde se creó. Ambos están en el libro: este muestra el protocolo.
+- **Un iterador no se puede volver a recorrer.** `[...it]` dos veces da las tarjetas y después nada, como en la comprobación. Eso es lo contrario de un arreglo y de una consulta LINQ.
+- **`this` no está, a propósito.** Estaba en la entrada convencional solo para que `clearInterval(this)` pudiera detener el temporizador. Aquí lo hace una clausura sobre `id`: una función que conserva las variables del ámbito donde se creó.
+- **El temporizador de pulso es la única función de devolución de llamada (*callback*, una función que se pasa a otra para que esta la ejecute después) con estado propio.** Su `frame` y su `id` los captura la función del temporizador y nada más, y ese es justo el objetivo de esta entrada.
 
 ---
 
-See the [root README](../../README.md#the-results-so-far) for how this compares to the other entries, and [`RETO.md`](../../RETO.md) if you want to write your own.
+Consulta el [README raíz](../../README.md#the-results-so-far) para ver cómo se compara esta entrada con las demás, y [`RETO.md`](../../RETO.md) si quieres escribir la tuya.

@@ -147,3 +147,7 @@
 {"id":"EXC-147","segment":"s-afbb30266ebb-0030","invariant":"I7","reason":"card-saved is an event identifier kept English in the diagram label; it is not the glossary noun card","task":"P4-src-8"}
 {"id":"EXC-148","segment":"s-c4a25438da1b-0035","invariant":"I9","reason":"label made only of identifiers and SQL words (finished, nested, COMMIT, close) that must stay English","task":"P4-src-8"}
 {"id":"EXC-149","segment":"s-e9ccb41319a2-0085","invariant":"I7","reason":"'fails' is a verb (the lab reports a failing check on each mutant), not the noun failure whose banned rendering is falla","task":"P4-src-8"}
+{"id":"EXC-150","segment":"s-53497309c315-0014","invariant":"I7","reason":"'builds' is the verb (it compiles and runs the folder's program), not the noun build the glossary renders as compilación","task":"P4-src-9"}
+{"id":"EXC-151","segment":"s-fb3bb820b4e1-0021","invariant":"I7","reason":"cards, machine and hoursFrom are identifiers (names in the code) kept English, not the glossary nouns card and machine","task":"P4-src-9"}
+{"id":"EXC-152","segment":"s-5fd084fe6d25-0042","invariant":"I7","reason":"'builds' is the verb (the call constructs a pipeline), not the noun build the glossary renders as compilación","task":"P4-src-9"}
+{"id":"EXC-153","segment":"s-d785051c4d31-0074","invariant":"I7","reason":"'pull it off its object' is the plain verb (taking a method off its object), not the pull model the glossary renders as demanda (pull)","task":"P4-src-9"}
