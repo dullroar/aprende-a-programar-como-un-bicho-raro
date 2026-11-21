@@ -437,7 +437,7 @@ msgstr ""
 #: lessons/answers-key.md:267
 msgctxt "s-aed5f2ec88b3-0075"
 msgid "B16. tar: read the program, then run it"
-msgstr ""
+msgstr "B16. tar: lee el programa y luego ejecútalo"
 
 #: lessons/answers-key.md:269
 msgctxt "s-afacc0de3906-0076"
@@ -446,11 +446,14 @@ msgid ""
 "2. Changing ⟦CODE_0004⟧ to ⟦CODE_0005⟧ in ⟦CODE_0006⟧ makes the halt happen after the second card (24 is over 20). Nothing in ⟦CODE_0007⟧ changed: the limit is data, in the archive. ⟦CODE_0008⟧ passes. Order matters: tar reads members in the order they are in the archive, so a repack in a different order is a different program.\n"
 "3. ⟦CODE_0009⟧ marks ⟦CODE_0010⟧ as ⟦CODE_0011⟧ and exits 4. ⟦CODE_0012⟧ asks the inspector first, so it exits 4, prints that nothing was run and starts no tar. No ⟦CODE_0013⟧ appears. A plain ⟦CODE_0014⟧ writes ⟦CODE_0015⟧ as an inert file and runs nothing, because an archive cannot register a hook for itself. **Parsing** was done by ⟦CODE_0016⟧ and ⟦CODE_0017⟧ inside ⟦CODE_0018⟧, and by tar again inside ⟦CODE_0019⟧. **Running** happened only in ⟦CODE_0020⟧, in ⟦CODE_0021⟧. The trust boundary is the command line the operator typed."
 msgstr ""
+"Se ejecutan cuatro tarjetas: 12, 24, 36 y 48. El total pasa de 40 en la cuarta tarjeta. Por eso, se leen e ignoran el quinto espacio (⟦CODE_0001⟧) y los miembros ⟦CODE_0002⟧ posteriores a la parada. La tabla de traza muestra ⟦CODE_0003⟧ para ellos.\n"
+"2. Cambiar ⟦CODE_0004⟧ por ⟦CODE_0005⟧ en ⟦CODE_0006⟧ hace que la parada ocurra después de la segunda tarjeta (24 es más de 20). Nada cambió en ⟦CODE_0007⟧: el límite es un dato en el archivo. ⟦CODE_0008⟧ pasa la prueba. El orden importa: tar lee los miembros en el orden del archivo, así que volver a empaquetarlos en otro orden produce un programa distinto.\n"
+"3. ⟦CODE_0009⟧ marca ⟦CODE_0010⟧ como ⟦CODE_0011⟧ y sale con 4. ⟦CODE_0012⟧ consulta primero al inspector, así que sale con 4, imprime que no se ejecutó nada y no inicia tar. No aparece ⟦CODE_0013⟧. Un ⟦CODE_0014⟧ sin más escribe ⟦CODE_0015⟧ como archivo inerte y no ejecuta nada, porque un archivo no puede registrar un hook para sí mismo. El **análisis sintáctico** lo realizaron ⟦CODE_0016⟧ y ⟦CODE_0017⟧ dentro de ⟦CODE_0018⟧, y tar otra vez dentro de ⟦CODE_0019⟧. La **ejecución** ocurrió solo en ⟦CODE_0020⟧, en ⟦CODE_0021⟧. La frontera de confianza es la línea de comandos que escribió el operador."
 
 #: lessons/answers-key.md:273
 msgctxt "s-3aad373a6fa3-0077"
 msgid "B17. tar, weirder: predict the clock"
-msgstr ""
+msgstr "B17. tar, más raro: predice el reloj"
 
 #: lessons/answers-key.md:275
 msgctxt "s-6685857c0a85-0078"
@@ -460,11 +463,15 @@ msgid ""
 "3. 260 blocks at ⟦CODE_0009⟧ are 65 records, so ⟦CODE_0010⟧ ticks. The same three cards, a total of 46, and 65 - 46 = 19 idle ticks. The tape is 65 × 2,048 = 133,120 bytes.\n"
 "4. The payload is zeros, and the only other bytes are the member's header (a name and some numbers; 74 non-zero bytes in the test run). Nothing reads the content for its meaning. Only the size counts, because the size decides how many records tar writes."
 msgstr ""
+"Con 45 tics la máquina alcanza 45 horas de trabajo, pero la tercera tarjeta necesita el tic 46. Imprime las dos tarjetas cerradas (⟦CODE_0001⟧, ⟦CODE_0002⟧), informa ⟦CODE_0003⟧ y sale con 3. Con 46 tics termina: tres tarjetas, total 46, salida 0.\n"
+"2. ⟦CODE_0004⟧: 92 registros, una función de devolución de llamada cada dos registros, así que hay 46 funciones de devolución de llamada y la ejecución termina. ⟦CODE_0005⟧: 45 funciones de devolución de llamada y se atasca. ⟦CODE_0006⟧ es el número de registro, así que el último valor de la ejecución terminada es 92 y ⟦CODE_0007⟧ lo muestra. La máquina ha contado 46 horas. El script de comprobación lo expresa así: último ⟦CODE_0008⟧ = tics x K.\n"
+"3. 260 bloques con ⟦CODE_0009⟧ son 65 registros, así que hay ⟦CODE_0010⟧ tics. Las mismas tres tarjetas, un total de 46 y 65 - 46 = 19 tics inactivos. La cinta tiene 65 × 2,048 = 133,120 bytes.\n"
+"4. La carga útil son ceros y los únicos otros bytes son los de la cabecera del miembro (un nombre y algunos números; 74 bytes distintos de cero en la ejecución de prueba). Nada lee el contenido por su significado. Solo cuenta el tamaño, porque decide cuántos registros escribe tar."
 
 #: lessons/answers-key.md:280
 msgctxt "s-e9d4e3d9685f-0079"
 msgid "B18. ed: move the stop rule and break the cleanup"
-msgstr ""
+msgstr "B18. ed: mueve la regla de parada y rompe la limpieza"
 
 #: lessons/answers-key.md:282
 msgctxt "s-fde3819daf3d-0080"
@@ -473,11 +480,14 @@ msgid ""
 "2. ⟦CODE_0009⟧ is 13 hours a card. With ⟦CODE_0010⟧: 13, 26, 39, 52, four cards. With ⟦CODE_0011⟧: 13, 26, 39, three cards, because 39 is over 30 and the bar becomes a bang. ⟦CODE_0012⟧ passes. The stop rule is the regular expression over the marks.\n"
 "3. The output has a fifth line, ⟦CODE_0013⟧. At card 4 the total is 52, so the ledger line has a ⟦CODE_0014⟧. Card 5 joins with it, the Dead rule rewrites the joined line to ⟦CODE_0015⟧ plus the marks, and the decimal rules print the total. With the cleanup in place ⟦CODE_0016⟧ removes it. **Features:** step 1 is the rewrite table and the addressing (a changed number of marks), step 2 is a regular expression interval, step 3 is ⟦CODE_0017⟧ with ⟦CODE_0018⟧."
 msgstr ""
+"⟦CODE_0001⟧: cinco tarjetas de 10 horas, totales 10, 20, 30, 40, 50. La ejecución continúa en 40, porque 40 no es más de 40. La quinta tarjeta recibe la categoría de la línea 5, ⟦CODE_0002⟧ (la lista de categorías es ⟦DNT_0003⟧, ⟦DNT_0004⟧, ⟦DNT_0005⟧, ⟦DNT_0006⟧, ⟦DNT_0007⟧). ⟦CODE_0008⟧: tres tarjetas de 19 horas, 19, 38, 57.\n"
+"2. ⟦CODE_0009⟧ son 13 horas por tarjeta. Con ⟦CODE_0010⟧: 13, 26, 39, 52, cuatro tarjetas. Con ⟦CODE_0011⟧: 13, 26, 39, tres tarjetas, porque 39 es más de 30 y la barra se convierte en un signo de exclamación. ⟦CODE_0012⟧ pasa la prueba. La regla de parada es la expresión regular sobre las marcas.\n"
+"3. La salida tiene una quinta línea, ⟦CODE_0013⟧. En la tarjeta 4 el total es 52, así que la línea del libro de registro tiene un ⟦CODE_0014⟧. La tarjeta 5 se une a ella, la regla Dead reescribe la línea unida como ⟦CODE_0015⟧ más las marcas y las reglas decimales imprimen el total. Con la limpieza activa ⟦CODE_0016⟧ la elimina. **Características:** el paso 1 es la tabla de reescritura y el direccionamiento (una cantidad distinta de marcas); el paso 2 es un intervalo de expresión regular; el paso 3 es ⟦CODE_0017⟧ con ⟦CODE_0018⟧."
 
 #: lessons/answers-key.md:286
 msgctxt "s-49c5349ef8b3-0081"
 msgid "B19. Ex: move the limit on the tape and cut the loop"
-msgstr ""
+msgstr "B19. Ex: mueve el límite en la cinta y corta el bucle"
 
 #: lessons/answers-key.md:288
 msgctxt "s-8afaad8797a2-0082"
@@ -487,6 +497,10 @@ msgid ""
 "3. Without the final ⟦CODE_0005⟧ the program ends after one card: ⟦CODE_0006⟧ for ⟦CODE_0007⟧. Nothing starts the program again.\n"
 "4. The loop is ⟦CODE_0008⟧, the last command on the program line. Register ⟦CODE_0009⟧ holds the text of the tape line, minus the total. The first row whose text is ⟦CODE_0010⟧ (the row for 41) is where it stops, and the limit of 40 is nowhere in the program: it is the boundary on the tape."
 msgstr ""
+"⟦CODE_0001⟧ son once horas por tarjeta: totales 11, 22, 33, 44. Después de la tarjeta 4 la marca está en la fila 44 de la cinta, cuya instrucción es el comentario. Por eso termina la ejecución. Cuatro tarjetas.\n"
+"2. Al cambiar las filas de 41 a 45 de ⟦CODE_0002⟧ a ⟦CODE_0003⟧, la fila 44 ahora continúa. La quinta tarjeta lleva el total a 55, que es la fila 55: sigue siendo un comentario. Cinco tarjetas: 11, 22, 33, 44, 55. ⟦CODE_0004⟧ pasa la prueba. Una edición de datos movió la regla de parada.\n"
+"3. Sin el ⟦CODE_0005⟧ final el programa termina después de una tarjeta: ⟦CODE_0006⟧ para ⟦CODE_0007⟧. Nada inicia el programa de nuevo.\n"
+"4. El bucle es ⟦CODE_0008⟧, el último comando de la línea del programa. El registro ⟦CODE_0009⟧ contiene el texto de la línea de la cinta, menos el total. Se detiene en la primera fila cuyo texto es ⟦CODE_0010⟧ (la fila correspondiente a 41). El límite de 40 no está en ninguna parte del programa: es la frontera en la cinta."
 
 #: lessons/answers-key.md:293
 msgctxt "s-7a6ecdcdf22b-0083"
