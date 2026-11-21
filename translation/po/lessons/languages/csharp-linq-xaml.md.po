@@ -245,22 +245,22 @@ msgstr "**La enumeración repetida ejecuta de nuevo los efectos.** Una consulta 
 #: lessons/languages/csharp-linq-xaml.md:85
 msgctxt "s-3da105dba771-0047"
 msgid "**UI thread affinity.** Building and pumping a WPF window from inside a ⟦CODE_0001⟧ lambda only works because of the STA thread and ⟦CODE_0002⟧; ⟦CODE_0003⟧ is ⟦CODE_0004⟧ so the animation's ⟦CODE_0005⟧ handler, not \"last window closed\", ends the app."
-msgstr ""
+msgstr "**Afinidad con el hilo de la interfaz.** Crear y procesar una ventana WPF dentro de una lambda ⟦CODE_0001⟧ solo funciona por el hilo STA y ⟦CODE_0002⟧. ⟦CODE_0003⟧ es ⟦CODE_0004⟧, así que el controlador ⟦CODE_0005⟧ de la animación termina la aplicación, no \"se cerró la última ventana\"."
 
 #: lessons/languages/csharp-linq-xaml.md:86
 msgctxt "s-3b60f25b5904-0048"
 msgid "**Fixed data.** Both LINQ entries generate a *fixed* five 8-hour-day work week, not random 10 to 19 hour cards. See [blocking problems](⟦DEST_0001⟧)."
-msgstr ""
+msgstr "**Datos fijos.** Ambas entradas LINQ generan una semana laboral *fija* de cinco días de 8 horas, no tarjetas aleatorias de 10 a 19 horas. Consulta [problemas bloqueantes](⟦DEST_0001⟧)."
 
 #: lessons/languages/csharp-linq-xaml.md:88
 msgctxt "s-5e3bcdfbf845-0049"
 msgid "Now break it yourself"
-msgstr ""
+msgstr "Ahora rómpelo tú"
 
 #: lessons/languages/csharp-linq-xaml.md:90
 msgctxt "s-15ae7dbd42c8-0050"
 msgid "See [exercises](⟦DEST_0001⟧)."
-msgstr ""
+msgstr "Consulta los [ejercicios](⟦DEST_0001⟧)."
 
 #: lessons/languages/csharp-linq-xaml.md:92
 msgctxt "s-48922183e96a-0051"

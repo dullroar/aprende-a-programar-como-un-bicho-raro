@@ -4182,8 +4182,8 @@
     {
      "en": "Now break it yourself",
      "en_id": "now-break-it-yourself",
-     "es": "Now break it yourself",
-     "es_id": "now-break-it-yourself",
+     "es": "Ahora rómpelo tú",
+     "es_id": "ahora-rómpelo-tú",
      "level": 3,
      "line": 88
     },
@@ -4337,7 +4337,7 @@
     "how-the-hell-does-that-work": "cómo-demonios-funciona-eso",
     "linqchallenge1-one-fluent-chain": "linqchallenge1-una-cadena-fluida",
     "linqchallenge2-query-syntax-all-the-way-down": "linqchallenge2-sintaxis-de-consulta-hasta-el-fondo",
-    "now-break-it-yourself": "now-break-it-yourself",
+    "now-break-it-yourself": "ahora-rómpelo-tú",
     "program-flow-of-gochallenge1": "program-flow-of-gochallenge1",
     "program-flow-of-javachallenge1": "program-flow-of-javachallenge1",
     "program-flow-of-kotlinchallenge1": "program-flow-of-kotlinchallenge1",

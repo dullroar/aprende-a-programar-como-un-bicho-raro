@@ -82,12 +82,12 @@ Etiquetas: el comportamiento de ejecución diferida o inmediata de cada operador
 
 - **Mutación oculta.** Ambos acumuladores `Aggregate` se modifican in situ (`list.Add`). Es un atajo pragmático, no la pureza de LINQ.
 - **La enumeración repetida ejecuta de nuevo los efectos.** Una consulta con un efecto secundario en un `Select` que se enumera dos veces ejecuta el efecto secundario dos veces.
-- **UI thread affinity.** Building and pumping a WPF window from inside a `Select` lambda only works because of the STA thread and `Application.Run()`; `ShutdownMode` is `OnExplicitShutdown` so the animation's `Completed` handler, not "last window closed", ends the app.
-- **Fixed data.** Both LINQ entries generate a *fixed* five 8-hour-day work week, not random 10 to 19 hour cards. See [blocking problems](../problemas-bloqueantes.md#c-and-linq).
+- **Afinidad con el hilo de la interfaz.** Crear y procesar una ventana WPF dentro de una lambda `Select` solo funciona por el hilo STA y `Application.Run()`. `ShutdownMode` es `OnExplicitShutdown`, así que el controlador `Completed` de la animación termina la aplicación, no "se cerró la última ventana".
+- **Datos fijos.** Ambas entradas LINQ generan una semana laboral *fija* de cinco días de 8 horas, no tarjetas aleatorias de 10 a 19 horas. Consulta [problemas bloqueantes](../problemas-bloqueantes.md#c-and-linq).
 
-### Now break it yourself
+### Ahora rómpelo tú
 
-See [exercises](../exercises.md#b7-linq-enumerate-twice-verified).
+Consulta los [ejercicios](../exercises.md#b7-linq-enumerate-twice-verified).
 
 ## XAML
 
