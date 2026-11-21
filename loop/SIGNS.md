@@ -100,3 +100,4 @@
 - If `git add` reports `.git/index.lock: Read-only file system` after the task gates pass, record partial, return the task to todo and retain its verified files for the next writable session.
 - If I23 reports Chromium sandbox startup denied, request automatic review for the exact unchanged verifier command. After it renders successfully, run the working-tree fast check normally so it can reuse the render cache.
 - For a translated-family checkpoint, call `verify.Env.file_problems(path, release=True)` with English keys for the scoped files because the `--release` CLI always checks the whole corpus.
+- Name the total explicitly at a card-count boundary and name the actor explicitly when a Spanish relative clause can reverse who performs a technical action.

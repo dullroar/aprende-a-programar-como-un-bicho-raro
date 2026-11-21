@@ -1,12 +1,12 @@
 # loop/STATE.md (keep to 60 lines; refreshed by every iteration)
 
 - **Edition:** v4-es.0-rc1 (working)    **English SHA:** 48a4429c0a22b2aac628b256a50c07d1816bcb80
-- **Iteration:** 124    **Stage:** 4 (bulk translation)    **Last result:** iter 124 P4-lessons-cs-source-1 done (computer science index source).
-- **Tasks:** todo 72 | doing 0 | done 94 | blocked 0 | skipped 0 (recount with the queue files)
-- **Next task:** P4-audit-2 (sample the second batch of translations).
+- **Iteration:** 125    **Stage:** 4 (bulk translation)    **Last result:** iter 125 P4-audit-2 done (five segments reviewed, two minor findings queued).
+- **Tasks:** todo 73 | doing 0 | done 95 | blocked 0 | skipped 0 (recount with the queue files)
+- **Next task:** P4-fix-3 (clarify the fifth-card total in the PCRE2 README).
 - **Budget:** driver-reported $89.4099 of $100 through the Claude run, with Codex session cost unavailable
 - **Translate progress:** segments accepted 2978 / total 8827 (7394 prose + 1433 Mermaid labels) ; files done 47 / 212 (recounted nonempty, non-fuzzy PO entries and complete files). Latest: lessons/cs-source/index.md.
-- **Last audit:** P4-audit-1 (iter 112, translation/reviews/p4-audit-1.md)    **Next audit due:** P4-audit-2
+- **Last audit:** P4-audit-2 (iter 125, translation/reviews/p4-audit-2.md)    **Next audit due:** P4-audit-3
 - **Gates:** P0 passed (iter 17)  P1 passed (iter 23)  P2 passed (iter 47)  P3 passed (iter 58)  P3B passed (iter 85)  P3C passed (iter 105)  P4 -  P5 -  P6 -  P7A -
 - **Open provisional decisions:** 5 (acronym BICHO; glossary choices; house style N=29 calibrated; schema/segment-id formats; same-tier reviewer kept after recall test)    **Blockers:** 0    **Source issues:** 18 (translation/source-issues.md)
 
