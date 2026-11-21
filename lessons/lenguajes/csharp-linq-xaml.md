@@ -115,15 +115,15 @@ Consulta los [ejercicios](../exercises.md#b7-linq-enumerate-twice-verified).
 
 Se supone que XAML *describe* un árbol de objetos. El analizador sintáctico no lo impone: con `ObjectDataProvider` y algunos tipos integrados, el análisis sintáctico y la ejecución se vuelven el mismo acto. Una [entrada de blog](../../docs/graficos-de-barras-apiladas.md) sobre Web Forms de 2013 impulsó la misma idea (un gráfico sin código subyacente), así que el linaje es real.
 
-Tags: `ObjectDataProvider` calling methods on construction is **guaranteed** by WPF's documentation; relying on document-order evaluation and in-place carrier arrays is **accidentally exploited**.
+Etiquetas: la documentación de WPF indica que está **garantizado** que `ObjectDataProvider` llame a métodos al construir; depender de la evaluación en el orden del documento y de arreglos portadores en el mismo lugar es **aprovechado por accidente**.
 
-**Fired in production**: arbitrary method invocation from a markup file is a code-execution surface. Loading untrusted XAML with `XamlReader.Load` is a well-known risk. Any tooling (designers, linters) assumes the file is data.
+**Activado en producción**: la invocación arbitraria de métodos desde un archivo de marcado es una superficie de ejecución de código. Cargar XAML no confiable con `XamlReader.Load` es un riesgo conocido. Las herramientas (diseñadores y linters) suponen que el archivo es dato.
 
-## The one-statement ports: same trick, different machinery
+## Las adaptaciones de una sola sentencia: mismo truco, distinta maquinaria
 
-Ken's ports keep the bodiless-loop rule and swap in each language's own parts. A good exercise is to find each language's three clauses.
+Las adaptaciones de Ken conservan la regla del bucle sin cuerpo y usan las piezas propias de cada lenguaje. Un buen ejercicio es encontrar las tres cláusulas de cada lenguaje.
 
-| Port | Header mechanism | Quirk worth stealing |
+| Adaptación | Mecanismo de la cabecera | Peculiaridad que vale la pena robar |
 | --- | --- | --- |
 | [Java](../../src/JavaChallenge1/README.md) | `for` header; anonymous class holds state; Swing window assembled from Spring XML with SpEL | A text block of XML as the UI; the README has a side-by-side of all four ports |
 | [Kotlin](../../src/KotlinChallenge1/README.md) | `for (pass in generateSequence(...) {...})`; a null from `takeIf` ends the sequence | The body runs once before the first check, a documented difference |

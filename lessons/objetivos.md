@@ -31,14 +31,14 @@ Every weird entry forces you to name the machine hiding inside a language. Once 
 | GNU sed | A string-rewriting system (a Markov algorithm) | One line of text, rewritten until no rule applies | [regex](lenguajes/regex.md#gnu-sed) |
 | GNU tar | A tape reader (tar) feeding a five-word interpreter | The archive's members, which are the program, plus one SQLite row that says whether the run has halted or faulted | [tar](lenguajes/tar.md#a-program-that-is-an-archive) |
 | GNU tar | A finite-state machine, driven by a logical clock that tar supplies | One SQLite row (the machine's registers) and the number of records tar has written | [tar](lenguajes/tar.md#the-archive-is-the-clock) |
-| Go | Three expression slots, with helper functions in the slots | Fields of one anonymous struct | [csharp-linq-xaml](lenguajes/csharp-linq-xaml.md#the-one-statement-ports-same-trick-different-machinery) |
+| Go | Three expression slots, with helper functions in the slots | Fields of one anonymous struct | [csharp-linq-xaml](lenguajes/csharp-linq-xaml.md#las-adaptaciones-de-una-sola-sentencia-mismo-truco-distinta-maquinaria) |
 | Haskell | Ordinary: a lazy list that one `span` reads until the test fails | The unevaluated parts of the lists, read on demand | [haskell](lenguajes/haskell.md) |
 | Haskell | A lazy graph reducer | Thunks: which parts of a list have been demanded | [haskell](lenguajes/haskell.md#lazy-io-as-control-flow) |
-| Java | Three expression slots | Fields of one anonymous class | [csharp-linq-xaml](lenguajes/csharp-linq-xaml.md#the-one-statement-ports-same-trick-different-machinery) |
+| Java | Three expression slots | Fields of one anonymous class | [csharp-linq-xaml](lenguajes/csharp-linq-xaml.md#las-adaptaciones-de-una-sola-sentencia-mismo-truco-distinta-maquinaria) |
 | JavaScript | Three expression slots | Properties of one object literal | [javascript](lenguajes/javascript.md#the-bodiless-for-in-node) |
 | JavaScript | A set of listeners on one EventEmitter, which together are a state machine | The running total and the card count, held in one object that only the listeners touch | [javascript](lenguajes/javascript.md#listeners-all-the-way-down) |
 | JavaScript | A closure-backed state machine, pulled by a lazy iterator | Variables captured by closures: the generator's number, and the machine's card count, total and stop flag | [javascript](lenguajes/javascript.md#closures-all-the-way-down) |
-| Kotlin | A lazy sequence that the empty `for` pulls | Properties of one object expression, the seed of the sequence | [csharp-linq-xaml](lenguajes/csharp-linq-xaml.md#the-one-statement-ports-same-trick-different-machinery) |
+| Kotlin | A lazy sequence that the empty `for` pulls | Properties of one object expression, the seed of the sequence | [csharp-linq-xaml](lenguajes/csharp-linq-xaml.md#las-adaptaciones-de-una-sola-sentencia-mismo-truco-distinta-maquinaria) |
 | LINQ | A lazy chain of LINQ stages that one final `Aggregate` demands | Inside the stages' enumerators, and in the database | [csharp-linq-xaml](lenguajes/csharp-linq-xaml.md#la-ejecución-diferida-y-el-truco-de-convertir-void-en-valor) |
 | LINQ | A lazy query that its closing `Single()` demands | A prefix sum recomputed in each `where`, and the database; no accumulator variable | [csharp-linq-xaml](lenguajes/csharp-linq-xaml.md#la-ejecución-diferida-y-el-truco-de-convertir-void-en-valor) |
 | m4 | A text-rescanning machine | The input stream: whatever macro text has not been read yet | [m4](lenguajes/m4.md#a-loop-made-of-rescanning) |
@@ -46,8 +46,8 @@ Every weird entry forces you to name the machine hiding inside a language. Once 
 | pcre2grep | A backtracking search that runs one program per callout | SQLite rows, and the exit code of each callout | [regex](lenguajes/regex.md#pcre2grep-exit-codes-as-control-flow) |
 | Perl | A backtracking search with hooks | `local` variables that unwind (effects do not) | [regex](lenguajes/regex.md#perl-code-inside-the-match) |
 | POSIX find | A tree walk that grows the tree it is walking | The path from the start directory to the directory being visited | [find](lenguajes/find.md) |
-| Python | A function that `iter` calls until it returns the sentinel `False` | Attributes of one state object passed to the lambda | [csharp-linq-xaml](lenguajes/csharp-linq-xaml.md#the-one-statement-ports-same-trick-different-machinery) |
-| Rust | A chain of values from `successors`, which stops at `None` | A new immutable `DemoBatch` for every step; nothing is mutated | [csharp-linq-xaml](lenguajes/csharp-linq-xaml.md#the-one-statement-ports-same-trick-different-machinery) |
+| Python | A function that `iter` calls until it returns the sentinel `False` | Attributes of one state object passed to the lambda | [csharp-linq-xaml](lenguajes/csharp-linq-xaml.md#las-adaptaciones-de-una-sola-sentencia-mismo-truco-distinta-maquinaria) |
+| Rust | A chain of values from `successors`, which stops at `None` | A new immutable `DemoBatch` for every step; nothing is mutated | [csharp-linq-xaml](lenguajes/csharp-linq-xaml.md#las-adaptaciones-de-una-sola-sentencia-mismo-truco-distinta-maquinaria) |
 | Tcl | Ordinary: a `while` loop that draws first and saves afterwards | Dicts and Tcl variables, saved in one `db transaction` | [tcl](lenguajes/tcl.md) |
 | Tcl | A string-command interpreter whose command lookup can be hooked | A TEMP table of proc source, and the depth of trigger recursion | [tcl](lenguajes/tcl.md#sqlite-as-the-program) |
 | XAML | An object-graph constructor that runs methods as it parses | Document order, plus "carrier" arrays | [csharp-linq-xaml](lenguajes/csharp-linq-xaml.md#xaml) |

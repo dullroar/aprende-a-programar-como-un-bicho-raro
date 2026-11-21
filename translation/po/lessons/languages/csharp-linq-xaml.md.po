@@ -350,27 +350,27 @@ msgstr "Se supone que XAML *describe* un árbol de objetos. El analizador sintá
 #: lessons/languages/csharp-linq-xaml.md:118
 msgctxt "s-146b2efe970c-0068"
 msgid "Tags: ⟦CODE_0001⟧ calling methods on construction is **guaranteed** by WPF's documentation; relying on document-order evaluation and in-place carrier arrays is **accidentally exploited**."
-msgstr ""
+msgstr "Etiquetas: la documentación de WPF indica que está **garantizado** que ⟦CODE_0001⟧ llame a métodos al construir; depender de la evaluación en el orden del documento y de arreglos portadores en el mismo lugar es **aprovechado por accidente**."
 
 #: lessons/languages/csharp-linq-xaml.md:120
 msgctxt "s-62f879aa4938-0069"
 msgid "**Fired in production**: arbitrary method invocation from a markup file is a code-execution surface. Loading untrusted XAML with ⟦CODE_0001⟧ is a well-known risk. Any tooling (designers, linters) assumes the file is data."
-msgstr ""
+msgstr "**Activado en producción**: la invocación arbitraria de métodos desde un archivo de marcado es una superficie de ejecución de código. Cargar XAML no confiable con ⟦CODE_0001⟧ es un riesgo conocido. Las herramientas (diseñadores y linters) suponen que el archivo es dato."
 
 #: lessons/languages/csharp-linq-xaml.md:122
 msgctxt "s-009a38489985-0070"
 msgid "The one-statement ports: same trick, different machinery"
-msgstr ""
+msgstr "Las adaptaciones de una sola sentencia: mismo truco, distinta maquinaria"
 
 #: lessons/languages/csharp-linq-xaml.md:124
 msgctxt "s-5283dac799f7-0071"
 msgid "Ken's ports keep the bodiless-loop rule and swap in each language's own parts. A good exercise is to find each language's three clauses."
-msgstr ""
+msgstr "Las adaptaciones de Ken conservan la regla del bucle sin cuerpo y usan las piezas propias de cada lenguaje. Un buen ejercicio es encontrar las tres cláusulas de cada lenguaje."
 
 #: lessons/languages/csharp-linq-xaml.md:126
 msgctxt "s-18eb941a47a1-0072"
 msgid "⟦SEP_0001⟧ Port ⟦SEP_0002⟧ Header mechanism ⟦SEP_0003⟧ Quirk worth stealing ⟦SEP_0004⟧"
-msgstr ""
+msgstr "⟦SEP_0001⟧ Adaptación ⟦SEP_0002⟧ Mecanismo de la cabecera ⟦SEP_0003⟧ Peculiaridad que vale la pena robar ⟦SEP_0004⟧"
 
 #: lessons/languages/csharp-linq-xaml.md:128
 msgctxt "s-1512fb6ea37a-0073"

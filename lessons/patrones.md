@@ -109,14 +109,14 @@ Each track stores "what happens next" somewhere that is not a loop counter: in t
 | One line of text, rewritten until no rule applies | [regex](lenguajes/regex.md#gnu-sed): [`regex-sed`](../src/regex-sed/README.md) |
 | The archive's members, which are the program, plus one SQLite row that says whether the run has halted or faulted | [tar](lenguajes/tar.md#a-program-that-is-an-archive): [`tar-gnu`](../src/tar-gnu/README.md) |
 | One SQLite row (the machine's registers) and the number of records tar has written | [tar](lenguajes/tar.md#the-archive-is-the-clock): [`tar-gnu-weird`](../src/tar-gnu-weird/README.md) |
-| Fields of one anonymous struct | [csharp-linq-xaml](lenguajes/csharp-linq-xaml.md#the-one-statement-ports-same-trick-different-machinery): [`GoChallenge1`](../src/GoChallenge1/README.md) |
+| Fields of one anonymous struct | [csharp-linq-xaml](lenguajes/csharp-linq-xaml.md#las-adaptaciones-de-una-sola-sentencia-mismo-truco-distinta-maquinaria): [`GoChallenge1`](../src/GoChallenge1/README.md) |
 | The unevaluated parts of the lists, read on demand | [haskell](lenguajes/haskell.md): [`haskell`](../src/haskell/README.md) |
 | Thunks: which parts of a list have been demanded | [haskell](lenguajes/haskell.md#lazy-io-as-control-flow): [`haskell-weird`](../src/haskell-weird/README.md) |
-| Fields of one anonymous class | [csharp-linq-xaml](lenguajes/csharp-linq-xaml.md#the-one-statement-ports-same-trick-different-machinery): [`JavaChallenge1`](../src/JavaChallenge1/README.md) |
+| Fields of one anonymous class | [csharp-linq-xaml](lenguajes/csharp-linq-xaml.md#las-adaptaciones-de-una-sola-sentencia-mismo-truco-distinta-maquinaria): [`JavaChallenge1`](../src/JavaChallenge1/README.md) |
 | Properties of one object literal | [javascript](lenguajes/javascript.md#the-bodiless-for-in-node): [`javascript`](../src/javascript/README.md) |
 | The running total and the card count, held in one object that only the listeners touch | [javascript](lenguajes/javascript.md#listeners-all-the-way-down): [`javascript-events`](../src/javascript-events/README.md) |
 | Variables captured by closures: the generator's number, and the machine's card count, total and stop flag | [javascript](lenguajes/javascript.md#closures-all-the-way-down): [`javascript-weird`](../src/javascript-weird/README.md) |
-| Properties of one object expression, the seed of the sequence | [csharp-linq-xaml](lenguajes/csharp-linq-xaml.md#the-one-statement-ports-same-trick-different-machinery): [`KotlinChallenge1`](../src/KotlinChallenge1/README.md) |
+| Properties of one object expression, the seed of the sequence | [csharp-linq-xaml](lenguajes/csharp-linq-xaml.md#las-adaptaciones-de-una-sola-sentencia-mismo-truco-distinta-maquinaria): [`KotlinChallenge1`](../src/KotlinChallenge1/README.md) |
 | Inside the stages' enumerators, and in the database | [csharp-linq-xaml](lenguajes/csharp-linq-xaml.md#la-ejecución-diferida-y-el-truco-de-convertir-void-en-valor): [`LinqChallenge1`](../src/LinqChallenge1/README.md) |
 | A prefix sum recomputed in each `where`, and the database; no accumulator variable | [csharp-linq-xaml](lenguajes/csharp-linq-xaml.md#la-ejecución-diferida-y-el-truco-de-convertir-void-en-valor): [`LinqChallenge2`](../src/LinqChallenge2/README.md) |
 | The input stream: whatever macro text has not been read yet | [m4](lenguajes/m4.md#a-loop-made-of-rescanning): [`m4`](../src/m4/README.md) |
@@ -124,8 +124,8 @@ Each track stores "what happens next" somewhere that is not a loop counter: in t
 | SQLite rows, and the exit code of each callout | [regex](lenguajes/regex.md#pcre2grep-exit-codes-as-control-flow): [`regex-pcre2grep`](../src/regex-pcre2grep/README.md) |
 | `local` variables that unwind (effects do not) | [regex](lenguajes/regex.md#perl-code-inside-the-match): [`regex-perl`](../src/regex-perl/README.md) |
 | The path from the start directory to the directory being visited | [find](lenguajes/find.md): [`find-posix`](../src/find-posix/README.md) |
-| Attributes of one state object passed to the lambda | [csharp-linq-xaml](lenguajes/csharp-linq-xaml.md#the-one-statement-ports-same-trick-different-machinery): [`PythonChallenge1`](../src/PythonChallenge1/README.md) |
-| A new immutable `DemoBatch` for every step; nothing is mutated | [csharp-linq-xaml](lenguajes/csharp-linq-xaml.md#the-one-statement-ports-same-trick-different-machinery): [`RustChallenge1`](../src/RustChallenge1/README.md) |
+| Attributes of one state object passed to the lambda | [csharp-linq-xaml](lenguajes/csharp-linq-xaml.md#las-adaptaciones-de-una-sola-sentencia-mismo-truco-distinta-maquinaria): [`PythonChallenge1`](../src/PythonChallenge1/README.md) |
+| A new immutable `DemoBatch` for every step; nothing is mutated | [csharp-linq-xaml](lenguajes/csharp-linq-xaml.md#las-adaptaciones-de-una-sola-sentencia-mismo-truco-distinta-maquinaria): [`RustChallenge1`](../src/RustChallenge1/README.md) |
 | Dicts and Tcl variables, saved in one `db transaction` | [tcl](lenguajes/tcl.md): [`tcl`](../src/tcl/README.md) |
 | A TEMP table of proc source, and the depth of trigger recursion | [tcl](lenguajes/tcl.md#sqlite-as-the-program): [`tcl-weird`](../src/tcl-weird/README.md) |
 | Document order, plus "carrier" arrays | [csharp-linq-xaml](lenguajes/csharp-linq-xaml.md#xaml): [`xaml`](../src/xaml/README.md) |
