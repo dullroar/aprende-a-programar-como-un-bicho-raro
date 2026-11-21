@@ -1,106 +1,106 @@
-# Common Lisp study guide
+# Guía de estudio de Common Lisp
 
-## What this guide is for
+## Para qué sirve esta guía
 
-This guide reads two Common Lisp programs: [`src/lisp`](../../../src/lisp/README.md), which is one `LOOP` form, and [`src/lisp-weird`](../../../src/lisp-weird/README.md), which has no loop and no conditional below the line marked "RUN TIME". In the weird program each card is a *method* of one generic function, and the cards are chained through the class precedence list. The question is: **when the object system chooses and orders code, can its dispatch rules serve as the loop and the stop rule?**
+Esta guía lee dos programas de Common Lisp. [`src/lisp`](../../../src/lisp/README.md) es una sola forma `LOOP`. [`src/lisp-weird`](../../../src/lisp-weird/README.md) no tiene ningún bucle ni condicional debajo de la línea marcada "RUN TIME". En el programa raro, cada tarjeta es un *método* de una misma función genérica, y las tarjetas se encadenan mediante la lista de precedencia de clases. La pregunta es: **cuando el sistema de objetos elige y ordena el código, ¿pueden sus reglas de despacho servir como bucle y como regla de parada?**
 
-When you finish, you should be able to:
+Al terminar, deberías poder:
 
-1. Explain what a class precedence list is, and in what order the applicable methods of a generic function run.
-2. Explain what the built-in `or` method combination does, and why its short-circuit is the stop rule.
-3. Explain how a macro moves the repetition from run time to compile time.
-4. Trace both programs through the same three cards.
-5. Say why five is the most cards the weird program can deal, and what you would change to raise that.
-6. Label each behavior as guaranteed, implementation-permitted or accidentally exploited.
+1. Explicar qué es una lista de precedencia de clases y en qué orden se ejecutan los métodos aplicables de una función genérica.
+2. Explicar qué hace la combinación de métodos `or` integrada y por qué su cortocircuito es la regla de parada.
+3. Explicar cómo una macro traslada la repetición del tiempo de ejecución al tiempo de compilación.
+4. Trazar ambos programas con las mismas tres tarjetas.
+5. Decir por qué cinco es el máximo de tarjetas que puede repartir el programa raro y qué cambiarías para subirlo.
+6. Etiquetar cada comportamiento como garantizado, permitido por la implementación o aprovechado por accidente.
 
-**Scope limits.** You need to read Lisp syntax and know what a class and a method are. The guide does not teach the whole of CLOS, the reader macros beyond the one circular list or the SQL. It uses SBCL 2.x (`sbcl --script`). The book's page is [Common Lisp](../../lenguajes/lisp.md). For the ideas, see [Short-circuit evaluation](../../informatica/04-evaluacion-y-demanda.md#short-circuit-evaluation) and [Control flow](../../informatica/03-flujo-de-control-y-continuaciones.md#control-flow).
+**Límites del alcance.** Necesitas saber leer la sintaxis de Lisp y saber qué son una clase y un método. La guía no enseña todo CLOS, ni las macros del lector aparte de la lista circular, ni el SQL. Usa SBCL 2.x (`sbcl --script`). La página del libro es [Common Lisp](../../lenguajes/lisp.md). Para las ideas, consulta [Evaluación de cortocircuito](../../informatica/04-evaluacion-y-demanda.md#short-circuit-evaluation) y [Flujo de control](../../informatica/03-flujo-de-control-y-continuaciones.md#control-flow).
 
-## Before you begin
+## Antes de empezar
 
-**Safety model.** Every entry writes fictional **DEMO ONLY** data to a scratch SQLite file. Both programs start `sqlite3` as a child process, and the weird one builds SQL as text. Read the source before you run it, and run it in the sandbox first:
+**Modelo de seguridad.** Cada entrada escribe datos ficticios marcados con **DEMO ONLY** en un archivo SQLite de trabajo. Ambos programas inician `sqlite3` como un proceso hijo, y el programa raro construye SQL como texto. Lee el código fuente antes de ejecutarlo y ejecútalo primero en un entorno aislado (*sandbox*) que limita el acceso al sistema anfitrión:
 
 ```bash
 sandbox/container/run-image.sh src/lisp
 sandbox/container/run-image.sh src/lisp-weird
 ```
 
-Edit only copies ([Running things safely](../../exercises.md#running-things-safely)). Your numbers will differ from the ones printed here; the structure will not.
+Edita solo copias ([Ejecutar cosas de forma segura](../../exercises.md#running-things-safely)). Tus números serán distintos de los que se imprimen aquí; la estructura no.
 
-**Prediction rule.** Before each run, write down which methods will run, in what order and what the method that stops the chain returns.
+**Regla de predicción.** Antes de cada ejecución, anota qué métodos se ejecutarán, en qué orden y qué devuelve el método que detiene la cadena.
 
-**Vocabulary.**
+**Vocabulario.**
 
-| Term | Meaning here |
+| Término | Significado aquí |
 | --- | --- |
-| Generic function | A function whose code is a set of *methods*, chosen by the classes of the arguments. |
-| Class precedence list | The ordered list of a class and all its ancestors, most specific first. |
-| Method combination | The rule that says how the applicable methods are combined into one result. |
-| `or` combination | Run applicable methods most-specific-first, return the first non-`NIL` value and stop. |
-| `:around` method | A method that wraps the others and decides when they run, via `call-next-method`. |
+| Función genérica | Una función cuyo código es un conjunto de *métodos*, elegidos según las clases de los argumentos. |
+| Lista de precedencia de clases | La lista ordenada de una clase y todos sus ancestros, de la más específica a la menos específica. |
+| Combinación de métodos | La regla que dice cómo se combinan los métodos aplicables en un único resultado. |
+| Combinación `or` | Ejecuta los métodos aplicables del más específico al menos específico, devuelve el primer valor que no sea `NIL` y se detiene. |
+| Método `:around` | Un método que envuelve a los demás y decide cuándo se ejecutan, mediante `call-next-method`. |
 
-## The shared challenge
+## El reto compartido
 
-The [challenge specification](../../introduccion.md#what-the-challenge-does) calls for cards with a category and 10 to 19 whole hours. Categories cycle through Meetings, Coding, Debugging and Learning. Add each card's hours to the running total. Stop when the total passes 40. Keep the **first card that takes the total over 40**. A total of exactly 40 continues. Four 10-hour cards need a fifth card, in the Meetings category. Conforming runs finish with 3 to 5 cards and a total of 41 to 59 hours.
+La [especificación del reto](../../introduccion.md#what-the-challenge-does) pide tarjetas con una categoría y de 10 a 19 horas enteras. Las categorías se repiten en ciclo: `Meetings`, `Coding`, `Debugging` y `Learning`. Suma las horas de cada tarjeta al total acumulado. Detente cuando el total pasa de 40. Conserva la **primera tarjeta con la que el total pasa de 40**. Un total de exactamente 40 continúa. Cuatro tarjetas de 10 horas necesitan una quinta tarjeta, de la categoría `Meetings`. Las ejecuciones conformes tienen de 3 a 5 tarjetas y un total de 41 a 59 horas.
 
-Both Lisp entries save the cards in one SQLite transaction and print a summary. Lisp writes the boundary as `(> total 40)`: false for 40. In the `LOOP` the test is `until (> total +limit+)` and comes *after* `collect`, which is why the crossing card is kept ([L39-46](../../../src/lisp/timecards.lisp#L39-L46)). In the weird program each method ends with `(> (total ledger) 40)`, and the method that returns true stops the chain ([L84](../../../src/lisp-weird/timecards.lisp#L84)).
+Ambas entradas de Lisp guardan las tarjetas en una sola transacción de SQLite e imprimen un resumen. Lisp escribe el límite como `(> total 40)`: es falso para 40. En `LOOP` la prueba es `until (> total +limit+)` y va *después de* `collect`, por eso se conserva la tarjeta que cruza el límite ([L39-46](../../../src/lisp/timecards.lisp#L39-L46)). En el programa raro, cada método termina con `(> (total ledger) 40)`, y el método que devuelve verdadero detiene la cadena ([L84](../../../src/lisp-weird/timecards.lisp#L84)).
 
-## The machine to identify
+## La máquina que hay que identificar
 
-**What repeats.** In `lisp`, one `LOOP` form in `draw-cards`: `for number from 1`, `for hours = ...`, `sum hours into total`, `collect ...`, `until ...`. In `lisp-weird`, nothing repeats. Five *different* methods run in a fixed order, one per card. The "loop" is a chain.
+**Qué se repite.** En `lisp`, una forma `LOOP` en `draw-cards`: `for number from 1`, `for hours = ...`, `sum hours into total`, `collect ...`, `until ...`. En `lisp-weird`, no se repite nada. Cinco métodos *distintos* se ejecutan en un orden fijo, uno por tarjeta. El "bucle" es una cadena.
 
-**Where state lives.** In `lisp`, in the loop's own variables (`number`, `hours`, `total`) and the list it collects. In `lisp-weird`, in two places: a `ledger` object holds `total`, `entries` and the random state, and the *position in the class precedence list* says how many cards have been dealt. The class hierarchy is the loop counter.
+**Dónde vive el estado.** En `lisp`, en las variables propias del bucle (`number`, `hours`, `total`) y en la lista que recoge. En `lisp-weird`, en dos lugares: un objeto `ledger` guarda `total`, `entries` y el estado aleatorio. Además, la *posición en la lista de precedencia de clases* dice cuántas tarjetas se han repartido. La jerarquía de clases es el contador del bucle.
 
-**What advances the next step.** In `lisp`, `LOOP` itself. In `lisp-weird`, the `or` method combination: when one method returns `NIL`, the combination calls the next applicable method, which is the next card. The next card is a method on the *parent* class.
+**Qué hace avanzar el paso siguiente.** En `lisp`, el propio `LOOP`. En `lisp-weird`, la combinación de métodos `or`: cuando un método devuelve `NIL`, la combinación llama al siguiente método aplicable, que es la tarjeta siguiente. La tarjeta siguiente es un método de la clase *padre*.
 
-**What stops it.** In `lisp`, the `until` clause. In `lisp-weird`, a method that returns true, because `or` stops at the first true value. If no method returns true the chain simply ends after card 5.
+**Qué lo detiene.** En `lisp`, la cláusula `until`. En `lisp-weird`, un método que devuelve verdadero, porque `or` se detiene en el primer valor verdadero. Si ningún método devuelve verdadero, la cadena simplemente termina después de la tarjeta 5.
 
-**What commits.** In `lisp`, SQL is built from the finished list of cards, then `sqlite3` is run with it, and rows are printed after that ([L154-165](../../../src/lisp/timecards.lisp#L154-L165)). In `lisp-weird`, each card writes its `INSERT` to a dynamically bound string stream and prints its row as it is dealt. An `:around` method on the whole chain adds `BEGIN` at the start, and after `call-next-method` returns it adds `COMMIT` and runs `sqlite3` once ([L93-107](../../../src/lisp-weird/timecards.lisp#L93-L107)).
+**Qué confirma.** En `lisp`, el SQL se construye a partir de la lista terminada de tarjetas. Luego se ejecuta `sqlite3` con ella y después se imprimen las filas ([L154-165](../../../src/lisp/timecards.lisp#L154-L165)). En `lisp-weird`, cada tarjeta escribe su `INSERT` en un flujo de cadena de texto enlazado dinámicamente e imprime su fila a medida que se reparte. Un método `:around` sobre toda la cadena añade `BEGIN` al principio. Cuando `call-next-method` devuelve, añade `COMMIT` y ejecuta `sqlite3` una sola vez ([L93-107](../../../src/lisp-weird/timecards.lisp#L93-L107)).
 
 <!-- diagram-source: src/lisp/README.md#program-flow -->
 
 ```mermaid
 flowchart TD
-    accTitle: lisp: the clauses of one LOOP form, in the order they are written
-    accDescr: A flowchart. The function main seeds a random state from the operating system and works out the ISO week. Then one LOOP form runs its clauses in order on each pass: number counts up from 1, hours is drawn again, hours is summed into total, a card is collected, and an until clause tests whether the total is over 40. If it is not, the next pass starts. Because until comes after collect, the crossing card is kept. When it ends, the program builds the SQL script as a string, runs the sqlite3 command-line tool with run-program, and prints the rows.
-    A["main: make-random-state from the OS, ISO week with decode-universal-time"] --> B["LOOP clause: for number from 1"]
-    B --> C["for hours = a fresh random 10 to 19"]
-    C --> D["sum hours into total"]
-    D --> E["collect a card: number, category, hours, total"]
-    E --> F{{"until total ≥ 41?"}}
+    accTitle: lisp: las cláusulas de una forma LOOP, en el orden en que se escriben
+    accDescr: Un diagrama de flujo. La función main inicializa un estado aleatorio a partir del sistema operativo y calcula la semana ISO. Después, una forma LOOP ejecuta sus cláusulas en orden en cada pasada: number cuenta desde 1, hours se sortea de nuevo, hours se suma a total, se recoge una tarjeta y una cláusula until comprueba si total pasa de 40. Si no es así, empieza la siguiente pasada. Como until va después de collect, se conserva la tarjeta que cruza el límite. Cuando termina, el programa construye el script SQL como una cadena de texto, ejecuta la herramienta de línea de comandos sqlite3 con run-program e imprime las filas.
+    A["main: make-random-state desde el sistema operativo, semana ISO con decode-universal-time"] --> B["Cláusula del bucle LOOP: for number from 1"]
+    B --> C["for hours = un número aleatorio nuevo de 10 a 19 horas"]
+    C --> D["suma las horas en el total"]
+    D --> E["recoge una tarjeta: número, categoría, horas, total"]
+    E --> F{{"¿Hasta que total ≥ 41?"}}
     F -->|no| B
-    F -->|yes| G["Build the SQL script as a string, run sqlite3 with run-program, print the rows"]
+    F -->|Sí| G["Construye el script SQL como una cadena de texto, ejecuta sqlite3 con run-program e imprime las filas"]
 ```
 
-The first diagram is a conventional loop with one exit clause.
+El primer diagrama es un bucle convencional con una sola cláusula de salida.
 
 <!-- diagram-source: src/lisp-weird/README.md#program-flow -->
 
 ```mermaid
 sequenceDiagram
-    accTitle: lisp-weird: method combination with or is the loop and the stop rule
-    accDescr: A sequence diagram. Main calls the generic function punch on a card-1 instance. CLOS finds every applicable method and sorts them by class precedence: card-1, card-2, and so on up to the ledger. An around method on the ledger runs first. It binds the special variable for the SQL stream and calls the next method, which is the or combination. The or combination calls the card methods in order. Each one deals a card: it draws hours, adds to the total, prints the row and writes the INSERT to the SQL stream. The method returns whether the total is over 40. The first true result ends the or, so later methods never run. The around method then appends COMMIT and pipes the script into sqlite3.
+    accTitle: lisp-weird: la combinación de métodos con or es el bucle y la regla de parada
+    accDescr: Un diagrama de secuencia. Main llama a la función genérica punch sobre una instancia de card-1. CLOS encuentra todos los métodos aplicables y los ordena por precedencia de clase: card-1, card-2 y así hasta ledger. Un método around sobre ledger se ejecuta primero. Este método enlaza la variable especial del flujo SQL y llama al siguiente método, que es la combinación or. La combinación or llama a los métodos de las tarjetas en orden. Cada método reparte una tarjeta: sortea las horas, las suma al total, imprime la fila y escribe el INSERT en el flujo SQL. El método devuelve si el total pasa de 40. El primer resultado verdadero termina el or, así que los métodos posteriores nunca se ejecutan. Después, el método around añade COMMIT y pasa el script a sqlite3 mediante una tubería.
     participant M as main
-    participant A as around method on ledger
-    participant P as punch with or combination
-    participant K as card-N methods
-    M->>P: punch on a card-1 instance
-    P->>A: the around method runs first
-    A->>A: bind *sql* to a new string stream
-    A->>P: call-next-method: the or chain
-    loop each applicable method, most specific first
-        P->>K: card-N deals a card: hours, total, print, INSERT into *sql*
-        K-->>P: is the total over 40?
+    participant A as método around sobre ledger
+    participant P as punch con combinación or
+    participant K as métodos card-N
+    M->>P: punch en una instancia de card-1
+    P->>A: el método `around` se ejecuta primero
+    A->>A: vincula *sql* a un nuevo flujo de cadena de texto
+    A->>P: call-next-method: la cadena de or
+    loop cada método aplicable, del más específico al menos específico
+        P->>K: card-N reparte una tarjeta: horas, total, impresión, INSERT en *sql*
+        K-->>P: ¿el total pasa de 40?
     end
-    Note over P,K: the first true result ends the or: later methods never run
-    P-->>A: the chain returns
-    A->>A: append COMMIT, pipe the script into sqlite3
+    Note over P,K: el primer resultado verdadero termina el `or`: los métodos posteriores nunca se ejecutan
+    P-->>A: la cadena devuelve
+    A->>A: añade COMMIT, canaliza el script a sqlite3
 ```
 
-The second has no loop edge. The sequence is fixed in the class hierarchy before the program runs.
+El segundo no tiene ninguna arista de bucle. La secuencia queda fijada en la jerarquía de clases antes de que se ejecute el programa.
 
-## Trace one run
+## Traza una ejecución
 
-The programs draw random hours. Use hours **15, 19, 12** for the trace. To check it, a scratch copy of `lisp-weird` was run in the sandbox with the hours taken from a list, and with two print statements added: the class precedence list, and a line from each method saying what it returned. The output was:
+Los programas sortean horas aleatorias. Usa las horas **15, 19, 12** para la traza. Para comprobarla, se ejecutó en el entorno aislado una copia de trabajo de `lisp-weird` con las horas tomadas de una lista. Se le añadieron dos sentencias de impresión: la lista de precedencia de clases y una línea de cada método que dice qué devolvió. La salida fue:
 
 ```text
 # class precedence list: CARD-1 -> CARD-2 -> CARD-3 -> CARD-4 -> CARD-5 -> LEDGER -> STANDARD-OBJECT -> SLOT-OBJECT -> T
@@ -114,90 +114,90 @@ Debugging	12	46	DEMO ONLY
 # PUNCH had 5 OR methods and 3 ran: the class precedence list is the loop, and OR is the stop rule
 ```
 
-(The ISO-week column was removed for width.) The instance is made as a `card-1`, so the precedence list starts at card 1 and ends at `ledger`.
+(Se quitó la columna de la semana ISO para ganar ancho.) La instancia se crea como `card-1`, así que la lista de precedencia empieza en la tarjeta 1 y termina en `ledger`.
 
-**`lisp-weird`: which method runs.**
+**`lisp-weird`: qué método se ejecuta.**
 
-| Step | Method run | Hours | Total | Returns | What `or` does |
+| Paso | Método ejecutado | Horas | Total | Devuelve | Qué hace `or` |
 | --- | --- | ---: | ---: | --- | --- |
-| 1 | `punch` on `card-1` | 15 | 15 | `NIL` | go on to the next applicable method |
-| 2 | `punch` on `card-2` | 19 | 34 | `NIL` | go on |
-| 3 | `punch` on `card-3` | 12 | 46 | **`T`** | stop: `card-4` and `card-5` never run |
-| end | `:around` method resumes after `call-next-method` | none | 46 | none | writes `COMMIT`, runs `sqlite3` once |
+| 1 | `punch` en `card-1` | 15 | 15 | `NIL` | pasa al siguiente método aplicable |
+| 2 | `punch` en `card-2` | 19 | 34 | `NIL` | sigue |
+| 3 | `punch` en `card-3` | 12 | 46 | **`T`** | se detiene: `card-4` y `card-5` nunca se ejecutan |
+| fin | el método `:around` continúa después de `call-next-method` | ninguno | 46 | ninguno | escribe `COMMIT` y ejecuta `sqlite3` una sola vez |
 
-Five methods were applicable, and three ran. The crossing card is the method that returned true, so it has already dealt its card.
+Cinco métodos eran aplicables y se ejecutaron tres. La tarjeta que cruza el límite es el método que devolvió verdadero, así que ya repartió su tarjeta.
 
-**`lisp`: the `LOOP` clauses.** Each pass: `number` increases from 1, `hours` is drawn, `total` accumulates it, the card is collected and *then* `until` tests. With 15, 19, 12 the totals are 15, 34, 46, and the test is true after the third pass. The collected list is the three cards in order. Because `until` is after `collect`, the third card is already on the list when the loop ends.
+**`lisp`: las cláusulas `LOOP`.** En cada pasada: `number` aumenta desde 1, se sortea `hours`, `total` lo acumula, se recoge la tarjeta y *luego* prueba `until`. Con 15, 19, 12 los totales son 15, 34, 46, y la prueba es verdadera después de la tercera pasada. La lista recogida son las tres tarjetas en orden. Como `until` va después de `collect`, la tercera tarjeta ya está en la lista cuando termina el bucle.
 
-**Exactly 40.** With four 10-hour cards the totals are 10, 20, 30 and 40, and no method returns true. `card-5` is applicable and runs, because it is the last link. Its total is at least 50, so it returns true. The chain has exactly enough methods for the worst case, which is why the program has five classes.
+**Exactamente 40.** Con cuatro tarjetas de 10 horas, los totales son 10, 20, 30 y 40. Ningún método devuelve verdadero. `card-5` es aplicable y se ejecuta, porque es el último eslabón. Su total es de al menos 50, así que devuelve verdadero. La cadena tiene justo los métodos suficientes para el peor caso, y por eso el programa tiene cinco clases.
 
-## Compare the ordinary and weird designs
+## Compara los diseños ordinarios y los raros
 
-| Dimension | `lisp` | `lisp-weird` |
+| Dimensión | `lisp` | `lisp-weird` |
 | --- | --- | --- |
-| **Representation** | A list of card structures and a loop. | A chain of five classes and one method on each. |
-| **Observability** | Print the list. | The order exists in the class hierarchy. `class-precedence-list` and `compute-applicable-methods` reveal it. |
-| **Tests** | The loop is a function: pass a random state and compare the cards. | The chain needs an instance. The stop rule is an `or` and cannot be changed without editing every method's qualifier. |
-| **Debugging** | Step a loop. | Which method runs next depends on inheritance. A method with the wrong qualifier produces a compiler warning, not a failure you can miss at run time. |
-| **Portability** | ANSI Common Lisp, plus SBCL calls for `run-program` and environment variables. | Also SBCL's `sb-mop:compute-applicable-methods` for the closing note. |
-| **Cost** | One loop and one list. | Five classes defined by a macro, run once. A limit above what five cards can reach requires more classes. |
+| **Representación** | Una lista de estructuras de tarjeta y un bucle. | Una cadena de cinco clases y un método en cada una. |
+| **Observabilidad** | Imprime la lista. | El orden existe en la jerarquía de clases. `class-precedence-list` y `compute-applicable-methods` lo revelan. |
+| **Pruebas** | El bucle es una función: pásale un estado aleatorio y compara las tarjetas. | La cadena necesita una instancia. La regla de parada es un `or` y no se puede cambiar sin editar el calificador de cada método. |
+| **Debugging** | Recorre un bucle paso a paso. | Qué método se ejecuta después depende de la herencia. Un método con el calificador equivocado produce una advertencia del compilador, no un fallo que puedas pasar por alto en tiempo de ejecución. |
+| **Portabilidad** | Common Lisp ANSI, más las llamadas de SBCL para `run-program` y las variables de entorno. | También el `sb-mop:compute-applicable-methods` de SBCL para la nota de cierre. |
+| **Costo** | Un bucle y una lista. | Cinco clases definidas por una macro, que se ejecuta una sola vez. Un límite por encima de lo que pueden sumar cinco tarjetas exige más clases. |
 
-A macro does the repetition at compile time. `defcard` is expanded five times as the file is compiled, and the expansions are straight-line code. This is the compile-time/run-time split in action: a loop exists, but it runs while the *program* is built, and it never touches a timecard.
+Una macro hace la repetición en tiempo de compilación. `defcard` se expande cinco veces mientras se compila el archivo, y las expansiones son código lineal. Es la separación entre tiempo de compilación y tiempo de ejecución en acción. Existe un bucle, pero se ejecuta mientras se construye el *programa* y nunca toca una tarjeta de horas.
 
-## What the exercises demonstrate
+## Qué demuestran los ejercicios
 
-| Exercise | Predict first | What the evidence shows |
+| Ejercicio | Predice primero | Qué muestra la evidencia |
 | --- | --- | --- |
-| [B10. Lisp: swap the method combination](../../exercises.md#b10-lisp-swap-the-method-combination-verified), step 1 | Replace `or` with `progn` in both places. How many cards on every run? | Exactly five on every run, and `PUNCH had 0 OR methods and 5 ran`. `progn` runs every method, so the stop rule vanishes. The entry's own check fails. |
-| B10, step 2 | Change only the generic function's combination to `progn`, leaving the `or` qualifiers. | SBCL warns `Invalid qualifiers for PROGN method combination`. A method's qualifiers must belong to the combination of its generic function. |
-| B10, step 3 | Change the stop test to `(> (total ledger) 100)`. | Exactly five rows on every run, total at most 95, and `check-demo.sh out.txt 100` fails. Five is the most the program can ever deal. Supporting 100 needs more classes. |
-| [C1. Weird next to boring](../../exercises.md#c1-weird-next-to-boring-verified) | In which program does the stop rule live in one word? | In `lisp-weird` it is the word `or`. Removing it does not raise an error: the program deals all five cards. |
-| [F. Prove a README claim](../../exercises.md#f-prove-a-readme-claim-verified) | What test fails if the chain is not most-specific-first? | Check that the methods run in the order card-1 to card-5. The negative control reverses the inheritance and expects the card order to change. |
+| [B10. Lisp: cambia la combinación de métodos](../../exercises.md#b10-lisp-swap-the-method-combination-verified), paso 1 | Sustituye `or` por `progn` en los dos lugares. ¿Cuántas tarjetas salen en cada ejecución? | Exactamente cinco en cada ejecución; además, `PUNCH had 0 OR methods and 5 ran`. `progn` ejecuta todos los métodos, así que la regla de parada desaparece. La comprobación propia de la entrada falla. |
+| B10, paso 2 | Cambia solo la combinación de la función genérica a `progn` y deja los calificadores `or`. | SBCL advierte `Invalid qualifiers for PROGN method combination`. Los calificadores de un método deben pertenecer a la combinación de su función genérica. |
+| B10, paso 3 | Cambia la prueba de parada a `(> (total ledger) 100)`. | Exactamente cinco filas en cada ejecución y un total de 95 como máximo. `check-demo.sh out.txt 100` falla. Cinco es lo máximo que el programa puede repartir. Para admitir 100 hacen falta más clases. |
+| [C1. Lo raro junto a lo aburrido](../../exercises.md#c1-weird-next-to-boring-verified) | ¿En qué programa vive la regla de parada en una sola palabra? | En `lisp-weird` es la palabra `or`. Quitarla no provoca ningún error: el programa reparte las cinco tarjetas. |
+| [F. Demuestra una afirmación del README](../../exercises.md#f-prove-a-readme-claim-verified) | ¿Qué prueba falla si la cadena no va del más específico al menos específico? | Comprueba que los métodos se ejecutan en el orden card-1 a card-5. El control negativo invierte la herencia y espera que el orden de las tarjetas cambie. |
 
-The one-sentence answer the book asks for in B10 is the best test: *which single word is the stop rule, and why does removing it not make the program fail?* The word is `or`. Without it the methods still run, and a program that deals too many cards looks like a program that works.
+La respuesta de una frase que el libro pide en B10 es la mejor prueba. *¿Qué palabra es la regla de parada y por qué quitarla no hace fallar al programa?* La palabra es `or`. Sin ella los métodos se siguen ejecutando, y un programa que reparte demasiadas tarjetas parece un programa que funciona.
 
-## Failure modes, costs and boundaries
+## Modos de fallo, costos y límites
 
-| Behavior | Label | Why |
+| Comportamiento | Etiqueta | Por qué |
 | --- | --- | --- |
-| Applicable methods run in class-precedence order, most specific first | **guaranteed** | Defined by ANSI Common Lisp. |
-| The built-in `or` method combination returns the first non-`NIL` value and skips the rest | **guaranteed** | A standard method combination. Verified: cards 4 and 5 did not run. |
-| A method qualified `or` on a generic function using `progn` is invalid | **guaranteed** | The standard requires qualifiers to match the combination. SBCL warns, as B10 step 2 shows. |
-| `#1=(... . #1#)` reads a circular list, so `(nth 4 *week*)` is Meetings again | **guaranteed** | Standard reader syntax. The program does not modify the literal, which would be undefined. |
-| `make-random-state t` seeds from the operating system | **guaranteed** that the state is randomly initialized | The exact source is implementation-defined. |
-| `sb-mop:compute-applicable-methods`, `sb-ext:run-program`, `sb-ext:posix-getenv` | **implementation-permitted** | SBCL-specific names. They are why the programs need SBCL, not just any Common Lisp. |
-| Five classes are enough because five cards of 10 hours reach 50 | **guaranteed** | Arithmetic, not Lisp. The class count is a *bound*. |
+| Los métodos aplicables se ejecutan en orden de precedencia de clases, del más específico al menos específico | **garantizado** | Lo define ANSI Common Lisp. |
+| La combinación de métodos `or` integrada devuelve el primer valor que no sea `NIL` y omite el resto | **garantizado** | Una combinación de métodos estándar. Verificado: las tarjetas 4 y 5 no se ejecutaron. |
+| Un método calificado `or` en una función genérica que usa `progn` no es válido | **garantizado** | El estándar exige que los calificadores coincidan con la combinación. SBCL advierte, como muestra el paso 2 de B10. |
+| `#1=(... . #1#)` lee una lista circular, así que `(nth 4 *week*)` vuelve a ser Meetings | **garantizado** | Sintaxis estándar del lector. El programa no modifica el literal, lo que estaría indefinido. |
+| `make-random-state t` toma la semilla del sistema operativo | **garantizado** que el estado se inicializa al azar | El origen exacto lo define la implementación. |
+| `sb-mop:compute-applicable-methods`, `sb-ext:run-program`, `sb-ext:posix-getenv` | **permitido por la implementación** | Nombres propios de SBCL. Por eso los programas necesitan SBCL y no cualquier Common Lisp. |
+| Cinco clases bastan porque cinco tarjetas de 10 horas llegan a 50 | **garantizado** | Aritmética, no Lisp. El número de clases es una *cota*. |
 
-No behavior is merely accidentally exploited here: the weird entry uses documented features exactly as documented, in an order nobody would choose.
+Aquí ningún comportamiento es simplemente *aprovechado por accidente*: la entrada rara usa funciones documentadas exactamente como están documentadas, en un orden que nadie elegiría.
 
-**Costs to state.**
+**Costos que debes poder enunciar.**
 
-- **The control flow is in a declaration.** Reading `punch` does not tell you how often it runs. You have to read the `defclass` forms.
-- **A dispatch error looks like success.** An invalid qualifier or a wrong combination produces a warning (exercise B10 step 2) and the program still runs. The check script has to count rows.
-- **A limit change is a structural change.** Raising the limit to 100 means defining more classes, not editing a number.
-- **SQL quoting.** The weird entry's `sql-quote` does not escape. The plain entry's does. The weird entry is safe only because every value is a number or one of four fixed words.
-- **Where the technique is legitimate.** Method combination is how CLOS composes behavior: `:before`, `:after` and `:around` methods are routine, and `or`, `and` and `progn` combinations are useful for plug-in checks. Chaining to count cards is a stunt.
+- **El flujo de control está en una declaración.** Leer `punch` no te dice con qué frecuencia se ejecuta. Tienes que leer las formas `defclass`.
+- **Un error de despacho parece un éxito.** Un calificador no válido o una combinación equivocada produce una advertencia (ejercicio B10, paso 2) y el programa se sigue ejecutando. El script de comprobación tiene que contar filas.
+- **Cambiar el límite es un cambio estructural.** Subir el límite a 100 significa definir más clases, no editar un número.
+- **Entrecomillado del SQL.** El `sql-quote` de la entrada rara no escapa. El de la entrada idiomática sí. La entrada rara es segura solo porque cada valor es un número o una de cuatro palabras fijas.
+- **Dónde es legítima la técnica.** La combinación de métodos es como CLOS compone comportamiento: los métodos `:before`, `:after` y `:around` son rutinarios, y las combinaciones `or`, `and` y `progn` sirven para comprobaciones de complementos. Encadenar para contar tarjetas es una acrobacia.
 
-## Connections across the repository
+## Conexiones a lo largo del repositorio
 
-- **Control flow stored in a declaration.** The same idea appears in [COBOL](cobol.md), where a data declaration (`88 OVER-FORTY`) is the stop rule, and [Tcl](tcl.md), where database triggers fire the next step. The concept guide [State and control beyond variables](../conceptos/estado-y-control-mas-alla-de-las-variables.md) compares them.
-- **Short-circuit as the stop rule.** `or` stops on the first true result, as a lazy `span` stops reading in [Haskell](haskell.md). Both stop by *not asking for more*. Lisp does it by not calling the next method.
-- **Compile-time repetition.** [m4](m4.md) is a macro processor for text. Lisp macros transform code instead. The concept guide [Formal languages and weird machines](../conceptos/lenguajes-formales-y-maquinas-raras.md) places both.
-- **A chain with a fixed bound.** The regex entries in [Regex engines and sed](motores-de-regex-y-sed.md) are limited to four cards by the length of a subject. Lisp-weird is limited to five by the length of a class chain.
-- **In the book.** [Common Lisp](../../lenguajes/lisp.md), [Short-circuit evaluation](../../informatica/04-evaluacion-y-demanda.md#short-circuit-evaluation) and [Macros and text expansion](../../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#macros-and-text-expansion).
+- **Flujo de control guardado en una declaración.** La misma idea aparece en [COBOL](cobol.md), donde una declaración de datos (`88 OVER-FORTY`) es la regla de parada. También aparece en [Tcl](tcl.md), donde los disparadores de la base de datos activan el paso siguiente. La guía de concepto [Estado y control más allá de las variables](../conceptos/estado-y-control-mas-alla-de-las-variables.md) las compara.
+- **El cortocircuito como regla de parada.** `or` se detiene en el primer resultado verdadero, igual que un `span` perezoso deja de leer en [Haskell](haskell.md). Ambos se detienen *sin pedir más*. Lisp lo logra al no llamar al método siguiente.
+- **Repetición en tiempo de compilación.** [m4](m4.md) es un procesador de macros para texto. Las macros de Lisp transforman código. La guía de concepto [Lenguajes formales y máquinas raras](../conceptos/lenguajes-formales-y-maquinas-raras.md) sitúa a ambos.
+- **Una cadena con un límite fijo.** Las entradas de expresiones regulares en [Motores de regex y sed](motores-de-regex-y-sed.md) están limitadas a cuatro tarjetas por la longitud de un sujeto. Lisp-weird está limitado a cinco por la longitud de una cadena de clases.
+- **En el libro.** [Common Lisp](../../lenguajes/lisp.md), [Evaluación de cortocircuito](../../informatica/04-evaluacion-y-demanda.md#short-circuit-evaluation) y [Macros y expansión de texto](../../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#macros-and-text-expansion).
 
-## Self-check
+## Autoevaluación
 
-Answer each question in your own words before you read the italic text. Say what evidence would support each answer.
+Responde cada pregunta con tus propias palabras antes de leer el texto en cursiva. Di qué evidencia respaldaría cada respuesta.
 
-1. **Trace.** In `lisp-weird`, hours are 11, 12, 10, 14. How many methods run, and what does each return? *(Four methods. Totals 11, 23, 33, 47. Cards 1, 2 and 3 return `NIL`, and card 4 returns `T`. `card-5` does not run.)*
-2. **Explain.** Why must `defcard` be called for card 5 first and for card 1 last? *(A class must exist before another can inherit from it, and card 1 inherits from card 2, and so on. The chain is built from the tail.)*
-3. **Transfer.** Which construct in Python, Java or Go would play the part of the `or` method combination? *(A chain of handlers where each returns a boolean and the caller stops at the first true, as in a middleware chain or a series of `||` calls. In Java, `Stream.anyMatch` has the same short-circuit shape.)*
-4. **Evidence.** A reviewer says, "The weird program can never deal more than five cards." Design a test that could fail. *(Run it many times and count the rows, as B10 does. For a negative control, change the limit to 100 and see that the count is still five. The claim is guaranteed by the class count.)*
+1. **Traza.** En `lisp-weird`, las horas son 11, 12, 10, 14. ¿Cuántos métodos se ejecutan y qué devuelve cada uno? *(Cuatro métodos. Totales 11, 23, 33, 47. Las tarjetas 1, 2 y 3 devuelven `NIL` y la tarjeta 4 devuelve `T`. `card-5` no se ejecuta.)*
+2. **Explica.** ¿Por qué hay que llamar a `defcard` primero para la tarjeta 5 y al final para la tarjeta 1? *(Una clase debe existir antes de que otra pueda heredar de ella, y la tarjeta 1 hereda de la tarjeta 2, y así sucesivamente. La cadena se construye desde la cola.)*
+3. **Transfiere.** ¿Qué construcción de Python, Java o Go cumpliría el papel de la combinación de métodos `or`? *(Una cadena de manejadores. Cada uno devuelve un booleano y quien llama se detiene en el primer valor verdadero, como en una cadena de intermediarios (middleware) o una serie de llamadas `||`. En Java, `Stream.anyMatch` tiene la misma forma de cortocircuito.)*
+4. **Evidencia.** Un revisor dice: "El programa raro nunca puede repartir más de cinco tarjetas". Diseña una prueba que pueda fallar. *(Ejecútalo muchas veces y cuenta las filas, como hace B10. Para un control negativo, cambia el límite a 100 y comprueba que el conteo sigue siendo cinco. El número de clases garantiza la afirmación.)*
 
-## Further reading
+## Lecturas adicionales
 
-- [Common Lisp](https://en.wikipedia.org/wiki/Common_Lisp) (Wikipedia): the language and its standard.
-- [Common Lisp Object System](https://en.wikipedia.org/wiki/Common_Lisp_Object_System) (Wikipedia): generic functions, multiple dispatch and method combination.
-- [Short-circuit evaluation](https://en.wikipedia.org/wiki/Short-circuit_evaluation) (Wikipedia): the general idea behind `or`'s stop.
-- [Control flow](../../informatica/03-flujo-de-control-y-continuaciones.md#control-flow) and [Short-circuit evaluation](../../informatica/04-evaluacion-y-demanda.md#short-circuit-evaluation) (this book): the surrounding concepts.
+- [Common Lisp](https://en.wikipedia.org/wiki/Common_Lisp) (Wikipedia): el lenguaje y su estándar.
+- [Sistema de objetos de Common Lisp](https://en.wikipedia.org/wiki/Common_Lisp_Object_System) (Wikipedia): funciones genéricas, despacho múltiple y combinación de métodos.
+- [Evaluación de cortocircuito](https://en.wikipedia.org/wiki/Short-circuit_evaluation) (Wikipedia): la idea general detrás de la parada de `or`.
+- [Flujo de control](../../informatica/03-flujo-de-control-y-continuaciones.md#control-flow) y [Evaluación de cortocircuito](../../informatica/04-evaluacion-y-demanda.md#short-circuit-evaluation) (este libro): los conceptos que rodean al tema.

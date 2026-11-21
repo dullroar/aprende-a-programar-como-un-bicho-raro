@@ -132,3 +132,4 @@
 157 P4-lessons-study-guides-concepts-7 done state-and-control-beyond-variables study guide (104 segments) finished from iteration-156 PO; 1 scoped I7 waiver; verify --fast OK.
 158 P4-lessons-study-guides-languages-1 done apl study guide was already fully translated (P3/P3C-006, P4-src-3 sync; 114/114 PO entries, 0 fuzzy); release-level file_problems clean and verify --fast OK, so only the queue status changed.
 159 P4-lessons-study-guides-languages-2 done cobol study guide translated (126 segments) via three drafts imports; 12 scoped waivers (identifiers, verbs, README-synced diagram copy); verify --fast OK.
+160 P4-lessons-study-guides-languages-3 done common-lisp study guide translated (114 segments) via drafts import; 12 scoped waivers (scope heading, verbs, identifiers, README-synced diagram copy); verify --fast OK; iter-159 anchors.json regeneration committed with it.

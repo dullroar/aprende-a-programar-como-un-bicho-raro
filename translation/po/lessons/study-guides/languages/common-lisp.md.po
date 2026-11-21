@@ -1,0 +1,598 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lessons/study-guides/languages/common-lisp.md:1
+msgctxt "s-b9ed345c6424-0000"
+msgid "Common Lisp study guide"
+msgstr "Guía de estudio de Common Lisp"
+
+#: lessons/study-guides/languages/common-lisp.md:3
+msgctxt "s-4e718de9279e-0001"
+msgid "What this guide is for"
+msgstr "Para qué sirve esta guía"
+
+#: lessons/study-guides/languages/common-lisp.md:5
+msgctxt "s-ba0588e383d5-0002"
+msgid "This guide reads two Common Lisp programs: [⟦CODE_0001⟧](⟦DEST_0002⟧), which is one ⟦CODE_0003⟧ form, and [⟦CODE_0004⟧](⟦DEST_0005⟧), which has no loop and no conditional below the line marked \"RUN TIME\". In the weird program each card is a *method* of one generic function, and the cards are chained through the class precedence list. The question is: **when the object system chooses and orders code, can its dispatch rules serve as the loop and the stop rule?**"
+msgstr "Esta guía lee dos programas de Common Lisp. [⟦CODE_0001⟧](⟦DEST_0002⟧) es una sola forma ⟦CODE_0003⟧. [⟦CODE_0004⟧](⟦DEST_0005⟧) no tiene ningún bucle ni condicional debajo de la línea marcada \"RUN TIME\". En el programa raro, cada tarjeta es un *método* de una misma función genérica, y las tarjetas se encadenan mediante la lista de precedencia de clases. La pregunta es: **cuando el sistema de objetos elige y ordena el código, ¿pueden sus reglas de despacho servir como bucle y como regla de parada?**"
+
+#: lessons/study-guides/languages/common-lisp.md:7
+msgctxt "s-d84bcb27c154-0003"
+msgid "When you finish, you should be able to:"
+msgstr "Al terminar, deberías poder:"
+
+#: lessons/study-guides/languages/common-lisp.md:9
+msgctxt "s-8f24b4af3a11-0004"
+msgid ""
+"Explain what a class precedence list is, and in what order the applicable methods of a generic function run.\n"
+"2. Explain what the built-in ⟦CODE_0001⟧ method combination does, and why its short-circuit is the stop rule.\n"
+"3. Explain how a macro moves the repetition from run time to compile time.\n"
+"4. Trace both programs through the same three cards.\n"
+"5. Say why five is the most cards the weird program can deal, and what you would change to raise that.\n"
+"6. Label each behavior as guaranteed, implementation-permitted or accidentally exploited."
+msgstr ""
+"Explicar qué es una lista de precedencia de clases y en qué orden se ejecutan los métodos aplicables de una función genérica.\n"
+"2. Explicar qué hace la combinación de métodos ⟦CODE_0001⟧ integrada y por qué su cortocircuito es la regla de parada.\n"
+"3. Explicar cómo una macro traslada la repetición del tiempo de ejecución al tiempo de compilación.\n"
+"4. Trazar ambos programas con las mismas tres tarjetas.\n"
+"5. Decir por qué cinco es el máximo de tarjetas que puede repartir el programa raro y qué cambiarías para subirlo.\n"
+"6. Etiquetar cada comportamiento como garantizado, permitido por la implementación o aprovechado por accidente."
+
+#: lessons/study-guides/languages/common-lisp.md:16
+msgctxt "s-7ba01f01c509-0005"
+msgid "**Scope limits.** You need to read Lisp syntax and know what a class and a method are. The guide does not teach the whole of CLOS, the reader macros beyond the one circular list or the SQL. It uses SBCL 2.x (⟦CODE_0001⟧). The book's page is [Common Lisp](⟦DEST_0002⟧). For the ideas, see [Short-circuit evaluation](⟦DEST_0003⟧) and [Control flow](⟦DEST_0004⟧)."
+msgstr "**Límites del alcance.** Necesitas saber leer la sintaxis de Lisp y saber qué son una clase y un método. La guía no enseña todo CLOS, ni las macros del lector aparte de la lista circular, ni el SQL. Usa SBCL 2.x (⟦CODE_0001⟧). La página del libro es [Common Lisp](⟦DEST_0002⟧). Para las ideas, consulta [Evaluación de cortocircuito](⟦DEST_0003⟧) y [Flujo de control](⟦DEST_0004⟧)."
+
+#: lessons/study-guides/languages/common-lisp.md:18
+msgctxt "s-d5bfdd7d989d-0006"
+msgid "Before you begin"
+msgstr "Antes de empezar"
+
+#: lessons/study-guides/languages/common-lisp.md:20
+msgctxt "s-28c9c74798cc-0007"
+msgid "**Safety model.** Every entry writes fictional **⟦DNT_0001⟧** data to a scratch SQLite file. Both programs start ⟦CODE_0002⟧ as a child process, and the weird one builds SQL as text. Read the source before you run it, and run it in the sandbox first:"
+msgstr "**Modelo de seguridad.** Cada entrada escribe datos ficticios marcados con **⟦DNT_0001⟧** en un archivo SQLite de trabajo. Ambos programas inician ⟦CODE_0002⟧ como un proceso hijo, y el programa raro construye SQL como texto. Lee el código fuente antes de ejecutarlo y ejecútalo primero en un entorno aislado (*sandbox*) que limita el acceso al sistema anfitrión:"
+
+#: lessons/study-guides/languages/common-lisp.md:27
+msgctxt "s-c7ac4c6503db-0008"
+msgid "Edit only copies ([Running things safely](⟦DEST_0001⟧)). Your numbers will differ from the ones printed here; the structure will not."
+msgstr "Edita solo copias ([Ejecutar cosas de forma segura](⟦DEST_0001⟧)). Tus números serán distintos de los que se imprimen aquí; la estructura no."
+
+#: lessons/study-guides/languages/common-lisp.md:29
+msgctxt "s-1cce0294e3fd-0009"
+msgid "**Prediction rule.** Before each run, write down which methods will run, in what order and what the method that stops the chain returns."
+msgstr "**Regla de predicción.** Antes de cada ejecución, anota qué métodos se ejecutarán, en qué orden y qué devuelve el método que detiene la cadena."
+
+#: lessons/study-guides/languages/common-lisp.md:31
+msgctxt "s-2dd18ffddf3e-0010"
+msgid "**Vocabulary.**"
+msgstr "**Vocabulario.**"
+
+#: lessons/study-guides/languages/common-lisp.md:33
+msgctxt "s-790e521777f0-0011"
+msgid "⟦SEP_0001⟧ Term ⟦SEP_0002⟧ Meaning here ⟦SEP_0003⟧"
+msgstr "⟦SEP_0001⟧ Término ⟦SEP_0002⟧ Significado aquí ⟦SEP_0003⟧"
+
+#: lessons/study-guides/languages/common-lisp.md:35
+msgctxt "s-447e18756189-0012"
+msgid "⟦SEP_0001⟧ Generic function ⟦SEP_0002⟧ A function whose code is a set of *methods*, chosen by the classes of the arguments. ⟦SEP_0003⟧"
+msgstr "⟦SEP_0001⟧ Función genérica ⟦SEP_0002⟧ Una función cuyo código es un conjunto de *métodos*, elegidos según las clases de los argumentos. ⟦SEP_0003⟧"
+
+#: lessons/study-guides/languages/common-lisp.md:36
+msgctxt "s-4ea5e1449ced-0013"
+msgid "⟦SEP_0001⟧ Class precedence list ⟦SEP_0002⟧ The ordered list of a class and all its ancestors, most specific first. ⟦SEP_0003⟧"
+msgstr "⟦SEP_0001⟧ Lista de precedencia de clases ⟦SEP_0002⟧ La lista ordenada de una clase y todos sus ancestros, de la más específica a la menos específica. ⟦SEP_0003⟧"
+
+#: lessons/study-guides/languages/common-lisp.md:37
+msgctxt "s-986f10ae8d50-0014"
+msgid "⟦SEP_0001⟧ Method combination ⟦SEP_0002⟧ The rule that says how the applicable methods are combined into one result. ⟦SEP_0003⟧"
+msgstr "⟦SEP_0001⟧ Combinación de métodos ⟦SEP_0002⟧ La regla que dice cómo se combinan los métodos aplicables en un único resultado. ⟦SEP_0003⟧"
+
+#: lessons/study-guides/languages/common-lisp.md:38
+msgctxt "s-b903cab05f28-0015"
+msgid "⟦SEP_0003⟧ ⟦CODE_0001⟧ combination ⟦SEP_0004⟧ Run applicable methods most-specific-first, return the first non-⟦CODE_0002⟧ value and stop. ⟦SEP_0005⟧"
+msgstr "⟦SEP_0003⟧ Combinación ⟦CODE_0001⟧ ⟦SEP_0004⟧ Ejecuta los métodos aplicables del más específico al menos específico, devuelve el primer valor que no sea ⟦CODE_0002⟧ y se detiene. ⟦SEP_0005⟧"
+
+#: lessons/study-guides/languages/common-lisp.md:39
+msgctxt "s-e8b6817b98de-0016"
+msgid "⟦SEP_0003⟧ ⟦CODE_0001⟧ method ⟦SEP_0004⟧ A method that wraps the others and decides when they run, via ⟦CODE_0002⟧. ⟦SEP_0005⟧"
+msgstr "⟦SEP_0003⟧ Método ⟦CODE_0001⟧ ⟦SEP_0004⟧ Un método que envuelve a los demás y decide cuándo se ejecutan, mediante ⟦CODE_0002⟧. ⟦SEP_0005⟧"
+
+#: lessons/study-guides/languages/common-lisp.md:41
+msgctxt "s-ae7d69ef2745-0017"
+msgid "The shared challenge"
+msgstr "El reto compartido"
+
+#: lessons/study-guides/languages/common-lisp.md:43
+msgctxt "s-78a7d749b03d-0018"
+msgid "The [challenge specification](⟦DEST_0001⟧) calls for cards with a category and 10 to 19 whole hours. Categories cycle through ⟦DNT_0002⟧, ⟦DNT_0003⟧, ⟦DNT_0004⟧ and ⟦DNT_0005⟧. Add each card's hours to the running total. Stop when the total passes 40. Keep the **first card that takes the total over 40**. A total of exactly 40 continues. Four 10-hour cards need a fifth card, in the ⟦DNT_0006⟧ category. Conforming runs finish with 3 to 5 cards and a total of 41 to 59 hours."
+msgstr "La [especificación del reto](⟦DEST_0001⟧) pide tarjetas con una categoría y de 10 a 19 horas enteras. Las categorías se repiten en ciclo: `⟦DNT_0002⟧`, `⟦DNT_0003⟧`, `⟦DNT_0004⟧` y `⟦DNT_0005⟧`. Suma las horas de cada tarjeta al total acumulado. Detente cuando el total pasa de 40. Conserva la **primera tarjeta con la que el total pasa de 40**. Un total de exactamente 40 continúa. Cuatro tarjetas de 10 horas necesitan una quinta tarjeta, de la categoría `⟦DNT_0006⟧`. Las ejecuciones conformes tienen de 3 a 5 tarjetas y un total de 41 a 59 horas."
+
+#: lessons/study-guides/languages/common-lisp.md:45
+msgctxt "s-4c0fa2b62081-0019"
+msgid "Both Lisp entries save the cards in one SQLite transaction and print a summary. Lisp writes the boundary as ⟦CODE_0001⟧: false for 40. In the ⟦CODE_0002⟧ the test is ⟦CODE_0003⟧ and comes *after* ⟦CODE_0004⟧, which is why the crossing card is kept ([L39-46](⟦DEST_0005⟧)). In the weird program each method ends with ⟦CODE_0006⟧, and the method that returns true stops the chain ([L84](⟦DEST_0007⟧))."
+msgstr "Ambas entradas de Lisp guardan las tarjetas en una sola transacción de SQLite e imprimen un resumen. Lisp escribe el límite como ⟦CODE_0001⟧: es falso para 40. En ⟦CODE_0002⟧ la prueba es ⟦CODE_0003⟧ y va *después de* ⟦CODE_0004⟧, por eso se conserva la tarjeta que cruza el límite ([L39-46](⟦DEST_0005⟧)). En el programa raro, cada método termina con ⟦CODE_0006⟧, y el método que devuelve verdadero detiene la cadena ([L84](⟦DEST_0007⟧))."
+
+#: lessons/study-guides/languages/common-lisp.md:47
+msgctxt "s-9f148b367e02-0020"
+msgid "The machine to identify"
+msgstr "La máquina que hay que identificar"
+
+#: lessons/study-guides/languages/common-lisp.md:49
+msgctxt "s-934e8586d644-0021"
+msgid "**What repeats.** In ⟦CODE_0001⟧, one ⟦CODE_0002⟧ form in ⟦CODE_0003⟧: ⟦CODE_0004⟧, ⟦CODE_0005⟧, ⟦CODE_0006⟧, ⟦CODE_0007⟧, ⟦CODE_0008⟧. In ⟦CODE_0009⟧, nothing repeats. Five *different* methods run in a fixed order, one per card. The \"loop\" is a chain."
+msgstr "**Qué se repite.** En ⟦CODE_0001⟧, una forma ⟦CODE_0002⟧ en ⟦CODE_0003⟧: ⟦CODE_0004⟧, ⟦CODE_0005⟧, ⟦CODE_0006⟧, ⟦CODE_0007⟧, ⟦CODE_0008⟧. En ⟦CODE_0009⟧, no se repite nada. Cinco métodos *distintos* se ejecutan en un orden fijo, uno por tarjeta. El \"bucle\" es una cadena."
+
+#: lessons/study-guides/languages/common-lisp.md:51
+msgctxt "s-f06ad8896ec6-0022"
+msgid "**Where state lives.** In ⟦CODE_0001⟧, in the loop's own variables (⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧) and the list it collects. In ⟦CODE_0005⟧, in two places: a ⟦CODE_0006⟧ object holds ⟦CODE_0007⟧, ⟦CODE_0008⟧ and the random state, and the *position in the class precedence list* says how many cards have been dealt. The class hierarchy is the loop counter."
+msgstr "**Dónde vive el estado.** En ⟦CODE_0001⟧, en las variables propias del bucle (⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧) y en la lista que recoge. En ⟦CODE_0005⟧, en dos lugares: un objeto ⟦CODE_0006⟧ guarda ⟦CODE_0007⟧, ⟦CODE_0008⟧ y el estado aleatorio. Además, la *posición en la lista de precedencia de clases* dice cuántas tarjetas se han repartido. La jerarquía de clases es el contador del bucle."
+
+#: lessons/study-guides/languages/common-lisp.md:53
+msgctxt "s-028aef1686a2-0023"
+msgid "**What advances the next step.** In ⟦CODE_0001⟧, ⟦CODE_0002⟧ itself. In ⟦CODE_0003⟧, the ⟦CODE_0004⟧ method combination: when one method returns ⟦CODE_0005⟧, the combination calls the next applicable method, which is the next card. The next card is a method on the *parent* class."
+msgstr "**Qué hace avanzar el paso siguiente.** En ⟦CODE_0001⟧, el propio ⟦CODE_0002⟧. En ⟦CODE_0003⟧, la combinación de métodos ⟦CODE_0004⟧: cuando un método devuelve ⟦CODE_0005⟧, la combinación llama al siguiente método aplicable, que es la tarjeta siguiente. La tarjeta siguiente es un método de la clase *padre*."
+
+#: lessons/study-guides/languages/common-lisp.md:55
+msgctxt "s-96b9521b8a76-0024"
+msgid "**What stops it.** In ⟦CODE_0001⟧, the ⟦CODE_0002⟧ clause. In ⟦CODE_0003⟧, a method that returns true, because ⟦CODE_0004⟧ stops at the first true value. If no method returns true the chain simply ends after card 5."
+msgstr "**Qué lo detiene.** En ⟦CODE_0001⟧, la cláusula ⟦CODE_0002⟧. En ⟦CODE_0003⟧, un método que devuelve verdadero, porque ⟦CODE_0004⟧ se detiene en el primer valor verdadero. Si ningún método devuelve verdadero, la cadena simplemente termina después de la tarjeta 5."
+
+#: lessons/study-guides/languages/common-lisp.md:57
+msgctxt "s-6e61d981e60c-0025"
+msgid "**What commits.** In ⟦CODE_0001⟧, SQL is built from the finished list of cards, then ⟦CODE_0002⟧ is run with it, and rows are printed after that ([L154-165](⟦DEST_0003⟧)). In ⟦CODE_0004⟧, each card writes its ⟦CODE_0005⟧ to a dynamically bound string stream and prints its row as it is dealt. An ⟦CODE_0006⟧ method on the whole chain adds ⟦CODE_0007⟧ at the start, and after ⟦CODE_0008⟧ returns it adds ⟦CODE_0009⟧ and runs ⟦CODE_0010⟧ once ([L93-107](⟦DEST_0011⟧))."
+msgstr "**Qué confirma.** En ⟦CODE_0001⟧, el SQL se construye a partir de la lista terminada de tarjetas. Luego se ejecuta ⟦CODE_0002⟧ con ella y después se imprimen las filas ([L154-165](⟦DEST_0003⟧)). En ⟦CODE_0004⟧, cada tarjeta escribe su ⟦CODE_0005⟧ en un flujo de cadena de texto enlazado dinámicamente e imprime su fila a medida que se reparte. Un método ⟦CODE_0006⟧ sobre toda la cadena añade ⟦CODE_0007⟧ al principio. Cuando ⟦CODE_0008⟧ devuelve, añade ⟦CODE_0009⟧ y ejecuta ⟦CODE_0010⟧ una sola vez ([L93-107](⟦DEST_0011⟧))."
+
+#: lessons/study-guides/languages/common-lisp.md:63
+msgctxt "s-ab8bce3893ac-0026"
+msgid "lisp: the clauses of one LOOP form, in the order they are written"
+msgstr "lisp: las cláusulas de una forma LOOP, en el orden en que se escriben"
+
+#: lessons/study-guides/languages/common-lisp.md:64
+msgctxt "s-f30ef157b028-0027"
+msgid "A flowchart. The function main seeds a random state from the operating system and works out the ISO week. Then one LOOP form runs its clauses in order on each pass: number counts up from 1, hours is drawn again, hours is summed into total, a card is collected, and an until clause tests whether the total is over 40. If it is not, the next pass starts. Because until comes after collect, the crossing card is kept. When it ends, the program builds the SQL script as a string, runs the sqlite3 command-line tool with run-program, and prints the rows."
+msgstr "Un diagrama de flujo. La función main inicializa un estado aleatorio a partir del sistema operativo y calcula la semana ISO. Después, una forma LOOP ejecuta sus cláusulas en orden en cada pasada: number cuenta desde 1, hours se sortea de nuevo, hours se suma a total, se recoge una tarjeta y una cláusula until comprueba si total pasa de 40. Si no es así, empieza la siguiente pasada. Como until va después de collect, se conserva la tarjeta que cruza el límite. Cuando termina, el programa construye el script SQL como una cadena de texto, ejecuta la herramienta de línea de comandos sqlite3 con run-program e imprime las filas."
+
+#: lessons/study-guides/languages/common-lisp.md:65
+msgctxt "s-2a09f7429c80-0028"
+msgid "main: make-random-state from the OS, ISO week with decode-universal-time"
+msgstr "main: make-random-state desde el sistema operativo, semana ISO con decode-universal-time"
+
+#: lessons/study-guides/languages/common-lisp.md:65
+msgctxt "s-db2aeb31ad75-0029"
+msgid "LOOP clause: for number from 1"
+msgstr "Cláusula del bucle LOOP: for number from 1"
+
+#: lessons/study-guides/languages/common-lisp.md:66
+msgctxt "s-df0c1e9efdce-0030"
+msgid "for hours = a fresh random 10 to 19"
+msgstr "for hours = un número aleatorio nuevo de 10 a 19 horas"
+
+#: lessons/study-guides/languages/common-lisp.md:67
+msgctxt "s-3d15bc01fba1-0031"
+msgid "sum hours into total"
+msgstr "suma las horas en el total"
+
+#: lessons/study-guides/languages/common-lisp.md:68
+msgctxt "s-3fd40a6a3649-0032"
+msgid "collect a card: number, category, hours, total"
+msgstr "recoge una tarjeta: número, categoría, horas, total"
+
+#: lessons/study-guides/languages/common-lisp.md:69
+msgctxt "s-6f81e2c78b4f-0033"
+msgid "until total ≥ 41?"
+msgstr "¿Hasta que total ≥ 41?"
+
+#: lessons/study-guides/languages/common-lisp.md:70
+msgctxt "s-9390298f3fb0-0034"
+msgid "no"
+msgstr "no"
+
+#: lessons/study-guides/languages/common-lisp.md:71
+msgctxt "s-8a798890fe93-0035"
+msgid "yes"
+msgstr "Sí"
+
+#: lessons/study-guides/languages/common-lisp.md:71
+msgctxt "s-fa9750691651-0036"
+msgid "Build the SQL script as a string, run sqlite3 with run-program, print the rows"
+msgstr "Construye el script SQL como una cadena de texto, ejecuta sqlite3 con run-program e imprime las filas"
+
+#: lessons/study-guides/languages/common-lisp.md:74
+msgctxt "s-c9dbf56fe780-0037"
+msgid "The first diagram is a conventional loop with one exit clause."
+msgstr "El primer diagrama es un bucle convencional con una sola cláusula de salida."
+
+#: lessons/study-guides/languages/common-lisp.md:80
+msgctxt "s-c8758e21b5f5-0038"
+msgid "lisp-weird: method combination with or is the loop and the stop rule"
+msgstr "lisp-weird: la combinación de métodos con or es el bucle y la regla de parada"
+
+#: lessons/study-guides/languages/common-lisp.md:81
+msgctxt "s-5a5de2a4be3e-0039"
+msgid "A sequence diagram. Main calls the generic function punch on a card-1 instance. CLOS finds every applicable method and sorts them by class precedence: card-1, card-2, and so on up to the ledger. An around method on the ledger runs first. It binds the special variable for the SQL stream and calls the next method, which is the or combination. The or combination calls the card methods in order. Each one deals a card: it draws hours, adds to the total, prints the row and writes the INSERT to the SQL stream. The method returns whether the total is over 40. The first true result ends the or, so later methods never run. The around method then appends COMMIT and pipes the script into sqlite3."
+msgstr "Un diagrama de secuencia. Main llama a la función genérica punch sobre una instancia de card-1. CLOS encuentra todos los métodos aplicables y los ordena por precedencia de clase: card-1, card-2 y así hasta ledger. Un método around sobre ledger se ejecuta primero. Este método enlaza la variable especial del flujo SQL y llama al siguiente método, que es la combinación or. La combinación or llama a los métodos de las tarjetas en orden. Cada método reparte una tarjeta: sortea las horas, las suma al total, imprime la fila y escribe el INSERT en el flujo SQL. El método devuelve si el total pasa de 40. El primer resultado verdadero termina el or, así que los métodos posteriores nunca se ejecutan. Después, el método around añade COMMIT y pasa el script a sqlite3 mediante una tubería."
+
+#: lessons/study-guides/languages/common-lisp.md:82
+msgctxt "s-0d6e4079e367-0040"
+msgid "main"
+msgstr "main"
+
+#: lessons/study-guides/languages/common-lisp.md:83
+msgctxt "s-fee7d55aa7aa-0041"
+msgid "around method on ledger"
+msgstr "método around sobre ledger"
+
+#: lessons/study-guides/languages/common-lisp.md:84
+msgctxt "s-c7077202d540-0042"
+msgid "punch with or combination"
+msgstr "punch con combinación or"
+
+#: lessons/study-guides/languages/common-lisp.md:85
+msgctxt "s-d00f37a3b73e-0043"
+msgid "card-N methods"
+msgstr "métodos card-N"
+
+#: lessons/study-guides/languages/common-lisp.md:86
+msgctxt "s-5373085210e7-0044"
+msgid "punch on a card-1 instance"
+msgstr "punch en una instancia de card-1"
+
+#: lessons/study-guides/languages/common-lisp.md:87
+msgctxt "s-953eec0f3a1b-0045"
+msgid "the around method runs first"
+msgstr "el método `around` se ejecuta primero"
+
+#: lessons/study-guides/languages/common-lisp.md:88
+msgctxt "s-62449a429ae0-0046"
+msgid "bind *sql* to a new string stream"
+msgstr "vincula *sql* a un nuevo flujo de cadena de texto"
+
+#: lessons/study-guides/languages/common-lisp.md:89
+msgctxt "s-b0f5fcb23650-0047"
+msgid "call-next-method: the or chain"
+msgstr "call-next-method: la cadena de or"
+
+#: lessons/study-guides/languages/common-lisp.md:90
+msgctxt "s-b47dcfe55114-0048"
+msgid "each applicable method, most specific first"
+msgstr "cada método aplicable, del más específico al menos específico"
+
+#: lessons/study-guides/languages/common-lisp.md:91
+msgctxt "s-52991847ca2a-0049"
+msgid "card-N deals a card: hours, total, print, INSERT into *sql*"
+msgstr "card-N reparte una tarjeta: horas, total, impresión, INSERT en *sql*"
+
+#: lessons/study-guides/languages/common-lisp.md:92
+msgctxt "s-cbc5b8331f05-0050"
+msgid "is the total over 40?"
+msgstr "¿el total pasa de 40?"
+
+#: lessons/study-guides/languages/common-lisp.md:94
+msgctxt "s-a3657466b65a-0051"
+msgid "the first true result ends the or: later methods never run"
+msgstr "el primer resultado verdadero termina el `or`: los métodos posteriores nunca se ejecutan"
+
+#: lessons/study-guides/languages/common-lisp.md:95
+msgctxt "s-57c7f4faa94f-0052"
+msgid "the chain returns"
+msgstr "la cadena devuelve"
+
+#: lessons/study-guides/languages/common-lisp.md:96
+msgctxt "s-760534379865-0053"
+msgid "append COMMIT, pipe the script into sqlite3"
+msgstr "añade COMMIT, canaliza el script a sqlite3"
+
+#: lessons/study-guides/languages/common-lisp.md:99
+msgctxt "s-4ca347d75670-0054"
+msgid "The second has no loop edge. The sequence is fixed in the class hierarchy before the program runs."
+msgstr "El segundo no tiene ninguna arista de bucle. La secuencia queda fijada en la jerarquía de clases antes de que se ejecute el programa."
+
+#: lessons/study-guides/languages/common-lisp.md:101
+msgctxt "s-67a72cdadc6f-0055"
+msgid "Trace one run"
+msgstr "Traza una ejecución"
+
+#: lessons/study-guides/languages/common-lisp.md:103
+msgctxt "s-c71f09fd9559-0056"
+msgid "The programs draw random hours. Use hours **15, 19, 12** for the trace. To check it, a scratch copy of ⟦CODE_0001⟧ was run in the sandbox with the hours taken from a list, and with two print statements added: the class precedence list, and a line from each method saying what it returned. The output was:"
+msgstr "Los programas sortean horas aleatorias. Usa las horas **15, 19, 12** para la traza. Para comprobarla, se ejecutó en el entorno aislado una copia de trabajo de ⟦CODE_0001⟧ con las horas tomadas de una lista. Se le añadieron dos sentencias de impresión: la lista de precedencia de clases y una línea de cada método que dice qué devolvió. La salida fue:"
+
+#: lessons/study-guides/languages/common-lisp.md:117
+msgctxt "s-9015ace91ae2-0057"
+msgid "(The ISO-week column was removed for width.) The instance is made as a ⟦CODE_0001⟧, so the precedence list starts at card 1 and ends at ⟦CODE_0002⟧."
+msgstr "(Se quitó la columna de la semana ISO para ganar ancho.) La instancia se crea como ⟦CODE_0001⟧, así que la lista de precedencia empieza en la tarjeta 1 y termina en ⟦CODE_0002⟧."
+
+#: lessons/study-guides/languages/common-lisp.md:119
+msgctxt "s-dbd291aef72f-0058"
+msgid "**⟦CODE_0001⟧: which method runs.**"
+msgstr "**⟦CODE_0001⟧: qué método se ejecuta.**"
+
+#: lessons/study-guides/languages/common-lisp.md:121
+msgctxt "s-4d6cc56de3cd-0059"
+msgid "⟦SEP_0002⟧ Step ⟦SEP_0003⟧ Method run ⟦SEP_0004⟧ Hours ⟦SEP_0005⟧ Total ⟦SEP_0006⟧ Returns ⟦SEP_0007⟧ What ⟦CODE_0001⟧ does ⟦SEP_0008⟧"
+msgstr "⟦SEP_0002⟧ Paso ⟦SEP_0003⟧ Método ejecutado ⟦SEP_0004⟧ Horas ⟦SEP_0005⟧ Total ⟦SEP_0006⟧ Devuelve ⟦SEP_0007⟧ Qué hace ⟦CODE_0001⟧ ⟦SEP_0008⟧"
+
+#: lessons/study-guides/languages/common-lisp.md:123
+msgctxt "s-f875c432943d-0060"
+msgid "⟦SEP_0004⟧ 1 ⟦SEP_0005⟧ ⟦CODE_0001⟧ on ⟦CODE_0002⟧ ⟦SEP_0006⟧ 15 ⟦SEP_0007⟧ 15 ⟦SEP_0008⟧ ⟦CODE_0003⟧ ⟦SEP_0009⟧ go on to the next applicable method ⟦SEP_0010⟧"
+msgstr "⟦SEP_0004⟧ 1 ⟦SEP_0005⟧ ⟦CODE_0001⟧ en ⟦CODE_0002⟧ ⟦SEP_0006⟧ 15 ⟦SEP_0007⟧ 15 ⟦SEP_0008⟧ ⟦CODE_0003⟧ ⟦SEP_0009⟧ pasa al siguiente método aplicable ⟦SEP_0010⟧"
+
+#: lessons/study-guides/languages/common-lisp.md:124
+msgctxt "s-371ecb55dc2b-0061"
+msgid "⟦SEP_0004⟧ 2 ⟦SEP_0005⟧ ⟦CODE_0001⟧ on ⟦CODE_0002⟧ ⟦SEP_0006⟧ 19 ⟦SEP_0007⟧ 34 ⟦SEP_0008⟧ ⟦CODE_0003⟧ ⟦SEP_0009⟧ go on ⟦SEP_0010⟧"
+msgstr "⟦SEP_0004⟧ 2 ⟦SEP_0005⟧ ⟦CODE_0001⟧ en ⟦CODE_0002⟧ ⟦SEP_0006⟧ 19 ⟦SEP_0007⟧ 34 ⟦SEP_0008⟧ ⟦CODE_0003⟧ ⟦SEP_0009⟧ sigue ⟦SEP_0010⟧"
+
+#: lessons/study-guides/languages/common-lisp.md:125
+msgctxt "s-8d9235a2e7a7-0062"
+msgid "⟦SEP_0006⟧ 3 ⟦SEP_0007⟧ ⟦CODE_0001⟧ on ⟦CODE_0002⟧ ⟦SEP_0008⟧ 12 ⟦SEP_0009⟧ 46 ⟦SEP_0010⟧ **⟦CODE_0003⟧** ⟦SEP_0011⟧ stop: ⟦CODE_0004⟧ and ⟦CODE_0005⟧ never run ⟦SEP_0012⟧"
+msgstr "⟦SEP_0006⟧ 3 ⟦SEP_0007⟧ ⟦CODE_0001⟧ en ⟦CODE_0002⟧ ⟦SEP_0008⟧ 12 ⟦SEP_0009⟧ 46 ⟦SEP_0010⟧ **⟦CODE_0003⟧** ⟦SEP_0011⟧ se detiene: ⟦CODE_0004⟧ y ⟦CODE_0005⟧ nunca se ejecutan ⟦SEP_0012⟧"
+
+#: lessons/study-guides/languages/common-lisp.md:126
+msgctxt "s-e2dd97062caf-0063"
+msgid "⟦SEP_0005⟧ end ⟦SEP_0006⟧ ⟦CODE_0001⟧ method resumes after ⟦CODE_0002⟧ ⟦SEP_0007⟧ none ⟦SEP_0008⟧ 46 ⟦SEP_0009⟧ none ⟦SEP_0010⟧ writes ⟦CODE_0003⟧, runs ⟦CODE_0004⟧ once ⟦SEP_0011⟧"
+msgstr "⟦SEP_0005⟧ fin ⟦SEP_0006⟧ el método ⟦CODE_0001⟧ continúa después de ⟦CODE_0002⟧ ⟦SEP_0007⟧ ninguno ⟦SEP_0008⟧ 46 ⟦SEP_0009⟧ ninguno ⟦SEP_0010⟧ escribe ⟦CODE_0003⟧ y ejecuta ⟦CODE_0004⟧ una sola vez ⟦SEP_0011⟧"
+
+#: lessons/study-guides/languages/common-lisp.md:128
+msgctxt "s-2f3104fd936d-0064"
+msgid "Five methods were applicable, and three ran. The crossing card is the method that returned true, so it has already dealt its card."
+msgstr "Cinco métodos eran aplicables y se ejecutaron tres. La tarjeta que cruza el límite es el método que devolvió verdadero, así que ya repartió su tarjeta."
+
+#: lessons/study-guides/languages/common-lisp.md:130
+msgctxt "s-3101fc2b48b0-0065"
+msgid "**⟦CODE_0001⟧: the ⟦CODE_0002⟧ clauses.** Each pass: ⟦CODE_0003⟧ increases from 1, ⟦CODE_0004⟧ is drawn, ⟦CODE_0005⟧ accumulates it, the card is collected and *then* ⟦CODE_0006⟧ tests. With 15, 19, 12 the totals are 15, 34, 46, and the test is true after the third pass. The collected list is the three cards in order. Because ⟦CODE_0007⟧ is after ⟦CODE_0008⟧, the third card is already on the list when the loop ends."
+msgstr "**⟦CODE_0001⟧: las cláusulas ⟦CODE_0002⟧.** En cada pasada: ⟦CODE_0003⟧ aumenta desde 1, se sortea ⟦CODE_0004⟧, ⟦CODE_0005⟧ lo acumula, se recoge la tarjeta y *luego* prueba ⟦CODE_0006⟧. Con 15, 19, 12 los totales son 15, 34, 46, y la prueba es verdadera después de la tercera pasada. La lista recogida son las tres tarjetas en orden. Como ⟦CODE_0007⟧ va después de ⟦CODE_0008⟧, la tercera tarjeta ya está en la lista cuando termina el bucle."
+
+#: lessons/study-guides/languages/common-lisp.md:132
+msgctxt "s-4df0e595b703-0066"
+msgid "**Exactly 40.** With four 10-hour cards the totals are 10, 20, 30 and 40, and no method returns true. ⟦CODE_0001⟧ is applicable and runs, because it is the last link. Its total is at least 50, so it returns true. The chain has exactly enough methods for the worst case, which is why the program has five classes."
+msgstr "**Exactamente 40.** Con cuatro tarjetas de 10 horas, los totales son 10, 20, 30 y 40. Ningún método devuelve verdadero. ⟦CODE_0001⟧ es aplicable y se ejecuta, porque es el último eslabón. Su total es de al menos 50, así que devuelve verdadero. La cadena tiene justo los métodos suficientes para el peor caso, y por eso el programa tiene cinco clases."
+
+#: lessons/study-guides/languages/common-lisp.md:134
+msgctxt "s-405c1b857089-0067"
+msgid "Compare the ordinary and weird designs"
+msgstr "Compara los diseños ordinarios y los raros"
+
+#: lessons/study-guides/languages/common-lisp.md:136
+msgctxt "s-13cad3bd239c-0068"
+msgid "⟦SEP_0003⟧ Dimension ⟦SEP_0004⟧ ⟦CODE_0001⟧ ⟦SEP_0005⟧ ⟦CODE_0002⟧ ⟦SEP_0006⟧"
+msgstr "⟦SEP_0003⟧ Dimensión ⟦SEP_0004⟧ ⟦CODE_0001⟧ ⟦SEP_0005⟧ ⟦CODE_0002⟧ ⟦SEP_0006⟧"
+
+#: lessons/study-guides/languages/common-lisp.md:138
+msgctxt "s-c308f9fdf6d5-0069"
+msgid "⟦SEP_0001⟧ **Representation** ⟦SEP_0002⟧ A list of card structures and a loop. ⟦SEP_0003⟧ A chain of five classes and one method on each. ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ **Representación** ⟦SEP_0002⟧ Una lista de estructuras de tarjeta y un bucle. ⟦SEP_0003⟧ Una cadena de cinco clases y un método en cada una. ⟦SEP_0004⟧"
+
+#: lessons/study-guides/languages/common-lisp.md:139
+msgctxt "s-150161206bfe-0070"
+msgid "⟦SEP_0003⟧ **Observability** ⟦SEP_0004⟧ Print the list. ⟦SEP_0005⟧ The order exists in the class hierarchy. ⟦CODE_0001⟧ and ⟦CODE_0002⟧ reveal it. ⟦SEP_0006⟧"
+msgstr "⟦SEP_0003⟧ **Observabilidad** ⟦SEP_0004⟧ Imprime la lista. ⟦SEP_0005⟧ El orden existe en la jerarquía de clases. ⟦CODE_0001⟧ y ⟦CODE_0002⟧ lo revelan. ⟦SEP_0006⟧"
+
+#: lessons/study-guides/languages/common-lisp.md:140
+msgctxt "s-e6017425024f-0071"
+msgid "⟦SEP_0002⟧ **Tests** ⟦SEP_0003⟧ The loop is a function: pass a random state and compare the cards. ⟦SEP_0004⟧ The chain needs an instance. The stop rule is an ⟦CODE_0001⟧ and cannot be changed without editing every method's qualifier. ⟦SEP_0005⟧"
+msgstr "⟦SEP_0002⟧ **Pruebas** ⟦SEP_0003⟧ El bucle es una función: pásale un estado aleatorio y compara las tarjetas. ⟦SEP_0004⟧ La cadena necesita una instancia. La regla de parada es un ⟦CODE_0001⟧ y no se puede cambiar sin editar el calificador de cada método. ⟦SEP_0005⟧"
+
+#: lessons/study-guides/languages/common-lisp.md:141
+msgctxt "s-cdf5fbaaf139-0072"
+msgid "⟦SEP_0002⟧ **⟦DNT_0001⟧** ⟦SEP_0003⟧ Step a loop. ⟦SEP_0004⟧ Which method runs next depends on inheritance. A method with the wrong qualifier produces a compiler warning, not a failure you can miss at run time. ⟦SEP_0005⟧"
+msgstr "⟦SEP_0002⟧ **⟦DNT_0001⟧** ⟦SEP_0003⟧ Recorre un bucle paso a paso. ⟦SEP_0004⟧ Qué método se ejecuta después depende de la herencia. Un método con el calificador equivocado produce una advertencia del compilador, no un fallo que puedas pasar por alto en tiempo de ejecución. ⟦SEP_0005⟧"
+
+#: lessons/study-guides/languages/common-lisp.md:142
+msgctxt "s-cf80eeb2456c-0073"
+msgid "⟦SEP_0003⟧ **Portability** ⟦SEP_0004⟧ ANSI Common Lisp, plus SBCL calls for ⟦CODE_0001⟧ and environment variables. ⟦SEP_0005⟧ Also SBCL's ⟦CODE_0002⟧ for the closing note. ⟦SEP_0006⟧"
+msgstr "⟦SEP_0003⟧ **Portabilidad** ⟦SEP_0004⟧ Common Lisp ANSI, más las llamadas de SBCL para ⟦CODE_0001⟧ y las variables de entorno. ⟦SEP_0005⟧ También el ⟦CODE_0002⟧ de SBCL para la nota de cierre. ⟦SEP_0006⟧"
+
+#: lessons/study-guides/languages/common-lisp.md:143
+msgctxt "s-ec17bf9a1c01-0074"
+msgid "⟦SEP_0001⟧ **Cost** ⟦SEP_0002⟧ One loop and one list. ⟦SEP_0003⟧ Five classes defined by a macro, run once. A limit above what five cards can reach requires more classes. ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ **Costo** ⟦SEP_0002⟧ Un bucle y una lista. ⟦SEP_0003⟧ Cinco clases definidas por una macro, que se ejecuta una sola vez. Un límite por encima de lo que pueden sumar cinco tarjetas exige más clases. ⟦SEP_0004⟧"
+
+#: lessons/study-guides/languages/common-lisp.md:145
+msgctxt "s-6917f5b23ada-0075"
+msgid "A macro does the repetition at compile time. ⟦CODE_0001⟧ is expanded five times as the file is compiled, and the expansions are straight-line code. This is the compile-time/run-time split in action: a loop exists, but it runs while the *program* is built, and it never touches a timecard."
+msgstr "Una macro hace la repetición en tiempo de compilación. ⟦CODE_0001⟧ se expande cinco veces mientras se compila el archivo, y las expansiones son código lineal. Es la separación entre tiempo de compilación y tiempo de ejecución en acción. Existe un bucle, pero se ejecuta mientras se construye el *programa* y nunca toca una tarjeta de horas."
+
+#: lessons/study-guides/languages/common-lisp.md:147
+msgctxt "s-716cae37520b-0076"
+msgid "What the exercises demonstrate"
+msgstr "Qué demuestran los ejercicios"
+
+#: lessons/study-guides/languages/common-lisp.md:149
+msgctxt "s-d6a3ec9d5ed0-0077"
+msgid "⟦SEP_0001⟧ Exercise ⟦SEP_0002⟧ Predict first ⟦SEP_0003⟧ What the evidence shows ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ Ejercicio ⟦SEP_0002⟧ Predice primero ⟦SEP_0003⟧ Qué muestra la evidencia ⟦SEP_0004⟧"
+
+#: lessons/study-guides/languages/common-lisp.md:151
+msgctxt "s-ee48166dd091-0078"
+msgid "⟦SEP_0006⟧ [B10. Lisp: swap the method combination](⟦DEST_0001⟧), step 1 ⟦SEP_0007⟧ Replace ⟦CODE_0002⟧ with ⟦CODE_0003⟧ in both places. How many cards on every run? ⟦SEP_0008⟧ Exactly five on every run, and ⟦CODE_0004⟧. ⟦CODE_0005⟧ runs every method, so the stop rule vanishes. The entry's own check fails. ⟦SEP_0009⟧"
+msgstr "⟦SEP_0006⟧ [B10. Lisp: cambia la combinación de métodos](⟦DEST_0001⟧), paso 1 ⟦SEP_0007⟧ Sustituye ⟦CODE_0002⟧ por ⟦CODE_0003⟧ en los dos lugares. ¿Cuántas tarjetas salen en cada ejecución? ⟦SEP_0008⟧ Exactamente cinco en cada ejecución; además, ⟦CODE_0004⟧. ⟦CODE_0005⟧ ejecuta todos los métodos, así que la regla de parada desaparece. La comprobación propia de la entrada falla. ⟦SEP_0009⟧"
+
+#: lessons/study-guides/languages/common-lisp.md:152
+msgctxt "s-c797907766e0-0079"
+msgid "⟦SEP_0004⟧ B10, step 2 ⟦SEP_0005⟧ Change only the generic function's combination to ⟦CODE_0001⟧, leaving the ⟦CODE_0002⟧ qualifiers. ⟦SEP_0006⟧ SBCL warns ⟦CODE_0003⟧. A method's qualifiers must belong to the combination of its generic function. ⟦SEP_0007⟧"
+msgstr "⟦SEP_0004⟧ B10, paso 2 ⟦SEP_0005⟧ Cambia solo la combinación de la función genérica a ⟦CODE_0001⟧ y deja los calificadores ⟦CODE_0002⟧. ⟦SEP_0006⟧ SBCL advierte ⟦CODE_0003⟧. Los calificadores de un método deben pertenecer a la combinación de su función genérica. ⟦SEP_0007⟧"
+
+#: lessons/study-guides/languages/common-lisp.md:153
+msgctxt "s-36724b0299c9-0080"
+msgid "⟦SEP_0003⟧ B10, step 3 ⟦SEP_0004⟧ Change the stop test to ⟦CODE_0001⟧. ⟦SEP_0005⟧ Exactly five rows on every run, total at most 95, and ⟦CODE_0002⟧ fails. Five is the most the program can ever deal. Supporting 100 needs more classes. ⟦SEP_0006⟧"
+msgstr "⟦SEP_0003⟧ B10, paso 3 ⟦SEP_0004⟧ Cambia la prueba de parada a ⟦CODE_0001⟧. ⟦SEP_0005⟧ Exactamente cinco filas en cada ejecución y un total de 95 como máximo. ⟦CODE_0002⟧ falla. Cinco es lo máximo que el programa puede repartir. Para admitir 100 hacen falta más clases. ⟦SEP_0006⟧"
+
+#: lessons/study-guides/languages/common-lisp.md:154
+msgctxt "s-b1b2ade72253-0081"
+msgid "⟦SEP_0004⟧ [C1. Weird next to boring](⟦DEST_0001⟧) ⟦SEP_0005⟧ In which program does the stop rule live in one word? ⟦SEP_0006⟧ In ⟦CODE_0002⟧ it is the word ⟦CODE_0003⟧. Removing it does not raise an error: the program deals all five cards. ⟦SEP_0007⟧"
+msgstr "⟦SEP_0004⟧ [C1. Lo raro junto a lo aburrido](⟦DEST_0001⟧) ⟦SEP_0005⟧ ¿En qué programa vive la regla de parada en una sola palabra? ⟦SEP_0006⟧ En ⟦CODE_0002⟧ es la palabra ⟦CODE_0003⟧. Quitarla no provoca ningún error: el programa reparte las cinco tarjetas. ⟦SEP_0007⟧"
+
+#: lessons/study-guides/languages/common-lisp.md:155
+msgctxt "s-1c13b96e6c45-0082"
+msgid "⟦SEP_0002⟧ [F. Prove a README claim](⟦DEST_0001⟧) ⟦SEP_0003⟧ What test fails if the chain is not most-specific-first? ⟦SEP_0004⟧ Check that the methods run in the order card-1 to card-5. The negative control reverses the inheritance and expects the card order to change. ⟦SEP_0005⟧"
+msgstr "⟦SEP_0002⟧ [F. Demuestra una afirmación del README](⟦DEST_0001⟧) ⟦SEP_0003⟧ ¿Qué prueba falla si la cadena no va del más específico al menos específico? ⟦SEP_0004⟧ Comprueba que los métodos se ejecutan en el orden card-1 a card-5. El control negativo invierte la herencia y espera que el orden de las tarjetas cambie. ⟦SEP_0005⟧"
+
+#: lessons/study-guides/languages/common-lisp.md:157
+msgctxt "s-210686c66f76-0083"
+msgid "The one-sentence answer the book asks for in B10 is the best test: *which single word is the stop rule, and why does removing it not make the program fail?* The word is ⟦CODE_0001⟧. Without it the methods still run, and a program that deals too many cards looks like a program that works."
+msgstr "La respuesta de una frase que el libro pide en B10 es la mejor prueba. *¿Qué palabra es la regla de parada y por qué quitarla no hace fallar al programa?* La palabra es ⟦CODE_0001⟧. Sin ella los métodos se siguen ejecutando, y un programa que reparte demasiadas tarjetas parece un programa que funciona."
+
+#: lessons/study-guides/languages/common-lisp.md:159
+msgctxt "s-4fe97c469cdb-0084"
+msgid "Failure modes, costs and boundaries"
+msgstr "Modos de fallo, costos y límites"
+
+#: lessons/study-guides/languages/common-lisp.md:161
+msgctxt "s-621aac5615e3-0085"
+msgid "⟦SEP_0001⟧ Behavior ⟦SEP_0002⟧ Label ⟦SEP_0003⟧ Why ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ Comportamiento ⟦SEP_0002⟧ Etiqueta ⟦SEP_0003⟧ Por qué ⟦SEP_0004⟧"
+
+#: lessons/study-guides/languages/common-lisp.md:163
+msgctxt "s-38f7858536dd-0086"
+msgid "⟦SEP_0001⟧ Applicable methods run in class-precedence order, most specific first ⟦SEP_0002⟧ **guaranteed** ⟦SEP_0003⟧ Defined by ANSI Common Lisp. ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ Los métodos aplicables se ejecutan en orden de precedencia de clases, del más específico al menos específico ⟦SEP_0002⟧ **garantizado** ⟦SEP_0003⟧ Lo define ANSI Common Lisp. ⟦SEP_0004⟧"
+
+#: lessons/study-guides/languages/common-lisp.md:164
+msgctxt "s-a2e8d026d6ff-0087"
+msgid "⟦SEP_0003⟧ The built-in ⟦CODE_0001⟧ method combination returns the first non-⟦CODE_0002⟧ value and skips the rest ⟦SEP_0004⟧ **guaranteed** ⟦SEP_0005⟧ A standard method combination. Verified: cards 4 and 5 did not run. ⟦SEP_0006⟧"
+msgstr "⟦SEP_0003⟧ La combinación de métodos ⟦CODE_0001⟧ integrada devuelve el primer valor que no sea ⟦CODE_0002⟧ y omite el resto ⟦SEP_0004⟧ **garantizado** ⟦SEP_0005⟧ Una combinación de métodos estándar. Verificado: las tarjetas 4 y 5 no se ejecutaron. ⟦SEP_0006⟧"
+
+#: lessons/study-guides/languages/common-lisp.md:165
+msgctxt "s-bc8a5d5dc88e-0088"
+msgid "⟦SEP_0003⟧ A method qualified ⟦CODE_0001⟧ on a generic function using ⟦CODE_0002⟧ is invalid ⟦SEP_0004⟧ **guaranteed** ⟦SEP_0005⟧ The standard requires qualifiers to match the combination. SBCL warns, as B10 step 2 shows. ⟦SEP_0006⟧"
+msgstr "⟦SEP_0003⟧ Un método calificado ⟦CODE_0001⟧ en una función genérica que usa ⟦CODE_0002⟧ no es válido ⟦SEP_0004⟧ **garantizado** ⟦SEP_0005⟧ El estándar exige que los calificadores coincidan con la combinación. SBCL advierte, como muestra el paso 2 de B10. ⟦SEP_0006⟧"
+
+#: lessons/study-guides/languages/common-lisp.md:166
+msgctxt "s-7d67c880c96d-0089"
+msgid "⟦SEP_0004⟧ ⟦CODE_0001⟧ reads a circular list, so ⟦CODE_0002⟧ is ⟦DNT_0003⟧ again ⟦SEP_0005⟧ **guaranteed** ⟦SEP_0006⟧ Standard reader syntax. The program does not modify the literal, which would be undefined. ⟦SEP_0007⟧"
+msgstr "⟦SEP_0004⟧ ⟦CODE_0001⟧ lee una lista circular, así que ⟦CODE_0002⟧ vuelve a ser ⟦DNT_0003⟧ ⟦SEP_0005⟧ **garantizado** ⟦SEP_0006⟧ Sintaxis estándar del lector. El programa no modifica el literal, lo que estaría indefinido. ⟦SEP_0007⟧"
+
+#: lessons/study-guides/languages/common-lisp.md:167
+msgctxt "s-d27681995566-0090"
+msgid "⟦SEP_0002⟧ ⟦CODE_0001⟧ seeds from the operating system ⟦SEP_0003⟧ **guaranteed** that the state is randomly initialized ⟦SEP_0004⟧ The exact source is implementation-defined. ⟦SEP_0005⟧"
+msgstr "⟦SEP_0002⟧ ⟦CODE_0001⟧ toma la semilla del sistema operativo ⟦SEP_0003⟧ **garantizado** que el estado se inicializa al azar ⟦SEP_0004⟧ El origen exacto lo define la implementación. ⟦SEP_0005⟧"
+
+#: lessons/study-guides/languages/common-lisp.md:168
+msgctxt "s-133e56627892-0091"
+msgid "⟦SEP_0004⟧ ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧ ⟦SEP_0005⟧ **implementation-permitted** ⟦SEP_0006⟧ SBCL-specific names. They are why the programs need SBCL, not just any Common Lisp. ⟦SEP_0007⟧"
+msgstr "⟦SEP_0004⟧ ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧ ⟦SEP_0005⟧ **permitido por la implementación** ⟦SEP_0006⟧ Nombres propios de SBCL. Por eso los programas necesitan SBCL y no cualquier Common Lisp. ⟦SEP_0007⟧"
+
+#: lessons/study-guides/languages/common-lisp.md:169
+msgctxt "s-25644f69a2f6-0092"
+msgid "⟦SEP_0001⟧ Five classes are enough because five cards of 10 hours reach 50 ⟦SEP_0002⟧ **guaranteed** ⟦SEP_0003⟧ Arithmetic, not Lisp. The class count is a *bound*. ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ Cinco clases bastan porque cinco tarjetas de 10 horas llegan a 50 ⟦SEP_0002⟧ **garantizado** ⟦SEP_0003⟧ Aritmética, no Lisp. El número de clases es una *cota*. ⟦SEP_0004⟧"
+
+#: lessons/study-guides/languages/common-lisp.md:171
+msgctxt "s-11353fb310d1-0093"
+msgid "No behavior is merely accidentally exploited here: the weird entry uses documented features exactly as documented, in an order nobody would choose."
+msgstr "Aquí ningún comportamiento es simplemente *aprovechado por accidente*: la entrada rara usa funciones documentadas exactamente como están documentadas, en un orden que nadie elegiría."
+
+#: lessons/study-guides/languages/common-lisp.md:173
+msgctxt "s-87d9e31bff8d-0094"
+msgid "**Costs to state.**"
+msgstr "**Costos que debes poder enunciar.**"
+
+#: lessons/study-guides/languages/common-lisp.md:175
+msgctxt "s-830a0e98cc1c-0095"
+msgid "**The control flow is in a declaration.** Reading ⟦CODE_0001⟧ does not tell you how often it runs. You have to read the ⟦CODE_0002⟧ forms."
+msgstr "**El flujo de control está en una declaración.** Leer ⟦CODE_0001⟧ no te dice con qué frecuencia se ejecuta. Tienes que leer las formas ⟦CODE_0002⟧."
+
+#: lessons/study-guides/languages/common-lisp.md:176
+msgctxt "s-e32fc8d168ce-0096"
+msgid "**A dispatch error looks like success.** An invalid qualifier or a wrong combination produces a warning (exercise B10 step 2) and the program still runs. The check script has to count rows."
+msgstr "**Un error de despacho parece un éxito.** Un calificador no válido o una combinación equivocada produce una advertencia (ejercicio B10, paso 2) y el programa se sigue ejecutando. El script de comprobación tiene que contar filas."
+
+#: lessons/study-guides/languages/common-lisp.md:177
+msgctxt "s-3cc345ed811d-0097"
+msgid "**A limit change is a structural change.** Raising the limit to 100 means defining more classes, not editing a number."
+msgstr "**Cambiar el límite es un cambio estructural.** Subir el límite a 100 significa definir más clases, no editar un número."
+
+#: lessons/study-guides/languages/common-lisp.md:178
+msgctxt "s-5b93935c1d58-0098"
+msgid "**SQL quoting.** The weird entry's ⟦CODE_0001⟧ does not escape. The plain entry's does. The weird entry is safe only because every value is a number or one of four fixed words."
+msgstr "**Entrecomillado del SQL.** El ⟦CODE_0001⟧ de la entrada rara no escapa. El de la entrada idiomática sí. La entrada rara es segura solo porque cada valor es un número o una de cuatro palabras fijas."
+
+#: lessons/study-guides/languages/common-lisp.md:179
+msgctxt "s-c0c39590023c-0099"
+msgid "**Where the technique is legitimate.** Method combination is how CLOS composes behavior: ⟦CODE_0001⟧, ⟦CODE_0002⟧ and ⟦CODE_0003⟧ methods are routine, and ⟦CODE_0004⟧, ⟦CODE_0005⟧ and ⟦CODE_0006⟧ combinations are useful for plug-in checks. Chaining to count cards is a stunt."
+msgstr "**Dónde es legítima la técnica.** La combinación de métodos es como CLOS compone comportamiento: los métodos ⟦CODE_0001⟧, ⟦CODE_0002⟧ y ⟦CODE_0003⟧ son rutinarios, y las combinaciones ⟦CODE_0004⟧, ⟦CODE_0005⟧ y ⟦CODE_0006⟧ sirven para comprobaciones de complementos. Encadenar para contar tarjetas es una acrobacia."
+
+#: lessons/study-guides/languages/common-lisp.md:181
+msgctxt "s-061eb6da82a8-0100"
+msgid "Connections across the repository"
+msgstr "Conexiones a lo largo del repositorio"
+
+#: lessons/study-guides/languages/common-lisp.md:183
+msgctxt "s-d4a46d9a191a-0101"
+msgid "**Control flow stored in a declaration.** The same idea appears in [COBOL](⟦DEST_0001⟧), where a data declaration (⟦CODE_0002⟧) is the stop rule, and [Tcl](⟦DEST_0003⟧), where database triggers fire the next step. The concept guide [State and control beyond variables](⟦DEST_0004⟧) compares them."
+msgstr "**Flujo de control guardado en una declaración.** La misma idea aparece en [COBOL](⟦DEST_0001⟧), donde una declaración de datos (⟦CODE_0002⟧) es la regla de parada. También aparece en [Tcl](⟦DEST_0003⟧), donde los disparadores de la base de datos activan el paso siguiente. La guía de concepto [Estado y control más allá de las variables](⟦DEST_0004⟧) las compara."
+
+#: lessons/study-guides/languages/common-lisp.md:184
+msgctxt "s-ca3efdbfa62d-0102"
+msgid "**Short-circuit as the stop rule.** ⟦CODE_0001⟧ stops on the first true result, as a lazy ⟦CODE_0002⟧ stops reading in [Haskell](⟦DEST_0003⟧). Both stop by *not asking for more*. Lisp does it by not calling the next method."
+msgstr "**El cortocircuito como regla de parada.** ⟦CODE_0001⟧ se detiene en el primer resultado verdadero, igual que un ⟦CODE_0002⟧ perezoso deja de leer en [Haskell](⟦DEST_0003⟧). Ambos se detienen *sin pedir más*. Lisp lo logra al no llamar al método siguiente."
+
+#: lessons/study-guides/languages/common-lisp.md:185
+msgctxt "s-a14172644cd4-0103"
+msgid "**Compile-time repetition.** [m4](⟦DEST_0001⟧) is a macro processor for text. Lisp macros transform code instead. The concept guide [Formal languages and weird machines](⟦DEST_0002⟧) places both."
+msgstr "**Repetición en tiempo de compilación.** [m4](⟦DEST_0001⟧) es un procesador de macros para texto. Las macros de Lisp transforman código. La guía de concepto [Lenguajes formales y máquinas raras](⟦DEST_0002⟧) sitúa a ambos."
+
+#: lessons/study-guides/languages/common-lisp.md:186
+msgctxt "s-fc7b5cf2741e-0104"
+msgid "**A chain with a fixed bound.** The regex entries in [Regex engines and sed](⟦DEST_0001⟧) are limited to four cards by the length of a subject. Lisp-weird is limited to five by the length of a class chain."
+msgstr "**Una cadena con un límite fijo.** Las entradas de expresiones regulares en [Motores de regex y sed](⟦DEST_0001⟧) están limitadas a cuatro tarjetas por la longitud de un sujeto. Lisp-weird está limitado a cinco por la longitud de una cadena de clases."
+
+#: lessons/study-guides/languages/common-lisp.md:187
+msgctxt "s-76e7d5b8d62c-0105"
+msgid "**In the book.** [Common Lisp](⟦DEST_0001⟧), [Short-circuit evaluation](⟦DEST_0002⟧) and [Macros and text expansion](⟦DEST_0003⟧)."
+msgstr "**En el libro.** [Common Lisp](⟦DEST_0001⟧), [Evaluación de cortocircuito](⟦DEST_0002⟧) y [Macros y expansión de texto](⟦DEST_0003⟧)."
+
+#: lessons/study-guides/languages/common-lisp.md:189
+msgctxt "s-50944288ce61-0106"
+msgid "Self-check"
+msgstr "Autoevaluación"
+
+#: lessons/study-guides/languages/common-lisp.md:191
+msgctxt "s-274e192b952c-0107"
+msgid "Answer each question in your own words before you read the italic text. Say what evidence would support each answer."
+msgstr "Responde cada pregunta con tus propias palabras antes de leer el texto en cursiva. Di qué evidencia respaldaría cada respuesta."
+
+#: lessons/study-guides/languages/common-lisp.md:193
+msgctxt "s-95147e13595d-0108"
+msgid ""
+"**Trace.** In ⟦CODE_0001⟧, hours are 11, 12, 10, 14. How many methods run, and what does each return? *(Four methods. Totals 11, 23, 33, 47. Cards 1, 2 and 3 return ⟦CODE_0002⟧, and card 4 returns ⟦CODE_0003⟧. ⟦CODE_0004⟧ does not run.)*\n"
+"2. **Explain.** Why must ⟦CODE_0005⟧ be called for card 5 first and for card 1 last? *(A class must exist before another can inherit from it, and card 1 inherits from card 2, and so on. The chain is built from the tail.)*\n"
+"3. **Transfer.** Which construct in Python, Java or Go would play the part of the ⟦CODE_0006⟧ method combination? *(A chain of handlers where each returns a boolean and the caller stops at the first true, as in a middleware chain or a series of ⟦CODE_0007⟧ calls. In Java, ⟦CODE_0008⟧ has the same short-circuit shape.)*\n"
+"4. **Evidence.** A reviewer says, \"The weird program can never deal more than five cards.\" Design a test that could fail. *(Run it many times and count the rows, as B10 does. For a negative control, change the limit to 100 and see that the count is still five. The claim is guaranteed by the class count.)*"
+msgstr ""
+"**Traza.** En ⟦CODE_0001⟧, las horas son 11, 12, 10, 14. ¿Cuántos métodos se ejecutan y qué devuelve cada uno? *(Cuatro métodos. Totales 11, 23, 33, 47. Las tarjetas 1, 2 y 3 devuelven ⟦CODE_0002⟧ y la tarjeta 4 devuelve ⟦CODE_0003⟧. ⟦CODE_0004⟧ no se ejecuta.)*\n"
+"2. **Explica.** ¿Por qué hay que llamar a ⟦CODE_0005⟧ primero para la tarjeta 5 y al final para la tarjeta 1? *(Una clase debe existir antes de que otra pueda heredar de ella, y la tarjeta 1 hereda de la tarjeta 2, y así sucesivamente. La cadena se construye desde la cola.)*\n"
+"3. **Transfiere.** ¿Qué construcción de Python, Java o Go cumpliría el papel de la combinación de métodos ⟦CODE_0006⟧? *(Una cadena de manejadores. Cada uno devuelve un booleano y quien llama se detiene en el primer valor verdadero, como en una cadena de intermediarios (middleware) o una serie de llamadas ⟦CODE_0007⟧. En Java, ⟦CODE_0008⟧ tiene la misma forma de cortocircuito.)*\n"
+"4. **Evidencia.** Un revisor dice: \"El programa raro nunca puede repartir más de cinco tarjetas\". Diseña una prueba que pueda fallar. *(Ejecútalo muchas veces y cuenta las filas, como hace B10. Para un control negativo, cambia el límite a 100 y comprueba que el conteo sigue siendo cinco. El número de clases garantiza la afirmación.)*"
+
+#: lessons/study-guides/languages/common-lisp.md:198
+msgctxt "s-4082f515b2f4-0109"
+msgid "Further reading"
+msgstr "Lecturas adicionales"
+
+#: lessons/study-guides/languages/common-lisp.md:200
+msgctxt "s-c3685deaf8dd-0110"
+msgid "[Common Lisp](⟦DEST_0001⟧) (Wikipedia): the language and its standard."
+msgstr "[Common Lisp](⟦DEST_0001⟧) (Wikipedia): el lenguaje y su estándar."
+
+#: lessons/study-guides/languages/common-lisp.md:201
+msgctxt "s-0f5772ad4feb-0111"
+msgid "[Common Lisp Object System](⟦DEST_0001⟧) (Wikipedia): generic functions, multiple dispatch and method combination."
+msgstr "[Sistema de objetos de Common Lisp](⟦DEST_0001⟧) (Wikipedia): funciones genéricas, despacho múltiple y combinación de métodos."
+
+#: lessons/study-guides/languages/common-lisp.md:202
+msgctxt "s-ee37e821bd92-0112"
+msgid "[Short-circuit evaluation](⟦DEST_0001⟧) (Wikipedia): the general idea behind ⟦CODE_0002⟧'s stop."
+msgstr "[Evaluación de cortocircuito](⟦DEST_0001⟧) (Wikipedia): la idea general detrás de la parada de ⟦CODE_0002⟧."
+
+#: lessons/study-guides/languages/common-lisp.md:203
+msgctxt "s-5f5bd3b66893-0113"
+msgid "[Control flow](⟦DEST_0001⟧) and [Short-circuit evaluation](⟦DEST_0002⟧) (this book): the surrounding concepts."
+msgstr "[Flujo de control](⟦DEST_0001⟧) y [Evaluación de cortocircuito](⟦DEST_0002⟧) (este libro): los conceptos que rodean al tema."

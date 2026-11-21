@@ -1743,3 +1743,76 @@
 {"segment_id": "s-40c223d11a63-0109", "ts": "2026-11-21T18:15:54Z", "findings": ["I12: sentence of 32 words (limit 29): La semana ISO se construye a mano a part..."]}
 {"segment_id": "s-df56b301cb47-0120", "ts": "2026-11-21T18:15:55Z", "findings": ["I7: glossary term state must be rendered 'estado'", "I7: glossary term warning must be rendered 'advertencia'", "I25: comma before a simple 'y' ('X pasa a ser X, y conviene cambiarle el nombre'): no comma before a simple o or y"]}
 {"segment_id": "s-955a2373d178-0124", "ts": "2026-11-21T18:15:55Z", "findings": ["I25: comma before a simple 'y' ('no bytes de instrucciones, y la diferencia importa'): no comma before a simple o or y"]}
+{"segment_id": "s-7ba01f01c509-0005", "ts": "2026-11-21T18:21:07Z", "findings": ["I7: glossary term scope must be rendered 'ámbito'", "I7: glossary term reader must be rendered 'lector'"]}
+{"segment_id": "s-28c9c74798cc-0007", "ts": "2026-11-21T18:21:07Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-ab8bce3893ac-0026", "ts": "2026-11-21T18:21:07Z", "findings": ["I7: glossary term loop must be rendered 'bucle'"]}
+{"segment_id": "s-f30ef157b028-0027", "ts": "2026-11-21T18:21:07Z", "findings": ["I7: glossary term loop must be rendered 'bucle'", "I7: glossary term hours must be rendered 'horas'", "I7: glossary term build must be rendered 'compilación'", "I12: sentence of 40 words (limit 29): Después, una forma LOOP ejecuta sus cláu..."]}
+{"segment_id": "s-2a09f7429c80-0028", "ts": "2026-11-21T18:21:07Z", "findings": ["I7: glossary term state must be rendered 'estado'"]}
+{"segment_id": "s-db2aeb31ad75-0029", "ts": "2026-11-21T18:21:07Z", "findings": ["I9: looks English: 2 of 7 words are English function words"]}
+{"segment_id": "s-fa9750691651-0036", "ts": "2026-11-21T18:21:07Z", "findings": ["I7: glossary term program must be rendered 'programa'", "I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-d00f37a3b73e-0043", "ts": "2026-11-21T18:21:07Z", "findings": ["I7: glossary term card must be rendered 'tarjeta'"]}
+{"segment_id": "s-5373085210e7-0044", "ts": "2026-11-21T18:21:07Z", "findings": ["I7: glossary term card must be rendered 'tarjeta'"]}
+{"segment_id": "s-b0f5fcb23650-0047", "ts": "2026-11-21T18:21:07Z", "findings": ["I7: glossary term method must be rendered 'método'"]}
+{"segment_id": "s-760534379865-0053", "ts": "2026-11-21T18:21:07Z", "findings": ["I7: glossary term pipe must be rendered 'tubería'"]}
+{"segment_id": "s-4df0e595b703-0066", "ts": "2026-11-21T18:21:07Z", "findings": ["I25: comma before a simple 'y' ('30 y 40, y ningún método devuelve verdadero'): no comma before a simple o or y"]}
+{"segment_id": "s-6917f5b23ada-0075", "ts": "2026-11-21T18:21:07Z", "findings": ["I12: sentence of 31 words (limit 29): Es la separación entre tiempo de compila..."]}
+{"segment_id": "s-ee48166dd091-0078", "ts": "2026-11-21T18:21:07Z", "findings": ["I25: comma before a simple 'y' ('| Exactamente cinco en cada ejecución, y X'): no comma before a simple o or y"]}
+{"segment_id": "s-36724b0299c9-0080", "ts": "2026-11-21T18:21:07Z", "findings": ["I25: comma before a simple 'y' ('un total de 95 como máximo, y X falla'): no comma before a simple o or y"]}
+{"segment_id": "s-210686c66f76-0083", "ts": "2026-11-21T18:21:07Z", "findings": ["I12: sentence of 37 words (limit 29): La respuesta de una sola frase que el li..."]}
+{"segment_id": "s-d4a46d9a191a-0101", "ts": "2026-11-21T18:21:07Z", "findings": ["I12: sentence of 32 words (limit 29): La misma idea aparece en [COBOL](X), don...", "I25: comma before a simple 'y' ('es la regla de parada, y en [Tcl]'): no comma before a simple o or y"]}
+{"segment_id": "s-95147e13595d-0108", "ts": "2026-11-21T18:21:07Z", "findings": ["I7: banned phrase 'garantizada' (assurance label)", "I12: sentence of 34 words (limit 29): *(Una cadena de manejadores en la que ca..."]}
+{"segment_id": "s-0f5772ad4feb-0111", "ts": "2026-11-21T18:21:07Z", "findings": ["I7: glossary term object must be rendered 'objeto'"]}
+{"segment_id": "s-7ba01f01c509-0005", "ts": "2026-11-21T18:21:09Z", "findings": ["I7: glossary term scope must be rendered 'ámbito'", "I7: glossary term reader must be rendered 'lector'"]}
+{"segment_id": "s-28c9c74798cc-0007", "ts": "2026-11-21T18:21:09Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-ab8bce3893ac-0026", "ts": "2026-11-21T18:21:09Z", "findings": ["I7: glossary term loop must be rendered 'bucle'"]}
+{"segment_id": "s-f30ef157b028-0027", "ts": "2026-11-21T18:21:09Z", "findings": ["I7: glossary term loop must be rendered 'bucle'", "I7: glossary term hours must be rendered 'horas'", "I7: glossary term build must be rendered 'compilación'", "I12: sentence of 40 words (limit 29): Después, una forma LOOP ejecuta sus cláu..."]}
+{"segment_id": "s-2a09f7429c80-0028", "ts": "2026-11-21T18:21:09Z", "findings": ["I7: glossary term state must be rendered 'estado'"]}
+{"segment_id": "s-db2aeb31ad75-0029", "ts": "2026-11-21T18:21:09Z", "findings": ["I9: looks English: 2 of 7 words are English function words"]}
+{"segment_id": "s-fa9750691651-0036", "ts": "2026-11-21T18:21:09Z", "findings": ["I7: glossary term program must be rendered 'programa'", "I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-d00f37a3b73e-0043", "ts": "2026-11-21T18:21:09Z", "findings": ["I7: glossary term card must be rendered 'tarjeta'"]}
+{"segment_id": "s-5373085210e7-0044", "ts": "2026-11-21T18:21:09Z", "findings": ["I7: glossary term card must be rendered 'tarjeta'"]}
+{"segment_id": "s-b0f5fcb23650-0047", "ts": "2026-11-21T18:21:09Z", "findings": ["I7: glossary term method must be rendered 'método'"]}
+{"segment_id": "s-760534379865-0053", "ts": "2026-11-21T18:21:09Z", "findings": ["I7: glossary term pipe must be rendered 'tubería'"]}
+{"segment_id": "s-4df0e595b703-0066", "ts": "2026-11-21T18:21:09Z", "findings": ["I25: comma before a simple 'y' ('30 y 40, y ningún método devuelve verdadero'): no comma before a simple o or y"]}
+{"segment_id": "s-6917f5b23ada-0075", "ts": "2026-11-21T18:21:09Z", "findings": ["I12: sentence of 31 words (limit 29): Es la separación entre tiempo de compila..."]}
+{"segment_id": "s-ee48166dd091-0078", "ts": "2026-11-21T18:21:09Z", "findings": ["I25: comma before a simple 'y' ('| Exactamente cinco en cada ejecución, y X'): no comma before a simple o or y"]}
+{"segment_id": "s-36724b0299c9-0080", "ts": "2026-11-21T18:21:09Z", "findings": ["I25: comma before a simple 'y' ('un total de 95 como máximo, y X falla'): no comma before a simple o or y"]}
+{"segment_id": "s-210686c66f76-0083", "ts": "2026-11-21T18:21:09Z", "findings": ["I12: sentence of 37 words (limit 29): La respuesta de una sola frase que el li..."]}
+{"segment_id": "s-d4a46d9a191a-0101", "ts": "2026-11-21T18:21:09Z", "findings": ["I12: sentence of 32 words (limit 29): La misma idea aparece en [COBOL](X), don...", "I25: comma before a simple 'y' ('es la regla de parada, y en [Tcl]'): no comma before a simple o or y"]}
+{"segment_id": "s-95147e13595d-0108", "ts": "2026-11-21T18:21:09Z", "findings": ["I7: banned phrase 'garantizada' (assurance label)", "I12: sentence of 34 words (limit 29): *(Una cadena de manejadores en la que ca..."]}
+{"segment_id": "s-0f5772ad4feb-0111", "ts": "2026-11-21T18:21:09Z", "findings": ["I7: glossary term object must be rendered 'objeto'"]}
+{"segment_id": "s-7ba01f01c509-0005", "ts": "2026-11-21T18:21:56Z", "findings": ["I7: glossary term scope must be rendered 'ámbito'"]}
+{"segment_id": "s-7ba01f01c509-0005", "ts": "2026-11-21T18:22:06Z", "findings": ["I7: glossary term scope must be rendered 'ámbito'"]}
+{"segment_id": "s-28c9c74798cc-0007", "ts": "2026-11-21T18:22:06Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-ab8bce3893ac-0026", "ts": "2026-11-21T18:22:06Z", "findings": ["I7: glossary term loop must be rendered 'bucle'"]}
+{"segment_id": "s-f30ef157b028-0027", "ts": "2026-11-21T18:22:06Z", "findings": ["I7: glossary term loop must be rendered 'bucle'", "I7: glossary term hours must be rendered 'horas'", "I7: glossary term build must be rendered 'compilación'", "I12: sentence of 40 words (limit 29): Después, una forma LOOP ejecuta sus cláu..."]}
+{"segment_id": "s-2a09f7429c80-0028", "ts": "2026-11-21T18:22:06Z", "findings": ["I7: glossary term state must be rendered 'estado'"]}
+{"segment_id": "s-db2aeb31ad75-0029", "ts": "2026-11-21T18:22:06Z", "findings": ["I9: looks English: 2 of 7 words are English function words"]}
+{"segment_id": "s-fa9750691651-0036", "ts": "2026-11-21T18:22:06Z", "findings": ["I7: glossary term program must be rendered 'programa'", "I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-d00f37a3b73e-0043", "ts": "2026-11-21T18:22:06Z", "findings": ["I7: glossary term card must be rendered 'tarjeta'"]}
+{"segment_id": "s-5373085210e7-0044", "ts": "2026-11-21T18:22:06Z", "findings": ["I7: glossary term card must be rendered 'tarjeta'"]}
+{"segment_id": "s-b0f5fcb23650-0047", "ts": "2026-11-21T18:22:06Z", "findings": ["I7: glossary term method must be rendered 'método'"]}
+{"segment_id": "s-760534379865-0053", "ts": "2026-11-21T18:22:06Z", "findings": ["I7: glossary term pipe must be rendered 'tubería'"]}
+{"segment_id": "s-95147e13595d-0108", "ts": "2026-11-21T18:22:06Z", "findings": ["I7: glossary term claim must be rendered 'afirmación'"]}
+{"segment_id": "s-7ba01f01c509-0005", "ts": "2026-11-21T18:22:12Z", "findings": ["I7: glossary term scope must be rendered 'ámbito'"]}
+{"segment_id": "s-28c9c74798cc-0007", "ts": "2026-11-21T18:22:12Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-ab8bce3893ac-0026", "ts": "2026-11-21T18:22:12Z", "findings": ["I7: glossary term loop must be rendered 'bucle'"]}
+{"segment_id": "s-f30ef157b028-0027", "ts": "2026-11-21T18:22:12Z", "findings": ["I7: glossary term loop must be rendered 'bucle'", "I7: glossary term hours must be rendered 'horas'", "I7: glossary term build must be rendered 'compilación'", "I12: sentence of 40 words (limit 29): Después, una forma LOOP ejecuta sus cláu..."]}
+{"segment_id": "s-2a09f7429c80-0028", "ts": "2026-11-21T18:22:12Z", "findings": ["I7: glossary term state must be rendered 'estado'"]}
+{"segment_id": "s-db2aeb31ad75-0029", "ts": "2026-11-21T18:22:12Z", "findings": ["I9: looks English: 2 of 7 words are English function words"]}
+{"segment_id": "s-fa9750691651-0036", "ts": "2026-11-21T18:22:12Z", "findings": ["I7: glossary term program must be rendered 'programa'", "I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-d00f37a3b73e-0043", "ts": "2026-11-21T18:22:12Z", "findings": ["I7: glossary term card must be rendered 'tarjeta'"]}
+{"segment_id": "s-5373085210e7-0044", "ts": "2026-11-21T18:22:12Z", "findings": ["I7: glossary term card must be rendered 'tarjeta'"]}
+{"segment_id": "s-b0f5fcb23650-0047", "ts": "2026-11-21T18:22:12Z", "findings": ["I7: glossary term method must be rendered 'método'"]}
+{"segment_id": "s-760534379865-0053", "ts": "2026-11-21T18:22:12Z", "findings": ["I7: glossary term pipe must be rendered 'tubería'"]}
+{"segment_id": "s-7ba01f01c509-0005", "ts": "2026-11-21T18:22:22Z", "findings": ["I7: glossary term scope must be rendered 'ámbito'"]}
+{"segment_id": "s-28c9c74798cc-0007", "ts": "2026-11-21T18:22:22Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-ab8bce3893ac-0026", "ts": "2026-11-21T18:22:22Z", "findings": ["I7: glossary term loop must be rendered 'bucle'"]}
+{"segment_id": "s-f30ef157b028-0027", "ts": "2026-11-21T18:22:22Z", "findings": ["I7: glossary term loop must be rendered 'bucle'", "I7: glossary term hours must be rendered 'horas'", "I7: glossary term build must be rendered 'compilación'", "I12: sentence of 40 words (limit 29): Después, una forma LOOP ejecuta sus cláu..."]}
+{"segment_id": "s-2a09f7429c80-0028", "ts": "2026-11-21T18:22:22Z", "findings": ["I7: glossary term state must be rendered 'estado'"]}
+{"segment_id": "s-db2aeb31ad75-0029", "ts": "2026-11-21T18:22:22Z", "findings": ["I9: looks English: 2 of 7 words are English function words"]}
+{"segment_id": "s-fa9750691651-0036", "ts": "2026-11-21T18:22:22Z", "findings": ["I7: glossary term program must be rendered 'programa'", "I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-d00f37a3b73e-0043", "ts": "2026-11-21T18:22:22Z", "findings": ["I7: glossary term card must be rendered 'tarjeta'"]}
+{"segment_id": "s-5373085210e7-0044", "ts": "2026-11-21T18:22:22Z", "findings": ["I7: glossary term card must be rendered 'tarjeta'"]}
+{"segment_id": "s-b0f5fcb23650-0047", "ts": "2026-11-21T18:22:22Z", "findings": ["I7: glossary term method must be rendered 'método'"]}
+{"segment_id": "s-760534379865-0053", "ts": "2026-11-21T18:22:22Z", "findings": ["I7: glossary term pipe must be rendered 'tubería'"]}
