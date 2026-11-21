@@ -285,27 +285,27 @@ msgstr "⟦SEP_0001⟧ Mecanismo ⟦SEP_0002⟧ Papel ⟦SEP_0003⟧"
 #: lessons/languages/csharp-linq-xaml.md:100
 msgctxt "s-bc5ecfa1973f-0055"
 msgid "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ the interpreter: parsing *is* running ⟦SEP_0004⟧"
-msgstr ""
+msgstr "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ el intérprete: el análisis sintáctico *es* la ejecución ⟦SEP_0004⟧"
 
 #: lessons/languages/csharp-linq-xaml.md:101
 msgctxt "s-eab9e6d70cd6-0056"
 msgid "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ the instruction: constructs any object, calls any method, fires when parsed. Document order is the program counter. ⟦SEP_0004⟧"
-msgstr ""
+msgstr "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ la instrucción: construye cualquier objeto, llama a cualquier método y se activa al analizarse. El orden del documento es el contador de programa. ⟦SEP_0004⟧"
 
 #: lessons/languages/csharp-linq-xaml.md:102
 msgctxt "s-bc584cbf300a-0057"
 msgid "⟦SEP_0008⟧ \"Carrier\" arrays ⟦SEP_0009⟧ the variables: one provider fills a ⟦CODE_0001⟧ or ⟦CODE_0002⟧ in place, the next reads it back ([⟦CODE_0003⟧ L15-30](⟦DEST_0004⟧) shows the chain ⟦CODE_0005⟧ -> ⟦CODE_0006⟧ -> ⟦CODE_0007⟧) ⟦SEP_0010⟧"
-msgstr ""
+msgstr "⟦SEP_0008⟧ Arreglos \"portadores\" ⟦SEP_0009⟧ las variables: un proveedor llena un ⟦CODE_0001⟧ o ⟦CODE_0002⟧ in situ; el siguiente lo lee ([⟦CODE_0003⟧ L15-30](⟦DEST_0004⟧) muestra la cadena ⟦CODE_0005⟧ -> ⟦CODE_0006⟧ -> ⟦CODE_0007⟧) ⟦SEP_0010⟧"
 
 #: lessons/languages/csharp-linq-xaml.md:103
 msgctxt "s-e12ad2c50007-0058"
 msgid "⟦SEP_0003⟧ Expression engines (⟦CODE_0001⟧, ⟦CODE_0002⟧, SQL) ⟦SEP_0004⟧ the ALU and the conditionals ⟦SEP_0005⟧"
-msgstr ""
+msgstr "⟦SEP_0003⟧ Motores de expresiones (⟦CODE_0001⟧, ⟦CODE_0002⟧, SQL) ⟦SEP_0004⟧ la ALU y los condicionales ⟦SEP_0005⟧"
 
 #: lessons/languages/csharp-linq-xaml.md:104
 msgctxt "s-989738932855-0059"
 msgid "⟦SEP_0003⟧ ⟦CODE_0001⟧ in markup ⟦SEP_0004⟧ a ⟦CODE_0002⟧, built, started and joined from XAML ⟦SEP_0005⟧"
-msgstr ""
+msgstr "⟦SEP_0003⟧ ⟦CODE_0001⟧ en marcado ⟦SEP_0004⟧ un ⟦CODE_0002⟧ construido, iniciado y unido desde XAML ⟦SEP_0005⟧"
 
 #: lessons/languages/csharp-linq-xaml.md:106
 msgctxt "s-7ec4d0950704-0060"

@@ -97,11 +97,11 @@ Consulta los [ejercicios](../exercises.md#b7-linq-enumerate-twice-verified).
 
 | Mecanismo | Papel |
 | --- | --- |
-| `XamlReader.Load` | the interpreter: parsing *is* running |
-| `ObjectDataProvider` | the instruction: constructs any object, calls any method, fires when parsed. Document order is the program counter. |
-| "Carrier" arrays | the variables: one provider fills a `char[]` or `byte[]` in place, the next reads it back ([`efcore.xaml` L15-30](../../src/xaml/efcore.xaml#L15-L30) shows the chain `Next` -> `ToString` -> `CopyTo`) |
-| Expression engines (`DataTable.Compute("Sum(h)")`, `DataView.RowFilter`, SQL) | the ALU and the conditionals |
-| `Delegate.CreateDelegate` in markup | a `Thread`, built, started and joined from XAML |
+| `XamlReader.Load` | el intérprete: el análisis sintáctico *es* la ejecución |
+| `ObjectDataProvider` | la instrucción: construye cualquier objeto, llama a cualquier método y se activa al analizarse. El orden del documento es el contador de programa. |
+| Arreglos "portadores" | las variables: un proveedor llena un `char[]` o `byte[]` in situ; el siguiente lo lee ([`efcore.xaml` L15-30](../../src/xaml/efcore.xaml#L15-L30) muestra la cadena `Next` -> `ToString` -> `CopyTo`) |
+| Motores de expresiones (`DataTable.Compute("Sum(h)")`, `DataView.RowFilter`, SQL) | la ALU y los condicionales |
+| `Delegate.CreateDelegate` en marcado | un `Thread` construido, iniciado y unido desde XAML |
 
 ### Honest fine print
 
