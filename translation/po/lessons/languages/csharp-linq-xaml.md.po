@@ -75,7 +75,7 @@ msgstr "⟦SEP_0003⟧ **Condición** ⟦SEP_0004⟧ [L66-98](⟦DEST_0001⟧) �
 #: lessons/languages/csharp-linq-xaml.md:30
 msgctxt "s-6ac76b71d59e-0013"
 msgid "⟦SEP_0007⟧ **Iterator** ⟦SEP_0008⟧ [L106-130](⟦DEST_0001⟧) ⟦SEP_0009⟧ Draws hours, adds a row to EF Core and starts a background ⟦CODE_0002⟧ that calls ⟦CODE_0003⟧, ⟦CODE_0004⟧ and ⟦CODE_0005⟧ *through ⟦CODE_0006⟧*. ⟦SEP_0010⟧"
-msgstr ""
+msgstr "⟦SEP_0007⟧ **Iterador** ⟦SEP_0008⟧ [L106-130](⟦DEST_0001⟧) ⟦SEP_0009⟧ Extrae horas, agrega una fila a EF Core e inicia en segundo plano un ⟦CODE_0002⟧ que llama a ⟦CODE_0003⟧, ⟦CODE_0004⟧ y ⟦CODE_0005⟧ *mediante ⟦CODE_0006⟧*. ⟦SEP_0010⟧"
 
 #: lessons/languages/csharp-linq-xaml.md:32
 msgctxt "s-574ea85e27cf-0014"
@@ -395,19 +395,19 @@ msgstr "⟦SEP_0006⟧ [Go](⟦DEST_0001⟧) ⟦SEP_0007⟧ Un ⟦CODE_0002⟧ r
 #: lessons/languages/csharp-linq-xaml.md:132
 msgctxt "s-b944b4e999ac-0077"
 msgid "⟦SEP_0011⟧ [Rust](⟦DEST_0001⟧) ⟦SEP_0012⟧ ⟦CODE_0002⟧ ([⟦CODE_0003⟧ L19](⟦DEST_0004⟧)) ⟦SEP_0013⟧ No ⟦CODE_0005⟧, ⟦CODE_0006⟧ or ⟦CODE_0007⟧ in ⟦CODE_0008⟧; ⟦CODE_0009⟧ stands in for ⟦CODE_0010⟧; a test scans the source to enforce it ⟦SEP_0014⟧"
-msgstr ""
+msgstr "⟦SEP_0011⟧ [Rust](⟦DEST_0001⟧) ⟦SEP_0012⟧ ⟦CODE_0002⟧ ([⟦CODE_0003⟧ L19](⟦DEST_0004⟧)) ⟦SEP_0013⟧ Sin ⟦CODE_0005⟧, ⟦CODE_0006⟧ ni ⟦CODE_0007⟧ en ⟦CODE_0008⟧; ⟦CODE_0009⟧ reemplaza a ⟦CODE_0010⟧; una prueba examina el código fuente para imponerlo ⟦SEP_0014⟧"
 
 #: lessons/languages/csharp-linq-xaml.md:134
 msgctxt "s-c08a852d0dbe-0078"
 msgid "Under what circumstances would this terrible idea become reasonable?"
-msgstr ""
+msgstr "¿En qué circunstancias esta idea terrible se volvería razonable?"
 
 #: lessons/languages/csharp-linq-xaml.md:136
 msgctxt "s-6f0b1a39f5c3-0079"
 msgid "Putting everything in a ⟦CODE_0001⟧ header: never. But knowing that LINQ is lazy, that ⟦CODE_0002⟧ and ⟦CODE_0003⟧ are different worlds, that ⟦CODE_0004⟧ is not thread-safe and that XAML's parser can call methods are all things you want to learn *before* the production bug that teaches them."
-msgstr ""
+msgstr "Poner todo en una cabecera de ⟦CODE_0001⟧: nunca. Pero conviene saber que LINQ es diferido y que ⟦CODE_0002⟧ y ⟦CODE_0003⟧ son mundos distintos. También conviene saber que ⟦CODE_0004⟧ no es seguro para hilos y que el analizador sintáctico de XAML puede llamar métodos. Aprende todo eso *antes* de que te lo enseñe un bicho en producción."
 
 #: lessons/languages/csharp-linq-xaml.md:349
 msgctxt "s-ac0e260e97bf-0080"
 msgid "Computer science behind this page"
-msgstr ""
+msgstr "La informática detrás de esta página"

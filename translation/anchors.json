@@ -4230,8 +4230,8 @@
     {
      "en": "Under what circumstances would this terrible idea become reasonable?",
      "en_id": "under-what-circumstances-would-this-terrible-idea-become-reasonable",
-     "es": "Under what circumstances would this terrible idea become reasonable?",
-     "es_id": "under-what-circumstances-would-this-terrible-idea-become-reasonable",
+     "es": "¿En qué circunstancias esta idea terrible se volvería razonable?",
+     "es_id": "en-qué-circunstancias-esta-idea-terrible-se-volvería-razonable",
      "level": 2,
      "line": 134
     },
@@ -4318,8 +4318,8 @@
     {
      "en": "Computer science behind this page",
      "en_id": "computer-science-behind-this-page",
-     "es": "Computer science behind this page",
-     "es_id": "computer-science-behind-this-page",
+     "es": "La informática detrás de esta página",
+     "es_id": "la-informática-detrás-de-esta-página",
      "level": 2,
      "line": 349
     }
@@ -4327,7 +4327,7 @@
    "map": {
     "behold-the-monstrosity": "contempla-la-monstruosidad",
     "c-linq-and-xaml-plus-the-one-statement-ports": "c-linq-y-xaml-más-las-adaptaciones-de-una-sola-sentencia",
-    "computer-science-behind-this-page": "computer-science-behind-this-page",
+    "computer-science-behind-this-page": "la-informática-detrás-de-esta-página",
     "deferred-execution-and-the-void-to-value-trick": "la-ejecución-diferida-y-el-truco-de-convertir-void-en-valor",
     "do-this-in-production-and-youre-fired": "haz-esto-en-producción-y-estás-despedido",
     "do-this-in-production-and-youre-fired-1": "haz-esto-en-producción-y-estás-despedido-1",
@@ -4349,7 +4349,7 @@
     "program-flow-of-xaml": "program-flow-of-xaml",
     "the-one-statement-ports-same-trick-different-machinery": "las-adaptaciones-de-una-sola-sentencia-mismo-truco-distinta-maquinaria",
     "the-original-modernchallenge1": "el-original-modernchallenge1",
-    "under-what-circumstances-would-this-terrible-idea-become-reasonable": "under-what-circumstances-would-this-terrible-idea-become-reasonable",
+    "under-what-circumstances-would-this-terrible-idea-become-reasonable": "en-qué-circunstancias-esta-idea-terrible-se-volvería-razonable",
     "what-did-we-just-learn": "qué-acabamos-de-aprender",
     "what-did-we-just-learn-1": "qué-acabamos-de-aprender-1",
     "what-did-we-just-learn-2": "qué-acabamos-de-aprender-2",

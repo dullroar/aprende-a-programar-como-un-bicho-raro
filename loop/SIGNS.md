@@ -124,3 +124,4 @@
 - Keep a thousands separator as the English writes it ("1,000", not "1000": I3 counts digit tokens), write 'callback' as 'función de devolución de llamada' (not 'llamada de vuelta'), and use the glossary heading 'Compara los diseños ordinarios y los raros' even for a single pair; run waive_po on the already-pending false positives BEFORE the --redo-fuzzy drafts import so the replies cover only the rewrites.
 - Apply the answers key PO to lessons/respuestas.md, its mapped Spanish path; passing lessons/answers-key.md to apply creates a separate untracked file and fails I16.
 - Apply the answer key with `python3 -I tools/apply.py lessons/respuestas.md --write`; without `--write` it only reports what it would apply.
+- Before claiming a translated file is complete, export all pending segments without --from; earlier empty entries can remain even when later segments are accepted.

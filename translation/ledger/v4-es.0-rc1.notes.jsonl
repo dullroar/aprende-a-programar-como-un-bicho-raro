@@ -2185,3 +2185,6 @@
 {"segment_id": "s-7ec4d0950704-0060", "ts": "2026-11-21T20:33:37Z", "findings": ["I15: heading differs from the recorded transcreated 'Letra pequeña, pero honesta'"], "playful_note": "Conserva el tono de letra chica."}
 {"segment_id": "s-6791ddd02d41-0061", "ts": "2026-11-21T20:33:37Z", "findings": ["I7: glossary term total must be rendered 'total'"]}
 {"segment_id": "s-7ec4d0950704-0060", "ts": "2026-11-21T20:33:51Z", "findings": [], "playful_note": "Conserva el tono de letra chica."}
+{"segment_id": "s-c08a852d0dbe-0078", "ts": "2026-11-21T20:40:27Z", "findings": ["I15: heading differs from the recorded transcreated '¿En qué circunstancias esta idea terrible se volvería razonable?'"], "playful_note": "Conserva la pregunta irónica sobre una idea terrible."}
+{"segment_id": "s-6f0b1a39f5c3-0079", "ts": "2026-11-21T20:40:27Z", "findings": ["I7: glossary term bug must be rendered 'bicho'"]}
+{"segment_id": "s-c08a852d0dbe-0078", "ts": "2026-11-21T20:40:43Z", "findings": [], "playful_note": "Conserva la pregunta irónica sobre una idea terrible."}
