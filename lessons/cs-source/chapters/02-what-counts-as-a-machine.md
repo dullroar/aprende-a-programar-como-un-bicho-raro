@@ -1,21 +1,21 @@
 ---
-title: "What counts as a machine?"
+title: "¿Qué cuenta como máquina?"
 ---
-For an advanced reading path with traces and experiments, see the [state and control beyond variables study guide](../guias-de-estudio/conceptos/estado-y-control-mas-alla-de-las-variables.md).
+Para una lectura avanzada con trazas y experimentos, consulta la [guía de estudio sobre el estado y el control más allá de las variables](../guias-de-estudio/conceptos/estado-y-control-mas-alla-de-las-variables.md).
 
-Before you can say that a regex engine, a build tool or a markup file "computes", you need to say what a machine is. The answer is smaller than you might think. A machine has a **state**, a set of allowed **steps**, a way to **represent** its values and some facts that stay true while it runs (**invariants**). If you can say what those four are, you have named the machine.
+Antes de decir que un motor de expresiones regulares, una herramienta de compilación o un archivo de marcado "computa", tienes que decir qué es una máquina. La respuesta es más sencilla de lo que quizá imaginas. Una máquina tiene un **estado**, un conjunto de **pasos** permitidos y una forma de **representar** sus valores. También tiene hechos que se mantienen durante la ejecución (**invariantes**). Si puedes nombrar esos cuatro elementos, ya identificaste la máquina.
 
 ```mermaid
 flowchart TB
-    accTitle: A machine is state plus a rule for the next state, not necessarily a processor
-    accDescr: A transition-system diagram. State s, represented as bits, a stack, text, paths or other values, goes through an allowed step, the transition rule, to state s prime. An input or event, if any, feeds the step. The step may produce an observable effect or result, if any. A frame around both states says that the invariant holds for s and for s prime.
-    subgraph INV["Invariant I holds for s and for s′"]
-        S["State s: bits, stack, text, paths, ..."] --> T(["allowed step: transition rule"]) --> S2["State s′"]
+    accTitle: Una máquina combina un estado y una regla para el siguiente estado. Puede prescindir de un procesador
+    accDescr: Diagrama de un sistema de transición. El estado s se representa con bits, una pila, texto, rutas u otros valores. Pasa al estado s prima mediante un paso permitido: la regla de transición. Si hay una entrada de datos o un evento, alimenta el paso. El paso puede producir un efecto o un resultado observable. Un marco alrededor de ambos estados indica que el invariante se cumple tanto en s como en s prima.
+    subgraph INV["El invariante I se cumple en s y en s′"]
+        S["Estado s: bits, pila, texto, rutas, ..."] --> T(["Paso permitido: regla de transición"]) --> S2["Estado s′"]
     end
-    IN["input or event (if any)"] -.-> T
-    T -.-> OUT["observable effect or result (if any)"]
+    IN["Entrada de datos o evento (si hay)"] -.-> T
+    T -.-> OUT["Efecto o resultado observable (si hay)"]
 ```
 
-The picture shows the four parts without naming any hardware: the state and how it is represented, one allowed step and the invariant that holds before and after it. A regex engine's capture stack, a Make dependency graph and an editor buffer all fit this template. The template does not require finite states, explicit input and output or machine instructions.
+La imagen muestra las cuatro partes sin nombrar ningún componente físico: el estado y su representación, un paso permitido y el invariante que se cumple antes y después del paso. La pila de capturas de un motor de expresiones regulares, un grafo de dependencias de Make y un búfer de editor encajan en esta plantilla. La plantilla no exige un número finito de estados, una entrada de datos y una salida explícitas ni instrucciones de máquina.
 
-The first goal of this book is exactly that habit: *name the machine hiding inside the language*. A stack machine, a register machine and a rewriting system can all compute the same things, but they keep their memory in different places. The concepts here are the vocabulary for that: transition systems, operational semantics (state, and one step at a time), Turing machines, Markov algorithms and Turing completeness. One more question goes with them: which part of a design *computes*, and which part only decides what runs next ([[computation-versus-orchestration]])? The chapter "State beyond variables" then returns to the question that matters most for this repository: where does the state live?
+El primer objetivo de este libro es precisamente que adquieras ese hábito: *identifica la máquina que se esconde en el lenguaje*. Una máquina de pila, una máquina de registros y un sistema de reescritura pueden computar lo mismo, pero guardan su memoria en lugares distintos. Los conceptos de este capítulo te dan el vocabulario: sistemas de transición, semántica operacional (estado, un paso a la vez), máquinas de Turing, algoritmos de Márkov y completitud de Turing. Hay otra pregunta: ¿qué parte de un diseño *computa* y qué parte solo decide qué se ejecuta después ([[computation-versus-orchestration]])? El capítulo "Estado más allá de las variables" retoma la pregunta que más importa en este repositorio: ¿dónde vive el estado?

@@ -1,0 +1,28 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lessons/cs-source/chapters/05-formal-languages-as-computational-substrates.md:2
+msgctxt "s-95278ec803e5-0000"
+msgid "Formal languages as computational substrates"
+msgstr "Los lenguajes formales como sustratos de cómputo"
+
+#: lessons/cs-source/chapters/05-formal-languages-as-computational-substrates.md:4
+msgctxt "s-591adb0aa4a3-0001"
+msgid "For an advanced reading path with traces and experiments, see the [formal languages and weird machines study guide](⟦DEST_0001⟧)."
+msgstr "Para una lectura avanzada con trazas y experimentos, consulta la [guía de estudio sobre lenguajes formales y máquinas raras](⟦DEST_0001⟧) (*weird machines*, cómputos que surgen cuando una notación permite más de lo previsto)."
+
+#: lessons/cs-source/chapters/05-formal-languages-as-computational-substrates.md:6
+msgctxt "s-f27f540726e6-0002"
+msgid "A formal language is a notation with strict rules that a machine can process. The recurring surprise of this repository is that a notation built for *one* job turns out to be a computer. Regular expressions were made to match text, and Perl, PCRE2 and .NET engines turn them into search machines, a stack and a counter. ⟦CODE_0001⟧ is a rewriting system. Make and CMake were made to order builds, and they became a restarting loop and a register machine. XAML was made to describe a user interface, and its parser runs methods."
+msgstr "Un lenguaje formal es una notación con reglas estrictas que una máquina puede procesar. En este repositorio se repite la misma sorpresa: una notación diseñada para *una* tarea resulta ser una computadora. Las expresiones regulares se diseñaron para buscar coincidencias en texto. Los motores de Perl, PCRE2 y .NET las convierten en máquinas de búsqueda, una pila y un contador. ⟦CODE_0001⟧ es un sistema de reescritura. Make y CMake se diseñaron para ordenar compilaciones y se convirtieron en un bucle que se reinicia y en una máquina de registros. XAML se diseñó para describir una interfaz de usuario y su analizador sintáctico ejecuta métodos."
+
+#: lessons/cs-source/chapters/05-formal-languages-as-computational-substrates.md:8
+msgctxt "s-9d83fd0936fe-0003"
+msgid "This chapter gives you the theory underneath: the Chomsky hierarchy (how much machine does a notation need?), parsing, rewriting, macros and declarative languages, interpreters and virtual machines (a representation plus something that gives it behavior) and category theory, a small part of which is useful for saying exactly what a pipeline preserves. It ends with two security ideas that explain why this matters outside the book. If an input language is more powerful than its authors realized, then reading the input is the same as running a program. See [language-theoretic security](⟦DEST_0001⟧) and [weird machines](⟦DEST_0002⟧)."
+msgstr "Este capítulo explica la teoría: la jerarquía de Chomsky (¿qué potencia necesita una máquina para procesar una notación?), el análisis sintáctico, la reescritura, las macros y los lenguajes declarativos. También explica los intérpretes y las máquinas virtuales (una representación más algo que le da comportamiento). Incluye la teoría de categorías, de la cual una pequeña parte sirve para decir con exactitud qué conserva una canalización. Termina con dos ideas de seguridad que explican por qué esto importa fuera del libro. Si un lenguaje de entrada de datos tiene más poder del que sus autores creían, leer los datos de entrada equivale a ejecutar un programa. Consulta [seguridad basada en teoría de lenguajes](⟦DEST_0001⟧) y [máquinas raras](⟦DEST_0002⟧)."

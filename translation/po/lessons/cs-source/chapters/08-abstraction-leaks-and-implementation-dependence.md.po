@@ -1,0 +1,28 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lessons/cs-source/chapters/08-abstraction-leaks-and-implementation-dependence.md:2
+msgctxt "s-d44de7fb9484-0000"
+msgid "Abstraction leaks and implementation dependence"
+msgstr "Fugas de abstracción y dependencia de la implementación"
+
+#: lessons/cs-source/chapters/08-abstraction-leaks-and-implementation-dependence.md:4
+msgctxt "s-10a92e8dc2c2-0001"
+msgid "For an advanced reading path with traces and experiments, see the [portability, abstraction and cost study guide](⟦DEST_0001⟧)."
+msgstr "Para una lectura avanzada con trazas y experimentos, consulta la [guía de estudio sobre portabilidad, abstracción y costo](⟦DEST_0001⟧)."
+
+#: lessons/cs-source/chapters/08-abstraction-leaks-and-implementation-dependence.md:6
+msgctxt "s-cbd2def4dff4-0002"
+msgid "Every abstraction hides something, and sooner or later the hidden thing shows. This chapter is about those moments. A language standard promises some things, allows others and ignores the rest. An optimizer may skip code that the language says nobody can see. A regex that is fast on every test can take a year on one bad input. A feature that nobody promised can still be the one that everybody uses."
+msgstr "Toda abstracción oculta algo y tarde o temprano lo que oculta sale a la luz. De esos momentos trata este capítulo. El estándar de un lenguaje promete unas cosas, permite otras e ignora el resto. Un optimizador puede omitir código que, según el lenguaje, nadie puede observar. Una expresión regular que acaba rápido en todas las pruebas puede tardar un año con una mala entrada de datos. Una característica que nadie prometió puede ser la que todos usan."
+
+#: lessons/cs-source/chapters/08-abstraction-leaks-and-implementation-dependence.md:8
+msgctxt "s-e75467f36996-0003"
+msgid "These ideas explain the three tags used in every lesson. **Guaranteed** means the specification promises it. **Implementation-permitted** means one implementation allows it. **Accidentally exploited** means it works, and nobody promised it. The concepts below give you the vocabulary for each: leaky abstractions, undefined and unspecified behavior, portability, optimizers, Hyrum's law, time complexity, ReDoS and reproducibility (writing down every input so that the same sources give the same result)."
+msgstr "Estas ideas explican las tres etiquetas que usa cada lección. **Garantizado** significa que la especificación lo promete. **Permitido por la implementación** significa que una implementación lo permite. **Aprovechado por accidente** significa que funciona y nadie lo prometió. Los conceptos que siguen te dan el vocabulario: abstracciones con fugas, comportamiento indefinido y no especificado, portabilidad, optimizadores, ley de Hyrum, complejidad temporal y ReDoS (denegación de servicio por expresiones regulares). También incluyen la reproducibilidad: anotar toda entrada de datos para que las mismas fuentes den el mismo resultado."

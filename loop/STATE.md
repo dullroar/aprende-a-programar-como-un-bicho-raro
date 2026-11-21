@@ -1,11 +1,11 @@
 # loop/STATE.md (keep to 60 lines; refreshed by every iteration)
 
 - **Edition:** v4-es.0-rc1 (working)    **English SHA:** 48a4429c0a22b2aac628b256a50c07d1816bcb80
-- **Iteration:** 127    **Stage:** 4 (bulk translation)    **Last result:** iter 127 P4-fix-4 done (named the .NET regular expression as the builder of the capture stack).
-- **Tasks:** todo 71 | doing 0 | done 97 | blocked 0 | skipped 0 (recount with the queue files)
-- **Next task:** P4-lessons-cs-source-chapters-1 (translate the nine computer science source chapters).
+- **Iteration:** 128    **Stage:** 4 (bulk translation)    **Last result:** iter 128 P4-lessons-cs-source-chapters-1 done (translated nine authored chapters).
+- **Tasks:** todo 70 | doing 0 | done 98 | blocked 0 | skipped 0 (recount with the queue files)
+- **Next task:** P4-lessons-cs-source-chapters-2 (translate the chapter on events, callbacks and reactive control flow).
 - **Budget:** driver-reported $89.4099 of $100 through the Claude run, with Codex session cost unavailable
-- **Translate progress:** segments accepted 2978 / total 8827 (7394 prose + 1433 Mermaid labels) ; files done 47 / 212 (recounted nonempty, non-fuzzy PO entries and complete files). Latest: lessons/cs-source/index.md.
+- **Translate progress:** segments accepted 3065 / total 8827 (7394 prose + 1433 Mermaid labels) ; files done 56 / 212 (nonempty, non-fuzzy PO entries and complete files). Latest: lessons/cs-source/chapters/09-comparative-case-studies.md.
 - **Last audit:** P4-audit-2 (iter 125, translation/reviews/p4-audit-2.md)    **Next audit due:** P4-audit-3
 - **Gates:** P0 passed (iter 17)  P1 passed (iter 23)  P2 passed (iter 47)  P3 passed (iter 58)  P3B passed (iter 85)  P3C passed (iter 105)  P4 -  P5 -  P6 -  P7A -
 - **Open provisional decisions:** 5 (acronym BICHO; glossary choices; house style N=29 calibrated; schema/segment-id formats; same-tier reviewer kept after recall test)    **Blockers:** 0    **Source issues:** 18 (translation/source-issues.md)

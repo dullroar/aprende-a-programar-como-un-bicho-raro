@@ -1,29 +1,29 @@
 ---
-title: "Evaluation and demand"
+title: "Evaluación y demanda"
 ---
-For an advanced reading path with traces and experiments, see the [evaluation, demand and laziness study guide](../guias-de-estudio/conceptos/evaluacion-demanda-y-pereza.md).
+Para una lectura avanzada con trazas y experimentos, consulta la [guía de estudio sobre evaluación, demanda y pereza](../guias-de-estudio/conceptos/evaluacion-demanda-y-pereza.md).
 
-Is a value computed when you write it, when you first need it or each time you ask? That is the question of **evaluation strategy**, and the same-looking code answers it differently in different languages.
+¿Cuándo se calcula un valor: cuando lo escribes, cuando lo necesitas por primera vez o cada vez que lo pides? Esa es la pregunta de la **estrategia de evaluación**. El código puede verse igual en distintos lenguajes y dar respuestas distintas.
 
-Haskell is lazy: one `span` over an infinite list is the stop rule, because only the needed part is ever computed. LINQ is deferred: a pipeline does nothing until someone enumerates it. APL is eager and works on whole arrays at once, so it draws more numbers than it needs and trims the result. When effects are involved, the choice stops being a detail. If a lazy list performs input and output, then *reading the list* is what does the work. This chapter explains the vocabulary: strategies and short circuits, iterators and generators, first-class and higher-order functions, functors and `map`, monoids and folds (and why `reduce` cannot stop early) and dataflow. The table at the end shows every entry's strategy in one place.
+Haskell usa evaluación perezosa: un solo `span` sobre una lista infinita basta como regla de parada porque solo se calcula la parte necesaria. LINQ usa ejecución diferida: una canalización no hace nada hasta que alguien la enumera. APL usa evaluación inmediata y trabaja con arreglos enteros a la vez. Por eso, sortea más números de los que necesita y recorta el resultado. Cuando hay efectos, la elección deja de ser un detalle. Si una lista perezosa realiza operaciones de entrada de datos y salida, *leer la lista* es lo que hace el trabajo. Este capítulo explica el vocabulario: estrategias y cortocircuitos, iteradores y generadores, funciones de primera clase y de orden superior, funtores y `map`. También abarca monoides y pliegues (y por qué `reduce` no puede detenerse antes del final) y el flujo de datos. La tabla final reúne las estrategias de todas las entradas.
 
 ```mermaid
 flowchart TB
-    accTitle: The same requested prefix can entail different work
-    accDescr: Three lanes show a consumer that asks for only the first two elements of a sequence of five. In the eager lane, all five values 1 to 5 are computed first, the consumer takes 1 and 2, and 3 to 5 were computed but unused. In the lazy by-need lane, thunks are built, 1 is demanded, evaluated and cached, 2 is demanded, evaluated and cached, and 3 to 5 are never evaluated. In the deferred pipeline lane, the pipeline is defined and no work happens, then enumerating computes and yields 1 and 2, and enumerating again may repeat the work because deferred is not automatically memoized.
-    subgraph DEFER["Deferred, like LINQ"]
-        D1["define: no work yet"] --> D2["enumerate: 1, 2"] --> D3["enumerate again: may redo"]
+    accTitle: Pedir el mismo prefijo puede implicar distinto trabajo
+    accDescr: Tres filas muestran a un consumidor que pide solo los dos primeros elementos de una secuencia de cinco. En la fila de evaluación inmediata, primero se calculan los cinco valores, del 1 al 5. El consumidor toma 1 y 2. Los valores del 3 al 5 se calcularon y quedaron sin usar. En la fila de evaluación perezosa por necesidad se crean thunks, cálculos suspendidos que se evalúan cuando se fuerzan. El consumidor pide el valor 1, que se evalúa y se guarda. Luego pide el 2, que también se evalúa y se guarda. Los valores del 3 al 5 nunca se evalúan. En la fila de la canalización diferida, al definirla no se hace ningún cálculo. Al enumerarla, se calculan y se entregan los valores 1 y 2. Enumerarla de nuevo puede repetir el trabajo porque la ejecución diferida no memoiza resultados automáticamente.
+    subgraph DEFER["Diferida, como en LINQ"]
+        D1["Definir: aún sin cálculo"] --> D2["Enumerar: 1, 2"] --> D3["Volver a enumerar: puede recalcular"]
     end
-    subgraph LAZY["Lazy, by need"]
-        L1["build thunks"] --> L2["demand 1: cache"] --> L3["demand 2: cache"] --> L4["3 to 5: never run"]
+    subgraph LAZY["Perezosa, por necesidad"]
+        L1["Crear thunks"] --> L2["Demanda del 1: guardar"] --> L3["Demanda del 2: guardar"] --> L4["Del 3 al 5: sin ejecución"]
     end
-    subgraph EAGER["Eager, like an array"]
-        E1["construct"] --> E2["compute 1 to 5"] --> E3["consumer takes 1, 2"] --> E4["3 to 5: unused"]
+    subgraph EAGER["Inmediata, como en un arreglo"]
+        E1["Construir"] --> E2["Calcular del 1 al 5"] --> E3["El consumidor toma 1, 2"] --> E4["Del 3 al 5: sin usar"]
     end
     classDef unused stroke-dasharray: 5 3
     class E4,L4,D3 unused
 ```
 
-The values 1 to 5 are only a sample. Haskell's call-by-need *remembers* an evaluated value, while a deferred enumerable pipeline usually recomputes it each time you enumerate. APL often evaluates a whole array, so it is closest to the eager lane. The picture compares strategies, and it is not an exact trace of any one entry.
+Los valores del 1 al 5 son solo una muestra. La llamada por necesidad de Haskell *recuerda* un valor evaluado. En cambio, una canalización enumerable diferida suele recalcularlo cada vez que la enumeras. APL suele evaluar un arreglo entero, así que se parece más a la fila de evaluación inmediata. La imagen compara estrategias sin reproducir la traza exacta de ninguna entrada.
 
 {{table:evaluation}}

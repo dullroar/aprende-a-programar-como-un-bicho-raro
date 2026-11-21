@@ -1,0 +1,28 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lessons/cs-source/chapters/03-control-flow-and-continuations.md:2
+msgctxt "s-f58cb43f678c-0000"
+msgid "Control flow and continuations"
+msgstr "Flujo de control y continuaciones"
+
+#: lessons/cs-source/chapters/03-control-flow-and-continuations.md:4
+msgctxt "s-4af7812b2f74-0001"
+msgid "For an advanced reading path with traces and experiments, see the [state and control beyond variables study guide](⟦DEST_0001⟧)."
+msgstr "Para una lectura avanzada con trazas y experimentos, consulta la [guía de estudio sobre el estado y el control más allá de las variables](⟦DEST_0001⟧)."
+
+#: lessons/cs-source/chapters/03-control-flow-and-continuations.md:6
+msgctxt "s-41df67c7c340-0002"
+msgid "\"What runs next?\" is one of the two basic questions about any program. (The other is \"what does it remember?\", in the chapter \"State beyond variables\".) Most languages answer it with a program counter and a call stack, and most programmers never think about it again. The entries in this book keep control somewhere else, so you can see it clearly."
+msgstr "\"¿Qué se ejecuta después?\" es una de las dos preguntas básicas sobre cualquier programa. (La otra es \"¿qué recuerda?\", en el capítulo \"Estado más allá de las variables\".) La mayoría de los lenguajes la responden con un contador de programa y una pila de llamadas. La mayoría de los programadores no vuelve a pensar en ella. Las entradas de este libro guardan el control en otro lugar, de modo que puedes verlo con claridad."
+
+#: lessons/cs-source/chapters/03-control-flow-and-continuations.md:8
+msgctxt "s-0a55e0cecc5e-0003"
+msgid "In COBOL it is the target of a ⟦CODE_0001⟧ that ⟦CODE_0002⟧ can change. In Forth it is the parse position ⟦CODE_0003⟧, which the program can move backward. In GNU Make it is the set of files that exist, and the build restarts when a makefile is remade. In XAML it is the order of the elements in the document. Each of these is a *continuation* in disguise: the rest of the computation, stored as something other than a stack frame. This chapter gives you the vocabulary: structured programming, recursion, fixed points, coroutines, continuations and self-modifying code. It ends with an idea about *when* code runs: logical clocks, where time is a count of events. The tar entries use it. Events, callbacks and the event loop, where something else calls your code, have their own chapter later in this part."
+msgstr "En COBOL, el control reside en el destino de un ⟦CODE_0001⟧ que ⟦CODE_0002⟧ puede cambiar. En Forth, reside en la posición de lectura del intérprete, ⟦CODE_0003⟧, que el programa puede mover hacia atrás. En GNU Make, reside en el conjunto de archivos que existen. La compilación se reinicia cuando se vuelve a generar un makefile. En XAML, reside en el orden de los elementos del documento. Cada mecanismo es una *continuación* disfrazada: el resto del cómputo se guarda en algo distinto de un marco de pila. Este capítulo te da el vocabulario: programación estructurada, recursión, puntos fijos, corrutinas, continuaciones y código automodificable. Termina con una idea sobre *cuándo* se ejecuta el código: los relojes lógicos, que miden el tiempo contando eventos. Las entradas de tar la usan. En otro capítulo de esta parte verás los eventos, las funciones de devolución de llamada (*callback*) y el bucle de eventos, donde otro componente invoca tu código."

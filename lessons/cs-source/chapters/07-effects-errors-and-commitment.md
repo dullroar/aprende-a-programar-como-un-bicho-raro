@@ -1,8 +1,8 @@
 ---
-title: "Effects, errors and commitment"
+title: "Efectos, errores y confirmación"
 ---
-For an advanced reading path with traces and experiments, see the [effects, errors and commitment study guide](../guias-de-estudio/conceptos/efectos-errores-y-confirmacion.md).
+Para una lectura avanzada con trazas y experimentos, consulta la [guía de estudio sobre efectos, errores y confirmación](../guias-de-estudio/conceptos/efectos-errores-y-confirmacion.md).
 
-A program that does nothing outside itself is a very expensive heater. Useful programs change the world: they write files, print and insert rows. This chapter is about the three questions that follow. When does an effect happen (**side effects**)? What happens when something goes wrong (**errors**)? And at what point is a change final (**commitment**)?
+Un programa que no hace nada fuera de sí mismo es un calefactor carísimo. Los programas útiles cambian el mundo: escriben archivos, imprimen e insertan filas. Este capítulo trata las tres preguntas que se desprenden de ello. ¿Cuándo se produce un efecto (**efectos secundarios**)? ¿Qué pasa cuando algo sale mal (**errores**)? ¿En qué momento se vuelve definitivo un cambio (**confirmación**)?
 
-The entries here play with all three. A regex engine runs the whole demo and then *fails on purpose*, so what survives the failure becomes the lesson. A constraint violation, an arithmetic overflow or a program's exit code *is* the stop rule. A database transaction commits only when the work is complete. The concepts below give each of these a name and a reason: side effects, effect systems, exceptions, exit status, constraints, backtracking, the cut, transactions, idempotence and thread safety.
+Las entradas de este capítulo juegan con los tres conceptos. Un motor de expresiones regulares ejecuta toda la demostración y luego *provoca un fallo a propósito*. La lección está en lo que sobrevive al fallo. Una infracción de una restricción, un desbordamiento aritmético o el estado de salida de un programa *es* la regla de parada. La confirmación de una transacción de base de datos solo ocurre cuando el trabajo termina. Los conceptos que siguen dan un nombre y una razón a cada caso: efectos secundarios, sistemas de efectos, excepciones, estado de salida, restricciones, retroceso, corte, transacciones, idempotencia y seguridad entre hilos.

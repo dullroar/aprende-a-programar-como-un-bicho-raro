@@ -1,0 +1,28 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lessons/cs-source/chapters/01-reading-an-adversarial-program.md:2
+msgctxt "s-4ca87eed9198-0000"
+msgid "How to read an adversarial program"
+msgstr "Cómo leer un programa adversarial"
+
+#: lessons/cs-source/chapters/01-reading-an-adversarial-program.md:4
+msgctxt "s-c78cb41df03c-0001"
+msgid "For an advanced reading path with traces and experiments, see the [reading adversarial programs study guide](⟦DEST_0001⟧)."
+msgstr "Para una lectura avanzada con trazas y experimentos, consulta la [guía de estudio sobre la lectura de programas adversariales](⟦DEST_0001⟧)."
+
+#: lessons/cs-source/chapters/01-reading-an-adversarial-program.md:6
+msgctxt "s-f8686c533e10-0002"
+msgid "The programs in this book are *adversarial* on purpose. They do things that code should not do: run code inside a regex match, call methods while parsing a markup file, rewrite their own jump targets. They are safe to study because of how this repository handles them. Every entry writes fictional **⟦DNT_0001⟧** data, runs in a [sandbox](⟦DEST_0002⟧) and is reviewed as untrusted code until someone has read and understood it."
+msgstr "Los programas de este libro son *adversariales* a propósito: se comportan como lo haría un atacante. Hacen cosas que el código no debería hacer: ejecutar código durante una coincidencia de una expresión regular, llamar a métodos durante el análisis sintáctico de un archivo de marcado y reescribir sus propios destinos de salto. Puedes estudiarlos con seguridad por la forma en que este repositorio los maneja. Cada entrada escribe datos ficticios marcados con **⟦DNT_0001⟧** y se ejecuta en un [entorno aislado](⟦DEST_0002⟧) (*sandbox*) que limita el acceso al sistema anfitrión. Durante la revisión, el código se trata como no confiable hasta que alguien lo lee y lo entiende."
+
+#: lessons/cs-source/chapters/01-reading-an-adversarial-program.md:8
+msgctxt "s-cb68a85c80fd-0003"
+msgid "This chapter is the reader's safety model. It has two habits. First, **read the weird program next to its ordinary sibling**: [⟦CODE_0001⟧](⟦DEST_0002⟧) beside [⟦CODE_0003⟧](⟦DEST_0004⟧), [⟦CODE_0005⟧](⟦DEST_0006⟧) beside [⟦CODE_0007⟧](⟦DEST_0008⟧). The difference shows you exactly what the stunt costs. Second, **ask what kind of promise stands behind each trick**: guaranteed, implementation-permitted or accidentally exploited (see the [intro](⟦DEST_0009⟧)). The topics below are the security and review ideas that make those habits work. They include one that the tar entries bring out: authority comes from the command that runs a program, not from the data it reads (⟦MACRO_0010⟧)."
+msgstr "Este capítulo presenta el modelo de seguridad del lector. Propone dos hábitos. Primero, **lee el programa raro al lado de su versión ordinaria**: [⟦CODE_0001⟧](⟦DEST_0002⟧) junto a [⟦CODE_0003⟧](⟦DEST_0004⟧) y [⟦CODE_0005⟧](⟦DEST_0006⟧) junto a [⟦CODE_0007⟧](⟦DEST_0008⟧). La diferencia te muestra el costo exacto de la pirueta. Segundo, **pregunta qué clase de promesa respalda cada truco**: comportamiento garantizado, permitido por la implementación o aprovechado por accidente (consulta la [introducción](⟦DEST_0009⟧)). Los temas que siguen son las ideas de seguridad y revisión que sustentan esos hábitos. Entre ellas está la que ilustran las entradas de tar: la autoridad proviene del comando que ejecuta un programa y no de los datos que lee (⟦MACRO_0010⟧)."

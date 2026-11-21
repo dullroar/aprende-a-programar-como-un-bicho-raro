@@ -214,3 +214,8 @@
 {"id":"EXC-214","segment":"s-b41c50ab7de6-0049","invariant":"I7","reason":"Windows Sandbox is a product name in this heading. The first prose occurrence carries the approved gloss.","task":"P4-src-15"}
 {"id":"EXC-215","segment":"s-a2c44e4e627b-0028","invariant":"I7","reason":"Build means creating a ttk::treeview at runtime, not compilation.","task":"P4-src-15"}
 {"id":"EXC-216","segment":"s-499fe1efa6a6-0001","invariant":"I7","reason":"In 'eight groups that build on each other', the groups of ideas depend on earlier groups. No compilation takes place.","task":"P4-lessons-cs-source-1"}
+{"id":"EXC-217","segment":"s-64c95d088c6b-0004","invariant":"I21","reason":"The transition-system description uses step as the ordinary noun for a transition; it does not name the Python identifier step.","task":"P4-lessons-cs-source-chapters-1"}
+{"id":"EXC-218","segment":"s-fc17a0b9b664-0007","invariant":"I21","reason":"The diagram edge names a permitted transition, not the Python function step. The glossary rendering is paso.","task":"P4-lessons-cs-source-chapters-1"}
+{"id":"EXC-219","segment":"s-0a55e0cecc5e-0003","invariant":"I7","reason":"The approved Spanish term is present; (*callback*) is its required first-use gloss under B5 and Part C.","task":"P4-lessons-cs-source-chapters-1"}
+{"id":"EXC-220","segment":"s-78a7eb2da4ae-0011","invariant":"I7","reason":"The diagram uses build as a verb for creating suspended computations, not for compilation.","task":"P4-lessons-cs-source-chapters-1"}
+{"id":"EXC-221","segment":"s-0781b570c254-0003","invariant":"I7","reason":"Here code only occurs in exit code. The glossary entry for that complete term is estado de salida.","task":"P4-lessons-cs-source-chapters-1"}

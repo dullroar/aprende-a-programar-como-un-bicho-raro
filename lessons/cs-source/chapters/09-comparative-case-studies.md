@@ -1,48 +1,48 @@
 ---
-title: "Comparative case studies"
+title: "Casos de estudio comparativos"
 ---
-For an advanced reading path with traces and experiments, see the [comparative machine design study guide](../guias-de-estudio/conceptos/diseno-comparativo-de-maquinas.md).
+Para una lectura avanzada con trazas y experimentos, consulta la [guía de estudio sobre diseño comparativo de máquinas](../guias-de-estudio/conceptos/diseno-comparativo-de-maquinas.md).
 
-The [shared challenge](../introduccion.md#what-the-challenge-does) asks for fictional cards up to and including the first card that takes the total over 40, a local record of those cards and a result the reader can see. Some entries print to a terminal, others open a window. See [where entries differ](../introduccion.md#where-entries-differ) for fixed LINQ data, the four-pass XAML ceiling and persistence variations. Each section asks what plays a particular **role**, starting with what repeats.
+El [reto compartido](../introduccion.md#what-the-challenge-does) pide tarjetas ficticias hasta incluir la primera tarjeta con la que el total pasa de 40. También pide un registro local de esas tarjetas y un resultado que el lector pueda ver. Algunas entradas imprimen en una terminal. Otras abren una ventana. Consulta [en qué se distinguen las entradas](../introduccion.md#where-entries-differ) para ver los datos fijos de LINQ, el techo de cuatro pasadas de XAML y las variantes de persistencia. Cada sección pregunta qué cumple un **papel** en particular, desde lo que se repite.
 
-The tables are generated from the metadata at the top of each entry's README. The README and executable source are where you can check the classification. Evaluation describes what drives the main computation. In the C# `for`, for example, an embedded deferred LINQ projection is consumed immediately by `Sum()` on each test of the loop condition. The final table lists every entry with its kind, evaluation strategy and weakest required assurance.
+Las tablas se generan a partir de los metadatos al inicio del README de cada entrada. Puedes comprobar la clasificación en el README y en el código fuente ejecutable. La evaluación describe qué impulsa el cómputo principal. Por ejemplo, en el `for` de C#, `Sum()` consume de inmediato una proyección diferida de LINQ incluida en el bucle cada vez que se comprueba la condición. La tabla final presenta una lista de todas las entradas con su tipo, su estrategia de evaluación y el grado de garantía más débil que requieren.
 
 {{table:roles}}
 
-## Where does the program live, and what makes the next step run?
+## ¿Dónde vive el programa y qué hace que se ejecute el siguiente paso?
 
-Ask these two questions of any entry, and the strange ones stop looking alike. The first says where the program and its state are kept. The second says what causes the next step to execute.
+Haz estas dos preguntas sobre cualquier entrada y las raras dejarán de parecer iguales. La primera indica dónde se guardan el programa y su estado. La segunda indica qué hace que se ejecute el siguiente paso.
 
-| Entry | Where the program and its state live | What advances it |
+| Entrada | Dónde viven el programa y su estado | Qué lo hace avanzar |
 | --- | --- | --- |
-| [[entry:xaml]] | A declarative document, built into objects | The parser: objects are made in document order |
-| [[entry:tar-gnu]] | Serialized archive members, plus a contract (`tarprog/1`) that tar knows nothing about | Tar's walk over the members, and the operator's `--to-command` |
-| [[entry:tar-gnu-weird]] | The archive's layout, and one row of registers in SQLite | GNU tar's checkpoint events: one tick per record written |
-| [[entry:ed-weird]] | The editor buffer: lines, and rows of marks | Addressed editing: one global command, and substitutions that apply only when they match |
-| [[entry:ex-weird]] | The buffer, the editor's marks and registers, and a tape of numbered lines | Ex itself: a register that runs itself, steered by a line of data |
-| [[entry:make-gnu]] | Targets, dependencies and restart state | Resolving the build graph, and restarting |
-| [[entry:find-posix]] and [[entry:find-gnu]] | The directory tree, its depth and the names | The tree walk |
-| [[entry:haskell-weird]] | Lazy values with effects in them | Demand: whatever is forced runs |
-| [[entry:tcl-weird]] | SQL rows that hold stored source | The interpreter's lookup of an unknown command, and triggers |
-| [[entry:javascript]] | Properties of one object literal, in a bodiless `for` | The `for` statement: initializer, condition, iterator |
-| [[entry:javascript-weird]] | Variables captured by closures | A consumer's demand on an iterator: each `next()` runs one step |
-| [[entry:javascript-events]] | One object that only the listeners of an `EventEmitter` touch | An event, then the scheduler: each listener emits the next event, and `setImmediate` gives the event loop a turn between cards |
+| [[entry:xaml]] | Un documento declarativo que se convierte en objetos | El analizador sintáctico: crea los objetos en el orden del documento |
+| [[entry:tar-gnu]] | Miembros serializados del archivo y un contrato (`tarprog/1`) que tar desconoce | El recorrido de tar por los miembros y la opción `--to-command` del operador |
+| [[entry:tar-gnu-weird]] | La estructura del archivo y una fila de registros en SQLite | Los eventos de punto de control de GNU tar: un pulso por cada registro escrito |
+| [[entry:ed-weird]] | El búfer del editor: líneas y filas de marcas | La edición por direcciones: un comando global y sustituciones que solo se aplican cuando hay coincidencia |
+| [[entry:ex-weird]] | El búfer, las marcas y los registros del editor y una cinta de líneas numeradas | Ex mismo: un registro que se ejecuta a sí mismo, guiado por una línea de datos |
+| [[entry:make-gnu]] | Los objetivos, las dependencias y el estado del reinicio | La resolución del grafo de compilación y el reinicio |
+| [[entry:find-posix]] y [[entry:find-gnu]] | El árbol de directorios, su profundidad y los nombres | El recorrido del árbol |
+| [[entry:haskell-weird]] | Valores perezosos que contienen efectos | La demanda: lo que se fuerza se ejecuta |
+| [[entry:tcl-weird]] | Filas de SQL que contienen el código fuente almacenado | La búsqueda de un comando desconocido por parte del intérprete y los disparadores |
+| [[entry:javascript]] | Propiedades de un objeto literal en un `for` sin cuerpo | La sentencia `for`: inicializador, condición e iterador |
+| [[entry:javascript-weird]] | Variables capturadas por clausuras (*closure*, funciones junto con su entorno léxico) | La demanda del consumidor sobre un iterador: cada `next()` ejecuta un paso |
+| [[entry:javascript-events]] | Un objeto al que solo acceden los escuchadores de eventos de un `EventEmitter` | Un evento y luego el planificador: cada escuchador de eventos emite el siguiente evento y `setImmediate` da un turno al bucle de eventos entre tarjetas |
 
-## Writing a program down, reading it back, running it
+## Cómo se escribe un programa, se vuelve a leer y se ejecuta
 
-Four different acts hide behind the words "the program is data". **Serialization** writes something down as bytes. **Deserialization** reads the bytes back into pieces. **Interpretation** gives the pieces a meaning. **Execution** gives that meaning an effect. A format can stop after any of them, and a consumer can combine them. What matters for safety is *which consumer you gave which authority to*. See [[serialization-deserialization-pickling]].
+Cuatro acciones distintas se esconden tras las palabras "el programa es datos". La **serialización** escribe algo como bytes. La **deserialización** vuelve a leer los bytes y recupera las piezas. La **interpretación** les da un significado. La **ejecución** le da un efecto a ese significado. Un formato puede detenerse tras cualquiera de esas acciones. Un consumidor puede combinarlas. Para la seguridad importa *qué autoridad le diste a cada consumidor*. Consulta [[serialization-deserialization-pickling]].
 
-| Entry | Serialization | Deserialization | Interpretation and execution | The round-trip promise it makes |
+| Entrada | Serialización | Deserialización | Interpretación y ejecución | Qué promete al escribir y volver a leer |
 | --- | --- | --- | --- | --- |
-| [[entry:tar-gnu]] | A builder writes the members of an archive, in a fixed order, from a seed | Tar parses the members. A passive inspector does the same without running anything | A dispatcher gives four record types a meaning, and runs them only when the operator passes `--to-command` | Same seed, same bytes (checked with `cmp`). The inspector and the database agree on every card. One archive in two fresh databases gives the same cards. It does **not** promise to resume a stopped run |
-| [[entry:xaml]] | A `.xaml` file is an object graph written as markup | `XamlReader.Load` parses it | The same call runs it: methods are called as objects are made | None. Parsing *is* running, and the entry never writes the document back |
-| [[entry:tcl-weird]] | Tcl source is stored as rows in SQLite | An overridden `unknown` command fetches a row | The fetched text is defined and evaluated as Tcl | The source comes back as the text that was stored. It does not keep any object identity |
-| [[entry:apl-weird]] | `⎕CR` writes a function out as a matrix of characters | `⎕FX` defines a function from such a matrix | Each function rewrites its source, defines the copy and calls it | The matrix is what `⎕FX` accepts back: a property of GNU APL that the entry uses |
-| [[entry:regex-sed]] and [[entry:m4]] | None apart from the text itself: the state *is* text | None: there is nothing to read back | The rules rewrite the text until none applies | The text is its own representation, so a round trip is the identity. This is an analogy, and not serialization in the object-graph sense |
+| [[entry:tar-gnu]] | Un generador escribe los miembros de un archivo en un orden fijo a partir de una semilla | Tar analiza la sintaxis de los miembros. Un inspector pasivo hace lo mismo sin ejecutar nada | Un despachador da significado a cuatro tipos de registros y solo los ejecuta si el operador pasa `--to-command` | La misma semilla da los mismos bytes (comprobado con `cmp`). El inspector y la base de datos coinciden en cada tarjeta. Un archivo en dos bases de datos nuevas da las mismas tarjetas. **No** promete reanudar una ejecución detenida |
+| [[entry:xaml]] | Un archivo `.xaml` es un grafo de objetos escrito como marcado | `XamlReader.Load` hace el análisis sintáctico | La misma llamada lo ejecuta: se invocan métodos a medida que se crean los objetos | Ninguna. El análisis sintáctico *es* la ejecución y la entrada nunca vuelve a escribir el documento |
+| [[entry:tcl-weird]] | El código fuente Tcl se guarda en filas de SQLite | Un comando `unknown` redefinido recupera una fila | El texto recuperado se define y se evalúa como Tcl | El código fuente vuelve como el texto que se guardó. No conserva la identidad de ningún objeto |
+| [[entry:apl-weird]] | `⎕CR` escribe una función como matriz de caracteres | `⎕FX` define una función a partir de dicha matriz | Cada función reescribe su código fuente, define la copia y la invoca | `⎕FX` acepta de vuelta la matriz: una propiedad de GNU APL que aprovecha la entrada |
+| [[entry:regex-sed]] y [[entry:m4]] | Ninguna fuera del texto mismo: el estado *es* texto | Ninguna: no hay nada que volver a leer | Las reglas reescriben el texto hasta que ninguna se aplica | El texto es su propia representación. Escribirlo y volverlo a leer lo deja idéntico. Es una analogía y no una serialización en el sentido de los grafos de objetos |
 
-Read down the last column. Only one of the five makes a promise about *behavior* after a round trip, and it names what it does not promise. That is the honest shape of the topic: "I can write it down and read it back" is a weaker claim than "it will do the same thing", and both are weaker than "I can pause it and carry on".
+Lee la última columna de arriba abajo. Solo una de las cinco filas promete algo sobre el *comportamiento* tras escribir y volver a leer. Además, dice qué no promete. Así quedan claros los límites: "puedo escribirlo y volver a leerlo" es una afirmación más débil que "hará lo mismo". Ambas son más débiles que "puedo pausarlo y continuar".
 
 
-## Every entry at a glance
+## Todas las entradas de un vistazo
 
 {{table:glance}}

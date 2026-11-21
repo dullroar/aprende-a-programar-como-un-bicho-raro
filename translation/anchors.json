@@ -1381,32 +1381,32 @@
     {
      "en": "Where does the program live, and what makes the next step run?",
      "en_id": "where-does-the-program-live-and-what-makes-the-next-step-run",
-     "es": "Where does the program live, and what makes the next step run?",
-     "es_id": "where-does-the-program-live-and-what-makes-the-next-step-run",
+     "es": "¿Dónde vive el programa y qué hace que se ejecute el siguiente paso?",
+     "es_id": "dónde-vive-el-programa-y-qué-hace-que-se-ejecute-el-siguiente-paso",
      "level": 2,
      "line": 12
     },
     {
      "en": "Writing a program down, reading it back, running it",
      "en_id": "writing-a-program-down-reading-it-back-running-it",
-     "es": "Writing a program down, reading it back, running it",
-     "es_id": "writing-a-program-down-reading-it-back-running-it",
+     "es": "Cómo se escribe un programa, se vuelve a leer y se ejecuta",
+     "es_id": "cómo-se-escribe-un-programa-se-vuelve-a-leer-y-se-ejecuta",
      "level": 2,
      "line": 31
     },
     {
      "en": "Every entry at a glance",
      "en_id": "every-entry-at-a-glance",
-     "es": "Every entry at a glance",
-     "es_id": "every-entry-at-a-glance",
+     "es": "Todas las entradas de un vistazo",
+     "es_id": "todas-las-entradas-de-un-vistazo",
      "level": 2,
      "line": 46
     }
    ],
    "map": {
-    "every-entry-at-a-glance": "every-entry-at-a-glance",
-    "where-does-the-program-live-and-what-makes-the-next-step-run": "where-does-the-program-live-and-what-makes-the-next-step-run",
-    "writing-a-program-down-reading-it-back-running-it": "writing-a-program-down-reading-it-back-running-it"
+    "every-entry-at-a-glance": "todas-las-entradas-de-un-vistazo",
+    "where-does-the-program-live-and-what-makes-the-next-step-run": "dónde-vive-el-programa-y-qué-hace-que-se-ejecute-el-siguiente-paso",
+    "writing-a-program-down-reading-it-back-running-it": "cómo-se-escribe-un-programa-se-vuelve-a-leer-y-se-ejecuta"
    }
   },
   "lessons/cs-source/chapters/10-events-callbacks-and-reactive-control-flow.md": {

@@ -1,8 +1,8 @@
 ---
-title: "Abstraction leaks and implementation dependence"
+title: "Fugas de abstracción y dependencia de la implementación"
 ---
-For an advanced reading path with traces and experiments, see the [portability, abstraction and cost study guide](../guias-de-estudio/conceptos/portabilidad-abstraccion-y-costo.md).
+Para una lectura avanzada con trazas y experimentos, consulta la [guía de estudio sobre portabilidad, abstracción y costo](../guias-de-estudio/conceptos/portabilidad-abstraccion-y-costo.md).
 
-Every abstraction hides something, and sooner or later the hidden thing shows. This chapter is about those moments. A language standard promises some things, allows others and ignores the rest. An optimizer may skip code that the language says nobody can see. A regex that is fast on every test can take a year on one bad input. A feature that nobody promised can still be the one that everybody uses.
+Toda abstracción oculta algo y tarde o temprano lo que oculta sale a la luz. De esos momentos trata este capítulo. El estándar de un lenguaje promete unas cosas, permite otras e ignora el resto. Un optimizador puede omitir código que, según el lenguaje, nadie puede observar. Una expresión regular que acaba rápido en todas las pruebas puede tardar un año con una mala entrada de datos. Una característica que nadie prometió puede ser la que todos usan.
 
-These ideas explain the three tags used in every lesson. **Guaranteed** means the specification promises it. **Implementation-permitted** means one implementation allows it. **Accidentally exploited** means it works, and nobody promised it. The concepts below give you the vocabulary for each: leaky abstractions, undefined and unspecified behavior, portability, optimizers, Hyrum's law, time complexity, ReDoS and reproducibility (writing down every input so that the same sources give the same result).
+Estas ideas explican las tres etiquetas que usa cada lección. **Garantizado** significa que la especificación lo promete. **Permitido por la implementación** significa que una implementación lo permite. **Aprovechado por accidente** significa que funciona y nadie lo prometió. Los conceptos que siguen te dan el vocabulario: abstracciones con fugas, comportamiento indefinido y no especificado, portabilidad, optimizadores, ley de Hyrum, complejidad temporal y ReDoS (denegación de servicio por expresiones regulares). También incluyen la reproducibilidad: anotar toda entrada de datos para que las mismas fuentes den el mismo resultado.

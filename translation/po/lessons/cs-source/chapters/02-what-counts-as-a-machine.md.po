@@ -1,0 +1,73 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lessons/cs-source/chapters/02-what-counts-as-a-machine.md:2
+msgctxt "s-93405bbf1a4b-0000"
+msgid "What counts as a machine?"
+msgstr "¿Qué cuenta como máquina?"
+
+#: lessons/cs-source/chapters/02-what-counts-as-a-machine.md:4
+msgctxt "s-4af7812b2f74-0001"
+msgid "For an advanced reading path with traces and experiments, see the [state and control beyond variables study guide](⟦DEST_0001⟧)."
+msgstr "Para una lectura avanzada con trazas y experimentos, consulta la [guía de estudio sobre el estado y el control más allá de las variables](⟦DEST_0001⟧)."
+
+#: lessons/cs-source/chapters/02-what-counts-as-a-machine.md:6
+msgctxt "s-08f0f82b4429-0002"
+msgid "Before you can say that a regex engine, a build tool or a markup file \"computes\", you need to say what a machine is. The answer is smaller than you might think. A machine has a **state**, a set of allowed **steps**, a way to **represent** its values and some facts that stay true while it runs (**invariants**). If you can say what those four are, you have named the machine."
+msgstr "Antes de decir que un motor de expresiones regulares, una herramienta de compilación o un archivo de marcado \"computa\", tienes que decir qué es una máquina. La respuesta es más sencilla de lo que quizá imaginas. Una máquina tiene un **estado**, un conjunto de **pasos** permitidos y una forma de **representar** sus valores. También tiene hechos que se mantienen durante la ejecución (**invariantes**). Si puedes nombrar esos cuatro elementos, ya identificaste la máquina."
+
+#: lessons/cs-source/chapters/02-what-counts-as-a-machine.md:10
+msgctxt "s-d265b2a293d4-0003"
+msgid "A machine is state plus a rule for the next state, not necessarily a processor"
+msgstr "Una máquina combina un estado y una regla para el siguiente estado. Puede prescindir de un procesador"
+
+#: lessons/cs-source/chapters/02-what-counts-as-a-machine.md:11
+msgctxt "s-64c95d088c6b-0004"
+msgid "A transition-system diagram. State s, represented as bits, a stack, text, paths or other values, goes through an allowed step, the transition rule, to state s prime. An input or event, if any, feeds the step. The step may produce an observable effect or result, if any. A frame around both states says that the invariant holds for s and for s prime."
+msgstr "Diagrama de un sistema de transición. El estado s se representa con bits, una pila, texto, rutas u otros valores. Pasa al estado s prima mediante un paso permitido: la regla de transición. Si hay una entrada de datos o un evento, alimenta el paso. El paso puede producir un efecto o un resultado observable. Un marco alrededor de ambos estados indica que el invariante se cumple tanto en s como en s prima."
+
+#: lessons/cs-source/chapters/02-what-counts-as-a-machine.md:12
+msgctxt "s-8623c5a11807-0005"
+msgid "Invariant I holds for s and for s′"
+msgstr "El invariante I se cumple en s y en s′"
+
+#: lessons/cs-source/chapters/02-what-counts-as-a-machine.md:13
+msgctxt "s-d7e20ddabb75-0006"
+msgid "State s: bits, stack, text, paths, ..."
+msgstr "Estado s: bits, pila, texto, rutas, ..."
+
+#: lessons/cs-source/chapters/02-what-counts-as-a-machine.md:13
+msgctxt "s-fc17a0b9b664-0007"
+msgid "allowed step: transition rule"
+msgstr "Paso permitido: regla de transición"
+
+#: lessons/cs-source/chapters/02-what-counts-as-a-machine.md:13
+msgctxt "s-e719e065a2e7-0008"
+msgid "State s′"
+msgstr "Estado s′"
+
+#: lessons/cs-source/chapters/02-what-counts-as-a-machine.md:15
+msgctxt "s-7b0d55f1f44d-0009"
+msgid "input or event (if any)"
+msgstr "Entrada de datos o evento (si hay)"
+
+#: lessons/cs-source/chapters/02-what-counts-as-a-machine.md:16
+msgctxt "s-79960f292197-0010"
+msgid "observable effect or result (if any)"
+msgstr "Efecto o resultado observable (si hay)"
+
+#: lessons/cs-source/chapters/02-what-counts-as-a-machine.md:19
+msgctxt "s-c96af67b5229-0011"
+msgid "The picture shows the four parts without naming any hardware: the state and how it is represented, one allowed step and the invariant that holds before and after it. A regex engine's capture stack, a Make dependency graph and an editor buffer all fit this template. The template does not require finite states, explicit input and output or machine instructions."
+msgstr "La imagen muestra las cuatro partes sin nombrar ningún componente físico: el estado y su representación, un paso permitido y el invariante que se cumple antes y después del paso. La pila de capturas de un motor de expresiones regulares, un grafo de dependencias de Make y un búfer de editor encajan en esta plantilla. La plantilla no exige un número finito de estados, una entrada de datos y una salida explícitas ni instrucciones de máquina."
+
+#: lessons/cs-source/chapters/02-what-counts-as-a-machine.md:21
+msgctxt "s-6d6d076be3e3-0012"
+msgid "The first goal of this book is exactly that habit: *name the machine hiding inside the language*. A stack machine, a register machine and a rewriting system can all compute the same things, but they keep their memory in different places. The concepts here are the vocabulary for that: transition systems, operational semantics (state, and one step at a time), Turing machines, Markov algorithms and Turing completeness. One more question goes with them: which part of a design *computes*, and which part only decides what runs next (⟦MACRO_0001⟧)? The chapter \"State beyond variables\" then returns to the question that matters most for this repository: where does the state live?"
+msgstr "El primer objetivo de este libro es precisamente que adquieras ese hábito: *identifica la máquina que se esconde en el lenguaje*. Una máquina de pila, una máquina de registros y un sistema de reescritura pueden computar lo mismo, pero guardan su memoria en lugares distintos. Los conceptos de este capítulo te dan el vocabulario: sistemas de transición, semántica operacional (estado, un paso a la vez), máquinas de Turing, algoritmos de Márkov y completitud de Turing. Hay otra pregunta: ¿qué parte de un diseño *computa* y qué parte solo decide qué se ejecuta después (⟦MACRO_0001⟧)? El capítulo \"Estado más allá de las variables\" retoma la pregunta que más importa en este repositorio: ¿dónde vive el estado?"

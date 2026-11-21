@@ -1209,3 +1209,22 @@
 {"segment_id": "s-30f7006fdea5-0022", "ts": "2026-11-21T14:40:16Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
 {"segment_id": "s-b41c50ab7de6-0049", "ts": "2026-11-21T14:40:16Z", "findings": ["I7: glossary term sandbox must be rendered 'entorno aislado (*sandbox*)'"]}
 {"segment_id": "s-499fe1efa6a6-0001", "ts": "2026-11-21T14:51:05Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-cb68a85c80fd-0003", "ts": "2026-11-21T15:02:58Z", "findings": [], "playful_note": "Usa «pirueta» para conservar la imagen del truco y su costo."}
+{"segment_id": "s-08f0f82b4429-0002", "ts": "2026-11-21T15:02:59Z", "findings": [], "playful_note": "Conserva la sorpresa ante la sencillez de la definición."}
+{"segment_id": "s-64c95d088c6b-0004", "ts": "2026-11-21T15:02:59Z", "findings": ["I21: identifier 'step' must stay literal (the English names it here); describe around it, never translate it"]}
+{"segment_id": "s-fc17a0b9b664-0007", "ts": "2026-11-21T15:02:59Z", "findings": ["I21: identifier 'step' must stay literal (the English names it here); describe around it, never translate it"]}
+{"segment_id": "s-6d6d076be3e3-0012", "ts": "2026-11-21T15:02:59Z", "findings": [], "playful_note": "Conserva la máquina escondida que el lector debe localizar."}
+{"segment_id": "s-0a55e0cecc5e-0003", "ts": "2026-11-21T15:02:59Z", "findings": ["I7: banned rendering 'callback' for glossary term callback"], "playful_note": "Mantiene el disfraz y explica qué se guarda."}
+{"segment_id": "s-78a7eb2da4ae-0011", "ts": "2026-11-21T15:02:59Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-f27f540726e6-0002", "ts": "2026-11-21T15:02:59Z", "findings": [], "playful_note": "Mantiene el énfasis en «una» para preparar la sorpresa."}
+{"segment_id": "s-9d83fd0936fe-0003", "ts": "2026-11-21T15:02:59Z", "findings": ["I7: banned rendering 'mecanismo' for glossary term machine"]}
+{"segment_id": "s-0d7fe4b3b84f-0002", "ts": "2026-11-21T15:03:00Z", "findings": [], "playful_note": "Remata la lista con el giro coloquial «un montón»."}
+{"segment_id": "s-4ec95355b6d9-0003", "ts": "2026-11-21T15:03:00Z", "findings": [], "playful_note": "Conserva la pregunta por el lugar donde vive el estado."}
+{"segment_id": "s-2384531becd7-0002", "ts": "2026-11-21T15:03:00Z", "findings": [], "playful_note": "El calefactor carísimo conserva el remate seco."}
+{"segment_id": "s-0781b570c254-0003", "ts": "2026-11-21T15:03:00Z", "findings": ["I7: banned rendering 'falla' for glossary term failure", "I7: glossary term code must be rendered 'código'"], "playful_note": "Conserva la ironía en «falla a propósito» y «sobrevive al fallo»."}
+{"segment_id": "s-cbd2def4dff4-0002", "ts": "2026-11-21T15:03:00Z", "findings": [], "playful_note": "Conserva el contraste entre pruebas rápidas y una espera de un año."}
+{"segment_id": "s-e1c59c00e252-0003", "ts": "2026-11-21T15:03:00Z", "findings": ["I7: glossary term list must be rendered 'lista'"]}
+{"segment_id": "s-1b88ebb741d4-0005", "ts": "2026-11-21T15:03:00Z", "findings": [], "playful_note": "Conserva el tono cómplice de «las raras dejarán de parecer iguales»."}
+{"segment_id": "s-80c149bf5864-0020", "ts": "2026-11-21T15:03:01Z", "findings": [], "playful_note": "Conserva la imagen de las operaciones escondidas tras una frase."}
+{"segment_id": "s-f1761891fb7f-0027", "ts": "2026-11-21T15:03:01Z", "findings": [], "playful_note": "Mantiene la escala entre volver a leer, repetir el comportamiento y continuar la ejecución."}
+{"segment_id": "s-0781b570c254-0003", "ts": "2026-11-21T15:03:24Z", "findings": ["I7: glossary term code must be rendered 'código'"], "playful_note": "Conserva la ironía en «falla a propósito» y «sobrevive al fallo»."}
