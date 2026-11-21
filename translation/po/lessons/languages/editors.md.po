@@ -90,27 +90,27 @@ msgstr "**Una tabla de reescritura hace la búsqueda.** Hay diez reglas: ⟦CODE
 #: lessons/languages/editors.md:31
 msgctxt "s-150ec52bebf6-0016"
 msgid "**A marker seeds the ledger.** ⟦CODE_0001⟧ supplies the zero total above the first card. After the pass, ⟦CODE_0002⟧ removes that marker from the output."
-msgstr ""
+msgstr "**Un marcador inicia el registro.** ⟦CODE_0001⟧ aporta el total cero encima de la primera tarjeta. Después de la pasada, ⟦CODE_0002⟧ elimina ese marcador de la salida."
 
 #: lessons/languages/editors.md:32
 msgctxt "s-1ceec3e945a7-0017"
 msgid "**Adding is writing marks side by side.** ⟦CODE_0001⟧ copies the line above (the total so far), ⟦CODE_0002⟧ joins it to the card and one ⟦CODE_0003⟧ puts the two sets of marks together."
-msgstr ""
+msgstr "**Sumar es escribir marcas una al lado de otra.** ⟦CODE_0001⟧ copia la línea anterior (el total acumulado), ⟦CODE_0002⟧ la une a la tarjeta y un ⟦CODE_0003⟧ junta ambos grupos de marcas."
 
 #: lessons/languages/editors.md:33
 msgctxt "s-fd3a4dd35d2b-0018"
 msgid "**A failed ⟦CODE_0001⟧ is an ⟦CODE_0002⟧.** Inside a global command it does nothing, and does not stop the list. So each substitution means \"if the line looks like this, rewrite it\"."
-msgstr ""
+msgstr "**Un ⟦CODE_0001⟧ fallido es un ⟦CODE_0002⟧.** Dentro de un comando global no hace nada ni detiene la lista. Así, cada sustitución significa \"si la línea tiene esta forma, reescríbela\"."
 
 #: lessons/languages/editors.md:34
 msgctxt "s-b17632e0fbba-0019"
 msgid "**The stop rule is a regular expression.** ⟦CODE_0001⟧ is \"41 or more marks\". The bar before the marks becomes a bang, and the next card sees the bang and turns into a ⟦CODE_0002⟧ line."
-msgstr ""
+msgstr "**La regla de parada es una expresión regular.** ⟦CODE_0001⟧ significa \"41 o más marcas\". La barra antes de las marcas se convierte en un signo de exclamación. La siguiente tarjeta ve el signo y se convierte en una línea ⟦CODE_0002⟧."
 
 #: lessons/languages/editors.md:36
 msgctxt "s-4fe4a632eb43-0020"
 msgid "The [README](⟦DEST_0001⟧) has the full table."
-msgstr ""
+msgstr "El [README](⟦DEST_0001⟧) contiene la tabla completa."
 
 #: lessons/languages/editors.md:38
 msgctxt "s-4558ac37c649-0021"

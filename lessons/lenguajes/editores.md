@@ -28,12 +28,12 @@ Setenta líneas de comandos de ed. Un lanzador que proporciona cinco dígitos al
 
 - **El orden de las categorías es el direccionamiento.** `1s/^/Meetings /` coloca un nombre en la línea 1 y `2s/^/Coding /` en la línea 2.
 - **Una tabla de reescritura hace la búsqueda.** Hay diez reglas: `g/x7$/s/7$/xxxxxxx/` y nueve más. Un dígito se convierte en esa cantidad de marcas.
-- **A marker seeds the ledger.** `Start 0|` supplies the zero total above the first card. After the pass, `g/^Start /d` removes that marker from the output.
-- **Adding is writing marks side by side.** `-t.` copies the line above (the total so far), `-,.j` joins it to the card and one `s` puts the two sets of marks together.
-- **A failed `s` is an `if`.** Inside a global command it does nothing, and does not stop the list. So each substitution means "if the line looks like this, rewrite it".
-- **The stop rule is a regular expression.** `x\{41,\}` is "41 or more marks". The bar before the marks becomes a bang, and the next card sees the bang and turns into a `Dead` line.
+- **Un marcador inicia el registro.** `Start 0|` aporta el total cero encima de la primera tarjeta. Después de la pasada, `g/^Start /d` elimina ese marcador de la salida.
+- **Sumar es escribir marcas una al lado de otra.** `-t.` copia la línea anterior (el total acumulado), `-,.j` la une a la tarjeta y un `s` junta ambos grupos de marcas.
+- **Un `s` fallido es un `if`.** Dentro de un comando global no hace nada ni detiene la lista. Así, cada sustitución significa "si la línea tiene esta forma, reescríbela".
+- **La regla de parada es una expresión regular.** `x\{41,\}` significa "41 o más marcas". La barra antes de las marcas se convierte en un signo de exclamación. La siguiente tarjeta ve el signo y se convierte en una línea `Dead`.
 
-The [README](../../src/ed-weird/README.md#cómo-funciona-el-truco) has the full table.
+El [README](../../src/ed-weird/README.md#cómo-funciona-el-truco) contiene la tabla completa.
 
 **A rewrite system with a different control.** [`regex-sed`](regex.md#gnu-sed) also rewrites text, but sed has a branch command and can loop until no rule applies. ed cannot. Its only repeat is `g`, and its only choice is a substitution that may not match.
 
