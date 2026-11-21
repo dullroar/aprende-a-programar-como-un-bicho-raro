@@ -42,13 +42,13 @@ La ventana se construye a partir de una cadena de texto de XAML sin procesar med
 ### Haz esto en producción y estás despedido
 
 - **`DbContext` no es seguro para hilos.** El `Mutex` existe solo para que la estructura de hilo más reflexión funcione siquiera ([README](../../src/ModernChallenge1/README.md#trampas-que-conviene-conocer)); es un vestigio histórico.
-- **Reflection and a thread add nothing.** They are a deliberate 2008-style time capsule; modern code would `await SaveChangesAsync()`.
-- **WPF needs `[STAThread]`** and a single UI thread ([L30](../../src/ModernChallenge1/Program.cs#L30)).
-- **Readability, testing, debugging**: nothing in that `for` header can be stepped through, unit-tested or reused.
+- **La reflexión y un hilo no aportan nada.** Son una cápsula del tiempo deliberada al estilo de 2008; el código moderno usaría `await SaveChangesAsync()`.
+- **WPF necesita `[STAThread]`** y un solo hilo de interfaz de usuario ([L30](../../src/ModernChallenge1/Program.cs#L30)).
+- **Legibilidad, pruebas y depuración**: nada en ese encabezado `for` permite avanzar paso a paso, hacer pruebas unitarias ni reutilizarlo.
 
-Legitimate uses: none for the header as written. The *ideas* (state in an object, pure queries over a list, effects at the edge) are ordinary.
+Usos legítimos: ninguno para el encabezado tal como está escrito. Las *ideas* (estado en un objeto, consultas puras sobre una lista, efectos en los extremos) son comunes.
 
-## Deferred execution and the void-to-value trick
+## La ejecución diferida y el truco de convertir void en valor
 
 A note before the code: the two LINQ entries are **not** the shared challenge. They draw no random hours. Their work week is five fixed 8-hour days, capped so that the total is exactly 40.0 hours and no card crosses the line, because they teach deferred execution rather than the stop rule.
 

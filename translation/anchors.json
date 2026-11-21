@@ -4142,8 +4142,8 @@
     {
      "en": "Deferred execution and the void-to-value trick",
      "en_id": "deferred-execution-and-the-void-to-value-trick",
-     "es": "Deferred execution and the void-to-value trick",
-     "es_id": "deferred-execution-and-the-void-to-value-trick",
+     "es": "La ejecución diferida y el truco de convertir void en valor",
+     "es_id": "la-ejecución-diferida-y-el-truco-de-convertir-void-en-valor",
      "level": 2,
      "line": 51
     },
@@ -4328,7 +4328,7 @@
     "behold-the-monstrosity": "contempla-la-monstruosidad",
     "c-linq-and-xaml-plus-the-one-statement-ports": "c-linq-y-xaml-más-las-adaptaciones-de-una-sola-sentencia",
     "computer-science-behind-this-page": "computer-science-behind-this-page",
-    "deferred-execution-and-the-void-to-value-trick": "deferred-execution-and-the-void-to-value-trick",
+    "deferred-execution-and-the-void-to-value-trick": "la-ejecución-diferida-y-el-truco-de-convertir-void-en-valor",
     "do-this-in-production-and-youre-fired": "haz-esto-en-producción-y-estás-despedido",
     "do-this-in-production-and-youre-fired-1": "do-this-in-production-and-youre-fired",
     "honest-fine-print": "honest-fine-print",

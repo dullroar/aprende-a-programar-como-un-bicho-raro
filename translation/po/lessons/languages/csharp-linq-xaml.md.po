@@ -120,27 +120,27 @@ msgstr "**⟦CODE_0001⟧ no es seguro para hilos.** El ⟦CODE_0002⟧ existe s
 #: lessons/languages/csharp-linq-xaml.md:45
 msgctxt "s-a84a688a73e1-0022"
 msgid "**Reflection and a thread add nothing.** They are a deliberate 2008-style time capsule; modern code would ⟦CODE_0001⟧."
-msgstr ""
+msgstr "**La reflexión y un hilo no aportan nada.** Son una cápsula del tiempo deliberada al estilo de 2008; el código moderno usaría ⟦CODE_0001⟧."
 
 #: lessons/languages/csharp-linq-xaml.md:46
 msgctxt "s-5ba087031964-0023"
 msgid "**WPF needs ⟦CODE_0001⟧** and a single UI thread ([L30](⟦DEST_0002⟧))."
-msgstr ""
+msgstr "**WPF necesita ⟦CODE_0001⟧** y un solo hilo de interfaz de usuario ([L30](⟦DEST_0002⟧))."
 
 #: lessons/languages/csharp-linq-xaml.md:47
 msgctxt "s-d72c58e7166d-0024"
 msgid "**Readability, testing, debugging**: nothing in that ⟦CODE_0001⟧ header can be stepped through, unit-tested or reused."
-msgstr ""
+msgstr "**Legibilidad, pruebas y depuración**: nada en ese encabezado ⟦CODE_0001⟧ permite avanzar paso a paso, hacer pruebas unitarias ni reutilizarlo."
 
 #: lessons/languages/csharp-linq-xaml.md:49
 msgctxt "s-5bc705ef8e7c-0025"
 msgid "Legitimate uses: none for the header as written. The *ideas* (state in an object, pure queries over a list, effects at the edge) are ordinary."
-msgstr ""
+msgstr "Usos legítimos: ninguno para el encabezado tal como está escrito. Las *ideas* (estado en un objeto, consultas puras sobre una lista, efectos en los extremos) son comunes."
 
 #: lessons/languages/csharp-linq-xaml.md:51
 msgctxt "s-e51197c1f093-0026"
 msgid "Deferred execution and the void-to-value trick"
-msgstr ""
+msgstr "La ejecución diferida y el truco de convertir void en valor"
 
 #: lessons/languages/csharp-linq-xaml.md:53
 msgctxt "s-2c138c1938d5-0027"

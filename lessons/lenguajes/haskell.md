@@ -39,7 +39,7 @@ The stop rule is [`untilOver40` (L82-83)](../../src/haskell-weird/timecards.hs#L
 
 - **Evaluation order is part of a program's meaning once effects are involved.** In a pure program it does not matter. Put IO behind a lazy cell and it decides *which rows exist*.
 - **Referential transparency is a contract, and `unsafe...` is where you stop honoring it.**
-- **"When does this run?" is the same question** as LINQ's deferred execution (see [C#](csharp-linq-xaml.md#deferred-execution-and-the-void-to-value-trick)). Both are cases where a description is separated from its execution.
+- **"When does this run?" is the same question** as LINQ's deferred execution (see [C#](csharp-linq-xaml.md#la-ejecución-diferida-y-el-truco-de-convertir-void-en-valor)). Both are cases where a description is separated from its execution.
 
 Tags: `span` laziness is **guaranteed** by the language semantics. `unsafeInterleaveIO` ordering is **implementation-permitted**: the program is correct because card n cannot be forced before card n-1, not because the evaluator promises an order.
 

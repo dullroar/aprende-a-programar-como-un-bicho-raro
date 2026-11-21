@@ -60,7 +60,7 @@ flowchart TB
 
 Both tracks see the same first three cards. `reduce` has no built-in early stop: it processes everything it is given (code can write a custom fold, or throw, to abort, but that is not short-circuiting). A demand-driven stream stops *asking*, so the fourth card is never made. Haskell's `span` leaves the crossing card out of its accepted prefix, so the complete algorithm takes that card separately.
 
-The common shape: *describe the full answer, then say how much of it you want.* (The JavaScript entry reverses it: it describes how to make *one* answer, and lets the consumer ask for as many as it wants.) The differences are about **when** the work happens (eager `Aggregate` and APL arrays vs. lazy Haskell lists and LINQ `Select`) and **where** state lives. Compare how LINQ and Haskell answer "when does it run?" in [C#](lenguajes/csharp-linq-xaml.md#deferred-execution-and-the-void-to-value-trick) and [Haskell](lenguajes/haskell.md#lazy-io-as-control-flow).
+The common shape: *describe the full answer, then say how much of it you want.* (The JavaScript entry reverses it: it describes how to make *one* answer, and lets the consumer ask for as many as it wants.) The differences are about **when** the work happens (eager `Aggregate` and APL arrays vs. lazy Haskell lists and LINQ `Select`) and **where** state lives. Compare how LINQ and Haskell answer "when does it run?" in [C#](lenguajes/csharp-linq-xaml.md#la-ejecución-diferida-y-el-truco-de-convertir-void-en-valor) and [Haskell](lenguajes/haskell.md#lazy-io-as-control-flow).
 
 ## Control state outside variables
 
@@ -117,8 +117,8 @@ Each track stores "what happens next" somewhere that is not a loop counter: in t
 | The running total and the card count, held in one object that only the listeners touch | [javascript](lenguajes/javascript.md#listeners-all-the-way-down): [`javascript-events`](../src/javascript-events/README.md) |
 | Variables captured by closures: the generator's number, and the machine's card count, total and stop flag | [javascript](lenguajes/javascript.md#closures-all-the-way-down): [`javascript-weird`](../src/javascript-weird/README.md) |
 | Properties of one object expression, the seed of the sequence | [csharp-linq-xaml](lenguajes/csharp-linq-xaml.md#the-one-statement-ports-same-trick-different-machinery): [`KotlinChallenge1`](../src/KotlinChallenge1/README.md) |
-| Inside the stages' enumerators, and in the database | [csharp-linq-xaml](lenguajes/csharp-linq-xaml.md#deferred-execution-and-the-void-to-value-trick): [`LinqChallenge1`](../src/LinqChallenge1/README.md) |
-| A prefix sum recomputed in each `where`, and the database; no accumulator variable | [csharp-linq-xaml](lenguajes/csharp-linq-xaml.md#deferred-execution-and-the-void-to-value-trick): [`LinqChallenge2`](../src/LinqChallenge2/README.md) |
+| Inside the stages' enumerators, and in the database | [csharp-linq-xaml](lenguajes/csharp-linq-xaml.md#la-ejecución-diferida-y-el-truco-de-convertir-void-en-valor): [`LinqChallenge1`](../src/LinqChallenge1/README.md) |
+| A prefix sum recomputed in each `where`, and the database; no accumulator variable | [csharp-linq-xaml](lenguajes/csharp-linq-xaml.md#la-ejecución-diferida-y-el-truco-de-convertir-void-en-valor): [`LinqChallenge2`](../src/LinqChallenge2/README.md) |
 | The input stream: whatever macro text has not been read yet | [m4](lenguajes/m4.md#a-loop-made-of-rescanning): [`m4`](../src/m4/README.md) |
 | A C struct that never rewinds | [regex](lenguajes/regex.md#pcre2-callouts-as-an-instruction-set): [`regex-pcre2`](../src/regex-pcre2/README.md) |
 | SQLite rows, and the exit code of each callout | [regex](lenguajes/regex.md#pcre2grep-exit-codes-as-control-flow): [`regex-pcre2grep`](../src/regex-pcre2grep/README.md) |

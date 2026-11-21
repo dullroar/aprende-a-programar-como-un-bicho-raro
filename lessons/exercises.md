@@ -142,7 +142,7 @@ Acceptance criteria:
 
 ### B7. LINQ: enumerate twice (verified)
 
-**Lesson:** [C# and LINQ](lenguajes/csharp-linq-xaml.md#deferred-execution-and-the-void-to-value-trick).
+**Lesson:** [C# and LINQ](lenguajes/csharp-linq-xaml.md#la-ejecución-diferida-y-el-truco-de-convertir-void-en-valor).
 
 1. In a new empty folder, make a console project (`dotnet new console`, target `net10.0`) whose `Program.cs` builds
    `var q = Enumerable.Range(1, 3).Select(i => { Console.WriteLine($"effect {i}"); return i; });`
