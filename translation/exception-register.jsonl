@@ -287,3 +287,9 @@
 {"id":"EXC-287","segment":"s-66a4d99c08a0-0073","invariant":"I7","reason":"host means a web site in 'links and hosts', not a machine host; rendered sitios","task":"P4-lessons-book-1"}
 {"id":"EXC-288","segment":"s-8e38a1ea5c68-0002","invariant":"TRANSLATE","reason":"v4 is an edition number and stays as the heading","task":"P4-lessons-book-1"}
 {"id":"EXC-289","segment":"s-e0d2747b9ab7-0014","invariant":"TRANSLATE","reason":"v3 is an edition number and stays as the heading","task":"P4-lessons-book-1"}
+{"id":"EXC-290","segment":"s-d33eb34bac66-0004","invariant":"I12","reason":"A numbered list item whose one sentence is a colon list of the seven worksheet questions; splitting it would add structure the English lacks","task":"P4-lessons-study-guides-concepts-1"}
+{"id":"EXC-291","segment":"s-5923d7822338-0005","invariant":"I7","reason":"The heading 'Límites del alcance' is the glossary rendering of Scope limits; 'ámbito' is the sense of programming scope","task":"P4-lessons-study-guides-concepts-1"}
+{"id":"EXC-292","segment":"s-b8d44ff0808d-0092","invariant":"I7","reason":"'veta la pasada' renders the English 'vetoes the next pass'; the verb is conjugated, not the infinitive 'vetar'","task":"P4-lessons-study-guides-concepts-1"}
+{"id":"EXC-293","segment":"s-87d9e31bff8d-0131","invariant":"I7","reason":"'state' is the verb in 'Costs to state', meaning declare, not the noun state","task":"P4-lessons-study-guides-concepts-1"}
+{"id":"EXC-294","segment":"s-101a02d47850-0137","invariant":"I12","reason":"A list of 13 link names with their destinations; the link text counts as words and cannot be split","task":"P4-lessons-study-guides-concepts-1"}
+{"id":"EXC-295","segment":"s-5f1f4b91fa68-0142","invariant":"I12","reason":"A list of link titles; the 32 words are mostly link text and cannot be split without reordering the English","task":"P4-lessons-study-guides-concepts-1"}

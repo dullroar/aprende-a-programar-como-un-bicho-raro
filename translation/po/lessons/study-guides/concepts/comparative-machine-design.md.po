@@ -1,0 +1,783 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:1
+msgctxt "s-933c476258c9-0000"
+msgid "Comparative machine design study guide"
+msgstr "Guía de estudio de diseño comparado de máquinas"
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:3
+msgctxt "s-4e718de9279e-0001"
+msgid "What this guide is for"
+msgstr "Para qué sirve esta guía"
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:5
+msgctxt "s-7813e1371cd0-0002"
+msgid "A loop with no body, a regex search, a Makefile that rereads itself, a list whose elements write to a database, an editor buffer and an archive all take on the time-card task. Some searches finish by failing after their side effects; the .NET search succeeds so the host can read its captures. This guide puts them side by side with one worksheet. The core question is: **what plays loop, state, clock, decision and commit in each, and what evidence proves it?**"
+msgstr "Un bucle sin cuerpo, una búsqueda con expresión regular y un Makefile que se relee a sí mismo abordan la tarea de la tarjeta de horas. También la abordan una lista cuyos elementos escriben en una base de datos, un búfer de editor y un archivo tar. Algunas búsquedas terminan fallando después de sus efectos secundarios. La búsqueda de .NET tiene éxito para que el anfitrión pueda leer sus capturas. Esta guía los pone lado a lado con una sola hoja de trabajo. La pregunta central es: **¿qué hace de bucle, de estado, de reloj, de decisión y de confirmación en cada uno, y qué evidencia lo demuestra?**"
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:7
+msgctxt "s-d84bcb27c154-0003"
+msgid "When you finish, you should be able to:"
+msgstr "Cuando termines, deberías poder:"
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:9
+msgctxt "s-d33eb34bac66-0004"
+msgid ""
+"Fill in the seven-question worksheet for any entry: where is the program, where is the state, what repeats, what advances the next step, what makes a decision, what commits effects and what evidence proves the claim.\n"
+"2. Say what *role* each piece plays even when it does not look like the usual one: a flag, a file, a capture, a method, a tick.\n"
+"3. Group the entries by the answer to \"where does the program live?\" and say what each group can and cannot do.\n"
+"4. Explain why the fixed LINQ work week ends at 40 and why XAML can run out of passes there.\n"
+"5. Choose, for a given need (testability, observability, portability), which design suits it, and say what it costs.\n"
+"6. Label claims as guaranteed, implementation-permitted or accidentally exploited."
+msgstr ""
+"Completar la hoja de trabajo de siete preguntas de cualquier entrada: dónde está el programa, dónde está el estado, lo que se repite, lo que hace avanzar el paso siguiente, qué toma una decisión, qué confirma los efectos y qué evidencia respalda la afirmación.\n"
+"2. Decir qué *papel* cumple cada pieza aunque no se parezca al habitual: una bandera, un archivo, una captura, un método, un tic.\n"
+"3. Agrupar las entradas según la respuesta a \"¿dónde vive el programa?\" y decir qué puede y qué no puede hacer cada grupo.\n"
+"4. Explicar por qué la semana laboral fija de LINQ termina en 40 y por qué XAML puede quedarse sin pasadas en ese punto.\n"
+"5. Elegir, para una necesidad dada (facilidad de prueba, observabilidad, portabilidad), el diseño que mejor la satisface y decir cuál es su costo.\n"
+"6. Etiquetar cada afirmación con una de estas tres etiquetas: garantizado, permitido por la implementación o aprovechado por accidente."
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:16
+msgctxt "s-5923d7822338-0005"
+msgid "**Scope limits.** The guide compares; it does not re-teach each entry. It uses facts checked in the language guides and the concept guides. Its sources are [Comparative case studies](⟦DEST_0001⟧) and [Solution patterns](⟦DEST_0002⟧)."
+msgstr "**Límites del alcance.** La guía compara, pero no vuelve a enseñar cada entrada. Usa hechos comprobados en las guías de lenguaje y en las guías de concepto. Sus fuentes son [Casos de estudio comparados](⟦DEST_0001⟧) y [Patrones de solución](⟦DEST_0002⟧)."
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:18
+msgctxt "s-d5bfdd7d989d-0006"
+msgid "Before you begin"
+msgstr "Antes de empezar"
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:20
+msgctxt "s-4e19cf22f47a-0007"
+msgid "**Safety model.** The cards are fictional **⟦DNT_0001⟧** data. Programs can write to local scratch files or databases and can start processes. Read the source first and run it in the sandbox first. Work on copies ([Running things safely](⟦DEST_0002⟧)). Comparing entries means running several: run them one at a time, and use a scratch data folder."
+msgstr "**Modelo de seguridad.** Las tarjetas son datos ficticios marcados con **⟦DNT_0001⟧**. Los programas pueden escribir en archivos o bases de datos locales de prueba y pueden iniciar procesos. Lee primero el código fuente y ejecútalo antes en un entorno aislado (*sandbox*) que limita el acceso al sistema anfitrión. Trabaja con copias ([Ejecutar cosas con seguridad](⟦DEST_0002⟧)). Comparar entradas implica ejecutar varias: ejecútalas una a una y usa un directorio de datos de prueba."
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:22
+msgctxt "s-13b02ebaaf19-0008"
+msgid "**Prediction rule.** For each entry you compare, fill in the worksheet *before* reading the README's answer. Then check the evidence. A worksheet cell you cannot support with a run or a line of source is a guess."
+msgstr "**Regla de predicción.** Para cada entrada que compares, completa la hoja de trabajo *antes* de leer la respuesta del README. Después comprueba la evidencia. Una celda de la hoja que no puedas respaldar con una ejecución o con una línea de código fuente es una conjetura."
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:24
+msgctxt "s-6d90a234241d-0009"
+msgid "**The worksheet.**"
+msgstr "**La hoja de trabajo.**"
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:36
+msgctxt "s-2dd18ffddf3e-0010"
+msgid "**Vocabulary.**"
+msgstr "**Vocabulario.**"
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:38
+msgctxt "s-790e521777f0-0011"
+msgid "⟦SEP_0001⟧ Term ⟦SEP_0002⟧ Meaning here ⟦SEP_0003⟧"
+msgstr "⟦SEP_0001⟧ Término ⟦SEP_0002⟧ Significado aquí ⟦SEP_0003⟧"
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:40
+msgctxt "s-38e004814109-0012"
+msgid "⟦SEP_0001⟧ Role ⟦SEP_0002⟧ A job every solution must do: loop, state, clock, decision, commit. ⟦SEP_0003⟧"
+msgstr "⟦SEP_0001⟧ Papel ⟦SEP_0002⟧ Un trabajo que toda solución debe cumplir: bucle, estado, reloj, decisión, confirmación. ⟦SEP_0003⟧"
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:41
+msgctxt "s-0873a14da02d-0013"
+msgid "⟦SEP_0001⟧ Machine ⟦SEP_0002⟧ The thing that plays a role in one entry: a flag, a file, a capture, a method. ⟦SEP_0003⟧"
+msgstr "⟦SEP_0001⟧ Máquina ⟦SEP_0002⟧ La pieza que cumple un papel en una entrada: una bandera, un archivo, una captura, un método. ⟦SEP_0003⟧"
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:42
+msgctxt "s-9f9c8ed0d1fe-0014"
+msgid "⟦SEP_0001⟧ Ceiling ⟦SEP_0002⟧ A limit set by a finite supply (four names, five dice), not by the rule. ⟦SEP_0003⟧"
+msgstr "⟦SEP_0001⟧ Techo ⟦SEP_0002⟧ Un límite que impone un suministro finito (cuatro nombres, cinco dados), no la regla. ⟦SEP_0003⟧"
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:44
+msgctxt "s-ae7d69ef2745-0015"
+msgid "The shared challenge"
+msgstr "El reto compartido"
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:46
+msgctxt "s-78a7d749b03d-0016"
+msgid "The [challenge specification](⟦DEST_0001⟧) calls for cards with a category and 10 to 19 whole hours. Categories cycle through ⟦DNT_0002⟧, ⟦DNT_0003⟧, ⟦DNT_0004⟧ and ⟦DNT_0005⟧. Add each card's hours to the running total. Stop when the total passes 40. Keep the **first card that takes the total over 40**. A total of exactly 40 continues. Four 10-hour cards need a fifth card, in the ⟦DNT_0006⟧ category. Conforming runs finish with 3 to 5 cards and a total of 41 to 59 hours."
+msgstr "La [especificación del reto](⟦DEST_0001⟧) pide tarjetas con una categoría y de 10 a 19 horas enteras. Las categorías se repiten en ciclo: `⟦DNT_0002⟧`, `⟦DNT_0003⟧`, `⟦DNT_0004⟧` y `⟦DNT_0005⟧`. Suma las horas de cada tarjeta al total acumulado. Detente cuando el total pasa de 40. Conserva la **primera tarjeta con la que el total pasa de 40**. Un total de exactamente 40 continúa. Cuatro tarjetas de 10 horas necesitan una quinta tarjeta, de la categoría `⟦DNT_0006⟧`. Las ejecuciones conformes tienen de 3 a 5 tarjetas y un total de 41 a 59 horas."
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:48
+msgctxt "s-68afa023b381-0017"
+msgid "The book records [where entries differ](⟦DEST_0001⟧). The LINQ demos use five fixed 8-hour days, and XAML can run out of passes at 40. The regex entries still follow the numeric rule: the C and .NET examples use TSV, while pcre2grep saves cards in separate SQLite calls. A summary can appear in a terminal or a window. Ask which result the entry demonstrates before comparing the mechanism."
+msgstr "El libro registra [dónde difieren las entradas](⟦DEST_0001⟧). Las demostraciones de LINQ usan cinco días fijos de 8 horas, y XAML puede quedarse sin pasadas en 40. Las entradas de expresiones regulares siguen la regla numérica: los ejemplos en C y .NET usan TSV, mientras que pcre2grep guarda las tarjetas en llamadas separadas a SQLite. Un resumen puede aparecer en una terminal o en una ventana. Antes de comparar el mecanismo, pregunta qué resultado demuestra la entrada."
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:50
+msgctxt "s-9f148b367e02-0018"
+msgid "The machine to identify"
+msgstr "La máquina que hay que identificar"
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:52
+msgctxt "s-420a741fc890-0019"
+msgid "Compare in two cuts. Start by identifying the roles, then test the decisions and effects against the trace."
+msgstr "Compara en dos cortes. Empieza por identificar los papeles y luego contrasta las decisiones y los efectos con la traza."
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:54
+msgctxt "s-8440ea1f3f7d-0020"
+msgid "**Where is the program?** The entries store their programs in different places."
+msgstr "**¿Dónde está el programa?** Las entradas guardan sus programas en lugares distintos."
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:56
+msgctxt "s-124184bf7263-0021"
+msgid "The idiomatic entries and the ports use source statements."
+msgstr "Las entradas idiomáticas y las adaptaciones usan sentencias de código fuente."
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:57
+msgctxt "s-37195b19da94-0022"
+msgid "⟦CODE_0001⟧ uses a jump target."
+msgstr "⟦CODE_0001⟧ usa un destino de salto."
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:58
+msgctxt "s-6bb60d8321ff-0023"
+msgid "⟦CODE_0001⟧ reads one source line repeatedly."
+msgstr "⟦CODE_0001⟧ lee una misma línea de código fuente varias veces."
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:59
+msgctxt "s-087ae258a11c-0024"
+msgid "GNU Make rewrites its own input."
+msgstr "GNU Make reescribe su propia entrada."
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:60
+msgctxt "s-57511f9a1381-0025"
+msgid "The regex entries use a pattern."
+msgstr "Las entradas de expresiones regulares usan un patrón."
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:61
+msgctxt "s-3e9782853a07-0026"
+msgid "⟦CODE_0001⟧ uses table rows."
+msgstr "⟦CODE_0001⟧ usa filas de una tabla."
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:62
+msgctxt "s-693c648e79a4-0027"
+msgid "⟦CODE_0001⟧ uses archive members. ⟦CODE_0002⟧ uses the archive size."
+msgstr "⟦CODE_0001⟧ usa miembros del archivo tar. ⟦CODE_0002⟧ usa el tamaño del archivo tar."
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:63
+msgctxt "s-e534e93eee8b-0028"
+msgid "⟦CODE_0001⟧ uses an editor register."
+msgstr "⟦CODE_0001⟧ usa un registro del editor."
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:64
+msgctxt "s-3958b6da26f4-0029"
+msgid "⟦CODE_0001⟧ uses a class chain."
+msgstr "⟦CODE_0001⟧ usa una cadena de clases."
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:65
+msgctxt "s-0da07afbb22b-0030"
+msgid "⟦CODE_0001⟧ writes function text at run time."
+msgstr "⟦CODE_0001⟧ escribe texto de funciones en tiempo de ejecución."
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:66
+msgctxt "s-df33f5ed23cc-0031"
+msgid "⟦CODE_0001⟧ uses a document."
+msgstr "⟦CODE_0001⟧ usa un documento."
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:68
+msgctxt "s-76201c9ffa00-0032"
+msgid "**Where state lives.** See the diagram below: it groups the entries by what holds the next step and the remembered state."
+msgstr "**Dónde vive el estado.** Mira el diagrama de abajo: agrupa las entradas según lo que guarda el paso siguiente y el estado recordado."
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:70
+msgctxt "s-94799e96aca0-0033"
+msgid "**What repeats.** The thing that happens again: a performed paragraph, a rewound line, a restarted build, a quantifier, an event, a method, a tick, a trigger firing."
+msgstr "**Qué se repite.** Lo que ocurre otra vez: un párrafo ejecutado, una línea rebobinada, una compilación reiniciada, un cuantificador, un evento, un método, un tic, un disparador que se activa."
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:72
+msgctxt "s-9269a1cb5f33-0034"
+msgid "**What advances the next step.** Often the *environment*: the text interpreter, ⟦CODE_0001⟧'s walk, tar's checkpoints, SQLite's trigger machinery, the event loop. In other entries, the program itself."
+msgstr "**Qué hace avanzar el paso siguiente.** A menudo es el *entorno*: el intérprete de texto, el recorrido de ⟦CODE_0001⟧, los puntos de control de tar, la maquinaria de disparadores de SQLite, el bucle de eventos. En otras entradas, es el propio programa."
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:74
+msgctxt "s-17c64f8130d5-0035"
+msgid "**What stops it.** A flag, an absence (no file, no input left), a literal's length, a comment, an empty compression, a failed match. The stop rule is a value or a structure, rarely a visible ⟦CODE_0001⟧."
+msgstr "**Qué lo detiene.** Una bandera, una ausencia (ningún archivo, ninguna entrada de datos pendiente), la longitud de un literal, un comentario, una compresión vacía, una coincidencia fallida. La regla de parada es un valor o una estructura, pocas veces un ⟦CODE_0001⟧ visible."
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:76
+msgctxt "s-f5454e815291-0036"
+msgid "**What commits.** Some entries commit all cards together, while others save at each step. PCRE2 callouts write the TSV during the match; the .NET host writes its TSV from the returned captures. pcre2grep uses separate SQLite processes. The regex verb ⟦CODE_0001⟧ rules out backtracking retries. SQLite transactions belong to the helper."
+msgstr "**Qué confirma.** Algunas entradas confirman todas las tarjetas juntas, y otras guardan en cada paso. Los callouts de PCRE2 escriben el TSV durante la coincidencia. El anfitrión de .NET escribe su TSV a partir de las capturas devueltas. pcre2grep usa procesos de SQLite separados. El verbo de expresión regular ⟦CODE_0001⟧ descarta los reintentos por retroceso. Las transacciones de SQLite pertenecen a la función auxiliar."
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:82
+msgctxt "s-8fe60b74bf09-0037"
+msgid "Where entries keep the next step and the remembered state"
+msgstr "Dónde guardan las entradas el paso siguiente y el estado recordado"
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:83
+msgctxt "s-784358da08a9-0038"
+msgid "A diagram that groups entries by where the machine lives. Every entry is a next step plus remembered state. In text that is read or rewritten: Forth keeps it in the parse position, m4 in the input stream, sed and ed in a line of marks, and Ex in a mark on a tape. In files, rows and archives: Make keeps it in which files exist, Tcl in table rows and triggers, and tar in the archive order or its size. In code and declarations: COBOL keeps it in a GO TO target, APL in function source text, and Lisp in the class precedence list. In captures, stacks and closures: CMake keeps it in match registers, the .NET entry in capture stack depth, and the JavaScript weird entry in closures."
+msgstr "Un diagrama que agrupa las entradas según el lugar donde vive la máquina. Cada entrada es un paso siguiente más un estado recordado. En el texto que se lee o se reescribe: Forth lo guarda en la posición de análisis y m4 en el flujo de entrada. Sed y ed lo guardan en una línea de marcas, y Ex en una marca sobre una cinta. En archivos, filas y archivos tar: Make lo guarda en qué archivos existen y Tcl en filas de tablas y disparadores. Tar lo guarda en el orden del archivo tar o en su tamaño. En código y declaraciones: COBOL lo guarda en un destino de GO TO. APL lo guarda en el texto fuente de una función y Lisp en la lista de precedencia de clases. En capturas, pilas y clausuras: CMake lo guarda en registros de coincidencia. La entrada de .NET lo guarda en la profundidad de la pila de capturas. La entrada rara de JavaScript lo guarda en clausuras (funciones que conservan las variables de su entorno)."
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:84
+msgctxt "s-cf904b80bc63-0039"
+msgid "Every entry: a next step plus remembered state"
+msgstr "Cada entrada: paso siguiente más estado"
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:85
+msgctxt "s-c3eaca1f358d-0040"
+msgid "Text read or rewritten"
+msgstr "Texto leído o reescrito"
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:86
+msgctxt "s-2780c3bc9149-0041"
+msgid "Files, rows, archives"
+msgstr "Archivos, filas, tar"
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:87
+msgctxt "s-d8eaf195ed65-0042"
+msgid "Code and declarations"
+msgstr "Código y declaraciones"
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:88
+msgctxt "s-849be649ce85-0043"
+msgid "Captures, stacks, closures"
+msgstr "Capturas, pilas, clausuras"
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:89
+msgctxt "s-1f5be77ff69c-0044"
+msgid "Forth: parse position"
+msgstr "Forth: posición de análisis"
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:90
+msgctxt "s-0f289e0f663f-0045"
+msgid "m4: the input stream"
+msgstr "m4: flujo de entrada"
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:91
+msgctxt "s-d5a0f0b4d771-0046"
+msgid "sed, ed: a line of marks"
+msgstr "sed, ed: línea de marcas"
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:92
+msgctxt "s-608e0654a5c3-0047"
+msgid "Ex: a mark on a tape"
+msgstr "Ex: marca en una cinta"
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:93
+msgctxt "s-0f896d61c051-0048"
+msgid "Make: which files exist"
+msgstr "Make: qué archivos existen"
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:94
+msgctxt "s-bdc3dd3234d2-0049"
+msgid "Tcl: rows and triggers"
+msgstr "Tcl: filas y disparadores"
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:95
+msgctxt "s-61a7b15adbbd-0050"
+msgid "tar: order, or size"
+msgstr "tar: orden o tamaño"
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:96
+msgctxt "s-bd92b5b4a910-0051"
+msgid "COBOL: a GO TO target"
+msgstr "COBOL: destino de GO TO"
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:97
+msgctxt "s-7a8cb3f01a46-0052"
+msgid "APL: function text"
+msgstr "APL: texto de función"
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:98
+msgctxt "s-df69988f937e-0053"
+msgid "Lisp: class chain"
+msgstr "Lisp: cadena de clases"
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:99
+msgctxt "s-e5006692b0fc-0054"
+msgid "CMake: match registers"
+msgstr "CMake: coincidencias"
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:100
+msgctxt "s-18e943056893-0055"
+msgid ".NET: stack depth"
+msgstr ".NET: profundidad de la pila"
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:101
+msgctxt "s-7c3bae45866e-0056"
+msgid "JavaScript: closures"
+msgstr "JavaScript: clausuras"
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:104
+msgctxt "s-67a72cdadc6f-0057"
+msgid "Trace one run"
+msgstr "Traza una ejecución"
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:106
+msgctxt "s-e0e993c7f254-0058"
+msgid "The worksheet, filled in for representative entries. The usual witness uses 15, 19, 12. The sed row names its alternate seed trace. Every \"evidence\" cell is a run or a source line verified in the language guides."
+msgstr "La hoja de trabajo, completada para entradas representativas. El testigo habitual usa 15, 19, 12. La fila de sed nombra su traza con otra semilla. Cada celda de \"evidencia\" es una ejecución o una línea de código fuente verificada en las guías de lenguaje."
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:108
+msgctxt "s-b7f861d6bdf8-0059"
+msgid "⟦SEP_0001⟧ Entry ⟦SEP_0002⟧ Where is the program ⟦SEP_0003⟧ Where is the state ⟦SEP_0004⟧ What repeats ⟦SEP_0005⟧"
+msgstr "⟦SEP_0001⟧ Entrada ⟦SEP_0002⟧ Dónde está el programa ⟦SEP_0003⟧ Dónde está el estado ⟦SEP_0004⟧ Lo que se repite ⟦SEP_0005⟧"
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:110
+msgctxt "s-0c0bcbad0bee-0060"
+msgid "⟦SEP_0007⟧ ⟦CODE_0001⟧ ⟦SEP_0008⟧ paragraphs and one rewritten ⟦CODE_0002⟧ ⟦SEP_0009⟧ ⟦CODE_0003⟧, ⟦CODE_0004⟧, the jump target ⟦SEP_0010⟧ the circuit ⟦CODE_0005⟧ to a category to ⟦CODE_0006⟧ ⟦SEP_0011⟧"
+msgstr "⟦SEP_0007⟧ ⟦CODE_0001⟧ ⟦SEP_0008⟧ párrafos y un ⟦CODE_0002⟧ reescrito ⟦SEP_0009⟧ ⟦CODE_0003⟧, ⟦CODE_0004⟧, el destino del salto ⟦SEP_0010⟧ el circuito ⟦CODE_0005⟧ hacia una categoría hacia ⟦CODE_0006⟧ ⟦SEP_0011⟧"
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:111
+msgctxt "s-f4c58af1a871-0061"
+msgid "⟦SEP_0004⟧ ⟦CODE_0001⟧ ⟦SEP_0005⟧ one line of source ⟦SEP_0006⟧ the data stack ⟦CODE_0002⟧ ⟦SEP_0007⟧ the text interpreter, rewound by ⟦CODE_0003⟧ ⟦SEP_0008⟧"
+msgstr "⟦SEP_0004⟧ ⟦CODE_0001⟧ ⟦SEP_0005⟧ una línea de código fuente ⟦SEP_0006⟧ la pila de datos ⟦CODE_0002⟧ ⟦SEP_0007⟧ el intérprete de texto, rebobinado por ⟦CODE_0003⟧ ⟦SEP_0008⟧"
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:112
+msgctxt "s-544b0d082dad-0062"
+msgid "⟦SEP_0004⟧ ⟦CODE_0001⟧ ⟦SEP_0005⟧ a Makefile that restarts ⟦SEP_0006⟧ ⟦CODE_0002⟧ files, ⟦CODE_0003⟧ ⟦SEP_0007⟧ the whole Make process ⟦SEP_0008⟧"
+msgstr "⟦SEP_0004⟧ ⟦CODE_0001⟧ ⟦SEP_0005⟧ un Makefile que se reinicia ⟦SEP_0006⟧ archivos ⟦CODE_0002⟧, ⟦CODE_0003⟧ ⟦SEP_0007⟧ todo el proceso de Make ⟦SEP_0008⟧"
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:113
+msgctxt "s-54abb156bd51-0063"
+msgid "⟦SEP_0005⟧ ⟦CODE_0001⟧ ⟦SEP_0006⟧ one bodiless ⟦CODE_0002⟧ ⟦SEP_0007⟧ ⟦CODE_0003⟧..⟦CODE_0004⟧ ⟦SEP_0008⟧ the condition, re-expanded ⟦SEP_0009⟧"
+msgstr "⟦SEP_0005⟧ ⟦CODE_0001⟧ ⟦SEP_0006⟧ un ⟦CODE_0002⟧ sin cuerpo ⟦SEP_0007⟧ ⟦CODE_0003⟧..⟦CODE_0004⟧ ⟦SEP_0008⟧ la condición, expandida de nuevo ⟦SEP_0009⟧"
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:114
+msgctxt "s-3b4619cde417-0064"
+msgid "⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ a lazy list of effectful cells ⟦SEP_0005⟧ each card's total, read off the previous card ⟦SEP_0006⟧ demand from ⟦CODE_0002⟧ ⟦SEP_0007⟧"
+msgstr "⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ una lista perezosa de celdas con efectos ⟦SEP_0005⟧ el total de cada tarjeta, leído de la tarjeta anterior ⟦SEP_0006⟧ la demanda de ⟦CODE_0002⟧ ⟦SEP_0007⟧"
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:115
+msgctxt "s-b4f819cd9f8f-0065"
+msgid "⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ three closures ⟦SEP_0005⟧ variables captured by them ⟦SEP_0006⟧ ⟦CODE_0002⟧ calls ⟦SEP_0007⟧"
+msgstr "⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ tres clausuras ⟦SEP_0005⟧ variables que ellas capturan ⟦SEP_0006⟧ llamadas a ⟦CODE_0002⟧ ⟦SEP_0007⟧"
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:116
+msgctxt "s-728015e9a48b-0066"
+msgid "⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ listeners on an emitter ⟦SEP_0005⟧ object ⟦CODE_0002⟧ and the registrations ⟦SEP_0006⟧ events, one turn per card ⟦SEP_0007⟧"
+msgstr "⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ escuchadores de eventos en un emisor ⟦SEP_0005⟧ el objeto ⟦CODE_0002⟧ y los registros ⟦SEP_0006⟧ eventos, un turno por tarjeta ⟦SEP_0007⟧"
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:117
+msgctxt "s-f482ce8276e9-0067"
+msgid "⟦SEP_0004⟧ ⟦CODE_0001⟧ ⟦SEP_0005⟧ five classes, one method each ⟦SEP_0006⟧ the ⟦CODE_0002⟧ object, the class chain ⟦SEP_0007⟧ methods run by ⟦CODE_0003⟧ ⟦SEP_0008⟧"
+msgstr "⟦SEP_0004⟧ ⟦CODE_0001⟧ ⟦SEP_0005⟧ cinco clases, un método cada una ⟦SEP_0006⟧ el objeto ⟦CODE_0002⟧, la cadena de clases ⟦SEP_0007⟧ métodos que ejecuta ⟦CODE_0003⟧ ⟦SEP_0008⟧"
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:118
+msgctxt "s-70398076d412-0068"
+msgid "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ rows of Tcl text, one trigger ⟦SEP_0004⟧ table rows ⟦SEP_0005⟧ the trigger firing itself ⟦SEP_0006⟧"
+msgstr "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ filas de texto de Tcl, un disparador ⟦SEP_0004⟧ filas de tabla ⟦SEP_0005⟧ el disparador que se activa a sí mismo ⟦SEP_0006⟧"
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:119
+msgctxt "s-c7cbec0cf6ca-0069"
+msgid "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ functions written at run time ⟦SEP_0004⟧ source \"gene\" lines ⟦SEP_0005⟧ calls down a chain ⟦SEP_0006⟧"
+msgstr "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ funciones escritas en tiempo de ejecución ⟦SEP_0004⟧ líneas \"gene\" del código fuente ⟦SEP_0005⟧ llamadas a lo largo de una cadena ⟦SEP_0006⟧"
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:120
+msgctxt "s-8c509ca36e32-0070"
+msgid "⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ archive members ⟦SEP_0005⟧ SQLite ⟦CODE_0002⟧ row ⟦SEP_0006⟧ tar's walk over members ⟦SEP_0007⟧"
+msgstr "⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ miembros del archivo tar ⟦SEP_0005⟧ fila ⟦CODE_0002⟧ de SQLite ⟦SEP_0006⟧ el recorrido de tar por los miembros ⟦SEP_0007⟧"
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:121
+msgctxt "s-5e9d39906f40-0071"
+msgid "⟦SEP_0004⟧ ⟦CODE_0001⟧ ⟦SEP_0005⟧ ⟦CODE_0002⟧ ⟦SEP_0006⟧ one ⟦CODE_0003⟧ row ⟦SEP_0007⟧ tar's checkpoints ⟦SEP_0008⟧"
+msgstr "⟦SEP_0004⟧ ⟦CODE_0001⟧ ⟦SEP_0005⟧ ⟦CODE_0002⟧ ⟦SEP_0006⟧ una fila ⟦CODE_0003⟧ ⟦SEP_0007⟧ los puntos de control de tar ⟦SEP_0008⟧"
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:122
+msgctxt "s-37249990eb17-0072"
+msgid "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ one pattern with callouts ⟦SEP_0004⟧ a C struct ⟦SEP_0005⟧ the quantifier ⟦SEP_0006⟧"
+msgstr "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ un patrón con callouts ⟦SEP_0004⟧ una estructura de C ⟦SEP_0005⟧ el cuantificador ⟦SEP_0006⟧"
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:123
+msgctxt "s-7027c323a7ec-0073"
+msgid "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ one pattern of balancing groups ⟦SEP_0004⟧ two capture stacks ⟦SEP_0005⟧ the quantifier ⟦SEP_0006⟧"
+msgstr "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ un patrón de grupos de equilibrio ⟦SEP_0004⟧ dos pilas de captura ⟦SEP_0005⟧ el cuantificador ⟦SEP_0006⟧"
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:124
+msgctxt "s-17909e9b025d-0074"
+msgid "⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ a script of substitutions ⟦SEP_0005⟧ one line of text ⟦SEP_0006⟧ jumps back to ⟦CODE_0002⟧ ⟦SEP_0007⟧"
+msgstr "⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ un script de sustituciones ⟦SEP_0005⟧ una línea de texto ⟦SEP_0006⟧ saltos de vuelta a ⟦CODE_0002⟧ ⟦SEP_0007⟧"
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:125
+msgctxt "s-50c436612785-0075"
+msgid "⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ a script of ed commands ⟦SEP_0005⟧ ⟦CODE_0002⟧ marks on lines ⟦SEP_0006⟧ one global command ⟦SEP_0007⟧"
+msgstr "⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ un script de comandos de ed ⟦SEP_0005⟧ ⟦CODE_0002⟧ marcas en las líneas ⟦SEP_0006⟧ un comando global ⟦SEP_0007⟧"
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:126
+msgctxt "s-cdefe06284e1-0076"
+msgid "⟦SEP_0004⟧ ⟦CODE_0001⟧ ⟦SEP_0005⟧ a register that runs itself ⟦SEP_0006⟧ mark ⟦CODE_0002⟧ on a tape ⟦SEP_0007⟧ ⟦CODE_0003⟧ ⟦SEP_0008⟧"
+msgstr "⟦SEP_0004⟧ ⟦CODE_0001⟧ ⟦SEP_0005⟧ un registro que se ejecuta a sí mismo ⟦SEP_0006⟧ la marca ⟦CODE_0002⟧ en una cinta ⟦SEP_0007⟧ ⟦CODE_0003⟧ ⟦SEP_0008⟧"
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:127
+msgctxt "s-e8161795849d-0077"
+msgid "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ one self-naming macro ⟦SEP_0004⟧ state macros ⟦SEP_0005⟧ rescanning ⟦SEP_0006⟧"
+msgstr "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ una macro que se nombra a sí misma ⟦SEP_0004⟧ macros de estado ⟦SEP_0005⟧ relectura ⟦SEP_0006⟧"
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:129
+msgctxt "s-aa0167757c29-0078"
+msgid "⟦SEP_0001⟧ Entry ⟦SEP_0002⟧ What advances the next step ⟦SEP_0003⟧ What makes a decision ⟦SEP_0004⟧ What commits ⟦SEP_0005⟧ Evidence proving the claim ⟦SEP_0006⟧"
+msgstr "⟦SEP_0001⟧ Entrada ⟦SEP_0002⟧ Lo que hace avanzar el paso siguiente ⟦SEP_0003⟧ Qué toma la decisión ⟦SEP_0004⟧ Qué confirma ⟦SEP_0005⟧ Evidencia que respalda la afirmación ⟦SEP_0006⟧"
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:131
+msgctxt "s-3561266b0da3-0079"
+msgid "⟦SEP_0006⟧ ⟦CODE_0001⟧ ⟦SEP_0007⟧ ⟦CODE_0002⟧ ⟦SEP_0008⟧ ⟦CODE_0003⟧ ⟦SEP_0009⟧ ⟦CODE_0004⟧ on a script ⟦SEP_0010⟧ scratch run printing ⟦CODE_0005⟧ (74, 93, then overflow stays 93) ⟦SEP_0011⟧"
+msgstr "⟦SEP_0006⟧ ⟦CODE_0001⟧ ⟦SEP_0007⟧ ⟦CODE_0002⟧ ⟦SEP_0008⟧ ⟦CODE_0003⟧ ⟦SEP_0009⟧ ⟦CODE_0004⟧ en un script ⟦SEP_0010⟧ ejecución de prueba que imprime ⟦CODE_0005⟧ (74, 93 y luego el desbordamiento se queda en 93) ⟦SEP_0011⟧"
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:132
+msgctxt "s-48855e4156b6-0080"
+msgid "⟦SEP_0006⟧ ⟦CODE_0001⟧ ⟦SEP_0007⟧ ⟦CODE_0002⟧ moved back ⟦SEP_0008⟧ a flag masks the distance ⟦SEP_0009⟧ ⟦CODE_0003⟧ pipe, ⟦CODE_0004⟧ ⟦SEP_0010⟧ scratch run printing ⟦CODE_0005⟧ (10, 15, 23) and stack ⟦SEP_0011⟧"
+msgstr "⟦SEP_0006⟧ ⟦CODE_0001⟧ ⟦SEP_0007⟧ ⟦CODE_0002⟧ movido hacia atrás ⟦SEP_0008⟧ una bandera enmascara la distancia ⟦SEP_0009⟧ ⟦CODE_0003⟧ como tubería, ⟦CODE_0004⟧ ⟦SEP_0010⟧ ejecución de prueba que imprime ⟦CODE_0005⟧ (10, 15, 23) y la pila ⟦SEP_0011⟧"
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:133
+msgctxt "s-53e0f3feb80e-0081"
+msgid "⟦SEP_0004⟧ ⟦CODE_0001⟧ ⟦SEP_0005⟧ a file written, so a restart ⟦SEP_0006⟧ the rule declines when a 41st word exists ⟦SEP_0007⟧ ⟦CODE_0002⟧ on ⟦CODE_0003⟧ ⟦SEP_0008⟧ scratch run printing files and totals per pass ⟦SEP_0009⟧"
+msgstr "⟦SEP_0004⟧ ⟦CODE_0001⟧ ⟦SEP_0005⟧ un archivo escrito, y por eso un reinicio ⟦SEP_0006⟧ la regla se niega cuando existe una palabra 41 ⟦SEP_0007⟧ ⟦CODE_0002⟧ en ⟦CODE_0003⟧ ⟦SEP_0008⟧ ejecución de prueba que imprime archivos y totales por pasada ⟦SEP_0009⟧"
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:134
+msgctxt "s-50ff9924fb95-0082"
+msgid "⟦SEP_0005⟧ ⟦CODE_0001⟧ ⟦SEP_0006⟧ the next ⟦CODE_0002⟧ evaluation ⟦SEP_0007⟧ a match of 41 ⟦CODE_0003⟧ ⟦SEP_0008⟧ ⟦CODE_0004⟧ ⟦SEP_0009⟧ scratch run printing the registers ⟦SEP_0010⟧"
+msgstr "⟦SEP_0005⟧ ⟦CODE_0001⟧ ⟦SEP_0006⟧ la evaluación siguiente de ⟦CODE_0002⟧ ⟦SEP_0007⟧ una coincidencia de 41 ⟦CODE_0003⟧ ⟦SEP_0008⟧ ⟦CODE_0004⟧ ⟦SEP_0009⟧ ejecución de prueba que imprime los registros ⟦SEP_0010⟧"
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:135
+msgctxt "s-7f90c76233c4-0083"
+msgid "⟦SEP_0005⟧ ⟦CODE_0001⟧ ⟦SEP_0006⟧ forcing a cell ⟦SEP_0007⟧ ⟦CODE_0002⟧'s predicate ⟦SEP_0008⟧ ⟦CODE_0003⟧ then ⟦CODE_0004⟧ ⟦SEP_0009⟧ scratch run with an error-tail hours list ⟦SEP_0010⟧"
+msgstr "⟦SEP_0005⟧ ⟦CODE_0001⟧ ⟦SEP_0006⟧ forzar una celda ⟦SEP_0007⟧ el predicado de ⟦CODE_0002⟧ ⟦SEP_0008⟧ ⟦CODE_0003⟧ y luego ⟦CODE_0004⟧ ⟦SEP_0009⟧ ejecución de prueba con una lista de horas con un error al final ⟦SEP_0010⟧"
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:136
+msgctxt "s-ffbee82072b1-0084"
+msgid "⟦SEP_0004⟧ ⟦CODE_0001⟧ ⟦SEP_0005⟧ the consumer's ask ⟦SEP_0006⟧ ⟦CODE_0002⟧ assignment ⟦SEP_0007⟧ ⟦CODE_0003⟧ per ask ⟦SEP_0008⟧ scratch script counting asks (4 for 3 cards) ⟦SEP_0009⟧"
+msgstr "⟦SEP_0004⟧ ⟦CODE_0001⟧ ⟦SEP_0005⟧ la petición del consumidor ⟦SEP_0006⟧ asignación de ⟦CODE_0002⟧ ⟦SEP_0007⟧ ⟦CODE_0003⟧ por petición ⟦SEP_0008⟧ script de prueba que cuenta las peticiones (4 para 3 tarjetas) ⟦SEP_0009⟧"
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:137
+msgctxt "s-491cb382feaf-0085"
+msgid "⟦SEP_0007⟧ ⟦CODE_0001⟧ ⟦SEP_0008⟧ ⟦CODE_0002⟧ and ⟦CODE_0003⟧ ⟦SEP_0009⟧ ⟦CODE_0004⟧ in a listener ⟦SEP_0010⟧ ⟦CODE_0005⟧ in ⟦CODE_0006⟧ ⟦SEP_0011⟧ scratch script logging every emit and turn ⟦SEP_0012⟧"
+msgstr "⟦SEP_0007⟧ ⟦CODE_0001⟧ ⟦SEP_0008⟧ ⟦CODE_0002⟧ y ⟦CODE_0003⟧ ⟦SEP_0009⟧ ⟦CODE_0004⟧ en un escuchador de eventos ⟦SEP_0010⟧ ⟦CODE_0005⟧ en ⟦CODE_0006⟧ ⟦SEP_0011⟧ script de prueba que registra cada emisión y cada turno ⟦SEP_0012⟧"
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:138
+msgctxt "s-1c00221cdaab-0086"
+msgid "⟦SEP_0005⟧ ⟦CODE_0001⟧ ⟦SEP_0006⟧ the next applicable method ⟦SEP_0007⟧ ⟦CODE_0002⟧ stops at true ⟦SEP_0008⟧ ⟦CODE_0003⟧ method, one ⟦CODE_0004⟧ ⟦SEP_0009⟧ scratch run printing each method's return ⟦SEP_0010⟧"
+msgstr "⟦SEP_0005⟧ ⟦CODE_0001⟧ ⟦SEP_0006⟧ el siguiente método aplicable ⟦SEP_0007⟧ ⟦CODE_0002⟧ se detiene en true ⟦SEP_0008⟧ un método ⟦CODE_0003⟧, un ⟦CODE_0004⟧ ⟦SEP_0009⟧ ejecución de prueba que imprime el valor de retorno de cada método ⟦SEP_0010⟧"
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:139
+msgctxt "s-81d97c802086-0087"
+msgid "⟦SEP_0006⟧ ⟦CODE_0001⟧ ⟦SEP_0007⟧ the end of the trigger's insert ⟦SEP_0008⟧ ⟦CODE_0002⟧ ⟦SEP_0009⟧ one ⟦CODE_0003⟧ ⟦SEP_0010⟧ scratch run logging ⟦CODE_0004⟧ and ⟦CODE_0005⟧ ⟦SEP_0011⟧"
+msgstr "⟦SEP_0006⟧ ⟦CODE_0001⟧ ⟦SEP_0007⟧ el final de la inserción del disparador ⟦SEP_0008⟧ ⟦CODE_0002⟧ ⟦SEP_0009⟧ un ⟦CODE_0003⟧ ⟦SEP_0010⟧ ejecución de prueba que registra ⟦CODE_0004⟧ y ⟦CODE_0005⟧ ⟦SEP_0011⟧"
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:140
+msgctxt "s-0f9ac44ef570-0088"
+msgid "⟦SEP_0009⟧ ⟦CODE_0001⟧ ⟦SEP_0010⟧ ⟦CODE_0002⟧ and ⟦CODE_0003⟧ ⟦SEP_0011⟧ ⟦CODE_0004⟧ compress ⟦SEP_0012⟧ ⟦CODE_0005⟧ after the chain ⟦SEP_0013⟧ ⟦CODE_0006⟧ of ⟦CODE_0007⟧ showing genes ⟦CODE_0008⟧ ⟦SEP_0014⟧"
+msgstr "⟦SEP_0009⟧ ⟦CODE_0001⟧ ⟦SEP_0010⟧ ⟦CODE_0002⟧ y ⟦CODE_0003⟧ ⟦SEP_0011⟧ compresión ⟦CODE_0004⟧ ⟦SEP_0012⟧ ⟦CODE_0005⟧ tras la cadena ⟦SEP_0013⟧ ⟦CODE_0006⟧ de ⟦CODE_0007⟧ que muestra los genes ⟦CODE_0008⟧ ⟦SEP_0014⟧"
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:141
+msgctxt "s-9d77efd0257a-0089"
+msgid "⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ tar's walk ⟦SEP_0005⟧ a ⟦CODE_0002⟧ member ⟦SEP_0006⟧ the dispatcher's SQL ⟦SEP_0007⟧ the inspector's decoded members, and the run ⟦SEP_0008⟧"
+msgstr "⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ el recorrido de tar ⟦SEP_0005⟧ un miembro ⟦CODE_0002⟧ ⟦SEP_0006⟧ el SQL del despachador ⟦SEP_0007⟧ los miembros decodificados del inspector y la ejecución ⟦SEP_0008⟧"
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:142
+msgctxt "s-34a1be12cd76-0090"
+msgid "⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ a checkpoint ⟦SEP_0005⟧ ⟦CODE_0002⟧ ⟦SEP_0006⟧ per-tick transaction ⟦SEP_0007⟧ closing line: last tick 64, 18 idle ⟦SEP_0008⟧"
+msgstr "⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ un punto de control ⟦SEP_0005⟧ ⟦CODE_0002⟧ ⟦SEP_0006⟧ una transacción por tic ⟦SEP_0007⟧ línea final: último tic 64, 18 ociosos ⟦SEP_0008⟧"
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:143
+msgctxt "s-111add5d0a82-0091"
+msgid "⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ the engine's next pass ⟦SEP_0005⟧ ⟦CODE_0002⟧ returns 1 ⟦SEP_0006⟧ callouts write ⟦SEP_0007⟧ callout log (gate 0, 0, 0, then 1) ⟦SEP_0008⟧"
+msgstr "⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ la siguiente pasada del motor ⟦SEP_0005⟧ ⟦CODE_0002⟧ devuelve 1 ⟦SEP_0006⟧ los callouts escriben ⟦SEP_0007⟧ registro de callouts (compuerta 0, 0, 0 y luego 1) ⟦SEP_0008⟧"
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:144
+msgctxt "s-b8d44ff0808d-0092"
+msgid "⟦SEP_0004⟧ ⟦CODE_0001⟧ ⟦SEP_0005⟧ the engine ⟦SEP_0006⟧ ⟦CODE_0002⟧ vetoes the next pass, the match succeeds ⟦SEP_0007⟧ host appends TSV from captures ⟦SEP_0008⟧ draws ⟦CODE_0003⟧: three rows, the last two unused ⟦SEP_0009⟧"
+msgstr "⟦SEP_0004⟧ ⟦CODE_0001⟧ ⟦SEP_0005⟧ el motor ⟦SEP_0006⟧ ⟦CODE_0002⟧ veta la pasada siguiente y la coincidencia tiene éxito ⟦SEP_0007⟧ el anfitrión agrega el TSV a partir de las capturas ⟦SEP_0008⟧ sortea ⟦CODE_0003⟧: tres filas, las dos últimas sin usar ⟦SEP_0009⟧"
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:145
+msgctxt "s-9f78a012a930-0093"
+msgid "⟦SEP_0007⟧ ⟦CODE_0001⟧ ⟦SEP_0008⟧ ⟦CODE_0002⟧ jumps ⟦SEP_0009⟧ ⟦CODE_0003⟧ ⟦SEP_0010⟧ ⟦CODE_0004⟧ into ⟦CODE_0005⟧ ⟦SEP_0011⟧ alternate witness: the documented seed gives ⟦CODE_0006⟧ totals of 15, 29, 43 marks ⟦SEP_0012⟧"
+msgstr "⟦SEP_0007⟧ ⟦CODE_0001⟧ ⟦SEP_0008⟧ ⟦CODE_0002⟧ salta ⟦SEP_0009⟧ ⟦CODE_0003⟧ ⟦SEP_0010⟧ ⟦CODE_0004⟧ en ⟦CODE_0005⟧ ⟦SEP_0011⟧ testigo alterno: la semilla documentada da ⟦CODE_0006⟧ totales de 15, 29, 43 marcas ⟦SEP_0012⟧"
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:146
+msgctxt "s-4bf973408716-0094"
+msgid "⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ the global command ⟦SEP_0005⟧ which ⟦CODE_0002⟧ matches ⟦SEP_0006⟧ the launcher ⟦SEP_0007⟧ buffer printed after each stage ⟦SEP_0008⟧"
+msgstr "⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ el comando global ⟦SEP_0005⟧ qué ⟦CODE_0002⟧ coincide ⟦SEP_0006⟧ el lanzador ⟦SEP_0007⟧ búfer impreso después de cada etapa ⟦SEP_0008⟧"
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:147
+msgctxt "s-69a4d976d43c-0095"
+msgid "⟦SEP_0006⟧ ⟦CODE_0001⟧ ⟦SEP_0007⟧ ⟦CODE_0002⟧ ⟦SEP_0008⟧ the tape line: ⟦CODE_0003⟧ or ⟦CODE_0004⟧ ⟦SEP_0009⟧ the launcher ⟦SEP_0010⟧ ⟦CODE_0005⟧ printing tape lines 15, 34, 46 ⟦SEP_0011⟧"
+msgstr "⟦SEP_0006⟧ ⟦CODE_0001⟧ ⟦SEP_0007⟧ ⟦CODE_0002⟧ ⟦SEP_0008⟧ la línea de la cinta: ⟦CODE_0003⟧ o ⟦CODE_0004⟧ ⟦SEP_0009⟧ el lanzador ⟦SEP_0010⟧ ⟦CODE_0005⟧ que imprime las líneas de la cinta 15, 34, 46 ⟦SEP_0011⟧"
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:148
+msgctxt "s-c37b76741331-0096"
+msgid "⟦SEP_0006⟧ ⟦CODE_0001⟧ ⟦SEP_0007⟧ rescanning ⟦SEP_0008⟧ ⟦CODE_0002⟧ ⟦SEP_0009⟧ ⟦CODE_0003⟧ ⟦SEP_0010⟧ ⟦CODE_0004⟧ trace and ⟦CODE_0005⟧ limit ⟦SEP_0011⟧"
+msgstr "⟦SEP_0006⟧ ⟦CODE_0001⟧ ⟦SEP_0007⟧ relectura ⟦SEP_0008⟧ ⟦CODE_0002⟧ ⟦SEP_0009⟧ ⟦CODE_0003⟧ ⟦SEP_0010⟧ traza de ⟦CODE_0004⟧ y límite de ⟦CODE_0005⟧ ⟦SEP_0011⟧"
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:150
+msgctxt "s-38da830df61a-0097"
+msgid "**Which role is played by what.** The *decision* column shows how each entry performs the same role."
+msgstr "**Qué papel cumple cada pieza.** La columna de *decisión* muestra cómo cada entrada cumple el mismo papel."
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:152
+msgctxt "s-c297a0b43d56-0098"
+msgid "**Exactly 40, and the ceiling.** Here the comparison found something the individual entries did not say. The specification says exactly 40 continues, so a fifth card must be possible. Entries whose supply of categories or cards was a finite list of *four* could not draw it. That was found while writing these guides, and all but one entry is now fixed."
+msgstr "**Exactamente 40 y el techo.** Aquí la comparación encontró algo que las entradas por separado no decían. La especificación dice que un total de exactamente 40 continúa, así que una quinta tarjeta debe ser posible. Las entradas cuyo suministro de categorías o de tarjetas era una lista finita de *cuatro* no podían repartirla. Eso se descubrió al escribir estas guías, y ahora todas las entradas menos una están corregidas."
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:154
+msgctxt "s-2d84a0969f60-0099"
+msgid "⟦SEP_0001⟧ Group ⟦SEP_0002⟧ Entries ⟦SEP_0003⟧ Supply ⟦SEP_0004⟧ Evidence ⟦SEP_0005⟧"
+msgstr "⟦SEP_0001⟧ Grupo ⟦SEP_0002⟧ Entradas ⟦SEP_0003⟧ Suministro ⟦SEP_0004⟧ Evidencia ⟦SEP_0005⟧"
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:156
+msgctxt "s-efa9ba95bc96-0100"
+msgid "⟦SEP_0011⟧ Was four names, now five ⟦SEP_0012⟧ ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧ ⟦SEP_0013⟧ a subject, scaffold, tape or ⟦CODE_0006⟧ list, now with ⟦CODE_0007⟧ repeated ⟦SEP_0014⟧ **run**: before the fix, four 10-hour draws gave ⟦CODE_0008⟧ (PCRE2 and .NET, and the shared checker said ⟦CODE_0009⟧). Each ⟦CODE_0010⟧ now forces all-10 cards and requires five rows ending at 50, and each new check fails on the old code ⟦SEP_0015⟧"
+msgstr "⟦SEP_0011⟧ Eran cuatro nombres, ahora son cinco ⟦SEP_0012⟧ ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧ ⟦SEP_0013⟧ una lista de sujetos, de andamios, de cintas o de ⟦CODE_0006⟧, ahora con ⟦CODE_0007⟧ repetido ⟦SEP_0014⟧ **ejecución**: antes de la corrección, cuatro sorteos de 10 horas daban ⟦CODE_0008⟧ (PCRE2 y .NET; el verificador compartido decía ⟦CODE_0009⟧). Cada ⟦CODE_0010⟧ ahora fuerza tarjetas de 10 horas en todas y exige cinco filas que terminan en 50, y cada verificación nueva falla con el código anterior ⟦SEP_0015⟧"
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:157
+msgctxt "s-88a53375db27-0101"
+msgid "⟦SEP_0004⟧ Was four names, now five ⟦SEP_0005⟧ ⟦CODE_0001⟧ and the Java, Go, Kotlin, Python and Rust ports ⟦SEP_0006⟧ a one-pass category iterator or list, now with ⟦CODE_0002⟧ repeated ⟦SEP_0007⟧ **run for the C# header** (a reduction): ⟦CODE_0003⟧. Rust's unit tests assert it. Go, Java and Kotlin compile. Python's list change was checked with a reduction of its condition ⟦SEP_0008⟧"
+msgstr "⟦SEP_0004⟧ Eran cuatro nombres, ahora son cinco ⟦SEP_0005⟧ ⟦CODE_0001⟧ y las adaptaciones a Java, Go, Kotlin, Python y Rust ⟦SEP_0006⟧ un iterador o lista de categorías de una sola pasada, ahora con ⟦CODE_0002⟧ repetido ⟦SEP_0007⟧ **ejecución para el encabezado de C#** (una reducción): ⟦CODE_0003⟧. Las pruebas unitarias de Rust lo afirman. Go, Java y Kotlin compilan. El cambio de lista de Python se comprobó con una reducción de su condición ⟦SEP_0008⟧"
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:158
+msgctxt "s-ae8bfc5b71a9-0102"
+msgid "⟦SEP_0003⟧ Fixed work week ⟦SEP_0004⟧ ⟦CODE_0001⟧, ⟦CODE_0002⟧ ⟦SEP_0005⟧ five 8-hour days ⟦SEP_0006⟧ source read: 40.0 hours across five rows, outside the random challenge ⟦SEP_0007⟧"
+msgstr "⟦SEP_0003⟧ Semana laboral fija ⟦SEP_0004⟧ ⟦CODE_0001⟧, ⟦CODE_0002⟧ ⟦SEP_0005⟧ cinco días de 8 horas ⟦SEP_0006⟧ lectura del código fuente: 40.0 horas en cinco filas, fuera del reto aleatorio ⟦SEP_0007⟧"
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:159
+msgctxt "s-b09acba18b4b-0103"
+msgid "⟦SEP_0002⟧ Still four passes ⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ four copied passes in markup ⟦SEP_0005⟧ read from the README, not run (Windows only). With the shipped seed it always deals four cards totalling 53, so the case never arises ⟦SEP_0006⟧"
+msgstr "⟦SEP_0002⟧ Siguen siendo cuatro pasadas ⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ cuatro pasadas copiadas en el marcado ⟦SEP_0005⟧ se lee en el README, no se ejecutó (solo Windows). Con la semilla incluida siempre reparte cuatro tarjetas que suman 53, así que el caso nunca se presenta ⟦SEP_0006⟧"
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:160
+msgctxt "s-4204bba90f00-0104"
+msgid "⟦SEP_0007⟧ Five slots ⟦SEP_0008⟧ ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧ ⟦SEP_0009⟧ exactly the worst case (five cards of at least 10 hours reach 50) ⟦SEP_0010⟧ the five slots cover the worst case, read from the source. **Run** for ⟦CODE_0006⟧ (B18: all-10 dice give five cards, totals 10 to 50) ⟦SEP_0011⟧"
+msgstr "⟦SEP_0007⟧ Cinco ranuras ⟦SEP_0008⟧ ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧ ⟦SEP_0009⟧ exactamente el peor caso (cinco tarjetas de al menos 10 horas suman 50) ⟦SEP_0010⟧ las cinco ranuras cubren el peor caso, según se lee en el código fuente. **Ejecución** para ⟦CODE_0006⟧ (B18: los dados que dan todos 10 producen cinco tarjetas, con totales de 10 a 50) ⟦SEP_0011⟧"
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:161
+msgctxt "s-7a8c6a796a0b-0105"
+msgid "⟦SEP_0014⟧ Cycling ⟦SEP_0015⟧ ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧, ⟦CODE_0006⟧, ⟦CODE_0007⟧ family, ⟦CODE_0008⟧, ⟦CODE_0009⟧ ⟦SEP_0016⟧ the category is computed from a count ⟦SEP_0017⟧ **run** for ⟦CODE_0010⟧ (a scratch run with all-10 hours), ⟦CODE_0011⟧ (seed 4020, now also in its ⟦CODE_0012⟧) and ⟦CODE_0013⟧ (B12 step 2). Read from the source for the rest ⟦SEP_0018⟧"
+msgstr "⟦SEP_0014⟧ Ciclo ⟦SEP_0015⟧ ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧, ⟦CODE_0006⟧, familia ⟦CODE_0007⟧, ⟦CODE_0008⟧, ⟦CODE_0009⟧ ⟦SEP_0016⟧ la categoría se calcula a partir de un contador ⟦SEP_0017⟧ **ejecución** para ⟦CODE_0010⟧ (una ejecución de prueba con todas las horas en 10), ⟦CODE_0011⟧ (semilla 4020, ahora también en su ⟦CODE_0012⟧) y ⟦CODE_0013⟧ (B12 paso 2). El resto se lee en el código fuente ⟦SEP_0018⟧"
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:163
+msgctxt "s-1ae80519b4d8-0106"
+msgid "The probability was one run in 10,000, so none of this was visible in ordinary testing. The entries' own checks had accepted \"four entries\" as a legitimate stop, so they passed. Only the shared checker caught the case. The lesson stands after the fix: a specification and its checks must agree *at the edge*, and the way to make them agree is a test that *forces* the edge. That is what each new ⟦CODE_0001⟧ does."
+msgstr "La probabilidad era de una ejecución en 10,000, así que nada de esto se veía en las pruebas ordinarias. Las verificaciones propias de las entradas aceptaban \"cuatro entradas\" como una parada legítima, así que pasaban. Solo el verificador compartido detectó el caso. La lección sigue en pie tras la corrección: una especificación y sus verificaciones deben coincidir *en el borde*. La forma de lograrlo es una prueba que *fuerce* el borde. Eso hace cada nuevo ⟦CODE_0001⟧."
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:165
+msgctxt "s-405c1b857089-0107"
+msgid "Compare the ordinary and weird designs"
+msgstr "Compara los diseños ordinarios y los raros"
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:167
+msgctxt "s-d3d5e79e8e9c-0108"
+msgid "⟦SEP_0001⟧ Dimension ⟦SEP_0002⟧ Ordinary designs ⟦SEP_0003⟧ Weird designs ⟦SEP_0004⟧ What the comparison adds ⟦SEP_0005⟧"
+msgstr "⟦SEP_0001⟧ Dimensión ⟦SEP_0002⟧ Diseños ordinarios ⟦SEP_0003⟧ Diseños raros ⟦SEP_0004⟧ Qué añade la comparación ⟦SEP_0005⟧"
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:169
+msgctxt "s-bc188488e689-0109"
+msgid "⟦SEP_0001⟧ **Representation** ⟦SEP_0002⟧ Variables, loops, functions ⟦SEP_0003⟧ A jump, a position, files, captures, rows, text ⟦SEP_0004⟧ Same machine, different substance ⟦SEP_0005⟧"
+msgstr "⟦SEP_0001⟧ **Representación** ⟦SEP_0002⟧ Variables, bucles, funciones ⟦SEP_0003⟧ Un salto, una posición, archivos, capturas, filas, texto ⟦SEP_0004⟧ La misma máquina, distinta sustancia ⟦SEP_0005⟧"
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:170
+msgctxt "s-bf1d191c3124-0110"
+msgid "⟦SEP_0002⟧ **Observability** ⟦SEP_0003⟧ Print variables ⟦SEP_0004⟧ Print the *control* state (⟦CODE_0001⟧, the jump target, the files) ⟦SEP_0005⟧ Choose the design for how you must observe it ⟦SEP_0006⟧"
+msgstr "⟦SEP_0002⟧ **Observabilidad** ⟦SEP_0003⟧ Imprimir variables ⟦SEP_0004⟧ Imprimir el estado de *control* (⟦CODE_0001⟧, el destino del salto, los archivos) ⟦SEP_0005⟧ Elige el diseño según cómo necesites observarlo ⟦SEP_0006⟧"
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:171
+msgctxt "s-616b375c2f6a-0111"
+msgid "⟦SEP_0005⟧ **Tests** ⟦SEP_0006⟧ Unit tests ⟦SEP_0007⟧ Drive with a controlled input (⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧) and compare ⟦SEP_0008⟧ Record the input and label source-only evidence when a runtime is unavailable ⟦SEP_0009⟧"
+msgstr "⟦SEP_0005⟧ **Pruebas** ⟦SEP_0006⟧ Pruebas unitarias ⟦SEP_0007⟧ Ejecuta con una entrada de datos controlada (⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧) y compara ⟦SEP_0008⟧ Registra la entrada de datos y etiqueta la evidencia que solo viene del código fuente cuando no hay un entorno de ejecución ⟦SEP_0009⟧"
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:172
+msgctxt "s-c12844632d12-0112"
+msgid "⟦SEP_0002⟧ **⟦DNT_0001⟧** ⟦SEP_0003⟧ Standard tools ⟦SEP_0004⟧ Instrument without disturbing (CMake's registers, ed's buffer) ⟦SEP_0005⟧ The act of looking can change the machine ⟦SEP_0006⟧"
+msgstr "⟦SEP_0002⟧ **⟦DNT_0001⟧** ⟦SEP_0003⟧ Herramientas estándar ⟦SEP_0004⟧ Instrumenta sin perturbar (los registros de CMake, el búfer de ed) ⟦SEP_0005⟧ El acto de mirar puede cambiar la máquina ⟦SEP_0006⟧"
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:173
+msgctxt "s-15d42fc59501-0113"
+msgid "⟦SEP_0001⟧ **Portability** ⟦SEP_0002⟧ Broad ⟦SEP_0003⟧ Narrow, with a stated label ⟦SEP_0004⟧ See the label column below ⟦SEP_0005⟧"
+msgstr "⟦SEP_0001⟧ **Portabilidad** ⟦SEP_0002⟧ Amplia ⟦SEP_0003⟧ Estrecha, con una etiqueta declarada ⟦SEP_0004⟧ Mira la columna de etiquetas más abajo ⟦SEP_0005⟧"
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:174
+msgctxt "s-e7f7f3b84661-0114"
+msgid "⟦SEP_0001⟧ **Cost** ⟦SEP_0002⟧ Normal ⟦SEP_0003⟧ Reviewability, reentrancy, a finite supply ⟦SEP_0004⟧ The ceiling is a cost nobody advertised ⟦SEP_0005⟧"
+msgstr "⟦SEP_0001⟧ **Costo** ⟦SEP_0002⟧ Normal ⟦SEP_0003⟧ Revisabilidad, reentrada, un suministro finito ⟦SEP_0004⟧ El techo es un costo que nadie anunció ⟦SEP_0005⟧"
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:176
+msgctxt "s-f8e2cc252e53-0115"
+msgid "**Choosing.** If you need to *test the rule alone*, use an idiomatic design. If you need to *watch the whole machine*, prefer a design with printable state: sed (⟦CODE_0001⟧), ed (⟦CODE_0002⟧), Ex (⟦CODE_0003⟧). If you need *the weakest input language*, prefer the one with no side effects: .NET's regex can only capture. If you need a *stop that cannot be forgotten*, prefer a structural stop (a literal, a tape, a constraint) over a flag a later edit might skip."
+msgstr "**Cómo elegir.** Si necesitas *probar la regla sola*, usa un diseño idiomático. Si necesitas *observar toda la máquina*, prefiere un diseño con estado imprimible: sed (⟦CODE_0001⟧), ed (⟦CODE_0002⟧), Ex (⟦CODE_0003⟧). Si necesitas *el lenguaje de entrada más débil*, prefiere el que no tiene efectos secundarios: la expresión regular de .NET solo puede capturar. Si necesitas *una parada que no se pueda olvidar*, prefiere una parada estructural (un literal, una cinta, una restricción) a una bandera que una edición posterior podría omitir."
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:178
+msgctxt "s-716cae37520b-0116"
+msgid "What the exercises demonstrate"
+msgstr "Qué demuestran los ejercicios"
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:180
+msgctxt "s-d6a3ec9d5ed0-0117"
+msgid "⟦SEP_0001⟧ Exercise ⟦SEP_0002⟧ Predict first ⟦SEP_0003⟧ What the evidence shows ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ Ejercicio ⟦SEP_0002⟧ Predice primero ⟦SEP_0003⟧ Qué muestra la evidencia ⟦SEP_0004⟧"
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:182
+msgctxt "s-fb386cc9abf0-0118"
+msgid "⟦SEP_0002⟧ [C1. Weird next to boring](⟦DEST_0001⟧) ⟦SEP_0003⟧ For one pair, what would you unit-test, and what would a debugger show? ⟦SEP_0004⟧ The same output contract with different visible state. ⟦SEP_0005⟧"
+msgstr "⟦SEP_0002⟧ [C1. Lo raro junto a lo aburrido](⟦DEST_0001⟧) ⟦SEP_0003⟧ Para una pareja de entradas, ¿qué probarías con pruebas unitarias y qué mostraría un depurador? ⟦SEP_0004⟧ El mismo contrato de salida con un estado visible distinto. ⟦SEP_0005⟧"
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:183
+msgctxt "s-7e527a3810ad-0119"
+msgid "⟦SEP_0002⟧ [C2. Make the constraint real](⟦DEST_0001⟧) ⟦SEP_0003⟧ Write a check that bans loop words in Forth. ⟦SEP_0004⟧ It must strip comments and strings, then fail on each mutation. ⟦SEP_0005⟧"
+msgstr "⟦SEP_0002⟧ [C2. Haz real la restricción](⟦DEST_0001⟧) ⟦SEP_0003⟧ Escribe una verificación que prohíba las palabras de bucle en Forth. ⟦SEP_0004⟧ Debe quitar los comentarios y las cadenas de texto, y luego fallar con cada mutación. ⟦SEP_0005⟧"
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:184
+msgctxt "s-489d9680807a-0120"
+msgid "⟦SEP_0002⟧ [C3. A loop whose state is not a variable](⟦DEST_0001⟧) ⟦SEP_0003⟧ In awk with no loop keyword, where can the state live? ⟦SEP_0004⟧ In the input. ⟦SEP_0005⟧"
+msgstr "⟦SEP_0002⟧ [C3. Un bucle cuyo estado no es una variable](⟦DEST_0001⟧) ⟦SEP_0003⟧ En awk sin palabras clave de bucle, ¿dónde puede vivir el estado? ⟦SEP_0004⟧ En la entrada de datos. ⟦SEP_0005⟧"
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:185
+msgctxt "s-cc08557a35b7-0121"
+msgid "⟦SEP_0002⟧ [A1. Read the rows](⟦DEST_0001⟧) ⟦SEP_0003⟧ Run three entries from different languages and a fourth. ⟦SEP_0004⟧ The shared invariant is visible in every one, and a fourth predicted card count tests understanding. ⟦SEP_0005⟧"
+msgstr "⟦SEP_0002⟧ [A1. Lee las filas](⟦DEST_0001⟧) ⟦SEP_0003⟧ Ejecuta tres entradas de lenguajes distintos y una cuarta. ⟦SEP_0004⟧ El invariante compartido se ve en todas, y predecir el número de tarjetas de una cuarta pone a prueba la comprensión. ⟦SEP_0005⟧"
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:186
+msgctxt "s-0114f39b344c-0122"
+msgid "⟦SEP_0002⟧ [D. Port the challenge](⟦DEST_0001⟧) ⟦SEP_0003⟧ Port it to a language of your choice. ⟦SEP_0004⟧ A port must decide its stop rule and its category supply. The ceiling is a design decision you now make. ⟦SEP_0005⟧"
+msgstr "⟦SEP_0002⟧ [D. Adapta el reto](⟦DEST_0001⟧) ⟦SEP_0003⟧ Adáptalo a un lenguaje de tu elección. ⟦SEP_0004⟧ Una adaptación debe decidir su regla de parada y su suministro de categorías. El techo es una decisión de diseño que ahora tomas tú. ⟦SEP_0005⟧"
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:187
+msgctxt "s-a68c6e20693f-0123"
+msgid "⟦SEP_0002⟧ [F. Prove a README claim](⟦DEST_0001⟧) ⟦SEP_0003⟧ Which claim in a comparison table could you test? ⟦SEP_0004⟧ Any row of the worksheet with a verifiable cell. ⟦SEP_0005⟧"
+msgstr "⟦SEP_0002⟧ [F. Demuestra una afirmación del README](⟦DEST_0001⟧) ⟦SEP_0003⟧ ¿Qué afirmación de una tabla de comparación podrías probar? ⟦SEP_0004⟧ Cualquier fila de la hoja de trabajo con una celda verificable. ⟦SEP_0005⟧"
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:189
+msgctxt "s-4fe97c469cdb-0124"
+msgid "Failure modes, costs and boundaries"
+msgstr "Modos de fallo, costos y límites"
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:191
+msgctxt "s-193eae7ff14e-0125"
+msgid "The README ⟦CODE_0001⟧ key summarizes the weakest dependency the mechanism needs. The table counts those declarations: **17** guaranteed, **16** implementation-permitted, **7** accidentally exploited (⟦CODE_0002⟧ moved from the last group to the middle one when its evaluation-order dependence was removed)."
+msgstr "La clave ⟦CODE_0001⟧ del README resume la dependencia más débil que necesita el mecanismo. La tabla cuenta esas declaraciones: **17** garantizado, **16** permitido por la implementación y **7** aprovechado por accidente. (⟦CODE_0002⟧ pasó del último grupo al del medio cuando se eliminó su dependencia del orden de evaluación.)"
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:193
+msgctxt "s-4d6a362a1423-0126"
+msgid "⟦SEP_0001⟧ Claim ⟦SEP_0002⟧ Label ⟦SEP_0003⟧ Why ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ Afirmación ⟦SEP_0002⟧ Etiqueta ⟦SEP_0003⟧ Por qué ⟦SEP_0004⟧"
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:195
+msgctxt "s-809da69ff036-0127"
+msgid "⟦SEP_0003⟧ In ⟦CODE_0001⟧, a total of 40 admits a next insert ⟦SEP_0004⟧ **guaranteed** by the integer comparison in the trigger ⟦SEP_0005⟧ The trigger tests ⟦CODE_0002⟧. The trigger chain and its transaction have their own prerequisites. ⟦SEP_0006⟧"
+msgstr "⟦SEP_0003⟧ En ⟦CODE_0001⟧, un total de 40 admite una inserción siguiente ⟦SEP_0004⟧ **garantizado** por la comparación de enteros en el disparador ⟦SEP_0005⟧ El disparador evalúa ⟦CODE_0002⟧. La cadena de disparadores y su transacción tienen sus propios requisitos previos. ⟦SEP_0006⟧"
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:196
+msgctxt "s-5f6ce3caea56-0128"
+msgid "⟦SEP_0003⟧ Three entries share the stop-rule label \"accidentally exploited\" because of a specific observed behavior (Make's remake, CMake's ⟦CODE_0001⟧, ed's silent ⟦CODE_0002⟧) ⟦SEP_0004⟧ **accidentally exploited** ⟦SEP_0005⟧ Each is observed, not promised. ⟦SEP_0006⟧"
+msgstr "⟦SEP_0003⟧ Tres entradas comparten la etiqueta de regla de parada \"aprovechado por accidente\" por un comportamiento observado concreto (la reconstrucción de Make, ⟦CODE_0001⟧ de CMake, el ⟦CODE_0002⟧ silencioso de ed) ⟦SEP_0004⟧ **aprovechado por accidente** ⟦SEP_0005⟧ Cada uno se observa, no se promete. ⟦SEP_0006⟧"
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:197
+msgctxt "s-e4140d1a9794-0129"
+msgid "⟦SEP_0002⟧ The number of names or slots bounds the number of cards ⟦SEP_0003⟧ **guaranteed** by construction, tested ⟦SEP_0004⟧ A bound of five is exactly the worst case. With four names (before the fix, and still in ⟦CODE_0001⟧) it contradicted the shared challenge at exactly 40. ⟦SEP_0005⟧"
+msgstr "⟦SEP_0002⟧ El número de nombres o ranuras limita el número de tarjetas ⟦SEP_0003⟧ **garantizado** por construcción y probado ⟦SEP_0004⟧ Un límite de cinco es exactamente el peor caso. Con cuatro nombres (antes de la corrección y todavía en ⟦CODE_0001⟧) contradecía el reto compartido en exactamente 40. ⟦SEP_0005⟧"
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:198
+msgctxt "s-fb8613ef1617-0130"
+msgid "⟦SEP_0001⟧ .NET balancing groups subtract captures from a named group ⟦SEP_0002⟧ **guaranteed** within the documented .NET regex engine ⟦SEP_0003⟧ The successful match is the return channel. An engine that lacks balancing groups cannot run this pattern. ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ Los grupos de equilibrio de .NET restan capturas de un grupo con nombre ⟦SEP_0002⟧ **garantizado** dentro del motor de expresiones regulares documentado de .NET ⟦SEP_0003⟧ La coincidencia exitosa es el canal de retorno. Un motor sin grupos de equilibrio no puede ejecutar este patrón. ⟦SEP_0004⟧"
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:200
+msgctxt "s-87d9e31bff8d-0131"
+msgid "**Costs to state.**"
+msgstr "**Costos que hay que declarar.**"
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:202
+msgctxt "s-1b62f900bb80-0132"
+msgid "**A comparison table hides the edge.** Every row looks the same until you ask about exactly 40."
+msgstr "**Una tabla de comparación oculta el borde.** Todas las filas parecen iguales hasta que preguntas por exactamente 40."
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:203
+msgctxt "s-22bdea0115b9-0133"
+msgid "**Different mechanisms are not different problems.** The risk in reading eighteen decision mechanisms is to think each is new. Each answers \"when do we stop, and how do we know?\""
+msgstr "**Mecanismos distintos no son problemas distintos.** El riesgo de leer dieciocho mecanismos de decisión es pensar que cada uno es nuevo. Cada uno responde a \"¿cuándo paramos y cómo lo sabemos?\""
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:204
+msgctxt "s-09ceaab68369-0134"
+msgid "**Evidence differs in strength.** A run, a source line and a README claim are not equal. This guide marks which is which."
+msgstr "**La evidencia difiere en fuerza.** Una ejecución, una línea de código fuente y una afirmación del README no son iguales. Esta guía marca cuál es cuál."
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:205
+msgctxt "s-c2ec54ce1a76-0135"
+msgid "**Where this is legitimate.** Comparing designs by role is how engineers choose between frameworks. The stunt is the range of substances."
+msgstr "**Dónde es legítimo esto.** Comparar diseños por papel es como los ingenieros eligen entre marcos de trabajo. La proeza está en la variedad de sustratos."
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:207
+msgctxt "s-061eb6da82a8-0136"
+msgid "Connections across the repository"
+msgstr "Conexiones a lo largo del repositorio"
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:209
+msgctxt "s-101a02d47850-0137"
+msgid "**Every language guide** is one row of the worksheet: [COBOL](⟦DEST_0001⟧), [Haskell](⟦DEST_0002⟧), [Forth](⟦DEST_0003⟧), [Make and CMake](⟦DEST_0004⟧), [Regex engines and sed](⟦DEST_0005⟧), [APL](⟦DEST_0006⟧), [JavaScript](⟦DEST_0007⟧), [Common Lisp](⟦DEST_0008⟧), [m4](⟦DEST_0009⟧), [Tcl](⟦DEST_0010⟧), [ed and Ex](⟦DEST_0011⟧), [tar](⟦DEST_0012⟧) and [C#, LINQ, XAML and ports](⟦DEST_0013⟧)."
+msgstr "**Cada guía de lenguaje** es una fila de la hoja de trabajo: [COBOL](⟦DEST_0001⟧), [Haskell](⟦DEST_0002⟧), [Forth](⟦DEST_0003⟧), [Make y CMake](⟦DEST_0004⟧), [Motores de expresiones regulares y sed](⟦DEST_0005⟧), [APL](⟦DEST_0006⟧), [JavaScript](⟦DEST_0007⟧), [Common Lisp](⟦DEST_0008⟧), [m4](⟦DEST_0009⟧), [Tcl](⟦DEST_0010⟧), [ed y Ex](⟦DEST_0011⟧), [tar](⟦DEST_0012⟧) y [C#, LINQ, XAML y adaptaciones](⟦DEST_0013⟧)."
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:210
+msgctxt "s-e80014382070-0138"
+msgid "**Where the next step is stored.** [State and control beyond variables](⟦DEST_0001⟧) develops the first diagram."
+msgstr "**Dónde se guarda el paso siguiente.** [Estado y control más allá de las variables](⟦DEST_0001⟧) desarrolla el primer diagrama."
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:211
+msgctxt "s-0992d8d96a2b-0139"
+msgid "**Who demands work.** [Evaluation, demand and laziness](⟦DEST_0001⟧) develops the \"advances the next step\" column."
+msgstr "**Quién demanda el trabajo.** [Evaluación, demanda y pereza](⟦DEST_0001⟧) desarrolla la columna \"qué hace avanzar el paso siguiente\"."
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:212
+msgctxt "s-e6f4b0b1c384-0140"
+msgid "**What commits.** [Effects, errors and commitment](⟦DEST_0001⟧) develops the last columns."
+msgstr "**Qué confirma.** [Efectos, errores y confirmación](⟦DEST_0001⟧) desarrolla las últimas columnas."
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:213
+msgctxt "s-811a64f11723-0141"
+msgid "**What is promised.** [Portability, abstraction and cost](⟦DEST_0001⟧) develops the labels."
+msgstr "**Qué se promete.** [Portabilidad, abstracción y costo](⟦DEST_0001⟧) desarrolla las etiquetas."
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:214
+msgctxt "s-5f1f4b91fa68-0142"
+msgid "**In the book.** [Comparative case studies](⟦DEST_0001⟧), including the table of every entry at a glance, and [Solution patterns](⟦DEST_0002⟧), in particular [Control state outside variables](⟦DEST_0003⟧) and [Programs stored as data](⟦DEST_0004⟧)."
+msgstr "**En el libro.** [Casos de estudio comparados](⟦DEST_0001⟧), con la tabla de todas las entradas de un vistazo, y [Patrones de solución](⟦DEST_0002⟧), en particular [Estado de control fuera de las variables](⟦DEST_0003⟧) y [Programas guardados como datos](⟦DEST_0004⟧)."
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:216
+msgctxt "s-50944288ce61-0143"
+msgid "Self-check"
+msgstr "Autoevaluación"
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:218
+msgctxt "s-274e192b952c-0144"
+msgid "Answer each question in your own words before you read the italic text. Say what evidence would support each answer."
+msgstr "Responde cada pregunta con tus propias palabras antes de leer el texto en cursiva. Di qué evidencia respaldaría cada respuesta."
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:220
+msgctxt "s-3ebd6c80b3f5-0145"
+msgid ""
+"**Trace.** Fill in the worksheet for ⟦CODE_0001⟧: where is the program, the state, what repeats, what decides. *(The program is five classes with one ⟦CODE_0002⟧ method each. The state is the ⟦CODE_0003⟧ object plus the position in the class precedence list. What repeats is the next applicable method, run by the ⟦CODE_0004⟧ combination. The decision is a method returning true.)*\n"
+"2. **Explain.** Why is a total of exactly 40 a test of an entry's *supply* and not only of its stop rule? *(The stop rule says to continue at 40, so a fifth card must be possible. An entry with only four category names has no fifth, so it stops at 40 whatever its rule says. That was true of the regex entries and the ⟦CODE_0005⟧-header entries before they were fixed, and is still true of ⟦CODE_0006⟧.)*\n"
+"3. **Transfer.** Pick a program you maintain. Fill in the worksheet for its main loop. Which cell is hardest to answer? *(Often \"what makes a decision\" is spread over several places, and \"what evidence proves the claim\" is missing. The hardest cell tells you where your program is hardest to review.)*\n"
+"4. **Evidence.** A colleague says, \"Every entry that cycles categories continues at 40.\" Design a test that could fail. *(Run each with a forced all-10 input (⟦CODE_0007⟧, ⟦CODE_0008⟧, ⟦CODE_0009⟧, a fixed list), then check for five rows and totals 10, 20, 30, 40, 50. The negative control is a four-name entry, which stops at 40.)*"
+msgstr ""
+"**Traza.** Completa la hoja de trabajo de ⟦CODE_0001⟧: dónde está el programa, el estado, qué se repite, qué decide. *(El programa son cinco clases con un método ⟦CODE_0002⟧ cada una. El estado es el objeto ⟦CODE_0003⟧ más la posición en la lista de precedencia de clases. Lo que se repite es el siguiente método aplicable, que ejecuta la combinación ⟦CODE_0004⟧. La decisión es un método que devuelve true.)*\n"
+"2. **Explica.** ¿Por qué un total de exactamente 40 pone a prueba el *suministro* de una entrada y no solo su regla de parada? *(La regla de parada dice que se continúa en 40, así que una quinta tarjeta debe ser posible. Una entrada con solo cuatro nombres de categoría no tiene quinta, así que se detiene en 40 diga lo que diga su regla. Eso era cierto de las entradas de expresiones regulares y de las entradas con encabezado ⟦CODE_0005⟧ antes de corregirlas, y sigue siendo cierto de ⟦CODE_0006⟧.)*\n"
+"3. **Transfiere.** Elige un programa que mantengas. Completa la hoja de trabajo de su bucle principal. ¿Qué celda es la más difícil de responder? *(A menudo \"qué toma una decisión\" está repartido en varios lugares, y falta \"qué evidencia respalda la afirmación\". La celda más difícil te dice dónde es más difícil revisar tu programa.)*\n"
+"4. **Evidencia.** Un colega dice: \"Toda entrada que repite categorías en ciclo continúa cuando el total es exactamente 40\". Diseña una prueba que pueda fallar. *(Ejecuta cada una con una entrada forzada de todo 10 (⟦CODE_0007⟧, ⟦CODE_0008⟧, ⟦CODE_0009⟧, una lista fija). Comprueba que haya cinco filas y totales de 10, 20, 30, 40, 50. El control negativo es una entrada de cuatro nombres, que se detiene en 40.)*"
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:225
+msgctxt "s-4082f515b2f4-0146"
+msgid "Further reading"
+msgstr "Lecturas adicionales"
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:227
+msgctxt "s-ce2b0425ee11-0147"
+msgid "[Comparative case studies](⟦DEST_0001⟧) (this book): the role tables and the table of every entry at a glance."
+msgstr "[Casos de estudio comparados](⟦DEST_0001⟧) (este libro): las tablas de papeles y la tabla de todas las entradas de un vistazo."
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:228
+msgctxt "s-992dd171fe76-0148"
+msgid "[Solution patterns](⟦DEST_0001⟧) (this book): mechanisms grouped across languages."
+msgstr "[Patrones de solución](⟦DEST_0001⟧) (este libro): mecanismos agrupados entre lenguajes."
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:229
+msgctxt "s-6386e7c3ef5d-0149"
+msgid "[Turing completeness](⟦DEST_0001⟧) (Wikipedia): what \"can express any computation\" means, and why many odd systems qualify."
+msgstr "[Completitud de Turing](⟦DEST_0001⟧) (Wikipedia): qué significa \"puede expresar cualquier cómputo\" y por qué muchos sistemas insólitos califican."
+
+#: lessons/study-guides/concepts/comparative-machine-design.md:230
+msgctxt "s-d3594eb9a42b-0150"
+msgid "[Transition system](⟦DEST_0001⟧) (Wikipedia): the formal reading of \"state plus allowed step\"."
+msgstr "[Sistema de transiciones](⟦DEST_0001⟧) (Wikipedia): la lectura formal de \"estado más paso permitido\"."

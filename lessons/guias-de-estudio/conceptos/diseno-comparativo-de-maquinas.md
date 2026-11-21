@@ -1,27 +1,27 @@
-# Comparative machine design study guide
+# Guía de estudio de diseño comparado de máquinas
 
-## What this guide is for
+## Para qué sirve esta guía
 
-A loop with no body, a regex search, a Makefile that rereads itself, a list whose elements write to a database, an editor buffer and an archive all take on the time-card task. Some searches finish by failing after their side effects; the .NET search succeeds so the host can read its captures. This guide puts them side by side with one worksheet. The core question is: **what plays loop, state, clock, decision and commit in each, and what evidence proves it?**
+Un bucle sin cuerpo, una búsqueda con expresión regular y un Makefile que se relee a sí mismo abordan la tarea de la tarjeta de horas. También la abordan una lista cuyos elementos escriben en una base de datos, un búfer de editor y un archivo tar. Algunas búsquedas terminan fallando después de sus efectos secundarios. La búsqueda de .NET tiene éxito para que el anfitrión pueda leer sus capturas. Esta guía los pone lado a lado con una sola hoja de trabajo. La pregunta central es: **¿qué hace de bucle, de estado, de reloj, de decisión y de confirmación en cada uno, y qué evidencia lo demuestra?**
 
-When you finish, you should be able to:
+Cuando termines, deberías poder:
 
-1. Fill in the seven-question worksheet for any entry: where is the program, where is the state, what repeats, what advances the next step, what makes a decision, what commits effects and what evidence proves the claim.
-2. Say what *role* each piece plays even when it does not look like the usual one: a flag, a file, a capture, a method, a tick.
-3. Group the entries by the answer to "where does the program live?" and say what each group can and cannot do.
-4. Explain why the fixed LINQ work week ends at 40 and why XAML can run out of passes there.
-5. Choose, for a given need (testability, observability, portability), which design suits it, and say what it costs.
-6. Label claims as guaranteed, implementation-permitted or accidentally exploited.
+1. Completar la hoja de trabajo de siete preguntas de cualquier entrada: dónde está el programa, dónde está el estado, lo que se repite, lo que hace avanzar el paso siguiente, qué toma una decisión, qué confirma los efectos y qué evidencia respalda la afirmación.
+2. Decir qué *papel* cumple cada pieza aunque no se parezca al habitual: una bandera, un archivo, una captura, un método, un tic.
+3. Agrupar las entradas según la respuesta a "¿dónde vive el programa?" y decir qué puede y qué no puede hacer cada grupo.
+4. Explicar por qué la semana laboral fija de LINQ termina en 40 y por qué XAML puede quedarse sin pasadas en ese punto.
+5. Elegir, para una necesidad dada (facilidad de prueba, observabilidad, portabilidad), el diseño que mejor la satisface y decir cuál es su costo.
+6. Etiquetar cada afirmación con una de estas tres etiquetas: garantizado, permitido por la implementación o aprovechado por accidente.
 
-**Scope limits.** The guide compares; it does not re-teach each entry. It uses facts checked in the language guides and the concept guides. Its sources are [Comparative case studies](../../informatica/09-casos-de-estudio-comparativos.md) and [Solution patterns](../../patrones.md).
+**Límites del alcance.** La guía compara, pero no vuelve a enseñar cada entrada. Usa hechos comprobados en las guías de lenguaje y en las guías de concepto. Sus fuentes son [Casos de estudio comparados](../../informatica/09-casos-de-estudio-comparativos.md) y [Patrones de solución](../../patrones.md).
 
-## Before you begin
+## Antes de empezar
 
-**Safety model.** The cards are fictional **DEMO ONLY** data. Programs can write to local scratch files or databases and can start processes. Read the source first and run it in the sandbox first. Work on copies ([Running things safely](../../exercises.md#running-things-safely)). Comparing entries means running several: run them one at a time, and use a scratch data folder.
+**Modelo de seguridad.** Las tarjetas son datos ficticios marcados con **DEMO ONLY**. Los programas pueden escribir en archivos o bases de datos locales de prueba y pueden iniciar procesos. Lee primero el código fuente y ejecútalo antes en un entorno aislado (*sandbox*) que limita el acceso al sistema anfitrión. Trabaja con copias ([Ejecutar cosas con seguridad](../../exercises.md#running-things-safely)). Comparar entradas implica ejecutar varias: ejecútalas una a una y usa un directorio de datos de prueba.
 
-**Prediction rule.** For each entry you compare, fill in the worksheet *before* reading the README's answer. Then check the evidence. A worksheet cell you cannot support with a run or a line of source is a guess.
+**Regla de predicción.** Para cada entrada que compares, completa la hoja de trabajo *antes* de leer la respuesta del README. Después comprueba la evidencia. Una celda de la hoja que no puedas respaldar con una ejecución o con una línea de código fuente es una conjetura.
 
-**The worksheet.**
+**La hoja de trabajo.**
 
 ```text
 Where is the program?
@@ -33,198 +33,198 @@ What commits effects?
 What evidence proves the claim?
 ```
 
-**Vocabulary.**
+**Vocabulario.**
 
-| Term | Meaning here |
+| Término | Significado aquí |
 | --- | --- |
-| Role | A job every solution must do: loop, state, clock, decision, commit. |
-| Machine | The thing that plays a role in one entry: a flag, a file, a capture, a method. |
-| Ceiling | A limit set by a finite supply (four names, five dice), not by the rule. |
+| Papel | Un trabajo que toda solución debe cumplir: bucle, estado, reloj, decisión, confirmación. |
+| Máquina | La pieza que cumple un papel en una entrada: una bandera, un archivo, una captura, un método. |
+| Techo | Un límite que impone un suministro finito (cuatro nombres, cinco dados), no la regla. |
 
-## The shared challenge
+## El reto compartido
 
-The [challenge specification](../../introduccion.md#what-the-challenge-does) calls for cards with a category and 10 to 19 whole hours. Categories cycle through Meetings, Coding, Debugging and Learning. Add each card's hours to the running total. Stop when the total passes 40. Keep the **first card that takes the total over 40**. A total of exactly 40 continues. Four 10-hour cards need a fifth card, in the Meetings category. Conforming runs finish with 3 to 5 cards and a total of 41 to 59 hours.
+La [especificación del reto](../../introduccion.md#what-the-challenge-does) pide tarjetas con una categoría y de 10 a 19 horas enteras. Las categorías se repiten en ciclo: `Meetings`, `Coding`, `Debugging` y `Learning`. Suma las horas de cada tarjeta al total acumulado. Detente cuando el total pasa de 40. Conserva la **primera tarjeta con la que el total pasa de 40**. Un total de exactamente 40 continúa. Cuatro tarjetas de 10 horas necesitan una quinta tarjeta, de la categoría `Meetings`. Las ejecuciones conformes tienen de 3 a 5 tarjetas y un total de 41 a 59 horas.
 
-The book records [where entries differ](../../introduccion.md#where-entries-differ). The LINQ demos use five fixed 8-hour days, and XAML can run out of passes at 40. The regex entries still follow the numeric rule: the C and .NET examples use TSV, while pcre2grep saves cards in separate SQLite calls. A summary can appear in a terminal or a window. Ask which result the entry demonstrates before comparing the mechanism.
+El libro registra [dónde difieren las entradas](../../introduccion.md#where-entries-differ). Las demostraciones de LINQ usan cinco días fijos de 8 horas, y XAML puede quedarse sin pasadas en 40. Las entradas de expresiones regulares siguen la regla numérica: los ejemplos en C y .NET usan TSV, mientras que pcre2grep guarda las tarjetas en llamadas separadas a SQLite. Un resumen puede aparecer en una terminal o en una ventana. Antes de comparar el mecanismo, pregunta qué resultado demuestra la entrada.
 
-## The machine to identify
+## La máquina que hay que identificar
 
-Compare in two cuts. Start by identifying the roles, then test the decisions and effects against the trace.
+Compara en dos cortes. Empieza por identificar los papeles y luego contrasta las decisiones y los efectos con la traza.
 
-**Where is the program?** The entries store their programs in different places.
+**¿Dónde está el programa?** Las entradas guardan sus programas en lugares distintos.
 
-- The idiomatic entries and the ports use source statements.
-- `cobol-weird` uses a jump target.
-- `forth-weird` reads one source line repeatedly.
-- GNU Make rewrites its own input.
-- The regex entries use a pattern.
-- `tcl-weird` uses table rows.
-- `tar-gnu` uses archive members. `tar-gnu-weird` uses the archive size.
-- `ex-weird` uses an editor register.
-- `lisp-weird` uses a class chain.
-- `apl-weird` writes function text at run time.
-- `xaml` uses a document.
+- Las entradas idiomáticas y las adaptaciones usan sentencias de código fuente.
+- `cobol-weird` usa un destino de salto.
+- `forth-weird` lee una misma línea de código fuente varias veces.
+- GNU Make reescribe su propia entrada.
+- Las entradas de expresiones regulares usan un patrón.
+- `tcl-weird` usa filas de una tabla.
+- `tar-gnu` usa miembros del archivo tar. `tar-gnu-weird` usa el tamaño del archivo tar.
+- `ex-weird` usa un registro del editor.
+- `lisp-weird` usa una cadena de clases.
+- `apl-weird` escribe texto de funciones en tiempo de ejecución.
+- `xaml` usa un documento.
 
-**Where state lives.** See the diagram below: it groups the entries by what holds the next step and the remembered state.
+**Dónde vive el estado.** Mira el diagrama de abajo: agrupa las entradas según lo que guarda el paso siguiente y el estado recordado.
 
-**What repeats.** The thing that happens again: a performed paragraph, a rewound line, a restarted build, a quantifier, an event, a method, a tick, a trigger firing.
+**Qué se repite.** Lo que ocurre otra vez: un párrafo ejecutado, una línea rebobinada, una compilación reiniciada, un cuantificador, un evento, un método, un tic, un disparador que se activa.
 
-**What advances the next step.** Often the *environment*: the text interpreter, `find`'s walk, tar's checkpoints, SQLite's trigger machinery, the event loop. In other entries, the program itself.
+**Qué hace avanzar el paso siguiente.** A menudo es el *entorno*: el intérprete de texto, el recorrido de `find`, los puntos de control de tar, la maquinaria de disparadores de SQLite, el bucle de eventos. En otras entradas, es el propio programa.
 
-**What stops it.** A flag, an absence (no file, no input left), a literal's length, a comment, an empty compression, a failed match. The stop rule is a value or a structure, rarely a visible `if`.
+**Qué lo detiene.** Una bandera, una ausencia (ningún archivo, ninguna entrada de datos pendiente), la longitud de un literal, un comentario, una compresión vacía, una coincidencia fallida. La regla de parada es un valor o una estructura, pocas veces un `if` visible.
 
-**What commits.** Some entries commit all cards together, while others save at each step. PCRE2 callouts write the TSV during the match; the .NET host writes its TSV from the returned captures. pcre2grep uses separate SQLite processes. The regex verb `(*COMMIT)` rules out backtracking retries. SQLite transactions belong to the helper.
+**Qué confirma.** Algunas entradas confirman todas las tarjetas juntas, y otras guardan en cada paso. Los callouts de PCRE2 escriben el TSV durante la coincidencia. El anfitrión de .NET escribe su TSV a partir de las capturas devueltas. pcre2grep usa procesos de SQLite separados. El verbo de expresión regular `(*COMMIT)` descarta los reintentos por retroceso. Las transacciones de SQLite pertenecen a la función auxiliar.
 
 <!-- diagram-new: cross-language-state - groups every entry by what holds its next step and its remembered state, a relationship no single entry's diagram shows -->
 
 ```mermaid
 flowchart LR
-    accTitle: Where entries keep the next step and the remembered state
-    accDescr: A diagram that groups entries by where the machine lives. Every entry is a next step plus remembered state. In text that is read or rewritten: Forth keeps it in the parse position, m4 in the input stream, sed and ed in a line of marks, and Ex in a mark on a tape. In files, rows and archives: Make keeps it in which files exist, Tcl in table rows and triggers, and tar in the archive order or its size. In code and declarations: COBOL keeps it in a GO TO target, APL in function source text, and Lisp in the class precedence list. In captures, stacks and closures: CMake keeps it in match registers, the .NET entry in capture stack depth, and the JavaScript weird entry in closures.
-    M["Every entry: a next step plus remembered state"]
-    M --> A["Text read or rewritten"]
-    M --> B["Files, rows, archives"]
-    M --> C["Code and declarations"]
-    M --> D["Captures, stacks, closures"]
-    A --> A1["Forth: parse position"]
-    A --> A2["m4: the input stream"]
-    A --> A3["sed, ed: a line of marks"]
-    A --> A4["Ex: a mark on a tape"]
-    B --> B1["Make: which files exist"]
-    B --> B2["Tcl: rows and triggers"]
-    B --> B3["tar: order, or size"]
-    C --> C1["COBOL: a GO TO target"]
-    C --> C2["APL: function text"]
-    C --> C3["Lisp: class chain"]
-    D --> D1["CMake: match registers"]
-    D --> D2[".NET: stack depth"]
-    D --> D3["JavaScript: closures"]
+    accTitle: Dónde guardan las entradas el paso siguiente y el estado recordado
+    accDescr: Un diagrama que agrupa las entradas según el lugar donde vive la máquina. Cada entrada es un paso siguiente más un estado recordado. En el texto que se lee o se reescribe: Forth lo guarda en la posición de análisis y m4 en el flujo de entrada. Sed y ed lo guardan en una línea de marcas, y Ex en una marca sobre una cinta. En archivos, filas y archivos tar: Make lo guarda en qué archivos existen y Tcl en filas de tablas y disparadores. Tar lo guarda en el orden del archivo tar o en su tamaño. En código y declaraciones: COBOL lo guarda en un destino de GO TO. APL lo guarda en el texto fuente de una función y Lisp en la lista de precedencia de clases. En capturas, pilas y clausuras: CMake lo guarda en registros de coincidencia. La entrada de .NET lo guarda en la profundidad de la pila de capturas. La entrada rara de JavaScript lo guarda en clausuras (funciones que conservan las variables de su entorno).
+    M["Cada entrada: paso siguiente más estado"]
+    M --> A["Texto leído o reescrito"]
+    M --> B["Archivos, filas, tar"]
+    M --> C["Código y declaraciones"]
+    M --> D["Capturas, pilas, clausuras"]
+    A --> A1["Forth: posición de análisis"]
+    A --> A2["m4: flujo de entrada"]
+    A --> A3["sed, ed: línea de marcas"]
+    A --> A4["Ex: marca en una cinta"]
+    B --> B1["Make: qué archivos existen"]
+    B --> B2["Tcl: filas y disparadores"]
+    B --> B3["tar: orden o tamaño"]
+    C --> C1["COBOL: destino de GO TO"]
+    C --> C2["APL: texto de función"]
+    C --> C3["Lisp: cadena de clases"]
+    D --> D1["CMake: coincidencias"]
+    D --> D2[".NET: profundidad de la pila"]
+    D --> D3["JavaScript: clausuras"]
 ```
 
-## Trace one run
+## Traza una ejecución
 
-The worksheet, filled in for representative entries. The usual witness uses 15, 19, 12. The sed row names its alternate seed trace. Every "evidence" cell is a run or a source line verified in the language guides.
+La hoja de trabajo, completada para entradas representativas. El testigo habitual usa 15, 19, 12. La fila de sed nombra su traza con otra semilla. Cada celda de "evidencia" es una ejecución o una línea de código fuente verificada en las guías de lenguaje.
 
-| Entry | Where is the program | Where is the state | What repeats |
+| Entrada | Dónde está el programa | Dónde está el estado | Lo que se repite |
 | --- | --- | --- | --- |
-| `cobol-weird` | paragraphs and one rewritten `GO TO` | `WS-TOTAL`, `WS-HEADROOM`, the jump target | the circuit `NEXT-CARD` to a category to `RECORD-CARD` |
-| `forth-weird` | one line of source | the data stack `( n total anchor )` | the text interpreter, rewound by `>in` |
-| `make-gnu` | a Makefile that restarts | `.tc-N.mk` files, `MAKE_RESTARTS` | the whole Make process |
-| `cmake` | one bodiless `while()` | `CMAKE_MATCH_1`..`5` | the condition, re-expanded |
-| `haskell-weird` | a lazy list of effectful cells | each card's total, read off the previous card | demand from `span` |
-| `javascript-weird` | three closures | variables captured by them | `next()` calls |
-| `javascript-events` | listeners on an emitter | object `s` and the registrations | events, one turn per card |
-| `lisp-weird` | five classes, one method each | the `ledger` object, the class chain | methods run by `or` |
-| `tcl-weird` | rows of Tcl text, one trigger | table rows | the trigger firing itself |
-| `apl-weird` | functions written at run time | source "gene" lines | calls down a chain |
-| `tar-gnu` | archive members | SQLite `runs` row | tar's walk over members |
-| `tar-gnu-weird` | `tick.sql` | one `fsm` row | tar's checkpoints |
-| `regex-pcre2` | one pattern with callouts | a C struct | the quantifier |
-| `regex-dotnet` | one pattern of balancing groups | two capture stacks | the quantifier |
-| `regex-sed` | a script of substitutions | one line of text | jumps back to `:entry` |
-| `ed-weird` | a script of ed commands | `x` marks on lines | one global command |
-| `ex-weird` | a register that runs itself | mark `t` on a tape | `@n` |
-| `m4` | one self-naming macro | state macros | rescanning |
+| `cobol-weird` | párrafos y un `GO TO` reescrito | `WS-TOTAL`, `WS-HEADROOM`, el destino del salto | el circuito `NEXT-CARD` hacia una categoría hacia `RECORD-CARD` |
+| `forth-weird` | una línea de código fuente | la pila de datos `( n total anchor )` | el intérprete de texto, rebobinado por `>in` |
+| `make-gnu` | un Makefile que se reinicia | archivos `.tc-N.mk`, `MAKE_RESTARTS` | todo el proceso de Make |
+| `cmake` | un `while()` sin cuerpo | `CMAKE_MATCH_1`..`5` | la condición, expandida de nuevo |
+| `haskell-weird` | una lista perezosa de celdas con efectos | el total de cada tarjeta, leído de la tarjeta anterior | la demanda de `span` |
+| `javascript-weird` | tres clausuras | variables que ellas capturan | llamadas a `next()` |
+| `javascript-events` | escuchadores de eventos en un emisor | el objeto `s` y los registros | eventos, un turno por tarjeta |
+| `lisp-weird` | cinco clases, un método cada una | el objeto `ledger`, la cadena de clases | métodos que ejecuta `or` |
+| `tcl-weird` | filas de texto de Tcl, un disparador | filas de tabla | el disparador que se activa a sí mismo |
+| `apl-weird` | funciones escritas en tiempo de ejecución | líneas "gene" del código fuente | llamadas a lo largo de una cadena |
+| `tar-gnu` | miembros del archivo tar | fila `runs` de SQLite | el recorrido de tar por los miembros |
+| `tar-gnu-weird` | `tick.sql` | una fila `fsm` | los puntos de control de tar |
+| `regex-pcre2` | un patrón con callouts | una estructura de C | el cuantificador |
+| `regex-dotnet` | un patrón de grupos de equilibrio | dos pilas de captura | el cuantificador |
+| `regex-sed` | un script de sustituciones | una línea de texto | saltos de vuelta a `:entry` |
+| `ed-weird` | un script de comandos de ed | `x` marcas en las líneas | un comando global |
+| `ex-weird` | un registro que se ejecuta a sí mismo | la marca `t` en una cinta | `@n` |
+| `m4` | una macro que se nombra a sí misma | macros de estado | relectura |
 
-| Entry | What advances the next step | What makes a decision | What commits | Evidence proving the claim |
+| Entrada | Lo que hace avanzar el paso siguiente | Qué toma la decisión | Qué confirma | Evidencia que respalda la afirmación |
 | --- | --- | --- | --- | --- |
-| `cobol-weird` | `ALTER` | `ON SIZE ERROR` | `sqlite3` on a script | scratch run printing `WS-HEADROOM` (74, 93, then overflow stays 93) |
-| `forth-weird` | `>in` moved back | a flag masks the distance | `sqlite3` pipe, `COMMIT` | scratch run printing `>in` (10, 15, 23) and stack |
-| `make-gnu` | a file written, so a restart | the rule declines when a 41st word exists | `sqlite3` on `.rows.sql` | scratch run printing files and totals per pass |
-| `cmake` | the next `while()` evaluation | a match of 41 `x` | `sqlite3` | scratch run printing the registers |
-| `haskell-weird` | forcing a cell | `span`'s predicate | `COMMIT` then `hClose` | scratch run with an error-tail hours list |
-| `javascript-weird` | the consumer's ask | `over` assignment | `save` per ask | scratch script counting asks (4 for 3 cards) |
-| `javascript-events` | `emit` and `setImmediate` | `total > limit` in a listener | `COMMIT` in `finished` | scratch script logging every emit and turn |
-| `lisp-weird` | the next applicable method | `or` stops at true | `:around` method, one `sqlite3` | scratch run printing each method's return |
-| `tcl-weird` | the end of the trigger's insert | `WHERE NEW.running_total <= 40` | one `db transaction` | scratch run logging `hours` and `born` |
-| `apl-weird` | `⎕FX` and `⍎` | `Alive/` compress | `COMMIT` after the chain | `⎕CR` of `Card2` showing genes `T←46` |
-| `tar-gnu` | tar's walk | a `stop-over` member | the dispatcher's SQL | the inspector's decoded members, and the run |
-| `tar-gnu-weird` | a checkpoint | `done = total > 40` | per-tick transaction | closing line: last tick 64, 18 idle |
-| `regex-pcre2` | the engine's next pass | `gate` returns 1 | callouts write | callout log (gate 0, 0, 0, then 1) |
-| `regex-dotnet` | the engine | `(?(b)...\|(?!))` vetoes the next pass, the match succeeds | host appends TSV from captures | draws `15 19 12 17 11`: three rows, the last two unused |
-| `regex-sed` | `b` jumps | `/ tot:#{41}/` | `fd 3` into `sqlite3` | alternate witness: the documented seed gives `TRACE=1` totals of 15, 29, 43 marks |
-| `ed-weird` | the global command | which `s` matches | the launcher | buffer printed after each stage |
-| `ex-weird` | `@n` | the tape line: `@a` or `"` | the launcher | `'tp` printing tape lines 15, 34, 46 |
-| `m4` | rescanning | `ifelse(eval(...))` | `syscmd` | `-t tc_card` trace and `-L` limit |
+| `cobol-weird` | `ALTER` | `ON SIZE ERROR` | `sqlite3` en un script | ejecución de prueba que imprime `WS-HEADROOM` (74, 93 y luego el desbordamiento se queda en 93) |
+| `forth-weird` | `>in` movido hacia atrás | una bandera enmascara la distancia | `sqlite3` como tubería, `COMMIT` | ejecución de prueba que imprime `>in` (10, 15, 23) y la pila |
+| `make-gnu` | un archivo escrito, y por eso un reinicio | la regla se niega cuando existe una palabra 41 | `sqlite3` en `.rows.sql` | ejecución de prueba que imprime archivos y totales por pasada |
+| `cmake` | la evaluación siguiente de `while()` | una coincidencia de 41 `x` | `sqlite3` | ejecución de prueba que imprime los registros |
+| `haskell-weird` | forzar una celda | el predicado de `span` | `COMMIT` y luego `hClose` | ejecución de prueba con una lista de horas con un error al final |
+| `javascript-weird` | la petición del consumidor | asignación de `over` | `save` por petición | script de prueba que cuenta las peticiones (4 para 3 tarjetas) |
+| `javascript-events` | `emit` y `setImmediate` | `total > limit` en un escuchador de eventos | `COMMIT` en `finished` | script de prueba que registra cada emisión y cada turno |
+| `lisp-weird` | el siguiente método aplicable | `or` se detiene en true | un método `:around`, un `sqlite3` | ejecución de prueba que imprime el valor de retorno de cada método |
+| `tcl-weird` | el final de la inserción del disparador | `WHERE NEW.running_total <= 40` | un `db transaction` | ejecución de prueba que registra `hours` y `born` |
+| `apl-weird` | `⎕FX` y `⍎` | compresión `Alive/` | `COMMIT` tras la cadena | `⎕CR` de `Card2` que muestra los genes `T←46` |
+| `tar-gnu` | el recorrido de tar | un miembro `stop-over` | el SQL del despachador | los miembros decodificados del inspector y la ejecución |
+| `tar-gnu-weird` | un punto de control | `done = total > 40` | una transacción por tic | línea final: último tic 64, 18 ociosos |
+| `regex-pcre2` | la siguiente pasada del motor | `gate` devuelve 1 | los callouts escriben | registro de callouts (compuerta 0, 0, 0 y luego 1) |
+| `regex-dotnet` | el motor | `(?(b)...\|(?!))` veta la pasada siguiente y la coincidencia tiene éxito | el anfitrión agrega el TSV a partir de las capturas | sortea `15 19 12 17 11`: tres filas, las dos últimas sin usar |
+| `regex-sed` | `b` salta | `/ tot:#{41}/` | `fd 3` en `sqlite3` | testigo alterno: la semilla documentada da `TRACE=1` totales de 15, 29, 43 marcas |
+| `ed-weird` | el comando global | qué `s` coincide | el lanzador | búfer impreso después de cada etapa |
+| `ex-weird` | `@n` | la línea de la cinta: `@a` o `"` | el lanzador | `'tp` que imprime las líneas de la cinta 15, 34, 46 |
+| `m4` | relectura | `ifelse(eval(...))` | `syscmd` | traza de `-t tc_card` y límite de `-L` |
 
-**Which role is played by what.** The *decision* column shows how each entry performs the same role.
+**Qué papel cumple cada pieza.** La columna de *decisión* muestra cómo cada entrada cumple el mismo papel.
 
-**Exactly 40, and the ceiling.** Here the comparison found something the individual entries did not say. The specification says exactly 40 continues, so a fifth card must be possible. Entries whose supply of categories or cards was a finite list of *four* could not draw it. That was found while writing these guides, and all but one entry is now fixed.
+**Exactamente 40 y el techo.** Aquí la comparación encontró algo que las entradas por separado no decían. La especificación dice que un total de exactamente 40 continúa, así que una quinta tarjeta debe ser posible. Las entradas cuyo suministro de categorías o de tarjetas era una lista finita de *cuatro* no podían repartirla. Eso se descubrió al escribir estas guías, y ahora todas las entradas menos una están corregidas.
 
-| Group | Entries | Supply | Evidence |
+| Grupo | Entradas | Suministro | Evidencia |
 | --- | --- | --- | --- |
-| Was four names, now five | `regex-perl`, `regex-pcre2`, `regex-pcre2grep`, `regex-dotnet`, `regex-sed` | a subject, scaffold, tape or `cats:` list, now with `Meetings` repeated | **run**: before the fix, four 10-hour draws gave `total=40 entries=4` (PCRE2 and .NET, and the shared checker said `FAIL: final total 40 does not pass 40`). Each `check.sh` now forces all-10 cards and requires five rows ending at 50, and each new check fails on the old code |
-| Was four names, now five | `ModernChallenge1` and the Java, Go, Kotlin, Python and Rust ports | a one-pass category iterator or list, now with `Meetings` repeated | **run for the C# header** (a reduction): `stop: total 50 after 5 cards`. Rust's unit tests assert it. Go, Java and Kotlin compile. Python's list change was checked with a reduction of its condition |
-| Fixed work week | `LinqChallenge1`, `LinqChallenge2` | five 8-hour days | source read: 40.0 hours across five rows, outside the random challenge |
-| Still four passes | `xaml` | four copied passes in markup | read from the README, not run (Windows only). With the shipped seed it always deals four cards totalling 53, so the case never arises |
-| Five slots | `tar-gnu`, `ed-weird`, `ex-weird`, `lisp-weird`, `apl` | exactly the worst case (five cards of at least 10 hours reach 50) | the five slots cover the worst case, read from the source. **Run** for `ed-weird` (B18: all-10 dice give five cards, totals 10 to 50) |
-| Cycling | `cobol`, `cobol-weird`, `haskell`, `forth`, `make-gnu`, `cmake`, `javascript` family, `m4`, `tcl` | the category is computed from a count | **run** for `cobol-weird` (a scratch run with all-10 hours), `m4` (seed 4020, now also in its `check.sh`) and `tcl-weird` (B12 step 2). Read from the source for the rest |
+| Eran cuatro nombres, ahora son cinco | `regex-perl`, `regex-pcre2`, `regex-pcre2grep`, `regex-dotnet`, `regex-sed` | una lista de sujetos, de andamios, de cintas o de `cats:`, ahora con `Meetings` repetido | **ejecución**: antes de la corrección, cuatro sorteos de 10 horas daban `total=40 entries=4` (PCRE2 y .NET; el verificador compartido decía `FAIL: final total 40 does not pass 40`). Cada `check.sh` ahora fuerza tarjetas de 10 horas en todas y exige cinco filas que terminan en 50, y cada verificación nueva falla con el código anterior |
+| Eran cuatro nombres, ahora son cinco | `ModernChallenge1` y las adaptaciones a Java, Go, Kotlin, Python y Rust | un iterador o lista de categorías de una sola pasada, ahora con `Meetings` repetido | **ejecución para el encabezado de C#** (una reducción): `stop: total 50 after 5 cards`. Las pruebas unitarias de Rust lo afirman. Go, Java y Kotlin compilan. El cambio de lista de Python se comprobó con una reducción de su condición |
+| Semana laboral fija | `LinqChallenge1`, `LinqChallenge2` | cinco días de 8 horas | lectura del código fuente: 40.0 horas en cinco filas, fuera del reto aleatorio |
+| Siguen siendo cuatro pasadas | `xaml` | cuatro pasadas copiadas en el marcado | se lee en el README, no se ejecutó (solo Windows). Con la semilla incluida siempre reparte cuatro tarjetas que suman 53, así que el caso nunca se presenta |
+| Cinco ranuras | `tar-gnu`, `ed-weird`, `ex-weird`, `lisp-weird`, `apl` | exactamente el peor caso (cinco tarjetas de al menos 10 horas suman 50) | las cinco ranuras cubren el peor caso, según se lee en el código fuente. **Ejecución** para `ed-weird` (B18: los dados que dan todos 10 producen cinco tarjetas, con totales de 10 a 50) |
+| Ciclo | `cobol`, `cobol-weird`, `haskell`, `forth`, `make-gnu`, `cmake`, familia `javascript`, `m4`, `tcl` | la categoría se calcula a partir de un contador | **ejecución** para `cobol-weird` (una ejecución de prueba con todas las horas en 10), `m4` (semilla 4020, ahora también en su `check.sh`) y `tcl-weird` (B12 paso 2). El resto se lee en el código fuente |
 
-The probability was one run in 10,000, so none of this was visible in ordinary testing. The entries' own checks had accepted "four entries" as a legitimate stop, so they passed. Only the shared checker caught the case. The lesson stands after the fix: a specification and its checks must agree *at the edge*, and the way to make them agree is a test that *forces* the edge. That is what each new `check.sh` does.
+La probabilidad era de una ejecución en 10,000, así que nada de esto se veía en las pruebas ordinarias. Las verificaciones propias de las entradas aceptaban "cuatro entradas" como una parada legítima, así que pasaban. Solo el verificador compartido detectó el caso. La lección sigue en pie tras la corrección: una especificación y sus verificaciones deben coincidir *en el borde*. La forma de lograrlo es una prueba que *fuerce* el borde. Eso hace cada nuevo `check.sh`.
 
-## Compare the ordinary and weird designs
+## Compara los diseños ordinarios y los raros
 
-| Dimension | Ordinary designs | Weird designs | What the comparison adds |
+| Dimensión | Diseños ordinarios | Diseños raros | Qué añade la comparación |
 | --- | --- | --- | --- |
-| **Representation** | Variables, loops, functions | A jump, a position, files, captures, rows, text | Same machine, different substance |
-| **Observability** | Print variables | Print the *control* state (`>in`, the jump target, the files) | Choose the design for how you must observe it |
-| **Tests** | Unit tests | Drive with a controlled input (`DICE`, `SEED`, `--hours`, `NOW`) and compare | Record the input and label source-only evidence when a runtime is unavailable |
-| **Debugging** | Standard tools | Instrument without disturbing (CMake's registers, ed's buffer) | The act of looking can change the machine |
-| **Portability** | Broad | Narrow, with a stated label | See the label column below |
-| **Cost** | Normal | Reviewability, reentrancy, a finite supply | The ceiling is a cost nobody advertised |
+| **Representación** | Variables, bucles, funciones | Un salto, una posición, archivos, capturas, filas, texto | La misma máquina, distinta sustancia |
+| **Observabilidad** | Imprimir variables | Imprimir el estado de *control* (`>in`, el destino del salto, los archivos) | Elige el diseño según cómo necesites observarlo |
+| **Pruebas** | Pruebas unitarias | Ejecuta con una entrada de datos controlada (`DICE`, `SEED`, `--hours`, `NOW`) y compara | Registra la entrada de datos y etiqueta la evidencia que solo viene del código fuente cuando no hay un entorno de ejecución |
+| **Debugging** | Herramientas estándar | Instrumenta sin perturbar (los registros de CMake, el búfer de ed) | El acto de mirar puede cambiar la máquina |
+| **Portabilidad** | Amplia | Estrecha, con una etiqueta declarada | Mira la columna de etiquetas más abajo |
+| **Costo** | Normal | Revisabilidad, reentrada, un suministro finito | El techo es un costo que nadie anunció |
 
-**Choosing.** If you need to *test the rule alone*, use an idiomatic design. If you need to *watch the whole machine*, prefer a design with printable state: sed (`TRACE=1`), ed (`,p`), Ex (`'tp`). If you need *the weakest input language*, prefer the one with no side effects: .NET's regex can only capture. If you need a *stop that cannot be forgotten*, prefer a structural stop (a literal, a tape, a constraint) over a flag a later edit might skip.
+**Cómo elegir.** Si necesitas *probar la regla sola*, usa un diseño idiomático. Si necesitas *observar toda la máquina*, prefiere un diseño con estado imprimible: sed (`TRACE=1`), ed (`,p`), Ex (`'tp`). Si necesitas *el lenguaje de entrada más débil*, prefiere el que no tiene efectos secundarios: la expresión regular de .NET solo puede capturar. Si necesitas *una parada que no se pueda olvidar*, prefiere una parada estructural (un literal, una cinta, una restricción) a una bandera que una edición posterior podría omitir.
 
-## What the exercises demonstrate
+## Qué demuestran los ejercicios
 
-| Exercise | Predict first | What the evidence shows |
+| Ejercicio | Predice primero | Qué muestra la evidencia |
 | --- | --- | --- |
-| [C1. Weird next to boring](../../exercises.md#c1-weird-next-to-boring-verified) | For one pair, what would you unit-test, and what would a debugger show? | The same output contract with different visible state. |
-| [C2. Make the constraint real](../../exercises.md#c2-make-the-constraint-real-verified) | Write a check that bans loop words in Forth. | It must strip comments and strings, then fail on each mutation. |
-| [C3. A loop whose state is not a variable](../../exercises.md#c3-a-loop-whose-state-is-not-a-variable-verified) | In awk with no loop keyword, where can the state live? | In the input. |
-| [A1. Read the rows](../../exercises.md#a1-read-the-rows-verified) | Run three entries from different languages and a fourth. | The shared invariant is visible in every one, and a fourth predicted card count tests understanding. |
-| [D. Port the challenge](../../exercises.md#d-port-the-challenge-verified-reference-answer-in-awk) | Port it to a language of your choice. | A port must decide its stop rule and its category supply. The ceiling is a design decision you now make. |
-| [F. Prove a README claim](../../exercises.md#f-prove-a-readme-claim-verified) | Which claim in a comparison table could you test? | Any row of the worksheet with a verifiable cell. |
+| [C1. Lo raro junto a lo aburrido](../../exercises.md#c1-weird-next-to-boring-verified) | Para una pareja de entradas, ¿qué probarías con pruebas unitarias y qué mostraría un depurador? | El mismo contrato de salida con un estado visible distinto. |
+| [C2. Haz real la restricción](../../exercises.md#c2-make-the-constraint-real-verified) | Escribe una verificación que prohíba las palabras de bucle en Forth. | Debe quitar los comentarios y las cadenas de texto, y luego fallar con cada mutación. |
+| [C3. Un bucle cuyo estado no es una variable](../../exercises.md#c3-a-loop-whose-state-is-not-a-variable-verified) | En awk sin palabras clave de bucle, ¿dónde puede vivir el estado? | En la entrada de datos. |
+| [A1. Lee las filas](../../exercises.md#a1-read-the-rows-verified) | Ejecuta tres entradas de lenguajes distintos y una cuarta. | El invariante compartido se ve en todas, y predecir el número de tarjetas de una cuarta pone a prueba la comprensión. |
+| [D. Adapta el reto](../../exercises.md#d-port-the-challenge-verified-reference-answer-in-awk) | Adáptalo a un lenguaje de tu elección. | Una adaptación debe decidir su regla de parada y su suministro de categorías. El techo es una decisión de diseño que ahora tomas tú. |
+| [F. Demuestra una afirmación del README](../../exercises.md#f-prove-a-readme-claim-verified) | ¿Qué afirmación de una tabla de comparación podrías probar? | Cualquier fila de la hoja de trabajo con una celda verificable. |
 
-## Failure modes, costs and boundaries
+## Modos de fallo, costos y límites
 
-The README `assurance` key summarizes the weakest dependency the mechanism needs. The table counts those declarations: **17** guaranteed, **16** implementation-permitted, **7** accidentally exploited (`tcl-weird` moved from the last group to the middle one when its evaluation-order dependence was removed).
+La clave `assurance` del README resume la dependencia más débil que necesita el mecanismo. La tabla cuenta esas declaraciones: **17** garantizado, **16** permitido por la implementación y **7** aprovechado por accidente. (`tcl-weird` pasó del último grupo al del medio cuando se eliminó su dependencia del orden de evaluación.)
 
-| Claim | Label | Why |
+| Afirmación | Etiqueta | Por qué |
 | --- | --- | --- |
-| In `tcl-weird`, a total of 40 admits a next insert | **guaranteed** by the integer comparison in the trigger | The trigger tests `NEW.running_total <= 40`. The trigger chain and its transaction have their own prerequisites. |
-| Three entries share the stop-rule label "accidentally exploited" because of a specific observed behavior (Make's remake, CMake's `AND`, ed's silent `s`) | **accidentally exploited** | Each is observed, not promised. |
-| The number of names or slots bounds the number of cards | **guaranteed** by construction, tested | A bound of five is exactly the worst case. With four names (before the fix, and still in `xaml`) it contradicted the shared challenge at exactly 40. |
-| .NET balancing groups subtract captures from a named group | **guaranteed** within the documented .NET regex engine | The successful match is the return channel. An engine that lacks balancing groups cannot run this pattern. |
+| En `tcl-weird`, un total de 40 admite una inserción siguiente | **garantizado** por la comparación de enteros en el disparador | El disparador evalúa `NEW.running_total <= 40`. La cadena de disparadores y su transacción tienen sus propios requisitos previos. |
+| Tres entradas comparten la etiqueta de regla de parada "aprovechado por accidente" por un comportamiento observado concreto (la reconstrucción de Make, `AND` de CMake, el `s` silencioso de ed) | **aprovechado por accidente** | Cada uno se observa, no se promete. |
+| El número de nombres o ranuras limita el número de tarjetas | **garantizado** por construcción y probado | Un límite de cinco es exactamente el peor caso. Con cuatro nombres (antes de la corrección y todavía en `xaml`) contradecía el reto compartido en exactamente 40. |
+| Los grupos de equilibrio de .NET restan capturas de un grupo con nombre | **garantizado** dentro del motor de expresiones regulares documentado de .NET | La coincidencia exitosa es el canal de retorno. Un motor sin grupos de equilibrio no puede ejecutar este patrón. |
 
-**Costs to state.**
+**Costos que hay que declarar.**
 
-- **A comparison table hides the edge.** Every row looks the same until you ask about exactly 40.
-- **Different mechanisms are not different problems.** The risk in reading eighteen decision mechanisms is to think each is new. Each answers "when do we stop, and how do we know?"
-- **Evidence differs in strength.** A run, a source line and a README claim are not equal. This guide marks which is which.
-- **Where this is legitimate.** Comparing designs by role is how engineers choose between frameworks. The stunt is the range of substances.
+- **Una tabla de comparación oculta el borde.** Todas las filas parecen iguales hasta que preguntas por exactamente 40.
+- **Mecanismos distintos no son problemas distintos.** El riesgo de leer dieciocho mecanismos de decisión es pensar que cada uno es nuevo. Cada uno responde a "¿cuándo paramos y cómo lo sabemos?"
+- **La evidencia difiere en fuerza.** Una ejecución, una línea de código fuente y una afirmación del README no son iguales. Esta guía marca cuál es cuál.
+- **Dónde es legítimo esto.** Comparar diseños por papel es como los ingenieros eligen entre marcos de trabajo. La proeza está en la variedad de sustratos.
 
-## Connections across the repository
+## Conexiones a lo largo del repositorio
 
-- **Every language guide** is one row of the worksheet: [COBOL](../lenguajes/cobol.md), [Haskell](../lenguajes/haskell.md), [Forth](../lenguajes/forth.md), [Make and CMake](../lenguajes/make-y-cmake.md), [Regex engines and sed](../lenguajes/motores-de-regex-y-sed.md), [APL](../lenguajes/apl.md), [JavaScript](../lenguajes/javascript.md), [Common Lisp](../lenguajes/common-lisp.md), [m4](../lenguajes/m4.md), [Tcl](../lenguajes/tcl.md), [ed and Ex](../lenguajes/ed-y-ex.md), [tar](../lenguajes/tar.md) and [C#, LINQ, XAML and ports](../lenguajes/csharp-linq-xaml-y-adaptaciones.md).
-- **Where the next step is stored.** [State and control beyond variables](estado-y-control-mas-alla-de-las-variables.md) develops the first diagram.
-- **Who demands work.** [Evaluation, demand and laziness](evaluacion-demanda-y-pereza.md) develops the "advances the next step" column.
-- **What commits.** [Effects, errors and commitment](efectos-errores-y-confirmacion.md) develops the last columns.
-- **What is promised.** [Portability, abstraction and cost](portabilidad-abstraccion-y-costo.md) develops the labels.
-- **In the book.** [Comparative case studies](../../informatica/09-casos-de-estudio-comparativos.md), including the table of every entry at a glance, and [Solution patterns](../../patrones.md), in particular [Control state outside variables](../../patrones.md#control-state-outside-variables) and [Programs stored as data](../../patrones.md#programs-stored-as-data).
+- **Cada guía de lenguaje** es una fila de la hoja de trabajo: [COBOL](../lenguajes/cobol.md), [Haskell](../lenguajes/haskell.md), [Forth](../lenguajes/forth.md), [Make y CMake](../lenguajes/make-y-cmake.md), [Motores de expresiones regulares y sed](../lenguajes/motores-de-regex-y-sed.md), [APL](../lenguajes/apl.md), [JavaScript](../lenguajes/javascript.md), [Common Lisp](../lenguajes/common-lisp.md), [m4](../lenguajes/m4.md), [Tcl](../lenguajes/tcl.md), [ed y Ex](../lenguajes/ed-y-ex.md), [tar](../lenguajes/tar.md) y [C#, LINQ, XAML y adaptaciones](../lenguajes/csharp-linq-xaml-y-adaptaciones.md).
+- **Dónde se guarda el paso siguiente.** [Estado y control más allá de las variables](estado-y-control-mas-alla-de-las-variables.md) desarrolla el primer diagrama.
+- **Quién demanda el trabajo.** [Evaluación, demanda y pereza](evaluacion-demanda-y-pereza.md) desarrolla la columna "qué hace avanzar el paso siguiente".
+- **Qué confirma.** [Efectos, errores y confirmación](efectos-errores-y-confirmacion.md) desarrolla las últimas columnas.
+- **Qué se promete.** [Portabilidad, abstracción y costo](portabilidad-abstraccion-y-costo.md) desarrolla las etiquetas.
+- **En el libro.** [Casos de estudio comparados](../../informatica/09-casos-de-estudio-comparativos.md), con la tabla de todas las entradas de un vistazo, y [Patrones de solución](../../patrones.md), en particular [Estado de control fuera de las variables](../../patrones.md#control-state-outside-variables) y [Programas guardados como datos](../../patrones.md#programs-stored-as-data).
 
-## Self-check
+## Autoevaluación
 
-Answer each question in your own words before you read the italic text. Say what evidence would support each answer.
+Responde cada pregunta con tus propias palabras antes de leer el texto en cursiva. Di qué evidencia respaldaría cada respuesta.
 
-1. **Trace.** Fill in the worksheet for `lisp-weird`: where is the program, the state, what repeats, what decides. *(The program is five classes with one `or` method each. The state is the `ledger` object plus the position in the class precedence list. What repeats is the next applicable method, run by the `or` combination. The decision is a method returning true.)*
-2. **Explain.** Why is a total of exactly 40 a test of an entry's *supply* and not only of its stop rule? *(The stop rule says to continue at 40, so a fifth card must be possible. An entry with only four category names has no fifth, so it stops at 40 whatever its rule says. That was true of the regex entries and the `for`-header entries before they were fixed, and is still true of `xaml`.)*
-3. **Transfer.** Pick a program you maintain. Fill in the worksheet for its main loop. Which cell is hardest to answer? *(Often "what makes a decision" is spread over several places, and "what evidence proves the claim" is missing. The hardest cell tells you where your program is hardest to review.)*
-4. **Evidence.** A colleague says, "Every entry that cycles categories continues at 40." Design a test that could fail. *(Run each with a forced all-10 input (`DICE`, `SEED`, `--hours`, a fixed list), then check for five rows and totals 10, 20, 30, 40, 50. The negative control is a four-name entry, which stops at 40.)*
+1. **Traza.** Completa la hoja de trabajo de `lisp-weird`: dónde está el programa, el estado, qué se repite, qué decide. *(El programa son cinco clases con un método `or` cada una. El estado es el objeto `ledger` más la posición en la lista de precedencia de clases. Lo que se repite es el siguiente método aplicable, que ejecuta la combinación `or`. La decisión es un método que devuelve true.)*
+2. **Explica.** ¿Por qué un total de exactamente 40 pone a prueba el *suministro* de una entrada y no solo su regla de parada? *(La regla de parada dice que se continúa en 40, así que una quinta tarjeta debe ser posible. Una entrada con solo cuatro nombres de categoría no tiene quinta, así que se detiene en 40 diga lo que diga su regla. Eso era cierto de las entradas de expresiones regulares y de las entradas con encabezado `for` antes de corregirlas, y sigue siendo cierto de `xaml`.)*
+3. **Transfiere.** Elige un programa que mantengas. Completa la hoja de trabajo de su bucle principal. ¿Qué celda es la más difícil de responder? *(A menudo "qué toma una decisión" está repartido en varios lugares, y falta "qué evidencia respalda la afirmación". La celda más difícil te dice dónde es más difícil revisar tu programa.)*
+4. **Evidencia.** Un colega dice: "Toda entrada que repite categorías en ciclo continúa cuando el total es exactamente 40". Diseña una prueba que pueda fallar. *(Ejecuta cada una con una entrada forzada de todo 10 (`DICE`, `SEED`, `--hours`, una lista fija). Comprueba que haya cinco filas y totales de 10, 20, 30, 40, 50. El control negativo es una entrada de cuatro nombres, que se detiene en 40.)*
 
-## Further reading
+## Lecturas adicionales
 
-- [Comparative case studies](../../informatica/09-casos-de-estudio-comparativos.md) (this book): the role tables and the table of every entry at a glance.
-- [Solution patterns](../../patrones.md) (this book): mechanisms grouped across languages.
-- [Turing completeness](https://en.wikipedia.org/wiki/Turing_completeness) (Wikipedia): what "can express any computation" means, and why many odd systems qualify.
-- [Transition system](https://en.wikipedia.org/wiki/Transition_system) (Wikipedia): the formal reading of "state plus allowed step".
+- [Casos de estudio comparados](../../informatica/09-casos-de-estudio-comparativos.md) (este libro): las tablas de papeles y la tabla de todas las entradas de un vistazo.
+- [Patrones de solución](../../patrones.md) (este libro): mecanismos agrupados entre lenguajes.
+- [Completitud de Turing](https://en.wikipedia.org/wiki/Turing_completeness) (Wikipedia): qué significa "puede expresar cualquier cómputo" y por qué muchos sistemas insólitos califican.
+- [Sistema de transiciones](https://en.wikipedia.org/wiki/Transition_system) (Wikipedia): la lectura formal de "estado más paso permitido".
