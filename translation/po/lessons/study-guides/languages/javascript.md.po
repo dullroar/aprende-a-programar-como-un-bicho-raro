@@ -57,7 +57,7 @@ msgstr "Antes de empezar"
 #: lessons/study-guides/languages/javascript.md:20
 msgctxt "s-98a3035c90f0-0007"
 msgid "**Safety model.** Every entry writes fictional **⟦DNT_0001⟧** data to a scratch SQLite file. These programs open files and, for the pulse, set timers. Read the source before you run it, and run it in the sandbox first:"
-msgstr "**Modelo de seguridad.** Cada entrada escribe datos ficticios marcados con **⟦DNT_0001⟧** en un archivo SQLite de trabajo. Estos programas abren archivos y, en el caso del pulso, programan temporizadores. Lee el código fuente antes de ejecutarlo. Ejecútalo primero en el entorno aislado (*sandbox*):"
+msgstr "**Modelo de seguridad.** Cada entrada escribe datos ficticios marcados con **⟦DNT_0001⟧** en un archivo SQLite de trabajo. Estos programas abren archivos y, en el caso del pulso, programan temporizadores. Lee el código fuente antes de ejecutarlo. Ejecútalo primero en el entorno aislado (*sandbox*) que limita el acceso al sistema anfitrión:"
 
 #: lessons/study-guides/languages/javascript.md:28
 msgctxt "s-e010782e3c63-0008"

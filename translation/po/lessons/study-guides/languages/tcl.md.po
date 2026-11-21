@@ -57,7 +57,7 @@ msgstr "Antes de empezar"
 #: lessons/study-guides/languages/tcl.md:20
 msgctxt "s-8f546d574061-0007"
 msgid "**Safety model.** Every entry writes fictional **⟦DNT_0001⟧** data to a scratch SQLite file. ⟦CODE_0002⟧ runs *text from a table as code*. That is safe here only because the program builds the table itself, in memory, in the same file. Read the source before you run it, and run it in the sandbox first:"
-msgstr "**Modelo de seguridad.** Cada entrada escribe datos ficticios marcados con **⟦DNT_0001⟧** en un archivo SQLite desechable. ⟦CODE_0002⟧ ejecuta *texto de una tabla como código*. Eso es seguro aquí solo porque el programa construye la tabla él mismo, en memoria, en el mismo archivo. Lee el código fuente antes de ejecutarlo, y ejecútalo primero en el entorno aislado (*sandbox*):"
+msgstr "**Modelo de seguridad.** Cada entrada escribe datos ficticios marcados con **⟦DNT_0001⟧** en un archivo SQLite desechable. ⟦CODE_0002⟧ ejecuta *texto de una tabla como código*. Eso es seguro aquí solo porque el programa construye la tabla él mismo, en memoria, en el mismo archivo. Lee el código fuente antes de ejecutarlo, y ejecútalo primero en el entorno aislado (*sandbox*) que limita el acceso al sistema anfitrión:"
 
 #: lessons/study-guides/languages/tcl.md:27
 msgctxt "s-15b340297cc1-0008"

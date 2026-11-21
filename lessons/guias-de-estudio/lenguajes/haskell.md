@@ -18,7 +18,7 @@ El material correspondiente del libro es [Haskell](../../lenguajes/haskell.md) y
 
 ## Antes de empezar
 
-**Modelo de seguridad.** Cada entrada escribe registros ficticios marcados con **DEMO ONLY** en un archivo SQLite de trabajo. Ambos programas inician el proceso `sqlite3`, así que lee primero el código fuente y ejecútalo primero en el entorno aislado (*sandbox*):
+**Modelo de seguridad.** Cada entrada escribe registros ficticios marcados con **DEMO ONLY** en un archivo SQLite de trabajo. Ambos programas inician el proceso `sqlite3`, así que lee primero el código fuente y ejecútalo primero en el entorno aislado (*sandbox*) que limita el acceso al sistema anfitrión:
 
 ```bash
 sandbox/container/run-image.sh src/haskell

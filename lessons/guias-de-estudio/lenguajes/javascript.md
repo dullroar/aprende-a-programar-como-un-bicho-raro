@@ -17,7 +17,7 @@ Al terminar, deberías poder:
 
 ## Antes de empezar
 
-**Modelo de seguridad.** Cada entrada escribe datos ficticios marcados con **DEMO ONLY** en un archivo SQLite de trabajo. Estos programas abren archivos y, en el caso del pulso, programan temporizadores. Lee el código fuente antes de ejecutarlo. Ejecútalo primero en el entorno aislado (*sandbox*):
+**Modelo de seguridad.** Cada entrada escribe datos ficticios marcados con **DEMO ONLY** en un archivo SQLite de trabajo. Estos programas abren archivos y, en el caso del pulso, programan temporizadores. Lee el código fuente antes de ejecutarlo. Ejecútalo primero en el entorno aislado (*sandbox*) que limita el acceso al sistema anfitrión:
 
 ```bash
 sandbox/container/run-image.sh src/javascript

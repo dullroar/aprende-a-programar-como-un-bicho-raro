@@ -17,7 +17,7 @@ Al terminar, deberías poder:
 
 ## Antes de empezar
 
-**Modelo de seguridad.** Cada entrada escribe datos ficticios marcados con **DEMO ONLY** en un archivo SQLite desechable. `tcl-weird` ejecuta *texto de una tabla como código*. Eso es seguro aquí solo porque el programa construye la tabla él mismo, en memoria, en el mismo archivo. Lee el código fuente antes de ejecutarlo, y ejecútalo primero en el entorno aislado (*sandbox*):
+**Modelo de seguridad.** Cada entrada escribe datos ficticios marcados con **DEMO ONLY** en un archivo SQLite desechable. `tcl-weird` ejecuta *texto de una tabla como código*. Eso es seguro aquí solo porque el programa construye la tabla él mismo, en memoria, en el mismo archivo. Lee el código fuente antes de ejecutarlo, y ejecútalo primero en el entorno aislado (*sandbox*) que limita el acceso al sistema anfitrión:
 
 ```bash
 sandbox/container/run-image.sh src/tcl

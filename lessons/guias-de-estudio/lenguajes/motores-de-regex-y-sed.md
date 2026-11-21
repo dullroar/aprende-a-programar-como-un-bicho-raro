@@ -17,7 +17,7 @@ Al terminar, deberías poder:
 
 ## Antes de empezar
 
-**Modelo de seguridad.** Cada entrada escribe datos ficticios marcados con **DEMO ONLY**. Esta familia es la más peligrosa de ejecutar sin leer. Un patrón de Perl ejecuta código de Perl e inicia `sqlite3`. Un callout de PCRE2 ejecuta código en C del anfitrión, y los callouts de `pcre2grep` inician programas. Lee primero el código fuente y ejecútalo primero en el entorno aislado (*sandbox*):
+**Modelo de seguridad.** Cada entrada escribe datos ficticios marcados con **DEMO ONLY**. Esta familia es la más peligrosa de ejecutar sin leer. Un patrón de Perl ejecuta código de Perl e inicia `sqlite3`. Un callout de PCRE2 ejecuta código en C del anfitrión, y los callouts de `pcre2grep` inician programas. Lee primero el código fuente y ejecútalo primero en el entorno aislado (*sandbox*) que limita el acceso al sistema anfitrión:
 
 ```bash
 sandbox/container/run-image.sh src/regex-pcre2

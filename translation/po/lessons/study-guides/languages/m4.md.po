@@ -47,7 +47,7 @@ msgstr ""
 #: lessons/study-guides/languages/m4.md:16
 msgctxt "s-cbfce4e17b7f-0005"
 msgid "**Scope limits.** You need to know that a macro is a name with a replacement text. The guide does not teach every built-in, the 32-bit generator in detail or the SQL. It uses GNU m4 1.4.x (the sandbox has 1.4.19). The book's page is [m4](⟦DEST_0001⟧). For the ideas, see [Macros and text expansion](⟦DEST_0002⟧), [Fixed-point iteration](⟦DEST_0003⟧) and [Recursion](⟦DEST_0004⟧)."
-msgstr "**Límites del alcance.** Necesitas saber que una macro es un nombre con un texto de reemplazo. La guía no enseña todas las macros integradas, ni el generador de 32 bits en detalle, ni el SQL. Usa GNU m4 1.4.x; el entorno aislado (*sandbox*) trae la 1.4.19. La página del libro es [m4](⟦DEST_0001⟧). Para las ideas, consulta [Macros y expansión de texto](⟦DEST_0002⟧), [Iteración de punto fijo](⟦DEST_0003⟧) y [Recursión](⟦DEST_0004⟧)."
+msgstr "**Límites del alcance.** Necesitas saber que una macro es un nombre con un texto de reemplazo. La guía no enseña todas las macros integradas, ni el generador de 32 bits en detalle, ni el SQL. Usa GNU m4 1.4.x; el entorno aislado (*sandbox*) que limita el acceso al sistema anfitrión trae la 1.4.19. La página del libro es [m4](⟦DEST_0001⟧). Para las ideas, consulta [Macros y expansión de texto](⟦DEST_0002⟧), [Iteración de punto fijo](⟦DEST_0003⟧) y [Recursión](⟦DEST_0004⟧)."
 
 #: lessons/study-guides/languages/m4.md:18
 msgctxt "s-d5bfdd7d989d-0006"

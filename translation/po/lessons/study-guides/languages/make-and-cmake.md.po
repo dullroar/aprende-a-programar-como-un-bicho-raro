@@ -60,7 +60,7 @@ msgstr "Antes de empezar"
 #: lessons/study-guides/languages/make-and-cmake.md:21
 msgctxt "s-11c6bbf7f2fd-0008"
 msgid "**Safety model.** Every entry writes fictional **⟦DNT_0001⟧** data to a scratch SQLite file. Make and CMake are programs that *run other programs*: both start ⟦CODE_0002⟧, and Make runs ⟦CODE_0003⟧ and ⟦CODE_0004⟧. Read the source before you run it, and run it in the sandbox first:"
-msgstr "**Modelo de seguridad.** Cada entrada escribe datos ficticios marcados con **⟦DNT_0001⟧** en un archivo SQLite de trabajo. Make y CMake son programas que *ejecutan otros programas*. Ambos inician ⟦CODE_0002⟧. Make ejecuta además ⟦CODE_0003⟧ y ⟦CODE_0004⟧. Lee el código fuente antes de ejecutarlo. Ejecútalo primero en el entorno aislado (*sandbox*):"
+msgstr "**Modelo de seguridad.** Cada entrada escribe datos ficticios marcados con **⟦DNT_0001⟧** en un archivo SQLite de trabajo. Make y CMake son programas que *ejecutan otros programas*. Ambos inician ⟦CODE_0002⟧. Make ejecuta además ⟦CODE_0003⟧ y ⟦CODE_0004⟧. Lee el código fuente antes de ejecutarlo. Ejecútalo primero en el entorno aislado (*sandbox*) que limita el acceso al sistema anfitrión:"
 
 #: lessons/study-guides/languages/make-and-cmake.md:28
 msgctxt "s-a214c0deec8b-0009"

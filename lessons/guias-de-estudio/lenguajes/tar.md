@@ -17,7 +17,7 @@ Al terminar, deberías poder:
 
 ## Antes de empezar
 
-**Modelo de seguridad.** Cada entrada escribe datos ficticios de **DEMO ONLY** en un archivo SQLite desechable. Un archivo que lleva un programa es justo lo que no debes ejecutar sin leer, y `tar-gnu` se construye en torno a esa regla. *Leer* y *ejecutar* son comandos distintos. Ejecutar exige una bandera explícita. Lee el código fuente antes de ejecutarlo, y ejecútalo primero en el entorno aislado (*sandbox*):
+**Modelo de seguridad.** Cada entrada escribe datos ficticios de **DEMO ONLY** en un archivo SQLite desechable. Un archivo que lleva un programa es justo lo que no debes ejecutar sin leer, y `tar-gnu` se construye en torno a esa regla. *Leer* y *ejecutar* son comandos distintos. Ejecutar exige una bandera explícita. Lee el código fuente antes de ejecutarlo, y ejecútalo primero en el entorno aislado (*sandbox*) que limita el acceso al sistema anfitrión:
 
 ```bash
 sandbox/container/run-image.sh src/tar-gnu

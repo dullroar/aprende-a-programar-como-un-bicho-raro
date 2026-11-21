@@ -57,7 +57,7 @@ msgstr "Antes de empezar"
 #: lessons/study-guides/languages/regex-engines-and-sed.md:20
 msgctxt "s-900db9530e49-0007"
 msgid "**Safety model.** Every entry writes fictional **⟦DNT_0001⟧** data. This family is the most dangerous to run unread. A Perl pattern here runs Perl code and starts ⟦CODE_0002⟧, a PCRE2 callout runs host C and ⟦CODE_0003⟧ callouts start programs. Read the source first and run it in the sandbox first:"
-msgstr "**Modelo de seguridad.** Cada entrada escribe datos ficticios marcados con **⟦DNT_0001⟧**. Esta familia es la más peligrosa de ejecutar sin leer. Un patrón de Perl ejecuta código de Perl e inicia ⟦CODE_0002⟧. Un callout de PCRE2 ejecuta código en C del anfitrión, y los callouts de ⟦CODE_0003⟧ inician programas. Lee primero el código fuente y ejecútalo primero en el entorno aislado (*sandbox*):"
+msgstr "**Modelo de seguridad.** Cada entrada escribe datos ficticios marcados con **⟦DNT_0001⟧**. Esta familia es la más peligrosa de ejecutar sin leer. Un patrón de Perl ejecuta código de Perl e inicia ⟦CODE_0002⟧. Un callout de PCRE2 ejecuta código en C del anfitrión, y los callouts de ⟦CODE_0003⟧ inician programas. Lee primero el código fuente y ejecútalo primero en el entorno aislado (*sandbox*) que limita el acceso al sistema anfitrión:"
 
 #: lessons/study-guides/languages/regex-engines-and-sed.md:28
 msgctxt "s-b44c7224120c-0008"

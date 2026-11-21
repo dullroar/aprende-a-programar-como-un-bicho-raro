@@ -60,7 +60,7 @@ msgstr "Antes de empezar"
 #: lessons/study-guides/languages/haskell.md:21
 msgctxt "s-885dddfc0c94-0008"
 msgid "**Safety model.** Every entry writes fictional **⟦DNT_0001⟧** records to a scratch SQLite file. Both programs start the ⟦CODE_0002⟧ process, so read the source first and run it in the sandbox first:"
-msgstr "**Modelo de seguridad.** Cada entrada escribe registros ficticios marcados con **⟦DNT_0001⟧** en un archivo SQLite de trabajo. Ambos programas inician el proceso ⟦CODE_0002⟧, así que lee primero el código fuente y ejecútalo primero en el entorno aislado (*sandbox*):"
+msgstr "**Modelo de seguridad.** Cada entrada escribe registros ficticios marcados con **⟦DNT_0001⟧** en un archivo SQLite de trabajo. Ambos programas inician el proceso ⟦CODE_0002⟧, así que lee primero el código fuente y ejecútalo primero en el entorno aislado (*sandbox*) que limita el acceso al sistema anfitrión:"
 
 #: lessons/study-guides/languages/haskell.md:28
 msgctxt "s-88d09213fc28-0009"

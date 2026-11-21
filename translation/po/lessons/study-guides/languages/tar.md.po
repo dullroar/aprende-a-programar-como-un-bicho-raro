@@ -57,7 +57,7 @@ msgstr "Antes de empezar"
 #: lessons/study-guides/languages/tar.md:20
 msgctxt "s-6a06524a7e5d-0007"
 msgid "**Safety model.** Every entry writes fictional **⟦DNT_0001⟧** data to a scratch SQLite file. An archive that carries a program is exactly what you should not run unread, and ⟦CODE_0002⟧ is built around that rule: *reading* and *running* are separate commands, and running needs an explicit flag. Read the source before you run it, and run it in the sandbox first:"
-msgstr "**Modelo de seguridad.** Cada entrada escribe datos ficticios de **⟦DNT_0001⟧** en un archivo SQLite desechable. Un archivo que lleva un programa es justo lo que no debes ejecutar sin leer, y ⟦CODE_0002⟧ se construye en torno a esa regla. *Leer* y *ejecutar* son comandos distintos. Ejecutar exige una bandera explícita. Lee el código fuente antes de ejecutarlo, y ejecútalo primero en el entorno aislado (*sandbox*):"
+msgstr "**Modelo de seguridad.** Cada entrada escribe datos ficticios de **⟦DNT_0001⟧** en un archivo SQLite desechable. Un archivo que lleva un programa es justo lo que no debes ejecutar sin leer, y ⟦CODE_0002⟧ se construye en torno a esa regla. *Leer* y *ejecutar* son comandos distintos. Ejecutar exige una bandera explícita. Lee el código fuente antes de ejecutarlo, y ejecútalo primero en el entorno aislado (*sandbox*) que limita el acceso al sistema anfitrión:"
 
 #: lessons/study-guides/languages/tar.md:27
 msgctxt "s-749aec91d11b-0008"

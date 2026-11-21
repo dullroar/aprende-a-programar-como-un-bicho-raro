@@ -18,7 +18,7 @@ La página del libro es [Make y CMake](../../lenguajes/make-cmake.md). Para las 
 
 ## Antes de empezar
 
-**Modelo de seguridad.** Cada entrada escribe datos ficticios marcados con **DEMO ONLY** en un archivo SQLite de trabajo. Make y CMake son programas que *ejecutan otros programas*. Ambos inician `sqlite3`. Make ejecuta además `mkdir` y `rm`. Lee el código fuente antes de ejecutarlo. Ejecútalo primero en el entorno aislado (*sandbox*):
+**Modelo de seguridad.** Cada entrada escribe datos ficticios marcados con **DEMO ONLY** en un archivo SQLite de trabajo. Make y CMake son programas que *ejecutan otros programas*. Ambos inician `sqlite3`. Make ejecuta además `mkdir` y `rm`. Lee el código fuente antes de ejecutarlo. Ejecútalo primero en el entorno aislado (*sandbox*) que limita el acceso al sistema anfitrión:
 
 ```bash
 sandbox/container/run-image.sh src/make-gnu
