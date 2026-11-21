@@ -1,5 +1,10 @@
 # Blockers
 
+## P4-lessons-3 (iteration 192): working-tree verification blocked
+
+- `python3 -I tools/verify.py --fast` failed twice: `I1 TRANSLATING.md: no English source at the pinned commit (stale PO or wrong path)`. The unrelated, untracked `TRANSLATING.md` appeared during this iteration and is preserved.
+- The task-specific `python3 tools/verify.py --fast --files lessons/answers-key.md` and `python3 -I tools/anchors.py --check` passed. Segments 88 to 91 were accepted and applied; resume at 92 after the working-tree issue is resolved and the task is unblocked.
+
 (none open; P0-002 resolved in iteration 7 by running the import as a single pipeline command)
 
 ## P0-002 (iteration 6): blocked, English import denied again

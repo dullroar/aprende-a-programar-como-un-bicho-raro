@@ -304,16 +304,16 @@ El `mktemp` falso produce los dados. El recorrido lee el último carácter de ca
 3. `built`, `drawn`, `[ 15 ]`. La canalización es solo una descripción hasta que `toArray()` pide un valor. `take(1)` se detiene después de un valor, así que se consulta la máquina una vez y se llama una vez a la fuente de horas.
 4. `take(2)` imprime `drawn` dos veces y luego `[ 15, 30 ]`: el total de la máquina es 15 después de la primera tarjeta y 30 después de la segunda.
 
-## B22. JavaScript, event-driven: predict the trace, then remove the boundary
+## B22. JavaScript, dirigido por eventos: predice la traza y luego quita el límite
 
-1. 14 tests pass.
-2. `listener`, `after emit`, `immediate`. `emit` is a plain call: it runs both of its listeners on the call stack and then returns. `setImmediate` puts the function on the event loop's queue, and Node runs it after the current code, here after the last `console.log`.
-3. `>start`, `<start`, `main is done`, then one turn per card. A turn starts with `>generate` and nests `card-created`, `card-saved` and `total-updated` inside it, so each `>` is closed by its `<` in the reverse order. In the third turn, `total-updated` finds the total (57) over 40 and emits `finished`, which emits `done`: `>finished >done <done <finished` sit inside `total-updated`. `<start` comes before the first `>generate`: `start` asked for the first card with `setImmediate`, so the card is made on a later turn.
-4. Without `later`, `total-updated` calls `generate` inside itself, and the stack never unwinds between cards. 40 hours is three or four cards, so a normal run is fine, and the cards are the same. The lab shows 12 passes and 2 failures: the trace test fails, because each `generate` now sits inside the previous `total-updated` and not in a turn of its own, and the stack-depth test fails, because the stack is deeper at every card. The scan finds `emit('generate'` and fails. With `limit: 10_000_000` the stack runs out after a few thousand cards, a `RangeError` goes to the `failed` listener, and it prints one line, `timecards: Maximum call stack size exceeded`, with status 1. With the boundary back and `limit: 30_000`, the same call is flat and finishes with status 0.
+1. Pasan 14 pruebas.
+2. `listener`, `after emit`, `immediate`. `emit` es una llamada normal: ejecuta sus dos escuchadores de eventos en la pila de llamadas y luego regresa. `setImmediate` pone la función en la cola del bucle de eventos. Node la ejecuta después del código actual, aquí después del último `console.log`.
+3. `>start`, `<start`, `main is done` y luego un turno por tarjeta. Un turno empieza con `>generate` y anida dentro `card-created`, `card-saved` y `total-updated`. Por eso, cada `>` se cierra con su `<` en orden inverso. En el tercer turno, `total-updated` encuentra que el total (57) pasa de 40 y emite `finished`, que emite `done`: `>finished >done <done <finished` queda dentro de `total-updated`. `<start` aparece antes del primer `>generate`: `start` pidió la primera tarjeta con `setImmediate`, así que la tarjeta se crea en un turno posterior.
+4. Sin `later`, `total-updated` llama a `generate` dentro de sí mismo y la pila nunca se desenrolla entre tarjetas. 40 horas son tres o cuatro tarjetas, así que una ejecución normal funciona bien y las tarjetas son las mismas. El laboratorio muestra 12 pruebas aprobadas y 2 fallos. La prueba de la traza no pasa porque ahora cada `generate` queda dentro del `total-updated` anterior y no en su propio turno. Tampoco pasa la prueba de profundidad de la pila porque la pila es más profunda en cada tarjeta. El escaneo encuentra `emit('generate'` y no pasa. Con `limit: 10_000_000`, la pila se agota después de unos miles de tarjetas. Un `RangeError` va al escuchador de eventos `failed` y este imprime una línea, `timecards: Maximum call stack size exceeded`, con estado 1. Con el límite restablecido y `limit: 30_000`, la misma llamada es plana y termina con estado 0.
 
-## C1. Weird next to boring
+## C1. Lo raro junto a lo aburrido
 
-Measured with the verification script (non-comment lines):
+Medido con el script de verificación (líneas que no son comentarios):
 
 | Pair | Idiomatic | Weird |
 | --- | --- | --- |

@@ -891,16 +891,16 @@
     {
      "en": "B22. JavaScript, event-driven: predict the trace, then remove the boundary",
      "en_id": "b22-javascript-event-driven-predict-the-trace-then-remove-the-boundary",
-     "es": "B22. JavaScript, event-driven: predict the trace, then remove the boundary",
-     "es_id": "b22-javascript-event-driven-predict-the-trace-then-remove-the-boundary",
+     "es": "B22. JavaScript, dirigido por eventos: predice la traza y luego quita el límite",
+     "es_id": "b22-javascript-dirigido-por-eventos-predice-la-traza-y-luego-quita-el-límite",
      "level": 2,
      "line": 307
     },
     {
      "en": "C1. Weird next to boring",
      "en_id": "c1-weird-next-to-boring",
-     "es": "C1. Weird next to boring",
-     "es_id": "c1-weird-next-to-boring",
+     "es": "C1. Lo raro junto a lo aburrido",
+     "es_id": "c1-lo-raro-junto-a-lo-aburrido",
      "level": 2,
      "line": 314
     },
@@ -986,7 +986,7 @@
     "b2-haskell-break-the-laziness": "b2-haskell-rompe-la-evaluación-perezosa",
     "b20-javascript-read-the-clauses-move-the-limit-and-fail-the-structure-check": "b20-javascript-lee-las-cláusulas-mueve-el-límite-y-haz-fallar-la-comprobación-de-estructura",
     "b21-javascript-weirder-move-the-stop-rule-in-a-closure-and-watch-the-demand": "b21-javascript-más-raro-mueve-la-regla-de-parada-en-una-clausura-y-observa-la-demanda",
-    "b22-javascript-event-driven-predict-the-trace-then-remove-the-boundary": "b22-javascript-event-driven-predict-the-trace-then-remove-the-boundary",
+    "b22-javascript-event-driven-predict-the-trace-then-remove-the-boundary": "b22-javascript-dirigido-por-eventos-predice-la-traza-y-luego-quita-el-límite",
     "b3-forth-move-the-anchor": "b3-forth-mueve-el-ancla",
     "b4-make-remove-the-no-op-and-override-the-clock": "b4-make-elimina-la-operación-nula-y-reemplaza-el-reloj",
     "b5-cmake-mutate-the-literal": "b5-cmake-modifica-el-literal",
@@ -994,7 +994,7 @@
     "b7-linq-enumerate-twice": "b7-linq-enumera-dos-veces",
     "b8-regex-what-survives-a-failed-match": "b8-regex-qué-sobrevive-a-una-coincidencia-fallida",
     "b9-sed-watch-a-computation": "b9-sed-observa-un-cálculo",
-    "c1-weird-next-to-boring": "c1-weird-next-to-boring",
+    "c1-weird-next-to-boring": "c1-lo-raro-junto-a-lo-aburrido",
     "c2-make-the-constraint-real": "c2-make-the-constraint-real",
     "c3-a-loop-whose-state-is-not-a-variable": "c3-a-loop-whose-state-is-not-a-variable",
     "d-port-the-challenge": "d-port-the-challenge",

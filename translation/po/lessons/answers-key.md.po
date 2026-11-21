@@ -541,7 +541,7 @@ msgstr ""
 #: lessons/answers-key.md:307
 msgctxt "s-3c9465f4bab2-0087"
 msgid "B22. JavaScript, event-driven: predict the trace, then remove the boundary"
-msgstr ""
+msgstr "B22. JavaScript, dirigido por eventos: predice la traza y luego quita el límite"
 
 #: lessons/answers-key.md:309
 msgctxt "s-858a5eb65242-0088"
@@ -551,16 +551,20 @@ msgid ""
 "3. ⟦CODE_0007⟧, ⟦CODE_0008⟧, ⟦CODE_0009⟧, then one turn per card. A turn starts with ⟦CODE_0010⟧ and nests ⟦CODE_0011⟧, ⟦CODE_0012⟧ and ⟦CODE_0013⟧ inside it, so each ⟦CODE_0014⟧ is closed by its ⟦CODE_0015⟧ in the reverse order. In the third turn, ⟦CODE_0016⟧ finds the total (57) over 40 and emits ⟦CODE_0017⟧, which emits ⟦CODE_0018⟧: ⟦CODE_0019⟧ sit inside ⟦CODE_0020⟧. ⟦CODE_0021⟧ comes before the first ⟦CODE_0022⟧: ⟦CODE_0023⟧ asked for the first card with ⟦CODE_0024⟧, so the card is made on a later turn.\n"
 "4. Without ⟦CODE_0025⟧, ⟦CODE_0026⟧ calls ⟦CODE_0027⟧ inside itself, and the stack never unwinds between cards. 40 hours is three or four cards, so a normal run is fine, and the cards are the same. The lab shows 12 passes and 2 failures: the trace test fails, because each ⟦CODE_0028⟧ now sits inside the previous ⟦CODE_0029⟧ and not in a turn of its own, and the stack-depth test fails, because the stack is deeper at every card. The scan finds ⟦CODE_0030⟧ and fails. With ⟦CODE_0031⟧ the stack runs out after a few thousand cards, a ⟦CODE_0032⟧ goes to the ⟦CODE_0033⟧ listener, and it prints one line, ⟦CODE_0034⟧, with status 1. With the boundary back and ⟦CODE_0035⟧, the same call is flat and finishes with status 0."
 msgstr ""
+"Pasan 14 pruebas.\n"
+"2. ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧. ⟦CODE_0004⟧ es una llamada normal: ejecuta sus dos escuchadores de eventos en la pila de llamadas y luego regresa. ⟦CODE_0005⟧ pone la función en la cola del bucle de eventos. Node la ejecuta después del código actual, aquí después del último ⟦CODE_0006⟧.\n"
+"3. ⟦CODE_0007⟧, ⟦CODE_0008⟧, ⟦CODE_0009⟧ y luego un turno por tarjeta. Un turno empieza con ⟦CODE_0010⟧ y anida dentro ⟦CODE_0011⟧, ⟦CODE_0012⟧ y ⟦CODE_0013⟧. Por eso, cada ⟦CODE_0014⟧ se cierra con su ⟦CODE_0015⟧ en orden inverso. En el tercer turno, ⟦CODE_0016⟧ encuentra que el total (57) pasa de 40 y emite ⟦CODE_0017⟧, que emite ⟦CODE_0018⟧: ⟦CODE_0019⟧ queda dentro de ⟦CODE_0020⟧. ⟦CODE_0021⟧ aparece antes del primer ⟦CODE_0022⟧: ⟦CODE_0023⟧ pidió la primera tarjeta con ⟦CODE_0024⟧, así que la tarjeta se crea en un turno posterior.\n"
+"4. Sin ⟦CODE_0025⟧, ⟦CODE_0026⟧ llama a ⟦CODE_0027⟧ dentro de sí mismo y la pila nunca se desenrolla entre tarjetas. 40 horas son tres o cuatro tarjetas, así que una ejecución normal funciona bien y las tarjetas son las mismas. El laboratorio muestra 12 pruebas aprobadas y 2 fallos. La prueba de la traza no pasa porque ahora cada ⟦CODE_0028⟧ queda dentro del ⟦CODE_0029⟧ anterior y no en su propio turno. Tampoco pasa la prueba de profundidad de la pila porque la pila es más profunda en cada tarjeta. El escaneo encuentra ⟦CODE_0030⟧ y no pasa. Con ⟦CODE_0031⟧, la pila se agota después de unos miles de tarjetas. Un ⟦CODE_0032⟧ va al escuchador de eventos ⟦CODE_0033⟧ y este imprime una línea, ⟦CODE_0034⟧, con estado 1. Con el límite restablecido y ⟦CODE_0035⟧, la misma llamada es plana y termina con estado 0."
 
 #: lessons/answers-key.md:314
 msgctxt "s-d5678a3ac1a0-0089"
 msgid "C1. Weird next to boring"
-msgstr ""
+msgstr "C1. Lo raro junto a lo aburrido"
 
 #: lessons/answers-key.md:316
 msgctxt "s-dd3d988a44ba-0090"
 msgid "Measured with the verification script (non-comment lines):"
-msgstr ""
+msgstr "Medido con el script de verificación (líneas que no son comentarios):"
 
 #: lessons/answers-key.md:318
 msgctxt "s-2ca2be69a8bf-0091"

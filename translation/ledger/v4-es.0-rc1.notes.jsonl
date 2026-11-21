@@ -2170,3 +2170,4 @@
 {"segment_id": "s-4b82b8c5ecc7-0037", "ts": "2026-11-21T19:53:19Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
 {"segment_id": "s-4d620efcfae7-0043", "ts": "2026-11-21T19:53:19Z", "findings": ["I3: digit token 5 appears 0 time(s) in the source, 1 in the target"]}
 {"segment_id": "s-42f68bb80625-0046", "ts": "2026-11-21T19:55:19Z", "findings": ["I3: digit token 3 appears 0 time(s) in the source, 1 in the target"]}
+{"segment_id": "s-858a5eb65242-0088", "ts": "2026-11-21T20:07:23Z", "findings": ["I7: banned rendering 'falla' for glossary term failure"]}
