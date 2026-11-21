@@ -1,5 +1,5 @@
 ---
-title: "Regex search that returns captures"
+title: "Búsqueda con regex que devuelve capturas"
 order: 61
 ---
-[[entry:regex-dotnet]] spends tokens from a capture stack as it matches unary hours. An empty budget prevents another card from starting, so the match can succeed with the prefix that includes the crossing card. The host reads that match's captures to build a TSV report. A failed match exposes no captures, so the same tape with a final failure assertion produces zero cards.
+[[entry:regex-dotnet]] gasta fichas de una pila de capturas mientras reconoce horas en unario. Un presupuesto vacío impide empezar otra tarjeta, así que la coincidencia puede tener éxito con el prefijo que incluye la tarjeta que cruza el límite. El anfitrión lee las capturas de esa coincidencia para construir un informe TSV. Una coincidencia fallida no expone capturas, así que la misma cinta con una aserción de fallo al final produce cero tarjetas.

@@ -1,5 +1,5 @@
 ---
-title: "Control flow that rewrites itself"
+title: "Flujo de control que se reescribe a sí mismo"
 order: 50
 ---
-The program changes where it goes next. [[entry:cobol-weird]] uses `ALTER` to rewire a `GO TO`. [[entry:forth-weird]] moves `>in`, the text interpreter's parse position, backward to run the same words again. [[entry:apl-weird]] reads its own source with `⎕CR`, rewrites it and defines the new function with `⎕FX`: each step makes its own successor. This is the most dangerous role in the book. It is also the clearest picture of what a program counter really is. [[entry:ex-weird]] copies a line of data from a tape into a register and runs it. On the tape the instruction is `@a` (run the program again) or a comment (stop), so the program reads its next step out of the data.
+El programa cambia adónde va a continuación. [[entry:cobol-weird]] usa `ALTER` para recablear un `GO TO`. [[entry:forth-weird]] mueve `>in`, la posición de análisis del intérprete de texto, hacia atrás para ejecutar de nuevo las mismas palabras. [[entry:apl-weird]] lee su propio código fuente con `⎕CR`, lo reescribe y define la función nueva con `⎕FX`: cada paso fabrica a su sucesor. Este es el papel más peligroso del libro. También es la imagen más clara de lo que de verdad es un contador de programa. [[entry:ex-weird]] copia una línea de datos de una cinta a un registro y la ejecuta. En la cinta, la instrucción es `@a` (ejecuta el programa otra vez) o un comentario (detente), así que el programa lee su siguiente paso en los datos.

@@ -113,3 +113,5 @@
 136 P4-lessons-cs-source-concepts-5 partial Approval review denied 'tools/translate.py --export-pending' again for term-rewriting.md and batched exports (reason: file inclusion in the task unverified); only state.md exported (8 segments, not imported); no repository files changed, task left todo. Needs a session that can approve the exports/imports.
 137 P4-lessons-cs-source-concepts-5 partial Applied state.md (8 segments) and verified fast; approval review denied drafting the other 11 files, left todo, resume at term-rewriting.md with per-file export/import.
 138 P4-lessons-cs-source-concepts-5 done applied the remaining 11 concept files (term-rewriting .. weird-machine) via per-file export/import; 6 scoped waivers; verify --fast OK.
+139 P4-lessons-cs-source-roles-1 partial 10 role pages translated and verified (verify --fast OK, queue task marked done) but approval review denied `git add`, so nothing is committed; next iteration: commit the dirty task files.
+140 P4-lessons-cs-source-roles-1 done committed the verified 10 role pages preserved from iteration 139.

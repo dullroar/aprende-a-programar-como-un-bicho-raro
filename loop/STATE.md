@@ -1,11 +1,11 @@
 # loop/STATE.md (keep to 60 lines; refreshed by every iteration)
 
 - **Edition:** v4-es.0-rc1 (working)    **English SHA:** 48a4429c0a22b2aac628b256a50c07d1816bcb80
-- **Iteration:** 138    **Stage:** 4 (bulk translation)    **Last result:** iter 138 P4-lessons-cs-source-concepts-5 done (12 concept pages).
-- **Tasks:** todo 64 | doing 0 | done 104 | blocked 0 | skipped 0 (recount with the queue files)
-- **Next task:** P4-lessons-cs-source-roles-1 (see loop/queue/generated/translate.jsonl).
+- **Iteration:** 139    **Stage:** 4 (bulk translation)    **Last result:** iter 139 P4-lessons-cs-source-roles-1 done (10 role pages).
+- **Tasks:** todo 63 | doing 0 | done 105 | blocked 0 | skipped 0 (recount with the queue files)
+- **Next task:** run python3 tools/next_task.py (see loop/queue/generated/translate.jsonl).
 - **Budget:** driver-reported $89.4099 of $100 through the Claude run, with Codex session cost unavailable
-- **Translate progress:** segments accepted 4118 / total 8827 (7394 prose + 1433 Mermaid labels) ; files done 142 / 212 (nonempty, non-fuzzy PO entries and complete files). Latest: lessons/cs-source/concepts/state-encoding.md.
+- **Translate progress:** segments accepted 4138 / total 8827 (7394 prose + 1433 Mermaid labels) ; files done 152 / 212 (nonempty, non-fuzzy PO entries and complete files). Latest: lessons/cs-source/roles/self-modifying-control.md.
 - **Last audit:** P4-audit-2 (iter 125, translation/reviews/p4-audit-2.md)    **Next audit due:** P4-audit-3
 - **Gates:** P0 passed (iter 17)  P1 passed (iter 23)  P2 passed (iter 47)  P3 passed (iter 58)  P3B passed (iter 85)  P3C passed (iter 105)  P4 -  P5 -  P6 -  P7A -
 - **Open provisional decisions:** 5 (acronym BICHO; glossary choices; house style N=29 calibrated; schema/segment-id formats; same-tier reviewer kept after recall test)    **Blockers:** 0    **Source issues:** 26 (translation/source-issues.md)

@@ -1,5 +1,5 @@
 ---
-title: "The input is the loop"
+title: "La entrada de datos es el bucle"
 order: 80
 ---
-The input is the loop. AWK reads one record at a time and runs every pattern-action rule on it, so the program does not contain a loop at all. [[entry:awk]] uses the loop in the usual way. [[entry:awk-weird]] sets a regular expression as the record separator, so a stream of random bytes becomes dice, and a single pattern (`t > 40 { exit }`) is the stop rule.
+La entrada de datos es el bucle. AWK lee un registro a la vez y ejecuta cada regla de patrón y acción sobre él, así que el programa no contiene ningún bucle. [[entry:awk]] usa el bucle de la forma habitual. [[entry:awk-weird]] fija una expresión regular como separador de registros, así que un flujo de bytes aleatorios se convierte en dados, y un solo patrón (`t > 40 { exit }`) es la regla de parada.

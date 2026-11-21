@@ -1,5 +1,5 @@
 ---
-title: "Text that is rewritten and read again"
+title: "Texto que se reescribe y se vuelve a leer"
 order: 40
 ---
-The program is text, and repetition is rewriting it. [[entry:regex-sed]] keeps one line of text and applies substitutions until none match. [[entry:m4]] defines a macro whose replacement text contains the macro itself, so the output is scanned again, and again. [[entry:make-gnu]] remakes a makefile that it includes, and then *starts over* with the new one. In all three the repeated thing is a read of rewritten input, and the state is whatever the text (or the set of files) says now. [[entry:ed-weird]] rewrites lines with guarded substitutions, and joins lines so that marks are added side by side. It has no `sed`-style branch: its only repeat is one global command.
+El programa es texto y repetir es reescribirlo. [[entry:regex-sed]] conserva una línea de texto y aplica sustituciones hasta que ninguna coincide. [[entry:m4]] define una macro cuyo texto de reemplazo contiene la propia macro, así que la salida se escanea otra vez, y otra. [[entry:make-gnu]] rehace un makefile que incluye, y luego *empieza de nuevo* con el nuevo. En los tres, lo que se repite es la lectura de una entrada reescrita, y el estado es lo que diga ahora el texto (o el conjunto de archivos). [[entry:ed-weird]] reescribe líneas con sustituciones protegidas, y une líneas para que las marcas se añadan una junto a otra. No tiene una rama al estilo de `sed`: su única repetición es un comando global.

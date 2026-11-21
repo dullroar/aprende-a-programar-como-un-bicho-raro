@@ -266,3 +266,8 @@
 {"id":"EXC-266","segment":"s-ab16267ce76d-0005","invariant":"TRANSLATE","reason":"Trojan Source is the proper name of the attack and stays as the link title","task":"P4-lessons-cs-source-concepts-5"}
 {"id":"EXC-267","segment":"s-1d2bd07b84e5-0007","invariant":"I25","reason":"the '80%' is part of the percent-encoded URL (%E2%80%93), not a prose percentage","task":"P4-lessons-cs-source-concepts-5"}
 {"id":"EXC-268","segment":"s-3252ca50621d-0007","invariant":"TRANSLATE","reason":"AddressSanitizer is a tool name and stays as the link title","task":"P4-lessons-cs-source-concepts-5"}
+{"id":"EXC-269","segment":"s-b4da560d4740-0001","invariant":"I7","reason":"'build' is the verb 'construyen el resultado', not the noun build (compilación)","task":"P4-lessons-cs-source-roles-1"}
+{"id":"EXC-270","segment":"s-e5f26a2ff68e-0001","invariant":"I7","reason":"'build' is the verb 'construir un informe TSV', not the noun build (compilación)","task":"P4-lessons-cs-source-roles-1"}
+{"id":"EXC-271","segment":"s-2b3c09e7b960-0001","invariant":"I7","reason":"'builds objects' is the verb construir, not the noun build (compilación)","task":"P4-lessons-cs-source-roles-1"}
+{"id":"EXC-272","segment":"s-f465e37e0337-0001","invariant":"I7","reason":"'LINQ builds a pipeline' is the verb construir, not the noun build (compilación)","task":"P4-lessons-cs-source-roles-1"}
+{"id":"EXC-273","segment":"s-b7cb1913af0d-0001","invariant":"I7","reason":"'condición' renders English 'condition' (a loop condition), not the glossary term state; the state in this segment is 'estado'","task":"P4-lessons-cs-source-roles-1"}

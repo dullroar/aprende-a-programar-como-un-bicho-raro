@@ -1,5 +1,5 @@
 ---
-title: "Document order is the program"
+title: "El orden del documento es el programa"
 order: 90
 ---
-The order of the document is the order of the program. [[entry:xaml]] has no code behind it. The XAML parser builds objects in the order it reads them, and several of those objects call methods as they are made. Four unrolled passes replace the loop, "carrier" arrays are the variables and SQL or `DataTable` expressions make the decisions. The program is the markup file, and it runs while the file is parsed. [[entry:tar-gnu]] is the same idea with a tape instead of a markup file: the members of a tar archive are the instructions, and the order of the archive is the order of the program.
+El orden del documento es el orden del programa. [[entry:xaml]] no tiene código detrás. El analizador sintáctico de XAML construye objetos en el orden en que los lee, y varios de esos objetos llaman a métodos al crearse. Cuatro pasadas desenrolladas reemplazan el bucle, los arreglos "portadores" son las variables y las expresiones de SQL o de `DataTable` toman las decisiones. El programa es el archivo de marcado, y se ejecuta mientras se analiza el archivo. [[entry:tar-gnu]] es la misma idea con una cinta en lugar de un archivo de marcado: los miembros del archivo tar son las instrucciones, y el orden del archivo es el orden del programa.

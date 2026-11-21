@@ -1,5 +1,5 @@
 ---
-title: "Regex search with side effects and deliberate failure"
+title: "Búsqueda con regex, efectos secundarios y fallo deliberado"
 order: 60
 ---
-[[entry:regex-perl]], [[entry:regex-pcre2]] and [[entry:regex-pcre2grep]] use one match to drive callbacks or embedded code. The actions build the result outside the matcher. Each pattern eventually forces the match to fail, and completed writes can survive that failure. Perl's localized variables unwind on backtracking, while PCRE2 callouts keep their state in the C host or in external helpers.
+[[entry:regex-perl]], [[entry:regex-pcre2]] y [[entry:regex-pcre2grep]] usan una sola coincidencia para activar funciones de devolución de llamada (*callbacks*) o código incrustado. Las acciones construyen el resultado fuera del motor de coincidencias. Cada patrón acaba forzando que la coincidencia falle, y las escrituras ya hechas pueden sobrevivir a ese fallo. Las variables locales de Perl se deshacen con el retroceso, mientras que los callouts de PCRE2 guardan su estado en el anfitrión de C o en ayudantes externos.

@@ -1345,3 +1345,9 @@
 {"segment_id": "s-ab16267ce76d-0005", "ts": "2026-11-21T16:12:15Z", "findings": ["TRANSLATE: the reply is the English text unchanged"]}
 {"segment_id": "s-1d2bd07b84e5-0007", "ts": "2026-11-21T16:12:15Z", "findings": ["I25: '80%': write a non-breaking space before % (80 %)"]}
 {"segment_id": "s-3252ca50621d-0007", "ts": "2026-11-21T16:12:37Z", "findings": ["TRANSLATE: the reply is the English text unchanged"]}
+{"segment_id": "s-b4da560d4740-0001", "ts": "2026-11-21T16:14:41Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-e5f26a2ff68e-0001", "ts": "2026-11-21T16:15:11Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-2b3c09e7b960-0001", "ts": "2026-11-21T16:15:12Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-f465e37e0337-0001", "ts": "2026-11-21T16:15:12Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-b7cb1913af0d-0001", "ts": "2026-11-21T16:15:12Z", "findings": ["I7: banned rendering 'condición' for glossary term state", "I25: comma before a simple 'y' ('una condición X ejecuta una regex, y sus capturas son los re'): no comma before a simple o or y", "I25: comma before a simple 'y' (', y X repite hasta que se cumple'): no comma before a simple o or y"]}
+{"segment_id": "s-cf5c6408c774-0001", "ts": "2026-11-21T16:15:13Z", "findings": ["I25: comma before a simple 'y' ('El programa es texto, y repetir es reescribirlo'): no comma before a simple o or y"]}
