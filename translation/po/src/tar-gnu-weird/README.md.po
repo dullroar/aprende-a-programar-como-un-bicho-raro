@@ -1,0 +1,442 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/tar-gnu-weird/README.md:2
+msgctxt "s-c943aa3f7688-0000"
+msgid "GNU tar"
+msgstr "GNU tar"
+
+#: src/tar-gnu-weird/README.md:3
+msgctxt "s-f54a1640a4b2-0001"
+msgid "that an archive's physical layout can set the pace of a program: tar's checkpoints are a clock, and each tick moves a state machine by one step."
+msgstr "que la disposición física de un archivo puede marcar el ritmo de un programa: los puntos de control de tar son un reloj y cada pulso hace avanzar un paso a una máquina de estados."
+
+#: src/tar-gnu-weird/README.md:11
+msgctxt "s-dfee8a112a7d-0002"
+msgid "A finite-state machine, driven by a logical clock that tar supplies"
+msgstr "Una máquina de estados finitos que avanza con un reloj lógico de tar"
+
+#: src/tar-gnu-weird/README.md:12
+msgctxt "s-881fc5004dc6-0003"
+msgid "One SQLite row (the machine's registers) and the number of records tar has written"
+msgstr "Una fila de SQLite (los registros de la máquina) y el número de registros que tar ha escrito"
+
+#: src/tar-gnu-weird/README.md:16
+msgctxt "s-851e7d0ef2c9-0004"
+msgid "GNU tar, weirder: the archive is the clock"
+msgstr "GNU tar, más raro aún: el archivo es el reloj"
+
+#: src/tar-gnu-weird/README.md:18
+msgctxt "s-af3aeece8ad1-0005"
+msgid "**Teaches you:** that an archive's physical layout can set the pace of a program: tar's checkpoints are a clock, and each tick moves a state machine by one step."
+msgstr "**Te enseña:** que la disposición física de un archivo puede marcar el ritmo de un programa: los puntos de control de tar son un reloj y cada pulso hace avanzar un paso a una máquina de estados."
+
+#: src/tar-gnu-weird/README.md:20
+msgctxt "s-4727f050f30c-0006"
+msgid ""
+"**⟦DNT_0001⟧.** Fictional time cards, written to a scratch SQLite file under ⟦CODE_0002⟧.\n"
+"Nothing here touches real time reporting."
+msgstr ""
+"**⟦DNT_0001⟧.** Tarjetas de horas ficticias que se guardan en un archivo temporal de SQLite en ⟦CODE_0002⟧.\n"
+"Nada de esto afecta a los informes de horas reales."
+
+#: src/tar-gnu-weird/README.md:23
+msgctxt "s-33c7af76e555-0007"
+msgid "GNU tar can run a command every N records while it works (⟦CODE_0001⟧). It exists to show progress. Here it is the program's clock. **One checkpoint is one hour of work.** A small state machine takes one step per tick: it works one hour on the open card, closes the card when the hours are used up, draws the next card's length, and sets a flag when the total passes 40. Nothing else moves it forward. No loop calls the tick. If tar writes no records, no hours pass."
+msgstr "GNU tar puede ejecutar un comando cada N registros mientras trabaja (⟦CODE_0001⟧). Esta opción sirve para mostrar el avance. Aquí es el reloj del programa. **Cada punto de control equivale a una hora de trabajo.** Una pequeña máquina de estados da un paso por pulso. Trabaja una hora en la tarjeta abierta y la cierra al completar sus horas. Luego sortea la duración de la siguiente tarjeta y activa una bandera cuando el total pasa de 40. Nada más hace avanzar la máquina. Ningún bucle llama al pulso. Si tar no escribe registros, no pasan las horas."
+
+#: src/tar-gnu-weird/README.md:35
+msgctxt "s-ab54abda0685-0008"
+msgid "This is the **weird** entry of a pair. Its ordinary partner, [⟦CODE_0001⟧](⟦DEST_0002⟧), uses tar's *member traversal* to run a serialized program. This one ignores what the members say and uses only *how many records tar writes*. The first is about what a layout **means**. This one is about **when** it happens."
+msgstr "Esta es la entrada **rara** de un par. Su compañera ordinaria, [⟦CODE_0001⟧](⟦DEST_0002⟧), usa el *recorrido de los miembros* de tar para ejecutar un programa serializado. Esta ignora lo que dicen los miembros y solo usa *cuántos registros escribe tar*. La primera trata de lo que **significa** una disposición. Esta trata de **cuándo** ocurre."
+
+#: src/tar-gnu-weird/README.md:37
+msgctxt "s-958ca26c6a61-0009"
+msgid "Run it"
+msgstr "Ejecútalo"
+
+#: src/tar-gnu-weird/README.md:39
+msgctxt "s-906f943d59de-0010"
+msgid "You need **GNU tar** (1.34 and 1.35 were tested), a POSIX shell, ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧ and ⟦CODE_0004⟧."
+msgstr "Necesitas **GNU tar** (se probaron 1.34 y 1.35), un intérprete de comandos (*shell*) POSIX, ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧ y ⟦CODE_0004⟧."
+
+#: src/tar-gnu-weird/README.md:50
+msgctxt "s-cc1d601f09f3-0011"
+msgid "Records go to ⟦CODE_0001⟧ (default ⟦CODE_0002⟧). The archive that tar wrote stays next to it as ⟦CODE_0003⟧."
+msgstr "Los registros se guardan en ⟦CODE_0001⟧ (por omisión, ⟦CODE_0002⟧). El archivo que escribió tar queda a su lado como ⟦CODE_0003⟧."
+
+#: src/tar-gnu-weird/README.md:52
+msgctxt "s-254f0c660db3-0012"
+msgid "Run it in a container"
+msgstr "Ejecútalo en un contenedor"
+
+#: src/tar-gnu-weird/README.md:54
+msgctxt "s-643df015c8a2-0013"
+msgid "Prerequisite: Docker, set up once as described in [⟦CODE_0001⟧](⟦DEST_0002⟧)."
+msgstr "Requisito: Docker, configurado una sola vez como se describe en [⟦CODE_0001⟧](⟦DEST_0002⟧)."
+
+#: src/tar-gnu-weird/README.md:60
+msgctxt "s-b497919550ab-0014"
+msgid "It builds this folder's [⟦CODE_0001⟧](⟦DEST_0002⟧) and runs the result with no network, a read-only file system and user ⟦CODE_0003⟧. The image holds GNU tar (from the Ubuntu base) and sqlite3 on a minimal Ubuntu."
+msgstr "Construye la imagen a partir del archivo [⟦CODE_0001⟧](⟦DEST_0002⟧) de esta carpeta y la ejecuta sin red, con un sistema de archivos de solo lectura y con el usuario ⟦CODE_0003⟧. La imagen incluye GNU tar (de la base de Ubuntu) y sqlite3 en un Ubuntu mínimo."
+
+#: src/tar-gnu-weird/README.md:62
+msgctxt "s-0dcb373c2dff-0015"
+msgid "Program Flow"
+msgstr "Flujo del programa"
+
+#: src/tar-gnu-weird/README.md:66
+msgctxt "s-7a91c7f47709-0016"
+msgid "tar-gnu-weird: tar's checkpoints are the clock of a state machine"
+msgstr "tar-gnu-weird: los puntos de control de tar son el reloj de una máquina de estados"
+
+#: src/tar-gnu-weird/README.md:67
+msgctxt "s-881a04953879-0017"
+msgid "A sequence diagram. The launcher runs one tar command that writes an archive with a checkpoint every 512-byte record. For each record that tar writes, tar runs tick.sh with the record count. The script runs one SQL transaction on a single row of state. If the run is done, the tick only counts as idle. Otherwise it works one hour, writes the card when the hours reach the target, and closes the card, which sets done when the total is over 40. The exit status is ignored, and tar goes on writing. When the archive is finished, the launcher reads the cards and prints them."
+msgstr "Diagrama de secuencia. El lanzador ejecuta un comando tar que escribe un archivo con un punto de control por cada registro de 512 bytes. Por cada registro que escribe, tar ejecuta tick.sh con el número de registros. El script ejecuta una transacción SQL sobre una sola fila de estado. Si la ejecución terminó, el pulso solo se cuenta como inactivo. Si no, trabaja una hora, escribe la tarjeta al completar sus horas y la cierra. Al cerrarla, activa done si el total pasa de 40. tar ignora el estado de salida y sigue escribiendo. Al terminar el archivo, el lanzador lee las tarjetas y las imprime."
+
+#: src/tar-gnu-weird/README.md:68
+msgctxt "s-12eb4836b380-0018"
+msgid "run-clock.sh"
+msgstr "run-clock.sh"
+
+#: src/tar-gnu-weird/README.md:69
+msgctxt "s-90aebae31567-0019"
+msgid "tar"
+msgstr "tar"
+
+#: src/tar-gnu-weird/README.md:70
+msgctxt "s-c6dc1a5a58f8-0020"
+msgid "tick.sh"
+msgstr "tick.sh"
+
+#: src/tar-gnu-weird/README.md:71
+msgctxt "s-580999af1079-0021"
+msgid "SQLite fsm row"
+msgstr "Fila fsm en SQLite"
+
+#: src/tar-gnu-weird/README.md:72
+msgctxt "s-bc71acddb3a3-0022"
+msgid "one tar command with --checkpoint=1 and an exec action"
+msgstr "Un comando tar con --checkpoint=1 y una acción exec"
+
+#: src/tar-gnu-weird/README.md:73
+msgctxt "s-24890deeb3d1-0023"
+msgid "each 512-byte record that tar writes"
+msgstr "Cada registro de 512 bytes que escribe tar"
+
+#: src/tar-gnu-weird/README.md:74
+msgctxt "s-3bf62010d37e-0024"
+msgid "run tick.sh with TAR_CHECKPOINT"
+msgstr "Ejecuta tick.sh con TAR_CHECKPOINT"
+
+#: src/tar-gnu-weird/README.md:75
+msgctxt "s-f5197f1d2952-0025"
+msgid "tick.sql: one transaction"
+msgstr "tick.sql: una transacción"
+
+#: src/tar-gnu-weird/README.md:76
+msgctxt "s-4bbfe3fdc3c6-0026"
+msgid "if done, count an idle tick. Else work one hour, write the card at the target, close it and set done when the total is over 40"
+msgstr "Si done está activo, cuenta un pulso inactivo. Si no, trabaja una hora. Al completar las horas, escribe y cierra la tarjeta. Activa done si el total pasa de 40"
+
+#: src/tar-gnu-weird/README.md:77
+msgctxt "s-a65a2e3d847d-0027"
+msgid "exit status, which tar ignores"
+msgstr "Estado de salida que tar ignora"
+
+#: src/tar-gnu-weird/README.md:79
+msgctxt "s-9a236f401b84-0028"
+msgid "the archive is finished: the clock ran out"
+msgstr "Fin del archivo: se agotó el reloj"
+
+#: src/tar-gnu-weird/README.md:80
+msgctxt "s-34bbfe16a1d8-0029"
+msgid "read the cards and print them"
+msgstr "Lee e imprime las tarjetas"
+
+#: src/tar-gnu-weird/README.md:83
+msgctxt "s-48900b39f50e-0030"
+msgid "**What this shows:** the program is a state machine in one SQLite row, and tar's checkpoint is its clock. One tick is one transaction. tar does not stop when the machine is done. It keeps ticking, and the extra ticks only count as idle."
+msgstr "**Qué muestra:** el programa es una máquina de estados en una fila de SQLite y el punto de control de tar es su reloj. Cada pulso es una transacción. tar no se detiene cuando termina la máquina. Sigue dando pulsos y los pulsos extra solo cuentan como inactivos."
+
+#: src/tar-gnu-weird/README.md:85
+msgctxt "s-410c77e6c11f-0031"
+msgid "**Why this mechanism matters:** this is an event source made from a file's layout. The number of ticks is set by the archive size, so a layout that is too short stalls the machine in the middle of a card. The ticks are callbacks that tar runs for the program. They are not events that the program waits for."
+msgstr "**Por qué importa este mecanismo:** la disposición de un archivo funciona como fuente de eventos. El tamaño del archivo fija el número de pulsos. Si la disposición es demasiado corta, la máquina se atasca a mitad de una tarjeta. Los pulsos son llamadas a una función de devolución de llamada (*callback*), una función que tar ejecuta para el programa. El programa no espera esos eventos."
+
+#: src/tar-gnu-weird/README.md:87
+msgctxt "s-7f97d965b4c0-0032"
+msgid "How the stunt works"
+msgstr "Cómo funciona el truco"
+
+#: src/tar-gnu-weird/README.md:89
+msgctxt "s-c1b10e6f9fb7-0033"
+msgid "The clock"
+msgstr "El reloj"
+
+#: src/tar-gnu-weird/README.md:91
+msgctxt "s-ef5c523c3853-0034"
+msgid "[⟦CODE_0001⟧](⟦DEST_0002⟧) lays out a payload, makes a machine, and runs **one** ⟦CODE_0003⟧ command:"
+msgstr "[⟦CODE_0001⟧](⟦DEST_0002⟧) dispone los datos, crea una máquina y ejecuta **un** comando ⟦CODE_0003⟧:"
+
+#: src/tar-gnu-weird/README.md:97
+msgctxt "s-7e8ba5e039c7-0035"
+msgid "With ⟦CODE_0001⟧ a *record* is one 512-byte block, and ⟦CODE_0002⟧ means \"every record\". So tar runs ⟦CODE_0003⟧ once for every 512 bytes it writes. tar sets ⟦CODE_0004⟧ to the number of records so far, and ignores the command's exit status."
+msgstr "Con ⟦CODE_0001⟧, un *registro* es un bloque de 512 bytes. ⟦CODE_0002⟧ significa \"en cada registro\". Así, tar ejecuta ⟦CODE_0003⟧ una vez por cada 512 bytes que escribe. tar asigna a ⟦CODE_0004⟧ el número de registros escritos hasta entonces e ignora el estado de salida del comando."
+
+#: src/tar-gnu-weird/README.md:99
+msgctxt "s-0cccf589504f-0036"
+msgid "The machine"
+msgstr "La máquina"
+
+#: src/tar-gnu-weird/README.md:101
+msgctxt "s-bcedf8d74613-0037"
+msgid "[⟦CODE_0001⟧](⟦DEST_0002⟧) runs [⟦CODE_0003⟧](⟦DEST_0004⟧), which is one transition. The whole state is one row in a table called ⟦CODE_0005⟧:"
+msgstr "[⟦CODE_0001⟧](⟦DEST_0002⟧) ejecuta [⟦CODE_0003⟧](⟦DEST_0004⟧), que realiza una transición. Todo el estado cabe en una fila de la tabla ⟦CODE_0005⟧:"
+
+#: src/tar-gnu-weird/README.md:103
+msgctxt "s-51d1bcaf65ef-0038"
+msgid "⟦SEP_0001⟧ Register ⟦SEP_0002⟧ Meaning ⟦SEP_0003⟧"
+msgstr "⟦SEP_0001⟧ Registro ⟦SEP_0002⟧ Significado ⟦SEP_0003⟧"
+
+#: src/tar-gnu-weird/README.md:105
+msgctxt "s-39313a99dd78-0039"
+msgid "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ Generator state (Park-Miller, 48271 and 2147483647) ⟦SEP_0004⟧"
+msgstr "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ Estado del generador (Park-Miller, 48271 y 2147483647) ⟦SEP_0004⟧"
+
+#: src/tar-gnu-weird/README.md:106
+msgctxt "s-0a0278ef2bf2-0040"
+msgid "⟦SEP_0007⟧ ⟦CODE_0001⟧ ⟦SEP_0008⟧ Cards closed so far. It picks the category: ⟦DNT_0002⟧, ⟦DNT_0003⟧, ⟦DNT_0004⟧, ⟦DNT_0005⟧, ⟦DNT_0006⟧ ⟦SEP_0009⟧"
+msgstr "⟦SEP_0007⟧ ⟦CODE_0001⟧ ⟦SEP_0008⟧ Tarjetas cerradas hasta ahora. El número selecciona la categoría: ⟦DNT_0002⟧, ⟦DNT_0003⟧, ⟦DNT_0004⟧, ⟦DNT_0005⟧, ⟦DNT_0006⟧ ⟦SEP_0009⟧"
+
+#: src/tar-gnu-weird/README.md:107
+msgctxt "s-398b2b5e361d-0041"
+msgid "⟦SEP_0003⟧ ⟦CODE_0001⟧, ⟦CODE_0002⟧ ⟦SEP_0004⟧ Hours worked on the open card, and how long it will take (10 to 19) ⟦SEP_0005⟧"
+msgstr "⟦SEP_0003⟧ ⟦CODE_0001⟧, ⟦CODE_0002⟧ ⟦SEP_0004⟧ Horas trabajadas en la tarjeta abierta y cuánto durará (de 10 a 19 horas) ⟦SEP_0005⟧"
+
+#: src/tar-gnu-weird/README.md:108
+msgctxt "s-a0905e08c8c9-0042"
+msgid "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ The running total ⟦SEP_0004⟧"
+msgstr "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ El total acumulado ⟦SEP_0004⟧"
+
+#: src/tar-gnu-weird/README.md:109
+msgctxt "s-142d7795448e-0043"
+msgid "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ Set when a closed card pushed the total over 40 ⟦SEP_0004⟧"
+msgstr "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ Se activa cuando el total pasa de 40 al cerrar una tarjeta ⟦SEP_0004⟧"
+
+#: src/tar-gnu-weird/README.md:110
+msgctxt "s-378e0d03caae-0044"
+msgid "⟦SEP_0005⟧ ⟦CODE_0001⟧, ⟦CODE_0002⟧ ⟦SEP_0006⟧ The last ⟦CODE_0003⟧, and how many ticks arrived after ⟦CODE_0004⟧ ⟦SEP_0007⟧"
+msgstr "⟦SEP_0005⟧ ⟦CODE_0001⟧, ⟦CODE_0002⟧ ⟦SEP_0006⟧ El último ⟦CODE_0003⟧ y cuántos pulsos llegaron después de ⟦CODE_0004⟧ ⟦SEP_0007⟧"
+
+#: src/tar-gnu-weird/README.md:112
+msgctxt "s-b0fa08c9bf79-0045"
+msgid "One tick does four things in one transaction: (1) if ⟦CODE_0001⟧, count an idle tick and stop; (2) otherwise work one hour; (3) if ⟦CODE_0002⟧, write the card; (4) then close it: next category, draw the next length, and set ⟦CODE_0003⟧ if the total is over 40. The stop rule is that last ⟦CODE_0004⟧, and it runs *after* the card is written, so the crossing card is kept."
+msgstr "Un pulso hace cuatro cosas en una transacción: (1) si ⟦CODE_0001⟧, cuenta un pulso inactivo y se detiene; (2) de lo contrario, trabaja una hora; (3) si ⟦CODE_0002⟧, escribe la tarjeta; (4) luego la cierra. Al cerrarla, pasa a la siguiente categoría, sortea la siguiente duración y activa ⟦CODE_0003⟧ si el total pasa de 40. La regla de parada es ese último ⟦CODE_0004⟧. Se ejecuta *después* de escribir la tarjeta, así que se conserva la que hace pasar el total del límite."
+
+#: src/tar-gnu-weird/README.md:114
+msgctxt "s-e4dd520a254d-0046"
+msgid "⟦SEP_0001⟧ Job ⟦SEP_0002⟧ Done by ⟦SEP_0003⟧"
+msgstr "⟦SEP_0001⟧ Tarea ⟦SEP_0002⟧ Quién la hace ⟦SEP_0003⟧"
+
+#: src/tar-gnu-weird/README.md:116
+msgctxt "s-048e25ee486b-0047"
+msgid "⟦SEP_0001⟧ Time passing, and the loop ⟦SEP_0002⟧ **tar's checkpoints**: one callback per record written ⟦SEP_0003⟧"
+msgstr "⟦SEP_0001⟧ El paso del tiempo y el bucle ⟦SEP_0002⟧ **Los puntos de control de tar**: una función de devolución de llamada por registro escrito ⟦SEP_0003⟧"
+
+#: src/tar-gnu-weird/README.md:117
+msgctxt "s-4628016e5421-0048"
+msgid "⟦SEP_0002⟧ What one step does ⟦SEP_0003⟧ ⟦CODE_0001⟧: one transaction ⟦SEP_0004⟧"
+msgstr "⟦SEP_0002⟧ Qué hace un paso ⟦SEP_0003⟧ ⟦CODE_0001⟧: una transacción ⟦SEP_0004⟧"
+
+#: src/tar-gnu-weird/README.md:118
+msgctxt "s-7ba68d2b8681-0049"
+msgid "⟦SEP_0002⟧ Random hours ⟦SEP_0003⟧ The generator in ⟦CODE_0001⟧, one draw per closed card ⟦SEP_0004⟧"
+msgstr "⟦SEP_0002⟧ Horas aleatorias ⟦SEP_0003⟧ El generador de ⟦CODE_0001⟧, un sorteo por tarjeta cerrada ⟦SEP_0004⟧"
+
+#: src/tar-gnu-weird/README.md:119
+msgctxt "s-67aa1e1477de-0050"
+msgid "⟦SEP_0002⟧ Stop rule ⟦SEP_0003⟧ ⟦CODE_0001⟧, set by the transition that closes the crossing card ⟦SEP_0004⟧"
+msgstr "⟦SEP_0002⟧ Regla de parada ⟦SEP_0003⟧ ⟦CODE_0001⟧, que se activa en la transición que cierra la tarjeta con la que el total pasa del límite ⟦SEP_0004⟧"
+
+#: src/tar-gnu-weird/README.md:120
+msgctxt "s-aeac805f90db-0051"
+msgid "⟦SEP_0002⟧ After the stop ⟦SEP_0003⟧ Ticks go on (tar does not stop) and only increase ⟦CODE_0001⟧ ⟦SEP_0004⟧"
+msgstr "⟦SEP_0002⟧ Después de la parada ⟦SEP_0003⟧ Los pulsos siguen (tar no se detiene) y solo incrementan ⟦CODE_0001⟧ ⟦SEP_0004⟧"
+
+#: src/tar-gnu-weird/README.md:121
+msgctxt "s-a905b8c28681-0052"
+msgid "⟦SEP_0003⟧ Persistence ⟦SEP_0004⟧ ⟦CODE_0001⟧, with ⟦CODE_0002⟧ constraints ⟦SEP_0005⟧"
+msgstr "⟦SEP_0003⟧ Persistencia ⟦SEP_0004⟧ ⟦CODE_0001⟧, con restricciones ⟦CODE_0002⟧ ⟦SEP_0005⟧"
+
+#: src/tar-gnu-weird/README.md:123
+msgctxt "s-755fdb776073-0053"
+msgid "The layout sets the pace"
+msgstr "La disposición marca el ritmo"
+
+#: src/tar-gnu-weird/README.md:125
+msgctxt "s-3dbfb6b1347d-0054"
+msgid "How many ticks exist is decided by the archive, not by the program. For a create command, with ⟦CODE_0001⟧ the blocking factor and ⟦CODE_0002⟧ the checkpoint interval:"
+msgstr "El archivo decide cuántos pulsos hay, sin intervención del programa. Para un comando de creación, donde ⟦CODE_0001⟧ es el factor de bloqueo y ⟦CODE_0002⟧ es el intervalo entre puntos de control:"
+
+#: src/tar-gnu-weird/README.md:133
+msgctxt "s-651bd1a55547-0055"
+msgid "[⟦CODE_0001⟧](⟦DEST_0002⟧) writes zero-filled members so that the archive has the number of blocks you ask for. A run needs between 41 and 59 ticks: the total must pass 40, so it is at least 41, and the longest run ends at 40 + 19 = 59. The default is 64 ticks. Ask for fewer and the machine **stalls**: the clock runs out in the middle of a card, the run prints what it has, says ⟦CODE_0003⟧ and exits 3. ⟦CODE_0004⟧ does not hope for this. It predicts it."
+msgstr "[⟦CODE_0001⟧](⟦DEST_0002⟧) escribe miembros llenos de ceros para que el archivo tenga el número de bloques que pidas. Una ejecución necesita de 41 a 59 pulsos. El total debe pasar de 40, así que es de al menos 41, y la ejecución más larga termina en 40 + 19 = 59. Por omisión hay 64 pulsos. Pide menos y la máquina **se atasca**: el reloj se agota a mitad de una tarjeta. La ejecución imprime lo que tiene, dice ⟦CODE_0003⟧ y termina con estado 3. ⟦CODE_0004⟧ no confía en que esto ocurra. Lo predice."
+
+#: src/tar-gnu-weird/README.md:135
+msgctxt "s-896c6524ca06-0056"
+msgid "Prediction, not observation"
+msgstr "Predicción en vez de observación"
+
+#: src/tar-gnu-weird/README.md:137
+msgctxt "s-fb8b37f41930-0057"
+msgid "⟦CODE_0001⟧ contains a second implementation of the machine, in awk: the same generator, one loop over ticks. For five seeds and thirteen layouts (20 to 260 blocks, blocking factors 1 to 8, checkpoint intervals 1 to 5, one to seven members) it works out which cards must exist when the clock stops, and whether the run finishes or stalls. Then it runs the entry and compares. It also checks the tape size (whole records) and the last ⟦CODE_0002⟧, which is ⟦CODE_0003⟧."
+msgstr "⟦CODE_0001⟧ contiene una segunda implementación de la máquina en awk: el mismo generador y un bucle sobre los pulsos. Usa cinco semillas y trece disposiciones: de 20 a 260 bloques, factores de bloqueo de 1 a 8, intervalos de 1 a 5 y de uno a siete miembros. Calcula qué tarjetas debe haber cuando el reloj se detiene y si la ejecución termina o se atasca. Después ejecuta la entrada y compara los resultados. También comprueba el tamaño de la cinta (registros completos) y el último ⟦CODE_0002⟧, que es ⟦CODE_0003⟧."
+
+#: src/tar-gnu-weird/README.md:139
+msgctxt "s-584b8b889738-0058"
+msgid "It's just a tar archive, but its layout is the program's schedule"
+msgstr "Es solo un archivo tar, pero su disposición marca los tiempos del programa"
+
+#: src/tar-gnu-weird/README.md:141
+msgctxt "s-372e7378c1f8-0059"
+msgid "In [⟦CODE_0001⟧](⟦DEST_0002⟧) the *content* of the archive is the program, and the order of the members is the order of execution. Here the payload is zeros. The program is the machine in ⟦CODE_0003⟧, and the archive only decides **when** each step runs. That is a second thing a serialized layout can do: it influences when events happen, as well as what they mean. A longer archive means more ticks. A bigger blocking factor means fewer. Change the layout and the schedule changes, with the same bytes of \"program\"."
+msgstr "En [⟦CODE_0001⟧](⟦DEST_0002⟧), el *contenido* del archivo es el programa y el orden de los miembros es el orden de ejecución. Aquí los datos son ceros. El programa es la máquina en ⟦CODE_0003⟧ y el archivo solo decide **cuándo** se ejecuta cada paso. Esa es otra cosa que puede hacer una disposición serializada: influye en cuándo ocurren los eventos además de en lo que significan. Cuanto más largo es el archivo, más pulsos hay. Cuanto mayor es el factor de bloqueo, menos pulsos hay. Cambia la disposición y cambiarán los tiempos, con los mismos bytes de \"programa\"."
+
+#: src/tar-gnu-weird/README.md:143
+msgctxt "s-fff646ea1f30-0060"
+msgid "Why this is weird"
+msgstr "Por qué es raro"
+
+#: src/tar-gnu-weird/README.md:145
+msgctxt "s-6b0a1a1b32e9-0061"
+msgid "Checkpoints are a progress indicator. Nobody designed them as a scheduler. Using them as one turns tar into an event source: **control flow is inverted**. The usual program calls tar. Here tar calls the program, once per record, and the program has no loop of its own. It is a callback in an event-driven design, and the clock is the thing that makes it go."
+msgstr "Los puntos de control indican el avance. Nadie los diseñó para planificar la ejecución. Al usarlos para ello, tar se convierte en una fuente de eventos: **se invierte el flujo de control**. Lo habitual es que el programa llame a tar. Aquí tar llama al programa una vez por registro y el programa carece de un bucle propio. Es una función de devolución de llamada en un diseño dirigido por eventos y el reloj la hace avanzar."
+
+#: src/tar-gnu-weird/README.md:147
+msgctxt "s-339cc2c18f83-0062"
+msgid "What ⟦CODE_0001⟧ enforces"
+msgstr "Qué comprueba ⟦CODE_0001⟧"
+
+#: src/tar-gnu-weird/README.md:149
+msgctxt "s-92591096bf0d-0063"
+msgid "⟦CODE_0001⟧ needs GNU tar and sqlite3."
+msgstr "⟦CODE_0001⟧ necesita GNU tar y sqlite3."
+
+#: src/tar-gnu-weird/README.md:151
+msgctxt "s-af9d68268f60-0064"
+msgid "**The constraint is real.** The only loop in ⟦CODE_0001⟧ and ⟦CODE_0002⟧ is the argument parser. There is exactly one ⟦CODE_0003⟧ command, the tick is its checkpoint action, and it only creates. ⟦CODE_0004⟧ has no recursion, no triggers and no random function."
+msgstr "**La restricción es real.** El único bucle de ⟦CODE_0001⟧ y ⟦CODE_0002⟧ es el del analizador sintáctico de argumentos. Hay exactamente un comando ⟦CODE_0003⟧, el pulso es su acción de punto de control y el comando solo crea el archivo. ⟦CODE_0004⟧ no tiene recursión, disparadores ni función aleatoria."
+
+#: src/tar-gnu-weird/README.md:152
+msgctxt "s-965668cdddcd-0065"
+msgid "**The rules of the challenge.** 20 random runs: categories in order, hours 10 to 19, correct totals, a stop at the first total over 40 with the crossing card kept, ⟦CODE_0001⟧ everywhere, an empty stderr, a removed scratch folder, and at least eight different hour values overall."
+msgstr "**Las reglas del reto.** 20 ejecuciones aleatorias: categorías en orden, de 10 a 19 horas, totales correctos y parada la primera vez que el total pasa de 40. Se conserva la tarjeta con la que pasa del límite. También se comprueba que ⟦CODE_0001⟧ esté en todas partes, stderr quede vacío, se borre la carpeta temporal y haya al menos ocho valores de horas distintos en total."
+
+#: src/tar-gnu-weird/README.md:153
+msgctxt "s-338a7b8b1b67-0066"
+msgid "**The clock invariants.** Each card is closed at the tick whose number is its running total. The default run sees 64 ticks, and every tick after the stop is counted as idle."
+msgstr "**Los invariantes del reloj.** Cada tarjeta se cierra en el pulso cuyo número coincide con su total acumulado. La ejecución por omisión recibe 64 pulsos y cada pulso posterior a la parada cuenta como inactivo."
+
+#: src/tar-gnu-weird/README.md:154
+msgctxt "s-7cf3bb2453bc-0067"
+msgid "**No clock, no progress.** With ⟦CODE_0001⟧ on a 64-record archive there is no tick. No card is written, the state stays at zero, and the run exits 3."
+msgstr "**Sin reloj no hay avance.** Con ⟦CODE_0001⟧ y un archivo de 64 registros, no hay pulsos. No se escribe ninguna tarjeta, el estado se queda en cero y la ejecución termina con estado 3."
+
+#: src/tar-gnu-weird/README.md:155
+msgctxt "s-83c929130d9a-0068"
+msgid "**Predictions.** 65 runs compared with the simulation (see above), including the stalls, and the tape size."
+msgstr "**Predicciones.** Se comparan 65 ejecuciones con la simulación (ver arriba), incluidos los atascos. También se comprueba el tamaño de la cinta."
+
+#: src/tar-gnu-weird/README.md:156
+msgctxt "s-bc6debf89f43-0069"
+msgid "**Extra ticks change nothing.** A 600-record archive gives the same cards as a 64-record one."
+msgstr "**Los pulsos extra no cambian nada.** Un archivo de 600 registros da las mismas tarjetas que uno de 64."
+
+#: src/tar-gnu-weird/README.md:157
+msgctxt "s-6a50d8d11f47-0070"
+msgid "**What one checkpoint counts.** In create mode, ⟦CODE_0001⟧, for ragged sizes, empty members and five pairs of ⟦CODE_0002⟧ and ⟦CODE_0003⟧."
+msgstr "**Qué cuenta un punto de control.** En modo de creación, ⟦CODE_0001⟧, con tamaños dispares, miembros vacíos y cinco pares de ⟦CODE_0002⟧ y ⟦CODE_0003⟧."
+
+#: src/tar-gnu-weird/README.md:158
+msgctxt "s-b4f58fc47605-0071"
+msgid "**A failing callback.** A copy of the entry whose transition fails on every tick: tar still finishes, no card is written, the SQL error reaches stderr, and the run exits 3."
+msgstr "**Una función de devolución de llamada que falla.** En una copia de la entrada, la transición falla en cada pulso. tar termina de todos modos, no se escribe ninguna tarjeta, stderr recibe el error de SQL y la ejecución termina con estado 3."
+
+#: src/tar-gnu-weird/README.md:159
+msgctxt "s-ade61143c233-0072"
+msgid "**A bad ⟦CODE_0001⟧.** A value that is not a number is refused before the database is opened."
+msgstr "**Un ⟦CODE_0001⟧ inválido.** Si el valor no es un número, se rechaza antes de abrir la base de datos."
+
+#: src/tar-gnu-weird/README.md:160
+msgctxt "s-5505bafd03e0-0073"
+msgid "**The schema.** SQLite refuses a non-demo row, 9 hours and a fifth category."
+msgstr "**El esquema.** SQLite rechaza una fila ajena a la demostración, 9 horas y una quinta categoría."
+
+#: src/tar-gnu-weird/README.md:162
+msgctxt "s-5a0ad00b10fc-0074"
+msgid "Gotchas worth knowing"
+msgstr "Trampas que conviene conocer"
+
+#: src/tar-gnu-weird/README.md:164
+msgctxt "s-8bd9b6816ec3-0075"
+msgid "**What GNU tar promises, and what we saw.** The manual documents ⟦CODE_0001⟧, ⟦CODE_0002⟧ and the ⟦CODE_0003⟧ variable. That is **implementation-permitted**: GNU only, and not in POSIX. It also says a checkpoint counts *records*. How many records a command writes for a given set of members is what we measured, on GNU tar 1.34 (Ubuntu 22.04) and 1.35 (Ubuntu 24.04 and 26.04), and the numbers were the same everywhere."
+msgstr "**Qué promete GNU tar y qué vimos.** El manual documenta ⟦CODE_0001⟧, ⟦CODE_0002⟧ y la variable ⟦CODE_0003⟧. Es comportamiento **permitido por la implementación**: solo GNU, fuera de POSIX. El manual dice además que un punto de control cuenta *registros*. Medimos cuántos registros escribe un comando para un conjunto dado de miembros. Lo hicimos con GNU tar 1.34 (Ubuntu 22.04) y 1.35 (Ubuntu 24.04 y 26.04). Las cifras coincidieron en todos los casos."
+
+#: src/tar-gnu-weird/README.md:165
+msgctxt "s-49d76d6f963f-0076"
+msgid "**A checkpoint counts records, not files.** With ⟦CODE_0001⟧ a record is 512 bytes. The default is ⟦CODE_0002⟧, so a record is 10,240 bytes and the whole demo archive would be three records. That is why the entry sets ⟦CODE_0003⟧."
+msgstr "**Un punto de control cuenta registros, no archivos.** Con ⟦CODE_0001⟧, un registro tiene 512 bytes. El valor por omisión es ⟦CODE_0002⟧. Así que un registro tiene 10 240 bytes y todo el archivo de demostración ocuparía tres registros. Por eso la entrada fija ⟦CODE_0003⟧."
+
+#: src/tar-gnu-weird/README.md:166
+msgctxt "s-646eb4c9308a-0077"
+msgid "**⟦CODE_0001⟧ counts records, the machine counts callbacks.** With ⟦CODE_0002⟧ the variable reads 2, 4, 6, and so on, and the machine still adds one hour per call. The entry therefore counts calls, and stores the variable only as a record of where each card closed."
+msgstr "**⟦CODE_0001⟧ cuenta registros y la máquina cuenta funciones de devolución de llamada.** Con ⟦CODE_0002⟧, la variable toma los valores 2, 4, 6 y así sucesivamente. La máquina sigue sumando una hora por llamada. Por eso la entrada cuenta llamadas y guarda la variable solo para registrar dónde se cerró cada tarjeta."
+
+#: src/tar-gnu-weird/README.md:167
+msgctxt "s-12864240ae04-0078"
+msgid "**The mode changes the count.** Creating the same 21-block archive gives 21 ticks. Listing it with ⟦CODE_0001⟧ gives 10, because tar skips over data it does not need to read. Extracting it gives 21 again. Only creation is used here, and it is the mode with the simplest rule. Treat the listing number as **accidentally exploited** knowledge, not as a promise."
+msgstr "**El modo cambia el recuento.** Crear el mismo archivo de 21 bloques da 21 pulsos. Listarlo con ⟦CODE_0001⟧ da 10, porque tar omite los datos que no necesita leer. Extraerlo vuelve a dar 21. Aquí solo se usa el modo de creación, que tiene la regla más sencilla. Trata la cifra del listado como un dato **aprovechado por accidente**, no como una promesa."
+
+#: src/tar-gnu-weird/README.md:168
+msgctxt "s-2d03e8f1bdf1-0079"
+msgid "**The callback's exit status is ignored.** A command that exits with status 7 leaves tar's own status at 0. We saw this on every release we tried. The entry does not rely on it: tar cannot be told to stop, so the machine makes the extra ticks harmless, and a failed tick only means that the machine did not move."
+msgstr "**tar ignora el estado de salida de la función de devolución de llamada.** Un comando que termina con estado 7 deja el estado de tar en 0. Lo vimos en todas las versiones que probamos. La entrada no depende de eso. Como no se le puede pedir a tar que pare, la máquina hace que los pulsos extra sean inocuos. Si un pulso falla, la máquina simplemente no avanza."
+
+#: src/tar-gnu-weird/README.md:169
+msgctxt "s-9f3723e7e879-0080"
+msgid "**tar does not stop at the stop rule.** After the crossing card tar still writes all its records, and the callback still runs for each. The 18 idle ticks in the example are those. This is why the design has a ⟦CODE_0001⟧ flag, and does not try to kill tar."
+msgstr "**tar sigue después de que se cumple la regla de parada.** Tras la tarjeta que hace pasar el total del límite, tar sigue escribiendo todos sus registros y ejecuta la función de devolución de llamada para cada uno. Esos son los 18 pulsos inactivos del ejemplo. Por eso el diseño usa una bandera ⟦CODE_0001⟧ y no intenta terminar tar."
+
+#: src/tar-gnu-weird/README.md:170
+msgctxt "s-020162137529-0081"
+msgid "**Where a failed tick shows.** If ⟦CODE_0001⟧ fails, SQLite's message goes to stderr, tar carries on, and the run ends with ⟦CODE_0002⟧ and exit 3."
+msgstr "**Dónde se ve el fallo de un pulso.** Si ⟦CODE_0001⟧ falla, el mensaje de SQLite llega a stderr, tar sigue y la ejecución termina con ⟦CODE_0002⟧ y estado de salida 3."
+
+#: src/tar-gnu-weird/README.md:171
+msgctxt "s-870e78e668e1-0082"
+msgid "**Not a recursive tar.** The checkpoint command is ⟦CODE_0001⟧, and it runs one ⟦CODE_0002⟧. It never starts another ⟦CODE_0003⟧."
+msgstr "**tar no se llama de forma recursiva.** El comando del punto de control es ⟦CODE_0001⟧ y ejecuta un ⟦CODE_0002⟧. Nunca inicia otro ⟦CODE_0003⟧."
+
+#: src/tar-gnu-weird/README.md:172
+msgctxt "s-4d6591da1f6f-0083"
+msgid "**It is slow on purpose.** About 64 ticks, one ⟦CODE_0001⟧ start per tick: a few tenths of a second. Do not use a checkpoint as a scheduler."
+msgstr "**Es lento a propósito.** Unos 64 pulsos y un inicio de ⟦CODE_0001⟧ por pulso: unas décimas de segundo. No uses un punto de control para planificar tareas."
+
+#: src/tar-gnu-weird/README.md:173
+msgctxt "s-6b9ef8548b1b-0084"
+msgid "**The producer.** The tape here is made by ⟦CODE_0001⟧. ⟦CODE_0002⟧ could write it instead, but then each demo would depend on the other in CI, and the entry would have to read a program it does not use. The two entries stay independent."
+msgstr "**El productor.** ⟦CODE_0001⟧ genera la cinta aquí. ⟦CODE_0002⟧ podría escribirla en su lugar, pero entonces cada demostración dependería de la otra en CI y la entrada tendría que leer un programa que no usa. Las dos entradas siguen siendo independientes."
+
+#: src/tar-gnu-weird/README.md:177
+msgctxt "s-40ddb79ac33a-0085"
+msgid "See the [root README](⟦DEST_0001⟧) for how this compares to the other entries, and [⟦CODE_0002⟧](⟦DEST_0003⟧) if you want to write your own."
+msgstr "Consulta el [README de la raíz del repositorio](⟦DEST_0001⟧) para comparar esta entrada con las demás. Si quieres escribir la tuya, consulta [⟦CODE_0002⟧](⟦DEST_0003⟧)."

@@ -46,7 +46,7 @@ Both tar entries report from SQLite. The archive program dispatches member opera
 
 ## The machine to identify
 
-**What repeats.** In `tar-gnu`, tar: it walks the members in archive order and calls the dispatcher once per member (`tar --to-command`, [interpret.sh](../../../src/tar-gnu/interpret.sh)). In `tar-gnu-weird`, tar again, but through its *checkpoints*: one callback per 512-byte record written, using one `tar` command ([README](../../../src/tar-gnu-weird/README.md#the-clock)).
+**What repeats.** In `tar-gnu`, tar: it walks the members in archive order and calls the dispatcher once per member (`tar --to-command`, [interpret.sh](../../../src/tar-gnu/interpret.sh)). In `tar-gnu-weird`, tar again, but through its *checkpoints*: one callback per 512-byte record written, using one `tar` command ([README](../../../src/tar-gnu-weird/README.md#el-reloj)).
 
 **Where state lives.** In `tar-gnu`, in the archive itself (the instructions, the card hours, the limit) and in SQLite (the running total and a `halted` flag in the `runs` row, plus a trace table). In `tar-gnu-weird`, in *one row* of a table called `fsm`: the generator seed, the card number, hours worked, the target, the total and a `done` flag.
 

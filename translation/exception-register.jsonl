@@ -194,3 +194,10 @@
 {"id":"EXC-194","segment":"s-deed37c3dc49-0104","invariant":"I7","reason":"Books means records timecards and in a row means consecutively. Registra and seguidas preserve those meanings.","task":"P4-src-13"}
 {"id":"EXC-195","segment":"s-aef95d4aad8a-0106","invariant":"I7","reason":"Build means assemble status lines, with no compilation.","task":"P4-src-13"}
 {"id":"EXC-196","segment":"s-f6b3fcde7963-0114","invariant":"I7","reason":"Books means records timecards and in a row means consecutively. Registra and seguidas preserve those meanings.","task":"P4-src-13"}
+{"id":"EXC-197","segment":"s-b497919550ab-0014","invariant":"I7","reason":"English builds is a verb about creating a Docker image. Construye la imagen names the action without implying that the script compiles the image.","task":"P4-src-14"}
+{"id":"EXC-198","segment":"s-12eb4836b380-0018","invariant":"I7","reason":"run-clock.sh is a literal script name. The word clock is part of that filename.","task":"P4-src-14"}
+{"id":"EXC-199","segment":"s-410c77e6c11f-0031","invariant":"I7","reason":"The first-use italic gloss (*callback*) is required by the callback glossary note. The prose uses función de devolución de llamada.","task":"P4-src-14"}
+{"id":"EXC-200","segment":"s-49d76d6f963f-0076","invariant":"I7","reason":"Registro refers to a tar archive record, not to the book entry. The Spanish separately uses entrada for the book entry.","task":"P4-src-14"}
+{"id":"EXC-201","segment":"s-b497919550ab-0014","invariant":"I7","reason":"English builds is a verb about creating a Docker image. Construye la imagen names the action without implying that the script compiles the image.","task":"P4-src-14"}
+{"id":"EXC-202","segment":"s-bb486cd37afa-0056","invariant":"I7","reason":"Registro means an archive record, distinct from the book entrada. Builds means creating tar archives for a test; no compilation takes place.","task":"P4-src-14"}
+{"id":"EXC-203","segment":"s-8ea5906e2da3-0074","invariant":"I7","reason":"Flags is a reporting verb. The inspector señala archive members; it does not set a bandera.","task":"P4-src-14"}

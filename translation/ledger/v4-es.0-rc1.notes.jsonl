@@ -1134,3 +1134,41 @@
 {"segment_id": "s-aef95d4aad8a-0106", "ts": "2026-11-21T14:17:58Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
 {"segment_id": "s-f6b3fcde7963-0114", "ts": "2026-11-21T14:17:58Z", "findings": ["I7: glossary term row must be rendered 'fila'", "I7: glossary term book must be rendered 'libro'"]}
 {"segment_id": "s-5a0ad00b10fc-0118", "ts": "2026-11-21T14:17:58Z", "findings": [], "playful_note": "Mantiene el tono coloquial y presenta las advertencias como trampas que conviene conocer."}
+{"segment_id": "s-c943aa3f7688-0000", "ts": "2026-11-21T14:27:41Z", "findings": ["TRANSLATE: the reply is the English text unchanged"]}
+{"segment_id": "s-851e7d0ef2c9-0004", "ts": "2026-11-21T14:27:41Z", "findings": [], "playful_note": "Conserva la escalada de rareza y la sorpresa del archivo que hace de reloj."}
+{"segment_id": "s-b497919550ab-0014", "ts": "2026-11-21T14:27:41Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-12eb4836b380-0018", "ts": "2026-11-21T14:27:41Z", "findings": ["I7: glossary term clock must be rendered 'reloj'", "TRANSLATE: the reply is the English text unchanged"]}
+{"segment_id": "s-410c77e6c11f-0031", "ts": "2026-11-21T14:27:41Z", "findings": ["I7: banned rendering 'callback' for glossary term callback"]}
+{"segment_id": "s-7f97d965b4c0-0032", "ts": "2026-11-21T14:27:41Z", "findings": [], "playful_note": "Conserva el giro coloquial del encabezado."}
+{"segment_id": "s-584b8b889738-0058", "ts": "2026-11-21T14:27:41Z", "findings": [], "playful_note": "Conserva el contraste entre un archivo corriente y su papel al marcar el ritmo del programa."}
+{"segment_id": "s-fff646ea1f30-0060", "ts": "2026-11-21T14:27:41Z", "findings": ["I15: heading differs from the recorded transcreated 'Por qué es raro'"], "playful_note": "Conserva el giro coloquial del encabezado."}
+{"segment_id": "s-7cf3bb2453bc-0067", "ts": "2026-11-21T14:27:41Z", "findings": [], "playful_note": "Conserva el paralelismo breve que vincula el reloj con el avance."}
+{"segment_id": "s-5a0ad00b10fc-0074", "ts": "2026-11-21T14:27:41Z", "findings": [], "playful_note": "Conserva el giro coloquial del encabezado."}
+{"segment_id": "s-49d76d6f963f-0076", "ts": "2026-11-21T14:27:41Z", "findings": ["I7: banned rendering 'registro' for glossary term entry"]}
+{"segment_id": "s-4d6591da1f6f-0083", "ts": "2026-11-21T14:27:41Z", "findings": [], "playful_note": "Conserva la franqueza irónica sobre el costo deliberado del mecanismo."}
+{"segment_id": "s-c943aa3f7688-0000", "ts": "2026-11-21T14:29:14Z", "findings": ["TRANSLATE: the reply is the English text unchanged"]}
+{"segment_id": "s-3aec5bd39260-0004", "ts": "2026-11-21T14:29:14Z", "findings": [], "playful_note": "Conserva el tono de falsa modestia antes de revelar el programa serializado."}
+{"segment_id": "s-1c1ae816ee33-0007", "ts": "2026-11-21T14:29:14Z", "findings": [], "playful_note": "Conserva la imagen de los dados para el azar que queda en el archivo."}
+{"segment_id": "s-b497919550ab-0014", "ts": "2026-11-21T14:29:14Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-5d53639ae134-0017", "ts": "2026-11-21T14:29:14Z", "findings": ["I7: glossary term command must be rendered 'comando'"]}
+{"segment_id": "s-86136f468a1e-0025", "ts": "2026-11-21T14:29:14Z", "findings": ["I7: glossary term command must be rendered 'comando'", "I9: looks English: 1 of 5 words are English function words", "TRANSLATE: the reply is the English text unchanged"]}
+{"segment_id": "s-7f97d965b4c0-0034", "ts": "2026-11-21T14:29:14Z", "findings": [], "playful_note": "Conserva el giro coloquial del encabezado."}
+{"segment_id": "s-e4cad52ffc52-0046", "ts": "2026-11-21T14:29:14Z", "findings": ["I7: glossary term claim must be rendered 'afirmación'"]}
+{"segment_id": "s-2bf798920947-0054", "ts": "2026-11-21T14:29:14Z", "findings": [], "playful_note": "Retoma el tono de falsa modestia del título para separar las tres operaciones."}
+{"segment_id": "s-bb486cd37afa-0056", "ts": "2026-11-21T14:29:14Z", "findings": ["I7: banned rendering 'registro' for glossary term entry", "I7: glossary term type must be rendered 'tipo'", "I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-9ad2cda68a4e-0070", "ts": "2026-11-21T14:29:14Z", "findings": [], "playful_note": "Conserva la imagen de los dados trucados para las horas elegidas en la prueba."}
+{"segment_id": "s-93634487e1a8-0072", "ts": "2026-11-21T14:29:14Z", "findings": ["I7: glossary term list must be rendered 'lista'"]}
+{"segment_id": "s-8ea5906e2da3-0074", "ts": "2026-11-21T14:29:14Z", "findings": ["I7: glossary term flag must be rendered 'bandera'"]}
+{"segment_id": "s-5a0ad00b10fc-0082", "ts": "2026-11-21T14:29:14Z", "findings": [], "playful_note": "Conserva el giro coloquial del encabezado."}
+{"segment_id": "s-3dd94760d863-0089", "ts": "2026-11-21T14:29:14Z", "findings": ["I7: glossary term build must be rendered 'compilación'"], "playful_note": "Conserva la imagen de tirar los dados y el contraste entre preparar los datos y ejecutar el programa."}
+{"segment_id": "s-57c0fe3891ab-0091", "ts": "2026-11-21T14:29:14Z", "findings": ["I7: glossary term plumbing must be rendered 'cómo viaja el dato'"], "playful_note": "Conserva la imagen del movimiento de los datos sin calcar la referencia a la plomería."}
+{"segment_id": "s-c943aa3f7688-0000", "ts": "2026-11-21T14:29:58Z", "findings": ["TRANSLATE: the reply is the English text unchanged"]}
+{"segment_id": "s-12eb4836b380-0018", "ts": "2026-11-21T14:29:58Z", "findings": ["I7: glossary term clock must be rendered 'reloj'", "TRANSLATE: the reply is the English text unchanged"]}
+{"segment_id": "s-410c77e6c11f-0031", "ts": "2026-11-21T14:29:58Z", "findings": ["I7: banned rendering 'callback' for glossary term callback"]}
+{"segment_id": "s-fff646ea1f30-0060", "ts": "2026-11-21T14:29:58Z", "findings": [], "playful_note": "Conserva el giro coloquial del encabezado."}
+{"segment_id": "s-49d76d6f963f-0076", "ts": "2026-11-21T14:29:58Z", "findings": ["I3: digit token 10 appears 1 time(s) in the source, 0 in the target", "I3: digit token 10240 appears 0 time(s) in the source, 1 in the target", "I3: digit token 240 appears 1 time(s) in the source, 0 in the target", "I7: banned rendering 'registro' for glossary term entry"]}
+{"segment_id": "s-c943aa3f7688-0000", "ts": "2026-11-21T14:29:59Z", "findings": ["TRANSLATE: the reply is the English text unchanged"]}
+{"segment_id": "s-bb486cd37afa-0056", "ts": "2026-11-21T14:29:59Z", "findings": ["I7: banned rendering 'registro' for glossary term entry"]}
+{"segment_id": "s-8ea5906e2da3-0074", "ts": "2026-11-21T14:29:59Z", "findings": ["I7: glossary term flag must be rendered 'bandera'"]}
+{"segment_id": "s-3dd94760d863-0089", "ts": "2026-11-21T14:29:59Z", "findings": [], "playful_note": "Conserva la imagen de tirar los dados y el contraste entre preparar los datos y ejecutar el programa."}
+{"segment_id": "s-57c0fe3891ab-0091", "ts": "2026-11-21T14:29:59Z", "findings": [], "playful_note": "Conserva la imagen del movimiento de los datos sin calcar la referencia a la plomería."}

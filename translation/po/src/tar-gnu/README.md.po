@@ -1,0 +1,499 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/tar-gnu/README.md:2
+msgctxt "s-c943aa3f7688-0000"
+msgid "GNU tar"
+msgstr "GNU tar"
+
+#: src/tar-gnu/README.md:3
+msgctxt "s-af3183d7c2c8-0001"
+msgid "that a tar archive can be a serialized program: tar reads the members in order, and only the command that the operator attaches gives them an effect."
+msgstr "que un archivo tar puede ser un programa serializado: tar lee los miembros en orden y solo el comando que indica el operador les da un efecto."
+
+#: src/tar-gnu/README.md:11
+msgctxt "s-cf3b8f132a49-0002"
+msgid "A tape reader (tar) feeding a five-word interpreter"
+msgstr "Un lector de cinta (tar) que alimenta a un intérprete de cinco palabras"
+
+#: src/tar-gnu/README.md:12
+msgctxt "s-36c3cce76232-0003"
+msgid "The archive's members, which are the program, plus one SQLite row that says whether the run has halted or faulted"
+msgstr "Los miembros del archivo, que son el programa, más una fila de SQLite que indica si la ejecución se detuvo o falló"
+
+#: src/tar-gnu/README.md:16
+msgctxt "s-3aec5bd39260-0004"
+msgid "GNU tar: it's just a tar file"
+msgstr "GNU tar: es solo un archivo tar"
+
+#: src/tar-gnu/README.md:18
+msgctxt "s-bcf196b83205-0005"
+msgid "**Teaches you:** that a tar archive can be a serialized program: tar reads the members in order, and only the command that the operator attaches gives them an effect."
+msgstr "**Te enseña:** que un archivo tar puede ser un programa serializado: tar lee los miembros en orden y solo el comando que indica el operador les da un efecto."
+
+#: src/tar-gnu/README.md:20
+msgctxt "s-726d19f59388-0006"
+msgid ""
+"**⟦DNT_0001⟧.** Fictional time cards, written to a scratch SQLite file under ⟦CODE_0002⟧.\n"
+"Nothing here touches real time reporting."
+msgstr ""
+"**⟦DNT_0001⟧.** Tarjetas de horas ficticias que se guardan en un archivo temporal de SQLite en ⟦CODE_0002⟧.\n"
+"Nada de esto afecta a los informes de horas reales."
+
+#: src/tar-gnu/README.md:23
+msgctxt "s-1c1ae816ee33-0007"
+msgid "The program is a tar archive. Each member is one instruction: the member name says what to do, and the member body says with what. GNU tar walks the archive in order and calls a small dispatcher for every member (⟦CODE_0001⟧). The dispatcher knows what five words mean. It has no loop, no dice, no category list and no number 40. Those are in the archive."
+msgstr "El programa es un archivo tar. Cada miembro es una instrucción: el nombre indica qué hacer y el cuerpo indica con qué. GNU tar recorre el archivo en orden y llama a un pequeño despachador por cada miembro (⟦CODE_0001⟧). El despachador sabe qué significan cinco palabras. No tiene bucle, dados, lista de categorías ni el número 40. Todo eso está en el archivo."
+
+#: src/tar-gnu/README.md:42
+msgctxt "s-92e0e0cf55ae-0008"
+msgid "This is the **idiomatic** entry of a pair. Using ⟦CODE_0001⟧ is the documented way to feed archive members to a program, so the mechanism is ordinary. The odd part is the application: a time-card generator that is an archive. Its pair, [⟦CODE_0002⟧](⟦DEST_0003⟧), uses a different tar feature (checkpoints) as a clock."
+msgstr "Esta es la entrada **idiomática** de un par. Usar ⟦CODE_0001⟧ es la forma documentada de pasar los miembros de un archivo a un programa. El mecanismo es común. Lo raro es su uso: un generador de tarjetas de horas que es un archivo. Su compañera, [⟦CODE_0002⟧](⟦DEST_0003⟧), usa otra función de tar, los puntos de control, como reloj."
+
+#: src/tar-gnu/README.md:44
+msgctxt "s-958ca26c6a61-0009"
+msgid "Run it"
+msgstr "Ejecútalo"
+
+#: src/tar-gnu/README.md:46
+msgctxt "s-b8dda8408045-0010"
+msgid "You need **GNU tar** (1.35 was tested), a POSIX shell, ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧ and ⟦CODE_0004⟧. BSD and macOS tar have no ⟦CODE_0005⟧."
+msgstr "Necesitas **GNU tar** (se probó 1.35), un intérprete de comandos (*shell*) POSIX, ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧ y ⟦CODE_0004⟧. El tar de BSD y macOS carece de ⟦CODE_0005⟧."
+
+#: src/tar-gnu/README.md:58
+msgctxt "s-659f00b4c9e1-0011"
+msgid "Records go to ⟦CODE_0001⟧ (default ⟦CODE_0002⟧), and the archive stays next to it as ⟦CODE_0003⟧, so you can open it."
+msgstr "Los registros se guardan en ⟦CODE_0001⟧ (por omisión, ⟦CODE_0002⟧). El archivo queda a su lado como ⟦CODE_0003⟧ para que puedas abrirlo."
+
+#: src/tar-gnu/README.md:60
+msgctxt "s-254f0c660db3-0012"
+msgid "Run it in a container"
+msgstr "Ejecútalo en un contenedor"
+
+#: src/tar-gnu/README.md:62
+msgctxt "s-643df015c8a2-0013"
+msgid "Prerequisite: Docker, set up once as described in [⟦CODE_0001⟧](⟦DEST_0002⟧)."
+msgstr "Requisito: Docker, configurado una sola vez como se describe en [⟦CODE_0001⟧](⟦DEST_0002⟧)."
+
+#: src/tar-gnu/README.md:68
+msgctxt "s-b497919550ab-0014"
+msgid "It builds this folder's [⟦CODE_0001⟧](⟦DEST_0002⟧) and runs the result with no network, a read-only file system and user ⟦CODE_0003⟧. The image holds GNU tar (from the Ubuntu base) and sqlite3 on a minimal Ubuntu."
+msgstr "Construye la imagen a partir del archivo [⟦CODE_0001⟧](⟦DEST_0002⟧) de esta carpeta y la ejecuta sin red, con un sistema de archivos de solo lectura y con el usuario ⟦CODE_0003⟧. La imagen incluye GNU tar (de la base de Ubuntu) y sqlite3 en un Ubuntu mínimo."
+
+#: src/tar-gnu/README.md:70
+msgctxt "s-0dcb373c2dff-0015"
+msgid "Program Flow"
+msgstr "Flujo del programa"
+
+#: src/tar-gnu/README.md:74
+msgctxt "s-543268affede-0016"
+msgid "tar-gnu: the archive is the program and a dispatcher gives its members meaning"
+msgstr "tar-gnu: el archivo es el programa y un despachador da sentido a sus miembros"
+
+#: src/tar-gnu/README.md:75
+msgctxt "s-5d53639ae134-0017"
+msgid "A sequence diagram. The interpreter first asks the inspector to vet the whole archive, which reads it and runs nothing. Then it starts tar with the to-command option. For each member, in archive order, tar sends the member name and body to the dispatcher. The dispatcher checks the name and the body against strict patterns, runs exactly one SQL statement for the member, and writes a row to the trace table. A stop-over member marks the run as halted when the total is over the limit, and the later members are traced as ignored. The show member prints the rows."
+msgstr "Diagrama de secuencia. Primero, el intérprete pide al inspector que valide todo el archivo. El inspector lo lee sin ejecutar nada. Después, el intérprete inicia el comando tar con la opción to-command. Por cada miembro, tar envía el nombre y el cuerpo al despachador en el orden del archivo. El despachador compara el nombre y el cuerpo con patrones estrictos. Ejecuta exactamente una sentencia SQL por miembro y escribe una fila en la tabla de traza. Un miembro stop-over marca la ejecución como detenida cuando el total pasa del límite. La traza marca como ignorados los miembros posteriores. El miembro show imprime las filas."
+
+#: src/tar-gnu/README.md:76
+msgctxt "s-0091dbcb67de-0018"
+msgid "interpret.sh"
+msgstr "interpret.sh"
+
+#: src/tar-gnu/README.md:77
+msgctxt "s-59a5dc9586ec-0019"
+msgid "inspect.sh"
+msgstr "inspect.sh"
+
+#: src/tar-gnu/README.md:78
+msgctxt "s-90aebae31567-0020"
+msgid "tar"
+msgstr "tar"
+
+#: src/tar-gnu/README.md:79
+msgctxt "s-3d899699b578-0021"
+msgid "dispatch.sh"
+msgstr "dispatch.sh"
+
+#: src/tar-gnu/README.md:80
+msgctxt "s-2d2eef3e092a-0022"
+msgid "SQLite"
+msgstr "SQLite"
+
+#: src/tar-gnu/README.md:81
+msgctxt "s-59b307702130-0023"
+msgid "vet every member of the archive"
+msgstr "Valida cada miembro del archivo"
+
+#: src/tar-gnu/README.md:82
+msgctxt "s-31d4eb0d8f9f-0024"
+msgid "valid, and nothing was run"
+msgstr "Válido, no se ejecutó nada"
+
+#: src/tar-gnu/README.md:83
+msgctxt "s-86136f468a1e-0025"
+msgid "tar --to-command=dispatch.sh"
+msgstr "Comando tar --to-command=dispatch.sh"
+
+#: src/tar-gnu/README.md:84
+msgctxt "s-25d7d6b91977-0026"
+msgid "each member, in archive order"
+msgstr "Cada miembro, en el orden del archivo"
+
+#: src/tar-gnu/README.md:85
+msgctxt "s-9aea383e8e09-0027"
+msgid "member name and body"
+msgstr "Nombre y cuerpo del miembro"
+
+#: src/tar-gnu/README.md:86
+msgctxt "s-1f810e03985a-0028"
+msgid "check name and body against strict patterns"
+msgstr "Comprueba nombre y cuerpo con patrones estrictos"
+
+#: src/tar-gnu/README.md:87
+msgctxt "s-c99e318203cd-0029"
+msgid "one SQL statement, and a trace row"
+msgstr "Una sentencia SQL y una fila de traza"
+
+#: src/tar-gnu/README.md:89
+msgctxt "s-84fc76a5ad53-0030"
+msgid "stop-over halts the run when the total is over its limit, and later members are traced as ignored"
+msgstr "stop-over detiene la ejecución si el total pasa del límite. La traza marca el resto como ignorado"
+
+#: src/tar-gnu/README.md:90
+msgctxt "s-798d7d2e4c04-0031"
+msgid "show prints the rows"
+msgstr "show imprime las filas"
+
+#: src/tar-gnu/README.md:93
+msgctxt "s-75f61856c65a-0032"
+msgid "**What this shows:** tar is the loop and the archive is the program. For every member, tar hands the bytes to the dispatcher, and the dispatcher decides what the name means. The order of the members is the order of execution."
+msgstr "**Qué muestra:** tar es el bucle y el archivo es el programa. Por cada miembro, tar pasa los bytes al despachador, que decide qué significa el nombre. El orden de los miembros es el orden de ejecución."
+
+#: src/tar-gnu/README.md:95
+msgctxt "s-72b724a5c5a9-0033"
+msgid "**Why this mechanism matters:** reading and running are two separate steps. The inspector parses and checks everything and runs nothing. The dispatcher runs one SQL statement per member and passes no part of a member to a shell. That is the difference between data that is *serialized* and data that is *executed*."
+msgstr "**Por qué importa este mecanismo:** leer y ejecutar son dos pasos distintos. El inspector analiza y comprueba todo sin ejecutar nada. El despachador ejecuta una sentencia SQL por miembro y no pasa ninguna parte del miembro a un intérprete de comandos. Esa es la diferencia entre datos que se *serializan* y datos que se *ejecutan*."
+
+#: src/tar-gnu/README.md:97
+msgctxt "s-7f97d965b4c0-0034"
+msgid "How the stunt works"
+msgstr "Cómo funciona el truco"
+
+#: src/tar-gnu/README.md:99
+msgctxt "s-16dce20b5963-0035"
+msgid "The archive is the program, tar is the loop, and the dispatcher is the machine that gives five words their meaning."
+msgstr "El archivo es el programa, tar es el bucle y el despachador es la máquina que da significado a cinco palabras."
+
+#: src/tar-gnu/README.md:111
+msgctxt "s-e4dd520a254d-0036"
+msgid "⟦SEP_0001⟧ Job ⟦SEP_0002⟧ Done by ⟦SEP_0003⟧"
+msgstr "⟦SEP_0001⟧ Tarea ⟦SEP_0002⟧ Quién la hace ⟦SEP_0003⟧"
+
+#: src/tar-gnu/README.md:113
+msgctxt "s-8bc2209bf445-0037"
+msgid "⟦SEP_0001⟧ Loop ⟦SEP_0002⟧ **tar**, walking the members in archive order ⟦SEP_0003⟧"
+msgstr "⟦SEP_0001⟧ Bucle ⟦SEP_0002⟧ **tar**, que recorre los miembros en el orden del archivo ⟦SEP_0003⟧"
+
+#: src/tar-gnu/README.md:114
+msgctxt "s-6b18df23c4c8-0038"
+msgid "⟦SEP_0006⟧ Category order ⟦SEP_0007⟧ **The archive**: card slots in the order ⟦DNT_0001⟧, ⟦DNT_0002⟧, ⟦DNT_0003⟧, ⟦DNT_0004⟧, ⟦DNT_0005⟧ ⟦SEP_0008⟧"
+msgstr "⟦SEP_0006⟧ Orden de las categorías ⟦SEP_0007⟧ **El archivo**: posiciones de las tarjetas en el orden ⟦DNT_0001⟧, ⟦DNT_0002⟧, ⟦DNT_0003⟧, ⟦DNT_0004⟧, ⟦DNT_0005⟧ ⟦SEP_0008⟧"
+
+#: src/tar-gnu/README.md:115
+msgctxt "s-0e26db7a399e-0039"
+msgid "⟦SEP_0002⟧ Random hours ⟦SEP_0003⟧ **The builder**, once, when it writes the program down. It uses a seeded Park-Miller generator, and the seed is stored in ⟦CODE_0001⟧ ⟦SEP_0004⟧"
+msgstr "⟦SEP_0002⟧ Horas aleatorias ⟦SEP_0003⟧ **El generador**, una sola vez, cuando escribe el programa. Usa un generador Park-Miller con semilla, que se guarda en ⟦CODE_0001⟧ ⟦SEP_0004⟧"
+
+#: src/tar-gnu/README.md:116
+msgctxt "s-a5d410c07842-0040"
+msgid "⟦SEP_0002⟧ Running total ⟦SEP_0003⟧ The meaning of ⟦CODE_0001⟧: add the hours to the last total (one SQL statement) ⟦SEP_0004⟧"
+msgstr "⟦SEP_0002⟧ Total acumulado ⟦SEP_0003⟧ El significado de ⟦CODE_0001⟧: suma las horas al último total (una sentencia SQL) ⟦SEP_0004⟧"
+
+#: src/tar-gnu/README.md:117
+msgctxt "s-647bf6f02015-0041"
+msgid "⟦SEP_0004⟧ Stop rule ⟦SEP_0005⟧ **The archive** carries the limit (⟦CODE_0001⟧ in each ⟦CODE_0002⟧ member). The meaning of ⟦CODE_0003⟧ is \"halt if the total is over the limit\". A halted run ignores the rest ⟦SEP_0006⟧"
+msgstr "⟦SEP_0004⟧ Regla de parada ⟦SEP_0005⟧ **El archivo** contiene el límite (⟦CODE_0001⟧ en cada miembro ⟦CODE_0002⟧). El significado de ⟦CODE_0003⟧ es \"detén la ejecución si el total pasa del límite\". La ejecución detenida ignora el resto ⟦SEP_0006⟧"
+
+#: src/tar-gnu/README.md:118
+msgctxt "s-c05f82f986d9-0042"
+msgid "⟦SEP_0002⟧ Output ⟦SEP_0003⟧ The meaning of ⟦CODE_0001⟧ ⟦SEP_0004⟧"
+msgstr "⟦SEP_0002⟧ Salida ⟦SEP_0003⟧ El significado de ⟦CODE_0001⟧ ⟦SEP_0004⟧"
+
+#: src/tar-gnu/README.md:119
+msgctxt "s-87c022b5e792-0043"
+msgid "⟦SEP_0004⟧ Persistence ⟦SEP_0005⟧ ⟦CODE_0001⟧, with ⟦CODE_0002⟧ constraints for the category, the hours and ⟦CODE_0003⟧ ⟦SEP_0006⟧"
+msgstr "⟦SEP_0004⟧ Persistencia ⟦SEP_0005⟧ ⟦CODE_0001⟧, con restricciones ⟦CODE_0002⟧ para la categoría, las horas y ⟦CODE_0003⟧ ⟦SEP_0006⟧"
+
+#: src/tar-gnu/README.md:121
+msgctxt "s-5b090cc19875-0044"
+msgid "Why five card slots? Four cards of 10 hours make exactly 40, which does not exceed 40. A fifth card always finishes the job, so five slots are enough for every possible run. A run usually stops at three or four cards, and the unused slots are read and ignored (the ⟦CODE_0001⟧ table says ⟦CODE_0002⟧)."
+msgstr "¿Por qué cinco posiciones para tarjetas? Cuatro tarjetas de 10 horas suman exactamente 40, así que el total no pasa de 40. Una quinta tarjeta siempre completa el trabajo, así que cinco posiciones bastan para toda ejecución posible. La ejecución suele detenerse con tres o cuatro tarjetas. El programa lee e ignora las posiciones sin usar (la tabla ⟦CODE_0001⟧ dice ⟦CODE_0002⟧)."
+
+#: src/tar-gnu/README.md:123
+msgctxt "s-50564ff9367d-0045"
+msgid "The dispatcher"
+msgstr "El despachador"
+
+#: src/tar-gnu/README.md:125
+msgctxt "s-e4cad52ffc52-0046"
+msgid "[⟦CODE_0001⟧](⟦DEST_0002⟧) is the interpreter. It is about 80 lines, and most of those lines check that the input is what it claims to be. It has four jobs:"
+msgstr "[⟦CODE_0001⟧](⟦DEST_0002⟧) es el intérprete. Tiene unas 80 líneas y la mayoría comprueba la afirmación sobre qué contiene la entrada de datos. Cumple cuatro tareas:"
+
+#: src/tar-gnu/README.md:127
+msgctxt "s-9b664a52d429-0047"
+msgid ""
+"Check the member name against a strict pattern. Four names are known: ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧ and ⟦CODE_0004⟧.\n"
+"2. Check the member body: right lines, right words, hours from 10 to 19.\n"
+"3. Run one SQL statement.\n"
+"4. Record what happened in a ⟦CODE_0005⟧ table."
+msgstr ""
+"Comprueba el nombre del miembro con un patrón estricto. Reconoce cuatro nombres: ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧ y ⟦CODE_0004⟧.\n"
+"2. Comprueba el cuerpo del miembro: líneas correctas, palabras correctas y de 10 a 19 horas.\n"
+"3. Ejecuta una sentencia SQL.\n"
+"4. Registra lo que ocurrió en una tabla ⟦CODE_0005⟧."
+
+#: src/tar-gnu/README.md:132
+msgctxt "s-28a3d189a856-0048"
+msgid "⟦CODE_0001⟧ makes sure the dispatcher has no ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧ or ⟦CODE_0006⟧, no shell arithmetic, no dice and no ⟦CODE_0007⟧."
+msgstr "⟦CODE_0001⟧ comprueba que el despachador no tenga ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧ ni ⟦CODE_0006⟧, ni operaciones aritméticas del intérprete de comandos, ni dados, ni ⟦CODE_0007⟧."
+
+#: src/tar-gnu/README.md:134
+msgctxt "s-dcb0f4a620c8-0049"
+msgid "The builder, the inspector and the interpreter"
+msgstr "El generador, el inspector y el intérprete"
+
+#: src/tar-gnu/README.md:136
+msgctxt "s-ee4dedd12d1f-0050"
+msgid "Three small programs use the same archive:"
+msgstr "Tres programas pequeños usan el mismo archivo:"
+
+#: src/tar-gnu/README.md:138
+msgctxt "s-8a2ecfcb3086-0051"
+msgid "[⟦CODE_0001⟧](⟦DEST_0002⟧) **serializes** the program. The same seed makes the same bytes, because it fixes the order, the times and the owners."
+msgstr "[⟦CODE_0001⟧](⟦DEST_0002⟧) **serializa** el programa. La misma semilla produce los mismos bytes porque fija el orden, las marcas de tiempo y los propietarios."
+
+#: src/tar-gnu/README.md:139
+msgctxt "s-05d239afb24a-0052"
+msgid "[⟦CODE_0001⟧](⟦DEST_0002⟧) **reads** it. It uses ⟦CODE_0003⟧ and ⟦CODE_0004⟧ (extract to standard output), and it never runs anything from the archive. It has its own check of the record grammar, written differently from the dispatcher's, so ⟦CODE_0005⟧ can compare the two."
+msgstr "[⟦CODE_0001⟧](⟦DEST_0002⟧) lo **lee**. Usa ⟦CODE_0003⟧ y ⟦CODE_0004⟧ (extrae a la salida estándar) y nunca ejecuta nada del archivo. Comprueba la gramática de los registros de forma distinta al despachador, así que ⟦CODE_0005⟧ puede comparar ambas comprobaciones."
+
+#: src/tar-gnu/README.md:140
+msgctxt "s-ec24d6085214-0053"
+msgid "[⟦CODE_0001⟧](⟦DEST_0002⟧) **runs** it. You must pass ⟦CODE_0003⟧. It first asks the inspector to vet the whole archive, and only then starts ⟦CODE_0004⟧."
+msgstr "[⟦CODE_0001⟧](⟦DEST_0002⟧) lo **ejecuta**. Debes pasar ⟦CODE_0003⟧. Primero pide al inspector que valide todo el archivo y solo después inicia ⟦CODE_0004⟧."
+
+#: src/tar-gnu/README.md:142
+msgctxt "s-2bf798920947-0054"
+msgid "It's just a tar file: serialization, deserialization, and execution"
+msgstr "Es solo un archivo tar: serialización, deserialización y ejecución"
+
+#: src/tar-gnu/README.md:144
+msgctxt "s-8b4f09cda0b7-0055"
+msgid "A tar archive is a way to write files into one stream of bytes. It is not a program format. What turns this one into a program is a *consumer* that gives its members a meaning. This section separates the steps. See the concept page, [Serialization, deserialization and object pickling](⟦DEST_0001⟧), for the general ideas."
+msgstr "Un archivo tar permite escribir archivos en un solo flujo de bytes. No es un formato de programa. Lo que convierte a este archivo en un programa es un *consumidor* que da significado a sus miembros. Esta sección separa los pasos. Consulta [Serialización, deserialización y empaquetado de objetos](⟦DEST_0001⟧) para ver las ideas generales."
+
+#: src/tar-gnu/README.md:146
+msgctxt "s-bb486cd37afa-0056"
+msgid ""
+"**Encoding data.** A card is two lines in a member body: ⟦CODE_0001⟧ and ⟦CODE_0002⟧. The data is in the bytes of the member.\n"
+"2. **Encoding program instructions and interpretation context.** The instruction is in the member *name* (⟦CODE_0003⟧), and the order of the members is the order of execution. The context is a promise between the writer and the reader: the format ⟦CODE_0004⟧. Tar knows nothing about it. Two programs that agree on the promise can understand each other, and no other program can.\n"
+"3. **Encoding program state.** The archive holds the *initial* state: the seed, and the dice already rolled. The *running* state (the total so far, and whether the run has halted) is in SQLite. It is not in the archive, and tar never changes the archive while it reads it.\n"
+"4. **Capturing live execution state or continuations.** This entry does **not** do that. If you kill the interpreter after the second card, nothing can resume it from the third. You could start the whole program again. That gives the same cards (replay), and it is not the same as continuing the interrupted process.\n"
+"5. **Pickling versus tar.** Python's ⟦CODE_0005⟧ stores a *recipe to rebuild objects*, and unpickling calls whatever the recipe names. Tar stores *files*, and extracting writes files. Both are serialization. Deserialization (parsing the bytes into pieces) and execution (giving the pieces an effect) are two different steps. Pickle joins them by design. Here you can do the first without the second: ⟦CODE_0006⟧ parses and shows every member, and runs nothing.\n"
+"6. **How a malicious consumer turns inert bytes into instructions.** The bytes have no power. The consumer does. A dispatcher that passed the body of ⟦CODE_0007⟧ to a shell would make every card a command. This one does not. It checks every record with a strict pattern, and it does not pass any part of a record to a shell or an interpreter. ⟦CODE_0008⟧ builds archives with ⟦CODE_0009⟧ inside the hours and a member called ⟦CODE_0010⟧, and shows that none of them runs.\n"
+"7. **Two trust boundaries.** ⟦CODE_0011⟧ writes the members as files and runs nothing. An archive **cannot register a hook for itself**. The power comes from the command line: ⟦CODE_0012⟧ is the operator's choice, and tar asks nothing of the archive. So the boundary is at the command the operator types, and it is the same trust you give to any program you start."
+msgstr ""
+"**Codificar datos.** Una tarjeta son dos líneas en el cuerpo de un miembro: ⟦CODE_0001⟧ y ⟦CODE_0002⟧. Los datos están en los bytes del miembro.\n"
+"2. **Codificar las instrucciones del programa y el contexto de interpretación.** Cada instrucción está en el *nombre* del miembro (⟦CODE_0003⟧). El orden de los miembros es el orden de ejecución. El contexto es una promesa entre el programa que escribe y el lector: el formato ⟦CODE_0004⟧. tar no sabe nada de ella. Dos programas que respetan la promesa se entienden entre sí y ningún otro programa puede entenderlos.\n"
+"3. **Codificar el estado del programa.** El archivo contiene el estado *inicial*: la semilla y los dados ya tirados. El estado *en ejecución* está en SQLite: el total acumulado y si se detuvo la ejecución. Ese estado no está en el archivo y tar nunca modifica el archivo mientras lee.\n"
+"4. **Capturar el estado de una ejecución en curso o sus continuaciones.** Esta entrada **no** lo hace. Si terminas el intérprete después de la segunda tarjeta, nada puede reanudarlo desde la tercera. Puedes arrancar todo el programa de nuevo. Eso produce las mismas tarjetas (repetición de la ejecución) y es distinto de continuar el proceso interrumpido.\n"
+"5. **Empaquetado frente al tipo de archivo tar.** ⟦CODE_0005⟧ de Python guarda una *receta para reconstruir objetos* y al desempaquetar llama a lo que indica la receta. tar guarda *archivos* y la extracción escribe archivos. Ambas operaciones son formas de serialización. Deserializar (separar los bytes en partes mediante análisis sintáctico) y ejecutar (dar un efecto a las partes) son dos pasos distintos. Pickle los une por diseño. Aquí puedes hacer el primero sin el segundo: ⟦CODE_0006⟧ analiza y muestra cada miembro sin ejecutar nada.\n"
+"6. **Cómo un consumidor malicioso convierte bytes inertes en instrucciones.** Los bytes no tienen ese poder. El consumidor sí. Si el despachador pasara el cuerpo de ⟦CODE_0007⟧ a un intérprete de comandos, cada tarjeta sería un comando. Este despachador no lo hace. Comprueba cada registro con un patrón estricto y no pasa ninguna parte del registro a un intérprete de comandos ni a otro intérprete. ⟦CODE_0008⟧ crea archivos de prueba con ⟦CODE_0009⟧ dentro de las horas y con un miembro llamado ⟦CODE_0010⟧. Demuestra que ninguno se ejecuta.\n"
+"7. **Dos límites de confianza.** ⟦CODE_0011⟧ escribe los miembros como archivos y no ejecuta nada. Un archivo **no puede registrar su propio gancho**. El poder viene de la línea de comandos: el operador elige ⟦CODE_0012⟧ y tar no le pide nada al archivo. El límite está en el comando que escribe el operador. Es la misma confianza que depositas en cualquier programa que inicias."
+
+#: src/tar-gnu/README.md:154
+msgctxt "s-269b6211b9f7-0057"
+msgid "Four kinds of \"the same\""
+msgstr "Cuatro sentidos de \"lo mismo\""
+
+#: src/tar-gnu/README.md:156
+msgctxt "s-8b73ef021dee-0058"
+msgid "⟦SEP_0002⟧ Kind ⟦SEP_0003⟧ Claim in this entry ⟦SEP_0004⟧ How ⟦CODE_0001⟧ tests it ⟦SEP_0005⟧"
+msgstr "⟦SEP_0002⟧ Tipo ⟦SEP_0003⟧ Afirmación de esta entrada ⟦SEP_0004⟧ Cómo la prueba ⟦CODE_0001⟧ ⟦SEP_0005⟧"
+
+#: src/tar-gnu/README.md:158
+msgctxt "s-393a3baeb6ce-0059"
+msgid "⟦SEP_0002⟧ Byte for byte ⟦SEP_0003⟧ The same seed gives the same archive bytes ⟦SEP_0004⟧ ⟦CODE_0001⟧ of two builds ⟦SEP_0005⟧"
+msgstr "⟦SEP_0002⟧ Byte por byte ⟦SEP_0003⟧ La misma semilla produce los mismos bytes del archivo ⟦SEP_0004⟧ ⟦CODE_0001⟧ de dos compilaciones ⟦SEP_0005⟧"
+
+#: src/tar-gnu/README.md:159
+msgctxt "s-7d0852fb9631-0060"
+msgid "⟦SEP_0001⟧ Structure and state ⟦SEP_0002⟧ The cards the inspector decodes are the cards the database holds ⟦SEP_0003⟧ compare the two lists ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ Estructura y estado ⟦SEP_0002⟧ Las tarjetas que decodifica el inspector son las que contiene la base de datos ⟦SEP_0003⟧ Compara las dos listas ⟦SEP_0004⟧"
+
+#: src/tar-gnu/README.md:160
+msgctxt "s-fc163f9cebfd-0061"
+msgid "⟦SEP_0001⟧ Behavior ⟦SEP_0002⟧ One archive run in two fresh databases gives the same cards ⟦SEP_0003⟧ compare the rows ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ Comportamiento ⟦SEP_0002⟧ Ejecutar el mismo archivo en dos bases de datos nuevas produce las mismas tarjetas ⟦SEP_0003⟧ Compara las filas ⟦SEP_0004⟧"
+
+#: src/tar-gnu/README.md:161
+msgctxt "s-c62865135aee-0062"
+msgid "⟦SEP_0001⟧ Live process ⟦SEP_0002⟧ **Not claimed** ⟦SEP_0003⟧ A second run into the same database makes a second run, and nothing resumes anything ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ Proceso en curso ⟦SEP_0002⟧ **No se afirma** ⟦SEP_0003⟧ Volver a ejecutar en la misma base de datos crea otra ejecución. Ninguna reanuda la anterior ⟦SEP_0004⟧"
+
+#: src/tar-gnu/README.md:163
+msgctxt "s-ab97587816c5-0063"
+msgid "The replay is also **not idempotent**: running the same archive twice into one database adds a second run with the same cards. Deterministic replay and idempotence are different properties."
+msgstr "La repetición tampoco es **idempotente**: ejecutar el mismo archivo dos veces en una base de datos agrega otra ejecución con las mismas tarjetas. La repetición determinista y la idempotencia son propiedades distintas."
+
+#: src/tar-gnu/README.md:165
+msgctxt "s-c307ae374e6b-0064"
+msgid "Why this is idiomatic"
+msgstr "Por qué esto es idiomático"
+
+#: src/tar-gnu/README.md:167
+msgctxt "s-22dbb6b39baa-0065"
+msgid "⟦CODE_0001⟧ is in the GNU tar manual, under \"Extracting Files to a Program\". It exists for jobs like piping each member through a filter. This entry uses it as documented: one process per regular member, the member bytes on standard input, the member's details in ⟦CODE_0002⟧ environment variables. What is unusual is not the mechanism. It is using an archive as a program, with the interpreter attached by the person who runs it."
+msgstr "⟦CODE_0001⟧ aparece en el manual de GNU tar, en \"Extracting Files to a Program\". Sirve para tareas como pasar cada miembro por un filtro. Esta entrada lo usa tal como se documenta: un proceso por miembro regular, sus bytes en la entrada de datos estándar y sus detalles en las variables de entorno ⟦CODE_0002⟧. Lo inusual no es el mecanismo. Es usar un archivo como programa y hacer que la persona que lo ejecuta indique el intérprete."
+
+#: src/tar-gnu/README.md:169
+msgctxt "s-339cc2c18f83-0066"
+msgid "What ⟦CODE_0001⟧ enforces"
+msgstr "Qué comprueba ⟦CODE_0001⟧"
+
+#: src/tar-gnu/README.md:171
+msgctxt "s-92591096bf0d-0067"
+msgid "⟦CODE_0001⟧ needs GNU tar and sqlite3."
+msgstr "⟦CODE_0001⟧ necesita GNU tar y sqlite3."
+
+#: src/tar-gnu/README.md:173
+msgctxt "s-d433d8f44bd1-0068"
+msgid "**The constraint is real.** ⟦CODE_0001⟧ has no ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧ or ⟦CODE_0006⟧, no shell arithmetic, no random source and no ⟦CODE_0007⟧. ⟦CODE_0008⟧ has no ⟦CODE_0009⟧, no ⟦CODE_0010⟧ and no ⟦CODE_0011⟧."
+msgstr "**La restricción es real.** ⟦CODE_0001⟧ no tiene ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧ ni ⟦CODE_0006⟧. Tampoco tiene operaciones aritméticas del intérprete de comandos, fuente de azar ni ⟦CODE_0007⟧. ⟦CODE_0008⟧ no tiene ⟦CODE_0009⟧, ⟦CODE_0010⟧ ni ⟦CODE_0011⟧."
+
+#: src/tar-gnu/README.md:174
+msgctxt "s-9b102404a268-0069"
+msgid "**The rules of the challenge.** 25 random runs: categories in order, hours 10 to 19, correct running totals, a stop right after the first total over 40 (the crossing card is kept), ⟦CODE_0001⟧ on every row, SQLite rows that match the printed ones, an empty stderr, and at least eight different hour values overall."
+msgstr "**Las reglas del reto.** 25 ejecuciones aleatorias: categorías en orden, de 10 a 19 horas y totales acumulados correctos. La ejecución se detiene justo después de que el total pasa de 40 por primera vez y conserva la tarjeta con la que pasa del límite. Se comprueba ⟦CODE_0001⟧ en cada fila, la coincidencia entre las filas de SQLite y las impresas, que stderr quede vacío y que haya al menos ocho valores de horas distintos."
+
+#: src/tar-gnu/README.md:175
+msgctxt "s-9ad2cda68a4e-0070"
+msgid "**Forced dice.** Seven programs with chosen hours, compared with a separate simulation. A total of exactly 40 must continue. The unused cards must show as ⟦CODE_0001⟧ in the trace."
+msgstr "**Dados trucados.** Siete programas con horas elegidas se comparan con una simulación aparte. Un total de exactamente 40 debe continuar. Las tarjetas sin usar deben aparecer como ⟦CODE_0001⟧ en la traza."
+
+#: src/tar-gnu/README.md:176
+msgctxt "s-b60dd8b135f8-0071"
+msgid "**Four kinds of \"the same\".** See the table above."
+msgstr "**Cuatro sentidos de \"lo mismo\".** Consulta la tabla anterior."
+
+#: src/tar-gnu/README.md:177
+msgctxt "s-93634487e1a8-0072"
+msgid "**Agreement.** The inspector, ⟦CODE_0001⟧ and the dispatcher's own trace list the same twelve members in the same order."
+msgstr "**Coincidencia.** El inspector, ⟦CODE_0001⟧ y la traza del despachador dan la misma lista de doce miembros en el mismo orden."
+
+#: src/tar-gnu/README.md:178
+msgctxt "s-68919989d308-0073"
+msgid "**Passive consumers.** ⟦CODE_0001⟧, plain ⟦CODE_0002⟧ and the inspector run nothing from a hostile archive. The test uses canary files, and shim versions of ⟦CODE_0003⟧ and ⟦CODE_0004⟧ that fail the test if anything calls them."
+msgstr "**Consumidores pasivos.** ⟦CODE_0001⟧, ⟦CODE_0002⟧ sin opciones adicionales y el inspector no ejecutan nada de un archivo hostil. La prueba usa archivos señuelo y sustitutos de ⟦CODE_0003⟧ y ⟦CODE_0004⟧ que hacen fallar la prueba si algo los llama."
+
+#: src/tar-gnu/README.md:179
+msgctxt "s-8ea5906e2da3-0074"
+msgid "**Fail closed.** No ⟦CODE_0001⟧, no run. A hostile archive is refused by the preflight before anything starts. With the preflight bypassed (⟦CODE_0002⟧ called directly), the dispatcher refuses the bad record **and everything after it**, and tar's exit status is not zero. Each of these bad members is refused: hours below 10, hours above 19, hours with a command in them, an unknown category, an extra line, a bad name, a name with a path, an oversize body and an unknown record type. The inspector also flags a directory and a symlink member."
+msgstr "**Rechazo ante fallos.** Sin ⟦CODE_0001⟧ no hay ejecución. La comprobación previa rechaza un archivo hostil antes de que arranque nada. Si se omite la comprobación previa (se llama directamente a ⟦CODE_0002⟧), el despachador rechaza el registro inválido **y todos los siguientes**. El estado de salida de tar es distinto de cero. Se rechazan estos miembros inválidos: horas por debajo de 10, horas por encima de 19, horas con un comando, categoría desconocida y línea extra. También se rechazan un nombre inválido, un nombre con ruta, un cuerpo demasiado grande y un tipo de registro desconocido. El inspector señala también los miembros de tipo directorio y enlace simbólico."
+
+#: src/tar-gnu/README.md:180
+msgctxt "s-5505bafd03e0-0075"
+msgid "**The schema.** SQLite refuses a non-demo row, 9 hours and a fifth category."
+msgstr "**El esquema.** SQLite rechaza una fila ajena a la demostración, 9 horas y una quinta categoría."
+
+#: src/tar-gnu/README.md:182
+msgctxt "s-81b1eee1fbb4-0076"
+msgid "What you can learn"
+msgstr "Qué puedes aprender"
+
+#: src/tar-gnu/README.md:184
+msgctxt "s-c06b9a47acd7-0077"
+msgid "**Data is not code until a consumer says so.** The same bytes are a listing, a set of files, or a program, depending on the command."
+msgstr "**Los datos se vuelven código cuando un consumidor los trata como tal.** Los mismos bytes son un listado, un conjunto de archivos o un programa, según el comando."
+
+#: src/tar-gnu/README.md:185
+msgctxt "s-d283f583057d-0078"
+msgid "**Parse first, run second.** A passive reader of the same format lets you review a program before you run it."
+msgstr "**Primero analiza, después ejecuta.** Un lector pasivo del mismo formato te permite hacer una revisión del programa antes de ejecutarlo."
+
+#: src/tar-gnu/README.md:186
+msgctxt "s-6298d57dbe50-0079"
+msgid "**Fail closed.** An unknown record is an error. It is not skipped, and it is not guessed."
+msgstr "**Rechazo ante fallos.** Un registro desconocido es un error. El programa no lo omite ni adivina su significado."
+
+#: src/tar-gnu/README.md:187
+msgctxt "s-e3c09760bb81-0080"
+msgid "**Say which \"same\" you mean.** Bytes, structure, behavior and a live process are four different promises."
+msgstr "**Di en qué sentido dices \"lo mismo\".** Los bytes, la estructura, el comportamiento y un proceso en curso son cuatro promesas distintas."
+
+#: src/tar-gnu/README.md:188
+msgctxt "s-5fdd6dec737e-0081"
+msgid "**A format is a contract between two programs.** Tar did not define ⟦CODE_0001⟧. The builder and the dispatcher agreed on it, and nothing but a test keeps them in step."
+msgstr "**Un formato es un contrato entre dos programas.** tar no definió ⟦CODE_0001⟧. El generador y el despachador acordaron el formato. Solo una prueba comprueba que sigan al mismo paso."
+
+#: src/tar-gnu/README.md:190
+msgctxt "s-5a0ad00b10fc-0082"
+msgid "Gotchas worth knowing"
+msgstr "Trampas que conviene conocer"
+
+#: src/tar-gnu/README.md:192
+msgctxt "s-33df49edf73c-0083"
+msgid "**GNU only.** ⟦CODE_0001⟧ is a GNU extension, and so is ⟦CODE_0002⟧, which the inspector uses. Both are **implementation-permitted**: the GNU manual documents them, and POSIX tar does not have them. We tested only GNU tar 1.35."
+msgstr "**Solo GNU.** ⟦CODE_0001⟧ es una extensión de GNU, al igual que ⟦CODE_0002⟧, que usa el inspector. Ambas son parte del comportamiento **permitido por la implementación**: el manual de GNU las documenta y el tar de POSIX carece de ellas. Solo probamos GNU tar 1.35."
+
+#: src/tar-gnu/README.md:193
+msgctxt "s-f86c07445af2-0084"
+msgid "**tar does not stop when the command fails.** We tried it. The child's status is reported (⟦CODE_0001⟧), tar keeps reading, and in the end it exits with status 2. That is why the dispatcher writes ⟦CODE_0002⟧ to the database and refuses every later member itself. The halt is the interpreter's, and it is **not a tar guarantee**."
+msgstr "**tar no se detiene cuando falla el comando.** Lo probamos. tar informa el estado del proceso hijo (⟦CODE_0001⟧), sigue leyendo y al final termina con estado 2. Por eso el despachador guarda ⟦CODE_0002⟧ en la base de datos y rechaza por su cuenta todos los miembros posteriores. La parada es del intérprete y **tar no la garantiza**."
+
+#: src/tar-gnu/README.md:194
+msgctxt "s-f6b3aa1ac6d4-0085"
+msgid "**Which members reach the command.** Only regular files. Directories, symlinks and hard links do not. A hard link to an earlier member is silently skipped, not run twice. The inspector reports non-file members, and the preflight refuses them."
+msgstr "**Qué miembros llegan al comando.** Solo los archivos regulares. Los directorios, enlaces simbólicos y enlaces duros no llegan. tar omite sin aviso un enlace duro a un miembro anterior, así que el comando no se ejecuta dos veces. El inspector informa qué miembros no son archivos y la comprobación previa los rechaza."
+
+#: src/tar-gnu/README.md:195
+msgctxt "s-28113edff5f6-0086"
+msgid "**Duplicate names run twice, in order.** Tar does not de-duplicate. The inspector uses ⟦CODE_0001⟧ so it can show each one."
+msgstr "**Los nombres duplicados se ejecutan dos veces, en orden.** tar conserva los duplicados. El inspector usa ⟦CODE_0001⟧ para mostrar cada uno."
+
+#: src/tar-gnu/README.md:196
+msgctxt "s-85084cae679a-0087"
+msgid "**tar protects you from ⟦CODE_0001⟧.** A member called ⟦CODE_0002⟧ is refused by tar itself (\"Member name contains '..'\") before any command runs. A member name with a newline in it is passed on, so the dispatcher matches names with a pattern that cannot match it."
+msgstr "**tar te protege de ⟦CODE_0001⟧.** El propio tar rechaza un miembro llamado ⟦CODE_0002⟧ (\"Member name contains '..'\") antes de ejecutar cualquier comando. tar sí entrega un nombre de miembro con un salto de línea. Por eso el despachador comprueba la coincidencia con un patrón que excluye esos nombres."
+
+#: src/tar-gnu/README.md:197
+msgctxt "s-3bea0248f462-0088"
+msgid "**The variable is ⟦CODE_0001⟧.** Not ⟦CODE_0002⟧. On 1.35 the dispatcher reads ⟦CODE_0003⟧ and ⟦CODE_0004⟧. A pax archive also adds ⟦CODE_0005⟧ and ⟦CODE_0006⟧, so this entry writes ⟦CODE_0007⟧ archives. That keeps the bytes reproducible."
+msgstr "**La variable es ⟦CODE_0001⟧.** No ⟦CODE_0002⟧. En 1.35 el despachador lee ⟦CODE_0003⟧ y ⟦CODE_0004⟧. Un archivo pax también agrega ⟦CODE_0005⟧ y ⟦CODE_0006⟧, así que esta entrada escribe archivos ⟦CODE_0007⟧. Así los bytes son reproducibles."
+
+#: src/tar-gnu/README.md:198
+msgctxt "s-3dd94760d863-0089"
+msgid "**The dice are rolled at build time.** The archive holds all five cards, and the unused ones were also rolled. If you want the dice rolled while the program runs, the interpreter would need a random source, and the point of this entry is that it has none."
+msgstr "**Los dados se tiran durante la compilación.** El archivo contiene las cinco tarjetas y también se tiraron los dados para las que quedan sin usar. Si quieres tirar los dados durante la ejecución del programa, el intérprete necesitaría una fuente de azar. La particularidad de esta entrada es que carece de ella."
+
+#: src/tar-gnu/README.md:199
+msgctxt "s-dc1d24075fb0-0090"
+msgid "**A short run wastes slots.** The shortest legal run is three cards (19 + 19 + 19). The last two slots are then read and ignored."
+msgstr "**Una ejecución corta desperdicia posiciones.** La ejecución válida más corta tiene tres tarjetas (19 + 19 + 19). El programa lee e ignora las últimas dos posiciones."
+
+#: src/tar-gnu/README.md:200
+msgctxt "s-57c0fe3891ab-0091"
+msgid "**SQLite is plumbing.** The ⟦CODE_0001⟧ statement does one addition in SQL. That is the meaning of ⟦CODE_0002⟧, and it is the one place arithmetic lives. The stop test lives in ⟦CODE_0003⟧, and its limit comes from the archive."
+msgstr "**SQLite se encarga de cómo viaja el dato.** La sentencia ⟦CODE_0001⟧ hace una suma en SQL. Eso es lo que significa ⟦CODE_0002⟧ y es el único lugar donde hay operaciones aritméticas. La comprobación de parada está en ⟦CODE_0003⟧ y su límite viene del archivo."
+
+#: src/tar-gnu/README.md:204
+msgctxt "s-40ddb79ac33a-0092"
+msgid "See the [root README](⟦DEST_0001⟧) for how this compares to the other entries, and [⟦CODE_0002⟧](⟦DEST_0003⟧) if you want to write your own."
+msgstr "Consulta el [README de la raíz del repositorio](⟦DEST_0001⟧) para comparar esta entrada con las demás. Si quieres escribir la tuya, consulta [⟦CODE_0002⟧](⟦DEST_0003⟧)."

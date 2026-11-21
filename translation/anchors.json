@@ -12390,122 +12390,122 @@
     {
      "en": "GNU tar, weirder: the archive is the clock",
      "en_id": "gnu-tar-weirder-the-archive-is-the-clock",
-     "es": "GNU tar, weirder: the archive is the clock",
-     "es_id": "gnu-tar-weirder-the-archive-is-the-clock",
+     "es": "GNU tar, más raro aún: el archivo es el reloj",
+     "es_id": "gnu-tar-más-raro-aún-el-archivo-es-el-reloj",
      "level": 1,
      "line": 16
     },
     {
      "en": "Run it",
      "en_id": "run-it",
-     "es": "Run it",
-     "es_id": "run-it",
+     "es": "Ejecútalo",
+     "es_id": "ejecútalo",
      "level": 2,
      "line": 37
     },
     {
      "en": "Run it in a container",
      "en_id": "run-it-in-a-container",
-     "es": "Run it in a container",
-     "es_id": "run-it-in-a-container",
+     "es": "Ejecútalo en un contenedor",
+     "es_id": "ejecútalo-en-un-contenedor",
      "level": 2,
      "line": 52
     },
     {
      "en": "Program Flow",
      "en_id": "program-flow",
-     "es": "Program Flow",
-     "es_id": "program-flow",
+     "es": "Flujo del programa",
+     "es_id": "flujo-del-programa",
      "level": 2,
      "line": 62
     },
     {
      "en": "How the stunt works",
      "en_id": "how-the-stunt-works",
-     "es": "How the stunt works",
-     "es_id": "how-the-stunt-works",
+     "es": "Cómo funciona el truco",
+     "es_id": "cómo-funciona-el-truco",
      "level": 2,
      "line": 87
     },
     {
      "en": "The clock",
      "en_id": "the-clock",
-     "es": "The clock",
-     "es_id": "the-clock",
+     "es": "El reloj",
+     "es_id": "el-reloj",
      "level": 3,
      "line": 89
     },
     {
      "en": "The machine",
      "en_id": "the-machine",
-     "es": "The machine",
-     "es_id": "the-machine",
+     "es": "La máquina",
+     "es_id": "la-máquina",
      "level": 3,
      "line": 99
     },
     {
      "en": "The layout sets the pace",
      "en_id": "the-layout-sets-the-pace",
-     "es": "The layout sets the pace",
-     "es_id": "the-layout-sets-the-pace",
+     "es": "La disposición marca el ritmo",
+     "es_id": "la-disposición-marca-el-ritmo",
      "level": 3,
      "line": 123
     },
     {
      "en": "Prediction, not observation",
      "en_id": "prediction-not-observation",
-     "es": "Prediction, not observation",
-     "es_id": "prediction-not-observation",
+     "es": "Predicción en vez de observación",
+     "es_id": "predicción-en-vez-de-observación",
      "level": 3,
      "line": 135
     },
     {
      "en": "It's just a tar archive, but its layout is the program's schedule",
      "en_id": "its-just-a-tar-archive-but-its-layout-is-the-programs-schedule",
-     "es": "It's just a tar archive, but its layout is the program's schedule",
-     "es_id": "its-just-a-tar-archive-but-its-layout-is-the-programs-schedule",
+     "es": "Es solo un archivo tar, pero su disposición marca los tiempos del programa",
+     "es_id": "es-solo-un-archivo-tar-pero-su-disposición-marca-los-tiempos-del-programa",
      "level": 2,
      "line": 139
     },
     {
      "en": "Why this is weird",
      "en_id": "why-this-is-weird",
-     "es": "Why this is weird",
-     "es_id": "why-this-is-weird",
+     "es": "Por qué es raro",
+     "es_id": "por-qué-es-raro",
      "level": 2,
      "line": 143
     },
     {
      "en": "What `check.sh` enforces",
      "en_id": "what-checksh-enforces",
-     "es": "What `check.sh` enforces",
-     "es_id": "what-checksh-enforces",
+     "es": "Qué comprueba `check.sh`",
+     "es_id": "qué-comprueba-checksh",
      "level": 2,
      "line": 147
     },
     {
      "en": "Gotchas worth knowing",
      "en_id": "gotchas-worth-knowing",
-     "es": "Gotchas worth knowing",
-     "es_id": "gotchas-worth-knowing",
+     "es": "Trampas que conviene conocer",
+     "es_id": "trampas-que-conviene-conocer",
      "level": 2,
      "line": 162
     }
    ],
    "map": {
-    "gnu-tar-weirder-the-archive-is-the-clock": "gnu-tar-weirder-the-archive-is-the-clock",
-    "gotchas-worth-knowing": "gotchas-worth-knowing",
-    "how-the-stunt-works": "how-the-stunt-works",
-    "its-just-a-tar-archive-but-its-layout-is-the-programs-schedule": "its-just-a-tar-archive-but-its-layout-is-the-programs-schedule",
-    "prediction-not-observation": "prediction-not-observation",
-    "program-flow": "program-flow",
-    "run-it": "run-it",
-    "run-it-in-a-container": "run-it-in-a-container",
-    "the-clock": "the-clock",
-    "the-layout-sets-the-pace": "the-layout-sets-the-pace",
-    "the-machine": "the-machine",
-    "what-checksh-enforces": "what-checksh-enforces",
-    "why-this-is-weird": "why-this-is-weird"
+    "gnu-tar-weirder-the-archive-is-the-clock": "gnu-tar-más-raro-aún-el-archivo-es-el-reloj",
+    "gotchas-worth-knowing": "trampas-que-conviene-conocer",
+    "how-the-stunt-works": "cómo-funciona-el-truco",
+    "its-just-a-tar-archive-but-its-layout-is-the-programs-schedule": "es-solo-un-archivo-tar-pero-su-disposición-marca-los-tiempos-del-programa",
+    "prediction-not-observation": "predicción-en-vez-de-observación",
+    "program-flow": "flujo-del-programa",
+    "run-it": "ejecútalo",
+    "run-it-in-a-container": "ejecútalo-en-un-contenedor",
+    "the-clock": "el-reloj",
+    "the-layout-sets-the-pace": "la-disposición-marca-el-ritmo",
+    "the-machine": "la-máquina",
+    "what-checksh-enforces": "qué-comprueba-checksh",
+    "why-this-is-weird": "por-qué-es-raro"
    }
   },
   "src/tar-gnu/README.md": {
@@ -12513,122 +12513,122 @@
     {
      "en": "GNU tar: it's just a tar file",
      "en_id": "gnu-tar-its-just-a-tar-file",
-     "es": "GNU tar: it's just a tar file",
-     "es_id": "gnu-tar-its-just-a-tar-file",
+     "es": "GNU tar: es solo un archivo tar",
+     "es_id": "gnu-tar-es-solo-un-archivo-tar",
      "level": 1,
      "line": 16
     },
     {
      "en": "Run it",
      "en_id": "run-it",
-     "es": "Run it",
-     "es_id": "run-it",
+     "es": "Ejecútalo",
+     "es_id": "ejecútalo",
      "level": 2,
      "line": 44
     },
     {
      "en": "Run it in a container",
      "en_id": "run-it-in-a-container",
-     "es": "Run it in a container",
-     "es_id": "run-it-in-a-container",
+     "es": "Ejecútalo en un contenedor",
+     "es_id": "ejecútalo-en-un-contenedor",
      "level": 2,
      "line": 60
     },
     {
      "en": "Program Flow",
      "en_id": "program-flow",
-     "es": "Program Flow",
-     "es_id": "program-flow",
+     "es": "Flujo del programa",
+     "es_id": "flujo-del-programa",
      "level": 2,
      "line": 70
     },
     {
      "en": "How the stunt works",
      "en_id": "how-the-stunt-works",
-     "es": "How the stunt works",
-     "es_id": "how-the-stunt-works",
+     "es": "Cómo funciona el truco",
+     "es_id": "cómo-funciona-el-truco",
      "level": 2,
      "line": 97
     },
     {
      "en": "The dispatcher",
      "en_id": "the-dispatcher",
-     "es": "The dispatcher",
-     "es_id": "the-dispatcher",
+     "es": "El despachador",
+     "es_id": "el-despachador",
      "level": 3,
      "line": 123
     },
     {
      "en": "The builder, the inspector and the interpreter",
      "en_id": "the-builder-the-inspector-and-the-interpreter",
-     "es": "The builder, the inspector and the interpreter",
-     "es_id": "the-builder-the-inspector-and-the-interpreter",
+     "es": "El generador, el inspector y el intérprete",
+     "es_id": "el-generador-el-inspector-y-el-intérprete",
      "level": 3,
      "line": 134
     },
     {
      "en": "It's just a tar file: serialization, deserialization, and execution",
      "en_id": "its-just-a-tar-file-serialization-deserialization-and-execution",
-     "es": "It's just a tar file: serialization, deserialization, and execution",
-     "es_id": "its-just-a-tar-file-serialization-deserialization-and-execution",
+     "es": "Es solo un archivo tar: serialización, deserialización y ejecución",
+     "es_id": "es-solo-un-archivo-tar-serialización-deserialización-y-ejecución",
      "level": 2,
      "line": 142
     },
     {
      "en": "Four kinds of \"the same\"",
      "en_id": "four-kinds-of-the-same",
-     "es": "Four kinds of \"the same\"",
-     "es_id": "four-kinds-of-the-same",
+     "es": "Cuatro sentidos de \"lo mismo\"",
+     "es_id": "cuatro-sentidos-de-lo-mismo",
      "level": 3,
      "line": 154
     },
     {
      "en": "Why this is idiomatic",
      "en_id": "why-this-is-idiomatic",
-     "es": "Why this is idiomatic",
-     "es_id": "why-this-is-idiomatic",
+     "es": "Por qué esto es idiomático",
+     "es_id": "por-qué-esto-es-idiomático",
      "level": 2,
      "line": 165
     },
     {
      "en": "What `check.sh` enforces",
      "en_id": "what-checksh-enforces",
-     "es": "What `check.sh` enforces",
-     "es_id": "what-checksh-enforces",
+     "es": "Qué comprueba `check.sh`",
+     "es_id": "qué-comprueba-checksh",
      "level": 2,
      "line": 169
     },
     {
      "en": "What you can learn",
      "en_id": "what-you-can-learn",
-     "es": "What you can learn",
-     "es_id": "what-you-can-learn",
+     "es": "Qué puedes aprender",
+     "es_id": "qué-puedes-aprender",
      "level": 2,
      "line": 182
     },
     {
      "en": "Gotchas worth knowing",
      "en_id": "gotchas-worth-knowing",
-     "es": "Gotchas worth knowing",
-     "es_id": "gotchas-worth-knowing",
+     "es": "Trampas que conviene conocer",
+     "es_id": "trampas-que-conviene-conocer",
      "level": 2,
      "line": 190
     }
    ],
    "map": {
-    "four-kinds-of-the-same": "four-kinds-of-the-same",
-    "gnu-tar-its-just-a-tar-file": "gnu-tar-its-just-a-tar-file",
-    "gotchas-worth-knowing": "gotchas-worth-knowing",
-    "how-the-stunt-works": "how-the-stunt-works",
-    "its-just-a-tar-file-serialization-deserialization-and-execution": "its-just-a-tar-file-serialization-deserialization-and-execution",
-    "program-flow": "program-flow",
-    "run-it": "run-it",
-    "run-it-in-a-container": "run-it-in-a-container",
-    "the-builder-the-inspector-and-the-interpreter": "the-builder-the-inspector-and-the-interpreter",
-    "the-dispatcher": "the-dispatcher",
-    "what-checksh-enforces": "what-checksh-enforces",
-    "what-you-can-learn": "what-you-can-learn",
-    "why-this-is-idiomatic": "why-this-is-idiomatic"
+    "four-kinds-of-the-same": "cuatro-sentidos-de-lo-mismo",
+    "gnu-tar-its-just-a-tar-file": "gnu-tar-es-solo-un-archivo-tar",
+    "gotchas-worth-knowing": "trampas-que-conviene-conocer",
+    "how-the-stunt-works": "cómo-funciona-el-truco",
+    "its-just-a-tar-file-serialization-deserialization-and-execution": "es-solo-un-archivo-tar-serialización-deserialización-y-ejecución",
+    "program-flow": "flujo-del-programa",
+    "run-it": "ejecútalo",
+    "run-it-in-a-container": "ejecútalo-en-un-contenedor",
+    "the-builder-the-inspector-and-the-interpreter": "el-generador-el-inspector-y-el-intérprete",
+    "the-dispatcher": "el-despachador",
+    "what-checksh-enforces": "qué-comprueba-checksh",
+    "what-you-can-learn": "qué-puedes-aprender",
+    "why-this-is-idiomatic": "por-qué-esto-es-idiomático"
    }
   },
   "src/tcl-weird/README.md": {

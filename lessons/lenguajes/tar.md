@@ -34,7 +34,7 @@ A tar archive of twelve tiny files. A dispatcher of about 80 lines. No loop in t
 - **The stop rule is data.** Each card is followed by a `011.stop-over` member that holds `limit=40`. The dispatcher only knows what `stop-over` *means*: halt if the total is over the limit.
 - **Reading is not running.** `inspect.sh` lists and decodes every member with `tar -t` and `tar -xO`. `interpret.sh --execute` is the only place where `--to-command` appears.
 
-The [README](../../src/tar-gnu/README.md#its-just-a-tar-file-serialization-deserialization-and-execution) has the full table of who does what.
+The [README](../../src/tar-gnu/README.md#es-solo-un-archivo-tar-serialización-deserialización-y-ejecución) has the full table of who does what.
 
 ### What did we just learn?
 
@@ -76,7 +76,7 @@ A tar archive whose payload is all zeros, and a state machine that moves one ste
 - **The stop rule is a flag, because tar will not stop.** After the crossing card the archive is still being written, and the command still runs. It does nothing but count.
 - **`check.sh` predicts, not just observes.** A second machine, written in awk, says which cards must exist for any seed and any layout. The entry must agree for 65 combinations.
 
-The [README](../../src/tar-gnu-weird/README.md#how-the-stunt-works) has the register table and the full list of what we measured.
+The [README](../../src/tar-gnu-weird/README.md#cómo-funciona-el-truco) has the register table and the full list of what we measured.
 
 ### What did we just learn?
 
@@ -107,7 +107,7 @@ Each picture below is the `## Program Flow` section of an entry's README, copied
 
 ### Program flow of `tar-gnu`
 
-From [`tar-gnu`](../../src/tar-gnu/README.md) ([source section](../../src/tar-gnu/README.md#program-flow)).
+From [`tar-gnu`](../../src/tar-gnu/README.md) ([source section](../../src/tar-gnu/README.md#flujo-del-programa)).
 
 ```mermaid
 sequenceDiagram
@@ -136,7 +136,7 @@ sequenceDiagram
 
 ### Program flow of `tar-gnu-weird`
 
-From [`tar-gnu-weird`](../../src/tar-gnu-weird/README.md) ([source section](../../src/tar-gnu-weird/README.md#program-flow)).
+From [`tar-gnu-weird`](../../src/tar-gnu-weird/README.md) ([source section](../../src/tar-gnu-weird/README.md#flujo-del-programa)).
 
 ```mermaid
 sequenceDiagram

@@ -1,6 +1,6 @@
 ---
 name: "GNU tar"
-teaches: "that a tar archive can be a serialized program: tar reads the members in order, and only the command that the operator attaches gives them an effect."
+teaches: "que un archivo tar puede ser un programa serializado: tar lee los miembros en orden y solo el comando que indica el operador les da un efecto."
 kind: idiomatic
 languages: [tar, sqlite]
 lesson: "lenguajes/tar.md#a-program-that-is-an-archive"
@@ -8,19 +8,19 @@ loop-by: document-order
 evaluation: eager
 assurance: implementation-permitted
 pairs-with: tar-gnu-weird
-machine: "A tape reader (tar) feeding a five-word interpreter"
-state: "The archive's members, which are the program, plus one SQLite row that says whether the run has halted or faulted"
+machine: "Un lector de cinta (tar) que alimenta a un intérprete de cinco palabras"
+state: "Los miembros del archivo, que son el programa, más una fila de SQLite que indica si la ejecución se detuvo o falló"
 tags: [arbitrary-code-execution, capability-security, computation-versus-orchestration, domain-specific-language, exit-status, idempotence, integrity-constraint, interpreter-and-virtual-machine, langsec, least-privilege, observability, parsing, reproducibility, serialization-deserialization-pickling, state-encoding, threat-model, transition-system]
 counterexamples: [continuation]
 ---
-# GNU tar: it's just a tar file
+# GNU tar: es solo un archivo tar
 
-**Teaches you:** that a tar archive can be a serialized program: tar reads the members in order, and only the command that the operator attaches gives them an effect.
+**Te enseña:** que un archivo tar puede ser un programa serializado: tar lee los miembros en orden y solo el comando que indica el operador les da un efecto.
 
-> **DEMO ONLY.** Fictional time cards, written to a scratch SQLite file under `$XDG_DATA_HOME/TarGnu/`.
-> Nothing here touches real time reporting.
+> **DEMO ONLY.** Tarjetas de horas ficticias que se guardan en un archivo temporal de SQLite en `$XDG_DATA_HOME/TarGnu/`.
+> Nada de esto afecta a los informes de horas reales.
 
-The program is a tar archive. Each member is one instruction: the member name says what to do, and the member body says with what. GNU tar walks the archive in order and calls a small dispatcher for every member (`tar --to-command=...`). The dispatcher knows what five words mean. It has no loop, no dice, no category list and no number 40. Those are in the archive.
+El programa es un archivo tar. Cada miembro es una instrucción: el nombre indica qué hacer y el cuerpo indica con qué. GNU tar recorre el archivo en orden y llama a un pequeño despachador por cada miembro (`tar --to-command=...`). El despachador sabe qué significan cinco palabras. No tiene bucle, dados, lista de categorías ni el número 40. Todo eso está en el archivo.
 
 ```text
 $ tar -tvf program.tar
@@ -39,11 +39,11 @@ Learning	15	52	2026-W47	DEMO ONLY
 # committed total=52 entries=4 DEMO ONLY
 ```
 
-This is the **idiomatic** entry of a pair. Using `--to-command` is the documented way to feed archive members to a program, so the mechanism is ordinary. The odd part is the application: a time-card generator that is an archive. Its pair, [`tar-gnu-weird`](../tar-gnu-weird/README.md), uses a different tar feature (checkpoints) as a clock.
+Esta es la entrada **idiomática** de un par. Usar `--to-command` es la forma documentada de pasar los miembros de un archivo a un programa. El mecanismo es común. Lo raro es su uso: un generador de tarjetas de horas que es un archivo. Su compañera, [`tar-gnu-weird`](../tar-gnu-weird/README.md), usa otra función de tar, los puntos de control, como reloj.
 
-## Run it
+## Ejecútalo
 
-You need **GNU tar** (1.35 was tested), a POSIX shell, `od`, `mktemp`, `date` and `sqlite3`. BSD and macOS tar have no `--to-command`.
+Necesitas **GNU tar** (se probó 1.35), un intérprete de comandos (*shell*) POSIX, `od`, `mktemp`, `date` y `sqlite3`. El tar de BSD y macOS carece de `--to-command`.
 
 ```bash
 cd src/tar-gnu
@@ -55,48 +55,48 @@ sh interpret.sh --execute program.tar   # RUN the program. The flag is required.
 ./check.sh                          # every rule below
 ```
 
-Records go to `$XDG_DATA_HOME/TarGnu/demo-timecards.db` (default `~/.local/share/TarGnu/`), and the archive stays next to it as `program.tar`, so you can open it.
+Los registros se guardan en `$XDG_DATA_HOME/TarGnu/demo-timecards.db` (por omisión, `~/.local/share/TarGnu/`). El archivo queda a su lado como `program.tar` para que puedas abrirlo.
 
-## Run it in a container
+## Ejecútalo en un contenedor
 
-Prerequisite: Docker, set up once as described in [`SANDBOX-SETUP.md`](../../SANDBOX-SETUP.md#docker).
+Requisito: Docker, configurado una sola vez como se describe en [`SANDBOX-SETUP.md`](../../SANDBOX-SETUP.md#docker).
 
 ```bash
 sandbox/container/run-image.sh src/tar-gnu
 ```
 
-It builds this folder's [`Dockerfile`](Dockerfile) and runs the result with no network, a read-only file system and user `nobody`. The image holds GNU tar (from the Ubuntu base) and sqlite3 on a minimal Ubuntu.
+Construye la imagen a partir del archivo [`Dockerfile`](Dockerfile) de esta carpeta y la ejecuta sin red, con un sistema de archivos de solo lectura y con el usuario `nobody`. La imagen incluye GNU tar (de la base de Ubuntu) y sqlite3 en un Ubuntu mínimo.
 
-## Program Flow
+## Flujo del programa
 
 ```mermaid
 sequenceDiagram
-    accTitle: tar-gnu: the archive is the program and a dispatcher gives its members meaning
-    accDescr: A sequence diagram. The interpreter first asks the inspector to vet the whole archive, which reads it and runs nothing. Then it starts tar with the to-command option. For each member, in archive order, tar sends the member name and body to the dispatcher. The dispatcher checks the name and the body against strict patterns, runs exactly one SQL statement for the member, and writes a row to the trace table. A stop-over member marks the run as halted when the total is over the limit, and the later members are traced as ignored. The show member prints the rows.
+    accTitle: tar-gnu: el archivo es el programa y un despachador da sentido a sus miembros
+    accDescr: Diagrama de secuencia. Primero, el intérprete pide al inspector que valide todo el archivo. El inspector lo lee sin ejecutar nada. Después, el intérprete inicia el comando tar con la opción to-command. Por cada miembro, tar envía el nombre y el cuerpo al despachador en el orden del archivo. El despachador compara el nombre y el cuerpo con patrones estrictos. Ejecuta exactamente una sentencia SQL por miembro y escribe una fila en la tabla de traza. Un miembro stop-over marca la ejecución como detenida cuando el total pasa del límite. La traza marca como ignorados los miembros posteriores. El miembro show imprime las filas.
     participant I as interpret.sh
     participant S as inspect.sh
     participant T as tar
     participant D as dispatch.sh
     participant Q as SQLite
-    I->>S: vet every member of the archive
-    S-->>I: valid, and nothing was run
-    I->>T: tar --to-command=dispatch.sh
-    loop each member, in archive order
-        T->>D: member name and body
-        D->>D: check name and body against strict patterns
-        D->>Q: one SQL statement, and a trace row
+    I->>S: Valida cada miembro del archivo
+    S-->>I: Válido, no se ejecutó nada
+    I->>T: Comando tar --to-command=dispatch.sh
+    loop Cada miembro, en el orden del archivo
+        T->>D: Nombre y cuerpo del miembro
+        D->>D: Comprueba nombre y cuerpo con patrones estrictos
+        D->>Q: Una sentencia SQL y una fila de traza
     end
-    Note over D,Q: stop-over halts the run when the total is over its limit, and later members are traced as ignored
-    D->>Q: show prints the rows
+    Note over D,Q: stop-over detiene la ejecución si el total pasa del límite. La traza marca el resto como ignorado
+    D->>Q: show imprime las filas
 ```
 
-**What this shows:** tar is the loop and the archive is the program. For every member, tar hands the bytes to the dispatcher, and the dispatcher decides what the name means. The order of the members is the order of execution.
+**Qué muestra:** tar es el bucle y el archivo es el programa. Por cada miembro, tar pasa los bytes al despachador, que decide qué significa el nombre. El orden de los miembros es el orden de ejecución.
 
-**Why this mechanism matters:** reading and running are two separate steps. The inspector parses and checks everything and runs nothing. The dispatcher runs one SQL statement per member and passes no part of a member to a shell. That is the difference between data that is *serialized* and data that is *executed*.
+**Por qué importa este mecanismo:** leer y ejecutar son dos pasos distintos. El inspector analiza y comprueba todo sin ejecutar nada. El despachador ejecuta una sentencia SQL por miembro y no pasa ninguna parte del miembro a un intérprete de comandos. Esa es la diferencia entre datos que se *serializan* y datos que se *ejecutan*.
 
-## How the stunt works
+## Cómo funciona el truco
 
-The archive is the program, tar is the loop, and the dispatcher is the machine that gives five words their meaning.
+El archivo es el programa, tar es el bucle y el despachador es la máquina que da significado a cinco palabras.
 
 ```text
 000.begin      format=tarprog/1, seed=N, label=DEMO ONLY     start a run
@@ -108,97 +108,97 @@ The archive is the program, tar is the loop, and the dispatcher is the machine t
 990.show       (empty)                                      print the rows
 ```
 
-| Job | Done by |
+| Tarea | Quién la hace |
 |---|---|
-| Loop | **tar**, walking the members in archive order |
-| Category order | **The archive**: card slots in the order Meetings, Coding, Debugging, Learning, Meetings |
-| Random hours | **The builder**, once, when it writes the program down. It uses a seeded Park-Miller generator, and the seed is stored in `000.begin` |
-| Running total | The meaning of `card`: add the hours to the last total (one SQL statement) |
-| Stop rule | **The archive** carries the limit (`limit=40` in each `stop-over` member). The meaning of `stop-over` is "halt if the total is over the limit". A halted run ignores the rest |
-| Output | The meaning of `show` |
-| Persistence | `sqlite3`, with `CHECK` constraints for the category, the hours and `DEMO ONLY` |
+| Bucle | **tar**, que recorre los miembros en el orden del archivo |
+| Orden de las categorías | **El archivo**: posiciones de las tarjetas en el orden Meetings, Coding, Debugging, Learning, Meetings |
+| Horas aleatorias | **El generador**, una sola vez, cuando escribe el programa. Usa un generador Park-Miller con semilla, que se guarda en `000.begin` |
+| Total acumulado | El significado de `card`: suma las horas al último total (una sentencia SQL) |
+| Regla de parada | **El archivo** contiene el límite (`limit=40` en cada miembro `stop-over`). El significado de `stop-over` es "detén la ejecución si el total pasa del límite". La ejecución detenida ignora el resto |
+| Salida | El significado de `show` |
+| Persistencia | `sqlite3`, con restricciones `CHECK` para la categoría, las horas y `DEMO ONLY` |
 
-Why five card slots? Four cards of 10 hours make exactly 40, which does not exceed 40. A fifth card always finishes the job, so five slots are enough for every possible run. A run usually stops at three or four cards, and the unused slots are read and ignored (the `trace` table says `ignored: halted`).
+¿Por qué cinco posiciones para tarjetas? Cuatro tarjetas de 10 horas suman exactamente 40, así que el total no pasa de 40. Una quinta tarjeta siempre completa el trabajo, así que cinco posiciones bastan para toda ejecución posible. La ejecución suele detenerse con tres o cuatro tarjetas. El programa lee e ignora las posiciones sin usar (la tabla `trace` dice `ignored: halted`).
 
-### The dispatcher
+### El despachador
 
-[`dispatch.sh`](dispatch.sh) is the interpreter. It is about 80 lines, and most of those lines check that the input is what it claims to be. It has four jobs:
+[`dispatch.sh`](dispatch.sh) es el intérprete. Tiene unas 80 líneas y la mayoría comprueba la afirmación sobre qué contiene la entrada de datos. Cumple cuatro tareas:
 
-1. Check the member name against a strict pattern. Four names are known: `NNN.begin`, `NNN.card`, `NNN.stop-over` and `NNN.show`.
-2. Check the member body: right lines, right words, hours from 10 to 19.
-3. Run one SQL statement.
-4. Record what happened in a `trace` table.
+1. Comprueba el nombre del miembro con un patrón estricto. Reconoce cuatro nombres: `NNN.begin`, `NNN.card`, `NNN.stop-over` y `NNN.show`.
+2. Comprueba el cuerpo del miembro: líneas correctas, palabras correctas y de 10 a 19 horas.
+3. Ejecuta una sentencia SQL.
+4. Registra lo que ocurrió en una tabla `trace`.
 
-`check.sh` makes sure the dispatcher has no `for`, `while`, `until`, `eval` or `exec`, no shell arithmetic, no dice and no `40`.
+`check.sh` comprueba que el despachador no tenga `for`, `while`, `until`, `eval` ni `exec`, ni operaciones aritméticas del intérprete de comandos, ni dados, ni `40`.
 
-### The builder, the inspector and the interpreter
+### El generador, el inspector y el intérprete
 
-Three small programs use the same archive:
+Tres programas pequeños usan el mismo archivo:
 
-- [`build-archive.sh`](build-archive.sh) **serializes** the program. The same seed makes the same bytes, because it fixes the order, the times and the owners.
-- [`inspect.sh`](inspect.sh) **reads** it. It uses `tar -t` and `tar -xO` (extract to standard output), and it never runs anything from the archive. It has its own check of the record grammar, written differently from the dispatcher's, so `check.sh` can compare the two.
-- [`interpret.sh`](interpret.sh) **runs** it. You must pass `--execute`. It first asks the inspector to vet the whole archive, and only then starts `tar --to-command`.
+- [`build-archive.sh`](build-archive.sh) **serializa** el programa. La misma semilla produce los mismos bytes porque fija el orden, las marcas de tiempo y los propietarios.
+- [`inspect.sh`](inspect.sh) lo **lee**. Usa `tar -t` y `tar -xO` (extrae a la salida estándar) y nunca ejecuta nada del archivo. Comprueba la gramática de los registros de forma distinta al despachador, así que `check.sh` puede comparar ambas comprobaciones.
+- [`interpret.sh`](interpret.sh) lo **ejecuta**. Debes pasar `--execute`. Primero pide al inspector que valide todo el archivo y solo después inicia `tar --to-command`.
 
-## It's just a tar file: serialization, deserialization, and execution
+## Es solo un archivo tar: serialización, deserialización y ejecución
 
-A tar archive is a way to write files into one stream of bytes. It is not a program format. What turns this one into a program is a *consumer* that gives its members a meaning. This section separates the steps. See the concept page, [Serialization, deserialization and object pickling](../../lessons/informatica/06-estado-mas-alla-de-las-variables.md#serialization-deserialization-and-object-pickling), for the general ideas.
+Un archivo tar permite escribir archivos en un solo flujo de bytes. No es un formato de programa. Lo que convierte a este archivo en un programa es un *consumidor* que da significado a sus miembros. Esta sección separa los pasos. Consulta [Serialización, deserialización y empaquetado de objetos](../../lessons/informatica/06-estado-mas-alla-de-las-variables.md#serialization-deserialization-and-object-pickling) para ver las ideas generales.
 
-1. **Encoding data.** A card is two lines in a member body: `category=Coding` and `hours=11`. The data is in the bytes of the member.
-2. **Encoding program instructions and interpretation context.** The instruction is in the member *name* (`010.card`), and the order of the members is the order of execution. The context is a promise between the writer and the reader: the format `tarprog/1`. Tar knows nothing about it. Two programs that agree on the promise can understand each other, and no other program can.
-3. **Encoding program state.** The archive holds the *initial* state: the seed, and the dice already rolled. The *running* state (the total so far, and whether the run has halted) is in SQLite. It is not in the archive, and tar never changes the archive while it reads it.
-4. **Capturing live execution state or continuations.** This entry does **not** do that. If you kill the interpreter after the second card, nothing can resume it from the third. You could start the whole program again. That gives the same cards (replay), and it is not the same as continuing the interrupted process.
-5. **Pickling versus tar.** Python's `pickle` stores a *recipe to rebuild objects*, and unpickling calls whatever the recipe names. Tar stores *files*, and extracting writes files. Both are serialization. Deserialization (parsing the bytes into pieces) and execution (giving the pieces an effect) are two different steps. Pickle joins them by design. Here you can do the first without the second: `inspect.sh` parses and shows every member, and runs nothing.
-6. **How a malicious consumer turns inert bytes into instructions.** The bytes have no power. The consumer does. A dispatcher that passed the body of `010.card` to a shell would make every card a command. This one does not. It checks every record with a strict pattern, and it does not pass any part of a record to a shell or an interpreter. `check.sh` builds archives with `$(touch ...)` inside the hours and a member called `030.exec`, and shows that none of them runs.
-7. **Two trust boundaries.** `tar -xf program.tar` writes the members as files and runs nothing. An archive **cannot register a hook for itself**. The power comes from the command line: `--to-command=...` is the operator's choice, and tar asks nothing of the archive. So the boundary is at the command the operator types, and it is the same trust you give to any program you start.
+1. **Codificar datos.** Una tarjeta son dos líneas en el cuerpo de un miembro: `category=Coding` y `hours=11`. Los datos están en los bytes del miembro.
+2. **Codificar las instrucciones del programa y el contexto de interpretación.** Cada instrucción está en el *nombre* del miembro (`010.card`). El orden de los miembros es el orden de ejecución. El contexto es una promesa entre el programa que escribe y el lector: el formato `tarprog/1`. tar no sabe nada de ella. Dos programas que respetan la promesa se entienden entre sí y ningún otro programa puede entenderlos.
+3. **Codificar el estado del programa.** El archivo contiene el estado *inicial*: la semilla y los dados ya tirados. El estado *en ejecución* está en SQLite: el total acumulado y si se detuvo la ejecución. Ese estado no está en el archivo y tar nunca modifica el archivo mientras lee.
+4. **Capturar el estado de una ejecución en curso o sus continuaciones.** Esta entrada **no** lo hace. Si terminas el intérprete después de la segunda tarjeta, nada puede reanudarlo desde la tercera. Puedes arrancar todo el programa de nuevo. Eso produce las mismas tarjetas (repetición de la ejecución) y es distinto de continuar el proceso interrumpido.
+5. **Empaquetado frente al tipo de archivo tar.** `pickle` de Python guarda una *receta para reconstruir objetos* y al desempaquetar llama a lo que indica la receta. tar guarda *archivos* y la extracción escribe archivos. Ambas operaciones son formas de serialización. Deserializar (separar los bytes en partes mediante análisis sintáctico) y ejecutar (dar un efecto a las partes) son dos pasos distintos. Pickle los une por diseño. Aquí puedes hacer el primero sin el segundo: `inspect.sh` analiza y muestra cada miembro sin ejecutar nada.
+6. **Cómo un consumidor malicioso convierte bytes inertes en instrucciones.** Los bytes no tienen ese poder. El consumidor sí. Si el despachador pasara el cuerpo de `010.card` a un intérprete de comandos, cada tarjeta sería un comando. Este despachador no lo hace. Comprueba cada registro con un patrón estricto y no pasa ninguna parte del registro a un intérprete de comandos ni a otro intérprete. `check.sh` crea archivos de prueba con `$(touch ...)` dentro de las horas y con un miembro llamado `030.exec`. Demuestra que ninguno se ejecuta.
+7. **Dos límites de confianza.** `tar -xf program.tar` escribe los miembros como archivos y no ejecuta nada. Un archivo **no puede registrar su propio gancho**. El poder viene de la línea de comandos: el operador elige `--to-command=...` y tar no le pide nada al archivo. El límite está en el comando que escribe el operador. Es la misma confianza que depositas en cualquier programa que inicias.
 
-### Four kinds of "the same"
+### Cuatro sentidos de "lo mismo"
 
-| Kind | Claim in this entry | How `check.sh` tests it |
+| Tipo | Afirmación de esta entrada | Cómo la prueba `check.sh` |
 |---|---|---|
-| Byte for byte | The same seed gives the same archive bytes | `cmp` of two builds |
-| Structure and state | The cards the inspector decodes are the cards the database holds | compare the two lists |
-| Behavior | One archive run in two fresh databases gives the same cards | compare the rows |
-| Live process | **Not claimed** | A second run into the same database makes a second run, and nothing resumes anything |
+| Byte por byte | La misma semilla produce los mismos bytes del archivo | `cmp` de dos compilaciones |
+| Estructura y estado | Las tarjetas que decodifica el inspector son las que contiene la base de datos | Compara las dos listas |
+| Comportamiento | Ejecutar el mismo archivo en dos bases de datos nuevas produce las mismas tarjetas | Compara las filas |
+| Proceso en curso | **No se afirma** | Volver a ejecutar en la misma base de datos crea otra ejecución. Ninguna reanuda la anterior |
 
-The replay is also **not idempotent**: running the same archive twice into one database adds a second run with the same cards. Deterministic replay and idempotence are different properties.
+La repetición tampoco es **idempotente**: ejecutar el mismo archivo dos veces en una base de datos agrega otra ejecución con las mismas tarjetas. La repetición determinista y la idempotencia son propiedades distintas.
 
-## Why this is idiomatic
+## Por qué esto es idiomático
 
-`--to-command` is in the GNU tar manual, under "Extracting Files to a Program". It exists for jobs like piping each member through a filter. This entry uses it as documented: one process per regular member, the member bytes on standard input, the member's details in `TAR_*` environment variables. What is unusual is not the mechanism. It is using an archive as a program, with the interpreter attached by the person who runs it.
+`--to-command` aparece en el manual de GNU tar, en "Extracting Files to a Program". Sirve para tareas como pasar cada miembro por un filtro. Esta entrada lo usa tal como se documenta: un proceso por miembro regular, sus bytes en la entrada de datos estándar y sus detalles en las variables de entorno `TAR_*`. Lo inusual no es el mecanismo. Es usar un archivo como programa y hacer que la persona que lo ejecuta indique el intérprete.
 
-## What `check.sh` enforces
+## Qué comprueba `check.sh`
 
-`check.sh` needs GNU tar and sqlite3.
+`check.sh` necesita GNU tar y sqlite3.
 
-- **The constraint is real.** `dispatch.sh` has no `for`, `while`, `until`, `eval` or `exec`, no shell arithmetic, no random source and no `40`. `inspect.sh` has no `--to-command`, no `sqlite3` and no `eval`.
-- **The rules of the challenge.** 25 random runs: categories in order, hours 10 to 19, correct running totals, a stop right after the first total over 40 (the crossing card is kept), `DEMO ONLY` on every row, SQLite rows that match the printed ones, an empty stderr, and at least eight different hour values overall.
-- **Forced dice.** Seven programs with chosen hours, compared with a separate simulation. A total of exactly 40 must continue. The unused cards must show as `ignored: halted` in the trace.
-- **Four kinds of "the same".** See the table above.
-- **Agreement.** The inspector, `tar -t` and the dispatcher's own trace list the same twelve members in the same order.
-- **Passive consumers.** `tar -t`, plain `tar -xf` and the inspector run nothing from a hostile archive. The test uses canary files, and shim versions of `sqlite3` and `date` that fail the test if anything calls them.
-- **Fail closed.** No `--execute`, no run. A hostile archive is refused by the preflight before anything starts. With the preflight bypassed (`tar --to-command` called directly), the dispatcher refuses the bad record **and everything after it**, and tar's exit status is not zero. Each of these bad members is refused: hours below 10, hours above 19, hours with a command in them, an unknown category, an extra line, a bad name, a name with a path, an oversize body and an unknown record type. The inspector also flags a directory and a symlink member.
-- **The schema.** SQLite refuses a non-demo row, 9 hours and a fifth category.
+- **La restricción es real.** `dispatch.sh` no tiene `for`, `while`, `until`, `eval` ni `exec`. Tampoco tiene operaciones aritméticas del intérprete de comandos, fuente de azar ni `40`. `inspect.sh` no tiene `--to-command`, `sqlite3` ni `eval`.
+- **Las reglas del reto.** 25 ejecuciones aleatorias: categorías en orden, de 10 a 19 horas y totales acumulados correctos. La ejecución se detiene justo después de que el total pasa de 40 por primera vez y conserva la tarjeta con la que pasa del límite. Se comprueba `DEMO ONLY` en cada fila, la coincidencia entre las filas de SQLite y las impresas, que stderr quede vacío y que haya al menos ocho valores de horas distintos.
+- **Dados trucados.** Siete programas con horas elegidas se comparan con una simulación aparte. Un total de exactamente 40 debe continuar. Las tarjetas sin usar deben aparecer como `ignored: halted` en la traza.
+- **Cuatro sentidos de "lo mismo".** Consulta la tabla anterior.
+- **Coincidencia.** El inspector, `tar -t` y la traza del despachador dan la misma lista de doce miembros en el mismo orden.
+- **Consumidores pasivos.** `tar -t`, `tar -xf` sin opciones adicionales y el inspector no ejecutan nada de un archivo hostil. La prueba usa archivos señuelo y sustitutos de `sqlite3` y `date` que hacen fallar la prueba si algo los llama.
+- **Rechazo ante fallos.** Sin `--execute` no hay ejecución. La comprobación previa rechaza un archivo hostil antes de que arranque nada. Si se omite la comprobación previa (se llama directamente a `tar --to-command`), el despachador rechaza el registro inválido **y todos los siguientes**. El estado de salida de tar es distinto de cero. Se rechazan estos miembros inválidos: horas por debajo de 10, horas por encima de 19, horas con un comando, categoría desconocida y línea extra. También se rechazan un nombre inválido, un nombre con ruta, un cuerpo demasiado grande y un tipo de registro desconocido. El inspector señala también los miembros de tipo directorio y enlace simbólico.
+- **El esquema.** SQLite rechaza una fila ajena a la demostración, 9 horas y una quinta categoría.
 
-## What you can learn
+## Qué puedes aprender
 
-- **Data is not code until a consumer says so.** The same bytes are a listing, a set of files, or a program, depending on the command.
-- **Parse first, run second.** A passive reader of the same format lets you review a program before you run it.
-- **Fail closed.** An unknown record is an error. It is not skipped, and it is not guessed.
-- **Say which "same" you mean.** Bytes, structure, behavior and a live process are four different promises.
-- **A format is a contract between two programs.** Tar did not define `tarprog/1`. The builder and the dispatcher agreed on it, and nothing but a test keeps them in step.
+- **Los datos se vuelven código cuando un consumidor los trata como tal.** Los mismos bytes son un listado, un conjunto de archivos o un programa, según el comando.
+- **Primero analiza, después ejecuta.** Un lector pasivo del mismo formato te permite hacer una revisión del programa antes de ejecutarlo.
+- **Rechazo ante fallos.** Un registro desconocido es un error. El programa no lo omite ni adivina su significado.
+- **Di en qué sentido dices "lo mismo".** Los bytes, la estructura, el comportamiento y un proceso en curso son cuatro promesas distintas.
+- **Un formato es un contrato entre dos programas.** tar no definió `tarprog/1`. El generador y el despachador acordaron el formato. Solo una prueba comprueba que sigan al mismo paso.
 
-## Gotchas worth knowing
+## Trampas que conviene conocer
 
-- **GNU only.** `--to-command` is a GNU extension, and so is `--occurrence`, which the inspector uses. Both are **implementation-permitted**: the GNU manual documents them, and POSIX tar does not have them. We tested only GNU tar 1.35.
-- **tar does not stop when the command fails.** We tried it. The child's status is reported (`Child returned status 1`), tar keeps reading, and in the end it exits with status 2. That is why the dispatcher writes `faulted` to the database and refuses every later member itself. The halt is the interpreter's, and it is **not a tar guarantee**.
-- **Which members reach the command.** Only regular files. Directories, symlinks and hard links do not. A hard link to an earlier member is silently skipped, not run twice. The inspector reports non-file members, and the preflight refuses them.
-- **Duplicate names run twice, in order.** Tar does not de-duplicate. The inspector uses `--occurrence=N` so it can show each one.
-- **tar protects you from `..`.** A member called `../x` is refused by tar itself ("Member name contains '..'") before any command runs. A member name with a newline in it is passed on, so the dispatcher matches names with a pattern that cannot match it.
-- **The variable is `TAR_FILETYPE`.** Not `TAR_TYPE`. On 1.35 the dispatcher reads `TAR_FILENAME` and `TAR_SIZE`. A pax archive also adds `TAR_ATIME` and `TAR_CTIME`, so this entry writes `ustar` archives. That keeps the bytes reproducible.
-- **The dice are rolled at build time.** The archive holds all five cards, and the unused ones were also rolled. If you want the dice rolled while the program runs, the interpreter would need a random source, and the point of this entry is that it has none.
-- **A short run wastes slots.** The shortest legal run is three cards (19 + 19 + 19). The last two slots are then read and ignored.
-- **SQLite is plumbing.** The `card` statement does one addition in SQL. That is the meaning of `card`, and it is the one place arithmetic lives. The stop test lives in `stop-over`, and its limit comes from the archive.
+- **Solo GNU.** `--to-command` es una extensión de GNU, al igual que `--occurrence`, que usa el inspector. Ambas son parte del comportamiento **permitido por la implementación**: el manual de GNU las documenta y el tar de POSIX carece de ellas. Solo probamos GNU tar 1.35.
+- **tar no se detiene cuando falla el comando.** Lo probamos. tar informa el estado del proceso hijo (`Child returned status 1`), sigue leyendo y al final termina con estado 2. Por eso el despachador guarda `faulted` en la base de datos y rechaza por su cuenta todos los miembros posteriores. La parada es del intérprete y **tar no la garantiza**.
+- **Qué miembros llegan al comando.** Solo los archivos regulares. Los directorios, enlaces simbólicos y enlaces duros no llegan. tar omite sin aviso un enlace duro a un miembro anterior, así que el comando no se ejecuta dos veces. El inspector informa qué miembros no son archivos y la comprobación previa los rechaza.
+- **Los nombres duplicados se ejecutan dos veces, en orden.** tar conserva los duplicados. El inspector usa `--occurrence=N` para mostrar cada uno.
+- **tar te protege de `..`.** El propio tar rechaza un miembro llamado `../x` ("Member name contains '..'") antes de ejecutar cualquier comando. tar sí entrega un nombre de miembro con un salto de línea. Por eso el despachador comprueba la coincidencia con un patrón que excluye esos nombres.
+- **La variable es `TAR_FILETYPE`.** No `TAR_TYPE`. En 1.35 el despachador lee `TAR_FILENAME` y `TAR_SIZE`. Un archivo pax también agrega `TAR_ATIME` y `TAR_CTIME`, así que esta entrada escribe archivos `ustar`. Así los bytes son reproducibles.
+- **Los dados se tiran durante la compilación.** El archivo contiene las cinco tarjetas y también se tiraron los dados para las que quedan sin usar. Si quieres tirar los dados durante la ejecución del programa, el intérprete necesitaría una fuente de azar. La particularidad de esta entrada es que carece de ella.
+- **Una ejecución corta desperdicia posiciones.** La ejecución válida más corta tiene tres tarjetas (19 + 19 + 19). El programa lee e ignora las últimas dos posiciones.
+- **SQLite se encarga de cómo viaja el dato.** La sentencia `card` hace una suma en SQL. Eso es lo que significa `card` y es el único lugar donde hay operaciones aritméticas. La comprobación de parada está en `stop-over` y su límite viene del archivo.
 
 ---
 
-See the [root README](../../README.md#the-results-so-far) for how this compares to the other entries, and [`RETO.md`](../../RETO.md) if you want to write your own.
+Consulta el [README de la raíz del repositorio](../../README.md#the-results-so-far) para comparar esta entrada con las demás. Si quieres escribir la tuya, consulta [`RETO.md`](../../RETO.md).

@@ -17,3 +17,8 @@ Iterations 27 to 30 stalled on P2-004 (stall breaker at 30; usage-limit replies 
 - Already fixed here: gates now run with BOOK_LANG=es (baseline.gate_env, verify.run_release, test in test_verify).
 - Not fixed: the test files and lessons/book/*.py literals (about ten files, wider than one retry). tools/tooling_paths.py misses them and must be widened.
 - To unblock: add a build-tool task (suggested P3B-006b, size L, dep P3B-006, and make P3B-007 depend on it) that routes those literals through the catalog `paths:` block with a tooling_paths negative case, then set P3B-007 to `todo`. Remaining gate failures after that are only the untranslated-content ones listed in the report, which the gate may document as expected.
+
+## P4-src-14 (iteration 121): staging blocked in Codex CLI (resolved on the host)
+
+- `git add -- translation/po/src/tar-gnu-weird/README.md.po translation/po/src/tar-gnu/README.md.po` failed twice with `Unable to create .../.git/index.lock: Read-only file system`. The Codex CLI left the working files ready to commit. Host-side verification and staging completed the task.
+- Targeted and full fast verification passed. See `translation/work/121-target-final.log` and `translation/work/121-fast.log` for output. Both Mermaid figures passed the print check using the renderer cache after initial Chromium launch failures.

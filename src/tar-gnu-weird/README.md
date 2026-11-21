@@ -1,6 +1,6 @@
 ---
 name: "GNU tar"
-teaches: "that an archive's physical layout can set the pace of a program: tar's checkpoints are a clock, and each tick moves a state machine by one step."
+teaches: "que la disposición física de un archivo puede marcar el ritmo de un programa: los puntos de control de tar son un reloj y cada pulso hace avanzar un paso a una máquina de estados."
 kind: weird
 languages: [tar, sqlite]
 lesson: "lenguajes/tar.md#the-archive-is-the-clock"
@@ -8,19 +8,19 @@ loop-by: dispatch-and-triggers
 evaluation: eager
 assurance: implementation-permitted
 pairs-with: tar-gnu
-machine: "A finite-state machine, driven by a logical clock that tar supplies"
-state: "One SQLite row (the machine's registers) and the number of records tar has written"
+machine: "Una máquina de estados finitos que avanza con un reloj lógico de tar"
+state: "Una fila de SQLite (los registros de la máquina) y el número de registros que tar ha escrito"
 tags: [callback, computation-versus-orchestration, event-driven-programming, exit-status, hyrums-law, integrity-constraint, invariant, leaky-abstraction, logical-clock, observability, operational-semantics, portability, reproducibility, side-effect, state, state-encoding, transition-system]
 analogies: [backpressure, publish-subscribe]
 ---
-# GNU tar, weirder: the archive is the clock
+# GNU tar, más raro aún: el archivo es el reloj
 
-**Teaches you:** that an archive's physical layout can set the pace of a program: tar's checkpoints are a clock, and each tick moves a state machine by one step.
+**Te enseña:** que la disposición física de un archivo puede marcar el ritmo de un programa: los puntos de control de tar son un reloj y cada pulso hace avanzar un paso a una máquina de estados.
 
-> **DEMO ONLY.** Fictional time cards, written to a scratch SQLite file under `$XDG_DATA_HOME/TarGnuWeird/`.
-> Nothing here touches real time reporting.
+> **DEMO ONLY.** Tarjetas de horas ficticias que se guardan en un archivo temporal de SQLite en `$XDG_DATA_HOME/TarGnuWeird/`.
+> Nada de esto afecta a los informes de horas reales.
 
-GNU tar can run a command every N records while it works (`--checkpoint=N --checkpoint-action=exec=...`). It exists to show progress. Here it is the program's clock. **One checkpoint is one hour of work.** A small state machine takes one step per tick: it works one hour on the open card, closes the card when the hours are used up, draws the next card's length, and sets a flag when the total passes 40. Nothing else moves it forward. No loop calls the tick. If tar writes no records, no hours pass.
+GNU tar puede ejecutar un comando cada N registros mientras trabaja (`--checkpoint=N --checkpoint-action=exec=...`). Esta opción sirve para mostrar el avance. Aquí es el reloj del programa. **Cada punto de control equivale a una hora de trabajo.** Una pequeña máquina de estados da un paso por pulso. Trabaja una hora en la tarjeta abierta y la cierra al completar sus horas. Luego sortea la duración de la siguiente tarjeta y activa una bandera cuando el total pasa de 40. Nada más hace avanzar la máquina. Ningún bucle llama al pulso. Si tar no escribe registros, no pasan las horas.
 
 ```text
 $ sh run-clock.sh --seed 42
@@ -32,11 +32,11 @@ Debugging	17	46	2026-W47	DEMO ONLY
 # clock: last tick 64, idle ticks after the stop 18, tape 32768 bytes
 ```
 
-This is the **weird** entry of a pair. Its ordinary partner, [`tar-gnu`](../tar-gnu/README.md), uses tar's *member traversal* to run a serialized program. This one ignores what the members say and uses only *how many records tar writes*. The first is about what a layout **means**. This one is about **when** it happens.
+Esta es la entrada **rara** de un par. Su compañera ordinaria, [`tar-gnu`](../tar-gnu/README.md), usa el *recorrido de los miembros* de tar para ejecutar un programa serializado. Esta ignora lo que dicen los miembros y solo usa *cuántos registros escribe tar*. La primera trata de lo que **significa** una disposición. Esta trata de **cuándo** ocurre.
 
-## Run it
+## Ejecútalo
 
-You need **GNU tar** (1.34 and 1.35 were tested), a POSIX shell, `od`, `mktemp`, `date` and `sqlite3`.
+Necesitas **GNU tar** (se probaron 1.34 y 1.35), un intérprete de comandos (*shell*) POSIX, `od`, `mktemp`, `date` y `sqlite3`.
 
 ```bash
 cd src/tar-gnu-weird
@@ -47,82 +47,82 @@ sh run-clock.sh --blocking 4 --ticks 260    # tar -b 4: 65 records, so 65 ticks
 ./check.sh                            # every rule below, and the prediction tests
 ```
 
-Records go to `$XDG_DATA_HOME/TarGnuWeird/demo-timecards.db` (default `~/.local/share/TarGnuWeird/`). The archive that tar wrote stays next to it as `tape.tar`.
+Los registros se guardan en `$XDG_DATA_HOME/TarGnuWeird/demo-timecards.db` (por omisión, `~/.local/share/TarGnuWeird/`). El archivo que escribió tar queda a su lado como `tape.tar`.
 
-## Run it in a container
+## Ejecútalo en un contenedor
 
-Prerequisite: Docker, set up once as described in [`SANDBOX-SETUP.md`](../../SANDBOX-SETUP.md#docker).
+Requisito: Docker, configurado una sola vez como se describe en [`SANDBOX-SETUP.md`](../../SANDBOX-SETUP.md#docker).
 
 ```bash
 sandbox/container/run-image.sh src/tar-gnu-weird
 ```
 
-It builds this folder's [`Dockerfile`](Dockerfile) and runs the result with no network, a read-only file system and user `nobody`. The image holds GNU tar (from the Ubuntu base) and sqlite3 on a minimal Ubuntu.
+Construye la imagen a partir del archivo [`Dockerfile`](Dockerfile) de esta carpeta y la ejecuta sin red, con un sistema de archivos de solo lectura y con el usuario `nobody`. La imagen incluye GNU tar (de la base de Ubuntu) y sqlite3 en un Ubuntu mínimo.
 
-## Program Flow
+## Flujo del programa
 
 ```mermaid
 sequenceDiagram
-    accTitle: tar-gnu-weird: tar's checkpoints are the clock of a state machine
-    accDescr: A sequence diagram. The launcher runs one tar command that writes an archive with a checkpoint every 512-byte record. For each record that tar writes, tar runs tick.sh with the record count. The script runs one SQL transaction on a single row of state. If the run is done, the tick only counts as idle. Otherwise it works one hour, writes the card when the hours reach the target, and closes the card, which sets done when the total is over 40. The exit status is ignored, and tar goes on writing. When the archive is finished, the launcher reads the cards and prints them.
+    accTitle: tar-gnu-weird: los puntos de control de tar son el reloj de una máquina de estados
+    accDescr: Diagrama de secuencia. El lanzador ejecuta un comando tar que escribe un archivo con un punto de control por cada registro de 512 bytes. Por cada registro que escribe, tar ejecuta tick.sh con el número de registros. El script ejecuta una transacción SQL sobre una sola fila de estado. Si la ejecución terminó, el pulso solo se cuenta como inactivo. Si no, trabaja una hora, escribe la tarjeta al completar sus horas y la cierra. Al cerrarla, activa done si el total pasa de 40. tar ignora el estado de salida y sigue escribiendo. Al terminar el archivo, el lanzador lee las tarjetas y las imprime.
     participant R as run-clock.sh
     participant T as tar
     participant K as tick.sh
-    participant Q as SQLite fsm row
-    R->>T: one tar command with --checkpoint=1 and an exec action
-    loop each 512-byte record that tar writes
-        T->>K: run tick.sh with TAR_CHECKPOINT
-        K->>Q: tick.sql: one transaction
-        Note over Q: if done, count an idle tick. Else work one hour, write the card at the target, close it and set done when the total is over 40
-        K-->>T: exit status, which tar ignores
+    participant Q as Fila fsm en SQLite
+    R->>T: Un comando tar con --checkpoint=1 y una acción exec
+    loop Cada registro de 512 bytes que escribe tar
+        T->>K: Ejecuta tick.sh con TAR_CHECKPOINT
+        K->>Q: tick.sql: una transacción
+        Note over Q: Si done está activo, cuenta un pulso inactivo. Si no, trabaja una hora. Al completar las horas, escribe y cierra la tarjeta. Activa done si el total pasa de 40
+        K-->>T: Estado de salida que tar ignora
     end
-    T-->>R: the archive is finished: the clock ran out
-    R->>Q: read the cards and print them
+    T-->>R: Fin del archivo: se agotó el reloj
+    R->>Q: Lee e imprime las tarjetas
 ```
 
-**What this shows:** the program is a state machine in one SQLite row, and tar's checkpoint is its clock. One tick is one transaction. tar does not stop when the machine is done. It keeps ticking, and the extra ticks only count as idle.
+**Qué muestra:** el programa es una máquina de estados en una fila de SQLite y el punto de control de tar es su reloj. Cada pulso es una transacción. tar no se detiene cuando termina la máquina. Sigue dando pulsos y los pulsos extra solo cuentan como inactivos.
 
-**Why this mechanism matters:** this is an event source made from a file's layout. The number of ticks is set by the archive size, so a layout that is too short stalls the machine in the middle of a card. The ticks are callbacks that tar runs for the program. They are not events that the program waits for.
+**Por qué importa este mecanismo:** la disposición de un archivo funciona como fuente de eventos. El tamaño del archivo fija el número de pulsos. Si la disposición es demasiado corta, la máquina se atasca a mitad de una tarjeta. Los pulsos son llamadas a una función de devolución de llamada (*callback*), una función que tar ejecuta para el programa. El programa no espera esos eventos.
 
-## How the stunt works
+## Cómo funciona el truco
 
-### The clock
+### El reloj
 
-[`run-clock.sh`](run-clock.sh) lays out a payload, makes a machine, and runs **one** `tar` command:
+[`run-clock.sh`](run-clock.sh) dispone los datos, crea una máquina y ejecuta **un** comando `tar`:
 
 ```sh
 tar --format=ustar -b 1 --checkpoint=1 --checkpoint-action="exec=sh .../tick.sh" -cf tape.tar -T list
 ```
 
-With `-b 1` a *record* is one 512-byte block, and `--checkpoint=1` means "every record". So tar runs `tick.sh` once for every 512 bytes it writes. tar sets `TAR_CHECKPOINT` to the number of records so far, and ignores the command's exit status.
+Con `-b 1`, un *registro* es un bloque de 512 bytes. `--checkpoint=1` significa "en cada registro". Así, tar ejecuta `tick.sh` una vez por cada 512 bytes que escribe. tar asigna a `TAR_CHECKPOINT` el número de registros escritos hasta entonces e ignora el estado de salida del comando.
 
-### The machine
+### La máquina
 
-[`tick.sh`](tick.sh) runs [`tick.sql`](tick.sql), which is one transition. The whole state is one row in a table called `fsm`:
+[`tick.sh`](tick.sh) ejecuta [`tick.sql`](tick.sql), que realiza una transición. Todo el estado cabe en una fila de la tabla `fsm`:
 
-| Register | Meaning |
+| Registro | Significado |
 |---|---|
-| `seed` | Generator state (Park-Miller, 48271 and 2147483647) |
-| `card` | Cards closed so far. It picks the category: Meetings, Coding, Debugging, Learning, Meetings |
-| `worked`, `target` | Hours worked on the open card, and how long it will take (10 to 19) |
-| `total` | The running total |
-| `done` | Set when a closed card pushed the total over 40 |
-| `tick`, `idle` | The last `TAR_CHECKPOINT`, and how many ticks arrived after `done` |
+| `seed` | Estado del generador (Park-Miller, 48271 y 2147483647) |
+| `card` | Tarjetas cerradas hasta ahora. El número selecciona la categoría: Meetings, Coding, Debugging, Learning, Meetings |
+| `worked`, `target` | Horas trabajadas en la tarjeta abierta y cuánto durará (de 10 a 19 horas) |
+| `total` | El total acumulado |
+| `done` | Se activa cuando el total pasa de 40 al cerrar una tarjeta |
+| `tick`, `idle` | El último `TAR_CHECKPOINT` y cuántos pulsos llegaron después de `done` |
 
-One tick does four things in one transaction: (1) if `done`, count an idle tick and stop; (2) otherwise work one hour; (3) if `worked = target`, write the card; (4) then close it: next category, draw the next length, and set `done` if the total is over 40. The stop rule is that last `done = total > 40`, and it runs *after* the card is written, so the crossing card is kept.
+Un pulso hace cuatro cosas en una transacción: (1) si `done`, cuenta un pulso inactivo y se detiene; (2) de lo contrario, trabaja una hora; (3) si `worked = target`, escribe la tarjeta; (4) luego la cierra. Al cerrarla, pasa a la siguiente categoría, sortea la siguiente duración y activa `done` si el total pasa de 40. La regla de parada es ese último `done = total > 40`. Se ejecuta *después* de escribir la tarjeta, así que se conserva la que hace pasar el total del límite.
 
-| Job | Done by |
+| Tarea | Quién la hace |
 |---|---|
-| Time passing, and the loop | **tar's checkpoints**: one callback per record written |
-| What one step does | `tick.sql`: one transaction |
-| Random hours | The generator in `fsm.seed`, one draw per closed card |
-| Stop rule | `done`, set by the transition that closes the crossing card |
-| After the stop | Ticks go on (tar does not stop) and only increase `idle` |
-| Persistence | `sqlite3`, with `CHECK` constraints |
+| El paso del tiempo y el bucle | **Los puntos de control de tar**: una función de devolución de llamada por registro escrito |
+| Qué hace un paso | `tick.sql`: una transacción |
+| Horas aleatorias | El generador de `fsm.seed`, un sorteo por tarjeta cerrada |
+| Regla de parada | `done`, que se activa en la transición que cierra la tarjeta con la que el total pasa del límite |
+| Después de la parada | Los pulsos siguen (tar no se detiene) y solo incrementan `idle` |
+| Persistencia | `sqlite3`, con restricciones `CHECK` |
 
-### The layout sets the pace
+### La disposición marca el ritmo
 
-How many ticks exist is decided by the archive, not by the program. For a create command, with `b` the blocking factor and `K` the checkpoint interval:
+El archivo decide cuántos pulsos hay, sin intervención del programa. Para un comando de creación, donde `b` es el factor de bloqueo y `K` es el intervalo entre puntos de control:
 
 ```text
 blocks = sum over members of (1 header + ceil(size / 512) data blocks) + 2 end-of-archive blocks
@@ -130,48 +130,48 @@ records = ceil(blocks / b)
 ticks   = floor(records / K)
 ```
 
-[`layout.sh`](layout.sh) writes zero-filled members so that the archive has the number of blocks you ask for. A run needs between 41 and 59 ticks: the total must pass 40, so it is at least 41, and the longest run ends at 40 + 19 = 59. The default is 64 ticks. Ask for fewer and the machine **stalls**: the clock runs out in the middle of a card, the run prints what it has, says `the clock ran out` and exits 3. `check.sh` does not hope for this. It predicts it.
+[`layout.sh`](layout.sh) escribe miembros llenos de ceros para que el archivo tenga el número de bloques que pidas. Una ejecución necesita de 41 a 59 pulsos. El total debe pasar de 40, así que es de al menos 41, y la ejecución más larga termina en 40 + 19 = 59. Por omisión hay 64 pulsos. Pide menos y la máquina **se atasca**: el reloj se agota a mitad de una tarjeta. La ejecución imprime lo que tiene, dice `the clock ran out` y termina con estado 3. `check.sh` no confía en que esto ocurra. Lo predice.
 
-### Prediction, not observation
+### Predicción en vez de observación
 
-`check.sh` contains a second implementation of the machine, in awk: the same generator, one loop over ticks. For five seeds and thirteen layouts (20 to 260 blocks, blocking factors 1 to 8, checkpoint intervals 1 to 5, one to seven members) it works out which cards must exist when the clock stops, and whether the run finishes or stalls. Then it runs the entry and compares. It also checks the tape size (whole records) and the last `TAR_CHECKPOINT`, which is `ticks × K`.
+`check.sh` contiene una segunda implementación de la máquina en awk: el mismo generador y un bucle sobre los pulsos. Usa cinco semillas y trece disposiciones: de 20 a 260 bloques, factores de bloqueo de 1 a 8, intervalos de 1 a 5 y de uno a siete miembros. Calcula qué tarjetas debe haber cuando el reloj se detiene y si la ejecución termina o se atasca. Después ejecuta la entrada y compara los resultados. También comprueba el tamaño de la cinta (registros completos) y el último `TAR_CHECKPOINT`, que es `ticks × K`.
 
-## It's just a tar archive, but its layout is the program's schedule
+## Es solo un archivo tar, pero su disposición marca los tiempos del programa
 
-In [`tar-gnu`](../tar-gnu/README.md#its-just-a-tar-file-serialization-deserialization-and-execution) the *content* of the archive is the program, and the order of the members is the order of execution. Here the payload is zeros. The program is the machine in `tick.sql`, and the archive only decides **when** each step runs. That is a second thing a serialized layout can do: it influences when events happen, as well as what they mean. A longer archive means more ticks. A bigger blocking factor means fewer. Change the layout and the schedule changes, with the same bytes of "program".
+En [`tar-gnu`](../tar-gnu/README.md#es-solo-un-archivo-tar-serialización-deserialización-y-ejecución), el *contenido* del archivo es el programa y el orden de los miembros es el orden de ejecución. Aquí los datos son ceros. El programa es la máquina en `tick.sql` y el archivo solo decide **cuándo** se ejecuta cada paso. Esa es otra cosa que puede hacer una disposición serializada: influye en cuándo ocurren los eventos además de en lo que significan. Cuanto más largo es el archivo, más pulsos hay. Cuanto mayor es el factor de bloqueo, menos pulsos hay. Cambia la disposición y cambiarán los tiempos, con los mismos bytes de "programa".
 
-## Why this is weird
+## Por qué es raro
 
-Checkpoints are a progress indicator. Nobody designed them as a scheduler. Using them as one turns tar into an event source: **control flow is inverted**. The usual program calls tar. Here tar calls the program, once per record, and the program has no loop of its own. It is a callback in an event-driven design, and the clock is the thing that makes it go.
+Los puntos de control indican el avance. Nadie los diseñó para planificar la ejecución. Al usarlos para ello, tar se convierte en una fuente de eventos: **se invierte el flujo de control**. Lo habitual es que el programa llame a tar. Aquí tar llama al programa una vez por registro y el programa carece de un bucle propio. Es una función de devolución de llamada en un diseño dirigido por eventos y el reloj la hace avanzar.
 
-## What `check.sh` enforces
+## Qué comprueba `check.sh`
 
-`check.sh` needs GNU tar and sqlite3.
+`check.sh` necesita GNU tar y sqlite3.
 
-- **The constraint is real.** The only loop in `run-clock.sh` and `tick.sh` is the argument parser. There is exactly one `tar` command, the tick is its checkpoint action, and it only creates. `tick.sql` has no recursion, no triggers and no random function.
-- **The rules of the challenge.** 20 random runs: categories in order, hours 10 to 19, correct totals, a stop at the first total over 40 with the crossing card kept, `DEMO ONLY` everywhere, an empty stderr, a removed scratch folder, and at least eight different hour values overall.
-- **The clock invariants.** Each card is closed at the tick whose number is its running total. The default run sees 64 ticks, and every tick after the stop is counted as idle.
-- **No clock, no progress.** With `--checkpoint=1000` on a 64-record archive there is no tick. No card is written, the state stays at zero, and the run exits 3.
-- **Predictions.** 65 runs compared with the simulation (see above), including the stalls, and the tape size.
-- **Extra ticks change nothing.** A 600-record archive gives the same cards as a 64-record one.
-- **What one checkpoint counts.** In create mode, `floor(ceil(blocks / b) / K)`, for ragged sizes, empty members and five pairs of `b` and `K`.
-- **A failing callback.** A copy of the entry whose transition fails on every tick: tar still finishes, no card is written, the SQL error reaches stderr, and the run exits 3.
-- **A bad `TAR_CHECKPOINT`.** A value that is not a number is refused before the database is opened.
-- **The schema.** SQLite refuses a non-demo row, 9 hours and a fifth category.
+- **La restricción es real.** El único bucle de `run-clock.sh` y `tick.sh` es el del analizador sintáctico de argumentos. Hay exactamente un comando `tar`, el pulso es su acción de punto de control y el comando solo crea el archivo. `tick.sql` no tiene recursión, disparadores ni función aleatoria.
+- **Las reglas del reto.** 20 ejecuciones aleatorias: categorías en orden, de 10 a 19 horas, totales correctos y parada la primera vez que el total pasa de 40. Se conserva la tarjeta con la que pasa del límite. También se comprueba que `DEMO ONLY` esté en todas partes, stderr quede vacío, se borre la carpeta temporal y haya al menos ocho valores de horas distintos en total.
+- **Los invariantes del reloj.** Cada tarjeta se cierra en el pulso cuyo número coincide con su total acumulado. La ejecución por omisión recibe 64 pulsos y cada pulso posterior a la parada cuenta como inactivo.
+- **Sin reloj no hay avance.** Con `--checkpoint=1000` y un archivo de 64 registros, no hay pulsos. No se escribe ninguna tarjeta, el estado se queda en cero y la ejecución termina con estado 3.
+- **Predicciones.** Se comparan 65 ejecuciones con la simulación (ver arriba), incluidos los atascos. También se comprueba el tamaño de la cinta.
+- **Los pulsos extra no cambian nada.** Un archivo de 600 registros da las mismas tarjetas que uno de 64.
+- **Qué cuenta un punto de control.** En modo de creación, `floor(ceil(blocks / b) / K)`, con tamaños dispares, miembros vacíos y cinco pares de `b` y `K`.
+- **Una función de devolución de llamada que falla.** En una copia de la entrada, la transición falla en cada pulso. tar termina de todos modos, no se escribe ninguna tarjeta, stderr recibe el error de SQL y la ejecución termina con estado 3.
+- **Un `TAR_CHECKPOINT` inválido.** Si el valor no es un número, se rechaza antes de abrir la base de datos.
+- **El esquema.** SQLite rechaza una fila ajena a la demostración, 9 horas y una quinta categoría.
 
-## Gotchas worth knowing
+## Trampas que conviene conocer
 
-- **What GNU tar promises, and what we saw.** The manual documents `--checkpoint=N`, `--checkpoint-action=exec=COMMAND` and the `TAR_CHECKPOINT` variable. That is **implementation-permitted**: GNU only, and not in POSIX. It also says a checkpoint counts *records*. How many records a command writes for a given set of members is what we measured, on GNU tar 1.34 (Ubuntu 22.04) and 1.35 (Ubuntu 24.04 and 26.04), and the numbers were the same everywhere.
-- **A checkpoint counts records, not files.** With `-b 1` a record is 512 bytes. The default is `-b 20`, so a record is 10,240 bytes and the whole demo archive would be three records. That is why the entry sets `-b 1`.
-- **`TAR_CHECKPOINT` counts records, the machine counts callbacks.** With `--checkpoint=2` the variable reads 2, 4, 6, and so on, and the machine still adds one hour per call. The entry therefore counts calls, and stores the variable only as a record of where each card closed.
-- **The mode changes the count.** Creating the same 21-block archive gives 21 ticks. Listing it with `-t` gives 10, because tar skips over data it does not need to read. Extracting it gives 21 again. Only creation is used here, and it is the mode with the simplest rule. Treat the listing number as **accidentally exploited** knowledge, not as a promise.
-- **The callback's exit status is ignored.** A command that exits with status 7 leaves tar's own status at 0. We saw this on every release we tried. The entry does not rely on it: tar cannot be told to stop, so the machine makes the extra ticks harmless, and a failed tick only means that the machine did not move.
-- **tar does not stop at the stop rule.** After the crossing card tar still writes all its records, and the callback still runs for each. The 18 idle ticks in the example are those. This is why the design has a `done` flag, and does not try to kill tar.
-- **Where a failed tick shows.** If `tick.sql` fails, SQLite's message goes to stderr, tar carries on, and the run ends with `the clock ran out` and exit 3.
-- **Not a recursive tar.** The checkpoint command is `sh tick.sh`, and it runs one `sqlite3`. It never starts another `tar`.
-- **It is slow on purpose.** About 64 ticks, one `sqlite3` start per tick: a few tenths of a second. Do not use a checkpoint as a scheduler.
-- **The producer.** The tape here is made by `layout.sh`. `tar-gnu` could write it instead, but then each demo would depend on the other in CI, and the entry would have to read a program it does not use. The two entries stay independent.
+- **Qué promete GNU tar y qué vimos.** El manual documenta `--checkpoint=N`, `--checkpoint-action=exec=COMMAND` y la variable `TAR_CHECKPOINT`. Es comportamiento **permitido por la implementación**: solo GNU, fuera de POSIX. El manual dice además que un punto de control cuenta *registros*. Medimos cuántos registros escribe un comando para un conjunto dado de miembros. Lo hicimos con GNU tar 1.34 (Ubuntu 22.04) y 1.35 (Ubuntu 24.04 y 26.04). Las cifras coincidieron en todos los casos.
+- **Un punto de control cuenta registros, no archivos.** Con `-b 1`, un registro tiene 512 bytes. El valor por omisión es `-b 20`. Así que un registro tiene 10 240 bytes y todo el archivo de demostración ocuparía tres registros. Por eso la entrada fija `-b 1`.
+- **`TAR_CHECKPOINT` cuenta registros y la máquina cuenta funciones de devolución de llamada.** Con `--checkpoint=2`, la variable toma los valores 2, 4, 6 y así sucesivamente. La máquina sigue sumando una hora por llamada. Por eso la entrada cuenta llamadas y guarda la variable solo para registrar dónde se cerró cada tarjeta.
+- **El modo cambia el recuento.** Crear el mismo archivo de 21 bloques da 21 pulsos. Listarlo con `-t` da 10, porque tar omite los datos que no necesita leer. Extraerlo vuelve a dar 21. Aquí solo se usa el modo de creación, que tiene la regla más sencilla. Trata la cifra del listado como un dato **aprovechado por accidente**, no como una promesa.
+- **tar ignora el estado de salida de la función de devolución de llamada.** Un comando que termina con estado 7 deja el estado de tar en 0. Lo vimos en todas las versiones que probamos. La entrada no depende de eso. Como no se le puede pedir a tar que pare, la máquina hace que los pulsos extra sean inocuos. Si un pulso falla, la máquina simplemente no avanza.
+- **tar sigue después de que se cumple la regla de parada.** Tras la tarjeta que hace pasar el total del límite, tar sigue escribiendo todos sus registros y ejecuta la función de devolución de llamada para cada uno. Esos son los 18 pulsos inactivos del ejemplo. Por eso el diseño usa una bandera `done` y no intenta terminar tar.
+- **Dónde se ve el fallo de un pulso.** Si `tick.sql` falla, el mensaje de SQLite llega a stderr, tar sigue y la ejecución termina con `the clock ran out` y estado de salida 3.
+- **tar no se llama de forma recursiva.** El comando del punto de control es `sh tick.sh` y ejecuta un `sqlite3`. Nunca inicia otro `tar`.
+- **Es lento a propósito.** Unos 64 pulsos y un inicio de `sqlite3` por pulso: unas décimas de segundo. No uses un punto de control para planificar tareas.
+- **El productor.** `layout.sh` genera la cinta aquí. `tar-gnu` podría escribirla en su lugar, pero entonces cada demostración dependería de la otra en CI y la entrada tendría que leer un programa que no usa. Las dos entradas siguen siendo independientes.
 
 ---
 
-See the [root README](../../README.md#the-results-so-far) for how this compares to the other entries, and [`RETO.md`](../../RETO.md) if you want to write your own.
+Consulta el [README de la raíz del repositorio](../../README.md#the-results-so-far) para comparar esta entrada con las demás. Si quieres escribir la tuya, consulta [`RETO.md`](../../RETO.md).
