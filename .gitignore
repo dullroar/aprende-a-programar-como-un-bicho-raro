@@ -35,3 +35,8 @@ src/xaml/data/
 
 # Book diagram renderer (Mermaid CLI, installed by `npm ci` in lessons/book/diagrams); rendered figures live in lessons/book/out/
 lessons/book/diagrams/node_modules/
+loop/push.status
+loop/push.err
+loop/pusher.out
+loop/.pusher.lock
+loop/PUSHER-STOP
