@@ -377,3 +377,4 @@
 {"id":"EXC-377","segment":"s-4aafa852326a-0035","invariant":"I10","reason":"'!' is the literal ed bar-to-bang marker inside a diagram label, not Spanish punctuation; copied from the src/ed-weird README label.","task":"P4-lessons-study-guides-languages-5"}
 {"id":"EXC-378","segment":"s-87d9e31bff8d-0106","invariant":"I7","reason":"'state' is the verb (enunciar los costos), not the noun state (estado).","task":"P4-lessons-study-guides-languages-5"}
 {"id":"EXC-379","segment":"s-70703252b57b-0120","invariant":"I7","reason":"'flag' is the verb (the test must flag a copy), not the command-line flag (bandera).","task":"P4-lessons-study-guides-languages-5"}
+{"id":"EXC-380","segment":"s-35cb0c0d64f4-0003","invariant":"I7","reason":"'entry' in the English segment refers to the weird entry (entrada rara); 'registro' here is the awk record (the thing the loop reads), not a ledger entry.","task":"P4-lessons-languages-1"}

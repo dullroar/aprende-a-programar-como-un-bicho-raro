@@ -1,50 +1,50 @@
 # AWK
 
-Entries: [`src/awk`](../../src/awk/README.md) (portable POSIX awk, one `while` in a `BEGIN` block) and [`src/awk-weird`](../../src/awk-weird/README.md) (gawk: a stream of random bytes cut up by a regular expression, and no loop, `if`, function or random-number call).
+Entradas: [`src/awk`](../../src/awk/README.md) (awk POSIX portable, un `while` en un bloque `BEGIN`) y [`src/awk-weird`](../../src/awk-weird/README.md) (gawk: un flujo de bytes aleatorios cortado por una expresión regular, sin bucle, `if`, función ni llamada a números aleatorios).
 
-## What makes AWK special
+## Qué hace especial a AWK
 
-An awk program is a list of **pattern-action rules**, and the language runs them in a loop you never write: read a record, split it into fields, run every rule whose pattern matches, repeat. `BEGIN` runs before the first record and `END` after the last. Variables spring into existence as `""` or `0`, whichever the context wants. This is why awk programs are short, and why the "loop" in the weird entry is not in the program.
+Un programa awk es una lista de **reglas de patrón y acción**. El lenguaje las ejecuta en un bucle que nunca escribes: lee un registro, lo divide en campos, ejecuta cada regla cuyo patrón coincide y repite. `BEGIN` se ejecuta antes del primer registro y `END` después del último. Las variables aparecen de la nada como `""` o `0`, según lo que pida el contexto. Por eso los programas awk son cortos y por eso el "bucle" de la entrada rara no está en el programa.
 
-| Feature | Where | What it teaches |
+| Característica | Dónde | Qué enseña |
 | --- | --- | --- |
-| Parameters as local variables | [`awk/timecards.awk` L14](../../src/awk/timecards.awk#L14): `function command_line(command,    line) {` | awk has no `local`. Extra parameters you do not pass are locals, by convention set apart by spaces. |
-| Quoting by splitting | [L23](../../src/awk/timecards.awk#L23) `shell_quote` | `split(text, parts, "'")` makes quoting a path for the shell safe without regex tricks. |
-| Assigning to a field rebuilds `$0` | [L44](../../src/awk/timecards.awk#L44) `print_row` | Set `OFS`, assign `$1 = $1` and `$0` is rejoined with tabs. |
-| A pipe is a file | [L84](../../src/awk/timecards.awk#L84): `print "BEGIN;" \| sqlite` | `print ... \| command` starts a process on first use; `close(command)` waits for it. |
-| A plain loop, in `BEGIN` | [L93](../../src/awk/timecards.awk#L93): `while (total <= LIMIT) {` | The straight entry uses awk as a scripting language, not as a record processor. |
-| `close()` is the error check | [L102](../../src/awk/timecards.awk#L102) | It returns the command's exit status in gawk and mawk, but `status * 256` in busybox and `0` in the one-true-awk. See below. |
+| Parámetros como variables locales | [`awk/timecards.awk` L14](../../src/awk/timecards.awk#L14): `function command_line(command,    line) {` | awk no tiene `local`. Los parámetros adicionales que no pasas son locales y, por convención, se separan con espacios. |
+| Citar dividiendo | [L23](../../src/awk/timecards.awk#L23) `shell_quote` | `split(text, parts, "'")` hace seguro, sin trucos de regex, citar una ruta para el intérprete de comandos (*shell*). |
+| Asignar a un campo reconstruye `$0` | [L44](../../src/awk/timecards.awk#L44) `print_row` | Fija `OFS`, asigna `$1 = $1` y `$0` se vuelve a unir con tabuladores. |
+| Una tubería es un archivo | [L84](../../src/awk/timecards.awk#L84): `print "BEGIN;" \| sqlite` | `print ... \| command` inicia un proceso en el primer uso; `close(command)` espera a que termine. |
+| Un bucle simple, en `BEGIN` | [L93](../../src/awk/timecards.awk#L93): `while (total <= LIMIT) {` | La entrada directa usa awk como lenguaje de scripts, no como procesador de registros. |
+| `close()` es la comprobación de errores | [L102](../../src/awk/timecards.awk#L102) | Devuelve el estado de salida del comando en gawk y mawk, pero `status * 256` en busybox y `0` en el one-true-awk. Mira más abajo. |
 
-## A portable awk (`awk`)
+## Un awk portable (`awk`)
 
-The straight entry restricts itself to what POSIX awk guarantees, so it runs under gawk, mawk, the one-true-awk (BWK) and busybox awk. Its `check.sh` runs it under all four and lints it with `gawk --lint --posix`, which must be silent. This is the lesson: **portable awk is a real constraint**, and the four implementations disagree in small ways.
+La entrada directa se limita a lo que POSIX awk garantiza, así que funciona con gawk, mawk, el one-true-awk (BWK) y el awk de busybox. Su `check.sh` la ejecuta con los cuatro y la revisa con `gawk --lint --posix`, que debe quedar en silencio. Esa es la lección: **el awk portable es una restricción real** y las cuatro implementaciones difieren en detalles pequeños.
 
-- **`close()` of a pipe returns different numbers per awk.** gawk and mawk return the exit status, busybox returns the status times 256 and the one-true-awk build tested returned 0 regardless. The entry treats "non-zero" as failure and does not depend on the value.
-- **`srand`/`rand` are seeded from `od -An -N4 -tu4 /dev/urandom`** ([L70-71](../../src/awk/timecards.awk#L70-L71)): POSIX awk has no entropy source, and `srand()` with no argument is seeded by the time, which repeats within a second.
-- **Function parameters must not share a name with a global** (`--lint` catches the shadowing).
+- **`close()` de una tubería devuelve números distintos según el awk.** gawk y mawk devuelven el estado de salida; busybox devuelve el estado multiplicado por 256. La compilación del one-true-awk que se probó devolvió 0 en todos los casos. La entrada trata "distinto de cero" como fallo y no depende del valor.
+- **`srand`/`rand` se siembran con `od -An -N4 -tu4 /dev/urandom`** ([L70-71](../../src/awk/timecards.awk#L70-L71)): POSIX awk no tiene una fuente de entropía; `srand()` sin argumento se siembra con la hora, que se repite dentro de un segundo.
+- **Los parámetros de una función no deben compartir nombre con una variable global** (`--lint` detecta el ocultamiento de nombres).
 
-## Records from a random byte stream (`awk-weird`)
+## Registros a partir de un flujo de bytes aleatorios (`awk-weird`)
 
-### Behold the monstrosity
+### Contempla la monstruosidad
 
 ```bash
 sandbox/container/run-image.sh src/awk-weird
 ```
 
-The header comment of [`timecards.awk`](../../src/awk-weird/timecards.awk#L17-L18) contains the whole challenge, minus the database, in one command:
+El comentario de encabezado de [`timecards.awk`](../../src/awk-weird/timecards.awk#L17-L18) contiene todo el reto, sin la base de datos, en un solo comando:
 
 ```bash
 gawk 'BEGIN{RS="[0-9]"; split("Meetings Coding Debugging Learning",C)}
       {printf "%s\t%d\t%d\n", C[(NR-1)%4+1], h=10+RT, t+=h} t>40{exit}' /dev/urandom
 ```
 
-The program reads random bytes and prints timecards. There is no random-number call, no loop, no `if`.
+El programa lee bytes aleatorios e imprime tarjetas de horas. No hay llamada a números aleatorios, ni bucle, ni `if`.
 
-### How the hell does that work?
+### ¿Cómo demonios funciona eso?
 
-**`RS` can be a regular expression (gawk).** POSIX awk says the record separator is one character. gawk also accepts a regex, and stores the text that matched in `RT`. [`RS = "[0-9]"`](../../src/awk-weird/timecards.awk#L34) says "a record ends at an ASCII digit". Read `/dev/urandom` with that and the stream is cut after every digit byte. About 10 in 256 bytes are digits, uniformly spread over 0-9, so **`RT` is a uniform random digit**. The record's own text (random junk before the digit) is ignored.
+**`RS` puede ser una expresión regular (gawk).** POSIX awk dice que el separador de registros es un solo carácter. gawk también acepta una regex y guarda en `RT` el texto que coincidió. [`RS = "[0-9]"`](../../src/awk-weird/timecards.awk#L34) dice "un registro termina en un dígito ASCII". Lee `/dev/urandom` con eso en mente y el flujo se corta después de cada byte que sea un dígito. Alrededor de 10 de cada 256 bytes son dígitos, repartidos de manera uniforme en 0-9, así que **`RT` es un dígito aleatorio uniforme**. El texto propio del registro (basura aleatoria antes del dígito) se ignora.
 
-**A record is a card, a digit is a die.** `10 + RT` is 10 to 19 hours. awk's read-a-record loop, which you did not write, runs one pass per card. The rules ([L52-69](../../src/awk-weird/timecards.awk#L52-L69)):
+**Un registro es una tarjeta y un dígito es un dado.** `10 + RT` vale de 10 a 19 horas. El bucle de lectura de registros de awk, que tú no escribiste, ejecuta una pasada por tarjeta. Las reglas ([L52-69](../../src/awk-weird/timecards.awk#L52-L69)):
 
 ```awk
 RT == "" { next }                                   # not a die roll (see below)
@@ -55,50 +55,50 @@ RT == "" { next }                                   # not a die roll (see below)
 t > 40 { exit }                                     # the stop rule
 ```
 
-Rule 3 assigns `$0`, which makes awk **re-split** the record into fields with `FS` (set to a comma in `BEGIN`), so `$1` is the category, `$2` the hours, `$3` the total. Rule 5 sets `OFS` and assigns `$1 = $1`, which rebuilds `$0` joined with tabs. The stop rule is a *pattern*: **`t > 40 { exit }`** matches once the total is over 40, and `exit` ends the main loop (`END` still runs, and commits).
+La regla 3 asigna `$0`, lo que hace que awk **vuelva a dividir** el registro en campos con `FS` (fijado en una coma en `BEGIN`). Así, `$1` es la categoría, `$2` las horas y `$3` el total. La regla 5 fija `OFS` y asigna `$1 = $1`, lo que reconstruye `$0` unido con tabuladores. La regla de parada es un *patrón*: **`t > 40 { exit }`** coincide cuando el total pasa de 40. Entonces `exit` termina el bucle principal (`END` todavía se ejecuta y confirma).
 
-**Making it read `/dev/urandom` with no `if`.** [`ARGV[ARGC] = "/dev/urandom"; ARGC += (ARGC < 2)`](../../src/awk-weird/timecards.awk#L39-L40) adds a file argument, then increments `ARGC` by `(ARGC < 2)`, which is 1 if no file was given and 0 if one was. A comparison is a number in awk, so a conditional is arithmetic.
+**Hacer que lea `/dev/urandom` sin `if`.** [`ARGV[ARGC] = "/dev/urandom"; ARGC += (ARGC < 2)`](../../src/awk-weird/timecards.awk#L39-L40) agrega un argumento de archivo y luego incrementa `ARGC` en `(ARGC < 2)`, que vale 1 si no se dio ningún archivo y 0 si se dio uno. En awk una comparación es un número, así que un condicional es aritmética.
 
-**Order matters: `RS` applies to every read.** The week is fetched with `"date +%G-W%V" | getline week`. With `RS="[0-9]"` already set, `date`'s output would end at the first digit of the year and the week would be empty. The call is therefore made **before** `RS` is set in [`BEGIN`](../../src/awk-weird/timecards.awk#L25).
+**El orden importa: `RS` se aplica a cada lectura.** La semana se obtiene con `"date +%G-W%V" | getline week`. Con `RS="[0-9]"` ya fijado, la salida de `date` terminaría en el primer dígito del año y la semana quedaría vacía. Por eso la llamada se hace **antes** de fijar `RS` en [`BEGIN`](../../src/awk-weird/timecards.awk#L25).
 
-### What did we just learn?
+### ¿Qué acabamos de aprender?
 
-- **awk's main loop is a loop you can aim.** Change `RS` and you change what a "record" is; change the input and you change how many times the loop runs. The program is the *body*.
-- **Rules are conditionals.** A pattern is an `if`; `exit` is `break`; an empty pattern is "always". The six rules above are a straight-line program whose control flow is the pattern column.
-- **A source of randomness can be any stream you slice.** Cutting a uniform byte stream at a class of bytes gives a uniform digit; no generator or seed is needed.
-- **Implementations differ exactly where the standard stops.** `RT` is a gawk extension, so this program is a lesson in which part of awk is the language and which is gawk.
+- **El bucle principal de awk es un bucle al que puedes apuntar.** Cambia `RS` y cambias lo que es un "registro"; cambia la entrada y cambias cuántas veces se ejecuta el bucle. El programa es el *cuerpo*.
+- **Las reglas son condicionales.** Un patrón es un `if`; `exit` es `break`; un patrón vacío significa "siempre". Las seis reglas de arriba son un programa en línea recta cuyo flujo de control es la columna de patrones.
+- **Una fuente de aleatoriedad puede ser cualquier flujo que cortes en trozos.** Cortar un flujo uniforme de bytes en una clase de bytes da un dígito uniforme; no hacen falta generador ni semilla.
+- **Las implementaciones difieren justo donde el estándar se detiene.** `RT` es una extensión de gawk, así que este programa es una lección sobre qué parte de awk es el lenguaje y cuál es gawk.
 
-Tags: pattern-action rules, `BEGIN`/`END`, `$0` re-splitting, `getline` from a command and `exit` are **guaranteed** by POSIX. A multi-character `RS` as a regex is **implementation-permitted** (gawk, mawk, the one-true-awk and busybox accept it). `RT`, `systime()` and `PROCINFO` are gawk extensions (**implementation-permitted**). Reading `/dev/urandom` as a plain file is **implementation-permitted** (Linux/BSD).
+Etiquetas: las reglas de patrón y acción, `BEGIN`/`END`, la nueva división de `$0`, `getline` desde un comando y `exit` son comportamiento **garantizado** por POSIX. Un `RS` de varios caracteres como regex es comportamiento **permitido por la implementación** (gawk, mawk, el one-true-awk y busybox lo aceptan). `RT`, `systime()` y `PROCINFO` son extensiones de gawk (comportamiento **permitido por la implementación**). Leer `/dev/urandom` como un archivo normal es comportamiento **permitido por la implementación** (Linux/BSD).
 
-### Do this in production and you're fired
+### Haz esto en producción y estás despedido
 
-- **It only works in gawk, and the failure under other awks is silent.** mawk has no `RT`, so `RT == ""` is *always* true, rule 1 skips every record, and the stop rule never fires. On `/dev/urandom` mawk reads until memory runs out; on a finite digit file it reports `total=0 entries=0`. (Try it, carefully, in [B13](../exercises.md#b13-awk-the-missing-rt-verified).)
-- **The empty last record.** A file whose last character is not a digit leaves an empty final record with `RT == ""`. Without rule 1 that counts as a 10-hour card.
-- **`RS` changes every read**, including `getline` from a command.
-- **A directory name with a single quote** would break the shell command that makes the folder.
-- **Nothing is testable in isolation**: the stream is the input, so the check feeds digit files in four shapes and compares them card by card with a bash reference.
+- **Solo funciona en gawk y el fallo con otros awk es silencioso.** mawk no tiene `RT`, así que `RT == ""` es *siempre* verdadero, la regla 1 omite todos los registros y la regla de parada nunca se activa. Con `/dev/urandom` mawk lee hasta quedarse sin memoria; con un archivo finito de dígitos informa `total=0 entries=0`. (Pruébalo, con cuidado, en [B13](../exercises.md#b13-awk-the-missing-rt-verified).)
+- **El último registro vacío.** Un archivo cuyo último carácter no es un dígito deja un registro final vacío con `RT == ""`. Sin la regla 1, eso cuenta como una tarjeta de 10 horas.
+- **`RS` cambia cada lectura**, incluida la de `getline` desde un comando.
+- **Un nombre de directorio con una comilla simple** rompería el comando del intérprete de comandos que crea el directorio.
+- **Nada se puede probar de forma aislada**: el flujo es la entrada, así que la comprobación alimenta archivos de dígitos en cuatro formas y los compara tarjeta por tarjeta con una referencia en bash.
 
-Legitimate uses: a regex `RS` and `RT` are real tools for **parsing records that are not line-shaped** (multi-line records, tokens separated by a pattern, log entries). That *is* what they were added for.
+Usos legítimos: un `RS` como regex y `RT` son herramientas reales para el **análisis sintáctico de registros que no tienen forma de línea** (registros de varias líneas, tokens separados por un patrón, entradas de un log). Para *eso* se agregaron.
 
-### Now break it yourself
+### Ahora rómpelo tú
 
-See [exercises](../exercises.md#b13-awk-the-missing-rt-verified). There is also an older awk exercise that needs no gawk: [C3](../exercises.md#c3-a-loop-whose-state-is-not-a-variable-verified), and a reference port to awk in [`solutions/awk-port`](../solutions/awk-port), which is a third design (the caller supplies the records with `seq 5`, and a `total <= 40` pattern is the stop rule).
+Consulta los [ejercicios](../exercises.md#b13-awk-the-missing-rt-verified). También hay un ejercicio de awk más antiguo que no necesita gawk: [C3](../exercises.md#c3-a-loop-whose-state-is-not-a-variable-verified). Hay además una adaptación de referencia a awk en [`solutions/awk-port`](../solutions/awk-port), que es un tercer diseño (quien llama aporta los registros con `seq 5` y un patrón `total <= 40` es la regla de parada).
 
-## Quirks
+## Rarezas
 
-- **Uninitialized variables are both `""` and `0`.** `t` needs no initialization, and `--lint` warns about it anyway: the straight entry initializes `total` and `cards` for that reason.
-- **`print > "file"` truncates once, then appends** for the life of the program. A pipe is started once and reused until you `close` it.
-- **`$(NF)` and `$NF`** differ, and `NF = 3` truncates a record. Fields are 1-based and `$0` is the whole record.
-- **A comparison is 0 or 1**, which is why `ARGC += (ARGC < 2)` is legal.
-- **`split(s, a, "'")` with a one-character separator** is literal; longer ones are regexes, a classic surprise.
+- **Las variables sin inicializar son a la vez `""` y `0`.** `t` no necesita inicialización y `--lint` emite una advertencia de todos modos: la entrada directa inicializa `total` y `cards` por esa razón.
+- **`print > "file"` trunca una vez y luego agrega** durante toda la vida del programa. Una tubería se inicia una sola vez y se reutiliza hasta que haces `close` sobre ella.
+- **`$(NF)` y `$NF`** son distintos; `NF = 3` trunca un registro. Los campos empiezan en 1 y `$0` es el registro completo.
+- **Una comparación vale 0 o 1**; por eso `ARGC += (ARGC < 2)` es legal.
+- **`split(s, a, "'")` con un separador de un solo carácter** es literal; los más largos son regex, una sorpresa clásica.
 
-## Weird next to boring
+## Lo raro junto a lo aburrido
 
-[`awk`](../../src/awk/README.md) uses awk as a scripting language: a `BEGIN` block, functions, a loop. [`awk-weird`](../../src/awk-weird/README.md) uses awk as a **record-processing machine**: no loop, the program is a column of patterns. The first is what a script author writes; the second is what the original design was for, aimed at a stream it was never meant to read. Compare [`haskell`](haskell.md#lazy-io-as-control-flow), where the data structure drives the evaluation, and [`regex-sed`](regex.md#gnu-sed), another small Unix tool with an implicit loop.
+[`awk`](../../src/awk/README.md) usa awk como lenguaje de scripts: un bloque `BEGIN`, funciones, un bucle. [`awk-weird`](../../src/awk-weird/README.md) usa awk como **máquina de procesamiento de registros**: sin bucle, el programa es una columna de patrones. La primera es lo que escribe el autor de un script. La segunda es para lo que se diseñó awk originalmente, apuntada a un flujo que nunca estuvo pensado para leer. Compara [`haskell`](haskell.md#lazy-io-as-control-flow), donde la estructura de datos dirige la evaluación, con [`regex-sed`](regex.md#gnu-sed), otra pequeña herramienta de Unix con un bucle implícito.
 
-## Under what circumstances would this terrible idea become reasonable?
+## ¿En qué circunstancias esta idea terrible se volvería razonable?
 
-When the input *is* the loop. A regex record separator is the idiomatic way to read paragraphs, blocks of a config file or entries of a log. Slicing `/dev/urandom` for dice is a stunt, but the same mechanism (a pattern decides where a record ends; a pattern decides whether it matters) is what gives awk its reputation for doing in one line what takes a page elsewhere.
+Cuando la entrada *es* el bucle. Un separador de registros con regex es la forma idiomática de leer párrafos, bloques de un archivo de configuración o entradas de un log. Cortar `/dev/urandom` para sacar dados es una acrobacia. Pero el mismo mecanismo le da a awk su fama de hacer en una línea lo que en otros lugares ocupa una página. Ese mecanismo es que un patrón decide dónde termina un registro y otro decide si importa.
 
 <!-- BEGIN GENERATED program-flow:languages/awk.md -->
 ## How each program runs
@@ -146,7 +146,7 @@ flowchart TD
 **Why this mechanism matters:** the stop rule is a bare pattern, `t > 40 { exit }`, and it is the last rule, so the crossing card has already passed through every earlier rule. The input is `/dev/urandom`, which never ends, so only `exit` can stop the loop. Compare [`awk`](../../src/awk/README.md), which loops in `BEGIN`.
 <!-- END GENERATED program-flow:languages/awk.md -->
 
-## Computer science behind this page
+## Las ciencias de la computación detrás de esta página
 
 <!-- BEGIN GENERATED concepts:languages/awk.md -->
 The computer-science ideas behind this page: [Control flow](../informatica/03-flujo-de-control-y-continuaciones.md#control-flow), [Regular expressions](../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#regular-expressions), [Declarative programming](../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#declarative-programming), [Domain-specific languages](../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#domain-specific-languages), [State](../informatica/06-estado-mas-alla-de-las-variables.md#state), [Portability](../informatica/08-fugas-de-abstraccion-y-dependencia-de-la-implementacion.md#portability).

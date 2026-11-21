@@ -1,0 +1,319 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lessons/languages/apl.md:1
+msgctxt "s-326f91484a83-0000"
+msgid "APL"
+msgstr "APL"
+
+#: lessons/languages/apl.md:3
+msgctxt "s-da199d2b2f1e-0001"
+msgid "Entries: [⟦CODE_0001⟧](⟦DEST_0002⟧) (five rolls and one take-while) and [⟦CODE_0003⟧](⟦DEST_0004⟧) (functions that write their successors)."
+msgstr "Entradas: [⟦CODE_0001⟧](⟦DEST_0002⟧) (cinco tiradas y un \"take-while\") y [⟦CODE_0003⟧](⟦DEST_0004⟧) (funciones que escriben a sus sucesoras)."
+
+#: lessons/languages/apl.md:5
+msgctxt "s-a0ab00c7feda-0002"
+msgid "For an advanced reading path with traces and experiments, see the [APL study guide](⟦DEST_0001⟧)."
+msgstr "Para una ruta de lectura avanzada con trazas y experimentos, consulta la [guía de estudio de APL](⟦DEST_0001⟧)."
+
+#: lessons/languages/apl.md:7
+msgctxt "s-9af5fce56d43-0003"
+msgid "APL gets a page to itself, because it is the odd one out in the whole repo. Every other language here was built to *run* programs. APL began as a way to *describe* them."
+msgstr "APL tiene una página propia porque es la excepción de todo el repositorio. Todos los demás lenguajes de aquí se construyeron para *ejecutar* programas. APL nació como una forma de *describirlos*."
+
+#: lessons/languages/apl.md:9
+msgctxt "s-66b99efc4ac5-0004"
+msgid "APL was meant for the whiteboard"
+msgstr "APL se pensó para la pizarra"
+
+#: lessons/languages/apl.md:11
+msgctxt "s-4c1eeaa8e799-0005"
+msgid "Kenneth Iverson devised the notation in the late 1950s and published it in *A Programming Language* (1962) as a way to write down algorithms and, famously, to specify the architecture of computers. It was a **design language** first. Implementations came afterwards, once people realized the notation was executable. That origin explains everything odd about it:"
+msgstr "Kenneth Iverson ideó la notación a finales de la década de 1950. La publicó en *A Programming Language* (1962) para escribir algoritmos y, como es bien sabido, para especificar la arquitectura de las computadoras. Primero fue un **lenguaje de diseño**. Las implementaciones llegaron después, cuando la gente se dio cuenta de que la notación se podía ejecutar. Ese origen explica todo lo raro que tiene:"
+
+#: lessons/languages/apl.md:13
+msgctxt "s-a0698cb36d06-0006"
+msgid "**Single-glyph primitives.** ⟦CODE_0001⟧ (reshape), ⟦CODE_0002⟧ (index generator), ⟦CODE_0003⟧ (running sum), ⟦CODE_0004⟧ (compress): the symbols are the operations, because the notation was meant to be written by hand and read at a glance, the way mathematicians write."
+msgstr "**Primitivas de un solo glifo.** ⟦CODE_0001⟧ (remodelar), ⟦CODE_0002⟧ (generador de índices), ⟦CODE_0003⟧ (suma acumulada), ⟦CODE_0004⟧ (comprimir): los símbolos son las operaciones, porque la notación se pensó para escribirse a mano y leerse de un vistazo, como escriben los matemáticos."
+
+#: lessons/languages/apl.md:14
+msgctxt "s-d72d136eff76-0007"
+msgid "**No loops as the default.** Mathematical notation does not say \"for i from 1 to n\": it applies an operation to a whole vector. APL's primitives work on whole arrays for the same reason."
+msgstr "**Sin bucles por defecto.** La notación matemática no dice \"para i desde 1 hasta n\": aplica una operación a un vector completo. Las primitivas de APL trabajan sobre arreglos completos por la misma razón."
+
+#: lessons/languages/apl.md:15
+msgctxt "s-0a09523683ca-0008"
+msgid "**Right-to-left evaluation with no operator precedence.** Mathematical-notation habits (BODMAS) were deliberately set aside for one uniform rule."
+msgstr "**Evaluación de derecha a izquierda y sin precedencia de operadores.** Los hábitos de la notación matemática (BODMAS) se dejaron de lado a propósito en favor de una sola regla uniforme."
+
+#: lessons/languages/apl.md:17
+msgctxt "s-3d7eec567980-0009"
+msgid "Now imagine the thing you came here for: **whiteboarding in this.** Ask yourself:"
+msgstr "Ahora imagina lo que viniste a buscar: **diseñar en la pizarra con esto.** Pregúntate:"
+
+#: lessons/languages/apl.md:19
+msgctxt "s-05bd168d7479-0010"
+msgid "*What would you actually write?* Draw ⟦CODE_0001⟧ on a whiteboard and you have a design in one line. Draw the same idea as a C-style loop and you have eight lines and an off-by-one risk."
+msgstr "*¿Qué escribirías en realidad?* Dibuja ⟦CODE_0001⟧ en una pizarra y tendrás un diseño en una línea. Dibuja la misma idea como un bucle al estilo de C y tendrás ocho líneas y un riesgo de error de desfase en una posición."
+
+#: lessons/languages/apl.md:20
+msgctxt "s-01567c8d7c88-0011"
+msgid "*What does a whiteboard hide?* Anything that requires a keyboard: the glyphs themselves, the dependence on ⟦CODE_0001⟧, whether ⟦CODE_0002⟧ means \"first\" or \"disclose\" in your interpreter. APL on a whiteboard is concise and *ambiguous in exactly the ways a notation should not be*."
+msgstr "*¿Qué oculta una pizarra?* Todo lo que requiere un teclado: los glifos mismos, la dependencia de ⟦CODE_0001⟧, si ⟦CODE_0002⟧ significa \"primero\" o \"revelar\" en tu intérprete. APL en una pizarra es conciso y *ambiguo justo de las maneras en que una notación no debería serlo*."
+
+#: lessons/languages/apl.md:21
+msgctxt "s-be5d0c8b8af6-0012"
+msgid "*Who can read it?* The author, today. The [README's \"Seeing the glyphs\"](⟦DEST_0001⟧) section exists because many fonts and terminals cannot even *display* the source."
+msgstr "*¿Quién puede leerlo?* El autor, hoy. La sección [\"Cómo ver los glifos\" del README](⟦DEST_0001⟧) existe porque muchas fuentes y terminales ni siquiera pueden *mostrar* el código fuente."
+
+#: lessons/languages/apl.md:23
+msgctxt "s-ca7d7c88f94e-0013"
+msgid "The honest summary: APL is an astonishingly good *thinking* notation and an unforgiving *maintenance* language. The repo lets you feel both sides."
+msgstr "El resumen honesto: APL es una notación para *pensar* asombrosamente buena y un lenguaje de *mantenimiento* implacable. El repositorio te deja sentir ambos lados."
+
+#: lessons/languages/apl.md:25
+msgctxt "s-d61247116cfa-0014"
+msgid "Array thinking replaces control flow (⟦CODE_0001⟧)"
+msgstr "El pensamiento en arreglos reemplaza al flujo de control (⟦CODE_0001⟧)"
+
+#: lessons/languages/apl.md:27
+msgctxt "s-cc9cfaabc50d-0015"
+msgid "Behold the monstrosity"
+msgstr "Contempla la monstruosidad"
+
+#: lessons/languages/apl.md:33
+msgctxt "s-4a051feb86ec-0016"
+msgid "Four named array assignments decide which cards to keep. ⟦CODE_0001⟧ holds five rolls, and ⟦CODE_0002⟧, ⟦CODE_0003⟧ and ⟦CODE_0004⟧ derive the kept rows. No loop and no ⟦CODE_0005⟧."
+msgstr "Cuatro asignaciones a arreglos con nombre deciden qué tarjetas se conservan. ⟦CODE_0001⟧ guarda cinco tiradas; ⟦CODE_0002⟧, ⟦CODE_0003⟧ y ⟦CODE_0004⟧ derivan las filas que se conservan. Sin bucle y sin ⟦CODE_0005⟧."
+
+#: lessons/languages/apl.md:35
+msgctxt "s-415f5fa29cf9-0017"
+msgid "How the hell does that work?"
+msgstr "¿Cómo demonios funciona eso?"
+
+#: lessons/languages/apl.md:37
+msgctxt "s-43af0d065343-0018"
+msgid "[⟦CODE_0001⟧ L30-39](⟦DEST_0002⟧):"
+msgstr "Mira [⟦CODE_0001⟧ L30-39](⟦DEST_0002⟧):"
+
+#: lessons/languages/apl.md:46
+msgctxt "s-505dc941f40c-0019"
+msgid "Read each right to left."
+msgstr "Lee cada una de derecha a izquierda."
+
+#: lessons/languages/apl.md:48
+msgctxt "s-979a4e8514e0-0020"
+msgid ""
+"**Draw everything up front.** ⟦CODE_0001⟧ is five tens, ⟦CODE_0002⟧ rolls each and ⟦CODE_0003⟧ shifts to 10 to 19. Why five? Every card is at least 10, so five always total at least 50. Five is a *bound that can never be too small*, not a loop count.\n"
+"2. **Apply the stop rule as data.** ⟦CODE_0004⟧ is the running total; ⟦CODE_0005⟧ turns it into ⟦CODE_0006⟧; ⟦CODE_0007⟧ counts the 1s; ⟦CODE_0008⟧ adds the card that crosses; ⟦CODE_0009⟧ takes that many.\n"
+"3. **Derive the rest.** ⟦CODE_0010⟧ *recycles* when the right argument is shorter than the target, so four category names fill a slot for each kept card, up to five. The fifth slot, if there is one, gets ⟦CODE_0011⟧ again."
+msgstr ""
+"**Sortea todo desde el principio.** ⟦CODE_0001⟧ son cinco dieces, ⟦CODE_0002⟧ tira cada uno y ⟦CODE_0003⟧ los desplaza al rango de 10 a 19 horas. ¿Por qué cinco? Cada tarjeta vale al menos 10, así que cinco suman siempre al menos 50. Cinco es una *cota que nunca puede quedarse corta*, no un número de repeticiones del bucle.\n"
+"2. **Aplica la regla de parada como datos.** ⟦CODE_0004⟧ es el total acumulado; ⟦CODE_0005⟧ lo convierte en ⟦CODE_0006⟧; ⟦CODE_0007⟧ cuenta los 1; ⟦CODE_0008⟧ suma la tarjeta que cruza; ⟦CODE_0009⟧ toma esa cantidad.\n"
+"3. **Deriva el resto.** ⟦CODE_0010⟧ *recicla* cuando el argumento derecho es más corto que el destino, así que cuatro nombres de categoría llenan un espacio por cada tarjeta conservada, hasta cinco. El quinto espacio, si lo hay, vuelve a recibir ⟦CODE_0011⟧."
+
+#: lessons/languages/apl.md:52
+msgctxt "s-d2bbf037de84-0021"
+msgid "What did we just learn?"
+msgstr "¿Qué acabamos de aprender?"
+
+#: lessons/languages/apl.md:54
+msgctxt "s-21169492ae2a-0022"
+msgid "A loop with a stop condition can be replaced by **computing a prefix of a precomputed sequence.** Haskell's [⟦CODE_0001⟧ over a lazy list](⟦DEST_0002⟧) does the same thing with laziness instead of a bound. The two languages disagree about *when* the list is made and agree about *what* it is."
+msgstr "Un bucle con condición de parada puede reemplazarse por **el cálculo de un prefijo de una secuencia precalculada.** El [⟦CODE_0001⟧ sobre una lista perezosa](⟦DEST_0002⟧) de Haskell hace lo mismo con evaluación perezosa en lugar de una cota. Los dos lenguajes discrepan sobre *cuándo* se crea la lista y coinciden en *qué* es."
+
+#: lessons/languages/apl.md:55
+msgctxt "s-0a800cef3e4e-0023"
+msgid "⟦CODE_0001⟧ (index origin) is a language-level setting. The straight entry never assumes it; the weird one sets ⟦CODE_0002⟧ and relies on it."
+msgstr "⟦CODE_0001⟧ (origen de los índices) es un ajuste a nivel del lenguaje. La entrada directa nunca lo da por sentado; la rara fija ⟦CODE_0002⟧ y depende de él."
+
+#: lessons/languages/apl.md:57
+msgctxt "s-0f438b8286fb-0024"
+msgid "Tags: array primitives are **guaranteed**. ⟦CODE_0001⟧ (file I/O) and the ⟦CODE_0002⟧/⟦CODE_0003⟧ meanings are **implementation-permitted** and vary by interpreter: in APL2-family interpreters (GNU APL) ⟦CODE_0004⟧ *discloses* and ⟦CODE_0005⟧ is \"first\", and Dyalog swaps them."
+msgstr "Etiquetas: el comportamiento de las primitivas de arreglos es **garantizado**. El comportamiento de ⟦CODE_0001⟧ (E/S de archivos) y de los significados de ⟦CODE_0002⟧/⟦CODE_0003⟧ es **permitido por la implementación** y varía según el intérprete. En los intérpretes de la familia APL2 (GNU APL), ⟦CODE_0004⟧ *revela* y ⟦CODE_0005⟧ es \"primero\"; Dyalog los intercambia."
+
+#: lessons/languages/apl.md:59
+msgctxt "s-b97254879216-0025"
+msgid "Self-modifying functions (⟦CODE_0001⟧)"
+msgstr "Funciones que se modifican a sí mismas (⟦CODE_0001⟧)"
+
+#: lessons/languages/apl.md:61
+msgctxt "s-cc9cfaabc50d-0026"
+msgid "Behold the monstrosity"
+msgstr "Contempla la monstruosidad"
+
+#: lessons/languages/apl.md:67
+msgctxt "s-1a6edf151dc8-0027"
+msgid "The host defines exactly one function, ⟦CODE_0001⟧. Every other card is a function that the card before it **wrote**."
+msgstr "El anfitrión define exactamente una función, ⟦CODE_0001⟧. Cada una de las demás tarjetas es una función que la tarjeta anterior **escribió**."
+
+#: lessons/languages/apl.md:69
+msgctxt "s-415f5fa29cf9-0028"
+msgid "How the hell does that work?"
+msgstr "¿Cómo demonios funciona eso?"
+
+#: lessons/languages/apl.md:71
+msgctxt "s-9cd747d81425-0029"
+msgid "[⟦CODE_0001⟧ L51-54](⟦DEST_0002⟧):"
+msgstr "Mira [⟦CODE_0001⟧ L51-54](⟦DEST_0002⟧):"
+
+#: lessons/languages/apl.md:80
+msgctxt "s-0e529c8f1507-0030"
+msgid "⟦CODE_0001⟧ returns *this function's own source* as a character matrix."
+msgstr "⟦CODE_0001⟧ devuelve *el código fuente de esta misma función* como una matriz de caracteres."
+
+#: lessons/languages/apl.md:81
+msgctxt "s-a196907d3ab9-0031"
+msgid "⟦CODE_0001⟧ splits it into rows and drops the header and four \"gene\" lines, leaving the body."
+msgstr "⟦CODE_0001⟧ lo divide en filas. Descarta el encabezado y cuatro líneas de \"genes\" y deja el cuerpo."
+
+#: lessons/languages/apl.md:82
+msgctxt "s-81f42bbf4b03-0032"
+msgid "The new header and new gene lines (⟦CODE_0001⟧, ⟦CODE_0002⟧, ...) are built **as text** and put in front."
+msgstr "El encabezado nuevo y las líneas de genes nuevas (⟦CODE_0001⟧, ⟦CODE_0002⟧, ...) se construyen **como texto** y se colocan delante."
+
+#: lessons/languages/apl.md:83
+msgctxt "s-d6829882b64a-0033"
+msgid "⟦CODE_0001⟧ is the stop rule, a **compress**: a scalar 1 keeps every line and a scalar 0 keeps none, so the whole child is compressed away. ⟦CODE_0002⟧ defines nothing from an empty list."
+msgstr "⟦CODE_0001⟧ es la regla de parada, una **compresión**. Un 1 escalar conserva todas las líneas y un 0 escalar no conserva ninguna, así que todo el hijo se comprime hasta desaparecer. ⟦CODE_0002⟧ no define nada a partir de una lista vacía."
+
+#: lessons/languages/apl.md:84
+msgctxt "s-ca2fbee3bd3c-0034"
+msgid "⟦CODE_0001⟧ calls the child, or executes the empty string, a no-op. The same boolean controls both writing and calling."
+msgstr "⟦CODE_0001⟧ llama al hijo o ejecuta la cadena de texto vacía, una operación nula. El mismo booleano controla tanto la escritura como la llamada."
+
+#: lessons/languages/apl.md:86
+msgctxt "s-d914aadf3938-0035"
+msgid "The state of the program is not in variables. **It is in the program text.**"
+msgstr "El estado del programa no está en variables. **Está en el texto del programa.**"
+
+#: lessons/languages/apl.md:88
+msgctxt "s-d2bbf037de84-0036"
+msgid "What did we just learn?"
+msgstr "¿Qué acabamos de aprender?"
+
+#: lessons/languages/apl.md:90
+msgctxt "s-5550039597ec-0037"
+msgid "**Code is data**, in the strongest sense: a function can read, transform and define another function. Lisp programmers know this as homoiconicity; APL gets there by treating source as a character matrix."
+msgstr "**El código son datos**, en el sentido más fuerte: una función puede leer, transformar y definir otra función. Los programadores de Lisp lo conocen como homoiconicidad; APL llega ahí tratando el código fuente como una matriz de caracteres."
+
+#: lessons/languages/apl.md:91
+msgctxt "s-cb0593a7b377-0038"
+msgid "**A recursion can be a chain of different functions** instead of a function calling itself."
+msgstr "**Una recursión puede ser una cadena de funciones distintas** en lugar de una función que se llama a sí misma."
+
+#: lessons/languages/apl.md:92
+msgctxt "s-bf01089a2d01-0039"
+msgid "**Compress is a conditional.** ⟦CODE_0001⟧ is empty and ⟦CODE_0002⟧ is ⟦CODE_0003⟧. \"If\" is a multiplication by a boolean."
+msgstr "**Comprimir es un condicional.** ⟦CODE_0001⟧ está vacío y ⟦CODE_0002⟧ es ⟦CODE_0003⟧. \"Si\" es una multiplicación por un booleano."
+
+#: lessons/languages/apl.md:94
+msgctxt "s-299b7a6f9cbe-0040"
+msgid "Do this in production and you're fired"
+msgstr "Haz esto en producción y estás despedido"
+
+#: lessons/languages/apl.md:96
+msgctxt "s-06f8b67497fd-0041"
+msgid "**Dynamic scope.** APL locals are visible to everything *called* from the function. Every generated card must declare ⟦CODE_0001⟧ ([L36](⟦DEST_0002⟧) ⟦CODE_0003⟧) or a child's genes would overwrite its parent's."
+msgstr "**Ámbito dinámico.** Los locales de APL son visibles para todo lo que se *llama* desde la función. Cada tarjeta generada debe declarar ⟦CODE_0001⟧ ([L36](⟦DEST_0002⟧) ⟦CODE_0003⟧) o los genes de un hijo sobrescribirían los de su padre."
+
+#: lessons/languages/apl.md:97
+msgctxt "s-f5fde7d4d56a-0042"
+msgid "**Silent structural failure.** The README's own war story: the first draft dropped four lines instead of five when copying the body, so every child kept its parent's ⟦CODE_0001⟧ line and reset the running total. The stop rule never fired and the program recursed until killed. That is why [⟦CODE_0002⟧](⟦DEST_0003⟧) runs under ⟦CODE_0004⟧."
+msgstr "**Fallo estructural silencioso.** La propia anécdota de guerra del README: el primer borrador descartó cuatro líneas en lugar de cinco al copiar el cuerpo. Por eso cada hijo conservaba la línea ⟦CODE_0001⟧ de su padre y reiniciaba el total acumulado. La regla de parada nunca se activó y el programa recursionó hasta que lo mataron. Por esa razón [⟦CODE_0002⟧](⟦DEST_0003⟧) se ejecuta bajo ⟦CODE_0004⟧."
+
+#: lessons/languages/apl.md:98
+msgctxt "s-7c0ff69d7762-0043"
+msgid "**No ⟦CODE_0001⟧ independence**: the weird version relies on ⟦CODE_0002⟧."
+msgstr "**Sin independencia de ⟦CODE_0001⟧**: la versión rara depende de ⟦CODE_0002⟧."
+
+#: lessons/languages/apl.md:99
+msgctxt "s-9cf8f55de05c-0044"
+msgid "**⟦DNT_0001⟧ and security.** Behavior that depends on generated source defeats static tools, and ⟦CODE_0002⟧ on assembled text is the classic injection shape. (Here, every value is a number the program computed.)"
+msgstr "**⟦DNT_0001⟧ y seguridad.** El comportamiento que depende de código fuente generado deja sin efecto a las herramientas estáticas; ⟦CODE_0002⟧ sobre texto ensamblado es la forma clásica de inyección. (Aquí, todo valor es un número que calculó el programa.)"
+
+#: lessons/languages/apl.md:101
+msgctxt "s-99b6b85790df-0045"
+msgid "Legitimate uses: metaprogramming, interactive exploration and code generation, where APL's workspace model (functions as editable data) is an actual strength."
+msgstr "Usos legítimos: metaprogramación, exploración interactiva y generación de código, donde el modelo de espacio de trabajo de APL (funciones como datos editables) es una fortaleza real."
+
+#: lessons/languages/apl.md:103
+msgctxt "s-5e3bcdfbf845-0046"
+msgid "Now break it yourself"
+msgstr "Ahora rómpelo tú"
+
+#: lessons/languages/apl.md:105
+msgctxt "s-65243977740e-0047"
+msgid "See [exercises](⟦DEST_0001⟧)."
+msgstr "Consulta los [ejercicios](⟦DEST_0001⟧)."
+
+#: lessons/languages/apl.md:107
+msgctxt "s-12d0b77aba94-0048"
+msgid "Quirks"
+msgstr "Rarezas"
+
+#: lessons/languages/apl.md:109
+msgctxt "s-f3645feebe56-0049"
+msgid "**Glyphs.** ⟦CODE_0001⟧ is meant to be an empty box (it is \"quad\"). If other symbols appear as boxes, your font lacks the APL range. DejaVu Sans Mono and APL385 Unicode work; fonts installed inside WSL are not used by Windows programs."
+msgstr "**Glifos.** ⟦CODE_0001⟧ debe ser una caja vacía (se llama \"quad\"). Si otros símbolos aparecen como cajas, tu fuente no tiene el rango de APL. Funcionan DejaVu Sans Mono y APL385 Unicode; los programas de Windows no usan las fuentes instaladas dentro de WSL."
+
+#: lessons/languages/apl.md:110
+msgctxt "s-108e91575ee7-0050"
+msgid "**Seeding.** GNU APL starts every session with ⟦CODE_0001⟧ at 16807, so without seeding every run would draw identical cards ([⟦CODE_0002⟧ L19](⟦DEST_0003⟧))."
+msgstr "**Semilla.** GNU APL inicia cada sesión con ⟦CODE_0001⟧ en 16807, así que sin una semilla cada ejecución sortearía las mismas tarjetas ([⟦CODE_0002⟧ L19](⟦DEST_0003⟧))."
+
+#: lessons/languages/apl.md:111
+msgctxt "s-8952b0b2a792-0051"
+msgid "**⟦CODE_0001⟧ is a throwaway.** A bare expression prints its value, so ⟦CODE_0002⟧ swallows it."
+msgstr "**⟦CODE_0001⟧ es desechable.** Una expresión suelta imprime su valor, así que ⟦CODE_0002⟧ lo absorbe."
+
+#: lessons/languages/apl.md:112
+msgctxt "s-df6b25803025-0052"
+msgid "**⟦CODE_0001⟧ is a system command, not APL code.** Without it ⟦CODE_0002⟧ sits at the prompt."
+msgstr "**⟦CODE_0001⟧ es un comando del sistema, no código APL.** Sin él, ⟦CODE_0002⟧ se queda esperando en el indicador de comandos."
+
+#: lessons/languages/apl.md:113
+msgctxt "s-e2feaffdc6fe-0053"
+msgid "**There is no formatter**; style (one statement per line, CamelCase names, aligned comments) is by hand."
+msgstr "**No hay formateador**; el estilo (una sentencia por línea, nombres en CamelCase, comentarios alineados) se cuida a mano."
+
+#: lessons/languages/apl.md:114
+msgctxt "s-c90dfe4d8d17-0054"
+msgid "**⟦CODE_0001⟧ recycles**; a reshape longer than its source repeats it. A feature when you want a modulo, a bug when you did not."
+msgstr "**⟦CODE_0001⟧ recicla**; una remodelación más larga que su origen lo repite. Es una ventaja cuando quieres un módulo y un bicho cuando no lo querías."
+
+#: lessons/languages/apl.md:115
+msgctxt "s-f84ab1c9b530-0055"
+msgid "**⟦CODE_0001⟧ is ⟦CODE_0002⟧**: the left argument is a format string followed by its values. ⟦CODE_0003⟧ is ⟦CODE_0004⟧, with ⟦CODE_0005⟧ for a write pipe, which is how APL sends SQL to a real ⟦CODE_0006⟧."
+msgstr "**⟦CODE_0001⟧ es ⟦CODE_0002⟧**: el argumento izquierdo es una cadena de texto de formato seguida de sus valores. ⟦CODE_0003⟧ es ⟦CODE_0004⟧, con ⟦CODE_0005⟧ para una tubería de escritura, que es como APL envía SQL a un ⟦CODE_0006⟧ real."
+
+#: lessons/languages/apl.md:117
+msgctxt "s-a6b58da9d4cd-0056"
+msgid "Weird next to boring"
+msgstr "Lo raro junto a lo aburrido"
+
+#: lessons/languages/apl.md:119
+msgctxt "s-abdfb4301787-0057"
+msgid "Both entries are APL, and neither is idiomatic in the sense a C programmer means it. The first says: *a loop was never needed.* The second says: *neither was a fixed program.* The interesting comparison is what each makes easy. The first is short, testable and obvious once you read it right to left. The second proves that source text is a mutable value."
+msgstr "Ambas entradas son APL y ninguna es idiomática en el sentido que le da un programador de C. La primera dice: *nunca hizo falta un bucle.* La segunda dice: *tampoco hizo falta un programa fijo.* La comparación interesante es qué facilita cada una. La primera es corta, comprobable y obvia una vez que la lees de derecha a izquierda. La segunda demuestra que el texto fuente es un valor mutable."
+
+#: lessons/languages/apl.md:121
+msgctxt "s-c08a852d0dbe-0058"
+msgid "Under what circumstances would this terrible idea become reasonable?"
+msgstr "¿En qué circunstancias esta idea terrible se volvería razonable?"
+
+#: lessons/languages/apl.md:123
+msgctxt "s-9d0d50f0c15d-0059"
+msgid "The first is not a terrible idea; it is how APL programmers actually think. The second becomes reasonable when you are generating code from data in an environment designed for it. And as a *design* notation, APL's real home, it was reasonable from the start: it was meant for describing computation on a blackboard, long before anyone ran it."
+msgstr "La primera no es una idea terrible; así piensan en realidad los programadores de APL. La segunda se vuelve razonable cuando generas código a partir de datos en un entorno diseñado para ello. Y como notación de *diseño*, el verdadero hogar de APL, fue razonable desde el principio: se pensó para describir el cálculo en una pizarra, mucho antes de que alguien lo ejecutara."
+
+#: lessons/languages/apl.md:172
+msgctxt "s-ac0e260e97bf-0060"
+msgid "Computer science behind this page"
+msgstr "Las ciencias de la computación detrás de esta página"

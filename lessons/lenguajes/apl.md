@@ -1,40 +1,40 @@
 # APL
 
-Entries: [`src/apl`](../../src/apl/README.md) (five rolls and one take-while) and [`src/apl-weird`](../../src/apl-weird/README.md) (functions that write their successors).
+Entradas: [`src/apl`](../../src/apl/README.md) (cinco tiradas y un "take-while") y [`src/apl-weird`](../../src/apl-weird/README.md) (funciones que escriben a sus sucesoras).
 
-For an advanced reading path with traces and experiments, see the [APL study guide](../guias-de-estudio/lenguajes/apl.md).
+Para una ruta de lectura avanzada con trazas y experimentos, consulta la [guía de estudio de APL](../guias-de-estudio/lenguajes/apl.md).
 
-APL gets a page to itself, because it is the odd one out in the whole repo. Every other language here was built to *run* programs. APL began as a way to *describe* them.
+APL tiene una página propia porque es la excepción de todo el repositorio. Todos los demás lenguajes de aquí se construyeron para *ejecutar* programas. APL nació como una forma de *describirlos*.
 
-## APL was meant for the whiteboard
+## APL se pensó para la pizarra
 
-Kenneth Iverson devised the notation in the late 1950s and published it in *A Programming Language* (1962) as a way to write down algorithms and, famously, to specify the architecture of computers. It was a **design language** first. Implementations came afterwards, once people realized the notation was executable. That origin explains everything odd about it:
+Kenneth Iverson ideó la notación a finales de la década de 1950. La publicó en *A Programming Language* (1962) para escribir algoritmos y, como es bien sabido, para especificar la arquitectura de las computadoras. Primero fue un **lenguaje de diseño**. Las implementaciones llegaron después, cuando la gente se dio cuenta de que la notación se podía ejecutar. Ese origen explica todo lo raro que tiene:
 
-- **Single-glyph primitives.** `⍴` (reshape), `⍳` (index generator), `+\` (running sum), `/` (compress): the symbols are the operations, because the notation was meant to be written by hand and read at a glance, the way mathematicians write.
-- **No loops as the default.** Mathematical notation does not say "for i from 1 to n": it applies an operation to a whole vector. APL's primitives work on whole arrays for the same reason.
-- **Right-to-left evaluation with no operator precedence.** Mathematical-notation habits (BODMAS) were deliberately set aside for one uniform rule.
+- **Primitivas de un solo glifo.** `⍴` (remodelar), `⍳` (generador de índices), `+\` (suma acumulada), `/` (comprimir): los símbolos son las operaciones, porque la notación se pensó para escribirse a mano y leerse de un vistazo, como escriben los matemáticos.
+- **Sin bucles por defecto.** La notación matemática no dice "para i desde 1 hasta n": aplica una operación a un vector completo. Las primitivas de APL trabajan sobre arreglos completos por la misma razón.
+- **Evaluación de derecha a izquierda y sin precedencia de operadores.** Los hábitos de la notación matemática (BODMAS) se dejaron de lado a propósito en favor de una sola regla uniforme.
 
-Now imagine the thing you came here for: **whiteboarding in this.** Ask yourself:
+Ahora imagina lo que viniste a buscar: **diseñar en la pizarra con esto.** Pregúntate:
 
-- *What would you actually write?* Draw `Drawn←(10-⎕IO)+?5⍴10` on a whiteboard and you have a design in one line. Draw the same idea as a C-style loop and you have eight lines and an off-by-one risk.
-- *What does a whiteboard hide?* Anything that requires a keyboard: the glyphs themselves, the dependence on `⎕IO`, whether `⊃` means "first" or "disclose" in your interpreter. APL on a whiteboard is concise and *ambiguous in exactly the ways a notation should not be*.
-- *Who can read it?* The author, today. The [README's "Seeing the glyphs"](../../src/apl/README.md#cómo-ver-los-glifos) section exists because many fonts and terminals cannot even *display* the source.
+- *¿Qué escribirías en realidad?* Dibuja `Drawn←(10-⎕IO)+?5⍴10` en una pizarra y tendrás un diseño en una línea. Dibuja la misma idea como un bucle al estilo de C y tendrás ocho líneas y un riesgo de error de desfase en una posición.
+- *¿Qué oculta una pizarra?* Todo lo que requiere un teclado: los glifos mismos, la dependencia de `⎕IO`, si `⊃` significa "primero" o "revelar" en tu intérprete. APL en una pizarra es conciso y *ambiguo justo de las maneras en que una notación no debería serlo*.
+- *¿Quién puede leerlo?* El autor, hoy. La sección ["Cómo ver los glifos" del README](../../src/apl/README.md#cómo-ver-los-glifos) existe porque muchas fuentes y terminales ni siquiera pueden *mostrar* el código fuente.
 
-The honest summary: APL is an astonishingly good *thinking* notation and an unforgiving *maintenance* language. The repo lets you feel both sides.
+El resumen honesto: APL es una notación para *pensar* asombrosamente buena y un lenguaje de *mantenimiento* implacable. El repositorio te deja sentir ambos lados.
 
-## Array thinking replaces control flow (`apl`)
+## El pensamiento en arreglos reemplaza al flujo de control (`apl`)
 
-### Behold the monstrosity
+### Contempla la monstruosidad
 
 ```bash
 sandbox/container/run-image.sh src/apl
 ```
 
-Four named array assignments decide which cards to keep. `Drawn` holds five rolls, and `Hours`, `Totals` and `Kinds` derive the kept rows. No loop and no `if`.
+Cuatro asignaciones a arreglos con nombre deciden qué tarjetas se conservan. `Drawn` guarda cinco tiradas; `Hours`, `Totals` y `Kinds` derivan las filas que se conservan. Sin bucle y sin `if`.
 
-### How the hell does that work?
+### ¿Cómo demonios funciona eso?
 
-[`apl/timecards.apl` L30-39](../../src/apl/timecards.apl#L30-L39):
+Mira [`apl/timecards.apl` L30-39](../../src/apl/timecards.apl#L30-L39):
 
 ```apl
 Drawn←(10-⎕IO)+?5⍴10
@@ -43,32 +43,32 @@ Totals←+\Hours
 Kinds←(≢Hours)⍴Categories
 ```
 
-Read each right to left.
+Lee cada una de derecha a izquierda.
 
-1. **Draw everything up front.** `5⍴10` is five tens, `?` rolls each and `10-⎕IO` shifts to 10 to 19. Why five? Every card is at least 10, so five always total at least 50. Five is a *bound that can never be too small*, not a loop count.
-2. **Apply the stop rule as data.** `+\Drawn` is the running total; `40≥` turns it into `1 1 0 0 ...`; `+/` counts the 1s; `1+` adds the card that crosses; `↑⍨` takes that many.
-3. **Derive the rest.** `⍴` *recycles* when the right argument is shorter than the target, so four category names fill a slot for each kept card, up to five. The fifth slot, if there is one, gets `Meetings` again.
+1. **Sortea todo desde el principio.** `5⍴10` son cinco dieces, `?` tira cada uno y `10-⎕IO` los desplaza al rango de 10 a 19 horas. ¿Por qué cinco? Cada tarjeta vale al menos 10, así que cinco suman siempre al menos 50. Cinco es una *cota que nunca puede quedarse corta*, no un número de repeticiones del bucle.
+2. **Aplica la regla de parada como datos.** `+\Drawn` es el total acumulado; `40≥` lo convierte en `1 1 0 0 ...`; `+/` cuenta los 1; `1+` suma la tarjeta que cruza; `↑⍨` toma esa cantidad.
+3. **Deriva el resto.** `⍴` *recicla* cuando el argumento derecho es más corto que el destino, así que cuatro nombres de categoría llenan un espacio por cada tarjeta conservada, hasta cinco. El quinto espacio, si lo hay, vuelve a recibir `Meetings`.
 
-### What did we just learn?
+### ¿Qué acabamos de aprender?
 
-- A loop with a stop condition can be replaced by **computing a prefix of a precomputed sequence.** Haskell's [`span` over a lazy list](haskell.md) does the same thing with laziness instead of a bound. The two languages disagree about *when* the list is made and agree about *what* it is.
-- `⎕IO` (index origin) is a language-level setting. The straight entry never assumes it; the weird one sets `⎕IO←0` and relies on it.
+- Un bucle con condición de parada puede reemplazarse por **el cálculo de un prefijo de una secuencia precalculada.** El [`span` sobre una lista perezosa](haskell.md) de Haskell hace lo mismo con evaluación perezosa en lugar de una cota. Los dos lenguajes discrepan sobre *cuándo* se crea la lista y coinciden en *qué* es.
+- `⎕IO` (origen de los índices) es un ajuste a nivel del lenguaje. La entrada directa nunca lo da por sentado; la rara fija `⎕IO←0` y depende de él.
 
-Tags: array primitives are **guaranteed**. `⎕FIO` (file I/O) and the `⊃`/`↑` meanings are **implementation-permitted** and vary by interpreter: in APL2-family interpreters (GNU APL) `⊃` *discloses* and `↑` is "first", and Dyalog swaps them.
+Etiquetas: el comportamiento de las primitivas de arreglos es **garantizado**. El comportamiento de `⎕FIO` (E/S de archivos) y de los significados de `⊃`/`↑` es **permitido por la implementación** y varía según el intérprete. En los intérpretes de la familia APL2 (GNU APL), `⊃` *revela* y `↑` es "primero"; Dyalog los intercambia.
 
-## Self-modifying functions (`apl-weird`)
+## Funciones que se modifican a sí mismas (`apl-weird`)
 
-### Behold the monstrosity
+### Contempla la monstruosidad
 
 ```bash
 sandbox/container/run-image.sh src/apl-weird
 ```
 
-The host defines exactly one function, `Card0`. Every other card is a function that the card before it **wrote**.
+El anfitrión define exactamente una función, `Card0`. Cada una de las demás tarjetas es una función que la tarjeta anterior **escribió**.
 
-### How the hell does that work?
+### ¿Cómo demonios funciona eso?
 
-[`apl-weird/timecards.apl` L51-54](../../src/apl-weird/timecards.apl#L51-L54):
+Mira [`apl-weird/timecards.apl` L51-54](../../src/apl-weird/timecards.apl#L51-L54):
 
 ```apl
 Genes←('N←',⍕N+1) ('C←',⍕4|C+1) ('H←',⍕D) ('T←',⍕T+D)
@@ -77,50 +77,50 @@ Kid←⎕FX Alive/(⊂'Card',(⍕N+1),Locals),Genes,5↓⊂[1]⎕CR 'Card',⍕N
 ⍎Alive/'Card',⍕N+1
 ```
 
-- `⎕CR 'Card',⍕N` returns *this function's own source* as a character matrix.
-- `5↓⊂[1]` splits it into rows and drops the header and four "gene" lines, leaving the body.
-- The new header and new gene lines (`N←2`, `C←1`, ...) are built **as text** and put in front.
-- `Alive/` is the stop rule, a **compress**: a scalar 1 keeps every line and a scalar 0 keeps none, so the whole child is compressed away. `⎕FX` defines nothing from an empty list.
-- `⍎Alive/'Card',⍕N+1` calls the child, or executes the empty string, a no-op. The same boolean controls both writing and calling.
+- `⎕CR 'Card',⍕N` devuelve *el código fuente de esta misma función* como una matriz de caracteres.
+- `5↓⊂[1]` lo divide en filas. Descarta el encabezado y cuatro líneas de "genes" y deja el cuerpo.
+- El encabezado nuevo y las líneas de genes nuevas (`N←2`, `C←1`, ...) se construyen **como texto** y se colocan delante.
+- `Alive/` es la regla de parada, una **compresión**. Un 1 escalar conserva todas las líneas y un 0 escalar no conserva ninguna, así que todo el hijo se comprime hasta desaparecer. `⎕FX` no define nada a partir de una lista vacía.
+- `⍎Alive/'Card',⍕N+1` llama al hijo o ejecuta la cadena de texto vacía, una operación nula. El mismo booleano controla tanto la escritura como la llamada.
 
-The state of the program is not in variables. **It is in the program text.**
+El estado del programa no está en variables. **Está en el texto del programa.**
 
-### What did we just learn?
+### ¿Qué acabamos de aprender?
 
-- **Code is data**, in the strongest sense: a function can read, transform and define another function. Lisp programmers know this as homoiconicity; APL gets there by treating source as a character matrix.
-- **A recursion can be a chain of different functions** instead of a function calling itself.
-- **Compress is a conditional.** `0/x` is empty and `1/x` is `x`. "If" is a multiplication by a boolean.
+- **El código son datos**, en el sentido más fuerte: una función puede leer, transformar y definir otra función. Los programadores de Lisp lo conocen como homoiconicidad; APL llega ahí tratando el código fuente como una matriz de caracteres.
+- **Una recursión puede ser una cadena de funciones distintas** en lugar de una función que se llama a sí misma.
+- **Comprimir es un condicional.** `0/x` está vacío y `1/x` es `x`. "Si" es una multiplicación por un booleano.
 
-### Do this in production and you're fired
+### Haz esto en producción y estás despedido
 
-- **Dynamic scope.** APL locals are visible to everything *called* from the function. Every generated card must declare `N;C;H;T;...` ([L36](../../src/apl-weird/timecards.apl#L36) `Locals`) or a child's genes would overwrite its parent's.
-- **Silent structural failure.** The README's own war story: the first draft dropped four lines instead of five when copying the body, so every child kept its parent's `T←H` line and reset the running total. The stop rule never fired and the program recursed until killed. That is why [`check.sh`](../../src/apl-weird/check.sh) runs under `timeout`.
-- **No `⎕IO` independence**: the weird version relies on `⎕IO←0`.
-- **Debugging and security.** Behavior that depends on generated source defeats static tools, and `⍎` on assembled text is the classic injection shape. (Here, every value is a number the program computed.)
+- **Ámbito dinámico.** Los locales de APL son visibles para todo lo que se *llama* desde la función. Cada tarjeta generada debe declarar `N;C;H;T;...` ([L36](../../src/apl-weird/timecards.apl#L36) `Locals`) o los genes de un hijo sobrescribirían los de su padre.
+- **Fallo estructural silencioso.** La propia anécdota de guerra del README: el primer borrador descartó cuatro líneas en lugar de cinco al copiar el cuerpo. Por eso cada hijo conservaba la línea `T←H` de su padre y reiniciaba el total acumulado. La regla de parada nunca se activó y el programa recursionó hasta que lo mataron. Por esa razón [`check.sh`](../../src/apl-weird/check.sh) se ejecuta bajo `timeout`.
+- **Sin independencia de `⎕IO`**: la versión rara depende de `⎕IO←0`.
+- **Debugging y seguridad.** El comportamiento que depende de código fuente generado deja sin efecto a las herramientas estáticas; `⍎` sobre texto ensamblado es la forma clásica de inyección. (Aquí, todo valor es un número que calculó el programa.)
 
-Legitimate uses: metaprogramming, interactive exploration and code generation, where APL's workspace model (functions as editable data) is an actual strength.
+Usos legítimos: metaprogramación, exploración interactiva y generación de código, donde el modelo de espacio de trabajo de APL (funciones como datos editables) es una fortaleza real.
 
-### Now break it yourself
+### Ahora rómpelo tú
 
-See [exercises](../exercises.md#b6-apl-the-off-by-one-rewrite-verified).
+Consulta los [ejercicios](../exercises.md#b6-apl-the-off-by-one-rewrite-verified).
 
-## Quirks
+## Rarezas
 
-- **Glyphs.** `⎕` is meant to be an empty box (it is "quad"). If other symbols appear as boxes, your font lacks the APL range. DejaVu Sans Mono and APL385 Unicode work; fonts installed inside WSL are not used by Windows programs.
-- **Seeding.** GNU APL starts every session with `⎕RL` at 16807, so without seeding every run would draw identical cards ([`apl` L19](../../src/apl/timecards.apl)).
-- **`_←` is a throwaway.** A bare expression prints its value, so `_←` swallows it.
-- **`)OFF` is a system command, not APL code.** Without it `--script` sits at the prompt.
-- **There is no formatter**; style (one statement per line, CamelCase names, aligned comments) is by hand.
-- **`⍴` recycles**; a reshape longer than its source repeats it. A feature when you want a modulo, a bug when you did not.
-- **`⎕FIO[22]` is `fprintf`**: the left argument is a format string followed by its values. `⎕FIO[24]` is `popen`, with `'w'` for a write pipe, which is how APL sends SQL to a real `sqlite3`.
+- **Glifos.** `⎕` debe ser una caja vacía (se llama "quad"). Si otros símbolos aparecen como cajas, tu fuente no tiene el rango de APL. Funcionan DejaVu Sans Mono y APL385 Unicode; los programas de Windows no usan las fuentes instaladas dentro de WSL.
+- **Semilla.** GNU APL inicia cada sesión con `⎕RL` en 16807, así que sin una semilla cada ejecución sortearía las mismas tarjetas ([`apl` L19](../../src/apl/timecards.apl)).
+- **`_←` es desechable.** Una expresión suelta imprime su valor, así que `_←` lo absorbe.
+- **`)OFF` es un comando del sistema, no código APL.** Sin él, `--script` se queda esperando en el indicador de comandos.
+- **No hay formateador**; el estilo (una sentencia por línea, nombres en CamelCase, comentarios alineados) se cuida a mano.
+- **`⍴` recicla**; una remodelación más larga que su origen lo repite. Es una ventaja cuando quieres un módulo y un bicho cuando no lo querías.
+- **`⎕FIO[22]` es `fprintf`**: el argumento izquierdo es una cadena de texto de formato seguida de sus valores. `⎕FIO[24]` es `popen`, con `'w'` para una tubería de escritura, que es como APL envía SQL a un `sqlite3` real.
 
-## Weird next to boring
+## Lo raro junto a lo aburrido
 
-Both entries are APL, and neither is idiomatic in the sense a C programmer means it. The first says: *a loop was never needed.* The second says: *neither was a fixed program.* The interesting comparison is what each makes easy. The first is short, testable and obvious once you read it right to left. The second proves that source text is a mutable value.
+Ambas entradas son APL y ninguna es idiomática en el sentido que le da un programador de C. La primera dice: *nunca hizo falta un bucle.* La segunda dice: *tampoco hizo falta un programa fijo.* La comparación interesante es qué facilita cada una. La primera es corta, comprobable y obvia una vez que la lees de derecha a izquierda. La segunda demuestra que el texto fuente es un valor mutable.
 
-## Under what circumstances would this terrible idea become reasonable?
+## ¿En qué circunstancias esta idea terrible se volvería razonable?
 
-The first is not a terrible idea; it is how APL programmers actually think. The second becomes reasonable when you are generating code from data in an environment designed for it. And as a *design* notation, APL's real home, it was reasonable from the start: it was meant for describing computation on a blackboard, long before anyone ran it.
+La primera no es una idea terrible; así piensan en realidad los programadores de APL. La segunda se vuelve razonable cuando generas código a partir de datos en un entorno diseñado para ello. Y como notación de *diseño*, el verdadero hogar de APL, fue razonable desde el principio: se pensó para describir el cálculo en una pizarra, mucho antes de que alguien lo ejecutara.
 
 <!-- BEGIN GENERATED program-flow:languages/apl.md -->
 ## How each program runs
@@ -169,7 +169,7 @@ flowchart TD
 **Why this mechanism matters:** the program is self-modifying, and its state is source text: the "genes" are four lines that each child gets with new values. A broken stop rule does not fail. It recurses forever, which is why the check runs the program under a timeout.
 <!-- END GENERATED program-flow:languages/apl.md -->
 
-## Computer science behind this page
+## Las ciencias de la computación detrás de esta página
 
 <!-- BEGIN GENERATED concepts:languages/apl.md -->
 The computer-science ideas behind this page: [Control flow](../informatica/03-flujo-de-control-y-continuaciones.md#control-flow), [Self-modifying code](../informatica/03-flujo-de-control-y-continuaciones.md#self-modifying-code), [Eager evaluation](../informatica/04-evaluacion-y-demanda.md#eager-evaluation), [Referential transparency](../informatica/04-evaluacion-y-demanda.md#referential-transparency), [Array programming](../informatica/04-evaluacion-y-demanda.md#array-programming), [State](../informatica/06-estado-mas-alla-de-las-variables.md#state), [Scope and binding](../informatica/06-estado-mas-alla-de-las-variables.md#scope-and-binding), [Homoiconicity: code as data](../informatica/06-estado-mas-alla-de-las-variables.md#homoiconicity-code-as-data), [Reflection and metaprogramming](../informatica/06-estado-mas-alla-de-las-variables.md#reflection-and-metaprogramming), [Serialization, deserialization and object pickling](../informatica/06-estado-mas-alla-de-las-variables.md#serialization-deserialization-and-object-pickling).

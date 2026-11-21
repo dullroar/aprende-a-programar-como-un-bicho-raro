@@ -1,0 +1,248 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lessons/languages/cobol.md:1
+msgctxt "s-d29900b5259d-0000"
+msgid "COBOL"
+msgstr "COBOL"
+
+#: lessons/languages/cobol.md:3
+msgctxt "s-9f14ae51ac3d-0001"
+msgid "Entries: [⟦CODE_0001⟧](⟦DEST_0002⟧) (the idiomatic one) and [⟦CODE_0003⟧](⟦DEST_0004⟧) (no ⟦CODE_0005⟧, no ⟦CODE_0006⟧)."
+msgstr "Entradas: [⟦CODE_0001⟧](⟦DEST_0002⟧) (la idiomática) y [⟦CODE_0003⟧](⟦DEST_0004⟧) (sin ⟦CODE_0005⟧ ni ⟦CODE_0006⟧)."
+
+#: lessons/languages/cobol.md:5
+msgctxt "s-2f630de66f2f-0002"
+msgid "For an advanced reading path with traces and experiments, see the [COBOL study guide](⟦DEST_0001⟧)."
+msgstr "Para una ruta de lectura avanzada con trazas y experimentos, consulta la [guía de estudio de COBOL](⟦DEST_0001⟧)."
+
+#: lessons/languages/cobol.md:7
+msgctxt "s-f7c954c44ff5-0003"
+msgid "COBOL (1959) was built for records, totals and reports, and it shows. What makes it special is that it moves rules and shapes *out of the procedure and into the data description*. What makes it a rich field for quirks is that it is old enough to have a feature, ⟦CODE_0001⟧, that the standard has since deleted."
+msgstr "COBOL (1959) se creó para registros, totales e informes y se nota. Lo que lo hace especial es que mueve las reglas y las formas *fuera del procedimiento y hacia la descripción de los datos*. Lo que lo vuelve un campo rico en rarezas es su edad: es lo bastante viejo como para tener una característica, ⟦CODE_0001⟧, que el estándar ya eliminó."
+
+#: lessons/languages/cobol.md:9
+msgctxt "s-83191f744fdf-0004"
+msgid "What makes COBOL special"
+msgstr "Qué hace especial a COBOL"
+
+#: lessons/languages/cobol.md:11
+msgctxt "s-4edb797a890b-0005"
+msgid "⟦SEP_0001⟧ Feature ⟦SEP_0002⟧ Where ⟦SEP_0003⟧ What it teaches ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ Característica ⟦SEP_0002⟧ Dónde ⟦SEP_0003⟧ Qué enseña ⟦SEP_0004⟧"
+
+#: lessons/languages/cobol.md:13
+msgctxt "s-46b722f1bf18-0006"
+msgid "⟦SEP_0008⟧ A stop rule declared as data ⟦SEP_0009⟧ [⟦CODE_0001⟧ L41-42](⟦DEST_0002⟧): ⟦CODE_0003⟧ / ⟦CODE_0004⟧ used by [L93](⟦DEST_0005⟧): ⟦CODE_0006⟧ ⟦SEP_0010⟧ An ⟦CODE_0007⟧-level *condition name* is a named range of a field's values. The loop holds no comparison; change the rule by editing the data, not the code. ⟦SEP_0011⟧"
+msgstr "⟦SEP_0008⟧ Una regla de parada declarada como datos ⟦SEP_0009⟧ [⟦CODE_0001⟧ L41-42](⟦DEST_0002⟧): ⟦CODE_0003⟧ / ⟦CODE_0004⟧ usados por [L93](⟦DEST_0005⟧): ⟦CODE_0006⟧ ⟦SEP_0010⟧ Un *nombre de condición* de nivel ⟦CODE_0007⟧ es un rango con nombre de valores de un campo. El bucle no contiene ninguna comparación; para cambiar la regla se edita el dato, no el código. ⟦SEP_0011⟧"
+
+#: lessons/languages/cobol.md:14
+msgctxt "s-73f56fbd7ba0-0007"
+msgid "⟦SEP_0004⟧ The picture does the rounding ⟦SEP_0005⟧ [L107](⟦DEST_0001⟧): ⟦CODE_0002⟧, into ⟦CODE_0003⟧ ⟦SEP_0006⟧ Storing 10.0-19.99 into a two-digit field drops the fraction. The field's shape is the floor function. COBOL arithmetic is decimal, not binary floating point. ⟦SEP_0007⟧"
+msgstr "⟦SEP_0004⟧ La cláusula PICTURE hace el redondeo ⟦SEP_0005⟧ [L107](⟦DEST_0001⟧): ⟦CODE_0002⟧, en ⟦CODE_0003⟧ ⟦SEP_0006⟧ Guardar 10.0-19.99 en un campo de dos dígitos descarta la fracción. La forma del campo es la función piso. La aritmética de COBOL es decimal, no de punto flotante binario. ⟦SEP_0007⟧"
+
+#: lessons/languages/cobol.md:15
+msgctxt "s-448e6938bd9c-0008"
+msgid "⟦SEP_0005⟧ One string, seen twice ⟦SEP_0006⟧ [L48-55](⟦DEST_0001⟧): ⟦CODE_0002⟧ / ⟦CODE_0003⟧ ⟦SEP_0007⟧ ⟦CODE_0004⟧ lays a second description over the same bytes. A table of strings is also one long string. ⟦SEP_0008⟧"
+msgstr "⟦SEP_0005⟧ Una cadena de texto, vista dos veces ⟦SEP_0006⟧ [L48-55](⟦DEST_0001⟧): ⟦CODE_0002⟧ / ⟦CODE_0003⟧ ⟦SEP_0007⟧ ⟦CODE_0004⟧ coloca una segunda descripción sobre los mismos bytes. Una tabla de cadenas de texto también es una sola cadena de texto larga. ⟦SEP_0008⟧"
+
+#: lessons/languages/cobol.md:16
+msgctxt "s-d402678e301b-0009"
+msgid "⟦SEP_0003⟧ Files whose names are variables ⟦SEP_0004⟧ ⟦CODE_0001⟧ ⟦SEP_0005⟧ The program writes a SQL script as a line-sequential file and hands it to ⟦CODE_0002⟧: one transaction, or none. ⟦SEP_0006⟧"
+msgstr "⟦SEP_0003⟧ Archivos cuyos nombres son variables ⟦SEP_0004⟧ ⟦CODE_0001⟧ ⟦SEP_0005⟧ El programa escribe un script SQL como un archivo secuencial por líneas y se lo entrega a ⟦CODE_0002⟧: una transacción o ninguna. ⟦SEP_0006⟧"
+
+#: lessons/languages/cobol.md:18
+msgctxt "s-958ef1655f5b-0010"
+msgid "ALTER"
+msgstr "ALTER"
+
+#: lessons/languages/cobol.md:20
+msgctxt "s-8f91b8fe4d79-0011"
+msgid "⟦CODE_0001⟧ is exhibit A for \"a language quirk that was once a feature\". It was declared obsolete in 1985 and deleted from the standard in 2002. GnuCOBOL still runs it, and warns five times."
+msgstr "⟦CODE_0001⟧ es el ejemplo perfecto de \"una rareza del lenguaje que alguna vez fue una característica\". Se declaró obsoleto en 1985 y se eliminó del estándar en 2002. GnuCOBOL todavía lo ejecuta y emite cinco advertencias."
+
+#: lessons/languages/cobol.md:22
+msgctxt "s-cc9cfaabc50d-0012"
+msgid "Behold the monstrosity"
+msgstr "Contempla la monstruosidad"
+
+#: lessons/languages/cobol.md:28
+msgctxt "s-0d421e68b71a-0013"
+msgid "Three to five time-card rows and a committed total over 40, from a program with no ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧ or ⟦CODE_0005⟧."
+msgstr "De tres a cinco filas de tarjeta de horas y un total confirmado que pasa de 40, a partir de un programa sin ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧ ni ⟦CODE_0005⟧."
+
+#: lessons/languages/cobol.md:30
+msgctxt "s-415f5fa29cf9-0014"
+msgid "How the hell does that work?"
+msgstr "¿Cómo demonios funciona eso?"
+
+#: lessons/languages/cobol.md:32
+msgctxt "s-5bda6c1a2868-0015"
+msgid "Paragraphs run in the order they are written unless a ⟦CODE_0001⟧ redirects them. The loop is one paragraph that holds one ⟦CODE_0002⟧ ([⟦CODE_0003⟧ L150-151](⟦DEST_0004⟧)):"
+msgstr "Los párrafos se ejecutan en el orden en que están escritos, a menos que un ⟦CODE_0001⟧ los redirija. El bucle es un párrafo que contiene un ⟦CODE_0002⟧ ([⟦CODE_0003⟧ L150-151](⟦DEST_0004⟧)):"
+
+#: lessons/languages/cobol.md:39
+msgctxt "s-651f6af0fa6e-0016"
+msgid "A paragraph that is exactly one ⟦CODE_0001⟧ is the only thing ⟦CODE_0002⟧ may change. Each category paragraph rewires it to the next category ([L157](⟦DEST_0003⟧), [L162](⟦DEST_0004⟧), [L167](⟦DEST_0005⟧), [L172](⟦DEST_0006⟧)): ⟦CODE_0007⟧. Nothing counts modulo 4. \"Which category is next\" exists only as the current target of a jump."
+msgstr "Un párrafo que es exactamente un ⟦CODE_0001⟧ es lo único que ⟦CODE_0002⟧ puede cambiar. Cada párrafo de categoría lo reconecta con la categoría siguiente ([L157](⟦DEST_0003⟧), [L162](⟦DEST_0004⟧), [L167](⟦DEST_0005⟧), [L172](⟦DEST_0006⟧)): ⟦CODE_0007⟧. Nada cuenta módulo 4. \"Cuál es la categoría siguiente\" existe solo como el destino actual de un salto."
+
+#: lessons/languages/cobol.md:41
+msgctxt "s-13cfe28d781d-0017"
+msgid "The stop rule is overflow. ⟦CODE_0001⟧ is ⟦CODE_0002⟧ starting at 59 ([L44](⟦DEST_0003⟧)). Each card adds its hours ([L196-199](⟦DEST_0004⟧)):"
+msgstr "La regla de parada es el desbordamiento. ⟦CODE_0001⟧ es ⟦CODE_0002⟧ y empieza en 59 ([L44](⟦DEST_0003⟧)). Cada tarjeta suma sus horas ([L196-199](⟦DEST_0004⟧)):"
+
+#: lessons/languages/cobol.md:50
+msgctxt "s-af4ddd6c7296-0018"
+msgid "59 + total fits in two digits while the total is 40 or less. The add that reaches 100 is a *size error*: the field is left unchanged and ⟦CODE_0001⟧ rewires ⟦CODE_0002⟧ one last time. The ⟦CODE_0003⟧ that follows is the same statement as always, and now it ends the run."
+msgstr "59 + total cabe en dos dígitos mientras el total sea 40 o menos. La suma que llega a 100 es un *error de tamaño*: el campo queda sin cambios y ⟦CODE_0001⟧ reconecta ⟦CODE_0002⟧ por última vez. El ⟦CODE_0003⟧ que sigue es la misma sentencia de siempre y ahora termina la ejecución."
+
+#: lessons/languages/cobol.md:52
+msgctxt "s-d2bbf037de84-0019"
+msgid "What did we just learn?"
+msgstr "¿Qué acabamos de aprender?"
+
+#: lessons/languages/cobol.md:54
+msgctxt "s-4397570910ae-0020"
+msgid "**A jump target can be state.** Control flow is not only the program counter walking source text; it can be data the program edits. Compare [Make's restart](⟦DEST_0001⟧), [CMake's registers](⟦DEST_0002⟧) and [Forth's ⟦CODE_0003⟧](⟦DEST_0004⟧): all keep control state somewhere other than ordinary variables. See [patterns](⟦DEST_0005⟧)."
+msgstr "**Un destino de salto puede ser estado.** El flujo de control no es solo el contador de programa recorriendo el texto fuente; también puede ser un dato que el programa edita. Compara [el reinicio de Make](⟦DEST_0001⟧), [los registros de CMake](⟦DEST_0002⟧) y [el ⟦CODE_0003⟧ de Forth](⟦DEST_0004⟧): todos guardan el estado de control en un lugar distinto de las variables ordinarias. Consulta los [patrones](⟦DEST_0005⟧)."
+
+#: lessons/languages/cobol.md:55
+msgctxt "s-cbe74b2a3742-0021"
+msgid "**Overflow is a decision.** ⟦CODE_0001⟧ is a conditional triggered by arithmetic running out of digits rather than by a comparison anyone wrote."
+msgstr "**El desbordamiento es una decisión.** ⟦CODE_0001⟧ es un condicional que se dispara porque la aritmética se queda sin dígitos, no por una comparación que alguien escribió."
+
+#: lessons/languages/cobol.md:56
+msgctxt "s-8243195ad725-0022"
+msgid "**Structured programming won for a reason**, and this program is the reason. See the next step."
+msgstr "**La programación estructurada ganó por una razón** y este programa es esa razón. Mira el paso siguiente."
+
+#: lessons/languages/cobol.md:58
+msgctxt "s-9f02cc58985a-0023"
+msgid "Tags: ⟦CODE_0001⟧ is **implementation-permitted** (deleted from the standard, kept by GnuCOBOL). Size-error behavior (field unchanged) is **guaranteed** by the standard."
+msgstr "Etiquetas: ⟦CODE_0001⟧ es comportamiento **permitido por la implementación** (se eliminó del estándar, pero GnuCOBOL lo conserva). El comportamiento ante un error de tamaño (campo sin cambios) es **garantizado** por el estándar."
+
+#: lessons/languages/cobol.md:60
+msgctxt "s-299b7a6f9cbe-0024"
+msgid "Do this in production and you're fired"
+msgstr "Haz esto en producción y estás despedido"
+
+#: lessons/languages/cobol.md:62
+msgctxt "s-1e07ee0438c4-0025"
+msgid "**You cannot understand a paragraph by reading it.** ⟦CODE_0001⟧ says ⟦CODE_0002⟧ and, at run time, almost never does. That complaint is what got ⟦CODE_0003⟧ removed."
+msgstr "**No puedes entender un párrafo leyéndolo.** ⟦CODE_0001⟧ dice ⟦CODE_0002⟧ y, en tiempo de ejecución, casi nunca lo hace. Esa queja es lo que hizo que se eliminara ⟦CODE_0003⟧."
+
+#: lessons/languages/cobol.md:63
+msgctxt "s-e351d3488c6a-0026"
+msgid "**Debuggers show variables, not jump targets.** Nothing in the ⟦CODE_0001⟧ fields tells you which category is next."
+msgstr "**Los depuradores muestran variables, no destinos de salto.** Nada en los campos de ⟦CODE_0001⟧ te dice cuál es la categoría siguiente."
+
+#: lessons/languages/cobol.md:64
+msgctxt "s-8722951935d9-0027"
+msgid "**Portability.** Newer compilers may not accept it, and standards-conformance flags may reject it."
+msgstr "**Portabilidad.** Los compiladores más nuevos podrían no aceptarlo y las banderas de conformidad con el estándar podrían rechazarlo."
+
+#: lessons/languages/cobol.md:65
+msgctxt "s-d4ddc32f259a-0028"
+msgid "**Optimizers.** A compiler that cannot assume a ⟦CODE_0001⟧ is constant has little it can do with the paragraph."
+msgstr "**Optimizadores.** Un compilador que no puede suponer que un ⟦CODE_0001⟧ es constante tiene poco que hacer con el párrafo."
+
+#: lessons/languages/cobol.md:66
+msgctxt "s-611c66470675-0029"
+msgid "**Reentrancy.** Rewriting the code's own jump table is the opposite of reentrant: two callers share one ⟦CODE_0001⟧. (On the rewriting-the-program theme, see [APL](⟦DEST_0002⟧).)"
+msgstr "**Reentrada.** Reescribir la propia tabla de saltos del código es lo opuesto a la reentrada: dos llamadores comparten un solo ⟦CODE_0001⟧. (Sobre el tema de reescribir el programa, consulta [APL](⟦DEST_0002⟧).)"
+
+#: lessons/languages/cobol.md:68
+msgctxt "s-4501552c3c09-0030"
+msgid "Legitimate uses: none in new code. Historically, though, in memory-poor, performance-sensitive batch systems, a switch set once and tested by an unconditional ⟦CODE_0001⟧ was cheaper than testing a flag on every pass. That is the \"mainframe in 1978\" answer to the recurring question: *it was reasonable when the constraint was real*. See the [intro](⟦DEST_0002⟧)."
+msgstr "Usos legítimos: ninguno en código nuevo. Históricamente, sin embargo, en sistemas por lotes con poca memoria y sensibles al rendimiento, un interruptor fijado una vez y probado con un ⟦CODE_0001⟧ incondicional costaba menos que probar una bandera en cada pasada. Esa es la respuesta del \"mainframe en 1978\" a la pregunta recurrente: *era razonable cuando la restricción era real*. Consulta la [introducción](⟦DEST_0002⟧)."
+
+#: lessons/languages/cobol.md:70
+msgctxt "s-5e3bcdfbf845-0031"
+msgid "Now break it yourself"
+msgstr "Ahora rómpelo tú"
+
+#: lessons/languages/cobol.md:72
+msgctxt "s-d9555f80a862-0032"
+msgid "See [exercises](⟦DEST_0001⟧): predict what happens if you add a ⟦CODE_0002⟧ to ⟦CODE_0003⟧, or change the ⟦CODE_0004⟧."
+msgstr "Consulta los [ejercicios](⟦DEST_0001⟧): predice qué pasa si agregas un ⟦CODE_0002⟧ a ⟦CODE_0003⟧ o cambias el ⟦CODE_0004⟧."
+
+#: lessons/languages/cobol.md:74
+msgctxt "s-12d0b77aba94-0033"
+msgid "Quirks"
+msgstr "Rarezas"
+
+#: lessons/languages/cobol.md:76
+msgctxt "s-dd0463e32ff8-0034"
+msgid "**Fixed format.** Columns 1-6 were a sequence number; ⟦CODE_0001⟧ in column 7 is a comment; division and paragraph names start in column 8 (\"area A\"), statements in column 12 (\"area B\"); **nothing past column 72 is read**. A long line is silently truncated, not rejected. ⟦CODE_0002⟧ rejects lines over 72 ([⟦CODE_0003⟧](⟦DEST_0004⟧))."
+msgstr "**Formato fijo.** Las columnas 1-6 eran un número de secuencia. ⟦CODE_0001⟧ en la columna 7 es un comentario. Los nombres de divisiones y párrafos empiezan en la columna 8 (\"área A\") y las sentencias en la columna 12 (\"área B\"). **No se lee nada más allá de la columna 72**. Una línea larga se trunca en silencio, no se rechaza. ⟦CODE_0002⟧ rechaza las líneas de más de 72 ([⟦CODE_0003⟧](⟦DEST_0004⟧))."
+
+#: lessons/languages/cobol.md:77
+msgctxt "s-92b0d81ac8a5-0035"
+msgid "**⟦CODE_0001⟧ does not clear its target.** It writes from the left and leaves old bytes to the right, so reused buffers need ⟦CODE_0002⟧ first."
+msgstr "**⟦CODE_0001⟧ no limpia su destino.** Escribe desde la izquierda y deja los bytes viejos a la derecha, así que los búferes reutilizados necesitan ⟦CODE_0002⟧ antes."
+
+#: lessons/languages/cobol.md:78
+msgctxt "s-3900b20783e9-0036"
+msgid "**Reserved words are everywhere.** ⟦CODE_0001⟧ is reserved in GnuCOBOL, which is why the tab character is ⟦CODE_0002⟧."
+msgstr "**Las palabras reservadas están en todas partes.** ⟦CODE_0001⟧ está reservada en GnuCOBOL, por eso el carácter de tabulación es ⟦CODE_0002⟧."
+
+#: lessons/languages/cobol.md:79
+msgctxt "s-93c77d4ed9fc-0037"
+msgid "**⟦CODE_0001⟧ returns the raw wait status**: an exit code of 3 comes back as 768. [⟦CODE_0002⟧](⟦DEST_0003⟧) divides by 256 to recover it."
+msgstr "**⟦CODE_0001⟧ devuelve el estado de espera sin procesar**: un código de salida de 3 vuelve como 768. [⟦CODE_0002⟧](⟦DEST_0003⟧) divide entre 256 para recuperarlo."
+
+#: lessons/languages/cobol.md:80
+msgctxt "s-2def8ad2951c-0038"
+msgid "**⟦CODE_0001⟧ blanks the field** when the variable is unset, rather than leaving it alone."
+msgstr "**⟦CODE_0001⟧ deja el campo en blanco** cuando la variable no está definida, en lugar de dejarlo como estaba."
+
+#: lessons/languages/cobol.md:81
+msgctxt "s-0f0082c49667-0039"
+msgid "**The ISO week has to be hand-built.** COBOL has date functions but no ISO week; ⟦CODE_0001⟧ counts from 1601-01-01 (a Monday), and the Thursday rule is four ⟦CODE_0002⟧s. The README notes it was checked against ⟦CODE_0003⟧ for 2020-2030."
+msgstr "**La semana ISO hay que construirla a mano.** COBOL tiene funciones de fecha, pero no de semana ISO. ⟦CODE_0001⟧ cuenta desde 1601-01-01 (un lunes) y la regla del jueves son cuatro ⟦CODE_0002⟧. El README indica que se comprobó con ⟦CODE_0003⟧ para 2020-2030."
+
+#: lessons/languages/cobol.md:82
+msgctxt "s-be56fe1a88b5-0040"
+msgid "**Choosing without ⟦CODE_0001⟧.** [⟦CODE_0002⟧ L119](⟦DEST_0003⟧): ⟦CODE_0004⟧ picks one of two table entries by data alone."
+msgstr "**Elegir sin ⟦CODE_0001⟧.** [⟦CODE_0002⟧ L119](⟦DEST_0003⟧): ⟦CODE_0004⟧ elige una de dos entradas de la tabla solo con datos."
+
+#: lessons/languages/cobol.md:83
+msgctxt "s-f9218ee0fad8-0041"
+msgid "**⟦CODE_0001⟧ needs a one-⟦CODE_0002⟧ paragraph.** Put a ⟦CODE_0003⟧ in ⟦CODE_0004⟧ and the compiler refuses."
+msgstr "**⟦CODE_0001⟧ necesita un párrafo de una sola ⟦CODE_0002⟧.** Pon un ⟦CODE_0003⟧ en ⟦CODE_0004⟧ y el compilador lo rechaza."
+
+#: lessons/languages/cobol.md:84
+msgctxt "s-c45a8c9aedcd-0042"
+msgid "**A size error leaves the target field unchanged**, so ⟦CODE_0001⟧ needs no reset. Without ⟦CODE_0002⟧, the add would silently drop the leading digit (99 + 1 = 00)."
+msgstr "**Un error de tamaño deja sin cambios el campo de destino**, así que ⟦CODE_0001⟧ no necesita reinicio. Sin ⟦CODE_0002⟧, la suma descartaría en silencio el dígito inicial (99 + 1 = 00)."
+
+#: lessons/languages/cobol.md:86
+msgctxt "s-a6b58da9d4cd-0043"
+msgid "Weird next to boring"
+msgstr "Lo raro junto a lo aburrido"
+
+#: lessons/languages/cobol.md:88
+msgctxt "s-8a04840821ea-0044"
+msgid "[⟦CODE_0001⟧](⟦DEST_0002⟧) does the job in one ⟦CODE_0003⟧ with the rule declared as data. [⟦CODE_0004⟧](⟦DEST_0005⟧) does it with rewired jumps. The first is easier to change and read; the second shows what the language lets a program do to itself."
+msgstr "[⟦CODE_0001⟧](⟦DEST_0002⟧) hace el trabajo en un solo ⟦CODE_0003⟧ con la regla declarada como datos. [⟦CODE_0004⟧](⟦DEST_0005⟧) lo hace con saltos reconectados. La primera es más fácil de cambiar y de leer; la segunda muestra lo que el lenguaje le permite a un programa hacerse a sí mismo."
+
+#: lessons/languages/cobol.md:90
+msgctxt "s-c08a852d0dbe-0045"
+msgid "Under what circumstances would this terrible idea become reasonable?"
+msgstr "¿En qué circunstancias esta idea terrible se volvería razonable?"
+
+#: lessons/languages/cobol.md:92
+msgctxt "s-c8b9de442298-0046"
+msgid "Rarely in the form shown. The ⟦CODE_0001⟧-level stop rule, though, is a good design wherever business rules change more often than code. The ⟦CODE_0002⟧ form was reasonable when memory and cycles were the constraint and the engineers owning the system understood every jump. It stopped being reasonable when teams, tools and maintenance horizons grew."
+msgstr "Rara vez en la forma que se muestra. Sin embargo, la regla de parada de nivel ⟦CODE_0001⟧ es un buen diseño dondequiera que las reglas de negocio cambien más a menudo que el código. La forma con ⟦CODE_0002⟧ era razonable cuando la memoria y los ciclos eran la restricción y los ingenieros que mantenían el sistema entendían cada salto. Dejó de serlo cuando crecieron los equipos, las herramientas y los horizontes de mantenimiento."
+
+#: lessons/languages/cobol.md:148
+msgctxt "s-ac0e260e97bf-0047"
+msgid "Computer science behind this page"
+msgstr "Las ciencias de la computación detrás de esta página"

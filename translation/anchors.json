@@ -3611,14 +3611,14 @@
     {
      "en": "By language",
      "en_id": "by-language",
-     "es": "By language",
-     "es_id": "by-language",
+     "es": "Por lenguaje",
+     "es_id": "por-lenguaje",
      "level": 1,
      "line": 1
     }
    ],
    "map": {
-    "by-language": "by-language"
+    "by-language": "por-lenguaje"
    }
   },
   "lessons/languages/apl.md": {
@@ -3634,112 +3634,112 @@
     {
      "en": "APL was meant for the whiteboard",
      "en_id": "apl-was-meant-for-the-whiteboard",
-     "es": "APL was meant for the whiteboard",
-     "es_id": "apl-was-meant-for-the-whiteboard",
+     "es": "APL se pensó para la pizarra",
+     "es_id": "apl-se-pensó-para-la-pizarra",
      "level": 2,
      "line": 9
     },
     {
      "en": "Array thinking replaces control flow (`apl`)",
      "en_id": "array-thinking-replaces-control-flow-apl",
-     "es": "Array thinking replaces control flow (`apl`)",
-     "es_id": "array-thinking-replaces-control-flow-apl",
+     "es": "El pensamiento en arreglos reemplaza al flujo de control (`apl`)",
+     "es_id": "el-pensamiento-en-arreglos-reemplaza-al-flujo-de-control-apl",
      "level": 2,
      "line": 25
     },
     {
      "en": "Behold the monstrosity",
      "en_id": "behold-the-monstrosity",
-     "es": "Behold the monstrosity",
-     "es_id": "behold-the-monstrosity",
+     "es": "Contempla la monstruosidad",
+     "es_id": "contempla-la-monstruosidad",
      "level": 3,
      "line": 27
     },
     {
      "en": "How the hell does that work?",
      "en_id": "how-the-hell-does-that-work",
-     "es": "How the hell does that work?",
-     "es_id": "how-the-hell-does-that-work",
+     "es": "¿Cómo demonios funciona eso?",
+     "es_id": "cómo-demonios-funciona-eso",
      "level": 3,
      "line": 35
     },
     {
      "en": "What did we just learn?",
      "en_id": "what-did-we-just-learn",
-     "es": "What did we just learn?",
-     "es_id": "what-did-we-just-learn",
+     "es": "¿Qué acabamos de aprender?",
+     "es_id": "qué-acabamos-de-aprender",
      "level": 3,
      "line": 52
     },
     {
      "en": "Self-modifying functions (`apl-weird`)",
      "en_id": "self-modifying-functions-apl-weird",
-     "es": "Self-modifying functions (`apl-weird`)",
-     "es_id": "self-modifying-functions-apl-weird",
+     "es": "Funciones que se modifican a sí mismas (`apl-weird`)",
+     "es_id": "funciones-que-se-modifican-a-sí-mismas-apl-weird",
      "level": 2,
      "line": 59
     },
     {
      "en": "Behold the monstrosity",
      "en_id": "behold-the-monstrosity-1",
-     "es": "Behold the monstrosity",
-     "es_id": "behold-the-monstrosity-1",
+     "es": "Contempla la monstruosidad",
+     "es_id": "contempla-la-monstruosidad-1",
      "level": 3,
      "line": 61
     },
     {
      "en": "How the hell does that work?",
      "en_id": "how-the-hell-does-that-work-1",
-     "es": "How the hell does that work?",
-     "es_id": "how-the-hell-does-that-work-1",
+     "es": "¿Cómo demonios funciona eso?",
+     "es_id": "cómo-demonios-funciona-eso-1",
      "level": 3,
      "line": 69
     },
     {
      "en": "What did we just learn?",
      "en_id": "what-did-we-just-learn-1",
-     "es": "What did we just learn?",
-     "es_id": "what-did-we-just-learn-1",
+     "es": "¿Qué acabamos de aprender?",
+     "es_id": "qué-acabamos-de-aprender-1",
      "level": 3,
      "line": 88
     },
     {
      "en": "Do this in production and you're fired",
      "en_id": "do-this-in-production-and-youre-fired",
-     "es": "Do this in production and you're fired",
-     "es_id": "do-this-in-production-and-youre-fired",
+     "es": "Haz esto en producción y estás despedido",
+     "es_id": "haz-esto-en-producción-y-estás-despedido",
      "level": 3,
      "line": 94
     },
     {
      "en": "Now break it yourself",
      "en_id": "now-break-it-yourself",
-     "es": "Now break it yourself",
-     "es_id": "now-break-it-yourself",
+     "es": "Ahora rómpelo tú",
+     "es_id": "ahora-rómpelo-tú",
      "level": 3,
      "line": 103
     },
     {
      "en": "Quirks",
      "en_id": "quirks",
-     "es": "Quirks",
-     "es_id": "quirks",
+     "es": "Rarezas",
+     "es_id": "rarezas",
      "level": 2,
      "line": 107
     },
     {
      "en": "Weird next to boring",
      "en_id": "weird-next-to-boring",
-     "es": "Weird next to boring",
-     "es_id": "weird-next-to-boring",
+     "es": "Lo raro junto a lo aburrido",
+     "es_id": "lo-raro-junto-a-lo-aburrido",
      "level": 2,
      "line": 117
     },
     {
      "en": "Under what circumstances would this terrible idea become reasonable?",
      "en_id": "under-what-circumstances-would-this-terrible-idea-become-reasonable",
-     "es": "Under what circumstances would this terrible idea become reasonable?",
-     "es_id": "under-what-circumstances-would-this-terrible-idea-become-reasonable",
+     "es": "¿En qué circunstancias esta idea terrible se volvería razonable?",
+     "es_id": "en-qué-circunstancias-esta-idea-terrible-se-volvería-razonable",
      "level": 2,
      "line": 121
     },
@@ -3770,32 +3770,32 @@
     {
      "en": "Computer science behind this page",
      "en_id": "computer-science-behind-this-page",
-     "es": "Computer science behind this page",
-     "es_id": "computer-science-behind-this-page",
+     "es": "Las ciencias de la computación detrás de esta página",
+     "es_id": "las-ciencias-de-la-computación-detrás-de-esta-página",
      "level": 2,
      "line": 172
     }
    ],
    "map": {
     "apl": "apl",
-    "apl-was-meant-for-the-whiteboard": "apl-was-meant-for-the-whiteboard",
-    "array-thinking-replaces-control-flow-apl": "array-thinking-replaces-control-flow-apl",
-    "behold-the-monstrosity": "behold-the-monstrosity",
-    "behold-the-monstrosity-1": "behold-the-monstrosity-1",
-    "computer-science-behind-this-page": "computer-science-behind-this-page",
-    "do-this-in-production-and-youre-fired": "do-this-in-production-and-youre-fired",
+    "apl-was-meant-for-the-whiteboard": "apl-se-pensó-para-la-pizarra",
+    "array-thinking-replaces-control-flow-apl": "el-pensamiento-en-arreglos-reemplaza-al-flujo-de-control-apl",
+    "behold-the-monstrosity": "contempla-la-monstruosidad",
+    "behold-the-monstrosity-1": "contempla-la-monstruosidad-1",
+    "computer-science-behind-this-page": "las-ciencias-de-la-computación-detrás-de-esta-página",
+    "do-this-in-production-and-youre-fired": "haz-esto-en-producción-y-estás-despedido",
     "how-each-program-runs": "how-each-program-runs",
-    "how-the-hell-does-that-work": "how-the-hell-does-that-work",
-    "how-the-hell-does-that-work-1": "how-the-hell-does-that-work-1",
-    "now-break-it-yourself": "now-break-it-yourself",
+    "how-the-hell-does-that-work": "cómo-demonios-funciona-eso",
+    "how-the-hell-does-that-work-1": "cómo-demonios-funciona-eso-1",
+    "now-break-it-yourself": "ahora-rómpelo-tú",
     "program-flow-of-apl": "program-flow-of-apl",
     "program-flow-of-apl-weird": "program-flow-of-apl-weird",
-    "quirks": "quirks",
-    "self-modifying-functions-apl-weird": "self-modifying-functions-apl-weird",
-    "under-what-circumstances-would-this-terrible-idea-become-reasonable": "under-what-circumstances-would-this-terrible-idea-become-reasonable",
-    "weird-next-to-boring": "weird-next-to-boring",
-    "what-did-we-just-learn": "what-did-we-just-learn",
-    "what-did-we-just-learn-1": "what-did-we-just-learn-1"
+    "quirks": "rarezas",
+    "self-modifying-functions-apl-weird": "funciones-que-se-modifican-a-sí-mismas-apl-weird",
+    "under-what-circumstances-would-this-terrible-idea-become-reasonable": "en-qué-circunstancias-esta-idea-terrible-se-volvería-razonable",
+    "weird-next-to-boring": "lo-raro-junto-a-lo-aburrido",
+    "what-did-we-just-learn": "qué-acabamos-de-aprender",
+    "what-did-we-just-learn-1": "qué-acabamos-de-aprender-1"
    }
   },
   "lessons/languages/awk.md": {
@@ -3811,88 +3811,88 @@
     {
      "en": "What makes AWK special",
      "en_id": "what-makes-awk-special",
-     "es": "What makes AWK special",
-     "es_id": "what-makes-awk-special",
+     "es": "Qué hace especial a AWK",
+     "es_id": "qué-hace-especial-a-awk",
      "level": 2,
      "line": 5
     },
     {
      "en": "A portable awk (`awk`)",
      "en_id": "a-portable-awk-awk",
-     "es": "A portable awk (`awk`)",
-     "es_id": "a-portable-awk-awk",
+     "es": "Un awk portable (`awk`)",
+     "es_id": "un-awk-portable-awk",
      "level": 2,
      "line": 18
     },
     {
      "en": "Records from a random byte stream (`awk-weird`)",
      "en_id": "records-from-a-random-byte-stream-awk-weird",
-     "es": "Records from a random byte stream (`awk-weird`)",
-     "es_id": "records-from-a-random-byte-stream-awk-weird",
+     "es": "Registros a partir de un flujo de bytes aleatorios (`awk-weird`)",
+     "es_id": "registros-a-partir-de-un-flujo-de-bytes-aleatorios-awk-weird",
      "level": 2,
      "line": 26
     },
     {
      "en": "Behold the monstrosity",
      "en_id": "behold-the-monstrosity",
-     "es": "Behold the monstrosity",
-     "es_id": "behold-the-monstrosity",
+     "es": "Contempla la monstruosidad",
+     "es_id": "contempla-la-monstruosidad",
      "level": 3,
      "line": 28
     },
     {
      "en": "How the hell does that work?",
      "en_id": "how-the-hell-does-that-work",
-     "es": "How the hell does that work?",
-     "es_id": "how-the-hell-does-that-work",
+     "es": "¿Cómo demonios funciona eso?",
+     "es_id": "cómo-demonios-funciona-eso",
      "level": 3,
      "line": 43
     },
     {
      "en": "What did we just learn?",
      "en_id": "what-did-we-just-learn",
-     "es": "What did we just learn?",
-     "es_id": "what-did-we-just-learn",
+     "es": "¿Qué acabamos de aprender?",
+     "es_id": "qué-acabamos-de-aprender",
      "level": 3,
      "line": 64
     },
     {
      "en": "Do this in production and you're fired",
      "en_id": "do-this-in-production-and-youre-fired",
-     "es": "Do this in production and you're fired",
-     "es_id": "do-this-in-production-and-youre-fired",
+     "es": "Haz esto en producción y estás despedido",
+     "es_id": "haz-esto-en-producción-y-estás-despedido",
      "level": 3,
      "line": 73
     },
     {
      "en": "Now break it yourself",
      "en_id": "now-break-it-yourself",
-     "es": "Now break it yourself",
-     "es_id": "now-break-it-yourself",
+     "es": "Ahora rómpelo tú",
+     "es_id": "ahora-rómpelo-tú",
      "level": 3,
      "line": 83
     },
     {
      "en": "Quirks",
      "en_id": "quirks",
-     "es": "Quirks",
-     "es_id": "quirks",
+     "es": "Rarezas",
+     "es_id": "rarezas",
      "level": 2,
      "line": 87
     },
     {
      "en": "Weird next to boring",
      "en_id": "weird-next-to-boring",
-     "es": "Weird next to boring",
-     "es_id": "weird-next-to-boring",
+     "es": "Lo raro junto a lo aburrido",
+     "es_id": "lo-raro-junto-a-lo-aburrido",
      "level": 2,
      "line": 95
     },
     {
      "en": "Under what circumstances would this terrible idea become reasonable?",
      "en_id": "under-what-circumstances-would-this-terrible-idea-become-reasonable",
-     "es": "Under what circumstances would this terrible idea become reasonable?",
-     "es_id": "under-what-circumstances-would-this-terrible-idea-become-reasonable",
+     "es": "¿En qué circunstancias esta idea terrible se volvería razonable?",
+     "es_id": "en-qué-circunstancias-esta-idea-terrible-se-volvería-razonable",
      "level": 2,
      "line": 99
     },
@@ -3923,29 +3923,29 @@
     {
      "en": "Computer science behind this page",
      "en_id": "computer-science-behind-this-page",
-     "es": "Computer science behind this page",
-     "es_id": "computer-science-behind-this-page",
+     "es": "Las ciencias de la computación detrás de esta página",
+     "es_id": "las-ciencias-de-la-computación-detrás-de-esta-página",
      "level": 2,
      "line": 149
     }
    ],
    "map": {
-    "a-portable-awk-awk": "a-portable-awk-awk",
+    "a-portable-awk-awk": "un-awk-portable-awk",
     "awk": "awk",
-    "behold-the-monstrosity": "behold-the-monstrosity",
-    "computer-science-behind-this-page": "computer-science-behind-this-page",
-    "do-this-in-production-and-youre-fired": "do-this-in-production-and-youre-fired",
+    "behold-the-monstrosity": "contempla-la-monstruosidad",
+    "computer-science-behind-this-page": "las-ciencias-de-la-computación-detrás-de-esta-página",
+    "do-this-in-production-and-youre-fired": "haz-esto-en-producción-y-estás-despedido",
     "how-each-program-runs": "how-each-program-runs",
-    "how-the-hell-does-that-work": "how-the-hell-does-that-work",
-    "now-break-it-yourself": "now-break-it-yourself",
+    "how-the-hell-does-that-work": "cómo-demonios-funciona-eso",
+    "now-break-it-yourself": "ahora-rómpelo-tú",
     "program-flow-of-awk": "program-flow-of-awk",
     "program-flow-of-awk-weird": "program-flow-of-awk-weird",
-    "quirks": "quirks",
-    "records-from-a-random-byte-stream-awk-weird": "records-from-a-random-byte-stream-awk-weird",
-    "under-what-circumstances-would-this-terrible-idea-become-reasonable": "under-what-circumstances-would-this-terrible-idea-become-reasonable",
-    "weird-next-to-boring": "weird-next-to-boring",
-    "what-did-we-just-learn": "what-did-we-just-learn",
-    "what-makes-awk-special": "what-makes-awk-special"
+    "quirks": "rarezas",
+    "records-from-a-random-byte-stream-awk-weird": "registros-a-partir-de-un-flujo-de-bytes-aleatorios-awk-weird",
+    "under-what-circumstances-would-this-terrible-idea-become-reasonable": "en-qué-circunstancias-esta-idea-terrible-se-volvería-razonable",
+    "weird-next-to-boring": "lo-raro-junto-a-lo-aburrido",
+    "what-did-we-just-learn": "qué-acabamos-de-aprender",
+    "what-makes-awk-special": "qué-hace-especial-a-awk"
    }
   },
   "lessons/languages/cobol.md": {
@@ -3961,8 +3961,8 @@
     {
      "en": "What makes COBOL special",
      "en_id": "what-makes-cobol-special",
-     "es": "What makes COBOL special",
-     "es_id": "what-makes-cobol-special",
+     "es": "Qué hace especial a COBOL",
+     "es_id": "qué-hace-especial-a-cobol",
      "level": 2,
      "line": 9
     },
@@ -3977,64 +3977,64 @@
     {
      "en": "Behold the monstrosity",
      "en_id": "behold-the-monstrosity",
-     "es": "Behold the monstrosity",
-     "es_id": "behold-the-monstrosity",
+     "es": "Contempla la monstruosidad",
+     "es_id": "contempla-la-monstruosidad",
      "level": 3,
      "line": 22
     },
     {
      "en": "How the hell does that work?",
      "en_id": "how-the-hell-does-that-work",
-     "es": "How the hell does that work?",
-     "es_id": "how-the-hell-does-that-work",
+     "es": "¿Cómo demonios funciona eso?",
+     "es_id": "cómo-demonios-funciona-eso",
      "level": 3,
      "line": 30
     },
     {
      "en": "What did we just learn?",
      "en_id": "what-did-we-just-learn",
-     "es": "What did we just learn?",
-     "es_id": "what-did-we-just-learn",
+     "es": "¿Qué acabamos de aprender?",
+     "es_id": "qué-acabamos-de-aprender",
      "level": 3,
      "line": 52
     },
     {
      "en": "Do this in production and you're fired",
      "en_id": "do-this-in-production-and-youre-fired",
-     "es": "Do this in production and you're fired",
-     "es_id": "do-this-in-production-and-youre-fired",
+     "es": "Haz esto en producción y estás despedido",
+     "es_id": "haz-esto-en-producción-y-estás-despedido",
      "level": 3,
      "line": 60
     },
     {
      "en": "Now break it yourself",
      "en_id": "now-break-it-yourself",
-     "es": "Now break it yourself",
-     "es_id": "now-break-it-yourself",
+     "es": "Ahora rómpelo tú",
+     "es_id": "ahora-rómpelo-tú",
      "level": 3,
      "line": 70
     },
     {
      "en": "Quirks",
      "en_id": "quirks",
-     "es": "Quirks",
-     "es_id": "quirks",
+     "es": "Rarezas",
+     "es_id": "rarezas",
      "level": 2,
      "line": 74
     },
     {
      "en": "Weird next to boring",
      "en_id": "weird-next-to-boring",
-     "es": "Weird next to boring",
-     "es_id": "weird-next-to-boring",
+     "es": "Lo raro junto a lo aburrido",
+     "es_id": "lo-raro-junto-a-lo-aburrido",
      "level": 2,
      "line": 86
     },
     {
      "en": "Under what circumstances would this terrible idea become reasonable?",
      "en_id": "under-what-circumstances-would-this-terrible-idea-become-reasonable",
-     "es": "Under what circumstances would this terrible idea become reasonable?",
-     "es_id": "under-what-circumstances-would-this-terrible-idea-become-reasonable",
+     "es": "¿En qué circunstancias esta idea terrible se volvería razonable?",
+     "es_id": "en-qué-circunstancias-esta-idea-terrible-se-volvería-razonable",
      "level": 2,
      "line": 90
     },
@@ -4065,28 +4065,28 @@
     {
      "en": "Computer science behind this page",
      "en_id": "computer-science-behind-this-page",
-     "es": "Computer science behind this page",
-     "es_id": "computer-science-behind-this-page",
+     "es": "Las ciencias de la computación detrás de esta página",
+     "es_id": "las-ciencias-de-la-computación-detrás-de-esta-página",
      "level": 2,
      "line": 148
     }
    ],
    "map": {
     "alter": "alter",
-    "behold-the-monstrosity": "behold-the-monstrosity",
+    "behold-the-monstrosity": "contempla-la-monstruosidad",
     "cobol": "cobol",
-    "computer-science-behind-this-page": "computer-science-behind-this-page",
-    "do-this-in-production-and-youre-fired": "do-this-in-production-and-youre-fired",
+    "computer-science-behind-this-page": "las-ciencias-de-la-computación-detrás-de-esta-página",
+    "do-this-in-production-and-youre-fired": "haz-esto-en-producción-y-estás-despedido",
     "how-each-program-runs": "how-each-program-runs",
-    "how-the-hell-does-that-work": "how-the-hell-does-that-work",
-    "now-break-it-yourself": "now-break-it-yourself",
+    "how-the-hell-does-that-work": "cómo-demonios-funciona-eso",
+    "now-break-it-yourself": "ahora-rómpelo-tú",
     "program-flow-of-cobol": "program-flow-of-cobol",
     "program-flow-of-cobol-weird": "program-flow-of-cobol-weird",
-    "quirks": "quirks",
-    "under-what-circumstances-would-this-terrible-idea-become-reasonable": "under-what-circumstances-would-this-terrible-idea-become-reasonable",
-    "weird-next-to-boring": "weird-next-to-boring",
-    "what-did-we-just-learn": "what-did-we-just-learn",
-    "what-makes-cobol-special": "what-makes-cobol-special"
+    "quirks": "rarezas",
+    "under-what-circumstances-would-this-terrible-idea-become-reasonable": "en-qué-circunstancias-esta-idea-terrible-se-volvería-razonable",
+    "weird-next-to-boring": "lo-raro-junto-a-lo-aburrido",
+    "what-did-we-just-learn": "qué-acabamos-de-aprender",
+    "what-makes-cobol-special": "qué-hace-especial-a-cobol"
    }
   },
   "lessons/languages/csharp-linq-xaml.md": {
@@ -7716,131 +7716,131 @@
     {
      "en": "ed and Ex study guide",
      "en_id": "ed-and-ex-study-guide",
-     "es": "ed and Ex study guide",
-     "es_id": "ed-and-ex-study-guide",
+     "es": "Guía de estudio de ed y Ex",
+     "es_id": "guía-de-estudio-de-ed-y-ex",
      "level": 1,
      "line": 1
     },
     {
      "en": "What this guide is for",
      "en_id": "what-this-guide-is-for",
-     "es": "What this guide is for",
-     "es_id": "what-this-guide-is-for",
+     "es": "Para qué sirve esta guía",
+     "es_id": "para-qué-sirve-esta-guía",
      "level": 2,
      "line": 3
     },
     {
      "en": "Before you begin",
      "en_id": "before-you-begin",
-     "es": "Before you begin",
-     "es_id": "before-you-begin",
+     "es": "Antes de empezar",
+     "es_id": "antes-de-empezar",
      "level": 2,
      "line": 18
     },
     {
      "en": "The shared challenge",
      "en_id": "the-shared-challenge",
-     "es": "The shared challenge",
-     "es_id": "the-shared-challenge",
+     "es": "El reto compartido",
+     "es_id": "el-reto-compartido",
      "level": 2,
      "line": 41
     },
     {
      "en": "The machine to identify",
      "en_id": "the-machine-to-identify",
-     "es": "The machine to identify",
-     "es_id": "the-machine-to-identify",
+     "es": "La máquina que hay que identificar",
+     "es_id": "la-máquina-que-hay-que-identificar",
      "level": 2,
      "line": 47
     },
     {
      "en": "Trace one run",
      "en_id": "trace-one-run",
-     "es": "Trace one run",
-     "es_id": "trace-one-run",
+     "es": "Traza una ejecución",
+     "es_id": "traza-una-ejecución",
      "level": 2,
      "line": 96
     },
     {
      "en": "ed: the buffer after each stage",
      "en_id": "ed-the-buffer-after-each-stage",
-     "es": "ed: the buffer after each stage",
-     "es_id": "ed-the-buffer-after-each-stage",
+     "es": "ed: el búfer después de cada etapa",
+     "es_id": "ed-el-búfer-después-de-cada-etapa",
      "level": 3,
      "line": 102
     },
     {
      "en": "Ex: the mark on the tape",
      "en_id": "ex-the-mark-on-the-tape",
-     "es": "Ex: the mark on the tape",
-     "es_id": "ex-the-mark-on-the-tape",
+     "es": "Ex: la marca en la cinta",
+     "es_id": "ex-la-marca-en-la-cinta",
      "level": 3,
      "line": 138
     },
     {
      "en": "Compare the ordinary and weird designs",
      "en_id": "compare-the-ordinary-and-weird-designs",
-     "es": "Compare the ordinary and weird designs",
-     "es_id": "compare-the-ordinary-and-weird-designs",
+     "es": "Compara los diseños ordinarios y los raros",
+     "es_id": "compara-los-diseños-ordinarios-y-los-raros",
      "level": 2,
      "line": 163
     },
     {
      "en": "What the exercises demonstrate",
      "en_id": "what-the-exercises-demonstrate",
-     "es": "What the exercises demonstrate",
-     "es_id": "what-the-exercises-demonstrate",
+     "es": "Qué demuestran los ejercicios",
+     "es_id": "qué-demuestran-los-ejercicios",
      "level": 2,
      "line": 176
     },
     {
      "en": "Failure modes, costs and boundaries",
      "en_id": "failure-modes-costs-and-boundaries",
-     "es": "Failure modes, costs and boundaries",
-     "es_id": "failure-modes-costs-and-boundaries",
+     "es": "Modos de fallo, costos y límites",
+     "es_id": "modos-de-fallo-costos-y-límites",
      "level": 2,
      "line": 189
     },
     {
      "en": "Connections across the repository",
      "en_id": "connections-across-the-repository",
-     "es": "Connections across the repository",
-     "es_id": "connections-across-the-repository",
+     "es": "Conexiones a lo largo del repositorio",
+     "es_id": "conexiones-a-lo-largo-del-repositorio",
      "level": 2,
      "line": 214
     },
     {
      "en": "Self-check",
      "en_id": "self-check",
-     "es": "Self-check",
-     "es_id": "self-check",
+     "es": "Autoevaluación",
+     "es_id": "autoevaluación",
      "level": 2,
      "line": 222
     },
     {
      "en": "Further reading",
      "en_id": "further-reading",
-     "es": "Further reading",
-     "es_id": "further-reading",
+     "es": "Lecturas adicionales",
+     "es_id": "lecturas-adicionales",
      "level": 2,
      "line": 231
     }
    ],
    "map": {
-    "before-you-begin": "before-you-begin",
-    "compare-the-ordinary-and-weird-designs": "compare-the-ordinary-and-weird-designs",
-    "connections-across-the-repository": "connections-across-the-repository",
-    "ed-and-ex-study-guide": "ed-and-ex-study-guide",
-    "ed-the-buffer-after-each-stage": "ed-the-buffer-after-each-stage",
-    "ex-the-mark-on-the-tape": "ex-the-mark-on-the-tape",
-    "failure-modes-costs-and-boundaries": "failure-modes-costs-and-boundaries",
-    "further-reading": "further-reading",
-    "self-check": "self-check",
-    "the-machine-to-identify": "the-machine-to-identify",
-    "the-shared-challenge": "the-shared-challenge",
-    "trace-one-run": "trace-one-run",
-    "what-the-exercises-demonstrate": "what-the-exercises-demonstrate",
-    "what-this-guide-is-for": "what-this-guide-is-for"
+    "before-you-begin": "antes-de-empezar",
+    "compare-the-ordinary-and-weird-designs": "compara-los-diseños-ordinarios-y-los-raros",
+    "connections-across-the-repository": "conexiones-a-lo-largo-del-repositorio",
+    "ed-and-ex-study-guide": "guía-de-estudio-de-ed-y-ex",
+    "ed-the-buffer-after-each-stage": "ed-el-búfer-después-de-cada-etapa",
+    "ex-the-mark-on-the-tape": "ex-la-marca-en-la-cinta",
+    "failure-modes-costs-and-boundaries": "modos-de-fallo-costos-y-límites",
+    "further-reading": "lecturas-adicionales",
+    "self-check": "autoevaluación",
+    "the-machine-to-identify": "la-máquina-que-hay-que-identificar",
+    "the-shared-challenge": "el-reto-compartido",
+    "trace-one-run": "traza-una-ejecución",
+    "what-the-exercises-demonstrate": "qué-demuestran-los-ejercicios",
+    "what-this-guide-is-for": "para-qué-sirve-esta-guía"
    }
   },
   "lessons/study-guides/languages/forth.md": {

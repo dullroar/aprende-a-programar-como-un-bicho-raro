@@ -1,0 +1,268 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lessons/languages/awk.md:1
+msgctxt "s-cac670adb2da-0000"
+msgid "AWK"
+msgstr "AWK"
+
+#: lessons/languages/awk.md:3
+msgctxt "s-2b45e9f627a8-0001"
+msgid "Entries: [⟦CODE_0001⟧](⟦DEST_0002⟧) (portable POSIX awk, one ⟦CODE_0003⟧ in a ⟦CODE_0004⟧ block) and [⟦CODE_0005⟧](⟦DEST_0006⟧) (gawk: a stream of random bytes cut up by a regular expression, and no loop, ⟦CODE_0007⟧, function or random-number call)."
+msgstr "Entradas: [⟦CODE_0001⟧](⟦DEST_0002⟧) (awk POSIX portable, un ⟦CODE_0003⟧ en un bloque ⟦CODE_0004⟧) y [⟦CODE_0005⟧](⟦DEST_0006⟧) (gawk: un flujo de bytes aleatorios cortado por una expresión regular, sin bucle, ⟦CODE_0007⟧, función ni llamada a números aleatorios)."
+
+#: lessons/languages/awk.md:5
+msgctxt "s-394ab31b30b5-0002"
+msgid "What makes AWK special"
+msgstr "Qué hace especial a AWK"
+
+#: lessons/languages/awk.md:7
+msgctxt "s-35cb0c0d64f4-0003"
+msgid "An awk program is a list of **pattern-action rules**, and the language runs them in a loop you never write: read a record, split it into fields, run every rule whose pattern matches, repeat. ⟦CODE_0001⟧ runs before the first record and ⟦CODE_0002⟧ after the last. Variables spring into existence as ⟦CODE_0003⟧ or ⟦CODE_0004⟧, whichever the context wants. This is why awk programs are short, and why the \"loop\" in the weird entry is not in the program."
+msgstr "Un programa awk es una lista de **reglas de patrón y acción**. El lenguaje las ejecuta en un bucle que nunca escribes: lee un registro, lo divide en campos, ejecuta cada regla cuyo patrón coincide y repite. ⟦CODE_0001⟧ se ejecuta antes del primer registro y ⟦CODE_0002⟧ después del último. Las variables aparecen de la nada como ⟦CODE_0003⟧ o ⟦CODE_0004⟧, según lo que pida el contexto. Por eso los programas awk son cortos y por eso el \"bucle\" de la entrada rara no está en el programa."
+
+#: lessons/languages/awk.md:9
+msgctxt "s-4edb797a890b-0004"
+msgid "⟦SEP_0001⟧ Feature ⟦SEP_0002⟧ Where ⟦SEP_0003⟧ What it teaches ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ Característica ⟦SEP_0002⟧ Dónde ⟦SEP_0003⟧ Qué enseña ⟦SEP_0004⟧"
+
+#: lessons/languages/awk.md:11
+msgctxt "s-392466c92b25-0005"
+msgid "⟦SEP_0005⟧ Parameters as local variables ⟦SEP_0006⟧ [⟦CODE_0001⟧ L14](⟦DEST_0002⟧): ⟦CODE_0003⟧ ⟦SEP_0007⟧ awk has no ⟦CODE_0004⟧. Extra parameters you do not pass are locals, by convention set apart by spaces. ⟦SEP_0008⟧"
+msgstr "⟦SEP_0005⟧ Parámetros como variables locales ⟦SEP_0006⟧ [⟦CODE_0001⟧ L14](⟦DEST_0002⟧): ⟦CODE_0003⟧ ⟦SEP_0007⟧ awk no tiene ⟦CODE_0004⟧. Los parámetros adicionales que no pasas son locales y, por convención, se separan con espacios. ⟦SEP_0008⟧"
+
+#: lessons/languages/awk.md:12
+msgctxt "s-ae5ab0b6cc10-0006"
+msgid "⟦SEP_0004⟧ Quoting by splitting ⟦SEP_0005⟧ [L23](⟦DEST_0001⟧) ⟦CODE_0002⟧ ⟦SEP_0006⟧ ⟦CODE_0003⟧ makes quoting a path for the shell safe without regex tricks. ⟦SEP_0007⟧"
+msgstr "⟦SEP_0004⟧ Citar dividiendo ⟦SEP_0005⟧ [L23](⟦DEST_0001⟧) ⟦CODE_0002⟧ ⟦SEP_0006⟧ ⟦CODE_0003⟧ hace seguro, sin trucos de regex, citar una ruta para el intérprete de comandos (*shell*). ⟦SEP_0007⟧"
+
+#: lessons/languages/awk.md:13
+msgctxt "s-547fcc4cf3bb-0007"
+msgid "⟦SEP_0007⟧ Assigning to a field rebuilds ⟦CODE_0001⟧ ⟦SEP_0008⟧ [L44](⟦DEST_0002⟧) ⟦CODE_0003⟧ ⟦SEP_0009⟧ Set ⟦CODE_0004⟧, assign ⟦CODE_0005⟧ and ⟦CODE_0006⟧ is rejoined with tabs. ⟦SEP_0010⟧"
+msgstr "⟦SEP_0007⟧ Asignar a un campo reconstruye ⟦CODE_0001⟧ ⟦SEP_0008⟧ [L44](⟦DEST_0002⟧) ⟦CODE_0003⟧ ⟦SEP_0009⟧ Fija ⟦CODE_0004⟧, asigna ⟦CODE_0005⟧ y ⟦CODE_0006⟧ se vuelve a unir con tabuladores. ⟦SEP_0010⟧"
+
+#: lessons/languages/awk.md:14
+msgctxt "s-2520c90c2c7e-0008"
+msgid "⟦SEP_0005⟧ A pipe is a file ⟦SEP_0006⟧ [L84](⟦DEST_0001⟧): ⟦CODE_0002⟧ ⟦SEP_0007⟧ ⟦CODE_0003⟧ starts a process on first use; ⟦CODE_0004⟧ waits for it. ⟦SEP_0008⟧"
+msgstr "⟦SEP_0005⟧ Una tubería es un archivo ⟦SEP_0006⟧ [L84](⟦DEST_0001⟧): ⟦CODE_0002⟧ ⟦SEP_0007⟧ ⟦CODE_0003⟧ inicia un proceso en el primer uso; ⟦CODE_0004⟧ espera a que termine. ⟦SEP_0008⟧"
+
+#: lessons/languages/awk.md:15
+msgctxt "s-25a6cdb3462e-0009"
+msgid "⟦SEP_0004⟧ A plain loop, in ⟦CODE_0001⟧ ⟦SEP_0005⟧ [L93](⟦DEST_0002⟧): ⟦CODE_0003⟧ ⟦SEP_0006⟧ The straight entry uses awk as a scripting language, not as a record processor. ⟦SEP_0007⟧"
+msgstr "⟦SEP_0004⟧ Un bucle simple, en ⟦CODE_0001⟧ ⟦SEP_0005⟧ [L93](⟦DEST_0002⟧): ⟦CODE_0003⟧ ⟦SEP_0006⟧ La entrada directa usa awk como lenguaje de scripts, no como procesador de registros. ⟦SEP_0007⟧"
+
+#: lessons/languages/awk.md:16
+msgctxt "s-0bbc74c8ca96-0010"
+msgid "⟦SEP_0005⟧ ⟦CODE_0001⟧ is the error check ⟦SEP_0006⟧ [L102](⟦DEST_0002⟧) ⟦SEP_0007⟧ It returns the command's exit status in gawk and mawk, but ⟦CODE_0003⟧ in busybox and ⟦CODE_0004⟧ in the one-true-awk. See below. ⟦SEP_0008⟧"
+msgstr "⟦SEP_0005⟧ ⟦CODE_0001⟧ es la comprobación de errores ⟦SEP_0006⟧ [L102](⟦DEST_0002⟧) ⟦SEP_0007⟧ Devuelve el estado de salida del comando en gawk y mawk, pero ⟦CODE_0003⟧ en busybox y ⟦CODE_0004⟧ en el one-true-awk. Mira más abajo. ⟦SEP_0008⟧"
+
+#: lessons/languages/awk.md:18
+msgctxt "s-8015a4489f17-0011"
+msgid "A portable awk (⟦CODE_0001⟧)"
+msgstr "Un awk portable (⟦CODE_0001⟧)"
+
+#: lessons/languages/awk.md:20
+msgctxt "s-ae98e7fcad73-0012"
+msgid "The straight entry restricts itself to what POSIX awk guarantees, so it runs under gawk, mawk, the one-true-awk (BWK) and busybox awk. Its ⟦CODE_0001⟧ runs it under all four and lints it with ⟦CODE_0002⟧, which must be silent. This is the lesson: **portable awk is a real constraint**, and the four implementations disagree in small ways."
+msgstr "La entrada directa se limita a lo que POSIX awk garantiza, así que funciona con gawk, mawk, el one-true-awk (BWK) y el awk de busybox. Su ⟦CODE_0001⟧ la ejecuta con los cuatro y la revisa con ⟦CODE_0002⟧, que debe quedar en silencio. Esa es la lección: **el awk portable es una restricción real** y las cuatro implementaciones difieren en detalles pequeños."
+
+#: lessons/languages/awk.md:22
+msgctxt "s-4ec6d5f2b32a-0013"
+msgid "**⟦CODE_0001⟧ of a pipe returns different numbers per awk.** gawk and mawk return the exit status, busybox returns the status times 256 and the one-true-awk build tested returned 0 regardless. The entry treats \"non-zero\" as failure and does not depend on the value."
+msgstr "**⟦CODE_0001⟧ de una tubería devuelve números distintos según el awk.** gawk y mawk devuelven el estado de salida; busybox devuelve el estado multiplicado por 256. La compilación del one-true-awk que se probó devolvió 0 en todos los casos. La entrada trata \"distinto de cero\" como fallo y no depende del valor."
+
+#: lessons/languages/awk.md:23
+msgctxt "s-10410fbb7e23-0014"
+msgid "**⟦CODE_0001⟧/⟦CODE_0002⟧ are seeded from ⟦CODE_0003⟧** ([L70-71](⟦DEST_0004⟧)): POSIX awk has no entropy source, and ⟦CODE_0005⟧ with no argument is seeded by the time, which repeats within a second."
+msgstr "**⟦CODE_0001⟧/⟦CODE_0002⟧ se siembran con ⟦CODE_0003⟧** ([L70-71](⟦DEST_0004⟧)): POSIX awk no tiene una fuente de entropía; ⟦CODE_0005⟧ sin argumento se siembra con la hora, que se repite dentro de un segundo."
+
+#: lessons/languages/awk.md:24
+msgctxt "s-877c6f2835f8-0015"
+msgid "**Function parameters must not share a name with a global** (⟦CODE_0001⟧ catches the shadowing)."
+msgstr "**Los parámetros de una función no deben compartir nombre con una variable global** (⟦CODE_0001⟧ detecta el ocultamiento de nombres)."
+
+#: lessons/languages/awk.md:26
+msgctxt "s-6b6e31eb0aa0-0016"
+msgid "Records from a random byte stream (⟦CODE_0001⟧)"
+msgstr "Registros a partir de un flujo de bytes aleatorios (⟦CODE_0001⟧)"
+
+#: lessons/languages/awk.md:28
+msgctxt "s-cc9cfaabc50d-0017"
+msgid "Behold the monstrosity"
+msgstr "Contempla la monstruosidad"
+
+#: lessons/languages/awk.md:34
+msgctxt "s-655b1aada33c-0018"
+msgid "The header comment of [⟦CODE_0001⟧](⟦DEST_0002⟧) contains the whole challenge, minus the database, in one command:"
+msgstr "El comentario de encabezado de [⟦CODE_0001⟧](⟦DEST_0002⟧) contiene todo el reto, sin la base de datos, en un solo comando:"
+
+#: lessons/languages/awk.md:41
+msgctxt "s-d45c5e864c66-0019"
+msgid "The program reads random bytes and prints timecards. There is no random-number call, no loop, no ⟦CODE_0001⟧."
+msgstr "El programa lee bytes aleatorios e imprime tarjetas de horas. No hay llamada a números aleatorios, ni bucle, ni ⟦CODE_0001⟧."
+
+#: lessons/languages/awk.md:43
+msgctxt "s-415f5fa29cf9-0020"
+msgid "How the hell does that work?"
+msgstr "¿Cómo demonios funciona eso?"
+
+#: lessons/languages/awk.md:45
+msgctxt "s-7671ebc281a0-0021"
+msgid "**⟦CODE_0001⟧ can be a regular expression (gawk).** POSIX awk says the record separator is one character. gawk also accepts a regex, and stores the text that matched in ⟦CODE_0002⟧. [⟦CODE_0003⟧](⟦DEST_0004⟧) says \"a record ends at an ASCII digit\". Read ⟦CODE_0005⟧ with that and the stream is cut after every digit byte. About 10 in 256 bytes are digits, uniformly spread over 0-9, so **⟦CODE_0006⟧ is a uniform random digit**. The record's own text (random junk before the digit) is ignored."
+msgstr "**⟦CODE_0001⟧ puede ser una expresión regular (gawk).** POSIX awk dice que el separador de registros es un solo carácter. gawk también acepta una regex y guarda en ⟦CODE_0002⟧ el texto que coincidió. [⟦CODE_0003⟧](⟦DEST_0004⟧) dice \"un registro termina en un dígito ASCII\". Lee ⟦CODE_0005⟧ con eso en mente y el flujo se corta después de cada byte que sea un dígito. Alrededor de 10 de cada 256 bytes son dígitos, repartidos de manera uniforme en 0-9, así que **⟦CODE_0006⟧ es un dígito aleatorio uniforme**. El texto propio del registro (basura aleatoria antes del dígito) se ignora."
+
+#: lessons/languages/awk.md:47
+msgctxt "s-ff1f111e012e-0022"
+msgid "**A record is a card, a digit is a die.** ⟦CODE_0001⟧ is 10 to 19 hours. awk's read-a-record loop, which you did not write, runs one pass per card. The rules ([L52-69](⟦DEST_0002⟧)):"
+msgstr "**Un registro es una tarjeta y un dígito es un dado.** ⟦CODE_0001⟧ vale de 10 a 19 horas. El bucle de lectura de registros de awk, que tú no escribiste, ejecuta una pasada por tarjeta. Las reglas ([L52-69](⟦DEST_0002⟧)):"
+
+#: lessons/languages/awk.md:58
+msgctxt "s-fd872cad5bf7-0023"
+msgid "Rule 3 assigns ⟦CODE_0001⟧, which makes awk **re-split** the record into fields with ⟦CODE_0002⟧ (set to a comma in ⟦CODE_0003⟧), so ⟦CODE_0004⟧ is the category, ⟦CODE_0005⟧ the hours, ⟦CODE_0006⟧ the total. Rule 5 sets ⟦CODE_0007⟧ and assigns ⟦CODE_0008⟧, which rebuilds ⟦CODE_0009⟧ joined with tabs. The stop rule is a *pattern*: **⟦CODE_0010⟧** matches once the total is over 40, and ⟦CODE_0011⟧ ends the main loop (⟦CODE_0012⟧ still runs, and commits)."
+msgstr "La regla 3 asigna ⟦CODE_0001⟧, lo que hace que awk **vuelva a dividir** el registro en campos con ⟦CODE_0002⟧ (fijado en una coma en ⟦CODE_0003⟧). Así, ⟦CODE_0004⟧ es la categoría, ⟦CODE_0005⟧ las horas y ⟦CODE_0006⟧ el total. La regla 5 fija ⟦CODE_0007⟧ y asigna ⟦CODE_0008⟧, lo que reconstruye ⟦CODE_0009⟧ unido con tabuladores. La regla de parada es un *patrón*: **⟦CODE_0010⟧** coincide cuando el total pasa de 40. Entonces ⟦CODE_0011⟧ termina el bucle principal (⟦CODE_0012⟧ todavía se ejecuta y confirma)."
+
+#: lessons/languages/awk.md:60
+msgctxt "s-fb2f0c1993c1-0024"
+msgid "**Making it read ⟦CODE_0001⟧ with no ⟦CODE_0002⟧.** [⟦CODE_0003⟧](⟦DEST_0004⟧) adds a file argument, then increments ⟦CODE_0005⟧ by ⟦CODE_0006⟧, which is 1 if no file was given and 0 if one was. A comparison is a number in awk, so a conditional is arithmetic."
+msgstr "**Hacer que lea ⟦CODE_0001⟧ sin ⟦CODE_0002⟧.** [⟦CODE_0003⟧](⟦DEST_0004⟧) agrega un argumento de archivo y luego incrementa ⟦CODE_0005⟧ en ⟦CODE_0006⟧, que vale 1 si no se dio ningún archivo y 0 si se dio uno. En awk una comparación es un número, así que un condicional es aritmética."
+
+#: lessons/languages/awk.md:62
+msgctxt "s-6ff792aec51d-0025"
+msgid "**Order matters: ⟦CODE_0001⟧ applies to every read.** The week is fetched with ⟦CODE_0002⟧. With ⟦CODE_0003⟧ already set, ⟦CODE_0004⟧'s output would end at the first digit of the year and the week would be empty. The call is therefore made **before** ⟦CODE_0005⟧ is set in [⟦CODE_0006⟧](⟦DEST_0007⟧)."
+msgstr "**El orden importa: ⟦CODE_0001⟧ se aplica a cada lectura.** La semana se obtiene con ⟦CODE_0002⟧. Con ⟦CODE_0003⟧ ya fijado, la salida de ⟦CODE_0004⟧ terminaría en el primer dígito del año y la semana quedaría vacía. Por eso la llamada se hace **antes** de fijar ⟦CODE_0005⟧ en [⟦CODE_0006⟧](⟦DEST_0007⟧)."
+
+#: lessons/languages/awk.md:64
+msgctxt "s-d2bbf037de84-0026"
+msgid "What did we just learn?"
+msgstr "¿Qué acabamos de aprender?"
+
+#: lessons/languages/awk.md:66
+msgctxt "s-bc6b7dfb448f-0027"
+msgid "**awk's main loop is a loop you can aim.** Change ⟦CODE_0001⟧ and you change what a \"record\" is; change the input and you change how many times the loop runs. The program is the *body*."
+msgstr "**El bucle principal de awk es un bucle al que puedes apuntar.** Cambia ⟦CODE_0001⟧ y cambias lo que es un \"registro\"; cambia la entrada y cambias cuántas veces se ejecuta el bucle. El programa es el *cuerpo*."
+
+#: lessons/languages/awk.md:67
+msgctxt "s-11f77ed6dc18-0028"
+msgid "**Rules are conditionals.** A pattern is an ⟦CODE_0001⟧; ⟦CODE_0002⟧ is ⟦CODE_0003⟧; an empty pattern is \"always\". The six rules above are a straight-line program whose control flow is the pattern column."
+msgstr "**Las reglas son condicionales.** Un patrón es un ⟦CODE_0001⟧; ⟦CODE_0002⟧ es ⟦CODE_0003⟧; un patrón vacío significa \"siempre\". Las seis reglas de arriba son un programa en línea recta cuyo flujo de control es la columna de patrones."
+
+#: lessons/languages/awk.md:68
+msgctxt "s-ce201f5ca6d8-0029"
+msgid "**A source of randomness can be any stream you slice.** Cutting a uniform byte stream at a class of bytes gives a uniform digit; no generator or seed is needed."
+msgstr "**Una fuente de aleatoriedad puede ser cualquier flujo que cortes en trozos.** Cortar un flujo uniforme de bytes en una clase de bytes da un dígito uniforme; no hacen falta generador ni semilla."
+
+#: lessons/languages/awk.md:69
+msgctxt "s-5231bc6d8652-0030"
+msgid "**Implementations differ exactly where the standard stops.** ⟦CODE_0001⟧ is a gawk extension, so this program is a lesson in which part of awk is the language and which is gawk."
+msgstr "**Las implementaciones difieren justo donde el estándar se detiene.** ⟦CODE_0001⟧ es una extensión de gawk, así que este programa es una lección sobre qué parte de awk es el lenguaje y cuál es gawk."
+
+#: lessons/languages/awk.md:71
+msgctxt "s-b6ce6e81bd4d-0031"
+msgid "Tags: pattern-action rules, ⟦CODE_0001⟧/⟦CODE_0002⟧, ⟦CODE_0003⟧ re-splitting, ⟦CODE_0004⟧ from a command and ⟦CODE_0005⟧ are **guaranteed** by POSIX. A multi-character ⟦CODE_0006⟧ as a regex is **implementation-permitted** (gawk, mawk, the one-true-awk and busybox accept it). ⟦CODE_0007⟧, ⟦CODE_0008⟧ and ⟦CODE_0009⟧ are gawk extensions (**implementation-permitted**). Reading ⟦CODE_0010⟧ as a plain file is **implementation-permitted** (Linux/BSD)."
+msgstr "Etiquetas: las reglas de patrón y acción, ⟦CODE_0001⟧/⟦CODE_0002⟧, la nueva división de ⟦CODE_0003⟧, ⟦CODE_0004⟧ desde un comando y ⟦CODE_0005⟧ son comportamiento **garantizado** por POSIX. Un ⟦CODE_0006⟧ de varios caracteres como regex es comportamiento **permitido por la implementación** (gawk, mawk, el one-true-awk y busybox lo aceptan). ⟦CODE_0007⟧, ⟦CODE_0008⟧ y ⟦CODE_0009⟧ son extensiones de gawk (comportamiento **permitido por la implementación**). Leer ⟦CODE_0010⟧ como un archivo normal es comportamiento **permitido por la implementación** (Linux/BSD)."
+
+#: lessons/languages/awk.md:73
+msgctxt "s-299b7a6f9cbe-0032"
+msgid "Do this in production and you're fired"
+msgstr "Haz esto en producción y estás despedido"
+
+#: lessons/languages/awk.md:75
+msgctxt "s-24ad1929e073-0033"
+msgid "**It only works in gawk, and the failure under other awks is silent.** mawk has no ⟦CODE_0001⟧, so ⟦CODE_0002⟧ is *always* true, rule 1 skips every record, and the stop rule never fires. On ⟦CODE_0003⟧ mawk reads until memory runs out; on a finite digit file it reports ⟦CODE_0004⟧. (Try it, carefully, in [B13](⟦DEST_0005⟧).)"
+msgstr "**Solo funciona en gawk y el fallo con otros awk es silencioso.** mawk no tiene ⟦CODE_0001⟧, así que ⟦CODE_0002⟧ es *siempre* verdadero, la regla 1 omite todos los registros y la regla de parada nunca se activa. Con ⟦CODE_0003⟧ mawk lee hasta quedarse sin memoria; con un archivo finito de dígitos informa ⟦CODE_0004⟧. (Pruébalo, con cuidado, en [B13](⟦DEST_0005⟧).)"
+
+#: lessons/languages/awk.md:76
+msgctxt "s-67ffcfe46002-0034"
+msgid "**The empty last record.** A file whose last character is not a digit leaves an empty final record with ⟦CODE_0001⟧. Without rule 1 that counts as a 10-hour card."
+msgstr "**El último registro vacío.** Un archivo cuyo último carácter no es un dígito deja un registro final vacío con ⟦CODE_0001⟧. Sin la regla 1, eso cuenta como una tarjeta de 10 horas."
+
+#: lessons/languages/awk.md:77
+msgctxt "s-21033db095c7-0035"
+msgid "**⟦CODE_0001⟧ changes every read**, including ⟦CODE_0002⟧ from a command."
+msgstr "**⟦CODE_0001⟧ cambia cada lectura**, incluida la de ⟦CODE_0002⟧ desde un comando."
+
+#: lessons/languages/awk.md:78
+msgctxt "s-84de2c7761bf-0036"
+msgid "**A directory name with a single quote** would break the shell command that makes the folder."
+msgstr "**Un nombre de directorio con una comilla simple** rompería el comando del intérprete de comandos que crea el directorio."
+
+#: lessons/languages/awk.md:79
+msgctxt "s-c68996dbb15c-0037"
+msgid "**Nothing is testable in isolation**: the stream is the input, so the check feeds digit files in four shapes and compares them card by card with a bash reference."
+msgstr "**Nada se puede probar de forma aislada**: el flujo es la entrada, así que la comprobación alimenta archivos de dígitos en cuatro formas y los compara tarjeta por tarjeta con una referencia en bash."
+
+#: lessons/languages/awk.md:81
+msgctxt "s-c4ec59095c66-0038"
+msgid "Legitimate uses: a regex ⟦CODE_0001⟧ and ⟦CODE_0002⟧ are real tools for **parsing records that are not line-shaped** (multi-line records, tokens separated by a pattern, log entries). That *is* what they were added for."
+msgstr "Usos legítimos: un ⟦CODE_0001⟧ como regex y ⟦CODE_0002⟧ son herramientas reales para el **análisis sintáctico de registros que no tienen forma de línea** (registros de varias líneas, tokens separados por un patrón, entradas de un log). Para *eso* se agregaron."
+
+#: lessons/languages/awk.md:83
+msgctxt "s-5e3bcdfbf845-0039"
+msgid "Now break it yourself"
+msgstr "Ahora rómpelo tú"
+
+#: lessons/languages/awk.md:85
+msgctxt "s-e167c09af065-0040"
+msgid "See [exercises](⟦DEST_0001⟧). There is also an older awk exercise that needs no gawk: [C3](⟦DEST_0002⟧), and a reference port to awk in [⟦CODE_0003⟧](⟦DEST_0004⟧), which is a third design (the caller supplies the records with ⟦CODE_0005⟧, and a ⟦CODE_0006⟧ pattern is the stop rule)."
+msgstr "Consulta los [ejercicios](⟦DEST_0001⟧). También hay un ejercicio de awk más antiguo que no necesita gawk: [C3](⟦DEST_0002⟧). Hay además una adaptación de referencia a awk en [⟦CODE_0003⟧](⟦DEST_0004⟧), que es un tercer diseño (quien llama aporta los registros con ⟦CODE_0005⟧ y un patrón ⟦CODE_0006⟧ es la regla de parada)."
+
+#: lessons/languages/awk.md:87
+msgctxt "s-12d0b77aba94-0041"
+msgid "Quirks"
+msgstr "Rarezas"
+
+#: lessons/languages/awk.md:89
+msgctxt "s-ad0c5f50877b-0042"
+msgid "**Uninitialized variables are both ⟦CODE_0001⟧ and ⟦CODE_0002⟧.** ⟦CODE_0003⟧ needs no initialization, and ⟦CODE_0004⟧ warns about it anyway: the straight entry initializes ⟦CODE_0005⟧ and ⟦CODE_0006⟧ for that reason."
+msgstr "**Las variables sin inicializar son a la vez ⟦CODE_0001⟧ y ⟦CODE_0002⟧.** ⟦CODE_0003⟧ no necesita inicialización y ⟦CODE_0004⟧ emite una advertencia de todos modos: la entrada directa inicializa ⟦CODE_0005⟧ y ⟦CODE_0006⟧ por esa razón."
+
+#: lessons/languages/awk.md:90
+msgctxt "s-05ab2ac2528f-0043"
+msgid "**⟦CODE_0001⟧ truncates once, then appends** for the life of the program. A pipe is started once and reused until you ⟦CODE_0002⟧ it."
+msgstr "**⟦CODE_0001⟧ trunca una vez y luego agrega** durante toda la vida del programa. Una tubería se inicia una sola vez y se reutiliza hasta que haces ⟦CODE_0002⟧ sobre ella."
+
+#: lessons/languages/awk.md:91
+msgctxt "s-aa59773a411e-0044"
+msgid "**⟦CODE_0001⟧ and ⟦CODE_0002⟧** differ, and ⟦CODE_0003⟧ truncates a record. Fields are 1-based and ⟦CODE_0004⟧ is the whole record."
+msgstr "**⟦CODE_0001⟧ y ⟦CODE_0002⟧** son distintos; ⟦CODE_0003⟧ trunca un registro. Los campos empiezan en 1 y ⟦CODE_0004⟧ es el registro completo."
+
+#: lessons/languages/awk.md:92
+msgctxt "s-44320c2864b8-0045"
+msgid "**A comparison is 0 or 1**, which is why ⟦CODE_0001⟧ is legal."
+msgstr "**Una comparación vale 0 o 1**; por eso ⟦CODE_0001⟧ es legal."
+
+#: lessons/languages/awk.md:93
+msgctxt "s-5d54bc38abfa-0046"
+msgid "**⟦CODE_0001⟧ with a one-character separator** is literal; longer ones are regexes, a classic surprise."
+msgstr "**⟦CODE_0001⟧ con un separador de un solo carácter** es literal; los más largos son regex, una sorpresa clásica."
+
+#: lessons/languages/awk.md:95
+msgctxt "s-a6b58da9d4cd-0047"
+msgid "Weird next to boring"
+msgstr "Lo raro junto a lo aburrido"
+
+#: lessons/languages/awk.md:97
+msgctxt "s-ad15404e2535-0048"
+msgid "[⟦CODE_0001⟧](⟦DEST_0002⟧) uses awk as a scripting language: a ⟦CODE_0003⟧ block, functions, a loop. [⟦CODE_0004⟧](⟦DEST_0005⟧) uses awk as a **record-processing machine**: no loop, the program is a column of patterns. The first is what a script author writes; the second is what the original design was for, aimed at a stream it was never meant to read. Compare [⟦CODE_0006⟧](⟦DEST_0007⟧), where the data structure drives the evaluation, and [⟦CODE_0008⟧](⟦DEST_0009⟧), another small Unix tool with an implicit loop."
+msgstr "[⟦CODE_0001⟧](⟦DEST_0002⟧) usa awk como lenguaje de scripts: un bloque ⟦CODE_0003⟧, funciones, un bucle. [⟦CODE_0004⟧](⟦DEST_0005⟧) usa awk como **máquina de procesamiento de registros**: sin bucle, el programa es una columna de patrones. La primera es lo que escribe el autor de un script. La segunda es para lo que se diseñó awk originalmente, apuntada a un flujo que nunca estuvo pensado para leer. Compara [⟦CODE_0006⟧](⟦DEST_0007⟧), donde la estructura de datos dirige la evaluación, con [⟦CODE_0008⟧](⟦DEST_0009⟧), otra pequeña herramienta de Unix con un bucle implícito."
+
+#: lessons/languages/awk.md:99
+msgctxt "s-c08a852d0dbe-0049"
+msgid "Under what circumstances would this terrible idea become reasonable?"
+msgstr "¿En qué circunstancias esta idea terrible se volvería razonable?"
+
+#: lessons/languages/awk.md:101
+msgctxt "s-768bd56a38de-0050"
+msgid "When the input *is* the loop. A regex record separator is the idiomatic way to read paragraphs, blocks of a config file or entries of a log. Slicing ⟦CODE_0001⟧ for dice is a stunt, but the same mechanism (a pattern decides where a record ends; a pattern decides whether it matters) is what gives awk its reputation for doing in one line what takes a page elsewhere."
+msgstr "Cuando la entrada *es* el bucle. Un separador de registros con regex es la forma idiomática de leer párrafos, bloques de un archivo de configuración o entradas de un log. Cortar ⟦CODE_0001⟧ para sacar dados es una acrobacia. Pero el mismo mecanismo le da a awk su fama de hacer en una línea lo que en otros lugares ocupa una página. Ese mecanismo es que un patrón decide dónde termina un registro y otro decide si importa."
+
+#: lessons/languages/awk.md:149
+msgctxt "s-ac0e260e97bf-0051"
+msgid "Computer science behind this page"
+msgstr "Las ciencias de la computación detrás de esta página"

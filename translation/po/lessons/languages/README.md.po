@@ -1,0 +1,103 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lessons/languages/README.md:1
+msgctxt "s-9afa906e185f-0000"
+msgid "By language"
+msgstr "Por lenguaje"
+
+#: lessons/languages/README.md:3
+msgctxt "s-270fc4d5597b-0001"
+msgid "Each page covers what makes the language special, with pointers into the repo, then its quirks. Links look like ⟦CODE_0001⟧: line numbers drift, so the key line is quoted too."
+msgstr "Cada página explica qué hace especial al lenguaje, con enlaces al repositorio y luego sus rarezas. Los enlaces tienen el aspecto de ⟦CODE_0001⟧: los números de línea se desplazan, así que también se cita la línea clave."
+
+#: lessons/languages/README.md:5
+msgctxt "s-a70502bf2358-0002"
+msgid "⟦SEP_0001⟧ Page ⟦SEP_0002⟧ Entries ⟦SEP_0003⟧ The weird trick ⟦SEP_0004⟧ The deeper lesson ⟦SEP_0005⟧"
+msgstr "⟦SEP_0001⟧ Página ⟦SEP_0002⟧ Entradas ⟦SEP_0003⟧ El truco raro ⟦SEP_0004⟧ La lección de fondo ⟦SEP_0005⟧"
+
+#: lessons/languages/README.md:7
+msgctxt "s-72827bf4b0e3-0003"
+msgid "⟦SEP_0004⟧ [APL](⟦DEST_0001⟧) ⟦SEP_0005⟧ ⟦CODE_0002⟧, ⟦CODE_0003⟧ ⟦SEP_0006⟧ Five rolls and one take-while; functions that manufacture their successors ⟦SEP_0007⟧ Code as data, metaprogramming and a notation that was meant for the whiteboard ⟦SEP_0008⟧"
+msgstr "⟦SEP_0004⟧ [APL](⟦DEST_0001⟧) ⟦SEP_0005⟧ ⟦CODE_0002⟧, ⟦CODE_0003⟧ ⟦SEP_0006⟧ Cinco tiradas y un \"take-while\"; funciones que fabrican a sus sucesoras ⟦SEP_0007⟧ El código como datos, la metaprogramación y una notación pensada para la pizarra ⟦SEP_0008⟧"
+
+#: lessons/languages/README.md:8
+msgctxt "s-e051388953a0-0004"
+msgid "⟦SEP_0006⟧ [AWK](⟦DEST_0001⟧) ⟦SEP_0007⟧ ⟦CODE_0002⟧, ⟦CODE_0003⟧ ⟦SEP_0008⟧ A regex record separator turns ⟦CODE_0004⟧ into dice; ⟦CODE_0005⟧ is the stop rule ⟦SEP_0009⟧ Implicit loops, patterns as conditionals, where POSIX awk ends and gawk begins ⟦SEP_0010⟧"
+msgstr "⟦SEP_0006⟧ [AWK](⟦DEST_0001⟧) ⟦SEP_0007⟧ ⟦CODE_0002⟧, ⟦CODE_0003⟧ ⟦SEP_0008⟧ Un separador de registros con regex convierte ⟦CODE_0004⟧ en dados; ⟦CODE_0005⟧ es la regla de parada ⟦SEP_0009⟧ Bucles implícitos, patrones como condicionales, dónde termina POSIX awk y dónde empieza gawk ⟦SEP_0010⟧"
+
+#: lessons/languages/README.md:9
+msgctxt "s-aa0b8171e8de-0005"
+msgid "⟦SEP_0006⟧ [C#, LINQ, XAML](⟦DEST_0001⟧) ⟦SEP_0007⟧ ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧, plus Java, Kotlin, Python, Go, Rust ⟦SEP_0008⟧ Everything inside a bodiless ⟦CODE_0005⟧; database writes and WPF animation inside a query; a parser that runs methods ⟦SEP_0009⟧ Deferred execution, provider boundaries, side effects, UI thread affinity ⟦SEP_0010⟧"
+msgstr "⟦SEP_0006⟧ [C#, LINQ, XAML](⟦DEST_0001⟧) ⟦SEP_0007⟧ ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧, además de Java, Kotlin, Python, Go, Rust ⟦SEP_0008⟧ Todo dentro de un ⟦CODE_0005⟧ sin cuerpo; escrituras en la base de datos y animación WPF dentro de una consulta; un analizador sintáctico que ejecuta métodos ⟦SEP_0009⟧ Ejecución diferida, fronteras de proveedor, efectos secundarios, afinidad con el hilo de la interfaz ⟦SEP_0010⟧"
+
+#: lessons/languages/README.md:10
+msgctxt "s-a7f4c96ec05c-0006"
+msgid "⟦SEP_0006⟧ [COBOL](⟦DEST_0001⟧) ⟦SEP_0007⟧ ⟦CODE_0002⟧, ⟦CODE_0003⟧ ⟦SEP_0008⟧ ⟦CODE_0004⟧ changes a ⟦CODE_0005⟧ destination; an overflowing field is the stop rule ⟦SEP_0009⟧ Mutable control flow, data-declared rules, historical runtime design ⟦SEP_0010⟧"
+msgstr "⟦SEP_0006⟧ [COBOL](⟦DEST_0001⟧) ⟦SEP_0007⟧ ⟦CODE_0002⟧, ⟦CODE_0003⟧ ⟦SEP_0008⟧ ⟦CODE_0004⟧ cambia un destino de ⟦CODE_0005⟧; un campo que se desborda es la regla de parada ⟦SEP_0009⟧ Flujo de control mutable, reglas declaradas en los datos, diseño histórico del entorno de ejecución ⟦SEP_0010⟧"
+
+#: lessons/languages/README.md:11
+msgctxt "s-89ecba35139d-0007"
+msgid "⟦SEP_0005⟧ [Common Lisp](⟦DEST_0001⟧) ⟦SEP_0006⟧ ⟦CODE_0002⟧, ⟦CODE_0003⟧ ⟦SEP_0007⟧ A class hierarchy is the loop and ⟦CODE_0004⟧ method combination is the stop rule ⟦SEP_0008⟧ Method combination, the class precedence list, reader labels, dynamic binding, the metaobject protocol ⟦SEP_0009⟧"
+msgstr "⟦SEP_0005⟧ [Common Lisp](⟦DEST_0001⟧) ⟦SEP_0006⟧ ⟦CODE_0002⟧, ⟦CODE_0003⟧ ⟦SEP_0007⟧ Una jerarquía de clases es el bucle y la combinación de métodos de ⟦CODE_0004⟧ es la regla de parada ⟦SEP_0008⟧ Combinación de métodos, lista de precedencia de clases, etiquetas del lector, enlace dinámico, el protocolo de metaobjetos ⟦SEP_0009⟧"
+
+#: lessons/languages/README.md:12
+msgctxt "s-0bb8e0763945-0008"
+msgid "⟦SEP_0007⟧ [ed and Ex](⟦DEST_0001⟧) ⟦SEP_0008⟧ ⟦CODE_0002⟧, ⟦CODE_0003⟧ ⟦SEP_0009⟧ ⟦CODE_0004⟧'s commands are a rewrite system (a failed ⟦CODE_0005⟧ is an ⟦CODE_0006⟧); in Ex a register runs itself, and marks do the arithmetic ⟦SEP_0010⟧ Text rewriting, code as text, state outside the text, standards versus implementations ⟦SEP_0011⟧"
+msgstr "⟦SEP_0007⟧ [ed y Ex](⟦DEST_0001⟧) ⟦SEP_0008⟧ ⟦CODE_0002⟧, ⟦CODE_0003⟧ ⟦SEP_0009⟧ Los comandos de ⟦CODE_0004⟧ son un sistema de reescritura (un ⟦CODE_0005⟧ fallido es un ⟦CODE_0006⟧); en Ex un registro se ejecuta solo y las marcas hacen la aritmética ⟦SEP_0010⟧ Reescritura de texto, código como texto, estado fuera del texto, estándares frente a implementaciones ⟦SEP_0011⟧"
+
+#: lessons/languages/README.md:13
+msgctxt "s-7683f1a00cdd-0009"
+msgid "⟦SEP_0004⟧ [find](⟦DEST_0001⟧) ⟦SEP_0005⟧ ⟦CODE_0002⟧, ⟦CODE_0003⟧ ⟦SEP_0006⟧ The walk digs the directory it is walking; the path is the call stack and the names are the counters ⟦SEP_0007⟧ Tree traversal as a loop, path patterns as lookup tables, what GNU's extras replace, what POSIX leaves unspecified ⟦SEP_0008⟧"
+msgstr "⟦SEP_0004⟧ [find](⟦DEST_0001⟧) ⟦SEP_0005⟧ ⟦CODE_0002⟧, ⟦CODE_0003⟧ ⟦SEP_0006⟧ El recorrido excava el directorio que está recorriendo; la ruta es la pila de llamadas y los nombres son los contadores ⟦SEP_0007⟧ Recorrido de árboles como bucle, patrones de ruta como tablas de consulta, qué reemplazan los extras de GNU, qué deja sin especificar POSIX ⟦SEP_0008⟧"
+
+#: lessons/languages/README.md:14
+msgctxt "s-a274d89c44f6-0010"
+msgid "⟦SEP_0004⟧ [Forth](⟦DEST_0001⟧) ⟦SEP_0005⟧ ⟦CODE_0002⟧, ⟦CODE_0003⟧ ⟦SEP_0006⟧ The text interpreter's parse position is the program counter ⟦SEP_0007⟧ The interpreter is a program you can reach into ⟦SEP_0008⟧"
+msgstr "⟦SEP_0004⟧ [Forth](⟦DEST_0001⟧) ⟦SEP_0005⟧ ⟦CODE_0002⟧, ⟦CODE_0003⟧ ⟦SEP_0006⟧ La posición de análisis del intérprete de texto es el contador de programa ⟦SEP_0007⟧ El intérprete es un programa al que puedes meter la mano ⟦SEP_0008⟧"
+
+#: lessons/languages/README.md:15
+msgctxt "s-b96ebfd19cef-0011"
+msgid "⟦SEP_0004⟧ [Haskell](⟦DEST_0001⟧) ⟦SEP_0005⟧ ⟦CODE_0002⟧, ⟦CODE_0003⟧ ⟦SEP_0006⟧ Evaluating a list element performs I/O ⟦SEP_0007⟧ Laziness, evaluation order, referential transparency, unsafe operations ⟦SEP_0008⟧"
+msgstr "⟦SEP_0004⟧ [Haskell](⟦DEST_0001⟧) ⟦SEP_0005⟧ ⟦CODE_0002⟧, ⟦CODE_0003⟧ ⟦SEP_0006⟧ Evaluar un elemento de una lista realiza E/S ⟦SEP_0007⟧ Evaluación perezosa, orden de evaluación, transparencia referencial, operaciones inseguras ⟦SEP_0008⟧"
+
+#: lessons/languages/README.md:16
+msgctxt "s-e246f6c8333e-0012"
+msgid "⟦SEP_0009⟧ [JavaScript](⟦DEST_0001⟧) ⟦SEP_0010⟧ ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧ ⟦SEP_0011⟧ The original's bodiless ⟦CODE_0005⟧ in Node.js; no loop at all, in two ways: closures remember the state and a lazy iterator pulls the cards, or ten listeners on an ⟦CODE_0006⟧ emit the next step to each other ⟦SEP_0012⟧ Evaluation order, closures, iterators and demand, why ⟦CODE_0007⟧ cannot stop, synchronous ⟦CODE_0008⟧ versus the event loop ⟦SEP_0013⟧"
+msgstr "⟦SEP_0009⟧ [JavaScript](⟦DEST_0001⟧) ⟦SEP_0010⟧ ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧ ⟦SEP_0011⟧ El ⟦CODE_0005⟧ sin cuerpo del original en Node.js; ningún bucle, de dos maneras: las clausuras recuerdan el estado y un iterador perezoso tira de las tarjetas, o diez escuchadores de eventos en un ⟦CODE_0006⟧ se emiten el paso siguiente unos a otros ⟦SEP_0012⟧ Orden de evaluación, clausuras, iteradores y demanda, por qué ⟦CODE_0007⟧ no puede detenerse, ⟦CODE_0008⟧ síncrono frente al bucle de eventos ⟦SEP_0013⟧"
+
+#: lessons/languages/README.md:17
+msgctxt "s-ea9288c04b3b-0013"
+msgid "⟦SEP_0003⟧ [m4](⟦DEST_0001⟧) ⟦SEP_0004⟧ ⟦CODE_0002⟧ ⟦SEP_0005⟧ A macro whose last word is itself: rescanning is the loop ⟦SEP_0006⟧ Quoting as lazy evaluation, text as the only data type, 32-bit arithmetic ⟦SEP_0007⟧"
+msgstr "⟦SEP_0003⟧ [m4](⟦DEST_0001⟧) ⟦SEP_0004⟧ ⟦CODE_0002⟧ ⟦SEP_0005⟧ Una macro cuya última palabra es ella misma: volver a escanear es el bucle ⟦SEP_0006⟧ Las comillas como evaluación perezosa, el texto como único tipo de datos, aritmética de 32 bits ⟦SEP_0007⟧"
+
+#: lessons/languages/README.md:18
+msgctxt "s-eddf4d360735-0014"
+msgid "⟦SEP_0004⟧ [Make and CMake](⟦DEST_0001⟧) ⟦SEP_0005⟧ ⟦CODE_0002⟧, ⟦CODE_0003⟧ ⟦SEP_0006⟧ Remaking makefiles becomes a loop; regex captures become registers ⟦SEP_0007⟧ Dependency graphs, restart semantics, scope, stateful condition evaluation ⟦SEP_0008⟧"
+msgstr "⟦SEP_0004⟧ [Make y CMake](⟦DEST_0001⟧) ⟦SEP_0005⟧ ⟦CODE_0002⟧, ⟦CODE_0003⟧ ⟦SEP_0006⟧ Rehacer los makefiles se convierte en un bucle; las capturas de regex se convierten en registros ⟦SEP_0007⟧ Grafos de dependencias, semántica de reinicio, ámbito, evaluación de condiciones con estado ⟦SEP_0008⟧"
+
+#: lessons/languages/README.md:19
+msgctxt "s-857ee3fa0d9e-0015"
+msgid "⟦SEP_0007⟧ [Regex](⟦DEST_0001⟧) ⟦SEP_0008⟧ ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧, ⟦CODE_0006⟧ ⟦SEP_0009⟧ Substitutions implement arithmetic and state; matches that return false after doing the work ⟦SEP_0010⟧ String-rewriting systems, backtracking as search, performance cliffs ⟦SEP_0011⟧"
+msgstr "⟦SEP_0007⟧ [Regex](⟦DEST_0001⟧) ⟦SEP_0008⟧ ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧, ⟦CODE_0006⟧ ⟦SEP_0009⟧ Las sustituciones implementan aritmética y estado; coincidencias que devuelven falso después de hacer el trabajo ⟦SEP_0010⟧ Sistemas de reescritura de cadenas de texto, retroceso como búsqueda, precipicios de rendimiento ⟦SEP_0011⟧"
+
+#: lessons/languages/README.md:20
+msgctxt "s-31840cb086eb-0016"
+msgid "⟦SEP_0005⟧ [tar](⟦DEST_0001⟧) ⟦SEP_0006⟧ ⟦CODE_0002⟧, ⟦CODE_0003⟧ ⟦SEP_0007⟧ An archive is the program (tar walks the members, and the operator's ⟦CODE_0004⟧ gives them meaning); and an archive's layout is a clock (every record written is one tick) ⟦SEP_0008⟧ Serialization versus execution, trust boundaries, logical clocks, fail-closed interpreters ⟦SEP_0009⟧"
+msgstr "⟦SEP_0005⟧ [tar](⟦DEST_0001⟧) ⟦SEP_0006⟧ ⟦CODE_0002⟧, ⟦CODE_0003⟧ ⟦SEP_0007⟧ Un archivo tar es el programa (tar recorre los miembros, y el ⟦CODE_0004⟧ del operador les da sentido); y la disposición del archivo es un reloj (cada registro escrito es un tic) ⟦SEP_0008⟧ Serialización frente a ejecución, fronteras de confianza, relojes lógicos, intérpretes que fallan cerrados ⟦SEP_0009⟧"
+
+#: lessons/languages/README.md:21
+msgctxt "s-ba6d6cc7eebb-0017"
+msgid "⟦SEP_0005⟧ [Tcl](⟦DEST_0001⟧) ⟦SEP_0006⟧ ⟦CODE_0002⟧, ⟦CODE_0003⟧ ⟦SEP_0007⟧ The program is text in a SQLite table; a recursive trigger is the loop ⟦SEP_0008⟧ Everything is a string command, ⟦CODE_0004⟧ as a library path, code and data are one thing ⟦SEP_0009⟧"
+msgstr "⟦SEP_0005⟧ [Tcl](⟦DEST_0001⟧) ⟦SEP_0006⟧ ⟦CODE_0002⟧, ⟦CODE_0003⟧ ⟦SEP_0007⟧ El programa es texto en una tabla de SQLite; un disparador recursivo es el bucle ⟦SEP_0008⟧ Todo es un comando de cadena de texto, ⟦CODE_0004⟧ como ruta de biblioteca, el código y los datos son una sola cosa ⟦SEP_0009⟧"
+
+#: lessons/languages/README.md:23
+msgctxt "s-898b23fbf61b-0018"
+msgid "Prefer to start from a mechanism instead? See [patterns](⟦DEST_0001⟧). Back to the [lessons index](⟦DEST_0002⟧)."
+msgstr "¿Prefieres empezar por un mecanismo? Consulta los [patrones](⟦DEST_0001⟧). Vuelve al [índice de lecciones](⟦DEST_0002⟧)."
