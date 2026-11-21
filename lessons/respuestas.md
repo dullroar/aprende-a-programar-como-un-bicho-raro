@@ -195,17 +195,17 @@ grep -E 'tot:#{41}' trace.txt | tail -1   # the final state: 41+ tally marks
    y estado de salida 1. Los corchetes convierten `tc_card()` en texto que solo se expande cuando `ifelse` lo devuelve, después de la prueba; esa es la única regla de parada del programa.
 3. `eval(tc_total > 60)`: la ejecución se detiene en la primera tarjeta que hace que el total pase de 60. `check-demo.sh out.txt 60` pasa la comprobación.
 
-## B12. Tcl: edit the program in the database
+## B12. Tcl: edita el programa en la base de datos
 
-1. With `recursive_triggers = OFF` the first `INSERT` fires the trigger once; the trigger inserts card 2; **that** insert does not fire the trigger again, because a trigger does not fire itself unless recursion is on. So card 1 is printed (by `tcl('born', ...)` in the trigger), card 2 is in the database but was never printed:
+1. Con `recursive_triggers = OFF`, el primer `INSERT` activa el disparador una vez; el disparador inserta la tarjeta 2. **Esa** inserción no vuelve a activar el disparador, porque un disparador no se activa a sí mismo salvo que la recursión esté habilitada. Por eso se imprime la tarjeta 1 (mediante `tcl('born', ...)` en el disparador). La tarjeta 2 está en la base de datos, pero nunca se imprimió:
 
    ```text
    Meetings	17	17	2026-W47	DEMO ONLY
    # committed total=31 entries=2 DEMO ONLY
    ```
 
-   `check-demo.sh` fails: "final total 17 does not pass 40", and the summary line disagrees with the single row.
-2. The text of the `hours` row is the Tcl program for the dice. With `expr {10}` every card is 10 hours:
+   `check-demo.sh` falla: "final total 17 does not pass 40", y la línea de resumen no coincide con la única fila.
+2. El texto de la fila `hours` es el programa Tcl para los dados. Con `expr {10}` cada tarjeta tiene 10 horas:
 
    ```text
    Meetings	10	10
@@ -216,14 +216,14 @@ grep -E 'tot:#{41}' trace.txt | tail -1   # the final state: 41+ tally marks
    # committed total=50 entries=5 DEMO ONLY
    ```
 
-   The trigger's rule is `NEW.running_total <= 40`, so a total of exactly 40 draws another card (the same reason as in A1). `check-demo.sh` passes: five cards of 10 hours is a legal run.
-- **The three hooks:** `db function tcl call` (SQL calls Tcl), the `unknown` override (the table is the library) and the recursive trigger (the loop). In step 2 you changed a row that `unknown` fetches: the *program* changed without editing a line of Tcl.
+   La regla del disparador es `NEW.running_total <= 40`, así que un total de exactamente 40 continúa y se extrae otra tarjeta (por la misma razón que en A1). `check-demo.sh` pasa: cinco tarjetas de 10 horas son una ejecución válida.
+- **Los tres ganchos:** `db function tcl call` (SQL llama a Tcl), la sustitución de `unknown` (la tabla es la biblioteca) y el disparador recursivo (el bucle). En el paso 2 cambiaste una fila que `unknown` recupera: el *programa* cambió sin editar una línea de Tcl.
 
-## B13. AWK: the missing `RT`
+## B13. AWK: el `RT` que falta
 
-The digit file is `1 2` followed by a newline. With `RS="[0-9]"` the records are: `""` ending in `1` (RT=1), `" "` ending in `2` (RT=2) and `"\n"` with **no** digit after it (RT is empty).
+El archivo de dígitos es `1 2` seguido de un salto de línea. Con `RS="[0-9]"` los registros son: `""` termina en `1` (RT=1), `" "` termina en `2` (RT=2) y `"\n"` **no** tiene un dígito después (RT está vacío).
 
-1. Dice 1 and 2 make hours 11 and 12:
+1. Los dados 1 y 2 dan 11 y 12 horas:
 
    ```text
    Meetings	11	11	2026-W47	DEMO ONLY
