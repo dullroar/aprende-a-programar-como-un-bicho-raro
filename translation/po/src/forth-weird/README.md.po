@@ -1,0 +1,295 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/forth-weird/README.md:2
+msgctxt "s-bc9ccbb685ed-0000"
+msgid "Forth"
+msgstr "Forth"
+
+#: src/forth-weird/README.md:3
+msgctxt "s-67b02add5fba-0001"
+msgid "that the text interpreter's parse position is a program counter, if you let it be, and that the data stack can be a program's only memory."
+msgstr "que la posición de análisis en el intérprete de texto es, si lo permites, un contador de programa y que la pila de datos puede ser la única memoria de un programa."
+
+#: src/forth-weird/README.md:11
+msgctxt "s-84e5b13bdd3a-0002"
+msgid "A stack machine with a movable instruction pointer"
+msgstr "Una máquina de pila con un puntero de instrucción móvil"
+
+#: src/forth-weird/README.md:12
+msgctxt "s-fbfdb32fd76f-0003"
+msgid "The data stack and the parse position ⟦CODE_0001⟧"
+msgstr "La pila de datos y la posición de análisis ⟦CODE_0001⟧"
+
+#: src/forth-weird/README.md:16
+msgctxt "s-1d27f4c2f813-0004"
+msgid "Forth, weirder"
+msgstr "Forth, más raro todavía"
+
+#: src/forth-weird/README.md:18
+msgctxt "s-3b8018c75b38-0005"
+msgid "**Teaches you:** that the text interpreter's parse position is a program counter, if you let it be, and that the data stack can be a program's only memory."
+msgstr "**Te enseña:** que, en el intérprete de texto, la posición de análisis es un contador de programa si lo permites, y que la pila de datos puede ser la única memoria de un programa."
+
+#: src/forth-weird/README.md:20
+msgctxt "s-5ca333b42af1-0006"
+msgid "**⟦DNT_0001⟧.** Fictional timecards in a scratch SQLite file. No connection to any real time-reporting system."
+msgstr "**⟦DNT_0001⟧.** Tarjetas de horas ficticias en un archivo SQLite temporal. Sin conexión con ningún sistema real de registro de horas."
+
+#: src/forth-weird/README.md:22
+msgctxt "s-aad7115b62f1-0007"
+msgid "This is weird, even for Forth folk."
+msgstr "Esto es raro, incluso para los aficionados a Forth."
+
+#: src/forth-weird/README.md:24
+msgctxt "s-599f1c5c83d7-0008"
+msgid "The program is a two-register machine:"
+msgstr "El programa es una máquina de dos registros:"
+
+#: src/forth-weird/README.md:26
+msgctxt "s-b26cfc72c8cf-0009"
+msgid "the **memory** is the data stack: there is not one ⟦CODE_0001⟧ in the file;"
+msgstr "la **memoria** es la pila de datos: no hay ni un solo ⟦CODE_0001⟧ en el archivo;"
+
+#: src/forth-weird/README.md:27
+msgctxt "s-81f64b82fafd-0010"
+msgid "the **program counter** is ⟦CODE_0001⟧, the text interpreter's parse position within the current line."
+msgstr "el **contador de programa** es ⟦CODE_0001⟧, la posición de análisis del intérprete de texto dentro de la línea actual."
+
+#: src/forth-weird/README.md:29
+msgctxt "s-d2b7b7d98646-0011"
+msgid "There is no ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧, ⟦CODE_0006⟧ or recursion anywhere. The \"loop\" is a line of source that the interpreter reads, and then reads *again* because a word moved ⟦CODE_0007⟧ backwards."
+msgstr "No hay ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧, ⟦CODE_0006⟧ ni recursión en ninguna parte. El \"bucle\" es una línea de código fuente que el intérprete lee y luego lee *otra vez* porque una palabra movió ⟦CODE_0007⟧ hacia atrás."
+
+#: src/forth-weird/README.md:31
+msgctxt "s-958ca26c6a61-0012"
+msgid "Run it"
+msgstr "Ejecútalo"
+
+#: src/forth-weird/README.md:33
+msgctxt "s-b4a18d3914aa-0013"
+msgid "You need Gforth (⟦CODE_0001⟧, 0.7.3 or later) and ⟦CODE_0002⟧."
+msgstr "Necesitas Gforth (⟦CODE_0001⟧, versión 0.7.3 o posterior) y ⟦CODE_0002⟧."
+
+#: src/forth-weird/README.md:41
+msgctxt "s-5acfce36f2b7-0014"
+msgid "Records go to ⟦CODE_0001⟧ (default ⟦CODE_0002⟧). A run looks like this:"
+msgstr "Los registros se guardan en ⟦CODE_0001⟧ (por defecto, ⟦CODE_0002⟧). Una ejecución se ve así:"
+
+#: src/forth-weird/README.md:52
+msgctxt "s-0dcb373c2dff-0015"
+msgid "Program Flow"
+msgstr "Flujo del programa"
+
+#: src/forth-weird/README.md:56
+msgctxt "s-195f18145769-0016"
+msgid "forth-weird: the text interpreter reads the same words again"
+msgstr "forth-weird: el intérprete de texto vuelve a leer las mismas palabras"
+
+#: src/forth-weird/README.md:57
+msgctxt "s-0c4427c0641f-0017"
+msgid "A flowchart. The Forth text interpreter reads one line: zero zero, then at-in fetch, then step, then rewind-question. Zero zero pushes the card number and the total. At-in fetch pushes the parse position, which is the anchor. The word step runs one card with the anchor kept on the return stack. The word rewind-question makes a flag, minus one while the total is 40 or less, and zero otherwise. It combines the flag with the distance back to the anchor, and adds that to the parse position. If the flag was true, the parse position is back at the anchor, so the interpreter reads step again. If it was false, the parse position is unchanged, and the interpreter goes on to drop, commit and report."
+msgstr "Un diagrama de flujo. El intérprete de texto de Forth lee una línea: cero cero, luego at-in fetch, luego step y luego rewind-question. Cero cero apila el número de tarjeta y el total. At-in fetch apila la posición de análisis, que es el ancla. La palabra step ejecuta una tarjeta con el ancla guardada en la pila de retorno. La palabra rewind-question crea una bandera: menos uno mientras el total no pasa de 40 y cero en cualquier otro caso. Combina la bandera con la distancia de regreso al ancla y suma el resultado a la posición de análisis. Si la bandera era verdadera, la posición de análisis vuelve al ancla y el intérprete lee step otra vez. Si era falsa, la posición de análisis no cambia y el intérprete sigue con drop, commit y report."
+
+#: src/forth-weird/README.md:58
+msgctxt "s-cd09c7687d9b-0018"
+msgid "Interpreter reads: 0 0 ⟦ENT_0001⟧in @ — stack holds n, total and anchor"
+msgstr "El intérprete lee: 0 0 ⟦ENT_0001⟧in @ — la pila contiene n, el total y el ancla"
+
+#: src/forth-weird/README.md:58
+msgctxt "s-8a26b5708063-0019"
+msgid "Interpreter reads the word step: runs one card, anchor kept on the return stack"
+msgstr "El intérprete lee la palabra step: ejecuta una tarjeta y mantiene el ancla en la pila de retorno"
+
+#: src/forth-weird/README.md:59
+msgctxt "s-f72ab19a33d0-0020"
+msgid "Interpreter reads rewind?: flag is -1 while total <= 40, else 0"
+msgstr "El intérprete lee rewind?: la bandera es -1 mientras el total no pasa de 40; en otro caso, es 0"
+
+#: src/forth-weird/README.md:60
+msgctxt "s-6b8e80f26eb7-0021"
+msgid "Distance back to the anchor AND flag, added to the parse position ⟦ENT_0001⟧in"
+msgstr "Distancia de vuelta al ancla Y bandera, sumada a la posición de análisis ⟦ENT_0001⟧in"
+
+#: src/forth-weird/README.md:61
+msgctxt "s-96aff09ba44c-0022"
+msgid "Is the parse position back at the anchor?"
+msgstr "¿Volvió la posición de análisis al ancla?"
+
+#: src/forth-weird/README.md:62
+msgctxt "s-b42d6b3be249-0023"
+msgid "yes: flag was -1"
+msgstr "sí: la bandera valía -1"
+
+#: src/forth-weird/README.md:63
+msgctxt "s-9c6bbaab1a01-0024"
+msgid "no: flag was 0"
+msgstr "no: la bandera era 0"
+
+#: src/forth-weird/README.md:63
+msgctxt "s-aa1850cf3429-0025"
+msgid "Interpreter reads on: drop the anchor, commit, report"
+msgstr "El intérprete sigue leyendo: suelta el ancla, confirma la transacción e informa"
+
+#: src/forth-weird/README.md:66
+msgctxt "s-a83ad0da4e68-0026"
+msgid "**What this shows:** the loop is the text interpreter, the loop you never see, and the jump is a change to ⟦CODE_0001⟧, the number that says how far it has read. Setting ⟦CODE_0002⟧ to an earlier value makes the interpreter read the same words again. There is no ⟦CODE_0003⟧: a Forth flag is ⟦CODE_0004⟧ or ⟦CODE_0005⟧, so ⟦CODE_0006⟧ turns the distance back into either itself or nothing."
+msgstr "**Qué muestra:** el bucle es el intérprete de texto, el bucle que nunca ves y el salto es un cambio en ⟦CODE_0001⟧, el número que indica hasta dónde ha leído. Asignar un valor anterior a ⟦CODE_0002⟧ hace que el intérprete lea otra vez las mismas palabras. No existe ⟦CODE_0003⟧: una bandera de Forth es ⟦CODE_0004⟧ o ⟦CODE_0005⟧, así que ⟦CODE_0006⟧ convierte la distancia en sí misma o en nada."
+
+#: src/forth-weird/README.md:68
+msgctxt "s-1674ea265df3-0027"
+msgid "**Why this mechanism matters:** the program counter is a variable, and a program can rewrite it. The state is two numbers on the data stack, and they survive the rewind because nothing else touches them. This works because the words are read from an input line, and it does not work the same way in a definition. See [⟦CODE_0001⟧](⟦DEST_0002⟧) for the ordinary loop."
+msgstr "**Por qué importa este mecanismo:** el contador de programa es una variable, y un programa puede reescribirla. El estado son dos números en la pila de datos, y sobreviven al retroceso porque nada más los toca. Esto funciona porque las palabras se leen de una línea de entrada, y no funciona igual dentro de una definición. Para el bucle ordinario, consulta [⟦CODE_0001⟧](⟦DEST_0002⟧)."
+
+#: src/forth-weird/README.md:70
+msgctxt "s-7f97d965b4c0-0028"
+msgid "How the stunt works"
+msgstr "Cómo funciona el truco"
+
+#: src/forth-weird/README.md:72
+msgctxt "s-2f9b5ea95080-0029"
+msgid "The Forth text interpreter is a loop you never see: it reads the next word from the input line, runs it, and repeats. ⟦CODE_0001⟧ is a variable holding *how far it has read*. Read it with ⟦CODE_0002⟧, set it with ⟦CODE_0003⟧. Set it to an earlier value and the interpreter will cheerfully read the same words again."
+msgstr "El intérprete de texto de Forth es un bucle que nunca ves: lee la siguiente palabra de la línea de entrada, la ejecuta y se repite. ⟦CODE_0001⟧ es una variable que guarda *hasta dónde ha leído*. Léela con ⟦CODE_0002⟧ y modifícala con ⟦CODE_0003⟧. Asígnale un valor anterior y el intérprete volverá a leer alegremente las mismas palabras."
+
+#: src/forth-weird/README.md:74
+msgctxt "s-fe7649abeda8-0030"
+msgid "The whole program is this one line at the top level, not inside any definition:"
+msgstr "El programa completo es esta única línea en el nivel superior, fuera de cualquier definición:"
+
+#: src/forth-weird/README.md:80
+msgctxt "s-fe07ea27cdf0-0031"
+msgid "Read it left to right as the interpreter does:"
+msgstr "Léelo de izquierda a derecha, como lo hace el intérprete:"
+
+#: src/forth-weird/README.md:82
+msgctxt "s-3e934aa9ca1f-0032"
+msgid ""
+"⟦CODE_0001⟧ pushes the starting state: card number 0, running total 0.\n"
+"2. ⟦CODE_0002⟧ pushes the parse position, which at this moment is *just after the ⟦CODE_0003⟧*. That is the **anchor**: \"the place to jump back to\". The stack is now ⟦CODE_0004⟧.\n"
+"3. ⟦CODE_0005⟧ runs one card. It moves the anchor onto the return stack (⟦CODE_0006⟧), calls ⟦CODE_0007⟧, and puts the anchor back, so ⟦CODE_0008⟧ never sees it.\n"
+"4. ⟦CODE_0009⟧ decides whether to jump. ⟦CODE_0010⟧ tests whether the total is still 40 or less and leaves a flag, and the next line is the jump itself:"
+msgstr ""
+"⟦CODE_0001⟧ empuja el estado inicial: tarjeta número 0, total acumulado 0.\n"
+"2. ⟦CODE_0002⟧ empuja la posición de análisis, que en este momento está *justo después de ⟦CODE_0003⟧*. Esa es el **ancla**: \"el lugar al que volver a saltar\". Ahora la pila es ⟦CODE_0004⟧.\n"
+"3. ⟦CODE_0005⟧ ejecuta una tarjeta. Mueve el ancla a la pila de retorno (⟦CODE_0006⟧), llama a ⟦CODE_0007⟧ y vuelve a poner el ancla, de modo que ⟦CODE_0008⟧ nunca la ve.\n"
+"4. ⟦CODE_0009⟧ decide si saltar. ⟦CODE_0010⟧ comprueba si el total todavía no pasa de 40 y deja una bandera. La línea siguiente es el salto en sí:"
+
+#: src/forth-weird/README.md:91
+msgctxt "s-6ae0c8312c00-0033"
+msgid ""
+"A Forth flag is **-1** (all bits set) for true and **0** for false, so it works as a bit mask. ⟦CODE_0001⟧ is the distance back to the anchor; ⟦CODE_0002⟧ with the flag keeps that distance if the flag was true and zeroes it if false; adding it to ⟦CODE_0003⟧ gives either the anchor or \"stay where you are\". There is no ⟦CODE_0004⟧. The jump is arithmetic.\n"
+"5. The line ends. If ⟦CODE_0005⟧ was rewound, the interpreter's next word is ⟦CODE_0006⟧ again and the stack is exactly as the last pass left it. If not, it continues with the line after: ⟦CODE_0007⟧ (discard the anchor), commit, report."
+msgstr ""
+"Una bandera de Forth es **-1** (todos los bits activados) para verdadero y **0** para falso, así que funciona como máscara de bits. ⟦CODE_0001⟧ es la distancia de vuelta hasta el ancla; ⟦CODE_0002⟧ con la bandera conserva esa distancia si la bandera era verdadera y la pone en cero si era falsa; al sumarla a ⟦CODE_0003⟧ se obtiene el ancla o \"quédate donde estás\". No hay ⟦CODE_0004⟧. El salto es aritmético.\n"
+"5. La línea termina. Si ⟦CODE_0005⟧ se rebobinó, la siguiente palabra del intérprete es otra vez ⟦CODE_0006⟧ y la pila queda exactamente como la dejó la última pasada. Si no, continúa con la línea siguiente: ⟦CODE_0007⟧ (descarta el ancla), confirma la transacción, informa."
+
+#: src/forth-weird/README.md:94
+msgctxt "s-613c82b25c94-0034"
+msgid "Where the state goes"
+msgstr "Dónde va el estado"
+
+#: src/forth-weird/README.md:96
+msgctxt "s-f9fd9b78109a-0035"
+msgid "⟦SEP_0001⟧ What ⟦SEP_0002⟧ Where it lives ⟦SEP_0003⟧"
+msgstr "⟦SEP_0001⟧ Qué ⟦SEP_0002⟧ Dónde vive ⟦SEP_0003⟧"
+
+#: src/forth-weird/README.md:98
+msgctxt "s-e214156bdb9f-0036"
+msgid "⟦SEP_0002⟧ Card number and running total ⟦SEP_0003⟧ On the data stack, across rewinds: ⟦CODE_0001⟧ ⟦SEP_0004⟧"
+msgstr "⟦SEP_0002⟧ Número de tarjeta y total acumulado ⟦SEP_0003⟧ En la pila de datos, a través de los rebobinados: ⟦CODE_0001⟧ ⟦SEP_0004⟧"
+
+#: src/forth-weird/README.md:99
+msgctxt "s-bda7f9959677-0037"
+msgid "⟦SEP_0002⟧ The jump target ⟦SEP_0003⟧ Also the data stack, as ⟦CODE_0001⟧ ⟦SEP_0004⟧"
+msgstr "⟦SEP_0002⟧ El destino del salto ⟦SEP_0003⟧ También la pila de datos, como ⟦CODE_0001⟧ ⟦SEP_0004⟧"
+
+#: src/forth-weird/README.md:100
+msgctxt "s-46432be928b0-0038"
+msgid "⟦SEP_0002⟧ A card's hours ⟦SEP_0003⟧ On the stack for the length of one ⟦CODE_0001⟧, then folded into the total ⟦SEP_0004⟧"
+msgstr "⟦SEP_0002⟧ Las horas de una tarjeta ⟦SEP_0003⟧ En la pila mientras dura un ⟦CODE_0001⟧ y luego se incorporan al total ⟦SEP_0004⟧"
+
+#: src/forth-weird/README.md:101
+msgctxt "s-3b2bcb229c30-0039"
+msgid "⟦SEP_0004⟧ ⟦CODE_0001⟧, ⟦CODE_0002⟧ ⟦SEP_0005⟧ ⟦CODE_0003⟧s set once at start-up and never changed ⟦SEP_0006⟧"
+msgstr "⟦SEP_0004⟧ ⟦CODE_0001⟧, ⟦CODE_0002⟧ ⟦SEP_0005⟧ Los ⟦CODE_0003⟧ se fijan una vez al iniciar y nunca cambian ⟦SEP_0006⟧"
+
+#: src/forth-weird/README.md:102
+msgctxt "s-02d1d660d4ee-0040"
+msgid "⟦SEP_0002⟧ The ISO week text ⟦SEP_0003⟧ A buffer filled once at start-up. ⟦CODE_0001⟧ is always eight characters, so no length is stored either ⟦SEP_0004⟧"
+msgstr "⟦SEP_0002⟧ El texto de la semana ISO ⟦SEP_0003⟧ Un búfer que se llena una sola vez al arrancar. ⟦CODE_0001⟧ siempre tiene ocho caracteres, así que tampoco se guarda su longitud ⟦SEP_0004⟧"
+
+#: src/forth-weird/README.md:104
+msgctxt "s-0c1b396322df-0041"
+msgid "⟦CODE_0001⟧ has the stack effect ⟦CODE_0002⟧: it draws hours, computes the new total with ⟦CODE_0003⟧, prints the row, sends the ⟦CODE_0004⟧, and leaves ⟦CODE_0005⟧ and the new total. ⟦CODE_0006⟧ copies the three-number record ⟦CODE_0007⟧ so both ⟦CODE_0008⟧ (to the terminal) and ⟦CODE_0009⟧ (to SQLite, through ⟦CODE_0010⟧) can consume one."
+msgstr "⟦CODE_0001⟧ tiene el efecto de pila ⟦CODE_0002⟧: toma las horas, calcula el nuevo total con ⟦CODE_0003⟧, imprime la fila, envía ⟦CODE_0004⟧ y deja ⟦CODE_0005⟧ y el nuevo total. ⟦CODE_0006⟧ copia el registro de tres números ⟦CODE_0007⟧ para que tanto ⟦CODE_0008⟧ (al terminal) como ⟦CODE_0009⟧ (a SQLite, mediante ⟦CODE_0010⟧) puedan consumir uno."
+
+#: src/forth-weird/README.md:106
+msgctxt "s-339cc2c18f83-0042"
+msgid "What ⟦CODE_0001⟧ enforces"
+msgstr "Qué exige ⟦CODE_0001⟧"
+
+#: src/forth-weird/README.md:108
+msgctxt "s-6afedcc54692-0043"
+msgid "With comments and ⟦CODE_0001⟧ strings removed, none of ⟦CODE_0002⟧ appears; no ⟦CODE_0003⟧ or ⟦CODE_0004⟧ is declared; ⟦CODE_0005⟧ appears at least twice (once for the anchor, once in the jump); and the database rows agree with the printed rows over 25 runs."
+msgstr "Al quitar los comentarios y las cadenas de texto ⟦CODE_0001⟧, no aparece ninguno de ⟦CODE_0002⟧; no se declara ningún ⟦CODE_0003⟧ ni ⟦CODE_0004⟧; ⟦CODE_0005⟧ aparece al menos dos veces (una para el ancla y otra en el salto); y las filas de la base de datos coinciden con las filas impresas en 25 ejecuciones."
+
+#: src/forth-weird/README.md:110
+msgctxt "s-5a0ad00b10fc-0044"
+msgid "Gotchas worth knowing"
+msgstr "Trampas que conviene conocer"
+
+#: src/forth-weird/README.md:112
+msgctxt "s-d74bae288295-0045"
+msgid "**It only works at the top level, or in ⟦CODE_0001⟧d / ⟦CODE_0002⟧ text.** ⟦CODE_0003⟧ is the parse position *of the current input line*. A colon definition that moves ⟦CODE_0004⟧ (like ⟦CODE_0005⟧) works because it runs while the interpreter is parsing the line that called it. Compile the loop *into* a word and there is no line to rewind."
+msgstr "**Solo funciona en el nivel superior o en texto procesado con ⟦CODE_0001⟧ o ⟦CODE_0002⟧.** ⟦CODE_0003⟧ es la posición de análisis sintáctico *de la línea de entrada actual*. Una definición con dos puntos que mueve ⟦CODE_0004⟧ (como ⟦CODE_0005⟧) funciona porque se ejecuta mientras el intérprete analiza la línea que la llamó. Compila el bucle *dentro de* una palabra y no hay ninguna línea que rebobinar."
+
+#: src/forth-weird/README.md:113
+msgctxt "s-a3ee0131ddc4-0046"
+msgid "**The loop and the data are on one line.** If you move the ⟦CODE_0001⟧ to *after* the ⟦CODE_0002⟧ (⟦CODE_0003⟧), you get a correct-looking program that resets the state on every pass and never stops: the anchor is now before the ⟦CODE_0004⟧, so every rewind pushes a fresh pair. (Moving it to the previous line is harmless: the anchor is still after it.)"
+msgstr "**El bucle y los datos están en una sola línea.** Si mueves ⟦CODE_0001⟧ *después de* ⟦CODE_0002⟧ (⟦CODE_0003⟧), obtienes un programa de apariencia correcta que reinicia el estado en cada pasada y nunca se detiene. Ahora el ancla queda antes de ⟦CODE_0004⟧, así que cada retroceso apila un par nuevo. (Moverlo a la línea anterior es inofensivo: el ancla sigue estando después de ella.)"
+
+#: src/forth-weird/README.md:114
+msgctxt "s-c829b928d893-0047"
+msgid "**The anchor is a number of characters, not an address.** Edit the line and the anchor is recomputed at run time, because ⟦CODE_0001⟧ reads it on the way past."
+msgstr "**El ancla es un número de caracteres, no una dirección.** Edita la línea y el ancla se recalcula en tiempo de ejecución, porque ⟦CODE_0001⟧ la lee al pasar."
+
+#: src/forth-weird/README.md:115
+msgctxt "s-3208c607321a-0048"
+msgid "**⟦CODE_0001⟧ is ⟦CODE_0002⟧**, so ⟦CODE_0003⟧ is 10 to 19; Gforth is seeded from ⟦CODE_0004⟧."
+msgstr "**⟦CODE_0001⟧ es ⟦CODE_0002⟧**, así que ⟦CODE_0003⟧ da un valor de 10 a 19 horas; Gforth usa ⟦CODE_0004⟧ como semilla."
+
+#: src/forth-weird/README.md:116
+msgctxt "s-adf9358ea4c4-0049"
+msgid "**⟦CODE_0001⟧ is not in Gforth 0.7.3.** It is defined at the top with ⟦CODE_0002⟧ three times."
+msgstr "**⟦CODE_0001⟧ no existe en Gforth 0.7.3.** Se define al principio con ⟦CODE_0002⟧ tres veces."
+
+#: src/forth-weird/README.md:117
+msgctxt "s-c59901e80402-0050"
+msgid "**Gforth-specific words.** ⟦CODE_0001⟧, ⟦CODE_0002⟧ and ⟦CODE_0003⟧ are Gforth extensions."
+msgstr "**Palabras específicas de Gforth.** ⟦CODE_0001⟧, ⟦CODE_0002⟧ y ⟦CODE_0003⟧ son extensiones de Gforth."
+
+#: src/forth-weird/README.md:118
+msgctxt "s-1570f1e187ef-0051"
+msgid "**Not a pattern.** A flag as a bit mask is an old, respectable trick. Rewinding the parser to loop is a stunt."
+msgstr "**No es un patrón.** Una bandera como máscara de bits es un truco antiguo y respetable. Rebobinar el analizador sintáctico para crear un bucle es una acrobacia."
+
+#: src/forth-weird/README.md:120
+msgctxt "s-254f0c660db3-0052"
+msgid "Run it in a container"
+msgstr "Ejecuta el programa en un contenedor"
+
+#: src/forth-weird/README.md:122
+msgctxt "s-643df015c8a2-0053"
+msgid "Prerequisite: Docker, set up once as described in [⟦CODE_0001⟧](⟦DEST_0002⟧)."
+msgstr "Requisito previo: Docker, configurado una sola vez como se describe en [⟦CODE_0001⟧](⟦DEST_0002⟧)."
+
+#: src/forth-weird/README.md:128
+msgctxt "s-ad0dd27b24c4-0054"
+msgid "It builds this folder's [⟦CODE_0001⟧](⟦DEST_0002⟧) and runs the result with no network, a read-only file system and user ⟦CODE_0003⟧, then prints the output and a read-only look at the rows it wrote. The image holds Gforth and sqlite3 on a minimal Ubuntu. It has no compiler and no package manager."
+msgstr "Construye el [⟦CODE_0001⟧](⟦DEST_0002⟧) de esta carpeta y ejecuta el resultado sin red, con un sistema de archivos de solo lectura y el usuario ⟦CODE_0003⟧, y luego muestra la salida y una vista de solo lectura de las filas que escribió. La imagen contiene Gforth y sqlite3 sobre un Ubuntu mínimo. No tiene compilador ni gestor de paquetes."

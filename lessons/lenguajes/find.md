@@ -31,7 +31,7 @@ One `find`, about 5.7 KB long, no `-delete`, no `-printf`, no `-regex` and no sh
 - **Randomness is a name.** `mktemp -d` makes a directory with a random name, and a `-name` or `-path` pattern reads its last character. mktemp has 62 characters, so 60 of them make ten groups of six, and `Y` and `Z` are rolled again.
 - **Output is SQL text.** find prints an `INSERT` statement piece by piece. mktemp also prints the path it made, and the line turns that into an SQL comment by printing ` -- ` first.
 
-The [README](../../src/find-posix/README.md#how-the-stunt-works) has the full table of jobs, and [`build-line.py`](../../src/find-posix/build-line.py) shows the tables in readable form.
+The [README](../../src/find-posix/README.md#cómo-funciona-el-truco) has the full table of jobs, and [`build-line.py`](../../src/find-posix/build-line.py) shows the tables in readable form.
 
 **The GNU version lets find do the arithmetic.** [`find-gnu`](../../src/find-gnu/README.md) uses the same walk, but GNU find can measure things for you. `%d` prints the depth of a directory, and one directory is one hour, so the depth *is* the running total. `%TG-W%TV` prints the ISO week of the new directory's modification time. `-regex` replaces the glob tables with `([^/]*/){41}.*` ("at least 41 slashes", the stop rule). `-fprintf /dev/fd/3` sends the SQL to its own file descriptor. The line is about 3 KB instead of 5.7 KB.
 
@@ -87,7 +87,7 @@ flowchart TD
 
 ### Program flow of `find-posix`
 
-From [`find-posix`](../../src/find-posix/README.md) ([source section](../../src/find-posix/README.md#program-flow)).
+From [`find-posix`](../../src/find-posix/README.md) ([source section](../../src/find-posix/README.md#flujo-del-programa)).
 
 ```mermaid
 flowchart TD

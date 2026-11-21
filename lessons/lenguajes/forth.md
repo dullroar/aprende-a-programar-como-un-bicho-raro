@@ -102,7 +102,7 @@ flowchart TD
 
 ### Program flow of `forth-weird`
 
-From [`forth-weird`](../../src/forth-weird/README.md) ([source section](../../src/forth-weird/README.md#program-flow)).
+From [`forth-weird`](../../src/forth-weird/README.md) ([source section](../../src/forth-weird/README.md#flujo-del-programa)).
 
 ```mermaid
 flowchart TD

@@ -134,3 +134,9 @@
 {"id":"EXC-134","segment":"s-373d8261fc0c-0007","invariant":"I3","reason":"number format localized: English '2,950' is written 2950 in Spanish (no separator in four-digit numbers); the value is unchanged","task":"P4-src-6"}
 {"id":"EXC-135","segment":"s-6a148025b0a9-0013","invariant":"I7","reason":"'builds this folder's Dockerfile' uses build as a verb (Compila), not the noun build","task":"P4-src-6"}
 {"id":"EXC-136","segment":"s-b4b011abf4c9-0044","invariant":"I3","reason":"number format localized: English '3,610' is written 3610 in Spanish (no separator in four-digit numbers); the value is unchanged","task":"P4-src-6"}
+{"id":"EXC-137","segment":"s-85f87b952a60-0000","invariant":"TRANSLATE","reason":"The segment is the heading 'POSIX find', two product names (the POSIX find utility); there is no prose to translate.","task":"P4-src-7"}
+{"id":"EXC-138","segment":"s-72498b2f13c4-0009","invariant":"I3","reason":"number format localized: English '5.7 KB' is written 5,7 KB in Spanish (decimal comma); the value is unchanged","task":"P4-src-7"}
+{"id":"EXC-139","segment":"s-9849e9bf2bf0-0015","invariant":"I7","reason":"'It builds this folder's Dockerfile' uses build as a verb (Compila), not the noun build","task":"P4-src-7"}
+{"id":"EXC-140","segment":"s-47c71aea88a9-0062","invariant":"I7","reason":"'exercise the tables' is the verb exercise (ejercitan), not the noun exercise (ejercicio)","task":"P4-src-7"}
+{"id":"EXC-141","segment":"s-f72ab19a33d0-0020","invariant":"I10","reason":"Mermaid label contains the Forth word `rewind?`; the question mark belongs to the identifier, not to a question, so it takes no inverted mark (same text as EXC-009 in the study guide).","task":"P4-src-7"}
+{"id":"EXC-142","segment":"s-ad0dd27b24c4-0054","invariant":"I7","reason":"'It builds this folder's Dockerfile' uses build as a verb (Construye), not the noun build","task":"P4-src-7"}

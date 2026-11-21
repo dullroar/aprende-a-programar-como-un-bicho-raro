@@ -1,6 +1,6 @@
 ---
 name: "POSIX find"
-teaches: "that a directory walk can be a loop and a program: find digs the tree it is walking, and the path to the current directory is the whole machine."
+teaches: "que un recorrido de directorios puede ser un bucle y un programa: find excava el árbol que recorre, y la ruta al directorio actual es toda la máquina."
 kind: weird
 languages: [find, sqlite]
 lesson: "lenguajes/find.md"
@@ -8,20 +8,20 @@ pairs-with: find-gnu
 loop-by: self-modifying-control
 evaluation: declarative
 assurance: accidentally-exploited
-machine: "A tree walk that grows the tree it is walking"
-state: "The path from the start directory to the directory being visited"
+machine: "Un recorrido de árbol que hace crecer el árbol que recorre"
+state: "La ruta desde el directorio de inicio hasta el directorio que se visita"
 tags: [call-stack, control-flow, domain-specific-language, hyrums-law, integrity-constraint, portability, recursion, short-circuit-evaluation, side-effect, state-encoding, transition-system, undefined-behavior, weird-machine]
 ---
-# POSIX find: the walk digs the tree it is walking
+# POSIX find: el recorrido excava el árbol que está recorriendo
 
-**Teaches you:** that a directory walk can be a loop and a program: find digs the tree it is walking, and the path to the current directory is the whole machine.
+**Te enseña:** que un recorrido de directorios puede ser un bucle y un programa: find cava el árbol que está recorriendo, y la ruta al directorio actual es toda la máquina.
 
-> **DEMO ONLY.** Fictional time cards, written to a scratch SQLite file under `$XDG_DATA_HOME/FindPosix/`.
-> Nothing here touches real time reporting.
+> **DEMO ONLY.** Tarjetas de horas ficticias, escritas en un archivo SQLite temporal dentro de `$XDG_DATA_HOME/FindPosix/`.
+> Nada de esto toca el reporte real de horas.
 
-One `find` command is the whole program. It has no variables and no arithmetic. It does have a tree walk, `-name` and `-path` patterns, `-o` (or), and `-exec`. This entry asks: **can a file search be a time-card generator?** It can, if the walk keeps making new directories in front of itself and the directory names count for it.
+Un solo comando `find` es todo el programa. No tiene variables ni aritmética. Sí tiene un recorrido de árbol, patrones `-name` y `-path`, `-o` (o) y `-exec`. Esta entrada pregunta: **¿puede una búsqueda de archivos ser un generador de tarjetas de horas?** Puede, si el recorrido sigue creando directorios nuevos delante de sí mismo y los nombres de esos directorios le sirven para contar.
 
-The same output as the other entries:
+La misma salida que las otras entradas:
 
 ```
 # DEMO ONLY run 1
@@ -32,11 +32,11 @@ Debugging	19	48	2026-W47	DEMO ONLY
 Runtime error near line 15: CHECK constraint failed: stop rule fired: total exceeds 40 (19)
 ```
 
-The `find` line is about 5.7 KB long. (The GNU-only sibling, [`find-gnu`](../find-gnu/README.md), does the same job in about 3 KB by using `%d`, `%T` and `-regex`.) That is not a typo. find has no variables, so every "table" in it is written out as `-o` branches. [`build-line.py`](build-line.py) is the readable source of those tables, and `check.sh` makes sure the two agree.
+La línea de `find` mide unos 5,7 KB. (La versión hermana solo para GNU, [`find-gnu`](../find-gnu/README.md), hace el mismo trabajo en unos 3 KB con `%d`, `%T` y `-regex`.) No es un error tipográfico. find no tiene variables, así que cada "tabla" de esa línea se escribe completa como `-o` ramas. [`build-line.py`](build-line.py) es la fuente legible de esas tablas y `check.sh` se asegura de que ambas coincidan.
 
-## Run it
+## Ejecútalo
 
-You need a POSIX shell, `find`, `mktemp`, `date`, `printf`, `mkdir` and `sqlite3` (`sudo apt install sqlite3`). Nothing else.
+Necesitas un intérprete de comandos (*shell*) POSIX, es decir, el programa que ejecuta los comandos que escribes, además de `find`, `mktemp`, `date`, `printf`, `mkdir` y `sqlite3` (`sudo apt install sqlite3`). Nada más.
 
 ```bash
 cd src/find-posix
@@ -45,50 +45,50 @@ cd src/find-posix
 python3 build-line.py   # print the find line (check.sh compares it with timecards.sh)
 ```
 
-Records go to `$XDG_DATA_HOME/FindPosix/demo-timecards.db` (default `~/.local/share/FindPosix/`). `check.sh` tests GNU find, bfs and busybox find, whichever are installed. To pick your own: `FINDS="gnu=/usr/bin/find busybox=/usr/bin/busybox" ./check.sh`.
+Los registros van a `$XDG_DATA_HOME/FindPosix/demo-timecards.db` (por defecto `~/.local/share/FindPosix/`). `check.sh` prueba GNU find, bfs y busybox find, los que tengas instalados. Para elegir los tuyos: `FINDS="gnu=/usr/bin/find busybox=/usr/bin/busybox" ./check.sh`.
 
-## Run it in a container
+## Ejecuta el programa en un contenedor
 
-Prerequisite: Docker, set up once as described in [`SANDBOX-SETUP.md`](../../SANDBOX-SETUP.md#docker).
+Requisito previo: Docker, configurado una sola vez como se describe en [`SANDBOX-SETUP.md`](../../SANDBOX-SETUP.md#docker).
 
 ```bash
 sandbox/container/run-image.sh src/find-posix
 ```
 
-It builds this folder's [`Dockerfile`](Dockerfile) and runs the result with no network, a read-only file system and user `nobody`, then prints the output and a read-only look at the rows it wrote. The image holds GNU findutils, coreutils and sqlite3 on a minimal Ubuntu.
+Compila el [`Dockerfile`](Dockerfile) de esta carpeta y ejecuta el resultado sin red, con un sistema de archivos de solo lectura y con el usuario `nobody`. Después imprime la salida y una vista de solo lectura de las filas que escribió. La imagen incluye GNU findutils, coreutils y sqlite3 sobre un Ubuntu mínimo.
 
-## Program Flow
+## Flujo del programa
 
 ```mermaid
 flowchart TD
-    accTitle: find-posix: find walks into the directories that its own -exec just made
-    accDescr: A flowchart. find visits a directory. A chain of -o branches, chosen by the directory name and path, runs exactly one branch. Most branches run an exec that digs one new directory below the current one, and print part of an SQL statement. After visiting a directory, find reads its entries, so it finds the new directory and visits it next. At the end of a card where the total is 40 or less, the branch digs the next card's dice directory. At the end of a card where the total is over 40, the branch digs nothing. The walk then ends, and sqlite3 reads the SQL text that find printed.
-    A["find visits one directory: its name and path pick one -o branch"] --> B{{"Does the branch dig a new directory?"}}
-    B -->|"yes: hour, countdown, or the next card's dice"| C["-exec mkdir or mktemp -d digs it; printf and date add SQL text"]
-    C --> D["find reads this directory's entries after visiting it, and finds the new one"]
+    accTitle: find-posix: `find` recorre los directorios que su propio `-exec` acaba de crear
+    accDescr: Un diagrama de flujo. find visita un directorio. Una cadena de ramas -o ejecuta exactamente una rama, elegida según el nombre y la ruta del directorio. La mayoría de las ramas ejecutan un exec que crea un directorio nuevo un nivel por debajo del actual e imprimen parte de una sentencia SQL. Después de visitar un directorio, find lee sus entradas; así encuentra el directorio nuevo y lo visita a continuación. Al final de una tarjeta cuyo total no pasa de 40, la rama crea el directorio de dados de la tarjeta siguiente. Al final de una tarjeta cuyo total pasa de 40, la rama no crea ningún directorio. Entonces el recorrido termina y sqlite3 lee el texto SQL que find imprimió.
+    A["find visita un directorio: su nombre y su ruta eligen una rama -o"] --> B{{"¿La rama cava un directorio nuevo?"}}
+    B -->|"sí: hora, cuenta regresiva o los dados de la siguiente tarjeta"| C["-exec mkdir o mktemp -d lo crea; printf y date añaden texto SQL"]
+    C --> D["find lee las entradas de este directorio después de visitarlo y encuentra la nueva"]
     D --> A
-    B -->|"no: the end of a card with a total over 40"| E["The walk ends; sqlite3 reads the SQL text from the pipe"]
+    B -->|"no: el final de una tarjeta con un total que pasa de 40"| E["El recorrido termina; sqlite3 lee el texto SQL desde la tubería"]
 ```
 
-**What this shows:** the loop is a tree walk that keeps growing. find reads a directory's entries *after* it visits the directory, so a directory that `-exec` makes inside the current one is walked next. The path from the start is the history, and the directory name is the state. It is the call stack of a recursion, drawn on the file system.
+**Qué muestra:** el bucle es un recorrido de árbol que sigue creciendo. find lee las entradas de un directorio *después* de visitarlo, así que un directorio que `-exec` crea dentro del actual se recorre a continuación. La ruta desde el inicio es el historial, y el nombre del directorio es el estado. Es la pila de llamadas de una recursión, dibujada en el sistema de archivos.
 
-**Why this mechanism matters:** the stop rule is the absence of a new child: at the end of a card, five `0` hour-digits in the path (or four and a non-zero last digit) mean the total is over 40, and no branch digs. The running total is the number of hour directories in the path, and no arithmetic exists anywhere. This relies on the order in which find reads and visits, which is accidental to find, not promised by POSIX.
+**Por qué importa este mecanismo:** la regla de parada es la ausencia de un hijo nuevo: al final de una tarjeta, cinco dígitos de hora `0` en la ruta (o cuatro y un último dígito distinto de cero) significan que el total pasa de 40, y ninguna rama cava. El total acumulado es el número de directorios de hora en la ruta, y no hay aritmética en ninguna parte. Esto depende del orden en que find lee y visita, que es accidental en find y no una promesa de POSIX.
 
-## How the stunt works
+## Cómo funciona el truco
 
-The Make entry asked how much work Make's own syntax could do. Its loop was Make re-executing itself, and its state was which files exist. This entry plays the same game with find. The trick is this: **find reads a directory's entries after it visits the directory.** So if `-exec` makes a new directory inside the one find is visiting, find walks into it next. The walk keeps going for as long as `-exec` keeps digging.
+La entrada de Make preguntó cuánto trabajo podía hacer la sintaxis propia de Make. Su bucle era que Make se volvía a ejecutar a sí mismo, y su estado era qué archivos existen. Esta entrada juega el mismo juego con find. El truco es este: **find lee las entradas de un directorio después de visitarlo.** Así que si `-exec` crea un directorio nuevo dentro del que find está visitando, find entra en él a continuación. El recorrido sigue mientras `-exec` siga cavando.
 
-### The machine: a path is a program counter
+### La máquina: una ruta es un contador de programa
 
-Every step makes one directory. The directory's **name** is the state, and the **path** from the start is the history. There are three kinds of directory:
+Cada paso crea un directorio. El **nombre** del directorio es el estado y la **ruta** desde el inicio es el historial. Hay tres tipos de directorio:
 
-| Name | Means | Made by |
+| Nombre | Significado | Quién lo crea |
 |---|---|---|
-| six random characters, like `L45lDR` | the dice for one card | `mktemp -d` |
-| one character, `0`-`9` | one hour. It is the last digit of the running total, counting 1, 2, ... 9, 0, 1, ... | `mkdir` |
-| `b18` down to `b00` | hours still to go in this card | `mkdir` |
+| seis caracteres aleatorios, como `L45lDR` | los dados de una tarjeta | `mktemp -d` |
+| un carácter, `0`-`9` | una hora. Es el último dígito del total acumulado, que cuenta 1, 2, ... 9, 0, 1, ... | `mkdir` |
+| de `b18` a `b00` | horas que aún faltan en esta tarjeta | `mkdir` |
 
-A card looks like this in the path (shortened):
+Una tarjeta se ve así en la ruta (abreviada):
 
 ```
 t/wuq4YW/1/b18/2/b17/3/b16/ ... /9/b01/0/b00/L45lDR/1/b17/ ... /b00
@@ -99,59 +99,59 @@ t/wuq4YW/1/b18/2/b17/3/b16/ ... /9/b01/0/b00/L45lDR/1/b17/ ... /b00
          +-- the first hour (digit 1 of the running total)
 ```
 
-This is the call stack of a recursive function, drawn on the file system. The path is the stack, and the walk goes down one level per step.
+Esta es la pila de llamadas de una función recursiva, dibujada sobre el sistema de archivos. La ruta es la pila, y el recorrido baja un nivel por paso.
 
-### Every job, and who does it
+### Cada tarea y quién la hace
 
-| Job | Done by |
+| Tarea | Quién la hace |
 |---|---|
-| Loop | the walk, descending into the directory its own `-exec mkdir` just made |
-| Branching | `-o` chains. `-a` binds tighter than `-o`, so `A -a B -o C -a D` is an if/else-if. Each directory matches exactly one branch |
-| Randomness | `mktemp -d {}/XXXXXX` makes the dice. The last character picks the hours (see below) |
-| Hours 10 to 19 | 60 of mktemp's 62 characters, in ten groups of six. `-path '*/[!/][!/][!/][!/][!/][abcdef]/?'` is "the dice show group 0", so print `10,` and dig `b09` |
-| Countdown | `b18` makes `b17`, and so on. The next name is a literal in an `-exec mkdir`. Nothing is subtracted |
-| Running total | the number of hour directories in the path. The last digit is the name of the last hour. The tens digit is how many directories named `0` the path has, because the digits cycle 1 ... 9, 0 |
-| Category order | how many six-character names are in the path: `-path '*/[!/]...*/[!/]...*'` means "at least two cards" |
-| Stop rule (`total > 40`) | at the end of a card, "five `0`s in the path, or four `0`s and the last digit is not 0". Exactly 40 continues, as in the other entries |
-| ISO week and the end of the row | `-exec date "+'%G-W%V');"`. `date` is the clock and the ISO-week calculator at once |
-| Output | `-exec printf`. find prints SQL text: an `INSERT` statement, built in pieces as the walk goes |
-| Persistence | `sqlite3` reads that text from a pipe. SQLite holds the `CHECK` constraints and prints the report |
+| Bucle | el recorrido, que desciende al directorio que su propio `-exec mkdir` acaba de crear |
+| Ramificación | `-o` encadena. `-a` tiene mayor precedencia que `-o`, así que `A -a B -o C -a D` es un if/else-if. Cada directorio corresponde a exactamente una rama |
+| Aleatoriedad | `mktemp -d {}/XXXXXX` genera los dados. El último carácter elige las horas (ver más abajo) |
+| Horas de 10 a 19 | 60 de los 62 caracteres de mktemp, en diez grupos de seis. `-path '*/[!/][!/][!/][!/][!/][abcdef]/?'` significa "los dados muestran el grupo 0", así que imprime `10,` y busca `b09` |
+| Cuenta regresiva | `b18` produce `b17` y así sucesivamente. El nombre siguiente es un literal en `-exec mkdir`. No se resta nada |
+| Total acumulado | el número de directorios de horas en la ruta. El último dígito es el nombre de la última hora. El dígito de las decenas es cuántos directorios llamados `0` tiene la ruta, porque los dígitos siguen el ciclo 1 ... 9, 0 |
+| Orden de categorías | cuántos nombres de seis caracteres hay en la ruta: `-path '*/[!/]...*/[!/]...*'` significa "al menos dos tarjetas" |
+| Regla de parada (`total > 40`) | al final de una tarjeta, "cinco `0`s en la ruta, o cuatro `0`s y el último dígito no es 0". Un total de exactamente 40 continúa, como en las otras entradas |
+| semana ISO y el final de la fila | `-exec date "+'%G-W%V');"`. `date` es el reloj y la calculadora de la semana ISO a la vez |
+| Salida | `-exec printf`. find imprime texto SQL: una sentencia `INSERT`, que se construye por partes a medida que avanza el recorrido |
+| Persistencia | `sqlite3` lee ese texto desde una tubería. SQLite contiene las restricciones `CHECK` y imprime el informe |
 
-The line has no `-delete`, `-printf` or `-regex`, and nothing outside four primaries: `-name`, `-path`, `-o` and `-exec`. And `-exec` runs only four programs: `printf`, `mkdir`, `mktemp` and `date`. No `sh`, no `expr`, no `awk`. `check.sh` greps for all of this.
+La línea no tiene `-delete`, `-printf` ni `-regex`, ni nada fuera de cuatro primarios: `-name`, `-path`, `-o` y `-exec`. Y `-exec` ejecuta solo cuatro programas: `printf`, `mkdir`, `mktemp` y `date`. Sin `sh`, sin `expr`, sin `awk`. `check.sh` busca todo esto con grep.
 
-### Why `-path` is the arithmetic unit
+### Por qué `-path` es la unidad aritmética
 
-In a `-path` pattern, `*` also matches `/`. So `-path '*/0/*/0/*'` means "the path has at least two directories named exactly `0`". That is a counter you can read. `-path '*/7/b00'` means "the last two names are `7` and `b00`". That is a lookup table with ten rows. The long line is made of such rows.
+En un patrón `-path`, `*` también coincide con `/`. Por tanto, `-path '*/0/*/0/*'` significa "la ruta tiene al menos dos directorios llamados exactamente `0`". Eso es un contador que puedes leer. `-path '*/7/b00'` significa "los dos últimos nombres son `7` y `b00`". Eso es una tabla de consulta con diez filas. La línea larga se compone de filas como esas.
 
-### The two tricks you can't skip
+### Los dos trucos que no puedes omitir
 
-- **A new directory's name goes to stdout.** `mktemp -d` prints the path it made, and the path would land in the middle of the SQL. So the line prints ` -- ` first, and the path becomes an SQL comment. The line is its own filter.
-- **Y and Z are thrown away.** mktemp uses 62 characters, and 62 does not divide by ten. If the last character is `Y` or `Z`, the walk reads the one before it instead. If both are `Y` or `Z` (one in 960), the hours are 10. That is a tiny bias, and `check.sh` has a forced-dice scenario for it.
+- **El nombre de un directorio nuevo va a stdout.** `mktemp -d` imprime la ruta que creó, y esa ruta caería en medio del SQL. Por eso la línea imprime primero ` -- `, y la ruta se convierte en un comentario de SQL. La línea es su propio filtro.
+- **Y y Z se descartan.** mktemp usa 62 caracteres y 62 no es divisible entre diez. Si el último carácter es `Y` o `Z`, el recorrido lee el anterior. Si los dos son `Y` o `Z` (uno de cada 960), las horas son 10. Es un sesgo minúsculo, y `check.sh` tiene un escenario de dados forzados para ese sesgo.
 
-### What the ordinary version would look like
+### Cómo se vería la versión ordinaria
 
-Ten lines of shell: `while [ $total -le 40 ]; do hours=$((10 + RANDOM % 10)); total=$((total + hours)); ... done`. The point of this entry is that the walk, the names and the patterns do all of that, and the shell only starts find.
+Diez líneas de código para el intérprete de comandos:`while [ $total -le 40 ]; do hours=$((10 + RANDOM % 10)); total=$((total + hours)); ... done`. El objetivo de esta entrada es que el recorrido, los nombres y los patrones hagan todo eso, y que el intérprete de comandos solo inicie find.
 
-## What `check.sh` enforces
+## Qué impone `check.sh`
 
-`check.sh` makes sure the stunt is real. `timecards.sh` may contain exactly one `find`, and no `for`, `while`, `until`, `case` or `if` anywhere. The `find` may use only `-exec`, `-name`, `-o` and `-path`. `-exec` may run only `date`, `mkdir`, `mktemp` and `printf`. The `find` line must be exactly what `build-line.py` prints.
+`check.sh` comprueba que la proeza es real. `timecards.sh` puede contener exactamente un `find` y ningún `for`, `while`, `until`, `case` ni `if` en ninguna parte. El `find` solo puede usar `-exec`, `-name`, `-o` y `-path`. `-exec` solo puede ejecutar `date`, `mkdir`, `mktemp` y `printf`. La línea `find` debe ser exactamente lo que imprime `build-line.py`.
 
-Then, for each find implementation it can see, it runs the demo 25 times. Every run must have hours 10 to 19, categories in order (the fifth card is Meetings again), correct running totals, `DEMO ONLY` on every row, the ISO week from `date`, and a stop exactly when the total passes 40. The stop-rule error must appear on stderr exactly once and nothing else may. The rows in SQLite must match the printed ones. The scratch folder must be gone afterward, and across the 25 runs at least eight different hour values must show up.
+Luego, para cada implementación de find que pueda ver, ejecuta la demo 25 veces. Cada ejecución debe tener horas de 10 a 19, categorías en orden (la quinta tarjeta vuelve a ser Meetings), totales acumulados correctos, `DEMO ONLY` en cada fila, la semana ISO de `date` y una parada exactamente cuando el total pasa de 40. El error de la regla de parada debe aparecer en stderr exactamente una vez y nada más puede aparecer. Las filas de SQLite deben coincidir con las impresas. La carpeta temporal debe haber desaparecido al final y, en las 25 ejecuciones, deben aparecer al menos ocho valores de horas distintos.
 
-Then it forces the dice. A fake `mktemp`, first on `PATH`, hands out chosen names, so seven scenarios exercise the tables on purpose. They cover every tens digit from 1 to 5, many units digits, a total of exactly 40 (which must continue), and the re-roll paths for a last character of `Y` and for `YZ`. The expected rows are computed with plain bash arithmetic. Last, a non-demo row must be refused by SQLite.
+Luego fuerza los dados. Un `mktemp` falso, el primero en `PATH`, entrega los nombres elegidos, así que siete escenarios ejercitan las tablas a propósito. Cubren cada dígito de las decenas de 1 a 5, muchos dígitos de las unidades, un total de exactamente 40 (que debe continuar) y las rutas de nueva tirada para un último carácter `Y` y para `YZ`. Las filas esperadas se calculan con aritmética simple de bash. Por último, SQLite debe rechazar una fila que no es de demostración.
 
-## Gotchas worth knowing
+## Trampas que conviene conocer
 
-- **Walking into what you just made is *accidentally exploited*.** POSIX does not say what find does when a directory changes during the walk. GNU find 4.9, bfs 3.1.2 and busybox 1.36.1 all visit the new directory, and that is all this entry knows. Nobody promised it.
-- **`*` in `-path` crosses `/`, and it ruined the first version.** The first countdown names were `b9`, `b10`, and the pattern `*/1/b*` matched an *earlier* `1/b...` in the path, so the digit stuck at 2 for the whole card. The fix: patterns end the match with fixed-width names (`b00`, `b18`), so the last segment is always exactly where you think.
-- **A failing `mkdir` is noisy, so there is no mutex.** The first design made several dice and let the first good one win by `mkdir` of a claim directory. The losers printed errors. The design now makes one die per card and re-rolls inside the name.
-- **`{}` inside a bigger word depends on the implementation.** The line uses `mkdir {}/b09` and `mktemp -d {}/XXXXXX`. POSIX leaves `{}` that is part of a longer argument unspecified. GNU find, bfs and busybox replace it in the tested runs. The entry's overall assurance follows the weakest necessary dependency: the unpromised descent into directories created during traversal.
-- **Not run on BSD or macOS.** We have no such machine. The line uses `-path` (POSIX 2008), `-name`, `-o`, `-exec`, and the utilities `printf`, `mkdir` and `date '+%G-W%V'`. `mktemp` is not POSIX but is on every BSD and Linux system. If you try it on a BSD, `./check.sh` will tell you what breaks, and we would like to hear about it.
-- **busybox runs `mktemp` inside itself.** A fake `mktemp` on `PATH` is never called, so the forced-dice scenarios are skipped for busybox. Its 25 random runs still pass.
-- **A tree stays behind until the end.** The walk leaves a path more than a hundred names deep. `timecards.sh` makes it in a scratch folder and removes the folder when it exits, even on Ctrl-C.
-- **The optimizer does not change the answer, and it tells on you.** On GNU find 4.9 we ran the line 15 times at each of `-O0`, `-O1`, `-O2` and `-O3`: every run was correct. The manual promises this, because find never reorders a test across a test that has side effects, and every branch here ends in `-exec`. `-D rates` prints how often each test really succeeded. In one run the line did about 57,000 test evaluations for 106 directories, which is the price of having no variables: every directory is checked against the whole table. The optimizer guessed that each `-path` succeeds 80% of the time. In that run the real rates were 33% and 50%, and 1 in 106 for the start directory.
-- **The line is long on purpose.** Every ten-way choice is ten `-o` branches, and every one of them is written out. There is no way to loop inside a find expression, except by walking.
+- **Entrar en lo que acabas de crear es *aprovechado por accidente*.** POSIX no dice qué hace find cuando un directorio cambia durante el recorrido. GNU find 4.9, bfs 3.1.2 y busybox 1.36.1 visitan todos el directorio nuevo, y eso es todo lo que sabe esta entrada. Nadie lo prometió.
+- **`*` en `-path` cruza `/` y arruinó la primera versión.** Los primeros nombres de la cuenta regresiva eran `b9` y `b10`. El patrón `*/1/b*` coincidía con un `1/b...` *anterior* en la ruta, así que el dígito se quedaba en 2 durante toda la tarjeta. La solución: los patrones terminan la coincidencia con nombres de ancho fijo (`b00`, `b18`), así que el último segmento siempre queda exactamente donde crees.
+- **Un `mkdir` que falla hace ruido, así que no hay mutex.** El primer diseño creaba varios dados y dejaba que el primer dado válido ganara por medio de `mkdir` de un directorio de afirmación. Los perdedores imprimían errores. Ahora el diseño crea un dado por tarjeta y lo vuelve a tirar dentro del nombre.
+- **`{}` dentro de una palabra más larga depende de la implementación.** La línea usa `mkdir {}/b09` y `mktemp -d {}/XXXXXX`. POSIX deja sin especificar `{}` cuando forma parte de un argumento más largo. GNU find, bfs y busybox lo reemplazan en las ejecuciones probadas. El grado de garantía global de la entrada sigue a la dependencia necesaria más débil: el descenso a los directorios creados durante el recorrido, que no está prometido.
+- **No lo ejecutamos en BSD ni en macOS.** No tenemos ninguna máquina de ese tipo. La línea usa `-path` (POSIX 2008), `-name`, `-o`, `-exec` y las utilidades `printf`, `mkdir` y `date '+%G-W%V'`. `mktemp` no es POSIX, pero está en todos los sistemas BSD y Linux. Si lo pruebas en un BSD, `./check.sh` te dirá qué falla. Nos gustaría saberlo.
+- **busybox ejecuta `mktemp` dentro de sí mismo.** Un `mktemp` falso en `PATH` nunca se invoca, así que los escenarios de dados forzados se omiten para busybox. Sus 25 ejecuciones aleatorias siguen pasando.
+- **Un árbol se queda hasta el final.** El recorrido deja una ruta con más de cien nombres de profundidad. `timecards.sh` la crea en una carpeta temporal y elimina la carpeta al salir, incluso con Ctrl-C.
+- **El optimizador no cambia la respuesta y te delata.** En GNU find 4.9 ejecutamos la línea 15 veces con cada uno de `-O0`, `-O1`, `-O2` y `-O3`: todas las ejecuciones fueron correctas. El manual lo promete, porque find nunca cambia el orden de una prueba respecto de otra que tiene efectos secundarios, y cada rama termina aquí en `-exec`. `-D rates` imprime cuántas veces tuvo éxito realmente cada prueba. En una ejecución la línea hizo unas 57 000 evaluaciones de pruebas para 106 directorios, que es el precio de no tener variables: cada directorio se comprueba contra toda la tabla. El optimizador supuso que cada `-path` tiene éxito el 80 % de las veces. En esa ejecución las tasas reales fueron 33 % y 50 %, y 1 de cada 106 para el directorio inicial.
+- **La línea es larga a propósito.** Cada elección entre diez opciones son diez ramas `-o`, y cada una de ellas está escrita por completo. No hay forma de hacer un bucle dentro de una expresión find, salvo al recorrer los directorios.
 
 ---
 
-See the [root README](../../README.md#the-results-so-far) for how this compares to the other entries, and [`RETO.md`](../../RETO.md) if you want to write your own.
+Consulta el [README raíz](../../README.md#the-results-so-far) para ver cómo se compara esto con las otras entradas, y [`RETO.md`](../../RETO.md) si quieres escribir el tuyo.

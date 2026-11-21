@@ -1,0 +1,382 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/find-posix/README.md:2
+msgctxt "s-85f87b952a60-0000"
+msgid "POSIX find"
+msgstr "POSIX find"
+
+#: src/find-posix/README.md:3
+msgctxt "s-64a992c81592-0001"
+msgid "that a directory walk can be a loop and a program: find digs the tree it is walking, and the path to the current directory is the whole machine."
+msgstr "que un recorrido de directorios puede ser un bucle y un programa: find excava el árbol que recorre, y la ruta al directorio actual es toda la máquina."
+
+#: src/find-posix/README.md:11
+msgctxt "s-f517f74dac89-0002"
+msgid "A tree walk that grows the tree it is walking"
+msgstr "Un recorrido de árbol que hace crecer el árbol que recorre"
+
+#: src/find-posix/README.md:12
+msgctxt "s-302a3f01cecd-0003"
+msgid "The path from the start directory to the directory being visited"
+msgstr "La ruta desde el directorio de inicio hasta el directorio que se visita"
+
+#: src/find-posix/README.md:15
+msgctxt "s-3c763527b144-0004"
+msgid "POSIX find: the walk digs the tree it is walking"
+msgstr "POSIX find: el recorrido excava el árbol que está recorriendo"
+
+#: src/find-posix/README.md:17
+msgctxt "s-7b1556bf2f39-0005"
+msgid "**Teaches you:** that a directory walk can be a loop and a program: find digs the tree it is walking, and the path to the current directory is the whole machine."
+msgstr "**Te enseña:** que un recorrido de directorios puede ser un bucle y un programa: find cava el árbol que está recorriendo, y la ruta al directorio actual es toda la máquina."
+
+#: src/find-posix/README.md:19
+msgctxt "s-3cd0c110cc9d-0006"
+msgid ""
+"**⟦DNT_0001⟧.** Fictional time cards, written to a scratch SQLite file under ⟦CODE_0002⟧.\n"
+"Nothing here touches real time reporting."
+msgstr ""
+"**⟦DNT_0001⟧.** Tarjetas de horas ficticias, escritas en un archivo SQLite temporal dentro de ⟦CODE_0002⟧.\n"
+"Nada de esto toca el reporte real de horas."
+
+#: src/find-posix/README.md:22
+msgctxt "s-8df1eed9f552-0007"
+msgid "One ⟦CODE_0001⟧ command is the whole program. It has no variables and no arithmetic. It does have a tree walk, ⟦CODE_0002⟧ and ⟦CODE_0003⟧ patterns, ⟦CODE_0004⟧ (or), and ⟦CODE_0005⟧. This entry asks: **can a file search be a time-card generator?** It can, if the walk keeps making new directories in front of itself and the directory names count for it."
+msgstr "Un solo comando ⟦CODE_0001⟧ es todo el programa. No tiene variables ni aritmética. Sí tiene un recorrido de árbol, patrones ⟦CODE_0002⟧ y ⟦CODE_0003⟧, ⟦CODE_0004⟧ (o) y ⟦CODE_0005⟧. Esta entrada pregunta: **¿puede una búsqueda de archivos ser un generador de tarjetas de horas?** Puede, si el recorrido sigue creando directorios nuevos delante de sí mismo y los nombres de esos directorios le sirven para contar."
+
+#: src/find-posix/README.md:24
+msgctxt "s-eb3ed528dcf5-0008"
+msgid "The same output as the other entries:"
+msgstr "La misma salida que las otras entradas:"
+
+#: src/find-posix/README.md:35
+msgctxt "s-72498b2f13c4-0009"
+msgid "The ⟦CODE_0001⟧ line is about 5.7 KB long. (The GNU-only sibling, [⟦CODE_0002⟧](⟦DEST_0003⟧), does the same job in about 3 KB by using ⟦CODE_0004⟧, ⟦CODE_0005⟧ and ⟦CODE_0006⟧.) That is not a typo. find has no variables, so every \"table\" in it is written out as ⟦CODE_0007⟧ branches. [⟦CODE_0008⟧](⟦DEST_0009⟧) is the readable source of those tables, and ⟦CODE_0010⟧ makes sure the two agree."
+msgstr "La línea de ⟦CODE_0001⟧ mide unos 5,7 KB. (La versión hermana solo para GNU, [⟦CODE_0002⟧](⟦DEST_0003⟧), hace el mismo trabajo en unos 3 KB con ⟦CODE_0004⟧, ⟦CODE_0005⟧ y ⟦CODE_0006⟧.) No es un error tipográfico. find no tiene variables, así que cada \"tabla\" de esa línea se escribe completa como ⟦CODE_0007⟧ ramas. [⟦CODE_0008⟧](⟦DEST_0009⟧) es la fuente legible de esas tablas y ⟦CODE_0010⟧ se asegura de que ambas coincidan."
+
+#: src/find-posix/README.md:37
+msgctxt "s-958ca26c6a61-0010"
+msgid "Run it"
+msgstr "Ejecútalo"
+
+#: src/find-posix/README.md:39
+msgctxt "s-ad107731c2f7-0011"
+msgid "You need a POSIX shell, ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧ and ⟦CODE_0006⟧ (⟦CODE_0007⟧). Nothing else."
+msgstr "Necesitas un intérprete de comandos (*shell*) POSIX, es decir, el programa que ejecuta los comandos que escribes, además de ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧ y ⟦CODE_0006⟧ (⟦CODE_0007⟧). Nada más."
+
+#: src/find-posix/README.md:48
+msgctxt "s-23e096b51d15-0012"
+msgid "Records go to ⟦CODE_0001⟧ (default ⟦CODE_0002⟧). ⟦CODE_0003⟧ tests GNU find, bfs and busybox find, whichever are installed. To pick your own: ⟦CODE_0004⟧."
+msgstr "Los registros van a ⟦CODE_0001⟧ (por defecto ⟦CODE_0002⟧). ⟦CODE_0003⟧ prueba GNU find, bfs y busybox find, los que tengas instalados. Para elegir los tuyos: ⟦CODE_0004⟧."
+
+#: src/find-posix/README.md:50
+msgctxt "s-254f0c660db3-0013"
+msgid "Run it in a container"
+msgstr "Ejecuta el programa en un contenedor"
+
+#: src/find-posix/README.md:52
+msgctxt "s-643df015c8a2-0014"
+msgid "Prerequisite: Docker, set up once as described in [⟦CODE_0001⟧](⟦DEST_0002⟧)."
+msgstr "Requisito previo: Docker, configurado una sola vez como se describe en [⟦CODE_0001⟧](⟦DEST_0002⟧)."
+
+#: src/find-posix/README.md:58
+msgctxt "s-9849e9bf2bf0-0015"
+msgid "It builds this folder's [⟦CODE_0001⟧](⟦DEST_0002⟧) and runs the result with no network, a read-only file system and user ⟦CODE_0003⟧, then prints the output and a read-only look at the rows it wrote. The image holds GNU findutils, coreutils and sqlite3 on a minimal Ubuntu."
+msgstr "Compila el [⟦CODE_0001⟧](⟦DEST_0002⟧) de esta carpeta y ejecuta el resultado sin red, con un sistema de archivos de solo lectura y con el usuario ⟦CODE_0003⟧. Después imprime la salida y una vista de solo lectura de las filas que escribió. La imagen incluye GNU findutils, coreutils y sqlite3 sobre un Ubuntu mínimo."
+
+#: src/find-posix/README.md:60
+msgctxt "s-0dcb373c2dff-0016"
+msgid "Program Flow"
+msgstr "Flujo del programa"
+
+#: src/find-posix/README.md:64
+msgctxt "s-58aa1021ffe3-0017"
+msgid "find-posix: find walks into the directories that its own -exec just made"
+msgstr "find-posix: `find` recorre los directorios que su propio `-exec` acaba de crear"
+
+#: src/find-posix/README.md:65
+msgctxt "s-51ad458a9c09-0018"
+msgid "A flowchart. find visits a directory. A chain of -o branches, chosen by the directory name and path, runs exactly one branch. Most branches run an exec that digs one new directory below the current one, and print part of an SQL statement. After visiting a directory, find reads its entries, so it finds the new directory and visits it next. At the end of a card where the total is 40 or less, the branch digs the next card's dice directory. At the end of a card where the total is over 40, the branch digs nothing. The walk then ends, and sqlite3 reads the SQL text that find printed."
+msgstr "Un diagrama de flujo. find visita un directorio. Una cadena de ramas -o ejecuta exactamente una rama, elegida según el nombre y la ruta del directorio. La mayoría de las ramas ejecutan un exec que crea un directorio nuevo un nivel por debajo del actual e imprimen parte de una sentencia SQL. Después de visitar un directorio, find lee sus entradas; así encuentra el directorio nuevo y lo visita a continuación. Al final de una tarjeta cuyo total no pasa de 40, la rama crea el directorio de dados de la tarjeta siguiente. Al final de una tarjeta cuyo total pasa de 40, la rama no crea ningún directorio. Entonces el recorrido termina y sqlite3 lee el texto SQL que find imprimió."
+
+#: src/find-posix/README.md:66
+msgctxt "s-aad4d9f438c4-0019"
+msgid "find visits one directory: its name and path pick one -o branch"
+msgstr "find visita un directorio: su nombre y su ruta eligen una rama -o"
+
+#: src/find-posix/README.md:66
+msgctxt "s-e89ef51ef3e1-0020"
+msgid "Does the branch dig a new directory?"
+msgstr "¿La rama cava un directorio nuevo?"
+
+#: src/find-posix/README.md:67
+msgctxt "s-85ec16a78df4-0021"
+msgid "yes: hour, countdown, or the next card's dice"
+msgstr "sí: hora, cuenta regresiva o los dados de la siguiente tarjeta"
+
+#: src/find-posix/README.md:67
+msgctxt "s-91032d421be2-0022"
+msgid "-exec mkdir or mktemp -d digs it; printf and date add SQL text"
+msgstr "-exec mkdir o mktemp -d lo crea; printf y date añaden texto SQL"
+
+#: src/find-posix/README.md:68
+msgctxt "s-7eb2d44ad983-0023"
+msgid "find reads this directory's entries after visiting it, and finds the new one"
+msgstr "find lee las entradas de este directorio después de visitarlo y encuentra la nueva"
+
+#: src/find-posix/README.md:70
+msgctxt "s-47b0cb9d100c-0024"
+msgid "no: the end of a card with a total over 40"
+msgstr "no: el final de una tarjeta con un total que pasa de 40"
+
+#: src/find-posix/README.md:70
+msgctxt "s-ebb22829fe0a-0025"
+msgid "The walk ends; sqlite3 reads the SQL text from the pipe"
+msgstr "El recorrido termina; sqlite3 lee el texto SQL desde la tubería"
+
+#: src/find-posix/README.md:73
+msgctxt "s-11a5ab6125d1-0026"
+msgid "**What this shows:** the loop is a tree walk that keeps growing. find reads a directory's entries *after* it visits the directory, so a directory that ⟦CODE_0001⟧ makes inside the current one is walked next. The path from the start is the history, and the directory name is the state. It is the call stack of a recursion, drawn on the file system."
+msgstr "**Qué muestra:** el bucle es un recorrido de árbol que sigue creciendo. find lee las entradas de un directorio *después* de visitarlo, así que un directorio que ⟦CODE_0001⟧ crea dentro del actual se recorre a continuación. La ruta desde el inicio es el historial, y el nombre del directorio es el estado. Es la pila de llamadas de una recursión, dibujada en el sistema de archivos."
+
+#: src/find-posix/README.md:75
+msgctxt "s-36242048e7b1-0027"
+msgid "**Why this mechanism matters:** the stop rule is the absence of a new child: at the end of a card, five ⟦CODE_0001⟧ hour-digits in the path (or four and a non-zero last digit) mean the total is over 40, and no branch digs. The running total is the number of hour directories in the path, and no arithmetic exists anywhere. This relies on the order in which find reads and visits, which is accidental to find, not promised by POSIX."
+msgstr "**Por qué importa este mecanismo:** la regla de parada es la ausencia de un hijo nuevo: al final de una tarjeta, cinco dígitos de hora ⟦CODE_0001⟧ en la ruta (o cuatro y un último dígito distinto de cero) significan que el total pasa de 40, y ninguna rama cava. El total acumulado es el número de directorios de hora en la ruta, y no hay aritmética en ninguna parte. Esto depende del orden en que find lee y visita, que es accidental en find y no una promesa de POSIX."
+
+#: src/find-posix/README.md:77
+msgctxt "s-7f97d965b4c0-0028"
+msgid "How the stunt works"
+msgstr "Cómo funciona el truco"
+
+#: src/find-posix/README.md:79
+msgctxt "s-c9c563675f5e-0029"
+msgid "The Make entry asked how much work Make's own syntax could do. Its loop was Make re-executing itself, and its state was which files exist. This entry plays the same game with find. The trick is this: **find reads a directory's entries after it visits the directory.** So if ⟦CODE_0001⟧ makes a new directory inside the one find is visiting, find walks into it next. The walk keeps going for as long as ⟦CODE_0002⟧ keeps digging."
+msgstr "La entrada de Make preguntó cuánto trabajo podía hacer la sintaxis propia de Make. Su bucle era que Make se volvía a ejecutar a sí mismo, y su estado era qué archivos existen. Esta entrada juega el mismo juego con find. El truco es este: **find lee las entradas de un directorio después de visitarlo.** Así que si ⟦CODE_0001⟧ crea un directorio nuevo dentro del que find está visitando, find entra en él a continuación. El recorrido sigue mientras ⟦CODE_0002⟧ siga cavando."
+
+#: src/find-posix/README.md:81
+msgctxt "s-6b1e7bacc779-0030"
+msgid "The machine: a path is a program counter"
+msgstr "La máquina: una ruta es un contador de programa"
+
+#: src/find-posix/README.md:83
+msgctxt "s-a4e8b7abb436-0031"
+msgid "Every step makes one directory. The directory's **name** is the state, and the **path** from the start is the history. There are three kinds of directory:"
+msgstr "Cada paso crea un directorio. El **nombre** del directorio es el estado y la **ruta** desde el inicio es el historial. Hay tres tipos de directorio:"
+
+#: src/find-posix/README.md:85
+msgctxt "s-1180fd528979-0032"
+msgid "⟦SEP_0001⟧ Name ⟦SEP_0002⟧ Means ⟦SEP_0003⟧ Made by ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ Nombre ⟦SEP_0002⟧ Significado ⟦SEP_0003⟧ Quién lo crea ⟦SEP_0004⟧"
+
+#: src/find-posix/README.md:87
+msgctxt "s-499cd0d8cd0b-0033"
+msgid "⟦SEP_0003⟧ six random characters, like ⟦CODE_0001⟧ ⟦SEP_0004⟧ the dice for one card ⟦SEP_0005⟧ ⟦CODE_0002⟧ ⟦SEP_0006⟧"
+msgstr "⟦SEP_0003⟧ seis caracteres aleatorios, como ⟦CODE_0001⟧ ⟦SEP_0004⟧ los dados de una tarjeta ⟦SEP_0005⟧ ⟦CODE_0002⟧ ⟦SEP_0006⟧"
+
+#: src/find-posix/README.md:88
+msgctxt "s-76a04e6f5621-0034"
+msgid "⟦SEP_0004⟧ one character, ⟦CODE_0001⟧-⟦CODE_0002⟧ ⟦SEP_0005⟧ one hour. It is the last digit of the running total, counting 1, 2, ... 9, 0, 1, ... ⟦SEP_0006⟧ ⟦CODE_0003⟧ ⟦SEP_0007⟧"
+msgstr "⟦SEP_0004⟧ un carácter, ⟦CODE_0001⟧-⟦CODE_0002⟧ ⟦SEP_0005⟧ una hora. Es el último dígito del total acumulado, que cuenta 1, 2, ... 9, 0, 1, ... ⟦SEP_0006⟧ ⟦CODE_0003⟧ ⟦SEP_0007⟧"
+
+#: src/find-posix/README.md:89
+msgctxt "s-971e63fa13ff-0035"
+msgid "⟦SEP_0004⟧ ⟦CODE_0001⟧ down to ⟦CODE_0002⟧ ⟦SEP_0005⟧ hours still to go in this card ⟦SEP_0006⟧ ⟦CODE_0003⟧ ⟦SEP_0007⟧"
+msgstr "⟦SEP_0004⟧ de ⟦CODE_0001⟧ a ⟦CODE_0002⟧ ⟦SEP_0005⟧ horas que aún faltan en esta tarjeta ⟦SEP_0006⟧ ⟦CODE_0003⟧ ⟦SEP_0007⟧"
+
+#: src/find-posix/README.md:91
+msgctxt "s-d3aeeac275f8-0036"
+msgid "A card looks like this in the path (shortened):"
+msgstr "Una tarjeta se ve así en la ruta (abreviada):"
+
+#: src/find-posix/README.md:102
+msgctxt "s-6da44f4cb0ac-0037"
+msgid "This is the call stack of a recursive function, drawn on the file system. The path is the stack, and the walk goes down one level per step."
+msgstr "Esta es la pila de llamadas de una función recursiva, dibujada sobre el sistema de archivos. La ruta es la pila, y el recorrido baja un nivel por paso."
+
+#: src/find-posix/README.md:104
+msgctxt "s-8de30eb908e1-0038"
+msgid "Every job, and who does it"
+msgstr "Cada tarea y quién la hace"
+
+#: src/find-posix/README.md:106
+msgctxt "s-e4dd520a254d-0039"
+msgid "⟦SEP_0001⟧ Job ⟦SEP_0002⟧ Done by ⟦SEP_0003⟧"
+msgstr "⟦SEP_0001⟧ Tarea ⟦SEP_0002⟧ Quién la hace ⟦SEP_0003⟧"
+
+#: src/find-posix/README.md:108
+msgctxt "s-fcb4fc247381-0040"
+msgid "⟦SEP_0002⟧ Loop ⟦SEP_0003⟧ the walk, descending into the directory its own ⟦CODE_0001⟧ just made ⟦SEP_0004⟧"
+msgstr "⟦SEP_0002⟧ Bucle ⟦SEP_0003⟧ el recorrido, que desciende al directorio que su propio ⟦CODE_0001⟧ acaba de crear ⟦SEP_0004⟧"
+
+#: src/find-posix/README.md:109
+msgctxt "s-abd69e76f6e2-0041"
+msgid "⟦SEP_0005⟧ Branching ⟦SEP_0006⟧ ⟦CODE_0001⟧ chains. ⟦CODE_0002⟧ binds tighter than ⟦CODE_0003⟧, so ⟦CODE_0004⟧ is an if/else-if. Each directory matches exactly one branch ⟦SEP_0007⟧"
+msgstr "⟦SEP_0005⟧ Ramificación ⟦SEP_0006⟧ ⟦CODE_0001⟧ encadena. ⟦CODE_0002⟧ tiene mayor precedencia que ⟦CODE_0003⟧, así que ⟦CODE_0004⟧ es un if/else-if. Cada directorio corresponde a exactamente una rama ⟦SEP_0007⟧"
+
+#: src/find-posix/README.md:110
+msgctxt "s-8df23ae7ba61-0042"
+msgid "⟦SEP_0002⟧ Randomness ⟦SEP_0003⟧ ⟦CODE_0001⟧ makes the dice. The last character picks the hours (see below) ⟦SEP_0004⟧"
+msgstr "⟦SEP_0002⟧ Aleatoriedad ⟦SEP_0003⟧ ⟦CODE_0001⟧ genera los dados. El último carácter elige las horas (ver más abajo) ⟦SEP_0004⟧"
+
+#: src/find-posix/README.md:111
+msgctxt "s-af55e84a63b6-0043"
+msgid "⟦SEP_0004⟧ Hours 10 to 19 ⟦SEP_0005⟧ 60 of mktemp's 62 characters, in ten groups of six. ⟦CODE_0001⟧ is \"the dice show group 0\", so print ⟦CODE_0002⟧ and dig ⟦CODE_0003⟧ ⟦SEP_0006⟧"
+msgstr "⟦SEP_0004⟧ Horas de 10 a 19 ⟦SEP_0005⟧ 60 de los 62 caracteres de mktemp, en diez grupos de seis. ⟦CODE_0001⟧ significa \"los dados muestran el grupo 0\", así que imprime ⟦CODE_0002⟧ y busca ⟦CODE_0003⟧ ⟦SEP_0006⟧"
+
+#: src/find-posix/README.md:112
+msgctxt "s-f4805e06fbf6-0044"
+msgid "⟦SEP_0004⟧ Countdown ⟦SEP_0005⟧ ⟦CODE_0001⟧ makes ⟦CODE_0002⟧, and so on. The next name is a literal in an ⟦CODE_0003⟧. Nothing is subtracted ⟦SEP_0006⟧"
+msgstr "⟦SEP_0004⟧ Cuenta regresiva ⟦SEP_0005⟧ ⟦CODE_0001⟧ produce ⟦CODE_0002⟧ y así sucesivamente. El nombre siguiente es un literal en ⟦CODE_0003⟧. No se resta nada ⟦SEP_0006⟧"
+
+#: src/find-posix/README.md:113
+msgctxt "s-85db4d049fe6-0045"
+msgid "⟦SEP_0002⟧ Running total ⟦SEP_0003⟧ the number of hour directories in the path. The last digit is the name of the last hour. The tens digit is how many directories named ⟦CODE_0001⟧ the path has, because the digits cycle 1 ... 9, 0 ⟦SEP_0004⟧"
+msgstr "⟦SEP_0002⟧ Total acumulado ⟦SEP_0003⟧ el número de directorios de horas en la ruta. El último dígito es el nombre de la última hora. El dígito de las decenas es cuántos directorios llamados ⟦CODE_0001⟧ tiene la ruta, porque los dígitos siguen el ciclo 1 ... 9, 0 ⟦SEP_0004⟧"
+
+#: src/find-posix/README.md:114
+msgctxt "s-f648d673948d-0046"
+msgid "⟦SEP_0002⟧ Category order ⟦SEP_0003⟧ how many six-character names are in the path: ⟦CODE_0001⟧ means \"at least two cards\" ⟦SEP_0004⟧"
+msgstr "⟦SEP_0002⟧ Orden de categorías ⟦SEP_0003⟧ cuántos nombres de seis caracteres hay en la ruta: ⟦CODE_0001⟧ significa \"al menos dos tarjetas\" ⟦SEP_0004⟧"
+
+#: src/find-posix/README.md:115
+msgctxt "s-3242de54ba88-0047"
+msgid "⟦SEP_0004⟧ Stop rule (⟦CODE_0001⟧) ⟦SEP_0005⟧ at the end of a card, \"five ⟦CODE_0002⟧s in the path, or four ⟦CODE_0003⟧s and the last digit is not 0\". Exactly 40 continues, as in the other entries ⟦SEP_0006⟧"
+msgstr "⟦SEP_0004⟧ Regla de parada (⟦CODE_0001⟧) ⟦SEP_0005⟧ al final de una tarjeta, \"cinco ⟦CODE_0002⟧s en la ruta, o cuatro ⟦CODE_0003⟧s y el último dígito no es 0\". Un total de exactamente 40 continúa, como en las otras entradas ⟦SEP_0006⟧"
+
+#: src/find-posix/README.md:116
+msgctxt "s-07efc2cd1229-0048"
+msgid "⟦SEP_0003⟧ ISO week and the end of the row ⟦SEP_0004⟧ ⟦CODE_0001⟧. ⟦CODE_0002⟧ is the clock and the ISO-week calculator at once ⟦SEP_0005⟧"
+msgstr "⟦SEP_0003⟧ semana ISO y el final de la fila ⟦SEP_0004⟧ ⟦CODE_0001⟧. ⟦CODE_0002⟧ es el reloj y la calculadora de la semana ISO a la vez ⟦SEP_0005⟧"
+
+#: src/find-posix/README.md:117
+msgctxt "s-c4dd3873dfbd-0049"
+msgid "⟦SEP_0003⟧ Output ⟦SEP_0004⟧ ⟦CODE_0001⟧. find prints SQL text: an ⟦CODE_0002⟧ statement, built in pieces as the walk goes ⟦SEP_0005⟧"
+msgstr "⟦SEP_0003⟧ Salida ⟦SEP_0004⟧ ⟦CODE_0001⟧. find imprime texto SQL: una sentencia ⟦CODE_0002⟧, que se construye por partes a medida que avanza el recorrido ⟦SEP_0005⟧"
+
+#: src/find-posix/README.md:118
+msgctxt "s-52a1bf1676b2-0050"
+msgid "⟦SEP_0003⟧ Persistence ⟦SEP_0004⟧ ⟦CODE_0001⟧ reads that text from a pipe. SQLite holds the ⟦CODE_0002⟧ constraints and prints the report ⟦SEP_0005⟧"
+msgstr "⟦SEP_0003⟧ Persistencia ⟦SEP_0004⟧ ⟦CODE_0001⟧ lee ese texto desde una tubería. SQLite contiene las restricciones ⟦CODE_0002⟧ y imprime el informe ⟦SEP_0005⟧"
+
+#: src/find-posix/README.md:120
+msgctxt "s-cc7c65d68005-0051"
+msgid "The line has no ⟦CODE_0001⟧, ⟦CODE_0002⟧ or ⟦CODE_0003⟧, and nothing outside four primaries: ⟦CODE_0004⟧, ⟦CODE_0005⟧, ⟦CODE_0006⟧ and ⟦CODE_0007⟧. And ⟦CODE_0008⟧ runs only four programs: ⟦CODE_0009⟧, ⟦CODE_0010⟧, ⟦CODE_0011⟧ and ⟦CODE_0012⟧. No ⟦CODE_0013⟧, no ⟦CODE_0014⟧, no ⟦CODE_0015⟧. ⟦CODE_0016⟧ greps for all of this."
+msgstr "La línea no tiene ⟦CODE_0001⟧, ⟦CODE_0002⟧ ni ⟦CODE_0003⟧, ni nada fuera de cuatro primarios: ⟦CODE_0004⟧, ⟦CODE_0005⟧, ⟦CODE_0006⟧ y ⟦CODE_0007⟧. Y ⟦CODE_0008⟧ ejecuta solo cuatro programas: ⟦CODE_0009⟧, ⟦CODE_0010⟧, ⟦CODE_0011⟧ y ⟦CODE_0012⟧. Sin ⟦CODE_0013⟧, sin ⟦CODE_0014⟧, sin ⟦CODE_0015⟧. ⟦CODE_0016⟧ busca todo esto con grep."
+
+#: src/find-posix/README.md:122
+msgctxt "s-0f0116bd649b-0052"
+msgid "Why ⟦CODE_0001⟧ is the arithmetic unit"
+msgstr "Por qué ⟦CODE_0001⟧ es la unidad aritmética"
+
+#: src/find-posix/README.md:124
+msgctxt "s-00d36bc8ebc5-0053"
+msgid "In a ⟦CODE_0001⟧ pattern, ⟦CODE_0002⟧ also matches ⟦CODE_0003⟧. So ⟦CODE_0004⟧ means \"the path has at least two directories named exactly ⟦CODE_0005⟧\". That is a counter you can read. ⟦CODE_0006⟧ means \"the last two names are ⟦CODE_0007⟧ and ⟦CODE_0008⟧\". That is a lookup table with ten rows. The long line is made of such rows."
+msgstr "En un patrón ⟦CODE_0001⟧, ⟦CODE_0002⟧ también coincide con ⟦CODE_0003⟧. Por tanto, ⟦CODE_0004⟧ significa \"la ruta tiene al menos dos directorios llamados exactamente ⟦CODE_0005⟧\". Eso es un contador que puedes leer. ⟦CODE_0006⟧ significa \"los dos últimos nombres son ⟦CODE_0007⟧ y ⟦CODE_0008⟧\". Eso es una tabla de consulta con diez filas. La línea larga se compone de filas como esas."
+
+#: src/find-posix/README.md:126
+msgctxt "s-ebe673e68d0a-0054"
+msgid "The two tricks you can't skip"
+msgstr "Los dos trucos que no puedes omitir"
+
+#: src/find-posix/README.md:128
+msgctxt "s-1c9614da503d-0055"
+msgid "**A new directory's name goes to stdout.** ⟦CODE_0001⟧ prints the path it made, and the path would land in the middle of the SQL. So the line prints ⟦CODE_0002⟧ first, and the path becomes an SQL comment. The line is its own filter."
+msgstr "**El nombre de un directorio nuevo va a stdout.** ⟦CODE_0001⟧ imprime la ruta que creó, y esa ruta caería en medio del SQL. Por eso la línea imprime primero ⟦CODE_0002⟧, y la ruta se convierte en un comentario de SQL. La línea es su propio filtro."
+
+#: src/find-posix/README.md:129
+msgctxt "s-bc13d8195965-0056"
+msgid "**Y and Z are thrown away.** mktemp uses 62 characters, and 62 does not divide by ten. If the last character is ⟦CODE_0001⟧ or ⟦CODE_0002⟧, the walk reads the one before it instead. If both are ⟦CODE_0003⟧ or ⟦CODE_0004⟧ (one in 960), the hours are 10. That is a tiny bias, and ⟦CODE_0005⟧ has a forced-dice scenario for it."
+msgstr "**Y y Z se descartan.** mktemp usa 62 caracteres y 62 no es divisible entre diez. Si el último carácter es ⟦CODE_0001⟧ o ⟦CODE_0002⟧, el recorrido lee el anterior. Si los dos son ⟦CODE_0003⟧ o ⟦CODE_0004⟧ (uno de cada 960), las horas son 10. Es un sesgo minúsculo, y ⟦CODE_0005⟧ tiene un escenario de dados forzados para ese sesgo."
+
+#: src/find-posix/README.md:131
+msgctxt "s-c5938668b9e1-0057"
+msgid "What the ordinary version would look like"
+msgstr "Cómo se vería la versión ordinaria"
+
+#: src/find-posix/README.md:133
+msgctxt "s-0dd724e35627-0058"
+msgid "Ten lines of shell: ⟦CODE_0001⟧. The point of this entry is that the walk, the names and the patterns do all of that, and the shell only starts find."
+msgstr "Diez líneas de código para el intérprete de comandos:⟦CODE_0001⟧. El objetivo de esta entrada es que el recorrido, los nombres y los patrones hagan todo eso, y que el intérprete de comandos solo inicie find."
+
+#: src/find-posix/README.md:135
+msgctxt "s-339cc2c18f83-0059"
+msgid "What ⟦CODE_0001⟧ enforces"
+msgstr "Qué impone ⟦CODE_0001⟧"
+
+#: src/find-posix/README.md:137
+msgctxt "s-70afae5cd5d2-0060"
+msgid "⟦CODE_0001⟧ makes sure the stunt is real. ⟦CODE_0002⟧ may contain exactly one ⟦CODE_0003⟧, and no ⟦CODE_0004⟧, ⟦CODE_0005⟧, ⟦CODE_0006⟧, ⟦CODE_0007⟧ or ⟦CODE_0008⟧ anywhere. The ⟦CODE_0009⟧ may use only ⟦CODE_0010⟧, ⟦CODE_0011⟧, ⟦CODE_0012⟧ and ⟦CODE_0013⟧. ⟦CODE_0014⟧ may run only ⟦CODE_0015⟧, ⟦CODE_0016⟧, ⟦CODE_0017⟧ and ⟦CODE_0018⟧. The ⟦CODE_0019⟧ line must be exactly what ⟦CODE_0020⟧ prints."
+msgstr "⟦CODE_0001⟧ comprueba que la proeza es real. ⟦CODE_0002⟧ puede contener exactamente un ⟦CODE_0003⟧ y ningún ⟦CODE_0004⟧, ⟦CODE_0005⟧, ⟦CODE_0006⟧, ⟦CODE_0007⟧ ni ⟦CODE_0008⟧ en ninguna parte. El ⟦CODE_0009⟧ solo puede usar ⟦CODE_0010⟧, ⟦CODE_0011⟧, ⟦CODE_0012⟧ y ⟦CODE_0013⟧. ⟦CODE_0014⟧ solo puede ejecutar ⟦CODE_0015⟧, ⟦CODE_0016⟧, ⟦CODE_0017⟧ y ⟦CODE_0018⟧. La línea ⟦CODE_0019⟧ debe ser exactamente lo que imprime ⟦CODE_0020⟧."
+
+#: src/find-posix/README.md:139
+msgctxt "s-22de774947f7-0061"
+msgid "Then, for each find implementation it can see, it runs the demo 25 times. Every run must have hours 10 to 19, categories in order (the fifth card is ⟦DNT_0001⟧ again), correct running totals, ⟦CODE_0002⟧ on every row, the ISO week from ⟦CODE_0003⟧, and a stop exactly when the total passes 40. The stop-rule error must appear on stderr exactly once and nothing else may. The rows in SQLite must match the printed ones. The scratch folder must be gone afterward, and across the 25 runs at least eight different hour values must show up."
+msgstr "Luego, para cada implementación de find que pueda ver, ejecuta la demo 25 veces. Cada ejecución debe tener horas de 10 a 19, categorías en orden (la quinta tarjeta vuelve a ser ⟦DNT_0001⟧), totales acumulados correctos, ⟦CODE_0002⟧ en cada fila, la semana ISO de ⟦CODE_0003⟧ y una parada exactamente cuando el total pasa de 40. El error de la regla de parada debe aparecer en stderr exactamente una vez y nada más puede aparecer. Las filas de SQLite deben coincidir con las impresas. La carpeta temporal debe haber desaparecido al final y, en las 25 ejecuciones, deben aparecer al menos ocho valores de horas distintos."
+
+#: src/find-posix/README.md:141
+msgctxt "s-47c71aea88a9-0062"
+msgid "Then it forces the dice. A fake ⟦CODE_0001⟧, first on ⟦CODE_0002⟧, hands out chosen names, so seven scenarios exercise the tables on purpose. They cover every tens digit from 1 to 5, many units digits, a total of exactly 40 (which must continue), and the re-roll paths for a last character of ⟦CODE_0003⟧ and for ⟦CODE_0004⟧. The expected rows are computed with plain bash arithmetic. Last, a non-demo row must be refused by SQLite."
+msgstr "Luego fuerza los dados. Un ⟦CODE_0001⟧ falso, el primero en ⟦CODE_0002⟧, entrega los nombres elegidos, así que siete escenarios ejercitan las tablas a propósito. Cubren cada dígito de las decenas de 1 a 5, muchos dígitos de las unidades, un total de exactamente 40 (que debe continuar) y las rutas de nueva tirada para un último carácter ⟦CODE_0003⟧ y para ⟦CODE_0004⟧. Las filas esperadas se calculan con aritmética simple de bash. Por último, SQLite debe rechazar una fila que no es de demostración."
+
+#: src/find-posix/README.md:143
+msgctxt "s-5a0ad00b10fc-0063"
+msgid "Gotchas worth knowing"
+msgstr "Trampas que conviene conocer"
+
+#: src/find-posix/README.md:145
+msgctxt "s-1d53cd962b9c-0064"
+msgid "**Walking into what you just made is *accidentally exploited*.** POSIX does not say what find does when a directory changes during the walk. GNU find 4.9, bfs 3.1.2 and busybox 1.36.1 all visit the new directory, and that is all this entry knows. Nobody promised it."
+msgstr "**Entrar en lo que acabas de crear es *aprovechado por accidente*.** POSIX no dice qué hace find cuando un directorio cambia durante el recorrido. GNU find 4.9, bfs 3.1.2 y busybox 1.36.1 visitan todos el directorio nuevo, y eso es todo lo que sabe esta entrada. Nadie lo prometió."
+
+#: src/find-posix/README.md:146
+msgctxt "s-61f1e2dd9b87-0065"
+msgid "**⟦CODE_0001⟧ in ⟦CODE_0002⟧ crosses ⟦CODE_0003⟧, and it ruined the first version.** The first countdown names were ⟦CODE_0004⟧, ⟦CODE_0005⟧, and the pattern ⟦CODE_0006⟧ matched an *earlier* ⟦CODE_0007⟧ in the path, so the digit stuck at 2 for the whole card. The fix: patterns end the match with fixed-width names (⟦CODE_0008⟧, ⟦CODE_0009⟧), so the last segment is always exactly where you think."
+msgstr "**⟦CODE_0001⟧ en ⟦CODE_0002⟧ cruza ⟦CODE_0003⟧ y arruinó la primera versión.** Los primeros nombres de la cuenta regresiva eran ⟦CODE_0004⟧ y ⟦CODE_0005⟧. El patrón ⟦CODE_0006⟧ coincidía con un ⟦CODE_0007⟧ *anterior* en la ruta, así que el dígito se quedaba en 2 durante toda la tarjeta. La solución: los patrones terminan la coincidencia con nombres de ancho fijo (⟦CODE_0008⟧, ⟦CODE_0009⟧), así que el último segmento siempre queda exactamente donde crees."
+
+#: src/find-posix/README.md:147
+msgctxt "s-7be77bb0b085-0066"
+msgid "**A failing ⟦CODE_0001⟧ is noisy, so there is no mutex.** The first design made several dice and let the first good one win by ⟦CODE_0002⟧ of a claim directory. The losers printed errors. The design now makes one die per card and re-rolls inside the name."
+msgstr "**Un ⟦CODE_0001⟧ que falla hace ruido, así que no hay mutex.** El primer diseño creaba varios dados y dejaba que el primer dado válido ganara por medio de ⟦CODE_0002⟧ de un directorio de afirmación. Los perdedores imprimían errores. Ahora el diseño crea un dado por tarjeta y lo vuelve a tirar dentro del nombre."
+
+#: src/find-posix/README.md:148
+msgctxt "s-53b6748d8eb2-0067"
+msgid "**⟦CODE_0001⟧ inside a bigger word depends on the implementation.** The line uses ⟦CODE_0002⟧ and ⟦CODE_0003⟧. POSIX leaves ⟦CODE_0004⟧ that is part of a longer argument unspecified. GNU find, bfs and busybox replace it in the tested runs. The entry's overall assurance follows the weakest necessary dependency: the unpromised descent into directories created during traversal."
+msgstr "**⟦CODE_0001⟧ dentro de una palabra más larga depende de la implementación.** La línea usa ⟦CODE_0002⟧ y ⟦CODE_0003⟧. POSIX deja sin especificar ⟦CODE_0004⟧ cuando forma parte de un argumento más largo. GNU find, bfs y busybox lo reemplazan en las ejecuciones probadas. El grado de garantía global de la entrada sigue a la dependencia necesaria más débil: el descenso a los directorios creados durante el recorrido, que no está prometido."
+
+#: src/find-posix/README.md:149
+msgctxt "s-7d5cf168dd74-0068"
+msgid "**Not run on BSD or macOS.** We have no such machine. The line uses ⟦CODE_0001⟧ (POSIX 2008), ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧, and the utilities ⟦CODE_0005⟧, ⟦CODE_0006⟧ and ⟦CODE_0007⟧. ⟦CODE_0008⟧ is not POSIX but is on every BSD and Linux system. If you try it on a BSD, ⟦CODE_0009⟧ will tell you what breaks, and we would like to hear about it."
+msgstr "**No lo ejecutamos en BSD ni en macOS.** No tenemos ninguna máquina de ese tipo. La línea usa ⟦CODE_0001⟧ (POSIX 2008), ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧ y las utilidades ⟦CODE_0005⟧, ⟦CODE_0006⟧ y ⟦CODE_0007⟧. ⟦CODE_0008⟧ no es POSIX, pero está en todos los sistemas BSD y Linux. Si lo pruebas en un BSD, ⟦CODE_0009⟧ te dirá qué falla. Nos gustaría saberlo."
+
+#: src/find-posix/README.md:150
+msgctxt "s-6b1942d223bf-0069"
+msgid "**busybox runs ⟦CODE_0001⟧ inside itself.** A fake ⟦CODE_0002⟧ on ⟦CODE_0003⟧ is never called, so the forced-dice scenarios are skipped for busybox. Its 25 random runs still pass."
+msgstr "**busybox ejecuta ⟦CODE_0001⟧ dentro de sí mismo.** Un ⟦CODE_0002⟧ falso en ⟦CODE_0003⟧ nunca se invoca, así que los escenarios de dados forzados se omiten para busybox. Sus 25 ejecuciones aleatorias siguen pasando."
+
+#: src/find-posix/README.md:151
+msgctxt "s-c14675278e65-0070"
+msgid "**A tree stays behind until the end.** The walk leaves a path more than a hundred names deep. ⟦CODE_0001⟧ makes it in a scratch folder and removes the folder when it exits, even on Ctrl-C."
+msgstr "**Un árbol se queda hasta el final.** El recorrido deja una ruta con más de cien nombres de profundidad. ⟦CODE_0001⟧ la crea en una carpeta temporal y elimina la carpeta al salir, incluso con Ctrl-C."
+
+#: src/find-posix/README.md:152
+msgctxt "s-d7df6094b002-0071"
+msgid "**The optimizer does not change the answer, and it tells on you.** On GNU find 4.9 we ran the line 15 times at each of ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧ and ⟦CODE_0004⟧: every run was correct. The manual promises this, because find never reorders a test across a test that has side effects, and every branch here ends in ⟦CODE_0005⟧. ⟦CODE_0006⟧ prints how often each test really succeeded. In one run the line did about 57,000 test evaluations for 106 directories, which is the price of having no variables: every directory is checked against the whole table. The optimizer guessed that each ⟦CODE_0007⟧ succeeds 80% of the time. In that run the real rates were 33% and 50%, and 1 in 106 for the start directory."
+msgstr "**El optimizador no cambia la respuesta y te delata.** En GNU find 4.9 ejecutamos la línea 15 veces con cada uno de ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧ y ⟦CODE_0004⟧: todas las ejecuciones fueron correctas. El manual lo promete, porque find nunca cambia el orden de una prueba respecto de otra que tiene efectos secundarios, y cada rama termina aquí en ⟦CODE_0005⟧. ⟦CODE_0006⟧ imprime cuántas veces tuvo éxito realmente cada prueba. En una ejecución la línea hizo unas 57 000 evaluaciones de pruebas para 106 directorios, que es el precio de no tener variables: cada directorio se comprueba contra toda la tabla. El optimizador supuso que cada ⟦CODE_0007⟧ tiene éxito el 80 % de las veces. En esa ejecución las tasas reales fueron 33 % y 50 %, y 1 de cada 106 para el directorio inicial."
+
+#: src/find-posix/README.md:153
+msgctxt "s-c72a6d6ac434-0072"
+msgid "**The line is long on purpose.** Every ten-way choice is ten ⟦CODE_0001⟧ branches, and every one of them is written out. There is no way to loop inside a find expression, except by walking."
+msgstr "**La línea es larga a propósito.** Cada elección entre diez opciones son diez ramas ⟦CODE_0001⟧, y cada una de ellas está escrita por completo. No hay forma de hacer un bucle dentro de una expresión find, salvo al recorrer los directorios."
+
+#: src/find-posix/README.md:157
+msgctxt "s-40ddb79ac33a-0073"
+msgid "See the [root README](⟦DEST_0001⟧) for how this compares to the other entries, and [⟦CODE_0002⟧](⟦DEST_0003⟧) if you want to write your own."
+msgstr "Consulta el [README raíz](⟦DEST_0001⟧) para ver cómo se compara esto con las otras entradas, y [⟦CODE_0002⟧](⟦DEST_0003⟧) si quieres escribir el tuyo."

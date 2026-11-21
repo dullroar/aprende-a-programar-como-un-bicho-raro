@@ -74,7 +74,7 @@ flowchart TD
 
 ## Cómo funciona el truco
 
-Lee primero [cómo funciona la entrada portable](../find-posix/README.md#how-the-stunt-works). Explica por qué el recorrido entra en el directorio que `-exec` acaba de crear y por qué `*` en un patrón puede contar. Esta página cubre solo lo que cambian las extensiones de GNU.
+Lee primero [cómo funciona la entrada portable](../find-posix/README.md#cómo-funciona-el-truco). Explica por qué el recorrido entra en el directorio que `-exec` acaba de crear y por qué `*` en un patrón puede contar. Esta página cubre solo lo que cambian las extensiones de GNU.
 
 **Un directorio es una hora, sin contabilidad adicional.** En la entrada portátil una ruta tiene tres tipos de directorio y el total acumulado se escribe dígito por dígito. Aquí la primera hora de una tarjeta es el propio directorio de dados (seis caracteres aleatorios) y las horas restantes van desde `b17` hasta `b00`. Así, la profundidad de un directorio *es* el número de horas hasta ese punto.
 

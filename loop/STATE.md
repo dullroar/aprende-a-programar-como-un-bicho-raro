@@ -1,11 +1,11 @@
 # loop/STATE.md (keep to 60 lines; refreshed by every iteration)
 
 - **Edition:** v4-es.0-rc1 (working)    **English SHA:** 48a4429c0a22b2aac628b256a50c07d1816bcb80
-- **Iteration:** 109    **Stage:** 4 (bulk translation)    **Last result:** iter 109 P4-src-6 done (ex-weird, find-gnu READMEs; 152 segments). Next: P4-src-7
-- **Tasks:** todo 67 | doing 0 | done 79 | blocked 0 | skipped 0 (recount with the queue files)
+- **Iteration:** 110    **Stage:** 4 (bulk translation)    **Last result:** iter 110 P4-src-7 done (find-posix, forth-weird READMEs; 129 segments). Next: P4-src-8
+- **Tasks:** todo 66 | doing 0 | done 80 | blocked 0 | skipped 0 (recount with the queue files)
 - **Next task:** run `python3 tools/next_task.py` (PO files live at translation/po/<path>.po, written by tools/apply.py --init)
 - **Budget:** spent $0.00 of $100; iterations 0 of 300
-- **Translate progress:** segments accepted 1506 / total 8827 (7394 prose + 1433 Mermaid labels) ; files done 25 / 212 (src/ex-weird, src/find-gnu, src/cobol-weird, src/cobol, src/ed-weird READMEs, src/awk-weird, src/awk, src/cmake READMEs, src/RustChallenge1, src/apl-weird, src/apl READMEs, curriculum and study-guide title pages, src/GoChallenge1, JavaChallenge1, KotlinChallenge1, LinqChallenge1, LinqChallenge2, ModernChallenge1, PythonChallenge1 READMEs, src/forth/README.md, lessons/cs-source/concepts/recursion.md, lessons/study-guides/languages/forth.md, docs/curriculum.md, lessons/study-guides/languages/apl.md)
+- **Translate progress:** segments accepted 1635 / total 8827 (7394 prose + 1433 Mermaid labels) ; files done 27 / 212 (src/find-posix, src/forth-weird READMEs, src/ex-weird, src/find-gnu, src/cobol-weird, src/cobol, src/ed-weird READMEs, src/awk-weird, src/awk, src/cmake READMEs, src/RustChallenge1, src/apl-weird, src/apl READMEs, curriculum and study-guide title pages, src/GoChallenge1, JavaChallenge1, KotlinChallenge1, LinqChallenge1, LinqChallenge2, ModernChallenge1, PythonChallenge1 READMEs, src/forth/README.md, lessons/cs-source/concepts/recursion.md, lessons/study-guides/languages/forth.md, docs/curriculum.md, lessons/study-guides/languages/apl.md)
 - **Last audit:** none    **Next audit due after:** 8 translate tasks
 - **Gates:** P0 passed (iter 17)  P1 passed (iter 23)  P2 passed (iter 47)  P3 passed (iter 58)  P3B passed (iter 85)  P3C passed (iter 105)  P4 -  P5 -  P6 -  P7A -
 - **Open provisional decisions:** 5 (acronym BICHO; glossary choices; house style N=29 calibrated; schema/segment-id formats; same-tier reviewer kept after recall test)    **Blockers:** 0    **Source issues:** 16 (translation/source-issues.md)

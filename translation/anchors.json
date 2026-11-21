@@ -10506,113 +10506,113 @@
     {
      "en": "POSIX find: the walk digs the tree it is walking",
      "en_id": "posix-find-the-walk-digs-the-tree-it-is-walking",
-     "es": "POSIX find: the walk digs the tree it is walking",
-     "es_id": "posix-find-the-walk-digs-the-tree-it-is-walking",
+     "es": "POSIX find: el recorrido excava el árbol que está recorriendo",
+     "es_id": "posix-find-el-recorrido-excava-el-árbol-que-está-recorriendo",
      "level": 1,
      "line": 15
     },
     {
      "en": "Run it",
      "en_id": "run-it",
-     "es": "Run it",
-     "es_id": "run-it",
+     "es": "Ejecútalo",
+     "es_id": "ejecútalo",
      "level": 2,
      "line": 37
     },
     {
      "en": "Run it in a container",
      "en_id": "run-it-in-a-container",
-     "es": "Run it in a container",
-     "es_id": "run-it-in-a-container",
+     "es": "Ejecuta el programa en un contenedor",
+     "es_id": "ejecuta-el-programa-en-un-contenedor",
      "level": 2,
      "line": 50
     },
     {
      "en": "Program Flow",
      "en_id": "program-flow",
-     "es": "Program Flow",
-     "es_id": "program-flow",
+     "es": "Flujo del programa",
+     "es_id": "flujo-del-programa",
      "level": 2,
      "line": 60
     },
     {
      "en": "How the stunt works",
      "en_id": "how-the-stunt-works",
-     "es": "How the stunt works",
-     "es_id": "how-the-stunt-works",
+     "es": "Cómo funciona el truco",
+     "es_id": "cómo-funciona-el-truco",
      "level": 2,
      "line": 77
     },
     {
      "en": "The machine: a path is a program counter",
      "en_id": "the-machine-a-path-is-a-program-counter",
-     "es": "The machine: a path is a program counter",
-     "es_id": "the-machine-a-path-is-a-program-counter",
+     "es": "La máquina: una ruta es un contador de programa",
+     "es_id": "la-máquina-una-ruta-es-un-contador-de-programa",
      "level": 3,
      "line": 81
     },
     {
      "en": "Every job, and who does it",
      "en_id": "every-job-and-who-does-it",
-     "es": "Every job, and who does it",
-     "es_id": "every-job-and-who-does-it",
+     "es": "Cada tarea y quién la hace",
+     "es_id": "cada-tarea-y-quién-la-hace",
      "level": 3,
      "line": 104
     },
     {
      "en": "Why `-path` is the arithmetic unit",
      "en_id": "why--path-is-the-arithmetic-unit",
-     "es": "Why `-path` is the arithmetic unit",
-     "es_id": "why--path-is-the-arithmetic-unit",
+     "es": "Por qué `-path` es la unidad aritmética",
+     "es_id": "por-qué--path-es-la-unidad-aritmética",
      "level": 3,
      "line": 122
     },
     {
      "en": "The two tricks you can't skip",
      "en_id": "the-two-tricks-you-cant-skip",
-     "es": "The two tricks you can't skip",
-     "es_id": "the-two-tricks-you-cant-skip",
+     "es": "Los dos trucos que no puedes omitir",
+     "es_id": "los-dos-trucos-que-no-puedes-omitir",
      "level": 3,
      "line": 126
     },
     {
      "en": "What the ordinary version would look like",
      "en_id": "what-the-ordinary-version-would-look-like",
-     "es": "What the ordinary version would look like",
-     "es_id": "what-the-ordinary-version-would-look-like",
+     "es": "Cómo se vería la versión ordinaria",
+     "es_id": "cómo-se-vería-la-versión-ordinaria",
      "level": 3,
      "line": 131
     },
     {
      "en": "What `check.sh` enforces",
      "en_id": "what-checksh-enforces",
-     "es": "What `check.sh` enforces",
-     "es_id": "what-checksh-enforces",
+     "es": "Qué impone `check.sh`",
+     "es_id": "qué-impone-checksh",
      "level": 2,
      "line": 135
     },
     {
      "en": "Gotchas worth knowing",
      "en_id": "gotchas-worth-knowing",
-     "es": "Gotchas worth knowing",
-     "es_id": "gotchas-worth-knowing",
+     "es": "Trampas que conviene conocer",
+     "es_id": "trampas-que-conviene-conocer",
      "level": 2,
      "line": 143
     }
    ],
    "map": {
-    "every-job-and-who-does-it": "every-job-and-who-does-it",
-    "gotchas-worth-knowing": "gotchas-worth-knowing",
-    "how-the-stunt-works": "how-the-stunt-works",
-    "posix-find-the-walk-digs-the-tree-it-is-walking": "posix-find-the-walk-digs-the-tree-it-is-walking",
-    "program-flow": "program-flow",
-    "run-it": "run-it",
-    "run-it-in-a-container": "run-it-in-a-container",
-    "the-machine-a-path-is-a-program-counter": "the-machine-a-path-is-a-program-counter",
-    "the-two-tricks-you-cant-skip": "the-two-tricks-you-cant-skip",
-    "what-checksh-enforces": "what-checksh-enforces",
-    "what-the-ordinary-version-would-look-like": "what-the-ordinary-version-would-look-like",
-    "why--path-is-the-arithmetic-unit": "why--path-is-the-arithmetic-unit"
+    "every-job-and-who-does-it": "cada-tarea-y-quién-la-hace",
+    "gotchas-worth-knowing": "trampas-que-conviene-conocer",
+    "how-the-stunt-works": "cómo-funciona-el-truco",
+    "posix-find-the-walk-digs-the-tree-it-is-walking": "posix-find-el-recorrido-excava-el-árbol-que-está-recorriendo",
+    "program-flow": "flujo-del-programa",
+    "run-it": "ejecútalo",
+    "run-it-in-a-container": "ejecuta-el-programa-en-un-contenedor",
+    "the-machine-a-path-is-a-program-counter": "la-máquina-una-ruta-es-un-contador-de-programa",
+    "the-two-tricks-you-cant-skip": "los-dos-trucos-que-no-puedes-omitir",
+    "what-checksh-enforces": "qué-impone-checksh",
+    "what-the-ordinary-version-would-look-like": "cómo-se-vería-la-versión-ordinaria",
+    "why--path-is-the-arithmetic-unit": "por-qué--path-es-la-unidad-aritmética"
    }
   },
   "src/forth-weird/README.md": {
@@ -10620,77 +10620,77 @@
     {
      "en": "Forth, weirder",
      "en_id": "forth-weirder",
-     "es": "Forth, weirder",
-     "es_id": "forth-weirder",
+     "es": "Forth, más raro todavía",
+     "es_id": "forth-más-raro-todavía",
      "level": 1,
      "line": 16
     },
     {
      "en": "Run it",
      "en_id": "run-it",
-     "es": "Run it",
-     "es_id": "run-it",
+     "es": "Ejecútalo",
+     "es_id": "ejecútalo",
      "level": 2,
      "line": 31
     },
     {
      "en": "Program Flow",
      "en_id": "program-flow",
-     "es": "Program Flow",
-     "es_id": "program-flow",
+     "es": "Flujo del programa",
+     "es_id": "flujo-del-programa",
      "level": 2,
      "line": 52
     },
     {
      "en": "How the stunt works",
      "en_id": "how-the-stunt-works",
-     "es": "How the stunt works",
-     "es_id": "how-the-stunt-works",
+     "es": "Cómo funciona el truco",
+     "es_id": "cómo-funciona-el-truco",
      "level": 2,
      "line": 70
     },
     {
      "en": "Where the state goes",
      "en_id": "where-the-state-goes",
-     "es": "Where the state goes",
-     "es_id": "where-the-state-goes",
+     "es": "Dónde va el estado",
+     "es_id": "dónde-va-el-estado",
      "level": 3,
      "line": 94
     },
     {
      "en": "What `check.sh` enforces",
      "en_id": "what-checksh-enforces",
-     "es": "What `check.sh` enforces",
-     "es_id": "what-checksh-enforces",
+     "es": "Qué exige `check.sh`",
+     "es_id": "qué-exige-checksh",
      "level": 2,
      "line": 106
     },
     {
      "en": "Gotchas worth knowing",
      "en_id": "gotchas-worth-knowing",
-     "es": "Gotchas worth knowing",
-     "es_id": "gotchas-worth-knowing",
+     "es": "Trampas que conviene conocer",
+     "es_id": "trampas-que-conviene-conocer",
      "level": 2,
      "line": 110
     },
     {
      "en": "Run it in a container",
      "en_id": "run-it-in-a-container",
-     "es": "Run it in a container",
-     "es_id": "run-it-in-a-container",
+     "es": "Ejecuta el programa en un contenedor",
+     "es_id": "ejecuta-el-programa-en-un-contenedor",
      "level": 2,
      "line": 120
     }
    ],
    "map": {
-    "forth-weirder": "forth-weirder",
-    "gotchas-worth-knowing": "gotchas-worth-knowing",
-    "how-the-stunt-works": "how-the-stunt-works",
-    "program-flow": "program-flow",
-    "run-it": "run-it",
-    "run-it-in-a-container": "run-it-in-a-container",
-    "what-checksh-enforces": "what-checksh-enforces",
-    "where-the-state-goes": "where-the-state-goes"
+    "forth-weirder": "forth-más-raro-todavía",
+    "gotchas-worth-knowing": "trampas-que-conviene-conocer",
+    "how-the-stunt-works": "cómo-funciona-el-truco",
+    "program-flow": "flujo-del-programa",
+    "run-it": "ejecútalo",
+    "run-it-in-a-container": "ejecuta-el-programa-en-un-contenedor",
+    "what-checksh-enforces": "qué-exige-checksh",
+    "where-the-state-goes": "dónde-va-el-estado"
    }
   },
   "src/forth/README.md": {

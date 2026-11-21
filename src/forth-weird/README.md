@@ -1,6 +1,6 @@
 ---
 name: "Forth"
-teaches: "that the text interpreter's parse position is a program counter, if you let it be, and that the data stack can be a program's only memory."
+teaches: "que la posición de análisis en el intérprete de texto es, si lo permites, un contador de programa y que la pila de datos puede ser la única memoria de un programa."
 kind: weird
 languages: [forth]
 lesson: "lenguajes/forth.md"
@@ -8,29 +8,29 @@ loop-by: self-modifying-control
 evaluation: eager
 assurance: implementation-permitted
 pairs-with: forth
-machine: "A stack machine with a movable instruction pointer"
-state: "The data stack and the parse position `>in`"
+machine: "Una máquina de pila con un puntero de instrucción móvil"
+state: "La pila de datos y la posición de análisis `>in`"
 tags: [control-flow, parsing, program-counter, reflection-and-metaprogramming, register-machine, stack-data-structure, stack-machine, state]
 analogies: [continuation]
 ---
-# Forth, weirder
+# Forth, más raro todavía
 
-**Teaches you:** that the text interpreter's parse position is a program counter, if you let it be, and that the data stack can be a program's only memory.
+**Te enseña:** que, en el intérprete de texto, la posición de análisis es un contador de programa si lo permites, y que la pila de datos puede ser la única memoria de un programa.
 
-> **DEMO ONLY.** Fictional timecards in a scratch SQLite file. No connection to any real time-reporting system.
+> **DEMO ONLY.** Tarjetas de horas ficticias en un archivo SQLite temporal. Sin conexión con ningún sistema real de registro de horas.
 
-This is weird, even for Forth folk.
+Esto es raro, incluso para los aficionados a Forth.
 
-The program is a two-register machine:
+El programa es una máquina de dos registros:
 
-- the **memory** is the data stack: there is not one `variable` in the file;
-- the **program counter** is `>in`, the text interpreter's parse position within the current line.
+- la **memoria** es la pila de datos: no hay ni un solo `variable` en el archivo;
+- el **contador de programa** es `>in`, la posición de análisis del intérprete de texto dentro de la línea actual.
 
-There is no `begin`, `until`, `while`, `if`, `do`, `case` or recursion anywhere. The "loop" is a line of source that the interpreter reads, and then reads *again* because a word moved `>in` backwards.
+No hay `begin`, `until`, `while`, `if`, `do`, `case` ni recursión en ninguna parte. El "bucle" es una línea de código fuente que el intérprete lee y luego lee *otra vez* porque una palabra movió `>in` hacia atrás.
 
-## Run it
+## Ejecútalo
 
-You need Gforth (`gforth`, 0.7.3 or later) and `sqlite3`.
+Necesitas Gforth (`gforth`, versión 0.7.3 o posterior) y `sqlite3`.
 
 ```bash
 cd src/forth-weird
@@ -38,7 +38,7 @@ gforth timecards.fs
 ./check.sh                  # set GFORTH=/path/to/gforth if it is not on your PATH
 ```
 
-Records go to `$XDG_DATA_HOME/ForthWeird/demo-timecards.db` (default `~/.local/share/ForthWeird/`). A run looks like this:
+Los registros se guardan en `$XDG_DATA_HOME/ForthWeird/demo-timecards.db` (por defecto, `~/.local/share/ForthWeird/`). Una ejecución se ve así:
 
 ```text
 # DEMO ONLY run 1794674811797273
@@ -49,80 +49,80 @@ Debugging	19	49	2026-W46	DEMO ONLY
 # no loop word anywhere: the text interpreter was rewound until the total passed 40
 ```
 
-## Program Flow
+## Flujo del programa
 
 ```mermaid
 flowchart TD
-    accTitle: forth-weird: the text interpreter reads the same words again
-    accDescr: A flowchart. The Forth text interpreter reads one line: zero zero, then at-in fetch, then step, then rewind-question. Zero zero pushes the card number and the total. At-in fetch pushes the parse position, which is the anchor. The word step runs one card with the anchor kept on the return stack. The word rewind-question makes a flag, minus one while the total is 40 or less, and zero otherwise. It combines the flag with the distance back to the anchor, and adds that to the parse position. If the flag was true, the parse position is back at the anchor, so the interpreter reads step again. If it was false, the parse position is unchanged, and the interpreter goes on to drop, commit and report.
-    A["Interpreter reads: 0 0 #gt;in @ — stack holds n, total and anchor"] --> B["Interpreter reads the word step: runs one card, anchor kept on the return stack"]
-    B --> C["Interpreter reads rewind?: flag is -1 while total <= 40, else 0"]
-    C --> D["Distance back to the anchor AND flag, added to the parse position #gt;in"]
-    D --> E{{"Is the parse position back at the anchor?"}}
-    E -->|"yes: flag was -1"| B
-    E -->|"no: flag was 0"| F["Interpreter reads on: drop the anchor, commit, report"]
+    accTitle: forth-weird: el intérprete de texto vuelve a leer las mismas palabras
+    accDescr: Un diagrama de flujo. El intérprete de texto de Forth lee una línea: cero cero, luego at-in fetch, luego step y luego rewind-question. Cero cero apila el número de tarjeta y el total. At-in fetch apila la posición de análisis, que es el ancla. La palabra step ejecuta una tarjeta con el ancla guardada en la pila de retorno. La palabra rewind-question crea una bandera: menos uno mientras el total no pasa de 40 y cero en cualquier otro caso. Combina la bandera con la distancia de regreso al ancla y suma el resultado a la posición de análisis. Si la bandera era verdadera, la posición de análisis vuelve al ancla y el intérprete lee step otra vez. Si era falsa, la posición de análisis no cambia y el intérprete sigue con drop, commit y report.
+    A["El intérprete lee: 0 0 #gt;in @ — la pila contiene n, el total y el ancla"] --> B["El intérprete lee la palabra step: ejecuta una tarjeta y mantiene el ancla en la pila de retorno"]
+    B --> C["El intérprete lee rewind?: la bandera es -1 mientras el total no pasa de 40; en otro caso, es 0"]
+    C --> D["Distancia de vuelta al ancla Y bandera, sumada a la posición de análisis #gt;in"]
+    D --> E{{"¿Volvió la posición de análisis al ancla?"}}
+    E -->|"sí: la bandera valía -1"| B
+    E -->|"no: la bandera era 0"| F["El intérprete sigue leyendo: suelta el ancla, confirma la transacción e informa"]
 ```
 
-**What this shows:** the loop is the text interpreter, the loop you never see, and the jump is a change to `>in`, the number that says how far it has read. Setting `>in` to an earlier value makes the interpreter read the same words again. There is no `if`: a Forth flag is `-1` or `0`, so `AND` turns the distance back into either itself or nothing.
+**Qué muestra:** el bucle es el intérprete de texto, el bucle que nunca ves y el salto es un cambio en `>in`, el número que indica hasta dónde ha leído. Asignar un valor anterior a `>in` hace que el intérprete lea otra vez las mismas palabras. No existe `if`: una bandera de Forth es `-1` o `0`, así que `AND` convierte la distancia en sí misma o en nada.
 
-**Why this mechanism matters:** the program counter is a variable, and a program can rewrite it. The state is two numbers on the data stack, and they survive the rewind because nothing else touches them. This works because the words are read from an input line, and it does not work the same way in a definition. See [`forth`](../forth/README.md) for the ordinary loop.
+**Por qué importa este mecanismo:** el contador de programa es una variable, y un programa puede reescribirla. El estado son dos números en la pila de datos, y sobreviven al retroceso porque nada más los toca. Esto funciona porque las palabras se leen de una línea de entrada, y no funciona igual dentro de una definición. Para el bucle ordinario, consulta [`forth`](../forth/README.md).
 
-## How the stunt works
+## Cómo funciona el truco
 
-The Forth text interpreter is a loop you never see: it reads the next word from the input line, runs it, and repeats. `>in` is a variable holding *how far it has read*. Read it with `>in @`, set it with `>in !`. Set it to an earlier value and the interpreter will cheerfully read the same words again.
+El intérprete de texto de Forth es un bucle que nunca ves: lee la siguiente palabra de la línea de entrada, la ejecuta y se repite. `>in` es una variable que guarda *hasta dónde ha leído*. Léela con `>in @` y modifícala con `>in !`. Asígnale un valor anterior y el intérprete volverá a leer alegremente las mismas palabras.
 
-The whole program is this one line at the top level, not inside any definition:
+El programa completo es esta única línea en el nivel superior, fuera de cualquier definición:
 
 ```forth
 0 0 >in @ step rewind?
 ```
 
-Read it left to right as the interpreter does:
+Léelo de izquierda a derecha, como lo hace el intérprete:
 
-1. `0 0` pushes the starting state: card number 0, running total 0.
-2. `>in @` pushes the parse position, which at this moment is *just after the `@`*. That is the **anchor**: "the place to jump back to". The stack is now `( n total anchor )`.
-3. `step` runs one card. It moves the anchor onto the return stack (`>r`), calls `card`, and puts the anchor back, so `card` never sees it.
-4. `rewind?` decides whether to jump. `over 41 <` tests whether the total is still 40 or less and leaves a flag, and the next line is the jump itself:
+1. `0 0` empuja el estado inicial: tarjeta número 0, total acumulado 0.
+2. `>in @` empuja la posición de análisis, que en este momento está *justo después de `@`*. Esa es el **ancla**: "el lugar al que volver a saltar". Ahora la pila es `( n total anchor )`.
+3. `step` ejecuta una tarjeta. Mueve el ancla a la pila de retorno (`>r`), llama a `card` y vuelve a poner el ancla, de modo que `card` nunca la ve.
+4. `rewind?` decide si saltar. `over 41 <` comprueba si el total todavía no pasa de 40 y deja una bandera. La línea siguiente es el salto en sí:
 
    ```forth
    over >in @ - and  >in @ + >in !
    ```
 
-   A Forth flag is **-1** (all bits set) for true and **0** for false, so it works as a bit mask. `anchor - >in` is the distance back to the anchor; `and` with the flag keeps that distance if the flag was true and zeroes it if false; adding it to `>in` gives either the anchor or "stay where you are". There is no `if`. The jump is arithmetic.
-5. The line ends. If `>in` was rewound, the interpreter's next word is `step` again and the stack is exactly as the last pass left it. If not, it continues with the line after: `drop` (discard the anchor), commit, report.
+   Una bandera de Forth es **-1** (todos los bits activados) para verdadero y **0** para falso, así que funciona como máscara de bits. `anchor - >in` es la distancia de vuelta hasta el ancla; `and` con la bandera conserva esa distancia si la bandera era verdadera y la pone en cero si era falsa; al sumarla a `>in` se obtiene el ancla o "quédate donde estás". No hay `if`. El salto es aritmético.
+5. La línea termina. Si `>in` se rebobinó, la siguiente palabra del intérprete es otra vez `step` y la pila queda exactamente como la dejó la última pasada. Si no, continúa con la línea siguiente: `drop` (descarta el ancla), confirma la transacción, informa.
 
-### Where the state goes
+### Dónde va el estado
 
-| What | Where it lives |
+| Qué | Dónde vive |
 | --- | --- |
-| Card number and running total | On the data stack, across rewinds: `( n total )` |
-| The jump target | Also the data stack, as `anchor` |
-| A card's hours | On the stack for the length of one `card`, then folded into the total |
-| `run-id`, `sqlite` | `value`s set once at start-up and never changed |
-| The ISO week text | A buffer filled once at start-up. `%G-W%V` is always eight characters, so no length is stored either |
+| Número de tarjeta y total acumulado | En la pila de datos, a través de los rebobinados: `( n total )` |
+| El destino del salto | También la pila de datos, como `anchor` |
+| Las horas de una tarjeta | En la pila mientras dura un `card` y luego se incorporan al total |
+| `run-id`, `sqlite` | Los `value` se fijan una vez al iniciar y nunca cambian |
+| El texto de la semana ISO | Un búfer que se llena una sola vez al arrancar. `%G-W%V` siempre tiene ocho caracteres, así que tampoco se guarda su longitud |
 
-`card` has the stack effect `( n total -- n' total' )`: it draws hours, computes the new total with `tuck +`, prints the row, sends the `INSERT`, and leaves `n+1` and the new total. `3dup` copies the three-number record `( n h t )` so both `.row` (to the terminal) and `.insert` (to SQLite, through `outfile-execute`) can consume one.
+`card` tiene el efecto de pila `( n total -- n' total' )`: toma las horas, calcula el nuevo total con `tuck +`, imprime la fila, envía `INSERT` y deja `n+1` y el nuevo total. `3dup` copia el registro de tres números `( n h t )` para que tanto `.row` (al terminal) como `.insert` (a SQLite, mediante `outfile-execute`) puedan consumir uno.
 
-## What `check.sh` enforces
+## Qué exige `check.sh`
 
-With comments and `."` strings removed, none of `begin until while repeat again if then else do loop case of recurse exit leave` appears; no `variable` or `buffer:` is declared; `>in @` appears at least twice (once for the anchor, once in the jump); and the database rows agree with the printed rows over 25 runs.
+Al quitar los comentarios y las cadenas de texto `."`, no aparece ninguno de `begin until while repeat again if then else do loop case of recurse exit leave`; no se declara ningún `variable` ni `buffer:`; `>in @` aparece al menos dos veces (una para el ancla y otra en el salto); y las filas de la base de datos coinciden con las filas impresas en 25 ejecuciones.
 
-## Gotchas worth knowing
+## Trampas que conviene conocer
 
-- **It only works at the top level, or in `evaluate`d / `included` text.** `>in` is the parse position *of the current input line*. A colon definition that moves `>in` (like `rewind?`) works because it runs while the interpreter is parsing the line that called it. Compile the loop *into* a word and there is no line to rewind.
-- **The loop and the data are on one line.** If you move the `0 0` to *after* the `>in @` (`>in @ 0 0 step rewind?`), you get a correct-looking program that resets the state on every pass and never stops: the anchor is now before the `0 0`, so every rewind pushes a fresh pair. (Moving it to the previous line is harmless: the anchor is still after it.)
-- **The anchor is a number of characters, not an address.** Edit the line and the anchor is recomputed at run time, because `>in @` reads it on the way past.
-- **`random` is `0..n-1`**, so `10 random 10 +` is 10 to 19; Gforth is seeded from `utime`.
-- **`3dup` is not in Gforth 0.7.3.** It is defined at the top with `2 pick` three times.
-- **Gforth-specific words.** `outfile-execute`, `open-pipe` and `utime` are Gforth extensions.
-- **Not a pattern.** A flag as a bit mask is an old, respectable trick. Rewinding the parser to loop is a stunt.
+- **Solo funciona en el nivel superior o en texto procesado con `evaluate` o `included`.** `>in` es la posición de análisis sintáctico *de la línea de entrada actual*. Una definición con dos puntos que mueve `>in` (como `rewind?`) funciona porque se ejecuta mientras el intérprete analiza la línea que la llamó. Compila el bucle *dentro de* una palabra y no hay ninguna línea que rebobinar.
+- **El bucle y los datos están en una sola línea.** Si mueves `0 0` *después de* `>in @` (`>in @ 0 0 step rewind?`), obtienes un programa de apariencia correcta que reinicia el estado en cada pasada y nunca se detiene. Ahora el ancla queda antes de `0 0`, así que cada retroceso apila un par nuevo. (Moverlo a la línea anterior es inofensivo: el ancla sigue estando después de ella.)
+- **El ancla es un número de caracteres, no una dirección.** Edita la línea y el ancla se recalcula en tiempo de ejecución, porque `>in @` la lee al pasar.
+- **`random` es `0..n-1`**, así que `10 random 10 +` da un valor de 10 a 19 horas; Gforth usa `utime` como semilla.
+- **`3dup` no existe en Gforth 0.7.3.** Se define al principio con `2 pick` tres veces.
+- **Palabras específicas de Gforth.** `outfile-execute`, `open-pipe` y `utime` son extensiones de Gforth.
+- **No es un patrón.** Una bandera como máscara de bits es un truco antiguo y respetable. Rebobinar el analizador sintáctico para crear un bucle es una acrobacia.
 
-## Run it in a container
+## Ejecuta el programa en un contenedor
 
-Prerequisite: Docker, set up once as described in [`SANDBOX-SETUP.md`](../../SANDBOX-SETUP.md#docker).
+Requisito previo: Docker, configurado una sola vez como se describe en [`SANDBOX-SETUP.md`](../../SANDBOX-SETUP.md#docker).
 
 ```bash
 sandbox/container/run-image.sh src/forth-weird
 ```
 
-It builds this folder's [`Dockerfile`](Dockerfile) and runs the result with no network, a read-only file system and user `nobody`, then prints the output and a read-only look at the rows it wrote. The image holds Gforth and sqlite3 on a minimal Ubuntu. It has no compiler and no package manager.
+Construye el [`Dockerfile`](Dockerfile) de esta carpeta y ejecuta el resultado sin red, con un sistema de archivos de solo lectura y el usuario `nobody`, y luego muestra la salida y una vista de solo lectura de las filas que escribió. La imagen contiene Gforth y sqlite3 sobre un Ubuntu mínimo. No tiene compilador ni gestor de paquetes.
