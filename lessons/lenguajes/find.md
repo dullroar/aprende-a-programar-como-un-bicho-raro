@@ -26,12 +26,12 @@ Un `find` de unos 5.7 KB, sin `-delete`, sin `-printf`, sin `-regex` ni intérpr
 ### ¿Cómo demonios funciona eso?
 
 - **El bucle es el recorrido.** Cada directorio que visita el recorrido crea el siguiente con `-exec mkdir {}/...` y el recorrido lo visita después. Para detenerse, la expresión simplemente deja de crear directorios.
-- **The path is the call stack, and the names are the registers.** A one-character name is an hour, and it counts 1 to 9 and 0 again, so it is the last digit of the running total. A name like `b07` is a countdown. A six-character name from `mktemp` is the dice. Nothing is added or subtracted. The *next* name is written in the expression as a literal, one branch per value.
-- **The tens digit is a glob.** The digits cycle, so the number of directories named exactly `0` in the path is the tens digit of the total. `-path '*/0/*/0/*'` reads it.
-- **Randomness is a name.** `mktemp -d` makes a directory with a random name, and a `-name` or `-path` pattern reads its last character. mktemp has 62 characters, so 60 of them make ten groups of six, and `Y` and `Z` are rolled again.
-- **Output is SQL text.** find prints an `INSERT` statement piece by piece. mktemp also prints the path it made, and the line turns that into an SQL comment by printing ` -- ` first.
+- **La ruta es la pila de llamadas y los nombres son los registros.** Un nombre de un carácter es una hora. Cuenta de 1 a 9 y vuelve a 0, así que es el último dígito del total acumulado. Un nombre como `b07` es una cuenta regresiva. Un nombre de seis caracteres de `mktemp` es el dado. No se suma ni se resta nada. El *siguiente* nombre se escribe en la expresión como un literal, con una rama por valor.
+- **El dígito de las decenas es un patrón glob.** Los dígitos se repiten en ciclo. Por eso, el número de directorios llamados exactamente `0` en la ruta es el dígito de las decenas del total. `-path '*/0/*/0/*'` lo lee.
+- **El azar es un nombre.** `mktemp -d` crea un directorio con un nombre aleatorio. Un patrón `-name` o `-path` lee su último carácter. mktemp tiene 62 caracteres. De ellos, 60 forman diez grupos de seis, y `Y` y `Z` se vuelven a tirar.
+- **La salida es texto SQL.** find imprime una sentencia `INSERT` pieza por pieza. mktemp también imprime la ruta que creó. La línea la convierte en un comentario SQL al imprimir ` -- ` primero.
 
-The [README](../../src/find-posix/README.md#cómo-funciona-el-truco) has the full table of jobs, and [`build-line.py`](../../src/find-posix/build-line.py) shows the tables in readable form.
+El [README](../../src/find-posix/README.md#cómo-funciona-el-truco) tiene la tabla completa de tareas y [`build-line.py`](../../src/find-posix/build-line.py) muestra las tablas en forma legible.
 
 **The GNU version lets find do the arithmetic.** [`find-gnu`](../../src/find-gnu/README.md) uses the same walk, but GNU find can measure things for you. `%d` prints the depth of a directory, and one directory is one hour, so the depth *is* the running total. `%TG-W%TV` prints the ISO week of the new directory's modification time. `-regex` replaces the glob tables with `([^/]*/){41}.*` ("at least 41 slashes", the stop rule). `-fprintf /dev/fd/3` sends the SQL to its own file descriptor. The line is about 3 KB instead of 5.7 KB.
 

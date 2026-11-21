@@ -80,27 +80,27 @@ msgstr "**El bucle es el recorrido.** Cada directorio que visita el recorrido cr
 #: lessons/languages/find.md:29
 msgctxt "s-9a2989903bd9-0014"
 msgid "**The path is the call stack, and the names are the registers.** A one-character name is an hour, and it counts 1 to 9 and 0 again, so it is the last digit of the running total. A name like ⟦CODE_0001⟧ is a countdown. A six-character name from ⟦CODE_0002⟧ is the dice. Nothing is added or subtracted. The *next* name is written in the expression as a literal, one branch per value."
-msgstr ""
+msgstr "**La ruta es la pila de llamadas y los nombres son los registros.** Un nombre de un carácter es una hora. Cuenta de 1 a 9 y vuelve a 0, así que es el último dígito del total acumulado. Un nombre como ⟦CODE_0001⟧ es una cuenta regresiva. Un nombre de seis caracteres de ⟦CODE_0002⟧ es el dado. No se suma ni se resta nada. El *siguiente* nombre se escribe en la expresión como un literal, con una rama por valor."
 
 #: lessons/languages/find.md:30
 msgctxt "s-2cc3fc394109-0015"
 msgid "**The tens digit is a glob.** The digits cycle, so the number of directories named exactly ⟦CODE_0001⟧ in the path is the tens digit of the total. ⟦CODE_0002⟧ reads it."
-msgstr ""
+msgstr "**El dígito de las decenas es un patrón glob.** Los dígitos se repiten en ciclo. Por eso, el número de directorios llamados exactamente ⟦CODE_0001⟧ en la ruta es el dígito de las decenas del total. ⟦CODE_0002⟧ lo lee."
 
 #: lessons/languages/find.md:31
 msgctxt "s-7945e40068d0-0016"
 msgid "**Randomness is a name.** ⟦CODE_0001⟧ makes a directory with a random name, and a ⟦CODE_0002⟧ or ⟦CODE_0003⟧ pattern reads its last character. mktemp has 62 characters, so 60 of them make ten groups of six, and ⟦CODE_0004⟧ and ⟦CODE_0005⟧ are rolled again."
-msgstr ""
+msgstr "**El azar es un nombre.** ⟦CODE_0001⟧ crea un directorio con un nombre aleatorio. Un patrón ⟦CODE_0002⟧ o ⟦CODE_0003⟧ lee su último carácter. mktemp tiene 62 caracteres. De ellos, 60 forman diez grupos de seis, y ⟦CODE_0004⟧ y ⟦CODE_0005⟧ se vuelven a tirar."
 
 #: lessons/languages/find.md:32
 msgctxt "s-fadfa006c449-0017"
 msgid "**Output is SQL text.** find prints an ⟦CODE_0001⟧ statement piece by piece. mktemp also prints the path it made, and the line turns that into an SQL comment by printing ⟦CODE_0002⟧ first."
-msgstr ""
+msgstr "**La salida es texto SQL.** find imprime una sentencia ⟦CODE_0001⟧ pieza por pieza. mktemp también imprime la ruta que creó. La línea la convierte en un comentario SQL al imprimir ⟦CODE_0002⟧ primero."
 
 #: lessons/languages/find.md:34
 msgctxt "s-788ff5081e3d-0018"
 msgid "The [README](⟦DEST_0001⟧) has the full table of jobs, and [⟦CODE_0002⟧](⟦DEST_0003⟧) shows the tables in readable form."
-msgstr ""
+msgstr "El [README](⟦DEST_0001⟧) tiene la tabla completa de tareas y [⟦CODE_0002⟧](⟦DEST_0003⟧) muestra las tablas en forma legible."
 
 #: lessons/languages/find.md:36
 msgctxt "s-c0a2d20a8af2-0019"
