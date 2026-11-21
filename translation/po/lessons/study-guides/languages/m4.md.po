@@ -1,0 +1,513 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lessons/study-guides/languages/m4.md:1
+msgctxt "s-161a59da8c88-0000"
+msgid "m4 study guide"
+msgstr "Guía de estudio de m4"
+
+#: lessons/study-guides/languages/m4.md:3
+msgctxt "s-4e718de9279e-0001"
+msgid "What this guide is for"
+msgstr "Para qué sirve esta guía"
+
+#: lessons/study-guides/languages/m4.md:5
+msgctxt "s-36e1569967d9-0002"
+msgid "This guide reads one program: [⟦CODE_0001⟧](⟦DEST_0002⟧). There is no weird sibling, because using a macro processor to run a program is already the stunt. The program has no loop statement and no variable. It has macros, and **what a macro expands to is scanned again**. The question is: **when the whole language is \"read text, replace names, read the result\", what do quoting, expansion order and rescanning each decide?**"
+msgstr "Esta guía lee un programa: [⟦CODE_0001⟧](⟦DEST_0002⟧). No tiene un hermano raro, porque usar un procesador de macros para ejecutar un programa ya es la acrobacia. El programa no tiene sentencia de bucle ni variable. Tiene macros, y **lo que una macro expande se escanea de nuevo**. La pregunta es la siguiente. **Si todo el lenguaje es \"leer texto, reemplazar nombres, leer el resultado\", ¿qué deciden las comillas, el orden de expansión y el reescaneo?**"
+
+#: lessons/study-guides/languages/m4.md:7
+msgctxt "s-d84bcb27c154-0003"
+msgid "When you finish, you should be able to:"
+msgstr "Al terminar, deberías poder:"
+
+#: lessons/study-guides/languages/m4.md:9
+msgctxt "s-2e7fcffffb5f-0004"
+msgid ""
+"Explain what m4 does with a macro name, a quoted string and a macro's replacement text, and in what order.\n"
+"2. Explain why the brackets around ⟦CODE_0001⟧ are the stop rule, in terms of *when m4 expands arguments*.\n"
+"3. Trace the program through three cards, naming the macros that change and the text that is rescanned.\n"
+"4. Explain why the recursion does not deepen the nesting, and what would deepen it.\n"
+"5. Explain why every macro in this file starts with ⟦CODE_0002⟧.\n"
+"6. Label each behavior as guaranteed, implementation-permitted or accidentally exploited."
+msgstr ""
+"Decir qué hace m4 con un nombre de macro, con una cadena de texto entre comillas y con el texto de reemplazo, y en qué orden.\n"
+"2. Explicar por qué los corchetes alrededor de ⟦CODE_0001⟧ son la regla de parada, en términos de *cuándo expande m4 los argumentos*.\n"
+"3. Hacer la traza del programa con tres tarjetas, nombrando las macros que cambian y el texto que se reescanea.\n"
+"4. Explicar por qué la recursión no aumenta la profundidad del anidamiento, y qué la aumentaría.\n"
+"5. Explicar por qué todas las macros de este archivo empiezan con ⟦CODE_0002⟧.\n"
+"6. Etiquetar cada comportamiento como garantizado, permitido por la implementación o aprovechado por accidente."
+
+#: lessons/study-guides/languages/m4.md:16
+msgctxt "s-cbfce4e17b7f-0005"
+msgid "**Scope limits.** You need to know that a macro is a name with a replacement text. The guide does not teach every built-in, the 32-bit generator in detail or the SQL. It uses GNU m4 1.4.x (the sandbox has 1.4.19). The book's page is [m4](⟦DEST_0001⟧). For the ideas, see [Macros and text expansion](⟦DEST_0002⟧), [Fixed-point iteration](⟦DEST_0003⟧) and [Recursion](⟦DEST_0004⟧)."
+msgstr "**Límites del alcance.** Necesitas saber que una macro es un nombre con un texto de reemplazo. La guía no enseña todas las macros integradas, ni el generador de 32 bits en detalle, ni el SQL. Usa GNU m4 1.4.x; el entorno aislado (*sandbox*) trae la 1.4.19. La página del libro es [m4](⟦DEST_0001⟧). Para las ideas, consulta [Macros y expansión de texto](⟦DEST_0002⟧), [Iteración de punto fijo](⟦DEST_0003⟧) y [Recursión](⟦DEST_0004⟧)."
+
+#: lessons/study-guides/languages/m4.md:18
+msgctxt "s-d5bfdd7d989d-0006"
+msgid "Before you begin"
+msgstr "Antes de empezar"
+
+#: lessons/study-guides/languages/m4.md:20
+msgctxt "s-aab34dade515-0007"
+msgid "**Safety model.** Every entry writes fictional **⟦DNT_0001⟧** data to a scratch SQLite file. m4 can run shell commands with ⟦CODE_0002⟧ and ⟦CODE_0003⟧. This program uses them to get entropy, read the clock and pass the finished SQL to ⟦CODE_0004⟧. Read the source before you run it, and run it in the sandbox first:"
+msgstr "**Modelo de seguridad.** Cada entrada escribe datos ficticios marcados con **⟦DNT_0001⟧** en un archivo SQLite de trabajo. m4 puede ejecutar comandos en el intérprete de comandos (*shell*) con ⟦CODE_0002⟧ y ⟦CODE_0003⟧. Este programa los usa para obtener entropía, leer el reloj y pasar el SQL terminado a ⟦CODE_0004⟧. Lee el código fuente antes de ejecutarlo. Ejecútalo primero en el entorno aislado:"
+
+#: lessons/study-guides/languages/m4.md:26
+msgctxt "s-54222348a2c9-0008"
+msgid "Edit only copies ([Running things safely](⟦DEST_0001⟧)). You can pin the run with ⟦CODE_0002⟧. A pinned seed must be 1 to 2147483646."
+msgstr "Edita solo copias ([Ejecutar cosas de forma segura](⟦DEST_0001⟧)). Puedes fijar la ejecución con ⟦CODE_0002⟧. Una semilla fija debe ir de 1 a 2147483646."
+
+#: lessons/study-guides/languages/m4.md:28
+msgctxt "s-f8e0a1cadc90-0009"
+msgid "**Prediction rule.** Before each run, write down what m4 will read next, not only what it will print. In m4 the *input stream* is the machine's state."
+msgstr "**Regla de predicción.** Antes de cada ejecución, anota qué leerá m4 a continuación, no solo lo que imprimirá. En m4 el *flujo de entrada de datos* es el estado de la máquina."
+
+#: lessons/study-guides/languages/m4.md:30
+msgctxt "s-2dd18ffddf3e-0010"
+msgid "**Vocabulary.**"
+msgstr "**Vocabulario.**"
+
+#: lessons/study-guides/languages/m4.md:32
+msgctxt "s-790e521777f0-0011"
+msgid "⟦SEP_0001⟧ Term ⟦SEP_0002⟧ Meaning here ⟦SEP_0003⟧"
+msgstr "⟦SEP_0001⟧ Término ⟦SEP_0002⟧ Significado aquí ⟦SEP_0003⟧"
+
+#: lessons/study-guides/languages/m4.md:34
+msgctxt "s-72b05a94db87-0012"
+msgid "⟦SEP_0001⟧ Macro ⟦SEP_0002⟧ A name with a replacement text. ⟦SEP_0003⟧"
+msgstr "⟦SEP_0001⟧ Macro ⟦SEP_0002⟧ Un nombre con un texto de reemplazo. ⟦SEP_0003⟧"
+
+#: lessons/study-guides/languages/m4.md:35
+msgctxt "s-522e5c17d55e-0013"
+msgid "⟦SEP_0003⟧ Quote ⟦SEP_0004⟧ ⟦CODE_0001⟧ and ⟦CODE_0002⟧ here. Quoted text is passed on without expansion. ⟦SEP_0005⟧"
+msgstr "⟦SEP_0003⟧ Comillas ⟦SEP_0004⟧ ⟦CODE_0001⟧ y ⟦CODE_0002⟧ aquí. El texto entre comillas se pasa sin expandir. ⟦SEP_0005⟧"
+
+#: lessons/study-guides/languages/m4.md:36
+msgctxt "s-e8831ffb79ac-0014"
+msgid "⟦SEP_0001⟧ Rescan ⟦SEP_0002⟧ After a macro is replaced, m4 pushes the replacement back onto its input and reads it again. ⟦SEP_0003⟧"
+msgstr "⟦SEP_0001⟧ Reescaneo ⟦SEP_0002⟧ Después de reemplazar una macro, m4 devuelve el reemplazo al flujo de entrada de datos y lo lee otra vez. ⟦SEP_0003⟧"
+
+#: lessons/study-guides/languages/m4.md:37
+msgctxt "s-46bab7c33047-0015"
+msgid "⟦SEP_0002⟧ Diversion ⟦SEP_0003⟧ A numbered output buffer. ⟦CODE_0001⟧ discards what follows. ⟦SEP_0004⟧"
+msgstr "⟦SEP_0002⟧ Desvío ⟦SEP_0003⟧ Un búfer de salida numerado. ⟦CODE_0001⟧ descarta lo que sigue. ⟦SEP_0004⟧"
+
+#: lessons/study-guides/languages/m4.md:38
+msgctxt "s-1ea23254040c-0016"
+msgid "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ \"Delete to newline\": removes the rest of a line, including the newline. ⟦SEP_0004⟧"
+msgstr "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ \"Descartar hasta la nueva línea\": elimina el resto de una línea, incluido el salto de línea. ⟦SEP_0004⟧"
+
+#: lessons/study-guides/languages/m4.md:40
+msgctxt "s-ae7d69ef2745-0017"
+msgid "The shared challenge"
+msgstr "El reto compartido"
+
+#: lessons/study-guides/languages/m4.md:42
+msgctxt "s-78a7d749b03d-0018"
+msgid "The [challenge specification](⟦DEST_0001⟧) calls for cards with a category and 10 to 19 whole hours. Categories cycle through ⟦DNT_0002⟧, ⟦DNT_0003⟧, ⟦DNT_0004⟧ and ⟦DNT_0005⟧. Add each card's hours to the running total. Stop when the total passes 40. Keep the **first card that takes the total over 40**. A total of exactly 40 continues. Four 10-hour cards need a fifth card, in the ⟦DNT_0006⟧ category. Conforming runs finish with 3 to 5 cards and a total of 41 to 59 hours."
+msgstr "La [especificación del reto](⟦DEST_0001⟧) pide tarjetas con una categoría y de 10 a 19 horas enteras. Las categorías se repiten en ciclo: `⟦DNT_0002⟧`, `⟦DNT_0003⟧`, `⟦DNT_0004⟧` y `⟦DNT_0005⟧`. Suma las horas de cada tarjeta al total acumulado. Detente cuando el total pasa de 40. Conserva la **primera tarjeta con la que el total pasa de 40**. Un total de exactamente 40 continúa. Cuatro tarjetas de 10 horas necesitan una quinta tarjeta, de la categoría `⟦DNT_0006⟧`. Las ejecuciones conformes tienen de 3 a 5 tarjetas y un total de 41 a 59 horas."
+
+#: lessons/study-guides/languages/m4.md:44
+msgctxt "s-7a00cf855c95-0019"
+msgid "The entry sends its generated SQL to SQLite as one transaction and prints a summary. The m4 stop rule is the last line of ⟦CODE_0001⟧: ⟦CODE_0002⟧ ([L82](⟦DEST_0003⟧)). ⟦CODE_0004⟧ is ⟦CODE_0005⟧, so the ⟦CODE_0006⟧ takes the else branch and the macro calls itself. A 5-card run exists: seed 4020 gives four 10-hour cards (total 40) and then a fifth card of 15, ending at 55. That run was checked in the sandbox and is now a case in the entry's ⟦CODE_0007⟧."
+msgstr "La entrada envía el SQL que genera a SQLite como una sola transacción e imprime un resumen. La regla de parada de m4 es la última línea de ⟦CODE_0001⟧: ⟦CODE_0002⟧ ([L82](⟦DEST_0003⟧)). ⟦CODE_0004⟧ vale ⟦CODE_0005⟧, así que ⟦CODE_0006⟧ toma la rama del else y la macro se llama a sí misma. Existe una ejecución de 5 tarjetas: la semilla 4020 da cuatro tarjetas de 10 horas (total 40) y luego una quinta tarjeta de 15, que termina en 55. Esa ejecución se comprobó en el entorno aislado y ahora es un caso de ⟦CODE_0007⟧ de la entrada."
+
+#: lessons/study-guides/languages/m4.md:46
+msgctxt "s-9f148b367e02-0020"
+msgid "The machine to identify"
+msgstr "La máquina que hay que identificar"
+
+#: lessons/study-guides/languages/m4.md:48
+msgctxt "s-858923aa0ced-0021"
+msgid "**What repeats.** One macro, ⟦CODE_0001⟧, whose last word is itself. There is no loop construct. After ⟦CODE_0002⟧ is replaced by its body, m4 *rescans* the body, and the final ⟦CODE_0003⟧ either yields nothing or yields the text ⟦CODE_0004⟧, which is read as another call."
+msgstr "**Qué se repite.** Una macro, ⟦CODE_0001⟧, cuya última palabra es ella misma. No hay ninguna construcción de bucle. Después de que ⟦CODE_0002⟧ se reemplaza por su cuerpo, m4 *reescanea* ese cuerpo. El ⟦CODE_0003⟧ final no produce nada o produce el texto ⟦CODE_0004⟧, que se lee como otra llamada."
+
+#: lessons/study-guides/languages/m4.md:50
+msgctxt "s-b45085859036-0022"
+msgid "**Where state lives.** In macros that redefine themselves: ⟦CODE_0001⟧ (card number), ⟦CODE_0002⟧ (running total), ⟦CODE_0003⟧ (the generator's state) and ⟦CODE_0004⟧ (a script that grows by \"redefine yourself as yourself plus more\", via ⟦CODE_0005⟧) ([L28-29](⟦DEST_0006⟧), [L69](⟦DEST_0007⟧)). There are no variables. A redefinition is the only assignment."
+msgstr "**Dónde vive el estado.** En macros que se redefinen a sí mismas. Son ⟦CODE_0001⟧ (número de tarjeta), ⟦CODE_0002⟧ (total acumulado) y ⟦CODE_0003⟧ (el estado del generador). También ⟦CODE_0004⟧, un script que crece por \"redefinirse a sí mismo más algo\", mediante ⟦CODE_0005⟧ ([L28-29](⟦DEST_0006⟧), [L69](⟦DEST_0007⟧)). No hay variables. Una redefinición es la única asignación."
+
+#: lessons/study-guides/languages/m4.md:52
+msgctxt "s-3a8bb0ba944f-0023"
+msgid "**What advances the next step.** The input stream. ⟦CODE_0001⟧ returns text, and that text is pushed back and read. The loop counter is *what m4 has not yet read*."
+msgstr "**Qué hace avanzar el paso siguiente.** El flujo de entrada de datos. ⟦CODE_0001⟧ devuelve texto, y ese texto se devuelve al flujo de entrada de datos y se lee. El contador del bucle es *lo que m4 todavía no ha leído*."
+
+#: lessons/study-guides/languages/m4.md:54
+msgctxt "s-662649001edb-0024"
+msgid "**What stops it.** ⟦CODE_0001⟧ returns the empty string ⟦CODE_0002⟧. The input runs out, and m4 goes on to the code after the call."
+msgstr "**Qué lo detiene.** ⟦CODE_0001⟧ devuelve la cadena de texto vacía ⟦CODE_0002⟧. El flujo de entrada de datos se agota y m4 pasa al código que sigue a la llamada."
+
+#: lessons/study-guides/languages/m4.md:56
+msgctxt "s-010230229a6b-0025"
+msgid "**What commits.** Each card appends an ⟦CODE_0001⟧ to ⟦CODE_0002⟧ and prints its row, both as the macro expands. After the loop, one ⟦CODE_0003⟧ hands the finished script (with ⟦CODE_0004⟧ at the start and ⟦CODE_0005⟧ at the end) to ⟦CODE_0006⟧ through a here-document ([L95-98](⟦DEST_0007⟧)). Rows appear on the terminal *before* the commit. If ⟦CODE_0008⟧ fails, ⟦CODE_0009⟧ is non-zero and ⟦CODE_0010⟧ ends the run, but the rows are already printed."
+msgstr "**Qué confirma.** Cada tarjeta añade un ⟦CODE_0001⟧ a ⟦CODE_0002⟧ e imprime su fila, ambas cosas mientras la macro se expande. Tras el bucle, un solo ⟦CODE_0003⟧ entrega el script terminado (con ⟦CODE_0004⟧ al principio y ⟦CODE_0005⟧ al final) a ⟦CODE_0006⟧ mediante un here-document ([L95-98](⟦DEST_0007⟧)). Las filas aparecen en la terminal *antes* de la confirmación de la transacción. Si ⟦CODE_0008⟧ falla, ⟦CODE_0009⟧ es distinto de cero y ⟦CODE_0010⟧ termina la ejecución, pero las filas ya están impresas."
+
+#: lessons/study-guides/languages/m4.md:62
+msgctxt "s-7ca2cec19a3d-0026"
+msgid "m4: a macro whose expansion contains itself"
+msgstr "m4: una macro cuya expansión se contiene a sí misma"
+
+#: lessons/study-guides/languages/m4.md:63
+msgctxt "s-14f472f01572-0027"
+msgid "A flowchart of m4 rescanning. m4 meets the word tc_card and replaces it with the macro body, then rescans that text. The rescan redefines the state macros, prints the row and appends the INSERT. The body ends in an ifelse. If the total is not over 40, the ifelse expands to the word tc_card, and the flow goes back to the start. If the total is over 40, the ifelse expands to nothing, no text is left to rescan, and syscmd hands the script to sqlite3."
+msgstr "Un diagrama de flujo del reescaneo de m4. m4 encuentra la palabra tc_card y la reemplaza por el cuerpo de la macro. Luego reescanea ese texto. El reescaneo redefine las macros de estado, imprime la fila y añade el INSERT. El cuerpo termina en un ifelse. Si el total no pasa de 40, el ifelse se expande a la palabra tc_card y el flujo vuelve al inicio. Si el total pasa de 40, el ifelse se expande a nada, no queda texto para reescanear y syscmd entrega el script a sqlite3."
+
+#: lessons/study-guides/languages/m4.md:64
+msgctxt "s-26edc140a925-0028"
+msgid "m4 meets the word tc_card: first in the file, later in its own output"
+msgstr "m4 encuentra la palabra tc_card: primero en el archivo, después en su propia salida"
+
+#: lessons/study-guides/languages/m4.md:64
+msgctxt "s-f8d970355955-0029"
+msgid "Replace the word with the macro body, then rescan that text"
+msgstr "Reemplaza la palabra por el cuerpo de la macro y vuelve a escanear ese texto"
+
+#: lessons/study-guides/languages/m4.md:65
+msgctxt "s-4f9e62d83eaf-0030"
+msgid "Rescan redefines state macros: tc_seed, tc_n, tc_total"
+msgstr "Rescan redefine las macros de estado: tc_seed, tc_n, tc_total"
+
+#: lessons/study-guides/languages/m4.md:66
+msgctxt "s-67d7e3044f5b-0031"
+msgid "Rescan prints the row and appends the INSERT to tc_sql"
+msgstr "Rescan imprime la fila y añade el INSERT a tc_sql"
+
+#: lessons/study-guides/languages/m4.md:67
+msgctxt "s-4e849497d6b9-0032"
+msgid "ifelse: is tc_total over 40?"
+msgstr "ifelse: ¿tc_total pasa de 40?"
+
+#: lessons/study-guides/languages/m4.md:68
+msgctxt "s-1ea442a134b2-0033"
+msgid "No"
+msgstr "No"
+
+#: lessons/study-guides/languages/m4.md:68
+msgctxt "s-fdbc80959cd6-0034"
+msgid "ifelse expands to the word tc_card"
+msgstr "ifelse se expande a la palabra tc_card"
+
+#: lessons/study-guides/languages/m4.md:70
+msgctxt "s-85a39ab345d6-0035"
+msgid "Yes"
+msgstr "Sí"
+
+#: lessons/study-guides/languages/m4.md:70
+msgctxt "s-426a81b1ef72-0036"
+msgid "ifelse expands to nothing: no text left to rescan"
+msgstr "ifelse se expande a nada: no queda texto que volver a escanear"
+
+#: lessons/study-guides/languages/m4.md:71
+msgctxt "s-af292761a289-0037"
+msgid "syscmd gives tc_sql to sqlite3"
+msgstr "syscmd entrega tc_sql a sqlite3"
+
+#: lessons/study-guides/languages/m4.md:74
+msgctxt "s-b9d3f67345dc-0038"
+msgid "The diagram is a cycle, and the cycle passes through the input stream: the ⟦CODE_0001⟧ writes the word ⟦CODE_0002⟧ back to be read."
+msgstr "El diagrama es un ciclo, y el ciclo pasa por el flujo de entrada de datos: el ⟦CODE_0001⟧ final escribe de vuelta la palabra ⟦CODE_0002⟧ para que se lea."
+
+#: lessons/study-guides/languages/m4.md:76
+msgctxt "s-67a72cdadc6f-0039"
+msgid "Trace one run"
+msgstr "Traza una ejecución"
+
+#: lessons/study-guides/languages/m4.md:78
+msgctxt "s-38d9e4f71a03-0040"
+msgid "The program draws pseudo-random hours from a Park-Miller generator written in 32-bit ⟦CODE_0001⟧ arithmetic. A pinned seed makes it deterministic. Seed **230** gives hours **15, 19, 12** (computed outside m4 and confirmed by running the entry in the sandbox with ⟦CODE_0002⟧). The output was ⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧, then ⟦CODE_0006⟧."
+msgstr "El programa saca horas pseudoaleatorias de un generador de Park-Miller escrito con aritmética de ⟦CODE_0001⟧ de 32 bits. Una semilla fija lo vuelve determinista. La semilla **230** da las horas **15, 19, 12** (calculadas fuera de m4 y confirmadas al ejecutar la entrada en el entorno aislado con ⟦CODE_0002⟧). La salida fue ⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧ y luego ⟦CODE_0006⟧."
+
+#: lessons/study-guides/languages/m4.md:80
+msgctxt "s-8b213eb65b61-0041"
+msgid "⟦SEP_0008⟧ Pass ⟦SEP_0009⟧ ⟦CODE_0001⟧ after ⟦CODE_0002⟧ ⟦SEP_0010⟧ Hours (⟦CODE_0003⟧) ⟦SEP_0011⟧ ⟦CODE_0004⟧ ⟦SEP_0012⟧ ⟦CODE_0005⟧ ⟦SEP_0013⟧ ⟦CODE_0006⟧ ⟦SEP_0014⟧ ⟦CODE_0007⟧ gives ⟦SEP_0015⟧"
+msgstr "⟦SEP_0008⟧ Pasada ⟦SEP_0009⟧ ⟦CODE_0001⟧ después de ⟦CODE_0002⟧ ⟦SEP_0010⟧ Horas (⟦CODE_0003⟧) ⟦SEP_0011⟧ ⟦CODE_0004⟧ ⟦SEP_0012⟧ ⟦CODE_0005⟧ ⟦SEP_0013⟧ ⟦CODE_0006⟧ ⟦SEP_0014⟧ ⟦CODE_0007⟧ da ⟦SEP_0015⟧"
+
+#: lessons/study-guides/languages/m4.md:82
+msgctxt "s-4bcacc57df8e-0042"
+msgid "⟦SEP_0002⟧ 1 ⟦SEP_0003⟧ 3865610 ⟦SEP_0004⟧ 15 ⟦SEP_0005⟧ 1 ⟦SEP_0006⟧ 15 ⟦SEP_0007⟧ 0 ⟦SEP_0008⟧ the text ⟦CODE_0001⟧ ⟦SEP_0009⟧"
+msgstr "⟦SEP_0002⟧ 1 ⟦SEP_0003⟧ 3865610 ⟦SEP_0004⟧ 15 ⟦SEP_0005⟧ 1 ⟦SEP_0006⟧ 15 ⟦SEP_0007⟧ 0 ⟦SEP_0008⟧ el texto ⟦CODE_0001⟧ ⟦SEP_0009⟧"
+
+#: lessons/study-guides/languages/m4.md:83
+msgctxt "s-20b59a4887a5-0043"
+msgid "⟦SEP_0002⟧ 2 ⟦SEP_0003⟧ 544797860 ⟦SEP_0004⟧ 19 ⟦SEP_0005⟧ 2 ⟦SEP_0006⟧ 34 ⟦SEP_0007⟧ 0 ⟦SEP_0008⟧ the text ⟦CODE_0001⟧ ⟦SEP_0009⟧"
+msgstr "⟦SEP_0002⟧ 2 ⟦SEP_0003⟧ 544797860 ⟦SEP_0004⟧ 19 ⟦SEP_0005⟧ 2 ⟦SEP_0006⟧ 34 ⟦SEP_0007⟧ 0 ⟦SEP_0008⟧ el texto ⟦CODE_0001⟧ ⟦SEP_0009⟧"
+
+#: lessons/study-guides/languages/m4.md:84
+msgctxt "s-7b79f4fd6ce1-0044"
+msgid "⟦SEP_0001⟧ 3 ⟦SEP_0002⟧ 1694845859 ⟦SEP_0003⟧ 12 ⟦SEP_0004⟧ 3 ⟦SEP_0005⟧ 46 ⟦SEP_0006⟧ 1 ⟦SEP_0007⟧ nothing ⟦SEP_0008⟧"
+msgstr "⟦SEP_0001⟧ 3 ⟦SEP_0002⟧ 1694845859 ⟦SEP_0003⟧ 12 ⟦SEP_0004⟧ 3 ⟦SEP_0005⟧ 46 ⟦SEP_0006⟧ 1 ⟦SEP_0007⟧ nada ⟦SEP_0008⟧"
+
+#: lessons/study-guides/languages/m4.md:86
+msgctxt "s-7756a1ee6007-0045"
+msgid "After pass 3 the input ends, the summary lines print and ⟦CODE_0001⟧ runs."
+msgstr "Después de la pasada 3 se agota el flujo de entrada de datos, se imprimen las líneas del resumen y se ejecuta ⟦CODE_0001⟧."
+
+#: lessons/study-guides/languages/m4.md:88
+msgctxt "s-01073e769490-0046"
+msgid "**Is it recursion?** The usual reading is that each card nests one level deeper. m4's own tracing says otherwise. Running with ⟦CODE_0001⟧ printed the trace marks ⟦CODE_0002⟧ three times, all at depth 1. Then the nesting limit option confirmed it: with ⟦CODE_0003⟧ the run fails (m4 says ⟦CODE_0004⟧), and with ⟦CODE_0005⟧ it succeeds. That minimum was the same, 4, for the 3-card run (seed 230) and the 5-card run (seed 4020). The expansion of ⟦CODE_0006⟧ finishes before its output is rescanned, so the next ⟦CODE_0007⟧ is read from the *input*, not called from inside the previous one. The loop is iteration written as text."
+msgstr "**¿Es recursión?** La lectura habitual es que cada tarjeta anida un nivel más. La propia traza de m4 dice otra cosa. Al ejecutar con ⟦CODE_0001⟧ se imprimieron tres veces las marcas de traza ⟦CODE_0002⟧, todas a profundidad 1. Después, la opción del límite de anidamiento lo confirmó: con ⟦CODE_0003⟧ la ejecución falla (m4 dice ⟦CODE_0004⟧). Con ⟦CODE_0005⟧ funciona. Ese mínimo fue el mismo, 4, para la ejecución de 3 tarjetas (semilla 230) y para la de 5 tarjetas (semilla 4020). La expansión de ⟦CODE_0006⟧ termina antes de que su salida se reescanee. Así, el ⟦CODE_0007⟧ siguiente se lee desde el *flujo de entrada de datos*, y no se llama desde dentro del anterior. El bucle es iteración escrita como texto."
+
+#: lessons/study-guides/languages/m4.md:90
+msgctxt "s-b2b589c1da4c-0047"
+msgid "**Exactly 40.** With seed 4020 the cards are 10, 10, 10, 10 (total 40, so ⟦CODE_0001⟧ is 0 and the macro continues) and then a fifth card of 15, total 55. The category of card 5 is ⟦CODE_0002⟧: ⟦CODE_0003⟧ is 0, which is ⟦DNT_0004⟧."
+msgstr "**Exactamente 40.** Con la semilla 4020 las tarjetas son 10, 10, 10, 10 (total 40, así que ⟦CODE_0001⟧ vale 0 y la macro continúa). Luego viene una quinta tarjeta de 15, total 55. La categoría de la tarjeta 5 es ⟦CODE_0002⟧: ⟦CODE_0003⟧ vale 0, que es ⟦DNT_0004⟧."
+
+#: lessons/study-guides/languages/m4.md:92
+msgctxt "s-405c1b857089-0048"
+msgid "Compare the ordinary and weird designs"
+msgstr "Compara los diseños ordinarios y los raros"
+
+#: lessons/study-guides/languages/m4.md:94
+msgctxt "s-76e93833a5f8-0049"
+msgid "m4 has no idiomatic loop, so the comparison is between how an ordinary language would do each job and how this program does it."
+msgstr "m4 no tiene ningún bucle idiomático, así que la comparación es entre cómo haría cada trabajo un lenguaje ordinario y cómo lo hace este programa."
+
+#: lessons/study-guides/languages/m4.md:96
+msgctxt "s-967b562fb562-0050"
+msgid "⟦SEP_0002⟧ Dimension ⟦SEP_0003⟧ Ordinary program ⟦SEP_0004⟧ ⟦CODE_0001⟧ ⟦SEP_0005⟧"
+msgstr "⟦SEP_0002⟧ Dimensión ⟦SEP_0003⟧ Programa ordinario ⟦SEP_0004⟧ ⟦CODE_0001⟧ ⟦SEP_0005⟧"
+
+#: lessons/study-guides/languages/m4.md:98
+msgctxt "s-2e87f44afae5-0051"
+msgid "⟦SEP_0001⟧ **Representation** ⟦SEP_0002⟧ A loop and variables. ⟦SEP_0003⟧ A macro that ends by naming itself, and macros that redefine themselves. ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ **Representación** ⟦SEP_0002⟧ Un bucle y variables. ⟦SEP_0003⟧ Una macro que termina nombrándose a sí misma, y macros que se redefinen a sí mismas. ⟦SEP_0004⟧"
+
+#: lessons/study-guides/languages/m4.md:99
+msgctxt "s-5197640dd524-0052"
+msgid "⟦SEP_0004⟧ **Observability** ⟦SEP_0005⟧ A debugger. ⟦SEP_0006⟧ The trace options: ⟦CODE_0001⟧ traces a macro, ⟦CODE_0002⟧ flags debug output and the output itself shows the expansion. ⟦CODE_0003⟧ makes depth visible by failing. ⟦SEP_0007⟧"
+msgstr "⟦SEP_0004⟧ **Observabilidad** ⟦SEP_0005⟧ Un depurador. ⟦SEP_0006⟧ Las opciones de traza: ⟦CODE_0001⟧ sigue una macro, ⟦CODE_0002⟧ pone una bandera en la salida de depuración y la propia salida muestra la expansión. ⟦CODE_0003⟧ hace visible la profundidad al fallar. ⟦SEP_0007⟧"
+
+#: lessons/study-guides/languages/m4.md:100
+msgctxt "s-d79d777e13ac-0053"
+msgid "⟦SEP_0004⟧ **Tests** ⟦SEP_0005⟧ Call a function with a seed. ⟦SEP_0006⟧ Pin ⟦CODE_0001⟧ and ⟦CODE_0002⟧ with ⟦CODE_0003⟧ and compare with a reference: the same seed gives the same cards. ⟦SEP_0007⟧"
+msgstr "⟦SEP_0004⟧ **Pruebas** ⟦SEP_0005⟧ Llamar a una función con una semilla. ⟦SEP_0006⟧ Fija ⟦CODE_0001⟧ y ⟦CODE_0002⟧ con ⟦CODE_0003⟧ y compara con una referencia: la misma semilla da las mismas tarjetas. ⟦SEP_0007⟧"
+
+#: lessons/study-guides/languages/m4.md:101
+msgctxt "s-1f65e01a8fcb-0054"
+msgid "⟦SEP_0002⟧ **⟦DNT_0001⟧** ⟦SEP_0003⟧ Look for the wrong value. ⟦SEP_0004⟧ Look for the *wrong expansion time*. A quote in the wrong place makes m4 call a macro too early, and the program never stops. ⟦SEP_0005⟧"
+msgstr "⟦SEP_0002⟧ **⟦DNT_0001⟧** ⟦SEP_0003⟧ Busca el valor equivocado. ⟦SEP_0004⟧ Busca el *momento de expansión equivocado*. Una comilla fuera de lugar hace que m4 llame a una macro demasiado pronto, y el programa nunca se detiene. ⟦SEP_0005⟧"
+
+#: lessons/study-guides/languages/m4.md:102
+msgctxt "s-b556e800ac97-0055"
+msgid "⟦SEP_0005⟧ **Portability** ⟦SEP_0006⟧ Standard language. ⟦SEP_0007⟧ GNU m4 extensions: ⟦CODE_0001⟧, ⟦CODE_0002⟧ and a 32-bit ⟦CODE_0003⟧. ⟦CODE_0004⟧ is POSIX. ⟦SEP_0008⟧"
+msgstr "⟦SEP_0005⟧ **Portabilidad** ⟦SEP_0006⟧ Lenguaje estándar. ⟦SEP_0007⟧ Extensiones de GNU m4: ⟦CODE_0001⟧, ⟦CODE_0002⟧ y un ⟦CODE_0003⟧ de 32 bits. ⟦CODE_0004⟧ es POSIX. ⟦SEP_0008⟧"
+
+#: lessons/study-guides/languages/m4.md:103
+msgctxt "s-6434a1a3469b-0056"
+msgid "⟦SEP_0001⟧ **Cost** ⟦SEP_0002⟧ A loop costs nothing extra. ⟦SEP_0003⟧ Every pass rereads and re-expands text. The SQL script is a macro that is redefined with a longer body at each card, so the text is copied again every time: harmless at 5 cards, and the reason a thousand-card version would want another shape. ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ **Costo** ⟦SEP_0002⟧ Un bucle no tiene ningún costo extra. ⟦SEP_0003⟧ Cada pasada vuelve a leer y a expandir texto. El script SQL es una macro que se redefine con un cuerpo más largo en cada tarjeta, así que el texto se copia de nuevo cada vez. Es inofensivo con 5 tarjetas y es la razón de que una versión de mil tarjetas pida otra forma. ⟦SEP_0004⟧"
+
+#: lessons/study-guides/languages/m4.md:105
+msgctxt "s-3eb37e4867dc-0057"
+msgid "**Why ⟦CODE_0001⟧ on every name.** m4 expands *every* word that is a macro name, including words inside the SQL text. A macro called ⟦CODE_0002⟧ or ⟦CODE_0003⟧ would silently rewrite the SQL. A shared prefix keeps macro names out of the data's vocabulary. This is the m4 equivalent of an injection defense."
+msgstr "**Por qué ⟦CODE_0001⟧ en cada nombre.** m4 expande *cada* palabra que sea el nombre de una macro, incluidas las palabras dentro del texto SQL. Una macro llamada ⟦CODE_0002⟧ o ⟦CODE_0003⟧ reescribiría el SQL sin avisar. Un prefijo compartido mantiene los nombres de las macros fuera del vocabulario de los datos. Es el equivalente en m4 de una defensa contra la inyección."
+
+#: lessons/study-guides/languages/m4.md:107
+msgctxt "s-1ca8715aee17-0058"
+msgid "**Why the quotes were changed first.** By default ⟦CODE_0001⟧ starts a comment and ⟦CODE_0002⟧ closes a quote, and the output needs ⟦CODE_0003⟧ lines and SQL strings. The first lines, ⟦CODE_0004⟧ and ⟦CODE_0005⟧, fix both before anything else happens. Everything until ⟦CODE_0006⟧ is sent to diversion -1, so the definitions print nothing."
+msgstr "**Por qué se cambiaron primero las comillas.** De forma predeterminada, ⟦CODE_0001⟧ inicia un comentario y ⟦CODE_0002⟧ cierra una comilla, y la salida necesita líneas ⟦CODE_0003⟧ y cadenas de texto de SQL. Las primeras líneas, ⟦CODE_0004⟧ y ⟦CODE_0005⟧, arreglan ambas cosas antes de que ocurra nada más. Todo lo que hay hasta ⟦CODE_0006⟧ se envía al desvío -1, así que las definiciones no imprimen nada."
+
+#: lessons/study-guides/languages/m4.md:109
+msgctxt "s-716cae37520b-0059"
+msgid "What the exercises demonstrate"
+msgstr "Qué demuestran los ejercicios"
+
+#: lessons/study-guides/languages/m4.md:111
+msgctxt "s-d6a3ec9d5ed0-0060"
+msgid "⟦SEP_0001⟧ Exercise ⟦SEP_0002⟧ Predict first ⟦SEP_0003⟧ What the evidence shows ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ Ejercicio ⟦SEP_0002⟧ Predice primero ⟦SEP_0003⟧ Qué muestra la evidencia ⟦SEP_0004⟧"
+
+#: lessons/study-guides/languages/m4.md:113
+msgctxt "s-0dddcda5eb65-0061"
+msgid "⟦SEP_0006⟧ [B11. m4: quote the recursion](⟦DEST_0001⟧), step 1 ⟦SEP_0007⟧ Run twice with ⟦CODE_0002⟧. What differs? ⟦SEP_0008⟧ The card rows are identical (⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧; totals 19, 32, 48). Only the run id, which contains the clock, can differ. The generator is a formula, so a pinned seed pins the cards. ⟦SEP_0009⟧"
+msgstr "⟦SEP_0006⟧ [B11. m4: pon comillas a la recursión](⟦DEST_0001⟧), paso 1 ⟦SEP_0007⟧ Ejecuta el programa dos veces con ⟦CODE_0002⟧. ¿Qué cambia? ⟦SEP_0008⟧ Las filas de las tarjetas son idénticas (⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧; totales 19, 32, 48). Solo puede cambiar el identificador de la ejecución, que contiene el reloj. El generador es una fórmula, así que fijar la semilla determina las tarjetas. ⟦SEP_0009⟧"
+
+#: lessons/study-guides/languages/m4.md:114
+msgctxt "s-af45550f84b0-0062"
+msgid "⟦SEP_0010⟧ B11, step 2 ⟦SEP_0011⟧ Remove the brackets: ⟦CODE_0001⟧ becomes ⟦CODE_0002⟧. What happens? ⟦SEP_0012⟧ Without ⟦CODE_0003⟧: ⟦CODE_0004⟧ and no output. With ⟦CODE_0005⟧: ⟦CODE_0006⟧, a non-zero exit and no ⟦CODE_0007⟧ line. m4 expands arguments *before* it calls the macro, so the call runs while ⟦CODE_0008⟧ is still collecting its arguments, before it has decided anything. The brackets turn the name into text that is read only after ⟦CODE_0009⟧ chooses it. ⟦SEP_0013⟧"
+msgstr "⟦SEP_0010⟧ B11, paso 2 ⟦SEP_0011⟧ Quita los corchetes: ⟦CODE_0001⟧ pasa a ser ⟦CODE_0002⟧. ¿Qué pasa? ⟦SEP_0012⟧ Sin ⟦CODE_0003⟧: ⟦CODE_0004⟧ y ninguna salida. Con ⟦CODE_0005⟧: ⟦CODE_0006⟧, un estado de salida distinto de cero y ninguna línea ⟦CODE_0007⟧. m4 expande los argumentos *antes* de llamar a la macro, así que la llamada se ejecuta mientras ⟦CODE_0008⟧ todavía está reuniendo sus argumentos, antes de que haya decidido nada. Los corchetes convierten el nombre en texto que solo se lee después de que ⟦CODE_0009⟧ lo elige. ⟦SEP_0013⟧"
+
+#: lessons/study-guides/languages/m4.md:115
+msgctxt "s-570a22426054-0063"
+msgid "⟦SEP_0004⟧ B11, step 3 ⟦SEP_0005⟧ Change ⟦CODE_0001⟧ to ⟦CODE_0002⟧. ⟦SEP_0006⟧ ⟦CODE_0003⟧ passes. One number is the rule. ⟦SEP_0007⟧"
+msgstr "⟦SEP_0004⟧ B11, paso 3 ⟦SEP_0005⟧ Cambia ⟦CODE_0001⟧ por ⟦CODE_0002⟧. ⟦SEP_0006⟧ ⟦CODE_0003⟧ pasa. Un número es la regla. ⟦SEP_0007⟧"
+
+#: lessons/study-guides/languages/m4.md:116
+msgctxt "s-5f8647f1cf43-0064"
+msgid "⟦SEP_0004⟧ [C1. Weird next to boring](⟦DEST_0001⟧) ⟦SEP_0005⟧ Which state macro would you inspect first? ⟦SEP_0006⟧ ⟦CODE_0002⟧ tells you the rule's input. ⟦CODE_0003⟧ tells you what will be committed. ⟦SEP_0007⟧"
+msgstr "⟦SEP_0004⟧ [C1. Lo raro junto a lo aburrido](⟦DEST_0001⟧) ⟦SEP_0005⟧ ¿Qué macro de estado inspeccionarías primero? ⟦SEP_0006⟧ ⟦CODE_0002⟧ te dice la entrada de datos de la regla. ⟦CODE_0003⟧ te dice lo que se confirmará. ⟦SEP_0007⟧"
+
+#: lessons/study-guides/languages/m4.md:117
+msgctxt "s-f75abed94c91-0065"
+msgid "⟦SEP_0005⟧ *Guide experiment* (verified in the sandbox) ⟦SEP_0006⟧ Run with ⟦CODE_0001⟧, ⟦CODE_0002⟧ and ⟦CODE_0003⟧. Predict where it first works. ⟦SEP_0007⟧ ⟦CODE_0004⟧. The depth does not depend on the card count. It shows that the *bracketed* recursion does not nest, while the *unbracketed* recursion in B11 does. ⟦SEP_0008⟧"
+msgstr "⟦SEP_0005⟧ *Experimento de la guía* (verificado en el entorno aislado) ⟦SEP_0006⟧ Ejecuta con ⟦CODE_0001⟧, ⟦CODE_0002⟧ y ⟦CODE_0003⟧. Predice dónde funciona por primera vez. ⟦SEP_0007⟧ ⟦CODE_0004⟧. La profundidad no depende del número de tarjetas. Muestra que la recursión *con corchetes* no anida, mientras que la recursión *sin corchetes* de B11 sí. ⟦SEP_0008⟧"
+
+#: lessons/study-guides/languages/m4.md:119
+msgctxt "s-d7853abe9225-0066"
+msgid "B11 step 2 and the ⟦CODE_0001⟧ experiment are two halves of one fact. With the brackets, the call is read from the input after ⟦CODE_0002⟧ has chosen, so the stack stays flat. Without them, the call is made while arguments are being collected, so each pass nests inside the previous one until the limit."
+msgstr "El paso 2 de B11 y el experimento con ⟦CODE_0001⟧ son dos mitades de un mismo hecho. Con los corchetes, la llamada se lee del flujo de entrada de datos después de que ⟦CODE_0002⟧ ha elegido, así que la pila se mantiene plana. Sin ellos, la llamada se hace mientras se reúnen los argumentos, así que cada pasada se anida dentro de la anterior hasta llegar al límite."
+
+#: lessons/study-guides/languages/m4.md:121
+msgctxt "s-4fe97c469cdb-0067"
+msgid "Failure modes, costs and boundaries"
+msgstr "Modos de fallo, costos y límites"
+
+#: lessons/study-guides/languages/m4.md:123
+msgctxt "s-621aac5615e3-0068"
+msgid "⟦SEP_0001⟧ Behavior ⟦SEP_0002⟧ Label ⟦SEP_0003⟧ Why ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ Comportamiento ⟦SEP_0002⟧ Etiqueta ⟦SEP_0003⟧ Por qué ⟦SEP_0004⟧"
+
+#: lessons/study-guides/languages/m4.md:125
+msgctxt "s-5ebccfc1da32-0069"
+msgid "⟦SEP_0001⟧ A macro's replacement text is pushed back to the input and rescanned ⟦SEP_0002⟧ **guaranteed** ⟦SEP_0003⟧ The defining behavior of m4, and what the whole program rests on. ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ El texto de reemplazo de una macro se devuelve a la entrada y se reescanea ⟦SEP_0002⟧ **garantizado** ⟦SEP_0003⟧ El comportamiento que define a m4 y en el que descansa todo el programa. ⟦SEP_0004⟧"
+
+#: lessons/study-guides/languages/m4.md:126
+msgctxt "s-af3bec5c88e1-0070"
+msgid "⟦SEP_0003⟧ ⟦CODE_0001⟧ groups its arguments in threes and treats a lone last argument as the else ⟦SEP_0004⟧ **guaranteed** ⟦SEP_0005⟧ Documented. ⟦CODE_0002⟧ repeats the tested value in every group because of it. ⟦SEP_0006⟧"
+msgstr "⟦SEP_0003⟧ ⟦CODE_0001⟧ agrupa sus argumentos de tres en tres y trata un último argumento suelto como el else ⟦SEP_0004⟧ **garantizado** ⟦SEP_0005⟧ Está documentado. Por eso ⟦CODE_0002⟧ repite el valor probado en cada grupo. ⟦SEP_0006⟧"
+
+#: lessons/study-guides/languages/m4.md:127
+msgctxt "s-e9e1a76477f8-0071"
+msgid "⟦SEP_0001⟧ Quoted text is not expanded; arguments are expanded before the call ⟦SEP_0002⟧ **guaranteed** ⟦SEP_0003⟧ Documented. This is the stop rule. ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ El texto entre comillas no se expande; los argumentos se expanden antes de la llamada ⟦SEP_0002⟧ **garantizado** ⟦SEP_0003⟧ Está documentado. Esta es la regla de parada. ⟦SEP_0004⟧"
+
+#: lessons/study-guides/languages/m4.md:128
+msgctxt "s-609efad0f150-0072"
+msgid "⟦SEP_0003⟧ ⟦CODE_0001⟧ and ⟦CODE_0002⟧ ⟦SEP_0004⟧ **implementation-permitted** ⟦SEP_0005⟧ GNU m4 extensions. A non-GNU m4 will not run the file. ⟦SEP_0006⟧"
+msgstr "⟦SEP_0003⟧ ⟦CODE_0001⟧ y ⟦CODE_0002⟧ ⟦SEP_0004⟧ **permitido por la implementación** ⟦SEP_0005⟧ Extensiones de GNU m4. Un m4 que no sea de GNU no ejecutará el archivo. ⟦SEP_0006⟧"
+
+#: lessons/study-guides/languages/m4.md:129
+msgctxt "s-441b9ff9e7c7-0073"
+msgid "⟦SEP_0004⟧ ⟦CODE_0001⟧ is 32-bit, so the generator needs Schrage's trick ⟦SEP_0005⟧ **implementation-permitted** ⟦SEP_0006⟧ GNU m4 1.4.x behavior, and the entry's README notes that the naive product overflows silently (⟦CODE_0002⟧ gives ⟦CODE_0003⟧). ⟦SEP_0007⟧"
+msgstr "⟦SEP_0004⟧ ⟦CODE_0001⟧ es de 32 bits, así que el generador necesita el truco de Schrage ⟦SEP_0005⟧ **permitido por la implementación** ⟦SEP_0006⟧ Comportamiento de GNU m4 1.4.x. El README de la entrada señala que el producto ingenuo se desborda sin avisar (⟦CODE_0002⟧ da ⟦CODE_0003⟧). ⟦SEP_0007⟧"
+
+#: lessons/study-guides/languages/m4.md:130
+msgctxt "s-83b77699c514-0074"
+msgid "⟦SEP_0004⟧ ⟦CODE_0001⟧ runs the shell and sets ⟦CODE_0002⟧ ⟦SEP_0005⟧ **guaranteed** by POSIX ⟦SEP_0006⟧ Used to hand the SQL to ⟦CODE_0003⟧. ⟦SEP_0007⟧"
+msgstr "⟦SEP_0004⟧ ⟦CODE_0001⟧ ejecuta el intérprete de comandos y fija ⟦CODE_0002⟧ ⟦SEP_0005⟧ **garantizado** por POSIX ⟦SEP_0006⟧ Sirve para entregar el SQL a ⟦CODE_0003⟧. ⟦SEP_0007⟧"
+
+#: lessons/study-guides/languages/m4.md:131
+msgctxt "s-dd9fd28906f7-0075"
+msgid "⟦SEP_0005⟧ The loop does not deepen the nesting ⟦SEP_0006⟧ **guaranteed** by how rescanning works, observed with ⟦CODE_0001⟧ and ⟦CODE_0002⟧ ⟦SEP_0007⟧ Checked in this guide, and now asserted by the entry's ⟦CODE_0003⟧ (the smallest working ⟦CODE_0004⟧ is the same for a 3-card and a 5-card run). ⟦SEP_0008⟧"
+msgstr "⟦SEP_0005⟧ El bucle no aumenta la profundidad del anidamiento ⟦SEP_0006⟧ **garantizado** por cómo funciona el reescaneo, observado con ⟦CODE_0001⟧ y ⟦CODE_0002⟧ ⟦SEP_0007⟧ Comprobado en esta guía y ahora afirmado por ⟦CODE_0003⟧ en la entrada. El ⟦CODE_0004⟧ mínimo que funciona es igual en una ejecución de 3 tarjetas y en una de 5. ⟦SEP_0008⟧"
+
+#: lessons/study-guides/languages/m4.md:133
+msgctxt "s-c2da3670553a-0076"
+msgid "**A documentation note, now fixed.** While this guide was prepared, the entry's README said, under \"Recursion depth\", that \"every card nests one more expansion\". The trace and the ⟦CODE_0001⟧ experiment disagreed: the nesting depth is constant. The README now says so, and explains that what does grow with the card count is the copying of ⟦CODE_0002⟧."
+msgstr "**Una nota de documentación, ya corregida.** Mientras se preparaba esta guía, el README de la entrada decía, en \"Profundidad de recursión\", que \"cada tarjeta anida una expansión más\". La traza y el experimento con ⟦CODE_0001⟧ lo contradecían: la profundidad del anidamiento es constante. Ahora el README lo dice así, y explica que lo que sí crece con el número de tarjetas es la copia de ⟦CODE_0002⟧."
+
+#: lessons/study-guides/languages/m4.md:135
+msgctxt "s-87d9e31bff8d-0077"
+msgid "**Costs to state.**"
+msgstr "**Costos que conviene declarar.**"
+
+#: lessons/study-guides/languages/m4.md:137
+msgctxt "s-6cf16e382b31-0078"
+msgid "**Quoting errors fail late and silently.** A missing quote does not give an error at the line you wrote. It changes *when* something expands."
+msgstr "**Los errores de comillas fallan tarde y en silencio.** Una comilla que falta no da un error en la línea que escribiste. Cambia *cuándo* se expande algo."
+
+#: lessons/study-guides/languages/m4.md:138
+msgctxt "s-72438095a5b7-0079"
+msgid "**Every word is a candidate macro.** Data and code share one namespace. The ⟦CODE_0001⟧ prefix is the only separation."
+msgstr "**Cada palabra es una macro candidata.** Los datos y el código comparten un solo espacio de nombres. El prefijo ⟦CODE_0001⟧ es la única separación."
+
+#: lessons/study-guides/languages/m4.md:139
+msgctxt "s-4b77613c129a-0080"
+msgid "**The SQL is not escaped.** Every value is a number or one of four fixed words. Do not feed user text into ⟦CODE_0001⟧."
+msgstr "**El SQL no se escapa.** Cada valor es un número o una de cuatro palabras fijas. No introduzcas texto de usuarios en ⟦CODE_0001⟧."
+
+#: lessons/study-guides/languages/m4.md:140
+msgctxt "s-777a67f72091-0081"
+msgid "**The shell does the plumbing.** m4 computes; ⟦CODE_0001⟧ saves."
+msgstr "**El intérprete de comandos se encarga de cómo viaja el dato.** m4 calcula; ⟦CODE_0001⟧ guarda."
+
+#: lessons/study-guides/languages/m4.md:141
+msgctxt "s-c06accbb932b-0082"
+msgid "**Where this is legitimate.** m4 is the engine behind ⟦CODE_0001⟧ scripts and many generated files. Rescanning is a real tool there. Using it as a loop is a stunt."
+msgstr "**Dónde es legítimo esto.** m4 es el motor detrás de los scripts ⟦CODE_0001⟧ y de muchos archivos generados. Ahí el reescaneo es una herramienta real. Usarlo como bucle es una acrobacia."
+
+#: lessons/study-guides/languages/m4.md:143
+msgctxt "s-061eb6da82a8-0083"
+msgid "Connections across the repository"
+msgstr "Conexiones a lo largo del repositorio"
+
+#: lessons/study-guides/languages/m4.md:145
+msgctxt "s-09c8b4de7b89-0084"
+msgid "**Rescanning as a fixed-point loop.** The ⟦CODE_0001⟧ loop in [Regex engines and sed](⟦DEST_0002⟧) rewrites one line until a pattern stops matching, and [Make](⟦DEST_0003⟧) restarts until no file is remade. All three run \"until nothing changes\"."
+msgstr "**El reescaneo como bucle de punto fijo.** El bucle ⟦CODE_0001⟧ de [Motores de regex y sed](⟦DEST_0002⟧) reescribe una línea hasta que un patrón deja de coincidir. [Make](⟦DEST_0003⟧) vuelve a empezar hasta que ningún archivo se rehace. Los tres se ejecutan \"hasta que nada cambie\"."
+
+#: lessons/study-guides/languages/m4.md:146
+msgctxt "s-87921db23fe2-0085"
+msgid "**Code and data in one namespace.** [Tcl](⟦DEST_0001⟧) stores code as strings in a database. m4's data and macro names share one space, with the same lesson: whoever controls the text controls the program."
+msgstr "**Código y datos en un solo espacio de nombres.** [Tcl](⟦DEST_0001⟧) guarda el código como cadenas de texto en una base de datos. Los datos de m4 y los nombres de sus macros comparten un solo espacio, con la misma lección: quien controla el texto controla el programa."
+
+#: lessons/study-guides/languages/m4.md:147
+msgctxt "s-76403a5ef8b6-0086"
+msgid "**Lazy against eager, in a language with no values.** The quoting that decides when ⟦CODE_0001⟧ is expanded is the m4 form of the question in [Evaluation, demand and laziness](⟦DEST_0002⟧)."
+msgstr "**Evaluación perezosa frente a inmediata, en un lenguaje sin valores.** Las comillas que deciden cuándo se expande ⟦CODE_0001⟧ son la forma que toma en m4 la pregunta de [Evaluación, demanda y pereza](⟦DEST_0002⟧)."
+
+#: lessons/study-guides/languages/m4.md:148
+msgctxt "s-cb90a319c20f-0087"
+msgid "**Formal languages as machines.** [Formal languages and weird machines](⟦DEST_0001⟧) places m4's rescanning beside the Markov algorithm."
+msgstr "**Los lenguajes formales como máquinas.** [Lenguajes formales y máquinas raras](⟦DEST_0001⟧) sitúa el reescaneo de m4 junto al algoritmo de Markov."
+
+#: lessons/study-guides/languages/m4.md:149
+msgctxt "s-3c3866cd0fd4-0088"
+msgid "**In the book.** [m4](⟦DEST_0001⟧), [Macros and text expansion](⟦DEST_0002⟧), [Fixed-point iteration](⟦DEST_0003⟧) and [Term and string rewriting](⟦DEST_0004⟧)."
+msgstr "**En el libro.** [m4](⟦DEST_0001⟧), [Macros y expansión de texto](⟦DEST_0002⟧), [Iteración de punto fijo](⟦DEST_0003⟧) y [Reescritura de términos y de cadenas de texto](⟦DEST_0004⟧)."
+
+#: lessons/study-guides/languages/m4.md:151
+msgctxt "s-50944288ce61-0089"
+msgid "Self-check"
+msgstr "Autoevaluación"
+
+#: lessons/study-guides/languages/m4.md:153
+msgctxt "s-274e192b952c-0090"
+msgid "Answer each question in your own words before you read the italic text. Say what evidence would support each answer."
+msgstr "Responde cada pregunta con tus propias palabras antes de leer el texto en cursiva. Di qué evidencia respaldaría cada respuesta."
+
+#: lessons/study-guides/languages/m4.md:155
+msgctxt "s-aa7ff66a02ca-0091"
+msgid ""
+"**Trace.** Hours are 18, 12, 10, 14. At the end of each pass, give ⟦CODE_0001⟧ and what ⟦CODE_0002⟧ returns. *(Totals 18, 30, 40, 54. For the first three passes the test ⟦CODE_0003⟧ is 0 and ⟦CODE_0004⟧ returns ⟦CODE_0005⟧. After the fourth pass the total is 54, the test is 1, and ⟦CODE_0006⟧ returns nothing. The third pass, at exactly 40, continues.)*\n"
+"2. **Explain.** Why must the last argument of ⟦CODE_0007⟧ be ⟦CODE_0008⟧ with brackets? *(m4 expands arguments before it calls the macro. Without brackets, ⟦CODE_0009⟧ would be called while ⟦CODE_0010⟧ is still collecting its arguments, so the loop would never reach the decision.)*\n"
+"3. **Transfer.** Which construct in a language with tail-call optimization plays the part of \"the replacement text is rescanned\"? *(A tail call, where the last action of a function is a call to itself, which reuses the frame instead of adding one. Both are iteration written as recursion.)*\n"
+"4. **Evidence.** The README says, \"Each card adds one nested expansion.\" Design a test that could fail. What is the negative control? *(Run with a small ⟦CODE_0011⟧ on a 3-card seed and a 5-card seed. If the minimal working ⟦CODE_0012⟧ is the same, depth does not grow with cards. For the control, run B11's unbracketed variant, where depth does grow and any ⟦CODE_0013⟧ fails.)*"
+msgstr ""
+"**Traza.** Las horas son 18, 12, 10, 14. Al final de cada pasada, da ⟦CODE_0001⟧ y lo que devuelve ⟦CODE_0002⟧. *(Totales 18, 30, 40, 54. En las tres primeras pasadas la prueba ⟦CODE_0003⟧ vale 0 y ⟦CODE_0004⟧ devuelve ⟦CODE_0005⟧. Tras la cuarta pasada el total es 54, la prueba vale 1 y ⟦CODE_0006⟧ no devuelve nada. La tercera pasada, con exactamente 40, continúa.)*\n"
+"2. **Explica.** ¿Por qué el último argumento de ⟦CODE_0007⟧ debe ser ⟦CODE_0008⟧ con corchetes? *(m4 expande los argumentos antes de llamar a la macro. Sin corchetes, ⟦CODE_0009⟧ se llamaría mientras ⟦CODE_0010⟧ todavía está reuniendo sus argumentos, así que el bucle nunca llegaría a la decisión.)*\n"
+"3. **Transfiere.** ¿Qué construcción de un lenguaje con optimización de llamadas de cola hace el papel de \"el texto de reemplazo se reescanea\"? *(Una llamada de cola (la última acción de una función es llamarse a sí misma) reutiliza el marco de la pila en lugar de añadir uno. Ambas son iteración escrita como recursión.)*\n"
+"4. **Evidencia.** El README dice: \"Cada tarjeta añade una expansión anidada\". Diseña una prueba que pueda fallar. ¿Cuál es el control negativo? *(Ejecuta con un ⟦CODE_0011⟧ pequeño sobre una semilla de 3 tarjetas y otra de 5 tarjetas. Si el ⟦CODE_0012⟧ mínimo que funciona es el mismo, la profundidad no crece con las tarjetas. Como control, ejecuta la variante sin corchetes de B11, donde la profundidad sí crece y cualquier ⟦CODE_0013⟧ falla.)*"
+
+#: lessons/study-guides/languages/m4.md:160
+msgctxt "s-4082f515b2f4-0092"
+msgid "Further reading"
+msgstr "Lecturas adicionales"
+
+#: lessons/study-guides/languages/m4.md:162
+msgctxt "s-4dc4ac8cb321-0093"
+msgid "[m4 (computer language)](⟦DEST_0001⟧)) (Wikipedia): the language, its history and where it is used."
+msgstr "[m4 (lenguaje de programación)](⟦DEST_0001⟧)) (Wikipedia): el lenguaje, su historia y dónde se usa."
+
+#: lessons/study-guides/languages/m4.md:163
+msgctxt "s-b5792b37200a-0094"
+msgid "[Macro (computer science)](⟦DEST_0001⟧)) (Wikipedia): text macros against syntactic macros."
+msgstr "[Macro (informática)](⟦DEST_0001⟧)) (Wikipedia): macros de texto frente a macros sintácticas."
+
+#: lessons/study-guides/languages/m4.md:164
+msgctxt "s-ed5616cd03aa-0095"
+msgid "[GNU M4 manual](⟦DEST_0001⟧) (GNU Project): the authority for ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧ and the trace options. Read the sections on quoting and on the order of expansion before you change any bracket."
+msgstr "[Manual de GNU M4](⟦DEST_0001⟧) (Proyecto GNU): la autoridad en ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧ y las opciones de traza. Lee las secciones sobre las comillas y sobre el orden de expansión antes de cambiar cualquier corchete."
+
+#: lessons/study-guides/languages/m4.md:165
+msgctxt "s-062a86e9a542-0096"
+msgid "[Macros and text expansion](⟦DEST_0001⟧) (this book): the general idea."
+msgstr "[Macros y expansión de texto](⟦DEST_0001⟧) (este libro): la idea general."

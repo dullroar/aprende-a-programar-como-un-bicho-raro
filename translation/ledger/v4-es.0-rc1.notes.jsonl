@@ -1991,3 +1991,15 @@
 {"segment_id": "s-70d1ed8d0c32-0028", "ts": "2026-11-21T19:04:43Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
 {"segment_id": "s-835efdd1a035-0056", "ts": "2026-11-21T19:04:43Z", "findings": ["I7: glossary term event must be rendered 'evento'"]}
 {"segment_id": "s-87d9e31bff8d-0122", "ts": "2026-11-21T19:04:43Z", "findings": ["I7: glossary term state must be rendered 'estado'"]}
+{"segment_id": "s-cbfce4e17b7f-0005", "ts": "2026-11-21T19:09:13Z", "findings": ["I7: glossary term scope must be rendered 'ámbito'"]}
+{"segment_id": "s-858923aa0ced-0021", "ts": "2026-11-21T19:09:13Z", "findings": ["I12: sentence of 31 words (limit 29): Después de que X se reemplaza por su cue..."]}
+{"segment_id": "s-b45085859036-0022", "ts": "2026-11-21T19:09:13Z", "findings": ["I12: sentence of 37 words (limit 29): En macros que se redefinen a sí mismas: ..."]}
+{"segment_id": "s-01073e769490-0046", "ts": "2026-11-21T19:09:13Z", "findings": ["I25: comma before a simple 'y' (', y con X funciona'): no comma before a simple o or y"]}
+{"segment_id": "s-b2b589c1da4c-0047", "ts": "2026-11-21T19:09:13Z", "findings": ["I12: sentence of 31 words (limit 29): Con la semilla 4020 las tarjetas son 10,..."]}
+{"segment_id": "s-5197640dd524-0052", "ts": "2026-11-21T19:09:13Z", "findings": ["I7: glossary term flag must be rendered 'bandera'"]}
+{"segment_id": "s-dd9fd28906f7-0075", "ts": "2026-11-21T19:09:13Z", "findings": ["I12: sentence of 30 words (limit 29): Comprobado en esta guía y ahora afirmado..."]}
+{"segment_id": "s-87d9e31bff8d-0077", "ts": "2026-11-21T19:09:13Z", "findings": ["I7: glossary term state must be rendered 'estado'"]}
+{"segment_id": "s-09c8b4de7b89-0084", "ts": "2026-11-21T19:09:13Z", "findings": ["I12: sentence of 30 words (limit 29): El bucle X de [Motores de regex y sed](X..."]}
+{"segment_id": "s-aa7ff66a02ca-0091", "ts": "2026-11-21T19:09:13Z", "findings": ["I12: sentence of 31 words (limit 29): *(Una llamada de cola, en la que la últi..."]}
+{"segment_id": "s-cbfce4e17b7f-0005", "ts": "2026-11-21T19:09:45Z", "findings": ["I7: glossary term scope must be rendered 'ámbito'"]}
+{"segment_id": "s-87d9e31bff8d-0077", "ts": "2026-11-21T19:09:45Z", "findings": ["I7: glossary term state must be rendered 'estado'"]}
