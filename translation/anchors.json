@@ -9417,8 +9417,8 @@
     {
      "en": "One Statement, Python Edition",
      "en_id": "one-statement-python-edition",
-     "es": "Una instrucción, edición Python",
-     "es_id": "una-instrucción-edición-python",
+     "es": "Una sola sentencia, edición Python",
+     "es_id": "una-sola-sentencia-edición-python",
      "level": 1,
      "line": 17
     },
@@ -9483,7 +9483,7 @@
     "gotchas-worth-knowing": "trampas-que-conviene-conocer",
     "how-the-stunt-works": "cómo-funciona-el-truco",
     "layout": "estructura",
-    "one-statement-python-edition": "una-instrucción-edición-python",
+    "one-statement-python-edition": "una-sola-sentencia-edición-python",
     "program-flow": "flujo-del-programa",
     "run-it": "ejecútalo",
     "run-it-in-a-container": "ejecútalo-en-un-contenedor",

@@ -1,7 +1,7 @@
 # loop/STATE.md (keep to 60 lines; refreshed by every iteration)
 
 - **Edition:** v4-es.0-rc1 (working)    **English SHA:** 48a4429c0a22b2aac628b256a50c07d1816bcb80
-- **Iteration:** 102    **Stage:** 3C (editorial-review rework before bulk translation)    **Last result:** iter 102 P3C-014 done (src/ModernChallenge1/README.md corrected through its PO: sentencia, predicate names the cap and the category check, Iterador, 6 dispositions, SI-015/SI-016 logged, diagram 11.7 pt). Next: P3C-015 file correction, then P3C-016
+- **Iteration:** 103    **Stage:** 3C (editorial-review rework before bulk translation)    **Last result:** iter 103 P3C-015 done (src/PythonChallenge1/README.md corrected through its PO: sentencia and adaptación, step literal in three labels, valor centinela, 6 dispositions, SI-017 logged, diagram 12.0 pt). Next: P3C-016 audit, then P3C-017 gate
 - **Tasks:** todo 73 | doing 0 | done 73 | blocked 0 | skipped 0 (recount with the queue files)
 - **Next task:** run `python3 tools/next_task.py` (PO files live at translation/po/<path>.po, written by tools/apply.py --init)
 - **Budget:** spent $0.00 of $100; iterations 0 of 300
