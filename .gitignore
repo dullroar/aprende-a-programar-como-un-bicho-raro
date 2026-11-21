@@ -8,6 +8,7 @@ __pycache__/
 loop/driver.out
 loop/ledger/
 loop/STOP
+loop/PAUSE
 
 # --- imported from English source ---
 bin/

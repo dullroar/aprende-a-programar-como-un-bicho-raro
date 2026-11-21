@@ -9,7 +9,7 @@
 #   4. checks that progress happened (new commit or queue change)
 # It never pushes, never touches remotes, and never needs credentials.
 #
-# Handoff to another agent: set AGENT_CMD (see below) and run this script again.
+# Handoff: loop/ralph.sh --agent claude|codex --on-limit handoff. See loop/RUN.md.
 # VERIFY every agent-CLI flag against the installed version's --help before the first run.
 
 set -u
@@ -17,6 +17,27 @@ set -u
 LOOP_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 ROOT="$(cd "$LOOP_DIR/.." && pwd)"
 cd "$ROOT" || exit 2
+
+agent=claude
+on_limit=wait
+resume=0
+while [ "$#" -gt 0 ]; do
+  case "$1" in
+    --agent|--on-limit)
+      [ "$#" -ge 2 ] || { echo "ralph: $1 needs a value." >&2; exit 2; }
+      if [ "$1" = --agent ]; then agent="$2"; else on_limit="$2"; fi
+      shift 2 ;;
+    --pause) touch "$LOOP_DIR/PAUSE"; exit $? ;;
+    --resume) resume=1; shift ;;
+    --help)
+      echo "Usage: loop/ralph.sh [--agent claude|codex] [--on-limit wait|handoff] [--resume]"
+      echo "       loop/ralph.sh --pause"
+      exit 0 ;;
+    *) echo "ralph: unknown option $1." >&2; exit 2 ;;
+  esac
+done
+case "$agent" in claude|codex) ;; *) echo "ralph: unknown agent $agent." >&2; exit 2 ;; esac
+case "$on_limit" in wait|handoff) ;; *) echo "ralph: unknown limit action $on_limit." >&2; exit 2 ;; esac
 
 PROMPT="$LOOP_DIR/PROMPT.md"
 CONFIG="$LOOP_DIR/CONFIG.yaml"
@@ -47,7 +68,11 @@ DEFAULT_AGENT_CMD='claude -p --output-format json --model sonnet --max-budget-us
 # The agent must be able to read the pinned English clone (outside the repo). --add-dir grants that.
 ENGLISH_DIR="$(cfg english_clone_path "")"
 [ -n "$ENGLISH_DIR" ] && [ -d "$ENGLISH_DIR" ] && DEFAULT_AGENT_CMD="$DEFAULT_AGENT_CMD --add-dir \"$ENGLISH_DIR\""
+if [ "$agent" = codex ]; then
+  DEFAULT_AGENT_CMD='codex -a never exec --sandbox workspace-write --color never --json -'
+fi
 AGENT_CMD="${AGENT_CMD:-$DEFAULT_AGENT_CMD}"
+export RALPH_AGENT="$agent"
 
 # ---- project virtualenv first on PATH (never install into another project's venv) ----
 if [ -x "$ROOT/.venv/bin/python" ]; then export PATH="$ROOT/.venv/bin:$PATH"; export VIRTUAL_ENV="$ROOT/.venv"; fi
@@ -64,6 +89,9 @@ if ! flock -n 9; then
   exit 3
 fi
 
+# With the driver lock held, a claim from a previous iteration can be resumed immediately.
+export RALPH_RECLAIM_CLAIMED=1
+if [ "$resume" -eq 1 ]; then rm -f "$LOOP_DIR/PAUSE" || exit 2; fi
 [ -f "$PROMPT" ] || { echo "ralph: missing $PROMPT" >&2; exit 2; }
 
 spent_usd() {
@@ -86,33 +114,71 @@ queue_signature() {  # changes whenever any queue file changes
 }
 
 record_usage() {  # record_usage iter jsonfile rc seconds
-  python3 -I - "$1" "$2" "$3" "$4" "$LEDGER" <<'PY'
-import json, sys, time
-it, path, rc, secs, ledger = sys.argv[1:6]
+  python3 -I - "$1" "$2" "$3" "$4" "$LEDGER" "$agent" <<'PY'
+import json, pathlib, re, sys, time
+it, path, rc, secs, ledger, agent = sys.argv[1:]
 rec = {"iteration": int(it), "ts": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
-       "exit_code": int(rc), "seconds": int(secs),
-       "cost_usd": 0.0, "input_tokens": None, "output_tokens": None, "result_tail": ""}
-try:
-    data = json.load(open(path, encoding="utf-8"))
+       "agent": agent, "exit_code": int(rc), "seconds": int(secs), "cost_usd": None,
+       "input_tokens": None, "output_tokens": None, "result_tail": ""}
+raw = pathlib.Path(path).read_text(encoding="utf-8", errors="replace")
+result = ""
+errors = []
+usage = {}
+if agent == "claude":
+    try:
+        data = json.loads(raw)
+    except ValueError:
+        data = {}
     if isinstance(data, dict):
-        rec["cost_usd"] = data.get("total_cost_usd") or data.get("cost_usd") or 0.0
-        u = data.get("usage") or {}
-        rec["input_tokens"] = u.get("input_tokens")
-        rec["output_tokens"] = u.get("output_tokens")
-        rec["result_tail"] = str(data.get("result", ""))[-300:]
-except Exception as e:  # agent may not emit JSON; keep going
-    rec["result_tail"] = f"unparsed output: {e}"
+        rec["cost_usd"] = data.get("total_cost_usd", data.get("cost_usd"))
+        usage = data.get("usage") or {}
+        result = str(data.get("result") or "")
+        errors.append(result)
+else:
+    for line in raw.splitlines():
+        try:
+            event = json.loads(line)
+        except ValueError:
+            continue
+        if not isinstance(event, dict):
+            continue
+        event_type = event.get("type")
+        if event_type == "turn.completed":
+            usage = event.get("usage") or {}
+        elif event_type == "item.completed":
+            item = event.get("item") or {}
+            if item.get("type") == "agent_message":
+                result = str(item.get("text") or "")
+        elif event_type in ("error", "turn.failed"):
+            errors.append(str(event.get("error") or event.get("message") or ""))
+if int(rc):
+    errors.append(pathlib.Path(path + ".err").read_text(encoding="utf-8", errors="replace").strip())
+error_text = "\n".join(filter(None, errors))
+rec["result_tail"] = ((error_text if int(rc) else "") or result)[-300:]
+rec["input_tokens"] = usage.get("input_tokens")
+rec["output_tokens"] = usage.get("output_tokens")
+rec["usage_limited"] = int(rc) != 0 and bool(re.search(
+    r"\bhit your\b[^\n]{0,100}\blimit\b|\busage[_ ]limit[_ ]reached\b", error_text, re.I
+))
 with open(ledger, "a", encoding="utf-8") as f:
     f.write(json.dumps(rec, ensure_ascii=False) + "\n")
+print("limit" if rec["usage_limited"] else "recorded")
 PY
 }
 
-iter=0
-if [ -f "$LEDGER" ]; then iter="$(wc -l < "$LEDGER" | tr -d ' ')"; fi
+iter=$(python3 -I - "$LEDGER" <<'PY'
+import json, pathlib, sys
+path = pathlib.Path(sys.argv[1])
+print(max((json.loads(line)["iteration"] for line in path.read_text().splitlines() if line.strip()),
+          default=0) if path.exists() else 0)
+PY
+) || exit 2
+result=0
 stall=0
-echo "ralph: start at iteration $((iter+1)); max_iter=$MAX_ITER max_usd=$MAX_USD timeout=${ITER_TIMEOUT_MIN}m"
+echo "ralph: start at iteration $((iter+1)); agent=$agent max_iter=$MAX_ITER max_usd=$MAX_USD timeout=${ITER_TIMEOUT_MIN}m"
 
 while :; do
+  [ -f "$LOOP_DIR/PAUSE" ] && { echo "ralph: PAUSE sentinel found. Use --resume to continue."; break; }
   [ -f "$LOOP_DIR/STOP" ] && { echo "ralph: STOP sentinel found."; break; }
   [ -f "$LOOP_DIR/DONE" ] && { echo "ralph: DONE sentinel found: $(head -n1 "$LOOP_DIR/DONE")"; break; }
   [ "$iter" -ge "$MAX_ITER" ] && { echo "ralph: iteration budget reached ($MAX_ITER)."; break; }
@@ -120,7 +186,9 @@ while :; do
   [ "$over" = "1" ] && { echo "ralph: cost budget reached (\$$MAX_USD)."; break; }
 
   iter=$((iter+1))
-  out="$LOGDIR/iter-$(printf '%04d' "$iter").json"
+  stem="$LOGDIR/iter-$(printf '%04d' "$iter")"
+  out="$stem.json"
+  if [ -e "$out" ]; then out=$(mktemp "$stem.retry-XXXXXX.json") || exit 2; fi
   head_before="$(git rev-parse HEAD 2>/dev/null || echo none)"
   sig_before="$(queue_signature)"
   # tell the agent which iteration it is (STATE.md carries the human-readable copy)
@@ -130,23 +198,23 @@ while :; do
   timeout "${ITER_TIMEOUT_MIN}m" bash -c "$AGENT_CMD" < "$PROMPT" > "$out" 2> "$out.err"
   rc=$?
   secs=$(( $(date +%s) - start ))
-  record_usage "$iter" "$out" "$rc" "$secs"
+  outcome=$(record_usage "$iter" "$out" "$rc" "$secs") || exit 2
 
-  # Usage-limit replies are not stalls: sleep and retry instead of tripping the breaker.
-  if python3 -I - "$LEDGER" <<'PY'
-import json, sys
-last = ""
-for line in open(sys.argv[1], encoding="utf-8"):
-    if line.strip():
-        last = line
-r = json.loads(last) if last else {}
-tail = str(r.get("result_tail", "")).lower()
-sys.exit(0 if ("hit your" in tail and "limit" in tail) else 1)
-PY
-  then
-    echo "ralph: usage limit reached at iteration $iter; sleeping ${LIMIT_SLEEP_SECS:-900}s then retrying (not counted as a stall)."
+  if [ "$outcome" = limit ]; then
+    if [ "$on_limit" = handoff ]; then
+      echo "ralph: $agent usage limit at iteration $iter. Resume with --agent claude or --agent codex."
+      result=75
+      break
+    fi
+    remaining="${LIMIT_SLEEP_SECS:-900}"
+    echo "ralph: usage limit reached at iteration $iter; sleeping ${remaining}s then retrying (not counted as a stall)."
     iter=$((iter-1))
-    sleep "${LIMIT_SLEEP_SECS:-900}"
+    while [ "$remaining" -gt 0 ] && [ ! -f "$LOOP_DIR/PAUSE" ] && [ ! -f "$LOOP_DIR/STOP" ]; do
+      chunk=5
+      [ "$remaining" -lt "$chunk" ] && chunk="$remaining"
+      sleep "$chunk"
+      remaining=$((remaining-chunk))
+    done
     continue
   fi
 
@@ -168,3 +236,5 @@ PY
 done
 
 echo "ralph: finished. Iterations: $iter. Spent: \$$(spent_usd). See $LOOP_DIR/HANDOFF.md and $STATE."
+
+exit "$result"

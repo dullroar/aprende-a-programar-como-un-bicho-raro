@@ -167,14 +167,14 @@ def agent_cmd(name, mode):
     return "%s agents/agent.py --name %s --mode %s" % (sys.executable, name, mode)
 
 
-def run_ralph(dest, cmd, timeout=120):
+def run_ralph(dest, cmd, timeout=120, options=()):
     """Run the real ralph.sh in the scratch repo with AGENT_CMD=cmd; return (returncode, output)."""
     env = dict(os.environ)
     env["AGENT_CMD"] = cmd
     env["SLEEP_SECS"] = "0"
     for k in ("MAX_ITER", "MAX_USD", "MAX_STALL", "ITER_TIMEOUT_MIN"):
         env.pop(k, None)
-    r = subprocess.run(["bash", os.path.join(dest, "loop", "ralph.sh")], cwd=dest, env=env,
+    r = subprocess.run(["bash", os.path.join(dest, "loop", "ralph.sh"), *options], cwd=dest, env=env,
                        capture_output=True, text=True, timeout=timeout)
     return r.returncode, r.stdout + r.stderr
 
@@ -322,6 +322,39 @@ def negative_lock():
     return p
 
 
+def provider_handoff():
+    """Both quota formats release the lock, and a fresh claim survives the switch."""
+    dest = build_scratch("provider-handoff")
+    write(os.path.join(dest, "agents", "quota.py"), """import json, os, subprocess, sys
+
+sys.stdin.read()
+agent = os.environ["RALPH_AGENT"]
+if agent == "claude":
+    subprocess.run([sys.executable, "tools/seedtask.py", "T-1", "doing", "1"], check=True)
+    print(json.dumps({"is_error": True, "result": "You've hit your 5-hour limit"}))
+else:
+    result = subprocess.run([sys.executable, "tools/next_task.py", "--id"],
+                            capture_output=True, text=True, check=True)
+    if result.stdout.strip() != "TASK T-1":
+        sys.exit("Codex did not reclaim the fresh claim")
+    print(json.dumps({"type": "turn.failed", "error": {"message": "usage_limit_reached"}}))
+sys.exit(1)
+""")
+    cmd = "%s agents/quota.py" % sys.executable
+    problems = []
+    for provider in ("claude", "codex"):
+        rc, out = run_ralph(dest, cmd, options=("--agent", provider, "--on-limit", "handoff"))
+        if rc != 75 or provider + " usage limit" not in out:
+            problems.append("%s did not hand off (rc=%d): %s" % (provider, rc, out))
+    rc, out = run_ralph(dest, agent_cmd("A", "resume"), options=("--agent", "claude"))
+    if rc or "DONE sentinel found" not in out or calls(dest)[0][0] != 3:
+        problems.append("Claude did not continue after Codex handed back the queue")
+    ledger = [json.loads(l) for l in read(os.path.join(dest, "loop", "ledger", "usage.jsonl")).splitlines()]
+    if [(r["agent"], r["usage_limited"]) for r in ledger[:2]] != [("claude", True), ("codex", True)]:
+        problems.append("quota handoff was not recorded for both providers")
+    return problems
+
+
 def run_all():
     """Problems for verify --release: the real scenario must pass, every negative case must show its gate armed."""
     problems = []
@@ -330,7 +363,7 @@ def run_all():
     _, _, _, bad = scenario("neg-restart", mode_b="restart")
     if not any("not resumed" in x for x in bad):
         problems.append("resume test: an agent that restarts instead of resuming was not caught")
-    for fn in (negative_stop_first, negative_stall, negative_lock):
+    for fn in (negative_stop_first, negative_stall, negative_lock, provider_handoff):
         problems += ["resume test (%s): %s" % (fn.__name__, x) for x in fn()]
     return problems
 

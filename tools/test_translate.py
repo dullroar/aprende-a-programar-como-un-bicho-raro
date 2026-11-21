@@ -475,6 +475,32 @@ class TestCli(Base):
         self.assertEqual(sum(1 for e in self.entries().values() if e.msgstr), 3)
 
 
+    def test_draft_import_uses_provider_provenance_and_resume(self):
+        export = ["translate.py", "--export-pending", self.md, "--po", self.po, "--limit", "1"]
+        buf = io.StringIO()
+        with redirect_stdout(buf):
+            self.assertEqual(tr.main(export), 0)
+        inp = json.loads(buf.getvalue())
+        self.assertEqual(inp["segment_id"], self.ids[0])
+        reply, _ = Fake(self.answers).ask("", inp)
+        drafts = os.path.join(self.tmp.name, "drafts.jsonl")
+        with open(drafts, "w", encoding="utf-8") as f:
+            f.write(json.dumps(reply) + "\n")
+        with redirect_stdout(io.StringIO()):
+            self.assertEqual(tr.main(["translate.py", self.md, "--drafts", drafts,
+                                      "--draft-model", "openai/codex-test", "--po", self.po,
+                                      "--ledger", os.path.join(self.tmp.name, "ledger.jsonl"),
+                                      "--cache", os.path.join(self.tmp.name, "cache.jsonl"),
+                                      "--limit", "1", "--redo-fuzzy"]), 0)
+        row, = self.ledger()
+        self.assertEqual(row["translator_model"], "openai/codex-test")
+        self.assertNotIn("tokens", row)
+        buf = io.StringIO()
+        with redirect_stdout(buf):
+            self.assertEqual(tr.main(export), 0)
+        self.assertEqual(json.loads(buf.getvalue())["segment_id"], self.ids[1])
+
+
 class TestGlossary(unittest.TestCase):
     def test_slice_matches_plain_words_and_plurals_only(self):
         g = tr.Glossary(GLOSSARY)

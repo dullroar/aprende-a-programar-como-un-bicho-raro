@@ -28,6 +28,8 @@ Usage:
                                 [--limit K] [--redo-fuzzy] [--task-id ID] [--dry-run] [--po PO]
                                 [--ledger FILE] [--cache FILE]
   python3 -I tools/translate.py --show FILE.md [--from N]    print the translator input of one segment
+  python3 -I tools/translate.py --export-pending FILE.md [--from N] [--limit K]
+  python3 -I tools/translate.py FILE.md --drafts REPLIES.jsonl --draft-model PROVIDER/MODEL [--redo-fuzzy]
 """
 import hashlib
 import json
@@ -207,6 +209,15 @@ class ReplayBackend:
         return out, {"input": 0, "output": 0}
 
 
+class DraftBackend(ReplayBackend):
+    """Replies written by the iteration agent, with explicit provenance and unmetered usage."""
+    name = "drafts"
+
+    def __init__(self, source, model):
+        super().__init__(source)
+        self.model = model
+
+
 class ClaudeBackend:
     """`claude -p` with every tool disabled: the model only sees the system prompt and the input JSON."""
     name = "claude"
@@ -362,7 +373,8 @@ class Translator:
             raise TranslateError("bad translator input for %s: %s" % (inp["segment_id"], "; ".join(probs)))
         key = self._cache_key(inp)
         tokens = {"input": 0, "output": 0}
-        out = self.cache.get(key)
+        use_cache = not isinstance(self.backend, DraftBackend)
+        out = self.cache.get(key) if use_cache else None
         cached = out is not None
         if cached:
             # The key ignores the segment id, so a repeated English text (a table row, a banner) returns the
@@ -402,18 +414,21 @@ class Translator:
             findings.append("AMBIGUITY: %d reported by the translator (see ledger)" % len(out["ambiguities"]))
         blocking = [f for f in findings if not f.startswith(("AMBIGUITY", "REGISTER"))]
         status = "needs-revision" if blocking else "accepted"
-        if status == "accepted" and not cached:
+        if status == "accepted" and use_cache and not cached:
             self._cache_put(key, out)
         return status, text, findings, out, tokens
 
     def ledger_row(self, inp, src, status, msgstr, out, tokens, findings):
+        drafted = isinstance(self.backend, DraftBackend)
+        model = self.backend.model if drafted else "anthropic/%s" % self.backend.model
         row = {"ledger_version": 1, "kind": "segment", "edition": self.edition, "ts": now(),
                "segment_id": inp["segment_id"], "file": inp["file"], "tier": inp["tier"], "status": status,
-               "round": 0, "translator_model": "anthropic/%s" % self.backend.model,
+               "round": 0, "translator_model": model,
                "prompt_sha256": self.prompt_sha, "glossary_sha256": self.glossary_sha,
                "house_style_sha256": self.style_sha, "english_sha256": sha(src.text),
-               "spanish_sha256": sha(msgstr), "playful": inp["playful"], "exception_id": None,
-               "tokens": tokens}
+               "spanish_sha256": sha(msgstr), "playful": inp["playful"], "exception_id": None}
+        if not drafted:
+            row["tokens"] = tokens
         if self.task_id:
             row["task_id"] = self.task_id
         return row
@@ -431,6 +446,24 @@ class Translator:
         if findings or len(note) > 3:
             with open(self.notes_path, "a", encoding="utf-8") as f:
                 f.write(json.dumps(note, ensure_ascii=False) + "\n")
+
+    def pending_inputs(self, path, po_path=None, start=1, limit=None):
+        """Yield translator inputs for untranslated or fuzzy entries without writing files."""
+        rel, full = enpath.locate(path, ROOT)
+        seg = segment.Segmentation(ap.source_text(rel, full), rel)
+        po_path = po_path or ap.po_path_for(rel)
+        entries = {e.msgctxt: e for e in ap.load_po(po_path)} if os.path.isfile(po_path) else {}
+        emitted = 0
+        for i, item in enumerate(seg.segments()):
+            if i + 1 < start:
+                continue
+            entry = entries.get(item.id)
+            if entry is not None and entry.msgstr.strip() and "fuzzy" not in entry.flags:
+                continue
+            if limit is not None and emitted >= limit:
+                break
+            yield self.build_input(seg, i, rel)
+            emitted += 1
 
     # -- one file
     def run_file(self, path, po_path=None, start=1, limit=None, redo_fuzzy=False, dry_run=False, log=print):
@@ -529,10 +562,12 @@ def main(argv):
         return default
 
     show = "--show" in args
+    export = "--export-pending" in args
     redo = "--redo-fuzzy" in args
     dry = "--dry-run" in args
-    args = [a for a in args if a not in ("--show", "--redo-fuzzy", "--dry-run")]
-    backend_spec = opt("--backend", "claude")
+    args = [a for a in args if a not in ("--show", "--export-pending", "--redo-fuzzy", "--dry-run")]
+    backend_spec = opt("--backend")
+    drafts, draft_model = opt("--drafts"), opt("--draft-model")
     model = opt("--model", "sonnet")
     start = int(opt("--from", "1"))
     limit = opt("--limit")
@@ -544,7 +579,15 @@ def main(argv):
         print(__doc__.split("Usage:")[1].rstrip())
         return 2
     path = args[0]
+    if bool(drafts) != bool(draft_model) or (drafts and (backend_spec or "/" not in draft_model)):
+        print("Use --drafts FILE with --draft-model PROVIDER/MODEL and without --backend.")
+        return 2
     try:
+        if export:
+            tr = Translator(ReplayBackend(lambda i: None), task_id=task_id)
+            for item in tr.pending_inputs(path, po_path=po_arg, start=start, limit=limit):
+                print(json.dumps(item, ensure_ascii=False))
+            return 0
         if show:
             tr = Translator(ReplayBackend(lambda i: None), task_id=task_id)
             rel, full = enpath.locate(path, ROOT)
@@ -555,8 +598,11 @@ def main(argv):
                 return 2
             print(json.dumps(tr.build_input(seg, start - 1, rel), ensure_ascii=False, indent=2))
             return 0
-        tr = Translator(make_backend(backend_spec, model), task_id=task_id, ledger_path=ledger_arg,
-                        cache_path=cache_arg)
+        if not (drafts or backend_spec) and os.getenv("RALPH_AGENT") == "codex":
+            print("Codex iterations must use --export-pending and --drafts (see loop/RUN.md).")
+            return 2
+        backend = DraftBackend(drafts, draft_model) if drafts else make_backend(backend_spec or "claude", model)
+        tr = Translator(backend, task_id=task_id, ledger_path=ledger_arg, cache_path=cache_arg)
         res = tr.run_file(path, po_path=po_arg, start=start, limit=limit, redo_fuzzy=redo, dry_run=dry)
     except (TranslateError, segment.SegmentError, ap.ApplyError, OSError) as e:
         print("FAIL %s" % e)

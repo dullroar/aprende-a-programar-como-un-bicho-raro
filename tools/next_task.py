@@ -136,14 +136,14 @@ def check(tasks, problems):
     return out
 
 
-def pick(tasks, now=None):
+def pick(tasks, now=None, *, reclaim_claimed=False):
     """Return (verdict, task_or_None) where verdict is TASK/NONE-BLOCKED/NONE-WAITING/NONE-COMPLETE."""
     now = now or datetime.datetime.now(datetime.timezone.utc)
     status = {t["id"]: t.get("status", "todo") for t in tasks}
     eligible = []
     for t in tasks:
         st = t.get("status", "todo")
-        if st == "doing" and is_stale(t, now):
+        if st == "doing" and (reclaim_claimed or is_stale(t, now)):
             st = "todo"
         if st != "todo":
             continue
@@ -188,7 +188,7 @@ def main(argv=None):
         c = counts(tasks)
         print(" | ".join(f"{k} {v}" for k, v in c.items()))
         return 0
-    verdict, task = pick(tasks)
+    verdict, task = pick(tasks, reclaim_claimed=os.getenv("RALPH_RECLAIM_CLAIMED") == "1")
     if task is not None:
         print("TASK " + (task["id"] if a.id else json.dumps(task, ensure_ascii=False)))
         return 0
