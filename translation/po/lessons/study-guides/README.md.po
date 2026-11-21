@@ -1,0 +1,230 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lessons/study-guides/README.md:1
+msgctxt "s-ea3d8bbd6661-0000"
+msgid "Study guides"
+msgstr "Guías de estudio"
+
+#: lessons/study-guides/README.md:3
+msgctxt "s-aba53128b5eb-0001"
+msgid "*Traces, predictions and evidence for advanced readers of* Learn Programming the Weird Way!"
+msgstr "*Trazas, predicciones y evidencia para lectores avanzados de* ¡Aprende a programar como un bicho raro!"
+
+#: lessons/study-guides/README.md:5
+msgctxt "s-4da4afa16f11-0002"
+msgid "**WEIRD** stands for **Weird Execution, Indirect Results and Data**. The W is recursive. The rest gives you something to trace: what executes, where the result turns up and what the program gets away with treating as data."
+msgstr "**{{acronym.word}}** significa **Bicho raro, Interpreta, Camino indirecto, Hallazgos y Octetos**. La {{phase.1.letter}} es recursiva. El resto te da algo que trazar: qué se ejecuta, dónde aparece el resultado y qué trata el programa como datos sin que nadie lo note."
+
+#: lessons/study-guides/README.md:7
+msgctxt "s-2c060b6dc91e-0003"
+msgid "Many language chapters pair an idiomatic program with a weird one. These guides take the next step. For each language family and for each big idea, a guide asks you to **identify the machine, trace one fixed run, predict before you execute and prove the claim with evidence**. They are written for a senior undergraduate or a graduate reader. They do not teach what a loop is. They teach why *this* loop-like mechanism has particular consequences."
+msgstr "Muchos capítulos de lenguajes emparejan un programa idiomático con uno raro. Estas guías dan el paso siguiente. Para cada familia de lenguajes y cada idea, una guía te pide **identificar la máquina, trazar una ejecución fija, predecir antes de ejecutar y probar la afirmación con evidencia**. Las escribimos para un lector avanzado de licenciatura o de posgrado. No enseñan qué es un bucle. Enseñan por qué *esta* máquina parecida a un bucle tiene consecuencias particulares."
+
+#: lessons/study-guides/README.md:9
+msgctxt "s-e41f1d7d3fe4-0004"
+msgid "The guides are hand-written. They began with a COBOL study guide by the book's co-author Ken Astl, and keep its method."
+msgstr "Las guías están escritas a mano. Empezaron con una guía de estudio de COBOL de Ken Astl, coautor del libro. Conservan su método."
+
+#: lessons/study-guides/README.md:11
+msgctxt "s-b727cfb6b53b-0005"
+msgid "How every guide works"
+msgstr "Cómo funciona cada guía"
+
+#: lessons/study-guides/README.md:13
+msgctxt "s-334c93321085-0006"
+msgid "Every guide has the same eleven sections, so you can find the same thing in the same place:"
+msgstr "Cada guía tiene las mismas once secciones, así que encuentras cada cosa siempre en el mismo lugar:"
+
+#: lessons/study-guides/README.md:15
+msgctxt "s-f104b97444a0-0007"
+msgid ""
+"**What this guide is for**: three to six learning outcomes, and what is out of scope.\n"
+"2. **Before you begin**: the safety model (fictional **⟦DNT_0001⟧** data, source review and a sandbox run first), the prediction rule and the vocabulary.\n"
+"3. **The shared challenge**: the [time-card specification](⟦DEST_0002⟧) and how the entries in this guide behave. A conforming run keeps the **first card that takes the total over 40**, so exactly 40 continues. Check stop, storage and output separately.\n"
+"4. **The machine to identify**: what repeats, where state lives, what advances the next step, what stops it and which effects commit.\n"
+"5. **Trace one run**: a fixed run, normally hours 15, 19, 12, with the decisive state before and after each step.\n"
+"6. **Compare the ordinary and weird designs**: by representation, observability, tests, debugging, portability and cost, not by line count.\n"
+"7. **What the exercises demonstrate**: links to the verified exercises, each with the prediction you make first.\n"
+"8. **Failure modes, costs and boundaries**: specific behavior claims labeled **guaranteed**, **implementation-permitted** or **accidentally exploited**, with evidence for each (see [Three kinds of knowledge](⟦DEST_0003⟧)).\n"
+"9. **Connections across the repository**: other guides and book chapters.\n"
+"10. **Self-check**: a trace question, an explanation question, a transfer question and an evidence question.\n"
+"11. **Further reading**: short and annotated."
+msgstr ""
+"**Para qué sirve esta guía**: de tres a seis resultados de aprendizaje, y lo que queda fuera del ámbito de la guía.\n"
+"2. **Antes de empezar**: el modelo de seguridad (datos ficticios marcados con **⟦DNT_0001⟧**, revisión del código y una ejecución en el entorno aislado), la regla de predicción y el vocabulario.\n"
+"3. **El reto compartido**: la [especificación de la tarjeta de horas](⟦DEST_0002⟧) y cómo se comportan las entradas de esta guía. Una ejecución conforme conserva la **primera tarjeta que lleva el total a más de 40**, así que un total de exactamente 40 continúa. Comprueba por separado la parada, el almacenamiento y la salida.\n"
+"4. **La máquina que hay que identificar**: lo que se repite, dónde vive el estado, lo que hace avanzar el paso siguiente, qué lo detiene y qué efectos se confirman.\n"
+"5. **Traza una ejecución**: una ejecución fija, normalmente con las horas 15, 19, 12, con el estado decisivo antes y después de cada paso.\n"
+"6. **Compara los diseños ordinarios y los raros**: por representación, observabilidad, pruebas, depuración, portabilidad y costo, no por número de líneas.\n"
+"7. **Qué demuestran los ejercicios**: enlaces a los ejercicios verificados, cada uno con la predicción que haces primero.\n"
+"8. **Modos de fallo, costos y límites**: afirmaciones concretas sobre el comportamiento. Se marcan como **garantizado**, **permitido por la implementación** o **aprovechado por accidente**, con evidencia para cada una (consulta [Tres tipos de conocimiento](⟦DEST_0003⟧)).\n"
+"9. **Conexiones a lo largo del repositorio**: otras guías y capítulos del libro.\n"
+"10. **Autoevaluación**: una pregunta de traza, una de explicación, una de transferencia y una de evidencia.\n"
+"11. **Lecturas adicionales**: breves y comentadas."
+
+#: lessons/study-guides/README.md:27
+msgctxt "s-23b56f898735-0008"
+msgid "**How the traces were checked.** A trace is only useful if it is true. For most guides a scratch copy of the real entry was run in the sandbox with the random draws pinned (for example ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧), and a few lines of logging were added to show the state. A guide says so when a trace was only read from the source, as for the Windows-only WPF entries."
+msgstr "**Cómo se comprobaron las trazas.** Una traza solo sirve si es verdadera. En la mayoría de las guías se ejecutó una copia de trabajo de la entrada real en el entorno aislado. Los números aleatorios iban fijados (por ejemplo ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧). Se añadieron unas líneas de bitácora para mostrar el estado. Una guía lo dice cuando una traza solo se leyó del código fuente, como en las entradas de WPF, que solo funcionan en Windows."
+
+#: lessons/study-guides/README.md:29
+msgctxt "s-0b035cb51822-0009"
+msgid "Language-family guides"
+msgstr "Guías por familia de lenguajes"
+
+#: lessons/study-guides/README.md:31
+msgctxt "s-2172b83110a3-0010"
+msgid "⟦SEP_0001⟧ Guide ⟦SEP_0002⟧ Entries ⟦SEP_0003⟧ What it asks ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ Guía ⟦SEP_0002⟧ Entradas ⟦SEP_0003⟧ Qué plantea ⟦SEP_0004⟧"
+
+#: lessons/study-guides/README.md:33
+msgctxt "s-e48de94725ef-0011"
+msgid "⟦SEP_0007⟧ [C#, LINQ, XAML and ports](⟦DEST_0001⟧) ⟦SEP_0008⟧ ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧ and the Go, Java, Kotlin, Python and Rust ports ⟦SEP_0009⟧ What does each slot of the ⟦CODE_0006⟧ header do, when does a query run and who owns the thread? ⟦SEP_0010⟧"
+msgstr "⟦SEP_0007⟧ [C#, LINQ, XAML y adaptaciones](⟦DEST_0001⟧) ⟦SEP_0008⟧ ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧ y las adaptaciones a Go, Java, Kotlin, Python y Rust ⟦SEP_0009⟧ ¿Qué hace cada ranura del encabezado ⟦CODE_0006⟧, cuándo se ejecuta una consulta y quién es dueño del hilo? ⟦SEP_0010⟧"
+
+#: lessons/study-guides/README.md:34
+msgctxt "s-d48d129d042b-0012"
+msgid "⟦SEP_0004⟧ [COBOL](⟦DEST_0001⟧) ⟦SEP_0005⟧ ⟦CODE_0002⟧, ⟦CODE_0003⟧ ⟦SEP_0006⟧ Where does a program keep \"what happens next\" and \"when to stop\"? ⟦SEP_0007⟧"
+msgstr "⟦SEP_0004⟧ [COBOL](⟦DEST_0001⟧) ⟦SEP_0005⟧ ⟦CODE_0002⟧, ⟦CODE_0003⟧ ⟦SEP_0006⟧ ¿Dónde guarda un programa \"lo que pasa después\" y \"cuándo parar\"? ⟦SEP_0007⟧"
+
+#: lessons/study-guides/README.md:35
+msgctxt "s-16a5b8379d3a-0013"
+msgid "⟦SEP_0004⟧ [Haskell](⟦DEST_0001⟧) ⟦SEP_0005⟧ ⟦CODE_0002⟧, ⟦CODE_0003⟧ ⟦SEP_0006⟧ Who demands work, and what happens when a forcing point moves? ⟦SEP_0007⟧"
+msgstr "⟦SEP_0004⟧ [Haskell](⟦DEST_0001⟧) ⟦SEP_0005⟧ ⟦CODE_0002⟧, ⟦CODE_0003⟧ ⟦SEP_0006⟧ ¿Quién ejerce la demanda de trabajo y qué pasa cuando se mueve un punto donde se debe forzar? ⟦SEP_0007⟧"
+
+#: lessons/study-guides/README.md:36
+msgctxt "s-04f5cf9bbfba-0014"
+msgid "⟦SEP_0004⟧ [Forth](⟦DEST_0001⟧) ⟦SEP_0005⟧ ⟦CODE_0002⟧, ⟦CODE_0003⟧ ⟦SEP_0006⟧ What can serve as a program counter, and what can serve as memory? ⟦SEP_0007⟧"
+msgstr "⟦SEP_0004⟧ [Forth](⟦DEST_0001⟧) ⟦SEP_0005⟧ ⟦CODE_0002⟧, ⟦CODE_0003⟧ ⟦SEP_0006⟧ ¿Qué puede servir de contador de programa y qué puede servir de memoria? ⟦SEP_0007⟧"
+
+#: lessons/study-guides/README.md:37
+msgctxt "s-0c23d5ccd1eb-0015"
+msgid "⟦SEP_0004⟧ [Make and CMake](⟦DEST_0001⟧) ⟦SEP_0005⟧ ⟦CODE_0002⟧, ⟦CODE_0003⟧ ⟦SEP_0006⟧ When the tool decides what runs next, where does the program's state live? ⟦SEP_0007⟧"
+msgstr "⟦SEP_0004⟧ [Make y CMake](⟦DEST_0001⟧) ⟦SEP_0005⟧ ⟦CODE_0002⟧, ⟦CODE_0003⟧ ⟦SEP_0006⟧ Cuando la herramienta decide qué se ejecuta después, ¿dónde vive el estado del programa? ⟦SEP_0007⟧"
+
+#: lessons/study-guides/README.md:38
+msgctxt "s-8f54821c5494-0016"
+msgid "⟦SEP_0007⟧ [Regex engines and sed](⟦DEST_0001⟧) ⟦SEP_0008⟧ ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧, ⟦CODE_0006⟧ ⟦SEP_0009⟧ Which engines preserve effects after failure, and which need a successful match? ⟦SEP_0010⟧"
+msgstr "⟦SEP_0007⟧ [Motores de regex y sed](⟦DEST_0001⟧) ⟦SEP_0008⟧ ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧, ⟦CODE_0006⟧ ⟦SEP_0009⟧ ¿Qué motores conservan los efectos después de un fallo y cuáles necesitan una coincidencia exitosa? ⟦SEP_0010⟧"
+
+#: lessons/study-guides/README.md:39
+msgctxt "s-748d7ca941a3-0017"
+msgid "⟦SEP_0004⟧ [APL](⟦DEST_0001⟧) ⟦SEP_0005⟧ ⟦CODE_0002⟧, ⟦CODE_0003⟧ ⟦SEP_0006⟧ What replaces the loop when the program works on whole arrays, or on its own source? ⟦SEP_0007⟧"
+msgstr "⟦SEP_0004⟧ [APL](⟦DEST_0001⟧) ⟦SEP_0005⟧ ⟦CODE_0002⟧, ⟦CODE_0003⟧ ⟦SEP_0006⟧ ¿Qué reemplaza al bucle cuando el programa trabaja con arreglos completos o con su propio código fuente? ⟦SEP_0007⟧"
+
+#: lessons/study-guides/README.md:40
+msgctxt "s-781b3bafd866-0018"
+msgid "⟦SEP_0005⟧ [JavaScript](⟦DEST_0001⟧) ⟦SEP_0006⟧ ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧ ⟦SEP_0007⟧ Who owns the next step: the loop header, the consumer or the event loop? ⟦SEP_0008⟧"
+msgstr "⟦SEP_0005⟧ [JavaScript](⟦DEST_0001⟧) ⟦SEP_0006⟧ ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧ ⟦SEP_0007⟧ ¿Quién es dueño del paso siguiente: el encabezado del bucle, el consumidor o el bucle de eventos? ⟦SEP_0008⟧"
+
+#: lessons/study-guides/README.md:41
+msgctxt "s-546a24207106-0019"
+msgid "⟦SEP_0004⟧ [Common Lisp](⟦DEST_0001⟧) ⟦SEP_0005⟧ ⟦CODE_0002⟧, ⟦CODE_0003⟧ ⟦SEP_0006⟧ Can the object system's dispatch rules serve as the loop and the stop rule? ⟦SEP_0007⟧"
+msgstr "⟦SEP_0004⟧ [Common Lisp](⟦DEST_0001⟧) ⟦SEP_0005⟧ ⟦CODE_0002⟧, ⟦CODE_0003⟧ ⟦SEP_0006⟧ ¿Pueden las reglas de despacho del sistema de objetos servir de bucle y de regla de parada? ⟦SEP_0007⟧"
+
+#: lessons/study-guides/README.md:42
+msgctxt "s-af538b1ecf8b-0020"
+msgid "⟦SEP_0003⟧ [m4](⟦DEST_0001⟧) ⟦SEP_0004⟧ ⟦CODE_0002⟧ ⟦SEP_0005⟧ What do quoting, expansion order and rescanning each decide? ⟦SEP_0006⟧"
+msgstr "⟦SEP_0003⟧ [m4](⟦DEST_0001⟧) ⟦SEP_0004⟧ ⟦CODE_0002⟧ ⟦SEP_0005⟧ ¿Qué deciden las comillas, el orden de expansión y el reescaneo? ⟦SEP_0006⟧"
+
+#: lessons/study-guides/README.md:43
+msgctxt "s-ff7bd8047761-0021"
+msgid "⟦SEP_0004⟧ [Tcl](⟦DEST_0001⟧) ⟦SEP_0005⟧ ⟦CODE_0002⟧, ⟦CODE_0003⟧ ⟦SEP_0006⟧ If code is just a string, who may write it, and which engine runs next? ⟦SEP_0007⟧"
+msgstr "⟦SEP_0004⟧ [Tcl](⟦DEST_0001⟧) ⟦SEP_0005⟧ ⟦CODE_0002⟧, ⟦CODE_0003⟧ ⟦SEP_0006⟧ Si el código es solo una cadena de texto, ¿quién puede escribirlo y qué motor se ejecuta después? ⟦SEP_0007⟧"
+
+#: lessons/study-guides/README.md:44
+msgctxt "s-7853f561cab4-0022"
+msgid "⟦SEP_0004⟧ [ed and Ex](⟦DEST_0001⟧) ⟦SEP_0005⟧ ⟦CODE_0002⟧, ⟦CODE_0003⟧ ⟦SEP_0006⟧ When the program is a buffer being edited, what are the addresses, registers and program counter? ⟦SEP_0007⟧"
+msgstr "⟦SEP_0004⟧ [ed y Ex](⟦DEST_0001⟧) ⟦SEP_0005⟧ ⟦CODE_0002⟧, ⟦CODE_0003⟧ ⟦SEP_0006⟧ Cuando el programa es un búfer que se edita, ¿cuáles son las direcciones, los registros y el contador de programa? ⟦SEP_0007⟧"
+
+#: lessons/study-guides/README.md:45
+msgctxt "s-a62994a0ac47-0023"
+msgid "⟦SEP_0004⟧ [tar](⟦DEST_0001⟧) ⟦SEP_0005⟧ ⟦CODE_0002⟧, ⟦CODE_0003⟧ ⟦SEP_0006⟧ An archive is data. What gives it an effect, and what makes it safe to read? ⟦SEP_0007⟧"
+msgstr "⟦SEP_0004⟧ [tar](⟦DEST_0001⟧) ⟦SEP_0005⟧ ⟦CODE_0002⟧, ⟦CODE_0003⟧ ⟦SEP_0006⟧ Un archivo comprimido es un dato. ¿Qué le da un efecto y qué hace seguro leerlo? ⟦SEP_0007⟧"
+
+#: lessons/study-guides/README.md:47
+msgctxt "s-8a2d2c60727a-0024"
+msgid "Concept guides"
+msgstr "Guías de conceptos"
+
+#: lessons/study-guides/README.md:49
+msgctxt "s-451f36d15492-0025"
+msgid "⟦SEP_0001⟧ Guide ⟦SEP_0002⟧ Book chapters ⟦SEP_0003⟧ Core question ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ Guía ⟦SEP_0002⟧ Capítulos del libro ⟦SEP_0003⟧ Pregunta central ⟦SEP_0004⟧"
+
+#: lessons/study-guides/README.md:51
+msgctxt "s-bc7127be569c-0026"
+msgid "⟦SEP_0003⟧ [Reading adversarial programs](⟦DEST_0001⟧) ⟦SEP_0004⟧ [1](⟦DEST_0002⟧) ⟦SEP_0005⟧ What can this program cause before I run it? ⟦SEP_0006⟧"
+msgstr "⟦SEP_0003⟧ [Lectura de programas adversariales](⟦DEST_0001⟧) ⟦SEP_0004⟧ [1](⟦DEST_0002⟧) ⟦SEP_0005⟧ ¿Qué puede causar este programa antes de que lo ejecute? ⟦SEP_0006⟧"
+
+#: lessons/study-guides/README.md:52
+msgctxt "s-ff5f8ee48956-0027"
+msgid "⟦SEP_0005⟧ [State and control beyond variables](⟦DEST_0001⟧) ⟦SEP_0006⟧ [2](⟦DEST_0002⟧), [3](⟦DEST_0003⟧), [6](⟦DEST_0004⟧) ⟦SEP_0007⟧ Where are the next step and the remembered state stored? ⟦SEP_0008⟧"
+msgstr "⟦SEP_0005⟧ [Estado y control más allá de las variables](⟦DEST_0001⟧) ⟦SEP_0006⟧ [2](⟦DEST_0002⟧), [3](⟦DEST_0003⟧), [6](⟦DEST_0004⟧) ⟦SEP_0007⟧ ¿Dónde se guardan el paso siguiente y el estado recordado? ⟦SEP_0008⟧"
+
+#: lessons/study-guides/README.md:53
+msgctxt "s-a157f0323f3e-0028"
+msgid "⟦SEP_0003⟧ [Evaluation, demand and laziness](⟦DEST_0001⟧) ⟦SEP_0004⟧ [4](⟦DEST_0002⟧) ⟦SEP_0005⟧ Who demands work, and when? ⟦SEP_0006⟧"
+msgstr "⟦SEP_0003⟧ [Evaluación, demanda y pereza](⟦DEST_0001⟧) ⟦SEP_0004⟧ [4](⟦DEST_0002⟧) ⟦SEP_0005⟧ ¿Quién exige el trabajo y cuándo? ⟦SEP_0006⟧"
+
+#: lessons/study-guides/README.md:54
+msgctxt "s-811b51c046fe-0029"
+msgid "⟦SEP_0003⟧ [Formal languages and weird machines](⟦DEST_0001⟧) ⟦SEP_0004⟧ [5](⟦DEST_0002⟧) ⟦SEP_0005⟧ When does a notation become an executable substrate? ⟦SEP_0006⟧"
+msgstr "⟦SEP_0003⟧ [Lenguajes formales y máquinas raras](⟦DEST_0001⟧) ⟦SEP_0004⟧ [5](⟦DEST_0002⟧) ⟦SEP_0005⟧ ¿Cuándo se convierte una notación en un sustrato ejecutable? ⟦SEP_0006⟧"
+
+#: lessons/study-guides/README.md:55
+msgctxt "s-0f4d68f6c4f2-0030"
+msgid "⟦SEP_0003⟧ [Effects, errors and commitment](⟦DEST_0001⟧) ⟦SEP_0004⟧ [7](⟦DEST_0002⟧) ⟦SEP_0005⟧ Which effects survive failure, and what truly commits? ⟦SEP_0006⟧"
+msgstr "⟦SEP_0003⟧ [Efectos, errores y confirmación](⟦DEST_0001⟧) ⟦SEP_0004⟧ [7](⟦DEST_0002⟧) ⟦SEP_0005⟧ ¿Qué efectos sobreviven a un fallo y qué se confirma de verdad? ⟦SEP_0006⟧"
+
+#: lessons/study-guides/README.md:56
+msgctxt "s-ac72a8b3743c-0031"
+msgid "⟦SEP_0003⟧ [Portability, abstraction and cost](⟦DEST_0001⟧) ⟦SEP_0004⟧ [8](⟦DEST_0002⟧) ⟦SEP_0005⟧ What is promised, host-dependent or a performance cliff? ⟦SEP_0006⟧"
+msgstr "⟦SEP_0003⟧ [Portabilidad, abstracción y costo](⟦DEST_0001⟧) ⟦SEP_0004⟧ [8](⟦DEST_0002⟧) ⟦SEP_0005⟧ ¿Qué está prometido, qué depende del anfitrión y qué es un precipicio de rendimiento? ⟦SEP_0006⟧"
+
+#: lessons/study-guides/README.md:57
+msgctxt "s-0ed6c181a6d0-0032"
+msgid "⟦SEP_0003⟧ [Events, callbacks and reactive control](⟦DEST_0001⟧) ⟦SEP_0004⟧ [10](⟦DEST_0002⟧) ⟦SEP_0005⟧ Who owns the next turn, and what does reentrancy change? ⟦SEP_0006⟧"
+msgstr "⟦SEP_0003⟧ [Eventos, funciones de devolución de llamada y control reactivo](⟦DEST_0001⟧) ⟦SEP_0004⟧ [10](⟦DEST_0002⟧) ⟦SEP_0005⟧ ¿Quién es dueño del turno siguiente y qué cambia la reentrada? ⟦SEP_0006⟧"
+
+#: lessons/study-guides/README.md:58
+msgctxt "s-dd985f9b8d69-0033"
+msgid "⟦SEP_0004⟧ [Comparative machine design](⟦DEST_0001⟧) ⟦SEP_0005⟧ [9](⟦DEST_0002⟧), [patterns](⟦DEST_0003⟧) ⟦SEP_0006⟧ What plays loop, state, clock, decision and commit? ⟦SEP_0007⟧"
+msgstr "⟦SEP_0004⟧ [Diseño comparativo de máquinas](⟦DEST_0001⟧) ⟦SEP_0005⟧ [9](⟦DEST_0002⟧), [patrones](⟦DEST_0003⟧) ⟦SEP_0006⟧ ¿Qué hace de bucle, de estado, de reloj, de decisión y de confirmación? ⟦SEP_0007⟧"
+
+#: lessons/study-guides/README.md:60
+msgctxt "s-dacfcf15e2c4-0034"
+msgid "⟦CODE_0001⟧ and AWK have no guide of their own. They appear in the guides on [reading adversarial programs](⟦DEST_0002⟧), [state and control](⟦DEST_0003⟧) and [comparative machine design](⟦DEST_0004⟧)."
+msgstr "⟦CODE_0001⟧ y AWK no tienen una guía propia. Aparecen en las guías sobre [lectura de programas adversariales](⟦DEST_0002⟧), [estado y control](⟦DEST_0003⟧) y [diseño comparativo de máquinas](⟦DEST_0004⟧)."
+
+#: lessons/study-guides/README.md:62
+msgctxt "s-bd65831e77e7-0035"
+msgid "Suggested paths"
+msgstr "Rutas sugeridas"
+
+#: lessons/study-guides/README.md:64
+msgctxt "s-af5395bbff03-0036"
+msgid "**From a language you know.** Open its guide, trace the fixed run, make your predictions, then run the linked exercise. Return to the book page of the same name."
+msgstr "**Desde un lenguaje que conoces.** Abre su guía, traza la ejecución fija, haz tus predicciones y ejecuta el ejercicio enlazado. Vuelve después a la página del libro con el mismo nombre."
+
+#: lessons/study-guides/README.md:65
+msgctxt "s-6a7472eeb7e6-0037"
+msgid "**From an idea.** Start with a concept guide. Its trace tables compare several languages at once, and each row links to the guide that checked it."
+msgstr "**Desde una idea.** Empieza con una guía de conceptos. Sus tablas de traza comparan varios lenguajes a la vez, y cada fila enlaza a la guía que la comprobó."
+
+#: lessons/study-guides/README.md:66
+msgctxt "s-c45b6ae90cc1-0038"
+msgid "**In order.** Read [Reading adversarial programs](⟦DEST_0001⟧) first. It is the safety model for everything else."
+msgstr "**En orden.** Lee primero [Lectura de programas adversariales](⟦DEST_0001⟧). Es el modelo de seguridad de todo lo demás."
+
+#: lessons/study-guides/README.md:68
+msgctxt "s-da0a016eb034-0039"
+msgid "Back to the [lessons](⟦DEST_0001⟧) and the [challenge](⟦DEST_0002⟧)."
+msgstr "Vuelve a las [lecciones](⟦DEST_0001⟧) y al [reto](⟦DEST_0002⟧)."
