@@ -1,6 +1,6 @@
 ---
 name: "Common Lisp"
-teaches: "that Common Lisp `LOOP` can express a whole algorithm as clauses for counting, drawing, summing, collecting and stopping."
+teaches: "que el `LOOP` de Common Lisp puede expresar un algoritmo completo como cláusulas para contar, tomar valores, sumar, recopilar y detener."
 kind: idiomatic
 languages: [common-lisp]
 lesson: "lenguajes/lisp.md"
@@ -8,22 +8,22 @@ loop-by: loop-statement
 evaluation: eager
 assurance: guaranteed
 pairs-with: lisp-weird
-machine: "Ordinary: one `LOOP` that runs its clauses in order on every pass"
-state: "Variables the `LOOP` owns, such as `total`"
+machine: "Ordinario: un `LOOP` que, en cada pasada, ejecuta sus cláusulas en orden"
+state: "Variables que posee `LOOP`, como `total`"
 tags: [control-flow, domain-specific-language, homoiconicity, macro-processing]
 analogies: [monoid-and-fold]
 ---
 # Common Lisp
 
-**Teaches you:** that Common Lisp `LOOP` can express a whole algorithm as clauses for counting, drawing, summing, collecting and stopping.
+**Te enseña:** que `LOOP` de Common Lisp puede expresar un algoritmo completo como cláusulas para contar, tomar valores, sumar, recolectar y parar.
 
-> **DEMO ONLY.** Fictional timecards in a scratch SQLite file. No connection to any real time-reporting system.
+> **DEMO ONLY.** Tarjetas de horas ficticias en un archivo SQLite temporal. Sin conexión con ningún sistema real de registro de horas.
 
-This is the straight version, the one that shows how Common Lisp is *meant* to be written. The challenge ("add 10 to 19 hour cards until the total passes 40") is a single `LOOP` form in `draw-cards`; everything else in [`timecards.lisp`](timecards.lisp) is a small function that does one job and has a docstring. The weird version is [`lisp-weird`](../lisp-weird/README.md).
+Esta es la versión directa, la que muestra cómo está *pensado* que se escriba Common Lisp. El reto ("añade tarjetas de 10 a 19 horas hasta que el total pase de 40") es una sola forma `LOOP` en `draw-cards`; todo lo demás en [`timecards.lisp`](timecards.lisp) es una función pequeña que hace una sola tarea y tiene un *docstring*. La versión rara es [`lisp-weird`](../lisp-weird/README.md).
 
-## Run it
+## Ejecútalo
 
-You need [SBCL](https://www.sbcl.org/) (tested with 2.2.9) and `sqlite3`. Nothing else is needed: no Quicklisp, no ASDF, no libraries. The program uses only what ships in the standard and in SBCL itself.
+Necesitas [SBCL](https://www.sbcl.org/) (probado con 2.2.9) y `sqlite3`. No necesitas nada más: ni Quicklisp, ni ASDF, ni bibliotecas. El programa usa solo lo que incluye el estándar y el propio SBCL.
 
 ```bash
 cd src/lisp
@@ -32,7 +32,7 @@ sbcl --script timecards.lisp 2026-01-01      # pin the date, so the ISO week is 
 ./check.sh                                   # set SBCL=/path/to/sbcl if it is not on your PATH
 ```
 
-Records go to `$XDG_DATA_HOME/Lisp/demo-timecards.db` (default `~/.local/share/Lisp/`). A run looks like this:
+Los registros van a `$XDG_DATA_HOME/Lisp/demo-timecards.db` (por defecto `~/.local/share/Lisp/`). Una ejecución se ve así:
 
 ```text
 # DEMO ONLY run 1794860153-ONSTYU
@@ -43,36 +43,36 @@ Debugging	12	43	2026-W47	DEMO ONLY
 # one LOOP form with SUM, COLLECT and UNTIL is the whole challenge
 ```
 
-## What it does
+## Qué hace
 
-It draws cards of 10 to 19 hours, cycling through Meetings, Coding, Debugging and Learning, until the running total is greater than 40 (the card that crosses the line is kept). It prints each card, then writes all of them to SQLite in one transaction.
+El programa saca tarjetas de 10 a 19 horas y recorre en ciclo Meetings, Coding, Debugging y Learning hasta que el total acumulado pasa de 40 (se conserva la tarjeta que cruza el límite). Imprime cada tarjeta y después escribe todas en SQLite en una sola transacción.
 
-## Program Flow
+## Flujo del programa
 
 ```mermaid
 flowchart TD
-    accTitle: lisp: the clauses of one LOOP form, in the order they are written
-    accDescr: A flowchart. The function main seeds a random state from the operating system and works out the ISO week. Then one LOOP form runs its clauses in order on each pass: number counts up from 1, hours is drawn again, hours is summed into total, a card is collected, and an until clause tests whether the total is over 40. If it is not, the next pass starts. Because until comes after collect, the crossing card is kept. When it ends, the program builds the SQL script as a string, runs the sqlite3 command-line tool with run-program, and prints the rows.
-    A["main: make-random-state from the OS, ISO week with decode-universal-time"] --> B["LOOP clause: for number from 1"]
-    B --> C["for hours = a fresh random 10 to 19"]
-    C --> D["sum hours into total"]
-    D --> E["collect a card: number, category, hours, total"]
-    E --> F{{"until total ≥ 41?"}}
+    accTitle: lisp: las cláusulas de una forma LOOP, en el orden en que se escriben
+    accDescr: Un diagrama de flujo. La función main inicializa un estado aleatorio a partir del sistema operativo y calcula la semana ISO. Después, una forma LOOP ejecuta sus cláusulas en orden en cada pasada: number cuenta desde 1, hours se sortea de nuevo, hours se suma a total, se recoge una tarjeta y una cláusula until comprueba si total pasa de 40. Si no es así, empieza la siguiente pasada. Como until va después de collect, se conserva la tarjeta que cruza el límite. Cuando termina, el programa construye el script SQL como una cadena de texto, ejecuta la herramienta de línea de comandos sqlite3 con run-program e imprime las filas.
+    A["main: make-random-state desde el sistema operativo, semana ISO con decode-universal-time"] --> B["Cláusula del bucle LOOP: for number from 1"]
+    B --> C["for hours = un número aleatorio nuevo de 10 a 19 horas"]
+    C --> D["suma las horas en el total"]
+    D --> E["recoge una tarjeta: número, categoría, horas, total"]
+    E --> F{{"¿Hasta que total ≥ 41?"}}
     F -->|no| B
-    F -->|yes| G["Build the SQL script as a string, run sqlite3 with run-program, print the rows"]
+    F -->|Sí| G["Construye el script SQL como una cadena de texto, ejecuta sqlite3 con run-program e imprime las filas"]
 ```
 
-**What this shows:** `LOOP` is a small language. Its clauses run in the order written, on every pass. `for hours =` is re-evaluated each time, `sum ... into total` keeps the total in a variable the loop owns, and `until` ends the loop.
+**Qué muestra:** `LOOP` es un lenguaje pequeño. Sus cláusulas se ejecutan en el orden en que están escritas, en cada pasada. `for hours =` se vuelve a evaluar cada vez, `sum ... into total` guarda el total en una variable que pertenece al bucle y `until` termina el bucle.
 
-**Why this mechanism matters:** the position of `until` is the stop rule's position. Written after `collect`, it keeps the crossing card. Written before it, the last card is dropped without any error. The weird sibling [`lisp-weird`](../lisp-weird/README.md) has no `LOOP`.
+**Por qué importa este mecanismo:** la posición de `until` es la de la regla de parada. Si lo escribes después de `collect`, conserva la tarjeta del cruce. Si lo escribes antes, la última tarjeta se descarta sin ningún error. El hermano raro [`lisp-weird`](../lisp-weird/README.md) no tiene `LOOP`.
 
-## How the stunt works
+## Cómo funciona el truco
 
-Read the file top to bottom; each section only uses what is above it.
+Lee el archivo de arriba abajo; cada sección solo usa lo que está antes de ella.
 
-1. **A package and the rules.** `defpackage` / `in-package` give the program its own namespace instead of dumping symbols into `CL-USER`. The rules of the game are named: `+min-hours+`, `+max-hours+`, `+limit+` (constants wear `+plus+` signs by convention; specials wear `*earmuffs*`).
-2. **A structure.** `defstruct card` gives a typed record with a constructor, accessors (`card-hours`) and a printer for free. The slot types are checked by SBCL.
-3. **The challenge.**
+1. **Un paquete y las reglas.** `defpackage` / `in-package` dan al programa su propio espacio de nombres en lugar de volcar símbolos en `CL-USER`. Las reglas del juego tienen nombre: `+min-hours+`, `+max-hours+`, `+limit+` (por convención, las constantes llevan signos `+plus+`; las variables especiales llevan `*earmuffs*`).
+2. **Una estructura.** `defstruct card` da sin trabajo extra un registro con tipos, con constructor, accesores (`card-hours`) e impresor. SBCL comprueba los tipos de los *slots*.
+3. **El reto.**
    ```lisp
    (loop for number from 1
          for hours = (+ +min-hours+ (random (1+ (- +max-hours+ +min-hours+)) state))
@@ -80,47 +80,47 @@ Read the file top to bottom; each section only uses what is above it.
          collect (make-card number (category-for number) hours total)
          until (> total +limit+))
    ```
-   `LOOP` is a small language of its own. `for number from 1` counts; `for hours = ...` re-evaluates its expression on every pass; `sum ... into total` keeps a running total in a variable the loop owns; `collect` builds the result list; `until` ends the loop. Clauses run **in the order written**, so putting `until` *after* `collect` is what keeps the crossing card. Move it above and the last card is silently dropped.
-4. **Categories** repeat through `(aref *categories* (mod (1- number) 4))`: a vector and `mod`, the plain way. (The weird version does it with a circular list.)
-5. **The calendar.** SQLite and `date(1)` are not needed to know the ISO week; Common Lisp has `decode-universal-time`, which returns day of week and year, and the rest is arithmetic (`iso-week`, `weeks-in-year`). `check.sh` compares it with `date(1)` on awkward dates (and a one-off sweep of 1,139 dates around year boundaries matched Python's `isocalendar()`). The optional date argument exists so that this arithmetic can be tested on awkward dates such as 2021-01-03 (which is in week 53 of **2020**).
-6. **SQLite.** SBCL has no database library in its core, so the program builds one SQL script as a string (`with-output-to-string`, `format` with a `~A` per value, `sql-quote` doubling quotes) and hands it to the `sqlite3` command line tool with `sb-ext:run-program`. The `DEMO ONLY` rule is in the table: `CHECK(demo_only=1)`.
-7. **`main`.** It seeds a fresh `random-state` from the OS (`(make-random-state t)`), draws, saves and prints.
+   `LOOP` es un pequeño lenguaje propio. `for number from 1` cuenta; `for hours = ...` vuelve a evaluar su expresión en cada pasada; `sum ... into total` mantiene un total acumulado en una variable que pertenece al bucle; `collect` construye la lista de resultado; `until` termina el bucle. Las cláusulas se ejecutan **en el orden en que están escritas**, así que poner `until` *después de* `collect` es lo que conserva la tarjeta que cruza. Muévelo más arriba y la última tarjeta se descarta sin avisar.
+4. Las **categorías** se repiten mediante `(aref *categories* (mod (1- number) 4))`: un vector y `mod`, de la forma sencilla. (La versión rara lo hace con una lista circular.)
+5. **El calendario.** Para saber la semana ISO no hacen falta SQLite ni `date(1)`; Common Lisp tiene `decode-universal-time`, que devuelve el día de la semana y el año, y el resto es aritmética (`iso-week`, `weeks-in-year`). `check.sh` lo compara con `date(1)` en fechas difíciles (y un barrido único de 1139 fechas alrededor de los cambios de año coincidió con `isocalendar()` de Python). El argumento opcional de fecha existe para poder probar esta aritmética en fechas difíciles como 2021-01-03 (que está en la semana 53 de **2020**).
+6. **SQLite.** SBCL no tiene en su núcleo ninguna biblioteca de bases de datos, así que el programa construye un único script SQL como cadena de texto (`with-output-to-string`, `format` con un `~A` por valor, `sql-quote` que duplica las comillas) y se lo pasa a la herramienta de línea de comandos `sqlite3` con `sb-ext:run-program`. La regla `DEMO ONLY` está en la tabla: `CHECK(demo_only=1)`.
+7. **`main`.** El programa crea un `random-state` nuevo con una semilla del sistema operativo (`(make-random-state t)`), sortea, guarda e imprime.
 
-## Why this is idiomatic
+## Por qué esto es idiomático
 
-- **Data and functions, not objects.** A struct for the data, small functions over it, and one function (`draw-cards`) that is pure apart from consuming random numbers from a state it is *given*, rather than touching a global.
-- **`LOOP` with accumulation clauses** instead of hand-rolled recursion or a `setf` counter. That is how experienced Lisp programmers write "walk, accumulate, stop".
-- **Docstrings on everything**, which `(describe 'draw-cards)` shows at the REPL.
-- **Output through `format` directives** (`~A ~D ~C ~%`), and string building with `with-output-to-string` rather than repeated concatenation.
-- **No clever macros.** A macro is the right tool when a function can't do the job; none of these needed one.
-- **Warnings are errors.** The file compiles with no warnings and no style warnings, and `check.sh` enforces it.
+- **Datos y funciones, no objetos.** Una estructura para los datos, funciones pequeñas sobre ella y una función (`draw-cards`) que es pura, salvo por consumir números aleatorios de un estado que *recibe*, en lugar de tocar una variable global.
+- **`LOOP` con cláusulas de acumulación** en lugar de recursión escrita a mano o de un contador `setf`. Así escriben los programadores de Lisp con experiencia "recorrer, acumular, detenerse".
+- **Docstrings en todo**, que `(describe 'draw-cards)` muestra en el REPL.
+- **Salida mediante directivas `format`** (`~A ~D ~C ~%`) y construcción de cadenas de texto con `with-output-to-string` en lugar de concatenaciones repetidas.
+- **Sin macros ingeniosas.** Una macro es la herramienta adecuada cuando una función no puede hacer el trabajo; ninguna de estas necesitó una.
+- **Las advertencias son errores.** El archivo compila sin advertencias y sin advertencias de estilo, y `check.sh` lo exige.
 
-## What you can learn
+## Qué puedes aprender
 
-- `LOOP` clause order and `sum ... into`.
-- `defstruct` slot types and `#.` (read-time evaluation) to use a constant inside a type.
-- Why `defconstant` is for numbers and `defparameter` is for vectors (a vector is not `eql` to itself after reloading, and `defconstant` would complain).
-- How SBCL runs scripts: `--script` implies `--disable-debugger` and ends the runtime options, so `sb-ext:*posix-argv*` is `("sbcl" "2026-01-01")` with no `--script file` in it.
-- ISO weeks: week 1 is the week with the year's first Thursday; a year has 53 weeks when it starts or ends on a Thursday.
+- El orden de las cláusulas de `LOOP` y `sum ... into`.
+- Tipos de *slot* de `defstruct` y `#.` (evaluación en tiempo de lectura) para usar una constante dentro de un tipo.
+- Por qué `defconstant` sirve para números y `defparameter` para vectores (un vector no es `eql` a sí mismo después de recargar, y `defconstant` se quejaría).
+- Cómo ejecuta SBCL los scripts: `--script` implica `--disable-debugger` y termina las opciones de ejecución, así que `sb-ext:*posix-argv*` es `("sbcl" "2026-01-01")` sin `--script file` dentro.
+- Semanas ISO: la semana 1 es la que incluye el primer jueves del año; un año tiene 53 semanas cuando empieza o termina en jueves.
 
-## Gotchas worth knowing
+## Trampas que conviene conocer
 
-- **SBCL only.** `sb-ext:run-program`, `sb-ext:posix-getenv` and `sb-ext:parse-native-namestring` are SBCL's. Other implementations have equivalents (`uiop:run-program`, `uiop:getenv`) but they are not the same functions.
-- **Pathnames are not strings.** `*` and `[` in a path mean something to a Lisp pathname, so the program converts with `parse-native-namestring` and back with `native-namestring`. A home directory with a `[` in its name would otherwise be treated as a wildcard.
-- **`random` is not cryptographic** and SBCL's default state is the same every start; `(make-random-state t)` is what makes runs differ.
-- **SQL by string building** is safe here only because every value is a number we computed or one of four fixed words. `sql-quote` is there anyway; do not copy this to untrusted input.
-- **Formatting.** Common Lisp has no standard formatter. The layout is the usual hand-made one (two-space bodies, `LOOP` clauses aligned, docstring first), as Emacs's `lisp-mode` would indent it; no formatter was run.
+- **Solo SBCL.** `sb-ext:run-program`, `sb-ext:posix-getenv` y `sb-ext:parse-native-namestring` son propias de SBCL. Otras implementaciones tienen equivalentes (`uiop:run-program`, `uiop:getenv`), pero no son las mismas funciones.
+- **Los pathnames no son cadenas de texto.** `*` y `[` en una ruta tienen un significado para un pathname de Lisp, así que el programa convierte con `parse-native-namestring` y vuelve a convertir con `native-namestring`. Un directorio personal con `[` en su nombre se trataría, de lo contrario, como un comodín.
+- **`random` no es criptográfico** y el estado por defecto de SBCL es el mismo en cada inicio; `(make-random-state t)` es lo que hace que las ejecuciones difieran.
+- **Construir SQL con cadenas de texto** es seguro aquí solo porque cada valor es un número que calculamos o una de cuatro palabras fijas. `sql-quote` está presente de todos modos; no copies esto en entradas de datos no confiables.
+- **Formato.** Common Lisp no tiene un formateador estándar. La disposición es la habitual, hecha a mano (cuerpos con sangría de dos espacios, cláusulas `LOOP` alineadas, docstring primero), tal como la indentaría Emacs con `lisp-mode`; no se ejecutó ningún formateador.
 
-## What `check.sh` enforces
+## Qué impone `check.sh`
 
-The `DEMO ONLY` marker is there and nothing looks like network code; `draw-cards` is a `LOOP` ending in `until (> total +limit+)`; the file compiles with **no** warnings; `iso-week` agrees with `date(1)` on 22 edge-case dates; and 25 runs each print a sane record set (hours 10 to 19, categories in order, running totals right, stopping exactly when the total passes 40) with SQLite agreeing with the output. A non-demo row is refused by the table.
+El marcador `DEMO ONLY` está presente y nada parece código de red; `draw-cards` es un `LOOP` que termina en `until (> total +limit+)`; el archivo compila **sin** advertencias; `iso-week` coincide con `date(1)` en 22 fechas de casos límite; y cada una de las 25 ejecuciones imprime un conjunto de registros coherente (horas de 10 a 19, categorías en orden, totales acumulados correctos y parada justo cuando el total pasa de 40) y SQLite coincide con la salida. La tabla rechaza una fila que no sea de demostración.
 
-## Run it in a container
+## Ejecuta el programa en un contenedor
 
-Prerequisite: Docker, set up once as described in [`SANDBOX-SETUP.md`](../../SANDBOX-SETUP.md#docker). The `cc-rt-sbcl` base image comes from `sandbox/container/build-bases.sh`.
+Requisito previo: Docker, configurado una sola vez como se describe en [`SANDBOX-SETUP.md`](../../SANDBOX-SETUP.md#docker). La imagen base `cc-rt-sbcl` proviene de `sandbox/container/build-bases.sh`.
 
 ```bash
 sandbox/container/run-image.sh src/lisp
 ```
 
-It builds this folder's [`Dockerfile`](Dockerfile) and runs the result with no network, a read-only file system and user `nobody`, then prints the output and a read-only look at the rows it wrote. The image holds SBCL and sqlite3 on a minimal Ubuntu.
+Construye el [`Dockerfile`](Dockerfile) de esta carpeta y ejecuta el resultado sin red, con un sistema de archivos de solo lectura y el usuario `nobody`. Luego imprime la salida y una vista de solo lectura de las filas que escribió. La imagen contiene SBCL y sqlite3 sobre un Ubuntu mínimo.

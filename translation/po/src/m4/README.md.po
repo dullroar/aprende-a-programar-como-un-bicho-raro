@@ -1,0 +1,358 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/m4/README.md:2
+msgctxt "s-2396a1256ac4-0000"
+msgid "m4"
+msgstr "m4"
+
+#: src/m4/README.md:3
+msgctxt "s-17f9a78e42bb-0001"
+msgid "that a macro processor is a programming language: no loop statement and no variable, just text that gets scanned again."
+msgstr "que un procesador de macros es un lenguaje de programación: sin sentencia de bucle y sin variable, solo texto que se vuelve a escanear."
+
+#: src/m4/README.md:10
+msgctxt "s-2e0605507c99-0002"
+msgid "A text-rescanning machine"
+msgstr "Una máquina que reescanea texto"
+
+#: src/m4/README.md:11
+msgctxt "s-990937d1a8b5-0003"
+msgid "The input stream: whatever macro text has not been read yet"
+msgstr "El flujo de entrada de datos: todo el texto de macros sin leer"
+
+#: src/m4/README.md:15
+msgctxt "s-2396a1256ac4-0004"
+msgid "m4"
+msgstr "m4"
+
+#: src/m4/README.md:17
+msgctxt "s-9c2623251bbb-0005"
+msgid "**Teaches you:** that a macro processor is a programming language: no loop statement and no variable, just text that gets scanned again."
+msgstr "**Te enseña:** que un procesador de macros es un lenguaje de programación: no tiene sentencia de bucle ni variable, solo texto que se analiza de nuevo."
+
+#: src/m4/README.md:19
+msgctxt "s-5ca333b42af1-0006"
+msgid "**⟦DNT_0001⟧.** Fictional timecards in a scratch SQLite file. No connection to any real time-reporting system."
+msgstr "**⟦DNT_0001⟧.** Tarjetas de horas ficticias en un archivo SQLite temporal. Sin conexión con ningún sistema real de registro de horas."
+
+#: src/m4/README.md:21
+msgctxt "s-7a6fe4673971-0007"
+msgid "There is one m4 entry and no ⟦CODE_0001⟧, because a whole program written in a macro processor is already the weird version. The challenge (\"add 10 to 19 hour cards until the total passes 40\") is done by ⟦CODE_0002⟧ itself: it generates the random numbers, keeps the running total, decides when to stop, formats the rows, and writes the SQL. [⟦CODE_0003⟧](⟦DEST_0004⟧) is the only source file. The shell appears twice, as plumbing: to read the clock and the OS random pool, and, at the very end, to hand a finished SQL script to ⟦CODE_0005⟧."
+msgstr "Hay una sola entrada de m4 y no hay ⟦CODE_0001⟧, porque un programa completo escrito en un procesador de macros ya es la versión rara. El reto (\"añade tarjetas de 10 a 19 horas hasta que el total pase de 40\") lo resuelve ⟦CODE_0002⟧ por sí solo: genera los números aleatorios, mantiene el total acumulado, decide cuándo parar, da formato a las filas y escribe el SQL. [⟦CODE_0003⟧](⟦DEST_0004⟧) es el único archivo fuente. Un intérprete de comandos (*shell*) es el programa que recibe y ejecuta comandos escritos. Aquí el intérprete de comandos aparece dos veces, solo en la parte de cómo viaja el dato: para leer el reloj y la reserva de datos aleatorios del sistema operativo, y, al final de todo, para entregar un script SQL terminado a ⟦CODE_0005⟧."
+
+#: src/m4/README.md:23
+msgctxt "s-958ca26c6a61-0008"
+msgid "Run it"
+msgstr "Ejecútalo"
+
+#: src/m4/README.md:25
+msgctxt "s-3d7a11f709fb-0009"
+msgid "You need GNU m4 (tested with 1.4.19) and ⟦CODE_0001⟧. The shell is ⟦CODE_0002⟧; ⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧ and ⟦CODE_0006⟧ are used for the seed, the clock and the folder."
+msgstr "Necesitas GNU m4 (probado con 1.4.19) y ⟦CODE_0001⟧. El intérprete de comandos es ⟦CODE_0002⟧. Para la semilla, el reloj y la carpeta se usan ⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧ y ⟦CODE_0006⟧."
+
+#: src/m4/README.md:34
+msgctxt "s-2a575e5f7d16-0010"
+msgid "Records go to ⟦CODE_0001⟧ (default ⟦CODE_0002⟧). A run looks like this:"
+msgstr "Los registros van a ⟦CODE_0001⟧ (por defecto ⟦CODE_0002⟧). Una ejecución se ve así:"
+
+#: src/m4/README.md:45
+msgctxt "s-c74ea9dc9cd2-0011"
+msgid "What it does"
+msgstr "Qué hace"
+
+#: src/m4/README.md:47
+msgctxt "s-7440bc35fdbf-0012"
+msgid "It draws cards of 10 to 19 hours, cycling through ⟦DNT_0001⟧, ⟦DNT_0002⟧, ⟦DNT_0003⟧ and ⟦DNT_0004⟧, until the running total is greater than 40 (the card that crosses the line is kept). It prints the rows and saves them to SQLite in one transaction."
+msgstr "El programa saca tarjetas de 10 a 19 horas y recorre en ciclo ⟦DNT_0001⟧, ⟦DNT_0002⟧, ⟦DNT_0003⟧ y ⟦DNT_0004⟧ hasta que el total acumulado pasa de 40 (se conserva la tarjeta que cruza la línea). El programa imprime las filas y las guarda en SQLite en una sola transacción."
+
+#: src/m4/README.md:49
+msgctxt "s-0dcb373c2dff-0013"
+msgid "Program Flow"
+msgstr "Flujo del programa"
+
+#: src/m4/README.md:53
+msgctxt "s-7ca2cec19a3d-0014"
+msgid "m4: a macro whose expansion contains itself"
+msgstr "m4: una macro cuya expansión se contiene a sí misma"
+
+#: src/m4/README.md:54
+msgctxt "s-14f472f01572-0015"
+msgid "A flowchart of m4 rescanning. m4 meets the word tc_card and replaces it with the macro body, then rescans that text. The rescan redefines the state macros, prints the row and appends the INSERT. The body ends in an ifelse. If the total is not over 40, the ifelse expands to the word tc_card, and the flow goes back to the start. If the total is over 40, the ifelse expands to nothing, no text is left to rescan, and syscmd hands the script to sqlite3."
+msgstr "Un diagrama de flujo del reescaneo de m4. m4 encuentra la palabra tc_card y la reemplaza por el cuerpo de la macro. Luego reescanea ese texto. El reescaneo redefine las macros de estado, imprime la fila y añade el INSERT. El cuerpo termina en un ifelse. Si el total no pasa de 40, el ifelse se expande a la palabra tc_card y el flujo vuelve al inicio. Si el total pasa de 40, el ifelse se expande a nada, no queda texto para reescanear y syscmd entrega el script a sqlite3."
+
+#: src/m4/README.md:55
+msgctxt "s-26edc140a925-0016"
+msgid "m4 meets the word tc_card: first in the file, later in its own output"
+msgstr "m4 encuentra la palabra tc_card: primero en el archivo, después en su propia salida"
+
+#: src/m4/README.md:55
+msgctxt "s-f8d970355955-0017"
+msgid "Replace the word with the macro body, then rescan that text"
+msgstr "Reemplaza la palabra por el cuerpo de la macro y vuelve a escanear ese texto"
+
+#: src/m4/README.md:56
+msgctxt "s-4f9e62d83eaf-0018"
+msgid "Rescan redefines state macros: tc_seed, tc_n, tc_total"
+msgstr "Rescan redefine las macros de estado: tc_seed, tc_n, tc_total"
+
+#: src/m4/README.md:57
+msgctxt "s-67d7e3044f5b-0019"
+msgid "Rescan prints the row and appends the INSERT to tc_sql"
+msgstr "Rescan imprime la fila y añade el INSERT a tc_sql"
+
+#: src/m4/README.md:58
+msgctxt "s-4e849497d6b9-0020"
+msgid "ifelse: is tc_total over 40?"
+msgstr "ifelse: ¿tc_total pasa de 40?"
+
+#: src/m4/README.md:59
+msgctxt "s-1ea442a134b2-0021"
+msgid "No"
+msgstr "No"
+
+#: src/m4/README.md:59
+msgctxt "s-fdbc80959cd6-0022"
+msgid "ifelse expands to the word tc_card"
+msgstr "ifelse se expande a la palabra tc_card"
+
+#: src/m4/README.md:61
+msgctxt "s-85a39ab345d6-0023"
+msgid "Yes"
+msgstr "Sí"
+
+#: src/m4/README.md:61
+msgctxt "s-426a81b1ef72-0024"
+msgid "ifelse expands to nothing: no text left to rescan"
+msgstr "ifelse se expande a nada: no queda texto que volver a escanear"
+
+#: src/m4/README.md:62
+msgctxt "s-af292761a289-0025"
+msgid "syscmd gives tc_sql to sqlite3"
+msgstr "syscmd entrega tc_sql a sqlite3"
+
+#: src/m4/README.md:65
+msgctxt "s-42e25539cbf8-0026"
+msgid "**What this shows:** m4 has no loop statement. Its evaluation model is replace, then rescan. The loop is the edge from the last ⟦CODE_0001⟧ back to the first word: the expansion of ⟦CODE_0002⟧ contains the word ⟦CODE_0003⟧."
+msgstr "**Qué muestra:** m4 no tiene ninguna sentencia de bucle. Su modelo de evaluación es reemplazar y luego volver a explorar. El bucle es la arista desde el último ⟦CODE_0001⟧ hasta la primera palabra: la expansión de ⟦CODE_0002⟧ contiene la palabra ⟦CODE_0003⟧."
+
+#: src/m4/README.md:67
+msgctxt "s-bac28ed48cf1-0027"
+msgid "**Why this mechanism matters:** the stop rule is the absence of text. When ⟦CODE_0001⟧ expands to nothing, there is nothing left to rescan, and the program is over. State lives in other macros, redefined during the rescan."
+msgstr "**Por qué importa este mecanismo:** la regla de parada es la ausencia de texto. Cuando ⟦CODE_0001⟧ se expande a nada, no queda nada que volver a escanear y el programa termina. El estado vive en otras macros, que se redefinen durante el reescaneo."
+
+#: src/m4/README.md:69
+msgctxt "s-7f97d965b4c0-0028"
+msgid "How the stunt works"
+msgstr "Cómo funciona el truco"
+
+#: src/m4/README.md:71
+msgctxt "s-dbf9c806efc3-0029"
+msgid "m4 in one paragraph"
+msgstr "m4 en un párrafo"
+
+#: src/m4/README.md:73
+msgctxt "s-facc690e5781-0030"
+msgid "m4 reads text and copies it to the output, except that when it sees a *word* that names a macro it replaces the word with the macro's definition, and then **reads the replacement again**, looking for more macros. That \"scan again\" step (rescanning) is the entire evaluation model. There are no statements. Quotes (⟦CODE_0001⟧ and ⟦CODE_0002⟧ by default; ⟦CODE_0003⟧ and ⟦CODE_0004⟧ in this file) say \"do not look inside this yet\"."
+msgstr "m4 lee texto y lo copia a la salida, salvo que, cuando ve una *palabra* que nombra una macro, sustituye la palabra por la definición de la macro y luego **vuelve a leer el reemplazo** en busca de más macros. Ese paso de \"volver a escanear\" (reescaneo) es todo el modelo de evaluación. No hay sentencias. Las comillas (⟦CODE_0001⟧ y ⟦CODE_0002⟧ por defecto; ⟦CODE_0003⟧ y ⟦CODE_0004⟧ en este archivo) indican \"no mires dentro de esto todavía\"."
+
+#: src/m4/README.md:75
+msgctxt "s-0573e6cad990-0031"
+msgid "1. Make m4 safe for our text"
+msgstr "1. Haz que m4 sea seguro para nuestro texto"
+
+#: src/m4/README.md:82
+msgctxt "s-e5e06c96aa89-0032"
+msgid "By default ⟦CODE_0001⟧ starts a comment, and a comment is copied through **unexpanded**. The program's output lines start with ⟦CODE_0002⟧, so without ⟦CODE_0003⟧ the macros in them would silently not expand. And the default closing quote is ⟦CODE_0004⟧, which SQL string literals need, so the quotes become ⟦CODE_0005⟧ ⟦CODE_0006⟧. ⟦CODE_0007⟧ (\"discard to new line\") eats the rest of the line, including the newline that would otherwise end up in the output. It is also the comment syntax for the source file."
+msgstr "De forma predeterminada, ⟦CODE_0001⟧ inicia un comentario y un comentario se copia **sin expandir**. Las líneas de salida del programa empiezan con ⟦CODE_0002⟧, así que sin ⟦CODE_0003⟧ las macros de esas líneas no se expandirían en silencio. Además, la comilla de cierre predeterminada es ⟦CODE_0004⟧, que los literales de cadena de texto de SQL necesitan, así que las comillas pasan a ser ⟦CODE_0005⟧ ⟦CODE_0006⟧. ⟦CODE_0007⟧ (\"descartar hasta la nueva línea\") consume el resto de la línea, incluido el salto de línea que, de otro modo, terminaría en la salida. También es la sintaxis de comentarios del archivo fuente."
+
+#: src/m4/README.md:84
+msgctxt "s-78a1e6b73744-0033"
+msgid "2. Macros are the variables"
+msgstr "2. Las macros son las variables"
+
+#: src/m4/README.md:86
+msgctxt "s-8d8e87d4986a-0034"
+msgid "⟦CODE_0001⟧ creates a macro whose text is ⟦CODE_0002⟧; \"assigning\" is redefining it: ⟦CODE_0003⟧. The arguments of ⟦CODE_0004⟧ are expanded before ⟦CODE_0005⟧ runs, so the ⟦CODE_0006⟧ is done first and the *number* is stored. Every macro starts with ⟦CODE_0007⟧ so that it can never collide with a word in the SQL text, which m4 would helpfully expand."
+msgstr "⟦CODE_0001⟧ crea una macro cuyo texto es ⟦CODE_0002⟧; \"asignar\" es redefinirla: ⟦CODE_0003⟧. Los argumentos de ⟦CODE_0004⟧ se expanden antes de que se ejecute ⟦CODE_0005⟧, así que primero se hace ⟦CODE_0006⟧ y se almacena el *número*. Cada macro empieza con ⟦CODE_0007⟧ para que nunca pueda chocar con una palabra del texto SQL, que m4 expandiría con la mejor intención."
+
+#: src/m4/README.md:88
+msgctxt "s-939d1e67e592-0035"
+msgid "3. A random number generator in 32-bit arithmetic"
+msgstr "3. Un generador de números aleatorios en aritmética de 32 bits"
+
+#: src/m4/README.md:90
+msgctxt "s-c83fe9e8763f-0036"
+msgid "⟦CODE_0001⟧ is m4's calculator and in GNU m4 it is **32-bit** (try ⟦CODE_0002⟧: it answers ⟦CODE_0003⟧). So the generator is Park-Miller, ⟦CODE_0004⟧, computed with Schrage's decomposition, ⟦CODE_0005⟧ and then add ⟦CODE_0006⟧ back if the result is negative, which never leaves 32 bits. Hours are ⟦CODE_0007⟧. ⟦CODE_0008⟧ compares the output with an independent implementation in bash."
+msgstr "⟦CODE_0001⟧ es la calculadora de m4 y en GNU m4 es de **32 bits** (prueba ⟦CODE_0002⟧: responde ⟦CODE_0003⟧). Por eso el generador es Park-Miller, ⟦CODE_0004⟧, calculado con la descomposición de Schrage, ⟦CODE_0005⟧ y luego se suma de vuelta ⟦CODE_0006⟧ si el resultado es negativo, lo que nunca sale de los 32 bits. Las horas son ⟦CODE_0007⟧. ⟦CODE_0008⟧ compara la salida con una implementación independiente en bash."
+
+#: src/m4/README.md:92
+msgctxt "s-7d5ba6e52b22-0037"
+msgid "4. The loop is a macro that expands itself"
+msgstr "4. El bucle es una macro que se expande a sí misma"
+
+#: src/m4/README.md:105
+msgctxt "s-38682db4f6ff-0038"
+msgid "Expanding ⟦CODE_0001⟧ produces: a row of text (the output), some definitions that change the state, and then the result of ⟦CODE_0002⟧. If the total is over 40, ⟦CODE_0003⟧ produces nothing and the expansion ends. Otherwise it produces the text ⟦CODE_0004⟧, and because the output of a macro is rescanned, that text is itself a call. Recursion, with the stop rule as the ⟦CODE_0005⟧. ⟦CODE_0006⟧ proves it: cut the self-call and exactly one card appears."
+msgstr "Expandir ⟦CODE_0001⟧ produce: una fila de texto (la salida), algunas definiciones que cambian el estado y luego el resultado de ⟦CODE_0002⟧. Si el total pasa de 40, ⟦CODE_0003⟧ no produce nada y la expansión termina. En caso contrario, produce el texto ⟦CODE_0004⟧. Como la salida de una macro se vuelve a escanear, ese texto es a su vez una llamada. Es recursión, con la regla de parada como ⟦CODE_0005⟧. ⟦CODE_0006⟧ lo demuestra: quita la autollamada y aparece exactamente una tarjeta."
+
+#: src/m4/README.md:107
+msgctxt "s-ae3d701ab47c-0039"
+msgid "5. ⟦CODE_0001⟧, and the gotcha that bit while writing this"
+msgstr "5. ⟦CODE_0001⟧ y el problema que me mordió al escribir esto"
+
+#: src/m4/README.md:109
+msgctxt "s-a9f23b3d1b0a-0040"
+msgid "⟦CODE_0001⟧ compares ⟦CODE_0002⟧ and ⟦CODE_0003⟧. With more arguments it continues **in groups of three**: ⟦CODE_0004⟧. A natural first attempt at a four-way switch, ⟦CODE_0005⟧, is wrong: after the first group it compares ⟦CODE_0006⟧ with ⟦CODE_0007⟧, and GNU m4 prints \"excess arguments to builtin ⟦CODE_0008⟧ ignored\". The fix is to repeat the thing being tested in every group (⟦CODE_0009⟧). That is a very m4 kind of bug, and a very m4 kind of warning."
+msgstr "⟦CODE_0001⟧ compara ⟦CODE_0002⟧ con ⟦CODE_0003⟧. Con más argumentos continúa **en grupos de tres**: ⟦CODE_0004⟧. Un primer intento natural de un switch de cuatro ramas, ⟦CODE_0005⟧, es incorrecto: después del primer grupo compara ⟦CODE_0006⟧ con ⟦CODE_0007⟧, y GNU m4 imprime \"excess arguments to builtin ⟦CODE_0008⟧ ignored\". La solución es repetir lo que se prueba en cada grupo (⟦CODE_0009⟧). Es un bicho muy propio de m4 y una advertencia muy propia de m4."
+
+#: src/m4/README.md:111
+msgctxt "s-dddb2920414e-0041"
+msgid "6. A string that grows: ⟦CODE_0001⟧"
+msgstr "6. Una cadena de texto que crece: ⟦CODE_0001⟧"
+
+#: src/m4/README.md:117
+msgctxt "s-307bad8846fa-0042"
+msgid "⟦CODE_0001⟧ returns a macro's definition *quoted*, so it is not scanned again. Appending is \"redefine the macro as itself plus the new text\". That is how the SQL script accumulates card by card. Diversions are m4's other way to collect text (⟦CODE_0002⟧ sends output to a numbered buffer, ⟦CODE_0003⟧ pours it back), and ⟦CODE_0004⟧ is the \"bit bucket\" (a place where output just disappears) that this file uses to silence the definitions. The SQL is not collected in a diversion because ⟦CODE_0005⟧ does not *return* text: inside an argument list it prints directly and the argument comes out empty, so a diversion cannot be passed to ⟦CODE_0006⟧."
+msgstr "⟦CODE_0001⟧ devuelve la definición de una macro *entre comillas*, así que no se vuelve a analizar. Añadir es \"redefinir la macro como ella misma más el texto nuevo\". Así acumula el script SQL tarjeta por tarjeta. Las desviaciones son la otra forma que tiene m4 de reunir texto (⟦CODE_0002⟧ envía la salida a un búfer numerado y ⟦CODE_0003⟧ la vuelca de nuevo). ⟦CODE_0004⟧ es el \"cubo de bits\" (un lugar donde la salida simplemente desaparece) que este archivo usa para silenciar las definiciones. El SQL no se reúne en una desviación porque ⟦CODE_0005⟧ no *devuelve* texto. Dentro de una lista de argumentos imprime directamente y el argumento queda vacío. Por eso no se puede pasar una desviación a ⟦CODE_0006⟧."
+
+#: src/m4/README.md:119
+msgctxt "s-eaf5a4831414-0043"
+msgid "7. The empty quote ⟦CODE_0001⟧"
+msgstr "7. Las comillas vacías ⟦CODE_0001⟧"
+
+#: src/m4/README.md:121
+msgctxt "s-377f37184316-0044"
+msgid "In ⟦CODE_0001⟧, ⟦CODE_0002⟧ has an empty quoted string in the middle. Without it, ⟦CODE_0003⟧ followed by ⟦CODE_0004⟧ would be read as one word, ⟦CODE_0005⟧, which is not a macro. ⟦CODE_0006⟧ expands to nothing but splits the word. You will use this every time you paste macros together."
+msgstr "En ⟦CODE_0001⟧, ⟦CODE_0002⟧ tiene una cadena de texto vacía entre comillas en medio. Sin ella, ⟦CODE_0003⟧ seguido de ⟦CODE_0004⟧ se leería como una sola palabra, ⟦CODE_0005⟧, que no es una macro. ⟦CODE_0006⟧ se expande a nada, pero separa la palabra. Usarás esto cada vez que pegues macros."
+
+#: src/m4/README.md:123
+msgctxt "s-b1425bd6b347-0045"
+msgid "8. Saving"
+msgstr "8. Guardar"
+
+#: src/m4/README.md:132
+msgctxt "s-1f48af0f55a0-0046"
+msgid "The quoting here switches in and out: the first and last pieces are literal shell text in ⟦CODE_0001⟧, and ⟦CODE_0002⟧ is outside the quotes so it is expanded into the script. A shell here-document with a quoted terminator carries the SQL, so the shell never sees it as anything but data. ⟦CODE_0003⟧ (the exit status) is checked afterwards and a failure aborts with ⟦CODE_0004⟧."
+msgstr "Aquí el entrecomillado alterna entre dentro y fuera de las comillas: la primera y la última pieza son texto literal del intérprete de comandos en ⟦CODE_0001⟧; ⟦CODE_0002⟧ queda fuera de las comillas, así que se expande en el script. Un *here-document* del intérprete de comandos con terminador entre comillas lleva el SQL, de modo que el intérprete nunca lo ve más que como datos. ⟦CODE_0003⟧ (el estado de salida) se comprueba después y un fallo aborta con ⟦CODE_0004⟧."
+
+#: src/m4/README.md:134
+msgctxt "s-296d096c4513-0047"
+msgid "9. Pinning the seed"
+msgstr "9. Cómo fijar la semilla"
+
+#: src/m4/README.md:136
+msgctxt "s-bb9af202567e-0048"
+msgid "⟦CODE_0001⟧ means \"only compute a seed if none was given on the command line with ⟦CODE_0002⟧\". That is what makes a run reproducible, which is what lets the tests compare it with a reference."
+msgstr "⟦CODE_0001⟧ significa \"calcula una semilla solo si no se dio ninguna en la línea de comandos con ⟦CODE_0002⟧\". Eso hace que una ejecución sea reproducible, y eso permite que las pruebas la comparen con una referencia."
+
+#: src/m4/README.md:138
+msgctxt "s-fff646ea1f30-0049"
+msgid "Why this is weird"
+msgstr "Por qué es raro"
+
+#: src/m4/README.md:140
+msgctxt "s-e58138ed0c73-0050"
+msgid "Because it works. m4 was designed to preprocess text, in the 1970s, as the macro layer that shipped with Unix tools and later powered ⟦CODE_0001⟧ and GNU ⟦CODE_0002⟧. It has no loops, no variables, no arithmetic of its own beyond ⟦CODE_0003⟧, no strings in any usual sense: everything is text being rewritten. The challenge needs state, repetition, random numbers and a stop rule, and each of those is built here from define, rescan and quoting. If you can write this, you can read ⟦CODE_0004⟧."
+msgstr "Porque funciona. m4 se diseñó en la década de 1970 para preprocesar texto, como la capa de macros que venía con las herramientas de Unix y que más tarde impulsó ⟦CODE_0001⟧ y GNU ⟦CODE_0002⟧. No tiene bucles ni variables ni aritmética propia más allá de ⟦CODE_0003⟧, ni cadenas de texto en el sentido habitual: todo es texto que se reescribe. El reto necesita estado, repetición, números aleatorios y una regla de parada, y aquí cada uno de ellos se construye con define, el reescaneo y el entrecomillado. Si puedes escribir esto, puedes leer ⟦CODE_0004⟧."
+
+#: src/m4/README.md:142
+msgctxt "s-81b1eee1fbb4-0051"
+msgid "What you can learn"
+msgstr "Qué puedes aprender"
+
+#: src/m4/README.md:144
+msgctxt "s-2b72d13d5ba6-0052"
+msgid "Rescanning: how text-in, text-out evaluation works, and why quoting is the whole point."
+msgstr "Rescanning: cómo funciona la evaluación de texto a texto y por qué el entrecomillado es el punto central."
+
+#: src/m4/README.md:145
+msgctxt "s-cc492c7badca-0053"
+msgid "⟦CODE_0001⟧/⟦CODE_0002⟧/⟦CODE_0003⟧-style state, and recursion as the only repetition."
+msgstr "Estado de estilo ⟦CODE_0001⟧/⟦CODE_0002⟧/⟦CODE_0003⟧ y recursión como única forma de repetición."
+
+#: src/m4/README.md:146
+msgctxt "s-733b75027ebb-0054"
+msgid "The ⟦CODE_0001⟧ grouping rule, ⟦CODE_0002⟧, ⟦CODE_0003⟧ and ⟦CODE_0004⟧."
+msgstr "La regla de agrupación ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧ y ⟦CODE_0004⟧."
+
+#: src/m4/README.md:147
+msgctxt "s-900725e2f6aa-0055"
+msgid "Diversions, and what ⟦CODE_0001⟧ does not do."
+msgstr "Desvíos y lo que ⟦CODE_0001⟧ no hace."
+
+#: src/m4/README.md:148
+msgctxt "s-d31d26f64303-0056"
+msgid "That 32-bit ⟦CODE_0001⟧ is a design limit you have to work around, not a bug."
+msgstr "Ese límite de 32 bits de ⟦CODE_0001⟧ es un límite de diseño que debes sortear, no un bicho."
+
+#: src/m4/README.md:149
+msgctxt "s-f7a893b2a68f-0057"
+msgid "Why ⟦CODE_0001⟧ comments are dangerous in a language where comments are not skipped."
+msgstr "Por qué los comentarios ⟦CODE_0001⟧ son peligrosos en un lenguaje donde los comentarios no se omiten."
+
+#: src/m4/README.md:151
+msgctxt "s-5a0ad00b10fc-0058"
+msgid "Gotchas worth knowing"
+msgstr "Trampas que conviene conocer"
+
+#: src/m4/README.md:153
+msgctxt "s-6e004924e229-0059"
+msgid "**GNU m4 extensions: two.** ⟦CODE_0001⟧ (capture a command's output: seed, clock, week) and ⟦CODE_0002⟧ (used once, to make a tab character). Everything else (⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧, ⟦CODE_0006⟧, ⟦CODE_0007⟧, ⟦CODE_0008⟧, ⟦CODE_0009⟧, ⟦CODE_0010⟧, ⟦CODE_0011⟧, ⟦CODE_0012⟧, ⟦CODE_0013⟧, ⟦CODE_0014⟧, ⟦CODE_0015⟧) is POSIX. BSD m4 has ⟦CODE_0016⟧ but not ⟦CODE_0017⟧. One more GNU-specific *behavior* to know about: ⟦CODE_0018⟧ is 32-bit there, and the generator is built around that limit; another m4 may have a different width."
+msgstr "**Extensiones de GNU m4: dos.** ⟦CODE_0001⟧ (captura la salida de un comando: semilla, reloj, semana) y ⟦CODE_0002⟧ (se usa una vez, para crear un carácter de tabulación). Todo lo demás (⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧, ⟦CODE_0006⟧, ⟦CODE_0007⟧, ⟦CODE_0008⟧, ⟦CODE_0009⟧, ⟦CODE_0010⟧, ⟦CODE_0011⟧, ⟦CODE_0012⟧, ⟦CODE_0013⟧, ⟦CODE_0014⟧, ⟦CODE_0015⟧) es POSIX. BSD m4 tiene ⟦CODE_0016⟧ pero no ⟦CODE_0017⟧. Hay otro *comportamiento* específico de GNU que debes conocer: ⟦CODE_0018⟧ tiene allí 32 bits, y el generador se construye en torno a ese límite. Otro m4 puede tener un ancho distinto."
+
+#: src/m4/README.md:154
+msgctxt "s-5b2c22c787ca-0060"
+msgid "**Recursion depth.** The loop does not nest. ⟦CODE_0001⟧ ends in the text ⟦CODE_0002⟧, which m4 reads again from its input after the call has returned, so every card is expanded at the same depth (⟦CODE_0003⟧ shows depth 1 each time, and ⟦CODE_0004⟧ shows that the smallest working ⟦CODE_0005⟧ is the same for a 3-card and a 5-card run). Only the *unbracketed* call in [B11](⟦DEST_0006⟧) nests, because it is made while ⟦CODE_0007⟧ is still collecting its arguments. What does grow with the card count is the SQL script: ⟦CODE_0008⟧ redefines ⟦CODE_0009⟧ with a longer body at every card, so a rule that needed thousands of cards would need a different shape."
+msgstr "**Profundidad de recursión.** El bucle no se anida. ⟦CODE_0001⟧ termina con el texto ⟦CODE_0002⟧. m4 vuelve a leer ese texto de su entrada de datos después de que la llamada termina. Por eso cada tarjeta se expande a la misma profundidad (⟦CODE_0003⟧ muestra profundidad 1 cada vez y ⟦CODE_0004⟧ muestra que el ⟦CODE_0005⟧ mínimo que funciona es el mismo en una ejecución de 3 tarjetas y en una de 5). Solo la llamada *sin corchetes* de [B11](⟦DEST_0006⟧) se anida, porque se hace mientras ⟦CODE_0007⟧ aún recopila sus argumentos. Lo que sí crece con el número de tarjetas es el script SQL: ⟦CODE_0008⟧ redefine ⟦CODE_0009⟧ con un cuerpo más largo en cada tarjeta, así que una regla que necesitara miles de tarjetas necesitaría otra forma."
+
+#: src/m4/README.md:155
+msgctxt "s-4b77613c129a-0061"
+msgid "**The SQL is not escaped.** Every value is a number or one of four fixed words. Do not feed user text into ⟦CODE_0001⟧."
+msgstr "**El SQL no está escapado.** Cada valor es un número o una de cuatro palabras fijas. No pases texto del usuario a ⟦CODE_0001⟧."
+
+#: src/m4/README.md:156
+msgctxt "s-906bd14c2bde-0062"
+msgid "**The seed.** Three random bytes from ⟦CODE_0001⟧, scaled: about 24 bits of entropy, ample for a demo. A pinned seed must be 1 to 2147483646."
+msgstr "**La semilla.** Tres bytes aleatorios de ⟦CODE_0001⟧, escalados: unos 24 bits de entropía, de sobra para una demostración. Una semilla fijada debe valer de 1 a 2147483646."
+
+#: src/m4/README.md:157
+msgctxt "s-da9154e0918a-0063"
+msgid "**The shell does the plumbing.** If you object that ⟦CODE_0001⟧ is a shell call: yes, to save the file, exactly as the Forth entry pipes to ⟦CODE_0002⟧. The computation is m4's."
+msgstr "**El intérprete de comandos se ocupa de cómo viaja el dato.** Si objetas que ⟦CODE_0001⟧ es una llamada al intérprete de comandos: sí, para guardar el archivo, igual que la entrada de Forth envía su salida por una tubería a ⟦CODE_0002⟧. El cálculo es de m4."
+
+#: src/m4/README.md:158
+msgctxt "s-9dc90cc9b5bb-0064"
+msgid "**Formatting.** There is no formatter for m4. Layout: one macro per paragraph, a comment block above each section, bodies indented two spaces."
+msgstr "**Formato.** No hay un formateador para m4. El diseño es este: una macro por párrafo, un bloque de comentarios sobre cada sección y cuerpos con sangría de dos espacios."
+
+#: src/m4/README.md:160
+msgctxt "s-339cc2c18f83-0065"
+msgid "What ⟦CODE_0001⟧ enforces"
+msgstr "Qué impone ⟦CODE_0001⟧"
+
+#: src/m4/README.md:162
+msgctxt "s-1bcd852d35ef-0066"
+msgid "With ⟦CODE_0001⟧ lines removed: exactly one ⟦CODE_0002⟧ and exactly three ⟦CODE_0003⟧; ⟦CODE_0004⟧ ends by expanding itself. With a pinned seed, 47 runs (a fixed set plus 41 consecutive seeds) match an independent bash implementation card for card, including the stop rule and the category cycle. With the self-call removed, exactly one card appears. And 25 real runs each check the rows (hours 10 to 19, categories in order, correct running totals, the stop rule), and that SQLite holds exactly what was printed, all marked ⟦CODE_0005⟧."
+msgstr "Al quitar las líneas ⟦CODE_0001⟧: queda exactamente un ⟦CODE_0002⟧ y exactamente tres ⟦CODE_0003⟧; ⟦CODE_0004⟧ termina por expandirse a sí mismo. Con una semilla fija, 47 ejecuciones (un conjunto fijo más 41 semillas consecutivas) coinciden tarjeta por tarjeta con una implementación independiente en bash, incluidas la regla de parada y el ciclo de categorías. Si se quita la autollamada, aparece exactamente una tarjeta. Y 25 ejecuciones reales comprueban cada una las filas (horas de 10 a 19, categorías en orden, totales acumulados correctos, la regla de parada) y que SQLite contiene exactamente lo que se imprimió, todo ello marcado con ⟦CODE_0005⟧."
+
+#: src/m4/README.md:164
+msgctxt "s-254f0c660db3-0067"
+msgid "Run it in a container"
+msgstr "Ejecuta el programa en un contenedor"
+
+#: src/m4/README.md:166
+msgctxt "s-0318f216276a-0068"
+msgid "Prerequisite: Docker, set up once as described in [⟦CODE_0001⟧](⟦DEST_0002⟧). The ⟦CODE_0003⟧ base image comes from ⟦CODE_0004⟧."
+msgstr "Requisito previo: Docker, configurado una sola vez como se describe en [⟦CODE_0001⟧](⟦DEST_0002⟧). La imagen base ⟦CODE_0003⟧ viene de ⟦CODE_0004⟧."
+
+#: src/m4/README.md:172
+msgctxt "s-dd4c55b9c6f2-0069"
+msgid "The image holds GNU m4 and sqlite3 on a minimal Ubuntu."
+msgstr "La imagen incluye GNU m4 y sqlite3 sobre un Ubuntu mínimo."

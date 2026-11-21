@@ -97,7 +97,7 @@ Each picture below is the `## Program Flow` section of an entry's README, copied
 
 ### Program flow of `lisp`
 
-From [`lisp`](../../src/lisp/README.md) ([source section](../../src/lisp/README.md#program-flow)).
+From [`lisp`](../../src/lisp/README.md) ([source section](../../src/lisp/README.md#flujo-del-programa)).
 
 ```mermaid
 flowchart TD

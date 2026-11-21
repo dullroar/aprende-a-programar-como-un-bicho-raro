@@ -1,0 +1,299 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/lisp/README.md:2
+msgctxt "s-fedf9ff74960-0000"
+msgid "Common Lisp"
+msgstr "Common Lisp"
+
+#: src/lisp/README.md:3
+msgctxt "s-f51175787bda-0001"
+msgid "that Common Lisp ⟦CODE_0001⟧ can express a whole algorithm as clauses for counting, drawing, summing, collecting and stopping."
+msgstr "que el ⟦CODE_0001⟧ de Common Lisp puede expresar un algoritmo completo como cláusulas para contar, tomar valores, sumar, recopilar y detener."
+
+#: src/lisp/README.md:11
+msgctxt "s-bfb45ba15299-0002"
+msgid "Ordinary: one ⟦CODE_0001⟧ that runs its clauses in order on every pass"
+msgstr "Ordinario: un ⟦CODE_0001⟧ que, en cada pasada, ejecuta sus cláusulas en orden"
+
+#: src/lisp/README.md:12
+msgctxt "s-478e8e4d447c-0003"
+msgid "Variables the ⟦CODE_0001⟧ owns, such as ⟦CODE_0002⟧"
+msgstr "Variables que posee ⟦CODE_0001⟧, como ⟦CODE_0002⟧"
+
+#: src/lisp/README.md:16
+msgctxt "s-fedf9ff74960-0004"
+msgid "Common Lisp"
+msgstr "Common Lisp"
+
+#: src/lisp/README.md:18
+msgctxt "s-05914ebf9f51-0005"
+msgid "**Teaches you:** that Common Lisp ⟦CODE_0001⟧ can express a whole algorithm as clauses for counting, drawing, summing, collecting and stopping."
+msgstr "**Te enseña:** que ⟦CODE_0001⟧ de Common Lisp puede expresar un algoritmo completo como cláusulas para contar, tomar valores, sumar, recolectar y parar."
+
+#: src/lisp/README.md:20
+msgctxt "s-5ca333b42af1-0006"
+msgid "**⟦DNT_0001⟧.** Fictional timecards in a scratch SQLite file. No connection to any real time-reporting system."
+msgstr "**⟦DNT_0001⟧.** Tarjetas de horas ficticias en un archivo SQLite temporal. Sin conexión con ningún sistema real de registro de horas."
+
+#: src/lisp/README.md:22
+msgctxt "s-f8de8e7fdcc3-0007"
+msgid "This is the straight version, the one that shows how Common Lisp is *meant* to be written. The challenge (\"add 10 to 19 hour cards until the total passes 40\") is a single ⟦CODE_0001⟧ form in ⟦CODE_0002⟧; everything else in [⟦CODE_0003⟧](⟦DEST_0004⟧) is a small function that does one job and has a docstring. The weird version is [⟦CODE_0005⟧](⟦DEST_0006⟧)."
+msgstr "Esta es la versión directa, la que muestra cómo está *pensado* que se escriba Common Lisp. El reto (\"añade tarjetas de 10 a 19 horas hasta que el total pase de 40\") es una sola forma ⟦CODE_0001⟧ en ⟦CODE_0002⟧; todo lo demás en [⟦CODE_0003⟧](⟦DEST_0004⟧) es una función pequeña que hace una sola tarea y tiene un *docstring*. La versión rara es [⟦CODE_0005⟧](⟦DEST_0006⟧)."
+
+#: src/lisp/README.md:24
+msgctxt "s-958ca26c6a61-0008"
+msgid "Run it"
+msgstr "Ejecútalo"
+
+#: src/lisp/README.md:26
+msgctxt "s-29c1b7535e70-0009"
+msgid "You need [SBCL](⟦DEST_0001⟧) (tested with 2.2.9) and ⟦CODE_0002⟧. Nothing else is needed: no Quicklisp, no ASDF, no libraries. The program uses only what ships in the standard and in SBCL itself."
+msgstr "Necesitas [SBCL](⟦DEST_0001⟧) (probado con 2.2.9) y ⟦CODE_0002⟧. No necesitas nada más: ni Quicklisp, ni ASDF, ni bibliotecas. El programa usa solo lo que incluye el estándar y el propio SBCL."
+
+#: src/lisp/README.md:35
+msgctxt "s-92ec410a63c2-0010"
+msgid "Records go to ⟦CODE_0001⟧ (default ⟦CODE_0002⟧). A run looks like this:"
+msgstr "Los registros van a ⟦CODE_0001⟧ (por defecto ⟦CODE_0002⟧). Una ejecución se ve así:"
+
+#: src/lisp/README.md:46
+msgctxt "s-c74ea9dc9cd2-0011"
+msgid "What it does"
+msgstr "Qué hace"
+
+#: src/lisp/README.md:48
+msgctxt "s-e940c699889a-0012"
+msgid "It draws cards of 10 to 19 hours, cycling through ⟦DNT_0001⟧, ⟦DNT_0002⟧, ⟦DNT_0003⟧ and ⟦DNT_0004⟧, until the running total is greater than 40 (the card that crosses the line is kept). It prints each card, then writes all of them to SQLite in one transaction."
+msgstr "El programa saca tarjetas de 10 a 19 horas y recorre en ciclo ⟦DNT_0001⟧, ⟦DNT_0002⟧, ⟦DNT_0003⟧ y ⟦DNT_0004⟧ hasta que el total acumulado pasa de 40 (se conserva la tarjeta que cruza el límite). Imprime cada tarjeta y después escribe todas en SQLite en una sola transacción."
+
+#: src/lisp/README.md:50
+msgctxt "s-0dcb373c2dff-0013"
+msgid "Program Flow"
+msgstr "Flujo del programa"
+
+#: src/lisp/README.md:54
+msgctxt "s-ab8bce3893ac-0014"
+msgid "lisp: the clauses of one LOOP form, in the order they are written"
+msgstr "lisp: las cláusulas de una forma LOOP, en el orden en que se escriben"
+
+#: src/lisp/README.md:55
+msgctxt "s-f30ef157b028-0015"
+msgid "A flowchart. The function main seeds a random state from the operating system and works out the ISO week. Then one LOOP form runs its clauses in order on each pass: number counts up from 1, hours is drawn again, hours is summed into total, a card is collected, and an until clause tests whether the total is over 40. If it is not, the next pass starts. Because until comes after collect, the crossing card is kept. When it ends, the program builds the SQL script as a string, runs the sqlite3 command-line tool with run-program, and prints the rows."
+msgstr "Un diagrama de flujo. La función main inicializa un estado aleatorio a partir del sistema operativo y calcula la semana ISO. Después, una forma LOOP ejecuta sus cláusulas en orden en cada pasada: number cuenta desde 1, hours se sortea de nuevo, hours se suma a total, se recoge una tarjeta y una cláusula until comprueba si total pasa de 40. Si no es así, empieza la siguiente pasada. Como until va después de collect, se conserva la tarjeta que cruza el límite. Cuando termina, el programa construye el script SQL como una cadena de texto, ejecuta la herramienta de línea de comandos sqlite3 con run-program e imprime las filas."
+
+#: src/lisp/README.md:56
+msgctxt "s-2a09f7429c80-0016"
+msgid "main: make-random-state from the OS, ISO week with decode-universal-time"
+msgstr "main: make-random-state desde el sistema operativo, semana ISO con decode-universal-time"
+
+#: src/lisp/README.md:56
+msgctxt "s-db2aeb31ad75-0017"
+msgid "LOOP clause: for number from 1"
+msgstr "Cláusula del bucle LOOP: for number from 1"
+
+#: src/lisp/README.md:57
+msgctxt "s-df0c1e9efdce-0018"
+msgid "for hours = a fresh random 10 to 19"
+msgstr "for hours = un número aleatorio nuevo de 10 a 19 horas"
+
+#: src/lisp/README.md:58
+msgctxt "s-3d15bc01fba1-0019"
+msgid "sum hours into total"
+msgstr "suma las horas en el total"
+
+#: src/lisp/README.md:59
+msgctxt "s-3fd40a6a3649-0020"
+msgid "collect a card: number, category, hours, total"
+msgstr "recoge una tarjeta: número, categoría, horas, total"
+
+#: src/lisp/README.md:60
+msgctxt "s-6f81e2c78b4f-0021"
+msgid "until total ≥ 41?"
+msgstr "¿Hasta que total ≥ 41?"
+
+#: src/lisp/README.md:61
+msgctxt "s-9390298f3fb0-0022"
+msgid "no"
+msgstr "no"
+
+#: src/lisp/README.md:62
+msgctxt "s-8a798890fe93-0023"
+msgid "yes"
+msgstr "Sí"
+
+#: src/lisp/README.md:62
+msgctxt "s-fa9750691651-0024"
+msgid "Build the SQL script as a string, run sqlite3 with run-program, print the rows"
+msgstr "Construye el script SQL como una cadena de texto, ejecuta sqlite3 con run-program e imprime las filas"
+
+#: src/lisp/README.md:65
+msgctxt "s-953763b3bae5-0025"
+msgid "**What this shows:** ⟦CODE_0001⟧ is a small language. Its clauses run in the order written, on every pass. ⟦CODE_0002⟧ is re-evaluated each time, ⟦CODE_0003⟧ keeps the total in a variable the loop owns, and ⟦CODE_0004⟧ ends the loop."
+msgstr "**Qué muestra:** ⟦CODE_0001⟧ es un lenguaje pequeño. Sus cláusulas se ejecutan en el orden en que están escritas, en cada pasada. ⟦CODE_0002⟧ se vuelve a evaluar cada vez, ⟦CODE_0003⟧ guarda el total en una variable que pertenece al bucle y ⟦CODE_0004⟧ termina el bucle."
+
+#: src/lisp/README.md:67
+msgctxt "s-433145f190b1-0026"
+msgid "**Why this mechanism matters:** the position of ⟦CODE_0001⟧ is the stop rule's position. Written after ⟦CODE_0002⟧, it keeps the crossing card. Written before it, the last card is dropped without any error. The weird sibling [⟦CODE_0003⟧](⟦DEST_0004⟧) has no ⟦CODE_0005⟧."
+msgstr "**Por qué importa este mecanismo:** la posición de ⟦CODE_0001⟧ es la de la regla de parada. Si lo escribes después de ⟦CODE_0002⟧, conserva la tarjeta del cruce. Si lo escribes antes, la última tarjeta se descarta sin ningún error. El hermano raro [⟦CODE_0003⟧](⟦DEST_0004⟧) no tiene ⟦CODE_0005⟧."
+
+#: src/lisp/README.md:69
+msgctxt "s-7f97d965b4c0-0027"
+msgid "How the stunt works"
+msgstr "Cómo funciona el truco"
+
+#: src/lisp/README.md:71
+msgctxt "s-15840178a132-0028"
+msgid "Read the file top to bottom; each section only uses what is above it."
+msgstr "Lee el archivo de arriba abajo; cada sección solo usa lo que está antes de ella."
+
+#: src/lisp/README.md:73
+msgctxt "s-60bf76524bd4-0029"
+msgid ""
+"**A package and the rules.** ⟦CODE_0001⟧ / ⟦CODE_0002⟧ give the program its own namespace instead of dumping symbols into ⟦CODE_0003⟧. The rules of the game are named: ⟦CODE_0004⟧, ⟦CODE_0005⟧, ⟦CODE_0006⟧ (constants wear ⟦CODE_0007⟧ signs by convention; specials wear ⟦CODE_0008⟧).\n"
+"2. **A structure.** ⟦CODE_0009⟧ gives a typed record with a constructor, accessors (⟦CODE_0010⟧) and a printer for free. The slot types are checked by SBCL.\n"
+"3. **The challenge.**"
+msgstr ""
+"**Un paquete y las reglas.** ⟦CODE_0001⟧ / ⟦CODE_0002⟧ dan al programa su propio espacio de nombres en lugar de volcar símbolos en ⟦CODE_0003⟧. Las reglas del juego tienen nombre: ⟦CODE_0004⟧, ⟦CODE_0005⟧, ⟦CODE_0006⟧ (por convención, las constantes llevan signos ⟦CODE_0007⟧; las variables especiales llevan ⟦CODE_0008⟧).\n"
+"2. **Una estructura.** ⟦CODE_0009⟧ da sin trabajo extra un registro con tipos, con constructor, accesores (⟦CODE_0010⟧) e impresor. SBCL comprueba los tipos de los *slots*.\n"
+"3. **El reto.**"
+
+#: src/lisp/README.md:83
+msgctxt "s-fb5c232e2ebe-0030"
+msgid ""
+"⟦CODE_0001⟧ is a small language of its own. ⟦CODE_0002⟧ counts; ⟦CODE_0003⟧ re-evaluates its expression on every pass; ⟦CODE_0004⟧ keeps a running total in a variable the loop owns; ⟦CODE_0005⟧ builds the result list; ⟦CODE_0006⟧ ends the loop. Clauses run **in the order written**, so putting ⟦CODE_0007⟧ *after* ⟦CODE_0008⟧ is what keeps the crossing card. Move it above and the last card is silently dropped.\n"
+"4. **Categories** repeat through ⟦CODE_0009⟧: a vector and ⟦CODE_0010⟧, the plain way. (The weird version does it with a circular list.)\n"
+"5. **The calendar.** SQLite and ⟦CODE_0011⟧ are not needed to know the ISO week; Common Lisp has ⟦CODE_0012⟧, which returns day of week and year, and the rest is arithmetic (⟦CODE_0013⟧, ⟦CODE_0014⟧). ⟦CODE_0015⟧ compares it with ⟦CODE_0016⟧ on awkward dates (and a one-off sweep of 1,139 dates around year boundaries matched Python's ⟦CODE_0017⟧). The optional date argument exists so that this arithmetic can be tested on awkward dates such as 2021-01-03 (which is in week 53 of **2020**).\n"
+"6. **SQLite.** SBCL has no database library in its core, so the program builds one SQL script as a string (⟦CODE_0018⟧, ⟦CODE_0019⟧ with a ⟦CODE_0020⟧ per value, ⟦CODE_0021⟧ doubling quotes) and hands it to the ⟦CODE_0022⟧ command line tool with ⟦CODE_0023⟧. The ⟦CODE_0024⟧ rule is in the table: ⟦CODE_0025⟧.\n"
+"7. **⟦CODE_0026⟧.** It seeds a fresh ⟦CODE_0027⟧ from the OS (⟦CODE_0028⟧), draws, saves and prints."
+msgstr ""
+"⟦CODE_0001⟧ es un pequeño lenguaje propio. ⟦CODE_0002⟧ cuenta; ⟦CODE_0003⟧ vuelve a evaluar su expresión en cada pasada; ⟦CODE_0004⟧ mantiene un total acumulado en una variable que pertenece al bucle; ⟦CODE_0005⟧ construye la lista de resultado; ⟦CODE_0006⟧ termina el bucle. Las cláusulas se ejecutan **en el orden en que están escritas**, así que poner ⟦CODE_0007⟧ *después de* ⟦CODE_0008⟧ es lo que conserva la tarjeta que cruza. Muévelo más arriba y la última tarjeta se descarta sin avisar.\n"
+"4. Las **categorías** se repiten mediante ⟦CODE_0009⟧: un vector y ⟦CODE_0010⟧, de la forma sencilla. (La versión rara lo hace con una lista circular.)\n"
+"5. **El calendario.** Para saber la semana ISO no hacen falta SQLite ni ⟦CODE_0011⟧; Common Lisp tiene ⟦CODE_0012⟧, que devuelve el día de la semana y el año, y el resto es aritmética (⟦CODE_0013⟧, ⟦CODE_0014⟧). ⟦CODE_0015⟧ lo compara con ⟦CODE_0016⟧ en fechas difíciles (y un barrido único de 1139 fechas alrededor de los cambios de año coincidió con ⟦CODE_0017⟧ de Python). El argumento opcional de fecha existe para poder probar esta aritmética en fechas difíciles como 2021-01-03 (que está en la semana 53 de **2020**).\n"
+"6. **SQLite.** SBCL no tiene en su núcleo ninguna biblioteca de bases de datos, así que el programa construye un único script SQL como cadena de texto (⟦CODE_0018⟧, ⟦CODE_0019⟧ con un ⟦CODE_0020⟧ por valor, ⟦CODE_0021⟧ que duplica las comillas) y se lo pasa a la herramienta de línea de comandos ⟦CODE_0022⟧ con ⟦CODE_0023⟧. La regla ⟦CODE_0024⟧ está en la tabla: ⟦CODE_0025⟧.\n"
+"7. **⟦CODE_0026⟧.** El programa crea un ⟦CODE_0027⟧ nuevo con una semilla del sistema operativo (⟦CODE_0028⟧), sortea, guarda e imprime."
+
+#: src/lisp/README.md:89
+msgctxt "s-c307ae374e6b-0031"
+msgid "Why this is idiomatic"
+msgstr "Por qué esto es idiomático"
+
+#: src/lisp/README.md:91
+msgctxt "s-1a6b94ffe3f3-0032"
+msgid "**Data and functions, not objects.** A struct for the data, small functions over it, and one function (⟦CODE_0001⟧) that is pure apart from consuming random numbers from a state it is *given*, rather than touching a global."
+msgstr "**Datos y funciones, no objetos.** Una estructura para los datos, funciones pequeñas sobre ella y una función (⟦CODE_0001⟧) que es pura, salvo por consumir números aleatorios de un estado que *recibe*, en lugar de tocar una variable global."
+
+#: src/lisp/README.md:92
+msgctxt "s-a038ac9ea289-0033"
+msgid "**⟦CODE_0001⟧ with accumulation clauses** instead of hand-rolled recursion or a ⟦CODE_0002⟧ counter. That is how experienced Lisp programmers write \"walk, accumulate, stop\"."
+msgstr "**⟦CODE_0001⟧ con cláusulas de acumulación** en lugar de recursión escrita a mano o de un contador ⟦CODE_0002⟧. Así escriben los programadores de Lisp con experiencia \"recorrer, acumular, detenerse\"."
+
+#: src/lisp/README.md:93
+msgctxt "s-bf26d039f1cd-0034"
+msgid "**Docstrings on everything**, which ⟦CODE_0001⟧ shows at the REPL."
+msgstr "**Docstrings en todo**, que ⟦CODE_0001⟧ muestra en el REPL."
+
+#: src/lisp/README.md:94
+msgctxt "s-0047fc79b79e-0035"
+msgid "**Output through ⟦CODE_0001⟧ directives** (⟦CODE_0002⟧), and string building with ⟦CODE_0003⟧ rather than repeated concatenation."
+msgstr "**Salida mediante directivas ⟦CODE_0001⟧** (⟦CODE_0002⟧) y construcción de cadenas de texto con ⟦CODE_0003⟧ en lugar de concatenaciones repetidas."
+
+#: src/lisp/README.md:95
+msgctxt "s-f9b48e9a9311-0036"
+msgid "**No clever macros.** A macro is the right tool when a function can't do the job; none of these needed one."
+msgstr "**Sin macros ingeniosas.** Una macro es la herramienta adecuada cuando una función no puede hacer el trabajo; ninguna de estas necesitó una."
+
+#: src/lisp/README.md:96
+msgctxt "s-2727e0b91a85-0037"
+msgid "**Warnings are errors.** The file compiles with no warnings and no style warnings, and ⟦CODE_0001⟧ enforces it."
+msgstr "**Las advertencias son errores.** El archivo compila sin advertencias y sin advertencias de estilo, y ⟦CODE_0001⟧ lo exige."
+
+#: src/lisp/README.md:98
+msgctxt "s-81b1eee1fbb4-0038"
+msgid "What you can learn"
+msgstr "Qué puedes aprender"
+
+#: src/lisp/README.md:100
+msgctxt "s-bcd73fc53624-0039"
+msgid "⟦CODE_0001⟧ clause order and ⟦CODE_0002⟧."
+msgstr "El orden de las cláusulas de ⟦CODE_0001⟧ y ⟦CODE_0002⟧."
+
+#: src/lisp/README.md:101
+msgctxt "s-87078fdec9d3-0040"
+msgid "⟦CODE_0001⟧ slot types and ⟦CODE_0002⟧ (read-time evaluation) to use a constant inside a type."
+msgstr "Tipos de *slot* de ⟦CODE_0001⟧ y ⟦CODE_0002⟧ (evaluación en tiempo de lectura) para usar una constante dentro de un tipo."
+
+#: src/lisp/README.md:102
+msgctxt "s-06b33b471307-0041"
+msgid "Why ⟦CODE_0001⟧ is for numbers and ⟦CODE_0002⟧ is for vectors (a vector is not ⟦CODE_0003⟧ to itself after reloading, and ⟦CODE_0004⟧ would complain)."
+msgstr "Por qué ⟦CODE_0001⟧ sirve para números y ⟦CODE_0002⟧ para vectores (un vector no es ⟦CODE_0003⟧ a sí mismo después de recargar, y ⟦CODE_0004⟧ se quejaría)."
+
+#: src/lisp/README.md:103
+msgctxt "s-fafbfc2ce62e-0042"
+msgid "How SBCL runs scripts: ⟦CODE_0001⟧ implies ⟦CODE_0002⟧ and ends the runtime options, so ⟦CODE_0003⟧ is ⟦CODE_0004⟧ with no ⟦CODE_0005⟧ in it."
+msgstr "Cómo ejecuta SBCL los scripts: ⟦CODE_0001⟧ implica ⟦CODE_0002⟧ y termina las opciones de ejecución, así que ⟦CODE_0003⟧ es ⟦CODE_0004⟧ sin ⟦CODE_0005⟧ dentro."
+
+#: src/lisp/README.md:104
+msgctxt "s-9690a879ca31-0043"
+msgid "ISO weeks: week 1 is the week with the year's first Thursday; a year has 53 weeks when it starts or ends on a Thursday."
+msgstr "Semanas ISO: la semana 1 es la que incluye el primer jueves del año; un año tiene 53 semanas cuando empieza o termina en jueves."
+
+#: src/lisp/README.md:106
+msgctxt "s-5a0ad00b10fc-0044"
+msgid "Gotchas worth knowing"
+msgstr "Trampas que conviene conocer"
+
+#: src/lisp/README.md:108
+msgctxt "s-b675d7c147f6-0045"
+msgid "**SBCL only.** ⟦CODE_0001⟧, ⟦CODE_0002⟧ and ⟦CODE_0003⟧ are SBCL's. Other implementations have equivalents (⟦CODE_0004⟧, ⟦CODE_0005⟧) but they are not the same functions."
+msgstr "**Solo SBCL.** ⟦CODE_0001⟧, ⟦CODE_0002⟧ y ⟦CODE_0003⟧ son propias de SBCL. Otras implementaciones tienen equivalentes (⟦CODE_0004⟧, ⟦CODE_0005⟧), pero no son las mismas funciones."
+
+#: src/lisp/README.md:109
+msgctxt "s-52be399aca2d-0046"
+msgid "**Pathnames are not strings.** ⟦CODE_0001⟧ and ⟦CODE_0002⟧ in a path mean something to a Lisp pathname, so the program converts with ⟦CODE_0003⟧ and back with ⟦CODE_0004⟧. A home directory with a ⟦CODE_0005⟧ in its name would otherwise be treated as a wildcard."
+msgstr "**Los pathnames no son cadenas de texto.** ⟦CODE_0001⟧ y ⟦CODE_0002⟧ en una ruta tienen un significado para un pathname de Lisp, así que el programa convierte con ⟦CODE_0003⟧ y vuelve a convertir con ⟦CODE_0004⟧. Un directorio personal con ⟦CODE_0005⟧ en su nombre se trataría, de lo contrario, como un comodín."
+
+#: src/lisp/README.md:110
+msgctxt "s-dfd439ef7858-0047"
+msgid "**⟦CODE_0001⟧ is not cryptographic** and SBCL's default state is the same every start; ⟦CODE_0002⟧ is what makes runs differ."
+msgstr "**⟦CODE_0001⟧ no es criptográfico** y el estado por defecto de SBCL es el mismo en cada inicio; ⟦CODE_0002⟧ es lo que hace que las ejecuciones difieran."
+
+#: src/lisp/README.md:111
+msgctxt "s-bc106d96d7e6-0048"
+msgid "**SQL by string building** is safe here only because every value is a number we computed or one of four fixed words. ⟦CODE_0001⟧ is there anyway; do not copy this to untrusted input."
+msgstr "**Construir SQL con cadenas de texto** es seguro aquí solo porque cada valor es un número que calculamos o una de cuatro palabras fijas. ⟦CODE_0001⟧ está presente de todos modos; no copies esto en entradas de datos no confiables."
+
+#: src/lisp/README.md:112
+msgctxt "s-ce10359e22dd-0049"
+msgid "**Formatting.** Common Lisp has no standard formatter. The layout is the usual hand-made one (two-space bodies, ⟦CODE_0001⟧ clauses aligned, docstring first), as Emacs's ⟦CODE_0002⟧ would indent it; no formatter was run."
+msgstr "**Formato.** Common Lisp no tiene un formateador estándar. La disposición es la habitual, hecha a mano (cuerpos con sangría de dos espacios, cláusulas ⟦CODE_0001⟧ alineadas, docstring primero), tal como la indentaría Emacs con ⟦CODE_0002⟧; no se ejecutó ningún formateador."
+
+#: src/lisp/README.md:114
+msgctxt "s-339cc2c18f83-0050"
+msgid "What ⟦CODE_0001⟧ enforces"
+msgstr "Qué impone ⟦CODE_0001⟧"
+
+#: src/lisp/README.md:116
+msgctxt "s-0064b753d2c6-0051"
+msgid "The ⟦CODE_0001⟧ marker is there and nothing looks like network code; ⟦CODE_0002⟧ is a ⟦CODE_0003⟧ ending in ⟦CODE_0004⟧; the file compiles with **no** warnings; ⟦CODE_0005⟧ agrees with ⟦CODE_0006⟧ on 22 edge-case dates; and 25 runs each print a sane record set (hours 10 to 19, categories in order, running totals right, stopping exactly when the total passes 40) with SQLite agreeing with the output. A non-demo row is refused by the table."
+msgstr "El marcador ⟦CODE_0001⟧ está presente y nada parece código de red; ⟦CODE_0002⟧ es un ⟦CODE_0003⟧ que termina en ⟦CODE_0004⟧; el archivo compila **sin** advertencias; ⟦CODE_0005⟧ coincide con ⟦CODE_0006⟧ en 22 fechas de casos límite; y cada una de las 25 ejecuciones imprime un conjunto de registros coherente (horas de 10 a 19, categorías en orden, totales acumulados correctos y parada justo cuando el total pasa de 40) y SQLite coincide con la salida. La tabla rechaza una fila que no sea de demostración."
+
+#: src/lisp/README.md:118
+msgctxt "s-254f0c660db3-0052"
+msgid "Run it in a container"
+msgstr "Ejecuta el programa en un contenedor"
+
+#: src/lisp/README.md:120
+msgctxt "s-93741c0074f3-0053"
+msgid "Prerequisite: Docker, set up once as described in [⟦CODE_0001⟧](⟦DEST_0002⟧). The ⟦CODE_0003⟧ base image comes from ⟦CODE_0004⟧."
+msgstr "Requisito previo: Docker, configurado una sola vez como se describe en [⟦CODE_0001⟧](⟦DEST_0002⟧). La imagen base ⟦CODE_0003⟧ proviene de ⟦CODE_0004⟧."
+
+#: src/lisp/README.md:126
+msgctxt "s-d5ed1af50333-0054"
+msgid "It builds this folder's [⟦CODE_0001⟧](⟦DEST_0002⟧) and runs the result with no network, a read-only file system and user ⟦CODE_0003⟧, then prints the output and a read-only look at the rows it wrote. The image holds SBCL and sqlite3 on a minimal Ubuntu."
+msgstr "Construye el [⟦CODE_0001⟧](⟦DEST_0002⟧) de esta carpeta y ejecuta el resultado sin red, con un sistema de archivos de solo lectura y el usuario ⟦CODE_0003⟧. Luego imprime la salida y una vista de solo lectura de las filas que escribió. La imagen contiene SBCL y sqlite3 sobre un Ubuntu mínimo."

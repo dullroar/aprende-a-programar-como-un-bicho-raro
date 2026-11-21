@@ -1,0 +1,368 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/make-gnu/README.md:2
+msgctxt "s-36a23cc3fe8c-0000"
+msgid "GNU Make"
+msgstr "GNU Make"
+
+#: src/make-gnu/README.md:3
+msgctxt "s-333212e87313-0001"
+msgid "that GNU Make can do arithmetic and loop in its own syntax, without a shell for either."
+msgstr "que GNU Make puede hacer aritmética y ejecutar bucles con su propia sintaxis, sin un intérprete de comandos (*shell*, el programa que ejecuta comandos) para ninguna de las dos cosas."
+
+#: src/make-gnu/README.md:11
+msgctxt "s-233003a90690-0002"
+msgid "A dependency graph that can restart itself"
+msgstr "Un grafo de dependencias que puede reiniciarse solo"
+
+#: src/make-gnu/README.md:12
+msgctxt "s-a6629ebea74b-0003"
+msgid "Which ⟦CODE_0001⟧ files exist, and ⟦CODE_0002⟧"
+msgstr "Qué archivos ⟦CODE_0001⟧ existen y ⟦CODE_0002⟧"
+
+#: src/make-gnu/README.md:16
+msgctxt "s-f9c34cb35fa8-0004"
+msgid "GNU Make: the build tool is the interpreter"
+msgstr "GNU Make: la herramienta de compilación es el intérprete"
+
+#: src/make-gnu/README.md:18
+msgctxt "s-1ea25bc14639-0005"
+msgid "**Teaches you:** that GNU Make can do arithmetic and loop in its own syntax, without a shell for either."
+msgstr "**Te enseña:** que GNU Make puede hacer aritmética y bucles con su propia sintaxis, sin un intérprete de comandos para ninguno de los dos. Un intérprete de comandos es el programa que recibe y ejecuta los comandos que escribes."
+
+#: src/make-gnu/README.md:20
+msgctxt "s-e2119640c448-0006"
+msgid ""
+"**⟦DNT_0001⟧.** Fictional time cards, written to a scratch SQLite file under ⟦CODE_0002⟧.\n"
+"Nothing here touches real time reporting."
+msgstr ""
+"**⟦DNT_0001⟧.** Tarjetas de tiempo ficticias, escritas en un archivo SQLite temporal dentro de ⟦CODE_0002⟧.\n"
+"Nada de esto toca el registro real de horas."
+
+#: src/make-gnu/README.md:23
+msgctxt "s-478c2dc42d88-0007"
+msgid "Put the ⟦CODE_0001⟧ in an otherwise empty directory and run ⟦CODE_0002⟧. Output is the same shape as the other entries:"
+msgstr "Coloca ⟦CODE_0001⟧ en un directorio que no tenga nada más y ejecuta ⟦CODE_0002⟧. La salida tiene la misma forma que la de las otras entradas:"
+
+#: src/make-gnu/README.md:35
+msgctxt "s-17d58b6e26c7-0008"
+msgid ""
+"The question this entry asks: **how much of the work can Make's own syntax do?** The ⟦CODE_0001⟧ contains no\n"
+"⟦CODE_0002⟧, no ⟦CODE_0003⟧, no Guile and no ⟦CODE_0004⟧. ⟦CODE_0005⟧ greps for all of them."
+msgstr ""
+"La pregunta de esta entrada: **¿cuánto trabajo puede hacer la propia sintaxis de Make?** El ⟦CODE_0001⟧ no contiene\n"
+"⟦CODE_0002⟧, ni ⟦CODE_0003⟧, ni Guile, ni ⟦CODE_0004⟧. ⟦CODE_0005⟧ busca con grep todos ellos."
+
+#: src/make-gnu/README.md:38
+msgctxt "s-254f0c660db3-0009"
+msgid "Run it in a container"
+msgstr "Ejecuta el programa en un contenedor"
+
+#: src/make-gnu/README.md:40
+msgctxt "s-643df015c8a2-0010"
+msgid "Prerequisite: Docker, set up once as described in [⟦CODE_0001⟧](⟦DEST_0002⟧)."
+msgstr "Requisito previo: Docker, configurado una sola vez como se describe en [⟦CODE_0001⟧](⟦DEST_0002⟧)."
+
+#: src/make-gnu/README.md:46
+msgctxt "s-e62855fecee4-0011"
+msgid "It builds this folder's [⟦CODE_0001⟧](⟦DEST_0002⟧) and runs the result with no network, a read-only file system and user ⟦CODE_0003⟧, then prints the output and a read-only look at the rows it wrote. The image holds GNU Make and sqlite3 on a minimal Ubuntu. The Makefile runs from a private folder that starts out holding nothing else."
+msgstr "Compila el [⟦CODE_0001⟧](⟦DEST_0002⟧) de esta carpeta y ejecuta el resultado sin red, con un sistema de archivos de solo lectura y con el usuario ⟦CODE_0003⟧. Después imprime la salida y una vista de solo lectura de las filas que escribió. La imagen incluye GNU Make y sqlite3 sobre un Ubuntu mínimo. El Makefile se ejecuta desde una carpeta privada que al inicio no contiene nada más."
+
+#: src/make-gnu/README.md:48
+msgctxt "s-0dcb373c2dff-0012"
+msgid "Program Flow"
+msgstr "Flujo del programa"
+
+#: src/make-gnu/README.md:52
+msgctxt "s-46808f543bdb-0013"
+msgid "make-gnu: Make restarts itself once per card"
+msgstr "make-gnu: Make se reinicia a sí mismo una vez por tarjeta"
+
+#: src/make-gnu/README.md:53
+msgctxt "s-b6c082f8cce6-0014"
+msgid "A flowchart. Make reads the makefile and includes every .tc-N.mk file written so far. A pattern rule checks whether the running total, held as a list of x words, is 40 or less. If it is, the rule writes the next .tc-N.mk file. A makefile that was remade makes Make re-execute itself, and MAKE_RESTARTS counts the passes. If the total is over 40, the rule writes nothing, so nothing is remade, Make stops restarting, and the default goal all runs. It prints the report through a chain of phony targets, plays a glow on a terminal, and hands the SQL script to sqlite3."
+msgstr "Un diagrama de flujo. Make lee el makefile e incluye todos los archivos .tc-N.mk escritos hasta ahora. Una regla de patrón comprueba si el total acumulado, guardado como una lista de palabras x, no pasa de 40. Si es así, la regla escribe el siguiente archivo .tc-N.mk. Un makefile regenerado hace que Make se vuelva a ejecutar, y MAKE_RESTARTS cuenta las pasadas. Si el total pasa de 40, la regla no escribe nada, así que no se regenera nada, Make deja de reiniciarse y se ejecuta la meta predeterminada all. Esta imprime el informe mediante una cadena de objetivos phony, muestra un resplandor en una terminal y entrega el script SQL a sqlite3."
+
+#: src/make-gnu/README.md:54
+msgctxt "s-73aa5ba1904a-0015"
+msgid "Make reads the makefile and includes every .tc-N.mk written so far"
+msgstr "Make lee el makefile e incluye todos los .tc-N.mk escritos hasta ahora"
+
+#: src/make-gnu/README.md:54
+msgctxt "s-cd17e27c3347-0016"
+msgid "Is the total, a list of x words, 40 or less?"
+msgstr "¿El total, una lista de x palabras, es de 40 o menos?"
+
+#: src/make-gnu/README.md:55
+msgctxt "s-8a798890fe93-0017"
+msgid "yes"
+msgstr "sí"
+
+#: src/make-gnu/README.md:55
+msgctxt "s-8579aa1da0b3-0018"
+msgid "A pattern rule writes the next .tc-N.mk file with the next card"
+msgstr "Una regla de patrón escribe el siguiente archivo .tc-N.mk con la siguiente tarjeta"
+
+#: src/make-gnu/README.md:56
+msgctxt "s-5676434e6d50-0019"
+msgid "A file was remade, so Make re-executes itself: MAKE_RESTARTS goes up by one"
+msgstr "Se rehízo un archivo, así que Make se vuelve a ejecutar a sí mismo: MAKE_RESTARTS aumenta en uno"
+
+#: src/make-gnu/README.md:58
+msgctxt "s-0c756c1159a7-0020"
+msgid "no: the 41st word exists"
+msgstr "no: existe la palabra 41"
+
+#: src/make-gnu/README.md:58
+msgctxt "s-4b94e12050bf-0021"
+msgid "Nothing is remade: Make stops restarting"
+msgstr "No se rehace nada: Make deja de reiniciarse"
+
+#: src/make-gnu/README.md:59
+msgctxt "s-dd800f95286f-0022"
+msgid "all runs: phony targets print the report, a glow plays on a terminal"
+msgstr "all se ejecuta: los objetivos phony imprimen el informe y se reproduce un brillo en una terminal"
+
+#: src/make-gnu/README.md:60
+msgctxt "s-d3322daf6fdc-0023"
+msgid "sqlite3 reads the script that Make wrote"
+msgstr "sqlite3 lee el script que escribió Make"
+
+#: src/make-gnu/README.md:63
+msgctxt "s-2f3cc3dd951e-0024"
+msgid "**What this shows:** the loop is the build tool rerunning itself. Each pass includes the ⟦CODE_0001⟧ files that exist, and a file that gets written forces a restart. The state is *which files exist*. The stop rule is that the rule declines to write a new file."
+msgstr "**Qué muestra:** el bucle es la herramienta de compilación que se vuelve a ejecutar a sí misma. Cada pasada incluye los archivos ⟦CODE_0001⟧ que existen, y un archivo que se escribe fuerza un reinicio. El estado es *qué archivos existen*. La regla de parada es que la regla se niega a escribir un archivo nuevo."
+
+#: src/make-gnu/README.md:65
+msgctxt "s-7a0473073dbe-0025"
+msgid "**Why this mechanism matters:** Make's dependency engine decides what to do next from the state of the file system. There is no loop statement and no ⟦CODE_0001⟧: arithmetic is list surgery on ⟦CODE_0002⟧ words. The report is a chain of phony targets so that its output stays in order."
+msgstr "**Por qué importa este mecanismo:** el motor de dependencias de Make decide qué hacer a continuación según el estado del sistema de archivos. No hay sentencia de bucle ni ⟦CODE_0001⟧: la aritmética es cirugía de listas sobre palabras ⟦CODE_0002⟧. El informe es una cadena de objetivos *phony* para que su salida se mantenga en orden."
+
+#: src/make-gnu/README.md:67
+msgctxt "s-7f97d965b4c0-0026"
+msgid "How the stunt works"
+msgstr "Cómo funciona el truco"
+
+#: src/make-gnu/README.md:69
+msgctxt "s-9304359c4c23-0027"
+msgid "⟦SEP_0001⟧ Job ⟦SEP_0002⟧ Done by ⟦SEP_0003⟧ Shell? ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ Tarea ⟦SEP_0002⟧ Hecho por ⟦SEP_0003⟧ ¿Intérprete de comandos? ⟦SEP_0004⟧"
+
+#: src/make-gnu/README.md:71
+msgctxt "s-ec2425008555-0028"
+msgid "⟦SEP_0003⟧ Entropy ⟦SEP_0004⟧ ⟦CODE_0001⟧, letters stripped with nested ⟦CODE_0002⟧; first decimal digit left ⟦SEP_0005⟧ no ⟦SEP_0006⟧"
+msgstr "⟦SEP_0003⟧ Entropía ⟦SEP_0004⟧ ⟦CODE_0001⟧, letras eliminadas con ⟦CODE_0002⟧ anidado; queda el primer dígito decimal ⟦SEP_0005⟧ no ⟦SEP_0006⟧"
+
+#: src/make-gnu/README.md:72
+msgctxt "s-de5c015f1ab7-0029"
+msgid "⟦SEP_0002⟧ Hours 10 to 19 ⟦SEP_0003⟧ the string ⟦CODE_0001⟧ glued to that digit. \"Mod 10\" is picking a character ⟦SEP_0004⟧ no ⟦SEP_0005⟧"
+msgstr "⟦SEP_0002⟧ Horas de 10 a 19 ⟦SEP_0003⟧ la cadena de texto ⟦CODE_0001⟧ pegada a ese dígito. \"Mod 10\" es elegir un carácter ⟦SEP_0004⟧ no ⟦SEP_0005⟧"
+
+#: src/make-gnu/README.md:73
+msgctxt "s-ebed2cccc056-0030"
+msgid "⟦SEP_0002⟧ Category order ⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ no ⟦SEP_0005⟧"
+msgstr "⟦SEP_0002⟧ Orden de las categorías ⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ no ⟦SEP_0005⟧"
+
+#: src/make-gnu/README.md:74
+msgctxt "s-0d8e2437f3aa-0031"
+msgid "⟦SEP_0004⟧ Arithmetic ⟦SEP_0005⟧ numbers are lists of ⟦CODE_0001⟧; ⟦CODE_0002⟧ adds, ⟦CODE_0003⟧ subtracts ⟦SEP_0006⟧ no ⟦SEP_0007⟧"
+msgstr "⟦SEP_0004⟧ Aritmética ⟦SEP_0005⟧ los números son listas de ⟦CODE_0001⟧; ⟦CODE_0002⟧ suma, ⟦CODE_0003⟧ resta ⟦SEP_0006⟧ no ⟦SEP_0007⟧"
+
+#: src/make-gnu/README.md:75
+msgctxt "s-111608825150-0032"
+msgid "⟦SEP_0003⟧ Stop rule (⟦CODE_0001⟧) ⟦SEP_0004⟧ the 41st word of the running list exists: ⟦CODE_0002⟧ ⟦SEP_0005⟧ no ⟦SEP_0006⟧"
+msgstr "⟦SEP_0003⟧ Regla de parada (⟦CODE_0001⟧) ⟦SEP_0004⟧ existe la palabra 41 de la lista acumulada: ⟦CODE_0002⟧ ⟦SEP_0005⟧ no ⟦SEP_0006⟧"
+
+#: src/make-gnu/README.md:76
+msgctxt "s-ad7269578199-0033"
+msgid "⟦SEP_0004⟧ **The loop** ⟦SEP_0005⟧ Make **re-executes itself** once per card. Every pass includes the ⟦CODE_0001⟧ files written so far; a pattern rule writes the next one while the total is ≤ 40. A new file means \"makefile remade\", so Make restarts. ⟦CODE_0002⟧ is the loop counter. When the rule declines to write, nothing is remade and ⟦CODE_0003⟧ runs ⟦SEP_0006⟧ no ⟦SEP_0007⟧"
+msgstr "⟦SEP_0004⟧ **El bucle** ⟦SEP_0005⟧ Make **se vuelve a ejecutar** una vez por tarjeta. Cada pasada incluye los archivos ⟦CODE_0001⟧ escritos hasta ahora; una regla de patrón escribe el siguiente mientras el total no pase de 40. Un archivo nuevo significa \"makefile rehecho\", así que Make se reinicia. ⟦CODE_0002⟧ es el contador del bucle. Cuando la regla decide no escribir, no se rehace nada y se ejecuta ⟦CODE_0003⟧ ⟦SEP_0006⟧ no ⟦SEP_0007⟧"
+
+#: src/make-gnu/README.md:77
+msgctxt "s-74bf24ff169f-0034"
+msgid "⟦SEP_0005⟧ Clock ⟦SEP_0006⟧ ⟦CODE_0001⟧ from ⟦CODE_0002⟧ + whole seconds from ⟦CODE_0003⟧, added digit by digit with a carry (⟦CODE_0004⟧ overrides it for tests) ⟦SEP_0007⟧ no ⟦SEP_0008⟧"
+msgstr "⟦SEP_0005⟧ Reloj ⟦SEP_0006⟧ ⟦CODE_0001⟧ a partir de ⟦CODE_0002⟧ + los segundos enteros de ⟦CODE_0003⟧, sumados dígito a dígito con acarreo (⟦CODE_0004⟧ lo reemplaza en las pruebas) ⟦SEP_0007⟧ no ⟦SEP_0008⟧"
+
+#: src/make-gnu/README.md:78
+msgctxt "s-8953ce5c019f-0035"
+msgid "⟦SEP_0001⟧ ISO week ⟦SEP_0002⟧ epoch ÷ 86400 by long division (÷100, then ÷864 digit by digit), a year-by-year calendar walk from 1970, then the Thursday-of-the-week rule ⟦SEP_0003⟧ no ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ Semana ISO ⟦SEP_0002⟧ época ÷ 86400 con división larga (÷100 y luego ÷864 dígito a dígito), un recorrido año por año del calendario desde 1970 y después la regla del jueves de la semana ⟦SEP_0003⟧ no ⟦SEP_0004⟧"
+
+#: src/make-gnu/README.md:79
+msgctxt "s-9d69c900b628-0036"
+msgid "⟦SEP_0005⟧ Report ⟦SEP_0006⟧ ⟦CODE_0001⟧ with a tab variable; the report is a chain of phony targets (⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧, frames) so output stays in order ⟦SEP_0007⟧ no ⟦SEP_0008⟧"
+msgstr "⟦SEP_0005⟧ Informe ⟦SEP_0006⟧ ⟦CODE_0001⟧ con una variable de tabulador; el informe es una cadena de objetivos *phony* (⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧, fotogramas) para que la salida quede en orden ⟦SEP_0007⟧ no ⟦SEP_0008⟧"
+
+#: src/make-gnu/README.md:80
+msgctxt "s-80b397598322-0037"
+msgid "⟦SEP_0005⟧ Glow ⟦SEP_0006⟧ on a terminal only: 25 phony targets, one per frame, each printing a 256-color **⟦DNT_0001⟧** banner one gray shade brighter, then dimmer, then erased (about 1.5 s). \"Is stdout a terminal?\" is ⟦CODE_0002⟧ being ⟦CODE_0003⟧ ⟦SEP_0007⟧ no (frames pause with ⟦CODE_0004⟧) ⟦SEP_0008⟧"
+msgstr "⟦SEP_0005⟧ Glow ⟦SEP_0006⟧ solo en una terminal: 25 objetivos *phony*, uno por fotograma. Cada uno imprime un banner de 256 colores **⟦DNT_0001⟧** en un tono de gris más brillante, luego más tenue y luego lo borra (unos 1,5 s). La pregunta \"¿stdout es una terminal?\" es ⟦CODE_0002⟧ con valor ⟦CODE_0003⟧ ⟦SEP_0007⟧ no (los fotogramas se pausan con ⟦CODE_0004⟧) ⟦SEP_0008⟧"
+
+#: src/make-gnu/README.md:81
+msgctxt "s-0f006e220853-0038"
+msgid "⟦SEP_0005⟧ Pop-up ⟦SEP_0006⟧ ⟦CODE_0001⟧ runs ⟦CODE_0002⟧ (Windows Terminal) to open a window that runs the demo; the window closes itself when ⟦CODE_0003⟧ exits ⟦SEP_0007⟧ **yes** (⟦CODE_0004⟧) ⟦SEP_0008⟧"
+msgstr "⟦SEP_0005⟧ Ventana emergente ⟦SEP_0006⟧ ⟦CODE_0001⟧ ejecuta ⟦CODE_0002⟧ (Windows Terminal) para abrir una ventana que ejecuta la demostración; la ventana se cierra sola cuando ⟦CODE_0003⟧ termina ⟦SEP_0007⟧ **sí** (⟦CODE_0004⟧) ⟦SEP_0008⟧"
+
+#: src/make-gnu/README.md:82
+msgctxt "s-448d88ce317d-0039"
+msgid "⟦SEP_0004⟧ Persistence ⟦SEP_0005⟧ ⟦CODE_0001⟧ writes a ⟦CODE_0002⟧ script, then ⟦CODE_0003⟧ ⟦SEP_0006⟧ **yes** ⟦SEP_0007⟧"
+msgstr "⟦SEP_0004⟧ Persistencia ⟦SEP_0005⟧ ⟦CODE_0001⟧ escribe un script ⟦CODE_0002⟧ y luego ⟦CODE_0003⟧ ⟦SEP_0006⟧ **sí** ⟦SEP_0007⟧"
+
+#: src/make-gnu/README.md:83
+msgctxt "s-46eb57482a74-0040"
+msgid "⟦SEP_0004⟧ Plumbing ⟦SEP_0005⟧ ⟦CODE_0001⟧, ⟦CODE_0002⟧, and ⟦CODE_0003⟧ (see below) ⟦SEP_0006⟧ **yes** ⟦SEP_0007⟧"
+msgstr "⟦SEP_0004⟧ Cómo viaja el dato ⟦SEP_0005⟧ ⟦CODE_0001⟧, ⟦CODE_0002⟧ y ⟦CODE_0003⟧ (ver abajo) ⟦SEP_0006⟧ **sí** ⟦SEP_0007⟧"
+
+#: src/make-gnu/README.md:85
+msgctxt "s-e96e1f3531c1-0041"
+msgid ""
+"The stop rule is also checked by SQLite: the last statement inserts ⟦CODE_0001⟧ into a table whose only column has\n"
+"⟦CODE_0002⟧, so the named constraint error on stderr is the stop rule announcing itself, as in the other entries."
+msgstr ""
+"SQLite también comprueba la regla de parada: la última sentencia inserta ⟦CODE_0001⟧ en una tabla cuya única columna tiene\n"
+"⟦CODE_0002⟧, así que el error de restricción con nombre en stderr es la regla de parada que se anuncia a sí misma, como en las otras entradas."
+
+#: src/make-gnu/README.md:88
+msgctxt "s-339cc2c18f83-0042"
+msgid "What ⟦CODE_0001⟧ enforces"
+msgstr "Qué impone ⟦CODE_0001⟧"
+
+#: src/make-gnu/README.md:90
+msgctxt "s-ba8dea8e9105-0043"
+msgid "⟦CODE_0001⟧ makes sure the stunt is real. The Makefile may not use ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧ or ⟦CODE_0005⟧, and its recipes may run only ⟦CODE_0006⟧, ⟦CODE_0007⟧, ⟦CODE_0008⟧, ⟦CODE_0009⟧ and the no-op ⟦CODE_0010⟧."
+msgstr "⟦CODE_0001⟧ comprueba que el truco es real. El Makefile no puede usar ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧ ni ⟦CODE_0005⟧; sus recetas solo pueden ejecutar ⟦CODE_0006⟧, ⟦CODE_0007⟧, ⟦CODE_0008⟧, ⟦CODE_0009⟧ y la operación nula ⟦CODE_0010⟧."
+
+#: src/make-gnu/README.md:92
+msgctxt "s-10971be95640-0044"
+msgid "Then it runs ⟦CODE_0001⟧ 25 times in a directory that holds nothing but the Makefile, and that directory must hold nothing else afterward. Each run must print as many rows as it has entries and report that Make re-executed itself once per entry. The usual rules apply: hours 10 to 19, categories in order, running totals right, ⟦CODE_0002⟧ on every row, a stop exactly when the total passes 40, an ISO week that matches SQLite's, and a database that agrees with the output. The stop-rule error must appear on stderr exactly once and nothing else may."
+msgstr "Luego ejecuta ⟦CODE_0001⟧ 25 veces en un directorio que contiene solo el Makefile, y ese directorio no debe contener nada más después. Cada ejecución debe imprimir tantas filas como entradas tenga e informar de que Make se volvió a ejecutar a sí mismo una vez por entrada. Se aplican las reglas habituales: horas de 10 a 19, categorías en orden, totales acumulados correctos, ⟦CODE_0002⟧ en cada fila, una parada exactamente cuando el total pasa de 40, una semana ISO que coincide con la de SQLite y una base de datos que concuerda con la salida. El error de la regla de parada debe aparecer en stderr exactamente una vez y no debe aparecer nada más."
+
+#: src/make-gnu/README.md:94
+msgctxt "s-a25a563df4c2-0045"
+msgid "More tests follow. The pure-Make calendar is compared with ⟦CODE_0001⟧ at boundary instants (⟦CODE_0002⟧ overrides the clock). The glow must be silent in a pipe, and on a pseudo-terminal it must draw 24 frames in 1 to 3 seconds. ⟦CODE_0003⟧ must print its ⟦CODE_0004⟧ command and write nothing. A leftover ⟦CODE_0005⟧ from an interrupted run must be refused, and ⟦CODE_0006⟧ must remove it. Last, a non-demo row must be refused."
+msgstr "Siguen más pruebas. El calendario hecho solo con Make se compara con ⟦CODE_0001⟧ en instantes límite (⟦CODE_0002⟧ sustituye el reloj). El brillo debe ser silencioso en una tubería, y en una pseudoterminal debe dibujar 24 cuadros en un lapso de 1 a 3 segundos. ⟦CODE_0003⟧ debe imprimir su comando ⟦CODE_0004⟧ y no escribir nada. Un ⟦CODE_0005⟧ sobrante de una ejecución interrumpida debe rechazarse, y ⟦CODE_0006⟧ debe eliminarlo. Por último, debe rechazarse una fila que no sea de demostración."
+
+#: src/make-gnu/README.md:96
+msgctxt "s-5a0ad00b10fc-0046"
+msgid "Gotchas worth knowing"
+msgstr "Trampas que conviene conocer"
+
+#: src/make-gnu/README.md:98
+msgctxt "s-7bfea8e2bde2-0047"
+msgid ""
+"**A recipe that expands to nothing doesn't count as remaking the file.** The card file is written while the recipe\n"
+"line is *expanded*, but Make only notices (and restarts) if a command actually ran. So each card carries a ⟦CODE_0001⟧,\n"
+"the shell's no-op. This is the one place the loop needs a shell at all."
+msgstr ""
+"**Una receta que se expande a nada no cuenta como rehacer el archivo.** El archivo de la tarjeta se escribe mientras la línea\n"
+"de la receta se *expande*, pero Make solo se da cuenta (y se reinicia) si un comando se ejecutó de verdad. Por eso cada tarjeta lleva un ⟦CODE_0001⟧,\n"
+"la operación nula del intérprete de comandos. Es el único lugar donde el bucle necesita siquiera un intérprete de comandos."
+
+#: src/make-gnu/README.md:101
+msgctxt "s-a4c7ae11715e-0048"
+msgid ""
+"**One file per pass, not one file rewritten.** The first design rewrote a single ⟦CODE_0001⟧. It restarted once and\n"
+"then stopped: WSL's file timestamps are coarse enough that the rewrite looked unchanged. A file going from\n"
+"*missing* to *present* is unambiguous."
+msgstr "**Un archivo por pasada, no un archivo reescrito.** El primer diseño reescribió un solo ⟦CODE_0001⟧. Se reinició una vez y luego se detuvo: las marcas de tiempo de los archivos de WSL son tan imprecisas que la reescritura parecía sin cambios. Un archivo que pasa de *ausente* a *presente* es inequívoco."
+
+#: src/make-gnu/README.md:104
+msgctxt "s-fa0d4cdb8394-0049"
+msgid ""
+"**Make expands every line of a recipe before it runs any of them**, so ⟦CODE_0001⟧ output would come out before\n"
+"SQLite's header. The report is a chain of targets (⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧) because a recipe is expanded just\n"
+"before its own target runs."
+msgstr ""
+"**Make expande todas las líneas de una receta antes de ejecutar ninguna de ellas**, así que la salida de ⟦CODE_0001⟧ aparecería antes del\n"
+"encabezado de SQLite. El informe es una cadena de objetivos (⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧) porque Make expande una receta justo\n"
+"antes de ejecutar su propio objetivo."
+
+#: src/make-gnu/README.md:107
+msgctxt "s-43d4030727a3-0050"
+msgid "**⟦CODE_0001⟧ starts a comment, even inside a SQL string in a variable.** The header's ⟦CODE_0002⟧ is written ⟦CODE_0003⟧."
+msgstr "**⟦CODE_0001⟧ inicia un comentario, incluso dentro de una cadena de texto SQL en una variable.** El ⟦CODE_0002⟧ del encabezado se escribe como ⟦CODE_0003⟧."
+
+#: src/make-gnu/README.md:108
+msgctxt "s-3306e2a75d27-0051"
+msgid "**No pure-Make way to create a directory or a SQLite file.** Hence ⟦CODE_0001⟧ and ⟦CODE_0002⟧."
+msgstr "**No hay forma de crear un directorio ni un archivo SQLite solo con Make.** Por eso existen ⟦CODE_0001⟧ y ⟦CODE_0002⟧."
+
+#: src/make-gnu/README.md:109
+msgctxt "s-f35d4ae540a7-0052"
+msgid ""
+"**Time is UTC.** ⟦CODE_0001⟧ is binary, and Make has no way to read it. Local time only differs from this\n"
+"near a week boundary. The calendar is good through 2134 (the ruler is 60,000 days long) and handles the 2100\n"
+"non-leap year."
+msgstr ""
+"**La hora es UTC.** ⟦CODE_0001⟧ es binario y Make no tiene forma de leerlo. La hora local solo difiere de esta cerca del límite de una\n"
+"semana. El calendario es válido hasta 2134 inclusive (la regla mide 60,000 días) y maneja el año no bisiesto\n"
+"2100."
+
+#: src/make-gnu/README.md:112
+msgctxt "s-b455c61f5c22-0053"
+msgid "**Escape codes need an ESC byte.** Make has no escape syntax, so the Makefile holds one literal ⟦CODE_0001⟧ (in ⟦CODE_0002⟧)."
+msgstr "**Los códigos de escape necesitan un byte ESC.** Make no tiene sintaxis de escape, así que el Makefile contiene un ⟦CODE_0001⟧ literal (en ⟦CODE_0002⟧)."
+
+#: src/make-gnu/README.md:113
+msgctxt "s-d66d4269e577-0054"
+msgid ""
+"**⟦CODE_0001⟧ treats ⟦CODE_0002⟧ as its own subcommand separator**, so the ⟦CODE_0003⟧ command line must not contain one (a first\n"
+"attempt spawned a pile of \"The system cannot find the file specified\" windows)."
+msgstr ""
+"**⟦CODE_0001⟧ trata ⟦CODE_0002⟧ como su propio separador de subcomandos**, así que la línea de comandos de ⟦CODE_0003⟧ no debe contener uno (un primer\n"
+"intento abrió un montón de ventanas con el mensaje \"The system cannot find the file specified\")."
+
+#: src/make-gnu/README.md:115
+msgctxt "s-0fe1a2653299-0055"
+msgid ""
+"**⟦CODE_0001⟧, ⟦CODE_0002⟧ and ⟦CODE_0003⟧ never run the card loop**; the loop would leave cards behind that the popped\n"
+"⟦CODE_0004⟧ would then refuse as stale."
+msgstr ""
+"**⟦CODE_0001⟧, ⟦CODE_0002⟧ y ⟦CODE_0003⟧ nunca ejecutan el bucle de tarjetas**; el bucle dejaría tarjetas sobrantes que el\n"
+"⟦CODE_0004⟧ extraído después rechazaría por obsoletas."
+
+#: src/make-gnu/README.md:117
+msgctxt "s-7bab2042bbe8-0056"
+msgid ""
+"**A crashed run leaves ⟦CODE_0001⟧ behind.** The next ⟦CODE_0002⟧ refuses to start (it would otherwise treat them as\n"
+"real cards); ⟦CODE_0003⟧ removes them."
+msgstr ""
+"**Una ejecución que falla deja ⟦CODE_0001⟧ atrás.** La siguiente ⟦CODE_0002⟧ se niega a iniciar (de lo contrario las trataría como\n"
+"tarjetas reales); ⟦CODE_0003⟧ las elimina."
+
+#: src/make-gnu/README.md:119
+msgctxt "s-db91fa7858ef-0057"
+msgid ""
+"**Edge case:** four cards of exactly 10 hours total exactly 40, which continues. There are only four categories,\n"
+"so the fifth card reuses ⟦CODE_0001⟧."
+msgstr ""
+"**Caso límite:** cuatro tarjetas de exactamente 10 horas suman un total de exactamente 40, que continúa. Solo hay cuatro categorías,\n"
+"así que la quinta tarjeta reutiliza ⟦CODE_0001⟧."
+
+#: src/make-gnu/README.md:121
+msgctxt "s-81fd995ea5ca-0058"
+msgid ""
+"⟦CODE_0001⟧ runs ⟦CODE_0002⟧ 25 times in a directory holding only the ⟦CODE_0003⟧, compares the ISO week with SQLite's\n"
+"date arithmetic, compares the SQLite rows with the printed ones, and sweeps 20 boundary instants (year ends, 53-week\n"
+"years, 1970, 2096) against ⟦CODE_0004⟧, and checks (through a pty) that the glow is 24 frames in 1–3 s and absent in a pipe."
+msgstr ""
+"⟦CODE_0001⟧ ejecuta ⟦CODE_0002⟧ 25 veces en un directorio que contiene únicamente ⟦CODE_0003⟧, compara la semana ISO con la aritmética de fechas\n"
+"de SQLite, compara las filas de SQLite con las filas impresas, contrasta 20 instantes límite (fines de año, años de 53 semanas,\n"
+"1970, 2096) con ⟦CODE_0004⟧ y comprueba (mediante un pty) que el resplandor consta de 24 fotogramas en un lapso de 1 a 3 s y no aparece en una tubería."
+
+#: src/make-gnu/README.md:125
+msgctxt "s-958ca26c6a61-0059"
+msgid "Run it"
+msgstr "Ejecútalo"
+
+#: src/make-gnu/README.md:136
+msgctxt "s-40ddb79ac33a-0060"
+msgid "See the [root README](⟦DEST_0001⟧) for how this compares to the other entries, and [⟦CODE_0002⟧](⟦DEST_0003⟧) if you want to write your own."
+msgstr "Consulta el [README principal](⟦DEST_0001⟧) para ver cómo se compara con las otras entradas, y [⟦CODE_0002⟧](⟦DEST_0003⟧) si quieres escribir la tuya."

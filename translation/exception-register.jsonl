@@ -162,3 +162,18 @@
 {"id":"EXC-162","segment":"s-760534379865-0029","invariant":"I7","reason":"pipe is the verb 'to pipe' (canaliza), not the noun pipe","task":"P4-src-10"}
 {"id":"EXC-163","segment":"s-f88b37bf3921-0044","invariant":"I7","reason":"build is the verb 'the reader builds a ring' (forma), not the build process","task":"P4-src-10"}
 {"id":"EXC-164","segment":"s-5373085210e7-0020","invariant":"I7","reason":"card-1 is a class identifier (a CLOS class name), not the glossary term card","task":"P4-src-10"}
+{"id":"EXC-165","segment":"s-ab8bce3893ac-0014","invariant":"I7","reason":"LOOP is the name of the Common Lisp macro, kept literal in a label; it is not the generic loop concept","task":"P4-src-11"}
+{"id":"EXC-166","segment":"s-f30ef157b028-0015","invariant":"I7","reason":"hours, until and collect are LISP clause and variable names kept literal, and 'builds the SQL script' uses the verb build, not the build process","task":"P4-src-11"}
+{"id":"EXC-167","segment":"s-2a09f7429c80-0016","invariant":"I7","reason":"'state' is part of the identifier make-random-state, kept literal in a label","task":"P4-src-11"}
+{"id":"EXC-168","segment":"s-fa9750691651-0024","invariant":"I7","reason":"'Build the SQL script' is the verb build, and 'program' is part of the identifier run-program, kept literal in a label","task":"P4-src-11"}
+{"id":"EXC-169","segment":"s-fb5c232e2ebe-0030","invariant":"I7","reason":"'builds one SQL script as a string' is the verb build, not the build process","task":"P4-src-11"}
+{"id":"EXC-170","segment":"s-d5ed1af50333-0054","invariant":"I7","reason":"'It builds this folder's Dockerfile' is the verb build (same sentence as the other READMEs), not the build process","task":"P4-src-11"}
+{"id":"EXC-171","segment":"s-fb5c232e2ebe-0030","invariant":"I3","reason":"1,139 is a number written with an English thousands separator; the Spanish writes 1139, so the digit tokens differ by format only","task":"P4-src-11"}
+{"id":"EXC-172","segment":"s-fedf9ff74960-0004","invariant":"TRANSLATE","reason":"The segment is the heading 'Common Lisp', a language name (product name); there is no prose to translate.","task":"P4-src-11"}
+{"id":"EXC-173","segment":"s-db2aeb31ad75-0017","invariant":"I9","reason":"The label ends with the LOOP clause 'for number from 1' (Common Lisp code kept literal); the English function words come from that code, not from untranslated prose","task":"P4-src-11"}
+{"id":"EXC-174","segment":"s-2396a1256ac4-0000","invariant":"TRANSLATE","reason":"The segment is the heading 'm4', a tool name (product name); there is no prose to translate.","task":"P4-src-11"}
+{"id":"EXC-175","segment":"s-2396a1256ac4-0004","invariant":"TRANSLATE","reason":"The segment is the heading 'm4', a tool name (product name); there is no prose to translate.","task":"P4-src-11"}
+{"id":"EXC-176","segment":"s-36a23cc3fe8c-0000","invariant":"TRANSLATE","reason":"The segment is the heading 'GNU Make', a tool name (product name); there is no prose to translate.","task":"P4-src-11"}
+{"id":"EXC-177","segment":"s-e62855fecee4-0011","invariant":"I7","reason":"'It builds this folder's Makefile' is the plain verb (compiles, runs), already rendered 'Compila'; it is not the noun build the glossary renders as compilación.","task":"P4-src-11"}
+{"id":"EXC-178","segment":"s-80b397598322-0037","invariant":"I3","reason":"number format localized: English '1.5 s' is written 1,5 s in Spanish (decimal comma); the value is unchanged.","task":"P4-src-11"}
+{"id":"EXC-179","segment":"s-d66d4269e577-0054","invariant":"I7","reason":"'file' sits inside the quoted Windows error message 'The system cannot find the file specified', which stays in English as terminal output.","task":"P4-src-11"}

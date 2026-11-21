@@ -1,28 +1,28 @@
 ---
 name: "m4"
-teaches: "that a macro processor is a programming language: no loop statement and no variable, just text that gets scanned again."
+teaches: "que un procesador de macros es un lenguaje de programación: sin sentencia de bucle y sin variable, solo texto que se vuelve a escanear."
 kind: weird
 languages: [m4]
 lesson: "lenguajes/m4.md#a-loop-made-of-rescanning"
 loop-by: rewrite-and-rescan
 evaluation: rewriting
 assurance: implementation-permitted
-machine: "A text-rescanning machine"
-state: "The input stream: whatever macro text has not been read yet"
+machine: "Una máquina que reescanea texto"
+state: "El flujo de entrada de datos: todo el texto de macros sin leer"
 tags: [fixed-point-iteration, lazy-evaluation, macro-processing, recursion, scope-and-binding, state, term-rewriting, turing-completeness]
 analogies: [serialization-deserialization-pickling, turing-machine]
 ---
 # m4
 
-**Teaches you:** that a macro processor is a programming language: no loop statement and no variable, just text that gets scanned again.
+**Te enseña:** que un procesador de macros es un lenguaje de programación: no tiene sentencia de bucle ni variable, solo texto que se analiza de nuevo.
 
-> **DEMO ONLY.** Fictional timecards in a scratch SQLite file. No connection to any real time-reporting system.
+> **DEMO ONLY.** Tarjetas de horas ficticias en un archivo SQLite temporal. Sin conexión con ningún sistema real de registro de horas.
 
-There is one m4 entry and no `m4-weird`, because a whole program written in a macro processor is already the weird version. The challenge ("add 10 to 19 hour cards until the total passes 40") is done by `m4` itself: it generates the random numbers, keeps the running total, decides when to stop, formats the rows, and writes the SQL. [`timecards.m4`](timecards.m4) is the only source file. The shell appears twice, as plumbing: to read the clock and the OS random pool, and, at the very end, to hand a finished SQL script to `sqlite3`.
+Hay una sola entrada de m4 y no hay `m4-weird`, porque un programa completo escrito en un procesador de macros ya es la versión rara. El reto ("añade tarjetas de 10 a 19 horas hasta que el total pase de 40") lo resuelve `m4` por sí solo: genera los números aleatorios, mantiene el total acumulado, decide cuándo parar, da formato a las filas y escribe el SQL. [`timecards.m4`](timecards.m4) es el único archivo fuente. Un intérprete de comandos (*shell*) es el programa que recibe y ejecuta comandos escritos. Aquí el intérprete de comandos aparece dos veces, solo en la parte de cómo viaja el dato: para leer el reloj y la reserva de datos aleatorios del sistema operativo, y, al final de todo, para entregar un script SQL terminado a `sqlite3`.
 
-## Run it
+## Ejecútalo
 
-You need GNU m4 (tested with 1.4.19) and `sqlite3`. The shell is `sh`; `date`, `od`, `tr` and `mkdir` are used for the seed, the clock and the folder.
+Necesitas GNU m4 (probado con 1.4.19) y `sqlite3`. El intérprete de comandos es `sh`. Para la semilla, el reloj y la carpeta se usan `date`, `od`, `tr` y `mkdir`.
 
 ```bash
 cd src/m4
@@ -31,7 +31,7 @@ m4 -Dtc_seed=12345 -Dtc_week=2026-W01 timecards.m4    # a pinned, reproducible r
 ./check.sh                                              # set M4=/path/to/m4 if it is not on your PATH
 ```
 
-Records go to `$XDG_DATA_HOME/M4/demo-timecards.db` (default `~/.local/share/M4/`). A run looks like this:
+Los registros van a `$XDG_DATA_HOME/M4/demo-timecards.db` (por defecto `~/.local/share/M4/`). Una ejecución se ve así:
 
 ```text
 # DEMO ONLY run 1794860448-1900361580
@@ -42,54 +42,54 @@ Debugging	15	41	2026-W47	DEMO ONLY
 # no loop statement: tc_card expands itself again until ifelse says stop, and m4 is the whole program
 ```
 
-## What it does
+## Qué hace
 
-It draws cards of 10 to 19 hours, cycling through Meetings, Coding, Debugging and Learning, until the running total is greater than 40 (the card that crosses the line is kept). It prints the rows and saves them to SQLite in one transaction.
+El programa saca tarjetas de 10 a 19 horas y recorre en ciclo Meetings, Coding, Debugging y Learning hasta que el total acumulado pasa de 40 (se conserva la tarjeta que cruza la línea). El programa imprime las filas y las guarda en SQLite en una sola transacción.
 
-## Program Flow
+## Flujo del programa
 
 ```mermaid
 flowchart TD
-    accTitle: m4: a macro whose expansion contains itself
-    accDescr: A flowchart of m4 rescanning. m4 meets the word tc_card and replaces it with the macro body, then rescans that text. The rescan redefines the state macros, prints the row and appends the INSERT. The body ends in an ifelse. If the total is not over 40, the ifelse expands to the word tc_card, and the flow goes back to the start. If the total is over 40, the ifelse expands to nothing, no text is left to rescan, and syscmd hands the script to sqlite3.
-    A["m4 meets the word tc_card: first in the file, later in its own output"] --> B["Replace the word with the macro body, then rescan that text"]
-    B --> C["Rescan redefines state macros: tc_seed, tc_n, tc_total"]
-    C --> D["Rescan prints the row and appends the INSERT to tc_sql"]
-    D --> E{{"ifelse: is tc_total over 40?"}}
-    E -->|No| F["ifelse expands to the word tc_card"]
+    accTitle: m4: una macro cuya expansión se contiene a sí misma
+    accDescr: Un diagrama de flujo del reescaneo de m4. m4 encuentra la palabra tc_card y la reemplaza por el cuerpo de la macro. Luego reescanea ese texto. El reescaneo redefine las macros de estado, imprime la fila y añade el INSERT. El cuerpo termina en un ifelse. Si el total no pasa de 40, el ifelse se expande a la palabra tc_card y el flujo vuelve al inicio. Si el total pasa de 40, el ifelse se expande a nada, no queda texto para reescanear y syscmd entrega el script a sqlite3.
+    A["m4 encuentra la palabra tc_card: primero en el archivo, después en su propia salida"] --> B["Reemplaza la palabra por el cuerpo de la macro y vuelve a escanear ese texto"]
+    B --> C["Rescan redefine las macros de estado: tc_seed, tc_n, tc_total"]
+    C --> D["Rescan imprime la fila y añade el INSERT a tc_sql"]
+    D --> E{{"ifelse: ¿tc_total pasa de 40?"}}
+    E -->|No| F["ifelse se expande a la palabra tc_card"]
     F --> A
-    E -->|Yes| G["ifelse expands to nothing: no text left to rescan"]
-    G --> H["syscmd gives tc_sql to sqlite3"]
+    E -->|Sí| G["ifelse se expande a nada: no queda texto que volver a escanear"]
+    G --> H["syscmd entrega tc_sql a sqlite3"]
 ```
 
-**What this shows:** m4 has no loop statement. Its evaluation model is replace, then rescan. The loop is the edge from the last `ifelse` back to the first word: the expansion of `tc_card` contains the word `tc_card`.
+**Qué muestra:** m4 no tiene ninguna sentencia de bucle. Su modelo de evaluación es reemplazar y luego volver a explorar. El bucle es la arista desde el último `ifelse` hasta la primera palabra: la expansión de `tc_card` contiene la palabra `tc_card`.
 
-**Why this mechanism matters:** the stop rule is the absence of text. When `ifelse` expands to nothing, there is nothing left to rescan, and the program is over. State lives in other macros, redefined during the rescan.
+**Por qué importa este mecanismo:** la regla de parada es la ausencia de texto. Cuando `ifelse` se expande a nada, no queda nada que volver a escanear y el programa termina. El estado vive en otras macros, que se redefinen durante el reescaneo.
 
-## How the stunt works
+## Cómo funciona el truco
 
-### m4 in one paragraph
+### m4 en un párrafo
 
-m4 reads text and copies it to the output, except that when it sees a *word* that names a macro it replaces the word with the macro's definition, and then **reads the replacement again**, looking for more macros. That "scan again" step (rescanning) is the entire evaluation model. There are no statements. Quotes (`` ` `` and `'` by default; `[` and `]` in this file) say "do not look inside this yet".
+m4 lee texto y lo copia a la salida, salvo que, cuando ve una *palabra* que nombra una macro, sustituye la palabra por la definición de la macro y luego **vuelve a leer el reemplazo** en busca de más macros. Ese paso de "volver a escanear" (reescaneo) es todo el modelo de evaluación. No hay sentencias. Las comillas (`` ` `` y `'` por defecto; `[` y `]` en este archivo) indican "no mires dentro de esto todavía".
 
-### 1. Make m4 safe for our text
+### 1. Haz que m4 sea seguro para nuestro texto
 
 ```m4
 changecom()dnl
 changequote([, ])dnl
 ```
 
-By default `#` starts a comment, and a comment is copied through **unexpanded**. The program's output lines start with `#`, so without `changecom()` the macros in them would silently not expand. And the default closing quote is `'`, which SQL string literals need, so the quotes become `[` `]`. `dnl` ("discard to new line") eats the rest of the line, including the newline that would otherwise end up in the output. It is also the comment syntax for the source file.
+De forma predeterminada, `#` inicia un comentario y un comentario se copia **sin expandir**. Las líneas de salida del programa empiezan con `#`, así que sin `changecom()` las macros de esas líneas no se expandirían en silencio. Además, la comilla de cierre predeterminada es `'`, que los literales de cadena de texto de SQL necesitan, así que las comillas pasan a ser `[` `]`. `dnl` ("descartar hasta la nueva línea") consume el resto de la línea, incluido el salto de línea que, de otro modo, terminaría en la salida. También es la sintaxis de comentarios del archivo fuente.
 
-### 2. Macros are the variables
+### 2. Las macros son las variables
 
-`define([tc_total], 0)` creates a macro whose text is `0`; "assigning" is redefining it: `define([tc_total], eval(tc_total + tc_hours))`. The arguments of `define` are expanded before `define` runs, so the `eval` is done first and the *number* is stored. Every macro starts with `tc_` so that it can never collide with a word in the SQL text, which m4 would helpfully expand.
+`define([tc_total], 0)` crea una macro cuyo texto es `0`; "asignar" es redefinirla: `define([tc_total], eval(tc_total + tc_hours))`. Los argumentos de `define` se expanden antes de que se ejecute `define`, así que primero se hace `eval` y se almacena el *número*. Cada macro empieza con `tc_` para que nunca pueda chocar con una palabra del texto SQL, que m4 expandiría con la mejor intención.
 
-### 3. A random number generator in 32-bit arithmetic
+### 3. Un generador de números aleatorios en aritmética de 32 bits
 
-`eval` is m4's calculator and in GNU m4 it is **32-bit** (try `eval(2147483647 * 4)`: it answers `-4`). So the generator is Park-Miller, `seed = 16807 * seed mod (2^31 - 1)`, computed with Schrage's decomposition, `16807 * (s % 127773) - 2836 * (s / 127773)` and then add `2^31 - 1` back if the result is negative, which never leaves 32 bits. Hours are `10 + seed / 1024 % 10`. `check.sh` compares the output with an independent implementation in bash.
+`eval` es la calculadora de m4 y en GNU m4 es de **32 bits** (prueba `eval(2147483647 * 4)`: responde `-4`). Por eso el generador es Park-Miller, `seed = 16807 * seed mod (2^31 - 1)`, calculado con la descomposición de Schrage, `16807 * (s % 127773) - 2836 * (s / 127773)` y luego se suma de vuelta `2^31 - 1` si el resultado es negativo, lo que nunca sale de los 32 bits. Las horas son `10 + seed / 1024 % 10`. `check.sh` compara la salida con una implementación independiente en bash.
 
-### 4. The loop is a macro that expands itself
+### 4. El bucle es una macro que se expande a sí misma
 
 ```m4
 define([tc_card],
@@ -102,25 +102,25 @@ tc_row(tc_category(tc_n), tc_hours, tc_total)
 ifelse(eval(tc_total > 40), 1, [], [tc_card()])])
 ```
 
-Expanding `tc_card()` produces: a row of text (the output), some definitions that change the state, and then the result of `ifelse`. If the total is over 40, `ifelse` produces nothing and the expansion ends. Otherwise it produces the text `tc_card()`, and because the output of a macro is rescanned, that text is itself a call. Recursion, with the stop rule as the `ifelse`. `check.sh` proves it: cut the self-call and exactly one card appears.
+Expandir `tc_card()` produce: una fila de texto (la salida), algunas definiciones que cambian el estado y luego el resultado de `ifelse`. Si el total pasa de 40, `ifelse` no produce nada y la expansión termina. En caso contrario, produce el texto `tc_card()`. Como la salida de una macro se vuelve a escanear, ese texto es a su vez una llamada. Es recursión, con la regla de parada como `ifelse`. `check.sh` lo demuestra: quita la autollamada y aparece exactamente una tarjeta.
 
-### 5. `ifelse`, and the gotcha that bit while writing this
+### 5. `ifelse` y el problema que me mordió al escribir esto
 
-`ifelse(a, b, then, else)` compares `a` and `b`. With more arguments it continues **in groups of three**: `ifelse(a, b, then, c, d, then2, ..., else)`. A natural first attempt at a four-way switch, `ifelse(n, 0, [Meetings], 1, [Coding], ...)`, is wrong: after the first group it compares `1` with `[Coding]`, and GNU m4 prints "excess arguments to builtin `ifelse` ignored". The fix is to repeat the thing being tested in every group (`tc_pick`). That is a very m4 kind of bug, and a very m4 kind of warning.
+`ifelse(a, b, then, else)` compara `a` con `b`. Con más argumentos continúa **en grupos de tres**: `ifelse(a, b, then, c, d, then2, ..., else)`. Un primer intento natural de un switch de cuatro ramas, `ifelse(n, 0, [Meetings], 1, [Coding], ...)`, es incorrecto: después del primer grupo compara `1` con `[Coding]`, y GNU m4 imprime "excess arguments to builtin `ifelse` ignored". La solución es repetir lo que se prueba en cada grupo (`tc_pick`). Es un bicho muy propio de m4 y una advertencia muy propia de m4.
 
-### 6. A string that grows: `defn`
+### 6. Una cadena de texto que crece: `defn`
 
 ```m4
 define([tc_append], [define([tc_sql], defn([tc_sql])[$1])])
 ```
 
-`defn(name)` returns a macro's definition *quoted*, so it is not scanned again. Appending is "redefine the macro as itself plus the new text". That is how the SQL script accumulates card by card. Diversions are m4's other way to collect text (`divert(1)` sends output to a numbered buffer, `undivert(1)` pours it back), and `divert(-1)` is the "bit bucket" (a place where output just disappears) that this file uses to silence the definitions. The SQL is not collected in a diversion because `undivert` does not *return* text: inside an argument list it prints directly and the argument comes out empty, so a diversion cannot be passed to `syscmd`.
+`defn(name)` devuelve la definición de una macro *entre comillas*, así que no se vuelve a analizar. Añadir es "redefinir la macro como ella misma más el texto nuevo". Así acumula el script SQL tarjeta por tarjeta. Las desviaciones son la otra forma que tiene m4 de reunir texto (`divert(1)` envía la salida a un búfer numerado y `undivert(1)` la vuelca de nuevo). `divert(-1)` es el "cubo de bits" (un lugar donde la salida simplemente desaparece) que este archivo usa para silenciar las definiciones. El SQL no se reúne en una desviación porque `undivert` no *devuelve* texto. Dentro de una lista de argumentos imprime directamente y el argumento queda vacío. Por eso no se puede pasar una desviación a `syscmd`.
 
-### 7. The empty quote `[]`
+### 7. Las comillas vacías `[]`
 
-In `tc_row`, `$1[]tc_tab` has an empty quoted string in the middle. Without it, `Meetings` followed by `tc_tab` would be read as one word, `Meetingstc_tab`, which is not a macro. `[]` expands to nothing but splits the word. You will use this every time you paste macros together.
+En `tc_row`, `$1[]tc_tab` tiene una cadena de texto vacía entre comillas en medio. Sin ella, `Meetings` seguido de `tc_tab` se leería como una sola palabra, `Meetingstc_tab`, que no es una macro. `[]` se expande a nada, pero separa la palabra. Usarás esto cada vez que pegues macros.
 
-### 8. Saving
+### 8. Guardar
 
 ```m4
 syscmd([d="${XDG_DATA_HOME:-$HOME/.local/share}/M4"; mkdir -p "$d" && sqlite3 "$d/demo-timecards.db" <<'END_OF_DEMO_SQL'
@@ -129,44 +129,44 @@ END_OF_DEMO_SQL
 ])
 ```
 
-The quoting here switches in and out: the first and last pieces are literal shell text in `[ ]`, and `defn([tc_sql])` is outside the quotes so it is expanded into the script. A shell here-document with a quoted terminator carries the SQL, so the shell never sees it as anything but data. `sysval` (the exit status) is checked afterwards and a failure aborts with `m4exit(1)`.
+Aquí el entrecomillado alterna entre dentro y fuera de las comillas: la primera y la última pieza son texto literal del intérprete de comandos en `[ ]`; `defn([tc_sql])` queda fuera de las comillas, así que se expande en el script. Un *here-document* del intérprete de comandos con terminador entre comillas lleva el SQL, de modo que el intérprete nunca lo ve más que como datos. `sysval` (el estado de salida) se comprueba después y un fallo aborta con `m4exit(1)`.
 
-### 9. Pinning the seed
+### 9. Cómo fijar la semilla
 
-`ifdef([tc_seed], [], [define(...)])` means "only compute a seed if none was given on the command line with `-D`". That is what makes a run reproducible, which is what lets the tests compare it with a reference.
+`ifdef([tc_seed], [], [define(...)])` significa "calcula una semilla solo si no se dio ninguna en la línea de comandos con `-D`". Eso hace que una ejecución sea reproducible, y eso permite que las pruebas la comparen con una referencia.
 
-## Why this is weird
+## Por qué es raro
 
-Because it works. m4 was designed to preprocess text, in the 1970s, as the macro layer that shipped with Unix tools and later powered `sendmail.cf` and GNU `autoconf`. It has no loops, no variables, no arithmetic of its own beyond `eval`, no strings in any usual sense: everything is text being rewritten. The challenge needs state, repetition, random numbers and a stop rule, and each of those is built here from define, rescan and quoting. If you can write this, you can read `configure`.
+Porque funciona. m4 se diseñó en la década de 1970 para preprocesar texto, como la capa de macros que venía con las herramientas de Unix y que más tarde impulsó `sendmail.cf` y GNU `autoconf`. No tiene bucles ni variables ni aritmética propia más allá de `eval`, ni cadenas de texto en el sentido habitual: todo es texto que se reescribe. El reto necesita estado, repetición, números aleatorios y una regla de parada, y aquí cada uno de ellos se construye con define, el reescaneo y el entrecomillado. Si puedes escribir esto, puedes leer `configure`.
 
-## What you can learn
+## Qué puedes aprender
 
-- Rescanning: how text-in, text-out evaluation works, and why quoting is the whole point.
-- `define`/`defn`/`pushdef`-style state, and recursion as the only repetition.
-- The `ifelse` grouping rule, `dnl`, `[]` and `changequote`.
-- Diversions, and what `undivert` does not do.
-- That 32-bit `eval` is a design limit you have to work around, not a bug.
-- Why `#` comments are dangerous in a language where comments are not skipped.
+- Rescanning: cómo funciona la evaluación de texto a texto y por qué el entrecomillado es el punto central.
+- Estado de estilo `define`/`defn`/`pushdef` y recursión como única forma de repetición.
+- La regla de agrupación `ifelse`, `dnl`, `[]` y `changequote`.
+- Desvíos y lo que `undivert` no hace.
+- Ese límite de 32 bits de `eval` es un límite de diseño que debes sortear, no un bicho.
+- Por qué los comentarios `#` son peligrosos en un lenguaje donde los comentarios no se omiten.
 
-## Gotchas worth knowing
+## Trampas que conviene conocer
 
-- **GNU m4 extensions: two.** `esyscmd` (capture a command's output: seed, clock, week) and `format` (used once, to make a tab character). Everything else (`define`, `defn`, `ifelse`, `ifdef`, `eval`, `incr`, `divert`, `changecom`, `changequote`, `syscmd`, `sysval`, `dnl`, `-D`) is POSIX. BSD m4 has `esyscmd` but not `format`. One more GNU-specific *behavior* to know about: `eval` is 32-bit there, and the generator is built around that limit; another m4 may have a different width.
-- **Recursion depth.** The loop does not nest. `tc_card` ends in the text `tc_card()`, which m4 reads again from its input after the call has returned, so every card is expanded at the same depth (`m4 -t tc_card` shows depth 1 each time, and `check.sh` shows that the smallest working `-L` is the same for a 3-card and a 5-card run). Only the *unbracketed* call in [B11](../../lessons/exercises.md#b11-m4-quote-the-recursion-verified) nests, because it is made while `ifelse` is still collecting its arguments. What does grow with the card count is the SQL script: `tc_append` redefines `tc_sql` with a longer body at every card, so a rule that needed thousands of cards would need a different shape.
-- **The SQL is not escaped.** Every value is a number or one of four fixed words. Do not feed user text into `tc_insert`.
-- **The seed.** Three random bytes from `/dev/urandom`, scaled: about 24 bits of entropy, ample for a demo. A pinned seed must be 1 to 2147483646.
-- **The shell does the plumbing.** If you object that `syscmd` is a shell call: yes, to save the file, exactly as the Forth entry pipes to `sqlite3`. The computation is m4's.
-- **Formatting.** There is no formatter for m4. Layout: one macro per paragraph, a comment block above each section, bodies indented two spaces.
+- **Extensiones de GNU m4: dos.** `esyscmd` (captura la salida de un comando: semilla, reloj, semana) y `format` (se usa una vez, para crear un carácter de tabulación). Todo lo demás (`define`, `defn`, `ifelse`, `ifdef`, `eval`, `incr`, `divert`, `changecom`, `changequote`, `syscmd`, `sysval`, `dnl`, `-D`) es POSIX. BSD m4 tiene `esyscmd` pero no `format`. Hay otro *comportamiento* específico de GNU que debes conocer: `eval` tiene allí 32 bits, y el generador se construye en torno a ese límite. Otro m4 puede tener un ancho distinto.
+- **Profundidad de recursión.** El bucle no se anida. `tc_card` termina con el texto `tc_card()`. m4 vuelve a leer ese texto de su entrada de datos después de que la llamada termina. Por eso cada tarjeta se expande a la misma profundidad (`m4 -t tc_card` muestra profundidad 1 cada vez y `check.sh` muestra que el `-L` mínimo que funciona es el mismo en una ejecución de 3 tarjetas y en una de 5). Solo la llamada *sin corchetes* de [B11](../../lessons/exercises.md#b11-m4-quote-the-recursion-verified) se anida, porque se hace mientras `ifelse` aún recopila sus argumentos. Lo que sí crece con el número de tarjetas es el script SQL: `tc_append` redefine `tc_sql` con un cuerpo más largo en cada tarjeta, así que una regla que necesitara miles de tarjetas necesitaría otra forma.
+- **El SQL no está escapado.** Cada valor es un número o una de cuatro palabras fijas. No pases texto del usuario a `tc_insert`.
+- **La semilla.** Tres bytes aleatorios de `/dev/urandom`, escalados: unos 24 bits de entropía, de sobra para una demostración. Una semilla fijada debe valer de 1 a 2147483646.
+- **El intérprete de comandos se ocupa de cómo viaja el dato.** Si objetas que `syscmd` es una llamada al intérprete de comandos: sí, para guardar el archivo, igual que la entrada de Forth envía su salida por una tubería a `sqlite3`. El cálculo es de m4.
+- **Formato.** No hay un formateador para m4. El diseño es este: una macro por párrafo, un bloque de comentarios sobre cada sección y cuerpos con sangría de dos espacios.
 
-## What `check.sh` enforces
+## Qué impone `check.sh`
 
-With `dnl` lines removed: exactly one `syscmd` and exactly three `esyscmd`; `tc_card` ends by expanding itself. With a pinned seed, 47 runs (a fixed set plus 41 consecutive seeds) match an independent bash implementation card for card, including the stop rule and the category cycle. With the self-call removed, exactly one card appears. And 25 real runs each check the rows (hours 10 to 19, categories in order, correct running totals, the stop rule), and that SQLite holds exactly what was printed, all marked `DEMO ONLY`.
+Al quitar las líneas `dnl`: queda exactamente un `syscmd` y exactamente tres `esyscmd`; `tc_card` termina por expandirse a sí mismo. Con una semilla fija, 47 ejecuciones (un conjunto fijo más 41 semillas consecutivas) coinciden tarjeta por tarjeta con una implementación independiente en bash, incluidas la regla de parada y el ciclo de categorías. Si se quita la autollamada, aparece exactamente una tarjeta. Y 25 ejecuciones reales comprueban cada una las filas (horas de 10 a 19, categorías en orden, totales acumulados correctos, la regla de parada) y que SQLite contiene exactamente lo que se imprimió, todo ello marcado con `DEMO ONLY`.
 
-## Run it in a container
+## Ejecuta el programa en un contenedor
 
-Prerequisite: Docker, set up once as described in [`SANDBOX-SETUP.md`](../../SANDBOX-SETUP.md#docker). The `cc-rt-m4` base image comes from `sandbox/container/build-bases.sh`.
+Requisito previo: Docker, configurado una sola vez como se describe en [`SANDBOX-SETUP.md`](../../SANDBOX-SETUP.md#docker). La imagen base `cc-rt-m4` viene de `sandbox/container/build-bases.sh`.
 
 ```bash
 sandbox/container/run-image.sh src/m4
 ```
 
-The image holds GNU m4 and sqlite3 on a minimal Ubuntu.
+La imagen incluye GNU m4 y sqlite3 sobre un Ubuntu mínimo.

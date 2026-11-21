@@ -1,6 +1,6 @@
 ---
 name: "GNU Make"
-teaches: "that GNU Make can do arithmetic and loop in its own syntax, without a shell for either."
+teaches: "que GNU Make puede hacer aritmética y ejecutar bucles con su propia sintaxis, sin un intérprete de comandos (*shell*, el programa que ejecuta comandos) para ninguna de las dos cosas."
 kind: weird
 languages: [make]
 lesson: "lenguajes/make-cmake.md#gnu-make"
@@ -8,19 +8,19 @@ loop-by: rewrite-and-rescan
 evaluation: declarative
 assurance: accidentally-exploited
 pairs-with: cmake
-machine: "A dependency graph that can restart itself"
-state: "Which `.tc-N.mk` files exist, and `MAKE_RESTARTS`"
+machine: "Un grafo de dependencias que puede reiniciarse solo"
+state: "Qué archivos `.tc-N.mk` existen y `MAKE_RESTARTS`"
 tags: [build-automation, control-flow, declarative-programming, dependency-graph, fixed-point-iteration, hyrums-law, state, turing-completeness]
 analogies: [continuation, dataflow-programming, logical-clock]
 ---
-# GNU Make: the build tool is the interpreter
+# GNU Make: la herramienta de compilación es el intérprete
 
-**Teaches you:** that GNU Make can do arithmetic and loop in its own syntax, without a shell for either.
+**Te enseña:** que GNU Make puede hacer aritmética y bucles con su propia sintaxis, sin un intérprete de comandos para ninguno de los dos. Un intérprete de comandos es el programa que recibe y ejecuta los comandos que escribes.
 
-> **DEMO ONLY.** Fictional time cards, written to a scratch SQLite file under `$XDG_DATA_HOME/MakeChallenge/`.
-> Nothing here touches real time reporting.
+> **DEMO ONLY.** Tarjetas de tiempo ficticias, escritas en un archivo SQLite temporal dentro de `$XDG_DATA_HOME/MakeChallenge/`.
+> Nada de esto toca el registro real de horas.
 
-Put the `Makefile` in an otherwise empty directory and run `make`. Output is the same shape as the other entries:
+Coloca `Makefile` en un directorio que no tenga nada más y ejecuta `make`. La salida tiene la misma forma que la de las otras entradas:
 
 ```
 # DEMO ONLY run 2
@@ -32,97 +32,95 @@ Runtime error near line 1: CHECK constraint failed: stop rule fired: total excee
 # make re-executed itself 3 times, once per card
 ```
 
-The question this entry asks: **how much of the work can Make's own syntax do?** The `Makefile` contains no
-`$(shell)`, no `!=`, no Guile and no `load`. `check.sh` greps for all of them.
+La pregunta de esta entrada: **¿cuánto trabajo puede hacer la propia sintaxis de Make?** El `Makefile` no contiene
+`$(shell)`, ni `!=`, ni Guile, ni `load`. `check.sh` busca con grep todos ellos.
 
-## Run it in a container
+## Ejecuta el programa en un contenedor
 
-Prerequisite: Docker, set up once as described in [`SANDBOX-SETUP.md`](../../SANDBOX-SETUP.md#docker).
+Requisito previo: Docker, configurado una sola vez como se describe en [`SANDBOX-SETUP.md`](../../SANDBOX-SETUP.md#docker).
 
 ```bash
 sandbox/container/run-image.sh src/make-gnu
 ```
 
-It builds this folder's [`Dockerfile`](Dockerfile) and runs the result with no network, a read-only file system and user `nobody`, then prints the output and a read-only look at the rows it wrote. The image holds GNU Make and sqlite3 on a minimal Ubuntu. The Makefile runs from a private folder that starts out holding nothing else.
+Compila el [`Dockerfile`](Dockerfile) de esta carpeta y ejecuta el resultado sin red, con un sistema de archivos de solo lectura y con el usuario `nobody`. Después imprime la salida y una vista de solo lectura de las filas que escribió. La imagen incluye GNU Make y sqlite3 sobre un Ubuntu mínimo. El Makefile se ejecuta desde una carpeta privada que al inicio no contiene nada más.
 
-## Program Flow
+## Flujo del programa
 
 ```mermaid
 flowchart TD
-    accTitle: make-gnu: Make restarts itself once per card
-    accDescr: A flowchart. Make reads the makefile and includes every .tc-N.mk file written so far. A pattern rule checks whether the running total, held as a list of x words, is 40 or less. If it is, the rule writes the next .tc-N.mk file. A makefile that was remade makes Make re-execute itself, and MAKE_RESTARTS counts the passes. If the total is over 40, the rule writes nothing, so nothing is remade, Make stops restarting, and the default goal all runs. It prints the report through a chain of phony targets, plays a glow on a terminal, and hands the SQL script to sqlite3.
-    A["Make reads the makefile and includes every .tc-N.mk written so far"] --> B{{"Is the total, a list of x words, 40 or less?"}}
-    B -->|yes| C["A pattern rule writes the next .tc-N.mk file with the next card"]
-    C --> D["A file was remade, so Make re-executes itself: MAKE_RESTARTS goes up by one"]
+    accTitle: make-gnu: Make se reinicia a sí mismo una vez por tarjeta
+    accDescr: Un diagrama de flujo. Make lee el makefile e incluye todos los archivos .tc-N.mk escritos hasta ahora. Una regla de patrón comprueba si el total acumulado, guardado como una lista de palabras x, no pasa de 40. Si es así, la regla escribe el siguiente archivo .tc-N.mk. Un makefile regenerado hace que Make se vuelva a ejecutar, y MAKE_RESTARTS cuenta las pasadas. Si el total pasa de 40, la regla no escribe nada, así que no se regenera nada, Make deja de reiniciarse y se ejecuta la meta predeterminada all. Esta imprime el informe mediante una cadena de objetivos phony, muestra un resplandor en una terminal y entrega el script SQL a sqlite3.
+    A["Make lee el makefile e incluye todos los .tc-N.mk escritos hasta ahora"] --> B{{"¿El total, una lista de x palabras, es de 40 o menos?"}}
+    B -->|sí| C["Una regla de patrón escribe el siguiente archivo .tc-N.mk con la siguiente tarjeta"]
+    C --> D["Se rehízo un archivo, así que Make se vuelve a ejecutar a sí mismo: MAKE_RESTARTS aumenta en uno"]
     D --> A
-    B -->|"no: the 41st word exists"| E["Nothing is remade: Make stops restarting"]
-    E --> F["all runs: phony targets print the report, a glow plays on a terminal"]
-    F --> G["sqlite3 reads the script that Make wrote"]
+    B -->|"no: existe la palabra 41"| E["No se rehace nada: Make deja de reiniciarse"]
+    E --> F["all se ejecuta: los objetivos phony imprimen el informe y se reproduce un brillo en una terminal"]
+    F --> G["sqlite3 lee el script que escribió Make"]
 ```
 
-**What this shows:** the loop is the build tool rerunning itself. Each pass includes the `.tc-N.mk` files that exist, and a file that gets written forces a restart. The state is *which files exist*. The stop rule is that the rule declines to write a new file.
+**Qué muestra:** el bucle es la herramienta de compilación que se vuelve a ejecutar a sí misma. Cada pasada incluye los archivos `.tc-N.mk` que existen, y un archivo que se escribe fuerza un reinicio. El estado es *qué archivos existen*. La regla de parada es que la regla se niega a escribir un archivo nuevo.
 
-**Why this mechanism matters:** Make's dependency engine decides what to do next from the state of the file system. There is no loop statement and no `$(shell)`: arithmetic is list surgery on `x` words. The report is a chain of phony targets so that its output stays in order.
+**Por qué importa este mecanismo:** el motor de dependencias de Make decide qué hacer a continuación según el estado del sistema de archivos. No hay sentencia de bucle ni `$(shell)`: la aritmética es cirugía de listas sobre palabras `x`. El informe es una cadena de objetivos *phony* para que su salida se mantenga en orden.
 
-## How the stunt works
+## Cómo funciona el truco
 
-| Job | Done by | Shell? |
+| Tarea | Hecho por | ¿Intérprete de comandos? |
 |---|---|---|
-| Entropy | `$(file </proc/sys/kernel/random/uuid)`, letters stripped with nested `$(subst)`; first decimal digit left | no |
-| Hours 10 to 19 | the string `1` glued to that digit. "Mod 10" is picking a character | no |
-| Category order | `$(word n,Meetings Coding Debugging Learning)` | no |
-| Arithmetic | numbers are lists of `x`; `$(words $(wordlist 1,a,$(U)) $(wordlist 1,b,$(U)))` adds, `$(wordlist b+1,a,…)` subtracts | no |
-| Stop rule (`total > 40`) | the 41st word of the running list exists: `$(word 41,…)` | no |
-| **The loop** | Make **re-executes itself** once per card. Every pass includes the `.tc-N.mk` files written so far; a pattern rule writes the next one while the total is ≤ 40. A new file means "makefile remade", so Make restarts. `$(MAKE_RESTARTS)` is the loop counter. When the rule declines to write, nothing is remade and `all` runs | no |
-| Clock | `btime` from `/proc/stat` + whole seconds from `/proc/uptime`, added digit by digit with a carry (`NOW=<epoch>` overrides it for tests) | no |
-| ISO week | epoch ÷ 86400 by long division (÷100, then ÷864 digit by digit), a year-by-year calendar walk from 1970, then the Thursday-of-the-week rule | no |
-| Report | `$(info)` with a tab variable; the report is a chain of phony targets (`init`, `rows`, `footer`, frames) so output stays in order | no |
-| Glow | on a terminal only: 25 phony targets, one per frame, each printing a 256-color **DEMO ONLY** banner one gray shade brighter, then dimmer, then erased (about 1.5 s). "Is stdout a terminal?" is `$(realpath /proc/self/fd/1)` being `/dev/pts/N` | no (frames pause with `sleep 0.06`) |
-| Pop-up | `make pop` runs `wt.exe` (Windows Terminal) to open a window that runs the demo; the window closes itself when `make` exits | **yes** (`wt.exe`) |
-| Persistence | `$(file)` writes a `.sql` script, then `sqlite3 db < script` | **yes** |
-| Plumbing | `mkdir -p`, `rm -f`, and `:` (see below) | **yes** |
+| Entropía | `$(file </proc/sys/kernel/random/uuid)`, letras eliminadas con `$(subst)` anidado; queda el primer dígito decimal | no |
+| Horas de 10 a 19 | la cadena de texto `1` pegada a ese dígito. "Mod 10" es elegir un carácter | no |
+| Orden de las categorías | `$(word n,Meetings Coding Debugging Learning)` | no |
+| Aritmética | los números son listas de `x`; `$(words $(wordlist 1,a,$(U)) $(wordlist 1,b,$(U)))` suma, `$(wordlist b+1,a,…)` resta | no |
+| Regla de parada (`total > 40`) | existe la palabra 41 de la lista acumulada: `$(word 41,…)` | no |
+| **El bucle** | Make **se vuelve a ejecutar** una vez por tarjeta. Cada pasada incluye los archivos `.tc-N.mk` escritos hasta ahora; una regla de patrón escribe el siguiente mientras el total no pase de 40. Un archivo nuevo significa "makefile rehecho", así que Make se reinicia. `$(MAKE_RESTARTS)` es el contador del bucle. Cuando la regla decide no escribir, no se rehace nada y se ejecuta `all` | no |
+| Reloj | `btime` a partir de `/proc/stat` + los segundos enteros de `/proc/uptime`, sumados dígito a dígito con acarreo (`NOW=<epoch>` lo reemplaza en las pruebas) | no |
+| Semana ISO | época ÷ 86400 con división larga (÷100 y luego ÷864 dígito a dígito), un recorrido año por año del calendario desde 1970 y después la regla del jueves de la semana | no |
+| Informe | `$(info)` con una variable de tabulador; el informe es una cadena de objetivos *phony* (`init`, `rows`, `footer`, fotogramas) para que la salida quede en orden | no |
+| Glow | solo en una terminal: 25 objetivos *phony*, uno por fotograma. Cada uno imprime un banner de 256 colores **DEMO ONLY** en un tono de gris más brillante, luego más tenue y luego lo borra (unos 1,5 s). La pregunta "¿stdout es una terminal?" es `$(realpath /proc/self/fd/1)` con valor `/dev/pts/N` | no (los fotogramas se pausan con `sleep 0.06`) |
+| Ventana emergente | `make pop` ejecuta `wt.exe` (Windows Terminal) para abrir una ventana que ejecuta la demostración; la ventana se cierra sola cuando `make` termina | **sí** (`wt.exe`) |
+| Persistencia | `$(file)` escribe un script `.sql` y luego `sqlite3 db < script` | **sí** |
+| Cómo viaja el dato | `mkdir -p`, `rm -f` y `:` (ver abajo) | **sí** |
 
-The stop rule is also checked by SQLite: the last statement inserts `total <= 40` into a table whose only column has
-`CHECK(ok=1)`, so the named constraint error on stderr is the stop rule announcing itself, as in the other entries.
+SQLite también comprueba la regla de parada: la última sentencia inserta `total <= 40` en una tabla cuya única columna tiene
+`CHECK(ok=1)`, así que el error de restricción con nombre en stderr es la regla de parada que se anuncia a sí misma, como en las otras entradas.
 
-## What `check.sh` enforces
+## Qué impone `check.sh`
 
-`check.sh` makes sure the stunt is real. The Makefile may not use `$(shell)`, `!=`, `.ONESHELL` or `load`, and its recipes may run only `mkdir`, `sqlite3`, `rm`, `sleep` and the no-op `:`.
+`check.sh` comprueba que el truco es real. El Makefile no puede usar `$(shell)`, `!=`, `.ONESHELL` ni `load`; sus recetas solo pueden ejecutar `mkdir`, `sqlite3`, `rm`, `sleep` y la operación nula `:`.
 
-Then it runs `make` 25 times in a directory that holds nothing but the Makefile, and that directory must hold nothing else afterward. Each run must print as many rows as it has entries and report that Make re-executed itself once per entry. The usual rules apply: hours 10 to 19, categories in order, running totals right, `DEMO ONLY` on every row, a stop exactly when the total passes 40, an ISO week that matches SQLite's, and a database that agrees with the output. The stop-rule error must appear on stderr exactly once and nothing else may.
+Luego ejecuta `make` 25 veces en un directorio que contiene solo el Makefile, y ese directorio no debe contener nada más después. Cada ejecución debe imprimir tantas filas como entradas tenga e informar de que Make se volvió a ejecutar a sí mismo una vez por entrada. Se aplican las reglas habituales: horas de 10 a 19, categorías en orden, totales acumulados correctos, `DEMO ONLY` en cada fila, una parada exactamente cuando el total pasa de 40, una semana ISO que coincide con la de SQLite y una base de datos que concuerda con la salida. El error de la regla de parada debe aparecer en stderr exactamente una vez y no debe aparecer nada más.
 
-More tests follow. The pure-Make calendar is compared with `date -u` at boundary instants (`NOW` overrides the clock). The glow must be silent in a pipe, and on a pseudo-terminal it must draw 24 frames in 1 to 3 seconds. `make -n pop` must print its `wt.exe` command and write nothing. A leftover `.tc-0.mk` from an interrupted run must be refused, and `make clean` must remove it. Last, a non-demo row must be refused.
+Siguen más pruebas. El calendario hecho solo con Make se compara con `date -u` en instantes límite (`NOW` sustituye el reloj). El brillo debe ser silencioso en una tubería, y en una pseudoterminal debe dibujar 24 cuadros en un lapso de 1 a 3 segundos. `make -n pop` debe imprimir su comando `wt.exe` y no escribir nada. Un `.tc-0.mk` sobrante de una ejecución interrumpida debe rechazarse, y `make clean` debe eliminarlo. Por último, debe rechazarse una fila que no sea de demostración.
 
-## Gotchas worth knowing
+## Trampas que conviene conocer
 
-- **A recipe that expands to nothing doesn't count as remaking the file.** The card file is written while the recipe
-  line is *expanded*, but Make only notices (and restarts) if a command actually ran. So each card carries a `@:`,
-  the shell's no-op. This is the one place the loop needs a shell at all.
-- **One file per pass, not one file rewritten.** The first design rewrote a single `.state.mk`. It restarted once and
-  then stopped: WSL's file timestamps are coarse enough that the rewrite looked unchanged. A file going from
-  *missing* to *present* is unambiguous.
-- **Make expands every line of a recipe before it runs any of them**, so `$(info)` output would come out before
-  SQLite's header. The report is a chain of targets (`init`, `rows`, `all`) because a recipe is expanded just
-  before its own target runs.
-- **`#` starts a comment, even inside a SQL string in a variable.** The header's `'# DEMO ONLY'` is written `\#`.
-- **No pure-Make way to create a directory or a SQLite file.** Hence `mkdir -p` and `sqlite3`.
-- **Time is UTC.** `/etc/localtime` is binary, and Make has no way to read it. Local time only differs from this
-  near a week boundary. The calendar is good through 2134 (the ruler is 60,000 days long) and handles the 2100
-  non-leap year.
-- **Escape codes need an ESC byte.** Make has no escape syntax, so the Makefile holds one literal `0x1b` (in `define ESC`).
-- **`wt.exe` treats `;` as its own subcommand separator**, so the `make pop` command line must not contain one (a first
-  attempt spawned a pile of "The system cannot find the file specified" windows).
-- **`make pop`, `clean` and `check` never run the card loop**; the loop would leave cards behind that the popped
-  `make` would then refuse as stale.
-- **A crashed run leaves `.tc-*.mk` behind.** The next `make` refuses to start (it would otherwise treat them as
-  real cards); `make clean` removes them.
-- **Edge case:** four cards of exactly 10 hours total exactly 40, which continues. There are only four categories,
-  so the fifth card reuses `Meetings`.
-- `check.sh` runs `make` 25 times in a directory holding only the `Makefile`, compares the ISO week with SQLite's
-  date arithmetic, compares the SQLite rows with the printed ones, and sweeps 20 boundary instants (year ends, 53-week
-  years, 1970, 2096) against `date -u`, and checks (through a pty) that the glow is 24 frames in 1–3 s and absent in a pipe.
+- **Una receta que se expande a nada no cuenta como rehacer el archivo.** El archivo de la tarjeta se escribe mientras la línea
+  de la receta se *expande*, pero Make solo se da cuenta (y se reinicia) si un comando se ejecutó de verdad. Por eso cada tarjeta lleva un `@:`,
+  la operación nula del intérprete de comandos. Es el único lugar donde el bucle necesita siquiera un intérprete de comandos.
+- **Un archivo por pasada, no un archivo reescrito.** El primer diseño reescribió un solo `.state.mk`. Se reinició una vez y luego se detuvo: las marcas de tiempo de los archivos de WSL son tan imprecisas que la reescritura parecía sin cambios. Un archivo que pasa de *ausente* a *presente* es inequívoco.
+- **Make expande todas las líneas de una receta antes de ejecutar ninguna de ellas**, así que la salida de `$(info)` aparecería antes del
+  encabezado de SQLite. El informe es una cadena de objetivos (`init`, `rows`, `all`) porque Make expande una receta justo
+  antes de ejecutar su propio objetivo.
+- **`#` inicia un comentario, incluso dentro de una cadena de texto SQL en una variable.** El `'# DEMO ONLY'` del encabezado se escribe como `\#`.
+- **No hay forma de crear un directorio ni un archivo SQLite solo con Make.** Por eso existen `mkdir -p` y `sqlite3`.
+- **La hora es UTC.** `/etc/localtime` es binario y Make no tiene forma de leerlo. La hora local solo difiere de esta cerca del límite de una
+  semana. El calendario es válido hasta 2134 inclusive (la regla mide 60,000 días) y maneja el año no bisiesto
+  2100.
+- **Los códigos de escape necesitan un byte ESC.** Make no tiene sintaxis de escape, así que el Makefile contiene un `0x1b` literal (en `define ESC`).
+- **`wt.exe` trata `;` como su propio separador de subcomandos**, así que la línea de comandos de `make pop` no debe contener uno (un primer
+  intento abrió un montón de ventanas con el mensaje "The system cannot find the file specified").
+- **`make pop`, `clean` y `check` nunca ejecutan el bucle de tarjetas**; el bucle dejaría tarjetas sobrantes que el
+  `make` extraído después rechazaría por obsoletas.
+- **Una ejecución que falla deja `.tc-*.mk` atrás.** La siguiente `make` se niega a iniciar (de lo contrario las trataría como
+  tarjetas reales); `make clean` las elimina.
+- **Caso límite:** cuatro tarjetas de exactamente 10 horas suman un total de exactamente 40, que continúa. Solo hay cuatro categorías,
+  así que la quinta tarjeta reutiliza `Meetings`.
+- `check.sh` ejecuta `make` 25 veces en un directorio que contiene únicamente `Makefile`, compara la semana ISO con la aritmética de fechas
+  de SQLite, compara las filas de SQLite con las filas impresas, contrasta 20 instantes límite (fines de año, años de 53 semanas,
+  1970, 2096) con `date -u` y comprueba (mediante un pty) que el resplandor consta de 24 fotogramas en un lapso de 1 a 3 s y no aparece en una tubería.
 
-## Run it
+## Ejecútalo
 
 ```bash
 make          # one run (glows if stdout is a terminal, silent in a pipe)
@@ -133,4 +131,4 @@ make clean    # remove leftover state after an interrupted run
 
 ---
 
-See the [root README](../../README.md#the-results-so-far) for how this compares to the other entries, and [`RETO.md`](../../RETO.md) if you want to write your own.
+Consulta el [README principal](../../README.md#the-results-so-far) para ver cómo se compara con las otras entradas, y [`RETO.md`](../../RETO.md) si quieres escribir la tuya.

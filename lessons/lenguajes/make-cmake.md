@@ -145,7 +145,7 @@ flowchart TD
 
 ### Program flow of `make-gnu`
 
-From [`make-gnu`](../../src/make-gnu/README.md) ([source section](../../src/make-gnu/README.md#program-flow)).
+From [`make-gnu`](../../src/make-gnu/README.md) ([source section](../../src/make-gnu/README.md#flujo-del-programa)).
 
 ```mermaid
 flowchart TD
