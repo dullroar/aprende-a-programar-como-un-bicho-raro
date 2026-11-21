@@ -36,12 +36,12 @@ La ventana se construye a partir de una cadena de texto de XAML sin procesar med
 ### ¿Qué acabamos de aprender?
 
 - `for` consta de tres expresiones y un cuerpo, y el cuerpo es opcional.
-- An **anonymous type** is a way to pack mixed state into one expression.
-- A `void` side effect can be turned into a value with a `Func<T>` invoked in place. That is the move every later entry reuses.
+- Un **tipo anónimo** permite reunir estados distintos en una sola expresión.
+- Un efecto secundario de `void` puede convertirse en un valor con un `Func<T>` invocado in situ. Cada entrada posterior reutiliza esta maniobra.
 
-### Do this in production and you're fired
+### Haz esto en producción y estás despedido
 
-- **`DbContext` is not thread-safe.** The `Mutex` exists only to keep the thread-plus-reflection shape working at all ([README](../../src/ModernChallenge1/README.md#trampas-que-conviene-conocer)); it is a historical artifact.
+- **`DbContext` no es seguro para hilos.** El `Mutex` existe solo para que la estructura de hilo más reflexión funcione siquiera ([README](../../src/ModernChallenge1/README.md#trampas-que-conviene-conocer)); es un vestigio histórico.
 - **Reflection and a thread add nothing.** They are a deliberate 2008-style time capsule; modern code would `await SaveChangesAsync()`.
 - **WPF needs `[STAThread]`** and a single UI thread ([L30](../../src/ModernChallenge1/Program.cs#L30)).
 - **Readability, testing, debugging**: nothing in that `for` header can be stepped through, unit-tested or reused.

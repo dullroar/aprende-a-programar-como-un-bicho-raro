@@ -100,22 +100,22 @@ msgstr "⟦CODE_0001⟧ consta de tres expresiones y un cuerpo, y el cuerpo es o
 #: lessons/languages/csharp-linq-xaml.md:39
 msgctxt "s-54d2d7922a6b-0018"
 msgid "An **anonymous type** is a way to pack mixed state into one expression."
-msgstr ""
+msgstr "Un **tipo anónimo** permite reunir estados distintos en una sola expresión."
 
 #: lessons/languages/csharp-linq-xaml.md:40
 msgctxt "s-901754d16ffb-0019"
 msgid "A ⟦CODE_0001⟧ side effect can be turned into a value with a ⟦CODE_0002⟧ invoked in place. That is the move every later entry reuses."
-msgstr ""
+msgstr "Un efecto secundario de ⟦CODE_0001⟧ puede convertirse en un valor con un ⟦CODE_0002⟧ invocado in situ. Cada entrada posterior reutiliza esta maniobra."
 
 #: lessons/languages/csharp-linq-xaml.md:42
 msgctxt "s-299b7a6f9cbe-0020"
 msgid "Do this in production and you're fired"
-msgstr ""
+msgstr "Haz esto en producción y estás despedido"
 
 #: lessons/languages/csharp-linq-xaml.md:44
 msgctxt "s-09d904d88f80-0021"
 msgid "**⟦CODE_0001⟧ is not thread-safe.** The ⟦CODE_0002⟧ exists only to keep the thread-plus-reflection shape working at all ([README](⟦DEST_0003⟧)); it is a historical artifact."
-msgstr ""
+msgstr "**⟦CODE_0001⟧ no es seguro para hilos.** El ⟦CODE_0002⟧ existe solo para que la estructura de hilo más reflexión funcione siquiera ([README](⟦DEST_0003⟧)); es un vestigio histórico."
 
 #: lessons/languages/csharp-linq-xaml.md:45
 msgctxt "s-a84a688a73e1-0022"

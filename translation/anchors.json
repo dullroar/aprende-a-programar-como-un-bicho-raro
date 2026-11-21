@@ -4126,16 +4126,16 @@
     {
      "en": "What did we just learn?",
      "en_id": "what-did-we-just-learn",
-     "es": "What did we just learn?",
-     "es_id": "what-did-we-just-learn",
+     "es": "¿Qué acabamos de aprender?",
+     "es_id": "qué-acabamos-de-aprender",
      "level": 3,
      "line": 36
     },
     {
      "en": "Do this in production and you're fired",
      "en_id": "do-this-in-production-and-youre-fired",
-     "es": "Do this in production and you're fired",
-     "es_id": "do-this-in-production-and-youre-fired",
+     "es": "Haz esto en producción y estás despedido",
+     "es_id": "haz-esto-en-producción-y-estás-despedido",
      "level": 3,
      "line": 42
     },
@@ -4167,7 +4167,7 @@
      "en": "What did we just learn?",
      "en_id": "what-did-we-just-learn-1",
      "es": "What did we just learn?",
-     "es_id": "what-did-we-just-learn-1",
+     "es_id": "what-did-we-just-learn",
      "level": 3,
      "line": 73
     },
@@ -4175,7 +4175,7 @@
      "en": "Do this in production and you're fired",
      "en_id": "do-this-in-production-and-youre-fired-1",
      "es": "Do this in production and you're fired",
-     "es_id": "do-this-in-production-and-youre-fired-1",
+     "es_id": "do-this-in-production-and-youre-fired",
      "level": 3,
      "line": 81
     },
@@ -4215,7 +4215,7 @@
      "en": "What did we just learn?",
      "en_id": "what-did-we-just-learn-2",
      "es": "What did we just learn?",
-     "es_id": "what-did-we-just-learn-2",
+     "es_id": "what-did-we-just-learn-1",
      "level": 3,
      "line": 114
     },
@@ -4329,8 +4329,8 @@
     "c-linq-and-xaml-plus-the-one-statement-ports": "c-linq-y-xaml-más-las-adaptaciones-de-una-sola-sentencia",
     "computer-science-behind-this-page": "computer-science-behind-this-page",
     "deferred-execution-and-the-void-to-value-trick": "deferred-execution-and-the-void-to-value-trick",
-    "do-this-in-production-and-youre-fired": "do-this-in-production-and-youre-fired",
-    "do-this-in-production-and-youre-fired-1": "do-this-in-production-and-youre-fired-1",
+    "do-this-in-production-and-youre-fired": "haz-esto-en-producción-y-estás-despedido",
+    "do-this-in-production-and-youre-fired-1": "do-this-in-production-and-youre-fired",
     "honest-fine-print": "honest-fine-print",
     "how-each-program-runs": "how-each-program-runs",
     "how-is-that-even-possible": "how-is-that-even-possible",
@@ -4350,9 +4350,9 @@
     "the-one-statement-ports-same-trick-different-machinery": "the-one-statement-ports-same-trick-different-machinery",
     "the-original-modernchallenge1": "el-original-modernchallenge1",
     "under-what-circumstances-would-this-terrible-idea-become-reasonable": "under-what-circumstances-would-this-terrible-idea-become-reasonable",
-    "what-did-we-just-learn": "what-did-we-just-learn",
-    "what-did-we-just-learn-1": "what-did-we-just-learn-1",
-    "what-did-we-just-learn-2": "what-did-we-just-learn-2",
+    "what-did-we-just-learn": "qué-acabamos-de-aprender",
+    "what-did-we-just-learn-1": "what-did-we-just-learn",
+    "what-did-we-just-learn-2": "what-did-we-just-learn-1",
     "xaml": "xaml"
    }
   },
