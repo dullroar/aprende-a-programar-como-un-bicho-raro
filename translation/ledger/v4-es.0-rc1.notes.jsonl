@@ -1691,3 +1691,29 @@
 {"segment_id": "s-c0ff59c3727b-0085", "ts": "2026-11-21T17:10:46Z", "findings": ["I7: glossary term build must be rendered 'compilación'", "I7: banned phrase 'seguro' (assurance label)", "I7: banned phrase 'garantizada' (assurance label)"]}
 {"segment_id": "s-87d9e31bff8d-0070", "ts": "2026-11-21T17:10:55Z", "findings": ["I7: glossary term state must be rendered 'estado'"]}
 {"segment_id": "s-c0ff59c3727b-0085", "ts": "2026-11-21T17:10:55Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-ab4e531ba1d3-0002", "ts": "2026-11-21T17:17:12Z", "findings": ["I12: sentence of 46 words (limit 29): Las entradas del libro responden en otro..."]}
+{"segment_id": "s-d1a72851ef3e-0004", "ts": "2026-11-21T17:17:12Z", "findings": ["I12: sentence of 32 words (limit 29): Decir, para COBOL, Forth, Make, CMake, T...", "I12: sentence of 31 words (limit 29): Distinguir el estado de control que son ..."]}
+{"segment_id": "s-0df4b1fffa4b-0005", "ts": "2026-11-21T17:17:12Z", "findings": ["I7: glossary term scope must be rendered 'ámbito'"]}
+{"segment_id": "s-78a7d749b03d-0017", "ts": "2026-11-21T17:17:12Z", "findings": ["I11: the standard shared-challenge paragraph must be the catalog text study_guides.shared_challenge exactly"]}
+{"segment_id": "s-bbf450924cba-0026", "ts": "2026-11-21T17:17:12Z", "findings": ["I25: comma before a simple 'y' ('| qué archivos X existen, y X | los mismos archivos'): no comma before a simple o or y"]}
+{"segment_id": "s-48a3a6a79403-0036", "ts": "2026-11-21T17:17:12Z", "findings": ["I12: sentence of 37 words (limit 29): El intérprete de texto de Forth, el reco..."]}
+{"segment_id": "s-91cd56c11da0-0037", "ts": "2026-11-21T17:17:12Z", "findings": ["I12: sentence of 42 words (limit 29): Cómo se detiene la máquina: un campo que..."]}
+{"segment_id": "s-64c95d088c6b-0040", "ts": "2026-11-21T17:17:12Z", "findings": ["I21: identifier 'step' must stay literal (the English names it here); describe around it, never translate it"]}
+{"segment_id": "s-fc17a0b9b664-0043", "ts": "2026-11-21T17:17:12Z", "findings": ["I21: identifier 'step' must stay literal (the English names it here); describe around it, never translate it"]}
+{"segment_id": "s-6edbaeae4c9d-0056", "ts": "2026-11-21T17:17:12Z", "findings": ["I12: sentence of 35 words (limit 29): Un campo que contiene el mismo valor en ..."]}
+{"segment_id": "s-87d9e31bff8d-0085", "ts": "2026-11-21T17:17:12Z", "findings": ["I7: glossary term state must be rendered 'estado'"]}
+{"segment_id": "s-e53941b646bb-0088", "ts": "2026-11-21T17:17:12Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-fd844f88f735-0089", "ts": "2026-11-21T17:17:12Z", "findings": ["I12: sentence of 35 words (limit 29): Un conteo de líneas incorrecto en la cop..."]}
+{"segment_id": "s-ab4e531ba1d3-0002", "ts": "2026-11-21T17:17:15Z", "findings": ["I12: sentence of 46 words (limit 29): Las entradas del libro responden en otro..."]}
+{"segment_id": "s-d1a72851ef3e-0004", "ts": "2026-11-21T17:17:15Z", "findings": ["I12: sentence of 32 words (limit 29): Decir, para COBOL, Forth, Make, CMake, T...", "I12: sentence of 31 words (limit 29): Distinguir el estado de control que son ..."]}
+{"segment_id": "s-0df4b1fffa4b-0005", "ts": "2026-11-21T17:17:15Z", "findings": ["I7: glossary term scope must be rendered 'ámbito'"]}
+{"segment_id": "s-78a7d749b03d-0017", "ts": "2026-11-21T17:17:15Z", "findings": ["I11: the standard shared-challenge paragraph must be the catalog text study_guides.shared_challenge exactly"]}
+{"segment_id": "s-bbf450924cba-0026", "ts": "2026-11-21T17:17:15Z", "findings": ["I25: comma before a simple 'y' ('| qué archivos X existen, y X | los mismos archivos'): no comma before a simple o or y"]}
+{"segment_id": "s-48a3a6a79403-0036", "ts": "2026-11-21T17:17:15Z", "findings": ["I12: sentence of 37 words (limit 29): El intérprete de texto de Forth, el reco..."]}
+{"segment_id": "s-91cd56c11da0-0037", "ts": "2026-11-21T17:17:15Z", "findings": ["I12: sentence of 42 words (limit 29): Cómo se detiene la máquina: un campo que..."]}
+{"segment_id": "s-64c95d088c6b-0040", "ts": "2026-11-21T17:17:15Z", "findings": ["I21: identifier 'step' must stay literal (the English names it here); describe around it, never translate it"]}
+{"segment_id": "s-fc17a0b9b664-0043", "ts": "2026-11-21T17:17:15Z", "findings": ["I21: identifier 'step' must stay literal (the English names it here); describe around it, never translate it"]}
+{"segment_id": "s-6edbaeae4c9d-0056", "ts": "2026-11-21T17:17:15Z", "findings": ["I12: sentence of 35 words (limit 29): Un campo que contiene el mismo valor en ..."]}
+{"segment_id": "s-87d9e31bff8d-0085", "ts": "2026-11-21T17:17:15Z", "findings": ["I7: glossary term state must be rendered 'estado'"]}
+{"segment_id": "s-e53941b646bb-0088", "ts": "2026-11-21T17:17:15Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-fd844f88f735-0089", "ts": "2026-11-21T17:17:15Z", "findings": ["I12: sentence of 35 words (limit 29): Un conteo de líneas incorrecto en la cop..."]}

@@ -1,0 +1,548 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lessons/study-guides/concepts/state-and-control-beyond-variables.md:1
+msgctxt "s-81c5764d68e5-0000"
+msgid "State and control beyond variables study guide"
+msgstr "Guía de estudio de estado y control más allá de las variables"
+
+#: lessons/study-guides/concepts/state-and-control-beyond-variables.md:3
+msgctxt "s-4e718de9279e-0001"
+msgid "What this guide is for"
+msgstr "Para qué sirve esta guía"
+
+#: lessons/study-guides/concepts/state-and-control-beyond-variables.md:5
+msgctxt "s-ab4e531ba1d3-0002"
+msgid "This guide answers two questions about every program: **what runs next, and what does it remember?** Most languages answer with a program counter, a call stack and variables. The book's entries answer elsewhere: in a jump target, a parse position, the set of files that exist, regex captures, source text, table rows, a class chain, an archive's size. The guide teaches you to find the answer in a program that has no obvious loop and no obvious variable."
+msgstr "Esta guía responde dos preguntas sobre cada programa: **¿qué se ejecuta después y qué recuerda?** La mayoría de los lenguajes responden con un contador de programa, una pila de llamadas y variables. Las entradas del libro responden en otro sitio. Pueden ser un destino de salto, una posición de análisis o el conjunto de archivos que existen. Pueden ser las capturas de una regex, el texto fuente o las filas de una tabla. Pueden ser una cadena de clases o el tamaño de un archivo tar. La guía te enseña a encontrar la respuesta en un programa que no tiene un bucle evidente ni una variable evidente."
+
+#: lessons/study-guides/concepts/state-and-control-beyond-variables.md:7
+msgctxt "s-d84bcb27c154-0003"
+msgid "When you finish, you should be able to:"
+msgstr "Cuando termines, deberías poder:"
+
+#: lessons/study-guides/concepts/state-and-control-beyond-variables.md:9
+msgctxt "s-d1a72851ef3e-0004"
+msgid ""
+"Describe any program as a machine: a state, a set of allowed steps, a representation and an invariant.\n"
+"2. Say, for COBOL, Forth, Make, CMake, Tcl, APL, Common Lisp, ed, Ex and tar, where the *next step* is stored and where the *remembered state* is stored, and say how they differ.\n"
+"3. Explain why a debugger that shows variables can give an incomplete picture of such a program.\n"
+"4. Distinguish control state that is *data the program edits* (a jump target, a mark, source text) from control state that is *derived* (a counter, a position).\n"
+"5. State an invariant for a program and say how its output could prove or refute it.\n"
+"6. Label claims as guaranteed, implementation-permitted or accidentally exploited."
+msgstr ""
+"Describir cualquier programa como una máquina: un estado, un conjunto de pasos permitidos, una representación y un invariante.\n"
+"2. Para COBOL, Forth, Make, CMake, Tcl, APL, Common Lisp, ed, Ex y tar, decir dónde se guarda el *paso siguiente* y dónde el *estado recordado*. Decir también en qué se diferencian.\n"
+"3. Explicar por qué un depurador que muestra variables puede dar una imagen incompleta de un programa así.\n"
+"4. Distinguir dos tipos de estado de control. El primero son *datos que el programa edita* (un destino de salto, una marca, texto fuente). El segundo se *deriva* (un contador, una posición).\n"
+"5. Enunciar un invariante de un programa y decir cómo su salida podría probarlo o refutarlo.\n"
+"6. Etiquetar cada afirmación como comportamiento garantizado, permitido por la implementación o aprovechado por accidente."
+
+#: lessons/study-guides/concepts/state-and-control-beyond-variables.md:16
+msgctxt "s-0df4b1fffa4b-0005"
+msgid "**Scope limits.** The guide uses facts verified in the language guides and does not repeat their traces. It does not cover concurrency or the event loop (see [Events, callbacks and reactive control](⟦DEST_0001⟧)). Its source chapters are [What counts as a machine?](⟦DEST_0002⟧), [Control flow and continuations](⟦DEST_0003⟧) and [State beyond variables](⟦DEST_0004⟧). ⟦CODE_0005⟧ and AWK are cited here rather than given their own guide."
+msgstr "**Límites del alcance.** Esta guía usa hechos verificados en las guías de lenguaje y no repite sus trazas. No trata la concurrencia ni el bucle de eventos (consulta [Eventos, funciones de devolución de llamada y control reactivo](⟦DEST_0001⟧)). Sus capítulos de origen son [¿Qué cuenta como una máquina?](⟦DEST_0002⟧), [Flujo de control y continuaciones](⟦DEST_0003⟧) y [Estado más allá de las variables](⟦DEST_0004⟧). ⟦CODE_0005⟧ y AWK se citan aquí en lugar de tener su propia guía."
+
+#: lessons/study-guides/concepts/state-and-control-beyond-variables.md:18
+msgctxt "s-d5bfdd7d989d-0006"
+msgid "Before you begin"
+msgstr "Antes de empezar"
+
+#: lessons/study-guides/concepts/state-and-control-beyond-variables.md:20
+msgctxt "s-47f65dc793ba-0007"
+msgid "**Safety model.** The cards are fictional **⟦DNT_0001⟧** data. Programs can write to local scratch files or databases and can start processes. Read the source first and run it in the sandbox first, for example ⟦CODE_0002⟧. Work on copies ([Running things safely](⟦DEST_0003⟧))."
+msgstr "**Modelo de seguridad.** Las tarjetas son datos ficticios marcados con **⟦DNT_0001⟧**. Los programas pueden escribir en archivos o bases de datos locales de prueba y pueden iniciar procesos. Lee primero el código fuente y ejecútalo antes en un entorno aislado (*sandbox*) que limita el acceso al sistema anfitrión, por ejemplo ⟦CODE_0002⟧. Trabaja con copias ([Ejecutar cosas con seguridad](⟦DEST_0003⟧))."
+
+#: lessons/study-guides/concepts/state-and-control-beyond-variables.md:22
+msgctxt "s-6c097d3aba0d-0008"
+msgid "**Prediction rule.** Before each run, write the *two* facts a trace needs: where the program is, and what it remembers. They are different columns. For COBOL's ⟦CODE_0001⟧, one tells you where execution *is*, and the other tells you where the next ⟦CODE_0002⟧ *will go*."
+msgstr "**Regla de predicción.** Antes de cada ejecución, escribe los *dos* datos que necesita una traza: dónde está el programa y qué recuerda. Son columnas distintas. En el ⟦CODE_0001⟧ de COBOL, una te dice dónde *está* la ejecución y la otra te dice adónde *irá* el siguiente ⟦CODE_0002⟧."
+
+#: lessons/study-guides/concepts/state-and-control-beyond-variables.md:24
+msgctxt "s-2dd18ffddf3e-0009"
+msgid "**Vocabulary.**"
+msgstr "**Vocabulario.**"
+
+#: lessons/study-guides/concepts/state-and-control-beyond-variables.md:26
+msgctxt "s-790e521777f0-0010"
+msgid "⟦SEP_0001⟧ Term ⟦SEP_0002⟧ Meaning here ⟦SEP_0003⟧"
+msgstr "⟦SEP_0001⟧ Término ⟦SEP_0002⟧ Significado aquí ⟦SEP_0003⟧"
+
+#: lessons/study-guides/concepts/state-and-control-beyond-variables.md:28
+msgctxt "s-a76f44a6683d-0011"
+msgid "⟦SEP_0001⟧ State ⟦SEP_0002⟧ Whatever persists between steps and can change a later step. ⟦SEP_0003⟧"
+msgstr "⟦SEP_0001⟧ Estado ⟦SEP_0002⟧ Todo lo que persiste entre pasos y puede cambiar un paso posterior. ⟦SEP_0003⟧"
+
+#: lessons/study-guides/concepts/state-and-control-beyond-variables.md:29
+msgctxt "s-840dcf0806f4-0012"
+msgid "⟦SEP_0001⟧ Program counter ⟦SEP_0002⟧ The place that says what runs next. ⟦SEP_0003⟧"
+msgstr "⟦SEP_0001⟧ Contador de programa ⟦SEP_0002⟧ El lugar que dice qué se ejecuta después. ⟦SEP_0003⟧"
+
+#: lessons/study-guides/concepts/state-and-control-beyond-variables.md:30
+msgctxt "s-20e66fd5a4dd-0013"
+msgid "⟦SEP_0001⟧ Representation ⟦SEP_0002⟧ How a value is written down: bits, text, marks, a position. ⟦SEP_0003⟧"
+msgstr "⟦SEP_0001⟧ Representación ⟦SEP_0002⟧ Cómo se escribe un valor: bits, texto, marcas, una posición. ⟦SEP_0003⟧"
+
+#: lessons/study-guides/concepts/state-and-control-beyond-variables.md:31
+msgctxt "s-239495d9ce0c-0014"
+msgid "⟦SEP_0001⟧ Invariant ⟦SEP_0002⟧ A fact that stays true while the machine runs, at least after each step. ⟦SEP_0003⟧"
+msgstr "⟦SEP_0001⟧ Invariante ⟦SEP_0002⟧ Un hecho que sigue siendo cierto mientras la máquina se ejecuta, al menos después de cada paso. ⟦SEP_0003⟧"
+
+#: lessons/study-guides/concepts/state-and-control-beyond-variables.md:32
+msgctxt "s-03e5d02fdee9-0015"
+msgid "⟦SEP_0001⟧ Continuation ⟦SEP_0002⟧ \"The rest of the computation\", stored as something other than a stack frame. ⟦SEP_0003⟧"
+msgstr "⟦SEP_0001⟧ Continuación ⟦SEP_0002⟧ \"El resto de la computación\", guardado como algo distinto de un marco de pila. ⟦SEP_0003⟧"
+
+#: lessons/study-guides/concepts/state-and-control-beyond-variables.md:34
+msgctxt "s-ae7d69ef2745-0016"
+msgid "The shared challenge"
+msgstr "El reto compartido"
+
+#: lessons/study-guides/concepts/state-and-control-beyond-variables.md:36
+msgctxt "s-78a7d749b03d-0017"
+msgid "The [challenge specification](⟦DEST_0001⟧) calls for cards with a category and 10 to 19 whole hours. Categories cycle through ⟦DNT_0002⟧, ⟦DNT_0003⟧, ⟦DNT_0004⟧ and ⟦DNT_0005⟧. Add each card's hours to the running total. Stop when the total passes 40. Keep the **first card that takes the total over 40**. A total of exactly 40 continues. Four 10-hour cards need a fifth card, in the ⟦DNT_0006⟧ category. Conforming runs finish with 3 to 5 cards and a total of 41 to 59 hours."
+msgstr "La [especificación del reto](⟦DEST_0001⟧) pide tarjetas con una categoría y de 10 a 19 horas enteras. Las categorías se repiten en ciclo: `⟦DNT_0002⟧`, `⟦DNT_0003⟧`, `⟦DNT_0004⟧` y `⟦DNT_0005⟧`. Suma las horas de cada tarjeta al total acumulado. Detente cuando el total pasa de 40. Conserva la **primera tarjeta con la que el total pasa de 40**. Un total de exactamente 40 continúa. Cuatro tarjetas de 10 horas necesitan una quinta tarjeta, de la categoría `⟦DNT_0006⟧`. Las ejecuciones conformes tienen de 3 a 5 tarjetas y un total de 41 a 59 horas."
+
+#: lessons/study-guides/concepts/state-and-control-beyond-variables.md:38
+msgctxt "s-9c68d6cc7c4f-0018"
+msgid "As a machine, the challenge has a small state: ⟦CODE_0001⟧, plus the next category. One step takes a number of hours, adds it to the total, records the card and either continues or finishes. The *invariant* after each recorded card is \"the total equals the sum of the recorded hours\". For the weird COBOL variant there is a second invariant that holds only after each successful add: ⟦CODE_0002⟧ equals 59 plus the total. The examples in this trace represent that machine in different ways. The fixed LINQ demos and the XAML ceiling show where the shared model needs an extra stopping condition."
+msgstr "Como máquina, el reto tiene un estado pequeño: ⟦CODE_0001⟧, más la categoría siguiente. Un paso toma una cantidad de horas, la suma al total, registra la tarjeta y continúa o termina. El *invariante* tras cada tarjeta registrada es \"el total es igual a la suma de las horas registradas\". En la variante rara de COBOL hay un segundo invariante, que solo se cumple tras cada suma exitosa: ⟦CODE_0002⟧ es igual a 59 más el total. Los ejemplos de esta traza representan esa máquina de maneras distintas. Las demostraciones fijas de LINQ y el techo de XAML muestran dónde el modelo compartido necesita una regla de parada adicional."
+
+#: lessons/study-guides/concepts/state-and-control-beyond-variables.md:40
+msgctxt "s-9f148b367e02-0019"
+msgid "The machine to identify"
+msgstr "La máquina que hay que identificar"
+
+#: lessons/study-guides/concepts/state-and-control-beyond-variables.md:42
+msgctxt "s-bcb53eda19e3-0020"
+msgid "Use this worksheet for every entry. The five answers in the first column were checked in the language guides."
+msgstr "Usa esta hoja de trabajo para cada entrada. Las cinco respuestas de la primera columna se comprobaron en las guías de lenguaje."
+
+#: lessons/study-guides/concepts/state-and-control-beyond-variables.md:44
+msgctxt "s-a3b5281399bd-0021"
+msgid "**What repeats.** What is the thing that happens again? A performed paragraph, a rewound parse position, a restarted build, a regex pass, an event, a method in a chain, a tick. The repetition is not always in the code: for Make it is the *whole process*, and for Ex it is a register that runs itself."
+msgstr "**Qué se repite.** ¿Qué es lo que ocurre otra vez? Un párrafo ejecutado, una posición de análisis rebobinada, una compilación reiniciada, una pasada de regex, un evento, un método de una cadena, un tic. La repetición no siempre está en el código: en Make es el *proceso completo*, y en Ex es un registro que se ejecuta a sí mismo."
+
+#: lessons/study-guides/concepts/state-and-control-beyond-variables.md:46
+msgctxt "s-fda0d74b82b9-0022"
+msgid "**Where state lives.** The remembered facts, beyond the variables you can see:"
+msgstr "**Dónde vive el estado.** Los datos recordados, más allá de las variables que puedes ver:"
+
+#: lessons/study-guides/concepts/state-and-control-beyond-variables.md:48
+msgctxt "s-62085b434e26-0023"
+msgid "⟦SEP_0001⟧ Entry ⟦SEP_0002⟧ Next step is stored in ⟦SEP_0003⟧ Memory is stored in ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ Entrada ⟦SEP_0002⟧ El paso siguiente se guarda en ⟦SEP_0003⟧ La memoria se guarda en ⟦SEP_0004⟧"
+
+#: lessons/study-guides/concepts/state-and-control-beyond-variables.md:50
+msgctxt "s-cc31a9997b49-0024"
+msgid "⟦SEP_0007⟧ [⟦CODE_0001⟧](⟦DEST_0002⟧) ⟦SEP_0008⟧ the target of one ⟦CODE_0003⟧ (changed by ⟦CODE_0004⟧) ⟦SEP_0009⟧ ⟦CODE_0005⟧, and ⟦CODE_0006⟧ (59 plus the total) ⟦SEP_0010⟧"
+msgstr "⟦SEP_0007⟧ [⟦CODE_0001⟧](⟦DEST_0002⟧) ⟦SEP_0008⟧ el destino de un ⟦CODE_0003⟧ (que cambia ⟦CODE_0004⟧) ⟦SEP_0009⟧ ⟦CODE_0005⟧ y ⟦CODE_0006⟧ (59 más el total) ⟦SEP_0010⟧"
+
+#: lessons/study-guides/concepts/state-and-control-beyond-variables.md:51
+msgctxt "s-f1fc63dd5670-0025"
+msgid "⟦SEP_0005⟧ [⟦CODE_0001⟧](⟦DEST_0002⟧) ⟦SEP_0006⟧ the parse position ⟦CODE_0003⟧ ⟦SEP_0007⟧ the data stack: ⟦CODE_0004⟧ ⟦SEP_0008⟧"
+msgstr "⟦SEP_0005⟧ [⟦CODE_0001⟧](⟦DEST_0002⟧) ⟦SEP_0006⟧ la posición de análisis ⟦CODE_0003⟧ ⟦SEP_0007⟧ la pila de datos: ⟦CODE_0004⟧ ⟦SEP_0008⟧"
+
+#: lessons/study-guides/concepts/state-and-control-beyond-variables.md:52
+msgctxt "s-bbf450924cba-0026"
+msgid "⟦SEP_0005⟧ [⟦CODE_0001⟧](⟦DEST_0002⟧) ⟦SEP_0006⟧ which ⟦CODE_0003⟧ files exist, and ⟦CODE_0004⟧ ⟦SEP_0007⟧ the same files, one card each ⟦SEP_0008⟧"
+msgstr "⟦SEP_0005⟧ [⟦CODE_0001⟧](⟦DEST_0002⟧) ⟦SEP_0006⟧ qué archivos ⟦CODE_0003⟧ existen y ⟦CODE_0004⟧ ⟦SEP_0007⟧ los mismos archivos, una tarjeta cada uno ⟦SEP_0008⟧"
+
+#: lessons/study-guides/concepts/state-and-control-beyond-variables.md:53
+msgctxt "s-99ba737af544-0027"
+msgid "⟦SEP_0006⟧ [⟦CODE_0001⟧](⟦DEST_0002⟧) ⟦SEP_0007⟧ the regex captures ⟦CODE_0003⟧..⟦CODE_0004⟧, rebuilt each pass ⟦SEP_0008⟧ the same captures, as runs of ⟦CODE_0005⟧ ⟦SEP_0009⟧"
+msgstr "⟦SEP_0006⟧ [⟦CODE_0001⟧](⟦DEST_0002⟧) ⟦SEP_0007⟧ las capturas de la regex ⟦CODE_0003⟧..⟦CODE_0004⟧, reconstruidas en cada pasada ⟦SEP_0008⟧ las mismas capturas, como tramos de ⟦CODE_0005⟧ ⟦SEP_0009⟧"
+
+#: lessons/study-guides/concepts/state-and-control-beyond-variables.md:54
+msgctxt "s-1364e2043b5f-0028"
+msgid "⟦SEP_0004⟧ [⟦CODE_0001⟧](⟦DEST_0002⟧) ⟦SEP_0005⟧ SQLite's trigger firing again ⟦SEP_0006⟧ table rows, and ⟦CODE_0003⟧ for the card number ⟦SEP_0007⟧"
+msgstr "⟦SEP_0004⟧ [⟦CODE_0001⟧](⟦DEST_0002⟧) ⟦SEP_0005⟧ el disparador de SQLite que se activa otra vez ⟦SEP_0006⟧ filas de tabla, y ⟦CODE_0003⟧ para el número de tarjeta ⟦SEP_0007⟧"
+
+#: lessons/study-guides/concepts/state-and-control-beyond-variables.md:55
+msgctxt "s-14ead47a7abb-0029"
+msgid "⟦SEP_0003⟧ [⟦CODE_0001⟧](⟦DEST_0002⟧) ⟦SEP_0004⟧ the call chain of functions that were written at run time ⟦SEP_0005⟧ genes: four lines of each function's source ⟦SEP_0006⟧"
+msgstr "⟦SEP_0003⟧ [⟦CODE_0001⟧](⟦DEST_0002⟧) ⟦SEP_0004⟧ la cadena de llamadas de funciones escritas en tiempo de ejecución ⟦SEP_0005⟧ genes: cuatro líneas del código fuente de cada función ⟦SEP_0006⟧"
+
+#: lessons/study-guides/concepts/state-and-control-beyond-variables.md:56
+msgctxt "s-23387b66c976-0030"
+msgid "⟦SEP_0004⟧ [⟦CODE_0001⟧](⟦DEST_0002⟧) ⟦SEP_0005⟧ the class precedence list ⟦SEP_0006⟧ the ⟦CODE_0003⟧ object ⟦SEP_0007⟧"
+msgstr "⟦SEP_0004⟧ [⟦CODE_0001⟧](⟦DEST_0002⟧) ⟦SEP_0005⟧ la lista de precedencia de clases ⟦SEP_0006⟧ el objeto ⟦CODE_0003⟧ ⟦SEP_0007⟧"
+
+#: lessons/study-guides/concepts/state-and-control-beyond-variables.md:57
+msgctxt "s-489795a323ec-0031"
+msgid "⟦SEP_0004⟧ [⟦CODE_0001⟧](⟦DEST_0002⟧) ⟦SEP_0005⟧ the next line matched by one global command ⟦SEP_0006⟧ marks (⟦CODE_0003⟧) on each line, and a ledger line ⟦SEP_0007⟧"
+msgstr "⟦SEP_0004⟧ [⟦CODE_0001⟧](⟦DEST_0002⟧) ⟦SEP_0005⟧ la siguiente línea que coincide con un comando global ⟦SEP_0006⟧ marcas (⟦CODE_0003⟧) en cada línea y una línea de registro ⟦SEP_0007⟧"
+
+#: lessons/study-guides/concepts/state-and-control-beyond-variables.md:58
+msgctxt "s-50fdfef4b61c-0032"
+msgid "⟦SEP_0005⟧ [⟦CODE_0001⟧](⟦DEST_0002⟧) ⟦SEP_0006⟧ register ⟦CODE_0003⟧, copied from a tape line ⟦SEP_0007⟧ the position of mark ⟦CODE_0004⟧ on the tape: the total ⟦SEP_0008⟧"
+msgstr "⟦SEP_0005⟧ [⟦CODE_0001⟧](⟦DEST_0002⟧) ⟦SEP_0006⟧ el registro ⟦CODE_0003⟧, copiado de una línea de la cinta ⟦SEP_0007⟧ la posición de la marca ⟦CODE_0004⟧ en la cinta: el total ⟦SEP_0008⟧"
+
+#: lessons/study-guides/concepts/state-and-control-beyond-variables.md:59
+msgctxt "s-e9d30ba61020-0033"
+msgid "⟦SEP_0004⟧ [⟦CODE_0001⟧](⟦DEST_0002⟧) ⟦SEP_0005⟧ tar's checkpoint callbacks ⟦SEP_0006⟧ one ⟦CODE_0003⟧ row in SQLite ⟦SEP_0007⟧"
+msgstr "⟦SEP_0004⟧ [⟦CODE_0001⟧](⟦DEST_0002⟧) ⟦SEP_0005⟧ las funciones de devolución de llamada de los puntos de control de tar ⟦SEP_0006⟧ una fila ⟦CODE_0003⟧ en SQLite ⟦SEP_0007⟧"
+
+#: lessons/study-guides/concepts/state-and-control-beyond-variables.md:60
+msgctxt "s-6c9306c46f8c-0034"
+msgid "⟦SEP_0003⟧ [⟦CODE_0001⟧](⟦DEST_0002⟧) ⟦SEP_0004⟧ the walk into the directory just made ⟦SEP_0005⟧ the depth of the path: the total ⟦SEP_0006⟧"
+msgstr "⟦SEP_0003⟧ [⟦CODE_0001⟧](⟦DEST_0002⟧) ⟦SEP_0004⟧ el recorrido hacia el directorio recién creado ⟦SEP_0005⟧ la profundidad de la ruta: el total ⟦SEP_0006⟧"
+
+#: lessons/study-guides/concepts/state-and-control-beyond-variables.md:61
+msgctxt "s-1ff2b9532c92-0035"
+msgid "⟦SEP_0004⟧ [⟦CODE_0001⟧](⟦DEST_0002⟧) ⟦SEP_0005⟧ awk's own record loop ⟦SEP_0006⟧ the stream and the record separator ⟦CODE_0003⟧ ⟦SEP_0007⟧"
+msgstr "⟦SEP_0004⟧ [⟦CODE_0001⟧](⟦DEST_0002⟧) ⟦SEP_0005⟧ el propio bucle de registros de awk ⟦SEP_0006⟧ el flujo y el separador de registros ⟦CODE_0003⟧ ⟦SEP_0007⟧"
+
+#: lessons/study-guides/concepts/state-and-control-beyond-variables.md:63
+msgctxt "s-48a3a6a79403-0036"
+msgid "**What advances the next step.** Something must change the state, and it is not always the program's own statement. The text interpreter in Forth, ⟦CODE_0001⟧'s walk, awk's record loop, tar's checkpoints and SQLite's trigger machinery are *the environment* advancing the program."
+msgstr "**Qué hace avanzar el paso siguiente.** Algo debe cambiar el estado, y no siempre es una sentencia del propio programa. El intérprete de texto de Forth y el recorrido de ⟦CODE_0001⟧ son *el entorno* que hace avanzar el programa. También lo son el bucle de registros de awk, los puntos de control de tar y la maquinaria de disparadores de SQLite."
+
+#: lessons/study-guides/concepts/state-and-control-beyond-variables.md:65
+msgctxt "s-91cd56c11da0-0037"
+msgid "**What stops it.** How the machine halts: an overflowing field, a flag that is zero, a file that is not written, a literal of 41 characters, a comment on a tape line, an empty compression, a method that returns true. A stop rule can be a *value* (a flag) or an *absence* (no file, no row, no input left)."
+msgstr "**Qué lo detiene.** Cómo se detiene la máquina. Puede ser un campo que se desborda, una bandera que vale cero o un archivo que no se escribe. También un literal de 41 caracteres, un comentario en una línea de la cinta, una compresión vacía o un método que devuelve true. Una regla de parada puede ser un *valor* (una bandera) o una *ausencia* (ningún archivo, ninguna fila, ninguna entrada de datos pendiente)."
+
+#: lessons/study-guides/concepts/state-and-control-beyond-variables.md:67
+msgctxt "s-ab48b1dff37d-0038"
+msgid "**What commits.** Look for where the effects become permanent. A transaction can collect a whole run, while pcre2grep uses separate SQLite calls and the .NET regex host appends a TSV report. State and commit are separate concerns: a debugger can see the state while the commit has not happened."
+msgstr "**Qué confirma.** Busca dónde los efectos se vuelven permanentes. Una transacción puede reunir toda una ejecución, mientras que pcre2grep usa llamadas de SQLite separadas y el anfitrión de regex de .NET añade un informe TSV. Estado y confirmación son asuntos distintos: un depurador puede ver el estado aunque la confirmación no haya ocurrido."
+
+#: lessons/study-guides/concepts/state-and-control-beyond-variables.md:73
+msgctxt "s-d265b2a293d4-0039"
+msgid "A machine is state plus a rule for the next state, not necessarily a processor"
+msgstr "Una máquina es un estado más una regla para el estado siguiente, no necesariamente un procesador"
+
+#: lessons/study-guides/concepts/state-and-control-beyond-variables.md:74
+msgctxt "s-64c95d088c6b-0040"
+msgid "A transition-system diagram. State s, represented as bits, a stack, text, paths or other values, goes through an allowed step, the transition rule, to state s prime. An input or event, if any, feeds the step. The step may produce an observable effect or result, if any. A frame around both states says that the invariant holds for s and for s prime."
+msgstr "Un diagrama de sistema de transiciones. El estado s, representado como bits, una pila, texto, rutas u otros valores, pasa por un paso permitido, la regla de transición, al estado s prima. Una entrada de datos o un evento, si lo hay, alimenta el paso. El paso puede producir un efecto observable o un resultado, si lo hay. Un marco alrededor de ambos estados indica que el invariante se cumple para s y para s prima."
+
+#: lessons/study-guides/concepts/state-and-control-beyond-variables.md:75
+msgctxt "s-8623c5a11807-0041"
+msgid "Invariant I holds for s and for s′"
+msgstr "El invariante I se cumple para s y para s′"
+
+#: lessons/study-guides/concepts/state-and-control-beyond-variables.md:76
+msgctxt "s-d7e20ddabb75-0042"
+msgid "State s: bits, stack, text, paths, ..."
+msgstr "Estado s: bits, pila, texto, rutas, ..."
+
+#: lessons/study-guides/concepts/state-and-control-beyond-variables.md:76
+msgctxt "s-fc17a0b9b664-0043"
+msgid "allowed step: transition rule"
+msgstr "paso permitido: regla de transición"
+
+#: lessons/study-guides/concepts/state-and-control-beyond-variables.md:76
+msgctxt "s-e719e065a2e7-0044"
+msgid "State s′"
+msgstr "Estado s′"
+
+#: lessons/study-guides/concepts/state-and-control-beyond-variables.md:78
+msgctxt "s-7b0d55f1f44d-0045"
+msgid "input or event (if any)"
+msgstr "entrada de datos o evento (si lo hay)"
+
+#: lessons/study-guides/concepts/state-and-control-beyond-variables.md:79
+msgctxt "s-79960f292197-0046"
+msgid "observable effect or result (if any)"
+msgstr "efecto observable o resultado (si lo hay)"
+
+#: lessons/study-guides/concepts/state-and-control-beyond-variables.md:82
+msgctxt "s-670cb045f89d-0047"
+msgid "The book's picture of a machine: a state, an allowed step and an invariant that holds across it. Every row of the table above is one way to fill in the boxes."
+msgstr "La imagen del libro de una máquina: un estado, un paso permitido y un invariante que se cumple a través de él. Cada fila de la tabla anterior es una manera de llenar los recuadros."
+
+#: lessons/study-guides/concepts/state-and-control-beyond-variables.md:84
+msgctxt "s-67a72cdadc6f-0048"
+msgid "Trace one run"
+msgstr "Traza una ejecución"
+
+#: lessons/study-guides/concepts/state-and-control-beyond-variables.md:86
+msgctxt "s-a4d90e1c21cc-0049"
+msgid "With hours 15, 19, 12, here is the *same machine* in three substances. Each was verified by running a scratch copy in the sandbox."
+msgstr "Con las horas 15, 19, 12, aquí está la *misma máquina* en tres sustancias. Cada una se verificó ejecutando una copia de prueba en el entorno aislado."
+
+#: lessons/study-guides/concepts/state-and-control-beyond-variables.md:88
+msgctxt "s-d778df563de8-0050"
+msgid "⟦SEP_0006⟧ Step ⟦SEP_0007⟧ ⟦CODE_0001⟧: target of ⟦CODE_0002⟧, headroom ⟦SEP_0008⟧ ⟦CODE_0003⟧: files at pass start, total ⟦SEP_0009⟧ ⟦CODE_0004⟧: mark ⟦CODE_0005⟧ (tape line), instruction ⟦SEP_0010⟧"
+msgstr "⟦SEP_0006⟧ Paso ⟦SEP_0007⟧ ⟦CODE_0001⟧: destino de ⟦CODE_0002⟧, margen ⟦SEP_0008⟧ ⟦CODE_0003⟧: archivos al inicio de la pasada, total ⟦SEP_0009⟧ ⟦CODE_0004⟧: marca ⟦CODE_0005⟧ (línea de la cinta), instrucción ⟦SEP_0010⟧"
+
+#: lessons/study-guides/concepts/state-and-control-beyond-variables.md:90
+msgctxt "s-f1640e949849-0051"
+msgid "⟦SEP_0003⟧ start ⟦SEP_0004⟧ ⟦DNT_0001⟧, 59 ⟦SEP_0005⟧ none, 0 ⟦SEP_0006⟧ 0, ⟦CODE_0002⟧ ⟦SEP_0007⟧"
+msgstr "⟦SEP_0003⟧ inicio ⟦SEP_0004⟧ ⟦DNT_0001⟧, 59 ⟦SEP_0005⟧ ninguno, 0 ⟦SEP_0006⟧ 0, ⟦CODE_0002⟧ ⟦SEP_0007⟧"
+
+#: lessons/study-guides/concepts/state-and-control-beyond-variables.md:91
+msgctxt "s-74b2016e9a8f-0052"
+msgid "⟦SEP_0004⟧ card 1 (15) ⟦SEP_0005⟧ ⟦DNT_0001⟧, 74 ⟦SEP_0006⟧ ⟦CODE_0002⟧, 15 ⟦SEP_0007⟧ 15, ⟦CODE_0003⟧ ⟦SEP_0008⟧"
+msgstr "⟦SEP_0004⟧ tarjeta 1 (15) ⟦SEP_0005⟧ ⟦DNT_0001⟧, 74 ⟦SEP_0006⟧ ⟦CODE_0002⟧, 15 ⟦SEP_0007⟧ 15, ⟦CODE_0003⟧ ⟦SEP_0008⟧"
+
+#: lessons/study-guides/concepts/state-and-control-beyond-variables.md:92
+msgctxt "s-d3aea2bf07fb-0053"
+msgid "⟦SEP_0005⟧ card 2 (19) ⟦SEP_0006⟧ ⟦DNT_0001⟧, 93 ⟦SEP_0007⟧ ⟦CODE_0002⟧ ⟦CODE_0003⟧, 34 ⟦SEP_0008⟧ 34, ⟦CODE_0004⟧ ⟦SEP_0009⟧"
+msgstr "⟦SEP_0005⟧ tarjeta 2 (19) ⟦SEP_0006⟧ ⟦DNT_0001⟧, 93 ⟦SEP_0007⟧ ⟦CODE_0002⟧ ⟦CODE_0003⟧, 34 ⟦SEP_0008⟧ 34, ⟦CODE_0004⟧ ⟦SEP_0009⟧"
+
+#: lessons/study-guides/concepts/state-and-control-beyond-variables.md:93
+msgctxt "s-9b460dee85fb-0054"
+msgid "⟦SEP_0002⟧ card 3 (12) ⟦SEP_0003⟧ **FINISH-RUN**, 93 (the add overflowed and left 93) ⟦SEP_0004⟧ three files, 46 ⟦SEP_0005⟧ 46, ⟦CODE_0001⟧ (a comment: stop) ⟦SEP_0006⟧"
+msgstr "⟦SEP_0002⟧ tarjeta 3 (12) ⟦SEP_0003⟧ **FINISH-RUN**, 93 (la suma se desbordó y dejó 93) ⟦SEP_0004⟧ tres archivos, 46 ⟦SEP_0005⟧ 46, ⟦CODE_0001⟧ (un comentario: detenerse) ⟦SEP_0006⟧"
+
+#: lessons/study-guides/concepts/state-and-control-beyond-variables.md:95
+msgctxt "s-89e9682acaa6-0055"
+msgid "Read across. Three different substances hold the same facts: a jump target and a number, a set of files, a position on a tape. The invariant \"the total equals the sum of the hours\" is true in every column, but you must *compute* it differently. In COBOL it is ⟦CODE_0001⟧ until the overflow. In Make it is the length of the ⟦CODE_0002⟧ list built from the files. In Ex it is the number under the mark."
+msgstr "Lee en horizontal. Tres sustancias distintas guardan los mismos datos: un destino de salto y un número, un conjunto de archivos, una posición en una cinta. El invariante \"el total es igual a la suma de las horas\" es cierto en todas las columnas, pero hay que *calcularlo* de forma distinta. En COBOL es ⟦CODE_0001⟧ hasta el desbordamiento. En Make es la longitud de la lista ⟦CODE_0002⟧ construida a partir de los archivos. En Ex es el número que está bajo la marca."
+
+#: lessons/study-guides/concepts/state-and-control-beyond-variables.md:97
+msgctxt "s-6edbaeae4c9d-0056"
+msgid "**Look at the stopped state.** In COBOL, ⟦CODE_0001⟧ held 93 *twice*: once after a successful add and once after a failed one. A field that holds the same value at two different moments with two different meanings is a sign that the program's state is partly elsewhere: here, in the jump target."
+msgstr "**Mira el estado en que se detiene.** En COBOL, ⟦CODE_0001⟧ contuvo 93 *dos veces*: una después de una suma exitosa y otra después de una fallida. Un campo puede tener el mismo valor en dos momentos con dos significados distintos. Eso indica que el estado del programa está en parte en otro lugar: aquí, en el destino de salto."
+
+#: lessons/study-guides/concepts/state-and-control-beyond-variables.md:99
+msgctxt "s-690135dc2c88-0057"
+msgid "**Exactly 40.** A conforming entry has a fifth card available even though there are four different category names. A supply of four slots makes that impossible, as in XAML and the original four-name implementations ([Comparative machine design](⟦DEST_0001⟧) traces the fixes). The machine's *representation* decides what boundary it can express."
+msgstr "**Exactamente 40.** Una entrada conforme tiene disponible una quinta tarjeta aunque haya cuatro nombres de categoría distintos. Un suministro de cuatro ranuras lo hace imposible, como en XAML y en las implementaciones originales de cuatro nombres ([Diseño comparado de máquinas](⟦DEST_0001⟧) traza las correcciones). La *representación* de la máquina decide qué frontera puede expresar."
+
+#: lessons/study-guides/concepts/state-and-control-beyond-variables.md:101
+msgctxt "s-405c1b857089-0058"
+msgid "Compare the ordinary and weird designs"
+msgstr "Compara los diseños ordinarios y los raros"
+
+#: lessons/study-guides/concepts/state-and-control-beyond-variables.md:103
+msgctxt "s-9c227aabd21d-0059"
+msgid "⟦SEP_0001⟧ Dimension ⟦SEP_0002⟧ Ordinary (variables and a loop) ⟦SEP_0003⟧ Control and state stored elsewhere ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ Dimensión ⟦SEP_0002⟧ Ordinario (variables y un bucle) ⟦SEP_0003⟧ Control y estado guardados en otro lugar ⟦SEP_0004⟧"
+
+#: lessons/study-guides/concepts/state-and-control-beyond-variables.md:105
+msgctxt "s-b5e3d31f5d80-0060"
+msgid "⟦SEP_0003⟧ **Representation** ⟦SEP_0004⟧ ⟦CODE_0001⟧, ⟦CODE_0002⟧, a loop condition ⟦SEP_0005⟧ A jump target, a position, a file set, captures, source text ⟦SEP_0006⟧"
+msgstr "⟦SEP_0003⟧ **Representación** ⟦SEP_0004⟧ ⟦CODE_0001⟧, ⟦CODE_0002⟧, una condición de bucle ⟦SEP_0005⟧ Un destino de salto, una posición, un conjunto de archivos, capturas, texto fuente ⟦SEP_0006⟧"
+
+#: lessons/study-guides/concepts/state-and-control-beyond-variables.md:106
+msgctxt "s-6304e31f279d-0061"
+msgid "⟦SEP_0004⟧ **Observability** ⟦SEP_0005⟧ Print the variables ⟦SEP_0006⟧ You must look at the right place: the target, ⟦CODE_0001⟧, ⟦CODE_0002⟧, the registers, ⟦CODE_0003⟧ ⟦SEP_0007⟧"
+msgstr "⟦SEP_0004⟧ **Observabilidad** ⟦SEP_0005⟧ Imprime las variables ⟦SEP_0006⟧ Debes mirar en el lugar correcto: el destino, ⟦CODE_0001⟧, ⟦CODE_0002⟧, los registros, ⟦CODE_0003⟧ ⟦SEP_0007⟧"
+
+#: lessons/study-guides/concepts/state-and-control-beyond-variables.md:107
+msgctxt "s-5f45848724a7-0062"
+msgid "⟦SEP_0004⟧ **Tests** ⟦SEP_0005⟧ Unit-test a function ⟦SEP_0006⟧ Test the whole machine, driven by controlled inputs (⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧) ⟦SEP_0007⟧"
+msgstr "⟦SEP_0004⟧ **Pruebas** ⟦SEP_0005⟧ Hacer una prueba unitaria de una función ⟦SEP_0006⟧ Probar la máquina completa, con entradas de datos controladas (⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧) ⟦SEP_0007⟧"
+
+#: lessons/study-guides/concepts/state-and-control-beyond-variables.md:108
+msgctxt "s-e57a9c12f6cd-0063"
+msgid "⟦SEP_0002⟧ **⟦DNT_0001⟧** ⟦SEP_0003⟧ Watch variables ⟦SEP_0004⟧ A variable watch is *incomplete*: it misses the control state ⟦SEP_0005⟧"
+msgstr "⟦SEP_0002⟧ **⟦DNT_0001⟧** ⟦SEP_0003⟧ Vigilar variables ⟦SEP_0004⟧ Una vigilancia de variables es *incompleta*: no ve el estado de control ⟦SEP_0005⟧"
+
+#: lessons/study-guides/concepts/state-and-control-beyond-variables.md:109
+msgctxt "s-3d15b9f34f82-0064"
+msgid "⟦SEP_0005⟧ **Portability** ⟦SEP_0006⟧ Standard language ⟦SEP_0007⟧ Depends on the feature that holds the state (⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧) ⟦SEP_0008⟧"
+msgstr "⟦SEP_0005⟧ **Portabilidad** ⟦SEP_0006⟧ Lenguaje estándar ⟦SEP_0007⟧ Depende de la característica que guarda el estado (⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧) ⟦SEP_0008⟧"
+
+#: lessons/study-guides/concepts/state-and-control-beyond-variables.md:110
+msgctxt "s-d06137d554d6-0065"
+msgid "⟦SEP_0001⟧ **Cost** ⟦SEP_0002⟧ Normal ⟦SEP_0003⟧ Reviewability and reentrancy: two callers cannot share one rewritten jump target or one parse position ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ **Costo** ⟦SEP_0002⟧ Normal ⟦SEP_0003⟧ Revisabilidad y reentrada: dos llamadores no pueden compartir un mismo destino de salto reescrito ni una misma posición de análisis ⟦SEP_0004⟧"
+
+#: lessons/study-guides/concepts/state-and-control-beyond-variables.md:112
+msgctxt "s-d17d44bacd83-0066"
+msgid "A language can hide control state from you in two ways. It can store it *in data you do not think of as state* (a jump target). Or it can store it *in the environment* (the filesystem, the database). Both hide it from a variables-only view."
+msgstr "Un lenguaje puede ocultarte el estado de control de dos maneras. Puede guardarlo *en datos que no consideras estado* (un destino de salto). O puede guardarlo *en el entorno* (el sistema de archivos, la base de datos). Ambas lo ocultan a una vista que solo mira variables."
+
+#: lessons/study-guides/concepts/state-and-control-beyond-variables.md:114
+msgctxt "s-716cae37520b-0067"
+msgid "What the exercises demonstrate"
+msgstr "Qué demuestran los ejercicios"
+
+#: lessons/study-guides/concepts/state-and-control-beyond-variables.md:116
+msgctxt "s-d6a3ec9d5ed0-0068"
+msgid "⟦SEP_0001⟧ Exercise ⟦SEP_0002⟧ Predict first ⟦SEP_0003⟧ What the evidence shows ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ Ejercicio ⟦SEP_0002⟧ Predice primero ⟦SEP_0003⟧ Lo que muestra la evidencia ⟦SEP_0004⟧"
+
+#: lessons/study-guides/concepts/state-and-control-beyond-variables.md:118
+msgctxt "s-3b9d4730e1de-0069"
+msgid "⟦SEP_0002⟧ [B1. COBOL: predict, then break ALTER](⟦DEST_0001⟧) ⟦SEP_0003⟧ Start the headroom at 49. Where does the run stop? ⟦SEP_0004⟧ Above 50. One number in the data encodes the rule, and the entry's own check fails because it hard-codes 40. ⟦SEP_0005⟧"
+msgstr "⟦SEP_0002⟧ [B1. COBOL: predice y luego rompe ALTER](⟦DEST_0001⟧) ⟦SEP_0003⟧ Empieza el margen en 49. ¿Dónde se detiene la ejecución? ⟦SEP_0004⟧ Por encima de 50. Un número de los datos codifica la regla, y la comprobación propia de la entrada falla porque tiene el 40 fijo en el código. ⟦SEP_0005⟧"
+
+#: lessons/study-guides/concepts/state-and-control-beyond-variables.md:119
+msgctxt "s-fa02f1dd3ad4-0070"
+msgid "⟦SEP_0003⟧ [B3. Forth: move the anchor](⟦DEST_0001⟧) ⟦SEP_0004⟧ Write ⟦CODE_0002⟧ (state after the anchor). ⟦SEP_0005⟧ It does not stop: the state is re-created on every pass. The *order* of state and anchor is part of the program. ⟦SEP_0006⟧"
+msgstr "⟦SEP_0003⟧ [B3. Forth: mueve el ancla](⟦DEST_0001⟧) ⟦SEP_0004⟧ Escribe ⟦CODE_0002⟧ (estado después del ancla). ⟦SEP_0005⟧ No se detiene: el estado se vuelve a crear en cada pasada. El *orden* del estado y del ancla forma parte del programa. ⟦SEP_0006⟧"
+
+#: lessons/study-guides/concepts/state-and-control-beyond-variables.md:120
+msgctxt "s-13c95c8eaf2a-0071"
+msgid "⟦SEP_0004⟧ [B4. Make: remove the no-op, and override the clock](⟦DEST_0001⟧) ⟦SEP_0005⟧ Delete ⟦CODE_0002⟧. ⟦SEP_0006⟧ ⟦CODE_0003⟧: no command ran, so no file was \"remade\" and Make never restarted. ⟦SEP_0007⟧"
+msgstr "⟦SEP_0004⟧ [B4. Make: quita la operación nula y anula el reloj](⟦DEST_0001⟧) ⟦SEP_0005⟧ Borra ⟦CODE_0002⟧. ⟦SEP_0006⟧ ⟦CODE_0003⟧: no se ejecutó ningún comando, así que ningún archivo se \"rehízo\" y Make nunca se reinició. ⟦SEP_0007⟧"
+
+#: lessons/study-guides/concepts/state-and-control-beyond-variables.md:121
+msgctxt "s-3c1655a695e4-0072"
+msgid "⟦SEP_0003⟧ [B5. CMake: mutate the literal](⟦DEST_0001⟧) ⟦SEP_0004⟧ Shorten the 41-⟦CODE_0002⟧ literal. ⟦SEP_0005⟧ The stop rule moves, because the literal *is* the rule. ⟦SEP_0006⟧"
+msgstr "⟦SEP_0003⟧ [B5. CMake: muta el literal](⟦DEST_0001⟧) ⟦SEP_0004⟧ Acorta el literal de 41 ⟦CODE_0002⟧. ⟦SEP_0005⟧ La regla de parada se mueve, porque el literal *es* la regla. ⟦SEP_0006⟧"
+
+#: lessons/study-guides/concepts/state-and-control-beyond-variables.md:122
+msgctxt "s-32694e1849d2-0073"
+msgid "⟦SEP_0003⟧ [B19. Ex: move the limit on the tape and cut the loop](⟦DEST_0001⟧) ⟦SEP_0004⟧ Remove ⟦CODE_0002⟧. ⟦SEP_0005⟧ One card. Nothing runs the register again, so the program never restarts itself. ⟦SEP_0006⟧"
+msgstr "⟦SEP_0003⟧ [B19. Ex: mueve el límite en la cinta y corta el bucle](⟦DEST_0001⟧) ⟦SEP_0004⟧ Quita ⟦CODE_0002⟧. ⟦SEP_0005⟧ Una tarjeta. Nada vuelve a ejecutar el registro, así que el programa nunca se reinicia solo. ⟦SEP_0006⟧"
+
+#: lessons/study-guides/concepts/state-and-control-beyond-variables.md:123
+msgctxt "s-2727a2e1e236-0074"
+msgid "⟦SEP_0002⟧ [C3. A loop whose state is not a variable](⟦DEST_0001⟧) ⟦SEP_0003⟧ In awk, with no loop keyword, print 1 to N for a caller-chosen N. Where can the state live? ⟦SEP_0004⟧ In the input: the *caller's* data is the counter. ⟦SEP_0005⟧"
+msgstr "⟦SEP_0002⟧ [C3. Un bucle cuyo estado no es una variable](⟦DEST_0001⟧) ⟦SEP_0003⟧ En awk, sin ninguna palabra clave de bucle, imprime de 1 a N para una N que elige quien llama. ¿Dónde puede vivir el estado? ⟦SEP_0004⟧ En la entrada de datos: los datos de *quien llama* son el contador. ⟦SEP_0005⟧"
+
+#: lessons/study-guides/concepts/state-and-control-beyond-variables.md:125
+msgctxt "s-4fe97c469cdb-0075"
+msgid "Failure modes, costs and boundaries"
+msgstr "Modos de fallo, costos y límites"
+
+#: lessons/study-guides/concepts/state-and-control-beyond-variables.md:127
+msgctxt "s-621aac5615e3-0076"
+msgid "⟦SEP_0001⟧ Behavior ⟦SEP_0002⟧ Label ⟦SEP_0003⟧ Why ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ Comportamiento ⟦SEP_0002⟧ Etiqueta ⟦SEP_0003⟧ Por qué ⟦SEP_0004⟧"
+
+#: lessons/study-guides/concepts/state-and-control-beyond-variables.md:129
+msgctxt "s-e8f532610c5c-0077"
+msgid "⟦SEP_0001⟧ A size error leaves the receiving field unchanged ⟦SEP_0002⟧ **guaranteed** ⟦SEP_0003⟧ Specified COBOL semantics. ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ Un error de tamaño deja sin cambios el campo receptor ⟦SEP_0002⟧ **garantizado** ⟦SEP_0003⟧ Semántica especificada de COBOL. ⟦SEP_0004⟧"
+
+#: lessons/study-guides/concepts/state-and-control-beyond-variables.md:130
+msgctxt "s-eda838ef5a13-0078"
+msgid "⟦SEP_0002⟧ ⟦CODE_0001⟧ is accepted by the compiler ⟦SEP_0003⟧ **implementation-permitted** ⟦SEP_0004⟧ Deleted from the standard in 2002; GnuCOBOL still runs it. ⟦SEP_0005⟧"
+msgstr "⟦SEP_0002⟧ El compilador acepta ⟦CODE_0001⟧ ⟦SEP_0003⟧ **permitido por la implementación** ⟦SEP_0004⟧ Eliminado del estándar en 2002; GnuCOBOL todavía lo ejecuta. ⟦SEP_0005⟧"
+
+#: lessons/study-guides/concepts/state-and-control-beyond-variables.md:131
+msgctxt "s-a45b85a37aa8-0079"
+msgid "⟦SEP_0003⟧ ⟦CODE_0001⟧ holds the parse offset and may be written ⟦SEP_0004⟧ **guaranteed** that it exists ⟦SEP_0005⟧ Where it points after ⟦CODE_0002⟧ is system-specific. ⟦SEP_0006⟧"
+msgstr "⟦SEP_0003⟧ ⟦CODE_0001⟧ contiene el desplazamiento de análisis y se puede escribir ⟦SEP_0004⟧ **garantizado**: existe ⟦SEP_0005⟧ Adónde apunta después de ⟦CODE_0002⟧ depende del sistema. ⟦SEP_0006⟧"
+
+#: lessons/study-guides/concepts/state-and-control-beyond-variables.md:132
+msgctxt "s-88c9c87b7b38-0080"
+msgid "⟦SEP_0001⟧ Make re-executes itself after remaking an included makefile ⟦SEP_0002⟧ **implementation-permitted** ⟦SEP_0003⟧ GNU Make's documented behavior. ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ Make se vuelve a ejecutar a sí mismo después de rehacer un makefile incluido ⟦SEP_0002⟧ **permitido por la implementación** ⟦SEP_0003⟧ Comportamiento documentado de GNU Make. ⟦SEP_0004⟧"
+
+#: lessons/study-guides/concepts/state-and-control-beyond-variables.md:133
+msgctxt "s-7a4464620cd6-0081"
+msgid "⟦SEP_0001⟧ Using that restart as a loop, with a recipe that expands to nothing not counting as a remake ⟦SEP_0002⟧ **accidentally exploited** ⟦SEP_0003⟧ The book's own example. ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ Usar ese reinicio como un bucle, con una receta que se expande a nada y no cuenta como un rehacer ⟦SEP_0002⟧ **aprovechado por accidente** ⟦SEP_0003⟧ El propio ejemplo del libro. ⟦SEP_0004⟧"
+
+#: lessons/study-guides/concepts/state-and-control-beyond-variables.md:134
+msgctxt "s-11b8cbbe26e7-0082"
+msgid "⟦SEP_0002⟧ The main ⟦CODE_0001⟧ runs even when the CMake stop test already said stop ⟦SEP_0003⟧ **accidentally exploited** ⟦SEP_0004⟧ Observed, and needed to log the last card. ⟦SEP_0005⟧"
+msgstr "⟦SEP_0002⟧ El ⟦CODE_0001⟧ principal se ejecuta aunque la prueba de parada de CMake ya haya dicho que hay que parar ⟦SEP_0003⟧ **aprovechado por accidente** ⟦SEP_0004⟧ Observado, y necesario para registrar la última tarjeta. ⟦SEP_0005⟧"
+
+#: lessons/study-guides/concepts/state-and-control-beyond-variables.md:135
+msgctxt "s-a8ac0de4c41a-0083"
+msgid "⟦SEP_0002⟧ Method combination ⟦CODE_0001⟧ stops at the first true method ⟦SEP_0003⟧ **guaranteed** ⟦SEP_0004⟧ Defined by ANSI Common Lisp. ⟦SEP_0005⟧"
+msgstr "⟦SEP_0002⟧ La combinación de métodos ⟦CODE_0001⟧ se detiene en el primer método verdadero ⟦SEP_0003⟧ **garantizado** ⟦SEP_0004⟧ Definido por ANSI Common Lisp. ⟦SEP_0005⟧"
+
+#: lessons/study-guides/concepts/state-and-control-beyond-variables.md:136
+msgctxt "s-0ae9283cc5ed-0084"
+msgid "⟦SEP_0001⟧ Tar's checkpoint count when listing differs from when creating ⟦SEP_0002⟧ **accidentally exploited** knowledge ⟦SEP_0003⟧ Only creation is used. ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ El recuento de puntos de control de tar al listar difiere del de al crear ⟦SEP_0002⟧ conocimiento **aprovechado por accidente** ⟦SEP_0003⟧ Solo se usa la creación. ⟦SEP_0004⟧"
+
+#: lessons/study-guides/concepts/state-and-control-beyond-variables.md:138
+msgctxt "s-87d9e31bff8d-0085"
+msgid "**Costs to state.**"
+msgstr "**Costos que hay que enunciar.**"
+
+#: lessons/study-guides/concepts/state-and-control-beyond-variables.md:140
+msgctxt "s-3377e1d71fff-0086"
+msgid "**A variables-only view lies.** In COBOL, Forth, Make and CMake, the variables are an incomplete state."
+msgstr "**Una vista solo de variables miente.** En COBOL, Forth, Make y CMake, las variables son un estado incompleto."
+
+#: lessons/study-guides/concepts/state-and-control-beyond-variables.md:141
+msgctxt "s-880ceb8b2831-0087"
+msgid "**Reentrancy.** State stored in the code's own control flow is shared by every caller. That was ⟦CODE_0001⟧'s fatal objection."
+msgstr "**Reentrada.** El estado guardado en el propio flujo de control del código lo comparte cada llamador. Esa fue la objeción fatal contra ⟦CODE_0001⟧."
+
+#: lessons/study-guides/concepts/state-and-control-beyond-variables.md:142
+msgctxt "s-e53941b646bb-0088"
+msgid "**Where it is legitimate.** A parse position is how every parser works. A restart is how build systems regenerate themselves. A database trigger keeps invariants. A jump table is a state machine. The stunt is using them as the *only* state."
+msgstr "**Dónde es legítimo.** Una posición de análisis es como funcionan todos los analizadores sintácticos. Un reinicio es como los sistemas de construcción se regeneran a sí mismos. Un disparador de base de datos mantiene invariantes. Una tabla de saltos es una máquina de estados. La acrobacia consiste en usarlos como *único* estado."
+
+#: lessons/study-guides/concepts/state-and-control-beyond-variables.md:143
+msgctxt "s-fd844f88f735-0089"
+msgid "**Silent failure.** A wrong line count in APL's copy (⟦CODE_0001⟧ for ⟦CODE_0002⟧), a typo in an ed pattern or an ⟦CODE_0003⟧ that matches nothing all fail without an error."
+msgstr "**Fallo silencioso.** Un conteo de líneas incorrecto en la copia de APL (⟦CODE_0001⟧ en lugar de ⟦CODE_0002⟧) es un fallo sin ningún error. Lo son también una errata en un patrón de ed y un ⟦CODE_0003⟧ que no coincide con nada."
+
+#: lessons/study-guides/concepts/state-and-control-beyond-variables.md:145
+msgctxt "s-061eb6da82a8-0090"
+msgid "Connections across the repository"
+msgstr "Conexiones a lo largo del repositorio"
+
+#: lessons/study-guides/concepts/state-and-control-beyond-variables.md:147
+msgctxt "s-d8d428982c8b-0091"
+msgid "**The language guides.** [COBOL](⟦DEST_0001⟧), [Forth](⟦DEST_0002⟧), [Make and CMake](⟦DEST_0003⟧), [Tcl](⟦DEST_0004⟧), [APL](⟦DEST_0005⟧), [Common Lisp](⟦DEST_0006⟧), [ed and Ex](⟦DEST_0007⟧) and [tar](⟦DEST_0008⟧) each trace one of these machines."
+msgstr "**Las guías de lenguaje.** [COBOL](⟦DEST_0001⟧), [Forth](⟦DEST_0002⟧), [Make y CMake](⟦DEST_0003⟧), [Tcl](⟦DEST_0004⟧), [APL](⟦DEST_0005⟧), [Common Lisp](⟦DEST_0006⟧), [ed y Ex](⟦DEST_0007⟧) y [tar](⟦DEST_0008⟧) trazan cada una una de estas máquinas."
+
+#: lessons/study-guides/concepts/state-and-control-beyond-variables.md:148
+msgctxt "s-851060fbae0e-0092"
+msgid "**Demand and laziness.** [Evaluation, demand and laziness](⟦DEST_0001⟧) asks *when* a step runs; this guide asks *where it is stored*. [Haskell](⟦DEST_0002⟧) stores it in a data dependence."
+msgstr "**Demanda y pereza.** [Evaluación, demanda y pereza](⟦DEST_0001⟧) pregunta *cuándo* se ejecuta un paso; esta guía pregunta *dónde se guarda*. [Haskell](⟦DEST_0002⟧) lo guarda en una dependencia de datos."
+
+#: lessons/study-guides/concepts/state-and-control-beyond-variables.md:149
+msgctxt "s-07d908ea1cf1-0093"
+msgid "**Events.** [Events, callbacks and reactive control](⟦DEST_0001⟧) asks who owns the next turn."
+msgstr "**Eventos.** [Eventos, funciones de devolución de llamada y control reactivo](⟦DEST_0001⟧) pregunta quién es dueño del turno siguiente."
+
+#: lessons/study-guides/concepts/state-and-control-beyond-variables.md:150
+msgctxt "s-5a3756a43cfb-0094"
+msgid "**Reading safely.** [Reading adversarial programs](⟦DEST_0001⟧) uses \"where is the state?\" as the first question."
+msgstr "**Lectura segura.** [Lectura de programas adversariales](⟦DEST_0001⟧) usa \"¿dónde está el estado?\" como primera pregunta."
+
+#: lessons/study-guides/concepts/state-and-control-beyond-variables.md:151
+msgctxt "s-87fae675ebb6-0095"
+msgid "**In the book.** [What counts as a machine?](⟦DEST_0001⟧), [The program counter](⟦DEST_0002⟧), [Self-modifying code](⟦DEST_0003⟧), [State](⟦DEST_0004⟧) and [Dependency graphs](⟦DEST_0005⟧)."
+msgstr "**En el libro.** [¿Qué cuenta como una máquina?](⟦DEST_0001⟧), [El contador de programa](⟦DEST_0002⟧), [Código automodificable](⟦DEST_0003⟧), [Estado](⟦DEST_0004⟧) y [Grafos de dependencia](⟦DEST_0005⟧)."
+
+#: lessons/study-guides/concepts/state-and-control-beyond-variables.md:153
+msgctxt "s-50944288ce61-0096"
+msgid "Self-check"
+msgstr "Autoevaluación"
+
+#: lessons/study-guides/concepts/state-and-control-beyond-variables.md:155
+msgctxt "s-274e192b952c-0097"
+msgid "Answer each question in your own words before you read the italic text. Say what evidence would support each answer."
+msgstr "Responde cada pregunta con tus propias palabras antes de leer el texto en cursiva. Di qué evidencia respaldaría cada respuesta."
+
+#: lessons/study-guides/concepts/state-and-control-beyond-variables.md:157
+msgctxt "s-36f47e17f045-0098"
+msgid ""
+"**Trace.** In ⟦CODE_0001⟧ with ⟦CODE_0002⟧ (12 hours each), give the mark position and tape instruction after each pass. *(12 ⟦CODE_0003⟧, 24 ⟦CODE_0004⟧, 36 ⟦CODE_0005⟧, 48 ⟦CODE_0006⟧. Four cards. The fifth die is unused.)*\n"
+"2. **Explain.** Why does a debugger that watches ⟦CODE_0007⟧ and ⟦CODE_0008⟧ in ⟦CODE_0009⟧ give an incomplete picture? *(The next category is stored in the target of the ⟦CODE_0010⟧ in ⟦CODE_0011⟧, which is not a variable. You must also know the last ⟦CODE_0012⟧ that ran.)*\n"
+"3. **Transfer.** Name where the next step is stored in a recursive-descent parser, and in a game's main loop. *(A parser: the call stack and the input position. A game loop: the loop statement and the game-state object, with the frame as the clock.)*\n"
+"4. **Evidence.** A reviewer says, \"Make's loop state is only the set of ⟦CODE_0013⟧ files.\" Design a test that could fail. *(Run in an empty directory, record the files after each pass and check that deleting one changes the card count and the restart count. The negative control is a run that leaves a stale file, which the entry refuses. Claim label: implementation-permitted.)*"
+msgstr ""
+"**Traza.** En ⟦CODE_0001⟧ con ⟦CODE_0002⟧ (12 horas cada una), indica la posición de la marca y la instrucción de la cinta después de cada pasada. *(12 ⟦CODE_0003⟧, 24 ⟦CODE_0004⟧, 36 ⟦CODE_0005⟧, 48 ⟦CODE_0006⟧. Cuatro tarjetas. El quinto dado no se usa.)*\n"
+"2. **Explica.** ¿Por qué un depurador que vigila ⟦CODE_0007⟧ y ⟦CODE_0008⟧ en ⟦CODE_0009⟧ da una imagen incompleta? *(La categoría siguiente se guarda en el destino del ⟦CODE_0010⟧ de ⟦CODE_0011⟧, que no es una variable. También debes conocer el último ⟦CODE_0012⟧ que se ejecutó.)*\n"
+"3. **Transfiere.** Nombra dónde se guarda el paso siguiente en un analizador sintáctico descendente recursivo y en el bucle principal de un juego. *(Un analizador sintáctico: la pila de llamadas y la posición de entrada. Un bucle de juego: la sentencia de bucle y el objeto de estado del juego, con el fotograma como reloj.)*\n"
+"4. **Evidencia.** Un revisor dice: \"El estado de bucle de Make es solo el conjunto de archivos ⟦CODE_0013⟧\". Diseña una prueba que pueda fallar. *(Ejecuta en un directorio vacío, registra los archivos después de cada pasada y comprueba que borrar uno cambia el número de tarjetas y el número de reinicios. El control negativo es una ejecución que deja un archivo obsoleto, que la entrada rechaza. Etiqueta de la afirmación: permitido por la implementación.)*"
+
+#: lessons/study-guides/concepts/state-and-control-beyond-variables.md:162
+msgctxt "s-4082f515b2f4-0099"
+msgid "Further reading"
+msgstr "Lecturas adicionales"
+
+#: lessons/study-guides/concepts/state-and-control-beyond-variables.md:164
+msgctxt "s-0a788386e9a9-0100"
+msgid "[State (computer science)](⟦DEST_0001⟧)) (Wikipedia): what counts as state."
+msgstr "[Estado (informática)](⟦DEST_0001⟧)) (Wikipedia): qué cuenta como estado."
+
+#: lessons/study-guides/concepts/state-and-control-beyond-variables.md:165
+msgctxt "s-2a145cd43f8f-0101"
+msgid "[Finite-state machine](⟦DEST_0001⟧) (Wikipedia): the formal sense of \"state and step\"."
+msgstr "[Máquina de estados finitos](⟦DEST_0001⟧) (Wikipedia): el sentido formal de \"estado y paso\"."
+
+#: lessons/study-guides/concepts/state-and-control-beyond-variables.md:166
+msgctxt "s-e4ef2d9cc620-0102"
+msgid "[Program counter](⟦DEST_0001⟧) (Wikipedia): the register behind \"what runs next\"."
+msgstr "[Contador de programa](⟦DEST_0001⟧) (Wikipedia): el registro detrás de \"qué se ejecuta después\"."
+
+#: lessons/study-guides/concepts/state-and-control-beyond-variables.md:167
+msgctxt "s-1287c4364d0c-0103"
+msgid "[Continuation](⟦DEST_0001⟧) (Wikipedia): the idea that \"the rest of the computation\" can be stored as a value."
+msgstr "[Continuación](⟦DEST_0001⟧) (Wikipedia): la idea de que \"el resto de la computación\" puede guardarse como un valor."

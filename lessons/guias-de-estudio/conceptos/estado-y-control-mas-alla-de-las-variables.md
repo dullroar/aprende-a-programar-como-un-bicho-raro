@@ -1,167 +1,167 @@
-# State and control beyond variables study guide
+# Guía de estudio de estado y control más allá de las variables
 
-## What this guide is for
+## Para qué sirve esta guía
 
-This guide answers two questions about every program: **what runs next, and what does it remember?** Most languages answer with a program counter, a call stack and variables. The book's entries answer elsewhere: in a jump target, a parse position, the set of files that exist, regex captures, source text, table rows, a class chain, an archive's size. The guide teaches you to find the answer in a program that has no obvious loop and no obvious variable.
+Esta guía responde dos preguntas sobre cada programa: **¿qué se ejecuta después y qué recuerda?** La mayoría de los lenguajes responden con un contador de programa, una pila de llamadas y variables. Las entradas del libro responden en otro sitio. Pueden ser un destino de salto, una posición de análisis o el conjunto de archivos que existen. Pueden ser las capturas de una regex, el texto fuente o las filas de una tabla. Pueden ser una cadena de clases o el tamaño de un archivo tar. La guía te enseña a encontrar la respuesta en un programa que no tiene un bucle evidente ni una variable evidente.
 
-When you finish, you should be able to:
+Cuando termines, deberías poder:
 
-1. Describe any program as a machine: a state, a set of allowed steps, a representation and an invariant.
-2. Say, for COBOL, Forth, Make, CMake, Tcl, APL, Common Lisp, ed, Ex and tar, where the *next step* is stored and where the *remembered state* is stored, and say how they differ.
-3. Explain why a debugger that shows variables can give an incomplete picture of such a program.
-4. Distinguish control state that is *data the program edits* (a jump target, a mark, source text) from control state that is *derived* (a counter, a position).
-5. State an invariant for a program and say how its output could prove or refute it.
-6. Label claims as guaranteed, implementation-permitted or accidentally exploited.
+1. Describir cualquier programa como una máquina: un estado, un conjunto de pasos permitidos, una representación y un invariante.
+2. Para COBOL, Forth, Make, CMake, Tcl, APL, Common Lisp, ed, Ex y tar, decir dónde se guarda el *paso siguiente* y dónde el *estado recordado*. Decir también en qué se diferencian.
+3. Explicar por qué un depurador que muestra variables puede dar una imagen incompleta de un programa así.
+4. Distinguir dos tipos de estado de control. El primero son *datos que el programa edita* (un destino de salto, una marca, texto fuente). El segundo se *deriva* (un contador, una posición).
+5. Enunciar un invariante de un programa y decir cómo su salida podría probarlo o refutarlo.
+6. Etiquetar cada afirmación como comportamiento garantizado, permitido por la implementación o aprovechado por accidente.
 
-**Scope limits.** The guide uses facts verified in the language guides and does not repeat their traces. It does not cover concurrency or the event loop (see [Events, callbacks and reactive control](eventos-retrollamadas-y-control-reactivo.md)). Its source chapters are [What counts as a machine?](../../informatica/02-que-cuenta-como-maquina.md), [Control flow and continuations](../../informatica/03-flujo-de-control-y-continuaciones.md) and [State beyond variables](../../informatica/06-estado-mas-alla-de-las-variables.md). `find` and AWK are cited here rather than given their own guide.
+**Límites del alcance.** Esta guía usa hechos verificados en las guías de lenguaje y no repite sus trazas. No trata la concurrencia ni el bucle de eventos (consulta [Eventos, funciones de devolución de llamada y control reactivo](eventos-retrollamadas-y-control-reactivo.md)). Sus capítulos de origen son [¿Qué cuenta como una máquina?](../../informatica/02-que-cuenta-como-maquina.md), [Flujo de control y continuaciones](../../informatica/03-flujo-de-control-y-continuaciones.md) y [Estado más allá de las variables](../../informatica/06-estado-mas-alla-de-las-variables.md). `find` y AWK se citan aquí en lugar de tener su propia guía.
 
-## Before you begin
+## Antes de empezar
 
-**Safety model.** The cards are fictional **DEMO ONLY** data. Programs can write to local scratch files or databases and can start processes. Read the source first and run it in the sandbox first, for example `sandbox/container/run-image.sh src/cobol-weird`. Work on copies ([Running things safely](../../exercises.md#running-things-safely)).
+**Modelo de seguridad.** Las tarjetas son datos ficticios marcados con **DEMO ONLY**. Los programas pueden escribir en archivos o bases de datos locales de prueba y pueden iniciar procesos. Lee primero el código fuente y ejecútalo antes en un entorno aislado (*sandbox*) que limita el acceso al sistema anfitrión, por ejemplo `sandbox/container/run-image.sh src/cobol-weird`. Trabaja con copias ([Ejecutar cosas con seguridad](../../exercises.md#running-things-safely)).
 
-**Prediction rule.** Before each run, write the *two* facts a trace needs: where the program is, and what it remembers. They are different columns. For COBOL's `ALTER`, one tells you where execution *is*, and the other tells you where the next `GO TO` *will go*.
+**Regla de predicción.** Antes de cada ejecución, escribe los *dos* datos que necesita una traza: dónde está el programa y qué recuerda. Son columnas distintas. En el `ALTER` de COBOL, una te dice dónde *está* la ejecución y la otra te dice adónde *irá* el siguiente `GO TO`.
 
-**Vocabulary.**
+**Vocabulario.**
 
-| Term | Meaning here |
+| Término | Significado aquí |
 | --- | --- |
-| State | Whatever persists between steps and can change a later step. |
-| Program counter | The place that says what runs next. |
-| Representation | How a value is written down: bits, text, marks, a position. |
-| Invariant | A fact that stays true while the machine runs, at least after each step. |
-| Continuation | "The rest of the computation", stored as something other than a stack frame. |
+| Estado | Todo lo que persiste entre pasos y puede cambiar un paso posterior. |
+| Contador de programa | El lugar que dice qué se ejecuta después. |
+| Representación | Cómo se escribe un valor: bits, texto, marcas, una posición. |
+| Invariante | Un hecho que sigue siendo cierto mientras la máquina se ejecuta, al menos después de cada paso. |
+| Continuación | "El resto de la computación", guardado como algo distinto de un marco de pila. |
 
-## The shared challenge
+## El reto compartido
 
-The [challenge specification](../../introduccion.md#what-the-challenge-does) calls for cards with a category and 10 to 19 whole hours. Categories cycle through Meetings, Coding, Debugging and Learning. Add each card's hours to the running total. Stop when the total passes 40. Keep the **first card that takes the total over 40**. A total of exactly 40 continues. Four 10-hour cards need a fifth card, in the Meetings category. Conforming runs finish with 3 to 5 cards and a total of 41 to 59 hours.
+La [especificación del reto](../../introduccion.md#what-the-challenge-does) pide tarjetas con una categoría y de 10 a 19 horas enteras. Las categorías se repiten en ciclo: `Meetings`, `Coding`, `Debugging` y `Learning`. Suma las horas de cada tarjeta al total acumulado. Detente cuando el total pasa de 40. Conserva la **primera tarjeta con la que el total pasa de 40**. Un total de exactamente 40 continúa. Cuatro tarjetas de 10 horas necesitan una quinta tarjeta, de la categoría `Meetings`. Las ejecuciones conformes tienen de 3 a 5 tarjetas y un total de 41 a 59 horas.
 
-As a machine, the challenge has a small state: `(cards so far, total)`, plus the next category. One step takes a number of hours, adds it to the total, records the card and either continues or finishes. The *invariant* after each recorded card is "the total equals the sum of the recorded hours". For the weird COBOL variant there is a second invariant that holds only after each successful add: `WS-HEADROOM` equals 59 plus the total. The examples in this trace represent that machine in different ways. The fixed LINQ demos and the XAML ceiling show where the shared model needs an extra stopping condition.
+Como máquina, el reto tiene un estado pequeño: `(cards so far, total)`, más la categoría siguiente. Un paso toma una cantidad de horas, la suma al total, registra la tarjeta y continúa o termina. El *invariante* tras cada tarjeta registrada es "el total es igual a la suma de las horas registradas". En la variante rara de COBOL hay un segundo invariante, que solo se cumple tras cada suma exitosa: `WS-HEADROOM` es igual a 59 más el total. Los ejemplos de esta traza representan esa máquina de maneras distintas. Las demostraciones fijas de LINQ y el techo de XAML muestran dónde el modelo compartido necesita una regla de parada adicional.
 
-## The machine to identify
+## La máquina que hay que identificar
 
-Use this worksheet for every entry. The five answers in the first column were checked in the language guides.
+Usa esta hoja de trabajo para cada entrada. Las cinco respuestas de la primera columna se comprobaron en las guías de lenguaje.
 
-**What repeats.** What is the thing that happens again? A performed paragraph, a rewound parse position, a restarted build, a regex pass, an event, a method in a chain, a tick. The repetition is not always in the code: for Make it is the *whole process*, and for Ex it is a register that runs itself.
+**Qué se repite.** ¿Qué es lo que ocurre otra vez? Un párrafo ejecutado, una posición de análisis rebobinada, una compilación reiniciada, una pasada de regex, un evento, un método de una cadena, un tic. La repetición no siempre está en el código: en Make es el *proceso completo*, y en Ex es un registro que se ejecuta a sí mismo.
 
-**Where state lives.** The remembered facts, beyond the variables you can see:
+**Dónde vive el estado.** Los datos recordados, más allá de las variables que puedes ver:
 
-| Entry | Next step is stored in | Memory is stored in |
+| Entrada | El paso siguiente se guarda en | La memoria se guarda en |
 | --- | --- | --- |
-| [`cobol-weird`](../lenguajes/cobol.md) | the target of one `GO TO` (changed by `ALTER`) | `WS-TOTAL`, and `WS-HEADROOM` (59 plus the total) |
-| [`forth-weird`](../lenguajes/forth.md) | the parse position `>in` | the data stack: `( n total anchor )` |
-| [`make-gnu`](../lenguajes/make-y-cmake.md) | which `.tc-N.mk` files exist, and `MAKE_RESTARTS` | the same files, one card each |
-| [`cmake`](../lenguajes/make-y-cmake.md) | the regex captures `CMAKE_MATCH_1`..`5`, rebuilt each pass | the same captures, as runs of `x` |
-| [`tcl-weird`](../lenguajes/tcl.md) | SQLite's trigger firing again | table rows, and `count(*)` for the card number |
-| [`apl-weird`](../lenguajes/apl.md) | the call chain of functions that were written at run time | genes: four lines of each function's source |
-| [`lisp-weird`](../lenguajes/common-lisp.md) | the class precedence list | the `ledger` object |
-| [`ed-weird`](../lenguajes/ed-y-ex.md) | the next line matched by one global command | marks (`x`) on each line, and a ledger line |
-| [`ex-weird`](../lenguajes/ed-y-ex.md) | register `n`, copied from a tape line | the position of mark `t` on the tape: the total |
-| [`tar-gnu-weird`](../lenguajes/tar.md) | tar's checkpoint callbacks | one `fsm` row in SQLite |
-| [`find-gnu`](../../../src/find-gnu/README.md) | the walk into the directory just made | the depth of the path: the total |
-| [`awk-weird`](../../../src/awk-weird/README.md) | awk's own record loop | the stream and the record separator `RS` |
+| [`cobol-weird`](../lenguajes/cobol.md) | el destino de un `GO TO` (que cambia `ALTER`) | `WS-TOTAL` y `WS-HEADROOM` (59 más el total) |
+| [`forth-weird`](../lenguajes/forth.md) | la posición de análisis `>in` | la pila de datos: `( n total anchor )` |
+| [`make-gnu`](../lenguajes/make-y-cmake.md) | qué archivos `.tc-N.mk` existen y `MAKE_RESTARTS` | los mismos archivos, una tarjeta cada uno |
+| [`cmake`](../lenguajes/make-y-cmake.md) | las capturas de la regex `CMAKE_MATCH_1`..`5`, reconstruidas en cada pasada | las mismas capturas, como tramos de `x` |
+| [`tcl-weird`](../lenguajes/tcl.md) | el disparador de SQLite que se activa otra vez | filas de tabla, y `count(*)` para el número de tarjeta |
+| [`apl-weird`](../lenguajes/apl.md) | la cadena de llamadas de funciones escritas en tiempo de ejecución | genes: cuatro líneas del código fuente de cada función |
+| [`lisp-weird`](../lenguajes/common-lisp.md) | la lista de precedencia de clases | el objeto `ledger` |
+| [`ed-weird`](../lenguajes/ed-y-ex.md) | la siguiente línea que coincide con un comando global | marcas (`x`) en cada línea y una línea de registro |
+| [`ex-weird`](../lenguajes/ed-y-ex.md) | el registro `n`, copiado de una línea de la cinta | la posición de la marca `t` en la cinta: el total |
+| [`tar-gnu-weird`](../lenguajes/tar.md) | las funciones de devolución de llamada de los puntos de control de tar | una fila `fsm` en SQLite |
+| [`find-gnu`](../../../src/find-gnu/README.md) | el recorrido hacia el directorio recién creado | la profundidad de la ruta: el total |
+| [`awk-weird`](../../../src/awk-weird/README.md) | el propio bucle de registros de awk | el flujo y el separador de registros `RS` |
 
-**What advances the next step.** Something must change the state, and it is not always the program's own statement. The text interpreter in Forth, `find`'s walk, awk's record loop, tar's checkpoints and SQLite's trigger machinery are *the environment* advancing the program.
+**Qué hace avanzar el paso siguiente.** Algo debe cambiar el estado, y no siempre es una sentencia del propio programa. El intérprete de texto de Forth y el recorrido de `find` son *el entorno* que hace avanzar el programa. También lo son el bucle de registros de awk, los puntos de control de tar y la maquinaria de disparadores de SQLite.
 
-**What stops it.** How the machine halts: an overflowing field, a flag that is zero, a file that is not written, a literal of 41 characters, a comment on a tape line, an empty compression, a method that returns true. A stop rule can be a *value* (a flag) or an *absence* (no file, no row, no input left).
+**Qué lo detiene.** Cómo se detiene la máquina. Puede ser un campo que se desborda, una bandera que vale cero o un archivo que no se escribe. También un literal de 41 caracteres, un comentario en una línea de la cinta, una compresión vacía o un método que devuelve true. Una regla de parada puede ser un *valor* (una bandera) o una *ausencia* (ningún archivo, ninguna fila, ninguna entrada de datos pendiente).
 
-**What commits.** Look for where the effects become permanent. A transaction can collect a whole run, while pcre2grep uses separate SQLite calls and the .NET regex host appends a TSV report. State and commit are separate concerns: a debugger can see the state while the commit has not happened.
+**Qué confirma.** Busca dónde los efectos se vuelven permanentes. Una transacción puede reunir toda una ejecución, mientras que pcre2grep usa llamadas de SQLite separadas y el anfitrión de regex de .NET añade un informe TSV. Estado y confirmación son asuntos distintos: un depurador puede ver el estado aunque la confirmación no haya ocurrido.
 
 <!-- diagram-source: lessons/cs-source/chapters/02-what-counts-as-a-machine.md#block-1 -->
 
 ```mermaid
 flowchart TB
-    accTitle: A machine is state plus a rule for the next state, not necessarily a processor
-    accDescr: A transition-system diagram. State s, represented as bits, a stack, text, paths or other values, goes through an allowed step, the transition rule, to state s prime. An input or event, if any, feeds the step. The step may produce an observable effect or result, if any. A frame around both states says that the invariant holds for s and for s prime.
-    subgraph INV["Invariant I holds for s and for s′"]
-        S["State s: bits, stack, text, paths, ..."] --> T(["allowed step: transition rule"]) --> S2["State s′"]
+    accTitle: Una máquina es un estado más una regla para el estado siguiente, no necesariamente un procesador
+    accDescr: Un diagrama de sistema de transiciones. El estado s, representado como bits, una pila, texto, rutas u otros valores, pasa por un paso permitido, la regla de transición, al estado s prima. Una entrada de datos o un evento, si lo hay, alimenta el paso. El paso puede producir un efecto observable o un resultado, si lo hay. Un marco alrededor de ambos estados indica que el invariante se cumple para s y para s prima.
+    subgraph INV["El invariante I se cumple para s y para s′"]
+        S["Estado s: bits, pila, texto, rutas, ..."] --> T(["paso permitido: regla de transición"]) --> S2["Estado s′"]
     end
-    IN["input or event (if any)"] -.-> T
-    T -.-> OUT["observable effect or result (if any)"]
+    IN["entrada de datos o evento (si lo hay)"] -.-> T
+    T -.-> OUT["efecto observable o resultado (si lo hay)"]
 ```
 
-The book's picture of a machine: a state, an allowed step and an invariant that holds across it. Every row of the table above is one way to fill in the boxes.
+La imagen del libro de una máquina: un estado, un paso permitido y un invariante que se cumple a través de él. Cada fila de la tabla anterior es una manera de llenar los recuadros.
 
-## Trace one run
+## Traza una ejecución
 
-With hours 15, 19, 12, here is the *same machine* in three substances. Each was verified by running a scratch copy in the sandbox.
+Con las horas 15, 19, 12, aquí está la *misma máquina* en tres sustancias. Cada una se verificó ejecutando una copia de prueba en el entorno aislado.
 
-| Step | `cobol-weird`: target of `NEXT-CARD`, headroom | `make-gnu`: files at pass start, total | `ex-weird`: mark `t` (tape line), instruction |
+| Paso | `cobol-weird`: destino de `NEXT-CARD`, margen | `make-gnu`: archivos al inicio de la pasada, total | `ex-weird`: marca `t` (línea de la cinta), instrucción |
 | --- | --- | --- | --- |
-| start | Meetings, 59 | none, 0 | 0, `@a` |
-| card 1 (15) | Coding, 74 | `.tc-0.mk`, 15 | 15, `@a` |
-| card 2 (19) | Debugging, 93 | `.tc-0.mk` `.tc-1.mk`, 34 | 34, `@a` |
-| card 3 (12) | **FINISH-RUN**, 93 (the add overflowed and left 93) | three files, 46 | 46, `"` (a comment: stop) |
+| inicio | Meetings, 59 | ninguno, 0 | 0, `@a` |
+| tarjeta 1 (15) | Coding, 74 | `.tc-0.mk`, 15 | 15, `@a` |
+| tarjeta 2 (19) | Debugging, 93 | `.tc-0.mk` `.tc-1.mk`, 34 | 34, `@a` |
+| tarjeta 3 (12) | **FINISH-RUN**, 93 (la suma se desbordó y dejó 93) | tres archivos, 46 | 46, `"` (un comentario: detenerse) |
 
-Read across. Three different substances hold the same facts: a jump target and a number, a set of files, a position on a tape. The invariant "the total equals the sum of the hours" is true in every column, but you must *compute* it differently. In COBOL it is `headroom - 59` until the overflow. In Make it is the length of the `x` list built from the files. In Ex it is the number under the mark.
+Lee en horizontal. Tres sustancias distintas guardan los mismos datos: un destino de salto y un número, un conjunto de archivos, una posición en una cinta. El invariante "el total es igual a la suma de las horas" es cierto en todas las columnas, pero hay que *calcularlo* de forma distinta. En COBOL es `headroom - 59` hasta el desbordamiento. En Make es la longitud de la lista `x` construida a partir de los archivos. En Ex es el número que está bajo la marca.
 
-**Look at the stopped state.** In COBOL, `WS-HEADROOM` held 93 *twice*: once after a successful add and once after a failed one. A field that holds the same value at two different moments with two different meanings is a sign that the program's state is partly elsewhere: here, in the jump target.
+**Mira el estado en que se detiene.** En COBOL, `WS-HEADROOM` contuvo 93 *dos veces*: una después de una suma exitosa y otra después de una fallida. Un campo puede tener el mismo valor en dos momentos con dos significados distintos. Eso indica que el estado del programa está en parte en otro lugar: aquí, en el destino de salto.
 
-**Exactly 40.** A conforming entry has a fifth card available even though there are four different category names. A supply of four slots makes that impossible, as in XAML and the original four-name implementations ([Comparative machine design](diseno-comparativo-de-maquinas.md) traces the fixes). The machine's *representation* decides what boundary it can express.
+**Exactamente 40.** Una entrada conforme tiene disponible una quinta tarjeta aunque haya cuatro nombres de categoría distintos. Un suministro de cuatro ranuras lo hace imposible, como en XAML y en las implementaciones originales de cuatro nombres ([Diseño comparado de máquinas](diseno-comparativo-de-maquinas.md) traza las correcciones). La *representación* de la máquina decide qué frontera puede expresar.
 
-## Compare the ordinary and weird designs
+## Compara los diseños ordinarios y los raros
 
-| Dimension | Ordinary (variables and a loop) | Control and state stored elsewhere |
+| Dimensión | Ordinario (variables y un bucle) | Control y estado guardados en otro lugar |
 | --- | --- | --- |
-| **Representation** | `total`, `count`, a loop condition | A jump target, a position, a file set, captures, source text |
-| **Observability** | Print the variables | You must look at the right place: the target, `>in`, `ls`, the registers, `⎕CR` |
-| **Tests** | Unit-test a function | Test the whole machine, driven by controlled inputs (`DICE`, `SEED`, `--hours`) |
-| **Debugging** | Watch variables | A variable watch is *incomplete*: it misses the control state |
-| **Portability** | Standard language | Depends on the feature that holds the state (`ALTER`, `>in`, `MAKE_RESTARTS`, `CMAKE_MATCH_n`) |
-| **Cost** | Normal | Reviewability and reentrancy: two callers cannot share one rewritten jump target or one parse position |
+| **Representación** | `total`, `count`, una condición de bucle | Un destino de salto, una posición, un conjunto de archivos, capturas, texto fuente |
+| **Observabilidad** | Imprime las variables | Debes mirar en el lugar correcto: el destino, `>in`, `ls`, los registros, `⎕CR` |
+| **Pruebas** | Hacer una prueba unitaria de una función | Probar la máquina completa, con entradas de datos controladas (`DICE`, `SEED`, `--hours`) |
+| **Debugging** | Vigilar variables | Una vigilancia de variables es *incompleta*: no ve el estado de control |
+| **Portabilidad** | Lenguaje estándar | Depende de la característica que guarda el estado (`ALTER`, `>in`, `MAKE_RESTARTS`, `CMAKE_MATCH_n`) |
+| **Costo** | Normal | Revisabilidad y reentrada: dos llamadores no pueden compartir un mismo destino de salto reescrito ni una misma posición de análisis |
 
-A language can hide control state from you in two ways. It can store it *in data you do not think of as state* (a jump target). Or it can store it *in the environment* (the filesystem, the database). Both hide it from a variables-only view.
+Un lenguaje puede ocultarte el estado de control de dos maneras. Puede guardarlo *en datos que no consideras estado* (un destino de salto). O puede guardarlo *en el entorno* (el sistema de archivos, la base de datos). Ambas lo ocultan a una vista que solo mira variables.
 
-## What the exercises demonstrate
+## Qué demuestran los ejercicios
 
-| Exercise | Predict first | What the evidence shows |
+| Ejercicio | Predice primero | Lo que muestra la evidencia |
 | --- | --- | --- |
-| [B1. COBOL: predict, then break ALTER](../../exercises.md#b1-cobol-predict-then-break-alter-verified) | Start the headroom at 49. Where does the run stop? | Above 50. One number in the data encodes the rule, and the entry's own check fails because it hard-codes 40. |
-| [B3. Forth: move the anchor](../../exercises.md#b3-forth-move-the-anchor-verified) | Write `>in @ 0 0 step rewind?` (state after the anchor). | It does not stop: the state is re-created on every pass. The *order* of state and anchor is part of the program. |
-| [B4. Make: remove the no-op, and override the clock](../../exercises.md#b4-make-remove-the-no-op-and-override-the-clock-verified) | Delete `@:`. | `entries=0`: no command ran, so no file was "remade" and Make never restarted. |
-| [B5. CMake: mutate the literal](../../exercises.md#b5-cmake-mutate-the-literal-verified) | Shorten the 41-`x` literal. | The stop rule moves, because the literal *is* the rule. |
-| [B19. Ex: move the limit on the tape and cut the loop](../../exercises.md#b19-ex-move-the-limit-on-the-tape-and-cut-the-loop-verified) | Remove `\|@n`. | One card. Nothing runs the register again, so the program never restarts itself. |
-| [C3. A loop whose state is not a variable](../../exercises.md#c3-a-loop-whose-state-is-not-a-variable-verified) | In awk, with no loop keyword, print 1 to N for a caller-chosen N. Where can the state live? | In the input: the *caller's* data is the counter. |
+| [B1. COBOL: predice y luego rompe ALTER](../../exercises.md#b1-cobol-predict-then-break-alter-verified) | Empieza el margen en 49. ¿Dónde se detiene la ejecución? | Por encima de 50. Un número de los datos codifica la regla, y la comprobación propia de la entrada falla porque tiene el 40 fijo en el código. |
+| [B3. Forth: mueve el ancla](../../exercises.md#b3-forth-move-the-anchor-verified) | Escribe `>in @ 0 0 step rewind?` (estado después del ancla). | No se detiene: el estado se vuelve a crear en cada pasada. El *orden* del estado y del ancla forma parte del programa. |
+| [B4. Make: quita la operación nula y anula el reloj](../../exercises.md#b4-make-remove-the-no-op-and-override-the-clock-verified) | Borra `@:`. | `entries=0`: no se ejecutó ningún comando, así que ningún archivo se "rehízo" y Make nunca se reinició. |
+| [B5. CMake: muta el literal](../../exercises.md#b5-cmake-mutate-the-literal-verified) | Acorta el literal de 41 `x`. | La regla de parada se mueve, porque el literal *es* la regla. |
+| [B19. Ex: mueve el límite en la cinta y corta el bucle](../../exercises.md#b19-ex-move-the-limit-on-the-tape-and-cut-the-loop-verified) | Quita `\|@n`. | Una tarjeta. Nada vuelve a ejecutar el registro, así que el programa nunca se reinicia solo. |
+| [C3. Un bucle cuyo estado no es una variable](../../exercises.md#c3-a-loop-whose-state-is-not-a-variable-verified) | En awk, sin ninguna palabra clave de bucle, imprime de 1 a N para una N que elige quien llama. ¿Dónde puede vivir el estado? | En la entrada de datos: los datos de *quien llama* son el contador. |
 
-## Failure modes, costs and boundaries
+## Modos de fallo, costos y límites
 
-| Behavior | Label | Why |
+| Comportamiento | Etiqueta | Por qué |
 | --- | --- | --- |
-| A size error leaves the receiving field unchanged | **guaranteed** | Specified COBOL semantics. |
-| `ALTER` is accepted by the compiler | **implementation-permitted** | Deleted from the standard in 2002; GnuCOBOL still runs it. |
-| `>in` holds the parse offset and may be written | **guaranteed** that it exists | Where it points after `>in @` is system-specific. |
-| Make re-executes itself after remaking an included makefile | **implementation-permitted** | GNU Make's documented behavior. |
-| Using that restart as a loop, with a recipe that expands to nothing not counting as a remake | **accidentally exploited** | The book's own example. |
-| The main `MATCHES` runs even when the CMake stop test already said stop | **accidentally exploited** | Observed, and needed to log the last card. |
-| Method combination `or` stops at the first true method | **guaranteed** | Defined by ANSI Common Lisp. |
-| Tar's checkpoint count when listing differs from when creating | **accidentally exploited** knowledge | Only creation is used. |
+| Un error de tamaño deja sin cambios el campo receptor | **garantizado** | Semántica especificada de COBOL. |
+| El compilador acepta `ALTER` | **permitido por la implementación** | Eliminado del estándar en 2002; GnuCOBOL todavía lo ejecuta. |
+| `>in` contiene el desplazamiento de análisis y se puede escribir | **garantizado**: existe | Adónde apunta después de `>in @` depende del sistema. |
+| Make se vuelve a ejecutar a sí mismo después de rehacer un makefile incluido | **permitido por la implementación** | Comportamiento documentado de GNU Make. |
+| Usar ese reinicio como un bucle, con una receta que se expande a nada y no cuenta como un rehacer | **aprovechado por accidente** | El propio ejemplo del libro. |
+| El `MATCHES` principal se ejecuta aunque la prueba de parada de CMake ya haya dicho que hay que parar | **aprovechado por accidente** | Observado, y necesario para registrar la última tarjeta. |
+| La combinación de métodos `or` se detiene en el primer método verdadero | **garantizado** | Definido por ANSI Common Lisp. |
+| El recuento de puntos de control de tar al listar difiere del de al crear | conocimiento **aprovechado por accidente** | Solo se usa la creación. |
 
-**Costs to state.**
+**Costos que hay que enunciar.**
 
-- **A variables-only view lies.** In COBOL, Forth, Make and CMake, the variables are an incomplete state.
-- **Reentrancy.** State stored in the code's own control flow is shared by every caller. That was `ALTER`'s fatal objection.
-- **Where it is legitimate.** A parse position is how every parser works. A restart is how build systems regenerate themselves. A database trigger keeps invariants. A jump table is a state machine. The stunt is using them as the *only* state.
-- **Silent failure.** A wrong line count in APL's copy (`4↓` for `5↓`), a typo in an ed pattern or an `s` that matches nothing all fail without an error.
+- **Una vista solo de variables miente.** En COBOL, Forth, Make y CMake, las variables son un estado incompleto.
+- **Reentrada.** El estado guardado en el propio flujo de control del código lo comparte cada llamador. Esa fue la objeción fatal contra `ALTER`.
+- **Dónde es legítimo.** Una posición de análisis es como funcionan todos los analizadores sintácticos. Un reinicio es como los sistemas de construcción se regeneran a sí mismos. Un disparador de base de datos mantiene invariantes. Una tabla de saltos es una máquina de estados. La acrobacia consiste en usarlos como *único* estado.
+- **Fallo silencioso.** Un conteo de líneas incorrecto en la copia de APL (`4↓` en lugar de `5↓`) es un fallo sin ningún error. Lo son también una errata en un patrón de ed y un `s` que no coincide con nada.
 
-## Connections across the repository
+## Conexiones a lo largo del repositorio
 
-- **The language guides.** [COBOL](../lenguajes/cobol.md), [Forth](../lenguajes/forth.md), [Make and CMake](../lenguajes/make-y-cmake.md), [Tcl](../lenguajes/tcl.md), [APL](../lenguajes/apl.md), [Common Lisp](../lenguajes/common-lisp.md), [ed and Ex](../lenguajes/ed-y-ex.md) and [tar](../lenguajes/tar.md) each trace one of these machines.
-- **Demand and laziness.** [Evaluation, demand and laziness](evaluacion-demanda-y-pereza.md) asks *when* a step runs; this guide asks *where it is stored*. [Haskell](../lenguajes/haskell.md) stores it in a data dependence.
-- **Events.** [Events, callbacks and reactive control](eventos-retrollamadas-y-control-reactivo.md) asks who owns the next turn.
-- **Reading safely.** [Reading adversarial programs](lectura-de-programas-adversariales.md) uses "where is the state?" as the first question.
-- **In the book.** [What counts as a machine?](../../informatica/02-que-cuenta-como-maquina.md), [The program counter](../../informatica/03-flujo-de-control-y-continuaciones.md#the-program-counter), [Self-modifying code](../../informatica/03-flujo-de-control-y-continuaciones.md#self-modifying-code), [State](../../informatica/06-estado-mas-alla-de-las-variables.md#state) and [Dependency graphs](../../informatica/06-estado-mas-alla-de-las-variables.md#dependency-graphs).
+- **Las guías de lenguaje.** [COBOL](../lenguajes/cobol.md), [Forth](../lenguajes/forth.md), [Make y CMake](../lenguajes/make-y-cmake.md), [Tcl](../lenguajes/tcl.md), [APL](../lenguajes/apl.md), [Common Lisp](../lenguajes/common-lisp.md), [ed y Ex](../lenguajes/ed-y-ex.md) y [tar](../lenguajes/tar.md) trazan cada una una de estas máquinas.
+- **Demanda y pereza.** [Evaluación, demanda y pereza](evaluacion-demanda-y-pereza.md) pregunta *cuándo* se ejecuta un paso; esta guía pregunta *dónde se guarda*. [Haskell](../lenguajes/haskell.md) lo guarda en una dependencia de datos.
+- **Eventos.** [Eventos, funciones de devolución de llamada y control reactivo](eventos-retrollamadas-y-control-reactivo.md) pregunta quién es dueño del turno siguiente.
+- **Lectura segura.** [Lectura de programas adversariales](lectura-de-programas-adversariales.md) usa "¿dónde está el estado?" como primera pregunta.
+- **En el libro.** [¿Qué cuenta como una máquina?](../../informatica/02-que-cuenta-como-maquina.md), [El contador de programa](../../informatica/03-flujo-de-control-y-continuaciones.md#the-program-counter), [Código automodificable](../../informatica/03-flujo-de-control-y-continuaciones.md#self-modifying-code), [Estado](../../informatica/06-estado-mas-alla-de-las-variables.md#state) y [Grafos de dependencia](../../informatica/06-estado-mas-alla-de-las-variables.md#dependency-graphs).
 
-## Self-check
+## Autoevaluación
 
-Answer each question in your own words before you read the italic text. Say what evidence would support each answer.
+Responde cada pregunta con tus propias palabras antes de leer el texto en cursiva. Di qué evidencia respaldaría cada respuesta.
 
-1. **Trace.** In `ex-weird` with `DICE="2 2 2 2 2"` (12 hours each), give the mark position and tape instruction after each pass. *(12 `@a`, 24 `@a`, 36 `@a`, 48 `"`. Four cards. The fifth die is unused.)*
-2. **Explain.** Why does a debugger that watches `WS-TOTAL` and `WS-ENTRIES` in `cobol-weird` give an incomplete picture? *(The next category is stored in the target of the `GO TO` in `NEXT-CARD`, which is not a variable. You must also know the last `ALTER` that ran.)*
-3. **Transfer.** Name where the next step is stored in a recursive-descent parser, and in a game's main loop. *(A parser: the call stack and the input position. A game loop: the loop statement and the game-state object, with the frame as the clock.)*
-4. **Evidence.** A reviewer says, "Make's loop state is only the set of `.tc-N.mk` files." Design a test that could fail. *(Run in an empty directory, record the files after each pass and check that deleting one changes the card count and the restart count. The negative control is a run that leaves a stale file, which the entry refuses. Claim label: implementation-permitted.)*
+1. **Traza.** En `ex-weird` con `DICE="2 2 2 2 2"` (12 horas cada una), indica la posición de la marca y la instrucción de la cinta después de cada pasada. *(12 `@a`, 24 `@a`, 36 `@a`, 48 `"`. Cuatro tarjetas. El quinto dado no se usa.)*
+2. **Explica.** ¿Por qué un depurador que vigila `WS-TOTAL` y `WS-ENTRIES` en `cobol-weird` da una imagen incompleta? *(La categoría siguiente se guarda en el destino del `GO TO` de `NEXT-CARD`, que no es una variable. También debes conocer el último `ALTER` que se ejecutó.)*
+3. **Transfiere.** Nombra dónde se guarda el paso siguiente en un analizador sintáctico descendente recursivo y en el bucle principal de un juego. *(Un analizador sintáctico: la pila de llamadas y la posición de entrada. Un bucle de juego: la sentencia de bucle y el objeto de estado del juego, con el fotograma como reloj.)*
+4. **Evidencia.** Un revisor dice: "El estado de bucle de Make es solo el conjunto de archivos `.tc-N.mk`". Diseña una prueba que pueda fallar. *(Ejecuta en un directorio vacío, registra los archivos después de cada pasada y comprueba que borrar uno cambia el número de tarjetas y el número de reinicios. El control negativo es una ejecución que deja un archivo obsoleto, que la entrada rechaza. Etiqueta de la afirmación: permitido por la implementación.)*
 
-## Further reading
+## Lecturas adicionales
 
-- [State (computer science)](https://en.wikipedia.org/wiki/State_(computer_science)) (Wikipedia): what counts as state.
-- [Finite-state machine](https://en.wikipedia.org/wiki/Finite-state_machine) (Wikipedia): the formal sense of "state and step".
-- [Program counter](https://en.wikipedia.org/wiki/Program_counter) (Wikipedia): the register behind "what runs next".
-- [Continuation](https://en.wikipedia.org/wiki/Continuation) (Wikipedia): the idea that "the rest of the computation" can be stored as a value.
+- [Estado (informática)](https://en.wikipedia.org/wiki/State_(computer_science)) (Wikipedia): qué cuenta como estado.
+- [Máquina de estados finitos](https://en.wikipedia.org/wiki/Finite-state_machine) (Wikipedia): el sentido formal de "estado y paso".
+- [Contador de programa](https://en.wikipedia.org/wiki/Program_counter) (Wikipedia): el registro detrás de "qué se ejecuta después".
+- [Continuación](https://en.wikipedia.org/wiki/Continuation) (Wikipedia): la idea de que "el resto de la computación" puede guardarse como un valor.

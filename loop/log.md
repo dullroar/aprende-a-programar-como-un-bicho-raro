@@ -128,3 +128,5 @@
 152 P4-lessons-study-guides-concepts-5 done committed the iteration-151 work left staged in the tree; verify --fast OK.
 153 P4-audit-4 done five length-weighted segments sampled (seed 152); all pass, no review-fix tasks; see translation/reviews/p4-audit-4.md
 154 P4-lessons-study-guides-concepts-6 done reading-adversarial-programs study guide translated (91 segments) via drafts import; 3 scoped I7 waivers; verify --fast OK.
+155 P4-lessons-study-guides-concepts-6 done committed the iteration-154 work (985b93b); verify --fast OK.
+157 P4-lessons-study-guides-concepts-7 done state-and-control-beyond-variables study guide (104 segments) finished from iteration-156 PO; 1 scoped I7 waiver; verify --fast OK.
