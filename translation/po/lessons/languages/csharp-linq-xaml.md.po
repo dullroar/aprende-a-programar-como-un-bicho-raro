@@ -25,27 +25,27 @@ msgstr "Para una ruta de lectura avanzada con trazas y experimentos, consulta la
 #: lessons/languages/csharp-linq-xaml.md:7
 msgctxt "s-96ff835e8a57-0003"
 msgid "C# is the *canonical* language of the repo: the challenge began as a 2008 classroom exercise showing off C# 3.0 and .NET 3.x features. It is also where the [blocking problems](⟦DEST_0001⟧) are measured from."
-msgstr ""
+msgstr "C# es el lenguaje *canónico* del repositorio: el reto comenzó como un ejercicio de clase en 2008 para mostrar las características de C# 3.0 y .NET 3.x. También es la referencia para medir los [problemas bloqueantes](⟦DEST_0001⟧)."
 
 #: lessons/languages/csharp-linq-xaml.md:9
 msgctxt "s-a1d640a91c8b-0004"
 msgid "This survey covers the original C# entry, the LINQ and XAML variants and the one-statement ports. The examples use the lesson steps that fit each mechanism."
-msgstr ""
+msgstr "Este recorrido cubre la entrada original de C#, las variantes de LINQ y XAML y las adaptaciones de una sola sentencia. Los ejemplos usan los pasos de las lecciones que corresponden a cada mecanismo."
 
 #: lessons/languages/csharp-linq-xaml.md:11
 msgctxt "s-8b2a197c7ec0-0005"
 msgid "The original: ModernChallenge1"
-msgstr ""
+msgstr "El original: ModernChallenge1"
 
 #: lessons/languages/csharp-linq-xaml.md:13
 msgctxt "s-cc9cfaabc50d-0006"
 msgid "Behold the monstrosity"
-msgstr ""
+msgstr "Contempla la monstruosidad"
 
 #: lessons/languages/csharp-linq-xaml.md:20
 msgctxt "s-1f8560806e4d-0007"
 msgid "A WPF window fades in and out. ⟦CODE_0001⟧ holds exactly one ⟦CODE_0002⟧ whose body is empty ([⟦CODE_0003⟧ L132](⟦DEST_0004⟧): ⟦CODE_0005⟧)."
-msgstr ""
+msgstr "Una ventana de WPF aparece y desaparece gradualmente. ⟦CODE_0001⟧ contiene exactamente un ⟦CODE_0002⟧ cuyo cuerpo está vacío ([⟦CODE_0003⟧ L132](⟦DEST_0004⟧): ⟦CODE_0005⟧)."
 
 #: lessons/languages/csharp-linq-xaml.md:22
 msgctxt "s-415f5fa29cf9-0008"

@@ -4,20 +4,20 @@ Entradas: [`src/ModernChallenge1`](../../src/ModernChallenge1/README.md), [`src/
 
 Para una ruta de lectura avanzada con trazas y experimentos, consulta la [guía de estudio de C#, LINQ, XAML y adaptaciones](../guias-de-estudio/lenguajes/csharp-linq-xaml-y-adaptaciones.md).
 
-C# is the *canonical* language of the repo: the challenge began as a 2008 classroom exercise showing off C# 3.0 and .NET 3.x features. It is also where the [blocking problems](../problemas-bloqueantes.md) are measured from.
+C# es el lenguaje *canónico* del repositorio: el reto comenzó como un ejercicio de clase en 2008 para mostrar las características de C# 3.0 y .NET 3.x. También es la referencia para medir los [problemas bloqueantes](../problemas-bloqueantes.md).
 
-This survey covers the original C# entry, the LINQ and XAML variants and the one-statement ports. The examples use the lesson steps that fit each mechanism.
+Este recorrido cubre la entrada original de C#, las variantes de LINQ y XAML y las adaptaciones de una sola sentencia. Los ejemplos usan los pasos de las lecciones que corresponden a cada mecanismo.
 
-## The original: ModernChallenge1
+## El original: ModernChallenge1
 
-### Behold the monstrosity
+### Contempla la monstruosidad
 
 ```powershell
 cd src\ModernChallenge1
 dotnet run          # Windows + .NET 10; or: sandbox\windows\run.ps1 src\ModernChallenge1
 ```
 
-A WPF window fades in and out. `Main` holds exactly one `for` whose body is empty ([`Program.cs` L132](../../src/ModernChallenge1/Program.cs#L132): `{ /* Intentionally empty. */ }`).
+Una ventana de WPF aparece y desaparece gradualmente. `Main` contiene exactamente un `for` cuyo cuerpo está vacío ([`Program.cs` L132](../../src/ModernChallenge1/Program.cs#L132): `{ /* Intentionally empty. */ }`).
 
 ### How the hell does that work?
 

@@ -94,7 +94,7 @@ Each track stores "what happens next" somewhere that is not a loop counter: in t
 | Arrays, and the source text of functions | [apl](lenguajes/apl.md#funciones-que-se-modifican-a-sí-mismas-apl-weird): [`apl-weird`](../src/apl-weird/README.md) |
 | Arrays and parameter-local variables | [awk](lenguajes/awk.md): [`awk`](../src/awk/README.md) |
 | The input stream and the record separator `RS` | [awk](lenguajes/awk.md#registros-a-partir-de-un-flujo-de-bytes-aleatorios-awk-weird): [`awk-weird`](../src/awk-weird/README.md) |
-| Fields of one anonymous object | [csharp-linq-xaml](lenguajes/csharp-linq-xaml.md#the-original-modernchallenge1): [`ModernChallenge1`](../src/ModernChallenge1/README.md) |
+| Fields of one anonymous object | [csharp-linq-xaml](lenguajes/csharp-linq-xaml.md#el-original-modernchallenge1): [`ModernChallenge1`](../src/ModernChallenge1/README.md) |
 | `CMAKE_MATCH_1`..`5`, rebuilt every pass | [make-cmake](lenguajes/make-cmake.md#cmake): [`cmake`](../src/cmake/README.md) |
 | `WS-TOTAL` and its 88-level name `OVER-FORTY` | [cobol](lenguajes/cobol.md): [`cobol`](../src/cobol/README.md) |
 | The target of one `GO TO` | [cobol](lenguajes/cobol.md#alter): [`cobol-weird`](../src/cobol-weird/README.md) |

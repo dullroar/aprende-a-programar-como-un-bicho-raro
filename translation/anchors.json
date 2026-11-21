@@ -4102,16 +4102,16 @@
     {
      "en": "The original: ModernChallenge1",
      "en_id": "the-original-modernchallenge1",
-     "es": "The original: ModernChallenge1",
-     "es_id": "the-original-modernchallenge1",
+     "es": "El original: ModernChallenge1",
+     "es_id": "el-original-modernchallenge1",
      "level": 2,
      "line": 11
     },
     {
      "en": "Behold the monstrosity",
      "en_id": "behold-the-monstrosity",
-     "es": "Behold the monstrosity",
-     "es_id": "behold-the-monstrosity",
+     "es": "Contempla la monstruosidad",
+     "es_id": "contempla-la-monstruosidad",
      "level": 3,
      "line": 13
     },
@@ -4325,7 +4325,7 @@
     }
    ],
    "map": {
-    "behold-the-monstrosity": "behold-the-monstrosity",
+    "behold-the-monstrosity": "contempla-la-monstruosidad",
     "c-linq-and-xaml-plus-the-one-statement-ports": "c-linq-y-xaml-más-las-adaptaciones-de-una-sola-sentencia",
     "computer-science-behind-this-page": "computer-science-behind-this-page",
     "deferred-execution-and-the-void-to-value-trick": "deferred-execution-and-the-void-to-value-trick",
@@ -4348,7 +4348,7 @@
     "program-flow-of-rustchallenge1": "program-flow-of-rustchallenge1",
     "program-flow-of-xaml": "program-flow-of-xaml",
     "the-one-statement-ports-same-trick-different-machinery": "the-one-statement-ports-same-trick-different-machinery",
-    "the-original-modernchallenge1": "the-original-modernchallenge1",
+    "the-original-modernchallenge1": "el-original-modernchallenge1",
     "under-what-circumstances-would-this-terrible-idea-become-reasonable": "under-what-circumstances-would-this-terrible-idea-become-reasonable",
     "what-did-we-just-learn": "what-did-we-just-learn",
     "what-did-we-just-learn-1": "what-did-we-just-learn-1",
