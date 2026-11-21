@@ -115,27 +115,27 @@ msgstr "El [README](⟦DEST_0001⟧) contiene la tabla completa."
 #: lessons/languages/editors.md:38
 msgctxt "s-4558ac37c649-0021"
 msgid "**A rewrite system with a different control.** [⟦CODE_0001⟧](⟦DEST_0002⟧) also rewrites text, but sed has a branch command and can loop until no rule applies. ed cannot. Its only repeat is ⟦CODE_0003⟧, and its only choice is a substitution that may not match."
-msgstr ""
+msgstr "**Un sistema de reescritura con otro control.** [⟦CODE_0001⟧](⟦DEST_0002⟧) también reescribe texto, pero sed tiene un comando de rama. Puede ejecutar un bucle hasta que ninguna regla se aplique. ed no puede. Su única repetición es ⟦CODE_0003⟧ y su única elección es una sustitución que puede no encontrar coincidencia."
 
 #: lessons/languages/editors.md:40
 msgctxt "s-d2bbf037de84-0022"
 msgid "What did we just learn?"
-msgstr ""
+msgstr "¿Qué acabamos de aprender?"
 
 #: lessons/languages/editors.md:42
 msgctxt "s-a0ef28188691-0023"
 msgid "**Numbers can be text.** Unary marks make addition a matter of concatenation. The price is the length of the string."
-msgstr ""
+msgstr "**Los números pueden ser texto.** Las marcas unarias hacen que la suma sea una concatenación. El precio es la longitud de la cadena de texto."
 
 #: lessons/languages/editors.md:43
 msgctxt "s-492a7228c672-0024"
 msgid "**A guard is a conditional.** \"Rewrite only if it matches\" is ⟦CODE_0001⟧ in a language that has none."
-msgstr ""
+msgstr "**Una guarda es una condición.** \"Reescribe solo si hay coincidencia\" es ⟦CODE_0001⟧ en un lenguaje que carece de ella."
 
 #: lessons/languages/editors.md:44
 msgctxt "s-c2f6e406c25a-0025"
 msgid "**Data can carry control.** A bar or a bang in a line says whether the machine is still running. The state travels with the data."
-msgstr ""
+msgstr "**Los datos pueden llevar el control.** Una barra o un signo de exclamación en una línea indica si la máquina sigue en ejecución. El estado viaja con los datos."
 
 #: lessons/languages/editors.md:45
 msgctxt "s-17e56ecc2219-0026"

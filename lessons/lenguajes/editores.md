@@ -35,13 +35,13 @@ Setenta líneas de comandos de ed. Un lanzador que proporciona cinco dígitos al
 
 El [README](../../src/ed-weird/README.md#cómo-funciona-el-truco) contiene la tabla completa.
 
-**A rewrite system with a different control.** [`regex-sed`](regex.md#gnu-sed) also rewrites text, but sed has a branch command and can loop until no rule applies. ed cannot. Its only repeat is `g`, and its only choice is a substitution that may not match.
+**Un sistema de reescritura con otro control.** [`regex-sed`](regex.md#gnu-sed) también reescribe texto, pero sed tiene un comando de rama. Puede ejecutar un bucle hasta que ninguna regla se aplique. ed no puede. Su única repetición es `g` y su única elección es una sustitución que puede no encontrar coincidencia.
 
-### What did we just learn?
+### ¿Qué acabamos de aprender?
 
-- **Numbers can be text.** Unary marks make addition a matter of concatenation. The price is the length of the string.
-- **A guard is a conditional.** "Rewrite only if it matches" is `if` in a language that has none.
-- **Data can carry control.** A bar or a bang in a line says whether the machine is still running. The state travels with the data.
+- **Los números pueden ser texto.** Las marcas unarias hacen que la suma sea una concatenación. El precio es la longitud de la cadena de texto.
+- **Una guarda es una condición.** "Reescribe solo si hay coincidencia" es `if` en un lenguaje que carece de ella.
+- **Los datos pueden llevar el control.** Una barra o un signo de exclamación en una línea indica si la máquina sigue en ejecución. El estado viaja con los datos.
 - **Standards and implementations differ.** busybox ed is an `ed`, and it cannot run this program: no `g`, no `t`, no `j`, no `#` and no empty match.
 - **A wall is a result.** Nested `g` is refused. A blank line is a command. We kept a test for each.
 
