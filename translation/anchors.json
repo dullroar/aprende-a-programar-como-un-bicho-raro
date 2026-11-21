@@ -8904,8 +8904,8 @@
     {
      "en": "One Statement, Go Edition",
      "en_id": "one-statement-go-edition",
-     "es": "Una instrucción, edición Go",
-     "es_id": "una-instrucción-edición-go",
+     "es": "Una sola sentencia, edición Go",
+     "es_id": "una-sola-sentencia-edición-go",
      "level": 1,
      "line": 15
     },
@@ -8970,7 +8970,7 @@
     "gotchas-worth-knowing": "trampas-que-conviene-conocer",
     "how-the-stunt-works": "cómo-funciona-el-truco",
     "layout": "estructura",
-    "one-statement-go-edition": "una-instrucción-edición-go",
+    "one-statement-go-edition": "una-sola-sentencia-edición-go",
     "program-flow": "flujo-del-programa",
     "run-it": "ejecútalo",
     "run-it-in-a-container": "ejecútalo-en-un-contenedor",

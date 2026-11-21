@@ -1,8 +1,8 @@
 # loop/STATE.md (keep to 60 lines; refreshed by every iteration)
 
 - **Edition:** v4-es.0-rc1 (working)    **English SHA:** 48a4429c0a22b2aac628b256a50c07d1816bcb80
-- **Iteration:** 96    **Stage:** 3C (editorial-review rework before bulk translation)    **Last result:** iter 96 P3C-008 done (src/forth/README.md corrected through its PO: 10 to 19 HOURS per card, `over-40?` kept whole in the accDescr via identifiers.yaml + fixtures, guide diagram re-synced, 19 dispositions, SI-012 logged; the forth-weird README sync is carried by its own translation). Next: P3C-009..015 file corrections (verify --fast lists their I7/I21/I23-I25 findings), then P3C-016
-- **Tasks:** todo 79 | doing 0 | done 67 | blocked 0 | skipped 0 (recount with the queue files)
+- **Iteration:** 97    **Stage:** 3C (editorial-review rework before bulk translation)    **Last result:** iter 97 P3C-009 done (src/GoChallenge1/README.md corrected through its PO: sentencia, adaptación, interfaz local with one *loopback* gloss, literal Lock/Append/Unlock/Spawn/After/Post in labels, the || evaluation described, 15 dispositions). Next: P3C-010..015 file corrections, then P3C-016
+- **Tasks:** todo 78 | doing 0 | done 68 | blocked 0 | skipped 0 (recount with the queue files)
 - **Next task:** run `python3 tools/next_task.py` (PO files live at translation/po/<path>.po, written by tools/apply.py --init)
 - **Budget:** spent $0.00 of $100; iterations 0 of 300
 - **Translate progress:** segments accepted 836 / total 8827 (7394 prose + 1433 Mermaid labels) ; files done 14 / 212 (curriculum and study-guide title pages, src/GoChallenge1, JavaChallenge1, KotlinChallenge1, LinqChallenge1, LinqChallenge2, ModernChallenge1, PythonChallenge1 READMEs, src/forth/README.md, lessons/cs-source/concepts/recursion.md, lessons/study-guides/languages/forth.md, docs/curriculum.md, lessons/study-guides/languages/apl.md)
