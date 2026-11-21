@@ -347,6 +347,14 @@ terms:
   - id: recursive
     en: recursive
     es: recursivo
+  - id: base-case
+    en: base case
+    es: caso base
+    note: "P3C-005: the call that answers without calling itself again; name it apart from the call that reaches it."
+  - id: tail-call
+    en: tail call
+    es: llamada de cola
+    note: "P3C-005 (review): one term in prose and in link text. 'llamada final' was dropped; the English 'terminal call' sense is a different term."
   - id: backtracking
     en: backtracking
     es: retroceso
