@@ -160,7 +160,7 @@ msgstr "forth: un solo bucle begin until sobre una palabra llamada card"
 #: lessons/study-guides/languages/forth.md:65
 msgctxt "s-48a93443871e-0028"
 msgid "A flowchart. The word main sets up, which opens a pipe to sqlite3, and writes the schema. The word run is a begin until loop. Each pass runs card, which draws hours, adds them to the total variable, bumps the card count, prints the row, and sends the INSERT through the pipe. Then over-40 leaves a flag on the stack, and until consumes it. If the flag is false, the loop repeats. If it is true, run ends, and main commits, closes the pipe and reports."
-msgstr "Un diagrama de flujo. La palabra main hace la preparación: abre una tubería a sqlite3 y escribe el esquema. La palabra run es un bucle begin until. Cada pasada ejecuta card, que sortea las horas, las suma a la variable total, incrementa el conteo de tarjetas, imprime la fila y envía el INSERT por la tubería. Después, over-40 deja una bandera en la pila y until la consume. Si la bandera es falsa, el bucle se repite. Si es verdadera, run termina, y main confirma, cierra la tubería e informa."
+msgstr "Un diagrama de flujo. La palabra main hace la preparación: abre una tubería a sqlite3 y escribe el esquema. La palabra run es un bucle begin until. Cada pasada ejecuta card, que extrae las horas, las suma a la variable total, incrementa el conteo de tarjetas, imprime la fila y envía el INSERT por la tubería. Después, over-40? deja una bandera en la pila y until la consume. Si la bandera es falsa, el bucle se repite. Si es verdadera, run termina, y main confirma la transacción, cierra la tubería e informa."
 
 #: lessons/study-guides/languages/forth.md:66
 msgctxt "s-41a381841487-0029"
@@ -175,7 +175,7 @@ msgstr "run: begin"
 #: lessons/study-guides/languages/forth.md:67
 msgctxt "s-ccd5a5faa5d1-0031"
 msgid "card: draw hours, add to total, bump cards"
-msgstr "card: sacar horas, sumar al total, incrementar tarjetas"
+msgstr "card: extraer horas, sumar al total, incrementar tarjetas"
 
 #: lessons/study-guides/languages/forth.md:68
 msgctxt "s-5f6983f484cf-0032"

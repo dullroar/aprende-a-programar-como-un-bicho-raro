@@ -75,9 +75,11 @@ class TestIdentifiers(unittest.TestCase):
     def test_over40_without_the_question_mark(self):
         self.assertEqual(1, len(self.check("over-40? leaves a flag", "over-40 deja una bandera")))
 
-    def test_over40_in_accdescr_is_written_without_it(self):
+    def test_over40_in_accdescr_regains_its_question_mark(self):
+        # the English accDescr drops the "?" (SI-010); the Spanish keeps the name whole (decision B2)
         src = label_seg(diagram('A["x"] --> B["y"]', acc="Then over-40 leaves a flag on the stack."), "accDescr")
-        self.assertEqual([], pl.identifier_hits(src, "Luego over-40 deja una bandera.", "x.md", CFG))
+        self.assertEqual([], pl.identifier_hits(src, "Luego over-40? deja una bandera.", "x.md", CFG))
+        self.assertEqual(1, len(pl.identifier_hits(src, "Luego over-40 deja una bandera.", "x.md", CFG)))
         self.assertEqual(1, len(pl.identifier_hits(src, "Luego sobre-40 deja una bandera.", "x.md", CFG)))
 
     def test_token_boundary(self):

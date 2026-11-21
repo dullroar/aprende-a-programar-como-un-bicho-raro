@@ -167,7 +167,7 @@ out
 ```mermaid
 flowchart TB
     accTitle: La cadena
-    accDescr: Un diagrama de flujo. La cadena also corre y luego over-40 deja una bandera.
+    accDescr: Un diagrama de flujo. La cadena also corre y luego over-40? deja una bandera.
     A["cadena de also: bloquea, suma horas"] --> B{"over-40? deja una bandera"}
     B -->|sí| C["where: la suma acumulada es 40 o menos"]
     B -->|no| D["from persisted in de la consulta de EF: pasamos a objetos"]
@@ -682,8 +682,10 @@ def catalog():
         file_b_fixture('"from persisted in de la consulta de EF', '"de persistido en la consulta de EF'))
     add(13, "ident-over40-question-mark-dropped", "`over-40?` loses its question mark", "file", "I21",
         file_b_fixture('"over-40? deja una bandera"', '"over-40 deja una bandera"'))
-    add(13, "ident-over40-accdescr-translated", "`over-40` in the accDescr is translated", "file", "I21",
-        file_b_fixture("luego over-40 deja", "luego sobre-40 deja"))
+    add(13, "ident-over40-accdescr-translated", "`over-40?` in the accDescr is translated", "file", "I21",
+        file_b_fixture("luego over-40? deja", "luego sobre-40? deja"))
+    add(13, "ident-over40-accdescr-question-mark-dropped", "`over-40?` in the accDescr loses its question mark (B2)", "file", "I21",
+        file_b_fixture("luego over-40? deja", "luego over-40 deja"))
     add(13, "units-range-takes-cards", "'de 10 a 19 horas por tarjeta' becomes 'de 10 a 19 tarjetas'", "file", "I22",
         file_b_fixture("de 10 a 19 horas por tarjeta", "de 10 a 19 tarjetas"))
     add(13, "units-range-without-unit", "the 10 to 19 range loses its unit", "file", "I22",

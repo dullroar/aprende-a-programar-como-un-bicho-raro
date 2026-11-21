@@ -30,12 +30,12 @@ identifiers:
   - literal: let
     en: '\blet (?:tracked|window|pulse|false)\b'
     kinds: [mermaid_label]
-  # Forth word: the label keeps its "?", the accDescr (English) writes it without
+  # Forth word: the label keeps its "?"; the English accDescr drops it (SI-010) and the Spanish restores it (decision B2)
   - literal: over-40?
     en: 'over-40\?'
     kinds: [mermaid_label]
     roles: [label, edge]
-  - literal: over-40
+  - literal: over-40?
     en: 'over-40'
     kinds: [mermaid_label]
     roles: [accDescr]

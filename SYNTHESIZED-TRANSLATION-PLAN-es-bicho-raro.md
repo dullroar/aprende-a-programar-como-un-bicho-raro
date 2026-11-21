@@ -726,6 +726,7 @@ A *gate task* runs a stage's checks (the A–E categories in §10, plus the stag
 | --- | --- | --- |
 | Create the local Spanish repo, commit, branch | Loop | Anytime |
 | Create the remote, push the release candidate **privately** for review | Jim says "go"; then Claude or Jim | At the start of Phase 7 |
+| **Continuous private backup of `loop/es-v4` to `origin`** (`github.com/dullroar/aprende-a-programar-como-un-bicho-raro`, private) | **Authorized by Jim, 2026-11-20.** Done only by the trusted `loop/pusher.sh`; the agent still cannot push (no credentials, `git push` denied, pre-push hook allows only `RALPH_PUSH=1`, origin, and `refs/heads/loop/es-v4`) | Every task commit, within about a minute |
 | Make the repo public, tag the release, upload PDFs and EPUBs | Jim says "publish" | After feedback is incorporated (Phase 8) |
 | Anything touching the English repo | Nobody | Never (fetch-only `upstream`) |
 

@@ -62,9 +62,9 @@ Las dos entradas de Forth guardan las tarjetas en una sola transacción de SQLit
 ```mermaid
 flowchart TD
     accTitle: forth: un solo bucle begin until sobre una palabra llamada card
-    accDescr: Un diagrama de flujo. La palabra main hace la preparación: abre una tubería a sqlite3 y escribe el esquema. La palabra run es un bucle begin until. Cada pasada ejecuta card, que sortea las horas, las suma a la variable total, incrementa el conteo de tarjetas, imprime la fila y envía el INSERT por la tubería. Después, over-40 deja una bandera en la pila y until la consume. Si la bandera es falsa, el bucle se repite. Si es verdadera, run termina, y main confirma, cierra la tubería e informa.
+    accDescr: Un diagrama de flujo. La palabra main hace la preparación: abre una tubería a sqlite3 y escribe el esquema. La palabra run es un bucle begin until. Cada pasada ejecuta card, que extrae las horas, las suma a la variable total, incrementa el conteo de tarjetas, imprime la fila y envía el INSERT por la tubería. Después, over-40? deja una bandera en la pila y until la consume. Si la bandera es falsa, el bucle se repite. Si es verdadera, run termina, y main confirma la transacción, cierra la tubería e informa.
     A["main: abre la tubería a sqlite3, escribe el esquema"] --> B["run: begin"]
-    B --> C["card: sacar horas, sumar al total, incrementar tarjetas"]
+    B --> C["card: extraer horas, sumar al total, incrementar tarjetas"]
     C --> D["Imprime la fila; envía el INSERT por la tubería"]
     D --> E{{"over-40? deja una bandera; until la consume"}}
     E -->|false| B
