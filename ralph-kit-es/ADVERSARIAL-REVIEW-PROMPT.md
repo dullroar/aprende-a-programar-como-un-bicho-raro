@@ -27,11 +27,13 @@ A good review here is one where, after reading it, the maintainers know exactly 
 
 ## What was intentionally NOT translated (do not report these as defects)
 
-- **All code, terminal output, SQL text, identifiers, file names, paths, URLs, `#Lnn` line anchors, command lines, YAML keys and enum values** stay in English, byte for byte. This is deliberate: readers run the same English programs.
+- **All code, terminal output, SQL text, identifiers, file names, paths, URLs, `#Lnn` line anchors, command lines, YAML keys and enum values** stay in English, byte for byte, **unless the packet's Edition facts say `code_localization: scoped`** (see the next section). This is deliberate: readers run the same English programs.
 - **The four card categories `Meetings`, `Coding`, `Debugging`, `Learning`** appear in program output and stay English, written as code (`` `Meetings` ``). The Spanish prose may gloss them once.
 - **Mermaid diagram syntax and node IDs** stay English. Only the visible labels and accessibility text (`accTitle`, `accDescr`) are Spanish.
 - **The English MIT `LICENSE`** is intentionally English.
 - Product names, proper nouns and bibliographic titles.
+
+**Code localization (scoped).** When Edition facts say `code_localization: scoped`, a controlled set of changes was made in the code of some families, each proven to leave the program's behavior unchanged: comments translated line for line; project-owned identifiers renamed (see the identifier map in the packet); some display strings translated. Never changed: language syntax, standard API and library names, file, CLI, protocol and schema names, fixtures and adversarial payloads, and (unless Edition facts say otherwise) the four card categories. Judge code packets with lenses L11 to L13. Report any change outside that scope, any stale old identifier in prose, diagrams or traces, and any claim in prose that the new code or its output contradicts.
 
 But **do** report it if translated prose accidentally changed any of those, or if prose describes the program's output as Spanish when the program prints English.
 
@@ -90,7 +92,7 @@ When unsure between two levels, choose the higher one and say why in `problem`.
 
 ## Categories (use exactly one per finding)
 
-`meaning`, `number-operator`, `modal-logic`, `omission`, `addition`, `terminology`, `glossary-violation`, `code-touched`, `dnt-violation`, `mermaid`, `link-anchor`, `phase-acronym`, `playfulness`, `clarity`, `style-profile`, `grammar-agreement`, `register`, `dialect`, `cross-file`, `safety-warning`, `structure`, `untranslated-english`, `other`
+`meaning`, `number-operator`, `modal-logic`, `omission`, `addition`, `terminology`, `glossary-violation`, `code-touched`, `dnt-violation`, `mermaid`, `link-anchor`, `phase-acronym`, `playfulness`, `clarity`, `style-profile`, `grammar-agreement`, `register`, `dialect`, `cross-file`, `safety-warning`, `structure`, `untranslated-english`, `code-semantics`, `protected-token`, `identifier-stale`, `build-ci`, `link-semantic`, `other`
 
 ## Output format (follow exactly; a machine reads it)
 
@@ -167,3 +169,9 @@ Use `type: risk` when the text is not wrong but is fragile or easy to misread; `
 **L9. Safety and security reader.** Focus on sandbox warnings, "demo only" labels, instructions about running untrusted code, and any text about triggers, hooks, self-modifying behavior or executable archives. Report every warning that is weaker, missing, moved away from the thing it warns about, or rephrased so that it sounds optional.
 
 **L10. Links and structure checker.** Focus on Pass 7. Verify that every internal link points to a Spanish section that exists and says what the link text promises, that heading anchors match the headings, that Mermaid labels and accessibility text match the English meaning, that no reader-facing English prose is left outside code and output, and that no link points back to the English repository except deliberate provenance links.
+
+**L11. Code semantics and equivalence (Part II).** You receive code packets: English and Spanish source side by side, the identifier map, the oracle report. For each localized family, try to show that the Spanish program does something different from the English one: a stop predicate or boundary (`>` versus `>=`, exactly 40 continues, the first card over 40 is kept), an operator, a string that a parser, regex or macro consumed, a width or column, a shadowed built-in, a case-sensitivity or scope change, reflection, an evaluation-phase effect in Make, m4, Tcl or shell. Check that comments still describe the code they sit above, that comments are good Spanish, and that every sample run quoted in prose matches what the Spanish program prints. Category `code-semantics`; use `critical` for any behavioral difference.
+
+**L12. Build, CI, links and sandbox integrity (Part II).** Assume the localization broke the gates. Look for: a test or lint weakened to get green, a skipped family reported as verified, a source-line link (`#Lnn`) that still resolves but now shows another statement, a link to the English repository where the Spanish one belongs, a link that works in Markdown but not in the built HTML, PDF or EPUB, a hostile example that now runs outside the sandbox, a relaxed sandbox allowlist, generated English that reappeared, nondeterministic generation. Categories `build-ci`, `link-semantic`.
+
+**L13. Identifiers and protected tokens (Part II).** You receive the identifier map and the protected-token registry slice. Find: a keyword, standard API, contract name or fixture that was changed; a project-owned identifier that was renamed in code but not in prose, a diagram, a trace table or a copied excerpt; a rename that collides with a built-in or another symbol in scope; an ordinary Spanish noun wrongly marked as code, or a code token left unfenced in Spanish prose. Categories `protected-token`, `identifier-stale`.
