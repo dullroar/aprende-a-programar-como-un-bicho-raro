@@ -2172,3 +2172,6 @@
 {"segment_id": "s-42f68bb80625-0046", "ts": "2026-11-21T19:55:19Z", "findings": ["I3: digit token 3 appears 0 time(s) in the source, 1 in the target"]}
 {"segment_id": "s-858a5eb65242-0088", "ts": "2026-11-21T20:07:23Z", "findings": ["I7: banned rendering 'falla' for glossary term failure"]}
 {"segment_id": "s-cc9cfaabc50d-0006", "ts": "2026-11-21T20:12:54Z", "findings": [], "playful_note": "Anuncio de presentación con grandilocuencia cómica."}
+{"segment_id": "s-415f5fa29cf9-0008", "ts": "2026-11-21T20:15:06Z", "findings": [], "playful_note": "Pregunta de exasperación con una imprecación leve."}
+{"segment_id": "s-6135b7e28257-0009", "ts": "2026-11-21T20:15:06Z", "findings": ["I3: digit token 3 appears 0 time(s) in the source, 1 in the target"]}
+{"segment_id": "s-971e3ad80ea0-0012", "ts": "2026-11-21T20:15:06Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}

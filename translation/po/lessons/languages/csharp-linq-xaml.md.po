@@ -50,27 +50,27 @@ msgstr "Una ventana de WPF aparece y desaparece gradualmente. ⟦CODE_0001⟧ co
 #: lessons/languages/csharp-linq-xaml.md:22
 msgctxt "s-415f5fa29cf9-0008"
 msgid "How the hell does that work?"
-msgstr ""
+msgstr "¿Cómo demonios funciona eso?"
 
 #: lessons/languages/csharp-linq-xaml.md:24
 msgctxt "s-6135b7e28257-0009"
 msgid "Read the ⟦CODE_0001⟧ header as a tiny language of three slots."
-msgstr ""
+msgstr "Lee el encabezado ⟦CODE_0001⟧ como un pequeño lenguaje de tres espacios."
 
 #: lessons/languages/csharp-linq-xaml.md:26
 msgctxt "s-c093546beec1-0010"
 msgid "⟦SEP_0001⟧ Clause ⟦SEP_0002⟧ Where ⟦SEP_0003⟧ What lives there ⟦SEP_0004⟧"
-msgstr ""
+msgstr "⟦SEP_0001⟧ Cláusula ⟦SEP_0002⟧ Dónde ⟦SEP_0003⟧ Qué contiene ⟦SEP_0004⟧"
 
 #: lessons/languages/csharp-linq-xaml.md:28
 msgctxt "s-dd2a682da5d9-0011"
 msgid "⟦SEP_0009⟧ **Initializer** ⟦SEP_0010⟧ [L37-58](⟦DEST_0001⟧) ⟦SEP_0011⟧ One ⟦CODE_0002⟧ anonymous object holding all state: EF Core context, ⟦CODE_0003⟧, category enumerator, WPF ⟦CODE_0004⟧, a ⟦CODE_0005⟧, an ⟦CODE_0006⟧ that becomes a ⟦CODE_0007⟧. A ⟦CODE_0008⟧ initializer allows one declaration, so the anonymous object is the one legal container. ⟦SEP_0012⟧"
-msgstr ""
+msgstr "⟦SEP_0009⟧ **Inicializador** ⟦SEP_0010⟧ [L37-58](⟦DEST_0001⟧) ⟦SEP_0011⟧ Un objeto anónimo ⟦CODE_0002⟧ contiene todo el estado: contexto de EF Core, ⟦CODE_0003⟧, enumerador de categorías, ⟦CODE_0004⟧ de WPF, un ⟦CODE_0005⟧ y un ⟦CODE_0006⟧ que se convierte en ⟦CODE_0007⟧. Un inicializador ⟦CODE_0008⟧ permite una declaración, así que el objeto anónimo es el único contenedor permitido. ⟦SEP_0012⟧"
 
 #: lessons/languages/csharp-linq-xaml.md:29
 msgctxt "s-971e3ad80ea0-0012"
 msgid "⟦SEP_0003⟧ **Condition** ⟦SEP_0004⟧ [L66-98](⟦DEST_0001⟧) ⟦SEP_0005⟧ ⟦CODE_0002⟧. While the total is 40 or less the loop continues. Once it is not, the condition builds and shows the window inline and returns false. ⟦SEP_0006⟧"
-msgstr ""
+msgstr "⟦SEP_0003⟧ **Condición** ⟦SEP_0004⟧ [L66-98](⟦DEST_0001⟧) ⟦SEP_0005⟧ ⟦CODE_0002⟧. Mientras el total sea 40 o menos, el bucle continúa. Cuando deja de serlo, la condición construye y muestra la ventana en línea y devuelve false. ⟦SEP_0006⟧"
 
 #: lessons/languages/csharp-linq-xaml.md:30
 msgctxt "s-6ac76b71d59e-0013"

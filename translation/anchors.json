@@ -4118,8 +4118,8 @@
     {
      "en": "How the hell does that work?",
      "en_id": "how-the-hell-does-that-work",
-     "es": "How the hell does that work?",
-     "es_id": "how-the-hell-does-that-work",
+     "es": "¿Cómo demonios funciona eso?",
+     "es_id": "cómo-demonios-funciona-eso",
      "level": 3,
      "line": 22
     },
@@ -4334,7 +4334,7 @@
     "honest-fine-print": "honest-fine-print",
     "how-each-program-runs": "how-each-program-runs",
     "how-is-that-even-possible": "how-is-that-even-possible",
-    "how-the-hell-does-that-work": "how-the-hell-does-that-work",
+    "how-the-hell-does-that-work": "cómo-demonios-funciona-eso",
     "linqchallenge1-one-fluent-chain": "linqchallenge1-one-fluent-chain",
     "linqchallenge2-query-syntax-all-the-way-down": "linqchallenge2-query-syntax-all-the-way-down",
     "now-break-it-yourself": "now-break-it-yourself",

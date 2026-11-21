@@ -19,14 +19,14 @@ dotnet run          # Windows + .NET 10; or: sandbox\windows\run.ps1 src\ModernC
 
 Una ventana de WPF aparece y desaparece gradualmente. `Main` contiene exactamente un `for` cuyo cuerpo está vacío ([`Program.cs` L132](../../src/ModernChallenge1/Program.cs#L132): `{ /* Intentionally empty. */ }`).
 
-### How the hell does that work?
+### ¿Cómo demonios funciona eso?
 
-Read the `for` header as a tiny language of three slots.
+Lee el encabezado `for` como un pequeño lenguaje de tres espacios.
 
-| Clause | Where | What lives there |
+| Cláusula | Dónde | Qué contiene |
 | --- | --- | --- |
-| **Initializer** | [L37-58](../../src/ModernChallenge1/Program.cs#L37-L58) | One `var i = new { ... }` anonymous object holding all state: EF Core context, `Random`, category enumerator, WPF `Application`, a `Mutex`, an `XElement` that becomes a `DoubleAnimation`. A `for` initializer allows one declaration, so the anonymous object is the one legal container. |
-| **Condition** | [L66-98](../../src/ModernChallenge1/Program.cs#L66-L98) | `(from hours in i.totalHours select hours).Sum() <= 40d && i.categories!.MoveNext() ? true : new Func<bool>(() => Double.IsNaN(i.app.Run(...))).Invoke()`. While the total is 40 or less the loop continues. Once it is not, the condition builds and shows the window inline and returns false. |
+| **Inicializador** | [L37-58](../../src/ModernChallenge1/Program.cs#L37-L58) | Un objeto anónimo `var i = new { ... }` contiene todo el estado: contexto de EF Core, `Random`, enumerador de categorías, `Application` de WPF, un `Mutex` y un `XElement` que se convierte en `DoubleAnimation`. Un inicializador `for` permite una declaración, así que el objeto anónimo es el único contenedor permitido. |
+| **Condición** | [L66-98](../../src/ModernChallenge1/Program.cs#L66-L98) | `(from hours in i.totalHours select hours).Sum() <= 40d && i.categories!.MoveNext() ? true : new Func<bool>(() => Double.IsNaN(i.app.Run(...))).Invoke()`. Mientras el total sea 40 o menos, el bucle continúa. Cuando deja de serlo, la condición construye y muestra la ventana en línea y devuelve false. |
 | **Iterator** | [L106-130](../../src/ModernChallenge1/Program.cs#L106-L130) | Draws hours, adds a row to EF Core and starts a background `Thread` that calls `Mutex.WaitOne`, `SaveChanges` and `ReleaseMutex` *through `MethodInfo.Invoke`*. |
 
 Each test of the `for` condition immediately needs a number. The LINQ projection can defer enumeration, and the terminal `Sum()` immediately enumerates it in the same condition test. The [Node port](javascript.md#the-bodiless-for-in-node) also computes its total eagerly, using `reduce` over the array.
