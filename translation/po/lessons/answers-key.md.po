@@ -523,7 +523,7 @@ msgstr ""
 #: lessons/answers-key.md:300
 msgctxt "s-8fe6ebaa6138-0085"
 msgid "B21. JavaScript, weirder: move the stop rule in a closure and watch the demand"
-msgstr ""
+msgstr "B21. JavaScript, más raro: mueve la regla de parada en una clausura y observa la demanda"
 
 #: lessons/answers-key.md:302
 msgctxt "s-f19841db72e6-0086"
@@ -533,6 +533,10 @@ msgid ""
 "3. ⟦CODE_0005⟧, ⟦CODE_0006⟧, ⟦CODE_0007⟧. The pipeline is only a description until ⟦CODE_0008⟧ asks. ⟦CODE_0009⟧ stops after one value, so the machine is asked once, and the hours source is called once.\n"
 "4. ⟦CODE_0010⟧ prints ⟦CODE_0011⟧ twice, then ⟦CODE_0012⟧: the machine's total is 15 after the first card and 30 after the second."
 msgstr ""
+"Pasan 12 pruebas.\n"
+"2. Con ⟦CODE_0001⟧ y ⟦CODE_0002⟧ los totales son 12 y 29, así que la máquina termina después de la segunda tarjeta: dos tarjetas. El laboratorio muestra entonces 7 fallos y 5 pruebas que pasan. Los fallos son las pruebas que usan el número 40 o las tres tarjetas iniciales: la tarjeta que pasa el límite, exactamente 40, el recuento de extracciones, la repetición y otras similares. Las cinco pruebas que pasan (dos entornos, ⟦CODE_0003⟧ diferido frente a inmediato, vida de la clausura, clausura frente a ⟦CODE_0004⟧ y clausura frente a continuación) tratan de cómo se comportan las clausuras, no de cuándo se detiene esta máquina. Las reglas de una clausura no dependen de su propósito.\n"
+"3. ⟦CODE_0005⟧, ⟦CODE_0006⟧, ⟦CODE_0007⟧. La canalización es solo una descripción hasta que ⟦CODE_0008⟧ pide un valor. ⟦CODE_0009⟧ se detiene después de un valor, así que se consulta la máquina una vez y se llama una vez a la fuente de horas.\n"
+"4. ⟦CODE_0010⟧ imprime ⟦CODE_0011⟧ dos veces y luego ⟦CODE_0012⟧: el total de la máquina es 15 después de la primera tarjeta y 30 después de la segunda."
 
 #: lessons/answers-key.md:307
 msgctxt "s-3c9465f4bab2-0087"

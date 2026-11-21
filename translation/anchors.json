@@ -883,8 +883,8 @@
     {
      "en": "B21. JavaScript, weirder: move the stop rule in a closure and watch the demand",
      "en_id": "b21-javascript-weirder-move-the-stop-rule-in-a-closure-and-watch-the-demand",
-     "es": "B21. JavaScript, weirder: move the stop rule in a closure and watch the demand",
-     "es_id": "b21-javascript-weirder-move-the-stop-rule-in-a-closure-and-watch-the-demand",
+     "es": "B21. JavaScript, más raro: mueve la regla de parada en una clausura y observa la demanda",
+     "es_id": "b21-javascript-más-raro-mueve-la-regla-de-parada-en-una-clausura-y-observa-la-demanda",
      "level": 2,
      "line": 300
     },
@@ -985,7 +985,7 @@
     "b19-ex-move-the-limit-on-the-tape-and-cut-the-loop": "b19-ex-mueve-el-límite-en-la-cinta-y-corta-el-bucle",
     "b2-haskell-break-the-laziness": "b2-haskell-rompe-la-evaluación-perezosa",
     "b20-javascript-read-the-clauses-move-the-limit-and-fail-the-structure-check": "b20-javascript-lee-las-cláusulas-mueve-el-límite-y-haz-fallar-la-comprobación-de-estructura",
-    "b21-javascript-weirder-move-the-stop-rule-in-a-closure-and-watch-the-demand": "b21-javascript-weirder-move-the-stop-rule-in-a-closure-and-watch-the-demand",
+    "b21-javascript-weirder-move-the-stop-rule-in-a-closure-and-watch-the-demand": "b21-javascript-más-raro-mueve-la-regla-de-parada-en-una-clausura-y-observa-la-demanda",
     "b22-javascript-event-driven-predict-the-trace-then-remove-the-boundary": "b22-javascript-event-driven-predict-the-trace-then-remove-the-boundary",
     "b3-forth-move-the-anchor": "b3-forth-mueve-el-ancla",
     "b4-make-remove-the-no-op-and-override-the-clock": "b4-make-elimina-la-operación-nula-y-reemplaza-el-reloj",

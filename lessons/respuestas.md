@@ -297,12 +297,12 @@ El `mktemp` falso produce los dados. El recorrido lee el último carácter de ca
 3. La sentencia adicional es JavaScript válido y el programa se ejecuta. `check-structure.mjs` informa `FAIL: the body must be empty`. Esa es la prueba de que se comprueba la regla del truco y no solo se afirma.
 4. 2026-12-31 es jueves y 2026 empieza en jueves, así que tiene 53 semanas: `2026-W53`. 2024-12-30 es lunes, en la semana cuyo jueves es 2025-01-02, así que es `2025-W01`.
 
-## B21. JavaScript, weirder: move the stop rule in a closure and watch the demand
+## B21. JavaScript, más raro: mueve la regla de parada en una clausura y observa la demanda
 
-1. 12 tests pass.
-2. With `over = total > 20` and `SEED=42` the totals are 12 and 29, so the machine is over after the second card: two cards. The lab then shows 7 failures and 5 passes. The failures are the tests that use the number 40 or the seed's three cards: the crossing card, exactly 40, the draw count, replay and the like. The five passing tests (two environments, lazy versus eager `map`, closure lifetime, closure versus `this`, closure versus continuation) are about how closures behave, and not about when this machine stops. A closure's rules do not depend on what the closure is for.
-3. `built`, `drawn`, `[ 15 ]`. The pipeline is only a description until `toArray()` asks. `take(1)` stops after one value, so the machine is asked once, and the hours source is called once.
-4. `take(2)` prints `drawn` twice, then `[ 15, 30 ]`: the machine's total is 15 after the first card and 30 after the second.
+1. Pasan 12 pruebas.
+2. Con `over = total > 20` y `SEED=42` los totales son 12 y 29, así que la máquina termina después de la segunda tarjeta: dos tarjetas. El laboratorio muestra entonces 7 fallos y 5 pruebas que pasan. Los fallos son las pruebas que usan el número 40 o las tres tarjetas iniciales: la tarjeta que pasa el límite, exactamente 40, el recuento de extracciones, la repetición y otras similares. Las cinco pruebas que pasan (dos entornos, `map` diferido frente a inmediato, vida de la clausura, clausura frente a `this` y clausura frente a continuación) tratan de cómo se comportan las clausuras, no de cuándo se detiene esta máquina. Las reglas de una clausura no dependen de su propósito.
+3. `built`, `drawn`, `[ 15 ]`. La canalización es solo una descripción hasta que `toArray()` pide un valor. `take(1)` se detiene después de un valor, así que se consulta la máquina una vez y se llama una vez a la fuente de horas.
+4. `take(2)` imprime `drawn` dos veces y luego `[ 15, 30 ]`: el total de la máquina es 15 después de la primera tarjeta y 30 después de la segunda.
 
 ## B22. JavaScript, event-driven: predict the trace, then remove the boundary
 
