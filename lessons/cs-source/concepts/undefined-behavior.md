@@ -1,15 +1,15 @@
 ---
-title: "Undefined, unspecified and implementation-defined behavior"
+title: "Comportamiento indefinido, no especificado y definido por la implementación"
 chapter: 8
 order: 20
 ---
-Standards use three different words for "the standard does not fully say". **Undefined behavior**: anything may happen, including a crash or a security hole. **Unspecified behavior**: one of several allowed outcomes, and the implementation need not say which. **Implementation-defined behavior**: the implementation must choose and document it. The words come from C and C++, but the idea applies everywhere. It exists to give compilers freedom to optimize and to run on different hardware. This book's three tags (guaranteed, implementation-permitted, accidentally exploited) are the same idea in friendlier words. Examples: COBOL's `ALTER` is kept by GnuCOBOL but removed from the standard, and the meanings of `⊃` and `↑` differ between GNU APL and Dyalog.
+Los estándares usan tres palabras distintas para decir "el estándar no lo dice del todo". **Comportamiento indefinido**: puede pasar cualquier cosa, incluso una caída o un agujero de seguridad. **Comportamiento no especificado**: uno de varios resultados permitidos, y la implementación no tiene que decir cuál. **Comportamiento definido por la implementación**: la implementación debe elegirlo y documentarlo. Las palabras vienen de C y C++, pero la idea vale en todas partes. Existe para dar libertad a los compiladores de optimizar y de ejecutarse en hardware distinto. Las tres etiquetas de este libro (garantizado, permitido por la implementación, aprovechado por accidente) son la misma idea en palabras más amigables. Ejemplos: `ALTER` de COBOL lo conserva GnuCOBOL pero se quitó del estándar, y los significados de `⊃` y `↑` difieren entre GNU APL y Dyalog.
 
-- **Use it when:** you read a standard: find out which kind of "not specified" you are leaning on.
-- **Avoid relying on it.** Tools such as AddressSanitizer can catch some undefined behavior in C and C++ at run time.
+- **Úsalo cuando:** leas un estándar: averigua en qué tipo de "no especificado" te estás apoyando.
+- **Evita depender de él.** Herramientas como AddressSanitizer pueden detectar parte del comportamiento indefinido de C y C++ durante la ejecución.
 
-**Read more:**
+**Más información:**
 
-- [Undefined behavior](https://en.wikipedia.org/wiki/Undefined_behavior) (Wikipedia)
-- [Unspecified behavior](https://en.wikipedia.org/wiki/Unspecified_behavior) (Wikipedia)
+- [Comportamiento indefinido](https://en.wikipedia.org/wiki/Undefined_behavior) (Wikipedia)
+- [Comportamiento no especificado](https://en.wikipedia.org/wiki/Unspecified_behavior) (Wikipedia)
 - [AddressSanitizer](https://en.wikipedia.org/wiki/AddressSanitizer) (Wikipedia)

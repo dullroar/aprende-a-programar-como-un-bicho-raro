@@ -1,0 +1,48 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lessons/cs-source/concepts/term-rewriting.md:2
+msgctxt "s-0cbc465ee8de-0000"
+msgid "Term and string rewriting"
+msgstr "Reescritura de términos y de cadenas de texto"
+
+#: lessons/cs-source/concepts/term-rewriting.md:6
+msgctxt "s-aef024fd5b9e-0001"
+msgid "Rewriting means replacing parts of a structure according to rules, again and again, until no rule applies. A *term* is a tree, such as an arithmetic expression. A *string* is the special case where the structure is a line of text. It exists because many kinds of computation are really simplification: algebra, the lambda calculus, an optimizing compiler, a spell-fixing text filter. Two properties matter. Does it always stop (*termination*)? Does every order of rewriting give the same answer (*confluence*)? In this repository ⟦MACRO_0001⟧ and ⟦MACRO_0002⟧ are rewriting systems, and the answer is simply the text that is left."
+msgstr "Reescribir significa reemplazar partes de una estructura según unas reglas, una y otra vez, hasta que ya no se aplica ninguna. Un *término* es un árbol, como una expresión aritmética. Una *cadena de texto* es el caso especial en que la estructura es una línea de texto. Existe porque muchos tipos de cómputo son en realidad simplificación: el álgebra, el cálculo lambda, un compilador que optimiza, un filtro de texto que corrige la ortografía. Importan dos propiedades. ¿Siempre se detiene (*terminación*)? ¿Todos los órdenes de reescritura dan la misma respuesta (*confluencia*)? En este repositorio ⟦MACRO_0001⟧ y ⟦MACRO_0002⟧ son sistemas de reescritura, y la respuesta es simplemente el texto que queda."
+
+#: lessons/cs-source/concepts/term-rewriting.md:8
+msgctxt "s-2118dd5a20b1-0002"
+msgid "**Use it when:** you simplify, normalize or translate structures with clear rules."
+msgstr "**Úsalo cuando:** simplifiques, normalices o traduzcas estructuras con reglas claras."
+
+#: lessons/cs-source/concepts/term-rewriting.md:9
+msgctxt "s-5c6dd21f150a-0003"
+msgid "**Avoid it when:** rule order matters but is not written down, or when termination is not obvious."
+msgstr "**Evítalo cuando:** el orden de las reglas importe pero no esté escrito, o cuando la terminación no sea evidente."
+
+#: lessons/cs-source/concepts/term-rewriting.md:11
+msgctxt "s-250de292f56f-0004"
+msgid "**Read more:**"
+msgstr "**Más información:**"
+
+#: lessons/cs-source/concepts/term-rewriting.md:13
+msgctxt "s-07c858890f57-0005"
+msgid "[Rewriting](⟦DEST_0001⟧) (Wikipedia)"
+msgstr "[Reescritura](⟦DEST_0001⟧) (Wikipedia)"
+
+#: lessons/cs-source/concepts/term-rewriting.md:14
+msgctxt "s-9dfa78c99b2e-0006"
+msgid "[Confluence (abstract rewriting)](⟦DEST_0001⟧)) (Wikipedia)"
+msgstr "[Confluencia (reescritura abstracta)](⟦DEST_0001⟧)) (Wikipedia)"
+
+#: lessons/cs-source/concepts/term-rewriting.md:15
+msgctxt "s-80033d693d30-0007"
+msgid "⟦MACRO_0001⟧ in \"What counts as a machine?\""
+msgstr "⟦MACRO_0001⟧ en \"¿Qué cuenta como una máquina?\""

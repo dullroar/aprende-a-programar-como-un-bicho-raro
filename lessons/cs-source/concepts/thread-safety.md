@@ -1,14 +1,14 @@
 ---
-title: "Thread safety and thread affinity"
+title: "Seguridad entre hilos y afinidad de hilo"
 chapter: 7
 order: 100
 ---
-Code is thread-safe if it behaves correctly when several threads use it at the same time. It exists as a problem because shared, changeable data plus parallel threads equals a race: the result depends on who gets there first. The entries on .NET and its ports touch two versions of the problem. In the C# entries, an EF Core `DbContext` is not thread-safe. In the one-statement ports, the code locks around the staged cards while a background thread saves them. And WPF has *thread affinity*: a window may only be touched by the thread that made it. Code that works once is not proof that it is safe.
+Un código es seguro entre hilos (*thread-safe*) si se comporta bien cuando varios hilos lo usan al mismo tiempo. Es un problema porque datos compartidos y modificables más hilos en paralelo producen una carrera: el resultado depende de quién llega primero. Las entradas de .NET y de sus adaptaciones tocan dos versiones del problema. En las entradas de C#, un `DbContext` de EF Core no es seguro entre hilos. En las adaptaciones de una sola sentencia, el código usa un bloqueo alrededor de las tarjetas preparadas mientras un hilo en segundo plano las guarda. Y WPF tiene *afinidad de hilo*: una ventana solo la puede tocar el hilo que la creó. Que un código funcione una vez no prueba que sea seguro.
 
-- **Use it when:** you share data across threads: use locks, immutable data or one context per thread.
-- **Avoid it when:** threads would share a mutable object with no synchronization. A passing test alone does not prove safety.
+- **Úsalo cuando:** compartas datos entre hilos: usa bloqueos, datos inmutables o un contexto por hilo.
+- **Evítalo cuando:** los hilos compartirían un objeto modificable sin sincronización. Una prueba que pasa no basta para demostrar la seguridad.
 
-**Read more:**
+**Más información:**
 
-- [Thread safety](https://en.wikipedia.org/wiki/Thread_safety) (Wikipedia)
-- [Race condition](https://en.wikipedia.org/wiki/Race_condition) (Wikipedia)
+- [Seguridad entre hilos](https://en.wikipedia.org/wiki/Thread_safety) (Wikipedia)
+- [Condición de carrera](https://en.wikipedia.org/wiki/Race_condition) (Wikipedia)

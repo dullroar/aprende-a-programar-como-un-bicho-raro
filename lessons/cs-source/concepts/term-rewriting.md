@@ -1,15 +1,15 @@
 ---
-title: "Term and string rewriting"
+title: "Reescritura de términos y de cadenas de texto"
 chapter: 5
 order: 40
 ---
-Rewriting means replacing parts of a structure according to rules, again and again, until no rule applies. A *term* is a tree, such as an arithmetic expression. A *string* is the special case where the structure is a line of text. It exists because many kinds of computation are really simplification: algebra, the lambda calculus, an optimizing compiler, a spell-fixing text filter. Two properties matter. Does it always stop (*termination*)? Does every order of rewriting give the same answer (*confluence*)? In this repository [[entry:regex-sed]] and [[entry:m4]] are rewriting systems, and the answer is simply the text that is left.
+Reescribir significa reemplazar partes de una estructura según unas reglas, una y otra vez, hasta que ya no se aplica ninguna. Un *término* es un árbol, como una expresión aritmética. Una *cadena de texto* es el caso especial en que la estructura es una línea de texto. Existe porque muchos tipos de cómputo son en realidad simplificación: el álgebra, el cálculo lambda, un compilador que optimiza, un filtro de texto que corrige la ortografía. Importan dos propiedades. ¿Siempre se detiene (*terminación*)? ¿Todos los órdenes de reescritura dan la misma respuesta (*confluencia*)? En este repositorio [[entry:regex-sed]] y [[entry:m4]] son sistemas de reescritura, y la respuesta es simplemente el texto que queda.
 
-- **Use it when:** you simplify, normalize or translate structures with clear rules.
-- **Avoid it when:** rule order matters but is not written down, or when termination is not obvious.
+- **Úsalo cuando:** simplifiques, normalices o traduzcas estructuras con reglas claras.
+- **Evítalo cuando:** el orden de las reglas importe pero no esté escrito, o cuando la terminación no sea evidente.
 
-**Read more:**
+**Más información:**
 
-- [Rewriting](https://en.wikipedia.org/wiki/Rewriting) (Wikipedia)
-- [Confluence (abstract rewriting)](https://en.wikipedia.org/wiki/Confluence_(abstract_rewriting)) (Wikipedia)
-- [[markov-algorithm]] in "What counts as a machine?"
+- [Reescritura](https://en.wikipedia.org/wiki/Rewriting) (Wikipedia)
+- [Confluencia (reescritura abstracta)](https://en.wikipedia.org/wiki/Confluence_(abstract_rewriting)) (Wikipedia)
+- [[markov-algorithm]] en "¿Qué cuenta como una máquina?"

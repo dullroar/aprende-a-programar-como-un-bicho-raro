@@ -1335,3 +1335,13 @@
 {"segment_id": "s-f1658b9f81ea-0016", "ts": "2026-11-21T15:39:58Z", "findings": ["I7: glossary term state must be rendered 'estado'"]}
 {"segment_id": "s-24bd3c94241e-0027", "ts": "2026-11-21T15:39:58Z", "findings": ["TRANSLATE: the reply is the English text unchanged"]}
 {"segment_id": "s-134ae4737355-0031", "ts": "2026-11-21T15:39:58Z", "findings": ["TRANSLATE: the reply is the English text unchanged"]}
+{"segment_id": "s-843d4398c62f-0001", "ts": "2026-11-21T16:11:23Z", "findings": ["I7: glossary term pull must be rendered 'demanda (pull)'"]}
+{"segment_id": "s-246c650a5c40-0005", "ts": "2026-11-21T16:11:23Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-843d4398c62f-0001", "ts": "2026-11-21T16:11:26Z", "findings": ["I7: glossary term pull must be rendered 'demanda (pull)'"]}
+{"segment_id": "s-246c650a5c40-0005", "ts": "2026-11-21T16:11:26Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-587fa628a9fe-0018", "ts": "2026-11-21T16:11:56Z", "findings": ["I7: glossary term rollback must be rendered 'reversión'"]}
+{"segment_id": "s-9850959e004f-0026", "ts": "2026-11-21T16:11:56Z", "findings": ["TRANSLATE: the reply is the English text unchanged"]}
+{"segment_id": "s-84d3adcb08dc-0001", "ts": "2026-11-21T16:12:14Z", "findings": ["I7: glossary term pull must be rendered 'demanda (pull)'"]}
+{"segment_id": "s-ab16267ce76d-0005", "ts": "2026-11-21T16:12:15Z", "findings": ["TRANSLATE: the reply is the English text unchanged"]}
+{"segment_id": "s-1d2bd07b84e5-0007", "ts": "2026-11-21T16:12:15Z", "findings": ["I25: '80%': write a non-breaking space before % (80 %)"]}
+{"segment_id": "s-3252ca50621d-0007", "ts": "2026-11-21T16:12:37Z", "findings": ["TRANSLATE: the reply is the English text unchanged"]}

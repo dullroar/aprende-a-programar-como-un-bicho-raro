@@ -1,41 +1,41 @@
 ---
-title: "Transactions"
+title: "Transacciones"
 chapter: 7
 order: 80
 ---
-A transaction is a group of operations that either *all* happen or *none* happen. The classic promise is called ACID: atomic, consistent, isolated and durable. It exists because a crash or an error in the middle of an update would otherwise leave data half-changed. Each script entry writes its demo cards in one SQLite transaction, and the **commit** is the point of no return. That point is where laziness can hurt. In [[entry:haskell-weird]] a lazy `let` was forced only after the pipe to SQLite had closed, so the work happened too late. `evaluate (length cards)` before the commit fixed it.
+Una transacción es un grupo de operaciones que ocurren *todas* o no ocurre *ninguna*. La promesa clásica se llama ACID: atómica, consistente, aislada y durable. Existe porque una caída o un error en mitad de una actualización dejaría los datos a medio cambiar. Cada entrada de script escribe sus tarjetas de demostración en una sola transacción de SQLite, y la **confirmación de la transacción** es el punto sin retorno. Ahí es donde la pereza puede hacer daño. En [[entry:haskell-weird]] un `let` perezoso se forzó solo después de cerrar la tubería hacia SQLite, así que el trabajo ocurrió demasiado tarde. `evaluate (length cards)` antes de la confirmación lo arregló.
 
 ```mermaid
 sequenceDiagram
-    accTitle: The database rolls back its transaction, not every effect the program caused
-    accDescr: A sequence diagram with the program, the SQLite database and the outside world. In the success case the program begins, writes card 1, writes card 2 and commits, and both cards are visible. In the failure case the program begins and writes card 1. It sends a notification to the outside world, which is not part of the transaction. Then an error occurs and the program rolls back, so neither card is visible. SQLite cannot unsend the notification.
-    participant P as Program
-    participant DB as SQLite database
-    participant X as Outside world
-    alt success
+    accTitle: La base de datos revierte su transacción, no todos los efectos que causó el programa
+    accDescr: Un diagrama de secuencia con el programa, la base de datos SQLite y el mundo exterior. En el caso de éxito, el programa empieza, escribe la tarjeta 1, escribe la tarjeta 2 y confirma la transacción, y las dos tarjetas son visibles. En el caso de fallo, el programa empieza y escribe la tarjeta 1. Envía una notificación al mundo exterior, que no forma parte de la transacción. Luego ocurre un error y el programa revierte, así que ninguna tarjeta es visible. SQLite no puede retirar la notificación.
+    participant P as Programa
+    participant DB as Base de datos SQLite
+    participant X as Mundo exterior
+    alt éxito
         P->>DB: BEGIN
-        P->>DB: write card 1
-        P->>DB: write card 2
+        P->>DB: escribir tarjeta 1
+        P->>DB: escribir tarjeta 2
         P->>DB: COMMIT
-        Note over DB: both cards visible
-    else error before commit
+        Note over DB: las dos tarjetas son visibles
+    else error antes de la confirmación de la transacción
         P->>DB: BEGIN
-        P->>DB: write card 1
-        P->>X: send notification / print / write external file
+        P->>DB: escribir tarjeta 1
+        P->>X: enviar notificación / imprimir / escribir archivo externo
         Note over P: error
         P->>DB: ROLLBACK
-        Note over DB: neither card visible
-        Note over X: cannot be rolled back by SQLite
+        Note over DB: ninguna tarjeta es visible
+        Note over X: SQLite no puede revertirlo
     end
 ```
 
-`COMMIT` makes both rows visible together, and `ROLLBACK` removes both. Neither reaches past the database. A notification, a printout or a file written outside it has already happened. That is why [[entry:haskell-weird]] had to force its lazy effects *before* the commit, and why this picture is about the boundary of the transaction and not about the cards. Not every entry places its transaction boundaries in the same spot.
+`COMMIT` hace visibles las dos filas a la vez, y `ROLLBACK` las quita las dos. Ninguno llega más allá de la base de datos. Una notificación, una impresión o un archivo escrito fuera de ella ya ocurrió. Por eso [[entry:haskell-weird]] tuvo que forzar sus efectos perezosos *antes* de la confirmación de la transacción, y por eso esta imagen trata del límite de la transacción y no de las tarjetas. No todas las entradas colocan los límites de su transacción en el mismo sitio.
 
-- **Use it when:** any multi-step change to stored data.
-- **Avoid it when:** the transaction would hold locks for a long time. Effects outside the database, such as an email or file write, remain after rollback.
+- **Úsalo cuando:** cambies datos almacenados en varios pasos.
+- **Evítalo cuando:** la transacción retendría bloqueos durante mucho tiempo. Los efectos fuera de la base de datos, como un correo o la escritura de un archivo, permanecen después de la reversión.
 
-**Read more:**
+**Más información:**
 
-- [Database transaction](https://en.wikipedia.org/wiki/Database_transaction) (Wikipedia)
+- [Transacción de base de datos](https://en.wikipedia.org/wiki/Database_transaction) (Wikipedia)
 - [ACID](https://en.wikipedia.org/wiki/ACID) (Wikipedia)
-- [Commit (data management)](https://en.wikipedia.org/wiki/Commit_(data_management)) (Wikipedia)
+- [Confirmación (gestión de datos)](https://en.wikipedia.org/wiki/Commit_(data_management)) (Wikipedia)

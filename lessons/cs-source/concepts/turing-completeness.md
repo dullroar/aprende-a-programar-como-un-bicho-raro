@@ -1,15 +1,15 @@
 ---
-title: "Turing completeness"
+title: "Completitud de Turing"
 chapter: 2
 order: 100
 ---
-A system is Turing complete if it can simulate any Turing machine (given unlimited memory). In plain words: it can compute whatever a general-purpose computer can. People enjoy finding this property in surprising places: Make, sed, m4, spreadsheets, even slide software. That is the spirit of this repository. But the property has a price. If a notation is Turing complete, you cannot decide in general what its programs will do (Rice's theorem). That is why security people prefer inputs that are *not* powerful. See [[langsec]]. The web community calls this the *rule of least power*: choose the least powerful language that solves the problem.
+Un sistema es Turing completo si puede simular cualquier máquina de Turing (con memoria ilimitada). En palabras sencillas: puede calcular lo que calcula un computador de propósito general. A la gente le gusta encontrar esta propiedad en lugares sorprendentes: Make, sed, m4, hojas de cálculo, incluso software de diapositivas. Ese es el espíritu de este repositorio. Pero la propiedad tiene un precio. Si una notación es Turing completa, no puedes decidir en general qué harán sus programas (teorema de Rice). Por eso la gente de seguridad prefiere entradas de datos que *no* sean potentes. Mira [[langsec]]. La comunidad web llama a esto la *regla del menor poder*: elige el lenguaje menos potente que resuelva el problema.
 
-- **Use it when:** you want to know the ceiling of a notation, or explain why a "configuration language" can run forever.
-- **Avoid it as praise:** "it is Turing complete" is a warning label as often as a compliment.
+- **Úsala cuando:** quieras conocer el techo de una notación, o explicar por qué un "lenguaje de configuración" puede ejecutarse para siempre.
+- **Evita usarla como elogio:** "es Turing completo" es tantas veces una advertencia como un cumplido.
 
-**Read more:**
+**Más información:**
 
-- [Turing completeness](https://en.wikipedia.org/wiki/Turing_completeness) (Wikipedia)
-- [Rice's theorem](https://en.wikipedia.org/wiki/Rice%27s_theorem) (Wikipedia)
-- [Rule of least power](https://en.wikipedia.org/wiki/Rule_of_least_power) (Wikipedia)
+- [Completitud de Turing](https://en.wikipedia.org/wiki/Turing_completeness) (Wikipedia)
+- [Teorema de Rice](https://en.wikipedia.org/wiki/Rice%27s_theorem) (Wikipedia)
+- [Regla del menor poder](https://en.wikipedia.org/wiki/Rule_of_least_power) (Wikipedia)

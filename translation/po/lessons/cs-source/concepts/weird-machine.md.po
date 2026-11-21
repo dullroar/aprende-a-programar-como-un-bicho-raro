@@ -1,0 +1,43 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lessons/cs-source/concepts/weird-machine.md:2
+msgctxt "s-76002b1b5edf-0000"
+msgid "Weird machines"
+msgstr "Máquinas raras"
+
+#: lessons/cs-source/concepts/weird-machine.md:6
+msgctxt "s-5bc2d3b3a0f9-0001"
+msgid "\"Weird machine\" is a term from security research. A program has the machine its authors meant, and it also has *another* machine, made of the same parts, that an attacker can drive with crafted input. In return-oriented programming, for example, an attacker chains small pieces of existing code into a new program. The term exists to explain why \"it was only supposed to parse a file\" is not a safety argument. Every entry in this repository is a weird machine made on purpose, in a safe place: a regex engine that counts, a parser that loops, a build tool that restarts. Each one asks the lesson's question in reverse: *what can input make this program do?*"
+msgstr "\"Máquina rara\" (*weird machine*) es un término de la investigación en seguridad. Un programa tiene la máquina que sus autores quisieron, y también tiene *otra* máquina, hecha con las mismas piezas, que un atacante puede manejar con una entrada de datos preparada. En la programación orientada al retorno, por ejemplo, un atacante encadena trozos pequeños de código existente para formar un programa nuevo. El término existe para explicar por qué \"solo debía analizar un archivo\" no es un argumento de seguridad. Cada entrada de este repositorio es una máquina rara hecha a propósito, en un lugar seguro: un motor de expresiones regulares que cuenta, un analizador sintáctico que hace bucles, una herramienta de compilación que se reinicia. Cada una plantea al revés la pregunta de la lección: *¿qué hará este programa según la entrada de datos que reciba?*"
+
+#: lessons/cs-source/concepts/weird-machine.md:8
+msgctxt "s-6a995c273a13-0002"
+msgid "**Use it when:** you review an attack surface, and when you want to understand how a \"harmless\" feature computes."
+msgstr "**Úsalo cuando:** revises una superficie de ataque, y cuando quieras entender cómo calcula una función \"inofensiva\"."
+
+#: lessons/cs-source/concepts/weird-machine.md:9
+msgctxt "s-bed0e9c4af6d-0003"
+msgid "**Avoid building them in production.** If you must, describe the machine in the README, as the entries here do."
+msgstr "**Evita construirlas en producción.** Si debes hacerlo, describe la máquina en el README, como hacen las entradas de aquí."
+
+#: lessons/cs-source/concepts/weird-machine.md:11
+msgctxt "s-250de292f56f-0004"
+msgid "**Read more:**"
+msgstr "**Más información:**"
+
+#: lessons/cs-source/concepts/weird-machine.md:13
+msgctxt "s-cbbd951c9faf-0005"
+msgid "[Weird machine](⟦DEST_0001⟧) (Wikipedia)"
+msgstr "[Máquina rara](⟦DEST_0001⟧) (Wikipedia)"
+
+#: lessons/cs-source/concepts/weird-machine.md:14
+msgctxt "s-039bc2c7f69b-0006"
+msgid "[Return-oriented programming](⟦DEST_0001⟧) (Wikipedia)"
+msgstr "[Programación orientada al retorno](⟦DEST_0001⟧) (Wikipedia)"

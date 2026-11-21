@@ -1,15 +1,15 @@
 ---
-title: "Performance cliffs and time complexity"
+title: "Precipicios de rendimiento y complejidad temporal"
 chapter: 8
 order: 60
 ---
-Time complexity describes how running time grows with the size of the input: linear (n), quadratic (n²), exponential (2ⁿ). It exists because small tests hide big problems. A function that takes a millisecond for ten items may take a year for sixty. In this repository the cliff is used on purpose. [[entry:regex-sed]] has a catastrophic-backtracking regex, tuned to take about 50 milliseconds per frame, as a *clock*. That is a nice trick in a demo, and a fine example of why you cannot use speed as a timer in real software: another machine, another version, another answer.
+La complejidad temporal describe cómo crece el tiempo de ejecución con el tamaño de la entrada de datos: lineal (n), cuadrática (n²), exponencial (2ⁿ). Existe porque las pruebas pequeñas esconden problemas grandes. Una función que tarda un milisegundo con diez elementos puede tardar un año con sesenta. En este repositorio el precipicio se usa a propósito. [[entry:regex-sed]] tiene una expresión regular con retroceso catastrófico, ajustada para tardar unos 50 milisegundos por cuadro, como *reloj*. Es un buen truco en una demostración, y un buen ejemplo de por qué no puedes usar la velocidad como temporizador en software real: otra máquina, otra versión, otra respuesta.
 
-- **Use it when:** before you ship code that handles large or hostile input, ask what the worst case is.
-- **Avoid it when:** you need a clock or a guarantee of elapsed time.
+- **Úsalo cuando:** antes de publicar código que maneje entradas de datos grandes u hostiles, pregúntate cuál es el peor caso.
+- **Evítalo cuando:** necesites un reloj o una garantía de tiempo transcurrido.
 
-**Read more:**
+**Más información:**
 
-- [Time complexity](https://en.wikipedia.org/wiki/Time_complexity) (Wikipedia)
-- [Big O notation](https://en.wikipedia.org/wiki/Big_O_notation) (Wikipedia)
-- [Computational complexity theory](https://en.wikipedia.org/wiki/Computational_complexity_theory) (Wikipedia)
+- [Complejidad temporal](https://en.wikipedia.org/wiki/Time_complexity) (Wikipedia)
+- [Notación de O grande](https://en.wikipedia.org/wiki/Big_O_notation) (Wikipedia)
+- [Teoría de la complejidad computacional](https://en.wikipedia.org/wiki/Computational_complexity_theory) (Wikipedia)

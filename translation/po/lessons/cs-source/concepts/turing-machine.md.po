@@ -1,0 +1,48 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lessons/cs-source/concepts/turing-machine.md:2
+msgctxt "s-45ae91baf61d-0000"
+msgid "Turing machines"
+msgstr "Máquinas de Turing"
+
+#: lessons/cs-source/concepts/turing-machine.md:6
+msgctxt "s-8d3a1b2f03b1-0001"
+msgid "A Turing machine has an endless tape of cells, a head that reads and writes one cell at a time and a short table of rules. Alan Turing described it in 1936 to define exactly what an \"algorithm\" is. With it he showed that some questions have no algorithm at all, such as the halting problem: \"does this program ever stop?\" Nobody writes software for a Turing machine. It matters because of an argument: if a system can *simulate* one, it can compute anything that can be computed."
+msgstr "Una máquina de Turing tiene una cinta sin fin de celdas, un cabezal que lee y escribe una celda a la vez y una tabla corta de reglas. Alan Turing la describió en 1936 para definir con exactitud qué es un \"algoritmo\". Con ella demostró que algunas preguntas no tienen ningún algoritmo, como el problema de la parada: \"¿este programa se detiene alguna vez?\" Nadie escribe software para una máquina de Turing. Importa por un argumento: si un sistema puede *simular* una, puede calcular todo lo que se puede calcular."
+
+#: lessons/cs-source/concepts/turing-machine.md:8
+msgctxt "s-21a5af57dfcc-0002"
+msgid "**Use it when:** you want to argue that a notation is a full computer, or to understand why some problems cannot be solved."
+msgstr "**Úsala cuando:** quieras argumentar que una notación es un computador completo, o entender por qué algunos problemas no se pueden resolver."
+
+#: lessons/cs-source/concepts/turing-machine.md:9
+msgctxt "s-24577c82c779-0003"
+msgid "**Avoid it when:** you need to predict the speed of real hardware. Real machines do not walk along a tape."
+msgstr "**Evítala cuando:** necesites predecir la velocidad de un equipo real. Las máquinas reales no recorren una cinta."
+
+#: lessons/cs-source/concepts/turing-machine.md:11
+msgctxt "s-250de292f56f-0004"
+msgid "**Read more:**"
+msgstr "**Más información:**"
+
+#: lessons/cs-source/concepts/turing-machine.md:13
+msgctxt "s-5235e88d26d3-0005"
+msgid "[Turing machine](⟦DEST_0001⟧) (Wikipedia)"
+msgstr "[Máquina de Turing](⟦DEST_0001⟧) (Wikipedia)"
+
+#: lessons/cs-source/concepts/turing-machine.md:14
+msgctxt "s-b8e9d6b246bf-0006"
+msgid "[Halting problem](⟦DEST_0001⟧) (Wikipedia)"
+msgstr "[Problema de la parada](⟦DEST_0001⟧) (Wikipedia)"
+
+#: lessons/cs-source/concepts/turing-machine.md:15
+msgctxt "s-1d2bd07b84e5-0007"
+msgid "[Church–Turing thesis](⟦DEST_0001⟧) (Wikipedia)"
+msgstr "[Tesis de Church-Turing](⟦DEST_0001⟧) (Wikipedia)"

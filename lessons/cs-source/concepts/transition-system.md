@@ -1,14 +1,14 @@
 ---
-title: "Transition systems and state machines"
+title: "Sistemas de transición y máquinas de estados"
 chapter: 2
 order: 20
 ---
-A transition system is the simplest machine: a set of *states* and a set of allowed *moves* between them. A finite-state machine is the case with a fixed, small number of states. It exists because small machines can be checked completely: you can list every state and every move. Parsers, network protocols, user-interface flows and the insides of regex engines are all built this way. Every entry in this repository can be drawn as a transition system if you ask two questions: what is the state, and what is one step?
+Un sistema de transición es la máquina más simple: un conjunto de *estados* y un conjunto de *movimientos* permitidos entre ellos. Una máquina de estados finitos es el caso con un número fijo y pequeño de estados. Existe porque las máquinas pequeñas se pueden comprobar por completo: puedes listar cada estado y cada movimiento. Los analizadores sintácticos, los protocolos de red, los flujos de interfaz de usuario y el interior de los motores de expresiones regulares se construyen así. Cada entrada de este repositorio se puede dibujar como un sistema de transición si haces dos preguntas: ¿cuál es el estado?, ¿cuál es un paso?
 
-- **Use it when:** behavior depends on history in a bounded way, such as "what did I see before?"
-- **Avoid it when:** the state is unbounded. A finite machine cannot count matching brackets of any depth. For that you need a stack (see [[stack-machine]]). Also beware of *state explosion*: the number of states can grow faster than you can draw them.
+- **Úsalo cuando:** el comportamiento dependa del historial de forma acotada, como en "¿qué vi antes?"
+- **Evítalo cuando:** el estado no tenga límite. Una máquina finita no puede contar paréntesis que coinciden a cualquier profundidad. Para eso necesitas una pila (mira [[stack-machine]]). Ten cuidado también con la *explosión de estados*: el número de estados puede crecer más rápido de lo que puedes dibujarlos.
 
-**Read more:**
+**Más información:**
 
-- [Transition system](https://en.wikipedia.org/wiki/Transition_system) (Wikipedia)
-- [Finite-state machine](https://en.wikipedia.org/wiki/Finite-state_machine) (Wikipedia)
+- [Sistema de transición](https://en.wikipedia.org/wiki/Transition_system) (Wikipedia)
+- [Máquina de estados finitos](https://en.wikipedia.org/wiki/Finite-state_machine) (Wikipedia)

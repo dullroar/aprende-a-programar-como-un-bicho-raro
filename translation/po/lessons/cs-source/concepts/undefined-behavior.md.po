@@ -1,0 +1,48 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lessons/cs-source/concepts/undefined-behavior.md:2
+msgctxt "s-3d0cfdafc086-0000"
+msgid "Undefined, unspecified and implementation-defined behavior"
+msgstr "Comportamiento indefinido, no especificado y definido por la implementación"
+
+#: lessons/cs-source/concepts/undefined-behavior.md:6
+msgctxt "s-bbb7105e62b9-0001"
+msgid "Standards use three different words for \"the standard does not fully say\". **Undefined behavior**: anything may happen, including a crash or a security hole. **Unspecified behavior**: one of several allowed outcomes, and the implementation need not say which. **Implementation-defined behavior**: the implementation must choose and document it. The words come from C and C++, but the idea applies everywhere. It exists to give compilers freedom to optimize and to run on different hardware. This book's three tags (guaranteed, implementation-permitted, accidentally exploited) are the same idea in friendlier words. Examples: COBOL's ⟦CODE_0001⟧ is kept by GnuCOBOL but removed from the standard, and the meanings of ⟦CODE_0002⟧ and ⟦CODE_0003⟧ differ between GNU APL and Dyalog."
+msgstr "Los estándares usan tres palabras distintas para decir \"el estándar no lo dice del todo\". **Comportamiento indefinido**: puede pasar cualquier cosa, incluso una caída o un agujero de seguridad. **Comportamiento no especificado**: uno de varios resultados permitidos, y la implementación no tiene que decir cuál. **Comportamiento definido por la implementación**: la implementación debe elegirlo y documentarlo. Las palabras vienen de C y C++, pero la idea vale en todas partes. Existe para dar libertad a los compiladores de optimizar y de ejecutarse en hardware distinto. Las tres etiquetas de este libro (garantizado, permitido por la implementación, aprovechado por accidente) son la misma idea en palabras más amigables. Ejemplos: ⟦CODE_0001⟧ de COBOL lo conserva GnuCOBOL pero se quitó del estándar, y los significados de ⟦CODE_0002⟧ y ⟦CODE_0003⟧ difieren entre GNU APL y Dyalog."
+
+#: lessons/cs-source/concepts/undefined-behavior.md:8
+msgctxt "s-4758e66e030b-0002"
+msgid "**Use it when:** you read a standard: find out which kind of \"not specified\" you are leaning on."
+msgstr "**Úsalo cuando:** leas un estándar: averigua en qué tipo de \"no especificado\" te estás apoyando."
+
+#: lessons/cs-source/concepts/undefined-behavior.md:9
+msgctxt "s-e61b8e78895c-0003"
+msgid "**Avoid relying on it.** Tools such as AddressSanitizer can catch some undefined behavior in C and C++ at run time."
+msgstr "**Evita depender de él.** Herramientas como AddressSanitizer pueden detectar parte del comportamiento indefinido de C y C++ durante la ejecución."
+
+#: lessons/cs-source/concepts/undefined-behavior.md:11
+msgctxt "s-250de292f56f-0004"
+msgid "**Read more:**"
+msgstr "**Más información:**"
+
+#: lessons/cs-source/concepts/undefined-behavior.md:13
+msgctxt "s-980e88da61e4-0005"
+msgid "[Undefined behavior](⟦DEST_0001⟧) (Wikipedia)"
+msgstr "[Comportamiento indefinido](⟦DEST_0001⟧) (Wikipedia)"
+
+#: lessons/cs-source/concepts/undefined-behavior.md:14
+msgctxt "s-2fba66e1edd4-0006"
+msgid "[Unspecified behavior](⟦DEST_0001⟧) (Wikipedia)"
+msgstr "[Comportamiento no especificado](⟦DEST_0001⟧) (Wikipedia)"
+
+#: lessons/cs-source/concepts/undefined-behavior.md:15
+msgctxt "s-3252ca50621d-0007"
+msgid "[AddressSanitizer](⟦DEST_0001⟧) (Wikipedia)"
+msgstr "[AddressSanitizer](⟦DEST_0001⟧) (Wikipedia)"

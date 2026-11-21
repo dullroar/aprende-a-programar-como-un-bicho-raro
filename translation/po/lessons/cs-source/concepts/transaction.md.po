@@ -1,0 +1,148 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lessons/cs-source/concepts/transaction.md:2
+msgctxt "s-3e5136fd4b11-0000"
+msgid "Transactions"
+msgstr "Transacciones"
+
+#: lessons/cs-source/concepts/transaction.md:6
+msgctxt "s-04980d51c02f-0001"
+msgid "A transaction is a group of operations that either *all* happen or *none* happen. The classic promise is called ACID: atomic, consistent, isolated and durable. It exists because a crash or an error in the middle of an update would otherwise leave data half-changed. Each script entry writes its demo cards in one SQLite transaction, and the **commit** is the point of no return. That point is where laziness can hurt. In ⟦MACRO_0001⟧ a lazy ⟦CODE_0002⟧ was forced only after the pipe to SQLite had closed, so the work happened too late. ⟦CODE_0003⟧ before the commit fixed it."
+msgstr "Una transacción es un grupo de operaciones que ocurren *todas* o no ocurre *ninguna*. La promesa clásica se llama ACID: atómica, consistente, aislada y durable. Existe porque una caída o un error en mitad de una actualización dejaría los datos a medio cambiar. Cada entrada de script escribe sus tarjetas de demostración en una sola transacción de SQLite, y la **confirmación de la transacción** es el punto sin retorno. Ahí es donde la pereza puede hacer daño. En ⟦MACRO_0001⟧ un ⟦CODE_0002⟧ perezoso se forzó solo después de cerrar la tubería hacia SQLite, así que el trabajo ocurrió demasiado tarde. ⟦CODE_0003⟧ antes de la confirmación lo arregló."
+
+#: lessons/cs-source/concepts/transaction.md:10
+msgctxt "s-15d44b3e3f28-0002"
+msgid "The database rolls back its transaction, not every effect the program caused"
+msgstr "La base de datos revierte su transacción, no todos los efectos que causó el programa"
+
+#: lessons/cs-source/concepts/transaction.md:11
+msgctxt "s-0e988691a0ce-0003"
+msgid "A sequence diagram with the program, the SQLite database and the outside world. In the success case the program begins, writes card 1, writes card 2 and commits, and both cards are visible. In the failure case the program begins and writes card 1. It sends a notification to the outside world, which is not part of the transaction. Then an error occurs and the program rolls back, so neither card is visible. SQLite cannot unsend the notification."
+msgstr "Un diagrama de secuencia con el programa, la base de datos SQLite y el mundo exterior. En el caso de éxito, el programa empieza, escribe la tarjeta 1, escribe la tarjeta 2 y confirma la transacción, y las dos tarjetas son visibles. En el caso de fallo, el programa empieza y escribe la tarjeta 1. Envía una notificación al mundo exterior, que no forma parte de la transacción. Luego ocurre un error y el programa revierte, así que ninguna tarjeta es visible. SQLite no puede retirar la notificación."
+
+#: lessons/cs-source/concepts/transaction.md:12
+msgctxt "s-90920d93e2c7-0004"
+msgid "Program"
+msgstr "Programa"
+
+#: lessons/cs-source/concepts/transaction.md:13
+msgctxt "s-a2768933ccb3-0005"
+msgid "SQLite database"
+msgstr "Base de datos SQLite"
+
+#: lessons/cs-source/concepts/transaction.md:14
+msgctxt "s-62fe122404e1-0006"
+msgid "Outside world"
+msgstr "Mundo exterior"
+
+#: lessons/cs-source/concepts/transaction.md:15
+msgctxt "s-aee408847d35-0007"
+msgid "success"
+msgstr "éxito"
+
+#: lessons/cs-source/concepts/transaction.md:16
+msgctxt "s-a8402858d4f1-0008"
+msgid "BEGIN"
+msgstr "BEGIN"
+
+#: lessons/cs-source/concepts/transaction.md:17
+msgctxt "s-afa3185184a5-0009"
+msgid "write card 1"
+msgstr "escribir tarjeta 1"
+
+#: lessons/cs-source/concepts/transaction.md:18
+msgctxt "s-f25c28739b0d-0010"
+msgid "write card 2"
+msgstr "escribir tarjeta 2"
+
+#: lessons/cs-source/concepts/transaction.md:19
+msgctxt "s-79663c1d3b43-0011"
+msgid "COMMIT"
+msgstr "COMMIT"
+
+#: lessons/cs-source/concepts/transaction.md:20
+msgctxt "s-f22526e1ed0d-0012"
+msgid "both cards visible"
+msgstr "las dos tarjetas son visibles"
+
+#: lessons/cs-source/concepts/transaction.md:21
+msgctxt "s-6383ed374d37-0013"
+msgid "error before commit"
+msgstr "error antes de la confirmación de la transacción"
+
+#: lessons/cs-source/concepts/transaction.md:22
+msgctxt "s-a8402858d4f1-0014"
+msgid "BEGIN"
+msgstr "BEGIN"
+
+#: lessons/cs-source/concepts/transaction.md:23
+msgctxt "s-afa3185184a5-0015"
+msgid "write card 1"
+msgstr "escribir tarjeta 1"
+
+#: lessons/cs-source/concepts/transaction.md:24
+msgctxt "s-c1aa32b844f6-0016"
+msgid "send notification / print / write external file"
+msgstr "enviar notificación / imprimir / escribir archivo externo"
+
+#: lessons/cs-source/concepts/transaction.md:25
+msgctxt "s-ca00fccfb408-0017"
+msgid "error"
+msgstr "error"
+
+#: lessons/cs-source/concepts/transaction.md:26
+msgctxt "s-587fa628a9fe-0018"
+msgid "ROLLBACK"
+msgstr "ROLLBACK"
+
+#: lessons/cs-source/concepts/transaction.md:27
+msgctxt "s-336c46cfc45f-0019"
+msgid "neither card visible"
+msgstr "ninguna tarjeta es visible"
+
+#: lessons/cs-source/concepts/transaction.md:28
+msgctxt "s-c2848ac1e4f9-0020"
+msgid "cannot be rolled back by SQLite"
+msgstr "SQLite no puede revertirlo"
+
+#: lessons/cs-source/concepts/transaction.md:32
+msgctxt "s-fae6cc5ed69a-0021"
+msgid "⟦CODE_0001⟧ makes both rows visible together, and ⟦CODE_0002⟧ removes both. Neither reaches past the database. A notification, a printout or a file written outside it has already happened. That is why ⟦MACRO_0003⟧ had to force its lazy effects *before* the commit, and why this picture is about the boundary of the transaction and not about the cards. Not every entry places its transaction boundaries in the same spot."
+msgstr "⟦CODE_0001⟧ hace visibles las dos filas a la vez, y ⟦CODE_0002⟧ las quita las dos. Ninguno llega más allá de la base de datos. Una notificación, una impresión o un archivo escrito fuera de ella ya ocurrió. Por eso ⟦MACRO_0003⟧ tuvo que forzar sus efectos perezosos *antes* de la confirmación de la transacción, y por eso esta imagen trata del límite de la transacción y no de las tarjetas. No todas las entradas colocan los límites de su transacción en el mismo sitio."
+
+#: lessons/cs-source/concepts/transaction.md:34
+msgctxt "s-7aadb42b53c5-0022"
+msgid "**Use it when:** any multi-step change to stored data."
+msgstr "**Úsalo cuando:** cambies datos almacenados en varios pasos."
+
+#: lessons/cs-source/concepts/transaction.md:35
+msgctxt "s-e66f58178e9d-0023"
+msgid "**Avoid it when:** the transaction would hold locks for a long time. Effects outside the database, such as an email or file write, remain after rollback."
+msgstr "**Evítalo cuando:** la transacción retendría bloqueos durante mucho tiempo. Los efectos fuera de la base de datos, como un correo o la escritura de un archivo, permanecen después de la reversión."
+
+#: lessons/cs-source/concepts/transaction.md:37
+msgctxt "s-250de292f56f-0024"
+msgid "**Read more:**"
+msgstr "**Más información:**"
+
+#: lessons/cs-source/concepts/transaction.md:39
+msgctxt "s-f3128fd6f9db-0025"
+msgid "[Database transaction](⟦DEST_0001⟧) (Wikipedia)"
+msgstr "[Transacción de base de datos](⟦DEST_0001⟧) (Wikipedia)"
+
+#: lessons/cs-source/concepts/transaction.md:40
+msgctxt "s-9850959e004f-0026"
+msgid "[ACID](⟦DEST_0001⟧) (Wikipedia)"
+msgstr "[ACID](⟦DEST_0001⟧) (Wikipedia)"
+
+#: lessons/cs-source/concepts/transaction.md:41
+msgctxt "s-df36d601acac-0027"
+msgid "[Commit (data management)](⟦DEST_0001⟧)) (Wikipedia)"
+msgstr "[Confirmación (gestión de datos)](⟦DEST_0001⟧)) (Wikipedia)"

@@ -1,15 +1,15 @@
 ---
-title: "Turing machines"
+title: "Máquinas de Turing"
 chapter: 2
 order: 80
 ---
-A Turing machine has an endless tape of cells, a head that reads and writes one cell at a time and a short table of rules. Alan Turing described it in 1936 to define exactly what an "algorithm" is. With it he showed that some questions have no algorithm at all, such as the halting problem: "does this program ever stop?" Nobody writes software for a Turing machine. It matters because of an argument: if a system can *simulate* one, it can compute anything that can be computed.
+Una máquina de Turing tiene una cinta sin fin de celdas, un cabezal que lee y escribe una celda a la vez y una tabla corta de reglas. Alan Turing la describió en 1936 para definir con exactitud qué es un "algoritmo". Con ella demostró que algunas preguntas no tienen ningún algoritmo, como el problema de la parada: "¿este programa se detiene alguna vez?" Nadie escribe software para una máquina de Turing. Importa por un argumento: si un sistema puede *simular* una, puede calcular todo lo que se puede calcular.
 
-- **Use it when:** you want to argue that a notation is a full computer, or to understand why some problems cannot be solved.
-- **Avoid it when:** you need to predict the speed of real hardware. Real machines do not walk along a tape.
+- **Úsala cuando:** quieras argumentar que una notación es un computador completo, o entender por qué algunos problemas no se pueden resolver.
+- **Evítala cuando:** necesites predecir la velocidad de un equipo real. Las máquinas reales no recorren una cinta.
 
-**Read more:**
+**Más información:**
 
-- [Turing machine](https://en.wikipedia.org/wiki/Turing_machine) (Wikipedia)
-- [Halting problem](https://en.wikipedia.org/wiki/Halting_problem) (Wikipedia)
-- [Church–Turing thesis](https://en.wikipedia.org/wiki/Church%E2%80%93Turing_thesis) (Wikipedia)
+- [Máquina de Turing](https://en.wikipedia.org/wiki/Turing_machine) (Wikipedia)
+- [Problema de la parada](https://en.wikipedia.org/wiki/Halting_problem) (Wikipedia)
+- [Tesis de Church-Turing](https://en.wikipedia.org/wiki/Church%E2%80%93Turing_thesis) (Wikipedia)

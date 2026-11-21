@@ -1,20 +1,20 @@
 ---
-title: "Threat model"
+title: "Modelo de amenazas"
 chapter: 1
 order: 10
 ---
-A threat model answers four plain questions. What are we protecting? Who might attack it? How could they do it? What will we do about that? It exists because nobody can defend against "everything". You defend against a list, and the list is the threat model. Teams use it to decide where to spend review time and which protections to add. This repository turns the usual question around. The code is the thing we do *not* trust (a pull request from a stranger), and the thing we protect is the reviewer's machine. That is why [`CONTRIBUTING.md`](../../CONTRIBUTING.md) asks for a check script that runs on a throwaway system with no network.
+Un modelo de amenazas responde cuatro preguntas sencillas. ¿Qué protegemos? ¿Quién podría atacarlo? ¿Cómo podría hacerlo? ¿Qué haremos al respecto? Existe porque nadie puede defenderse de "todo". Te defiendes de una lista, y esa lista es el modelo de amenazas. Los equipos lo usan para decidir dónde gastar el tiempo de revisión y qué protecciones añadir. Este repositorio da la vuelta a la pregunta habitual. El código es lo que *no* es de fiar (una solicitud de cambios de un desconocido), y lo que protegemos es la máquina de quien revisa. Por eso [`CONTRIBUTING.md`](../../CONTRIBUTING.md) pide un script de comprobación que se ejecute en un sistema desechable y sin red.
 
-- **Use it when:** you are about to run, install or review code you did not write or when you design anything that accepts input.
-- **Avoid it when:** you treat it as a document you write once. A threat model that nobody updates describes a system that no longer exists.
+- **Úsalo cuando:** vayas a ejecutar, instalar o revisar código que no escribiste, o cuando diseñes cualquier cosa que acepte entrada de datos.
+- **Evítalo cuando:** lo trates como un documento que se escribe una sola vez. Un modelo de amenazas que nadie actualiza describe un sistema que ya no existe.
 
-**Two examples from this repo, where the threat model had to change:**
+**Dos ejemplos de este repositorio, donde el modelo de amenazas tuvo que cambiar:**
 
-- **"It's just markup."** The XAML entry ([[entry:xaml]]) directly inspired a second project, [xaml-write-and-run](https://github.com/dullroar/xaml-write-and-run). That project builds the shape of a command-and-control channel from nothing but `.xaml` files: one file writes the next file to disk, a later object in the same document loads and runs it, and the chain extends itself. A variant fetches its next instructions from the web. It rests on a well-known attack path (the classic `ObjectDataProvider` deserialization gadget), one that defenders already know and guard against. That is the lesson. Even on a well-guarded path, "it is only markup" is a false comfort: a trusted parser that reads attacker-influenced markup is running a program, so your threat model must treat markup as code.
-- **"It's just a regex."** The Perl entry ([[entry:regex-perl]]) is a single pattern match. Inside that match, Perl code blocks seed the data, write to a database and print, and then the match returns false on purpose. If your threat model only worries about a regex running slowly (see [[redos]]), update it. A regex can also run code, and a pattern deserves the same care as any other program you accept.
+- **"Es solo marcado."** La entrada de XAML ([[entry:xaml]]) inspiró directamente un segundo proyecto, [xaml-write-and-run](https://github.com/dullroar/xaml-write-and-run). Ese proyecto construye la forma de un canal de comando y control solo con archivos `.xaml`: un archivo escribe el siguiente en el disco, un objeto posterior del mismo documento lo carga y lo ejecuta, y la cadena se extiende sola. Una variante descarga sus siguientes instrucciones de la web. Se apoya en un camino de ataque muy conocido (el clásico gadget de deserialización `ObjectDataProvider`), que los defensores ya conocen y vigilan. Esa es la lección. Incluso en un camino bien vigilado, "es solo marcado" es un falso consuelo: un analizador sintáctico de confianza que lee marcado influido por un atacante está ejecutando un programa, así que tu modelo de amenazas debe tratar el marcado como código.
+- **"Es solo una expresión regular."** La entrada de Perl ([[entry:regex-perl]]) es una única coincidencia de patrón. Dentro de esa coincidencia, unos bloques de código Perl cargan los datos, escriben en una base de datos e imprimen, y luego la coincidencia devuelve falso a propósito. Si tu modelo de amenazas solo se preocupa de que una expresión regular se ejecute despacio (mira [[redos]]), actualízalo. Una expresión regular también puede ejecutar código, y un patrón merece el mismo cuidado que cualquier otro programa que aceptes.
 
-**Read more:**
+**Más información:**
 
-- [Threat model](https://en.wikipedia.org/wiki/Threat_model) (Wikipedia)
-- [RFC 3552, section 3: the Internet threat model](https://www.rfc-editor.org/rfc/rfc3552), a short, practical example from the IETF
-- [Threat modeling](https://owasp.org/www-community/Threat_Modeling) (OWASP), a step-by-step guide
+- [Modelo de amenazas](https://en.wikipedia.org/wiki/Threat_model) (Wikipedia)
+- [RFC 3552, sección 3: el modelo de amenazas de Internet](https://www.rfc-editor.org/rfc/rfc3552), un ejemplo breve y práctico del IETF
+- [Modelado de amenazas](https://owasp.org/www-community/Threat_Modeling) (OWASP), una guía paso a paso
