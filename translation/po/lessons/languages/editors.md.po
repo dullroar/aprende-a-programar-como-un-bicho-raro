@@ -265,49 +265,49 @@ msgstr "**No hay un solo Ex.** nvi y Vim discrepan en el orden de los registros,
 #: lessons/languages/editors.md:88
 msgctxt "s-657d52a19381-0051"
 msgid "**Batch is not interactive.** The same commands, with no one watching, must be right the first time."
-msgstr ""
+msgstr "**El procesamiento por lotes no es interactivo.** Los mismos comandos deben ser correctos al primer intento, sin nadie que los observe."
 
 #: lessons/languages/editors.md:90
 msgctxt "s-67a057aabe44-0052"
 msgid "Tags: the commands ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧, ⟦CODE_0006⟧, the bar and the ⟦CODE_0007⟧ comment are **guaranteed** by POSIX for Ex. The evidence is the specification. That the program runs the same on nvi 1.81.6 and Vim 9.1 is **implementation-permitted**: the check covered those two implementations."
-msgstr ""
+msgstr "Etiquetas: POSIX para Ex establece como **garantizado** el comportamiento de los comandos ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧, ⟦CODE_0006⟧, la barra y el comentario ⟦CODE_0007⟧. La evidencia es la especificación. Que el programa se ejecute igual en nvi 1.81.6 y Vim 9.1 es **permitido por la implementación**: la comprobación cubrió esas dos implementaciones."
 
 #: lessons/languages/editors.md:92
 msgctxt "s-299b7a6f9cbe-0053"
 msgid "Do this in production and you're fired"
-msgstr ""
+msgstr "Haz esto en producción y estás despedido"
 
 #: lessons/languages/editors.md:94
 msgctxt "s-2b7ce5c2f6cc-0054"
 msgid "**A register that runs data is ⟦CODE_0001⟧.** If the tape came from a stranger, the stranger would write your program. Here the tape is fixed, and the digits are checked before they get anywhere near a command."
-msgstr ""
+msgstr "**Un registro que ejecuta datos es ⟦CODE_0001⟧.** Si la cinta viniera de un desconocido, ese desconocido escribiría tu programa. Aquí la cinta es fija y se comprueban los dígitos antes de que se acerquen a un comando."
 
 #: lessons/languages/editors.md:95
 msgctxt "s-78b12ea0393f-0055"
 msgid "**Marks are fragile.** A mark on a deleted line is gone, and so is your counter."
-msgstr ""
+msgstr "**Las marcas son frágiles.** Una marca en una línea eliminada desaparece, al igual que tu contador."
 
 #: lessons/languages/editors.md:96
 msgctxt "s-7ac6b6e0d80a-0056"
 msgid "**The script depends on the Ex you have.** A script that works in one may not work in the other. Test with both."
-msgstr ""
+msgstr "**El script depende de la versión de Ex que tengas.** Un script que funciona en una puede no funcionar en la otra. Prueba con ambas."
 
 #: lessons/languages/editors.md:98
 msgctxt "s-c8d56438423f-0057"
 msgid "Legitimate uses: ⟦CODE_0001⟧ in scripts for exact edits, and registers as a small macro system for repeated edits in ⟦CODE_0002⟧."
-msgstr ""
+msgstr "Usos legítimos: ⟦CODE_0001⟧ en scripts para hacer ediciones exactas y registros como un pequeño sistema de macros para ediciones repetidas en ⟦CODE_0002⟧."
 
 #: lessons/languages/editors.md:100
 msgctxt "s-5e3bcdfbf845-0058"
 msgid "Now break it yourself"
-msgstr ""
+msgstr "Ahora rómpelo tú"
 
 #: lessons/languages/editors.md:102
 msgctxt "s-8dbc9fe7935d-0059"
 msgid "See [exercise B19](⟦DEST_0001⟧)."
-msgstr ""
+msgstr "Mira el [ejercicio B19](⟦DEST_0001⟧)."
 
 #: lessons/languages/editors.md:153
 msgctxt "s-ac0e260e97bf-0060"
 msgid "Computer science behind this page"
-msgstr ""
+msgstr "La informática detrás de esta página"

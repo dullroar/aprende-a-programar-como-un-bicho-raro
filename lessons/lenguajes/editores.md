@@ -85,21 +85,21 @@ El [README](../../src/ex-weird/README.md#cómo-funciona-el-truco) tiene la tabla
 - **El estado del editor es estado.** La línea actual, las marcas y los registros son memoria fuera del texto del búfer.
 - **Una tabla de saltos es dato.** El siguiente paso se busca por dirección en una tabla; la tabla contiene la regla de parada.
 - **No hay un solo Ex.** nvi y Vim discrepan en el orden de los registros, los comandos globales anidados, la impresión, los errores y los rangos inversos. El programa se escribió teniendo en cuenta los cinco.
-- **Batch is not interactive.** The same commands, with no one watching, must be right the first time.
+- **El procesamiento por lotes no es interactivo.** Los mismos comandos deben ser correctos al primer intento, sin nadie que los observe.
 
-Tags: the commands `@`, `k`, `ya`, `t`, `j`, `s`, the bar and the `"` comment are **guaranteed** by POSIX for Ex. The evidence is the specification. That the program runs the same on nvi 1.81.6 and Vim 9.1 is **implementation-permitted**: the check covered those two implementations.
+Etiquetas: POSIX para Ex establece como **garantizado** el comportamiento de los comandos `@`, `k`, `ya`, `t`, `j`, `s`, la barra y el comentario `"`. La evidencia es la especificación. Que el programa se ejecute igual en nvi 1.81.6 y Vim 9.1 es **permitido por la implementación**: la comprobación cubrió esas dos implementaciones.
 
-### Do this in production and you're fired
+### Haz esto en producción y estás despedido
 
-- **A register that runs data is `eval`.** If the tape came from a stranger, the stranger would write your program. Here the tape is fixed, and the digits are checked before they get anywhere near a command.
-- **Marks are fragile.** A mark on a deleted line is gone, and so is your counter.
-- **The script depends on the Ex you have.** A script that works in one may not work in the other. Test with both.
+- **Un registro que ejecuta datos es `eval`.** Si la cinta viniera de un desconocido, ese desconocido escribiría tu programa. Aquí la cinta es fija y se comprueban los dígitos antes de que se acerquen a un comando.
+- **Las marcas son frágiles.** Una marca en una línea eliminada desaparece, al igual que tu contador.
+- **El script depende de la versión de Ex que tengas.** Un script que funciona en una puede no funcionar en la otra. Prueba con ambas.
 
-Legitimate uses: `ex -s` in scripts for exact edits, and registers as a small macro system for repeated edits in `vi`.
+Usos legítimos: `ex -s` en scripts para hacer ediciones exactas y registros como un pequeño sistema de macros para ediciones repetidas en `vi`.
 
-### Now break it yourself
+### Ahora rómpelo tú
 
-See [exercise B19](../exercises.md#b19-ex-move-the-limit-on-the-tape-and-cut-the-loop-verified).
+Mira el [ejercicio B19](../exercises.md#b19-ex-move-the-limit-on-the-tape-and-cut-the-loop-verified).
 
 <!-- BEGIN GENERATED program-flow:languages/editors.md -->
 ## How each program runs
@@ -150,7 +150,7 @@ flowchart TD
 **Why this mechanism matters:** this is self-modifying code. The program writes the command that does its arithmetic, and the stop rule is the place on the tape where `@a` turns into a comment. Nothing in the program says "40" anywhere except in how the tape is laid out.
 <!-- END GENERATED program-flow:languages/editors.md -->
 
-## Computer science behind this page
+## La informática detrás de esta página
 
 <!-- BEGIN GENERATED concepts:languages/editors.md -->
 The computer-science ideas behind this page: [Specification versus implementation](../informatica/01-lectura-de-un-programa-adversarial.md#specification-versus-implementation), [Capability and authority](../informatica/01-lectura-de-un-programa-adversarial.md#capability-and-authority), [Transition systems and state machines](../informatica/02-que-cuenta-como-maquina.md#transition-systems-and-state-machines), [Representing state](../informatica/02-que-cuenta-como-maquina.md#representing-state), [Register machines and counter machines](../informatica/02-que-cuenta-como-maquina.md#register-machines-and-counter-machines), [Markov algorithms](../informatica/02-que-cuenta-como-maquina.md#markov-algorithms), [Operational semantics](../informatica/02-que-cuenta-como-maquina.md#operational-semantics), [Computation versus orchestration](../informatica/02-que-cuenta-como-maquina.md#computation-versus-orchestration), [The program counter](../informatica/03-flujo-de-control-y-continuaciones.md#the-program-counter), [Self-modifying code](../informatica/03-flujo-de-control-y-continuaciones.md#self-modifying-code), [Regular expressions](../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#regular-expressions), [Term and string rewriting](../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#term-and-string-rewriting), [Weird machines](../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#weird-machines), [Interpreters and virtual machines](../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#interpreters-and-virtual-machines), [State](../informatica/06-estado-mas-alla-de-las-variables.md#state), [Homoiconicity: code as data](../informatica/06-estado-mas-alla-de-las-variables.md#homoiconicity-code-as-data), [Reflection and metaprogramming](../informatica/06-estado-mas-alla-de-las-variables.md#reflection-and-metaprogramming), [Portability](../informatica/08-fugas-de-abstraccion-y-dependencia-de-la-implementacion.md#portability), [Hyrum's law](../informatica/08-fugas-de-abstraccion-y-dependencia-de-la-implementacion.md#hyrums-law).

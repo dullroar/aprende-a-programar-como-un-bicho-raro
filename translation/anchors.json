@@ -4457,16 +4457,16 @@
     {
      "en": "Do this in production and you're fired",
      "en_id": "do-this-in-production-and-youre-fired-1",
-     "es": "Do this in production and you're fired",
-     "es_id": "do-this-in-production-and-youre-fired",
+     "es": "Haz esto en producción y estás despedido",
+     "es_id": "haz-esto-en-producción-y-estás-despedido-1",
      "level": 3,
      "line": 92
     },
     {
      "en": "Now break it yourself",
      "en_id": "now-break-it-yourself-1",
-     "es": "Now break it yourself",
-     "es_id": "now-break-it-yourself",
+     "es": "Ahora rómpelo tú",
+     "es_id": "ahora-rómpelo-tú-1",
      "level": 3,
      "line": 100
     },
@@ -4497,8 +4497,8 @@
     {
      "en": "Computer science behind this page",
      "en_id": "computer-science-behind-this-page",
-     "es": "Computer science behind this page",
-     "es_id": "computer-science-behind-this-page",
+     "es": "La informática detrás de esta página",
+     "es_id": "la-informática-detrás-de-esta-página",
      "level": 2,
      "line": 153
     }
@@ -4507,15 +4507,15 @@
     "a-program-you-can-edit": "un-programa-que-puedes-editar",
     "behold-the-monstrosity": "contempla-la-monstruosidad",
     "behold-the-monstrosity-1": "contempla-la-monstruosidad-1",
-    "computer-science-behind-this-page": "computer-science-behind-this-page",
+    "computer-science-behind-this-page": "la-informática-detrás-de-esta-página",
     "do-this-in-production-and-youre-fired": "haz-esto-en-producción-y-estás-despedido",
-    "do-this-in-production-and-youre-fired-1": "do-this-in-production-and-youre-fired",
+    "do-this-in-production-and-youre-fired-1": "haz-esto-en-producción-y-estás-despedido-1",
     "ed-and-ex": "ed-y-ex",
     "how-each-program-runs": "how-each-program-runs",
     "how-the-hell-does-that-work": "cómo-demonios-funciona-eso",
     "how-the-hell-does-that-work-1": "cómo-demonios-funciona-eso-1",
     "now-break-it-yourself": "ahora-rómpelo-tú",
-    "now-break-it-yourself-1": "now-break-it-yourself",
+    "now-break-it-yourself-1": "ahora-rómpelo-tú-1",
     "program-flow-of-ed-weird": "program-flow-of-ed-weird",
     "program-flow-of-ex-weird": "program-flow-of-ex-weird",
     "the-buffer-is-the-machine": "el-búfer-es-la-máquina",
