@@ -65,23 +65,23 @@ timecards.cob:158: error: 'NEXT-CARD' is not an alterable paragraph
 - **(a)** `0 0` en su propia línea, seguido de `>in @ step rewind?`: **funciona**. `>in @` captura la posición *después* de `@`. El retroceso salta a esa ancla, que está después de `0 0`. Por eso `0 0` nunca se vuelve a ejecutar. `check-demo.sh` pasa.
 - **(b)** `>in @ 0 0 step rewind?`: el ancla está ahora *antes* de `0 0`. Cada retroceso vuelve a ejecutar `0 0` y apila un nuevo estado cero. El total vuelve a cero en cada pasada y la regla de parada nunca se activa. Con `SANDBOX_TIMEOUT=30` obtienes cientos de filas (678 en la ejecución de verificación). Cada fila tiene total = horas y no hay línea `# committed`.
 - **(c)** `41 <` a `51 <`: `check-demo.sh out.txt 50` pasa (se detiene cuando el total llega a 51).
-- **Why only (b)?** The parse position is a program counter: where it jumps back to decides which tokens are the loop body. State must stay *outside* the body (before the anchor).
+- **¿Por qué solo (b)?** La posición de análisis es un contador de programa: el punto al que vuelve determina qué tokens forman el cuerpo del bucle. El estado debe permanecer *fuera* del cuerpo (antes del ancla).
 
-## B4. Make: remove the no-op, and override the clock
+## B4. Make: elimina la operación nula y reemplaza el reloj
 
-1. Without `@:` the recipe `$(if ...,$(file >$@,...))` expands to nothing, so Make runs no command and **does not count the makefile as remade**. It never restarts, so no card is ever included:
+1. Sin `@:`, la receta `$(if ...,$(file >$@,...))` se expande a nada. Por eso Make no ejecuta ningún comando y **no considera reconstruido el makefile**. Nunca se reinicia, así que no se incluye ninguna tarjeta:
 
    ```text
    # committed total=0 entries=0 DEMO ONLY
    # make re-executed itself 0 times, once per card
    ```
 
-   The card file *was* written at expansion time, but Make only notices a remade makefile when a command ran. (`sandbox/run.sh` fails: "unexpected stderr".)
-2. `lessons/tools/run-in-sandbox.sh src/make-gnu make NOW=1700000000` prints rows labelled `2023-W46`. `date -u -d @1700000000 +%G-W%V` prints `2023-W46`.
+   El archivo de tarjetas *sí* se escribió durante la expansión, pero Make solo detecta un makefile reconstruido cuando se ejecutó un comando. (`sandbox/run.sh` falla: "unexpected stderr".)
+2. `lessons/tools/run-in-sandbox.sh src/make-gnu make NOW=1700000000` imprime filas etiquetadas `2023-W46`. `date -u -d @1700000000 +%G-W%V` imprime `2023-W46`.
 
-## B5. CMake: mutate the literal
+## B5. CMake: modifica el literal
 
-With 31 `x`s (`"^xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"`) the loop stops once the total reaches 31, i.e. **passes 30**. `check-demo.sh out.txt 30` passes on every run; with the default limit of 40 it passes only when the final total happens to be 41 or more, so do not rely on it. `sandbox/run.sh` fails because the entry's own check expects 40.
+Con 31 `x` (`"^xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"`), el bucle se detiene cuando el total llega a 31, es decir, **pasa de 30**. `check-demo.sh out.txt 30` pasa en cada ejecución. Con el límite predeterminado de 40 solo pasa cuando el total final resulta ser 41 o más, así que no dependas de eso. `sandbox/run.sh` falla porque la comprobación de la propia entrada espera 40.
 
 The stop test must come **first** in the condition because a failed `MATCHES` clears every `CMAKE_MATCH_n` register and a successful one rewrites them. The *main* match has to run last for its captures to be the ones that survive into the next pass.
 

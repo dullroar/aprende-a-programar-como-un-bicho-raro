@@ -129,17 +129,17 @@ msgstr "**(c)** ⟦CODE_0001⟧ a ⟦CODE_0002⟧: ⟦CODE_0003⟧ pasa (se deti
 #: lessons/answers-key.md:68
 msgctxt "s-0ff7ba4f0dff-0023"
 msgid "**Why only (b)?** The parse position is a program counter: where it jumps back to decides which tokens are the loop body. State must stay *outside* the body (before the anchor)."
-msgstr ""
+msgstr "**¿Por qué solo (b)?** La posición de análisis es un contador de programa: el punto al que vuelve determina qué tokens forman el cuerpo del bucle. El estado debe permanecer *fuera* del cuerpo (antes del ancla)."
 
 #: lessons/answers-key.md:70
 msgctxt "s-f163fae749c3-0024"
 msgid "B4. Make: remove the no-op, and override the clock"
-msgstr ""
+msgstr "B4. Make: elimina la operación nula y reemplaza el reloj"
 
 #: lessons/answers-key.md:72
 msgctxt "s-17d81dca9bed-0025"
 msgid "Without ⟦CODE_0001⟧ the recipe ⟦CODE_0002⟧ expands to nothing, so Make runs no command and **does not count the makefile as remade**. It never restarts, so no card is ever included:"
-msgstr ""
+msgstr "Sin ⟦CODE_0001⟧, la receta ⟦CODE_0002⟧ se expande a nada. Por eso Make no ejecuta ningún comando y **no considera reconstruido el makefile**. Nunca se reinicia, así que no se incluye ninguna tarjeta:"
 
 #: lessons/answers-key.md:79
 msgctxt "s-17660a91699b-0026"
@@ -147,16 +147,18 @@ msgid ""
 "The card file *was* written at expansion time, but Make only notices a remade makefile when a command ran. (⟦CODE_0001⟧ fails: \"unexpected stderr\".)\n"
 "2. ⟦CODE_0002⟧ prints rows labelled ⟦CODE_0003⟧. ⟦CODE_0004⟧ prints ⟦CODE_0005⟧."
 msgstr ""
+"El archivo de tarjetas *sí* se escribió durante la expansión, pero Make solo detecta un makefile reconstruido cuando se ejecutó un comando. (⟦CODE_0001⟧ falla: \"unexpected stderr\".)\n"
+"2. ⟦CODE_0002⟧ imprime filas etiquetadas ⟦CODE_0003⟧. ⟦CODE_0004⟧ imprime ⟦CODE_0005⟧."
 
 #: lessons/answers-key.md:82
 msgctxt "s-4dccb4e4a0ef-0027"
 msgid "B5. CMake: mutate the literal"
-msgstr ""
+msgstr "B5. CMake: modifica el literal"
 
 #: lessons/answers-key.md:84
 msgctxt "s-cb39d53a09be-0028"
 msgid "With 31 ⟦CODE_0001⟧s (⟦CODE_0002⟧) the loop stops once the total reaches 31, i.e. **passes 30**. ⟦CODE_0003⟧ passes on every run; with the default limit of 40 it passes only when the final total happens to be 41 or more, so do not rely on it. ⟦CODE_0004⟧ fails because the entry's own check expects 40."
-msgstr ""
+msgstr "Con 31 ⟦CODE_0001⟧ (⟦CODE_0002⟧), el bucle se detiene cuando el total llega a 31, es decir, **pasa de 30**. ⟦CODE_0003⟧ pasa en cada ejecución. Con el límite predeterminado de 40 solo pasa cuando el total final resulta ser 41 o más, así que no dependas de eso. ⟦CODE_0004⟧ falla porque la comprobación de la propia entrada espera 40."
 
 #: lessons/answers-key.md:86
 msgctxt "s-416fb652a738-0029"
