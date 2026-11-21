@@ -35,27 +35,27 @@ msgstr "⟦SEP_0001⟧ Característica ⟦SEP_0002⟧ Qué enseña ⟦SEP_0003�
 #: lessons/languages/editors.md:11
 msgctxt "s-3bbae9c3bda9-0005"
 msgid "⟦SEP_0006⟧ Addresses: ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧ ⟦SEP_0007⟧ A line is reached by number, by position or by pattern. An address is a reference into the data, as a pointer or an index is. ⟦SEP_0008⟧"
-msgstr ""
+msgstr "⟦SEP_0006⟧ Direcciones: ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧ ⟦SEP_0007⟧ Se llega a una línea por número, posición o patrón. Una dirección es una referencia a los datos, como un puntero o un índice. ⟦SEP_0008⟧"
 
 #: lessons/languages/editors.md:12
 msgctxt "s-87ccb911baec-0006"
 msgid "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ Substitution is a conditional rewrite. If the pattern matches, the text changes. If not, nothing happens. ⟦SEP_0004⟧"
-msgstr ""
+msgstr "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ La sustitución es una reescritura condicional. Si el patrón coincide, el texto cambia. Si no, no pasa nada. ⟦SEP_0004⟧"
 
 #: lessons/languages/editors.md:13
 msgctxt "s-9095b1722841-0007"
 msgid "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ The global command marks every line that matches, then runs the commands for each one, in order. It is the only loop ed has. ⟦SEP_0004⟧"
-msgstr ""
+msgstr "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ El comando global marca cada línea que coincide y luego ejecuta los comandos para cada una, en orden. Es el único bucle de ed. ⟦SEP_0004⟧"
 
 #: lessons/languages/editors.md:14
 msgctxt "s-0d7e13605312-0008"
 msgid "⟦SEP_0005⟧ ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧ ⟦SEP_0006⟧ Copy, move, join and delete whole lines: ed's way to build and tear down data. ⟦SEP_0007⟧"
-msgstr ""
+msgstr "⟦SEP_0005⟧ ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧ ⟦SEP_0006⟧ Copiar, mover, unir y borrar líneas completas: la forma en que ed construye y deshace datos. ⟦SEP_0007⟧"
 
 #: lessons/languages/editors.md:15
 msgctxt "s-e605bdc9e728-0009"
 msgid "⟦SEP_0001⟧ No arithmetic and no variables ⟦SEP_0002⟧ Numbers must be written as text. In the entry they are rows of marks. ⟦SEP_0003⟧"
-msgstr ""
+msgstr "⟦SEP_0001⟧ Sin aritmética ni variables ⟦SEP_0002⟧ Los números deben escribirse como texto. En la entrada son filas de marcas. ⟦SEP_0003⟧"
 
 #: lessons/languages/editors.md:17
 msgctxt "s-34eada1921b1-0010"

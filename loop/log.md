@@ -184,3 +184,4 @@
 210 P4-lessons-languages-2 partial accepted and applied C# guide segments 73 to 76; resume at 77; scoped and working-tree fast checks and anchors check passed.
 211 P4-lessons-languages-2 partial completed and applied C# guide, including previously empty segment 13; resume with editors.md; scoped and working-tree fast checks and anchors check passed.
 212 P4-lessons-languages-2 partial accepted and applied editors.md segments 1 to 5; resume at segment 6; scoped and working-tree fast checks and anchors check passed.
+213 P4-lessons-languages-2 partial accepted and applied editors.md positions 5 to 9, including previously pending position 5; resume at position 10; scoped and working-tree fast checks passed.

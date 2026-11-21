@@ -8,11 +8,11 @@ Para un recorrido avanzado de lectura con trazas y experimentos, consulta la [gu
 
 | Característica | Qué enseña |
 | --- | --- |
-| Addresses: `3`, `.`, `$`, `.-1`, `/re/` | A line is reached by number, by position or by pattern. An address is a reference into the data, as a pointer or an index is. |
-| `s/re/text/` | Substitution is a conditional rewrite. If the pattern matches, the text changes. If not, nothing happens. |
-| `g/re/command-list` | The global command marks every line that matches, then runs the commands for each one, in order. It is the only loop ed has. |
-| `t`, `m`, `j`, `d` | Copy, move, join and delete whole lines: ed's way to build and tear down data. |
-| No arithmetic and no variables | Numbers must be written as text. In the entry they are rows of marks. |
+| Direcciones: `3`, `.`, `$`, `.-1`, `/re/` | Se llega a una línea por número, posición o patrón. Una dirección es una referencia a los datos, como un puntero o un índice. |
+| `s/re/text/` | La sustitución es una reescritura condicional. Si el patrón coincide, el texto cambia. Si no, no pasa nada. |
+| `g/re/command-list` | El comando global marca cada línea que coincide y luego ejecuta los comandos para cada una, en orden. Es el único bucle de ed. |
+| `t`, `m`, `j`, `d` | Copiar, mover, unir y borrar líneas completas: la forma en que ed construye y deshace datos. |
+| Sin aritmética ni variables | Los números deben escribirse como texto. En la entrada son filas de marcas. |
 
 ## The buffer is the machine
 
