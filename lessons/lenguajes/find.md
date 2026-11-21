@@ -13,19 +13,19 @@ Un comando `find` es una **expresión**. Se evalúa una vez por cada archivo de 
 | Los patrones `-path` son patrones glob donde `*` cruza `/` | `-path '*/0/*/0/*'` significa "la ruta tiene al menos dos directorios llamados `0`". La ruta es una cadena de texto y un glob es una forma de contar en ella. |
 | El recorrido visita un directorio antes de leer sus entradas | Si `-exec` crea un directorio dentro del que se visita, el recorrido entra en él a continuación. Este es el bucle. POSIX no lo promete. |
 
-## A tree walk that digs its own tree
+## Un recorrido de árbol que cava su propio árbol
 
-### Behold the monstrosity
+### Contempla la monstruosidad
 
 ```bash
 sandbox/container/run-image.sh src/find-posix
 ```
 
-One `find`, about 5.7 KB long, no `-delete`, no `-printf`, no `-regex` and no shell, `awk` or `expr` anywhere in it. It draws random hours, adds them, decides when to stop and prints SQL.
+Un `find` de unos 5.7 KB, sin `-delete`, sin `-printf`, sin `-regex` ni intérprete de comandos (*shell*), `awk` o `expr` en ninguna parte. El programa sortea horas, las suma, decide cuándo detenerse e imprime SQL.
 
-### How the hell does that work?
+### ¿Cómo demonios funciona eso?
 
-- **The loop is the walk.** Each directory the walk visits makes the next one with `-exec mkdir {}/...`, and the walk then visits that one. Stopping means the expression just stops making directories.
+- **El bucle es el recorrido.** Cada directorio que visita el recorrido crea el siguiente con `-exec mkdir {}/...` y el recorrido lo visita después. Para detenerse, la expresión simplemente deja de crear directorios.
 - **The path is the call stack, and the names are the registers.** A one-character name is an hour, and it counts 1 to 9 and 0 again, so it is the last digit of the running total. A name like `b07` is a countdown. A six-character name from `mktemp` is the dice. Nothing is added or subtracted. The *next* name is written in the expression as a literal, one branch per value.
 - **The tens digit is a glob.** The digits cycle, so the number of directories named exactly `0` in the path is the tens digit of the total. `-path '*/0/*/0/*'` reads it.
 - **Randomness is a name.** `mktemp -d` makes a directory with a random name, and a `-name` or `-path` pattern reads its last character. mktemp has 62 characters, so 60 of them make ten groups of six, and `Y` and `Z` are rolled again.

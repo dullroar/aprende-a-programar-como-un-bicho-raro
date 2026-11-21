@@ -2200,3 +2200,6 @@
 {"segment_id": "s-5e3bcdfbf845-0058", "ts": "2026-11-21T20:58:46Z", "findings": [], "playful_note": "Conserva el reto de romper el programa."}
 {"segment_id": "s-e6640de835ad-0000", "ts": "2026-11-21T21:00:33Z", "findings": ["TRANSLATE: the reply is the English text unchanged"]}
 {"segment_id": "s-427e63b66b8b-0003", "ts": "2026-11-21T21:00:33Z", "findings": ["I25: comma before a simple 'y' ('de izquierda a derecha, y se detiene antes de terminar'): no comma before a simple o or y"]}
+{"segment_id": "s-a41e03263c79-0009", "ts": "2026-11-21T21:04:32Z", "findings": ["REGISTER: playful segment H018 has status 'pending' in the humor register"], "playful_note": "Conserva la imagen juguetona del recorrido que cava su propio árbol."}
+{"segment_id": "s-cc9cfaabc50d-0010", "ts": "2026-11-21T21:04:32Z", "findings": [], "playful_note": "Conserva el anuncio teatral y el encabezado fijo de las páginas de lenguajes."}
+{"segment_id": "s-415f5fa29cf9-0012", "ts": "2026-11-21T21:04:32Z", "findings": [], "playful_note": "Conserva la pregunta exasperada y el encabezado fijo de las páginas de lenguajes."}

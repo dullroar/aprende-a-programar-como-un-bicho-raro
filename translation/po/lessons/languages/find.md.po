@@ -55,27 +55,27 @@ msgstr "⟦SEP_0002⟧ El recorrido visita un directorio antes de leer sus entra
 #: lessons/languages/find.md:16
 msgctxt "s-a41e03263c79-0009"
 msgid "A tree walk that digs its own tree"
-msgstr ""
+msgstr "Un recorrido de árbol que cava su propio árbol"
 
 #: lessons/languages/find.md:18
 msgctxt "s-cc9cfaabc50d-0010"
 msgid "Behold the monstrosity"
-msgstr ""
+msgstr "Contempla la monstruosidad"
 
 #: lessons/languages/find.md:24
 msgctxt "s-05db73fd4d19-0011"
 msgid "One ⟦CODE_0001⟧, about 5.7 KB long, no ⟦CODE_0002⟧, no ⟦CODE_0003⟧, no ⟦CODE_0004⟧ and no shell, ⟦CODE_0005⟧ or ⟦CODE_0006⟧ anywhere in it. It draws random hours, adds them, decides when to stop and prints SQL."
-msgstr ""
+msgstr "Un ⟦CODE_0001⟧ de unos 5.7 KB, sin ⟦CODE_0002⟧, sin ⟦CODE_0003⟧, sin ⟦CODE_0004⟧ ni intérprete de comandos (*shell*), ⟦CODE_0005⟧ o ⟦CODE_0006⟧ en ninguna parte. El programa sortea horas, las suma, decide cuándo detenerse e imprime SQL."
 
 #: lessons/languages/find.md:26
 msgctxt "s-415f5fa29cf9-0012"
 msgid "How the hell does that work?"
-msgstr ""
+msgstr "¿Cómo demonios funciona eso?"
 
 #: lessons/languages/find.md:28
 msgctxt "s-177b5501f6d3-0013"
 msgid "**The loop is the walk.** Each directory the walk visits makes the next one with ⟦CODE_0001⟧, and the walk then visits that one. Stopping means the expression just stops making directories."
-msgstr ""
+msgstr "**El bucle es el recorrido.** Cada directorio que visita el recorrido crea el siguiente con ⟦CODE_0001⟧ y el recorrido lo visita después. Para detenerse, la expresión simplemente deja de crear directorios."
 
 #: lessons/languages/find.md:29
 msgctxt "s-9a2989903bd9-0014"

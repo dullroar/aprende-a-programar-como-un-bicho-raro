@@ -4545,24 +4545,24 @@
     {
      "en": "A tree walk that digs its own tree",
      "en_id": "a-tree-walk-that-digs-its-own-tree",
-     "es": "A tree walk that digs its own tree",
-     "es_id": "a-tree-walk-that-digs-its-own-tree",
+     "es": "Un recorrido de árbol que cava su propio árbol",
+     "es_id": "un-recorrido-de-árbol-que-cava-su-propio-árbol",
      "level": 2,
      "line": 16
     },
     {
      "en": "Behold the monstrosity",
      "en_id": "behold-the-monstrosity",
-     "es": "Behold the monstrosity",
-     "es_id": "behold-the-monstrosity",
+     "es": "Contempla la monstruosidad",
+     "es_id": "contempla-la-monstruosidad",
      "level": 3,
      "line": 18
     },
     {
      "en": "How the hell does that work?",
      "en_id": "how-the-hell-does-that-work",
-     "es": "How the hell does that work?",
-     "es_id": "how-the-hell-does-that-work",
+     "es": "¿Cómo demonios funciona eso?",
+     "es_id": "cómo-demonios-funciona-eso",
      "level": 3,
      "line": 26
     },
@@ -4624,13 +4624,13 @@
     }
    ],
    "map": {
-    "a-tree-walk-that-digs-its-own-tree": "a-tree-walk-that-digs-its-own-tree",
-    "behold-the-monstrosity": "behold-the-monstrosity",
+    "a-tree-walk-that-digs-its-own-tree": "un-recorrido-de-árbol-que-cava-su-propio-árbol",
+    "behold-the-monstrosity": "contempla-la-monstruosidad",
     "computer-science-behind-this-page": "computer-science-behind-this-page",
     "do-this-in-production-and-youre-fired": "do-this-in-production-and-youre-fired",
     "find": "find",
     "how-each-program-runs": "how-each-program-runs",
-    "how-the-hell-does-that-work": "how-the-hell-does-that-work",
+    "how-the-hell-does-that-work": "cómo-demonios-funciona-eso",
     "now-break-it-yourself": "now-break-it-yourself",
     "program-flow-of-find-gnu": "program-flow-of-find-gnu",
     "program-flow-of-find-posix": "program-flow-of-find-posix",
