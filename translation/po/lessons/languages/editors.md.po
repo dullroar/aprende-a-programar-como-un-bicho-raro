@@ -1,0 +1,313 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lessons/languages/editors.md:1
+msgctxt "s-c9c5c2649332-0000"
+msgid "ed and Ex"
+msgstr "ed y Ex"
+
+#: lessons/languages/editors.md:3
+msgctxt "s-07b9a7b70492-0001"
+msgid "Entries: [⟦CODE_0001⟧](⟦DEST_0002⟧) (the buffer is the machine) and [⟦CODE_0003⟧](⟦DEST_0004⟧) (a program you can edit). ⟦CODE_0005⟧ is the original Unix line editor, from 1969 to 1971. You tell it which lines (an *address*) and what to do to them (a *command*). It has no screen. Everything it does to a file, it does to a **buffer** of lines in memory, one command at a time. The commands are so general that the program in this book is made of nothing else. ⟦CODE_0006⟧ is its bigger descendant: the command language of ⟦CODE_0007⟧. It adds registers, marks, ⟦CODE_0008⟧ and the bar."
+msgstr "Entradas: [⟦CODE_0001⟧](⟦DEST_0002⟧) (el búfer es la máquina) y [⟦CODE_0003⟧](⟦DEST_0004⟧) (un programa que puedes editar). ⟦CODE_0005⟧ es el editor de líneas original de Unix, de 1969 a 1971. Le indicas qué líneas (una *dirección*) y qué hacer con ellas (un *comando*). No tiene pantalla. Todo lo que hace a un archivo, lo hace a un **búfer** de líneas en memoria, un comando a la vez. Los comandos son tan generales que el programa de este libro no contiene nada más. ⟦CODE_0006⟧ es su descendiente más grande: el lenguaje de comandos de ⟦CODE_0007⟧. Añade registros, marcas, ⟦CODE_0008⟧ y la barra."
+
+#: lessons/languages/editors.md:5
+msgctxt "s-d54f537d20c2-0002"
+msgid "For an advanced reading path with traces and experiments, see the [ed and Ex study guide](⟦DEST_0001⟧)."
+msgstr "Para un recorrido avanzado de lectura con trazas y experimentos, consulta la [guía de estudio de ed y Ex](⟦DEST_0001⟧)."
+
+#: lessons/languages/editors.md:7
+msgctxt "s-8b85703e5e4a-0003"
+msgid "What makes ed special"
+msgstr "Qué hace especial a ed"
+
+#: lessons/languages/editors.md:9
+msgctxt "s-b2ff52136de5-0004"
+msgid "⟦SEP_0001⟧ Feature ⟦SEP_0002⟧ What it teaches ⟦SEP_0003⟧"
+msgstr "⟦SEP_0001⟧ Característica ⟦SEP_0002⟧ Qué enseña ⟦SEP_0003⟧"
+
+#: lessons/languages/editors.md:11
+msgctxt "s-3bbae9c3bda9-0005"
+msgid "⟦SEP_0006⟧ Addresses: ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧ ⟦SEP_0007⟧ A line is reached by number, by position or by pattern. An address is a reference into the data, as a pointer or an index is. ⟦SEP_0008⟧"
+msgstr ""
+
+#: lessons/languages/editors.md:12
+msgctxt "s-87ccb911baec-0006"
+msgid "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ Substitution is a conditional rewrite. If the pattern matches, the text changes. If not, nothing happens. ⟦SEP_0004⟧"
+msgstr ""
+
+#: lessons/languages/editors.md:13
+msgctxt "s-9095b1722841-0007"
+msgid "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ The global command marks every line that matches, then runs the commands for each one, in order. It is the only loop ed has. ⟦SEP_0004⟧"
+msgstr ""
+
+#: lessons/languages/editors.md:14
+msgctxt "s-0d7e13605312-0008"
+msgid "⟦SEP_0005⟧ ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧ ⟦SEP_0006⟧ Copy, move, join and delete whole lines: ed's way to build and tear down data. ⟦SEP_0007⟧"
+msgstr ""
+
+#: lessons/languages/editors.md:15
+msgctxt "s-e605bdc9e728-0009"
+msgid "⟦SEP_0001⟧ No arithmetic and no variables ⟦SEP_0002⟧ Numbers must be written as text. In the entry they are rows of marks. ⟦SEP_0003⟧"
+msgstr ""
+
+#: lessons/languages/editors.md:17
+msgctxt "s-34eada1921b1-0010"
+msgid "The buffer is the machine"
+msgstr ""
+
+#: lessons/languages/editors.md:19
+msgctxt "s-cc9cfaabc50d-0011"
+msgid "Behold the monstrosity"
+msgstr ""
+
+#: lessons/languages/editors.md:25
+msgctxt "s-52dc4bbecc26-0012"
+msgid "Seventy lines of ed commands. A launcher that supplies five random digits and stores the answer. All the computing is the editor changing text."
+msgstr ""
+
+#: lessons/languages/editors.md:27
+msgctxt "s-415f5fa29cf9-0013"
+msgid "How the hell does that work?"
+msgstr ""
+
+#: lessons/languages/editors.md:29
+msgctxt "s-7837f7660777-0014"
+msgid "**The category order is addressing.** ⟦CODE_0001⟧ puts a name on line 1, ⟦CODE_0002⟧ on line 2."
+msgstr ""
+
+#: lessons/languages/editors.md:30
+msgctxt "s-074170cd05a4-0015"
+msgid "**A rewrite table does the lookup.** There are ten rules, ⟦CODE_0001⟧ and nine more. A digit becomes that many marks."
+msgstr ""
+
+#: lessons/languages/editors.md:31
+msgctxt "s-150ec52bebf6-0016"
+msgid "**A marker seeds the ledger.** ⟦CODE_0001⟧ supplies the zero total above the first card. After the pass, ⟦CODE_0002⟧ removes that marker from the output."
+msgstr ""
+
+#: lessons/languages/editors.md:32
+msgctxt "s-1ceec3e945a7-0017"
+msgid "**Adding is writing marks side by side.** ⟦CODE_0001⟧ copies the line above (the total so far), ⟦CODE_0002⟧ joins it to the card and one ⟦CODE_0003⟧ puts the two sets of marks together."
+msgstr ""
+
+#: lessons/languages/editors.md:33
+msgctxt "s-fd3a4dd35d2b-0018"
+msgid "**A failed ⟦CODE_0001⟧ is an ⟦CODE_0002⟧.** Inside a global command it does nothing, and does not stop the list. So each substitution means \"if the line looks like this, rewrite it\"."
+msgstr ""
+
+#: lessons/languages/editors.md:34
+msgctxt "s-b17632e0fbba-0019"
+msgid "**The stop rule is a regular expression.** ⟦CODE_0001⟧ is \"41 or more marks\". The bar before the marks becomes a bang, and the next card sees the bang and turns into a ⟦CODE_0002⟧ line."
+msgstr ""
+
+#: lessons/languages/editors.md:36
+msgctxt "s-4fe4a632eb43-0020"
+msgid "The [README](⟦DEST_0001⟧) has the full table."
+msgstr ""
+
+#: lessons/languages/editors.md:38
+msgctxt "s-4558ac37c649-0021"
+msgid "**A rewrite system with a different control.** [⟦CODE_0001⟧](⟦DEST_0002⟧) also rewrites text, but sed has a branch command and can loop until no rule applies. ed cannot. Its only repeat is ⟦CODE_0003⟧, and its only choice is a substitution that may not match."
+msgstr ""
+
+#: lessons/languages/editors.md:40
+msgctxt "s-d2bbf037de84-0022"
+msgid "What did we just learn?"
+msgstr ""
+
+#: lessons/languages/editors.md:42
+msgctxt "s-a0ef28188691-0023"
+msgid "**Numbers can be text.** Unary marks make addition a matter of concatenation. The price is the length of the string."
+msgstr ""
+
+#: lessons/languages/editors.md:43
+msgctxt "s-492a7228c672-0024"
+msgid "**A guard is a conditional.** \"Rewrite only if it matches\" is ⟦CODE_0001⟧ in a language that has none."
+msgstr ""
+
+#: lessons/languages/editors.md:44
+msgctxt "s-c2f6e406c25a-0025"
+msgid "**Data can carry control.** A bar or a bang in a line says whether the machine is still running. The state travels with the data."
+msgstr ""
+
+#: lessons/languages/editors.md:45
+msgctxt "s-17e56ecc2219-0026"
+msgid "**Standards and implementations differ.** busybox ed is an ⟦CODE_0001⟧, and it cannot run this program: no ⟦CODE_0002⟧, no ⟦CODE_0003⟧, no ⟦CODE_0004⟧, no ⟦CODE_0005⟧ and no empty match."
+msgstr ""
+
+#: lessons/languages/editors.md:46
+msgctxt "s-93353dceb115-0027"
+msgid "**A wall is a result.** Nested ⟦CODE_0001⟧ is refused. A blank line is a command. We kept a test for each."
+msgstr ""
+
+#: lessons/languages/editors.md:48
+msgctxt "s-8fb289b86805-0028"
+msgid "Tags: the commands ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧ and ⟦CODE_0006⟧ are in POSIX. That a failed ⟦CODE_0007⟧ inside ⟦CODE_0008⟧ is silent is **accidentally exploited** knowledge: GNU ed 1.20.1 does it, and its manual does not say so. ⟦CODE_0009⟧ comments are a GNU extension."
+msgstr ""
+
+#: lessons/languages/editors.md:50
+msgctxt "s-299b7a6f9cbe-0029"
+msgid "Do this in production and you're fired"
+msgstr ""
+
+#: lessons/languages/editors.md:52
+msgctxt "s-c44765905045-0030"
+msgid "**Unary does not scale.** One million is a million characters."
+msgstr ""
+
+#: lessons/languages/editors.md:53
+msgctxt "s-38cb53c4fcfb-0031"
+msgid "**The program depends on positions.** One extra line between a card and its ledger breaks every total."
+msgstr ""
+
+#: lessons/languages/editors.md:54
+msgctxt "s-d3ae7a851aeb-0032"
+msgid "**Nobody can debug ten rewrite rules by eye.** The entry has a test that compares it with a short model."
+msgstr ""
+
+#: lessons/languages/editors.md:56
+msgctxt "s-4c934f8259c1-0033"
+msgid "Legitimate uses: ⟦CODE_0001⟧ and ⟦CODE_0002⟧ in scripts for exact, scriptable edits (⟦CODE_0003⟧), such as a build step that must change one line of a config file."
+msgstr ""
+
+#: lessons/languages/editors.md:58
+msgctxt "s-5e3bcdfbf845-0034"
+msgid "Now break it yourself"
+msgstr ""
+
+#: lessons/languages/editors.md:60
+msgctxt "s-685ffb89e6ee-0035"
+msgid "See [exercise B18](⟦DEST_0001⟧)."
+msgstr ""
+
+#: lessons/languages/editors.md:62
+msgctxt "s-d76e82c036b5-0036"
+msgid "A program you can edit"
+msgstr ""
+
+#: lessons/languages/editors.md:64
+msgctxt "s-cc9cfaabc50d-0037"
+msgid "Behold the monstrosity"
+msgstr ""
+
+#: lessons/languages/editors.md:70
+msgctxt "s-6ce41c867572-0038"
+msgid "A script of about 100 lines, most of it a table of sixty numbered lines. The program itself is **one line of text**."
+msgstr ""
+
+#: lessons/languages/editors.md:72
+msgctxt "s-415f5fa29cf9-0039"
+msgid "How the hell does that work?"
+msgstr ""
+
+#: lessons/languages/editors.md:74
+msgctxt "s-5e14769957a1-0040"
+msgid "**A mark is a register.** ⟦CODE_0001⟧ puts a mark on a line. ⟦CODE_0002⟧ moves it seventeen lines down. That is ⟦CODE_0003⟧."
+msgstr ""
+
+#: lessons/languages/editors.md:75
+msgctxt "s-f5d9a5aacfcb-0041"
+msgid "**The tape is the number line.** Sixty lines, each ⟦CODE_0001⟧. Where the mark stands *is* the running total, and the text of the line is that total as digits."
+msgstr ""
+
+#: lessons/languages/editors.md:76
+msgctxt "s-b179bb728aca-0042"
+msgid "**The program writes its own command.** A substitution turns the card ⟦CODE_0001⟧ into the text ⟦CODE_0002⟧. The program copies that text into a register and runs it with ⟦CODE_0003⟧."
+msgstr ""
+
+#: lessons/languages/editors.md:77
+msgctxt "s-570073fe400c-0043"
+msgid "**The loop is a register that runs itself.** The program copies the numbered tape line to the end of the buffer, strips the digits and following space with ⟦CODE_0001⟧ and yanks just the instruction into register ⟦CODE_0002⟧. Up to 40 it is ⟦CODE_0003⟧, which is the program again. Above 40 it is a quote mark, which is a comment, so nothing runs."
+msgstr ""
+
+#: lessons/languages/editors.md:78
+msgctxt "s-8fe41c100843-0044"
+msgid "**Nothing in the program says 40.** The limit is where ⟦CODE_0001⟧ stops on the tape."
+msgstr ""
+
+#: lessons/languages/editors.md:80
+msgctxt "s-e6ffd666adf4-0045"
+msgid "The [README](⟦DEST_0001⟧) has the step table, the comparison with the ed entry and the five places where nvi and Vim disagree."
+msgstr ""
+
+#: lessons/languages/editors.md:82
+msgctxt "s-d2bbf037de84-0046"
+msgid "What did we just learn?"
+msgstr ""
+
+#: lessons/languages/editors.md:84
+msgctxt "s-817e6d355299-0047"
+msgid "**Code is text, so it can be built.** A program can write a command as a string and run it. That is ⟦CODE_0001⟧."
+msgstr ""
+
+#: lessons/languages/editors.md:85
+msgctxt "s-788415d04452-0048"
+msgid "**Editor state is state.** The current line, the marks and the registers are memory, outside the text of the buffer."
+msgstr ""
+
+#: lessons/languages/editors.md:86
+msgctxt "s-8b073f4cb4c8-0049"
+msgid "**A jump table is data.** The next step is looked up by address, in a table, and the table holds the stop rule."
+msgstr ""
+
+#: lessons/languages/editors.md:87
+msgctxt "s-5bc98e5c2069-0050"
+msgid "**There is no one Ex.** nvi and Vim disagree on register order, nested global commands, printing, errors and backward ranges. The program was written around all five."
+msgstr ""
+
+#: lessons/languages/editors.md:88
+msgctxt "s-657d52a19381-0051"
+msgid "**Batch is not interactive.** The same commands, with no one watching, must be right the first time."
+msgstr ""
+
+#: lessons/languages/editors.md:90
+msgctxt "s-67a057aabe44-0052"
+msgid "Tags: the commands ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧, ⟦CODE_0006⟧, the bar and the ⟦CODE_0007⟧ comment are **guaranteed** by POSIX for Ex. The evidence is the specification. That the program runs the same on nvi 1.81.6 and Vim 9.1 is **implementation-permitted**: the check covered those two implementations."
+msgstr ""
+
+#: lessons/languages/editors.md:92
+msgctxt "s-299b7a6f9cbe-0053"
+msgid "Do this in production and you're fired"
+msgstr ""
+
+#: lessons/languages/editors.md:94
+msgctxt "s-2b7ce5c2f6cc-0054"
+msgid "**A register that runs data is ⟦CODE_0001⟧.** If the tape came from a stranger, the stranger would write your program. Here the tape is fixed, and the digits are checked before they get anywhere near a command."
+msgstr ""
+
+#: lessons/languages/editors.md:95
+msgctxt "s-78b12ea0393f-0055"
+msgid "**Marks are fragile.** A mark on a deleted line is gone, and so is your counter."
+msgstr ""
+
+#: lessons/languages/editors.md:96
+msgctxt "s-7ac6b6e0d80a-0056"
+msgid "**The script depends on the Ex you have.** A script that works in one may not work in the other. Test with both."
+msgstr ""
+
+#: lessons/languages/editors.md:98
+msgctxt "s-c8d56438423f-0057"
+msgid "Legitimate uses: ⟦CODE_0001⟧ in scripts for exact edits, and registers as a small macro system for repeated edits in ⟦CODE_0002⟧."
+msgstr ""
+
+#: lessons/languages/editors.md:100
+msgctxt "s-5e3bcdfbf845-0058"
+msgid "Now break it yourself"
+msgstr ""
+
+#: lessons/languages/editors.md:102
+msgctxt "s-8dbc9fe7935d-0059"
+msgid "See [exercise B19](⟦DEST_0001⟧)."
+msgstr ""
+
+#: lessons/languages/editors.md:153
+msgctxt "s-ac0e260e97bf-0060"
+msgid "Computer science behind this page"
+msgstr ""

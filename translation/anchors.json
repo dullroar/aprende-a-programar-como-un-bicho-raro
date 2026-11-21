@@ -4361,16 +4361,16 @@
     {
      "en": "ed and Ex",
      "en_id": "ed-and-ex",
-     "es": "ed and Ex",
-     "es_id": "ed-and-ex",
+     "es": "ed y Ex",
+     "es_id": "ed-y-ex",
      "level": 1,
      "line": 1
     },
     {
      "en": "What makes ed special",
      "en_id": "what-makes-ed-special",
-     "es": "What makes ed special",
-     "es_id": "what-makes-ed-special",
+     "es": "Qué hace especial a ed",
+     "es_id": "qué-hace-especial-a-ed",
      "level": 2,
      "line": 7
     },
@@ -4510,7 +4510,7 @@
     "computer-science-behind-this-page": "computer-science-behind-this-page",
     "do-this-in-production-and-youre-fired": "do-this-in-production-and-youre-fired",
     "do-this-in-production-and-youre-fired-1": "do-this-in-production-and-youre-fired-1",
-    "ed-and-ex": "ed-and-ex",
+    "ed-and-ex": "ed-y-ex",
     "how-each-program-runs": "how-each-program-runs",
     "how-the-hell-does-that-work": "how-the-hell-does-that-work",
     "how-the-hell-does-that-work-1": "how-the-hell-does-that-work-1",
@@ -4521,7 +4521,7 @@
     "the-buffer-is-the-machine": "the-buffer-is-the-machine",
     "what-did-we-just-learn": "what-did-we-just-learn",
     "what-did-we-just-learn-1": "what-did-we-just-learn-1",
-    "what-makes-ed-special": "what-makes-ed-special"
+    "what-makes-ed-special": "qué-hace-especial-a-ed"
    }
   },
   "lessons/languages/find.md": {

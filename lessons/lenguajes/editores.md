@@ -1,12 +1,12 @@
-# ed and Ex
+# ed y Ex
 
-Entries: [`src/ed-weird`](../../src/ed-weird/README.md) (the buffer is the machine) and [`src/ex-weird`](../../src/ex-weird/README.md) (a program you can edit). `ed` is the original Unix line editor, from 1969 to 1971. You tell it which lines (an *address*) and what to do to them (a *command*). It has no screen. Everything it does to a file, it does to a **buffer** of lines in memory, one command at a time. The commands are so general that the program in this book is made of nothing else. `ex` is its bigger descendant: the command language of `vi`. It adds registers, marks, `@` and the bar.
+Entradas: [`src/ed-weird`](../../src/ed-weird/README.md) (el búfer es la máquina) y [`src/ex-weird`](../../src/ex-weird/README.md) (un programa que puedes editar). `ed` es el editor de líneas original de Unix, de 1969 a 1971. Le indicas qué líneas (una *dirección*) y qué hacer con ellas (un *comando*). No tiene pantalla. Todo lo que hace a un archivo, lo hace a un **búfer** de líneas en memoria, un comando a la vez. Los comandos son tan generales que el programa de este libro no contiene nada más. `ex` es su descendiente más grande: el lenguaje de comandos de `vi`. Añade registros, marcas, `@` y la barra.
 
-For an advanced reading path with traces and experiments, see the [ed and Ex study guide](../guias-de-estudio/lenguajes/ed-y-ex.md).
+Para un recorrido avanzado de lectura con trazas y experimentos, consulta la [guía de estudio de ed y Ex](../guias-de-estudio/lenguajes/ed-y-ex.md).
 
-## What makes ed special
+## Qué hace especial a ed
 
-| Feature | What it teaches |
+| Característica | Qué enseña |
 | --- | --- |
 | Addresses: `3`, `.`, `$`, `.-1`, `/re/` | A line is reached by number, by position or by pattern. An address is a reference into the data, as a pointer or an index is. |
 | `s/re/text/` | Substitution is a conditional rewrite. If the pattern matches, the text changes. If not, nothing happens. |
