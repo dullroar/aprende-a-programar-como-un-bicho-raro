@@ -79,12 +79,12 @@ Un script de unas 100 líneas, en su mayoría una tabla de sesenta líneas numer
 
 El [README](../../src/ex-weird/README.md#cómo-funciona-el-truco) tiene la tabla de pasos, la comparación con la entrada de ed y los cinco puntos en los que nvi y Vim discrepan.
 
-### What did we just learn?
+### ¿Qué acabamos de aprender?
 
-- **Code is text, so it can be built.** A program can write a command as a string and run it. That is `eval`.
-- **Editor state is state.** The current line, the marks and the registers are memory, outside the text of the buffer.
-- **A jump table is data.** The next step is looked up by address, in a table, and the table holds the stop rule.
-- **There is no one Ex.** nvi and Vim disagree on register order, nested global commands, printing, errors and backward ranges. The program was written around all five.
+- **El código es texto, así que se puede construir.** Un programa puede escribir un comando como cadena de texto y ejecutarlo. Eso es `eval`.
+- **El estado del editor es estado.** La línea actual, las marcas y los registros son memoria fuera del texto del búfer.
+- **Una tabla de saltos es dato.** El siguiente paso se busca por dirección en una tabla; la tabla contiene la regla de parada.
+- **No hay un solo Ex.** nvi y Vim discrepan en el orden de los registros, los comandos globales anidados, la impresión, los errores y los rangos inversos. El programa se escribió teniendo en cuenta los cinco.
 - **Batch is not interactive.** The same commands, with no one watching, must be right the first time.
 
 Tags: the commands `@`, `k`, `ya`, `t`, `j`, `s`, the bar and the `"` comment are **guaranteed** by POSIX for Ex. The evidence is the specification. That the program runs the same on nvi 1.81.6 and Vim 9.1 is **implementation-permitted**: the check covered those two implementations.

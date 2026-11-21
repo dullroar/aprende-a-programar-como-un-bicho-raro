@@ -4449,8 +4449,8 @@
     {
      "en": "What did we just learn?",
      "en_id": "what-did-we-just-learn-1",
-     "es": "What did we just learn?",
-     "es_id": "what-did-we-just-learn",
+     "es": "¿Qué acabamos de aprender?",
+     "es_id": "qué-acabamos-de-aprender-1",
      "level": 3,
      "line": 82
     },
@@ -4520,7 +4520,7 @@
     "program-flow-of-ex-weird": "program-flow-of-ex-weird",
     "the-buffer-is-the-machine": "el-búfer-es-la-máquina",
     "what-did-we-just-learn": "qué-acabamos-de-aprender",
-    "what-did-we-just-learn-1": "what-did-we-just-learn",
+    "what-did-we-just-learn-1": "qué-acabamos-de-aprender-1",
     "what-makes-ed-special": "qué-hace-especial-a-ed"
    }
   },
