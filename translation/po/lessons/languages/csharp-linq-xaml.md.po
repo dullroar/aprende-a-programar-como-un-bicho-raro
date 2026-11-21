@@ -195,27 +195,27 @@ msgstr "¿Por qué hay dos ⟦CODE_0001⟧ anidados? C# permite pocas formas de 
 #: lessons/languages/csharp-linq-xaml.md:69
 msgctxt "s-6512b902719b-0037"
 msgid "LinqChallenge2: query syntax all the way down"
-msgstr ""
+msgstr "LinqChallenge2: sintaxis de consulta hasta el fondo"
 
 #: lessons/languages/csharp-linq-xaml.md:71
 msgctxt "s-04effa219b20-0038"
 msgid "[⟦CODE_0001⟧ L53](⟦DEST_0002⟧) onward is the same demo as nearly all ⟦CODE_0003⟧/⟦CODE_0004⟧/⟦CODE_0005⟧/⟦CODE_0006⟧. Where a ⟦CODE_0007⟧ has to smuggle in a ⟦CODE_0008⟧ call ([L71-72](⟦DEST_0009⟧)), it is wrapped in a throwaway one-row query: ⟦CODE_0010⟧. Turtles all the way down, on purpose. Things that cannot be query syntax (⟦CODE_0011⟧, ⟦CODE_0012⟧, ⟦CODE_0013⟧, ⟦CODE_0014⟧, ⟦CODE_0015⟧, ⟦CODE_0016⟧) are listed in the [README](⟦DEST_0017⟧)."
-msgstr ""
+msgstr "Desde [⟦CODE_0001⟧ L53](⟦DEST_0002⟧) aparece la misma demostración que en casi todos los ⟦CODE_0003⟧/⟦CODE_0004⟧/⟦CODE_0005⟧/⟦CODE_0006⟧. Cuando un ⟦CODE_0007⟧ debe colar una llamada a ⟦CODE_0008⟧ ([L71-72](⟦DEST_0009⟧)), la envuelve en una consulta desechable de una fila: ⟦CODE_0010⟧. Tortugas hasta el fondo, a propósito. El [README](⟦DEST_0017⟧) enumera lo que no puede usar sintaxis de consulta (⟦CODE_0011⟧, ⟦CODE_0012⟧, ⟦CODE_0013⟧, ⟦CODE_0014⟧, ⟦CODE_0015⟧, ⟦CODE_0016⟧)."
 
 #: lessons/languages/csharp-linq-xaml.md:73
 msgctxt "s-d2bbf037de84-0039"
 msgid "What did we just learn?"
-msgstr ""
+msgstr "¿Qué acabamos de aprender?"
 
 #: lessons/languages/csharp-linq-xaml.md:75
 msgctxt "s-25434173a964-0040"
 msgid "**LINQ is an execution pipeline, not just a query language.** Which stages are eager, which are lazy and which provider (SQL vs. objects) runs each one decide *when your side effects happen*. See the same question in [Haskell](⟦DEST_0001⟧)."
-msgstr ""
+msgstr "**LINQ es una canalización de ejecución, no solo un lenguaje de consulta.** Las etapas de evaluación inmediata o diferida y el proveedor (SQL u objetos) que ejecuta cada una determinan *cuándo ocurren tus efectos secundarios*. Mira la misma pregunta en [Haskell](⟦DEST_0001⟧)."
 
 #: lessons/languages/csharp-linq-xaml.md:76
 msgctxt "s-f7ee57e8cb03-0041"
 msgid "**Provider boundaries are real.** Everything before ⟦CODE_0001⟧ becomes SQL; everything after is C# running in your process."
-msgstr ""
+msgstr "**Los límites entre proveedores son reales.** Todo lo anterior a ⟦CODE_0001⟧ se convierte en SQL; todo lo posterior es C# que se ejecuta en tu proceso."
 
 #: lessons/languages/csharp-linq-xaml.md:77
 msgctxt "s-6012d197de37-0042"

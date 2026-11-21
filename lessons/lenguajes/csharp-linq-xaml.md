@@ -66,14 +66,14 @@ Una sentencia de expresión terminada en `;` se construye con llamadas LINQ. Emp
 
 ¿Por qué hay dos `Enumerable.Repeat(..., 1)` anidados? C# permite pocas formas de expresión como sentencia (invocación, asignación, `await`...), pero no `x is var r && ...`. Por eso cada etapa se anida directamente como argumento del siguiente `Repeat`. Este convierte un valor de nuevo en una secuencia de un elemento para que el siguiente paso siga siendo un operador LINQ.
 
-### LinqChallenge2: query syntax all the way down
+### LinqChallenge2: sintaxis de consulta hasta el fondo
 
-[`LinqChallenge2/Program.cs` L53](../../src/LinqChallenge2/Program.cs#L53) onward is the same demo as nearly all `from`/`where`/`let`/`select`. Where a `let` has to smuggle in a `void` call ([L71-72](../../src/LinqChallenge2/Program.cs#L71-L72)), it is wrapped in a throwaway one-row query: `from _track in Enumerable.Repeat(0, 1) ...`. Turtles all the way down, on purpose. Things that cannot be query syntax (`Aggregate`, `Repeat`, `ToList`, `Sum`, `Single`, `AsEnumerable`) are listed in the [README](../../src/LinqChallenge2/README.md).
+Desde [`LinqChallenge2/Program.cs` L53](../../src/LinqChallenge2/Program.cs#L53) aparece la misma demostración que en casi todos los `from`/`where`/`let`/`select`. Cuando un `let` debe colar una llamada a `void` ([L71-72](../../src/LinqChallenge2/Program.cs#L71-L72)), la envuelve en una consulta desechable de una fila: `from _track in Enumerable.Repeat(0, 1) ...`. Tortugas hasta el fondo, a propósito. El [README](../../src/LinqChallenge2/README.md) enumera lo que no puede usar sintaxis de consulta (`Aggregate`, `Repeat`, `ToList`, `Sum`, `Single`, `AsEnumerable`).
 
-### What did we just learn?
+### ¿Qué acabamos de aprender?
 
-- **LINQ is an execution pipeline, not just a query language.** Which stages are eager, which are lazy and which provider (SQL vs. objects) runs each one decide *when your side effects happen*. See the same question in [Haskell](haskell.md#lazy-io-as-control-flow).
-- **Provider boundaries are real.** Everything before `AsEnumerable()` becomes SQL; everything after is C# running in your process.
+- **LINQ es una canalización de ejecución, no solo un lenguaje de consulta.** Las etapas de evaluación inmediata o diferida y el proveedor (SQL u objetos) que ejecuta cada una determinan *cuándo ocurren tus efectos secundarios*. Mira la misma pregunta en [Haskell](haskell.md#lazy-io-as-control-flow).
+- **Los límites entre proveedores son reales.** Todo lo anterior a `AsEnumerable()` se convierte en SQL; todo lo posterior es C# que se ejecuta en tu proceso.
 - **Side effects in a lazy pipeline are a bug magnet**, and the entries make that visible.
 
 Tags: deferred vs. immediate execution of each operator is **guaranteed** (documented). Tuple left-to-right evaluation is **guaranteed** by the C# spec. EF translating a given expression is **implementation-permitted** and depends on the provider.

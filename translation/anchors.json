@@ -4158,16 +4158,16 @@
     {
      "en": "LinqChallenge2: query syntax all the way down",
      "en_id": "linqchallenge2-query-syntax-all-the-way-down",
-     "es": "LinqChallenge2: query syntax all the way down",
-     "es_id": "linqchallenge2-query-syntax-all-the-way-down",
+     "es": "LinqChallenge2: sintaxis de consulta hasta el fondo",
+     "es_id": "linqchallenge2-sintaxis-de-consulta-hasta-el-fondo",
      "level": 3,
      "line": 69
     },
     {
      "en": "What did we just learn?",
      "en_id": "what-did-we-just-learn-1",
-     "es": "What did we just learn?",
-     "es_id": "what-did-we-just-learn",
+     "es": "¿Qué acabamos de aprender?",
+     "es_id": "qué-acabamos-de-aprender-1",
      "level": 3,
      "line": 73
     },
@@ -4215,7 +4215,7 @@
      "en": "What did we just learn?",
      "en_id": "what-did-we-just-learn-2",
      "es": "What did we just learn?",
-     "es_id": "what-did-we-just-learn-1",
+     "es_id": "what-did-we-just-learn",
      "level": 3,
      "line": 114
     },
@@ -4336,7 +4336,7 @@
     "how-is-that-even-possible": "how-is-that-even-possible",
     "how-the-hell-does-that-work": "cómo-demonios-funciona-eso",
     "linqchallenge1-one-fluent-chain": "linqchallenge1-una-cadena-fluida",
-    "linqchallenge2-query-syntax-all-the-way-down": "linqchallenge2-query-syntax-all-the-way-down",
+    "linqchallenge2-query-syntax-all-the-way-down": "linqchallenge2-sintaxis-de-consulta-hasta-el-fondo",
     "now-break-it-yourself": "now-break-it-yourself",
     "program-flow-of-gochallenge1": "program-flow-of-gochallenge1",
     "program-flow-of-javachallenge1": "program-flow-of-javachallenge1",
@@ -4351,8 +4351,8 @@
     "the-original-modernchallenge1": "el-original-modernchallenge1",
     "under-what-circumstances-would-this-terrible-idea-become-reasonable": "under-what-circumstances-would-this-terrible-idea-become-reasonable",
     "what-did-we-just-learn": "qué-acabamos-de-aprender",
-    "what-did-we-just-learn-1": "what-did-we-just-learn",
-    "what-did-we-just-learn-2": "what-did-we-just-learn-1",
+    "what-did-we-just-learn-1": "qué-acabamos-de-aprender-1",
+    "what-did-we-just-learn-2": "what-did-we-just-learn",
     "xaml": "xaml"
    }
   },
