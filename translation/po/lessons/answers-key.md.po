@@ -277,7 +277,7 @@ msgstr "B10. Lisp: cambia la combinación de métodos"
 #: lessons/answers-key.md:156
 msgctxt "s-b342d4c743a9-0051"
 msgid "With ⟦CODE_0001⟧ in both places every run deals **all five cards**, because ⟦CODE_0002⟧ calls every applicable method and ignores their return values:"
-msgstr ""
+msgstr "Con ⟦CODE_0001⟧ en ambos lugares, cada ejecución reparte **las cinco tarjetas**, porque ⟦CODE_0002⟧ llama a todos los métodos aplicables e ignora sus valores de retorno:"
 
 #: lessons/answers-key.md:164
 msgctxt "s-6709a08a45b0-0052"
@@ -285,6 +285,8 @@ msgid ""
 "The totals end anywhere from 50 to 95. The method count says ⟦CODE_0001⟧ because the note counts methods qualified ⟦CODE_0002⟧, and there are none now. ⟦CODE_0003⟧ fails on your copy because it insists on ⟦CODE_0004⟧. (The unmodified entry's own check runs this same mutation to prove ⟦CODE_0005⟧ is the stop rule.)\n"
 "2. Changing only the generic function leaves five methods with a qualifier that ⟦CODE_0006⟧ does not accept. SBCL warns:"
 msgstr ""
+"Los totales terminan entre 50 y 95. El recuento de métodos dice ⟦CODE_0001⟧ porque la nota cuenta los métodos con el calificador ⟦CODE_0002⟧ y ahora no hay ninguno. ⟦CODE_0003⟧ falla en tu copia porque exige ⟦CODE_0004⟧. (La propia comprobación de la entrada sin modificar ejecuta esta misma mutación para demostrar que ⟦CODE_0005⟧ es la regla de parada.)\n"
+"2. Cambiar solo la función genérica deja cinco métodos con un calificador que ⟦CODE_0006⟧ no acepta. SBCL advierte:"
 
 #: lessons/answers-key.md:174
 msgctxt "s-a9d0db9f83ba-0053"
@@ -292,21 +294,23 @@ msgid ""
 "A method's qualifiers have to match its generic function's combination: the combination is the generic function's choice, not the method's.\n"
 "3. With ⟦CODE_0001⟧ there are always five rows and a total of at most 95. The program stops because it **runs out of classes**, not because the rule was met; ⟦CODE_0002⟧ fails with ⟦CODE_0003⟧. Five is the most it can deal: cards are at least 10 hours, so four cards total at least 40, and a fifth always crosses 40. A limit of 100 needs eleven classes (ten cards of 10 total exactly 100, so an eleventh must cross), so you would add ⟦CODE_0004⟧ forms and renumber."
 msgstr ""
+"Los calificadores de un método deben coincidir con la combinación de su función genérica: la función genérica elige la combinación, no el método.\n"
+"3. Con ⟦CODE_0001⟧ siempre hay cinco filas y un total de 95 como máximo. El programa se detiene porque **se queda sin clases**, no porque se cumplió la regla; ⟦CODE_0002⟧ falla con ⟦CODE_0003⟧. Cinco es el máximo que puede repartir: las tarjetas son de al menos 10 horas, así que cuatro tarjetas suman como mínimo 40 y una quinta siempre pasa de 40. Un límite de 100 necesita once clases (diez tarjetas de 10 suman exactamente 100, así que una undécima debe superar ese total). Por eso agregarías formas ⟦CODE_0004⟧ y volverías a numerar."
 
 #: lessons/answers-key.md:176
 msgctxt "s-e148bdc1e3b4-0054"
 msgid "**The stop rule is ⟦CODE_0001⟧**, and the program does not fail without it, because ⟦CODE_0002⟧ is a valid combination: the program just never stops early. A silent change of meaning is the whole risk of the technique."
-msgstr ""
+msgstr "**La regla de parada es ⟦CODE_0001⟧**, y el programa no falla sin ella porque ⟦CODE_0002⟧ es una combinación válida: el programa simplemente nunca se detiene antes. Un cambio silencioso de significado es todo el riesgo de la técnica."
 
 #: lessons/answers-key.md:178
 msgctxt "s-df468c6178f8-0055"
 msgid "B11. m4: quote the recursion"
-msgstr ""
+msgstr "B11. m4: entrecomilla la recursión"
 
 #: lessons/answers-key.md:180
 msgctxt "s-af0bf4f4fcfe-0056"
 msgid "Same seed, same cards:"
-msgstr ""
+msgstr "Misma semilla, mismas tarjetas:"
 
 #: lessons/answers-key.md:188
 msgctxt "s-268c353e956b-0057"
@@ -314,6 +318,8 @@ msgid ""
 "Only the run id (⟦CODE_0001⟧: the clock and the seed) can differ. The generator is the Park-Miller formula and nothing else supplies randomness. ⟦CODE_0002⟧ ([L34](⟦DEST_0003⟧)) creates a random seed only when you have not already defined one.\n"
 "2. Unbracketed, ⟦CODE_0004⟧ is *called while ⟦CODE_0005⟧'s arguments are being collected*, so every call makes another call before ⟦CODE_0006⟧ can choose anything. m4 expands arguments before it runs the macro. With ⟦CODE_0007⟧ the run ends in a timeout (exit 124) and prints nothing: m4 buffers its output and was killed before it flushed. With ⟦CODE_0008⟧:"
 msgstr ""
+"Solo puede diferir el identificador de ejecución (⟦CODE_0001⟧: el reloj y la semilla). El generador es la fórmula de Park-Miller y nada más aporta aleatoriedad. ⟦CODE_0002⟧ ([L34](⟦DEST_0003⟧)) crea una semilla aleatoria solo si aún no has definido una.\n"
+"2. Sin corchetes, ⟦CODE_0004⟧ *se llama mientras se recopilan los argumentos de ⟦CODE_0005⟧*, así que cada llamada hace otra antes de que ⟦CODE_0006⟧ pueda elegir algo. m4 expande los argumentos antes de ejecutar la macro. Con ⟦CODE_0007⟧ la ejecución termina por tiempo agotado (salida 124) y no imprime nada: m4 guarda su salida en un búfer y fue terminado antes de vaciarlo. Con ⟦CODE_0008⟧:"
 
 #: lessons/answers-key.md:195
 msgctxt "s-71e6d1d30c7f-0058"
@@ -321,6 +327,8 @@ msgid ""
 "and exit status 1. The brackets turn ⟦CODE_0001⟧ into text that is only expanded when ⟦CODE_0002⟧ returns it, after the test; that is the only stop rule the program has.\n"
 "3. ⟦CODE_0003⟧: the run stops on the first card that takes the total above 60. ⟦CODE_0004⟧ passes."
 msgstr ""
+"y estado de salida 1. Los corchetes convierten ⟦CODE_0001⟧ en texto que solo se expande cuando ⟦CODE_0002⟧ lo devuelve, después de la prueba; esa es la única regla de parada del programa.\n"
+"3. ⟦CODE_0003⟧: la ejecución se detiene en la primera tarjeta que hace que el total pase de 60. ⟦CODE_0004⟧ pasa la comprobación."
 
 #: lessons/answers-key.md:198
 msgctxt "s-19adddd99d73-0059"

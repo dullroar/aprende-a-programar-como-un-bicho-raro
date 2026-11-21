@@ -153,7 +153,7 @@ grep -E 'tot:#{41}' trace.txt | tail -1   # the final state: 41+ tally marks
 
 ## B10. Lisp: cambia la combinación de métodos
 
-1. With `progn` in both places every run deals **all five cards**, because `progn` calls every applicable method and ignores their return values:
+1. Con `progn` en ambos lugares, cada ejecución reparte **las cinco tarjetas**, porque `progn` llama a todos los métodos aplicables e ignora sus valores de retorno:
 
    ```text
    Meetings	13	78	2026-W47	DEMO ONLY
@@ -161,8 +161,8 @@ grep -E 'tot:#{41}' trace.txt | tail -1   # the final state: 41+ tally marks
    # PUNCH had 0 OR methods and 5 ran: the class precedence list is the loop, and OR is the stop rule
    ```
 
-   The totals end anywhere from 50 to 95. The method count says `0 OR methods` because the note counts methods qualified `or`, and there are none now. `check.sh` fails on your copy because it insists on `(:method-combination or)`. (The unmodified entry's own check runs this same mutation to prove `or` is the stop rule.)
-2. Changing only the generic function leaves five methods with a qualifier that `progn` does not accept. SBCL warns:
+   Los totales terminan entre 50 y 95. El recuento de métodos dice `0 OR methods` porque la nota cuenta los métodos con el calificador `or` y ahora no hay ninguno. `check.sh` falla en tu copia porque exige `(:method-combination or)`. (La propia comprobación de la entrada sin modificar ejecuta esta misma mutación para demostrar que `or` es la regla de parada.)
+2. Cambiar solo la función genérica deja cinco métodos con un calificador que `progn` no acepta. SBCL advierte:
 
    ```text
    WARNING:
@@ -171,13 +171,13 @@ grep -E 'tot:#{41}' trace.txt | tail -1   # the final state: 41+ tally marks
         (OR).
    ```
 
-   A method's qualifiers have to match its generic function's combination: the combination is the generic function's choice, not the method's.
-3. With `100` there are always five rows and a total of at most 95. The program stops because it **runs out of classes**, not because the rule was met; `check-demo.sh out.txt 100` fails with `final total N does not pass 100`. Five is the most it can deal: cards are at least 10 hours, so four cards total at least 40, and a fifth always crosses 40. A limit of 100 needs eleven classes (ten cards of 10 total exactly 100, so an eleventh must cross), so you would add `defcard` forms and renumber.
-- **The stop rule is `or`**, and the program does not fail without it, because `progn` is a valid combination: the program just never stops early. A silent change of meaning is the whole risk of the technique.
+   Los calificadores de un método deben coincidir con la combinación de su función genérica: la función genérica elige la combinación, no el método.
+3. Con `100` siempre hay cinco filas y un total de 95 como máximo. El programa se detiene porque **se queda sin clases**, no porque se cumplió la regla; `check-demo.sh out.txt 100` falla con `final total N does not pass 100`. Cinco es el máximo que puede repartir: las tarjetas son de al menos 10 horas, así que cuatro tarjetas suman como mínimo 40 y una quinta siempre pasa de 40. Un límite de 100 necesita once clases (diez tarjetas de 10 suman exactamente 100, así que una undécima debe superar ese total). Por eso agregarías formas `defcard` y volverías a numerar.
+- **La regla de parada es `or`**, y el programa no falla sin ella porque `progn` es una combinación válida: el programa simplemente nunca se detiene antes. Un cambio silencioso de significado es todo el riesgo de la técnica.
 
-## B11. m4: quote the recursion
+## B11. m4: entrecomilla la recursión
 
-1. Same seed, same cards:
+1. Misma semilla, mismas tarjetas:
 
    ```text
    Meetings	19	19
@@ -185,15 +185,15 @@ grep -E 'tot:#{41}' trace.txt | tail -1   # the final state: 41+ tally marks
    Debugging	16	48
    ```
 
-   Only the run id (`1794869456-12345`: the clock and the seed) can differ. The generator is the Park-Miller formula and nothing else supplies randomness. `ifdef([tc_seed], [], ...)` ([L34](../src/m4/timecards.m4#L34)) creates a random seed only when you have not already defined one.
-2. Unbracketed, `tc_card()` is *called while `ifelse`'s arguments are being collected*, so every call makes another call before `ifelse` can choose anything. m4 expands arguments before it runs the macro. With `SANDBOX_TIMEOUT=20` the run ends in a timeout (exit 124) and prints nothing: m4 buffers its output and was killed before it flushed. With `-L 50`:
+   Solo puede diferir el identificador de ejecución (`1794869456-12345`: el reloj y la semilla). El generador es la fórmula de Park-Miller y nada más aporta aleatoriedad. `ifdef([tc_seed], [], ...)` ([L34](../src/m4/timecards.m4#L34)) crea una semilla aleatoria solo si aún no has definido una.
+2. Sin corchetes, `tc_card()` *se llama mientras se recopilan los argumentos de `ifelse`*, así que cada llamada hace otra antes de que `ifelse` pueda elegir algo. m4 expande los argumentos antes de ejecutar la macro. Con `SANDBOX_TIMEOUT=20` la ejecución termina por tiempo agotado (salida 124) y no imprime nada: m4 guarda su salida en un búfer y fue terminado antes de vaciarlo. Con `-L 50`:
 
    ```text
    m4:timecards.m4:87: recursion limit of 50 exceeded, use -L<N> to change it
    ```
 
-   and exit status 1. The brackets turn `tc_card()` into text that is only expanded when `ifelse` returns it, after the test; that is the only stop rule the program has.
-3. `eval(tc_total > 60)`: the run stops on the first card that takes the total above 60. `check-demo.sh out.txt 60` passes.
+   y estado de salida 1. Los corchetes convierten `tc_card()` en texto que solo se expande cuando `ifelse` lo devuelve, después de la prueba; esa es la única regla de parada del programa.
+3. `eval(tc_total > 60)`: la ejecución se detiene en la primera tarjeta que hace que el total pase de 60. `check-demo.sh out.txt 60` pasa la comprobación.
 
 ## B12. Tcl: edit the program in the database
 
