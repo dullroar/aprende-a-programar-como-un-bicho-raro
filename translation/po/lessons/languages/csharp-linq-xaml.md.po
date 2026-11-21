@@ -80,22 +80,22 @@ msgstr ""
 #: lessons/languages/csharp-linq-xaml.md:32
 msgctxt "s-574ea85e27cf-0014"
 msgid "Each test of the ⟦CODE_0001⟧ condition immediately needs a number. The LINQ projection can defer enumeration, and the terminal ⟦CODE_0002⟧ immediately enumerates it in the same condition test. The [Node port](⟦DEST_0003⟧) also computes its total eagerly, using ⟦CODE_0004⟧ over the array."
-msgstr ""
+msgstr "Cada evaluación de la condición ⟦CODE_0001⟧ necesita un número de inmediato. La proyección LINQ puede aplazar la enumeración. La operación terminal ⟦CODE_0002⟧ la enumera de inmediato en la misma evaluación de la condición. La [adaptación de Node](⟦DEST_0003⟧) también calcula su total de inmediato, con ⟦CODE_0004⟧ sobre el arreglo."
 
 #: lessons/languages/csharp-linq-xaml.md:34
 msgctxt "s-6daad14f3a96-0015"
 msgid "The window is built from a string of raw XAML via ⟦CODE_0001⟧ at run time ([L77](⟦DEST_0002⟧))."
-msgstr ""
+msgstr "La ventana se construye a partir de una cadena de texto de XAML sin procesar mediante ⟦CODE_0001⟧ durante la ejecución ([L77](⟦DEST_0002⟧))."
 
 #: lessons/languages/csharp-linq-xaml.md:36
 msgctxt "s-d2bbf037de84-0016"
 msgid "What did we just learn?"
-msgstr ""
+msgstr "¿Qué acabamos de aprender?"
 
 #: lessons/languages/csharp-linq-xaml.md:38
 msgctxt "s-d2398b866593-0017"
 msgid "⟦CODE_0001⟧ is three expressions plus a body, and the body is optional."
-msgstr ""
+msgstr "⟦CODE_0001⟧ consta de tres expresiones y un cuerpo, y el cuerpo es opcional."
 
 #: lessons/languages/csharp-linq-xaml.md:39
 msgctxt "s-54d2d7922a6b-0018"

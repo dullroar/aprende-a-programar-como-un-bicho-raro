@@ -29,13 +29,13 @@ Lee el encabezado `for` como un pequeño lenguaje de tres espacios.
 | **Condición** | [L66-98](../../src/ModernChallenge1/Program.cs#L66-L98) | `(from hours in i.totalHours select hours).Sum() <= 40d && i.categories!.MoveNext() ? true : new Func<bool>(() => Double.IsNaN(i.app.Run(...))).Invoke()`. Mientras el total sea 40 o menos, el bucle continúa. Cuando deja de serlo, la condición construye y muestra la ventana en línea y devuelve false. |
 | **Iterator** | [L106-130](../../src/ModernChallenge1/Program.cs#L106-L130) | Draws hours, adds a row to EF Core and starts a background `Thread` that calls `Mutex.WaitOne`, `SaveChanges` and `ReleaseMutex` *through `MethodInfo.Invoke`*. |
 
-Each test of the `for` condition immediately needs a number. The LINQ projection can defer enumeration, and the terminal `Sum()` immediately enumerates it in the same condition test. The [Node port](javascript.md#the-bodiless-for-in-node) also computes its total eagerly, using `reduce` over the array.
+Cada evaluación de la condición `for` necesita un número de inmediato. La proyección LINQ puede aplazar la enumeración. La operación terminal `Sum()` la enumera de inmediato en la misma evaluación de la condición. La [adaptación de Node](javascript.md#the-bodiless-for-in-node) también calcula su total de inmediato, con `reduce` sobre el arreglo.
 
-The window is built from a string of raw XAML via `XamlReader.Load` at run time ([L77](../../src/ModernChallenge1/Program.cs#L77)).
+La ventana se construye a partir de una cadena de texto de XAML sin procesar mediante `XamlReader.Load` durante la ejecución ([L77](../../src/ModernChallenge1/Program.cs#L77)).
 
-### What did we just learn?
+### ¿Qué acabamos de aprender?
 
-- `for` is three expressions plus a body, and the body is optional.
+- `for` consta de tres expresiones y un cuerpo, y el cuerpo es opcional.
 - An **anonymous type** is a way to pack mixed state into one expression.
 - A `void` side effect can be turned into a value with a `Func<T>` invoked in place. That is the move every later entry reuses.
 
