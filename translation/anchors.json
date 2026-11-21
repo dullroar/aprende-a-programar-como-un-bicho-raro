@@ -811,16 +811,16 @@
     {
      "en": "B12. Tcl: edit the program in the database",
      "en_id": "b12-tcl-edit-the-program-in-the-database",
-     "es": "B12. Tcl: edit the program in the database",
-     "es_id": "b12-tcl-edit-the-program-in-the-database",
+     "es": "B12. Tcl: edita el programa en la base de datos",
+     "es_id": "b12-tcl-edita-el-programa-en-la-base-de-datos",
      "level": 2,
      "line": 198
     },
     {
      "en": "B13. AWK: the missing `RT`",
      "en_id": "b13-awk-the-missing-rt",
-     "es": "B13. AWK: the missing `RT`",
-     "es_id": "b13-awk-the-missing-rt",
+     "es": "B13. AWK: el `RT` que falta",
+     "es_id": "b13-awk-el-rt-que-falta",
      "level": 2,
      "line": 222
     },
@@ -975,8 +975,8 @@
     "b1-cobol-predict-then-break-alter": "b1-cobol-predice-y-luego-rompe-alter",
     "b10-lisp-swap-the-method-combination": "b10-lisp-cambia-la-combinación-de-métodos",
     "b11-m4-quote-the-recursion": "b11-m4-entrecomilla-la-recursión",
-    "b12-tcl-edit-the-program-in-the-database": "b12-tcl-edit-the-program-in-the-database",
-    "b13-awk-the-missing-rt": "b13-awk-the-missing-rt",
+    "b12-tcl-edit-the-program-in-the-database": "b12-tcl-edita-el-programa-en-la-base-de-datos",
+    "b13-awk-the-missing-rt": "b13-awk-el-rt-que-falta",
     "b14-find-rig-the-dice": "b14-find-rig-the-dice",
     "b15-gnu-find-move-the-stop-rule-read-the-profile": "b15-gnu-find-move-the-stop-rule-read-the-profile",
     "b16-tar-read-the-program-then-run-it": "b16-tar-read-the-program-then-run-it",

@@ -231,22 +231,22 @@ El archivo de dígitos es `1 2` seguido de un salto de línea. Con `RS="[0-9]"` 
    # committed total=23 entries=2 DEMO ONLY
    ```
 
-   The third record is skipped by rule 1, `RT == "" { next }`.
-2. Without the guard the third record is dealt like the others, and `10 + RT` with an empty `RT` is `10 + 0`: a phantom card, `Debugging 10 33`, `entries=3`. It is a real INSERT too.
-3. mawk has no `RT`. The variable is never set, so `RT == ""` is true for **every** record, rule 1 skips them all, `t` never grows and `t > 40` never fires:
+   La regla 1 omite el tercer registro: `RT == "" { next }`.
+2. Sin la guarda, el tercer registro se reparte como los demás y `10 + RT` con un `RT` vacío es `10 + 0`: una tarjeta fantasma, `Debugging 10 33`, `entries=3`. También es un INSERT real.
+3. mawk no tiene `RT`. La variable nunca recibe un valor, así que `RT == ""` es verdadero para **cada** registro. La regla 1 los omite todos, `t` nunca crece y `t > 40` nunca se activa:
 
    ```text
    # committed total=0 entries=0 DEMO ONLY
    ```
 
-   No error, exit 0. On `/dev/urandom` the same program never stops and mawk reads until it runs out of memory (verified under a 400 MB limit). A program that *looks* portable and silently computes nothing is worse than one that crashes. `RT` is a gawk extension (**implementation-permitted**) outside POSIX.
-4. `t > 80 { exit }`: the run stops on the first card that takes the total above 80, and `check-demo.sh out.txt 80` passes. The pattern *is* the stop rule: `check.sh` makes the same edit on a stream of 5s to prove it (three cards become six).
+   Sin error, salida 0. En `/dev/urandom` el mismo programa nunca se detiene y mawk lee hasta quedarse sin memoria (verificado con un límite de 400 MB). Un programa que *parece* portable y no calcula nada sin avisar es peor que uno que falla. `RT` es una extensión de gawk (**permitido por la implementación**) fuera de POSIX.
+4. `t > 80 { exit }`: la ejecución se detiene en la primera tarjeta que lleva el total a más de 80 y `check-demo.sh out.txt 80` pasa. El patrón *es* la regla de parada: `check.sh` hace el mismo cambio en un flujo de 5 para demostrarlo (tres tarjetas pasan a ser seis).
 
-## B14. find: rig the dice
+## B14. find: carga los dados
 
-The fake `mktemp` makes the dice. The walk reads the last character of each six-character name, in the pattern `-path '*/[!/][!/][!/][!/][!/][STUVWX]/?'`.
+El `mktemp` falso produce los dados. El recorrido lee el último carácter de cada nombre de seis caracteres, con el patrón `-path '*/[!/][!/][!/][!/][!/][STUVWX]/?'`.
 
-1. `xxxxxS` is in group 9, so each card is 19 hours:
+1. `xxxxxS` está en el grupo 9, así que cada tarjeta tiene 19 horas:
 
    ```text
    Meetings	19	19	2026-W47	DEMO ONLY
@@ -255,14 +255,14 @@ The fake `mktemp` makes the dice. The walk reads the last character of each six-
    # committed total=57 entries=3 DEMO ONLY
    ```
 
-   The first total, 19, is the digit sequence 1 ... 9, 0 ... 9: the path has one directory named `0`, and the last digit is 9. After the third card the path has five of them, so the tens digit is 5 and the stop rule fires.
-2. `xxxxxY` ends in `Y`, which is not one of the 60 good characters, so the walk tries the character before it. That is `x`, in the group `stuvwx`: 13 hours. The totals are 13, 26, 39 and 52. The stop rule says "over 40", and 39 is not, so a fourth card is made. The categories are `Meetings`, `Coding`, `Debugging`, `Learning`.
-3. `xxxxYZ`: `Z` is thrown away, and so is `Y` before it. The last branch of the table is the default: 10 hours. The totals are 10, 20, 30, 40 and 50. The stop rule is "five directories named `0`, or four of them and a last digit that is not `0`". At 40 the path has four of them and the last digit is `0`, so it continues. The fifth card is `Meetings` again.
+   El primer total, 19, es la secuencia de dígitos 1 ... 9, 0 ... 9: la ruta tiene un directorio llamado `0` y el último dígito es 9. Después de la tercera tarjeta, la ruta tiene cinco de ellos. Por eso el dígito de las decenas es 5 y se activa la regla de parada.
+2. `xxxxxY` termina en `Y`, que no es uno de los 60 caracteres válidos. Por eso el recorrido prueba el carácter anterior. Ese es `x`, en el grupo `stuvwx`: 13 horas. Los totales son 13, 26, 39 y 52. La regla de parada dice "más de 40" y 39 no cumple esa condición, así que se crea una cuarta tarjeta. Las categorías son `Meetings`, `Coding`, `Debugging`, `Learning`.
+3. `xxxxYZ`: se descarta `Z` y también `Y`, que lo precede. La última rama de la tabla es la predeterminada: 10 horas. Los totales son 10, 20, 30, 40 y 50. La regla de parada es "cinco directorios llamados `0`, o cuatro de ellos y un último dígito distinto de `0`". Con 40, la ruta tiene cuatro de ellos y el último dígito es `0`, así que continúa. La quinta tarjeta es `Meetings` otra vez.
 
-## B15. GNU find: move the stop rule, read the profile
+## B15. GNU find: mueve la regla de parada y lee el perfil
 
-1. `([^/]*/){31}.*` matches a path with at least 31 slashes. The start directory `t` is depth 0, and the end of a card is at depth equal to the running total, so the test is true exactly when the total is 31 or more, which is "over 30". `check-demo.sh out.txt 30` passes. The entry's own `check.sh` fails, because the seven forced-dice scenarios (for example `10 10 10 10 10`, five cards) now stop after fewer cards. The stop rule is that one number, because depth is the total.
-2. With `FIND_D=rates`, find prints its profile on stderr after the walk. Each test shows `[est success rate 0.8]` (the optimizer's flat guess) and `[real success rate a/b=...]`. The `-name b00` test succeeds once per card, so `a` equals the number of rows. The guess is far off because the optimizer has no idea that most directories are named `b..` and only one in about 15 ends a card.
+1. `([^/]*/){31}.*` coincide con una ruta con al menos 31 barras. El directorio inicial `t` está a profundidad 0 y el final de una tarjeta está a una profundidad igual al total acumulado. Por tanto, la prueba es verdadera exactamente cuando el total es 31 o más, es decir, "más de 30". `check-demo.sh out.txt 30` pasa. El propio `check.sh` de la entrada falla porque los siete escenarios con dados forzados (por ejemplo `10 10 10 10 10`, cinco tarjetas) ahora se detienen tras menos tarjetas. La regla de parada es ese número porque la profundidad es el total.
+2. Con `FIND_D=rates`, find imprime su perfil en stderr después del recorrido. Cada prueba muestra `[est success rate 0.8]` (la estimación uniforme del optimizador) y `[real success rate a/b=...]`. La prueba `-name b00` tiene éxito una vez por tarjeta, así que `a` es igual al número de filas. La estimación es muy imprecisa porque el optimizador no sabe que la mayoría de los directorios se llaman `b..` y solo uno de cada 15 aproximadamente termina una tarjeta.
 
 ## B16. tar: read the program, then run it
 
