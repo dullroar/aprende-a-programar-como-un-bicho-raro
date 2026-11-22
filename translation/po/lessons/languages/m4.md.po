@@ -1,0 +1,248 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lessons/languages/m4.md:1
+msgctxt "s-2396a1256ac4-0000"
+msgid "m4"
+msgstr "m4"
+
+#: lessons/languages/m4.md:3
+msgctxt "s-0b62be563dcf-0001"
+msgid "Entry: [⟦CODE_0001⟧](⟦DEST_0002⟧). There is no ⟦CODE_0003⟧, on purpose: m4 is a macro processor, and *using it to run a program* is already the stunt."
+msgstr "Entrada: [⟦CODE_0001⟧](⟦DEST_0002⟧). No hay ⟦CODE_0003⟧, a propósito: m4 es un procesador de macros y *usarlo para ejecutar un programa* ya es la hazaña."
+
+#: lessons/languages/m4.md:5
+msgctxt "s-ca1a1175625f-0002"
+msgid "For an advanced reading path with traces and experiments, see the [m4 study guide](⟦DEST_0001⟧)."
+msgstr "Para una ruta de lectura avanzada con trazas y experimentos, consulta la [guía de estudio de m4](⟦DEST_0001⟧)."
+
+#: lessons/languages/m4.md:7
+msgctxt "s-26e07493bfd1-0003"
+msgid "What makes m4 special"
+msgstr "Qué hace especial a m4"
+
+#: lessons/languages/m4.md:9
+msgctxt "s-e5e8947561d8-0004"
+msgid "m4 does not execute a program. It **reads text and writes text**, replacing macro names with their definitions as it goes. Everything else (variables, arithmetic, conditionals, loops, I/O) is a macro that either ships with m4 or that you wrote, and all of it is text substitution."
+msgstr "m4 no ejecuta un programa. **Lee texto y escribe texto** y, a medida que avanza, reemplaza los nombres de macros por sus definiciones. Todo lo demás (variables, aritmética, condicionales, bucles, entrada y salida) es una macro incluida en m4 o escrita por ti. Todo es sustitución de texto."
+
+#: lessons/languages/m4.md:11
+msgctxt "s-4edb797a890b-0005"
+msgid "⟦SEP_0001⟧ Feature ⟦SEP_0002⟧ Where ⟦SEP_0003⟧ What it teaches ⟦SEP_0004⟧"
+msgstr ""
+
+#: lessons/languages/m4.md:13
+msgctxt "s-8e2312e14b78-0006"
+msgid "⟦SEP_0005⟧ Quotes delay evaluation ⟦SEP_0006⟧ [L22](⟦DEST_0001⟧): ⟦CODE_0002⟧ ⟦SEP_0007⟧ m4's quote characters are ⟦CODE_0003⟧ and ⟦CODE_0004⟧ by default, which clash with shell and SQL. Square brackets are the traditional replacement. A quoted string is *not* expanded; that is how you pass a macro name around instead of calling it. ⟦SEP_0008⟧"
+msgstr ""
+
+#: lessons/languages/m4.md:14
+msgctxt "s-c0ffccab8944-0007"
+msgid "⟦SEP_0005⟧ Output can be switched off ⟦SEP_0006⟧ [L25](⟦DEST_0001⟧) and [L85](⟦DEST_0002⟧): ⟦CODE_0003⟧ ... ⟦CODE_0004⟧ ⟦SEP_0007⟧ Diversions are numbered output buffers. Diversion -1 is the bit bucket, so definitions print nothing. ⟦SEP_0008⟧"
+msgstr ""
+
+#: lessons/languages/m4.md:15
+msgctxt "s-def2cf81a47f-0008"
+msgid "⟦SEP_0004⟧ ⟦CODE_0001⟧ returns a macro's text ⟦SEP_0005⟧ [L69](⟦DEST_0002⟧): ⟦CODE_0003⟧ ⟦SEP_0006⟧ \"A variable that grows\" is a macro that redefines itself as itself plus more. The SQL script is built this way. ⟦SEP_0007⟧"
+msgstr ""
+
+#: lessons/languages/m4.md:16
+msgctxt "s-ad2cf64b598a-0009"
+msgid "⟦SEP_0005⟧ The only arithmetic is ⟦CODE_0001⟧ ⟦SEP_0006⟧ [L44-46](⟦DEST_0002⟧): ⟦CODE_0003⟧ ⟦SEP_0007⟧ ⟦CODE_0004⟧ is **32-bit**, so a random number generator has to avoid overflow (see below). ⟦SEP_0008⟧"
+msgstr ""
+
+#: lessons/languages/m4.md:17
+msgctxt "s-c85b33ca2db2-0010"
+msgid "⟦SEP_0005⟧ ⟦CODE_0001⟧ takes arguments in groups of three ⟦SEP_0006⟧ [L53-54](⟦DEST_0002⟧): ⟦CODE_0003⟧ ⟦SEP_0007⟧ ⟦CODE_0004⟧: after the first group it keeps comparing, so the value under test has to be repeated in every group. ⟦SEP_0008⟧"
+msgstr ""
+
+#: lessons/languages/m4.md:18
+msgctxt "s-4285ddd9f92c-0011"
+msgid "⟦SEP_0008⟧ The shell is reached through ⟦CODE_0001⟧ and ⟦CODE_0002⟧ ⟦SEP_0009⟧ [L34-37](⟦DEST_0003⟧) seed, week and run id; [L95](⟦DEST_0004⟧) the save ⟦SEP_0010⟧ The only entropy and clock in the program come from ⟦CODE_0005⟧ and ⟦CODE_0006⟧. SQLite is fed by one ⟦CODE_0007⟧ with a here-document. ⟦SEP_0011⟧"
+msgstr ""
+
+#: lessons/languages/m4.md:20
+msgctxt "s-633b70115900-0012"
+msgid "A loop made of rescanning"
+msgstr ""
+
+#: lessons/languages/m4.md:22
+msgctxt "s-cc9cfaabc50d-0013"
+msgid "Behold the monstrosity"
+msgstr ""
+
+#: lessons/languages/m4.md:28
+msgctxt "s-b2131ba514a7-0014"
+msgid "The whole loop is the last line of one macro ([L75-82](⟦DEST_0001⟧)):"
+msgstr ""
+
+#: lessons/languages/m4.md:41
+msgctxt "s-141d13bda0ef-0015"
+msgid "There is no ⟦CODE_0001⟧, no ⟦CODE_0002⟧ and no recursion keyword. There is a macro whose last word is *itself*."
+msgstr ""
+
+#: lessons/languages/m4.md:43
+msgctxt "s-415f5fa29cf9-0016"
+msgid "How the hell does that work?"
+msgstr ""
+
+#: lessons/languages/m4.md:45
+msgctxt "s-f58d282644b3-0017"
+msgid "**Rescanning.** When m4 expands a macro, it pushes the replacement text back onto its *input* and keeps reading. Any macro name in that text is expanded in turn. So ⟦CODE_0001⟧ reads as: do these steps, print a row, then ⟦CODE_0002⟧. If the total is over 40, ⟦CODE_0003⟧ returns the empty string ⟦CODE_0004⟧ and the input runs out. Otherwise it returns the text ⟦CODE_0005⟧, which is pushed back and read as another call. The loop counter is the input stream."
+msgstr ""
+
+#: lessons/languages/m4.md:47
+msgctxt "s-ccb7e5439a99-0018"
+msgid "**Why the quotes around ⟦CODE_0001⟧ matter.** m4 expands *arguments before it calls the macro*. If you write ⟦CODE_0002⟧ without the brackets, the call ⟦CODE_0003⟧ is made while collecting the arguments, before ⟦CODE_0004⟧ has decided anything, and it never stops (see [B11](⟦DEST_0005⟧)). The brackets turn the name into text that is only expanded *after* ⟦CODE_0006⟧ chooses it. This is lazy versus eager evaluation, in a language with no values at all."
+msgstr ""
+
+#: lessons/languages/m4.md:49
+msgctxt "s-ad8f2a054ec7-0019"
+msgid "**A random number generator in 32-bit arithmetic.** [⟦CODE_0001⟧](⟦DEST_0002⟧) is the Park-Miller generator ⟦CODE_0003⟧, written with Schrage's trick so that no intermediate value leaves 32 bits: ⟦CODE_0004⟧, plus ⟦CODE_0005⟧ if negative. Naive ⟦CODE_0006⟧ overflows silently in ⟦CODE_0007⟧ (⟦CODE_0008⟧ gives ⟦CODE_0009⟧). The generator was checked against a Python implementation over 20,000 draws."
+msgstr ""
+
+#: lessons/languages/m4.md:51
+msgctxt "s-0240966f2176-0020"
+msgid "**Building the SQL.** Each card appends an ⟦CODE_0001⟧ to ⟦CODE_0002⟧ through ⟦CODE_0003⟧. At the end one ⟦CODE_0004⟧ hands the finished script to ⟦CODE_0005⟧. The shell only chooses the folder and runs ⟦CODE_0006⟧; every byte of SQL was written by m4."
+msgstr ""
+
+#: lessons/languages/m4.md:53
+msgctxt "s-e658b3d34ff3-0021"
+msgid "**The seed can be pinned.** [L34](⟦DEST_0001⟧): ⟦CODE_0002⟧ creates a random seed only if you have not already defined one, so ⟦CODE_0003⟧ always deals the same cards."
+msgstr ""
+
+#: lessons/languages/m4.md:55
+msgctxt "s-d2bbf037de84-0022"
+msgid "What did we just learn?"
+msgstr ""
+
+#: lessons/languages/m4.md:57
+msgctxt "s-63a636d27faf-0023"
+msgid "**Evaluation order is a property of the language, not of the loop.** m4's \"eager arguments, lazy quotes\" rule is what makes ⟦CODE_0001⟧ behave like ⟦CODE_0002⟧. Compare [Haskell's laziness](⟦DEST_0003⟧), which gets the same effect by default."
+msgstr ""
+
+#: lessons/languages/m4.md:58
+msgctxt "s-a90eb0bb90ef-0024"
+msgid "**A language with only text can still hold state.** Variables are macros that redefine themselves; lists and strings are text; \"append\" is ⟦CODE_0001⟧."
+msgstr ""
+
+#: lessons/languages/m4.md:59
+msgctxt "s-cbc3327271d8-0025"
+msgid "**Output control is a language feature.** ⟦CODE_0001⟧ and ⟦CODE_0002⟧ are part of why ⟦CODE_0003⟧ and ⟦CODE_0004⟧ could be built on it."
+msgstr ""
+
+#: lessons/languages/m4.md:60
+msgctxt "s-f38fd3b023b3-0026"
+msgid "**Machine limits show up in the language.** Whether you want to or not, you learn that an integer is 32 bits."
+msgstr ""
+
+#: lessons/languages/m4.md:62
+msgctxt "s-31b013b88317-0027"
+msgid "Tags: rescanning, quoting, ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧ and ⟦CODE_0006⟧ are **guaranteed** by POSIX m4. ⟦CODE_0007⟧ and ⟦CODE_0008⟧ are GNU m4 extensions (**implementation-permitted**, tested with 1.4.19); the ⟦CODE_0009⟧ + ⟦CODE_0010⟧ seed pin is POSIX. The 32-bit limit is **implementation-permitted**: POSIX only requires at least 32 bits."
+msgstr ""
+
+#: lessons/languages/m4.md:64
+msgctxt "s-299b7a6f9cbe-0028"
+msgid "Do this in production and you're fired"
+msgstr ""
+
+#: lessons/languages/m4.md:66
+msgctxt "s-9ea12d1ef417-0029"
+msgid "**Everything is a global macro.** Names are not scoped, so the program prefixes everything with ⟦CODE_0001⟧ to avoid colliding with m4's own macros."
+msgstr ""
+
+#: lessons/languages/m4.md:67
+msgctxt "s-2a11a056a45c-0030"
+msgid "**Quoting errors fail silently or runaway.** One missing bracket turns a loop into infinite recursion, or an unexpanded macro name into output. There is no type checker, no stack trace."
+msgstr ""
+
+#: lessons/languages/m4.md:68
+msgctxt "s-0965352f2739-0031"
+msgid "**Special characters in your data collide with m4's own syntax** (quotes, ⟦CODE_0001⟧ comments, parentheses, commas). [L21](⟦DEST_0002⟧) ⟦CODE_0003⟧ turns off ⟦CODE_0004⟧ comments so the output can begin with ⟦CODE_0005⟧."
+msgstr ""
+
+#: lessons/languages/m4.md:69
+msgctxt "s-956e3d876a48-0032"
+msgid "**No real I/O.** The clock, the entropy and SQLite all come through the shell."
+msgstr ""
+
+#: lessons/languages/m4.md:70
+msgctxt "s-3635cab2b496-0033"
+msgid "**⟦DNT_0001⟧ is ⟦CODE_0002⟧ and patience.**"
+msgstr ""
+
+#: lessons/languages/m4.md:72
+msgctxt "s-1b5e8064f4d0-0034"
+msgid "Legitimate uses: m4 is still a good tool for *generating* text: configuration files, boilerplate, ⟦CODE_0001⟧'s ⟦CODE_0002⟧, ⟦CODE_0003⟧. Running a computation in it is the stunt."
+msgstr ""
+
+#: lessons/languages/m4.md:74
+msgctxt "s-5e3bcdfbf845-0035"
+msgid "Now break it yourself"
+msgstr ""
+
+#: lessons/languages/m4.md:76
+msgctxt "s-ae00177eba05-0036"
+msgid "See [exercises](⟦DEST_0001⟧)."
+msgstr ""
+
+#: lessons/languages/m4.md:78
+msgctxt "s-12d0b77aba94-0037"
+msgid "Quirks"
+msgstr ""
+
+#: lessons/languages/m4.md:80
+msgctxt "s-0f7e3849cd29-0038"
+msgid "**⟦CODE_0001⟧ with more than four arguments continues in groups of three.** Eight arguments does not mean \"four conditions\". Warnings said \"excess arguments\" before ⟦CODE_0002⟧ fixed it."
+msgstr ""
+
+#: lessons/languages/m4.md:81
+msgctxt "s-4c425ea025ee-0039"
+msgid "**⟦CODE_0001⟧ splits tokens.** ⟦CODE_0002⟧ keeps ⟦CODE_0003⟧ from gluing onto ⟦CODE_0004⟧ into one name."
+msgstr ""
+
+#: lessons/languages/m4.md:82
+msgctxt "s-42fd899e7264-0040"
+msgid "**⟦CODE_0001⟧ inside an argument list prints directly** and does not return text."
+msgstr ""
+
+#: lessons/languages/m4.md:83
+msgctxt "s-8c7015061932-0041"
+msgid "**⟦CODE_0001⟧ deletes to the end of the line**, including the newline, which is how the macros stay one logical line."
+msgstr ""
+
+#: lessons/languages/m4.md:84
+msgctxt "s-89cf42e50dcd-0042"
+msgid "**The comment on the last line of the output** says ⟦CODE_0001⟧ where the source says ⟦CODE_0002⟧: the quotes are consumed on the way through."
+msgstr ""
+
+#: lessons/languages/m4.md:86
+msgctxt "s-a6b58da9d4cd-0043"
+msgid "Weird next to boring"
+msgstr ""
+
+#: lessons/languages/m4.md:88
+msgctxt "s-988ac1d19f64-0044"
+msgid "There is no pair for this language: the entry is idiomatic m4 *and* the stunt. Compare it with [Make](⟦DEST_0001⟧) (a restart is the loop) and [Forth](⟦DEST_0002⟧) (the parse position is the program counter): in all three the program is *the input being reread*, and the loop is an effect of how the input is consumed."
+msgstr ""
+
+#: lessons/languages/m4.md:90
+msgctxt "s-c08a852d0dbe-0045"
+msgid "Under what circumstances would this terrible idea become reasonable?"
+msgstr ""
+
+#: lessons/languages/m4.md:92
+msgctxt "s-e0dc22890e20-0046"
+msgid "When your target is text and your toolbox is a 1977 macro processor that ships on every Unix: generating many similar files from a template. Using it as a general-purpose computer is a lesson in what text rewriting can and cannot do. Compare [sed as a Markov algorithm](⟦DEST_0001⟧)."
+msgstr ""
+
+#: lessons/languages/m4.md:122
+msgctxt "s-ac0e260e97bf-0047"
+msgid "Computer science behind this page"
+msgstr ""

@@ -5305,8 +5305,8 @@
     {
      "en": "What makes m4 special",
      "en_id": "what-makes-m4-special",
-     "es": "What makes m4 special",
-     "es_id": "what-makes-m4-special",
+     "es": "Qué hace especial a m4",
+     "es_id": "qué-hace-especial-a-m4",
      "level": 2,
      "line": 7
     },
@@ -5421,7 +5421,7 @@
     "under-what-circumstances-would-this-terrible-idea-become-reasonable": "under-what-circumstances-would-this-terrible-idea-become-reasonable",
     "weird-next-to-boring": "weird-next-to-boring",
     "what-did-we-just-learn": "what-did-we-just-learn",
-    "what-makes-m4-special": "what-makes-m4-special"
+    "what-makes-m4-special": "qué-hace-especial-a-m4"
    }
   },
   "lessons/languages/make-cmake.md": {
