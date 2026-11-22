@@ -77,14 +77,14 @@ El primer diagrama es un bucle con una prueba de bandera. La bandera se calcula 
 
 ```mermaid
 flowchart TD
-    accTitle: forth-weird: el intérprete de texto lee las mismas palabras otra vez
-    accDescr: Un diagrama de flujo. El intérprete de texto de Forth lee una línea: cero cero, luego at-in fetch, luego step, luego rewind-question. Cero cero apila el número de tarjeta y el total. At-in fetch lee la posición de lectura actual y la apila: es el ancla. La palabra step ejecuta una tarjeta con el ancla guardada en la pila de retorno. La palabra rewind-question crea una bandera: menos uno mientras el total no pasa de 40, y cero en caso contrario. Combina la bandera con la distancia hasta el ancla mediante una operación AND y suma el resultado a la posición de lectura. Si la bandera era verdadera, la posición de lectura vuelve al ancla, así que el intérprete lee step otra vez. Si era falsa, la posición de lectura no cambia y el intérprete sigue con drop, commit y report.
-    A["El intérprete lee: 0 0 #gt;in @ — la pila contiene n, el total y el ancla"] --> B["El intérprete lee la palabra step: ejecuta una tarjeta, con el ancla guardada en la pila de retorno"]
+    accTitle: forth-weird: el intérprete de texto vuelve a leer las mismas palabras
+    accDescr: Un diagrama de flujo. El intérprete de texto de Forth lee una línea: cero cero, luego at-in fetch, luego step y luego rewind-question. Cero cero apila el número de tarjeta y el total. At-in fetch apila la posición de análisis, que es el ancla. La palabra step ejecuta una tarjeta con el ancla guardada en la pila de retorno. La palabra rewind-question crea una bandera: menos uno mientras el total no pasa de 40 y cero en cualquier otro caso. Combina la bandera con la distancia de regreso al ancla y suma el resultado a la posición de análisis. Si la bandera era verdadera, la posición de análisis vuelve al ancla y el intérprete lee step otra vez. Si era falsa, la posición de análisis no cambia y el intérprete sigue con drop, commit y report.
+    A["El intérprete lee: 0 0 #gt;in @ — la pila contiene n, el total y el ancla"] --> B["El intérprete lee la palabra step: ejecuta una tarjeta y mantiene el ancla en la pila de retorno"]
     B --> C["El intérprete lee rewind?: la bandera es -1 mientras el total no pasa de 40; en otro caso, es 0"]
-    C --> D["Distancia de regreso al ancla combinada con la bandera mediante AND, sumada a la posición de lectura #gt;in"]
-    D --> E{{"¿Volvió la posición de lectura al ancla?"}}
-    E -->|"sí: la bandera era -1"| B
-    E -->|"no: la bandera era 0"| F["El intérprete sigue leyendo: descarta el ancla, confirma, informa"]
+    C --> D["Distancia de vuelta al ancla Y bandera, sumada a la posición de análisis #gt;in"]
+    D --> E{{"¿Volvió la posición de análisis al ancla?"}}
+    E -->|"sí: la bandera valía -1"| B
+    E -->|"no: la bandera era 0"| F["El intérprete sigue leyendo: suelta el ancla, confirma la transacción e informa"]
 ```
 
 El segundo no tiene ninguna prueba que elija entre dos *sentencias*. La arista del bucle existe porque `>in` vuelve a fijarse en el ancla. La única "decisión" es aritmética sobre la bandera.

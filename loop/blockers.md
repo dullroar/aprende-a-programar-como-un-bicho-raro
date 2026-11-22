@@ -58,3 +58,13 @@ ralph stopped by stall breaker at iteration 368
 ## P4-999 (iteration 374): blocked, I16 still fails
 - verify --release --no-gates: 5 of 57 fail: inventory --check, authored files (212) with PO (I16/I13/I4 on lessons/goals.md, index.md, languages/*.md: file is not the PO applied to English; both lessons/languages and lessons/lenguajes exist), negative fixtures, test_anchors, test_breakage_pilot (last two expected: lessons/cs, P5-001). Full run adds 3 generated-link gates (P5-001).
 - Needs a human or diagnosis task: why the authored-file check maps to English paths / stale POs with a dirty tree (31 uncommitted lesson edits). Not weakened.
+
+## P5-001 (iteration 377): blocked, generator output conflicts with I13
+
+- `python3 -I` runpy with `BOOK_LANG=es` (lessons/book/build.py --generate) runs cleanly and is idempotent: the second run leaves `git diff` byte-identical (sha256 a9bb3b85..., measured on the regenerated tree). Accept criterion of the second run is met.
+- The first run rewrote 29 tracked Spanish files (`lessons/lenguajes/*.md`, `lessons/informatica/*.md`, `lessons/indice.md`, `lessons/objetivos.md`, `lessons/patrones.md`): generated blocks now hold Spanish text (for example `## Cómo corre cada programa`).
+- `tools/invariants.py` I13 (`i13_text`) compares each generated block with the English source's block and reports "generated block ... differs (regenerate, never edit)". Result after regeneration: `verify --fast` 19 of 22 checks FAIL (I13, I16, I4, I2 on 19 files). At HEAD (English generated blocks) the same command is OK.
+- Plan section 10.1 B says "every generated chapter and block equals current generator output", which implies Spanish blocks; I13 implies English blocks. The two cannot both hold for the same file. The generated files were reverted to HEAD to keep the tree green; nothing generated is committed.
+- Also: `tools/sync_guide_diagrams.py` on the Forth guide (7 labels) and the JavaScript guide (25 labels). The Forth result passes `verify --fast` and is kept. The JavaScript result fails I7 (machine, card terms) and I9 (a target equal to the English source); it was reverted.
+- Decision needed (human): (a) make I13 skip generated blocks, since build.py --check already checks them against generator output in the Spanish edition, and add a narrow negative test for that; or (b) keep generated blocks English in the Spanish files and make the generator emit English in that case. Option (a) matches the plan. After the decision, delete the revert, rerun `BOOK_LANG=es` generate, then `verify --fast`.
+- Also open: `build.py --check` in Spanish reports 8 BROKEN internal links (anchors into generated chapters, P5-002's job) and the root README note "update it to 40 challenges in 29 languages".

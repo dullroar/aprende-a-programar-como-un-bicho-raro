@@ -210,12 +210,12 @@ msgstr "El primer diagrama es un bucle con una prueba de bandera. La bandera se 
 #: lessons/study-guides/languages/forth.md:80
 msgctxt "s-195f18145769-0038"
 msgid "forth-weird: the text interpreter reads the same words again"
-msgstr "forth-weird: el intérprete de texto lee las mismas palabras otra vez"
+msgstr "forth-weird: el intérprete de texto vuelve a leer las mismas palabras"
 
 #: lessons/study-guides/languages/forth.md:81
 msgctxt "s-0c4427c0641f-0039"
 msgid "A flowchart. The Forth text interpreter reads one line: zero zero, then at-in fetch, then step, then rewind-question. Zero zero pushes the card number and the total. At-in fetch pushes the parse position, which is the anchor. The word step runs one card with the anchor kept on the return stack. The word rewind-question makes a flag, minus one while the total is 40 or less, and zero otherwise. It combines the flag with the distance back to the anchor, and adds that to the parse position. If the flag was true, the parse position is back at the anchor, so the interpreter reads step again. If it was false, the parse position is unchanged, and the interpreter goes on to drop, commit and report."
-msgstr "Un diagrama de flujo. El intérprete de texto de Forth lee una línea: cero cero, luego at-in fetch, luego step, luego rewind-question. Cero cero apila el número de tarjeta y el total. At-in fetch lee la posición de lectura actual y la apila: es el ancla. La palabra step ejecuta una tarjeta con el ancla guardada en la pila de retorno. La palabra rewind-question crea una bandera: menos uno mientras el total no pasa de 40, y cero en caso contrario. Combina la bandera con la distancia hasta el ancla mediante una operación AND y suma el resultado a la posición de lectura. Si la bandera era verdadera, la posición de lectura vuelve al ancla, así que el intérprete lee step otra vez. Si era falsa, la posición de lectura no cambia y el intérprete sigue con drop, commit y report."
+msgstr "Un diagrama de flujo. El intérprete de texto de Forth lee una línea: cero cero, luego at-in fetch, luego step y luego rewind-question. Cero cero apila el número de tarjeta y el total. At-in fetch apila la posición de análisis, que es el ancla. La palabra step ejecuta una tarjeta con el ancla guardada en la pila de retorno. La palabra rewind-question crea una bandera: menos uno mientras el total no pasa de 40 y cero en cualquier otro caso. Combina la bandera con la distancia de regreso al ancla y suma el resultado a la posición de análisis. Si la bandera era verdadera, la posición de análisis vuelve al ancla y el intérprete lee step otra vez. Si era falsa, la posición de análisis no cambia y el intérprete sigue con drop, commit y report."
 
 #: lessons/study-guides/languages/forth.md:82
 msgctxt "s-cd09c7687d9b-0040"
@@ -225,7 +225,7 @@ msgstr "El intérprete lee: 0 0 ⟦ENT_0001⟧in @ — la pila contiene n, el to
 #: lessons/study-guides/languages/forth.md:82
 msgctxt "s-8a26b5708063-0041"
 msgid "Interpreter reads the word step: runs one card, anchor kept on the return stack"
-msgstr "El intérprete lee la palabra step: ejecuta una tarjeta, con el ancla guardada en la pila de retorno"
+msgstr "El intérprete lee la palabra step: ejecuta una tarjeta y mantiene el ancla en la pila de retorno"
 
 #: lessons/study-guides/languages/forth.md:83
 msgctxt "s-f72ab19a33d0-0042"
@@ -235,17 +235,17 @@ msgstr "El intérprete lee rewind?: la bandera es -1 mientras el total no pasa d
 #: lessons/study-guides/languages/forth.md:84
 msgctxt "s-6b8e80f26eb7-0043"
 msgid "Distance back to the anchor AND flag, added to the parse position ⟦ENT_0001⟧in"
-msgstr "Distancia de regreso al ancla combinada con la bandera mediante AND, sumada a la posición de lectura ⟦ENT_0001⟧in"
+msgstr "Distancia de vuelta al ancla Y bandera, sumada a la posición de análisis ⟦ENT_0001⟧in"
 
 #: lessons/study-guides/languages/forth.md:85
 msgctxt "s-96aff09ba44c-0044"
 msgid "Is the parse position back at the anchor?"
-msgstr "¿Volvió la posición de lectura al ancla?"
+msgstr "¿Volvió la posición de análisis al ancla?"
 
 #: lessons/study-guides/languages/forth.md:86
 msgctxt "s-b42d6b3be249-0045"
 msgid "yes: flag was -1"
-msgstr "sí: la bandera era -1"
+msgstr "sí: la bandera valía -1"
 
 #: lessons/study-guides/languages/forth.md:87
 msgctxt "s-9c6bbaab1a01-0046"
@@ -255,7 +255,7 @@ msgstr "no: la bandera era 0"
 #: lessons/study-guides/languages/forth.md:87
 msgctxt "s-aa1850cf3429-0047"
 msgid "Interpreter reads on: drop the anchor, commit, report"
-msgstr "El intérprete sigue leyendo: descarta el ancla, confirma, informa"
+msgstr "El intérprete sigue leyendo: suelta el ancla, confirma la transacción e informa"
 
 #: lessons/study-guides/languages/forth.md:90
 msgctxt "s-a487c82ac937-0048"
