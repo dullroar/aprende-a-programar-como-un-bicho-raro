@@ -4941,16 +4941,16 @@
     {
      "en": "The bodiless for in Node",
      "en_id": "the-bodiless-for-in-node",
-     "es": "The bodiless for in Node",
-     "es_id": "the-bodiless-for-in-node",
+     "es": "El for sin cuerpo en Node",
+     "es_id": "el-for-sin-cuerpo-en-node",
      "level": 2,
      "line": 19
     },
     {
      "en": "Behold the monstrosity",
      "en_id": "behold-the-monstrosity",
-     "es": "Behold the monstrosity",
-     "es_id": "behold-the-monstrosity",
+     "es": "Contempla la monstruosidad",
+     "es_id": "contempla-la-monstruosidad",
      "level": 3,
      "line": 21
     },
@@ -4998,7 +4998,7 @@
      "en": "Behold the monstrosity",
      "en_id": "behold-the-monstrosity-1",
      "es": "Behold the monstrosity",
-     "es_id": "behold-the-monstrosity-1",
+     "es_id": "behold-the-monstrosity",
      "level": 3,
      "line": 62
     },
@@ -5046,7 +5046,7 @@
      "en": "Behold the monstrosity",
      "en_id": "behold-the-monstrosity-2",
      "es": "Behold the monstrosity",
-     "es_id": "behold-the-monstrosity-2",
+     "es_id": "behold-the-monstrosity-1",
      "level": 3,
      "line": 105
     },
@@ -5124,9 +5124,9 @@
     }
    ],
    "map": {
-    "behold-the-monstrosity": "behold-the-monstrosity",
-    "behold-the-monstrosity-1": "behold-the-monstrosity-1",
-    "behold-the-monstrosity-2": "behold-the-monstrosity-2",
+    "behold-the-monstrosity": "contempla-la-monstruosidad",
+    "behold-the-monstrosity-1": "behold-the-monstrosity",
+    "behold-the-monstrosity-2": "behold-the-monstrosity-1",
     "closures-all-the-way-down": "closures-all-the-way-down",
     "computer-science-behind-this-page": "computer-science-behind-this-page",
     "do-this-in-production-and-youre-fired": "do-this-in-production-and-youre-fired",
@@ -5144,7 +5144,7 @@
     "program-flow-of-javascript": "program-flow-of-javascript",
     "program-flow-of-javascript-events": "program-flow-of-javascript-events",
     "program-flow-of-javascript-weird": "program-flow-of-javascript-weird",
-    "the-bodiless-for-in-node": "the-bodiless-for-in-node",
+    "the-bodiless-for-in-node": "el-for-sin-cuerpo-en-node",
     "what-did-we-just-learn": "what-did-we-just-learn",
     "what-did-we-just-learn-1": "what-did-we-just-learn-1",
     "what-did-we-just-learn-2": "what-did-we-just-learn-2",

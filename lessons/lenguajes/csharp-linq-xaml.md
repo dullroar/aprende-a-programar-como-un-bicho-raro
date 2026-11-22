@@ -29,7 +29,7 @@ Lee el encabezado `for` como un pequeño lenguaje de tres espacios.
 | **Condición** | [L66-98](../../src/ModernChallenge1/Program.cs#L66-L98) | `(from hours in i.totalHours select hours).Sum() <= 40d && i.categories!.MoveNext() ? true : new Func<bool>(() => Double.IsNaN(i.app.Run(...))).Invoke()`. Mientras el total sea 40 o menos, el bucle continúa. Cuando deja de serlo, la condición construye y muestra la ventana en línea y devuelve false. |
 | **Iterador** | [L106-130](../../src/ModernChallenge1/Program.cs#L106-L130) | Extrae horas, agrega una fila a EF Core e inicia en segundo plano un `Thread` que llama a `Mutex.WaitOne`, `SaveChanges` y `ReleaseMutex` *mediante `MethodInfo.Invoke`*. |
 
-Cada evaluación de la condición `for` necesita un número de inmediato. La proyección LINQ puede aplazar la enumeración. La operación terminal `Sum()` la enumera de inmediato en la misma evaluación de la condición. La [adaptación de Node](javascript.md#the-bodiless-for-in-node) también calcula su total de inmediato, con `reduce` sobre el arreglo.
+Cada evaluación de la condición `for` necesita un número de inmediato. La proyección LINQ puede aplazar la enumeración. La operación terminal `Sum()` la enumera de inmediato en la misma evaluación de la condición. La [adaptación de Node](javascript.md#el-for-sin-cuerpo-en-node) también calcula su total de inmediato, con `reduce` sobre el arreglo.
 
 La ventana se construye a partir de una cadena de texto de XAML sin procesar mediante `XamlReader.Load` durante la ejecución ([L77](../../src/ModernChallenge1/Program.cs#L77)).
 

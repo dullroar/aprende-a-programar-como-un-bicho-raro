@@ -345,7 +345,7 @@ Acceptance criteria:
 
 ### B20. JavaScript: read the clauses, move the limit and fail the structure check (verified)
 
-**Lesson:** [JavaScript](lenguajes/javascript.md#the-bodiless-for-in-node). **Entry:** a copy of `src/javascript`.
+**Lesson:** [JavaScript](lenguajes/javascript.md#el-for-sin-cuerpo-en-node). **Entry:** a copy of `src/javascript`.
 
 1. **Predict**, then run: `SEED=42 node timecards.mjs`. Which card crosses 40? (The generator is Park-Miller, and the hours of the first three cards for this seed are 12, 17 and 17.)
 2. In the copy, change `<= 40` in the condition to `<= 20`. **Predict** the rows for `SEED=42`, then run them.

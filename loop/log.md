@@ -258,3 +258,4 @@
 285 P4-lessons-languages-3 partial completed Haskell positions 38 to 42; resume with JavaScript; scoped, fast and anchor checks passed.
 286 P4-lessons-languages-3 partial accepted and applied JavaScript positions 0 to 4; resume at 5; scoped, fast and anchor checks passed.
 287 P4-lessons-languages-3 partial accepted and applied JavaScript positions 5 to 9; resume at 10; scoped, fast and anchor checks passed.
+288 P4-lessons-languages-3 partial accepted and applied JavaScript positions 10 to 14; resume at 15; scoped, fast and anchor checks passed.

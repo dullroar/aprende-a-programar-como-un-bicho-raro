@@ -60,27 +60,27 @@ msgstr "⟦SEP_0001⟧ Funciones flecha y clausuras ⟦SEP_0002⟧ Una función 
 #: lessons/languages/javascript.md:16
 msgctxt "s-674c49e926a6-0010"
 msgid "⟦SEP_0005⟧ Iterators and the iteration protocol ⟦SEP_0006⟧ An object with ⟦CODE_0001⟧ and a ⟦CODE_0002⟧ method can be consumed by ⟦CODE_0003⟧, by spread, by ⟦CODE_0004⟧. The *consumer* decides how many values to ask for. ⟦SEP_0007⟧"
-msgstr ""
+msgstr "⟦SEP_0005⟧ Iteradores y el protocolo de iteración ⟦SEP_0006⟧ Un objeto con ⟦CODE_0001⟧ y un método ⟦CODE_0002⟧ puede consumirse con ⟦CODE_0003⟧, con propagación o con ⟦CODE_0004⟧. El *consumidor* decide cuántos valores pedir. ⟦SEP_0007⟧"
 
 #: lessons/languages/javascript.md:17
 msgctxt "s-e2beb66ae5c0-0011"
 msgid "⟦SEP_0001⟧ Node.js: the event loop ⟦SEP_0002⟧ JavaScript runs on one thread. Timers fire only when the current code is done. The pulse works because the loop is finished first. ⟦SEP_0003⟧"
-msgstr ""
+msgstr "⟦SEP_0001⟧ Node.js: el bucle de eventos ⟦SEP_0002⟧ JavaScript se ejecuta en un solo hilo. Los temporizadores se activan solo cuando termina el código actual. El pulso funciona porque el bucle termina primero. ⟦SEP_0003⟧"
 
 #: lessons/languages/javascript.md:19
 msgctxt "s-2ef786357c67-0012"
 msgid "The bodiless for in Node"
-msgstr ""
+msgstr "El for sin cuerpo en Node"
 
 #: lessons/languages/javascript.md:21
 msgctxt "s-cc9cfaabc50d-0013"
 msgid "Behold the monstrosity"
-msgstr ""
+msgstr "Contempla la monstruosidad"
 
 #: lessons/languages/javascript.md:27
 msgctxt "s-fddf528980a2-0014"
 msgid "One statement, about 80 lines long. The body is empty. No function is declared in the file."
-msgstr ""
+msgstr "Una sentencia de unas 80 líneas. El cuerpo está vacío. No se declara ninguna función en el archivo."
 
 #: lessons/languages/javascript.md:29
 msgctxt "s-415f5fa29cf9-0015"

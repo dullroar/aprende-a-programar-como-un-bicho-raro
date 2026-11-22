@@ -13,18 +13,18 @@ Para una ruta de lectura avanzada con trazas y experimentos, consulta la [guía 
 | Valores verdaderos o falsos y `&&`, `?:` | Una prueba puede ser cualquier valor, y `a ? b : c` es una expresión, no una sentencia. Por eso la regla de parada puede ser un valor y un efecto secundario puede estar en la rama falsa. |
 | `let` en un encabezado `for` | La variable del bucle se copia en cada iteración. Una clausura creada en el cuerpo ve su propia copia. Una copia de una *referencia a un objeto* apunta al mismo objeto, así que el estado se comparte. |
 | Funciones flecha y clausuras | Una función lleva consigo las variables que la rodean. El generador aleatorio con semilla es una clausura sobre un número. |
-| Iterators and the iteration protocol | An object with `[Symbol.iterator]()` and a `next()` method can be consumed by `for...of`, by spread, by `Iterator.from(...).map(...)`. The *consumer* decides how many values to ask for. |
-| Node.js: the event loop | JavaScript runs on one thread. Timers fire only when the current code is done. The pulse works because the loop is finished first. |
+| Iteradores y el protocolo de iteración | Un objeto con `[Symbol.iterator]()` y un método `next()` puede consumirse con `for...of`, con propagación o con `Iterator.from(...).map(...)`. El *consumidor* decide cuántos valores pedir. |
+| Node.js: el bucle de eventos | JavaScript se ejecuta en un solo hilo. Los temporizadores se activan solo cuando termina el código actual. El pulso funciona porque el bucle termina primero. |
 
-## The bodiless for in Node
+## El for sin cuerpo en Node
 
-### Behold the monstrosity
+### Contempla la monstruosidad
 
 ```bash
 sandbox/container/run-image.sh src/javascript
 ```
 
-One statement, about 80 lines long. The body is empty. No function is declared in the file.
+Una sentencia de unas 80 líneas. El cuerpo está vacío. No se declara ninguna función en el archivo.
 
 ### How the hell does that work?
 

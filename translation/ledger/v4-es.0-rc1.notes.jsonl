@@ -2268,3 +2268,5 @@
 {"segment_id": "s-c08a852d0dbe-0040", "ts": "2026-11-22T14:17:04Z", "findings": ["I15: heading differs from the recorded transcreated '¿En qué circunstancias esta idea terrible se volvería razonable?'"], "playful_note": "Conserva la ironía y pide el caso práctico."}
 {"segment_id": "s-c08a852d0dbe-0040", "ts": "2026-11-22T14:17:12Z", "findings": [], "playful_note": "Conserva la ironía y pide el caso práctico."}
 {"segment_id": "s-6f795a8092aa-0001", "ts": "2026-11-22T14:19:10Z", "findings": ["I25: comma before a simple 'y' ('JavaScript es el lenguaje del navegador, y con Node'): no comma before a simple o or y"]}
+{"segment_id": "s-2ef786357c67-0012", "ts": "2026-11-22T14:22:45Z", "findings": ["REGISTER: playful segment H023 has status 'pending' in the humor register"], "playful_note": "Conserva el tono del original."}
+{"segment_id": "s-cc9cfaabc50d-0013", "ts": "2026-11-22T14:22:45Z", "findings": [], "playful_note": "Conserva el tono del original."}

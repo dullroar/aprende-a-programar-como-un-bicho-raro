@@ -35,7 +35,7 @@ Every weird entry forces you to name the machine hiding inside a language. Once 
 | Haskell | Ordinary: a lazy list that one `span` reads until the test fails | The unevaluated parts of the lists, read on demand | [haskell](lenguajes/haskell.md) |
 | Haskell | A lazy graph reducer | Thunks: which parts of a list have been demanded | [haskell](lenguajes/haskell.md#la-es-perezosa-como-flujo-de-control) |
 | Java | Three expression slots | Fields of one anonymous class | [csharp-linq-xaml](lenguajes/csharp-linq-xaml.md#las-adaptaciones-de-una-sola-sentencia-mismo-truco-distinta-maquinaria) |
-| JavaScript | Three expression slots | Properties of one object literal | [javascript](lenguajes/javascript.md#the-bodiless-for-in-node) |
+| JavaScript | Three expression slots | Properties of one object literal | [javascript](lenguajes/javascript.md#el-for-sin-cuerpo-en-node) |
 | JavaScript | A set of listeners on one EventEmitter, which together are a state machine | The running total and the card count, held in one object that only the listeners touch | [javascript](lenguajes/javascript.md#listeners-all-the-way-down) |
 | JavaScript | A closure-backed state machine, pulled by a lazy iterator | Variables captured by closures: the generator's number, and the machine's card count, total and stop flag | [javascript](lenguajes/javascript.md#closures-all-the-way-down) |
 | Kotlin | A lazy sequence that the empty `for` pulls | Properties of one object expression, the seed of the sequence | [csharp-linq-xaml](lenguajes/csharp-linq-xaml.md#las-adaptaciones-de-una-sola-sentencia-mismo-truco-distinta-maquinaria) |
