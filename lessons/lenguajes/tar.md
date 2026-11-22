@@ -1,12 +1,12 @@
 # tar
 
-Entries: [`src/tar-gnu`](../../src/tar-gnu/README.md) (the archive is a program) and [`src/tar-gnu-weird`](../../src/tar-gnu-weird/README.md) (the archive is a clock). `tar` ("tape archive") packs many files into one stream of bytes. It was made for magnetic tape, where you cannot jump around, so an archive is a *sequence*: a header, the file's bytes, the next header and so on. That one fact is why a tar archive can be a program. Order is already part of the format.
+Entradas: [`src/tar-gnu`](../../src/tar-gnu/README.md) (el archivo es un programa) y [`src/tar-gnu-weird`](../../src/tar-gnu-weird/README.md) (el archivo es un reloj). `tar` ("archivo de cinta") empaqueta muchos archivos en un solo flujo de bytes. Se creó para cinta magnética, donde no puedes saltar de un lugar a otro. Por eso, un archivo es una *secuencia*: una cabecera, los bytes del archivo, la siguiente cabecera y así sucesivamente. Ese hecho explica por qué un archivo tar puede ser un programa. El orden ya forma parte del formato.
 
-For an advanced reading path with traces and experiments, see the [tar study guide](../guias-de-estudio/lenguajes/tar.md).
+Para una ruta de lectura avanzada con trazas y experimentos, consulta la [guía de estudio de tar](../guias-de-estudio/lenguajes/tar.md).
 
-## What makes tar special
+## Qué hace especial a tar
 
-| Feature | What it teaches |
+| Característica | Qué enseña |
 | --- | --- |
 | An archive is a sequence of 512-byte blocks: a header block, then the data blocks, then the next header | There is no index and no directory. To find a member you read from the start. That is a stream, and a stream is a natural tape for an interpreter. |
 | `tar -xf` writes the members as files | Extraction is passive. An archive cannot make tar run anything. |

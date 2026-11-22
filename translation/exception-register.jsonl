@@ -451,3 +451,4 @@
 {"id":"EXC-451","segment":"s-5360790f71a3-0016","invariant":"I7","reason":"'builds the state' is the verb 'construye', not the noun 'build' (compilación); see glossary note and EXC-027.","task":"P4-lessons-languages-3"}
 {"id":"EXC-452","segment":"s-54b5664f5c87-0047","invariant":"TRANSLATE","reason":"GNU sed is the unchanged product name and must remain in English.","task":"P4-lessons-languages-5"}
 {"id":"EXC-453","segment":"s-312f4619ed92-0071","invariant":"I7","reason":"Here build means constructing SQL text, not the noun compilation; construyen preserves the verb's meaning.","task":"P4-lessons-languages-5"}
+{"id":"EXC-454","segment":"s-90aebae31567-0000","invariant":"TRANSLATE","reason":"The segment is the literal program name tar, which remains unchanged in Spanish.","task":"P4-lessons-languages-5"}

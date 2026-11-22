@@ -1,0 +1,313 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lessons/languages/tar.md:1
+msgctxt "s-90aebae31567-0000"
+msgid "tar"
+msgstr "tar"
+
+#: lessons/languages/tar.md:3
+msgctxt "s-2914c0f96fd3-0001"
+msgid "Entries: [⟦CODE_0001⟧](⟦DEST_0002⟧) (the archive is a program) and [⟦CODE_0003⟧](⟦DEST_0004⟧) (the archive is a clock). ⟦CODE_0005⟧ (\"tape archive\") packs many files into one stream of bytes. It was made for magnetic tape, where you cannot jump around, so an archive is a *sequence*: a header, the file's bytes, the next header and so on. That one fact is why a tar archive can be a program. Order is already part of the format."
+msgstr "Entradas: [⟦CODE_0001⟧](⟦DEST_0002⟧) (el archivo es un programa) y [⟦CODE_0003⟧](⟦DEST_0004⟧) (el archivo es un reloj). ⟦CODE_0005⟧ (\"archivo de cinta\") empaqueta muchos archivos en un solo flujo de bytes. Se creó para cinta magnética, donde no puedes saltar de un lugar a otro. Por eso, un archivo es una *secuencia*: una cabecera, los bytes del archivo, la siguiente cabecera y así sucesivamente. Ese hecho explica por qué un archivo tar puede ser un programa. El orden ya forma parte del formato."
+
+#: lessons/languages/tar.md:5
+msgctxt "s-871aa38ba4a0-0002"
+msgid "For an advanced reading path with traces and experiments, see the [tar study guide](⟦DEST_0001⟧)."
+msgstr "Para una ruta de lectura avanzada con trazas y experimentos, consulta la [guía de estudio de tar](⟦DEST_0001⟧)."
+
+#: lessons/languages/tar.md:7
+msgctxt "s-dca5e81ecedc-0003"
+msgid "What makes tar special"
+msgstr "Qué hace especial a tar"
+
+#: lessons/languages/tar.md:9
+msgctxt "s-b2ff52136de5-0004"
+msgid "⟦SEP_0001⟧ Feature ⟦SEP_0002⟧ What it teaches ⟦SEP_0003⟧"
+msgstr "⟦SEP_0001⟧ Característica ⟦SEP_0002⟧ Qué enseña ⟦SEP_0003⟧"
+
+#: lessons/languages/tar.md:11
+msgctxt "s-9454b6e2a585-0005"
+msgid "⟦SEP_0001⟧ An archive is a sequence of 512-byte blocks: a header block, then the data blocks, then the next header ⟦SEP_0002⟧ There is no index and no directory. To find a member you read from the start. That is a stream, and a stream is a natural tape for an interpreter. ⟦SEP_0003⟧"
+msgstr ""
+
+#: lessons/languages/tar.md:12
+msgctxt "s-15fbaacf006c-0006"
+msgid "⟦SEP_0002⟧ ⟦CODE_0001⟧ writes the members as files ⟦SEP_0003⟧ Extraction is passive. An archive cannot make tar run anything. ⟦SEP_0004⟧"
+msgstr ""
+
+#: lessons/languages/tar.md:13
+msgctxt "s-9f741991ac35-0007"
+msgid "⟦SEP_0003⟧ GNU ⟦CODE_0001⟧ starts ⟦CODE_0002⟧ for each regular member and pipes the member to it ⟦SEP_0004⟧ The *operator* attaches an interpreter. The command line carries the power, and the archive does not. ⟦SEP_0005⟧"
+msgstr ""
+
+#: lessons/languages/tar.md:14
+msgctxt "s-10b727ca9ed8-0008"
+msgid "⟦SEP_0003⟧ ⟦CODE_0001⟧, ⟦CODE_0002⟧ and more are set for each command ⟦SEP_0004⟧ The member's metadata becomes the command's input, next to its bytes. ⟦SEP_0005⟧"
+msgstr ""
+
+#: lessons/languages/tar.md:15
+msgctxt "s-2db71df15eb5-0009"
+msgid "⟦SEP_0001⟧ tar keeps going when the command fails ⟦SEP_0002⟧ There is no built-in \"stop\". A control rule must be the interpreter's own. ⟦SEP_0003⟧"
+msgstr ""
+
+#: lessons/languages/tar.md:16
+msgctxt "s-aa12235af5bd-0010"
+msgid "⟦SEP_0003⟧ ⟦CODE_0001⟧ runs ⟦CODE_0002⟧ every N records ⟦SEP_0004⟧ A progress report is an event source. It can be a clock. ⟦SEP_0005⟧"
+msgstr ""
+
+#: lessons/languages/tar.md:17
+msgctxt "s-1146a20cf944-0011"
+msgid "⟦SEP_0002⟧ ⟦CODE_0001⟧ sets the *record* size to N blocks of 512 bytes ⟦SEP_0003⟧ The unit of time is a record, and the archive's size, not its content, decides how many there are. ⟦SEP_0004⟧"
+msgstr ""
+
+#: lessons/languages/tar.md:19
+msgctxt "s-2cc8b36e2407-0012"
+msgid "A program that is an archive"
+msgstr ""
+
+#: lessons/languages/tar.md:21
+msgctxt "s-cc9cfaabc50d-0013"
+msgid "Behold the monstrosity"
+msgstr ""
+
+#: lessons/languages/tar.md:27
+msgctxt "s-03c3e021008f-0014"
+msgid "A tar archive of twelve tiny files. A dispatcher of about 80 lines. No loop in the dispatcher, no random numbers, no number 40."
+msgstr ""
+
+#: lessons/languages/tar.md:29
+msgctxt "s-415f5fa29cf9-0015"
+msgid "How the hell does that work?"
+msgstr ""
+
+#: lessons/languages/tar.md:31
+msgctxt "s-8e5312236e38-0016"
+msgid "**The members are the instructions.** ⟦CODE_0001⟧ is \"add a card\". Its body is ⟦CODE_0002⟧ and ⟦CODE_0003⟧. The name carries the order, and the body carries the operands."
+msgstr ""
+
+#: lessons/languages/tar.md:32
+msgctxt "s-01820e61e541-0017"
+msgid "**tar is the loop.** It reads the next member and starts the dispatcher, until the archive ends."
+msgstr ""
+
+#: lessons/languages/tar.md:33
+msgctxt "s-5ba4020ee2d1-0018"
+msgid "**The dice are rolled when the program is written.** A builder draws the five hours from a seeded generator and stores the seed in the first member. The same seed gives the same bytes."
+msgstr ""
+
+#: lessons/languages/tar.md:34
+msgctxt "s-ec6af70145fd-0019"
+msgid "**The stop rule is data.** Each card is followed by a ⟦CODE_0001⟧ member that holds ⟦CODE_0002⟧. The dispatcher only knows what ⟦CODE_0003⟧ *means*: halt if the total is over the limit."
+msgstr ""
+
+#: lessons/languages/tar.md:35
+msgctxt "s-87de35126c28-0020"
+msgid "**Reading is not running.** ⟦CODE_0001⟧ lists and decodes every member with ⟦CODE_0002⟧ and ⟦CODE_0003⟧. ⟦CODE_0004⟧ is the only place where ⟦CODE_0005⟧ appears."
+msgstr ""
+
+#: lessons/languages/tar.md:37
+msgctxt "s-463e70af72f4-0021"
+msgid "The [README](⟦DEST_0001⟧) has the full table of who does what."
+msgstr ""
+
+#: lessons/languages/tar.md:39
+msgctxt "s-d2bbf037de84-0022"
+msgid "What did we just learn?"
+msgstr ""
+
+#: lessons/languages/tar.md:41
+msgctxt "s-820f21123d03-0023"
+msgid "**Serialization, deserialization and execution are three acts.** You can write a program down, parse it and run it. Most formats let you do the first two without the third. Python's ⟦CODE_0001⟧ does not."
+msgstr ""
+
+#: lessons/languages/tar.md:42
+msgctxt "s-698726d1866d-0024"
+msgid "**The trust boundary is the command line.** A plain extraction runs nothing. Adding ⟦CODE_0001⟧ is a decision, and it is the operator's decision."
+msgstr ""
+
+#: lessons/languages/tar.md:43
+msgctxt "s-9f72deb0caeb-0025"
+msgid "**Fail closed.** The dispatcher refuses an unknown record, and then it refuses every record after it, because tar will not stop on its own."
+msgstr ""
+
+#: lessons/languages/tar.md:44
+msgctxt "s-d184862447ee-0026"
+msgid "**Four kinds of \"the same\".** Same bytes, same structure, same behavior and same live process are four different claims. This entry makes the first three and says plainly that it does not make the fourth."
+msgstr ""
+
+#: lessons/languages/tar.md:45
+msgctxt "s-81dc8216f708-0027"
+msgid "**A format is a contract.** ⟦CODE_0001⟧ is not part of tar. Two programs agree on it."
+msgstr ""
+
+#: lessons/languages/tar.md:47
+msgctxt "s-2caa32f1d5e4-0028"
+msgid "Tags: ⟦CODE_0001⟧ and ⟦CODE_0002⟧ are GNU extensions (**implementation-permitted**). The ⟦CODE_0003⟧ format and the order of members are in POSIX. That tar keeps going after a failed command is what GNU tar 1.35 does today, and the manual does not promise it: it is **accidentally exploited**, and the entry does not depend on it, because it writes its own halt."
+msgstr ""
+
+#: lessons/languages/tar.md:49
+msgctxt "s-299b7a6f9cbe-0029"
+msgid "Do this in production and you're fired"
+msgstr ""
+
+#: lessons/languages/tar.md:51
+msgctxt "s-6f9ad2fc72eb-0030"
+msgid "**An archive that runs is a program that arrived as data.** If the operator runs ⟦CODE_0001⟧ on an archive from a stranger, the stranger's records decide what happens. Here the dispatcher is strict. A careless one is a remote command runner."
+msgstr ""
+
+#: lessons/languages/tar.md:52
+msgctxt "s-a4f6a78a8d4a-0031"
+msgid "**Your own format has no tooling.** Nothing but a test keeps the builder and the dispatcher in step."
+msgstr ""
+
+#: lessons/languages/tar.md:53
+msgctxt "s-ab7384a7ffe7-0032"
+msgid "**tar was not built for this.** Real tar jobs are backup, packaging and transport."
+msgstr ""
+
+#: lessons/languages/tar.md:55
+msgctxt "s-7ea9e6d0afac-0033"
+msgid "Legitimate uses: ⟦CODE_0001⟧ as a filter, such as checksumming each member while you extract. A tar archive as a *container* for a program's data, with a manifest."
+msgstr ""
+
+#: lessons/languages/tar.md:57
+msgctxt "s-5e3bcdfbf845-0034"
+msgid "Now break it yourself"
+msgstr ""
+
+#: lessons/languages/tar.md:59
+msgctxt "s-f60e6a00e0b2-0035"
+msgid "See [exercise B16](⟦DEST_0001⟧)."
+msgstr ""
+
+#: lessons/languages/tar.md:61
+msgctxt "s-cf445c47f4b7-0036"
+msgid "The archive is the clock"
+msgstr ""
+
+#: lessons/languages/tar.md:63
+msgctxt "s-cc9cfaabc50d-0037"
+msgid "Behold the monstrosity"
+msgstr ""
+
+#: lessons/languages/tar.md:69
+msgctxt "s-5310fc444a90-0038"
+msgid "A tar archive whose payload is all zeros, and a state machine that moves one step each time tar says \"I wrote a record\". The program has no loop. tar is the loop."
+msgstr ""
+
+#: lessons/languages/tar.md:71
+msgctxt "s-415f5fa29cf9-0039"
+msgid "How the hell does that work?"
+msgstr ""
+
+#: lessons/languages/tar.md:73
+msgctxt "s-5e3f0f91b345-0040"
+msgid "**One checkpoint is one hour.** ⟦CODE_0001⟧ runs a command for every 512 bytes it writes. The command is a single SQL transaction."
+msgstr ""
+
+#: lessons/languages/tar.md:74
+msgctxt "s-0909ea2efbe8-0041"
+msgid "**The state is one row.** It holds the hours worked on the open card, the length of the card, the running total, the generator's seed and a ⟦CODE_0001⟧ flag."
+msgstr ""
+
+#: lessons/languages/tar.md:75
+msgctxt "s-972ed3d411d4-0042"
+msgid "**The layout is the schedule.** The number of ticks is ⟦CODE_0001⟧. Make the archive shorter and the clock stops in the middle of a card. Make it longer and the extra ticks only count as idle."
+msgstr ""
+
+#: lessons/languages/tar.md:76
+msgctxt "s-f3baa3442479-0043"
+msgid "**The stop rule is a flag, because tar will not stop.** After the crossing card the archive is still being written, and the command still runs. It does nothing but count."
+msgstr ""
+
+#: lessons/languages/tar.md:77
+msgctxt "s-9f488588498b-0044"
+msgid "**⟦CODE_0001⟧ predicts, not just observes.** A second machine, written in awk, says which cards must exist for any seed and any layout. The entry must agree for 65 combinations."
+msgstr ""
+
+#: lessons/languages/tar.md:79
+msgctxt "s-5091d7d80874-0045"
+msgid "The [README](⟦DEST_0001⟧) has the register table and the full list of what we measured."
+msgstr ""
+
+#: lessons/languages/tar.md:81
+msgctxt "s-d2bbf037de84-0046"
+msgid "What did we just learn?"
+msgstr ""
+
+#: lessons/languages/tar.md:83
+msgctxt "s-52052a7e6fb6-0047"
+msgid "**A progress indicator is an event source.** Once something calls your code at a steady beat, you have a clock. Event-driven programs work like this."
+msgstr ""
+
+#: lessons/languages/tar.md:84
+msgctxt "s-ebd7360d684a-0048"
+msgid "**A logical clock counts events, not seconds.** Ticks here are records written. Nothing in the run depends on how long a second takes."
+msgstr ""
+
+#: lessons/languages/tar.md:85
+msgctxt "s-9c1e5eca41ee-0049"
+msgid "**Control flow can be inverted.** The program does not call tar. tar calls the program."
+msgstr ""
+
+#: lessons/languages/tar.md:86
+msgctxt "s-899244ef7c5f-0050"
+msgid "**A layout can set the pace as well as the meaning.** The payload of this archive is all zeros, and its size still decides when everything happens."
+msgstr ""
+
+#: lessons/languages/tar.md:87
+msgctxt "s-3ad96190aa77-0051"
+msgid "**Say what a count counts.** A checkpoint counts records. A record is a number of blocks. The same archive gives 21 ticks when created, 10 when listed and 21 when extracted."
+msgstr ""
+
+#: lessons/languages/tar.md:89
+msgctxt "s-3edd9cd8fe8b-0052"
+msgid "Tags: ⟦CODE_0001⟧, ⟦CODE_0002⟧ and ⟦CODE_0003⟧ are GNU extensions (**implementation-permitted**), tested on GNU tar 1.34 and 1.35. The exact tick count in list mode is **accidentally exploited** knowledge, and the entry does not use it."
+msgstr ""
+
+#: lessons/languages/tar.md:91
+msgctxt "s-299b7a6f9cbe-0053"
+msgid "Do this in production and you're fired"
+msgstr ""
+
+#: lessons/languages/tar.md:93
+msgctxt "s-ef530fc2836f-0054"
+msgid "**It is a progress meter.** If someone changes the blocking factor, your schedule changes with it."
+msgstr ""
+
+#: lessons/languages/tar.md:94
+msgctxt "s-37316ffa49ff-0055"
+msgid "**Every tick starts a process.** Do not use a checkpoint as a scheduler. Use a scheduler."
+msgstr ""
+
+#: lessons/languages/tar.md:95
+msgctxt "s-783ed4f01f7c-0056"
+msgid "**A failing callback is silent to tar.** Look for your own errors. The entry sends them to standard error and exits 3."
+msgstr ""
+
+#: lessons/languages/tar.md:97
+msgctxt "s-bb6bd1a820a4-0057"
+msgid "Legitimate uses: progress bars for long backups, and ⟦CODE_0001⟧ to pause a job for a cooperating process, as the manual shows."
+msgstr ""
+
+#: lessons/languages/tar.md:99
+msgctxt "s-5e3bcdfbf845-0058"
+msgid "Now break it yourself"
+msgstr ""
+
+#: lessons/languages/tar.md:101
+msgctxt "s-ca314e0ca1eb-0059"
+msgid "See [exercise B17](⟦DEST_0001⟧)."
+msgstr ""
+
+#: lessons/languages/tar.md:165
+msgctxt "s-ac0e260e97bf-0060"
+msgid "Computer science behind this page"
+msgstr ""

@@ -5809,8 +5809,8 @@
     {
      "en": "What makes tar special",
      "en_id": "what-makes-tar-special",
-     "es": "What makes tar special",
-     "es_id": "what-makes-tar-special",
+     "es": "Qué hace especial a tar",
+     "es_id": "qué-hace-especial-a-tar",
      "level": 2,
      "line": 7
     },
@@ -5961,7 +5961,7 @@
     "the-archive-is-the-clock": "the-archive-is-the-clock",
     "what-did-we-just-learn": "what-did-we-just-learn",
     "what-did-we-just-learn-1": "what-did-we-just-learn-1",
-    "what-makes-tar-special": "what-makes-tar-special"
+    "what-makes-tar-special": "qué-hace-especial-a-tar"
    }
   },
   "lessons/languages/tcl.md": {
