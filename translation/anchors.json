@@ -5196,8 +5196,8 @@
     {
      "en": "What did we just learn?",
      "en_id": "what-did-we-just-learn",
-     "es": "What did we just learn?",
-     "es_id": "what-did-we-just-learn",
+     "es": "¿Qué acabamos de aprender?",
+     "es_id": "qué-acabamos-de-aprender",
      "level": 3,
      "line": 56
     },
@@ -5288,7 +5288,7 @@
     "quirks": "quirks",
     "under-what-circumstances-would-this-terrible-idea-become-reasonable": "under-what-circumstances-would-this-terrible-idea-become-reasonable",
     "weird-next-to-boring": "weird-next-to-boring",
-    "what-did-we-just-learn": "what-did-we-just-learn",
+    "what-did-we-just-learn": "qué-acabamos-de-aprender",
     "what-makes-common-lisp-special": "qué-hace-especial-a-common-lisp"
    }
   },

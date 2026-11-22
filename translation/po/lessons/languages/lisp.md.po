@@ -115,27 +115,27 @@ msgstr "**El lector construye un anillo.** [⟦CODE_0001⟧](⟦DEST_0002⟧) es
 #: lessons/languages/lisp.md:54
 msgctxt "s-0176f78f7a3b-0021"
 msgid "**The program audits itself.** The closing note is computed with the metaobject protocol: ⟦CODE_0001⟧ asks the system which methods apply to this ledger, and the program counts how many ran."
-msgstr ""
+msgstr "**El programa se audita a sí mismo.** La nota final se calcula con el protocolo de metaobjetos: ⟦CODE_0001⟧ pregunta al sistema qué métodos se aplican a este registro. El programa cuenta cuántos se ejecutaron."
 
 #: lessons/languages/lisp.md:56
 msgctxt "s-d2bbf037de84-0022"
 msgid "What did we just learn?"
-msgstr ""
+msgstr "¿Qué acabamos de aprender?"
 
 #: lessons/languages/lisp.md:58
 msgctxt "s-2905b0566565-0023"
 msgid "**Control flow can live in a type hierarchy.** Dispatch is the iteration, specificity order is the sequence and a return value is the ⟦CODE_0001⟧. Compare [COBOL's mutable jump](⟦DEST_0002⟧) and [Forth's parse position](⟦DEST_0003⟧): all three put the \"where am I?\" somewhere a loop counter normally is not."
-msgstr ""
+msgstr "**El flujo de control puede vivir en una jerarquía de tipos.** El despacho es la iteración, el orden de especificidad es la secuencia y un valor de retorno es el ⟦CODE_0001⟧. Compara el [salto mutable de COBOL](⟦DEST_0002⟧) y la [posición de análisis de Forth](⟦DEST_0003⟧). Los tres ponen el \"¿dónde estoy?\" en un lugar donde normalmente no está un contador de bucle."
 
 #: lessons/languages/lisp.md:59
 msgctxt "s-27e3b67fa2d9-0024"
 msgid "**A language can ship control-flow *policies* as data.** ⟦CODE_0001⟧, ⟦CODE_0002⟧ and ⟦CODE_0003⟧ are not special to ⟦CODE_0004⟧; ⟦CODE_0005⟧ lets you write your own."
-msgstr ""
+msgstr "**Un lenguaje puede proporcionar *políticas* de flujo de control como datos.** ⟦CODE_0001⟧, ⟦CODE_0002⟧ y ⟦CODE_0003⟧ no son especiales para ⟦CODE_0004⟧; ⟦CODE_0005⟧ te permite escribir las tuyas."
 
 #: lessons/languages/lisp.md:60
 msgctxt "s-568fb464cb45-0025"
 msgid "**Classes are computed, not just declared.** The class precedence list is an algorithm's output (⟦CODE_0001⟧) that you can ask for."
-msgstr ""
+msgstr "**Las clases se calculan, no solo se declaran.** La lista de precedencia de clases es la salida de un algoritmo (⟦CODE_0001⟧) que puedes consultar."
 
 #: lessons/languages/lisp.md:61
 msgctxt "s-20035aeb504a-0026"

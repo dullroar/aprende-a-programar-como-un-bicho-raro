@@ -51,13 +51,13 @@ Existen cinco métodos. Se ejecutan tres o cuatro de ellos. Nada en el programa 
 
 **El lector construye un anillo.** [`*week*`](../../src/lisp-weird/timecards.lisp#L44-L46) es `'#1=("Meetings" "Coding" "Debugging" "Learning" . #1#)`: `#1=` etiqueta la lista y `#1#` vuelve a apuntar a ella. Las categorías se repiten sin `mod`.
 
-**The program audits itself.** The closing note is computed with the metaobject protocol: `sb-mop:compute-applicable-methods` asks the system which methods apply to this ledger, and the program counts how many ran.
+**El programa se audita a sí mismo.** La nota final se calcula con el protocolo de metaobjetos: `sb-mop:compute-applicable-methods` pregunta al sistema qué métodos se aplican a este registro. El programa cuenta cuántos se ejecutaron.
 
-### What did we just learn?
+### ¿Qué acabamos de aprender?
 
-- **Control flow can live in a type hierarchy.** Dispatch is the iteration, specificity order is the sequence and a return value is the `break`. Compare [COBOL's mutable jump](cobol.md#alter) and [Forth's parse position](forth.md): all three put the "where am I?" somewhere a loop counter normally is not.
-- **A language can ship control-flow *policies* as data.** `or`, `and` and `progn` are not special to `defgeneric`; `define-method-combination` lets you write your own.
-- **Classes are computed, not just declared.** The class precedence list is an algorithm's output (`sb-mop:compute-class-precedence-list`) that you can ask for.
+- **El flujo de control puede vivir en una jerarquía de tipos.** El despacho es la iteración, el orden de especificidad es la secuencia y un valor de retorno es el `break`. Compara el [salto mutable de COBOL](cobol.md#alter) y la [posición de análisis de Forth](forth.md). Los tres ponen el "¿dónde estoy?" en un lugar donde normalmente no está un contador de bucle.
+- **Un lenguaje puede proporcionar *políticas* de flujo de control como datos.** `or`, `and` y `progn` no son especiales para `defgeneric`; `define-method-combination` te permite escribir las tuyas.
+- **Las clases se calculan, no solo se declaran.** La lista de precedencia de clases es la salida de un algoritmo (`sb-mop:compute-class-precedence-list`) que puedes consultar.
 - **Compile-time code runs *before* the program.** `defcard` builds names with `intern` and `format` while compiling, inside `eval-when`. None of that is a loop over cards at run time.
 
 Tags: `or` method combination, `:around`, `#n=` syntax, `defmacro` and `eval-when` are **guaranteed** by ANSI Common Lisp. `sb-mop:compute-applicable-methods` is the MOP, which is **implementation-permitted** (SBCL, CCL and others provide it; it is not in the ANSI standard). `sb-ext:run-program` is specific to SBCL (**implementation-permitted**).
