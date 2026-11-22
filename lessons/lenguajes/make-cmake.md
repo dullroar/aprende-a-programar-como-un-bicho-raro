@@ -35,7 +35,7 @@ Un Makefile **sin `$(shell)`, sin `!=`, sin Guile y sin `load`** (`check.sh` los
 
 - **Make es un motor de dependencias que puede reiniciarse.** "Rehacer lo que describe la compilación" es un bucle disfrazado.
 - **El estado puede ser la existencia de archivos.** El estado de Make aquí consiste en cuáles archivos `.tc-N.mk` existen.
-- **El tiempo de expansión y el tiempo de ejecución son fases diferentes** ([Las dos fases de Make](#quirks)) y el programa vive en el intervalo entre ambas.
+- **El tiempo de expansión y el tiempo de ejecución son fases diferentes** ([Las dos fases de Make](#peculiaridades)) y el programa vive en el intervalo entre ambas.
 
 Etiquetas: el manual de GNU Make declara **garantizado** que se reconstruyan los makefiles incluidos y se reinicie. Su uso como bucle es **aprovechado por accidente**. `$(file <...)` necesita GNU Make 4.2+. Las lecturas de `/proc` son **permitido por la implementación** en Linux.
 
@@ -94,15 +94,15 @@ Etiquetas: la documentación establece como **garantizado** asignar `CMAKE_MATCH
 - **El año ISO a mano.** `string(TIMESTAMP)` conoce `%V` pero no `%G`.
 - **`message()` va a stderr**, de ahí las escrituras de `/dev/stdout`.
 
-### Now break it yourself
+### Ahora rómpelo tú
 
-See [exercises](../exercises.md#b5-cmake-mutate-the-literal-verified): the repo's own `check.sh` mutates the 41-character literal to prove it controls the loop.
+Mira los [ejercicios](../exercises.md#b5-cmake-mutate-the-literal-verified): el propio `check.sh` del repositorio modifica el literal de 41 caracteres para demostrar que controla el bucle.
 
-## Quirks
+## Peculiaridades
 
-- **Make expands every line of a recipe before it runs any**, so `$(info)` output would come out before SQLite's header.
-- **`#` starts a comment even inside a SQL string in a variable**; the header's `'# DEMO ONLY'` is written `\#`.
-- **Make escape codes need a literal ESC byte** (`define ESC` holds one `0x1b`).
+- **Make expande todas las líneas de una receta antes de ejecutar cualquiera**. Por eso la salida de `$(info)` aparecería antes del encabezado de SQLite.
+- **`#` inicia un comentario incluso dentro de una cadena de texto SQL en una variable**; el `'# DEMO ONLY'` del encabezado se escribe `\#`.
+- **Los códigos de escape de Make necesitan un byte ESC literal** (`define ESC` contiene un `0x1b`).
 - **No pure-Make way to create a directory or a SQLite file**, hence `mkdir -p` and `sqlite3`.
 - **`wt.exe` treats `;` as its own subcommand separator**, so command lines passed to it contain none. In CMake, lists are `;`-separated too, so this needs care.
 - **Four 10-hour cards total exactly 40, which continues**, so the fifth card reuses Meetings (both entries).

@@ -240,32 +240,32 @@ msgstr "**⟦CODE_0001⟧ va a stderr**, de ahí las escrituras de ⟦CODE_0002�
 #: lessons/languages/make-cmake.md:97
 msgctxt "s-5e3bcdfbf845-0046"
 msgid "Now break it yourself"
-msgstr ""
+msgstr "Ahora rómpelo tú"
 
 #: lessons/languages/make-cmake.md:99
 msgctxt "s-896ce725aba8-0047"
 msgid "See [exercises](⟦DEST_0001⟧): the repo's own ⟦CODE_0002⟧ mutates the 41-character literal to prove it controls the loop."
-msgstr ""
+msgstr "Mira los [ejercicios](⟦DEST_0001⟧): el propio ⟦CODE_0002⟧ del repositorio modifica el literal de 41 caracteres para demostrar que controla el bucle."
 
 #: lessons/languages/make-cmake.md:101
 msgctxt "s-12d0b77aba94-0048"
 msgid "Quirks"
-msgstr ""
+msgstr "Peculiaridades"
 
 #: lessons/languages/make-cmake.md:103
 msgctxt "s-3782074d2f38-0049"
 msgid "**Make expands every line of a recipe before it runs any**, so ⟦CODE_0001⟧ output would come out before SQLite's header."
-msgstr ""
+msgstr "**Make expande todas las líneas de una receta antes de ejecutar cualquiera**. Por eso la salida de ⟦CODE_0001⟧ aparecería antes del encabezado de SQLite."
 
 #: lessons/languages/make-cmake.md:104
 msgctxt "s-724ca706a593-0050"
 msgid "**⟦CODE_0001⟧ starts a comment even inside a SQL string in a variable**; the header's ⟦CODE_0002⟧ is written ⟦CODE_0003⟧."
-msgstr ""
+msgstr "**⟦CODE_0001⟧ inicia un comentario incluso dentro de una cadena de texto SQL en una variable**; el ⟦CODE_0002⟧ del encabezado se escribe ⟦CODE_0003⟧."
 
 #: lessons/languages/make-cmake.md:105
 msgctxt "s-fe595949eba5-0051"
 msgid "**Make escape codes need a literal ESC byte** (⟦CODE_0001⟧ holds one ⟦CODE_0002⟧)."
-msgstr ""
+msgstr "**Los códigos de escape de Make necesitan un byte ESC literal** (⟦CODE_0001⟧ contiene un ⟦CODE_0002⟧)."
 
 #: lessons/languages/make-cmake.md:106
 msgctxt "s-3513aa04f55c-0052"
