@@ -55,11 +55,11 @@ Etiquetas: `-fprintf`, `%d`, `%T`, `-regex` y `-D` son extensiones de GNU (**per
 - **Es difícil razonar sobre un recorrido que cambia lo que recorre.** El resultado depende de qué entradas del directorio se leen antes y después de cada visita.
 - **La línea tiene 5.7 KB.** Nadie puede revisarla a simple vista. Por eso existe [`build-line.py`](../../src/find-posix/build-line.py) y por eso `check.sh` comprueba que ambos coincidan.
 
-Legitimate uses: `find ... -exec ... {} +` and `-prune` are everyday tools. Changing the tree while find walks it is the thing the manuals warn you about.
+Usos legítimos: `find ... -exec ... {} +` y `-prune` son herramientas de uso diario. Los manuales advierten sobre modificar el árbol mientras find lo recorre.
 
-### Now break it yourself
+### Ahora rómpelo tú
 
-See [exercises](../exercises.md#b14-find-rig-the-dice-verified) and [B15](../exercises.md#b15-gnu-find-move-the-stop-rule-read-the-profile-verified).
+Mira los [ejercicios](../exercises.md#b14-find-rig-the-dice-verified) y [B15](../exercises.md#b15-gnu-find-move-the-stop-rule-read-the-profile-verified).
 
 <!-- BEGIN GENERATED program-flow:languages/find.md -->
 ## How each program runs
@@ -105,7 +105,7 @@ flowchart TD
 **Why this mechanism matters:** the stop rule is the absence of a new child: at the end of a card, five `0` hour-digits in the path (or four and a non-zero last digit) mean the total is over 40, and no branch digs. The running total is the number of hour directories in the path, and no arithmetic exists anywhere. This relies on the order in which find reads and visits, which is accidental to find, not promised by POSIX.
 <!-- END GENERATED program-flow:languages/find.md -->
 
-## Computer science behind this page
+## La informática detrás de esta página
 
 <!-- BEGIN GENERATED concepts:languages/find.md -->
 The computer-science ideas behind this page: [Transition systems and state machines](../informatica/02-que-cuenta-como-maquina.md#transition-systems-and-state-machines), [Representing state](../informatica/02-que-cuenta-como-maquina.md#representing-state), [Observability](../informatica/02-que-cuenta-como-maquina.md#observability), [Control flow](../informatica/03-flujo-de-control-y-continuaciones.md#control-flow), [Recursion](../informatica/03-flujo-de-control-y-continuaciones.md#recursion), [Short-circuit evaluation](../informatica/04-evaluacion-y-demanda.md#short-circuit-evaluation), [Regular expressions](../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#regular-expressions), [Domain-specific languages](../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#domain-specific-languages), [Weird machines](../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#weird-machines), [The call stack](../informatica/06-estado-mas-alla-de-las-variables.md#the-call-stack), [Side effects](../informatica/07-efectos-errores-y-confirmacion.md#side-effects), [Integrity constraints](../informatica/07-efectos-errores-y-confirmacion.md#integrity-constraints), [Undefined, unspecified and implementation-defined behavior](../informatica/08-fugas-de-abstraccion-y-dependencia-de-la-implementacion.md#undefined-unspecified-and-implementation-defined-behavior), [Portability](../informatica/08-fugas-de-abstraccion-y-dependencia-de-la-implementacion.md#portability), [Optimizers](../informatica/08-fugas-de-abstraccion-y-dependencia-de-la-implementacion.md#optimizers), [Hyrum's law](../informatica/08-fugas-de-abstraccion-y-dependencia-de-la-implementacion.md#hyrums-law).
