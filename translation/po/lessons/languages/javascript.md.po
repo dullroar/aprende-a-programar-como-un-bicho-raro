@@ -335,27 +335,27 @@ msgstr "**Un escuchador de eventos hace una cosa y emite el siguiente evento.** 
 #: lessons/languages/javascript.md:116
 msgctxt "s-ef15a3c1a229-0065"
 msgid "**⟦CODE_0001⟧ is a call.** It runs every listener of the event, in order, before it returns. The listener sits on top of the caller on the call stack."
-msgstr ""
+msgstr "**⟦CODE_0001⟧ es una llamada.** Ejecuta cada escuchador de eventos del evento, en orden, antes de regresar. El escuchador está encima de quien lo llama en la pila de llamadas."
 
 #: lessons/languages/javascript.md:117
 msgctxt "s-444df4d5912f-0066"
 msgid "**⟦CODE_0001⟧ is a request.** ⟦CODE_0002⟧ does not emit ⟦CODE_0003⟧ again. It asks the event loop for it. Node runs it on a later turn, when the stack is empty. Without that, every card would add frames to the stack, and a long run would end with a ⟦CODE_0004⟧."
-msgstr ""
+msgstr "**⟦CODE_0001⟧ es una solicitud.** ⟦CODE_0002⟧ no vuelve a emitir ⟦CODE_0003⟧. Se lo pide al bucle de eventos. Node lo ejecuta en un turno posterior, cuando la pila está vacía. Sin eso, cada tarjeta añadiría marcos a la pila y una ejecución larga terminaría con un ⟦CODE_0004⟧."
 
 #: lessons/languages/javascript.md:118
 msgctxt "s-08c04dcd2f59-0067"
 msgid "**The save comes first.** ⟦CODE_0001⟧ is synchronous, so the row is written when ⟦CODE_0002⟧ returns. The running total changes only after that."
-msgstr ""
+msgstr "**El guardado va primero.** ⟦CODE_0001⟧ es síncrono, así que la fila se escribe cuando ⟦CODE_0002⟧ regresa. Solo después cambia el total acumulado."
 
 #: lessons/languages/javascript.md:119
 msgctxt "s-bc02fb72e852-0068"
 msgid "**A failure is one event.** Every listener catches its own throw and emits ⟦CODE_0001⟧. ⟦CODE_0002⟧ rolls back, closes the database, prints one line and removes every listener."
-msgstr ""
+msgstr "**Un fallo es un evento.** Cada escuchador de eventos captura su propia excepción emitida y emite ⟦CODE_0001⟧. ⟦CODE_0002⟧ revierte la transacción, cierra la base de datos, imprime una línea y elimina todos los escuchadores de eventos."
 
 #: lessons/languages/javascript.md:121
 msgctxt "s-6862fc96ccfe-0069"
 msgid "The [README](⟦DEST_0001⟧) has the table of events, the trace and the comparison with the other two Node entries."
-msgstr ""
+msgstr "El [README](⟦DEST_0001⟧) contiene la tabla de eventos, la traza y la comparación con las otras dos entradas de Node."
 
 #: lessons/languages/javascript.md:123
 msgctxt "s-d2bbf037de84-0070"

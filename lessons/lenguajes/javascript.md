@@ -113,12 +113,12 @@ Sin `for`, sin `while`, sin canalización ni fábrica de clausuras. El inicio vi
 ### ¿Cómo demonios funciona eso?
 
 - **Un escuchador de eventos hace una cosa y emite el siguiente evento.** `generate` sortea una tarjeta y emite `card-created`. `card-created` la guarda y emite `card-saved`. `card-saved` actualiza el total y emite `total-updated`. `total-updated` es la regla de parada.
-- **`emit()` is a call.** It runs every listener of the event, in order, before it returns. The listener sits on top of the caller on the call stack.
-- **`setImmediate()` is a request.** `total-updated` does not emit `generate` again. It asks the event loop for it. Node runs it on a later turn, when the stack is empty. Without that, every card would add frames to the stack, and a long run would end with a `RangeError`.
-- **The save comes first.** `node:sqlite` is synchronous, so the row is written when `run()` returns. The running total changes only after that.
-- **A failure is one event.** Every listener catches its own throw and emits `failed`. `failed` rolls back, closes the database, prints one line and removes every listener.
+- **`emit()` es una llamada.** Ejecuta cada escuchador de eventos del evento, en orden, antes de regresar. El escuchador está encima de quien lo llama en la pila de llamadas.
+- **`setImmediate()` es una solicitud.** `total-updated` no vuelve a emitir `generate`. Se lo pide al bucle de eventos. Node lo ejecuta en un turno posterior, cuando la pila está vacía. Sin eso, cada tarjeta añadiría marcos a la pila y una ejecución larga terminaría con un `RangeError`.
+- **El guardado va primero.** `node:sqlite` es síncrono, así que la fila se escribe cuando `run()` regresa. Solo después cambia el total acumulado.
+- **Un fallo es un evento.** Cada escuchador de eventos captura su propia excepción emitida y emite `failed`. `failed` revierte la transacción, cierra la base de datos, imprime una línea y elimina todos los escuchadores de eventos.
 
-The [README](../../src/javascript-events/README.md#cómo-funciona-el-truco) has the table of events, the trace and the comparison with the other two Node entries.
+El [README](../../src/javascript-events/README.md#cómo-funciona-el-truco) contiene la tabla de eventos, la traza y la comparación con las otras dos entradas de Node.
 
 ### What did we just learn?
 
