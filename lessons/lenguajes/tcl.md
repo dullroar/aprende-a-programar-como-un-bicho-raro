@@ -61,13 +61,13 @@ Insertar una tarjeta activa el disparador, que imprime la tarjeta (mediante `tcl
 ### ¿Qué acabamos de aprender?
 
 - **El código y los datos son lo mismo en Tcl.** Un procedimiento se crea a partir de dos cadenas de texto; tú decides de dónde vienen. Aquí es una fila de la base de datos, así que `UPDATE tcl_code SET body = ...` es un parche en caliente.
-- **A database trigger is a control-flow construct.** It is an event handler that can cause the event it handles: that is recursion.
-- **Every hook point is a loop opportunity.** SQLite lets you register functions and triggers; Tcl lets you intercept lookups. Either alone is a feature, together they are a runtime.
-- **Braces versus substitution** decides everything in Tcl. (Compare [Make's expansion time versus run time](make-cmake.md#gnu-make) and [m4's quoting](m4.md).)
+- **Un disparador de base de datos es una construcción de flujo de control.** Es un manejador de eventos que puede causar el evento que maneja: eso es recursión.
+- **Cada punto de conexión es una oportunidad para crear un bucle.** SQLite permite registrar funciones y disparadores; Tcl permite interceptar búsquedas. Cada uno por separado es una función; juntos forman un entorno de ejecución.
+- **Las llaves frente a la sustitución** lo deciden todo en Tcl. (Compara [el tiempo de expansión frente al tiempo de ejecución de Make](make-cmake.md#gnu-make) y [el entrecomillado de m4](m4.md).)
 
-Tags: `proc`, `unknown`, `uplevel`, `namespace`, `dict` and `try` are **guaranteed** by Tcl 8.6. `db function` and `db eval` variable binding belong to the sqlite3 Tcl package (**implementation-permitted**: the interface is stable but is not part of Tcl). Recursive triggers need `PRAGMA recursive_triggers`, a **guaranteed** SQLite feature when enabled. That each card's hours are drawn exactly once holds by construction: the hours are written into a one-row TEMP table and read from it twice, so the result does not depend on how often SQLite evaluates a function. (An earlier version used a subquery and relied on SQLite calling the function once per row, which is **accidentally exploited**: SQLite does not promise that for non-deterministic functions.)
+Etiquetas: `proc`, `unknown`, `uplevel`, `namespace`, `dict` y `try` tienen la etiqueta **garantizado** en Tcl 8.6. `db function` y la vinculación de variables de `db eval` pertenecen al paquete sqlite3 de Tcl (**permitido por la implementación**: la interfaz es estable, pero no forma parte de Tcl). Los disparadores recursivos necesitan `PRAGMA recursive_triggers`, una característica de SQLite con la etiqueta **garantizado** cuando está activada. Que las horas de cada tarjeta se obtengan exactamente una vez se cumple por construcción: las horas se escriben en una tabla TEMP de una fila y se leen dos veces. Por eso, el resultado no depende de cuántas veces SQLite evalúe una función. (Una versión anterior usaba una subconsulta y dependía de que SQLite llamara a la función una vez por fila. Eso es **aprovechado por accidente**: SQLite no lo promete para funciones no deterministas.)
 
-### Do this in production and you're fired
+### Haz esto en producción y estás despedido
 
 - **Your program is not in version control.** It is in a TEMP table that exists only for this connection. The `.tcl` file holds two procs and a string.
 - **`unknown` is global.** Every misspelled command now takes a database lookup before the error. If the table is writable by someone else, so is your program.
