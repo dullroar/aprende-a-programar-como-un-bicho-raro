@@ -68,3 +68,7 @@ ralph stopped by stall breaker at iteration 368
 - Also: `tools/sync_guide_diagrams.py` on the Forth guide (7 labels) and the JavaScript guide (25 labels). The Forth result passes `verify --fast` and is kept. The JavaScript result fails I7 (machine, card terms) and I9 (a target equal to the English source); it was reverted.
 - Decision needed (human): (a) make I13 skip generated blocks, since build.py --check already checks them against generator output in the Spanish edition, and add a narrow negative test for that; or (b) keep generated blocks English in the Spanish files and make the generator emit English in that case. Option (a) matches the plan. After the decision, delete the revert, rerun `BOOK_LANG=es` generate, then `verify --fast`.
 - Also open: `build.py --check` in Spanish reports 8 BROKEN internal links (anchors into generated chapters, P5-002's job) and the root README note "update it to 40 challenges in 29 languages".
+
+## P5-001 (iteration 380): unblocked
+
+- Resolved by P5-000 (verification skips generator-owned lines). Task set back to todo.

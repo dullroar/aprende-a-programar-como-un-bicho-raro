@@ -210,6 +210,7 @@ def check_file(rel, en_text, es_text, po, ctx, release, cat=None, remap=None):
     Returns problem strings."""
     import apply as apply_mod
     import invariants
+    import segment
     out = []
     if en_text is None:
         return ["I1 %s: no English source at the pinned commit (stale PO or wrong path)" % rel]
@@ -218,7 +219,7 @@ def check_file(rel, en_text, es_text, po, ctx, release, cat=None, remap=None):
     if po is None:
         if release:
             out.append("I16 %s: no PO file; the file is not translated" % rel)
-        if es_text is not None and es_text != en_view:
+        if es_text is not None and segment.strip_generated(es_text) != segment.strip_generated(en_view):
             out.append("I16 %s: the file differs from the English source but has no PO file (hand edit)" % rel)
     else:
         found = invariants.check_po(en_text, po, rel, ctx)
@@ -231,7 +232,7 @@ def check_file(rel, en_text, es_text, po, ctx, release, cat=None, remap=None):
             except (apply_mod.ApplyError, ValueError) as e:
                 out.append("I16 %s: PO cannot be applied: %s" % (rel, e))
             else:
-                if remap(applied) != es_text:
+                if segment.strip_generated(remap(applied)) != segment.strip_generated(es_text):
                     out.append("I16 %s: the file is not the PO applied to the English source (stale or hand-edited)" % rel)
     if es_text is not None:
         out += [fmt(f) for f in invariants.check_files(en_view, es_text, rel, ctx)]

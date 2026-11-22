@@ -724,6 +724,9 @@ def i13_text(en_text, es_text, rel="", dnt=()):
     except segment.SegmentError as e:
         return [Finding("I13", rel, "segmenter refused: %s" % e)]
     out = []
+    if sa.generated_file or sb.generated_file:
+        # The generator owns the whole file; build.py --check compares it with the generator output.
+        return out
     ka = [b.kind for b in sa.blocks if b.kind not in ("blank",)]
     kb = [b.kind for b in sb.blocks if b.kind not in ("blank",)]
     if ka != kb:
@@ -731,8 +734,7 @@ def i13_text(en_text, es_text, rel="", dnt=()):
         return out
     for x, y in zip(sa.blocks, sb.blocks):
         if x.kind in SKIP_FENCE_KINDS or x.kind in segment.SEGMENT_KINDS or x.kind in ("blank", "frontmatter_keep"):
-            if x.kind == "generated" and x.lines != y.lines:
-                out.append(Finding("I13", rel, "generated block at line %d differs (regenerate, never edit)" % (x.start + 1)))
+            # Generated blocks are owned by the generator (Spanish text under BOOK_LANG=es); build.py --check owns them.
             continue
         if x.lines != y.lines:
             out.append(Finding("I13", rel, "%s block at line %d differs from the English source" % (x.kind, x.start + 1)))
@@ -786,6 +788,7 @@ def check_files(en_text, es_text, rel="", ctx=None):
     """File-level invariants for a finished Spanish file against its English source."""
     ctx = ctx or Context()
     out = [Finding("I1", rel, p) for p in segment.check_roundtrip(en_text, rel)]
+    en_text, es_text = segment.strip_generated(en_text), segment.strip_generated(es_text)   # the generator owns those lines
     out += [f._replace(where=f.where or rel) for f in i6(en_text, es_text)]
     out += i5(en_text, es_text, rel)
     out += i13_text(en_text, es_text, rel, ctx.dnt)

@@ -335,3 +335,4 @@
 376 P4-999 done gate passes under re-scoped criteria; only test_anchors on generated lessons/cs fails (P5-001/P5-004).
 377 P5-001 blocked build.py --generate in Spanish (BOOK_LANG=es) is idempotent (2nd run zero diff) but writes Spanish generated blocks that I13 rejects (it compares them to English); reverted, verify --fast OK; forth guide diagram labels synced; see blockers.md.
 378 none done no eligible task; P5-001 blocked (I13 vs generated blocks); wrote loop/DONE (DONE-WITH-BLOCKERS), HANDOFF.md current.
+380 P5-000 done I13/I16/I2/I4/structure skip generator-owned lines (segment.strip_generated); regenerated tree passes verify --fast, hand-edited generated block still STALE in build.py --check; P5-001 unblocked.
