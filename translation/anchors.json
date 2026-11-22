@@ -4981,8 +4981,8 @@
     {
      "en": "Now break it yourself",
      "en_id": "now-break-it-yourself",
-     "es": "Now break it yourself",
-     "es_id": "now-break-it-yourself",
+     "es": "Ahora rómpelo tú",
+     "es_id": "ahora-rómpelo-tú",
      "level": 3,
      "line": 56
     },
@@ -5030,7 +5030,7 @@
      "en": "Now break it yourself",
      "en_id": "now-break-it-yourself-1",
      "es": "Now break it yourself",
-     "es_id": "now-break-it-yourself-1",
+     "es_id": "now-break-it-yourself",
      "level": 3,
      "line": 99
     },
@@ -5078,7 +5078,7 @@
      "en": "Now break it yourself",
      "en_id": "now-break-it-yourself-2",
      "es": "Now break it yourself",
-     "es_id": "now-break-it-yourself-2",
+     "es_id": "now-break-it-yourself-1",
      "level": 3,
      "line": 143
     },
@@ -5138,9 +5138,9 @@
     "how-the-hell-does-that-work-2": "how-the-hell-does-that-work-1",
     "javascript": "javascript",
     "listeners-all-the-way-down": "listeners-all-the-way-down",
-    "now-break-it-yourself": "now-break-it-yourself",
-    "now-break-it-yourself-1": "now-break-it-yourself-1",
-    "now-break-it-yourself-2": "now-break-it-yourself-2",
+    "now-break-it-yourself": "ahora-rómpelo-tú",
+    "now-break-it-yourself-1": "now-break-it-yourself",
+    "now-break-it-yourself-2": "now-break-it-yourself-1",
     "program-flow-of-javascript": "program-flow-of-javascript",
     "program-flow-of-javascript-events": "program-flow-of-javascript-events",
     "program-flow-of-javascript-weird": "program-flow-of-javascript-weird",

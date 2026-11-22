@@ -160,27 +160,27 @@ msgstr "**Un ⟦CODE_0001⟧ con cuerpo vacío esconde el programa en su encabez
 #: lessons/languages/javascript.md:51
 msgctxt "s-fe50d618d8b7-0030"
 msgid "**Side effects in a condition are a bug waiting.** If the test runs twice, the result prints twice."
-msgstr ""
+msgstr "**Los efectos secundarios en una condición son un bicho a punto de aparecer.** Si la prueba se ejecuta dos veces, el resultado se imprime dos veces."
 
 #: lessons/languages/javascript.md:52
 msgctxt "s-f56475f87f31-0031"
 msgid "**The state object is a global in disguise.** Anything can reach into it."
-msgstr ""
+msgstr "**El objeto de estado es una variable global disfrazada.** Cualquier cosa puede acceder a él."
 
 #: lessons/languages/javascript.md:54
 msgctxt "s-16ce4b506df0-0032"
 msgid "Legitimate uses: ⟦CODE_0001⟧ with a ⟦CODE_0002⟧, and a comma in an update clause for two counters."
-msgstr ""
+msgstr "Usos legítimos: ⟦CODE_0001⟧ con un ⟦CODE_0002⟧ y una coma en una cláusula de actualización para dos contadores."
 
 #: lessons/languages/javascript.md:56
 msgctxt "s-5e3bcdfbf845-0033"
 msgid "Now break it yourself"
-msgstr ""
+msgstr "Ahora rómpelo tú"
 
 #: lessons/languages/javascript.md:58
 msgctxt "s-58e910267478-0034"
 msgid "See [exercise B20](⟦DEST_0001⟧)."
-msgstr ""
+msgstr "Mira el [ejercicio B20](⟦DEST_0001⟧)."
 
 #: lessons/languages/javascript.md:60
 msgctxt "s-d2b0031231d3-0035"

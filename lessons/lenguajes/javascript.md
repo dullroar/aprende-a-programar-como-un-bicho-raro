@@ -48,14 +48,14 @@ Etiquetas: el comportamiento de la semántica de `for`, `?:`, `&&`, el operador 
 ### Haz esto en producción y estás despedido
 
 - **Un `for` con cuerpo vacío esconde el programa en su encabezado.** Nadie puede encontrar el cuerpo del bucle porque no existe.
-- **Side effects in a condition are a bug waiting.** If the test runs twice, the result prints twice.
-- **The state object is a global in disguise.** Anything can reach into it.
+- **Los efectos secundarios en una condición son un bicho a punto de aparecer.** Si la prueba se ejecuta dos veces, el resultado se imprime dos veces.
+- **El objeto de estado es una variable global disfrazada.** Cualquier cosa puede acceder a él.
 
-Legitimate uses: `for (;;)` with a `break`, and a comma in an update clause for two counters.
+Usos legítimos: `for (;;)` con un `break` y una coma en una cláusula de actualización para dos contadores.
 
-### Now break it yourself
+### Ahora rómpelo tú
 
-See [exercise B20](../exercises.md#b20-javascript-read-the-clauses-move-the-limit-and-fail-the-structure-check-verified).
+Mira el [ejercicio B20](../exercises.md#b20-javascript-read-the-clauses-move-the-limit-and-fail-the-structure-check-verified).
 
 ## Closures all the way down
 
