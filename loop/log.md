@@ -216,3 +216,4 @@
 243 P4-lessons-languages-3 blocked accepted Forth positions 23 to 24; original acceptance command failed twice on unsupported --task; corrected scoped command passed; resume at 25 after unblocking.
 244 P4-lessons-languages-4 partial accepted Lisp positions 0 to 5; 40 remain; corrected acceptance command and fast and anchor checks passed.
 245 P4-lessons-languages-4 partial accepted Lisp positions 6 to 10; 35 remain; task, fast and anchor checks passed.
+246 P4-lessons-languages-4 partial accepted Lisp positions 11 to 15; 30 remain; task, fast and anchor checks passed.

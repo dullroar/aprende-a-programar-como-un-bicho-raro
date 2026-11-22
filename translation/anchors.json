@@ -5180,16 +5180,16 @@
     {
      "en": "Behold the monstrosity",
      "en_id": "behold-the-monstrosity",
-     "es": "Behold the monstrosity",
-     "es_id": "behold-the-monstrosity",
+     "es": "Contempla la monstruosidad",
+     "es_id": "contempla-la-monstruosidad",
      "level": 3,
      "line": 20
     },
     {
      "en": "How the hell does that work?",
      "en_id": "how-the-hell-does-that-work",
-     "es": "How the hell does that work?",
-     "es_id": "how-the-hell-does-that-work",
+     "es": "¿Cómo demonios funciona eso?",
+     "es_id": "cómo-demonios-funciona-eso",
      "level": 3,
      "line": 34
     },
@@ -5275,12 +5275,12 @@
     }
    ],
    "map": {
-    "behold-the-monstrosity": "behold-the-monstrosity",
+    "behold-the-monstrosity": "contempla-la-monstruosidad",
     "common-lisp": "common-lisp",
     "computer-science-behind-this-page": "computer-science-behind-this-page",
     "do-this-in-production-and-youre-fired": "do-this-in-production-and-youre-fired",
     "how-each-program-runs": "how-each-program-runs",
-    "how-the-hell-does-that-work": "how-the-hell-does-that-work",
+    "how-the-hell-does-that-work": "cómo-demonios-funciona-eso",
     "method-combination-as-control-flow": "combinación-de-métodos-como-flujo-de-control",
     "now-break-it-yourself": "now-break-it-yourself",
     "program-flow-of-lisp": "program-flow-of-lisp",

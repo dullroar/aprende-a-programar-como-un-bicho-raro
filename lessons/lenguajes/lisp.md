@@ -17,23 +17,23 @@ En Common Lisp, casi todos los mecanismos que el lenguaje *usa* son también mec
 
 ## Combinación de métodos como flujo de control
 
-### Behold the monstrosity
+### Contempla la monstruosidad
 
 ```bash
 sandbox/container/run-image.sh src/lisp-weird
 ```
 
-The last line of the output tells you what to look for:
+La última línea de la salida te indica qué buscar:
 
 ```text
 # PUNCH had 5 OR methods and 3 ran: the class precedence list is the loop, and OR is the stop rule
 ```
 
-Five methods exist. Three or four of them run. Nothing in the program says "stop". Below the `RUN TIME` marker in [`timecards.lisp`](../../src/lisp-weird/timecards.lisp) there is no `loop`, no `if`, no `cond`, no recursion.
+Existen cinco métodos. Se ejecutan tres o cuatro de ellos. Nada en el programa dice "stop". Debajo del marcador `RUN TIME` en [`timecards.lisp`](../../src/lisp-weird/timecards.lisp) no hay `loop`, ni `if`, ni `cond`, ni recursión.
 
-### How the hell does that work?
+### ¿Cómo demonios funciona eso?
 
-**Method combination.** When a generic function is called and several methods apply, CLOS sorts them most-specific-first and *combines* them. The default combination calls the most specific one, which may call `call-next-method`. But the standard also ships others (`and`, `or`, `progn`, `append`, `list`, `max`, `min`, `+`, `nconc`) that call all the applicable methods for you:
+**Combinación de métodos.** Cuando se llama a una función genérica y se aplican varios métodos, CLOS los ordena de más específico a menos específico y los *combina*. La combinación predeterminada llama al más específico, que puede llamar a `call-next-method`. Pero el estándar también incluye otras (`and`, `or`, `progn`, `append`, `list`, `max`, `min`, `+`, `nconc`) que llaman por ti a todos los métodos aplicables:
 
 ```lisp
 (defgeneric punch (ledger)

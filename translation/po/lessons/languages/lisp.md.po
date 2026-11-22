@@ -65,27 +65,27 @@ msgstr "Combinación de métodos como flujo de control"
 #: lessons/languages/lisp.md:20
 msgctxt "s-cc9cfaabc50d-0011"
 msgid "Behold the monstrosity"
-msgstr ""
+msgstr "Contempla la monstruosidad"
 
 #: lessons/languages/lisp.md:26
 msgctxt "s-e23934c2e7f0-0012"
 msgid "The last line of the output tells you what to look for:"
-msgstr ""
+msgstr "La última línea de la salida te indica qué buscar:"
 
 #: lessons/languages/lisp.md:32
 msgctxt "s-eb82182ffc14-0013"
 msgid "Five methods exist. Three or four of them run. Nothing in the program says \"stop\". Below the ⟦CODE_0001⟧ marker in [⟦CODE_0002⟧](⟦DEST_0003⟧) there is no ⟦CODE_0004⟧, no ⟦CODE_0005⟧, no ⟦CODE_0006⟧, no recursion."
-msgstr ""
+msgstr "Existen cinco métodos. Se ejecutan tres o cuatro de ellos. Nada en el programa dice \"stop\". Debajo del marcador ⟦CODE_0001⟧ en [⟦CODE_0002⟧](⟦DEST_0003⟧) no hay ⟦CODE_0004⟧, ni ⟦CODE_0005⟧, ni ⟦CODE_0006⟧, ni recursión."
 
 #: lessons/languages/lisp.md:34
 msgctxt "s-415f5fa29cf9-0014"
 msgid "How the hell does that work?"
-msgstr ""
+msgstr "¿Cómo demonios funciona eso?"
 
 #: lessons/languages/lisp.md:36
 msgctxt "s-686fa2b12126-0015"
 msgid "**Method combination.** When a generic function is called and several methods apply, CLOS sorts them most-specific-first and *combines* them. The default combination calls the most specific one, which may call ⟦CODE_0001⟧. But the standard also ships others (⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧, ⟦CODE_0006⟧, ⟦CODE_0007⟧, ⟦CODE_0008⟧, ⟦CODE_0009⟧, ⟦CODE_0010⟧) that call all the applicable methods for you:"
-msgstr ""
+msgstr "**Combinación de métodos.** Cuando se llama a una función genérica y se aplican varios métodos, CLOS los ordena de más específico a menos específico y los *combina*. La combinación predeterminada llama al más específico, que puede llamar a ⟦CODE_0001⟧. Pero el estándar también incluye otras (⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧, ⟦CODE_0006⟧, ⟦CODE_0007⟧, ⟦CODE_0008⟧, ⟦CODE_0009⟧, ⟦CODE_0010⟧) que llaman por ti a todos los métodos aplicables:"
 
 #: lessons/languages/lisp.md:44
 msgctxt "s-6fbec85e6b2c-0016"
