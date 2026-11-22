@@ -26,12 +26,12 @@ sandbox/container/run-image.sh src/tar-gnu
 
 Un archivo tar de doce archivos diminutos. Un despachador de unas 80 líneas. Sin bucle en el despachador, sin números aleatorios y sin el número 40.
 
-### How the hell does that work?
+### ¿Cómo demonios funciona eso?
 
-- **The members are the instructions.** `010.card` is "add a card". Its body is `category=Meetings` and `hours=13`. The name carries the order, and the body carries the operands.
-- **tar is the loop.** It reads the next member and starts the dispatcher, until the archive ends.
-- **The dice are rolled when the program is written.** A builder draws the five hours from a seeded generator and stores the seed in the first member. The same seed gives the same bytes.
-- **The stop rule is data.** Each card is followed by a `011.stop-over` member that holds `limit=40`. The dispatcher only knows what `stop-over` *means*: halt if the total is over the limit.
+- **Los miembros son las instrucciones.** `010.card` es "agrega una tarjeta". Su cuerpo es `category=Meetings` y `hours=13`. El nombre lleva el orden y el cuerpo lleva los operandos.
+- **tar es el bucle.** Lee el siguiente miembro e inicia el despachador, hasta que termina el archivo.
+- **Los dados se tiran al escribir el programa.** Un generador de archivos sortea las cinco horas con un generador con semilla y guarda la semilla en el primer miembro. La misma semilla produce los mismos bytes.
+- **La regla de parada son datos.** Cada tarjeta va seguida de un miembro `011.stop-over` que contiene `limit=40`. El despachador solo sabe qué *significa* `stop-over`: detenerse si el total supera el límite.
 - **Reading is not running.** `inspect.sh` lists and decodes every member with `tar -t` and `tar -xO`. `interpret.sh --execute` is the only place where `--to-command` appears.
 
 The [README](../../src/tar-gnu/README.md#es-solo-un-archivo-tar-serialización-deserialización-y-ejecución) has the full table of who does what.

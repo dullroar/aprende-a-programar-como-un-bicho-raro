@@ -85,27 +85,27 @@ msgstr "Un archivo tar de doce archivos diminutos. Un despachador de unas 80 lí
 #: lessons/languages/tar.md:29
 msgctxt "s-415f5fa29cf9-0015"
 msgid "How the hell does that work?"
-msgstr ""
+msgstr "¿Cómo demonios funciona eso?"
 
 #: lessons/languages/tar.md:31
 msgctxt "s-8e5312236e38-0016"
 msgid "**The members are the instructions.** ⟦CODE_0001⟧ is \"add a card\". Its body is ⟦CODE_0002⟧ and ⟦CODE_0003⟧. The name carries the order, and the body carries the operands."
-msgstr ""
+msgstr "**Los miembros son las instrucciones.** ⟦CODE_0001⟧ es \"agrega una tarjeta\". Su cuerpo es ⟦CODE_0002⟧ y ⟦CODE_0003⟧. El nombre lleva el orden y el cuerpo lleva los operandos."
 
 #: lessons/languages/tar.md:32
 msgctxt "s-01820e61e541-0017"
 msgid "**tar is the loop.** It reads the next member and starts the dispatcher, until the archive ends."
-msgstr ""
+msgstr "**tar es el bucle.** Lee el siguiente miembro e inicia el despachador, hasta que termina el archivo."
 
 #: lessons/languages/tar.md:33
 msgctxt "s-5ba4020ee2d1-0018"
 msgid "**The dice are rolled when the program is written.** A builder draws the five hours from a seeded generator and stores the seed in the first member. The same seed gives the same bytes."
-msgstr ""
+msgstr "**Los dados se tiran al escribir el programa.** Un generador de archivos sortea las cinco horas con un generador con semilla y guarda la semilla en el primer miembro. La misma semilla produce los mismos bytes."
 
 #: lessons/languages/tar.md:34
 msgctxt "s-ec6af70145fd-0019"
 msgid "**The stop rule is data.** Each card is followed by a ⟦CODE_0001⟧ member that holds ⟦CODE_0002⟧. The dispatcher only knows what ⟦CODE_0003⟧ *means*: halt if the total is over the limit."
-msgstr ""
+msgstr "**La regla de parada son datos.** Cada tarjeta va seguida de un miembro ⟦CODE_0001⟧ que contiene ⟦CODE_0002⟧. El despachador solo sabe qué *significa* ⟦CODE_0003⟧: detenerse si el total supera el límite."
 
 #: lessons/languages/tar.md:35
 msgctxt "s-87de35126c28-0020"
