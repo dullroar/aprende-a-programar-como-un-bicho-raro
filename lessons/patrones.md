@@ -87,48 +87,48 @@ flowchart LR
 Cada pista guarda "lo que pasa después" en un lugar que no es un contador de bucle: en el destino de un salto, en la posición de un analizador sintáctico o en archivos que lee una herramienta reiniciada. La figura compara *dónde* vive el estado, y la tabla generada de abajo da la lista de los muchos otros lugares. Las páginas de cada lenguaje muestran cada programa completo.
 
 <!-- BEGIN GENERATED control-state -->
-| Place | Entry |
+| Lugar | Entrada |
 | --- | --- |
-| Balancing-group capture stacks | [regex](lenguajes/regex.md#net-grupos-de-equilibrio): [`regex-dotnet`](../src/regex-dotnet/README.md) |
-| Arrays, and nothing hidden | [apl](lenguajes/apl.md): [`apl`](../src/apl/README.md) |
-| Arrays, and the source text of functions | [apl](lenguajes/apl.md#funciones-que-se-modifican-a-sí-mismas-apl-weird): [`apl-weird`](../src/apl-weird/README.md) |
-| Arrays and parameter-local variables | [awk](lenguajes/awk.md): [`awk`](../src/awk/README.md) |
-| The input stream and the record separator `RS` | [awk](lenguajes/awk.md#registros-a-partir-de-un-flujo-de-bytes-aleatorios-awk-weird): [`awk-weird`](../src/awk-weird/README.md) |
-| Fields of one anonymous object | [csharp-linq-xaml](lenguajes/csharp-linq-xaml.md#el-original-modernchallenge1): [`ModernChallenge1`](../src/ModernChallenge1/README.md) |
-| `CMAKE_MATCH_1`..`5`, rebuilt every pass | [make-cmake](lenguajes/make-cmake.md#cmake): [`cmake`](../src/cmake/README.md) |
-| `WS-TOTAL` and its 88-level name `OVER-FORTY` | [cobol](lenguajes/cobol.md): [`cobol`](../src/cobol/README.md) |
-| The target of one `GO TO` | [cobol](lenguajes/cobol.md#alter): [`cobol-weird`](../src/cobol-weird/README.md) |
-| Variables the `LOOP` owns, such as `total` | [lisp](lenguajes/lisp.md): [`lisp`](../src/lisp/README.md) |
-| The class precedence list, and each method's return value | [lisp](lenguajes/lisp.md#combinación-de-métodos-como-flujo-de-control): [`lisp-weird`](../src/lisp-weird/README.md) |
-| The editor buffer: one line per card, and marks (x) that are added by joining lines | [editors](lenguajes/editores.md#el-búfer-es-la-máquina): [`ed-weird`](../src/ed-weird/README.md) |
-| The marks (where we are on a tape of numbered lines), the first line of the buffer (the next card), and registers a, d and n | [editors](lenguajes/editores.md#un-programa-que-puedes-editar): [`ex-weird`](../src/ex-weird/README.md) |
-| The variables `total` and `cards`, and the data stack | [forth](lenguajes/forth.md): [`forth`](../src/forth/README.md) |
-| The data stack and the parse position `>in` | [forth](lenguajes/forth.md): [`forth-weird`](../src/forth-weird/README.md) |
-| The path from the start directory to the directory being visited; its depth is the running total | [find](lenguajes/find.md): [`find-gnu`](../src/find-gnu/README.md) |
-| Which `.tc-N.mk` files exist, and `MAKE_RESTARTS` | [make-cmake](lenguajes/make-cmake.md#gnu-make): [`make-gnu`](../src/make-gnu/README.md) |
-| One line of text, rewritten until no rule applies | [regex](lenguajes/regex.md#gnu-sed): [`regex-sed`](../src/regex-sed/README.md) |
-| The archive's members, which are the program, plus one SQLite row that says whether the run has halted or faulted | [tar](lenguajes/tar.md#un-programa-que-es-un-archivo): [`tar-gnu`](../src/tar-gnu/README.md) |
-| One SQLite row (the machine's registers) and the number of records tar has written | [tar](lenguajes/tar.md#el-archivo-es-el-reloj): [`tar-gnu-weird`](../src/tar-gnu-weird/README.md) |
-| Fields of one anonymous struct | [csharp-linq-xaml](lenguajes/csharp-linq-xaml.md#las-adaptaciones-de-una-sola-sentencia-mismo-truco-distinta-maquinaria): [`GoChallenge1`](../src/GoChallenge1/README.md) |
-| The unevaluated parts of the lists, read on demand | [haskell](lenguajes/haskell.md): [`haskell`](../src/haskell/README.md) |
-| Thunks: which parts of a list have been demanded | [haskell](lenguajes/haskell.md#la-es-perezosa-como-flujo-de-control): [`haskell-weird`](../src/haskell-weird/README.md) |
-| Fields of one anonymous class | [csharp-linq-xaml](lenguajes/csharp-linq-xaml.md#las-adaptaciones-de-una-sola-sentencia-mismo-truco-distinta-maquinaria): [`JavaChallenge1`](../src/JavaChallenge1/README.md) |
-| Properties of one object literal | [javascript](lenguajes/javascript.md#el-for-sin-cuerpo-en-node): [`javascript`](../src/javascript/README.md) |
-| The running total and the card count, held in one object that only the listeners touch | [javascript](lenguajes/javascript.md#escuchadores-de-eventos-hasta-el-fondo): [`javascript-events`](../src/javascript-events/README.md) |
-| Variables captured by closures: the generator's number, and the machine's card count, total and stop flag | [javascript](lenguajes/javascript.md#clausuras-hasta-el-fondo): [`javascript-weird`](../src/javascript-weird/README.md) |
-| Properties of one object expression, the seed of the sequence | [csharp-linq-xaml](lenguajes/csharp-linq-xaml.md#las-adaptaciones-de-una-sola-sentencia-mismo-truco-distinta-maquinaria): [`KotlinChallenge1`](../src/KotlinChallenge1/README.md) |
-| Inside the stages' enumerators, and in the database | [csharp-linq-xaml](lenguajes/csharp-linq-xaml.md#la-ejecución-diferida-y-el-truco-de-convertir-void-en-valor): [`LinqChallenge1`](../src/LinqChallenge1/README.md) |
-| A prefix sum recomputed in each `where`, and the database; no accumulator variable | [csharp-linq-xaml](lenguajes/csharp-linq-xaml.md#la-ejecución-diferida-y-el-truco-de-convertir-void-en-valor): [`LinqChallenge2`](../src/LinqChallenge2/README.md) |
-| The input stream: whatever macro text has not been read yet | [m4](lenguajes/m4.md#un-bucle-hecho-de-reescaneo): [`m4`](../src/m4/README.md) |
-| A C struct that never rewinds | [regex](lenguajes/regex.md#pcre2-los-callouts-como-conjunto-de-instrucciones): [`regex-pcre2`](../src/regex-pcre2/README.md) |
-| SQLite rows, and the exit code of each callout | [regex](lenguajes/regex.md#pcre2grep-códigos-de-salida-como-flujo-de-control): [`regex-pcre2grep`](../src/regex-pcre2grep/README.md) |
-| `local` variables that unwind (effects do not) | [regex](lenguajes/regex.md#perl-código-dentro-de-la-coincidencia): [`regex-perl`](../src/regex-perl/README.md) |
-| The path from the start directory to the directory being visited | [find](lenguajes/find.md): [`find-posix`](../src/find-posix/README.md) |
-| Attributes of one state object passed to the lambda | [csharp-linq-xaml](lenguajes/csharp-linq-xaml.md#las-adaptaciones-de-una-sola-sentencia-mismo-truco-distinta-maquinaria): [`PythonChallenge1`](../src/PythonChallenge1/README.md) |
-| A new immutable `DemoBatch` for every step; nothing is mutated | [csharp-linq-xaml](lenguajes/csharp-linq-xaml.md#las-adaptaciones-de-una-sola-sentencia-mismo-truco-distinta-maquinaria): [`RustChallenge1`](../src/RustChallenge1/README.md) |
-| Dicts and Tcl variables, saved in one `db transaction` | [tcl](lenguajes/tcl.md): [`tcl`](../src/tcl/README.md) |
-| A TEMP table of proc source, and the depth of trigger recursion | [tcl](lenguajes/tcl.md#sqlite-como-programa): [`tcl-weird`](../src/tcl-weird/README.md) |
-| Document order, plus "carrier" arrays | [csharp-linq-xaml](lenguajes/csharp-linq-xaml.md#xaml): [`xaml`](../src/xaml/README.md) |
+| Arreglos y nada oculto | [apl](lenguajes/apl.md): [`apl`](../src/apl/README.md) |
+| Arreglos y el texto fuente de las funciones | [apl](lenguajes/apl.md#funciones-que-se-modifican-a-sí-mismas-apl-weird): [`apl-weird`](../src/apl-weird/README.md) |
+| Arreglos y variables locales de parámetro | [awk](lenguajes/awk.md): [`awk`](../src/awk/README.md) |
+| El flujo de entrada de datos y el separador de registros `RS` | [awk](lenguajes/awk.md#registros-a-partir-de-un-flujo-de-bytes-aleatorios-awk-weird): [`awk-weird`](../src/awk-weird/README.md) |
+| Campos de un objeto anónimo | [csharp-linq-xaml](lenguajes/csharp-linq-xaml.md#el-original-modernchallenge1): [`ModernChallenge1`](../src/ModernChallenge1/README.md) |
+| `CMAKE_MATCH_1`..`5`, reconstruido en cada pasada | [make-cmake](lenguajes/make-cmake.md#cmake): [`cmake`](../src/cmake/README.md) |
+| `WS-TOTAL` y su nombre de nivel 88 `OVER-FORTY` | [cobol](lenguajes/cobol.md): [`cobol`](../src/cobol/README.md) |
+| El destino de un `GO TO` | [cobol](lenguajes/cobol.md#alter): [`cobol-weird`](../src/cobol-weird/README.md) |
+| Variables que posee `LOOP`, como `total` | [lisp](lenguajes/lisp.md): [`lisp`](../src/lisp/README.md) |
+| La lista de precedencia de clases y el valor de retorno de cada método | [lisp](lenguajes/lisp.md#combinación-de-métodos-como-flujo-de-control): [`lisp-weird`](../src/lisp-weird/README.md) |
+| El búfer del editor: una línea por tarjeta y marcas (x) que se añaden al unir líneas | [editores](lenguajes/editores.md#el-búfer-es-la-máquina): [`ed-weird`](../src/ed-weird/README.md) |
+| Las marcas (dónde estamos en una cinta de líneas numeradas), la primera línea del búfer (la siguiente tarjeta) y los registros a, d y n | [editores](lenguajes/editores.md#un-programa-que-puedes-editar): [`ex-weird`](../src/ex-weird/README.md) |
+| Las variables `total` y `cards` junto con la pila de datos | [forth](lenguajes/forth.md): [`forth`](../src/forth/README.md) |
+| La pila de datos y la posición de análisis `>in` | [forth](lenguajes/forth.md): [`forth-weird`](../src/forth-weird/README.md) |
+| El camino desde el directorio de inicio hasta el directorio que se visita; su profundidad es el total acumulado | [find](lenguajes/find.md): [`find-gnu`](../src/find-gnu/README.md) |
+| Qué archivos `.tc-N.mk` existen y `MAKE_RESTARTS` | [make-cmake](lenguajes/make-cmake.md#gnu-make): [`make-gnu`](../src/make-gnu/README.md) |
+| Una línea de texto, reescrita hasta que ninguna regla se aplique | [regex](lenguajes/regex.md#gnu-sed): [`regex-sed`](../src/regex-sed/README.md) |
+| Los miembros del archivo, que son el programa, más una fila de SQLite que indica si la ejecución se detuvo o falló | [tar](lenguajes/tar.md#un-programa-que-es-un-archivo): [`tar-gnu`](../src/tar-gnu/README.md) |
+| Una fila de SQLite (los registros de la máquina) y el número de registros que tar ha escrito | [tar](lenguajes/tar.md#el-archivo-es-el-reloj): [`tar-gnu-weird`](../src/tar-gnu-weird/README.md) |
+| Campos de una estructura anónima | [csharp-linq-xaml](lenguajes/csharp-linq-xaml.md#las-adaptaciones-de-una-sola-sentencia-mismo-truco-distinta-maquinaria): [`GoChallenge1`](../src/GoChallenge1/README.md) |
+| Las partes sin evaluar de las listas, leídas bajo demanda | [haskell](lenguajes/haskell.md): [`haskell`](../src/haskell/README.md) |
+| Thunks: qué partes de una lista se han demandado | [haskell](lenguajes/haskell.md#la-es-perezosa-como-flujo-de-control): [`haskell-weird`](../src/haskell-weird/README.md) |
+| Campos de una clase anónima | [csharp-linq-xaml](lenguajes/csharp-linq-xaml.md#las-adaptaciones-de-una-sola-sentencia-mismo-truco-distinta-maquinaria): [`JavaChallenge1`](../src/JavaChallenge1/README.md) |
+| Propiedades de un objeto literal | [javascript](lenguajes/javascript.md#el-for-sin-cuerpo-en-node): [`javascript`](../src/javascript/README.md) |
+| El total acumulado y el número de tarjetas, guardados en un objeto que solo tocan los escuchadores de eventos | [javascript](lenguajes/javascript.md#escuchadores-de-eventos-hasta-el-fondo): [`javascript-events`](../src/javascript-events/README.md) |
+| Variables capturadas por clausuras: el número del generador; de la máquina, la cantidad de tarjetas, el total y la bandera de parada | [javascript](lenguajes/javascript.md#clausuras-hasta-el-fondo): [`javascript-weird`](../src/javascript-weird/README.md) |
+| Propiedades de una expresión de objeto, la semilla de la secuencia | [csharp-linq-xaml](lenguajes/csharp-linq-xaml.md#las-adaptaciones-de-una-sola-sentencia-mismo-truco-distinta-maquinaria): [`KotlinChallenge1`](../src/KotlinChallenge1/README.md) |
+| Dentro de los enumeradores de las etapas y en la base de datos | [csharp-linq-xaml](lenguajes/csharp-linq-xaml.md#la-ejecución-diferida-y-el-truco-de-convertir-void-en-valor): [`LinqChallenge1`](../src/LinqChallenge1/README.md) |
+| Una suma acumulada hasta el día actual recalculada en cada `where`, y la base de datos; sin variable acumuladora | [csharp-linq-xaml](lenguajes/csharp-linq-xaml.md#la-ejecución-diferida-y-el-truco-de-convertir-void-en-valor): [`LinqChallenge2`](../src/LinqChallenge2/README.md) |
+| El flujo de entrada de datos: todo el texto de macros sin leer | [m4](lenguajes/m4.md#un-bucle-hecho-de-reescaneo): [`m4`](../src/m4/README.md) |
+| Una struct de C que nunca retrocede | [regex](lenguajes/regex.md#pcre2-los-callouts-como-conjunto-de-instrucciones): [`regex-pcre2`](../src/regex-pcre2/README.md) |
+| Filas de SQLite y el código de salida de cada callout | [regex](lenguajes/regex.md#pcre2grep-códigos-de-salida-como-flujo-de-control): [`regex-pcre2grep`](../src/regex-pcre2grep/README.md) |
+| Variables `local` que se deshacen (los efectos no) | [regex](lenguajes/regex.md#perl-código-dentro-de-la-coincidencia): [`regex-perl`](../src/regex-perl/README.md) |
+| La ruta desde el directorio de inicio hasta el directorio que se visita | [find](lenguajes/find.md): [`find-posix`](../src/find-posix/README.md) |
+| Atributos de un objeto de estado que se pasa a la lambda | [csharp-linq-xaml](lenguajes/csharp-linq-xaml.md#las-adaptaciones-de-una-sola-sentencia-mismo-truco-distinta-maquinaria): [`PythonChallenge1`](../src/PythonChallenge1/README.md) |
+| Pilas de captura con grupos de equilibrio | [regex](lenguajes/regex.md#net-grupos-de-equilibrio): [`regex-dotnet`](../src/regex-dotnet/README.md) |
+| Un nuevo `DemoBatch` inmutable en cada paso; nada se muta | [csharp-linq-xaml](lenguajes/csharp-linq-xaml.md#las-adaptaciones-de-una-sola-sentencia-mismo-truco-distinta-maquinaria): [`RustChallenge1`](../src/RustChallenge1/README.md) |
+| Diccionarios y variables Tcl que se guardan en un solo `db transaction` | [tcl](lenguajes/tcl.md): [`tcl`](../src/tcl/README.md) |
+| Una tabla TEMP con el código fuente de los procedimientos y la profundidad de la recursión de los disparadores | [tcl](lenguajes/tcl.md#sqlite-como-programa): [`tcl-weird`](../src/tcl-weird/README.md) |
+| El orden del documento y los arreglos "portadores" | [csharp-linq-xaml](lenguajes/csharp-linq-xaml.md#xaml): [`xaml`](../src/xaml/README.md) |
 <!-- END GENERATED control-state -->
 
 Un lector que llega por uno se encuentra con los demás. Ese es el punto.

@@ -118,55 +118,55 @@ La versión "aburrida" de CMake fue el primer borrador: `while()`, `math(EXPR)`,
 Nunca como bucle. Pero "un sistema de construcción que regenera sus propias entradas de datos y se reinicia" es justo en lo que se basa la generación automática de dependencias de compilación. Las capturas de regex de CMake son una forma legítima de analizar versiones y rutas. La pirueta consiste en usar esas funciones para todo.
 
 <!-- BEGIN GENERATED program-flow:languages/make-cmake.md -->
-## How each program runs
+## Cómo corre cada programa
 
-Each picture below is the `## Program Flow` section of an entry's README, copied here by the build. It shows how that program makes the work happen: what the language, runtime or tool really does. [The introduction](../introduccion.md#qué-hace-el-reto) shows what the challenge asks for and where entries differ.
+Cada imagen de abajo es la sección `## Flujo del programa` del README de una entrada, copiada aquí por la compilación. Muestra cómo ese programa hace el trabajo: lo que el lenguaje, el entorno de ejecución o la herramienta hacen en realidad. [La introducción](../introduccion.md#qué-hace-el-reto) muestra qué pide el reto y en qué se distinguen las entradas.
 
-### Program flow of `cmake`
+### Flujo del programa de `cmake`
 
-From [`cmake`](../../src/cmake/README.md) ([source section](../../src/cmake/README.md#flujo-del-programa)).
+Desde [`cmake`](../../src/cmake/README.md) ([sección original](../../src/cmake/README.md#flujo-del-programa)).
 
 ```mermaid
 flowchart TD
-    accTitle: cmake: one while with an empty body, whose condition is a register machine
-    accDescr: A flowchart. Before the loop, the host draws a tape of nine random digits and stores it in the CMAKE_MATCH variables, which are the registers. Each time around, while re-expands its condition. The first test says no if the total so far plus the last card matches a literal of 41 x characters. The second test builds a subject string and a pattern out of the previous captures, splices in the last digit, and matches, which captures the next hours row and rewrites all the registers. If both tests pass, the empty body runs and the loop goes round again. If a test fails, the loop ends, and the host reads the log, picks the ISO week, writes SQLite and plays the glow.
-    A["Host: draw 9 random digits and store them in the CMAKE_MATCH variables"] --> B{{"while re-expands its condition"}}
-    B --> C{{"Test 1: does total plus last card match 41 x's?"}}
-    C -->|"yes: over 40"| G["Loop ends: the host reads the log, picks the week, writes SQLite, plays the glow"]
-    C -->|no| D{{"Test 2: MATCHES on a subject built from the last captures"}}
-    D -->|"match: the registers now hold the new total and card"| E["Empty body"]
+    accTitle: cmake: un while con cuerpo vacío, cuya condición es una máquina de registros
+    accDescr: Un diagrama de flujo. Antes del bucle, el anfitrión genera una cinta de nueve dígitos aleatorios y la guarda en las variables CMAKE_MATCH, que son los registros. En cada vuelta, while vuelve a expandir su condición. La primera prueba responde que no si el total acumulado más la última tarjeta coincide con un literal de 41 caracteres x. La segunda prueba construye una cadena de texto sujeto y un patrón a partir de las capturas anteriores, inserta el último dígito y ejecuta la coincidencia. Esa coincidencia captura la siguiente fila de horas y reescribe todos los registros. Si ambas pruebas pasan, se ejecuta el cuerpo vacío y el bucle da otra vuelta. Si una prueba falla, el bucle termina y el anfitrión lee el log, elige la semana ISO, escribe en SQLite y reproduce el resplandor.
+    A["Anfitrión: elige 9 dígitos al azar y guárdalos en las variables CMAKE_MATCH"] --> B{{"while vuelve a expandir su condición"}}
+    B --> C{{"Prueba 1: ¿el total más la última tarjeta coincide con 41 x?"}}
+    C -->|"sí: más de 40"| G["Fin del bucle: el anfitrión lee el log, elige la semana, escribe en SQLite y reproduce el resplandor"]
+    C -->|no| D{{"Prueba 2: MATCHES sobre un sujeto construido a partir de las últimas capturas"}}
+    D -->|"coincidencia: los registros ahora contienen el nuevo total y la tarjeta"| E["Cuerpo vacío"]
     E --> B
-    D -->|"no match: the registers are cleared"| G
+    D -->|"sin coincidencia: se borran los registros"| G
 ```
 
-**What this shows:** `while()` re-expands its condition on every pass, and `MATCHES` stores its captures in ordinary variables. So the condition can build its next subject out of its last captures, and the *match* is the program. Numbers are runs of `x`, and the stop rule is a 41-character literal.
+**Qué muestra:** `while()` vuelve a expandir su condición en cada pasada, y `MATCHES` guarda sus capturas en variables ordinarias. Así, la condición puede construir su siguiente cadena de entrada a partir de sus últimas capturas, y la *coincidencia* es el programa. Los números son secuencias de `x`, y la regla de parada es un literal de 41 caracteres.
 
-**Why this mechanism matters:** the loop has an empty body and a register machine for a condition. Test 1 must run first, because a failed match clears the registers and a successful one rewrites them, so the main match has to run last for its captures to survive. `AND` does not stop at the first false test: on the final pass, when test 1 has already said stop, test 2 still runs, and that is what moves the last card into the log (`CMAKE_MATCH_4`). The registers then also hold one more hours lookup that is never reported. CMake's documentation does not promise that both operands are evaluated, so this is accidentally exploited. Swapping the two tests gives a run with zero cards.
+**Por qué importa este mecanismo:** el bucle tiene un cuerpo vacío y una máquina de registros como condición. La prueba 1 debe ejecutarse primero, porque una coincidencia fallida borra los registros y una exitosa los reescribe; por eso la coincidencia principal debe ejecutarse al final para que sus capturas sobrevivan. `AND` no se detiene en la primera prueba falsa: en la pasada final, cuando la prueba 1 ya indicó que se detenga, la prueba 2 aún se ejecuta, y eso es lo que mueve la última tarjeta al log (`CMAKE_MATCH_4`). Entonces los registros también guardan una búsqueda de horas más que nunca se informa. La documentación de CMake no promete que se evalúen ambos operandos, así que este comportamiento es aprovechado por accidente. Si intercambias las dos pruebas, obtienes una ejecución con cero tarjetas.
 
-### Program flow of `make-gnu`
+### Flujo del programa de `make-gnu`
 
-From [`make-gnu`](../../src/make-gnu/README.md) ([source section](../../src/make-gnu/README.md#flujo-del-programa)).
+Desde [`make-gnu`](../../src/make-gnu/README.md) ([sección original](../../src/make-gnu/README.md#flujo-del-programa)).
 
 ```mermaid
 flowchart TD
-    accTitle: make-gnu: Make restarts itself once per card
-    accDescr: A flowchart. Make reads the makefile and includes every .tc-N.mk file written so far. A pattern rule checks whether the running total, held as a list of x words, is 40 or less. If it is, the rule writes the next .tc-N.mk file. A makefile that was remade makes Make re-execute itself, and MAKE_RESTARTS counts the passes. If the total is over 40, the rule writes nothing, so nothing is remade, Make stops restarting, and the default goal all runs. It prints the report through a chain of phony targets, plays a glow on a terminal, and hands the SQL script to sqlite3.
-    A["Make reads the makefile and includes every .tc-N.mk written so far"] --> B{{"Is the total, a list of x words, 40 or less?"}}
-    B -->|yes| C["A pattern rule writes the next .tc-N.mk file with the next card"]
-    C --> D["A file was remade, so Make re-executes itself: MAKE_RESTARTS goes up by one"]
+    accTitle: make-gnu: Make se reinicia a sí mismo una vez por tarjeta
+    accDescr: Un diagrama de flujo. Make lee el makefile e incluye todos los archivos .tc-N.mk escritos hasta ahora. Una regla de patrón comprueba si el total acumulado, guardado como una lista de palabras x, no pasa de 40. Si es así, la regla escribe el siguiente archivo .tc-N.mk. Un makefile regenerado hace que Make se vuelva a ejecutar, y MAKE_RESTARTS cuenta las pasadas. Si el total pasa de 40, la regla no escribe nada, así que no se regenera nada, Make deja de reiniciarse y se ejecuta la meta predeterminada all. Esta imprime el informe mediante una cadena de objetivos phony, muestra un resplandor en una terminal y entrega el script SQL a sqlite3.
+    A["Make lee el makefile e incluye todos los .tc-N.mk escritos hasta ahora"] --> B{{"¿El total, una lista de x palabras, es de 40 o menos?"}}
+    B -->|sí| C["Una regla de patrón escribe el siguiente archivo .tc-N.mk con la siguiente tarjeta"]
+    C --> D["Se rehízo un archivo, así que Make se vuelve a ejecutar a sí mismo: MAKE_RESTARTS aumenta en uno"]
     D --> A
-    B -->|"no: the 41st word exists"| E["Nothing is remade: Make stops restarting"]
-    E --> F["all runs: phony targets print the report, a glow plays on a terminal"]
-    F --> G["sqlite3 reads the script that Make wrote"]
+    B -->|"no: existe la palabra 41"| E["No se rehace nada: Make deja de reiniciarse"]
+    E --> F["all se ejecuta: los objetivos phony imprimen el informe y se reproduce un brillo en una terminal"]
+    F --> G["sqlite3 lee el script que escribió Make"]
 ```
 
-**What this shows:** the loop is the build tool rerunning itself. Each pass includes the `.tc-N.mk` files that exist, and a file that gets written forces a restart. The state is *which files exist*. The stop rule is that the rule declines to write a new file.
+**Qué muestra:** el bucle es la herramienta de compilación que se vuelve a ejecutar a sí misma. Cada pasada incluye los archivos `.tc-N.mk` que existen, y un archivo que se escribe fuerza un reinicio. El estado es *qué archivos existen*. La regla de parada es que la regla se niega a escribir un archivo nuevo.
 
-**Why this mechanism matters:** Make's dependency engine decides what to do next from the state of the file system. There is no loop statement and no `$(shell)`: arithmetic is list surgery on `x` words. The report is a chain of phony targets so that its output stays in order.
+**Por qué importa este mecanismo:** el motor de dependencias de Make decide qué hacer a continuación según el estado del sistema de archivos. No hay sentencia de bucle ni `$(shell)`: la aritmética es cirugía de listas sobre palabras `x`. El informe es una cadena de objetivos *phony* para que su salida se mantenga en orden.
 <!-- END GENERATED program-flow:languages/make-cmake.md -->
 
 ## La informática detrás de esta página
 
 <!-- BEGIN GENERATED concepts:languages/make-cmake.md -->
-The computer-science ideas behind this page: [Register machines and counter machines](../informatica/02-que-cuenta-como-maquina.md#register-machines-and-counter-machines), [Turing completeness](../informatica/02-que-cuenta-como-maquina.md#turing-completeness), [Control flow](../informatica/03-flujo-de-control-y-continuaciones.md#control-flow), [Fixed-point iteration](../informatica/03-flujo-de-control-y-continuaciones.md#fixed-point-iteration), [Regular expressions](../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#regular-expressions), [Declarative programming](../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#declarative-programming), [Domain-specific languages](../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#domain-specific-languages), [Build automation](../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#build-automation), [State](../informatica/06-estado-mas-alla-de-las-variables.md#state), [Dependency graphs](../informatica/06-estado-mas-alla-de-las-variables.md#dependency-graphs), [Hyrum's law](../informatica/08-fugas-de-abstraccion-y-dependencia-de-la-implementacion.md#hyrums-law).
+Las ideas de ciencias de la computación detrás de esta página: [Máquinas de registros y máquinas de contadores](../informatica/02-que-cuenta-como-maquina.md#máquinas-de-registros-y-máquinas-de-contadores), [Completitud de Turing](../informatica/02-que-cuenta-como-maquina.md#completitud-de-turing), [Flujo de control](../informatica/03-flujo-de-control-y-continuaciones.md#flujo-de-control), [Iteración de punto fijo](../informatica/03-flujo-de-control-y-continuaciones.md#iteración-de-punto-fijo), [Expresiones regulares](../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#expresiones-regulares), [Programación declarativa](../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#programación-declarativa), [Lenguajes específicos de dominio](../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#lenguajes-específicos-de-dominio), [Automatización de la compilación](../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#automatización-de-la-compilación), [Estado](../informatica/06-estado-mas-alla-de-las-variables.md#estado), [Grafos de dependencias](../informatica/06-estado-mas-alla-de-las-variables.md#grafos-de-dependencias), [Ley de Hyrum](../informatica/08-fugas-de-abstraccion-y-dependencia-de-la-implementacion.md#ley-de-hyrum).
 <!-- END GENERATED concepts:languages/make-cmake.md -->

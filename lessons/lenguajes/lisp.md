@@ -91,63 +91,63 @@ Consulta los [ejercicios](../exercises.md#b10-lisp-cambia-la-combinación-de-mé
 Cuando el "bucle" es en realidad *un conjunto de participantes registrados de manera independiente* (complementos, validadores, escuchadores de eventos) y el lenguaje te da una regla para combinarlos. Usar cinco clases vacías para contar hasta cinco es una pirueta; usar `or` para encontrar el primer escuchador de eventos que acepta un evento es el diseño previsto.
 
 <!-- BEGIN GENERATED program-flow:languages/lisp.md -->
-## How each program runs
+## Cómo corre cada programa
 
-Each picture below is the `## Program Flow` section of an entry's README, copied here by the build. It shows how that program makes the work happen: what the language, runtime or tool really does. [The introduction](../introduccion.md#qué-hace-el-reto) shows what the challenge asks for and where entries differ.
+Cada imagen de abajo es la sección `## Flujo del programa` del README de una entrada, copiada aquí por la compilación. Muestra cómo ese programa hace el trabajo: lo que el lenguaje, el entorno de ejecución o la herramienta hacen en realidad. [La introducción](../introduccion.md#qué-hace-el-reto) muestra qué pide el reto y en qué se distinguen las entradas.
 
-### Program flow of `lisp`
+### Flujo del programa de `lisp`
 
-From [`lisp`](../../src/lisp/README.md) ([source section](../../src/lisp/README.md#flujo-del-programa)).
+Desde [`lisp`](../../src/lisp/README.md) ([sección original](../../src/lisp/README.md#flujo-del-programa)).
 
 ```mermaid
 flowchart TD
-    accTitle: lisp: the clauses of one LOOP form, in the order they are written
-    accDescr: A flowchart. The function main seeds a random state from the operating system and works out the ISO week. Then one LOOP form runs its clauses in order on each pass: number counts up from 1, hours is drawn again, hours is summed into total, a card is collected, and an until clause tests whether the total is over 40. If it is not, the next pass starts. Because until comes after collect, the crossing card is kept. When it ends, the program builds the SQL script as a string, runs the sqlite3 command-line tool with run-program, and prints the rows.
-    A["main: make-random-state from the OS, ISO week with decode-universal-time"] --> B["LOOP clause: for number from 1"]
-    B --> C["for hours = a fresh random 10 to 19"]
-    C --> D["sum hours into total"]
-    D --> E["collect a card: number, category, hours, total"]
-    E --> F{{"until total ≥ 41?"}}
+    accTitle: lisp: las cláusulas de una forma LOOP, en el orden en que se escriben
+    accDescr: Un diagrama de flujo. La función main inicializa un estado aleatorio a partir del sistema operativo y calcula la semana ISO. Después, una forma LOOP ejecuta sus cláusulas en orden en cada pasada: number cuenta desde 1, hours se sortea de nuevo, hours se suma a total, se recoge una tarjeta y una cláusula until comprueba si total pasa de 40. Si no es así, empieza la siguiente pasada. Como until va después de collect, se conserva la tarjeta que cruza el límite. Cuando termina, el programa construye el script SQL como una cadena de texto, ejecuta la herramienta de línea de comandos sqlite3 con run-program e imprime las filas.
+    A["main: make-random-state desde el sistema operativo, semana ISO con decode-universal-time"] --> B["Cláusula del bucle LOOP: for number from 1"]
+    B --> C["for hours = un número aleatorio nuevo de 10 a 19 horas"]
+    C --> D["suma las horas en el total"]
+    D --> E["recoge una tarjeta: número, categoría, horas, total"]
+    E --> F{{"¿Hasta que total ≥ 41?"}}
     F -->|no| B
-    F -->|yes| G["Build the SQL script as a string, run sqlite3 with run-program, print the rows"]
+    F -->|Sí| G["Construye el script SQL como una cadena de texto, ejecuta sqlite3 con run-program e imprime las filas"]
 ```
 
-**What this shows:** `LOOP` is a small language. Its clauses run in the order written, on every pass. `for hours =` is re-evaluated each time, `sum ... into total` keeps the total in a variable the loop owns, and `until` ends the loop.
+**Qué muestra:** `LOOP` es un lenguaje pequeño. Sus cláusulas se ejecutan en el orden en que están escritas, en cada pasada. `for hours =` se vuelve a evaluar cada vez, `sum ... into total` guarda el total en una variable que pertenece al bucle y `until` termina el bucle.
 
-**Why this mechanism matters:** the position of `until` is the stop rule's position. Written after `collect`, it keeps the crossing card. Written before it, the last card is dropped without any error. The weird sibling [`lisp-weird`](../../src/lisp-weird/README.md) has no `LOOP`.
+**Por qué importa este mecanismo:** la posición de `until` es la de la regla de parada. Si lo escribes después de `collect`, conserva la tarjeta del cruce. Si lo escribes antes, la última tarjeta se descarta sin ningún error. El hermano raro [`lisp-weird`](../../src/lisp-weird/README.md) no tiene `LOOP`.
 
-### Program flow of `lisp-weird`
+### Flujo del programa de `lisp-weird`
 
-From [`lisp-weird`](../../src/lisp-weird/README.md) ([source section](../../src/lisp-weird/README.md#flujo-del-programa)).
+Desde [`lisp-weird`](../../src/lisp-weird/README.md) ([sección original](../../src/lisp-weird/README.md#flujo-del-programa)).
 
 ```mermaid
 sequenceDiagram
-    accTitle: lisp-weird: method combination with or is the loop and the stop rule
-    accDescr: A sequence diagram. Main calls the generic function punch on a card-1 instance. CLOS finds every applicable method and sorts them by class precedence: card-1, card-2, and so on up to the ledger. An around method on the ledger runs first. It binds the special variable for the SQL stream and calls the next method, which is the or combination. The or combination calls the card methods in order. Each one deals a card: it draws hours, adds to the total, prints the row and writes the INSERT to the SQL stream. The method returns whether the total is over 40. The first true result ends the or, so later methods never run. The around method then appends COMMIT and pipes the script into sqlite3.
+    accTitle: lisp-weird: la combinación de métodos con or es el bucle y la regla de parada
+    accDescr: Un diagrama de secuencia. Main llama a la función genérica punch sobre una instancia de card-1. CLOS encuentra todos los métodos aplicables y los ordena por precedencia de clase: card-1, card-2 y así hasta ledger. Un método around sobre ledger se ejecuta primero. Este método enlaza la variable especial del flujo SQL y llama al siguiente método, que es la combinación or. La combinación or llama a los métodos de las tarjetas en orden. Cada método reparte una tarjeta: sortea las horas, las suma al total, imprime la fila y escribe el INSERT en el flujo SQL. El método devuelve si el total pasa de 40. El primer resultado verdadero termina el or, así que los métodos posteriores nunca se ejecutan. Después, el método around añade COMMIT y pasa el script a sqlite3 mediante una tubería.
     participant M as main
-    participant A as around method on ledger
-    participant P as punch with or combination
-    participant K as card-N methods
-    M->>P: punch on a card-1 instance
-    P->>A: the around method runs first
-    A->>A: bind *sql* to a new string stream
-    A->>P: call-next-method: the or chain
-    loop each applicable method, most specific first
-        P->>K: card-N deals a card: hours, total, print, INSERT into *sql*
-        K-->>P: is the total over 40?
+    participant A as método around sobre ledger
+    participant P as punch con combinación or
+    participant K as métodos card-N
+    M->>P: punch en una instancia de card-1
+    P->>A: el método `around` se ejecuta primero
+    A->>A: vincula *sql* a un nuevo flujo de cadena de texto
+    A->>P: call-next-method: la cadena de or
+    loop cada método aplicable, del más específico al menos específico
+        P->>K: card-N reparte una tarjeta: horas, total, impresión, INSERT en *sql*
+        K-->>P: ¿el total pasa de 40?
     end
-    Note over P,K: the first true result ends the or: later methods never run
-    P-->>A: the chain returns
-    A->>A: append COMMIT, pipe the script into sqlite3
+    Note over P,K: el primer resultado verdadero termina el `or`: los métodos posteriores nunca se ejecutan
+    P-->>A: la cadena devuelve
+    A->>A: añade COMMIT, canaliza el script a sqlite3
 ```
 
-**What this shows:** the loop is a class hierarchy. `card-1` inherits from `card-2`, and so on, and the generic function `punch` calls the method of each class in turn. The class is the whole message "this is card number N". The method combination `or` is what stops it: it calls methods until one returns true.
+**Qué muestra:** el bucle es una jerarquía de clases. `card-1` hereda de `card-2` y así sucesivamente. La función genérica `punch` llama al método de cada clase, una tras otra. La clase es todo el mensaje "esta es la tarjeta número N". La combinación de métodos `or` es lo que lo detiene: llama a los métodos hasta que uno devuelva verdadero.
 
-**Why this mechanism matters:** CLOS decides what runs and in what order. The program has no statement that says "stop", and the unused methods are simply never called. The `:around` method wraps the whole chain and uses dynamic binding to send every `format` to one stream.
+**Por qué importa este mecanismo:** CLOS decide qué se ejecuta y en qué orden. El programa no tiene ninguna sentencia que diga "detente", y los métodos que no se usan simplemente nunca se llaman. El método `:around` envuelve toda la cadena y usa enlace dinámico para enviar cada `format` a un único flujo.
 <!-- END GENERATED program-flow:languages/lisp.md -->
 
 ## La informática detrás de esta página
 
 <!-- BEGIN GENERATED concepts:languages/lisp.md -->
-The computer-science ideas behind this page: [Control flow](../informatica/03-flujo-de-control-y-continuaciones.md#control-flow), [Short-circuit evaluation](../informatica/04-evaluacion-y-demanda.md#short-circuit-evaluation), [Macros and text expansion](../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#macros-and-text-expansion), [Domain-specific languages](../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#domain-specific-languages), [State](../informatica/06-estado-mas-alla-de-las-variables.md#state), [Scope and binding](../informatica/06-estado-mas-alla-de-las-variables.md#scope-and-binding), [Homoiconicity: code as data](../informatica/06-estado-mas-alla-de-las-variables.md#homoiconicity-code-as-data), [Reflection and metaprogramming](../informatica/06-estado-mas-alla-de-las-variables.md#reflection-and-metaprogramming).
+Las ideas de ciencias de la computación detrás de esta página: [Flujo de control](../informatica/03-flujo-de-control-y-continuaciones.md#flujo-de-control), [Evaluación de cortocircuito](../informatica/04-evaluacion-y-demanda.md#evaluación-de-cortocircuito), [Macros y expansión de texto](../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#macros-y-expansión-de-texto), [Lenguajes específicos de dominio](../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#lenguajes-específicos-de-dominio), [Estado](../informatica/06-estado-mas-alla-de-las-variables.md#estado), [Ámbito y enlace de nombres](../informatica/06-estado-mas-alla-de-las-variables.md#ámbito-y-enlace-de-nombres), [Homoiconicidad: código como datos](../informatica/06-estado-mas-alla-de-las-variables.md#homoiconicidad-código-como-datos), [Reflexión y metaprogramación](../informatica/06-estado-mas-alla-de-las-variables.md#reflexión-y-metaprogramación).
 <!-- END GENERATED concepts:languages/lisp.md -->

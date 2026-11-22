@@ -118,134 +118,134 @@ Nunca como diseño de una aplicación. Pero los callouts y los bloques de códig
 - Todas las entradas construyen SQL al pegar texto en cadenas de texto. Aquí es seguro solo porque cada valor se calcula o es una de cuatro palabras fijas. **No copies esta costumbre.**
 
 <!-- BEGIN GENERATED program-flow:languages/regex.md -->
-## How each program runs
+## Cómo corre cada programa
 
-Each picture below is the `## Program Flow` section of an entry's README, copied here by the build. It shows how that program makes the work happen: what the language, runtime or tool really does. [The introduction](../introduccion.md#qué-hace-el-reto) shows what the challenge asks for and where entries differ.
+Cada imagen de abajo es la sección `## Flujo del programa` del README de una entrada, copiada aquí por la compilación. Muestra cómo ese programa hace el trabajo: lo que el lenguaje, el entorno de ejecución o la herramienta hacen en realidad. [La introducción](../introduccion.md#qué-hace-el-reto) muestra qué pide el reto y en qué se distinguen las entradas.
 
-### Program flow of `regex-dotnet`
+### Flujo del programa de `regex-sed`
 
-From [`regex-dotnet`](../../src/regex-dotnet/README.md) ([source section](../../src/regex-dotnet/README.md#flujo-del-programa)).
-
-```mermaid
-flowchart TD
-    accTitle: regex-dotnet: balancing groups as a budget stack
-    accDescr: A flowchart. The host draws five hour counts and writes them as a tape of letters a, one per hour. It runs one regex match. The pattern first pushes 41 empty captures onto the stack of group b, which is the budget. Each pass of the star loop first checks whether the budget stack is non-empty. If it is, a chain of conditional flag groups picks the next category. Then 10 to 19 letters a are matched, and each one pops a budget token, if any is left, and pushes a token onto the running total stack. When the budget is empty, a failing lookahead fails the pass and the loop ends. The host then reads out the categories, the hours and the size of the total stack.
-    A["Host: draw five hour counts, write them as a tape of a's"] --> B["One Regex match runs against the tape"]
-    B --> C["Push 41 empty captures onto group b: the budget"]
-    C --> D{{"Is the budget stack non-empty?"}}
-    D -->|yes| E["Category picker: the first flag not yet set names the category"]
-    E --> F["Match 10 to 19 a's: each pops a budget token if any is left, and pushes one onto the total stack s"]
-    F --> D
-    D -->|"no: a failing lookahead fails the pass"| G["The star loop ends and the match succeeds"]
-    G --> H["Host reads the captures: categories, hours and the size of s"]
-```
-
-**What this shows:** the regex engine is a machine with stacks. Each `a` pushes one capture onto the total stack `s`. The balancing group also pops one budget token from `b` while any remain. The budget stack is the stop rule: when it is empty, the next pass cannot start.
-
-**Why this mechanism matters:** the state is stack *depth*. Nothing counts and nothing adds. The match succeeds, and the program's answer is what the engine captured. An entry may push the total over 40 mid-way, because the budget runs dry partway through its hours and the extra `a`s pop nothing.
-
-### Program flow of `regex-sed`
-
-From [`regex-sed`](../../src/regex-sed/README.md) ([source section](../../src/regex-sed/README.md#flujo-del-programa)).
+Desde [`regex-sed`](../../src/regex-sed/README.md) ([sección original](../../src/regex-sed/README.md#flujo-del-programa)).
 
 ```mermaid
 flowchart TD
-    accTitle: regex-sed: one line of text, rewritten by substitutions with labels and jumps
-    accDescr: A flowchart. sed reads one tape line and rewrites it into the program state. At the label entry, two address tests decide whether to go to done: forty-one or more tally marks in the total, or no categories left. Otherwise the next category is moved to the current slot. At draw, substitutions rewrite a 16-bit shift register in the line until a digit is available. The digit becomes tally marks that are added to the total. The label dec rewrites marks into decimal. The label row prints the row and writes an INSERT to file descriptor 3. Control jumps back to entry. At done, the summary is printed and COMMIT is written to file descriptor 3. On a terminal, a catastrophic backtracking match is the clock for the pulse. sed then exits with status 1 on purpose.
-    A["Read the tape line and rewrite it into the program state"] --> B{{"entry: 41 or more # marks in the total, or no categories left?"}}
-    B -->|no| C["Move the next category into the current slot"]
-    C --> D["draw and step: rewrite the 16-bit shift register until a digit comes out"]
-    D --> E["Turn the digit into tally marks and append them to the total"]
-    E --> F["dec and row: marks to decimal, print the row, write the INSERT to fd 3"]
+    accTitle: regex-sed: una línea de texto, reescrita por sustituciones con etiquetas y saltos
+    accDescr: Un diagrama de flujo. sed lee una línea de cinta y la reescribe para formar el estado del programa. En la etiqueta de entrada entry, dos pruebas de dirección deciden si saltar a done: el total tiene cuarenta y una marcas de conteo o más, o no quedan categorías. Si ninguna se cumple, la siguiente categoría pasa a la posición actual. En draw, las sustituciones reescriben un registro de desplazamiento de 16 bits en la línea hasta que hay un dígito disponible. El dígito se convierte en marcas de conteo que se suman al total. La etiqueta dec reescribe las marcas en decimal. En la etiqueta row, sed imprime la fila y escribe un INSERT en el descriptor de archivo 3. El control vuelve a la etiqueta entry. En done, sed imprime el resumen y escribe COMMIT en el descriptor de archivo 3. En una terminal, una coincidencia con retroceso catastrófico hace de reloj para el pulso. Luego sed termina a propósito con estado de salida 1.
+    A["Lee la línea de la cinta y reescríbela en el estado del programa"] --> B{{"entrada: ¿41 o más marcas # en el total o no quedan categorías?"}}
+    B -->|no| C["Mueve la siguiente categoría a la ranura actual"]
+    C --> D["draw y step: reescribe el registro de desplazamiento de 16 bits hasta que salga un dígito"]
+    D --> E["Convierte el dígito en marcas y añádelas al total"]
+    E --> F["dec y row: convierte a decimal, imprime la fila y escribe INSERT en el descriptor 3"]
     F --> B
-    B -->|yes| G["done: print the summary, write COMMIT to fd 3"]
-    G --> H["On a terminal: pulse, timed by a regex that backtracks for a while"]
-    H --> I["Q1: sed exits 1 on purpose; sqlite3 reads fd 3"]
+    B -->|sí| G["done: imprime el resumen y escribe COMMIT en el descriptor 3"]
+    G --> H["En terminal: pulso al ritmo del retroceso de una expresión regular"]
+    H --> I["Q1: sed termina a propósito con estado 1. sqlite3 lee el descriptor 3"]
 ```
 
-**What this shows:** the only memory is one line of text, and every step is a substitution on it. The jumps (`b` and `t`) with address tests make a program counter. The loop is the jump from `row` back to `entry`, and the stop rule is a regex that matches 41 tally marks.
+**Qué muestra:** la única memoria es una línea de texto y cada paso es una sustitución en ella. Los saltos (`b` y `t`) y las pruebas de dirección forman un contador de programa. El bucle vuelve de `row` a `entry`. La regla de parada usa una expresión regular que encuentra 41 marcas de conteo.
 
-**Why this mechanism matters:** this is a rewriting system, the Markov-algorithm model: there are no variables and no numbers. The other regex entries make one match do the work. This one makes many substitutions do it, and uses a slow match only as a clock.
+**Por qué importa este mecanismo:** es un sistema de reescritura, el modelo del algoritmo de Markov. No tiene variables ni números. Las otras entradas de expresiones regulares hacen el trabajo con una sola coincidencia. Esta hace el trabajo con muchas sustituciones y usa una coincidencia lenta solo como reloj.
 
-### Program flow of `regex-pcre2`
+### Flujo del programa de `regex-pcre2`
 
-From [`regex-pcre2`](../../src/regex-pcre2/README.md) ([source section](../../src/regex-pcre2/README.md#flujo-del-programa)).
+Desde [`regex-pcre2`](../../src/regex-pcre2/README.md) ([sección original](../../src/regex-pcre2/README.md#flujo-del-programa)).
 
 ```mermaid
 sequenceDiagram
-    accTitle: regex-pcre2: the engine calls back into C at each callout
-    accDescr: A sequence diagram. The C host compiles the pattern and calls pcre2_match once. The engine reaches an init callout, and the host opens the scratch file and writes the header. For each category, the engine reaches a gate callout, which returns 0 while the total is 40 or less. The engine matches the next category name from the subject, and then reaches a book callout, where the host draws hours and writes the record. When the gate returns 1, because the total is over 40, that pass fails and the star loop ends. The commit verb forbids retrying fewer passes, and a commit callout writes the summary and closes the file. A final fail verb makes the match return no match, and the host prints the file.
-    participant H as C host
-    participant E as PCRE2 engine
-    participant K as Callout function
-    H->>E: pcre2_match, once
-    E->>K: init: opens the file, writes the header
-    loop for each category in the subject
-        E->>K: gate: returns 0 while the total is 40 or less
-        E->>E: match the next category name
-        E->>K: book: draws hours, writes the record
+    accTitle: regex-pcre2: el motor llama de vuelta a C en cada callout
+    accDescr: Un diagrama de secuencia. El anfitrión en C compila el patrón y llama a pcre2_match una sola vez. El motor llega a un callout init y el anfitrión abre el archivo temporal y escribe el encabezado. Para cada categoría, el motor llega a un callout gate, que devuelve 0 mientras el total no pase de 40. El motor busca la coincidencia del siguiente nombre de categoría en la cadena de entrada y luego llega a un callout book, donde el anfitrión sortea las horas y escribe el registro. Cuando el callout gate devuelve 1, porque el total pasa de 40, esa pasada falla y el bucle con asterisco termina. El verbo commit prohíbe reintentar con menos pasadas y un callout commit escribe el resumen y cierra el archivo. Un verbo fail final hace que la búsqueda no encuentre coincidencia y el anfitrión imprime el archivo.
+    participant H as Anfitrión en C
+    participant E as Motor PCRE2
+    participant K as Función de callout
+    H->>E: pcre2_match, una vez
+    E->>K: init: abre el archivo y escribe el encabezado
+    loop para cada categoría en el sujeto
+        E->>K: gate: devuelve 0 mientras el total no pasa de 40
+        E->>E: busca la coincidencia del nombre de la siguiente categoría
+        E->>K: libro: obtiene las horas y escribe el registro
     end
-    E->>K: gate: returns 1, the total is over 40
-    Note over E: the pass fails, the star loop ends
-    E->>K: commit, after COMMIT: writes the summary
-    E-->>H: FAIL: no match, after all the work
-    H->>H: print the file
+    E->>K: gate: devuelve 1, el total pasa de 40
+    Note over E: la pasada falla, el bucle de la estrella termina
+    E->>K: commit, después de COMMIT: escribe el resumen
+    E-->>H: FAIL: sin coincidencia, después de todo el trabajo
+    H->>H: imprime el archivo
 ```
 
-**What this shows:** the C host has no loop. It calls `pcre2_match` once and the engine calls back into the host at every callout. The callout name is an opcode. The return value is the decision: `0` means continue and `1` means fail this branch.
+**Qué muestra:** el anfitrión en C no tiene bucle. Llama a `pcre2_match` una sola vez y el motor vuelve a llamar al anfitrión en cada callout. El nombre del callout es un código de operación. El valor de retorno es la decisión: `0` significa continuar y `1` significa hacer fallar esta rama.
 
-**Why this mechanism matters:** the stop rule is a callout that returns `1`, so the `*` quantifier ends by backtracking. `(*COMMIT)` makes `commit` run exactly once, and `(*FAIL)` makes the whole match lose. The callouts are synchronous calls from the engine, not queued events.
+**Por qué importa este mecanismo:** la regla de parada es un callout que devuelve `1`, así que el cuantificador `*` termina por retroceso. `(*COMMIT)` hace que `commit` se ejecute exactamente una vez, y `(*FAIL)` hace que toda la coincidencia falle. Los callouts son llamadas síncronas del motor, no eventos en cola.
 
-### Program flow of `regex-pcre2grep`
+### Flujo del programa de `regex-pcre2grep`
 
-From [`regex-pcre2grep`](../../src/regex-pcre2grep/README.md) ([source section](../../src/regex-pcre2grep/README.md#flujo-del-programa)).
+Desde [`regex-pcre2grep`](../../src/regex-pcre2grep/README.md) ([sección original](../../src/regex-pcre2grep/README.md#flujo-del-programa)).
 
 ```mermaid
 flowchart TD
-    accTitle: regex-pcre2grep: each callout runs sqlite3, and its exit code is the decision
-    accDescr: A flowchart. pcre2grep matches one pattern against a one-line tape. An initializing callout runs sqlite3 to create the tables and start a run. A greedy quantifier repeats a pass. At each pass a gate callout inserts a total-is-at-most-40 value into a table with a constraint that requires it to be true. If it is, sqlite3 exits with 0 and the pass continues. If it is not, the constraint fails, sqlite3 exits nonzero, and the branch is vetoed, so the loop ends. The category alternation matches the next name on the tape, and a book callout runs sqlite3 to insert and print the row. After the loop, a commit verb, a summary callout and the optional pulse run, and a final fail verb makes the match return false.
-    A["pcre2grep matches one pattern against a one-line tape"] --> B["Initializer callout: sqlite3 creates the tables, starts the run, prints the header"]
-    B --> C["Greedy quantifier starts a pass"]
-    C --> D["Gate callout: sqlite3 inserts total <= 40 into a column with CHECK ok = 1"]
-    D --> E{{"sqlite3 exit code"}}
-    E -->|"0: the row is accepted"| F["Alternation matches the next category name on the tape"]
-    F --> G["Book callout: sqlite3 draws hours, inserts the row, prints it"]
+    accTitle: regex-pcre2grep: cada callout ejecuta sqlite3 y su código de salida es la decisión
+    accDescr: Un diagrama de flujo. pcre2grep busca una coincidencia de un patrón en una cinta de una línea. Un callout de inicialización ejecuta sqlite3 para crear las tablas e iniciar una ejecución. Un cuantificador voraz repite una pasada. En cada pasada, un callout de compuerta inserta en una tabla un valor que indica si el total no pasa de 40, y la tabla tiene una restricción que exige que ese valor sea verdadero. Si lo es, sqlite3 termina con 0 y la pasada continúa. Si no lo es, la restricción falla, sqlite3 termina con un código distinto de cero y la rama se veta, así que el bucle termina. La alternancia de categorías coincide con el siguiente nombre de la cinta, y un callout de libro ejecuta sqlite3 para insertar e imprimir la fila. Después del bucle se ejecutan un verbo commit, un callout de resumen y el pulse opcional, y un verbo fail final hace que la coincidencia devuelva falso.
+    A["pcre2grep compara un patrón con una cinta de una línea"] --> B["Callout de inicialización: sqlite3 crea las tablas, inicia la ejecución e imprime el encabezado"]
+    B --> C["El cuantificador voraz inicia una pasada"]
+    C --> D["Callout de compuerta: sqlite3 inserta un total <= 40 en una columna con CHECK ok = 1"]
+    D --> E{{"Código de salida de sqlite3"}}
+    E -->|"0: la fila se acepta"| F["La alternancia coincide con el siguiente nombre de categoría en la cinta"]
+    F --> G["Llamada del libro: sqlite3 sortea las horas, inserta la fila y la imprime"]
     G --> C
-    E -->|"nonzero: the constraint failed, the branch is vetoed"| H["The quantifier stops, COMMIT forbids retrying"]
-    H --> I["Summary callout, then the pulse if test -t 1 succeeds"]
-    I --> J["FAIL: the match returns false after all the work"]
+    E -->|"distinto de cero: la restricción falló y la rama queda vetada"| H["El cuantificador se detiene, COMMIT prohíbe reintentar"]
+    H --> I["Callout de resumen y después el pulso si test -t 1 tiene éxito"]
+    I --> J["FAIL: la coincidencia devuelve false después de todo el trabajo"]
 ```
 
-**What this shows:** a callout string that starts with a path runs a program. Exit status 0 lets the match go on, and any other status fails that branch. So every decision in the program is an exit code from `sqlite3`. A constraint violation (the total is over 40) is the stop rule.
+**Qué muestra:** una cadena de texto de callout que empieza con una ruta ejecuta un programa. El estado de salida 0 permite que la coincidencia continúe, y cualquier otro estado hace fallar esa rama. Así, cada decisión del programa es un estado de salida de `sqlite3`. Una violación de restricción (el total pasa de 40) es la regla de parada.
 
-**Why this mechanism matters:** `pcre2grep` is not a language runtime, but it has a process boundary inside the matcher. The engine asks an external program a question and backtracks on the answer. Compare [`regex-pcre2`](../../src/regex-pcre2/README.md), where the question is a function call in the same process.
+**Por qué importa este mecanismo:** `pcre2grep` no es un entorno de ejecución de un lenguaje, pero tiene un límite de proceso dentro del comparador. El motor le hace una pregunta a un programa externo y retrocede según la respuesta. Compara [`regex-pcre2`](../../src/regex-pcre2/README.md), donde la pregunta es una llamada a una función en el mismo proceso.
 
-### Program flow of `regex-perl`
+### Flujo del programa de `regex-perl`
 
-From [`regex-perl`](../../src/regex-perl/README.md) ([source section](../../src/regex-perl/README.md#flujo-del-programa)).
+Desde [`regex-perl`](../../src/regex-perl/README.md) ([sección original](../../src/regex-perl/README.md#flujo-del-programa)).
 
 ```mermaid
 flowchart TD
-    accTitle: regex-perl: one match, with Perl code blocks as the loop body
-    accDescr: A flowchart. Perl starts one match of a scaffold string against one pattern. A code block at the start initializes state and starts sqlite3 on a pipe. A greedy quantifier repeats a pass. At each pass a postponed code block returns the next category as a pattern, or a failure when the total is over 40 or no category is left. If it returns a category, the engine matches it, and a code block draws hours, updates local state, inserts a row and prints it. When the pass fails, the quantifier stops, and a commit verb forbids retrying fewer passes. A finalizer commits the SQL transaction and prints the summary. A final failure makes the whole match return false, after all the work.
-    A["Perl starts one match of the scaffold string against one pattern"] --> B["Initializer code block: seed, scratch folder, sqlite3 on a pipe, BEGIN"]
-    B --> C["Greedy quantifier starts a pass"]
-    C --> D{{"Postponed block: total <= 40 and a category left?"}}
-    D -->|"yes: returns the category as a pattern"| E["The engine matches the category name in the scaffold"]
-    E --> F["Code block: draw hours, local total and index, INSERT, print the row"]
+    accTitle: regex-perl: una coincidencia, con bloques de código Perl como cuerpo del bucle
+    accDescr: Un diagrama de flujo. Perl inicia una coincidencia de una cadena de texto de andamiaje con un patrón. Un bloque de código al inicio inicializa el estado e inicia sqlite3 en una tubería. Un cuantificador voraz repite una pasada. En cada pasada, un bloque de código pospuesto devuelve la siguiente categoría como patrón, o un fallo cuando el total pasa de 40 o no queda ninguna categoría. Si devuelve una categoría, el motor busca la coincidencia, y un bloque de código sortea las horas, actualiza el estado local, inserta una fila y la imprime. Cuando la pasada falla, el cuantificador se detiene y un verbo *commit* prohíbe reintentar con menos pasadas. Un finalizador confirma la transacción SQL e imprime el resumen. Un fallo final hace que toda la coincidencia devuelva falso, después de todo el trabajo.
+    A["Perl inicia una coincidencia de la cadena de texto de andamiaje con un patrón"] --> B["Bloque de código de inicialización: semilla, carpeta temporal, sqlite3 en una tubería, BEGIN"]
+    B --> C["El cuantificador voraz inicia una pasada"]
+    C --> D{{"Bloque pospuesto: ¿total <= 40 y queda una categoría?"}}
+    D -->|"sí: devuelve la categoría como un patrón"| E["El motor encuentra una coincidencia con el nombre de la categoría en el andamiaje"]
+    E --> F["Bloque de código: sortea las horas, actualiza el total local y el índice, ejecuta INSERT e imprime la fila"]
     F --> C
-    D -->|"no: returns FAIL"| G["The pass fails, the quantifier stops, COMMIT forbids retrying fewer passes"]
-    G --> H["Finalizer: COMMIT the transaction, close the pipe, print the summary, pulse on a terminal"]
-    H --> I["FAIL: the match returns false after all the work"]
+    D -->|"no: devuelve FAIL"| G["La pasada falla, el cuantificador se detiene, COMMIT prohíbe reintentar con menos pasadas"]
+    G --> H["Finalizador: confirma la transacción (COMMIT), cierra la tubería, imprime el resumen y emite un pulso en una terminal"]
+    H --> I["FALLO: la coincidencia devuelve falso después de todo el trabajo"]
 ```
 
-**What this shows:** one regex match is the whole program. The quantifier is the loop, and a code block that returns a *pattern* is the stop rule: it returns the next category's name, or `(*FAIL)` to make the pass fail. Code blocks are the only places where work happens.
+**Qué muestra:** una sola coincidencia de regex es todo el programa. El cuantificador es el bucle, y un bloque de código que devuelve un *patrón* es la regla de parada: devuelve el nombre de la siguiente categoría o `(*FAIL)` para que la pasada falle. Los bloques de código son los únicos lugares donde se hace el trabajo.
 
-**Why this mechanism matters:** backtracking can undo `local` variables but not side effects. The engine abandons a branch, while the `INSERT` and the `print` stay done. That is why the match can end by failing and the data is still saved. The SQL transaction is real. Only the *match* lies.
+**Por qué importa este mecanismo:** el retroceso puede deshacer las variables `local`, pero no los efectos secundarios. El motor abandona una rama, mientras que `INSERT` y `print` siguen ejecutados. Por eso la coincidencia puede terminar en fallo y los datos siguen guardados. La transacción SQL es real. Solo la *coincidencia* miente.
+
+### Flujo del programa de `regex-dotnet`
+
+Desde [`regex-dotnet`](../../src/regex-dotnet/README.md) ([sección original](../../src/regex-dotnet/README.md#flujo-del-programa)).
+
+```mermaid
+flowchart TD
+    accTitle: regex-dotnet: grupos de equilibrio como una pila de presupuesto
+    accDescr: Un diagrama de flujo. El anfitrión sortea cinco cantidades de horas y las escribe como una cinta de letras a, una por hora. Ejecuta una sola coincidencia de regex. El patrón empieza por apilar 41 capturas vacías en la pila del grupo b, que es el presupuesto. Cada pasada del bucle de estrella comprueba primero si la pila del presupuesto no está vacía. Si no lo está, una cadena de grupos condicionales de banderas elige la siguiente categoría. Después coinciden de 10 a 19 letras a (las horas de una tarjeta). Cada una retira un token del presupuesto, si queda alguno, y apila un token en la pila del total acumulado. Cuando el presupuesto está vacío, un *lookahead* que falla hace fallar la pasada y el bucle termina. Por último, el anfitrión lee las categorías, las horas y el tamaño de la pila del total acumulado.
+    A["Anfitrión: sortea cinco conteos de horas y los escribe como una cinta de letras a"] --> B["Una sola coincidencia de Regex se ejecuta sobre la cinta"]
+    B --> C["Empuja 41 capturas vacías al grupo b: el presupuesto"]
+    C --> D{{"¿La pila del presupuesto no está vacía?"}}
+    D -->|sí| E["Selector de categoría: la primera bandera que aún no está activada indica la categoría"]
+    E --> F["Busca de 10 a 19 horas (letras *a*): cada una extrae un token de presupuesto si queda alguno y apila uno en la pila total s"]
+    F --> D
+    D -->|"no: un lookahead que falla hace fallar la pasada"| G["El bucle de la estrella termina y la coincidencia tiene éxito"]
+    G --> H["El anfitrión lee las capturas: las categorías, las horas y el tamaño de s"]
+```
+
+**Qué muestra:** el motor de regex es una máquina con pilas. Cada `a` apila una captura en la pila del total `s`. El grupo de equilibrio también desapila un token de presupuesto de `b` mientras quede alguno. La pila de presupuesto es la regla de parada: cuando está vacía, la siguiente pasada no puede empezar.
+
+**Por qué importa este mecanismo:** el estado es la *profundidad* de la pila. Nada cuenta y nada suma. La coincidencia tiene éxito y la respuesta del programa es lo que capturó el motor. Una entrada puede hacer que el total pase de 40 a mitad de camino. Esto ocurre porque el presupuesto se agota en medio de sus horas y los `a` adicionales no extraen nada.
 <!-- END GENERATED program-flow:languages/regex.md -->
 
 ## La informática detrás de esta página
 
 <!-- BEGIN GENERATED concepts:languages/regex.md -->
-The computer-science ideas behind this page: [Threat model](../informatica/01-lectura-de-un-programa-adversarial.md#threat-model), [Arbitrary code execution](../informatica/01-lectura-de-un-programa-adversarial.md#arbitrary-code-execution), [Representing state](../informatica/02-que-cuenta-como-maquina.md#representing-state), [Register machines and counter machines](../informatica/02-que-cuenta-como-maquina.md#register-machines-and-counter-machines), [Markov algorithms](../informatica/02-que-cuenta-como-maquina.md#markov-algorithms), [Turing completeness](../informatica/02-que-cuenta-como-maquina.md#turing-completeness), [Computation versus orchestration](../informatica/02-que-cuenta-como-maquina.md#computation-versus-orchestration), [Fixed-point iteration](../informatica/03-flujo-de-control-y-continuaciones.md#fixed-point-iteration), [The Chomsky hierarchy](../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#the-chomsky-hierarchy), [Regular expressions](../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#regular-expressions), [Parsing](../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#parsing), [Term and string rewriting](../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#term-and-string-rewriting), [Domain-specific languages](../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#domain-specific-languages), [Interpreters and virtual machines](../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#interpreters-and-virtual-machines), [State](../informatica/06-estado-mas-alla-de-las-variables.md#state), [The stack as a data structure](../informatica/06-estado-mas-alla-de-las-variables.md#the-stack-as-a-data-structure), [Side effects](../informatica/07-efectos-errores-y-confirmacion.md#side-effects), [Exit status](../informatica/07-efectos-errores-y-confirmacion.md#exit-status), [Integrity constraints](../informatica/07-efectos-errores-y-confirmacion.md#integrity-constraints), [Backtracking](../informatica/07-efectos-errores-y-confirmacion.md#backtracking), [The cut: committing to a choice](../informatica/07-efectos-errores-y-confirmacion.md#the-cut-committing-to-a-choice), [Transactions](../informatica/07-efectos-errores-y-confirmacion.md#transactions), [Portability](../informatica/08-fugas-de-abstraccion-y-dependencia-de-la-implementacion.md#portability), [Optimizers](../informatica/08-fugas-de-abstraccion-y-dependencia-de-la-implementacion.md#optimizers), [Performance cliffs and time complexity](../informatica/08-fugas-de-abstraccion-y-dependencia-de-la-implementacion.md#performance-cliffs-and-time-complexity), [Regular-expression denial of service](../informatica/08-fugas-de-abstraccion-y-dependencia-de-la-implementacion.md#regular-expression-denial-of-service), [Callbacks](../informatica/10-eventos-retrollamadas-y-flujo-de-control-reactivo.md#callbacks).
+Las ideas de ciencias de la computación detrás de esta página: [Modelo de amenazas](../informatica/01-lectura-de-un-programa-adversarial.md#modelo-de-amenazas), [Ejecución de código arbitrario](../informatica/01-lectura-de-un-programa-adversarial.md#ejecución-de-código-arbitrario), [Cómo representar el estado](../informatica/02-que-cuenta-como-maquina.md#cómo-representar-el-estado), [Máquinas de registros y máquinas de contadores](../informatica/02-que-cuenta-como-maquina.md#máquinas-de-registros-y-máquinas-de-contadores), [Algoritmos de Markov](../informatica/02-que-cuenta-como-maquina.md#algoritmos-de-markov), [Completitud de Turing](../informatica/02-que-cuenta-como-maquina.md#completitud-de-turing), [Cálculo frente a orquestación](../informatica/02-que-cuenta-como-maquina.md#cálculo-frente-a-orquestación), [Iteración de punto fijo](../informatica/03-flujo-de-control-y-continuaciones.md#iteración-de-punto-fijo), [La jerarquía de Chomsky](../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#la-jerarquía-de-chomsky), [Expresiones regulares](../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#expresiones-regulares), [Análisis sintáctico](../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#análisis-sintáctico), [Reescritura de términos y de cadenas de texto](../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#reescritura-de-términos-y-de-cadenas-de-texto), [Lenguajes específicos de dominio](../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#lenguajes-específicos-de-dominio), [Intérpretes y máquinas virtuales](../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#intérpretes-y-máquinas-virtuales), [Estado](../informatica/06-estado-mas-alla-de-las-variables.md#estado), [La pila como estructura de datos](../informatica/06-estado-mas-alla-de-las-variables.md#la-pila-como-estructura-de-datos), [Efectos secundarios](../informatica/07-efectos-errores-y-confirmacion.md#efectos-secundarios), [Estado de salida](../informatica/07-efectos-errores-y-confirmacion.md#estado-de-salida), [Restricciones de integridad](../informatica/07-efectos-errores-y-confirmacion.md#restricciones-de-integridad), [Retroceso](../informatica/07-efectos-errores-y-confirmacion.md#retroceso), [El corte: cómo fijar una elección](../informatica/07-efectos-errores-y-confirmacion.md#el-corte-cómo-fijar-una-elección), [Transacciones](../informatica/07-efectos-errores-y-confirmacion.md#transacciones), [Portabilidad](../informatica/08-fugas-de-abstraccion-y-dependencia-de-la-implementacion.md#portabilidad), [Optimizadores](../informatica/08-fugas-de-abstraccion-y-dependencia-de-la-implementacion.md#optimizadores), [Precipicios de rendimiento y complejidad temporal](../informatica/08-fugas-de-abstraccion-y-dependencia-de-la-implementacion.md#precipicios-de-rendimiento-y-complejidad-temporal), [Denegación de servicio mediante expresiones regulares](../informatica/08-fugas-de-abstraccion-y-dependencia-de-la-implementacion.md#denegación-de-servicio-mediante-expresiones-regulares), [Funciones de devolución de llamada](../informatica/10-eventos-retrollamadas-y-flujo-de-control-reactivo.md#funciones-de-devolución-de-llamada).
 <!-- END GENERATED concepts:languages/regex.md -->

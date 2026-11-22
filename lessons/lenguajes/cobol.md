@@ -92,44 +92,44 @@ Consulta los [ejercicios](../exercises.md#b1-cobol-predice-y-luego-rompe-alter-v
 Rara vez en la forma que se muestra. Sin embargo, la regla de parada de nivel `88` es un buen diseño dondequiera que las reglas de negocio cambien más a menudo que el código. La forma con `ALTER` era razonable cuando la memoria y los ciclos eran la restricción y los ingenieros que mantenían el sistema entendían cada salto. Dejó de serlo cuando crecieron los equipos, las herramientas y los horizontes de mantenimiento.
 
 <!-- BEGIN GENERATED program-flow:languages/cobol.md -->
-## How each program runs
+## Cómo corre cada programa
 
-Each picture below is the `## Program Flow` section of an entry's README, copied here by the build. It shows how that program makes the work happen: what the language, runtime or tool really does. [The introduction](../introduccion.md#qué-hace-el-reto) shows what the challenge asks for and where entries differ.
+Cada imagen de abajo es la sección `## Flujo del programa` del README de una entrada, copiada aquí por la compilación. Muestra cómo ese programa hace el trabajo: lo que el lenguaje, el entorno de ejecución o la herramienta hacen en realidad. [La introducción](../introduccion.md#qué-hace-el-reto) muestra qué pide el reto y en qué se distinguen las entradas.
 
-### Program flow of `cobol`
+### Flujo del programa de `cobol`
 
-From [`cobol`](../../src/cobol/README.md) ([source section](../../src/cobol/README.md#flujo-del-programa)).
+Desde [`cobol`](../../src/cobol/README.md) ([sección original](../../src/cobol/README.md#flujo-del-programa)).
 
 ```mermaid
 flowchart TD
-    accTitle: cobol: PERFORM UNTIL with the stop rule declared as data
-    accDescr: A flowchart. Set-up and open-script run once. Then PERFORM DRAW-CARD repeats until the 88-level condition OVER-FORTY, declared on WS-TOTAL, is true. Each pass draws a card, adds its hours to the total, prints the row and writes an INSERT line. When OVER-FORTY is true the loop ends, the script is committed with sqlite3, and the run stops.
-    A["SET-UP, OPEN-SCRIPT: seed, ISO week, folder, SQL file"] --> B{{"OVER-FORTY? WS-TOTAL in 41 to 99"}}
-    B -->|No| C["DRAW-CARD: category from MOD of WS-ENTRIES, hours, ADD to WS-TOTAL"]
-    C --> D["DISPLAY the row, WRITE the INSERT line"]
+    accTitle: cobol: PERFORM UNTIL con la regla de parada declarada como datos
+    accDescr: Un diagrama de flujo. Set-up y open-script se ejecutan una sola vez. Después, PERFORM DRAW-CARD se repite hasta que la condición de nivel 88 OVER-FORTY, declarada sobre WS-TOTAL, sea verdadera. Cada pasada toma una tarjeta, suma sus horas al total, imprime la fila y escribe una línea INSERT. Cuando OVER-FORTY es verdadera, el bucle termina, el script se confirma con sqlite3 y la ejecución se detiene.
+    A["SET-UP, OPEN-SCRIPT: semilla, semana ISO, carpeta, archivo SQL"] --> B{{"OVER-FORTY? WS-TOTAL de 41 a 99"}}
+    B -->|No| C["DRAW-CARD: categoría a partir de MOD de WS-ENTRIES, horas, ADD a WS-TOTAL"]
+    C --> D["Muestra la fila con DISPLAY y escribe la línea INSERT con WRITE"]
     D --> B
-    B -->|Yes| E["COMMIT-SCRIPT: run sqlite3"]
+    B -->|Sí| E["COMMIT-SCRIPT: ejecuta sqlite3"]
     E --> F["DISPLAY summary, STOP RUN"]
 ```
 
-**What this shows:** a conventional structured loop. `PERFORM DRAW-CARD UNTIL OVER-FORTY` tests the condition before every pass, so the test is a real node and the cycle is a real edge.
+**Qué muestra:** un bucle estructurado convencional. `PERFORM DRAW-CARD UNTIL OVER-FORTY` evalúa la condición antes de cada pasada, así que la prueba es un nodo real y el ciclo es una arista real.
 
-**Why this mechanism matters:** the stop rule is data, not code. `OVER-FORTY` is an 88-level name for the values 41 to 99 of `WS-TOTAL`, so the loop asks the data whether to go on. The weird sibling [`cobol-weird`](../../src/cobol-weird/README.md) has no such test.
+**Por qué importa este mecanismo:** la regla de parada son datos, no código. `OVER-FORTY` es un nombre de nivel 88 para los valores de 41 a 99 de `WS-TOTAL`, así que el bucle pregunta a los datos si debe continuar. El hermano raro [`cobol-weird`](../../src/cobol-weird/README.md) no tiene esa prueba.
 
-### Program flow of `cobol-weird`
+### Flujo del programa de `cobol-weird`
 
-From [`cobol-weird`](../../src/cobol-weird/README.md) ([source section](../../src/cobol-weird/README.md#flujo-del-programa)).
+Desde [`cobol-weird`](../../src/cobol-weird/README.md) ([sección original](../../src/cobol-weird/README.md#flujo-del-programa)).
 
 ```mermaid
 stateDiagram-v2
-    accTitle: cobol-weird: the target of one GO TO is the loop
-    accDescr: A state diagram. The state is the current target of the single GO TO in the NEXT-CARD paragraph. It starts as Meetings. Each category paragraph rewrites it to the next category with ALTER, so the cycle is Meetings, Coding, Debugging, Learning, and back to Meetings. When the two-digit headroom field overflows, ON SIZE ERROR rewrites the target to FINISH-RUN, which commits the script and stops.
+    accTitle: cobol-weird: el destino de un solo GO TO es el bucle
+    accDescr: Un diagrama de estados. El estado es el destino actual del único GO TO del párrafo NEXT-CARD. Empieza como Meetings. Cada párrafo de categoría lo reescribe con ALTER para apuntar a la categoría siguiente, así que el ciclo es Meetings, Coding, Debugging, Learning y de nuevo Meetings. Cuando el campo de margen de dos dígitos se desborda, ON SIZE ERROR reescribe el destino a FINISH-RUN, que hace la confirmación de la transacción del script y se detiene.
     state "Meetings" as M
     state "Coding" as C
     state "Debugging" as D
     state "Learning" as L
     state "FINISH-RUN" as F
-    state "NEXT-CARD's GO TO jumps to" as T {
+    state "El GO TO de NEXT-CARD salta a" as T {
         [*] --> M
         M --> C : ALTER
         C --> D : ALTER
@@ -140,13 +140,13 @@ stateDiagram-v2
     F --> [*] : COMMIT, sqlite3, STOP RUN
 ```
 
-**What this shows:** the state of this program is the target of one `GO TO`. Each card, the category paragraph named by the target runs, rewrites the target with `ALTER` to the next category, and falls into `RECORD-CARD`, which jumps back to `NEXT-CARD`. The source text of that `GO TO` never changes. The jump does.
+**Qué muestra:** el estado de este programa es el destino de un solo `GO TO`. En cada tarjeta, el párrafo de categoría que indica el destino se ejecuta, reescribe el destino con `ALTER` para que apunte a la categoría siguiente y pasa a `RECORD-CARD`, que salta de nuevo a `NEXT-CARD`. El texto fuente de ese `GO TO` no cambia nunca. El salto sí cambia.
 
-**Why this mechanism matters:** there is no loop condition to draw. The exit is another rewrite: when `WS-HEADROOM` overflows, `ON SIZE ERROR` points the same `GO TO` at `FINISH-RUN`. Compare the plain [`cobol`](../../src/cobol/README.md) entry, where a `PERFORM ... UNTIL` tests a condition.
+**Por qué importa este mecanismo:** no hay ninguna condición de bucle que dibujar. La salida es otra reescritura: cuando `WS-HEADROOM` se desborda, `ON SIZE ERROR` apunta el mismo `GO TO` a `FINISH-RUN`. Compara la entrada simple [`cobol`](../../src/cobol/README.md), donde `PERFORM ... UNTIL` prueba una condición.
 <!-- END GENERATED program-flow:languages/cobol.md -->
 
 ## Las ciencias de la computación detrás de esta página
 
 <!-- BEGIN GENERATED concepts:languages/cobol.md -->
-The computer-science ideas behind this page: [Representing state](../informatica/02-que-cuenta-como-maquina.md#representing-state), [Control flow](../informatica/03-flujo-de-control-y-continuaciones.md#control-flow), [Goto and structured programming](../informatica/03-flujo-de-control-y-continuaciones.md#goto-and-structured-programming), [The program counter](../informatica/03-flujo-de-control-y-continuaciones.md#the-program-counter), [Self-modifying code](../informatica/03-flujo-de-control-y-continuaciones.md#self-modifying-code), [Declarative programming](../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#declarative-programming), [State](../informatica/06-estado-mas-alla-de-las-variables.md#state), [Exception handling](../informatica/07-efectos-errores-y-confirmacion.md#exception-handling), [Integrity constraints](../informatica/07-efectos-errores-y-confirmacion.md#integrity-constraints), [Undefined, unspecified and implementation-defined behavior](../informatica/08-fugas-de-abstraccion-y-dependencia-de-la-implementacion.md#undefined-unspecified-and-implementation-defined-behavior).
+Las ideas de ciencias de la computación detrás de esta página: [Cómo representar el estado](../informatica/02-que-cuenta-como-maquina.md#cómo-representar-el-estado), [Flujo de control](../informatica/03-flujo-de-control-y-continuaciones.md#flujo-de-control), [Goto y programación estructurada](../informatica/03-flujo-de-control-y-continuaciones.md#goto-y-programación-estructurada), [El contador de programa](../informatica/03-flujo-de-control-y-continuaciones.md#el-contador-de-programa), [Código automodificable](../informatica/03-flujo-de-control-y-continuaciones.md#código-automodificable), [Programación declarativa](../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#programación-declarativa), [Estado](../informatica/06-estado-mas-alla-de-las-variables.md#estado), [Manejo de excepciones](../informatica/07-efectos-errores-y-confirmacion.md#manejo-de-excepciones), [Restricciones de integridad](../informatica/07-efectos-errores-y-confirmacion.md#restricciones-de-integridad), [Comportamiento indefinido, no especificado y definido por la implementación](../informatica/08-fugas-de-abstraccion-y-dependencia-de-la-implementacion.md#comportamiento-indefinido-no-especificado-y-definido-por-la-implementación).
 <!-- END GENERATED concepts:languages/cobol.md -->

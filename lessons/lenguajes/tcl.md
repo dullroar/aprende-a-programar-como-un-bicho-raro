@@ -98,62 +98,62 @@ Mira los [ejercicios](../exercises.md#b12-tcl-edita-el-programa-en-la-base-de-da
 Cuando tu código pertenece de verdad a tus datos: un motor de reglas donde las reglas son filas, un juego donde los scripts viven en el archivo de guardado, una herramienta que debe parchear el comportamiento de un sistema en ejecución. Usar un disparador recursivo como bucle `while` es una acrobacia; guardar procs en una tabla es un diseño.
 
 <!-- BEGIN GENERATED program-flow:languages/tcl.md -->
-## How each program runs
+## Cómo corre cada programa
 
-Each picture below is the `## Program Flow` section of an entry's README, copied here by the build. It shows how that program makes the work happen: what the language, runtime or tool really does. [The introduction](../introduccion.md#qué-hace-el-reto) shows what the challenge asks for and where entries differ.
+Cada imagen de abajo es la sección `## Flujo del programa` del README de una entrada, copiada aquí por la compilación. Muestra cómo ese programa hace el trabajo: lo que el lenguaje, el entorno de ejecución o la herramienta hacen en realidad. [La introducción](../introduccion.md#qué-hace-el-reto) muestra qué pide el reto y en qué se distinguen las entradas.
 
-### Program flow of `tcl`
+### Flujo del programa de `tcl`
 
-From [`tcl`](../../src/tcl/README.md) ([source section](../../src/tcl/README.md#flujo-del-programa)).
+Desde [`tcl`](../../src/tcl/README.md) ([sección original](../../src/tcl/README.md#flujo-del-programa)).
 
 ```mermaid
 flowchart TD
-    accTitle: tcl: an ordinary while loop in a namespace, then one transaction
-    accDescr: A flowchart. The main procedure parses the arguments with a while, lassign and switch loop, seeds the random generator from the clock and the process id, and calls draw. The draw procedure is a while loop. While the total is at or under the limit, it draws hours, adds them to the total with incr, picks the next category, and appends a card as a dict. When the total is over the limit, the save procedure opens SQLite and writes all the cards inside one transaction. Then the program prints the cards. Only if asked does it build a Tk window with a treeview.
-    A["main: parse argv, seed rand from the clock and pid"] --> B{{"draw: while total <= limit?"}}
-    B -->|yes| C["randomHours, incr total, pick a category, lappend a card as a dict"]
+    accTitle: tcl: un bucle while en un espacio de nombres y luego una transacción
+    accDescr: Diagrama de flujo. El procedimiento principal analiza los argumentos con un bucle while, lassign y switch. Inicializa el generador aleatorio con el reloj y el id de proceso y llama a draw. El procedimiento draw es un bucle while. Mientras el total no supere el límite, sortea las horas, las suma al total con incr, elige la siguiente categoría y agrega una tarjeta como dict. Cuando el total supera el límite, el procedimiento save abre SQLite y escribe todas las tarjetas en una sola transacción. Luego el programa imprime las tarjetas. Solo si se le pide crea una ventana Tk con un treeview.
+    A["main: analiza argv e inicializa rand con el reloj y pid"] --> B{{"draw: while ¿se cumple total <= limit?"}}
+    B -->|Sí| C["randomHours, incr total, elige categoría y lappend de la tarjeta como dict"]
     C --> B
-    B -->|no| D["save: db transaction inserts every card with bound parameters"]
-    D --> E["Print the cards; build the Tk treeview only if --gui was given"]
+    B -->|No| D["save: una sola transacción (db transaction) inserta cada tarjeta con parámetros enlazados"]
+    D --> E["Imprime las tarjetas. Crea el treeview de Tk solo con --gui"]
 ```
 
-**What this shows:** the conventional Tcl shape. A `while` is the loop, a dict is the card, and `db transaction` makes the save all-or-nothing. A guard around `main` lets the checks `source` the file and test `draw` in the same process.
+**Qué muestra:** la estructura convencional de Tcl. Un `while` es el bucle, un dict es la tarjeta y `db transaction` hace que se guarde todo o nada. Una condición de entrada en torno a `main` permite que las comprobaciones carguen el archivo con `source` y prueben `draw` en el mismo proceso.
 
-**Why this mechanism matters:** the program draws first and saves afterwards, so the card list is complete before the database sees it. Tcl's `while` re-evaluates its test each pass, and the test comes before the draw, so the crossing card is kept. The weird sibling [`tcl-weird`](../../src/tcl-weird/README.md) moves the loop into the database.
+**Por qué importa este mecanismo:** el programa primero sortea y después guarda. Así la lista de tarjetas está completa antes de que llegue a la base de datos. El `while` de Tcl vuelve a evaluar su condición en cada pasada. Como la evalúa antes de sortear, conserva la tarjeta que hace que el total supere el límite. La variante rara [`tcl-weird`](../../src/tcl-weird/README.md) traslada el bucle a la base de datos.
 
-### Program flow of `tcl-weird`
+### Flujo del programa de `tcl-weird`
 
-From [`tcl-weird`](../../src/tcl-weird/README.md) ([source section](../../src/tcl-weird/README.md#flujo-del-programa)).
+Desde [`tcl-weird`](../../src/tcl-weird/README.md) ([sección original](../../src/tcl-weird/README.md#flujo-del-programa)).
 
 ```mermaid
 sequenceDiagram
-    accTitle: tcl-weird: a recursive SQLite trigger calls Tcl procs that are fetched from a table
-    accDescr: A sequence diagram. The Tcl host installs three hooks and inserts the first card. Each insert fires a trigger in SQLite. The trigger calls the SQL function tcl, which calls back into Tcl. The first time the Tcl side asks for a command such as born, the command does not exist, so Tcl calls unknown. The unknown handler reads the proc's text from the tcl_code table, defines the proc and retries the call. The call prints the row. The trigger then inserts the next card, but only while the total of the card just inserted is 40 or less. That insert fires the trigger again. When the total is over 40, nothing is inserted, and control returns to the host, which prints the summary.
-    participant H as Tcl host
-    participant D as SQLite and the next_card trigger
-    participant U as unknown handler
-    participant T as tcl_code table
-    H->>D: INSERT the first card
-    loop each INSERT fires the trigger, while the total is 40 or less
-        D->>H: SQL function tcl calls the Tcl command born
-        H->>U: born does not exist yet, so Tcl calls unknown
-        U->>T: look up the proc's params and body
-        T-->>U: the text of the proc
-        U->>H: define the proc, retry the call
-        H-->>D: the row is printed
-        D->>D: INSERT the next card: the trigger fires again
+    accTitle: tcl-weird: un disparador recursivo de SQLite llama a procedimientos Tcl recuperados de una tabla
+    accDescr: Diagrama de secuencia. El anfitrión Tcl instala tres interceptores e inserta la primera tarjeta. Cada inserción activa un disparador en SQLite. El disparador llama a la función SQL tcl, que a su vez llama a Tcl. Cuando Tcl pide por primera vez un comando como born, este no existe y Tcl llama a unknown. El manejador unknown lee el texto del procedimiento en la tabla tcl_code. Define el procedimiento y repite la llamada. La llamada imprime la fila. El disparador inserta la siguiente tarjeta solo mientras el total de la tarjeta recién insertada sea de 40 o menos. Esa inserción vuelve a activar el disparador. Si el total pasa de 40, no se inserta nada. El control vuelve al anfitrión, que imprime el resumen.
+    participant H as Anfitrión Tcl
+    participant D as SQLite y el disparador next_card
+    participant U as Manejador unknown
+    participant T as Tabla tcl_code
+    H->>D: INSERT de la primera tarjeta
+    loop Cada INSERT activa el disparador mientras el total es de 40 o menos
+        D->>H: La función SQL tcl llama al comando Tcl born
+        H->>U: born aún no existe: Tcl llama a unknown
+        U->>T: Busca los parámetros y el cuerpo
+        T-->>U: Texto del procedimiento
+        U->>H: Define el procedimiento y repite la llamada
+        H-->>D: Se imprime la fila
+        D->>D: INSERT de la siguiente tarjeta: se repite el disparo
     end
-    D-->>H: total is over 40, no insert: the trigger chain ends
-    H->>H: print the summary
+    D-->>H: El total pasa de 40: cesan las inserciones y los disparos
+    H->>H: Imprime el resumen
 ```
 
-**What this shows:** the loop is a trigger that inserts a row and so fires itself, and every number and printed line comes from Tcl code stored as text in a table. The first call of a proc takes the long way, through `unknown` and the table, and later calls find the proc defined.
+**Qué muestra:** el bucle es un disparador que inserta una fila y así vuelve a activarse. Cada número y cada línea impresa provienen de código Tcl guardado como texto en una tabla. La primera llamada a un procedimiento da un rodeo por `unknown` y la tabla. Las demás ya encuentran el procedimiento definido.
 
-**Why this mechanism matters:** the database is dispatching, but it is not an event queue. The trigger runs synchronously inside the `INSERT`, and the recursion is the loop. The `WHERE` on the trigger's insert is the stop rule. Control moves between three layers (Tcl, SQL, Tcl) on one call stack.
+**Por qué importa este mecanismo:** la base de datos dirige las llamadas, pero no es una cola de eventos. El disparador se ejecuta de forma síncrona dentro de `INSERT`. La recursión hace de bucle. El `WHERE` de la inserción del disparador es la regla de parada. El control pasa por tres capas (Tcl, SQL, Tcl) en una sola pila de llamadas.
 <!-- END GENERATED program-flow:languages/tcl.md -->
 
 ## La informática detrás de esta página
 
 <!-- BEGIN GENERATED concepts:languages/tcl.md -->
-The computer-science ideas behind this page: [Arbitrary code execution](../informatica/01-lectura-de-un-programa-adversarial.md#arbitrary-code-execution), [Control flow](../informatica/03-flujo-de-control-y-continuaciones.md#control-flow), [Recursion](../informatica/03-flujo-de-control-y-continuaciones.md#recursion), [Interpreters and virtual machines](../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#interpreters-and-virtual-machines), [State](../informatica/06-estado-mas-alla-de-las-variables.md#state), [Scope and binding](../informatica/06-estado-mas-alla-de-las-variables.md#scope-and-binding), [Homoiconicity: code as data](../informatica/06-estado-mas-alla-de-las-variables.md#homoiconicity-code-as-data), [Reflection and metaprogramming](../informatica/06-estado-mas-alla-de-las-variables.md#reflection-and-metaprogramming), [Database triggers](../informatica/06-estado-mas-alla-de-las-variables.md#database-triggers), [Serialization, deserialization and object pickling](../informatica/06-estado-mas-alla-de-las-variables.md#serialization-deserialization-and-object-pickling), [Transactions](../informatica/07-efectos-errores-y-confirmacion.md#transactions), [Callbacks](../informatica/10-eventos-retrollamadas-y-flujo-de-control-reactivo.md#callbacks).
+Las ideas de ciencias de la computación detrás de esta página: [Ejecución de código arbitrario](../informatica/01-lectura-de-un-programa-adversarial.md#ejecución-de-código-arbitrario), [Flujo de control](../informatica/03-flujo-de-control-y-continuaciones.md#flujo-de-control), [Recursión](../informatica/03-flujo-de-control-y-continuaciones.md#recursión), [Intérpretes y máquinas virtuales](../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#intérpretes-y-máquinas-virtuales), [Estado](../informatica/06-estado-mas-alla-de-las-variables.md#estado), [Ámbito y enlace de nombres](../informatica/06-estado-mas-alla-de-las-variables.md#ámbito-y-enlace-de-nombres), [Homoiconicidad: código como datos](../informatica/06-estado-mas-alla-de-las-variables.md#homoiconicidad-código-como-datos), [Reflexión y metaprogramación](../informatica/06-estado-mas-alla-de-las-variables.md#reflexión-y-metaprogramación), [Disparadores de base de datos](../informatica/06-estado-mas-alla-de-las-variables.md#disparadores-de-base-de-datos), [Serialización, deserialización y pickling de objetos](../informatica/06-estado-mas-alla-de-las-variables.md#serialización-deserialización-y-pickling-de-objetos), [Transacciones](../informatica/07-efectos-errores-y-confirmacion.md#transacciones), [Funciones de devolución de llamada](../informatica/10-eventos-retrollamadas-y-flujo-de-control-reactivo.md#funciones-de-devolución-de-llamada).
 <!-- END GENERATED concepts:languages/tcl.md -->

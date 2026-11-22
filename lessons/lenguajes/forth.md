@@ -76,53 +76,53 @@ Consulta los [ejercicios](../exercises.md#b3-forth-mueve-el-ancla-verificado).
 Cuando escribes el intérprete, una palabra de análisis sintáctico o un depurador. Rebobinar el analizador sintáctico es una acrobacia en un bucle; es una herramienta para quien implementa un lenguaje.
 
 <!-- BEGIN GENERATED program-flow:languages/forth.md -->
-## How each program runs
+## Cómo corre cada programa
 
-Each picture below is the `## Program Flow` section of an entry's README, copied here by the build. It shows how that program makes the work happen: what the language, runtime or tool really does. [The introduction](../introduccion.md#qué-hace-el-reto) shows what the challenge asks for and where entries differ.
+Cada imagen de abajo es la sección `## Flujo del programa` del README de una entrada, copiada aquí por la compilación. Muestra cómo ese programa hace el trabajo: lo que el lenguaje, el entorno de ejecución o la herramienta hacen en realidad. [La introducción](../introduccion.md#qué-hace-el-reto) muestra qué pide el reto y en qué se distinguen las entradas.
 
-### Program flow of `forth`
+### Flujo del programa de `forth`
 
-From [`forth`](../../src/forth/README.md) ([source section](../../src/forth/README.md#flujo-del-programa)).
+Desde [`forth`](../../src/forth/README.md) ([sección original](../../src/forth/README.md#flujo-del-programa)).
 
 ```mermaid
 flowchart TD
-    accTitle: forth: one begin until loop over a word called card
-    accDescr: A flowchart. The word main sets up, which opens a pipe to sqlite3, and writes the schema. The word run is a begin until loop. Each pass runs card, which draws hours, adds them to the total variable, bumps the card count, prints the row, and sends the INSERT through the pipe. Then over-40 leaves a flag on the stack, and until consumes it. If the flag is false, the loop repeats. If it is true, run ends, and main commits, closes the pipe and reports.
-    A["main: open the pipe to sqlite3, write the schema"] --> B["run: begin"]
-    B --> C["card: draw hours, add to total, bump cards"]
-    C --> D["Print the row; send the INSERT through the pipe"]
-    D --> E{{"over-40? leaves a flag; until consumes it"}}
+    accTitle: forth: un solo bucle begin until sobre una palabra llamada card
+    accDescr: Un diagrama de flujo. La palabra main hace la preparación: abre una tubería a sqlite3 y escribe el esquema. La palabra run es un bucle begin until. Cada pasada ejecuta card, que extrae las horas, las suma a la variable total, incrementa el conteo de tarjetas, imprime la fila y envía el INSERT por la tubería. Después, over-40? deja una bandera en la pila y until la consume. Si la bandera es falsa, el bucle se repite. Si es verdadera, run termina, y main confirma la transacción, cierra la tubería e informa.
+    A["main: abre la tubería a sqlite3, escribe el esquema"] --> B["run: begin"]
+    B --> C["card: extraer horas, sumar al total, incrementar tarjetas"]
+    C --> D["Imprime la fila; envía el INSERT por la tubería"]
+    D --> E{{"over-40? deja una bandera; until la consume"}}
     E -->|false| B
-    E -->|true| F["main: commit, close the pipe, report"]
+    E -->|true| F["main: confirma la transacción, cierra la tubería, informa"]
 ```
 
-**What this shows:** Forth has one ordinary loop, `begin ... until`. The loop body runs `card`, and then `over-40?` leaves a flag on the stack for `until` to take. The state lives in two variables, `total` and `cards`, and the data stack carries values between words.
+**Qué muestra:** Forth tiene un solo bucle ordinario, `begin ... until`. El cuerpo del bucle ejecuta `card` y después `over-40?` deja una bandera (un valor booleano) en la pila para que `until` la tome. El estado vive en dos variables, `total` y `cards`, y la pila de datos lleva valores entre palabras.
 
-**Why this mechanism matters:** the stop rule is a flag, not a condition in the loop's header. The flag is computed after the card, so the crossing card is kept. The weird sibling [`forth-weird`](../../src/forth-weird/README.md) has no `begin` and no `until`.
+**Por qué importa este mecanismo:** la regla de parada es una bandera, no una condición en el encabezado del bucle. La bandera se calcula después de la tarjeta, así que la tarjeta con la que el total pasa del límite se conserva. El hermano raro [`forth-weird`](../../src/forth-weird/README.md) no tiene `begin` ni `until`.
 
-### Program flow of `forth-weird`
+### Flujo del programa de `forth-weird`
 
-From [`forth-weird`](../../src/forth-weird/README.md) ([source section](../../src/forth-weird/README.md#flujo-del-programa)).
+Desde [`forth-weird`](../../src/forth-weird/README.md) ([sección original](../../src/forth-weird/README.md#flujo-del-programa)).
 
 ```mermaid
 flowchart TD
-    accTitle: forth-weird: the text interpreter reads the same words again
-    accDescr: A flowchart. The Forth text interpreter reads one line: zero zero, then at-in fetch, then step, then rewind-question. Zero zero pushes the card number and the total. At-in fetch pushes the parse position, which is the anchor. The word step runs one card with the anchor kept on the return stack. The word rewind-question makes a flag, minus one while the total is 40 or less, and zero otherwise. It combines the flag with the distance back to the anchor, and adds that to the parse position. If the flag was true, the parse position is back at the anchor, so the interpreter reads step again. If it was false, the parse position is unchanged, and the interpreter goes on to drop, commit and report.
-    A["Interpreter reads: 0 0 #gt;in @ — stack holds n, total and anchor"] --> B["Interpreter reads the word step: runs one card, anchor kept on the return stack"]
-    B --> C["Interpreter reads rewind?: flag is -1 while total <= 40, else 0"]
-    C --> D["Distance back to the anchor AND flag, added to the parse position #gt;in"]
-    D --> E{{"Is the parse position back at the anchor?"}}
-    E -->|"yes: flag was -1"| B
-    E -->|"no: flag was 0"| F["Interpreter reads on: drop the anchor, commit, report"]
+    accTitle: forth-weird: el intérprete de texto vuelve a leer las mismas palabras
+    accDescr: Un diagrama de flujo. El intérprete de texto de Forth lee una línea: cero cero, luego at-in fetch, luego step y luego rewind-question. Cero cero apila el número de tarjeta y el total. At-in fetch apila la posición de análisis, que es el ancla. La palabra step ejecuta una tarjeta con el ancla guardada en la pila de retorno. La palabra rewind-question crea una bandera: menos uno mientras el total no pasa de 40 y cero en cualquier otro caso. Combina la bandera con la distancia de regreso al ancla y suma el resultado a la posición de análisis. Si la bandera era verdadera, la posición de análisis vuelve al ancla y el intérprete lee step otra vez. Si era falsa, la posición de análisis no cambia y el intérprete sigue con drop, commit y report.
+    A["El intérprete lee: 0 0 #gt;in @ — la pila contiene n, el total y el ancla"] --> B["El intérprete lee la palabra step: ejecuta una tarjeta y mantiene el ancla en la pila de retorno"]
+    B --> C["El intérprete lee rewind?: la bandera es -1 mientras el total no pasa de 40; en otro caso, es 0"]
+    C --> D["Distancia de vuelta al ancla Y bandera, sumada a la posición de análisis #gt;in"]
+    D --> E{{"¿Volvió la posición de análisis al ancla?"}}
+    E -->|"sí: la bandera valía -1"| B
+    E -->|"no: la bandera era 0"| F["El intérprete sigue leyendo: suelta el ancla, confirma la transacción e informa"]
 ```
 
-**What this shows:** the loop is the text interpreter, the loop you never see, and the jump is a change to `>in`, the number that says how far it has read. Setting `>in` to an earlier value makes the interpreter read the same words again. There is no `if`: a Forth flag is `-1` or `0`, so `AND` turns the distance back into either itself or nothing.
+**Qué muestra:** el bucle es el intérprete de texto, el bucle que nunca ves y el salto es un cambio en `>in`, el número que indica hasta dónde ha leído. Asignar un valor anterior a `>in` hace que el intérprete lea otra vez las mismas palabras. No existe `if`: una bandera de Forth es `-1` o `0`, así que `AND` convierte la distancia en sí misma o en nada.
 
-**Why this mechanism matters:** the program counter is a variable, and a program can rewrite it. The state is two numbers on the data stack, and they survive the rewind because nothing else touches them. This works because the words are read from an input line, and it does not work the same way in a definition. See [`forth`](../../src/forth/README.md) for the ordinary loop.
+**Por qué importa este mecanismo:** el contador de programa es una variable, y un programa puede reescribirla. El estado son dos números en la pila de datos, y sobreviven al retroceso porque nada más los toca. Esto funciona porque las palabras se leen de una línea de entrada, y no funciona igual dentro de una definición. Para el bucle ordinario, consulta [`forth`](../../src/forth/README.md).
 <!-- END GENERATED program-flow:languages/forth.md -->
 
 ## Informática detrás de esta página
 
 <!-- BEGIN GENERATED concepts:languages/forth.md -->
-The computer-science ideas behind this page: [Stack machines](../informatica/02-que-cuenta-como-maquina.md#stack-machines), [Register machines and counter machines](../informatica/02-que-cuenta-como-maquina.md#register-machines-and-counter-machines), [Control flow](../informatica/03-flujo-de-control-y-continuaciones.md#control-flow), [The program counter](../informatica/03-flujo-de-control-y-continuaciones.md#the-program-counter), [Parsing](../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#parsing), [State](../informatica/06-estado-mas-alla-de-las-variables.md#state), [The stack as a data structure](../informatica/06-estado-mas-alla-de-las-variables.md#the-stack-as-a-data-structure), [Reflection and metaprogramming](../informatica/06-estado-mas-alla-de-las-variables.md#reflection-and-metaprogramming), [Transactions](../informatica/07-efectos-errores-y-confirmacion.md#transactions).
+Las ideas de ciencias de la computación detrás de esta página: [Máquinas de pila](../informatica/02-que-cuenta-como-maquina.md#máquinas-de-pila), [Máquinas de registros y máquinas de contadores](../informatica/02-que-cuenta-como-maquina.md#máquinas-de-registros-y-máquinas-de-contadores), [Flujo de control](../informatica/03-flujo-de-control-y-continuaciones.md#flujo-de-control), [El contador de programa](../informatica/03-flujo-de-control-y-continuaciones.md#el-contador-de-programa), [Análisis sintáctico](../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#análisis-sintáctico), [Estado](../informatica/06-estado-mas-alla-de-las-variables.md#estado), [La pila como estructura de datos](../informatica/06-estado-mas-alla-de-las-variables.md#la-pila-como-estructura-de-datos), [Reflexión y metaprogramación](../informatica/06-estado-mas-alla-de-las-variables.md#reflexión-y-metaprogramación), [Transacciones](../informatica/07-efectos-errores-y-confirmacion.md#transacciones).
 <!-- END GENERATED concepts:languages/forth.md -->

@@ -9,48 +9,48 @@ Un truco es "esta fórmula mágica hace que el bucle se detenga". La computació
 Cada entrada rara te obliga a nombrar la máquina que se esconde dentro de un lenguaje. Cuando puedes nombrarla, el truco es solo un programa para esa máquina.
 
 <!-- BEGIN GENERATED machines -->
-| Language / tool | The machine it really is | Where the program's state lives | Lesson |
+| Lenguaje o herramienta | La máquina que es en realidad | Dónde vive el estado del programa | Lección |
 | --- | --- | --- | --- |
-| .NET regex | A counter built from a stack | Balancing-group capture stacks | [regex](lenguajes/regex.md#net-grupos-de-equilibrio) |
-| APL | Ordinary: an array machine that draws five cards at once and decides afterwards | Arrays, and nothing hidden | [apl](lenguajes/apl.md) |
-| APL | An array machine, with code that is also an array | Arrays, and the source text of functions | [apl](lenguajes/apl.md#funciones-que-se-modifican-a-sí-mismas-apl-weird) |
-| AWK | Ordinary: a `while` loop in `BEGIN`, with a pipe to sqlite3 as the output | Arrays and parameter-local variables | [awk](lenguajes/awk.md) |
-| AWK | A record-processing loop that you can aim at any byte stream | The input stream and the record separator `RS` | [awk](lenguajes/awk.md#registros-a-partir-de-un-flujo-de-bytes-aleatorios-awk-weird) |
-| C# `for` | Three expression slots | Fields of one anonymous object | [csharp-linq-xaml](lenguajes/csharp-linq-xaml.md#el-original-modernchallenge1) |
-| CMake | A register machine | `CMAKE_MATCH_1`..`5`, rebuilt every pass | [make-cmake](lenguajes/make-cmake.md#cmake) |
-| COBOL | Ordinary: a structured `PERFORM ... UNTIL` loop that asks the data for the stop rule | `WS-TOTAL` and its 88-level name `OVER-FORTY` | [cobol](lenguajes/cobol.md) |
-| COBOL | A program whose jump targets are mutable | The target of one `GO TO` | [cobol](lenguajes/cobol.md#alter) |
-| Common Lisp | Ordinary: one `LOOP` that runs its clauses in order on every pass | Variables the `LOOP` owns, such as `total` | [lisp](lenguajes/lisp.md) |
-| Common Lisp | A method dispatcher with a pluggable combination rule | The class precedence list, and each method's return value | [lisp](lenguajes/lisp.md#combinación-de-métodos-como-flujo-de-control) |
-| ed | A string-rewriting machine with line addresses | The editor buffer: one line per card, and marks (x) that are added by joining lines | [editors](lenguajes/editores.md#el-búfer-es-la-máquina) |
-| Ex | A register machine whose registers are editor marks, and whose program is a register that runs itself | The marks (where we are on a tape of numbered lines), the first line of the buffer (the next card), and registers a, d and n | [editors](lenguajes/editores.md#un-programa-que-puedes-editar) |
-| Forth | Ordinary: a stack machine with one `begin ... until` loop | The variables `total` and `cards`, and the data stack | [forth](lenguajes/forth.md) |
-| Forth | A stack machine with a movable instruction pointer | The data stack and the parse position `>in` | [forth](lenguajes/forth.md) |
-| GNU find | A tree walk that grows the tree it is walking, with find itself reading the depth and the clock | The path from the start directory to the directory being visited; its depth is the running total | [find](lenguajes/find.md) |
-| GNU Make | A dependency graph that can restart itself | Which `.tc-N.mk` files exist, and `MAKE_RESTARTS` | [make-cmake](lenguajes/make-cmake.md#gnu-make) |
-| GNU sed | A string-rewriting system (a Markov algorithm) | One line of text, rewritten until no rule applies | [regex](lenguajes/regex.md#gnu-sed) |
-| GNU tar | A tape reader (tar) feeding a five-word interpreter | The archive's members, which are the program, plus one SQLite row that says whether the run has halted or faulted | [tar](lenguajes/tar.md#un-programa-que-es-un-archivo) |
-| GNU tar | A finite-state machine, driven by a logical clock that tar supplies | One SQLite row (the machine's registers) and the number of records tar has written | [tar](lenguajes/tar.md#el-archivo-es-el-reloj) |
-| Go | Three expression slots, with helper functions in the slots | Fields of one anonymous struct | [csharp-linq-xaml](lenguajes/csharp-linq-xaml.md#las-adaptaciones-de-una-sola-sentencia-mismo-truco-distinta-maquinaria) |
-| Haskell | Ordinary: a lazy list that one `span` reads until the test fails | The unevaluated parts of the lists, read on demand | [haskell](lenguajes/haskell.md) |
-| Haskell | A lazy graph reducer | Thunks: which parts of a list have been demanded | [haskell](lenguajes/haskell.md#la-es-perezosa-como-flujo-de-control) |
-| Java | Three expression slots | Fields of one anonymous class | [csharp-linq-xaml](lenguajes/csharp-linq-xaml.md#las-adaptaciones-de-una-sola-sentencia-mismo-truco-distinta-maquinaria) |
-| JavaScript | Three expression slots | Properties of one object literal | [javascript](lenguajes/javascript.md#el-for-sin-cuerpo-en-node) |
-| JavaScript | A set of listeners on one EventEmitter, which together are a state machine | The running total and the card count, held in one object that only the listeners touch | [javascript](lenguajes/javascript.md#escuchadores-de-eventos-hasta-el-fondo) |
-| JavaScript | A closure-backed state machine, pulled by a lazy iterator | Variables captured by closures: the generator's number, and the machine's card count, total and stop flag | [javascript](lenguajes/javascript.md#clausuras-hasta-el-fondo) |
-| Kotlin | A lazy sequence that the empty `for` pulls | Properties of one object expression, the seed of the sequence | [csharp-linq-xaml](lenguajes/csharp-linq-xaml.md#las-adaptaciones-de-una-sola-sentencia-mismo-truco-distinta-maquinaria) |
-| LINQ | A lazy chain of LINQ stages that one final `Aggregate` demands | Inside the stages' enumerators, and in the database | [csharp-linq-xaml](lenguajes/csharp-linq-xaml.md#la-ejecución-diferida-y-el-truco-de-convertir-void-en-valor) |
-| LINQ | A lazy query that its closing `Single()` demands | A prefix sum recomputed in each `where`, and the database; no accumulator variable | [csharp-linq-xaml](lenguajes/csharp-linq-xaml.md#la-ejecución-diferida-y-el-truco-de-convertir-void-en-valor) |
-| m4 | A text-rescanning machine | The input stream: whatever macro text has not been read yet | [m4](lenguajes/m4.md#un-bucle-hecho-de-reescaneo) |
-| PCRE2 | A backtracking search with hooks | A C struct that never rewinds | [regex](lenguajes/regex.md#pcre2-los-callouts-como-conjunto-de-instrucciones) |
-| pcre2grep | A backtracking search that runs one program per callout | SQLite rows, and the exit code of each callout | [regex](lenguajes/regex.md#pcre2grep-códigos-de-salida-como-flujo-de-control) |
-| Perl | A backtracking search with hooks | `local` variables that unwind (effects do not) | [regex](lenguajes/regex.md#perl-código-dentro-de-la-coincidencia) |
-| POSIX find | A tree walk that grows the tree it is walking | The path from the start directory to the directory being visited | [find](lenguajes/find.md) |
-| Python | A function that `iter` calls until it returns the sentinel `False` | Attributes of one state object passed to the lambda | [csharp-linq-xaml](lenguajes/csharp-linq-xaml.md#las-adaptaciones-de-una-sola-sentencia-mismo-truco-distinta-maquinaria) |
-| Rust | A chain of values from `successors`, which stops at `None` | A new immutable `DemoBatch` for every step; nothing is mutated | [csharp-linq-xaml](lenguajes/csharp-linq-xaml.md#las-adaptaciones-de-una-sola-sentencia-mismo-truco-distinta-maquinaria) |
-| Tcl | Ordinary: a `while` loop that draws first and saves afterwards | Dicts and Tcl variables, saved in one `db transaction` | [tcl](lenguajes/tcl.md) |
-| Tcl | A string-command interpreter whose command lookup can be hooked | A TEMP table of proc source, and the depth of trigger recursion | [tcl](lenguajes/tcl.md#sqlite-como-programa) |
-| XAML | An object-graph constructor that runs methods as it parses | Document order, plus "carrier" arrays | [csharp-linq-xaml](lenguajes/csharp-linq-xaml.md#xaml) |
+| APL | Ordinario: una máquina de arreglos que saca cinco tarjetas a la vez y decide después | Arreglos y nada oculto | [apl](lenguajes/apl.md) |
+| APL | Una máquina de arreglos, con código que también es un arreglo | Arreglos y el texto fuente de las funciones | [apl](lenguajes/apl.md#funciones-que-se-modifican-a-sí-mismas-apl-weird) |
+| AWK | Ordinario: un bucle `while` en `BEGIN`, con una tubería a sqlite3 como salida | Arreglos y variables locales de parámetro | [awk](lenguajes/awk.md) |
+| AWK | Un bucle que procesa registros y que puedes dirigir a cualquier flujo de bytes | El flujo de entrada de datos y el separador de registros `RS` | [awk](lenguajes/awk.md#registros-a-partir-de-un-flujo-de-bytes-aleatorios-awk-weird) |
+| C# `for` | Tres espacios para expresiones | Campos de un objeto anónimo | [csharp-linq-xaml](lenguajes/csharp-linq-xaml.md#el-original-modernchallenge1) |
+| CMake | Una máquina de registros | `CMAKE_MATCH_1`..`5`, reconstruido en cada pasada | [make-cmake](lenguajes/make-cmake.md#cmake) |
+| COBOL | Ordinario: un bucle estructurado `PERFORM ... UNTIL` que pide a los datos la regla de parada | `WS-TOTAL` y su nombre de nivel 88 `OVER-FORTY` | [cobol](lenguajes/cobol.md) |
+| COBOL | Un programa cuyos destinos de salto son mutables | El destino de un `GO TO` | [cobol](lenguajes/cobol.md#alter) |
+| Common Lisp | Ordinario: un `LOOP` que, en cada pasada, ejecuta sus cláusulas en orden | Variables que posee `LOOP`, como `total` | [lisp](lenguajes/lisp.md) |
+| Common Lisp | Un despachador de métodos con una regla de combinación intercambiable | La lista de precedencia de clases y el valor de retorno de cada método | [lisp](lenguajes/lisp.md#combinación-de-métodos-como-flujo-de-control) |
+| ed | Una máquina que reescribe cadenas de texto con direcciones de línea | El búfer del editor: una línea por tarjeta y marcas (x) que se añaden al unir líneas | [editores](lenguajes/editores.md#el-búfer-es-la-máquina) |
+| Ex | Una máquina de registros cuyos registros son marcas del editor y cuyo programa es un registro que se ejecuta a sí mismo | Las marcas (dónde estamos en una cinta de líneas numeradas), la primera línea del búfer (la siguiente tarjeta) y los registros a, d y n | [editores](lenguajes/editores.md#un-programa-que-puedes-editar) |
+| Forth | Ordinario: una máquina de pila con un solo bucle `begin ... until` | Las variables `total` y `cards` junto con la pila de datos | [forth](lenguajes/forth.md) |
+| Forth | Una máquina de pila con un puntero de instrucción móvil | La pila de datos y la posición de análisis `>in` | [forth](lenguajes/forth.md) |
+| GNU find | Un recorrido de árbol que hace crecer el árbol que recorre y en el que find mismo lee la profundidad y el reloj | El camino desde el directorio de inicio hasta el directorio que se visita; su profundidad es el total acumulado | [find](lenguajes/find.md) |
+| GNU Make | Un grafo de dependencias que puede reiniciarse solo | Qué archivos `.tc-N.mk` existen y `MAKE_RESTARTS` | [make-cmake](lenguajes/make-cmake.md#gnu-make) |
+| GNU sed | Un sistema de reescritura de cadenas de texto (un algoritmo de Markov) | Una línea de texto, reescrita hasta que ninguna regla se aplique | [regex](lenguajes/regex.md#gnu-sed) |
+| GNU tar | Un lector de cinta (tar) que alimenta a un intérprete de cinco palabras | Los miembros del archivo, que son el programa, más una fila de SQLite que indica si la ejecución se detuvo o falló | [tar](lenguajes/tar.md#un-programa-que-es-un-archivo) |
+| GNU tar | Una máquina de estados finitos que avanza con un reloj lógico de tar | Una fila de SQLite (los registros de la máquina) y el número de registros que tar ha escrito | [tar](lenguajes/tar.md#el-archivo-es-el-reloj) |
+| Go | Tres posiciones de expresión, con funciones auxiliares en ellas | Campos de una estructura anónima | [csharp-linq-xaml](lenguajes/csharp-linq-xaml.md#las-adaptaciones-de-una-sola-sentencia-mismo-truco-distinta-maquinaria) |
+| Haskell | Ordinario: una lista perezosa que un solo `span` lee hasta que la prueba falla | Las partes sin evaluar de las listas, leídas bajo demanda | [haskell](lenguajes/haskell.md) |
+| Haskell | Un reductor de grafos perezoso | Thunks: qué partes de una lista se han demandado | [haskell](lenguajes/haskell.md#la-es-perezosa-como-flujo-de-control) |
+| Java | Tres posiciones de expresión | Campos de una clase anónima | [csharp-linq-xaml](lenguajes/csharp-linq-xaml.md#las-adaptaciones-de-una-sola-sentencia-mismo-truco-distinta-maquinaria) |
+| JavaScript | Tres espacios para expresiones | Propiedades de un objeto literal | [javascript](lenguajes/javascript.md#el-for-sin-cuerpo-en-node) |
+| JavaScript | Un conjunto de escuchadores de eventos en un solo EventEmitter, que juntos son una máquina de estados | El total acumulado y el número de tarjetas, guardados en un objeto que solo tocan los escuchadores de eventos | [javascript](lenguajes/javascript.md#escuchadores-de-eventos-hasta-el-fondo) |
+| JavaScript | Una máquina de estados basada en una clausura, avanzada por un iterador perezoso | Variables capturadas por clausuras: el número del generador; de la máquina, la cantidad de tarjetas, el total y la bandera de parada | [javascript](lenguajes/javascript.md#clausuras-hasta-el-fondo) |
+| Kotlin | Una secuencia perezosa de la que el `for` vacío demanda (pull) un valor a la vez | Propiedades de una expresión de objeto, la semilla de la secuencia | [csharp-linq-xaml](lenguajes/csharp-linq-xaml.md#las-adaptaciones-de-una-sola-sentencia-mismo-truco-distinta-maquinaria) |
+| LINQ | Una cadena perezosa de etapas de LINQ que un único `Aggregate` final demanda | Dentro de los enumeradores de las etapas y en la base de datos | [csharp-linq-xaml](lenguajes/csharp-linq-xaml.md#la-ejecución-diferida-y-el-truco-de-convertir-void-en-valor) |
+| LINQ | Una consulta perezosa cuyo `Single()` final demanda su evaluación | Una suma acumulada hasta el día actual recalculada en cada `where`, y la base de datos; sin variable acumuladora | [csharp-linq-xaml](lenguajes/csharp-linq-xaml.md#la-ejecución-diferida-y-el-truco-de-convertir-void-en-valor) |
+| m4 | Una máquina que reescanea texto | El flujo de entrada de datos: todo el texto de macros sin leer | [m4](lenguajes/m4.md#un-bucle-hecho-de-reescaneo) |
+| PCRE2 | Una búsqueda con retroceso y ganchos | Una struct de C que nunca retrocede | [regex](lenguajes/regex.md#pcre2-los-callouts-como-conjunto-de-instrucciones) |
+| pcre2grep | Una búsqueda con retroceso que ejecuta un programa por cada callout | Filas de SQLite y el código de salida de cada callout | [regex](lenguajes/regex.md#pcre2grep-códigos-de-salida-como-flujo-de-control) |
+| Perl | Una búsqueda con retroceso y ganchos | Variables `local` que se deshacen (los efectos no) | [regex](lenguajes/regex.md#perl-código-dentro-de-la-coincidencia) |
+| POSIX find | Un recorrido de árbol que hace crecer el árbol que recorre | La ruta desde el directorio de inicio hasta el directorio que se visita | [find](lenguajes/find.md) |
+| Python | Una función que `iter` llama hasta que devuelve el valor centinela `False` | Atributos de un objeto de estado que se pasa a la lambda | [csharp-linq-xaml](lenguajes/csharp-linq-xaml.md#las-adaptaciones-de-una-sola-sentencia-mismo-truco-distinta-maquinaria) |
+| Regex de .NET | Un contador construido con una pila | Pilas de captura con grupos de equilibrio | [regex](lenguajes/regex.md#net-grupos-de-equilibrio) |
+| Rust | Una cadena de valores desde `successors`, que se detiene en `None` | Un nuevo `DemoBatch` inmutable en cada paso; nada se muta | [csharp-linq-xaml](lenguajes/csharp-linq-xaml.md#las-adaptaciones-de-una-sola-sentencia-mismo-truco-distinta-maquinaria) |
+| Tcl | Convencional: un bucle `while` que primero sortea y después guarda | Diccionarios y variables Tcl que se guardan en un solo `db transaction` | [tcl](lenguajes/tcl.md) |
+| Tcl | Un intérprete de comandos en forma de cadenas de texto que permite interceptar la búsqueda de comandos | Una tabla TEMP con el código fuente de los procedimientos y la profundidad de la recursión de los disparadores | [tcl](lenguajes/tcl.md#sqlite-como-programa) |
+| XAML | Un constructor de grafos de objetos que ejecuta métodos durante el análisis sintáctico | El orden del documento y los arreglos "portadores" | [csharp-linq-xaml](lenguajes/csharp-linq-xaml.md#xaml) |
 <!-- END GENERATED machines -->
 
 Cuando hayas visto cuatro lugares distintos para responder "¿dónde estoy en el programa?", dejarás de tratar la pila de llamadas y el contador del bucle como leyes de la naturaleza. Ese es el primer objetivo: separar el *flujo de control*, el *estado*, el *orden de evaluación* y los *efectos secundarios*, que la mayoría de los lenguajes sueldan en una sola pieza, y verlos separarse.

@@ -102,56 +102,56 @@ Usos legítimos: `ex -s` en scripts para hacer ediciones exactas y registros com
 Mira el [ejercicio B19](../exercises.md#b19-ex-mueve-el-límite-en-la-cinta-y-corta-el-bucle-verificado).
 
 <!-- BEGIN GENERATED program-flow:languages/editors.md -->
-## How each program runs
+## Cómo corre cada programa
 
-Each picture below is the `## Program Flow` section of an entry's README, copied here by the build. It shows how that program makes the work happen: what the language, runtime or tool really does. [The introduction](../introduccion.md#qué-hace-el-reto) shows what the challenge asks for and where entries differ.
+Cada imagen de abajo es la sección `## Flujo del programa` del README de una entrada, copiada aquí por la compilación. Muestra cómo ese programa hace el trabajo: lo que el lenguaje, el entorno de ejecución o la herramienta hacen en realidad. [La introducción](../introduccion.md#qué-hace-el-reto) muestra qué pide el reto y en qué se distinguen las entradas.
 
-### Program flow of `ed-weird`
+### Flujo del programa de `ed-weird`
 
-From [`ed-weird`](../../src/ed-weird/README.md) ([source section](../../src/ed-weird/README.md#flujo-del-programa)).
+Desde [`ed-weird`](../../src/ed-weird/README.md) ([sección original](../../src/ed-weird/README.md#flujo-del-programa)).
 
 ```mermaid
 flowchart TD
-    accTitle: ed-weird: one global command over a text buffer
-    accDescr: A flowchart. The launcher gives ed five random digits as a buffer of five lines. The script adds a category to each line by line address, rewrites each digit into hours and a run of marks with a table of substitutions, and adds a ledger line above the first card. Then one global command visits every card line in buffer order. For each card it copies the ledger above, joins the lines, and merges the marks, which adds the hours. Guarded substitutions then turn the ledger bar into an exclamation mark when there are 41 or more marks, and turn any card after that into a dead card. When all cards are visited, ed deletes the dead and start lines, rewrites marks into decimal, and prints the rows. The launcher loads them into SQLite.
-    A["Launcher: five random digits become ed's buffer, one line per card"] --> B["Rewrite tables: line addresses add categories, a digit becomes hours as marks"]
-    B --> C["Add a ledger line above the first card"]
-    C --> D{{"g: is there another card line to visit?"}}
-    D -->|yes| E["Copy the ledger above, join, merge the marks: adding is writing marks side by side"]
-    E --> F["Guarded substitutions: 41 or more marks turn the bar into !, a card after ! becomes Dead"]
+    accTitle: ed-weird: un comando global sobre un búfer de texto
+    accDescr: Un diagrama de flujo. El lanzador entrega a ed cinco dígitos aleatorios como un búfer de cinco líneas. El script añade una categoría a cada línea según su dirección de línea, reescribe cada dígito como horas y una serie de marcas con una tabla de sustituciones, y añade una línea de registro encima de la primera tarjeta. Luego un comando global visita cada línea de tarjeta en el orden del búfer. Para cada tarjeta, copia el registro de arriba, une las líneas y fusiona las marcas, lo que suma las horas. Después, unas sustituciones condicionadas cambian la barra del registro por un signo de exclamación cuando hay 41 marcas o más, y convierten en tarjeta muerta cualquier tarjeta posterior. Cuando se han visitado todas las tarjetas, ed borra las líneas muertas y la de inicio, reescribe las marcas en decimal e imprime las filas. El lanzador las carga en SQLite.
+    A["Lanzador: cinco dígitos aleatorios se convierten en el búfer de ed, una línea por tarjeta"] --> B["Tablas de reescritura: las direcciones de línea añaden categorías; un dígito se convierte en horas como marcas"]
+    B --> C["Añade una línea de libro mayor encima de la primera tarjeta"]
+    C --> D{{"g: ¿hay otra línea de tarjeta que visitar?"}}
+    D -->|sí| E["Copia el registro de arriba, une, fusiona las marcas: sumar es escribir marcas una al lado de otra"]
+    E --> F["Sustituciones con guarda: 41 o más marcas convierten la barra en !, una tarjeta después de ! pasa a ser Dead"]
     F --> D
-    D -->|no| G["Delete Dead and Start lines, marks to decimal, print the rows"]
-    G --> H["Launcher loads the rows into SQLite"]
+    D -->|no| G["Elimina las líneas Dead y Start, pasa las marcas a decimal, imprime las filas"]
+    G --> H["El lanzador carga las filas en SQLite"]
 ```
 
-**What this shows:** `ed` has one loop, the global command `g`, and it has no `if`. A substitution that finds nothing to replace does nothing, so each guarded substitution means "if the line has this pattern, rewrite it". The state is text: marks that are added by writing them side by side.
+**Qué muestra:** `ed` tiene un solo bucle (el comando global `g`) y no tiene `if`. Una sustitución que no encuentra nada que reemplazar no hace nada; por eso cada sustitución con guarda significa "si la línea tiene este patrón, reescríbela". El estado es texto: marcas que se añaden al escribirlas una junto a otra.
 
-**Why this mechanism matters:** the stop rule is a regex over the ledger (41 or more marks), and it runs *after* the card is written, so the crossing card is kept. The `!` that it writes is a state that later cards read. It is the whole memory of "we are over".
+**Por qué importa este mecanismo:** la regla de parada es una expresión regular sobre el registro (41 marcas o más) y se ejecuta *después* de escribir la tarjeta, así que la tarjeta del cruce se conserva. `!`, que la regla escribe, es un estado que leen las tarjetas posteriores. Es toda la memoria de "estamos por encima".
 
-### Program flow of `ex-weird`
+### Flujo del programa de `ex-weird`
 
-From [`ex-weird`](../../src/ex-weird/README.md) ([source section](../../src/ex-weird/README.md#flujo-del-programa)).
+Desde [`ex-weird`](../../src/ex-weird/README.md) ([sección original](../../src/ex-weird/README.md#flujo-del-programa)).
 
 ```mermaid
 flowchart TD
-    accTitle: ex-weird: a register that holds the command that runs it again
-    accDescr: A flowchart. The launcher gives Ex five digits as cards. The script adds a tape of sixty lines under the cards, and the program as one line of text, which it copies into register a. Running register a starts the loop. The first card's digit is rewritten into a command that moves the mark t down the tape, and running it adds the hours. The program prints the row, using the total from the tape line under the mark. It copies that tape line's instruction into register n and deletes the used card. Running register n then does what the tape line says. Up to 40, the line says to run register a again. Above 40, the line is a comment, so nothing runs and the script ends.
-    A["Launcher gives five digits; the script adds a 60-line tape and the program as one line, copied into register a"] --> B["Run @a: rewrite the first card's digit into a command, 't+17 k t"]
-    B --> C["Run that command: mark t moves down the tape, and that is the addition"]
-    C --> D["Print the row: the card and the total on the tape line under mark t"]
-    D --> E["Copy that tape line's instruction into register n, delete the used card"]
-    E --> F{{"Run @n: what does the tape line say?"}}
-    F -->|"@a: total is 40 or less"| B
-    F -->|"a quote mark: a comment, total is over 40"| G["Nothing runs: the script ends and the launcher loads the rows"]
+    accTitle: ex-weird: un registro que guarda el comando que lo ejecuta de nuevo
+    accDescr: Un diagrama de flujo. El lanzador entrega a Ex cinco dígitos como tarjetas. El script añade bajo las tarjetas una cinta de sesenta líneas y el programa como una sola línea de texto, que copia en el registro a. Ejecutar el registro a inicia el bucle. El dígito de la primera tarjeta se reescribe como un comando que baja la marca t por la cinta, y ejecutarlo suma las horas. El programa imprime la fila con el total de la línea de la cinta que está bajo la marca. Copia la instrucción de esa línea de la cinta en el registro n y borra la tarjeta usada. Después, ejecutar el registro n hace lo que dice la línea de la cinta. Si el total no pasa de 40, la línea indica ejecutar de nuevo el registro a. Si pasa de 40, la línea es un comentario, así que no se ejecuta nada y el script termina.
+    A["El lanzador da cinco dígitos; el script añade una cinta de 60 líneas y el programa como una sola línea, copiada en el registro a"] --> B["Ejecuta @a: reescribe el dígito de la primera tarjeta como un comando, 't+17 k t"]
+    B --> C["Ejecuta ese comando: la marca t baja por la cinta y esa es la suma"]
+    C --> D["Imprime la fila: la tarjeta y el total en la línea de la cinta bajo la marca t"]
+    D --> E["Copia la instrucción de esa línea de la cinta en el registro n y elimina la tarjeta usada"]
+    E --> F{{"Ejecución @n: ¿qué dice la línea de la cinta?"}}
+    F -->|"@a: el total no pasa de 40"| B
+    F -->|"una comilla: un comentario, el total pasa de 40"| G["No se ejecuta nada: el script termina y el lanzador carga las filas"]
 ```
 
-**What this shows:** Ex keeps state outside the text, in marks, and it can run a register as a command. The position of mark `t` on a tape *is* the running total. The tape line under it holds the next instruction: `@a`, which means "go round again", or a quote mark, which Ex reads as a comment.
+**Qué muestra:** Ex guarda el estado fuera del texto, en marcas. También puede ejecutar un registro como comando. La posición de la marca `t` en una cinta *es* el total acumulado. La línea de la cinta que está debajo contiene la siguiente instrucción: `@a` (que significa "da otra vuelta") o una comilla, que Ex lee como comentario.
 
-**Why this mechanism matters:** this is self-modifying code. The program writes the command that does its arithmetic, and the stop rule is the place on the tape where `@a` turns into a comment. Nothing in the program says "40" anywhere except in how the tape is laid out.
+**Por qué importa este mecanismo:** este es código que se modifica a sí mismo. El programa escribe el comando que hace su aritmética, y la regla de parada es el lugar de la cinta donde `@a` se convierte en un comentario. Nada en el programa dice "40" en ninguna parte, salvo en cómo está dispuesta la cinta.
 <!-- END GENERATED program-flow:languages/editors.md -->
 
 ## La informática detrás de esta página
 
 <!-- BEGIN GENERATED concepts:languages/editors.md -->
-The computer-science ideas behind this page: [Specification versus implementation](../informatica/01-lectura-de-un-programa-adversarial.md#specification-versus-implementation), [Capability and authority](../informatica/01-lectura-de-un-programa-adversarial.md#capability-and-authority), [Transition systems and state machines](../informatica/02-que-cuenta-como-maquina.md#transition-systems-and-state-machines), [Representing state](../informatica/02-que-cuenta-como-maquina.md#representing-state), [Register machines and counter machines](../informatica/02-que-cuenta-como-maquina.md#register-machines-and-counter-machines), [Markov algorithms](../informatica/02-que-cuenta-como-maquina.md#markov-algorithms), [Operational semantics](../informatica/02-que-cuenta-como-maquina.md#operational-semantics), [Computation versus orchestration](../informatica/02-que-cuenta-como-maquina.md#computation-versus-orchestration), [The program counter](../informatica/03-flujo-de-control-y-continuaciones.md#the-program-counter), [Self-modifying code](../informatica/03-flujo-de-control-y-continuaciones.md#self-modifying-code), [Regular expressions](../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#regular-expressions), [Term and string rewriting](../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#term-and-string-rewriting), [Weird machines](../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#weird-machines), [Interpreters and virtual machines](../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#interpreters-and-virtual-machines), [State](../informatica/06-estado-mas-alla-de-las-variables.md#state), [Homoiconicity: code as data](../informatica/06-estado-mas-alla-de-las-variables.md#homoiconicity-code-as-data), [Reflection and metaprogramming](../informatica/06-estado-mas-alla-de-las-variables.md#reflection-and-metaprogramming), [Portability](../informatica/08-fugas-de-abstraccion-y-dependencia-de-la-implementacion.md#portability), [Hyrum's law](../informatica/08-fugas-de-abstraccion-y-dependencia-de-la-implementacion.md#hyrums-law).
+Las ideas de ciencias de la computación detrás de esta página: [Especificación frente a implementación](../informatica/01-lectura-de-un-programa-adversarial.md#especificación-frente-a-implementación), [Capacidad y autoridad](../informatica/01-lectura-de-un-programa-adversarial.md#capacidad-y-autoridad), [Sistemas de transición y máquinas de estados](../informatica/02-que-cuenta-como-maquina.md#sistemas-de-transición-y-máquinas-de-estados), [Cómo representar el estado](../informatica/02-que-cuenta-como-maquina.md#cómo-representar-el-estado), [Máquinas de registros y máquinas de contadores](../informatica/02-que-cuenta-como-maquina.md#máquinas-de-registros-y-máquinas-de-contadores), [Algoritmos de Markov](../informatica/02-que-cuenta-como-maquina.md#algoritmos-de-markov), [Semántica operacional](../informatica/02-que-cuenta-como-maquina.md#semántica-operacional), [Cálculo frente a orquestación](../informatica/02-que-cuenta-como-maquina.md#cálculo-frente-a-orquestación), [El contador de programa](../informatica/03-flujo-de-control-y-continuaciones.md#el-contador-de-programa), [Código automodificable](../informatica/03-flujo-de-control-y-continuaciones.md#código-automodificable), [Expresiones regulares](../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#expresiones-regulares), [Reescritura de términos y de cadenas de texto](../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#reescritura-de-términos-y-de-cadenas-de-texto), [Máquinas raras](../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#máquinas-raras), [Intérpretes y máquinas virtuales](../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#intérpretes-y-máquinas-virtuales), [Estado](../informatica/06-estado-mas-alla-de-las-variables.md#estado), [Homoiconicidad: código como datos](../informatica/06-estado-mas-alla-de-las-variables.md#homoiconicidad-código-como-datos), [Reflexión y metaprogramación](../informatica/06-estado-mas-alla-de-las-variables.md#reflexión-y-metaprogramación), [Portabilidad](../informatica/08-fugas-de-abstraccion-y-dependencia-de-la-implementacion.md#portabilidad), [Ley de Hyrum](../informatica/08-fugas-de-abstraccion-y-dependencia-de-la-implementacion.md#ley-de-hyrum).
 <!-- END GENERATED concepts:languages/editors.md -->

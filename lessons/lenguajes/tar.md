@@ -101,69 +101,69 @@ Usos legítimos: barras de progreso para copias de seguridad largas y `--checkpo
 Mira el [ejercicio B17](../exercises.md#b17-tar-más-raro-predice-el-reloj-verificado).
 
 <!-- BEGIN GENERATED program-flow:languages/tar.md -->
-## How each program runs
+## Cómo corre cada programa
 
-Each picture below is the `## Program Flow` section of an entry's README, copied here by the build. It shows how that program makes the work happen: what the language, runtime or tool really does. [The introduction](../introduccion.md#qué-hace-el-reto) shows what the challenge asks for and where entries differ.
+Cada imagen de abajo es la sección `## Flujo del programa` del README de una entrada, copiada aquí por la compilación. Muestra cómo ese programa hace el trabajo: lo que el lenguaje, el entorno de ejecución o la herramienta hacen en realidad. [La introducción](../introduccion.md#qué-hace-el-reto) muestra qué pide el reto y en qué se distinguen las entradas.
 
-### Program flow of `tar-gnu`
+### Flujo del programa de `tar-gnu`
 
-From [`tar-gnu`](../../src/tar-gnu/README.md) ([source section](../../src/tar-gnu/README.md#flujo-del-programa)).
+Desde [`tar-gnu`](../../src/tar-gnu/README.md) ([sección original](../../src/tar-gnu/README.md#flujo-del-programa)).
 
 ```mermaid
 sequenceDiagram
-    accTitle: tar-gnu: the archive is the program and a dispatcher gives its members meaning
-    accDescr: A sequence diagram. The interpreter first asks the inspector to vet the whole archive, which reads it and runs nothing. Then it starts tar with the to-command option. For each member, in archive order, tar sends the member name and body to the dispatcher. The dispatcher checks the name and the body against strict patterns, runs exactly one SQL statement for the member, and writes a row to the trace table. A stop-over member marks the run as halted when the total is over the limit, and the later members are traced as ignored. The show member prints the rows.
+    accTitle: tar-gnu: el archivo es el programa y un despachador da sentido a sus miembros
+    accDescr: Diagrama de secuencia. Primero, el intérprete pide al inspector que valide todo el archivo. El inspector lo lee sin ejecutar nada. Después, el intérprete inicia el comando tar con la opción to-command. Por cada miembro, tar envía el nombre y el cuerpo al despachador en el orden del archivo. El despachador compara el nombre y el cuerpo con patrones estrictos. Ejecuta exactamente una sentencia SQL por miembro y escribe una fila en la tabla de traza. Un miembro stop-over marca la ejecución como detenida cuando el total pasa del límite. La traza marca como ignorados los miembros posteriores. El miembro show imprime las filas.
     participant I as interpret.sh
     participant S as inspect.sh
     participant T as tar
     participant D as dispatch.sh
     participant Q as SQLite
-    I->>S: vet every member of the archive
-    S-->>I: valid, and nothing was run
-    I->>T: tar --to-command=dispatch.sh
-    loop each member, in archive order
-        T->>D: member name and body
-        D->>D: check name and body against strict patterns
-        D->>Q: one SQL statement, and a trace row
+    I->>S: Valida cada miembro del archivo
+    S-->>I: Válido, no se ejecutó nada
+    I->>T: Comando tar --to-command=dispatch.sh
+    loop Cada miembro, en el orden del archivo
+        T->>D: Nombre y cuerpo del miembro
+        D->>D: Comprueba nombre y cuerpo con patrones estrictos
+        D->>Q: Una sentencia SQL y una fila de traza
     end
-    Note over D,Q: stop-over halts the run when the total is over its limit, and later members are traced as ignored
-    D->>Q: show prints the rows
+    Note over D,Q: stop-over detiene la ejecución si el total pasa del límite. La traza marca el resto como ignorado
+    D->>Q: show imprime las filas
 ```
 
-**What this shows:** tar is the loop and the archive is the program. For every member, tar hands the bytes to the dispatcher, and the dispatcher decides what the name means. The order of the members is the order of execution.
+**Qué muestra:** tar es el bucle y el archivo es el programa. Por cada miembro, tar pasa los bytes al despachador, que decide qué significa el nombre. El orden de los miembros es el orden de ejecución.
 
-**Why this mechanism matters:** reading and running are two separate steps. The inspector parses and checks everything and runs nothing. The dispatcher runs one SQL statement per member and passes no part of a member to a shell. That is the difference between data that is *serialized* and data that is *executed*.
+**Por qué importa este mecanismo:** leer y ejecutar son dos pasos distintos. El inspector analiza y comprueba todo sin ejecutar nada. El despachador ejecuta una sentencia SQL por miembro y no pasa ninguna parte del miembro a un intérprete de comandos. Esa es la diferencia entre datos que se *serializan* y datos que se *ejecutan*.
 
-### Program flow of `tar-gnu-weird`
+### Flujo del programa de `tar-gnu-weird`
 
-From [`tar-gnu-weird`](../../src/tar-gnu-weird/README.md) ([source section](../../src/tar-gnu-weird/README.md#flujo-del-programa)).
+Desde [`tar-gnu-weird`](../../src/tar-gnu-weird/README.md) ([sección original](../../src/tar-gnu-weird/README.md#flujo-del-programa)).
 
 ```mermaid
 sequenceDiagram
-    accTitle: tar-gnu-weird: tar's checkpoints are the clock of a state machine
-    accDescr: A sequence diagram. The launcher runs one tar command that writes an archive with a checkpoint every 512-byte record. For each record that tar writes, tar runs tick.sh with the record count. The script runs one SQL transaction on a single row of state. If the run is done, the tick only counts as idle. Otherwise it works one hour, writes the card when the hours reach the target, and closes the card, which sets done when the total is over 40. The exit status is ignored, and tar goes on writing. When the archive is finished, the launcher reads the cards and prints them.
+    accTitle: tar-gnu-weird: los puntos de control de tar son el reloj de una máquina de estados
+    accDescr: Diagrama de secuencia. El lanzador ejecuta un comando tar que escribe un archivo con un punto de control por cada registro de 512 bytes. Por cada registro que escribe, tar ejecuta tick.sh con el número de registros. El script ejecuta una transacción SQL sobre una sola fila de estado. Si la ejecución terminó, el pulso solo se cuenta como inactivo. Si no, trabaja una hora, escribe la tarjeta al completar sus horas y la cierra. Al cerrarla, activa done si el total pasa de 40. tar ignora el estado de salida y sigue escribiendo. Al terminar el archivo, el lanzador lee las tarjetas y las imprime.
     participant R as run-clock.sh
     participant T as tar
     participant K as tick.sh
-    participant Q as SQLite fsm row
-    R->>T: one tar command with --checkpoint=1 and an exec action
-    loop each 512-byte record that tar writes
-        T->>K: run tick.sh with TAR_CHECKPOINT
-        K->>Q: tick.sql: one transaction
-        Note over Q: if done, count an idle tick. Else work one hour, write the card at the target, close it and set done when the total is over 40
-        K-->>T: exit status, which tar ignores
+    participant Q as Fila fsm en SQLite
+    R->>T: Un comando tar con --checkpoint=1 y una acción exec
+    loop Cada registro de 512 bytes que escribe tar
+        T->>K: Ejecuta tick.sh con TAR_CHECKPOINT
+        K->>Q: tick.sql: una transacción
+        Note over Q: Si done está activo, cuenta un pulso inactivo. Si no, trabaja una hora. Al completar las horas, escribe y cierra la tarjeta. Activa done si el total pasa de 40
+        K-->>T: Estado de salida que tar ignora
     end
-    T-->>R: the archive is finished: the clock ran out
-    R->>Q: read the cards and print them
+    T-->>R: Fin del archivo: se agotó el reloj
+    R->>Q: Lee e imprime las tarjetas
 ```
 
-**What this shows:** the program is a state machine in one SQLite row, and tar's checkpoint is its clock. One tick is one transaction. tar does not stop when the machine is done. It keeps ticking, and the extra ticks only count as idle.
+**Qué muestra:** el programa es una máquina de estados en una fila de SQLite y el punto de control de tar es su reloj. Cada pulso es una transacción. tar no se detiene cuando termina la máquina. Sigue dando pulsos y los pulsos extra solo cuentan como inactivos.
 
-**Why this mechanism matters:** this is an event source made from a file's layout. The number of ticks is set by the archive size, so a layout that is too short stalls the machine in the middle of a card. The ticks are callbacks that tar runs for the program. They are not events that the program waits for.
+**Por qué importa este mecanismo:** la disposición de un archivo funciona como fuente de eventos. El tamaño del archivo fija el número de pulsos. Si la disposición es demasiado corta, la máquina se atasca a mitad de una tarjeta. Los pulsos son llamadas a una función de devolución de llamada (*callback*), una función que tar ejecuta para el programa. El programa no espera esos eventos.
 <!-- END GENERATED program-flow:languages/tar.md -->
 
 ## La informática detrás de esta página
 
 <!-- BEGIN GENERATED concepts:languages/tar.md -->
-The computer-science ideas behind this page: [Threat model](../informatica/01-lectura-de-un-programa-adversarial.md#threat-model), [Arbitrary code execution](../informatica/01-lectura-de-un-programa-adversarial.md#arbitrary-code-execution), [Principle of least privilege](../informatica/01-lectura-de-un-programa-adversarial.md#principle-of-least-privilege), [Capability and authority](../informatica/01-lectura-de-un-programa-adversarial.md#capability-and-authority), [Transition systems and state machines](../informatica/02-que-cuenta-como-maquina.md#transition-systems-and-state-machines), [Representing state](../informatica/02-que-cuenta-como-maquina.md#representing-state), [Invariants](../informatica/02-que-cuenta-como-maquina.md#invariants), [Observability](../informatica/02-que-cuenta-como-maquina.md#observability), [Operational semantics](../informatica/02-que-cuenta-como-maquina.md#operational-semantics), [Computation versus orchestration](../informatica/02-que-cuenta-como-maquina.md#computation-versus-orchestration), [Logical clocks and event ordering](../informatica/03-flujo-de-control-y-continuaciones.md#logical-clocks-and-event-ordering), [Parsing](../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#parsing), [Domain-specific languages](../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#domain-specific-languages), [Language-theoretic security](../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#language-theoretic-security), [Interpreters and virtual machines](../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#interpreters-and-virtual-machines), [State](../informatica/06-estado-mas-alla-de-las-variables.md#state), [Serialization, deserialization and object pickling](../informatica/06-estado-mas-alla-de-las-variables.md#serialization-deserialization-and-object-pickling), [Side effects](../informatica/07-efectos-errores-y-confirmacion.md#side-effects), [Exit status](../informatica/07-efectos-errores-y-confirmacion.md#exit-status), [Integrity constraints](../informatica/07-efectos-errores-y-confirmacion.md#integrity-constraints), [Idempotence](../informatica/07-efectos-errores-y-confirmacion.md#idempotence), [Leaky abstractions](../informatica/08-fugas-de-abstraccion-y-dependencia-de-la-implementacion.md#leaky-abstractions), [Portability](../informatica/08-fugas-de-abstraccion-y-dependencia-de-la-implementacion.md#portability), [Hyrum's law](../informatica/08-fugas-de-abstraccion-y-dependencia-de-la-implementacion.md#hyrums-law), [Reproducibility and deterministic builds](../informatica/08-fugas-de-abstraccion-y-dependencia-de-la-implementacion.md#reproducibility-and-deterministic-builds), [Event-driven programming](../informatica/10-eventos-retrollamadas-y-flujo-de-control-reactivo.md#event-driven-programming), [Callbacks](../informatica/10-eventos-retrollamadas-y-flujo-de-control-reactivo.md#callbacks).
+Las ideas de ciencias de la computación detrás de esta página: [Modelo de amenazas](../informatica/01-lectura-de-un-programa-adversarial.md#modelo-de-amenazas), [Ejecución de código arbitrario](../informatica/01-lectura-de-un-programa-adversarial.md#ejecución-de-código-arbitrario), [Principio de mínimo privilegio](../informatica/01-lectura-de-un-programa-adversarial.md#principio-de-mínimo-privilegio), [Capacidad y autoridad](../informatica/01-lectura-de-un-programa-adversarial.md#capacidad-y-autoridad), [Sistemas de transición y máquinas de estados](../informatica/02-que-cuenta-como-maquina.md#sistemas-de-transición-y-máquinas-de-estados), [Cómo representar el estado](../informatica/02-que-cuenta-como-maquina.md#cómo-representar-el-estado), [Invariantes](../informatica/02-que-cuenta-como-maquina.md#invariantes), [Observabilidad](../informatica/02-que-cuenta-como-maquina.md#observabilidad), [Semántica operacional](../informatica/02-que-cuenta-como-maquina.md#semántica-operacional), [Cálculo frente a orquestación](../informatica/02-que-cuenta-como-maquina.md#cálculo-frente-a-orquestación), [Relojes lógicos y orden de los eventos](../informatica/03-flujo-de-control-y-continuaciones.md#relojes-lógicos-y-orden-de-los-eventos), [Análisis sintáctico](../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#análisis-sintáctico), [Lenguajes específicos de dominio](../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#lenguajes-específicos-de-dominio), [Seguridad basada en teoría de lenguajes](../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#seguridad-basada-en-teoría-de-lenguajes), [Intérpretes y máquinas virtuales](../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#intérpretes-y-máquinas-virtuales), [Estado](../informatica/06-estado-mas-alla-de-las-variables.md#estado), [Serialización, deserialización y pickling de objetos](../informatica/06-estado-mas-alla-de-las-variables.md#serialización-deserialización-y-pickling-de-objetos), [Efectos secundarios](../informatica/07-efectos-errores-y-confirmacion.md#efectos-secundarios), [Estado de salida](../informatica/07-efectos-errores-y-confirmacion.md#estado-de-salida), [Restricciones de integridad](../informatica/07-efectos-errores-y-confirmacion.md#restricciones-de-integridad), [Idempotencia](../informatica/07-efectos-errores-y-confirmacion.md#idempotencia), [Abstracciones con fugas](../informatica/08-fugas-de-abstraccion-y-dependencia-de-la-implementacion.md#abstracciones-con-fugas), [Portabilidad](../informatica/08-fugas-de-abstraccion-y-dependencia-de-la-implementacion.md#portabilidad), [Ley de Hyrum](../informatica/08-fugas-de-abstraccion-y-dependencia-de-la-implementacion.md#ley-de-hyrum), [Reproducibilidad y compilaciones deterministas](../informatica/08-fugas-de-abstraccion-y-dependencia-de-la-implementacion.md#reproducibilidad-y-compilaciones-deterministas), [Programación dirigida por eventos](../informatica/10-eventos-retrollamadas-y-flujo-de-control-reactivo.md#programación-dirigida-por-eventos), [Funciones de devolución de llamada](../informatica/10-eventos-retrollamadas-y-flujo-de-control-reactivo.md#funciones-de-devolución-de-llamada).
 <!-- END GENERATED concepts:languages/tar.md -->

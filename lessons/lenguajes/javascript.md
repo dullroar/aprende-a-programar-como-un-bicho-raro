@@ -145,96 +145,96 @@ Usos legítimos: muchas partes pueden tener interés en una cosa (el `request` d
 Consulta el [ejercicio B22](../exercises.md#b22-javascript-dirigido-por-eventos-predice-la-traza-y-luego-elimina-el-límite-verificado) y el capítulo [Eventos, funciones de devolución de llamada y flujo de control reactivo](../informatica/10-eventos-retrollamadas-y-flujo-de-control-reactivo.md).
 
 <!-- BEGIN GENERATED program-flow:languages/javascript.md -->
-## How each program runs
+## Cómo corre cada programa
 
-Each picture below is the `## Program Flow` section of an entry's README, copied here by the build. It shows how that program makes the work happen: what the language, runtime or tool really does. [The introduction](../introduccion.md#qué-hace-el-reto) shows what the challenge asks for and where entries differ.
+Cada imagen de abajo es la sección `## Flujo del programa` del README de una entrada, copiada aquí por la compilación. Muestra cómo ese programa hace el trabajo: lo que el lenguaje, el entorno de ejecución o la herramienta hacen en realidad. [La introducción](../introduccion.md#qué-hace-el-reto) muestra qué pide el reto y en qué se distinguen las entradas.
 
-### Program flow of `javascript`
+### Flujo del programa de `javascript`
 
-From [`javascript`](../../src/javascript/README.md) ([source section](../../src/javascript/README.md#flujo-del-programa)).
+Desde [`javascript`](../../src/javascript/README.md) ([sección original](../../src/javascript/README.md#flujo-del-programa)).
 
 ```mermaid
 flowchart TD
-    accTitle: javascript: a for statement in Node whose condition prints the result and the event loop keeps the pulse alive
-    accDescr: A flowchart. The initializer builds one object literal with the seed generator, the SQLite database and the categories. The condition sums the hours with reduce and is true while the total is 40 or less. Then the empty body runs and the iterator pushes random hours and inserts a card with the comma operator. When the condition is false, a comma expression prints the result, starts a setInterval timer if the output is a terminal, and yields false, so the for ends. Node does not exit yet, because the timer is still registered. The event loop runs the timer callback, which pulses the DEMO ONLY line and then clears the timer, so Node exits.
-    A["Initializer: one object literal holds seed, SQLite, categories, state"] --> B{{"Condition: reduce sum <= 40?"}}
-    B -->|true| C["Empty body"]
-    C --> D["Iterator, comma operator: push hours, insert the card"]
+    accTitle: javascript: una sentencia for en Node cuya condición imprime el resultado y el bucle de eventos mantiene vivo el pulso
+    accDescr: Un diagrama de flujo. El inicializador construye un literal de objeto con el generador de semilla, la base de datos SQLite y las categorías. La condición suma las horas con reduce y es verdadera mientras el total no pase de 40. Luego se ejecuta el cuerpo vacío y el iterador agrega horas aleatorias e inserta una tarjeta con el operador coma. Cuando la condición es falsa, una expresión con coma imprime el resultado, inicia un temporizador setInterval si la salida es una terminal y produce false. Así termina el for. Node todavía no termina, porque el temporizador sigue registrado. El bucle de eventos ejecuta la función de devolución de llamada del temporizador, que hace pulsar la línea DEMO ONLY y después borra el temporizador, así que Node termina.
+    A["Inicializador: un literal de objeto contiene la semilla, SQLite, las categorías y el estado"] --> B{{"Condición: ¿reduce sum <= 40?"}}
+    B -->|true| C["Cuerpo vacío"]
+    C --> D["Iterador, operador coma: agrega las horas, inserta la tarjeta"]
     D --> B
-    B -->|false| E["Comma expression: console.log the result, setInterval if a terminal, value false"]
-    E --> F["The for ends; the call stack empties"]
-    F --> G["Event loop runs the timer callback: pulse the DEMO ONLY line"]
-    G --> H["clearInterval: nothing is left, Node exits"]
+    B -->|false| E["Expresión con coma: console.log muestra el resultado, setInterval se llama si hay una terminal, valor false"]
+    E --> F["El for termina; la pila de llamadas se vacía"]
+    F --> G["El bucle de eventos ejecuta la función de devolución de llamada del temporizador: pulsa la línea DEMO ONLY"]
+    G --> H["clearInterval: no queda nada y Node termina"]
 ```
 
-**What this shows:** the three clauses of a `for`, where the condition is a conditional expression that does the final work when it is false. The only asynchronous part is the pulse. Until the `for` is over, everything runs synchronously on one call stack.
+**Qué muestra:** las tres cláusulas de un `for`, donde la condición es una expresión condicional que hace el trabajo final cuando es falsa. La única parte asíncrona es el pulso. Hasta que termina `for`, todo se ejecuta de forma síncrona en una sola pila de llamadas.
 
-**Why this mechanism matters:** the program has a loop, a stop and a second phase, and the second phase exists only because a timer keeps the event loop alive. Without a terminal there is no timer, and Node exits as soon as the `for` ends. The other two Node entries make this scheduling the point: [`javascript-weird`](../../src/javascript-weird/README.md) (closures) and [`javascript-events`](../../src/javascript-events/README.md) (listeners).
+**Por qué importa este mecanismo:** el programa tiene un bucle, una parada y una segunda fase, y la segunda fase existe solo porque un temporizador mantiene vivo el bucle de eventos. Sin una terminal no hay temporizador y Node termina en cuanto acaba `for`. Las otras dos entradas de Node se centran en esta planificación: [`javascript-weird`](../../src/javascript-weird/README.md) (clausuras) y [`javascript-events`](../../src/javascript-events/README.md) (escuchadores de eventos).
 
-### Program flow of `javascript-events`
+### Flujo del programa de `javascript-events`
 
-From [`javascript-events`](../../src/javascript-events/README.md) ([source section](../../src/javascript-events/README.md#flujo-del-programa)).
+Desde [`javascript-events`](../../src/javascript-events/README.md) ([sección original](../../src/javascript-events/README.md#flujo-del-programa)).
 
 ```mermaid
 sequenceDiagram
-    accTitle: javascript-events: emit is a call, setImmediate is a later turn
-    accDescr: A sequence diagram. The main module emits start. The listener for start opens the database, begins a transaction and saves the run, then asks the event loop for the generate event on a later turn with setImmediate. Emit returns and the call stack is empty. On a later turn the event loop emits generate. The generate listener makes a card and emits card-created, whose listener runs at once inside the same call and saves the card to SQLite. That listener emits card-saved, whose listener updates the total and prints the row. That listener emits total-updated. If the total is 40 or less, its listener asks the event loop for the next generate on a later turn, and the stack unwinds. If the total is over 40, it emits finished, whose listener commits, prints and closes. A throw in any listener emits failed, which rolls back and reports once.
-    participant M as Main module
+    accTitle: javascript-events: emit es una llamada, setImmediate es un turno posterior
+    accDescr: Un diagrama de secuencia. El módulo principal emite start. El escuchador de eventos de start abre la base de datos, inicia una transacción y guarda la ejecución. Después pide al bucle de eventos el evento generate para un turno posterior con setImmediate. La llamada a emit termina y la pila de llamadas queda vacía. En un turno posterior, el bucle de eventos emite generate. El escuchador de generate crea una tarjeta y emite card-created. El escuchador de card-created se ejecuta de inmediato dentro de la misma llamada y guarda la tarjeta en SQLite. Ese escuchador emite card-saved, cuyo escuchador actualiza el total e imprime la fila. Ese escuchador emite total-updated. Si el total no pasa de 40, el escuchador de total-updated pide al bucle de eventos el siguiente generate para un turno posterior y la pila se desenrolla. Si el total pasa de 40, emite finished, cuyo escuchador confirma la transacción, imprime y cierra. Un throw en cualquier escuchador emite failed, que revierte la transacción e informa una sola vez.
+    participant M as Módulo principal
     participant E as EventEmitter
-    participant Q as Event loop queue
+    participant Q as Cola del bucle de eventos
     participant D as SQLite
-    M->>E: emit start
-    E->>D: start listener: BEGIN, save the run
-    E->>Q: setImmediate: generate, later
-    E-->>M: emit returns: the stack is empty
-    loop one turn of the event loop for each card
+    M->>E: emitir start
+    E->>D: escuchador de eventos de start: BEGIN, guarda la ejecución
+    E->>Q: setImmediate: generar, más tarde
+    E-->>M: emit retorna: la pila está vacía
+    loop un turno del bucle de eventos por cada tarjeta
         Q->>E: emit generate
-        E->>D: card-created, nested inside generate: INSERT the card
-        E->>E: card-saved, nested: total changes
-        E->>E: total-updated, nested: stop rule
-        alt total is 40 or less
-            E->>Q: setImmediate: generate, later
-        else total is over 40
+        E->>D: card-created, anidado dentro de generate: INSERT de la tarjeta
+        E->>E: card-saved, anidado: cambia el total
+        E->>E: total-updated, anidado: regla de parada
+        alt el total es 40 o menos
+            E->>Q: setImmediate: generar después
+        else el total pasa de 40
             E->>D: finished, nested: COMMIT, close
         end
     end
 ```
 
-**What this shows:** two kinds of arrow. An `emit` is a call: the listener runs *inside* it, on top of the caller, and `emit` returns only when the listener has. The `setImmediate` arrows are requests: the next `generate` waits in the event loop's queue until the stack is empty. Each card is one turn of the loop, and four emits nest inside that turn. A throw in any listener emits `failed`, which rolls back, reports once and removes every listener.
+**Qué muestra:** dos tipos de flecha. Un `emit` es una llamada: el escuchador de eventos se ejecuta *dentro* de ella, encima del llamador, y `emit` solo regresa cuando el escuchador de eventos termina. Las flechas `setImmediate` son solicitudes: el siguiente `generate` espera en la cola del bucle de eventos hasta que la pila quede vacía. Cada tarjeta es un turno del bucle y cuatro emisiones se anidan dentro de ese turno. Una excepción lanzada en cualquier escuchador de eventos emite `failed`, que revierte, informa una sola vez y elimina todos los escuchadores de eventos.
 
-**Why this mechanism matters:** the program has no loop statement and no recursion. The cycle is "total-updated asks the event loop for another generate". Without that boundary the same events would nest one level deeper for every card. The database write finishes inside `card-created`, before the total changes in `card-saved`.
+**Por qué importa este mecanismo:** el programa no tiene sentencias de bucle ni recursión. El ciclo es "total-updated le pide al bucle de eventos otro generate". Sin ese límite, los mismos eventos se anidarían un nivel más por cada tarjeta. La escritura en la base de datos termina dentro de `card-created`, antes de que el total cambie en `card-saved`.
 
-### Program flow of `javascript-weird`
+### Flujo del programa de `javascript-weird`
 
-From [`javascript-weird`](../../src/javascript-weird/README.md) ([source section](../../src/javascript-weird/README.md#flujo-del-programa)).
+Desde [`javascript-weird`](../../src/javascript-weird/README.md) ([sección original](../../src/javascript-weird/README.md#flujo-del-programa)).
 
 ```mermaid
 sequenceDiagram
-    accTitle: javascript-weird: demand pulls each card through three closures and two maps
-    accDescr: A sequence diagram of pull. The call toArray demands a value from the second map, which demands one from the first map, which demands one from the cards iterator. The cards iterator calls the machine closure, which calls the hours closure for a number and moves the generator state. The machine adds the hours to its captured total and sets its stop flag if the total is over 40, and returns the card. The card travels back up: the first map stamps it with the user and week, the second map saves it to SQLite, and toArray collects it. Then toArray demands again. After the crossing card, the machine answers undefined, the iterator answers done, and toArray stops.
+    accTitle: javascript-weird: la demanda (pull) hace pasar cada tarjeta por tres clausuras y dos map
+    accDescr: Un diagrama de secuencia de la demanda (pull). La llamada toArray demanda un valor al segundo map, que demanda uno al primer map, que demanda uno al iterador de tarjetas. El iterador de tarjetas llama a la clausura de la máquina, que llama a la clausura de horas para obtener un número y mueve el estado del generador. La máquina suma las horas a su total capturado, activa su bandera de parada si el total pasa de 40 y devuelve la tarjeta. La tarjeta sube de vuelta: el primer map le pone el usuario y la semana, el segundo map la guarda en SQLite y toArray la recopila. Luego toArray vuelve a demandar. Después de la tarjeta que cruza, la máquina responde undefined, el iterador responde done y toArray se detiene.
     participant T as toArray
     participant S as map save
     participant P as map stamp
-    participant C as cards, machine and hoursFrom
-    loop until the iterator says done
+    participant C as cards, machine y hoursFrom
+    loop hasta que el iterador indique que terminó
         T->>S: next
-        S->>P: next
-        P->>C: next: the machine calls hoursFrom
-        C-->>C: hours drawn, total and over updated
-        C-->>P: value: card
-        P-->>S: record stamped with user and week
-        S-->>T: record, saved to SQLite
+        S->>P: siguiente
+        P->>C: siguiente: la máquina llama a hoursFrom
+        C-->>C: horas extraídas, total y exceso actualizados
+        C-->>P: valor: tarjeta
+        P-->>S: registro marcado con el usuario y la semana
+        S-->>T: registro, guardado en SQLite
     end
-    Note over C,T: after the crossing card the machine answers undefined, cards answers done, and toArray stops
+    Note over C,T: después de la tarjeta de cruce, la máquina responde undefined, cards responde done y toArray se detiene
 ```
 
-**What this shows:** demand flows *up* the pipeline and cards flow *down* it. Nothing is drawn until `toArray()` asks, and each ask pulls one card all the way through: drawn, stamped, saved. The loop is the consumer asking again. The three closures (`cards`, `machine`, `hoursFrom`) are one column here, because each is called by the one before it.
+**Qué muestra:** la demanda fluye *hacia arriba* por la canalización y las tarjetas fluyen *hacia abajo*. No se saca nada hasta que `toArray()` lo pide, y cada petición hace pasar una tarjeta por todo el recorrido: sacada, sellada, guardada. El bucle es el consumidor que vuelve a pedir. Una clausura es una función que conserva las variables del lugar donde se creó. Las tres clausuras (`cards`, `machine`, `hoursFrom`) forman aquí una sola columna, porque cada una es llamada por la anterior.
 
-**Why this mechanism matters:** the state lives in closures: the generator's number, and the machine's count, total and stop flag. Nothing else can reach it. The stop rule is a captured variable, `over`, set in the same call that makes the crossing card. Compare [`javascript`](../../src/javascript/README.md), where a `for` statement drives the same work, and [`javascript-events`](../../src/javascript-events/README.md), where listeners do.
+**Por qué importa este mecanismo:** el estado vive en clausuras: el número del generador y el conteo, el total y la bandera de parada de la máquina. Nada más puede acceder a él. La regla de parada es una variable capturada, `over`, que se asigna en la misma llamada que crea la tarjeta que cruza. Compara [`javascript`](../../src/javascript/README.md), donde una sentencia `for` impulsa el mismo trabajo, y [`javascript-events`](../../src/javascript-events/README.md), donde lo hacen los escuchadores de eventos.
 <!-- END GENERATED program-flow:languages/javascript.md -->
 
 ## Ciencias de la computación detrás de esta página
 
 <!-- BEGIN GENERATED concepts:languages/javascript.md -->
-The computer-science ideas behind this page: [Transition systems and state machines](../informatica/02-que-cuenta-como-maquina.md#transition-systems-and-state-machines), [Invariants](../informatica/02-que-cuenta-como-maquina.md#invariants), [Observability](../informatica/02-que-cuenta-como-maquina.md#observability), [Operational semantics](../informatica/02-que-cuenta-como-maquina.md#operational-semantics), [Computation versus orchestration](../informatica/02-que-cuenta-como-maquina.md#computation-versus-orchestration), [Control flow](../informatica/03-flujo-de-control-y-continuaciones.md#control-flow), [Eager evaluation](../informatica/04-evaluacion-y-demanda.md#eager-evaluation), [Lazy evaluation](../informatica/04-evaluacion-y-demanda.md#lazy-evaluation), [Short-circuit evaluation](../informatica/04-evaluacion-y-demanda.md#short-circuit-evaluation), [Deferred execution](../informatica/04-evaluacion-y-demanda.md#deferred-execution), [Iterators and generators](../informatica/04-evaluacion-y-demanda.md#iterators-and-generators), [Referential transparency](../informatica/04-evaluacion-y-demanda.md#referential-transparency), [First-class and higher-order functions](../informatica/04-evaluacion-y-demanda.md#first-class-and-higher-order-functions), [Functors and mapping](../informatica/04-evaluacion-y-demanda.md#functors-and-mapping), [Monoids and folds](../informatica/04-evaluacion-y-demanda.md#monoids-and-folds), [Dataflow programming](../informatica/04-evaluacion-y-demanda.md#dataflow-programming), [State](../informatica/06-estado-mas-alla-de-las-variables.md#state), [The call stack](../informatica/06-estado-mas-alla-de-las-variables.md#the-call-stack), [Scope and binding](../informatica/06-estado-mas-alla-de-las-variables.md#scope-and-binding), [Closures and lexical environments](../informatica/06-estado-mas-alla-de-las-variables.md#closures-and-lexical-environments), [Side effects](../informatica/07-efectos-errores-y-confirmacion.md#side-effects), [Exception handling](../informatica/07-efectos-errores-y-confirmacion.md#exception-handling), [Integrity constraints](../informatica/07-efectos-errores-y-confirmacion.md#integrity-constraints), [Reproducibility and deterministic builds](../informatica/08-fugas-de-abstraccion-y-dependencia-de-la-implementacion.md#reproducibility-and-deterministic-builds), [Event-driven programming](../informatica/10-eventos-retrollamadas-y-flujo-de-control-reactivo.md#event-driven-programming), [Callbacks](../informatica/10-eventos-retrollamadas-y-flujo-de-control-reactivo.md#callbacks), [Publish and subscribe](../informatica/10-eventos-retrollamadas-y-flujo-de-control-reactivo.md#publish-and-subscribe), [The event loop and scheduling turns](../informatica/10-eventos-retrollamadas-y-flujo-de-control-reactivo.md#the-event-loop-and-scheduling-turns).
+Las ideas de ciencias de la computación detrás de esta página: [Sistemas de transición y máquinas de estados](../informatica/02-que-cuenta-como-maquina.md#sistemas-de-transición-y-máquinas-de-estados), [Invariantes](../informatica/02-que-cuenta-como-maquina.md#invariantes), [Observabilidad](../informatica/02-que-cuenta-como-maquina.md#observabilidad), [Semántica operacional](../informatica/02-que-cuenta-como-maquina.md#semántica-operacional), [Cálculo frente a orquestación](../informatica/02-que-cuenta-como-maquina.md#cálculo-frente-a-orquestación), [Flujo de control](../informatica/03-flujo-de-control-y-continuaciones.md#flujo-de-control), [Evaluación inmediata](../informatica/04-evaluacion-y-demanda.md#evaluación-inmediata), [Evaluación perezosa](../informatica/04-evaluacion-y-demanda.md#evaluación-perezosa), [Evaluación de cortocircuito](../informatica/04-evaluacion-y-demanda.md#evaluación-de-cortocircuito), [Ejecución diferida](../informatica/04-evaluacion-y-demanda.md#ejecución-diferida), [Iteradores y generadores](../informatica/04-evaluacion-y-demanda.md#iteradores-y-generadores), [Transparencia referencial](../informatica/04-evaluacion-y-demanda.md#transparencia-referencial), [Funciones de primera clase y de orden superior](../informatica/04-evaluacion-y-demanda.md#funciones-de-primera-clase-y-de-orden-superior), [Funtores y mapeo](../informatica/04-evaluacion-y-demanda.md#funtores-y-mapeo), [Monoides y plegados](../informatica/04-evaluacion-y-demanda.md#monoides-y-plegados), [Programación por flujo de datos](../informatica/04-evaluacion-y-demanda.md#programación-por-flujo-de-datos), [Estado](../informatica/06-estado-mas-alla-de-las-variables.md#estado), [La pila de llamadas](../informatica/06-estado-mas-alla-de-las-variables.md#la-pila-de-llamadas), [Ámbito y enlace de nombres](../informatica/06-estado-mas-alla-de-las-variables.md#ámbito-y-enlace-de-nombres), [Clausuras y entornos léxicos](../informatica/06-estado-mas-alla-de-las-variables.md#clausuras-y-entornos-léxicos), [Efectos secundarios](../informatica/07-efectos-errores-y-confirmacion.md#efectos-secundarios), [Manejo de excepciones](../informatica/07-efectos-errores-y-confirmacion.md#manejo-de-excepciones), [Restricciones de integridad](../informatica/07-efectos-errores-y-confirmacion.md#restricciones-de-integridad), [Reproducibilidad y compilaciones deterministas](../informatica/08-fugas-de-abstraccion-y-dependencia-de-la-implementacion.md#reproducibilidad-y-compilaciones-deterministas), [Programación dirigida por eventos](../informatica/10-eventos-retrollamadas-y-flujo-de-control-reactivo.md#programación-dirigida-por-eventos), [Funciones de devolución de llamada](../informatica/10-eventos-retrollamadas-y-flujo-de-control-reactivo.md#funciones-de-devolución-de-llamada), [Publicación y suscripción](../informatica/10-eventos-retrollamadas-y-flujo-de-control-reactivo.md#publicación-y-suscripción), [El bucle de eventos y la planificación de turnos](../informatica/10-eventos-retrollamadas-y-flujo-de-control-reactivo.md#el-bucle-de-eventos-y-la-planificación-de-turnos).
 <!-- END GENERATED concepts:languages/javascript.md -->

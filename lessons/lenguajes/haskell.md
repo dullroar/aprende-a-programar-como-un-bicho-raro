@@ -75,62 +75,62 @@ Consulta los [ejercicios](../exercises.md#b2-haskell-rompe-la-pereza-verificado)
 Dentro de una biblioteca que implementa el procesamiento perezoso de flujos y que se ha probado cuidadosamente para comprobar el orden. No en el código de aplicación, donde `evaluate`, la entrada y salida estricta y las bibliotecas de procesamiento de flujos dan los mismos resultados sin sorpresas.
 
 <!-- BEGIN GENERATED program-flow:languages/haskell.md -->
-## How each program runs
+## Cómo corre cada programa
 
-Each picture below is the `## Program Flow` section of an entry's README, copied here by the build. It shows how that program makes the work happen: what the language, runtime or tool really does. [The introduction](../introduccion.md#qué-hace-el-reto) shows what the challenge asks for and where entries differ.
+Cada imagen de abajo es la sección `## Flujo del programa` del README de una entrada, copiada aquí por la compilación. Muestra cómo ese programa hace el trabajo: lo que el lenguaje, el entorno de ejecución o la herramienta hacen en realidad. [La introducción](../introduccion.md#qué-hace-el-reto) muestra qué pide el reto y en qué se distinguen las entradas.
 
-### Program flow of `haskell`
+### Flujo del programa de `haskell`
 
-From [`haskell`](../../src/haskell/README.md) ([source section](../../src/haskell/README.md#flujo-del-programa)).
+Desde [`haskell`](../../src/haskell/README.md) ([sección original](../../src/haskell/README.md#flujo-del-programa)).
 
 ```mermaid
 flowchart TD
-    accTitle: haskell: infinite lists that are read only as far as span demands
-    accDescr: A flowchart of data and demand. The function rolls is an infinite list of hours made with iterate. The categories are an infinite cycle. A running sum of the hours gives the totals. The function zipWith3 glues the categories, hours and totals into allCards, an infinite list of cards, none of them built yet. The function span asks for one card at a time and stops at the first card whose total is over 40. The result keeps the cards before it and the first card over 40. The function main then pipes the INSERTs to sqlite3 and prints the rows.
-    A["rolls: an infinite list of hours, from iterate next seed"] --> C["scanl1 (+): the running totals"]
+    accTitle: haskell: listas infinitas que se leen solo hasta donde llega la demanda de span
+    accDescr: Un diagrama de flujo de datos y demanda. La función rolls es una lista infinita de horas, creada con iterate. Las categorías forman un ciclo infinito. Una suma acumulada de las horas da los totales. La función zipWith3 une las categorías, las horas y los totales en allCards, una lista infinita de tarjetas, ninguna construida todavía. La función span pide una tarjeta a la vez y se detiene en la primera tarjeta cuyo total pasa de 40. El resultado conserva las tarjetas anteriores y la primera tarjeta con más de 40. Después, la función main pasa los INSERT por una tubería a sqlite3 e imprime las filas.
+    A["rolls: una lista infinita de horas, a partir de iterate next seed"] --> C["scanl1 (+): los totales acumulados"]
     A --> D
-    B["cycle of the four categories: repeats forever"] --> D
-    C --> D["zipWith3 Card: allCards, an infinite list, none of it built yet"]
-    D --> E["span (total <= 40): asks for one card at a time, stops at the first that fails"]
-    E --> F["under ++ take 1 over: the cards before 40 and the crossing card"]
-    F --> G["main: pipe the INSERTs to sqlite3, print the rows"]
+    B["ciclo de las cuatro categorías: se repite sin fin"] --> D
+    C --> D["zipWith3 Card: allCards, una lista infinita de la que todavía no se ha construido nada"]
+    D --> E["span (total <= 40): pide una tarjeta a la vez y se detiene en la primera que no cumple la condición"]
+    E --> F["under ++ take 1 over: las tarjetas antes de 40 y la que lo cruza"]
+    F --> G["main: envía los INSERT a sqlite3 mediante una tubería e imprime las filas"]
 ```
 
-**What this shows:** the lists are descriptions, not data. Nothing is computed until `span` asks for a card, and `span` stops asking at the first card that fails the test. So only a handful of cards are ever built, even though the lists are infinite.
+**Qué muestra:** las listas son descripciones, no datos. No se calcula nada hasta que `span` pide una tarjeta, y `span` deja de pedir en la primera tarjeta que no pasa la prueba. Por eso el programa construye solo unas pocas tarjetas, aunque las listas son infinitas.
 
-**Why this mechanism matters:** the stop rule is not a loop condition. It is *how much of a list you choose to read*. Demand flows backwards, from `span` to the lists, while the data flows forwards. This is lazy evaluation as a way to write a loop without one.
+**Por qué importa este mecanismo:** la regla de parada no es una condición de bucle. Es *cuánto de una lista eliges leer*. La demanda fluye hacia atrás, desde `span` hasta las listas, mientras que los datos fluyen hacia adelante. Esto es evaluación perezosa como forma de escribir un bucle sin escribir un bucle.
 
-### Program flow of `haskell-weird`
+### Flujo del programa de `haskell-weird`
 
-From [`haskell-weird`](../../src/haskell-weird/README.md) ([source section](../../src/haskell-weird/README.md#flujo-del-programa)).
+Desde [`haskell-weird`](../../src/haskell-weird/README.md) ([sección original](../../src/haskell-weird/README.md#flujo-del-programa)).
 
 ```mermaid
 sequenceDiagram
-    accTitle: haskell-weird: reading a cell of a lazy list runs that card's effect
-    accDescr: A sequence diagram. The consumer, span in untilOver40, demands the next cell of the lazy list of cards. The cell needs the hours from the random stream and the running total of the previous card. Because every cell is wrapped in unsafeInterleaveIO, the effect for that card runs now, when the cell is demanded: it prints the row and writes the INSERT to the pipe. The cell then returns the card to the consumer. The consumer tests the running total. While it is 40 or less, it demands the next cell. At the first card over 40, the consumer stops demanding, so no later effect ever runs, and main commits.
-    participant S as span, the consumer
-    participant C as the next cell of the list
-    participant R as the random stream and the previous card
-    participant E as onBirth, the card's effect
-    loop while the running total is 40 or less
-        S->>C: demand the next card
-        C->>R: need the hours, and the total of the previous card
-        R-->>C: hours and total, already known
-        C->>E: unsafeInterleaveIO runs the effect now
-        E-->>E: print the row and write the INSERT to the pipe
-        C-->>S: the card
+    accTitle: haskell-weird: leer una celda de una lista perezosa ejecuta el efecto de esa tarjeta
+    accDescr: Un diagrama de secuencia. El consumidor, span en untilOver40, demanda la siguiente celda de la lista perezosa de tarjetas. La celda necesita las horas del flujo aleatorio y el total acumulado de la tarjeta anterior. Como cada celda está envuelta en unsafeInterleaveIO, el efecto de esa tarjeta se ejecuta ahora, cuando se demanda la celda: imprime la fila y escribe el INSERT en la tubería. Después, la celda devuelve la tarjeta al consumidor. El consumidor comprueba el total acumulado. Mientras el total no pase de 40, demanda la siguiente celda. En la primera tarjeta que pasa de 40, el consumidor deja de demandar, así que ningún efecto posterior se ejecuta nunca, y main confirma la transacción.
+    participant S as span, el consumidor
+    participant C as la siguiente celda de la lista
+    participant R as el flujo aleatorio y la tarjeta anterior
+    participant E as onBirth, el efecto de la tarjeta
+    loop mientras el total acumulado sea 40 o menos
+        S->>C: demanda la siguiente tarjeta
+        C->>R: necesitan las horas y el total de la tarjeta anterior
+        R-->>C: las horas y el total, ya conocidos
+        C->>E: unsafeInterleaveIO ejecuta el efecto ahora
+        E-->>E: imprime la fila y escribe el INSERT en la tubería
+        C-->>S: la tarjeta
     end
-    Note over S: the first card over 40 is returned and kept. No later cell is demanded, so no later effect runs
-    S-->>S: main commits and reports
+    Note over S: se devuelve y se conserva la primera tarjeta que pasa de 40. No se pide ninguna celda posterior, así que no se ejecuta ningún efecto posterior
+    S-->>S: main confirma la transacción e informa
 ```
 
-**What this shows:** the effects are tied to the *reading* of the list. The list is built so that nothing runs when it is made. Each cell holds a promise, and forcing the cell runs that card's `onBirth`. So the number of rows printed equals the number of `INSERT`s, equals the number of cards read.
+**Qué muestra:** los efectos están ligados a la *lectura* de la lista. La lista está construida para que no se ejecute nada al crearla. Cada celda guarda una promesa, y forzar la celda ejecuta el `onBirth` de esa tarjeta. Así, el número de filas impresas es igual al número de `INSERT`, que es igual al número de tarjetas leídas.
 
-**Why this mechanism matters:** this is demand-driven control flow with side effects, and it is only safe because of how the cells are linked. `unsafeInterleaveIO` is called *unsafe* for a reason: the order of effects now depends on the order of demand. The same laziness without effects is in the plain [`haskell`](../../src/haskell/README.md) entry.
+**Por qué importa este mecanismo:** este es un flujo de control dirigido por la demanda y con efectos secundarios, y solo es seguro por cómo están enlazadas las celdas. `unsafeInterleaveIO` se llama *unsafe* por una razón: el orden de los efectos ahora depende del orden de la demanda. La misma evaluación perezosa sin efectos aparece en la entrada simple de [`haskell`](../../src/haskell/README.md).
 <!-- END GENERATED program-flow:languages/haskell.md -->
 
 ## Ciencias de la computación detrás de esta página
 
 <!-- BEGIN GENERATED concepts:languages/haskell.md -->
-The computer-science ideas behind this page: [Control flow](../informatica/03-flujo-de-control-y-continuaciones.md#control-flow), [Evaluation strategies](../informatica/04-evaluacion-y-demanda.md#evaluation-strategies), [Lazy evaluation](../informatica/04-evaluacion-y-demanda.md#lazy-evaluation), [Iterators and generators](../informatica/04-evaluacion-y-demanda.md#iterators-and-generators), [Referential transparency](../informatica/04-evaluacion-y-demanda.md#referential-transparency), [First-class and higher-order functions](../informatica/04-evaluacion-y-demanda.md#first-class-and-higher-order-functions), [Monoids and folds](../informatica/04-evaluacion-y-demanda.md#monoids-and-folds), [State](../informatica/06-estado-mas-alla-de-las-variables.md#state), [Side effects](../informatica/07-efectos-errores-y-confirmacion.md#side-effects), [Monads and effect systems](../informatica/07-efectos-errores-y-confirmacion.md#monads-and-effect-systems).
+Las ideas de ciencias de la computación detrás de esta página: [Flujo de control](../informatica/03-flujo-de-control-y-continuaciones.md#flujo-de-control), [Estrategias de evaluación](../informatica/04-evaluacion-y-demanda.md#estrategias-de-evaluación), [Evaluación perezosa](../informatica/04-evaluacion-y-demanda.md#evaluación-perezosa), [Iteradores y generadores](../informatica/04-evaluacion-y-demanda.md#iteradores-y-generadores), [Transparencia referencial](../informatica/04-evaluacion-y-demanda.md#transparencia-referencial), [Funciones de primera clase y de orden superior](../informatica/04-evaluacion-y-demanda.md#funciones-de-primera-clase-y-de-orden-superior), [Monoides y plegados](../informatica/04-evaluacion-y-demanda.md#monoides-y-plegados), [Estado](../informatica/06-estado-mas-alla-de-las-variables.md#estado), [Efectos secundarios](../informatica/07-efectos-errores-y-confirmacion.md#efectos-secundarios), [Mónadas y sistemas de efectos](../informatica/07-efectos-errores-y-confirmacion.md#mónadas-y-sistemas-de-efectos).
 <!-- END GENERATED concepts:languages/haskell.md -->

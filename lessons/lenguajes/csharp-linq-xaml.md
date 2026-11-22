@@ -136,218 +136,218 @@ Las adaptaciones de Ken conservan la regla del bucle sin cuerpo y usan las pieza
 Poner todo en una cabecera de `for`: nunca. Pero conviene saber que LINQ es diferido y que `IQueryable` y `IEnumerable` son mundos distintos. También conviene saber que `DbContext` no es seguro para hilos y que el analizador sintáctico de XAML puede llamar métodos. Aprende todo eso *antes* de que te lo enseñe un bicho en producción.
 
 <!-- BEGIN GENERATED program-flow:languages/csharp-linq-xaml.md -->
-## How each program runs
+## Cómo corre cada programa
 
-Each picture below is the `## Program Flow` section of an entry's README, copied here by the build. It shows how that program makes the work happen: what the language, runtime or tool really does. [The introduction](../introduccion.md#qué-hace-el-reto) shows what the challenge asks for and where entries differ.
+Cada imagen de abajo es la sección `## Flujo del programa` del README de una entrada, copiada aquí por la compilación. Muestra cómo ese programa hace el trabajo: lo que el lenguaje, el entorno de ejecución o la herramienta hacen en realidad. [La introducción](../introduccion.md#qué-hace-el-reto) muestra qué pide el reto y en qué se distinguen las entradas.
 
-### Program flow of `ModernChallenge1`
+### Flujo del programa de `ModernChallenge1`
 
-From [`ModernChallenge1`](../../src/ModernChallenge1/README.md) ([source section](../../src/ModernChallenge1/README.md#flujo-del-programa)).
+Desde [`ModernChallenge1`](../../src/ModernChallenge1/README.md) ([sección original](../../src/ModernChallenge1/README.md#flujo-del-programa)).
 
 ```mermaid
 flowchart TD
-    accTitle: ModernChallenge1: a for statement whose false branch runs the WPF message loop
-    accDescr: A flowchart. The initializer builds one anonymous object with the EF Core context, a category enumerator, a WPF Application, a Mutex and an XElement. The condition is true while the LINQ sum is 40 or less and MoveNext succeeds. Then the empty body runs and the iterator draws hours, adds a row to the context and starts a thread that waits on the Mutex and saves through MethodInfo.Invoke. When the condition is false, XamlReader.Load builds the window from a string and the XElement becomes its DoubleAnimation. Application.Run then runs the WPF message loop until the window closes, and IsNaN of its result is false, so the for ends.
-    A["Initializer: anonymous object holds EF context, enumerator, WPF Application, Mutex, XElement"] --> B{{"Condition: LINQ Sum <= 40 and MoveNext()?"}}
-    B -->|true| C["Empty body"]
-    C --> D["Iterator: draw hours, add a row, start a Thread"]
+    accTitle: ModernChallenge1: una sentencia for cuya rama falsa ejecuta el bucle de mensajes de WPF
+    accDescr: Un diagrama de flujo. El inicializador construye un objeto anónimo con el contexto de EF Core, un enumerador de categorías, una Application de WPF, un Mutex y un XElement. La condición es verdadera mientras la suma de LINQ no pasa de 40 y MoveNext tiene éxito. Entonces se ejecuta el cuerpo vacío y el iterador sortea horas, agrega una fila al contexto e inicia un hilo que espera en el Mutex y guarda mediante MethodInfo.Invoke. Cuando la condición es falsa, XamlReader.Load construye la ventana a partir de una cadena de texto y el XElement se convierte en su DoubleAnimation. Después Application.Run ejecuta el bucle de mensajes de WPF hasta que se cierra la ventana. IsNaN de su resultado es false, así que el for termina.
+    A["Inicializador: un objeto anónimo contiene el contexto de EF, el enumerador, la Application de WPF, el Mutex y el XElement"] --> B{{"Condición: ¿LINQ Sum <= 40 y MoveNext()?"}}
+    B -->|true| C["Cuerpo vacío"]
+    C --> D["Iterador: sortea horas, agrega una fila e inicia un hilo"]
     D --> B
-    D -.-> T["Thread: Mutex.WaitOne, SaveChanges via MethodInfo.Invoke, ReleaseMutex"]
-    B -->|false| E["XamlReader.Load builds the window from a string; the XElement is its DoubleAnimation"]
-    E --> F["Application.Run: the WPF message loop runs until the window closes"]
-    F --> G["Double.IsNaN of the result is false: the for ends"]
+    D -.-> T["Hilo: Mutex.WaitOne, SaveChanges mediante MethodInfo.Invoke, ReleaseMutex"]
+    B -->|false| E["XamlReader.Load construye la ventana a partir de una cadena de texto; el XElement es su DoubleAnimation"]
+    E --> F["Application.Run: el bucle de mensajes de WPF se ejecuta hasta que la ventana se cierra"]
+    F --> G["Double.IsNaN del resultado es false: el for termina"]
 ```
 
-**What this shows:** the original stunt. One `for` statement with an empty body, in which the condition and the iterator do all the work. While the total is 40 or less the condition is true. When it is not, the condition builds and shows the window, and the window's blocking call yields the `false` that ends the loop.
+**Qué muestra:** el truco original. Una sentencia `for` con el cuerpo vacío, en la que la condición y el iterador hacen todo el trabajo. Mientras el total no pasa de 40 y queda una categoría por repartir, la condición es verdadera. Cuando no es así, la condición crea y muestra la ventana, y la llamada bloqueante de la ventana devuelve el `false` que termina el bucle.
 
-**Why this mechanism matters:** `Application.Run` is a UI framework's own loop, started from inside a loop condition. The animation fades the window by itself: nothing in `Program.cs` subscribes to an event to do it. See [`xaml`](../../src/xaml/README.md) for a stricter view of what that runtime parsing does.
+**Por qué importa este mecanismo:** `Application.Run` es el propio bucle de un marco de interfaz de usuario, iniciado desde dentro de la condición de un bucle. La animación desvanece la ventana por sí sola: nada en `Program.cs` se suscribe a un evento para hacerlo. Consulta [`xaml`](../../src/xaml/README.md) para ver con más rigor qué hace ese análisis sintáctico en tiempo de ejecución.
 
-### Program flow of `GoChallenge1`
+### Flujo del programa de `GoChallenge1`
 
-From [`GoChallenge1`](../../src/GoChallenge1/README.md) ([source section](../../src/GoChallenge1/README.md#flujo-del-programa)).
+Desde [`GoChallenge1`](../../src/GoChallenge1/README.md) ([sección original](../../src/GoChallenge1/README.md#flujo-del-programa)).
 
 ```mermaid
 flowchart TD
-    accTitle: GoChallenge1: one for statement, a goroutine and a dialog served over HTTP
-    accDescr: A flowchart. The initializer builds a state struct and opens the repository. The condition is true while the total is 40 or less and categories remain. Then the empty body runs, and the post statement runs Seq, which locks, adds hours, stages a card, unlocks, and starts a goroutine that saves the staged cards. When the condition is false, After runs ShowDialog, which serves a page and waits for the browser to post that it closed, then WaitForSaves waits for the goroutines, and the condition returns false so the for ends.
-    A["Initializer: build the state struct, open SQLite"] --> B{{"Condition: total <= 40 and categories left?"}}
-    B -->|true| C["Empty body"]
-    C --> D["Post: Seq runs its arguments in order: lock, hours, card, unlock, spawn"]
+    accTitle: GoChallenge1: una sola sentencia for, una goroutine y un diálogo servido por HTTP
+    accDescr: Un diagrama de flujo. El inicializador crea una estructura de estado y abre el repositorio. La condición es verdadera mientras el total no pase de 40 y queden categorías. Entonces se ejecuta el cuerpo vacío, y la cláusula de actualización llama a Seq, cuyos argumentos, evaluados en orden, bloquean con Lock, suman horas con Append, preparan una tarjeta con Append, desbloquean con Unlock e inician con Spawn una goroutine que guarda las tarjetas preparadas. Cuando la condición es falsa, After ejecuta ShowDialog, que sirve una página y espera a que el navegador envíe por POST el aviso de que se cerró. Después WaitForSaves espera a las goroutines, y la condición devuelve falso para que el for termine.
+    A["Inicializador: construye la estructura de estado y abre SQLite"] --> B{{"Condición: total <= 40 y ¿quedan categorías?"}}
+    B -->|true| C["Cuerpo vacío"]
+    C --> D["Post (cláusula de actualización): los argumentos de Seq se evalúan en orden: Lock, Append de horas, Append de tarjeta, Unlock, Spawn"]
     D --> B
-    D -.->|go| G["Goroutine: lock, SaveAll by reflection, unlock"]
-    B -->|false| E["After: ShowDialog serves a page on loopback and waits for /closed"]
-    E --> W["WaitForSaves waits for the goroutines"]
+    D -.->|go| G["Goroutine: Lock, SaveAll por reflexión, Unlock"]
+    B -->|false| E["After: ShowDialog sirve una página en la interfaz local y espera /closed"]
+    E --> W["WaitForSaves espera a las goroutines"]
     G -.-> W
-    W --> X["After returns false: the for ends"]
+    W --> X["After devuelve false: el for termina"]
 ```
 
-**What this shows:** Go's `for` has the same three clauses as the C# original, but Go allows only simple statements there. So the work moves into helper functions, and `Seq(...)` runs its arguments in order in place of the comma list. The dashed edges are the concurrent part: each pass starts a goroutine, and the program must wait for all of them before it exits.
+**Qué muestra:** `for` en Go tiene las mismas tres cláusulas que el original en C#, pero Go solo permite sentencias simples ahí. Por eso el trabajo pasa a funciones auxiliares, y `Seq(...)` recibe sus argumentos, que se evalúan en orden, en lugar de usar la lista separada por comas. Las aristas punteadas son la parte concurrente: cada pasada inicia una goroutine, y el programa debe esperar a todas antes de terminar.
 
-**Why this mechanism matters:** the loop ends through its condition, not through a `break`. The `||` makes the false branch do the final work (show the page, wait for the saves) and then yield `false`. The window is a browser page, because Go has no standard-library GUI.
+**Por qué importa este mecanismo:** el bucle termina por su condición, no por un `break`. Con `||`, la rama falsa (el operando derecho, que se evalúa si la primera parte de la condición es falsa) hace el trabajo final (mostrar la página, esperar los guardados) y luego devuelve `false`. La ventana es una página del navegador, porque Go no tiene una biblioteca estándar para interfaces gráficas.
 
-### Program flow of `JavaChallenge1`
+### Flujo del programa de `JavaChallenge1`
 
-From [`JavaChallenge1`](../../src/JavaChallenge1/README.md) ([source section](../../src/JavaChallenge1/README.md#flujo-del-programa)).
+Desde [`JavaChallenge1`](../../src/JavaChallenge1/README.md) ([sección original](../../src/JavaChallenge1/README.md#flujo-del-programa)).
 
 ```mermaid
 flowchart TD
-    accTitle: JavaChallenge1: a for statement whose false branch opens a modal dialog
-    accDescr: A flowchart. The initializer builds an anonymous object with the Spring context, repository, hours, a category iterator and a lock. The condition is true while the total is 40 or less and a category remains. Then the empty body runs and the update locks, adds hours, stages a card, unlocks and starts a thread that saves through reflection. When the condition is false, the else branch builds a Swing dialog from Spring XML at run time and shows it. The modal dialog blocks while a Timer bean fades the label colors. When it closes, Double.isNaN turns the result into false and the for ends.
-    A["Initializer: anonymous class holds Spring context, repository, hours, categories, lock"] --> B{{"Condition: total <= 40 and categories.hasNext()?"}}
-    B -->|true| C["Empty body"]
-    C --> D["Update: lock, add hours, stage a card, unlock, start a Thread"]
+    accTitle: JavaChallenge1: una sentencia for cuya rama falsa abre un cuadro de diálogo modal
+    accDescr: Un diagrama de flujo. El inicializador construye un objeto anónimo con el contexto de Spring, el repositorio, las horas, un iterador de categorías y un cerrojo. La condición es verdadera mientras el total no pasa de 40 y queda una categoría. Entonces se ejecuta el cuerpo vacío y la actualización adquiere el bloqueo, suma horas, prepara una tarjeta, libera el bloqueo e inicia un hilo que guarda mediante reflexión. Cuando la condición es falsa, la rama else construye un diálogo de Swing a partir de XML de Spring en tiempo de ejecución y lo muestra. El diálogo modal bloquea mientras un bean Timer desvanece gradualmente los colores de la etiqueta. Cuando se cierra, Double.isNaN convierte el resultado en false y el for termina.
+    A["Inicializador: la clase anónima contiene el contexto de Spring, el repositorio, las horas, las categorías y el cerrojo"] --> B{{"Condición: ¿total <= 40 y categories.hasNext()?"}}
+    B -->|true| C["Cuerpo vacío"]
+    C --> D["Actualización: bloquea, suma horas, deja una tarjeta en preparación, desbloquea e inicia un hilo"]
     D --> B
-    D -.-> T["Thread: saveAll through ReflectionUtils"]
-    B -->|false| E["Else branch: build a Swing dialog from Spring XML at run time"]
-    E --> F["setVisible blocks while a Timer bean fades the colors"]
-    F --> G["Dialog closes: Double.isNaN turns the result into false"]
+    D -.-> T["Hilo: saveAll mediante ReflectionUtils"]
+    B -->|false| E["Rama else: construye un diálogo Swing a partir de XML de Spring en tiempo de ejecución"]
+    E --> F["setVisible bloquea mientras un bean Timer desvanece los colores"]
+    F --> G["El diálogo se cierra: Double.isNaN convierte el resultado en false"]
 ```
 
-**What this shows:** the literal three-clause `for (init; condition; update) { }`. The condition decides between "go round again" and "show the window, then say false". The window is built from Spring XML bean definitions when it is needed, and the modal dialog does not return until the user closes it.
+**Qué muestra:** el `for (init; condition; update) { }` literal de tres cláusulas. La condición decide entre "vuelve a dar otra vuelta" y "muestra la ventana y luego devuelve false". La ventana se construye a partir de definiciones de beans de Spring en XML cuando se necesita, y el diálogo modal bloquea la llamada hasta que el usuario lo cierra.
 
-**Why this mechanism matters:** this entry keeps control flow in the `for` and puts a framework's blocking call (a modal dialog with its own event handling) inside the condition. The dashed thread is the original's deliberately awkward background save.
+**Por qué importa este mecanismo:** esta entrada mantiene el flujo de control en el `for` y coloca la llamada bloqueante de un framework (un diálogo modal con su propio manejo de eventos) dentro de la condición. La arista punteada lleva al hilo del guardado en segundo plano del original, torpe a propósito.
 
-### Program flow of `KotlinChallenge1`
+### Flujo del programa de `KotlinChallenge1`
 
-From [`KotlinChallenge1`](../../src/KotlinChallenge1/README.md) ([source section](../../src/KotlinChallenge1/README.md#flujo-del-programa)).
+Desde [`KotlinChallenge1`](../../src/KotlinChallenge1/README.md) ([sección original](../../src/KotlinChallenge1/README.md#flujo-del-programa)).
 
 ```mermaid
 flowchart TD
-    accTitle: KotlinChallenge1: a generated sequence ends when takeIf returns null
-    accDescr: A flowchart. The seed object is the first value of generateSequence. The empty for body runs. The sequence then asks its next function for the next value. takeIf tests whether the total is 40 or less and a category remains. If so, a chain of also calls locks, adds hours, stages a card, unlocks and starts a thread, and the same object is the next value, so the body runs again. If not, the else branch shows a Swing dialog built from Spring XML and ends with let false, so takeIf returns null and the sequence, and the for, end.
-    A["Seed: an object expression holds the state"] --> B["Empty for body"]
-    B --> C["generateSequence asks for the next value"]
-    C --> D{{"takeIf: total <= 40 and categories left?"}}
-    D -->|yes| E["also chain: lock, add hours, stage a card, unlock, start a Thread"]
+    accTitle: KotlinChallenge1: una secuencia generada termina cuando takeIf devuelve null
+    accDescr: Un diagrama de flujo. El objeto semilla es el primer valor de generateSequence. El cuerpo vacío del for se ejecuta. Luego la secuencia pide el siguiente valor a la función generadora. takeIf comprueba si el total no pasa de 40 y si queda una categoría. Si es así, una cadena de llamadas a also bloquea, suma horas, prepara una tarjeta, desbloquea e inicia un hilo, y el mismo objeto es el siguiente valor, así que el cuerpo se ejecuta otra vez. Si no, la rama else muestra un diálogo de Swing construido con XML de Spring y termina con la llamada a let { false }, así que takeIf devuelve null y la secuencia y el for terminan.
+    A["Semilla: una expresión de objeto guarda el estado"] --> B["Cuerpo vacío del for"]
+    B --> C["generateSequence pide el siguiente valor"]
+    C --> D{{"takeIf: ¿total <= 40 y quedan categorías?"}}
+    D -->|sí| E["Cadena de llamadas a also: bloquea, agrega horas, prepara una tarjeta, desbloquea, inicia un hilo"]
     E --> B
-    D -->|no| F["Else branch: show the Swing dialog, then let false"]
-    F --> G["takeIf returns null: the sequence is over"]
+    D -->|no| F["Rama else: muestra el diálogo de Swing y luego la llamada a let { false }"]
+    F --> G["takeIf devuelve null: la secuencia terminó"]
 ```
 
-**What this shows:** Kotlin has no three-clause `for`, so the loop iterates a sequence. The condition is `takeIf`, and "stop" is a `null`. The update is the chain of `?.also { ... }` calls that runs only when the condition passed. The body runs once before the first test, which makes no difference here because the body is empty.
+**Qué muestra:** Kotlin no tiene un `for` de tres cláusulas, así que el bucle recorre una secuencia. La condición es `takeIf` y "detenerse" es un `null`. La actualización es la cadena de llamadas a `?.also { ... }` que se ejecuta solo cuando la condición se cumple. El cuerpo se ejecuta una vez antes de la primera prueba, lo que aquí no cambia nada porque el cuerpo está vacío.
 
-**Why this mechanism matters:** it is the same three jobs as the Java port (initialize, test, update), carried by a lazy sequence that is pulled one value at a time. Ending the sequence is a value (`null`), not a statement.
+**Por qué importa este mecanismo:** son los mismos tres trabajos que en la adaptación de Java (inicializar, probar, actualizar), pero los hace una secuencia perezosa de la que se toma un valor a la vez. Terminar la secuencia es un valor (`null`), no una sentencia.
 
-### Program flow of `LinqChallenge1`
+### Flujo del programa de `LinqChallenge1`
 
-From [`LinqChallenge1`](../../src/LinqChallenge1/README.md) ([source section](../../src/LinqChallenge1/README.md#flujo-del-programa)).
+Desde [`LinqChallenge1`](../../src/LinqChallenge1/README.md) ([sección original](../../src/LinqChallenge1/README.md#flujo-del-programa)).
 
 ```mermaid
 flowchart TD
-    accTitle: LinqChallenge1: an eager fold first, then a lazy tail that the last Aggregate forces
-    accDescr: A flowchart with two groups. The eager group runs first because it is the innermost argument. An Aggregate folds the five fixed days into tracked entities and refuses a day that would pass 40 hours, and then the tuple calls SaveChanges. The deferred group is a chain of LINQ stages that does nothing until asked. The final Aggregate asks. That pulls the EF Core query and the return to objects, then a second Aggregate that folds the saved rows into a report, then the stage that builds and shows the window, then the stage that starts the pulse and calls Application.Run, which pumps the dispatcher until the window closes.
-    subgraph E["Eager: runs first, as the innermost argument"]
-        A["Aggregate: fold the five fixed days into tracked entities, refuse a day that passes 40 h"] --> B["Tuple element: SaveChanges runs after every entity is tracked"]
+    accTitle: LinqChallenge1: una reducción (*fold*) de evaluación inmediata primero y después etapas diferidas que el último Aggregate fuerza
+    accDescr: Un diagrama de flujo con dos grupos. El grupo de evaluación inmediata se ejecuta primero porque es el argumento más interno. Un Aggregate acumula los cinco días fijos en entidades rastreadas y rechaza un día que pasaría de 40 horas, y después la tupla llama a SaveChanges. El grupo de ejecución diferida es una cadena de etapas LINQ que no hace nada hasta que se le pide. El Aggregate final lo pide. Esa demanda (pull) activa la consulta de EF Core y el retorno a objetos, luego un segundo Aggregate que reduce las filas guardadas a un informe, luego la etapa que construye y muestra la ventana, y luego la etapa que inicia el pulso y llama a Application.Run, que mantiene en marcha el despachador de WPF hasta que se cierra la ventana.
+    subgraph E["Evaluación inmediata"]
+        A["Aggregate: acumula días y rechaza lo que pasa de 40 h"] --> B["SaveChanges: guarda las entidades"]
     end
-    subgraph D["Deferred: nothing runs until the final Aggregate asks"]
-        C["Repeat 1 then SelectMany: EF Core query, then AsEnumerable"] --> F["Aggregate: fold the saved rows into a report"]
-        F --> G["Select: build and show the WPF window"]
-        G --> H["Select: start the pulse, Application.Run pumps the dispatcher until the window closes"]
+    subgraph D["Ejecución diferida: espera al Aggregate final"]
+        C["Repeat 1 y SelectMany: EF Core y AsEnumerable"] --> F["Aggregate: reduce las filas a un informe"]
+        F --> G["Select: construye y muestra la ventana WPF"]
+        G --> H["Select: inicia el pulso y llama a Application.Run"]
     end
     B --> C
-    Z["Final Aggregate: the demand that forces the whole tail"] -.->|pulls| C
+    Z["Aggregate final: la demanda"] -.->|demanda| C
 ```
 
-**What this shows:** the whole program is one expression, so the order of work is the order of *evaluation*. The inner `Aggregate` is eager and runs first. Everything after it is a lazy chain of `LINQ` stages, and the last `Aggregate` is what makes them run. The dotted edge is demand, not data.
+**Qué muestra:** todo el programa es una sola expresión, así que el orden del trabajo es el orden de *evaluación*. El `Aggregate` interno es inmediato y se ejecuta primero. Todo lo que viene después es una cadena perezosa de etapas `LINQ`, y el último `Aggregate` es lo que hace que se ejecuten. La arista punteada es demanda, no datos.
 
-**Why this mechanism matters:** this is the difference between a query as a description and a query as an execution. `Enumerable.Repeat(…, 1)` turns one value into a one-element sequence so that each stage can stay a real `LINQ` operator. Every `void` call is wrapped to return a value, as the `void`-to-value trick (a section of this README) explains.
+**Por qué importa este mecanismo:** esta es la diferencia entre una consulta como descripción y una consulta como ejecución. `Enumerable.Repeat(…, 1)` convierte un valor en una secuencia de un elemento para que cada etapa pueda seguir siendo un operador `LINQ` real. Cada llamada a un método que devuelve `void` se envuelve para que devuelva un valor, como explica el truco de `void` a valor (una sección de este README).
 
-### Program flow of `LinqChallenge2`
+### Flujo del programa de `LinqChallenge2`
 
-From [`LinqChallenge2`](../../src/LinqChallenge2/README.md) ([source section](../../src/LinqChallenge2/README.md#flujo-del-programa)).
+Desde [`LinqChallenge2`](../../src/LinqChallenge2/README.md) ([sección original](../../src/LinqChallenge2/README.md#flujo-del-programa)).
 
 ```mermaid
 flowchart TD
-    accTitle: LinqChallenge2: query syntax over the five fixed days, forced by one Single
-    accDescr: A flowchart. The first query ranges over the five fixed days. Its where clause recomputes the running total as a prefix sum, with no accumulator, and keeps a day only while the total is 40 or less. A let clause wraps the EF Core Add in a one-row query to get a value from a void call. SaveChanges follows. The second query ranges over the EF Core query for this run, crossing to objects with AsEnumerable. An Aggregate folds the saved rows into a report. Further let clauses, each a one-row query, build the window and the pulse. A final Single forces the lazy pipeline to run and returns its one value.
-    A["from day in WorkWeek: the five fixed days"] --> B["where: prefix sum of hours up to this day is 40 or less"]
-    B --> C["let tracked: a one-row query wraps ctx.Timecards.Add"]
-    C --> D["SaveChanges, after all days are tracked"]
-    D --> E["from persisted in the EF query, AsEnumerable: crossing to objects"]
-    E --> F["Aggregate: fold the saved rows into a report"]
-    F --> G["let window, let pulse: each a one-row query around a void WPF call"]
-    G --> H["Single: forces the lazy pipeline and returns its one value"]
+    accTitle: LinqChallenge2: sintaxis de consulta sobre los cinco días fijos, forzada por un único Single
+    accDescr: Un diagrama de flujo. La primera consulta recorre los cinco días fijos. Su cláusula where recalcula, sin acumulador, la suma acumulada de horas hasta ese día y conserva un día solo mientras ese total no pasa de 40. Una cláusula let envuelve el Add de EF Core en una consulta de una fila para obtener un valor de una llamada void. SaveChanges se ejecuta después, cuando EF Core ya rastrea las entidades. La segunda consulta recorre la consulta de EF Core de esta ejecución y pasa a objetos con AsEnumerable. Un Aggregate reduce las filas guardadas a un informe. Otras cláusulas let, cada una con una consulta de una fila, construyen la ventana y el pulso. Un Single final obliga a ejecutar la canalización perezosa y devuelve su único valor.
+    A["from day in WorkWeek: los cinco días fijos"] --> B["where: la suma acumulada de horas hasta este día es como máximo 40"]
+    B --> C["let tracked: una consulta de una fila envuelve ctx.Timecards.Add"]
+    C --> D["SaveChanges: se ejecuta cuando EF Core ya rastrea las entidades"]
+    D --> E["from persisted in: la consulta de EF; AsEnumerable: paso a objetos"]
+    E --> F["Aggregate: reduce las filas guardadas a un informe"]
+    F --> G["let window, let pulse: cada una, una consulta de una fila alrededor de una llamada de WPF que devuelve void"]
+    G --> H["Single: fuerza la canalización perezosa y devuelve su único valor"]
 ```
 
-**What this shows:** the same data path as [`LinqChallenge1`](../../src/LinqChallenge1/README.md), written with query syntax. The `where` clause is the stop rule: it recomputes a prefix sum for each day instead of keeping a running total in a variable. Nothing runs until the closing `Single()`.
+**Qué muestra:** la misma ruta de datos que [`LinqChallenge1`](../../src/LinqChallenge1/README.md), escrita con sintaxis de consulta. La cláusula `where` es la regla de parada: recalcula para cada día la suma acumulada hasta ese día (*prefix sum*) en lugar de mantener un total acumulado en una variable. Nada se ejecuta hasta el `Single()` final.
 
-**Why this mechanism matters:** query syntax is only a way to write method calls. The compiler turns `where`, `let` and `select` into the same `Where`, `Select` and `SelectMany` calls, so the execution engine does not change. The one-row query around each `void` call is a joke that proves how far the syntax reaches.
+**Por qué importa este mecanismo:** la sintaxis de consultas es solo una forma de escribir llamadas a métodos. El compilador convierte `where`, `let` y `select` en las mismas llamadas a `Where`, `Select` y `SelectMany`, así que el motor de ejecución no cambia. La consulta de una sola fila que rodea cada llamada a un método que devuelve `void` es una broma que demuestra hasta dónde llega la sintaxis.
 
-### Program flow of `PythonChallenge1`
+### Flujo del programa de `PythonChallenge1`
 
-From [`PythonChallenge1`](../../src/PythonChallenge1/README.md) ([source section](../../src/PythonChallenge1/README.md#flujo-del-programa)).
+Desde [`PythonChallenge1`](../../src/PythonChallenge1/README.md) ([sección original](../../src/PythonChallenge1/README.md#flujo-del-programa)).
 
 ```mermaid
 flowchart TD
-    accTitle: PythonChallenge1: iter with a sentinel calls one function until it returns False
-    accDescr: A flowchart. A lambda builds the function step from the state object. The for statement iterates iter(step, False), so it calls step again and again. Each call tests whether the total is 40 or less and a category remains. If so, a tuple of calls runs left to right: lock, add hours, stage a card, unlock, start a thread that saves. The last item of the tuple is True, which is not the sentinel, so the empty body runs and the loop calls step again. If not, the else branch builds a Tk window from an XML string and calls mainloop, which blocks until the window closes, and step returns False. That equals the sentinel, so iter stops and the for ends.
-    A["Initializer: a lambda takes the state and returns step"] --> B["for _ in iter(step, False) calls step()"]
-    B --> C{{"step: total <= 40 and categories left?"}}
-    C -->|yes| D["Tuple, left to right: lock, hours, card, unlock, Thread; value True"]
-    D -->|"True: the body is ..., call step again"| B
-    D -.-> T["Thread: save_all"]
-    C -->|no| F["Else: build a Tk window from XML, mainloop blocks"]
-    F --> G["step returns False, the sentinel: iter stops"]
+    accTitle: PythonChallenge1: iter con un valor centinela llama a una función hasta que devuelve False
+    accDescr: Un diagrama de flujo. Una lambda construye la función step a partir del objeto de estado. La sentencia for recorre el iterador creado por iter(step, False), así que llama a step una y otra vez. Cada llamada comprueba si el total no pasa de 40 y si queda una categoría. Si es así, se ejecuta una tupla de llamadas de izquierda a derecha: bloquear, sumar horas, preparar una tarjeta, desbloquear, iniciar un hilo que guarda. El último elemento de la tupla es True, que no es el valor centinela, así que se ejecuta el cuerpo vacío y el bucle llama a step otra vez. Si no, la rama else construye una ventana de Tk a partir de una cadena de texto XML y llama a mainloop, que bloquea hasta que se cierra la ventana, y step devuelve False. Ese valor es igual al valor centinela, así que iter se detiene y el for termina.
+    A["Inicializador: una lambda recibe el estado y devuelve step"] --> B["for _ in iter(step, False) llama a step()"]
+    B --> C{{"step: total <= 40 y ¿quedan categorías?"}}
+    C -->|sí| D["Tupla, de izquierda a derecha: lock, horas, tarjeta, unlock, hilo; valor True"]
+    D -->|"True: el cuerpo es ..., llama a step otra vez"| B
+    D -.-> T["Hilo: save_all"]
+    C -->|no| F["Si no: construye una ventana Tk a partir de XML, mainloop bloquea"]
+    F --> G["step devuelve False, el valor centinela: iter se detiene"]
 ```
 
-**What this shows:** Python has no three-clause `for`, so the loop is `iter(step, False)`: call `step` until it returns the sentinel. One conditional expression is the test, and a tuple stands in for the comma list. Python evaluates the tuple's items in order, and the last item (`True`) is the value of the update.
+**Qué muestra:** Python no tiene un `for` de tres cláusulas, así que el bucle es `iter(step, False)`: llama a `step` hasta que devuelva el valor centinela. Una expresión condicional es la prueba, y una tupla ocupa el lugar de la lista separada por comas. Python evalúa los elementos de la tupla en orden, y el último elemento (`True`) es el valor de la actualización.
 
-**Why this mechanism matters:** the stop is a return value compared by `iter` with the sentinel, not a condition that the `for` itself checks. The window shows the same idea as the other ports: the final branch does the last work, then returns the value that ends the loop.
+**Por qué importa este mecanismo:** la parada es un valor de retorno que `iter` compara con el valor centinela, no una condición que `for` comprueba por su cuenta. La ventana muestra la misma idea que las otras versiones: la rama final hace el último trabajo y después devuelve el valor que termina el bucle.
 
-### Program flow of `RustChallenge1`
+### Flujo del programa de `RustChallenge1`
 
-From [`RustChallenge1`](../../src/RustChallenge1/README.md) ([source section](../../src/RustChallenge1/README.md#flujo-del-programa)).
+Desde [`RustChallenge1`](../../src/RustChallenge1/README.md) ([sección original](../../src/RustChallenge1/README.md#flujo-del-programa)).
 
 ```mermaid
 flowchart TD
-    accTitle: RustChallenge1: std::iter::successors ends when next returns None
-    accDescr: A flowchart. successors starts from an immutable DemoBatch. The empty for body runs, then successors calls next with the batch. If the total is 40 or less and a category remains, next returns Some of a new batch with one more card, and the body runs again. If not, a scoped worker thread saves the batch in one SQLite transaction and is joined. Then a GTK window is built from Builder XML, and a glib MainLoop runs until the window closes while a timeout redraws the background. Then next returns None and the for ends.
-    A["first: Some(DemoBatch) is the first value"] --> B["Empty for body"]
-    B --> C["successors calls next(batch)"]
-    C --> D{{"total <= 40 and categories left?"}}
-    D -->|yes| E["Some(batch.extended(hours)): a new immutable batch with one more card"]
+    accTitle: RustChallenge1: std::iter::successors termina cuando next devuelve None
+    accDescr: Un diagrama de flujo. successors parte de un DemoBatch inmutable. El cuerpo vacío del for se ejecuta y luego successors llama a next con el lote. Si el total no pasa de 40 y queda una categoría, next devuelve Some con un lote nuevo que tiene una tarjeta más, y el cuerpo se ejecuta otra vez. Si no, un hilo de trabajo con ámbito (scoped) guarda el lote en una sola transacción de SQLite y el programa espera a que termine (join). Después se construye una ventana GTK a partir de XML de Builder, y un MainLoop de glib se ejecuta hasta que la ventana se cierra, mientras un timeout redibuja el fondo. Luego next devuelve None y el for termina.
+    A["first: Some(DemoBatch) es el primer valor"] --> B["Vacío para el cuerpo"]
+    B --> C["successors llama a next(batch)"]
+    C --> D{{"¿total <= 40 y quedan categorías?"}}
+    D -->|sí| E["Some(batch.extended(hours)): un nuevo lote inmutable con una tarjeta más"]
     E --> B
-    D -->|no| F["thread::scope: a worker saves the batch in one transaction; join waits"]
-    F --> G["GTK Builder XML makes the window; glib MainLoop.run blocks, a timeout redraws"]
-    G --> H["Window closed: next returns None, the for ends"]
+    D -->|no| F["thread::scope: un hilo de trabajo guarda el lote en una transacción; join espera"]
+    F --> G["El XML de GTK Builder crea la ventana; `MainLoop.run` de glib bloquea el hilo y un temporizador redibuja"]
+    G --> H["Cierras la ventana: next devuelve None y el for termina"]
 ```
 
-**What this shows:** `std::iter::successors(first, next)` carries the three jobs of a `for`: `first` is the initializer, `next` is both the condition and the update, and returning `None` is the stop. The state is never mutated. Each step builds a new `DemoBatch`.
+**Qué muestra:** `std::iter::successors(first, next)` reúne los tres trabajos de un `for`: `first` es el inicializador, `next` es a la vez la condición y la actualización, y devolver `None` es la parada. El estado nunca se modifica. Cada paso construye un `DemoBatch` nuevo.
 
-**Why this mechanism matters:** saving is a joined, scoped thread, so the program never says "saved" before the transaction finished. The GTK window runs its own event loop (`MainLoop.run`) inside the `next` call, which is the last step before the loop ends.
+**Por qué importa este mecanismo:** guardar es un hilo unido y con ámbito, así que el programa nunca dice "guardado" antes de que termine la transacción. La ventana GTK ejecuta su propio bucle de eventos (`MainLoop.run`) dentro de la llamada a `next`, que es el último paso antes de que termine el bucle.
 
-### Program flow of `xaml`
+### Flujo del programa de `xaml`
 
-From [`xaml`](../../src/xaml/README.md) ([source section](../../src/xaml/README.md#flujo-del-programa)).
+Desde [`xaml`](../../src/xaml/README.md) ([sección original](../../src/xaml/README.md#flujo-del-programa)).
 
 ```mermaid
 sequenceDiagram
-    accTitle: xaml: parsing the file is running the program
-    accDescr: A sequence diagram of efcore.xaml. Loader.Main creates the data folder and calls XamlReader.Load. The XAML parser builds the nodes in document order, and each ObjectDataProvider fires as soon as it is built. Four unrolled passes each draw a random number into a carrier array, build a card from it, and insert it with EF Core. A SQL trigger deletes a row if the earlier rows already total more than 40. The parser returns the finished window. Application.Run then shows the window, a Loaded event trigger starts the fade storyboard, and the run ends when the window closes.
+    accTitle: xaml: el análisis sintáctico del archivo ejecuta el programa
+    accDescr: Diagrama de secuencia de efcore.xaml. Loader.Main crea la carpeta de datos y llama a XamlReader.Load. El analizador sintáctico de XAML crea los nodos en el orden del documento. Cada ObjectDataProvider se activa en cuanto se crea. En cada una de las cuatro pasadas desenrolladas, se sortea un número y se guarda en un arreglo portador. Con ese número se crea una tarjeta que EF Core inserta. Un disparador SQL borra la fila si el total de las filas anteriores pasa de 40. El analizador devuelve la ventana terminada. Application.Run muestra la ventana y un disparador del evento Loaded inicia la secuencia de animación del fundido. La ejecución termina cuando se cierra la ventana.
     participant L as Loader.Main
-    participant P as XAML parser
-    participant O as ObjectDataProvider nodes
-    participant D as SQLite and its trigger
-    participant W as Window and dispatcher
-    L->>P: XamlReader.Load(file)
-    loop four copies, in document order
-        P->>O: build the next provider node: it fires at once
-        O->>D: random hours, via a carrier array, then Add and SaveChanges
-        D-->>D: trigger deletes the row if earlier rows total over 40
+    participant P as Analizador sintáctico de XAML
+    participant O as Nodos ObjectDataProvider
+    participant D as SQLite y su disparador
+    participant W as Ventana y despachador de WPF
+    L->>P: Carga el archivo: XamlReader.Load(file)
+    loop Cuatro copias en el orden del documento
+        P->>O: El siguiente nodo proveedor se activa al crearse
+        O->>D: Horas al azar vía arreglo portador y luego Add y SaveChanges
+        D-->>D: Borra la fila si el total anterior pasa de 40
     end
-    P-->>L: the finished Window object
-    L->>W: Application.Run(window)
-    W-->>W: Loaded event trigger starts the fade storyboard
-    W-->>L: the window closes and Run returns
+    P-->>L: Objeto Window terminado
+    L->>W: Llama a Application.Run(window)
+    W-->>W: El evento Loaded dispara el fundido
+    W-->>L: Se cierra la ventana y Run retorna
 ```
 
-**What this shows:** there is no loop and no stop rule in the markup's control flow. The parser walks the document once, from top to bottom, and each provider does its work at the moment it is built. The four passes are four copies, and the 40-hour limit is a trigger inside SQLite, which removes a row that comes too late.
+**Qué muestra:** no hay bucle ni regla de parada en el flujo de control del marcado. El analizador sintáctico recorre el documento una sola vez, de arriba abajo. Cada proveedor hace su trabajo en cuanto se crea. Cada una de las cuatro pasadas es una copia. El límite de 40 horas lo aplica un disparador de SQLite que elimina las filas que llegan demasiado tarde.
 
-**Why this mechanism matters:** the program counter is document order. The only event in the picture is the `Loaded` trigger, and it only starts an animation. The program's logic does not subscribe to anything. This is a parser used as an interpreter, not event-driven code. Shown here is `efcore.xaml`; `strict.xaml` and `sqlite.xaml` share the shape.
+**Por qué importa este mecanismo:** el orden del documento hace de contador de programa, es decir, indica qué se ejecuta a continuación. El único evento en el diagrama es el que activa el disparador `Loaded`. Este solo inicia una animación. La lógica del programa no se suscribe a nada. Aquí el analizador sintáctico hace de intérprete y el código no responde a eventos. El diagrama muestra `efcore.xaml`. `strict.xaml` y `sqlite.xaml` tienen la misma estructura.
 <!-- END GENERATED program-flow:languages/csharp-linq-xaml.md -->
 
 ## La informática detrás de esta página
 
 <!-- BEGIN GENERATED concepts:languages/csharp-linq-xaml.md -->
-The computer-science ideas behind this page: [Threat model](../informatica/01-lectura-de-un-programa-adversarial.md#threat-model), [Arbitrary code execution](../informatica/01-lectura-de-un-programa-adversarial.md#arbitrary-code-execution), [Computation versus orchestration](../informatica/02-que-cuenta-como-maquina.md#computation-versus-orchestration), [Control flow](../informatica/03-flujo-de-control-y-continuaciones.md#control-flow), [Evaluation strategies](../informatica/04-evaluacion-y-demanda.md#evaluation-strategies), [Eager evaluation](../informatica/04-evaluacion-y-demanda.md#eager-evaluation), [Lazy evaluation](../informatica/04-evaluacion-y-demanda.md#lazy-evaluation), [Deferred execution](../informatica/04-evaluacion-y-demanda.md#deferred-execution), [Iterators and generators](../informatica/04-evaluacion-y-demanda.md#iterators-and-generators), [First-class and higher-order functions](../informatica/04-evaluacion-y-demanda.md#first-class-and-higher-order-functions), [Monoids and folds](../informatica/04-evaluacion-y-demanda.md#monoids-and-folds), [Dataflow programming](../informatica/04-evaluacion-y-demanda.md#dataflow-programming), [Parsing](../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#parsing), [Declarative programming](../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#declarative-programming), [Domain-specific languages](../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#domain-specific-languages), [Markup languages](../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#markup-languages), [Language-theoretic security](../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#language-theoretic-security), [Weird machines](../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#weird-machines), [Interpreters and virtual machines](../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#interpreters-and-virtual-machines), [State](../informatica/06-estado-mas-alla-de-las-variables.md#state), [Closures and lexical environments](../informatica/06-estado-mas-alla-de-las-variables.md#closures-and-lexical-environments), [Reflection and metaprogramming](../informatica/06-estado-mas-alla-de-las-variables.md#reflection-and-metaprogramming), [Serialization, deserialization and object pickling](../informatica/06-estado-mas-alla-de-las-variables.md#serialization-deserialization-and-object-pickling), [Side effects](../informatica/07-efectos-errores-y-confirmacion.md#side-effects), [Thread safety and thread affinity](../informatica/07-efectos-errores-y-confirmacion.md#thread-safety-and-thread-affinity), [The event loop and scheduling turns](../informatica/10-eventos-retrollamadas-y-flujo-de-control-reactivo.md#the-event-loop-and-scheduling-turns).
+Las ideas de ciencias de la computación detrás de esta página: [Modelo de amenazas](../informatica/01-lectura-de-un-programa-adversarial.md#modelo-de-amenazas), [Ejecución de código arbitrario](../informatica/01-lectura-de-un-programa-adversarial.md#ejecución-de-código-arbitrario), [Cálculo frente a orquestación](../informatica/02-que-cuenta-como-maquina.md#cálculo-frente-a-orquestación), [Flujo de control](../informatica/03-flujo-de-control-y-continuaciones.md#flujo-de-control), [Estrategias de evaluación](../informatica/04-evaluacion-y-demanda.md#estrategias-de-evaluación), [Evaluación inmediata](../informatica/04-evaluacion-y-demanda.md#evaluación-inmediata), [Evaluación perezosa](../informatica/04-evaluacion-y-demanda.md#evaluación-perezosa), [Ejecución diferida](../informatica/04-evaluacion-y-demanda.md#ejecución-diferida), [Iteradores y generadores](../informatica/04-evaluacion-y-demanda.md#iteradores-y-generadores), [Funciones de primera clase y de orden superior](../informatica/04-evaluacion-y-demanda.md#funciones-de-primera-clase-y-de-orden-superior), [Monoides y plegados](../informatica/04-evaluacion-y-demanda.md#monoides-y-plegados), [Programación por flujo de datos](../informatica/04-evaluacion-y-demanda.md#programación-por-flujo-de-datos), [Análisis sintáctico](../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#análisis-sintáctico), [Programación declarativa](../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#programación-declarativa), [Lenguajes específicos de dominio](../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#lenguajes-específicos-de-dominio), [Lenguajes de marcado](../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#lenguajes-de-marcado), [Seguridad basada en teoría de lenguajes](../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#seguridad-basada-en-teoría-de-lenguajes), [Máquinas raras](../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#máquinas-raras), [Intérpretes y máquinas virtuales](../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#intérpretes-y-máquinas-virtuales), [Estado](../informatica/06-estado-mas-alla-de-las-variables.md#estado), [Clausuras y entornos léxicos](../informatica/06-estado-mas-alla-de-las-variables.md#clausuras-y-entornos-léxicos), [Reflexión y metaprogramación](../informatica/06-estado-mas-alla-de-las-variables.md#reflexión-y-metaprogramación), [Serialización, deserialización y pickling de objetos](../informatica/06-estado-mas-alla-de-las-variables.md#serialización-deserialización-y-pickling-de-objetos), [Efectos secundarios](../informatica/07-efectos-errores-y-confirmacion.md#efectos-secundarios), [Seguridad entre hilos y afinidad de hilo](../informatica/07-efectos-errores-y-confirmacion.md#seguridad-entre-hilos-y-afinidad-de-hilo), [El bucle de eventos y la planificación de turnos](../informatica/10-eventos-retrollamadas-y-flujo-de-control-reactivo.md#el-bucle-de-eventos-y-la-planificación-de-turnos).
 <!-- END GENERATED concepts:languages/csharp-linq-xaml.md -->

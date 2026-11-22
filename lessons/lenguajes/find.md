@@ -62,51 +62,51 @@ Usos legítimos: `find ... -exec ... {} +` y `-prune` son herramientas de uso di
 Mira los [ejercicios](../exercises.md#b14-find-manipula-los-dados-verificado) y [B15](../exercises.md#b15-gnu-find-mueve-la-regla-de-parada-lee-el-perfil-verificado).
 
 <!-- BEGIN GENERATED program-flow:languages/find.md -->
-## How each program runs
+## Cómo corre cada programa
 
-Each picture below is the `## Program Flow` section of an entry's README, copied here by the build. It shows how that program makes the work happen: what the language, runtime or tool really does. [The introduction](../introduccion.md#qué-hace-el-reto) shows what the challenge asks for and where entries differ.
+Cada imagen de abajo es la sección `## Flujo del programa` del README de una entrada, copiada aquí por la compilación. Muestra cómo ese programa hace el trabajo: lo que el lenguaje, el entorno de ejecución o la herramienta hacen en realidad. [La introducción](../introduccion.md#qué-hace-el-reto) muestra qué pide el reto y en qué se distinguen las entradas.
 
-### Program flow of `find-gnu`
+### Flujo del programa de `find-gnu`
 
-From [`find-gnu`](../../src/find-gnu/README.md) ([source section](../../src/find-gnu/README.md#flujo-del-programa)).
-
-```mermaid
-flowchart TD
-    accTitle: find-gnu: the depth of a directory is the running total
-    accDescr: A flowchart. find visits a directory. A chain of -o branches is chosen by name and by regular expression on the path. Most branches dig the next directory with mkdir or mktemp. The first hour of a card is the dice directory itself, and the other hours are directories named b17 down to b00, so the depth of the directory is the running total. At the end of a card, fprintf writes SQL to file descriptor 3, using the depth as the total and the directory's modification time as the ISO week. If the path has at least 41 slashes, the total is over 40, and nothing is dug. After visiting, find reads the directory's entries and visits the new directory. The walk ends when nothing new is dug, and sqlite3 reads file descriptor 3.
-    A["find visits one directory: -name, -path and -regex tests pick a branch"] --> B{{"Does the branch dig a new directory?"}}
-    B -->|"yes: b17 to b01, or after a card of 40 or fewer slashes, the next dice"| C["-exec digs it; at b00, -fprintf writes SQL to fd 3: depth is the total, mtime the week"]
-    C --> D["find reads this directory's entries after visiting it, and finds the new one"]
-    D --> A
-    B -->|"no: b00 with 41 or more slashes in the path"| E["The last row is written, nothing is dug, the walk ends; sqlite3 reads fd 3"]
-```
-
-**What this shows:** the same trick as [`find-posix`](../../src/find-posix/README.md), with GNU extras that remove bookkeeping. `-fprintf` can write to its own file descriptor, `%d` is the directory depth, and `%TG-W%TV` formats the modification time as the ISO week. So the depth *is* the total, and no digit-by-digit arithmetic is needed.
-
-**Why this mechanism matters:** the stop rule is a regular expression on the path, "at least 41 slashes". GNU find also has an optimizer that may reorder tests. An effect pins the order, so the program gives the same answer at every optimization level. That is tested, not promised.
-
-### Program flow of `find-posix`
-
-From [`find-posix`](../../src/find-posix/README.md) ([source section](../../src/find-posix/README.md#flujo-del-programa)).
+Desde [`find-gnu`](../../src/find-gnu/README.md) ([sección original](../../src/find-gnu/README.md#flujo-del-programa)).
 
 ```mermaid
 flowchart TD
-    accTitle: find-posix: find walks into the directories that its own -exec just made
-    accDescr: A flowchart. find visits a directory. A chain of -o branches, chosen by the directory name and path, runs exactly one branch. Most branches run an exec that digs one new directory below the current one, and print part of an SQL statement. After visiting a directory, find reads its entries, so it finds the new directory and visits it next. At the end of a card where the total is 40 or less, the branch digs the next card's dice directory. At the end of a card where the total is over 40, the branch digs nothing. The walk then ends, and sqlite3 reads the SQL text that find printed.
-    A["find visits one directory: its name and path pick one -o branch"] --> B{{"Does the branch dig a new directory?"}}
-    B -->|"yes: hour, countdown, or the next card's dice"| C["-exec mkdir or mktemp -d digs it; printf and date add SQL text"]
-    C --> D["find reads this directory's entries after visiting it, and finds the new one"]
+    accTitle: find-gnu: la profundidad de un directorio es el total acumulado
+    accDescr: Un diagrama de flujo. find visita un directorio. Se elige una cadena de ramas -o por nombre y por expresión regular sobre la ruta. La mayoría de las ramas cavan el siguiente directorio con mkdir o mktemp. La primera hora de una tarjeta es el propio directorio dice, y las demás horas son directorios llamados de b17 a b00 en orden descendente, así que la profundidad del directorio es el total acumulado. Al final de una tarjeta, fprintf escribe SQL en el descriptor de archivo 3, con la profundidad como total y la fecha de modificación del directorio como semana ISO. Si la ruta tiene al menos 41 barras, el total pasa de 40 y no se cava nada. Después de visitar, find lee las entradas del directorio y visita el nuevo directorio. El recorrido termina cuando no se cava nada nuevo, y sqlite3 lee el descriptor de archivo 3.
+    A["find visita un directorio: las pruebas -name, -path y -regex eligen una rama"] --> B{{"¿La rama cava un directorio nuevo?"}}
+    B -->|"sí: de b17 a b01, o tras una tarjeta de 40 barras o menos, el siguiente dado"| C["-exec lo cava; en b00, -fprintf escribe SQL en fd 3: depth es el total y mtime la semana"]
+    C --> D["find lee las entradas de este directorio después de visitarlo y encuentra la nueva"]
     D --> A
-    B -->|"no: the end of a card with a total over 40"| E["The walk ends; sqlite3 reads the SQL text from the pipe"]
+    B -->|"no: b00 con 41 o más barras diagonales en la ruta"| E["Se escribe la última fila, no se excava nada y el recorrido termina; sqlite3 lee fd 3"]
 ```
 
-**What this shows:** the loop is a tree walk that keeps growing. find reads a directory's entries *after* it visits the directory, so a directory that `-exec` makes inside the current one is walked next. The path from the start is the history, and the directory name is the state. It is the call stack of a recursion, drawn on the file system.
+**Qué muestra:** el mismo truco que [`find-posix`](../../src/find-posix/README.md), con extras de GNU que eliminan el trabajo de contabilidad. `-fprintf` puede escribir en su propio descriptor de archivo, `%d` es la profundidad del directorio y `%TG-W%TV` da formato a la hora de modificación como semana ISO. Así, la profundidad *es* el total y no hace falta aritmética dígito por dígito.
 
-**Why this mechanism matters:** the stop rule is the absence of a new child: at the end of a card, five `0` hour-digits in the path (or four and a non-zero last digit) mean the total is over 40, and no branch digs. The running total is the number of hour directories in the path, and no arithmetic exists anywhere. This relies on the order in which find reads and visits, which is accidental to find, not promised by POSIX.
+**Por qué importa este mecanismo:** la regla de parada es una expresión regular sobre la ruta: "al menos 41 barras". GNU find también tiene un optimizador que puede reordenar las pruebas. Un efecto fija el orden, así que el programa da la misma respuesta en cada nivel de optimización. Eso se comprueba con pruebas; no es una promesa.
+
+### Flujo del programa de `find-posix`
+
+Desde [`find-posix`](../../src/find-posix/README.md) ([sección original](../../src/find-posix/README.md#flujo-del-programa)).
+
+```mermaid
+flowchart TD
+    accTitle: find-posix: `find` recorre los directorios que su propio `-exec` acaba de crear
+    accDescr: Un diagrama de flujo. find visita un directorio. Una cadena de ramas -o ejecuta exactamente una rama, elegida según el nombre y la ruta del directorio. La mayoría de las ramas ejecutan un exec que crea un directorio nuevo un nivel por debajo del actual e imprimen parte de una sentencia SQL. Después de visitar un directorio, find lee sus entradas; así encuentra el directorio nuevo y lo visita a continuación. Al final de una tarjeta cuyo total no pasa de 40, la rama crea el directorio de dados de la tarjeta siguiente. Al final de una tarjeta cuyo total pasa de 40, la rama no crea ningún directorio. Entonces el recorrido termina y sqlite3 lee el texto SQL que find imprimió.
+    A["find visita un directorio: su nombre y su ruta eligen una rama -o"] --> B{{"¿La rama cava un directorio nuevo?"}}
+    B -->|"sí: hora, cuenta regresiva o los dados de la siguiente tarjeta"| C["-exec mkdir o mktemp -d lo crea; printf y date añaden texto SQL"]
+    C --> D["find lee las entradas de este directorio después de visitarlo y encuentra la nueva"]
+    D --> A
+    B -->|"no: el final de una tarjeta con un total que pasa de 40"| E["El recorrido termina; sqlite3 lee el texto SQL desde la tubería"]
+```
+
+**Qué muestra:** el bucle es un recorrido de árbol que sigue creciendo. find lee las entradas de un directorio *después* de visitarlo, así que un directorio que `-exec` crea dentro del actual se recorre a continuación. La ruta desde el inicio es el historial, y el nombre del directorio es el estado. Es la pila de llamadas de una recursión, dibujada en el sistema de archivos.
+
+**Por qué importa este mecanismo:** la regla de parada es la ausencia de un hijo nuevo: al final de una tarjeta, cinco dígitos de hora `0` en la ruta (o cuatro y un último dígito distinto de cero) significan que el total pasa de 40, y ninguna rama cava. El total acumulado es el número de directorios de hora en la ruta, y no hay aritmética en ninguna parte. Esto depende del orden en que find lee y visita, que es accidental en find y no una promesa de POSIX.
 <!-- END GENERATED program-flow:languages/find.md -->
 
 ## La informática detrás de esta página
 
 <!-- BEGIN GENERATED concepts:languages/find.md -->
-The computer-science ideas behind this page: [Transition systems and state machines](../informatica/02-que-cuenta-como-maquina.md#transition-systems-and-state-machines), [Representing state](../informatica/02-que-cuenta-como-maquina.md#representing-state), [Observability](../informatica/02-que-cuenta-como-maquina.md#observability), [Control flow](../informatica/03-flujo-de-control-y-continuaciones.md#control-flow), [Recursion](../informatica/03-flujo-de-control-y-continuaciones.md#recursion), [Short-circuit evaluation](../informatica/04-evaluacion-y-demanda.md#short-circuit-evaluation), [Regular expressions](../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#regular-expressions), [Domain-specific languages](../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#domain-specific-languages), [Weird machines](../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#weird-machines), [The call stack](../informatica/06-estado-mas-alla-de-las-variables.md#the-call-stack), [Side effects](../informatica/07-efectos-errores-y-confirmacion.md#side-effects), [Integrity constraints](../informatica/07-efectos-errores-y-confirmacion.md#integrity-constraints), [Undefined, unspecified and implementation-defined behavior](../informatica/08-fugas-de-abstraccion-y-dependencia-de-la-implementacion.md#undefined-unspecified-and-implementation-defined-behavior), [Portability](../informatica/08-fugas-de-abstraccion-y-dependencia-de-la-implementacion.md#portability), [Optimizers](../informatica/08-fugas-de-abstraccion-y-dependencia-de-la-implementacion.md#optimizers), [Hyrum's law](../informatica/08-fugas-de-abstraccion-y-dependencia-de-la-implementacion.md#hyrums-law).
+Las ideas de ciencias de la computación detrás de esta página: [Sistemas de transición y máquinas de estados](../informatica/02-que-cuenta-como-maquina.md#sistemas-de-transición-y-máquinas-de-estados), [Cómo representar el estado](../informatica/02-que-cuenta-como-maquina.md#cómo-representar-el-estado), [Observabilidad](../informatica/02-que-cuenta-como-maquina.md#observabilidad), [Flujo de control](../informatica/03-flujo-de-control-y-continuaciones.md#flujo-de-control), [Recursión](../informatica/03-flujo-de-control-y-continuaciones.md#recursión), [Evaluación de cortocircuito](../informatica/04-evaluacion-y-demanda.md#evaluación-de-cortocircuito), [Expresiones regulares](../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#expresiones-regulares), [Lenguajes específicos de dominio](../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#lenguajes-específicos-de-dominio), [Máquinas raras](../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#máquinas-raras), [La pila de llamadas](../informatica/06-estado-mas-alla-de-las-variables.md#la-pila-de-llamadas), [Efectos secundarios](../informatica/07-efectos-errores-y-confirmacion.md#efectos-secundarios), [Restricciones de integridad](../informatica/07-efectos-errores-y-confirmacion.md#restricciones-de-integridad), [Comportamiento indefinido, no especificado y definido por la implementación](../informatica/08-fugas-de-abstraccion-y-dependencia-de-la-implementacion.md#comportamiento-indefinido-no-especificado-y-definido-por-la-implementación), [Portabilidad](../informatica/08-fugas-de-abstraccion-y-dependencia-de-la-implementacion.md#portabilidad), [Optimizadores](../informatica/08-fugas-de-abstraccion-y-dependencia-de-la-implementacion.md#optimizadores), [Ley de Hyrum](../informatica/08-fugas-de-abstraccion-y-dependencia-de-la-implementacion.md#ley-de-hyrum).
 <!-- END GENERATED concepts:languages/find.md -->

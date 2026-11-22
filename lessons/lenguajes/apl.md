@@ -123,54 +123,54 @@ Ambas entradas son APL y ninguna es idiomática en el sentido que le da un progr
 La primera no es una idea terrible; así piensan en realidad los programadores de APL. La segunda se vuelve razonable cuando generas código a partir de datos en un entorno diseñado para ello. Y como notación de *diseño*, el verdadero hogar de APL, fue razonable desde el principio: se pensó para describir el cálculo en una pizarra, mucho antes de que alguien lo ejecutara.
 
 <!-- BEGIN GENERATED program-flow:languages/apl.md -->
-## How each program runs
+## Cómo corre cada programa
 
-Each picture below is the `## Program Flow` section of an entry's README, copied here by the build. It shows how that program makes the work happen: what the language, runtime or tool really does. [The introduction](../introduccion.md#qué-hace-el-reto) shows what the challenge asks for and where entries differ.
+Cada imagen de abajo es la sección `## Flujo del programa` del README de una entrada, copiada aquí por la compilación. Muestra cómo ese programa hace el trabajo: lo que el lenguaje, el entorno de ejecución o la herramienta hacen en realidad. [La introducción](../introduccion.md#qué-hace-el-reto) muestra qué pide el reto y en qué se distinguen las entradas.
 
-### Program flow of `apl`
+### Flujo del programa de `apl`
 
-From [`apl`](../../src/apl/README.md) ([source section](../../src/apl/README.md#flujo-del-programa)).
+Desde [`apl`](../../src/apl/README.md) ([sección original](../../src/apl/README.md#flujo-del-programa)).
 
 ```mermaid
 flowchart TD
-    accTitle: apl: draw everything first, then let arrays decide where to stop
-    accDescr: A flowchart of data moving through whole-array operations. Five random hours between 10 and 19 are drawn at once. A running sum gives the total after each card. Comparing the totals with 40 gives ones and zeros. Summing the ones and adding one counts the cards to keep. Taking that many cards from the drawn hours gives the kept hours. The running totals and the category names, reshaped to the same length, are derived from them. Then a function applied to each row number saves each row and shows each row.
-    A["Drawn: five random hours, 10 to 19, rolled at once"] --> B["Running sum of Drawn: the total after each card"]
-    B --> C["Compare with 40: 1 where the total is 40 or less, else 0"]
-    C --> D["Sum the 1s, add 1: the number of cards to keep"]
-    D --> E["Take that many from Drawn: Hours"]
-    E --> F["Totals is a running sum of Hours; Kinds is the categories reshaped to the length of Hours"]
-    F --> G["SaveRow and ShowRow, each applied to every row number"]
+    accTitle: apl: dibuja todo primero y luego deja que los arreglos decidan dónde parar
+    accDescr: Un diagrama de flujo de los datos a través de operaciones sobre arreglos completos. Se sortean cinco horas aleatorias de 10 a 19 de una sola vez. Una suma acumulada da el total después de cada tarjeta. Al comparar los totales con 40 se obtienen unos y ceros. Al sumar los unos y añadir uno se cuenta cuántas tarjetas se conservan. Al tomar esa cantidad de tarjetas de las horas sorteadas se obtienen las horas conservadas. De ellas se derivan los totales acumulados y los nombres de las categorías, remodelados a la misma longitud. Después, una función aplicada a cada número de fila guarda cada fila y muestra cada fila.
+    A["Drawn: cinco horas aleatorias, de 10 a 19, sorteadas a la vez"] --> B["Suma acumulada de Drawn: el total después de cada tarjeta"]
+    B --> C["Compara con 40: 1 donde el total no pasa de 40, 0 en caso contrario"]
+    C --> D["Suma los 1 y añade 1: el número de tarjetas que se conservan"]
+    D --> E["Toma esa cantidad de Drawn: Hours"]
+    E --> F["Totals es una suma acumulada de Hours; Kinds son las categorías remodeladas a la longitud de Hours"]
+    F --> G["SaveRow y ShowRow, cada una aplicada a todos los números de fila"]
 ```
 
-**What this shows:** no card is drawn *after* the stop rule is known. All five are drawn first, and the stop rule is arithmetic on whole arrays: a running sum, a comparison, a count. The only repetition is `¨` ("each"), and it visits rows that were already decided.
+**Qué muestra:** el programa no saca ninguna tarjeta *después* de conocer la regla de parada. Primero saca las cinco. La regla de parada es aritmética sobre arreglos completos: una suma acumulada, una comparación y un conteo. La única repetición es `¨` ("cada uno"), que visita filas que ya estaban decididas.
 
-**Why this mechanism matters:** five is not a loop count. It is a bound that can never be too small, because five cards of at least 10 hours always pass 40. The program does its work as array operations, and an array operation takes the place of a loop. Compare [`apl-weird`](../../src/apl-weird/README.md), where the program writes itself.
+**Por qué importa este mecanismo:** cinco no es un número de repeticiones del bucle. Es un límite que nunca puede quedar corto, porque cinco tarjetas de al menos 10 horas siempre pasan de 40. El programa hace su trabajo con operaciones sobre arreglos, y una operación sobre arreglos ocupa el lugar de un bucle. Compara [`apl-weird`](../../src/apl-weird/README.md), donde el programa se escribe a sí mismo.
 
-### Program flow of `apl-weird`
+### Flujo del programa de `apl-weird`
 
-From [`apl-weird`](../../src/apl-weird/README.md) ([source section](../../src/apl-weird/README.md#flujo-del-programa)).
+Desde [`apl-weird`](../../src/apl-weird/README.md) ([sección original](../../src/apl-weird/README.md#flujo-del-programa)).
 
 ```mermaid
 flowchart TD
-    accTitle: apl-weird: each card function writes and calls the next one
-    accDescr: A flowchart. The function Card0 runs with its genes: the card number, category, hours and running total. It prints its row and inserts it into SQLite. It draws the next hours and builds the four gene lines for the next card as text. A boolean Alive is 1 while the total is 40 or less. The function then takes its own source with the quad-CR function, replaces the header and genes, and compresses the whole child away with Alive. The quad-FX function defines a new function, Card1, from what is left, or defines nothing. Executing the name, also compressed by Alive, then calls Card1, which does the same steps. When Alive is 0, nothing is written or called, and the chain of calls returns.
-    A["CardN runs with its genes: number, category, hours, total"] --> B["Print the row and INSERT it"]
-    B --> C["Draw the next hours; build four new gene lines as text"]
-    C --> D{{"Alive: total ≤ 40?"}}
-    D -->|"1: keep the child"| E["Quad-CR reads this function's own source; quad-FX defines Card N+1 from it with the new genes"]
-    E --> F["Execute the name Card N+1: it is a different function with the same body"]
+    accTitle: apl-weird: cada función de tarjeta escribe y llama a la siguiente
+    accDescr: Un diagrama de flujo. La función Card0 se ejecuta con sus genes: el número de tarjeta, la categoría, las horas y el total acumulado. Imprime su fila y la inserta en SQLite. Sortea las siguientes horas y construye como texto las cuatro líneas de genes de la tarjeta siguiente. Un booleano Alive vale 1 mientras el total no pase de 40. Luego la función toma su propio código fuente con la función ⎕CR, reemplaza el encabezado y los genes, y comprime con Alive todo el hijo. La función ⎕FX define una función nueva, Card1, con lo que queda, o no define nada. Ejecutar el nombre, también comprimido con Alive, llama entonces a Card1, que hace los mismos pasos. Cuando Alive vale 0, no se escribe ni se llama nada y la cadena de llamadas retorna.
+    A["CardN se ejecuta con sus genes: número, categoría, horas, total"] --> B["Imprime la fila e insértala con INSERT"]
+    B --> C["Sortea las siguientes horas; construye cuatro líneas de genes nuevas como texto"]
+    C --> D{{"¿Vivo: total ≤ 40?"}}
+    D -->|"1: conserva el hijo"| E["Quad-CR lee el código fuente de esta misma función; quad-FX define Card N+1 a partir de ese código con los nuevos genes"]
+    E --> F["Ejecuta el nombre Card N+1: es una función distinta con el mismo cuerpo"]
     F --> A
-    D -->|"0: Alive compresses the child away"| G["Quad-FX defines nothing and execute runs an empty string; the calls return"]
+    D -->|"0: Alive descarta al hijo por compresión"| G["Quad-FX no define nada y execute ejecuta una cadena de texto vacía; las llamadas regresan"]
 ```
 
-**What this shows:** the recursion is a chain of different functions, not one function calling itself. Each `Card` function *writes* the next one as text and then calls it. The boolean `Alive` is both the stop rule and the guard on writing, because compressing with `0` removes every line of the child.
+**Qué muestra:** la recursión es una cadena de funciones distintas, no una función que se llama a sí misma. Cada función `Card` *escribe* la siguiente como texto y luego la llama. El booleano `Alive` es a la vez la regla de parada y la condición que protege la escritura, porque comprimir con `0` elimina todas las líneas de la función hija.
 
-**Why this mechanism matters:** the program is self-modifying, and its state is source text: the "genes" are four lines that each child gets with new values. A broken stop rule does not fail. It recurses forever, which is why the check runs the program under a timeout.
+**Por qué importa este mecanismo:** el programa se modifica a sí mismo y su estado es texto fuente: los "genes" son cuatro líneas que cada hijo recibe con valores nuevos. Una regla de parada rota no falla. Recurre sin fin, y por eso la comprobación ejecuta el programa con un límite de tiempo.
 <!-- END GENERATED program-flow:languages/apl.md -->
 
 ## Las ciencias de la computación detrás de esta página
 
 <!-- BEGIN GENERATED concepts:languages/apl.md -->
-The computer-science ideas behind this page: [Control flow](../informatica/03-flujo-de-control-y-continuaciones.md#control-flow), [Self-modifying code](../informatica/03-flujo-de-control-y-continuaciones.md#self-modifying-code), [Eager evaluation](../informatica/04-evaluacion-y-demanda.md#eager-evaluation), [Referential transparency](../informatica/04-evaluacion-y-demanda.md#referential-transparency), [Array programming](../informatica/04-evaluacion-y-demanda.md#array-programming), [State](../informatica/06-estado-mas-alla-de-las-variables.md#state), [Scope and binding](../informatica/06-estado-mas-alla-de-las-variables.md#scope-and-binding), [Homoiconicity: code as data](../informatica/06-estado-mas-alla-de-las-variables.md#homoiconicity-code-as-data), [Reflection and metaprogramming](../informatica/06-estado-mas-alla-de-las-variables.md#reflection-and-metaprogramming), [Serialization, deserialization and object pickling](../informatica/06-estado-mas-alla-de-las-variables.md#serialization-deserialization-and-object-pickling).
+Las ideas de ciencias de la computación detrás de esta página: [Flujo de control](../informatica/03-flujo-de-control-y-continuaciones.md#flujo-de-control), [Código automodificable](../informatica/03-flujo-de-control-y-continuaciones.md#código-automodificable), [Evaluación inmediata](../informatica/04-evaluacion-y-demanda.md#evaluación-inmediata), [Transparencia referencial](../informatica/04-evaluacion-y-demanda.md#transparencia-referencial), [Programación con arreglos](../informatica/04-evaluacion-y-demanda.md#programación-con-arreglos), [Estado](../informatica/06-estado-mas-alla-de-las-variables.md#estado), [Ámbito y enlace de nombres](../informatica/06-estado-mas-alla-de-las-variables.md#ámbito-y-enlace-de-nombres), [Homoiconicidad: código como datos](../informatica/06-estado-mas-alla-de-las-variables.md#homoiconicidad-código-como-datos), [Reflexión y metaprogramación](../informatica/06-estado-mas-alla-de-las-variables.md#reflexión-y-metaprogramación), [Serialización, deserialización y pickling de objetos](../informatica/06-estado-mas-alla-de-las-variables.md#serialización-deserialización-y-pickling-de-objetos).
 <!-- END GENERATED concepts:languages/apl.md -->
