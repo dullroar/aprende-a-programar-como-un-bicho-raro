@@ -90,27 +90,27 @@ msgstr "**Combinación de métodos.** Cuando se llama a una función genérica y
 #: lessons/languages/lisp.md:44
 msgctxt "s-6fbec85e6b2c-0016"
 msgid "⟦CODE_0001⟧ is now ⟦CODE_0002⟧ in specificity order. It has the same short-circuit as the ordinary ⟦CODE_0003⟧: the first true result ends it."
-msgstr ""
+msgstr "⟦CODE_0001⟧ ahora es ⟦CODE_0002⟧ en orden de especificidad. Tiene el mismo cortocircuito que el ⟦CODE_0003⟧ ordinario: el primer resultado verdadero lo termina."
 
 #: lessons/languages/lisp.md:46
 msgctxt "s-d5ab306c2965-0017"
 msgid "**The class hierarchy is the counter.** [⟦CODE_0001⟧](⟦DEST_0002⟧) is a macro: ⟦CODE_0003⟧ expands to a class ⟦CODE_0004⟧ that inherits from ⟦CODE_0005⟧, and a ⟦CODE_0006⟧ method specialized on it. [Five of them](⟦DEST_0007⟧) chain ⟦CODE_0008⟧. A ⟦CODE_0009⟧ instance has class precedence list ⟦CODE_0010⟧, so ⟦CODE_0011⟧ runs card 1's method, then card 2's and so on. The classes have no slots: the *class itself* is the message \"this is card number N\"."
-msgstr ""
+msgstr "**La jerarquía de clases es el contador.** [⟦CODE_0001⟧](⟦DEST_0002⟧) es una macro: ⟦CODE_0003⟧ se expande a una clase ⟦CODE_0004⟧ que hereda de ⟦CODE_0005⟧ y a un método ⟦CODE_0006⟧ especializado en ella. [Cinco de ellas](⟦DEST_0007⟧) encadenan ⟦CODE_0008⟧. Una instancia ⟦CODE_0009⟧ tiene la lista de precedencia de clases ⟦CODE_0010⟧. Así, ⟦CODE_0011⟧ ejecuta el método de la tarjeta 1, luego el de la tarjeta 2 y así sucesivamente. Las clases no tienen ranuras: la *clase misma* es el mensaje \"esta es la tarjeta número N\"."
 
 #: lessons/languages/lisp.md:48
 msgctxt "s-c295453948fb-0018"
 msgid "**The stop rule is a return value.** Each method deals a card and ends with [⟦CODE_0001⟧](⟦DEST_0002⟧). When that is true, ⟦CODE_0003⟧ returns and the remaining methods are never called. Why five? Cards are at least 10 hours, so four cards total at least 40, and 40 is not *over* 40. A fifth card always crosses."
-msgstr ""
+msgstr "**La regla de parada es un valor de retorno.** Cada método reparte una tarjeta y termina con [⟦CODE_0001⟧](⟦DEST_0002⟧). Cuando eso es verdadero, ⟦CODE_0003⟧ retorna y los métodos restantes nunca son llamados. ¿Por qué cinco? Las tarjetas tienen al menos 10 horas, así que cuatro tarjetas suman un total de 40 como mínimo. Y 40 no es *más de* 40. Una quinta tarjeta siempre pasa el límite."
 
 #: lessons/languages/lisp.md:50
 msgctxt "s-dceec718e5ce-0019"
 msgid "**Dynamic binding as an implicit argument.** An [⟦CODE_0001⟧ method](⟦DEST_0002⟧) binds the special variable ⟦CODE_0003⟧ to a string stream, calls ⟦CODE_0004⟧ (the whole ⟦CODE_0005⟧ chain), then pipes the finished script to ⟦CODE_0006⟧. Every ⟦CODE_0007⟧ deeper in the call stack writes into that stream, with no stream passed down."
-msgstr ""
+msgstr "**Enlace dinámico como argumento implícito.** Un [método ⟦CODE_0001⟧](⟦DEST_0002⟧) enlaza la variable especial ⟦CODE_0003⟧ a un flujo de cadena de texto. Llama a ⟦CODE_0004⟧ (toda la cadena ⟦CODE_0005⟧) y luego envía el script terminado por una tubería a ⟦CODE_0006⟧. Cada ⟦CODE_0007⟧ más abajo en la pila de llamadas escribe en ese flujo, sin que se le pase el flujo."
 
 #: lessons/languages/lisp.md:52
 msgctxt "s-7cc0d617130c-0020"
 msgid "**The reader builds a ring.** [⟦CODE_0001⟧](⟦DEST_0002⟧) is ⟦CODE_0003⟧: ⟦CODE_0004⟧ labels the list and ⟦CODE_0005⟧ points back at it. The categories repeat with no ⟦CODE_0006⟧."
-msgstr ""
+msgstr "**El lector construye un anillo.** [⟦CODE_0001⟧](⟦DEST_0002⟧) es ⟦CODE_0003⟧: ⟦CODE_0004⟧ etiqueta la lista y ⟦CODE_0005⟧ vuelve a apuntar a ella. Las categorías se repiten sin ⟦CODE_0006⟧."
 
 #: lessons/languages/lisp.md:54
 msgctxt "s-0176f78f7a3b-0021"

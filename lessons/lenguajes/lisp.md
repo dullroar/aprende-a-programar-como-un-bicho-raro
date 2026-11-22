@@ -41,15 +41,15 @@ Existen cinco métodos. Se ejecutan tres o cuatro de ellos. Nada en el programa 
 (defmethod punch or ((ledger card-3)) ...)   ; "or" is the method's qualifier
 ```
 
-`punch` is now `(or (method-for-card-1 ...) (method-for-card-2 ...) ...)` in specificity order. It has the same short-circuit as the ordinary `or`: the first true result ends it.
+`punch` ahora es `(or (method-for-card-1 ...) (method-for-card-2 ...) ...)` en orden de especificidad. Tiene el mismo cortocircuito que el `or` ordinario: el primer resultado verdadero lo termina.
 
-**The class hierarchy is the counter.** [`defcard`](../../src/lisp-weird/timecards.lisp#L34-L39) is a macro: `(defcard 3 card-4)` expands to a class `card-3` that inherits from `card-4`, and a `punch or` method specialized on it. [Five of them](../../src/lisp-weird/timecards.lisp#L87-L91) chain `card-1 → card-2 → ... → card-5 → ledger`. A `card-1` instance has class precedence list `(card-1 card-2 card-3 card-4 card-5 ledger ...)`, so `punch` runs card 1's method, then card 2's and so on. The classes have no slots: the *class itself* is the message "this is card number N".
+**La jerarquía de clases es el contador.** [`defcard`](../../src/lisp-weird/timecards.lisp#L34-L39) es una macro: `(defcard 3 card-4)` se expande a una clase `card-3` que hereda de `card-4` y a un método `punch or` especializado en ella. [Cinco de ellas](../../src/lisp-weird/timecards.lisp#L87-L91) encadenan `card-1 → card-2 → ... → card-5 → ledger`. Una instancia `card-1` tiene la lista de precedencia de clases `(card-1 card-2 card-3 card-4 card-5 ledger ...)`. Así, `punch` ejecuta el método de la tarjeta 1, luego el de la tarjeta 2 y así sucesivamente. Las clases no tienen ranuras: la *clase misma* es el mensaje "esta es la tarjeta número N".
 
-**The stop rule is a return value.** Each method deals a card and ends with [`(> (total ledger) 40)`](../../src/lisp-weird/timecards.lisp#L84). When that is true, `or` returns and the remaining methods are never called. Why five? Cards are at least 10 hours, so four cards total at least 40, and 40 is not *over* 40. A fifth card always crosses.
+**La regla de parada es un valor de retorno.** Cada método reparte una tarjeta y termina con [`(> (total ledger) 40)`](../../src/lisp-weird/timecards.lisp#L84). Cuando eso es verdadero, `or` retorna y los métodos restantes nunca son llamados. ¿Por qué cinco? Las tarjetas tienen al menos 10 horas, así que cuatro tarjetas suman un total de 40 como mínimo. Y 40 no es *más de* 40. Una quinta tarjeta siempre pasa el límite.
 
-**Dynamic binding as an implicit argument.** An [`:around` method](../../src/lisp-weird/timecards.lisp#L93) binds the special variable `*sql*` to a string stream, calls `call-next-method` (the whole `or` chain), then pipes the finished script to `sqlite3`. Every `format *sql*` deeper in the call stack writes into that stream, with no stream passed down.
+**Enlace dinámico como argumento implícito.** Un [método `:around`](../../src/lisp-weird/timecards.lisp#L93) enlaza la variable especial `*sql*` a un flujo de cadena de texto. Llama a `call-next-method` (toda la cadena `or`) y luego envía el script terminado por una tubería a `sqlite3`. Cada `format *sql*` más abajo en la pila de llamadas escribe en ese flujo, sin que se le pase el flujo.
 
-**The reader builds a ring.** [`*week*`](../../src/lisp-weird/timecards.lisp#L44-L46) is `'#1=("Meetings" "Coding" "Debugging" "Learning" . #1#)`: `#1=` labels the list and `#1#` points back at it. The categories repeat with no `mod`.
+**El lector construye un anillo.** [`*week*`](../../src/lisp-weird/timecards.lisp#L44-L46) es `'#1=("Meetings" "Coding" "Debugging" "Learning" . #1#)`: `#1=` etiqueta la lista y `#1#` vuelve a apuntar a ella. Las categorías se repiten sin `mod`.
 
 **The program audits itself.** The closing note is computed with the metaobject protocol: `sb-mop:compute-applicable-methods` asks the system which methods apply to this ledger, and the program counts how many ran.
 

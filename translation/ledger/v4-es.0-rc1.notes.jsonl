@@ -2221,3 +2221,5 @@
 {"segment_id": "s-f0710b47523a-0009", "ts": "2026-11-22T01:06:19Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
 {"segment_id": "s-cc9cfaabc50d-0011", "ts": "2026-11-22T01:08:31Z", "findings": [], "playful_note": "Conserva el tono teatral y humorístico."}
 {"segment_id": "s-415f5fa29cf9-0014", "ts": "2026-11-22T01:08:31Z", "findings": [], "playful_note": "Conserva el tono teatral y humorístico."}
+{"segment_id": "s-c295453948fb-0018", "ts": "2026-11-22T01:10:18Z", "findings": ["I7: glossary term total must be rendered 'total'"]}
+{"segment_id": "s-7cc0d617130c-0020", "ts": "2026-11-22T01:10:18Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
