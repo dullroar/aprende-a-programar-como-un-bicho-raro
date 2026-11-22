@@ -439,3 +439,4 @@
 {"id":"EXC-439","segment":"s-11d546626b4d-0096","invariant":"TRANSLATE","reason":"Table row contains only a language name and numeric counts; all must remain unchanged.","task":"P4-lessons-3"}
 {"id":"EXC-440","segment":"s-2553f79c2b75-0097","invariant":"TRANSLATE","reason":"Table row contains only a language name and numeric counts; all must remain unchanged.","task":"P4-lessons-3"}
 {"id":"EXC-441","segment":"s-cdf4bc656727-0098","invariant":"TRANSLATE","reason":"Table row contains only a language name and numeric counts; all must remain unchanged.","task":"P4-lessons-3"}
+{"id":"EXC-442","segment":"s-3b87dd93928c-0117","invariant":"I7","reason":"Windows Sandbox is the product name; the first use already defines entorno aislado (*sandbox*) at the start of this file.","task":"P4-lessons-3"}

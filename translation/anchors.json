@@ -907,40 +907,40 @@
     {
      "en": "C2. Make the constraint real",
      "en_id": "c2-make-the-constraint-real",
-     "es": "C2. Make the constraint real",
-     "es_id": "c2-make-the-constraint-real",
+     "es": "C2. Haz real la restricción",
+     "es_id": "c2-haz-real-la-restricción",
      "level": 2,
      "line": 334
     },
     {
      "en": "C3. A loop whose state is not a variable",
      "en_id": "c3-a-loop-whose-state-is-not-a-variable",
-     "es": "C3. A loop whose state is not a variable",
-     "es_id": "c3-a-loop-whose-state-is-not-a-variable",
+     "es": "C3. Un bucle cuyo estado no es una variable",
+     "es_id": "c3-un-bucle-cuyo-estado-no-es-una-variable",
      "level": 2,
      "line": 356
     },
     {
      "en": "D. Port the challenge",
      "en_id": "d-port-the-challenge",
-     "es": "D. Port the challenge",
-     "es_id": "d-port-the-challenge",
+     "es": "D. Adaptación del reto",
+     "es_id": "d-adaptación-del-reto",
      "level": 2,
      "line": 364
     },
     {
      "en": "E1. Run and read the evidence (Windows Sandbox)",
      "en_id": "e1-run-and-read-the-evidence-windows-sandbox",
-     "es": "E1. Run and read the evidence (Windows Sandbox)",
-     "es_id": "e1-run-and-read-the-evidence-windows-sandbox",
+     "es": "E1. Ejecuta y lee la evidencia (Windows Sandbox)",
+     "es_id": "e1-ejecuta-y-lee-la-evidencia-windows-sandbox",
      "level": 2,
      "line": 384
     },
     {
      "en": "E2. Change the XAML interpreter's seed",
      "en_id": "e2-change-the-xaml-interpreters-seed",
-     "es": "E2. Change the XAML interpreter's seed",
-     "es_id": "e2-change-the-xaml-interpreters-seed",
+     "es": "E2. Cambia la semilla del intérprete de XAML",
+     "es_id": "e2-cambia-la-semilla-del-intérprete-de-xaml",
      "level": 2,
      "line": 405
     },
@@ -995,11 +995,11 @@
     "b8-regex-what-survives-a-failed-match": "b8-regex-qué-sobrevive-a-una-coincidencia-fallida",
     "b9-sed-watch-a-computation": "b9-sed-observa-un-cálculo",
     "c1-weird-next-to-boring": "c1-lo-raro-junto-a-lo-aburrido",
-    "c2-make-the-constraint-real": "c2-make-the-constraint-real",
-    "c3-a-loop-whose-state-is-not-a-variable": "c3-a-loop-whose-state-is-not-a-variable",
-    "d-port-the-challenge": "d-port-the-challenge",
-    "e1-run-and-read-the-evidence-windows-sandbox": "e1-run-and-read-the-evidence-windows-sandbox",
-    "e2-change-the-xaml-interpreters-seed": "e2-change-the-xaml-interpreters-seed",
+    "c2-make-the-constraint-real": "c2-haz-real-la-restricción",
+    "c3-a-loop-whose-state-is-not-a-variable": "c3-un-bucle-cuyo-estado-no-es-una-variable",
+    "d-port-the-challenge": "d-adaptación-del-reto",
+    "e1-run-and-read-the-evidence-windows-sandbox": "e1-ejecuta-y-lee-la-evidencia-windows-sandbox",
+    "e2-change-the-xaml-interpreters-seed": "e2-cambia-la-semilla-del-intérprete-de-xaml",
     "f-prove-a-readme-claim": "f-prove-a-readme-claim",
     "f2-trojan-source-hide-a-character-then-find-it": "f2-trojan-source-hide-a-character-then-find-it",
     "g-open-challenges": "g-open-challenges"

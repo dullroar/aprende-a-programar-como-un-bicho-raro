@@ -372,23 +372,23 @@ sandbox/run.sh lessons/solutions/awk-port                   # its own check: 25 
 
 Cómo cumple los criterios:
 
-| Criterion | How |
+| Criterio | Cómo |
 | --- | --- |
-| The stop rule is the trick | `total <= 40 { ... }` is a *pattern*; the five records come from `seq 5`, and once the total passes 40 no later record matches. Five records always suffice (5 × 10 ≥ 50). |
-| DEMO ONLY enforced | `CHECK(demo_only = 1)` in the table; `check.sh` tries to insert `demo_only = 0` and fails if it is accepted. |
-| 25 runs, varied hours | `check.sh` loops 25 times, compares the printed rows with the `# committed` line and the SQLite row count and requires at least 5 distinct hour values. |
-| Constraint is real | `check.sh` strips comments and strings and fails on `for`, `while`, `do`, `function`, `func` or `goto`. |
+| La regla de parada es el truco | `total <= 40 { ... }` es un *patrón*; los cinco registros vienen de `seq 5` y, cuando el total pasa de 40, ningún registro posterior coincide. Cinco registros siempre bastan (5 × 10 ≥ 50). |
+| Se aplica DEMO ONLY | `CHECK(demo_only = 1)` en la tabla; `check.sh` intenta insertar `demo_only = 0` y falla si se acepta. |
+| 25 ejecuciones, horas variadas | `check.sh` ejecuta un bucle 25 veces y compara las filas impresas con la línea `# committed` y el recuento de filas de SQLite. Exige al menos 5 valores distintos de horas. |
+| La restricción es real | `check.sh` elimina comentarios y cadenas de texto y falla ante `for`, `while`, `do`, `function`, `func` o `goto`. |
 
-Verified mutations: adding a `for` loop makes the check fail; making the hours constant (`hours = 10`) makes it fail (fewer than five distinct hour values).
+Mutaciones verificadas: añadir un bucle `for` hace que falle la comprobación; hacer constantes las horas (`hours = 10`) hace que falle (menos de cinco valores distintos de horas).
 
-## E1. Run and read the evidence (Windows Sandbox)
+## E1. Ejecuta y lee la evidencia (Windows Sandbox)
 
 ```powershell
 sandbox\windows\run.ps1 src\LinqChallenge1
 sandbox\windows\run.ps1 src\xaml -RunArgs strict.xaml
 ```
 
-Verified output highlights:
+Aspectos destacados de la salida verificada:
 
 ```text
 network: blocked
@@ -400,9 +400,9 @@ screenshot: ...\out\screenshot.png
 PASS xaml (still running with a window after 20s; closed cleanly by the harness)
 ```
 
-Fixed-data entries: the LINQ ones always total exactly 40 hours (a fixed work week). Random: `ModernChallenge1` and every other entry; `xaml` is *seeded* random (`Random(42)`), so it is the same every run. Needs the .NET 10 SDK on the host.
+Entradas con datos fijos: las de LINQ siempre tienen un total de exactamente 40 horas (una semana laboral fija). Aleatorias: `ModernChallenge1` y todas las demás entradas; `xaml` usa aleatoriedad *con semilla* (`Random(42)`), así que es igual en cada ejecución. Necesita el SDK de .NET 10 en el anfitrión.
 
-## E2. Change the XAML interpreter's seed
+## E2. Cambia la semilla del intérprete de XAML
 
 Replacing `<sys:Int32>42</sys:Int32>` with `7` in `strict.xaml` and running it in Windows Sandbox still passes (the window is shown and closed by the harness). The sandbox does not print the hours, so read them with the B7 program: seed 42 gives `16 11 11 15 11`; `new Random(7)` gives a different sequence. The same seed always gives the same sequence because `System.Random` is deterministic given its seed.
 

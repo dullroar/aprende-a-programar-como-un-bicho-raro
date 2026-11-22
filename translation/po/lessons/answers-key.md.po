@@ -669,52 +669,52 @@ msgstr "Cómo cumple los criterios:"
 #: lessons/answers-key.md:375
 msgctxt "s-db0b57125963-0111"
 msgid "⟦SEP_0001⟧ Criterion ⟦SEP_0002⟧ How ⟦SEP_0003⟧"
-msgstr ""
+msgstr "⟦SEP_0001⟧ Criterio ⟦SEP_0002⟧ Cómo ⟦SEP_0003⟧"
 
 #: lessons/answers-key.md:377
 msgctxt "s-683344530efd-0112"
 msgid "⟦SEP_0003⟧ The stop rule is the trick ⟦SEP_0004⟧ ⟦CODE_0001⟧ is a *pattern*; the five records come from ⟦CODE_0002⟧, and once the total passes 40 no later record matches. Five records always suffice (5 × 10 ≥ 50). ⟦SEP_0005⟧"
-msgstr ""
+msgstr "⟦SEP_0003⟧ La regla de parada es el truco ⟦SEP_0004⟧ ⟦CODE_0001⟧ es un *patrón*; los cinco registros vienen de ⟦CODE_0002⟧ y, cuando el total pasa de 40, ningún registro posterior coincide. Cinco registros siempre bastan (5 × 10 ≥ 50). ⟦SEP_0005⟧"
 
 #: lessons/answers-key.md:378
 msgctxt "s-d3daf2862528-0113"
 msgid "⟦SEP_0005⟧ ⟦DNT_0001⟧ enforced ⟦SEP_0006⟧ ⟦CODE_0002⟧ in the table; ⟦CODE_0003⟧ tries to insert ⟦CODE_0004⟧ and fails if it is accepted. ⟦SEP_0007⟧"
-msgstr ""
+msgstr "⟦SEP_0005⟧ Se aplica ⟦DNT_0001⟧ ⟦SEP_0006⟧ ⟦CODE_0002⟧ en la tabla; ⟦CODE_0003⟧ intenta insertar ⟦CODE_0004⟧ y falla si se acepta. ⟦SEP_0007⟧"
 
 #: lessons/answers-key.md:379
 msgctxt "s-29f649196364-0114"
 msgid "⟦SEP_0003⟧ 25 runs, varied hours ⟦SEP_0004⟧ ⟦CODE_0001⟧ loops 25 times, compares the printed rows with the ⟦CODE_0002⟧ line and the SQLite row count and requires at least 5 distinct hour values. ⟦SEP_0005⟧"
-msgstr ""
+msgstr "⟦SEP_0003⟧ 25 ejecuciones, horas variadas ⟦SEP_0004⟧ ⟦CODE_0001⟧ ejecuta un bucle 25 veces y compara las filas impresas con la línea ⟦CODE_0002⟧ y el recuento de filas de SQLite. Exige al menos 5 valores distintos de horas. ⟦SEP_0005⟧"
 
 #: lessons/answers-key.md:380
 msgctxt "s-6e0fb04c0ef6-0115"
 msgid "⟦SEP_0008⟧ Constraint is real ⟦SEP_0009⟧ ⟦CODE_0001⟧ strips comments and strings and fails on ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧, ⟦CODE_0006⟧ or ⟦CODE_0007⟧. ⟦SEP_0010⟧"
-msgstr ""
+msgstr "⟦SEP_0008⟧ La restricción es real ⟦SEP_0009⟧ ⟦CODE_0001⟧ elimina comentarios y cadenas de texto y falla ante ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧, ⟦CODE_0006⟧ o ⟦CODE_0007⟧. ⟦SEP_0010⟧"
 
 #: lessons/answers-key.md:382
 msgctxt "s-f4cb6f1b8bb8-0116"
 msgid "Verified mutations: adding a ⟦CODE_0001⟧ loop makes the check fail; making the hours constant (⟦CODE_0002⟧) makes it fail (fewer than five distinct hour values)."
-msgstr ""
+msgstr "Mutaciones verificadas: añadir un bucle ⟦CODE_0001⟧ hace que falle la comprobación; hacer constantes las horas (⟦CODE_0002⟧) hace que falle (menos de cinco valores distintos de horas)."
 
 #: lessons/answers-key.md:384
 msgctxt "s-3b87dd93928c-0117"
 msgid "E1. Run and read the evidence (Windows Sandbox)"
-msgstr ""
+msgstr "E1. Ejecuta y lee la evidencia (Windows Sandbox)"
 
 #: lessons/answers-key.md:391
 msgctxt "s-e34ac7b37094-0118"
 msgid "Verified output highlights:"
-msgstr ""
+msgstr "Aspectos destacados de la salida verificada:"
 
 #: lessons/answers-key.md:403
 msgctxt "s-792ece1386df-0119"
 msgid "Fixed-data entries: the LINQ ones always total exactly 40 hours (a fixed work week). Random: ⟦CODE_0001⟧ and every other entry; ⟦CODE_0002⟧ is *seeded* random (⟦CODE_0003⟧), so it is the same every run. Needs the .NET 10 SDK on the host."
-msgstr ""
+msgstr "Entradas con datos fijos: las de LINQ siempre tienen un total de exactamente 40 horas (una semana laboral fija). Aleatorias: ⟦CODE_0001⟧ y todas las demás entradas; ⟦CODE_0002⟧ usa aleatoriedad *con semilla* (⟦CODE_0003⟧), así que es igual en cada ejecución. Necesita el SDK de .NET 10 en el anfitrión."
 
 #: lessons/answers-key.md:405
 msgctxt "s-d8383a3cc59b-0120"
 msgid "E2. Change the XAML interpreter's seed"
-msgstr ""
+msgstr "E2. Cambia la semilla del intérprete de XAML"
 
 #: lessons/answers-key.md:407
 msgctxt "s-b0c220a23cf9-0121"

@@ -487,7 +487,7 @@ for i in $(seq 25); do
 done
 ```
 
-See [`CONTRIBUTING.md`](../CONTRIBUTING.md) if you want to send it in. A reference answer lives in [`lessons/solutions/awk-port`](solutions/awk-port) (see the [answer key](respuestas.md#d-port-the-challenge)); try yours first. It was written before awk was in the repo and is a short third design (the caller pipes in five records and a pattern is the stop rule), distinct from [`src/awk`](../src/awk/README.md) (a `BEGIN` loop) and [`src/awk-weird`](../src/awk-weird/README.md) (gawk and `RS`/`RT`): compare all three.
+See [`CONTRIBUTING.md`](../CONTRIBUTING.md) if you want to send it in. A reference answer lives in [`lessons/solutions/awk-port`](solutions/awk-port) (see the [answer key](respuestas.md#d-adaptación-del-reto)); try yours first. It was written before awk was in the repo and is a short third design (the caller pipes in five records and a pattern is the stop rule), distinct from [`src/awk`](../src/awk/README.md) (a `BEGIN` loop) and [`src/awk-weird`](../src/awk-weird/README.md) (gawk and `RS`/`RT`): compare all three.
 
 ## E. Windows Sandbox track (verified on Windows 11 Pro)
 

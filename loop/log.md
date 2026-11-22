@@ -204,3 +204,4 @@
 231 P4-lessons-languages-2 done completed find.md positions 34 to 37 and all three guides; scoped and working-tree fast checks and anchors check passed.
 232 P4-lessons-3 partial accepted and applied answer key positions 92 to 101; resume at 102; scoped and working-tree fast checks passed.
 233 P4-lessons-3 partial accepted and applied answer key positions 102 to 111; resume with --from 112; scoped and working-tree fast checks passed.
+234 P4-lessons-3 partial accepted and applied answer key positions 112 to 121; resume with --from 122; scoped and working-tree fast checks and anchors check passed.
