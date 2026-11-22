@@ -107,7 +107,7 @@ Each track stores "what happens next" somewhere that is not a loop counter: in t
 | The path from the start directory to the directory being visited; its depth is the running total | [find](lenguajes/find.md): [`find-gnu`](../src/find-gnu/README.md) |
 | Which `.tc-N.mk` files exist, and `MAKE_RESTARTS` | [make-cmake](lenguajes/make-cmake.md#gnu-make): [`make-gnu`](../src/make-gnu/README.md) |
 | One line of text, rewritten until no rule applies | [regex](lenguajes/regex.md#gnu-sed): [`regex-sed`](../src/regex-sed/README.md) |
-| The archive's members, which are the program, plus one SQLite row that says whether the run has halted or faulted | [tar](lenguajes/tar.md#a-program-that-is-an-archive): [`tar-gnu`](../src/tar-gnu/README.md) |
+| The archive's members, which are the program, plus one SQLite row that says whether the run has halted or faulted | [tar](lenguajes/tar.md#un-programa-que-es-un-archivo): [`tar-gnu`](../src/tar-gnu/README.md) |
 | One SQLite row (the machine's registers) and the number of records tar has written | [tar](lenguajes/tar.md#the-archive-is-the-clock): [`tar-gnu-weird`](../src/tar-gnu-weird/README.md) |
 | Fields of one anonymous struct | [csharp-linq-xaml](lenguajes/csharp-linq-xaml.md#las-adaptaciones-de-una-sola-sentencia-mismo-truco-distinta-maquinaria): [`GoChallenge1`](../src/GoChallenge1/README.md) |
 | The unevaluated parts of the lists, read on demand | [haskell](lenguajes/haskell.md): [`haskell`](../src/haskell/README.md) |
@@ -199,7 +199,7 @@ The same bytes can be read without running anything, and ordinary `tar -xf` only
 
 | Where the program is written down | What reads it, and gives it meaning | Entry |
 | --- | --- | --- |
-| The members of a tar archive: names are instructions, bodies are operands | GNU tar walks them, and a dispatcher that the *operator* attached gives them meaning (a passive inspector reads the same bytes and runs nothing) | [`tar-gnu`](../src/tar-gnu/README.md), [tar](lenguajes/tar.md#a-program-that-is-an-archive) |
+| The members of a tar archive: names are instructions, bodies are operands | GNU tar walks them, and a dispatcher that the *operator* attached gives them meaning (a passive inspector reads the same bytes and runs nothing) | [`tar-gnu`](../src/tar-gnu/README.md), [tar](lenguajes/tar.md#un-programa-que-es-un-archivo) |
 | The layout of an archive: how many records tar writes | Tar's checkpoints are a clock, and a state machine takes one step per tick | [`tar-gnu-weird`](../src/tar-gnu-weird/README.md), [tar](lenguajes/tar.md#the-archive-is-the-clock) |
 | Rows in a SQLite table | An overridden `unknown` fetches Tcl source and evaluates it | [`tcl-weird`](../src/tcl-weird/README.md), [Tcl](lenguajes/tcl.md#sqlite-as-the-program) |
 | A line of text in an editor buffer, copied into a register | Ex runs the register, and the program reads its next instruction from a tape of lines | [`ex-weird`](../src/ex-weird/README.md), [editors](lenguajes/editores.md#un-programa-que-puedes-editar) |

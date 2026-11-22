@@ -60,27 +60,27 @@ msgstr "⟦SEP_0001⟧ tar continúa cuando falla el comando ⟦SEP_0002⟧ No h
 #: lessons/languages/tar.md:16
 msgctxt "s-aa12235af5bd-0010"
 msgid "⟦SEP_0003⟧ ⟦CODE_0001⟧ runs ⟦CODE_0002⟧ every N records ⟦SEP_0004⟧ A progress report is an event source. It can be a clock. ⟦SEP_0005⟧"
-msgstr ""
+msgstr "⟦SEP_0003⟧ ⟦CODE_0001⟧ ejecuta ⟦CODE_0002⟧ cada N registros ⟦SEP_0004⟧ Un informe de progreso es una fuente de eventos. Puede ser un reloj. ⟦SEP_0005⟧"
 
 #: lessons/languages/tar.md:17
 msgctxt "s-1146a20cf944-0011"
 msgid "⟦SEP_0002⟧ ⟦CODE_0001⟧ sets the *record* size to N blocks of 512 bytes ⟦SEP_0003⟧ The unit of time is a record, and the archive's size, not its content, decides how many there are. ⟦SEP_0004⟧"
-msgstr ""
+msgstr "⟦SEP_0002⟧ ⟦CODE_0001⟧ fija el tamaño del *registro* en N bloques de 512 bytes ⟦SEP_0003⟧ La unidad de tiempo es un registro. El tamaño del archivo, no su contenido, determina cuántos registros hay. ⟦SEP_0004⟧"
 
 #: lessons/languages/tar.md:19
 msgctxt "s-2cc8b36e2407-0012"
 msgid "A program that is an archive"
-msgstr ""
+msgstr "Un programa que es un archivo"
 
 #: lessons/languages/tar.md:21
 msgctxt "s-cc9cfaabc50d-0013"
 msgid "Behold the monstrosity"
-msgstr ""
+msgstr "Contempla la monstruosidad"
 
 #: lessons/languages/tar.md:27
 msgctxt "s-03c3e021008f-0014"
 msgid "A tar archive of twelve tiny files. A dispatcher of about 80 lines. No loop in the dispatcher, no random numbers, no number 40."
-msgstr ""
+msgstr "Un archivo tar de doce archivos diminutos. Un despachador de unas 80 líneas. Sin bucle en el despachador, sin números aleatorios y sin el número 40."
 
 #: lessons/languages/tar.md:29
 msgctxt "s-415f5fa29cf9-0015"

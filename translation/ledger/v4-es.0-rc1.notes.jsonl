@@ -2298,3 +2298,5 @@
 {"segment_id": "s-062d2cbdae31-0065", "ts": "2026-11-22T15:11:10Z", "findings": ["I7: glossary term iteration must be rendered 'iteración'"]}
 {"segment_id": "s-312f4619ed92-0071", "ts": "2026-11-22T15:11:44Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
 {"segment_id": "s-90aebae31567-0000", "ts": "2026-11-22T15:13:39Z", "findings": ["TRANSLATE: the reply is the English text unchanged"]}
+{"segment_id": "s-2cc8b36e2407-0012", "ts": "2026-11-22T15:16:54Z", "findings": ["REGISTER: playful segment H017 has status 'pending' in the humor register"], "playful_note": "Conserva el contraste de un programa que es un archivo."}
+{"segment_id": "s-cc9cfaabc50d-0013", "ts": "2026-11-22T15:16:54Z", "findings": [], "playful_note": "Conserva el anuncio teatral de la sección."}

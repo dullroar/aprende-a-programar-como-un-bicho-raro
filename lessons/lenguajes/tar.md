@@ -13,18 +13,18 @@ Para una ruta de lectura avanzada con trazas y experimentos, consulta la [guía 
 | GNU `--to-command=CMD` inicia `CMD` para cada miembro regular y le envía el miembro por una tubería | El *operador* conecta un intérprete. La línea de comandos lleva el poder; el archivo no. |
 | `TAR_FILENAME`, `TAR_SIZE` y otras variables se establecen para cada comando | Los metadatos del miembro pasan a ser la entrada de datos del comando, junto con sus bytes. |
 | tar continúa cuando falla el comando | No hay una "parada" incorporada. Una regla de control debe ser propia del intérprete. |
-| `--checkpoint=N --checkpoint-action=exec=CMD` runs `CMD` every N records | A progress report is an event source. It can be a clock. |
-| `-b N` sets the *record* size to N blocks of 512 bytes | The unit of time is a record, and the archive's size, not its content, decides how many there are. |
+| `--checkpoint=N --checkpoint-action=exec=CMD` ejecuta `CMD` cada N registros | Un informe de progreso es una fuente de eventos. Puede ser un reloj. |
+| `-b N` fija el tamaño del *registro* en N bloques de 512 bytes | La unidad de tiempo es un registro. El tamaño del archivo, no su contenido, determina cuántos registros hay. |
 
-## A program that is an archive
+## Un programa que es un archivo
 
-### Behold the monstrosity
+### Contempla la monstruosidad
 
 ```bash
 sandbox/container/run-image.sh src/tar-gnu
 ```
 
-A tar archive of twelve tiny files. A dispatcher of about 80 lines. No loop in the dispatcher, no random numbers, no number 40.
+Un archivo tar de doce archivos diminutos. Un despachador de unas 80 líneas. Sin bucle en el despachador, sin números aleatorios y sin el número 40.
 
 ### How the hell does that work?
 

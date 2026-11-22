@@ -5817,16 +5817,16 @@
     {
      "en": "A program that is an archive",
      "en_id": "a-program-that-is-an-archive",
-     "es": "A program that is an archive",
-     "es_id": "a-program-that-is-an-archive",
+     "es": "Un programa que es un archivo",
+     "es_id": "un-programa-que-es-un-archivo",
      "level": 2,
      "line": 19
     },
     {
      "en": "Behold the monstrosity",
      "en_id": "behold-the-monstrosity",
-     "es": "Behold the monstrosity",
-     "es_id": "behold-the-monstrosity",
+     "es": "Contempla la monstruosidad",
+     "es_id": "contempla-la-monstruosidad",
      "level": 3,
      "line": 21
     },
@@ -5874,7 +5874,7 @@
      "en": "Behold the monstrosity",
      "en_id": "behold-the-monstrosity-1",
      "es": "Behold the monstrosity",
-     "es_id": "behold-the-monstrosity-1",
+     "es_id": "behold-the-monstrosity",
      "level": 3,
      "line": 63
     },
@@ -5944,9 +5944,9 @@
     }
    ],
    "map": {
-    "a-program-that-is-an-archive": "a-program-that-is-an-archive",
-    "behold-the-monstrosity": "behold-the-monstrosity",
-    "behold-the-monstrosity-1": "behold-the-monstrosity-1",
+    "a-program-that-is-an-archive": "un-programa-que-es-un-archivo",
+    "behold-the-monstrosity": "contempla-la-monstruosidad",
+    "behold-the-monstrosity-1": "behold-the-monstrosity",
     "computer-science-behind-this-page": "computer-science-behind-this-page",
     "do-this-in-production-and-youre-fired": "do-this-in-production-and-youre-fired",
     "do-this-in-production-and-youre-fired-1": "do-this-in-production-and-youre-fired-1",
