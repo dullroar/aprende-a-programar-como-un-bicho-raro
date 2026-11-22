@@ -425,7 +425,7 @@ msgstr "**Los escuchadores de eventos que cambian los escuchadores durante un �
 #: lessons/languages/javascript.md:141
 msgctxt "s-51d8d9310707-0083"
 msgid "Legitimate uses: many parties may care about one thing (a server's ⟦CODE_0001⟧, a UI's ⟦CODE_0002⟧), the sender must not know the receivers and the work is I/O that should not block the thread."
-msgstr "Usos legítimos: muchas partes pueden tener interés en una cosa (el ⟦CODE_0001⟧ de un servidor, el ⟦CODE_0002⟧ de una interfaz). El remitente no debe conocer a los destinatarios y el trabajo es de entrada y salida, que no debe bloquear el hilo."
+msgstr "Usos legítimos: muchas partes pueden tener interés en una cosa (el ⟦CODE_0001⟧ de un servidor, el ⟦CODE_0002⟧ de una interfaz), el remitente no debe conocer a los destinatarios y el trabajo es de entrada y salida que no debería bloquear el hilo."
 
 #: lessons/languages/javascript.md:143
 msgctxt "s-5e3bcdfbf845-0084"

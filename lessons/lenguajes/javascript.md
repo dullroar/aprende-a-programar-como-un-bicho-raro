@@ -138,7 +138,7 @@ Etiquetas: la llamada síncrona de `EventEmitter` y su orden, así como la ejecu
 - **No hay contrapresión.** Un emisor sigue emitiendo. Este programa es seguro solo porque cada tarjeta espera a la anterior.
 - **Los escuchadores de eventos que cambian los escuchadores durante un `emit`** hacen difícil predecir el orden. Este programa elimina sus escuchadores solo al final.
 
-Usos legítimos: muchas partes pueden tener interés en una cosa (el `request` de un servidor, el `click` de una interfaz). El remitente no debe conocer a los destinatarios y el trabajo es de entrada y salida, que no debe bloquear el hilo.
+Usos legítimos: muchas partes pueden tener interés en una cosa (el `request` de un servidor, el `click` de una interfaz), el remitente no debe conocer a los destinatarios y el trabajo es de entrada y salida que no debería bloquear el hilo.
 
 ### Ahora rómpelo tú
 
