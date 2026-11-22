@@ -310,4 +310,4 @@ msgstr "Mira el [ejercicio B17](⟦DEST_0001⟧)."
 #: lessons/languages/tar.md:165
 msgctxt "s-ac0e260e97bf-0060"
 msgid "Computer science behind this page"
-msgstr ""
+msgstr "La informática detrás de esta página"
