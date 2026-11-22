@@ -4715,8 +4715,8 @@
     {
      "en": "Weird next to boring",
      "en_id": "weird-next-to-boring",
-     "es": "Weird next to boring",
-     "es_id": "weird-next-to-boring",
+     "es": "Lo raro junto a lo aburrido",
+     "es_id": "lo-raro-junto-a-lo-aburrido",
      "level": 2,
      "line": 70
     },
@@ -4774,7 +4774,7 @@
     "quirks": "peculiaridades",
     "the-parse-position-as-a-program-counter": "la-posición-de-análisis-sintáctico-como-contador-de-programa",
     "under-what-circumstances-would-this-terrible-idea-become-reasonable": "under-what-circumstances-would-this-terrible-idea-become-reasonable",
-    "weird-next-to-boring": "weird-next-to-boring",
+    "weird-next-to-boring": "lo-raro-junto-a-lo-aburrido",
     "what-did-we-just-learn": "qué-acabamos-de-aprender",
     "what-makes-forth-special": "qué-hace-especial-a-forth"
    }

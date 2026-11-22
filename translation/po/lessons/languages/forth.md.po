@@ -180,27 +180,27 @@ msgstr "**Las cadenas de texto ⟦CODE_0001⟧ pueden ser temporales**: algunos 
 #: lessons/languages/forth.md:66
 msgctxt "s-2062846e4955-0034"
 msgid "**⟦CODE_0001⟧ is ⟦CODE_0002⟧**, so ⟦CODE_0003⟧ gives 10 to 19."
-msgstr ""
+msgstr "**⟦CODE_0001⟧ es ⟦CODE_0002⟧**, por eso ⟦CODE_0003⟧ da de 10 a 19."
 
 #: lessons/languages/forth.md:67
 msgctxt "s-8aa10c024705-0035"
 msgid "**⟦CODE_0001⟧ returns the exit status**; ⟦CODE_0002⟧ turns a non-zero status into an abort so a failed ⟦CODE_0003⟧ is not ignored."
-msgstr ""
+msgstr "**⟦CODE_0001⟧ devuelve el estado de salida**; ⟦CODE_0002⟧ convierte un estado distinto de cero en una interrupción para que un ⟦CODE_0003⟧ fallido no se ignore."
 
 #: lessons/languages/forth.md:68
 msgctxt "s-e64e76f4a9b2-0036"
 msgid "**Stack comments are the type system.** Nothing enforces ⟦CODE_0001⟧; it is convention."
-msgstr ""
+msgstr "**Los comentarios de pila son el sistema de tipos.** Nada hace cumplir ⟦CODE_0001⟧; es una convención."
 
 #: lessons/languages/forth.md:70
 msgctxt "s-a6b58da9d4cd-0037"
 msgid "Weird next to boring"
-msgstr ""
+msgstr "Lo raro junto a lo aburrido"
 
 #: lessons/languages/forth.md:72
 msgctxt "s-cac761d56b13-0038"
 msgid "[⟦CODE_0001⟧](⟦DEST_0002⟧) is a clean stack program: small words, one loop. [⟦CODE_0003⟧](⟦DEST_0004⟧) replaces every ⟦CODE_0005⟧ and control word with stack position and a rewound parser. The first is what Forth programmers write; the second is what Forth *permits*."
-msgstr ""
+msgstr "[⟦CODE_0001⟧](⟦DEST_0002⟧) es un programa de pila limpio: palabras pequeñas, un bucle. [⟦CODE_0003⟧](⟦DEST_0004⟧) reemplaza cada ⟦CODE_0005⟧ y palabra de control por la posición en la pila y un analizador sintáctico rebobinado. El primero es lo que escriben los programadores de Forth; el segundo es lo que Forth *permite*."
 
 #: lessons/languages/forth.md:74
 msgctxt "s-c08a852d0dbe-0039"

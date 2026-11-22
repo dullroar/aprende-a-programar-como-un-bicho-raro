@@ -447,3 +447,4 @@
 {"id":"EXC-447","segment":"s-36a23cc3fe8c-0003","invariant":"TRANSLATE","reason":"GNU Make is the unchanged product name and the entire heading.","task":"P4-lessons-languages-4"}
 {"id":"EXC-448","segment":"s-f52a4910bed0-0031","invariant":"I7","reason":"English 'builds' means constructs the regex subject and pattern, not a software compilation; construye preserves the verb's meaning.","task":"P4-lessons-languages-4"}
 {"id":"EXC-449","segment":"s-f4d65de2a65f-0037","invariant":"I7","reason":"The word condición translates condition, not state; estado correctly translates state in the same segment.","task":"P4-lessons-languages-4"}
+{"id":"EXC-450","segment":"s-2062846e4955-0034","invariant":"I22","reason":"The range describes the numeric result of a Forth random expression; the English gives no unit, and this is not the card-hours rule.","task":"P4-lessons-languages-3"}

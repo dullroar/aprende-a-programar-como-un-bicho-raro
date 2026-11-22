@@ -63,13 +63,13 @@ Consulta los [ejercicios](../exercises.md#b3-forth-move-the-anchor-verified).
 
 - **Las palabras de control solo funcionan dentro de definiciones** en Forth estándar. Escribir `begin ... until` en el nivel superior es un error, por eso `run` es una palabra. La versión rara hace trampa en el otro sentido.
 - **Las cadenas de texto `s"` pueden ser temporales**: algunos intérpretes devuelven un búfer que la siguiente sobrescribe, por eso las palabras de categoría son definiciones.
-- **`random` is `0..n-1`**, so `10 random 10 +` gives 10 to 19.
-- **`close-pipe` returns the exit status**; `close-sqlite` turns a non-zero status into an abort so a failed `sqlite3` is not ignored.
-- **Stack comments are the type system.** Nothing enforces `( n total -- n' total' )`; it is convention.
+- **`random` es `0..n-1`**, por eso `10 random 10 +` da de 10 a 19.
+- **`close-pipe` devuelve el estado de salida**; `close-sqlite` convierte un estado distinto de cero en una interrupción para que un `sqlite3` fallido no se ignore.
+- **Los comentarios de pila son el sistema de tipos.** Nada hace cumplir `( n total -- n' total' )`; es una convención.
 
-## Weird next to boring
+## Lo raro junto a lo aburrido
 
-[`forth`](../../src/forth/README.md) is a clean stack program: small words, one loop. [`forth-weird`](../../src/forth-weird/README.md) replaces every `variable` and control word with stack position and a rewound parser. The first is what Forth programmers write; the second is what Forth *permits*.
+[`forth`](../../src/forth/README.md) es un programa de pila limpio: palabras pequeñas, un bucle. [`forth-weird`](../../src/forth-weird/README.md) reemplaza cada `variable` y palabra de control por la posición en la pila y un analizador sintáctico rebobinado. El primero es lo que escriben los programadores de Forth; el segundo es lo que Forth *permite*.
 
 ## Under what circumstances would this terrible idea become reasonable?
 
