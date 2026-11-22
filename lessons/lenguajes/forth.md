@@ -46,9 +46,9 @@ La memoria es la pila de datos: no hay ni un solo `variable` en el archivo. El c
 
 Etiquetas: los efectos de pila y las banderas son comportamiento **garantizado** por Forth estándar. La existencia de la manipulación de `>in` es un comportamiento **garantizado** en ISO Forth. Pero su efecto en una definición frente al nivel superior es **permitido por la implementación**. `outfile-execute`, `open-pipe` y `utime` son extensiones de Gforth (**permitido por la implementación**).
 
-### Do this in production and you're fired
+### Haz esto en producción y estás despedido
 
-- **It only works at the top level, or in `evaluate`d / `included` text.** `>in` is the parse position of the current input line. Compile the loop *into* a word and there is no line to rewind.
+- **Solo funciona en el nivel superior o en texto procesado con `evaluate` o `included`.** `>in` es la posición de análisis de la línea actual de entrada de datos. Compila el bucle *dentro* de una palabra y no habrá ninguna línea que rebobinar.
 - **Moving one token breaks it silently.** If the `0 0` moves to *after* the `>in @` (`>in @ 0 0 step rewind?`), the anchor is now before the state, so every rewind pushes a fresh `0 0`: the total resets every pass and the program never stops (verified: hundreds of rows, no `# committed` line). A correct-looking program, a runaway loop. Moving `0 0` to the previous line is harmless, because the anchor is still after it.
 - **No tooling will understand it.** Linters, tracers and humans all assume that parse position is not state.
 - **Portability.** Gforth-specific words; `3dup` is not in Gforth 0.7.3, so the file defines it with `2 pick` three times ([L37](../../src/forth-weird/timecards.fs#L37)).

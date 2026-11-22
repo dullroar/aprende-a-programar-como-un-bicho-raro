@@ -125,12 +125,12 @@ msgstr "Etiquetas: los efectos de pila y las banderas son comportamiento **garan
 #: lessons/languages/forth.md:49
 msgctxt "s-299b7a6f9cbe-0023"
 msgid "Do this in production and you're fired"
-msgstr ""
+msgstr "Haz esto en producción y estás despedido"
 
 #: lessons/languages/forth.md:51
 msgctxt "s-b105b53624e4-0024"
 msgid "**It only works at the top level, or in ⟦CODE_0001⟧d / ⟦CODE_0002⟧ text.** ⟦CODE_0003⟧ is the parse position of the current input line. Compile the loop *into* a word and there is no line to rewind."
-msgstr ""
+msgstr "**Solo funciona en el nivel superior o en texto procesado con ⟦CODE_0001⟧ o ⟦CODE_0002⟧.** ⟦CODE_0003⟧ es la posición de análisis de la línea actual de entrada de datos. Compila el bucle *dentro* de una palabra y no habrá ninguna línea que rebobinar."
 
 #: lessons/languages/forth.md:52
 msgctxt "s-595369b0ea3b-0025"

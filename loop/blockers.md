@@ -34,3 +34,8 @@ Iterations 27 to 30 stalled on P2-004 (stall breaker at 30; usage-limit replies 
 
 - `git add -- translation/po/src/tar-gnu-weird/README.md.po translation/po/src/tar-gnu/README.md.po` failed twice with `Unable to create .../.git/index.lock: Read-only file system`. The Codex CLI left the working files ready to commit. Host-side verification and staging completed the task.
 - Targeted and full fast verification passed. See `translation/work/121-target-final.log` and `translation/work/121-fast.log` for output. Both Mermaid figures passed the print check using the renderer cache after initial Chromium launch failures.
+
+## P4-lessons-languages-3 (iteration 243): invalid acceptance command
+
+- The configured `python3 tools/verify.py --fast --task P4-lessons-languages-3` exited 2 twice and printed the verifier usage: `--task` is unsupported. The usage is reproducible with that command; `python3 tools/verify.py --help` describes supported options.
+- Corrected the task's acceptance command to `python3 tools/verify.py --fast --files lessons/languages/forth.md lessons/languages/haskell.md lessons/languages/javascript.md`; it passed, as did the working-tree fast verifier. The task remains blocked under the two-failure rule. Unblock by setting it to `todo` and resume Forth at position 25.
