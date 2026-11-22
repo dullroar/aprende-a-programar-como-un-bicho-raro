@@ -110,27 +110,27 @@ msgstr "**Un generador de números aleatorios con aritmética de 32 bits.** [⟦
 #: lessons/languages/m4.md:51
 msgctxt "s-0240966f2176-0020"
 msgid "**Building the SQL.** Each card appends an ⟦CODE_0001⟧ to ⟦CODE_0002⟧ through ⟦CODE_0003⟧. At the end one ⟦CODE_0004⟧ hands the finished script to ⟦CODE_0005⟧. The shell only chooses the folder and runs ⟦CODE_0006⟧; every byte of SQL was written by m4."
-msgstr ""
+msgstr "**Construcción del SQL.** Cada tarjeta agrega un ⟦CODE_0001⟧ a ⟦CODE_0002⟧ mediante ⟦CODE_0003⟧. Al final, un ⟦CODE_0004⟧ entrega el script terminado a ⟦CODE_0005⟧. El intérprete de comandos solo elige la carpeta y ejecuta ⟦CODE_0006⟧; m4 escribió cada byte de SQL."
 
 #: lessons/languages/m4.md:53
 msgctxt "s-e658b3d34ff3-0021"
 msgid "**The seed can be pinned.** [L34](⟦DEST_0001⟧): ⟦CODE_0002⟧ creates a random seed only if you have not already defined one, so ⟦CODE_0003⟧ always deals the same cards."
-msgstr ""
+msgstr "**La semilla se puede fijar.** [L34](⟦DEST_0001⟧): ⟦CODE_0002⟧ crea una semilla aleatoria solo si aún no has definido una, así que ⟦CODE_0003⟧ siempre reparte las mismas tarjetas."
 
 #: lessons/languages/m4.md:55
 msgctxt "s-d2bbf037de84-0022"
 msgid "What did we just learn?"
-msgstr ""
+msgstr "¿Qué acabamos de aprender?"
 
 #: lessons/languages/m4.md:57
 msgctxt "s-63a636d27faf-0023"
 msgid "**Evaluation order is a property of the language, not of the loop.** m4's \"eager arguments, lazy quotes\" rule is what makes ⟦CODE_0001⟧ behave like ⟦CODE_0002⟧. Compare [Haskell's laziness](⟦DEST_0003⟧), which gets the same effect by default."
-msgstr ""
+msgstr "**El orden de evaluación es una propiedad del lenguaje, no del bucle.** La regla de m4 \"argumentos inmediatos, comillas diferidas\" hace que ⟦CODE_0001⟧ se comporte como ⟦CODE_0002⟧. Compara la [evaluación diferida de Haskell](⟦DEST_0003⟧), que obtiene el mismo efecto por defecto."
 
 #: lessons/languages/m4.md:58
 msgctxt "s-a90eb0bb90ef-0024"
 msgid "**A language with only text can still hold state.** Variables are macros that redefine themselves; lists and strings are text; \"append\" is ⟦CODE_0001⟧."
-msgstr ""
+msgstr "**Un lenguaje con solo texto aún puede guardar estado.** Las variables son macros que se redefinen; las listas y las cadenas de texto son texto; \"agregar\" es ⟦CODE_0001⟧."
 
 #: lessons/languages/m4.md:59
 msgctxt "s-cbc3327271d8-0025"
