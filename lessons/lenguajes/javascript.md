@@ -91,14 +91,14 @@ Etiquetas: las clausuras, las funciones flecha y el protocolo de iteración est�
 ### Haz esto en producción y estás despedido
 
 - **Los efectos dentro de `map` sorprenden.** Un lector espera que `map` sea pura. Esta guarda filas.
-- **Hidden state is hard to inspect.** A debugger shows captured variables, and `console.log` of the function does not.
-- **An iterator that is spent is a trap.** A second pass over it gives nothing, with no error.
+- **Es difícil inspeccionar el estado oculto.** Un depurador muestra las variables capturadas, pero `console.log` de la función no las muestra.
+- **Un iterador agotado es una trampa.** Una segunda pasada no devuelve nada, sin ningún error.
 
-Legitimate uses: closures for private state, factories for configured functions, lazy pipelines for streams that are too big to hold and `some`/`find` for "stop at the first".
+Usos legítimos: clausuras para estado privado, fábricas de funciones configuradas y canalizaciones diferidas para flujos demasiado grandes para almacenarlos. También `some`/`find` para "detenerse en el primero".
 
-### Now break it yourself
+### Ahora rómpelo tú
 
-See [exercise B21](../exercises.md#b21-javascript-weirder-move-the-stop-rule-in-a-closure-and-watch-the-demand-verified).
+Mira el [ejercicio B21](../exercises.md#b21-javascript-weirder-move-the-stop-rule-in-a-closure-and-watch-the-demand-verified).
 
 ## Listeners all the way down
 

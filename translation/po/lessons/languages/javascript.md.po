@@ -285,27 +285,27 @@ msgstr "**Los efectos dentro de ⟦CODE_0001⟧ sorprenden.** Un lector espera q
 #: lessons/languages/javascript.md:94
 msgctxt "s-0a0772af9dfb-0055"
 msgid "**Hidden state is hard to inspect.** A debugger shows captured variables, and ⟦CODE_0001⟧ of the function does not."
-msgstr ""
+msgstr "**Es difícil inspeccionar el estado oculto.** Un depurador muestra las variables capturadas, pero ⟦CODE_0001⟧ de la función no las muestra."
 
 #: lessons/languages/javascript.md:95
 msgctxt "s-b3ffbe14cb02-0056"
 msgid "**An iterator that is spent is a trap.** A second pass over it gives nothing, with no error."
-msgstr ""
+msgstr "**Un iterador agotado es una trampa.** Una segunda pasada no devuelve nada, sin ningún error."
 
 #: lessons/languages/javascript.md:97
 msgctxt "s-35b49dc4e710-0057"
 msgid "Legitimate uses: closures for private state, factories for configured functions, lazy pipelines for streams that are too big to hold and ⟦CODE_0001⟧/⟦CODE_0002⟧ for \"stop at the first\"."
-msgstr ""
+msgstr "Usos legítimos: clausuras para estado privado, fábricas de funciones configuradas y canalizaciones diferidas para flujos demasiado grandes para almacenarlos. También ⟦CODE_0001⟧/⟦CODE_0002⟧ para \"detenerse en el primero\"."
 
 #: lessons/languages/javascript.md:99
 msgctxt "s-5e3bcdfbf845-0058"
 msgid "Now break it yourself"
-msgstr ""
+msgstr "Ahora rómpelo tú"
 
 #: lessons/languages/javascript.md:101
 msgctxt "s-f0043a70f096-0059"
 msgid "See [exercise B21](⟦DEST_0001⟧)."
-msgstr ""
+msgstr "Mira el [ejercicio B21](⟦DEST_0001⟧)."
 
 #: lessons/languages/javascript.md:103
 msgctxt "s-75cf1969e29d-0060"
