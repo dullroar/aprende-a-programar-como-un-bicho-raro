@@ -1,0 +1,239 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: sandbox/README.md:1
+msgctxt "s-4d74625c00bb-0000"
+msgid "sandbox/: running entries we haven't written"
+msgstr "sandbox/: ejecutar entradas que no hemos escrito"
+
+#: sandbox/README.md:3
+msgctxt "s-2287344b1a30-0001"
+msgid "This folder is the trusted side of reviewing outside entries. It is changed only by maintainers; ⟦CODE_0001⟧ rejects any pull request that touches it. Contributor-facing rules are in [⟦CODE_0002⟧](⟦DEST_0003⟧). To install Docker or Windows Sandbox and set up the toolchains they borrow, see [⟦CODE_0004⟧](⟦DEST_0005⟧); this page assumes that is done."
+msgstr "Esta carpeta es el lado de confianza al revisar entradas externas. Solo la cambian los mantenedores; ⟦CODE_0001⟧ rechaza cualquier demanda (pull) que la modifique. Las reglas para colaboradores están en [⟦CODE_0002⟧](⟦DEST_0003⟧). Para instalar Docker o Windows Sandbox y configurar las cadenas de herramientas que toman prestadas, consulta [⟦CODE_0004⟧](⟦DEST_0005⟧); esta página supone que eso ya está hecho."
+
+#: sandbox/README.md:5
+msgctxt "s-7c9ffe5bbfbb-0002"
+msgid "⟦SEP_0001⟧ Piece ⟦SEP_0002⟧ What it does ⟦SEP_0003⟧"
+msgstr "⟦SEP_0001⟧ Pieza ⟦SEP_0002⟧ Qué hace ⟦SEP_0003⟧"
+
+#: sandbox/README.md:7
+msgctxt "s-42736d606962-0003"
+msgid "⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ One image with every toolchain the Linux entries need, pinned: Ubuntu by digest, apt packages, GNU APL and a callout-enabled ⟦CODE_0002⟧ built from SHA-256-checked tarballs. ⟦SEP_0005⟧"
+msgstr "⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ Una imagen con todas las herramientas que necesitan las entradas de Linux, con versiones fijadas. Incluye Ubuntu por digest, paquetes apt, GNU APL y un ⟦CODE_0002⟧ con *callouts* habilitados, compilado a partir de archivos tarball verificados con SHA-256. ⟦SEP_0005⟧"
+
+#: sandbox/README.md:8
+msgctxt "s-c9064ceb8d95-0004"
+msgid "⟦SEP_0005⟧ ⟦CODE_0001⟧ ⟦SEP_0006⟧ Runs an entry's ⟦CODE_0002⟧ (if its Makefile has one) or ⟦CODE_0003⟧ in that image: no network, read-only root, no capabilities, user ⟦CODE_0004⟧, 256 processes, 2 GiB memory, 2 CPUs, 15-minute timeout. The entry is mounted read-only and copied into a tmpfs. ⟦SEP_0007⟧"
+msgstr "⟦SEP_0005⟧ ⟦CODE_0001⟧ ⟦SEP_0006⟧ Ejecuta el ⟦CODE_0002⟧ de una entrada (si su Makefile tiene uno) o ⟦CODE_0003⟧ en esa imagen. No hay red, la raíz es de solo lectura y no hay capacidades. El usuario es ⟦CODE_0004⟧, con 256 procesos, 2 GiB de memoria, 2 CPU y un tiempo límite de 15 minutos. La entrada se monta en solo lectura y se copia a un tmpfs. ⟦SEP_0007⟧"
+
+#: sandbox/README.md:9
+msgctxt "s-52144a0d7c56-0005"
+msgid "⟦SEP_0007⟧ ⟦CODE_0001⟧ ⟦SEP_0008⟧ **Per-entry runtime images** that run an entry and *show* what it did, rather than test it. ⟦CODE_0002⟧ builds the trusted bases (one tiny runtime image per kind of entry: sqlite3 plus the interpreter or libraries, no compiler, no package manager, no setuid); ⟦CODE_0003⟧ builds the entry's own ⟦CODE_0004⟧ on top and runs it with the same lockdown as ⟦CODE_0005⟧, then prints a read-only look at every file and SQLite table it wrote. ⟦CODE_0006⟧ is shared and lives in the bases, so an entry only chooses *what* to run. ⟦SEP_0009⟧"
+msgstr "⟦SEP_0007⟧ ⟦CODE_0001⟧ ⟦SEP_0008⟧ **Imágenes de ejecución por entrada** que ejecutan una entrada y *muestran* lo que hizo, en lugar de probarla. ⟦CODE_0002⟧ compila las bases de confianza. Cada base es una imagen mínima por tipo de entrada: sqlite3 más el intérprete o las bibliotecas, sin compilador, sin gestor de paquetes y sin setuid. ⟦CODE_0003⟧ compila el ⟦CODE_0004⟧ propio de la entrada sobre esas bases y lo ejecuta con el mismo aislamiento que ⟦CODE_0005⟧. Después imprime una vista de solo lectura de cada archivo y de cada tabla de SQLite que la entrada escribió. ⟦CODE_0006⟧ es común y vive en las bases, así que una entrada solo elige *qué* ejecutar. ⟦SEP_0009⟧"
+
+#: sandbox/README.md:10
+msgctxt "s-48d6e2acd538-0006"
+msgid "⟦SEP_0009⟧ ⟦CODE_0001⟧ ⟦SEP_0010⟧ The rules for an entry's own ⟦CODE_0002⟧: only trusted bases, no ⟦CODE_0003⟧, no ⟦CODE_0004⟧ in the runtime stage, only ⟦CODE_0005⟧ variables in its ⟦CODE_0006⟧. Run by ⟦CODE_0007⟧ on any PR that ships one, and by ⟦CODE_0008⟧ before building. ⟦SEP_0011⟧"
+msgstr "⟦SEP_0009⟧ ⟦CODE_0001⟧ ⟦SEP_0010⟧ Las reglas para ⟦CODE_0002⟧ propio de una entrada: solo bases de confianza, sin ⟦CODE_0003⟧, sin ⟦CODE_0004⟧ en la etapa de ejecución, solo variables ⟦CODE_0005⟧ en su ⟦CODE_0006⟧. Lo ejecuta ⟦CODE_0007⟧ en cualquier PR que lo incluya, y ⟦CODE_0008⟧ antes de construir. ⟦SEP_0011⟧"
+
+#: sandbox/README.md:11
+msgctxt "s-1dd6b2bd9e0b-0007"
+msgid "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ The rules a PR must pass before anything in it runs, read from git without a checkout, plus the reviewer report. ⟦SEP_0004⟧"
+msgstr "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ Las reglas que debe cumplir un PR antes de que se ejecute cualquier cosa de él, leídas desde git sin hacer un checkout, más el informe del revisor. ⟦SEP_0004⟧"
+
+#: sandbox/README.md:12
+msgctxt "s-e8b82f05f9ac-0008"
+msgid "⟦SEP_0006⟧ ⟦CODE_0001⟧ ⟦SEP_0007⟧ Proves the above: ⟦CODE_0002⟧ tries the network, host files, root, capabilities, credentials, a fork bomb and a 3 GiB allocation, and passes only if every probe is blocked. ⟦CODE_0003⟧ must be killed at the timeout. ⟦CODE_0004⟧ runs inside an entry's runtime image and checks it has no package manager, compiler, fetch tool or setuid binary, can't write outside ⟦CODE_0005⟧, and has no network. Twenty-two fake PRs (seven of them with Dockerfiles) must each be passed or rejected correctly. ⟦SEP_0008⟧"
+msgstr "⟦SEP_0006⟧ ⟦CODE_0001⟧ ⟦SEP_0007⟧ Prueba lo anterior: ⟦CODE_0002⟧ intenta usar la red, los archivos del anfitrión, root, las capacidades, las credenciales, una bomba fork y una asignación de 3 GiB. Pasa solo si se bloquea cada sonda. ⟦CODE_0003⟧ debe terminarse al agotarse el tiempo límite. ⟦CODE_0004⟧ se ejecuta dentro de la imagen de ejecución de una entrada. Comprueba que la imagen no tiene gestor de paquetes, compilador, herramienta de descarga ni binario setuid. También comprueba que no puede escribir fuera de ⟦CODE_0005⟧ y que no tiene red. Cada uno de los veintidós PR falsos (siete de ellos con Dockerfiles) debe aprobarse o rechazarse correctamente. ⟦SEP_0008⟧"
+
+#: sandbox/README.md:13
+msgctxt "s-218c38dcac15-0009"
+msgid "⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ Builds and runs a Windows or GUI entry in **Windows Sandbox** (a throwaway Hyper-V VM) with networking off. The host toolchain for that kind of entry is mapped in read-only, so restore is offline. The entry's ⟦CODE_0002⟧ runs if it has one; otherwise it gets a smoke test (start, wait, screenshot, ask it to close, then show what it saved). ⟦SEP_0005⟧"
+msgstr "⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ Compila y ejecuta una entrada de Windows o de GUI en **Windows Sandbox** (una máquina virtual Hyper-V desechable) con la red desactivada. La cadena de herramientas del anfitrión para ese tipo de entrada se asigna en modo de solo lectura, así que la restauración se hace sin conexión. Si la entrada tiene ⟦CODE_0002⟧, se ejecuta. Si no, recibe una prueba de humo: se inicia, espera, captura la pantalla, se le pide que se cierre y se muestra lo que guardó. ⟦SEP_0005⟧"
+
+#: sandbox/README.md:14
+msgctxt "s-4c8034095ef3-0010"
+msgid "⟦SEP_0006⟧ ⟦CODE_0001⟧ ⟦SEP_0007⟧ One file per kind of entry (⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧): which host folders to map, how to build and start it, how to show its results. See its README to add a language. ⟦SEP_0008⟧"
+msgstr "⟦SEP_0006⟧ ⟦CODE_0001⟧ ⟦SEP_0007⟧ Un archivo por cada tipo de entrada (⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧): qué carpetas del anfitrión se mapean, cómo se compila e inicia, cómo se muestran sus resultados. Consulta su README para añadir un lenguaje. ⟦SEP_0008⟧"
+
+#: sandbox/README.md:15
+msgctxt "s-9b2af4959b68-0011"
+msgid "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ The part of that which runs inside the VM, also used by the Actions Windows job. ⟦SEP_0004⟧"
+msgstr "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ La parte de eso que se ejecuta dentro de la VM, que también usa el trabajo de Windows de Actions. ⟦SEP_0004⟧"
+
+#: sandbox/README.md:16
+msgctxt "s-0ec1663627c3-0012"
+msgid "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ The existing Windows entries the gate runs when no PR number is given. ⟦SEP_0004⟧"
+msgstr "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ Las entradas de Windows existentes que el control ejecuta cuando no se indica un número de PR. ⟦SEP_0004⟧"
+
+#: sandbox/README.md:17
+msgctxt "s-09dab79a19ba-0013"
+msgid "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ The gate on GitHub's machines, triggered by hand. ⟦SEP_0004⟧"
+msgstr "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ La puerta de verificación en las máquinas de GitHub, activada a mano. ⟦SEP_0004⟧"
+
+#: sandbox/README.md:19
+msgctxt "s-ef9c04032091-0014"
+msgid "Running an entry to see what it does"
+msgstr "Ejecuta una entrada para ver qué hace"
+
+#: sandbox/README.md:21
+msgctxt "s-5a833ec72a8b-0015"
+msgid "For a human to watch an entry run, rather than for the gate to judge it:"
+msgstr "Para que una persona vea cómo se ejecuta una entrada, en lugar de que la puerta la juzgue:"
+
+#: sandbox/README.md:23
+msgctxt "s-ddd236f04414-0016"
+msgid "**Linux entries:** ⟦CODE_0001⟧. Each entry carries its own ⟦CODE_0002⟧: a build stage with the toolchain, then a runtime stage that copies in only the finished program on a base with just enough to run it (117 to 770 MB, against 2.45 GB for the toolchain image). No network, no host files (unless you pass ⟦CODE_0003⟧), and a read-only look at the results afterwards. The Go entry serves its page on loopback *inside* the container; the entrypoint fetches it from there with ⟦CODE_0004⟧ and then \"closes\" it, so no port is ever published."
+msgstr "**Entradas de Linux:** ⟦CODE_0001⟧. Cada entrada incluye su propio ⟦CODE_0002⟧: una etapa de compilación con las herramientas y luego una etapa de ejecución. Esta copia solo el programa terminado en una base con lo justo para ejecutarlo (de 117 a 770 MB, frente a 2.45 GB de la imagen con las herramientas). Sin red, sin archivos del anfitrión (a menos que pases ⟦CODE_0003⟧) y con una vista de solo lectura de los resultados al final. La entrada de Go sirve su página en la interfaz local *dentro* del contenedor. El punto de entrada la obtiene desde ahí con ⟦CODE_0004⟧ y luego la \"cierra\", así que no se publica ningún puerto."
+
+#: sandbox/README.md:24
+msgctxt "s-9e61814c9aa7-0017"
+msgid "**Windows and GUI entries:** ⟦CODE_0001⟧. Covers .NET (WPF, XAML, LINQ), Python/Tk, and, untested so far, Go (in Edge) and Java/Kotlin Swing."
+msgstr "**Entradas de Windows y de interfaz gráfica:** ⟦CODE_0001⟧. Cubre .NET (WPF, XAML, LINQ), Python/Tk y, sin probar hasta ahora, Go (en Edge) y Swing con Java y Kotlin."
+
+#: sandbox/README.md:25
+msgctxt "s-0317c072b975-0018"
+msgid "**GUI entries on Linux:** the Rust/GTK, Python/Tk and Java and Kotlin (Swing) entries run in a container on a virtual display (Xvfb) and are screenshotted from inside; use ⟦CODE_0001⟧ to get the PNG. They also have Windows Sandbox profiles, except Rust: GTK 4 on Windows is not something to ship into a sandbox."
+msgstr "**Entradas con GUI en Linux:** las entradas de Rust/GTK, Python/Tk y Java y Kotlin (Swing) se ejecutan en un contenedor con una pantalla virtual (Xvfb). La captura de pantalla se toma desde dentro; usa ⟦CODE_0001⟧ para obtener el PNG. También tienen perfiles de Windows Sandbox, excepto Rust: no conviene enviar GTK 4 en Windows a un entorno aislado."
+
+#: sandbox/README.md:27
+msgctxt "s-cd8004be0be6-0019"
+msgid "Prerequisites for both are in [⟦CODE_0001⟧](⟦DEST_0002⟧)."
+msgstr "Los requisitos previos de ambas están en [⟦CODE_0001⟧](⟦DEST_0002⟧)."
+
+#: sandbox/README.md:29
+msgctxt "s-8da51645bf43-0020"
+msgid "Why an entry's Dockerfile is safe to carry in a pull request"
+msgstr "Por qué el Dockerfile de una entrada es seguro para incluir en una demanda (pull)"
+
+#: sandbox/README.md:31
+msgctxt "s-44e55d6ea84d-0021"
+msgid "A ⟦CODE_0001⟧ line in a Dockerfile is code that runs at build time, normally with network and as root, so a contributor's Dockerfile could otherwise defeat the whole gate. Three things keep it contained:"
+msgstr "Una línea ⟦CODE_0001⟧ en un Dockerfile es código que se ejecuta durante la compilación, normalmente con red y como root. Por eso el Dockerfile de un colaborador podría, de otro modo, anular toda la compuerta. Tres cosas lo mantienen contenido:"
+
+#: sandbox/README.md:33
+msgctxt "s-e7d105bf5c20-0022"
+msgid ""
+"**The gate never builds one.** It still uses the trusted toolchain image. Entry images are built only by people running ⟦CODE_0001⟧, after the PR has been read.\n"
+"2. **It builds with ⟦CODE_0002⟧** from base images a maintainer built from ⟦CODE_0003⟧ (⟦CODE_0004⟧). The packages and the pinned downloads (GNU APL, pcre2grep) live in those bases, not in the entry.\n"
+"3. **⟦CODE_0005⟧ limits what it may say:** ⟦CODE_0006⟧ only the trusted bases or an earlier stage; no ⟦CODE_0007⟧, ⟦CODE_0008⟧ or ⟦CODE_0009⟧; no ⟦CODE_0010⟧/⟦CODE_0011⟧; ⟦CODE_0012⟧ only an earlier stage; and the final (runtime) stage may only ⟦CODE_0013⟧, ⟦CODE_0014⟧, ⟦CODE_0015⟧, ⟦CODE_0016⟧, ⟦CODE_0017⟧ and ⟦CODE_0018⟧, so it can't run anything, change the user, or touch ⟦CODE_0019⟧. ⟦CODE_0020⟧ applies it to PRs."
+msgstr ""
+"**El filtro nunca compila una.** Sigue usando la imagen de herramientas de confianza. Las imágenes de entrada las compilan solo personas que ejecutan ⟦CODE_0001⟧, después de leer el PR.\n"
+"2. **Compila con ⟦CODE_0002⟧** a partir de imágenes base que un mantenedor compiló desde ⟦CODE_0003⟧ (⟦CODE_0004⟧). Los paquetes y las descargas fijadas (GNU APL, pcre2grep) viven en esas bases, no en la entrada.\n"
+"3. **⟦CODE_0005⟧ limita lo que puede decir:** ⟦CODE_0006⟧ solo las bases de confianza o una etapa anterior. Sin ⟦CODE_0007⟧, ⟦CODE_0008⟧ ni ⟦CODE_0009⟧. Sin ⟦CODE_0010⟧/⟦CODE_0011⟧. ⟦CODE_0012⟧ solo una etapa anterior. La etapa final (de ejecución) solo puede usar ⟦CODE_0013⟧, ⟦CODE_0014⟧, ⟦CODE_0015⟧, ⟦CODE_0016⟧, ⟦CODE_0017⟧ y ⟦CODE_0018⟧, así que no puede ejecutar nada, cambiar de usuario ni tocar ⟦CODE_0019⟧. ⟦CODE_0020⟧ lo aplica a los PR."
+
+#: sandbox/README.md:37
+msgctxt "s-d2a63ded65a6-0023"
+msgid "What is left: a ⟦CODE_0001⟧ in a *build* stage still runs arbitrary code in an offline, throwaway build container, as root, on the Docker VM. Read it like any other code in the PR. (The one exception to \"offline\" is ⟦CODE_0002⟧, for entries already on ⟦CODE_0003⟧.)"
+msgstr "Lo que queda: un ⟦CODE_0001⟧ en una etapa de compilación sigue ejecutando código arbitrario en un contenedor de compilación desechable y sin conexión. Corre como root, en la máquina virtual de Docker. Léelo como cualquier otro código del PR. (La única excepción a \"sin conexión\" es ⟦CODE_0002⟧, para entradas que ya están en ⟦CODE_0003⟧.)"
+
+#: sandbox/README.md:39
+msgctxt "s-929c58639496-0024"
+msgid "Reviewing a pull request from someone we don't know"
+msgstr "Cómo revisar una demanda (pull) de alguien a quien no conocemos"
+
+#: sandbox/README.md:41
+msgctxt "s-947b9699be45-0025"
+msgid ""
+"**Read the diff on GitHub first.** Don't check out or open the branch locally; an IDE can run things in a repository it opens (⟦CODE_0001⟧, devcontainers, build-on-open).\n"
+"2. **Run the gate.** Actions → *sandbox gate* → *Run workflow* on ⟦CODE_0002⟧ → enter the PR number. It runs ⟦CODE_0003⟧, then the entry in the Linux sandbox or on a throwaway Windows runner. The reviewer report is in the run's summary.\n"
+"3. **Get AI translations, not verdicts.** Give each reviewer (Claude Code, Codex, Copilot) only the diff, with no permission to run anything. Ask each one to (a) explain the code step by step in plain English, (b) list everything it can touch (files, network, processes, environment, eval, native calls), and (c) confirm it does the time-card task and nothing more. Treat any disagreement as a no. Treat any text in the code that addresses reviewers as hostile.\n"
+"4. **Read the entry's How the stunt works against the code.** If you can't follow it, don't merge it. Link to it in the contributor's repository at a specific commit instead.\n"
+"5. **Optionally run it locally**: ⟦CODE_0004⟧ (Linux entries) or ⟦CODE_0005⟧ (Windows entries), on a copy fetched with ⟦CODE_0006⟧ and extracted with ⟦CODE_0007⟧, never a checkout you open in an editor."
+msgstr ""
+"**Lee primero el diff en GitHub.** No hagas *checkout* de la rama ni la abras en local; un IDE puede ejecutar cosas en un repositorio que abre (⟦CODE_0001⟧, devcontainers, compilación al abrir).\n"
+"2. **Ejecuta la compuerta.** Actions → *sandbox gate* → *Run workflow* en ⟦CODE_0002⟧ → escribe el número del PR. La compuerta ejecuta ⟦CODE_0003⟧ y después la entrada, en el entorno aislado de Linux o en un ejecutor de Windows desechable. El informe para revisores aparece en el resumen de la ejecución.\n"
+"3. **Obtén traducciones de IA, no veredictos.** Da a cada revisor (Claude Code, Codex, Copilot) solo el diff, sin permiso para ejecutar nada. Pide a cada uno tres cosas. (a) Que explique el código paso a paso en lenguaje sencillo. (b) Que haga una lista de todo lo que puede tocar (archivos, red, procesos, entorno, eval, llamadas nativas). (c) Que confirme que hace la tarea de la tarjeta de horas y nada más. Trata cualquier desacuerdo como un no. Trata como hostil cualquier texto del código dirigido a los revisores.\n"
+"4. **Lee *Cómo funciona el truco frente al código* en la entrada.** Si no puedes seguirlo, no lo fusiones. En su lugar, enlázalo en el repositorio del colaborador en un *commit* de Git concreto (una instantánea fija del historial del repositorio).\n"
+"5. **Si quieres, ejecútala en local**: ⟦CODE_0004⟧ (entradas de Linux) o ⟦CODE_0005⟧ (entradas de Windows). Usa una copia obtenida con ⟦CODE_0006⟧ y extraída con ⟦CODE_0007⟧, nunca un *checkout* que abras en un editor."
+
+#: sandbox/README.md:47
+msgctxt "s-18299cede35e-0026"
+msgid "What this does and does not prove"
+msgstr "Qué prueba y qué no prueba esto"
+
+#: sandbox/README.md:49
+msgctxt "s-02e55dfbdf2d-0027"
+msgid "A pass means the entry built, ran and passed its own check **in a place where it could not reach the network, your files, or any credential**. It does **not** prove the entry is harmless. Code can notice that it's in a sandbox (no network, a container, an odd user name, a date) and stay quiet until it reaches someone's real machine. Everyone who clones ⟦CODE_0001⟧ runs entries outside any sandbox. That is why step 4 decides, not step 2."
+msgstr "Un aprobado significa que la entrada se construyó, se ejecutó y superó su comprobación **en un lugar sin acceso a la red, a tus archivos ni a ninguna credencial**. **No** demuestra que la entrada sea inofensiva. El código puede notar que está en un entorno aislado (sin red, un contenedor, un nombre de usuario raro, una fecha). Puede quedarse callado hasta llegar a la máquina real de alguien. Todos los que clonan ⟦CODE_0001⟧ ejecutan entradas fuera de cualquier entorno aislado. Por eso decide el paso 4, no el paso 2."
+
+#: sandbox/README.md:51
+msgctxt "s-f0da013897bd-0028"
+msgid "Other limits worth knowing:"
+msgstr "Otros límites que conviene conocer:"
+
+#: sandbox/README.md:53
+msgctxt "s-5c10df30a2b7-0029"
+msgid "Containers share the host's kernel. On Windows, that kernel is Docker Desktop's (or WSL's) VM, and a container escape would land there. Windows Sandbox and the GitHub runners are full VMs."
+msgstr "Los contenedores comparten el kernel del anfitrión. En Windows, ese kernel es la máquina virtual de Docker Desktop (o de WSL). Una fuga del contenedor llegaría allí. Windows Sandbox y los *runners* de GitHub son máquinas virtuales completas."
+
+#: sandbox/README.md:54
+msgctxt "s-404fabd267f7-0030"
+msgid "The **Actions Windows runner has network.** It's a fresh VM with no secrets, so the risk is to GitHub's machine, not ours. For a network-off Windows run, use ⟦CODE_0001⟧ locally. The job prints the names of any credential-like environment variables the entry could read. When first tested (2026-11-14) there were no tokens (no ⟦CODE_0002⟧, OIDC token or ⟦CODE_0003⟧); the only names were an orchestration ID and the runner image's stock ⟦CODE_0004⟧ for its preinstalled Postgres. The runner does have a real desktop, so WPF windows open and the screenshots in the run's artifacts show them."
+msgstr "El **runner de Actions en Windows tiene red.** Es una VM nueva sin secretos, así que el riesgo recae en la máquina de GitHub, no en la nuestra. Para una ejecución en Windows sin red, usa ⟦CODE_0001⟧ en local. El job imprime los nombres de las variables de entorno parecidas a credenciales que la entrada podría leer. En la primera prueba (2026-11-14) no había tokens (ni ⟦CODE_0002⟧, ni token OIDC ni ⟦CODE_0003⟧). Los únicos nombres eran un ID de orquestación y el ⟦CODE_0004⟧ estándar de la imagen del runner para su Postgres preinstalado. El runner sí tiene un escritorio real, así que las ventanas de WPF se abren y las capturas de pantalla de los artefactos de la ejecución las muestran."
+
+#: sandbox/README.md:55
+msgctxt "s-db2c5ab828da-0031"
+msgid "The GUI ports (Rust/GTK, Python/Tk, Java and Kotlin/Swing, Go in a browser) have no check script and aren't covered yet. They're Ken's and Jim's, and they wait for someone to close a window."
+msgstr "Las adaptaciones con interfaz gráfica (Rust/GTK, Python/Tk, Java y Kotlin/Swing, Go en un navegador) no tienen un script de verificación y aún no están cubiertas. Son de Ken y de Jim, y esperan a que alguien cierre una ventana."
+
+#: sandbox/README.md:57
+msgctxt "s-614c5b15e173-0032"
+msgid "Adding a toolchain for a new language"
+msgstr "Cómo añadir una cadena de herramientas para un lenguaje nuevo"
+
+#: sandbox/README.md:59
+msgctxt "s-ba68a4ef8063-0033"
+msgid "Do it in its own commit on ⟦CODE_0001⟧, never in the contributor's PR:"
+msgstr "Hazlo en un *commit* de Git propio en ⟦CODE_0001⟧, nunca en el PR del colaborador:"
+
+#: sandbox/README.md:61
+msgctxt "s-978079caa593-0034"
+msgid "For the **container** images, add a line to ⟦CODE_0001⟧ (a new ⟦CODE_0002⟧ runtime base with the packages the entry needs at run time) and, if it must be compiled, put the compiler in the toolchain image as below. Entries then say ⟦CODE_0003⟧; the lint already accepts ⟦CODE_0004⟧ and ⟦CODE_0005⟧."
+msgstr "Para las imágenes de **contenedor**, añade una línea a ⟦CODE_0001⟧ (una nueva base de ejecución ⟦CODE_0002⟧ con los paquetes que la entrada necesita en tiempo de ejecución). Si hay que compilarla, pon el compilador en la imagen de herramientas como se muestra abajo. Después las entradas dicen ⟦CODE_0003⟧; el lint ya acepta ⟦CODE_0004⟧ y ⟦CODE_0005⟧."
+
+#: sandbox/README.md:62
+msgctxt "s-643e611292fb-0035"
+msgid "For **Windows Sandbox**, add a profile in ⟦CODE_0001⟧."
+msgstr "Para **Windows Sandbox**, añade un perfil en ⟦CODE_0001⟧."
+
+#: sandbox/README.md:64
+msgctxt "s-e2cfca876cf4-0036"
+msgid "Prefer an Ubuntu package: add it to the ⟦CODE_0001⟧ line."
+msgstr "Prefiere un paquete de Ubuntu: agrégalo a la línea ⟦CODE_0001⟧."
+
+#: sandbox/README.md:65
+msgctxt "s-cf139e725503-0037"
+msgid "Otherwise use the official upstream release tarball. Record its SHA-256 and verify it with ⟦CODE_0001⟧ in the Dockerfile, the same way as ⟦CODE_0002⟧ and ⟦CODE_0003⟧."
+msgstr "Si no, usa el archivo tarball oficial de la versión upstream. Anota su SHA-256 y verifícalo con ⟦CODE_0001⟧ en el Dockerfile, igual que ⟦CODE_0002⟧ y ⟦CODE_0003⟧."
+
+#: sandbox/README.md:66
+msgctxt "s-940f8b64ce4a-0038"
+msgid "Then run ⟦CODE_0001⟧, plus ⟦CODE_0002⟧ on every entry, to make sure nothing else changed."
+msgstr "Luego ejecuta ⟦CODE_0001⟧, además de ⟦CODE_0002⟧ en cada entrada, para asegurarte de que nada más cambió."
+
+#: sandbox/README.md:68
+msgctxt "s-af7e396075c5-0039"
+msgid "Repository settings that back this up"
+msgstr "Configuración del repositorio que respalda esto"
+
+#: sandbox/README.md:70
+msgctxt "s-b83fbcbc295d-0040"
+msgid "These are set on GitHub, not in files, and are worth turning on:"
+msgstr "Estos ajustes se configuran en GitHub, no en archivos. Conviene activarlos:"
+
+#: sandbox/README.md:72
+msgctxt "s-cc641b8e0523-0041"
+msgid "**Settings → Actions → General → \"Require approval for all external contributors\"**, so a fork's PR can't run workflows on its own."
+msgstr "**Settings → Actions → General → \"Require approval for all external contributors\"**, para que un PR de un fork no pueda ejecutar flujos de trabajo por su cuenta."
+
+#: sandbox/README.md:73
+msgctxt "s-7ad023d08954-0042"
+msgid "**A ruleset on ⟦CODE_0001⟧**: require a pull request; and in ⟦CODE_0002⟧, make the maintainers owners of ⟦CODE_0003⟧, ⟦CODE_0004⟧ and the root build files, with code-owner review required."
+msgstr "**Un conjunto de reglas en ⟦CODE_0001⟧**: exige una demanda (pull). Y en ⟦CODE_0002⟧, haz que los mantenedores sean propietarios de ⟦CODE_0003⟧, ⟦CODE_0004⟧ y los archivos de compilación de la raíz, con revisión obligatoria de los propietarios del código."

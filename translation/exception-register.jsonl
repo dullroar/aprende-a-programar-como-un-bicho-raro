@@ -520,3 +520,13 @@
 {"id":"EXC-520","segment":"s-437f96a8851a-0010","invariant":"I7","reason":"'Program Flow' is the fixed English section name quoted by the rule, not the glossary term program.","task":"P4-root-2"}
 {"id":"EXC-521","segment":"s-ef38488ee4cc-0013","invariant":"I7","reason":"'Type' is a verb (type straight quotes), not the glossary noun type.","task":"P4-root-2"}
 {"id":"EXC-522","segment":"s-140a776001fd-0014","invariant":"I22","reason":"'de 10 a 19' is the literal style example of a prose range, quoted from the English rule, not a statement about hours.","task":"P4-root-2"}
+{"id":"EXC-523","segment":"s-52144a0d7c56-0005","invariant":"I7","reason":"verbo 'compila' (build como verbo), no el sustantivo 'compilación'","task":"P4-sandbox-1"}
+{"id":"EXC-524","segment":"s-218c38dcac15-0009","invariant":"I7","reason":"'Windows Sandbox' es nombre de producto y 'Compila' es verbo, no el sustantivo build","task":"P4-sandbox-1"}
+{"id":"EXC-525","segment":"s-4c8034095ef3-0010","invariant":"I7","reason":"'se compila' es verbo (build como verbo), no el sustantivo 'compilación'","task":"P4-sandbox-1"}
+{"id":"EXC-526","segment":"s-0317c072b975-0018","invariant":"I7","reason":"'Windows Sandbox' es nombre de producto","task":"P4-sandbox-1"}
+{"id":"EXC-527","segment":"s-e7d105bf5c20-0022","invariant":"I7","reason":"'compila' y 'compiló' son el verbo build, no el sustantivo 'compilación'","task":"P4-sandbox-1"}
+{"id":"EXC-528","segment":"s-5c10df30a2b7-0029","invariant":"I7","reason":"'Windows Sandbox' es nombre de producto","task":"P4-sandbox-1"}
+{"id":"EXC-529","segment":"s-643e611292fb-0035","invariant":"I7","reason":"'Windows Sandbox' es nombre de producto","task":"P4-sandbox-1"}
+{"id":"EXC-530","segment":"s-cc641b8e0523-0041","invariant":"I7","reason":"'external contributors' es texto literal de la interfaz de GitHub entre comillas","task":"P4-sandbox-1"}
+{"id":"EXC-531","segment":"s-4d74625c00bb-0000","invariant":"I7","reason":"'sandbox/' es el nombre de una carpeta (identificador)","task":"P4-sandbox-1"}
+{"id":"EXC-532","segment":"s-2287344b1a30-0001","invariant":"I7","reason":"'Windows Sandbox' es nombre de producto","task":"P4-sandbox-1"}

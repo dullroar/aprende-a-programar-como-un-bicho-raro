@@ -1,73 +1,73 @@
-# sandbox/: running entries we haven't written
+# sandbox/: ejecutar entradas que no hemos escrito
 
-This folder is the trusted side of reviewing outside entries. It is changed only by maintainers; `scope-check.sh` rejects any pull request that touches it. Contributor-facing rules are in [`CONTRIBUTING.md`](../CONTRIBUTING.md). To install Docker or Windows Sandbox and set up the toolchains they borrow, see [`SANDBOX-SETUP.md`](../SANDBOX-SETUP.md); this page assumes that is done.
+Esta carpeta es el lado de confianza al revisar entradas externas. Solo la cambian los mantenedores; `scope-check.sh` rechaza cualquier demanda (pull) que la modifique. Las reglas para colaboradores están en [`CONTRIBUTING.md`](../CONTRIBUTING.md). Para instalar Docker o Windows Sandbox y configurar las cadenas de herramientas que toman prestadas, consulta [`SANDBOX-SETUP.md`](../SANDBOX-SETUP.md); esta página supone que eso ya está hecho.
 
-| Piece | What it does |
+| Pieza | Qué hace |
 | --- | --- |
-| `linux/Dockerfile` | One image with every toolchain the Linux entries need, pinned: Ubuntu by digest, apt packages, GNU APL and a callout-enabled `pcre2grep` built from SHA-256-checked tarballs. |
-| `run.sh <entry>...` | Runs an entry's `make check` (if its Makefile has one) or `check.sh` in that image: no network, read-only root, no capabilities, user `nobody`, 256 processes, 2 GiB memory, 2 CPUs, 15-minute timeout. The entry is mounted read-only and copied into a tmpfs. |
-| `container/` | **Per-entry runtime images** that run an entry and *show* what it did, rather than test it. `build-bases.sh` builds the trusted bases (one tiny runtime image per kind of entry: sqlite3 plus the interpreter or libraries, no compiler, no package manager, no setuid); `run-image.sh src/<entry>` builds the entry's own `Dockerfile` on top and runs it with the same lockdown as `run.sh`, then prints a read-only look at every file and SQLite table it wrote. `entrypoint.sh` is shared and lives in the bases, so an entry only chooses *what* to run. |
-| `dockerfile-lint.sh <Dockerfile>` | The rules for an entry's own `Dockerfile`: only trusted bases, no `ADD`, no `RUN` in the runtime stage, only `CC_*` variables in its `ENV`. Run by `scope-check.sh` on any PR that ships one, and by `run-image.sh` before building. |
-| `scope-check.sh <base> <head>` | The rules a PR must pass before anything in it runs, read from git without a checkout, plus the reviewer report. |
-| `selftest.sh` | Proves the above: `selftest/hostile` tries the network, host files, root, capabilities, credentials, a fork bomb and a 3 GiB allocation, and passes only if every probe is blocked. `selftest/sleeper` must be killed at the timeout. `selftest/container-probe.sh` runs inside an entry's runtime image and checks it has no package manager, compiler, fetch tool or setuid binary, can't write outside `/work`, and has no network. Twenty-two fake PRs (seven of them with Dockerfiles) must each be passed or rejected correctly. |
-| `windows/run.ps1 <entry>` | Builds and runs a Windows or GUI entry in **Windows Sandbox** (a throwaway Hyper-V VM) with networking off. The host toolchain for that kind of entry is mapped in read-only, so restore is offline. The entry's `check.ps1` runs if it has one; otherwise it gets a smoke test (start, wait, screenshot, ask it to close, then show what it saved). |
-| `windows/profiles/` | One file per kind of entry (`dotnet`, `python`, `go`, `gradle`): which host folders to map, how to build and start it, how to show its results. See its README to add a language. |
-| `windows/inside.ps1` | The part of that which runs inside the VM, also used by the Actions Windows job. |
-| `windows/regression.txt` | The existing Windows entries the gate runs when no PR number is given. |
-| `../.github/workflows/sandbox-gate.yml` | The gate on GitHub's machines, triggered by hand. |
+| `linux/Dockerfile` | Una imagen con todas las herramientas que necesitan las entradas de Linux, con versiones fijadas. Incluye Ubuntu por digest, paquetes apt, GNU APL y un `pcre2grep` con *callouts* habilitados, compilado a partir de archivos tarball verificados con SHA-256. |
+| `run.sh <entry>...` | Ejecuta el `make check` de una entrada (si su Makefile tiene uno) o `check.sh` en esa imagen. No hay red, la raíz es de solo lectura y no hay capacidades. El usuario es `nobody`, con 256 procesos, 2 GiB de memoria, 2 CPU y un tiempo límite de 15 minutos. La entrada se monta en solo lectura y se copia a un tmpfs. |
+| `container/` | **Imágenes de ejecución por entrada** que ejecutan una entrada y *muestran* lo que hizo, en lugar de probarla. `build-bases.sh` compila las bases de confianza. Cada base es una imagen mínima por tipo de entrada: sqlite3 más el intérprete o las bibliotecas, sin compilador, sin gestor de paquetes y sin setuid. `run-image.sh src/<entry>` compila el `Dockerfile` propio de la entrada sobre esas bases y lo ejecuta con el mismo aislamiento que `run.sh`. Después imprime una vista de solo lectura de cada archivo y de cada tabla de SQLite que la entrada escribió. `entrypoint.sh` es común y vive en las bases, así que una entrada solo elige *qué* ejecutar. |
+| `dockerfile-lint.sh <Dockerfile>` | Las reglas para `Dockerfile` propio de una entrada: solo bases de confianza, sin `ADD`, sin `RUN` en la etapa de ejecución, solo variables `CC_*` en su `ENV`. Lo ejecuta `scope-check.sh` en cualquier PR que lo incluya, y `run-image.sh` antes de construir. |
+| `scope-check.sh <base> <head>` | Las reglas que debe cumplir un PR antes de que se ejecute cualquier cosa de él, leídas desde git sin hacer un checkout, más el informe del revisor. |
+| `selftest.sh` | Prueba lo anterior: `selftest/hostile` intenta usar la red, los archivos del anfitrión, root, las capacidades, las credenciales, una bomba fork y una asignación de 3 GiB. Pasa solo si se bloquea cada sonda. `selftest/sleeper` debe terminarse al agotarse el tiempo límite. `selftest/container-probe.sh` se ejecuta dentro de la imagen de ejecución de una entrada. Comprueba que la imagen no tiene gestor de paquetes, compilador, herramienta de descarga ni binario setuid. También comprueba que no puede escribir fuera de `/work` y que no tiene red. Cada uno de los veintidós PR falsos (siete de ellos con Dockerfiles) debe aprobarse o rechazarse correctamente. |
+| `windows/run.ps1 <entry>` | Compila y ejecuta una entrada de Windows o de GUI en **Windows Sandbox** (una máquina virtual Hyper-V desechable) con la red desactivada. La cadena de herramientas del anfitrión para ese tipo de entrada se asigna en modo de solo lectura, así que la restauración se hace sin conexión. Si la entrada tiene `check.ps1`, se ejecuta. Si no, recibe una prueba de humo: se inicia, espera, captura la pantalla, se le pide que se cierre y se muestra lo que guardó. |
+| `windows/profiles/` | Un archivo por cada tipo de entrada (`dotnet`, `python`, `go`, `gradle`): qué carpetas del anfitrión se mapean, cómo se compila e inicia, cómo se muestran sus resultados. Consulta su README para añadir un lenguaje. |
+| `windows/inside.ps1` | La parte de eso que se ejecuta dentro de la VM, que también usa el trabajo de Windows de Actions. |
+| `windows/regression.txt` | Las entradas de Windows existentes que el control ejecuta cuando no se indica un número de PR. |
+| `../.github/workflows/sandbox-gate.yml` | La puerta de verificación en las máquinas de GitHub, activada a mano. |
 
-## Running an entry to see what it does
+## Ejecuta una entrada para ver qué hace
 
-For a human to watch an entry run, rather than for the gate to judge it:
+Para que una persona vea cómo se ejecuta una entrada, en lugar de que la puerta la juzgue:
 
-- **Linux entries:** `sandbox/container/run-image.sh src/<entry>`. Each entry carries its own `Dockerfile`: a build stage with the toolchain, then a runtime stage that copies in only the finished program on a base with just enough to run it (117 to 770 MB, against 2.45 GB for the toolchain image). No network, no host files (unless you pass `--out`), and a read-only look at the results afterwards. The Go entry serves its page on loopback *inside* the container; the entrypoint fetches it from there with `wget` and then "closes" it, so no port is ever published.
-- **Windows and GUI entries:** `sandbox\windows\run.ps1 src\<entry>`. Covers .NET (WPF, XAML, LINQ), Python/Tk, and, untested so far, Go (in Edge) and Java/Kotlin Swing.
-- **GUI entries on Linux:** the Rust/GTK, Python/Tk and Java and Kotlin (Swing) entries run in a container on a virtual display (Xvfb) and are screenshotted from inside; use `--out` to get the PNG. They also have Windows Sandbox profiles, except Rust: GTK 4 on Windows is not something to ship into a sandbox.
+- **Entradas de Linux:** `sandbox/container/run-image.sh src/<entry>`. Cada entrada incluye su propio `Dockerfile`: una etapa de compilación con las herramientas y luego una etapa de ejecución. Esta copia solo el programa terminado en una base con lo justo para ejecutarlo (de 117 a 770 MB, frente a 2.45 GB de la imagen con las herramientas). Sin red, sin archivos del anfitrión (a menos que pases `--out`) y con una vista de solo lectura de los resultados al final. La entrada de Go sirve su página en la interfaz local *dentro* del contenedor. El punto de entrada la obtiene desde ahí con `wget` y luego la "cierra", así que no se publica ningún puerto.
+- **Entradas de Windows y de interfaz gráfica:** `sandbox\windows\run.ps1 src\<entry>`. Cubre .NET (WPF, XAML, LINQ), Python/Tk y, sin probar hasta ahora, Go (en Edge) y Swing con Java y Kotlin.
+- **Entradas con GUI en Linux:** las entradas de Rust/GTK, Python/Tk y Java y Kotlin (Swing) se ejecutan en un contenedor con una pantalla virtual (Xvfb). La captura de pantalla se toma desde dentro; usa `--out` para obtener el PNG. También tienen perfiles de Windows Sandbox, excepto Rust: no conviene enviar GTK 4 en Windows a un entorno aislado.
 
-Prerequisites for both are in [`SANDBOX-SETUP.md`](../SANDBOX-SETUP.md).
+Los requisitos previos de ambas están en [`SANDBOX-SETUP.md`](../SANDBOX-SETUP.md).
 
-### Why an entry's Dockerfile is safe to carry in a pull request
+### Por qué el Dockerfile de una entrada es seguro para incluir en una demanda (pull)
 
-A `RUN` line in a Dockerfile is code that runs at build time, normally with network and as root, so a contributor's Dockerfile could otherwise defeat the whole gate. Three things keep it contained:
+Una línea `RUN` en un Dockerfile es código que se ejecuta durante la compilación, normalmente con red y como root. Por eso el Dockerfile de un colaborador podría, de otro modo, anular toda la compuerta. Tres cosas lo mantienen contenido:
 
-1. **The gate never builds one.** It still uses the trusted toolchain image. Entry images are built only by people running `run-image.sh`, after the PR has been read.
-2. **It builds with `docker build --network none`** from base images a maintainer built from `master` (`build-bases.sh`). The packages and the pinned downloads (GNU APL, pcre2grep) live in those bases, not in the entry.
-3. **`dockerfile-lint.sh` limits what it may say:** `FROM` only the trusted bases or an earlier stage; no `ADD`, `SHELL` or `ONBUILD`; no `RUN --mount`/`--network`; `COPY --from` only an earlier stage; and the final (runtime) stage may only `COPY`, `WORKDIR`, `LABEL`, `ARG`, `EXPOSE` and `ENV CC_*`, so it can't run anything, change the user, or touch `PATH`. `scope-check.sh` applies it to PRs.
+1. **El filtro nunca compila una.** Sigue usando la imagen de herramientas de confianza. Las imágenes de entrada las compilan solo personas que ejecutan `run-image.sh`, después de leer el PR.
+2. **Compila con `docker build --network none`** a partir de imágenes base que un mantenedor compiló desde `master` (`build-bases.sh`). Los paquetes y las descargas fijadas (GNU APL, pcre2grep) viven en esas bases, no en la entrada.
+3. **`dockerfile-lint.sh` limita lo que puede decir:** `FROM` solo las bases de confianza o una etapa anterior. Sin `ADD`, `SHELL` ni `ONBUILD`. Sin `RUN --mount`/`--network`. `COPY --from` solo una etapa anterior. La etapa final (de ejecución) solo puede usar `COPY`, `WORKDIR`, `LABEL`, `ARG`, `EXPOSE` y `ENV CC_*`, así que no puede ejecutar nada, cambiar de usuario ni tocar `PATH`. `scope-check.sh` lo aplica a los PR.
 
-What is left: a `RUN` in a *build* stage still runs arbitrary code in an offline, throwaway build container, as root, on the Docker VM. Read it like any other code in the PR. (The one exception to "offline" is `--online-build`, for entries already on `master`.)
+Lo que queda: un `RUN` en una etapa de compilación sigue ejecutando código arbitrario en un contenedor de compilación desechable y sin conexión. Corre como root, en la máquina virtual de Docker. Léelo como cualquier otro código del PR. (La única excepción a "sin conexión" es `--online-build`, para entradas que ya están en `master`.)
 
-## Reviewing a pull request from someone we don't know
+## Cómo revisar una demanda (pull) de alguien a quien no conocemos
 
-1. **Read the diff on GitHub first.** Don't check out or open the branch locally; an IDE can run things in a repository it opens (`.vscode/tasks.json`, devcontainers, build-on-open).
-2. **Run the gate.** Actions → *sandbox gate* → *Run workflow* on `master` → enter the PR number. It runs `scope-check.sh`, then the entry in the Linux sandbox or on a throwaway Windows runner. The reviewer report is in the run's summary.
-3. **Get AI translations, not verdicts.** Give each reviewer (Claude Code, Codex, Copilot) only the diff, with no permission to run anything. Ask each one to (a) explain the code step by step in plain English, (b) list everything it can touch (files, network, processes, environment, eval, native calls), and (c) confirm it does the time-card task and nothing more. Treat any disagreement as a no. Treat any text in the code that addresses reviewers as hostile.
-4. **Read the entry's How the stunt works against the code.** If you can't follow it, don't merge it. Link to it in the contributor's repository at a specific commit instead.
-5. **Optionally run it locally**: `sandbox/run.sh` (Linux entries) or `sandbox\windows\run.ps1` (Windows entries), on a copy fetched with `git fetch origin pull/N/head` and extracted with `git archive`, never a checkout you open in an editor.
+1. **Lee primero el diff en GitHub.** No hagas *checkout* de la rama ni la abras en local; un IDE puede ejecutar cosas en un repositorio que abre (`.vscode/tasks.json`, devcontainers, compilación al abrir).
+2. **Ejecuta la compuerta.** Actions → *sandbox gate* → *Run workflow* en `master` → escribe el número del PR. La compuerta ejecuta `scope-check.sh` y después la entrada, en el entorno aislado de Linux o en un ejecutor de Windows desechable. El informe para revisores aparece en el resumen de la ejecución.
+3. **Obtén traducciones de IA, no veredictos.** Da a cada revisor (Claude Code, Codex, Copilot) solo el diff, sin permiso para ejecutar nada. Pide a cada uno tres cosas. (a) Que explique el código paso a paso en lenguaje sencillo. (b) Que haga una lista de todo lo que puede tocar (archivos, red, procesos, entorno, eval, llamadas nativas). (c) Que confirme que hace la tarea de la tarjeta de horas y nada más. Trata cualquier desacuerdo como un no. Trata como hostil cualquier texto del código dirigido a los revisores.
+4. **Lee *Cómo funciona el truco frente al código* en la entrada.** Si no puedes seguirlo, no lo fusiones. En su lugar, enlázalo en el repositorio del colaborador en un *commit* de Git concreto (una instantánea fija del historial del repositorio).
+5. **Si quieres, ejecútala en local**: `sandbox/run.sh` (entradas de Linux) o `sandbox\windows\run.ps1` (entradas de Windows). Usa una copia obtenida con `git fetch origin pull/N/head` y extraída con `git archive`, nunca un *checkout* que abras en un editor.
 
-## What this does and does not prove
+## Qué prueba y qué no prueba esto
 
-A pass means the entry built, ran and passed its own check **in a place where it could not reach the network, your files, or any credential**. It does **not** prove the entry is harmless. Code can notice that it's in a sandbox (no network, a container, an odd user name, a date) and stay quiet until it reaches someone's real machine. Everyone who clones `master` runs entries outside any sandbox. That is why step 4 decides, not step 2.
+Un aprobado significa que la entrada se construyó, se ejecutó y superó su comprobación **en un lugar sin acceso a la red, a tus archivos ni a ninguna credencial**. **No** demuestra que la entrada sea inofensiva. El código puede notar que está en un entorno aislado (sin red, un contenedor, un nombre de usuario raro, una fecha). Puede quedarse callado hasta llegar a la máquina real de alguien. Todos los que clonan `master` ejecutan entradas fuera de cualquier entorno aislado. Por eso decide el paso 4, no el paso 2.
 
-Other limits worth knowing:
+Otros límites que conviene conocer:
 
-- Containers share the host's kernel. On Windows, that kernel is Docker Desktop's (or WSL's) VM, and a container escape would land there. Windows Sandbox and the GitHub runners are full VMs.
-- The **Actions Windows runner has network.** It's a fresh VM with no secrets, so the risk is to GitHub's machine, not ours. For a network-off Windows run, use `windows/run.ps1` locally. The job prints the names of any credential-like environment variables the entry could read. When first tested (2026-11-14) there were no tokens (no `ACTIONS_RUNTIME_TOKEN`, OIDC token or `GITHUB_TOKEN`); the only names were an orchestration ID and the runner image's stock `PGPASSWORD` for its preinstalled Postgres. The runner does have a real desktop, so WPF windows open and the screenshots in the run's artifacts show them.
-- The GUI ports (Rust/GTK, Python/Tk, Java and Kotlin/Swing, Go in a browser) have no check script and aren't covered yet. They're Ken's and Jim's, and they wait for someone to close a window.
+- Los contenedores comparten el kernel del anfitrión. En Windows, ese kernel es la máquina virtual de Docker Desktop (o de WSL). Una fuga del contenedor llegaría allí. Windows Sandbox y los *runners* de GitHub son máquinas virtuales completas.
+- El **runner de Actions en Windows tiene red.** Es una VM nueva sin secretos, así que el riesgo recae en la máquina de GitHub, no en la nuestra. Para una ejecución en Windows sin red, usa `windows/run.ps1` en local. El job imprime los nombres de las variables de entorno parecidas a credenciales que la entrada podría leer. En la primera prueba (2026-11-14) no había tokens (ni `ACTIONS_RUNTIME_TOKEN`, ni token OIDC ni `GITHUB_TOKEN`). Los únicos nombres eran un ID de orquestación y el `PGPASSWORD` estándar de la imagen del runner para su Postgres preinstalado. El runner sí tiene un escritorio real, así que las ventanas de WPF se abren y las capturas de pantalla de los artefactos de la ejecución las muestran.
+- Las adaptaciones con interfaz gráfica (Rust/GTK, Python/Tk, Java y Kotlin/Swing, Go en un navegador) no tienen un script de verificación y aún no están cubiertas. Son de Ken y de Jim, y esperan a que alguien cierre una ventana.
 
-## Adding a toolchain for a new language
+## Cómo añadir una cadena de herramientas para un lenguaje nuevo
 
-Do it in its own commit on `master`, never in the contributor's PR:
+Hazlo en un *commit* de Git propio en `master`, nunca en el PR del colaborador:
 
-- For the **container** images, add a line to `container/build-bases.sh` (a new `cc-rt-<name>` runtime base with the packages the entry needs at run time) and, if it must be compiled, put the compiler in the toolchain image as below. Entries then say `FROM cc-rt-<name>:local`; the lint already accepts `cc-rt-*` and `cc-build-*`.
-- For **Windows Sandbox**, add a profile in `windows/profiles/`.
+- Para las imágenes de **contenedor**, añade una línea a `container/build-bases.sh` (una nueva base de ejecución `cc-rt-<name>` con los paquetes que la entrada necesita en tiempo de ejecución). Si hay que compilarla, pon el compilador en la imagen de herramientas como se muestra abajo. Después las entradas dicen `FROM cc-rt-<name>:local`; el lint ya acepta `cc-rt-*` y `cc-build-*`.
+- Para **Windows Sandbox**, añade un perfil en `windows/profiles/`.
 
-- Prefer an Ubuntu package: add it to the `apt-get install` line.
-- Otherwise use the official upstream release tarball. Record its SHA-256 and verify it with `sha256sum -c` in the Dockerfile, the same way as `PCRE2` and `APL`.
-- Then run `sandbox/selftest.sh`, plus `sandbox/run.sh` on every entry, to make sure nothing else changed.
+- Prefiere un paquete de Ubuntu: agrégalo a la línea `apt-get install`.
+- Si no, usa el archivo tarball oficial de la versión upstream. Anota su SHA-256 y verifícalo con `sha256sum -c` en el Dockerfile, igual que `PCRE2` y `APL`.
+- Luego ejecuta `sandbox/selftest.sh`, además de `sandbox/run.sh` en cada entrada, para asegurarte de que nada más cambió.
 
-## Repository settings that back this up
+## Configuración del repositorio que respalda esto
 
-These are set on GitHub, not in files, and are worth turning on:
+Estos ajustes se configuran en GitHub, no en archivos. Conviene activarlos:
 
-- **Settings → Actions → General → "Require approval for all external contributors"**, so a fork's PR can't run workflows on its own.
-- **A ruleset on `master`**: require a pull request; and in `.github/CODEOWNERS`, make the maintainers owners of `/sandbox/`, `/.github/` and the root build files, with code-owner review required.
+- **Settings → Actions → General → "Require approval for all external contributors"**, para que un PR de un fork no pueda ejecutar flujos de trabajo por su cuenta.
+- **Un conjunto de reglas en `master`**: exige una demanda (pull). Y en `.github/CODEOWNERS`, haz que los mantenedores sean propietarios de `/sandbox/`, `/.github/` y los archivos de compilación de la raíz, con revisión obligatoria de los propietarios del código.
