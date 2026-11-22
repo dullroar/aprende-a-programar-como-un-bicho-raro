@@ -1,168 +1,168 @@
-# Blocking problems
+# Problemas de bloqueo
 
-What each approach has **not** solved, measured against a baseline.
+Lo que cada enfoque **no** ha resuelto, medido frente a una línea base.
 
-## The baseline: the modern C# challenge
+## La línea base: el reto moderno en C#
 
-[`ModernChallenge1`](../src/ModernChallenge1/README.md) is the canonical successful challenge. Inside a single bodiless `for` it does **all** of this:
+[`ModernChallenge1`](../src/ModernChallenge1/README.md) es el reto exitoso de referencia. Dentro de un solo `for` sin cuerpo hace **todo** esto:
 
-| Capability | In `ModernChallenge1` |
+| Capacidad | En `ModernChallenge1` |
 | --- | --- |
-| Random hours (10 to 19) | `Random.Shared.Next(10, 20)` in the iterator |
-| Running total and stop rule | LINQ `Sum() <= 40d` in the condition |
-| Persistence | EF Core to SQLite, `SaveChanges` |
-| Concurrency | A background `Thread` plus a `Mutex` |
-| A real UI | A WPF window built from runtime XAML |
-| Animation | A `DoubleAnimation` fade |
-| One statement | Exactly one `for`, empty body |
+| Horas aleatorias (de 10 a 19) | `Random.Shared.Next(10, 20)` en el iterador |
+| Total acumulado y regla de parada | LINQ `Sum() <= 40d` en la condición |
+| Persistencia | EF Core con SQLite, `SaveChanges` |
+| Concurrencia | Un `Thread` en segundo plano más un `Mutex` |
+| Una interfaz de usuario real | Una ventana WPF creada a partir de XAML en tiempo de ejecución |
+| Animación | Un `DoubleAnimation` de desvanecimiento |
+| Una sentencia | Exactamente un `for`, con el cuerpo vacío |
 
-The comparison is not "who is better". It is "which pieces of that list can this approach still not reach?" Each gap below is an open challenge for the exercises.
+La comparación no es "quién es mejor". Es "¿qué partes de esa lista no puede alcanzar todavía este enfoque?". Cada brecha de abajo es un reto abierto para los ejercicios.
 
-## Capability matrix
+## Matriz de capacidades
 
-`yes` = done inside the stunt itself; `host` = done, but by the host script or helper, not the stunt; `no` = not done. Pulled from each entry's own README. Blank-ish cells are noted in the per-entry list instead of guessed.
+`yes` = hecho dentro del propio truco; `host` = hecho, pero por el script anfitrión o un auxiliar, no por el truco; `no` = no hecho. Los datos salen del README de cada entrada. Las celdas casi vacías se anotan en la lista por entrada en lugar de adivinarlas.
 
-| Entry | Random | Persist | Window / pulse | Thread | Fail on purpose / one statement |
+| Entrada | Aleatorio | Persistencia | Ventana / pulso | Hilo | Fallar a propósito / una sentencia |
 | --- | --- | --- | --- | --- | --- |
-| C# `ModernChallenge1` | yes | yes | yes | yes | one `for` |
-| LINQ 1 / 2 | **no** (fixed five 8-hour days week) | yes | yes | no | one statement |
-| XAML | **no** (`Random(42)`, same every run) | yes (`strict`: XML only) | yes | yes | no loop (unrolled x4) |
-| `regex-perl` | yes | yes | terminal pulse | no | one match, returns false |
-| `regex-pcre2` | yes | TSV file | terminal pulse | no | one match, returns false |
-| `regex-pcre2grep` | yes | yes (no transaction) | terminal pulse | no | returns false; host not nothing |
-| `regex-dotnet` | **no** (host seeds) | **no** | **no** | no | **must return true** |
-| `regex-sed` | toy LFSR | yes | terminal pulse | no | exit 1 on purpose |
-| `make-gnu` | yes | host (`sqlite3`) | terminal glow | no | restart is the loop |
-| `cmake` | host (digit tape) | host | terminal glow | no | host reports |
-| Java / Kotlin / Python / Go / Rust | yes | yes | yes (window or page) | yes | one `for`/iterator; Go needs helpers |
-| `lisp`, `lisp-weird` | yes | via `sqlite3` pipe | terminal only | no | `or` stops the method chain; one-statement not the rule |
-| `m4` | yes (own Park-Miller; host seeds it) | host (`syscmd` + `sqlite3`) | terminal only | no | self-expansion ends when `ifelse` says so |
-| `tcl`, `tcl-weird` | yes | yes (in-process `sqlite3` package) | optional Tk window (`--gui`) | no | recursive trigger stops on an empty `INSERT ... SELECT` |
-| `awk` | yes (`rand`, seeded from the host) | via `sqlite3` pipe | terminal only | no | one `while`; not a one-statement entry |
-| `awk-weird` | yes (the dice are `RT` from `/dev/urandom`) | via `sqlite3` pipe | terminal only | no | `t > 40 { exit }`; **gawk only** |
-| `find-posix` | yes (`mktemp -d` names; the last character picks the hours) | via `sqlite3` pipe | terminal only | no | one `find`; the walk runs out of tree. Not run on BSD or macOS |
-| `find-gnu` | yes (same dice) | via `sqlite3` on fd 3 | terminal only | no | one GNU `find`; `-O0` to `-O3` must agree. **GNU find only** |
-| `apl`, `apl-weird`, `cobol`, `cobol-weird`, `forth`, `forth-weird`, `haskell`, `haskell-weird` | yes | via `sqlite3` pipe or script | terminal only | no | one-statement not the rule |
+| C# `ModernChallenge1` | sí | sí | sí | sí | un `for` |
+| LINQ 1 / 2 | **no** (cinco días fijos de 8 horas por semana) | sí | sí | no | una sentencia |
+| XAML | **no** (`Random(42)`, igual en cada ejecución) | sí (`strict`: solo XML) | sí | sí | sin bucle (desenrollado x4) |
+| `regex-perl` | sí | sí | pulso en la terminal | no | una coincidencia, devuelve false |
+| `regex-pcre2` | sí | archivo TSV | terminal pulse | no | una coincidencia, devuelve false |
+| `regex-pcre2grep` | sí | sí (sin transacción) | terminal pulse | no | devuelve false; el anfitrión no es nothing |
+| `regex-dotnet` | **no** (el anfitrión da la semilla) | **no** | **no** | no | **debe devolver true** |
+| `regex-sed` | LFSR de juguete | sí | pulso de la terminal | no | sale con 1 a propósito |
+| `make-gnu` | sí | anfitrión (`sqlite3`) | brillo de la terminal | no | el reinicio es el bucle |
+| `cmake` | anfitrión (cinta de dígitos) | anfitrión | brillo de la terminal | no | el anfitrión informa |
+| Java / Kotlin / Python / Go / Rust | sí | sí | sí (ventana o página) | sí | uno `for`/iterador; Go necesita funciones auxiliares |
+| `lisp`, `lisp-weird` | sí | mediante la tubería `sqlite3` | solo terminal | no | `or` detiene la cadena de métodos; una sola sentencia no es la regla |
+| `m4` | sí (Park-Miller propio; el anfitrión aporta la semilla) | anfitrión (`syscmd` + `sqlite3`) | solo terminal | no | la autoexpansión termina cuando `ifelse` lo indica |
+| `tcl`, `tcl-weird` | sí | sí (paquete `sqlite3` dentro del proceso) | ventana Tk opcional (`--gui`) | no | el disparador recursivo se detiene con un `INSERT ... SELECT` vacío |
+| `awk` | sí (`rand`, con semilla tomada del anfitrión) | mediante tubería `sqlite3` | solo terminal | no | un `while`; no es una entrada de una sola sentencia |
+| `awk-weird` | sí (los dados son `RT` a partir de `/dev/urandom`) | mediante una tubería de `sqlite3` | solo en la terminal | no | `t > 40 { exit }`; **solo gawk** |
+| `find-posix` | sí (nombres `mktemp -d`; el último carácter elige las horas) | mediante tubería `sqlite3` | solo en la terminal | no | un `find`; el recorrido termina cuando se acaba el árbol. No se ejecuta en BSD ni en macOS |
+| `find-gnu` | sí (los mismos dados) | mediante `sqlite3` en el fd 3 | solo en la terminal | no | un GNU `find`; `-O0` y `-O3` deben coincidir. **Solo GNU find** |
+| `apl`, `apl-weird`, `cobol`, `cobol-weird`, `forth`, `forth-weird`, `haskell`, `haskell-weird` | sí | mediante `sqlite3` en una tubería o un script | solo en la terminal | no | una sola sentencia no es la regla |
 
-The Linux script entries share a reporting shape (rows, a committed total, a stunt note) and do not open windows. Treat "Window / pulse" in this table as "terminal output" for them.
+Las entradas de script de Linux comparten una forma de reporte (filas, un total confirmado y una nota de acrobacia) y no abren ventanas. Para ellas, lee "Window / pulse" en esta tabla como "salida de la terminal".
 
-## Per-approach walls
+## Muros por enfoque
 
-### C# and LINQ
+### C# y LINQ
 
-- **LINQ entries do not draw random hours.** They fold a fixed five-day, 8-hour work week into 40 hours. The stop rule is still a prefix cap, but the "random 10 to 19" requirement is not met.
-- **Every `void` call needs a `Func<T>` wrapper.** Readable code would use a statement.
-- **Some eagerness is unavoidable.** `Aggregate` is eager by definition, and `SaveChanges()` is called once, eagerly, at the point where the outer `Repeat(...)` evaluates its argument.
-- **Mutable accumulators** (`list.Add`) are a shortcut rather than LINQ purity.
-- **Query syntax cannot express** `Aggregate`, `Repeat`, `ToList`, `Sum`, `Single` or `AsEnumerable` ([LinqChallenge2 README](../src/LinqChallenge2/README.md)).
-- **`DbContext` is not thread-safe**; the `Mutex` papers over it.
-- **Windows only** (WPF).
+- **Las entradas de LINQ no sortean horas aleatorias.** Convierten una semana laboral fija de cinco días de 8 horas en 40 horas. La regla de parada sigue siendo un tope sobre el prefijo, pero el requisito de "de 10 a 19 horas aleatorias" no se cumple.
+- **Cada llamada a `void` necesita un envoltorio `Func<T>`.** El código legible usaría una sentencia.
+- **Cierta evaluación inmediata es inevitable.** `Aggregate` es de evaluación inmediata por definición, y `SaveChanges()` se llama una vez, de forma inmediata, en el punto donde `Repeat(...)` evalúa su argumento.
+- **Los acumuladores mutables** (`list.Add`) son un atajo, no pureza de LINQ.
+- **La sintaxis de consulta no puede expresar** `Aggregate`, `Repeat`, `ToList`, `Sum`, `Single` o `AsEnumerable` ([README de LinqChallenge2](../src/LinqChallenge2/README.md)).
+- **`DbContext` no es seguro para hilos**; el `Mutex` solo lo disimula.
+- **Solo para Windows** (WPF).
 
 ### XAML
 
-- No loop: four unrolled copy-pasted passes.
-- No branching from WPF itself; SQL or `DataTable` expressions decide.
-- `strict.xaml` saves XML rather than a database.
-- The same "random" numbers on every run.
+- Sin bucle: cuatro pasadas desenrolladas y copiadas y pegadas.
+- WPF no ramifica por sí mismo; deciden SQL o expresiones `DataTable`.
+- `strict.xaml` guarda XML en lugar de una base de datos.
+- Los mismos números "aleatorios" en cada ejecución.
 
 ### `regex-dotnet`
 
-- **A regex cannot draw random numbers**, so the host seeds five unary strings.
-- **A regex cannot write**, so there are no side effects.
-- **The signature move is impossible.** Append `(?!)` and the match fails, and a failed `Match` exposes no captures. The entry must return true.
-- **No pulse.** It needs side effects during the match.
-- **Unrolled randomness**: the tape always holds five draws even when three are needed.
-- **The host still reports**, with a `Zip` over captures.
+- **Una expresión regular no puede generar números aleatorios**, así que el anfitrión siembra cinco cadenas de texto unarias.
+- **Una regex no puede escribir**, así que no hay efectos secundarios.
+- **El movimiento característico es imposible.** Si añades `(?!)`, la coincidencia falla, y una `Match` fallida no expone ninguna captura. La entrada debe devolver true.
+- **Sin pulso.** Necesita efectos secundarios durante la coincidencia.
+- **Aleatoriedad desenrollada**: la cinta siempre contiene cinco sorteos aunque solo se necesiten tres.
+- **El anfitrión sigue informando**, con `Zip` sobre las capturas.
 
 ### `regex-pcre2grep`
 
-- State cannot live in the pattern; the total lives in SQLite and callouts reread it.
-- No transaction: each helper commits immediately, so nothing can be rolled back.
-- Callouts need absolute program paths.
-- Needs a callout-capable `pcre2grep` build (Ubuntu's lacks it).
-- Not concurrency-safe: a run is identified by `max(id)`.
-- Only PCRE2 10.49 tested.
+- El estado no puede vivir en el patrón; el total vive en SQLite y los callouts lo vuelven a leer.
+- Sin transacción: cada función auxiliar confirma de inmediato, así que no se puede deshacer nada.
+- Los callouts necesitan rutas absolutas de programas.
+- Requiere una compilación de `pcre2grep` con soporte de *callout* (la de Ubuntu no lo incluye).
+- No es seguro con concurrencia: una ejecución se identifica por `max(id)`.
+- Solo se probó con PCRE2 10.49.
 
-### `regex-perl` and `regex-pcre2`
+### `regex-perl` y `regex-pcre2`
 
-- Perl: code blocks need package variables; the ISO year can differ near New Year.
-- PCRE2: callouts need the optimizer disabled and no JIT; the author did not test with the flags removed. A C host is still required.
+- Perl: los bloques de código necesitan variables de paquete; el año ISO puede diferir cerca del Año Nuevo.
+- PCRE2: los *callouts* necesitan el optimizador desactivado y sin JIT; el autor no probó con las banderas quitadas. Todavía se requiere un anfitrión en C.
 
 ### `regex-sed`
 
-- **A toy RNG**: a 16-bit LFSR. Same seed, same cards.
-- **sed has `b` and `t` jumps**, so its loop is "a machine with a program counter", not a single match.
-- **"Returns false" is weaker**: the process exit status, not the match.
-- **GNU only.**
-- **Pulse speed depends on the machine** (calibrated on one WSL 2 box).
-- `check.sh` scans for `e`/`r`/`R`/`w`, but a grep is not a sandbox.
+- **Un RNG de juguete**: un LFSR de 16 bits. La misma semilla genera las mismas tarjetas.
+- **sed tiene saltos `b` y `t`**, así que su bucle es "una máquina con un contador de programa", no una sola coincidencia.
+- **"Devuelve false" es más débil**: indica el estado de salida del proceso, no la coincidencia.
+- **Solo GNU.**
+- **La velocidad del pulso depende de la máquina** (calibrada en una sola máquina WSL 2).
+- `check.sh` busca `e`/`r`/`R`/`w`, pero un grep no es un entorno aislado (*sandbox*) que limite el acceso al sistema anfitrión.
 
 ### GNU Make
 
-- A shell is needed for `mkdir -p`, `sqlite3`, `rm` and the `@:` no-op; there is no pure-Make way to create a directory or a SQLite file.
-- UTC only; the calendar is good through 2134.
-- A crashed run leaves `.tc-*.mk` behind and the next `make` refuses until `make clean`.
-- Linux-only: the clock, entropy and terminal detection read `/proc`.
-- Windows Terminal's pop-up needs `wt.exe`.
+- Se necesita un intérprete de comandos (*shell*) para `mkdir -p`, `sqlite3`, `rm` y el no-op `@:`; en Make puro no hay forma de crear un directorio ni un archivo SQLite.
+- Solo UTC; el calendario es válido hasta 2134.
+- Una ejecución que falla deja `.tc-*.mk` y la siguiente `make` se niega a continuar hasta que `make clean`.
+- Solo Linux: la detección del reloj, de la entropía y de la terminal lee `/proc`.
+- El cuadro emergente de Windows Terminal necesita `wt.exe`.
 
 ### CMake
 
-- **No counted repetition, lookahead or backreferences** in CMake regex.
-- **Output cannot happen from inside a condition**, so the host prints, writes and animates after the loop.
-- The random draws are a host-made nine-digit tape.
-- The ISO year is patched by hand.
+- **Sin repetición con contador, anticipación (*lookahead*) ni referencias inversas** en las expresiones regulares de CMake.
+- **La salida no puede ocurrir dentro de una condición**, así que el anfitrión imprime, escribe y anima después del bucle.
+- Los sorteos aleatorios son una cinta de nueve dígitos generada por el anfitrión.
+- El año ISO se corrige a mano.
 
-### COBOL, Forth, Haskell and APL
+### COBOL, Forth, Haskell y APL
 
-- `cobol-weird`: `ON SIZE ERROR` is still a conditional, and the data-folder choice relies on a table index computed from a length. The program is not independent of a shell (`CALL "SYSTEM"` for `mkdir` and `sqlite3`).
-- `forth-weird`: works only at the top level or in `evaluate`d text, and the loop and its state must stay on one line.
-- `haskell-weird`: has not been run through `ormolu` or `hlint`; relies on `unsafeInterleaveIO` ordering; no random package ships with GHC.
-- `apl-weird`: relies on `⎕IO←0`; a bad rewrite fails by recursing forever; `⎕FIO` and `⊃`/`↑` are interpreter-specific. The straight entry needs a pinned GNU APL build.
-- **None of these open a window or run a thread.**
+- `cobol-weird`: `ON SIZE ERROR` sigue siendo un condicional, y la elección de la carpeta de datos depende de un índice de tabla calculado a partir de una longitud. El programa no es independiente de un intérprete de comandos (`CALL "SYSTEM"` para `mkdir` y `sqlite3`).
+- `forth-weird`: funciona solo en el nivel superior o en texto procesado con `evaluate`, y el bucle y su estado deben permanecer en una sola línea.
+- `haskell-weird`: no se ha pasado por `ormolu` ni por `hlint`; depende del orden de `unsafeInterleaveIO`; ningún paquete de números aleatorios se incluye con GHC.
+- `apl-weird`: depende de `⎕IO←0`; una reescritura incorrecta falla al recursar sin fin; `⎕FIO` y `⊃`/`↑` son específicos del intérprete. La entrada directa necesita una compilación fija de GNU APL.
+- **Ninguno de estos abre una ventana ni ejecuta un hilo.**
 
-### Lisp, m4, Tcl and AWK
+### Lisp, m4, Tcl y AWK
 
-- **Lisp (both)**: SBCL only (`sb-ext:run-program` and friends; the `or` combination and `defcard` are standard). No formatter exists. **`lisp-weird`**: the limit is baked into the design (five classes handle "10 to 19 hours, stop over 40"; a rule needing more cards needs more classes), and its method count uses the MOP.
-- **m4**: needs GNU m4 for `esyscmd` and `format`. The clock, the entropy and SQLite all come through the shell; m4 has no I/O of its own. `eval` is 32-bit, so the generator is built around that. Recursion deepens with every card, fine for 3-5 cards and not a pattern for thousands. A missing quote makes a runaway, not an error. There is no `m4-weird` by design.
-- **Tcl**: the `sqlite3` package is separate from Tcl. A `tclsh` that has loaded Tk does not exit at the end of a script unless the script destroys the window, and `DISPLAY=:0` under WSL hangs Tk (the checks use Xvfb). **`tcl-weird`**: relies on SQLite evaluating `tcl('hours')` once per trigger run, which SQLite does not promise (`check.sh` would notice); `unknown` runs whatever is in the table, so it is not a pattern for tables others can edit; SQLite caps trigger recursion (1000 by default).
-- **AWK**: `close()` of a pipe returns different values in different awks, and the one-true-awk build tested returns 0, so a failing `sqlite3` would pass unnoticed there. **`awk-weird`**: gawk only (`RT`); mawk quietly runs forever or reports zero cards. A directory name containing a single quote breaks the shell command that makes the data folder.
-- **None of the four** opens a thread; only the Tcl entries open a window (optional `--gui`).
+- **Lisp (ambos)**: solo SBCL (`sb-ext:run-program` y similares; la combinación `or` y `defcard` son estándar). No existe ningún formateador. **`lisp-weird`**: el límite está integrado en el diseño (cinco clases manejan "de 10 a 19 horas, para si pasa de 40"; una regla que necesite más tarjetas necesita más clases) y su conteo de métodos usa el MOP.
+- **m4**: requiere GNU m4 para `esyscmd` y `format`. El reloj, la entropía y SQLite llegan a través del intérprete de comandos; m4 no tiene E/S propia. `eval` es de 32 bits, así que el generador se construye en torno a ese límite. La recursión se hace más profunda con cada tarjeta: sirve para 3 a 5 tarjetas y no es un patrón para miles. Una comilla que falta provoca una ejecución descontrolada, no un error. No hay `m4-weird`, por diseño.
+- **Tcl**: el paquete `sqlite3` es independiente de Tcl. Un `tclsh` que ha cargado Tk no termina al final de un script a menos que el script destruya la ventana, y `DISPLAY=:0` bajo WSL bloquea Tk (las comprobaciones usan Xvfb). **`tcl-weird`**: depende de que SQLite evalúe `tcl('hours')` una sola vez por ejecución del trigger, algo que SQLite no promete (`check.sh` lo detectaría); `unknown` ejecuta lo que haya en la tabla, así que no es un patrón para tablas que otros pueden editar; SQLite limita la recursión de los triggers (1000 de forma predeterminada).
+- **AWK**: `close()` de una tubería devuelve valores distintos en awks distintos, y la compilación de one-true-awk que se probó devuelve 0, así que un `sqlite3` que falle pasaría inadvertido allí. **`awk-weird`**: solo gawk (`RT`); mawk se queda ejecutándose para siempre sin avisar o informa de cero tarjetas. Un nombre de directorio que contiene una comilla simple rompe el comando que crea el directorio de datos en el intérprete de comandos, el programa que lee y ejecuta comandos.
+- **Ninguno de los cuatro** abre un hilo; solo las entradas de Tcl abren una ventana (`--gui` opcional).
 
 ### find
 
-- **`find-posix`**: relies on find reading a directory after it visits it (unspecified by POSIX; works on GNU find 4.9, bfs 3.1.2 and busybox 1.36.1) and on `{}` inside a longer argument (`{}/b09`; also unspecified). `mktemp` is not POSIX. **Not run on BSD or macOS.** busybox runs `mktemp` in-process, so the forced-dice tests are skipped for it. The line is about 5.7 KB because find has no variables.
-- **`find-gnu`**: GNU find only (`-fprintf`, `%d`, `%T`, `-regex`, `-D`). `-quit` is avoided because it skips the `-D rates` profile. `/dev/fd/3` must be a pipe, or find truncates it.
-- **Neither** opens a window or a thread, and neither has a glow or pulse.
+- **`find-posix`**: depende de que find lea un directorio después de visitarlo (POSIX no lo especifica; funciona en GNU find 4.9, bfs 3.1.2 y busybox 1.36.1) y de `{}` dentro de un argumento más largo (`{}/b09`; POSIX tampoco lo especifica). `mktemp` no es POSIX. **No se ejecutó en BSD ni en macOS.** busybox ejecuta `mktemp` dentro del mismo proceso, así que se omiten las pruebas de dados forzados. La línea mide unos 5.7 KB porque find no tiene variables.
+- **`find-gnu`**: solo GNU find (`-fprintf`, `%d`, `%T`, `-regex`, `-D`). Se evita `-quit` porque omite el perfil `-D rates`. `/dev/fd/3` debe ser una tubería o find la trunca. 
+- **Ninguno** abre una ventana ni un hilo, y ninguno tiene brillo ni pulso.
 
-### tar, ed, Ex and JavaScript
+### tar, ed, Ex y JavaScript
 
-- **`tar-gnu`**: GNU tar only (`--to-command`, `--occurrence`); tested on 1.34 and 1.35. The dice are rolled when the archive is written, and the dispatcher does the one addition (in SQL). It does **not** capture live execution state: a stopped run cannot be resumed, only replayed. tar does not stop when its command fails, so the halt is the interpreter's own.
-- **`tar-gnu-weird`**: one transition, in SQL, does all the arithmetic, and only tar's checkpoints decide *when*. What a checkpoint counts depends on the mode, so only creating an archive is used. Not run on BSD or macOS tar.
-- **`ed-weird`**: GNU ed only (busybox ed cannot run it). That a failed `s` inside a global command is silent is GNU behavior that its manual does not promise. Totals are rows of marks, so the program does not scale past a few dozen. The launcher supplies the dice, since `ed` has no randomness.
-- **`ex-weird`**: the tape is sixty lines of data, one per possible total, and nothing computes a different limit. We ran it on nvi 1.81.6 and Vim 9.1; we did not run a conformance suite. nvi needs its recovery folder to be writable.
-- **`javascript`**: needs Node 24 or newer for `node:sqlite`. No thread, mutex or reflection (the C# had them as a 2008 time capsule). The categories repeat, where the C# stopped after four. The year is the ISO year, where the C# stored the calendar year.
-- **`javascript-weird`**: the lifetime test relies on a forced garbage collection (`WeakRef`), and is the one test that depends on the engine. `map` with effects is a trick. An iterator is spent after one pass.
-- **`javascript-events`**: needs Node 24 or newer, to keep the three Node entries in step. `emit()` is synchronous, so the program must schedule each card with `setImmediate` or the stack grows with every card. A throw in a listener goes to the caller of `emit()`, so every listener catches its own. An emitter has no backpressure: this program is safe only because each card waits for the one before it.
+- **`tar-gnu`**: solo GNU tar (`--to-command`, `--occurrence`); probado en las versiones 1.34 y 1.35. Los dados se lanzan cuando se escribe el archivo, y el despachador hace la única suma (en SQL). **No** captura el estado de la ejecución en vivo: una ejecución detenida no se puede reanudar, solo reproducir de nuevo. tar no se detiene cuando falla su comando, así que la detención es propia del intérprete.
+- **`tar-gnu-weird`**: una transición, en SQL, hace toda la aritmética, y solo los puntos de control de tar deciden *cuándo*. Lo que cuenta un punto de control depende del modo, así que solo se usa la creación de un archivo. No se ejecuta en tar de BSD ni de macOS.
+- **`ed-weird`**: solo GNU ed (busybox ed no puede ejecutarlo). Que un `s` fallido dentro de un comando global sea silencioso es un comportamiento de GNU que su manual no promete. Los totales son filas de marcas, así que el programa no escala más allá de unas pocas docenas. El lanzador aporta los dados, porque `ed` no tiene aleatoriedad.
+- **`ex-weird`**: la cinta tiene sesenta líneas de datos, una por cada total posible y nada calcula un límite distinto. Lo ejecutamos en nvi 1.81.6 y en Vim 9.1; no ejecutamos una suite de conformidad. nvi necesita que su carpeta de recuperación tenga permiso de escritura. 
+- **`javascript`**: necesita Node 24 o superior para `node:sqlite`. Sin hilos, mutex ni reflexión (el C# los tenía como una cápsula del tiempo de 2008). Las categorías se repiten, mientras que el C# se detenía después de cuatro. El año es el año ISO, mientras que el C# guardaba el año calendario.
+- **`javascript-weird`**: la prueba de ciclo de vida depende de una recolección de basura forzada (`WeakRef`) y es la única prueba que depende del motor. `map` con efectos es un truco. Un iterador se agota después de un solo recorrido.
+- **`javascript-events`**: requiere Node 24 o posterior, para mantener las tres entradas de Node al paso. `emit()` es síncrono, así que el programa debe planificar cada tarjeta con `setImmediate` o la pila crece con cada tarjeta. Una excepción lanzada en un escuchador de eventos llega a quien llama a `emit()`, así que cada escuchador de eventos captura la suya. Un emisor no tiene contrapresión: este programa es seguro solo porque cada tarjeta espera a la anterior. 
 
-### The ports
+### Las adaptaciones
 
-- Java, Kotlin and Go **Windows Sandbox** profiles are not yet tested on real hardware; Rust has no Windows Sandbox profile; the GUI ports have no check script and the gate does not cover them yet ([`sandbox/README.md`](../sandbox/README.md)).
-- Go's statement-only operations live in a helper file, which is the stated cost of that version.
+- Los perfiles de **Windows Sandbox** de Java, Kotlin y Go aún no se han probado en hardware real; Rust no tiene perfil de Windows Sandbox; las adaptaciones con interfaz gráfica no tienen script de comprobación y la compuerta aún no las cubre ([`sandbox/README.md`](../sandbox/README.md)).
+- Las operaciones de Go que solo admiten sentencias viven en un archivo auxiliar, que es el costo declarado de esa versión.
 
-## Open challenges
+## Retos abiertos
 
-Each of these is an [exercise](exercises.md#g-open-challenges-not-verified-may-be-impossible):
+Cada uno de estos es un [ejercicio](exercises.md#g-open-challenges-not-verified-may-be-impossible):
 
-1. Give the LINQ entries random 10 to 19 hour cards while staying in one statement.
-2. Make `regex-dotnet` fail on purpose without losing its captures.
-3. Give `regex-dotnet` a side effect (a pulse) through a `MatchEvaluator`-free route.
-4. Make `cmake` do its output from the condition, or replace the host's digit tape.
-5. Give Make a pure-Make random source and calendar that does not read `/proc`.
-6. Add a thread to any Linux script entry.
-7. Run the Windows entries on Linux, or add a Windows Sandbox profile for Rust.
-8. Make `awk-weird` work under mawk (or any non-GNU awk): get a die roll without `RT`.
-9. Give m4 its seed and week without `esyscmd`.
-10. Port `lisp-weird` to a second Common Lisp (ECL or CCL) by replacing only the SBCL-specific calls.
-11. Run `find-posix`'s `check.sh` on a BSD or macOS `find`, and write down exactly what breaks (`{}` in `{}/b09`, `-path`, `mktemp`, `date +%G-W%V`).
+1. Da a las entradas de LINQ tarjetas aleatorias de 10 a 19 horas, sin salir de una sola sentencia.
+2. Haz que `regex-dotnet` falle a propósito sin perder sus capturas.
+3. Dale a `regex-dotnet` un efecto secundario (un pulso) por una ruta sin `MatchEvaluator`.
+4. Haz que `cmake` produzca su salida desde la condición, o reemplaza la cinta de dígitos del anfitrión.
+5. Da a Make una fuente aleatoria y un calendario hechos solo con Make, que no lean `/proc`.
+6. Añade un hilo a cualquier entrada de script de Linux.
+7. Ejecuta las entradas de Windows en Linux, o añade un perfil de Windows Sandbox para Rust.
+8. Haz que `awk-weird` funcione con mawk (o con cualquier awk que no sea GNU): obtén una tirada de dado sin `RT`.
+9. Da a m4 su semilla y su semana sin `esyscmd`.
+10. Adapta `lisp-weird` a un segundo Common Lisp (ECL o CCL) reemplazando solo las llamadas específicas de SBCL.
+11. Ejecuta `check.sh` de `find-posix` en un `find` de BSD o macOS, y anota exactamente qué falla (`{}` en `{}/b09`, `-path`, `mktemp`, `date +%G-W%V`).
 
-> **THERE ARE NO BLOCKERS, JUST NOT ENOUGH IMAGINATION.** The list above is the imagination budget.
+> **NO HAY BLOQUEOS, SOLO FALTA IMAGINACIÓN.** La lista de arriba es el presupuesto de imaginación.

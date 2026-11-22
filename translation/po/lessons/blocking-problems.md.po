@@ -1,0 +1,595 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lessons/blocking-problems.md:1
+msgctxt "s-af6fd782658c-0000"
+msgid "Blocking problems"
+msgstr "Problemas de bloqueo"
+
+#: lessons/blocking-problems.md:3
+msgctxt "s-3fc98e5412c7-0001"
+msgid "What each approach has **not** solved, measured against a baseline."
+msgstr "Lo que cada enfoque **no** ha resuelto, medido frente a una línea base."
+
+#: lessons/blocking-problems.md:5
+msgctxt "s-3f40463e8a09-0002"
+msgid "The baseline: the modern C# challenge"
+msgstr "La línea base: el reto moderno en C#"
+
+#: lessons/blocking-problems.md:7
+msgctxt "s-5dd9e707c389-0003"
+msgid "[⟦CODE_0001⟧](⟦DEST_0002⟧) is the canonical successful challenge. Inside a single bodiless ⟦CODE_0003⟧ it does **all** of this:"
+msgstr "[⟦CODE_0001⟧](⟦DEST_0002⟧) es el reto exitoso de referencia. Dentro de un solo ⟦CODE_0003⟧ sin cuerpo hace **todo** esto:"
+
+#: lessons/blocking-problems.md:9
+msgctxt "s-cc570f9f43b5-0004"
+msgid "⟦SEP_0002⟧ Capability ⟦SEP_0003⟧ In ⟦CODE_0001⟧ ⟦SEP_0004⟧"
+msgstr "⟦SEP_0002⟧ Capacidad ⟦SEP_0003⟧ En ⟦CODE_0001⟧ ⟦SEP_0004⟧"
+
+#: lessons/blocking-problems.md:11
+msgctxt "s-bde471c1ac33-0005"
+msgid "⟦SEP_0002⟧ Random hours (10 to 19) ⟦SEP_0003⟧ ⟦CODE_0001⟧ in the iterator ⟦SEP_0004⟧"
+msgstr "⟦SEP_0002⟧ Horas aleatorias (de 10 a 19) ⟦SEP_0003⟧ ⟦CODE_0001⟧ en el iterador ⟦SEP_0004⟧"
+
+#: lessons/blocking-problems.md:12
+msgctxt "s-7e7bc079cbd2-0006"
+msgid "⟦SEP_0002⟧ Running total and stop rule ⟦SEP_0003⟧ LINQ ⟦CODE_0001⟧ in the condition ⟦SEP_0004⟧"
+msgstr "⟦SEP_0002⟧ Total acumulado y regla de parada ⟦SEP_0003⟧ LINQ ⟦CODE_0001⟧ en la condición ⟦SEP_0004⟧"
+
+#: lessons/blocking-problems.md:13
+msgctxt "s-a3897ae05420-0007"
+msgid "⟦SEP_0002⟧ Persistence ⟦SEP_0003⟧ EF Core to SQLite, ⟦CODE_0001⟧ ⟦SEP_0004⟧"
+msgstr "⟦SEP_0002⟧ Persistencia ⟦SEP_0003⟧ EF Core con SQLite, ⟦CODE_0001⟧ ⟦SEP_0004⟧"
+
+#: lessons/blocking-problems.md:14
+msgctxt "s-c22a7fbae232-0008"
+msgid "⟦SEP_0003⟧ Concurrency ⟦SEP_0004⟧ A background ⟦CODE_0001⟧ plus a ⟦CODE_0002⟧ ⟦SEP_0005⟧"
+msgstr "⟦SEP_0003⟧ Concurrencia ⟦SEP_0004⟧ Un ⟦CODE_0001⟧ en segundo plano más un ⟦CODE_0002⟧ ⟦SEP_0005⟧"
+
+#: lessons/blocking-problems.md:15
+msgctxt "s-146cb75bea92-0009"
+msgid "⟦SEP_0001⟧ A real UI ⟦SEP_0002⟧ A WPF window built from runtime XAML ⟦SEP_0003⟧"
+msgstr "⟦SEP_0001⟧ Una interfaz de usuario real ⟦SEP_0002⟧ Una ventana WPF creada a partir de XAML en tiempo de ejecución ⟦SEP_0003⟧"
+
+#: lessons/blocking-problems.md:16
+msgctxt "s-95c52a7e59db-0010"
+msgid "⟦SEP_0002⟧ Animation ⟦SEP_0003⟧ A ⟦CODE_0001⟧ fade ⟦SEP_0004⟧"
+msgstr "⟦SEP_0002⟧ Animación ⟦SEP_0003⟧ Un ⟦CODE_0001⟧ de desvanecimiento ⟦SEP_0004⟧"
+
+#: lessons/blocking-problems.md:17
+msgctxt "s-b63ed21c1499-0011"
+msgid "⟦SEP_0002⟧ One statement ⟦SEP_0003⟧ Exactly one ⟦CODE_0001⟧, empty body ⟦SEP_0004⟧"
+msgstr "⟦SEP_0002⟧ Una sentencia ⟦SEP_0003⟧ Exactamente un ⟦CODE_0001⟧, con el cuerpo vacío ⟦SEP_0004⟧"
+
+#: lessons/blocking-problems.md:19
+msgctxt "s-6c5871e384f9-0012"
+msgid "The comparison is not \"who is better\". It is \"which pieces of that list can this approach still not reach?\" Each gap below is an open challenge for the exercises."
+msgstr "La comparación no es \"quién es mejor\". Es \"¿qué partes de esa lista no puede alcanzar todavía este enfoque?\". Cada brecha de abajo es un reto abierto para los ejercicios."
+
+#: lessons/blocking-problems.md:21
+msgctxt "s-70713a3756b1-0013"
+msgid "Capability matrix"
+msgstr "Matriz de capacidades"
+
+#: lessons/blocking-problems.md:23
+msgctxt "s-0feb48673b33-0014"
+msgid "⟦CODE_0001⟧ = done inside the stunt itself; ⟦CODE_0002⟧ = done, but by the host script or helper, not the stunt; ⟦CODE_0003⟧ = not done. Pulled from each entry's own README. Blank-ish cells are noted in the per-entry list instead of guessed."
+msgstr "⟦CODE_0001⟧ = hecho dentro del propio truco; ⟦CODE_0002⟧ = hecho, pero por el script anfitrión o un auxiliar, no por el truco; ⟦CODE_0003⟧ = no hecho. Los datos salen del README de cada entrada. Las celdas casi vacías se anotan en la lista por entrada en lugar de adivinarlas."
+
+#: lessons/blocking-problems.md:25
+msgctxt "s-476390b706c7-0015"
+msgid "⟦SEP_0001⟧ Entry ⟦SEP_0002⟧ Random ⟦SEP_0003⟧ Persist ⟦SEP_0004⟧ Window / pulse ⟦SEP_0005⟧ Thread ⟦SEP_0006⟧ Fail on purpose / one statement ⟦SEP_0007⟧"
+msgstr "⟦SEP_0001⟧ Entrada ⟦SEP_0002⟧ Aleatorio ⟦SEP_0003⟧ Persistencia ⟦SEP_0004⟧ Ventana / pulso ⟦SEP_0005⟧ Hilo ⟦SEP_0006⟧ Fallar a propósito / una sentencia ⟦SEP_0007⟧"
+
+#: lessons/blocking-problems.md:27
+msgctxt "s-7c81d52d4395-0016"
+msgid "⟦SEP_0003⟧ C# ⟦CODE_0001⟧ ⟦SEP_0004⟧ yes ⟦SEP_0005⟧ yes ⟦SEP_0006⟧ yes ⟦SEP_0007⟧ yes ⟦SEP_0008⟧ one ⟦CODE_0002⟧ ⟦SEP_0009⟧"
+msgstr "⟦SEP_0003⟧ C# ⟦CODE_0001⟧ ⟦SEP_0004⟧ sí ⟦SEP_0005⟧ sí ⟦SEP_0006⟧ sí ⟦SEP_0007⟧ sí ⟦SEP_0008⟧ un ⟦CODE_0002⟧ ⟦SEP_0009⟧"
+
+#: lessons/blocking-problems.md:28
+msgctxt "s-0a40ba205285-0017"
+msgid "⟦SEP_0001⟧ LINQ 1 / 2 ⟦SEP_0002⟧ **no** (fixed five 8-hour days week) ⟦SEP_0003⟧ yes ⟦SEP_0004⟧ yes ⟦SEP_0005⟧ no ⟦SEP_0006⟧ one statement ⟦SEP_0007⟧"
+msgstr "⟦SEP_0001⟧ LINQ 1 / 2 ⟦SEP_0002⟧ **no** (cinco días fijos de 8 horas por semana) ⟦SEP_0003⟧ sí ⟦SEP_0004⟧ sí ⟦SEP_0005⟧ no ⟦SEP_0006⟧ una sentencia ⟦SEP_0007⟧"
+
+#: lessons/blocking-problems.md:29
+msgctxt "s-74447fef6c09-0018"
+msgid "⟦SEP_0003⟧ XAML ⟦SEP_0004⟧ **no** (⟦CODE_0001⟧, same every run) ⟦SEP_0005⟧ yes (⟦CODE_0002⟧: XML only) ⟦SEP_0006⟧ yes ⟦SEP_0007⟧ yes ⟦SEP_0008⟧ no loop (unrolled x4) ⟦SEP_0009⟧"
+msgstr "⟦SEP_0003⟧ XAML ⟦SEP_0004⟧ **no** (⟦CODE_0001⟧, igual en cada ejecución) ⟦SEP_0005⟧ sí (⟦CODE_0002⟧: solo XML) ⟦SEP_0006⟧ sí ⟦SEP_0007⟧ sí ⟦SEP_0008⟧ sin bucle (desenrollado x4) ⟦SEP_0009⟧"
+
+#: lessons/blocking-problems.md:30
+msgctxt "s-3e223cc251a9-0019"
+msgid "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ yes ⟦SEP_0004⟧ yes ⟦SEP_0005⟧ terminal pulse ⟦SEP_0006⟧ no ⟦SEP_0007⟧ one match, returns false ⟦SEP_0008⟧"
+msgstr "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ sí ⟦SEP_0004⟧ sí ⟦SEP_0005⟧ pulso en la terminal ⟦SEP_0006⟧ no ⟦SEP_0007⟧ una coincidencia, devuelve false ⟦SEP_0008⟧"
+
+#: lessons/blocking-problems.md:31
+msgctxt "s-bd7c594cc71c-0020"
+msgid "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ yes ⟦SEP_0004⟧ TSV file ⟦SEP_0005⟧ terminal pulse ⟦SEP_0006⟧ no ⟦SEP_0007⟧ one match, returns false ⟦SEP_0008⟧"
+msgstr "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ sí ⟦SEP_0004⟧ archivo TSV ⟦SEP_0005⟧ terminal pulse ⟦SEP_0006⟧ no ⟦SEP_0007⟧ una coincidencia, devuelve false ⟦SEP_0008⟧"
+
+#: lessons/blocking-problems.md:32
+msgctxt "s-37ae5ee77ee0-0021"
+msgid "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ yes ⟦SEP_0004⟧ yes (no transaction) ⟦SEP_0005⟧ terminal pulse ⟦SEP_0006⟧ no ⟦SEP_0007⟧ returns false; host not nothing ⟦SEP_0008⟧"
+msgstr "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ sí ⟦SEP_0004⟧ sí (sin transacción) ⟦SEP_0005⟧ terminal pulse ⟦SEP_0006⟧ no ⟦SEP_0007⟧ devuelve false; el anfitrión no es nothing ⟦SEP_0008⟧"
+
+#: lessons/blocking-problems.md:33
+msgctxt "s-b59a1fcb26f2-0022"
+msgid "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ **no** (host seeds) ⟦SEP_0004⟧ **no** ⟦SEP_0005⟧ **no** ⟦SEP_0006⟧ no ⟦SEP_0007⟧ **must return true** ⟦SEP_0008⟧"
+msgstr "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ **no** (el anfitrión da la semilla) ⟦SEP_0004⟧ **no** ⟦SEP_0005⟧ **no** ⟦SEP_0006⟧ no ⟦SEP_0007⟧ **debe devolver true** ⟦SEP_0008⟧"
+
+#: lessons/blocking-problems.md:34
+msgctxt "s-2759f0141078-0023"
+msgid "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ toy LFSR ⟦SEP_0004⟧ yes ⟦SEP_0005⟧ terminal pulse ⟦SEP_0006⟧ no ⟦SEP_0007⟧ exit 1 on purpose ⟦SEP_0008⟧"
+msgstr "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ LFSR de juguete ⟦SEP_0004⟧ sí ⟦SEP_0005⟧ pulso de la terminal ⟦SEP_0006⟧ no ⟦SEP_0007⟧ sale con 1 a propósito ⟦SEP_0008⟧"
+
+#: lessons/blocking-problems.md:35
+msgctxt "s-0cc9ecc97414-0024"
+msgid "⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ yes ⟦SEP_0005⟧ host (⟦CODE_0002⟧) ⟦SEP_0006⟧ terminal glow ⟦SEP_0007⟧ no ⟦SEP_0008⟧ restart is the loop ⟦SEP_0009⟧"
+msgstr "⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ sí ⟦SEP_0005⟧ anfitrión (⟦CODE_0002⟧) ⟦SEP_0006⟧ brillo de la terminal ⟦SEP_0007⟧ no ⟦SEP_0008⟧ el reinicio es el bucle ⟦SEP_0009⟧"
+
+#: lessons/blocking-problems.md:36
+msgctxt "s-cb4366a03023-0025"
+msgid "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ host (digit tape) ⟦SEP_0004⟧ host ⟦SEP_0005⟧ terminal glow ⟦SEP_0006⟧ no ⟦SEP_0007⟧ host reports ⟦SEP_0008⟧"
+msgstr "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ anfitrión (cinta de dígitos) ⟦SEP_0004⟧ anfitrión ⟦SEP_0005⟧ brillo de la terminal ⟦SEP_0006⟧ no ⟦SEP_0007⟧ el anfitrión informa ⟦SEP_0008⟧"
+
+#: lessons/blocking-problems.md:37
+msgctxt "s-f272405ea914-0026"
+msgid "⟦SEP_0002⟧ Java / Kotlin / Python / Go / Rust ⟦SEP_0003⟧ yes ⟦SEP_0004⟧ yes ⟦SEP_0005⟧ yes (window or page) ⟦SEP_0006⟧ yes ⟦SEP_0007⟧ one ⟦CODE_0001⟧/iterator; Go needs helpers ⟦SEP_0008⟧"
+msgstr "⟦SEP_0002⟧ Java / Kotlin / Python / Go / Rust ⟦SEP_0003⟧ sí ⟦SEP_0004⟧ sí ⟦SEP_0005⟧ sí (ventana o página) ⟦SEP_0006⟧ sí ⟦SEP_0007⟧ uno ⟦CODE_0001⟧/iterador; Go necesita funciones auxiliares ⟦SEP_0008⟧"
+
+#: lessons/blocking-problems.md:38
+msgctxt "s-5d0ca165b81b-0027"
+msgid "⟦SEP_0005⟧ ⟦CODE_0001⟧, ⟦CODE_0002⟧ ⟦SEP_0006⟧ yes ⟦SEP_0007⟧ via ⟦CODE_0003⟧ pipe ⟦SEP_0008⟧ terminal only ⟦SEP_0009⟧ no ⟦SEP_0010⟧ ⟦CODE_0004⟧ stops the method chain; one-statement not the rule ⟦SEP_0011⟧"
+msgstr "⟦SEP_0005⟧ ⟦CODE_0001⟧, ⟦CODE_0002⟧ ⟦SEP_0006⟧ sí ⟦SEP_0007⟧ mediante la tubería ⟦CODE_0003⟧ ⟦SEP_0008⟧ solo terminal ⟦SEP_0009⟧ no ⟦SEP_0010⟧ ⟦CODE_0004⟧ detiene la cadena de métodos; una sola sentencia no es la regla ⟦SEP_0011⟧"
+
+#: lessons/blocking-problems.md:39
+msgctxt "s-42d4a058a707-0028"
+msgid "⟦SEP_0005⟧ ⟦CODE_0001⟧ ⟦SEP_0006⟧ yes (own Park-Miller; host seeds it) ⟦SEP_0007⟧ host (⟦CODE_0002⟧ + ⟦CODE_0003⟧) ⟦SEP_0008⟧ terminal only ⟦SEP_0009⟧ no ⟦SEP_0010⟧ self-expansion ends when ⟦CODE_0004⟧ says so ⟦SEP_0011⟧"
+msgstr "⟦SEP_0005⟧ ⟦CODE_0001⟧ ⟦SEP_0006⟧ sí (Park-Miller propio; el anfitrión aporta la semilla) ⟦SEP_0007⟧ anfitrión (⟦CODE_0002⟧ + ⟦CODE_0003⟧) ⟦SEP_0008⟧ solo terminal ⟦SEP_0009⟧ no ⟦SEP_0010⟧ la autoexpansión termina cuando ⟦CODE_0004⟧ lo indica ⟦SEP_0011⟧"
+
+#: lessons/blocking-problems.md:40
+msgctxt "s-1ccb387f3591-0029"
+msgid "⟦SEP_0006⟧ ⟦CODE_0001⟧, ⟦CODE_0002⟧ ⟦SEP_0007⟧ yes ⟦SEP_0008⟧ yes (in-process ⟦CODE_0003⟧ package) ⟦SEP_0009⟧ optional Tk window (⟦CODE_0004⟧) ⟦SEP_0010⟧ no ⟦SEP_0011⟧ recursive trigger stops on an empty ⟦CODE_0005⟧ ⟦SEP_0012⟧"
+msgstr "⟦SEP_0006⟧ ⟦CODE_0001⟧, ⟦CODE_0002⟧ ⟦SEP_0007⟧ sí ⟦SEP_0008⟧ sí (paquete ⟦CODE_0003⟧ dentro del proceso) ⟦SEP_0009⟧ ventana Tk opcional (⟦CODE_0004⟧) ⟦SEP_0010⟧ no ⟦SEP_0011⟧ el disparador recursivo se detiene con un ⟦CODE_0005⟧ vacío ⟦SEP_0012⟧"
+
+#: lessons/blocking-problems.md:41
+msgctxt "s-c720bd5efbf6-0030"
+msgid "⟦SEP_0005⟧ ⟦CODE_0001⟧ ⟦SEP_0006⟧ yes (⟦CODE_0002⟧, seeded from the host) ⟦SEP_0007⟧ via ⟦CODE_0003⟧ pipe ⟦SEP_0008⟧ terminal only ⟦SEP_0009⟧ no ⟦SEP_0010⟧ one ⟦CODE_0004⟧; not a one-statement entry ⟦SEP_0011⟧"
+msgstr "⟦SEP_0005⟧ ⟦CODE_0001⟧ ⟦SEP_0006⟧ sí (⟦CODE_0002⟧, con semilla tomada del anfitrión) ⟦SEP_0007⟧ mediante tubería ⟦CODE_0003⟧ ⟦SEP_0008⟧ solo terminal ⟦SEP_0009⟧ no ⟦SEP_0010⟧ un ⟦CODE_0004⟧; no es una entrada de una sola sentencia ⟦SEP_0011⟧"
+
+#: lessons/blocking-problems.md:42
+msgctxt "s-3a347bf50ecd-0031"
+msgid "⟦SEP_0006⟧ ⟦CODE_0001⟧ ⟦SEP_0007⟧ yes (the dice are ⟦CODE_0002⟧ from ⟦CODE_0003⟧) ⟦SEP_0008⟧ via ⟦CODE_0004⟧ pipe ⟦SEP_0009⟧ terminal only ⟦SEP_0010⟧ no ⟦SEP_0011⟧ ⟦CODE_0005⟧; **gawk only** ⟦SEP_0012⟧"
+msgstr "⟦SEP_0006⟧ ⟦CODE_0001⟧ ⟦SEP_0007⟧ sí (los dados son ⟦CODE_0002⟧ a partir de ⟦CODE_0003⟧) ⟦SEP_0008⟧ mediante una tubería de ⟦CODE_0004⟧ ⟦SEP_0009⟧ solo en la terminal ⟦SEP_0010⟧ no ⟦SEP_0011⟧ ⟦CODE_0005⟧; **solo gawk** ⟦SEP_0012⟧"
+
+#: lessons/blocking-problems.md:43
+msgctxt "s-babca697c22c-0032"
+msgid "⟦SEP_0005⟧ ⟦CODE_0001⟧ ⟦SEP_0006⟧ yes (⟦CODE_0002⟧ names; the last character picks the hours) ⟦SEP_0007⟧ via ⟦CODE_0003⟧ pipe ⟦SEP_0008⟧ terminal only ⟦SEP_0009⟧ no ⟦SEP_0010⟧ one ⟦CODE_0004⟧; the walk runs out of tree. Not run on BSD or macOS ⟦SEP_0011⟧"
+msgstr "⟦SEP_0005⟧ ⟦CODE_0001⟧ ⟦SEP_0006⟧ sí (nombres ⟦CODE_0002⟧; el último carácter elige las horas) ⟦SEP_0007⟧ mediante tubería ⟦CODE_0003⟧ ⟦SEP_0008⟧ solo en la terminal ⟦SEP_0009⟧ no ⟦SEP_0010⟧ un ⟦CODE_0004⟧; el recorrido termina cuando se acaba el árbol. No se ejecuta en BSD ni en macOS ⟦SEP_0011⟧"
+
+#: lessons/blocking-problems.md:44
+msgctxt "s-1fe9f126b1a3-0033"
+msgid "⟦SEP_0006⟧ ⟦CODE_0001⟧ ⟦SEP_0007⟧ yes (same dice) ⟦SEP_0008⟧ via ⟦CODE_0002⟧ on fd 3 ⟦SEP_0009⟧ terminal only ⟦SEP_0010⟧ no ⟦SEP_0011⟧ one GNU ⟦CODE_0003⟧; ⟦CODE_0004⟧ to ⟦CODE_0005⟧ must agree. **GNU find only** ⟦SEP_0012⟧"
+msgstr "⟦SEP_0006⟧ ⟦CODE_0001⟧ ⟦SEP_0007⟧ sí (los mismos dados) ⟦SEP_0008⟧ mediante ⟦CODE_0002⟧ en el fd 3 ⟦SEP_0009⟧ solo en la terminal ⟦SEP_0010⟧ no ⟦SEP_0011⟧ un GNU ⟦CODE_0003⟧; ⟦CODE_0004⟧ y ⟦CODE_0005⟧ deben coincidir. **Solo GNU find** ⟦SEP_0012⟧"
+
+#: lessons/blocking-problems.md:45
+msgctxt "s-d283bd1d4bae-0034"
+msgid "⟦SEP_0010⟧ ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧, ⟦CODE_0006⟧, ⟦CODE_0007⟧, ⟦CODE_0008⟧ ⟦SEP_0011⟧ yes ⟦SEP_0012⟧ via ⟦CODE_0009⟧ pipe or script ⟦SEP_0013⟧ terminal only ⟦SEP_0014⟧ no ⟦SEP_0015⟧ one-statement not the rule ⟦SEP_0016⟧"
+msgstr "⟦SEP_0010⟧ ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧, ⟦CODE_0006⟧, ⟦CODE_0007⟧, ⟦CODE_0008⟧ ⟦SEP_0011⟧ sí ⟦SEP_0012⟧ mediante ⟦CODE_0009⟧ en una tubería o un script ⟦SEP_0013⟧ solo en la terminal ⟦SEP_0014⟧ no ⟦SEP_0015⟧ una sola sentencia no es la regla ⟦SEP_0016⟧"
+
+#: lessons/blocking-problems.md:47
+msgctxt "s-052bd20294b5-0035"
+msgid "The Linux script entries share a reporting shape (rows, a committed total, a stunt note) and do not open windows. Treat \"Window / pulse\" in this table as \"terminal output\" for them."
+msgstr "Las entradas de script de Linux comparten una forma de reporte (filas, un total confirmado y una nota de acrobacia) y no abren ventanas. Para ellas, lee \"Window / pulse\" en esta tabla como \"salida de la terminal\"."
+
+#: lessons/blocking-problems.md:49
+msgctxt "s-c4d14cb6c2d6-0036"
+msgid "Per-approach walls"
+msgstr "Muros por enfoque"
+
+#: lessons/blocking-problems.md:51
+msgctxt "s-5bfce01b1783-0037"
+msgid "C# and LINQ"
+msgstr "C# y LINQ"
+
+#: lessons/blocking-problems.md:53
+msgctxt "s-dd3dd417a54b-0038"
+msgid "**LINQ entries do not draw random hours.** They fold a fixed five-day, 8-hour work week into 40 hours. The stop rule is still a prefix cap, but the \"random 10 to 19\" requirement is not met."
+msgstr "**Las entradas de LINQ no sortean horas aleatorias.** Convierten una semana laboral fija de cinco días de 8 horas en 40 horas. La regla de parada sigue siendo un tope sobre el prefijo, pero el requisito de \"de 10 a 19 horas aleatorias\" no se cumple."
+
+#: lessons/blocking-problems.md:54
+msgctxt "s-96b41610451f-0039"
+msgid "**Every ⟦CODE_0001⟧ call needs a ⟦CODE_0002⟧ wrapper.** Readable code would use a statement."
+msgstr "**Cada llamada a ⟦CODE_0001⟧ necesita un envoltorio ⟦CODE_0002⟧.** El código legible usaría una sentencia."
+
+#: lessons/blocking-problems.md:55
+msgctxt "s-760e74350b67-0040"
+msgid "**Some eagerness is unavoidable.** ⟦CODE_0001⟧ is eager by definition, and ⟦CODE_0002⟧ is called once, eagerly, at the point where the outer ⟦CODE_0003⟧ evaluates its argument."
+msgstr "**Cierta evaluación inmediata es inevitable.** ⟦CODE_0001⟧ es de evaluación inmediata por definición, y ⟦CODE_0002⟧ se llama una vez, de forma inmediata, en el punto donde ⟦CODE_0003⟧ evalúa su argumento."
+
+#: lessons/blocking-problems.md:56
+msgctxt "s-b9b29f055111-0041"
+msgid "**Mutable accumulators** (⟦CODE_0001⟧) are a shortcut rather than LINQ purity."
+msgstr "**Los acumuladores mutables** (⟦CODE_0001⟧) son un atajo, no pureza de LINQ."
+
+#: lessons/blocking-problems.md:57
+msgctxt "s-68cbc9be5711-0042"
+msgid "**Query syntax cannot express** ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧ or ⟦CODE_0006⟧ ([LinqChallenge2 README](⟦DEST_0007⟧))."
+msgstr "**La sintaxis de consulta no puede expresar** ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧ o ⟦CODE_0006⟧ ([README de LinqChallenge2](⟦DEST_0007⟧))."
+
+#: lessons/blocking-problems.md:58
+msgctxt "s-c16ad0dacd29-0043"
+msgid "**⟦CODE_0001⟧ is not thread-safe**; the ⟦CODE_0002⟧ papers over it."
+msgstr "**⟦CODE_0001⟧ no es seguro para hilos**; el ⟦CODE_0002⟧ solo lo disimula."
+
+#: lessons/blocking-problems.md:59
+msgctxt "s-808d4bd495a8-0044"
+msgid "**Windows only** (WPF)."
+msgstr "**Solo para Windows** (WPF)."
+
+#: lessons/blocking-problems.md:61
+msgctxt "s-48922183e96a-0045"
+msgid "XAML"
+msgstr "XAML"
+
+#: lessons/blocking-problems.md:63
+msgctxt "s-1f916c2fe1fb-0046"
+msgid "No loop: four unrolled copy-pasted passes."
+msgstr "Sin bucle: cuatro pasadas desenrolladas y copiadas y pegadas."
+
+#: lessons/blocking-problems.md:64
+msgctxt "s-1d87692bcc38-0047"
+msgid "No branching from WPF itself; SQL or ⟦CODE_0001⟧ expressions decide."
+msgstr "WPF no ramifica por sí mismo; deciden SQL o expresiones ⟦CODE_0001⟧."
+
+#: lessons/blocking-problems.md:65
+msgctxt "s-fcbfcc5351d1-0048"
+msgid "⟦CODE_0001⟧ saves XML rather than a database."
+msgstr "⟦CODE_0001⟧ guarda XML en lugar de una base de datos."
+
+#: lessons/blocking-problems.md:66
+msgctxt "s-d6f842887d63-0049"
+msgid "The same \"random\" numbers on every run."
+msgstr "Los mismos números \"aleatorios\" en cada ejecución."
+
+#: lessons/blocking-problems.md:70
+msgctxt "s-199b23852fe2-0050"
+msgid "**A regex cannot draw random numbers**, so the host seeds five unary strings."
+msgstr "**Una expresión regular no puede generar números aleatorios**, así que el anfitrión siembra cinco cadenas de texto unarias."
+
+#: lessons/blocking-problems.md:71
+msgctxt "s-e2ed941f15e6-0051"
+msgid "**A regex cannot write**, so there are no side effects."
+msgstr "**Una regex no puede escribir**, así que no hay efectos secundarios."
+
+#: lessons/blocking-problems.md:72
+msgctxt "s-4652db327ca6-0052"
+msgid "**The signature move is impossible.** Append ⟦CODE_0001⟧ and the match fails, and a failed ⟦CODE_0002⟧ exposes no captures. The entry must return true."
+msgstr "**El movimiento característico es imposible.** Si añades ⟦CODE_0001⟧, la coincidencia falla, y una ⟦CODE_0002⟧ fallida no expone ninguna captura. La entrada debe devolver true."
+
+#: lessons/blocking-problems.md:73
+msgctxt "s-e3bc46926b2c-0053"
+msgid "**No pulse.** It needs side effects during the match."
+msgstr "**Sin pulso.** Necesita efectos secundarios durante la coincidencia."
+
+#: lessons/blocking-problems.md:74
+msgctxt "s-cc76b6fb68e6-0054"
+msgid "**Unrolled randomness**: the tape always holds five draws even when three are needed."
+msgstr "**Aleatoriedad desenrollada**: la cinta siempre contiene cinco sorteos aunque solo se necesiten tres."
+
+#: lessons/blocking-problems.md:75
+msgctxt "s-504651ea3c81-0055"
+msgid "**The host still reports**, with a ⟦CODE_0001⟧ over captures."
+msgstr "**El anfitrión sigue informando**, con ⟦CODE_0001⟧ sobre las capturas."
+
+#: lessons/blocking-problems.md:79
+msgctxt "s-d2c77905029c-0056"
+msgid "State cannot live in the pattern; the total lives in SQLite and callouts reread it."
+msgstr "El estado no puede vivir en el patrón; el total vive en SQLite y los callouts lo vuelven a leer."
+
+#: lessons/blocking-problems.md:80
+msgctxt "s-89a9e1d76b57-0057"
+msgid "No transaction: each helper commits immediately, so nothing can be rolled back."
+msgstr "Sin transacción: cada función auxiliar confirma de inmediato, así que no se puede deshacer nada."
+
+#: lessons/blocking-problems.md:81
+msgctxt "s-c7c6f2550aae-0058"
+msgid "Callouts need absolute program paths."
+msgstr "Los callouts necesitan rutas absolutas de programas."
+
+#: lessons/blocking-problems.md:82
+msgctxt "s-4eb6105036fe-0059"
+msgid "Needs a callout-capable ⟦CODE_0001⟧ build (Ubuntu's lacks it)."
+msgstr "Requiere una compilación de ⟦CODE_0001⟧ con soporte de *callout* (la de Ubuntu no lo incluye)."
+
+#: lessons/blocking-problems.md:83
+msgctxt "s-b4b49283ce68-0060"
+msgid "Not concurrency-safe: a run is identified by ⟦CODE_0001⟧."
+msgstr "No es seguro con concurrencia: una ejecución se identifica por ⟦CODE_0001⟧."
+
+#: lessons/blocking-problems.md:84
+msgctxt "s-4fba01bceffb-0061"
+msgid "Only PCRE2 10.49 tested."
+msgstr "Solo se probó con PCRE2 10.49."
+
+#: lessons/blocking-problems.md:86
+msgctxt "s-5d1f0b6b109b-0062"
+msgid "⟦CODE_0001⟧ and ⟦CODE_0002⟧"
+msgstr "⟦CODE_0001⟧ y ⟦CODE_0002⟧"
+
+#: lessons/blocking-problems.md:88
+msgctxt "s-dc06c51f483f-0063"
+msgid "Perl: code blocks need package variables; the ISO year can differ near New Year."
+msgstr "Perl: los bloques de código necesitan variables de paquete; el año ISO puede diferir cerca del Año Nuevo."
+
+#: lessons/blocking-problems.md:89
+msgctxt "s-3a0e5a32f4e9-0064"
+msgid "PCRE2: callouts need the optimizer disabled and no JIT; the author did not test with the flags removed. A C host is still required."
+msgstr "PCRE2: los *callouts* necesitan el optimizador desactivado y sin JIT; el autor no probó con las banderas quitadas. Todavía se requiere un anfitrión en C."
+
+#: lessons/blocking-problems.md:93
+msgctxt "s-c839ae53302c-0065"
+msgid "**A toy RNG**: a 16-bit LFSR. Same seed, same cards."
+msgstr "**Un RNG de juguete**: un LFSR de 16 bits. La misma semilla genera las mismas tarjetas."
+
+#: lessons/blocking-problems.md:94
+msgctxt "s-93ca3bd1f4e4-0066"
+msgid "**sed has ⟦CODE_0001⟧ and ⟦CODE_0002⟧ jumps**, so its loop is \"a machine with a program counter\", not a single match."
+msgstr "**sed tiene saltos ⟦CODE_0001⟧ y ⟦CODE_0002⟧**, así que su bucle es \"una máquina con un contador de programa\", no una sola coincidencia."
+
+#: lessons/blocking-problems.md:95
+msgctxt "s-d68fa02bebd1-0067"
+msgid "**\"Returns false\" is weaker**: the process exit status, not the match."
+msgstr "**\"Devuelve false\" es más débil**: indica el estado de salida del proceso, no la coincidencia."
+
+#: lessons/blocking-problems.md:96
+msgctxt "s-a0d58ef2902d-0068"
+msgid "**GNU only.**"
+msgstr "**Solo GNU.**"
+
+#: lessons/blocking-problems.md:97
+msgctxt "s-082474f9274c-0069"
+msgid "**Pulse speed depends on the machine** (calibrated on one WSL 2 box)."
+msgstr "**La velocidad del pulso depende de la máquina** (calibrada en una sola máquina WSL 2)."
+
+#: lessons/blocking-problems.md:98
+msgctxt "s-e8aa6ac82652-0070"
+msgid "⟦CODE_0001⟧ scans for ⟦CODE_0002⟧/⟦CODE_0003⟧/⟦CODE_0004⟧/⟦CODE_0005⟧, but a grep is not a sandbox."
+msgstr "⟦CODE_0001⟧ busca ⟦CODE_0002⟧/⟦CODE_0003⟧/⟦CODE_0004⟧/⟦CODE_0005⟧, pero un grep no es un entorno aislado (*sandbox*) que limite el acceso al sistema anfitrión."
+
+#: lessons/blocking-problems.md:100
+msgctxt "s-36a23cc3fe8c-0071"
+msgid "GNU Make"
+msgstr "GNU Make"
+
+#: lessons/blocking-problems.md:102
+msgctxt "s-6aa9970a5381-0072"
+msgid "A shell is needed for ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧ and the ⟦CODE_0004⟧ no-op; there is no pure-Make way to create a directory or a SQLite file."
+msgstr "Se necesita un intérprete de comandos (*shell*) para ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧ y el no-op ⟦CODE_0004⟧; en Make puro no hay forma de crear un directorio ni un archivo SQLite."
+
+#: lessons/blocking-problems.md:103
+msgctxt "s-759d51b0bf0f-0073"
+msgid "UTC only; the calendar is good through 2134."
+msgstr "Solo UTC; el calendario es válido hasta 2134."
+
+#: lessons/blocking-problems.md:104
+msgctxt "s-0e2490c8d2a8-0074"
+msgid "A crashed run leaves ⟦CODE_0001⟧ behind and the next ⟦CODE_0002⟧ refuses until ⟦CODE_0003⟧."
+msgstr "Una ejecución que falla deja ⟦CODE_0001⟧ y la siguiente ⟦CODE_0002⟧ se niega a continuar hasta que ⟦CODE_0003⟧."
+
+#: lessons/blocking-problems.md:105
+msgctxt "s-4d6c3845a08a-0075"
+msgid "Linux-only: the clock, entropy and terminal detection read ⟦CODE_0001⟧."
+msgstr "Solo Linux: la detección del reloj, de la entropía y de la terminal lee ⟦CODE_0001⟧."
+
+#: lessons/blocking-problems.md:106
+msgctxt "s-28b0ef8c86c7-0076"
+msgid "Windows Terminal's pop-up needs ⟦CODE_0001⟧."
+msgstr "El cuadro emergente de Windows Terminal necesita ⟦CODE_0001⟧."
+
+#: lessons/blocking-problems.md:108
+msgctxt "s-e7efda826b6d-0077"
+msgid "CMake"
+msgstr "CMake"
+
+#: lessons/blocking-problems.md:110
+msgctxt "s-a077b825a7ea-0078"
+msgid "**No counted repetition, lookahead or backreferences** in CMake regex."
+msgstr "**Sin repetición con contador, anticipación (*lookahead*) ni referencias inversas** en las expresiones regulares de CMake."
+
+#: lessons/blocking-problems.md:111
+msgctxt "s-7d9de68090c0-0079"
+msgid "**Output cannot happen from inside a condition**, so the host prints, writes and animates after the loop."
+msgstr "**La salida no puede ocurrir dentro de una condición**, así que el anfitrión imprime, escribe y anima después del bucle."
+
+#: lessons/blocking-problems.md:112
+msgctxt "s-cda4d5fde08a-0080"
+msgid "The random draws are a host-made nine-digit tape."
+msgstr "Los sorteos aleatorios son una cinta de nueve dígitos generada por el anfitrión."
+
+#: lessons/blocking-problems.md:113
+msgctxt "s-95e70b22336a-0081"
+msgid "The ISO year is patched by hand."
+msgstr "El año ISO se corrige a mano."
+
+#: lessons/blocking-problems.md:115
+msgctxt "s-07743a5d2c08-0082"
+msgid "COBOL, Forth, Haskell and APL"
+msgstr "COBOL, Forth, Haskell y APL"
+
+#: lessons/blocking-problems.md:117
+msgctxt "s-8a4eeabb0c9f-0083"
+msgid "⟦CODE_0001⟧: ⟦CODE_0002⟧ is still a conditional, and the data-folder choice relies on a table index computed from a length. The program is not independent of a shell (⟦CODE_0003⟧ for ⟦CODE_0004⟧ and ⟦CODE_0005⟧)."
+msgstr "⟦CODE_0001⟧: ⟦CODE_0002⟧ sigue siendo un condicional, y la elección de la carpeta de datos depende de un índice de tabla calculado a partir de una longitud. El programa no es independiente de un intérprete de comandos (⟦CODE_0003⟧ para ⟦CODE_0004⟧ y ⟦CODE_0005⟧)."
+
+#: lessons/blocking-problems.md:118
+msgctxt "s-068574ddd9f9-0084"
+msgid "⟦CODE_0001⟧: works only at the top level or in ⟦CODE_0002⟧d text, and the loop and its state must stay on one line."
+msgstr "⟦CODE_0001⟧: funciona solo en el nivel superior o en texto procesado con ⟦CODE_0002⟧, y el bucle y su estado deben permanecer en una sola línea."
+
+#: lessons/blocking-problems.md:119
+msgctxt "s-ca753b673d7a-0085"
+msgid "⟦CODE_0001⟧: has not been run through ⟦CODE_0002⟧ or ⟦CODE_0003⟧; relies on ⟦CODE_0004⟧ ordering; no random package ships with GHC."
+msgstr "⟦CODE_0001⟧: no se ha pasado por ⟦CODE_0002⟧ ni por ⟦CODE_0003⟧; depende del orden de ⟦CODE_0004⟧; ningún paquete de números aleatorios se incluye con GHC."
+
+#: lessons/blocking-problems.md:120
+msgctxt "s-9bda61ebc238-0086"
+msgid "⟦CODE_0001⟧: relies on ⟦CODE_0002⟧; a bad rewrite fails by recursing forever; ⟦CODE_0003⟧ and ⟦CODE_0004⟧/⟦CODE_0005⟧ are interpreter-specific. The straight entry needs a pinned GNU APL build."
+msgstr "⟦CODE_0001⟧: depende de ⟦CODE_0002⟧; una reescritura incorrecta falla al recursar sin fin; ⟦CODE_0003⟧ y ⟦CODE_0004⟧/⟦CODE_0005⟧ son específicos del intérprete. La entrada directa necesita una compilación fija de GNU APL."
+
+#: lessons/blocking-problems.md:121
+msgctxt "s-b4c6f6d19088-0087"
+msgid "**None of these open a window or run a thread.**"
+msgstr "**Ninguno de estos abre una ventana ni ejecuta un hilo.**"
+
+#: lessons/blocking-problems.md:123
+msgctxt "s-8879d7b87660-0088"
+msgid "Lisp, m4, Tcl and AWK"
+msgstr "Lisp, m4, Tcl y AWK"
+
+#: lessons/blocking-problems.md:125
+msgctxt "s-dfba9df530d0-0089"
+msgid "**Lisp (both)**: SBCL only (⟦CODE_0001⟧ and friends; the ⟦CODE_0002⟧ combination and ⟦CODE_0003⟧ are standard). No formatter exists. **⟦CODE_0004⟧**: the limit is baked into the design (five classes handle \"10 to 19 hours, stop over 40\"; a rule needing more cards needs more classes), and its method count uses the MOP."
+msgstr "**Lisp (ambos)**: solo SBCL (⟦CODE_0001⟧ y similares; la combinación ⟦CODE_0002⟧ y ⟦CODE_0003⟧ son estándar). No existe ningún formateador. **⟦CODE_0004⟧**: el límite está integrado en el diseño (cinco clases manejan \"de 10 a 19 horas, para si pasa de 40\"; una regla que necesite más tarjetas necesita más clases) y su conteo de métodos usa el MOP."
+
+#: lessons/blocking-problems.md:126
+msgctxt "s-e580506ca299-0090"
+msgid "**m4**: needs GNU m4 for ⟦CODE_0001⟧ and ⟦CODE_0002⟧. The clock, the entropy and SQLite all come through the shell; m4 has no I/O of its own. ⟦CODE_0003⟧ is 32-bit, so the generator is built around that. Recursion deepens with every card, fine for 3-5 cards and not a pattern for thousands. A missing quote makes a runaway, not an error. There is no ⟦CODE_0004⟧ by design."
+msgstr "**m4**: requiere GNU m4 para ⟦CODE_0001⟧ y ⟦CODE_0002⟧. El reloj, la entropía y SQLite llegan a través del intérprete de comandos; m4 no tiene E/S propia. ⟦CODE_0003⟧ es de 32 bits, así que el generador se construye en torno a ese límite. La recursión se hace más profunda con cada tarjeta: sirve para 3 a 5 tarjetas y no es un patrón para miles. Una comilla que falta provoca una ejecución descontrolada, no un error. No hay ⟦CODE_0004⟧, por diseño."
+
+#: lessons/blocking-problems.md:127
+msgctxt "s-f95f44b775c7-0091"
+msgid "**Tcl**: the ⟦CODE_0001⟧ package is separate from Tcl. A ⟦CODE_0002⟧ that has loaded Tk does not exit at the end of a script unless the script destroys the window, and ⟦CODE_0003⟧ under WSL hangs Tk (the checks use Xvfb). **⟦CODE_0004⟧**: relies on SQLite evaluating ⟦CODE_0005⟧ once per trigger run, which SQLite does not promise (⟦CODE_0006⟧ would notice); ⟦CODE_0007⟧ runs whatever is in the table, so it is not a pattern for tables others can edit; SQLite caps trigger recursion (1000 by default)."
+msgstr "**Tcl**: el paquete ⟦CODE_0001⟧ es independiente de Tcl. Un ⟦CODE_0002⟧ que ha cargado Tk no termina al final de un script a menos que el script destruya la ventana, y ⟦CODE_0003⟧ bajo WSL bloquea Tk (las comprobaciones usan Xvfb). **⟦CODE_0004⟧**: depende de que SQLite evalúe ⟦CODE_0005⟧ una sola vez por ejecución del trigger, algo que SQLite no promete (⟦CODE_0006⟧ lo detectaría); ⟦CODE_0007⟧ ejecuta lo que haya en la tabla, así que no es un patrón para tablas que otros pueden editar; SQLite limita la recursión de los triggers (1000 de forma predeterminada)."
+
+#: lessons/blocking-problems.md:128
+msgctxt "s-a507fcd894e4-0092"
+msgid "**AWK**: ⟦CODE_0001⟧ of a pipe returns different values in different awks, and the one-true-awk build tested returns 0, so a failing ⟦CODE_0002⟧ would pass unnoticed there. **⟦CODE_0003⟧**: gawk only (⟦CODE_0004⟧); mawk quietly runs forever or reports zero cards. A directory name containing a single quote breaks the shell command that makes the data folder."
+msgstr "**AWK**: ⟦CODE_0001⟧ de una tubería devuelve valores distintos en awks distintos, y la compilación de one-true-awk que se probó devuelve 0, así que un ⟦CODE_0002⟧ que falle pasaría inadvertido allí. **⟦CODE_0003⟧**: solo gawk (⟦CODE_0004⟧); mawk se queda ejecutándose para siempre sin avisar o informa de cero tarjetas. Un nombre de directorio que contiene una comilla simple rompe el comando que crea el directorio de datos en el intérprete de comandos, el programa que lee y ejecuta comandos."
+
+#: lessons/blocking-problems.md:129
+msgctxt "s-d82f502a9aaf-0093"
+msgid "**None of the four** opens a thread; only the Tcl entries open a window (optional ⟦CODE_0001⟧)."
+msgstr "**Ninguno de los cuatro** abre un hilo; solo las entradas de Tcl abren una ventana (⟦CODE_0001⟧ opcional)."
+
+#: lessons/blocking-problems.md:131
+msgctxt "s-e6640de835ad-0094"
+msgid "find"
+msgstr "find"
+
+#: lessons/blocking-problems.md:133
+msgctxt "s-545ff33d140c-0095"
+msgid "**⟦CODE_0001⟧**: relies on find reading a directory after it visits it (unspecified by POSIX; works on GNU find 4.9, bfs 3.1.2 and busybox 1.36.1) and on ⟦CODE_0002⟧ inside a longer argument (⟦CODE_0003⟧; also unspecified). ⟦CODE_0004⟧ is not POSIX. **Not run on BSD or macOS.** busybox runs ⟦CODE_0005⟧ in-process, so the forced-dice tests are skipped for it. The line is about 5.7 KB because find has no variables."
+msgstr "**⟦CODE_0001⟧**: depende de que find lea un directorio después de visitarlo (POSIX no lo especifica; funciona en GNU find 4.9, bfs 3.1.2 y busybox 1.36.1) y de ⟦CODE_0002⟧ dentro de un argumento más largo (⟦CODE_0003⟧; POSIX tampoco lo especifica). ⟦CODE_0004⟧ no es POSIX. **No se ejecutó en BSD ni en macOS.** busybox ejecuta ⟦CODE_0005⟧ dentro del mismo proceso, así que se omiten las pruebas de dados forzados. La línea mide unos 5.7 KB porque find no tiene variables."
+
+#: lessons/blocking-problems.md:134
+msgctxt "s-0fd90ffb585b-0096"
+msgid "**⟦CODE_0001⟧**: GNU find only (⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧, ⟦CODE_0006⟧). ⟦CODE_0007⟧ is avoided because it skips the ⟦CODE_0008⟧ profile. ⟦CODE_0009⟧ must be a pipe, or find truncates it."
+msgstr "**⟦CODE_0001⟧**: solo GNU find (⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧, ⟦CODE_0006⟧). Se evita ⟦CODE_0007⟧ porque omite el perfil ⟦CODE_0008⟧. ⟦CODE_0009⟧ debe ser una tubería o find la trunca. "
+
+#: lessons/blocking-problems.md:135
+msgctxt "s-dc843c96ac7e-0097"
+msgid "**Neither** opens a window or a thread, and neither has a glow or pulse."
+msgstr "**Ninguno** abre una ventana ni un hilo, y ninguno tiene brillo ni pulso."
+
+#: lessons/blocking-problems.md:137
+msgctxt "s-0288d7255f01-0098"
+msgid "tar, ed, Ex and JavaScript"
+msgstr "tar, ed, Ex y JavaScript"
+
+#: lessons/blocking-problems.md:139
+msgctxt "s-6c13aebd80d7-0099"
+msgid "**⟦CODE_0001⟧**: GNU tar only (⟦CODE_0002⟧, ⟦CODE_0003⟧); tested on 1.34 and 1.35. The dice are rolled when the archive is written, and the dispatcher does the one addition (in SQL). It does **not** capture live execution state: a stopped run cannot be resumed, only replayed. tar does not stop when its command fails, so the halt is the interpreter's own."
+msgstr "**⟦CODE_0001⟧**: solo GNU tar (⟦CODE_0002⟧, ⟦CODE_0003⟧); probado en las versiones 1.34 y 1.35. Los dados se lanzan cuando se escribe el archivo, y el despachador hace la única suma (en SQL). **No** captura el estado de la ejecución en vivo: una ejecución detenida no se puede reanudar, solo reproducir de nuevo. tar no se detiene cuando falla su comando, así que la detención es propia del intérprete."
+
+#: lessons/blocking-problems.md:140
+msgctxt "s-4791850f48df-0100"
+msgid "**⟦CODE_0001⟧**: one transition, in SQL, does all the arithmetic, and only tar's checkpoints decide *when*. What a checkpoint counts depends on the mode, so only creating an archive is used. Not run on BSD or macOS tar."
+msgstr "**⟦CODE_0001⟧**: una transición, en SQL, hace toda la aritmética, y solo los puntos de control de tar deciden *cuándo*. Lo que cuenta un punto de control depende del modo, así que solo se usa la creación de un archivo. No se ejecuta en tar de BSD ni de macOS."
+
+#: lessons/blocking-problems.md:141
+msgctxt "s-8577eca7e3b7-0101"
+msgid "**⟦CODE_0001⟧**: GNU ed only (busybox ed cannot run it). That a failed ⟦CODE_0002⟧ inside a global command is silent is GNU behavior that its manual does not promise. Totals are rows of marks, so the program does not scale past a few dozen. The launcher supplies the dice, since ⟦CODE_0003⟧ has no randomness."
+msgstr "**⟦CODE_0001⟧**: solo GNU ed (busybox ed no puede ejecutarlo). Que un ⟦CODE_0002⟧ fallido dentro de un comando global sea silencioso es un comportamiento de GNU que su manual no promete. Los totales son filas de marcas, así que el programa no escala más allá de unas pocas docenas. El lanzador aporta los dados, porque ⟦CODE_0003⟧ no tiene aleatoriedad."
+
+#: lessons/blocking-problems.md:142
+msgctxt "s-a497b479e4c1-0102"
+msgid "**⟦CODE_0001⟧**: the tape is sixty lines of data, one per possible total, and nothing computes a different limit. We ran it on nvi 1.81.6 and Vim 9.1; we did not run a conformance suite. nvi needs its recovery folder to be writable."
+msgstr "**⟦CODE_0001⟧**: la cinta tiene sesenta líneas de datos, una por cada total posible y nada calcula un límite distinto. Lo ejecutamos en nvi 1.81.6 y en Vim 9.1; no ejecutamos una suite de conformidad. nvi necesita que su carpeta de recuperación tenga permiso de escritura. "
+
+#: lessons/blocking-problems.md:143
+msgctxt "s-f4c821c8fbc9-0103"
+msgid "**⟦CODE_0001⟧**: needs Node 24 or newer for ⟦CODE_0002⟧. No thread, mutex or reflection (the C# had them as a 2008 time capsule). The categories repeat, where the C# stopped after four. The year is the ISO year, where the C# stored the calendar year."
+msgstr "**⟦CODE_0001⟧**: necesita Node 24 o superior para ⟦CODE_0002⟧. Sin hilos, mutex ni reflexión (el C# los tenía como una cápsula del tiempo de 2008). Las categorías se repiten, mientras que el C# se detenía después de cuatro. El año es el año ISO, mientras que el C# guardaba el año calendario."
+
+#: lessons/blocking-problems.md:144
+msgctxt "s-52b3a3cbf11a-0104"
+msgid "**⟦CODE_0001⟧**: the lifetime test relies on a forced garbage collection (⟦CODE_0002⟧), and is the one test that depends on the engine. ⟦CODE_0003⟧ with effects is a trick. An iterator is spent after one pass."
+msgstr "**⟦CODE_0001⟧**: la prueba de ciclo de vida depende de una recolección de basura forzada (⟦CODE_0002⟧) y es la única prueba que depende del motor. ⟦CODE_0003⟧ con efectos es un truco. Un iterador se agota después de un solo recorrido."
+
+#: lessons/blocking-problems.md:145
+msgctxt "s-2a8cf52461e4-0105"
+msgid "**⟦CODE_0001⟧**: needs Node 24 or newer, to keep the three Node entries in step. ⟦CODE_0002⟧ is synchronous, so the program must schedule each card with ⟦CODE_0003⟧ or the stack grows with every card. A throw in a listener goes to the caller of ⟦CODE_0004⟧, so every listener catches its own. An emitter has no backpressure: this program is safe only because each card waits for the one before it."
+msgstr "**⟦CODE_0001⟧**: requiere Node 24 o posterior, para mantener las tres entradas de Node al paso. ⟦CODE_0002⟧ es síncrono, así que el programa debe planificar cada tarjeta con ⟦CODE_0003⟧ o la pila crece con cada tarjeta. Una excepción lanzada en un escuchador de eventos llega a quien llama a ⟦CODE_0004⟧, así que cada escuchador de eventos captura la suya. Un emisor no tiene contrapresión: este programa es seguro solo porque cada tarjeta espera a la anterior. "
+
+#: lessons/blocking-problems.md:147
+msgctxt "s-a4fe8b822d92-0106"
+msgid "The ports"
+msgstr "Las adaptaciones"
+
+#: lessons/blocking-problems.md:149
+msgctxt "s-9e6ac7d52c06-0107"
+msgid "Java, Kotlin and Go **Windows Sandbox** profiles are not yet tested on real hardware; Rust has no Windows Sandbox profile; the GUI ports have no check script and the gate does not cover them yet ([⟦CODE_0001⟧](⟦DEST_0002⟧))."
+msgstr "Los perfiles de **Windows Sandbox** de Java, Kotlin y Go aún no se han probado en hardware real; Rust no tiene perfil de Windows Sandbox; las adaptaciones con interfaz gráfica no tienen script de comprobación y la compuerta aún no las cubre ([⟦CODE_0001⟧](⟦DEST_0002⟧))."
+
+#: lessons/blocking-problems.md:150
+msgctxt "s-146463c4cac3-0108"
+msgid "Go's statement-only operations live in a helper file, which is the stated cost of that version."
+msgstr "Las operaciones de Go que solo admiten sentencias viven en un archivo auxiliar, que es el costo declarado de esa versión."
+
+#: lessons/blocking-problems.md:152
+msgctxt "s-ed0a60f493af-0109"
+msgid "Open challenges"
+msgstr "Retos abiertos"
+
+#: lessons/blocking-problems.md:154
+msgctxt "s-28093e11c750-0110"
+msgid "Each of these is an [exercise](⟦DEST_0001⟧):"
+msgstr "Cada uno de estos es un [ejercicio](⟦DEST_0001⟧):"
+
+#: lessons/blocking-problems.md:156
+msgctxt "s-8f4396f3341b-0111"
+msgid ""
+"Give the LINQ entries random 10 to 19 hour cards while staying in one statement.\n"
+"2. Make ⟦CODE_0001⟧ fail on purpose without losing its captures.\n"
+"3. Give ⟦CODE_0002⟧ a side effect (a pulse) through a ⟦CODE_0003⟧-free route.\n"
+"4. Make ⟦CODE_0004⟧ do its output from the condition, or replace the host's digit tape.\n"
+"5. Give Make a pure-Make random source and calendar that does not read ⟦CODE_0005⟧.\n"
+"6. Add a thread to any Linux script entry.\n"
+"7. Run the Windows entries on Linux, or add a Windows Sandbox profile for Rust.\n"
+"8. Make ⟦CODE_0006⟧ work under mawk (or any non-GNU awk): get a die roll without ⟦CODE_0007⟧.\n"
+"9. Give m4 its seed and week without ⟦CODE_0008⟧.\n"
+"10. Port ⟦CODE_0009⟧ to a second Common Lisp (ECL or CCL) by replacing only the SBCL-specific calls.\n"
+"11. Run ⟦CODE_0010⟧'s ⟦CODE_0011⟧ on a BSD or macOS ⟦CODE_0012⟧, and write down exactly what breaks (⟦CODE_0013⟧ in ⟦CODE_0014⟧, ⟦CODE_0015⟧, ⟦CODE_0016⟧, ⟦CODE_0017⟧)."
+msgstr ""
+"Da a las entradas de LINQ tarjetas aleatorias de 10 a 19 horas, sin salir de una sola sentencia.\n"
+"2. Haz que ⟦CODE_0001⟧ falle a propósito sin perder sus capturas.\n"
+"3. Dale a ⟦CODE_0002⟧ un efecto secundario (un pulso) por una ruta sin ⟦CODE_0003⟧.\n"
+"4. Haz que ⟦CODE_0004⟧ produzca su salida desde la condición, o reemplaza la cinta de dígitos del anfitrión.\n"
+"5. Da a Make una fuente aleatoria y un calendario hechos solo con Make, que no lean ⟦CODE_0005⟧.\n"
+"6. Añade un hilo a cualquier entrada de script de Linux.\n"
+"7. Ejecuta las entradas de Windows en Linux, o añade un perfil de Windows Sandbox para Rust.\n"
+"8. Haz que ⟦CODE_0006⟧ funcione con mawk (o con cualquier awk que no sea GNU): obtén una tirada de dado sin ⟦CODE_0007⟧.\n"
+"9. Da a m4 su semilla y su semana sin ⟦CODE_0008⟧.\n"
+"10. Adapta ⟦CODE_0009⟧ a un segundo Common Lisp (ECL o CCL) reemplazando solo las llamadas específicas de SBCL.\n"
+"11. Ejecuta ⟦CODE_0011⟧ de ⟦CODE_0010⟧ en un ⟦CODE_0012⟧ de BSD o macOS, y anota exactamente qué falla (⟦CODE_0013⟧ en ⟦CODE_0014⟧, ⟦CODE_0015⟧, ⟦CODE_0016⟧, ⟦CODE_0017⟧)."
+
+#: lessons/blocking-problems.md:168
+msgctxt "s-80d3bd175c26-0112"
+msgid "**THERE ARE NO BLOCKERS, JUST NOT ENOUGH IMAGINATION.** The list above is the imagination budget."
+msgstr "**NO HAY BLOQUEOS, SOLO FALTA IMAGINACIÓN.** La lista de arriba es el presupuesto de imaginación."

@@ -465,3 +465,7 @@
 {"id":"EXC-465","segment":"s-1837785e4d3b-0017","invariant":"I7","reason":"these are literal Gradle task names (sandbox, sandbox (check), sandbox (show)); identifiers stay as written","task":"P4-docs-1"}
 {"id":"EXC-466","segment":"s-c7498cf75c7b-0020","invariant":"I7","reason":"'Builds' is the verb construir (building container images), not the noun compilación","task":"P4-docs-1"}
 {"id":"EXC-467","segment":"s-2ca5297a4307-0026","invariant":"I7","reason":"'Windows Sandbox' is a Microsoft product name and stays untranslated; the sandbox gloss was already given earlier in the file","task":"P4-docs-1"}
+{"id":"EXC-468","segment":"s-36a23cc3fe8c-0071","invariant":"TRANSLATE","reason":"GNU Make is a product name and is kept in English.","task":"P4-lessons-4"}
+{"id":"EXC-469","segment":"s-e6640de835ad-0094","invariant":"TRANSLATE","reason":"find is a command name (identifier) and is kept in English.","task":"P4-lessons-4"}
+{"id":"EXC-470","segment":"s-9e6ac7d52c06-0107","invariant":"I7","reason":"Windows Sandbox is a product name, not the generic term sandbox; the glossary rendering does not apply.","task":"P4-lessons-4"}
+{"id":"EXC-471","segment":"s-8f4396f3341b-0111","invariant":"I7","reason":"Windows Sandbox is a product name, not the generic term sandbox; the glossary rendering does not apply.","task":"P4-lessons-4"}

@@ -311,3 +311,5 @@
 339 P4-lessons-languages-5 done Tcl positions 40 to 49 accepted and applied; regex, tar and Tcl complete; scoped and fast checks passed.
 340 P4-audit-7 done sampled 5 segments; one minor finding F008 queued as P4-fix-8.
 343 P4-docs-1 done running-with-gradle and stacked-bar-charts translated (curriculum was already done); 9 waivers recorded; scoped and fast checks passed.
+344 P4-fix-8 done JavaScript lesson: three conditions of legitimate uses joined in one sentence (F008); fast check passed.
+347 P4-lessons-4 done blocking-problems lesson translated (113 segments); 7 needs-revision resolved (3 set, 4 waived); extra shell glosses stripped; fast check passed.
