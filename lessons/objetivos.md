@@ -11,7 +11,7 @@ Every weird entry forces you to name the machine hiding inside a language. Once 
 <!-- BEGIN GENERATED machines -->
 | Language / tool | The machine it really is | Where the program's state lives | Lesson |
 | --- | --- | --- | --- |
-| .NET regex | A counter built from a stack | Balancing-group capture stacks | [regex](lenguajes/regex.md#net-balancing-groups) |
+| .NET regex | A counter built from a stack | Balancing-group capture stacks | [regex](lenguajes/regex.md#net-grupos-de-equilibrio) |
 | APL | Ordinary: an array machine that draws five cards at once and decides afterwards | Arrays, and nothing hidden | [apl](lenguajes/apl.md) |
 | APL | An array machine, with code that is also an array | Arrays, and the source text of functions | [apl](lenguajes/apl.md#funciones-que-se-modifican-a-sí-mismas-apl-weird) |
 | AWK | Ordinary: a `while` loop in `BEGIN`, with a pipe to sqlite3 as the output | Arrays and parameter-local variables | [awk](lenguajes/awk.md) |

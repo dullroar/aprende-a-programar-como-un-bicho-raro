@@ -8,7 +8,7 @@ A formal language is a notation with strict rules that a machine can process. Th
 
 | Formal language | What it was for | What it becomes | Entry |
 | --- | --- | --- | --- |
-| **RegEx** | Matching text | A search machine with state and I/O hooks ([Perl](lenguajes/regex.md#perl-código-dentro-de-la-coincidencia), [PCRE2](lenguajes/regex.md#pcre2-los-callouts-como-conjunto-de-instrucciones)), a counter ([.NET](lenguajes/regex.md#net-balancing-groups)), a rewriting system ([sed](lenguajes/regex.md#gnu-sed)) | `regex-*` |
+| **RegEx** | Matching text | A search machine with state and I/O hooks ([Perl](lenguajes/regex.md#perl-código-dentro-de-la-coincidencia), [PCRE2](lenguajes/regex.md#pcre2-los-callouts-como-conjunto-de-instrucciones)), a counter ([.NET](lenguajes/regex.md#net-grupos-de-equilibrio)), a rewriting system ([sed](lenguajes/regex.md#gnu-sed)) | `regex-*` |
 | **Make** | Ordering builds | A dependency engine that restarts itself, giving a loop | [`make-gnu`](../src/make-gnu/README.md) |
 | **CMake** | Configuring builds | A register machine in a `while()` condition | [`cmake`](../src/cmake/README.md) |
 | **XAML** | Describing a UI tree | An interpreter that runs methods as it parses | [`xaml`](../src/xaml/README.md) |
@@ -89,7 +89,7 @@ Each track stores "what happens next" somewhere that is not a loop counter: in t
 <!-- BEGIN GENERATED control-state -->
 | Place | Entry |
 | --- | --- |
-| Balancing-group capture stacks | [regex](lenguajes/regex.md#net-balancing-groups): [`regex-dotnet`](../src/regex-dotnet/README.md) |
+| Balancing-group capture stacks | [regex](lenguajes/regex.md#net-grupos-de-equilibrio): [`regex-dotnet`](../src/regex-dotnet/README.md) |
 | Arrays, and nothing hidden | [apl](lenguajes/apl.md): [`apl`](../src/apl/README.md) |
 | Arrays, and the source text of functions | [apl](lenguajes/apl.md#funciones-que-se-modifican-a-sí-mismas-apl-weird): [`apl-weird`](../src/apl-weird/README.md) |
 | Arrays and parameter-local variables | [awk](lenguajes/awk.md): [`awk`](../src/awk/README.md) |

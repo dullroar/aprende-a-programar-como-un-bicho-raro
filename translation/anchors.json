@@ -5679,8 +5679,8 @@
     {
      "en": ".NET: balancing groups",
      "en_id": "net-balancing-groups",
-     "es": ".NET: balancing groups",
-     "es_id": "net-balancing-groups",
+     "es": ".NET: grupos de equilibrio",
+     "es_id": "net-grupos-de-equilibrio",
      "level": 2,
      "line": 75
     },
@@ -5780,7 +5780,7 @@
     "how-each-program-runs": "how-each-program-runs",
     "how-the-hell-does-that-work": "cómo-demonios-funciona-eso",
     "learn-and-break": "aprende-y-rompe",
-    "net-balancing-groups": "net-balancing-groups",
+    "net-balancing-groups": "net-grupos-de-equilibrio",
     "pcre2-callouts-as-an-instruction-set": "pcre2-los-callouts-como-conjunto-de-instrucciones",
     "pcre2grep-exit-codes-as-control-flow": "pcre2grep-códigos-de-salida-como-flujo-de-control",
     "perl-code-inside-the-match": "perl-código-dentro-de-la-coincidencia",

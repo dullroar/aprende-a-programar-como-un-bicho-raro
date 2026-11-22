@@ -70,15 +70,15 @@ El "anfitrión" es un `pcre2grep` estándar y una línea de comandos. Las cadena
 - **Sin estado en el patrón.** El total acumulado reside en SQLite y cada callout lo vuelve a leer.
 - **Cada escritura se confirma por separado.** Los programas auxiliares ejecutan comandos independientes de SQLite en modo de confirmación automática. El `(*COMMIT)` de la expresión regular poda rutas de retroceso. El fallo final de coincidencia deja intactas las escrituras anteriores en la base de datos.
 - **El `pcre2grep` propio de Ubuntu se compila sin scripts de callout.** Se necesita una compilación del proyecto original (la imagen del entorno aislado fija la versión 10.49). Un caso de manual **permitido por la implementación**.
-- **Security**: callouts that run programs are a command-execution feature. `check.sh` allows only `/usr/bin/sqlite3`, `/usr/bin/test` and `/bin/sleep`.
+- **Seguridad**: los callouts que ejecutan programas son una función de ejecución de comandos. `check.sh` solo permite `/usr/bin/sqlite3`, `/usr/bin/test` y `/bin/sleep`.
 
-## .NET: balancing groups
+## .NET: grupos de equilibrio
 
-[`Program.cs` L13](../../src/regex-dotnet/Program.cs#L13) uses a budget of 41 empty captures and **balancing groups** that pop one per hour: `(?<-b>)`. The "counter" is a capture stack.
+[`Program.cs` L13](../../src/regex-dotnet/Program.cs#L13) usa un presupuesto de 41 capturas vacías y **grupos de equilibrio** que extraen una por hora: `(?<-b>)`. El "contador" es una pila de capturas.
 
-This entry is the repo's best **honest failure**, and it is the one that most clearly marks where regex alone stops. See [blocking problems](../problemas-bloqueantes.md#regex-dotnet):
+Esta entrada es el mejor **fallo honesto** del repositorio. También es la que muestra con más claridad dónde se detiene la expresión regular por sí sola. Consulta [problemas bloqueantes](../problemas-bloqueantes.md#regex-dotnet):
 
-- A regex cannot draw random numbers, so the host seeds five unary strings.
+- Una expresión regular no puede sortear números aleatorios, así que el anfitrión proporciona cinco cadenas de texto unarias.
 - The host reads the successful match's captures and appends a TSV report.
 - **Failure yields zero card rows.** Append `(?!)` to fail the entire match. On the fixed all-10 tape, the normal pattern succeeds with five cards and a total of 50. The forced failure exposes zero captures, leaves an empty TSV report and exits 1. See the [entry check](../../src/regex-dotnet/check.sh).
 

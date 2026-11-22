@@ -210,27 +210,27 @@ msgstr "**El ⟦CODE_0001⟧ propio de Ubuntu se compila sin scripts de callout.
 #: lessons/languages/regex.md:73
 msgctxt "s-c2786847dcca-0040"
 msgid "**Security**: callouts that run programs are a command-execution feature. ⟦CODE_0001⟧ allows only ⟦CODE_0002⟧, ⟦CODE_0003⟧ and ⟦CODE_0004⟧."
-msgstr ""
+msgstr "**Seguridad**: los callouts que ejecutan programas son una función de ejecución de comandos. ⟦CODE_0001⟧ solo permite ⟦CODE_0002⟧, ⟦CODE_0003⟧ y ⟦CODE_0004⟧."
 
 #: lessons/languages/regex.md:75
 msgctxt "s-33119b447538-0041"
 msgid ".NET: balancing groups"
-msgstr ""
+msgstr ".NET: grupos de equilibrio"
 
 #: lessons/languages/regex.md:77
 msgctxt "s-467af8c54c6b-0042"
 msgid "[⟦CODE_0001⟧ L13](⟦DEST_0002⟧) uses a budget of 41 empty captures and **balancing groups** that pop one per hour: ⟦CODE_0003⟧. The \"counter\" is a capture stack."
-msgstr ""
+msgstr "[⟦CODE_0001⟧ L13](⟦DEST_0002⟧) usa un presupuesto de 41 capturas vacías y **grupos de equilibrio** que extraen una por hora: ⟦CODE_0003⟧. El \"contador\" es una pila de capturas."
 
 #: lessons/languages/regex.md:79
 msgctxt "s-74aa1a982420-0043"
 msgid "This entry is the repo's best **honest failure**, and it is the one that most clearly marks where regex alone stops. See [blocking problems](⟦DEST_0001⟧):"
-msgstr ""
+msgstr "Esta entrada es el mejor **fallo honesto** del repositorio. También es la que muestra con más claridad dónde se detiene la expresión regular por sí sola. Consulta [problemas bloqueantes](⟦DEST_0001⟧):"
 
 #: lessons/languages/regex.md:81
 msgctxt "s-17103ce3930b-0044"
 msgid "A regex cannot draw random numbers, so the host seeds five unary strings."
-msgstr ""
+msgstr "Una expresión regular no puede sortear números aleatorios, así que el anfitrión proporciona cinco cadenas de texto unarias."
 
 #: lessons/languages/regex.md:82
 msgctxt "s-4aa6336034c0-0045"
