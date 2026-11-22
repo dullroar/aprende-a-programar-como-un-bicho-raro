@@ -5655,8 +5655,8 @@
     {
      "en": "Learn and break",
      "en_id": "learn-and-break",
-     "es": "Learn and break",
-     "es_id": "learn-and-break",
+     "es": "Aprende y rompe",
+     "es_id": "aprende-y-rompe",
      "level": 3,
      "line": 44
     },
@@ -5779,7 +5779,7 @@
     "gnu-sed": "gnu-sed",
     "how-each-program-runs": "how-each-program-runs",
     "how-the-hell-does-that-work": "cómo-demonios-funciona-eso",
-    "learn-and-break": "learn-and-break",
+    "learn-and-break": "aprende-y-rompe",
     "net-balancing-groups": "net-balancing-groups",
     "pcre2-callouts-as-an-instruction-set": "pcre2-callouts-as-an-instruction-set",
     "pcre2grep-exit-codes-as-control-flow": "pcre2grep-exit-codes-as-control-flow",

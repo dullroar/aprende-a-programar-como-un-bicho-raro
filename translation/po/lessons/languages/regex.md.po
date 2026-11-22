@@ -110,27 +110,27 @@ msgstr "⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ regla de parada **y** sele
 #: lessons/languages/regex.md:38
 msgctxt "s-94245fad0fec-0020"
 msgid "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ one card ⟦SEP_0004⟧"
-msgstr ""
+msgstr "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ una tarjeta ⟦SEP_0004⟧"
 
 #: lessons/languages/regex.md:39
 msgctxt "s-52451ce77d2a-0021"
 msgid "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ once the loop ends, stop backtracking from retrying shorter loops ⟦SEP_0004⟧"
-msgstr ""
+msgstr "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ cuando termina el bucle, impide que el retroceso reintente bucles más cortos ⟦SEP_0004⟧"
 
 #: lessons/languages/regex.md:40
 msgctxt "s-64ffcacdbd59-0022"
 msgid "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ the signature move: give up after doing all the work ⟦SEP_0004⟧"
-msgstr ""
+msgstr "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ la jugada característica: rendirse después de hacer todo el trabajo ⟦SEP_0004⟧"
 
 #: lessons/languages/regex.md:42
 msgctxt "s-feb837e6db60-0023"
 msgid "⟦CODE_0001⟧ is the interesting part: Perl unwinds ⟦CODE_0002⟧ assignments when the engine backtracks, so the running total is backtrack-aware, but the ⟦CODE_0003⟧s and ⟦CODE_0004⟧s are *not* undone. The engine abandons the branch and the side effects stay written. The SQLite transaction is real and commits; **the match is what lies**."
-msgstr ""
+msgstr "⟦CODE_0001⟧ es la parte interesante: Perl deshace las asignaciones ⟦CODE_0002⟧ cuando el motor retrocede. Así, el total acumulado responde al retroceso, pero los ⟦CODE_0003⟧ y ⟦CODE_0004⟧ *no* se deshacen. El motor abandona la rama y los efectos secundarios permanecen escritos. La transacción de SQLite es real y se confirma; **lo que miente es la coincidencia**."
 
 #: lessons/languages/regex.md:44
 msgctxt "s-eefc2df18b58-0024"
 msgid "Learn and break"
-msgstr ""
+msgstr "Aprende y rompe"
 
 #: lessons/languages/regex.md:46
 msgctxt "s-762329ad5f8f-0025"

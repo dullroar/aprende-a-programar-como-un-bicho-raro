@@ -2290,3 +2290,4 @@
 {"segment_id": "s-415f5fa29cf9-0015", "ts": "2026-11-22T14:54:01Z", "findings": ["I15: heading differs from the recorded transcreated '¿Cómo demonios funciona eso?'"], "playful_note": "Pregunta exasperada que anticipa la explicación del mecanismo."}
 {"segment_id": "s-96105f9940c3-0019", "ts": "2026-11-22T14:54:01Z", "findings": ["I25: comma before a simple 'o' ('devuelve la siguiente categoría *como patrón*, o X |'): no comma before a simple o or y"]}
 {"segment_id": "s-415f5fa29cf9-0015", "ts": "2026-11-22T14:54:22Z", "findings": [], "playful_note": "Pregunta exasperada que anticipa la explicación del mecanismo."}
+{"segment_id": "s-eefc2df18b58-0024", "ts": "2026-11-22T14:56:05Z", "findings": ["REGISTER: playful segment H014 has status 'pending' in the humor register"], "playful_note": "Conserva la invitación a aprender y luego romper."}

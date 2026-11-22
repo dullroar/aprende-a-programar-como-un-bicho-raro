@@ -35,13 +35,13 @@ La única sentencia del archivo es un solo `=~`. La inicialización de la semill
 | `^(?{ ... })` | inicializador: inicializa el estado, inicia `sqlite3` en una tubería y abre una transacción |
 | `(?: ... )*` | el bucle: el cuantificador voraz es la iteración; la cadena de texto del armazón da algo que comer a cada pasada |
 | `(??{ $::t<=40 ? $::c[$::n] // '(*FAIL)' : '(*FAIL)' })` | regla de parada **y** selector de categoría: devuelve la siguiente categoría *como patrón* o `(*FAIL)` |
-| `(?{ local $::t = ...; print ... })` | one card |
-| `(*COMMIT)` | once the loop ends, stop backtracking from retrying shorter loops |
-| `(*COMMIT)(?{ settle })(*FAIL)` | the signature move: give up after doing all the work |
+| `(?{ local $::t = ...; print ... })` | una tarjeta |
+| `(*COMMIT)` | cuando termina el bucle, impide que el retroceso reintente bucles más cortos |
+| `(*COMMIT)(?{ settle })(*FAIL)` | la jugada característica: rendirse después de hacer todo el trabajo |
 
-`local` is the interesting part: Perl unwinds `local` assignments when the engine backtracks, so the running total is backtrack-aware, but the `INSERT`s and `print`s are *not* undone. The engine abandons the branch and the side effects stay written. The SQLite transaction is real and commits; **the match is what lies**.
+`local` es la parte interesante: Perl deshace las asignaciones `local` cuando el motor retrocede. Así, el total acumulado responde al retroceso, pero los `INSERT` y `print` *no* se deshacen. El motor abandona la rama y los efectos secundarios permanecen escritos. La transacción de SQLite es real y se confirma; **lo que miente es la coincidencia**.
 
-### Learn and break
+### Aprende y rompe
 
 - Backtracking is a search procedure, and a failing branch is information. State that unwinds (`local`) and state that does not (I/O) behave differently, and that difference is the whole trick. See [patterns](../patrones.md#backtracking-side-effects-and-error-handling).
 - **Production**: code in patterns is hard to test or debug, and in Perl, regex code blocks run with the file's `strict` rules and can only `local` package variables.
