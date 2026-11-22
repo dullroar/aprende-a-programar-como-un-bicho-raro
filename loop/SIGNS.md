@@ -129,3 +129,4 @@
 - Before claiming a translated file is complete, export all pending segments without --from; earlier empty entries can remain even when later segments are accepted.
 - translate.py always translates the whole file, so check the next task's segment range for the same file and mark it done if nothing is pending; a rendering the glossary wants for a verb (State, builds) is a waiver, a noun is a reword.
 - Write the gloss (*frontmatter*) only once per file: a heading that repeats it fails I24, so use the plain term there; 'pull request', 'Windows Sandbox' and verb 'build' always need an I7 waiver, while 'parser', 'scope', 'list' and 'statement' as nouns are fixed by rewording.
+- In `claude -p` dontAsk mode, any Bash call containing a shell variable such as `echo $RALPH_AGENT` is denied and ends the iteration with no progress; never expand variables in Bash (the provider is claude), and run each tool as a plain `python3 -I tools/...` or `git ...` command.
