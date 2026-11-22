@@ -324,3 +324,4 @@
 359 P4-sandbox-1 done sandbox/README.md translated (43 segments); 17 set by hand, 10 waived (Windows Sandbox, build verb, sandbox/ folder); fast check passed.
 360 P4-sandbox-windows-profiles-1 done windows/profiles README translated (16 segments); 3 waived (Windows Sandbox, build verb); fast check passed.
 361 P4-audit-9 done 5 segments sampled across root docs and sandbox READMEs; 0 findings, no review-fix tasks.
+362 P4-999 blocked verify --release fails (21 checks): root-doc PO drift, humor H001, anchor links to English slugs; see blockers.md.

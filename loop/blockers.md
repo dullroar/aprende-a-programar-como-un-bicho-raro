@@ -1,5 +1,8 @@
 # Blockers
 
+## P4-999 (iter 362): Phase 4 gate fails
+`verify.py --release`: 21 of 75 checks fail (7 of 57 with `--no-gates`). Failing: CONTRIBUTING.md and SANDBOX-SETUP.md not equal to PO applied (I2/I4/I16); humor-register H001 (2 in register, 3 in source); test_anchors; test_breakage_pilot; test_humor_register; negative fixtures; inventory --check counts; study-guide build (164 links to English heading slugs); curriculum build (30). Fix narrowly via review-fix tasks, then reset P4-999 to todo.
+
 Both tasks below were requeued after iteration 231. The draft guides are locally excluded. The unchanged fast verifier, scoped fast checks for both tasks, and the anchor check passed. The curriculum task now uses the supported `--files` acceptance command.
 
 ## P4-lessons-curriculum-1 (iteration 193): working-tree verification blocked
