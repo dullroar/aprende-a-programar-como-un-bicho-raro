@@ -39,3 +39,8 @@ Iterations 27 to 30 stalled on P2-004 (stall breaker at 30; usage-limit replies 
 
 - The configured `python3 tools/verify.py --fast --task P4-lessons-languages-3` exited 2 twice and printed the verifier usage: `--task` is unsupported. The usage is reproducible with that command; `python3 tools/verify.py --help` describes supported options.
 - Corrected the task's acceptance command to `python3 tools/verify.py --fast --files lessons/languages/forth.md lessons/languages/haskell.md lessons/languages/javascript.md`; it passed, as did the working-tree fast verifier. The task remains blocked under the two-failure rule. Unblock by setting it to `todo` and resume Forth at position 25.
+
+## P4-lessons-languages-5 (iteration 273): invalid acceptance command
+
+- `python3 tools/verify.py --fast --task P4-lessons-languages-5` exited 2 twice and printed usage because `--task` is unsupported; rerun that command for the failure output.
+- Corrected the task gate to `python3 tools/verify.py --fast --files lessons/languages/regex.md lessons/languages/tar.md lessons/languages/tcl.md`; it passed, as did the working-tree fast verifier. The task remains blocked under the two-failure rule. Unblock by setting it to `todo` and resume regex at position 5.

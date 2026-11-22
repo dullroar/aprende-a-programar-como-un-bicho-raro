@@ -86,3 +86,8 @@
 - Iter 195 (P4-lessons-languages-2): Corrected the unsupported --task acceptance command to --fast --files with all three task inputs; verify.py exits 2 on the original flag. Alternative: add task resolution to the verifier. Cost to reverse: restore the queue field after implementing that support.
 - Iter 243 (P4-lessons-languages-3): Corrected its unsupported `--task` acceptance command to `--fast --files` with all three inputs after two exit-2 failures; retained blocked status under the two-failure rule. Alternative: implement task resolution in the verifier. Cost to reverse: restore the queue field.
 - Iter 244 (P4-lessons-languages-4): After the unsupported `--task` acceptance flag exited 2, corrected this task's command to `--fast --files` for its three inputs; the retry passed. Alternative: add task resolution to the verifier. Cost to reverse: restore the queue field after implementing that support.
+ 
+## Iteration 273: repair P4-lessons-languages-5 acceptance command
+
+- Decision: replace unsupported `--task` with `--files` naming all three task inputs. The original command exited 2 twice; the supported scoped command passes. The task remains blocked under the two-failure rule.
+- Alternative: leave the unusable command unchanged. Cost to reverse: restore the original queue field; no verifier behavior changes.

@@ -5615,8 +5615,8 @@
     {
      "en": "Regular expressions: five engines, five personalities",
      "en_id": "regular-expressions-five-engines-five-personalities",
-     "es": "Regular expressions: five engines, five personalities",
-     "es_id": "regular-expressions-five-engines-five-personalities",
+     "es": "Expresiones regulares: cinco motores, cinco personalidades",
+     "es_id": "expresiones-regulares-cinco-motores-cinco-personalidades",
      "level": 1,
      "line": 1
     },
@@ -5790,7 +5790,7 @@
     "program-flow-of-regex-perl": "program-flow-of-regex-perl",
     "program-flow-of-regex-sed": "program-flow-of-regex-sed",
     "quirks": "quirks",
-    "regular-expressions-five-engines-five-personalities": "regular-expressions-five-engines-five-personalities",
+    "regular-expressions-five-engines-five-personalities": "expresiones-regulares-cinco-motores-cinco-personalidades",
     "under-what-circumstances-would-this-terrible-idea-become-reasonable": "under-what-circumstances-would-this-terrible-idea-become-reasonable",
     "what-did-we-just-learn": "what-did-we-just-learn",
     "what-makes-each-engine-special": "what-makes-each-engine-special"

@@ -243,3 +243,4 @@
 270 P4-lessons-languages-4 partial accepted and applied make-cmake positions 40 to 45; resume at 46; task, fast and anchor checks passed.
 271 P4-lessons-languages-4 partial accepted and applied make-cmake positions 46 to 51; resume at 52; task, fast and anchor checks passed.
 272 P4-lessons-languages-4 done completed Make/CMake positions 52 to 61 and the three-file batch; task, fast and anchor checks passed.
+273 P4-lessons-languages-5 blocked invalid acceptance command failed twice; regex positions 0 to 4 accepted, corrected scoped gate and fast checks passed.

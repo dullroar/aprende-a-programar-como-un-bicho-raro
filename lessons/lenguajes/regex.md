@@ -1,12 +1,12 @@
-# Regular expressions: five engines, five personalities
+# Expresiones regulares: cinco motores, cinco personalidades
 
-Entries: [`src/regex-perl`](../../src/regex-perl/README.md), [`src/regex-pcre2`](../../src/regex-pcre2/README.md), [`src/regex-pcre2grep`](../../src/regex-pcre2grep/README.md), [`src/regex-dotnet`](../../src/regex-dotnet/README.md), [`src/regex-sed`](../../src/regex-sed/README.md).
+Entradas: [`src/regex-perl`](../../src/regex-perl/README.md), [`src/regex-pcre2`](../../src/regex-pcre2/README.md), [`src/regex-pcre2grep`](../../src/regex-pcre2grep/README.md), [`src/regex-dotnet`](../../src/regex-dotnet/README.md), [`src/regex-sed`](../../src/regex-sed/README.md).
 
-For an advanced reading path with traces and experiments, see the [regex engines and sed study guide](../guias-de-estudio/lenguajes/motores-de-regex-y-sed.md).
+Para una ruta de lectura avanzada con trazas y experimentos, consulta la [guía de estudio de motores de expresiones regulares y sed](../guias-de-estudio/lenguajes/motores-de-regex-y-sed.md).
 
-A regular expression looks like a pattern. These entries treat it as a **program**: the match is the computation, backtracking is the search and the side effects are what you *wanted*. The recurring signature move is to do all the work and then **return "no match" on purpose**.
+Una expresión regular parece un patrón. Estas entradas la tratan como un **programa**: la coincidencia es el cálculo, el retroceso es la búsqueda y los efectos secundarios son lo que *querías*. La maniobra recurrente consiste en hacer todo el trabajo y luego **devolver "sin coincidencia" a propósito**.
 
-This survey compares five engines. The Perl example works through the mechanism in detail and combines the explanation with the exercise.
+Este panorama compara cinco motores. El ejemplo de Perl examina el mecanismo en detalle y combina la explicación con el ejercicio.
 
 ## What makes each engine special
 

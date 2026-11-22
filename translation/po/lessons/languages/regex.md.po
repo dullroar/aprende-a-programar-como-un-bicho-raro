@@ -1,0 +1,373 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lessons/languages/regex.md:1
+msgctxt "s-59d5b8a112ee-0000"
+msgid "Regular expressions: five engines, five personalities"
+msgstr "Expresiones regulares: cinco motores, cinco personalidades"
+
+#: lessons/languages/regex.md:3
+msgctxt "s-7c3b5fda7179-0001"
+msgid "Entries: [⟦CODE_0001⟧](⟦DEST_0002⟧), [⟦CODE_0003⟧](⟦DEST_0004⟧), [⟦CODE_0005⟧](⟦DEST_0006⟧), [⟦CODE_0007⟧](⟦DEST_0008⟧), [⟦CODE_0009⟧](⟦DEST_0010⟧)."
+msgstr "Entradas: [⟦CODE_0001⟧](⟦DEST_0002⟧), [⟦CODE_0003⟧](⟦DEST_0004⟧), [⟦CODE_0005⟧](⟦DEST_0006⟧), [⟦CODE_0007⟧](⟦DEST_0008⟧), [⟦CODE_0009⟧](⟦DEST_0010⟧)."
+
+#: lessons/languages/regex.md:5
+msgctxt "s-e78b90704a6d-0002"
+msgid "For an advanced reading path with traces and experiments, see the [regex engines and sed study guide](⟦DEST_0001⟧)."
+msgstr "Para una ruta de lectura avanzada con trazas y experimentos, consulta la [guía de estudio de motores de expresiones regulares y sed](⟦DEST_0001⟧)."
+
+#: lessons/languages/regex.md:7
+msgctxt "s-cbe0fcf967e4-0003"
+msgid "A regular expression looks like a pattern. These entries treat it as a **program**: the match is the computation, backtracking is the search and the side effects are what you *wanted*. The recurring signature move is to do all the work and then **return \"no match\" on purpose**."
+msgstr "Una expresión regular parece un patrón. Estas entradas la tratan como un **programa**: la coincidencia es el cálculo, el retroceso es la búsqueda y los efectos secundarios son lo que *querías*. La maniobra recurrente consiste en hacer todo el trabajo y luego **devolver \"sin coincidencia\" a propósito**."
+
+#: lessons/languages/regex.md:9
+msgctxt "s-77bcacdf4613-0004"
+msgid "This survey compares five engines. The Perl example works through the mechanism in detail and combines the explanation with the exercise."
+msgstr "Este panorama compara cinco motores. El ejemplo de Perl examina el mecanismo en detalle y combina la explicación con el ejercicio."
+
+#: lessons/languages/regex.md:11
+msgctxt "s-a9a23cf13b8d-0005"
+msgid "What makes each engine special"
+msgstr ""
+
+#: lessons/languages/regex.md:13
+msgctxt "s-ffa38bc796cf-0006"
+msgid "⟦SEP_0001⟧ Engine ⟦SEP_0002⟧ Program is... ⟦SEP_0003⟧ The special thing ⟦SEP_0004⟧ Where ⟦SEP_0005⟧"
+msgstr ""
+
+#: lessons/languages/regex.md:15
+msgctxt "s-056c74f92877-0007"
+msgid "⟦SEP_0007⟧ **Perl** ⟦SEP_0008⟧ one ⟦CODE_0001⟧ match ⟦SEP_0009⟧ Code blocks ⟦CODE_0002⟧ run during the match; ⟦CODE_0003⟧ returns a *pattern*, and ⟦CODE_0004⟧ unwinds on backtracking ⟦SEP_0010⟧ [⟦CODE_0005⟧ L7](⟦DEST_0006⟧) ⟦SEP_0011⟧"
+msgstr ""
+
+#: lessons/languages/regex.md:16
+msgctxt "s-2141f90d8dbb-0008"
+msgid "⟦SEP_0005⟧ **PCRE2** ⟦SEP_0006⟧ one ⟦CODE_0001⟧ call ⟦SEP_0007⟧ Callout strings ⟦CODE_0002⟧ are opcodes for a bodiless C dispatcher ⟦SEP_0008⟧ [⟦CODE_0003⟧ L24-26](⟦DEST_0004⟧) ⟦SEP_0009⟧"
+msgstr ""
+
+#: lessons/languages/regex.md:17
+msgctxt "s-e7f3b7bfc9ad-0009"
+msgid "⟦SEP_0003⟧ **pcre2grep** ⟦SEP_0004⟧ one command line, no custom code ⟦SEP_0005⟧ Callout scripts name programs to run, and their **exit codes steer the match** ⟦SEP_0006⟧ [⟦CODE_0001⟧ L14-20](⟦DEST_0002⟧) ⟦SEP_0007⟧"
+msgstr ""
+
+#: lessons/languages/regex.md:18
+msgctxt "s-213612a80ec0-0010"
+msgid "⟦SEP_0003⟧ **.NET** ⟦SEP_0004⟧ a pattern of balancing groups only ⟦SEP_0005⟧ Capture *stacks* make a counter ⟦SEP_0006⟧ [⟦CODE_0001⟧ L13](⟦DEST_0002⟧) ⟦SEP_0007⟧"
+msgstr ""
+
+#: lessons/languages/regex.md:19
+msgctxt "s-ba8d26429279-0011"
+msgid "⟦SEP_0004⟧ **GNU sed** ⟦SEP_0005⟧ one line of text, rewritten ⟦SEP_0006⟧ A [Markov algorithm](⟦DEST_0001⟧): find-and-replace as a computer ⟦SEP_0007⟧ [⟦CODE_0002⟧](⟦DEST_0003⟧) ⟦SEP_0008⟧"
+msgstr ""
+
+#: lessons/languages/regex.md:21
+msgctxt "s-12f9cc5cc777-0012"
+msgid "Perl: code inside the match"
+msgstr ""
+
+#: lessons/languages/regex.md:23
+msgctxt "s-cc9cfaabc50d-0013"
+msgid "Behold the monstrosity"
+msgstr ""
+
+#: lessons/languages/regex.md:29
+msgctxt "s-3abd03e4c63a-0014"
+msgid "The file's only statement is a single ⟦CODE_0001⟧. Seeding, the random draws, the SQLite transaction, the pulse and all the printing happen *inside the match*, and then the match returns false."
+msgstr ""
+
+#: lessons/languages/regex.md:31
+msgctxt "s-415f5fa29cf9-0015"
+msgid "How the hell does that work?"
+msgstr ""
+
+#: lessons/languages/regex.md:33
+msgctxt "s-fe4f26a8c819-0016"
+msgid "⟦SEP_0001⟧ Piece ⟦SEP_0002⟧ Job ⟦SEP_0003⟧"
+msgstr ""
+
+#: lessons/languages/regex.md:35
+msgctxt "s-e3520e9d6bf9-0017"
+msgid "⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ initializer: seeds state, starts ⟦CODE_0002⟧ on a pipe, opens a transaction ⟦SEP_0005⟧"
+msgstr ""
+
+#: lessons/languages/regex.md:36
+msgctxt "s-52b969021d05-0018"
+msgid "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ the loop: greedy quantifier is the iteration; the scaffold string gives each pass something to eat ⟦SEP_0004⟧"
+msgstr ""
+
+#: lessons/languages/regex.md:37
+msgctxt "s-96105f9940c3-0019"
+msgid "⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ stop rule **and** category chooser: it returns the next category *as a pattern*, or ⟦CODE_0002⟧ ⟦SEP_0005⟧"
+msgstr ""
+
+#: lessons/languages/regex.md:38
+msgctxt "s-94245fad0fec-0020"
+msgid "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ one card ⟦SEP_0004⟧"
+msgstr ""
+
+#: lessons/languages/regex.md:39
+msgctxt "s-52451ce77d2a-0021"
+msgid "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ once the loop ends, stop backtracking from retrying shorter loops ⟦SEP_0004⟧"
+msgstr ""
+
+#: lessons/languages/regex.md:40
+msgctxt "s-64ffcacdbd59-0022"
+msgid "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ the signature move: give up after doing all the work ⟦SEP_0004⟧"
+msgstr ""
+
+#: lessons/languages/regex.md:42
+msgctxt "s-feb837e6db60-0023"
+msgid "⟦CODE_0001⟧ is the interesting part: Perl unwinds ⟦CODE_0002⟧ assignments when the engine backtracks, so the running total is backtrack-aware, but the ⟦CODE_0003⟧s and ⟦CODE_0004⟧s are *not* undone. The engine abandons the branch and the side effects stay written. The SQLite transaction is real and commits; **the match is what lies**."
+msgstr ""
+
+#: lessons/languages/regex.md:44
+msgctxt "s-eefc2df18b58-0024"
+msgid "Learn and break"
+msgstr ""
+
+#: lessons/languages/regex.md:46
+msgctxt "s-762329ad5f8f-0025"
+msgid "Backtracking is a search procedure, and a failing branch is information. State that unwinds (⟦CODE_0001⟧) and state that does not (I/O) behave differently, and that difference is the whole trick. See [patterns](⟦DEST_0002⟧)."
+msgstr ""
+
+#: lessons/languages/regex.md:47
+msgctxt "s-809b1875176e-0026"
+msgid "**Production**: code in patterns is hard to test or debug, and in Perl, regex code blocks run with the file's ⟦CODE_0001⟧ rules and can only ⟦CODE_0002⟧ package variables."
+msgstr ""
+
+#: lessons/languages/regex.md:49
+msgctxt "s-dabc65bd5fbe-0027"
+msgid "Tags: ⟦CODE_0001⟧, ⟦CODE_0002⟧ and ⟦CODE_0003⟧ unwinding are **guaranteed** by the Perl regex documentation."
+msgstr ""
+
+#: lessons/languages/regex.md:51
+msgctxt "s-495366efe694-0028"
+msgid "PCRE2: callouts as an instruction set"
+msgstr ""
+
+#: lessons/languages/regex.md:53
+msgctxt "s-576154fc50a4-0029"
+msgid "The whole pattern ([⟦CODE_0001⟧ L24-26](⟦DEST_0002⟧)):"
+msgstr ""
+
+#: lessons/languages/regex.md:59
+msgctxt "s-fe6aad18e1d3-0030"
+msgid "(Plus a pulse tail.) The C host compiles it, registers one dispatcher, calls ⟦CODE_0001⟧ once and prints the file. The callout string is an opcode: ⟦CODE_0002⟧, ⟦CODE_0003⟧ (returns 1 once the total is over 40 to fail the branch and end the loop), ⟦CODE_0004⟧, ⟦CODE_0005⟧. **PCRE2 supplies the iteration, the category walk and the backtracking.**"
+msgstr ""
+
+#: lessons/languages/regex.md:61
+msgctxt "s-2dc3c233a676-0031"
+msgid "**The optimizer caveat is the lesson.** Callouts only mean something if the engine visits them. The program compiles with ⟦CODE_0001⟧ ([L84-86](⟦DEST_0002⟧)) and avoids the JIT, which does not support callouts. This is **implementation-permitted**, and the README did not test what the optimizer would elide with the flags removed."
+msgstr ""
+
+#: lessons/languages/regex.md:62
+msgctxt "s-ff57e0b8ffc3-0032"
+msgid "**State in a C struct does not rewind on backtracking**, unlike Perl's ⟦CODE_0001⟧. That suits this program: nothing is ever undone."
+msgstr ""
+
+#: lessons/languages/regex.md:63
+msgctxt "s-f9caea8e3f40-0033"
+msgid "**A negative callout return aborts the match** with the callout's code, deliberately not ⟦CODE_0001⟧, which means \"no match\" and would be mistaken for the expected result."
+msgstr ""
+
+#: lessons/languages/regex.md:65
+msgctxt "s-5a0c2cd71a40-0034"
+msgid "pcre2grep: exit codes as control flow"
+msgstr ""
+
+#: lessons/languages/regex.md:67
+msgctxt "s-9eb2a057aa33-0035"
+msgid "The \"host\" is a stock ⟦CODE_0001⟧ and one command line. Callout strings name programs; **their exit codes steer the match**. The stop rule is an ⟦CODE_0002⟧ into a table with ⟦CODE_0003⟧, so SQLite's constraint violation is the loop terminator."
+msgstr ""
+
+#: lessons/languages/regex.md:69
+msgctxt "s-39d2985f86b0-0036"
+msgid "**Callouts need absolute paths.** ⟦CODE_0001⟧ uses ⟦CODE_0002⟧ and ⟦CODE_0003⟧, which do not search ⟦CODE_0004⟧. A bare ⟦CODE_0005⟧ or ⟦CODE_0006⟧ is silently a failed callout, indistinguishable from a vetoed branch."
+msgstr ""
+
+#: lessons/languages/regex.md:70
+msgctxt "s-6c108edeb0df-0037"
+msgid "**No state in the pattern.** The running total lives in SQLite and each callout rereads it."
+msgstr ""
+
+#: lessons/languages/regex.md:71
+msgctxt "s-033e1ed54c34-0038"
+msgid "**Each write commits separately.** The helpers run independent SQLite commands in autocommit mode. The regex's ⟦CODE_0001⟧ prunes backtracking paths. The final match failure leaves earlier database writes in place."
+msgstr ""
+
+#: lessons/languages/regex.md:72
+msgctxt "s-46c2af4bcc55-0039"
+msgid "**Ubuntu's own ⟦CODE_0001⟧ is built without callout scripts.** It needs an upstream build (the sandbox image pins 10.49). A textbook **implementation-permitted** case."
+msgstr ""
+
+#: lessons/languages/regex.md:73
+msgctxt "s-c2786847dcca-0040"
+msgid "**Security**: callouts that run programs are a command-execution feature. ⟦CODE_0001⟧ allows only ⟦CODE_0002⟧, ⟦CODE_0003⟧ and ⟦CODE_0004⟧."
+msgstr ""
+
+#: lessons/languages/regex.md:75
+msgctxt "s-33119b447538-0041"
+msgid ".NET: balancing groups"
+msgstr ""
+
+#: lessons/languages/regex.md:77
+msgctxt "s-467af8c54c6b-0042"
+msgid "[⟦CODE_0001⟧ L13](⟦DEST_0002⟧) uses a budget of 41 empty captures and **balancing groups** that pop one per hour: ⟦CODE_0003⟧. The \"counter\" is a capture stack."
+msgstr ""
+
+#: lessons/languages/regex.md:79
+msgctxt "s-74aa1a982420-0043"
+msgid "This entry is the repo's best **honest failure**, and it is the one that most clearly marks where regex alone stops. See [blocking problems](⟦DEST_0001⟧):"
+msgstr ""
+
+#: lessons/languages/regex.md:81
+msgctxt "s-17103ce3930b-0044"
+msgid "A regex cannot draw random numbers, so the host seeds five unary strings."
+msgstr ""
+
+#: lessons/languages/regex.md:82
+msgctxt "s-4aa6336034c0-0045"
+msgid "The host reads the successful match's captures and appends a TSV report."
+msgstr ""
+
+#: lessons/languages/regex.md:83
+msgctxt "s-f899971e7c45-0046"
+msgid "**Failure yields zero card rows.** Append ⟦CODE_0001⟧ to fail the entire match. On the fixed all-10 tape, the normal pattern succeeds with five cards and a total of 50. The forced failure exposes zero captures, leaves an empty TSV report and exits 1. See the [entry check](⟦DEST_0002⟧)."
+msgstr ""
+
+#: lessons/languages/regex.md:85
+msgctxt "s-54b5664f5c87-0047"
+msgid "GNU sed"
+msgstr ""
+
+#: lessons/languages/regex.md:87
+msgctxt "s-629137d8cbe1-0048"
+msgid "The entire program state is **one line of text**; every step is a substitution. There are no variables or numbers."
+msgstr ""
+
+#: lessons/languages/regex.md:89
+msgctxt "s-3640d91ecdd0-0049"
+msgid "**The loop** is ⟦CODE_0001⟧/⟦CODE_0002⟧ jumps behind regex addresses: [⟦CODE_0003⟧](⟦DEST_0004⟧) is the stop rule, with the total as tally marks ⟦CODE_0005⟧."
+msgstr ""
+
+#: lessons/languages/regex.md:90
+msgctxt "s-b5e8b118d2b4-0050"
+msgid "**Randomness** is a 16-bit shift register of ⟦CODE_0001⟧s and ⟦CODE_0002⟧s ([L17-29](⟦DEST_0003⟧)); XOR is done by deleting zeros and testing for odd counts. The taps (16, 14, 13, 11) give a maximal period of 65,535. It is a toy generator, and the same seed gives the same cards."
+msgstr ""
+
+#: lessons/languages/regex.md:91
+msgctxt "s-0f7d2f3f5f46-0051"
+msgid "**A draw is rejected** with ⟦CODE_0001⟧ when the nibble is 10-15, and a bits-to-digit table plus tally-mark expansion turns the nibble into hours."
+msgstr ""
+
+#: lessons/languages/regex.md:92
+msgctxt "s-345978c60a51-0052"
+msgid "**The pulse is timed by a catastrophic-backtracking regex**: the clock is a pattern that takes about 50 ms per frame to fail. (Machine-dependent, which is why pipes and ⟦CODE_0001⟧ skip it.)"
+msgstr ""
+
+#: lessons/languages/regex.md:93
+msgctxt "s-44f416f3dd3b-0053"
+msgid "**Exit 1 on purpose.** sed has no match result spanning a whole program, so \"returns false\" is the process exit status (the wrapper maps 1 to 0)."
+msgstr ""
+
+#: lessons/languages/regex.md:94
+msgctxt "s-3ae22c00ed4e-0054"
+msgid "**GNU only**: ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧ and ⟦CODE_0006⟧ intervals are GNU extensions."
+msgstr ""
+
+#: lessons/languages/regex.md:95
+msgctxt "s-07936c30d706-0055"
+msgid "**sed has a goto** (⟦CODE_0001⟧, ⟦CODE_0002⟧), which Perl and PCRE do not, so this entry's loop structure is \"a rewriting machine with a program counter, not a single match\"."
+msgstr ""
+
+#: lessons/languages/regex.md:97
+msgctxt "s-6e363a527649-0056"
+msgid "The README has an eleven-step trace of one iteration, and ⟦CODE_0001⟧ dumps the state line at each step. This is the best place in the repo to *watch* a computation happen."
+msgstr ""
+
+#: lessons/languages/regex.md:99
+msgctxt "s-d2bbf037de84-0057"
+msgid "What did we just learn?"
+msgstr ""
+
+#: lessons/languages/regex.md:101
+msgctxt "s-e61dc5e95f25-0058"
+msgid "**A regex engine is a general search machine** with state (captures), control (alternation, quantifiers, ⟦CODE_0001⟧) and optional I/O hooks."
+msgstr ""
+
+#: lessons/languages/regex.md:102
+msgctxt "s-7a4c636f3827-0059"
+msgid "**Failure is information**, and different engines keep or discard it differently (Perl unwinds ⟦CODE_0001⟧, PCRE2's C state persists, .NET discards captures, pcre2grep's side effects are real database writes)."
+msgstr ""
+
+#: lessons/languages/regex.md:103
+msgctxt "s-4051449fb389-0060"
+msgid "**String-rewriting systems are universal.** sed with no numbers does arithmetic, which is what a Markov algorithm is."
+msgstr ""
+
+#: lessons/languages/regex.md:105
+msgctxt "s-c08a852d0dbe-0061"
+msgid "Under what circumstances would this terrible idea become reasonable?"
+msgstr ""
+
+#: lessons/languages/regex.md:107
+msgctxt "s-85e54c1beee0-0062"
+msgid "Never as an application design. But callouts and code blocks are legitimate in *tools*: tokenizers, lexers, instrumented matchers, pattern debuggers and teaching aids. And understanding backtracking performance cliffs, the thing sed's pulse exploits for a clock, is the practical skill that protects production systems from ReDoS."
+msgstr ""
+
+#: lessons/languages/regex.md:109
+msgctxt "s-12d0b77aba94-0063"
+msgid "Quirks"
+msgstr ""
+
+#: lessons/languages/regex.md:111
+msgctxt "s-5428c6400cc5-0064"
+msgid "Perl regex code blocks need package variables; ⟦CODE_0001⟧ and ⟦CODE_0002⟧ interact."
+msgstr ""
+
+#: lessons/languages/regex.md:112
+msgctxt "s-062d2cbdae31-0065"
+msgid "Perl's ⟦CODE_0001⟧ is needed to silence the \"null iteration\" warning on a dynamic loop body."
+msgstr ""
+
+#: lessons/languages/regex.md:113
+msgctxt "s-d89136041705-0066"
+msgid "PCRE2 JIT does not support callouts; flags can change whether callouts fire."
+msgstr ""
+
+#: lessons/languages/regex.md:114
+msgctxt "s-d28bd89d3aba-0067"
+msgid "pcre2grep callouts fail silently if the program path is not absolute."
+msgstr ""
+
+#: lessons/languages/regex.md:115
+msgctxt "s-94a360615d37-0068"
+msgid ".NET ⟦CODE_0001⟧ on failure exposes no captures."
+msgstr ""
+
+#: lessons/languages/regex.md:116
+msgctxt "s-1bb14f9ef659-0069"
+msgid "CMake's regex is the weakest of all of them (no counted repetition, lookahead or backreferences); see [Make and CMake](⟦DEST_0001⟧)."
+msgstr ""
+
+#: lessons/languages/regex.md:117
+msgctxt "s-80d9adae2848-0070"
+msgid "sed: GNU-only features; the ⟦CODE_0001⟧ command and ⟦CODE_0002⟧ modifier can run or write anything, and ⟦CODE_0003⟧ rejects them (a grep, not a sandbox)."
+msgstr ""
+
+#: lessons/languages/regex.md:118
+msgctxt "s-312f4619ed92-0071"
+msgid "All entries build SQL by pasting text into strings. It is safe here only because every value is computed or one of four fixed words. **Do not copy the habit.**"
+msgstr ""
+
+#: lessons/languages/regex.md:247
+msgctxt "s-ac0e260e97bf-0072"
+msgid "Computer science behind this page"
+msgstr ""
