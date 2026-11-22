@@ -30,6 +30,7 @@ import json
 import math
 import os
 import re
+import shlex
 import sys
 
 STAGE = 4
@@ -176,7 +177,7 @@ def translate_task(tid, bin_units, pilots):
         "deps": [], "size": "M",
         "inputs": [u["key"] for u in bin_units],
         "words": sum(u["words"] for u in bin_units),
-        "accept": f"python3 tools/verify.py --fast --task {tid}",
+        "accept": shlex.join(["python3", "tools/verify.py", "--fast", "--files", *sorted(paths)]),
         "status": "todo", "attempts": 0,
     }
     hit = sorted(paths & pilots)

@@ -74,6 +74,10 @@ class SplitAndCapTests(unittest.TestCase):
         for r in tasks_of(rows):
             if any("#s" in i for i in r["inputs"]):
                 self.assertEqual(len(r["inputs"]), 1)
+                self.assertEqual(
+                    r["accept"],
+                    f"python3 tools/verify.py --fast --files {r['inputs'][0].split('#s')[0]}",
+                )
 
     def test_every_word_planned_exactly_once(self):
         rows, _, st = run_plan(SAMPLE)

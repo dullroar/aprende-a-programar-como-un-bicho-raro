@@ -91,3 +91,7 @@
 
 - Decision: replace unsupported `--task` with `--files` naming all three task inputs. The original command exited 2 twice; the supported scoped command passes. The task remains blocked under the two-failure rule.
 - Alternative: leave the unusable command unchanged. Cost to reverse: restore the original queue field; no verifier behavior changes.
+
+## Restart after iteration 274
+
+- The same unsupported `--task` flag remained in 12 eligible or pending translation entries and in `tools/plan_tasks.py`. Use the existing `--fast --files` interface with each task’s source paths and keep segment ranges in queue inputs. The verifier and working-tree check are unchanged. An alternative was fixing each command on first failure, which had already stopped two language batches. The change can be reversed in the generator and the 12 queue entries.
