@@ -2,9 +2,9 @@
 
 ## Summary
 
-- English paths in the map: 496
+- English paths in the map: 502
 - Renamed (file or folder): 68
-- Kept: 428
+- Kept: 434
 - Folders renamed: 6
 - Problems: 0
 
@@ -53,6 +53,10 @@ Folders below `src/`, `sandbox/` and `gradle/` are kept (frozen trees) and are n
 | `LICENSE` | (same) | kept | frozen: byte lock covers it |
 | `README.md` | (same) | kept | reference closure: lessons/book/diagrams/package.json (frozen) mentions it |
 | `SANDBOX-SETUP.md` | (same) | kept | reference closure: lessons/tools/verify-windows.ps1 (frozen) mentions it |
+| `aprende-a-programar-como-un-bicho-raro-guias-de-estudio.epub` | (same) | kept | tooling or archival file: name kept (moves only with a renamed folder) |
+| `aprende-a-programar-como-un-bicho-raro-guias-de-estudio.pdf` | (same) | kept | tooling or archival file: name kept (moves only with a renamed folder) |
+| `aprende-a-programar-como-un-bicho-raro.epub` | (same) | kept | tooling or archival file: name kept (moves only with a renamed folder) |
+| `aprende-a-programar-como-un-bicho-raro.pdf` | (same) | kept | tooling or archival file: name kept (moves only with a renamed folder) |
 | `build.gradle` | (same) | kept | frozen: byte lock covers it |
 | `curriculum.epub` | (same) | kept | tooling or archival file: name kept (moves only with a renamed folder) |
 | `curriculum.pdf` | (same) | kept | tooling or archival file: name kept (moves only with a renamed folder) |
@@ -295,6 +299,8 @@ Folders below `src/`, `sandbox/` and `gradle/` are kept (frozen trees) and are n
 | `lessons/tools/run-in-sandbox.sh` | (same) | kept | frozen: byte lock covers it |
 | `lessons/tools/verify-exercises.sh` | (same) | kept | frozen: byte lock covers it |
 | `lessons/tools/verify-windows.ps1` | (same) | kept | frozen: byte lock covers it |
+| `plan-de-estudios.epub` | (same) | kept | tooling or archival file: name kept (moves only with a renamed folder) |
+| `plan-de-estudios.pdf` | (same) | kept | tooling or archival file: name kept (moves only with a renamed folder) |
 | `sandbox/.gitattributes` | (same) | kept | frozen: byte lock covers it |
 | `sandbox/README.md` | (same) | kept | keep-list tree sandbox/: frozen sandbox scripts |
 | `sandbox/container/Dockerfile` | (same) | kept | frozen: byte lock covers it |

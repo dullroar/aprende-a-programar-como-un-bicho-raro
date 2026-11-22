@@ -43,12 +43,17 @@ def label(name, text):
     return Sentinel(name, text, pattern if re.search(r"[≤≥] ", text) else "")
 
 
+def wrapped(text):
+    """A pattern for `text` whose words may be split by a line break (a long label wraps inside a diagram or a code line)."""
+    return r"\s+".join(re.escape(word) for word in text.split(" "))
+
+
 def profiles(lang):
     cat = catalog.load(lang)
     cat.require(WORD_KEYS)
     word = {key.split(".", 1)[1]: cat.text(key) for key in WORD_KEYS}
     apl_diagram = label("Mermaid apl-weird ≤", word["apl_diagram"])
-    ascii_diagram = Sentinel("Mermaid forth-weird <=", word["ascii_diagram"])
+    ascii_diagram = Sentinel("Mermaid forth-weird <=", word["ascii_diagram"], wrapped(word["ascii_diagram"]))
     forth_diagram = Sentinel("Mermaid Forth parse position >", word["forth_diagram"])
     return {
         "book": (
@@ -58,7 +63,7 @@ def profiles(lang):
             Sentinel("APL reshape and iota", word["apl_book"]),
             Sentinel("APL function definition", "Kid←⎕FX Alive/"),
             Sentinel("Forth checker regex", r"[\]([[:space:]].*)?$//"),
-            Sentinel("sed capture groups", r"sed -i 's/^\(4[1-5]\)"),
+            Sentinel("sed capture groups", r"sed -i 's/^\(4[1-5]\)", r"sed -i 's/\s*\^\\\(4\[1-5\]\\\)"),
             Sentinel("wrapped Forth alternation", "recurse|e↩ / ↪ xit|leave", r"recurse\|e↩\n[ \t]*↪ xit\|leave"),
         ),
         "study-guides": (

@@ -1,14 +1,14 @@
 # loop/STATE.md (keep to 60 lines; refreshed by every iteration)
 
 - **Edition:** v4-es.0-rc1 (working)    **English SHA:** 48a4429c0a22b2aac628b256a50c07d1816bcb80
-- **Iteration:** 386    **Stage:** 5 started    **Last result:** P5-003 done (six Spanish artifacts built; PDF lint errors pending, see seed notes).
-- **Tasks:** todo 53 | doing 0 | done 161 | blocked 1 | skipped 0 (recount with the queue files)
-- **Next task:** P5-004.
+- **Iteration:** 387    **Stage:** 5 done    **Last result:** P5-004 done (double build: six Spanish artifacts, identical sha256, 0 lint errors).
+- **Tasks:** todo 52 | doing 0 | done 162 | blocked 1 | skipped 0 (recount with the queue files)
+- **Next task:** P6-001 (whole-corpus review; findings become review-fix tasks).
 - **Budget:** driver-reported $112.6405 of $150 through iteration 274, with Codex session cost unavailable
 - **Translate progress:** at least 7751 / total 8827 segments accepted; at least 196 / 212 files done. P4-lessons-languages-5 complete. Counts based on the previous snapshot plus this task.
 - **Last audit:** P4-audit-9 (iter 361, translation/reviews/p4-audit-9.md)    **Next audit due:** the next P4-audit task in the queue
-- **Gates:** P0 passed (iter 17)  P1 passed (iter 23)  P2 passed (iter 47)  P3 passed (iter 58)  P3B passed (iter 85)  P3C passed (iter 105)  P4 passed (iter 376)  P5 -  P6 -  P7A -
-- **Open provisional decisions:** 6 (includes corrected task acceptance command)    **Blockers:** 0 (P5-001 unblocked)    **Source issues:** 26 (translation/source-issues.md)
+- **Gates:** P0 passed (iter 17)  P1 passed (iter 23)  P2 passed (iter 47)  P3 passed (iter 58)  P3B passed (iter 85)  P3C passed (iter 105)  P4 passed (iter 376)  P5 passed (iter 387)  P6 -  P7A -
+- **Open provisional decisions:** 7 (includes corrected task acceptance command and the iter 387 "Alive"/"Vivo" question for Jim)    **Blockers:** 0 (P5-001 unblocked)    **Source issues:** 26 (translation/source-issues.md)
 
 ## Traps to remember (details live in SIGNS.md)
 

@@ -233,11 +233,11 @@ editorial:
 # A space after a comparison sign (≤ or ≥) may be lost at an SVG tspan boundary, so the check tolerates it there only.
 # Alive is an APL identifier (it stays); the question mark of a Spanish label is paired (¿...?) and the check looks at the closing one.
 sentinels:
-  apl_diagram: "Alive: ¿total ≤ 40?"
-  ascii_diagram: "-1 mientras total <= 40; si no, 0"
+  apl_diagram: "¿Vivo: total ≤ 40?"
+  ascii_diagram: "-1 mientras el total no pasa de 40; en otro caso, es 0"
   forth_diagram: "El intérprete lee: 0 0 >in @"
   awk_diagram: "Última regla: ¿t ≥ 41?"
-  apl_book: "⍴ (cambio de forma), ⍳ (generador de índices)"
+  apl_book: "⍴ (remodelar), ⍳ (generador de índices)"
   apl_guide: "APL básico: ⍳, ⍴"
 
 # lessons/book/repo_links.py, build.py, lint_pdf.py and the study-guides and curriculum builds: who the edition is and where it lives.

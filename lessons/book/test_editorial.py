@@ -384,7 +384,7 @@ class PdfSentinels(unittest.TestCase):
     LABELS = {   # profile -> {sentinel name: the label as the PDF text shows it}; the English values are the pinned source's literals
         "en": {"Mermaid apl-weird ≤": "Alive: total ≤ 40?", "Mermaid forth-weird <=": "-1 while total <= 40, else 0",
                "Mermaid Forth parse position >": "Interpreter reads: 0 0 >in @", "Mermaid awk-weird ≥": "Last rule: t ≥ 41?"},
-        "es": {"Mermaid apl-weird ≤": "Alive: ¿total ≤ 40?", "Mermaid forth-weird <=": "-1 mientras total <= 40; si no, 0",
+        "es": {"Mermaid apl-weird ≤": "¿Vivo: total ≤ 40?", "Mermaid forth-weird <=": "la bandera es -1 mientras el total no pasa de 40; en otro caso, es 0",
                "Mermaid Forth parse position >": "El intérprete lee: 0 0 >in @", "Mermaid awk-weird ≥": "Última regla: ¿t ≥ 41?"},
     }
     CODE = ["APL stop rule ≥", "APL function definition", "Forth checker regex", "sed capture groups", "wrapped Forth alternation",
@@ -420,7 +420,8 @@ class PdfSentinels(unittest.TestCase):
             book = self.profile(lang)
             for name, text in labels.items():
                 with self.subTest(lang=lang, sentinel=name):
-                    self.assertFalse(book[name].matches(text.replace("<=", "<").replace("≤", "<").replace("≥", ">").replace(">in", "in")))
+                    # a comparison sign or the flag value -1 (the Spanish forth label has no sign) must be wrong
+                    self.assertFalse(book[name].matches(text.replace("<=", "<").replace("≤", "<").replace("≥", ">").replace(">in", "in").replace("-1", "-2")))
                     self.assertFalse(book[name].matches(""))
 
     def test_the_other_languages_labels_are_not_accepted(self):
@@ -453,7 +454,7 @@ class PdfSentinels(unittest.TestCase):
 
     def test_the_spanish_profile_translates_the_reshape_snippets(self):
         book, guides = self.profile("es"), self.profile("es", "study-guides")
-        self.assertEqual(book["APL reshape and iota"].expected, "⍴ (cambio de forma), ⍳ (generador de índices)")
+        self.assertEqual(book["APL reshape and iota"].expected, "⍴ (remodelar), ⍳ (generador de índices)")   # as lessons/lenguajes/apl.md says
         self.assertEqual(guides["APL reshape and iota"].expected, "APL básico: ⍳, ⍴")
 
     def test_profiles_is_updated_in_place_and_a_failed_switch_changes_nothing(self):
