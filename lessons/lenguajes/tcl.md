@@ -74,15 +74,15 @@ Etiquetas: `proc`, `unknown`, `uplevel`, `namespace`, `dict` y `try` tienen la e
 - **Los disparadores son invisibles en las trazas de pila** y el límite de profundidad de recursión de SQLite (`SQLITE_MAX_TRIGGER_DEPTH`, 1000 por defecto) es una restricción oculta.
 - **El entrecomillado tiene dos niveles de profundidad:** el Tcl dentro del SQL dentro del Tcl. Una llave suelta rompe la cadena de texto exterior.
 - **Un valor usado dos veces debe extraerse una sola vez.** Las horas se usan como horas y dentro del total acumulado. El disparador las guarda en la tabla TEMP `draw` de una fila y las lee de allí. `check.sh` cuenta las llamadas al procedimiento `hours` (una por tarjeta).
-- **Tk quirk:** a `tclsh` that has loaded Tk does not exit when the script ends. The entry calls `destroy .` (a normal Tk program is waiting for events).
+- **Particularidad de Tk:** un `tclsh` que ha cargado Tk no termina cuando termina el script. La entrada llama a `destroy .` (un programa Tk normal espera eventos).
 
-Legitimate uses: **loading code on demand** (Tcl's own `unknown` already calls `auto_load` to find a command's definition on disk), **SQL functions that call back into the host language** (a standard SQLite feature) and **keeping rules in a table** so they can change without a deploy. Tcl Starkits packed a whole application into one virtual-filesystem file for the same reason: code that travels with its data.
+Usos legítimos: **cargar código a demanda** (el propio `unknown` de Tcl ya llama a `auto_load` para encontrar en disco la definición de un comando), **funciones SQL que llaman de vuelta al lenguaje anfitrión** (una función estándar de SQLite) y **mantener reglas en una tabla** para que puedan cambiar sin un despliegue. Por la misma razón, los Starkits de Tcl empaquetaban una aplicación entera en un archivo de sistema de archivos virtual: código que viaja con sus datos.
 
-### Now break it yourself
+### Ahora rómpelo tú
 
-See [exercises](../exercises.md#b12-tcl-edit-the-program-in-the-database-verified).
+Mira los [ejercicios](../exercises.md#b12-tcl-edit-the-program-in-the-database-verified).
 
-## Quirks
+## Particularidades
 
 - **Triggers reject a qualified table name in `INSERT`.** Inside the trigger, `main.demo_timecards` is an error; the unqualified name is required, while the `AFTER INSERT ON main.demo_timecards` line does qualify, because a TEMP trigger watches a table in the main database.
 - **`expr` without braces is both slower and a code-injection hole.** The idiomatic entry braces every `expr`.

@@ -6025,16 +6025,16 @@
     {
      "en": "Now break it yourself",
      "en_id": "now-break-it-yourself",
-     "es": "Now break it yourself",
-     "es_id": "now-break-it-yourself",
+     "es": "Ahora rómpelo tú",
+     "es_id": "ahora-rómpelo-tú",
      "level": 3,
      "line": 81
     },
     {
      "en": "Quirks",
      "en_id": "quirks",
-     "es": "Quirks",
-     "es_id": "quirks",
+     "es": "Particularidades",
+     "es_id": "particularidades",
      "level": 2,
      "line": 85
     },
@@ -6093,10 +6093,10 @@
     "do-this-in-production-and-youre-fired": "haz-esto-en-producción-y-estás-despedido",
     "how-each-program-runs": "how-each-program-runs",
     "how-the-hell-does-that-work": "cómo-demonios-funciona-eso",
-    "now-break-it-yourself": "now-break-it-yourself",
+    "now-break-it-yourself": "ahora-rómpelo-tú",
     "program-flow-of-tcl": "program-flow-of-tcl",
     "program-flow-of-tcl-weird": "program-flow-of-tcl-weird",
-    "quirks": "quirks",
+    "quirks": "particularidades",
     "sqlite-as-the-program": "sqlite-como-programa",
     "tcl": "tcl",
     "under-what-circumstances-would-this-terrible-idea-become-reasonable": "under-what-circumstances-would-this-terrible-idea-become-reasonable",
