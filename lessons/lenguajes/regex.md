@@ -100,15 +100,15 @@ El README tiene una traza de once pasos de una iteración, y `TRACE=1 ./timecard
 
 - **Un motor de regex es una máquina de búsqueda general** con estado (capturas), control (alternancia, cuantificadores, `(*COMMIT)`) y puntos opcionales de entrada y salida.
 - **El fallo es información**, y cada motor la conserva o descarta de forma distinta. Perl deshace `local`, el estado en C de PCRE2 persiste, .NET descarta capturas y los efectos secundarios de pcre2grep son escrituras reales en la base de datos.
-- **String-rewriting systems are universal.** sed with no numbers does arithmetic, which is what a Markov algorithm is.
+- **Los sistemas de reescritura de cadenas de texto son universales.** sed hace aritmética sin números, que es lo que hace un algoritmo de Markov.
 
-## Under what circumstances would this terrible idea become reasonable?
+## ¿En qué circunstancias esta idea terrible se volvería razonable?
 
-Never as an application design. But callouts and code blocks are legitimate in *tools*: tokenizers, lexers, instrumented matchers, pattern debuggers and teaching aids. And understanding backtracking performance cliffs, the thing sed's pulse exploits for a clock, is the practical skill that protects production systems from ReDoS.
+Nunca como diseño de una aplicación. Pero los callouts y los bloques de código son legítimos en *herramientas*: tokenizadores, analizadores léxicos, motores de coincidencia instrumentados, depuradores de patrones y herramientas didácticas. Comprender los precipicios de rendimiento del retroceso es la habilidad práctica que protege los sistemas de producción contra ReDoS. El pulso de sed aprovecha esos precipicios como reloj.
 
-## Quirks
+## Peculiaridades
 
-- Perl regex code blocks need package variables; `strict` and `local` interact.
+- Los bloques de código de regex en Perl necesitan variables de paquete; `strict` y `local` interactúan.
 - Perl's `no warnings 'regexp'` is needed to silence the "null iteration" warning on a dynamic loop body.
 - PCRE2 JIT does not support callouts; flags can change whether callouts fire.
 - pcre2grep callouts fail silently if the program path is not absolute.

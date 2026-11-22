@@ -310,27 +310,27 @@ msgstr "**El fallo es información**, y cada motor la conserva o descarta de for
 #: lessons/languages/regex.md:103
 msgctxt "s-4051449fb389-0060"
 msgid "**String-rewriting systems are universal.** sed with no numbers does arithmetic, which is what a Markov algorithm is."
-msgstr ""
+msgstr "**Los sistemas de reescritura de cadenas de texto son universales.** sed hace aritmética sin números, que es lo que hace un algoritmo de Markov."
 
 #: lessons/languages/regex.md:105
 msgctxt "s-c08a852d0dbe-0061"
 msgid "Under what circumstances would this terrible idea become reasonable?"
-msgstr ""
+msgstr "¿En qué circunstancias esta idea terrible se volvería razonable?"
 
 #: lessons/languages/regex.md:107
 msgctxt "s-85e54c1beee0-0062"
 msgid "Never as an application design. But callouts and code blocks are legitimate in *tools*: tokenizers, lexers, instrumented matchers, pattern debuggers and teaching aids. And understanding backtracking performance cliffs, the thing sed's pulse exploits for a clock, is the practical skill that protects production systems from ReDoS."
-msgstr ""
+msgstr "Nunca como diseño de una aplicación. Pero los callouts y los bloques de código son legítimos en *herramientas*: tokenizadores, analizadores léxicos, motores de coincidencia instrumentados, depuradores de patrones y herramientas didácticas. Comprender los precipicios de rendimiento del retroceso es la habilidad práctica que protege los sistemas de producción contra ReDoS. El pulso de sed aprovecha esos precipicios como reloj."
 
 #: lessons/languages/regex.md:109
 msgctxt "s-12d0b77aba94-0063"
 msgid "Quirks"
-msgstr ""
+msgstr "Peculiaridades"
 
 #: lessons/languages/regex.md:111
 msgctxt "s-5428c6400cc5-0064"
 msgid "Perl regex code blocks need package variables; ⟦CODE_0001⟧ and ⟦CODE_0002⟧ interact."
-msgstr ""
+msgstr "Los bloques de código de regex en Perl necesitan variables de paquete; ⟦CODE_0001⟧ y ⟦CODE_0002⟧ interactúan."
 
 #: lessons/languages/regex.md:112
 msgctxt "s-062d2cbdae31-0065"

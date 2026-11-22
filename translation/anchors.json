@@ -5703,16 +5703,16 @@
     {
      "en": "Under what circumstances would this terrible idea become reasonable?",
      "en_id": "under-what-circumstances-would-this-terrible-idea-become-reasonable",
-     "es": "Under what circumstances would this terrible idea become reasonable?",
-     "es_id": "under-what-circumstances-would-this-terrible-idea-become-reasonable",
+     "es": "¿En qué circunstancias esta idea terrible se volvería razonable?",
+     "es_id": "en-qué-circunstancias-esta-idea-terrible-se-volvería-razonable",
      "level": 2,
      "line": 105
     },
     {
      "en": "Quirks",
      "en_id": "quirks",
-     "es": "Quirks",
-     "es_id": "quirks",
+     "es": "Peculiaridades",
+     "es_id": "peculiaridades",
      "level": 2,
      "line": 109
     },
@@ -5789,9 +5789,9 @@
     "program-flow-of-regex-pcre2grep": "program-flow-of-regex-pcre2grep",
     "program-flow-of-regex-perl": "program-flow-of-regex-perl",
     "program-flow-of-regex-sed": "program-flow-of-regex-sed",
-    "quirks": "quirks",
+    "quirks": "peculiaridades",
     "regular-expressions-five-engines-five-personalities": "expresiones-regulares-cinco-motores-cinco-personalidades",
-    "under-what-circumstances-would-this-terrible-idea-become-reasonable": "under-what-circumstances-would-this-terrible-idea-become-reasonable",
+    "under-what-circumstances-would-this-terrible-idea-become-reasonable": "en-qué-circunstancias-esta-idea-terrible-se-volvería-razonable",
     "what-did-we-just-learn": "qué-acabamos-de-aprender",
     "what-makes-each-engine-special": "qué-hace-especial-a-cada-motor"
    }
