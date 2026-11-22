@@ -60,7 +60,7 @@ flowchart TB
 
 Both tracks see the same first three cards. `reduce` has no built-in early stop: it processes everything it is given (code can write a custom fold, or throw, to abort, but that is not short-circuiting). A demand-driven stream stops *asking*, so the fourth card is never made. Haskell's `span` leaves the crossing card out of its accepted prefix, so the complete algorithm takes that card separately.
 
-The common shape: *describe the full answer, then say how much of it you want.* (The JavaScript entry reverses it: it describes how to make *one* answer, and lets the consumer ask for as many as it wants.) The differences are about **when** the work happens (eager `Aggregate` and APL arrays vs. lazy Haskell lists and LINQ `Select`) and **where** state lives. Compare how LINQ and Haskell answer "when does it run?" in [C#](lenguajes/csharp-linq-xaml.md#la-ejecución-diferida-y-el-truco-de-convertir-void-en-valor) and [Haskell](lenguajes/haskell.md#lazy-io-as-control-flow).
+The common shape: *describe the full answer, then say how much of it you want.* (The JavaScript entry reverses it: it describes how to make *one* answer, and lets the consumer ask for as many as it wants.) The differences are about **when** the work happens (eager `Aggregate` and APL arrays vs. lazy Haskell lists and LINQ `Select`) and **where** state lives. Compare how LINQ and Haskell answer "when does it run?" in [C#](lenguajes/csharp-linq-xaml.md#la-ejecución-diferida-y-el-truco-de-convertir-void-en-valor) and [Haskell](lenguajes/haskell.md#la-es-perezosa-como-flujo-de-control).
 
 ## Control state outside variables
 
@@ -111,7 +111,7 @@ Each track stores "what happens next" somewhere that is not a loop counter: in t
 | One SQLite row (the machine's registers) and the number of records tar has written | [tar](lenguajes/tar.md#the-archive-is-the-clock): [`tar-gnu-weird`](../src/tar-gnu-weird/README.md) |
 | Fields of one anonymous struct | [csharp-linq-xaml](lenguajes/csharp-linq-xaml.md#las-adaptaciones-de-una-sola-sentencia-mismo-truco-distinta-maquinaria): [`GoChallenge1`](../src/GoChallenge1/README.md) |
 | The unevaluated parts of the lists, read on demand | [haskell](lenguajes/haskell.md): [`haskell`](../src/haskell/README.md) |
-| Thunks: which parts of a list have been demanded | [haskell](lenguajes/haskell.md#lazy-io-as-control-flow): [`haskell-weird`](../src/haskell-weird/README.md) |
+| Thunks: which parts of a list have been demanded | [haskell](lenguajes/haskell.md#la-es-perezosa-como-flujo-de-control): [`haskell-weird`](../src/haskell-weird/README.md) |
 | Fields of one anonymous class | [csharp-linq-xaml](lenguajes/csharp-linq-xaml.md#las-adaptaciones-de-una-sola-sentencia-mismo-truco-distinta-maquinaria): [`JavaChallenge1`](../src/JavaChallenge1/README.md) |
 | Properties of one object literal | [javascript](lenguajes/javascript.md#the-bodiless-for-in-node): [`javascript`](../src/javascript/README.md) |
 | The running total and the card count, held in one object that only the listeners touch | [javascript](lenguajes/javascript.md#listeners-all-the-way-down): [`javascript-events`](../src/javascript-events/README.md) |

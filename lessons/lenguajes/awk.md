@@ -94,7 +94,7 @@ Consulta los [ejercicios](../exercises.md#b13-awk-the-missing-rt-verified). Tamb
 
 ## Lo raro junto a lo aburrido
 
-[`awk`](../../src/awk/README.md) usa awk como lenguaje de scripts: un bloque `BEGIN`, funciones, un bucle. [`awk-weird`](../../src/awk-weird/README.md) usa awk como **máquina de procesamiento de registros**: sin bucle, el programa es una columna de patrones. La primera es lo que escribe el autor de un script. La segunda es para lo que se diseñó awk originalmente, apuntada a un flujo que nunca estuvo pensado para leer. Compara [`haskell`](haskell.md#lazy-io-as-control-flow), donde la estructura de datos dirige la evaluación, con [`regex-sed`](regex.md#gnu-sed), otra pequeña herramienta de Unix con un bucle implícito.
+[`awk`](../../src/awk/README.md) usa awk como lenguaje de scripts: un bloque `BEGIN`, funciones, un bucle. [`awk-weird`](../../src/awk-weird/README.md) usa awk como **máquina de procesamiento de registros**: sin bucle, el programa es una columna de patrones. La primera es lo que escribe el autor de un script. La segunda es para lo que se diseñó awk originalmente, apuntada a un flujo que nunca estuvo pensado para leer. Compara [`haskell`](haskell.md#la-es-perezosa-como-flujo-de-control), donde la estructura de datos dirige la evaluación, con [`regex-sed`](regex.md#gnu-sed), otra pequeña herramienta de Unix con un bucle implícito.
 
 ## ¿En qué circunstancias esta idea terrible se volvería razonable?
 

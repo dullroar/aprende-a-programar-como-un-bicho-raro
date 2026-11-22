@@ -250,3 +250,7 @@
 277 P4-lessons-languages-3 partial accepted and applied Forth positions 34 to 38; resume at 39; scoped, fast and anchor checks passed.
 278 P4-lessons-languages-3 partial completed Forth positions 39 to 41; resume with Haskell; scoped, fast and anchor checks passed.
 279 P4-lessons-languages-3 partial accepted and applied Haskell positions 0 to 4; resume at 5; scoped, fast and anchor checks passed.
+280 P4-lessons-languages-3 partial accepted and applied Haskell positions 5 to 9; resume at 10; scoped, fast and anchor checks passed.
+281 P4-lessons-languages-3 partial accepted and applied Haskell positions 10 to 14; resume at 15; scoped, fast and anchor checks passed (relinked 7 referring files).
+282 P4-lessons-languages-3 partial accepted and applied Haskell positions 15 to 22; resume at 23; scoped, fast and anchor checks passed.
+283 P4-lessons-languages-3 partial accepted and applied Haskell positions 23 to 32; resume at 33; scoped, fast and anchor checks passed.

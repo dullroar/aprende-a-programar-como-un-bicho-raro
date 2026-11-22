@@ -8,58 +8,58 @@ Para una ruta de lectura avanzada con trazas y experimentos, consulta la [guía 
 
 Haskell es **perezoso**: un valor se calcula solo cuando algo lo demanda. La entrada ordinaria usa eso para una regla de parada que no es una condición de bucle, sino *cuánto eliges leer de una lista*.
 
-| Feature | Where | What it teaches |
+| Característica | Dónde | Qué enseña |
 | --- | --- | --- |
-| Infinite lists as descriptions | [`haskell/timecards.hs` L41](../../src/haskell/timecards.hs#L41): `rolls = map toHours . tail . iterate next` | `iterate` produces an endless stream. It is a recipe, not data. |
-| Running sums over a stream | [L49](../../src/haskell/timecards.hs#L49): `zipWith3 Card (cycle [minBound ..]) hs (scanl1 (+) hs)` | `scanl1 (+)` is a running total; `cycle [minBound ..]` repeats the categories because the type derives `Enum` and `Bounded`. |
-| The stop rule is a split | [L56-59](../../src/haskell/timecards.hs#L56-L59): `under ++ take 1 over where (under, over) = span ((<= 40) . runningTotal) (allCards seed)` | `span` reads one card at a time and stops at the first that fails. `takeWhile` would drop the crossing card; `span` hands back both halves. |
-| Wrapping arithmetic is a feature | `rolls` uses a 64-bit LCG on `Word64` | "mod 2^64" is free, because `Word64` wraps. |
+| Listas infinitas como descripciones | [`haskell/timecards.hs` L41](../../src/haskell/timecards.hs#L41): `rolls = map toHours . tail . iterate next` | `iterate` produce un flujo sin fin. Es una receta, no datos. |
+| Sumas acumuladas sobre un flujo | [L49](../../src/haskell/timecards.hs#L49): `zipWith3 Card (cycle [minBound ..]) hs (scanl1 (+) hs)` | `scanl1 (+)` es un total acumulado; `cycle [minBound ..]` repite las categorías porque el tipo deriva `Enum` y `Bounded`. |
+| La regla de parada es una división | [L56-59](../../src/haskell/timecards.hs#L56-L59): `under ++ take 1 over where (under, over) = span ((<= 40) . runningTotal) (allCards seed)` | `span` lee una tarjeta a la vez y se detiene en la primera que no cumple. `takeWhile` descartaría la tarjeta que cruza el tope; `span` devuelve ambas mitades. |
+| La aritmética con desbordamiento circular es una característica | `rolls` usa un LCG de 64 bits sobre `Word64` | "mod 2^64" sale gratis porque `Word64` se desborda de forma circular. |
 
-## Lazy IO as control flow
+## La E/S perezosa como flujo de control
 
-### Behold the monstrosity
+### Contempla la monstruosidad
 
 ```bash
 sandbox/container/run-image.sh src/haskell-weird
 ```
 
-An infinite list of cards. *Forcing the n-th cell prints card n and sends its `INSERT` to `sqlite3`.* Nothing else writes a row. No loop, accumulator, counter or explicit recursion.
+Una lista infinita de tarjetas. *Forzar la n-ésima celda imprime la tarjeta n y envía su `INSERT` a `sqlite3`.* Nada más escribe una fila. No hay bucle, acumulador, contador ni recursión explícita.
 
-### How the hell does that work?
+### ¿Cómo demonios funciona eso?
 
-Three tricks stacked.
+Tres trucos apilados.
 
-1. **A list defined in terms of itself.** [L53](../../src/haskell-weird/timecards.hs#L53): `rolls seed = map toHours (tail (fix (\xs -> seed : map next xs)))`. `fix f = f (fix f)` hands a function its own result, so `xs = seed : map next xs`. It works because `map` needs only one element at a time.
-2. **A knot through the cards.** [L75-78](../../src/haskell-weird/timecards.hs#L75-L78): `sheet onBirth seed = fixIO $ \cards -> let before = 0 : map runningTotal cards ...`. Card n's total is its hours plus the total *read off card n-1, an element of the list under construction*. `fixIO` is `fix` for IO.
-3. **Effects that wait to be asked for.** [L62-64](../../src/haskell-weird/timecards.hs#L62-L64): `lazily = fix $ \self actions -> unsafeInterleaveIO $ case actions of ...`. Ordinary `sequence` runs every action first, which never finishes on an infinite list. `unsafeInterleaveIO` means "run this only when its result is demanded". After `sheet` returns, nothing has run; each cell is a promise.
+1. **Una lista definida en términos de sí misma.** [L53](../../src/haskell-weird/timecards.hs#L53): `rolls seed = map toHours (tail (fix (\xs -> seed : map next xs)))`. `fix f = f (fix f)` le entrega a una función su propio resultado, así que `xs = seed : map next xs`. Funciona porque `map` necesita solo un elemento a la vez.
+2. **Un nudo a través de las tarjetas.** [L75-78](../../src/haskell-weird/timecards.hs#L75-L78): `sheet onBirth seed = fixIO $ \cards -> let before = 0 : map runningTotal cards ...`. El total de la tarjeta n es sus horas más el total *leído de la tarjeta n-1, un elemento de la lista en construcción*. `fixIO` es `fix` para IO.
+3. **Efectos que esperan a que los pidan.** [L62-64](../../src/haskell-weird/timecards.hs#L62-L64): `lazily = fix $ \self actions -> unsafeInterleaveIO $ case actions of ...`. El `sequence` ordinario ejecuta primero todas las acciones, y eso nunca termina con una lista infinita. `unsafeInterleaveIO` significa "ejecuta esto solo cuando alguien demande su resultado". Cuando `sheet` regresa, nada se ha ejecutado; cada celda es una promesa.
 
-The stop rule is [`untilOver40` (L82-83)](../../src/haskell-weird/timecards.hs#L82-L83): `under ++ take 1 over`. Reading card n runs `onBirth` for card n, so total reads equal total `INSERT`s by construction.
+La regla de parada es [`untilOver40` (L82-83)](../../src/haskell-weird/timecards.hs#L82-L83): `under ++ take 1 over`. Leer la tarjeta n ejecuta `onBirth` para la tarjeta n, así que el total de lecturas es igual al total de `INSERT` por construcción.
 
-### What did we just learn?
+### ¿Qué acabamos de aprender?
 
-- **Evaluation order is part of a program's meaning once effects are involved.** In a pure program it does not matter. Put IO behind a lazy cell and it decides *which rows exist*.
-- **Referential transparency is a contract, and `unsafe...` is where you stop honoring it.**
-- **"When does this run?" is the same question** as LINQ's deferred execution (see [C#](csharp-linq-xaml.md#la-ejecución-diferida-y-el-truco-de-convertir-void-en-valor)). Both are cases where a description is separated from its execution.
+- **El orden de evaluación forma parte del significado de un programa cuando intervienen efectos.** En un programa puro no importa. Pon IO detrás de una celda perezosa y ese orden decide *qué filas existen*.
+- **La transparencia referencial es un contrato, y `unsafe...` es el punto donde dejas de respetarlo.**
+- **"¿Cuándo se ejecuta esto?" es la misma pregunta** que la ejecución diferida de LINQ (consulta [C#](csharp-linq-xaml.md#la-ejecución-diferida-y-el-truco-de-convertir-void-en-valor)). En ambos casos, una descripción se separa de su ejecución.
 
-Tags: `span` laziness is **guaranteed** by the language semantics. `unsafeInterleaveIO` ordering is **implementation-permitted**: the program is correct because card n cannot be forced before card n-1, not because the evaluator promises an order.
+Etiquetas: la pereza de `span` es comportamiento **garantizado** por la semántica del lenguaje. El orden de `unsafeInterleaveIO` es comportamiento **permitido por la implementación**: el programa es correcto porque la tarjeta n no puede forzarse antes que la tarjeta n-1, no porque el evaluador prometa un orden.
 
-### Do this in production and you're fired
+### Haz esto en producción y estás despedido
 
-- **The README's own war story.** The first draft counted with `let entries = length cards`, and the program printed `# committed total=Meetings 12 12 ...` then crashed with "handle is closed". A lazy `let` meant nothing forced the cards until the summary was printed, after the pipe was closed. The cards' effects fired *during the output of `show`*. The fix: [L144](../../src/haskell-weird/timecards.hs#L144) `entries <- evaluate (length cards)`.
-- **`lazily` must defer its own pattern match.** If the `case` runs before `unsafeInterleaveIO`, forcing it needs `before`, which needs `cards`, which does not exist yet: `<<loop>>`.
-- **`take 1 over` fires one more effect.** The crossing card has to be read to see that it crosses, so its row is written. Laziness makes the off-by-one visible.
-- **Testing and concurrency.** Effects whose timing depends on the consumer cannot be tested without the consumer, and cannot be shared safely.
+- **La historia de guerra del propio README.** El primer borrador contaba con `let entries = length cards`, y el programa imprimió `# committed total=Meetings 12 12 ...` y luego falló con "handle is closed". Como `let` era perezoso, nada forzó las tarjetas hasta que se imprimió el resumen, cuando la tubería ya estaba cerrada. Los efectos de las tarjetas se dispararon *durante la salida de `show`*. La solución: [L144](../../src/haskell-weird/timecards.hs#L144) `entries <- evaluate (length cards)`.
+- **`lazily` debe diferir su propia coincidencia de patrón.** Si el `case` se ejecuta antes de `unsafeInterleaveIO`, forzarlo necesita `before`, que necesita `cards`, que todavía no existe: `<<loop>>`.
+- **`take 1 over` dispara un efecto más.** Hay que leer la tarjeta que cruza el tope para ver que lo cruza, así que se escribe su fila. La pereza hace visible el error por uno.
+- **Pruebas y concurrencia.** Los efectos cuyo momento depende del consumidor no se pueden probar sin el consumidor, y no se pueden compartir de forma segura.
 
-Legitimate uses: lazy IO exists for streaming (`getContents` over a large input) and the same hazards are why people moved to streaming libraries. Knot-tying (`fix`) is a respectable technique for self-referential data, such as circular structures and memo tables.
+Usos legítimos: la E/S perezosa existe para el flujo continuo (`getContents` sobre una entrada de datos grande), y los mismos peligros explican por qué la gente migró a bibliotecas de flujo continuo. Atar nudos (`fix`) es una técnica respetable para datos autorreferenciales, como estructuras circulares y tablas de memoización.
 
-### Now break it yourself
+### Ahora rómpelo tú
 
-See [exercises](../exercises.md#b2-haskell-break-the-laziness-verified): replace `unsafeInterleaveIO` with plain IO, or move the `evaluate`, and predict the output.
+Consulta los [ejercicios](../exercises.md#b2-haskell-break-the-laziness-verified): reemplaza `unsafeInterleaveIO` por IO simple o mueve el `evaluate`. Después predice la salida.
 
-## Quirks
+## Peculiaridades
 
-- **`takeWhile` is not enough**: it drops the crossing card. `span` keeps both halves.
-- **Partial functions.** `head`, `last` and `!!` crash on an empty list; neither program uses them.
+- **`takeWhile` no basta**: descarta la tarjeta que cruza el tope. `span` conserva ambas mitades.
+- **Funciones parciales.** `head`, `last` y `!!` fallan con una lista vacía; ninguno de los dos programas las usa.
 - **`Int` vs `Integer` vs `Word64`.** The generator wants exactly 64 unsigned bits, so `Word64`, whose wraparound is the feature.
 - **No random package ships with GHC.** Both entries hand-roll a linear congruential generator (Knuth's MMIX constants), using the high bits.
 - **`hGetContents`-style surprises.** The weird entry turns Haskell's most notorious lazy-IO surprise into the algorithm.

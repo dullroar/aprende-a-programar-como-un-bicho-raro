@@ -72,7 +72,7 @@ Desde [`LinqChallenge2/Program.cs` L53](../../src/LinqChallenge2/Program.cs#L53)
 
 ### ¿Qué acabamos de aprender?
 
-- **LINQ es una canalización de ejecución, no solo un lenguaje de consulta.** Las etapas de evaluación inmediata o diferida y el proveedor (SQL u objetos) que ejecuta cada una determinan *cuándo ocurren tus efectos secundarios*. Mira la misma pregunta en [Haskell](haskell.md#lazy-io-as-control-flow).
+- **LINQ es una canalización de ejecución, no solo un lenguaje de consulta.** Las etapas de evaluación inmediata o diferida y el proveedor (SQL u objetos) que ejecuta cada una determinan *cuándo ocurren tus efectos secundarios*. Mira la misma pregunta en [Haskell](haskell.md#la-es-perezosa-como-flujo-de-control).
 - **Los límites entre proveedores son reales.** Todo lo anterior a `AsEnumerable()` se convierte en SQL; todo lo posterior es C# que se ejecuta en tu proceso.
 - **Los efectos secundarios en una canalización diferida son un imán para los bichos**, y las entradas lo hacen visible.
 

@@ -75,7 +75,7 @@ Acceptance criteria:
 
 ### B2. Haskell: break the laziness (verified)
 
-**Lesson:** [Haskell](lenguajes/haskell.md#lazy-io-as-control-flow). **Entry:** a copy of `src/haskell-weird`.
+**Lesson:** [Haskell](lenguajes/haskell.md#la-es-perezosa-como-flujo-de-control). **Entry:** a copy of `src/haskell-weird`.
 
 1. **Predict:** replace `entries <- evaluate (length cards)` ([L144](../src/haskell-weird/timecards.hs#L144)) with `let entries = length cards`. What happens?
 2. **Predict:** on a fresh copy, remove `unsafeInterleaveIO` from `lazily` by replacing `unsafeInterleaveIO $ case actions of` ([L64](../src/haskell-weird/timecards.hs#L64)) with `id $ case actions of`. What happens, and does it hang?

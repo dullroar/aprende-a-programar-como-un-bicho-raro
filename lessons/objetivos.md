@@ -33,7 +33,7 @@ Every weird entry forces you to name the machine hiding inside a language. Once 
 | GNU tar | A finite-state machine, driven by a logical clock that tar supplies | One SQLite row (the machine's registers) and the number of records tar has written | [tar](lenguajes/tar.md#the-archive-is-the-clock) |
 | Go | Three expression slots, with helper functions in the slots | Fields of one anonymous struct | [csharp-linq-xaml](lenguajes/csharp-linq-xaml.md#las-adaptaciones-de-una-sola-sentencia-mismo-truco-distinta-maquinaria) |
 | Haskell | Ordinary: a lazy list that one `span` reads until the test fails | The unevaluated parts of the lists, read on demand | [haskell](lenguajes/haskell.md) |
-| Haskell | A lazy graph reducer | Thunks: which parts of a list have been demanded | [haskell](lenguajes/haskell.md#lazy-io-as-control-flow) |
+| Haskell | A lazy graph reducer | Thunks: which parts of a list have been demanded | [haskell](lenguajes/haskell.md#la-es-perezosa-como-flujo-de-control) |
 | Java | Three expression slots | Fields of one anonymous class | [csharp-linq-xaml](lenguajes/csharp-linq-xaml.md#las-adaptaciones-de-una-sola-sentencia-mismo-truco-distinta-maquinaria) |
 | JavaScript | Three expression slots | Properties of one object literal | [javascript](lenguajes/javascript.md#the-bodiless-for-in-node) |
 | JavaScript | A set of listeners on one EventEmitter, which together are a state machine | The running total and the card count, held in one object that only the listeners touch | [javascript](lenguajes/javascript.md#listeners-all-the-way-down) |

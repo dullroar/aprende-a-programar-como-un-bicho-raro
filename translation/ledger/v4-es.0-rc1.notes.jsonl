@@ -2260,3 +2260,7 @@
 {"segment_id": "s-a6b58da9d4cd-0037", "ts": "2026-11-22T02:41:00Z", "findings": [], "playful_note": "Conserva el contraste afectuoso entre lo raro y lo aburrido."}
 {"segment_id": "s-c08a852d0dbe-0039", "ts": "2026-11-22T02:42:42Z", "findings": ["I15: heading differs from the recorded transcreated '¿En qué circunstancias esta idea terrible se volvería razonable?'"], "playful_note": "Conserva la ironía de pedir un caso razonable para una idea terrible."}
 {"segment_id": "s-c08a852d0dbe-0039", "ts": "2026-11-22T02:42:49Z", "findings": [], "playful_note": "Conserva la ironía de pedir un caso razonable para una idea terrible."}
+{"segment_id": "s-d3a34cabf25a-0021", "ts": "2026-11-22T03:42:16Z", "findings": ["I7: banned phrase 'garantizada' (assurance label)"]}
+{"segment_id": "s-79e45855763b-0029", "ts": "2026-11-22T14:07:43Z", "findings": ["I25: comma before a simple 'y' ('o mueve el X, y predice la salida'): no comma before a simple o or y"]}
+{"segment_id": "s-79e45855763b-0029", "ts": "2026-11-22T14:07:48Z", "findings": ["I25: comma before a simple 'o' ('reemplaza X por IO simple, o mueve el X'): no comma before a simple o or y"]}
+{"segment_id": "s-79e45855763b-0029", "ts": "2026-11-22T14:07:52Z", "findings": ["I25: comma before a simple 'o' ('reemplaza X por IO simple, o mueve el X'): no comma before a simple o or y"]}

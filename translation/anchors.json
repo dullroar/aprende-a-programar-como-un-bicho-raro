@@ -4800,56 +4800,56 @@
     {
      "en": "Lazy IO as control flow",
      "en_id": "lazy-io-as-control-flow",
-     "es": "Lazy IO as control flow",
-     "es_id": "lazy-io-as-control-flow",
+     "es": "La E/S perezosa como flujo de control",
+     "es_id": "la-es-perezosa-como-flujo-de-control",
      "level": 2,
      "line": 18
     },
     {
      "en": "Behold the monstrosity",
      "en_id": "behold-the-monstrosity",
-     "es": "Behold the monstrosity",
-     "es_id": "behold-the-monstrosity",
+     "es": "Contempla la monstruosidad",
+     "es_id": "contempla-la-monstruosidad",
      "level": 3,
      "line": 20
     },
     {
      "en": "How the hell does that work?",
      "en_id": "how-the-hell-does-that-work",
-     "es": "How the hell does that work?",
-     "es_id": "how-the-hell-does-that-work",
+     "es": "¿Cómo demonios funciona eso?",
+     "es_id": "cómo-demonios-funciona-eso",
      "level": 3,
      "line": 28
     },
     {
      "en": "What did we just learn?",
      "en_id": "what-did-we-just-learn",
-     "es": "What did we just learn?",
-     "es_id": "what-did-we-just-learn",
+     "es": "¿Qué acabamos de aprender?",
+     "es_id": "qué-acabamos-de-aprender",
      "level": 3,
      "line": 38
     },
     {
      "en": "Do this in production and you're fired",
      "en_id": "do-this-in-production-and-youre-fired",
-     "es": "Do this in production and you're fired",
-     "es_id": "do-this-in-production-and-youre-fired",
+     "es": "Haz esto en producción y estás despedido",
+     "es_id": "haz-esto-en-producción-y-estás-despedido",
      "level": 3,
      "line": 46
     },
     {
      "en": "Now break it yourself",
      "en_id": "now-break-it-yourself",
-     "es": "Now break it yourself",
-     "es_id": "now-break-it-yourself",
+     "es": "Ahora rómpelo tú",
+     "es_id": "ahora-rómpelo-tú",
      "level": 3,
      "line": 55
     },
     {
      "en": "Quirks",
      "en_id": "quirks",
-     "es": "Quirks",
-     "es_id": "quirks",
+     "es": "Peculiaridades",
+     "es_id": "peculiaridades",
      "level": 2,
      "line": 59
     },
@@ -4903,20 +4903,20 @@
     }
    ],
    "map": {
-    "behold-the-monstrosity": "behold-the-monstrosity",
+    "behold-the-monstrosity": "contempla-la-monstruosidad",
     "computer-science-behind-this-page": "computer-science-behind-this-page",
-    "do-this-in-production-and-youre-fired": "do-this-in-production-and-youre-fired",
+    "do-this-in-production-and-youre-fired": "haz-esto-en-producción-y-estás-despedido",
     "haskell": "haskell",
     "how-each-program-runs": "how-each-program-runs",
-    "how-the-hell-does-that-work": "how-the-hell-does-that-work",
-    "lazy-io-as-control-flow": "lazy-io-as-control-flow",
-    "now-break-it-yourself": "now-break-it-yourself",
+    "how-the-hell-does-that-work": "cómo-demonios-funciona-eso",
+    "lazy-io-as-control-flow": "la-es-perezosa-como-flujo-de-control",
+    "now-break-it-yourself": "ahora-rómpelo-tú",
     "program-flow-of-haskell": "program-flow-of-haskell",
     "program-flow-of-haskell-weird": "program-flow-of-haskell-weird",
-    "quirks": "quirks",
+    "quirks": "peculiaridades",
     "under-what-circumstances-would-this-terrible-idea-become-reasonable": "under-what-circumstances-would-this-terrible-idea-become-reasonable",
     "weird-next-to-boring": "weird-next-to-boring",
-    "what-did-we-just-learn": "what-did-we-just-learn",
+    "what-did-we-just-learn": "qué-acabamos-de-aprender",
     "what-makes-haskell-special": "qué-hace-especial-a-haskell"
    }
   },

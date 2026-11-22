@@ -35,52 +35,52 @@ msgstr "Haskell es **perezoso**: un valor se calcula solo cuando algo lo demanda
 #: lessons/languages/haskell.md:11
 msgctxt "s-4edb797a890b-0005"
 msgid "⟦SEP_0001⟧ Feature ⟦SEP_0002⟧ Where ⟦SEP_0003⟧ What it teaches ⟦SEP_0004⟧"
-msgstr ""
+msgstr "⟦SEP_0001⟧ Característica ⟦SEP_0002⟧ Dónde ⟦SEP_0003⟧ Qué enseña ⟦SEP_0004⟧"
 
 #: lessons/languages/haskell.md:13
 msgctxt "s-f4c53dd5f521-0006"
 msgid "⟦SEP_0005⟧ Infinite lists as descriptions ⟦SEP_0006⟧ [⟦CODE_0001⟧ L41](⟦DEST_0002⟧): ⟦CODE_0003⟧ ⟦SEP_0007⟧ ⟦CODE_0004⟧ produces an endless stream. It is a recipe, not data. ⟦SEP_0008⟧"
-msgstr ""
+msgstr "⟦SEP_0005⟧ Listas infinitas como descripciones ⟦SEP_0006⟧ [⟦CODE_0001⟧ L41](⟦DEST_0002⟧): ⟦CODE_0003⟧ ⟦SEP_0007⟧ ⟦CODE_0004⟧ produce un flujo sin fin. Es una receta, no datos. ⟦SEP_0008⟧"
 
 #: lessons/languages/haskell.md:14
 msgctxt "s-5ab5ac2219bd-0007"
 msgid "⟦SEP_0007⟧ Running sums over a stream ⟦SEP_0008⟧ [L49](⟦DEST_0001⟧): ⟦CODE_0002⟧ ⟦SEP_0009⟧ ⟦CODE_0003⟧ is a running total; ⟦CODE_0004⟧ repeats the categories because the type derives ⟦CODE_0005⟧ and ⟦CODE_0006⟧. ⟦SEP_0010⟧"
-msgstr ""
+msgstr "⟦SEP_0007⟧ Sumas acumuladas sobre un flujo ⟦SEP_0008⟧ [L49](⟦DEST_0001⟧): ⟦CODE_0002⟧ ⟦SEP_0009⟧ ⟦CODE_0003⟧ es un total acumulado; ⟦CODE_0004⟧ repite las categorías porque el tipo deriva ⟦CODE_0005⟧ y ⟦CODE_0006⟧. ⟦SEP_0010⟧"
 
 #: lessons/languages/haskell.md:15
 msgctxt "s-afcb746a5ac6-0008"
 msgid "⟦SEP_0006⟧ The stop rule is a split ⟦SEP_0007⟧ [L56-59](⟦DEST_0001⟧): ⟦CODE_0002⟧ ⟦SEP_0008⟧ ⟦CODE_0003⟧ reads one card at a time and stops at the first that fails. ⟦CODE_0004⟧ would drop the crossing card; ⟦CODE_0005⟧ hands back both halves. ⟦SEP_0009⟧"
-msgstr ""
+msgstr "⟦SEP_0006⟧ La regla de parada es una división ⟦SEP_0007⟧ [L56-59](⟦DEST_0001⟧): ⟦CODE_0002⟧ ⟦SEP_0008⟧ ⟦CODE_0003⟧ lee una tarjeta a la vez y se detiene en la primera que no cumple. ⟦CODE_0004⟧ descartaría la tarjeta que cruza el tope; ⟦CODE_0005⟧ devuelve ambas mitades. ⟦SEP_0009⟧"
 
 #: lessons/languages/haskell.md:16
 msgctxt "s-0565632ff70a-0009"
 msgid "⟦SEP_0004⟧ Wrapping arithmetic is a feature ⟦SEP_0005⟧ ⟦CODE_0001⟧ uses a 64-bit LCG on ⟦CODE_0002⟧ ⟦SEP_0006⟧ \"mod 2^64\" is free, because ⟦CODE_0003⟧ wraps. ⟦SEP_0007⟧"
-msgstr ""
+msgstr "⟦SEP_0004⟧ La aritmética con desbordamiento circular es una característica ⟦SEP_0005⟧ ⟦CODE_0001⟧ usa un LCG de 64 bits sobre ⟦CODE_0002⟧ ⟦SEP_0006⟧ \"mod 2^64\" sale gratis porque ⟦CODE_0003⟧ se desborda de forma circular. ⟦SEP_0007⟧"
 
 #: lessons/languages/haskell.md:18
 msgctxt "s-f13cf4ffaf3d-0010"
 msgid "Lazy IO as control flow"
-msgstr ""
+msgstr "La E/S perezosa como flujo de control"
 
 #: lessons/languages/haskell.md:20
 msgctxt "s-cc9cfaabc50d-0011"
 msgid "Behold the monstrosity"
-msgstr ""
+msgstr "Contempla la monstruosidad"
 
 #: lessons/languages/haskell.md:26
 msgctxt "s-5a976daf2e56-0012"
 msgid "An infinite list of cards. *Forcing the n-th cell prints card n and sends its ⟦CODE_0001⟧ to ⟦CODE_0002⟧.* Nothing else writes a row. No loop, accumulator, counter or explicit recursion."
-msgstr ""
+msgstr "Una lista infinita de tarjetas. *Forzar la n-ésima celda imprime la tarjeta n y envía su ⟦CODE_0001⟧ a ⟦CODE_0002⟧.* Nada más escribe una fila. No hay bucle, acumulador, contador ni recursión explícita."
 
 #: lessons/languages/haskell.md:28
 msgctxt "s-415f5fa29cf9-0013"
 msgid "How the hell does that work?"
-msgstr ""
+msgstr "¿Cómo demonios funciona eso?"
 
 #: lessons/languages/haskell.md:30
 msgctxt "s-a6a321d949e7-0014"
 msgid "Three tricks stacked."
-msgstr ""
+msgstr "Tres trucos apilados."
 
 #: lessons/languages/haskell.md:32
 msgctxt "s-340d6694431c-0015"
@@ -89,91 +89,94 @@ msgid ""
 "2. **A knot through the cards.** [L75-78](⟦DEST_0006⟧): ⟦CODE_0007⟧. Card n's total is its hours plus the total *read off card n-1, an element of the list under construction*. ⟦CODE_0008⟧ is ⟦CODE_0009⟧ for IO.\n"
 "3. **Effects that wait to be asked for.** [L62-64](⟦DEST_0010⟧): ⟦CODE_0011⟧. Ordinary ⟦CODE_0012⟧ runs every action first, which never finishes on an infinite list. ⟦CODE_0013⟧ means \"run this only when its result is demanded\". After ⟦CODE_0014⟧ returns, nothing has run; each cell is a promise."
 msgstr ""
+"**Una lista definida en términos de sí misma.** [L53](⟦DEST_0001⟧): ⟦CODE_0002⟧. ⟦CODE_0003⟧ le entrega a una función su propio resultado, así que ⟦CODE_0004⟧. Funciona porque ⟦CODE_0005⟧ necesita solo un elemento a la vez.\n"
+"2. **Un nudo a través de las tarjetas.** [L75-78](⟦DEST_0006⟧): ⟦CODE_0007⟧. El total de la tarjeta n es sus horas más el total *leído de la tarjeta n-1, un elemento de la lista en construcción*. ⟦CODE_0008⟧ es ⟦CODE_0009⟧ para IO.\n"
+"3. **Efectos que esperan a que los pidan.** [L62-64](⟦DEST_0010⟧): ⟦CODE_0011⟧. El ⟦CODE_0012⟧ ordinario ejecuta primero todas las acciones, y eso nunca termina con una lista infinita. ⟦CODE_0013⟧ significa \"ejecuta esto solo cuando alguien demande su resultado\". Cuando ⟦CODE_0014⟧ regresa, nada se ha ejecutado; cada celda es una promesa."
 
 #: lessons/languages/haskell.md:36
 msgctxt "s-fbb8a073ab98-0016"
 msgid "The stop rule is [⟦CODE_0001⟧ (L82-83)](⟦DEST_0002⟧): ⟦CODE_0003⟧. Reading card n runs ⟦CODE_0004⟧ for card n, so total reads equal total ⟦CODE_0005⟧s by construction."
-msgstr ""
+msgstr "La regla de parada es [⟦CODE_0001⟧ (L82-83)](⟦DEST_0002⟧): ⟦CODE_0003⟧. Leer la tarjeta n ejecuta ⟦CODE_0004⟧ para la tarjeta n, así que el total de lecturas es igual al total de ⟦CODE_0005⟧ por construcción."
 
 #: lessons/languages/haskell.md:38
 msgctxt "s-d2bbf037de84-0017"
 msgid "What did we just learn?"
-msgstr ""
+msgstr "¿Qué acabamos de aprender?"
 
 #: lessons/languages/haskell.md:40
 msgctxt "s-3affe40a368a-0018"
 msgid "**Evaluation order is part of a program's meaning once effects are involved.** In a pure program it does not matter. Put IO behind a lazy cell and it decides *which rows exist*."
-msgstr ""
+msgstr "**El orden de evaluación forma parte del significado de un programa cuando intervienen efectos.** En un programa puro no importa. Pon IO detrás de una celda perezosa y ese orden decide *qué filas existen*."
 
 #: lessons/languages/haskell.md:41
 msgctxt "s-b840fadf1c99-0019"
 msgid "**Referential transparency is a contract, and ⟦CODE_0001⟧ is where you stop honoring it.**"
-msgstr ""
+msgstr "**La transparencia referencial es un contrato, y ⟦CODE_0001⟧ es el punto donde dejas de respetarlo.**"
 
 #: lessons/languages/haskell.md:42
 msgctxt "s-166fe45ca0ff-0020"
 msgid "**\"When does this run?\" is the same question** as LINQ's deferred execution (see [C#](⟦DEST_0001⟧)). Both are cases where a description is separated from its execution."
-msgstr ""
+msgstr "**\"¿Cuándo se ejecuta esto?\" es la misma pregunta** que la ejecución diferida de LINQ (consulta [C#](⟦DEST_0001⟧)). En ambos casos, una descripción se separa de su ejecución."
 
 #: lessons/languages/haskell.md:44
 msgctxt "s-d3a34cabf25a-0021"
 msgid "Tags: ⟦CODE_0001⟧ laziness is **guaranteed** by the language semantics. ⟦CODE_0002⟧ ordering is **implementation-permitted**: the program is correct because card n cannot be forced before card n-1, not because the evaluator promises an order."
-msgstr ""
+msgstr "Etiquetas: la pereza de ⟦CODE_0001⟧ es comportamiento **garantizado** por la semántica del lenguaje. El orden de ⟦CODE_0002⟧ es comportamiento **permitido por la implementación**: el programa es correcto porque la tarjeta n no puede forzarse antes que la tarjeta n-1, no porque el evaluador prometa un orden."
 
 #: lessons/languages/haskell.md:46
 msgctxt "s-299b7a6f9cbe-0022"
 msgid "Do this in production and you're fired"
-msgstr ""
+msgstr "Haz esto en producción y estás despedido"
 
 #: lessons/languages/haskell.md:48
 msgctxt "s-632bccd0652f-0023"
 msgid "**The README's own war story.** The first draft counted with ⟦CODE_0001⟧, and the program printed ⟦CODE_0002⟧ then crashed with \"handle is closed\". A lazy ⟦CODE_0003⟧ meant nothing forced the cards until the summary was printed, after the pipe was closed. The cards' effects fired *during the output of ⟦CODE_0004⟧*. The fix: [L144](⟦DEST_0005⟧) ⟦CODE_0006⟧."
-msgstr ""
+msgstr "**La historia de guerra del propio README.** El primer borrador contaba con ⟦CODE_0001⟧, y el programa imprimió ⟦CODE_0002⟧ y luego falló con \"handle is closed\". Como ⟦CODE_0003⟧ era perezoso, nada forzó las tarjetas hasta que se imprimió el resumen, cuando la tubería ya estaba cerrada. Los efectos de las tarjetas se dispararon *durante la salida de ⟦CODE_0004⟧*. La solución: [L144](⟦DEST_0005⟧) ⟦CODE_0006⟧."
 
 #: lessons/languages/haskell.md:49
 msgctxt "s-2b121dac4d57-0024"
 msgid "**⟦CODE_0001⟧ must defer its own pattern match.** If the ⟦CODE_0002⟧ runs before ⟦CODE_0003⟧, forcing it needs ⟦CODE_0004⟧, which needs ⟦CODE_0005⟧, which does not exist yet: ⟦CODE_0006⟧."
-msgstr ""
+msgstr "**⟦CODE_0001⟧ debe diferir su propia coincidencia de patrón.** Si el ⟦CODE_0002⟧ se ejecuta antes de ⟦CODE_0003⟧, forzarlo necesita ⟦CODE_0004⟧, que necesita ⟦CODE_0005⟧, que todavía no existe: ⟦CODE_0006⟧."
 
 #: lessons/languages/haskell.md:50
 msgctxt "s-4eefe9e01a62-0025"
 msgid "**⟦CODE_0001⟧ fires one more effect.** The crossing card has to be read to see that it crosses, so its row is written. Laziness makes the off-by-one visible."
-msgstr ""
+msgstr "**⟦CODE_0001⟧ dispara un efecto más.** Hay que leer la tarjeta que cruza el tope para ver que lo cruza, así que se escribe su fila. La pereza hace visible el error por uno."
 
 #: lessons/languages/haskell.md:51
 msgctxt "s-64ecf2f196b6-0026"
 msgid "**Testing and concurrency.** Effects whose timing depends on the consumer cannot be tested without the consumer, and cannot be shared safely."
-msgstr ""
+msgstr "**Pruebas y concurrencia.** Los efectos cuyo momento depende del consumidor no se pueden probar sin el consumidor, y no se pueden compartir de forma segura."
 
 #: lessons/languages/haskell.md:53
 msgctxt "s-8b3cd99bb76e-0027"
 msgid "Legitimate uses: lazy IO exists for streaming (⟦CODE_0001⟧ over a large input) and the same hazards are why people moved to streaming libraries. Knot-tying (⟦CODE_0002⟧) is a respectable technique for self-referential data, such as circular structures and memo tables."
-msgstr ""
+msgstr "Usos legítimos: la E/S perezosa existe para el flujo continuo (⟦CODE_0001⟧ sobre una entrada de datos grande), y los mismos peligros explican por qué la gente migró a bibliotecas de flujo continuo. Atar nudos (⟦CODE_0002⟧) es una técnica respetable para datos autorreferenciales, como estructuras circulares y tablas de memoización."
 
 #: lessons/languages/haskell.md:55
 msgctxt "s-5e3bcdfbf845-0028"
 msgid "Now break it yourself"
-msgstr ""
+msgstr "Ahora rómpelo tú"
 
 #: lessons/languages/haskell.md:57
 msgctxt "s-79e45855763b-0029"
 msgid "See [exercises](⟦DEST_0001⟧): replace ⟦CODE_0002⟧ with plain IO, or move the ⟦CODE_0003⟧, and predict the output."
-msgstr ""
+msgstr "Consulta los [ejercicios](⟦DEST_0001⟧): reemplaza ⟦CODE_0002⟧ por IO simple o mueve el ⟦CODE_0003⟧. Después predice la salida."
 
 #: lessons/languages/haskell.md:59
 msgctxt "s-12d0b77aba94-0030"
 msgid "Quirks"
-msgstr ""
+msgstr "Peculiaridades"
 
 #: lessons/languages/haskell.md:61
 msgctxt "s-1471dae9a8b3-0031"
 msgid "**⟦CODE_0001⟧ is not enough**: it drops the crossing card. ⟦CODE_0002⟧ keeps both halves."
-msgstr ""
+msgstr "**⟦CODE_0001⟧ no basta**: descarta la tarjeta que cruza el tope. ⟦CODE_0002⟧ conserva ambas mitades."
 
 #: lessons/languages/haskell.md:62
 msgctxt "s-e271a99c512e-0032"
 msgid "**Partial functions.** ⟦CODE_0001⟧, ⟦CODE_0002⟧ and ⟦CODE_0003⟧ crash on an empty list; neither program uses them."
-msgstr ""
+msgstr "**Funciones parciales.** ⟦CODE_0001⟧, ⟦CODE_0002⟧ y ⟦CODE_0003⟧ fallan con una lista vacía; ninguno de los dos programas las usa."
 
 #: lessons/languages/haskell.md:63
 msgctxt "s-4186515f58f9-0033"
