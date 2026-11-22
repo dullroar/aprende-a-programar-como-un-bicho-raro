@@ -5220,8 +5220,8 @@
     {
      "en": "Quirks",
      "en_id": "quirks",
-     "es": "Quirks",
-     "es_id": "quirks",
+     "es": "Particularidades",
+     "es_id": "particularidades",
      "level": 2,
      "line": 78
     },
@@ -5285,7 +5285,7 @@
     "now-break-it-yourself": "ahora-rómpelo-tú",
     "program-flow-of-lisp": "program-flow-of-lisp",
     "program-flow-of-lisp-weird": "program-flow-of-lisp-weird",
-    "quirks": "quirks",
+    "quirks": "particularidades",
     "under-what-circumstances-would-this-terrible-idea-become-reasonable": "under-what-circumstances-would-this-terrible-idea-become-reasonable",
     "weird-next-to-boring": "weird-next-to-boring",
     "what-did-we-just-learn": "qué-acabamos-de-aprender",

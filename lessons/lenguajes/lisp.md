@@ -75,12 +75,12 @@ Usos legítimos: **las combinaciones de `or`/`and` son herramientas reales** par
 
 Consulta los [ejercicios](../exercises.md#b10-lisp-swap-the-method-combination-verified).
 
-## Quirks
+## Particularidades
 
-- **`LOOP` clause order matters.** Move `until` above `collect` and the crossing card is dropped. This is the same trap as Haskell's `takeWhile` ([why `span`](haskell.md)).
-- **Definitions must run in order.** A class must exist before another can inherit from it, so `defcard` goes tail first. Implementations differ on whether a forward reference is a warning.
-- **`sql-quote` does not escape.** Every value is a number or one of four fixed words; do not reuse it for anything else.
-- **No formatter exists** for Common Lisp; layout follows Emacs `lisp-mode` indentation by hand.
+- **El orden de las cláusulas de `LOOP` importa.** Mueve `until` por encima de `collect` y se descarta la tarjeta que cruza el tope. Es la misma trampa que en `takeWhile` de Haskell ([por qué `span`](haskell.md)).
+- **Las definiciones deben ejecutarse en orden.** Una clase debe existir antes de que otra pueda heredar de ella, así que `defcard` va primero por la cola. Las implementaciones difieren en si una referencia adelantada es una advertencia.
+- **`sql-quote` no escapa.** Cada valor es un número o una de cuatro palabras fijas; no lo reutilices para nada más.
+- **No existe un formateador** para Common Lisp; la disposición sigue a mano la sangría de `lisp-mode` de Emacs.
 
 ## Weird next to boring
 

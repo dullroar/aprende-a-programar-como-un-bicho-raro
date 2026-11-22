@@ -190,27 +190,27 @@ msgstr "Consulta los [ejercicios](⟦DEST_0001⟧)."
 #: lessons/languages/lisp.md:78
 msgctxt "s-12d0b77aba94-0036"
 msgid "Quirks"
-msgstr ""
+msgstr "Particularidades"
 
 #: lessons/languages/lisp.md:80
 msgctxt "s-909f4ec0b57e-0037"
 msgid "**⟦CODE_0001⟧ clause order matters.** Move ⟦CODE_0002⟧ above ⟦CODE_0003⟧ and the crossing card is dropped. This is the same trap as Haskell's ⟦CODE_0004⟧ ([why ⟦CODE_0005⟧](⟦DEST_0006⟧))."
-msgstr ""
+msgstr "**El orden de las cláusulas de ⟦CODE_0001⟧ importa.** Mueve ⟦CODE_0002⟧ por encima de ⟦CODE_0003⟧ y se descarta la tarjeta que cruza el tope. Es la misma trampa que en ⟦CODE_0004⟧ de Haskell ([por qué ⟦CODE_0005⟧](⟦DEST_0006⟧))."
 
 #: lessons/languages/lisp.md:81
 msgctxt "s-321c7098fdde-0038"
 msgid "**Definitions must run in order.** A class must exist before another can inherit from it, so ⟦CODE_0001⟧ goes tail first. Implementations differ on whether a forward reference is a warning."
-msgstr ""
+msgstr "**Las definiciones deben ejecutarse en orden.** Una clase debe existir antes de que otra pueda heredar de ella, así que ⟦CODE_0001⟧ va primero por la cola. Las implementaciones difieren en si una referencia adelantada es una advertencia."
 
 #: lessons/languages/lisp.md:82
 msgctxt "s-3ab953021612-0039"
 msgid "**⟦CODE_0001⟧ does not escape.** Every value is a number or one of four fixed words; do not reuse it for anything else."
-msgstr ""
+msgstr "**⟦CODE_0001⟧ no escapa.** Cada valor es un número o una de cuatro palabras fijas; no lo reutilices para nada más."
 
 #: lessons/languages/lisp.md:83
 msgctxt "s-4df631e1101f-0040"
 msgid "**No formatter exists** for Common Lisp; layout follows Emacs ⟦CODE_0001⟧ indentation by hand."
-msgstr ""
+msgstr "**No existe un formateador** para Common Lisp; la disposición sigue a mano la sangría de ⟦CODE_0001⟧ de Emacs."
 
 #: lessons/languages/lisp.md:85
 msgctxt "s-a6b58da9d4cd-0041"
