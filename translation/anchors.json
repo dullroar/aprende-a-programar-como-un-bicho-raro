@@ -6001,8 +6001,8 @@
     {
      "en": "How the hell does that work?",
      "en_id": "how-the-hell-does-that-work",
-     "es": "How the hell does that work?",
-     "es_id": "how-the-hell-does-that-work",
+     "es": "¿Cómo demonios funciona eso?",
+     "es_id": "cómo-demonios-funciona-eso",
      "level": 3,
      "line": 31
     },
@@ -6092,7 +6092,7 @@
     "computer-science-behind-this-page": "computer-science-behind-this-page",
     "do-this-in-production-and-youre-fired": "do-this-in-production-and-youre-fired",
     "how-each-program-runs": "how-each-program-runs",
-    "how-the-hell-does-that-work": "how-the-hell-does-that-work",
+    "how-the-hell-does-that-work": "cómo-demonios-funciona-eso",
     "now-break-it-yourself": "now-break-it-yourself",
     "program-flow-of-tcl": "program-flow-of-tcl",
     "program-flow-of-tcl-weird": "program-flow-of-tcl-weird",

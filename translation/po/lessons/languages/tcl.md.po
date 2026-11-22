@@ -85,27 +85,27 @@ msgstr "Contempla la monstruosidad"
 #: lessons/languages/tcl.md:29
 msgctxt "s-f0c2f829e8fa-0015"
 msgid "Open [⟦CODE_0001⟧](⟦DEST_0002⟧). Exactly **two** procs are defined in Tcl, and neither deals a card. The code that does is *text in a database table*, and the loop is an SQL trigger."
-msgstr ""
+msgstr "Abre [⟦CODE_0001⟧](⟦DEST_0002⟧). Se definen exactamente **dos** procedimientos en Tcl y ninguno reparte una tarjeta. El código que lo hace es *texto en una tabla de base de datos* y el bucle es un disparador SQL."
 
 #: lessons/languages/tcl.md:31
 msgctxt "s-415f5fa29cf9-0016"
 msgid "How the hell does that work?"
-msgstr ""
+msgstr "¿Cómo demonios funciona eso?"
 
 #: lessons/languages/tcl.md:33
 msgctxt "s-0b12f2d31494-0017"
 msgid "Three hooks make a program out of nothing."
-msgstr ""
+msgstr "Tres puntos de conexión crean un programa de la nada."
 
 #: lessons/languages/tcl.md:35
 msgctxt "s-599e1a06e51a-0018"
 msgid "**Hook 1: SQL can call Tcl.** [⟦CODE_0001⟧](⟦DEST_0002⟧) registers an SQL function ⟦CODE_0003⟧ whose implementation is a Tcl proc that runs a command. From inside any SQL statement, ⟦CODE_0004⟧ runs the Tcl command ⟦CODE_0005⟧ and returns its result."
-msgstr ""
+msgstr "**Punto de conexión 1: SQL puede llamar a Tcl.** [⟦CODE_0001⟧](⟦DEST_0002⟧) registra una función SQL ⟦CODE_0003⟧ implementada como un procedimiento Tcl que ejecuta un comando. Desde cualquier sentencia SQL, ⟦CODE_0004⟧ ejecuta el comando Tcl ⟦CODE_0005⟧ y devuelve su resultado."
 
 #: lessons/languages/tcl.md:37
 msgctxt "s-236ade4aa777-0019"
 msgid "**Hook 2: ⟦CODE_0001⟧ is the library path.** When Tcl is asked to run a command that does not exist, it calls a command named ⟦CODE_0002⟧. The entry [renames and replaces it](⟦DEST_0003⟧): it looks the name up in a TEMP table ⟦CODE_0004⟧; if there is a row, it defines a proc from it with ⟦CODE_0005⟧ and retries. So ⟦CODE_0006⟧, ⟦CODE_0007⟧, ⟦CODE_0008⟧ and the rest are *never* written as Tcl source. The first call to ⟦CODE_0009⟧ finds no such command, asks ⟦CODE_0010⟧, which finds the row in SQLite, builds the proc and runs it. The program prints which procs came out of the database at the end:"
-msgstr ""
+msgstr "**Punto de conexión 2: ⟦CODE_0001⟧ es la ruta de biblioteca.** Cuando se le pide a Tcl ejecutar un comando inexistente, llama a un comando llamado ⟦CODE_0002⟧. La entrada [lo renombra y reemplaza](⟦DEST_0003⟧): busca el nombre en una tabla TEMP ⟦CODE_0004⟧. Si hay una fila, define un procedimiento a partir de ella con ⟦CODE_0005⟧ y vuelve a intentarlo. Así, ⟦CODE_0006⟧, ⟦CODE_0007⟧, ⟦CODE_0008⟧ y los demás *nunca* se escriben como código fuente Tcl. La primera llamada a ⟦CODE_0009⟧ no encuentra ese comando y consulta a ⟦CODE_0010⟧. Este encuentra la fila en SQLite, construye el procedimiento y lo ejecuta. Al final, el programa imprime qué procedimientos salieron de la base de datos:"
 
 #: lessons/languages/tcl.md:43
 msgctxt "s-d9037be5791c-0020"

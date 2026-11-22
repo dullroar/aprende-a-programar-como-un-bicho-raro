@@ -26,15 +26,15 @@ La regla de Tcl es: "todo es un comando y cada comando recibe sus argumentos com
 sandbox/container/run-image.sh src/tcl-weird
 ```
 
-Open [`timecards.tcl`](../../src/tcl-weird/timecards.tcl). Exactly **two** procs are defined in Tcl, and neither deals a card. The code that does is *text in a database table*, and the loop is an SQL trigger.
+Abre [`timecards.tcl`](../../src/tcl-weird/timecards.tcl). Se definen exactamente **dos** procedimientos en Tcl y ninguno reparte una tarjeta. El código que lo hace es *texto en una tabla de base de datos* y el bucle es un disparador SQL.
 
-### How the hell does that work?
+### ¿Cómo demonios funciona eso?
 
-Three hooks make a program out of nothing.
+Tres puntos de conexión crean un programa de la nada.
 
-**Hook 1: SQL can call Tcl.** [`db function tcl call`](../../src/tcl-weird/timecards.tcl#L28-L34) registers an SQL function `tcl(command, args...)` whose implementation is a Tcl proc that runs a command. From inside any SQL statement, `SELECT tcl('hours')` runs the Tcl command `hours` and returns its result.
+**Punto de conexión 1: SQL puede llamar a Tcl.** [`db function tcl call`](../../src/tcl-weird/timecards.tcl#L28-L34) registra una función SQL `tcl(command, args...)` implementada como un procedimiento Tcl que ejecuta un comando. Desde cualquier sentencia SQL, `SELECT tcl('hours')` ejecuta el comando Tcl `hours` y devuelve su resultado.
 
-**Hook 2: `unknown` is the library path.** When Tcl is asked to run a command that does not exist, it calls a command named `unknown`. The entry [renames and replaces it](../../src/tcl-weird/timecards.tcl#L36-L49): it looks the name up in a TEMP table `tcl_code(name, params, body)`; if there is a row, it defines a proc from it with `proc $name $params $body` and retries. So `hours`, `category`, `born` and the rest are *never* written as Tcl source. The first call to `tcl('hours')` finds no such command, asks `unknown`, which finds the row in SQLite, builds the proc and runs it. The program prints which procs came out of the database at the end:
+**Punto de conexión 2: `unknown` es la ruta de biblioteca.** Cuando se le pide a Tcl ejecutar un comando inexistente, llama a un comando llamado `unknown`. La entrada [lo renombra y reemplaza](../../src/tcl-weird/timecards.tcl#L36-L49): busca el nombre en una tabla TEMP `tcl_code(name, params, body)`. Si hay una fila, define un procedimiento a partir de ella con `proc $name $params $body` y vuelve a intentarlo. Así, `hours`, `category`, `born` y los demás *nunca* se escriben como código fuente Tcl. La primera llamada a `tcl('hours')` no encuentra ese comando y consulta a `unknown`. Este encuentra la fila en SQLite, construye el procedimiento y lo ejecuta. Al final, el programa imprime qué procedimientos salieron de la base de datos:
 
 ```text
 # every proc that ran was fetched from SQLite by unknown: born category hours init runid week

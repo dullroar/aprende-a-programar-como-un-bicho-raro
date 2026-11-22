@@ -453,3 +453,4 @@
 {"id":"EXC-453","segment":"s-312f4619ed92-0071","invariant":"I7","reason":"Here build means constructing SQL text, not the noun compilation; construyen preserves the verb's meaning.","task":"P4-lessons-languages-5"}
 {"id":"EXC-454","segment":"s-90aebae31567-0000","invariant":"TRANSLATE","reason":"The segment is the literal program name tar, which remains unchanged in Spanish.","task":"P4-lessons-languages-5"}
 {"id":"EXC-455","segment":"s-a4f6a78a8d4a-0031","invariant":"I7","reason":"'in step' is an idiom meaning synchronized, not the noun step; sincronizados preserves the meaning.","task":"P4-lessons-languages-5"}
+{"id":"EXC-456","segment":"s-236ade4aa777-0019","invariant":"I7","reason":"The source uses builds as a verb for constructing a Tcl procedure from a database row, not the noun build or compilación.","task":"P4-lessons-languages-5"}
