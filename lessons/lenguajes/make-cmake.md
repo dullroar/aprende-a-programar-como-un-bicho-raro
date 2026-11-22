@@ -34,14 +34,14 @@ Un Makefile **sin `$(shell)`, sin `!=`, sin Guile y sin `load`** (`check.sh` los
 ### ¿Qué acabamos de aprender?
 
 - **Make es un motor de dependencias que puede reiniciarse.** "Rehacer lo que describe la compilación" es un bucle disfrazado.
-- **State can be the existence of files.** Make state here is which `.tc-N.mk` files exist.
-- **Expansion time and execution time are different phases** ([Make's two phases](#quirks)), and the program lives in the gap.
+- **El estado puede ser la existencia de archivos.** El estado de Make aquí consiste en cuáles archivos `.tc-N.mk` existen.
+- **El tiempo de expansión y el tiempo de ejecución son fases diferentes** ([Las dos fases de Make](#quirks)) y el programa vive en el intervalo entre ambas.
 
-Tags: remaking included makefiles and restarting are **guaranteed** by the GNU Make manual but its use as a loop is **accidentally exploited**. `$(file <...)` needs GNU Make 4.2+. `/proc` reads are **implementation-permitted** on Linux.
+Etiquetas: el manual de GNU Make declara **garantizado** que se reconstruyan los makefiles incluidos y se reinicie. Su uso como bucle es **aprovechado por accidente**. `$(file <...)` necesita GNU Make 4.2+. Las lecturas de `/proc` son **permitido por la implementación** en Linux.
 
-### Do this in production and you're fired
+### Haz esto en producción y estás despedido
 
-- **A crashed run leaves `.tc-*.mk` behind**; the next `make` refuses to start (it would treat them as real cards) until `make clean`.
+- **Una ejecución que falla deja `.tc-*.mk` atrás**; el siguiente `make` se niega a iniciar (los trataría como tarjetas reales) hasta que se ejecute `make clean`.
 - **Timestamp granularity.** The first design rewrote one `.state.mk` and restarted once, then stopped: WSL's file timestamps were coarse enough that the rewrite looked unchanged. "Missing to present" is unambiguous; "modified" is not.
 - **UTC only**, because `/etc/localtime` is binary and Make cannot read it.
 - **Debugging** means reasoning about expansion phases, restarts and file state at once.

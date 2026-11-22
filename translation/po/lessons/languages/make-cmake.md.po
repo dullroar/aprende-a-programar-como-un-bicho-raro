@@ -85,27 +85,27 @@ msgstr "**Make es un motor de dependencias que puede reiniciarse.** \"Rehacer lo
 #: lessons/languages/make-cmake.md:37
 msgctxt "s-385bf3b01ae2-0015"
 msgid "**State can be the existence of files.** Make state here is which ⟦CODE_0001⟧ files exist."
-msgstr ""
+msgstr "**El estado puede ser la existencia de archivos.** El estado de Make aquí consiste en cuáles archivos ⟦CODE_0001⟧ existen."
 
 #: lessons/languages/make-cmake.md:38
 msgctxt "s-2bd02e63bdc2-0016"
 msgid "**Expansion time and execution time are different phases** ([Make's two phases](⟦DEST_0001⟧)), and the program lives in the gap."
-msgstr ""
+msgstr "**El tiempo de expansión y el tiempo de ejecución son fases diferentes** ([Las dos fases de Make](⟦DEST_0001⟧)) y el programa vive en el intervalo entre ambas."
 
 #: lessons/languages/make-cmake.md:40
 msgctxt "s-c4809fd1a594-0017"
 msgid "Tags: remaking included makefiles and restarting are **guaranteed** by the GNU Make manual but its use as a loop is **accidentally exploited**. ⟦CODE_0001⟧ needs GNU Make 4.2+. ⟦CODE_0002⟧ reads are **implementation-permitted** on Linux."
-msgstr ""
+msgstr "Etiquetas: el manual de GNU Make declara **garantizado** que se reconstruyan los makefiles incluidos y se reinicie. Su uso como bucle es **aprovechado por accidente**. ⟦CODE_0001⟧ necesita GNU Make 4.2+. Las lecturas de ⟦CODE_0002⟧ son **permitido por la implementación** en Linux."
 
 #: lessons/languages/make-cmake.md:42
 msgctxt "s-299b7a6f9cbe-0018"
 msgid "Do this in production and you're fired"
-msgstr ""
+msgstr "Haz esto en producción y estás despedido"
 
 #: lessons/languages/make-cmake.md:44
 msgctxt "s-b929e538c0aa-0019"
 msgid "**A crashed run leaves ⟦CODE_0001⟧ behind**; the next ⟦CODE_0002⟧ refuses to start (it would treat them as real cards) until ⟦CODE_0003⟧."
-msgstr ""
+msgstr "**Una ejecución que falla deja ⟦CODE_0001⟧ atrás**; el siguiente ⟦CODE_0002⟧ se niega a iniciar (los trataría como tarjetas reales) hasta que se ejecute ⟦CODE_0003⟧."
 
 #: lessons/languages/make-cmake.md:45
 msgctxt "s-a2023b39ecf4-0020"

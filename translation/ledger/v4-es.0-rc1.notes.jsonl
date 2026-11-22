@@ -2241,3 +2241,4 @@
 {"segment_id": "s-cc9cfaabc50d-0004", "ts": "2026-11-22T01:35:28Z", "findings": [], "playful_note": "Anuncio grandilocuente de la extraña obra."}
 {"segment_id": "s-415f5fa29cf9-0006", "ts": "2026-11-22T01:37:44Z", "findings": ["I15: heading differs from the recorded transcreated '¿Cómo demonios funciona eso?'"], "playful_note": "Pregunta de exasperación con una leve palabrota."}
 {"segment_id": "s-415f5fa29cf9-0006", "ts": "2026-11-22T01:37:56Z", "findings": [], "playful_note": "Pregunta de exasperación con una leve palabrota."}
+{"segment_id": "s-299b7a6f9cbe-0018", "ts": "2026-11-22T01:41:23Z", "findings": [], "playful_note": "Conserva la amenaza cómica."}
