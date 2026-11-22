@@ -1,0 +1,443 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lessons/languages/javascript.md:1
+msgctxt "s-b27ad06d123c-0000"
+msgid "JavaScript"
+msgstr "JavaScript"
+
+#: lessons/languages/javascript.md:3
+msgctxt "s-6f795a8092aa-0001"
+msgid "Entries: [⟦CODE_0001⟧](⟦DEST_0002⟧) (the original's bodiless ⟦CODE_0003⟧, in Node.js), [⟦CODE_0004⟧](⟦DEST_0005⟧) (closures and a lazy iterator, with no loop statement) and [⟦CODE_0006⟧](⟦DEST_0007⟧) (ten listeners on an ⟦CODE_0008⟧, with no loop statement and no pipeline). JavaScript is the language of the browser, and with Node.js it is also a general-purpose scripting language on the server. Its ⟦CODE_0009⟧ statement is the C ⟦CODE_0010⟧: three clauses and a body. Here the body is empty and the three clauses are the whole program."
+msgstr "Entradas: [⟦CODE_0001⟧](⟦DEST_0002⟧) (el ⟦CODE_0003⟧ sin cuerpo del original, en Node.js), [⟦CODE_0004⟧](⟦DEST_0005⟧) (clausuras (*closures*), funciones que conservan su entorno, y un iterador perezoso, sin sentencia de bucle) y [⟦CODE_0006⟧](⟦DEST_0007⟧) (diez escuchadores de eventos en un ⟦CODE_0008⟧, sin sentencia de bucle ni canalización). JavaScript es el lenguaje del navegador y con Node.js también es un lenguaje de scripting de propósito general en el servidor. Su sentencia ⟦CODE_0009⟧ es el ⟦CODE_0010⟧ de C: tres cláusulas y un cuerpo. Aquí el cuerpo está vacío y las tres cláusulas son todo el programa."
+
+#: lessons/languages/javascript.md:5
+msgctxt "s-7fd0bc245e01-0002"
+msgid "For an advanced reading path with traces and experiments, see the [JavaScript study guide](⟦DEST_0001⟧)."
+msgstr "Para una ruta de lectura avanzada con trazas y experimentos, consulta la [guía de estudio de JavaScript](⟦DEST_0001⟧)."
+
+#: lessons/languages/javascript.md:7
+msgctxt "s-433eaf795b02-0003"
+msgid "What makes JavaScript special"
+msgstr "Qué hace especial a JavaScript"
+
+#: lessons/languages/javascript.md:9
+msgctxt "s-b2ff52136de5-0004"
+msgid "⟦SEP_0001⟧ Feature ⟦SEP_0002⟧ What it teaches ⟦SEP_0003⟧"
+msgstr "⟦SEP_0001⟧ Característica ⟦SEP_0002⟧ Qué enseña ⟦SEP_0003⟧"
+
+#: lessons/languages/javascript.md:11
+msgctxt "s-c2816d806efe-0005"
+msgid "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ A loop is three expressions and a statement. The order is fixed: init once, then test, body, update, test, body, update, until the test is false. ⟦SEP_0004⟧"
+msgstr ""
+
+#: lessons/languages/javascript.md:12
+msgctxt "s-e603b2636d0d-0006"
+msgid "⟦SEP_0002⟧ The comma operator ⟦CODE_0001⟧ ⟦SEP_0003⟧ Evaluate both, give the second. It lets one expression do several things in order, which is how the iterator clause adds a card *and* saves it. ⟦SEP_0004⟧"
+msgstr ""
+
+#: lessons/languages/javascript.md:13
+msgctxt "s-92ca50083119-0007"
+msgid "⟦SEP_0004⟧ Truthiness and ⟦CODE_0001⟧, ⟦CODE_0002⟧ ⟦SEP_0005⟧ A test can be any value, and ⟦CODE_0003⟧ is an expression, not a statement. So the stop rule can be a value, and a side effect can sit in the false branch. ⟦SEP_0006⟧"
+msgstr ""
+
+#: lessons/languages/javascript.md:14
+msgctxt "s-c53df3c418ed-0008"
+msgid "⟦SEP_0003⟧ ⟦CODE_0001⟧ in a ⟦CODE_0002⟧ header ⟦SEP_0004⟧ The loop variable is copied for each iteration. A closure made in the body sees its own copy. A copy of an *object reference* is a reference to the same object, so the state is shared. ⟦SEP_0005⟧"
+msgstr ""
+
+#: lessons/languages/javascript.md:15
+msgctxt "s-b8908d68a3af-0009"
+msgid "⟦SEP_0001⟧ Arrow functions and closures ⟦SEP_0002⟧ A function carries the variables around it. The seeded random generator is a closure over one number. ⟦SEP_0003⟧"
+msgstr ""
+
+#: lessons/languages/javascript.md:16
+msgctxt "s-674c49e926a6-0010"
+msgid "⟦SEP_0005⟧ Iterators and the iteration protocol ⟦SEP_0006⟧ An object with ⟦CODE_0001⟧ and a ⟦CODE_0002⟧ method can be consumed by ⟦CODE_0003⟧, by spread, by ⟦CODE_0004⟧. The *consumer* decides how many values to ask for. ⟦SEP_0007⟧"
+msgstr ""
+
+#: lessons/languages/javascript.md:17
+msgctxt "s-e2beb66ae5c0-0011"
+msgid "⟦SEP_0001⟧ Node.js: the event loop ⟦SEP_0002⟧ JavaScript runs on one thread. Timers fire only when the current code is done. The pulse works because the loop is finished first. ⟦SEP_0003⟧"
+msgstr ""
+
+#: lessons/languages/javascript.md:19
+msgctxt "s-2ef786357c67-0012"
+msgid "The bodiless for in Node"
+msgstr ""
+
+#: lessons/languages/javascript.md:21
+msgctxt "s-cc9cfaabc50d-0013"
+msgid "Behold the monstrosity"
+msgstr ""
+
+#: lessons/languages/javascript.md:27
+msgctxt "s-fddf528980a2-0014"
+msgid "One statement, about 80 lines long. The body is empty. No function is declared in the file."
+msgstr ""
+
+#: lessons/languages/javascript.md:29
+msgctxt "s-415f5fa29cf9-0015"
+msgid "How the hell does that work?"
+msgstr ""
+
+#: lessons/languages/javascript.md:31
+msgctxt "s-5360790f71a3-0016"
+msgid "**The initializer builds the state.** One ⟦CODE_0001⟧ holds a list of hours, the database, the clock and a seeded random generator. A ⟦CODE_0002⟧ allows one declaration, so the state is one object. The global Web Crypto object supplies a seed through ⟦CODE_0003⟧ when ⟦CODE_0004⟧ is unset. ⟦CODE_0005⟧ is a separate export of ⟦CODE_0006⟧."
+msgstr ""
+
+#: lessons/languages/javascript.md:32
+msgctxt "s-093386d6f099-0017"
+msgid "**The condition is the stop rule, and the report.** ⟦CODE_0001⟧. While it says ⟦CODE_0002⟧ the loop goes on. When it says ⟦CODE_0003⟧ it has already printed the result."
+msgstr ""
+
+#: lessons/languages/javascript.md:33
+msgctxt "s-5fe84683ea7d-0018"
+msgid "**The iterator is the work.** It draws the hours and saves the card. After the initial test, each update saves its card before the next test. That is why the crossing card is included."
+msgstr ""
+
+#: lessons/languages/javascript.md:34
+msgctxt "s-1c7ac4ea4773-0019"
+msgid "**A timer is the animation.** On a terminal, ⟦CODE_0001⟧ pulses the ⟦DNT_0002⟧ line. It starts only after the loop, so it cannot slow the cards down."
+msgstr ""
+
+#: lessons/languages/javascript.md:36
+msgctxt "s-d7ce762e217a-0020"
+msgid "The [README](⟦DEST_0001⟧) has the table of what the C# did and what this does, and a measured comparison with the original."
+msgstr ""
+
+#: lessons/languages/javascript.md:38
+msgctxt "s-d2bbf037de84-0021"
+msgid "What did we just learn?"
+msgstr ""
+
+#: lessons/languages/javascript.md:40
+msgctxt "s-17ad0bbcc186-0022"
+msgid "**Evaluation order is the program.** Init, test, body, update: the order is the control flow, and you can put side effects in any clause."
+msgstr ""
+
+#: lessons/languages/javascript.md:41
+msgctxt "s-88d99608092c-0023"
+msgid "**A conditional is a value.** ⟦CODE_0001⟧ and ⟦CODE_0002⟧ choose between expressions, so they can choose between *effects*."
+msgstr ""
+
+#: lessons/languages/javascript.md:42
+msgctxt "s-d93dd8576fa7-0024"
+msgid "**State has to live somewhere that survives an iteration.** A ⟦CODE_0001⟧ number would be copied. An object is shared."
+msgstr ""
+
+#: lessons/languages/javascript.md:43
+msgctxt "s-0d5acc2c5a41-0025"
+msgid "**The event loop is a second loop.** The ⟦CODE_0001⟧ runs to the end first. The timer runs after. They do not interleave."
+msgstr ""
+
+#: lessons/languages/javascript.md:44
+msgctxt "s-c24cc7871f95-0026"
+msgid "**The comma has two meanings.** In a declaration it separates declarators. In an expression it is an operator. C# lets you mix the two in an initializer. JavaScript does not."
+msgstr ""
+
+#: lessons/languages/javascript.md:46
+msgctxt "s-0a5bc85bc419-0027"
+msgid "Tags: the ⟦CODE_0001⟧ semantics, ⟦CODE_0002⟧, ⟦CODE_0003⟧, the comma operator and closures are **guaranteed** by the ECMAScript specification. ⟦CODE_0004⟧ is a Node.js API, outside the language standard (**implementation-permitted**)."
+msgstr ""
+
+#: lessons/languages/javascript.md:48
+msgctxt "s-299b7a6f9cbe-0028"
+msgid "Do this in production and you're fired"
+msgstr ""
+
+#: lessons/languages/javascript.md:50
+msgctxt "s-f12f886dc2a3-0029"
+msgid "**A ⟦CODE_0001⟧ with an empty body hides the program in its header.** Nobody can find the loop body, because there is none."
+msgstr ""
+
+#: lessons/languages/javascript.md:51
+msgctxt "s-fe50d618d8b7-0030"
+msgid "**Side effects in a condition are a bug waiting.** If the test runs twice, the result prints twice."
+msgstr ""
+
+#: lessons/languages/javascript.md:52
+msgctxt "s-f56475f87f31-0031"
+msgid "**The state object is a global in disguise.** Anything can reach into it."
+msgstr ""
+
+#: lessons/languages/javascript.md:54
+msgctxt "s-16ce4b506df0-0032"
+msgid "Legitimate uses: ⟦CODE_0001⟧ with a ⟦CODE_0002⟧, and a comma in an update clause for two counters."
+msgstr ""
+
+#: lessons/languages/javascript.md:56
+msgctxt "s-5e3bcdfbf845-0033"
+msgid "Now break it yourself"
+msgstr ""
+
+#: lessons/languages/javascript.md:58
+msgctxt "s-58e910267478-0034"
+msgid "See [exercise B20](⟦DEST_0001⟧)."
+msgstr ""
+
+#: lessons/languages/javascript.md:60
+msgctxt "s-d2b0031231d3-0035"
+msgid "Closures all the way down"
+msgstr ""
+
+#: lessons/languages/javascript.md:62
+msgctxt "s-cc9cfaabc50d-0036"
+msgid "Behold the monstrosity"
+msgstr ""
+
+#: lessons/languages/javascript.md:68
+msgctxt "s-eeaab87be2f2-0037"
+msgid "No ⟦CODE_0001⟧, no ⟦CODE_0002⟧, no ⟦CODE_0003⟧. The algorithm is three closures of one line each. The program is one pipeline: ⟦CODE_0004⟧."
+msgstr ""
+
+#: lessons/languages/javascript.md:70
+msgctxt "s-415f5fa29cf9-0038"
+msgid "How the hell does that work?"
+msgstr ""
+
+#: lessons/languages/javascript.md:72
+msgctxt "s-2d4e381402b8-0039"
+msgid "**A closure is a state machine.** ⟦CODE_0001⟧ returns a function. It remembers a count, a total and a stop flag in variables that only it can reach. Each call makes the next card."
+msgstr ""
+
+#: lessons/languages/javascript.md:73
+msgctxt "s-779a584ca60e-0040"
+msgid "**The iteration protocol is the loop.** An object with a ⟦CODE_0001⟧ method that says ⟦CODE_0002⟧ when it is finished. ⟦CODE_0003⟧ keeps asking until it hears that."
+msgstr ""
+
+#: lessons/languages/javascript.md:74
+msgctxt "s-90222a056c4e-0041"
+msgid "**The stop rule is a variable.** ⟦CODE_0001⟧, set in the same call that makes the crossing card. After that the machine answers ⟦CODE_0002⟧, and the stream ends."
+msgstr ""
+
+#: lessons/languages/javascript.md:75
+msgctxt "s-553ede7d8a0c-0042"
+msgid "**Demand decides.** Nothing is drawn until something asks. ⟦CODE_0001⟧ draws one card. ⟦CODE_0002⟧ draws all of them."
+msgstr ""
+
+#: lessons/languages/javascript.md:76
+msgctxt "s-d697d4de46d8-0043"
+msgid "**⟦CODE_0001⟧ is the fold that cannot stop.** It runs for every element. So it adds up the finished list, and the stop is done somewhere else."
+msgstr ""
+
+#: lessons/languages/javascript.md:78
+msgctxt "s-ae24aa0271c0-0044"
+msgid "The [README](⟦DEST_0001⟧) has the closure diagram, a table of five ways to stop and a comparison of the C# original, the bodiless ⟦CODE_0002⟧ and this one."
+msgstr ""
+
+#: lessons/languages/javascript.md:80
+msgctxt "s-d2bbf037de84-0045"
+msgid "What did we just learn?"
+msgstr ""
+
+#: lessons/languages/javascript.md:82
+msgctxt "s-3e729e65bbb1-0046"
+msgid "**A closure is a function plus its environment.** Lambda syntax alone is not a closure that matters. A function that changes a variable that lives past the call is."
+msgstr ""
+
+#: lessons/languages/javascript.md:83
+msgctxt "s-7be21727b552-0047"
+msgid "**Closures capture variables, not values.** Two closures over one variable share it. Every call to a factory makes new variables."
+msgstr ""
+
+#: lessons/languages/javascript.md:84
+msgctxt "s-b01cc21d469e-0048"
+msgid "**⟦CODE_0001⟧ is not a captured variable.** Detach a method and it loses its ⟦CODE_0002⟧. A closure keeps what it captured."
+msgstr ""
+
+#: lessons/languages/javascript.md:85
+msgctxt "s-a102f0dfb69f-0049"
+msgid "**A closure is not a continuation.** It can be called again. It cannot resume in the middle of something, or go back."
+msgstr ""
+
+#: lessons/languages/javascript.md:86
+msgctxt "s-0c427346bded-0050"
+msgid "**Lazy and eager give different orders of effects.** ⟦CODE_0001⟧ runs ⟦CODE_0002⟧. ⟦CODE_0003⟧ runs ⟦CODE_0004⟧. For pure functions nobody can tell. With effects you can, and that is why the \"map preserves composition\" law needs pure functions."
+msgstr ""
+
+#: lessons/languages/javascript.md:87
+msgctxt "s-c1757801a7b7-0051"
+msgid "**Only some operations can stop early.** ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧ and a source that says ⟦CODE_0004⟧ can. ⟦CODE_0005⟧ cannot. A ⟦CODE_0006⟧ can, and it is the wrong tool."
+msgstr ""
+
+#: lessons/languages/javascript.md:89
+msgctxt "s-51368e3a515f-0052"
+msgid "Tags: closures, arrow functions and the iteration protocol are in the ECMAScript specification, and so are the iterator helpers since ECMAScript 2025 (**guaranteed**). ⟦CODE_0001⟧, ⟦CODE_0002⟧'s timing and ⟦CODE_0003⟧ are engine and Node details, used only in the check."
+msgstr ""
+
+#: lessons/languages/javascript.md:91
+msgctxt "s-299b7a6f9cbe-0053"
+msgid "Do this in production and you're fired"
+msgstr ""
+
+#: lessons/languages/javascript.md:93
+msgctxt "s-efa9aa229213-0054"
+msgid "**Effects inside ⟦CODE_0001⟧ surprise people.** A reader expects ⟦CODE_0002⟧ to be pure. This one saves rows."
+msgstr ""
+
+#: lessons/languages/javascript.md:94
+msgctxt "s-0a0772af9dfb-0055"
+msgid "**Hidden state is hard to inspect.** A debugger shows captured variables, and ⟦CODE_0001⟧ of the function does not."
+msgstr ""
+
+#: lessons/languages/javascript.md:95
+msgctxt "s-b3ffbe14cb02-0056"
+msgid "**An iterator that is spent is a trap.** A second pass over it gives nothing, with no error."
+msgstr ""
+
+#: lessons/languages/javascript.md:97
+msgctxt "s-35b49dc4e710-0057"
+msgid "Legitimate uses: closures for private state, factories for configured functions, lazy pipelines for streams that are too big to hold and ⟦CODE_0001⟧/⟦CODE_0002⟧ for \"stop at the first\"."
+msgstr ""
+
+#: lessons/languages/javascript.md:99
+msgctxt "s-5e3bcdfbf845-0058"
+msgid "Now break it yourself"
+msgstr ""
+
+#: lessons/languages/javascript.md:101
+msgctxt "s-f0043a70f096-0059"
+msgid "See [exercise B21](⟦DEST_0001⟧)."
+msgstr ""
+
+#: lessons/languages/javascript.md:103
+msgctxt "s-75cf1969e29d-0060"
+msgid "Listeners all the way down"
+msgstr ""
+
+#: lessons/languages/javascript.md:105
+msgctxt "s-cc9cfaabc50d-0061"
+msgid "Behold the monstrosity"
+msgstr ""
+
+#: lessons/languages/javascript.md:111
+msgctxt "s-99f0c1da50c6-0062"
+msgid "No ⟦CODE_0001⟧, no ⟦CODE_0002⟧, no pipeline, no closure factory. The visible start-up is one line, ⟦CODE_0003⟧. Everything else is a listener: a small function that Node calls when an event arrives."
+msgstr ""
+
+#: lessons/languages/javascript.md:113
+msgctxt "s-415f5fa29cf9-0063"
+msgid "How the hell does that work?"
+msgstr ""
+
+#: lessons/languages/javascript.md:115
+msgctxt "s-ccb245f65620-0064"
+msgid "**A listener does one thing and emits the next event.** ⟦CODE_0001⟧ draws a card and emits ⟦CODE_0002⟧. ⟦CODE_0003⟧ saves it and emits ⟦CODE_0004⟧. ⟦CODE_0005⟧ updates the total and emits ⟦CODE_0006⟧. ⟦CODE_0007⟧ is the stop rule."
+msgstr ""
+
+#: lessons/languages/javascript.md:116
+msgctxt "s-ef15a3c1a229-0065"
+msgid "**⟦CODE_0001⟧ is a call.** It runs every listener of the event, in order, before it returns. The listener sits on top of the caller on the call stack."
+msgstr ""
+
+#: lessons/languages/javascript.md:117
+msgctxt "s-444df4d5912f-0066"
+msgid "**⟦CODE_0001⟧ is a request.** ⟦CODE_0002⟧ does not emit ⟦CODE_0003⟧ again. It asks the event loop for it. Node runs it on a later turn, when the stack is empty. Without that, every card would add frames to the stack, and a long run would end with a ⟦CODE_0004⟧."
+msgstr ""
+
+#: lessons/languages/javascript.md:118
+msgctxt "s-08c04dcd2f59-0067"
+msgid "**The save comes first.** ⟦CODE_0001⟧ is synchronous, so the row is written when ⟦CODE_0002⟧ returns. The running total changes only after that."
+msgstr ""
+
+#: lessons/languages/javascript.md:119
+msgctxt "s-bc02fb72e852-0068"
+msgid "**A failure is one event.** Every listener catches its own throw and emits ⟦CODE_0001⟧. ⟦CODE_0002⟧ rolls back, closes the database, prints one line and removes every listener."
+msgstr ""
+
+#: lessons/languages/javascript.md:121
+msgctxt "s-6862fc96ccfe-0069"
+msgid "The [README](⟦DEST_0001⟧) has the table of events, the trace and the comparison with the other two Node entries."
+msgstr ""
+
+#: lessons/languages/javascript.md:123
+msgctxt "s-d2bbf037de84-0070"
+msgid "What did we just learn?"
+msgstr ""
+
+#: lessons/languages/javascript.md:125
+msgctxt "s-76483087bec7-0071"
+msgid "**Control flow can be a set of registrations.** The order of the program is in the event names, and in what each listener emits."
+msgstr ""
+
+#: lessons/languages/javascript.md:126
+msgctxt "s-0542925eab45-0072"
+msgid "**Synchronous ⟦CODE_0001⟧ is not the event loop.** An emitter is a table of listeners and a function that calls them. The queue and the loop belong to Node."
+msgstr ""
+
+#: lessons/languages/javascript.md:127
+msgctxt "s-c19946109f70-0073"
+msgid "**A turn is the unit of scheduling.** Everything on one turn runs to its end before anything else starts. A callback that runs long stalls the rest."
+msgstr ""
+
+#: lessons/languages/javascript.md:128
+msgctxt "s-13887f838274-0074"
+msgid "**Errors travel up the call stack.** A listener's ⟦CODE_0001⟧ goes to whoever called ⟦CODE_0002⟧. If that is a scheduled callback, nobody catches it, so each listener needs its own ⟦CODE_0003⟧."
+msgstr ""
+
+#: lessons/languages/javascript.md:129
+msgctxt "s-b63667d895b3-0075"
+msgid "**The name ⟦CODE_0001⟧ is special.** ⟦CODE_0002⟧ with no listener throws ⟦CODE_0003⟧."
+msgstr ""
+
+#: lessons/languages/javascript.md:130
+msgctxt "s-6a9e759055b6-0076"
+msgid "**Cleanup is part of the design.** A listener, timer or immediate that stays behind keeps a process alive or leaks."
+msgstr ""
+
+#: lessons/languages/javascript.md:132
+msgctxt "s-26b89e364f0b-0077"
+msgid "Tags: ⟦CODE_0001⟧'s synchronous call and its order, and ⟦CODE_0002⟧ running after the current operation, are documented Node behavior (**guaranteed**). See the Node.js [⟦CODE_0003⟧ documentation](⟦DEST_0004⟧). The order of ⟦CODE_0005⟧ against ⟦CODE_0006⟧ is not promised everywhere, so the program does not depend on it."
+msgstr ""
+
+#: lessons/languages/javascript.md:134
+msgctxt "s-299b7a6f9cbe-0078"
+msgid "Do this in production and you're fired"
+msgstr ""
+
+#: lessons/languages/javascript.md:136
+msgctxt "s-46ce52d33a32-0079"
+msgid "**One listener per event is a function call with extra steps.** If only one party can ever care, call it."
+msgstr ""
+
+#: lessons/languages/javascript.md:137
+msgctxt "s-acc1c6370b34-0080"
+msgid "**The order is hard to see.** A reader must find every ⟦CODE_0001⟧ to know what follows what."
+msgstr ""
+
+#: lessons/languages/javascript.md:138
+msgctxt "s-2ca84a3ecd60-0081"
+msgid "**There is no backpressure.** An emitter keeps emitting. This program is safe only because each card waits for the one before it."
+msgstr ""
+
+#: lessons/languages/javascript.md:139
+msgctxt "s-c0ed973d9be4-0082"
+msgid "**Listeners that change the listeners during an ⟦CODE_0001⟧** make the order hard to predict. This program removes its listeners only at the very end."
+msgstr ""
+
+#: lessons/languages/javascript.md:141
+msgctxt "s-51d8d9310707-0083"
+msgid "Legitimate uses: many parties may care about one thing (a server's ⟦CODE_0001⟧, a UI's ⟦CODE_0002⟧), the sender must not know the receivers and the work is I/O that should not block the thread."
+msgstr ""
+
+#: lessons/languages/javascript.md:143
+msgctxt "s-5e3bcdfbf845-0084"
+msgid "Now break it yourself"
+msgstr ""
+
+#: lessons/languages/javascript.md:145
+msgctxt "s-d9944933fdbd-0085"
+msgid "See [exercise B22](⟦DEST_0001⟧), and the chapter [Events, callbacks and reactive control flow](⟦DEST_0002⟧)."
+msgstr ""
+
+#: lessons/languages/javascript.md:236
+msgctxt "s-ac0e260e97bf-0086"
+msgid "Computer science behind this page"
+msgstr ""

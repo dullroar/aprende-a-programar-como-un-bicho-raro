@@ -4933,8 +4933,8 @@
     {
      "en": "What makes JavaScript special",
      "en_id": "what-makes-javascript-special",
-     "es": "What makes JavaScript special",
-     "es_id": "what-makes-javascript-special",
+     "es": "Qué hace especial a JavaScript",
+     "es_id": "qué-hace-especial-a-javascript",
      "level": 2,
      "line": 7
     },
@@ -5148,7 +5148,7 @@
     "what-did-we-just-learn": "what-did-we-just-learn",
     "what-did-we-just-learn-1": "what-did-we-just-learn-1",
     "what-did-we-just-learn-2": "what-did-we-just-learn-2",
-    "what-makes-javascript-special": "what-makes-javascript-special"
+    "what-makes-javascript-special": "qué-hace-especial-a-javascript"
    }
   },
   "lessons/languages/lisp.md": {

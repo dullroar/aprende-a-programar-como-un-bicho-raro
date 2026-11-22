@@ -1,12 +1,12 @@
 # JavaScript
 
-Entries: [`src/javascript`](../../src/javascript/README.md) (the original's bodiless `for`, in Node.js), [`src/javascript-weird`](../../src/javascript-weird/README.md) (closures and a lazy iterator, with no loop statement) and [`src/javascript-events`](../../src/javascript-events/README.md) (ten listeners on an `EventEmitter`, with no loop statement and no pipeline). JavaScript is the language of the browser, and with Node.js it is also a general-purpose scripting language on the server. Its `for` statement is the C `for`: three clauses and a body. Here the body is empty and the three clauses are the whole program.
+Entradas: [`src/javascript`](../../src/javascript/README.md) (el `for` sin cuerpo del original, en Node.js), [`src/javascript-weird`](../../src/javascript-weird/README.md) (clausuras (*closures*), funciones que conservan su entorno, y un iterador perezoso, sin sentencia de bucle) y [`src/javascript-events`](../../src/javascript-events/README.md) (diez escuchadores de eventos en un `EventEmitter`, sin sentencia de bucle ni canalización). JavaScript es el lenguaje del navegador y con Node.js también es un lenguaje de scripting de propósito general en el servidor. Su sentencia `for` es el `for` de C: tres cláusulas y un cuerpo. Aquí el cuerpo está vacío y las tres cláusulas son todo el programa.
 
-For an advanced reading path with traces and experiments, see the [JavaScript study guide](../guias-de-estudio/lenguajes/javascript.md).
+Para una ruta de lectura avanzada con trazas y experimentos, consulta la [guía de estudio de JavaScript](../guias-de-estudio/lenguajes/javascript.md).
 
-## What makes JavaScript special
+## Qué hace especial a JavaScript
 
-| Feature | What it teaches |
+| Característica | Qué enseña |
 | --- | --- |
 | `for (init; test; update) body` | A loop is three expressions and a statement. The order is fixed: init once, then test, body, update, test, body, update, until the test is false. |
 | The comma operator `(a, b)` | Evaluate both, give the second. It lets one expression do several things in order, which is how the iterator clause adds a card *and* saves it. |
