@@ -33,13 +33,13 @@ Una sentencia de unas 80 líneas. El cuerpo está vacío. No se declara ninguna 
 - **El iterador hace el trabajo.** Obtiene las horas y guarda la tarjeta. Después de la prueba inicial, cada actualización guarda su tarjeta antes de la siguiente prueba. Por eso se incluye la tarjeta que cruza el tope.
 - **Un temporizador produce la animación.** En una terminal, `setInterval` hace pulsar la línea DEMO ONLY. Solo comienza después del bucle, así que no puede retrasar las tarjetas.
 
-The [README](../../src/javascript/README.md#cómo-funciona-el-truco) has the table of what the C# did and what this does, and a measured comparison with the original.
+El [README](../../src/javascript/README.md#cómo-funciona-el-truco) contiene la tabla de lo que hacía el programa de C# y lo que hace este, además de una comparación medida con el original.
 
-### What did we just learn?
+### ¿Qué acabamos de aprender?
 
-- **Evaluation order is the program.** Init, test, body, update: the order is the control flow, and you can put side effects in any clause.
-- **A conditional is a value.** `?:` and `&&` choose between expressions, so they can choose between *effects*.
-- **State has to live somewhere that survives an iteration.** A `let` number would be copied. An object is shared.
+- **El orden de evaluación es el programa.** Inicialización, prueba, cuerpo, actualización: el orden es el flujo de control y puedes poner efectos secundarios en cualquier cláusula.
+- **Una expresión condicional es un valor.** `?:` y `&&` eligen entre expresiones, así que pueden elegir entre *efectos*.
+- **El estado tiene que vivir en un lugar que sobreviva a una iteración.** Un número `let` se copiaría. Un objeto se comparte.
 - **The event loop is a second loop.** The `for` runs to the end first. The timer runs after. They do not interleave.
 - **The comma has two meanings.** In a declaration it separates declarators. In an expression it is an operator. C# lets you mix the two in an initializer. JavaScript does not.
 

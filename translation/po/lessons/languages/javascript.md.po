@@ -110,27 +110,27 @@ msgstr "**Un temporizador produce la animación.** En una terminal, ⟦CODE_0001
 #: lessons/languages/javascript.md:36
 msgctxt "s-d7ce762e217a-0020"
 msgid "The [README](⟦DEST_0001⟧) has the table of what the C# did and what this does, and a measured comparison with the original."
-msgstr ""
+msgstr "El [README](⟦DEST_0001⟧) contiene la tabla de lo que hacía el programa de C# y lo que hace este, además de una comparación medida con el original."
 
 #: lessons/languages/javascript.md:38
 msgctxt "s-d2bbf037de84-0021"
 msgid "What did we just learn?"
-msgstr ""
+msgstr "¿Qué acabamos de aprender?"
 
 #: lessons/languages/javascript.md:40
 msgctxt "s-17ad0bbcc186-0022"
 msgid "**Evaluation order is the program.** Init, test, body, update: the order is the control flow, and you can put side effects in any clause."
-msgstr ""
+msgstr "**El orden de evaluación es el programa.** Inicialización, prueba, cuerpo, actualización: el orden es el flujo de control y puedes poner efectos secundarios en cualquier cláusula."
 
 #: lessons/languages/javascript.md:41
 msgctxt "s-88d99608092c-0023"
 msgid "**A conditional is a value.** ⟦CODE_0001⟧ and ⟦CODE_0002⟧ choose between expressions, so they can choose between *effects*."
-msgstr ""
+msgstr "**Una expresión condicional es un valor.** ⟦CODE_0001⟧ y ⟦CODE_0002⟧ eligen entre expresiones, así que pueden elegir entre *efectos*."
 
 #: lessons/languages/javascript.md:42
 msgctxt "s-d93dd8576fa7-0024"
 msgid "**State has to live somewhere that survives an iteration.** A ⟦CODE_0001⟧ number would be copied. An object is shared."
-msgstr ""
+msgstr "**El estado tiene que vivir en un lugar que sobreviva a una iteración.** Un número ⟦CODE_0001⟧ se copiaría. Un objeto se comparte."
 
 #: lessons/languages/javascript.md:43
 msgctxt "s-0d5acc2c5a41-0025"

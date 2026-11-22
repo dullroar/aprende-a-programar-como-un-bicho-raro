@@ -4965,8 +4965,8 @@
     {
      "en": "What did we just learn?",
      "en_id": "what-did-we-just-learn",
-     "es": "What did we just learn?",
-     "es_id": "what-did-we-just-learn",
+     "es": "¿Qué acabamos de aprender?",
+     "es_id": "qué-acabamos-de-aprender",
      "level": 3,
      "line": 38
     },
@@ -5014,7 +5014,7 @@
      "en": "What did we just learn?",
      "en_id": "what-did-we-just-learn-1",
      "es": "What did we just learn?",
-     "es_id": "what-did-we-just-learn-1",
+     "es_id": "what-did-we-just-learn",
      "level": 3,
      "line": 80
     },
@@ -5062,7 +5062,7 @@
      "en": "What did we just learn?",
      "en_id": "what-did-we-just-learn-2",
      "es": "What did we just learn?",
-     "es_id": "what-did-we-just-learn-2",
+     "es_id": "what-did-we-just-learn-1",
      "level": 3,
      "line": 123
     },
@@ -5145,9 +5145,9 @@
     "program-flow-of-javascript-events": "program-flow-of-javascript-events",
     "program-flow-of-javascript-weird": "program-flow-of-javascript-weird",
     "the-bodiless-for-in-node": "el-for-sin-cuerpo-en-node",
-    "what-did-we-just-learn": "what-did-we-just-learn",
-    "what-did-we-just-learn-1": "what-did-we-just-learn-1",
-    "what-did-we-just-learn-2": "what-did-we-just-learn-2",
+    "what-did-we-just-learn": "qué-acabamos-de-aprender",
+    "what-did-we-just-learn-1": "what-did-we-just-learn",
+    "what-did-we-just-learn-2": "what-did-we-just-learn-1",
     "what-makes-javascript-special": "qué-hace-especial-a-javascript"
    }
   },
