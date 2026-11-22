@@ -1248,3 +1248,30 @@ Status: DONE | LEFT-ENGLISH (reason) | BLOCKED (reason)
 ## Appendix D. Source-of-record note
 
 Facts in §5.1 and the spike results come from the three input plans and were not re-verified here. The language matrix and tool list in the second-pass plan are likewise hypotheses until Phase S0 re-measures them. Phase 0 re-measures all of them. The acronym candidates and their mappings in §2 are original to this synthesis. They are untested with native speakers, and the naming sprint decides.
+
+---
+
+## Phase 3 (Part III) — Translation guide and upstream improvements
+
+This is the third part of the overall effort, after Parts I and II and their existing review, release and retrospective steps. The pilot named Phase 3 in §11.9 keeps its original scope and order. The two guide drafts can live in the Spanish checkout during the current run.
+
+### 3.1 Finalize the bilingual guide
+
+**Entry gate.** Finish the existing plan. Jim approves the adversarial review results and the follow-up changes after the accepted fixes, full gates and required delta review are complete. Use the Jury report, finding dispositions and retrospective as evidence.
+
+- Review the English-first draft [TRANSLATING.md](TRANSLATING.md) and its Spanish counterpart [TRADUCTORIO.md](TRADUCTORIO.md) together. Preserve one generic workflow, a sample plan with acceptance criteria, and sample prompts for the runner and adversarial reviewer. Check both versions for fidelity and readability.
+- Verify the description of the actual Ralph handoff, logging, tier selection, cross-provider calibration and cost reporting against the completed run. Retain lessons as actionable practices or brief warnings. Keep the detailed run history in the review and retrospective records.
+- Keep both guides in the Spanish repository root, with reciprocal links. Add a short Spanish pointer to `TRADUCTORIO.md` in the existing `CONTRIBUTING.md` through the contributor document's normal source and generation path. Keep the recognized filename and current tooling.
+- Before tracking the drafts, remove their local Git exclusions and register the two exact paths as edition-owned documentation if the pinned-source inventory still requires it. Verify the inventory and the contributor link.
+
+### 3.2 Package the English upstream updates
+
+- Prepare a scoped change in *Learn Programming the Weird Way!* with the approved upstream improvements identified during translation and review. Include the final English `TRANSLATING.md` and add a short pointer to it in the English `CONTRIBUTING.md`.
+- Ensure upstream links resolve in that checkout. If the upstream guide keeps a Spanish-edition link, point it at the published Spanish guide. Keep the relative language links in the Spanish checkout.
+- Run the English repository's checks and review the package before publishing through its maintainer process. Record the accepted upstream revision and the set of changes to bring back.
+
+### 3.3 Plan the Spanish follow-up from the accepted upstream revision
+
+Once the English update is finished, write a new plan for adopting it in the Spanish repository. Pin the accepted upstream revision, inventory the changes that affect Spanish prose, code, diagrams and generated artifacts, and turn them into scoped update tasks. Include the relevant verification and targeted review. Check that the contributor pointers and the Spanish repository's language pair still resolve after adoption.
+
+**Exit evidence.** Jim has approved both guides and the English upstream package is complete. The Spanish repository has its contributor pointer and both guides. A separate Spanish adoption plan names the accepted English revision and the work it triggers.
