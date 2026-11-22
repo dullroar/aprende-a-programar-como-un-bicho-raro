@@ -17,7 +17,8 @@ class RegisterTests(unittest.TestCase):
 
     def test_every_planned_entry_is_in_the_register(self):
         ids = set(hr.load())
-        self.assertEqual(ids, {e[0] for e in hr.ENTRIES})
+        # Later tasks append entries found while translating, so the register is a superset of the plan.
+        self.assertEqual({e[0] for e in hr.ENTRIES} - ids, set())
 
     def test_all_five_recurring_section_headings_are_covered(self):
         english = {r["english"] for r in hr.load().values()}
@@ -53,6 +54,7 @@ class NegativeCheckTests(unittest.TestCase):
     def test_fabricated_english_is_reported(self):
         def m(rows):
             rows["H002"]["english"] = "Behold the fabricated monstrosity"
+            rows["H002"]["status"] = "pending"   # a translated row also counts its Spanish text, which does exist
         self.assertTrue(any("not found" in p for p in self.run_with(m)))
 
     def test_wrong_occurrence_count_is_reported(self):
@@ -69,7 +71,7 @@ class NegativeCheckTests(unittest.TestCase):
     def test_spanish_text_that_is_not_in_the_files_is_reported(self):
         def m(rows):
             rows["H008"]["spanish"] = "Un título que no existe en ningún archivo"
-        self.assertTrue(any("occurrences" in p for p in self.run_with(m)))
+        self.assertTrue(any("occurrences" in p or "not found" in p for p in self.run_with(m)))
 
     def test_bad_status_is_reported(self):
         def m(rows):
@@ -79,6 +81,7 @@ class NegativeCheckTests(unittest.TestCase):
     def test_transcreated_without_spanish_is_reported(self):
         def m(rows):
             rows["H003"]["status"] = "transcreated"
+            rows["H003"]["spanish"] = None
         self.assertTrue(any("needs a Spanish" in p for p in self.run_with(m)))
 
     def test_flattened_without_reason_is_reported(self):

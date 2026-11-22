@@ -1,5 +1,7 @@
 # Provisional decisions (reviewed by Jim at the end)
 
+- 2026-11-22 P4-fix-12: test_humor_register.py had stale expectations (planned ids == register; negative mutations on rows now transcreated). Register data was correct. Tests now check planned ⊆ register and mutate status/spanish so each negative case still fails. Alternative: delete rows to match ENTRIES (loses data). Cost to reverse: trivial.
+
 - 2026-11-19 bootstrap: acronym default BICHO (runner-up TORCE); es-419; tu; straight quotes; English LICENSE authoritative. Model: sonnet alias for all roles, no cross-vendor keys (Jury carries independence).
 - 2026-11-19 bootstrap: English source cloned to /home/lehmer/english-source (not ../english-source) so the user's working clone is never touched.
 - 2026-11-19 bootstrap: kit AGENT_CMD changed: Claude Code 2.1.319 has no --max-turns; per-iteration cap is --max-budget-usd 6.

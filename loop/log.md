@@ -329,3 +329,4 @@
 364 P4-fix-9 done H001 occurrences set to 3 (title survives in verbatim tree fence); register check and README fast verify pass; tree-fence translation deferred, see decisions-provisional.
 365 P4-fix-10 done front-matter lesson fragments re-aimed to Spanish slugs (anchors.remap_front_matter) and teaches aligned with Te enseña in 33 POs; build check has 0 PROBLEM; fast verify fails only test_anchors on lessons/cs (P5-001).
 369 P4-fix-11 done breakage-pilot anchor copies re-aimed at current Spanish slugs; test_negative and test_breakage_pilot pass; fast verify OK.
+370 P4-fix-12 done humor tests aligned with translated register (superset of plan; translated rows count Spanish); negative cases kept; fast verify OK.
