@@ -1,11 +1,11 @@
 # loop/STATE.md (keep to 60 lines; refreshed by every iteration)
 
 - **Edition:** v4-es.0-rc1 (working)    **English SHA:** 48a4429c0a22b2aac628b256a50c07d1816bcb80
-- **Iteration:** 232    **Stage:** 4 (bulk translation)    **Last result:** P4-lessons-3 partial (answer key through position 101).
+- **Iteration:** 233    **Stage:** 4 (bulk translation)    **Last result:** P4-lessons-3 partial (answer key through position 111).
 - **Tasks:** todo 75 | doing 0 | done 139 | blocked 0 | skipped 0 (recount with the queue files)
 - **Next task:** run python3 tools/next_task.py (see loop/queue/generated/translate.jsonl).
 - **Budget:** driver-reported $112.6405 of $150 through iteration 231, with Codex session cost unavailable
-- **Translate progress:** at least 7075 / total 8827 segments accepted (7394 prose + 1433 Mermaid labels); at least 183 / 212 files done. Answer key positions 1 to 101 accepted; resume at position 102. Counts based on the previous snapshot plus this task.
+- **Translate progress:** at least 7085 / total 8827 segments accepted (7394 prose + 1433 Mermaid labels); at least 183 / 212 files done. Answer key positions 1 to 111 accepted; resume at position 112. Counts based on the previous snapshot plus this task.
 - **Last audit:** P4-audit-6 (iter 176, translation/reviews/p4-audit-6.md)    **Next audit due:** the next P4-audit task in the queue
 - **Gates:** P0 passed (iter 17)  P1 passed (iter 23)  P2 passed (iter 47)  P3 passed (iter 58)  P3B passed (iter 85)  P3C passed (iter 105)  P4 -  P5 -  P6 -  P7A -
 - **Open provisional decisions:** 5 (acronym BICHO; glossary choices; house style N=29 calibrated; schema/segment-id formats; same-tier reviewer kept after recall test)    **Blockers:** 0    **Source issues:** 26 (translation/source-issues.md)

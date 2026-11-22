@@ -329,11 +329,11 @@ Ejemplo de comparación para Haskell: `timecards` idiomático es una **función 
 
 Forth es la excepción instructiva: la versión rara es *más corta* porque elimina las `variable` y la palabra que las actualiza, a cambio de disciplina de pila.
 
-Lisp, Tcl and AWK also come out shorter in the weird version, but mostly because the weird versions *do less*, not because the stunt is more compact: `lisp` works out the ISO week itself (calendar arithmetic, plus an optional date argument and a `card` struct) where `lisp-weird` just asks `date`; `tcl` has a namespace with separate `draw`, `save`, `row` and window procs where `tcl-weird` has two procs and some SQL; `awk` has six helper functions where `awk-weird` has none. Line count measures what each program carries, not how hard it is to understand (the weird entries put the difficulty into comments and READMEs). Counts include blank lines and exclude comment-only lines.
+Lisp, Tcl y AWK también resultan más cortos en la versión rara, pero sobre todo porque las versiones raras *hacen menos*, no porque la pirueta sea más compacta. `lisp` calcula la semana ISO por sí mismo (aritmética de calendario, más un argumento de fecha opcional y una estructura `card`), mientras `lisp-weird` solo consulta a `date`. `tcl` tiene un espacio de nombres con procedimientos separados para `draw`, `save`, `row` y ventanas, mientras `tcl-weird` tiene dos procedimientos y algo de SQL. `awk` tiene seis funciones auxiliares, mientras `awk-weird` no tiene ninguna. El recuento de líneas mide lo que lleva cada programa, no lo difícil que es entenderlo (las entradas raras ponen la dificultad en comentarios y README). Los recuentos incluyen líneas vacías y excluyen líneas que solo contienen comentarios.
 
-## C2. Make the constraint real
+## C2. Haz real la restricción
 
-A reference check, [`solutions/c2-forth-rule-check.sh`](solutions/c2-forth-rule-check.sh):
+Una comprobación de referencia, [`solutions/c2-forth-rule-check.sh`](solutions/c2-forth-rule-check.sh):
 
 ```bash
 code=$(tr -d '\r' < "$f" | sed -E -e 's/(^|[[:space:]])[\]([[:space:]].*)?$//' \
@@ -343,7 +343,7 @@ grep -Eiqw 'variable|buffer:' <<<"$code" && fail
 (( $(grep -o '>in @' <<<"$code" | wc -l) >= 2 )) || fail
 ```
 
-Run against the real file it prints `OK: no control words, no variables, >in @ x3`. The three mutations (verified):
+Al ejecutarse con el archivo real imprime `OK: no control words, no variables, >in @ x3`. Las tres mutaciones (verificadas):
 
 ```bash
 sed 's/^drop /begin drop /'              timecards.fs > m1.fs   # FAIL: banned control word: begin
@@ -351,26 +351,26 @@ sed 's/^utime drop/variable v utime drop/' timecards.fs > m2.fs # FAIL: a variab
 sed 's/>in @/0/g'                         timecards.fs > m3.fs  # FAIL: >in @ appears 0 time(s)
 ```
 
-A `begin if until` placed after a `\` on a line is stripped first, so it does not trigger.
+Un `begin if until` situado después de un `\` en una línea se elimina primero, así que no lo activa.
 
-## C3. A loop whose state is not a variable
+## C3. Un bucle cuyo estado no es una variable
 
 ```bash
 seq 10 | awk '{ print ++c }'          # prints 1..10
 ```
 
-The loop is awk's **implicit main loop**: it runs the rule once per input record. The state ("how many times") lives in the *input stream*, which the caller controls (`seq N` supplies N records). `c` only counts. No `for`, `while`, `do`, `function` or `goto` appears. Verified for N = 1, 3, 10. Knowledge level: **guaranteed**: POSIX defines the record-processing model.
+El bucle es el **bucle principal implícito** de awk: ejecuta la regla una vez por cada registro de entrada de datos. El estado ("cuántas veces") vive en el *flujo de entrada de datos*, que controla quien llama (`seq N` proporciona N registros). `c` solo cuenta. No aparece `for`, `while`, `do`, `function` ni `goto`. Verificado para N = 1, 3, 10. Nivel de conocimiento: **garantizado**: POSIX define el modelo de procesamiento de registros.
 
-## D. Port the challenge
+## D. Adaptación del reto
 
-A complete reference answer in awk is in [`solutions/awk-port`](solutions/awk-port): `timecards.awk`, a `Dockerfile` and a `check.sh`. Run it:
+Una respuesta de referencia completa en awk está en [`solutions/awk-port`](solutions/awk-port): `timecards.awk`, un `Dockerfile` y un `check.sh`. Ejecútala:
 
 ```bash
 sandbox/container/run-image.sh lessons/solutions/awk-port   # build and run, shows the rows and the SQLite table
 sandbox/run.sh lessons/solutions/awk-port                   # its own check: 25 runs
 ```
 
-How it satisfies the criteria:
+Cómo cumple los criterios:
 
 | Criterion | How |
 | --- | --- |

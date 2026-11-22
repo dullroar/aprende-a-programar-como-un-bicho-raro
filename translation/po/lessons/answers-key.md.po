@@ -619,52 +619,52 @@ msgstr "Forth es la excepción instructiva: la versión rara es *más corta* por
 #: lessons/answers-key.md:332
 msgctxt "s-96c52627a3bf-0101"
 msgid "Lisp, Tcl and AWK also come out shorter in the weird version, but mostly because the weird versions *do less*, not because the stunt is more compact: ⟦CODE_0001⟧ works out the ISO week itself (calendar arithmetic, plus an optional date argument and a ⟦CODE_0002⟧ struct) where ⟦CODE_0003⟧ just asks ⟦CODE_0004⟧; ⟦CODE_0005⟧ has a namespace with separate ⟦CODE_0006⟧, ⟦CODE_0007⟧, ⟦CODE_0008⟧ and window procs where ⟦CODE_0009⟧ has two procs and some SQL; ⟦CODE_0010⟧ has six helper functions where ⟦CODE_0011⟧ has none. Line count measures what each program carries, not how hard it is to understand (the weird entries put the difficulty into comments and READMEs). Counts include blank lines and exclude comment-only lines."
-msgstr ""
+msgstr "Lisp, Tcl y AWK también resultan más cortos en la versión rara, pero sobre todo porque las versiones raras *hacen menos*, no porque la pirueta sea más compacta. ⟦CODE_0001⟧ calcula la semana ISO por sí mismo (aritmética de calendario, más un argumento de fecha opcional y una estructura ⟦CODE_0002⟧), mientras ⟦CODE_0003⟧ solo consulta a ⟦CODE_0004⟧. ⟦CODE_0005⟧ tiene un espacio de nombres con procedimientos separados para ⟦CODE_0006⟧, ⟦CODE_0007⟧, ⟦CODE_0008⟧ y ventanas, mientras ⟦CODE_0009⟧ tiene dos procedimientos y algo de SQL. ⟦CODE_0010⟧ tiene seis funciones auxiliares, mientras ⟦CODE_0011⟧ no tiene ninguna. El recuento de líneas mide lo que lleva cada programa, no lo difícil que es entenderlo (las entradas raras ponen la dificultad en comentarios y README). Los recuentos incluyen líneas vacías y excluyen líneas que solo contienen comentarios."
 
 #: lessons/answers-key.md:334
 msgctxt "s-382074968995-0102"
 msgid "C2. Make the constraint real"
-msgstr ""
+msgstr "C2. Haz real la restricción"
 
 #: lessons/answers-key.md:336
 msgctxt "s-dde358d532c2-0103"
 msgid "A reference check, [⟦CODE_0001⟧](⟦DEST_0002⟧):"
-msgstr ""
+msgstr "Una comprobación de referencia, [⟦CODE_0001⟧](⟦DEST_0002⟧):"
 
 #: lessons/answers-key.md:346
 msgctxt "s-aef93e963875-0104"
 msgid "Run against the real file it prints ⟦CODE_0001⟧. The three mutations (verified):"
-msgstr ""
+msgstr "Al ejecutarse con el archivo real imprime ⟦CODE_0001⟧. Las tres mutaciones (verificadas):"
 
 #: lessons/answers-key.md:354
 msgctxt "s-192bdc278aa4-0105"
 msgid "A ⟦CODE_0001⟧ placed after a ⟦CODE_0002⟧ on a line is stripped first, so it does not trigger."
-msgstr ""
+msgstr "Un ⟦CODE_0001⟧ situado después de un ⟦CODE_0002⟧ en una línea se elimina primero, así que no lo activa."
 
 #: lessons/answers-key.md:356
 msgctxt "s-d9e98f53d692-0106"
 msgid "C3. A loop whose state is not a variable"
-msgstr ""
+msgstr "C3. Un bucle cuyo estado no es una variable"
 
 #: lessons/answers-key.md:362
 msgctxt "s-ed6bab52ac66-0107"
 msgid "The loop is awk's **implicit main loop**: it runs the rule once per input record. The state (\"how many times\") lives in the *input stream*, which the caller controls (⟦CODE_0001⟧ supplies N records). ⟦CODE_0002⟧ only counts. No ⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧, ⟦CODE_0006⟧ or ⟦CODE_0007⟧ appears. Verified for N = 1, 3, 10. Knowledge level: **guaranteed**: POSIX defines the record-processing model."
-msgstr ""
+msgstr "El bucle es el **bucle principal implícito** de awk: ejecuta la regla una vez por cada registro de entrada de datos. El estado (\"cuántas veces\") vive en el *flujo de entrada de datos*, que controla quien llama (⟦CODE_0001⟧ proporciona N registros). ⟦CODE_0002⟧ solo cuenta. No aparece ⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧, ⟦CODE_0006⟧ ni ⟦CODE_0007⟧. Verificado para N = 1, 3, 10. Nivel de conocimiento: **garantizado**: POSIX define el modelo de procesamiento de registros."
 
 #: lessons/answers-key.md:364
 msgctxt "s-2cfe80f42560-0108"
 msgid "D. Port the challenge"
-msgstr ""
+msgstr "D. Adaptación del reto"
 
 #: lessons/answers-key.md:366
 msgctxt "s-80b414b23d4c-0109"
 msgid "A complete reference answer in awk is in [⟦CODE_0001⟧](⟦DEST_0002⟧): ⟦CODE_0003⟧, a ⟦CODE_0004⟧ and a ⟦CODE_0005⟧. Run it:"
-msgstr ""
+msgstr "Una respuesta de referencia completa en awk está en [⟦CODE_0001⟧](⟦DEST_0002⟧): ⟦CODE_0003⟧, un ⟦CODE_0004⟧ y un ⟦CODE_0005⟧. Ejecútala:"
 
 #: lessons/answers-key.md:373
 msgctxt "s-08a2e2ff635b-0110"
 msgid "How it satisfies the criteria:"
-msgstr ""
+msgstr "Cómo cumple los criterios:"
 
 #: lessons/answers-key.md:375
 msgctxt "s-db0b57125963-0111"
