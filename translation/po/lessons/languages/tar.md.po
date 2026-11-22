@@ -135,27 +135,27 @@ msgstr "**La frontera de confianza es la línea de comandos.** Una extracción s
 #: lessons/languages/tar.md:43
 msgctxt "s-9f72deb0caeb-0025"
 msgid "**Fail closed.** The dispatcher refuses an unknown record, and then it refuses every record after it, because tar will not stop on its own."
-msgstr ""
+msgstr "**Falla de forma cerrada.** El despachador rechaza un registro desconocido y luego rechaza todos los registros posteriores, porque tar no se detendrá por sí solo."
 
 #: lessons/languages/tar.md:44
 msgctxt "s-d184862447ee-0026"
 msgid "**Four kinds of \"the same\".** Same bytes, same structure, same behavior and same live process are four different claims. This entry makes the first three and says plainly that it does not make the fourth."
-msgstr ""
+msgstr "**Cuatro formas de \"lo mismo\".** Los mismos bytes, la misma estructura, el mismo comportamiento y el mismo proceso en ejecución son cuatro afirmaciones distintas. Esta entrada hace las tres primeras y dice claramente que no hace la cuarta."
 
 #: lessons/languages/tar.md:45
 msgctxt "s-81dc8216f708-0027"
 msgid "**A format is a contract.** ⟦CODE_0001⟧ is not part of tar. Two programs agree on it."
-msgstr ""
+msgstr "**Un formato es un contrato.** ⟦CODE_0001⟧ no es parte de tar. Dos programas se ponen de acuerdo sobre él."
 
 #: lessons/languages/tar.md:47
 msgctxt "s-2caa32f1d5e4-0028"
 msgid "Tags: ⟦CODE_0001⟧ and ⟦CODE_0002⟧ are GNU extensions (**implementation-permitted**). The ⟦CODE_0003⟧ format and the order of members are in POSIX. That tar keeps going after a failed command is what GNU tar 1.35 does today, and the manual does not promise it: it is **accidentally exploited**, and the entry does not depend on it, because it writes its own halt."
-msgstr ""
+msgstr "Etiquetas: ⟦CODE_0001⟧ y ⟦CODE_0002⟧ son extensiones de GNU (**permitido por la implementación**). El formato ⟦CODE_0003⟧ y el orden de los miembros están en POSIX. GNU tar 1.35 continúa hoy después de un comando fallido y el manual no lo promete. Es un comportamiento **aprovechado por accidente**. La entrada no depende de él porque escribe su propia detención."
 
 #: lessons/languages/tar.md:49
 msgctxt "s-299b7a6f9cbe-0029"
 msgid "Do this in production and you're fired"
-msgstr ""
+msgstr "Haz esto en producción y estás despedido"
 
 #: lessons/languages/tar.md:51
 msgctxt "s-6f9ad2fc72eb-0030"

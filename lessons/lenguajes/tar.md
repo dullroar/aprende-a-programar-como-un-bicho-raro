@@ -40,13 +40,13 @@ El [README](../../src/tar-gnu/README.md#es-solo-un-archivo-tar-serialización-de
 
 - **La serialización, la deserialización y la ejecución son tres actos.** Puedes escribir un programa, analizarlo y ejecutarlo. La mayoría de los formatos permiten hacer los dos primeros sin el tercero. `pickle` de Python no lo permite.
 - **La frontera de confianza es la línea de comandos.** Una extracción simple no ejecuta nada. Agregar `--to-command` es una decisión y le corresponde al operador.
-- **Fail closed.** The dispatcher refuses an unknown record, and then it refuses every record after it, because tar will not stop on its own.
-- **Four kinds of "the same".** Same bytes, same structure, same behavior and same live process are four different claims. This entry makes the first three and says plainly that it does not make the fourth.
-- **A format is a contract.** `tarprog/1` is not part of tar. Two programs agree on it.
+- **Falla de forma cerrada.** El despachador rechaza un registro desconocido y luego rechaza todos los registros posteriores, porque tar no se detendrá por sí solo.
+- **Cuatro formas de "lo mismo".** Los mismos bytes, la misma estructura, el mismo comportamiento y el mismo proceso en ejecución son cuatro afirmaciones distintas. Esta entrada hace las tres primeras y dice claramente que no hace la cuarta.
+- **Un formato es un contrato.** `tarprog/1` no es parte de tar. Dos programas se ponen de acuerdo sobre él.
 
-Tags: `--to-command` and `--occurrence` are GNU extensions (**implementation-permitted**). The `ustar` format and the order of members are in POSIX. That tar keeps going after a failed command is what GNU tar 1.35 does today, and the manual does not promise it: it is **accidentally exploited**, and the entry does not depend on it, because it writes its own halt.
+Etiquetas: `--to-command` y `--occurrence` son extensiones de GNU (**permitido por la implementación**). El formato `ustar` y el orden de los miembros están en POSIX. GNU tar 1.35 continúa hoy después de un comando fallido y el manual no lo promete. Es un comportamiento **aprovechado por accidente**. La entrada no depende de él porque escribe su propia detención.
 
-### Do this in production and you're fired
+### Haz esto en producción y estás despedido
 
 - **An archive that runs is a program that arrived as data.** If the operator runs `--to-command` on an archive from a stranger, the stranger's records decide what happens. Here the dispatcher is strict. A careless one is a remote command runner.
 - **Your own format has no tooling.** Nothing but a test keeps the builder and the dispatcher in step.

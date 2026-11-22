@@ -2302,3 +2302,4 @@
 {"segment_id": "s-cc9cfaabc50d-0013", "ts": "2026-11-22T15:16:54Z", "findings": [], "playful_note": "Conserva el anuncio teatral de la sección."}
 {"segment_id": "s-415f5fa29cf9-0015", "ts": "2026-11-22T15:18:58Z", "findings": [], "playful_note": "Conserva la pregunta exasperada de la sección recurrente."}
 {"segment_id": "s-87de35126c28-0020", "ts": "2026-11-22T15:20:46Z", "findings": ["I7: glossary term list must be rendered 'lista'"]}
+{"segment_id": "s-299b7a6f9cbe-0029", "ts": "2026-11-22T15:22:36Z", "findings": [], "playful_note": "Conserva la amenaza cómica exagerada que introduce los riesgos serios."}
