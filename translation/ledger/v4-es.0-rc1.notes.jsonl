@@ -2246,3 +2246,5 @@
 {"segment_id": "s-5e3bcdfbf845-0024", "ts": "2026-11-22T01:43:07Z", "findings": [], "playful_note": "Invita al lector a romper el programa."}
 {"segment_id": "s-cc9cfaabc50d-0027", "ts": "2026-11-22T01:44:45Z", "findings": [], "playful_note": "Conserva el tono de la sección recurrente."}
 {"segment_id": "s-415f5fa29cf9-0029", "ts": "2026-11-22T01:44:45Z", "findings": [], "playful_note": "Conserva el tono de la sección recurrente."}
+{"segment_id": "s-f52a4910bed0-0031", "ts": "2026-11-22T01:46:26Z", "findings": ["I7: glossary term build must be rendered 'compilación'", "I25: comma before a simple 'y' ('Es una máquina de registros, y la coincidencia es el program'): no comma before a simple o or y"]}
+{"segment_id": "s-f52a4910bed0-0031", "ts": "2026-11-22T01:46:45Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}

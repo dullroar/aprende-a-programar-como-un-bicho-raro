@@ -64,7 +64,7 @@ Un `while()` con el cuerpo vacío. Todo lo que toma decisiones está en su condi
 
 ### ¿Cómo demonios funciona eso?
 
-[`timecards.cmake` L41-54](../../src/cmake/timecards.cmake#L41-L54):
+Mira [`timecards.cmake` L41-54](../../src/cmake/timecards.cmake#L41-L54):
 
 ```cmake
 while(NOT "${CMAKE_MATCH_1}${CMAKE_MATCH_5}" MATCHES "^xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
@@ -72,11 +72,11 @@ while(NOT "${CMAKE_MATCH_1}${CMAKE_MATCH_5}" MATCHES "^xxxxxxxxxxxxxxxxxxxxxxxxx
 endwhile()
 ```
 
-CMake's `if()`/`while()` `MATCHES` stores its capture groups in ordinary variables `CMAKE_MATCH_1`..`n`, and a `while()` **re-expands its condition on every pass**. So the condition builds its subject and its pattern from the previous pass's captures. That is a register machine, and the match is the program.
+El `MATCHES` `if()`/`while()` de CMake guarda sus grupos de captura en variables comunes `CMAKE_MATCH_1`..`n`. Un `while()` **vuelve a expandir su condición en cada pasada**. Así, la condición construye su cadena de texto y su patrón con las capturas de la pasada anterior. Es una máquina de registros y la coincidencia es el programa.
 
-- **State** ([L28-32](../../src/cmake/timecards.cmake#L28-L32)): numbers are runs of `x`; `CMAKE_MATCH_1` is the total, `_2` the digit peeked last pass, `_3` the rest of the digit tape, `_4` the log of finished cards, `_5` the last card's hours.
-- **Hours 10 to 19** come from a table *inside the subject* (`0:xxxxxxxxxx|1:xxxxxxxxxxx|...`) and a pattern that splices the previous pass's digit in (`${CMAKE_MATCH_2}:`).
-- **The stop rule** is the first test: `NOT` (total + last card matches a literal of 41 `x`s). Exactly 40 continues.
+- **Estado** ([L28-32](../../src/cmake/timecards.cmake#L28-L32)): los números son secuencias de `x`; `CMAKE_MATCH_1` es el total, `_2` el dígito inspeccionado en la pasada anterior, `_3` el resto de la cinta de dígitos, `_4` el registro de tarjetas terminadas y `_5` las horas de la última tarjeta.
+- **Las horas de 10 a 19** provienen de una tabla *dentro de la cadena de texto* (`0:xxxxxxxxxx|1:xxxxxxxxxxx|...`) y de un patrón que inserta el dígito de la pasada anterior (`${CMAKE_MATCH_2}:`).
+- **La regla de parada** es la primera prueba: `NOT` (el total + la última tarjeta coincide con un literal de 41 `x`). Un total de exactamente 40 continúa.
 - **Order matters**: a failed `MATCHES` clears every register, a successful one rewrites them, so the stop test goes first so that the *main* match's captures are the ones that survive.
 
 ### What did we just learn?

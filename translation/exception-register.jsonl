@@ -445,3 +445,4 @@
 {"id":"EXC-445","segment":"s-7cc0d617130c-0020","invariant":"I7","reason":"The verb builds describes constructing a circular list, not software compilation; construye preserves the meaning.","task":"P4-lessons-languages-4"}
 {"id":"EXC-446","segment":"s-2396a1256ac4-0000","invariant":"TRANSLATE","reason":"m4 is the unchanged proper name of the macro processor and its lesson heading.","task":"P4-lessons-languages-4"}
 {"id":"EXC-447","segment":"s-36a23cc3fe8c-0003","invariant":"TRANSLATE","reason":"GNU Make is the unchanged product name and the entire heading.","task":"P4-lessons-languages-4"}
+{"id":"EXC-448","segment":"s-f52a4910bed0-0031","invariant":"I7","reason":"English 'builds' means constructs the regex subject and pattern, not a software compilation; construye preserves the verb's meaning.","task":"P4-lessons-languages-4"}

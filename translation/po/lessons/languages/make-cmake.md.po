@@ -160,27 +160,27 @@ msgstr "¿Cómo demonios funciona eso?"
 #: lessons/languages/make-cmake.md:67
 msgctxt "s-4eed5af3dba3-0030"
 msgid "[⟦CODE_0001⟧ L41-54](⟦DEST_0002⟧):"
-msgstr ""
+msgstr "Mira [⟦CODE_0001⟧ L41-54](⟦DEST_0002⟧):"
 
 #: lessons/languages/make-cmake.md:75
 msgctxt "s-f52a4910bed0-0031"
 msgid "CMake's ⟦CODE_0001⟧/⟦CODE_0002⟧ ⟦CODE_0003⟧ stores its capture groups in ordinary variables ⟦CODE_0004⟧..⟦CODE_0005⟧, and a ⟦CODE_0006⟧ **re-expands its condition on every pass**. So the condition builds its subject and its pattern from the previous pass's captures. That is a register machine, and the match is the program."
-msgstr ""
+msgstr "El ⟦CODE_0003⟧ ⟦CODE_0001⟧/⟦CODE_0002⟧ de CMake guarda sus grupos de captura en variables comunes ⟦CODE_0004⟧..⟦CODE_0005⟧. Un ⟦CODE_0006⟧ **vuelve a expandir su condición en cada pasada**. Así, la condición construye su cadena de texto y su patrón con las capturas de la pasada anterior. Es una máquina de registros y la coincidencia es el programa."
 
 #: lessons/languages/make-cmake.md:77
 msgctxt "s-9c5b9c9cfc26-0032"
 msgid "**State** ([L28-32](⟦DEST_0001⟧)): numbers are runs of ⟦CODE_0002⟧; ⟦CODE_0003⟧ is the total, ⟦CODE_0004⟧ the digit peeked last pass, ⟦CODE_0005⟧ the rest of the digit tape, ⟦CODE_0006⟧ the log of finished cards, ⟦CODE_0007⟧ the last card's hours."
-msgstr ""
+msgstr "**Estado** ([L28-32](⟦DEST_0001⟧)): los números son secuencias de ⟦CODE_0002⟧; ⟦CODE_0003⟧ es el total, ⟦CODE_0004⟧ el dígito inspeccionado en la pasada anterior, ⟦CODE_0005⟧ el resto de la cinta de dígitos, ⟦CODE_0006⟧ el registro de tarjetas terminadas y ⟦CODE_0007⟧ las horas de la última tarjeta."
 
 #: lessons/languages/make-cmake.md:78
 msgctxt "s-588e4a937bbb-0033"
 msgid "**Hours 10 to 19** come from a table *inside the subject* (⟦CODE_0001⟧) and a pattern that splices the previous pass's digit in (⟦CODE_0002⟧)."
-msgstr ""
+msgstr "**Las horas de 10 a 19** provienen de una tabla *dentro de la cadena de texto* (⟦CODE_0001⟧) y de un patrón que inserta el dígito de la pasada anterior (⟦CODE_0002⟧)."
 
 #: lessons/languages/make-cmake.md:79
 msgctxt "s-976cafb92a33-0034"
 msgid "**The stop rule** is the first test: ⟦CODE_0001⟧ (total + last card matches a literal of 41 ⟦CODE_0002⟧s). Exactly 40 continues."
-msgstr ""
+msgstr "**La regla de parada** es la primera prueba: ⟦CODE_0001⟧ (el total + la última tarjeta coincide con un literal de 41 ⟦CODE_0002⟧). Un total de exactamente 40 continúa."
 
 #: lessons/languages/make-cmake.md:80
 msgctxt "s-ec6704382cda-0035"
