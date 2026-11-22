@@ -210,39 +210,39 @@ msgstr "**⟦CODE_0001⟧ separa tokens.** ⟦CODE_0002⟧ impide que ⟦CODE_00
 #: lessons/languages/m4.md:82
 msgctxt "s-42fd899e7264-0040"
 msgid "**⟦CODE_0001⟧ inside an argument list prints directly** and does not return text."
-msgstr ""
+msgstr "**⟦CODE_0001⟧ dentro de una lista de argumentos imprime directamente** y no devuelve texto."
 
 #: lessons/languages/m4.md:83
 msgctxt "s-8c7015061932-0041"
 msgid "**⟦CODE_0001⟧ deletes to the end of the line**, including the newline, which is how the macros stay one logical line."
-msgstr ""
+msgstr "**⟦CODE_0001⟧ borra hasta el final de la línea**, incluido el salto de línea. Así las macros permanecen en una sola línea lógica."
 
 #: lessons/languages/m4.md:84
 msgctxt "s-89cf42e50dcd-0042"
 msgid "**The comment on the last line of the output** says ⟦CODE_0001⟧ where the source says ⟦CODE_0002⟧: the quotes are consumed on the way through."
-msgstr ""
+msgstr "**El comentario de la última línea de la salida** dice ⟦CODE_0001⟧ donde el código fuente dice ⟦CODE_0002⟧: las comillas se consumen al pasar por el proceso."
 
 #: lessons/languages/m4.md:86
 msgctxt "s-a6b58da9d4cd-0043"
 msgid "Weird next to boring"
-msgstr ""
+msgstr "Lo raro junto a lo aburrido"
 
 #: lessons/languages/m4.md:88
 msgctxt "s-988ac1d19f64-0044"
 msgid "There is no pair for this language: the entry is idiomatic m4 *and* the stunt. Compare it with [Make](⟦DEST_0001⟧) (a restart is the loop) and [Forth](⟦DEST_0002⟧) (the parse position is the program counter): in all three the program is *the input being reread*, and the loop is an effect of how the input is consumed."
-msgstr ""
+msgstr "No hay un par para este lenguaje: la entrada es m4 idiomático *y* el truco. Compárala con [Make](⟦DEST_0001⟧) (un reinicio es el bucle) y [Forth](⟦DEST_0002⟧) (la posición de análisis es el contador de programa). En los tres, el programa es *la entrada de datos que se vuelve a leer*. El bucle es un efecto de cómo se consume la entrada de datos."
 
 #: lessons/languages/m4.md:90
 msgctxt "s-c08a852d0dbe-0045"
 msgid "Under what circumstances would this terrible idea become reasonable?"
-msgstr ""
+msgstr "¿En qué circunstancias esta idea terrible se volvería razonable?"
 
 #: lessons/languages/m4.md:92
 msgctxt "s-e0dc22890e20-0046"
 msgid "When your target is text and your toolbox is a 1977 macro processor that ships on every Unix: generating many similar files from a template. Using it as a general-purpose computer is a lesson in what text rewriting can and cannot do. Compare [sed as a Markov algorithm](⟦DEST_0001⟧)."
-msgstr ""
+msgstr "Cuando tu objetivo es texto y tu caja de herramientas es un procesador de macros de 1977 incluido en todos los Unix: para generar muchos archivos similares a partir de una plantilla. Usarlo como computadora de propósito general enseña lo que la reescritura de texto puede y no puede hacer. Compara [sed como algoritmo de Markov](⟦DEST_0001⟧)."
 
 #: lessons/languages/m4.md:122
 msgctxt "s-ac0e260e97bf-0047"
 msgid "Computer science behind this page"
-msgstr ""
+msgstr "Informática detrás de esta página"
