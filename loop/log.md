@@ -207,3 +207,4 @@
 234 P4-lessons-3 partial accepted and applied answer key positions 112 to 121; resume with --from 122; scoped and working-tree fast checks and anchors check passed.
 235 P4-lessons-3 partial accepted and applied answer key positions 122 to 126; four segments remain including position 121; scoped and working-tree fast checks and anchors check passed.
 236 P4-lessons-3 done accepted and applied the four remaining answer key segments; task gate, fast verifier and anchors check passed.
+237 P4-lessons-curriculum-1 done verified the previously translated curriculum front matter; no pending segments and task, fast and release-level file checks passed.

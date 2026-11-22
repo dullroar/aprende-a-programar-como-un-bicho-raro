@@ -1,8 +1,8 @@
 # loop/STATE.md (keep to 60 lines; refreshed by every iteration)
 
 - **Edition:** v4-es.0-rc1 (working)    **English SHA:** 48a4429c0a22b2aac628b256a50c07d1816bcb80
-- **Iteration:** 236    **Stage:** 4 (bulk translation)    **Last result:** P4-lessons-3 done (answer key complete).
-- **Tasks:** todo 74 | doing 0 | done 140 | blocked 0 | skipped 0 (recount with the queue files)
+- **Iteration:** 237    **Stage:** 4 (bulk translation)    **Last result:** P4-lessons-curriculum-1 done (curriculum front matter verified).
+- **Tasks:** todo 73 | doing 0 | done 141 | blocked 0 | skipped 0 (recount with the queue files)
 - **Next task:** run python3 tools/next_task.py (see loop/queue/generated/translate.jsonl).
 - **Budget:** driver-reported $112.6405 of $150 through iteration 231, with Codex session cost unavailable
 - **Translate progress:** at least 7104 / total 8827 segments accepted (7394 prose + 1433 Mermaid labels); at least 184 / 212 files done. Answer key complete with no pending segments. Counts based on the previous snapshot plus this task.
