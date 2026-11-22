@@ -1,33 +1,33 @@
-# Running entries with Gradle
+# Ejecuta entradas con Gradle
 
-The root [`build.gradle`](../build.gradle) has a task for every entry, plus tasks for the [Docker sandbox](../sandbox/README.md):
+El [`build.gradle`](../build.gradle) raíz tiene una tarea para cada entrada, además de tareas para el [entorno aislado (*sandbox*) de Docker](../sandbox/README.md):
 
 ```powershell
 .\gradlew.bat runForth            # Windows
 ./gradlew runForth                # Linux, macOS
 ```
 
-In IntelliJ IDEA, open the repository, trust it, and reload Gradle. The tasks appear in the **Gradle** tool window under **learn-programming-the-weird-way → Tasks**, in the groups below.
+En IntelliJ IDEA, abre el repositorio, confía en él y recarga Gradle. Las tareas aparecen en la ventana de herramientas **Gradle**, en **learn-programming-the-weird-way → Tasks**, dentro de los grupos siguientes.
 
-A task only starts an entry from its own folder. You still need that entry's language installed.
+Una tarea solo inicia una entrada de su propia carpeta. Aun así, necesitas tener instalado el lenguaje de esa entrada.
 
 ## application: Java, Kotlin, Python, Go
 
-`runJava` and `runKotlin` need JDK 25. `runPython` needs Python 3 for Windows (the `py` launcher). `runGo` needs the Go toolchain.
+`runJava` y `runKotlin` necesitan JDK 25. `runPython` necesita Python 3 para Windows (el lanzador `py`). `runGo` necesita el conjunto de herramientas de Go.
 
-## application (.NET)
+## aplicación (.NET)
 
 `runLinq1`, `runLinq2`, `runModern`, `runXamlStrict`, `runXamlSqlite`, `runXamlEfcore`, `runRegexDotnet`
 
-They need the .NET 10 SDK. All but `runRegexDotnet` are WPF, so they're Windows only.
+Necesitan el SDK de .NET 10. Todos salvo `runRegexDotnet` son WPF, así que solo funcionan en Windows.
 
-## application (WSL) / application (Linux)
+## aplicación (WSL) / aplicación (Linux)
 
 `runRust`, `runApl`, `runAplWeird`, `runForth`, `runForthWeird`, `runHaskell`, `runHaskellWeird`, `runCmake`, `runMakeGnu`, `runRegexPcre2`, `runRegexPcre2grep`, `runRegexPerl`, `runRegexSed`, `runCobol`, `runCobolWeird`, `runLisp`, `runLispWeird`, `runM4`, `runTcl`, `runTclWeird`, `runAwk`, `runAwkWeird`
 
-On Windows they run inside WSL 2 (distribution `Ubuntu`, or `-PwslDistro=Name`). Elsewhere they run in `bash`. Each checks for its tool first, and if it's missing, names it and stops with exit code 127.
+En Windows se ejecutan dentro de WSL 2 (distribución `Ubuntu` o `-PwslDistro=Name`). En otros sistemas se ejecutan en `bash`. Cada uno comprueba primero si existe su herramienta y, si falta, la nombra y termina con el código de salida 127.
 
-On Ubuntu 24.04 this installs nearly everything:
+En Ubuntu 24.04, esto instala casi todo:
 
 ```bash
 sudo apt install build-essential pkg-config sqlite3 perl make cmake gforth ghc gnucobol \
@@ -35,49 +35,49 @@ sudo apt install build-essential pkg-config sqlite3 perl make cmake gforth ghc g
     sbcl m4 tcl tk libsqlite3-tcl gawk
 ```
 
-The last line is for the Lisp, m4, Tcl and AWK entries. `runTclWeird` and `runTcl` need the Tcl `sqlite3` package (`libsqlite3-tcl`), and the tasks run text mode only: the optional Tk window (`tk`) is for running `tclsh timecards.tcl --gui` yourself. `runAwkWeird` needs gawk (it uses `RT`); the tool check names `gawk`, so Ubuntu's default mawk is not enough for that one.
+La última línea es para las entradas de Lisp, m4, Tcl y AWK. `runTclWeird` y `runTcl` necesitan el paquete `sqlite3` de Tcl (`libsqlite3-tcl`). Las tareas se ejecutan solo en modo texto: la ventana opcional de Tk (`tk`) es para cuando ejecutas `tclsh timecards.tcl --gui` por tu cuenta. `runAwkWeird` necesita gawk (usa `RT`). La verificación de herramientas nombra `gawk`, así que mawk, el predeterminado de Ubuntu, no es suficiente para esa entrada.
 
-The two exceptions are built from source:
+Las dos excepciones se compilan desde el código fuente:
 
-- **GNU APL** (`runApl`, `runAplWeird`): see [`src/apl/README.md`](../src/apl/README.md).
-- **`pcre2grep` with callout scripts** (`runRegexPcre2grep`): Ubuntu's lacks them. See [`src/regex-pcre2grep/README.md`](../src/regex-pcre2grep/README.md). The task looks in `~/.local/bin`, or wherever `PCRE2GREP` points.
+- **GNU APL** (`runApl`, `runAplWeird`): consulta [`src/apl/README.md`](../src/apl/README.md).
+- **`pcre2grep` con scripts de callout** (`runRegexPcre2grep`): la versión de Ubuntu no los incluye. Consulta [`src/regex-pcre2grep/README.md`](../src/regex-pcre2grep/README.md). La tarea busca en `~/.local/bin` o donde apunte `PCRE2GREP`.
 
-`runRust` opens a GTK window, which needs a display (WSLg on Windows), and stays open until you close it. It builds into `~/.cache/code-challenge/RustChallenge1-target` on the Linux side, because builds on a Windows drive mounted in WSL would start from scratch every time.
+`runRust` abre una ventana GTK, que necesita una pantalla (WSLg en Windows), y se mantiene abierta hasta que la cierras. Compila en `~/.cache/code-challenge/RustChallenge1-target` en el lado de Linux, porque las compilaciones en una unidad de Windows montada en WSL empezarían desde cero cada vez.
 
-Each entry writes its records under `~/.local/share/<Name>/` (or `$XDG_DATA_HOME`). On Windows that's inside WSL, at `\\wsl$\Ubuntu\home\<you>\.local\share\`.
+Cada entrada escribe sus registros en `~/.local/share/<Name>/` (o en `$XDG_DATA_HOME`). En Windows, eso queda dentro de WSL, en `\\wsl$\Ubuntu\home\<you>\.local\share\`.
 
 ## sandbox, sandbox (check), sandbox (show)
 
-These run the repository's sandbox scripts. They need Docker, set up as in [`SANDBOX-SETUP.md`](../SANDBOX-SETUP.md#docker). On Windows they also need Git Bash, from Git for Windows (or `-PgitBash=path`).
+Estos ejecutan los scripts del entorno aislado del repositorio. Necesitan Docker, configurado como se explica en [`SANDBOX-SETUP.md`](../SANDBOX-SETUP.md#docker). En Windows también necesitan Git Bash, que viene con Git for Windows (o `-PgitBash=path`).
 
-| Task | Does |
+| Tarea | Qué hace |
 | --- | --- |
-| `sandboxBuildBases` | Builds the trusted images. Run it once first (it needs network, about 2.5 GB), and again with `-Pforce` after pulling changes to `sandbox/`. |
-| `sandboxSelftest` | Proves the lockdown works on your machine. |
-| `sandboxCheck<Entry>` | Runs the entry's `check.sh` exactly as the [gate](../sandbox/README.md) does. One for each entry with a `check.sh`. |
-| `sandboxCheckAll` | All of the above. Each entry prints `PASS` or `FAIL`. |
-| `sandboxShow<Entry>` | Builds the entry's container image, runs it locked down, and shows what it wrote. One for each entry with a `Dockerfile`. A copy goes to `build/sandbox-out/<entry>/`, including `screenshot.png` for GUI entries. |
+| `sandboxBuildBases` | Construye las imágenes de confianza. Ejecútala una vez al principio (necesita red, unos 2,5 GB) y de nuevo con `-Pforce` después de traer cambios en `sandbox/`. |
+| `sandboxSelftest` | Comprueba que el bloqueo funciona en tu máquina. |
+| `sandboxCheck<Entry>` | Ejecuta el `check.sh` de la entrada exactamente igual que lo hace la [puerta](../sandbox/README.md). Hay uno por cada entrada con un `check.sh`. |
+| `sandboxCheckAll` | Todo lo anterior. Cada entrada imprime `PASS` o `FAIL`. |
+| `sandboxShow<Entry>` | Construye la imagen de contenedor de la entrada, la ejecuta bloqueada y muestra lo que escribió. Hay una por cada entrada con `Dockerfile`. Una copia va a `build/sandbox-out/<entry>/`, incluido `screenshot.png` para las entradas con interfaz gráfica. |
 
-Task names come from the folder names (`src/apl-weird` gives `sandboxCheckAplWeird`), so new entries get tasks automatically. A new entry whose Dockerfile downloads while it builds must be added to the `onlineBuild` list in `build.gradle`.
+Los nombres de las tareas salen de los nombres de las carpetas (`src/apl-weird` da `sandboxCheckAplWeird`), así que las entradas nuevas obtienen tareas automáticamente. Una entrada nueva cuyo Dockerfile descarga archivos durante la compilación debe añadirse a la lista `onlineBuild` en `build.gradle`.
 
-**The WPF entries** (`LinqChallenge1`, `LinqChallenge2`, `ModernChallenge1`, `xaml`) have no `sandbox…` tasks, because WPF can't run in Docker's Linux containers. To run them isolated, use Windows Sandbox (`sandbox\windows\run.ps1 src\<entry>`, see [`SANDBOX-SETUP.md`](../SANDBOX-SETUP.md#windows-sandbox)), which needs Windows 11 Pro, Enterprise or Education. The Linq entries' `check.ps1` runs there and in the gate's Windows job.
+**Las entradas de WPF** (`LinqChallenge1`, `LinqChallenge2`, `ModernChallenge1`, `xaml`) no tienen tareas `sandbox…`, porque WPF no puede ejecutarse en los contenedores Linux de Docker. Para ejecutarlas de forma aislada, usa Windows Sandbox (`sandbox\windows\run.ps1 src\<entry>`, consulta [`SANDBOX-SETUP.md`](../SANDBOX-SETUP.md#windows-sandbox)), que requiere Windows 11 Pro, Enterprise o Education. El `check.ps1` de las entradas de Linq se ejecuta allí y en el trabajo de Windows del *gate*.
 
-## Options
+## Opciones
 
-| Option | Default | For |
+| Opción | Valor predeterminado | Para qué sirve |
 | --- | --- | --- |
-| `-PwslDistro=Name` | `Ubuntu` | The WSL distribution for the Linux tasks |
-| `-PgitBash=path` | `C:/Program Files/Git/bin/bash.exe` | The Git Bash for the sandbox tasks |
-| `-Pforce` | off | `sandboxBuildBases`: rebuild every image |
+| `-PwslDistro=Name` | `Ubuntu` | La distribución de WSL para las tareas de Linux |
+| `-PgitBash=path` | `C:/Program Files/Git/bin/bash.exe` | Git Bash para las tareas del entorno aislado |
+| `-Pforce` | off | `sandboxBuildBases`: reconstruye todas las imágenes |
 
-Add them after the task name (`.\gradlew.bat runForth -PwslDistro=Ubuntu-24.04`), in an IntelliJ run configuration's **Run** field, or permanently in `~/.gradle/gradle.properties` (`wslDistro=Ubuntu-24.04`).
+Agrégalas después del nombre de la tarea (`.\gradlew.bat runForth -PwslDistro=Ubuntu-24.04`), en el campo **Run** de una configuración de ejecución de IntelliJ o de forma permanente en `~/.gradle/gradle.properties` (`wslDistro=Ubuntu-24.04`).
 
-## When something goes wrong
+## Cuando algo sale mal
 
-| Symptom | Fix |
+| Síntoma | Solución |
 | --- | --- |
-| `<tool> is not installed in WSL` | Install it in WSL (see above). |
-| `/usr/bin/env: 'bash\r'` | The checkout has Windows line endings. [`.gitattributes`](../.gitattributes) prevents this in new clones. In an older one, run this once with a clean working tree: `git rm -r --cached -q src && git reset -q --hard` |
-| `failed to connect to the docker API` | Start Docker Desktop. |
-| `missing cc-rt-…:local` or `command not found` in a sandbox check | Run `sandboxBuildBases` (with `-Pforce` if `sandbox/` changed). |
-| No colour animation from `runCmake`, `runMakeGnu` or the regex entries | Gradle's output isn't a terminal, so they switch it off. Run the entry in a terminal instead (see its README). |
+| `<tool> is not installed in WSL` | Instálalo en WSL (consulta la sección anterior). |
+| `/usr/bin/env: 'bash\r'` | El repositorio clonado tiene saltos de línea de Windows. [`.gitattributes`](../.gitattributes) evita esto en clones nuevos. En un clon más antiguo, ejecuta esto una sola vez con el árbol de trabajo limpio: `git rm -r --cached -q src && git reset -q --hard` |
+| `failed to connect to the docker API` | Inicia Docker Desktop. |
+| `missing cc-rt-…:local` o `command not found` en una comprobación del entorno aislado | Ejecuta `sandboxBuildBases` (con `-Pforce` si `sandbox/` cambió). |
+| Sin animación de color en `runCmake`, `runMakeGnu` o las entradas de regex | La salida de Gradle no es una terminal, así que lo desactivan. En su lugar, ejecuta la entrada en una terminal (consulta su README). |

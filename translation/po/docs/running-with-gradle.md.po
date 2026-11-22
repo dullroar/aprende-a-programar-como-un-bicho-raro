@@ -1,0 +1,208 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: docs/running-with-gradle.md:1
+msgctxt "s-5c8128c4120f-0000"
+msgid "Running entries with Gradle"
+msgstr "Ejecuta entradas con Gradle"
+
+#: docs/running-with-gradle.md:3
+msgctxt "s-e3dcc1437194-0001"
+msgid "The root [⟦CODE_0001⟧](⟦DEST_0002⟧) has a task for every entry, plus tasks for the [Docker sandbox](⟦DEST_0003⟧):"
+msgstr "El [⟦CODE_0001⟧](⟦DEST_0002⟧) raíz tiene una tarea para cada entrada, además de tareas para el [entorno aislado (*sandbox*) de Docker](⟦DEST_0003⟧):"
+
+#: docs/running-with-gradle.md:10
+msgctxt "s-043dd721d773-0002"
+msgid "In IntelliJ IDEA, open the repository, trust it, and reload Gradle. The tasks appear in the **Gradle** tool window under **learn-programming-the-weird-way → Tasks**, in the groups below."
+msgstr "En IntelliJ IDEA, abre el repositorio, confía en él y recarga Gradle. Las tareas aparecen en la ventana de herramientas **Gradle**, en **learn-programming-the-weird-way → Tasks**, dentro de los grupos siguientes."
+
+#: docs/running-with-gradle.md:12
+msgctxt "s-400ae723d21a-0003"
+msgid "A task only starts an entry from its own folder. You still need that entry's language installed."
+msgstr "Una tarea solo inicia una entrada de su propia carpeta. Aun así, necesitas tener instalado el lenguaje de esa entrada."
+
+#: docs/running-with-gradle.md:14
+msgctxt "s-e617fa13d3e4-0004"
+msgid "application: Java, Kotlin, Python, Go"
+msgstr "application: Java, Kotlin, Python, Go"
+
+#: docs/running-with-gradle.md:16
+msgctxt "s-eb748c98843e-0005"
+msgid "⟦CODE_0001⟧ and ⟦CODE_0002⟧ need JDK 25. ⟦CODE_0003⟧ needs Python 3 for Windows (the ⟦CODE_0004⟧ launcher). ⟦CODE_0005⟧ needs the Go toolchain."
+msgstr "⟦CODE_0001⟧ y ⟦CODE_0002⟧ necesitan JDK 25. ⟦CODE_0003⟧ necesita Python 3 para Windows (el lanzador ⟦CODE_0004⟧). ⟦CODE_0005⟧ necesita el conjunto de herramientas de Go."
+
+#: docs/running-with-gradle.md:18
+msgctxt "s-790550b65bfd-0006"
+msgid "application (.NET)"
+msgstr "aplicación (.NET)"
+
+#: docs/running-with-gradle.md:22
+msgctxt "s-3f0d07f18890-0007"
+msgid "They need the .NET 10 SDK. All but ⟦CODE_0001⟧ are WPF, so they're Windows only."
+msgstr "Necesitan el SDK de .NET 10. Todos salvo ⟦CODE_0001⟧ son WPF, así que solo funcionan en Windows."
+
+#: docs/running-with-gradle.md:24
+msgctxt "s-a88f9bd54701-0008"
+msgid "application (WSL) / application (Linux)"
+msgstr "aplicación (WSL) / aplicación (Linux)"
+
+#: docs/running-with-gradle.md:28
+msgctxt "s-479e1f30300d-0009"
+msgid "On Windows they run inside WSL 2 (distribution ⟦CODE_0001⟧, or ⟦CODE_0002⟧). Elsewhere they run in ⟦CODE_0003⟧. Each checks for its tool first, and if it's missing, names it and stops with exit code 127."
+msgstr "En Windows se ejecutan dentro de WSL 2 (distribución ⟦CODE_0001⟧ o ⟦CODE_0002⟧). En otros sistemas se ejecutan en ⟦CODE_0003⟧. Cada uno comprueba primero si existe su herramienta y, si falta, la nombra y termina con el código de salida 127."
+
+#: docs/running-with-gradle.md:30
+msgctxt "s-b28a979a6031-0010"
+msgid "On Ubuntu 24.04 this installs nearly everything:"
+msgstr "En Ubuntu 24.04, esto instala casi todo:"
+
+#: docs/running-with-gradle.md:38
+msgctxt "s-76077592b1a5-0011"
+msgid "The last line is for the Lisp, m4, Tcl and AWK entries. ⟦CODE_0001⟧ and ⟦CODE_0002⟧ need the Tcl ⟦CODE_0003⟧ package (⟦CODE_0004⟧), and the tasks run text mode only: the optional Tk window (⟦CODE_0005⟧) is for running ⟦CODE_0006⟧ yourself. ⟦CODE_0007⟧ needs gawk (it uses ⟦CODE_0008⟧); the tool check names ⟦CODE_0009⟧, so Ubuntu's default mawk is not enough for that one."
+msgstr "La última línea es para las entradas de Lisp, m4, Tcl y AWK. ⟦CODE_0001⟧ y ⟦CODE_0002⟧ necesitan el paquete ⟦CODE_0003⟧ de Tcl (⟦CODE_0004⟧). Las tareas se ejecutan solo en modo texto: la ventana opcional de Tk (⟦CODE_0005⟧) es para cuando ejecutas ⟦CODE_0006⟧ por tu cuenta. ⟦CODE_0007⟧ necesita gawk (usa ⟦CODE_0008⟧). La verificación de herramientas nombra ⟦CODE_0009⟧, así que mawk, el predeterminado de Ubuntu, no es suficiente para esa entrada."
+
+#: docs/running-with-gradle.md:40
+msgctxt "s-06e6ad453b21-0012"
+msgid "The two exceptions are built from source:"
+msgstr "Las dos excepciones se compilan desde el código fuente:"
+
+#: docs/running-with-gradle.md:42
+msgctxt "s-b537cf472718-0013"
+msgid "**GNU APL** (⟦CODE_0001⟧, ⟦CODE_0002⟧): see [⟦CODE_0003⟧](⟦DEST_0004⟧)."
+msgstr "**GNU APL** (⟦CODE_0001⟧, ⟦CODE_0002⟧): consulta [⟦CODE_0003⟧](⟦DEST_0004⟧)."
+
+#: docs/running-with-gradle.md:43
+msgctxt "s-b9d6d5709a64-0014"
+msgid "**⟦CODE_0001⟧ with callout scripts** (⟦CODE_0002⟧): Ubuntu's lacks them. See [⟦CODE_0003⟧](⟦DEST_0004⟧). The task looks in ⟦CODE_0005⟧, or wherever ⟦CODE_0006⟧ points."
+msgstr "**⟦CODE_0001⟧ con scripts de callout** (⟦CODE_0002⟧): la versión de Ubuntu no los incluye. Consulta [⟦CODE_0003⟧](⟦DEST_0004⟧). La tarea busca en ⟦CODE_0005⟧ o donde apunte ⟦CODE_0006⟧."
+
+#: docs/running-with-gradle.md:45
+msgctxt "s-2d060a9bce03-0015"
+msgid "⟦CODE_0001⟧ opens a GTK window, which needs a display (WSLg on Windows), and stays open until you close it. It builds into ⟦CODE_0002⟧ on the Linux side, because builds on a Windows drive mounted in WSL would start from scratch every time."
+msgstr "⟦CODE_0001⟧ abre una ventana GTK, que necesita una pantalla (WSLg en Windows), y se mantiene abierta hasta que la cierras. Compila en ⟦CODE_0002⟧ en el lado de Linux, porque las compilaciones en una unidad de Windows montada en WSL empezarían desde cero cada vez."
+
+#: docs/running-with-gradle.md:47
+msgctxt "s-febeae2af136-0016"
+msgid "Each entry writes its records under ⟦CODE_0001⟧ (or ⟦CODE_0002⟧). On Windows that's inside WSL, at ⟦CODE_0003⟧."
+msgstr "Cada entrada escribe sus registros en ⟦CODE_0001⟧ (o en ⟦CODE_0002⟧). En Windows, eso queda dentro de WSL, en ⟦CODE_0003⟧."
+
+#: docs/running-with-gradle.md:49
+msgctxt "s-1837785e4d3b-0017"
+msgid "sandbox, sandbox (check), sandbox (show)"
+msgstr "sandbox, sandbox (check), sandbox (show)"
+
+#: docs/running-with-gradle.md:51
+msgctxt "s-d6660dd5c3ce-0018"
+msgid "These run the repository's sandbox scripts. They need Docker, set up as in [⟦CODE_0001⟧](⟦DEST_0002⟧). On Windows they also need Git Bash, from Git for Windows (or ⟦CODE_0003⟧)."
+msgstr "Estos ejecutan los scripts del entorno aislado del repositorio. Necesitan Docker, configurado como se explica en [⟦CODE_0001⟧](⟦DEST_0002⟧). En Windows también necesitan Git Bash, que viene con Git for Windows (o ⟦CODE_0003⟧)."
+
+#: docs/running-with-gradle.md:53
+msgctxt "s-3dd066a1fe45-0019"
+msgid "⟦SEP_0001⟧ Task ⟦SEP_0002⟧ Does ⟦SEP_0003⟧"
+msgstr "⟦SEP_0001⟧ Tarea ⟦SEP_0002⟧ Qué hace ⟦SEP_0003⟧"
+
+#: docs/running-with-gradle.md:55
+msgctxt "s-c7498cf75c7b-0020"
+msgid "⟦SEP_0004⟧ ⟦CODE_0001⟧ ⟦SEP_0005⟧ Builds the trusted images. Run it once first (it needs network, about 2.5 GB), and again with ⟦CODE_0002⟧ after pulling changes to ⟦CODE_0003⟧. ⟦SEP_0006⟧"
+msgstr "⟦SEP_0004⟧ ⟦CODE_0001⟧ ⟦SEP_0005⟧ Construye las imágenes de confianza. Ejecútala una vez al principio (necesita red, unos 2,5 GB) y de nuevo con ⟦CODE_0002⟧ después de traer cambios en ⟦CODE_0003⟧. ⟦SEP_0006⟧"
+
+#: docs/running-with-gradle.md:56
+msgctxt "s-72fb39e64155-0021"
+msgid "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ Proves the lockdown works on your machine. ⟦SEP_0004⟧"
+msgstr "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ Comprueba que el bloqueo funciona en tu máquina. ⟦SEP_0004⟧"
+
+#: docs/running-with-gradle.md:57
+msgctxt "s-e5235f7821f5-0022"
+msgid "⟦SEP_0005⟧ ⟦CODE_0001⟧ ⟦SEP_0006⟧ Runs the entry's ⟦CODE_0002⟧ exactly as the [gate](⟦DEST_0003⟧) does. One for each entry with a ⟦CODE_0004⟧. ⟦SEP_0007⟧"
+msgstr "⟦SEP_0005⟧ ⟦CODE_0001⟧ ⟦SEP_0006⟧ Ejecuta el ⟦CODE_0002⟧ de la entrada exactamente igual que lo hace la [puerta](⟦DEST_0003⟧). Hay uno por cada entrada con un ⟦CODE_0004⟧. ⟦SEP_0007⟧"
+
+#: docs/running-with-gradle.md:58
+msgctxt "s-9140439c7ebe-0023"
+msgid "⟦SEP_0004⟧ ⟦CODE_0001⟧ ⟦SEP_0005⟧ All of the above. Each entry prints ⟦CODE_0002⟧ or ⟦CODE_0003⟧. ⟦SEP_0006⟧"
+msgstr "⟦SEP_0004⟧ ⟦CODE_0001⟧ ⟦SEP_0005⟧ Todo lo anterior. Cada entrada imprime ⟦CODE_0002⟧ o ⟦CODE_0003⟧. ⟦SEP_0006⟧"
+
+#: docs/running-with-gradle.md:59
+msgctxt "s-07c7805d9c7c-0024"
+msgid "⟦SEP_0005⟧ ⟦CODE_0001⟧ ⟦SEP_0006⟧ Builds the entry's container image, runs it locked down, and shows what it wrote. One for each entry with a ⟦CODE_0002⟧. A copy goes to ⟦CODE_0003⟧, including ⟦CODE_0004⟧ for GUI entries. ⟦SEP_0007⟧"
+msgstr "⟦SEP_0005⟧ ⟦CODE_0001⟧ ⟦SEP_0006⟧ Construye la imagen de contenedor de la entrada, la ejecuta bloqueada y muestra lo que escribió. Hay una por cada entrada con ⟦CODE_0002⟧. Una copia va a ⟦CODE_0003⟧, incluido ⟦CODE_0004⟧ para las entradas con interfaz gráfica. ⟦SEP_0007⟧"
+
+#: docs/running-with-gradle.md:61
+msgctxt "s-08c15c1c73c4-0025"
+msgid "Task names come from the folder names (⟦CODE_0001⟧ gives ⟦CODE_0002⟧), so new entries get tasks automatically. A new entry whose Dockerfile downloads while it builds must be added to the ⟦CODE_0003⟧ list in ⟦CODE_0004⟧."
+msgstr "Los nombres de las tareas salen de los nombres de las carpetas (⟦CODE_0001⟧ da ⟦CODE_0002⟧), así que las entradas nuevas obtienen tareas automáticamente. Una entrada nueva cuyo Dockerfile descarga archivos durante la compilación debe añadirse a la lista ⟦CODE_0003⟧ en ⟦CODE_0004⟧."
+
+#: docs/running-with-gradle.md:63
+msgctxt "s-2ca5297a4307-0026"
+msgid "**The WPF entries** (⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧) have no ⟦CODE_0005⟧ tasks, because WPF can't run in Docker's Linux containers. To run them isolated, use Windows Sandbox (⟦CODE_0006⟧, see [⟦CODE_0007⟧](⟦DEST_0008⟧)), which needs Windows 11 Pro, Enterprise or Education. The Linq entries' ⟦CODE_0009⟧ runs there and in the gate's Windows job."
+msgstr "**Las entradas de WPF** (⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧) no tienen tareas ⟦CODE_0005⟧, porque WPF no puede ejecutarse en los contenedores Linux de Docker. Para ejecutarlas de forma aislada, usa Windows Sandbox (⟦CODE_0006⟧, consulta [⟦CODE_0007⟧](⟦DEST_0008⟧)), que requiere Windows 11 Pro, Enterprise o Education. El ⟦CODE_0009⟧ de las entradas de Linq se ejecuta allí y en el trabajo de Windows del *gate*."
+
+#: docs/running-with-gradle.md:65
+msgctxt "s-d0db8b5e364b-0027"
+msgid "Options"
+msgstr "Opciones"
+
+#: docs/running-with-gradle.md:67
+msgctxt "s-2223cad5a243-0028"
+msgid "⟦SEP_0001⟧ Option ⟦SEP_0002⟧ Default ⟦SEP_0003⟧ For ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ Opción ⟦SEP_0002⟧ Valor predeterminado ⟦SEP_0003⟧ Para qué sirve ⟦SEP_0004⟧"
+
+#: docs/running-with-gradle.md:69
+msgctxt "s-5ef3bc2103cc-0029"
+msgid "⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ ⟦CODE_0002⟧ ⟦SEP_0005⟧ The WSL distribution for the Linux tasks ⟦SEP_0006⟧"
+msgstr "⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ ⟦CODE_0002⟧ ⟦SEP_0005⟧ La distribución de WSL para las tareas de Linux ⟦SEP_0006⟧"
+
+#: docs/running-with-gradle.md:70
+msgctxt "s-232b8b7f297a-0030"
+msgid "⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ ⟦CODE_0002⟧ ⟦SEP_0005⟧ The Git Bash for the sandbox tasks ⟦SEP_0006⟧"
+msgstr "⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ ⟦CODE_0002⟧ ⟦SEP_0005⟧ Git Bash para las tareas del entorno aislado ⟦SEP_0006⟧"
+
+#: docs/running-with-gradle.md:71
+msgctxt "s-007e3928f15b-0031"
+msgid "⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ off ⟦SEP_0005⟧ ⟦CODE_0002⟧: rebuild every image ⟦SEP_0006⟧"
+msgstr "⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ off ⟦SEP_0005⟧ ⟦CODE_0002⟧: reconstruye todas las imágenes ⟦SEP_0006⟧"
+
+#: docs/running-with-gradle.md:73
+msgctxt "s-3c3cbfee596a-0032"
+msgid "Add them after the task name (⟦CODE_0001⟧), in an IntelliJ run configuration's **Run** field, or permanently in ⟦CODE_0002⟧ (⟦CODE_0003⟧)."
+msgstr "Agrégalas después del nombre de la tarea (⟦CODE_0001⟧), en el campo **Run** de una configuración de ejecución de IntelliJ o de forma permanente en ⟦CODE_0002⟧ (⟦CODE_0003⟧)."
+
+#: docs/running-with-gradle.md:75
+msgctxt "s-0a8f44f8e148-0033"
+msgid "When something goes wrong"
+msgstr "Cuando algo sale mal"
+
+#: docs/running-with-gradle.md:77
+msgctxt "s-8f4e36b627f9-0034"
+msgid "⟦SEP_0001⟧ Symptom ⟦SEP_0002⟧ Fix ⟦SEP_0003⟧"
+msgstr "⟦SEP_0001⟧ Síntoma ⟦SEP_0002⟧ Solución ⟦SEP_0003⟧"
+
+#: docs/running-with-gradle.md:79
+msgctxt "s-688fb902fecb-0035"
+msgid "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ Install it in WSL (see above). ⟦SEP_0004⟧"
+msgstr "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ Instálalo en WSL (consulta la sección anterior). ⟦SEP_0004⟧"
+
+#: docs/running-with-gradle.md:80
+msgctxt "s-ec5a3caa65ba-0036"
+msgid "⟦SEP_0005⟧ ⟦CODE_0001⟧ ⟦SEP_0006⟧ The checkout has Windows line endings. [⟦CODE_0002⟧](⟦DEST_0003⟧) prevents this in new clones. In an older one, run this once with a clean working tree: ⟦CODE_0004⟧ ⟦SEP_0007⟧"
+msgstr "⟦SEP_0005⟧ ⟦CODE_0001⟧ ⟦SEP_0006⟧ El repositorio clonado tiene saltos de línea de Windows. [⟦CODE_0002⟧](⟦DEST_0003⟧) evita esto en clones nuevos. En un clon más antiguo, ejecuta esto una sola vez con el árbol de trabajo limpio: ⟦CODE_0004⟧ ⟦SEP_0007⟧"
+
+#: docs/running-with-gradle.md:81
+msgctxt "s-0da458a98f69-0037"
+msgid "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ Start Docker Desktop. ⟦SEP_0004⟧"
+msgstr "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ Inicia Docker Desktop. ⟦SEP_0004⟧"
+
+#: docs/running-with-gradle.md:82
+msgctxt "s-991929744d02-0038"
+msgid "⟦SEP_0006⟧ ⟦CODE_0001⟧ or ⟦CODE_0002⟧ in a sandbox check ⟦SEP_0007⟧ Run ⟦CODE_0003⟧ (with ⟦CODE_0004⟧ if ⟦CODE_0005⟧ changed). ⟦SEP_0008⟧"
+msgstr "⟦SEP_0006⟧ ⟦CODE_0001⟧ o ⟦CODE_0002⟧ en una comprobación del entorno aislado ⟦SEP_0007⟧ Ejecuta ⟦CODE_0003⟧ (con ⟦CODE_0004⟧ si ⟦CODE_0005⟧ cambió). ⟦SEP_0008⟧"
+
+#: docs/running-with-gradle.md:83
+msgctxt "s-edc066573fe1-0039"
+msgid "⟦SEP_0003⟧ No colour animation from ⟦CODE_0001⟧, ⟦CODE_0002⟧ or the regex entries ⟦SEP_0004⟧ Gradle's output isn't a terminal, so they switch it off. Run the entry in a terminal instead (see its README). ⟦SEP_0005⟧"
+msgstr "⟦SEP_0003⟧ Sin animación de color en ⟦CODE_0001⟧, ⟦CODE_0002⟧ o las entradas de regex ⟦SEP_0004⟧ La salida de Gradle no es una terminal, así que lo desactivan. En su lugar, ejecuta la entrada en una terminal (consulta su README). ⟦SEP_0005⟧"

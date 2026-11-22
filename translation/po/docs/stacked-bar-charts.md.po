@@ -1,0 +1,188 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: docs/stacked-bar-charts.md:1
+msgctxt "s-5ae592968ec3-0000"
+msgid "Where the XAML challenge came from"
+msgstr "De dónde salió el reto de XAML"
+
+#: docs/stacked-bar-charts.md:3
+msgctxt "s-1610938bc7aa-0001"
+msgid "This was the original inspiration for the [XAML challenge](⟦DEST_0001⟧). Microsoft never gives up on an idea."
+msgstr "Esta fue la inspiración original del [reto de XAML](⟦DEST_0001⟧). Microsoft nunca renuncia a una idea."
+
+#: docs/stacked-bar-charts.md:5
+msgctxt "s-f73e97cec505-0002"
+msgid "In late 2013, ASP.NET Web Forms had the same promise WPF's XAML still has: markup *describes* things, and code-behind *does* things. The article below is about refusing to write the code-behind. A chart that \"obviously\" needed C# to build its series turned out to need none: a SQL ⟦CODE_0001⟧ put the data in the right shape, and the [ASP.NET Chart control](⟦DEST_0002⟧), bound to a [⟦CODE_0003⟧](⟦DEST_0004⟧), did the rest in pure markup."
+msgstr "A fines de 2013, ASP.NET Web Forms tenía la misma promesa que aún tiene el XAML de WPF. El marcado *describe* las cosas y el código subyacente (*code-behind*) *hace* las cosas. El artículo siguiente trata de negarse a escribir ese código subyacente. Un gráfico que \"obviamente\" necesitaba C# para construir sus series resultó no necesitar nada. Un ⟦CODE_0001⟧ de SQL dejó los datos en la forma correcta, y el [control Chart de ASP.NET](⟦DEST_0002⟧), enlazado a un [⟦CODE_0003⟧](⟦DEST_0004⟧), hizo el resto solo con marcado."
+
+#: docs/stacked-bar-charts.md:7
+msgctxt "s-cc4e75f1dd94-0003"
+msgid "Same move, years later and on a different stack: once you notice that the markup layer will build any object you name and wire it to anything that hands it data, \"no code-behind\" stops being a style rule and starts being a dare. The XAML entry in this repo takes that dare as far as it goes. Its ⟦CODE_0001⟧ file *is* the program."
+msgstr "Es la misma jugada, años después y en otra pila tecnológica. Cuando notas que el marcado construye cualquier objeto que nombres y lo conecta con lo que le dé datos, \"sin código subyacente\" deja de ser una regla de estilo. Es un desafío. La entrada de XAML de este repositorio lleva ese desafío hasta el límite. Su archivo ⟦CODE_0001⟧ *es* el programa."
+
+#: docs/stacked-bar-charts.md:9
+msgctxt "s-173f9cb10cfe-0004"
+msgid "A few notes before you read:"
+msgstr "Antes de leer, ten en cuenta unas notas:"
+
+#: docs/stacked-bar-charts.md:11
+msgctxt "s-a7f8edb6ba98-0005"
+msgid "**It is reproduced as written.** The prose and the code are unchanged from the original post. The only edits are formatting (headings, code-block languages) and these notes."
+msgstr "**Se reproduce tal como se escribió.** La prosa y el código no cambian respecto a la publicación original. Las únicas ediciones son de formato (encabezados, lenguajes de los bloques de código) y estas notas."
+
+#: docs/stacked-bar-charts.md:12
+msgctxt "s-6bc9394d29a5-0006"
+msgid "**It has not been re-tested.** It targets .NET Framework 4.x Web Forms and the ⟦CODE_0001⟧ assembly. Neither exists on modern .NET, so there is nothing in this repo that builds it. Treat it as history, not a recipe."
+msgstr "**No se ha vuelto a probar.** Está pensado para .NET Framework 4.x Web Forms y el ensamblado ⟦CODE_0001⟧. Ninguno de los dos existe en .NET moderno, así que este repositorio no contiene nada que lo compile. Trátalo como historia, no como receta."
+
+#: docs/stacked-bar-charts.md:13
+msgctxt "s-6a2681bedc0c-0007"
+msgid "**Two of the three screenshots are gone.** The original post had three images: the \"ragged\" query output, the pivoted output, and the finished chart. Only the first survived in a backup of the blog. The other two are marked below with their original captions."
+msgstr "**Faltan dos de las tres capturas de pantalla.** La publicación original tenía tres imágenes: la salida \"irregular\" de la consulta, la salida pivotada y el gráfico terminado. Solo la primera sobrevivió en una copia de seguridad del blog. Las otras dos están marcadas abajo con sus pies de foto originales."
+
+#: docs/stacked-bar-charts.md:14
+msgctxt "s-7047b571db56-0008"
+msgid "**Further reading** on the pieces it uses: [⟦CODE_0001⟧ and ⟦CODE_0002⟧](⟦DEST_0003⟧) (T-SQL), [⟦CODE_0004⟧](⟦DEST_0005⟧), and [⟦CODE_0006⟧ / ⟦CODE_0007⟧](⟦DEST_0008⟧) (the data-binding properties that do the real work here)."
+msgstr "**Lecturas adicionales** sobre las piezas que usa: [⟦CODE_0001⟧ y ⟦CODE_0002⟧](⟦DEST_0003⟧) (T-SQL), [⟦CODE_0004⟧](⟦DEST_0005⟧) y [⟦CODE_0006⟧ / ⟦CODE_0007⟧](⟦DEST_0008⟧) (las propiedades de enlace de datos que hacen el trabajo real aquí)."
+
+#: docs/stacked-bar-charts.md:18
+msgctxt "s-6b85f14382b2-0009"
+msgid "Stacked Bar Charts in ASP.NET with No Code-Behind"
+msgstr "Gráficos de barras apiladas en ASP.NET sin código subyacente"
+
+#: docs/stacked-bar-charts.md:20
+msgctxt "s-92e8276d1927-0010"
+msgid "*Originally posted December 19, 2013, on the Ed Norton Engineering Society blog. Tags: ASP.NET, SQL.*"
+msgstr "*Publicado originalmente el 19 de diciembre de 2013 en el blog de la Ed Norton Engineering Society. Etiquetas: ASP.NET, SQL.*"
+
+#: docs/stacked-bar-charts.md:22
+msgctxt "s-bee429372a42-0011"
+msgid "This is posted as an intellectual exercise someone else may find interesting or useful."
+msgstr "Esto se publica como un ejercicio intelectual que a otra persona le puede resultar interesante o útil."
+
+#: docs/stacked-bar-charts.md:24
+msgctxt "s-ed52f8095cd9-0012"
+msgid "**NOTE:** This is **NOT** a suggestion of how to implement something in production (although we do have an app like this there)."
+msgstr "**NOTA:** Esto **NO** es una sugerencia de cómo implementar algo en producción (aunque allí sí tenemos una aplicación como esta)."
+
+#: docs/stacked-bar-charts.md:26
+msgctxt "s-b605350bc002-0013"
+msgid "Introduction"
+msgstr "Introducción"
+
+#: docs/stacked-bar-charts.md:28
+msgctxt "s-4e63e20f65dd-0014"
+msgid "I am currently working on a project at work that involves among other things gathering metrics for our various scanners across all of our locations. We have a heterogeneous scanner environment (which raises its own issues) with 16 models of scanners from Canon, Fujitsu, Lexmark and Xerox spread across 24 different sites. Some sites only have one scanner, others have two or three. I wanted to show total scanner volume by site, broken down by scanner model at each site. This is a perfect application for a stacked bar chart."
+msgstr "Actualmente trabajo en un proyecto de mi empresa que incluye, entre otras tareas, reunir métricas de nuestros escáneres en todas nuestras sedes. Tenemos un entorno heterogéneo de escáneres (lo cual plantea sus propios problemas) con 16 modelos de Canon, Fujitsu, Lexmark y Xerox repartidos en 24 sitios distintos. Algunos sitios tienen un solo escáner; otros tienen dos o tres. Quería mostrar el volumen total de los escáneres por sitio, desglosado por modelo de escáner en cada sitio. Es una aplicación perfecta para un gráfico de barras apiladas."
+
+#: docs/stacked-bar-charts.md:30
+msgctxt "s-7569ea8da8a6-0015"
+msgid "The Problem"
+msgstr "El problema"
+
+#: docs/stacked-bar-charts.md:32
+msgctxt "s-677f4d57cb30-0016"
+msgid "I have been using the ASP.NET charting control for other charts in this project, and purely by chance (not design) I had done everything I needed with each chart in pure markup and SQL with no code-behind for the Web page until I needed this stacked bar chart. Then I had a hard time finding any information on the Internet about how to accomplish a stacked bar chart in pure markup (because I wanted to see if I could)."
+msgstr "He usado el control de gráficos de ASP.NET para otros gráficos de este proyecto. Por pura casualidad (no por diseño), había resuelto todo lo que necesitaba de cada gráfico con marcado puro y SQL. Para la página web no había escrito código subyacente hasta que necesité este gráfico de barras apiladas. Entonces me costó mucho encontrar información en Internet sobre cómo crear un gráfico de barras apiladas solo con marcado (porque quería ver si podía)."
+
+#: docs/stacked-bar-charts.md:34
+msgctxt "s-0b4bf41709ba-0017"
+msgid "The issue is that for a stacked bar chart to work, there need to be multiple series (in my case, scanner models), and each series has to have the same number of data points, i.e., in my case each series has to have 24 locations. This is because the stacked bar chart is \"dumb\" and simply stacks the first column in each series on the first bar, the second column in each series on the second bar, and so on. But the locations each only have one to three scanners, so at most each location only has approximately 20% of the scanner models available. Needless to say, a query something like:"
+msgstr "El problema es que un gráfico de barras apiladas necesita varias series (en mi caso, modelos de escáner). Y cada serie debe tener el mismo número de puntos de datos; es decir, en mi caso cada serie debe tener 24 ubicaciones. Esto se debe a que el gráfico de barras apiladas es \"tonto\". Simplemente apila la primera columna de cada serie en la primera barra, la segunda en la segunda barra y así sucesivamente. Pero cada ubicación tiene solo de uno a tres escáneres, así que, como máximo, cada ubicación tiene aproximadamente un 20 % de los modelos de escáner disponibles. Huelga decir que una consulta parecida a esta:"
+
+#: docs/stacked-bar-charts.md:46
+msgctxt "s-54f1bd6dc0b5-0018"
+msgid "...is going to produce output like this:"
+msgstr "...va a producir una salida como esta:"
+
+#: docs/stacked-bar-charts.md:48
+msgctxt "s-1bc3567967a7-0019"
+msgid "![Nope: query results with one row per branch and scanner model, so each branch has a different number of rows](⟦DEST_0001⟧)"
+msgstr "![No sirve: resultados de la consulta con una fila por rama y modelo de escáner, por lo que cada rama tiene un número distinto de filas](⟦DEST_0001⟧)"
+
+#: docs/stacked-bar-charts.md:50
+msgctxt "s-21739e863005-0020"
+msgid "This is not what we need, since the output is \"ragged\" (each location has a different number of scanner models)."
+msgstr "Esto no es lo que necesitamos, porque la salida es \"irregular\" (cada sede tiene un número distinto de modelos de escáner)."
+
+#: docs/stacked-bar-charts.md:52
+msgctxt "s-10feb1f62aea-0021"
+msgid "Pivot Tables to the Rescue"
+msgstr "Las tablas dinámicas al rescate"
+
+#: docs/stacked-bar-charts.md:54
+msgctxt "s-dad26dcf53b8-0022"
+msgid "I thought about it some more and finally figured out what I needed was to have my data in a pivot table. Using the output from that, I could then do the stacked bar chart in pure ASP.NET markup. Here is a view I created to give me the pivot output I needed:"
+msgstr "Lo pensé un poco más y por fin me di cuenta de que necesitaba tener mis datos en una tabla dinámica. Con la salida de esa tabla, podía hacer el gráfico de barras apiladas solo con marcado de ASP.NET. Esta es una vista que creé para obtener la salida dinámica que necesitaba:"
+
+#: docs/stacked-bar-charts.md:118
+msgctxt "s-340e0c4a679a-0023"
+msgid "Selecting from this view produces a 24-row result set with exactly the output I need:"
+msgstr "Al seleccionar de esta vista se obtiene un conjunto de resultados de 24 filas con exactamente la salida que necesito:"
+
+#: docs/stacked-bar-charts.md:120
+msgctxt "s-f0859a8a3c87-0024"
+msgid "*[Screenshot not preserved, captioned \"Yup\": the pivoted results, with one row per branch and one column per scanner model.]*"
+msgstr "*[Captura de pantalla no conservada, con el pie \"Yup\": los resultados pivotados, con una fila por rama y una columna por modelo de escáner.]*"
+
+#: docs/stacked-bar-charts.md:122
+msgctxt "s-5f963c2b087c-0025"
+msgid "It is a \"rectangular\" grid of values for each combination of location and scanner model."
+msgstr "Es una cuadrícula \"rectangular\" de valores para cada combinación de ubicación y modelo de escáner."
+
+#: docs/stacked-bar-charts.md:124
+msgctxt "s-d49ec683c00e-0026"
+msgid "The Solution"
+msgstr "La solución"
+
+#: docs/stacked-bar-charts.md:126
+msgctxt "s-0efbae56ad79-0027"
+msgid "With that data in hand, then producing the stacked bar chart in pure markup is simply an exercise in copying and pasting 16 series (one for each scanner model). Here is the entire ⟦CODE_0001⟧ file:"
+msgstr "Con esos datos a mano, crear el gráfico de barras apiladas solo con marcado es un ejercicio de copiar y pegar. Son 16 series (una por cada modelo de escáner). Este es el archivo ⟦CODE_0001⟧ completo:"
+
+#: docs/stacked-bar-charts.md:218
+msgctxt "s-a7701a9d5695-0028"
+msgid "And here is the output:"
+msgstr "Y esta es la salida:"
+
+#: docs/stacked-bar-charts.md:220
+msgctxt "s-0bce5f9c873c-0029"
+msgid "*[Screenshot not preserved, captioned \"Tada!\": the finished 3-D stacked bar chart, with one bar per branch and each bar split into colored segments by scanner model.]*"
+msgstr "*[Captura de pantalla no conservada, con el pie \"¡Tachán!\". Muestra el gráfico de barras apiladas en 3D terminado, con una barra por rama y cada barra dividida en segmentos de colores según el modelo de escáner.]*"
+
+#: docs/stacked-bar-charts.md:222
+msgctxt "s-833c730d23f4-0030"
+msgid "Mission accomplished."
+msgstr "Misión cumplida."
+
+#: docs/stacked-bar-charts.md:224
+msgctxt "s-89db2ad881f2-0031"
+msgid "Conclusion"
+msgstr "Conclusión"
+
+#: docs/stacked-bar-charts.md:226
+msgctxt "s-bb825a367b73-0032"
+msgid "Now, I am not saying I think this should be a standard approach. For one, I find it \"fragile\" as a solution since it requires both the SQL pivot and the chart series markup to know in advance the number and names of the scanner models. Thus, adding a new model would require code changes to both the view and the Web page."
+msgstr "Ahora bien, no digo que esto deba ser un enfoque estándar. Por un lado, me parece una solución \"frágil\". Exige que el pivote SQL y el marcado de las series del gráfico conozcan de antemano el número y los nombres de los modelos de escáner. Por eso, agregar un modelo nuevo exigiría cambios de código tanto en la vista como en la página web."
+
+#: docs/stacked-bar-charts.md:228
+msgctxt "s-70a75209584d-0033"
+msgid "However, I did want to publish this because I have found when working with the Microsoft chart control that often there are fairly straightforward markup-only approaches, but most samples on the Web tend to be a mishmash of markup and code with no good discussion about why a given property is set in markup and another is set in the code-behind. Also, depending on your environment, it may be easier to make changes to markup and SQL views in production than to compiled code. It can certainly be easier to \"tweak\" markup."
+msgstr "Sin embargo, quise publicar esto porque he comprobado, al trabajar con el control de gráficos de Microsoft, que a menudo existen enfoques bastante sencillos que usan solo marcado. Pero la mayoría de los ejemplos de la Web tienden a ser una mezcla de marcado y código. Y casi ninguno ofrece una buena explicación de por qué una propiedad se fija en el marcado y otra en el código subyacente. Además, según tu entorno, puede ser más fácil cambiar el marcado y las vistas SQL en producción que el código compilado. Sin duda, puede ser más fácil \"ajustar\" el marcado."
+
+#: docs/stacked-bar-charts.md:230
+msgctxt "s-400b4cfb09e0-0034"
+msgid "And finally, I just thought it was an intellectual challenge, and hope you found it interesting as well."
+msgstr "Y por último, simplemente me pareció un reto intelectual, y espero que a ti también te haya parecido interesante."
+
+#: docs/stacked-bar-charts.md:234
+msgctxt "s-03e209883ccc-0035"
+msgid "Back to the [XAML challenge](⟦DEST_0001⟧), or the [root README](⟦DEST_0002⟧)."
+msgstr "Vuelve al [reto de XAML](⟦DEST_0001⟧) o al [README raíz](⟦DEST_0002⟧)."

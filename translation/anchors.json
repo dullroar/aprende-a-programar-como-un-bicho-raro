@@ -494,8 +494,8 @@
     {
      "en": "Running entries with Gradle",
      "en_id": "running-entries-with-gradle",
-     "es": "Running entries with Gradle",
-     "es_id": "running-entries-with-gradle",
+     "es": "Ejecuta entradas con Gradle",
+     "es_id": "ejecuta-entradas-con-gradle",
      "level": 1,
      "line": 1
     },
@@ -510,16 +510,16 @@
     {
      "en": "application (.NET)",
      "en_id": "application-net",
-     "es": "application (.NET)",
-     "es_id": "application-net",
+     "es": "aplicación (.NET)",
+     "es_id": "aplicación-net",
      "level": 2,
      "line": 18
     },
     {
      "en": "application (WSL) / application (Linux)",
      "en_id": "application-wsl--application-linux",
-     "es": "application (WSL) / application (Linux)",
-     "es_id": "application-wsl--application-linux",
+     "es": "aplicación (WSL) / aplicación (Linux)",
+     "es_id": "aplicación-wsl--aplicación-linux",
      "level": 2,
      "line": 24
     },
@@ -534,28 +534,28 @@
     {
      "en": "Options",
      "en_id": "options",
-     "es": "Options",
-     "es_id": "options",
+     "es": "Opciones",
+     "es_id": "opciones",
      "level": 2,
      "line": 65
     },
     {
      "en": "When something goes wrong",
      "en_id": "when-something-goes-wrong",
-     "es": "When something goes wrong",
-     "es_id": "when-something-goes-wrong",
+     "es": "Cuando algo sale mal",
+     "es_id": "cuando-algo-sale-mal",
      "level": 2,
      "line": 75
     }
    ],
    "map": {
     "application-java-kotlin-python-go": "application-java-kotlin-python-go",
-    "application-net": "application-net",
-    "application-wsl--application-linux": "application-wsl--application-linux",
-    "options": "options",
-    "running-entries-with-gradle": "running-entries-with-gradle",
+    "application-net": "aplicación-net",
+    "application-wsl--application-linux": "aplicación-wsl--aplicación-linux",
+    "options": "opciones",
+    "running-entries-with-gradle": "ejecuta-entradas-con-gradle",
     "sandbox-sandbox-check-sandbox-show": "sandbox-sandbox-check-sandbox-show",
-    "when-something-goes-wrong": "when-something-goes-wrong"
+    "when-something-goes-wrong": "cuando-algo-sale-mal"
    }
   },
   "docs/stacked-bar-charts.md": {
@@ -563,68 +563,68 @@
     {
      "en": "Where the XAML challenge came from",
      "en_id": "where-the-xaml-challenge-came-from",
-     "es": "Where the XAML challenge came from",
-     "es_id": "where-the-xaml-challenge-came-from",
+     "es": "De dónde salió el reto de XAML",
+     "es_id": "de-dónde-salió-el-reto-de-xaml",
      "level": 1,
      "line": 1
     },
     {
      "en": "Stacked Bar Charts in ASP.NET with No Code-Behind",
      "en_id": "stacked-bar-charts-in-aspnet-with-no-code-behind",
-     "es": "Stacked Bar Charts in ASP.NET with No Code-Behind",
-     "es_id": "stacked-bar-charts-in-aspnet-with-no-code-behind",
+     "es": "Gráficos de barras apiladas en ASP.NET sin código subyacente",
+     "es_id": "gráficos-de-barras-apiladas-en-aspnet-sin-código-subyacente",
      "level": 2,
      "line": 18
     },
     {
      "en": "Introduction",
      "en_id": "introduction",
-     "es": "Introduction",
-     "es_id": "introduction",
+     "es": "Introducción",
+     "es_id": "introducción",
      "level": 3,
      "line": 26
     },
     {
      "en": "The Problem",
      "en_id": "the-problem",
-     "es": "The Problem",
-     "es_id": "the-problem",
+     "es": "El problema",
+     "es_id": "el-problema",
      "level": 3,
      "line": 30
     },
     {
      "en": "Pivot Tables to the Rescue",
      "en_id": "pivot-tables-to-the-rescue",
-     "es": "Pivot Tables to the Rescue",
-     "es_id": "pivot-tables-to-the-rescue",
+     "es": "Las tablas dinámicas al rescate",
+     "es_id": "las-tablas-dinámicas-al-rescate",
      "level": 3,
      "line": 52
     },
     {
      "en": "The Solution",
      "en_id": "the-solution",
-     "es": "The Solution",
-     "es_id": "the-solution",
+     "es": "La solución",
+     "es_id": "la-solución",
      "level": 3,
      "line": 124
     },
     {
      "en": "Conclusion",
      "en_id": "conclusion",
-     "es": "Conclusion",
-     "es_id": "conclusion",
+     "es": "Conclusión",
+     "es_id": "conclusión",
      "level": 3,
      "line": 224
     }
    ],
    "map": {
-    "conclusion": "conclusion",
-    "introduction": "introduction",
-    "pivot-tables-to-the-rescue": "pivot-tables-to-the-rescue",
-    "stacked-bar-charts-in-aspnet-with-no-code-behind": "stacked-bar-charts-in-aspnet-with-no-code-behind",
-    "the-problem": "the-problem",
-    "the-solution": "the-solution",
-    "where-the-xaml-challenge-came-from": "where-the-xaml-challenge-came-from"
+    "conclusion": "conclusión",
+    "introduction": "introducción",
+    "pivot-tables-to-the-rescue": "las-tablas-dinámicas-al-rescate",
+    "stacked-bar-charts-in-aspnet-with-no-code-behind": "gráficos-de-barras-apiladas-en-aspnet-sin-código-subyacente",
+    "the-problem": "el-problema",
+    "the-solution": "la-solución",
+    "where-the-xaml-challenge-came-from": "de-dónde-salió-el-reto-de-xaml"
    }
   },
   "house-style.md": {

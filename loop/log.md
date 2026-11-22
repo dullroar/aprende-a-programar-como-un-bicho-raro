@@ -310,3 +310,4 @@
 337 P4-lessons-languages-5 partial accepted and applied Tcl positions 35 to 39; resume at 40; scoped, fast and anchor checks passed.
 339 P4-lessons-languages-5 done Tcl positions 40 to 49 accepted and applied; regex, tar and Tcl complete; scoped and fast checks passed.
 340 P4-audit-7 done sampled 5 segments; one minor finding F008 queued as P4-fix-8.
+343 P4-docs-1 done running-with-gradle and stacked-bar-charts translated (curriculum was already done); 9 waivers recorded; scoped and fast checks passed.

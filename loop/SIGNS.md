@@ -1,5 +1,7 @@
 # SIGNS.md: lessons learned (one imperative line each)
 
+- waive_po takes the PO path with the .md.po suffix; write a non-breaking space in a rules JSON as   (typed spaces stay plain), and when translate.py pads a segment with a sandbox gloss or an invented clause, use waive_po `set` to remove it.
+
 - Never run compound shell commands that touch paths outside the repo except via the English clone path in CONFIG.yaml; keep Bash calls simple (one command each).
 - If the sandbox denies `tar -x` of the English tree into the repo, block P0-002 at once; do not retry variants or hand-copy files.
 - Compound Bash (&&, ;, redirects mixed with other commands) is denied; a single pipeline `git -C <english_clone_path> archive <sha> | tar -x -C <repo> --exclude=.gitignore` is allowed. Edit files with Edit/Write, not shell.

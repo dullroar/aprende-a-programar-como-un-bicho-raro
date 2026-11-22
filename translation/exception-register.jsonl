@@ -454,3 +454,14 @@
 {"id":"EXC-454","segment":"s-90aebae31567-0000","invariant":"TRANSLATE","reason":"The segment is the literal program name tar, which remains unchanged in Spanish.","task":"P4-lessons-languages-5"}
 {"id":"EXC-455","segment":"s-a4f6a78a8d4a-0031","invariant":"I7","reason":"'in step' is an idiom meaning synchronized, not the noun step; sincronizados preserves the meaning.","task":"P4-lessons-languages-5"}
 {"id":"EXC-456","segment":"s-236ade4aa777-0019","invariant":"I7","reason":"The source uses builds as a verb for constructing a Tcl procedure from a database row, not the noun build or compilación.","task":"P4-lessons-languages-5"}
+{"id":"EXC-457","segment":"s-e617fa13d3e4-0004","invariant":"I9","reason":"'application' is the Gradle task group name shown in the IDE (an identifier), followed by language names; it stays literal","task":"P4-docs-1"}
+{"id":"EXC-458","segment":"s-1837785e4d3b-0017","invariant":"I9","reason":"these are literal Gradle task names (sandbox, sandbox (check), sandbox (show)) shown in the IDE; they are identifiers and stay as written","task":"P4-docs-1"}
+{"id":"EXC-459","segment":"s-c7498cf75c7b-0020","invariant":"I3","reason":"2.5 GB is written 2,5 GB with the Spanish decimal comma, a localized number format","task":"P4-docs-1"}
+{"id":"EXC-460","segment":"s-07c7805d9c7c-0024","invariant":"I7","reason":"'Builds' is the verb construir (building a container image), not the noun compilación","task":"P4-docs-1"}
+{"id":"EXC-461","segment":"s-f73e97cec505-0002","invariant":"I7","reason":"'build' is the verb construir (building a chart series), not the noun compilación","task":"P4-docs-1"}
+{"id":"EXC-462","segment":"s-cc4e75f1dd94-0003","invariant":"I7","reason":"'build' is the verb construir (markup constructs objects), not the noun compilación","task":"P4-docs-1"}
+{"id":"EXC-463","segment":"s-6bc9394d29a5-0006","invariant":"I7","reason":"'builds it' is the verb compilar/construir for an app, not the noun compilación","task":"P4-docs-1"}
+{"id":"EXC-464","segment":"s-1bc3567967a7-0019","invariant":"I10","reason":"the '!' is the Markdown image marker ![alt](url), not an exclamation","task":"P4-docs-1"}
+{"id":"EXC-465","segment":"s-1837785e4d3b-0017","invariant":"I7","reason":"these are literal Gradle task names (sandbox, sandbox (check), sandbox (show)); identifiers stay as written","task":"P4-docs-1"}
+{"id":"EXC-466","segment":"s-c7498cf75c7b-0020","invariant":"I7","reason":"'Builds' is the verb construir (building container images), not the noun compilación","task":"P4-docs-1"}
+{"id":"EXC-467","segment":"s-2ca5297a4307-0026","invariant":"I7","reason":"'Windows Sandbox' is a Microsoft product name and stays untranslated; the sandbox gloss was already given earlier in the file","task":"P4-docs-1"}
