@@ -2295,3 +2295,5 @@
 {"segment_id": "s-6e363a527649-0056", "ts": "2026-11-22T15:07:19Z", "findings": ["I3: digit token 11 appears 0 time(s) in the source, 1 in the target"]}
 {"segment_id": "s-c08a852d0dbe-0061", "ts": "2026-11-22T15:09:20Z", "findings": ["I15: heading differs from the recorded transcreated '¿En qué circunstancias esta idea terrible se volvería razonable?'"], "playful_note": "Conserva la ironía de llamar terrible a la idea antes de buscarle un uso razonable."}
 {"segment_id": "s-c08a852d0dbe-0061", "ts": "2026-11-22T15:09:32Z", "findings": [], "playful_note": "Conserva la ironía de llamar terrible a la idea antes de buscarle un uso razonable."}
+{"segment_id": "s-062d2cbdae31-0065", "ts": "2026-11-22T15:11:10Z", "findings": ["I7: glossary term iteration must be rendered 'iteración'"]}
+{"segment_id": "s-312f4619ed92-0071", "ts": "2026-11-22T15:11:44Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}

@@ -109,13 +109,13 @@ Nunca como diseño de una aplicación. Pero los callouts y los bloques de códig
 ## Peculiaridades
 
 - Los bloques de código de regex en Perl necesitan variables de paquete; `strict` y `local` interactúan.
-- Perl's `no warnings 'regexp'` is needed to silence the "null iteration" warning on a dynamic loop body.
-- PCRE2 JIT does not support callouts; flags can change whether callouts fire.
-- pcre2grep callouts fail silently if the program path is not absolute.
-- .NET `Match` on failure exposes no captures.
-- CMake's regex is the weakest of all of them (no counted repetition, lookahead or backreferences); see [Make and CMake](make-cmake.md#cmake).
-- sed: GNU-only features; the `w` command and `e` modifier can run or write anything, and `check.sh` rejects them (a grep, not a sandbox).
-- All entries build SQL by pasting text into strings. It is safe here only because every value is computed or one of four fixed words. **Do not copy the habit.**
+- Se necesita `no warnings 'regexp'` de Perl para silenciar la advertencia "null iteration" (iteración nula) en un cuerpo de bucle dinámico.
+- PCRE2 JIT no admite callouts; las banderas pueden cambiar si se activan los callouts.
+- Los callouts de pcre2grep fallan en silencio si la ruta del programa no es absoluta.
+- En .NET, `Match` no expone capturas en caso de fallo.
+- La expresión regular de CMake es la más débil de todas (sin repetición contada, anticipación ni referencias inversas); consulta [Make y CMake](make-cmake.md#cmake).
+- sed: funciones exclusivas de GNU; el comando `w` y el modificador `e` pueden ejecutar o escribir cualquier cosa. `check.sh` los rechaza (un grep, no un entorno aislado).
+- Todas las entradas construyen SQL al pegar texto en cadenas de texto. Aquí es seguro solo porque cada valor se calcula o es una de cuatro palabras fijas. **No copies esta costumbre.**
 
 <!-- BEGIN GENERATED program-flow:languages/regex.md -->
 ## How each program runs
@@ -244,7 +244,7 @@ flowchart TD
 **Why this mechanism matters:** backtracking can undo `local` variables but not side effects. The engine abandons a branch, while the `INSERT` and the `print` stay done. That is why the match can end by failing and the data is still saved. The SQL transaction is real. Only the *match* lies.
 <!-- END GENERATED program-flow:languages/regex.md -->
 
-## Computer science behind this page
+## La informática detrás de esta página
 
 <!-- BEGIN GENERATED concepts:languages/regex.md -->
 The computer-science ideas behind this page: [Threat model](../informatica/01-lectura-de-un-programa-adversarial.md#threat-model), [Arbitrary code execution](../informatica/01-lectura-de-un-programa-adversarial.md#arbitrary-code-execution), [Representing state](../informatica/02-que-cuenta-como-maquina.md#representing-state), [Register machines and counter machines](../informatica/02-que-cuenta-como-maquina.md#register-machines-and-counter-machines), [Markov algorithms](../informatica/02-que-cuenta-como-maquina.md#markov-algorithms), [Turing completeness](../informatica/02-que-cuenta-como-maquina.md#turing-completeness), [Computation versus orchestration](../informatica/02-que-cuenta-como-maquina.md#computation-versus-orchestration), [Fixed-point iteration](../informatica/03-flujo-de-control-y-continuaciones.md#fixed-point-iteration), [The Chomsky hierarchy](../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#the-chomsky-hierarchy), [Regular expressions](../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#regular-expressions), [Parsing](../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#parsing), [Term and string rewriting](../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#term-and-string-rewriting), [Domain-specific languages](../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#domain-specific-languages), [Interpreters and virtual machines](../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#interpreters-and-virtual-machines), [State](../informatica/06-estado-mas-alla-de-las-variables.md#state), [The stack as a data structure](../informatica/06-estado-mas-alla-de-las-variables.md#the-stack-as-a-data-structure), [Side effects](../informatica/07-efectos-errores-y-confirmacion.md#side-effects), [Exit status](../informatica/07-efectos-errores-y-confirmacion.md#exit-status), [Integrity constraints](../informatica/07-efectos-errores-y-confirmacion.md#integrity-constraints), [Backtracking](../informatica/07-efectos-errores-y-confirmacion.md#backtracking), [The cut: committing to a choice](../informatica/07-efectos-errores-y-confirmacion.md#the-cut-committing-to-a-choice), [Transactions](../informatica/07-efectos-errores-y-confirmacion.md#transactions), [Portability](../informatica/08-fugas-de-abstraccion-y-dependencia-de-la-implementacion.md#portability), [Optimizers](../informatica/08-fugas-de-abstraccion-y-dependencia-de-la-implementacion.md#optimizers), [Performance cliffs and time complexity](../informatica/08-fugas-de-abstraccion-y-dependencia-de-la-implementacion.md#performance-cliffs-and-time-complexity), [Regular-expression denial of service](../informatica/08-fugas-de-abstraccion-y-dependencia-de-la-implementacion.md#regular-expression-denial-of-service), [Callbacks](../informatica/10-eventos-retrollamadas-y-flujo-de-control-reactivo.md#callbacks).

@@ -335,39 +335,39 @@ msgstr "Los bloques de código de regex en Perl necesitan variables de paquete; 
 #: lessons/languages/regex.md:112
 msgctxt "s-062d2cbdae31-0065"
 msgid "Perl's ⟦CODE_0001⟧ is needed to silence the \"null iteration\" warning on a dynamic loop body."
-msgstr ""
+msgstr "Se necesita ⟦CODE_0001⟧ de Perl para silenciar la advertencia \"null iteration\" (iteración nula) en un cuerpo de bucle dinámico."
 
 #: lessons/languages/regex.md:113
 msgctxt "s-d89136041705-0066"
 msgid "PCRE2 JIT does not support callouts; flags can change whether callouts fire."
-msgstr ""
+msgstr "PCRE2 JIT no admite callouts; las banderas pueden cambiar si se activan los callouts."
 
 #: lessons/languages/regex.md:114
 msgctxt "s-d28bd89d3aba-0067"
 msgid "pcre2grep callouts fail silently if the program path is not absolute."
-msgstr ""
+msgstr "Los callouts de pcre2grep fallan en silencio si la ruta del programa no es absoluta."
 
 #: lessons/languages/regex.md:115
 msgctxt "s-94a360615d37-0068"
 msgid ".NET ⟦CODE_0001⟧ on failure exposes no captures."
-msgstr ""
+msgstr "En .NET, ⟦CODE_0001⟧ no expone capturas en caso de fallo."
 
 #: lessons/languages/regex.md:116
 msgctxt "s-1bb14f9ef659-0069"
 msgid "CMake's regex is the weakest of all of them (no counted repetition, lookahead or backreferences); see [Make and CMake](⟦DEST_0001⟧)."
-msgstr ""
+msgstr "La expresión regular de CMake es la más débil de todas (sin repetición contada, anticipación ni referencias inversas); consulta [Make y CMake](⟦DEST_0001⟧)."
 
 #: lessons/languages/regex.md:117
 msgctxt "s-80d9adae2848-0070"
 msgid "sed: GNU-only features; the ⟦CODE_0001⟧ command and ⟦CODE_0002⟧ modifier can run or write anything, and ⟦CODE_0003⟧ rejects them (a grep, not a sandbox)."
-msgstr ""
+msgstr "sed: funciones exclusivas de GNU; el comando ⟦CODE_0001⟧ y el modificador ⟦CODE_0002⟧ pueden ejecutar o escribir cualquier cosa. ⟦CODE_0003⟧ los rechaza (un grep, no un entorno aislado)."
 
 #: lessons/languages/regex.md:118
 msgctxt "s-312f4619ed92-0071"
 msgid "All entries build SQL by pasting text into strings. It is safe here only because every value is computed or one of four fixed words. **Do not copy the habit.**"
-msgstr ""
+msgstr "Todas las entradas construyen SQL al pegar texto en cadenas de texto. Aquí es seguro solo porque cada valor se calcula o es una de cuatro palabras fijas. **No copies esta costumbre.**"
 
 #: lessons/languages/regex.md:247
 msgctxt "s-ac0e260e97bf-0072"
 msgid "Computer science behind this page"
-msgstr ""
+msgstr "La informática detrás de esta página"
