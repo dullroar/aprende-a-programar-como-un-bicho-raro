@@ -95,3 +95,8 @@
 ## Restart after iteration 274
 
 - The same unsupported `--task` flag remained in 12 eligible or pending translation entries and in `tools/plan_tasks.py`. Use the existing `--fast --files` interface with each task’s source paths and keep segment ranges in queue inputs. The verifier and working-tree check are unchanged. An alternative was fixing each command on first failure, which had already stopped two language batches. The change can be reversed in the generator and the 12 queue entries.
+
+## Iteration 364: P4-fix-9 tree fence and H001
+
+- Decision: keep the README repository-tree fence verbatim (segment.py withholds every fence; rule 8 keeps paths and code English) and set humor-register H001 occurrences to 3, because the English title survives in that fence. Not done: Spanish comments and renamed paths (docs/curriculum.md is now docs/plan-de-estudios.md) in the tree.
+- Alternative: add a translatable "tree" fence kind to segment.py/apply.py with tests (touches PO ids of every file with a text fence). Cost to reverse: set occurrences back to 2 and translate the fence.
