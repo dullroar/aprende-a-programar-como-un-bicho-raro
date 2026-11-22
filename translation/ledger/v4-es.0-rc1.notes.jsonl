@@ -2264,3 +2264,6 @@
 {"segment_id": "s-79e45855763b-0029", "ts": "2026-11-22T14:07:43Z", "findings": ["I25: comma before a simple 'y' ('o mueve el X, y predice la salida'): no comma before a simple o or y"]}
 {"segment_id": "s-79e45855763b-0029", "ts": "2026-11-22T14:07:48Z", "findings": ["I25: comma before a simple 'o' ('reemplaza X por IO simple, o mueve el X'): no comma before a simple o or y"]}
 {"segment_id": "s-79e45855763b-0029", "ts": "2026-11-22T14:07:52Z", "findings": ["I25: comma before a simple 'o' ('reemplaza X por IO simple, o mueve el X'): no comma before a simple o or y"]}
+{"segment_id": "s-a6b58da9d4cd-0038", "ts": "2026-11-22T14:17:04Z", "findings": [], "playful_note": "Conserva el contraste afectuoso entre lo raro y lo aburrido."}
+{"segment_id": "s-c08a852d0dbe-0040", "ts": "2026-11-22T14:17:04Z", "findings": ["I15: heading differs from the recorded transcreated '¿En qué circunstancias esta idea terrible se volvería razonable?'"], "playful_note": "Conserva la ironía y pide el caso práctico."}
+{"segment_id": "s-c08a852d0dbe-0040", "ts": "2026-11-22T14:17:12Z", "findings": [], "playful_note": "Conserva la ironía y pide el caso práctico."}

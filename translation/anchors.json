@@ -4856,16 +4856,16 @@
     {
      "en": "Weird next to boring",
      "en_id": "weird-next-to-boring",
-     "es": "Weird next to boring",
-     "es_id": "weird-next-to-boring",
+     "es": "Lo raro junto a lo aburrido",
+     "es_id": "lo-raro-junto-a-lo-aburrido",
      "level": 2,
      "line": 69
     },
     {
      "en": "Under what circumstances would this terrible idea become reasonable?",
      "en_id": "under-what-circumstances-would-this-terrible-idea-become-reasonable",
-     "es": "Under what circumstances would this terrible idea become reasonable?",
-     "es_id": "under-what-circumstances-would-this-terrible-idea-become-reasonable",
+     "es": "¿En qué circunstancias esta idea terrible se volvería razonable?",
+     "es_id": "en-qué-circunstancias-esta-idea-terrible-se-volvería-razonable",
      "level": 2,
      "line": 73
     },
@@ -4896,15 +4896,15 @@
     {
      "en": "Computer science behind this page",
      "en_id": "computer-science-behind-this-page",
-     "es": "Computer science behind this page",
-     "es_id": "computer-science-behind-this-page",
+     "es": "Ciencias de la computación detrás de esta página",
+     "es_id": "ciencias-de-la-computación-detrás-de-esta-página",
      "level": 2,
      "line": 132
     }
    ],
    "map": {
     "behold-the-monstrosity": "contempla-la-monstruosidad",
-    "computer-science-behind-this-page": "computer-science-behind-this-page",
+    "computer-science-behind-this-page": "ciencias-de-la-computación-detrás-de-esta-página",
     "do-this-in-production-and-youre-fired": "haz-esto-en-producción-y-estás-despedido",
     "haskell": "haskell",
     "how-each-program-runs": "how-each-program-runs",
@@ -4914,8 +4914,8 @@
     "program-flow-of-haskell": "program-flow-of-haskell",
     "program-flow-of-haskell-weird": "program-flow-of-haskell-weird",
     "quirks": "peculiaridades",
-    "under-what-circumstances-would-this-terrible-idea-become-reasonable": "under-what-circumstances-would-this-terrible-idea-become-reasonable",
-    "weird-next-to-boring": "weird-next-to-boring",
+    "under-what-circumstances-would-this-terrible-idea-become-reasonable": "en-qué-circunstancias-esta-idea-terrible-se-volvería-razonable",
+    "weird-next-to-boring": "lo-raro-junto-a-lo-aburrido",
     "what-did-we-just-learn": "qué-acabamos-de-aprender",
     "what-makes-haskell-special": "qué-hace-especial-a-haskell"
    }

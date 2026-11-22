@@ -206,24 +206,24 @@ msgstr "**⟦CODE_0001⟧ como restricción.** [⟦CODE_0002⟧](⟦DEST_0003⟧
 #: lessons/languages/haskell.md:69
 msgctxt "s-a6b58da9d4cd-0038"
 msgid "Weird next to boring"
-msgstr ""
+msgstr "Lo raro junto a lo aburrido"
 
 #: lessons/languages/haskell.md:71
 msgctxt "s-339d0c45ec05-0039"
 msgid "[⟦CODE_0001⟧](⟦DEST_0002⟧) is a pure function plus plumbing: easy to test, easy to reason about. [⟦CODE_0003⟧](⟦DEST_0004⟧) puts the effects inside the data structure. The weird version reveals something the idiomatic one hides: a lazy list is a *program waiting to be read*."
-msgstr ""
+msgstr "[⟦CODE_0001⟧](⟦DEST_0002⟧) es una función pura más cómo viaja el dato: es fácil de probar y razonar. [⟦CODE_0003⟧](⟦DEST_0004⟧) pone los efectos dentro de la estructura de datos. La versión rara revela algo que la idiomática oculta: una lista perezosa es un *programa que espera ser leído*."
 
 #: lessons/languages/haskell.md:73
 msgctxt "s-c08a852d0dbe-0040"
 msgid "Under what circumstances would this terrible idea become reasonable?"
-msgstr ""
+msgstr "¿En qué circunstancias esta idea terrible se volvería razonable?"
 
 #: lessons/languages/haskell.md:75
 msgctxt "s-99de46342a4a-0041"
 msgid "Inside a library that implements lazy streaming and has been carefully tested for ordering. Not in application code, where ⟦CODE_0001⟧, strict IO and streaming libraries give the same results without the surprises."
-msgstr ""
+msgstr "Dentro de una biblioteca que implementa el procesamiento perezoso de flujos y que se ha probado cuidadosamente para comprobar el orden. No en el código de aplicación, donde ⟦CODE_0001⟧, la entrada y salida estricta y las bibliotecas de procesamiento de flujos dan los mismos resultados sin sorpresas."
 
 #: lessons/languages/haskell.md:132
 msgctxt "s-ac0e260e97bf-0042"
 msgid "Computer science behind this page"
-msgstr ""
+msgstr "Ciencias de la computación detrás de esta página"

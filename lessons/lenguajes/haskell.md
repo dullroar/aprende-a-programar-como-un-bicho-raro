@@ -66,13 +66,13 @@ Consulta los [ejercicios](../exercises.md#b2-haskell-break-the-laziness-verified
 - **Herramientas de estilo.** El código fuente está formateado a mano al estilo de Ormolu y compila sin problemas con `-Wall -Wcompat`, pero *no* se ejecutó mediante `ormolu` ni `hlint`.
 - **`check.sh` como restricción.** [`haskell-weird/check.sh`](../../src/haskell-weird/check.sh) prohíbe `scanl iterate foldr foldl unfoldr until go mapM forM forever replicateM foldM zipWithM sequence` y exige `fixIO $ \cards ->` y exactamente un `unsafeInterleaveIO`.
 
-## Weird next to boring
+## Lo raro junto a lo aburrido
 
-[`haskell`](../../src/haskell/README.md) is a pure function plus plumbing: easy to test, easy to reason about. [`haskell-weird`](../../src/haskell-weird/README.md) puts the effects inside the data structure. The weird version reveals something the idiomatic one hides: a lazy list is a *program waiting to be read*.
+[`haskell`](../../src/haskell/README.md) es una función pura más cómo viaja el dato: es fácil de probar y razonar. [`haskell-weird`](../../src/haskell-weird/README.md) pone los efectos dentro de la estructura de datos. La versión rara revela algo que la idiomática oculta: una lista perezosa es un *programa que espera ser leído*.
 
-## Under what circumstances would this terrible idea become reasonable?
+## ¿En qué circunstancias esta idea terrible se volvería razonable?
 
-Inside a library that implements lazy streaming and has been carefully tested for ordering. Not in application code, where `evaluate`, strict IO and streaming libraries give the same results without the surprises.
+Dentro de una biblioteca que implementa el procesamiento perezoso de flujos y que se ha probado cuidadosamente para comprobar el orden. No en el código de aplicación, donde `evaluate`, la entrada y salida estricta y las bibliotecas de procesamiento de flujos dan los mismos resultados sin sorpresas.
 
 <!-- BEGIN GENERATED program-flow:languages/haskell.md -->
 ## How each program runs
@@ -129,7 +129,7 @@ sequenceDiagram
 **Why this mechanism matters:** this is demand-driven control flow with side effects, and it is only safe because of how the cells are linked. `unsafeInterleaveIO` is called *unsafe* for a reason: the order of effects now depends on the order of demand. The same laziness without effects is in the plain [`haskell`](../../src/haskell/README.md) entry.
 <!-- END GENERATED program-flow:languages/haskell.md -->
 
-## Computer science behind this page
+## Ciencias de la computación detrás de esta página
 
 <!-- BEGIN GENERATED concepts:languages/haskell.md -->
 The computer-science ideas behind this page: [Control flow](../informatica/03-flujo-de-control-y-continuaciones.md#control-flow), [Evaluation strategies](../informatica/04-evaluacion-y-demanda.md#evaluation-strategies), [Lazy evaluation](../informatica/04-evaluacion-y-demanda.md#lazy-evaluation), [Iterators and generators](../informatica/04-evaluacion-y-demanda.md#iterators-and-generators), [Referential transparency](../informatica/04-evaluacion-y-demanda.md#referential-transparency), [First-class and higher-order functions](../informatica/04-evaluacion-y-demanda.md#first-class-and-higher-order-functions), [Monoids and folds](../informatica/04-evaluacion-y-demanda.md#monoids-and-folds), [State](../informatica/06-estado-mas-alla-de-las-variables.md#state), [Side effects](../informatica/07-efectos-errores-y-confirmacion.md#side-effects), [Monads and effect systems](../informatica/07-efectos-errores-y-confirmacion.md#monads-and-effect-systems).
