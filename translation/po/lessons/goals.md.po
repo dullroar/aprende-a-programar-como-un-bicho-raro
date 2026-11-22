@@ -1,0 +1,168 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lessons/goals.md:1
+msgctxt "s-18388ffa8174-0000"
+msgid "By goal"
+msgstr "Por objetivo"
+
+#: lessons/goals.md:3
+msgctxt "s-70b08e20f55e-0001"
+msgid "Three goals sit under everything in [Learn Programming the Weird Way!](⟦DEST_0001⟧). Each one is a different answer to \"why would anyone do this?\""
+msgstr "Tres objetivos sostienen todo en [¡Aprende a programar como un bicho raro!](⟦DEST_0001⟧). Cada uno responde de otra forma a la pregunta \"¿por qué alguien haría esto?\""
+
+#: lessons/goals.md:5
+msgctxt "s-318f4086e22d-0002"
+msgid "Teach computation, not just computational tricks"
+msgstr "Enseña computación, no solo trucos computacionales"
+
+#: lessons/goals.md:7
+msgctxt "s-f87981aedd81-0003"
+msgid "A trick is \"this incantation makes the loop stop\". Computation is \"here is the machine that is running, and here is where its state lives\"."
+msgstr "Un truco es \"esta fórmula mágica hace que el bucle se detenga\". La computación es \"esta es la máquina que se ejecuta y aquí vive su estado\"."
+
+#: lessons/goals.md:9
+msgctxt "s-e48eb4508add-0004"
+msgid "Every weird entry forces you to name the machine hiding inside a language. Once you can name it, the trick is just one program for that machine."
+msgstr "Cada entrada rara te obliga a nombrar la máquina que se esconde dentro de un lenguaje. Cuando puedes nombrarla, el truco es solo un programa para esa máquina."
+
+#: lessons/goals.md:56
+msgctxt "s-a80c03b92111-0005"
+msgid "Once you have seen four different homes for \"where am I in the program?\", you stop treating the call stack and the loop counter as laws of nature. That is the first goal: separate *control flow*, *state*, *evaluation order* and *side effects*, which most languages weld together, and watch them come apart."
+msgstr "Cuando hayas visto cuatro lugares distintos para responder \"¿dónde estoy en el programa?\", dejarás de tratar la pila de llamadas y el contador del bucle como leyes de la naturaleza. Ese es el primer objetivo: separar el *flujo de control*, el *estado*, el *orden de evaluación* y los *efectos secundarios*, que la mayoría de los lenguajes sueldan en una sola pieza, y verlos separarse."
+
+#: lessons/goals.md:58
+msgctxt "s-f0e58903e288-0006"
+msgid "See [patterns](⟦DEST_0001⟧) for the same material organized by mechanism instead."
+msgstr "Consulta [patrones](⟦DEST_0001⟧) para ver el mismo material organizado por mecanismo."
+
+#: lessons/goals.md:60
+msgctxt "s-9fd2b1294421-0007"
+msgid "Different ways to solve problems, limited only by imagination"
+msgstr "Distintas formas de resolver problemas, limitadas solo por la imaginación"
+
+#: lessons/goals.md:62
+msgctxt "s-8743ad64063f-0008"
+msgid "The repo's motto is **THERE ARE NO BLOCKERS, JUST NOT ENOUGH IMAGINATION.** The same ten lines of requirements have now been solved by a loop with no body, a regex that returns false on purpose, a Makefile that reruns itself, a list whose elements write to a database when you look at them and a function that writes its own successor."
+msgstr "El lema del repositorio es **NO HAY BLOQUEOS, SOLO FALTA IMAGINACIÓN.** Las mismas diez líneas de requisitos ya se resolvieron con un bucle sin cuerpo, una regex que devuelve falso a propósito, un Makefile que se vuelve a ejecutar solo, una lista cuyos elementos escriben en una base de datos cuando los miras y una función que escribe a su sucesora."
+
+#: lessons/goals.md:64
+msgctxt "s-698c989e02f5-0009"
+msgid "Three habits to take from that:"
+msgstr "Tres hábitos que puedes llevarte de ahí:"
+
+#: lessons/goals.md:66
+msgctxt "s-202b8d2ecfe2-0010"
+msgid "**Ask where the work is allowed to happen.** The rule was one statement, so the loop's clauses, a LINQ pipeline, a parser, an iterator and a regex engine's backtracking all became places for work. Which parts of your usual stack are \"just the way it's done\" and which are actually required?"
+msgstr "**Pregunta dónde se permite que ocurra el trabajo.** La regla era una sola sentencia, así que las cláusulas del bucle, una canalización LINQ, un analizador sintáctico, un iterador y el retroceso de un motor de expresiones regulares se convirtieron en lugares donde hacer el trabajo. ¿Qué partes de tu pila habitual son \"así se hace y punto\" y cuáles son realmente obligatorias?"
+
+#: lessons/goals.md:67
+msgctxt "s-d830db2cbdbf-0011"
+msgid "**Compare the weird with the ordinary.** [⟦CODE_0001⟧](⟦DEST_0002⟧) uses five rolls and a take-while; [⟦CODE_0003⟧](⟦DEST_0004⟧) uses a function that copies and rewrites itself. [⟦CODE_0005⟧](⟦DEST_0006⟧) uses one ⟦CODE_0007⟧; [⟦CODE_0008⟧](⟦DEST_0009⟧) puts the effects inside the list. [⟦CODE_0010⟧](⟦DEST_0011⟧) is one ⟦CODE_0012⟧; [⟦CODE_0013⟧](⟦DEST_0014⟧) has no loop at all and lets a class hierarchy do the counting. [⟦CODE_0015⟧](⟦DEST_0016⟧) is a ⟦CODE_0017⟧; [⟦CODE_0018⟧](⟦DEST_0019⟧) keeps its code in a database table. Each pair shows what each approach buys and what it costs."
+msgstr "**Compara lo raro con lo común.** [⟦CODE_0001⟧](⟦DEST_0002⟧) usa cinco tiradas y un *take-while*; [⟦CODE_0003⟧](⟦DEST_0004⟧) usa una función que se copia y se reescribe a sí misma. [⟦CODE_0005⟧](⟦DEST_0006⟧) usa un solo ⟦CODE_0007⟧; [⟦CODE_0008⟧](⟦DEST_0009⟧) pone los efectos dentro de la lista. [⟦CODE_0010⟧](⟦DEST_0011⟧) es un solo ⟦CODE_0012⟧; [⟦CODE_0013⟧](⟦DEST_0014⟧) no tiene ningún bucle y deja que una jerarquía de clases haga la cuenta. [⟦CODE_0015⟧](⟦DEST_0016⟧) es un ⟦CODE_0017⟧; [⟦CODE_0018⟧](⟦DEST_0019⟧) guarda su código en una tabla de una base de datos. Cada par muestra qué gana cada enfoque y cuál es su costo."
+
+#: lessons/goals.md:68
+msgctxt "s-135d58c4a5e5-0012"
+msgid "**Document walls honestly.** [⟦CODE_0001⟧](⟦DEST_0002⟧) says \"A well-demonstrated limitation is more interesting than cheating around it.\" The [blocking problems](⟦DEST_0003⟧) page is built from those walls."
+msgstr "**Documenta los límites con honestidad.** [⟦CODE_0001⟧](⟦DEST_0002⟧) dice: \"Una limitación bien demostrada es más interesante que esquivarla con trampas.\" La página de [problemas de bloqueo](⟦DEST_0003⟧) se construye a partir de esos límites."
+
+#: lessons/goals.md:70
+msgctxt "s-64beae2af2b9-0013"
+msgid "Think outside the box, then write down where the box turned out to be load-bearing. See [problems overcome](⟦DEST_0001⟧)."
+msgstr "Piensa fuera de lo convencional y luego anota dónde resultó que lo convencional sostenía la estructura. Consulta [problemas superados](⟦DEST_0001⟧)."
+
+#: lessons/goals.md:72
+msgctxt "s-f167d1b3aed1-0014"
+msgid "Understand your language(s): strengths and weaknesses"
+msgstr "Entiende tu lenguaje (o tus lenguajes): fortalezas y debilidades"
+
+#: lessons/goals.md:74
+msgctxt "s-ae205a17287e-0015"
+msgid "You do not know what a feature is for until you know what happens when you push on it."
+msgstr "No sabes para qué sirve una característica hasta que sabes qué pasa cuando la fuerzas."
+
+#: lessons/goals.md:76
+msgctxt "s-6ca240e6f99b-0016"
+msgid "⟦SEP_0001⟧ Language ⟦SEP_0002⟧ Strength the weird version reveals ⟦SEP_0003⟧ Weakness it reveals ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ Lenguaje ⟦SEP_0002⟧ Fortaleza que revela la versión rara ⟦SEP_0003⟧ Debilidad que revela ⟦SEP_0004⟧"
+
+#: lessons/goals.md:78
+msgctxt "s-f69ab2428a6d-0017"
+msgid "⟦SEP_0002⟧ APL ⟦SEP_0003⟧ Array thinking replaces most loops; code is data ⟦SEP_0004⟧ Hard to read, hard to type and hard to whiteboard (see [APL](⟦DEST_0001⟧)) ⟦SEP_0005⟧"
+msgstr "⟦SEP_0002⟧ APL ⟦SEP_0003⟧ El pensamiento con arreglos reemplaza la mayoría de los bucles; el código son datos ⟦SEP_0004⟧ Difícil de leer, de teclear y de escribir en una pizarra (consulta [APL](⟦DEST_0001⟧)) ⟦SEP_0005⟧"
+
+#: lessons/goals.md:79
+msgctxt "s-4bdb2ab684fa-0018"
+msgid "⟦SEP_0003⟧ AWK ⟦SEP_0004⟧ The record loop and pattern-action rules make parsing and filtering tiny ⟦SEP_0005⟧ The portable subset is small, and the standard stops short of regex ⟦CODE_0001⟧ and ⟦CODE_0002⟧, which are gawk extensions ⟦SEP_0006⟧"
+msgstr "⟦SEP_0003⟧ AWK ⟦SEP_0004⟧ El bucle de registros y las reglas de patrón-acción hacen que el análisis sintáctico y el filtrado sean muy breves ⟦SEP_0005⟧ El subconjunto portable es pequeño y el estándar no incluye las expresiones regulares ⟦CODE_0001⟧ y ⟦CODE_0002⟧, que son extensiones de gawk ⟦SEP_0006⟧"
+
+#: lessons/goals.md:80
+msgctxt "s-129e4b75c55a-0019"
+msgid "⟦SEP_0004⟧ C# ⟦SEP_0005⟧ Expression-rich: LINQ, anonymous types, reflection and runtime XAML can all sit in one ⟦CODE_0001⟧ header ⟦SEP_0006⟧ ⟦CODE_0002⟧ does not compose; ⟦CODE_0003⟧ is not thread-safe; statements, not expressions, are required at the top level ⟦SEP_0007⟧"
+msgstr "⟦SEP_0004⟧ C# ⟦SEP_0005⟧ Rico en expresiones: LINQ, los tipos anónimos, la reflexión y XAML en tiempo de ejecución pueden convivir en un mismo encabezado ⟦CODE_0001⟧ ⟦SEP_0006⟧ ⟦CODE_0002⟧ no se compone; ⟦CODE_0003⟧ no es seguro para hilos; en el nivel superior se requieren sentencias, no expresiones ⟦SEP_0007⟧"
+
+#: lessons/goals.md:81
+msgctxt "s-f2a102bf1fd1-0020"
+msgid "⟦SEP_0003⟧ CMake ⟦SEP_0004⟧ ⟦CODE_0001⟧ re-expands its condition, and ⟦CODE_0002⟧ leaves captures in variables ⟦SEP_0005⟧ Its regex has no counted repetition, lookahead or backreferences ⟦SEP_0006⟧"
+msgstr "⟦SEP_0003⟧ CMake ⟦SEP_0004⟧ ⟦CODE_0001⟧ vuelve a expandir su condición, y ⟦CODE_0002⟧ deja capturas en variables ⟦SEP_0005⟧ Su expresión regular no admite repetición contada, anticipación (*lookahead*) ni referencias inversas ⟦SEP_0006⟧"
+
+#: lessons/goals.md:82
+msgctxt "s-89cbb73d37a6-0021"
+msgid "⟦SEP_0002⟧ COBOL ⟦SEP_0003⟧ Decimal arithmetic and field pictures that do rounding and range checks as data ⟦SEP_0004⟧ Control flow that ⟦CODE_0001⟧ can make unreadable; fixed columns; a vocabulary that is hard to extend ⟦SEP_0005⟧"
+msgstr "⟦SEP_0002⟧ COBOL ⟦SEP_0003⟧ Aritmética decimal y cláusulas *picture* de campo que hacen el redondeo y las comprobaciones de rango como datos ⟦SEP_0004⟧ Un flujo de control que ⟦CODE_0001⟧ puede volver ilegible; columnas fijas; un vocabulario difícil de extender ⟦SEP_0005⟧"
+
+#: lessons/goals.md:83
+msgctxt "s-eb9bf12bff5f-0022"
+msgid "⟦SEP_0001⟧ Common Lisp ⟦SEP_0002⟧ The reader, macros and the object system are all programmable, so control flow can be rebuilt from types ⟦SEP_0003⟧ The result is invisible: nothing in the code says \"loop\", and tools show only generic-function calls ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ Common Lisp ⟦SEP_0002⟧ El lector, las macros y el sistema de objetos son programables, así que el flujo de control se puede reconstruir a partir de tipos ⟦SEP_0003⟧ El resultado es invisible: nada en el código dice \"bucle\", y las herramientas solo muestran llamadas a funciones genéricas ⟦SEP_0004⟧"
+
+#: lessons/goals.md:84
+msgctxt "s-fbf2081a0f15-0023"
+msgid "⟦SEP_0001⟧ Forth ⟦SEP_0002⟧ Tiny, total control: you can reach the interpreter's own parse position ⟦SEP_0003⟧ No guard rails: stack effects are by convention only ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ Forth ⟦SEP_0002⟧ Minúsculo y con control total: puedes acceder a la posición de análisis del propio intérprete ⟦SEP_0003⟧ Sin barandillas de protección: los efectos sobre la pila existen solo por convención ⟦SEP_0004⟧"
+
+#: lessons/goals.md:85
+msgctxt "s-af2d90c79c76-0024"
+msgid "⟦SEP_0001⟧ GNU Make ⟦SEP_0002⟧ Dependency tracking and restart are free ⟦SEP_0003⟧ It is a build tool: no integers, no real I/O and timestamp granularity matters ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ GNU Make ⟦SEP_0002⟧ El seguimiento de dependencias y el reinicio vienen incluidos ⟦SEP_0003⟧ Es una herramienta de compilación: no tiene enteros ni E/S real, y la granularidad de las marcas de tiempo importa ⟦SEP_0004⟧"
+
+#: lessons/goals.md:86
+msgctxt "s-ea4c79599acc-0025"
+msgid "⟦SEP_0001⟧ Haskell ⟦SEP_0002⟧ Laziness makes \"how much to read\" the stop rule ⟦SEP_0003⟧ Laziness makes \"when does this run?\" part of the meaning once effects are involved ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ Haskell ⟦SEP_0002⟧ La evaluación perezosa convierte \"cuánto leer\" en la regla de parada ⟦SEP_0003⟧ La evaluación perezosa hace que \"¿cuándo se ejecuta esto?\" forme parte del significado cuando hay efectos ⟦SEP_0004⟧"
+
+#: lessons/goals.md:87
+msgctxt "s-7efa4aaf6bdd-0026"
+msgid "⟦SEP_0001⟧ m4 ⟦SEP_0002⟧ Quoting gives lazy evaluation in a language with nothing else; ideal for generating text ⟦SEP_0003⟧ Everything is global text: no scope, no types and one missing bracket is infinite recursion ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ m4 ⟦SEP_0002⟧ Las comillas dan evaluación perezosa en un lenguaje que no tiene nada más; son ideales para generar texto ⟦SEP_0003⟧ Todo es texto global: no hay ámbito ni tipos, y un solo paréntesis que falte causa recursión infinita ⟦SEP_0004⟧"
+
+#: lessons/goals.md:88
+msgctxt "s-5fe04a8e9019-0027"
+msgid "⟦SEP_0001⟧ Regex engines ⟦SEP_0002⟧ Backtracking is a general search; callouts and code blocks make it a program ⟦SEP_0003⟧ Performance cliffs; engine differences; failure discards captures (in .NET) ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ Motores de expresiones regulares ⟦SEP_0002⟧ El retroceso es una búsqueda general; los callouts y los bloques de código lo convierten en un programa ⟦SEP_0003⟧ Precipicios de rendimiento; diferencias entre motores; el fallo descarta las capturas (en .NET) ⟦SEP_0004⟧"
+
+#: lessons/goals.md:89
+msgctxt "s-131fead3b057-0028"
+msgid "⟦SEP_0001⟧ Tcl ⟦SEP_0002⟧ Everything is a string command, so code can be loaded, hooked and generated from anywhere (even a database row) ⟦SEP_0003⟧ Two levels of quoting, and strings all the way down: errors surface late ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ Tcl ⟦SEP_0002⟧ Todo es un comando de cadena de texto, así que el código se puede cargar, enganchar y generar desde cualquier lugar (incluso desde una fila de una base de datos) ⟦SEP_0003⟧ Dos niveles de comillas y cadenas de texto en todas las capas: los errores aparecen tarde ⟦SEP_0004⟧"
+
+#: lessons/goals.md:90
+msgctxt "s-3614aec4a8ef-0029"
+msgid "⟦SEP_0001⟧ XAML ⟦SEP_0002⟧ A declarative format, so tools can read and write it ⟦SEP_0003⟧ The parser can run arbitrary methods, which declarative formats are not meant to do ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ XAML ⟦SEP_0002⟧ Un formato declarativo, así que las herramientas pueden leerlo y escribirlo ⟦SEP_0003⟧ El analizador sintáctico puede ejecutar métodos arbitrarios, algo que los formatos declarativos no están pensados para hacer ⟦SEP_0004⟧"
+
+#: lessons/goals.md:92
+msgctxt "s-f969badb58d1-0030"
+msgid "Language pages also tag behaviors as **guaranteed**, **implementation-permitted** or **accidentally exploited**, as explained in the [intro](⟦DEST_0001⟧). A strength you rely on is only as strong as the tag next to it."
+msgstr "Las páginas de lenguajes también etiquetan los comportamientos como **garantizado**, **permitido por la implementación** o **aprovechado por accidente**, como se explica en la [introducción](⟦DEST_0001⟧). Una fortaleza en la que confías es tan sólida como la etiqueta que la acompaña."
+
+#: lessons/goals.md:94
+msgctxt "s-9eadbdc519a5-0031"
+msgid "Continue to the [computer science behind it all](⟦DEST_0001⟧): the same ideas, one concept at a time, with a paragraph on why each exists and when to use it. Then see the [languages](⟦DEST_0002⟧)."
+msgstr "Continúa con la [informática detrás de todo](⟦DEST_0001⟧): las mismas ideas, un concepto a la vez, con un párrafo sobre por qué existe cada uno y cuándo usarlo. Después consulta los [lenguajes](⟦DEST_0002⟧)."

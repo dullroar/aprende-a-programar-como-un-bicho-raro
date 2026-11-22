@@ -473,3 +473,5 @@
 {"id":"EXC-473","segment":"s-532678fd7e00-0222","invariant":"I7","reason":"Windows Sandbox in a heading is a product name, not the generic term sandbox.","task":"P4-lessons-5"}
 {"id":"EXC-474","segment":"s-acf3dd48b7fe-0069","invariant":"I7","reason":"'builds' is the verb: the program constructs a value at run time, it does not compile; compilación is the noun for the build step.","task":"P4-lessons-5"}
 {"id":"EXC-475","segment":"s-4dd7dae094f1-0216","invariant":"I7","reason":"'State' is an imperative verb (declare which level), not the noun state; 'Indica' is the natural rendering.","task":"P4-lessons-5"}
+{"id":"EXC-476","segment":"s-e8adbd14807f-0001","invariant":"I7","reason":"MIT license legal text: 'claim' (legal demand) and 'event' (in no event) are not the programming glossary terms; the standard Spanish rendering of the MIT license is kept.","task":"P4-lessons-7"}
+{"id":"EXC-477","segment":"s-f69ab2428a6d-0017","invariant":"I7","reason":"'type' is the verb in 'hard to type' (teclear), not the glossary noun 'tipo'.","task":"P4-lessons-7"}

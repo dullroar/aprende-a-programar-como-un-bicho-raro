@@ -1,8 +1,8 @@
 # loop/STATE.md (keep to 60 lines; refreshed by every iteration)
 
 - **Edition:** v4-es.0-rc1 (working)    **English SHA:** 48a4429c0a22b2aac628b256a50c07d1816bcb80
-- **Iteration:** 348    **Stage:** 4 (bulk translation)    **Last result:** P4-lessons-5 done (also covers P4-lessons-6).
-- **Tasks:** todo 66 | doing 0 | done 148 | blocked 0 | skipped 0 (recount with the queue files)
+- **Iteration:** 349    **Stage:** 4 (bulk translation)    **Last result:** P4-lessons-7 done.
+- **Tasks:** todo 65 | doing 0 | done 149 | blocked 0 | skipped 0 (recount with the queue files)
 - **Next task:** run python3 tools/next_task.py (see loop/queue/generated/translate.jsonl).
 - **Budget:** driver-reported $112.6405 of $150 through iteration 274, with Codex session cost unavailable
 - **Translate progress:** at least 7610 / total 8827 segments accepted; at least 193 / 212 files done. P4-lessons-languages-5 complete. Counts based on the previous snapshot plus this task.

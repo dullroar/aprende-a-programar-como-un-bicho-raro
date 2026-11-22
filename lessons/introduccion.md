@@ -1,103 +1,103 @@
-# Intro: why these lessons exist
+# Introducción: por qué existen estas lecciones
 
-You already know how to write a loop, query a database and call a function. You have read the tutorials. This is what comes after them.
+Ya sabes escribir un bucle, consultar una base de datos y llamar a una función. Has leído los tutoriales. Esto es lo que viene después.
 
-The [code challenge](../README.md) asks one question in many accents: *how far can a language's own machinery be pushed before it starts acting like a general-purpose program?* The entries take on a small fictional time-card demo under an absurd constraint: one statement, no loop, no `IF`, nothing but a regex, nothing but a markup file.
+El [reto de código](../README.md) plantea una sola pregunta en muchos acentos: *¿hasta dónde se puede llevar la maquinaria propia de un lenguaje antes de que empiece a comportarse como un programa de propósito general?* Las propuestas abordan una pequeña demo ficticia de tarjetas de horas con una restricción absurda: una sola sentencia, ningún bucle, ningún `IF`, solo una expresión regular, solo un archivo de marcado.
 
-The stunts are the door. These lessons are what is behind it.
+Las acrobacias son la puerta. Estas lecciones son lo que hay detrás.
 
-For the purposes of this book, WEIRD stands for **Weird Execution, Indirect Results and Data**. It does not, of course. But it is a surprisingly serviceable description of what these programs are up to.
+En este libro, BICHO significa **Bicho raro, Interpreta, Camino indirecto, Hallazgos y Octetos**. Claro que no. Pero describe con sorprendente acierto lo que hacen estos programas.
 
-## What the challenge does
+## Qué hace el reto
 
-Start with a total of zero. Draw fictional time cards of 10 to 19 whole hours and cycle through Meetings, Coding, Debugging and Learning. Add the hours and keep the first card that takes the total over 40. Exactly 40 continues. That gives 3 to 5 cards and a final total of 41 to 59. Save the cards locally as **DEMO ONLY** records and show the result through the available interface. The picture shows the usual SQLite version of that task. Each program chooses when to persist the rows.
+Empieza con un total de cero. Crea tarjetas de tiempo ficticias de 10 a 19 horas enteras y recorre en ciclo Meetings, Coding, Debugging y Learning. Suma las horas y conserva la primera tarjeta que hace que el total pase de 40. Un total de exactamente 40 continúa. Eso da de 3 a 5 tarjetas y un total final de 41 a 59. Guarda las tarjetas en local como registros **DEMO ONLY** y muestra el resultado mediante la interfaz disponible. La imagen muestra la versión habitual de esa tarea en SQLite. Cada programa decide cuándo persistir las filas.
 
 ```mermaid
 flowchart TD
-    accTitle: What the challenge does
-    accDescr: A flowchart of the shared task. Start a DEMO ONLY run. Generate a fictional time card of 10 to 19 hours, with a category that cycles through Meetings, Coding, Debugging and Learning. Keep the card and add its hours to the running total. If the total is 40 or less, generate another card. If the total is over 40, finish saving the kept cards as DEMO ONLY records in local SQLite and show the result.
-    A["Start a DEMO ONLY run"] --> B["Generate a fictional card: 10 to 19 hours, next category"]
-    B --> C["Keep it and add its hours to the running total"]
-    C --> D{{"Total over 40?"}}
+    accTitle: Qué hace el reto
+    accDescr: Un diagrama de flujo de la tarea compartida. Inicia una ejecución de DEMO ONLY. Genera una tarjeta ficticia de 10 a 19 horas, con una categoría que sigue el ciclo Meetings, Coding, Debugging y Learning. Conserva la tarjeta y suma sus horas al total acumulado. Si el total no pasa de 40, genera otra tarjeta. Si el total pasa de 40, termina de guardar las tarjetas conservadas como registros DEMO ONLY en SQLite local y muestra el resultado.
+    A["Inicia una ejecución de DEMO ONLY"] --> B["Genera una tarjeta ficticia: de 10 a 19 horas, siguiente categoría"]
+    B --> C["Conserva la tarjeta y suma sus horas al total acumulado"]
+    C --> D{{"¿El total pasa de 40?"}}
     D -->|No| B
-    D -->|Yes| E["Finish saving DEMO ONLY records in local SQLite, then show the result"]
+    D -->|Sí| E["Termina de guardar los registros de DEMO ONLY en SQLite local y luego muestra el resultado"]
 ```
 
-*How* it happens is what the entries disagree about. Each entry's README has a **Program Flow** section with its own picture, and the book shows it on the lesson page of that entry's language, under **How each program runs**. Those pictures are not all flowcharts, because the machines are not all alike. A COBOL program with a rewritten `GO TO` is a state that changes. A Haskell program is a demand that pulls. An m4 program is text that is read again. A Node program built from listeners is a conversation. If a picture could be pasted unchanged into ten entries, it would not be teaching anything.
+Las entradas no coinciden en *cómo* sucede. El README de cada entrada tiene una sección **Program Flow** con su propia imagen, y el libro la muestra en la página de la lección del lenguaje de esa entrada, bajo **Cómo se ejecuta cada programa**. Esas imágenes no son todas diagramas de flujo, porque las máquinas no son todas iguales. Un programa COBOL con un `GO TO` reescrito es un estado que cambia. Un programa Haskell es una demanda que jala. Un programa m4 es texto que se lee de nuevo. Un programa Node construido con escuchadores de eventos es una conversación. Si una imagen pudiera pegarse sin cambios en diez entradas, no enseñaría nada.
 
-### Where entries differ
+### Dónde difieren las entradas
 
-| Entries | What differs from the usual run |
+| Entradas | Qué difiere de la ejecución habitual |
 | --- | --- |
-| [LINQ method chain](../src/LinqChallenge1/README.md) and [LINQ query syntax](../src/LinqChallenge2/README.md) | Five fixed 8-hour days end at 40.0 hours. These demos teach deferred execution with a fixed work week. |
-| [XAML](../src/xaml/README.md) | Four copied passes can deal at most four cards. Four tens would reach 40 with no fifth pass available. On the shipped .NET runtime, seed 42 draws 16, 11, 11 and 15 for a total of 53. The strict variant saves XML, with SQLite used by the other variants. |
-| [.NET regex](../src/regex-dotnet/README.md) | The numeric stop rule still applies. The host appends a TSV report from the successful match's captures and prints it. |
-| [PCRE2 in C](../src/regex-pcre2/README.md) | The numeric stop rule still applies. Callouts write TSV during the match and close the file before deliberate match failure. |
-| [Stock pcre2grep](../src/regex-pcre2grep/README.md) | The numeric stop rule still applies. Separate `sqlite3` invocations save cards as the match runs. The regex's `(*COMMIT)` prunes retries, and earlier writes survive the final failed match. |
+| [Cadena de métodos LINQ](../src/LinqChallenge1/README.md) y [sintaxis de consulta LINQ](../src/LinqChallenge2/README.md) | Cinco días fijos de 8 horas terminan en 40.0 horas. Estas demostraciones enseñan la ejecución diferida con una semana laboral fija. |
+| [XAML](../src/xaml/README.md) | Cuatro pasadas copiadas pueden repartir como máximo cuatro tarjetas. Con cuatro decenas se llegaría a 40 sin una quinta pasada disponible. En el entorno de ejecución .NET incluido, la semilla 42 produce 16, 11, 11 y 15, para un total de 53. La variante estricta guarda XML; las otras variantes usan SQLite. |
+| [Regex de .NET](../src/regex-dotnet/README.md) | La regla de parada numérica sigue vigente. El anfitrión agrega un informe TSV a partir de las capturas de la coincidencia exitosa y lo imprime. |
+| [PCRE2 en C](../src/regex-pcre2/README.md) | La regla de parada numérica sigue vigente. Los callouts escriben TSV durante la coincidencia y cierran el archivo antes del fallo deliberado de la coincidencia. |
+| [pcre2grep estándar](../src/regex-pcre2grep/README.md) | La regla de parada numérica sigue vigente. Las invocaciones separadas de `sqlite3` guardan tarjetas mientras avanza la coincidencia. El `(*COMMIT)` de la regex poda los reintentos, y las escrituras anteriores sobreviven a la coincidencia final fallida. |
 
-The [shared output checker](tools/check-demo.sh) tests the numeric stop rule on a report, including the requirement to continue at 40. To see whether a report agrees with durable state, check the corresponding database or file as well.
+El [verificador de salida compartido](tools/check-demo.sh) prueba la regla de parada numérica en un informe, incluido el requisito de continuar cuando el total es exactamente 40. Para ver si un informe coincide con el estado duradero, revisa también la base de datos o el archivo correspondiente.
 
-## The teaching philosophy
+## La filosofía de enseñanza
 
-> Teach the language by deliberately misusing it, then explain why the misuse works.
+> Enseña el lenguaje usándolo mal a propósito y explica después por qué ese mal uso funciona.
 
-Most tutorials teach the idioms first: here is the right way to iterate, to hold state, to handle errors. These lessons start where the tutorials stop:
+La mayoría de los tutoriales enseñan primero los modismos: esta es la forma correcta de iterar, de mantener el estado, de manejar los errores. Estas lecciones empiezan donde terminan los tutoriales:
 
-*You know the right way. Now find out what the language actually lets you do. Then ask why, although it is perfectly legal, it might be a terrible idea.*
+*Ya conoces la forma correcta. Ahora descubre qué te permite hacer realmente el lenguaje. Después pregúntate por qué, aunque sea perfectamente legal, podría ser una pésima idea.*
 
-The aim is to take your understanding up a level in two directions at once:
+El objetivo es subir tu comprensión un nivel en dos direcciones a la vez:
 
-- **In a specific language.** You will learn what `ALTER`, `unsafeInterleaveIO`, `>in`, `include`, `CMAKE_MATCH_1`, `⎕FX`, method combination, rescanning, `unknown`, `RT` and a `find` that digs its own tree really do, which means you will learn how COBOL, Haskell, Forth, Make, CMake, APL, Common Lisp, m4, Tcl, AWK and find really work.
-- **As concepts.** Control flow, state, evaluation order and side effects turn out to be separable things that different languages bolt together differently. Once you have seen control flow stored in a `GO TO`'s target, a parse position, a restarting build tool and a regex capture, you stop thinking of "the loop" as a given.
+- **En un lenguaje concreto.** Aprenderás qué hacen en realidad `ALTER`, `unsafeInterleaveIO`, `>in`, `include`, `CMAKE_MATCH_1`, `⎕FX`, la combinación de métodos, el reescaneo, `unknown`, `RT` y un `find` que excava su propio árbol. Eso significa que aprenderás cómo funcionan en realidad COBOL, Haskell, Forth, Make, CMake, APL, Common Lisp, m4, Tcl, AWK y find.
+- **Como conceptos.** El flujo de control, el estado, el orden de evaluación y los efectos secundarios resultan ser cosas separables que cada lenguaje une a su manera. Cuando ya has visto el flujo de control guardado en el destino de `GO TO`, en una posición de análisis, en una herramienta de compilación que se reinicia y en una captura de regex, dejas de ver "el bucle" como algo dado.
 
 <a id="the-shape-of-every-lesson"></a>
 
-## The shape of a lesson
+## La estructura de una lección
 
-Most lessons use these five steps to teach a strange example. Survey chapters group related entries and adapt the steps to fit. Some chapters also collect quirks or compare the weird program with its ordinary counterpart.
+La mayoría de las lecciones usan estos cinco pasos para enseñar un ejemplo raro. Los capítulos panorámicos agrupan entradas relacionadas y adaptan los pasos a su contenido. Algunos capítulos también reúnen rarezas o comparan el programa raro con su equivalente común.
 
-| Step | What happens |
+| Paso | Qué ocurre |
 | --- | --- |
-| 1. **Behold the monstrosity** | The working program, and the command to run it ([in a container](exercises.md#running-things-safely)). Try to understand it *before* reading on. |
-| 2. **How the hell does that work?** | The real semantics: what the compiler, interpreter, runtime or operating system actually does. The mechanism, not just the trick. |
-| 3. **What did we just learn?** | The generalizable idea. Make is a dependency engine that can restart itself. COBOL's `ALTER` means a jump target is mutable state. LINQ is an execution pipeline, not just a query language. |
-| 4. **Do this in production and you're fired** | The concrete failure modes: debugging, optimizers, concurrency, portability, security, testing, maintenance. Plus the honest cases where the technique is legitimate. |
-| 5. **Now break it yourself** | An experiment that only works if you understood step 2. Predict, change, run, compare. See [exercises](exercises.md). |
+| 1. **Observa el monstruo** | El programa que funciona y el comando para ejecutarlo ([en un contenedor](exercises.md#ejecutar-con-seguridad)). Intenta entenderlo *antes* de seguir leyendo. |
+| 2. **¿Cómo diablos funciona eso?** | La semántica real: lo que hace en realidad el compilador, el intérprete, el entorno de ejecución o el sistema operativo. El mecanismo, no solo el truco. |
+| 3. **¿Qué acabamos de aprender?** | La idea generalizable. Make es un motor de dependencias que puede reiniciarse a sí mismo. El `ALTER` de COBOL significa que un destino de salto es un estado mutable. LINQ es una canalización de ejecución, no solo un lenguaje de consultas. |
+| 4. **Haz esto en producción y estás despedido** | Los modos de fallo concretos: depuración, optimizadores, concurrencia, portabilidad, seguridad, pruebas y mantenimiento. Además, los casos honestos en los que la técnica es legítima. |
+| 5. **Ahora rómpelo tú** | Un experimento que solo funciona si entendiste el paso 2. Predice, cambia, ejecuta y compara. Consulta los [ejercicios](exercises.md). |
 
-Without step 5 this would be a museum of curiosities. The exercise is what turns curiosity into understanding.
+Sin el paso 5, esto sería un museo de curiosidades. El ejercicio es lo que convierte la curiosidad en comprensión.
 
-## Three kinds of knowledge
+## Tres tipos de conocimiento
 
-Experienced programmers sometimes confuse "I've done this for twenty years" with "the language guarantees this." Ask which particular behavior is promised, by which specification or runtime manual and which behavior you have only seen in a test.
+Los programadores con experiencia a veces confunden "llevo veinte años haciendo esto" con "el lenguaje garantiza esto". Pregunta qué comportamiento concreto está prometido, en qué especificación o manual de ejecución, y qué comportamiento solo has visto en una prueba.
 
-| Tag | Meaning | Example |
+| Etiqueta | Significado | Ejemplo |
 | --- | --- | --- |
-| **guaranteed** | A named specification or documented API promises the behavior within its scope. | The .NET regex API documents balancing-group pops. That promise applies to the .NET regex engine. |
-| **implementation-permitted** | Works because of a particular compiler, runtime, platform or version. | GnuCOBOL still runs `ALTER`. `pcre2grep` callout scripts need a special build. |
-| **accidentally exploited** | A test may show it works, but the implementation makes no promise about the behavior. | A pre-order `find` may descend into a directory just created by its own `-exec`. POSIX leaves traversal of newly added files unspecified. |
+| **garantizado** | Una especificación con nombre o una API documentada promete el comportamiento dentro de su ámbito. | La API de expresiones regulares de .NET documenta las operaciones de extracción (*pop*) de los grupos de equilibrio. Esa promesa se aplica al motor de expresiones regulares de .NET. |
+| **permitido por la implementación** | Funciona por un compilador, un entorno de ejecución, una plataforma o una versión concretos. | GnuCOBOL sigue ejecutando `ALTER`. Los scripts de callout de `pcre2grep` necesitan una compilación especial. |
+| **aprovechado por accidente** | Una prueba puede mostrar que funciona, pero la implementación no promete nada sobre ese comportamiento. | Un `find` en preorden puede descender a un directorio recién creado por su propio `-exec`. POSIX deja sin especificar si el recorrido incluye los archivos recién agregados. |
 
-An entry's single assurance label records the weakest behavior its trick needs. A documented operation can sit right beside an undocumented assumption in the same program.
+El grado de garantía de una entrada tiene una sola etiqueta: la del comportamiento más débil que necesita su truco. Una operación documentada puede estar justo al lado de una suposición no documentada en el mismo programa.
 
-## The recurring question
+## La pregunta recurrente
 
-As you finish a lesson, ask this question:
+Cuando termines una lección, hazte esta pregunta:
 
-> Under what circumstances would this terrible idea become a reasonable engineering decision?
+> ¿En qué circunstancias esta terrible idea se convertiría en una decisión de ingeniería razonable?
 
-Sometimes the answer is "never, given the alternatives". Sometimes it is "when you are writing a compiler, debugger, interpreter or test framework". Occasionally it is "when you are running a mainframe in 1978". A language feature is neither good nor bad in isolation: its value depends on the problem, the environment and the consequences. `ALTER` horrifies modern programmers, and it also served real purposes under real constraints. That does not mean we should revive it. It means we should understand why it worked, what it cost and what changed.
+A veces la respuesta es "nunca, dadas las alternativas". A veces es "cuando escribes un compilador, un depurador, un intérprete o un marco de pruebas". En ocasiones es "cuando operas un mainframe en 1978". Una característica de un lenguaje no es buena ni mala en sí misma: su valor depende del problema, del entorno y de las consecuencias. `ALTER` horroriza a los programadores modernos y también cumplió propósitos reales bajo restricciones reales. Eso no significa que debamos revivirlo. Significa que debemos entender por qué funcionaba, qué costaba y qué cambió.
 
-## Weird next to boring
+## Lo raro junto a lo aburrido
 
-Pair each weird program with the small, idiomatic version of the same behavior (the repo has several: [`cobol`](../src/cobol/README.md) beside [`cobol-weird`](../src/cobol-weird/README.md), [`haskell`](../src/haskell/README.md) beside [`haskell-weird`](../src/haskell-weird/README.md), [`lisp`](../src/lisp/README.md) beside [`lisp-weird`](../src/lisp-weird/README.md) and so on). The point is not that the idiomatic one is morally superior. It is to see what got easier, what got harder and what surprising capability the weird version revealed.
+Empareja cada programa raro con la versión pequeña e idiomática del mismo comportamiento (el repositorio tiene varias: [`cobol`](../src/cobol/README.md) junto a [`cobol-weird`](../src/cobol-weird/README.md), [`haskell`](../src/haskell/README.md) junto a [`haskell-weird`](../src/haskell-weird/README.md), [`lisp`](../src/lisp/README.md) junto a [`lisp-weird`](../src/lisp-weird/README.md) y así sucesivamente). El objetivo no es demostrar que la versión idiomática es moralmente superior. Es ver qué se volvió más fácil, qué se volvió más difícil y qué capacidad sorprendente reveló la versión rara.
 
-## Three ways in
+## Tres puertas de entrada
 
-- **By computer science concept**, if you want the theory first: [cs/](informatica/README.md). Each idea gets a short explanation of why it exists, why people use it, when it fits and when it does not, with links to Wikipedia and other long-lived, freely reusable sources.
-- **By language**, if you want to deepen the one you use: [languages/](lenguajes/README.md).
-- **By mechanism**, if you want to explore an unfamiliar way of computing: [patterns](patrones.md). A reader who arrives for C# may meet Haskell's laziness and realize both raise the same question: *when does the computation actually run?* One who arrives for COBOL's `ALTER` meets Make's restart machinery and CMake's regex registers, which are other ways of keeping control state outside ordinary variables. That cross-pollination is the point.
+- **Por concepto de informática**, si quieres ver primero la teoría: [cs/](informatica/README.md). Cada idea incluye una explicación breve de por qué existe, por qué la usa la gente, cuándo encaja y cuándo no, con enlaces a Wikipedia y a otras fuentes duraderas de libre reutilización.
+- **Por lenguaje**, si quieres profundizar en el que usas: [languages/](lenguajes/README.md).
+- **Por mecanismo**, si quieres explorar una forma poco familiar de computar: [patrones](patrones.md). Un lector que llega por C# puede encontrarse con la evaluación perezosa de Haskell y darse cuenta de que ambos lenguajes plantean la misma pregunta: *¿cuándo se ejecuta realmente el cálculo?* Quien llega por `ALTER`, de COBOL, se encuentra con la maquinaria de reinicio de Make y los registros de expresiones regulares de CMake, que son otras formas de mantener el estado de control fuera de las variables ordinarias. Esa polinización cruzada es la idea central.
 
-Then see [goals](objetivos.md), what was [overcome](problemas-superados.md), what is still [blocked](problemas-bloqueantes.md) and the [exercises](exercises.md).
+Luego consulta las [metas](objetivos.md), lo que se [superó](problemas-superados.md), lo que sigue [bloqueado](problemas-bloqueantes.md) y los [ejercicios](exercises.md).
 
-## A word of caution
+## Una advertencia
 
-This is not a production style guide. Do not try any of it at work, and do not tell the boss. These programs work with **DEMO ONLY** data and local scratch storage. Run them in the [container or sandbox](exercises.md#running-things-safely).
+Esta no es una guía de estilo para producción. No pruebes nada de esto en el trabajo y no se lo digas al jefe. Estos programas funcionan con datos **DEMO ONLY** y con almacenamiento temporal local. Ejecútalos en un [contenedor o entorno aislado (*sandbox*) que limita el acceso al sistema anfitrión](exercises.md#ejecutar-con-seguridad).

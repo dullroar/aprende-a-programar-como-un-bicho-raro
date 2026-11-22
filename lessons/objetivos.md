@@ -1,12 +1,12 @@
-# By goal
+# Por objetivo
 
-Three goals sit under everything in [Learn Programming the Weird Way!](README.md). Each one is a different answer to "why would anyone do this?"
+Tres objetivos sostienen todo en [¡Aprende a programar como un bicho raro!](README.md). Cada uno responde de otra forma a la pregunta "¿por qué alguien haría esto?"
 
-## Teach computation, not just computational tricks
+## Enseña computación, no solo trucos computacionales
 
-A trick is "this incantation makes the loop stop". Computation is "here is the machine that is running, and here is where its state lives".
+Un truco es "esta fórmula mágica hace que el bucle se detenga". La computación es "esta es la máquina que se ejecuta y aquí vive su estado".
 
-Every weird entry forces you to name the machine hiding inside a language. Once you can name it, the trick is just one program for that machine.
+Cada entrada rara te obliga a nombrar la máquina que se esconde dentro de un lenguaje. Cuando puedes nombrarla, el truco es solo un programa para esa máquina.
 
 <!-- BEGIN GENERATED machines -->
 | Language / tool | The machine it really is | Where the program's state lives | Lesson |
@@ -53,42 +53,42 @@ Every weird entry forces you to name the machine hiding inside a language. Once 
 | XAML | An object-graph constructor that runs methods as it parses | Document order, plus "carrier" arrays | [csharp-linq-xaml](lenguajes/csharp-linq-xaml.md#xaml) |
 <!-- END GENERATED machines -->
 
-Once you have seen four different homes for "where am I in the program?", you stop treating the call stack and the loop counter as laws of nature. That is the first goal: separate *control flow*, *state*, *evaluation order* and *side effects*, which most languages weld together, and watch them come apart.
+Cuando hayas visto cuatro lugares distintos para responder "¿dónde estoy en el programa?", dejarás de tratar la pila de llamadas y el contador del bucle como leyes de la naturaleza. Ese es el primer objetivo: separar el *flujo de control*, el *estado*, el *orden de evaluación* y los *efectos secundarios*, que la mayoría de los lenguajes sueldan en una sola pieza, y verlos separarse.
 
-See [patterns](patrones.md) for the same material organized by mechanism instead.
+Consulta [patrones](patrones.md) para ver el mismo material organizado por mecanismo.
 
-## Different ways to solve problems, limited only by imagination
+## Distintas formas de resolver problemas, limitadas solo por la imaginación
 
-The repo's motto is **THERE ARE NO BLOCKERS, JUST NOT ENOUGH IMAGINATION.** The same ten lines of requirements have now been solved by a loop with no body, a regex that returns false on purpose, a Makefile that reruns itself, a list whose elements write to a database when you look at them and a function that writes its own successor.
+El lema del repositorio es **NO HAY BLOQUEOS, SOLO FALTA IMAGINACIÓN.** Las mismas diez líneas de requisitos ya se resolvieron con un bucle sin cuerpo, una regex que devuelve falso a propósito, un Makefile que se vuelve a ejecutar solo, una lista cuyos elementos escriben en una base de datos cuando los miras y una función que escribe a su sucesora.
 
-Three habits to take from that:
+Tres hábitos que puedes llevarte de ahí:
 
-- **Ask where the work is allowed to happen.** The rule was one statement, so the loop's clauses, a LINQ pipeline, a parser, an iterator and a regex engine's backtracking all became places for work. Which parts of your usual stack are "just the way it's done" and which are actually required?
-- **Compare the weird with the ordinary.** [`apl`](../src/apl/README.md) uses five rolls and a take-while; [`apl-weird`](../src/apl-weird/README.md) uses a function that copies and rewrites itself. [`haskell`](../src/haskell/README.md) uses one `span`; [`haskell-weird`](../src/haskell-weird/README.md) puts the effects inside the list. [`lisp`](../src/lisp/README.md) is one `LOOP`; [`lisp-weird`](../src/lisp-weird/README.md) has no loop at all and lets a class hierarchy do the counting. [`tcl`](../src/tcl/README.md) is a `while`; [`tcl-weird`](../src/tcl-weird/README.md) keeps its code in a database table. Each pair shows what each approach buys and what it costs.
-- **Document walls honestly.** [`RETO.md`](../RETO.md) says "A well-demonstrated limitation is more interesting than cheating around it." The [blocking problems](problemas-bloqueantes.md) page is built from those walls.
+- **Pregunta dónde se permite que ocurra el trabajo.** La regla era una sola sentencia, así que las cláusulas del bucle, una canalización LINQ, un analizador sintáctico, un iterador y el retroceso de un motor de expresiones regulares se convirtieron en lugares donde hacer el trabajo. ¿Qué partes de tu pila habitual son "así se hace y punto" y cuáles son realmente obligatorias?
+- **Compara lo raro con lo común.** [`apl`](../src/apl/README.md) usa cinco tiradas y un *take-while*; [`apl-weird`](../src/apl-weird/README.md) usa una función que se copia y se reescribe a sí misma. [`haskell`](../src/haskell/README.md) usa un solo `span`; [`haskell-weird`](../src/haskell-weird/README.md) pone los efectos dentro de la lista. [`lisp`](../src/lisp/README.md) es un solo `LOOP`; [`lisp-weird`](../src/lisp-weird/README.md) no tiene ningún bucle y deja que una jerarquía de clases haga la cuenta. [`tcl`](../src/tcl/README.md) es un `while`; [`tcl-weird`](../src/tcl-weird/README.md) guarda su código en una tabla de una base de datos. Cada par muestra qué gana cada enfoque y cuál es su costo.
+- **Documenta los límites con honestidad.** [`RETO.md`](../RETO.md) dice: "Una limitación bien demostrada es más interesante que esquivarla con trampas." La página de [problemas de bloqueo](problemas-bloqueantes.md) se construye a partir de esos límites.
 
-Think outside the box, then write down where the box turned out to be load-bearing. See [problems overcome](problemas-superados.md).
+Piensa fuera de lo convencional y luego anota dónde resultó que lo convencional sostenía la estructura. Consulta [problemas superados](problemas-superados.md).
 
-## Understand your language(s): strengths and weaknesses
+## Entiende tu lenguaje (o tus lenguajes): fortalezas y debilidades
 
-You do not know what a feature is for until you know what happens when you push on it.
+No sabes para qué sirve una característica hasta que sabes qué pasa cuando la fuerzas.
 
-| Language | Strength the weird version reveals | Weakness it reveals |
+| Lenguaje | Fortaleza que revela la versión rara | Debilidad que revela |
 | --- | --- | --- |
-| APL | Array thinking replaces most loops; code is data | Hard to read, hard to type and hard to whiteboard (see [APL](lenguajes/apl.md)) |
-| AWK | The record loop and pattern-action rules make parsing and filtering tiny | The portable subset is small, and the standard stops short of regex `RS` and `RT`, which are gawk extensions |
-| C# | Expression-rich: LINQ, anonymous types, reflection and runtime XAML can all sit in one `for` header | `void` does not compose; `DbContext` is not thread-safe; statements, not expressions, are required at the top level |
-| CMake | `while()` re-expands its condition, and `MATCHES` leaves captures in variables | Its regex has no counted repetition, lookahead or backreferences |
-| COBOL | Decimal arithmetic and field pictures that do rounding and range checks as data | Control flow that `ALTER` can make unreadable; fixed columns; a vocabulary that is hard to extend |
-| Common Lisp | The reader, macros and the object system are all programmable, so control flow can be rebuilt from types | The result is invisible: nothing in the code says "loop", and tools show only generic-function calls |
-| Forth | Tiny, total control: you can reach the interpreter's own parse position | No guard rails: stack effects are by convention only |
-| GNU Make | Dependency tracking and restart are free | It is a build tool: no integers, no real I/O and timestamp granularity matters |
-| Haskell | Laziness makes "how much to read" the stop rule | Laziness makes "when does this run?" part of the meaning once effects are involved |
-| m4 | Quoting gives lazy evaluation in a language with nothing else; ideal for generating text | Everything is global text: no scope, no types and one missing bracket is infinite recursion |
-| Regex engines | Backtracking is a general search; callouts and code blocks make it a program | Performance cliffs; engine differences; failure discards captures (in .NET) |
-| Tcl | Everything is a string command, so code can be loaded, hooked and generated from anywhere (even a database row) | Two levels of quoting, and strings all the way down: errors surface late |
-| XAML | A declarative format, so tools can read and write it | The parser can run arbitrary methods, which declarative formats are not meant to do |
+| APL | El pensamiento con arreglos reemplaza la mayoría de los bucles; el código son datos | Difícil de leer, de teclear y de escribir en una pizarra (consulta [APL](lenguajes/apl.md)) |
+| AWK | El bucle de registros y las reglas de patrón-acción hacen que el análisis sintáctico y el filtrado sean muy breves | El subconjunto portable es pequeño y el estándar no incluye las expresiones regulares `RS` y `RT`, que son extensiones de gawk |
+| C# | Rico en expresiones: LINQ, los tipos anónimos, la reflexión y XAML en tiempo de ejecución pueden convivir en un mismo encabezado `for` | `void` no se compone; `DbContext` no es seguro para hilos; en el nivel superior se requieren sentencias, no expresiones |
+| CMake | `while()` vuelve a expandir su condición, y `MATCHES` deja capturas en variables | Su expresión regular no admite repetición contada, anticipación (*lookahead*) ni referencias inversas |
+| COBOL | Aritmética decimal y cláusulas *picture* de campo que hacen el redondeo y las comprobaciones de rango como datos | Un flujo de control que `ALTER` puede volver ilegible; columnas fijas; un vocabulario difícil de extender |
+| Common Lisp | El lector, las macros y el sistema de objetos son programables, así que el flujo de control se puede reconstruir a partir de tipos | El resultado es invisible: nada en el código dice "bucle", y las herramientas solo muestran llamadas a funciones genéricas |
+| Forth | Minúsculo y con control total: puedes acceder a la posición de análisis del propio intérprete | Sin barandillas de protección: los efectos sobre la pila existen solo por convención |
+| GNU Make | El seguimiento de dependencias y el reinicio vienen incluidos | Es una herramienta de compilación: no tiene enteros ni E/S real, y la granularidad de las marcas de tiempo importa |
+| Haskell | La evaluación perezosa convierte "cuánto leer" en la regla de parada | La evaluación perezosa hace que "¿cuándo se ejecuta esto?" forme parte del significado cuando hay efectos |
+| m4 | Las comillas dan evaluación perezosa en un lenguaje que no tiene nada más; son ideales para generar texto | Todo es texto global: no hay ámbito ni tipos, y un solo paréntesis que falte causa recursión infinita |
+| Motores de expresiones regulares | El retroceso es una búsqueda general; los callouts y los bloques de código lo convierten en un programa | Precipicios de rendimiento; diferencias entre motores; el fallo descarta las capturas (en .NET) |
+| Tcl | Todo es un comando de cadena de texto, así que el código se puede cargar, enganchar y generar desde cualquier lugar (incluso desde una fila de una base de datos) | Dos niveles de comillas y cadenas de texto en todas las capas: los errores aparecen tarde |
+| XAML | Un formato declarativo, así que las herramientas pueden leerlo y escribirlo | El analizador sintáctico puede ejecutar métodos arbitrarios, algo que los formatos declarativos no están pensados para hacer |
 
-Language pages also tag behaviors as **guaranteed**, **implementation-permitted** or **accidentally exploited**, as explained in the [intro](introduccion.md#three-kinds-of-knowledge). A strength you rely on is only as strong as the tag next to it.
+Las páginas de lenguajes también etiquetan los comportamientos como **garantizado**, **permitido por la implementación** o **aprovechado por accidente**, como se explica en la [introducción](introduccion.md#tres-tipos-de-conocimiento). Una fortaleza en la que confías es tan sólida como la etiqueta que la acompaña.
 
-Continue to the [computer science behind it all](informatica/README.md): the same ideas, one concept at a time, with a paragraph on why each exists and when to use it. Then see the [languages](lenguajes/README.md).
+Continúa con la [informática detrás de todo](informatica/README.md): las mismas ideas, un concepto a la vez, con un párrafo sobre por qué existe cada uno y cuándo usarlo. Después consulta los [lenguajes](lenguajes/README.md).

@@ -314,3 +314,4 @@
 344 P4-fix-8 done JavaScript lesson: three conditions of legitimate uses joined in one sentence (F008); fast check passed.
 347 P4-lessons-4 done blocking-problems lesson translated (113 segments); 7 needs-revision resolved (3 set, 4 waived); extra shell glosses stripped; fast check passed.
 348 P4-lessons-5 done exercises.md translated whole (269 segments, covers P4-lessons-6 too); 22 segments set or waived by hand; fast check passed.
+349 P4-lessons-7 done front-matter, goals and intro translated (95 segments; index has none); 7 set or waived by hand, humor H028-H033 recorded; fast check passed.

@@ -1,0 +1,313 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lessons/intro.md:1
+msgctxt "s-a689e2f0fb9d-0000"
+msgid "Intro: why these lessons exist"
+msgstr "Introducción: por qué existen estas lecciones"
+
+#: lessons/intro.md:3
+msgctxt "s-1f01de6158c6-0001"
+msgid "You already know how to write a loop, query a database and call a function. You have read the tutorials. This is what comes after them."
+msgstr "Ya sabes escribir un bucle, consultar una base de datos y llamar a una función. Has leído los tutoriales. Esto es lo que viene después."
+
+#: lessons/intro.md:5
+msgctxt "s-f2b2ab63580d-0002"
+msgid "The [code challenge](⟦DEST_0001⟧) asks one question in many accents: *how far can a language's own machinery be pushed before it starts acting like a general-purpose program?* The entries take on a small fictional time-card demo under an absurd constraint: one statement, no loop, no ⟦CODE_0002⟧, nothing but a regex, nothing but a markup file."
+msgstr "El [reto de código](⟦DEST_0001⟧) plantea una sola pregunta en muchos acentos: *¿hasta dónde se puede llevar la maquinaria propia de un lenguaje antes de que empiece a comportarse como un programa de propósito general?* Las propuestas abordan una pequeña demo ficticia de tarjetas de horas con una restricción absurda: una sola sentencia, ningún bucle, ningún ⟦CODE_0002⟧, solo una expresión regular, solo un archivo de marcado."
+
+#: lessons/intro.md:7
+msgctxt "s-1cb72eb8dc4c-0003"
+msgid "The stunts are the door. These lessons are what is behind it."
+msgstr "Las acrobacias son la puerta. Estas lecciones son lo que hay detrás."
+
+#: lessons/intro.md:9
+msgctxt "s-1e9fa41f8d3c-0004"
+msgid "For the purposes of this book, WEIRD stands for **Weird Execution, Indirect Results and Data**. It does not, of course. But it is a surprisingly serviceable description of what these programs are up to."
+msgstr "En este libro, {{acronym.word}} significa **Bicho raro, Interpreta, Camino indirecto, Hallazgos y Octetos**. Claro que no. Pero describe con sorprendente acierto lo que hacen estos programas."
+
+#: lessons/intro.md:11
+msgctxt "s-8774544170cd-0005"
+msgid "What the challenge does"
+msgstr "Qué hace el reto"
+
+#: lessons/intro.md:13
+msgctxt "s-96396923f3dc-0006"
+msgid "Start with a total of zero. Draw fictional time cards of 10 to 19 whole hours and cycle through ⟦DNT_0001⟧, ⟦DNT_0002⟧, ⟦DNT_0003⟧ and ⟦DNT_0004⟧. Add the hours and keep the first card that takes the total over 40. Exactly 40 continues. That gives 3 to 5 cards and a final total of 41 to 59. Save the cards locally as **⟦DNT_0005⟧** records and show the result through the available interface. The picture shows the usual SQLite version of that task. Each program chooses when to persist the rows."
+msgstr "Empieza con un total de cero. Crea tarjetas de tiempo ficticias de 10 a 19 horas enteras y recorre en ciclo ⟦DNT_0001⟧, ⟦DNT_0002⟧, ⟦DNT_0003⟧ y ⟦DNT_0004⟧. Suma las horas y conserva la primera tarjeta que hace que el total pase de 40. Un total de exactamente 40 continúa. Eso da de 3 a 5 tarjetas y un total final de 41 a 59. Guarda las tarjetas en local como registros **⟦DNT_0005⟧** y muestra el resultado mediante la interfaz disponible. La imagen muestra la versión habitual de esa tarea en SQLite. Cada programa decide cuándo persistir las filas."
+
+#: lessons/intro.md:17
+msgctxt "s-8774544170cd-0007"
+msgid "What the challenge does"
+msgstr "Qué hace el reto"
+
+#: lessons/intro.md:18
+msgctxt "s-a53b33c4343b-0008"
+msgid "A flowchart of the shared task. Start a ⟦DNT_0001⟧ run. Generate a fictional time card of 10 to 19 hours, with a category that cycles through ⟦DNT_0002⟧, ⟦DNT_0003⟧, ⟦DNT_0004⟧ and ⟦DNT_0005⟧. Keep the card and add its hours to the running total. If the total is 40 or less, generate another card. If the total is over 40, finish saving the kept cards as ⟦DNT_0006⟧ records in local SQLite and show the result."
+msgstr "Un diagrama de flujo de la tarea compartida. Inicia una ejecución de ⟦DNT_0001⟧. Genera una tarjeta ficticia de 10 a 19 horas, con una categoría que sigue el ciclo ⟦DNT_0002⟧, ⟦DNT_0003⟧, ⟦DNT_0004⟧ y ⟦DNT_0005⟧. Conserva la tarjeta y suma sus horas al total acumulado. Si el total no pasa de 40, genera otra tarjeta. Si el total pasa de 40, termina de guardar las tarjetas conservadas como registros ⟦DNT_0006⟧ en SQLite local y muestra el resultado."
+
+#: lessons/intro.md:19
+msgctxt "s-24fd4dbcc11e-0009"
+msgid "Start a ⟦DNT_0001⟧ run"
+msgstr "Inicia una ejecución de ⟦DNT_0001⟧"
+
+#: lessons/intro.md:19
+msgctxt "s-056e0eb3f48c-0010"
+msgid "Generate a fictional card: 10 to 19 hours, next category"
+msgstr "Genera una tarjeta ficticia: de 10 a 19 horas, siguiente categoría"
+
+#: lessons/intro.md:20
+msgctxt "s-c5023f21110b-0011"
+msgid "Keep it and add its hours to the running total"
+msgstr "Conserva la tarjeta y suma sus horas al total acumulado"
+
+#: lessons/intro.md:21
+msgctxt "s-8df463f53979-0012"
+msgid "Total over 40?"
+msgstr "¿El total pasa de 40?"
+
+#: lessons/intro.md:22
+msgctxt "s-1ea442a134b2-0013"
+msgid "No"
+msgstr "No"
+
+#: lessons/intro.md:23
+msgctxt "s-85a39ab345d6-0014"
+msgid "Yes"
+msgstr "Sí"
+
+#: lessons/intro.md:23
+msgctxt "s-adbf821bd7d0-0015"
+msgid "Finish saving ⟦DNT_0001⟧ records in local SQLite, then show the result"
+msgstr "Termina de guardar los registros de ⟦DNT_0001⟧ en SQLite local y luego muestra el resultado"
+
+#: lessons/intro.md:26
+msgctxt "s-9ffe18e4d57a-0016"
+msgid "*How* it happens is what the entries disagree about. Each entry's README has a **Program Flow** section with its own picture, and the book shows it on the lesson page of that entry's language, under **How each program runs**. Those pictures are not all flowcharts, because the machines are not all alike. A COBOL program with a rewritten ⟦CODE_0001⟧ is a state that changes. A Haskell program is a demand that pulls. An m4 program is text that is read again. A Node program built from listeners is a conversation. If a picture could be pasted unchanged into ten entries, it would not be teaching anything."
+msgstr "Las entradas no coinciden en *cómo* sucede. El README de cada entrada tiene una sección **Program Flow** con su propia imagen, y el libro la muestra en la página de la lección del lenguaje de esa entrada, bajo **Cómo se ejecuta cada programa**. Esas imágenes no son todas diagramas de flujo, porque las máquinas no son todas iguales. Un programa COBOL con un ⟦CODE_0001⟧ reescrito es un estado que cambia. Un programa Haskell es una demanda que jala. Un programa m4 es texto que se lee de nuevo. Un programa Node construido con escuchadores de eventos es una conversación. Si una imagen pudiera pegarse sin cambios en diez entradas, no enseñaría nada."
+
+#: lessons/intro.md:28
+msgctxt "s-542b7f1f6137-0017"
+msgid "Where entries differ"
+msgstr "Dónde difieren las entradas"
+
+#: lessons/intro.md:30
+msgctxt "s-0e598b62e31a-0018"
+msgid "⟦SEP_0001⟧ Entries ⟦SEP_0002⟧ What differs from the usual run ⟦SEP_0003⟧"
+msgstr "⟦SEP_0001⟧ Entradas ⟦SEP_0002⟧ Qué difiere de la ejecución habitual ⟦SEP_0003⟧"
+
+#: lessons/intro.md:32
+msgctxt "s-544d4b7a5fde-0019"
+msgid "⟦SEP_0003⟧ [LINQ method chain](⟦DEST_0001⟧) and [LINQ query syntax](⟦DEST_0002⟧) ⟦SEP_0004⟧ Five fixed 8-hour days end at 40.0 hours. These demos teach deferred execution with a fixed work week. ⟦SEP_0005⟧"
+msgstr "⟦SEP_0003⟧ [Cadena de métodos LINQ](⟦DEST_0001⟧) y [sintaxis de consulta LINQ](⟦DEST_0002⟧) ⟦SEP_0004⟧ Cinco días fijos de 8 horas terminan en 40.0 horas. Estas demostraciones enseñan la ejecución diferida con una semana laboral fija. ⟦SEP_0005⟧"
+
+#: lessons/intro.md:33
+msgctxt "s-cb7efbc46da9-0020"
+msgid "⟦SEP_0002⟧ [XAML](⟦DEST_0001⟧) ⟦SEP_0003⟧ Four copied passes can deal at most four cards. Four tens would reach 40 with no fifth pass available. On the shipped .NET runtime, seed 42 draws 16, 11, 11 and 15 for a total of 53. The strict variant saves XML, with SQLite used by the other variants. ⟦SEP_0004⟧"
+msgstr "⟦SEP_0002⟧ [XAML](⟦DEST_0001⟧) ⟦SEP_0003⟧ Cuatro pasadas copiadas pueden repartir como máximo cuatro tarjetas. Con cuatro decenas se llegaría a 40 sin una quinta pasada disponible. En el entorno de ejecución .NET incluido, la semilla 42 produce 16, 11, 11 y 15, para un total de 53. La variante estricta guarda XML; las otras variantes usan SQLite. ⟦SEP_0004⟧"
+
+#: lessons/intro.md:34
+msgctxt "s-cd8b128b5611-0021"
+msgid "⟦SEP_0002⟧ [.NET regex](⟦DEST_0001⟧) ⟦SEP_0003⟧ The numeric stop rule still applies. The host appends a TSV report from the successful match's captures and prints it. ⟦SEP_0004⟧"
+msgstr "⟦SEP_0002⟧ [Regex de .NET](⟦DEST_0001⟧) ⟦SEP_0003⟧ La regla de parada numérica sigue vigente. El anfitrión agrega un informe TSV a partir de las capturas de la coincidencia exitosa y lo imprime. ⟦SEP_0004⟧"
+
+#: lessons/intro.md:35
+msgctxt "s-9aeaff761642-0022"
+msgid "⟦SEP_0002⟧ [PCRE2 in C](⟦DEST_0001⟧) ⟦SEP_0003⟧ The numeric stop rule still applies. Callouts write TSV during the match and close the file before deliberate match failure. ⟦SEP_0004⟧"
+msgstr "⟦SEP_0002⟧ [PCRE2 en C](⟦DEST_0001⟧) ⟦SEP_0003⟧ La regla de parada numérica sigue vigente. Los callouts escriben TSV durante la coincidencia y cierran el archivo antes del fallo deliberado de la coincidencia. ⟦SEP_0004⟧"
+
+#: lessons/intro.md:36
+msgctxt "s-0cf7546baf47-0023"
+msgid "⟦SEP_0004⟧ [Stock pcre2grep](⟦DEST_0001⟧) ⟦SEP_0005⟧ The numeric stop rule still applies. Separate ⟦CODE_0002⟧ invocations save cards as the match runs. The regex's ⟦CODE_0003⟧ prunes retries, and earlier writes survive the final failed match. ⟦SEP_0006⟧"
+msgstr "⟦SEP_0004⟧ [pcre2grep estándar](⟦DEST_0001⟧) ⟦SEP_0005⟧ La regla de parada numérica sigue vigente. Las invocaciones separadas de ⟦CODE_0002⟧ guardan tarjetas mientras avanza la coincidencia. El ⟦CODE_0003⟧ de la regex poda los reintentos, y las escrituras anteriores sobreviven a la coincidencia final fallida. ⟦SEP_0006⟧"
+
+#: lessons/intro.md:38
+msgctxt "s-145bc2ab06ae-0024"
+msgid "The [shared output checker](⟦DEST_0001⟧) tests the numeric stop rule on a report, including the requirement to continue at 40. To see whether a report agrees with durable state, check the corresponding database or file as well."
+msgstr "El [verificador de salida compartido](⟦DEST_0001⟧) prueba la regla de parada numérica en un informe, incluido el requisito de continuar cuando el total es exactamente 40. Para ver si un informe coincide con el estado duradero, revisa también la base de datos o el archivo correspondiente."
+
+#: lessons/intro.md:40
+msgctxt "s-0ccdbb8c6496-0025"
+msgid "The teaching philosophy"
+msgstr "La filosofía de enseñanza"
+
+#: lessons/intro.md:42
+msgctxt "s-0e671fdff9f7-0026"
+msgid "Teach the language by deliberately misusing it, then explain why the misuse works."
+msgstr "Enseña el lenguaje usándolo mal a propósito y explica después por qué ese mal uso funciona."
+
+#: lessons/intro.md:44
+msgctxt "s-c4c8b2e3d8b8-0027"
+msgid "Most tutorials teach the idioms first: here is the right way to iterate, to hold state, to handle errors. These lessons start where the tutorials stop:"
+msgstr "La mayoría de los tutoriales enseñan primero los modismos: esta es la forma correcta de iterar, de mantener el estado, de manejar los errores. Estas lecciones empiezan donde terminan los tutoriales:"
+
+#: lessons/intro.md:46
+msgctxt "s-5b142eaf45a3-0028"
+msgid "*You know the right way. Now find out what the language actually lets you do. Then ask why, although it is perfectly legal, it might be a terrible idea.*"
+msgstr "*Ya conoces la forma correcta. Ahora descubre qué te permite hacer realmente el lenguaje. Después pregúntate por qué, aunque sea perfectamente legal, podría ser una pésima idea.*"
+
+#: lessons/intro.md:48
+msgctxt "s-dde222e64d2d-0029"
+msgid "The aim is to take your understanding up a level in two directions at once:"
+msgstr "El objetivo es subir tu comprensión un nivel en dos direcciones a la vez:"
+
+#: lessons/intro.md:50
+msgctxt "s-a618bf6aeb18-0030"
+msgid "**In a specific language.** You will learn what ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧, ⟦CODE_0006⟧, method combination, rescanning, ⟦CODE_0007⟧, ⟦CODE_0008⟧ and a ⟦CODE_0009⟧ that digs its own tree really do, which means you will learn how COBOL, Haskell, Forth, Make, CMake, APL, Common Lisp, m4, Tcl, AWK and find really work."
+msgstr "**En un lenguaje concreto.** Aprenderás qué hacen en realidad ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧, ⟦CODE_0006⟧, la combinación de métodos, el reescaneo, ⟦CODE_0007⟧, ⟦CODE_0008⟧ y un ⟦CODE_0009⟧ que excava su propio árbol. Eso significa que aprenderás cómo funcionan en realidad COBOL, Haskell, Forth, Make, CMake, APL, Common Lisp, m4, Tcl, AWK y find."
+
+#: lessons/intro.md:51
+msgctxt "s-b96282ac3709-0031"
+msgid "**As concepts.** Control flow, state, evaluation order and side effects turn out to be separable things that different languages bolt together differently. Once you have seen control flow stored in a ⟦CODE_0001⟧'s target, a parse position, a restarting build tool and a regex capture, you stop thinking of \"the loop\" as a given."
+msgstr "**Como conceptos.** El flujo de control, el estado, el orden de evaluación y los efectos secundarios resultan ser cosas separables que cada lenguaje une a su manera. Cuando ya has visto el flujo de control guardado en el destino de ⟦CODE_0001⟧, en una posición de análisis, en una herramienta de compilación que se reinicia y en una captura de regex, dejas de ver \"el bucle\" como algo dado."
+
+#: lessons/intro.md:55
+msgctxt "s-d56a173dbaeb-0032"
+msgid "The shape of a lesson"
+msgstr "La estructura de una lección"
+
+#: lessons/intro.md:57
+msgctxt "s-0625bc0da54f-0033"
+msgid "Most lessons use these five steps to teach a strange example. Survey chapters group related entries and adapt the steps to fit. Some chapters also collect quirks or compare the weird program with its ordinary counterpart."
+msgstr "La mayoría de las lecciones usan estos cinco pasos para enseñar un ejemplo raro. Los capítulos panorámicos agrupan entradas relacionadas y adaptan los pasos a su contenido. Algunos capítulos también reúnen rarezas o comparan el programa raro con su equivalente común."
+
+#: lessons/intro.md:59
+msgctxt "s-a7c675fbe624-0034"
+msgid "⟦SEP_0001⟧ Step ⟦SEP_0002⟧ What happens ⟦SEP_0003⟧"
+msgstr "⟦SEP_0001⟧ Paso ⟦SEP_0002⟧ Qué ocurre ⟦SEP_0003⟧"
+
+#: lessons/intro.md:61
+msgctxt "s-30c63b69de12-0035"
+msgid "⟦SEP_0002⟧ 1. **Behold the monstrosity** ⟦SEP_0003⟧ The working program, and the command to run it ([in a container](⟦DEST_0001⟧)). Try to understand it *before* reading on. ⟦SEP_0004⟧"
+msgstr "⟦SEP_0002⟧ 1. **Observa el monstruo** ⟦SEP_0003⟧ El programa que funciona y el comando para ejecutarlo ([en un contenedor](⟦DEST_0001⟧)). Intenta entenderlo *antes* de seguir leyendo. ⟦SEP_0004⟧"
+
+#: lessons/intro.md:62
+msgctxt "s-fcb8c690a2c7-0036"
+msgid "⟦SEP_0001⟧ 2. **How the hell does that work?** ⟦SEP_0002⟧ The real semantics: what the compiler, interpreter, runtime or operating system actually does. The mechanism, not just the trick. ⟦SEP_0003⟧"
+msgstr "⟦SEP_0001⟧ 2. **¿Cómo diablos funciona eso?** ⟦SEP_0002⟧ La semántica real: lo que hace en realidad el compilador, el intérprete, el entorno de ejecución o el sistema operativo. El mecanismo, no solo el truco. ⟦SEP_0003⟧"
+
+#: lessons/intro.md:63
+msgctxt "s-43705fff2687-0037"
+msgid "⟦SEP_0002⟧ 3. **What did we just learn?** ⟦SEP_0003⟧ The generalizable idea. Make is a dependency engine that can restart itself. COBOL's ⟦CODE_0001⟧ means a jump target is mutable state. LINQ is an execution pipeline, not just a query language. ⟦SEP_0004⟧"
+msgstr "⟦SEP_0002⟧ 3. **¿Qué acabamos de aprender?** ⟦SEP_0003⟧ La idea generalizable. Make es un motor de dependencias que puede reiniciarse a sí mismo. El ⟦CODE_0001⟧ de COBOL significa que un destino de salto es un estado mutable. LINQ es una canalización de ejecución, no solo un lenguaje de consultas. ⟦SEP_0004⟧"
+
+#: lessons/intro.md:64
+msgctxt "s-b129a33e31a9-0038"
+msgid "⟦SEP_0001⟧ 4. **Do this in production and you're fired** ⟦SEP_0002⟧ The concrete failure modes: debugging, optimizers, concurrency, portability, security, testing, maintenance. Plus the honest cases where the technique is legitimate. ⟦SEP_0003⟧"
+msgstr "⟦SEP_0001⟧ 4. **Haz esto en producción y estás despedido** ⟦SEP_0002⟧ Los modos de fallo concretos: depuración, optimizadores, concurrencia, portabilidad, seguridad, pruebas y mantenimiento. Además, los casos honestos en los que la técnica es legítima. ⟦SEP_0003⟧"
+
+#: lessons/intro.md:65
+msgctxt "s-f312e48290ba-0039"
+msgid "⟦SEP_0002⟧ 5. **Now break it yourself** ⟦SEP_0003⟧ An experiment that only works if you understood step 2. Predict, change, run, compare. See [exercises](⟦DEST_0001⟧). ⟦SEP_0004⟧"
+msgstr "⟦SEP_0002⟧ 5. **Ahora rómpelo tú** ⟦SEP_0003⟧ Un experimento que solo funciona si entendiste el paso 2. Predice, cambia, ejecuta y compara. Consulta los [ejercicios](⟦DEST_0001⟧). ⟦SEP_0004⟧"
+
+#: lessons/intro.md:67
+msgctxt "s-ffb7f25f3996-0040"
+msgid "Without step 5 this would be a museum of curiosities. The exercise is what turns curiosity into understanding."
+msgstr "Sin el paso 5, esto sería un museo de curiosidades. El ejercicio es lo que convierte la curiosidad en comprensión."
+
+#: lessons/intro.md:69
+msgctxt "s-2ca71a00fc0d-0041"
+msgid "Three kinds of knowledge"
+msgstr "Tres tipos de conocimiento"
+
+#: lessons/intro.md:71
+msgctxt "s-6d1ed448f385-0042"
+msgid "Experienced programmers sometimes confuse \"I've done this for twenty years\" with \"the language guarantees this.\" Ask which particular behavior is promised, by which specification or runtime manual and which behavior you have only seen in a test."
+msgstr "Los programadores con experiencia a veces confunden \"llevo veinte años haciendo esto\" con \"el lenguaje garantiza esto\". Pregunta qué comportamiento concreto está prometido, en qué especificación o manual de ejecución, y qué comportamiento solo has visto en una prueba."
+
+#: lessons/intro.md:73
+msgctxt "s-ef636d17454a-0043"
+msgid "⟦SEP_0001⟧ Tag ⟦SEP_0002⟧ Meaning ⟦SEP_0003⟧ Example ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ Etiqueta ⟦SEP_0002⟧ Significado ⟦SEP_0003⟧ Ejemplo ⟦SEP_0004⟧"
+
+#: lessons/intro.md:75
+msgctxt "s-2e41ba9b48ea-0044"
+msgid "⟦SEP_0001⟧ **guaranteed** ⟦SEP_0002⟧ A named specification or documented API promises the behavior within its scope. ⟦SEP_0003⟧ The .NET regex API documents balancing-group pops. That promise applies to the .NET regex engine. ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ **garantizado** ⟦SEP_0002⟧ Una especificación con nombre o una API documentada promete el comportamiento dentro de su ámbito. ⟦SEP_0003⟧ La API de expresiones regulares de .NET documenta las operaciones de extracción (*pop*) de los grupos de equilibrio. Esa promesa se aplica al motor de expresiones regulares de .NET. ⟦SEP_0004⟧"
+
+#: lessons/intro.md:76
+msgctxt "s-f99805d2bb1a-0045"
+msgid "⟦SEP_0003⟧ **implementation-permitted** ⟦SEP_0004⟧ Works because of a particular compiler, runtime, platform or version. ⟦SEP_0005⟧ GnuCOBOL still runs ⟦CODE_0001⟧. ⟦CODE_0002⟧ callout scripts need a special build. ⟦SEP_0006⟧"
+msgstr "⟦SEP_0003⟧ **permitido por la implementación** ⟦SEP_0004⟧ Funciona por un compilador, un entorno de ejecución, una plataforma o una versión concretos. ⟦SEP_0005⟧ GnuCOBOL sigue ejecutando ⟦CODE_0001⟧. Los scripts de callout de ⟦CODE_0002⟧ necesitan una compilación especial. ⟦SEP_0006⟧"
+
+#: lessons/intro.md:77
+msgctxt "s-a90ae70ac013-0046"
+msgid "⟦SEP_0003⟧ **accidentally exploited** ⟦SEP_0004⟧ A test may show it works, but the implementation makes no promise about the behavior. ⟦SEP_0005⟧ A pre-order ⟦CODE_0001⟧ may descend into a directory just created by its own ⟦CODE_0002⟧. POSIX leaves traversal of newly added files unspecified. ⟦SEP_0006⟧"
+msgstr "⟦SEP_0003⟧ **aprovechado por accidente** ⟦SEP_0004⟧ Una prueba puede mostrar que funciona, pero la implementación no promete nada sobre ese comportamiento. ⟦SEP_0005⟧ Un ⟦CODE_0001⟧ en preorden puede descender a un directorio recién creado por su propio ⟦CODE_0002⟧. POSIX deja sin especificar si el recorrido incluye los archivos recién agregados. ⟦SEP_0006⟧"
+
+#: lessons/intro.md:79
+msgctxt "s-ee2806af82c7-0047"
+msgid "An entry's single assurance label records the weakest behavior its trick needs. A documented operation can sit right beside an undocumented assumption in the same program."
+msgstr "El grado de garantía de una entrada tiene una sola etiqueta: la del comportamiento más débil que necesita su truco. Una operación documentada puede estar justo al lado de una suposición no documentada en el mismo programa."
+
+#: lessons/intro.md:81
+msgctxt "s-8e749e257777-0048"
+msgid "The recurring question"
+msgstr "La pregunta recurrente"
+
+#: lessons/intro.md:83
+msgctxt "s-8bec6a40940a-0049"
+msgid "As you finish a lesson, ask this question:"
+msgstr "Cuando termines una lección, hazte esta pregunta:"
+
+#: lessons/intro.md:85
+msgctxt "s-a719b41773b5-0050"
+msgid "Under what circumstances would this terrible idea become a reasonable engineering decision?"
+msgstr "¿En qué circunstancias esta terrible idea se convertiría en una decisión de ingeniería razonable?"
+
+#: lessons/intro.md:87
+msgctxt "s-5f290020162f-0051"
+msgid "Sometimes the answer is \"never, given the alternatives\". Sometimes it is \"when you are writing a compiler, debugger, interpreter or test framework\". Occasionally it is \"when you are running a mainframe in 1978\". A language feature is neither good nor bad in isolation: its value depends on the problem, the environment and the consequences. ⟦CODE_0001⟧ horrifies modern programmers, and it also served real purposes under real constraints. That does not mean we should revive it. It means we should understand why it worked, what it cost and what changed."
+msgstr "A veces la respuesta es \"nunca, dadas las alternativas\". A veces es \"cuando escribes un compilador, un depurador, un intérprete o un marco de pruebas\". En ocasiones es \"cuando operas un mainframe en 1978\". Una característica de un lenguaje no es buena ni mala en sí misma: su valor depende del problema, del entorno y de las consecuencias. ⟦CODE_0001⟧ horroriza a los programadores modernos y también cumplió propósitos reales bajo restricciones reales. Eso no significa que debamos revivirlo. Significa que debemos entender por qué funcionaba, qué costaba y qué cambió."
+
+#: lessons/intro.md:89
+msgctxt "s-a6b58da9d4cd-0052"
+msgid "Weird next to boring"
+msgstr "Lo raro junto a lo aburrido"
+
+#: lessons/intro.md:91
+msgctxt "s-6eeff4ee7636-0053"
+msgid "Pair each weird program with the small, idiomatic version of the same behavior (the repo has several: [⟦CODE_0001⟧](⟦DEST_0002⟧) beside [⟦CODE_0003⟧](⟦DEST_0004⟧), [⟦CODE_0005⟧](⟦DEST_0006⟧) beside [⟦CODE_0007⟧](⟦DEST_0008⟧), [⟦CODE_0009⟧](⟦DEST_0010⟧) beside [⟦CODE_0011⟧](⟦DEST_0012⟧) and so on). The point is not that the idiomatic one is morally superior. It is to see what got easier, what got harder and what surprising capability the weird version revealed."
+msgstr "Empareja cada programa raro con la versión pequeña e idiomática del mismo comportamiento (el repositorio tiene varias: [⟦CODE_0001⟧](⟦DEST_0002⟧) junto a [⟦CODE_0003⟧](⟦DEST_0004⟧), [⟦CODE_0005⟧](⟦DEST_0006⟧) junto a [⟦CODE_0007⟧](⟦DEST_0008⟧), [⟦CODE_0009⟧](⟦DEST_0010⟧) junto a [⟦CODE_0011⟧](⟦DEST_0012⟧) y así sucesivamente). El objetivo no es demostrar que la versión idiomática es moralmente superior. Es ver qué se volvió más fácil, qué se volvió más difícil y qué capacidad sorprendente reveló la versión rara."
+
+#: lessons/intro.md:93
+msgctxt "s-6d435da0cf60-0054"
+msgid "Three ways in"
+msgstr "Tres puertas de entrada"
+
+#: lessons/intro.md:95
+msgctxt "s-8e4223f3c87a-0055"
+msgid "**By computer science concept**, if you want the theory first: [cs/](⟦DEST_0001⟧). Each idea gets a short explanation of why it exists, why people use it, when it fits and when it does not, with links to Wikipedia and other long-lived, freely reusable sources."
+msgstr "**Por concepto de informática**, si quieres ver primero la teoría: [cs/](⟦DEST_0001⟧). Cada idea incluye una explicación breve de por qué existe, por qué la usa la gente, cuándo encaja y cuándo no, con enlaces a Wikipedia y a otras fuentes duraderas de libre reutilización."
+
+#: lessons/intro.md:96
+msgctxt "s-2842e4581322-0056"
+msgid "**By language**, if you want to deepen the one you use: [languages/](⟦DEST_0001⟧)."
+msgstr "**Por lenguaje**, si quieres profundizar en el que usas: [languages/](⟦DEST_0001⟧)."
+
+#: lessons/intro.md:97
+msgctxt "s-1372b23798db-0057"
+msgid "**By mechanism**, if you want to explore an unfamiliar way of computing: [patterns](⟦DEST_0001⟧). A reader who arrives for C# may meet Haskell's laziness and realize both raise the same question: *when does the computation actually run?* One who arrives for COBOL's ⟦CODE_0002⟧ meets Make's restart machinery and CMake's regex registers, which are other ways of keeping control state outside ordinary variables. That cross-pollination is the point."
+msgstr "**Por mecanismo**, si quieres explorar una forma poco familiar de computar: [patrones](⟦DEST_0001⟧). Un lector que llega por C# puede encontrarse con la evaluación perezosa de Haskell y darse cuenta de que ambos lenguajes plantean la misma pregunta: *¿cuándo se ejecuta realmente el cálculo?* Quien llega por ⟦CODE_0002⟧, de COBOL, se encuentra con la maquinaria de reinicio de Make y los registros de expresiones regulares de CMake, que son otras formas de mantener el estado de control fuera de las variables ordinarias. Esa polinización cruzada es la idea central."
+
+#: lessons/intro.md:99
+msgctxt "s-25fdaa8c461a-0058"
+msgid "Then see [goals](⟦DEST_0001⟧), what was [overcome](⟦DEST_0002⟧), what is still [blocked](⟦DEST_0003⟧) and the [exercises](⟦DEST_0004⟧)."
+msgstr "Luego consulta las [metas](⟦DEST_0001⟧), lo que se [superó](⟦DEST_0002⟧), lo que sigue [bloqueado](⟦DEST_0003⟧) y los [ejercicios](⟦DEST_0004⟧)."
+
+#: lessons/intro.md:101
+msgctxt "s-a9a973a48b5a-0059"
+msgid "A word of caution"
+msgstr "Una advertencia"
+
+#: lessons/intro.md:103
+msgctxt "s-0de8669fd433-0060"
+msgid "This is not a production style guide. Do not try any of it at work, and do not tell the boss. These programs work with **⟦DNT_0001⟧** data and local scratch storage. Run them in the [container or sandbox](⟦DEST_0002⟧)."
+msgstr "Esta no es una guía de estilo para producción. No pruebes nada de esto en el trabajo y no se lo digas al jefe. Estos programas funcionan con datos **⟦DNT_0001⟧** y con almacenamiento temporal local. Ejecútalos en un [contenedor o entorno aislado (*sandbox*) que limita el acceso al sistema anfitrión](⟦DEST_0002⟧)."

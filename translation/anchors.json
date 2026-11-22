@@ -3413,41 +3413,41 @@
     {
      "en": "By goal",
      "en_id": "by-goal",
-     "es": "By goal",
-     "es_id": "by-goal",
+     "es": "Por objetivo",
+     "es_id": "por-objetivo",
      "level": 1,
      "line": 1
     },
     {
      "en": "Teach computation, not just computational tricks",
      "en_id": "teach-computation-not-just-computational-tricks",
-     "es": "Teach computation, not just computational tricks",
-     "es_id": "teach-computation-not-just-computational-tricks",
+     "es": "Enseña computación, no solo trucos computacionales",
+     "es_id": "enseña-computación-no-solo-trucos-computacionales",
      "level": 2,
      "line": 5
     },
     {
      "en": "Different ways to solve problems, limited only by imagination",
      "en_id": "different-ways-to-solve-problems-limited-only-by-imagination",
-     "es": "Different ways to solve problems, limited only by imagination",
-     "es_id": "different-ways-to-solve-problems-limited-only-by-imagination",
+     "es": "Distintas formas de resolver problemas, limitadas solo por la imaginación",
+     "es_id": "distintas-formas-de-resolver-problemas-limitadas-solo-por-la-imaginación",
      "level": 2,
      "line": 60
     },
     {
      "en": "Understand your language(s): strengths and weaknesses",
      "en_id": "understand-your-languages-strengths-and-weaknesses",
-     "es": "Understand your language(s): strengths and weaknesses",
-     "es_id": "understand-your-languages-strengths-and-weaknesses",
+     "es": "Entiende tu lenguaje (o tus lenguajes): fortalezas y debilidades",
+     "es_id": "entiende-tu-lenguaje-o-tus-lenguajes-fortalezas-y-debilidades",
      "level": 2,
      "line": 72
     }
    ],
    "map": {
-    "by-goal": "by-goal",
-    "different-ways-to-solve-problems-limited-only-by-imagination": "different-ways-to-solve-problems-limited-only-by-imagination",
-    "teach-computation-not-just-computational-tricks": "teach-computation-not-just-computational-tricks",
-    "understand-your-languages-strengths-and-weaknesses": "understand-your-languages-strengths-and-weaknesses"
+    "by-goal": "por-objetivo",
+    "different-ways-to-solve-problems-limited-only-by-imagination": "distintas-formas-de-resolver-problemas-limitadas-solo-por-la-imaginación",
+    "teach-computation-not-just-computational-tricks": "enseña-computación-no-solo-trucos-computacionales",
+    "understand-your-languages-strengths-and-weaknesses": "entiende-tu-lenguaje-o-tus-lenguajes-fortalezas-y-debilidades"
    }
   },
   "lessons/index.md": {
@@ -3515,95 +3515,95 @@
     {
      "en": "Intro: why these lessons exist",
      "en_id": "intro-why-these-lessons-exist",
-     "es": "Intro: why these lessons exist",
-     "es_id": "intro-why-these-lessons-exist",
+     "es": "Introducción: por qué existen estas lecciones",
+     "es_id": "introducción-por-qué-existen-estas-lecciones",
      "level": 1,
      "line": 1
     },
     {
      "en": "What the challenge does",
      "en_id": "what-the-challenge-does",
-     "es": "What the challenge does",
-     "es_id": "what-the-challenge-does",
+     "es": "Qué hace el reto",
+     "es_id": "qué-hace-el-reto",
      "level": 2,
      "line": 11
     },
     {
      "en": "Where entries differ",
      "en_id": "where-entries-differ",
-     "es": "Where entries differ",
-     "es_id": "where-entries-differ",
+     "es": "Dónde difieren las entradas",
+     "es_id": "dónde-difieren-las-entradas",
      "level": 3,
      "line": 28
     },
     {
      "en": "The teaching philosophy",
      "en_id": "the-teaching-philosophy",
-     "es": "The teaching philosophy",
-     "es_id": "the-teaching-philosophy",
+     "es": "La filosofía de enseñanza",
+     "es_id": "la-filosofía-de-enseñanza",
      "level": 2,
      "line": 40
     },
     {
      "en": "The shape of a lesson",
      "en_id": "the-shape-of-a-lesson",
-     "es": "The shape of a lesson",
-     "es_id": "the-shape-of-a-lesson",
+     "es": "La estructura de una lección",
+     "es_id": "la-estructura-de-una-lección",
      "level": 2,
      "line": 55
     },
     {
      "en": "Three kinds of knowledge",
      "en_id": "three-kinds-of-knowledge",
-     "es": "Three kinds of knowledge",
-     "es_id": "three-kinds-of-knowledge",
+     "es": "Tres tipos de conocimiento",
+     "es_id": "tres-tipos-de-conocimiento",
      "level": 2,
      "line": 69
     },
     {
      "en": "The recurring question",
      "en_id": "the-recurring-question",
-     "es": "The recurring question",
-     "es_id": "the-recurring-question",
+     "es": "La pregunta recurrente",
+     "es_id": "la-pregunta-recurrente",
      "level": 2,
      "line": 81
     },
     {
      "en": "Weird next to boring",
      "en_id": "weird-next-to-boring",
-     "es": "Weird next to boring",
-     "es_id": "weird-next-to-boring",
+     "es": "Lo raro junto a lo aburrido",
+     "es_id": "lo-raro-junto-a-lo-aburrido",
      "level": 2,
      "line": 89
     },
     {
      "en": "Three ways in",
      "en_id": "three-ways-in",
-     "es": "Three ways in",
-     "es_id": "three-ways-in",
+     "es": "Tres puertas de entrada",
+     "es_id": "tres-puertas-de-entrada",
      "level": 2,
      "line": 93
     },
     {
      "en": "A word of caution",
      "en_id": "a-word-of-caution",
-     "es": "A word of caution",
-     "es_id": "a-word-of-caution",
+     "es": "Una advertencia",
+     "es_id": "una-advertencia",
      "level": 2,
      "line": 101
     }
    ],
    "map": {
-    "a-word-of-caution": "a-word-of-caution",
-    "intro-why-these-lessons-exist": "intro-why-these-lessons-exist",
-    "the-recurring-question": "the-recurring-question",
-    "the-shape-of-a-lesson": "the-shape-of-a-lesson",
-    "the-teaching-philosophy": "the-teaching-philosophy",
-    "three-kinds-of-knowledge": "three-kinds-of-knowledge",
-    "three-ways-in": "three-ways-in",
-    "weird-next-to-boring": "weird-next-to-boring",
-    "what-the-challenge-does": "what-the-challenge-does",
-    "where-entries-differ": "where-entries-differ"
+    "a-word-of-caution": "una-advertencia",
+    "intro-why-these-lessons-exist": "introducción-por-qué-existen-estas-lecciones",
+    "the-recurring-question": "la-pregunta-recurrente",
+    "the-shape-of-a-lesson": "la-estructura-de-una-lección",
+    "the-teaching-philosophy": "la-filosofía-de-enseñanza",
+    "three-kinds-of-knowledge": "tres-tipos-de-conocimiento",
+    "three-ways-in": "tres-puertas-de-entrada",
+    "weird-next-to-boring": "lo-raro-junto-a-lo-aburrido",
+    "what-the-challenge-does": "qué-hace-el-reto",
+    "where-entries-differ": "dónde-difieren-las-entradas"
    }
   },
   "lessons/languages/README.md": {
