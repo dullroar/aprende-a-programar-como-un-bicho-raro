@@ -8,11 +8,11 @@ Para una ruta de lectura avanzada con trazas y experimentos, consulta la [guía 
 
 | Característica | Qué enseña |
 | --- | --- |
-| An archive is a sequence of 512-byte blocks: a header block, then the data blocks, then the next header | There is no index and no directory. To find a member you read from the start. That is a stream, and a stream is a natural tape for an interpreter. |
-| `tar -xf` writes the members as files | Extraction is passive. An archive cannot make tar run anything. |
-| GNU `--to-command=CMD` starts `CMD` for each regular member and pipes the member to it | The *operator* attaches an interpreter. The command line carries the power, and the archive does not. |
-| `TAR_FILENAME`, `TAR_SIZE` and more are set for each command | The member's metadata becomes the command's input, next to its bytes. |
-| tar keeps going when the command fails | There is no built-in "stop". A control rule must be the interpreter's own. |
+| Un archivo es una secuencia de bloques de 512 bytes: un bloque de cabecera, luego los bloques de datos y después la siguiente cabecera | No hay índice ni directorio. Para encontrar un miembro, lees desde el principio. Eso es un flujo, y un flujo es una cinta natural para un intérprete. |
+| `tar -xf` escribe los miembros como archivos | La extracción es pasiva. Un archivo no puede hacer que tar ejecute nada. |
+| GNU `--to-command=CMD` inicia `CMD` para cada miembro regular y le envía el miembro por una tubería | El *operador* conecta un intérprete. La línea de comandos lleva el poder; el archivo no. |
+| `TAR_FILENAME`, `TAR_SIZE` y otras variables se establecen para cada comando | Los metadatos del miembro pasan a ser la entrada de datos del comando, junto con sus bytes. |
+| tar continúa cuando falla el comando | No hay una "parada" incorporada. Una regla de control debe ser propia del intérprete. |
 | `--checkpoint=N --checkpoint-action=exec=CMD` runs `CMD` every N records | A progress report is an event source. It can be a clock. |
 | `-b N` sets the *record* size to N blocks of 512 bytes | The unit of time is a record, and the archive's size, not its content, decides how many there are. |
 

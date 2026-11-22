@@ -288,3 +288,4 @@
 315 P4-lessons-languages-5 partial accepted and applied regex positions 60 to 64; resume at 65; scoped, fast and anchor checks passed.
 316 P4-lessons-languages-5 partial completed regex positions 65 to 72; resume at tar position 0, then Tcl; scoped, fast and anchor checks passed.
 317 P4-lessons-languages-5 partial accepted and applied tar positions 0 to 4; resume at 5; scoped, fast and anchor checks passed.
+318 P4-lessons-languages-5 partial accepted and applied tar positions 5 to 9; resume at 10; scoped, fast and anchor checks passed.
