@@ -2316,3 +2316,5 @@
 {"segment_id": "s-236ade4aa777-0019", "ts": "2026-11-22T15:40:45Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
 {"segment_id": "s-299b7a6f9cbe-0029", "ts": "2026-11-22T15:44:18Z", "findings": [], "playful_note": "Amenaza cómica conservada con el encabezado establecido."}
 {"segment_id": "s-5e3bcdfbf845-0037", "ts": "2026-11-22T15:47:36Z", "findings": [], "playful_note": "Conserva el reto juguetón de romper el programa."}
+{"segment_id": "s-a6b58da9d4cd-0044", "ts": "2026-11-22T16:10:48Z", "findings": [], "playful_note": "Heading from the glossary; keeps the affectionate contrast between the weird program and its boring twin."}
+{"segment_id": "s-c08a852d0dbe-0046", "ts": "2026-11-22T16:11:00Z", "findings": [], "playful_note": "Keeps the irony: calls the program a terrible idea, then asks for the honest engineering case."}

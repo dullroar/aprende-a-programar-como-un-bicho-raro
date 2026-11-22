@@ -210,44 +210,44 @@ msgstr "Particularidades"
 #: lessons/languages/tcl.md:87
 msgctxt "s-cef7284ba1ff-0040"
 msgid "**Triggers reject a qualified table name in ⟦CODE_0001⟧.** Inside the trigger, ⟦CODE_0002⟧ is an error; the unqualified name is required, while the ⟦CODE_0003⟧ line does qualify, because a TEMP trigger watches a table in the main database."
-msgstr ""
+msgstr "**Los disparadores rechazan un nombre de tabla calificado en ⟦CODE_0001⟧.** Dentro del disparador, ⟦CODE_0002⟧ es un error; se exige el nombre sin calificar, mientras que la línea ⟦CODE_0003⟧ sí lo califica, porque un disparador TEMP vigila una tabla de la base de datos principal."
 
 #: lessons/languages/tcl.md:88
 msgctxt "s-de2fa82519a1-0041"
 msgid "**⟦CODE_0001⟧ without braces is both slower and a code-injection hole.** The idiomatic entry braces every ⟦CODE_0002⟧."
-msgstr ""
+msgstr "**⟦CODE_0001⟧ sin llaves es más lento y además una puerta abierta a la inyección de código.** La entrada idiomática pone entre llaves cada ⟦CODE_0002⟧."
 
 #: lessons/languages/tcl.md:89
 msgctxt "s-5fade735c22f-0042"
 msgid "**⟦CODE_0001⟧ writes back**: assignments to the unpacked variables update the dict."
-msgstr ""
+msgstr "**⟦CODE_0001⟧ escribe de vuelta**: las asignaciones a las variables desempaquetadas actualizan el diccionario."
 
 #: lessons/languages/tcl.md:90
 msgctxt "s-aa13b5d08bd1-0043"
 msgid "**⟦CODE_0001⟧ under WSL hangs Tk.** Tests use ⟦CODE_0002⟧; see ⟦CODE_0003⟧."
-msgstr ""
+msgstr "**⟦CODE_0001⟧ bajo WSL cuelga Tk.** Las pruebas usan ⟦CODE_0002⟧; mira ⟦CODE_0003⟧."
 
 #: lessons/languages/tcl.md:92
 msgctxt "s-a6b58da9d4cd-0044"
 msgid "Weird next to boring"
-msgstr ""
+msgstr "Lo raro junto a lo aburrido"
 
 #: lessons/languages/tcl.md:94
 msgctxt "s-73bbfd9bd9a8-0045"
 msgid "[⟦CODE_0001⟧](⟦DEST_0002⟧) is a namespaced ⟦CODE_0003⟧ with dicts and bound SQL parameters: tidy, testable, unit-testable (⟦CODE_0004⟧ is called 2,000 times in its check). [⟦CODE_0005⟧](⟦DEST_0006⟧) has the same output and none of those properties. The first is how you write Tcl; the second is what Tcl's \"everything is a string command\" *permits*. Compare [⟦CODE_0007⟧](⟦DEST_0008⟧), where effects hide inside a lazy list, and [CMake](⟦DEST_0009⟧), where a ⟦CODE_0010⟧ condition is the register machine."
-msgstr ""
+msgstr "[⟦CODE_0001⟧](⟦DEST_0002⟧) es un ⟦CODE_0003⟧ con espacio de nombres, con diccionarios y parámetros SQL enlazados: ordenado, comprobable y apto para pruebas unitarias (⟦CODE_0004⟧ se llama 2,000 veces en su verificación). [⟦CODE_0005⟧](⟦DEST_0006⟧) da la misma salida y ninguna de esas propiedades. El primero es cómo se escribe Tcl; el segundo es lo que el principio de Tcl de \"todo es un comando de cadena de texto\" *permite*. Compara [⟦CODE_0007⟧](⟦DEST_0008⟧), donde los efectos se esconden dentro de una lista perezosa, y [CMake](⟦DEST_0009⟧), donde una condición ⟦CODE_0010⟧ es la máquina de registros."
 
 #: lessons/languages/tcl.md:96
 msgctxt "s-c08a852d0dbe-0046"
 msgid "Under what circumstances would this terrible idea become reasonable?"
-msgstr ""
+msgstr "¿En qué circunstancias esta idea terrible se volvería razonable?"
 
 #: lessons/languages/tcl.md:98
 msgctxt "s-dc9d8002033e-0047"
 msgid "When your code genuinely belongs with your data: a rules engine where rules are rows, a game where scripts live in the save file, a tool that must patch behavior in a running system. Using a recursive trigger as a ⟦CODE_0001⟧ loop is a stunt; storing procs in a table is a design."
-msgstr ""
+msgstr "Cuando tu código pertenece de verdad a tus datos: un motor de reglas donde las reglas son filas, un juego donde los scripts viven en el archivo de guardado, una herramienta que debe parchear el comportamiento de un sistema en ejecución. Usar un disparador recursivo como bucle ⟦CODE_0001⟧ es una acrobacia; guardar procs en una tabla es un diseño."
 
 #: lessons/languages/tcl.md:155
 msgctxt "s-ac0e260e97bf-0048"
 msgid "Computer science behind this page"
-msgstr ""
+msgstr "La informática detrás de esta página"

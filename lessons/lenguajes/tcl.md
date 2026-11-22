@@ -84,18 +84,18 @@ Mira los [ejercicios](../exercises.md#b12-tcl-edit-the-program-in-the-database-v
 
 ## Particularidades
 
-- **Triggers reject a qualified table name in `INSERT`.** Inside the trigger, `main.demo_timecards` is an error; the unqualified name is required, while the `AFTER INSERT ON main.demo_timecards` line does qualify, because a TEMP trigger watches a table in the main database.
-- **`expr` without braces is both slower and a code-injection hole.** The idiomatic entry braces every `expr`.
-- **`dict with` writes back**: assignments to the unpacked variables update the dict.
-- **`DISPLAY=:0` under WSL hangs Tk.** Tests use `xvfb-run`; see `check.sh`.
+- **Los disparadores rechazan un nombre de tabla calificado en `INSERT`.** Dentro del disparador, `main.demo_timecards` es un error; se exige el nombre sin calificar, mientras que la línea `AFTER INSERT ON main.demo_timecards` sí lo califica, porque un disparador TEMP vigila una tabla de la base de datos principal.
+- **`expr` sin llaves es más lento y además una puerta abierta a la inyección de código.** La entrada idiomática pone entre llaves cada `expr`.
+- **`dict with` escribe de vuelta**: las asignaciones a las variables desempaquetadas actualizan el diccionario.
+- **`DISPLAY=:0` bajo WSL cuelga Tk.** Las pruebas usan `xvfb-run`; mira `check.sh`.
 
-## Weird next to boring
+## Lo raro junto a lo aburrido
 
-[`tcl`](../../src/tcl/README.md) is a namespaced `while` with dicts and bound SQL parameters: tidy, testable, unit-testable (`draw` is called 2,000 times in its check). [`tcl-weird`](../../src/tcl-weird/README.md) has the same output and none of those properties. The first is how you write Tcl; the second is what Tcl's "everything is a string command" *permits*. Compare [`haskell`](haskell.md#la-es-perezosa-como-flujo-de-control), where effects hide inside a lazy list, and [CMake](make-cmake.md#cmake), where a `while()` condition is the register machine.
+[`tcl`](../../src/tcl/README.md) es un `while` con espacio de nombres, con diccionarios y parámetros SQL enlazados: ordenado, comprobable y apto para pruebas unitarias (`draw` se llama 2,000 veces en su verificación). [`tcl-weird`](../../src/tcl-weird/README.md) da la misma salida y ninguna de esas propiedades. El primero es cómo se escribe Tcl; el segundo es lo que el principio de Tcl de "todo es un comando de cadena de texto" *permite*. Compara [`haskell`](haskell.md#la-es-perezosa-como-flujo-de-control), donde los efectos se esconden dentro de una lista perezosa, y [CMake](make-cmake.md#cmake), donde una condición `while()` es la máquina de registros.
 
-## Under what circumstances would this terrible idea become reasonable?
+## ¿En qué circunstancias esta idea terrible se volvería razonable?
 
-When your code genuinely belongs with your data: a rules engine where rules are rows, a game where scripts live in the save file, a tool that must patch behavior in a running system. Using a recursive trigger as a `while` loop is a stunt; storing procs in a table is a design.
+Cuando tu código pertenece de verdad a tus datos: un motor de reglas donde las reglas son filas, un juego donde los scripts viven en el archivo de guardado, una herramienta que debe parchear el comportamiento de un sistema en ejecución. Usar un disparador recursivo como bucle `while` es una acrobacia; guardar procs en una tabla es un diseño.
 
 <!-- BEGIN GENERATED program-flow:languages/tcl.md -->
 ## How each program runs
@@ -152,7 +152,7 @@ sequenceDiagram
 **Why this mechanism matters:** the database is dispatching, but it is not an event queue. The trigger runs synchronously inside the `INSERT`, and the recursion is the loop. The `WHERE` on the trigger's insert is the stop rule. Control moves between three layers (Tcl, SQL, Tcl) on one call stack.
 <!-- END GENERATED program-flow:languages/tcl.md -->
 
-## Computer science behind this page
+## La informática detrás de esta página
 
 <!-- BEGIN GENERATED concepts:languages/tcl.md -->
 The computer-science ideas behind this page: [Arbitrary code execution](../informatica/01-lectura-de-un-programa-adversarial.md#arbitrary-code-execution), [Control flow](../informatica/03-flujo-de-control-y-continuaciones.md#control-flow), [Recursion](../informatica/03-flujo-de-control-y-continuaciones.md#recursion), [Interpreters and virtual machines](../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#interpreters-and-virtual-machines), [State](../informatica/06-estado-mas-alla-de-las-variables.md#state), [Scope and binding](../informatica/06-estado-mas-alla-de-las-variables.md#scope-and-binding), [Homoiconicity: code as data](../informatica/06-estado-mas-alla-de-las-variables.md#homoiconicity-code-as-data), [Reflection and metaprogramming](../informatica/06-estado-mas-alla-de-las-variables.md#reflection-and-metaprogramming), [Database triggers](../informatica/06-estado-mas-alla-de-las-variables.md#database-triggers), [Serialization, deserialization and object pickling](../informatica/06-estado-mas-alla-de-las-variables.md#serialization-deserialization-and-object-pickling), [Transactions](../informatica/07-efectos-errores-y-confirmacion.md#transactions), [Callbacks](../informatica/10-eventos-retrollamadas-y-flujo-de-control-reactivo.md#callbacks).
