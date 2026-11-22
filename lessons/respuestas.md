@@ -404,7 +404,7 @@ Entradas con datos fijos: las de LINQ siempre tienen un total de exactamente 40 
 
 ## E2. Cambia la semilla del intérprete de XAML
 
-Replacing `<sys:Int32>42</sys:Int32>` with `7` in `strict.xaml` and running it in Windows Sandbox still passes (the window is shown and closed by the harness). The sandbox does not print the hours, so read them with the B7 program: seed 42 gives `16 11 11 15 11`; `new Random(7)` gives a different sequence. The same seed always gives the same sequence because `System.Random` is deterministic given its seed.
+Al reemplazar `<sys:Int32>42</sys:Int32>` por `7` en `strict.xaml` y ejecutarlo en Windows Sandbox, la prueba aún pasa (el arnés muestra y cierra la ventana). El entorno aislado no imprime las horas, así que léelas con el programa B7: la semilla 42 da `16 11 11 15 11`; `new Random(7)` da una secuencia distinta. La misma semilla siempre da la misma secuencia porque `System.Random` es determinista para una semilla dada.
 
 "La variable" es el recurso `<sys:Random x:Key="rnd">` más los **arreglos portadores**: cada llamada `ObjectDataProvider` llena un `char[]`/`byte[]` in situ y la siguiente lo lee. El bucle está desenrollado (cuatro pasadas copiadas, según el [README](../src/xaml/README.md)) porque XAML no tiene una construcción de bucle. El archivo necesita una copia de la secuencia de sorteo y almacenamiento por tarjeta.
 
@@ -433,11 +433,11 @@ Control negativo: cambia el límite a `<= 50` y `takeWhile` devuelve los cuatro 
 
 ## F2. Trojan Source: oculta un carácter y luego encuéntralo
 
-1. `node greet.js` prints `false`. The first line holds `"admin"` followed by U+200B, a character with no shape, so the string has five visible letters (`a d m i n`) and one invisible character: it is not equal to `"admin"`. The second line compares it with the plain word. A reader who sees `user === "admin"` expects `true`.
-2. The scan prints line 1, `1:const user = "admin";`, and there is one more character between the `n` and the closing quote that your terminal draws as nothing (that is the point). `od -c` shows `a d m i n 342 200 213 "`: UTF-8 for U+200B is the three bytes E2 80 8B, which is `342 200 213` in octal.
-3. `clean.js` has no hit, and prints `true`. The scan fires on the character and on nothing else.
-4. No file in `src/apl-weird` matches. APL glyphs are visible, so a reviewer sees them. Banning every non-ASCII character would also ban APL and every non-English name, and it would not stop an attacker who uses an ASCII look-alike. The defense is to ban what has no visible shape. The label is **implementation-permitted**: the rule is written down (`sandbox/scope-check.sh`, the line that sets `hidden=`), its mechanism is `grep -P` and its Unicode tables, and the character class lists only the characters we know about, so a new invisible character in a future Unicode version would not be caught until the list is updated.
+1. `node greet.js` imprime `false`. La primera línea contiene `"admin"` seguido de U+200B, un carácter sin forma. Por eso la cadena de texto tiene cinco letras visibles (`a d m i n`) y un carácter invisible: no es igual a `"admin"`. La segunda línea la compara con la palabra simple. Un lector que ve `user === "admin"` espera `true`.
+2. El escaneo imprime la línea 1, `1:const user = "admin";`. Hay otro carácter entre `n` y la comilla de cierre que tu terminal dibuja como si no hubiera nada (esa es la idea). `od -c` muestra `a d m i n 342 200 213 "`: UTF-8 para U+200B son los tres bytes E2 80 8B, que son `342 200 213` en octal.
+3. `clean.js` no encuentra coincidencias e imprime `true`. El escaneo se activa con ese carácter y con nada más.
+4. Ningún archivo en `src/apl-weird` tiene una coincidencia. Los glifos de APL son visibles, así que una persona revisora los ve. Prohibir todos los caracteres no ASCII también prohibiría APL y todos los nombres que no estén en inglés. Tampoco detendría a un atacante que use un carácter ASCII de aspecto similar. La defensa consiste en prohibir lo que no tiene forma visible. La etiqueta es **permitido por la implementación**: la regla está escrita (`sandbox/scope-check.sh`, la línea que establece `hidden=`). Su mecanismo es `grep -P` y sus tablas Unicode. La clase de caracteres enumera solo los caracteres que conocemos. Por eso, un nuevo carácter invisible en una versión futura de Unicode no se detectaría hasta actualizar la lista.
 
-## G. Open challenges
+## G. Retos abiertos
 
-No answers: these are unsolved. If you close one, send it in.
+No hay respuestas: estos retos no están resueltos. Si resuelves uno, envíalo.

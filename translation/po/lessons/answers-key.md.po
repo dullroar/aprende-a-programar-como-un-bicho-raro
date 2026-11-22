@@ -719,7 +719,7 @@ msgstr "E2. Cambia la semilla del intérprete de XAML"
 #: lessons/answers-key.md:407
 msgctxt "s-b0c220a23cf9-0121"
 msgid "Replacing ⟦CODE_0001⟧ with ⟦CODE_0002⟧ in ⟦CODE_0003⟧ and running it in Windows Sandbox still passes (the window is shown and closed by the harness). The sandbox does not print the hours, so read them with the B7 program: seed 42 gives ⟦CODE_0004⟧; ⟦CODE_0005⟧ gives a different sequence. The same seed always gives the same sequence because ⟦CODE_0006⟧ is deterministic given its seed."
-msgstr ""
+msgstr "Al reemplazar ⟦CODE_0001⟧ por ⟦CODE_0002⟧ en ⟦CODE_0003⟧ y ejecutarlo en Windows Sandbox, la prueba aún pasa (el arnés muestra y cierra la ventana). El entorno aislado no imprime las horas, así que léelas con el programa B7: la semilla 42 da ⟦CODE_0004⟧; ⟦CODE_0005⟧ da una secuencia distinta. La misma semilla siempre da la misma secuencia porque ⟦CODE_0006⟧ es determinista para una semilla dada."
 
 #: lessons/answers-key.md:409
 msgctxt "s-2f5306060ac5-0122"
@@ -754,13 +754,17 @@ msgid ""
 "3. ⟦CODE_0013⟧ has no hit, and prints ⟦CODE_0014⟧. The scan fires on the character and on nothing else.\n"
 "4. No file in ⟦CODE_0015⟧ matches. APL glyphs are visible, so a reviewer sees them. Banning every non-ASCII character would also ban APL and every non-English name, and it would not stop an attacker who uses an ASCII look-alike. The defense is to ban what has no visible shape. The label is **implementation-permitted**: the rule is written down (⟦CODE_0016⟧, the line that sets ⟦CODE_0017⟧), its mechanism is ⟦CODE_0018⟧ and its Unicode tables, and the character class lists only the characters we know about, so a new invisible character in a future Unicode version would not be caught until the list is updated."
 msgstr ""
+"⟦CODE_0001⟧ imprime ⟦CODE_0002⟧. La primera línea contiene ⟦CODE_0003⟧ seguido de U+200B, un carácter sin forma. Por eso la cadena de texto tiene cinco letras visibles (⟦CODE_0004⟧) y un carácter invisible: no es igual a ⟦CODE_0005⟧. La segunda línea la compara con la palabra simple. Un lector que ve ⟦CODE_0006⟧ espera ⟦CODE_0007⟧.\n"
+"2. El escaneo imprime la línea 1, ⟦CODE_0008⟧. Hay otro carácter entre ⟦CODE_0009⟧ y la comilla de cierre que tu terminal dibuja como si no hubiera nada (esa es la idea). ⟦CODE_0010⟧ muestra ⟦CODE_0011⟧: UTF-8 para U+200B son los tres bytes E2 80 8B, que son ⟦CODE_0012⟧ en octal.\n"
+"3. ⟦CODE_0013⟧ no encuentra coincidencias e imprime ⟦CODE_0014⟧. El escaneo se activa con ese carácter y con nada más.\n"
+"4. Ningún archivo en ⟦CODE_0015⟧ tiene una coincidencia. Los glifos de APL son visibles, así que una persona revisora los ve. Prohibir todos los caracteres no ASCII también prohibiría APL y todos los nombres que no estén en inglés. Tampoco detendría a un atacante que use un carácter ASCII de aspecto similar. La defensa consiste en prohibir lo que no tiene forma visible. La etiqueta es **permitido por la implementación**: la regla está escrita (⟦CODE_0016⟧, la línea que establece ⟦CODE_0017⟧). Su mecanismo es ⟦CODE_0018⟧ y sus tablas Unicode. La clase de caracteres enumera solo los caracteres que conocemos. Por eso, un nuevo carácter invisible en una versión futura de Unicode no se detectaría hasta actualizar la lista."
 
 #: lessons/answers-key.md:441
 msgctxt "s-6d17cfcb473c-0128"
 msgid "G. Open challenges"
-msgstr ""
+msgstr "G. Retos abiertos"
 
 #: lessons/answers-key.md:443
 msgctxt "s-2e43b3321408-0129"
 msgid "No answers: these are unsolved. If you close one, send it in."
-msgstr ""
+msgstr "No hay respuestas: estos retos no están resueltos. Si resuelves uno, envíalo."

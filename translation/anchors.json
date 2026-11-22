@@ -963,8 +963,8 @@
     {
      "en": "G. Open challenges",
      "en_id": "g-open-challenges",
-     "es": "G. Open challenges",
-     "es_id": "g-open-challenges",
+     "es": "G. Retos abiertos",
+     "es_id": "g-retos-abiertos",
      "level": 2,
      "line": 441
     }
@@ -1002,7 +1002,7 @@
     "e2-change-the-xaml-interpreters-seed": "e2-cambia-la-semilla-del-intérprete-de-xaml",
     "f-prove-a-readme-claim": "f-demuestra-una-afirmación-del-readme",
     "f2-trojan-source-hide-a-character-then-find-it": "f2-trojan-source-oculta-un-carácter-y-luego-encuéntralo",
-    "g-open-challenges": "g-open-challenges"
+    "g-open-challenges": "g-retos-abiertos"
    }
   },
   "lessons/blocking-problems.md": {
