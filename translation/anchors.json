@@ -5021,8 +5021,8 @@
     {
      "en": "Do this in production and you're fired",
      "en_id": "do-this-in-production-and-youre-fired-1",
-     "es": "Do this in production and you're fired",
-     "es_id": "do-this-in-production-and-youre-fired",
+     "es": "Haz esto en producción y estás despedido",
+     "es_id": "haz-esto-en-producción-y-estás-despedido-1",
      "level": 3,
      "line": 91
     },
@@ -5070,7 +5070,7 @@
      "en": "Do this in production and you're fired",
      "en_id": "do-this-in-production-and-youre-fired-2",
      "es": "Do this in production and you're fired",
-     "es_id": "do-this-in-production-and-youre-fired-1",
+     "es_id": "do-this-in-production-and-youre-fired",
      "level": 3,
      "line": 134
     },
@@ -5130,8 +5130,8 @@
     "closures-all-the-way-down": "clausuras-hasta-el-fondo",
     "computer-science-behind-this-page": "computer-science-behind-this-page",
     "do-this-in-production-and-youre-fired": "haz-esto-en-producción-y-estás-despedido",
-    "do-this-in-production-and-youre-fired-1": "do-this-in-production-and-youre-fired",
-    "do-this-in-production-and-youre-fired-2": "do-this-in-production-and-youre-fired-1",
+    "do-this-in-production-and-youre-fired-1": "haz-esto-en-producción-y-estás-despedido-1",
+    "do-this-in-production-and-youre-fired-2": "do-this-in-production-and-youre-fired",
     "how-each-program-runs": "how-each-program-runs",
     "how-the-hell-does-that-work": "cómo-demonios-funciona-eso",
     "how-the-hell-does-that-work-1": "cómo-demonios-funciona-eso-1",

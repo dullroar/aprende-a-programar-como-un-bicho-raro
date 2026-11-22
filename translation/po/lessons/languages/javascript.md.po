@@ -260,27 +260,27 @@ msgstr "**Una clausura no es una continuación.** Se puede llamar de nuevo. No p
 #: lessons/languages/javascript.md:86
 msgctxt "s-0c427346bded-0050"
 msgid "**Lazy and eager give different orders of effects.** ⟦CODE_0001⟧ runs ⟦CODE_0002⟧. ⟦CODE_0003⟧ runs ⟦CODE_0004⟧. For pure functions nobody can tell. With effects you can, and that is why the \"map preserves composition\" law needs pure functions."
-msgstr ""
+msgstr "**La evaluación diferida y la inmediata producen los efectos en distinto orden.** ⟦CODE_0001⟧ ejecuta ⟦CODE_0002⟧. ⟦CODE_0003⟧ ejecuta ⟦CODE_0004⟧. Con funciones puras nadie puede distinguirlos. Con efectos sí se puede. Por eso la ley \"map preserva la composición\" necesita funciones puras."
 
 #: lessons/languages/javascript.md:87
 msgctxt "s-c1757801a7b7-0051"
 msgid "**Only some operations can stop early.** ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧ and a source that says ⟦CODE_0004⟧ can. ⟦CODE_0005⟧ cannot. A ⟦CODE_0006⟧ can, and it is the wrong tool."
-msgstr ""
+msgstr "**Solo algunas operaciones pueden detenerse antes.** ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧ y una fuente que dice ⟦CODE_0004⟧ pueden hacerlo. ⟦CODE_0005⟧ no puede. Un ⟦CODE_0006⟧ sí puede, pero es la herramienta equivocada."
 
 #: lessons/languages/javascript.md:89
 msgctxt "s-51368e3a515f-0052"
 msgid "Tags: closures, arrow functions and the iteration protocol are in the ECMAScript specification, and so are the iterator helpers since ECMAScript 2025 (**guaranteed**). ⟦CODE_0001⟧, ⟦CODE_0002⟧'s timing and ⟦CODE_0003⟧ are engine and Node details, used only in the check."
-msgstr ""
+msgstr "Etiquetas: las clausuras, las funciones flecha y el protocolo de iteración están en la especificación ECMAScript. También lo están los auxiliares de iteradores desde ECMAScript 2025 (**garantizado**). ⟦CODE_0001⟧, el momento de ⟦CODE_0002⟧ y ⟦CODE_0003⟧ son detalles del motor y de Node, usados solo en la comprobación."
 
 #: lessons/languages/javascript.md:91
 msgctxt "s-299b7a6f9cbe-0053"
 msgid "Do this in production and you're fired"
-msgstr ""
+msgstr "Haz esto en producción y estás despedido"
 
 #: lessons/languages/javascript.md:93
 msgctxt "s-efa9aa229213-0054"
 msgid "**Effects inside ⟦CODE_0001⟧ surprise people.** A reader expects ⟦CODE_0002⟧ to be pure. This one saves rows."
-msgstr ""
+msgstr "**Los efectos dentro de ⟦CODE_0001⟧ sorprenden.** Un lector espera que ⟦CODE_0002⟧ sea pura. Esta guarda filas."
 
 #: lessons/languages/javascript.md:94
 msgctxt "s-0a0772af9dfb-0055"

@@ -83,14 +83,14 @@ El [README](../../src/javascript-weird/README.md#cómo-funciona-el-truco) tiene 
 - **Las clausuras capturan variables, no valores.** Dos clausuras sobre una variable la comparten. Cada llamada a una fábrica crea variables nuevas.
 - **`this` no es una variable capturada.** Separa un método y perderá su `this`. Una clausura conserva lo que capturó.
 - **Una clausura no es una continuación.** Se puede llamar de nuevo. No puede reanudar algo por la mitad ni volver atrás.
-- **Lazy and eager give different orders of effects.** `Iterator.from(xs).map(a).map(b)` runs `a1 b1 a2 b2`. `xs.map(a).map(b)` runs `a1 a2 b1 b2`. For pure functions nobody can tell. With effects you can, and that is why the "map preserves composition" law needs pure functions.
-- **Only some operations can stop early.** `some`, `find`, `take` and a source that says `done` can. `reduce` cannot. A `throw` can, and it is the wrong tool.
+- **La evaluación diferida y la inmediata producen los efectos en distinto orden.** `Iterator.from(xs).map(a).map(b)` ejecuta `a1 b1 a2 b2`. `xs.map(a).map(b)` ejecuta `a1 a2 b1 b2`. Con funciones puras nadie puede distinguirlos. Con efectos sí se puede. Por eso la ley "map preserva la composición" necesita funciones puras.
+- **Solo algunas operaciones pueden detenerse antes.** `some`, `find`, `take` y una fuente que dice `done` pueden hacerlo. `reduce` no puede. Un `throw` sí puede, pero es la herramienta equivocada.
 
-Tags: closures, arrow functions and the iteration protocol are in the ECMAScript specification, and so are the iterator helpers since ECMAScript 2025 (**guaranteed**). `node:sqlite`, `WeakRef`'s timing and `--expose-gc` are engine and Node details, used only in the check.
+Etiquetas: las clausuras, las funciones flecha y el protocolo de iteración están en la especificación ECMAScript. También lo están los auxiliares de iteradores desde ECMAScript 2025 (**garantizado**). `node:sqlite`, el momento de `WeakRef` y `--expose-gc` son detalles del motor y de Node, usados solo en la comprobación.
 
-### Do this in production and you're fired
+### Haz esto en producción y estás despedido
 
-- **Effects inside `map` surprise people.** A reader expects `map` to be pure. This one saves rows.
+- **Los efectos dentro de `map` sorprenden.** Un lector espera que `map` sea pura. Esta guarda filas.
 - **Hidden state is hard to inspect.** A debugger shows captured variables, and `console.log` of the function does not.
 - **An iterator that is spent is a trap.** A second pass over it gives nothing, with no error.
 
