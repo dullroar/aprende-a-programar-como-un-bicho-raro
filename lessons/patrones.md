@@ -99,7 +99,7 @@ Each track stores "what happens next" somewhere that is not a loop counter: in t
 | `WS-TOTAL` and its 88-level name `OVER-FORTY` | [cobol](lenguajes/cobol.md): [`cobol`](../src/cobol/README.md) |
 | The target of one `GO TO` | [cobol](lenguajes/cobol.md#alter): [`cobol-weird`](../src/cobol-weird/README.md) |
 | Variables the `LOOP` owns, such as `total` | [lisp](lenguajes/lisp.md): [`lisp`](../src/lisp/README.md) |
-| The class precedence list, and each method's return value | [lisp](lenguajes/lisp.md#method-combination-as-control-flow): [`lisp-weird`](../src/lisp-weird/README.md) |
+| The class precedence list, and each method's return value | [lisp](lenguajes/lisp.md#combinación-de-métodos-como-flujo-de-control): [`lisp-weird`](../src/lisp-weird/README.md) |
 | The editor buffer: one line per card, and marks (x) that are added by joining lines | [editors](lenguajes/editores.md#el-búfer-es-la-máquina): [`ed-weird`](../src/ed-weird/README.md) |
 | The marks (where we are on a tape of numbered lines), the first line of the buffer (the next card), and registers a, d and n | [editors](lenguajes/editores.md#un-programa-que-puedes-editar): [`ex-weird`](../src/ex-weird/README.md) |
 | The variables `total` and `cards`, and the data stack | [forth](lenguajes/forth.md): [`forth`](../src/forth/README.md) |
@@ -174,7 +174,7 @@ LINQ, Haskell and XAML each put an effect inside something that looks like a pur
 | A program's exit code steers the match | [pcre2grep](lenguajes/regex.md#pcre2grep-exit-codes-as-control-flow) |
 | A process exits 1 on purpose, and the wrapper maps it back to 0 | [sed](lenguajes/regex.md#gnu-sed) |
 | A runaway program is caught by a timeout, not an error | [`apl-weird`](lenguajes/apl.md#funciones-que-se-modifican-a-sí-mismas-apl-weird), and [m4](lenguajes/m4.md) when a quote is missing |
-| A return value short-circuits a chain of methods (`or`) | [Lisp weird](lenguajes/lisp.md#method-combination-as-control-flow) |
+| A return value short-circuits a chain of methods (`or`) | [Lisp weird](lenguajes/lisp.md#combinación-de-métodos-como-flujo-de-control) |
 | A pattern stops matching and an `exit` ends the loop | [AWK weird](lenguajes/awk.md#registros-a-partir-de-un-flujo-de-bytes-aleatorios-awk-weird) |
 | An `INSERT ... SELECT ... WHERE` that selects nothing ends a recursive trigger | [Tcl weird](lenguajes/tcl.md#sqlite-as-the-program) |
 | A missing guard does not fail: it counts a phantom card (empty `RT`) or no cards at all (mawk) | [AWK weird](lenguajes/awk.md#haz-esto-en-producción-y-estás-despedido) |

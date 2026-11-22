@@ -441,3 +441,4 @@
 {"id":"EXC-441","segment":"s-cdf4bc656727-0098","invariant":"TRANSLATE","reason":"Table row contains only a language name and numeric counts; all must remain unchanged.","task":"P4-lessons-3"}
 {"id":"EXC-442","segment":"s-3b87dd93928c-0117","invariant":"I7","reason":"Windows Sandbox is the product name; the first use already defines entorno aislado (*sandbox*) at the start of this file.","task":"P4-lessons-3"}
 {"id":"EXC-443","segment":"s-fedf9ff74960-0000","invariant":"TRANSLATE","reason":"Common Lisp is the proper name of the language and remains unchanged in Spanish.","task":"P4-lessons-languages-4"}
+{"id":"EXC-444","segment":"s-f0710b47523a-0009","invariant":"I7","reason":"The English verb builds means constructs a SQL script, not a software compilation; construye preserves the intended sense.","task":"P4-lessons-languages-4"}

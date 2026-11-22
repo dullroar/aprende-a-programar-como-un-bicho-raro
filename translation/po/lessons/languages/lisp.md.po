@@ -40,27 +40,27 @@ msgstr "⟦SEP_0001⟧ Característica ⟦SEP_0002⟧ Dónde ⟦SEP_0003⟧ Qué
 #: lessons/languages/lisp.md:13
 msgctxt "s-703b91844f3e-0006"
 msgid "⟦SEP_0011⟧ ⟦CODE_0001⟧ is a small language of its own ⟦SEP_0012⟧ [⟦CODE_0002⟧ L42-46](⟦DEST_0003⟧): ⟦CODE_0004⟧, ⟦CODE_0005⟧, ⟦CODE_0006⟧, ⟦CODE_0007⟧, ⟦CODE_0008⟧ ⟦SEP_0013⟧ The order of clauses is the order of execution. ⟦CODE_0009⟧ comes *after* ⟦CODE_0010⟧, which is why the card that crosses 40 is kept. ⟦SEP_0014⟧"
-msgstr ""
+msgstr "⟦SEP_0011⟧ ⟦CODE_0001⟧ es un pequeño lenguaje propio ⟦SEP_0012⟧ [⟦CODE_0002⟧ L42-46](⟦DEST_0003⟧): ⟦CODE_0004⟧, ⟦CODE_0005⟧, ⟦CODE_0006⟧, ⟦CODE_0007⟧, ⟦CODE_0008⟧ ⟦SEP_0013⟧ El orden de las cláusulas es el orden de ejecución. ⟦CODE_0009⟧ viene *después* de ⟦CODE_0010⟧, por eso se conserva la tarjeta que hace que el total pase de 40. ⟦SEP_0014⟧"
 
 #: lessons/languages/lisp.md:14
 msgctxt "s-2c077d6e9d34-0007"
 msgid "⟦SEP_0004⟧ Structures are typed records with generated accessors ⟦SEP_0005⟧ [L28](⟦DEST_0001⟧): ⟦CODE_0002⟧ ⟦SEP_0006⟧ ⟦CODE_0003⟧ writes the constructor, the accessors and the predicate for you. ⟦SEP_0007⟧"
-msgstr ""
+msgstr "⟦SEP_0004⟧ Las estructuras son registros con tipos y accesores generados ⟦SEP_0005⟧ [L28](⟦DEST_0001⟧): ⟦CODE_0002⟧ ⟦SEP_0006⟧ ⟦CODE_0003⟧ escribe el constructor, los accesores y el predicado por ti. ⟦SEP_0007⟧"
 
 #: lessons/languages/lisp.md:15
 msgctxt "s-741d3a83be14-0008"
 msgid "⟦SEP_0004⟧ Hand-written calendar arithmetic ⟦SEP_0005⟧ [L64](⟦DEST_0001⟧) ⟦CODE_0002⟧ ⟦SEP_0006⟧ SBCL has no ISO week function, so it is computed, then checked against ⟦CODE_0003⟧. A week-numbering rule is an algorithm, not a lookup. ⟦SEP_0007⟧"
-msgstr ""
+msgstr "⟦SEP_0004⟧ Aritmética de calendario escrita a mano ⟦SEP_0005⟧ [L64](⟦DEST_0001⟧) ⟦CODE_0002⟧ ⟦SEP_0006⟧ SBCL no tiene una función de semana ISO, así que se calcula y luego se comprueba con ⟦CODE_0003⟧. Una regla de numeración de semanas es un algoritmo, no una búsqueda. ⟦SEP_0007⟧"
 
 #: lessons/languages/lisp.md:16
 msgctxt "s-f0710b47523a-0009"
 msgid "⟦SEP_0003⟧ Talking to another process ⟦SEP_0004⟧ [L133](⟦DEST_0001⟧): ⟦CODE_0002⟧ ⟦SEP_0005⟧ Lisp builds the whole SQL script as text and pipes it in. The database is not a library here, it is a tool at the other end of a pipe. ⟦SEP_0006⟧"
-msgstr ""
+msgstr "⟦SEP_0003⟧ Comunicación con otro proceso ⟦SEP_0004⟧ [L133](⟦DEST_0001⟧): ⟦CODE_0002⟧ ⟦SEP_0005⟧ Lisp construye todo el script SQL como texto y lo envía por una tubería. Aquí la base de datos no es una biblioteca, sino una herramienta al otro extremo de una tubería. ⟦SEP_0006⟧"
 
 #: lessons/languages/lisp.md:18
 msgctxt "s-8f294bafb7c8-0010"
 msgid "Method combination as control flow"
-msgstr ""
+msgstr "Combinación de métodos como flujo de control"
 
 #: lessons/languages/lisp.md:20
 msgctxt "s-cc9cfaabc50d-0011"

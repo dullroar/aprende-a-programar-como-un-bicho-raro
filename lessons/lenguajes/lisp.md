@@ -10,12 +10,12 @@ En Common Lisp, casi todos los mecanismos que el lenguaje *usa* son también mec
 
 | Característica | Dónde | Qué enseña |
 | --- | --- | --- |
-| `LOOP` is a small language of its own | [`lisp/timecards.lisp` L42-46](../../src/lisp/timecards.lisp#L42-L46): `for number from 1`, `for hours = ...`, `sum hours into total`, `collect ...`, `until (> total +limit+)` | The order of clauses is the order of execution. `until` comes *after* `collect`, which is why the card that crosses 40 is kept. |
-| Structures are typed records with generated accessors | [L28](../../src/lisp/timecards.lisp#L28): `(defstruct (card (:constructor make-card ...)))` | `defstruct` writes the constructor, the accessors and the predicate for you. |
-| Hand-written calendar arithmetic | [L64](../../src/lisp/timecards.lisp#L64) `iso-week` | SBCL has no ISO week function, so it is computed, then checked against `date(1)`. A week-numbering rule is an algorithm, not a lookup. |
-| Talking to another process | [L133](../../src/lisp/timecards.lisp#L133): `sb-ext:run-program "sqlite3"` | Lisp builds the whole SQL script as text and pipes it in. The database is not a library here, it is a tool at the other end of a pipe. |
+| `LOOP` es un pequeño lenguaje propio | [`lisp/timecards.lisp` L42-46](../../src/lisp/timecards.lisp#L42-L46): `for number from 1`, `for hours = ...`, `sum hours into total`, `collect ...`, `until (> total +limit+)` | El orden de las cláusulas es el orden de ejecución. `until` viene *después* de `collect`, por eso se conserva la tarjeta que hace que el total pase de 40. |
+| Las estructuras son registros con tipos y accesores generados | [L28](../../src/lisp/timecards.lisp#L28): `(defstruct (card (:constructor make-card ...)))` | `defstruct` escribe el constructor, los accesores y el predicado por ti. |
+| Aritmética de calendario escrita a mano | [L64](../../src/lisp/timecards.lisp#L64) `iso-week` | SBCL no tiene una función de semana ISO, así que se calcula y luego se comprueba con `date(1)`. Una regla de numeración de semanas es un algoritmo, no una búsqueda. |
+| Comunicación con otro proceso | [L133](../../src/lisp/timecards.lisp#L133): `sb-ext:run-program "sqlite3"` | Lisp construye todo el script SQL como texto y lo envía por una tubería. Aquí la base de datos no es una biblioteca, sino una herramienta al otro extremo de una tubería. |
 
-## Method combination as control flow
+## Combinación de métodos como flujo de control
 
 ### Behold the monstrosity
 

@@ -184,7 +184,7 @@ Acceptance criteria:
 
 ### B10. Lisp: swap the method combination (verified)
 
-**Lesson:** [Common Lisp](lenguajes/lisp.md#method-combination-as-control-flow). **Entry:** copies of `src/lisp-weird`.
+**Lesson:** [Common Lisp](lenguajes/lisp.md#combinación-de-métodos-como-flujo-de-control). **Entry:** copies of `src/lisp-weird`.
 
 1. **Predict:** on a copy, replace `or` with `progn` in both places: `(:method-combination or)` ([L61](../src/lisp-weird/timecards.lisp#L61)) and `(defmethod punch or ...)` inside `defcard` ([L39](../src/lisp-weird/timecards.lisp#L39)). `progn` runs *every* method. How many cards will every run print?
 2. **Predict**, on a fresh copy: change *only* the generic function's `(:method-combination or)` to `progn` and leave the `or` qualifiers alone.

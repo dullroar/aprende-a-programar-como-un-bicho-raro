@@ -5172,8 +5172,8 @@
     {
      "en": "Method combination as control flow",
      "en_id": "method-combination-as-control-flow",
-     "es": "Method combination as control flow",
-     "es_id": "method-combination-as-control-flow",
+     "es": "Combinación de métodos como flujo de control",
+     "es_id": "combinación-de-métodos-como-flujo-de-control",
      "level": 2,
      "line": 18
     },
@@ -5281,7 +5281,7 @@
     "do-this-in-production-and-youre-fired": "do-this-in-production-and-youre-fired",
     "how-each-program-runs": "how-each-program-runs",
     "how-the-hell-does-that-work": "how-the-hell-does-that-work",
-    "method-combination-as-control-flow": "method-combination-as-control-flow",
+    "method-combination-as-control-flow": "combinación-de-métodos-como-flujo-de-control",
     "now-break-it-yourself": "now-break-it-yourself",
     "program-flow-of-lisp": "program-flow-of-lisp",
     "program-flow-of-lisp-weird": "program-flow-of-lisp-weird",
