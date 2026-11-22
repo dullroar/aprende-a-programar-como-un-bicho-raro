@@ -947,16 +947,16 @@
     {
      "en": "F. Prove a README claim",
      "en_id": "f-prove-a-readme-claim",
-     "es": "F. Prove a README claim",
-     "es_id": "f-prove-a-readme-claim",
+     "es": "F. Demuestra una afirmación del README",
+     "es_id": "f-demuestra-una-afirmación-del-readme",
      "level": 2,
      "line": 411
     },
     {
      "en": "F2. Trojan Source: hide a character, then find it",
      "en_id": "f2-trojan-source-hide-a-character-then-find-it",
-     "es": "F2. Trojan Source: hide a character, then find it",
-     "es_id": "f2-trojan-source-hide-a-character-then-find-it",
+     "es": "F2. Trojan Source: oculta un carácter y luego encuéntralo",
+     "es_id": "f2-trojan-source-oculta-un-carácter-y-luego-encuéntralo",
      "level": 2,
      "line": 434
     },
@@ -1000,8 +1000,8 @@
     "d-port-the-challenge": "d-adaptación-del-reto",
     "e1-run-and-read-the-evidence-windows-sandbox": "e1-ejecuta-y-lee-la-evidencia-windows-sandbox",
     "e2-change-the-xaml-interpreters-seed": "e2-cambia-la-semilla-del-intérprete-de-xaml",
-    "f-prove-a-readme-claim": "f-prove-a-readme-claim",
-    "f2-trojan-source-hide-a-character-then-find-it": "f2-trojan-source-hide-a-character-then-find-it",
+    "f-prove-a-readme-claim": "f-demuestra-una-afirmación-del-readme",
+    "f2-trojan-source-hide-a-character-then-find-it": "f2-trojan-source-oculta-un-carácter-y-luego-encuéntralo",
     "g-open-challenges": "g-open-challenges"
    }
   },

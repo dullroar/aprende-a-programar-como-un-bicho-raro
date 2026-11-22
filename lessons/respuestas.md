@@ -406,11 +406,11 @@ Entradas con datos fijos: las de LINQ siempre tienen un total de exactamente 40 
 
 Replacing `<sys:Int32>42</sys:Int32>` with `7` in `strict.xaml` and running it in Windows Sandbox still passes (the window is shown and closed by the harness). The sandbox does not print the hours, so read them with the B7 program: seed 42 gives `16 11 11 15 11`; `new Random(7)` gives a different sequence. The same seed always gives the same sequence because `System.Random` is deterministic given its seed.
 
-"The variable" is the `<sys:Random x:Key="rnd">` resource plus the **carrier arrays**: each `ObjectDataProvider` call fills a `char[]`/`byte[]` in place and the next one reads it. The loop is unrolled (four copied passes, per the [README](../src/xaml/README.md)) because XAML has no loop construct: the file needs one copy of the draw-and-store sequence per card.
+"La variable" es el recurso `<sys:Random x:Key="rnd">` más los **arreglos portadores**: cada llamada `ObjectDataProvider` llena un `char[]`/`byte[]` in situ y la siguiente lo lee. El bucle está desenrollado (cuatro pasadas copiadas, según el [README](../src/xaml/README.md)) porque XAML no tiene una construcción de bucle. El archivo necesita una copia de la secuencia de sorteo y almacenamiento por tarjeta.
 
-## F. Prove a README claim
+## F. Demuestra una afirmación del README
 
-Claim, from [`src/haskell/README.md`](../src/haskell/README.md): "`takeWhile` is not enough: `takeWhile (<= 40)` drops the card that crosses the line, and the challenge needs it. `span` hands back both halves."
+Afirmación de [`src/haskell/README.md`](../src/haskell/README.md): "`takeWhile` no basta: `takeWhile (<= 40)` descarta la tarjeta que cruza el límite y el reto la necesita. `span` devuelve ambas mitades."
 
 [`solutions/f-takewhile.hs`](solutions/f-takewhile.hs):
 
@@ -429,9 +429,9 @@ lessons/tools/run-in-sandbox.sh lessons/solutions runghc f-takewhile.hs
 # span: [15,26,38,49]            <- kept
 ```
 
-Negative control: change the limit to `<= 50` and `takeWhile` returns all four totals. **Tag: guaranteed**, since both functions are specified by the Haskell `Prelude`, and your test does not depend on the implementation.
+Control negativo: cambia el límite a `<= 50` y `takeWhile` devuelve los cuatro totales. **Etiqueta: garantizado**, porque ambas funciones están especificadas por el `Prelude` de Haskell y tu prueba no depende de la implementación.
 
-## F2. Trojan Source: hide a character, then find it
+## F2. Trojan Source: oculta un carácter y luego encuéntralo
 
 1. `node greet.js` prints `false`. The first line holds `"admin"` followed by U+200B, a character with no shape, so the string has five visible letters (`a d m i n`) and one invisible character: it is not equal to `"admin"`. The second line compares it with the plain word. A reader who sees `user === "admin"` expects `true`.
 2. The scan prints line 1, `1:const user = "admin";`, and there is one more character between the `n` and the closing quote that your terminal draws as nothing (that is the point). `od -c` shows `a d m i n 342 200 213 "`: UTF-8 for U+200B is the three bytes E2 80 8B, which is `342 200 213` in octal.

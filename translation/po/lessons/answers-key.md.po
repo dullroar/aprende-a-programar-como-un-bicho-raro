@@ -724,27 +724,27 @@ msgstr ""
 #: lessons/answers-key.md:409
 msgctxt "s-2f5306060ac5-0122"
 msgid "\"The variable\" is the ⟦CODE_0001⟧ resource plus the **carrier arrays**: each ⟦CODE_0002⟧ call fills a ⟦CODE_0003⟧/⟦CODE_0004⟧ in place and the next one reads it. The loop is unrolled (four copied passes, per the [README](⟦DEST_0005⟧)) because XAML has no loop construct: the file needs one copy of the draw-and-store sequence per card."
-msgstr ""
+msgstr "\"La variable\" es el recurso ⟦CODE_0001⟧ más los **arreglos portadores**: cada llamada ⟦CODE_0002⟧ llena un ⟦CODE_0003⟧/⟦CODE_0004⟧ in situ y la siguiente lo lee. El bucle está desenrollado (cuatro pasadas copiadas, según el [README](⟦DEST_0005⟧)) porque XAML no tiene una construcción de bucle. El archivo necesita una copia de la secuencia de sorteo y almacenamiento por tarjeta."
 
 #: lessons/answers-key.md:411
 msgctxt "s-0681eea11164-0123"
 msgid "F. Prove a README claim"
-msgstr ""
+msgstr "F. Demuestra una afirmación del README"
 
 #: lessons/answers-key.md:413
 msgctxt "s-8799110befa0-0124"
 msgid "Claim, from [⟦CODE_0001⟧](⟦DEST_0002⟧): \"⟦CODE_0003⟧ is not enough: ⟦CODE_0004⟧ drops the card that crosses the line, and the challenge needs it. ⟦CODE_0005⟧ hands back both halves.\""
-msgstr ""
+msgstr "Afirmación de [⟦CODE_0001⟧](⟦DEST_0002⟧): \"⟦CODE_0003⟧ no basta: ⟦CODE_0004⟧ descarta la tarjeta que cruza el límite y el reto la necesita. ⟦CODE_0005⟧ devuelve ambas mitades.\""
 
 #: lessons/answers-key.md:432
 msgctxt "s-162cbd0c87cf-0125"
 msgid "Negative control: change the limit to ⟦CODE_0001⟧ and ⟦CODE_0002⟧ returns all four totals. **Tag: guaranteed**, since both functions are specified by the Haskell ⟦CODE_0003⟧, and your test does not depend on the implementation."
-msgstr ""
+msgstr "Control negativo: cambia el límite a ⟦CODE_0001⟧ y ⟦CODE_0002⟧ devuelve los cuatro totales. **Etiqueta: garantizado**, porque ambas funciones están especificadas por el ⟦CODE_0003⟧ de Haskell y tu prueba no depende de la implementación."
 
 #: lessons/answers-key.md:434
 msgctxt "s-2aacdef0d7f0-0126"
 msgid "F2. Trojan Source: hide a character, then find it"
-msgstr ""
+msgstr "F2. Trojan Source: oculta un carácter y luego encuéntralo"
 
 #: lessons/answers-key.md:436
 msgctxt "s-abff9db7086c-0127"
