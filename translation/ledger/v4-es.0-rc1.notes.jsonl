@@ -2301,3 +2301,4 @@
 {"segment_id": "s-2cc8b36e2407-0012", "ts": "2026-11-22T15:16:54Z", "findings": ["REGISTER: playful segment H017 has status 'pending' in the humor register"], "playful_note": "Conserva el contraste de un programa que es un archivo."}
 {"segment_id": "s-cc9cfaabc50d-0013", "ts": "2026-11-22T15:16:54Z", "findings": [], "playful_note": "Conserva el anuncio teatral de la sección."}
 {"segment_id": "s-415f5fa29cf9-0015", "ts": "2026-11-22T15:18:58Z", "findings": [], "playful_note": "Conserva la pregunta exasperada de la sección recurrente."}
+{"segment_id": "s-87de35126c28-0020", "ts": "2026-11-22T15:20:46Z", "findings": ["I7: glossary term list must be rendered 'lista'"]}

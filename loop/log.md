@@ -291,3 +291,4 @@
 318 P4-lessons-languages-5 partial accepted and applied tar positions 5 to 9; resume at 10; scoped, fast and anchor checks passed.
 319 P4-lessons-languages-5 partial accepted and applied tar positions 10 to 14; resume at 15; scoped, fast and anchor checks passed.
 320 P4-lessons-languages-5 partial accepted and applied tar positions 15 to 19; resume at 20; scoped, fast and anchor checks passed.
+321 P4-lessons-languages-5 partial accepted and applied tar positions 20 to 24; resume at 25; scoped, fast and anchor checks passed.

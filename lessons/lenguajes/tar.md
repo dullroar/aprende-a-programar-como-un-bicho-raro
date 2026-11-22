@@ -32,14 +32,14 @@ Un archivo tar de doce archivos diminutos. Un despachador de unas 80 líneas. Si
 - **tar es el bucle.** Lee el siguiente miembro e inicia el despachador, hasta que termina el archivo.
 - **Los dados se tiran al escribir el programa.** Un generador de archivos sortea las cinco horas con un generador con semilla y guarda la semilla en el primer miembro. La misma semilla produce los mismos bytes.
 - **La regla de parada son datos.** Cada tarjeta va seguida de un miembro `011.stop-over` que contiene `limit=40`. El despachador solo sabe qué *significa* `stop-over`: detenerse si el total supera el límite.
-- **Reading is not running.** `inspect.sh` lists and decodes every member with `tar -t` and `tar -xO`. `interpret.sh --execute` is the only place where `--to-command` appears.
+- **Leer no es ejecutar.** `inspect.sh` lista y decodifica cada miembro con `tar -t` y `tar -xO`. `interpret.sh --execute` es el único lugar donde aparece `--to-command`.
 
-The [README](../../src/tar-gnu/README.md#es-solo-un-archivo-tar-serialización-deserialización-y-ejecución) has the full table of who does what.
+El [README](../../src/tar-gnu/README.md#es-solo-un-archivo-tar-serialización-deserialización-y-ejecución) contiene la tabla completa de quién hace qué.
 
-### What did we just learn?
+### ¿Qué acabamos de aprender?
 
-- **Serialization, deserialization and execution are three acts.** You can write a program down, parse it and run it. Most formats let you do the first two without the third. Python's `pickle` does not.
-- **The trust boundary is the command line.** A plain extraction runs nothing. Adding `--to-command` is a decision, and it is the operator's decision.
+- **La serialización, la deserialización y la ejecución son tres actos.** Puedes escribir un programa, analizarlo y ejecutarlo. La mayoría de los formatos permiten hacer los dos primeros sin el tercero. `pickle` de Python no lo permite.
+- **La frontera de confianza es la línea de comandos.** Una extracción simple no ejecuta nada. Agregar `--to-command` es una decisión y le corresponde al operador.
 - **Fail closed.** The dispatcher refuses an unknown record, and then it refuses every record after it, because tar will not stop on its own.
 - **Four kinds of "the same".** Same bytes, same structure, same behavior and same live process are four different claims. This entry makes the first three and says plainly that it does not make the fourth.
 - **A format is a contract.** `tarprog/1` is not part of tar. Two programs agree on it.

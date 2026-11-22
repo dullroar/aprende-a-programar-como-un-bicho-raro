@@ -5841,8 +5841,8 @@
     {
      "en": "What did we just learn?",
      "en_id": "what-did-we-just-learn",
-     "es": "What did we just learn?",
-     "es_id": "what-did-we-just-learn",
+     "es": "¿Qué acabamos de aprender?",
+     "es_id": "qué-acabamos-de-aprender",
      "level": 3,
      "line": 39
     },
@@ -5890,7 +5890,7 @@
      "en": "What did we just learn?",
      "en_id": "what-did-we-just-learn-1",
      "es": "What did we just learn?",
-     "es_id": "what-did-we-just-learn-1",
+     "es_id": "what-did-we-just-learn",
      "level": 3,
      "line": 81
     },
@@ -5959,8 +5959,8 @@
     "program-flow-of-tar-gnu-weird": "program-flow-of-tar-gnu-weird",
     "tar": "tar",
     "the-archive-is-the-clock": "the-archive-is-the-clock",
-    "what-did-we-just-learn": "what-did-we-just-learn",
-    "what-did-we-just-learn-1": "what-did-we-just-learn-1",
+    "what-did-we-just-learn": "qué-acabamos-de-aprender",
+    "what-did-we-just-learn-1": "what-did-we-just-learn",
     "what-makes-tar-special": "qué-hace-especial-a-tar"
    }
   },

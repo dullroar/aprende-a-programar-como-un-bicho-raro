@@ -110,27 +110,27 @@ msgstr "**La regla de parada son datos.** Cada tarjeta va seguida de un miembro 
 #: lessons/languages/tar.md:35
 msgctxt "s-87de35126c28-0020"
 msgid "**Reading is not running.** ⟦CODE_0001⟧ lists and decodes every member with ⟦CODE_0002⟧ and ⟦CODE_0003⟧. ⟦CODE_0004⟧ is the only place where ⟦CODE_0005⟧ appears."
-msgstr ""
+msgstr "**Leer no es ejecutar.** ⟦CODE_0001⟧ lista y decodifica cada miembro con ⟦CODE_0002⟧ y ⟦CODE_0003⟧. ⟦CODE_0004⟧ es el único lugar donde aparece ⟦CODE_0005⟧."
 
 #: lessons/languages/tar.md:37
 msgctxt "s-463e70af72f4-0021"
 msgid "The [README](⟦DEST_0001⟧) has the full table of who does what."
-msgstr ""
+msgstr "El [README](⟦DEST_0001⟧) contiene la tabla completa de quién hace qué."
 
 #: lessons/languages/tar.md:39
 msgctxt "s-d2bbf037de84-0022"
 msgid "What did we just learn?"
-msgstr ""
+msgstr "¿Qué acabamos de aprender?"
 
 #: lessons/languages/tar.md:41
 msgctxt "s-820f21123d03-0023"
 msgid "**Serialization, deserialization and execution are three acts.** You can write a program down, parse it and run it. Most formats let you do the first two without the third. Python's ⟦CODE_0001⟧ does not."
-msgstr ""
+msgstr "**La serialización, la deserialización y la ejecución son tres actos.** Puedes escribir un programa, analizarlo y ejecutarlo. La mayoría de los formatos permiten hacer los dos primeros sin el tercero. ⟦CODE_0001⟧ de Python no lo permite."
 
 #: lessons/languages/tar.md:42
 msgctxt "s-698726d1866d-0024"
 msgid "**The trust boundary is the command line.** A plain extraction runs nothing. Adding ⟦CODE_0001⟧ is a decision, and it is the operator's decision."
-msgstr ""
+msgstr "**La frontera de confianza es la línea de comandos.** Una extracción simple no ejecuta nada. Agregar ⟦CODE_0001⟧ es una decisión y le corresponde al operador."
 
 #: lessons/languages/tar.md:43
 msgctxt "s-9f72deb0caeb-0025"
