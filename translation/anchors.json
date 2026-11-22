@@ -4683,8 +4683,8 @@
     {
      "en": "What did we just learn?",
      "en_id": "what-did-we-just-learn",
-     "es": "What did we just learn?",
-     "es_id": "what-did-we-just-learn",
+     "es": "¿Qué acabamos de aprender?",
+     "es_id": "qué-acabamos-de-aprender",
      "level": 3,
      "line": 41
     },
@@ -4775,7 +4775,7 @@
     "the-parse-position-as-a-program-counter": "la-posición-de-análisis-sintáctico-como-contador-de-programa",
     "under-what-circumstances-would-this-terrible-idea-become-reasonable": "under-what-circumstances-would-this-terrible-idea-become-reasonable",
     "weird-next-to-boring": "weird-next-to-boring",
-    "what-did-we-just-learn": "what-did-we-just-learn",
+    "what-did-we-just-learn": "qué-acabamos-de-aprender",
     "what-makes-forth-special": "qué-hace-especial-a-forth"
    }
   },

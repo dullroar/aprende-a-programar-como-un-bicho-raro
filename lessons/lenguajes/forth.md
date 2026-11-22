@@ -32,13 +32,13 @@ El bucle de todo el programa ocupa una línea en el nivel superior ([L101](../..
 
 El intérprete de texto es un bucle que nunca ves. `>in` guarda *hasta dónde ha leído la línea actual*; `>in @` lee ese valor y `>in !` lo establece. Establécelo a un valor anterior y el intérprete vuelve a leer las mismas palabras.
 
-- `0 0` is the starting state (card 0, total 0). `>in @` pushes the position as an **anchor**: the place to jump back to.
-- `step` ([L88](../../src/forth-weird/timecards.fs#L88)) is `>r card r>`: it parks the anchor on the return stack, runs one card, restores it.
-- `rewind?` ([L92-94](../../src/forth-weird/timecards.fs#L92-L94)) ends with `over >in @ - and >in @ + >in !`. A Forth flag is **-1** (all bits set) for true and **0** for false, so it works as a bit mask. `anchor - >in` is the distance back; `and` with the flag keeps the distance if true and zeroes it if false; adding it to `>in` gives either the anchor or "stay here". There is no `if`. The jump is arithmetic.
+- `0 0` es el estado inicial (tarjeta 0, total 0). `>in @` apila la posición como **ancla**: el lugar al que volverá el salto.
+- `step` ([L88](../../src/forth-weird/timecards.fs#L88)) es `>r card r>`: guarda el ancla en la pila de retorno, ejecuta una tarjeta y la restaura.
+- `rewind?` ([L92-94](../../src/forth-weird/timecards.fs#L92-L94)) termina con `over >in @ - and >in @ + >in !`. Una bandera de Forth es **-1** (todos los bits activados) para verdadero y **0** para falso. Así funciona como máscara de bits. `anchor - >in` es la distancia hacia atrás; `and` con la bandera conserva la distancia si es verdadera y la pone en cero si es falsa. Al sumarla a `>in` se obtiene el ancla o "quedarse aquí". No hay `if`. El salto es aritmético.
 
-The memory is the data stack: there is not one `variable` in the file. The program counter is `>in`.
+La memoria es la pila de datos: no hay ni un solo `variable` en el archivo. El contador de programa es `>in`.
 
-### What did we just learn?
+### ¿Qué acabamos de aprender?
 
 - **An interpreter's position can be a program counter.** If you can read and write it, you have goto.
 - **Booleans as bit masks** are a respectable old trick. They explain why Forth's true is -1.

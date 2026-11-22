@@ -80,27 +80,27 @@ msgstr "El intérprete de texto es un bucle que nunca ves. ⟦CODE_0001⟧ guard
 #: lessons/languages/forth.md:35
 msgctxt "s-d4d1aa60f82f-0014"
 msgid "⟦CODE_0001⟧ is the starting state (card 0, total 0). ⟦CODE_0002⟧ pushes the position as an **anchor**: the place to jump back to."
-msgstr ""
+msgstr "⟦CODE_0001⟧ es el estado inicial (tarjeta 0, total 0). ⟦CODE_0002⟧ apila la posición como **ancla**: el lugar al que volverá el salto."
 
 #: lessons/languages/forth.md:36
 msgctxt "s-0e5ad65bd45d-0015"
 msgid "⟦CODE_0001⟧ ([L88](⟦DEST_0002⟧)) is ⟦CODE_0003⟧: it parks the anchor on the return stack, runs one card, restores it."
-msgstr ""
+msgstr "⟦CODE_0001⟧ ([L88](⟦DEST_0002⟧)) es ⟦CODE_0003⟧: guarda el ancla en la pila de retorno, ejecuta una tarjeta y la restaura."
 
 #: lessons/languages/forth.md:37
 msgctxt "s-b6cac124a397-0016"
 msgid "⟦CODE_0001⟧ ([L92-94](⟦DEST_0002⟧)) ends with ⟦CODE_0003⟧. A Forth flag is **-1** (all bits set) for true and **0** for false, so it works as a bit mask. ⟦CODE_0004⟧ is the distance back; ⟦CODE_0005⟧ with the flag keeps the distance if true and zeroes it if false; adding it to ⟦CODE_0006⟧ gives either the anchor or \"stay here\". There is no ⟦CODE_0007⟧. The jump is arithmetic."
-msgstr ""
+msgstr "⟦CODE_0001⟧ ([L92-94](⟦DEST_0002⟧)) termina con ⟦CODE_0003⟧. Una bandera de Forth es **-1** (todos los bits activados) para verdadero y **0** para falso. Así funciona como máscara de bits. ⟦CODE_0004⟧ es la distancia hacia atrás; ⟦CODE_0005⟧ con la bandera conserva la distancia si es verdadera y la pone en cero si es falsa. Al sumarla a ⟦CODE_0006⟧ se obtiene el ancla o \"quedarse aquí\". No hay ⟦CODE_0007⟧. El salto es aritmético."
 
 #: lessons/languages/forth.md:39
 msgctxt "s-2a4f1e87012b-0017"
 msgid "The memory is the data stack: there is not one ⟦CODE_0001⟧ in the file. The program counter is ⟦CODE_0002⟧."
-msgstr ""
+msgstr "La memoria es la pila de datos: no hay ni un solo ⟦CODE_0001⟧ en el archivo. El contador de programa es ⟦CODE_0002⟧."
 
 #: lessons/languages/forth.md:41
 msgctxt "s-d2bbf037de84-0018"
 msgid "What did we just learn?"
-msgstr ""
+msgstr "¿Qué acabamos de aprender?"
 
 #: lessons/languages/forth.md:43
 msgctxt "s-e5690a631575-0019"
