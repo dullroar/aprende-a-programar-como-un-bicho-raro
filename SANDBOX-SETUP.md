@@ -1,42 +1,42 @@
-# Setting up to run entries safely
+# Cómo preparar todo para ejecutar las entradas de forma segura
 
-Every entry here is code that does odd things on purpose, so nothing needs to run on your real machine to be enjoyed or reviewed. There are two throwaway places to run an entry, and this page is the one place that says how to get each one working. The per-entry READMEs only say what is specific to that entry and link back here.
+Cada entrada de aquí es código que hace cosas raras a propósito, así que no necesitas ejecutar nada en tu máquina real para disfrutarla o revisarla. Hay dos lugares desechables donde ejecutar una entrada, y esta página es el único sitio que explica cómo dejar listo cada uno. Los README de cada entrada solo dicen lo que es propio de esa entrada y enlazan de vuelta aquí.
 
-| You want to run... | Use | Needs |
+| Quieres ejecutar... | Usa | Necesita |
 | --- | --- | --- |
-| A Linux entry (APL, Forth, Haskell, regex, Make, CMake, Go, Rust/GTK, Python/Tk, Java/Kotlin Swing, .NET regex...) | **Docker**: `sandbox/container/run-image.sh src/<entry>` | [Docker](#docker) |
-| A Windows or GUI entry (WPF, XAML, LINQ, Python/Tk, Java/Kotlin Swing, Go in a browser) | **Windows Sandbox**: `sandbox\windows\run.ps1 src\<entry>` | [Windows Sandbox](#windows-sandbox), plus the entry's [toolchain](#windows-toolchains) |
-| To judge a pull request from someone you don't know | The same two, driven by the [gate](sandbox/README.md#reviewing-a-pull-request-from-someone-we-dont-know) | Both, or just GitHub Actions |
+| Una entrada de Linux (APL, Forth, Haskell, regex, Make, CMake, Go, Rust/GTK, Python/Tk, Java/Kotlin Swing, regex de .NET...) | **Docker**: `sandbox/container/run-image.sh src/<entry>` | [Docker](#docker) |
+| Una entrada de Windows o de GUI (WPF, XAML, LINQ, Python/Tk, Java/Kotlin Swing, Go en un navegador) | **Windows Sandbox**: `sandbox\windows\run.ps1 src\<entry>` | [Windows Sandbox](#windows-sandbox), más la [cadena de herramientas](#toolchains-de-windows) de la entrada |
+| Para juzgar una demanda (pull) de alguien que no conoces | Los mismos dos, ejecutados por la [puerta de verificación](sandbox/README.md#reviewing-a-pull-request-from-someone-we-dont-know) | Ambos, o solo GitHub Actions |
 
-Neither is a substitute for reading the code. See [what this does and does not prove](sandbox/README.md#what-this-does-and-does-not-prove).
+Ninguno sustituye leer el código. Consulta [qué demuestra y qué no demuestra esto](sandbox/README.md#what-this-does-and-does-not-prove).
 
 ## Docker
 
-Used for the Linux entries. Each runs from its own small image with **no network, a read-only file system, no capabilities, user `nobody`, resource limits and a timeout**, and shows you what it produced.
+Se usa para las entradas de Linux. Cada una se ejecuta desde su propia imagen pequeña con **sin red, un sistema de archivos de solo lectura, sin capacidades, usuario `nobody`, límites de recursos y un tiempo límite**, y te muestra lo que produjo.
 
-### Install
+### Instala
 
-- **Windows 11:** install [Docker Desktop](https://docs.docker.com/desktop/setup/install/windows-install/) with the **WSL 2** backend (the default). Start it and wait for the whale icon to say it is running. The scripts run under **Git Bash** (it comes with [Git for Windows](https://git-scm.com/download/win)) or in a WSL shell.
-- **macOS:** Docker Desktop for Mac.
-- **Linux:** Docker Engine from your distribution or from Docker's repository. The scripts need to be able to run `docker` without `sudo` (add yourself to the `docker` group).
+- **Windows 11:** instala [Docker Desktop](https://docs.docker.com/desktop/setup/install/windows-install/) con el backend **WSL 2** (el predeterminado). Inícialo y espera a que el ícono de la ballena indique que está en ejecución. Los scripts se ejecutan en **Git Bash** (viene con [Git for Windows](https://git-scm.com/download/win)) o en un intérprete de comandos (*shell*) de WSL, el programa donde escribes comandos.
+- **macOS:** Docker Desktop para Mac.
+- **Linux:** Docker Engine de tu distribución o del repositorio de Docker. Los scripts deben poder ejecutar `docker` sin `sudo` (agrégate al grupo `docker`).
 
-### Check it works
+### Comprueba que funciona
 
 ```bash
 docker run --rm hello-world
 ```
 
-### One-time: build the trusted base images
+### Una sola vez: compila las imágenes base de confianza
 
-The first run needs the internet once, to download Ubuntu and its packages. After that, entries run with none.
+La primera ejecución necesita internet una sola vez, para descargar Ubuntu y sus paquetes. Después, las entradas se ejecutan sin conexión.
 
 ```bash
 sandbox/container/build-bases.sh
 ```
 
-This builds the build toolchain (slow the first time: it includes GHC, .NET and GNU APL, about 2.5 GB) and the small runtime images the entries are built on (about 120 to 770 MB each). Run it again with `--force` after pulling changes to `sandbox/`.
+Este paso crea la cadena de herramientas de compilación (es lento la primera vez: incluye GHC, .NET y GNU APL, unos 2.5 GB) y las imágenes de ejecución pequeñas sobre las que se construyen las entradas (de 120 a 770 MB cada una). Ejecútalo de nuevo con `--force` después de traer cambios a `sandbox/`.
 
-### Run an entry
+### Ejecuta una entrada
 
 ```bash
 sandbox/container/run-image.sh src/forth                    # build the entry's image, run it, show the rows
@@ -45,38 +45,38 @@ sandbox/container/run-image.sh --tty src/regex-sed           # give it a termina
 sandbox/container/run-image.sh --online-build --out ./results src/RustChallenge1   # a GUI entry (Rust, Python, Java, Kotlin): screenshot.png lands in ./results
 ```
 
-Entries that must download dependencies while building (the Go entry, which fetches its SQLite module; the Rust entry, which fetches its locked crates; and the Java and Kotlin entries, which fetch Gradle and their Maven dependencies) need `--online-build`. Use that only on entries already merged to `master`: the build then has network, though the run never does.
+Las entradas que deben descargar dependencias durante la compilación (la entrada de Go, que obtiene su módulo de SQLite; la entrada de Rust, que obtiene sus *crates* bloqueados; y las entradas de Java y Kotlin, que obtienen Gradle y sus dependencias de Maven) necesitan `--online-build`. Usa eso solo en entradas que ya están integradas en `master`: entonces la compilación tiene red, pero la ejecución nunca la tiene.
 
-### If something goes wrong
+### Si algo sale mal
 
-| Symptom | Fix |
+| Síntoma | Solución |
 | --- | --- |
-| `failed to connect to the docker API` | Docker Desktop isn't running. Start it and retry. |
-| `missing cc-rt-...:local: run build-bases.sh first` | Run `sandbox/container/build-bases.sh`. |
-| `$'\r': command not found` or `invalid option name` from a shell script | A Windows checkout with CRLF line endings. `run-image.sh` and `run.sh` convert them in a private copy; if you run a script by hand, don't. |
-| Build is very slow or runs out of disk | Docker Desktop's disk image is full: `docker system prune`, or raise the limit in Docker Desktop's settings. |
+| `failed to connect to the docker API` | Docker Desktop no se está ejecutando. Inícialo y vuelve a intentarlo. |
+| `missing cc-rt-...:local: run build-bases.sh first` | Ejecuta `sandbox/container/build-bases.sh`. |
+| `$'\r': command not found` o `invalid option name` desde un script del intérprete de comandos | Una copia de trabajo de Windows con finales de línea CRLF. `run-image.sh` y `run.sh` los convierten en una copia privada; si ejecutas un script a mano, no los convierten. |
+| La compilación es muy lenta o se queda sin disco | La imagen de disco de Docker Desktop está llena: `docker system prune`, o aumenta el límite en la configuración de Docker Desktop. |
 
 ## Windows Sandbox
 
-Used for the Windows and GUI entries. It is a throwaway Hyper-V virtual machine with **networking off, no clipboard, printer, audio or camera, and only an output folder writable**. It starts fresh every time and is wiped when it closes.
+Se usa para las entradas de Windows y de interfaz gráfica. Es una máquina virtual de Hyper-V desechable con **la red desactivada, sin portapapeles, impresora, audio ni cámara, y con una sola carpeta de salida donde se puede escribir**. Empieza limpia cada vez y se borra al cerrarla.
 
-### Install
+### Instala
 
-Needs **Windows 11 Pro, Enterprise or Education** (not Home), with virtualization turned on in the BIOS/UEFI. In an **administrator** PowerShell:
+Necesitas **Windows 11 Pro, Enterprise o Education** (no Home), con la virtualización activada en la BIOS/UEFI. En un PowerShell de **administrador**:
 
 ```powershell
 Enable-WindowsOptionalFeature -Online -FeatureName Containers-DisposableClientVM -All
 ```
 
-Then restart. Windows 11 24H2 and later also ship the `wsb` command, which the scripts prefer because it can stop the VM for you; check with `wsb --help`.
+Luego reinicia. Windows 11 24H2 y versiones posteriores también incluyen el comando `wsb`, que los scripts prefieren porque puede detener la máquina virtual por ti; compruébalo con `wsb --help`.
 
-### Rules of the road
+### Reglas básicas
 
-- **Only one sandbox can run at a time.** Close any open Windows Sandbox window first.
-- Your own sandbox stays out of the way: the script uses its own configuration and does not touch the default one.
-- Windows Sandbox on ARM64 Windows needs ARM64 versions of the toolchains below, since they are mapped in from your machine.
+- **Solo puede ejecutarse un entorno aislado (*sandbox*) a la vez.** Cierra primero cualquier ventana abierta de Windows Sandbox.
+- Tu propio entorno aislado no estorba: el script usa su propia configuración y no toca la predeterminada.
+- Windows Sandbox en Windows ARM64 necesita versiones ARM64 de las herramientas que aparecen abajo, porque se asignan desde tu máquina.
 
-### Run an entry
+### Ejecuta una entrada
 
 ```powershell
 sandbox\windows\run.ps1 src\PythonChallenge1     # builds/starts it, screenshots it, closes it, prints what it saved
@@ -84,26 +84,26 @@ sandbox\windows\run.ps1 src\xaml -RunArgs strict.xaml
 sandbox\windows\run.ps1 src\ModernChallenge1 -Seconds 30 -Keep    # -Keep leaves the log and screenshot in a scratch folder
 ```
 
-The profile (the kind of entry) is chosen from the files in the entry's folder. The result is a log, a screenshot (`screenshot.png`) and whatever the entry saved (its database, the page a Go entry served) in the scratch folder, which is deleted on success unless you pass `-Keep`.
+El perfil (el tipo de entrada) se elige a partir de los archivos de la carpeta de la entrada. El resultado es un registro de ejecución, una captura de pantalla (`screenshot.png`) y lo que haya guardado la entrada (su base de datos, la página que sirvió una entrada de Go) en la carpeta temporal, que se borra si la ejecución termina bien, salvo que pases `-Keep`.
 
-### Windows toolchains
+### Toolchains de Windows
 
-The sandbox has no internet, so it borrows your machine's toolchain, mapped in **read-only**, and restores packages only from your caches. Install what the entry needs, and run the entry once normally so the caches are filled.
+El entorno aislado no tiene internet. Por eso toma prestada la cadena de herramientas de tu máquina (montada en **solo lectura**) y restaura paquetes solo desde tus cachés. Instala lo que necesita la entrada y ejecuta la entrada una vez con normalidad para que se llenen las cachés.
 
-| Entry kind | You need on the host | Notes |
+| Tipo de entrada | Lo que necesitas en el anfitrión | Notas |
 | --- | --- | --- |
-| .NET (C#, XAML, LINQ) | The .NET 10 SDK (`winget install Microsoft.DotNet.SDK.10`) | NuGet packages come from `%USERPROFILE%\.nuget\packages`; build the entry once on the host first. |
-| Python (Tk) | Python 3 for Windows with **tcl/tk and IDLE** (`winget install Python.Python.3.14`) | Not the Microsoft Store stub. Needs nothing else. |
-| Go | Go (`winget install GoLang.Go`) | Run `go mod download` once in the entry's folder so the module cache is filled. **Not yet tested on real hardware.** |
-| Java, Kotlin | A JDK matching the entry (Java 25) and a populated `%USERPROFILE%\.gradle` | Run `.\gradlew.bat runJava` (or `runKotlin`) once on the host. **Not yet tested on real hardware.** |
+| .NET (C#, XAML, LINQ) | El SDK de .NET 10 (`winget install Microsoft.DotNet.SDK.10`) | Los paquetes NuGet vienen de `%USERPROFILE%\.nuget\packages`; compila la entrada una vez en el anfitrión antes de usarla. |
+| Python (Tk) | Python 3 para Windows con **tcl/tk e IDLE** (`winget install Python.Python.3.14`) | No uses el stub de Microsoft Store. No necesita nada más. |
+| Go | Go (`winget install GoLang.Go`) | Ejecuta `go mod download` una vez en la carpeta de la entrada para que la caché de módulos quede llena. **Aún no se ha probado en hardware real.** |
+| Java, Kotlin | Un JDK que corresponda a la entrada (Java 25) y un `%USERPROFILE%\.gradle` con las dependencias ya descargadas | Ejecuta `.\gradlew.bat runJava` (o `runKotlin`) una vez en el anfitrión. **Aún no se ha probado en hardware real.** |
 
-If a toolchain is missing, `run.ps1` stops before starting anything and says which one.
+Si falta una cadena de herramientas, `run.ps1` se detiene antes de iniciar nada e indica cuál falta.
 
-### If something goes wrong
+### Si algo sale mal
 
-| Symptom | Fix |
+| Síntoma | Solución |
 | --- | --- |
-| `Windows Sandbox is not enabled` | Do the [install](#install-1) step and restart. |
-| `A Windows Sandbox is already running` | Close its window, or `wsb list` then `wsb stop --id <id>`. |
-| `network was reachable; refusing to run` | The sandbox started with networking on. Don't override it; check your Sandbox configuration and Windows version. |
-| Timed out, scratch folder kept | Open `inside.log` in the kept scratch folder it names. |
+| `Windows Sandbox is not enabled` | Haz el [paso de instalación](#instala-1) y reinicia. |
+| `A Windows Sandbox is already running` | Cierra su ventana, o ejecuta `wsb list` y luego `wsb stop --id <id>`. |
+| `network was reachable; refusing to run` | El entorno aislado se inició con la red activada. No la anules; revisa tu configuración de Sandbox y tu versión de Windows. |
+| Se agotó el tiempo; se conservó la carpeta temporal | Abre `inside.log` en la carpeta temporal conservada que indica. |

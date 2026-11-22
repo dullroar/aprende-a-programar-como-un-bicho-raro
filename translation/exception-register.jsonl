@@ -504,3 +504,19 @@
 {"id":"EXC-504","segment":"s-31cf039c8754-0068","invariant":"I7","reason":"'pull request' is the GitHub term for a proposed change, not the demand-driven 'pull' of the glossary entry; rendered 'solicitud de cambios (pull request)'.","task":"P4-root-1"}
 {"id":"EXC-505","segment":"s-8ffeaa69724f-0069","invariant":"I7","reason":"'Windows Sandbox' is a product name and stays literal; the generic sandbox is glossed in the first segment that names it.","task":"P4-root-1"}
 {"id":"EXC-506","segment":"s-57fdd24a5268-0072","invariant":"I7","reason":"'pull request' is the GitHub term for a proposed change, not the demand-driven 'pull' of the glossary entry; rendered 'solicitud de cambios (pull request)'.","task":"P4-root-1"}
+{"id":"EXC-507","segment":"s-8a52ab49beed-0020","invariant":"I7","reason":"'build' is a verb here (builds the same demo), not the build-as-compilation noun; 'registro de horas' renders time-reporting, not the card-entry sense of entry.","task":"P4-root-2"}
+{"id":"EXC-508","segment":"s-1a6b6209287d-0032","invariant":"schema","reason":"Only the translator's placeholders_seen list was out of order; translated_text keeps every placeholder exactly once in English order.","task":"P4-root-2"}
+{"id":"EXC-509","segment":"s-d65c7f7c5f86-0050","invariant":"schema","reason":"Only the translator's placeholders_seen list was out of order; translated_text keeps every placeholder exactly once in English order.","task":"P4-root-2"}
+{"id":"EXC-510","segment":"s-10e5147617ea-0004","invariant":"I7","reason":"Windows Sandbox is a Microsoft product name, not the generic sandbox term.","task":"P4-root-2"}
+{"id":"EXC-511","segment":"s-27bb4b350be0-0025","invariant":"I7","reason":"Heading is the product name Windows Sandbox; it must stay unchanged.","task":"P4-root-2"}
+{"id":"EXC-512","segment":"s-3645566f3f29-0033","invariant":"I7","reason":"Windows Sandbox is a product name, not the generic sandbox term.","task":"P4-root-2"}
+{"id":"EXC-513","segment":"s-5318cfe03a21-0035","invariant":"I7","reason":"'registro de ejecución' renders log, not the card-entry sense of entry.","task":"P4-root-2"}
+{"id":"EXC-514","segment":"s-d7a56317c243-0014","invariant":"I7","reason":"'build' is a verb (build the images), not the build-as-compilation noun.","task":"P4-root-2"}
+{"id":"EXC-515","segment":"s-80e726e3e1b1-0039","invariant":"I7","reason":"'build' is a verb (build the entry on the host), not the build-as-compilation noun.","task":"P4-root-2"}
+{"id":"EXC-516","segment":"s-ec9d16f13e8a-0005","invariant":"I25","reason":"'Both, or just GitHub Actions' is a table cell; the comma is in the English and marks the contrast.","task":"P4-root-2"}
+{"id":"EXC-517","segment":"s-8240faddc20c-0047","invariant":"I25","reason":"The comma follows the English 'Close its window, or X then Y'; the second branch is a compound action.","task":"P4-root-2"}
+{"id":"EXC-518","segment":"s-aca0f84b4a45-0008","invariant":"I7","reason":"'reentrancy' is a quoted English spelling example the rule is about, not prose using the glossary term.","task":"P4-root-2"}
+{"id":"EXC-519","segment":"s-781f50319733-0009","invariant":"I7","reason":"The quoted words (callback, backtracking, side effect) are the English spelling examples the rule discusses, not prose uses of the glossary terms.","task":"P4-root-2"}
+{"id":"EXC-520","segment":"s-437f96a8851a-0010","invariant":"I7","reason":"'Program Flow' is the fixed English section name quoted by the rule, not the glossary term program.","task":"P4-root-2"}
+{"id":"EXC-521","segment":"s-ef38488ee4cc-0013","invariant":"I7","reason":"'Type' is a verb (type straight quotes), not the glossary noun type.","task":"P4-root-2"}
+{"id":"EXC-522","segment":"s-140a776001fd-0014","invariant":"I22","reason":"'de 10 a 19' is the literal style example of a prose range, quoted from the English rule, not a statement about hours.","task":"P4-root-2"}

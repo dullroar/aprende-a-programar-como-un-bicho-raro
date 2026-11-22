@@ -1,0 +1,457 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: SANDBOX-SETUP.md:1
+msgctxt "s-37b9a7471b63-0000"
+msgid "Setting up to run entries safely"
+msgstr "Cómo preparar todo para ejecutar las entradas de forma segura"
+
+#: SANDBOX-SETUP.md:3
+msgctxt "s-b08fed29118b-0001"
+msgid ""
+"Every entry here is code that does odd things on purpose, so nothing needs "
+"to run on your real machine to be enjoyed or reviewed. There are two "
+"throwaway places to run an entry, and this page is the one place that says "
+"how to get each one working. The per-entry READMEs only say what is specific"
+" to that entry and link back here."
+msgstr ""
+"Cada entrada de aquí es código que hace cosas raras a propósito, así que no "
+"necesitas ejecutar nada en tu máquina real para disfrutarla o revisarla. Hay"
+" dos lugares desechables donde ejecutar una entrada, y esta página es el "
+"único sitio que explica cómo dejar listo cada uno. Los README de cada "
+"entrada solo dicen lo que es propio de esa entrada y enlazan de vuelta aquí."
+
+#: SANDBOX-SETUP.md:5
+msgctxt "s-7e3e23d1d3c5-0002"
+msgid ""
+"⟦SEP_0001⟧ You want to run... ⟦SEP_0002⟧ Use ⟦SEP_0003⟧ Needs ⟦SEP_0004⟧"
+msgstr ""
+"⟦SEP_0001⟧ Quieres ejecutar... ⟦SEP_0002⟧ Usa ⟦SEP_0003⟧ Necesita ⟦SEP_0004⟧"
+
+#: SANDBOX-SETUP.md:7
+msgctxt "s-73afd12a3092-0003"
+msgid ""
+"⟦SEP_0003⟧ A Linux entry (APL, Forth, Haskell, regex, Make, CMake, Go, "
+"Rust/GTK, Python/Tk, Java/Kotlin Swing, .NET regex...) ⟦SEP_0004⟧ "
+"**Docker**: ⟦CODE_0001⟧ ⟦SEP_0005⟧ [Docker](⟦DEST_0002⟧) ⟦SEP_0006⟧"
+msgstr ""
+"⟦SEP_0003⟧ Una entrada de Linux (APL, Forth, Haskell, regex, Make, CMake, "
+"Go, Rust/GTK, Python/Tk, Java/Kotlin Swing, regex de .NET...) ⟦SEP_0004⟧ "
+"**Docker**: ⟦CODE_0001⟧ ⟦SEP_0005⟧ [Docker](⟦DEST_0002⟧) ⟦SEP_0006⟧"
+
+#: SANDBOX-SETUP.md:8
+msgctxt "s-10e5147617ea-0004"
+msgid ""
+"⟦SEP_0004⟧ A Windows or GUI entry (WPF, XAML, LINQ, Python/Tk, Java/Kotlin "
+"Swing, Go in a browser) ⟦SEP_0005⟧ **Windows Sandbox**: ⟦CODE_0001⟧ "
+"⟦SEP_0006⟧ [Windows Sandbox](⟦DEST_0002⟧), plus the entry's "
+"[toolchain](⟦DEST_0003⟧) ⟦SEP_0007⟧"
+msgstr ""
+"⟦SEP_0004⟧ Una entrada de Windows o de GUI (WPF, XAML, LINQ, Python/Tk, "
+"Java/Kotlin Swing, Go en un navegador) ⟦SEP_0005⟧ **Windows Sandbox**: "
+"⟦CODE_0001⟧ ⟦SEP_0006⟧ [Windows Sandbox](⟦DEST_0002⟧), más la [cadena de "
+"herramientas](⟦DEST_0003⟧) de la entrada ⟦SEP_0007⟧"
+
+#: SANDBOX-SETUP.md:9
+msgctxt "s-ec9d16f13e8a-0005"
+msgid ""
+"⟦SEP_0002⟧ To judge a pull request from someone you don't know ⟦SEP_0003⟧ "
+"The same two, driven by the [gate](⟦DEST_0001⟧) ⟦SEP_0004⟧ Both, or just "
+"GitHub Actions ⟦SEP_0005⟧"
+msgstr ""
+"⟦SEP_0002⟧ Para juzgar una demanda (pull) de alguien que no conoces "
+"⟦SEP_0003⟧ Los mismos dos, ejecutados por la [puerta de "
+"verificación](⟦DEST_0001⟧) ⟦SEP_0004⟧ Ambos, o solo GitHub Actions "
+"⟦SEP_0005⟧"
+
+#: SANDBOX-SETUP.md:11
+msgctxt "s-81468c2432c9-0006"
+msgid ""
+"Neither is a substitute for reading the code. See [what this does and does "
+"not prove](⟦DEST_0001⟧)."
+msgstr ""
+"Ninguno sustituye leer el código. Consulta [qué demuestra y qué no demuestra"
+" esto](⟦DEST_0001⟧)."
+
+#: SANDBOX-SETUP.md:13
+msgctxt "s-e6169e958b37-0007"
+msgid "Docker"
+msgstr "Docker"
+
+#: SANDBOX-SETUP.md:15
+msgctxt "s-4af177b91c96-0008"
+msgid ""
+"Used for the Linux entries. Each runs from its own small image with **no "
+"network, a read-only file system, no capabilities, user ⟦CODE_0001⟧, "
+"resource limits and a timeout**, and shows you what it produced."
+msgstr ""
+"Se usa para las entradas de Linux. Cada una se ejecuta desde su propia "
+"imagen pequeña con **sin red, un sistema de archivos de solo lectura, sin "
+"capacidades, usuario ⟦CODE_0001⟧, límites de recursos y un tiempo límite**, "
+"y te muestra lo que produjo."
+
+#: SANDBOX-SETUP.md:17
+msgctxt "s-569ca49f4aaf-0009"
+msgid "Install"
+msgstr "Instala"
+
+#: SANDBOX-SETUP.md:19
+msgctxt "s-6d46e9e271ec-0010"
+msgid ""
+"**Windows 11:** install [Docker Desktop](⟦DEST_0001⟧) with the **WSL 2** "
+"backend (the default). Start it and wait for the whale icon to say it is "
+"running. The scripts run under **Git Bash** (it comes with [Git for "
+"Windows](⟦DEST_0002⟧)) or in a WSL shell."
+msgstr ""
+"**Windows 11:** instala [Docker Desktop](⟦DEST_0001⟧) con el backend **WSL "
+"2** (el predeterminado). Inícialo y espera a que el ícono de la ballena "
+"indique que está en ejecución. Los scripts se ejecutan en **Git Bash** "
+"(viene con [Git for Windows](⟦DEST_0002⟧)) o en un intérprete de comandos "
+"(*shell*) de WSL, el programa donde escribes comandos."
+
+#: SANDBOX-SETUP.md:20
+msgctxt "s-fba795642938-0011"
+msgid "**macOS:** Docker Desktop for Mac."
+msgstr "**macOS:** Docker Desktop para Mac."
+
+#: SANDBOX-SETUP.md:21
+msgctxt "s-0c2ccac89b6e-0012"
+msgid ""
+"**Linux:** Docker Engine from your distribution or from Docker's repository."
+" The scripts need to be able to run ⟦CODE_0001⟧ without ⟦CODE_0002⟧ (add "
+"yourself to the ⟦CODE_0003⟧ group)."
+msgstr ""
+"**Linux:** Docker Engine de tu distribución o del repositorio de Docker. Los"
+" scripts deben poder ejecutar ⟦CODE_0001⟧ sin ⟦CODE_0002⟧ (agrégate al grupo"
+" ⟦CODE_0003⟧)."
+
+#: SANDBOX-SETUP.md:23
+msgctxt "s-2249f06fd327-0013"
+msgid "Check it works"
+msgstr "Comprueba que funciona"
+
+#: SANDBOX-SETUP.md:29
+msgctxt "s-d7a56317c243-0014"
+msgid "One-time: build the trusted base images"
+msgstr "Una sola vez: compila las imágenes base de confianza"
+
+#: SANDBOX-SETUP.md:31
+msgctxt "s-b719c3d6347b-0015"
+msgid ""
+"The first run needs the internet once, to download Ubuntu and its packages. "
+"After that, entries run with none."
+msgstr ""
+"La primera ejecución necesita internet una sola vez, para descargar Ubuntu y"
+" sus paquetes. Después, las entradas se ejecutan sin conexión."
+
+#: SANDBOX-SETUP.md:37
+msgctxt "s-e105a6bc863c-0016"
+msgid ""
+"This builds the build toolchain (slow the first time: it includes GHC, .NET "
+"and GNU APL, about 2.5 GB) and the small runtime images the entries are "
+"built on (about 120 to 770 MB each). Run it again with ⟦CODE_0001⟧ after "
+"pulling changes to ⟦CODE_0002⟧."
+msgstr ""
+"Este paso crea la cadena de herramientas de compilación (es lento la primera"
+" vez: incluye GHC, .NET y GNU APL, unos 2.5 GB) y las imágenes de ejecución "
+"pequeñas sobre las que se construyen las entradas (de 120 a 770 MB cada "
+"una). Ejecútalo de nuevo con ⟦CODE_0001⟧ después de traer cambios a "
+"⟦CODE_0002⟧."
+
+#: SANDBOX-SETUP.md:39
+msgctxt "s-456a0dc3d894-0017"
+msgid "Run an entry"
+msgstr "Ejecuta una entrada"
+
+#: SANDBOX-SETUP.md:48
+msgctxt "s-91cc1fa239ab-0018"
+msgid ""
+"Entries that must download dependencies while building (the Go entry, which "
+"fetches its SQLite module; the Rust entry, which fetches its locked crates; "
+"and the Java and Kotlin entries, which fetch Gradle and their Maven "
+"dependencies) need ⟦CODE_0001⟧. Use that only on entries already merged to "
+"⟦CODE_0002⟧: the build then has network, though the run never does."
+msgstr ""
+"Las entradas que deben descargar dependencias durante la compilación (la "
+"entrada de Go, que obtiene su módulo de SQLite; la entrada de Rust, que "
+"obtiene sus *crates* bloqueados; y las entradas de Java y Kotlin, que "
+"obtienen Gradle y sus dependencias de Maven) necesitan ⟦CODE_0001⟧. Usa eso "
+"solo en entradas que ya están integradas en ⟦CODE_0002⟧: entonces la "
+"compilación tiene red, pero la ejecución nunca la tiene."
+
+#: SANDBOX-SETUP.md:50
+msgctxt "s-1a766f8f96ef-0019"
+msgid "If something goes wrong"
+msgstr "Si algo sale mal"
+
+#: SANDBOX-SETUP.md:52
+msgctxt "s-8f4e36b627f9-0020"
+msgid "⟦SEP_0001⟧ Symptom ⟦SEP_0002⟧ Fix ⟦SEP_0003⟧"
+msgstr "⟦SEP_0001⟧ Síntoma ⟦SEP_0002⟧ Solución ⟦SEP_0003⟧"
+
+#: SANDBOX-SETUP.md:54
+msgctxt "s-b14ce3ff87c2-0021"
+msgid ""
+"⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ Docker Desktop isn't running. Start it and"
+" retry. ⟦SEP_0004⟧"
+msgstr ""
+"⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ Docker Desktop no se está ejecutando. "
+"Inícialo y vuelve a intentarlo. ⟦SEP_0004⟧"
+
+#: SANDBOX-SETUP.md:55
+msgctxt "s-9f53b5a5152f-0022"
+msgid "⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ Run ⟦CODE_0002⟧. ⟦SEP_0005⟧"
+msgstr "⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ Ejecuta ⟦CODE_0002⟧. ⟦SEP_0005⟧"
+
+#: SANDBOX-SETUP.md:56
+msgctxt "s-6bbe97e097bb-0023"
+msgid ""
+"⟦SEP_0005⟧ ⟦CODE_0001⟧ or ⟦CODE_0002⟧ from a shell script ⟦SEP_0006⟧ A "
+"Windows checkout with CRLF line endings. ⟦CODE_0003⟧ and ⟦CODE_0004⟧ convert"
+" them in a private copy; if you run a script by hand, don't. ⟦SEP_0007⟧"
+msgstr ""
+"⟦SEP_0005⟧ ⟦CODE_0001⟧ o ⟦CODE_0002⟧ desde un script del intérprete de "
+"comandos ⟦SEP_0006⟧ Una copia de trabajo de Windows con finales de línea "
+"CRLF. ⟦CODE_0003⟧ y ⟦CODE_0004⟧ los convierten en una copia privada; si "
+"ejecutas un script a mano, no los convierten. ⟦SEP_0007⟧"
+
+#: SANDBOX-SETUP.md:57
+msgctxt "s-854d91fc7866-0024"
+msgid ""
+"⟦SEP_0002⟧ Build is very slow or runs out of disk ⟦SEP_0003⟧ Docker "
+"Desktop's disk image is full: ⟦CODE_0001⟧, or raise the limit in Docker "
+"Desktop's settings. ⟦SEP_0004⟧"
+msgstr ""
+"⟦SEP_0002⟧ La compilación es muy lenta o se queda sin disco ⟦SEP_0003⟧ La "
+"imagen de disco de Docker Desktop está llena: ⟦CODE_0001⟧, o aumenta el "
+"límite en la configuración de Docker Desktop. ⟦SEP_0004⟧"
+
+#: SANDBOX-SETUP.md:59
+msgctxt "s-27bb4b350be0-0025"
+msgid "Windows Sandbox"
+msgstr "Windows Sandbox"
+
+#: SANDBOX-SETUP.md:61
+msgctxt "s-73327b6840da-0026"
+msgid ""
+"Used for the Windows and GUI entries. It is a throwaway Hyper-V virtual "
+"machine with **networking off, no clipboard, printer, audio or camera, and "
+"only an output folder writable**. It starts fresh every time and is wiped "
+"when it closes."
+msgstr ""
+"Se usa para las entradas de Windows y de interfaz gráfica. Es una máquina "
+"virtual de Hyper-V desechable con **la red desactivada, sin portapapeles, "
+"impresora, audio ni cámara, y con una sola carpeta de salida donde se puede "
+"escribir**. Empieza limpia cada vez y se borra al cerrarla."
+
+#: SANDBOX-SETUP.md:63
+msgctxt "s-569ca49f4aaf-0027"
+msgid "Install"
+msgstr "Instala"
+
+#: SANDBOX-SETUP.md:65
+msgctxt "s-15b33f17f6a8-0028"
+msgid ""
+"Needs **Windows 11 Pro, Enterprise or Education** (not Home), with "
+"virtualization turned on in the BIOS/UEFI. In an **administrator** "
+"PowerShell:"
+msgstr ""
+"Necesitas **Windows 11 Pro, Enterprise o Education** (no Home), con la "
+"virtualización activada en la BIOS/UEFI. En un PowerShell de "
+"**administrador**:"
+
+#: SANDBOX-SETUP.md:71
+msgctxt "s-b7abd68eb12b-0029"
+msgid ""
+"Then restart. Windows 11 24H2 and later also ship the ⟦CODE_0001⟧ command, "
+"which the scripts prefer because it can stop the VM for you; check with "
+"⟦CODE_0002⟧."
+msgstr ""
+"Luego reinicia. Windows 11 24H2 y versiones posteriores también incluyen el "
+"comando ⟦CODE_0001⟧, que los scripts prefieren porque puede detener la "
+"máquina virtual por ti; compruébalo con ⟦CODE_0002⟧."
+
+#: SANDBOX-SETUP.md:73
+msgctxt "s-eb78c1a033c6-0030"
+msgid "Rules of the road"
+msgstr "Reglas básicas"
+
+#: SANDBOX-SETUP.md:75
+msgctxt "s-e00daa8fdf14-0031"
+msgid ""
+"**Only one sandbox can run at a time.** Close any open Windows Sandbox "
+"window first."
+msgstr ""
+"**Solo puede ejecutarse un entorno aislado (*sandbox*) a la vez.** Cierra "
+"primero cualquier ventana abierta de Windows Sandbox."
+
+#: SANDBOX-SETUP.md:76
+msgctxt "s-8a700945ac36-0032"
+msgid ""
+"Your own sandbox stays out of the way: the script uses its own configuration"
+" and does not touch the default one."
+msgstr ""
+"Tu propio entorno aislado no estorba: el script usa su propia configuración "
+"y no toca la predeterminada."
+
+#: SANDBOX-SETUP.md:77
+msgctxt "s-3645566f3f29-0033"
+msgid ""
+"Windows Sandbox on ARM64 Windows needs ARM64 versions of the toolchains "
+"below, since they are mapped in from your machine."
+msgstr ""
+"Windows Sandbox en Windows ARM64 necesita versiones ARM64 de las "
+"herramientas que aparecen abajo, porque se asignan desde tu máquina."
+
+#: SANDBOX-SETUP.md:79
+msgctxt "s-456a0dc3d894-0034"
+msgid "Run an entry"
+msgstr "Ejecuta una entrada"
+
+#: SANDBOX-SETUP.md:87
+msgctxt "s-5318cfe03a21-0035"
+msgid ""
+"The profile (the kind of entry) is chosen from the files in the entry's "
+"folder. The result is a log, a screenshot (⟦CODE_0001⟧) and whatever the "
+"entry saved (its database, the page a Go entry served) in the scratch "
+"folder, which is deleted on success unless you pass ⟦CODE_0002⟧."
+msgstr ""
+"El perfil (el tipo de entrada) se elige a partir de los archivos de la "
+"carpeta de la entrada. El resultado es un registro de ejecución, una captura"
+" de pantalla (⟦CODE_0001⟧) y lo que haya guardado la entrada (su base de "
+"datos, la página que sirvió una entrada de Go) en la carpeta temporal, que "
+"se borra si la ejecución termina bien, salvo que pases ⟦CODE_0002⟧."
+
+#: SANDBOX-SETUP.md:89
+msgctxt "s-d1da187e085a-0036"
+msgid "Windows toolchains"
+msgstr "Toolchains de Windows"
+
+#: SANDBOX-SETUP.md:91
+msgctxt "s-3f152c994b43-0037"
+msgid ""
+"The sandbox has no internet, so it borrows your machine's toolchain, mapped "
+"in **read-only**, and restores packages only from your caches. Install what "
+"the entry needs, and run the entry once normally so the caches are filled."
+msgstr ""
+"El entorno aislado no tiene internet. Por eso toma prestada la cadena de "
+"herramientas de tu máquina (montada en **solo lectura**) y restaura paquetes"
+" solo desde tus cachés. Instala lo que necesita la entrada y ejecuta la "
+"entrada una vez con normalidad para que se llenen las cachés."
+
+#: SANDBOX-SETUP.md:93
+msgctxt "s-be69c4fb9b92-0038"
+msgid ""
+"⟦SEP_0001⟧ Entry kind ⟦SEP_0002⟧ You need on the host ⟦SEP_0003⟧ Notes "
+"⟦SEP_0004⟧"
+msgstr ""
+"⟦SEP_0001⟧ Tipo de entrada ⟦SEP_0002⟧ Lo que necesitas en el anfitrión "
+"⟦SEP_0003⟧ Notas ⟦SEP_0004⟧"
+
+#: SANDBOX-SETUP.md:95
+msgctxt "s-80e726e3e1b1-0039"
+msgid ""
+"⟦SEP_0003⟧ .NET (C#, XAML, LINQ) ⟦SEP_0004⟧ The .NET 10 SDK (⟦CODE_0001⟧) "
+"⟦SEP_0005⟧ NuGet packages come from ⟦CODE_0002⟧; build the entry once on the"
+" host first. ⟦SEP_0006⟧"
+msgstr ""
+"⟦SEP_0003⟧ .NET (C#, XAML, LINQ) ⟦SEP_0004⟧ El SDK de .NET 10 (⟦CODE_0001⟧) "
+"⟦SEP_0005⟧ Los paquetes NuGet vienen de ⟦CODE_0002⟧; compila la entrada una "
+"vez en el anfitrión antes de usarla. ⟦SEP_0006⟧"
+
+#: SANDBOX-SETUP.md:96
+msgctxt "s-dd1ab52bb26c-0040"
+msgid ""
+"⟦SEP_0002⟧ Python (Tk) ⟦SEP_0003⟧ Python 3 for Windows with **tcl/tk and "
+"IDLE** (⟦CODE_0001⟧) ⟦SEP_0004⟧ Not the Microsoft Store stub. Needs nothing "
+"else. ⟦SEP_0005⟧"
+msgstr ""
+"⟦SEP_0002⟧ Python (Tk) ⟦SEP_0003⟧ Python 3 para Windows con **tcl/tk e "
+"IDLE** (⟦CODE_0001⟧) ⟦SEP_0004⟧ No uses el stub de Microsoft Store. No "
+"necesita nada más. ⟦SEP_0005⟧"
+
+#: SANDBOX-SETUP.md:97
+msgctxt "s-ab174ecefc98-0041"
+msgid ""
+"⟦SEP_0003⟧ Go ⟦SEP_0004⟧ Go (⟦CODE_0001⟧) ⟦SEP_0005⟧ Run ⟦CODE_0002⟧ once in"
+" the entry's folder so the module cache is filled. **Not yet tested on real "
+"hardware.** ⟦SEP_0006⟧"
+msgstr ""
+"⟦SEP_0003⟧ Go ⟦SEP_0004⟧ Go (⟦CODE_0001⟧) ⟦SEP_0005⟧ Ejecuta ⟦CODE_0002⟧ una"
+" vez en la carpeta de la entrada para que la caché de módulos quede llena. "
+"**Aún no se ha probado en hardware real.** ⟦SEP_0006⟧"
+
+#: SANDBOX-SETUP.md:98
+msgctxt "s-401148a07538-0042"
+msgid ""
+"⟦SEP_0004⟧ Java, Kotlin ⟦SEP_0005⟧ A JDK matching the entry (Java 25) and a "
+"populated ⟦CODE_0001⟧ ⟦SEP_0006⟧ Run ⟦CODE_0002⟧ (or ⟦CODE_0003⟧) once on "
+"the host. **Not yet tested on real hardware.** ⟦SEP_0007⟧"
+msgstr ""
+"⟦SEP_0004⟧ Java, Kotlin ⟦SEP_0005⟧ Un JDK que corresponda a la entrada (Java"
+" 25) y un ⟦CODE_0001⟧ con las dependencias ya descargadas ⟦SEP_0006⟧ Ejecuta"
+" ⟦CODE_0002⟧ (o ⟦CODE_0003⟧) una vez en el anfitrión. **Aún no se ha probado"
+" en hardware real.** ⟦SEP_0007⟧"
+
+#: SANDBOX-SETUP.md:100
+msgctxt "s-53b7099c7f05-0043"
+msgid ""
+"If a toolchain is missing, ⟦CODE_0001⟧ stops before starting anything and "
+"says which one."
+msgstr ""
+"Si falta una cadena de herramientas, ⟦CODE_0001⟧ se detiene antes de iniciar"
+" nada e indica cuál falta."
+
+#: SANDBOX-SETUP.md:102
+msgctxt "s-1a766f8f96ef-0044"
+msgid "If something goes wrong"
+msgstr "Si algo sale mal"
+
+#: SANDBOX-SETUP.md:104
+msgctxt "s-8f4e36b627f9-0045"
+msgid "⟦SEP_0001⟧ Symptom ⟦SEP_0002⟧ Fix ⟦SEP_0003⟧"
+msgstr "⟦SEP_0001⟧ Síntoma ⟦SEP_0002⟧ Solución ⟦SEP_0003⟧"
+
+#: SANDBOX-SETUP.md:106
+msgctxt "s-8aa7c907456b-0046"
+msgid ""
+"⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ Do the [install](⟦DEST_0002⟧) step and "
+"restart. ⟦SEP_0005⟧"
+msgstr ""
+"⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ Haz el [paso de instalación](⟦DEST_0002⟧) "
+"y reinicia. ⟦SEP_0005⟧"
+
+#: SANDBOX-SETUP.md:107
+msgctxt "s-8240faddc20c-0047"
+msgid ""
+"⟦SEP_0004⟧ ⟦CODE_0001⟧ ⟦SEP_0005⟧ Close its window, or ⟦CODE_0002⟧ then "
+"⟦CODE_0003⟧. ⟦SEP_0006⟧"
+msgstr ""
+"⟦SEP_0004⟧ ⟦CODE_0001⟧ ⟦SEP_0005⟧ Cierra su ventana, o ejecuta ⟦CODE_0002⟧ y"
+" luego ⟦CODE_0003⟧. ⟦SEP_0006⟧"
+
+#: SANDBOX-SETUP.md:108
+msgctxt "s-f137048637bd-0048"
+msgid ""
+"⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ The sandbox started with networking on. "
+"Don't override it; check your Sandbox configuration and Windows version. "
+"⟦SEP_0004⟧"
+msgstr ""
+"⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ El entorno aislado se inició con la red "
+"activada. No la anules; revisa tu configuración de Sandbox y tu versión de "
+"Windows. ⟦SEP_0004⟧"
+
+#: SANDBOX-SETUP.md:109
+msgctxt "s-6b192cc3acdd-0049"
+msgid ""
+"⟦SEP_0002⟧ Timed out, scratch folder kept ⟦SEP_0003⟧ Open ⟦CODE_0001⟧ in the"
+" kept scratch folder it names. ⟦SEP_0004⟧"
+msgstr ""
+"⟦SEP_0002⟧ Se agotó el tiempo; se conservó la carpeta temporal ⟦SEP_0003⟧ "
+"Abre ⟦CODE_0001⟧ en la carpeta temporal conservada que indica. ⟦SEP_0004⟧"

@@ -5,41 +5,41 @@
     {
      "en": "Come Make Something Beautifully Wrong",
      "en_id": "come-make-something-beautifully-wrong",
-     "es": "Come Make Something Beautifully Wrong",
-     "es_id": "come-make-something-beautifully-wrong",
+     "es": "Ven a crear algo bellamente erróneo",
+     "es_id": "ven-a-crear-algo-bellamente-erróneo",
      "level": 1,
      "line": 1
     },
     {
      "en": "The shared challenge",
      "en_id": "the-shared-challenge",
-     "es": "The shared challenge",
-     "es_id": "the-shared-challenge",
+     "es": "El reto compartido",
+     "es_id": "el-reto-compartido",
      "level": 2,
      "line": 7
     },
     {
      "en": "Do / don't",
      "en_id": "do--dont",
-     "es": "Do / don't",
-     "es_id": "do--dont",
+     "es": "Qué hacer y qué no",
+     "es_id": "qué-hacer-y-qué-no",
      "level": 2,
      "line": 18
     },
     {
      "en": "Extra credit",
      "en_id": "extra-credit",
-     "es": "Extra credit",
-     "es_id": "extra-credit",
+     "es": "Puntos extra",
+     "es_id": "puntos-extra",
      "level": 2,
      "line": 24
     }
    ],
    "map": {
-    "come-make-something-beautifully-wrong": "come-make-something-beautifully-wrong",
-    "do--dont": "do--dont",
-    "extra-credit": "extra-credit",
-    "the-shared-challenge": "the-shared-challenge"
+    "come-make-something-beautifully-wrong": "ven-a-crear-algo-bellamente-erróneo",
+    "do--dont": "qué-hacer-y-qué-no",
+    "extra-credit": "puntos-extra",
+    "the-shared-challenge": "el-reto-compartido"
    }
   },
   "CONTRIBUTING.md": {
@@ -47,113 +47,113 @@
     {
      "en": "Sending in an entry",
      "en_id": "sending-in-an-entry",
-     "es": "Sending in an entry",
-     "es_id": "sending-in-an-entry",
+     "es": "Cómo enviar una entrada",
+     "es_id": "cómo-enviar-una-entrada",
      "level": 1,
      "line": 1
     },
     {
      "en": "What a pull request may contain",
      "en_id": "what-a-pull-request-may-contain",
-     "es": "What a pull request may contain",
-     "es_id": "what-a-pull-request-may-contain",
+     "es": "Qué puede contener una solicitud de cambios (*pull request*)",
+     "es_id": "qué-puede-contener-una-solicitud-de-cambios-pull-request",
      "level": 2,
      "line": 5
     },
     {
      "en": "How your entry plugs into the book",
      "en_id": "how-your-entry-plugs-into-the-book",
-     "es": "How your entry plugs into the book",
-     "es_id": "how-your-entry-plugs-into-the-book",
+     "es": "Cómo encaja tu entrada en el libro",
+     "es_id": "cómo-encaja-tu-entrada-en-el-libro",
      "level": 2,
      "line": 19
     },
     {
      "en": "1. The frontmatter block",
      "en_id": "1-the-frontmatter-block",
-     "es": "1. The frontmatter block",
-     "es_id": "1-the-frontmatter-block",
+     "es": "1. El bloque de metadatos",
+     "es_id": "1-el-bloque-de-metadatos",
      "level": 3,
      "line": 25
     },
     {
      "en": "2. Tags and languages: the book's vocabularies",
      "en_id": "2-tags-and-languages-the-books-vocabularies",
-     "es": "2. Tags and languages: the book's vocabularies",
-     "es_id": "2-tags-and-languages-the-books-vocabularies",
+     "es": "2. Etiquetas y lenguajes: los vocabularios del libro",
+     "es_id": "2-etiquetas-y-lenguajes-los-vocabularios-del-libro",
      "level": 3,
      "line": 61
     },
     {
      "en": "3. The section headings every README shares",
      "en_id": "3-the-section-headings-every-readme-shares",
-     "es": "3. The section headings every README shares",
-     "es_id": "3-the-section-headings-every-readme-shares",
+     "es": "3. Los encabezados de sección que todos los README comparten",
+     "es_id": "3-los-encabezados-de-sección-que-todos-los-readme-comparten",
      "level": 3,
      "line": 72
     },
     {
      "en": "Program Flow: a picture of the machine",
      "en_id": "program-flow-a-picture-of-the-machine",
-     "es": "Program Flow: a picture of the machine",
-     "es_id": "program-flow-a-picture-of-the-machine",
+     "es": "Flujo del programa: una imagen de la máquina",
+     "es_id": "flujo-del-programa-una-imagen-de-la-máquina",
      "level": 3,
      "line": 90
     },
     {
      "en": "4. Voice and tone",
      "en_id": "4-voice-and-tone",
-     "es": "4. Voice and tone",
-     "es_id": "4-voice-and-tone",
+     "es": "4. Voz y tono",
+     "es_id": "4-voz-y-tono",
      "level": 3,
      "line": 120
     },
     {
      "en": "5. Check it before you send it",
      "en_id": "5-check-it-before-you-send-it",
-     "es": "5. Check it before you send it",
-     "es_id": "5-check-it-before-you-send-it",
+     "es": "5. Compruébalo antes de enviarlo",
+     "es_id": "5-compruébalo-antes-de-enviarlo",
      "level": 3,
      "line": 124
     },
     {
      "en": "Your language's toolchain",
      "en_id": "your-languages-toolchain",
-     "es": "Your language's toolchain",
-     "es_id": "your-languages-toolchain",
+     "es": "Las herramientas de tu lenguaje",
+     "es_id": "las-herramientas-de-tu-lenguaje",
      "level": 2,
      "line": 128
     },
     {
      "en": "Before you open the pull request",
      "en_id": "before-you-open-the-pull-request",
-     "es": "Before you open the pull request",
-     "es_id": "before-you-open-the-pull-request",
+     "es": "Antes de abrir la solicitud de cambios",
+     "es_id": "antes-de-abrir-la-solicitud-de-cambios",
      "level": 2,
      "line": 132
     },
     {
      "en": "What happens next",
      "en_id": "what-happens-next",
-     "es": "What happens next",
-     "es_id": "what-happens-next",
+     "es": "Qué pasa después",
+     "es_id": "qué-pasa-después",
      "level": 2,
      "line": 144
     }
    ],
    "map": {
-    "1-the-frontmatter-block": "1-the-frontmatter-block",
-    "2-tags-and-languages-the-books-vocabularies": "2-tags-and-languages-the-books-vocabularies",
-    "3-the-section-headings-every-readme-shares": "3-the-section-headings-every-readme-shares",
-    "4-voice-and-tone": "4-voice-and-tone",
-    "5-check-it-before-you-send-it": "5-check-it-before-you-send-it",
-    "before-you-open-the-pull-request": "before-you-open-the-pull-request",
-    "how-your-entry-plugs-into-the-book": "how-your-entry-plugs-into-the-book",
-    "program-flow-a-picture-of-the-machine": "program-flow-a-picture-of-the-machine",
-    "sending-in-an-entry": "sending-in-an-entry",
-    "what-a-pull-request-may-contain": "what-a-pull-request-may-contain",
-    "what-happens-next": "what-happens-next",
-    "your-languages-toolchain": "your-languages-toolchain"
+    "1-the-frontmatter-block": "1-el-bloque-de-metadatos",
+    "2-tags-and-languages-the-books-vocabularies": "2-etiquetas-y-lenguajes-los-vocabularios-del-libro",
+    "3-the-section-headings-every-readme-shares": "3-los-encabezados-de-sección-que-todos-los-readme-comparten",
+    "4-voice-and-tone": "4-voz-y-tono",
+    "5-check-it-before-you-send-it": "5-compruébalo-antes-de-enviarlo",
+    "before-you-open-the-pull-request": "antes-de-abrir-la-solicitud-de-cambios",
+    "how-your-entry-plugs-into-the-book": "cómo-encaja-tu-entrada-en-el-libro",
+    "program-flow-a-picture-of-the-machine": "flujo-del-programa-una-imagen-de-la-máquina",
+    "sending-in-an-entry": "cómo-enviar-una-entrada",
+    "what-a-pull-request-may-contain": "qué-puede-contener-una-solicitud-de-cambios-pull-request",
+    "what-happens-next": "qué-pasa-después",
+    "your-languages-toolchain": "las-herramientas-de-tu-lenguaje"
    }
   },
   "README.md": {
@@ -161,77 +161,77 @@
     {
      "en": "Learn Programming the Weird Way!",
      "en_id": "learn-programming-the-weird-way",
-     "es": "Learn Programming the Weird Way!",
-     "es_id": "learn-programming-the-weird-way",
+     "es": "¡Aprende a programar como un bicho raro!",
+     "es_id": "aprende-a-programar-como-un-bicho-raro",
      "level": 1,
      "line": 1
     },
     {
      "en": "Why this exists",
      "en_id": "why-this-exists",
-     "es": "Why this exists",
-     "es_id": "why-this-exists",
+     "es": "Por qué existe",
+     "es_id": "por-qué-existe",
      "level": 2,
      "line": 10
     },
     {
      "en": "Psst, hey kid",
      "en_id": "psst-hey-kid",
-     "es": "Psst, hey kid",
-     "es_id": "psst-hey-kid",
+     "es": "Psst, oye, chico",
+     "es_id": "psst-oye-chico",
      "level": 2,
      "line": 20
     },
     {
      "en": "Want to learn from it?",
      "en_id": "want-to-learn-from-it",
-     "es": "Want to learn from it?",
-     "es_id": "want-to-learn-from-it",
+     "es": "¿Quieres aprender de él?",
+     "es_id": "quieres-aprender-de-él",
      "level": 2,
      "line": 28
     },
     {
      "en": "Ready to play?",
      "en_id": "ready-to-play",
-     "es": "Ready to play?",
-     "es_id": "ready-to-play",
+     "es": "¿Listo para jugar?",
+     "es_id": "listo-para-jugar",
      "level": 2,
      "line": 34
     },
     {
      "en": "The results so far",
      "en_id": "the-results-so-far",
-     "es": "The results so far",
-     "es_id": "the-results-so-far",
+     "es": "Los resultados hasta ahora",
+     "es_id": "los-resultados-hasta-ahora",
      "level": 2,
      "line": 38
     },
     {
      "en": "Disclaimer",
      "en_id": "disclaimer",
-     "es": "Disclaimer",
-     "es_id": "disclaimer",
+     "es": "Aviso legal",
+     "es_id": "aviso-legal",
      "level": 2,
      "line": 46
     },
     {
      "en": "Repository layout",
      "en_id": "repository-layout",
-     "es": "Repository layout",
-     "es_id": "repository-layout",
+     "es": "Estructura del repositorio",
+     "es_id": "estructura-del-repositorio",
      "level": 2,
      "line": 95
     }
    ],
    "map": {
-    "disclaimer": "disclaimer",
-    "learn-programming-the-weird-way": "learn-programming-the-weird-way",
-    "psst-hey-kid": "psst-hey-kid",
-    "ready-to-play": "ready-to-play",
-    "repository-layout": "repository-layout",
-    "the-results-so-far": "the-results-so-far",
-    "want-to-learn-from-it": "want-to-learn-from-it",
-    "why-this-exists": "why-this-exists"
+    "disclaimer": "aviso-legal",
+    "learn-programming-the-weird-way": "aprende-a-programar-como-un-bicho-raro",
+    "psst-hey-kid": "psst-oye-chico",
+    "ready-to-play": "listo-para-jugar",
+    "repository-layout": "estructura-del-repositorio",
+    "the-results-so-far": "los-resultados-hasta-ahora",
+    "want-to-learn-from-it": "quieres-aprender-de-él",
+    "why-this-exists": "por-qué-existe"
    }
   },
   "SANDBOX-SETUP.md": {
@@ -239,8 +239,8 @@
     {
      "en": "Setting up to run entries safely",
      "en_id": "setting-up-to-run-entries-safely",
-     "es": "Setting up to run entries safely",
-     "es_id": "setting-up-to-run-entries-safely",
+     "es": "Cómo preparar todo para ejecutar las entradas de forma segura",
+     "es_id": "cómo-preparar-todo-para-ejecutar-las-entradas-de-forma-segura",
      "level": 1,
      "line": 1
     },
@@ -255,40 +255,40 @@
     {
      "en": "Install",
      "en_id": "install",
-     "es": "Install",
-     "es_id": "install",
+     "es": "Instala",
+     "es_id": "instala",
      "level": 3,
      "line": 17
     },
     {
      "en": "Check it works",
      "en_id": "check-it-works",
-     "es": "Check it works",
-     "es_id": "check-it-works",
+     "es": "Comprueba que funciona",
+     "es_id": "comprueba-que-funciona",
      "level": 3,
      "line": 23
     },
     {
      "en": "One-time: build the trusted base images",
      "en_id": "one-time-build-the-trusted-base-images",
-     "es": "One-time: build the trusted base images",
-     "es_id": "one-time-build-the-trusted-base-images",
+     "es": "Una sola vez: compila las imágenes base de confianza",
+     "es_id": "una-sola-vez-compila-las-imágenes-base-de-confianza",
      "level": 3,
      "line": 29
     },
     {
      "en": "Run an entry",
      "en_id": "run-an-entry",
-     "es": "Run an entry",
-     "es_id": "run-an-entry",
+     "es": "Ejecuta una entrada",
+     "es_id": "ejecuta-una-entrada",
      "level": 3,
      "line": 39
     },
     {
      "en": "If something goes wrong",
      "en_id": "if-something-goes-wrong",
-     "es": "If something goes wrong",
-     "es_id": "if-something-goes-wrong",
+     "es": "Si algo sale mal",
+     "es_id": "si-algo-sale-mal",
      "level": 3,
      "line": 50
     },
@@ -303,58 +303,58 @@
     {
      "en": "Install",
      "en_id": "install-1",
-     "es": "Install",
-     "es_id": "install-1",
+     "es": "Instala",
+     "es_id": "instala-1",
      "level": 3,
      "line": 63
     },
     {
      "en": "Rules of the road",
      "en_id": "rules-of-the-road",
-     "es": "Rules of the road",
-     "es_id": "rules-of-the-road",
+     "es": "Reglas básicas",
+     "es_id": "reglas-básicas",
      "level": 3,
      "line": 73
     },
     {
      "en": "Run an entry",
      "en_id": "run-an-entry-1",
-     "es": "Run an entry",
-     "es_id": "run-an-entry-1",
+     "es": "Ejecuta una entrada",
+     "es_id": "ejecuta-una-entrada-1",
      "level": 3,
      "line": 79
     },
     {
      "en": "Windows toolchains",
      "en_id": "windows-toolchains",
-     "es": "Windows toolchains",
-     "es_id": "windows-toolchains",
+     "es": "Toolchains de Windows",
+     "es_id": "toolchains-de-windows",
      "level": 3,
      "line": 89
     },
     {
      "en": "If something goes wrong",
      "en_id": "if-something-goes-wrong-1",
-     "es": "If something goes wrong",
-     "es_id": "if-something-goes-wrong-1",
+     "es": "Si algo sale mal",
+     "es_id": "si-algo-sale-mal-1",
      "level": 3,
      "line": 102
     }
    ],
    "map": {
-    "check-it-works": "check-it-works",
+    "check-it-works": "comprueba-que-funciona",
     "docker": "docker",
-    "if-something-goes-wrong": "if-something-goes-wrong",
-    "if-something-goes-wrong-1": "if-something-goes-wrong-1",
-    "install": "install",
-    "install-1": "install-1",
-    "one-time-build-the-trusted-base-images": "one-time-build-the-trusted-base-images",
-    "rules-of-the-road": "rules-of-the-road",
-    "run-an-entry": "run-an-entry",
-    "run-an-entry-1": "run-an-entry-1",
-    "setting-up-to-run-entries-safely": "setting-up-to-run-entries-safely",
+    "if-something-goes-wrong": "si-algo-sale-mal",
+    "if-something-goes-wrong-1": "si-algo-sale-mal-1",
+    "install": "instala",
+    "install-1": "instala-1",
+    "one-time-build-the-trusted-base-images": "una-sola-vez-compila-las-imágenes-base-de-confianza",
+    "rules-of-the-road": "reglas-básicas",
+    "run-an-entry": "ejecuta-una-entrada",
+    "run-an-entry-1": "ejecuta-una-entrada-1",
+    "setting-up-to-run-entries-safely": "cómo-preparar-todo-para-ejecutar-las-entradas-de-forma-segura",
     "windows-sandbox": "windows-sandbox",
-    "windows-toolchains": "windows-toolchains"
+    "windows-toolchains": "toolchains-de-windows"
    }
   },
   "docs/curriculum.md": {
@@ -632,59 +632,59 @@
     {
      "en": "House style",
      "en_id": "house-style",
-     "es": "House style",
-     "es_id": "house-style",
+     "es": "Guía de estilo",
+     "es_id": "guía-de-estilo",
      "level": 1,
      "line": 1
     },
     {
      "en": "Voice",
      "en_id": "voice",
-     "es": "Voice",
-     "es_id": "voice",
+     "es": "Voz",
+     "es_id": "voz",
      "level": 2,
      "line": 5
     },
     {
      "en": "Spelling and punctuation",
      "en_id": "spelling-and-punctuation",
-     "es": "Spelling and punctuation",
-     "es_id": "spelling-and-punctuation",
+     "es": "Ortografía y puntuación",
+     "es_id": "ortografía-y-puntuación",
      "level": 2,
      "line": 12
     },
     {
      "en": "Challenge wording and evidence",
      "en_id": "challenge-wording-and-evidence",
-     "es": "Challenge wording and evidence",
-     "es_id": "challenge-wording-and-evidence",
+     "es": "Redacción y evidencia de los retos",
+     "es_id": "redacción-y-evidencia-de-los-retos",
      "level": 2,
      "line": 23
     },
     {
      "en": "Study guides",
      "en_id": "study-guides",
-     "es": "Study guides",
-     "es_id": "study-guides",
+     "es": "Guías de estudio",
+     "es_id": "guías-de-estudio",
      "level": 2,
      "line": 30
     },
     {
      "en": "Source and publication",
      "en_id": "source-and-publication",
-     "es": "Source and publication",
-     "es_id": "source-and-publication",
+     "es": "Fuente y publicación",
+     "es_id": "fuente-y-publicación",
      "level": 2,
      "line": 37
     }
    ],
    "map": {
-    "challenge-wording-and-evidence": "challenge-wording-and-evidence",
-    "house-style": "house-style",
-    "source-and-publication": "source-and-publication",
-    "spelling-and-punctuation": "spelling-and-punctuation",
-    "study-guides": "study-guides",
-    "voice": "voice"
+    "challenge-wording-and-evidence": "redacción-y-evidencia-de-los-retos",
+    "house-style": "guía-de-estilo",
+    "source-and-publication": "fuente-y-publicación",
+    "spelling-and-punctuation": "ortografía-y-puntuación",
+    "study-guides": "guías-de-estudio",
+    "voice": "voz"
    }
   },
   "lessons/README.md": {

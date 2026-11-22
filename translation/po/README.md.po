@@ -1,0 +1,353 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: README.md:1
+msgctxt "s-4c21311e484e-0000"
+msgid "Learn Programming the Weird Way!"
+msgstr "¡Aprende a programar como un bicho raro!"
+
+#: README.md:3
+msgctxt "s-4e120cd1bfd3-0001"
+msgid "**40 challenges in 29 languages**"
+msgstr "**40 retos en 29 lenguajes**"
+
+#: README.md:6
+msgctxt "s-6cfd7025a1c2-0002"
+msgid "A series of responses to a code challenge that has morphed into a set of educational exercises about programming languages and how to think about programming languages. **New: [Learn Programming the Weird Way!](⟦DEST_0001⟧)**, a set of lessons built on these examples. The book is numbered from v3 on (v4 adds a picture of how every program runs, and a chapter on events): see [what each version added](⟦DEST_0002⟧)."
+msgstr "Una serie de respuestas a un reto de código que se transformó en un conjunto de ejercicios educativos sobre lenguajes de programación y sobre cómo pensar en ellos. **Nuevo: [*¡Aprende a programar como un bicho raro!*](⟦DEST_0001⟧)**, un conjunto de lecciones basadas en estos ejemplos. El libro se numera desde la v3 (la v4 añade una imagen de cómo se ejecuta cada programa y un capítulo sobre eventos): consulta [qué añadió cada versión](⟦DEST_0002⟧)."
+
+#: README.md:8
+msgctxt "s-5dbfb8e00b09-0003"
+msgid "**WEIRD** stands for **Weird Execution, Indirect Results and Data**. The W is recursive. At least the programs have a stop rule."
+msgstr "**{{acronym.word}}** significa **Bicho raro, Interpreta, Camino indirecto, Hallazgos y Octetos**. La {{phase.1.letter}} es recursiva. Al menos los programas tienen una regla de parada."
+
+#: README.md:10
+msgctxt "s-54e879ed145c-0004"
+msgid "Why this exists"
+msgstr "Por qué existe"
+
+#: README.md:12
+msgctxt "s-d6f20556c740-0005"
+msgid "The first version was a [2008 classroom exercise](⟦DEST_0001⟧), built to put new C# 3.0 and .NET 3.x features on display. Keeping the one-statement rule and porting it to new languages turned out to be a great way to learn what those languages actually let you do, once you push past the part the tutorials cover. Each entry answers the same question in its own accent: *how far can this language's own machinery - its iterators, its regex engine, its markup parser, its build tool - be pushed before it starts acting like a general-purpose program?*"
+msgstr "La primera versión fue un [ejercicio de clase de 2008](⟦DEST_0001⟧), creado para mostrar las nuevas características de C# 3.0 y .NET 3.x. Mantener la regla de una sola sentencia y llevarla a lenguajes nuevos resultó ser una gran forma de aprender. Así descubres qué permiten hacer realmente esos lenguajes cuando vas más allá de lo que cubren los tutoriales. Cada entrada responde la misma pregunta con su propio acento: *¿hasta dónde se puede empujar la maquinaria propia de un lenguaje - sus iteradores, su motor de expresiones regulares, su analizador sintáctico de marcado, su herramienta de compilación - antes de que empiece a comportarse como un programa de propósito general?*"
+
+#: README.md:14
+msgctxt "s-a81bb8d8de3d-0006"
+msgid "It is a joke with a serious job inside it. Underneath every entry is a real lesson in a real language construct - LINQ, XAML, GNU Make, regular expressions, iterators, callouts - taught by pushing that construct until it does something its own documentation would not think to show you. That is why every folder's README has a **How the stunt works** section: read it, and you have learned the construct, not just watched a trick. The entertainment gets you in the door; the \"oh, THAT'S how that actually works\" is what you leave with. The full curriculum, with exercises, is in **[Learn Programming the Weird Way!](⟦DEST_0001⟧)**."
+msgstr "Es una broma con un trabajo serio dentro. Debajo de cada entrada hay una lección real sobre una construcción real del lenguaje - LINQ, XAML, GNU Make, expresiones regulares, iteradores, callouts - que se enseña llevando esa construcción hasta que hace algo que su propia documentación no pensaría en mostrarte. Por eso el README de cada carpeta tiene una sección **Cómo funciona el truco**: léela y habrás aprendido la construcción, no solo visto un truco. La diversión te abre la puerta; el \"oh, ASÍ es como funciona en realidad\" es lo que te llevas. El plan de estudios completo, con ejercicios, está en **[¡Aprende a programar como un bicho raro!](⟦DEST_0001⟧)**."
+
+#: README.md:16
+msgctxt "s-d8404fa46ad5-0007"
+msgid "The deeper point, the one worth keeping after the jokes wear off: **THERE ARE NO BLOCKERS, JUST NOT ENOUGH IMAGINATION.**"
+msgstr "La idea de fondo, la que vale la pena conservar cuando se acaben las bromas: **NO HAY BLOQUEOS, SOLO FALTA IMAGINACIÓN.**"
+
+#: README.md:18
+msgctxt "s-d9d00f1d7953-0008"
+msgid "It has turned into a small, friendly contagion. **Ken caught it too.** What started as one C# program has grown into a collection written by more than one person, and it is still growing."
+msgstr "Se ha convertido en un pequeño contagio amistoso. **Ken también se contagió.** Lo que empezó como un programa en C# ha crecido hasta ser una colección escrita por más de una persona, y sigue creciendo."
+
+#: README.md:20
+msgctxt "s-f16588b246be-0009"
+msgid "Psst, hey kid"
+msgstr "Psst, oye, chico"
+
+#: README.md:22
+msgctxt "s-6b6eed6a45aa-0010"
+msgid "**Try this at home!** **Don't tell the boss!**"
+msgstr "**¡Pruébalo en casa!** **¡No se lo digas al jefe!**"
+
+#: README.md:24
+msgctxt "s-431d8978e655-0011"
+msgid "You've spent years writing clean code: small functions, meaningful names, tests. *Boring.* Over here, there's a ⟦CODE_0001⟧ loop with an empty body that opens a database, starts a thread, draws a window and fades it in and out. All before the first semicolon is done being weird."
+msgstr "Llevas años escribiendo código limpio: funciones pequeñas, nombres con sentido, pruebas. *Aburrido.* Aquí hay un bucle ⟦CODE_0001⟧ con el cuerpo vacío que abre una base de datos, inicia un hilo, dibuja una ventana y la muestra y la oculta con un fundido. Todo esto antes de que el primer punto y coma termine de ser raro."
+
+#: README.md:26
+msgctxt "s-27c1937f34aa-0012"
+msgid "You know you want to write beautifully wrong code. **You know you do.**"
+msgstr "Sabes que quieres escribir código maravillosamente malo. **Claro que sí lo sabes.**"
+
+#: README.md:28
+msgctxt "s-11ac2b7c8def-0013"
+msgid "Want to learn from it?"
+msgstr "¿Quieres aprender de él?"
+
+#: README.md:30
+msgctxt "s-26a1930b6919-0014"
+msgid "**[Learn Programming the Weird Way!](⟦DEST_0001⟧)** *Programs you shouldn't write. Language features you should understand.* Lessons by [goals](⟦DEST_0002⟧), by [computer science concept](⟦DEST_0003⟧), by [language](⟦DEST_0004⟧) (including [COBOL's ⟦CODE_0005⟧](⟦DEST_0006⟧) and [APL on the whiteboard](⟦DEST_0007⟧)) and by [solution pattern](⟦DEST_0008⟧), plus [problems overcome](⟦DEST_0009⟧), [blocking problems](⟦DEST_0010⟧) and [exercises](⟦DEST_0011⟧) you can run in a container."
+msgstr "**[¡Aprende a programar de la forma rara!](⟦DEST_0001⟧)** *Programas que no deberías escribir. Características del lenguaje que sí deberías entender.* Lecciones por [objetivos](⟦DEST_0002⟧), por [concepto de ciencias de la computación](⟦DEST_0003⟧), por [lenguaje](⟦DEST_0004⟧) (incluidos [el ⟦CODE_0005⟧ de COBOL](⟦DEST_0006⟧) y [APL en la pizarra](⟦DEST_0007⟧)) y por [patrón de solución](⟦DEST_0008⟧), además de [problemas superados](⟦DEST_0009⟧), [problemas bloqueantes](⟦DEST_0010⟧) y [ejercicios](⟦DEST_0011⟧) que puedes ejecutar en un contenedor."
+
+#: README.md:32
+msgctxt "s-e43f2c6760a6-0015"
+msgid "Want a plan for a whole semester? The **[16-week curriculum](⟦DEST_0001⟧)** ([PDF](⟦DEST_0002⟧), [EPUB](⟦DEST_0003⟧)) sequences the book chapters, study guides and exercises for senior undergraduates, graduate students and self-taught programmers."
+msgstr "¿Quieres un plan para todo un semestre? El **[plan de estudios de 16 semanas](⟦DEST_0001⟧)** ([PDF](⟦DEST_0002⟧), [EPUB](⟦DEST_0003⟧)) organiza en secuencia los capítulos del libro, las guías de estudio y los ejercicios para estudiantes de los últimos años de grado, estudiantes de posgrado y programadores autodidactas."
+
+#: README.md:34
+msgctxt "s-f19d5a9062ed-0016"
+msgid "Ready to play?"
+msgstr "¿Listo para jugar?"
+
+#: README.md:36
+msgctxt "s-fb22f62e1f7b-0017"
+msgid "The rules, the shared demo and the do's and don'ts live in **[⟦CODE_0001⟧](⟦DEST_0002⟧)**. Pick a language. Pick a constraint. Make something terrible that works. Sending it in? See **[⟦CODE_0003⟧](⟦DEST_0004⟧)**."
+msgstr "Las reglas, la demo compartida y lo que debes y no debes hacer están en **[⟦CODE_0001⟧](⟦DEST_0002⟧)**. Elige un lenguaje. Elige una restricción. Crea algo terrible que funcione. ¿Quieres enviarlo? Consulta **[⟦CODE_0003⟧](⟦DEST_0004⟧)**."
+
+#: README.md:38
+msgctxt "s-462d823ed592-0018"
+msgid "The results so far"
+msgstr "Los resultados hasta ahora"
+
+#: README.md:40
+msgctxt "s-e8e715f8a6fd-0019"
+msgid "**Want to run one without trusting it?** Every Linux entry (including the Rust/GTK and Go ones) has its own tiny, locked-down **Docker container** that runs it with no network and shows you what it did, and every Windows or GUI entry runs in a throwaway **Windows Sandbox**. See **[⟦CODE_0001⟧](⟦DEST_0002⟧)** for the one-time setup, then open the folder's README (linked in the table below) and look for its **Run it in a container** or **Run it in Windows Sandbox** section for the one command."
+msgstr "**¿Quieres ejecutar una entrada sin confiar en ella?** Cada entrada de Linux (incluidas las de Rust/GTK y Go) tiene su propio **contenedor Docker** diminuto y restringido, que la ejecuta sin red y te muestra lo que hizo. Cada entrada de Windows o con interfaz gráfica se ejecuta en un **Windows Sandbox** desechable, un entorno aislado (*sandbox*) que limita el acceso al sistema anfitrión. Consulta **[⟦CODE_0001⟧](⟦DEST_0002⟧)** para la configuración única. Después abre el README de la carpeta (enlazado en la tabla de abajo) y busca su sección **Ejecútalo en un contenedor** o **Ejecútalo en Windows Sandbox**, donde está el comando."
+
+#: README.md:42
+msgctxt "s-8a52ab49beed-0020"
+msgid "Every entry builds the same small demo: make up some *⟦DNT_0001⟧ / ⟦DNT_0002⟧ / ⟦DNT_0003⟧ / ⟦DNT_0004⟧* time-card hours, save them to a local **⟦DNT_0005⟧** SQLite file, stop once the total passes 40 (the two LINQ entries use a fixed 40-hour week instead, and a total of exactly 40 continues in every other entry except ⟦CODE_0006⟧, which can deal at most four cards), and show the result. Nothing here touches a real time-reporting system - see the [disclaimer](⟦DEST_0007⟧)."
+msgstr "Cada entrada compila la misma demo pequeña: inventa algunas horas de tarjetas de tiempo de *⟦DNT_0001⟧ / ⟦DNT_0002⟧ / ⟦DNT_0003⟧ / ⟦DNT_0004⟧*, guárdalas en un archivo SQLite local **⟦DNT_0005⟧**, detente cuando el total pase de 40 (las dos entradas de LINQ usan en cambio una semana fija de 40 horas, y un total de exactamente 40 continúa en todas las demás entradas excepto ⟦CODE_0006⟧, que puede repartir como máximo cuatro tarjetas) y muestra el resultado. Nada de esto toca un sistema real de registro de horas. Consulta el [aviso legal](⟦DEST_0007⟧)."
+
+#: README.md:44
+msgctxt "s-8d0c1a6394dc-0021"
+msgid "**ALL OF THESE ARE TESTED AND WORK AS ADVERTISED.** Remember that while reading the code."
+msgstr "**TODOS ESTOS EJEMPLOS ESTÁN PROBADOS Y FUNCIONAN COMO SE ANUNCIA.** Recuérdalo mientras lees el código."
+
+#: README.md:46
+msgctxt "s-129c678fce59-0022"
+msgid "Disclaimer"
+msgstr "Aviso legal"
+
+#: README.md:48
+msgctxt "s-eb61f32eee07-0023"
+msgid "**⟦DNT_0001⟧.** Every record any of these programs writes is flagged as demo data in a throwaway local file/SQLite database. None of it connects to, or should ever be used for, a real time-reporting system. And please do **not** try any of this at work. Waste your own tokens. :)"
+msgstr "**⟦DNT_0001⟧.** Cada registro que escribe cualquiera de estos programas se marca como dato de demostración en un archivo local desechable o en una base de datos SQLite desechable. Nada de eso se conecta a un sistema real de registro de horas, ni debe usarse jamás con uno. Y por favor **no** pruebes nada de esto en el trabajo. Gasta tus propios tokens. :)"
+
+#: README.md:50
+msgctxt "s-d3d2f75f8e63-0024"
+msgid "⟦SEP_0001⟧ Version ⟦SEP_0002⟧ By ⟦SEP_0003⟧ The stunt ⟦SEP_0004⟧ Teaches you ⟦SEP_0005⟧ Folder ⟦SEP_0006⟧"
+msgstr "⟦SEP_0001⟧ Versión ⟦SEP_0002⟧ Por ⟦SEP_0003⟧ La proeza ⟦SEP_0004⟧ Te enseña ⟦SEP_0005⟧ Carpeta ⟦SEP_0006⟧"
+
+#: README.md:52
+msgctxt "s-60be0d66dbab-0025"
+msgid "⟦SEP_0003⟧ **APL** ⟦SEP_0004⟧ Jim ⟦SEP_0005⟧ Five rolls and one take-while: no loop anywhere ⟦SEP_0006⟧ That array thinking can replace control flow ⟦SEP_0007⟧ [⟦CODE_0001⟧](⟦DEST_0002⟧) ⟦SEP_0008⟧"
+msgstr "⟦SEP_0003⟧ **APL** ⟦SEP_0004⟧ Jim ⟦SEP_0005⟧ Cinco tiradas y un *take-while*: ningún bucle en ninguna parte ⟦SEP_0006⟧ Que pensar con arreglos puede reemplazar el flujo de control ⟦SEP_0007⟧ [⟦CODE_0001⟧](⟦DEST_0002⟧) ⟦SEP_0008⟧"
+
+#: README.md:53
+msgctxt "s-b8db42290270-0026"
+msgid "⟦SEP_0006⟧ **APL, weirder** ⟦SEP_0007⟧ Jim ⟦SEP_0008⟧ Each timecard is a function that copies its own source with ⟦CODE_0001⟧, rewrites it and defines the copy with ⟦CODE_0002⟧; compress over that source is the stop rule ⟦SEP_0009⟧ Self-replicating functions instead of loops and ⟦CODE_0003⟧ ⟦SEP_0010⟧ [⟦CODE_0004⟧](⟦DEST_0005⟧) ⟦SEP_0011⟧"
+msgstr "⟦SEP_0006⟧ **APL, más raro** ⟦SEP_0007⟧ Jim ⟦SEP_0008⟧ Cada tarjeta de horas es una función que copia su propio código fuente con ⟦CODE_0001⟧, lo reescribe y define la copia con ⟦CODE_0002⟧; aplicar compress sobre ese código fuente es la regla de parada ⟦SEP_0009⟧ Funciones que se replican a sí mismas en lugar de bucles y ⟦CODE_0003⟧ ⟦SEP_0010⟧ [⟦CODE_0004⟧](⟦DEST_0005⟧) ⟦SEP_0011⟧"
+
+#: README.md:54
+msgctxt "s-0a9b213f70a4-0027"
+msgid "⟦SEP_0005⟧ **AWK** ⟦SEP_0006⟧ Jim ⟦SEP_0007⟧ One ⟦CODE_0001⟧ in a ⟦CODE_0002⟧ block, written to run unchanged on gawk, mawk, the one-true-awk and busybox awk ⟦SEP_0008⟧ Portable POSIX awk, and exactly where the four implementations disagree ⟦SEP_0009⟧ [⟦CODE_0003⟧](⟦DEST_0004⟧) ⟦SEP_0010⟧"
+msgstr "⟦SEP_0005⟧ **AWK** ⟦SEP_0006⟧ Jim ⟦SEP_0007⟧ Un ⟦CODE_0001⟧ en un bloque ⟦CODE_0002⟧, escrito para ejecutarse sin cambios en gawk, mawk, one-true-awk y busybox awk ⟦SEP_0008⟧ awk POSIX portable y exactamente dónde discrepan las cuatro implementaciones ⟦SEP_0009⟧ [⟦CODE_0003⟧](⟦DEST_0004⟧) ⟦SEP_0010⟧"
+
+#: README.md:55
+msgctxt "s-2dfb2430cc92-0028"
+msgid "⟦SEP_0009⟧ **AWK, weirder** ⟦SEP_0010⟧ Jim ⟦SEP_0011⟧ gawk reads ⟦CODE_0001⟧ with ⟦CODE_0002⟧, so each digit (⟦CODE_0003⟧) is a die roll and each record a card; ⟦CODE_0004⟧ is the stop rule, with no loop, ⟦CODE_0005⟧ or random call ⟦SEP_0012⟧ A regex record separator, ⟦CODE_0006⟧ and awk's implicit main loop ⟦SEP_0013⟧ [⟦CODE_0007⟧](⟦DEST_0008⟧) ⟦SEP_0014⟧"
+msgstr "⟦SEP_0009⟧ **AWK, más raro** ⟦SEP_0010⟧ Jim ⟦SEP_0011⟧ gawk lee ⟦CODE_0001⟧ con ⟦CODE_0002⟧, así que cada dígito (⟦CODE_0003⟧) es una tirada de dado y cada registro una tarjeta; ⟦CODE_0004⟧ es la regla de parada, sin bucle, sin ⟦CODE_0005⟧ ni llamada aleatoria ⟦SEP_0012⟧ Un separador de registros con regex, ⟦CODE_0006⟧ y el bucle principal implícito de awk ⟦SEP_0013⟧ [⟦CODE_0007⟧](⟦DEST_0008⟧) ⟦SEP_0014⟧"
+
+#: README.md:56
+msgctxt "s-a9b1f3ec2632-0029"
+msgid "⟦SEP_0004⟧ **C# (the original)** ⟦SEP_0005⟧ Jim ⟦SEP_0006⟧ Empty-body ⟦CODE_0001⟧; everything else lives in its three clauses ⟦SEP_0007⟧ Runtime XAML, LINQ, EF Core, WPF animation ⟦SEP_0008⟧ [⟦CODE_0002⟧](⟦DEST_0003⟧) ⟦SEP_0009⟧"
+msgstr "⟦SEP_0004⟧ **C# (el original)** ⟦SEP_0005⟧ Jim ⟦SEP_0006⟧ ⟦CODE_0001⟧ con cuerpo vacío; todo lo demás vive en sus tres cláusulas ⟦SEP_0007⟧ XAML en tiempo de ejecución, LINQ, EF Core, animación de WPF ⟦SEP_0008⟧ [⟦CODE_0002⟧](⟦DEST_0003⟧) ⟦SEP_0009⟧"
+
+#: README.md:57
+msgctxt "s-bc8640ece5ab-0030"
+msgid "⟦SEP_0004⟧ **COBOL** ⟦SEP_0005⟧ Ken ⟦SEP_0006⟧ ⟦CODE_0001⟧: the stop rule is declared as data on the total, not coded in the procedure ⟦SEP_0007⟧ A stop rule declared as data, and a number's picture doing your rounding ⟦SEP_0008⟧ [⟦CODE_0002⟧](⟦DEST_0003⟧) ⟦SEP_0009⟧"
+msgstr "⟦SEP_0004⟧ **COBOL** ⟦SEP_0005⟧ Ken ⟦SEP_0006⟧ ⟦CODE_0001⟧: la regla de parada se declara como dato sobre el total, no se codifica en el procedimiento ⟦SEP_0007⟧ Una regla de parada declarada como dato y la imagen (*picture*) de un número que hace tu redondeo ⟦SEP_0008⟧ [⟦CODE_0002⟧](⟦DEST_0003⟧) ⟦SEP_0009⟧"
+
+#: README.md:58
+msgctxt "s-c337fe543453-0031"
+msgid "⟦SEP_0008⟧ **COBOL, weirder** ⟦SEP_0009⟧ Ken ⟦SEP_0010⟧ No ⟦CODE_0001⟧, ⟦CODE_0002⟧ or ⟦CODE_0003⟧: ⟦CODE_0004⟧ rewires a ⟦CODE_0005⟧ at run time, and a two-digit field overflowing is the stop rule ⟦SEP_0011⟧ Why structured programming won, via self-rewriting control flow ⟦SEP_0012⟧ [⟦CODE_0006⟧](⟦DEST_0007⟧) ⟦SEP_0013⟧"
+msgstr "⟦SEP_0008⟧ **COBOL, más raro** ⟦SEP_0009⟧ Ken ⟦SEP_0010⟧ Sin ⟦CODE_0001⟧, ⟦CODE_0002⟧ ni ⟦CODE_0003⟧: ⟦CODE_0004⟧ recablea un ⟦CODE_0005⟧ en tiempo de ejecución, y que un campo de dos dígitos se desborde es la regla de parada ⟦SEP_0011⟧ Por qué ganó la programación estructurada, a través de un flujo de control que se reescribe a sí mismo ⟦SEP_0012⟧ [⟦CODE_0006⟧](⟦DEST_0007⟧) ⟦SEP_0013⟧"
+
+#: README.md:59
+msgctxt "s-1a6b6209287d-0032"
+msgid "⟦SEP_0005⟧ **ed, weirder** ⟦SEP_0006⟧ Jim ⟦SEP_0007⟧ GNU ⟦CODE_0001⟧ computes the whole program: line addresses order the categories, a rewrite table turns digits into rows of marks, one global command joins each card to the total above it, and a regex over the marks is the stop rule ⟦SEP_0008⟧ Text rewriting, state in unary and a failed substitution as an ⟦CODE_0002⟧ ⟦SEP_0009⟧ [⟦CODE_0003⟧](⟦DEST_0004⟧) ⟦SEP_0010⟧"
+msgstr "⟦SEP_0005⟧ **ed, weirder** ⟦SEP_0006⟧ Jim ⟦SEP_0007⟧ GNU ⟦CODE_0001⟧ calcula todo el programa: las direcciones de línea ordenan las categorías, una tabla de reescritura convierte los dígitos en filas de marcas, un comando global une cada tarjeta con el total anterior y una expresión regular sobre las marcas es la regla de parada ⟦SEP_0008⟧ Reescritura de texto, estado en unario y una sustitución fallida como un ⟦CODE_0002⟧ ⟦SEP_0009⟧ [⟦CODE_0003⟧](⟦DEST_0004⟧) ⟦SEP_0010⟧"
+
+#: README.md:60
+msgctxt "s-98201cb6a156-0033"
+msgid "⟦SEP_0004⟧ **Ex, weirder** ⟦SEP_0005⟧ Jim ⟦SEP_0006⟧ A one-line program is copied into a register and run with ⟦CODE_0001⟧. Editor marks do the arithmetic, and a tape of numbered lines holds the stop rule. It runs on nvi and Vim ⟦SEP_0007⟧ Code as text, state outside the text and where nvi and Vim disagree ⟦SEP_0008⟧ [⟦CODE_0002⟧](⟦DEST_0003⟧) ⟦SEP_0009⟧"
+msgstr "⟦SEP_0004⟧ **Ex, más raro** ⟦SEP_0005⟧ Jim ⟦SEP_0006⟧ Un programa de una sola línea se copia en un registro y se ejecuta con ⟦CODE_0001⟧. Las marcas del editor hacen la aritmética y una cinta de líneas numeradas guarda la regla de parada. Funciona en nvi y Vim ⟦SEP_0007⟧ Código como texto, estado fuera del texto y dónde difieren nvi y Vim ⟦SEP_0008⟧ [⟦CODE_0002⟧](⟦DEST_0003⟧) ⟦SEP_0009⟧"
+
+#: README.md:61
+msgctxt "s-4d5a0ca3cb21-0034"
+msgid "⟦SEP_0005⟧ **Forth** ⟦SEP_0006⟧ Jim ⟦SEP_0007⟧ One ⟦CODE_0001⟧, and ⟦CODE_0002⟧ points the output at SQLite ⟦SEP_0008⟧ A stack language as a whole program ⟦SEP_0009⟧ [⟦CODE_0003⟧](⟦DEST_0004⟧) ⟦SEP_0010⟧"
+msgstr "⟦SEP_0005⟧ **Forth** ⟦SEP_0006⟧ Jim ⟦SEP_0007⟧ Una sola ⟦CODE_0001⟧, y ⟦CODE_0002⟧ dirige la salida a SQLite ⟦SEP_0008⟧ Un lenguaje de pila como programa completo ⟦SEP_0009⟧ [⟦CODE_0003⟧](⟦DEST_0004⟧) ⟦SEP_0010⟧"
+
+#: README.md:62
+msgctxt "s-181aec725feb-0035"
+msgid "⟦SEP_0004⟧ **Forth, weirder** ⟦SEP_0005⟧ Jim ⟦SEP_0006⟧ No control-flow word and no variable: the state rides the data stack while the loop moves the text interpreter's own ⟦CODE_0001⟧ backwards ⟦SEP_0007⟧ The parse position as a program counter ⟦SEP_0008⟧ [⟦CODE_0002⟧](⟦DEST_0003⟧) ⟦SEP_0009⟧"
+msgstr "⟦SEP_0004⟧ **Forth, aún más raro** ⟦SEP_0005⟧ Jim ⟦SEP_0006⟧ Ninguna palabra de control de flujo y ninguna variable: el estado viaja en la pila de datos mientras el bucle mueve hacia atrás el propio ⟦CODE_0001⟧ del intérprete de texto ⟦SEP_0007⟧ La posición de análisis como contador de programa ⟦SEP_0008⟧ [⟦CODE_0002⟧](⟦DEST_0003⟧) ⟦SEP_0009⟧"
+
+#: README.md:63
+msgctxt "s-3242e25a3fd8-0036"
+msgid "⟦SEP_0003⟧ **Go** ⟦SEP_0004⟧ Ken ⟦SEP_0005⟧ The same challenge, serving a pulsing page in your browser ⟦SEP_0006⟧ The same trick, as a one-request web server ⟦SEP_0007⟧ [⟦CODE_0001⟧](⟦DEST_0002⟧) ⟦SEP_0008⟧"
+msgstr "⟦SEP_0003⟧ **Go** ⟦SEP_0004⟧ Ken ⟦SEP_0005⟧ El mismo reto, pero sirviendo una página pulsante en tu navegador ⟦SEP_0006⟧ El mismo truco, como un servidor web de una sola petición ⟦SEP_0007⟧ [⟦CODE_0001⟧](⟦DEST_0002⟧) ⟦SEP_0008⟧"
+
+#: README.md:64
+msgctxt "s-0f4ccab42e65-0037"
+msgid "⟦SEP_0004⟧ **GNU tar** ⟦SEP_0005⟧ Jim ⟦SEP_0006⟧ The program is a tar archive: members are instructions, tar walks them, and the operator's ⟦CODE_0001⟧ gives them meaning. A passive inspector reads the same archive and runs nothing ⟦SEP_0007⟧ Serialization versus execution, trust boundaries and a fail-closed interpreter ⟦SEP_0008⟧ [⟦CODE_0002⟧](⟦DEST_0003⟧) ⟦SEP_0009⟧"
+msgstr "⟦SEP_0004⟧ **GNU tar** ⟦SEP_0005⟧ Jim ⟦SEP_0006⟧ El programa es un archivo tar: los miembros son instrucciones, tar las recorre y el ⟦CODE_0001⟧ del operador les da significado. Un inspector pasivo lee el mismo archivo y no ejecuta nada ⟦SEP_0007⟧ Serialización frente a ejecución, límites de confianza y un intérprete que falla en modo cerrado ⟦SEP_0008⟧ [⟦CODE_0002⟧](⟦DEST_0003⟧) ⟦SEP_0009⟧"
+
+#: README.md:65
+msgctxt "s-c85419afae85-0038"
+msgid "⟦SEP_0003⟧ **GNU tar, weirder** ⟦SEP_0004⟧ Jim ⟦SEP_0005⟧ tar's checkpoints are the clock: one record written is one hour, and a state machine takes one step per tick. The archive's layout sets the pace ⟦SEP_0006⟧ Logical clocks, event-driven control and implementation-dependent counts ⟦SEP_0007⟧ [⟦CODE_0001⟧](⟦DEST_0002⟧) ⟦SEP_0008⟧"
+msgstr "⟦SEP_0003⟧ **GNU tar, más raro** ⟦SEP_0004⟧ Jim ⟦SEP_0005⟧ Los puntos de control de tar son el reloj: un registro escrito equivale a una hora, y una máquina de estados avanza un paso por tic. La estructura del archivo marca el ritmo ⟦SEP_0006⟧ Relojes lógicos, control dirigido por eventos y conteos que dependen de la implementación ⟦SEP_0007⟧ [⟦CODE_0001⟧](⟦DEST_0002⟧) ⟦SEP_0008⟧"
+
+#: README.md:66
+msgctxt "s-d4ecf7736ce5-0039"
+msgid "⟦SEP_0006⟧ **Haskell** ⟦SEP_0007⟧ Jim ⟦SEP_0008⟧ One pure function: random hours, ⟦CODE_0001⟧, ⟦CODE_0002⟧ ⟦SEP_0009⟧ A lazy list and one ⟦CODE_0003⟧ as the whole stop rule ⟦SEP_0010⟧ [⟦CODE_0004⟧](⟦DEST_0005⟧) ⟦SEP_0011⟧"
+msgstr "⟦SEP_0006⟧ **Haskell** ⟦SEP_0007⟧ Jim ⟦SEP_0008⟧ Una función pura: horas aleatorias, ⟦CODE_0001⟧, ⟦CODE_0002⟧ ⟦SEP_0009⟧ Una lista perezosa y un solo ⟦CODE_0003⟧ como toda la regla de parada ⟦SEP_0010⟧ [⟦CODE_0004⟧](⟦DEST_0005⟧) ⟦SEP_0011⟧"
+
+#: README.md:67
+msgctxt "s-275218d2487d-0040"
+msgid "⟦SEP_0005⟧ **Haskell, weirder** ⟦SEP_0006⟧ Jim ⟦SEP_0007⟧ An infinite list of cards whose elements have side effects: each running total is read off the card before it, and forcing a cell writes its row ⟦SEP_0008⟧ Lazy IO as control flow, knot-tied with ⟦CODE_0001⟧ and ⟦CODE_0002⟧ ⟦SEP_0009⟧ [⟦CODE_0003⟧](⟦DEST_0004⟧) ⟦SEP_0010⟧"
+msgstr "⟦SEP_0005⟧ **Haskell, más raro** ⟦SEP_0006⟧ Jim ⟦SEP_0007⟧ Una lista infinita de tarjetas cuyos elementos tienen efectos secundarios: cada total acumulado se lee de la tarjeta anterior, y forzar una celda escribe su fila ⟦SEP_0008⟧ E/S perezosa (*lazy IO*) como flujo de control, con el nudo atado mediante ⟦CODE_0001⟧ y ⟦CODE_0002⟧ ⟦SEP_0009⟧ [⟦CODE_0003⟧](⟦DEST_0004⟧) ⟦SEP_0010⟧"
+
+#: README.md:68
+msgctxt "s-0ad9c6fcc413-0041"
+msgid "⟦SEP_0004⟧ **Java** ⟦SEP_0005⟧ Ken ⟦SEP_0006⟧ One bodiless ⟦CODE_0001⟧; an anonymous class holds the loop state ⟦SEP_0007⟧ The same bodiless-loop trick, Java style ⟦SEP_0008⟧ [⟦CODE_0002⟧](⟦DEST_0003⟧) ⟦SEP_0009⟧"
+msgstr "⟦SEP_0004⟧ **Java** ⟦SEP_0005⟧ Ken ⟦SEP_0006⟧ Un solo ⟦CODE_0001⟧ sin cuerpo; una clase anónima guarda el estado del bucle ⟦SEP_0007⟧ El mismo truco del bucle sin cuerpo, al estilo de Java ⟦SEP_0008⟧ [⟦CODE_0002⟧](⟦DEST_0003⟧) ⟦SEP_0009⟧"
+
+#: README.md:69
+msgctxt "s-db66cd691f93-0042"
+msgid "⟦SEP_0007⟧ **JavaScript** ⟦SEP_0008⟧ Jim ⟦SEP_0009⟧ The original's bodiless ⟦CODE_0001⟧, in Node.js: an object for state, ⟦CODE_0002⟧ and a timer that pulses the ⟦DNT_0003⟧ line on a terminal ⟦SEP_0010⟧ The ⟦CODE_0004⟧ clauses, the comma operator and the event loop ⟦SEP_0011⟧ [⟦CODE_0005⟧](⟦DEST_0006⟧) ⟦SEP_0012⟧"
+msgstr "⟦SEP_0007⟧ **JavaScript** ⟦SEP_0008⟧ Jim ⟦SEP_0009⟧ El ⟦CODE_0001⟧ sin cuerpo del original, en Node.js: un objeto para el estado, ⟦CODE_0002⟧ y un temporizador que hace pulsar la línea ⟦DNT_0003⟧ en una terminal ⟦SEP_0010⟧ Las cláusulas ⟦CODE_0004⟧, el operador coma y el bucle de eventos ⟦SEP_0011⟧ [⟦CODE_0005⟧](⟦DEST_0006⟧) ⟦SEP_0012⟧"
+
+#: README.md:70
+msgctxt "s-0c4fb6ca2a58-0043"
+msgid "⟦SEP_0005⟧ **JavaScript, weirder** ⟦SEP_0006⟧ Jim ⟦SEP_0007⟧ No loop statement. Three closures make the cards, and an iterator pipeline pulls them one at a time. ⟦CODE_0001⟧ adds up the finished list, because it cannot stop early ⟦SEP_0008⟧ Closures, lazy iteration and why ⟦CODE_0002⟧ cannot stop ⟦SEP_0009⟧ [⟦CODE_0003⟧](⟦DEST_0004⟧) ⟦SEP_0010⟧"
+msgstr "⟦SEP_0005⟧ **JavaScript, más raro** ⟦SEP_0006⟧ Jim ⟦SEP_0007⟧ Sin sentencia de bucle. Tres clausuras (*closures*: funciones que conservan las variables del lugar donde se crearon) hacen las tarjetas y una canalización de iteradores las demanda una por una. ⟦CODE_0001⟧ suma la lista terminada, porque no puede detenerse antes de tiempo ⟦SEP_0008⟧ Clausuras, iteración perezosa y por qué ⟦CODE_0002⟧ no puede detenerse ⟦SEP_0009⟧ [⟦CODE_0003⟧](⟦DEST_0004⟧) ⟦SEP_0010⟧"
+
+#: README.md:71
+msgctxt "s-3ef975badfec-0044"
+msgid "⟦SEP_0006⟧ **JavaScript, event-driven** ⟦SEP_0007⟧ Jim ⟦SEP_0008⟧ No loop statement and no pipeline. Ten listeners on one ⟦CODE_0001⟧ are the whole program, and each emits the event that the next one waits for. ⟦CODE_0002⟧ gives the event loop a turn between cards, so the call stack never grows ⟦SEP_0009⟧ Events, callbacks, the event loop and why a synchronous ⟦CODE_0003⟧ is not asynchronous ⟦SEP_0010⟧ [⟦CODE_0004⟧](⟦DEST_0005⟧) ⟦SEP_0011⟧"
+msgstr "⟦SEP_0006⟧ **JavaScript, dirigido por eventos** ⟦SEP_0007⟧ Jim ⟦SEP_0008⟧ Sin sentencia de bucle y sin canalización. Diez escuchadores de eventos en un mismo ⟦CODE_0001⟧ forman todo el programa, y cada uno emite el evento que espera el siguiente. ⟦CODE_0002⟧ da un turno al bucle de eventos entre tarjetas, así que la pila de llamadas nunca crece ⟦SEP_0009⟧ Eventos, funciones de devolución de llamada (*callbacks*: funciones que pasas a otro código para que las llame después), el bucle de eventos y por qué un ⟦CODE_0003⟧ síncrono no es asíncrono ⟦SEP_0010⟧ [⟦CODE_0004⟧](⟦DEST_0005⟧) ⟦SEP_0011⟧"
+
+#: README.md:72
+msgctxt "s-e4b1e674b65f-0045"
+msgid "⟦SEP_0003⟧ **Kotlin** ⟦SEP_0004⟧ Ken ⟦SEP_0005⟧ The same challenge, built as a sequence ⟦SEP_0006⟧ The same trick, with Kotlin's sequence builders ⟦SEP_0007⟧ [⟦CODE_0001⟧](⟦DEST_0002⟧) ⟦SEP_0008⟧"
+msgstr "⟦SEP_0003⟧ **Kotlin** ⟦SEP_0004⟧ Ken ⟦SEP_0005⟧ El mismo reto, construido como una secuencia ⟦SEP_0006⟧ El mismo truco, con los constructores de secuencias de Kotlin ⟦SEP_0007⟧ [⟦CODE_0001⟧](⟦DEST_0002⟧) ⟦SEP_0008⟧"
+
+#: README.md:73
+msgctxt "s-5b35a883195a-0046"
+msgid "⟦SEP_0003⟧ **LINQ, fluent chain** ⟦SEP_0004⟧ Jim ⟦SEP_0005⟧ One LINQ method chain is the entire program ⟦SEP_0006⟧ LINQ method chains, end to end ⟦SEP_0007⟧ [⟦CODE_0001⟧](⟦DEST_0002⟧) ⟦SEP_0008⟧"
+msgstr "⟦SEP_0003⟧ **LINQ, cadena fluida** ⟦SEP_0004⟧ Jim ⟦SEP_0005⟧ Una sola cadena de métodos LINQ es todo el programa ⟦SEP_0006⟧ Cadenas de métodos LINQ, de principio a fin ⟦SEP_0007⟧ [⟦CODE_0001⟧](⟦DEST_0002⟧) ⟦SEP_0008⟧"
+
+#: README.md:74
+msgctxt "s-931a28ed9783-0047"
+msgid "⟦SEP_0007⟧ **LINQ, query expression** ⟦SEP_0008⟧ Jim ⟦SEP_0009⟧ Nearly every line is ⟦CODE_0001⟧/⟦CODE_0002⟧/⟦CODE_0003⟧/⟦CODE_0004⟧ ⟦SEP_0010⟧ C# query syntax, pushed as far as it goes ⟦SEP_0011⟧ [⟦CODE_0005⟧](⟦DEST_0006⟧) ⟦SEP_0012⟧"
+msgstr "⟦SEP_0007⟧ **LINQ, expresión de consulta** ⟦SEP_0008⟧ Jim ⟦SEP_0009⟧ Casi todas las líneas son ⟦CODE_0001⟧/⟦CODE_0002⟧/⟦CODE_0003⟧/⟦CODE_0004⟧ ⟦SEP_0010⟧ Sintaxis de consulta de C#, llevada hasta donde da de sí ⟦SEP_0011⟧ [⟦CODE_0005⟧](⟦DEST_0006⟧) ⟦SEP_0012⟧"
+
+#: README.md:75
+msgctxt "s-9b81329d9346-0048"
+msgid "⟦SEP_0005⟧ **Lisp** ⟦SEP_0006⟧ Jim ⟦SEP_0007⟧ One ⟦CODE_0001⟧ form that sums, collects and stops, in Common Lisp ⟦SEP_0008⟧ ⟦CODE_0002⟧ clause order, structs and hand-written ISO-week arithmetic ⟦SEP_0009⟧ [⟦CODE_0003⟧](⟦DEST_0004⟧) ⟦SEP_0010⟧"
+msgstr "⟦SEP_0005⟧ **Lisp** ⟦SEP_0006⟧ Jim ⟦SEP_0007⟧ Una sola forma ⟦CODE_0001⟧ que suma, recopila y se detiene, en Common Lisp ⟦SEP_0008⟧ El orden de las cláusulas de ⟦CODE_0002⟧, los structs y la aritmética de semanas ISO escrita a mano ⟦SEP_0009⟧ [⟦CODE_0003⟧](⟦DEST_0004⟧) ⟦SEP_0010⟧"
+
+#: README.md:76
+msgctxt "s-c61cd55c9941-0049"
+msgid "⟦SEP_0004⟧ **Lisp, weirder** ⟦SEP_0005⟧ Jim ⟦SEP_0006⟧ Each card is a CLOS method chained through a class hierarchy; the built-in ⟦CODE_0001⟧ method combination stops at the first true result ⟦SEP_0007⟧ Method combination as control flow ⟦SEP_0008⟧ [⟦CODE_0002⟧](⟦DEST_0003⟧) ⟦SEP_0009⟧"
+msgstr "⟦SEP_0004⟧ **Lisp, más raro** ⟦SEP_0005⟧ Jim ⟦SEP_0006⟧ Cada tarjeta es un método de CLOS encadenado a través de una jerarquía de clases; la combinación de métodos integrada ⟦CODE_0001⟧ se detiene en el primer resultado verdadero ⟦SEP_0007⟧ La combinación de métodos como flujo de control ⟦SEP_0008⟧ [⟦CODE_0002⟧](⟦DEST_0003⟧) ⟦SEP_0009⟧"
+
+#: README.md:77
+msgctxt "s-d65c7f7c5f86-0050"
+msgid "⟦SEP_0004⟧ **m4** ⟦SEP_0005⟧ Jim ⟦SEP_0006⟧ A macro whose last word is itself: m4 rescans its own output, and a Park-Miller generator is built from 32-bit ⟦CODE_0001⟧ ⟦SEP_0007⟧ Quoting as lazy evaluation, in a language that is only text ⟦SEP_0008⟧ [⟦CODE_0002⟧](⟦DEST_0003⟧) ⟦SEP_0009⟧"
+msgstr "⟦SEP_0004⟧ **m4** ⟦SEP_0005⟧ Jim ⟦SEP_0006⟧ Una macro cuya última palabra es ella misma: m4 vuelve a examinar su propia salida, y un generador Park-Miller se construye con ⟦CODE_0001⟧ de 32 bits ⟦SEP_0007⟧ El entrecomillado como evaluación perezosa, en un lenguaje que es solo texto ⟦SEP_0008⟧ [⟦CODE_0002⟧](⟦DEST_0003⟧) ⟦SEP_0009⟧"
+
+#: README.md:78
+msgctxt "s-52c1b8f74728-0051"
+msgid "⟦SEP_0004⟧ **find, POSIX** ⟦SEP_0005⟧ Jim ⟦SEP_0006⟧ One ⟦CODE_0001⟧ with four primaries and no variables: the walk digs the directory tree it is walking, and the path and the names are the counters ⟦SEP_0007⟧ A tree walk as a loop, path patterns as lookup tables and what POSIX leaves unspecified ⟦SEP_0008⟧ [⟦CODE_0002⟧](⟦DEST_0003⟧) ⟦SEP_0009⟧"
+msgstr "⟦SEP_0004⟧ **find, POSIX** ⟦SEP_0005⟧ Jim ⟦SEP_0006⟧ Un ⟦CODE_0001⟧ con cuatro primarios y sin variables: el recorrido excava el árbol de directorios que recorre, y la ruta y los nombres son los contadores ⟦SEP_0007⟧ Un recorrido de árbol como bucle, patrones de ruta como tablas de consulta y lo que POSIX deja sin especificar ⟦SEP_0008⟧ [⟦CODE_0002⟧](⟦DEST_0003⟧) ⟦SEP_0009⟧"
+
+#: README.md:79
+msgctxt "s-b10479ae9fca-0052"
+msgid "⟦SEP_0008⟧ **find, GNU** ⟦SEP_0009⟧ Jim ⟦SEP_0010⟧ The same digging walk with every GNU extra: ⟦CODE_0001⟧ (depth) is the running total, ⟦CODE_0002⟧ is the ISO week, ⟦CODE_0003⟧ is the stop rule, ⟦CODE_0004⟧ writes the SQL to fd 3, and ⟦CODE_0005⟧ is find profiling the program ⟦SEP_0011⟧ What GNU find's extras replace, and an optimizer that has nothing to reorder ⟦SEP_0012⟧ [⟦CODE_0006⟧](⟦DEST_0007⟧) ⟦SEP_0013⟧"
+msgstr "⟦SEP_0008⟧ **find, GNU** ⟦SEP_0009⟧ Jim ⟦SEP_0010⟧ El mismo recorrido que excava, con todos los extras de GNU: ⟦CODE_0001⟧ (profundidad) es el total acumulado, ⟦CODE_0002⟧ es la semana ISO, ⟦CODE_0003⟧ es la regla de parada, ⟦CODE_0004⟧ escribe el SQL en el fd 3 y ⟦CODE_0005⟧ es find perfilando el programa ⟦SEP_0011⟧ Lo que reemplazan los extras de GNU find y un optimizador que no tiene nada que reordenar ⟦SEP_0012⟧ [⟦CODE_0006⟧](⟦DEST_0007⟧) ⟦SEP_0013⟧"
+
+#: README.md:80
+msgctxt "s-742567d4b8c0-0053"
+msgid "⟦SEP_0005⟧ **Make, CMake** ⟦SEP_0006⟧ Jim ⟦SEP_0007⟧ One bodiless ⟦CODE_0001⟧; its condition is a regex machine ⟦SEP_0008⟧ ⟦CODE_0002⟧ + regex as a tiny register machine ⟦SEP_0009⟧ [⟦CODE_0003⟧](⟦DEST_0004⟧) ⟦SEP_0010⟧"
+msgstr "⟦SEP_0005⟧ **Make, CMake** ⟦SEP_0006⟧ Jim ⟦SEP_0007⟧ Un solo ⟦CODE_0001⟧ sin cuerpo; su condición es una máquina de expresiones regulares ⟦SEP_0008⟧ ⟦CODE_0002⟧ + expresiones regulares como una pequeña máquina de registros ⟦SEP_0009⟧ [⟦CODE_0003⟧](⟦DEST_0004⟧) ⟦SEP_0010⟧"
+
+#: README.md:81
+msgctxt "s-fa4e6fa3ecba-0054"
+msgid "⟦SEP_0004⟧ **Make, GNU** ⟦SEP_0005⟧ Jim ⟦SEP_0006⟧ No ⟦CODE_0001⟧; Make re-executes itself as the loop ⟦SEP_0007⟧ Arithmetic and looping in plain Make syntax ⟦SEP_0008⟧ [⟦CODE_0002⟧](⟦DEST_0003⟧) ⟦SEP_0009⟧"
+msgstr "⟦SEP_0004⟧ **Make, GNU** ⟦SEP_0005⟧ Jim ⟦SEP_0006⟧ Sin ⟦CODE_0001⟧; Make se vuelve a ejecutar a sí mismo como el bucle ⟦SEP_0007⟧ Aritmética y bucles con sintaxis Make simple ⟦SEP_0008⟧ [⟦CODE_0002⟧](⟦DEST_0003⟧) ⟦SEP_0009⟧"
+
+#: README.md:82
+msgctxt "s-3ed889c3a7f2-0055"
+msgid "⟦SEP_0004⟧ **Python** ⟦SEP_0005⟧ Ken ⟦SEP_0006⟧ The same challenge, Python style ⟦SEP_0007⟧ The same trick, in a language with no ⟦CODE_0001⟧ loops ⟦SEP_0008⟧ [⟦CODE_0002⟧](⟦DEST_0003⟧) ⟦SEP_0009⟧"
+msgstr "⟦SEP_0004⟧ **Python** ⟦SEP_0005⟧ Ken ⟦SEP_0006⟧ El mismo reto, al estilo de Python ⟦SEP_0007⟧ El mismo truco, en un lenguaje sin bucles ⟦CODE_0001⟧ ⟦SEP_0008⟧ [⟦CODE_0002⟧](⟦DEST_0003⟧) ⟦SEP_0009⟧"
+
+#: README.md:83
+msgctxt "s-fb49109628e0-0056"
+msgid "⟦SEP_0003⟧ **RegEx, .NET** ⟦SEP_0004⟧ Jim ⟦SEP_0005⟧ Balancing groups only - no callouts, no code in the pattern ⟦SEP_0006⟧ A regex as a stack-based counter ⟦SEP_0007⟧ [⟦CODE_0001⟧](⟦DEST_0002⟧) ⟦SEP_0008⟧"
+msgstr "⟦SEP_0003⟧ **RegEx, .NET** ⟦SEP_0004⟧ Jim ⟦SEP_0005⟧ Solo grupos de equilibrio: sin callouts y sin código en el patrón ⟦SEP_0006⟧ Una regex como contador basado en una pila ⟦SEP_0007⟧ [⟦CODE_0001⟧](⟦DEST_0002⟧) ⟦SEP_0008⟧"
+
+#: README.md:84
+msgctxt "s-63e689f4f6a4-0057"
+msgid "⟦SEP_0003⟧ **RegEx, GNU sed** ⟦SEP_0004⟧ Ken ⟦SEP_0005⟧ The program is one line of text, rewritten until it's done ⟦SEP_0006⟧ sed substitutions as a Markov algorithm ⟦SEP_0007⟧ [⟦CODE_0001⟧](⟦DEST_0002⟧) ⟦SEP_0008⟧"
+msgstr "⟦SEP_0003⟧ **RegEx, GNU sed** ⟦SEP_0004⟧ Ken ⟦SEP_0005⟧ El programa es una línea de texto que se reescribe hasta terminar ⟦SEP_0006⟧ Sustituciones de sed como algoritmo de Markov ⟦SEP_0007⟧ [⟦CODE_0001⟧](⟦DEST_0002⟧) ⟦SEP_0008⟧"
+
+#: README.md:85
+msgctxt "s-f296e49a62fb-0058"
+msgid "⟦SEP_0003⟧ **RegEx, PCRE2** ⟦SEP_0004⟧ Jim ⟦SEP_0005⟧ Callout strings become opcodes for a bodiless C dispatcher ⟦SEP_0006⟧ Regex callouts as a tiny instruction set ⟦SEP_0007⟧ [⟦CODE_0001⟧](⟦DEST_0002⟧) ⟦SEP_0008⟧"
+msgstr "⟦SEP_0003⟧ **RegEx, PCRE2** ⟦SEP_0004⟧ Jim ⟦SEP_0005⟧ Las cadenas de texto de los callouts se convierten en códigos de operación para un despachador de C sin cuerpo ⟦SEP_0006⟧ Los callouts de regex como un conjunto mínimo de instrucciones ⟦SEP_0007⟧ [⟦CODE_0001⟧](⟦DEST_0002⟧) ⟦SEP_0008⟧"
+
+#: README.md:86
+msgctxt "s-6dcf59eb7fb1-0059"
+msgid "⟦SEP_0004⟧ **RegEx, pcre2grep** ⟦SEP_0005⟧ Jim ⟦SEP_0006⟧ No custom code at all: a stock ⟦CODE_0001⟧, one command line ⟦SEP_0007⟧ Program exit codes as control flow ⟦SEP_0008⟧ [⟦CODE_0002⟧](⟦DEST_0003⟧) ⟦SEP_0009⟧"
+msgstr "⟦SEP_0004⟧ **RegEx, pcre2grep** ⟦SEP_0005⟧ Jim ⟦SEP_0006⟧ Sin código personalizado: un ⟦CODE_0001⟧ estándar y una sola línea de comandos ⟦SEP_0007⟧ Códigos de salida de programas como flujo de control ⟦SEP_0008⟧ [⟦CODE_0002⟧](⟦DEST_0003⟧) ⟦SEP_0009⟧"
+
+#: README.md:87
+msgctxt "s-53f6cdee2c5f-0060"
+msgid "⟦SEP_0004⟧ **RegEx, Perl** ⟦SEP_0005⟧ Jim ⟦SEP_0006⟧ One ⟦CODE_0001⟧ match does everything, then deliberately returns false ⟦SEP_0007⟧ Executable code inside a live regex match ⟦SEP_0008⟧ [⟦CODE_0002⟧](⟦DEST_0003⟧) ⟦SEP_0009⟧"
+msgstr "⟦SEP_0004⟧ **RegEx, Perl** ⟦SEP_0005⟧ Jim ⟦SEP_0006⟧ Una sola coincidencia de ⟦CODE_0001⟧ lo hace todo y luego devuelve false a propósito ⟦SEP_0007⟧ Código ejecutable dentro de una coincidencia de regex en curso ⟦SEP_0008⟧ [⟦CODE_0002⟧](⟦DEST_0003⟧) ⟦SEP_0009⟧"
+
+#: README.md:88
+msgctxt "s-1807156ddfa5-0061"
+msgid "⟦SEP_0007⟧ **Rust** ⟦SEP_0008⟧ Jim ⟦SEP_0009⟧ No ⟦CODE_0001⟧, ⟦CODE_0002⟧ or ⟦CODE_0003⟧ in ⟦CODE_0004⟧ - a test enforces it ⟦SEP_0010⟧ Iterators and closures as control flow ⟦SEP_0011⟧ [⟦CODE_0005⟧](⟦DEST_0006⟧) ⟦SEP_0012⟧"
+msgstr "⟦SEP_0007⟧ **Rust** ⟦SEP_0008⟧ Jim ⟦SEP_0009⟧ Sin ⟦CODE_0001⟧, ⟦CODE_0002⟧ ni ⟦CODE_0003⟧ en ⟦CODE_0004⟧ - una prueba lo exige ⟦SEP_0010⟧ Iteradores y clausuras (*closures*: funciones anónimas que capturan variables de su entorno) como flujo de control ⟦SEP_0011⟧ [⟦CODE_0005⟧](⟦DEST_0006⟧) ⟦SEP_0012⟧"
+
+#: README.md:89
+msgctxt "s-0eb909cc2057-0062"
+msgid "⟦SEP_0005⟧ **Tcl** ⟦SEP_0006⟧ Jim ⟦SEP_0007⟧ A ⟦CODE_0001⟧ loop over dicts, SQL parameters bound straight from Tcl variables and an optional Tk window that is tested headless ⟦SEP_0008⟧ Idiomatic Tcl: braces, dicts, ⟦CODE_0002⟧ bindings and Tk ⟦SEP_0009⟧ [⟦CODE_0003⟧](⟦DEST_0004⟧) ⟦SEP_0010⟧"
+msgstr "⟦SEP_0005⟧ **Tcl** ⟦SEP_0006⟧ Jim ⟦SEP_0007⟧ Un bucle ⟦CODE_0001⟧ sobre diccionarios, parámetros SQL enlazados directamente desde variables de Tcl y una ventana opcional de Tk que se prueba sin interfaz gráfica ⟦SEP_0008⟧ Tcl idiomático: llaves, diccionarios, enlaces con ⟦CODE_0002⟧ y Tk ⟦SEP_0009⟧ [⟦CODE_0003⟧](⟦DEST_0004⟧) ⟦SEP_0010⟧"
+
+#: README.md:90
+msgctxt "s-6bc0f19d99b9-0063"
+msgid "⟦SEP_0005⟧ **Tcl, weirder** ⟦SEP_0006⟧ Jim ⟦SEP_0007⟧ The program is text in a SQLite table, fetched by an overridden ⟦CODE_0001⟧; a recursive trigger is the loop and ⟦CODE_0002⟧ is the stop rule ⟦SEP_0008⟧ Code as data, and a database trigger as control flow ⟦SEP_0009⟧ [⟦CODE_0003⟧](⟦DEST_0004⟧) ⟦SEP_0010⟧"
+msgstr "⟦SEP_0005⟧ **Tcl, más raro** ⟦SEP_0006⟧ Jim ⟦SEP_0007⟧ El programa es texto en una tabla de SQLite, que obtiene un ⟦CODE_0001⟧ redefinido; un disparador recursivo es el bucle y ⟦CODE_0002⟧ es la regla de parada ⟦SEP_0008⟧ El código como datos y un disparador de base de datos como flujo de control ⟦SEP_0009⟧ [⟦CODE_0003⟧](⟦DEST_0004⟧) ⟦SEP_0010⟧"
+
+#: README.md:91
+msgctxt "s-95bea41192b7-0064"
+msgid "⟦SEP_0004⟧ **XAML** ⟦SEP_0005⟧ Jim ⟦SEP_0006⟧ The program *is* a ⟦CODE_0001⟧ file, run by the parser that loads it ⟦SEP_0007⟧ XAML as a runtime interpreter, not just markup ⟦SEP_0008⟧ [⟦CODE_0002⟧](⟦DEST_0003⟧) ⟦SEP_0009⟧"
+msgstr "⟦SEP_0004⟧ **XAML** ⟦SEP_0005⟧ Jim ⟦SEP_0006⟧ El programa *es* un archivo ⟦CODE_0001⟧, ejecutado por el analizador sintáctico que lo carga ⟦SEP_0007⟧ XAML como intérprete en tiempo de ejecución, no solo como marcado ⟦SEP_0008⟧ [⟦CODE_0002⟧](⟦DEST_0003⟧) ⟦SEP_0009⟧"
+
+#: README.md:93
+msgctxt "s-560f01782093-0065"
+msgid "Every \"Teaches you\" cell above is a promise, not just a label: open the folder's README and that is genuinely what you will walk away understanding. For the same material organized by [language](⟦DEST_0001⟧) and by [mechanism](⟦DEST_0002⟧), with exercises, see [Learn Programming the Weird Way!](⟦DEST_0003⟧)."
+msgstr "Cada celda de \"Te enseña\" de arriba es una promesa, no solo una etiqueta: abre el README de la carpeta y eso es justo lo que vas a entender al terminar. Para ver el mismo material organizado por [lenguaje](⟦DEST_0001⟧) y por [mecanismo](⟦DEST_0002⟧), con ejercicios, consulta [Aprende a programar como un bicho raro](⟦DEST_0003⟧)."
+
+#: README.md:95
+msgctxt "s-ed717cc7aa57-0066"
+msgid "Repository layout"
+msgstr "Estructura del repositorio"
+
+#: README.md:153
+msgctxt "s-50afc57dafcb-0067"
+msgid "Ken's COBOL, Java, Kotlin, Python and Go ports live here too, folded in with full credit intact in each one's README."
+msgstr "Las adaptaciones de Ken en COBOL, Java, Kotlin, Python y Go también viven aquí, integradas con todo el crédito intacto en el README de cada una."
+
+#: README.md:155
+msgctxt "s-c785193db123-0068"
+msgid "Ready to dig into any of them as a lesson? Start at [Learn Programming the Weird Way!](⟦DEST_0001⟧)."
+msgstr "¿Listo para explorar cualquiera de ellos como lección? Empieza en [Aprende a programar como un bicho raro](⟦DEST_0001⟧)."
