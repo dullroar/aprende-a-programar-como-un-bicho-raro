@@ -70,11 +70,11 @@ Un archivo tar cuya carga útil contiene solo ceros y una máquina de estados qu
 
 ### ¿Cómo demonios funciona eso?
 
-- **One checkpoint is one hour.** `tar -b 1 --checkpoint=1 --checkpoint-action=exec=...` runs a command for every 512 bytes it writes. The command is a single SQL transaction.
-- **The state is one row.** It holds the hours worked on the open card, the length of the card, the running total, the generator's seed and a `done` flag.
-- **The layout is the schedule.** The number of ticks is `floor(ceil(blocks / b) / K)`. Make the archive shorter and the clock stops in the middle of a card. Make it longer and the extra ticks only count as idle.
-- **The stop rule is a flag, because tar will not stop.** After the crossing card the archive is still being written, and the command still runs. It does nothing but count.
-- **`check.sh` predicts, not just observes.** A second machine, written in awk, says which cards must exist for any seed and any layout. The entry must agree for 65 combinations.
+- **Un punto de control equivale a una hora.** `tar -b 1 --checkpoint=1 --checkpoint-action=exec=...` ejecuta un comando por cada 512 bytes que escribe. El comando es una sola transacción SQL.
+- **El estado es una fila.** Contiene las horas trabajadas en la tarjeta abierta, la duración de la tarjeta, el total acumulado, la semilla del generador y una bandera `done`.
+- **La disposición es el calendario.** El número de pulsos es `floor(ceil(blocks / b) / K)`. Acorta el archivo y el reloj se detiene a mitad de una tarjeta. Alárgalo y los pulsos adicionales solo cuentan como tiempo inactivo.
+- **La regla de parada es una bandera, porque tar no se detiene.** Después de la tarjeta que cruza el tope, el archivo se sigue escribiendo y el comando se sigue ejecutando. Solo cuenta.
+- **`check.sh` predice, no solo observa.** Una segunda máquina, escrita en awk, dice qué tarjetas deben existir para cualquier semilla y disposición. La entrada debe coincidir para 65 combinaciones.
 
 The [README](../../src/tar-gnu-weird/README.md#cómo-funciona-el-truco) has the register table and the full list of what we measured.
 
