@@ -5164,8 +5164,8 @@
     {
      "en": "What makes Common Lisp special",
      "en_id": "what-makes-common-lisp-special",
-     "es": "What makes Common Lisp special",
-     "es_id": "what-makes-common-lisp-special",
+     "es": "Qué hace especial a Common Lisp",
+     "es_id": "qué-hace-especial-a-common-lisp",
      "level": 2,
      "line": 7
     },
@@ -5289,7 +5289,7 @@
     "under-what-circumstances-would-this-terrible-idea-become-reasonable": "under-what-circumstances-would-this-terrible-idea-become-reasonable",
     "weird-next-to-boring": "weird-next-to-boring",
     "what-did-we-just-learn": "what-did-we-just-learn",
-    "what-makes-common-lisp-special": "what-makes-common-lisp-special"
+    "what-makes-common-lisp-special": "qué-hace-especial-a-common-lisp"
    }
   },
   "lessons/languages/m4.md": {

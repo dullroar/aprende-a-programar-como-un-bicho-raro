@@ -1,0 +1,238 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lessons/languages/lisp.md:1
+msgctxt "s-fedf9ff74960-0000"
+msgid "Common Lisp"
+msgstr "Common Lisp"
+
+#: lessons/languages/lisp.md:3
+msgctxt "s-32f863c00249-0001"
+msgid "Entries: [⟦CODE_0001⟧](⟦DEST_0002⟧) (one ⟦CODE_0003⟧ form) and [⟦CODE_0004⟧](⟦DEST_0005⟧) (no loop, no ⟦CODE_0006⟧: a class hierarchy and a method combination do the work)."
+msgstr "Entradas: [⟦CODE_0001⟧](⟦DEST_0002⟧) (una forma ⟦CODE_0003⟧) y [⟦CODE_0004⟧](⟦DEST_0005⟧) (sin bucle ni ⟦CODE_0006⟧: una jerarquía de clases y una combinación de métodos hacen el trabajo)."
+
+#: lessons/languages/lisp.md:5
+msgctxt "s-a654059fda74-0002"
+msgid "For an advanced reading path with traces and experiments, see the [Common Lisp study guide](⟦DEST_0001⟧)."
+msgstr "Para una ruta de lectura avanzada con trazas y experimentos, consulta la [guía de estudio de Common Lisp](⟦DEST_0001⟧)."
+
+#: lessons/languages/lisp.md:7
+msgctxt "s-8fc9e744fe23-0003"
+msgid "What makes Common Lisp special"
+msgstr "Qué hace especial a Common Lisp"
+
+#: lessons/languages/lisp.md:9
+msgctxt "s-b84c7ea05923-0004"
+msgid "Common Lisp is the language where almost every mechanism the language *uses* is also a mechanism you can *reach*: the reader that turns text into data, the macro expander, the object system's dispatch, the condition system. The idiomatic entry uses very little of that. The weird one uses the object system as a control-flow construct."
+msgstr "En Common Lisp, casi todos los mecanismos que el lenguaje *usa* son también mecanismos a los que puedes *acceder*: el lector que convierte texto en datos, el expansor de macros, el despacho del sistema de objetos y el sistema de condiciones. La entrada idiomática usa muy poco de eso. La rara usa el sistema de objetos como una construcción de flujo de control."
+
+#: lessons/languages/lisp.md:11
+msgctxt "s-4edb797a890b-0005"
+msgid "⟦SEP_0001⟧ Feature ⟦SEP_0002⟧ Where ⟦SEP_0003⟧ What it teaches ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ Característica ⟦SEP_0002⟧ Dónde ⟦SEP_0003⟧ Qué enseña ⟦SEP_0004⟧"
+
+#: lessons/languages/lisp.md:13
+msgctxt "s-703b91844f3e-0006"
+msgid "⟦SEP_0011⟧ ⟦CODE_0001⟧ is a small language of its own ⟦SEP_0012⟧ [⟦CODE_0002⟧ L42-46](⟦DEST_0003⟧): ⟦CODE_0004⟧, ⟦CODE_0005⟧, ⟦CODE_0006⟧, ⟦CODE_0007⟧, ⟦CODE_0008⟧ ⟦SEP_0013⟧ The order of clauses is the order of execution. ⟦CODE_0009⟧ comes *after* ⟦CODE_0010⟧, which is why the card that crosses 40 is kept. ⟦SEP_0014⟧"
+msgstr ""
+
+#: lessons/languages/lisp.md:14
+msgctxt "s-2c077d6e9d34-0007"
+msgid "⟦SEP_0004⟧ Structures are typed records with generated accessors ⟦SEP_0005⟧ [L28](⟦DEST_0001⟧): ⟦CODE_0002⟧ ⟦SEP_0006⟧ ⟦CODE_0003⟧ writes the constructor, the accessors and the predicate for you. ⟦SEP_0007⟧"
+msgstr ""
+
+#: lessons/languages/lisp.md:15
+msgctxt "s-741d3a83be14-0008"
+msgid "⟦SEP_0004⟧ Hand-written calendar arithmetic ⟦SEP_0005⟧ [L64](⟦DEST_0001⟧) ⟦CODE_0002⟧ ⟦SEP_0006⟧ SBCL has no ISO week function, so it is computed, then checked against ⟦CODE_0003⟧. A week-numbering rule is an algorithm, not a lookup. ⟦SEP_0007⟧"
+msgstr ""
+
+#: lessons/languages/lisp.md:16
+msgctxt "s-f0710b47523a-0009"
+msgid "⟦SEP_0003⟧ Talking to another process ⟦SEP_0004⟧ [L133](⟦DEST_0001⟧): ⟦CODE_0002⟧ ⟦SEP_0005⟧ Lisp builds the whole SQL script as text and pipes it in. The database is not a library here, it is a tool at the other end of a pipe. ⟦SEP_0006⟧"
+msgstr ""
+
+#: lessons/languages/lisp.md:18
+msgctxt "s-8f294bafb7c8-0010"
+msgid "Method combination as control flow"
+msgstr ""
+
+#: lessons/languages/lisp.md:20
+msgctxt "s-cc9cfaabc50d-0011"
+msgid "Behold the monstrosity"
+msgstr ""
+
+#: lessons/languages/lisp.md:26
+msgctxt "s-e23934c2e7f0-0012"
+msgid "The last line of the output tells you what to look for:"
+msgstr ""
+
+#: lessons/languages/lisp.md:32
+msgctxt "s-eb82182ffc14-0013"
+msgid "Five methods exist. Three or four of them run. Nothing in the program says \"stop\". Below the ⟦CODE_0001⟧ marker in [⟦CODE_0002⟧](⟦DEST_0003⟧) there is no ⟦CODE_0004⟧, no ⟦CODE_0005⟧, no ⟦CODE_0006⟧, no recursion."
+msgstr ""
+
+#: lessons/languages/lisp.md:34
+msgctxt "s-415f5fa29cf9-0014"
+msgid "How the hell does that work?"
+msgstr ""
+
+#: lessons/languages/lisp.md:36
+msgctxt "s-686fa2b12126-0015"
+msgid "**Method combination.** When a generic function is called and several methods apply, CLOS sorts them most-specific-first and *combines* them. The default combination calls the most specific one, which may call ⟦CODE_0001⟧. But the standard also ships others (⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧, ⟦CODE_0006⟧, ⟦CODE_0007⟧, ⟦CODE_0008⟧, ⟦CODE_0009⟧, ⟦CODE_0010⟧) that call all the applicable methods for you:"
+msgstr ""
+
+#: lessons/languages/lisp.md:44
+msgctxt "s-6fbec85e6b2c-0016"
+msgid "⟦CODE_0001⟧ is now ⟦CODE_0002⟧ in specificity order. It has the same short-circuit as the ordinary ⟦CODE_0003⟧: the first true result ends it."
+msgstr ""
+
+#: lessons/languages/lisp.md:46
+msgctxt "s-d5ab306c2965-0017"
+msgid "**The class hierarchy is the counter.** [⟦CODE_0001⟧](⟦DEST_0002⟧) is a macro: ⟦CODE_0003⟧ expands to a class ⟦CODE_0004⟧ that inherits from ⟦CODE_0005⟧, and a ⟦CODE_0006⟧ method specialized on it. [Five of them](⟦DEST_0007⟧) chain ⟦CODE_0008⟧. A ⟦CODE_0009⟧ instance has class precedence list ⟦CODE_0010⟧, so ⟦CODE_0011⟧ runs card 1's method, then card 2's and so on. The classes have no slots: the *class itself* is the message \"this is card number N\"."
+msgstr ""
+
+#: lessons/languages/lisp.md:48
+msgctxt "s-c295453948fb-0018"
+msgid "**The stop rule is a return value.** Each method deals a card and ends with [⟦CODE_0001⟧](⟦DEST_0002⟧). When that is true, ⟦CODE_0003⟧ returns and the remaining methods are never called. Why five? Cards are at least 10 hours, so four cards total at least 40, and 40 is not *over* 40. A fifth card always crosses."
+msgstr ""
+
+#: lessons/languages/lisp.md:50
+msgctxt "s-dceec718e5ce-0019"
+msgid "**Dynamic binding as an implicit argument.** An [⟦CODE_0001⟧ method](⟦DEST_0002⟧) binds the special variable ⟦CODE_0003⟧ to a string stream, calls ⟦CODE_0004⟧ (the whole ⟦CODE_0005⟧ chain), then pipes the finished script to ⟦CODE_0006⟧. Every ⟦CODE_0007⟧ deeper in the call stack writes into that stream, with no stream passed down."
+msgstr ""
+
+#: lessons/languages/lisp.md:52
+msgctxt "s-7cc0d617130c-0020"
+msgid "**The reader builds a ring.** [⟦CODE_0001⟧](⟦DEST_0002⟧) is ⟦CODE_0003⟧: ⟦CODE_0004⟧ labels the list and ⟦CODE_0005⟧ points back at it. The categories repeat with no ⟦CODE_0006⟧."
+msgstr ""
+
+#: lessons/languages/lisp.md:54
+msgctxt "s-0176f78f7a3b-0021"
+msgid "**The program audits itself.** The closing note is computed with the metaobject protocol: ⟦CODE_0001⟧ asks the system which methods apply to this ledger, and the program counts how many ran."
+msgstr ""
+
+#: lessons/languages/lisp.md:56
+msgctxt "s-d2bbf037de84-0022"
+msgid "What did we just learn?"
+msgstr ""
+
+#: lessons/languages/lisp.md:58
+msgctxt "s-2905b0566565-0023"
+msgid "**Control flow can live in a type hierarchy.** Dispatch is the iteration, specificity order is the sequence and a return value is the ⟦CODE_0001⟧. Compare [COBOL's mutable jump](⟦DEST_0002⟧) and [Forth's parse position](⟦DEST_0003⟧): all three put the \"where am I?\" somewhere a loop counter normally is not."
+msgstr ""
+
+#: lessons/languages/lisp.md:59
+msgctxt "s-27e3b67fa2d9-0024"
+msgid "**A language can ship control-flow *policies* as data.** ⟦CODE_0001⟧, ⟦CODE_0002⟧ and ⟦CODE_0003⟧ are not special to ⟦CODE_0004⟧; ⟦CODE_0005⟧ lets you write your own."
+msgstr ""
+
+#: lessons/languages/lisp.md:60
+msgctxt "s-568fb464cb45-0025"
+msgid "**Classes are computed, not just declared.** The class precedence list is an algorithm's output (⟦CODE_0001⟧) that you can ask for."
+msgstr ""
+
+#: lessons/languages/lisp.md:61
+msgctxt "s-20035aeb504a-0026"
+msgid "**Compile-time code runs *before* the program.** ⟦CODE_0001⟧ builds names with ⟦CODE_0002⟧ and ⟦CODE_0003⟧ while compiling, inside ⟦CODE_0004⟧. None of that is a loop over cards at run time."
+msgstr ""
+
+#: lessons/languages/lisp.md:63
+msgctxt "s-8569ab9f99fe-0027"
+msgid "Tags: ⟦CODE_0001⟧ method combination, ⟦CODE_0002⟧, ⟦CODE_0003⟧ syntax, ⟦CODE_0004⟧ and ⟦CODE_0005⟧ are **guaranteed** by ANSI Common Lisp. ⟦CODE_0006⟧ is the MOP, which is **implementation-permitted** (SBCL, CCL and others provide it; it is not in the ANSI standard). ⟦CODE_0007⟧ is specific to SBCL (**implementation-permitted**)."
+msgstr ""
+
+#: lessons/languages/lisp.md:65
+msgctxt "s-299b7a6f9cbe-0028"
+msgid "Do this in production and you're fired"
+msgstr ""
+
+#: lessons/languages/lisp.md:67
+msgctxt "s-036a62733679-0029"
+msgid "**The control flow is invisible.** Nothing near ⟦CODE_0001⟧ says \"this loops\". A maintainer has to know that class-definition order decides execution order; splicing a class into the chain changes behavior without touching a method."
+msgstr ""
+
+#: lessons/languages/lisp.md:68
+msgctxt "s-bc532ea30e61-0030"
+msgid "**The limit is baked into the design.** Five classes handle \"10 to 19 hours, stop over 40\". Different rules need a longer or shorter chain; the straight version has no such limit. (Try it in [B10](⟦DEST_0001⟧).)"
+msgstr ""
+
+#: lessons/languages/lisp.md:69
+msgctxt "s-3792aaea4a4e-0031"
+msgid "**Debuggers and tracers show a stack of generic-function calls**, not a loop, and a profiler attributes the time to methods nobody wrote by hand."
+msgstr ""
+
+#: lessons/languages/lisp.md:70
+msgctxt "s-a00377d6dcaf-0032"
+msgid "**SBCL only** as shipped: the ⟦CODE_0001⟧ functions are SBCL's, while the CLOS parts are standard."
+msgstr ""
+
+#: lessons/languages/lisp.md:72
+msgctxt "s-d60bc86e59cb-0033"
+msgid "Legitimate uses: **⟦CODE_0001⟧/⟦CODE_0002⟧ combinations are real tools** for \"first handler that says yes wins\" (validation chains, plug-in hooks, event handling). The stunt is using the *class hierarchy itself* as the sequence."
+msgstr ""
+
+#: lessons/languages/lisp.md:74
+msgctxt "s-5e3bcdfbf845-0034"
+msgid "Now break it yourself"
+msgstr ""
+
+#: lessons/languages/lisp.md:76
+msgctxt "s-f2ff2d31aab5-0035"
+msgid "See [exercises](⟦DEST_0001⟧)."
+msgstr ""
+
+#: lessons/languages/lisp.md:78
+msgctxt "s-12d0b77aba94-0036"
+msgid "Quirks"
+msgstr ""
+
+#: lessons/languages/lisp.md:80
+msgctxt "s-909f4ec0b57e-0037"
+msgid "**⟦CODE_0001⟧ clause order matters.** Move ⟦CODE_0002⟧ above ⟦CODE_0003⟧ and the crossing card is dropped. This is the same trap as Haskell's ⟦CODE_0004⟧ ([why ⟦CODE_0005⟧](⟦DEST_0006⟧))."
+msgstr ""
+
+#: lessons/languages/lisp.md:81
+msgctxt "s-321c7098fdde-0038"
+msgid "**Definitions must run in order.** A class must exist before another can inherit from it, so ⟦CODE_0001⟧ goes tail first. Implementations differ on whether a forward reference is a warning."
+msgstr ""
+
+#: lessons/languages/lisp.md:82
+msgctxt "s-3ab953021612-0039"
+msgid "**⟦CODE_0001⟧ does not escape.** Every value is a number or one of four fixed words; do not reuse it for anything else."
+msgstr ""
+
+#: lessons/languages/lisp.md:83
+msgctxt "s-4df631e1101f-0040"
+msgid "**No formatter exists** for Common Lisp; layout follows Emacs ⟦CODE_0001⟧ indentation by hand."
+msgstr ""
+
+#: lessons/languages/lisp.md:85
+msgctxt "s-a6b58da9d4cd-0041"
+msgid "Weird next to boring"
+msgstr ""
+
+#: lessons/languages/lisp.md:87
+msgctxt "s-c8400ff4e6ab-0042"
+msgid "[⟦CODE_0001⟧](⟦DEST_0002⟧) is one ⟦CODE_0003⟧ that sums, collects and stops: what a Lisp programmer writes. [⟦CODE_0004⟧](⟦DEST_0005⟧) moves the loop out of any form and into the *type system*. The first is idiomatic; the second is what the object system *permits*. Compare how [⟦CODE_0006⟧](⟦DEST_0007⟧) and [⟦CODE_0008⟧](⟦DEST_0009⟧) also pair a one-expression answer with one that rebuilds control flow from the language's own metaprogramming."
+msgstr ""
+
+#: lessons/languages/lisp.md:89
+msgctxt "s-c08a852d0dbe-0043"
+msgid "Under what circumstances would this terrible idea become reasonable?"
+msgstr ""
+
+#: lessons/languages/lisp.md:91
+msgctxt "s-6a4e0d9d216b-0044"
+msgid "When the \"loop\" is really *a set of independently registered participants* (plug-ins, validators, listeners) and the language gives you a combination rule for them. Using five empty classes to count to five is a stunt; using ⟦CODE_0001⟧ to find the first listener that accepts an event is the intended design."
+msgstr ""
+
+#: lessons/languages/lisp.md:149
+msgctxt "s-ac0e260e97bf-0045"
+msgid "Computer science behind this page"
+msgstr ""

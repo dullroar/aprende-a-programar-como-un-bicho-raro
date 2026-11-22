@@ -1,14 +1,14 @@
 # Common Lisp
 
-Entries: [`src/lisp`](../../src/lisp/README.md) (one `LOOP` form) and [`src/lisp-weird`](../../src/lisp-weird/README.md) (no loop, no `if`: a class hierarchy and a method combination do the work).
+Entradas: [`src/lisp`](../../src/lisp/README.md) (una forma `LOOP`) y [`src/lisp-weird`](../../src/lisp-weird/README.md) (sin bucle ni `if`: una jerarquía de clases y una combinación de métodos hacen el trabajo).
 
-For an advanced reading path with traces and experiments, see the [Common Lisp study guide](../guias-de-estudio/lenguajes/common-lisp.md).
+Para una ruta de lectura avanzada con trazas y experimentos, consulta la [guía de estudio de Common Lisp](../guias-de-estudio/lenguajes/common-lisp.md).
 
-## What makes Common Lisp special
+## Qué hace especial a Common Lisp
 
-Common Lisp is the language where almost every mechanism the language *uses* is also a mechanism you can *reach*: the reader that turns text into data, the macro expander, the object system's dispatch, the condition system. The idiomatic entry uses very little of that. The weird one uses the object system as a control-flow construct.
+En Common Lisp, casi todos los mecanismos que el lenguaje *usa* son también mecanismos a los que puedes *acceder*: el lector que convierte texto en datos, el expansor de macros, el despacho del sistema de objetos y el sistema de condiciones. La entrada idiomática usa muy poco de eso. La rara usa el sistema de objetos como una construcción de flujo de control.
 
-| Feature | Where | What it teaches |
+| Característica | Dónde | Qué enseña |
 | --- | --- | --- |
 | `LOOP` is a small language of its own | [`lisp/timecards.lisp` L42-46](../../src/lisp/timecards.lisp#L42-L46): `for number from 1`, `for hours = ...`, `sum hours into total`, `collect ...`, `until (> total +limit+)` | The order of clauses is the order of execution. `until` comes *after* `collect`, which is why the card that crosses 40 is kept. |
 | Structures are typed records with generated accessors | [L28](../../src/lisp/timecards.lisp#L28): `(defstruct (card (:constructor make-card ...)))` | `defstruct` writes the constructor, the accessors and the predicate for you. |
