@@ -385,27 +385,27 @@ msgstr "**Los errores suben por la pila de llamadas.** El ⟦CODE_0001⟧ de un 
 #: lessons/languages/javascript.md:129
 msgctxt "s-b63667d895b3-0075"
 msgid "**The name ⟦CODE_0001⟧ is special.** ⟦CODE_0002⟧ with no listener throws ⟦CODE_0003⟧."
-msgstr ""
+msgstr "**El nombre ⟦CODE_0001⟧ es especial.** ⟦CODE_0002⟧ sin un escuchador de eventos lanza ⟦CODE_0003⟧."
 
 #: lessons/languages/javascript.md:130
 msgctxt "s-6a9e759055b6-0076"
 msgid "**Cleanup is part of the design.** A listener, timer or immediate that stays behind keeps a process alive or leaks."
-msgstr ""
+msgstr "**La limpieza forma parte del diseño.** Un escuchador de eventos, temporizador o inmediato que queda pendiente mantiene vivo un proceso o provoca una fuga."
 
 #: lessons/languages/javascript.md:132
 msgctxt "s-26b89e364f0b-0077"
 msgid "Tags: ⟦CODE_0001⟧'s synchronous call and its order, and ⟦CODE_0002⟧ running after the current operation, are documented Node behavior (**guaranteed**). See the Node.js [⟦CODE_0003⟧ documentation](⟦DEST_0004⟧). The order of ⟦CODE_0005⟧ against ⟦CODE_0006⟧ is not promised everywhere, so the program does not depend on it."
-msgstr ""
+msgstr "Etiquetas: la llamada síncrona de ⟦CODE_0001⟧ y su orden, así como la ejecución de ⟦CODE_0002⟧ después de la operación actual, son comportamiento documentado de Node (**garantizado**). Consulta la [documentación de ⟦CODE_0003⟧](⟦DEST_0004⟧) de Node.js. El orden de ⟦CODE_0005⟧ frente a ⟦CODE_0006⟧ no está prometido en todas partes, así que el programa no depende de él."
 
 #: lessons/languages/javascript.md:134
 msgctxt "s-299b7a6f9cbe-0078"
 msgid "Do this in production and you're fired"
-msgstr ""
+msgstr "Haz esto en producción y estás despedido"
 
 #: lessons/languages/javascript.md:136
 msgctxt "s-46ce52d33a32-0079"
 msgid "**One listener per event is a function call with extra steps.** If only one party can ever care, call it."
-msgstr ""
+msgstr "**Un escuchador de eventos por evento es una llamada a función con pasos extra.** Si solo una parte puede tener interés, llámala."
 
 #: lessons/languages/javascript.md:137
 msgctxt "s-acc1c6370b34-0080"

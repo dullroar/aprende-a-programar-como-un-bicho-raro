@@ -126,14 +126,14 @@ El [README](../../src/javascript-events/README.md#cómo-funciona-el-truco) conti
 - **`emit()` síncrono no es el bucle de eventos.** Un emisor es una tabla de escuchadores de eventos y una función que los llama. La cola y el bucle pertenecen a Node.
 - **Un turno es la unidad de planificación.** Todo lo que hay en un turno se ejecuta hasta terminar antes de que empiece otra cosa. Una función de devolución de llamada que tarda mucho bloquea el resto.
 - **Los errores suben por la pila de llamadas.** El `throw` de un escuchador de eventos llega a quien llamó a `emit`. Si es una función de devolución de llamada programada, nadie lo captura. Por eso cada escuchador de eventos necesita su propio `try`.
-- **The name `error` is special.** `emit('error', e)` with no listener throws `e`.
-- **Cleanup is part of the design.** A listener, timer or immediate that stays behind keeps a process alive or leaks.
+- **El nombre `error` es especial.** `emit('error', e)` sin un escuchador de eventos lanza `e`.
+- **La limpieza forma parte del diseño.** Un escuchador de eventos, temporizador o inmediato que queda pendiente mantiene vivo un proceso o provoca una fuga.
 
-Tags: `EventEmitter`'s synchronous call and its order, and `setImmediate()` running after the current operation, are documented Node behavior (**guaranteed**). See the Node.js [`events` documentation](https://nodejs.org/api/events.html). The order of `setImmediate` against `setTimeout(fn, 0)` is not promised everywhere, so the program does not depend on it.
+Etiquetas: la llamada síncrona de `EventEmitter` y su orden, así como la ejecución de `setImmediate()` después de la operación actual, son comportamiento documentado de Node (**garantizado**). Consulta la [documentación de `events`](https://nodejs.org/api/events.html) de Node.js. El orden de `setImmediate` frente a `setTimeout(fn, 0)` no está prometido en todas partes, así que el programa no depende de él.
 
-### Do this in production and you're fired
+### Haz esto en producción y estás despedido
 
-- **One listener per event is a function call with extra steps.** If only one party can ever care, call it.
+- **Un escuchador de eventos por evento es una llamada a función con pasos extra.** Si solo una parte puede tener interés, llámala.
 - **The order is hard to see.** A reader must find every `emit` to know what follows what.
 - **There is no backpressure.** An emitter keeps emitting. This program is safe only because each card waits for the one before it.
 - **Listeners that change the listeners during an `emit`** make the order hard to predict. This program removes its listeners only at the very end.
