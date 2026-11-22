@@ -71,9 +71,9 @@ Consulta los [ejercicios](../exercises.md#b3-forth-move-the-anchor-verified).
 
 [`forth`](../../src/forth/README.md) es un programa de pila limpio: palabras pequeñas, un bucle. [`forth-weird`](../../src/forth-weird/README.md) reemplaza cada `variable` y palabra de control por la posición en la pila y un analizador sintáctico rebobinado. El primero es lo que escriben los programadores de Forth; el segundo es lo que Forth *permite*.
 
-## Under what circumstances would this terrible idea become reasonable?
+## ¿En qué circunstancias esta idea terrible se volvería razonable?
 
-When you are writing the interpreter, a parsing word or a debugger. Rewinding the parser is a stunt in a loop; it is a tool in a language implementer's kit.
+Cuando escribes el intérprete, una palabra de análisis sintáctico o un depurador. Rebobinar el analizador sintáctico es una acrobacia en un bucle; es una herramienta para quien implementa un lenguaje.
 
 <!-- BEGIN GENERATED program-flow:languages/forth.md -->
 ## How each program runs
@@ -121,7 +121,7 @@ flowchart TD
 **Why this mechanism matters:** the program counter is a variable, and a program can rewrite it. The state is two numbers on the data stack, and they survive the rewind because nothing else touches them. This works because the words are read from an input line, and it does not work the same way in a definition. See [`forth`](../../src/forth/README.md) for the ordinary loop.
 <!-- END GENERATED program-flow:languages/forth.md -->
 
-## Computer science behind this page
+## Informática detrás de esta página
 
 <!-- BEGIN GENERATED concepts:languages/forth.md -->
 The computer-science ideas behind this page: [Stack machines](../informatica/02-que-cuenta-como-maquina.md#stack-machines), [Register machines and counter machines](../informatica/02-que-cuenta-como-maquina.md#register-machines-and-counter-machines), [Control flow](../informatica/03-flujo-de-control-y-continuaciones.md#control-flow), [The program counter](../informatica/03-flujo-de-control-y-continuaciones.md#the-program-counter), [Parsing](../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#parsing), [State](../informatica/06-estado-mas-alla-de-las-variables.md#state), [The stack as a data structure](../informatica/06-estado-mas-alla-de-las-variables.md#the-stack-as-a-data-structure), [Reflection and metaprogramming](../informatica/06-estado-mas-alla-de-las-variables.md#reflection-and-metaprogramming), [Transactions](../informatica/07-efectos-errores-y-confirmacion.md#transactions).

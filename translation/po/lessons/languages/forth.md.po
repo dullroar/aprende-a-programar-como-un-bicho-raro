@@ -205,14 +205,14 @@ msgstr "[⟦CODE_0001⟧](⟦DEST_0002⟧) es un programa de pila limpio: palabr
 #: lessons/languages/forth.md:74
 msgctxt "s-c08a852d0dbe-0039"
 msgid "Under what circumstances would this terrible idea become reasonable?"
-msgstr ""
+msgstr "¿En qué circunstancias esta idea terrible se volvería razonable?"
 
 #: lessons/languages/forth.md:76
 msgctxt "s-89f15634e620-0040"
 msgid "When you are writing the interpreter, a parsing word or a debugger. Rewinding the parser is a stunt in a loop; it is a tool in a language implementer's kit."
-msgstr ""
+msgstr "Cuando escribes el intérprete, una palabra de análisis sintáctico o un depurador. Rebobinar el analizador sintáctico es una acrobacia en un bucle; es una herramienta para quien implementa un lenguaje."
 
 #: lessons/languages/forth.md:124
 msgctxt "s-ac0e260e97bf-0041"
 msgid "Computer science behind this page"
-msgstr ""
+msgstr "Informática detrás de esta página"

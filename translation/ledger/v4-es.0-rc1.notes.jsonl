@@ -2258,3 +2258,5 @@
 {"segment_id": "s-5e3bcdfbf845-0029", "ts": "2026-11-22T02:39:18Z", "findings": [], "playful_note": "Conserva el desafío juguetón."}
 {"segment_id": "s-2062846e4955-0034", "ts": "2026-11-22T02:41:00Z", "findings": ["I22: range '10 a 19' names no unit (write horas por tarjeta)"]}
 {"segment_id": "s-a6b58da9d4cd-0037", "ts": "2026-11-22T02:41:00Z", "findings": [], "playful_note": "Conserva el contraste afectuoso entre lo raro y lo aburrido."}
+{"segment_id": "s-c08a852d0dbe-0039", "ts": "2026-11-22T02:42:42Z", "findings": ["I15: heading differs from the recorded transcreated '¿En qué circunstancias esta idea terrible se volvería razonable?'"], "playful_note": "Conserva la ironía de pedir un caso razonable para una idea terrible."}
+{"segment_id": "s-c08a852d0dbe-0039", "ts": "2026-11-22T02:42:49Z", "findings": [], "playful_note": "Conserva la ironía de pedir un caso razonable para una idea terrible."}

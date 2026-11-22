@@ -4723,8 +4723,8 @@
     {
      "en": "Under what circumstances would this terrible idea become reasonable?",
      "en_id": "under-what-circumstances-would-this-terrible-idea-become-reasonable",
-     "es": "Under what circumstances would this terrible idea become reasonable?",
-     "es_id": "under-what-circumstances-would-this-terrible-idea-become-reasonable",
+     "es": "¿En qué circunstancias esta idea terrible se volvería razonable?",
+     "es_id": "en-qué-circunstancias-esta-idea-terrible-se-volvería-razonable",
      "level": 2,
      "line": 74
     },
@@ -4755,15 +4755,15 @@
     {
      "en": "Computer science behind this page",
      "en_id": "computer-science-behind-this-page",
-     "es": "Computer science behind this page",
-     "es_id": "computer-science-behind-this-page",
+     "es": "Informática detrás de esta página",
+     "es_id": "informática-detrás-de-esta-página",
      "level": 2,
      "line": 124
     }
    ],
    "map": {
     "behold-the-monstrosity": "contempla-la-monstruosidad",
-    "computer-science-behind-this-page": "computer-science-behind-this-page",
+    "computer-science-behind-this-page": "informática-detrás-de-esta-página",
     "do-this-in-production-and-youre-fired": "haz-esto-en-producción-y-estás-despedido",
     "forth": "forth",
     "how-each-program-runs": "how-each-program-runs",
@@ -4773,7 +4773,7 @@
     "program-flow-of-forth-weird": "program-flow-of-forth-weird",
     "quirks": "peculiaridades",
     "the-parse-position-as-a-program-counter": "la-posición-de-análisis-sintáctico-como-contador-de-programa",
-    "under-what-circumstances-would-this-terrible-idea-become-reasonable": "under-what-circumstances-would-this-terrible-idea-become-reasonable",
+    "under-what-circumstances-would-this-terrible-idea-become-reasonable": "en-qué-circunstancias-esta-idea-terrible-se-volvería-razonable",
     "weird-next-to-boring": "lo-raro-junto-a-lo-aburrido",
     "what-did-we-just-learn": "qué-acabamos-de-aprender",
     "what-makes-forth-special": "qué-hace-especial-a-forth"
