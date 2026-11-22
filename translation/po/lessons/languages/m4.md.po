@@ -135,27 +135,27 @@ msgstr "**Un lenguaje con solo texto aún puede guardar estado.** Las variables 
 #: lessons/languages/m4.md:59
 msgctxt "s-cbc3327271d8-0025"
 msgid "**Output control is a language feature.** ⟦CODE_0001⟧ and ⟦CODE_0002⟧ are part of why ⟦CODE_0003⟧ and ⟦CODE_0004⟧ could be built on it."
-msgstr ""
+msgstr "**El control de salida es una característica del lenguaje.** ⟦CODE_0001⟧ y ⟦CODE_0002⟧ son parte de la razón por la que se pudieron construir ⟦CODE_0003⟧ y ⟦CODE_0004⟧ sobre él."
 
 #: lessons/languages/m4.md:60
 msgctxt "s-f38fd3b023b3-0026"
 msgid "**Machine limits show up in the language.** Whether you want to or not, you learn that an integer is 32 bits."
-msgstr ""
+msgstr "**Los límites de la máquina aparecen en el lenguaje.** Quieras o no, aprendes que un entero es de 32 bits."
 
 #: lessons/languages/m4.md:62
 msgctxt "s-31b013b88317-0027"
 msgid "Tags: rescanning, quoting, ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧ and ⟦CODE_0006⟧ are **guaranteed** by POSIX m4. ⟦CODE_0007⟧ and ⟦CODE_0008⟧ are GNU m4 extensions (**implementation-permitted**, tested with 1.4.19); the ⟦CODE_0009⟧ + ⟦CODE_0010⟧ seed pin is POSIX. The 32-bit limit is **implementation-permitted**: POSIX only requires at least 32 bits."
-msgstr ""
+msgstr "Etiquetas: el reescaneo, las comillas, ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧ y ⟦CODE_0006⟧ son comportamiento **garantizado** por POSIX m4. ⟦CODE_0007⟧ y ⟦CODE_0008⟧ son extensiones de GNU m4 (**permitido por la implementación**, probado con 1.4.19); fijar la semilla con ⟦CODE_0009⟧ + ⟦CODE_0010⟧ es POSIX. El límite de 32 bits es **permitido por la implementación**: POSIX solo exige al menos 32 bits."
 
 #: lessons/languages/m4.md:64
 msgctxt "s-299b7a6f9cbe-0028"
 msgid "Do this in production and you're fired"
-msgstr ""
+msgstr "Haz esto en producción y estás despedido"
 
 #: lessons/languages/m4.md:66
 msgctxt "s-9ea12d1ef417-0029"
 msgid "**Everything is a global macro.** Names are not scoped, so the program prefixes everything with ⟦CODE_0001⟧ to avoid colliding with m4's own macros."
-msgstr ""
+msgstr "**Todo es una macro global.** Los nombres no tienen ámbito, así que el programa antepone ⟦CODE_0001⟧ a todo para evitar colisiones con las macros propias de m4."
 
 #: lessons/languages/m4.md:67
 msgctxt "s-2a11a056a45c-0030"
