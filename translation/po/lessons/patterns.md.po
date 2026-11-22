@@ -1,0 +1,623 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lessons/patterns.md:1
+msgctxt "s-d362aa9fb495-0000"
+msgid "By solution pattern"
+msgstr "Por patrón de solución"
+
+#: lessons/patterns.md:3
+msgctxt "s-f428166bdb90-0001"
+msgid "The same ideas show up in different languages. This page organizes the entries by *mechanism*, for readers who want to explore an unfamiliar way of computing rather than deepen one language."
+msgstr "Las mismas ideas aparecen en lenguajes distintos. Esta página organiza las entradas por *mecanismo*, para los lectores que quieren explorar una forma desconocida de computar en vez de profundizar en un solo lenguaje."
+
+#: lessons/patterns.md:5
+msgctxt "s-2d4009e2f11a-0002"
+msgid "Formal languages"
+msgstr "Lenguajes formales"
+
+#: lessons/patterns.md:7
+msgctxt "s-4cfe9bb09f9d-0003"
+msgid "A formal language is a notation with strict rules that a machine can process. The recurring surprise: a notation built for one job turns out to be a computer."
+msgstr "Un lenguaje formal es una notación con reglas estrictas que una máquina puede procesar. La sorpresa recurrente: una notación creada para un trabajo resulta ser una computadora."
+
+#: lessons/patterns.md:9
+msgctxt "s-235a1c041ea5-0004"
+msgid "⟦SEP_0001⟧ Formal language ⟦SEP_0002⟧ What it was for ⟦SEP_0003⟧ What it becomes ⟦SEP_0004⟧ Entry ⟦SEP_0005⟧"
+msgstr "⟦SEP_0001⟧ Lenguaje formal ⟦SEP_0002⟧ Para qué servía ⟦SEP_0003⟧ En qué se convierte ⟦SEP_0004⟧ Entrada ⟦SEP_0005⟧"
+
+#: lessons/patterns.md:11
+msgctxt "s-ff390aaf6f4b-0005"
+msgid "⟦SEP_0006⟧ **RegEx** ⟦SEP_0007⟧ Matching text ⟦SEP_0008⟧ A search machine with state and I/O hooks ([Perl](⟦DEST_0001⟧), [PCRE2](⟦DEST_0002⟧)), a counter ([.NET](⟦DEST_0003⟧)), a rewriting system ([sed](⟦DEST_0004⟧)) ⟦SEP_0009⟧ ⟦CODE_0005⟧ ⟦SEP_0010⟧"
+msgstr "⟦SEP_0006⟧ **RegEx** ⟦SEP_0007⟧ Buscar coincidencias en texto ⟦SEP_0008⟧ Una máquina de búsqueda con estado y ganchos de entrada y salida ([Perl](⟦DEST_0001⟧), [PCRE2](⟦DEST_0002⟧)), un contador ([.NET](⟦DEST_0003⟧)), un sistema de reescritura ([sed](⟦DEST_0004⟧)) ⟦SEP_0009⟧ ⟦CODE_0005⟧ ⟦SEP_0010⟧"
+
+#: lessons/patterns.md:12
+msgctxt "s-87606cbef103-0006"
+msgid "⟦SEP_0003⟧ **Make** ⟦SEP_0004⟧ Ordering builds ⟦SEP_0005⟧ A dependency engine that restarts itself, giving a loop ⟦SEP_0006⟧ [⟦CODE_0001⟧](⟦DEST_0002⟧) ⟦SEP_0007⟧"
+msgstr "⟦SEP_0003⟧ **Make** ⟦SEP_0004⟧ Ordenar las compilaciones ⟦SEP_0005⟧ Un motor de dependencias que se reinicia a sí mismo y así forma un bucle ⟦SEP_0006⟧ [⟦CODE_0001⟧](⟦DEST_0002⟧) ⟦SEP_0007⟧"
+
+#: lessons/patterns.md:13
+msgctxt "s-8ec00021bd0b-0007"
+msgid "⟦SEP_0004⟧ **CMake** ⟦SEP_0005⟧ Configuring builds ⟦SEP_0006⟧ A register machine in a ⟦CODE_0001⟧ condition ⟦SEP_0007⟧ [⟦CODE_0002⟧](⟦DEST_0003⟧) ⟦SEP_0008⟧"
+msgstr "⟦SEP_0004⟧ **CMake** ⟦SEP_0005⟧ Configurar las compilaciones ⟦SEP_0006⟧ Una máquina de registros dentro de una condición ⟦CODE_0001⟧ ⟦SEP_0007⟧ [⟦CODE_0002⟧](⟦DEST_0003⟧) ⟦SEP_0008⟧"
+
+#: lessons/patterns.md:14
+msgctxt "s-aa29a2b942da-0008"
+msgid "⟦SEP_0003⟧ **XAML** ⟦SEP_0004⟧ Describing a UI tree ⟦SEP_0005⟧ An interpreter that runs methods as it parses ⟦SEP_0006⟧ [⟦CODE_0001⟧](⟦DEST_0002⟧) ⟦SEP_0007⟧"
+msgstr "⟦SEP_0003⟧ **XAML** ⟦SEP_0004⟧ Describir un árbol de interfaz ⟦SEP_0005⟧ Un intérprete que ejecuta métodos mientras analiza el texto ⟦SEP_0006⟧ [⟦CODE_0001⟧](⟦DEST_0002⟧) ⟦SEP_0007⟧"
+
+#: lessons/patterns.md:15
+msgctxt "s-79faa4c41db4-0009"
+msgid "⟦SEP_0003⟧ **LINQ query expressions** ⟦SEP_0004⟧ Querying collections ⟦SEP_0005⟧ An execution pipeline with lazy and eager stages and provider boundaries ⟦SEP_0006⟧ [⟦CODE_0001⟧](⟦DEST_0002⟧) ⟦SEP_0007⟧"
+msgstr "⟦SEP_0003⟧ **Expresiones de consulta LINQ** ⟦SEP_0004⟧ Consultar colecciones ⟦SEP_0005⟧ Una canalización de ejecución con etapas perezosas e inmediatas y con fronteras de proveedor ⟦SEP_0006⟧ [⟦CODE_0001⟧](⟦DEST_0002⟧) ⟦SEP_0007⟧"
+
+#: lessons/patterns.md:16
+msgctxt "s-77f4f575f768-0010"
+msgid "⟦SEP_0003⟧ **m4** ⟦SEP_0004⟧ Expanding text templates ⟦SEP_0005⟧ A loop: a macro whose replacement text contains itself is read again ⟦SEP_0006⟧ [⟦CODE_0001⟧](⟦DEST_0002⟧) ⟦SEP_0007⟧"
+msgstr "⟦SEP_0003⟧ **m4** ⟦SEP_0004⟧ Expandir plantillas de texto ⟦SEP_0005⟧ Un bucle: una macro cuyo texto de reemplazo se contiene a sí mismo se lee otra vez ⟦SEP_0006⟧ [⟦CODE_0001⟧](⟦DEST_0002⟧) ⟦SEP_0007⟧"
+
+#: lessons/patterns.md:17
+msgctxt "s-6c2e903f3224-0011"
+msgid "⟦SEP_0004⟧ **SQL triggers** ⟦SEP_0005⟧ Reacting to a change in a table ⟦SEP_0006⟧ A recursive loop whose stop rule is a ⟦CODE_0001⟧ that selects nothing, and a host for another language's code ⟦SEP_0007⟧ [⟦CODE_0002⟧](⟦DEST_0003⟧) ⟦SEP_0008⟧"
+msgstr "⟦SEP_0004⟧ **Disparadores de SQL** ⟦SEP_0005⟧ Reaccionar a un cambio en una tabla ⟦SEP_0006⟧ Un bucle recursivo cuya regla de parada es un ⟦CODE_0001⟧ que no selecciona nada, y un anfitrión para el código de otro lenguaje ⟦SEP_0007⟧ [⟦CODE_0002⟧](⟦DEST_0003⟧) ⟦SEP_0008⟧"
+
+#: lessons/patterns.md:18
+msgctxt "s-bb6e93110008-0012"
+msgid "⟦SEP_0004⟧ **CLOS method combination** ⟦SEP_0005⟧ Combining the methods that apply to a call ⟦SEP_0006⟧ A loop over a class hierarchy, stopped by ⟦CODE_0001⟧ ⟦SEP_0007⟧ [⟦CODE_0002⟧](⟦DEST_0003⟧) ⟦SEP_0008⟧"
+msgstr "⟦SEP_0004⟧ **Combinación de métodos de CLOS** ⟦SEP_0005⟧ Combinar los métodos que se aplican a una llamada ⟦SEP_0006⟧ Un bucle sobre una jerarquía de clases, detenido por ⟦CODE_0001⟧ ⟦SEP_0007⟧ [⟦CODE_0002⟧](⟦DEST_0003⟧) ⟦SEP_0008⟧"
+
+#: lessons/patterns.md:19
+msgctxt "s-bf0fbf8775d1-0013"
+msgid "⟦SEP_0003⟧ **AWK pattern-action rules** ⟦SEP_0004⟧ Filtering and reshaping records ⟦SEP_0005⟧ A program whose only loop is the input, and whose conditionals are the pattern column ⟦SEP_0006⟧ [⟦CODE_0001⟧](⟦DEST_0002⟧) ⟦SEP_0007⟧"
+msgstr "⟦SEP_0003⟧ **Reglas de patrón y acción de AWK** ⟦SEP_0004⟧ Filtrar y reorganizar registros ⟦SEP_0005⟧ Un programa cuyo único bucle es la entrada de datos y cuyos condicionales son la columna de patrones ⟦SEP_0006⟧ [⟦CODE_0001⟧](⟦DEST_0002⟧) ⟦SEP_0007⟧"
+
+#: lessons/patterns.md:21
+msgctxt "s-5a573e5b21b5-0014"
+msgid "What to take away:"
+msgstr "Qué te llevas:"
+
+#: lessons/patterns.md:23
+msgctxt "s-b67a0ca2a79d-0015"
+msgid "**Declarative does not mean inert.** Any notation that lets you name a function and its arguments is one step from being a program (⟦CODE_0001⟧, callouts, ⟦CODE_0002⟧)."
+msgstr "**Declarativo no significa inerte.** Una notación que te deja nombrar una función y sus argumentos está a un paso de ser un programa (⟦CODE_0001⟧, callouts, ⟦CODE_0002⟧)."
+
+#: lessons/patterns.md:24
+msgctxt "s-bd2d51a96817-0016"
+msgid "**The cheapest way to find what a notation can really do is to give it a job it was not designed for**, then document where it fails: the [blocking problems](⟦DEST_0001⟧)."
+msgstr "**La forma más barata de averiguar qué puede hacer de verdad una notación es darle un trabajo para el que no fue diseñada**, y luego documentar dónde falla: los [problemas de bloqueo](⟦DEST_0001⟧)."
+
+#: lessons/patterns.md:25
+msgctxt "s-94d886ff27d3-0017"
+msgid "**Performance cliffs are semantics.** sed's pulse *uses* catastrophic backtracking as a clock; in production the same property is a denial-of-service bug."
+msgstr "**Los precipicios de rendimiento son semántica.** El pulso de sed *usa* el retroceso catastrófico como reloj; en producción, esa misma propiedad es un bicho de denegación de servicio."
+
+#: lessons/patterns.md:27
+msgctxt "s-c0e0a6402679-0018"
+msgid "Map/reduce and other transformations"
+msgstr "Map/reduce y otras transformaciones"
+
+#: lessons/patterns.md:29
+msgctxt "s-22f4938ca2f4-0019"
+msgid "Several entries replace \"loop with an accumulator\" with a transformation of a whole sequence."
+msgstr "Varias entradas reemplazan el \"bucle con acumulador\" por una transformación de una secuencia completa."
+
+#: lessons/patterns.md:31
+msgctxt "s-49297b077ded-0020"
+msgid "⟦SEP_0001⟧ Idea ⟦SEP_0002⟧ Where ⟦SEP_0003⟧ In plain words ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ Idea ⟦SEP_0002⟧ Dónde ⟦SEP_0003⟧ En palabras sencillas ⟦SEP_0004⟧"
+
+#: lessons/patterns.md:33
+msgctxt "s-0965fdfed814-0021"
+msgid "⟦SEP_0004⟧ **Running sum, then split** ⟦SEP_0005⟧ [Haskell](⟦DEST_0001⟧) ⟦CODE_0002⟧ over ⟦CODE_0003⟧ ⟦SEP_0006⟧ Build every possible answer lazily; choose where to stop reading ⟦SEP_0007⟧"
+msgstr "⟦SEP_0004⟧ **Suma acumulada y luego corte** ⟦SEP_0005⟧ [Haskell](⟦DEST_0001⟧) ⟦CODE_0002⟧ sobre ⟦CODE_0003⟧ ⟦SEP_0006⟧ Construye perezosamente todas las respuestas posibles y elige dónde dejar de leer ⟦SEP_0007⟧"
+
+#: lessons/patterns.md:34
+msgctxt "s-1e8052f9923c-0022"
+msgid "⟦SEP_0003⟧ **Running sum, then count the prefix** ⟦SEP_0004⟧ [APL](⟦DEST_0001⟧) ⟦CODE_0002⟧ ⟦SEP_0005⟧ Draw more than enough up front, compute the prefix that fits ⟦SEP_0006⟧"
+msgstr "⟦SEP_0003⟧ **Suma acumulada y luego conteo del prefijo** ⟦SEP_0004⟧ [APL](⟦DEST_0001⟧) ⟦CODE_0002⟧ ⟦SEP_0005⟧ Toma más que suficiente al principio y calcula el prefijo que cabe ⟦SEP_0006⟧"
+
+#: lessons/patterns.md:35
+msgctxt "s-da45f77e5dde-0023"
+msgid "⟦SEP_0003⟧ **Fold** ⟦SEP_0004⟧ [LINQ ⟦CODE_0001⟧](⟦DEST_0002⟧) ⟦SEP_0005⟧ A reduce that carries state through the pipeline ⟦SEP_0006⟧"
+msgstr "⟦SEP_0003⟧ **Pliegue** ⟦SEP_0004⟧ [LINQ ⟦CODE_0001⟧](⟦DEST_0002⟧) ⟦SEP_0005⟧ Un reduce que lleva el estado a lo largo de la canalización ⟦SEP_0006⟧"
+
+#: lessons/patterns.md:36
+msgctxt "s-220b0d99a4b9-0024"
+msgid "⟦SEP_0003⟧ **Iterator/closure chain** ⟦SEP_0004⟧ [Rust ⟦CODE_0001⟧](⟦DEST_0002⟧) ⟦SEP_0005⟧ A generator whose \"next\" is the whole program ⟦SEP_0006⟧"
+msgstr "⟦SEP_0003⟧ **Cadena de iteradores y clausuras** ⟦SEP_0004⟧ [Rust ⟦CODE_0001⟧](⟦DEST_0002⟧) ⟦SEP_0005⟧ Un generador cuyo \"siguiente\" es el programa entero ⟦SEP_0006⟧"
+
+#: lessons/patterns.md:37
+msgctxt "s-77a1afde346e-0025"
+msgid "⟦SEP_0002⟧ **Sequence generator** ⟦SEP_0003⟧ Kotlin ⟦CODE_0001⟧ ⟦SEP_0004⟧ The sequence ends when the generator yields null ⟦SEP_0005⟧"
+msgstr "⟦SEP_0002⟧ **Generador de secuencias** ⟦SEP_0003⟧ Kotlin ⟦CODE_0001⟧ ⟦SEP_0004⟧ La secuencia termina cuando el generador produce null ⟦SEP_0005⟧"
+
+#: lessons/patterns.md:38
+msgctxt "s-61cd48632ccf-0026"
+msgid "⟦SEP_0002⟧ **Rewrite to a fixed point** ⟦SEP_0003⟧ [sed](⟦DEST_0001⟧) ⟦SEP_0004⟧ Apply substitutions until none applies; the final text is the answer ⟦SEP_0005⟧"
+msgstr "⟦SEP_0002⟧ **Reescritura hasta un punto fijo** ⟦SEP_0003⟧ [sed](⟦DEST_0001⟧) ⟦SEP_0004⟧ Aplica sustituciones hasta que ya no se aplique ninguna; el texto final es la respuesta ⟦SEP_0005⟧"
+
+#: lessons/patterns.md:39
+msgctxt "s-727a0d9bccf5-0027"
+msgid "⟦SEP_0003⟧ **Reshape and recycle** ⟦SEP_0004⟧ [APL](⟦DEST_0001⟧) ⟦CODE_0002⟧ ⟦SEP_0005⟧ A modulo you get for free ⟦SEP_0006⟧"
+msgstr "⟦SEP_0003⟧ **Reformar y reciclar** ⟦SEP_0004⟧ [APL](⟦DEST_0001⟧) ⟦CODE_0002⟧ ⟦SEP_0005⟧ Un módulo que obtienes gratis ⟦SEP_0006⟧"
+
+#: lessons/patterns.md:40
+msgctxt "s-2abc175c8c89-0028"
+msgid "⟦SEP_0008⟧ **Accumulate and stop in one clause list** ⟦SEP_0009⟧ [Lisp ⟦CODE_0001⟧](⟦DEST_0002⟧) ⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧ ⟦SEP_0010⟧ The clause order is the order of execution, so ⟦CODE_0006⟧ after ⟦CODE_0007⟧ keeps the crossing card ⟦SEP_0011⟧"
+msgstr "⟦SEP_0008⟧ **Acumular y detenerse en una sola lista de cláusulas** ⟦SEP_0009⟧ [Lisp ⟦CODE_0001⟧](⟦DEST_0002⟧) ⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧ ⟦SEP_0010⟧ El orden de las cláusulas es el orden de ejecución, así que ⟦CODE_0006⟧ después de ⟦CODE_0007⟧ conserva la tarjeta que cruza el tope ⟦SEP_0011⟧"
+
+#: lessons/patterns.md:41
+msgctxt "s-ba84a7fadb95-0029"
+msgid "⟦SEP_0004⟧ **A circular list** ⟦SEP_0005⟧ [Lisp reader ⟦CODE_0001⟧](⟦DEST_0002⟧) ⟦SEP_0006⟧ The categories repeat forever with no ⟦CODE_0003⟧ ⟦SEP_0007⟧"
+msgstr "⟦SEP_0004⟧ **Una lista circular** ⟦SEP_0005⟧ [Lector de Lisp ⟦CODE_0001⟧](⟦DEST_0002⟧) ⟦SEP_0006⟧ Las categorías se repiten para siempre, sin ⟦CODE_0003⟧ ⟦SEP_0007⟧"
+
+#: lessons/patterns.md:42
+msgctxt "s-6602b10f48cc-0030"
+msgid "⟦SEP_0005⟧ **A pipeline that pulls one value at a time** ⟦SEP_0006⟧ [JavaScript weird](⟦DEST_0001⟧) ⟦CODE_0002⟧ ⟦SEP_0007⟧ Each value goes through every stage before the next is asked for. A ⟦CODE_0003⟧ adds up the finished list, because ⟦CODE_0004⟧ cannot stop early ⟦SEP_0008⟧"
+msgstr "⟦SEP_0005⟧ **Una canalización de demanda (pull) que pide un valor a la vez** ⟦SEP_0006⟧ [JavaScript raro](⟦DEST_0001⟧) ⟦CODE_0002⟧ ⟦SEP_0007⟧ Cada valor atraviesa todas las etapas antes de pedir el siguiente. Un ⟦CODE_0003⟧ suma la lista terminada, porque ⟦CODE_0004⟧ no puede detenerse antes ⟦SEP_0008⟧"
+
+#: lessons/patterns.md:43
+msgctxt "s-b7879df1366c-0031"
+msgid "⟦SEP_0003⟧ **A closure that is the state machine** ⟦SEP_0004⟧ [JavaScript weird](⟦DEST_0001⟧) ⟦CODE_0002⟧ ⟦SEP_0005⟧ A function with captured variables: each call makes the next card, and a flag says when it is over ⟦SEP_0006⟧"
+msgstr "⟦SEP_0003⟧ **Una clausura que es la máquina de estados** ⟦SEP_0004⟧ [JavaScript raro](⟦DEST_0001⟧) ⟦CODE_0002⟧ ⟦SEP_0005⟧ Una función con variables capturadas: cada llamada produce la tarjeta siguiente y una bandera avisa cuándo termina ⟦SEP_0006⟧"
+
+#: lessons/patterns.md:44
+msgctxt "s-85fd3a95faf3-0032"
+msgid "⟦SEP_0005⟧ **A chain of listeners** ⟦SEP_0006⟧ [JavaScript events](⟦DEST_0001⟧) ⟦CODE_0002⟧ ⟦SEP_0007⟧ Each listener does one step and emits the event that the next one waits for. ⟦CODE_0003⟧ is a call on the current stack, and ⟦CODE_0004⟧ gives the event loop a turn between cards ⟦SEP_0008⟧"
+msgstr "⟦SEP_0005⟧ **Una cadena de escuchadores de eventos** ⟦SEP_0006⟧ [Eventos de JavaScript](⟦DEST_0001⟧) ⟦CODE_0002⟧ ⟦SEP_0007⟧ Cada escuchador hace un paso y emite el evento que espera el siguiente. ⟦CODE_0003⟧ es una llamada sobre la pila actual, y ⟦CODE_0004⟧ da un turno al bucle de eventos entre tarjetas ⟦SEP_0008⟧"
+
+#: lessons/patterns.md:45
+msgctxt "s-9ddfc02ad341-0033"
+msgid "⟦SEP_0004⟧ **Stream of records, one rule per step** ⟦SEP_0005⟧ [AWK ⟦CODE_0001⟧ ... ⟦CODE_0002⟧](⟦DEST_0003⟧) ⟦SEP_0006⟧ The input supplies the iterations; each rule is one step of the pipeline ⟦SEP_0007⟧"
+msgstr "⟦SEP_0004⟧ **Flujo de registros, una regla por paso** ⟦SEP_0005⟧ [AWK ⟦CODE_0001⟧ ... ⟦CODE_0002⟧](⟦DEST_0003⟧) ⟦SEP_0006⟧ La entrada de datos aporta las iteraciones; cada regla es un paso de la canalización ⟦SEP_0007⟧"
+
+#: lessons/patterns.md:49
+msgctxt "s-45b3cde5d0e7-0034"
+msgid "Folding everything and demanding only a sufficient prefix are different controls over work"
+msgstr "Plegar todo y pedir solo un prefijo suficiente son controles distintos sobre el trabajo"
+
+#: lessons/patterns.md:50
+msgctxt "s-6ff8ac4d472d-0035"
+msgid "Two parallel tracks over the same timecards of 19, 19 and 19 hours with running totals 19, 38 and 57. In the unrestricted fold, an ordinary reduce processes every available card and returns the final accumulator, and it has no built-in early stop. In the demand-limited stream, the consumer computes the next total, checks the stop boundary, includes the crossing card whose total is 57, and then never makes a fourth request."
+msgstr "Dos pistas paralelas sobre las mismas tarjetas de horas de 19, 19 y 19 horas, con totales acumulados de 19, 38 y 57. En el pliegue sin restricción, un reduce ordinario procesa todas las tarjetas disponibles y devuelve el acumulador final, y no tiene parada anticipada incorporada. En el flujo limitado por demanda, el consumidor calcula el total siguiente, comprueba el límite de parada, incluye la tarjeta que cruza el tope, cuyo total es 57, y nunca hace una cuarta petición."
+
+#: lessons/patterns.md:51
+msgctxt "s-c308806f7bd5-0036"
+msgid "Demand-limited stream"
+msgstr "Flujo limitado por demanda"
+
+#: lessons/patterns.md:52
+msgctxt "s-9449599e07ac-0037"
+msgid "card 19: total 19"
+msgstr "tarjeta 19: total 19"
+
+#: lessons/patterns.md:52
+msgctxt "s-d22403b0a020-0038"
+msgid "card 19: total 38"
+msgstr "tarjeta 19: total 38"
+
+#: lessons/patterns.md:52
+msgctxt "s-2d1971c01225-0039"
+msgid "card 19: total 57, over 40: the crossing card is included"
+msgstr "tarjeta 19: total 57, más de 40: se incluye la tarjeta que cruza el tope"
+
+#: lessons/patterns.md:52
+msgctxt "s-9727365c0280-0040"
+msgid "stop asking"
+msgstr "dejar de pedir"
+
+#: lessons/patterns.md:52
+msgctxt "s-5cf7daa3dd1e-0041"
+msgid "request for card 4: never made"
+msgstr "petición de la tarjeta 4: nunca se hace"
+
+#: lessons/patterns.md:54
+msgctxt "s-4cd59a609efa-0042"
+msgid "Unrestricted fold: reduce"
+msgstr "Pliegue sin restricción: reduce"
+
+#: lessons/patterns.md:55
+msgctxt "s-9449599e07ac-0043"
+msgid "card 19: total 19"
+msgstr "tarjeta 19: total 19"
+
+#: lessons/patterns.md:55
+msgctxt "s-d22403b0a020-0044"
+msgid "card 19: total 38"
+msgstr "tarjeta 19: total 38"
+
+#: lessons/patterns.md:55
+msgctxt "s-fc563edf2c70-0045"
+msgid "card 19: total 57"
+msgstr "tarjeta 19: total 57"
+
+#: lessons/patterns.md:55
+msgctxt "s-8a9c59c5603e-0046"
+msgid "every remaining card"
+msgstr "todas las tarjetas restantes"
+
+#: lessons/patterns.md:55
+msgctxt "s-9dd753cb4070-0047"
+msgid "final accumulator: no built-in early stop"
+msgstr "acumulador final: sin parada anticipada incorporada"
+
+#: lessons/patterns.md:61
+msgctxt "s-ad02fcd753b8-0048"
+msgid "Both tracks see the same first three cards. ⟦CODE_0001⟧ has no built-in early stop: it processes everything it is given (code can write a custom fold, or throw, to abort, but that is not short-circuiting). A demand-driven stream stops *asking*, so the fourth card is never made. Haskell's ⟦CODE_0002⟧ leaves the crossing card out of its accepted prefix, so the complete algorithm takes that card separately."
+msgstr "Las dos pistas ven las mismas tres primeras tarjetas. ⟦CODE_0001⟧ no tiene parada anticipada incorporada: procesa todo lo que recibe (el código puede escribir un pliegue propio, o lanzar una excepción, para abortar, pero eso no es un cortocircuito). Un flujo guiado por demanda deja de *pedir*, así que nunca se produce la cuarta tarjeta. ⟦CODE_0002⟧ de Haskell deja fuera de su prefijo aceptado la tarjeta que cruza el tope, así que el algoritmo completo toma esa tarjeta aparte."
+
+#: lessons/patterns.md:63
+msgctxt "s-92872844f0d3-0049"
+msgid "The common shape: *describe the full answer, then say how much of it you want.* (The JavaScript entry reverses it: it describes how to make *one* answer, and lets the consumer ask for as many as it wants.) The differences are about **when** the work happens (eager ⟦CODE_0001⟧ and APL arrays vs. lazy Haskell lists and LINQ ⟦CODE_0002⟧) and **where** state lives. Compare how LINQ and Haskell answer \"when does it run?\" in [C#](⟦DEST_0003⟧) and [Haskell](⟦DEST_0004⟧)."
+msgstr "La forma común: *describe la respuesta completa y di cuánto quieres de ella.* (La entrada de JavaScript lo invierte: describe cómo producir *una* respuesta y deja que el consumidor pida tantas como quiera.) Las diferencias son sobre **cuándo** ocurre el trabajo (⟦CODE_0001⟧ inmediato y los arreglos de APL, frente a las listas perezosas de Haskell y ⟦CODE_0002⟧ de LINQ) y **dónde** vive el estado. Compara cómo responden LINQ y Haskell a \"¿cuándo se ejecuta?\" en [C#](⟦DEST_0003⟧) y [Haskell](⟦DEST_0004⟧)."
+
+#: lessons/patterns.md:65
+msgctxt "s-ab061268cc3a-0050"
+msgid "Control state outside variables"
+msgstr "El estado de control fuera de las variables"
+
+#: lessons/patterns.md:67
+msgctxt "s-f4f539aa2093-0051"
+msgid "Where does \"where am I in the program?\" live when you have no loop counter?"
+msgstr "¿Dónde vive \"¿en qué parte del programa estoy?\" cuando no tienes contador de bucle?"
+
+#: lessons/patterns.md:71
+msgctxt "s-ba7256f062da-0052"
+msgid "A program counter can be encoded in a jump target, parser position, or external files"
+msgstr "Un contador de programa puede codificarse en un destino de salto, en la posición de un analizador sintáctico o en archivos externos"
+
+#: lessons/patterns.md:72
+msgctxt "s-3511325a2085-0053"
+msgid "Three small parallel tracks, each answering where next. In COBOL, the NEXT-CARD jump target names ⟦DNT_0001⟧, ALTER rewrites it, and the target now names ⟦DNT_0002⟧. In Forth, the interpreter's parse position, called to-in, points here, the program moves it backward, and the words are read again. In GNU Make, makefiles and state files exist, Make remakes a makefile, and then restarts with MAKE_RESTARTS advanced."
+msgstr "Tres pistas paralelas pequeñas, y cada una responde a dónde sigue. En COBOL, el destino de salto NEXT-CARD nombra ⟦DNT_0001⟧, ALTER lo reescribe y el destino pasa a nombrar ⟦DNT_0002⟧. En Forth, la posición de análisis del intérprete, llamada to-in, apunta aquí, el programa la mueve hacia atrás y las palabras se leen otra vez. En GNU Make existen makefiles y archivos de estado, Make rehace un makefile y luego se reinicia con MAKE_RESTARTS aumentado."
+
+#: lessons/patterns.md:73
+msgctxt "s-42b358dde188-0054"
+msgid "Where next? External build state (Make)"
+msgstr "¿Dónde sigue? Estado externo de compilación (Make)"
+
+#: lessons/patterns.md:75
+msgctxt "s-81a1ce821e5d-0055"
+msgid "makefile and state files"
+msgstr "makefile y archivos de estado"
+
+#: lessons/patterns.md:75
+msgctxt "s-88eebcfcf989-0056"
+msgid "remake a makefile"
+msgstr "rehacer un makefile"
+
+#: lessons/patterns.md:75
+msgctxt "s-d290f29b54b1-0057"
+msgid "Make restarts: MAKE_RESTARTS advances"
+msgstr "Make se reinicia: MAKE_RESTARTS aumenta"
+
+#: lessons/patterns.md:77
+msgctxt "s-5b184b05589a-0058"
+msgid "Where next? Interpreter cursor (Forth)"
+msgstr "¿Dónde sigue? Cursor del intérprete (Forth)"
+
+#: lessons/patterns.md:79
+msgctxt "s-83be5ac9c37a-0059"
+msgid "⟦ENT_0001⟧in points here"
+msgstr "⟦ENT_0001⟧in apunta aquí"
+
+#: lessons/patterns.md:79
+msgctxt "s-aa965eb3b7be-0060"
+msgid "move ⟦ENT_0001⟧in backward"
+msgstr "mover ⟦ENT_0001⟧in hacia atrás"
+
+#: lessons/patterns.md:79
+msgctxt "s-de1392893339-0061"
+msgid "the words are read again"
+msgstr "las palabras se leen otra vez"
+
+#: lessons/patterns.md:81
+msgctxt "s-831cb99e1a0c-0062"
+msgid "Where next? Mutable branch target (COBOL)"
+msgstr "¿Dónde sigue? Destino de rama mutable (COBOL)"
+
+#: lessons/patterns.md:83
+msgctxt "s-317ae7b49b04-0063"
+msgid "NEXT-CARD target: ⟦DNT_0001⟧"
+msgstr "destino de NEXT-CARD: ⟦DNT_0001⟧"
+
+#: lessons/patterns.md:83
+msgctxt "s-958ef1655f5b-0064"
+msgid "ALTER"
+msgstr "ALTER"
+
+#: lessons/patterns.md:83
+msgctxt "s-583464e568e8-0065"
+msgid "NEXT-CARD target: ⟦DNT_0001⟧"
+msgstr "destino de NEXT-CARD: ⟦DNT_0001⟧"
+
+#: lessons/patterns.md:87
+msgctxt "s-3a8c02cc993f-0066"
+msgid "Each track stores \"what happens next\" somewhere that is not a loop counter: in the target of a jump, in the position of a parser or in files that a restarted tool reads. The figure compares *where* the state lives, and the generated table below lists the many other places. The language pages show each program in full."
+msgstr "Cada pista guarda \"lo que pasa después\" en un lugar que no es un contador de bucle: en el destino de un salto, en la posición de un analizador sintáctico o en archivos que lee una herramienta reiniciada. La figura compara *dónde* vive el estado, y la tabla generada de abajo da la lista de los muchos otros lugares. Las páginas de cada lenguaje muestran cada programa completo."
+
+#: lessons/patterns.md:134
+msgctxt "s-07dbb756e6d2-0067"
+msgid "A reader who arrives for one meets the rest. That is the point."
+msgstr "Un lector que llega por uno se encuentra con los demás. Ese es el punto."
+
+#: lessons/patterns.md:136
+msgctxt "s-9f7a2609d25f-0068"
+msgid "Backtracking, side effects and error handling"
+msgstr "Retroceso, efectos secundarios y manejo de errores"
+
+#: lessons/patterns.md:138
+msgctxt "s-65e13045be79-0069"
+msgid "Backtracking as a program"
+msgstr "El retroceso como programa"
+
+#: lessons/patterns.md:140
+msgctxt "s-67159ce16fe0-0070"
+msgid "A backtracking engine tries a choice, and if later steps fail it goes back and tries another. The entries turn that around: *do the work in side effects, then fail on purpose.*"
+msgstr "Un motor de retroceso prueba una opción y, si fallan los pasos siguientes, vuelve atrás y prueba otra. Las entradas le dan la vuelta: *haz el trabajo en efectos secundarios y luego falla a propósito.*"
+
+#: lessons/patterns.md:142
+msgctxt "s-a649bde2b9ff-0071"
+msgid "**Perl, PCRE2 and pcre2grep** run the whole demo inside one match and end with ⟦CODE_0001⟧, so the match returns false after every row is written."
+msgstr "**Perl, PCRE2 y pcre2grep** ejecutan toda la demostración dentro de una sola coincidencia y terminan con ⟦CODE_0001⟧, de modo que la coincidencia devuelve falso después de escribir cada fila."
+
+#: lessons/patterns.md:143
+msgctxt "s-f7e9120f7041-0072"
+msgid "**What survives a failed branch is the whole lesson.** Perl's ⟦CODE_0001⟧ variables unwind; its ⟦CODE_0002⟧s and ⟦CODE_0003⟧s do not. PCRE2's C struct does not rewind at all. ⟦CODE_0004⟧'s statements have already committed. **.NET** cannot do it: a failed ⟦CODE_0005⟧ discards captures, so that entry *must* return true."
+msgstr "**Lo que sobrevive a una rama fallida es toda la lección.** Las variables ⟦CODE_0001⟧ de Perl se deshacen; sus ⟦CODE_0002⟧ y ⟦CODE_0003⟧ no. La estructura C de PCRE2 no se rebobina nunca. Las sentencias de ⟦CODE_0004⟧ ya se confirmaron. **.NET** no puede hacerlo: un ⟦CODE_0005⟧ fallido descarta las capturas, así que esa entrada *debe* devolver verdadero."
+
+#: lessons/patterns.md:144
+msgctxt "s-471ca81f4a77-0073"
+msgid "**⟦CODE_0001⟧** stops the engine retrying shorter loops, which would run the finalizer more than once."
+msgstr "**⟦CODE_0001⟧** impide que el motor reintente bucles más cortos, lo que ejecutaría el finalizador más de una vez."
+
+#: lessons/patterns.md:148
+msgctxt "s-5c24acc5c94f-0074"
+msgid "The matching engine can abandon its branch; an already committed external effect does not disappear"
+msgstr "El motor de coincidencias puede abandonar su rama; un efecto externo ya confirmado no desaparece"
+
+#: lessons/patterns.md:149
+msgctxt "s-0cef4cd6e7b6-0075"
+msgid "A sequence diagram with two layers, the search engine and the external world. The engine tries a choice and captures or changes search state. A callout then writes a SQLite row or prints, which happens in the external world. The engine then fails, and its search state rewinds or the match fails, but the row and the print persist. At the terminal branch, COMMIT followed by FAIL prunes the retry paths and returns no match, for engines that support it, which does not include .NET."
+msgstr "Un diagrama de secuencia con dos capas: el motor de búsqueda y el mundo externo. El motor prueba una opción y captura o cambia el estado de la búsqueda. Entonces un callout escribe una fila de SQLite o imprime, y eso ocurre en el mundo externo. Después el motor falla, y su estado de búsqueda se rebobina o la coincidencia falla, pero la fila y la impresión persisten. En la rama terminal, COMMIT seguido de FAIL poda los caminos de reintento y no devuelve ninguna coincidencia, en los motores que lo admiten, lo que no incluye a .NET."
+
+#: lessons/patterns.md:150
+msgctxt "s-39c05e0065bf-0076"
+msgid "Search engine"
+msgstr "Motor de búsqueda"
+
+#: lessons/patterns.md:151
+msgctxt "s-83b65f89220a-0077"
+msgid "External world"
+msgstr "Mundo externo"
+
+#: lessons/patterns.md:152
+msgctxt "s-b98c0a758904-0078"
+msgid "try a choice"
+msgstr "probar una opción"
+
+#: lessons/patterns.md:153
+msgctxt "s-9ba956ca3b35-0079"
+msgid "capture or change search state"
+msgstr "capturar o cambiar el estado de la búsqueda"
+
+#: lessons/patterns.md:154
+msgctxt "s-bb359551a115-0080"
+msgid "callout writes a SQLite row, or prints"
+msgstr "el callout escribe una fila de SQLite o imprime"
+
+#: lessons/patterns.md:155
+msgctxt "s-ce3a733603af-0081"
+msgid "the row and the print are committed"
+msgstr "la fila y la impresión ya están confirmadas"
+
+#: lessons/patterns.md:156
+msgctxt "s-16d34b5e7bcb-0082"
+msgid "failure"
+msgstr "fallo"
+
+#: lessons/patterns.md:157
+msgctxt "s-040aca939016-0083"
+msgid "search state rewinds, or the match fails"
+msgstr "el estado de la búsqueda se rebobina o la coincidencia falla"
+
+#: lessons/patterns.md:158
+msgctxt "s-fad3e320c2f9-0084"
+msgid "the row and the print persist"
+msgstr "la fila y la impresión persisten"
+
+#: lessons/patterns.md:159
+msgctxt "s-fa4ca662e5c0-0085"
+msgid "(*COMMIT)(*FAIL) prunes retries and returns no match, where supported (not .NET)"
+msgstr "(*COMMIT)(*FAIL) poda los reintentos y no devuelve ninguna coincidencia, donde se admite (no en .NET)"
+
+#: lessons/patterns.md:162
+msgctxt "s-a97cd8378488-0086"
+msgid "The engine can abandon a branch and rewind its own state. A row that a callout already committed, or a line that it already printed, stays. How much *engine* state rewinds depends on the engine: Perl's ⟦CODE_0001⟧ variables unwind, PCRE2's external C struct does not, and .NET discards a failed ⟦CODE_0002⟧'s captures. The ⟦CODE_0003⟧ pair exists only in the engines that support it."
+msgstr "El motor puede abandonar una rama y rebobinar su propio estado. Una fila que un callout ya confirmó, o una línea que ya imprimió, se queda. Cuánto estado del *motor* se rebobina depende del motor: las variables ⟦CODE_0001⟧ de Perl se deshacen, la estructura C externa de PCRE2 no, y .NET descarta las capturas de un ⟦CODE_0002⟧ fallido. El par ⟦CODE_0003⟧ existe solo en los motores que lo admiten."
+
+#: lessons/patterns.md:164
+msgctxt "s-b154a4fab71d-0087"
+msgid "Side effects in pipelines"
+msgstr "Efectos secundarios en canalizaciones"
+
+#: lessons/patterns.md:166
+msgctxt "s-7645ca96759e-0088"
+msgid "LINQ, Haskell and XAML each put an effect inside something that looks like a pure description. The rule that falls out: **if an effect lives in a lazy structure, whoever reads the structure decides whether and when the effect happens.** Haskell's ⟦CODE_0001⟧ and LINQ's final ⟦CODE_0002⟧ are both \"force it now\"."
+msgstr "LINQ, Haskell y XAML ponen un efecto dentro de algo que parece una descripción pura. La regla que se desprende: **si un efecto vive en una estructura perezosa, quien lee la estructura decide si el efecto ocurre y cuándo.** ⟦CODE_0001⟧ de Haskell y el ⟦CODE_0002⟧ final de LINQ son ambos \"fuérzalo ahora\"."
+
+#: lessons/patterns.md:168
+msgctxt "s-e53d6609d376-0089"
+msgid "Errors as control flow"
+msgstr "Los errores como flujo de control"
+
+#: lessons/patterns.md:170
+msgctxt "s-4e69eae575ad-0090"
+msgid "⟦SEP_0001⟧ Technique ⟦SEP_0002⟧ Entry ⟦SEP_0003⟧"
+msgstr "⟦SEP_0001⟧ Técnica ⟦SEP_0002⟧ Entrada ⟦SEP_0003⟧"
+
+#: lessons/patterns.md:172
+msgctxt "s-5b8c71c3c533-0091"
+msgid "⟦SEP_0005⟧ A constraint violation *is* the stop rule: ⟦CODE_0001⟧ fires and the named error is announced ⟦SEP_0006⟧ [Make](⟦DEST_0002⟧), [CMake](⟦DEST_0003⟧), [pcre2grep](⟦DEST_0004⟧) ⟦SEP_0007⟧"
+msgstr "⟦SEP_0005⟧ Una violación de restricción *es* la regla de parada: se dispara ⟦CODE_0001⟧ y se anuncia el error con nombre ⟦SEP_0006⟧ [Make](⟦DEST_0002⟧), [CMake](⟦DEST_0003⟧), [pcre2grep](⟦DEST_0004⟧) ⟦SEP_0007⟧"
+
+#: lessons/patterns.md:173
+msgctxt "s-c0efa310f75e-0092"
+msgid "⟦SEP_0003⟧ Arithmetic overflow *is* the stop rule: ⟦CODE_0001⟧ ⟦SEP_0004⟧ [COBOL](⟦DEST_0002⟧) ⟦SEP_0005⟧"
+msgstr "⟦SEP_0003⟧ El desbordamiento aritmético *es* la regla de parada: ⟦CODE_0001⟧ ⟦SEP_0004⟧ [COBOL](⟦DEST_0002⟧) ⟦SEP_0005⟧"
+
+#: lessons/patterns.md:174
+msgctxt "s-7240c3d58f20-0093"
+msgid "⟦SEP_0002⟧ A program's exit code steers the match ⟦SEP_0003⟧ [pcre2grep](⟦DEST_0001⟧) ⟦SEP_0004⟧"
+msgstr "⟦SEP_0002⟧ El código de salida de un programa dirige la coincidencia ⟦SEP_0003⟧ [pcre2grep](⟦DEST_0001⟧) ⟦SEP_0004⟧"
+
+#: lessons/patterns.md:175
+msgctxt "s-a29aa69f7858-0094"
+msgid "⟦SEP_0002⟧ A process exits 1 on purpose, and the wrapper maps it back to 0 ⟦SEP_0003⟧ [sed](⟦DEST_0001⟧) ⟦SEP_0004⟧"
+msgstr "⟦SEP_0002⟧ Un proceso sale con 1 a propósito, y el envoltorio lo vuelve a convertir en 0 ⟦SEP_0003⟧ [sed](⟦DEST_0001⟧) ⟦SEP_0004⟧"
+
+#: lessons/patterns.md:176
+msgctxt "s-997a1cc5a8f7-0095"
+msgid "⟦SEP_0004⟧ A runaway program is caught by a timeout, not an error ⟦SEP_0005⟧ [⟦CODE_0001⟧](⟦DEST_0002⟧), and [m4](⟦DEST_0003⟧) when a quote is missing ⟦SEP_0006⟧"
+msgstr "⟦SEP_0004⟧ Un programa desbocado lo detiene un tiempo límite, no un error ⟦SEP_0005⟧ [⟦CODE_0001⟧](⟦DEST_0002⟧) y [m4](⟦DEST_0003⟧) cuando falta una comilla ⟦SEP_0006⟧"
+
+#: lessons/patterns.md:177
+msgctxt "s-d1a79d6d8fb2-0096"
+msgid "⟦SEP_0003⟧ A return value short-circuits a chain of methods (⟦CODE_0001⟧) ⟦SEP_0004⟧ [Lisp weird](⟦DEST_0002⟧) ⟦SEP_0005⟧"
+msgstr "⟦SEP_0003⟧ Un valor de retorno corta una cadena de métodos (⟦CODE_0001⟧) ⟦SEP_0004⟧ [Lisp raro](⟦DEST_0002⟧) ⟦SEP_0005⟧"
+
+#: lessons/patterns.md:178
+msgctxt "s-89c941dff193-0097"
+msgid "⟦SEP_0003⟧ A pattern stops matching and an ⟦CODE_0001⟧ ends the loop ⟦SEP_0004⟧ [AWK weird](⟦DEST_0002⟧) ⟦SEP_0005⟧"
+msgstr "⟦SEP_0003⟧ Un patrón deja de coincidir y un ⟦CODE_0001⟧ termina el bucle ⟦SEP_0004⟧ [AWK raro](⟦DEST_0002⟧) ⟦SEP_0005⟧"
+
+#: lessons/patterns.md:179
+msgctxt "s-77b8eb7e57b9-0098"
+msgid "⟦SEP_0003⟧ An ⟦CODE_0001⟧ that selects nothing ends a recursive trigger ⟦SEP_0004⟧ [Tcl weird](⟦DEST_0002⟧) ⟦SEP_0005⟧"
+msgstr "⟦SEP_0003⟧ Un ⟦CODE_0001⟧ que no selecciona nada termina un disparador recursivo ⟦SEP_0004⟧ [Tcl raro](⟦DEST_0002⟧) ⟦SEP_0005⟧"
+
+#: lessons/patterns.md:180
+msgctxt "s-71c333115f05-0099"
+msgid "⟦SEP_0003⟧ A missing guard does not fail: it counts a phantom card (empty ⟦CODE_0001⟧) or no cards at all (mawk) ⟦SEP_0004⟧ [AWK weird](⟦DEST_0002⟧) ⟦SEP_0005⟧"
+msgstr "⟦SEP_0003⟧ Una guarda ausente no falla: cuenta una tarjeta fantasma (⟦CODE_0001⟧ vacío) o ninguna tarjeta (mawk) ⟦SEP_0004⟧ [AWK raro](⟦DEST_0002⟧) ⟦SEP_0005⟧"
+
+#: lessons/patterns.md:181
+msgctxt "s-236e22916a4d-0100"
+msgid "⟦SEP_0004⟧ An unexpected failure code is deliberately *not* \"no match\" (⟦CODE_0001⟧, not ⟦CODE_0002⟧) ⟦SEP_0005⟧ [PCRE2](⟦DEST_0003⟧) ⟦SEP_0006⟧"
+msgstr "⟦SEP_0004⟧ Un código de fallo inesperado *no* es \"sin coincidencia\" a propósito (⟦CODE_0001⟧, no ⟦CODE_0002⟧) ⟦SEP_0005⟧ [PCRE2](⟦DEST_0003⟧) ⟦SEP_0006⟧"
+
+#: lessons/patterns.md:183
+msgctxt "s-ebb7d2b15dee-0101"
+msgid "Notice that **⟦CODE_0001⟧ appears in nearly every entry**: a table that makes a non-demo row unrepresentable, which each ⟦CODE_0002⟧ tries to violate. That is error handling used as a *guarantee* rather than a control flow, and a pattern worth keeping."
+msgstr "Fíjate en que **⟦CODE_0001⟧ aparece en casi todas las entradas**: una tabla que hace irrepresentable una fila que no sea de demostración, y que cada ⟦CODE_0002⟧ intenta violar. Eso es manejo de errores usado como *garantía* y no como flujo de control, y es un patrón que vale la pena conservar."
+
+#: lessons/patterns.md:185
+msgctxt "s-8db9a3b24c24-0102"
+msgid "Programs stored as data"
+msgstr "Programas guardados como datos"
+
+#: lessons/patterns.md:187
+msgctxt "s-e0243b1a5397-0103"
+msgid "Four entries keep their program somewhere that is not a source file. Each is a different answer to \"what is written down, and what reads it?\" See the [comparative chapter](⟦DEST_0001⟧) for the round-trip promise each one makes."
+msgstr "Cuatro entradas guardan su programa en un lugar que no es un archivo fuente. Cada una es una respuesta distinta a \"¿qué está escrito y qué lo lee?\" Consulta el [capítulo comparativo](⟦DEST_0001⟧) para ver la promesa de ida y vuelta que hace cada una."
+
+#: lessons/patterns.md:191
+msgctxt "s-f441bf253c22-0104"
+msgid "The archive stores a program; the consumer determines whether it runs"
+msgstr "El archivo guarda un programa; el consumidor determina si se ejecuta"
+
+#: lessons/patterns.md:192
+msgctxt "s-fd7587eedc18-0105"
+msgid "A forked diagram. Tar archive members, whose names are instructions and whose bodies are operands, go to one of two readers. A passive inspector displays the decoded instructions and executes nothing. If the operator explicitly attaches a to-command dispatcher, the dispatcher interprets the members and produces operations and effects."
+msgstr "Un diagrama bifurcado. Los miembros de un archivo tar, cuyos nombres son instrucciones y cuyos cuerpos son operandos, van a uno de dos lectores. Un inspector pasivo muestra las instrucciones decodificadas y no ejecuta nada. Si el operador conecta de forma explícita un despachador de comandos de destino, el despachador interpreta los miembros y produce operaciones y efectos."
+
+#: lessons/patterns.md:193
+msgctxt "s-e311bb26ae5f-0106"
+msgid "tar archive members: names are instructions, bodies are operands"
+msgstr "miembros de un archivo tar: los nombres son instrucciones, los cuerpos son operandos"
+
+#: lessons/patterns.md:194
+msgctxt "s-863abbbe85ba-0107"
+msgid "Passive inspector"
+msgstr "Inspector pasivo"
+
+#: lessons/patterns.md:194
+msgctxt "s-b66ca5615a8d-0108"
+msgid "decoded instructions displayed"
+msgstr "se muestran las instrucciones decodificadas"
+
+#: lessons/patterns.md:194
+msgctxt "s-113d78ea16e6-0109"
+msgid "no execution"
+msgstr "sin ejecución"
+
+#: lessons/patterns.md:195
+msgctxt "s-65d5b1ae5ce2-0110"
+msgid "Operator explicitly attaches a --to-command dispatcher"
+msgstr "El operador conecta de forma explícita un despachador de comandos (--to-command)"
+
+#: lessons/patterns.md:195
+msgctxt "s-a4391ac20ff2-0111"
+msgid "dispatcher interprets the members"
+msgstr "el despachador interpreta los miembros"
+
+#: lessons/patterns.md:195
+msgctxt "s-94015d228038-0112"
+msgid "operations and effects"
+msgstr "operaciones y efectos"
+
+#: lessons/patterns.md:198
+msgctxt "s-8b9852a073e0-0113"
+msgid "The same bytes can be read without running anything, and ordinary ⟦CODE_0001⟧ only writes files. The archive cannot attach its own execution hook. The operator does. The other rows of the table differ: Tcl's ⟦CODE_0002⟧ can fetch source and evaluate it, Ex can run text from a register, and APL's ⟦CODE_0003⟧ and ⟦CODE_0004⟧ can rewrite a function and define the copy."
+msgstr "Los mismos bytes pueden leerse sin ejecutar nada, y un ⟦CODE_0001⟧ ordinario solo escribe archivos. El archivo no puede conectar su propio gancho de ejecución. Lo conecta el operador. Las otras filas de la tabla son distintas: el ⟦CODE_0002⟧ de Tcl puede traer código fuente y evaluarlo, Ex puede ejecutar texto de un registro, y ⟦CODE_0003⟧ y ⟦CODE_0004⟧ de APL pueden reescribir una función y definir la copia."
+
+#: lessons/patterns.md:200
+msgctxt "s-bd790b0599e0-0114"
+msgid "⟦SEP_0001⟧ Where the program is written down ⟦SEP_0002⟧ What reads it, and gives it meaning ⟦SEP_0003⟧ Entry ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ Dónde está escrito el programa ⟦SEP_0002⟧ Qué lo lee y le da significado ⟦SEP_0003⟧ Entrada ⟦SEP_0004⟧"
+
+#: lessons/patterns.md:202
+msgctxt "s-1ab57cd19550-0115"
+msgid "⟦SEP_0004⟧ The members of a tar archive: names are instructions, bodies are operands ⟦SEP_0005⟧ GNU tar walks them, and a dispatcher that the *operator* attached gives them meaning (a passive inspector reads the same bytes and runs nothing) ⟦SEP_0006⟧ [⟦CODE_0001⟧](⟦DEST_0002⟧), [tar](⟦DEST_0003⟧) ⟦SEP_0007⟧"
+msgstr "⟦SEP_0004⟧ Los miembros de un archivo tar: los nombres son instrucciones y los cuerpos son operandos ⟦SEP_0005⟧ GNU tar los recorre, y un despachador que conectó el *operador* les da significado (un inspector pasivo lee los mismos bytes y no ejecuta nada) ⟦SEP_0006⟧ [⟦CODE_0001⟧](⟦DEST_0002⟧), [tar](⟦DEST_0003⟧) ⟦SEP_0007⟧"
+
+#: lessons/patterns.md:203
+msgctxt "s-0fdc101bbc6f-0116"
+msgid "⟦SEP_0004⟧ The layout of an archive: how many records tar writes ⟦SEP_0005⟧ Tar's checkpoints are a clock, and a state machine takes one step per tick ⟦SEP_0006⟧ [⟦CODE_0001⟧](⟦DEST_0002⟧), [tar](⟦DEST_0003⟧) ⟦SEP_0007⟧"
+msgstr "⟦SEP_0004⟧ La estructura de un archivo: cuántos registros escribe tar ⟦SEP_0005⟧ Los puntos de control de tar son un reloj, y una máquina de estados da un paso por cada tic ⟦SEP_0006⟧ [⟦CODE_0001⟧](⟦DEST_0002⟧), [tar](⟦DEST_0003⟧) ⟦SEP_0007⟧"
+
+#: lessons/patterns.md:204
+msgctxt "s-c4abe6765cb7-0117"
+msgid "⟦SEP_0005⟧ Rows in a SQLite table ⟦SEP_0006⟧ An overridden ⟦CODE_0001⟧ fetches Tcl source and evaluates it ⟦SEP_0007⟧ [⟦CODE_0002⟧](⟦DEST_0003⟧), [Tcl](⟦DEST_0004⟧) ⟦SEP_0008⟧"
+msgstr "⟦SEP_0005⟧ Filas de una tabla de SQLite ⟦SEP_0006⟧ Un ⟦CODE_0001⟧ sobrescrito trae código fuente de Tcl y lo evalúa ⟦SEP_0007⟧ [⟦CODE_0002⟧](⟦DEST_0003⟧), [Tcl](⟦DEST_0004⟧) ⟦SEP_0008⟧"
+
+#: lessons/patterns.md:205
+msgctxt "s-9da0de9bf1c0-0118"
+msgid "⟦SEP_0004⟧ A line of text in an editor buffer, copied into a register ⟦SEP_0005⟧ Ex runs the register, and the program reads its next instruction from a tape of lines ⟦SEP_0006⟧ [⟦CODE_0001⟧](⟦DEST_0002⟧), [editors](⟦DEST_0003⟧) ⟦SEP_0007⟧"
+msgstr "⟦SEP_0004⟧ Una línea de texto en un búfer del editor, copiada a un registro ⟦SEP_0005⟧ Ex ejecuta el registro, y el programa lee su instrucción siguiente de una cinta de líneas ⟦SEP_0006⟧ [⟦CODE_0001⟧](⟦DEST_0002⟧), [editores](⟦DEST_0003⟧) ⟦SEP_0007⟧"
+
+#: lessons/patterns.md:206
+msgctxt "s-013575352f2a-0119"
+msgid "⟦SEP_0006⟧ The source text of a function ⟦SEP_0007⟧ ⟦CODE_0001⟧ writes it out, the function rewrites it and ⟦CODE_0002⟧ defines the copy ⟦SEP_0008⟧ [⟦CODE_0003⟧](⟦DEST_0004⟧), [APL](⟦DEST_0005⟧) ⟦SEP_0009⟧"
+msgstr "⟦SEP_0006⟧ El texto fuente de una función ⟦SEP_0007⟧ ⟦CODE_0001⟧ lo escribe, la función lo reescribe y ⟦CODE_0002⟧ define la copia ⟦SEP_0008⟧ [⟦CODE_0003⟧](⟦DEST_0004⟧), [APL](⟦DEST_0005⟧) ⟦SEP_0009⟧"
+
+#: lessons/patterns.md:208
+msgctxt "s-16c451c5a554-0120"
+msgid "The question that separates them: *can you read the program without running it?* In ⟦CODE_0001⟧ you can, with the inspector, because tar extraction alone runs nothing. In ⟦CODE_0002⟧ and ⟦CODE_0003⟧ the reading and the running are the same act, so there is no safe way to look except to read the text yourself."
+msgstr "La pregunta que los separa: *¿puedes leer el programa sin ejecutarlo?* En ⟦CODE_0001⟧ puedes, con el inspector, porque extraer un archivo tar no ejecuta nada. En ⟦CODE_0002⟧ y ⟦CODE_0003⟧ leer y ejecutar son el mismo acto, así que no hay una forma segura de mirar salvo leer el texto tú mismo."
+
+#: lessons/patterns.md:210
+msgctxt "s-d80f7041674e-0121"
+msgid "Read next"
+msgstr "Lee a continuación"
+
+#: lessons/patterns.md:212
+msgctxt "s-32bbc49b6204-0122"
+msgid "[Problems overcome](⟦DEST_0001⟧), [blocking problems](⟦DEST_0002⟧), [exercises](⟦DEST_0003⟧)."
+msgstr "[Problemas superados](⟦DEST_0001⟧), [problemas de bloqueo](⟦DEST_0002⟧), [ejercicios](⟦DEST_0003⟧)."

@@ -2502,3 +2502,20 @@
 {"segment_id": "s-a6b58da9d4cd-0052", "ts": "2026-11-22T17:21:36Z", "findings": [], "playful_note": "Mantiene el contraste afectuoso entre 'raro' (eco del título del libro) y 'aburrido' como burla cariñosa, con la misma estructura de 'junto a' que el inglés 'next to'. Es el rendering aprobado del glosario."}
 {"segment_id": "s-6d435da0cf60-0054", "ts": "2026-11-22T17:21:59Z", "findings": ["REGISTER: playful segment H031 has status 'pending' in the humor register"], "playful_note": "Mantiene la metáfora informal de la puerta: tres entradas al libro, una por cada ruta de lectura. «Puertas de entrada» conserva el efecto y el sentido sin añadir contenido."}
 {"segment_id": "s-a9a973a48b5a-0059", "ts": "2026-11-22T17:22:47Z", "findings": ["REGISTER: playful segment H030 has status 'pending' in the humor register"], "playful_note": "El inglés finge solemnidad con un encabezado de advertencia grave antes de un libro juguetón. El español busca el mismo efecto con «Una advertencia», breve y de tono serio, sin añadir contenido ni afirmaciones nuevas."}
+{"segment_id": "s-0965fdfed814-0021", "ts": "2026-11-22T17:25:06Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-6602b10f48cc-0030", "ts": "2026-11-22T17:25:06Z", "findings": ["I7: glossary term pull must be rendered 'demanda (pull)'"]}
+{"segment_id": "s-b7879df1366c-0031", "ts": "2026-11-22T17:25:06Z", "findings": ["I25: comma before a simple 'y' ('cada llamada produce la tarjeta siguiente, y una bandera avi'): no comma before a simple o or y"]}
+{"segment_id": "s-3511325a2085-0053", "ts": "2026-11-22T17:25:06Z", "findings": ["I7: glossary term card must be rendered 'tarjeta'"]}
+{"segment_id": "s-83be5ac9c37a-0059", "ts": "2026-11-22T17:25:06Z", "findings": ["I9: looks English: 1 of 3 words are English function words"]}
+{"segment_id": "s-aa965eb3b7be-0060", "ts": "2026-11-22T17:25:06Z", "findings": ["I9: looks English: 1 of 4 words are English function words"]}
+{"segment_id": "s-317ae7b49b04-0063", "ts": "2026-11-22T17:25:06Z", "findings": ["I7: glossary term card must be rendered 'tarjeta'"]}
+{"segment_id": "s-583464e568e8-0065", "ts": "2026-11-22T17:25:06Z", "findings": ["I7: glossary term card must be rendered 'tarjeta'"]}
+{"segment_id": "s-3a8c02cc993f-0066", "ts": "2026-11-22T17:25:06Z", "findings": ["I7: glossary term list must be rendered 'lista'"]}
+{"segment_id": "s-997a1cc5a8f7-0095", "ts": "2026-11-22T17:25:06Z", "findings": ["I25: comma before a simple 'y' (', y [m4]'): no comma before a simple o or y"]}
+{"segment_id": "s-65d5b1ae5ce2-0110", "ts": "2026-11-22T17:25:06Z", "findings": ["I7: glossary term command must be rendered 'comando'"]}
+{"segment_id": "s-0965fdfed814-0021", "ts": "2026-11-22T17:25:19Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-3511325a2085-0053", "ts": "2026-11-22T17:25:19Z", "findings": ["I7: glossary term card must be rendered 'tarjeta'"]}
+{"segment_id": "s-83be5ac9c37a-0059", "ts": "2026-11-22T17:25:19Z", "findings": ["I9: looks English: 1 of 3 words are English function words"]}
+{"segment_id": "s-aa965eb3b7be-0060", "ts": "2026-11-22T17:25:19Z", "findings": ["I9: looks English: 1 of 4 words are English function words"]}
+{"segment_id": "s-317ae7b49b04-0063", "ts": "2026-11-22T17:25:19Z", "findings": ["I7: glossary term card must be rendered 'tarjeta'"]}
+{"segment_id": "s-583464e568e8-0065", "ts": "2026-11-22T17:25:19Z", "findings": ["I7: glossary term card must be rendered 'tarjeta'"]}
