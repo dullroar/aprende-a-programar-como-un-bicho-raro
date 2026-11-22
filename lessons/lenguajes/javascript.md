@@ -8,11 +8,11 @@ Para una ruta de lectura avanzada con trazas y experimentos, consulta la [guía 
 
 | Característica | Qué enseña |
 | --- | --- |
-| `for (init; test; update) body` | A loop is three expressions and a statement. The order is fixed: init once, then test, body, update, test, body, update, until the test is false. |
-| The comma operator `(a, b)` | Evaluate both, give the second. It lets one expression do several things in order, which is how the iterator clause adds a card *and* saves it. |
-| Truthiness and `&&`, `?:` | A test can be any value, and `a ? b : c` is an expression, not a statement. So the stop rule can be a value, and a side effect can sit in the false branch. |
-| `let` in a `for` header | The loop variable is copied for each iteration. A closure made in the body sees its own copy. A copy of an *object reference* is a reference to the same object, so the state is shared. |
-| Arrow functions and closures | A function carries the variables around it. The seeded random generator is a closure over one number. |
+| `for (init; test; update) body` | Un bucle consta de tres expresiones y una sentencia. El orden es fijo: inicialización una vez; luego prueba, cuerpo, actualización, prueba, cuerpo, actualización, hasta que la prueba sea falsa. |
+| El operador coma `(a, b)` | Evalúa ambos y devuelve el segundo. Permite que una expresión haga varias cosas en orden. Así la cláusula del iterador añade una tarjeta *y* la guarda. |
+| Valores verdaderos o falsos y `&&`, `?:` | Una prueba puede ser cualquier valor, y `a ? b : c` es una expresión, no una sentencia. Por eso la regla de parada puede ser un valor y un efecto secundario puede estar en la rama falsa. |
+| `let` en un encabezado `for` | La variable del bucle se copia en cada iteración. Una clausura creada en el cuerpo ve su propia copia. Una copia de una *referencia a un objeto* apunta al mismo objeto, así que el estado se comparte. |
+| Funciones flecha y clausuras | Una función lleva consigo las variables que la rodean. El generador aleatorio con semilla es una clausura sobre un número. |
 | Iterators and the iteration protocol | An object with `[Symbol.iterator]()` and a `next()` method can be consumed by `for...of`, by spread, by `Iterator.from(...).map(...)`. The *consumer* decides how many values to ask for. |
 | Node.js: the event loop | JavaScript runs on one thread. Timers fire only when the current code is done. The pulse works because the loop is finished first. |
 

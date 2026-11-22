@@ -35,27 +35,27 @@ msgstr "⟦SEP_0001⟧ Característica ⟦SEP_0002⟧ Qué enseña ⟦SEP_0003�
 #: lessons/languages/javascript.md:11
 msgctxt "s-c2816d806efe-0005"
 msgid "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ A loop is three expressions and a statement. The order is fixed: init once, then test, body, update, test, body, update, until the test is false. ⟦SEP_0004⟧"
-msgstr ""
+msgstr "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ Un bucle consta de tres expresiones y una sentencia. El orden es fijo: inicialización una vez; luego prueba, cuerpo, actualización, prueba, cuerpo, actualización, hasta que la prueba sea falsa. ⟦SEP_0004⟧"
 
 #: lessons/languages/javascript.md:12
 msgctxt "s-e603b2636d0d-0006"
 msgid "⟦SEP_0002⟧ The comma operator ⟦CODE_0001⟧ ⟦SEP_0003⟧ Evaluate both, give the second. It lets one expression do several things in order, which is how the iterator clause adds a card *and* saves it. ⟦SEP_0004⟧"
-msgstr ""
+msgstr "⟦SEP_0002⟧ El operador coma ⟦CODE_0001⟧ ⟦SEP_0003⟧ Evalúa ambos y devuelve el segundo. Permite que una expresión haga varias cosas en orden. Así la cláusula del iterador añade una tarjeta *y* la guarda. ⟦SEP_0004⟧"
 
 #: lessons/languages/javascript.md:13
 msgctxt "s-92ca50083119-0007"
 msgid "⟦SEP_0004⟧ Truthiness and ⟦CODE_0001⟧, ⟦CODE_0002⟧ ⟦SEP_0005⟧ A test can be any value, and ⟦CODE_0003⟧ is an expression, not a statement. So the stop rule can be a value, and a side effect can sit in the false branch. ⟦SEP_0006⟧"
-msgstr ""
+msgstr "⟦SEP_0004⟧ Valores verdaderos o falsos y ⟦CODE_0001⟧, ⟦CODE_0002⟧ ⟦SEP_0005⟧ Una prueba puede ser cualquier valor, y ⟦CODE_0003⟧ es una expresión, no una sentencia. Por eso la regla de parada puede ser un valor y un efecto secundario puede estar en la rama falsa. ⟦SEP_0006⟧"
 
 #: lessons/languages/javascript.md:14
 msgctxt "s-c53df3c418ed-0008"
 msgid "⟦SEP_0003⟧ ⟦CODE_0001⟧ in a ⟦CODE_0002⟧ header ⟦SEP_0004⟧ The loop variable is copied for each iteration. A closure made in the body sees its own copy. A copy of an *object reference* is a reference to the same object, so the state is shared. ⟦SEP_0005⟧"
-msgstr ""
+msgstr "⟦SEP_0003⟧ ⟦CODE_0001⟧ en un encabezado ⟦CODE_0002⟧ ⟦SEP_0004⟧ La variable del bucle se copia en cada iteración. Una clausura creada en el cuerpo ve su propia copia. Una copia de una *referencia a un objeto* apunta al mismo objeto, así que el estado se comparte. ⟦SEP_0005⟧"
 
 #: lessons/languages/javascript.md:15
 msgctxt "s-b8908d68a3af-0009"
 msgid "⟦SEP_0001⟧ Arrow functions and closures ⟦SEP_0002⟧ A function carries the variables around it. The seeded random generator is a closure over one number. ⟦SEP_0003⟧"
-msgstr ""
+msgstr "⟦SEP_0001⟧ Funciones flecha y clausuras ⟦SEP_0002⟧ Una función lleva consigo las variables que la rodean. El generador aleatorio con semilla es una clausura sobre un número. ⟦SEP_0003⟧"
 
 #: lessons/languages/javascript.md:16
 msgctxt "s-674c49e926a6-0010"
