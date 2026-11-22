@@ -332,3 +332,4 @@
 370 P4-fix-12 done humor tests aligned with translated register (superset of plan; translated rows count Spanish); negative cases kept; fast verify OK.
 372 P4-999 blocked release verify 18/75 fail; remaining links target generated informatica chapters (P5-001); gate scope needs a decision.
 374 P4-999 blocked re-scoped release verify still fails I16 (authored files with PO), inventory, negative fixtures; see blockers.md.
+376 P4-999 done gate passes under re-scoped criteria; only test_anchors on generated lessons/cs fails (P5-001/P5-004).
