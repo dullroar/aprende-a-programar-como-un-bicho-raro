@@ -105,22 +105,22 @@ msgstr "¿Qué acabamos de aprender?"
 #: lessons/languages/forth.md:43
 msgctxt "s-e5690a631575-0019"
 msgid "**An interpreter's position can be a program counter.** If you can read and write it, you have goto."
-msgstr ""
+msgstr "**La posición de un intérprete puede ser un contador de programa.** Si puedes leerla y escribirla, tienes goto."
 
 #: lessons/languages/forth.md:44
 msgctxt "s-2ec27c3c38fb-0020"
 msgid "**Booleans as bit masks** are a respectable old trick. They explain why Forth's true is -1."
-msgstr ""
+msgstr "**Los booleanos como máscaras de bits** son un viejo truco respetable. Explican por qué el valor verdadero de Forth es -1."
 
 #: lessons/languages/forth.md:45
 msgctxt "s-5b20eb589ed9-0021"
 msgid "**State on a stack** is a complete model of memory. (Compare [COBOL's mutable jump](⟦DEST_0001⟧), [Make's file-existence state](⟦DEST_0002⟧) and [CMake's registers](⟦DEST_0003⟧).)"
-msgstr ""
+msgstr "**El estado en una pila** es un modelo completo de memoria. (Compara [el salto mutable de COBOL](⟦DEST_0001⟧), [el estado de existencia de archivos de Make](⟦DEST_0002⟧) y [los registros de CMake](⟦DEST_0003⟧).)"
 
 #: lessons/languages/forth.md:47
 msgctxt "s-8d4d5b0ff121-0022"
 msgid "Tags: stack effects and flags are **guaranteed** by standard Forth. ⟦CODE_0001⟧ manipulation is **guaranteed** to exist in ISO Forth but its effect in a definition versus at top level is **implementation-permitted**. ⟦CODE_0002⟧, ⟦CODE_0003⟧ and ⟦CODE_0004⟧ are Gforth extensions (**implementation-permitted**)."
-msgstr ""
+msgstr "Etiquetas: los efectos de pila y las banderas son comportamiento **garantizado** por Forth estándar. La existencia de la manipulación de ⟦CODE_0001⟧ es un comportamiento **garantizado** en ISO Forth. Pero su efecto en una definición frente al nivel superior es **permitido por la implementación**. ⟦CODE_0002⟧, ⟦CODE_0003⟧ y ⟦CODE_0004⟧ son extensiones de Gforth (**permitido por la implementación**)."
 
 #: lessons/languages/forth.md:49
 msgctxt "s-299b7a6f9cbe-0023"

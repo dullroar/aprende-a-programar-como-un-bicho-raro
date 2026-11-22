@@ -212,3 +212,4 @@
 239 P4-lessons-languages-3 partial accepted and applied Forth positions 6 to 8; resume at position 9; scoped and working-tree fast checks passed; task accept uses unsupported --task.
 240 P4-lessons-languages-3 partial accepted and applied Forth positions 9 to 13; resume at position 14; scoped and working-tree fast checks and anchors check passed; task accept uses unsupported --task.
 241 P4-lessons-languages-3 partial accepted and applied Forth positions 14 to 18; resume at position 19; scoped and working-tree fast checks and anchors check passed; task accept uses unsupported --task.
+242 P4-lessons-languages-3 partial accepted and applied Forth positions 19 to 22; resume at position 23; scoped and working-tree fast checks passed; task accept uses unsupported --task.

@@ -40,11 +40,11 @@ La memoria es la pila de datos: no hay ni un solo `variable` en el archivo. El c
 
 ### ¿Qué acabamos de aprender?
 
-- **An interpreter's position can be a program counter.** If you can read and write it, you have goto.
-- **Booleans as bit masks** are a respectable old trick. They explain why Forth's true is -1.
-- **State on a stack** is a complete model of memory. (Compare [COBOL's mutable jump](cobol.md#alter), [Make's file-existence state](make-cmake.md#gnu-make) and [CMake's registers](make-cmake.md#cmake).)
+- **La posición de un intérprete puede ser un contador de programa.** Si puedes leerla y escribirla, tienes goto.
+- **Los booleanos como máscaras de bits** son un viejo truco respetable. Explican por qué el valor verdadero de Forth es -1.
+- **El estado en una pila** es un modelo completo de memoria. (Compara [el salto mutable de COBOL](cobol.md#alter), [el estado de existencia de archivos de Make](make-cmake.md#gnu-make) y [los registros de CMake](make-cmake.md#cmake).)
 
-Tags: stack effects and flags are **guaranteed** by standard Forth. `>in` manipulation is **guaranteed** to exist in ISO Forth but its effect in a definition versus at top level is **implementation-permitted**. `outfile-execute`, `open-pipe` and `utime` are Gforth extensions (**implementation-permitted**).
+Etiquetas: los efectos de pila y las banderas son comportamiento **garantizado** por Forth estándar. La existencia de la manipulación de `>in` es un comportamiento **garantizado** en ISO Forth. Pero su efecto en una definición frente al nivel superior es **permitido por la implementación**. `outfile-execute`, `open-pipe` y `utime` son extensiones de Gforth (**permitido por la implementación**).
 
 ### Do this in production and you're fired
 
