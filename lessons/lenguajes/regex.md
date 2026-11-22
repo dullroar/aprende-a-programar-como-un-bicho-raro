@@ -87,11 +87,11 @@ Esta entrada es el mejor **fallo honesto** del repositorio. También es la que m
 Todo el estado del programa es **una línea de texto**; cada paso es una sustitución. No hay variables ni números.
 
 - **El bucle** consiste en saltos `b`/`t` detrás de direcciones de expresiones regulares: [`/ tot:#{41}/b done`](../../src/regex-sed/timecards.sed#L14) es la regla de parada, con el total como marcas de conteo `#`.
-- **Randomness** is a 16-bit shift register of `0`s and `1`s ([L17-29](../../src/regex-sed/timecards.sed#L17-L29)); XOR is done by deleting zeros and testing for odd counts. The taps (16, 14, 13, 11) give a maximal period of 65,535. It is a toy generator, and the same seed gives the same cards.
-- **A draw is rejected** with `/ rng:1(01|1)/b draw` when the nibble is 10-15, and a bits-to-digit table plus tally-mark expansion turns the nibble into hours.
-- **The pulse is timed by a catastrophic-backtracking regex**: the clock is a pattern that takes about 50 ms per frame to fail. (Machine-dependent, which is why pipes and `check.sh` skip it.)
-- **Exit 1 on purpose.** sed has no match result spanning a whole program, so "returns false" is the process exit status (the wrapper maps 1 to 0).
-- **GNU only**: `T`, `Q`, `--debug`, `\x1b`, `\t` and `-E` intervals are GNU extensions.
+- **La aleatoriedad** usa un registro de desplazamiento de 16 bits de `0` y `1` ([L17-29](../../src/regex-sed/timecards.sed#L17-L29)); XOR se hace al borrar ceros y comprobar si la cantidad es impar. Las derivaciones (16, 14, 13, 11) dan un período máximo de 65,535. Es un generador de juguete y la misma semilla da las mismas tarjetas.
+- **Se rechaza un sorteo** con `/ rng:1(01|1)/b draw` cuando el nibble está entre 10 y 15. Una tabla de bits a dígitos y la expansión a marcas de conteo convierten el nibble en horas.
+- **Una regex de retroceso catastrófico mide el pulso**: el reloj es un patrón que tarda unos 50 ms por fotograma en fallar. (Depende de la máquina; por eso las tuberías y `check.sh` lo omiten.)
+- **Salir con 1 a propósito.** sed no tiene un resultado de coincidencia que abarque todo un programa, así que "devuelve falso" es el estado de salida del proceso (el envoltorio convierte 1 en 0).
+- **Solo GNU**: `T`, `Q`, `--debug`, `\x1b`, `\t` y los intervalos `-E` son extensiones de GNU.
 - **sed has a goto** (`b`, `t`), which Perl and PCRE do not, so this entry's loop structure is "a rewriting machine with a program counter, not a single match".
 
 The README has an eleven-step trace of one iteration, and `TRACE=1 ./timecards.sh` dumps the state line at each step. This is the best place in the repo to *watch* a computation happen.

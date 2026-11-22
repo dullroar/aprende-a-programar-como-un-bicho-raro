@@ -260,27 +260,27 @@ msgstr "**El bucle** consiste en saltos ⟦CODE_0001⟧/⟦CODE_0002⟧ detrás 
 #: lessons/languages/regex.md:90
 msgctxt "s-b5e8b118d2b4-0050"
 msgid "**Randomness** is a 16-bit shift register of ⟦CODE_0001⟧s and ⟦CODE_0002⟧s ([L17-29](⟦DEST_0003⟧)); XOR is done by deleting zeros and testing for odd counts. The taps (16, 14, 13, 11) give a maximal period of 65,535. It is a toy generator, and the same seed gives the same cards."
-msgstr ""
+msgstr "**La aleatoriedad** usa un registro de desplazamiento de 16 bits de ⟦CODE_0001⟧ y ⟦CODE_0002⟧ ([L17-29](⟦DEST_0003⟧)); XOR se hace al borrar ceros y comprobar si la cantidad es impar. Las derivaciones (16, 14, 13, 11) dan un período máximo de 65,535. Es un generador de juguete y la misma semilla da las mismas tarjetas."
 
 #: lessons/languages/regex.md:91
 msgctxt "s-0f7d2f3f5f46-0051"
 msgid "**A draw is rejected** with ⟦CODE_0001⟧ when the nibble is 10-15, and a bits-to-digit table plus tally-mark expansion turns the nibble into hours."
-msgstr ""
+msgstr "**Se rechaza un sorteo** con ⟦CODE_0001⟧ cuando el nibble está entre 10 y 15. Una tabla de bits a dígitos y la expansión a marcas de conteo convierten el nibble en horas."
 
 #: lessons/languages/regex.md:92
 msgctxt "s-345978c60a51-0052"
 msgid "**The pulse is timed by a catastrophic-backtracking regex**: the clock is a pattern that takes about 50 ms per frame to fail. (Machine-dependent, which is why pipes and ⟦CODE_0001⟧ skip it.)"
-msgstr ""
+msgstr "**Una regex de retroceso catastrófico mide el pulso**: el reloj es un patrón que tarda unos 50 ms por fotograma en fallar. (Depende de la máquina; por eso las tuberías y ⟦CODE_0001⟧ lo omiten.)"
 
 #: lessons/languages/regex.md:93
 msgctxt "s-44f416f3dd3b-0053"
 msgid "**Exit 1 on purpose.** sed has no match result spanning a whole program, so \"returns false\" is the process exit status (the wrapper maps 1 to 0)."
-msgstr ""
+msgstr "**Salir con 1 a propósito.** sed no tiene un resultado de coincidencia que abarque todo un programa, así que \"devuelve falso\" es el estado de salida del proceso (el envoltorio convierte 1 en 0)."
 
 #: lessons/languages/regex.md:94
 msgctxt "s-3ae22c00ed4e-0054"
 msgid "**GNU only**: ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧ and ⟦CODE_0006⟧ intervals are GNU extensions."
-msgstr ""
+msgstr "**Solo GNU**: ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧ y los intervalos ⟦CODE_0006⟧ son extensiones de GNU."
 
 #: lessons/languages/regex.md:95
 msgctxt "s-07936c30d706-0055"
