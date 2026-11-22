@@ -57,19 +57,19 @@ Usos legítimos: `for (;;)` con un `break` y una coma en una cláusula de actual
 
 Mira el [ejercicio B20](../exercises.md#b20-javascript-read-the-clauses-move-the-limit-and-fail-the-structure-check-verified).
 
-## Closures all the way down
+## Clausuras hasta el fondo
 
-### Behold the monstrosity
+### Contempla la monstruosidad
 
 ```bash
 sandbox/container/run-image.sh src/javascript-weird
 ```
 
-No `for`, no `while`, no `this`. The algorithm is three closures of one line each. The program is one pipeline: `Iterator.from(...).map(...).map(...).toArray()`.
+Sin `for`, sin `while`, sin `this`. El algoritmo consta de tres clausuras de una línea cada una. El programa es una canalización: `Iterator.from(...).map(...).map(...).toArray()`.
 
-### How the hell does that work?
+### ¿Cómo demonios funciona eso?
 
-- **A closure is a state machine.** `machine(nextHours)` returns a function. It remembers a count, a total and a stop flag in variables that only it can reach. Each call makes the next card.
+- **Una clausura es una máquina de estados.** `machine(nextHours)` devuelve una función. Recuerda un conteo, un total y una bandera de parada en variables que solo ella puede alcanzar. Cada llamada crea la siguiente tarjeta.
 - **The iteration protocol is the loop.** An object with a `next()` method that says `{ done: true }` when it is finished. `toArray()` keeps asking until it hears that.
 - **The stop rule is a variable.** `over = total > 40`, set in the same call that makes the crossing card. After that the machine answers `undefined`, and the stream ends.
 - **Demand decides.** Nothing is drawn until something asks. `take(1)` draws one card. `toArray()` draws all of them.

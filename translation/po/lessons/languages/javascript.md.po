@@ -185,27 +185,27 @@ msgstr "Mira el [ejercicio B20](⟦DEST_0001⟧)."
 #: lessons/languages/javascript.md:60
 msgctxt "s-d2b0031231d3-0035"
 msgid "Closures all the way down"
-msgstr ""
+msgstr "Clausuras hasta el fondo"
 
 #: lessons/languages/javascript.md:62
 msgctxt "s-cc9cfaabc50d-0036"
 msgid "Behold the monstrosity"
-msgstr ""
+msgstr "Contempla la monstruosidad"
 
 #: lessons/languages/javascript.md:68
 msgctxt "s-eeaab87be2f2-0037"
 msgid "No ⟦CODE_0001⟧, no ⟦CODE_0002⟧, no ⟦CODE_0003⟧. The algorithm is three closures of one line each. The program is one pipeline: ⟦CODE_0004⟧."
-msgstr ""
+msgstr "Sin ⟦CODE_0001⟧, sin ⟦CODE_0002⟧, sin ⟦CODE_0003⟧. El algoritmo consta de tres clausuras de una línea cada una. El programa es una canalización: ⟦CODE_0004⟧."
 
 #: lessons/languages/javascript.md:70
 msgctxt "s-415f5fa29cf9-0038"
 msgid "How the hell does that work?"
-msgstr ""
+msgstr "¿Cómo demonios funciona eso?"
 
 #: lessons/languages/javascript.md:72
 msgctxt "s-2d4e381402b8-0039"
 msgid "**A closure is a state machine.** ⟦CODE_0001⟧ returns a function. It remembers a count, a total and a stop flag in variables that only it can reach. Each call makes the next card."
-msgstr ""
+msgstr "**Una clausura es una máquina de estados.** ⟦CODE_0001⟧ devuelve una función. Recuerda un conteo, un total y una bandera de parada en variables que solo ella puede alcanzar. Cada llamada crea la siguiente tarjeta."
 
 #: lessons/languages/javascript.md:73
 msgctxt "s-779a584ca60e-0040"

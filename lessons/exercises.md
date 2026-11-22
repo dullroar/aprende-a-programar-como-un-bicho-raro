@@ -361,7 +361,7 @@ Acceptance criteria:
 
 ### B21. JavaScript, weirder: move the stop rule in a closure and watch the demand (verified)
 
-**Lesson:** [JavaScript](lenguajes/javascript.md#closures-all-the-way-down). **Entry:** a copy of `src/javascript-weird`.
+**Lesson:** [JavaScript](lenguajes/javascript.md#clausuras-hasta-el-fondo). **Entry:** a copy of `src/javascript-weird`.
 
 1. Run the closure lab on the untouched copy: `node --expose-gc --test check.mjs`. How many tests pass?
 2. In `core.mjs`, change the stop rule `over = total > 40` to `over = total > 20`. **Predict** the rows for `SEED=42 node timecards.mjs` (the hours of the first cards are 12, 17 and 17). Then run the lab again. **Predict** whether it passes.
