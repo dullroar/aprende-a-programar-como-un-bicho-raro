@@ -6110,95 +6110,95 @@
     {
      "en": "By solution pattern",
      "en_id": "by-solution-pattern",
-     "es": "By solution pattern",
-     "es_id": "by-solution-pattern",
+     "es": "Por patrón de solución",
+     "es_id": "por-patrón-de-solución",
      "level": 1,
      "line": 1
     },
     {
      "en": "Formal languages",
      "en_id": "formal-languages",
-     "es": "Formal languages",
-     "es_id": "formal-languages",
+     "es": "Lenguajes formales",
+     "es_id": "lenguajes-formales",
      "level": 2,
      "line": 5
     },
     {
      "en": "Map/reduce and other transformations",
      "en_id": "mapreduce-and-other-transformations",
-     "es": "Map/reduce and other transformations",
-     "es_id": "mapreduce-and-other-transformations",
+     "es": "Map/reduce y otras transformaciones",
+     "es_id": "mapreduce-y-otras-transformaciones",
      "level": 2,
      "line": 27
     },
     {
      "en": "Control state outside variables",
      "en_id": "control-state-outside-variables",
-     "es": "Control state outside variables",
-     "es_id": "control-state-outside-variables",
+     "es": "El estado de control fuera de las variables",
+     "es_id": "el-estado-de-control-fuera-de-las-variables",
      "level": 2,
      "line": 65
     },
     {
      "en": "Backtracking, side effects and error handling",
      "en_id": "backtracking-side-effects-and-error-handling",
-     "es": "Backtracking, side effects and error handling",
-     "es_id": "backtracking-side-effects-and-error-handling",
+     "es": "Retroceso, efectos secundarios y manejo de errores",
+     "es_id": "retroceso-efectos-secundarios-y-manejo-de-errores",
      "level": 2,
      "line": 136
     },
     {
      "en": "Backtracking as a program",
      "en_id": "backtracking-as-a-program",
-     "es": "Backtracking as a program",
-     "es_id": "backtracking-as-a-program",
+     "es": "El retroceso como programa",
+     "es_id": "el-retroceso-como-programa",
      "level": 3,
      "line": 138
     },
     {
      "en": "Side effects in pipelines",
      "en_id": "side-effects-in-pipelines",
-     "es": "Side effects in pipelines",
-     "es_id": "side-effects-in-pipelines",
+     "es": "Efectos secundarios en canalizaciones",
+     "es_id": "efectos-secundarios-en-canalizaciones",
      "level": 3,
      "line": 164
     },
     {
      "en": "Errors as control flow",
      "en_id": "errors-as-control-flow",
-     "es": "Errors as control flow",
-     "es_id": "errors-as-control-flow",
+     "es": "Los errores como flujo de control",
+     "es_id": "los-errores-como-flujo-de-control",
      "level": 3,
      "line": 168
     },
     {
      "en": "Programs stored as data",
      "en_id": "programs-stored-as-data",
-     "es": "Programs stored as data",
-     "es_id": "programs-stored-as-data",
+     "es": "Programas guardados como datos",
+     "es_id": "programas-guardados-como-datos",
      "level": 2,
      "line": 185
     },
     {
      "en": "Read next",
      "en_id": "read-next",
-     "es": "Read next",
-     "es_id": "read-next",
+     "es": "Lee a continuación",
+     "es_id": "lee-a-continuación",
      "level": 2,
      "line": 210
     }
    ],
    "map": {
-    "backtracking-as-a-program": "backtracking-as-a-program",
-    "backtracking-side-effects-and-error-handling": "backtracking-side-effects-and-error-handling",
-    "by-solution-pattern": "by-solution-pattern",
-    "control-state-outside-variables": "control-state-outside-variables",
-    "errors-as-control-flow": "errors-as-control-flow",
-    "formal-languages": "formal-languages",
-    "mapreduce-and-other-transformations": "mapreduce-and-other-transformations",
-    "programs-stored-as-data": "programs-stored-as-data",
-    "read-next": "read-next",
-    "side-effects-in-pipelines": "side-effects-in-pipelines"
+    "backtracking-as-a-program": "el-retroceso-como-programa",
+    "backtracking-side-effects-and-error-handling": "retroceso-efectos-secundarios-y-manejo-de-errores",
+    "by-solution-pattern": "por-patrón-de-solución",
+    "control-state-outside-variables": "el-estado-de-control-fuera-de-las-variables",
+    "errors-as-control-flow": "los-errores-como-flujo-de-control",
+    "formal-languages": "lenguajes-formales",
+    "mapreduce-and-other-transformations": "mapreduce-y-otras-transformaciones",
+    "programs-stored-as-data": "programas-guardados-como-datos",
+    "read-next": "lee-a-continuación",
+    "side-effects-in-pipelines": "efectos-secundarios-en-canalizaciones"
    }
   },
   "lessons/problems-overcome.md": {
@@ -6206,77 +6206,77 @@
     {
      "en": "Problems overcome",
      "en_id": "problems-overcome",
-     "es": "Problems overcome",
-     "es_id": "problems-overcome",
+     "es": "Problemas superados",
+     "es_id": "problemas-superados",
      "level": 1,
      "line": 1
     },
     {
      "en": "Squeezing the program into one statement",
      "en_id": "squeezing-the-program-into-one-statement",
-     "es": "Squeezing the program into one statement",
-     "es_id": "squeezing-the-program-into-one-statement",
+     "es": "Meter el programa a presión en una sola sentencia",
+     "es_id": "meter-el-programa-a-presión-en-una-sola-sentencia",
      "level": 2,
      "line": 7
     },
     {
      "en": "No variables? Find somewhere else to keep state",
      "en_id": "no-variables-find-somewhere-else-to-keep-state",
-     "es": "No variables? Find somewhere else to keep state",
-     "es_id": "no-variables-find-somewhere-else-to-keep-state",
+     "es": "¿Sin variables? Busca otro lugar donde guardar el estado",
+     "es_id": "sin-variables-busca-otro-lugar-donde-guardar-el-estado",
      "level": 2,
      "line": 23
     },
     {
      "en": "No loop? Build control flow out of something else",
      "en_id": "no-loop-build-control-flow-out-of-something-else",
-     "es": "No loop? Build control flow out of something else",
-     "es_id": "no-loop-build-control-flow-out-of-something-else",
+     "es": "¿No hay bucle? Construye el flujo de control con otra cosa",
+     "es_id": "no-hay-bucle-construye-el-flujo-de-control-con-otra-cosa",
      "level": 2,
      "line": 44
     },
     {
      "en": "When does it actually run? Order of evaluation",
      "en_id": "when-does-it-actually-run-order-of-evaluation",
-     "es": "When does it actually run? Order of evaluation",
-     "es_id": "when-does-it-actually-run-order-of-evaluation",
+     "es": "¿Cuándo se ejecuta realmente? Orden de evaluación",
+     "es_id": "cuándo-se-ejecuta-realmente-orden-de-evaluación",
      "level": 2,
      "line": 68
     },
     {
      "en": "The host has limits: portability and implementation details",
      "en_id": "the-host-has-limits-portability-and-implementation-details",
-     "es": "The host has limits: portability and implementation details",
-     "es_id": "the-host-has-limits-portability-and-implementation-details",
+     "es": "El anfitrión tiene límites: portabilidad y detalles de implementación",
+     "es_id": "el-anfitrión-tiene-límites-portabilidad-y-detalles-de-implementación",
      "level": 2,
      "line": 87
     },
     {
      "en": "Making failure visible and the rules enforceable",
      "en_id": "making-failure-visible-and-the-rules-enforceable",
-     "es": "Making failure visible and the rules enforceable",
-     "es_id": "making-failure-visible-and-the-rules-enforceable",
+     "es": "Cómo hacer visible el fallo y hacer cumplir las reglas",
+     "es_id": "cómo-hacer-visible-el-fallo-y-hacer-cumplir-las-reglas",
      "level": 2,
      "line": 115
     },
     {
      "en": "Patterns in the overcoming",
      "en_id": "patterns-in-the-overcoming",
-     "es": "Patterns in the overcoming",
-     "es_id": "patterns-in-the-overcoming",
+     "es": "Patrones en la superación de obstáculos",
+     "es_id": "patrones-en-la-superación-de-obstáculos",
      "level": 2,
      "line": 131
     }
    ],
    "map": {
-    "making-failure-visible-and-the-rules-enforceable": "making-failure-visible-and-the-rules-enforceable",
-    "no-loop-build-control-flow-out-of-something-else": "no-loop-build-control-flow-out-of-something-else",
-    "no-variables-find-somewhere-else-to-keep-state": "no-variables-find-somewhere-else-to-keep-state",
-    "patterns-in-the-overcoming": "patterns-in-the-overcoming",
-    "problems-overcome": "problems-overcome",
-    "squeezing-the-program-into-one-statement": "squeezing-the-program-into-one-statement",
-    "the-host-has-limits-portability-and-implementation-details": "the-host-has-limits-portability-and-implementation-details",
-    "when-does-it-actually-run-order-of-evaluation": "when-does-it-actually-run-order-of-evaluation"
+    "making-failure-visible-and-the-rules-enforceable": "cómo-hacer-visible-el-fallo-y-hacer-cumplir-las-reglas",
+    "no-loop-build-control-flow-out-of-something-else": "no-hay-bucle-construye-el-flujo-de-control-con-otra-cosa",
+    "no-variables-find-somewhere-else-to-keep-state": "sin-variables-busca-otro-lugar-donde-guardar-el-estado",
+    "patterns-in-the-overcoming": "patrones-en-la-superación-de-obstáculos",
+    "problems-overcome": "problemas-superados",
+    "squeezing-the-program-into-one-statement": "meter-el-programa-a-presión-en-una-sola-sentencia",
+    "the-host-has-limits-portability-and-implementation-details": "el-anfitrión-tiene-límites-portabilidad-y-detalles-de-implementación",
+    "when-does-it-actually-run-order-of-evaluation": "cuándo-se-ejecuta-realmente-orden-de-evaluación"
    }
   },
   "lessons/study-guides/README.md": {
@@ -8805,14 +8805,14 @@
     {
      "en": "Tools",
      "en_id": "tools",
-     "es": "Tools",
-     "es_id": "tools",
+     "es": "Herramientas",
+     "es_id": "herramientas",
      "level": 1,
      "line": 1
     }
    ],
    "map": {
-    "tools": "tools"
+    "tools": "herramientas"
    }
   },
   "sandbox/README.md": {

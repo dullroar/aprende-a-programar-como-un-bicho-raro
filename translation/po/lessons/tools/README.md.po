@@ -1,0 +1,43 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lessons/tools/README.md:1
+msgctxt "s-ea93d6a262ec-0000"
+msgid "Tools"
+msgstr "Herramientas"
+
+#: lessons/tools/README.md:3
+msgctxt "s-e04598bf0298-0001"
+msgid "⟦SEP_0001⟧ Script ⟦SEP_0002⟧ What it does ⟦SEP_0003⟧"
+msgstr "⟦SEP_0001⟧ Script ⟦SEP_0002⟧ Qué hace ⟦SEP_0003⟧"
+
+#: lessons/tools/README.md:5
+msgctxt "s-ba90b5f30e5a-0002"
+msgid "⟦SEP_0005⟧ [⟦CODE_0001⟧](⟦DEST_0002⟧) ⟦SEP_0006⟧ Checks the *shape* of any entry's output: ⟦CODE_0003⟧ marker, hours 10-19, running totals, stopped on the right card, summary line agrees. The acceptance test most [exercises](⟦DEST_0004⟧) use. ⟦SEP_0007⟧"
+msgstr "⟦SEP_0005⟧ [⟦CODE_0001⟧](⟦DEST_0002⟧) ⟦SEP_0006⟧ Comprueba la *forma* de la salida de cualquier entrada: la marca ⟦CODE_0003⟧, las horas 10-19, los totales acumulados, la parada en la tarjeta correcta y la coincidencia de la línea de resumen. Es la prueba de aceptación que usan casi todos los [ejercicios](⟦DEST_0004⟧). ⟦SEP_0007⟧"
+
+#: lessons/tools/README.md:6
+msgctxt "s-09368241f73a-0003"
+msgid "⟦SEP_0004⟧ [⟦CODE_0001⟧](⟦DEST_0002⟧) ⟦SEP_0005⟧ Runs any command in the repo's locked-down toolchain container, on a private copy of a folder, with optional ⟦CODE_0003⟧. ⟦SEP_0006⟧"
+msgstr "⟦SEP_0004⟧ [⟦CODE_0001⟧](⟦DEST_0002⟧) ⟦SEP_0005⟧ Ejecuta cualquier comando en el contenedor de herramientas bloqueado del repositorio, sobre una copia privada de una carpeta, con ⟦CODE_0003⟧ opcional. ⟦SEP_0006⟧"
+
+#: lessons/tools/README.md:7
+msgctxt "s-2ba6a3c2a371-0004"
+msgid "⟦SEP_0004⟧ [⟦CODE_0001⟧](⟦DEST_0002⟧) ⟦SEP_0005⟧ Runs the reference solution of every Docker exercise and prints PASS or FAIL for each. This is how the [answers key](⟦DEST_0003⟧) was proven. ⟦SEP_0006⟧"
+msgstr "⟦SEP_0004⟧ [⟦CODE_0001⟧](⟦DEST_0002⟧) ⟦SEP_0005⟧ Ejecuta la solución de referencia de cada ejercicio de Docker e imprime PASS o FAIL para cada uno. Así se comprobó la [clave de respuestas](⟦DEST_0003⟧). ⟦SEP_0006⟧"
+
+#: lessons/tools/README.md:8
+msgctxt "s-72822b61cbba-0005"
+msgid "⟦SEP_0003⟧ [⟦CODE_0001⟧](⟦DEST_0002⟧) ⟦SEP_0004⟧ The same for the Windows Sandbox exercises (E1, E2). ⟦SEP_0005⟧"
+msgstr "⟦SEP_0003⟧ [⟦CODE_0001⟧](⟦DEST_0002⟧) ⟦SEP_0004⟧ Lo mismo para los ejercicios del entorno aislado (*sandbox*) de Windows (E1, E2). ⟦SEP_0005⟧"
+
+#: lessons/tools/README.md:10
+msgctxt "s-a65575352db0-0006"
+msgid "Reference answers that are real programs live in [⟦CODE_0001⟧](⟦DEST_0002⟧)."
+msgstr "Las respuestas de referencia que son programas reales están en [⟦CODE_0001⟧](⟦DEST_0002⟧)."

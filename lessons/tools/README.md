@@ -1,10 +1,10 @@
-# Tools
+# Herramientas
 
-| Script | What it does |
+| Script | Qué hace |
 | --- | --- |
-| [`check-demo.sh`](check-demo.sh) | Checks the *shape* of any entry's output: `DEMO ONLY` marker, hours 10-19, running totals, stopped on the right card, summary line agrees. The acceptance test most [exercises](../exercises.md) use. |
-| [`run-in-sandbox.sh`](run-in-sandbox.sh) | Runs any command in the repo's locked-down toolchain container, on a private copy of a folder, with optional `-e NAME=VALUE`. |
-| [`verify-exercises.sh`](verify-exercises.sh) | Runs the reference solution of every Docker exercise and prints PASS or FAIL for each. This is how the [answers key](../respuestas.md) was proven. |
-| [`verify-windows.ps1`](verify-windows.ps1) | The same for the Windows Sandbox exercises (E1, E2). |
+| [`check-demo.sh`](check-demo.sh) | Comprueba la *forma* de la salida de cualquier entrada: la marca `DEMO ONLY`, las horas 10-19, los totales acumulados, la parada en la tarjeta correcta y la coincidencia de la línea de resumen. Es la prueba de aceptación que usan casi todos los [ejercicios](../exercises.md). |
+| [`run-in-sandbox.sh`](run-in-sandbox.sh) | Ejecuta cualquier comando en el contenedor de herramientas bloqueado del repositorio, sobre una copia privada de una carpeta, con `-e NAME=VALUE` opcional. |
+| [`verify-exercises.sh`](verify-exercises.sh) | Ejecuta la solución de referencia de cada ejercicio de Docker e imprime PASS o FAIL para cada uno. Así se comprobó la [clave de respuestas](../respuestas.md). |
+| [`verify-windows.ps1`](verify-windows.ps1) | Lo mismo para los ejercicios del entorno aislado (*sandbox*) de Windows (E1, E2). |
 
-Reference answers that are real programs live in [`../solutions/`](../solutions).
+Las respuestas de referencia que son programas reales están en [`../solutions/`](../solutions).
