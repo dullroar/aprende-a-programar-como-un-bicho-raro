@@ -134,13 +134,13 @@ Etiquetas: la llamada síncrona de `EventEmitter` y su orden, así como la ejecu
 ### Haz esto en producción y estás despedido
 
 - **Un escuchador de eventos por evento es una llamada a función con pasos extra.** Si solo una parte puede tener interés, llámala.
-- **The order is hard to see.** A reader must find every `emit` to know what follows what.
-- **There is no backpressure.** An emitter keeps emitting. This program is safe only because each card waits for the one before it.
-- **Listeners that change the listeners during an `emit`** make the order hard to predict. This program removes its listeners only at the very end.
+- **El orden es difícil de ver.** Un lector debe encontrar cada `emit` para saber qué sigue a qué.
+- **No hay contrapresión.** Un emisor sigue emitiendo. Este programa es seguro solo porque cada tarjeta espera a la anterior.
+- **Los escuchadores de eventos que cambian los escuchadores durante un `emit`** hacen difícil predecir el orden. Este programa elimina sus escuchadores solo al final.
 
-Legitimate uses: many parties may care about one thing (a server's `request`, a UI's `click`), the sender must not know the receivers and the work is I/O that should not block the thread.
+Usos legítimos: muchas partes pueden tener interés en una cosa (el `request` de un servidor, el `click` de una interfaz). El remitente no debe conocer a los destinatarios y el trabajo es de entrada y salida, que no debe bloquear el hilo.
 
-### Now break it yourself
+### Ahora rómpelo tú
 
 See [exercise B22](../exercises.md#b22-javascript-event-driven-predict-the-trace-then-remove-the-boundary-verified), and the chapter [Events, callbacks and reactive control flow](../informatica/10-eventos-retrollamadas-y-flujo-de-control-reactivo.md).
 

@@ -2284,3 +2284,5 @@
 {"segment_id": "s-cc9cfaabc50d-0061", "ts": "2026-11-22T14:40:22Z", "findings": [], "playful_note": "Conserva el anuncio teatral de la sección."}
 {"segment_id": "s-415f5fa29cf9-0063", "ts": "2026-11-22T14:40:22Z", "findings": [], "playful_note": "Conserva la pregunta exasperada del lector."}
 {"segment_id": "s-299b7a6f9cbe-0078", "ts": "2026-11-22T14:45:24Z", "findings": [], "playful_note": "Conserva la amenaza cómica e hiperbólica."}
+{"segment_id": "s-5e3bcdfbf845-0084", "ts": "2026-11-22T14:47:15Z", "findings": ["I15: heading differs from the recorded transcreated 'Ahora rómpelo tú'"], "playful_note": "Conserva el reto juguetón de romper el programa."}
+{"segment_id": "s-5e3bcdfbf845-0084", "ts": "2026-11-22T14:47:31Z", "findings": [], "playful_note": "Conserva el reto juguetón de romper el programa."}

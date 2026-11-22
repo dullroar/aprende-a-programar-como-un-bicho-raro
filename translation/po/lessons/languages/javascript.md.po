@@ -410,27 +410,27 @@ msgstr "**Un escuchador de eventos por evento es una llamada a función con paso
 #: lessons/languages/javascript.md:137
 msgctxt "s-acc1c6370b34-0080"
 msgid "**The order is hard to see.** A reader must find every ⟦CODE_0001⟧ to know what follows what."
-msgstr ""
+msgstr "**El orden es difícil de ver.** Un lector debe encontrar cada ⟦CODE_0001⟧ para saber qué sigue a qué."
 
 #: lessons/languages/javascript.md:138
 msgctxt "s-2ca84a3ecd60-0081"
 msgid "**There is no backpressure.** An emitter keeps emitting. This program is safe only because each card waits for the one before it."
-msgstr ""
+msgstr "**No hay contrapresión.** Un emisor sigue emitiendo. Este programa es seguro solo porque cada tarjeta espera a la anterior."
 
 #: lessons/languages/javascript.md:139
 msgctxt "s-c0ed973d9be4-0082"
 msgid "**Listeners that change the listeners during an ⟦CODE_0001⟧** make the order hard to predict. This program removes its listeners only at the very end."
-msgstr ""
+msgstr "**Los escuchadores de eventos que cambian los escuchadores durante un ⟦CODE_0001⟧** hacen difícil predecir el orden. Este programa elimina sus escuchadores solo al final."
 
 #: lessons/languages/javascript.md:141
 msgctxt "s-51d8d9310707-0083"
 msgid "Legitimate uses: many parties may care about one thing (a server's ⟦CODE_0001⟧, a UI's ⟦CODE_0002⟧), the sender must not know the receivers and the work is I/O that should not block the thread."
-msgstr ""
+msgstr "Usos legítimos: muchas partes pueden tener interés en una cosa (el ⟦CODE_0001⟧ de un servidor, el ⟦CODE_0002⟧ de una interfaz). El remitente no debe conocer a los destinatarios y el trabajo es de entrada y salida, que no debe bloquear el hilo."
 
 #: lessons/languages/javascript.md:143
 msgctxt "s-5e3bcdfbf845-0084"
 msgid "Now break it yourself"
-msgstr ""
+msgstr "Ahora rómpelo tú"
 
 #: lessons/languages/javascript.md:145
 msgctxt "s-d9944933fdbd-0085"
