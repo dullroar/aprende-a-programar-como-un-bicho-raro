@@ -4651,8 +4651,8 @@
     {
      "en": "What makes Forth special",
      "en_id": "what-makes-forth-special",
-     "es": "What makes Forth special",
-     "es_id": "what-makes-forth-special",
+     "es": "Qué hace especial a Forth",
+     "es_id": "qué-hace-especial-a-forth",
      "level": 2,
      "line": 7
     },
@@ -4776,7 +4776,7 @@
     "under-what-circumstances-would-this-terrible-idea-become-reasonable": "under-what-circumstances-would-this-terrible-idea-become-reasonable",
     "weird-next-to-boring": "weird-next-to-boring",
     "what-did-we-just-learn": "what-did-we-just-learn",
-    "what-makes-forth-special": "what-makes-forth-special"
+    "what-makes-forth-special": "qué-hace-especial-a-forth"
    }
   },
   "lessons/languages/haskell.md": {

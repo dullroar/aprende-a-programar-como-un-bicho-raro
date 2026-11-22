@@ -1,14 +1,14 @@
 # Forth
 
-Entries: [`src/forth`](../../src/forth/README.md) (one `begin ... until`) and [`src/forth-weird`](../../src/forth-weird/README.md) (no loop word, no variable).
+Entradas: [`src/forth`](../../src/forth/README.md) (un `begin ... until`) y [`src/forth-weird`](../../src/forth-weird/README.md) (sin palabra de bucle ni variable).
 
-For an advanced reading path with traces and experiments, see the [Forth study guide](../guias-de-estudio/lenguajes/forth.md).
+Para un recorrido avanzado de lectura con trazas y experimentos, consulta la [guía de estudio de Forth](../guias-de-estudio/lenguajes/forth.md).
 
-## What makes Forth special
+## Qué hace especial a Forth
 
-Forth has almost no syntax: the interpreter reads a space-delimited word, looks it up, runs it. Words pass values on a **stack**, and every definition carries a stack comment like `( hours -- )`. The language is small enough that you can reach into the interpreter itself.
+Forth casi no tiene sintaxis: el intérprete lee una palabra delimitada por espacios, la busca y la ejecuta. Las palabras pasan valores en una **pila**, y cada definición lleva un comentario de pila como `( hours -- )`. El lenguaje es lo bastante pequeño para que puedas acceder al propio intérprete.
 
-| Feature | Where | What it teaches |
+| Característica | Dónde | Qué enseña |
 | --- | --- | --- |
 | A switch is an array of functions | [`forth/timecards.fs` L34-36](../../src/forth/timecards.fs#L34-L36): `create categories ' meetings , ...` and `: category$ ( n -- c-addr u ) 4 mod cells categories + @ execute ;` | `'` ("tick") gives a word's execution token; tokens are data. |
 | Output redirection as a feature | [L68](../../src/forth/timecards.fs#L68): `: >sqlite ( xt -- ) sqlite outfile-execute ;` | `outfile-execute` redirects all output to a pipe for the duration. `.schema` and `.insert` are ordinary words that print text, and the pipe turns the text into SQL. |

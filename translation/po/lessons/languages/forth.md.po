@@ -1,0 +1,218 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lessons/languages/forth.md:1
+msgctxt "s-bc9ccbb685ed-0000"
+msgid "Forth"
+msgstr "Forth"
+
+#: lessons/languages/forth.md:3
+msgctxt "s-1787cf6ea392-0001"
+msgid "Entries: [⟦CODE_0001⟧](⟦DEST_0002⟧) (one ⟦CODE_0003⟧) and [⟦CODE_0004⟧](⟦DEST_0005⟧) (no loop word, no variable)."
+msgstr "Entradas: [⟦CODE_0001⟧](⟦DEST_0002⟧) (un ⟦CODE_0003⟧) y [⟦CODE_0004⟧](⟦DEST_0005⟧) (sin palabra de bucle ni variable)."
+
+#: lessons/languages/forth.md:5
+msgctxt "s-28fc343011c2-0002"
+msgid "For an advanced reading path with traces and experiments, see the [Forth study guide](⟦DEST_0001⟧)."
+msgstr "Para un recorrido avanzado de lectura con trazas y experimentos, consulta la [guía de estudio de Forth](⟦DEST_0001⟧)."
+
+#: lessons/languages/forth.md:7
+msgctxt "s-fd24a9c74142-0003"
+msgid "What makes Forth special"
+msgstr "Qué hace especial a Forth"
+
+#: lessons/languages/forth.md:9
+msgctxt "s-2da11ea8e10d-0004"
+msgid "Forth has almost no syntax: the interpreter reads a space-delimited word, looks it up, runs it. Words pass values on a **stack**, and every definition carries a stack comment like ⟦CODE_0001⟧. The language is small enough that you can reach into the interpreter itself."
+msgstr "Forth casi no tiene sintaxis: el intérprete lee una palabra delimitada por espacios, la busca y la ejecuta. Las palabras pasan valores en una **pila**, y cada definición lleva un comentario de pila como ⟦CODE_0001⟧. El lenguaje es lo bastante pequeño para que puedas acceder al propio intérprete."
+
+#: lessons/languages/forth.md:11
+msgctxt "s-4edb797a890b-0005"
+msgid "⟦SEP_0001⟧ Feature ⟦SEP_0002⟧ Where ⟦SEP_0003⟧ What it teaches ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ Característica ⟦SEP_0002⟧ Dónde ⟦SEP_0003⟧ Qué enseña ⟦SEP_0004⟧"
+
+#: lessons/languages/forth.md:13
+msgctxt "s-458a6d77c79b-0006"
+msgid "⟦SEP_0006⟧ A switch is an array of functions ⟦SEP_0007⟧ [⟦CODE_0001⟧ L34-36](⟦DEST_0002⟧): ⟦CODE_0003⟧ and ⟦CODE_0004⟧ ⟦SEP_0008⟧ ⟦CODE_0005⟧ (\"tick\") gives a word's execution token; tokens are data. ⟦SEP_0009⟧"
+msgstr ""
+
+#: lessons/languages/forth.md:14
+msgctxt "s-b3d79cc811c1-0007"
+msgid "⟦SEP_0006⟧ Output redirection as a feature ⟦SEP_0007⟧ [L68](⟦DEST_0001⟧): ⟦CODE_0002⟧ ⟦SEP_0008⟧ ⟦CODE_0003⟧ redirects all output to a pipe for the duration. ⟦CODE_0004⟧ and ⟦CODE_0005⟧ are ordinary words that print text, and the pipe turns the text into SQL. ⟦SEP_0009⟧"
+msgstr ""
+
+#: lessons/languages/forth.md:15
+msgctxt "s-dd371aa4b458-0008"
+msgid "⟦SEP_0004⟧ One loop word ⟦SEP_0005⟧ [L108](⟦DEST_0001⟧): ⟦CODE_0002⟧ ⟦SEP_0006⟧ ⟦CODE_0003⟧ consumes a flag and repeats until it is true. ⟦SEP_0007⟧"
+msgstr ""
+
+#: lessons/languages/forth.md:17
+msgctxt "s-0a7455b88da4-0009"
+msgid "The parse position as a program counter"
+msgstr ""
+
+#: lessons/languages/forth.md:19
+msgctxt "s-cc9cfaabc50d-0010"
+msgid "Behold the monstrosity"
+msgstr ""
+
+#: lessons/languages/forth.md:25
+msgctxt "s-758786f59b56-0011"
+msgid "The whole program's loop is one line at the top level ([L101](⟦DEST_0001⟧)):"
+msgstr ""
+
+#: lessons/languages/forth.md:31
+msgctxt "s-415f5fa29cf9-0012"
+msgid "How the hell does that work?"
+msgstr ""
+
+#: lessons/languages/forth.md:33
+msgctxt "s-d00f3854cf45-0013"
+msgid "The text interpreter is a loop you never see. ⟦CODE_0001⟧ holds *how far it has read the current line*; ⟦CODE_0002⟧ reads it and ⟦CODE_0003⟧ sets it. Set it to an earlier value and the interpreter reads the same words again."
+msgstr ""
+
+#: lessons/languages/forth.md:35
+msgctxt "s-d4d1aa60f82f-0014"
+msgid "⟦CODE_0001⟧ is the starting state (card 0, total 0). ⟦CODE_0002⟧ pushes the position as an **anchor**: the place to jump back to."
+msgstr ""
+
+#: lessons/languages/forth.md:36
+msgctxt "s-0e5ad65bd45d-0015"
+msgid "⟦CODE_0001⟧ ([L88](⟦DEST_0002⟧)) is ⟦CODE_0003⟧: it parks the anchor on the return stack, runs one card, restores it."
+msgstr ""
+
+#: lessons/languages/forth.md:37
+msgctxt "s-b6cac124a397-0016"
+msgid "⟦CODE_0001⟧ ([L92-94](⟦DEST_0002⟧)) ends with ⟦CODE_0003⟧. A Forth flag is **-1** (all bits set) for true and **0** for false, so it works as a bit mask. ⟦CODE_0004⟧ is the distance back; ⟦CODE_0005⟧ with the flag keeps the distance if true and zeroes it if false; adding it to ⟦CODE_0006⟧ gives either the anchor or \"stay here\". There is no ⟦CODE_0007⟧. The jump is arithmetic."
+msgstr ""
+
+#: lessons/languages/forth.md:39
+msgctxt "s-2a4f1e87012b-0017"
+msgid "The memory is the data stack: there is not one ⟦CODE_0001⟧ in the file. The program counter is ⟦CODE_0002⟧."
+msgstr ""
+
+#: lessons/languages/forth.md:41
+msgctxt "s-d2bbf037de84-0018"
+msgid "What did we just learn?"
+msgstr ""
+
+#: lessons/languages/forth.md:43
+msgctxt "s-e5690a631575-0019"
+msgid "**An interpreter's position can be a program counter.** If you can read and write it, you have goto."
+msgstr ""
+
+#: lessons/languages/forth.md:44
+msgctxt "s-2ec27c3c38fb-0020"
+msgid "**Booleans as bit masks** are a respectable old trick. They explain why Forth's true is -1."
+msgstr ""
+
+#: lessons/languages/forth.md:45
+msgctxt "s-5b20eb589ed9-0021"
+msgid "**State on a stack** is a complete model of memory. (Compare [COBOL's mutable jump](⟦DEST_0001⟧), [Make's file-existence state](⟦DEST_0002⟧) and [CMake's registers](⟦DEST_0003⟧).)"
+msgstr ""
+
+#: lessons/languages/forth.md:47
+msgctxt "s-8d4d5b0ff121-0022"
+msgid "Tags: stack effects and flags are **guaranteed** by standard Forth. ⟦CODE_0001⟧ manipulation is **guaranteed** to exist in ISO Forth but its effect in a definition versus at top level is **implementation-permitted**. ⟦CODE_0002⟧, ⟦CODE_0003⟧ and ⟦CODE_0004⟧ are Gforth extensions (**implementation-permitted**)."
+msgstr ""
+
+#: lessons/languages/forth.md:49
+msgctxt "s-299b7a6f9cbe-0023"
+msgid "Do this in production and you're fired"
+msgstr ""
+
+#: lessons/languages/forth.md:51
+msgctxt "s-b105b53624e4-0024"
+msgid "**It only works at the top level, or in ⟦CODE_0001⟧d / ⟦CODE_0002⟧ text.** ⟦CODE_0003⟧ is the parse position of the current input line. Compile the loop *into* a word and there is no line to rewind."
+msgstr ""
+
+#: lessons/languages/forth.md:52
+msgctxt "s-595369b0ea3b-0025"
+msgid "**Moving one token breaks it silently.** If the ⟦CODE_0001⟧ moves to *after* the ⟦CODE_0002⟧ (⟦CODE_0003⟧), the anchor is now before the state, so every rewind pushes a fresh ⟦CODE_0004⟧: the total resets every pass and the program never stops (verified: hundreds of rows, no ⟦CODE_0005⟧ line). A correct-looking program, a runaway loop. Moving ⟦CODE_0006⟧ to the previous line is harmless, because the anchor is still after it."
+msgstr ""
+
+#: lessons/languages/forth.md:53
+msgctxt "s-9e37e2ed6ab6-0026"
+msgid "**No tooling will understand it.** Linters, tracers and humans all assume that parse position is not state."
+msgstr ""
+
+#: lessons/languages/forth.md:54
+msgctxt "s-a4cc24bfefcf-0027"
+msgid "**Portability.** Gforth-specific words; ⟦CODE_0001⟧ is not in Gforth 0.7.3, so the file defines it with ⟦CODE_0002⟧ three times ([L37](⟦DEST_0003⟧))."
+msgstr ""
+
+#: lessons/languages/forth.md:56
+msgctxt "s-05b4789c658c-0028"
+msgid "Legitimate uses: interpreters, debuggers and parsing words, where manipulating the input stream is the job."
+msgstr ""
+
+#: lessons/languages/forth.md:58
+msgctxt "s-5e3bcdfbf845-0029"
+msgid "Now break it yourself"
+msgstr ""
+
+#: lessons/languages/forth.md:60
+msgctxt "s-ce657b5f4930-0030"
+msgid "See [exercises](⟦DEST_0001⟧)."
+msgstr ""
+
+#: lessons/languages/forth.md:62
+msgctxt "s-12d0b77aba94-0031"
+msgid "Quirks"
+msgstr ""
+
+#: lessons/languages/forth.md:64
+msgctxt "s-53c595795f39-0032"
+msgid "**Control words only work inside definitions** in standard Forth. Typing ⟦CODE_0001⟧ at the top level is an error, so ⟦CODE_0002⟧ is a word. The weird version cheats the other way."
+msgstr ""
+
+#: lessons/languages/forth.md:65
+msgctxt "s-2f4ff240916b-0033"
+msgid "**⟦CODE_0001⟧ strings can be temporary**: some interpreters return a buffer overwritten by the next one, so the category words are definitions."
+msgstr ""
+
+#: lessons/languages/forth.md:66
+msgctxt "s-2062846e4955-0034"
+msgid "**⟦CODE_0001⟧ is ⟦CODE_0002⟧**, so ⟦CODE_0003⟧ gives 10 to 19."
+msgstr ""
+
+#: lessons/languages/forth.md:67
+msgctxt "s-8aa10c024705-0035"
+msgid "**⟦CODE_0001⟧ returns the exit status**; ⟦CODE_0002⟧ turns a non-zero status into an abort so a failed ⟦CODE_0003⟧ is not ignored."
+msgstr ""
+
+#: lessons/languages/forth.md:68
+msgctxt "s-e64e76f4a9b2-0036"
+msgid "**Stack comments are the type system.** Nothing enforces ⟦CODE_0001⟧; it is convention."
+msgstr ""
+
+#: lessons/languages/forth.md:70
+msgctxt "s-a6b58da9d4cd-0037"
+msgid "Weird next to boring"
+msgstr ""
+
+#: lessons/languages/forth.md:72
+msgctxt "s-cac761d56b13-0038"
+msgid "[⟦CODE_0001⟧](⟦DEST_0002⟧) is a clean stack program: small words, one loop. [⟦CODE_0003⟧](⟦DEST_0004⟧) replaces every ⟦CODE_0005⟧ and control word with stack position and a rewound parser. The first is what Forth programmers write; the second is what Forth *permits*."
+msgstr ""
+
+#: lessons/languages/forth.md:74
+msgctxt "s-c08a852d0dbe-0039"
+msgid "Under what circumstances would this terrible idea become reasonable?"
+msgstr ""
+
+#: lessons/languages/forth.md:76
+msgctxt "s-89f15634e620-0040"
+msgid "When you are writing the interpreter, a parsing word or a debugger. Rewinding the parser is a stunt in a loop; it is a tool in a language implementer's kit."
+msgstr ""
+
+#: lessons/languages/forth.md:124
+msgctxt "s-ac0e260e97bf-0041"
+msgid "Computer science behind this page"
+msgstr ""
