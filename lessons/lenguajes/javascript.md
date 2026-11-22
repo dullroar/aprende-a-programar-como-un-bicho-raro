@@ -70,12 +70,12 @@ Sin `for`, sin `while`, sin `this`. El algoritmo consta de tres clausuras de una
 ### ¿Cómo demonios funciona eso?
 
 - **Una clausura es una máquina de estados.** `machine(nextHours)` devuelve una función. Recuerda un conteo, un total y una bandera de parada en variables que solo ella puede alcanzar. Cada llamada crea la siguiente tarjeta.
-- **The iteration protocol is the loop.** An object with a `next()` method that says `{ done: true }` when it is finished. `toArray()` keeps asking until it hears that.
-- **The stop rule is a variable.** `over = total > 40`, set in the same call that makes the crossing card. After that the machine answers `undefined`, and the stream ends.
-- **Demand decides.** Nothing is drawn until something asks. `take(1)` draws one card. `toArray()` draws all of them.
-- **`reduce` is the fold that cannot stop.** It runs for every element. So it adds up the finished list, and the stop is done somewhere else.
+- **El protocolo de iteración es el bucle.** Un objeto con un método `next()` que dice `{ done: true }` cuando termina. `toArray()` sigue preguntando hasta que escucha eso.
+- **La regla de parada es una variable.** `over = total > 40`, fijada en la misma llamada que crea la tarjeta que cruza el tope. Después, la máquina responde `undefined` y termina el flujo.
+- **La demanda decide.** No se sortea nada hasta que algo lo pide. `take(1)` sortea una tarjeta. `toArray()` las sortea todas.
+- **`reduce` es el plegado que no puede detenerse.** Se ejecuta para cada elemento. Así suma la lista terminada y la parada se hace en otro lugar.
 
-The [README](../../src/javascript-weird/README.md#cómo-funciona-el-truco) has the closure diagram, a table of five ways to stop and a comparison of the C# original, the bodiless `for` and this one.
+El [README](../../src/javascript-weird/README.md#cómo-funciona-el-truco) tiene el diagrama de la clausura, una tabla de cinco formas de detenerse y una comparación del C# original, el `for` sin cuerpo y este.
 
 ### What did we just learn?
 

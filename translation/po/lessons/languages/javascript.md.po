@@ -210,27 +210,27 @@ msgstr "**Una clausura es una máquina de estados.** ⟦CODE_0001⟧ devuelve un
 #: lessons/languages/javascript.md:73
 msgctxt "s-779a584ca60e-0040"
 msgid "**The iteration protocol is the loop.** An object with a ⟦CODE_0001⟧ method that says ⟦CODE_0002⟧ when it is finished. ⟦CODE_0003⟧ keeps asking until it hears that."
-msgstr ""
+msgstr "**El protocolo de iteración es el bucle.** Un objeto con un método ⟦CODE_0001⟧ que dice ⟦CODE_0002⟧ cuando termina. ⟦CODE_0003⟧ sigue preguntando hasta que escucha eso."
 
 #: lessons/languages/javascript.md:74
 msgctxt "s-90222a056c4e-0041"
 msgid "**The stop rule is a variable.** ⟦CODE_0001⟧, set in the same call that makes the crossing card. After that the machine answers ⟦CODE_0002⟧, and the stream ends."
-msgstr ""
+msgstr "**La regla de parada es una variable.** ⟦CODE_0001⟧, fijada en la misma llamada que crea la tarjeta que cruza el tope. Después, la máquina responde ⟦CODE_0002⟧ y termina el flujo."
 
 #: lessons/languages/javascript.md:75
 msgctxt "s-553ede7d8a0c-0042"
 msgid "**Demand decides.** Nothing is drawn until something asks. ⟦CODE_0001⟧ draws one card. ⟦CODE_0002⟧ draws all of them."
-msgstr ""
+msgstr "**La demanda decide.** No se sortea nada hasta que algo lo pide. ⟦CODE_0001⟧ sortea una tarjeta. ⟦CODE_0002⟧ las sortea todas."
 
 #: lessons/languages/javascript.md:76
 msgctxt "s-d697d4de46d8-0043"
 msgid "**⟦CODE_0001⟧ is the fold that cannot stop.** It runs for every element. So it adds up the finished list, and the stop is done somewhere else."
-msgstr ""
+msgstr "**⟦CODE_0001⟧ es el plegado que no puede detenerse.** Se ejecuta para cada elemento. Así suma la lista terminada y la parada se hace en otro lugar."
 
 #: lessons/languages/javascript.md:78
 msgctxt "s-ae24aa0271c0-0044"
 msgid "The [README](⟦DEST_0001⟧) has the closure diagram, a table of five ways to stop and a comparison of the C# original, the bodiless ⟦CODE_0002⟧ and this one."
-msgstr ""
+msgstr "El [README](⟦DEST_0001⟧) tiene el diagrama de la clausura, una tabla de cinco formas de detenerse y una comparación del C# original, el ⟦CODE_0002⟧ sin cuerpo y este."
 
 #: lessons/languages/javascript.md:80
 msgctxt "s-d2bbf037de84-0045"
