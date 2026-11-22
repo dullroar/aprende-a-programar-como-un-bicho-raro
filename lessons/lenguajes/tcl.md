@@ -8,12 +8,12 @@ Para una ruta de lectura avanzada con trazas y experimentos, consulta la [guía 
 
 La regla de Tcl es: "todo es un comando y cada comando recibe sus argumentos como cadenas de texto". No hay palabras clave para `while`, `proc` ni `if`: son comandos. `{...}` es solo una forma de entregar a un comando una cadena de texto sin evaluar. Esto hace que el lenguaje sea pequeño y que dos funciones sean baratas, aunque la mayoría de los lenguajes las considere exóticas: **reescribir cómo se resuelven los comandos desconocidos** y **ejecutar una cadena de texto como código en otro ámbito**.
 
-| Feature | Where | What it teaches |
+| Característica | Dónde | Qué enseña |
 | --- | --- | --- |
-| Braces defer evaluation | [`tcl/timecards.tcl` L40](../../src/tcl/timecards.tcl#L40): `while {$total <= $limit} {` | The condition is a braced string, evaluated again every pass. Write `while $total <= $limit` and it is substituted once, and never changes. The same rule is why `expr` should always be braced. |
-| Dictionaries are values | [L44](../../src/tcl/timecards.tcl#L44): `lappend cards [dict create category $category hours $hours total $total]` | A card is a plain dict; no class is needed. |
-| `dict with` unpacks into variables | [L86](../../src/tcl/timecards.tcl#L86): `dict with card {` | A dict's keys become local variables for a block. |
-| `db eval` binds Tcl variables as SQL parameters | [L87-91](../../src/tcl/timecards.tcl#L87-L91): `VALUES ($runId, $category, $hours, $total, $week, ...)` | The `$name` inside the braced SQL is not pasted in as text. SQLite receives it as a bound parameter, so quoting is never a problem. |
+| Las llaves aplazan la evaluación | [`tcl/timecards.tcl` L40](../../src/tcl/timecards.tcl#L40): `while {$total <= $limit} {` | La condición es una cadena de texto entre llaves que se evalúa de nuevo en cada pasada. Escribe `while $total <= $limit` y se sustituye una sola vez y nunca cambia. La misma regla explica por qué `expr` siempre debe ir entre llaves. |
+| Los diccionarios son valores | [L44](../../src/tcl/timecards.tcl#L44): `lappend cards [dict create category $category hours $hours total $total]` | Una tarjeta es un diccionario simple; no se necesita una clase. |
+| `dict with` desempaqueta en variables | [L86](../../src/tcl/timecards.tcl#L86): `dict with card {` | Las claves de un diccionario se convierten en variables locales para un bloque. |
+| `db eval` vincula variables de Tcl como parámetros SQL | [L87-91](../../src/tcl/timecards.tcl#L87-L91): `VALUES ($runId, $category, $hours, $total, $week, ...)` | El `$name` dentro del SQL entre llaves no se pega como texto. SQLite lo recibe como parámetro vinculado, así que las comillas nunca son un problema. |
 | `try ... finally` closes the database | [L77-95](../../src/tcl/timecards.tcl#L77-L95) | Cleanup survives an error. |
 | Tk is a package, not a program | [L110](../../src/tcl/timecards.tcl#L110): `showWindow`, `--gui` and `--seconds N` | A GUI is a few commands, and with Xvfb it can be tested headless. |
 | An entry-point guard | [L170](../../src/tcl/timecards.tcl#L170): `if {[info exists argv0] && [file normalize $argv0] eq [file normalize [info script]]}` | The file can be `source`d for testing without running. |

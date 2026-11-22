@@ -301,3 +301,4 @@
 328 P4-lessons-languages-5 partial accepted and applied tar positions 55 to 59; resume at 60; scoped, fast and anchor checks passed.
 329 P4-lessons-languages-5 partial completed tar position 60; resume at Tcl position 0; scoped, fast and anchor checks passed.
 330 P4-lessons-languages-5 partial accepted and applied Tcl positions 0 to 4; resume at 5; scoped, fast and anchor checks passed.
+331 P4-lessons-languages-5 partial accepted and applied Tcl positions 5 to 9; resume at 10; scoped, fast and anchor checks passed.
