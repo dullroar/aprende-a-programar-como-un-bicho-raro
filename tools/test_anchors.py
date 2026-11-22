@@ -354,6 +354,16 @@ class TestLayoutText(unittest.TestCase):
         link = "[x](../JavaChallenge1/README.md#side-by-side)"
         self.assertEqual(an.layout_text(link, self.GO, english), link)
 
+    def test_front_matter_lesson_fragment_is_re_aimed_and_unknown_stays(self):
+        spanish = {h["en_id"]: h["es_id"] for h in an.stored_document()["files"]["lessons/languages/m4.md"]["headings"]}
+        en = "a-loop-made-of-rescanning"
+        self.assertNotEqual(spanish[en], en)
+        text = '---\nlesson: "lenguajes/m4.md#%s"\n---\nbody\n'
+        self.assertEqual(an.layout_text(text % en, self.GO), text % spanish[en])
+        self.assertEqual(an.layout_text(text % "no-such-heading", self.GO), text % "no-such-heading")
+        fenced = "body\nlesson: \"lenguajes/m4.md#%s\"\n" % en       # not front matter: left alone
+        self.assertEqual(an.layout_text(fenced, self.GO), fenced)
+
     def test_another_root_has_no_document(self):
         self.assertIsNone(an.stored_document(os.path.join(ROOT, "no-such-root")))
 

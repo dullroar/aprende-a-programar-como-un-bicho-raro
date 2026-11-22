@@ -1,6 +1,6 @@
 ---
 name: "APL"
-teaches: "que cinco tiradas y un take-while pueden reemplazar un bucle."
+teaches: "que cinco tiradas y un *take-while* pueden reemplazar un bucle."
 kind: idiomatic
 languages: [apl]
 lesson: "lenguajes/apl.md"

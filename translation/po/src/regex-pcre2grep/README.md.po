@@ -35,7 +35,7 @@ msgstr "Reto de regex, pista 2b: ⟦CODE_0001⟧ (sin nada de código personaliz
 #: src/regex-pcre2grep/README.md:18
 msgctxt "s-c123c9617a96-0005"
 msgid "**Teaches you:** that program exit codes can steer control flow."
-msgstr "**Qué aprenderás:** que los códigos de salida de un programa pueden dirigir el flujo de control."
+msgstr "**Te enseña:** que los códigos de salida de un programa pueden dirigir el flujo de control."
 
 #: src/regex-pcre2grep/README.md:20
 msgctxt "s-a096a7973879-0006"

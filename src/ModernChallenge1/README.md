@@ -3,7 +3,7 @@ name: "C# `for`"
 teaches: "que una sentencia `for` con el cuerpo vacío puede controlar XAML en tiempo de ejecución, LINQ to Objects, EF Core y la animación de WPF."
 kind: weird
 languages: [c-sharp]
-lesson: "lenguajes/csharp-linq-xaml.md#the-original-modernchallenge1"
+lesson: "lenguajes/csharp-linq-xaml.md#el-original-modernchallenge1"
 loop-by: loop-statement
 evaluation: eager
 assurance: guaranteed

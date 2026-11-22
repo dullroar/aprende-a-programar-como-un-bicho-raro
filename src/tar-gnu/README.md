@@ -3,7 +3,7 @@ name: "GNU tar"
 teaches: "que un archivo tar puede ser un programa serializado: tar lee los miembros en orden y solo el comando que indica el operador les da un efecto."
 kind: idiomatic
 languages: [tar, sqlite]
-lesson: "lenguajes/tar.md#a-program-that-is-an-archive"
+lesson: "lenguajes/tar.md#un-programa-que-es-un-archivo"
 loop-by: document-order
 evaluation: eager
 assurance: implementation-permitted

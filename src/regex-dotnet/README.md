@@ -3,7 +3,7 @@ name: "Regex de .NET"
 teaches: "que una expresión regular puede usar una pila para contar."
 kind: weird
 languages: [c-sharp, regex]
-lesson: "lenguajes/regex.md#net-balancing-groups"
+lesson: "lenguajes/regex.md#net-grupos-de-equilibrio"
 loop-by: capture-search
 evaluation: search
 assurance: guaranteed

@@ -1,6 +1,6 @@
 ---
 name: "POSIX find"
-teaches: "que un recorrido de directorios puede ser un bucle y un programa: find excava el árbol que recorre, y la ruta al directorio actual es toda la máquina."
+teaches: "que un recorrido de directorios puede ser un bucle y un programa: find cava el árbol que está recorriendo, y la ruta al directorio actual es toda la máquina."
 kind: weird
 languages: [find, sqlite]
 lesson: "lenguajes/find.md"

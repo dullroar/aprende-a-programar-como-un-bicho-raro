@@ -327,3 +327,4 @@
 362 P4-999 blocked verify --release fails (21 checks): root-doc PO drift, humor H001, anchor links to English slugs; see blockers.md.
 363 none blocked no eligible task; P4-999 blocked; wrote HANDOFF.md and DONE (DONE-WITH-BLOCKERS). Commit denied by shell (don't ask mode); files left uncommitted.
 364 P4-fix-9 done H001 occurrences set to 3 (title survives in verbatim tree fence); register check and README fast verify pass; tree-fence translation deferred, see decisions-provisional.
+365 P4-fix-10 done front-matter lesson fragments re-aimed to Spanish slugs (anchors.remap_front_matter) and teaches aligned with Te enseña in 33 POs; build check has 0 PROBLEM; fast verify fails only test_anchors on lessons/cs (P5-001).

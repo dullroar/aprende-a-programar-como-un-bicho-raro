@@ -15,7 +15,7 @@ msgstr "m4"
 #: src/m4/README.md:3
 msgctxt "s-17f9a78e42bb-0001"
 msgid "that a macro processor is a programming language: no loop statement and no variable, just text that gets scanned again."
-msgstr "que un procesador de macros es un lenguaje de programación: sin sentencia de bucle y sin variable, solo texto que se vuelve a escanear."
+msgstr "que un procesador de macros es un lenguaje de programación: no tiene sentencia de bucle ni variable, solo texto que se analiza de nuevo."
 
 #: src/m4/README.md:10
 msgctxt "s-2e0605507c99-0002"

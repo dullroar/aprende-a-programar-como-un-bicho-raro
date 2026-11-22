@@ -3,7 +3,7 @@ name: "pcre2grep"
 teaches: "que los códigos de salida de un programa pueden dirigir el flujo de control."
 kind: weird
 languages: [pcre2, regex]
-lesson: "lenguajes/regex.md#pcre2grep-exit-codes-as-control-flow"
+lesson: "lenguajes/regex.md#pcre2grep-códigos-de-salida-como-flujo-de-control"
 loop-by: backtracking-search
 evaluation: search
 assurance: implementation-permitted
@@ -15,7 +15,7 @@ analogies: [callback]
 ---
 # Reto de regex, pista 2b: `pcre2grep` (sin nada de código personalizado)
 
-**Qué aprenderás:** que los códigos de salida de un programa pueden dirigir el flujo de control.
+**Te enseña:** que los códigos de salida de un programa pueden dirigir el flujo de control.
 
 Aquí el "anfitrión" es un `pcre2grep` estándar y una línea de comandos. No hay C, ni Perl, ni despachador que escribir: las cadenas de texto de callout del patrón nombran los programas que se ejecutan, y los **códigos de salida de esos programas dirigen la coincidencia**. Luego la coincidencia **devuelve falso**. Sigue el plan del reto de expresiones regulares (eliminado desde entonces; está en el historial de git como `plans/regex.md`). **DEMO ONLY**: los registros son ficticios y van a un archivo SQLite desechable, sin conexión con ningún sistema real de registro de horas.
 

@@ -3,7 +3,7 @@ name: "LINQ"
 teaches: "que una cadena de métodos de LINQ puede expresar el programa completo."
 kind: weird
 languages: [c-sharp, linq]
-lesson: "lenguajes/csharp-linq-xaml.md#deferred-execution-and-the-void-to-value-trick"
+lesson: "lenguajes/csharp-linq-xaml.md#la-ejecución-diferida-y-el-truco-de-convertir-void-en-valor"
 loop-by: lazy-demand
 evaluation: deferred
 assurance: guaranteed

@@ -15,7 +15,7 @@ msgstr "POSIX find"
 #: src/find-posix/README.md:3
 msgctxt "s-64a992c81592-0001"
 msgid "that a directory walk can be a loop and a program: find digs the tree it is walking, and the path to the current directory is the whole machine."
-msgstr "que un recorrido de directorios puede ser un bucle y un programa: find excava el árbol que recorre, y la ruta al directorio actual es toda la máquina."
+msgstr "que un recorrido de directorios puede ser un bucle y un programa: find cava el árbol que está recorriendo, y la ruta al directorio actual es toda la máquina."
 
 #: src/find-posix/README.md:11
 msgctxt "s-f517f74dac89-0002"

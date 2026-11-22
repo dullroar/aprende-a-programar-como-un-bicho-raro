@@ -696,6 +696,8 @@ def i6(en_text, es_text):
     for (k, x), (_, y) in zip(a, b):
         if k in segment.FM_TRANSLATE_KEYS:
             continue
+        if k in ("lesson", "exercise"):      # the fragment is re-aimed at the Spanish heading id (anchors.remap_front_matter)
+            x, y = [re.sub(r'#[^"]*"', '#"', s) for s in x], [re.sub(r'#[^"]*"', '#"', s) for s in y]
         if x != y:
             out.append(Finding("I6", "", "front-matter value of '%s' changed: %r -> %r" % (k, x[0].strip()[:40], y[0].strip()[:40])))
     return out

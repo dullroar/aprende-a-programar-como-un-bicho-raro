@@ -15,7 +15,7 @@ msgstr "Rust"
 #: src/RustChallenge1/README.md:3
 msgctxt "s-9947155fb39f-0001"
 msgid "that iterators and closures can express the control flow of a whole Rust program."
-msgstr "que los iteradores y las clausuras (*closures*: funciones sin nombre que capturan valores de su entorno) pueden expresar el flujo de control de un programa completo en Rust."
+msgstr "que los iteradores y las clausuras (*closures*, funciones que capturan variables de su entorno) pueden expresar el flujo de control de un programa completo en Rust."
 
 #: src/RustChallenge1/README.md:11
 msgctxt "s-46c7a04ee042-0002"

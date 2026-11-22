@@ -15,7 +15,7 @@ msgstr "COBOL"
 #: src/cobol/README.md:3
 msgctxt "s-7c9d548b4f3c-0001"
 msgid "that a stop rule can be declared as data, and that a number's picture can do your rounding."
-msgstr "que una regla de parada se puede declarar como datos y que la *picture* de un número puede encargarse de tu redondeo."
+msgstr "que una regla de parada se puede declarar como datos, y que la imagen de un número puede encargarse de tu redondeo."
 
 #: src/cobol/README.md:11
 msgctxt "s-a0c407920910-0002"

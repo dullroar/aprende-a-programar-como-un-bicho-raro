@@ -15,7 +15,7 @@ msgstr "CMake"
 #: src/cmake/README.md:3
 msgctxt "s-5e410e3d77a7-0001"
 msgid "that ⟦CODE_0001⟧ and a regex can form a tiny register machine."
-msgstr "que ⟦CODE_0001⟧ y una expresión regular pueden formar una pequeña máquina de registros."
+msgstr "que ⟦CODE_0001⟧ y una regex pueden formar una pequeña máquina de registros."
 
 #: src/cmake/README.md:11
 msgctxt "s-30f66dee1f37-0002"

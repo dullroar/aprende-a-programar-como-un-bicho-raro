@@ -15,7 +15,7 @@ msgstr "Forth"
 #: src/forth-weird/README.md:3
 msgctxt "s-67b02add5fba-0001"
 msgid "that the text interpreter's parse position is a program counter, if you let it be, and that the data stack can be a program's only memory."
-msgstr "que la posición de análisis en el intérprete de texto es, si lo permites, un contador de programa y que la pila de datos puede ser la única memoria de un programa."
+msgstr "que la posición de análisis del intérprete de texto es un contador de programa si lo permites, y que la pila de datos puede ser la única memoria de un programa."
 
 #: src/forth-weird/README.md:11
 msgctxt "s-84e5b13bdd3a-0002"
@@ -35,7 +35,7 @@ msgstr "Forth, más raro todavía"
 #: src/forth-weird/README.md:18
 msgctxt "s-3b8018c75b38-0005"
 msgid "**Teaches you:** that the text interpreter's parse position is a program counter, if you let it be, and that the data stack can be a program's only memory."
-msgstr "**Te enseña:** que, en el intérprete de texto, la posición de análisis es un contador de programa si lo permites, y que la pila de datos puede ser la única memoria de un programa."
+msgstr "**Te enseña:** que la posición de análisis del intérprete de texto es un contador de programa si lo permites, y que la pila de datos puede ser la única memoria de un programa."
 
 #: src/forth-weird/README.md:20
 msgctxt "s-5ca333b42af1-0006"

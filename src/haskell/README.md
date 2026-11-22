@@ -1,6 +1,6 @@
 ---
 name: "Haskell"
-teaches: "que una lista perezosa y un solo `span` son la regla de parada completa."
+teaches: "que una lista perezosa y un solo `span` son toda la regla de parada."
 kind: idiomatic
 languages: [haskell]
 lesson: "lenguajes/haskell.md"

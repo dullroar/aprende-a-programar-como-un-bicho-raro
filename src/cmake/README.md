@@ -1,6 +1,6 @@
 ---
 name: "CMake"
-teaches: "que `while()` y una expresión regular pueden formar una pequeña máquina de registros."
+teaches: "que `while()` y una regex pueden formar una pequeña máquina de registros."
 kind: weird
 languages: [cmake]
 lesson: "lenguajes/make-cmake.md#cmake"

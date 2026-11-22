@@ -18,10 +18,7 @@ msgid ""
 "that a closure is a state machine: a function plus the variables it was made"
 " next to, pulled one step at a time by an iterator, with reduce as the one "
 "fold that cannot stop."
-msgstr ""
-"que una clausura (*closure*) es una máquina de estados: una función más las "
-"variables junto a las que se creó, a la que un iterador hace avanzar un paso"
-" a la vez, con reduce como el único pliegue que no puede detenerse."
+msgstr "que una clausura es una máquina de estados: una función más las variables junto a las que se creó, que un iterador hace avanzar un paso a la vez, con reduce como el único pliegue que no puede detenerse."
 
 #: src/javascript-weird/README.md:11
 msgctxt "s-a9217ef6490e-0002"

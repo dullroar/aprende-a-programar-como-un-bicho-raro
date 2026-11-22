@@ -15,7 +15,7 @@ msgstr "Ex"
 #: src/ex-weird/README.md:3
 msgctxt "s-66a172aecb41-0001"
 msgid "that an editor's registers can hold a program: a line of text is copied into a register and run with @, and the editor's own marks and line addresses do the arithmetic."
-msgstr "que los registros de un editor pueden contener un programa: una línea de texto se copia en un registro y se ejecuta con @ y las marcas y las direcciones de línea del propio editor hacen la aritmética."
+msgstr "que los registros de un editor pueden contener un programa: una línea de texto se copia en un registro y se ejecuta con @, y las marcas y las direcciones de línea del propio editor hacen la aritmética."
 
 #: src/ex-weird/README.md:11
 msgctxt "s-c549a1ee0859-0002"

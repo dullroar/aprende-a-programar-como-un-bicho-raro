@@ -3,7 +3,7 @@ name: "Java"
 teaches: "que un `for (init; condition; update) { }` de Java puede conservar la forma del programa original en C#."
 kind: port
 languages: [java]
-lesson: "lenguajes/csharp-linq-xaml.md#the-one-statement-ports-same-trick-different-machinery"
+lesson: "lenguajes/csharp-linq-xaml.md#las-adaptaciones-de-una-sola-sentencia-mismo-truco-distinta-maquinaria"
 loop-by: loop-statement
 evaluation: eager
 assurance: guaranteed

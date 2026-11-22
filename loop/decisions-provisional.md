@@ -100,3 +100,8 @@
 
 - Decision: keep the README repository-tree fence verbatim (segment.py withholds every fence; rule 8 keeps paths and code English) and set humor-register H001 occurrences to 3, because the English title survives in that fence. Not done: Spanish comments and renamed paths (docs/curriculum.md is now docs/plan-de-estudios.md) in the tree.
 - Alternative: add a translatable "tree" fence kind to segment.py/apply.py with tests (touches PO ids of every file with a text fence). Cost to reverse: set occurrences back to 2 and translate the fence.
+
+## Iteration 365: P4-fix-10 front matter
+
+- Decision: `lesson:`/`exercise:` front-matter fragments follow anchors.json (new anchors.remap_front_matter, shared by apply and verify; I6 compares them without the fragment). `teaches` in each PO now equals the body **Te enseña:** line; forth-weird reworded to start with 'que la posición...' (catalog needs 'que ' prefix); javascript dropped the duplicated (*truthiness*) gloss (I24); regex-pcre2grep body label fixed from 'Qué aprenderás' to 'Te enseña'. build.py needs BOOK_LANG=es to check the Spanish edition.
+- Alternative: leave English slugs and relax the build check. Cost to reverse: revert this commit.

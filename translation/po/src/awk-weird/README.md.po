@@ -15,7 +15,7 @@ msgstr "AWK"
 #: src/awk-weird/README.md:3
 msgctxt "s-07e3fb761e5f-0001"
 msgid "that a regular expression as the record separator turns a stream of random bytes into dice, and that awk's implicit main loop plus one pattern is a whole program."
-msgstr "que una expresión regular como separador de registros convierte un flujo de bytes aleatorios en dados y que el bucle principal implícito de awk más un patrón es un programa completo."
+msgstr "que una expresión regular como separador de registros convierte un flujo de bytes aleatorios en dados, y que el bucle principal implícito de awk más un patrón es un programa completo."
 
 #: src/awk-weird/README.md:11
 msgctxt "s-8c30f8a248df-0002"

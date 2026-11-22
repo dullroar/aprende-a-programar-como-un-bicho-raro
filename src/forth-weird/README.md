@@ -1,6 +1,6 @@
 ---
 name: "Forth"
-teaches: "que la posición de análisis en el intérprete de texto es, si lo permites, un contador de programa y que la pila de datos puede ser la única memoria de un programa."
+teaches: "que la posición de análisis del intérprete de texto es un contador de programa si lo permites, y que la pila de datos puede ser la única memoria de un programa."
 kind: weird
 languages: [forth]
 lesson: "lenguajes/forth.md"
@@ -15,7 +15,7 @@ analogies: [continuation]
 ---
 # Forth, más raro todavía
 
-**Te enseña:** que, en el intérprete de texto, la posición de análisis es un contador de programa si lo permites, y que la pila de datos puede ser la única memoria de un programa.
+**Te enseña:** que la posición de análisis del intérprete de texto es un contador de programa si lo permites, y que la pila de datos puede ser la única memoria de un programa.
 
 > **DEMO ONLY.** Tarjetas de horas ficticias en un archivo SQLite temporal. Sin conexión con ningún sistema real de registro de horas.
 

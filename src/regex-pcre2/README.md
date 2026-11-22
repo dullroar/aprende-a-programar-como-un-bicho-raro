@@ -1,9 +1,9 @@
 ---
 name: "PCRE2"
-teaches: "que los callouts de regex pueden servir como un pequeño conjunto de instrucciones."
+teaches: "que los callouts de regex pueden servir como un conjunto diminuto de instrucciones."
 kind: weird
 languages: [c, pcre2, regex]
-lesson: "lenguajes/regex.md#pcre2-callouts-as-an-instruction-set"
+lesson: "lenguajes/regex.md#pcre2-los-callouts-como-conjunto-de-instrucciones"
 loop-by: backtracking-search
 evaluation: search
 assurance: implementation-permitted

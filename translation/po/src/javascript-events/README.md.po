@@ -15,7 +15,7 @@ msgstr "JavaScript"
 #: src/javascript-events/README.md:3
 msgctxt "s-bd1ccf2004ac-0001"
 msgid "that a program can be a set of listeners, each doing one small thing and then emitting the event the next one waits for; and that emit() calls its listeners at once, so only an explicit scheduling boundary gives the event loop a turn."
-msgstr "que un programa puede ser un conjunto de escuchadores de eventos, cada uno hace una sola cosa pequeña y luego emite el evento que espera el siguiente; y que emit() llama a sus escuchadores de eventos de inmediato, así que solo un límite de planificación explícito da un turno al bucle de eventos."
+msgstr "que un programa puede ser un conjunto de escuchadores de eventos, cada uno con una sola tarea pequeña que termina emitiendo el evento que espera el siguiente; y que emit() llama a sus escuchadores de inmediato, así que solo un límite de planificación explícito da un turno al bucle de eventos."
 
 #: src/javascript-events/README.md:11
 msgctxt "s-fbd5fb2911de-0002"

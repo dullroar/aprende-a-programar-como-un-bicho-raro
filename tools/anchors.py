@@ -324,7 +324,33 @@ def layout_text(text, rel, layer=None, root=ROOT):
     doc = stored_document(root) if layer.moved else None
     if doc is None or not rel.endswith(".md"):
         return new
-    return remap_text(new, layer.english(rel), doc, None, layer)
+    return remap_front_matter(remap_text(new, layer.english(rel), doc, None, layer), doc, layer)
+
+
+FM_LINK_KEYS = ("lesson", "exercise")
+
+
+def remap_front_matter(text, doc, layer):
+    """Re-aim the fragment of the front-matter keys `lesson:` and `exercise:` (values 'path#fragment', the path relative to
+    lessons/ and already in this edition's layout) at the heading id of the target in this edition. Unknown targets and
+    fragments stay as they are (the book build reports them)."""
+    lines = text.split("\n")
+    if not lines or lines[0].strip() != "---":
+        return text
+    for i in range(1, len(lines)):
+        if lines[i].strip() == "---":
+            break
+        m = re.match(r'^(%s): "([^"#]+)#([^"]+)"(.*)$' % "|".join(FM_LINK_KEYS), lines[i])
+        if not m:
+            continue
+        entry = doc["files"].get(layer.english("lessons/" + m.group(2)))
+        if entry is None:
+            continue
+        for h in entry["headings"]:
+            if h["en_id"] == m.group(3):
+                lines[i] = '%s: "%s#%s"%s' % (m.group(1), m.group(2), h["es_id"], m.group(4))
+                break
+    return "\n".join(lines)
 
 
 def check_links(rel, es_text, doc, layer=None):

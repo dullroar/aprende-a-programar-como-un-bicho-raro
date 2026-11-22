@@ -1,6 +1,6 @@
 ---
 name: "GNU Make"
-teaches: "que GNU Make puede hacer aritmética y ejecutar bucles con su propia sintaxis, sin un intérprete de comandos (*shell*, el programa que ejecuta comandos) para ninguna de las dos cosas."
+teaches: "que GNU Make puede hacer aritmética y bucles con su propia sintaxis, sin un intérprete de comandos para ninguno de los dos. Un intérprete de comandos es el programa que recibe y ejecuta los comandos que escribes."
 kind: weird
 languages: [make]
 lesson: "lenguajes/make-cmake.md#gnu-make"

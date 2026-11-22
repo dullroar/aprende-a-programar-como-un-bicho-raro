@@ -15,7 +15,7 @@ msgstr "JavaScript"
 #: src/javascript/README.md:3
 msgctxt "s-144c07050913-0001"
 msgid "that a for statement is three expressions and an empty body, and that JavaScript's own evaluation order, truthiness and comma operator are enough to run a whole program from the three clauses."
-msgstr "que una sentencia for consta de tres expresiones y un cuerpo vacío y que el orden de evaluación propio de JavaScript, los valores verdaderos y falsos y el operador coma bastan para ejecutar un programa completo desde las tres cláusulas."
+msgstr "que una sentencia for consta de tres expresiones y un cuerpo vacío, y que el orden de evaluación propio de JavaScript, la veracidad de los valores y el operador coma bastan para ejecutar un programa completo a partir de las tres cláusulas."
 
 #: src/javascript/README.md:11
 msgctxt "s-af314db68bc7-0002"
@@ -35,7 +35,7 @@ msgstr "JavaScript: de vuelta al original, en Node.js"
 #: src/javascript/README.md:17
 msgctxt "s-9f25e7bd07f4-0005"
 msgid "**Teaches you:** that a for statement is three expressions and an empty body, and that JavaScript's own evaluation order, truthiness and comma operator are enough to run a whole program from the three clauses."
-msgstr "**Te enseña:** que una sentencia for consta de tres expresiones y un cuerpo vacío, y que el orden de evaluación propio de JavaScript, la veracidad de los valores (*truthiness*) y el operador coma bastan para ejecutar un programa completo a partir de las tres cláusulas."
+msgstr "**Te enseña:** que una sentencia for consta de tres expresiones y un cuerpo vacío, y que el orden de evaluación propio de JavaScript, la veracidad de los valores y el operador coma bastan para ejecutar un programa completo a partir de las tres cláusulas."
 
 #: src/javascript/README.md:19
 msgctxt "s-65d79a287ef9-0006"

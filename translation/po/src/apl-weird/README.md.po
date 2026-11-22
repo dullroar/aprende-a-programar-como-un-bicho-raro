@@ -15,7 +15,7 @@ msgstr "APL"
 #: src/apl-weird/README.md:3
 msgctxt "s-cd947a192342-0001"
 msgid "that ⟦CODE_0001⟧, ⟦CODE_0002⟧ and compress make ⟦ESC_0003⟧if⟦ESC_0004⟧ and ⟦ESC_0005⟧loop⟦ESC_0006⟧ optional, and that a function can be its own successor."
-msgstr "que ⟦CODE_0001⟧, ⟦CODE_0002⟧ y compress hacen opcionales el ⟦ESC_0003⟧if⟦ESC_0004⟧ y el ⟦ESC_0005⟧bucle⟦ESC_0006⟧, y que una función puede ser su propia sucesora."
+msgstr "que ⟦CODE_0001⟧, ⟦CODE_0002⟧ y la compresión vuelven opcionales el ⟦ESC_0003⟧if⟦ESC_0004⟧ y el ⟦ESC_0005⟧bucle⟦ESC_0006⟧, y que una función puede ser su propia sucesora."
 
 #: src/apl-weird/README.md:11
 msgctxt "s-09af39c6913e-0002"

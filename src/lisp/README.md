@@ -1,6 +1,6 @@
 ---
 name: "Common Lisp"
-teaches: "que el `LOOP` de Common Lisp puede expresar un algoritmo completo como cláusulas para contar, tomar valores, sumar, recopilar y detener."
+teaches: "que `LOOP` de Common Lisp puede expresar un algoritmo completo como cláusulas para contar, tomar valores, sumar, recolectar y parar."
 kind: idiomatic
 languages: [common-lisp]
 lesson: "lenguajes/lisp.md"

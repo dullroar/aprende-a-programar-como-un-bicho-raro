@@ -15,7 +15,7 @@ msgstr "Common Lisp"
 #: src/lisp/README.md:3
 msgctxt "s-f51175787bda-0001"
 msgid "that Common Lisp ⟦CODE_0001⟧ can express a whole algorithm as clauses for counting, drawing, summing, collecting and stopping."
-msgstr "que el ⟦CODE_0001⟧ de Common Lisp puede expresar un algoritmo completo como cláusulas para contar, tomar valores, sumar, recopilar y detener."
+msgstr "que ⟦CODE_0001⟧ de Common Lisp puede expresar un algoritmo completo como cláusulas para contar, tomar valores, sumar, recolectar y parar."
 
 #: src/lisp/README.md:11
 msgctxt "s-bfb45ba15299-0002"

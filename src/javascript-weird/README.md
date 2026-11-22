@@ -1,9 +1,9 @@
 ---
 name: "JavaScript"
-teaches: "que una clausura (*closure*) es una máquina de estados: una función más las variables junto a las que se creó, a la que un iterador hace avanzar un paso a la vez, con reduce como el único pliegue que no puede detenerse."
+teaches: "que una clausura es una máquina de estados: una función más las variables junto a las que se creó, que un iterador hace avanzar un paso a la vez, con reduce como el único pliegue que no puede detenerse."
 kind: weird
 languages: [javascript, sqlite]
-lesson: "lenguajes/javascript.md#closures-all-the-way-down"
+lesson: "lenguajes/javascript.md#clausuras-hasta-el-fondo"
 loop-by: lazy-demand
 evaluation: lazy
 assurance: guaranteed

@@ -3,7 +3,7 @@ name: "Haskell"
 teaches: "que leer una lista perezosa puede dirigir un programa cuando forzar cada elemento tiene un efecto secundario."
 kind: weird
 languages: [haskell]
-lesson: "lenguajes/haskell.md#lazy-io-as-control-flow"
+lesson: "lenguajes/haskell.md#la-es-perezosa-como-flujo-de-control"
 loop-by: lazy-demand
 evaluation: lazy
 assurance: implementation-permitted

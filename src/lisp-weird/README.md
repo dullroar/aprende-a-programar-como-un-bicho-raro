@@ -1,9 +1,9 @@
 ---
 name: "Common Lisp"
-teaches: "que la combinación de métodos de CLOS es una construcción de control de flujo: una jerarquía de clases es un bucle y `or` es una regla de parada."
+teaches: "que la combinación de métodos de CLOS es una estructura de control: una jerarquía de clases es un bucle y `or` es una regla de parada."
 kind: weird
 languages: [common-lisp]
-lesson: "lenguajes/lisp.md#method-combination-as-control-flow"
+lesson: "lenguajes/lisp.md#combinación-de-métodos-como-flujo-de-control"
 loop-by: dispatch-and-triggers
 evaluation: eager
 assurance: implementation-permitted

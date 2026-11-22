@@ -15,7 +15,7 @@ msgstr "Haskell"
 #: src/haskell/README.md:3
 msgctxt "s-388f1d152537-0001"
 msgid "that a lazy list and one ⟦CODE_0001⟧ are the whole stop rule."
-msgstr "que una lista perezosa y un solo ⟦CODE_0001⟧ son la regla de parada completa."
+msgstr "que una lista perezosa y un solo ⟦CODE_0001⟧ son toda la regla de parada."
 
 #: src/haskell/README.md:11
 msgctxt "s-e1424a7f3838-0002"

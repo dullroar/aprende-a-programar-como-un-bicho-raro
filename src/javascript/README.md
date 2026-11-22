@@ -1,9 +1,9 @@
 ---
 name: "JavaScript"
-teaches: "que una sentencia for consta de tres expresiones y un cuerpo vacío y que el orden de evaluación propio de JavaScript, los valores verdaderos y falsos y el operador coma bastan para ejecutar un programa completo desde las tres cláusulas."
+teaches: "que una sentencia for consta de tres expresiones y un cuerpo vacío, y que el orden de evaluación propio de JavaScript, la veracidad de los valores y el operador coma bastan para ejecutar un programa completo a partir de las tres cláusulas."
 kind: port
 languages: [javascript, sqlite]
-lesson: "lenguajes/javascript.md#the-bodiless-for-in-node"
+lesson: "lenguajes/javascript.md#el-for-sin-cuerpo-en-node"
 loop-by: loop-statement
 evaluation: eager
 assurance: guaranteed
@@ -14,7 +14,7 @@ tags: [callback, closure, control-flow, eager-evaluation, event-driven-programmi
 ---
 # JavaScript: de vuelta al original, en Node.js
 
-**Te enseña:** que una sentencia for consta de tres expresiones y un cuerpo vacío, y que el orden de evaluación propio de JavaScript, la veracidad de los valores (*truthiness*) y el operador coma bastan para ejecutar un programa completo a partir de las tres cláusulas.
+**Te enseña:** que una sentencia for consta de tres expresiones y un cuerpo vacío, y que el orden de evaluación propio de JavaScript, la veracidad de los valores y el operador coma bastan para ejecutar un programa completo a partir de las tres cláusulas.
 
 > **DEMO ONLY.** Tarjetas de horas ficticias, escritas en un archivo SQLite temporal bajo `$XDG_DATA_HOME/JavaScript/`.
 > Nada de esto toca el reporte real de horas.

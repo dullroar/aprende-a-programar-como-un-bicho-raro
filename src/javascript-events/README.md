@@ -1,9 +1,9 @@
 ---
 name: "JavaScript"
-teaches: "que un programa puede ser un conjunto de escuchadores de eventos, cada uno hace una sola cosa pequeña y luego emite el evento que espera el siguiente; y que emit() llama a sus escuchadores de eventos de inmediato, así que solo un límite de planificación explícito da un turno al bucle de eventos."
+teaches: "que un programa puede ser un conjunto de escuchadores de eventos, cada uno con una sola tarea pequeña que termina emitiendo el evento que espera el siguiente; y que emit() llama a sus escuchadores de inmediato, así que solo un límite de planificación explícito da un turno al bucle de eventos."
 kind: weird
 languages: [javascript, sqlite]
-lesson: "lenguajes/javascript.md#listeners-all-the-way-down"
+lesson: "lenguajes/javascript.md#escuchadores-de-eventos-hasta-el-fondo"
 loop-by: dispatch-and-triggers
 evaluation: eager
 assurance: guaranteed

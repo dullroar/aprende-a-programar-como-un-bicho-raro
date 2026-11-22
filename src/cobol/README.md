@@ -1,6 +1,6 @@
 ---
 name: "COBOL"
-teaches: "que una regla de parada se puede declarar como datos y que la *picture* de un número puede encargarse de tu redondeo."
+teaches: "que una regla de parada se puede declarar como datos, y que la imagen de un número puede encargarse de tu redondeo."
 kind: idiomatic
 languages: [cobol]
 lesson: "lenguajes/cobol.md"

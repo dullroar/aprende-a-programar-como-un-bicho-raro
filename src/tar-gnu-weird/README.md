@@ -3,7 +3,7 @@ name: "GNU tar"
 teaches: "que la disposición física de un archivo puede marcar el ritmo de un programa: los puntos de control de tar son un reloj y cada pulso hace avanzar un paso a una máquina de estados."
 kind: weird
 languages: [tar, sqlite]
-lesson: "lenguajes/tar.md#the-archive-is-the-clock"
+lesson: "lenguajes/tar.md#el-archivo-es-el-reloj"
 loop-by: dispatch-and-triggers
 evaluation: eager
 assurance: implementation-permitted

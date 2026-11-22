@@ -15,7 +15,7 @@ msgstr "PCRE2"
 #: src/regex-pcre2/README.md:3
 msgctxt "s-be2185a199e5-0001"
 msgid "that regex callouts can serve as a tiny instruction set."
-msgstr "que los callouts de regex pueden servir como un pequeño conjunto de instrucciones."
+msgstr "que los callouts de regex pueden servir como un conjunto diminuto de instrucciones."
 
 #: src/regex-pcre2/README.md:11
 msgctxt "s-e45dfa080ec9-0002"

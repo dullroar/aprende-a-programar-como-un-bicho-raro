@@ -1,9 +1,9 @@
 ---
 name: "Ex"
-teaches: "que los registros de un editor pueden contener un programa: una línea de texto se copia en un registro y se ejecuta con @ y las marcas y las direcciones de línea del propio editor hacen la aritmética."
+teaches: "que los registros de un editor pueden contener un programa: una línea de texto se copia en un registro y se ejecuta con @, y las marcas y las direcciones de línea del propio editor hacen la aritmética."
 kind: weird
 languages: [ex, sqlite]
-lesson: "lenguajes/editores.md#a-program-you-can-edit"
+lesson: "lenguajes/editores.md#un-programa-que-puedes-editar"
 loop-by: self-modifying-control
 evaluation: eager
 assurance: implementation-permitted

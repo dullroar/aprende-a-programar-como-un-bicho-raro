@@ -1,9 +1,9 @@
 ---
 name: "ed"
-teaches: "que un editor de líneas es una máquina de reescritura: las líneas son los datos, las direcciones son el programa y una sustitución fallida dentro de un comando global es un \"if\"."
+teaches: "que un editor de líneas es una máquina de reescritura: las líneas son los datos, las direcciones son el programa y una sustitución fallida dentro de un comando global es un \"si\"."
 kind: weird
 languages: [ed, sqlite]
-lesson: "lenguajes/editores.md#the-buffer-is-the-machine"
+lesson: "lenguajes/editores.md#el-búfer-es-la-máquina"
 loop-by: rewrite-and-rescan
 evaluation: rewriting
 assurance: accidentally-exploited

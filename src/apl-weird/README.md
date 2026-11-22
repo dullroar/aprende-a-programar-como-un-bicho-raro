@@ -1,9 +1,9 @@
 ---
 name: "APL"
-teaches: "que `⎕CR`, `⎕FX` y compress hacen opcionales el \"if\" y el \"bucle\", y que una función puede ser su propia sucesora."
+teaches: "que `⎕CR`, `⎕FX` y la compresión vuelven opcionales el \"if\" y el \"bucle\", y que una función puede ser su propia sucesora."
 kind: weird
 languages: [apl]
-lesson: "lenguajes/apl.md#self-modifying-functions-apl-weird"
+lesson: "lenguajes/apl.md#funciones-que-se-modifican-a-sí-mismas-apl-weird"
 loop-by: self-modifying-control
 evaluation: eager
 assurance: implementation-permitted

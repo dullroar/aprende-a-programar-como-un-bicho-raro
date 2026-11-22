@@ -3,7 +3,7 @@ name: "Perl"
 teaches: "que Perl puede ejecutar código durante una coincidencia de una expresión regular."
 kind: weird
 languages: [perl, regex]
-lesson: "lenguajes/regex.md#perl-code-inside-the-match"
+lesson: "lenguajes/regex.md#perl-código-dentro-de-la-coincidencia"
 loop-by: backtracking-search
 evaluation: search
 assurance: implementation-permitted

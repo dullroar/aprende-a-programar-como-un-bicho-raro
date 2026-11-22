@@ -15,7 +15,7 @@ msgstr "APL"
 #: src/apl/README.md:3
 msgctxt "s-fabc7bae713d-0001"
 msgid "that five rolls and a take-while can replace a loop."
-msgstr "que cinco tiradas y un take-while pueden reemplazar un bucle."
+msgstr "que cinco tiradas y un *take-while* pueden reemplazar un bucle."
 
 #: src/apl/README.md:11
 msgctxt "s-935d509c0c17-0002"

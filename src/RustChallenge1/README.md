@@ -1,9 +1,9 @@
 ---
 name: "Rust"
-teaches: "que los iteradores y las clausuras (*closures*: funciones sin nombre que capturan valores de su entorno) pueden expresar el flujo de control de un programa completo en Rust."
+teaches: "que los iteradores y las clausuras (*closures*, funciones que capturan variables de su entorno) pueden expresar el flujo de control de un programa completo en Rust."
 kind: port
 languages: [rust]
-lesson: "lenguajes/csharp-linq-xaml.md#the-one-statement-ports-same-trick-different-machinery"
+lesson: "lenguajes/csharp-linq-xaml.md#las-adaptaciones-de-una-sola-sentencia-mismo-truco-distinta-maquinaria"
 loop-by: lazy-demand
 evaluation: lazy
 assurance: guaranteed

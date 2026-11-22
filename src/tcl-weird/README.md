@@ -3,7 +3,7 @@ name: "Tcl"
 teaches: "que el código Tcl se compone solo de cadenas de texto. Por eso puede residir en una base de datos, recuperarse, definirse y ejecutarse bajo demanda. Los disparadores de SQLite determinan el flujo de control."
 kind: weird
 languages: [tcl, sqlite]
-lesson: "lenguajes/tcl.md#sqlite-as-the-program"
+lesson: "lenguajes/tcl.md#sqlite-como-programa"
 loop-by: dispatch-and-triggers
 evaluation: eager
 assurance: implementation-permitted

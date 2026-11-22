@@ -15,7 +15,7 @@ msgstr "ed"
 #: src/ed-weird/README.md:3
 msgctxt "s-d5af36723146-0001"
 msgid "that a line editor is a rewriting machine: lines are the data, addresses are the program, and a failed substitution inside a global command is an ⟦ESC_0001⟧if⟦ESC_0002⟧."
-msgstr "que un editor de líneas es una máquina de reescritura: las líneas son los datos, las direcciones son el programa y una sustitución fallida dentro de un comando global es un ⟦ESC_0001⟧if⟦ESC_0002⟧."
+msgstr "que un editor de líneas es una máquina de reescritura: las líneas son los datos, las direcciones son el programa y una sustitución fallida dentro de un comando global es un ⟦ESC_0001⟧si⟦ESC_0002⟧."
 
 #: src/ed-weird/README.md:11
 msgctxt "s-734fc777d733-0002"

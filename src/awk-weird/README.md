@@ -1,9 +1,9 @@
 ---
 name: "AWK"
-teaches: "que una expresión regular como separador de registros convierte un flujo de bytes aleatorios en dados y que el bucle principal implícito de awk más un patrón es un programa completo."
+teaches: "que una expresión regular como separador de registros convierte un flujo de bytes aleatorios en dados, y que el bucle principal implícito de awk más un patrón es un programa completo."
 kind: weird
 languages: [awk]
-lesson: "lenguajes/awk.md#records-from-a-random-byte-stream-awk-weird"
+lesson: "lenguajes/awk.md#registros-a-partir-de-un-flujo-de-bytes-aleatorios-awk-weird"
 loop-by: input-driven
 evaluation: eager
 assurance: implementation-permitted

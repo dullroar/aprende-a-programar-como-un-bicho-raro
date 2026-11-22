@@ -15,7 +15,7 @@ msgstr "GNU Make"
 #: src/make-gnu/README.md:3
 msgctxt "s-333212e87313-0001"
 msgid "that GNU Make can do arithmetic and loop in its own syntax, without a shell for either."
-msgstr "que GNU Make puede hacer aritmética y ejecutar bucles con su propia sintaxis, sin un intérprete de comandos (*shell*, el programa que ejecuta comandos) para ninguna de las dos cosas."
+msgstr "que GNU Make puede hacer aritmética y bucles con su propia sintaxis, sin un intérprete de comandos para ninguno de los dos. Un intérprete de comandos es el programa que recibe y ejecuta los comandos que escribes."
 
 #: src/make-gnu/README.md:11
 msgctxt "s-233003a90690-0002"

@@ -1,9 +1,9 @@
 ---
 name: "m4"
-teaches: "que un procesador de macros es un lenguaje de programación: sin sentencia de bucle y sin variable, solo texto que se vuelve a escanear."
+teaches: "que un procesador de macros es un lenguaje de programación: no tiene sentencia de bucle ni variable, solo texto que se analiza de nuevo."
 kind: weird
 languages: [m4]
-lesson: "lenguajes/m4.md#a-loop-made-of-rescanning"
+lesson: "lenguajes/m4.md#un-bucle-hecho-de-reescaneo"
 loop-by: rewrite-and-rescan
 evaluation: rewriting
 assurance: implementation-permitted
