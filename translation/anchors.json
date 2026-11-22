@@ -4957,8 +4957,8 @@
     {
      "en": "How the hell does that work?",
      "en_id": "how-the-hell-does-that-work",
-     "es": "How the hell does that work?",
-     "es_id": "how-the-hell-does-that-work",
+     "es": "¿Cómo demonios funciona eso?",
+     "es_id": "cómo-demonios-funciona-eso",
      "level": 3,
      "line": 29
     },
@@ -5006,7 +5006,7 @@
      "en": "How the hell does that work?",
      "en_id": "how-the-hell-does-that-work-1",
      "es": "How the hell does that work?",
-     "es_id": "how-the-hell-does-that-work-1",
+     "es_id": "how-the-hell-does-that-work",
      "level": 3,
      "line": 70
     },
@@ -5054,7 +5054,7 @@
      "en": "How the hell does that work?",
      "en_id": "how-the-hell-does-that-work-2",
      "es": "How the hell does that work?",
-     "es_id": "how-the-hell-does-that-work-2",
+     "es_id": "how-the-hell-does-that-work-1",
      "level": 3,
      "line": 113
     },
@@ -5133,9 +5133,9 @@
     "do-this-in-production-and-youre-fired-1": "do-this-in-production-and-youre-fired-1",
     "do-this-in-production-and-youre-fired-2": "do-this-in-production-and-youre-fired-2",
     "how-each-program-runs": "how-each-program-runs",
-    "how-the-hell-does-that-work": "how-the-hell-does-that-work",
-    "how-the-hell-does-that-work-1": "how-the-hell-does-that-work-1",
-    "how-the-hell-does-that-work-2": "how-the-hell-does-that-work-2",
+    "how-the-hell-does-that-work": "cómo-demonios-funciona-eso",
+    "how-the-hell-does-that-work-1": "how-the-hell-does-that-work",
+    "how-the-hell-does-that-work-2": "how-the-hell-does-that-work-1",
     "javascript": "javascript",
     "listeners-all-the-way-down": "listeners-all-the-way-down",
     "now-break-it-yourself": "now-break-it-yourself",

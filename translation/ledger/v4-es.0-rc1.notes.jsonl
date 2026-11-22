@@ -2270,3 +2270,5 @@
 {"segment_id": "s-6f795a8092aa-0001", "ts": "2026-11-22T14:19:10Z", "findings": ["I25: comma before a simple 'y' ('JavaScript es el lenguaje del navegador, y con Node'): no comma before a simple o or y"]}
 {"segment_id": "s-2ef786357c67-0012", "ts": "2026-11-22T14:22:45Z", "findings": ["REGISTER: playful segment H023 has status 'pending' in the humor register"], "playful_note": "Conserva el tono del original."}
 {"segment_id": "s-cc9cfaabc50d-0013", "ts": "2026-11-22T14:22:45Z", "findings": [], "playful_note": "Conserva el tono del original."}
+{"segment_id": "s-415f5fa29cf9-0015", "ts": "2026-11-22T14:24:43Z", "findings": [], "playful_note": "Conserva la pregunta exasperada."}
+{"segment_id": "s-5360790f71a3-0016", "ts": "2026-11-22T14:24:43Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}

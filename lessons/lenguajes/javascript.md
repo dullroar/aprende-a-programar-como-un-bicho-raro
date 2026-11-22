@@ -26,12 +26,12 @@ sandbox/container/run-image.sh src/javascript
 
 Una sentencia de unas 80 líneas. El cuerpo está vacío. No se declara ninguna función en el archivo.
 
-### How the hell does that work?
+### ¿Cómo demonios funciona eso?
 
-- **The initializer builds the state.** One `let i = ...` holds a list of hours, the database, the clock and a seeded random generator. A `for` allows one declaration, so the state is one object. The global Web Crypto object supplies a seed through `crypto.getRandomValues` when `SEED` is unset. `randomInt` is a separate export of `node:crypto`.
-- **The condition is the stop rule, and the report.** `total <= 40 ? true : (print, false)`. While it says `true` the loop goes on. When it says `false` it has already printed the result.
-- **The iterator is the work.** It draws the hours and saves the card. After the initial test, each update saves its card before the next test. That is why the crossing card is included.
-- **A timer is the animation.** On a terminal, `setInterval` pulses the DEMO ONLY line. It starts only after the loop, so it cannot slow the cards down.
+- **El inicializador construye el estado.** Un `let i = ...` contiene una lista de horas, la base de datos, el reloj y un generador aleatorio con semilla. Un `for` permite una declaración, así que el estado es un objeto. El objeto global Web Crypto proporciona una semilla mediante `crypto.getRandomValues` cuando `SEED` no está definido. `randomInt` es una exportación independiente de `node:crypto`.
+- **La condición es la regla de parada y el informe.** `total <= 40 ? true : (print, false)`. Mientras indica `true`, el bucle continúa. Cuando indica `false`, ya imprimió el resultado.
+- **El iterador hace el trabajo.** Obtiene las horas y guarda la tarjeta. Después de la prueba inicial, cada actualización guarda su tarjeta antes de la siguiente prueba. Por eso se incluye la tarjeta que cruza el tope.
+- **Un temporizador produce la animación.** En una terminal, `setInterval` hace pulsar la línea DEMO ONLY. Solo comienza después del bucle, así que no puede retrasar las tarjetas.
 
 The [README](../../src/javascript/README.md#cómo-funciona-el-truco) has the table of what the C# did and what this does, and a measured comparison with the original.
 

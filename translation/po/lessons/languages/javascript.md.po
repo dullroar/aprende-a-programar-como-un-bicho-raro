@@ -85,27 +85,27 @@ msgstr "Una sentencia de unas 80 líneas. El cuerpo está vacío. No se declara 
 #: lessons/languages/javascript.md:29
 msgctxt "s-415f5fa29cf9-0015"
 msgid "How the hell does that work?"
-msgstr ""
+msgstr "¿Cómo demonios funciona eso?"
 
 #: lessons/languages/javascript.md:31
 msgctxt "s-5360790f71a3-0016"
 msgid "**The initializer builds the state.** One ⟦CODE_0001⟧ holds a list of hours, the database, the clock and a seeded random generator. A ⟦CODE_0002⟧ allows one declaration, so the state is one object. The global Web Crypto object supplies a seed through ⟦CODE_0003⟧ when ⟦CODE_0004⟧ is unset. ⟦CODE_0005⟧ is a separate export of ⟦CODE_0006⟧."
-msgstr ""
+msgstr "**El inicializador construye el estado.** Un ⟦CODE_0001⟧ contiene una lista de horas, la base de datos, el reloj y un generador aleatorio con semilla. Un ⟦CODE_0002⟧ permite una declaración, así que el estado es un objeto. El objeto global Web Crypto proporciona una semilla mediante ⟦CODE_0003⟧ cuando ⟦CODE_0004⟧ no está definido. ⟦CODE_0005⟧ es una exportación independiente de ⟦CODE_0006⟧."
 
 #: lessons/languages/javascript.md:32
 msgctxt "s-093386d6f099-0017"
 msgid "**The condition is the stop rule, and the report.** ⟦CODE_0001⟧. While it says ⟦CODE_0002⟧ the loop goes on. When it says ⟦CODE_0003⟧ it has already printed the result."
-msgstr ""
+msgstr "**La condición es la regla de parada y el informe.** ⟦CODE_0001⟧. Mientras indica ⟦CODE_0002⟧, el bucle continúa. Cuando indica ⟦CODE_0003⟧, ya imprimió el resultado."
 
 #: lessons/languages/javascript.md:33
 msgctxt "s-5fe84683ea7d-0018"
 msgid "**The iterator is the work.** It draws the hours and saves the card. After the initial test, each update saves its card before the next test. That is why the crossing card is included."
-msgstr ""
+msgstr "**El iterador hace el trabajo.** Obtiene las horas y guarda la tarjeta. Después de la prueba inicial, cada actualización guarda su tarjeta antes de la siguiente prueba. Por eso se incluye la tarjeta que cruza el tope."
 
 #: lessons/languages/javascript.md:34
 msgctxt "s-1c7ac4ea4773-0019"
 msgid "**A timer is the animation.** On a terminal, ⟦CODE_0001⟧ pulses the ⟦DNT_0002⟧ line. It starts only after the loop, so it cannot slow the cards down."
-msgstr ""
+msgstr "**Un temporizador produce la animación.** En una terminal, ⟦CODE_0001⟧ hace pulsar la línea ⟦DNT_0002⟧. Solo comienza después del bucle, así que no puede retrasar las tarjetas."
 
 #: lessons/languages/javascript.md:36
 msgctxt "s-d7ce762e217a-0020"
