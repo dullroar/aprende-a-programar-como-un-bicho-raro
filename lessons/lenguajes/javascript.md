@@ -120,12 +120,12 @@ Sin `for`, sin `while`, sin canalización ni fábrica de clausuras. El inicio vi
 
 El [README](../../src/javascript-events/README.md#cómo-funciona-el-truco) contiene la tabla de eventos, la traza y la comparación con las otras dos entradas de Node.
 
-### What did we just learn?
+### ¿Qué acabamos de aprender?
 
-- **Control flow can be a set of registrations.** The order of the program is in the event names, and in what each listener emits.
-- **Synchronous `emit()` is not the event loop.** An emitter is a table of listeners and a function that calls them. The queue and the loop belong to Node.
-- **A turn is the unit of scheduling.** Everything on one turn runs to its end before anything else starts. A callback that runs long stalls the rest.
-- **Errors travel up the call stack.** A listener's `throw` goes to whoever called `emit`. If that is a scheduled callback, nobody catches it, so each listener needs its own `try`.
+- **El flujo de control puede ser un conjunto de registros.** El orden del programa está en los nombres de los eventos y en lo que emite cada escuchador de eventos.
+- **`emit()` síncrono no es el bucle de eventos.** Un emisor es una tabla de escuchadores de eventos y una función que los llama. La cola y el bucle pertenecen a Node.
+- **Un turno es la unidad de planificación.** Todo lo que hay en un turno se ejecuta hasta terminar antes de que empiece otra cosa. Una función de devolución de llamada que tarda mucho bloquea el resto.
+- **Los errores suben por la pila de llamadas.** El `throw` de un escuchador de eventos llega a quien llamó a `emit`. Si es una función de devolución de llamada programada, nadie lo captura. Por eso cada escuchador de eventos necesita su propio `try`.
 - **The name `error` is special.** `emit('error', e)` with no listener throws `e`.
 - **Cleanup is part of the design.** A listener, timer or immediate that stays behind keeps a process alive or leaks.
 

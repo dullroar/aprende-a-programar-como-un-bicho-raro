@@ -5061,8 +5061,8 @@
     {
      "en": "What did we just learn?",
      "en_id": "what-did-we-just-learn-2",
-     "es": "What did we just learn?",
-     "es_id": "what-did-we-just-learn",
+     "es": "¿Qué acabamos de aprender?",
+     "es_id": "qué-acabamos-de-aprender-2",
      "level": 3,
      "line": 123
     },
@@ -5147,7 +5147,7 @@
     "the-bodiless-for-in-node": "el-for-sin-cuerpo-en-node",
     "what-did-we-just-learn": "qué-acabamos-de-aprender",
     "what-did-we-just-learn-1": "qué-acabamos-de-aprender-1",
-    "what-did-we-just-learn-2": "what-did-we-just-learn",
+    "what-did-we-just-learn-2": "qué-acabamos-de-aprender-2",
     "what-makes-javascript-special": "qué-hace-especial-a-javascript"
    }
   },

@@ -360,27 +360,27 @@ msgstr "El [README](⟦DEST_0001⟧) contiene la tabla de eventos, la traza y la
 #: lessons/languages/javascript.md:123
 msgctxt "s-d2bbf037de84-0070"
 msgid "What did we just learn?"
-msgstr ""
+msgstr "¿Qué acabamos de aprender?"
 
 #: lessons/languages/javascript.md:125
 msgctxt "s-76483087bec7-0071"
 msgid "**Control flow can be a set of registrations.** The order of the program is in the event names, and in what each listener emits."
-msgstr ""
+msgstr "**El flujo de control puede ser un conjunto de registros.** El orden del programa está en los nombres de los eventos y en lo que emite cada escuchador de eventos."
 
 #: lessons/languages/javascript.md:126
 msgctxt "s-0542925eab45-0072"
 msgid "**Synchronous ⟦CODE_0001⟧ is not the event loop.** An emitter is a table of listeners and a function that calls them. The queue and the loop belong to Node."
-msgstr ""
+msgstr "**⟦CODE_0001⟧ síncrono no es el bucle de eventos.** Un emisor es una tabla de escuchadores de eventos y una función que los llama. La cola y el bucle pertenecen a Node."
 
 #: lessons/languages/javascript.md:127
 msgctxt "s-c19946109f70-0073"
 msgid "**A turn is the unit of scheduling.** Everything on one turn runs to its end before anything else starts. A callback that runs long stalls the rest."
-msgstr ""
+msgstr "**Un turno es la unidad de planificación.** Todo lo que hay en un turno se ejecuta hasta terminar antes de que empiece otra cosa. Una función de devolución de llamada que tarda mucho bloquea el resto."
 
 #: lessons/languages/javascript.md:128
 msgctxt "s-13887f838274-0074"
 msgid "**Errors travel up the call stack.** A listener's ⟦CODE_0001⟧ goes to whoever called ⟦CODE_0002⟧. If that is a scheduled callback, nobody catches it, so each listener needs its own ⟦CODE_0003⟧."
-msgstr ""
+msgstr "**Los errores suben por la pila de llamadas.** El ⟦CODE_0001⟧ de un escuchador de eventos llega a quien llamó a ⟦CODE_0002⟧. Si es una función de devolución de llamada programada, nadie lo captura. Por eso cada escuchador de eventos necesita su propio ⟦CODE_0003⟧."
 
 #: lessons/languages/javascript.md:129
 msgctxt "s-b63667d895b3-0075"
