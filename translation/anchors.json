@@ -5453,8 +5453,8 @@
     {
      "en": "How the hell does that work?",
      "en_id": "how-the-hell-does-that-work",
-     "es": "How the hell does that work?",
-     "es_id": "how-the-hell-does-that-work",
+     "es": "¿Cómo demonios funciona eso?",
+     "es_id": "cómo-demonios-funciona-eso",
      "level": 3,
      "line": 17
     },
@@ -5502,7 +5502,7 @@
      "en": "How the hell does that work?",
      "en_id": "how-the-hell-does-that-work-1",
      "es": "How the hell does that work?",
-     "es_id": "how-the-hell-does-that-work-1",
+     "es_id": "how-the-hell-does-that-work",
      "level": 3,
      "line": 65
     },
@@ -5597,8 +5597,8 @@
     "gnu-make": "gnu-make",
     "gnu-make-and-cmake": "gnu-make-y-cmake",
     "how-each-program-runs": "how-each-program-runs",
-    "how-the-hell-does-that-work": "how-the-hell-does-that-work",
-    "how-the-hell-does-that-work-1": "how-the-hell-does-that-work-1",
+    "how-the-hell-does-that-work": "cómo-demonios-funciona-eso",
+    "how-the-hell-does-that-work-1": "how-the-hell-does-that-work",
     "now-break-it-yourself": "now-break-it-yourself",
     "now-break-it-yourself-1": "now-break-it-yourself-1",
     "program-flow-of-cmake": "program-flow-of-cmake",

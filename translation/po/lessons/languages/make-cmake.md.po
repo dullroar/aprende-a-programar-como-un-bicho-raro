@@ -35,27 +35,27 @@ msgstr "Contempla la monstruosidad"
 #: lessons/languages/make-cmake.md:15
 msgctxt "s-a7ade940230e-0005"
 msgid "A Makefile with **no ⟦CODE_0001⟧, no ⟦CODE_0002⟧, no Guile and no ⟦CODE_0003⟧** (⟦CODE_0004⟧ greps for all of them). It draws random hours, does arithmetic (including a full ISO-week calculation from the clock), loops, writes a database and glows on a terminal."
-msgstr ""
+msgstr "Un Makefile **sin ⟦CODE_0001⟧, sin ⟦CODE_0002⟧, sin Guile y sin ⟦CODE_0003⟧** (⟦CODE_0004⟧ los busca a todos con grep). Elige horas al azar, hace aritmética (incluido un cálculo completo de la semana ISO a partir del reloj), ejecuta bucles, escribe una base de datos y brilla en una terminal."
 
 #: lessons/languages/make-cmake.md:17
 msgctxt "s-415f5fa29cf9-0006"
 msgid "How the hell does that work?"
-msgstr ""
+msgstr "¿Cómo demonios funciona eso?"
 
 #: lessons/languages/make-cmake.md:19
 msgctxt "s-3fc24f892838-0007"
 msgid "**Numbers are lists of ⟦CODE_0001⟧.** A 60,000-word \"ruler\" of ⟦CODE_0002⟧s, and ⟦CODE_0003⟧ adds; ⟦CODE_0004⟧ subtracts. The stop rule ⟦CODE_0005⟧ is \"the 41st word exists\": ⟦CODE_0006⟧."
-msgstr ""
+msgstr "**Los números son listas de ⟦CODE_0001⟧.** Una \"regla\" de 60,000 palabras ⟦CODE_0002⟧ y ⟦CODE_0003⟧ suma; ⟦CODE_0004⟧ resta. La regla de parada ⟦CODE_0005⟧ es \"existe la palabra 41\": ⟦CODE_0006⟧."
 
 #: lessons/languages/make-cmake.md:20
 msgctxt "s-146e2e08a09f-0008"
 msgid "**Entropy and the clock without a shell.** ⟦CODE_0001⟧ reads a file; nested ⟦CODE_0002⟧ strips letters, leaving a decimal digit. Time is ⟦CODE_0003⟧ from ⟦CODE_0004⟧ plus ⟦CODE_0005⟧, added digit by digit with a carry."
-msgstr ""
+msgstr "**Entropía y reloj sin intérprete de comandos (*shell*), el programa que ejecuta órdenes.** ⟦CODE_0001⟧ lee un archivo; las ⟦CODE_0002⟧ anidadas eliminan letras y dejan un dígito decimal. La hora es ⟦CODE_0003⟧ de ⟦CODE_0004⟧ más ⟦CODE_0005⟧, sumados dígito por dígito con acarreo."
 
 #: lessons/languages/make-cmake.md:21
 msgctxt "s-8a28e2c620bf-0009"
 msgid "**The loop is Make re-executing itself.** [⟦CODE_0001⟧ L95-101](⟦DEST_0002⟧):"
-msgstr ""
+msgstr "**El bucle consiste en que Make se vuelve a ejecutar.** [⟦CODE_0001⟧ L95-101](⟦DEST_0002⟧):"
 
 #: lessons/languages/make-cmake.md:30
 msgctxt "s-6ca6d84e3d92-0010"

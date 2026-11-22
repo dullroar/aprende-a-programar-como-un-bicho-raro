@@ -2239,3 +2239,5 @@
 {"segment_id": "s-c08a852d0dbe-0045", "ts": "2026-11-22T01:33:53Z", "findings": [], "playful_note": "Conserva la pregunta irónica."}
 {"segment_id": "s-36a23cc3fe8c-0003", "ts": "2026-11-22T01:35:28Z", "findings": ["TRANSLATE: the reply is the English text unchanged"]}
 {"segment_id": "s-cc9cfaabc50d-0004", "ts": "2026-11-22T01:35:28Z", "findings": [], "playful_note": "Anuncio grandilocuente de la extraña obra."}
+{"segment_id": "s-415f5fa29cf9-0006", "ts": "2026-11-22T01:37:44Z", "findings": ["I15: heading differs from the recorded transcreated '¿Cómo demonios funciona eso?'"], "playful_note": "Pregunta de exasperación con una leve palabrota."}
+{"segment_id": "s-415f5fa29cf9-0006", "ts": "2026-11-22T01:37:56Z", "findings": [], "playful_note": "Pregunta de exasperación con una leve palabrota."}

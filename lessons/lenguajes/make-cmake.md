@@ -12,13 +12,13 @@ Para una ruta de lectura avanzada con trazas y experimentos, consulta la [guía 
 sandbox/container/run-image.sh src/make-gnu
 ```
 
-A Makefile with **no `$(shell)`, no `!=`, no Guile and no `load`** (`check.sh` greps for all of them). It draws random hours, does arithmetic (including a full ISO-week calculation from the clock), loops, writes a database and glows on a terminal.
+Un Makefile **sin `$(shell)`, sin `!=`, sin Guile y sin `load`** (`check.sh` los busca a todos con grep). Elige horas al azar, hace aritmética (incluido un cálculo completo de la semana ISO a partir del reloj), ejecuta bucles, escribe una base de datos y brilla en una terminal.
 
-### How the hell does that work?
+### ¿Cómo demonios funciona eso?
 
-- **Numbers are lists of `x`.** A 60,000-word "ruler" of `x`s, and `$(words $(wordlist 1,a,$(U)) $(wordlist 1,b,$(U)))` adds; `$(wordlist b+1,a,...)` subtracts. The stop rule `total > 40` is "the 41st word exists": `$(word 41,...)`.
-- **Entropy and the clock without a shell.** `$(file </proc/sys/kernel/random/uuid)` reads a file; nested `$(subst)` strips letters, leaving a decimal digit. Time is `btime` from `/proc/stat` plus `/proc/uptime`, added digit by digit with a carry.
-- **The loop is Make re-executing itself.** [`Makefile` L95-101](../../src/make-gnu/Makefile#L95-L101):
+- **Los números son listas de `x`.** Una "regla" de 60,000 palabras `x` y `$(words $(wordlist 1,a,$(U)) $(wordlist 1,b,$(U)))` suma; `$(wordlist b+1,a,...)` resta. La regla de parada `total > 40` es "existe la palabra 41": `$(word 41,...)`.
+- **Entropía y reloj sin intérprete de comandos (*shell*), el programa que ejecuta órdenes.** `$(file </proc/sys/kernel/random/uuid)` lee un archivo; las `$(subst)` anidadas eliminan letras y dejan un dígito decimal. La hora es `btime` de `/proc/stat` más `/proc/uptime`, sumados dígito por dígito con acarreo.
+- **El bucle consiste en que Make se vuelve a ejecutar.** [`Makefile` L95-101](../../src/make-gnu/Makefile#L95-L101):
 
   ```make
   K := $(or $(MAKE_RESTARTS),0)
