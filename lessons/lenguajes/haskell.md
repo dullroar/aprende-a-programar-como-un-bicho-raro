@@ -1,12 +1,12 @@
 # Haskell
 
-Entries: [`src/haskell`](../../src/haskell/README.md) (one pure function) and [`src/haskell-weird`](../../src/haskell-weird/README.md) ("Haskell on drugs": reading the list does the work).
+Entradas: [`src/haskell`](../../src/haskell/README.md) (una función pura) y [`src/haskell-weird`](../../src/haskell-weird/README.md) ("Haskell bajo los efectos de las drogas": leer la lista hace el trabajo).
 
-For an advanced reading path with traces and experiments, see the [Haskell study guide](../guias-de-estudio/lenguajes/haskell.md).
+Para una ruta de lectura avanzada con trazas y experimentos, consulta la [guía de estudio de Haskell](../guias-de-estudio/lenguajes/haskell.md).
 
-## What makes Haskell special
+## Qué hace especial a Haskell
 
-Haskell is **lazy**: a value is computed only when something demands it. The straight entry uses that for a stop rule that is not a loop condition at all, but *how much of a list you choose to read*.
+Haskell es **perezoso**: un valor se calcula solo cuando algo lo demanda. La entrada ordinaria usa eso para una regla de parada que no es una condición de bucle, sino *cuánto eliges leer de una lista*.
 
 | Feature | Where | What it teaches |
 | --- | --- | --- |

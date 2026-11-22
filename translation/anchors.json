@@ -4792,8 +4792,8 @@
     {
      "en": "What makes Haskell special",
      "en_id": "what-makes-haskell-special",
-     "es": "What makes Haskell special",
-     "es_id": "what-makes-haskell-special",
+     "es": "Qué hace especial a Haskell",
+     "es_id": "qué-hace-especial-a-haskell",
      "level": 2,
      "line": 7
     },
@@ -4917,7 +4917,7 @@
     "under-what-circumstances-would-this-terrible-idea-become-reasonable": "under-what-circumstances-would-this-terrible-idea-become-reasonable",
     "weird-next-to-boring": "weird-next-to-boring",
     "what-did-we-just-learn": "what-did-we-just-learn",
-    "what-makes-haskell-special": "what-makes-haskell-special"
+    "what-makes-haskell-special": "qué-hace-especial-a-haskell"
    }
   },
   "lessons/languages/javascript.md": {
