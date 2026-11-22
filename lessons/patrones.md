@@ -8,7 +8,7 @@ A formal language is a notation with strict rules that a machine can process. Th
 
 | Formal language | What it was for | What it becomes | Entry |
 | --- | --- | --- | --- |
-| **RegEx** | Matching text | A search machine with state and I/O hooks ([Perl](lenguajes/regex.md#perl-código-dentro-de-la-coincidencia), [PCRE2](lenguajes/regex.md#pcre2-callouts-as-an-instruction-set)), a counter ([.NET](lenguajes/regex.md#net-balancing-groups)), a rewriting system ([sed](lenguajes/regex.md#gnu-sed)) | `regex-*` |
+| **RegEx** | Matching text | A search machine with state and I/O hooks ([Perl](lenguajes/regex.md#perl-código-dentro-de-la-coincidencia), [PCRE2](lenguajes/regex.md#pcre2-los-callouts-como-conjunto-de-instrucciones)), a counter ([.NET](lenguajes/regex.md#net-balancing-groups)), a rewriting system ([sed](lenguajes/regex.md#gnu-sed)) | `regex-*` |
 | **Make** | Ordering builds | A dependency engine that restarts itself, giving a loop | [`make-gnu`](../src/make-gnu/README.md) |
 | **CMake** | Configuring builds | A register machine in a `while()` condition | [`cmake`](../src/cmake/README.md) |
 | **XAML** | Describing a UI tree | An interpreter that runs methods as it parses | [`xaml`](../src/xaml/README.md) |
@@ -120,7 +120,7 @@ Each track stores "what happens next" somewhere that is not a loop counter: in t
 | Inside the stages' enumerators, and in the database | [csharp-linq-xaml](lenguajes/csharp-linq-xaml.md#la-ejecución-diferida-y-el-truco-de-convertir-void-en-valor): [`LinqChallenge1`](../src/LinqChallenge1/README.md) |
 | A prefix sum recomputed in each `where`, and the database; no accumulator variable | [csharp-linq-xaml](lenguajes/csharp-linq-xaml.md#la-ejecución-diferida-y-el-truco-de-convertir-void-en-valor): [`LinqChallenge2`](../src/LinqChallenge2/README.md) |
 | The input stream: whatever macro text has not been read yet | [m4](lenguajes/m4.md#un-bucle-hecho-de-reescaneo): [`m4`](../src/m4/README.md) |
-| A C struct that never rewinds | [regex](lenguajes/regex.md#pcre2-callouts-as-an-instruction-set): [`regex-pcre2`](../src/regex-pcre2/README.md) |
+| A C struct that never rewinds | [regex](lenguajes/regex.md#pcre2-los-callouts-como-conjunto-de-instrucciones): [`regex-pcre2`](../src/regex-pcre2/README.md) |
 | SQLite rows, and the exit code of each callout | [regex](lenguajes/regex.md#pcre2grep-exit-codes-as-control-flow): [`regex-pcre2grep`](../src/regex-pcre2grep/README.md) |
 | `local` variables that unwind (effects do not) | [regex](lenguajes/regex.md#perl-código-dentro-de-la-coincidencia): [`regex-perl`](../src/regex-perl/README.md) |
 | The path from the start directory to the directory being visited | [find](lenguajes/find.md): [`find-posix`](../src/find-posix/README.md) |
@@ -178,7 +178,7 @@ LINQ, Haskell and XAML each put an effect inside something that looks like a pur
 | A pattern stops matching and an `exit` ends the loop | [AWK weird](lenguajes/awk.md#registros-a-partir-de-un-flujo-de-bytes-aleatorios-awk-weird) |
 | An `INSERT ... SELECT ... WHERE` that selects nothing ends a recursive trigger | [Tcl weird](lenguajes/tcl.md#sqlite-as-the-program) |
 | A missing guard does not fail: it counts a phantom card (empty `RT`) or no cards at all (mawk) | [AWK weird](lenguajes/awk.md#haz-esto-en-producción-y-estás-despedido) |
-| An unexpected failure code is deliberately *not* "no match" (`PCRE2_ERROR_CALLOUT`, not `-1`) | [PCRE2](lenguajes/regex.md#pcre2-callouts-as-an-instruction-set) |
+| An unexpected failure code is deliberately *not* "no match" (`PCRE2_ERROR_CALLOUT`, not `-1`) | [PCRE2](lenguajes/regex.md#pcre2-los-callouts-como-conjunto-de-instrucciones) |
 
 Notice that **`CHECK(demo_only=1)` appears in nearly every entry**: a table that makes a non-demo row unrepresentable, which each `check.sh` tries to violate. That is error handling used as a *guarantee* rather than a control flow, and a pattern worth keeping.
 

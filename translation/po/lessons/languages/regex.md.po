@@ -135,27 +135,27 @@ msgstr "Aprende y rompe"
 #: lessons/languages/regex.md:46
 msgctxt "s-762329ad5f8f-0025"
 msgid "Backtracking is a search procedure, and a failing branch is information. State that unwinds (⟦CODE_0001⟧) and state that does not (I/O) behave differently, and that difference is the whole trick. See [patterns](⟦DEST_0002⟧)."
-msgstr ""
+msgstr "El retroceso es un procedimiento de búsqueda, y una rama que falla aporta información. El estado que se deshace (⟦CODE_0001⟧) y el que no (entrada/salida) se comportan de forma distinta. Esa diferencia es todo el truco. Consulta [patrones](⟦DEST_0002⟧)."
 
 #: lessons/languages/regex.md:47
 msgctxt "s-809b1875176e-0026"
 msgid "**Production**: code in patterns is hard to test or debug, and in Perl, regex code blocks run with the file's ⟦CODE_0001⟧ rules and can only ⟦CODE_0002⟧ package variables."
-msgstr ""
+msgstr "**Producción**: es difícil probar o depurar código en patrones. En Perl, los bloques de código regex se ejecutan con las reglas ⟦CODE_0001⟧ del archivo y solo pueden ⟦CODE_0002⟧ variables de paquete."
 
 #: lessons/languages/regex.md:49
 msgctxt "s-dabc65bd5fbe-0027"
 msgid "Tags: ⟦CODE_0001⟧, ⟦CODE_0002⟧ and ⟦CODE_0003⟧ unwinding are **guaranteed** by the Perl regex documentation."
-msgstr ""
+msgstr "Etiquetas: la documentación de regex de Perl establece como comportamiento **garantizado** ⟦CODE_0001⟧, ⟦CODE_0002⟧ y el deshacimiento de ⟦CODE_0003⟧."
 
 #: lessons/languages/regex.md:51
 msgctxt "s-495366efe694-0028"
 msgid "PCRE2: callouts as an instruction set"
-msgstr ""
+msgstr "PCRE2: los callouts como conjunto de instrucciones"
 
 #: lessons/languages/regex.md:53
 msgctxt "s-576154fc50a4-0029"
 msgid "The whole pattern ([⟦CODE_0001⟧ L24-26](⟦DEST_0002⟧)):"
-msgstr ""
+msgstr "El patrón completo ([⟦CODE_0001⟧ L24-26](⟦DEST_0002⟧)):"
 
 #: lessons/languages/regex.md:59
 msgctxt "s-fe6aad18e1d3-0030"

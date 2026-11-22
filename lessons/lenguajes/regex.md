@@ -43,14 +43,14 @@ La única sentencia del archivo es un solo `=~`. La inicialización de la semill
 
 ### Aprende y rompe
 
-- Backtracking is a search procedure, and a failing branch is information. State that unwinds (`local`) and state that does not (I/O) behave differently, and that difference is the whole trick. See [patterns](../patrones.md#backtracking-side-effects-and-error-handling).
-- **Production**: code in patterns is hard to test or debug, and in Perl, regex code blocks run with the file's `strict` rules and can only `local` package variables.
+- El retroceso es un procedimiento de búsqueda, y una rama que falla aporta información. El estado que se deshace (`local`) y el que no (entrada/salida) se comportan de forma distinta. Esa diferencia es todo el truco. Consulta [patrones](../patrones.md#backtracking-side-effects-and-error-handling).
+- **Producción**: es difícil probar o depurar código en patrones. En Perl, los bloques de código regex se ejecutan con las reglas `strict` del archivo y solo pueden `local` variables de paquete.
 
-Tags: `(?{ })`, `(??{ })` and `local` unwinding are **guaranteed** by the Perl regex documentation.
+Etiquetas: la documentación de regex de Perl establece como comportamiento **garantizado** `(?{ })`, `(??{ })` y el deshacimiento de `local`.
 
-## PCRE2: callouts as an instruction set
+## PCRE2: los callouts como conjunto de instrucciones
 
-The whole pattern ([`timecards.c` L24-26](../../src/regex-pcre2/timecards.c#L24-L26)):
+El patrón completo ([`timecards.c` L24-26](../../src/regex-pcre2/timecards.c#L24-L26)):
 
 ```text
 ^(?C"init")(?:(?C"gate")(Meetings|Coding|Debugging|Learning)(?C"book"))*(*COMMIT)(?C"commit")(*FAIL)

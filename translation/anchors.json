@@ -5663,8 +5663,8 @@
     {
      "en": "PCRE2: callouts as an instruction set",
      "en_id": "pcre2-callouts-as-an-instruction-set",
-     "es": "PCRE2: callouts as an instruction set",
-     "es_id": "pcre2-callouts-as-an-instruction-set",
+     "es": "PCRE2: los callouts como conjunto de instrucciones",
+     "es_id": "pcre2-los-callouts-como-conjunto-de-instrucciones",
      "level": 2,
      "line": 51
     },
@@ -5781,7 +5781,7 @@
     "how-the-hell-does-that-work": "cómo-demonios-funciona-eso",
     "learn-and-break": "aprende-y-rompe",
     "net-balancing-groups": "net-balancing-groups",
-    "pcre2-callouts-as-an-instruction-set": "pcre2-callouts-as-an-instruction-set",
+    "pcre2-callouts-as-an-instruction-set": "pcre2-los-callouts-como-conjunto-de-instrucciones",
     "pcre2grep-exit-codes-as-control-flow": "pcre2grep-exit-codes-as-control-flow",
     "perl-code-inside-the-match": "perl-código-dentro-de-la-coincidencia",
     "program-flow-of-regex-dotnet": "program-flow-of-regex-dotnet",

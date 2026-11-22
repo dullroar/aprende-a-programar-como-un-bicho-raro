@@ -278,3 +278,4 @@
 305 P4-lessons-languages-5 partial accepted and applied regex positions 10 to 14; resume at 15; scoped, fast and anchor checks passed.
 306 P4-lessons-languages-5 partial accepted and applied regex positions 15 to 19; resume at 20; scoped, fast and anchor checks passed.
 307 P4-lessons-languages-5 partial accepted and applied regex positions 20 to 24; resume at 25; scoped, fast and anchor checks passed.
+308 P4-lessons-languages-5 partial accepted and applied regex positions 25 to 29; resume at 30; scoped, fast and anchor checks passed.
