@@ -222,3 +222,4 @@
 249 P4-lessons-languages-4 partial accepted Lisp positions 26 to 30; 15 remain; task, fast and anchor checks passed.
 250 P4-lessons-languages-4 partial accepted Lisp positions 31 to 35; 10 remain; task, fast and anchor checks passed.
 251 P4-lessons-languages-4 partial accepted Lisp positions 36 to 40; 5 remain; task, fast and anchor checks passed.
+252 P4-lessons-languages-4 partial accepted and applied remaining Lisp segments; continue with m4 and make-cmake; task, fast and anchor checks passed.

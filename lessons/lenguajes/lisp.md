@@ -82,13 +82,13 @@ Consulta los [ejercicios](../exercises.md#b10-lisp-swap-the-method-combination-v
 - **`sql-quote` no escapa.** Cada valor es un número o una de cuatro palabras fijas; no lo reutilices para nada más.
 - **No existe un formateador** para Common Lisp; la disposición sigue a mano la sangría de `lisp-mode` de Emacs.
 
-## Weird next to boring
+## Lo raro junto a lo aburrido
 
-[`lisp`](../../src/lisp/README.md) is one `LOOP` that sums, collects and stops: what a Lisp programmer writes. [`lisp-weird`](../../src/lisp-weird/README.md) moves the loop out of any form and into the *type system*. The first is idiomatic; the second is what the object system *permits*. Compare how [`haskell`](haskell.md) and [`apl`](apl.md) also pair a one-expression answer with one that rebuilds control flow from the language's own metaprogramming.
+[`lisp`](../../src/lisp/README.md) es una sola forma `LOOP` que suma, recopila y se detiene: lo que escribe un programador de Lisp. [`lisp-weird`](../../src/lisp-weird/README.md) saca el bucle de cualquier forma y lo lleva al *sistema de tipos*. El primero es idiomático; el segundo es lo que el sistema de objetos *permite*. Compara cómo [`haskell`](haskell.md) y [`apl`](apl.md) también emparejan una respuesta de una expresión con otra que reconstruye el flujo de control a partir de la propia metaprogramación del lenguaje.
 
-## Under what circumstances would this terrible idea become reasonable?
+## ¿En qué circunstancias esta idea terrible se volvería razonable?
 
-When the "loop" is really *a set of independently registered participants* (plug-ins, validators, listeners) and the language gives you a combination rule for them. Using five empty classes to count to five is a stunt; using `or` to find the first listener that accepts an event is the intended design.
+Cuando el "bucle" es en realidad *un conjunto de participantes registrados de manera independiente* (complementos, validadores, escuchadores de eventos) y el lenguaje te da una regla para combinarlos. Usar cinco clases vacías para contar hasta cinco es una pirueta; usar `or` para encontrar el primer escuchador de eventos que acepta un evento es el diseño previsto.
 
 <!-- BEGIN GENERATED program-flow:languages/lisp.md -->
 ## How each program runs
@@ -146,7 +146,7 @@ sequenceDiagram
 **Why this mechanism matters:** CLOS decides what runs and in what order. The program has no statement that says "stop", and the unused methods are simply never called. The `:around` method wraps the whole chain and uses dynamic binding to send every `format` to one stream.
 <!-- END GENERATED program-flow:languages/lisp.md -->
 
-## Computer science behind this page
+## La informática detrás de esta página
 
 <!-- BEGIN GENERATED concepts:languages/lisp.md -->
 The computer-science ideas behind this page: [Control flow](../informatica/03-flujo-de-control-y-continuaciones.md#control-flow), [Short-circuit evaluation](../informatica/04-evaluacion-y-demanda.md#short-circuit-evaluation), [Macros and text expansion](../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#macros-and-text-expansion), [Domain-specific languages](../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#domain-specific-languages), [State](../informatica/06-estado-mas-alla-de-las-variables.md#state), [Scope and binding](../informatica/06-estado-mas-alla-de-las-variables.md#scope-and-binding), [Homoiconicity: code as data](../informatica/06-estado-mas-alla-de-las-variables.md#homoiconicity-code-as-data), [Reflection and metaprogramming](../informatica/06-estado-mas-alla-de-las-variables.md#reflection-and-metaprogramming).

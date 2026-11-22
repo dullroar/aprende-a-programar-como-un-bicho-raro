@@ -215,24 +215,24 @@ msgstr "**No existe un formateador** para Common Lisp; la disposición sigue a m
 #: lessons/languages/lisp.md:85
 msgctxt "s-a6b58da9d4cd-0041"
 msgid "Weird next to boring"
-msgstr ""
+msgstr "Lo raro junto a lo aburrido"
 
 #: lessons/languages/lisp.md:87
 msgctxt "s-c8400ff4e6ab-0042"
 msgid "[⟦CODE_0001⟧](⟦DEST_0002⟧) is one ⟦CODE_0003⟧ that sums, collects and stops: what a Lisp programmer writes. [⟦CODE_0004⟧](⟦DEST_0005⟧) moves the loop out of any form and into the *type system*. The first is idiomatic; the second is what the object system *permits*. Compare how [⟦CODE_0006⟧](⟦DEST_0007⟧) and [⟦CODE_0008⟧](⟦DEST_0009⟧) also pair a one-expression answer with one that rebuilds control flow from the language's own metaprogramming."
-msgstr ""
+msgstr "[⟦CODE_0001⟧](⟦DEST_0002⟧) es una sola forma ⟦CODE_0003⟧ que suma, recopila y se detiene: lo que escribe un programador de Lisp. [⟦CODE_0004⟧](⟦DEST_0005⟧) saca el bucle de cualquier forma y lo lleva al *sistema de tipos*. El primero es idiomático; el segundo es lo que el sistema de objetos *permite*. Compara cómo [⟦CODE_0006⟧](⟦DEST_0007⟧) y [⟦CODE_0008⟧](⟦DEST_0009⟧) también emparejan una respuesta de una expresión con otra que reconstruye el flujo de control a partir de la propia metaprogramación del lenguaje."
 
 #: lessons/languages/lisp.md:89
 msgctxt "s-c08a852d0dbe-0043"
 msgid "Under what circumstances would this terrible idea become reasonable?"
-msgstr ""
+msgstr "¿En qué circunstancias esta idea terrible se volvería razonable?"
 
 #: lessons/languages/lisp.md:91
 msgctxt "s-6a4e0d9d216b-0044"
 msgid "When the \"loop\" is really *a set of independently registered participants* (plug-ins, validators, listeners) and the language gives you a combination rule for them. Using five empty classes to count to five is a stunt; using ⟦CODE_0001⟧ to find the first listener that accepts an event is the intended design."
-msgstr ""
+msgstr "Cuando el \"bucle\" es en realidad *un conjunto de participantes registrados de manera independiente* (complementos, validadores, escuchadores de eventos) y el lenguaje te da una regla para combinarlos. Usar cinco clases vacías para contar hasta cinco es una pirueta; usar ⟦CODE_0001⟧ para encontrar el primer escuchador de eventos que acepta un evento es el diseño previsto."
 
 #: lessons/languages/lisp.md:149
 msgctxt "s-ac0e260e97bf-0045"
 msgid "Computer science behind this page"
-msgstr ""
+msgstr "La informática detrás de esta página"
