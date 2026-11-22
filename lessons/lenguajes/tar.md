@@ -83,14 +83,14 @@ El [README](../../src/tar-gnu-weird/README.md#cómo-funciona-el-truco) contiene 
 - **Un indicador de progreso es una fuente de eventos.** Cuando algo llama a tu código a un ritmo constante, tienes un reloj. Así funcionan los programas orientados a eventos.
 - **Un reloj lógico cuenta eventos, no segundos.** Aquí los pulsos son registros escritos. Nada en la ejecución depende de cuánto dura un segundo.
 - **El flujo de control puede invertirse.** El programa no llama a tar. tar llama al programa.
-- **A layout can set the pace as well as the meaning.** The payload of this archive is all zeros, and its size still decides when everything happens.
-- **Say what a count counts.** A checkpoint counts records. A record is a number of blocks. The same archive gives 21 ticks when created, 10 when listed and 21 when extracted.
+- **Una disposición puede marcar el ritmo además del significado.** El contenido de este archivo consta solo de ceros. Aun así, su tamaño decide cuándo ocurre todo.
+- **Di qué cuenta un conteo.** Un punto de control cuenta registros. Un registro es una cantidad de bloques. El mismo archivo da 21 pulsos al crearlo, 10 al listarlo y 21 al extraerlo.
 
-Tags: `--checkpoint`, `--checkpoint-action=exec` and `TAR_CHECKPOINT` are GNU extensions (**implementation-permitted**), tested on GNU tar 1.34 and 1.35. The exact tick count in list mode is **accidentally exploited** knowledge, and the entry does not use it.
+Etiquetas: `--checkpoint`, `--checkpoint-action=exec` y `TAR_CHECKPOINT` son extensiones GNU (**permitido por la implementación**), probadas en GNU tar 1.34 y 1.35. El número exacto de pulsos en modo de lista es conocimiento **aprovechado por accidente**. La entrada no lo usa.
 
-### Do this in production and you're fired
+### Haz esto en producción y estás despedido
 
-- **It is a progress meter.** If someone changes the blocking factor, your schedule changes with it.
+- **Es un indicador de progreso.** Si alguien cambia el factor de bloqueo, tu calendario cambia con él.
 - **Every tick starts a process.** Do not use a checkpoint as a scheduler. Use a scheduler.
 - **A failing callback is silent to tar.** Look for your own errors. The entry sends them to standard error and exits 3.
 
