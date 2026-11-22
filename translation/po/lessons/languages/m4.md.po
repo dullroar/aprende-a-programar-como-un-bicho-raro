@@ -85,27 +85,27 @@ msgstr "Todo el bucle es la última línea de una macro ([L75-82](⟦DEST_0001�
 #: lessons/languages/m4.md:41
 msgctxt "s-141d13bda0ef-0015"
 msgid "There is no ⟦CODE_0001⟧, no ⟦CODE_0002⟧ and no recursion keyword. There is a macro whose last word is *itself*."
-msgstr ""
+msgstr "No hay ⟦CODE_0001⟧, ni ⟦CODE_0002⟧ ni palabra clave de recursión. Hay una macro cuya última palabra es *ella misma*."
 
 #: lessons/languages/m4.md:43
 msgctxt "s-415f5fa29cf9-0016"
 msgid "How the hell does that work?"
-msgstr ""
+msgstr "¿Cómo demonios funciona eso?"
 
 #: lessons/languages/m4.md:45
 msgctxt "s-f58d282644b3-0017"
 msgid "**Rescanning.** When m4 expands a macro, it pushes the replacement text back onto its *input* and keeps reading. Any macro name in that text is expanded in turn. So ⟦CODE_0001⟧ reads as: do these steps, print a row, then ⟦CODE_0002⟧. If the total is over 40, ⟦CODE_0003⟧ returns the empty string ⟦CODE_0004⟧ and the input runs out. Otherwise it returns the text ⟦CODE_0005⟧, which is pushed back and read as another call. The loop counter is the input stream."
-msgstr ""
+msgstr "**Reescaneo.** Cuando m4 expande una macro, devuelve el texto de reemplazo a su *entrada de datos* y sigue leyendo. A su vez, expande cualquier nombre de macro que aparezca en ese texto. Así, ⟦CODE_0001⟧ significa: haz estos pasos, imprime una fila y luego ⟦CODE_0002⟧. Si el total es más de 40, ⟦CODE_0003⟧ devuelve la cadena de texto vacía ⟦CODE_0004⟧ y la entrada de datos se agota. De lo contrario devuelve el texto ⟦CODE_0005⟧, que vuelve a la entrada y se lee como otra llamada. El contador del bucle es el flujo de entrada de datos."
 
 #: lessons/languages/m4.md:47
 msgctxt "s-ccb7e5439a99-0018"
 msgid "**Why the quotes around ⟦CODE_0001⟧ matter.** m4 expands *arguments before it calls the macro*. If you write ⟦CODE_0002⟧ without the brackets, the call ⟦CODE_0003⟧ is made while collecting the arguments, before ⟦CODE_0004⟧ has decided anything, and it never stops (see [B11](⟦DEST_0005⟧)). The brackets turn the name into text that is only expanded *after* ⟦CODE_0006⟧ chooses it. This is lazy versus eager evaluation, in a language with no values at all."
-msgstr ""
+msgstr "**Por qué importan las comillas alrededor de ⟦CODE_0001⟧.** m4 expande *los argumentos antes de llamar a la macro*. Si escribes ⟦CODE_0002⟧ sin los corchetes, la llamada ⟦CODE_0003⟧ se hace al recopilar los argumentos. Esto sucede antes de que ⟦CODE_0004⟧ haya decidido algo y nunca se detiene (ver [B11](⟦DEST_0005⟧)). Los corchetes convierten el nombre en texto que solo se expande *después* de que ⟦CODE_0006⟧ lo elige. Es la evaluación diferida frente a la evaluación inmediata, en un lenguaje sin valores."
 
 #: lessons/languages/m4.md:49
 msgctxt "s-ad8f2a054ec7-0019"
 msgid "**A random number generator in 32-bit arithmetic.** [⟦CODE_0001⟧](⟦DEST_0002⟧) is the Park-Miller generator ⟦CODE_0003⟧, written with Schrage's trick so that no intermediate value leaves 32 bits: ⟦CODE_0004⟧, plus ⟦CODE_0005⟧ if negative. Naive ⟦CODE_0006⟧ overflows silently in ⟦CODE_0007⟧ (⟦CODE_0008⟧ gives ⟦CODE_0009⟧). The generator was checked against a Python implementation over 20,000 draws."
-msgstr ""
+msgstr "**Un generador de números aleatorios con aritmética de 32 bits.** [⟦CODE_0001⟧](⟦DEST_0002⟧) es el generador de Park-Miller ⟦CODE_0003⟧, escrito con el truco de Schrage para que ningún valor intermedio salga de 32 bits: ⟦CODE_0004⟧, más ⟦CODE_0005⟧ si es negativo. La forma ingenua ⟦CODE_0006⟧ se desborda sin aviso en ⟦CODE_0007⟧ (⟦CODE_0008⟧ da ⟦CODE_0009⟧). El generador se comprobó frente a una implementación en Python con 20,000 sorteos."
 
 #: lessons/languages/m4.md:51
 msgctxt "s-0240966f2176-0020"

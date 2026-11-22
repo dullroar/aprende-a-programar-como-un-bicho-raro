@@ -2231,3 +2231,4 @@
 {"segment_id": "s-2396a1256ac4-0000", "ts": "2026-11-22T01:19:54Z", "findings": ["TRANSLATE: the reply is the English text unchanged"]}
 {"segment_id": "s-633b70115900-0012", "ts": "2026-11-22T01:23:20Z", "findings": ["REGISTER: playful segment H019 has status 'pending' in the humor register"], "playful_note": "Conserva la metáfora sobria del original."}
 {"segment_id": "s-cc9cfaabc50d-0013", "ts": "2026-11-22T01:23:20Z", "findings": [], "playful_note": "Conserva el anuncio teatral del original."}
+{"segment_id": "s-415f5fa29cf9-0016", "ts": "2026-11-22T01:25:24Z", "findings": [], "playful_note": "Conserva la pregunta exasperada con una expresión leve."}
