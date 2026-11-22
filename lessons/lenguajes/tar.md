@@ -48,13 +48,13 @@ Etiquetas: `--to-command` y `--occurrence` son extensiones de GNU (**permitido p
 
 ### Haz esto en producción y estás despedido
 
-- **An archive that runs is a program that arrived as data.** If the operator runs `--to-command` on an archive from a stranger, the stranger's records decide what happens. Here the dispatcher is strict. A careless one is a remote command runner.
-- **Your own format has no tooling.** Nothing but a test keeps the builder and the dispatcher in step.
-- **tar was not built for this.** Real tar jobs are backup, packaging and transport.
+- **Un archivo que se ejecuta es un programa que llegó como datos.** Si el operador ejecuta `--to-command` sobre un archivo de un desconocido, los registros del desconocido deciden qué ocurre. Aquí el despachador es estricto. Uno descuidado ejecuta comandos remotos.
+- **Tu propio formato no tiene herramientas.** Solo una prueba mantiene al constructor y al despachador sincronizados.
+- **tar no se creó para esto.** Las tareas reales de tar son la copia de seguridad, el empaquetado y el transporte.
 
-Legitimate uses: `--to-command` as a filter, such as checksumming each member while you extract. A tar archive as a *container* for a program's data, with a manifest.
+Usos legítimos: `--to-command` como filtro, por ejemplo, para calcular la suma de comprobación de cada miembro al extraerlo. Un archivo tar como *contenedor* de datos de un programa, con un manifiesto.
 
-### Now break it yourself
+### Ahora rómpelo tú
 
 See [exercise B16](../exercises.md#b16-tar-read-the-program-then-run-it-verified).
 

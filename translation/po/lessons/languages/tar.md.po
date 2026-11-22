@@ -160,27 +160,27 @@ msgstr "Haz esto en producción y estás despedido"
 #: lessons/languages/tar.md:51
 msgctxt "s-6f9ad2fc72eb-0030"
 msgid "**An archive that runs is a program that arrived as data.** If the operator runs ⟦CODE_0001⟧ on an archive from a stranger, the stranger's records decide what happens. Here the dispatcher is strict. A careless one is a remote command runner."
-msgstr ""
+msgstr "**Un archivo que se ejecuta es un programa que llegó como datos.** Si el operador ejecuta ⟦CODE_0001⟧ sobre un archivo de un desconocido, los registros del desconocido deciden qué ocurre. Aquí el despachador es estricto. Uno descuidado ejecuta comandos remotos."
 
 #: lessons/languages/tar.md:52
 msgctxt "s-a4f6a78a8d4a-0031"
 msgid "**Your own format has no tooling.** Nothing but a test keeps the builder and the dispatcher in step."
-msgstr ""
+msgstr "**Tu propio formato no tiene herramientas.** Solo una prueba mantiene al constructor y al despachador sincronizados."
 
 #: lessons/languages/tar.md:53
 msgctxt "s-ab7384a7ffe7-0032"
 msgid "**tar was not built for this.** Real tar jobs are backup, packaging and transport."
-msgstr ""
+msgstr "**tar no se creó para esto.** Las tareas reales de tar son la copia de seguridad, el empaquetado y el transporte."
 
 #: lessons/languages/tar.md:55
 msgctxt "s-7ea9e6d0afac-0033"
 msgid "Legitimate uses: ⟦CODE_0001⟧ as a filter, such as checksumming each member while you extract. A tar archive as a *container* for a program's data, with a manifest."
-msgstr ""
+msgstr "Usos legítimos: ⟦CODE_0001⟧ como filtro, por ejemplo, para calcular la suma de comprobación de cada miembro al extraerlo. Un archivo tar como *contenedor* de datos de un programa, con un manifiesto."
 
 #: lessons/languages/tar.md:57
 msgctxt "s-5e3bcdfbf845-0034"
 msgid "Now break it yourself"
-msgstr ""
+msgstr "Ahora rómpelo tú"
 
 #: lessons/languages/tar.md:59
 msgctxt "s-f60e6a00e0b2-0035"

@@ -5857,8 +5857,8 @@
     {
      "en": "Now break it yourself",
      "en_id": "now-break-it-yourself",
-     "es": "Now break it yourself",
-     "es_id": "now-break-it-yourself",
+     "es": "Ahora rómpelo tú",
+     "es_id": "ahora-rómpelo-tú",
      "level": 3,
      "line": 57
     },
@@ -5906,7 +5906,7 @@
      "en": "Now break it yourself",
      "en_id": "now-break-it-yourself-1",
      "es": "Now break it yourself",
-     "es_id": "now-break-it-yourself-1",
+     "es_id": "now-break-it-yourself",
      "level": 3,
      "line": 99
     },
@@ -5953,8 +5953,8 @@
     "how-each-program-runs": "how-each-program-runs",
     "how-the-hell-does-that-work": "cómo-demonios-funciona-eso",
     "how-the-hell-does-that-work-1": "how-the-hell-does-that-work",
-    "now-break-it-yourself": "now-break-it-yourself",
-    "now-break-it-yourself-1": "now-break-it-yourself-1",
+    "now-break-it-yourself": "ahora-rómpelo-tú",
+    "now-break-it-yourself-1": "now-break-it-yourself",
     "program-flow-of-tar-gnu": "program-flow-of-tar-gnu",
     "program-flow-of-tar-gnu-weird": "program-flow-of-tar-gnu-weird",
     "tar": "tar",
