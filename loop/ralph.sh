@@ -300,11 +300,14 @@ print("limit" if rec["usage_limited"] else "recorded")
 PY
 }
 
-iter=$(python3 -I - "$LEDGER" <<'PY'
-import json, pathlib, sys
-path = pathlib.Path(sys.argv[1])
-print(max((json.loads(line)["iteration"] for line in path.read_text().splitlines() if line.strip()),
-          default=0) if path.exists() else 0)
+# Interactive checkpoints can advance STATE.md without a driver usage entry.
+iter=$(python3 -I - "$LEDGER" "$STATE" <<'PY'
+import json, pathlib, re, sys
+ledger, state = map(pathlib.Path, sys.argv[1:])
+last_usage = max((json.loads(line)["iteration"] for line in ledger.read_text().splitlines()
+                  if line.strip()), default=0) if ledger.exists() else 0
+checkpoint = re.search(r"^- \*\*Iteration:\*\*\s+(\d+)\b", state.read_text(), re.M) if state.exists() else None
+print(max(last_usage, int(checkpoint[1]) if checkpoint else 0))
 PY
 ) || exit 2
 result=0
