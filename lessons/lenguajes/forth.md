@@ -49,11 +49,11 @@ Etiquetas: los efectos de pila y las banderas son comportamiento **garantizado**
 ### Haz esto en producción y estás despedido
 
 - **Solo funciona en el nivel superior o en texto procesado con `evaluate` o `included`.** `>in` es la posición de análisis de la línea actual de entrada de datos. Compila el bucle *dentro* de una palabra y no habrá ninguna línea que rebobinar.
-- **Moving one token breaks it silently.** If the `0 0` moves to *after* the `>in @` (`>in @ 0 0 step rewind?`), the anchor is now before the state, so every rewind pushes a fresh `0 0`: the total resets every pass and the program never stops (verified: hundreds of rows, no `# committed` line). A correct-looking program, a runaway loop. Moving `0 0` to the previous line is harmless, because the anchor is still after it.
-- **No tooling will understand it.** Linters, tracers and humans all assume that parse position is not state.
-- **Portability.** Gforth-specific words; `3dup` is not in Gforth 0.7.3, so the file defines it with `2 pick` three times ([L37](../../src/forth-weird/timecards.fs#L37)).
+- **Mover un token lo rompe sin aviso.** Si `0 0` se mueve *después* de `>in @` (`>in @ 0 0 step rewind?`), el ancla queda antes del estado. Por eso, cada rebobinado apila un nuevo `0 0`: el total vuelve a cero en cada pasada y el programa nunca se detiene (verificado: cientos de filas, sin línea `# committed`). Un programa que parece correcto y un bucle desbocado. Mover `0 0` a la línea anterior no causa daño, porque el ancla sigue después de él.
+- **Ninguna herramienta lo entenderá.** Los analizadores, trazadores y humanos suponen que la posición de análisis no es estado.
+- **Portabilidad.** Palabras específicas de Gforth; `3dup` no está en Gforth 0.7.3, así que el archivo la define con `2 pick` tres veces ([L37](../../src/forth-weird/timecards.fs#L37)).
 
-Legitimate uses: interpreters, debuggers and parsing words, where manipulating the input stream is the job.
+Usos legítimos: intérpretes, depuradores y palabras de análisis sintáctico, donde la tarea es manipular el flujo de entrada de datos.
 
 ### Now break it yourself
 

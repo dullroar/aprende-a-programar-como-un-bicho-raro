@@ -135,22 +135,22 @@ msgstr "**Solo funciona en el nivel superior o en texto procesado con ⟦CODE_00
 #: lessons/languages/forth.md:52
 msgctxt "s-595369b0ea3b-0025"
 msgid "**Moving one token breaks it silently.** If the ⟦CODE_0001⟧ moves to *after* the ⟦CODE_0002⟧ (⟦CODE_0003⟧), the anchor is now before the state, so every rewind pushes a fresh ⟦CODE_0004⟧: the total resets every pass and the program never stops (verified: hundreds of rows, no ⟦CODE_0005⟧ line). A correct-looking program, a runaway loop. Moving ⟦CODE_0006⟧ to the previous line is harmless, because the anchor is still after it."
-msgstr ""
+msgstr "**Mover un token lo rompe sin aviso.** Si ⟦CODE_0001⟧ se mueve *después* de ⟦CODE_0002⟧ (⟦CODE_0003⟧), el ancla queda antes del estado. Por eso, cada rebobinado apila un nuevo ⟦CODE_0004⟧: el total vuelve a cero en cada pasada y el programa nunca se detiene (verificado: cientos de filas, sin línea ⟦CODE_0005⟧). Un programa que parece correcto y un bucle desbocado. Mover ⟦CODE_0006⟧ a la línea anterior no causa daño, porque el ancla sigue después de él."
 
 #: lessons/languages/forth.md:53
 msgctxt "s-9e37e2ed6ab6-0026"
 msgid "**No tooling will understand it.** Linters, tracers and humans all assume that parse position is not state."
-msgstr ""
+msgstr "**Ninguna herramienta lo entenderá.** Los analizadores, trazadores y humanos suponen que la posición de análisis no es estado."
 
 #: lessons/languages/forth.md:54
 msgctxt "s-a4cc24bfefcf-0027"
 msgid "**Portability.** Gforth-specific words; ⟦CODE_0001⟧ is not in Gforth 0.7.3, so the file defines it with ⟦CODE_0002⟧ three times ([L37](⟦DEST_0003⟧))."
-msgstr ""
+msgstr "**Portabilidad.** Palabras específicas de Gforth; ⟦CODE_0001⟧ no está en Gforth 0.7.3, así que el archivo la define con ⟦CODE_0002⟧ tres veces ([L37](⟦DEST_0003⟧))."
 
 #: lessons/languages/forth.md:56
 msgctxt "s-05b4789c658c-0028"
 msgid "Legitimate uses: interpreters, debuggers and parsing words, where manipulating the input stream is the job."
-msgstr ""
+msgstr "Usos legítimos: intérpretes, depuradores y palabras de análisis sintáctico, donde la tarea es manipular el flujo de entrada de datos."
 
 #: lessons/languages/forth.md:58
 msgctxt "s-5e3bcdfbf845-0029"
