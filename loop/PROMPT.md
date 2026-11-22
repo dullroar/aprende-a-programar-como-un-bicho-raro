@@ -14,6 +14,7 @@ Your working directory is the root of the Spanish repo. The design is in `transl
 6. **One task per iteration.** Do not start a second task, even if time remains.
 7. **Do not wait for a human.** If a decision is needed, use the documented default in `loop/CONFIG.yaml` or the plan, and append an entry to `loop/decisions-provisional.md` (what, why, alternatives, cost to reverse). Then continue.
 8. **(Part I; Part II narrows it per plan section 4.5.1.)** **Code, terminal output, SQL, identifiers, enum values, YAML keys, URLs, paths, `#Lnn` anchors, Mermaid syntax and node IDs, `[[...]]` and `{{...}}` macros, and the four card categories (`Meetings`, `Coding`, `Debugging`, `Learning`) are never translated.** Their prose context is.
+9. **Shell syntax under `claude -p` (dontAsk mode).** Bash calls that contain variable assignment or expansion (`P=$(...)`, `$VAR`, `$(...)`) are refused and end the iteration with no progress. Write plain commands with literal arguments, one tool call per step; pipes into `head`, `tail`, `wc`, `grep`, `sort` and `sha256sum` are fine. Read `loop/CONFIG.yaml` with the Read tool and use the value literally.
 
 ## Procedure
 
