@@ -1,0 +1,118 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: CHALLENGE.md:1
+msgctxt "s-302cd3434cdf-0000"
+msgid "Come Make Something Beautifully Wrong"
+msgstr "Ven a crear algo bellamente erróneo"
+
+#: CHALLENGE.md:3
+msgctxt "s-ba5c553c940f-0001"
+msgid "**One Statement, Two Semicolons** is an obfuscated-algorithms challenge: take a small, ordinary program, impose an absurd syntactic rule, and make it work anyway. Not merely compile. Work."
+msgstr "**Una sentencia, dos puntos y coma** es un reto de algoritmos ofuscados: toma un programa pequeño y corriente, impón una regla sintáctica absurda y haz que funcione de todos modos. No basta con que compile. Tiene que funcionar."
+
+#: CHALLENGE.md:5
+msgctxt "s-5d01fc3bc757-0002"
+msgid "What started in C# has escaped into Rust, runtime XAML, Java, Kotlin, Python, Go, and four varieties of executable regex: Perl inline-code regex, PCRE2 callout regex, stock ⟦CODE_0001⟧ callouts, and .NET balancing groups. Bring a language, a constraint, or a feature being used for something its designer would politely discourage."
+msgstr "Lo que empezó en C# se ha escapado a Rust, XAML en tiempo de ejecución, Java, Kotlin, Python y Go. Hay cuatro variedades de regex ejecutable: regex de código en línea de Perl, regex con callouts de PCRE2, callouts estándar de ⟦CODE_0001⟧ y grupos de equilibrio de .NET. Trae un lenguaje, una restricción o una característica que se use para algo que su diseñador desaconsejaría con cortesía."
+
+#: CHALLENGE.md:7
+msgctxt "s-ae7d69ef2745-0003"
+msgid "The shared challenge"
+msgstr "El reto compartido"
+
+#: CHALLENGE.md:9
+msgctxt "s-1aabc20f8660-0004"
+msgid "In your language's own flavor of bad judgment:"
+msgstr "Con el sabor particular de mal juicio de tu lenguaje:"
+
+#: CHALLENGE.md:11
+msgctxt "s-ac3ad5dcfa8f-0005"
+msgid "generate fictional time-card entries of 10–19 hours for ⟦DNT_0001⟧, ⟦DNT_0002⟧, ⟦DNT_0003⟧, or ⟦DNT_0004⟧;"
+msgstr "genera tarjetas de horas ficticias, de 10 a 19 horas cada una, para ⟦DNT_0001⟧, ⟦DNT_0002⟧, ⟦DNT_0003⟧ o ⟦DNT_0004⟧;"
+
+#: CHALLENGE.md:12
+msgctxt "s-50940e864edb-0006"
+msgid "keep adding them until the running total exceeds 40;"
+msgstr "sigue añadiéndolas hasta que el total acumulado pase de 40;"
+
+#: CHALLENGE.md:13
+msgctxt "s-a985048ad39a-0007"
+msgid "keep all output local, clearly labeled **⟦DNT_0001⟧**, and completely separate from real time reporting; and"
+msgstr "mantén toda la salida en local, claramente marcada como **⟦DNT_0001⟧**, y completamente separada del reporte real de horas; y"
+
+#: CHALLENGE.md:14
+msgctxt "s-dedf0f4e1c01-0008"
+msgid "display the result through a window, browser, terminal, or whatever else makes sense."
+msgstr "muestra el resultado en una ventana, un navegador, una terminal o lo que tenga más sentido."
+
+#: CHALLENGE.md:16
+msgctxt "s-77afd59f6c96-0009"
+msgid "The mechanism is yours. The ⟦CODE_0001⟧ family uses a bodiless loop. Rust twists iterators and closures into shape. XAML turns parsing into execution. The regex entries make matching, backtracking, callouts, or capture stacks do the heavy lifting. Preserve the behavior, then find the most gloriously inappropriate way your language allows you to express it."
+msgstr "El mecanismo es tuyo. La familia ⟦CODE_0001⟧ usa un bucle sin cuerpo. Rust retuerce iteradores y clausuras (*closures*: funciones que recuerdan las variables de donde se crearon) hasta darles forma. XAML convierte el análisis sintáctico en ejecución. Las entradas de regex hacen que la coincidencia, el retroceso, los callouts o las pilas de captura hagan el trabajo pesado. Conserva el comportamiento y luego busca la manera más gloriosamente inapropiada que tu lenguaje te permita para expresarlo."
+
+#: CHALLENGE.md:18
+msgctxt "s-10b8e18fc83e-0010"
+msgid "Do / don't"
+msgstr "Qué hacer y qué no"
+
+#: CHALLENGE.md:20
+msgctxt "s-0eac7d9bef24-0011"
+msgid "**Do** let side effects carry real weight when the language permits it. Lean on reflection, interpretation, metaprogramming, parsing, execution machinery, or other native weirdness rather than mere syntax. A tiny host that seeds data, launches one operation, or reports a result is fair game; the interesting work should visibly belong to the stunt."
+msgstr "**Haz** que los efectos secundarios carguen con peso real cuando el lenguaje lo permita. Apóyate en la reflexión, la interpretación, la metaprogramación, el análisis sintáctico, la maquinaria de ejecución u otra rareza nativa, en lugar de la mera sintaxis. Un anfitrión diminuto que siembra datos, lanza una operación o informa un resultado es válido. El trabajo interesante debe pertenecer visiblemente a la acrobacia."
+
+#: CHALLENGE.md:22
+msgctxt "s-6c23493467bf-0012"
+msgid "**Don't** hide a normal solution behind one clever expression that calls ⟦CODE_0001⟧ (or the local equivalent). Moving the loops, conditionals, and orchestration into another method, script, or file is not a port; it's a costume change. And this is not a production pattern: no real data, no networked systems, and no pretending unreadability is a virtue outside the game."
+msgstr "**No** escondas una solución normal detrás de una expresión ingeniosa que llame a ⟦CODE_0001⟧ (o a su equivalente local). Mover los bucles, los condicionales y la orquestación a otro método, script o archivo no es una adaptación: es un cambio de disfraz. Y esto no es un patrón de producción: nada de datos reales, nada de sistemas en red y nada de fingir que lo ilegible es una virtud fuera del juego."
+
+#: CHALLENGE.md:24
+msgctxt "s-46abce49bc12-0013"
+msgid "Extra credit"
+msgstr "Puntos extra"
+
+#: CHALLENGE.md:26
+msgctxt "s-188cdc06b25f-0014"
+msgid "Leave ⟦CODE_0001⟧ nearly empty, or make it the launcher for an even worse idea."
+msgstr "Deja ⟦CODE_0001⟧ casi vacío, o conviértelo en el lanzador de una idea todavía peor."
+
+#: CHALLENGE.md:27
+msgctxt "s-26bd4f47e48f-0015"
+msgid "Put control flow somewhere it doesn't belong: a parser, iterator, regex engine, markup document, type system, or build tool."
+msgstr "Pon el flujo de control donde no corresponde: un analizador sintáctico, un iterador, un motor de regex, un documento de marcado, un sistema de tipos o una herramienta de compilación."
+
+#: CHALLENGE.md:28
+msgctxt "s-915a7e37b32e-0016"
+msgid "Make backtracking do all the work, then deliberately return “no match.”"
+msgstr "Haz que el retroceso haga todo el trabajo y luego devuelve a propósito \"sin coincidencia\"."
+
+#: CHALLENGE.md:29
+msgctxt "s-76eca0ab061d-0017"
+msgid "Build or animate a UI at runtime without conventional event-handler plumbing."
+msgstr "Construye o anima una interfaz de usuario en tiempo de ejecución sin el cableado convencional de manejadores de eventos."
+
+#: CHALLENGE.md:30
+msgctxt "s-6f00bc1a5a8e-0018"
+msgid "Add a test that proves the ridiculous constraint is actually real."
+msgstr "Añade una prueba que demuestre que la restricción ridícula es real de verdad."
+
+#: CHALLENGE.md:31
+msgctxt "s-318031470c10-0019"
+msgid "If the language hits a genuine wall, document it precisely. A well-demonstrated limitation is more interesting than cheating around it."
+msgstr "Si el lenguaje choca con un muro genuino, documéntalo con precisión. Una limitación bien demostrada es más interesante que hacer trampa para esquivarla."
+
+#: CHALLENGE.md:33
+msgctxt "s-233982423fff-0020"
+msgid "Make it work. Make it weird."
+msgstr "Haz que funcione. Haz que sea raro."
+
+#: CHALLENGE.md:35
+msgctxt "s-6730ce06e0bc-0021"
+msgid "And whatever you do, don't tell the boss."
+msgstr "Y pase lo que pase, no se lo cuentes al jefe."

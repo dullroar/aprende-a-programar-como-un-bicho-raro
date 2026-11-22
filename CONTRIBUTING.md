@@ -1,30 +1,30 @@
-# Sending in an entry
+# Cómo enviar una entrada
 
-Entries from anyone are welcome. This repository is, on purpose, a collection of programs that run code from places code shouldn't run: regex engines, markup parsers, build tools, a text interpreter's own parse pointer. Because of that, an entry from someone we don't know is treated as untrusted until we have read it, understood it, and run it somewhere it can't hurt anyone. None of this is personal; it is the same review whoever you are.
+Se aceptan entradas de cualquier persona. Este repositorio es, a propósito, una colección de programas que ejecutan código donde no debería ejecutarse. Son motores de regex, analizadores sintácticos de marcado, herramientas de compilación y el puntero de análisis de un intérprete de texto. Por eso tratamos una entrada de alguien desconocido como no confiable. Sigue así hasta que la hemos leído, la hemos entendido y la hemos ejecutado en un lugar donde no pueda hacer daño a nadie. Nada de esto es personal: es la misma revisión seas quien seas.
 
-## What a pull request may contain
+## Qué puede contener una solicitud de cambios (*pull request*)
 
-- **One new folder under `src/`**, and optionally one new row in the results table in `README.md`. Nothing else: no changes to `sandbox/`, `.github/`, the root build files, the Gradle wrapper, or other entries. `sandbox/scope-check.sh` rejects anything outside that.
-- **Text only.** No binaries (compile at check time), no file over 256 KiB, no symlinks or submodules, plain file names (`A-Z a-z 0-9 . _ - /`), and no invisible or direction-changing Unicode characters. APL glyphs and other visible Unicode are fine.
-- **A `README.md`** with a **How the stunt works** section: a plain-English walkthrough of the mechanism. This is the most important part. If we can't follow how your entry works, we can't merge it, however clever it is. In that case we will gladly link to it in your own repository instead (see below).
-- **Frontmatter and computer-science tags at the top of your `README.md`.** The book ["Learn Programming the Weird Way!"](lessons/README.md) is built from this block, so its tables and chapters always match the code. **Tag your challenge with as many comp sci tags as you can. See your sibling challenges for examples!** The full rules are in [How your entry plugs into the book](#how-your-entry-plugs-into-the-book) below. `scope-check.sh` fails an entry whose frontmatter is missing or incomplete.
-- **A check script** that builds the entry, runs it unattended, checks its own rules, and exits non-zero on any failure. Look at any existing `check.sh` for the pattern.
-  - `check.sh` for the Linux sandbox. It runs with **no network**, as an unprivileged user, on a read-only system with a writable scratch folder. Write your demo data under `$XDG_DATA_HOME` (or `mktemp -d`), and finish within 15 minutes.
-  - `check.ps1` for Windows-only entries (WPF and the like). It runs in Windows Sandbox with no network, and restores NuGet packages only from what we already have.
-- **A way for a reviewer to try it safely: a `Dockerfile` or Windows Sandbox instructions.** `scope-check.sh` fails an entry that has neither. Every existing entry has one of them, and it makes your pull request much quicker to review.
-  - **Linux entries: a `Dockerfile`** that builds a small image to run your entry and show its results (`sandbox/container/run-image.sh src/your-entry`). Copy the one from the closest existing entry: it builds in a stage from our toolchain image, then copies the finished program onto one of our tiny runtime bases. It is held to strict rules (no `ADD`, no `RUN` in the runtime stage, only `CC_*` variables in its `ENV`; see [`sandbox/dockerfile-lint.sh`](sandbox/dockerfile-lint.sh)). The gate never builds it, so it is a convenience for people who want to try your entry safely, not a way to bring your own packages. Add a "Run it in a container" section to your README, like the other entries.
-  - **Windows-only entries (WPF and the like): a "Run it in Windows Sandbox" section** in your README, with the exact command (`sandbox\windows\run.ps1 src\your-entry`) and the toolchain it needs. Copy the wording from [`xaml`](src/xaml/README.md#ejecútalo-en-windows-sandbox). The heading must be exactly `## Run it in Windows Sandbox`.
-- Your contribution is under the repository's [MIT license](LICENSE).
+- **Una carpeta nueva dentro de `src/`** y, de forma opcional, una fila nueva en la tabla de resultados de `README.md`. Nada más: ningún cambio en `sandbox/`, `.github/`, los archivos de compilación de la raíz, el *wrapper* de Gradle ni otras entradas. `sandbox/scope-check.sh` rechaza todo lo que quede fuera de eso.
+- **Solo texto.** Sin binarios (se compilan en el momento de la comprobación), sin archivos de más de 256 KiB, sin enlaces simbólicos ni submódulos, con nombres de archivo simples (`A-Z a-z 0-9 . _ - /`) y sin caracteres Unicode invisibles ni que cambien la dirección del texto. Los glifos de APL y otros caracteres Unicode visibles están permitidos.
+- **Un `README.md`** con una sección **Cómo funciona el truco**: un recorrido en lenguaje sencillo del mecanismo. Esta es la parte más importante. Si no podemos seguir cómo funciona tu entrada, no podemos incorporarla, por ingeniosa que sea. En ese caso, con gusto la enlazaremos desde tu propio repositorio (mira más abajo).
+- **Metadatos (*frontmatter*) y etiquetas de informática al inicio de tu `README.md`.** El libro ["Aprende a programar como un bicho raro"](lessons/README.md) se construye a partir de este bloque, así que sus tablas y capítulos siempre coinciden con el código. **Etiqueta tu reto con tantas etiquetas de informática como puedas. ¡Mira los retos hermanos para ver ejemplos!** Las reglas completas están más abajo, en [Cómo encaja tu entrada en el libro](#how-your-entry-plugs-into-the-book). `scope-check.sh` rechaza una entrada cuyo bloque de metadatos falta o está incompleto.
+- **Un script de comprobación** que compila la entrada, la ejecuta sin supervisión, verifica sus propias reglas y termina con un estado de salida distinto de cero ante cualquier fallo. Mira cualquier `check.sh` existente para ver el patrón.
+  - `check.sh` para el entorno aislado (*sandbox*) de Linux, que limita el acceso al sistema anfitrión. Se ejecuta **sin red**, como usuario sin privilegios, en un sistema de solo lectura con una carpeta de trabajo escribible. Escribe tus datos de demostración en `$XDG_DATA_HOME` (o `mktemp -d`) y termina en 15 minutos como máximo.
+  - `check.ps1` para entradas solo de Windows (WPF y similares). Se ejecuta en Windows Sandbox sin red y restaura los paquetes de NuGet únicamente a partir de lo que ya tenemos.
+- **Una forma de que el revisor lo pruebe de forma segura: un `Dockerfile` o instrucciones de Windows Sandbox.** `scope-check.sh` rechaza una entrada que no tenga ninguno de los dos. Toda entrada existente tiene uno, y eso agiliza mucho la revisión de tu solicitud de cambios.
+  - **Entradas de Linux: un `Dockerfile`** que construye una imagen pequeña para ejecutar tu entrada y mostrar sus resultados (`sandbox/container/run-image.sh src/your-entry`). Copia el de la entrada existente más cercana. Compila en una etapa a partir de nuestra imagen de herramientas y luego copia el programa terminado a una de nuestras bases de ejecución diminutas. Se rige por reglas estrictas (sin `ADD`, sin `RUN` en la etapa de ejecución, solo variables `CC_*` en su `ENV`; mira [`sandbox/dockerfile-lint.sh`](sandbox/dockerfile-lint.sh)). La compuerta nunca lo construye, así que es una comodidad para quien quiera probar tu entrada de forma segura, no una manera de traer tus propios paquetes. Añade a tu README una sección "Ejecútalo en un contenedor", como las otras entradas.
+  - **Entradas solo de Windows (WPF y similares): una sección "Ejecútalo en Windows Sandbox"** en tu README, con el comando exacto (`sandbox\windows\run.ps1 src\your-entry`) y las herramientas que necesita. Copia el texto de [`xaml`](src/xaml/README.md#ejecútalo-en-windows-sandbox). El encabezado debe ser exactamente `## Run it in Windows Sandbox`.
+- Tu contribución queda bajo la [licencia MIT](LICENSE) del repositorio.
 
-## How your entry plugs into the book
+## Cómo encaja tu entrada en el libro
 
-This repository is also a textbook, and **your entry's README is the source material for it.** Nobody copies your words into the book by hand. A build script (`lessons/book/build.py`) reads the block at the top of every `src/*/README.md` and generates the computer-science chapters, the comparison tables and the per-concept "In this repo" lists from it. So the block has to be right, and the tags matter: every tag you add puts your entry in front of readers of that concept.
+Este repositorio también es un libro de texto, y **el README de tu entrada es su material de origen.** Nadie copia tus palabras al libro a mano. Un script de compilación (`lessons/book/build.py`) lee el bloque que hay al inicio de cada `src/*/README.md`. Con él genera los capítulos de informática, las tablas comparativas y las listas "En este repositorio" de cada concepto. Por eso el bloque debe ser correcto y las etiquetas importan: cada etiqueta que añades pone tu entrada ante los lectores de ese concepto.
 
-You only edit your own folder. A maintainer then adds the lesson text, regenerates the book and rebuilds the PDF and EPUB. The rest of this section tells you what to write.
+Solo editas tu propia carpeta. Después, un mantenedor añade el texto de la lección, regenera el libro y reconstruye el PDF y el EPUB. El resto de esta sección te dice qué escribir.
 
-### 1. The frontmatter block
+### 1. El bloque de metadatos
 
-The very first thing in your `README.md` is a block between two `---` lines. Copy it from your closest sibling entry in `src/` and change it. This is the one from `src/forth/`:
+Lo primero de tu `README.md` es un bloque entre dos líneas `---`. Cópialo de tu entrada hermana más cercana en `src/` y cámbialo. Este es el de `src/forth/`:
 
 ```yaml
 ---
@@ -41,57 +41,57 @@ tags: [control-flow, stack-data-structure, stack-machine, transaction]
 ---
 ```
 
-| Key | Required | What to write |
+| Clave | Obligatoria | Qué escribir |
 | --- | --- | --- |
-| `name` | yes | The language or tool, as a reader would say it: `"Forth"`, `"GNU sed"`, `".NET regex"`. |
-| `teaches` | yes | One lowercase `that` clause that says what a reader learns. If your README has a `**Teaches you:**` line, use exactly the same words (the build checks this). |
-| `kind` | yes | `idiomatic` (the ordinary way), `weird` (the stunt), or `port` (the same stunt in another language). |
-| `languages` | yes | A list of language ids, in lowercase, from [`lessons/cs-source/languages.txt`](lessons/cs-source/languages.txt): `[forth]`, `[c-sharp, linq]`. List every language the entry is written in or runs on (the host language, the query language, the regex flavor). The book's language index and tables are built from this. If yours is missing, use the nearest id and say so in your pull request. |
-| `lesson` | yes | The lesson page that covers it, relative to `lessons/`, with an optional `#anchor`: `"languages/forth.md"`. If there is no page for your language yet, use the closest one. A maintainer fixes it when they add yours. |
-| `loop-by` | yes | What plays the loop in your entry. Pick one file name from [`lessons/cs-source/roles/`](lessons/cs-source/roles/): for example `loop-statement`, `lazy-demand`, `rewrite-and-rescan`, `self-modifying-control`, `backtracking-search`, `dispatch-and-triggers`, `input-driven`, `document-order`, `bulk-array`. The [comparative chapter](lessons/informatica/09-casos-de-estudio-comparativos.md) shows what each one means. |
-| `evaluation` | yes | The strategy that drives the main computation: `eager`, `lazy`, `deferred`, `rewriting`, `search` or `declarative`. Describe embedded operations separately. |
-| `assurance` | yes | The *weakest necessary dependency* of the trick: `guaranteed` (a named specification or API documents the behavior), `implementation-permitted` (a particular implementation allows it) or `accidentally-exploited` (the trick requires an unpromised behavior). Explain what supports each individual claim, including the scope of a documented API guarantee. The [intro](lessons/introduccion.md#three-kinds-of-knowledge) explains the three. |
-| `tags` | yes | A list of computer-science concepts. See below. |
-| `pairs-with` | no | Your closest sibling entry: the ordinary version of a weird one, or the other way round. |
-| `analogies`, `counterexamples` | no | Concept ids (the same vocabulary as `tags`). Use `tags` only for ideas your entry **demonstrates**. Use `analogies` for an idea your entry *resembles* without being an instance of it (a Kotlin `generateSequence` is not a coroutine, but it is a cousin). Use `counterexamples` for an idea your entry shows by *not* being it (a closure is not a continuation). An entry can relate to a concept in only one of the three ways. The concept's "In this repo" table says which. |
-| `machine`, `state` | yes | The two sentences from the book's "name the machine" table: *what machine is your entry really?* and *where does its state live?* Every entry gives both, so the comparison tables have no blank cell. If your entry is an ordinary program with nothing hidden, say so in words: ``machine: "Ordinary: a `while` loop that draws first and saves afterwards"``. |
+| `name` | sí | El lenguaje o la herramienta, como lo diría un lector: `"Forth"`, `"GNU sed"`, `".NET regex"`. |
+| `teaches` | sí | Una cláusula `that` en minúsculas que diga qué aprende un lector. Si tu README tiene una línea `**Teaches you:**`, usa exactamente las mismas palabras (la compilación lo comprueba). |
+| `kind` | sí | `idiomatic` (la forma ordinaria), `weird` (la acrobacia) o `port` (la misma acrobacia en otro lenguaje). |
+| `languages` | sí | Una lista de identificadores de lenguaje, en minúsculas, tomados de [`lessons/cs-source/languages.txt`](lessons/cs-source/languages.txt): `[forth]`, `[c-sharp, linq]`. Enumera todos los lenguajes en que está escrita la entrada o sobre los que se ejecuta (el lenguaje anfitrión, el lenguaje de consultas, la variante de regex). El índice de lenguajes y las tablas del libro se construyen a partir de esto. Si falta el tuyo, usa el identificador más cercano y dilo en tu solicitud de cambios. |
+| `lesson` | sí | La página de lección que lo cubre, relativa a `lessons/`, con un `#anchor` opcional: `"languages/forth.md"`. Si todavía no hay página para tu lenguaje, usa la más cercana. Un mantenedor la corrige cuando añada la tuya. |
+| `loop-by` | sí | Lo que hace de bucle en tu entrada. Elige un nombre de archivo de [`lessons/cs-source/roles/`](lessons/cs-source/roles/); por ejemplo `loop-statement`, `lazy-demand`, `rewrite-and-rescan`, `self-modifying-control`, `backtracking-search`, `dispatch-and-triggers`, `input-driven`, `document-order`, `bulk-array`. El [capítulo comparativo](lessons/informatica/09-casos-de-estudio-comparativos.md) muestra qué significa cada uno. |
+| `evaluation` | sí | La estrategia que conduce el cálculo principal: `eager`, `lazy`, `deferred`, `rewriting`, `search` o `declarative`. Describe aparte las operaciones incrustadas. |
+| `assurance` | sí | La *dependencia necesaria más débil* del truco: `guaranteed` (una especificación o API con nombre documenta el comportamiento), `implementation-permitted` (una implementación concreta lo permite) o `accidentally-exploited` (el truco exige un comportamiento no prometido). Explica qué respalda cada afirmación individual, incluido el ámbito de una garantía documentada de la API. La [introducción](lessons/introduccion.md#tres-tipos-de-conocimiento) explica las tres. |
+| `tags` | sí | Una lista de conceptos de informática. Mira más abajo. |
+| `pairs-with` | no | Tu entrada hermana más cercana: la versión ordinaria de una entrada rara, o al revés. |
+| `analogies`, `counterexamples` | no | Identificadores de concepto (el mismo vocabulario que `tags`). Usa `tags` solo para ideas que tu entrada **demuestra**. Usa `analogies` para una idea a la que tu entrada *se parece* sin ser una instancia de ella (un `generateSequence` de Kotlin no es una corrutina, pero es un primo). Usa `counterexamples` para una idea que tu entrada muestra por *no ser* eso (una clausura, *closure*: una función que recuerda las variables de donde se creó, no es una continuación). Una entrada puede relacionarse con un concepto de una sola de las tres maneras. La tabla "En este repositorio" del concepto dice cuál. |
+| `machine`, `state` | sí | Las dos frases de la tabla "nombra la máquina" del libro: *¿qué máquina es en realidad tu entrada?* y *¿dónde vive su estado?* Toda entrada da ambas, para que las tablas comparativas no tengan celdas vacías. Si tu entrada es un programa ordinario sin nada oculto, dilo con palabras: ``machine: "Ordinary: a `while` loop that draws first and saves afterwards"``. |
 
-The block is a small, strict subset of YAML, so no parser library is needed: `key: value`, `key: "quoted text"` and `key: [a, b]`. Put text that contains a colon or a `#` in quotes. Comment lines start with `#`. Nothing else is allowed, and the build tells you the line it did not understand.
+El bloque es un subconjunto pequeño y estricto de YAML, así que no hace falta ninguna biblioteca de analizador sintáctico: `key: value`, `key: "quoted text"` y `key: [a, b]`. Pon entre comillas el texto que contenga dos puntos o un `#`. Las líneas de comentario empiezan con `#`. No se permite nada más, y la compilación te dice la línea que no entendió.
 
-### 2. Tags and languages: the book's vocabularies
+### 2. Etiquetas y lenguajes: los vocabularios del libro
 
-Tags connect your entry to the book's concepts: control flow, lazy evaluation, backtracking, homoiconicity, transactions, and so on. **Use as many as honestly apply.** A rule of thumb: if you had to understand an idea to write the entry, or if the entry makes a good example of it, tag it.
+Las etiquetas conectan tu entrada con los conceptos del libro: flujo de control, evaluación perezosa, retroceso, homoiconicidad, transacciones y otros. **Usa tantas como apliquen con honestidad.** Una regla práctica: si tuviste que entender una idea para escribir la entrada, o si la entrada es un buen ejemplo de ella, etiquétala.
 
-- The vocabulary is the list of file names in [`lessons/cs-source/concepts/`](lessons/cs-source/concepts/). The [concept index](lessons/informatica/README.md#concept-index) shows each tag with its chapter and the entries that already use it. Your sibling entries are the best examples.
-- Spell a tag exactly like its file name, without `.md`: `reflection-and-metaprogramming`.
-- **Do not edit `lessons/`.** If you need a concept that does not exist, use the nearest tag and say in your pull request which concept is missing. A maintainer decides whether to add it. `scope-check.sh` only prints a note for an unknown tag, but the book build fails until a maintainer adds the concept or fixes the tag.
-- Languages work the same way, with one list: [`lessons/cs-source/languages.txt`](lessons/cs-source/languages.txt). A *language* says what the entry is written in or runs on. A *tag* says which computer-science idea it shows. The book's **Index** (the last chapter) is built from both, so an entry with the right languages and tags shows up everywhere a reader would look for it.
-- **Do not tag to make a concept look used.** A concept that no entry honestly demonstrates is grounded some other way: an analogy, a counterexample, a statement that it applies to every entry (`applies-to`), or an exercise. `python lessons/book/build.py --orphans` lists how every concept is grounded and fails if one has nothing behind it.
-- Each concept page explains *why it exists, why it is used, when to use it and when not to*, with links to Wikipedia and other long-lived, freely reusable sources. Read the ones you tag, and check that your entry really is an example.
+- El vocabulario es la lista de nombres de archivo de [`lessons/cs-source/concepts/`](lessons/cs-source/concepts/). El [índice de conceptos](lessons/informatica/README.md#concept-index) muestra cada etiqueta con su capítulo y las entradas que ya la usan. Tus entradas hermanas son los mejores ejemplos.
+- Escribe una etiqueta exactamente como su nombre de archivo, sin `.md`: `reflection-and-metaprogramming`.
+- **No edites `lessons/`.** Si necesitas un concepto que no existe, usa la etiqueta más cercana y di en tu solicitud de cambios qué concepto falta. Un mantenedor decide si lo añade. `scope-check.sh` solo imprime una nota ante una etiqueta desconocida, pero la compilación del libro falla hasta que un mantenedor añade el concepto o corrige la etiqueta.
+- Los lenguajes funcionan igual, con una sola lista: [`lessons/cs-source/languages.txt`](lessons/cs-source/languages.txt). Un *lenguaje* dice en qué está escrita la entrada o sobre qué se ejecuta. Una *etiqueta* dice qué idea de informática muestra. El **Índice** del libro (el último capítulo) se construye con ambos. Por eso una entrada con los lenguajes y las etiquetas correctos aparece donde un lector la buscaría.
+- **No etiquetes para que un concepto parezca usado.** Un concepto que ninguna entrada demuestra con honestidad se fundamenta de otra manera: una analogía, un contraejemplo, una declaración de que se aplica a toda entrada (`applies-to`) o un ejercicio. `python lessons/book/build.py --orphans` lista cómo se fundamenta cada concepto y falla si alguno no tiene nada detrás.
+- Cada página de concepto explica *por qué existe, por qué se usa, cuándo usarlo y cuándo no*, con enlaces a Wikipedia y a otras fuentes duraderas y de libre reutilización. Lee las de las etiquetas que uses y comprueba que tu entrada de verdad es un ejemplo.
 
-### 3. The section headings every README shares
+### 3. Los encabezados de sección que todos los README comparten
 
-All entries use the **same section titles**, so a reader (and the book, and links from other pages) always knows where to look. Use these titles exactly, as `## ` headings. Do not invent synonyms such as "How it works" or "Fine print".
+Todas las entradas usan los **mismos títulos de sección**, así que un lector, el libro y los enlaces de otras páginas siempre saben dónde mirar. Usa estos títulos exactamente, como encabezados `## `. No inventes sinónimos como "Cómo funciona" o "Letra pequeña".
 
-| Heading | Required | What goes in it |
+| Encabezado | Obligatorio | Qué contiene |
 | --- | --- | --- |
-| `# Title` | yes | One title line. Optionally follow it with a `**Teaches you:**` sentence, then a `DEMO ONLY` notice (your data is fictional and never touches a real system) and a short introduction: what the entry does, and the constraint it plays under. |
-| `## Run it` | yes | How to run it on your own machine. |
-| `## Run it in a container` or `## Run it in Windows Sandbox` | yes, one of them | See the Dockerfile rule above. The Windows heading is checked word for word. |
-| `## Program Flow` | yes | One Mermaid diagram of **how this program runs**, and two short paragraphs. See [Program Flow: a picture of the machine](#program-flow-a-picture-of-the-machine) below. Put it just before `## How the stunt works` |
-| `## How the stunt works` | yes | The plain-English mechanism, and the most important section. Say where the program's state lives, what plays the loop and what plays the stop rule. If you are a "weird" entry, also say what the ordinary version would look like. Put sub-steps under `###` headings. |
-| ``## What `check.sh` enforces`` | yes (``## What `check.ps1` enforces`` for a Windows check script) | The rules your check script tries to break. |
-| `## Gotchas worth knowing` | yes | The walls you hit, the parts that depend on one implementation, and anything that surprised you. Mark each trick as guaranteed, implementation-permitted or accidentally exploited, the same words as the `assurance` key. |
+| `# Title` | sí | Una línea de título. Opcionalmente, sigue con una frase `**Teaches you:**`, luego un aviso `DEMO ONLY` (tus datos son ficticios y nunca tocan un sistema real) y una introducción breve: qué hace la entrada y la restricción con que juega. |
+| `## Run it` | sí | Cómo ejecutarla en tu propia máquina. |
+| `## Run it in a container` o `## Run it in Windows Sandbox` | sí, uno de los dos | Mira la regla del Dockerfile más arriba. El encabezado de Windows se comprueba palabra por palabra. |
+| `## Program Flow` | sí | Un diagrama de Mermaid de **cómo se ejecuta este programa**, y dos párrafos breves. Mira [Flujo del programa: una imagen de la máquina](#program-flow-a-picture-of-the-machine) más abajo. Ponlo justo antes de `## How the stunt works` |
+| `## How the stunt works` | sí | El mecanismo en lenguaje sencillo, y la sección más importante. Di dónde vive el estado del programa, qué hace de bucle y qué hace de regla de parada. Si tu entrada es "rara", di también cómo sería la versión ordinaria. Pon los subpasos bajo encabezados `###`. |
+| ``## What `check.sh` enforces`` | sí (``## What `check.ps1` enforces`` para un script de comprobación de Windows) | Las reglas que tu script de comprobación intenta romper. |
+| `## Gotchas worth knowing` | sí | Los muros con los que chocaste, las partes que dependen de una sola implementación y todo lo que te sorprendió. Marca cada truco como garantizado, permitido por la implementación o aprovechado por accidente, con las mismas palabras que la clave `assurance`. |
 
-These optional headings also have fixed titles. Use them when they fit: `## What it does`, `## Why this is weird` (or `## Why this is idiomatic`, for the ordinary version of a weird entry), `## What you can learn`, `## Layout`, `## Format and lint`. Add any other `##` section your entry needs under its own, specific title.
+Estos encabezados opcionales también tienen títulos fijos. Úsalos cuando encajen: `## What it does`, `## Why this is weird` (o `## Why this is idiomatic`, para la versión ordinaria de una entrada rara), `## What you can learn`, `## Layout`, `## Format and lint`. Añade cualquier otra sección `##` que tu entrada necesite, con su propio título específico.
 
-The order above is the recommended order, but it is not enforced. `sandbox/scope-check.sh` fails a new entry that lacks one of the required headings. The earliest one-statement ports (Go, Java, Kotlin, Python and Rust) have no check script, so they have no check section; a new entry must have both.
+El orden de arriba es el recomendado, pero no se impone. `sandbox/scope-check.sh` rechaza una entrada nueva a la que le falte alguno de los encabezados obligatorios. Las primeras adaptaciones de una sentencia (Go, Java, Kotlin, Python y Rust) no tienen script de comprobación, así que no tienen sección de comprobación. Una entrada nueva debe tener ambos.
 
-### Program Flow: a picture of the machine
+### Flujo del programa: una imagen de la máquina
 
-Every README has exactly one `## Program Flow` section. It answers **"what is the runtime, interpreter, compiler, scheduler or language feature actually doing that makes this program work?"** It is not a picture of the task (the book’s intro shows the task and lists implementation differences). If your diagram could be pasted unchanged into ten other READMEs, it is not teaching your entry's point.
+Todo README tiene exactamente una sección `## Program Flow`. Responde **"¿qué hace en realidad el entorno de ejecución, el intérprete, el compilador, el planificador o la función del lenguaje que hace funcionar este programa?"** No es una imagen de la tarea (la introducción del libro muestra la tarea y lista las diferencias de implementación). Si tu diagrama pudiera pegarse sin cambios en otros diez README, no está enseñando el punto de tu entrada.
 
-The section is exactly this, and nothing else (no sub-headings):
+La sección es exactamente esto y nada más (sin subencabezados):
 
 ````markdown
 ## Program Flow
@@ -110,28 +110,28 @@ flowchart TD
 **Why this mechanism matters:** two to four sentences.
 ````
 
-- **Pick the diagram type that fits the machine.** `flowchart` for branches and loops, `sequenceDiagram` for callbacks, dispatch and who-calls-whom, `stateDiagram-v2` for a state that changes (a `GO TO` target, a parse pointer), a flowchart of data and demand for lazy evaluation. Do not draw a `while` loop for a program that has none. The build accepts any diagram family that Mermaid can render.
-- **Draw what runs.** Read the source and run it first. Do not depict something the program does not do, and do not copy the task description.
-- **Keep it small.** About 5 to 10 nodes or messages, labels under about 60 characters. Draw decisions as hexagons (`{{"text"}}`): a diamond grows too tall around its text. No HTML tags in labels, no colors that carry meaning, no `;` in a sequence-diagram message (it ends the statement).
-- **`accTitle` and `accDescr` are required.** The first is the figure's caption and the second is its alt text.
-- **Links** to other files are fine (they are re-aimed when the section is copied into a lesson page). Links to a heading in your own README are not.
-- **The build checks it.** `python lessons/book/build.py --check` checks the section's structure. `python lessons/book/build.py --check-diagrams` renders every diagram and fails if one cannot be drawn, or would print smaller than about 8.4 pt on a Letter page. If your diagram is too tall or wide, shorten the labels or use fewer nodes. See [`lessons/book/README.md`](lessons/book/README.md#diagramas) for the one-time setup.
+- **Elige el tipo de diagrama que encaje con la máquina.** `flowchart` para ramas y bucles, `sequenceDiagram` para funciones de devolución de llamada (*callbacks*: funciones que entregas para que otro código las llame después), despacho y quién llama a quién, `stateDiagram-v2` para un estado que cambia (un destino de `GO TO`, un puntero de análisis) y un diagrama de flujo de datos y demanda para la evaluación perezosa. No dibujes un bucle `while` para un programa que no lo tiene. La compilación acepta cualquier familia de diagramas que Mermaid pueda dibujar.
+- **Dibuja lo que se ejecuta.** Lee el código fuente y ejecútalo primero. No muestres algo que el programa no hace, y no copies la descripción de la tarea.
+- **Hazlo pequeño.** Aproximadamente de 5 a 10 nodos o mensajes, con etiquetas de menos de unos 60 caracteres. Dibuja las decisiones como hexágonos (`{{"text"}}`): un rombo crece demasiado alto alrededor de su texto. Sin etiquetas HTML en los textos, sin colores que lleven significado y sin `;` en un mensaje de diagrama de secuencia (termina la sentencia).
+- **`accTitle` y `accDescr` son obligatorios.** El primero es el pie de la figura y el segundo es su texto alternativo.
+- **Los enlaces** a otros archivos están bien (se reorientan cuando la sección se copia a una página de lección). Los enlaces a un encabezado de tu propio README no.
+- **La compilación lo comprueba.** `python lessons/book/build.py --check` comprueba la estructura de la sección. `python lessons/book/build.py --check-diagrams` dibuja cada diagrama y falla si alguno no se puede dibujar o si se imprimiría a menos de unos 8.4 pt en una página Letter. Si tu diagrama es demasiado alto o ancho, acorta las etiquetas o usa menos nodos. Mira [`lessons/book/README.md`](lessons/book/README.md#diagramas) para la configuración de una sola vez.
 
-### 4. Voice and tone
+### 4. Voz y tono
 
-Follow the [house style](guia-de-estilo.md) for README prose, lesson text and study guides. Give readers a concrete example and keep the explanation clear for readers who use a translator.
+Sigue la [guía de estilo](guia-de-estilo.md) para la prosa de los README, el texto de las lecciones y las guías de estudio. Da a los lectores un ejemplo concreto y mantén la explicación clara para lectores que usan un traductor.
 
-### 5. Check it before you send it
+### 5. Compruébalo antes de enviarlo
 
-Run `python lessons/book/build.py --check` from the repository root (it needs [pandoc](https://pandoc.org)). It validates every entry's frontmatter and tags, checks that the generated book pages are up to date, builds the book and verifies every internal link. You will see a clear message that names the file and the line. Fix problems in your own folder. If the only message is about a tag or role that does not exist yet, send the pull request anyway and explain, as described above.
+Ejecuta `python lessons/book/build.py --check` desde la raíz del repositorio (necesita [pandoc](https://pandoc.org)). Valida el bloque de metadatos y las etiquetas de cada entrada, comprueba que las páginas generadas del libro estén al día, compila el libro y verifica cada enlace interno. Verás un mensaje claro que nombra el archivo y la línea. Corrige los problemas en tu propia carpeta. Si el único mensaje trata de una etiqueta o un papel que aún no existe, envía la solicitud de cambios de todos modos y explícalo, como se describe más arriba.
 
-## Your language's toolchain
+## Las herramientas de tu lenguaje
 
-Entries run only with what is already in [`sandbox/linux/Dockerfile`](sandbox/linux/Dockerfile): GNU APL, Gforth, GHC, Perl, PCRE2, sed, Make, CMake, a C compiler, .NET 10 and SQLite. If yours needs something else, say so in the pull request and tell us where its official distribution lives. We add it to the image ourselves, in a separate commit, pinned to a version and checksum. Please don't send install scripts, and don't ask us to install an interpreter from your own repository.
+Las entradas se ejecutan solo con lo que ya está en [`sandbox/linux/Dockerfile`](sandbox/linux/Dockerfile): GNU APL, Gforth, GHC, Perl, PCRE2, sed, Make, CMake, un compilador de C, .NET 10 y SQLite. Si la tuya necesita algo más, dilo en la solicitud de cambios e indícanos dónde está su distribución oficial. Lo añadimos nosotros a la imagen, en un *commit* de Git aparte (un punto guardado del historial del código), fijado a una versión y a una suma de verificación. Por favor, no envíes scripts de instalación ni nos pidas instalar un intérprete desde tu propio repositorio.
 
-## Before you open the pull request
+## Antes de abrir la solicitud de cambios
 
-Set up Docker (and Windows Sandbox, for Windows entries) once, following [`SANDBOX-SETUP.md`](SANDBOX-SETUP.md). Then, from a Linux, macOS or WSL shell (or Git Bash with Docker Desktop):
+Configura Docker (y Windows Sandbox, para las entradas de Windows) una sola vez, siguiendo [`SANDBOX-SETUP.md`](SANDBOX-SETUP.md). Luego, desde un intérprete de comandos (*shell*) de Linux, macOS o WSL (o Git Bash con Docker Desktop):
 
 ```bash
 sandbox/run.sh src/your-entry                 # the same sandbox the gate uses
@@ -139,15 +139,15 @@ sandbox/container/run-image.sh src/your-entry # if you ship a Dockerfile: see wh
 sandbox/scope-check.sh origin/master HEAD     # the same scope rules, plus the reviewer report
 ```
 
-The reviewer report at the end of `scope-check.sh` lists every line that touches the network, starts a process, evaluates code, or looks like an encoded blob. It's normal for entries in this repository to have some; expect your README to explain each one.
+El informe para el revisor al final de `scope-check.sh` lista cada línea que toca la red, inicia un proceso, evalúa código o parece un bloque de datos codificado. Es normal que las entradas de este repositorio tengan algunas. Espera explicar cada una en tu README.
 
-## What happens next
+## Qué pasa después
 
-1. `scope-check.sh` runs against your pull request without checking it out.
-2. People (and a few AI reviewers, each asked to translate your code into plain English and list everything it can touch) read the code alongside your README.
-3. A maintainer runs the gate: your check, in the sandbox, on a throwaway machine.
-4. Then one of two things happens:
-   - **Merged**, with credit in the results table.
-   - **Linked**: we add a row pointing to your own repository at a specific commit. This is not a rejection. It means we enjoyed it but couldn't vouch for every line, usually because the language is beyond what we can read with confidence.
+1. `scope-check.sh` se ejecuta contra tu solicitud de cambios sin descargarla.
+2. Personas y algunos revisores de IA leen el código junto con tu README. A cada revisor de IA se le pide una traducción de tu código a lenguaje sencillo y una lista de todo lo que puede tocar.
+3. Un mantenedor ejecuta la compuerta: tu comprobación, en el entorno aislado, en una máquina desechable.
+4. Luego pasa una de dos cosas:
+   - **Incorporada**, con crédito en la tabla de resultados.
+   - **Enlazada**: añadimos una fila que apunta a tu propio repositorio en un *commit* de Git concreto. Esto no es un rechazo. Significa que lo disfrutamos, pero no podemos responder por cada línea, normalmente porque el lenguaje está más allá de lo que podemos leer con confianza.
 
-A passing gate means your entry built, ran and behaved in a sandbox. It is not, on its own, why we merge. Understanding it is.
+Una compuerta superada significa que tu entrada compiló, se ejecutó y se comportó bien en un entorno aislado. Por sí sola, no es la razón por la que incorporamos una entrada. La razón es entenderla.

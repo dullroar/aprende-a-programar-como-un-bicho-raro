@@ -1,0 +1,396 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: CONTRIBUTING.md:1
+msgctxt "s-b89d1b286094-0000"
+msgid "Sending in an entry"
+msgstr "Cómo enviar una entrada"
+
+#: CONTRIBUTING.md:3
+msgctxt "s-8a10178b7340-0001"
+msgid "Entries from anyone are welcome. This repository is, on purpose, a collection of programs that run code from places code shouldn't run: regex engines, markup parsers, build tools, a text interpreter's own parse pointer. Because of that, an entry from someone we don't know is treated as untrusted until we have read it, understood it, and run it somewhere it can't hurt anyone. None of this is personal; it is the same review whoever you are."
+msgstr "Se aceptan entradas de cualquier persona. Este repositorio es, a propósito, una colección de programas que ejecutan código donde no debería ejecutarse. Son motores de regex, analizadores sintácticos de marcado, herramientas de compilación y el puntero de análisis de un intérprete de texto. Por eso tratamos una entrada de alguien desconocido como no confiable. Sigue así hasta que la hemos leído, la hemos entendido y la hemos ejecutado en un lugar donde no pueda hacer daño a nadie. Nada de esto es personal: es la misma revisión seas quien seas."
+
+#: CONTRIBUTING.md:5
+msgctxt "s-5312daf6a7d1-0002"
+msgid "What a pull request may contain"
+msgstr "Qué puede contener una solicitud de cambios (*pull request*)"
+
+#: CONTRIBUTING.md:7
+msgctxt "s-891aa6501088-0003"
+msgid "**One new folder under ⟦CODE_0001⟧**, and optionally one new row in the results table in ⟦CODE_0002⟧. Nothing else: no changes to ⟦CODE_0003⟧, ⟦CODE_0004⟧, the root build files, the Gradle wrapper, or other entries. ⟦CODE_0005⟧ rejects anything outside that."
+msgstr "**Una carpeta nueva dentro de ⟦CODE_0001⟧** y, de forma opcional, una fila nueva en la tabla de resultados de ⟦CODE_0002⟧. Nada más: ningún cambio en ⟦CODE_0003⟧, ⟦CODE_0004⟧, los archivos de compilación de la raíz, el *wrapper* de Gradle ni otras entradas. ⟦CODE_0005⟧ rechaza todo lo que quede fuera de eso."
+
+#: CONTRIBUTING.md:8
+msgctxt "s-77ecaf795fa7-0004"
+msgid "**Text only.** No binaries (compile at check time), no file over 256 KiB, no symlinks or submodules, plain file names (⟦CODE_0001⟧), and no invisible or direction-changing Unicode characters. APL glyphs and other visible Unicode are fine."
+msgstr "**Solo texto.** Sin binarios (se compilan en el momento de la comprobación), sin archivos de más de 256 KiB, sin enlaces simbólicos ni submódulos, con nombres de archivo simples (⟦CODE_0001⟧) y sin caracteres Unicode invisibles ni que cambien la dirección del texto. Los glifos de APL y otros caracteres Unicode visibles están permitidos."
+
+#: CONTRIBUTING.md:9
+msgctxt "s-c0022b702d12-0005"
+msgid "**A ⟦CODE_0001⟧** with a **How the stunt works** section: a plain-English walkthrough of the mechanism. This is the most important part. If we can't follow how your entry works, we can't merge it, however clever it is. In that case we will gladly link to it in your own repository instead (see below)."
+msgstr "**Un ⟦CODE_0001⟧** con una sección **Cómo funciona el truco**: un recorrido en lenguaje sencillo del mecanismo. Esta es la parte más importante. Si no podemos seguir cómo funciona tu entrada, no podemos incorporarla, por ingeniosa que sea. En ese caso, con gusto la enlazaremos desde tu propio repositorio (mira más abajo)."
+
+#: CONTRIBUTING.md:10
+msgctxt "s-c03e5a240da0-0006"
+msgid "**Frontmatter and computer-science tags at the top of your ⟦CODE_0001⟧.** The book [\"Learn Programming the Weird Way!\"](⟦DEST_0002⟧) is built from this block, so its tables and chapters always match the code. **Tag your challenge with as many comp sci tags as you can. See your sibling challenges for examples!** The full rules are in [How your entry plugs into the book](⟦DEST_0003⟧) below. ⟦CODE_0004⟧ fails an entry whose frontmatter is missing or incomplete."
+msgstr "**Metadatos (*frontmatter*) y etiquetas de informática al inicio de tu ⟦CODE_0001⟧.** El libro [\"Aprende a programar como un bicho raro\"](⟦DEST_0002⟧) se construye a partir de este bloque, así que sus tablas y capítulos siempre coinciden con el código. **Etiqueta tu reto con tantas etiquetas de informática como puedas. ¡Mira los retos hermanos para ver ejemplos!** Las reglas completas están más abajo, en [Cómo encaja tu entrada en el libro](⟦DEST_0003⟧). ⟦CODE_0004⟧ rechaza una entrada cuyo bloque de metadatos falta o está incompleto."
+
+#: CONTRIBUTING.md:11
+msgctxt "s-cc5dd9c4b3b2-0007"
+msgid "**A check script** that builds the entry, runs it unattended, checks its own rules, and exits non-zero on any failure. Look at any existing ⟦CODE_0001⟧ for the pattern."
+msgstr "**Un script de comprobación** que compila la entrada, la ejecuta sin supervisión, verifica sus propias reglas y termina con un estado de salida distinto de cero ante cualquier fallo. Mira cualquier ⟦CODE_0001⟧ existente para ver el patrón."
+
+#: CONTRIBUTING.md:12
+msgctxt "s-4ace7680876d-0008"
+msgid "⟦CODE_0001⟧ for the Linux sandbox. It runs with **no network**, as an unprivileged user, on a read-only system with a writable scratch folder. Write your demo data under ⟦CODE_0002⟧ (or ⟦CODE_0003⟧), and finish within 15 minutes."
+msgstr "⟦CODE_0001⟧ para el entorno aislado (*sandbox*) de Linux, que limita el acceso al sistema anfitrión. Se ejecuta **sin red**, como usuario sin privilegios, en un sistema de solo lectura con una carpeta de trabajo escribible. Escribe tus datos de demostración en ⟦CODE_0002⟧ (o ⟦CODE_0003⟧) y termina en 15 minutos como máximo."
+
+#: CONTRIBUTING.md:13
+msgctxt "s-acb8429b4da8-0009"
+msgid "⟦CODE_0001⟧ for Windows-only entries (WPF and the like). It runs in Windows Sandbox with no network, and restores NuGet packages only from what we already have."
+msgstr "⟦CODE_0001⟧ para entradas solo de Windows (WPF y similares). Se ejecuta en Windows Sandbox sin red y restaura los paquetes de NuGet únicamente a partir de lo que ya tenemos."
+
+#: CONTRIBUTING.md:14
+msgctxt "s-422414b67837-0010"
+msgid "**A way for a reviewer to try it safely: a ⟦CODE_0001⟧ or Windows Sandbox instructions.** ⟦CODE_0002⟧ fails an entry that has neither. Every existing entry has one of them, and it makes your pull request much quicker to review."
+msgstr "**Una forma de que el revisor lo pruebe de forma segura: un ⟦CODE_0001⟧ o instrucciones de Windows Sandbox.** ⟦CODE_0002⟧ rechaza una entrada que no tenga ninguno de los dos. Toda entrada existente tiene uno, y eso agiliza mucho la revisión de tu solicitud de cambios."
+
+#: CONTRIBUTING.md:15
+msgctxt "s-8996e850c89b-0011"
+msgid "**Linux entries: a ⟦CODE_0001⟧** that builds a small image to run your entry and show its results (⟦CODE_0002⟧). Copy the one from the closest existing entry: it builds in a stage from our toolchain image, then copies the finished program onto one of our tiny runtime bases. It is held to strict rules (no ⟦CODE_0003⟧, no ⟦CODE_0004⟧ in the runtime stage, only ⟦CODE_0005⟧ variables in its ⟦CODE_0006⟧; see [⟦CODE_0007⟧](⟦DEST_0008⟧)). The gate never builds it, so it is a convenience for people who want to try your entry safely, not a way to bring your own packages. Add a \"Run it in a container\" section to your README, like the other entries."
+msgstr "**Entradas de Linux: un ⟦CODE_0001⟧** que construye una imagen pequeña para ejecutar tu entrada y mostrar sus resultados (⟦CODE_0002⟧). Copia el de la entrada existente más cercana. Compila en una etapa a partir de nuestra imagen de herramientas y luego copia el programa terminado a una de nuestras bases de ejecución diminutas. Se rige por reglas estrictas (sin ⟦CODE_0003⟧, sin ⟦CODE_0004⟧ en la etapa de ejecución, solo variables ⟦CODE_0005⟧ en su ⟦CODE_0006⟧; mira [⟦CODE_0007⟧](⟦DEST_0008⟧)). La compuerta nunca lo construye, así que es una comodidad para quien quiera probar tu entrada de forma segura, no una manera de traer tus propios paquetes. Añade a tu README una sección \"Ejecútalo en un contenedor\", como las otras entradas."
+
+#: CONTRIBUTING.md:16
+msgctxt "s-a8aad10b81f7-0012"
+msgid "**Windows-only entries (WPF and the like): a \"Run it in Windows Sandbox\" section** in your README, with the exact command (⟦CODE_0001⟧) and the toolchain it needs. Copy the wording from [⟦CODE_0002⟧](⟦DEST_0003⟧). The heading must be exactly ⟦CODE_0004⟧."
+msgstr "**Entradas solo de Windows (WPF y similares): una sección \"Ejecútalo en Windows Sandbox\"** en tu README, con el comando exacto (⟦CODE_0001⟧) y las herramientas que necesita. Copia el texto de [⟦CODE_0002⟧](⟦DEST_0003⟧). El encabezado debe ser exactamente ⟦CODE_0004⟧."
+
+#: CONTRIBUTING.md:17
+msgctxt "s-9be6975519f7-0013"
+msgid "Your contribution is under the repository's [MIT license](⟦DEST_0001⟧)."
+msgstr "Tu contribución queda bajo la [licencia MIT](⟦DEST_0001⟧) del repositorio."
+
+#: CONTRIBUTING.md:19
+msgctxt "s-1b34b6ddf777-0014"
+msgid "How your entry plugs into the book"
+msgstr "Cómo encaja tu entrada en el libro"
+
+#: CONTRIBUTING.md:21
+msgctxt "s-82d01650f2bf-0015"
+msgid "This repository is also a textbook, and **your entry's README is the source material for it.** Nobody copies your words into the book by hand. A build script (⟦CODE_0001⟧) reads the block at the top of every ⟦CODE_0002⟧ and generates the computer-science chapters, the comparison tables and the per-concept \"In this repo\" lists from it. So the block has to be right, and the tags matter: every tag you add puts your entry in front of readers of that concept."
+msgstr "Este repositorio también es un libro de texto, y **el README de tu entrada es su material de origen.** Nadie copia tus palabras al libro a mano. Un script de compilación (⟦CODE_0001⟧) lee el bloque que hay al inicio de cada ⟦CODE_0002⟧. Con él genera los capítulos de informática, las tablas comparativas y las listas \"En este repositorio\" de cada concepto. Por eso el bloque debe ser correcto y las etiquetas importan: cada etiqueta que añades pone tu entrada ante los lectores de ese concepto."
+
+#: CONTRIBUTING.md:23
+msgctxt "s-7ab079f5526a-0016"
+msgid "You only edit your own folder. A maintainer then adds the lesson text, regenerates the book and rebuilds the PDF and EPUB. The rest of this section tells you what to write."
+msgstr "Solo editas tu propia carpeta. Después, un mantenedor añade el texto de la lección, regenera el libro y reconstruye el PDF y el EPUB. El resto de esta sección te dice qué escribir."
+
+#: CONTRIBUTING.md:25
+msgctxt "s-3257b24d968c-0017"
+msgid "1. The frontmatter block"
+msgstr "1. El bloque de metadatos"
+
+#: CONTRIBUTING.md:27
+msgctxt "s-bb3ebd4c9df6-0018"
+msgid "The very first thing in your ⟦CODE_0001⟧ is a block between two ⟦CODE_0002⟧ lines. Copy it from your closest sibling entry in ⟦CODE_0003⟧ and change it. This is the one from ⟦CODE_0004⟧:"
+msgstr "Lo primero de tu ⟦CODE_0001⟧ es un bloque entre dos líneas ⟦CODE_0002⟧. Cópialo de tu entrada hermana más cercana en ⟦CODE_0003⟧ y cámbialo. Este es el de ⟦CODE_0004⟧:"
+
+#: CONTRIBUTING.md:44
+msgctxt "s-cea152082d59-0019"
+msgid "⟦SEP_0001⟧ Key ⟦SEP_0002⟧ Required ⟦SEP_0003⟧ What to write ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ Clave ⟦SEP_0002⟧ Obligatoria ⟦SEP_0003⟧ Qué escribir ⟦SEP_0004⟧"
+
+#: CONTRIBUTING.md:46
+msgctxt "s-226516f7aa76-0020"
+msgid "⟦SEP_0005⟧ ⟦CODE_0001⟧ ⟦SEP_0006⟧ yes ⟦SEP_0007⟧ The language or tool, as a reader would say it: ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧. ⟦SEP_0008⟧"
+msgstr "⟦SEP_0005⟧ ⟦CODE_0001⟧ ⟦SEP_0006⟧ sí ⟦SEP_0007⟧ El lenguaje o la herramienta, como lo diría un lector: ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧. ⟦SEP_0008⟧"
+
+#: CONTRIBUTING.md:47
+msgctxt "s-623097f5e228-0021"
+msgid "⟦SEP_0004⟧ ⟦CODE_0001⟧ ⟦SEP_0005⟧ yes ⟦SEP_0006⟧ One lowercase ⟦CODE_0002⟧ clause that says what a reader learns. If your README has a ⟦CODE_0003⟧ line, use exactly the same words (the build checks this). ⟦SEP_0007⟧"
+msgstr "⟦SEP_0004⟧ ⟦CODE_0001⟧ ⟦SEP_0005⟧ sí ⟦SEP_0006⟧ Una cláusula ⟦CODE_0002⟧ en minúsculas que diga qué aprende un lector. Si tu README tiene una línea ⟦CODE_0003⟧, usa exactamente las mismas palabras (la compilación lo comprueba). ⟦SEP_0007⟧"
+
+#: CONTRIBUTING.md:48
+msgctxt "s-c990ffd55a54-0022"
+msgid "⟦SEP_0005⟧ ⟦CODE_0001⟧ ⟦SEP_0006⟧ yes ⟦SEP_0007⟧ ⟦CODE_0002⟧ (the ordinary way), ⟦CODE_0003⟧ (the stunt), or ⟦CODE_0004⟧ (the same stunt in another language). ⟦SEP_0008⟧"
+msgstr "⟦SEP_0005⟧ ⟦CODE_0001⟧ ⟦SEP_0006⟧ sí ⟦SEP_0007⟧ ⟦CODE_0002⟧ (la forma ordinaria), ⟦CODE_0003⟧ (la acrobacia) o ⟦CODE_0004⟧ (la misma acrobacia en otro lenguaje). ⟦SEP_0008⟧"
+
+#: CONTRIBUTING.md:49
+msgctxt "s-d6fd2db55cc4-0023"
+msgid "⟦SEP_0006⟧ ⟦CODE_0001⟧ ⟦SEP_0007⟧ yes ⟦SEP_0008⟧ A list of language ids, in lowercase, from [⟦CODE_0002⟧](⟦DEST_0003⟧): ⟦CODE_0004⟧, ⟦CODE_0005⟧. List every language the entry is written in or runs on (the host language, the query language, the regex flavor). The book's language index and tables are built from this. If yours is missing, use the nearest id and say so in your pull request. ⟦SEP_0009⟧"
+msgstr "⟦SEP_0006⟧ ⟦CODE_0001⟧ ⟦SEP_0007⟧ sí ⟦SEP_0008⟧ Una lista de identificadores de lenguaje, en minúsculas, tomados de [⟦CODE_0002⟧](⟦DEST_0003⟧): ⟦CODE_0004⟧, ⟦CODE_0005⟧. Enumera todos los lenguajes en que está escrita la entrada o sobre los que se ejecuta (el lenguaje anfitrión, el lenguaje de consultas, la variante de regex). El índice de lenguajes y las tablas del libro se construyen a partir de esto. Si falta el tuyo, usa el identificador más cercano y dilo en tu solicitud de cambios. ⟦SEP_0009⟧"
+
+#: CONTRIBUTING.md:50
+msgctxt "s-47cb10fb9c97-0024"
+msgid "⟦SEP_0005⟧ ⟦CODE_0001⟧ ⟦SEP_0006⟧ yes ⟦SEP_0007⟧ The lesson page that covers it, relative to ⟦CODE_0002⟧, with an optional ⟦CODE_0003⟧: ⟦CODE_0004⟧. If there is no page for your language yet, use the closest one. A maintainer fixes it when they add yours. ⟦SEP_0008⟧"
+msgstr "⟦SEP_0005⟧ ⟦CODE_0001⟧ ⟦SEP_0006⟧ sí ⟦SEP_0007⟧ La página de lección que lo cubre, relativa a ⟦CODE_0002⟧, con un ⟦CODE_0003⟧ opcional: ⟦CODE_0004⟧. Si todavía no hay página para tu lenguaje, usa la más cercana. Un mantenedor la corrige cuando añada la tuya. ⟦SEP_0008⟧"
+
+#: CONTRIBUTING.md:51
+msgctxt "s-6624fc4d09e9-0025"
+msgid "⟦SEP_0014⟧ ⟦CODE_0001⟧ ⟦SEP_0015⟧ yes ⟦SEP_0016⟧ What plays the loop in your entry. Pick one file name from [⟦CODE_0002⟧](⟦DEST_0003⟧): for example ⟦CODE_0004⟧, ⟦CODE_0005⟧, ⟦CODE_0006⟧, ⟦CODE_0007⟧, ⟦CODE_0008⟧, ⟦CODE_0009⟧, ⟦CODE_0010⟧, ⟦CODE_0011⟧, ⟦CODE_0012⟧. The [comparative chapter](⟦DEST_0013⟧) shows what each one means. ⟦SEP_0017⟧"
+msgstr "⟦SEP_0014⟧ ⟦CODE_0001⟧ ⟦SEP_0015⟧ sí ⟦SEP_0016⟧ Lo que hace de bucle en tu entrada. Elige un nombre de archivo de [⟦CODE_0002⟧](⟦DEST_0003⟧); por ejemplo ⟦CODE_0004⟧, ⟦CODE_0005⟧, ⟦CODE_0006⟧, ⟦CODE_0007⟧, ⟦CODE_0008⟧, ⟦CODE_0009⟧, ⟦CODE_0010⟧, ⟦CODE_0011⟧, ⟦CODE_0012⟧. El [capítulo comparativo](⟦DEST_0013⟧) muestra qué significa cada uno. ⟦SEP_0017⟧"
+
+#: CONTRIBUTING.md:52
+msgctxt "s-dc4b96de510e-0026"
+msgid "⟦SEP_0008⟧ ⟦CODE_0001⟧ ⟦SEP_0009⟧ yes ⟦SEP_0010⟧ The strategy that drives the main computation: ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧, ⟦CODE_0006⟧ or ⟦CODE_0007⟧. Describe embedded operations separately. ⟦SEP_0011⟧"
+msgstr "⟦SEP_0008⟧ ⟦CODE_0001⟧ ⟦SEP_0009⟧ sí ⟦SEP_0010⟧ La estrategia que conduce el cálculo principal: ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧, ⟦CODE_0006⟧ o ⟦CODE_0007⟧. Describe aparte las operaciones incrustadas. ⟦SEP_0011⟧"
+
+#: CONTRIBUTING.md:53
+msgctxt "s-669cbef1e937-0027"
+msgid "⟦SEP_0006⟧ ⟦CODE_0001⟧ ⟦SEP_0007⟧ yes ⟦SEP_0008⟧ The *weakest necessary dependency* of the trick: ⟦CODE_0002⟧ (a named specification or API documents the behavior), ⟦CODE_0003⟧ (a particular implementation allows it) or ⟦CODE_0004⟧ (the trick requires an unpromised behavior). Explain what supports each individual claim, including the scope of a documented API guarantee. The [intro](⟦DEST_0005⟧) explains the three. ⟦SEP_0009⟧"
+msgstr "⟦SEP_0006⟧ ⟦CODE_0001⟧ ⟦SEP_0007⟧ sí ⟦SEP_0008⟧ La *dependencia necesaria más débil* del truco: ⟦CODE_0002⟧ (una especificación o API con nombre documenta el comportamiento), ⟦CODE_0003⟧ (una implementación concreta lo permite) o ⟦CODE_0004⟧ (el truco exige un comportamiento no prometido). Explica qué respalda cada afirmación individual, incluido el ámbito de una garantía documentada de la API. La [introducción](⟦DEST_0005⟧) explica las tres. ⟦SEP_0009⟧"
+
+#: CONTRIBUTING.md:54
+msgctxt "s-75c9b7553ca9-0028"
+msgid "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ yes ⟦SEP_0004⟧ A list of computer-science concepts. See below. ⟦SEP_0005⟧"
+msgstr "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ sí ⟦SEP_0004⟧ Una lista de conceptos de informática. Mira más abajo. ⟦SEP_0005⟧"
+
+#: CONTRIBUTING.md:55
+msgctxt "s-92fc7d224c8c-0029"
+msgid "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ no ⟦SEP_0004⟧ Your closest sibling entry: the ordinary version of a weird one, or the other way round. ⟦SEP_0005⟧"
+msgstr "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ no ⟦SEP_0004⟧ Tu entrada hermana más cercana: la versión ordinaria de una entrada rara, o al revés. ⟦SEP_0005⟧"
+
+#: CONTRIBUTING.md:56
+msgctxt "s-e12977104d4e-0030"
+msgid "⟦SEP_0008⟧ ⟦CODE_0001⟧, ⟦CODE_0002⟧ ⟦SEP_0009⟧ no ⟦SEP_0010⟧ Concept ids (the same vocabulary as ⟦CODE_0003⟧). Use ⟦CODE_0004⟧ only for ideas your entry **demonstrates**. Use ⟦CODE_0005⟧ for an idea your entry *resembles* without being an instance of it (a Kotlin ⟦CODE_0006⟧ is not a coroutine, but it is a cousin). Use ⟦CODE_0007⟧ for an idea your entry shows by *not* being it (a closure is not a continuation). An entry can relate to a concept in only one of the three ways. The concept's \"In this repo\" table says which. ⟦SEP_0011⟧"
+msgstr "⟦SEP_0008⟧ ⟦CODE_0001⟧, ⟦CODE_0002⟧ ⟦SEP_0009⟧ no ⟦SEP_0010⟧ Identificadores de concepto (el mismo vocabulario que ⟦CODE_0003⟧). Usa ⟦CODE_0004⟧ solo para ideas que tu entrada **demuestra**. Usa ⟦CODE_0005⟧ para una idea a la que tu entrada *se parece* sin ser una instancia de ella (un ⟦CODE_0006⟧ de Kotlin no es una corrutina, pero es un primo). Usa ⟦CODE_0007⟧ para una idea que tu entrada muestra por *no ser* eso (una clausura, *closure*: una función que recuerda las variables de donde se creó, no es una continuación). Una entrada puede relacionarse con un concepto de una sola de las tres maneras. La tabla \"En este repositorio\" del concepto dice cuál. ⟦SEP_0011⟧"
+
+#: CONTRIBUTING.md:57
+msgctxt "s-0580438f5096-0031"
+msgid "⟦SEP_0004⟧ ⟦CODE_0001⟧, ⟦CODE_0002⟧ ⟦SEP_0005⟧ yes ⟦SEP_0006⟧ The two sentences from the book's \"name the machine\" table: *what machine is your entry really?* and *where does its state live?* Every entry gives both, so the comparison tables have no blank cell. If your entry is an ordinary program with nothing hidden, say so in words: ⟦CODE_0003⟧. ⟦SEP_0007⟧"
+msgstr "⟦SEP_0004⟧ ⟦CODE_0001⟧, ⟦CODE_0002⟧ ⟦SEP_0005⟧ sí ⟦SEP_0006⟧ Las dos frases de la tabla \"nombra la máquina\" del libro: *¿qué máquina es en realidad tu entrada?* y *¿dónde vive su estado?* Toda entrada da ambas, para que las tablas comparativas no tengan celdas vacías. Si tu entrada es un programa ordinario sin nada oculto, dilo con palabras: ⟦CODE_0003⟧. ⟦SEP_0007⟧"
+
+#: CONTRIBUTING.md:59
+msgctxt "s-ab8e763e8b56-0032"
+msgid "The block is a small, strict subset of YAML, so no parser library is needed: ⟦CODE_0001⟧, ⟦CODE_0002⟧ and ⟦CODE_0003⟧. Put text that contains a colon or a ⟦CODE_0004⟧ in quotes. Comment lines start with ⟦CODE_0005⟧. Nothing else is allowed, and the build tells you the line it did not understand."
+msgstr "El bloque es un subconjunto pequeño y estricto de YAML, así que no hace falta ninguna biblioteca de analizador sintáctico: ⟦CODE_0001⟧, ⟦CODE_0002⟧ y ⟦CODE_0003⟧. Pon entre comillas el texto que contenga dos puntos o un ⟦CODE_0004⟧. Las líneas de comentario empiezan con ⟦CODE_0005⟧. No se permite nada más, y la compilación te dice la línea que no entendió."
+
+#: CONTRIBUTING.md:61
+msgctxt "s-139363766360-0033"
+msgid "2. Tags and languages: the book's vocabularies"
+msgstr "2. Etiquetas y lenguajes: los vocabularios del libro"
+
+#: CONTRIBUTING.md:63
+msgctxt "s-f5d1f75e21a0-0034"
+msgid "Tags connect your entry to the book's concepts: control flow, lazy evaluation, backtracking, homoiconicity, transactions, and so on. **Use as many as honestly apply.** A rule of thumb: if you had to understand an idea to write the entry, or if the entry makes a good example of it, tag it."
+msgstr "Las etiquetas conectan tu entrada con los conceptos del libro: flujo de control, evaluación perezosa, retroceso, homoiconicidad, transacciones y otros. **Usa tantas como apliquen con honestidad.** Una regla práctica: si tuviste que entender una idea para escribir la entrada, o si la entrada es un buen ejemplo de ella, etiquétala."
+
+#: CONTRIBUTING.md:65
+msgctxt "s-6650b8396857-0035"
+msgid "The vocabulary is the list of file names in [⟦CODE_0001⟧](⟦DEST_0002⟧). The [concept index](⟦DEST_0003⟧) shows each tag with its chapter and the entries that already use it. Your sibling entries are the best examples."
+msgstr "El vocabulario es la lista de nombres de archivo de [⟦CODE_0001⟧](⟦DEST_0002⟧). El [índice de conceptos](⟦DEST_0003⟧) muestra cada etiqueta con su capítulo y las entradas que ya la usan. Tus entradas hermanas son los mejores ejemplos."
+
+#: CONTRIBUTING.md:66
+msgctxt "s-ca673746ab38-0036"
+msgid "Spell a tag exactly like its file name, without ⟦CODE_0001⟧: ⟦CODE_0002⟧."
+msgstr "Escribe una etiqueta exactamente como su nombre de archivo, sin ⟦CODE_0001⟧: ⟦CODE_0002⟧."
+
+#: CONTRIBUTING.md:67
+msgctxt "s-962c84be2213-0037"
+msgid "**Do not edit ⟦CODE_0001⟧.** If you need a concept that does not exist, use the nearest tag and say in your pull request which concept is missing. A maintainer decides whether to add it. ⟦CODE_0002⟧ only prints a note for an unknown tag, but the book build fails until a maintainer adds the concept or fixes the tag."
+msgstr "**No edites ⟦CODE_0001⟧.** Si necesitas un concepto que no existe, usa la etiqueta más cercana y di en tu solicitud de cambios qué concepto falta. Un mantenedor decide si lo añade. ⟦CODE_0002⟧ solo imprime una nota ante una etiqueta desconocida, pero la compilación del libro falla hasta que un mantenedor añade el concepto o corrige la etiqueta."
+
+#: CONTRIBUTING.md:68
+msgctxt "s-cdf0015510d4-0038"
+msgid "Languages work the same way, with one list: [⟦CODE_0001⟧](⟦DEST_0002⟧). A *language* says what the entry is written in or runs on. A *tag* says which computer-science idea it shows. The book's **Index** (the last chapter) is built from both, so an entry with the right languages and tags shows up everywhere a reader would look for it."
+msgstr "Los lenguajes funcionan igual, con una sola lista: [⟦CODE_0001⟧](⟦DEST_0002⟧). Un *lenguaje* dice en qué está escrita la entrada o sobre qué se ejecuta. Una *etiqueta* dice qué idea de informática muestra. El **Índice** del libro (el último capítulo) se construye con ambos. Por eso una entrada con los lenguajes y las etiquetas correctos aparece donde un lector la buscaría."
+
+#: CONTRIBUTING.md:69
+msgctxt "s-76fdb6695f84-0039"
+msgid "**Do not tag to make a concept look used.** A concept that no entry honestly demonstrates is grounded some other way: an analogy, a counterexample, a statement that it applies to every entry (⟦CODE_0001⟧), or an exercise. ⟦CODE_0002⟧ lists how every concept is grounded and fails if one has nothing behind it."
+msgstr "**No etiquetes para que un concepto parezca usado.** Un concepto que ninguna entrada demuestra con honestidad se fundamenta de otra manera: una analogía, un contraejemplo, una declaración de que se aplica a toda entrada (⟦CODE_0001⟧) o un ejercicio. ⟦CODE_0002⟧ lista cómo se fundamenta cada concepto y falla si alguno no tiene nada detrás."
+
+#: CONTRIBUTING.md:70
+msgctxt "s-aa2740b3dec3-0040"
+msgid "Each concept page explains *why it exists, why it is used, when to use it and when not to*, with links to Wikipedia and other long-lived, freely reusable sources. Read the ones you tag, and check that your entry really is an example."
+msgstr "Cada página de concepto explica *por qué existe, por qué se usa, cuándo usarlo y cuándo no*, con enlaces a Wikipedia y a otras fuentes duraderas y de libre reutilización. Lee las de las etiquetas que uses y comprueba que tu entrada de verdad es un ejemplo."
+
+#: CONTRIBUTING.md:72
+msgctxt "s-090c5b82da46-0041"
+msgid "3. The section headings every README shares"
+msgstr "3. Los encabezados de sección que todos los README comparten"
+
+#: CONTRIBUTING.md:74
+msgctxt "s-5974cd34d9be-0042"
+msgid "All entries use the **same section titles**, so a reader (and the book, and links from other pages) always knows where to look. Use these titles exactly, as ⟦CODE_0001⟧ headings. Do not invent synonyms such as \"How it works\" or \"Fine print\"."
+msgstr "Todas las entradas usan los **mismos títulos de sección**, así que un lector, el libro y los enlaces de otras páginas siempre saben dónde mirar. Usa estos títulos exactamente, como encabezados ⟦CODE_0001⟧. No inventes sinónimos como \"Cómo funciona\" o \"Letra pequeña\"."
+
+#: CONTRIBUTING.md:76
+msgctxt "s-698ed3ab6421-0043"
+msgid "⟦SEP_0001⟧ Heading ⟦SEP_0002⟧ Required ⟦SEP_0003⟧ What goes in it ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ Encabezado ⟦SEP_0002⟧ Obligatorio ⟦SEP_0003⟧ Qué contiene ⟦SEP_0004⟧"
+
+#: CONTRIBUTING.md:78
+msgctxt "s-57ec22a445f4-0044"
+msgid "⟦SEP_0004⟧ ⟦CODE_0001⟧ ⟦SEP_0005⟧ yes ⟦SEP_0006⟧ One title line. Optionally follow it with a ⟦CODE_0002⟧ sentence, then a ⟦CODE_0003⟧ notice (your data is fictional and never touches a real system) and a short introduction: what the entry does, and the constraint it plays under. ⟦SEP_0007⟧"
+msgstr "⟦SEP_0004⟧ ⟦CODE_0001⟧ ⟦SEP_0005⟧ sí ⟦SEP_0006⟧ Una línea de título. Opcionalmente, sigue con una frase ⟦CODE_0002⟧, luego un aviso ⟦CODE_0003⟧ (tus datos son ficticios y nunca tocan un sistema real) y una introducción breve: qué hace la entrada y la restricción con que juega. ⟦SEP_0007⟧"
+
+#: CONTRIBUTING.md:79
+msgctxt "s-d3748e9d6d6f-0045"
+msgid "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ yes ⟦SEP_0004⟧ How to run it on your own machine. ⟦SEP_0005⟧"
+msgstr "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ sí ⟦SEP_0004⟧ Cómo ejecutarla en tu propia máquina. ⟦SEP_0005⟧"
+
+#: CONTRIBUTING.md:80
+msgctxt "s-1ac4891f7959-0046"
+msgid "⟦SEP_0003⟧ ⟦CODE_0001⟧ or ⟦CODE_0002⟧ ⟦SEP_0004⟧ yes, one of them ⟦SEP_0005⟧ See the Dockerfile rule above. The Windows heading is checked word for word. ⟦SEP_0006⟧"
+msgstr "⟦SEP_0003⟧ ⟦CODE_0001⟧ o ⟦CODE_0002⟧ ⟦SEP_0004⟧ sí, uno de los dos ⟦SEP_0005⟧ Mira la regla del Dockerfile más arriba. El encabezado de Windows se comprueba palabra por palabra. ⟦SEP_0006⟧"
+
+#: CONTRIBUTING.md:81
+msgctxt "s-c27385dedc4b-0047"
+msgid "⟦SEP_0004⟧ ⟦CODE_0001⟧ ⟦SEP_0005⟧ yes ⟦SEP_0006⟧ One Mermaid diagram of **how this program runs**, and two short paragraphs. See [Program Flow: a picture of the machine](⟦DEST_0002⟧) below. Put it just before ⟦CODE_0003⟧ ⟦SEP_0007⟧"
+msgstr "⟦SEP_0004⟧ ⟦CODE_0001⟧ ⟦SEP_0005⟧ sí ⟦SEP_0006⟧ Un diagrama de Mermaid de **cómo se ejecuta este programa**, y dos párrafos breves. Mira [Flujo del programa: una imagen de la máquina](⟦DEST_0002⟧) más abajo. Ponlo justo antes de ⟦CODE_0003⟧ ⟦SEP_0007⟧"
+
+#: CONTRIBUTING.md:82
+msgctxt "s-e34a786254e7-0048"
+msgid "⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ yes ⟦SEP_0005⟧ The plain-English mechanism, and the most important section. Say where the program's state lives, what plays the loop and what plays the stop rule. If you are a \"weird\" entry, also say what the ordinary version would look like. Put sub-steps under ⟦CODE_0002⟧ headings. ⟦SEP_0006⟧"
+msgstr "⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ sí ⟦SEP_0005⟧ El mecanismo en lenguaje sencillo, y la sección más importante. Di dónde vive el estado del programa, qué hace de bucle y qué hace de regla de parada. Si tu entrada es \"rara\", di también cómo sería la versión ordinaria. Pon los subpasos bajo encabezados ⟦CODE_0002⟧. ⟦SEP_0006⟧"
+
+#: CONTRIBUTING.md:83
+msgctxt "s-2b1849fbb866-0049"
+msgid "⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ yes (⟦CODE_0002⟧ for a Windows check script) ⟦SEP_0005⟧ The rules your check script tries to break. ⟦SEP_0006⟧"
+msgstr "⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ sí (⟦CODE_0002⟧ para un script de comprobación de Windows) ⟦SEP_0005⟧ Las reglas que tu script de comprobación intenta romper. ⟦SEP_0006⟧"
+
+#: CONTRIBUTING.md:84
+msgctxt "s-4254185da4b0-0050"
+msgid "⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ yes ⟦SEP_0005⟧ The walls you hit, the parts that depend on one implementation, and anything that surprised you. Mark each trick as guaranteed, implementation-permitted or accidentally exploited, the same words as the ⟦CODE_0002⟧ key. ⟦SEP_0006⟧"
+msgstr "⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ sí ⟦SEP_0005⟧ Los muros con los que chocaste, las partes que dependen de una sola implementación y todo lo que te sorprendió. Marca cada truco como garantizado, permitido por la implementación o aprovechado por accidente, con las mismas palabras que la clave ⟦CODE_0002⟧. ⟦SEP_0006⟧"
+
+#: CONTRIBUTING.md:86
+msgctxt "s-cbf1f4ea723d-0051"
+msgid "These optional headings also have fixed titles. Use them when they fit: ⟦CODE_0001⟧, ⟦CODE_0002⟧ (or ⟦CODE_0003⟧, for the ordinary version of a weird entry), ⟦CODE_0004⟧, ⟦CODE_0005⟧, ⟦CODE_0006⟧. Add any other ⟦CODE_0007⟧ section your entry needs under its own, specific title."
+msgstr "Estos encabezados opcionales también tienen títulos fijos. Úsalos cuando encajen: ⟦CODE_0001⟧, ⟦CODE_0002⟧ (o ⟦CODE_0003⟧, para la versión ordinaria de una entrada rara), ⟦CODE_0004⟧, ⟦CODE_0005⟧, ⟦CODE_0006⟧. Añade cualquier otra sección ⟦CODE_0007⟧ que tu entrada necesite, con su propio título específico."
+
+#: CONTRIBUTING.md:88
+msgctxt "s-bcbd63eca173-0052"
+msgid "The order above is the recommended order, but it is not enforced. ⟦CODE_0001⟧ fails a new entry that lacks one of the required headings. The earliest one-statement ports (Go, Java, Kotlin, Python and Rust) have no check script, so they have no check section; a new entry must have both."
+msgstr "El orden de arriba es el recomendado, pero no se impone. ⟦CODE_0001⟧ rechaza una entrada nueva a la que le falte alguno de los encabezados obligatorios. Las primeras adaptaciones de una sentencia (Go, Java, Kotlin, Python y Rust) no tienen script de comprobación, así que no tienen sección de comprobación. Una entrada nueva debe tener ambos."
+
+#: CONTRIBUTING.md:90
+msgctxt "s-887d6ebdb9b6-0053"
+msgid "Program Flow: a picture of the machine"
+msgstr "Flujo del programa: una imagen de la máquina"
+
+#: CONTRIBUTING.md:92
+msgctxt "s-a0fdd83425b2-0054"
+msgid "Every README has exactly one ⟦CODE_0001⟧ section. It answers **\"what is the runtime, interpreter, compiler, scheduler or language feature actually doing that makes this program work?\"** It is not a picture of the task (the book’s intro shows the task and lists implementation differences). If your diagram could be pasted unchanged into ten other READMEs, it is not teaching your entry's point."
+msgstr "Todo README tiene exactamente una sección ⟦CODE_0001⟧. Responde **\"¿qué hace en realidad el entorno de ejecución, el intérprete, el compilador, el planificador o la función del lenguaje que hace funcionar este programa?\"** No es una imagen de la tarea (la introducción del libro muestra la tarea y lista las diferencias de implementación). Si tu diagrama pudiera pegarse sin cambios en otros diez README, no está enseñando el punto de tu entrada."
+
+#: CONTRIBUTING.md:94
+msgctxt "s-82d5a83df7a8-0055"
+msgid "The section is exactly this, and nothing else (no sub-headings):"
+msgstr "La sección es exactamente esto y nada más (sin subencabezados):"
+
+#: CONTRIBUTING.md:113
+msgctxt "s-bf37367b2e0e-0056"
+msgid "**Pick the diagram type that fits the machine.** ⟦CODE_0001⟧ for branches and loops, ⟦CODE_0002⟧ for callbacks, dispatch and who-calls-whom, ⟦CODE_0003⟧ for a state that changes (a ⟦CODE_0004⟧ target, a parse pointer), a flowchart of data and demand for lazy evaluation. Do not draw a ⟦CODE_0005⟧ loop for a program that has none. The build accepts any diagram family that Mermaid can render."
+msgstr "**Elige el tipo de diagrama que encaje con la máquina.** ⟦CODE_0001⟧ para ramas y bucles, ⟦CODE_0002⟧ para funciones de devolución de llamada (*callbacks*: funciones que entregas para que otro código las llame después), despacho y quién llama a quién, ⟦CODE_0003⟧ para un estado que cambia (un destino de ⟦CODE_0004⟧, un puntero de análisis) y un diagrama de flujo de datos y demanda para la evaluación perezosa. No dibujes un bucle ⟦CODE_0005⟧ para un programa que no lo tiene. La compilación acepta cualquier familia de diagramas que Mermaid pueda dibujar."
+
+#: CONTRIBUTING.md:114
+msgctxt "s-0ab83ba60407-0057"
+msgid "**Draw what runs.** Read the source and run it first. Do not depict something the program does not do, and do not copy the task description."
+msgstr "**Dibuja lo que se ejecuta.** Lee el código fuente y ejecútalo primero. No muestres algo que el programa no hace, y no copies la descripción de la tarea."
+
+#: CONTRIBUTING.md:115
+msgctxt "s-9edb6dc8fbb2-0058"
+msgid "**Keep it small.** About 5 to 10 nodes or messages, labels under about 60 characters. Draw decisions as hexagons (⟦CODE_0001⟧): a diamond grows too tall around its text. No HTML tags in labels, no colors that carry meaning, no ⟦CODE_0002⟧ in a sequence-diagram message (it ends the statement)."
+msgstr "**Hazlo pequeño.** Aproximadamente de 5 a 10 nodos o mensajes, con etiquetas de menos de unos 60 caracteres. Dibuja las decisiones como hexágonos (⟦CODE_0001⟧): un rombo crece demasiado alto alrededor de su texto. Sin etiquetas HTML en los textos, sin colores que lleven significado y sin ⟦CODE_0002⟧ en un mensaje de diagrama de secuencia (termina la sentencia)."
+
+#: CONTRIBUTING.md:116
+msgctxt "s-e1807eecb5c0-0059"
+msgid "**⟦CODE_0001⟧ and ⟦CODE_0002⟧ are required.** The first is the figure's caption and the second is its alt text."
+msgstr "**⟦CODE_0001⟧ y ⟦CODE_0002⟧ son obligatorios.** El primero es el pie de la figura y el segundo es su texto alternativo."
+
+#: CONTRIBUTING.md:117
+msgctxt "s-9e0fdc1c1220-0060"
+msgid "**Links** to other files are fine (they are re-aimed when the section is copied into a lesson page). Links to a heading in your own README are not."
+msgstr "**Los enlaces** a otros archivos están bien (se reorientan cuando la sección se copia a una página de lección). Los enlaces a un encabezado de tu propio README no."
+
+#: CONTRIBUTING.md:118
+msgctxt "s-01546825ce45-0061"
+msgid "**The build checks it.** ⟦CODE_0001⟧ checks the section's structure. ⟦CODE_0002⟧ renders every diagram and fails if one cannot be drawn, or would print smaller than about 8.4 pt on a Letter page. If your diagram is too tall or wide, shorten the labels or use fewer nodes. See [⟦CODE_0003⟧](⟦DEST_0004⟧) for the one-time setup."
+msgstr "**La compilación lo comprueba.** ⟦CODE_0001⟧ comprueba la estructura de la sección. ⟦CODE_0002⟧ dibuja cada diagrama y falla si alguno no se puede dibujar o si se imprimiría a menos de unos 8.4 pt en una página Letter. Si tu diagrama es demasiado alto o ancho, acorta las etiquetas o usa menos nodos. Mira [⟦CODE_0003⟧](⟦DEST_0004⟧) para la configuración de una sola vez."
+
+#: CONTRIBUTING.md:120
+msgctxt "s-94660f883dff-0062"
+msgid "4. Voice and tone"
+msgstr "4. Voz y tono"
+
+#: CONTRIBUTING.md:122
+msgctxt "s-04d5246e6de3-0063"
+msgid "Follow the [house style](⟦DEST_0001⟧) for README prose, lesson text and study guides. Give readers a concrete example and keep the explanation clear for readers who use a translator."
+msgstr "Sigue la [guía de estilo](⟦DEST_0001⟧) para la prosa de los README, el texto de las lecciones y las guías de estudio. Da a los lectores un ejemplo concreto y mantén la explicación clara para lectores que usan un traductor."
+
+#: CONTRIBUTING.md:124
+msgctxt "s-777264b542ed-0064"
+msgid "5. Check it before you send it"
+msgstr "5. Compruébalo antes de enviarlo"
+
+#: CONTRIBUTING.md:126
+msgctxt "s-6fd96fd952f5-0065"
+msgid "Run ⟦CODE_0001⟧ from the repository root (it needs [pandoc](⟦DEST_0002⟧)). It validates every entry's frontmatter and tags, checks that the generated book pages are up to date, builds the book and verifies every internal link. You will see a clear message that names the file and the line. Fix problems in your own folder. If the only message is about a tag or role that does not exist yet, send the pull request anyway and explain, as described above."
+msgstr "Ejecuta ⟦CODE_0001⟧ desde la raíz del repositorio (necesita [pandoc](⟦DEST_0002⟧)). Valida el bloque de metadatos y las etiquetas de cada entrada, comprueba que las páginas generadas del libro estén al día, compila el libro y verifica cada enlace interno. Verás un mensaje claro que nombra el archivo y la línea. Corrige los problemas en tu propia carpeta. Si el único mensaje trata de una etiqueta o un papel que aún no existe, envía la solicitud de cambios de todos modos y explícalo, como se describe más arriba."
+
+#: CONTRIBUTING.md:128
+msgctxt "s-212dfb9f522c-0066"
+msgid "Your language's toolchain"
+msgstr "Las herramientas de tu lenguaje"
+
+#: CONTRIBUTING.md:130
+msgctxt "s-48331de6f77a-0067"
+msgid "Entries run only with what is already in [⟦CODE_0001⟧](⟦DEST_0002⟧): GNU APL, Gforth, GHC, Perl, PCRE2, sed, Make, CMake, a C compiler, .NET 10 and SQLite. If yours needs something else, say so in the pull request and tell us where its official distribution lives. We add it to the image ourselves, in a separate commit, pinned to a version and checksum. Please don't send install scripts, and don't ask us to install an interpreter from your own repository."
+msgstr "Las entradas se ejecutan solo con lo que ya está en [⟦CODE_0001⟧](⟦DEST_0002⟧): GNU APL, Gforth, GHC, Perl, PCRE2, sed, Make, CMake, un compilador de C, .NET 10 y SQLite. Si la tuya necesita algo más, dilo en la solicitud de cambios e indícanos dónde está su distribución oficial. Lo añadimos nosotros a la imagen, en un *commit* de Git aparte (un punto guardado del historial del código), fijado a una versión y a una suma de verificación. Por favor, no envíes scripts de instalación ni nos pidas instalar un intérprete desde tu propio repositorio."
+
+#: CONTRIBUTING.md:132
+msgctxt "s-31cf039c8754-0068"
+msgid "Before you open the pull request"
+msgstr "Antes de abrir la solicitud de cambios"
+
+#: CONTRIBUTING.md:134
+msgctxt "s-8ffeaa69724f-0069"
+msgid "Set up Docker (and Windows Sandbox, for Windows entries) once, following [⟦CODE_0001⟧](⟦DEST_0002⟧). Then, from a Linux, macOS or WSL shell (or Git Bash with Docker Desktop):"
+msgstr "Configura Docker (y Windows Sandbox, para las entradas de Windows) una sola vez, siguiendo [⟦CODE_0001⟧](⟦DEST_0002⟧). Luego, desde un intérprete de comandos (*shell*) de Linux, macOS o WSL (o Git Bash con Docker Desktop):"
+
+#: CONTRIBUTING.md:142
+msgctxt "s-09fc23b1903b-0070"
+msgid "The reviewer report at the end of ⟦CODE_0001⟧ lists every line that touches the network, starts a process, evaluates code, or looks like an encoded blob. It's normal for entries in this repository to have some; expect your README to explain each one."
+msgstr "El informe para el revisor al final de ⟦CODE_0001⟧ lista cada línea que toca la red, inicia un proceso, evalúa código o parece un bloque de datos codificado. Es normal que las entradas de este repositorio tengan algunas. Espera explicar cada una en tu README."
+
+#: CONTRIBUTING.md:144
+msgctxt "s-8f9b77e6e0b4-0071"
+msgid "What happens next"
+msgstr "Qué pasa después"
+
+#: CONTRIBUTING.md:146
+msgctxt "s-57fdd24a5268-0072"
+msgid ""
+"⟦CODE_0001⟧ runs against your pull request without checking it out.\n"
+"2. People (and a few AI reviewers, each asked to translate your code into plain English and list everything it can touch) read the code alongside your README.\n"
+"3. A maintainer runs the gate: your check, in the sandbox, on a throwaway machine.\n"
+"4. Then one of two things happens:"
+msgstr ""
+"⟦CODE_0001⟧ se ejecuta contra tu solicitud de cambios sin descargarla.\n"
+"2. Personas y algunos revisores de IA leen el código junto con tu README. A cada revisor de IA se le pide una traducción de tu código a lenguaje sencillo y una lista de todo lo que puede tocar.\n"
+"3. Un mantenedor ejecuta la compuerta: tu comprobación, en el entorno aislado, en una máquina desechable.\n"
+"4. Luego pasa una de dos cosas:"
+
+#: CONTRIBUTING.md:150
+msgctxt "s-b5acaf3e2c6b-0073"
+msgid "**Merged**, with credit in the results table."
+msgstr "**Incorporada**, con crédito en la tabla de resultados."
+
+#: CONTRIBUTING.md:151
+msgctxt "s-ab0db4ac2656-0074"
+msgid "**Linked**: we add a row pointing to your own repository at a specific commit. This is not a rejection. It means we enjoyed it but couldn't vouch for every line, usually because the language is beyond what we can read with confidence."
+msgstr "**Enlazada**: añadimos una fila que apunta a tu propio repositorio en un *commit* de Git concreto. Esto no es un rechazo. Significa que lo disfrutamos, pero no podemos responder por cada línea, normalmente porque el lenguaje está más allá de lo que podemos leer con confianza."
+
+#: CONTRIBUTING.md:153
+msgctxt "s-6834ec72ad3d-0075"
+msgid "A passing gate means your entry built, ran and behaved in a sandbox. It is not, on its own, why we merge. Understanding it is."
+msgstr "Una compuerta superada significa que tu entrada compiló, se ejecutó y se comportó bien en un entorno aislado. Por sí sola, no es la razón por la que incorporamos una entrada. La razón es entenderla."

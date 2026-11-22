@@ -1,35 +1,35 @@
-# Come Make Something Beautifully Wrong
+# Ven a crear algo bellamente erróneo
 
-**One Statement, Two Semicolons** is an obfuscated-algorithms challenge: take a small, ordinary program, impose an absurd syntactic rule, and make it work anyway. Not merely compile. Work.
+**Una sentencia, dos puntos y coma** es un reto de algoritmos ofuscados: toma un programa pequeño y corriente, impón una regla sintáctica absurda y haz que funcione de todos modos. No basta con que compile. Tiene que funcionar.
 
-What started in C# has escaped into Rust, runtime XAML, Java, Kotlin, Python, Go, and four varieties of executable regex: Perl inline-code regex, PCRE2 callout regex, stock `pcre2grep` callouts, and .NET balancing groups. Bring a language, a constraint, or a feature being used for something its designer would politely discourage.
+Lo que empezó en C# se ha escapado a Rust, XAML en tiempo de ejecución, Java, Kotlin, Python y Go. Hay cuatro variedades de regex ejecutable: regex de código en línea de Perl, regex con callouts de PCRE2, callouts estándar de `pcre2grep` y grupos de equilibrio de .NET. Trae un lenguaje, una restricción o una característica que se use para algo que su diseñador desaconsejaría con cortesía.
 
-## The shared challenge
+## El reto compartido
 
-In your language's own flavor of bad judgment:
+Con el sabor particular de mal juicio de tu lenguaje:
 
-- generate fictional time-card entries of 10–19 hours for Meetings, Coding, Debugging, or Learning;
-- keep adding them until the running total exceeds 40;
-- keep all output local, clearly labeled **DEMO ONLY**, and completely separate from real time reporting; and
-- display the result through a window, browser, terminal, or whatever else makes sense.
+- genera tarjetas de horas ficticias, de 10 a 19 horas cada una, para Meetings, Coding, Debugging o Learning;
+- sigue añadiéndolas hasta que el total acumulado pase de 40;
+- mantén toda la salida en local, claramente marcada como **DEMO ONLY**, y completamente separada del reporte real de horas; y
+- muestra el resultado en una ventana, un navegador, una terminal o lo que tenga más sentido.
 
-The mechanism is yours. The `for` family uses a bodiless loop. Rust twists iterators and closures into shape. XAML turns parsing into execution. The regex entries make matching, backtracking, callouts, or capture stacks do the heavy lifting. Preserve the behavior, then find the most gloriously inappropriate way your language allows you to express it.
+El mecanismo es tuyo. La familia `for` usa un bucle sin cuerpo. Rust retuerce iteradores y clausuras (*closures*: funciones que recuerdan las variables de donde se crearon) hasta darles forma. XAML convierte el análisis sintáctico en ejecución. Las entradas de regex hacen que la coincidencia, el retroceso, los callouts o las pilas de captura hagan el trabajo pesado. Conserva el comportamiento y luego busca la manera más gloriosamente inapropiada que tu lenguaje te permita para expresarlo.
 
-## Do / don't
+## Qué hacer y qué no
 
-**Do** let side effects carry real weight when the language permits it. Lean on reflection, interpretation, metaprogramming, parsing, execution machinery, or other native weirdness rather than mere syntax. A tiny host that seeds data, launches one operation, or reports a result is fair game; the interesting work should visibly belong to the stunt.
+**Haz** que los efectos secundarios carguen con peso real cuando el lenguaje lo permita. Apóyate en la reflexión, la interpretación, la metaprogramación, el análisis sintáctico, la maquinaria de ejecución u otra rareza nativa, en lugar de la mera sintaxis. Un anfitrión diminuto que siembra datos, lanza una operación o informa un resultado es válido. El trabajo interesante debe pertenecer visiblemente a la acrobacia.
 
-**Don't** hide a normal solution behind one clever expression that calls `RunEverything()` (or the local equivalent). Moving the loops, conditionals, and orchestration into another method, script, or file is not a port; it's a costume change. And this is not a production pattern: no real data, no networked systems, and no pretending unreadability is a virtue outside the game.
+**No** escondas una solución normal detrás de una expresión ingeniosa que llame a `RunEverything()` (o a su equivalente local). Mover los bucles, los condicionales y la orquestación a otro método, script o archivo no es una adaptación: es un cambio de disfraz. Y esto no es un patrón de producción: nada de datos reales, nada de sistemas en red y nada de fingir que lo ilegible es una virtud fuera del juego.
 
-## Extra credit
+## Puntos extra
 
-- Leave `main` nearly empty, or make it the launcher for an even worse idea.
-- Put control flow somewhere it doesn't belong: a parser, iterator, regex engine, markup document, type system, or build tool.
-- Make backtracking do all the work, then deliberately return “no match.”
-- Build or animate a UI at runtime without conventional event-handler plumbing.
-- Add a test that proves the ridiculous constraint is actually real.
-- If the language hits a genuine wall, document it precisely. A well-demonstrated limitation is more interesting than cheating around it.
+- Deja `main` casi vacío, o conviértelo en el lanzador de una idea todavía peor.
+- Pon el flujo de control donde no corresponde: un analizador sintáctico, un iterador, un motor de regex, un documento de marcado, un sistema de tipos o una herramienta de compilación.
+- Haz que el retroceso haga todo el trabajo y luego devuelve a propósito "sin coincidencia".
+- Construye o anima una interfaz de usuario en tiempo de ejecución sin el cableado convencional de manejadores de eventos.
+- Añade una prueba que demuestre que la restricción ridícula es real de verdad.
+- Si el lenguaje choca con un muro genuino, documéntalo con precisión. Una limitación bien demostrada es más interesante que hacer trampa para esquivarla.
 
-Make it work. Make it weird.
+Haz que funcione. Haz que sea raro.
 
-And whatever you do, don't tell the boss.
+Y pase lo que pase, no se lo cuentes al jefe.

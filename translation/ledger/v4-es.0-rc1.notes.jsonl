@@ -2566,3 +2566,55 @@
 {"segment_id": "s-dd057e25c104-0101", "ts": "2026-11-22T17:37:43Z", "findings": ["AMBIGUITY: 1 reported by the translator (see ledger)"], "ambiguities": [{"english_excerpt": "a hostile archive", "question": "'archive' is not in the glossary. 'archivo' is the approved term for 'file', so 'archive' could be confused with it.", "chosen_reading": "Rendered as 'archivo tar', which names the format and keeps the term distinct from the generic 'file'."}]}
 {"segment_id": "s-868786983993-0102", "ts": "2026-11-22T17:37:53Z", "findings": ["AMBIGUITY: 1 reported by the translator (see ledger)"], "ambiguities": [{"english_excerpt": "Six mutants must be rejected", "question": "The English is passive with no agent. Spanish needs an agent or an impersonal form.", "chosen_reading": "The scanner rejects the mutants, so I wrote \"Debe rechazar seis mutantes\" with the scanner as the implied subject."}]}
 {"segment_id": "s-8facf92d9343-0106", "ts": "2026-11-22T17:38:07Z", "findings": ["AMBIGUITY: 1 reported by the translator (see ledger)"], "ambiguities": [{"english_excerpt": "Bugs in these entries are instructive.", "question": "Glossary requires 'bicho' for 'bug'; the sentence also uses 'off-by-one', which is a distinct term not in the glossary.", "chosen_reading": "Used 'bicho' for 'bug' and glossed 'off-by-one' as 'error de una unidad' keeping the English in italics, since no glossary entry exists for it."}]}
+{"segment_id": "s-76eca0ab061d-0017", "ts": "2026-11-22T17:44:36Z", "findings": ["I7: glossary term build must be rendered 'compilación'", "I7: glossary term plumbing must be rendered 'cómo viaja el dato'"]}
+{"segment_id": "s-8a10178b7340-0001", "ts": "2026-11-22T17:44:37Z", "findings": ["I7: glossary term parser must be rendered 'analizador sintáctico'"]}
+{"segment_id": "s-5312daf6a7d1-0002", "ts": "2026-11-22T17:44:37Z", "findings": ["I7: glossary term pull must be rendered 'demanda (pull)'"]}
+{"segment_id": "s-cc5dd9c4b3b2-0007", "ts": "2026-11-22T17:44:37Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-acb8429b4da8-0009", "ts": "2026-11-22T17:44:37Z", "findings": ["I7: glossary term sandbox must be rendered 'entorno aislado (*sandbox*)'"]}
+{"segment_id": "s-422414b67837-0010", "ts": "2026-11-22T17:44:37Z", "findings": ["I7: glossary term pull must be rendered 'demanda (pull)'", "I7: glossary term sandbox must be rendered 'entorno aislado (*sandbox*)'"]}
+{"segment_id": "s-8996e850c89b-0011", "ts": "2026-11-22T17:44:37Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-a8aad10b81f7-0012", "ts": "2026-11-22T17:44:37Z", "findings": ["I7: glossary term sandbox must be rendered 'entorno aislado (*sandbox*)'"]}
+{"segment_id": "s-d6fd2db55cc4-0023", "ts": "2026-11-22T17:44:37Z", "findings": ["I7: glossary term pull must be rendered 'demanda (pull)'"]}
+{"segment_id": "s-669cbef1e937-0027", "ts": "2026-11-22T17:44:37Z", "findings": ["I7: glossary term scope must be rendered 'ámbito'"]}
+{"segment_id": "s-ab8e763e8b56-0032", "ts": "2026-11-22T17:44:37Z", "findings": ["I7: glossary term parser must be rendered 'analizador sintáctico'"]}
+{"segment_id": "s-962c84be2213-0037", "ts": "2026-11-22T17:44:37Z", "findings": ["I7: glossary term pull must be rendered 'demanda (pull)'"]}
+{"segment_id": "s-76fdb6695f84-0039", "ts": "2026-11-22T17:44:37Z", "findings": ["I7: glossary term list must be rendered 'lista'", "I7: glossary term statement must be rendered 'sentencia'"]}
+{"segment_id": "s-5974cd34d9be-0042", "ts": "2026-11-22T17:44:37Z", "findings": ["I25: comma before a simple 'y' ('y el libro, y los enlaces de otras páginas'): no comma before a simple o or y"]}
+{"segment_id": "s-a0fdd83425b2-0054", "ts": "2026-11-22T17:44:37Z", "findings": ["I7: glossary term list must be rendered 'lista'"]}
+{"segment_id": "s-82d5a83df7a8-0055", "ts": "2026-11-22T17:44:37Z", "findings": ["I25: comma before a simple 'y' ('La sección es exactamente esto, y nada más'): no comma before a simple o or y"]}
+{"segment_id": "s-9edb6dc8fbb2-0058", "ts": "2026-11-22T17:44:37Z", "findings": ["I7: glossary term statement must be rendered 'sentencia'"]}
+{"segment_id": "s-6fd96fd952f5-0065", "ts": "2026-11-22T17:44:37Z", "findings": ["I7: glossary term pull must be rendered 'demanda (pull)'", "I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-48331de6f77a-0067", "ts": "2026-11-22T17:44:37Z", "findings": ["I7: glossary term pull must be rendered 'demanda (pull)'"]}
+{"segment_id": "s-31cf039c8754-0068", "ts": "2026-11-22T17:44:37Z", "findings": ["I7: glossary term pull must be rendered 'demanda (pull)'"]}
+{"segment_id": "s-8ffeaa69724f-0069", "ts": "2026-11-22T17:44:37Z", "findings": ["I7: glossary term sandbox must be rendered 'entorno aislado (*sandbox*)'"]}
+{"segment_id": "s-09fc23b1903b-0070", "ts": "2026-11-22T17:44:37Z", "findings": ["I7: glossary term list must be rendered 'lista'"]}
+{"segment_id": "s-57fdd24a5268-0072", "ts": "2026-11-22T17:44:37Z", "findings": ["I7: glossary term pull must be rendered 'demanda (pull)'", "I7: glossary term list must be rendered 'lista'"]}
+{"segment_id": "s-76eca0ab061d-0017", "ts": "2026-11-22T17:45:03Z", "findings": ["I7: glossary term build must be rendered 'compilación'", "I7: glossary term plumbing must be rendered 'cómo viaja el dato'"]}
+{"segment_id": "s-5312daf6a7d1-0002", "ts": "2026-11-22T17:45:03Z", "findings": ["I7: glossary term pull must be rendered 'demanda (pull)'"]}
+{"segment_id": "s-cc5dd9c4b3b2-0007", "ts": "2026-11-22T17:45:03Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-acb8429b4da8-0009", "ts": "2026-11-22T17:45:03Z", "findings": ["I7: glossary term sandbox must be rendered 'entorno aislado (*sandbox*)'"]}
+{"segment_id": "s-422414b67837-0010", "ts": "2026-11-22T17:45:03Z", "findings": ["I7: glossary term pull must be rendered 'demanda (pull)'", "I7: glossary term sandbox must be rendered 'entorno aislado (*sandbox*)'"]}
+{"segment_id": "s-8996e850c89b-0011", "ts": "2026-11-22T17:45:03Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-a8aad10b81f7-0012", "ts": "2026-11-22T17:45:03Z", "findings": ["I7: glossary term sandbox must be rendered 'entorno aislado (*sandbox*)'"]}
+{"segment_id": "s-d6fd2db55cc4-0023", "ts": "2026-11-22T17:45:03Z", "findings": ["I7: glossary term pull must be rendered 'demanda (pull)'"]}
+{"segment_id": "s-962c84be2213-0037", "ts": "2026-11-22T17:45:03Z", "findings": ["I7: glossary term pull must be rendered 'demanda (pull)'"]}
+{"segment_id": "s-76fdb6695f84-0039", "ts": "2026-11-22T17:45:03Z", "findings": ["I7: glossary term statement must be rendered 'sentencia'"]}
+{"segment_id": "s-6fd96fd952f5-0065", "ts": "2026-11-22T17:45:03Z", "findings": ["I7: glossary term pull must be rendered 'demanda (pull)'", "I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-48331de6f77a-0067", "ts": "2026-11-22T17:45:03Z", "findings": ["I7: glossary term pull must be rendered 'demanda (pull)'"]}
+{"segment_id": "s-31cf039c8754-0068", "ts": "2026-11-22T17:45:03Z", "findings": ["I7: glossary term pull must be rendered 'demanda (pull)'"]}
+{"segment_id": "s-8ffeaa69724f-0069", "ts": "2026-11-22T17:45:03Z", "findings": ["I7: glossary term sandbox must be rendered 'entorno aislado (*sandbox*)'"]}
+{"segment_id": "s-57fdd24a5268-0072", "ts": "2026-11-22T17:45:03Z", "findings": ["I7: glossary term pull must be rendered 'demanda (pull)'", "I7: glossary term list must be rendered 'lista'"]}
+{"segment_id": "s-5312daf6a7d1-0002", "ts": "2026-11-22T17:45:10Z", "findings": ["I7: glossary term pull must be rendered 'demanda (pull)'"]}
+{"segment_id": "s-cc5dd9c4b3b2-0007", "ts": "2026-11-22T17:45:10Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-acb8429b4da8-0009", "ts": "2026-11-22T17:45:10Z", "findings": ["I7: glossary term sandbox must be rendered 'entorno aislado (*sandbox*)'"]}
+{"segment_id": "s-422414b67837-0010", "ts": "2026-11-22T17:45:10Z", "findings": ["I7: glossary term pull must be rendered 'demanda (pull)'", "I7: glossary term sandbox must be rendered 'entorno aislado (*sandbox*)'"]}
+{"segment_id": "s-8996e850c89b-0011", "ts": "2026-11-22T17:45:10Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-a8aad10b81f7-0012", "ts": "2026-11-22T17:45:10Z", "findings": ["I7: glossary term sandbox must be rendered 'entorno aislado (*sandbox*)'"]}
+{"segment_id": "s-d6fd2db55cc4-0023", "ts": "2026-11-22T17:45:10Z", "findings": ["I7: glossary term pull must be rendered 'demanda (pull)'"]}
+{"segment_id": "s-962c84be2213-0037", "ts": "2026-11-22T17:45:10Z", "findings": ["I7: glossary term pull must be rendered 'demanda (pull)'"]}
+{"segment_id": "s-76fdb6695f84-0039", "ts": "2026-11-22T17:45:10Z", "findings": ["I7: glossary term statement must be rendered 'sentencia'"]}
+{"segment_id": "s-6fd96fd952f5-0065", "ts": "2026-11-22T17:45:10Z", "findings": ["I7: glossary term pull must be rendered 'demanda (pull)'", "I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-48331de6f77a-0067", "ts": "2026-11-22T17:45:10Z", "findings": ["I7: glossary term pull must be rendered 'demanda (pull)'"]}
+{"segment_id": "s-31cf039c8754-0068", "ts": "2026-11-22T17:45:10Z", "findings": ["I7: glossary term pull must be rendered 'demanda (pull)'"]}
+{"segment_id": "s-8ffeaa69724f-0069", "ts": "2026-11-22T17:45:10Z", "findings": ["I7: glossary term sandbox must be rendered 'entorno aislado (*sandbox*)'"]}
+{"segment_id": "s-57fdd24a5268-0072", "ts": "2026-11-22T17:45:10Z", "findings": ["I7: glossary term pull must be rendered 'demanda (pull)'"]}
