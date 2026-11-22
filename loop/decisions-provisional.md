@@ -107,3 +107,9 @@
 
 - Decision: `lesson:`/`exercise:` front-matter fragments follow anchors.json (new anchors.remap_front_matter, shared by apply and verify; I6 compares them without the fragment). `teaches` in each PO now equals the body **Te enseña:** line; forth-weird reworded to start with 'que la posición...' (catalog needs 'que ' prefix); javascript dropped the duplicated (*truthiness*) gloss (I24); regex-pcre2grep body label fixed from 'Qué aprenderás' to 'Te enseña'. build.py needs BOOK_LANG=es to check the Spanish edition.
 - Alternative: leave English slugs and relax the build check. Cost to reverse: revert this commit.
+
+## Iteration 373: Phase 4 gate scope (approved by the user)
+
+- Decision: P4-999 checks what its title says: every authored segment accepted or excepted (I16), frozen hashes match, no independent translation of generated blocks. After the relink and fix tasks P4-fix-9 to 12, those pass. The 18 remaining `verify --release` failures are links and diagrams in generated chapters (lessons/informatica/08 to 10, guide diagrams, book build) that P5-001 regenerates with `build.py --generate`; the full release run is the P5-004 gate.
+- Alternative: keep the whole release run as the P4 gate. That blocks P5-001, which produces the missing content, so the loop could never advance.
+- Cost to reverse: set P4-999 back to its old accept text; no content changes depend on it.
