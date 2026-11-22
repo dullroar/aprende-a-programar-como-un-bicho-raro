@@ -35,27 +35,27 @@ msgstr "m4 no ejecuta un programa. **Lee texto y escribe texto** y, a medida que
 #: lessons/languages/m4.md:11
 msgctxt "s-4edb797a890b-0005"
 msgid "⟦SEP_0001⟧ Feature ⟦SEP_0002⟧ Where ⟦SEP_0003⟧ What it teaches ⟦SEP_0004⟧"
-msgstr ""
+msgstr "⟦SEP_0001⟧ Característica ⟦SEP_0002⟧ Dónde ⟦SEP_0003⟧ Qué enseña ⟦SEP_0004⟧"
 
 #: lessons/languages/m4.md:13
 msgctxt "s-8e2312e14b78-0006"
 msgid "⟦SEP_0005⟧ Quotes delay evaluation ⟦SEP_0006⟧ [L22](⟦DEST_0001⟧): ⟦CODE_0002⟧ ⟦SEP_0007⟧ m4's quote characters are ⟦CODE_0003⟧ and ⟦CODE_0004⟧ by default, which clash with shell and SQL. Square brackets are the traditional replacement. A quoted string is *not* expanded; that is how you pass a macro name around instead of calling it. ⟦SEP_0008⟧"
-msgstr ""
+msgstr "⟦SEP_0005⟧ Las comillas retrasan la evaluación ⟦SEP_0006⟧ [L22](⟦DEST_0001⟧): ⟦CODE_0002⟧ ⟦SEP_0007⟧ Los caracteres de cita predeterminados de m4 son ⟦CODE_0003⟧ y ⟦CODE_0004⟧, que entran en conflicto con el intérprete de comandos (*shell*) y SQL. Los corchetes son el reemplazo tradicional. Una cadena de texto entre comillas *no* se expande; así puedes pasar un nombre de macro sin llamarla. ⟦SEP_0008⟧"
 
 #: lessons/languages/m4.md:14
 msgctxt "s-c0ffccab8944-0007"
 msgid "⟦SEP_0005⟧ Output can be switched off ⟦SEP_0006⟧ [L25](⟦DEST_0001⟧) and [L85](⟦DEST_0002⟧): ⟦CODE_0003⟧ ... ⟦CODE_0004⟧ ⟦SEP_0007⟧ Diversions are numbered output buffers. Diversion -1 is the bit bucket, so definitions print nothing. ⟦SEP_0008⟧"
-msgstr ""
+msgstr "⟦SEP_0005⟧ La salida puede desactivarse ⟦SEP_0006⟧ [L25](⟦DEST_0001⟧) y [L85](⟦DEST_0002⟧): ⟦CODE_0003⟧ ... ⟦CODE_0004⟧ ⟦SEP_0007⟧ Las desviaciones son búferes de salida numerados. La desviación -1 es el sumidero de bits, así que las definiciones no imprimen nada. ⟦SEP_0008⟧"
 
 #: lessons/languages/m4.md:15
 msgctxt "s-def2cf81a47f-0008"
 msgid "⟦SEP_0004⟧ ⟦CODE_0001⟧ returns a macro's text ⟦SEP_0005⟧ [L69](⟦DEST_0002⟧): ⟦CODE_0003⟧ ⟦SEP_0006⟧ \"A variable that grows\" is a macro that redefines itself as itself plus more. The SQL script is built this way. ⟦SEP_0007⟧"
-msgstr ""
+msgstr "⟦SEP_0004⟧ ⟦CODE_0001⟧ devuelve el texto de una macro ⟦SEP_0005⟧ [L69](⟦DEST_0002⟧): ⟦CODE_0003⟧ ⟦SEP_0006⟧ \"Una variable que crece\" es una macro que se redefine como sí misma más algo adicional. El script SQL se construye así. ⟦SEP_0007⟧"
 
 #: lessons/languages/m4.md:16
 msgctxt "s-ad2cf64b598a-0009"
 msgid "⟦SEP_0005⟧ The only arithmetic is ⟦CODE_0001⟧ ⟦SEP_0006⟧ [L44-46](⟦DEST_0002⟧): ⟦CODE_0003⟧ ⟦SEP_0007⟧ ⟦CODE_0004⟧ is **32-bit**, so a random number generator has to avoid overflow (see below). ⟦SEP_0008⟧"
-msgstr ""
+msgstr "⟦SEP_0005⟧ La única operación aritmética es ⟦CODE_0001⟧ ⟦SEP_0006⟧ [L44-46](⟦DEST_0002⟧): ⟦CODE_0003⟧ ⟦SEP_0007⟧ ⟦CODE_0004⟧ es de **32 bits**, así que un generador de números aleatorios debe evitar el desbordamiento (ver más abajo). ⟦SEP_0008⟧"
 
 #: lessons/languages/m4.md:17
 msgctxt "s-c85b33ca2db2-0010"
