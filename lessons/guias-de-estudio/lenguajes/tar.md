@@ -24,7 +24,7 @@ sandbox/container/run-image.sh src/tar-gnu
 sandbox/container/run-image.sh src/tar-gnu-weird
 ```
 
-Edita solo copias ([Ejecutar cosas de forma segura](../../exercises.md#running-things-safely)). Puedes escribir un archivo con las horas que elijas: `sh build-archive.sh --seed 7 --hours "15 19 12 10 10" program.tar`. La entrada rara acepta `--seed N`; la semilla 1105 da las horas 15, 19, 12.
+Edita solo copias ([Ejecutar cosas de forma segura](../../exercises.md#ejecutar-con-seguridad)). Puedes escribir un archivo con las horas que elijas: `sh build-archive.sh --seed 7 --hours "15 19 12 10 10" program.tar`. La entrada rara acepta `--seed N`; la semilla 1105 da las horas 15, 19, 12.
 
 **Regla de predicción.** Antes de cada ejecución, anota qué miembros se leerán, cuáles se ejecutarán y cuántos pulsos recibirá el reloj.
 
@@ -40,7 +40,7 @@ Edita solo copias ([Ejecutar cosas de forma segura](../../exercises.md#running-t
 
 ## El reto compartido
 
-La [especificación del reto](../../introduccion.md#what-the-challenge-does) pide tarjetas con una categoría y de 10 a 19 horas enteras. Las categorías se repiten en ciclo: `Meetings`, `Coding`, `Debugging` y `Learning`. Suma las horas de cada tarjeta al total acumulado. Detente cuando el total pasa de 40. Conserva la **primera tarjeta con la que el total pasa de 40**. Un total de exactamente 40 continúa. Cuatro tarjetas de 10 horas necesitan una quinta tarjeta, de la categoría `Meetings`. Las ejecuciones conformes tienen de 3 a 5 tarjetas y un total de 41 a 59 horas.
+La [especificación del reto](../../introduccion.md#qué-hace-el-reto) pide tarjetas con una categoría y de 10 a 19 horas enteras. Las categorías se repiten en ciclo: `Meetings`, `Coding`, `Debugging` y `Learning`. Suma las horas de cada tarjeta al total acumulado. Detente cuando el total pasa de 40. Conserva la **primera tarjeta con la que el total pasa de 40**. Un total de exactamente 40 continúa. Cuatro tarjetas de 10 horas necesitan una quinta tarjeta, de la categoría `Meetings`. Las ejecuciones conformes tienen de 3 a 5 tarjetas y un total de 41 a 59 horas.
 
 Las dos entradas de tar informan desde SQLite. El programa del archivo despacha operaciones de miembros, y el programa de puntos de control confirma cada pulso. En `tar-gnu`, el archivo tiene cinco espacios para tarjetas (Meetings, Coding, Debugging, Learning, Meetings). Cada uno va seguido de un miembro `stop-over` que lleva `limit=40` y significa "detente si el total *pasa de* 40". Exactamente 40 no pasa de 40, así que se ejecuta el espacio siguiente. En `tar-gnu-weird`, una tarjeta se cierra en el pulso cuyo número es igual al total acumulado, y `done` se activa cuando `total > 40`. Una ejecución necesita entre 41 y 59 pulsos.
 
@@ -176,10 +176,10 @@ La primera trata de lo que **significa** una disposición. La segunda trata de *
 
 | Ejercicio | Predice primero | Qué muestra la evidencia |
 | --- | --- | --- |
-| [B16. tar: lee el programa y luego ejecútalo](../../exercises.md#b16-tar-read-the-program-then-run-it-verified), paso 1 | `--hours "12 12 12 12 12"`: ¿cuántas tarjetas se ejecutan y qué espacio se lee y se ignora? | Cuatro tarjetas (12, 24, 36, 48), y el quinto espacio se lee y se ignora. |
+| [B16. tar: lee el programa y luego ejecútalo](../../exercises.md#b16-tar-lee-el-programa-y-luego-ejecútalo-verificado), paso 1 | `--hours "12 12 12 12 12"`: ¿cuántas tarjetas se ejecutan y qué espacio se lee y se ignora? | Cuatro tarjetas (12, 24, 36, 48), y el quinto espacio se lee y se ignora. |
 | B16, paso 2 | Cambia `limit=40` en `021.stop-over` a `limit=20` y empaquétalo otra vez en el mismo orden. | Dos tarjetas (12, 24). El límite está en el archivo, así que editar un miembro cambió la regla de parada, y `dispatch.sh` no cambió. La traza muestra `ok` y luego `ignored: halted`. |
 | B16, paso 3 | Añade un miembro `025.exec` que no está en el conjunto de instrucciones. | El inspector imprime `REFUSE (unknown record type)` y sale con 4, `interpret.sh` no ejecuta nada y no aparece ningún archivo `pwned`. `tar -xf` a secas tampoco lo crearía: el nombre de un miembro no es un comando. |
-| [B17. tar, más raro: predice el reloj](../../exercises.md#b17-tar-weirder-predict-the-clock-verified), paso 1 | `--seed 42 --ticks 45` y después `46`. | Con 45 pulsos la tercera tarjeta no termina: dos tarjetas, `the clock ran out` y salida 3. Con 46, tres tarjetas y salida 0. |
+| [B17. tar, más raro: predice el reloj](../../exercises.md#b17-tar-más-raro-predice-el-reloj-verificado), paso 1 | `--seed 42 --ticks 45` y después `46`. | Con 45 pulsos la tercera tarjeta no termina: dos tarjetas, `the clock ran out` y salida 3. Con 46, tres tarjetas y salida 0. |
 | B17, pasos 2 y 3 | `--interval 2` con 92 y 91 pulsos; `--blocking 4`. | 92 registros dan 46 pulsos y terminan. 91 dan 45 y se atascan. `-b 4` con 260 bloques da 65 registros y 65 pulsos, así que 19 son inactivos. |
 | B17, paso 4 | ¿Qué hay en la cinta? | Casi todo ceros, más una cabecera de 512 bytes. La carga útil no importa. Su *tamaño* es el reloj. |
 

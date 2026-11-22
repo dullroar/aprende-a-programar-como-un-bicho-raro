@@ -57,7 +57,7 @@ Usos legítimos: intérpretes, depuradores y palabras de análisis sintáctico, 
 
 ### Ahora rómpelo tú
 
-Consulta los [ejercicios](../exercises.md#b3-forth-move-the-anchor-verified).
+Consulta los [ejercicios](../exercises.md#b3-forth-mueve-el-ancla-verificado).
 
 ## Peculiaridades
 
@@ -78,7 +78,7 @@ Cuando escribes el intérprete, una palabra de análisis sintáctico o un depura
 <!-- BEGIN GENERATED program-flow:languages/forth.md -->
 ## How each program runs
 
-Each picture below is the `## Program Flow` section of an entry's README, copied here by the build. It shows how that program makes the work happen: what the language, runtime or tool really does. [The introduction](../introduccion.md#what-the-challenge-does) shows what the challenge asks for and where entries differ.
+Each picture below is the `## Program Flow` section of an entry's README, copied here by the build. It shows how that program makes the work happen: what the language, runtime or tool really does. [The introduction](../introduccion.md#qué-hace-el-reto) shows what the challenge asks for and where entries differ.
 
 ### Program flow of `forth`
 

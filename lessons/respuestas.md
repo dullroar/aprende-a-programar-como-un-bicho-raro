@@ -21,7 +21,7 @@ Debugging  12   46      <- crossing card: the total before it was 34, which is <
 ```
 
 - La tarjeta que cruza el tope es la primera cuyo total acumulado es **más de 40**; el total anterior siempre es **como máximo 40** (de otro modo, la ejecución se habría detenido antes). Los totales pueden terminar entre 41 y 59.
-- Un total de exactamente 40 continúa según la regla del reto. Cuatro tarjetas de 10 horas suman exactamente 40, así que una ejecución conforme conserva una quinta tarjeta. Se corrigió el antiguo techo de cuatro nombres en las entradas de regex y de encabezado `for`. Consulta la [introducción](introduccion.md#where-entries-differ) para el techo de cuatro pasadas de XAML y las demostraciones corregidas de LINQ. [`regex-dotnet`](../src/regex-dotnet/README.md) no imprime una columna de total acumulado, así que `check-demo.sh` suma las horas por sí mismo.
+- Un total de exactamente 40 continúa según la regla del reto. Cuatro tarjetas de 10 horas suman exactamente 40, así que una ejecución conforme conserva una quinta tarjeta. Se corrigió el antiguo techo de cuatro nombres en las entradas de regex y de encabezado `for`. Consulta la [introducción](introduccion.md#dónde-difieren-las-entradas) para el techo de cuatro pasadas de XAML y las demostraciones corregidas de LINQ. [`regex-dotnet`](../src/regex-dotnet/README.md) no imprime una columna de total acumulado, así que `check-demo.sh` suma las horas por sí mismo.
 
 ## B1. COBOL: predice y luego rompe `ALTER`
 

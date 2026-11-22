@@ -102,7 +102,7 @@ Usos legítimos: metaprogramación, exploración interactiva y generación de c�
 
 ### Ahora rómpelo tú
 
-Consulta los [ejercicios](../exercises.md#b6-apl-the-off-by-one-rewrite-verified).
+Consulta los [ejercicios](../exercises.md#b6-apl-la-reescritura-del-error-por-uno-verificada).
 
 ## Rarezas
 
@@ -125,7 +125,7 @@ La primera no es una idea terrible; así piensan en realidad los programadores d
 <!-- BEGIN GENERATED program-flow:languages/apl.md -->
 ## How each program runs
 
-Each picture below is the `## Program Flow` section of an entry's README, copied here by the build. It shows how that program makes the work happen: what the language, runtime or tool really does. [The introduction](../introduccion.md#what-the-challenge-does) shows what the challenge asks for and where entries differ.
+Each picture below is the `## Program Flow` section of an entry's README, copied here by the build. It shows how that program makes the work happen: what the language, runtime or tool really does. [The introduction](../introduccion.md#qué-hace-el-reto) shows what the challenge asks for and where entries differ.
 
 ### Program flow of `apl`
 

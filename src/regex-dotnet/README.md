@@ -106,4 +106,4 @@ Comprobé los casos límite con un prototipo desechable (no está en el reposito
 
 ---
 
-Consulta el [README raíz](../../README.md#the-results-so-far) para ver cómo se compara esto con las otras entradas de regex, y [`RETO.md`](../../RETO.md) si quieres escribir las tuyas.
+Consulta el [README raíz](../../README.md#los-resultados-hasta-ahora) para ver cómo se compara esto con las otras entradas de regex, y [`RETO.md`](../../RETO.md) si quieres escribir las tuyas.

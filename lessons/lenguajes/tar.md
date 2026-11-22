@@ -56,7 +56,7 @@ Usos legítimos: `--to-command` como filtro, por ejemplo, para calcular la suma 
 
 ### Ahora rómpelo tú
 
-Consulta el [ejercicio B16](../exercises.md#b16-tar-read-the-program-then-run-it-verified).
+Consulta el [ejercicio B16](../exercises.md#b16-tar-lee-el-programa-y-luego-ejecútalo-verificado).
 
 ## El archivo es el reloj
 
@@ -98,12 +98,12 @@ Usos legítimos: barras de progreso para copias de seguridad largas y `--checkpo
 
 ### Ahora rómpelo tú
 
-Mira el [ejercicio B17](../exercises.md#b17-tar-weirder-predict-the-clock-verified).
+Mira el [ejercicio B17](../exercises.md#b17-tar-más-raro-predice-el-reloj-verificado).
 
 <!-- BEGIN GENERATED program-flow:languages/tar.md -->
 ## How each program runs
 
-Each picture below is the `## Program Flow` section of an entry's README, copied here by the build. It shows how that program makes the work happen: what the language, runtime or tool really does. [The introduction](../introduccion.md#what-the-challenge-does) shows what the challenge asks for and where entries differ.
+Each picture below is the `## Program Flow` section of an entry's README, copied here by the build. It shows how that program makes the work happen: what the language, runtime or tool really does. [The introduction](../introduccion.md#qué-hace-el-reto) shows what the challenge asks for and where entries differ.
 
 ### Program flow of `tar-gnu`
 

@@ -17,7 +17,7 @@ Cuando termines, deberías poder:
 
 ## Antes de empezar
 
-**Modelo de seguridad.** Las tarjetas son datos ficticios marcados con **DEMO ONLY**. Los programas pueden escribir en archivos o bases de datos locales de prueba y pueden iniciar procesos. Lee primero el código fuente y ejecútalo antes en un entorno aislado (*sandbox*) que limita el acceso al sistema anfitrión, por ejemplo `sandbox/container/run-image.sh src/regex-perl`. Trabaja con copias ([Ejecutar cosas con seguridad](../../exercises.md#running-things-safely)). Los experimentos de fallo pueden dejar archivos de prueba escritos a medias, así que usa una copia y una carpeta de datos de prueba.
+**Modelo de seguridad.** Las tarjetas son datos ficticios marcados con **DEMO ONLY**. Los programas pueden escribir en archivos o bases de datos locales de prueba y pueden iniciar procesos. Lee primero el código fuente y ejecútalo antes en un entorno aislado (*sandbox*) que limita el acceso al sistema anfitrión, por ejemplo `sandbox/container/run-image.sh src/regex-perl`. Trabaja con copias ([Ejecutar cosas con seguridad](../../exercises.md#ejecutar-con-seguridad)). Los experimentos de fallo pueden dejar archivos de prueba escritos a medias, así que usa una copia y una carpeta de datos de prueba.
 
 **Regla de predicción.** Antes de cada experimento de fallo, escribe tres listas: qué se *deshará*, qué *permanecerá* y qué *verás en la terminal*. Suelen ser distintas.
 
@@ -34,7 +34,7 @@ Cuando termines, deberías poder:
 
 ## El reto compartido
 
-La [especificación del reto](../../introduccion.md#what-the-challenge-does) pide tarjetas con una categoría y de 10 a 19 horas enteras. Las categorías se repiten en ciclo: `Meetings`, `Coding`, `Debugging` y `Learning`. Suma las horas de cada tarjeta al total acumulado. Detente cuando el total pasa de 40. Conserva la **primera tarjeta con la que el total pasa de 40**. Un total de exactamente 40 continúa. Cuatro tarjetas de 10 horas necesitan una quinta tarjeta, de la categoría `Meetings`. Las ejecuciones conformes tienen de 3 a 5 tarjetas y un total de 41 a 59 horas.
+La [especificación del reto](../../introduccion.md#qué-hace-el-reto) pide tarjetas con una categoría y de 10 a 19 horas enteras. Las categorías se repiten en ciclo: `Meetings`, `Coding`, `Debugging` y `Learning`. Suma las horas de cada tarjeta al total acumulado. Detente cuando el total pasa de 40. Conserva la **primera tarjeta con la que el total pasa de 40**. Un total de exactamente 40 continúa. Cuatro tarjetas de 10 horas necesitan una quinta tarjeta, de la categoría `Meetings`. Las ejecuciones conformes tienen de 3 a 5 tarjetas y un total de 41 a 59 horas.
 
 Comprueba por separado las *filas mostradas*, las *filas guardadas* y el *resumen*. Una tabla de SQLite puede aplicar `CHECK(demo_only=1)`. Un escritor de TSV aplica sus propias reglas. Algunas demos guardan en una sola transacción. pcre2grep guarda en llamadas separadas. .NET informa `captured` como resultado de la expresión regular. El resumen es una afirmación sobre la ejecución. Esta guía la contrasta con los efectos.
 
@@ -120,12 +120,12 @@ La entrada ordinaria `haskell` construye todo el script SQL como una cadena de t
 
 | Ejercicio | Predice primero | Qué muestra la evidencia |
 | --- | --- | --- |
-| [B2. Haskell: rompe la pereza](../../exercises.md#b2-haskell-break-the-laziness-verified) | Haz perezoso `entries`. | `handle is closed`. Forzar después de que el recurso se cerró. |
-| [B8. Regex: qué sobrevive a una coincidencia fallida](../../exercises.md#b8-regex-what-survives-a-failed-match-verified) | `(?!)` en .NET; una ruta relativa en pcre2grep. | La coincidencia fallida de .NET no entrega capturas de tarjetas, y el anfitrión escribe un informe de cero filas. En pcre2grep el fallo del proceso auxiliar es silencioso. |
-| [B12. Tcl: edita el programa en la base de datos](../../exercises.md#b12-tcl-edit-the-program-in-the-database-verified) | Desactiva los disparadores recursivos. | Se imprime una fila, `entries=2`. |
-| [B17. tar, más raro: predice el reloj](../../exercises.md#b17-tar-weirder-predict-the-clock-verified) | Ejecuta con un diseño corto por un tic. | `the clock ran out`, estado de salida 3, dos tarjetas. Un reloj corto se atasca en lugar de dar error. |
-| [A1. Lee las filas](../../exercises.md#a1-read-the-rows-verified) | ¿Qué tarjeta pasó de 40? | La salida por sí sola prueba que "el total antes de la última tarjeta es como máximo 40". |
-| [F. Demuestra una afirmación de un README](../../exercises.md#f-prove-a-readme-claim-verified) | ¿Puede fallar tu prueba? | Una afirmación necesita un control negativo. |
+| [B2. Haskell: rompe la pereza](../../exercises.md#b2-haskell-rompe-la-pereza-verificado) | Haz perezoso `entries`. | `handle is closed`. Forzar después de que el recurso se cerró. |
+| [B8. Regex: qué sobrevive a una coincidencia fallida](../../exercises.md#b8-regex-qué-sobrevive-a-una-coincidencia-fallida-verificado) | `(?!)` en .NET; una ruta relativa en pcre2grep. | La coincidencia fallida de .NET no entrega capturas de tarjetas, y el anfitrión escribe un informe de cero filas. En pcre2grep el fallo del proceso auxiliar es silencioso. |
+| [B12. Tcl: edita el programa en la base de datos](../../exercises.md#b12-tcl-edita-el-programa-en-la-base-de-datos-verificado) | Desactiva los disparadores recursivos. | Se imprime una fila, `entries=2`. |
+| [B17. tar, más raro: predice el reloj](../../exercises.md#b17-tar-más-raro-predice-el-reloj-verificado) | Ejecuta con un diseño corto por un tic. | `the clock ran out`, estado de salida 3, dos tarjetas. Un reloj corto se atasca en lugar de dar error. |
+| [A1. Lee las filas](../../exercises.md#a1-lee-las-filas-verificado) | ¿Qué tarjeta pasó de 40? | La salida por sí sola prueba que "el total antes de la última tarjeta es como máximo 40". |
+| [F. Demuestra una afirmación de un README](../../exercises.md#f-demuestra-una-afirmación-del-readme-verificada) | ¿Puede fallar tu prueba? | Una afirmación necesita un control negativo. |
 
 ## Modos de fallo, costos y límites
 

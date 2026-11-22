@@ -24,7 +24,7 @@ sandbox/container/run-image.sh src/lisp
 sandbox/container/run-image.sh src/lisp-weird
 ```
 
-Edita solo copias ([Ejecutar cosas de forma segura](../../exercises.md#running-things-safely)). Tus números serán distintos de los que se imprimen aquí; la estructura no.
+Edita solo copias ([Ejecutar cosas de forma segura](../../exercises.md#ejecutar-con-seguridad)). Tus números serán distintos de los que se imprimen aquí; la estructura no.
 
 **Regla de predicción.** Antes de cada ejecución, anota qué métodos se ejecutarán, en qué orden y qué devuelve el método que detiene la cadena.
 
@@ -40,7 +40,7 @@ Edita solo copias ([Ejecutar cosas de forma segura](../../exercises.md#running-t
 
 ## El reto compartido
 
-La [especificación del reto](../../introduccion.md#what-the-challenge-does) pide tarjetas con una categoría y de 10 a 19 horas enteras. Las categorías se repiten en ciclo: `Meetings`, `Coding`, `Debugging` y `Learning`. Suma las horas de cada tarjeta al total acumulado. Detente cuando el total pasa de 40. Conserva la **primera tarjeta con la que el total pasa de 40**. Un total de exactamente 40 continúa. Cuatro tarjetas de 10 horas necesitan una quinta tarjeta, de la categoría `Meetings`. Las ejecuciones conformes tienen de 3 a 5 tarjetas y un total de 41 a 59 horas.
+La [especificación del reto](../../introduccion.md#qué-hace-el-reto) pide tarjetas con una categoría y de 10 a 19 horas enteras. Las categorías se repiten en ciclo: `Meetings`, `Coding`, `Debugging` y `Learning`. Suma las horas de cada tarjeta al total acumulado. Detente cuando el total pasa de 40. Conserva la **primera tarjeta con la que el total pasa de 40**. Un total de exactamente 40 continúa. Cuatro tarjetas de 10 horas necesitan una quinta tarjeta, de la categoría `Meetings`. Las ejecuciones conformes tienen de 3 a 5 tarjetas y un total de 41 a 59 horas.
 
 Ambas entradas de Lisp guardan las tarjetas en una sola transacción de SQLite e imprimen un resumen. Lisp escribe el límite como `(> total 40)`: es falso para 40. En `LOOP` la prueba es `until (> total +limit+)` y va *después de* `collect`, por eso se conserva la tarjeta que cruza el límite ([L39-46](../../../src/lisp/timecards.lisp#L39-L46)). En el programa raro, cada método termina con `(> (total ledger) 40)`, y el método que devuelve verdadero detiene la cadena ([L84](../../../src/lisp-weird/timecards.lisp#L84)).
 
@@ -148,11 +148,11 @@ Una macro hace la repetición en tiempo de compilación. `defcard` se expande ci
 
 | Ejercicio | Predice primero | Qué muestra la evidencia |
 | --- | --- | --- |
-| [B10. Lisp: cambia la combinación de métodos](../../exercises.md#b10-lisp-swap-the-method-combination-verified), paso 1 | Sustituye `or` por `progn` en los dos lugares. ¿Cuántas tarjetas salen en cada ejecución? | Exactamente cinco en cada ejecución; además, `PUNCH had 0 OR methods and 5 ran`. `progn` ejecuta todos los métodos, así que la regla de parada desaparece. La comprobación propia de la entrada falla. |
+| [B10. Lisp: cambia la combinación de métodos](../../exercises.md#b10-lisp-cambia-la-combinación-de-métodos-verificado), paso 1 | Sustituye `or` por `progn` en los dos lugares. ¿Cuántas tarjetas salen en cada ejecución? | Exactamente cinco en cada ejecución; además, `PUNCH had 0 OR methods and 5 ran`. `progn` ejecuta todos los métodos, así que la regla de parada desaparece. La comprobación propia de la entrada falla. |
 | B10, paso 2 | Cambia solo la combinación de la función genérica a `progn` y deja los calificadores `or`. | SBCL advierte `Invalid qualifiers for PROGN method combination`. Los calificadores de un método deben pertenecer a la combinación de su función genérica. |
 | B10, paso 3 | Cambia la prueba de parada a `(> (total ledger) 100)`. | Exactamente cinco filas en cada ejecución y un total de 95 como máximo. `check-demo.sh out.txt 100` falla. Cinco es lo máximo que el programa puede repartir. Para admitir 100 hacen falta más clases. |
-| [C1. Lo raro junto a lo aburrido](../../exercises.md#c1-weird-next-to-boring-verified) | ¿En qué programa vive la regla de parada en una sola palabra? | En `lisp-weird` es la palabra `or`. Quitarla no provoca ningún error: el programa reparte las cinco tarjetas. |
-| [F. Demuestra una afirmación del README](../../exercises.md#f-prove-a-readme-claim-verified) | ¿Qué prueba falla si la cadena no va del más específico al menos específico? | Comprueba que los métodos se ejecutan en el orden card-1 a card-5. El control negativo invierte la herencia y espera que el orden de las tarjetas cambie. |
+| [C1. Lo raro junto a lo aburrido](../../exercises.md#c1-lo-raro-junto-a-lo-aburrido-verificado) | ¿En qué programa vive la regla de parada en una sola palabra? | En `lisp-weird` es la palabra `or`. Quitarla no provoca ningún error: el programa reparte las cinco tarjetas. |
+| [F. Demuestra una afirmación del README](../../exercises.md#f-demuestra-una-afirmación-del-readme-verificada) | ¿Qué prueba falla si la cadena no va del más específico al menos específico? | Comprueba que los métodos se ejecutan en el orden card-1 a card-5. El control negativo invierte la herencia y espera que el orden de las tarjetas cambie. |
 
 La respuesta de una frase que el libro pide en B10 es la mejor prueba. *¿Qué palabra es la regla de parada y por qué quitarla no hace fallar al programa?* La palabra es `or`. Sin ella los métodos se siguen ejecutando, y un programa que reparte demasiadas tarjetas parece un programa que funciona.
 

@@ -72,7 +72,7 @@ Etiquetas: las reglas de patrón y acción, `BEGIN`/`END`, la nueva división de
 
 ### Haz esto en producción y estás despedido
 
-- **Solo funciona en gawk y el fallo con otros awk es silencioso.** mawk no tiene `RT`, así que `RT == ""` es *siempre* verdadero, la regla 1 omite todos los registros y la regla de parada nunca se activa. Con `/dev/urandom` mawk lee hasta quedarse sin memoria; con un archivo finito de dígitos informa `total=0 entries=0`. (Pruébalo, con cuidado, en [B13](../exercises.md#b13-awk-the-missing-rt-verified).)
+- **Solo funciona en gawk y el fallo con otros awk es silencioso.** mawk no tiene `RT`, así que `RT == ""` es *siempre* verdadero, la regla 1 omite todos los registros y la regla de parada nunca se activa. Con `/dev/urandom` mawk lee hasta quedarse sin memoria; con un archivo finito de dígitos informa `total=0 entries=0`. (Pruébalo, con cuidado, en [B13](../exercises.md#b13-awk-el-rt-que-falta-verificado).)
 - **El último registro vacío.** Un archivo cuyo último carácter no es un dígito deja un registro final vacío con `RT == ""`. Sin la regla 1, eso cuenta como una tarjeta de 10 horas.
 - **`RS` cambia cada lectura**, incluida la de `getline` desde un comando.
 - **Un nombre de directorio con una comilla simple** rompería el comando del intérprete de comandos que crea el directorio.
@@ -82,7 +82,7 @@ Usos legítimos: un `RS` como regex y `RT` son herramientas reales para el **an�
 
 ### Ahora rómpelo tú
 
-Consulta los [ejercicios](../exercises.md#b13-awk-the-missing-rt-verified). También hay un ejercicio de awk más antiguo que no necesita gawk: [C3](../exercises.md#c3-a-loop-whose-state-is-not-a-variable-verified). Hay además una adaptación de referencia a awk en [`solutions/awk-port`](../solutions/awk-port), que es un tercer diseño (quien llama aporta los registros con `seq 5` y un patrón `total <= 40` es la regla de parada).
+Consulta los [ejercicios](../exercises.md#b13-awk-el-rt-que-falta-verificado). También hay un ejercicio de awk más antiguo que no necesita gawk: [C3](../exercises.md#c3-un-bucle-cuyo-estado-no-es-una-variable-verificado). Hay además una adaptación de referencia a awk en [`solutions/awk-port`](../solutions/awk-port), que es un tercer diseño (quien llama aporta los registros con `seq 5` y un patrón `total <= 40` es la regla de parada).
 
 ## Rarezas
 
@@ -103,7 +103,7 @@ Cuando la entrada *es* el bucle. Un separador de registros con regex es la forma
 <!-- BEGIN GENERATED program-flow:languages/awk.md -->
 ## How each program runs
 
-Each picture below is the `## Program Flow` section of an entry's README, copied here by the build. It shows how that program makes the work happen: what the language, runtime or tool really does. [The introduction](../introduccion.md#what-the-challenge-does) shows what the challenge asks for and where entries differ.
+Each picture below is the `## Program Flow` section of an entry's README, copied here by the build. It shows how that program makes the work happen: what the language, runtime or tool really does. [The introduction](../introduccion.md#qué-hace-el-reto) shows what the challenge asks for and where entries differ.
 
 ### Program flow of `awk`
 

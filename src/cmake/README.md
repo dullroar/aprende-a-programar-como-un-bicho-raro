@@ -121,7 +121,7 @@ Siguen tres pruebas más. Un barrido de límites de año (con `SOURCE_DATE_EPOCH
 
 ---
 
-Consulta el [README raíz](../../README.md#the-results-so-far) para ver cómo se compara con las otras entradas, y [`RETO.md`](../../RETO.md) si quieres escribir el tuyo.
+Consulta el [README raíz](../../README.md#los-resultados-hasta-ahora) para ver cómo se compara con las otras entradas, y [`RETO.md`](../../RETO.md) si quieres escribir el tuyo.
 
 ## Ejecuta el ejemplo en un contenedor
 

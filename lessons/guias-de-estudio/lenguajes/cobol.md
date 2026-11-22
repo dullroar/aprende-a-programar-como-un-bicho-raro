@@ -25,7 +25,7 @@ sandbox/container/run-image.sh src/cobol
 sandbox/container/run-image.sh src/cobol-weird
 ```
 
-Trabaja en una copia cuando un ejercicio te pida editar (consulta [Ejecutar cosas de forma segura](../../exercises.md#running-things-safely)). La salida es aleatoria, así que tus números serán distintos de todos los que se imprimen aquí. Las propiedades no cambiarán.
+Trabaja en una copia cuando un ejercicio te pida editar (consulta [Ejecutar cosas de forma segura](../../exercises.md#ejecutar-con-seguridad)). La salida es aleatoria, así que tus números serán distintos de todos los que se imprimen aquí. Las propiedades no cambiarán.
 
 **Regla de predicción.** Antes de cada ejecución, anota qué estado va a cambiar, qué sentencia se ejecutará a continuación y qué salida demostraría que te equivocaste. El script de comprobación te dice si obtuviste un resultado. Solo la predicción te dice si entendiste.
 
@@ -41,7 +41,7 @@ Trabaja en una copia cuando un ejercicio te pida editar (consulta [Ejecutar cosa
 
 ## El reto compartido
 
-La [especificación del reto](../../introduccion.md#what-the-challenge-does) pide tarjetas con una categoría y de 10 a 19 horas enteras. Las categorías se repiten en ciclo: `Meetings`, `Coding`, `Debugging` y `Learning`. Suma las horas de cada tarjeta al total acumulado. Detente cuando el total pasa de 40. Conserva la **primera tarjeta con la que el total pasa de 40**. Un total de exactamente 40 continúa. Cuatro tarjetas de 10 horas necesitan una quinta tarjeta, de la categoría `Meetings`. Las ejecuciones conformes tienen de 3 a 5 tarjetas y un total de 41 a 59 horas.
+La [especificación del reto](../../introduccion.md#qué-hace-el-reto) pide tarjetas con una categoría y de 10 a 19 horas enteras. Las categorías se repiten en ciclo: `Meetings`, `Coding`, `Debugging` y `Learning`. Suma las horas de cada tarjeta al total acumulado. Detente cuando el total pasa de 40. Conserva la **primera tarjeta con la que el total pasa de 40**. Un total de exactamente 40 continúa. Cuatro tarjetas de 10 horas necesitan una quinta tarjeta, de la categoría `Meetings`. Las ejecuciones conformes tienen de 3 a 5 tarjetas y un total de 41 a 59 horas.
 
 Dos tarjetas suman 38 horas como máximo, así que una ejecución conforme necesita al menos tres tarjetas.
 
@@ -178,17 +178,17 @@ Todos estos ejercicios están marcados como verificados en el libro: las solucio
 
 | Ejercicio | Predice primero | Qué muestra la evidencia |
 | --- | --- | --- |
-| [A1. Lee las filas](../../exercises.md#a1-read-the-rows-verified) | ¿Qué tarjeta pasó de 40 y cuál era el total justo antes? ¿Podría una ejecución dar un total de exactamente 40 y continuar? | La regla de parada es un límite preciso, no una aproximación. La salida sola prueba el invariante "el total de cada fila es el total anterior más las horas". También deja ver un error de desfase en una posición (*off-by-one*) aunque las horas cambien en cada ejecución. |
-| [B1, parte 1. Cambia el valor inicial](../../exercises.md#b1-cobol-predict-then-break-alter-verified) | ¿Por encima de qué total se detendrá la ejecución si `WS-HEADROOM` empieza en 49 en vez de 59? | El punto de parada pasa a ser "el primer total por encima de 50" (totales finales de 51 a 69). El verificador compartido pasa con el límite 50, y el `check.sh` propio de la entrada, que fija 40 en el código, falla. Un solo número codifica la regla de negocio. |
-| [B1, parte 2. Añade un `DISPLAY` a `NEXT-CARD`](../../exercises.md#b1-cobol-predict-then-break-alter-verified) | ¿Llegarás a ver impreso `x`? ¿En qué etapa fallará? | Falla en *tiempo de compilación*, no en tiempo de ejecución: `'NEXT-CARD' is not an alterable paragraph`, una vez por cada `ALTER` (cinco veces). El compilador comprueba la regla estructural que permite parchear el destino. |
-| [C1. Lo raro junto a lo aburrido](../../exercises.md#c1-weird-next-to-boring-verified) | En cada programa, ¿qué campos vigilarías, aislarías y cambiarías? | Dos programas pueden cumplir el mismo contrato de salida y exponer un estado distinto. La legibilidad y la capacidad de prueba dependen de dónde vive la regla. |
-| [F. Demuestra una afirmación del README](../../exercises.md#f-prove-a-readme-claim-verified) | ¿Cómo sería una aserción en tiempo de compilación para "GnuCOBOL advierte cinco veces sobre `ALTER`"? | Una afirmación solo es evidencia si puede fallar. Un control negativo (quita un `ALTER` y espera que el conteo cambie) muestra que tu prueba puede detectar el cambio. |
+| [A1. Lee las filas](../../exercises.md#a1-lee-las-filas-verificado) | ¿Qué tarjeta pasó de 40 y cuál era el total justo antes? ¿Podría una ejecución dar un total de exactamente 40 y continuar? | La regla de parada es un límite preciso, no una aproximación. La salida sola prueba el invariante "el total de cada fila es el total anterior más las horas". También deja ver un error de desfase en una posición (*off-by-one*) aunque las horas cambien en cada ejecución. |
+| [B1, parte 1. Cambia el valor inicial](../../exercises.md#b1-cobol-predice-y-luego-rompe-alter-verificado) | ¿Por encima de qué total se detendrá la ejecución si `WS-HEADROOM` empieza en 49 en vez de 59? | El punto de parada pasa a ser "el primer total por encima de 50" (totales finales de 51 a 69). El verificador compartido pasa con el límite 50, y el `check.sh` propio de la entrada, que fija 40 en el código, falla. Un solo número codifica la regla de negocio. |
+| [B1, parte 2. Añade un `DISPLAY` a `NEXT-CARD`](../../exercises.md#b1-cobol-predice-y-luego-rompe-alter-verificado) | ¿Llegarás a ver impreso `x`? ¿En qué etapa fallará? | Falla en *tiempo de compilación*, no en tiempo de ejecución: `'NEXT-CARD' is not an alterable paragraph`, una vez por cada `ALTER` (cinco veces). El compilador comprueba la regla estructural que permite parchear el destino. |
+| [C1. Lo raro junto a lo aburrido](../../exercises.md#c1-lo-raro-junto-a-lo-aburrido-verificado) | En cada programa, ¿qué campos vigilarías, aislarías y cambiarías? | Dos programas pueden cumplir el mismo contrato de salida y exponer un estado distinto. La legibilidad y la capacidad de prueba dependen de dónde vive la regla. |
+| [F. Demuestra una afirmación del README](../../exercises.md#f-demuestra-una-afirmación-del-readme-verificada) | ¿Cómo sería una aserción en tiempo de compilación para "GnuCOBOL advierte cinco veces sobre `ALTER`"? | Una afirmación solo es evidencia si puede fallar. Un control negativo (quita un `ALTER` y espera que el conteo cambie) muestra que tu prueba puede detectar el cambio. |
 
 Dos precauciones de la clave de respuestas del libro. En B1 parte 1, una sola ejecución aleatoria puede satisfacer a *ambos* verificadores. Esto ocurre si pasa de 40 y de 50 en la misma tarjeta. Usa la comprobación propia de la entrada como evidencia del fallo. En F, la solución resuelta del libro usa Haskell. Una versión en COBOL es una adaptación que diseñas tú, y la afirmación que prueba es solo el comportamiento de la compilación probada.
 
 ## Modos de fallo, costos y límites
 
-Etiqueta cada comportamiento según la fuerza de su promesa (consulta [Tres tipos de conocimiento](../../introduccion.md#three-kinds-of-knowledge)). La etiqueta cambia aquello en lo que puedes confiar con seguridad.
+Etiqueta cada comportamiento según la fuerza de su promesa (consulta [Tres tipos de conocimiento](../../introduccion.md#tres-tipos-de-conocimiento)). La etiqueta cambia aquello en lo que puedes confiar con seguridad.
 
 | Comportamiento | Etiqueta | Por qué |
 | --- | --- | --- |

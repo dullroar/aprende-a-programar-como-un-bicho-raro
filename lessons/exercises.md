@@ -33,7 +33,7 @@ Reglas básicas:
 
 ### El verificador compartido
 
-[`lessons/tools/check-demo.sh`](tools/check-demo.sh) comprueba un informe que cumple la [regla numérica compartida](introduccion.md#what-the-challenge-does): un marcador `DEMO ONLY`, las horas de cada fila de 10 a 19, cada total acumulado igual al total anterior más las horas, la ejecución detenida en la primera tarjeta cuyo total pasa de 40 (el límite por defecto) y la línea `# committed` (o `# captured`) coincide con las filas. El código de salida 0 significa PASS.
+[`lessons/tools/check-demo.sh`](tools/check-demo.sh) comprueba un informe que cumple la [regla numérica compartida](introduccion.md#qué-hace-el-reto): un marcador `DEMO ONLY`, las horas de cada fila de 10 a 19, cada total acumulado igual al total anterior más las horas, la ejecución detenida en la primera tarjeta cuyo total pasa de 40 (el límite por defecto) y la línea `# committed` (o `# captured`) coincide con las filas. El código de salida 0 significa PASS.
 
 ```bash
 sandbox/container/run-image.sh src/cobol-weird > out.txt 2>&1
@@ -47,7 +47,7 @@ bash lessons/tools/check-demo.sh out.txt 50       # the same check against a lim
 
 **Objetivo:** determina, solo a partir de la salida, qué tarjeta detuvo la ejecución y por qué eso no es un error por uno.
 
-1. Elige tres entradas de [lenguajes](lenguajes/README.md) distintos que implementen la regla de la tarjeta que cruza el tope. Consulta las [diferencias entre entradas](introduccion.md#where-entries-differ) antes de elegir. Ejecútalas y guarda cada salida.
+1. Elige tres entradas de [lenguajes](lenguajes/README.md) distintos que implementen la regla de la tarjeta que cruza el tope. Consulta las [diferencias entre entradas](introduccion.md#dónde-difieren-las-entradas) antes de elegir. Ejecútalas y guarda cada salida.
 2. Para cada una, anota cuántas tarjetas había, qué tarjeta pasó de 40 y qué total llevaba la tarjeta *anterior*.
 3. Ejecuta una cuarta (prueba `src/regex-dotnet`, cuyas filas no tienen columna de total acumulado) y predice su número de tarjetas antes de mirar.
 
@@ -239,7 +239,7 @@ Criterios de aceptación:
 
 - Paso 1: dos tarjetas, `Meetings 11 11`, `Coding 12 23` y `# committed total=23 entries=2`. El salto de línea final del archivo deja un último registro vacío que la regla 1 omite.
 - Paso 2: **tres** tarjetas; la tercera es `Debugging 10 33` y el resumen dice `entries=3`. Explica por qué un `RT` vacío contó como una tarjeta de 10 horas (`10 + ""`).
-- Paso 3: aparecen el encabezado y `# committed total=0 entries=0`, sin error, con código de salida 0. Explica por qué: mawk no tiene `RT`, así que `RT == ""` es verdadero para todos los registros y la regla 1 los omite todos. Di qué enseña esto sobre el código que "parece portable" y de qué [nivel de conocimiento](introduccion.md#three-kinds-of-knowledge) es `RT`.
+- Paso 3: aparecen el encabezado y `# committed total=0 entries=0`, sin error, con código de salida 0. Explica por qué: mawk no tiene `RT`, así que `RT == ""` es verdadero para todos los registros y la regla 1 los omite todos. Di qué enseña esto sobre el código que "parece portable" y de qué [nivel de conocimiento](introduccion.md#tres-tipos-de-conocimiento) es `RT`.
 - Paso 4: `check-demo.sh out.txt 80` pasa.
 
 ### B14. find: manipula los dados (verificado)
@@ -433,7 +433,7 @@ Criterios de aceptación:
 
 ### C1. Lo raro junto a lo aburrido (verificado)
 
-**Lección:** [Lo raro junto a lo aburrido](introduccion.md#weird-next-to-boring). El repositorio tiene muchos pares ya preparados, entre ellos `cobol`/`cobol-weird`, `haskell`/`haskell-weird`, `forth`/`forth-weird`, `apl`/`apl-weird`, `lisp`/`lisp-weird`, `tcl`/`tcl-weird`, `awk`/`awk-weird`, `tar-gnu`/`tar-gnu-weird`, `ed-weird`/`ex-weird` y `javascript`/`javascript-weird`.
+**Lección:** [Lo raro junto a lo aburrido](introduccion.md#lo-raro-junto-a-lo-aburrido). El repositorio tiene muchos pares ya preparados, entre ellos `cobol`/`cobol-weird`, `haskell`/`haskell-weird`, `forth`/`forth-weird`, `apl`/`apl-weird`, `lisp`/`lisp-weird`, `tcl`/`tcl-weird`, `awk`/`awk-weird`, `tar-gnu`/`tar-gnu-weird`, `ed-weird`/`ex-weird` y `javascript`/`javascript-weird`.
 
 Compara un par. Ejecuta ambos y cuenta las líneas de código (no los comentarios) de cada programa.
 
@@ -457,7 +457,7 @@ Criterios de aceptación:
 
 ### C3. Un bucle cuyo estado no es una variable (verificado)
 
-**Lección:** [Controla el estado fuera de las variables](patrones.md#control-state-outside-variables).
+**Lección:** [Controla el estado fuera de las variables](patrones.md#el-estado-de-control-fuera-de-las-variables).
 
 En awk, **sin** `for`, `while`, `do`, `function`, recursión ni `goto`, imprime los números de 1 a N, con N elegido por el *llamador*. (¿Dónde puede vivir el estado del bucle si no está en tu código?)
 
@@ -465,7 +465,7 @@ Criterios de aceptación:
 
 - La salida es de `1` a `N` para N en 1, 3 y 10, ejecutada dentro del entorno aislado: `seq N | lessons/tools/run-in-sandbox.sh <folder> bash -c "awk '...'"`.
 - Un `grep -Ew 'for|while|do|function|goto'` del código fuente de tu awk no encuentra nada.
-- Indica en qué [nivel de conocimiento](introduccion.md#three-kinds-of-knowledge) se apoya tu truco.
+- Indica en qué [nivel de conocimiento](introduccion.md#tres-tipos-de-conocimiento) se apoya tu truco.
 
 ## D. Adapta el reto (verificado: respuesta de referencia en awk)
 

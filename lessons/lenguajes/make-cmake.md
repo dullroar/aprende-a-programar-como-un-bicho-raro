@@ -50,7 +50,7 @@ Usos legítimos: generar archivos incluidos (`-include $(DEPS)`) que causan un r
 
 ### Ahora rómpelo tú
 
-Consulta los [ejercicios](../exercises.md#b4-make-remove-the-no-op-and-override-the-clock-verified).
+Consulta los [ejercicios](../exercises.md#b4-make-quita-la-operación-sin-efecto-y-sobrescribe-el-reloj-verificado).
 
 ## CMake
 
@@ -96,7 +96,7 @@ Etiquetas: la documentación establece como **garantizado** asignar `CMAKE_MATCH
 
 ### Ahora rómpelo tú
 
-Mira los [ejercicios](../exercises.md#b5-cmake-mutate-the-literal-verified): el propio `check.sh` del repositorio modifica el literal de 41 caracteres para demostrar que controla el bucle.
+Mira los [ejercicios](../exercises.md#b5-cmake-muta-el-literal-verificado): el propio `check.sh` del repositorio modifica el literal de 41 caracteres para demostrar que controla el bucle.
 
 ## Peculiaridades
 
@@ -120,7 +120,7 @@ Nunca como bucle. Pero "un sistema de construcción que regenera sus propias ent
 <!-- BEGIN GENERATED program-flow:languages/make-cmake.md -->
 ## How each program runs
 
-Each picture below is the `## Program Flow` section of an entry's README, copied here by the build. It shows how that program makes the work happen: what the language, runtime or tool really does. [The introduction](../introduccion.md#what-the-challenge-does) shows what the challenge asks for and where entries differ.
+Each picture below is the `## Program Flow` section of an entry's README, copied here by the build. It shows how that program makes the work happen: what the language, runtime or tool really does. [The introduction](../introduccion.md#qué-hace-el-reto) shows what the challenge asks for and where entries differ.
 
 ### Program flow of `cmake`
 

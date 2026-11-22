@@ -154,4 +154,4 @@ Luego fuerza los dados. Un `mktemp` falso, el primero en `PATH`, entrega los nom
 
 ---
 
-Consulta el [README raíz](../../README.md#the-results-so-far) para ver cómo se compara esto con las otras entradas, y [`RETO.md`](../../RETO.md) si quieres escribir el tuyo.
+Consulta el [README raíz](../../README.md#los-resultados-hasta-ahora) para ver cómo se compara esto con las otras entradas, y [`RETO.md`](../../RETO.md) si quieres escribir el tuyo.

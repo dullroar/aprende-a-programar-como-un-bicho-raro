@@ -25,7 +25,7 @@ sandbox/container/run-image.sh src/forth
 sandbox/container/run-image.sh src/forth-weird
 ```
 
-Edita solo copias ([Cómo ejecutar los ejemplos de forma segura](../../exercises.md#running-things-safely)). Define `SANDBOX_TIMEOUT=30` en los ejercicios donde el bucle pueda continuar indefinidamente. Una ejecución que supere ese límite imprime `TIMEOUT after 30s`.
+Edita solo copias ([Cómo ejecutar los ejemplos de forma segura](../../exercises.md#ejecutar-con-seguridad)). Define `SANDBOX_TIMEOUT=30` en los ejercicios donde el bucle pueda continuar indefinidamente. Una ejecución que supere ese límite imprime `TIMEOUT after 30s`.
 
 **Regla de predicción.** Anota la pila y el valor de `>in` que esperas antes de cada ejecución. Una traza que no predijiste enseña poco.
 
@@ -41,7 +41,7 @@ Edita solo copias ([Cómo ejecutar los ejemplos de forma segura](../../exercises
 
 ## El reto compartido
 
-La [especificación del reto](../../introduccion.md#what-the-challenge-does) pide tarjetas con una categoría y de 10 a 19 horas enteras. Las categorías se repiten en ciclo: `Meetings`, `Coding`, `Debugging` y `Learning`. Suma las horas de cada tarjeta al total acumulado. Detente cuando el total pasa de 40. Conserva la **primera tarjeta con la que el total pasa de 40**. Un total de exactamente 40 continúa. Cuatro tarjetas de 10 horas necesitan una quinta tarjeta, de la categoría `Meetings`. Las ejecuciones conformes tienen de 3 a 5 tarjetas y un total de 41 a 59 horas.
+La [especificación del reto](../../introduccion.md#qué-hace-el-reto) pide tarjetas con una categoría y de 10 a 19 horas enteras. Las categorías se repiten en ciclo: `Meetings`, `Coding`, `Debugging` y `Learning`. Suma las horas de cada tarjeta al total acumulado. Detente cuando el total pasa de 40. Conserva la **primera tarjeta con la que el total pasa de 40**. Un total de exactamente 40 continúa. Cuatro tarjetas de 10 horas necesitan una quinta tarjeta, de la categoría `Meetings`. Las ejecuciones conformes tienen de 3 a 5 tarjetas y un total de 41 a 59 horas.
 
 Las dos entradas de Forth guardan las tarjetas en una sola transacción de SQLite e imprimen un resumen. Forth escribe el límite de dos maneras distintas, y vale la pena ver la diferencia. El programa simple dice `total @ 40 >` ([L105](../../../src/forth/timecards.fs#L105)): se detiene cuando el total *pasa de* 40. El programa raro dice `over 41 <` ([L93](../../../src/forth-weird/timecards.fs#L93)): *continúa* mientras el total sea *menor que 41*. Las dos son la misma regla. Un total de exactamente 40 es menor que 41, así que el bucle continúa.
 
@@ -130,11 +130,11 @@ El estándar de Forth dice que las palabras de control como `begin` funcionan so
 
 | Ejercicio | Predice primero | Lo que muestra la evidencia |
 | --- | --- | --- |
-| [B3. Forth: mueve el ancla](../../exercises.md#b3-forth-move-the-anchor-verified), cambio (a) | Pon `0 0` en su propia línea *antes* de `>in @ step rewind?`. ¿Se rompe algo? | Es inofensivo. El ancla se sigue leyendo después de apilar los `0 0`, así que al rebobinar nunca se vuelven a leer. |
+| [B3. Forth: mueve el ancla](../../exercises.md#b3-forth-mueve-el-ancla-verificado), cambio (a) | Pon `0 0` en su propia línea *antes* de `>in @ step rewind?`. ¿Se rompe algo? | Es inofensivo. El ancla se sigue leyendo después de apilar los `0 0`, así que al rebobinar nunca se vuelven a leer. |
 | B3, cambio (b) | Escribe la línea como `>in @ 0 0 step rewind?`. ¿Qué pasa? | No se detiene. Ahora, rebobinar hasta el ancla vuelve a leer `0 0`. Esa línea apila un conteo de tarjetas y un total nuevos en cada pasada. Por eso el estado se reinicia cada vez. La comprobación del libro: no aparece ninguna línea `# committed`, salen cientos de filas y el total de cada fila es igual a sus propias horas. **Debes crear el estado antes del ancla.** |
 | B3, cambio (c) | Cambia `41 <` a `51 <`. ¿Cuál es la nueva regla de parada? | La regla de parada queda como "el total pasa de 50" y `check-demo.sh out.txt 50` pasa. El límite se expresa mediante una sola constante dentro de `rewind?`. |
-| [C2. Haz real la restricción](../../exercises.md#c2-make-the-constraint-real-verified) | ¿Qué debería ignorar una comprobación que prohíbe las palabras de bucle? | El [verificador de referencia](../../solutions/c2-forth-rule-check.sh) elimina los comentarios de línea con barra invertida, los comentarios entre paréntesis y `." strings"` antes de buscar las palabras prohibidas. Una comprobación de restricciones es en sí misma un pequeño analizador sintáctico. |
-| [C1. Lo raro junto a lo aburrido](../../exercises.md#c1-weird-next-to-boring-verified) | ¿En qué programa puedes nombrar el estado del bucle? | `forth` lo nombra (`total`, `cards`). `forth-weird` tiene tres números sin nombre y una posición de lectura. |
+| [C2. Haz real la restricción](../../exercises.md#c2-haz-real-la-restricción-verificada) | ¿Qué debería ignorar una comprobación que prohíbe las palabras de bucle? | El [verificador de referencia](../../solutions/c2-forth-rule-check.sh) elimina los comentarios de línea con barra invertida, los comentarios entre paréntesis y `." strings"` antes de buscar las palabras prohibidas. Una comprobación de restricciones es en sí misma un pequeño analizador sintáctico. |
+| [C1. Lo raro junto a lo aburrido](../../exercises.md#c1-lo-raro-junto-a-lo-aburrido-verificado) | ¿En qué programa puedes nombrar el estado del bucle? | `forth` lo nombra (`total`, `cards`). `forth-weird` tiene tres números sin nombre y una posición de lectura. |
 
 La pregunta que el libro hace sobre el cambio (b) es la mejor prueba de comprensión: *¿por qué solo (b) rompe el bucle?* Tu respuesta debería ser esta: "porque `>in @` captura la posición después de apilar el estado, y (b) mueve el estado al otro lado de esa posición". Si no lo es, lee otra vez la tabla de traza.
 

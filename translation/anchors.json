@@ -8889,14 +8889,14 @@
     {
      "en": "Windows Sandbox language profiles",
      "en_id": "windows-sandbox-language-profiles",
-     "es": "Windows Sandbox language profiles",
-     "es_id": "windows-sandbox-language-profiles",
+     "es": "Perfiles de lenguaje de Windows Sandbox",
+     "es_id": "perfiles-de-lenguaje-de-windows-sandbox",
      "level": 1,
      "line": 1
     }
    ],
    "map": {
-    "windows-sandbox-language-profiles": "windows-sandbox-language-profiles"
+    "windows-sandbox-language-profiles": "perfiles-de-lenguaje-de-windows-sandbox"
    }
   },
   "src/GoChallenge1/README.md": {

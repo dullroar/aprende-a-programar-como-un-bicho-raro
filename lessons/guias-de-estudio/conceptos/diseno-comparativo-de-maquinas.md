@@ -17,7 +17,7 @@ Cuando termines, deberías poder:
 
 ## Antes de empezar
 
-**Modelo de seguridad.** Las tarjetas son datos ficticios marcados con **DEMO ONLY**. Los programas pueden escribir en archivos o bases de datos locales de prueba y pueden iniciar procesos. Lee primero el código fuente y ejecútalo antes en un entorno aislado (*sandbox*) que limita el acceso al sistema anfitrión. Trabaja con copias ([Ejecutar cosas con seguridad](../../exercises.md#running-things-safely)). Comparar entradas implica ejecutar varias: ejecútalas una a una y usa un directorio de datos de prueba.
+**Modelo de seguridad.** Las tarjetas son datos ficticios marcados con **DEMO ONLY**. Los programas pueden escribir en archivos o bases de datos locales de prueba y pueden iniciar procesos. Lee primero el código fuente y ejecútalo antes en un entorno aislado (*sandbox*) que limita el acceso al sistema anfitrión. Trabaja con copias ([Ejecutar cosas con seguridad](../../exercises.md#ejecutar-con-seguridad)). Comparar entradas implica ejecutar varias: ejecútalas una a una y usa un directorio de datos de prueba.
 
 **Regla de predicción.** Para cada entrada que compares, completa la hoja de trabajo *antes* de leer la respuesta del README. Después comprueba la evidencia. Una celda de la hoja que no puedas respaldar con una ejecución o con una línea de código fuente es una conjetura.
 
@@ -43,9 +43,9 @@ What evidence proves the claim?
 
 ## El reto compartido
 
-La [especificación del reto](../../introduccion.md#what-the-challenge-does) pide tarjetas con una categoría y de 10 a 19 horas enteras. Las categorías se repiten en ciclo: `Meetings`, `Coding`, `Debugging` y `Learning`. Suma las horas de cada tarjeta al total acumulado. Detente cuando el total pasa de 40. Conserva la **primera tarjeta con la que el total pasa de 40**. Un total de exactamente 40 continúa. Cuatro tarjetas de 10 horas necesitan una quinta tarjeta, de la categoría `Meetings`. Las ejecuciones conformes tienen de 3 a 5 tarjetas y un total de 41 a 59 horas.
+La [especificación del reto](../../introduccion.md#qué-hace-el-reto) pide tarjetas con una categoría y de 10 a 19 horas enteras. Las categorías se repiten en ciclo: `Meetings`, `Coding`, `Debugging` y `Learning`. Suma las horas de cada tarjeta al total acumulado. Detente cuando el total pasa de 40. Conserva la **primera tarjeta con la que el total pasa de 40**. Un total de exactamente 40 continúa. Cuatro tarjetas de 10 horas necesitan una quinta tarjeta, de la categoría `Meetings`. Las ejecuciones conformes tienen de 3 a 5 tarjetas y un total de 41 a 59 horas.
 
-El libro registra [dónde difieren las entradas](../../introduccion.md#where-entries-differ). Las demostraciones de LINQ usan cinco días fijos de 8 horas, y XAML puede quedarse sin pasadas en 40. Las entradas de expresiones regulares siguen la regla numérica: los ejemplos en C y .NET usan TSV, mientras que pcre2grep guarda las tarjetas en llamadas separadas a SQLite. Un resumen puede aparecer en una terminal o en una ventana. Antes de comparar el mecanismo, pregunta qué resultado demuestra la entrada.
+El libro registra [dónde difieren las entradas](../../introduccion.md#dónde-difieren-las-entradas). Las demostraciones de LINQ usan cinco días fijos de 8 horas, y XAML puede quedarse sin pasadas en 40. Las entradas de expresiones regulares siguen la regla numérica: los ejemplos en C y .NET usan TSV, mientras que pcre2grep guarda las tarjetas en llamadas separadas a SQLite. Un resumen puede aparecer en una terminal o en una ventana. Antes de comparar el mecanismo, pregunta qué resultado demuestra la entrada.
 
 ## La máquina que hay que identificar
 
@@ -179,12 +179,12 @@ La probabilidad era de una ejecución en 10,000, así que nada de esto se veía 
 
 | Ejercicio | Predice primero | Qué muestra la evidencia |
 | --- | --- | --- |
-| [C1. Lo raro junto a lo aburrido](../../exercises.md#c1-weird-next-to-boring-verified) | Para una pareja de entradas, ¿qué probarías con pruebas unitarias y qué mostraría un depurador? | El mismo contrato de salida con un estado visible distinto. |
-| [C2. Haz real la restricción](../../exercises.md#c2-make-the-constraint-real-verified) | Escribe una verificación que prohíba las palabras de bucle en Forth. | Debe quitar los comentarios y las cadenas de texto, y luego fallar con cada mutación. |
-| [C3. Un bucle cuyo estado no es una variable](../../exercises.md#c3-a-loop-whose-state-is-not-a-variable-verified) | En awk sin palabras clave de bucle, ¿dónde puede vivir el estado? | En la entrada de datos. |
-| [A1. Lee las filas](../../exercises.md#a1-read-the-rows-verified) | Ejecuta tres entradas de lenguajes distintos y una cuarta. | El invariante compartido se ve en todas, y predecir el número de tarjetas de una cuarta pone a prueba la comprensión. |
-| [D. Adapta el reto](../../exercises.md#d-port-the-challenge-verified-reference-answer-in-awk) | Adáptalo a un lenguaje de tu elección. | Una adaptación debe decidir su regla de parada y su suministro de categorías. El techo es una decisión de diseño que ahora tomas tú. |
-| [F. Demuestra una afirmación del README](../../exercises.md#f-prove-a-readme-claim-verified) | ¿Qué afirmación de una tabla de comparación podrías probar? | Cualquier fila de la hoja de trabajo con una celda verificable. |
+| [C1. Lo raro junto a lo aburrido](../../exercises.md#c1-lo-raro-junto-a-lo-aburrido-verificado) | Para una pareja de entradas, ¿qué probarías con pruebas unitarias y qué mostraría un depurador? | El mismo contrato de salida con un estado visible distinto. |
+| [C2. Haz real la restricción](../../exercises.md#c2-haz-real-la-restricción-verificada) | Escribe una verificación que prohíba las palabras de bucle en Forth. | Debe quitar los comentarios y las cadenas de texto, y luego fallar con cada mutación. |
+| [C3. Un bucle cuyo estado no es una variable](../../exercises.md#c3-un-bucle-cuyo-estado-no-es-una-variable-verificado) | En awk sin palabras clave de bucle, ¿dónde puede vivir el estado? | En la entrada de datos. |
+| [A1. Lee las filas](../../exercises.md#a1-lee-las-filas-verificado) | Ejecuta tres entradas de lenguajes distintos y una cuarta. | El invariante compartido se ve en todas, y predecir el número de tarjetas de una cuarta pone a prueba la comprensión. |
+| [D. Adapta el reto](../../exercises.md#d-adapta-el-reto-verificado-respuesta-de-referencia-en-awk) | Adáptalo a un lenguaje de tu elección. | Una adaptación debe decidir su regla de parada y su suministro de categorías. El techo es una decisión de diseño que ahora tomas tú. |
+| [F. Demuestra una afirmación del README](../../exercises.md#f-demuestra-una-afirmación-del-readme-verificada) | ¿Qué afirmación de una tabla de comparación podrías probar? | Cualquier fila de la hoja de trabajo con una celda verificable. |
 
 ## Modos de fallo, costos y límites
 
@@ -211,7 +211,7 @@ La clave `assurance` del README resume la dependencia más débil que necesita e
 - **Quién demanda el trabajo.** [Evaluación, demanda y pereza](evaluacion-demanda-y-pereza.md) desarrolla la columna "qué hace avanzar el paso siguiente".
 - **Qué confirma.** [Efectos, errores y confirmación](efectos-errores-y-confirmacion.md) desarrolla las últimas columnas.
 - **Qué se promete.** [Portabilidad, abstracción y costo](portabilidad-abstraccion-y-costo.md) desarrolla las etiquetas.
-- **En el libro.** [Casos de estudio comparados](../../informatica/09-casos-de-estudio-comparativos.md), con la tabla de todas las entradas de un vistazo, y [Patrones de solución](../../patrones.md), en particular [Estado de control fuera de las variables](../../patrones.md#control-state-outside-variables) y [Programas guardados como datos](../../patrones.md#programs-stored-as-data).
+- **En el libro.** [Casos de estudio comparados](../../informatica/09-casos-de-estudio-comparativos.md), con la tabla de todas las entradas de un vistazo, y [Patrones de solución](../../patrones.md), en particular [Estado de control fuera de las variables](../../patrones.md#el-estado-de-control-fuera-de-las-variables) y [Programas guardados como datos](../../patrones.md#programas-guardados-como-datos).
 
 ## Autoevaluación
 

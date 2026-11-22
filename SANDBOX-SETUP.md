@@ -6,9 +6,9 @@ Cada entrada de aquí es código que hace cosas raras a propósito, así que no 
 | --- | --- | --- |
 | Una entrada de Linux (APL, Forth, Haskell, regex, Make, CMake, Go, Rust/GTK, Python/Tk, Java/Kotlin Swing, regex de .NET...) | **Docker**: `sandbox/container/run-image.sh src/<entry>` | [Docker](#docker) |
 | Una entrada de Windows o de GUI (WPF, XAML, LINQ, Python/Tk, Java/Kotlin Swing, Go en un navegador) | **Windows Sandbox**: `sandbox\windows\run.ps1 src\<entry>` | [Windows Sandbox](#windows-sandbox), más la [cadena de herramientas](#toolchains-de-windows) de la entrada |
-| Para juzgar una demanda (pull) de alguien que no conoces | Los mismos dos, ejecutados por la [puerta de verificación](sandbox/README.md#reviewing-a-pull-request-from-someone-we-dont-know) | Ambos, o solo GitHub Actions |
+| Para juzgar una demanda (pull) de alguien que no conoces | Los mismos dos, ejecutados por la [puerta de verificación](sandbox/README.md#cómo-revisar-una-demanda-pull-de-alguien-a-quien-no-conocemos) | Ambos, o solo GitHub Actions |
 
-Ninguno sustituye leer el código. Consulta [qué demuestra y qué no demuestra esto](sandbox/README.md#what-this-does-and-does-not-prove).
+Ninguno sustituye leer el código. Consulta [qué demuestra y qué no demuestra esto](sandbox/README.md#qué-prueba-y-qué-no-prueba-esto).
 
 ## Docker
 

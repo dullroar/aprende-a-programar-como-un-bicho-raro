@@ -25,7 +25,7 @@ sandbox/container/run-image.sh src/haskell
 sandbox/container/run-image.sh src/haskell-weird
 ```
 
-Trabaja sobre una copia para cualquier edición ([Ejecutar cosas de forma segura](../../exercises.md#running-things-safely)). La salida es aleatoria, así que compara propiedades, no números.
+Trabaja sobre una copia para cualquier edición ([Ejecutar cosas de forma segura](../../exercises.md#ejecutar-con-seguridad)). La salida es aleatoria, así que compara propiedades, no números.
 
 **Regla de predicción.** Antes de cada ejecución, anota (a) qué celdas de la lista se forzarán, (b) qué efectos se dispararán y (c) qué salida demostraría que te equivocas.
 
@@ -41,7 +41,7 @@ Trabaja sobre una copia para cualquier edición ([Ejecutar cosas de forma segura
 
 ## El reto compartido
 
-La [especificación del reto](../../introduccion.md#what-the-challenge-does) pide tarjetas con una categoría y de 10 a 19 horas enteras. Las categorías se repiten en ciclo: `Meetings`, `Coding`, `Debugging` y `Learning`. Suma las horas de cada tarjeta al total acumulado. Detente cuando el total pasa de 40. Conserva la **primera tarjeta con la que el total pasa de 40**. Un total de exactamente 40 continúa. Cuatro tarjetas de 10 horas necesitan una quinta tarjeta, de la categoría `Meetings`. Las ejecuciones conformes tienen de 3 a 5 tarjetas y un total de 41 a 59 horas.
+La [especificación del reto](../../introduccion.md#qué-hace-el-reto) pide tarjetas con una categoría y de 10 a 19 horas enteras. Las categorías se repiten en ciclo: `Meetings`, `Coding`, `Debugging` y `Learning`. Suma las horas de cada tarjeta al total acumulado. Detente cuando el total pasa de 40. Conserva la **primera tarjeta con la que el total pasa de 40**. Un total de exactamente 40 continúa. Cuatro tarjetas de 10 horas necesitan una quinta tarjeta, de la categoría `Meetings`. Las ejecuciones conformes tienen de 3 a 5 tarjetas y un total de 41 a 59 horas.
 
 Ambas entradas de Haskell guardan las tarjetas en una sola transacción de SQLite e imprimen un resumen. En Haskell la regla aparece como el predicado `(<= 40)` dentro de `span`. Ese detalle importa. `<= 40` es verdadero para exactamente 40, así que un total de exactamente 40 se queda en la mitad "under" y se lee la tarjeta siguiente. La tarjeta que cruza el límite es el *primer elemento de la otra mitad*, y por eso el programa escribe `under ++ take 1 over`.
 
@@ -182,10 +182,10 @@ La versión rara renuncia a una propiedad importante: ya no puedes tratar una ex
 
 | Ejercicio | Predice primero | Qué muestra la evidencia |
 | --- | --- | --- |
-| [B2. Haskell: rompe la pereza](../../exercises.md#b2-haskell-break-the-laziness-verified), cambio 1 | ¿Qué pasa cuando `evaluate (length cards)` se convierte en un `let` perezoso? | La salida contiene `handle is closed` y el verificador compartido falla. Las tarjetas se demandaron *después* de cerrar la tubería. Una vez que hay efectos, el orden de forzar las celdas forma parte del significado del programa. |
+| [B2. Haskell: rompe la pereza](../../exercises.md#b2-haskell-rompe-la-pereza-verificado), cambio 1 | ¿Qué pasa cuando `evaluate (length cards)` se convierte en un `let` perezoso? | La salida contiene `handle is closed` y el verificador compartido falla. Las tarjetas se demandaron *después* de cerrar la tubería. Una vez que hay efectos, el orden de forzar las celdas forma parte del significado del programa. |
 | B2, cambio 2 | ¿Qué pasa si se quita `unsafeInterleaveIO` de `lazily`? ¿Se cuelga? | Se detiene con `cyclic evaluation in fixIO`, no se cuelga. La lista de acciones se fuerza ahora antes de que exista la lista de tarjetas, así que cada valor necesita al otro. |
-| [C1. Lo raro junto a lo aburrido](../../exercises.md#c1-weird-next-to-boring-verified) | En cada programa, ¿qué necesitaría controlar una prueba? | Una función pura se prueba llamándola. Una lista de efectos perezosos se prueba controlando a su consumidor. |
-| [F. Demuestra una afirmación del README](../../exercises.md#f-prove-a-readme-claim-verified) | ¿Demandará alguna vez un `span` evaluado de forma perezosa una cuarta tarjeta? | La solución resuelta del libro prueba que "`takeWhile` no basta". Una buena prueba de evidencia necesita un control negativo: mostrar que la prueba falla cuando la afirmación es falsa. |
+| [C1. Lo raro junto a lo aburrido](../../exercises.md#c1-lo-raro-junto-a-lo-aburrido-verificado) | En cada programa, ¿qué necesitaría controlar una prueba? | Una función pura se prueba llamándola. Una lista de efectos perezosos se prueba controlando a su consumidor. |
+| [F. Demuestra una afirmación del README](../../exercises.md#f-demuestra-una-afirmación-del-readme-verificada) | ¿Demandará alguna vez un `span` evaluado de forma perezosa una cuarta tarjeta? | La solución resuelta del libro prueba que "`takeWhile` no basta". Una buena prueba de evidencia necesita un control negativo: mostrar que la prueba falla cuando la afirmación es falsa. |
 | *Experimento de la guía* (verificado en el entorno aislado) | En una copia de trabajo, sustituye el flujo aleatorio por `[15, 19, 12] ++ error "a 4th card was demanded"`. ¿Fallará el programa? | No falla. Se disparan tres efectos y ninguno más. Es evidencia directa de que `take 1 over` no fuerza la celda posterior a la tarjeta que cruza el límite. No está en la lista de ejercicios del libro, así que trátalo como propio de esta guía. |
 
 ## Modos de fallo, costos y límites

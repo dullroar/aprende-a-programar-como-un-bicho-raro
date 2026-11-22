@@ -151,7 +151,7 @@ Las entradas de script de Linux comparten una forma de reporte (filas, un total 
 
 ## Retos abiertos
 
-Cada uno de estos es un [ejercicio](exercises.md#g-open-challenges-not-verified-may-be-impossible):
+Cada uno de estos es un [ejercicio](exercises.md#g-retos-abiertos-sin-verificar-pueden-ser-imposibles):
 
 1. Da a las entradas de LINQ tarjetas aleatorias de 10 a 19 horas, sin salir de una sola sentencia.
 2. Haz que `regex-dotnet` falle a propósito sin perder sus capturas.

@@ -59,12 +59,12 @@ Usos legítimos: `find ... -exec ... {} +` y `-prune` son herramientas de uso di
 
 ### Ahora rómpelo tú
 
-Mira los [ejercicios](../exercises.md#b14-find-rig-the-dice-verified) y [B15](../exercises.md#b15-gnu-find-move-the-stop-rule-read-the-profile-verified).
+Mira los [ejercicios](../exercises.md#b14-find-manipula-los-dados-verificado) y [B15](../exercises.md#b15-gnu-find-mueve-la-regla-de-parada-lee-el-perfil-verificado).
 
 <!-- BEGIN GENERATED program-flow:languages/find.md -->
 ## How each program runs
 
-Each picture below is the `## Program Flow` section of an entry's README, copied here by the build. It shows how that program makes the work happen: what the language, runtime or tool really does. [The introduction](../introduccion.md#what-the-challenge-does) shows what the challenge asks for and where entries differ.
+Each picture below is the `## Program Flow` section of an entry's README, copied here by the build. It shows how that program makes the work happen: what the language, runtime or tool really does. [The introduction](../introduccion.md#qué-hace-el-reto) shows what the challenge asks for and where entries differ.
 
 ### Program flow of `find-gnu`
 

@@ -25,7 +25,7 @@ sandbox/container/run-image.sh src/make-gnu
 sandbox/container/run-image.sh src/cmake
 ```
 
-Edita solo copias ([Ejecutar cosas de forma segura](../../exercises.md#running-things-safely)). La entrada de Make se niega a empezar si encuentra archivos `.tc-*.mk` sobrantes de una ejecución interrumpida: `make clean` los elimina.
+Edita solo copias ([Ejecutar cosas de forma segura](../../exercises.md#ejecutar-con-seguridad)). La entrada de Make se niega a empezar si encuentra archivos `.tc-*.mk` sobrantes de una ejecución interrumpida: `make clean` los elimina.
 
 **Regla de predicción.** Antes de cada ejecución, anota qué archivos existirán cuando empiece cada pasada, o qué guardará cada `CMAKE_MATCH_n` y qué esperarías ver si te equivocaras.
 
@@ -41,7 +41,7 @@ Edita solo copias ([Ejecutar cosas de forma segura](../../exercises.md#running-t
 
 ## El reto compartido
 
-La [especificación del reto](../../introduccion.md#what-the-challenge-does) pide tarjetas con una categoría y de 10 a 19 horas enteras. Las categorías se repiten en ciclo: `Meetings`, `Coding`, `Debugging` y `Learning`. Suma las horas de cada tarjeta al total acumulado. Detente cuando el total pasa de 40. Conserva la **primera tarjeta con la que el total pasa de 40**. Un total de exactamente 40 continúa. Cuatro tarjetas de 10 horas necesitan una quinta tarjeta, de la categoría `Meetings`. Las ejecuciones conformes tienen de 3 a 5 tarjetas y un total de 41 a 59 horas.
+La [especificación del reto](../../introduccion.md#qué-hace-el-reto) pide tarjetas con una categoría y de 10 a 19 horas enteras. Las categorías se repiten en ciclo: `Meetings`, `Coding`, `Debugging` y `Learning`. Suma las horas de cada tarjeta al total acumulado. Detente cuando el total pasa de 40. Conserva la **primera tarjeta con la que el total pasa de 40**. Un total de exactamente 40 continúa. Cuatro tarjetas de 10 horas necesitan una quinta tarjeta, de la categoría `Meetings`. Las ejecuciones conformes tienen de 3 a 5 tarjetas y un total de 41 a 59 horas.
 
 Ambos programas informan de un resultado de SQLite después del sorteo. La sonda de la regla de parada es una sentencia aparte: su fallo esperado deja las filas de las tarjetas in situ. Los dos programas escriben los números en unario. Así la regla de parada se vuelve una pregunta sobre la longitud, y es fácil equivocarse por uno en el límite. En Make la prueba es *"¿existe una palabra 41?"* (`$(word 41, ...)`, [L111](../../../src/make-gnu/Makefile#L111)). En CMake es *"¿el total coincide con 41 caracteres `x`?"* ([L41](../../../src/cmake/timecards.cmake#L41)). Un total de 40 no tiene palabra 41 y no coincide con 41 caracteres, así que ambos continúan.
 
@@ -173,11 +173,11 @@ La versión "ordinaria" de cada programa es la que los autores descartaron o esc
 
 | Ejercicio | Predice primero | Qué muestra la evidencia |
 | --- | --- | --- |
-| [B4. Make: quita la operación nula y anula el reloj](../../exercises.md#b4-make-remove-the-no-op-and-override-the-clock-verified), paso 1 | Borra el `@:` final de la receta. ¿Qué pasa? | La ejecución termina `# committed total=0 entries=0` y `make re-executed itself 0 times`. El archivo de la tarjeta se escribe mientras la línea de la receta se *expande*, pero Make solo se reinicia si *se ejecutó* un comando. Una receta que se expande a nada no es un rehacer. El `@:` es el único lugar donde el bucle necesita un intérprete de comandos. |
+| [B4. Make: quita la operación nula y anula el reloj](../../exercises.md#b4-make-quita-la-operación-sin-efecto-y-sobrescribe-el-reloj-verificado), paso 1 | Borra el `@:` final de la receta. ¿Qué pasa? | La ejecución termina `# committed total=0 entries=0` y `make re-executed itself 0 times`. El archivo de la tarjeta se escribe mientras la línea de la receta se *expande*, pero Make solo se reinicia si *se ejecutó* un comando. Una receta que se expande a nada no es un rehacer. El `@:` es el único lugar donde el bucle necesita un intérprete de comandos. |
 | B4, paso 2 | Ejecuta con `NOW=1700000000`. ¿Qué semana ISO esperas? | `2023-W46`, que coincide con `date -u -d @1700000000 +%G-W%V`. El reloj es una entrada de datos que puedes fijar. |
-| [B5. CMake: muta el literal](../../exercises.md#b5-cmake-mutate-the-literal-verified) | Acorta el literal de 41 `x` a 31. ¿Cuál es la nueva regla de parada? | Detenerse en el primer total que pasa de 30. El verificador compartido pasa con el límite 30, y la comprobación propia de la entrada falla. El literal *es* la regla de parada. |
+| [B5. CMake: muta el literal](../../exercises.md#b5-cmake-muta-el-literal-verificado) | Acorta el literal de 41 `x` a 31. ¿Cuál es la nueva regla de parada? | Detenerse en el primer total que pasa de 30. El verificador compartido pasa con el límite 30, y la comprobación propia de la entrada falla. El literal *es* la regla de parada. |
 | B5, la pregunta del orden | ¿Por qué la prueba de parada debe ir primero en la condición de `while()`? | La coincidencia de la primera prueba borra o reescribe los registros de captura. La coincidencia principal debe ejecutarse al final para que sus capturas sean las que sobreviven. La traza de trabajo muestra la consecuencia: la coincidencia principal se ejecuta incluso en la última evaluación. |
-| [C1. Lo raro junto a lo aburrido](../../exercises.md#c1-weird-next-to-boring-verified) | ¿Cuál es el estado de cada programa y quién puede leerlo? | El estado de Make son archivos, que se leen con `ls`. El de CMake son cinco variables ocultas, que solo se leen si las imprimes sin alterarlas (mira abajo). |
+| [C1. Lo raro junto a lo aburrido](../../exercises.md#c1-lo-raro-junto-a-lo-aburrido-verificado) | ¿Cuál es el estado de cada programa y quién puede leerlo? | El estado de Make son archivos, que se leen con `ls`. El de CMake son cinco variables ocultas, que solo se leen si las imprimes sin alterarlas (mira abajo). |
 
 **Una trampa al instrumentar CMake.** La ejecución de trabajo imprimió primero los registros con una función auxiliar que llamaba a `string(REGEX REPLACE ...)`. Ese comando *también* escribe `CMAKE_MATCH_n`, así que borró los registros y el bucle terminó al instante, con cero tarjetas. Mirar este programa lo cambia, salvo que mires con comandos que no tocan los registros. `string(LENGTH ...)` no los toca, y es lo que usó la traza anterior.
 

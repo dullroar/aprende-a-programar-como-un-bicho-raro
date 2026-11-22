@@ -23,7 +23,7 @@ Cuando termines, deberías poder:
 sandbox/container/run-image.sh src/tar-gnu
 ```
 
-Los ejecutores admitidos son `sandbox/container/run-image.sh <folder>`, `sandbox/run.sh <folder>` y `lessons/tools/run-in-sandbox.sh [-e NAME=VALUE] <folder> <command...>`; en Windows, `sandbox\windows\run.ps1`. Consulta [Ejecutar cosas con seguridad](../../exercises.md#running-things-safely).
+Los ejecutores admitidos son `sandbox/container/run-image.sh <folder>`, `sandbox/run.sh <folder>` y `lessons/tools/run-in-sandbox.sh [-e NAME=VALUE] <folder> <command...>`; en Windows, `sandbox\windows\run.ps1`. Consulta [Ejecutar cosas con seguridad](../../exercises.md#ejecutar-con-seguridad).
 
 Trabaja con una copia en cualquier experimento. La salida es aleatoria, así que compara propiedades, no números.
 
@@ -40,7 +40,7 @@ Trabaja con una copia en cualquier experimento. La salida es aleatoria, así que
 
 ## El reto compartido
 
-La [especificación del reto](../../introduccion.md#what-the-challenge-does) pide tarjetas con una categoría y de 10 a 19 horas enteras. Las categorías se repiten en ciclo: `Meetings`, `Coding`, `Debugging` y `Learning`. Suma las horas de cada tarjeta al total acumulado. Detente cuando el total pasa de 40. Conserva la **primera tarjeta con la que el total pasa de 40**. Un total de exactamente 40 continúa. Cuatro tarjetas de 10 horas necesitan una quinta tarjeta, de la categoría `Meetings`. Las ejecuciones conformes tienen de 3 a 5 tarjetas y un total de 41 a 59 horas.
+La [especificación del reto](../../introduccion.md#qué-hace-el-reto) pide tarjetas con una categoría y de 10 a 19 horas enteras. Las categorías se repiten en ciclo: `Meetings`, `Coding`, `Debugging` y `Learning`. Suma las horas de cada tarjeta al total acumulado. Detente cuando el total pasa de 40. Conserva la **primera tarjeta con la que el total pasa de 40**. Un total de exactamente 40 continúa. Cuatro tarjetas de 10 horas necesitan una quinta tarjeta, de la categoría `Meetings`. Las ejecuciones conformes tienen de 3 a 5 tarjetas y un total de 41 a 59 horas.
 
 Las dos demostraciones de LINQ usan una semana laboral fija. XAML puede terminar con un total de 40 sin ninguna pasada restante. El almacenamiento y los resúmenes varían según la entrada.
 
@@ -104,11 +104,11 @@ Lee el programa raro junto a su hermano ordinario. La diferencia muestra exactam
 
 | Ejercicio | Predice primero | Qué muestra la evidencia |
 | --- | --- | --- |
-| [B16. tar: lee el programa y luego ejecútalo](../../exercises.md#b16-tar-read-the-program-then-run-it-verified) | Añade un miembro que no esté en el conjunto de instrucciones. ¿Cuáles son los estados de salida y aparece un archivo `pwned`? | El inspector lo rechaza (`REFUSE (unknown record type)`, estado de salida 4), el intérprete no ejecuta nada y no aparece ningún archivo. Leer y ejecutar fueron actos distintos, y la frontera de confianza fue la decisión del operador. |
-| [B13. AWK: la RT que falta](../../exercises.md#b13-awk-the-missing-rt-verified) | Ejecuta el programa sin modificar con `mawk` sobre un archivo finito. | `# committed total=0 entries=0`, sin error, estado de salida 0. mawk no tiene `RT`, así que omite cada registro. El código "de apariencia portátil" puede fallar *en silencio* en la implementación equivocada. |
-| [B14. find: trucar los dados](../../exercises.md#b14-find-rig-the-dice-verified) | Pon un `mktemp` falso primero en `PATH`. ¿Qué cambia? | Los dados están trucados: con el nombre `xxxxxS`, cada tarjeta tiene 19 horas. Un programa que encuentra sus herramientas mediante `PATH` toma lo primero que haya ahí. |
-| [F2. Trojan Source](../../exercises.md#f2-trojan-source-hide-a-character-then-find-it-verified) | Un espacio de ancho cero después de `admin`: ¿qué imprime `node`? | `false`. La cadena de texto tiene un carácter que no puedes ver. El escaneo lo encuentra y los bytes lo muestran. |
-| [F. Demostrar una afirmación de un README](../../exercises.md#f-prove-a-readme-claim-verified) | ¿Qué prueba fallaría si la afirmación fuera falsa? | Una afirmación es evidencia solo si tiene un control negativo. |
+| [B16. tar: lee el programa y luego ejecútalo](../../exercises.md#b16-tar-lee-el-programa-y-luego-ejecútalo-verificado) | Añade un miembro que no esté en el conjunto de instrucciones. ¿Cuáles son los estados de salida y aparece un archivo `pwned`? | El inspector lo rechaza (`REFUSE (unknown record type)`, estado de salida 4), el intérprete no ejecuta nada y no aparece ningún archivo. Leer y ejecutar fueron actos distintos, y la frontera de confianza fue la decisión del operador. |
+| [B13. AWK: la RT que falta](../../exercises.md#b13-awk-el-rt-que-falta-verificado) | Ejecuta el programa sin modificar con `mawk` sobre un archivo finito. | `# committed total=0 entries=0`, sin error, estado de salida 0. mawk no tiene `RT`, así que omite cada registro. El código "de apariencia portátil" puede fallar *en silencio* en la implementación equivocada. |
+| [B14. find: trucar los dados](../../exercises.md#b14-find-manipula-los-dados-verificado) | Pon un `mktemp` falso primero en `PATH`. ¿Qué cambia? | Los dados están trucados: con el nombre `xxxxxS`, cada tarjeta tiene 19 horas. Un programa que encuentra sus herramientas mediante `PATH` toma lo primero que haya ahí. |
+| [F2. Trojan Source](../../exercises.md#f2-trojan-source-oculta-un-carácter-y-luego-encuéntralo-verificado) | Un espacio de ancho cero después de `admin`: ¿qué imprime `node`? | `false`. La cadena de texto tiene un carácter que no puedes ver. El escaneo lo encuentra y los bytes lo muestran. |
+| [F. Demostrar una afirmación de un README](../../exercises.md#f-demuestra-una-afirmación-del-readme-verificada) | ¿Qué prueba fallaría si la afirmación fuera falsa? | Una afirmación es evidencia solo si tiene un control negativo. |
 
 ## Modos de fallo, costos y límites
 

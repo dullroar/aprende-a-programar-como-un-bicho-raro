@@ -17,7 +17,7 @@ Cuando termines, deberías poder:
 
 ## Antes de empezar
 
-**Modelo de seguridad.** Las tarjetas son datos ficticios marcados con **DEMO ONLY**. Los programas pueden escribir en archivos o bases de datos locales de prueba y pueden iniciar procesos. Lee primero el código fuente y ejecútalo antes en un entorno aislado (*sandbox*) que limita el acceso al sistema anfitrión (`sandbox/container/run-image.sh src/haskell-weird`). Trabaja con copias ([Ejecutar cosas con seguridad](../../exercises.md#running-things-safely)).
+**Modelo de seguridad.** Las tarjetas son datos ficticios marcados con **DEMO ONLY**. Los programas pueden escribir en archivos o bases de datos locales de prueba y pueden iniciar procesos. Lee primero el código fuente y ejecútalo antes en un entorno aislado (*sandbox*) que limita el acceso al sistema anfitrión (`sandbox/container/run-image.sh src/haskell-weird`). Trabaja con copias ([Ejecutar cosas con seguridad](../../exercises.md#ejecutar-con-seguridad)).
 
 **Regla de predicción.** Antes de cada ejecución, escribe cuántos valores de horas se *extraerán* y qué habrá *ocurrido* en cada momento. En este tema el orden de los efectos forma parte de la respuesta.
 
@@ -33,7 +33,7 @@ Cuando termines, deberías poder:
 
 ## El reto compartido
 
-La [especificación del reto](../../introduccion.md#what-the-challenge-does) pide tarjetas con una categoría y de 10 a 19 horas enteras. Las categorías se repiten en ciclo: `Meetings`, `Coding`, `Debugging` y `Learning`. Suma las horas de cada tarjeta al total acumulado. Detente cuando el total pasa de 40. Conserva la **primera tarjeta con la que el total pasa de 40**. Un total de exactamente 40 continúa. Cuatro tarjetas de 10 horas necesitan una quinta tarjeta, de la categoría `Meetings`. Las ejecuciones conformes tienen de 3 a 5 tarjetas y un total de 41 a 59 horas.
+La [especificación del reto](../../introduccion.md#qué-hace-el-reto) pide tarjetas con una categoría y de 10 a 19 horas enteras. Las categorías se repiten en ciclo: `Meetings`, `Coding`, `Debugging` y `Learning`. Suma las horas de cada tarjeta al total acumulado. Detente cuando el total pasa de 40. Conserva la **primera tarjeta con la que el total pasa de 40**. Un total de exactamente 40 continúa. Cuatro tarjetas de 10 horas necesitan una quinta tarjeta, de la categoría `Meetings`. Las ejecuciones conformes tienen de 3 a 5 tarjetas y un total de 41 a 59 horas.
 
 En las implementaciones que siguen la regla numérica, *el consumidor quiere tarjetas hasta que el total pasa de 40, y la tarjeta que cruza debe existir*. Las dos entradas de LINQ con semana fija terminan, en cambio, con 40 horas, así que el generador de la traza siguiente es un experimento didáctico aparte. La tarjeta que cruza es la incómoda, porque solo sabes que una tarjeta cruza si la construyes. Toda estrategia debe responder: "¿cuántos valores produje para averiguarlo?" Esa cuenta es la medida más clara del costo de cada estrategia.
 
@@ -111,11 +111,11 @@ Las tres estrategias que no son de evaluación inmediata fallan de forma distint
 
 | Ejercicio | Predice primero | Qué muestra la evidencia |
 | --- | --- | --- |
-| [B2. Haskell: rompe la pereza](../../exercises.md#b2-haskell-break-the-laziness-verified) | Haz que `entries` sea un `let` perezoso. | `handle is closed`: las tarjetas se pidieron después de cerrar la tubería. |
-| [B7. LINQ: enumera dos veces](../../exercises.md#b7-linq-enumerate-twice-verified) | ¿Cuántas líneas `effect` hay de (a) a (d)? | 0, 3, 6, 3. |
-| [B21. JavaScript, más raro](../../exercises.md#b21-javascript-weirder-move-the-stop-rule-in-a-closure-and-watch-the-demand-verified) | `take(1)` frente a `take(2)`: ¿cuántas líneas `drawn`? | Una y dos. El consumidor decide cuántas tarjetas existen. |
-| [B11. m4: cita la recursión](../../exercises.md#b11-m4-quote-the-recursion-verified) | Quita los corchetes de `tc_card()`. | Una ejecución sin fin (tiempo agotado) o `recursion limit exceeded`. m4 expande los argumentos antes de la llamada. |
-| [B10. Lisp: cambia la combinación de métodos](../../exercises.md#b10-lisp-swap-the-method-combination-verified) | Reemplaza `or` por `progn`. | Cinco tarjetas en cada ejecución: sin cortocircuito y sin parada. |
+| [B2. Haskell: rompe la pereza](../../exercises.md#b2-haskell-rompe-la-pereza-verificado) | Haz que `entries` sea un `let` perezoso. | `handle is closed`: las tarjetas se pidieron después de cerrar la tubería. |
+| [B7. LINQ: enumera dos veces](../../exercises.md#b7-linq-enumera-dos-veces-verificado) | ¿Cuántas líneas `effect` hay de (a) a (d)? | 0, 3, 6, 3. |
+| [B21. JavaScript, más raro](../../exercises.md#b21-javascript-más-raro-mueve-la-regla-de-parada-a-una-clausura-closure-y-observa-la-demanda-verificado) | `take(1)` frente a `take(2)`: ¿cuántas líneas `drawn`? | Una y dos. El consumidor decide cuántas tarjetas existen. |
+| [B11. m4: cita la recursión](../../exercises.md#b11-m4-cita-la-recursión-verificado) | Quita los corchetes de `tc_card()`. | Una ejecución sin fin (tiempo agotado) o `recursion limit exceeded`. m4 expande los argumentos antes de la llamada. |
+| [B10. Lisp: cambia la combinación de métodos](../../exercises.md#b10-lisp-cambia-la-combinación-de-métodos-verificado) | Reemplaza `or` por `progn`. | Cinco tarjetas en cada ejecución: sin cortocircuito y sin parada. |
 
 ## Modos de fallo, costos y límites
 

@@ -17,7 +17,7 @@ Cuando termines, deberías poder:
 
 ## Antes de empezar
 
-**Modelo de seguridad.** Las tarjetas son datos ficticios marcados con **DEMO ONLY**. Los programas pueden escribir en archivos o bases de datos locales de prueba y pueden iniciar procesos. Lee primero el código fuente y ejecútalo antes en un entorno aislado (*sandbox*) que limita el acceso al sistema anfitrión, por ejemplo `sandbox/container/run-image.sh src/awk-weird`. Trabaja con copias ([Ejecutar cosas con seguridad](../../exercises.md#running-things-safely)). Nunca ejecutes un experimento descontrolado fuera de un límite de tiempo: usa `SANDBOX_TIMEOUT=30`, y no ejecutes `awk-weird` con mawk en `/dev/urandom`.
+**Modelo de seguridad.** Las tarjetas son datos ficticios marcados con **DEMO ONLY**. Los programas pueden escribir en archivos o bases de datos locales de prueba y pueden iniciar procesos. Lee primero el código fuente y ejecútalo antes en un entorno aislado (*sandbox*) que limita el acceso al sistema anfitrión, por ejemplo `sandbox/container/run-image.sh src/awk-weird`. Trabaja con copias ([Ejecutar cosas con seguridad](../../exercises.md#ejecutar-con-seguridad)). Nunca ejecutes un experimento descontrolado fuera de un límite de tiempo: usa `SANDBOX_TIMEOUT=30`, y no ejecutes `awk-weird` con mawk en `/dev/urandom`.
 
 **Regla de predicción.** Por cada afirmación que hagas, escribe la evidencia que demostraría que es *falsa*. Una afirmación sin esa evidencia es una esperanza.
 
@@ -33,7 +33,7 @@ Cuando termines, deberías poder:
 
 ## El reto compartido
 
-La [especificación del reto](../../introduccion.md#what-the-challenge-does) pide tarjetas con una categoría y de 10 a 19 horas enteras. Las categorías se repiten en ciclo: `Meetings`, `Coding`, `Debugging` y `Learning`. Suma las horas de cada tarjeta al total acumulado. Detente cuando el total pasa de 40. Conserva la **primera tarjeta con la que el total pasa de 40**. Un total de exactamente 40 continúa. Cuatro tarjetas de 10 horas necesitan una quinta tarjeta, de la categoría `Meetings`. Las ejecuciones conformes tienen de 3 a 5 tarjetas y un total de 41 a 59 horas.
+La [especificación del reto](../../introduccion.md#qué-hace-el-reto) pide tarjetas con una categoría y de 10 a 19 horas enteras. Las categorías se repiten en ciclo: `Meetings`, `Coding`, `Debugging` y `Learning`. Suma las horas de cada tarjeta al total acumulado. Detente cuando el total pasa de 40. Conserva la **primera tarjeta con la que el total pasa de 40**. Un total de exactamente 40 continúa. Cuatro tarjetas de 10 horas necesitan una quinta tarjeta, de la categoría `Meetings`. Las ejecuciones conformes tienen de 3 a 5 tarjetas y un total de 41 a 59 horas.
 
 Para un lector atento a la portabilidad, las entradas esconden dependencias del anfitrión en el reloj, la fuente de aleatoriedad, el almacenamiento y la cadena de herramientas. Averigua cuáles usa de verdad tu entrada. Las semanas fijas de LINQ no necesitan valores aleatorios. Los ejemplos de C con PCRE2 y de expresiones regulares de .NET necesitan una ruta TSV con permiso de escritura. El verificador compartido `lessons/tools/check-demo.sh` comprueba el informe numérico de las ejecuciones que implementan el reto.
 
@@ -99,12 +99,12 @@ Una versión anterior de `tcl-weird` dependía del orden de evaluación de SQLit
 
 | Ejercicio | Predice primero | Qué muestra la evidencia |
 | --- | --- | --- |
-| [B13. AWK: el RT que falta](../../exercises.md#b13-awk-the-missing-rt-verified) | Ejecuta con mawk sobre un archivo finito. | Cero tarjetas, estado de salida 0: un fallo silencioso de código que "parece portable". `RT` es permitido por la implementación. |
-| [B4. Make: quita la operación nula y anula el reloj](../../exercises.md#b4-make-remove-the-no-op-and-override-the-clock-verified), paso 2 | `make NOW=1700000000`: ¿qué semana ISO? | `2023-W46`, que coincide con `date -u`. Un reloj que se puede fijar se puede probar. |
-| [B20. JavaScript](../../exercises.md#b20-javascript-read-the-clauses-move-the-limit-and-fail-the-structure-check-verified), paso 4 | `NOW=2026-12-31` y `NOW=2024-12-30`: ¿qué semana? | `2026-W53` y `2025-W01`. El año ISO puede diferir del año del calendario cerca de Año Nuevo. |
-| [B15. GNU find: mueve la regla de parada, lee el perfil](../../exercises.md#b15-gnu-find-move-the-stop-rule-read-the-profile-verified) | `FIND_D=rates`: ¿qué imprime find? | Una tasa de éxito real para cada prueba; la estimación del propio find está muy lejos. La estimación de un optimizador no es el comportamiento. |
-| [B17. tar, más raro: predice el reloj](../../exercises.md#b17-tar-weirder-predict-the-clock-verified) | Predice los tics de `--interval 2`. | `floor(records / K)`. Una regla medida en GNU tar y luego predicha por una simulación. |
-| [F. Demuestra una afirmación del README](../../exercises.md#f-prove-a-readme-claim-verified) | ¿Puedes hacer que la afirmación falle? | Un control negativo separa una afirmación de una observación. |
+| [B13. AWK: el RT que falta](../../exercises.md#b13-awk-el-rt-que-falta-verificado) | Ejecuta con mawk sobre un archivo finito. | Cero tarjetas, estado de salida 0: un fallo silencioso de código que "parece portable". `RT` es permitido por la implementación. |
+| [B4. Make: quita la operación nula y anula el reloj](../../exercises.md#b4-make-quita-la-operación-sin-efecto-y-sobrescribe-el-reloj-verificado), paso 2 | `make NOW=1700000000`: ¿qué semana ISO? | `2023-W46`, que coincide con `date -u`. Un reloj que se puede fijar se puede probar. |
+| [B20. JavaScript](../../exercises.md#b20-javascript-lee-las-cláusulas-mueve-el-límite-y-haz-fallar-la-comprobación-de-estructura-verificado), paso 4 | `NOW=2026-12-31` y `NOW=2024-12-30`: ¿qué semana? | `2026-W53` y `2025-W01`. El año ISO puede diferir del año del calendario cerca de Año Nuevo. |
+| [B15. GNU find: mueve la regla de parada, lee el perfil](../../exercises.md#b15-gnu-find-mueve-la-regla-de-parada-lee-el-perfil-verificado) | `FIND_D=rates`: ¿qué imprime find? | Una tasa de éxito real para cada prueba; la estimación del propio find está muy lejos. La estimación de un optimizador no es el comportamiento. |
+| [B17. tar, más raro: predice el reloj](../../exercises.md#b17-tar-más-raro-predice-el-reloj-verificado) | Predice los tics de `--interval 2`. | `floor(records / K)`. Una regla medida en GNU tar y luego predicha por una simulación. |
+| [F. Demuestra una afirmación del README](../../exercises.md#f-demuestra-una-afirmación-del-readme-verificada) | ¿Puedes hacer que la afirmación falle? | Un control negativo separa una afirmación de una observación. |
 
 ## Modos de fallo, costos y límites
 

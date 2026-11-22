@@ -115,4 +115,4 @@ Los callouts solo tienen sentido si el motor realmente los visita. Este programa
 
 ---
 
-Consulta el [README raíz](../../README.md#the-results-so-far) para ver cómo se compara esto con las demás entradas de regex, y [`RETO.md`](../../RETO.md) si quieres escribir las tuyas.
+Consulta el [README raíz](../../README.md#los-resultados-hasta-ahora) para ver cómo se compara esto con las demás entradas de regex, y [`RETO.md`](../../RETO.md) si quieres escribir las tuyas.

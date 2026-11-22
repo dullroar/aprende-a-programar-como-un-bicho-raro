@@ -24,7 +24,7 @@ sandbox/container/run-image.sh src/ed-weird
 sandbox/container/run-image.sh src/ex-weird
 ```
 
-Edita solo copias ([Ejecutar cosas de forma segura](../../exercises.md#running-things-safely)). Ambos lanzadores aceptan `DICE="a b c d e"`: cinco dígitos, y las horas de cada tarjeta son 10 más su dígito. Usa `DICE="5 9 2 0 0"` para las horas 15, 19, 12, 10, 10.
+Edita solo copias ([Ejecutar cosas de forma segura](../../exercises.md#ejecutar-con-seguridad)). Ambos lanzadores aceptan `DICE="a b c d e"`: cinco dígitos, y las horas de cada tarjeta son 10 más su dígito. Usa `DICE="5 9 2 0 0"` para las horas 15, 19, 12, 10, 10.
 
 **Regla de predicción.** Antes de cada ejecución, escribe el búfer, línea por línea, como esperas que quede después de cada etapa.
 
@@ -40,7 +40,7 @@ Edita solo copias ([Ejecutar cosas de forma segura](../../exercises.md#running-t
 
 ## El reto compartido
 
-La [especificación del reto](../../introduccion.md#what-the-challenge-does) pide tarjetas con una categoría y de 10 a 19 horas enteras. Las categorías se repiten en ciclo: `Meetings`, `Coding`, `Debugging` y `Learning`. Suma las horas de cada tarjeta al total acumulado. Detente cuando el total pasa de 40. Conserva la **primera tarjeta con la que el total pasa de 40**. Un total de exactamente 40 continúa. Cuatro tarjetas de 10 horas necesitan una quinta tarjeta, de la categoría `Meetings`. Las ejecuciones conformes tienen de 3 a 5 tarjetas y un total de 41 a 59 horas.
+La [especificación del reto](../../introduccion.md#qué-hace-el-reto) pide tarjetas con una categoría y de 10 a 19 horas enteras. Las categorías se repiten en ciclo: `Meetings`, `Coding`, `Debugging` y `Learning`. Suma las horas de cada tarjeta al total acumulado. Detente cuando el total pasa de 40. Conserva la **primera tarjeta con la que el total pasa de 40**. Un total de exactamente 40 continúa. Cuatro tarjetas de 10 horas necesitan una quinta tarjeta, de la categoría `Meetings`. Las ejecuciones conformes tienen de 3 a 5 tarjetas y un total de 41 a 59 horas.
 
 Los lanzadores cargan la salida del editor en SQLite. Ambos scripts limitan la entrada de datos de la misma manera: el lanzador da **cinco** dados, porque cinco tarjetas de al menos 10 horas siempre llegan a 50. El script del editor decide cuántos de los cinco cuentan. ed marca la primera tarjeta cuyas marcas llegan a 41 (`x\{41,\}`, [L46](../../../src/ed-weird/timecards.ed#L46)) y convierte cada tarjeta posterior en una tarjeta "Dead". Ex lee una línea de la cinta por cada total nuevo. Las líneas de 0 a 40 dicen `@a` (sigue) y las líneas de 41 a 59 dicen `"` (un comentario: no hagas nada) ([L53](../../../src/ex-weird/timecards.ex#L53)). Un total de exactamente 40 lee la línea 40 de la cinta, que dice que siga.
 
@@ -177,12 +177,12 @@ Los dos scripts reparten el mismo trabajo de forma distinta. ed representa *qué
 
 | Ejercicio | Predice primero | Qué muestra la evidencia |
 | --- | --- | --- |
-| [B18. ed: mueve la regla de parada y rompe la limpieza](../../exercises.md#b18-ed-move-the-stop-rule-and-break-the-cleanup-verified), paso 1 | `DICE="0 0 0 0 0"` y `"9 9 9 9 9"`: ¿cuántas tarjetas? | Cinco (10, 20, 30, 40, 50) y tres (19, 38, 57). Un total de exactamente 40 no detiene la ejecución, y la quinta categoría vuelve a Meetings. |
+| [B18. ed: mueve la regla de parada y rompe la limpieza](../../exercises.md#b18-ed-mueve-la-regla-de-parada-y-rompe-la-limpieza-verificado), paso 1 | `DICE="0 0 0 0 0"` y `"9 9 9 9 9"`: ¿cuántas tarjetas? | Cinco (10, 20, 30, 40, 50) y tres (19, 38, 57). Un total de exactamente 40 no detiene la ejecución, y la quinta categoría vuelve a Meetings. |
 | B18, paso 2 | Cambia `x\{41,\}` por `x\{31,\}`. | La ejecución se detiene después del primer total que pasa de 30. Un número en una expresión regular movió la regla de parada. |
 | B18, paso 3 | Borra `g/^Dead /d`. | Una línea extra `Dead 0 52`. La regla `Dead` impide que las tarjetas cuenten. La limpieza solo las oculta. |
-| [B19. Ex: mueve el límite en la cinta y corta el bucle](../../exercises.md#b19-ex-move-the-limit-on-the-tape-and-cut-the-loop-verified), pasos 1-2 | `DICE="1 1 1 1 1"`: ¿cuántas tarjetas? Luego haz que la cinta diga "sigue" hasta 45. | Cuatro tarjetas (11, 22, 33, 44) y luego cinco (de 11 a 55). El programa no cambió: solo cambió una línea de datos. |
+| [B19. Ex: mueve el límite en la cinta y corta el bucle](../../exercises.md#b19-ex-mueve-el-límite-en-la-cinta-y-corta-el-bucle-verificado), pasos 1-2 | `DICE="1 1 1 1 1"`: ¿cuántas tarjetas? Luego haz que la cinta diga "sigue" hasta 45. | Cuatro tarjetas (11, 22, 33, 44) y luego cinco (de 11 a 55). El programa no cambió: solo cambió una línea de datos. |
 | B19, paso 3 | Quita `\|@n`. | Una tarjeta. Nada ejecuta el registro `n`, así que el programa nunca vuelve a iniciarse solo. |
-| [C1. Lo raro junto a lo aburrido](../../exercises.md#c1-weird-next-to-boring-verified) | ¿En qué script es dato la regla de parada? | En Ex, es una línea de la cinta. En ed, es un patrón. |
+| [C1. Lo raro junto a lo aburrido](../../exercises.md#c1-lo-raro-junto-a-lo-aburrido-verificado) | ¿En qué script es dato la regla de parada? | En Ex, es una línea de la cinta. En ed, es un patrón. |
 
 Una buena respuesta de una frase para B18 es esta. El comando `g` hizo el bucle, la `s` fallida hizo el `if` y el conteo de repeticiones de la expresión regular hizo el límite.
 

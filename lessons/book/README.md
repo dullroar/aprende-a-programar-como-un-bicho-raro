@@ -66,7 +66,7 @@ Para una excepción intencionada, especifica el perfil, la regla y la firma del 
 
 ## Diagramas
 
-El README de cada entrada tiene una sección `## Program Flow` con un diagrama de Mermaid (el contrato está en [`CONTRIBUTING.md`](../../CONTRIBUTING.md#program-flow-a-picture-of-the-machine)). El diagrama es texto en Git, y la compilación lo convierte en una figura. La imagen compartida de "qué hace el reto" es un bloque `mermaid` delimitado en [`intro.md`](../introduccion.md); el capítulo sobre eventos tiene otra. **Cualquier** bloque `mermaid` de un capítulo se renderiza.
+El README de cada entrada tiene una sección `## Program Flow` con un diagrama de Mermaid (el contrato está en [`CONTRIBUTING.md`](../../CONTRIBUTING.md#flujo-del-programa-una-imagen-de-la-máquina)). El diagrama es texto en Git, y la compilación lo convierte en una figura. La imagen compartida de "qué hace el reto" es un bloque `mermaid` delimitado en [`intro.md`](../introduccion.md); el capítulo sobre eventos tiene otra. **Cualquier** bloque `mermaid` de un capítulo se renderiza.
 
 **Cómo fluye.** `src/<entry>/README.md` (la fuente de verdad) la lee [`diagrams.py`](diagrams.py) con un escáner de Markdown que reconoce los bloques delimitados, no con una expresión regular. La sección `## Program Flow` la copia `build.py --generate` en el bloque generado `How each program runs` de la página de lección que nombra la clave `lesson:` de la entrada (la página conserva el bloque de Mermaid, así que GitHub también lo dibuja). Al compilar el libro, Mermaid CLI renderiza cada bloque `mermaid` una vez a SVG y otra a PNG, y lo sustituye por un `<figure>` HTML con pie de figura (`accTitle`) y texto alternativo (`accDescr`) antes de que se ejecute pandoc. El PDF y el HTML usan el SVG (vectorial, escalado para caber en una página); el EPUB usa el PNG (todos los lectores lo dibujan). Hay un solo renderizador y ningún segundo mecanismo.
 
@@ -109,7 +109,7 @@ Una parte del libro se **genera** a partir de metadatos y de Markdown escrito po
 
 | Fuente (escrita a mano) | En qué se convierte |
 | --- | --- |
-| El front matter YAML al principio de cada `src/*/README.md` (consulta [`CONTRIBUTING.md`](../../CONTRIBUTING.md#how-your-entry-plugs-into-the-book)) | La tabla "En este repositorio" de cada concepto, el capítulo comparativo y las tablas entre los marcadores `<!-- BEGIN GENERATED ... -->` de `goals.md`, `patterns.md` y las páginas de lenguajes |
+| El front matter YAML al principio de cada `src/*/README.md` (consulta [`CONTRIBUTING.md`](../../CONTRIBUTING.md#cómo-encaja-tu-entrada-en-el-libro)) | La tabla "En este repositorio" de cada concepto, el capítulo comparativo y las tablas entre los marcadores `<!-- BEGIN GENERATED ... -->` de `goals.md`, `patterns.md` y las páginas de lenguajes |
 | [`cs-source/concepts/<id>.md`](../cs-source/concepts/): un archivo por concepto de ciencias de la computación (`title`, `chapter`, `order` y luego la prosa) | Una sección de un capítulo de `lessons/informatica/`. El nombre del archivo es la **etiqueta** que usan las entradas |
 | [`cs-source/roles/<id>.md`](../cs-source/roles/): un archivo por cada papel de "lo que hace de bucle" | Una sección del capítulo comparativo (capítulo 9) |
 | [`cs-source/chapters/NN-name.md`](../cs-source/chapters/) y [`cs-source/index.md`](../cs-source/index.md) | Las introducciones de los capítulos y la apertura de la parte "Por concepto de ciencias de la computación" |

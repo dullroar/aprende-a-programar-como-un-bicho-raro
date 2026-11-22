@@ -51,7 +51,7 @@ END-ADD
 
 ### ¿Qué acabamos de aprender?
 
-- **Un destino de salto puede ser estado.** El flujo de control no es solo el contador de programa recorriendo el texto fuente; también puede ser un dato que el programa edita. Compara [el reinicio de Make](make-cmake.md#gnu-make), [los registros de CMake](make-cmake.md#cmake) y [el `>in` de Forth](forth.md): todos guardan el estado de control en un lugar distinto de las variables ordinarias. Consulta los [patrones](../patrones.md#control-state-outside-variables).
+- **Un destino de salto puede ser estado.** El flujo de control no es solo el contador de programa recorriendo el texto fuente; también puede ser un dato que el programa edita. Compara [el reinicio de Make](make-cmake.md#gnu-make), [los registros de CMake](make-cmake.md#cmake) y [el `>in` de Forth](forth.md): todos guardan el estado de control en un lugar distinto de las variables ordinarias. Consulta los [patrones](../patrones.md#el-estado-de-control-fuera-de-las-variables).
 - **El desbordamiento es una decisión.** `ON SIZE ERROR` es un condicional que se dispara porque la aritmética se queda sin dígitos, no por una comparación que alguien escribió.
 - **La programación estructurada ganó por una razón** y este programa es esa razón. Mira el paso siguiente.
 
@@ -65,11 +65,11 @@ Etiquetas: `ALTER` es comportamiento **permitido por la implementación** (se el
 - **Optimizadores.** Un compilador que no puede suponer que un `GO TO` es constante tiene poco que hacer con el párrafo.
 - **Reentrada.** Reescribir la propia tabla de saltos del código es lo opuesto a la reentrada: dos llamadores comparten un solo `NEXT-CARD`. (Sobre el tema de reescribir el programa, consulta [APL](apl.md#funciones-que-se-modifican-a-sí-mismas-apl-weird).)
 
-Usos legítimos: ninguno en código nuevo. Históricamente, sin embargo, en sistemas por lotes con poca memoria y sensibles al rendimiento, un interruptor fijado una vez y probado con un `GO TO` incondicional costaba menos que probar una bandera en cada pasada. Esa es la respuesta del "mainframe en 1978" a la pregunta recurrente: *era razonable cuando la restricción era real*. Consulta la [introducción](../introduccion.md#the-recurring-question).
+Usos legítimos: ninguno en código nuevo. Históricamente, sin embargo, en sistemas por lotes con poca memoria y sensibles al rendimiento, un interruptor fijado una vez y probado con un `GO TO` incondicional costaba menos que probar una bandera en cada pasada. Esa es la respuesta del "mainframe en 1978" a la pregunta recurrente: *era razonable cuando la restricción era real*. Consulta la [introducción](../introduccion.md#la-pregunta-recurrente).
 
 ### Ahora rómpelo tú
 
-Consulta los [ejercicios](../exercises.md#b1-cobol-predict-then-break-alter-verified): predice qué pasa si agregas un `DISPLAY` a `NEXT-CARD` o cambias el `59`.
+Consulta los [ejercicios](../exercises.md#b1-cobol-predice-y-luego-rompe-alter-verificado): predice qué pasa si agregas un `DISPLAY` a `NEXT-CARD` o cambias el `59`.
 
 ## Rarezas
 
@@ -94,7 +94,7 @@ Rara vez en la forma que se muestra. Sin embargo, la regla de parada de nivel `8
 <!-- BEGIN GENERATED program-flow:languages/cobol.md -->
 ## How each program runs
 
-Each picture below is the `## Program Flow` section of an entry's README, copied here by the build. It shows how that program makes the work happen: what the language, runtime or tool really does. [The introduction](../introduccion.md#what-the-challenge-does) shows what the challenge asks for and where entries differ.
+Each picture below is the `## Program Flow` section of an entry's README, copied here by the build. It shows how that program makes the work happen: what the language, runtime or tool really does. [The introduction](../introduccion.md#qué-hace-el-reto) shows what the challenge asks for and where entries differ.
 
 ### Program flow of `cobol`
 

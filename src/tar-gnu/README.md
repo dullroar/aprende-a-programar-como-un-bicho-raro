@@ -201,4 +201,4 @@ La repetición tampoco es **idempotente**: ejecutar el mismo archivo dos veces e
 
 ---
 
-Consulta el [README de la raíz del repositorio](../../README.md#the-results-so-far) para comparar esta entrada con las demás. Si quieres escribir la tuya, consulta [`RETO.md`](../../RETO.md).
+Consulta el [README de la raíz del repositorio](../../README.md#los-resultados-hasta-ahora) para comparar esta entrada con las demás. Si quieres escribir la tuya, consulta [`RETO.md`](../../RETO.md).

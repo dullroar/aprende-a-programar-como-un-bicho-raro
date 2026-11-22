@@ -83,11 +83,11 @@ Etiquetas: el comportamiento de ejecución diferida o inmediata de cada operador
 - **Mutación oculta.** Ambos acumuladores `Aggregate` se modifican in situ (`list.Add`). Es un atajo pragmático, no la pureza de LINQ.
 - **La enumeración repetida ejecuta de nuevo los efectos.** Una consulta con un efecto secundario en un `Select` que se enumera dos veces ejecuta el efecto secundario dos veces.
 - **Afinidad con el hilo de la interfaz.** Crear y procesar una ventana WPF dentro de una lambda `Select` solo funciona por el hilo STA y `Application.Run()`. `ShutdownMode` es `OnExplicitShutdown`, así que el controlador `Completed` de la animación termina la aplicación, no "se cerró la última ventana".
-- **Datos fijos.** Ambas entradas LINQ generan una semana laboral *fija* de cinco días de 8 horas, no tarjetas aleatorias de 10 a 19 horas. Consulta [problemas bloqueantes](../problemas-bloqueantes.md#c-and-linq).
+- **Datos fijos.** Ambas entradas LINQ generan una semana laboral *fija* de cinco días de 8 horas, no tarjetas aleatorias de 10 a 19 horas. Consulta [problemas bloqueantes](../problemas-bloqueantes.md#c-y-linq).
 
 ### Ahora rómpelo tú
 
-Consulta los [ejercicios](../exercises.md#b7-linq-enumerate-twice-verified).
+Consulta los [ejercicios](../exercises.md#b7-linq-enumera-dos-veces-verificado).
 
 ## XAML
 
@@ -138,7 +138,7 @@ Poner todo en una cabecera de `for`: nunca. Pero conviene saber que LINQ es dife
 <!-- BEGIN GENERATED program-flow:languages/csharp-linq-xaml.md -->
 ## How each program runs
 
-Each picture below is the `## Program Flow` section of an entry's README, copied here by the build. It shows how that program makes the work happen: what the language, runtime or tool really does. [The introduction](../introduccion.md#what-the-challenge-does) shows what the challenge asks for and where entries differ.
+Each picture below is the `## Program Flow` section of an entry's README, copied here by the build. It shows how that program makes the work happen: what the language, runtime or tool really does. [The introduction](../introduccion.md#qué-hace-el-reto) shows what the challenge asks for and where entries differ.
 
 ### Program flow of `ModernChallenge1`
 

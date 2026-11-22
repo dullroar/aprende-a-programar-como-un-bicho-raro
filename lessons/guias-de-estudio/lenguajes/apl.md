@@ -25,7 +25,7 @@ sandbox/container/run-image.sh src/apl
 sandbox/container/run-image.sh src/apl-weird
 ```
 
-Edita solo copias ([Ejecutar cosas de forma segura](../../exercises.md#running-things-safely)). Un programa automodificable con un error puede no terminar: fija `SANDBOX_TIMEOUT=40` para cualquier cambio en `apl-weird`.
+Edita solo copias ([Ejecutar cosas de forma segura](../../exercises.md#ejecutar-con-seguridad)). Un programa automodificable con un error puede no terminar: fija `SANDBOX_TIMEOUT=40` para cualquier cambio en `apl-weird`.
 
 **Regla de predicción.** Antes de cada ejecución, anota qué arreglos o qué texto de función generada esperas, e indica qué salida refutaría tu predicción.
 
@@ -41,7 +41,7 @@ Edita solo copias ([Ejecutar cosas de forma segura](../../exercises.md#running-t
 
 ## El reto compartido
 
-La [especificación del reto](../../introduccion.md#what-the-challenge-does) pide tarjetas con una categoría y de 10 a 19 horas enteras. Las categorías se repiten en ciclo: `Meetings`, `Coding`, `Debugging` y `Learning`. Suma las horas de cada tarjeta al total acumulado. Detente cuando el total pasa de 40. Conserva la **primera tarjeta con la que el total pasa de 40**. Un total de exactamente 40 continúa. Cuatro tarjetas de 10 horas necesitan una quinta tarjeta, de la categoría `Meetings`. Las ejecuciones conformes tienen de 3 a 5 tarjetas y un total de 41 a 59 horas.
+La [especificación del reto](../../introduccion.md#qué-hace-el-reto) pide tarjetas con una categoría y de 10 a 19 horas enteras. Las categorías se repiten en ciclo: `Meetings`, `Coding`, `Debugging` y `Learning`. Suma las horas de cada tarjeta al total acumulado. Detente cuando el total pasa de 40. Conserva la **primera tarjeta con la que el total pasa de 40**. Un total de exactamente 40 continúa. Cuatro tarjetas de 10 horas necesitan una quinta tarjeta, de la categoría `Meetings`. Las ejecuciones conformes tienen de 3 a 5 tarjetas y un total de 41 a 59 horas.
 
 APL expresa el límite en una sola comparación, `40≥`, "¿el total es como máximo 40?". Es verdadera para 40. El programa cuenta las tarjetas para las que es verdadera y después suma una, para incluir la tarjeta con la que el total pasa del límite.
 
@@ -161,11 +161,11 @@ El resumen honesto: el primer programa desperdicia datos para evitar una decisi�
 
 | Ejercicio | Predice primero | Qué muestra la evidencia |
 | --- | --- | --- |
-| [B6. APL: la reescritura con error de una línea](../../exercises.md#b6-apl-the-off-by-one-rewrite-verified), pasos de 1 a 2 | Cambia `,5↓⊂[1]` a `,4↓⊂[1]` en `apl-weird`. ¿Qué conserva cada hijo de su padre? | Cada hijo conserva una línea de más de los genes de su padre. Eso reinicia el total acumulado, así que la regla de parada nunca se activa. La ejecución solo termina al agotarse el tiempo o la memoria del contenedor. No hay ninguna línea `# committed`, y las filas tienen un total igual a sus propias horas. El código automodificable falla de forma *estructural* y en silencio. Por eso la comprobación de la entrada se ejecuta bajo `timeout`. |
+| [B6. APL: la reescritura con error de una línea](../../exercises.md#b6-apl-la-reescritura-del-error-por-uno-verificada), pasos de 1 a 2 | Cambia `,5↓⊂[1]` a `,4↓⊂[1]` en `apl-weird`. ¿Qué conserva cada hijo de su padre? | Cada hijo conserva una línea de más de los genes de su padre. Eso reinicia el total acumulado, así que la regla de parada nunca se activa. La ejecución solo termina al agotarse el tiempo o la memoria del contenedor. No hay ninguna línea `# committed`, y las filas tienen un total igual a sus propias horas. El código automodificable falla de forma *estructural* y en silencio. Por eso la comprobación de la entrada se ejecuta bajo `timeout`. |
 | B6, paso 3 | Cambia `⎕IO←0` por `⎕IO←1`. ¿Qué pasa? | Aparece un `INDEX ERROR` y ninguna fila. `Categories[C]` y las búsquedas indexadas con `N` asumen el origen 0. La entrada simple `apl` evita esto porque nunca asume un origen. |
-| [C1. Lo raro junto a lo aburrido](../../exercises.md#c1-weird-next-to-boring-verified) | ¿En qué programa puedes señalar el estado? | `apl` muestra el estado como arreglos que puedes imprimir. `apl-weird` lo guarda en líneas de código fuente que existen solo mientras el programa se ejecuta. |
-| [A1. Lee las filas](../../exercises.md#a1-read-the-rows-verified) | ¿Qué tarjeta pasó de 40 aquí? | Para `apl`, comprueba que `+/40≥+\Drawn` contó las tarjetas con 40 o menos. Para `apl-weird`, comprueba qué función `Card` tiene el último `T←`. |
-| [F. Prueba una afirmación del README](../../exercises.md#f-prove-a-readme-claim-verified) | ¿Qué mostraría que "cinco extracciones siempre bastan" es una cota? | Una prueba que saca cinco tarjetas de 10 horas y comprueba que el quinto total es 50. Un control negativo sacaría solo cuatro y mostraría que el conteo de 4 se queda en exactamente 40. |
+| [C1. Lo raro junto a lo aburrido](../../exercises.md#c1-lo-raro-junto-a-lo-aburrido-verificado) | ¿En qué programa puedes señalar el estado? | `apl` muestra el estado como arreglos que puedes imprimir. `apl-weird` lo guarda en líneas de código fuente que existen solo mientras el programa se ejecuta. |
+| [A1. Lee las filas](../../exercises.md#a1-lee-las-filas-verificado) | ¿Qué tarjeta pasó de 40 aquí? | Para `apl`, comprueba que `+/40≥+\Drawn` contó las tarjetas con 40 o menos. Para `apl-weird`, comprueba qué función `Card` tiene el último `T←`. |
+| [F. Prueba una afirmación del README](../../exercises.md#f-demuestra-una-afirmación-del-readme-verificada) | ¿Qué mostraría que "cinco extracciones siempre bastan" es una cota? | Una prueba que saca cinco tarjetas de 10 horas y comprueba que el quinto total es 50. Un control negativo sacaría solo cuatro y mostraría que el conteo de 4 se queda en exactamente 40. |
 
 ## Modos de fallo, costos y límites
 

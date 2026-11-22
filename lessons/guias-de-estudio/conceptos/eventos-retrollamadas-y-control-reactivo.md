@@ -17,7 +17,7 @@ Cuando termines, deberías poder:
 
 ## Antes de empezar
 
-**Modelo de seguridad.** Las tarjetas son datos ficticios marcados con **DEMO ONLY**. Los programas pueden escribir en archivos o bases de datos locales de prueba y pueden iniciar procesos o temporizadores. Lee primero el código fuente y ejecútalo antes en un entorno aislado (*sandbox*) que limita el acceso al sistema anfitrión (`sandbox/container/run-image.sh src/javascript-events`). Trabaja con copias ([Ejecutar cosas con seguridad](../../exercises.md#running-things-safely)). Un límite de turno quitado a propósito puede hacer fallar una ejecución: usa una carpeta de datos de prueba.
+**Modelo de seguridad.** Las tarjetas son datos ficticios marcados con **DEMO ONLY**. Los programas pueden escribir en archivos o bases de datos locales de prueba y pueden iniciar procesos o temporizadores. Lee primero el código fuente y ejecútalo antes en un entorno aislado (*sandbox*) que limita el acceso al sistema anfitrión (`sandbox/container/run-image.sh src/javascript-events`). Trabaja con copias ([Ejecutar cosas con seguridad](../../exercises.md#ejecutar-con-seguridad)). Un límite de turno quitado a propósito puede hacer fallar una ejecución: usa una carpeta de datos de prueba.
 
 **Regla de predicción.** Antes de cada ejecución, escribe el *orden* de los eventos. Marca qué flechas son llamadas simples (la pila crece) y cuáles son saltos a un turno posterior (la pila se desenrolla). En este tema el orden es el programa.
 
@@ -34,7 +34,7 @@ Cuando termines, deberías poder:
 
 ## El reto compartido
 
-La [especificación del reto](../../introduccion.md#what-the-challenge-does) pide tarjetas con una categoría y de 10 a 19 horas enteras. Las categorías se repiten en ciclo: `Meetings`, `Coding`, `Debugging` y `Learning`. Suma las horas de cada tarjeta al total acumulado. Detente cuando el total pasa de 40. Conserva la **primera tarjeta con la que el total pasa de 40**. Un total de exactamente 40 continúa. Cuatro tarjetas de 10 horas necesitan una quinta tarjeta, de la categoría `Meetings`. Las ejecuciones conformes tienen de 3 a 5 tarjetas y un total de 41 a 59 horas.
+La [especificación del reto](../../introduccion.md#qué-hace-el-reto) pide tarjetas con una categoría y de 10 a 19 horas enteras. Las categorías se repiten en ciclo: `Meetings`, `Coding`, `Debugging` y `Learning`. Suma las horas de cada tarjeta al total acumulado. Detente cuando el total pasa de 40. Conserva la **primera tarjeta con la que el total pasa de 40**. Un total de exactamente 40 continúa. Cuatro tarjetas de 10 horas necesitan una quinta tarjeta, de la categoría `Meetings`. Las ejecuciones conformes tienen de 3 a 5 tarjetas y un total de 41 a 59 horas.
 
 En el programa de eventos la regla es una línea: `total-updated` emite `finished` cuando `total > limit` (así que un total de exactamente 40 continúa). De lo contrario, programa `generate` para un turno posterior. La categoría de la tarjeta *n* es `(n - 1) % 4`, así que una quinta tarjeta vuelve a ser Meetings. El programa recibe un objeto `world` (`rng`, `schedule`, `open`, ...) para que una prueba pueda inyectar el suyo.
 
@@ -127,12 +127,12 @@ emit generate
 
 | Ejercicio | Predice primero | Qué muestra la evidencia |
 | --- | --- | --- |
-| [B22. JavaScript, dirigido por eventos](../../exercises.md#b22-javascript-event-driven-predict-the-trace-then-remove-the-boundary-verified), paso 2 | `listener`, `after emit`, `immediate`: ¿en qué orden? | `listener`, `after emit`, `immediate`. `emit()` llama antes de regresar y `setImmediate()` solo pide. |
+| [B22. JavaScript, dirigido por eventos](../../exercises.md#b22-javascript-dirigido-por-eventos-predice-la-traza-y-luego-elimina-el-límite-verificado), paso 2 | `listener`, `after emit`, `immediate`: ¿en qué orden? | `listener`, `after emit`, `immediate`. `emit()` llama antes de regresar y `setImmediate()` solo pide. |
 | B22, paso 3 | La traza de tres tarjetas de 19 horas. | `>start <start main is done`, luego tres turnos, con `<start` antes del primer `>generate`. |
 | B22, paso 4 | Reemplaza `later('generate')` por `events.emit('generate')`. | Una ejecución normal sigue funcionando. El laboratorio falla dos pruebas y una ejecución muy larga imprime `Maximum call stack size exceeded` y sale con 1. Con el límite de vuelta y `limit: 30_000`, unas 2000 tarjetas se ejecutan y no se imprime nada. |
-| [B17. tar, más raro: predice el reloj](../../exercises.md#b17-tar-weirder-predict-the-clock-verified) | `--ticks 45` frente a `46`. | Funciones de devolución de llamada que el programa no controla: con muy pocas, la máquina se atasca, con `the clock ran out` y estado de salida 3. |
-| [B12. Tcl: edita el programa en la base de datos](../../exercises.md#b12-tcl-edit-the-program-in-the-database-verified) | `recursive_triggers = OFF`. | Se imprimió una fila, `entries=2`: la inserción propia de un disparador no vuelve a activar un disparador a menos que se habilite la recursión. La reentrada hay que activarla de forma expresa. |
-| [B21. JavaScript, más raro](../../exercises.md#b21-javascript-weirder-move-the-stop-rule-in-a-closure-and-watch-the-demand-verified) | `take(1)` frente a `take(2)`. | La versión por demanda: el consumidor decide cuántas tarjetas existen. |
+| [B17. tar, más raro: predice el reloj](../../exercises.md#b17-tar-más-raro-predice-el-reloj-verificado) | `--ticks 45` frente a `46`. | Funciones de devolución de llamada que el programa no controla: con muy pocas, la máquina se atasca, con `the clock ran out` y estado de salida 3. |
+| [B12. Tcl: edita el programa en la base de datos](../../exercises.md#b12-tcl-edita-el-programa-en-la-base-de-datos-verificado) | `recursive_triggers = OFF`. | Se imprimió una fila, `entries=2`: la inserción propia de un disparador no vuelve a activar un disparador a menos que se habilite la recursión. La reentrada hay que activarla de forma expresa. |
+| [B21. JavaScript, más raro](../../exercises.md#b21-javascript-más-raro-mueve-la-regla-de-parada-a-una-clausura-closure-y-observa-la-demanda-verificado) | `take(1)` frente a `take(2)`. | La versión por demanda: el consumidor decide cuántas tarjetas existen. |
 
 ## Modos de fallo, costos y límites
 

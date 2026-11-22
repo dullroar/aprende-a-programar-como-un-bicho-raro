@@ -17,7 +17,7 @@ Cuando termines, deberías poder:
 
 ## Antes de empezar
 
-**Modelo de seguridad.** Las tarjetas son datos ficticios marcados con **DEMO ONLY**. Los programas pueden escribir en archivos o bases de datos locales de prueba y pueden iniciar procesos. Lee primero el código fuente y ejecútalo antes en un entorno aislado (*sandbox*) que limita el acceso al sistema anfitrión, por ejemplo `sandbox/container/run-image.sh src/cobol-weird`. Trabaja con copias ([Ejecutar cosas con seguridad](../../exercises.md#running-things-safely)).
+**Modelo de seguridad.** Las tarjetas son datos ficticios marcados con **DEMO ONLY**. Los programas pueden escribir en archivos o bases de datos locales de prueba y pueden iniciar procesos. Lee primero el código fuente y ejecútalo antes en un entorno aislado (*sandbox*) que limita el acceso al sistema anfitrión, por ejemplo `sandbox/container/run-image.sh src/cobol-weird`. Trabaja con copias ([Ejecutar cosas con seguridad](../../exercises.md#ejecutar-con-seguridad)).
 
 **Regla de predicción.** Antes de cada ejecución, escribe los *dos* datos que necesita una traza: dónde está el programa y qué recuerda. Son columnas distintas. En el `ALTER` de COBOL, una te dice dónde *está* la ejecución y la otra te dice adónde *irá* el siguiente `GO TO`.
 
@@ -33,7 +33,7 @@ Cuando termines, deberías poder:
 
 ## El reto compartido
 
-La [especificación del reto](../../introduccion.md#what-the-challenge-does) pide tarjetas con una categoría y de 10 a 19 horas enteras. Las categorías se repiten en ciclo: `Meetings`, `Coding`, `Debugging` y `Learning`. Suma las horas de cada tarjeta al total acumulado. Detente cuando el total pasa de 40. Conserva la **primera tarjeta con la que el total pasa de 40**. Un total de exactamente 40 continúa. Cuatro tarjetas de 10 horas necesitan una quinta tarjeta, de la categoría `Meetings`. Las ejecuciones conformes tienen de 3 a 5 tarjetas y un total de 41 a 59 horas.
+La [especificación del reto](../../introduccion.md#qué-hace-el-reto) pide tarjetas con una categoría y de 10 a 19 horas enteras. Las categorías se repiten en ciclo: `Meetings`, `Coding`, `Debugging` y `Learning`. Suma las horas de cada tarjeta al total acumulado. Detente cuando el total pasa de 40. Conserva la **primera tarjeta con la que el total pasa de 40**. Un total de exactamente 40 continúa. Cuatro tarjetas de 10 horas necesitan una quinta tarjeta, de la categoría `Meetings`. Las ejecuciones conformes tienen de 3 a 5 tarjetas y un total de 41 a 59 horas.
 
 Como máquina, el reto tiene un estado pequeño: `(cards so far, total)`, más la categoría siguiente. Un paso toma una cantidad de horas, la suma al total, registra la tarjeta y continúa o termina. El *invariante* tras cada tarjeta registrada es "el total es igual a la suma de las horas registradas". En la variante rara de COBOL hay un segundo invariante, que solo se cumple tras cada suma exitosa: `WS-HEADROOM` es igual a 59 más el total. Los ejemplos de esta traza representan esa máquina de maneras distintas. Las demostraciones fijas de LINQ y el techo de XAML muestran dónde el modelo compartido necesita una regla de parada adicional.
 
@@ -115,12 +115,12 @@ Un lenguaje puede ocultarte el estado de control de dos maneras. Puede guardarlo
 
 | Ejercicio | Predice primero | Lo que muestra la evidencia |
 | --- | --- | --- |
-| [B1. COBOL: predice y luego rompe ALTER](../../exercises.md#b1-cobol-predict-then-break-alter-verified) | Empieza el margen en 49. ¿Dónde se detiene la ejecución? | Por encima de 50. Un número de los datos codifica la regla, y la comprobación propia de la entrada falla porque tiene el 40 fijo en el código. |
-| [B3. Forth: mueve el ancla](../../exercises.md#b3-forth-move-the-anchor-verified) | Escribe `>in @ 0 0 step rewind?` (estado después del ancla). | No se detiene: el estado se vuelve a crear en cada pasada. El *orden* del estado y del ancla forma parte del programa. |
-| [B4. Make: quita la operación nula y anula el reloj](../../exercises.md#b4-make-remove-the-no-op-and-override-the-clock-verified) | Borra `@:`. | `entries=0`: no se ejecutó ningún comando, así que ningún archivo se "rehízo" y Make nunca se reinició. |
-| [B5. CMake: muta el literal](../../exercises.md#b5-cmake-mutate-the-literal-verified) | Acorta el literal de 41 `x`. | La regla de parada se mueve, porque el literal *es* la regla. |
-| [B19. Ex: mueve el límite en la cinta y corta el bucle](../../exercises.md#b19-ex-move-the-limit-on-the-tape-and-cut-the-loop-verified) | Quita `\|@n`. | Una tarjeta. Nada vuelve a ejecutar el registro, así que el programa nunca se reinicia solo. |
-| [C3. Un bucle cuyo estado no es una variable](../../exercises.md#c3-a-loop-whose-state-is-not-a-variable-verified) | En awk, sin ninguna palabra clave de bucle, imprime de 1 a N para una N que elige quien llama. ¿Dónde puede vivir el estado? | En la entrada de datos: los datos de *quien llama* son el contador. |
+| [B1. COBOL: predice y luego rompe ALTER](../../exercises.md#b1-cobol-predice-y-luego-rompe-alter-verificado) | Empieza el margen en 49. ¿Dónde se detiene la ejecución? | Por encima de 50. Un número de los datos codifica la regla, y la comprobación propia de la entrada falla porque tiene el 40 fijo en el código. |
+| [B3. Forth: mueve el ancla](../../exercises.md#b3-forth-mueve-el-ancla-verificado) | Escribe `>in @ 0 0 step rewind?` (estado después del ancla). | No se detiene: el estado se vuelve a crear en cada pasada. El *orden* del estado y del ancla forma parte del programa. |
+| [B4. Make: quita la operación nula y anula el reloj](../../exercises.md#b4-make-quita-la-operación-sin-efecto-y-sobrescribe-el-reloj-verificado) | Borra `@:`. | `entries=0`: no se ejecutó ningún comando, así que ningún archivo se "rehízo" y Make nunca se reinició. |
+| [B5. CMake: muta el literal](../../exercises.md#b5-cmake-muta-el-literal-verificado) | Acorta el literal de 41 `x`. | La regla de parada se mueve, porque el literal *es* la regla. |
+| [B19. Ex: mueve el límite en la cinta y corta el bucle](../../exercises.md#b19-ex-mueve-el-límite-en-la-cinta-y-corta-el-bucle-verificado) | Quita `\|@n`. | Una tarjeta. Nada vuelve a ejecutar el registro, así que el programa nunca se reinicia solo. |
+| [C3. Un bucle cuyo estado no es una variable](../../exercises.md#c3-un-bucle-cuyo-estado-no-es-una-variable-verificado) | En awk, sin ninguna palabra clave de bucle, imprime de 1 a N para una N que elige quien llama. ¿Dónde puede vivir el estado? | En la entrada de datos: los datos de *quien llama* son el contador. |
 
 ## Modos de fallo, costos y límites
 

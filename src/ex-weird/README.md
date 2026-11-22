@@ -177,4 +177,4 @@ Normalmente usas Ex así: escribes un comando y miras el resultado. Te mueves po
 
 ---
 
-Consulta el [README raíz](../../README.md#the-results-so-far) para ver cómo se compara esta entrada con las otras y consulta [`RETO.md`](../../RETO.md) si quieres escribir la tuya.
+Consulta el [README raíz](../../README.md#los-resultados-hasta-ahora) para ver cómo se compara esta entrada con las otras y consulta [`RETO.md`](../../RETO.md) si quieres escribir la tuya.

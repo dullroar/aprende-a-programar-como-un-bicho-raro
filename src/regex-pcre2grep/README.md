@@ -123,4 +123,4 @@ El código de salida es todo el truco. El `random()` de SQLite y la aritmética 
 
 ---
 
-Consulta el [README principal](../../README.md#the-results-so-far) para ver cómo se compara esto con las otras entradas de regex, y [`RETO.md`](../../RETO.md) si quieres escribir el tuyo.
+Consulta el [README principal](../../README.md#los-resultados-hasta-ahora) para ver cómo se compara esto con las otras entradas de regex, y [`RETO.md`](../../RETO.md) si quieres escribir el tuyo.

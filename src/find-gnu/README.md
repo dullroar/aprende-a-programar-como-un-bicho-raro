@@ -129,4 +129,4 @@ En cada nivel, además, fuerza los dados primero con un `mktemp` falso en `PATH`
 
 ---
 
-Consulta el [README raíz](../../README.md#the-results-so-far) para ver cómo se compara esta entrada con las demás, y [`RETO.md`](../../RETO.md) si quieres escribir la tuya.
+Consulta el [README raíz](../../README.md#los-resultados-hasta-ahora) para ver cómo se compara esta entrada con las demás, y [`RETO.md`](../../RETO.md) si quieres escribir la tuya.

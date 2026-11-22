@@ -157,4 +157,4 @@ La sentencia `for` es síncrona. El programa dibuja todas las tarjetas e imprime
 
 ---
 
-Consulta el [README principal](../../README.md#the-results-so-far) para ver cómo se compara con las demás entradas, y [`RETO.md`](../../RETO.md) si quieres escribir la tuya.
+Consulta el [README principal](../../README.md#los-resultados-hasta-ahora) para ver cómo se compara con las demás entradas, y [`RETO.md`](../../RETO.md) si quieres escribir la tuya.

@@ -143,4 +143,4 @@ El lanzador, [`timecards.sh`](timecards.sh), tiene cuatro tareas: generar cinco 
 
 ---
 
-Consulta el [README raíz](../../README.md#the-results-so-far) para ver cómo se compara con las otras entradas y [`RETO.md`](../../RETO.md) si quieres escribir la tuya.
+Consulta el [README raíz](../../README.md#los-resultados-hasta-ahora) para ver cómo se compara con las otras entradas y [`RETO.md`](../../RETO.md) si quieres escribir la tuya.

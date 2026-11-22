@@ -106,4 +106,4 @@ Debajo de las líneas `use`, `timecards.pl` es una línea: una cadena de texto d
 
 ---
 
-Consulta el [README principal](../../README.md#the-results-so-far) para ver cómo se compara esta versión con las otras entradas de expresiones regulares, y [`RETO.md`](../../RETO.md) si quieres escribir la tuya.
+Consulta el [README principal](../../README.md#los-resultados-hasta-ahora) para ver cómo se compara esta versión con las otras entradas de expresiones regulares, y [`RETO.md`](../../RETO.md) si quieres escribir la tuya.

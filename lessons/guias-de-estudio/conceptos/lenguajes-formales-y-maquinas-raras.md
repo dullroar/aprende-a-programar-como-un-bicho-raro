@@ -17,7 +17,7 @@ Cuando termines, deberías poder:
 
 ## Antes de empezar
 
-**Modelo de seguridad.** Las tarjetas son datos ficticios marcados con **DEMO ONLY**. Aquí una notación puede causar efectos mediante Perl en un patrón, C en un callout, Tcl leído de una tabla o métodos de .NET invocados por XAML. Lee primero el código fuente y ejecútalo antes en un entorno aislado (*sandbox*) que limita el acceso al sistema anfitrión, por ejemplo `sandbox/container/run-image.sh src/regex-sed`. Trabaja con copias y ejecuta cualquier experimento con sed o con una expresión regular en una carpeta temporal ([Ejecutar cosas con seguridad](../../exercises.md#running-things-safely)).
+**Modelo de seguridad.** Las tarjetas son datos ficticios marcados con **DEMO ONLY**. Aquí una notación puede causar efectos mediante Perl en un patrón, C en un callout, Tcl leído de una tabla o métodos de .NET invocados por XAML. Lee primero el código fuente y ejecútalo antes en un entorno aislado (*sandbox*) que limita el acceso al sistema anfitrión, por ejemplo `sandbox/container/run-image.sh src/regex-sed`. Trabaja con copias y ejecuta cualquier experimento con sed o con una expresión regular en una carpeta temporal ([Ejecutar cosas con seguridad](../../exercises.md#ejecutar-con-seguridad)).
 
 **Regla de predicción.** Antes de cada ejecución, escribe qué puede *representar* la notación y qué no. Después mira si el programa chocó con ese límite.
 
@@ -33,7 +33,7 @@ Cuando termines, deberías poder:
 
 ## El reto compartido
 
-La [especificación del reto](../../introduccion.md#what-the-challenge-does) pide tarjetas con una categoría y de 10 a 19 horas enteras. Las categorías se repiten en ciclo: `Meetings`, `Coding`, `Debugging` y `Learning`. Suma las horas de cada tarjeta al total acumulado. Detente cuando el total pasa de 40. Conserva la **primera tarjeta con la que el total pasa de 40**. Un total de exactamente 40 continúa. Cuatro tarjetas de 10 horas necesitan una quinta tarjeta, de la categoría `Meetings`. Las ejecuciones conformes tienen de 3 a 5 tarjetas y un total de 41 a 59 horas.
+La [especificación del reto](../../introduccion.md#qué-hace-el-reto) pide tarjetas con una categoría y de 10 a 19 horas enteras. Las categorías se repiten en ciclo: `Meetings`, `Coding`, `Debugging` y `Learning`. Suma las horas de cada tarjeta al total acumulado. Detente cuando el total pasa de 40. Conserva la **primera tarjeta con la que el total pasa de 40**. Un total de exactamente 40 continúa. Cuatro tarjetas de 10 horas necesitan una quinta tarjeta, de la categoría `Meetings`. Las ejecuciones conformes tienen de 3 a 5 tarjetas y un total de 41 a 59 horas.
 
 Para un lector de lenguajes formales, el reto exige dos capacidades: *contar* (comparar un total con 40) y *repetir con memoria* (llevar el total a la tarjeta siguiente). Una expresión regular pura no tiene ninguna. Cada entrada de esta guía las aporta tomando algo prestado: una pila, marcas de conteo, un reinicio o un anfitrión. El límite es exacto: un total de 40 debe *continuar*, así que la máquina debe distinguir 40 de 41.
 
@@ -85,12 +85,12 @@ Lee la segunda fila: un patrón de PCRE2 que "falla" es el *éxito* del programa
 
 | Ejercicio | Predice primero | Qué muestra la evidencia |
 | --- | --- | --- |
-| [B8. Regex: qué sobrevive a una coincidencia fallida](../../exercises.md#b8-regex-what-survives-a-failed-match-verified) | Añade `(?!)` al patrón de .NET. | `match returned: false`, `total=0 entries=0`: la única salida de la notación son sus capturas. |
-| [B9. sed: observa una computación](../../exercises.md#b9-sed-watch-a-computation-verified) | ¿Cuántas líneas de estado hay por tarjeta? | Muchas, no una cantidad constante: un sorteo rechazado repite un paso. Una máquina de reescritura muestra todo su estado. |
-| [B5. CMake: muta el literal](../../exercises.md#b5-cmake-mutate-the-literal-verified) | Acorta a 31 el literal de 41 `x`. | La regla de parada se mueve: el literal es la regla. |
-| [B11. m4: entrecomilla la recursión](../../exercises.md#b11-m4-quote-the-recursion-verified) | Quita los corchetes. | Una ejecución desbocada: el procesador de macros expande los argumentos antes de llamar a la macro. |
-| [B18. ed: mueve la regla de parada y rompe la limpieza](../../exercises.md#b18-ed-move-the-stop-rule-and-break-the-cleanup-verified) | Cambia `x\{41,\}` por `x\{31,\}`. | La ejecución se detiene tras el primer total que pasa de 30. Un solo contador de repeticiones en una regex es la regla. |
-| [C2. Haz real la restricción](../../exercises.md#c2-make-the-constraint-real-verified) | Escribe una verificación que prohíba las palabras de bucle en Forth. | Debe quitar primero los comentarios y las cadenas de texto: una verificación de restricciones es en sí un analizador sintáctico. |
+| [B8. Regex: qué sobrevive a una coincidencia fallida](../../exercises.md#b8-regex-qué-sobrevive-a-una-coincidencia-fallida-verificado) | Añade `(?!)` al patrón de .NET. | `match returned: false`, `total=0 entries=0`: la única salida de la notación son sus capturas. |
+| [B9. sed: observa una computación](../../exercises.md#b9-sed-observa-un-cálculo-verificado) | ¿Cuántas líneas de estado hay por tarjeta? | Muchas, no una cantidad constante: un sorteo rechazado repite un paso. Una máquina de reescritura muestra todo su estado. |
+| [B5. CMake: muta el literal](../../exercises.md#b5-cmake-muta-el-literal-verificado) | Acorta a 31 el literal de 41 `x`. | La regla de parada se mueve: el literal es la regla. |
+| [B11. m4: entrecomilla la recursión](../../exercises.md#b11-m4-cita-la-recursión-verificado) | Quita los corchetes. | Una ejecución desbocada: el procesador de macros expande los argumentos antes de llamar a la macro. |
+| [B18. ed: mueve la regla de parada y rompe la limpieza](../../exercises.md#b18-ed-mueve-la-regla-de-parada-y-rompe-la-limpieza-verificado) | Cambia `x\{41,\}` por `x\{31,\}`. | La ejecución se detiene tras el primer total que pasa de 30. Un solo contador de repeticiones en una regex es la regla. |
+| [C2. Haz real la restricción](../../exercises.md#c2-haz-real-la-restricción-verificada) | Escribe una verificación que prohíba las palabras de bucle en Forth. | Debe quitar primero los comentarios y las cadenas de texto: una verificación de restricciones es en sí un analizador sintáctico. |
 
 ## Modos de fallo, costos y límites
 

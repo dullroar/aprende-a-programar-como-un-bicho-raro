@@ -55,7 +55,7 @@ Usos legítimos: `for (;;)` con un `break` y una coma en una cláusula de actual
 
 ### Ahora rómpelo tú
 
-Mira el [ejercicio B20](../exercises.md#b20-javascript-read-the-clauses-move-the-limit-and-fail-the-structure-check-verified).
+Mira el [ejercicio B20](../exercises.md#b20-javascript-lee-las-cláusulas-mueve-el-límite-y-haz-fallar-la-comprobación-de-estructura-verificado).
 
 ## Clausuras hasta el fondo
 
@@ -98,7 +98,7 @@ Usos legítimos: clausuras para estado privado, fábricas de funciones configura
 
 ### Ahora rómpelo tú
 
-Mira el [ejercicio B21](../exercises.md#b21-javascript-weirder-move-the-stop-rule-in-a-closure-and-watch-the-demand-verified).
+Mira el [ejercicio B21](../exercises.md#b21-javascript-más-raro-mueve-la-regla-de-parada-a-una-clausura-closure-y-observa-la-demanda-verificado).
 
 ## Escuchadores de eventos hasta el fondo
 
@@ -142,12 +142,12 @@ Usos legítimos: muchas partes pueden tener interés en una cosa (el `request` d
 
 ### Ahora rómpelo tú
 
-Consulta el [ejercicio B22](../exercises.md#b22-javascript-event-driven-predict-the-trace-then-remove-the-boundary-verified) y el capítulo [Eventos, funciones de devolución de llamada y flujo de control reactivo](../informatica/10-eventos-retrollamadas-y-flujo-de-control-reactivo.md).
+Consulta el [ejercicio B22](../exercises.md#b22-javascript-dirigido-por-eventos-predice-la-traza-y-luego-elimina-el-límite-verificado) y el capítulo [Eventos, funciones de devolución de llamada y flujo de control reactivo](../informatica/10-eventos-retrollamadas-y-flujo-de-control-reactivo.md).
 
 <!-- BEGIN GENERATED program-flow:languages/javascript.md -->
 ## How each program runs
 
-Each picture below is the `## Program Flow` section of an entry's README, copied here by the build. It shows how that program makes the work happen: what the language, runtime or tool really does. [The introduction](../introduccion.md#what-the-challenge-does) shows what the challenge asks for and where entries differ.
+Each picture below is the `## Program Flow` section of an entry's README, copied here by the build. It shows how that program makes the work happen: what the language, runtime or tool really does. [The introduction](../introduccion.md#qué-hace-el-reto) shows what the challenge asks for and where entries differ.
 
 ### Program flow of `javascript`
 

@@ -114,4 +114,4 @@ Tres cosas de este archivo no pueden ser sintaxis de consulta, porque el lenguaj
 - Aquí se aplican el mismo tope de la suma acumulada y las mismas advertencias sobre mutación directa que en la variante A; consulta el [README de la variante A](../LinqChallenge1/README.md#trampas-que-conviene-conocer) para las que se comparten (el momento de ejecución inmediata de `SaveChanges()` y la mutación directa de la lista dentro de `Aggregate`).
 - Las llamadas a `Console.WriteLine` dentro de la cláusula `let` `window` existen solo para que `check.ps1` pueda verificar el informe de los datos guardados a partir de la salida estándar.
 
-Consulta [el README raíz](../../README.md#the-results-so-far) para ver cómo se compara con las otras entradas de una sola sentencia, y [`src/LinqChallenge1`](../LinqChallenge1/README.md) para la variante de cadena fluida de la misma idea.
+Consulta [el README raíz](../../README.md#los-resultados-hasta-ahora) para ver cómo se compara con las otras entradas de una sola sentencia, y [`src/LinqChallenge1`](../LinqChallenge1/README.md) para la variante de cadena fluida de la misma idea.

@@ -26,7 +26,7 @@ sandbox\windows\run.ps1 src\LinqChallenge1
 sandbox\windows\run.ps1 src\xaml -RunArgs strict.xaml
 ```
 
-Las adaptaciones a Go, Java, Kotlin, Python y Rust se ejecutan en el entorno aislado (*sandbox*) de Linux, que limita el acceso al sistema anfitrión, con `sandbox/container/run-image.sh src/<entry>`. Edita solo copias ([Ejecutar cosas con seguridad](../../exercises.md#running-things-safely)).
+Las adaptaciones a Go, Java, Kotlin, Python y Rust se ejecutan en el entorno aislado (*sandbox*) de Linux, que limita el acceso al sistema anfitrión, con `sandbox/container/run-image.sh src/<entry>`. Edita solo copias ([Ejecutar cosas con seguridad](../../exercises.md#ejecutar-con-seguridad)).
 
 **Regla de predicción.** Antes de cada ejecución, anota qué se ejecuta *primero*, qué queda diferido y en qué hilo. En esta familia el orden de evaluación es el programa.
 
@@ -41,13 +41,13 @@ Las adaptaciones a Go, Java, Kotlin, Python y Rust se ejecutan en el entorno ais
 
 ## El reto compartido
 
-La [especificación del reto](../../introduccion.md#what-the-challenge-does) pide tarjetas con una categoría y de 10 a 19 horas enteras. Las categorías se repiten en ciclo: `Meetings`, `Coding`, `Debugging` y `Learning`. Suma las horas de cada tarjeta al total acumulado. Detente cuando el total pasa de 40. Conserva la **primera tarjeta con la que el total pasa de 40**. Un total de exactamente 40 continúa. Cuatro tarjetas de 10 horas necesitan una quinta tarjeta, de la categoría `Meetings`. Las ejecuciones conformes tienen de 3 a 5 tarjetas y un total de 41 a 59 horas.
+La [especificación del reto](../../introduccion.md#qué-hace-el-reto) pide tarjetas con una categoría y de 10 a 19 horas enteras. Las categorías se repiten en ciclo: `Meetings`, `Coding`, `Debugging` y `Learning`. Suma las horas de cada tarjeta al total acumulado. Detente cuando el total pasa de 40. Conserva la **primera tarjeta con la que el total pasa de 40**. Un total de exactamente 40 continúa. Cuatro tarjetas de 10 horas necesitan una quinta tarjeta, de la categoría `Meetings`. Las ejecuciones conformes tienen de 3 a 5 tarjetas y un total de 41 a 59 horas.
 
 Las dos demos de LINQ y XAML se apartan de ese contrato. Los encabezados antiguos de cuatro nombres explican cómo afectaba antes el mismo caso límite a las adaptaciones.
 
 1. **`LinqChallenge1` y `LinqChallenge2` no sortean horas al azar.** Su semana laboral son cinco días fijos de 8 horas, y rechazan cualquier día que haga que el total pase de 40. El resultado es exactamente 40.0 horas en cinco filas, en cada ejecución. Enseñan la ejecución diferida, no la regla de parada. El ejercicio E1 lo indica.
 2. **Las entradas con encabezado `for` solían detenerse tras cuatro tarjetas, y `xaml` todavía lo hace.** El original y las adaptaciones a Java, Go, Kotlin, Python y Rust prueban `total <= 40 && a category remains` y toman cada categoría una sola vez. En `ModernChallenge1` la condición es `Sum() <= 40d && i.categories.MoveNext()`, donde `categories` es un enumerador de una sola pasada. Con cuatro nombres de categoría, una reducción de ese encabezado ejecutada en un proyecto de consola, con todas las tarjetas de 10 horas, se detuvo con `stop: total 40 after 4 cards`. Eso ocurre una vez de cada 10,000 con horas al azar y contradice la regla de que un total de exactamente 40 continúa. El original de 2008 tenía cuatro nombres, y los README de las entradas lo describían con fidelidad. Ahora está corregido en `ModernChallenge1` y en las cinco adaptaciones con un quinto nombre (`Meetings` se repite). Tras la corrección, la misma reducción se detiene con `stop: total 50 after 5 cards`. El proyecto de C# compila. Las pruebas unitarias de Rust pasan (ahora afirman que un total de exactamente 40 continúa). Go, Java y Kotlin compilan. Las cuatro pasadas desenrolladas de la entrada XAML conservan el techo. No se pudo probar una quinta pasada sin Windows, así que no se agregó. Con la semilla incluida (`Random(42)`: 16, 11, 11, 15) reparte cuatro tarjetas y termina en 53. Por eso el caso nunca se da, salvo que cambies la semilla (ejercicio E2).
-3. **El almacenamiento depende de la variante de XAML.** La variante con EF Core tiene un disparador de SQLite que borra una fila si las filas anteriores ya suman más de 40. La variante de SQLite directo pone la prueba equivalente en la sentencia de inserción. Ambas conservan la tarjeta que cruza el tope. La variante estricta escribe XML. Consulta [dónde difieren las entradas](../../introduccion.md#where-entries-differ).
+3. **El almacenamiento depende de la variante de XAML.** La variante con EF Core tiene un disparador de SQLite que borra una fila si las filas anteriores ya suman más de 40. La variante de SQLite directo pone la prueba equivalente en la sentencia de inserción. Ambas conservan la tarjeta que cruza el tope. La variante estricta escribe XML. Consulta [dónde difieren las entradas](../../introduccion.md#dónde-difieren-las-entradas).
 
 ## La máquina que hay que identificar
 
@@ -198,12 +198,12 @@ Las adaptaciones muestran que el "bucle sin cuerpo" es una *forma*, no una carac
 
 | Ejercicio | Predice primero | Qué muestra la evidencia |
 | --- | --- | --- |
-| [B7. LINQ: enumerar dos veces](../../exercises.md#b7-linq-enumerate-twice-verified) | ¿Cuántas líneas `effect` hay después de (a) declarar `q`, (b) un `q.Sum()`, (c) `Sum` y `ToList`, (d) `ToList` y luego `Sum` sobre la lista? | 0, 3, 6, 3. `Select` es diferido y cada enumeración lo vuelve a ejecutar. También se verificó en esta guía. |
+| [B7. LINQ: enumerar dos veces](../../exercises.md#b7-linq-enumera-dos-veces-verificado) | ¿Cuántas líneas `effect` hay después de (a) declarar `q`, (b) un `q.Sum()`, (c) `Sum` y `ToList`, (d) `ToList` y luego `Sum` sobre la lista? | 0, 3, 6, 3. `Select` es diferido y cada enumeración lo vuelve a ejecutar. También se verificó en esta guía. |
 | B7, la semilla | ¿Cuáles son las cinco horas para la semilla 42? | `16 11 11 15 11`. Un `Random` con semilla da las mismas tarjetas en cada ejecución, y por eso un archivo `.xaml` con la semilla 42 es reproducible. |
 | B7, el operador de evaluación inmediata | ¿Qué operador de `LinqChallenge1` es de evaluación inmediata y fuerza las etapas diferidas que le siguen? | `Aggregate`. |
-| [E1. Ejecuta y lee la evidencia](../../exercises.md#e1-run-and-read-the-evidence) (Windows) | ¿Las filas de qué entrada dan un total de exactamente 40 porque los datos son fijos? | `LinqChallenge1`. `xaml` es la aleatoria. |
-| [E2. Cambia la semilla del intérprete de XAML](../../exercises.md#e2-change-the-xaml-interpreters-seed) (Windows) | Cambia `42` por `7` en `strict.xaml`. ¿Cambian las horas? | Sí, y la misma secuencia en cada ejecución con la misma semilla. El bucle se desenrolló cuatro veces porque XAML no tiene bucle. No se agregó una quinta pasada, así que `xaml` es la única entrada que no puede repartir una quinta tarjeta. Los portadores `x:Array` hacen el papel de variables. |
-| [C1. Lo raro junto a lo aburrido](../../exercises.md#c1-weird-next-to-boring-verified) | Compara `ModernChallenge1` con un bucle ordinario de C#. | Mismo contrato de salida; el original expone su estado en un único objeto anónimo. |
+| [E1. Ejecuta y lee la evidencia](../../exercises.md#e1-ejecuta-y-lee-la-evidencia) (Windows) | ¿Las filas de qué entrada dan un total de exactamente 40 porque los datos son fijos? | `LinqChallenge1`. `xaml` es la aleatoria. |
+| [E2. Cambia la semilla del intérprete de XAML](../../exercises.md#e2-cambia-la-semilla-del-intérprete-xaml) (Windows) | Cambia `42` por `7` en `strict.xaml`. ¿Cambian las horas? | Sí, y la misma secuencia en cada ejecución con la misma semilla. El bucle se desenrolló cuatro veces porque XAML no tiene bucle. No se agregó una quinta pasada, así que `xaml` es la única entrada que no puede repartir una quinta tarjeta. Los portadores `x:Array` hacen el papel de variables. |
+| [C1. Lo raro junto a lo aburrido](../../exercises.md#c1-lo-raro-junto-a-lo-aburrido-verificado) | Compara `ModernChallenge1` con un bucle ordinario de C#. | Mismo contrato de salida; el original expone su estado en un único objeto anónimo. |
 
 ## Modos de fallo, costos y límites
 

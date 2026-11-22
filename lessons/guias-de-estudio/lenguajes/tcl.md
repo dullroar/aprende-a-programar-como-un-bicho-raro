@@ -24,7 +24,7 @@ sandbox/container/run-image.sh src/tcl
 sandbox/container/run-image.sh src/tcl-weird
 ```
 
-Edita solo copias ([Ejecutar cosas de forma segura](../../exercises.md#running-things-safely)). Cuando editas `tcl-weird`, editas un programa en Tcl *dentro de una cadena de texto SQL dentro de un script de Tcl*. Por eso las llaves se anidan y nada se sustituye hasta que se ejecuta el texto.
+Edita solo copias ([Ejecutar cosas de forma segura](../../exercises.md#ejecutar-con-seguridad)). Cuando editas `tcl-weird`, editas un programa en Tcl *dentro de una cadena de texto SQL dentro de un script de Tcl*. Por eso las llaves se anidan y nada se sustituye hasta que se ejecuta el texto.
 
 **Regla de predicción.** Antes de cada ejecución, anota qué motor (Tcl o SQLite) actúa en cada paso y qué imprime cada uno. En este programa los motores se pasan el control el uno al otro.
 
@@ -40,7 +40,7 @@ Edita solo copias ([Ejecutar cosas de forma segura](../../exercises.md#running-t
 
 ## El reto compartido
 
-La [especificación del reto](../../introduccion.md#what-the-challenge-does) pide tarjetas con una categoría y de 10 a 19 horas enteras. Las categorías se repiten en ciclo: `Meetings`, `Coding`, `Debugging` y `Learning`. Suma las horas de cada tarjeta al total acumulado. Detente cuando el total pasa de 40. Conserva la **primera tarjeta con la que el total pasa de 40**. Un total de exactamente 40 continúa. Cuatro tarjetas de 10 horas necesitan una quinta tarjeta, de la categoría `Meetings`. Las ejecuciones conformes tienen de 3 a 5 tarjetas y un total de 41 a 59 horas.
+La [especificación del reto](../../introduccion.md#qué-hace-el-reto) pide tarjetas con una categoría y de 10 a 19 horas enteras. Las categorías se repiten en ciclo: `Meetings`, `Coding`, `Debugging` y `Learning`. Suma las horas de cada tarjeta al total acumulado. Detente cuando el total pasa de 40. Conserva la **primera tarjeta con la que el total pasa de 40**. Un total de exactamente 40 continúa. Cuatro tarjetas de 10 horas necesitan una quinta tarjeta, de la categoría `Meetings`. Las ejecuciones conformes tienen de 3 a 5 tarjetas y un total de 41 a 59 horas.
 
 Las dos entradas de Tcl guardan las tarjetas en una transacción de SQLite e imprimen un resumen. Tcl escribe la frontera de dos maneras. En `tcl`, `while {$total <= $limit}` ([L40](../../../src/tcl/timecards.tcl#L40)): se cumple con 40, así que el bucle se repite. En `tcl-weird`, el disparador inserta la tarjeta siguiente `WHERE NEW.running_total <= 40` ([L113](../../../src/tcl-weird/timecards.tcl#L113)). Se inserta una tarjeta solo si el total de la tarjeta *anterior* era de 40 o menos. Por eso la tarjeta que cruza el tope es la última que se inserta.
 
@@ -165,11 +165,11 @@ La diferencia que hay que recordar: `tcl` tiene *un* motor y `tcl-weird` tiene *
 
 | Ejercicio | Predice primero | Qué muestra la evidencia |
 | --- | --- | --- |
-| [B12. Tcl: edita el programa en la base de datos](../../exercises.md#b12-tcl-edit-the-program-in-the-database-verified), paso 1 | Pon `recursive_triggers` en `OFF`. ¿Cuántas filas se imprimen? ¿Cuántas cuenta el resumen? | Se imprime una fila y el resumen dice `entries=2`. El disparador se activó una vez y la tarjeta 2 se insertó y se contó. Pero una inserción hecha por un disparador no vuelve a activarlo a menos que la recursión esté habilitada. El pragma *es* el bucle. |
+| [B12. Tcl: edita el programa en la base de datos](../../exercises.md#b12-tcl-edita-el-programa-en-la-base-de-datos-verificado), paso 1 | Pon `recursive_triggers` en `OFF`. ¿Cuántas filas se imprimen? ¿Cuántas cuenta el resumen? | Se imprime una fila y el resumen dice `entries=2`. El disparador se activó una vez y la tarjeta 2 se insertó y se contó. Pero una inserción hecha por un disparador no vuelve a activarlo a menos que la recursión esté habilitada. El pragma *es* el bucle. |
 | B12, paso 2 | Cambia el cuerpo de la fila `hours` a `expr {10}`. | Exactamente cinco filas, con totales 10, 20, 30, 40, 50. El verificador compartido las acepta. La ejecución no se detiene en 40, porque un total de exactamente 40 continúa. Editaste texto dentro de una cadena de texto SQL, no un procedimiento de Tcl. |
 | B12, los tres ganchos | Nómbralos. ¿Cuál cambiaste en el paso 2? | Una función SQL que llama a Tcl, el manejador `unknown` y el disparador. El paso 2 cambió *los datos que sirve `unknown`*. |
-| [C1. Lo raro junto a lo aburrido](../../exercises.md#c1-weird-next-to-boring-verified) | ¿En qué programa puedes ver la regla en un solo lugar? | `tcl`: la condición `while`. `tcl-weird`: el `WHERE` en un disparador, a tres capas de profundidad. |
-| [F. Demuestra una afirmación del README](../../exercises.md#f-prove-a-readme-claim-verified) | El README dice que las horas de cada tarjeta se sortean una sola vez. ¿Puedes comprobarlo? | Sí: cuenta las llamadas al procedimiento `hours` (lo hace el `check.sh` de la entrada) y compáralas con el número de tarjetas. El control negativo es una variante que llama a `tcl('hours')` en los dos lugares: la cuenta pasa a ser el doble del número de tarjetas y la comprobación falla. Esto reemplazó una dependencia anterior del orden de evaluación de SQLite. |
+| [C1. Lo raro junto a lo aburrido](../../exercises.md#c1-lo-raro-junto-a-lo-aburrido-verificado) | ¿En qué programa puedes ver la regla en un solo lugar? | `tcl`: la condición `while`. `tcl-weird`: el `WHERE` en un disparador, a tres capas de profundidad. |
+| [F. Demuestra una afirmación del README](../../exercises.md#f-demuestra-una-afirmación-del-readme-verificada) | El README dice que las horas de cada tarjeta se sortean una sola vez. ¿Puedes comprobarlo? | Sí: cuenta las llamadas al procedimiento `hours` (lo hace el `check.sh` de la entrada) y compáralas con el número de tarjetas. El control negativo es una variante que llama a `tcl('hours')` en los dos lugares: la cuenta pasa a ser el doble del número de tarjetas y la comprobación falla. Esto reemplazó una dependencia anterior del orden de evaluación de SQLite. |
 
 ## Modos de fallo, costos y límites
 

@@ -14,12 +14,12 @@ Cada guía tiene las mismas once secciones, así que encuentras cada cosa siempr
 
 1. **Para qué sirve esta guía**: de tres a seis resultados de aprendizaje, y lo que queda fuera del ámbito de la guía.
 2. **Antes de empezar**: el modelo de seguridad (datos ficticios marcados con **DEMO ONLY**, revisión del código y una ejecución en el entorno aislado), la regla de predicción y el vocabulario.
-3. **El reto compartido**: la [especificación de la tarjeta de horas](../introduccion.md#what-the-challenge-does) y cómo se comportan las entradas de esta guía. Una ejecución conforme conserva la **primera tarjeta que lleva el total a más de 40**, así que un total de exactamente 40 continúa. Comprueba por separado la parada, el almacenamiento y la salida.
+3. **El reto compartido**: la [especificación de la tarjeta de horas](../introduccion.md#qué-hace-el-reto) y cómo se comportan las entradas de esta guía. Una ejecución conforme conserva la **primera tarjeta que lleva el total a más de 40**, así que un total de exactamente 40 continúa. Comprueba por separado la parada, el almacenamiento y la salida.
 4. **La máquina que hay que identificar**: lo que se repite, dónde vive el estado, lo que hace avanzar el paso siguiente, qué lo detiene y qué efectos se confirman.
 5. **Traza una ejecución**: una ejecución fija, normalmente con las horas 15, 19, 12, con el estado decisivo antes y después de cada paso.
 6. **Compara los diseños ordinarios y los raros**: por representación, observabilidad, pruebas, depuración, portabilidad y costo, no por número de líneas.
 7. **Qué demuestran los ejercicios**: enlaces a los ejercicios verificados, cada uno con la predicción que haces primero.
-8. **Modos de fallo, costos y límites**: afirmaciones concretas sobre el comportamiento. Se marcan como **garantizado**, **permitido por la implementación** o **aprovechado por accidente**, con evidencia para cada una (consulta [Tres tipos de conocimiento](../introduccion.md#three-kinds-of-knowledge)).
+8. **Modos de fallo, costos y límites**: afirmaciones concretas sobre el comportamiento. Se marcan como **garantizado**, **permitido por la implementación** o **aprovechado por accidente**, con evidencia para cada una (consulta [Tres tipos de conocimiento](../introduccion.md#tres-tipos-de-conocimiento)).
 9. **Conexiones a lo largo del repositorio**: otras guías y capítulos del libro.
 10. **Autoevaluación**: una pregunta de traza, una de explicación, una de transferencia y una de evidencia.
 11. **Lecturas adicionales**: breves y comentadas.

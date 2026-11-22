@@ -131,4 +131,4 @@ make clean    # remove leftover state after an interrupted run
 
 ---
 
-Consulta el [README principal](../../README.md#the-results-so-far) para ver cómo se compara con las otras entradas, y [`RETO.md`](../../RETO.md) si quieres escribir la tuya.
+Consulta el [README principal](../../README.md#los-resultados-hasta-ahora) para ver cómo se compara con las otras entradas, y [`RETO.md`](../../RETO.md) si quieres escribir la tuya.

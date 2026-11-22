@@ -65,7 +65,7 @@ Etiquetas: la combinación de métodos `or`, `:around`, la sintaxis `#n=`, `defm
 ### Haz esto en producción y estás despedido
 
 - **El flujo de control es invisible.** Nada cerca de `punch` dice "esto es un bucle". Un mantenedor debe saber que el orden de definición de las clases determina el orden de ejecución. Insertar una clase en la cadena cambia el comportamiento sin tocar un método.
-- **El límite está incorporado en el diseño.** Cinco clases manejan "de 10 a 19 horas, detenerse con más de 40". Otras reglas necesitan una cadena más larga o más corta; la versión ordinaria no tiene ese límite. (Pruébalo en [B10](../exercises.md#b10-lisp-swap-the-method-combination-verified).)
+- **El límite está incorporado en el diseño.** Cinco clases manejan "de 10 a 19 horas, detenerse con más de 40". Otras reglas necesitan una cadena más larga o más corta; la versión ordinaria no tiene ese límite. (Pruébalo en [B10](../exercises.md#b10-lisp-cambia-la-combinación-de-métodos-verificado).)
 - **Los depuradores y trazadores muestran una pila de llamadas a funciones genéricas**, no un bucle. Un perfilador atribuye el tiempo a métodos que nadie escribió a mano.
 - **Solo SBCL** en la versión distribuida: las funciones `sb-` son de SBCL, mientras que las partes de CLOS son estándar.
 
@@ -73,7 +73,7 @@ Usos legítimos: **las combinaciones de `or`/`and` son herramientas reales** par
 
 ### Ahora rómpelo tú
 
-Consulta los [ejercicios](../exercises.md#b10-lisp-swap-the-method-combination-verified).
+Consulta los [ejercicios](../exercises.md#b10-lisp-cambia-la-combinación-de-métodos-verificado).
 
 ## Particularidades
 
@@ -93,7 +93,7 @@ Cuando el "bucle" es en realidad *un conjunto de participantes registrados de ma
 <!-- BEGIN GENERATED program-flow:languages/lisp.md -->
 ## How each program runs
 
-Each picture below is the `## Program Flow` section of an entry's README, copied here by the build. It shows how that program makes the work happen: what the language, runtime or tool really does. [The introduction](../introduccion.md#what-the-challenge-does) shows what the challenge asks for and where entries differ.
+Each picture below is the `## Program Flow` section of an entry's README, copied here by the build. It shows how that program makes the work happen: what the language, runtime or tool really does. [The introduction](../introduccion.md#qué-hace-el-reto) shows what the challenge asks for and where entries differ.
 
 ### Program flow of `lisp`
 

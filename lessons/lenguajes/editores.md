@@ -57,7 +57,7 @@ Usos legítimos: `ed` y `ex` en scripts para hacer ediciones exactas y automatiz
 
 ### Ahora rómpelo tú
 
-Consulta el [ejercicio B18](../exercises.md#b18-ed-move-the-stop-rule-and-break-the-cleanup-verified).
+Consulta el [ejercicio B18](../exercises.md#b18-ed-mueve-la-regla-de-parada-y-rompe-la-limpieza-verificado).
 
 ## Un programa que puedes editar
 
@@ -99,12 +99,12 @@ Usos legítimos: `ex -s` en scripts para hacer ediciones exactas y registros com
 
 ### Ahora rómpelo tú
 
-Mira el [ejercicio B19](../exercises.md#b19-ex-move-the-limit-on-the-tape-and-cut-the-loop-verified).
+Mira el [ejercicio B19](../exercises.md#b19-ex-mueve-el-límite-en-la-cinta-y-corta-el-bucle-verificado).
 
 <!-- BEGIN GENERATED program-flow:languages/editors.md -->
 ## How each program runs
 
-Each picture below is the `## Program Flow` section of an entry's README, copied here by the build. It shows how that program makes the work happen: what the language, runtime or tool really does. [The introduction](../introduccion.md#what-the-challenge-does) shows what the challenge asks for and where entries differ.
+Each picture below is the `## Program Flow` section of an entry's README, copied here by the build. It shows how that program makes the work happen: what the language, runtime or tool really does. [The introduction](../introduccion.md#qué-hace-el-reto) shows what the challenge asks for and where entries differ.
 
 ### Program flow of `ed-weird`
 
