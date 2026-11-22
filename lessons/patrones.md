@@ -127,7 +127,7 @@ Each track stores "what happens next" somewhere that is not a loop counter: in t
 | Attributes of one state object passed to the lambda | [csharp-linq-xaml](lenguajes/csharp-linq-xaml.md#las-adaptaciones-de-una-sola-sentencia-mismo-truco-distinta-maquinaria): [`PythonChallenge1`](../src/PythonChallenge1/README.md) |
 | A new immutable `DemoBatch` for every step; nothing is mutated | [csharp-linq-xaml](lenguajes/csharp-linq-xaml.md#las-adaptaciones-de-una-sola-sentencia-mismo-truco-distinta-maquinaria): [`RustChallenge1`](../src/RustChallenge1/README.md) |
 | Dicts and Tcl variables, saved in one `db transaction` | [tcl](lenguajes/tcl.md): [`tcl`](../src/tcl/README.md) |
-| A TEMP table of proc source, and the depth of trigger recursion | [tcl](lenguajes/tcl.md#sqlite-as-the-program): [`tcl-weird`](../src/tcl-weird/README.md) |
+| A TEMP table of proc source, and the depth of trigger recursion | [tcl](lenguajes/tcl.md#sqlite-como-programa): [`tcl-weird`](../src/tcl-weird/README.md) |
 | Document order, plus "carrier" arrays | [csharp-linq-xaml](lenguajes/csharp-linq-xaml.md#xaml): [`xaml`](../src/xaml/README.md) |
 <!-- END GENERATED control-state -->
 
@@ -176,7 +176,7 @@ LINQ, Haskell and XAML each put an effect inside something that looks like a pur
 | A runaway program is caught by a timeout, not an error | [`apl-weird`](lenguajes/apl.md#funciones-que-se-modifican-a-sí-mismas-apl-weird), and [m4](lenguajes/m4.md) when a quote is missing |
 | A return value short-circuits a chain of methods (`or`) | [Lisp weird](lenguajes/lisp.md#combinación-de-métodos-como-flujo-de-control) |
 | A pattern stops matching and an `exit` ends the loop | [AWK weird](lenguajes/awk.md#registros-a-partir-de-un-flujo-de-bytes-aleatorios-awk-weird) |
-| An `INSERT ... SELECT ... WHERE` that selects nothing ends a recursive trigger | [Tcl weird](lenguajes/tcl.md#sqlite-as-the-program) |
+| An `INSERT ... SELECT ... WHERE` that selects nothing ends a recursive trigger | [Tcl weird](lenguajes/tcl.md#sqlite-como-programa) |
 | A missing guard does not fail: it counts a phantom card (empty `RT`) or no cards at all (mawk) | [AWK weird](lenguajes/awk.md#haz-esto-en-producción-y-estás-despedido) |
 | An unexpected failure code is deliberately *not* "no match" (`PCRE2_ERROR_CALLOUT`, not `-1`) | [PCRE2](lenguajes/regex.md#pcre2-los-callouts-como-conjunto-de-instrucciones) |
 
@@ -201,7 +201,7 @@ The same bytes can be read without running anything, and ordinary `tar -xf` only
 | --- | --- | --- |
 | The members of a tar archive: names are instructions, bodies are operands | GNU tar walks them, and a dispatcher that the *operator* attached gives them meaning (a passive inspector reads the same bytes and runs nothing) | [`tar-gnu`](../src/tar-gnu/README.md), [tar](lenguajes/tar.md#un-programa-que-es-un-archivo) |
 | The layout of an archive: how many records tar writes | Tar's checkpoints are a clock, and a state machine takes one step per tick | [`tar-gnu-weird`](../src/tar-gnu-weird/README.md), [tar](lenguajes/tar.md#el-archivo-es-el-reloj) |
-| Rows in a SQLite table | An overridden `unknown` fetches Tcl source and evaluates it | [`tcl-weird`](../src/tcl-weird/README.md), [Tcl](lenguajes/tcl.md#sqlite-as-the-program) |
+| Rows in a SQLite table | An overridden `unknown` fetches Tcl source and evaluates it | [`tcl-weird`](../src/tcl-weird/README.md), [Tcl](lenguajes/tcl.md#sqlite-como-programa) |
 | A line of text in an editor buffer, copied into a register | Ex runs the register, and the program reads its next instruction from a tape of lines | [`ex-weird`](../src/ex-weird/README.md), [editors](lenguajes/editores.md#un-programa-que-puedes-editar) |
 | The source text of a function | `⎕CR` writes it out, the function rewrites it and `⎕FX` defines the copy | [`apl-weird`](../src/apl-weird/README.md), [APL](lenguajes/apl.md#funciones-que-se-modifican-a-sí-mismas-apl-weird) |
 

@@ -60,27 +60,27 @@ msgstr "⟦SEP_0005⟧ ⟦CODE_0001⟧ vincula variables de Tcl como parámetros
 #: lessons/languages/tcl.md:17
 msgctxt "s-4d815c49aff8-0010"
 msgid "⟦SEP_0003⟧ ⟦CODE_0001⟧ closes the database ⟦SEP_0004⟧ [L77-95](⟦DEST_0002⟧) ⟦SEP_0005⟧ Cleanup survives an error. ⟦SEP_0006⟧"
-msgstr ""
+msgstr "⟦SEP_0003⟧ ⟦CODE_0001⟧ cierra la base de datos ⟦SEP_0004⟧ [L77-95](⟦DEST_0002⟧) ⟦SEP_0005⟧ La limpieza se realiza incluso si ocurre un error. ⟦SEP_0006⟧"
 
 #: lessons/languages/tcl.md:18
 msgctxt "s-6f447078599a-0011"
 msgid "⟦SEP_0005⟧ Tk is a package, not a program ⟦SEP_0006⟧ [L110](⟦DEST_0001⟧): ⟦CODE_0002⟧, ⟦CODE_0003⟧ and ⟦CODE_0004⟧ ⟦SEP_0007⟧ A GUI is a few commands, and with Xvfb it can be tested headless. ⟦SEP_0008⟧"
-msgstr ""
+msgstr "⟦SEP_0005⟧ Tk es un paquete, no un programa ⟦SEP_0006⟧ [L110](⟦DEST_0001⟧): ⟦CODE_0002⟧, ⟦CODE_0003⟧ y ⟦CODE_0004⟧ ⟦SEP_0007⟧ Una interfaz gráfica requiere unos pocos comandos y con Xvfb se puede probar sin pantalla. ⟦SEP_0008⟧"
 
 #: lessons/languages/tcl.md:19
 msgctxt "s-22da2c9b09c9-0012"
 msgid "⟦SEP_0004⟧ An entry-point guard ⟦SEP_0005⟧ [L170](⟦DEST_0001⟧): ⟦CODE_0002⟧ ⟦SEP_0006⟧ The file can be ⟦CODE_0003⟧d for testing without running. ⟦SEP_0007⟧"
-msgstr ""
+msgstr "⟦SEP_0004⟧ Una guarda del punto de entrada ⟦SEP_0005⟧ [L170](⟦DEST_0001⟧): ⟦CODE_0002⟧ ⟦SEP_0006⟧ El archivo puede cargarse con ⟦CODE_0003⟧ para probarlo sin ejecutarlo. ⟦SEP_0007⟧"
 
 #: lessons/languages/tcl.md:21
 msgctxt "s-935ac14a127d-0013"
 msgid "SQLite as the program"
-msgstr ""
+msgstr "SQLite como programa"
 
 #: lessons/languages/tcl.md:23
 msgctxt "s-cc9cfaabc50d-0014"
 msgid "Behold the monstrosity"
-msgstr ""
+msgstr "Contempla la monstruosidad"
 
 #: lessons/languages/tcl.md:29
 msgctxt "s-f0c2f829e8fa-0015"

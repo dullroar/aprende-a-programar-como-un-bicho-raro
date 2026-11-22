@@ -5985,16 +5985,16 @@
     {
      "en": "SQLite as the program",
      "en_id": "sqlite-as-the-program",
-     "es": "SQLite as the program",
-     "es_id": "sqlite-as-the-program",
+     "es": "SQLite como programa",
+     "es_id": "sqlite-como-programa",
      "level": 2,
      "line": 21
     },
     {
      "en": "Behold the monstrosity",
      "en_id": "behold-the-monstrosity",
-     "es": "Behold the monstrosity",
-     "es_id": "behold-the-monstrosity",
+     "es": "Contempla la monstruosidad",
+     "es_id": "contempla-la-monstruosidad",
      "level": 3,
      "line": 23
     },
@@ -6088,7 +6088,7 @@
     }
    ],
    "map": {
-    "behold-the-monstrosity": "behold-the-monstrosity",
+    "behold-the-monstrosity": "contempla-la-monstruosidad",
     "computer-science-behind-this-page": "computer-science-behind-this-page",
     "do-this-in-production-and-youre-fired": "do-this-in-production-and-youre-fired",
     "how-each-program-runs": "how-each-program-runs",
@@ -6097,7 +6097,7 @@
     "program-flow-of-tcl": "program-flow-of-tcl",
     "program-flow-of-tcl-weird": "program-flow-of-tcl-weird",
     "quirks": "quirks",
-    "sqlite-as-the-program": "sqlite-as-the-program",
+    "sqlite-as-the-program": "sqlite-como-programa",
     "tcl": "tcl",
     "under-what-circumstances-would-this-terrible-idea-become-reasonable": "under-what-circumstances-would-this-terrible-idea-become-reasonable",
     "weird-next-to-boring": "weird-next-to-boring",

@@ -2310,3 +2310,5 @@
 {"segment_id": "s-415f5fa29cf9-0039", "ts": "2026-11-22T15:25:59Z", "findings": [], "playful_note": "Conserva el efecto del título juguetón del original."}
 {"segment_id": "s-299b7a6f9cbe-0053", "ts": "2026-11-22T15:30:47Z", "findings": [], "playful_note": "Amenaza cómica e hipérbole para introducir fallas graves."}
 {"segment_id": "s-5e3bcdfbf845-0058", "ts": "2026-11-22T15:32:21Z", "findings": [], "playful_note": "Invita al lector a romper el programa como un reto juguetón."}
+{"segment_id": "s-935ac14a127d-0013", "ts": "2026-11-22T15:38:46Z", "findings": ["REGISTER: playful segment H022 has status 'pending' in the humor register"], "playful_note": "Conserva la presentación sorprendente y teatral."}
+{"segment_id": "s-cc9cfaabc50d-0014", "ts": "2026-11-22T15:38:46Z", "findings": [], "playful_note": "Conserva la presentación sorprendente y teatral."}

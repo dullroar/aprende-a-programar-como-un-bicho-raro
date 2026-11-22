@@ -49,7 +49,7 @@ Every weird entry forces you to name the machine hiding inside a language. Once 
 | Python | A function that `iter` calls until it returns the sentinel `False` | Attributes of one state object passed to the lambda | [csharp-linq-xaml](lenguajes/csharp-linq-xaml.md#las-adaptaciones-de-una-sola-sentencia-mismo-truco-distinta-maquinaria) |
 | Rust | A chain of values from `successors`, which stops at `None` | A new immutable `DemoBatch` for every step; nothing is mutated | [csharp-linq-xaml](lenguajes/csharp-linq-xaml.md#las-adaptaciones-de-una-sola-sentencia-mismo-truco-distinta-maquinaria) |
 | Tcl | Ordinary: a `while` loop that draws first and saves afterwards | Dicts and Tcl variables, saved in one `db transaction` | [tcl](lenguajes/tcl.md) |
-| Tcl | A string-command interpreter whose command lookup can be hooked | A TEMP table of proc source, and the depth of trigger recursion | [tcl](lenguajes/tcl.md#sqlite-as-the-program) |
+| Tcl | A string-command interpreter whose command lookup can be hooked | A TEMP table of proc source, and the depth of trigger recursion | [tcl](lenguajes/tcl.md#sqlite-como-programa) |
 | XAML | An object-graph constructor that runs methods as it parses | Document order, plus "carrier" arrays | [csharp-linq-xaml](lenguajes/csharp-linq-xaml.md#xaml) |
 <!-- END GENERATED machines -->
 

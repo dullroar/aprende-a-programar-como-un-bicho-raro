@@ -214,7 +214,7 @@ Acceptance criteria:
 
 ### B12. Tcl: edit the program in the database (verified)
 
-**Lesson:** [Tcl](lenguajes/tcl.md#sqlite-as-the-program). **Entry:** copies of `src/tcl-weird`.
+**Lesson:** [Tcl](lenguajes/tcl.md#sqlite-como-programa). **Entry:** copies of `src/tcl-weird`.
 
 1. **Predict:** on a copy, change `PRAGMA recursive_triggers = ON;` ([L55](../src/tcl-weird/timecards.tcl#L55)) to `OFF`. How many card rows will be printed? How many will the summary count?
 2. **Predict:** on a fresh copy, change the body of the `hours` row ([L73](../src/tcl-weird/timecards.tcl#L73)) from `expr {10 + int(rand() * 10)}` to `expr {10}`. You are editing *text inside an SQL string*, not a Tcl proc.
