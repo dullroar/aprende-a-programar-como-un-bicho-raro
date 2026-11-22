@@ -2214,3 +2214,5 @@
 {"segment_id": "s-cdf4bc656727-0098", "ts": "2026-11-22T00:41:27Z", "findings": ["TRANSLATE: the reply is the English text unchanged"]}
 {"segment_id": "s-3b87dd93928c-0117", "ts": "2026-11-22T00:44:46Z", "findings": ["I7: glossary term sandbox must be rendered 'entorno aislado (*sandbox*)'"]}
 {"segment_id": "s-792ece1386df-0119", "ts": "2026-11-22T00:44:46Z", "findings": ["I7: glossary term total must be rendered 'total'"]}
+{"segment_id": "s-cc9cfaabc50d-0010", "ts": "2026-11-22T00:55:34Z", "findings": [], "playful_note": "Conserva el anuncio teatral."}
+{"segment_id": "s-415f5fa29cf9-0012", "ts": "2026-11-22T00:55:34Z", "findings": [], "playful_note": "Conserva el anuncio teatral."}

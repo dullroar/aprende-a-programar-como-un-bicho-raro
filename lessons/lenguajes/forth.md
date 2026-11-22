@@ -14,23 +14,23 @@ Forth casi no tiene sintaxis: el intérprete lee una palabra delimitada por espa
 | La redirección de salida como característica | [L68](../../src/forth/timecards.fs#L68): `: >sqlite ( xt -- ) sqlite outfile-execute ;` | `outfile-execute` redirige toda la salida a una tubería durante ese tiempo. `.schema` y `.insert` son palabras ordinarias que imprimen texto, y la tubería convierte el texto en SQL. |
 | Una palabra de bucle | [L108](../../src/forth/timecards.fs#L108): `: run ( -- ) begin card over-40? until ;` | `until` consume una bandera y repite hasta que sea verdadera. |
 
-## The parse position as a program counter
+## La posición de análisis sintáctico como contador de programa
 
-### Behold the monstrosity
+### Contempla la monstruosidad
 
 ```bash
 sandbox/container/run-image.sh src/forth-weird
 ```
 
-The whole program's loop is one line at the top level ([L101](../../src/forth-weird/timecards.fs#L101)):
+El bucle de todo el programa ocupa una línea en el nivel superior ([L101](../../src/forth-weird/timecards.fs#L101)):
 
 ```forth
 0 0 >in @ step rewind?                                     \ <== THE LOOP  ( n total anchor )
 ```
 
-### How the hell does that work?
+### ¿Cómo demonios funciona eso?
 
-The text interpreter is a loop you never see. `>in` holds *how far it has read the current line*; `>in @` reads it and `>in !` sets it. Set it to an earlier value and the interpreter reads the same words again.
+El intérprete de texto es un bucle que nunca ves. `>in` guarda *hasta dónde ha leído la línea actual*; `>in @` lee ese valor y `>in !` lo establece. Establécelo a un valor anterior y el intérprete vuelve a leer las mismas palabras.
 
 - `0 0` is the starting state (card 0, total 0). `>in @` pushes the position as an **anchor**: the place to jump back to.
 - `step` ([L88](../../src/forth-weird/timecards.fs#L88)) is `>r card r>`: it parks the anchor on the return stack, runs one card, restores it.

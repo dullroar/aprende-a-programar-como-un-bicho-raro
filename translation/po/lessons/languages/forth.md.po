@@ -55,27 +55,27 @@ msgstr "⟦SEP_0004⟧ Una palabra de bucle ⟦SEP_0005⟧ [L108](⟦DEST_0001�
 #: lessons/languages/forth.md:17
 msgctxt "s-0a7455b88da4-0009"
 msgid "The parse position as a program counter"
-msgstr ""
+msgstr "La posición de análisis sintáctico como contador de programa"
 
 #: lessons/languages/forth.md:19
 msgctxt "s-cc9cfaabc50d-0010"
 msgid "Behold the monstrosity"
-msgstr ""
+msgstr "Contempla la monstruosidad"
 
 #: lessons/languages/forth.md:25
 msgctxt "s-758786f59b56-0011"
 msgid "The whole program's loop is one line at the top level ([L101](⟦DEST_0001⟧)):"
-msgstr ""
+msgstr "El bucle de todo el programa ocupa una línea en el nivel superior ([L101](⟦DEST_0001⟧)):"
 
 #: lessons/languages/forth.md:31
 msgctxt "s-415f5fa29cf9-0012"
 msgid "How the hell does that work?"
-msgstr ""
+msgstr "¿Cómo demonios funciona eso?"
 
 #: lessons/languages/forth.md:33
 msgctxt "s-d00f3854cf45-0013"
 msgid "The text interpreter is a loop you never see. ⟦CODE_0001⟧ holds *how far it has read the current line*; ⟦CODE_0002⟧ reads it and ⟦CODE_0003⟧ sets it. Set it to an earlier value and the interpreter reads the same words again."
-msgstr ""
+msgstr "El intérprete de texto es un bucle que nunca ves. ⟦CODE_0001⟧ guarda *hasta dónde ha leído la línea actual*; ⟦CODE_0002⟧ lee ese valor y ⟦CODE_0003⟧ lo establece. Establécelo a un valor anterior y el intérprete vuelve a leer las mismas palabras."
 
 #: lessons/languages/forth.md:35
 msgctxt "s-d4d1aa60f82f-0014"

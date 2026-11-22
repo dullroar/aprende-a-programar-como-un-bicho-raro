@@ -4659,24 +4659,24 @@
     {
      "en": "The parse position as a program counter",
      "en_id": "the-parse-position-as-a-program-counter",
-     "es": "The parse position as a program counter",
-     "es_id": "the-parse-position-as-a-program-counter",
+     "es": "La posición de análisis sintáctico como contador de programa",
+     "es_id": "la-posición-de-análisis-sintáctico-como-contador-de-programa",
      "level": 2,
      "line": 17
     },
     {
      "en": "Behold the monstrosity",
      "en_id": "behold-the-monstrosity",
-     "es": "Behold the monstrosity",
-     "es_id": "behold-the-monstrosity",
+     "es": "Contempla la monstruosidad",
+     "es_id": "contempla-la-monstruosidad",
      "level": 3,
      "line": 19
     },
     {
      "en": "How the hell does that work?",
      "en_id": "how-the-hell-does-that-work",
-     "es": "How the hell does that work?",
-     "es_id": "how-the-hell-does-that-work",
+     "es": "¿Cómo demonios funciona eso?",
+     "es_id": "cómo-demonios-funciona-eso",
      "level": 3,
      "line": 31
     },
@@ -4762,17 +4762,17 @@
     }
    ],
    "map": {
-    "behold-the-monstrosity": "behold-the-monstrosity",
+    "behold-the-monstrosity": "contempla-la-monstruosidad",
     "computer-science-behind-this-page": "computer-science-behind-this-page",
     "do-this-in-production-and-youre-fired": "do-this-in-production-and-youre-fired",
     "forth": "forth",
     "how-each-program-runs": "how-each-program-runs",
-    "how-the-hell-does-that-work": "how-the-hell-does-that-work",
+    "how-the-hell-does-that-work": "cómo-demonios-funciona-eso",
     "now-break-it-yourself": "now-break-it-yourself",
     "program-flow-of-forth": "program-flow-of-forth",
     "program-flow-of-forth-weird": "program-flow-of-forth-weird",
     "quirks": "quirks",
-    "the-parse-position-as-a-program-counter": "the-parse-position-as-a-program-counter",
+    "the-parse-position-as-a-program-counter": "la-posición-de-análisis-sintáctico-como-contador-de-programa",
     "under-what-circumstances-would-this-terrible-idea-become-reasonable": "under-what-circumstances-would-this-terrible-idea-become-reasonable",
     "weird-next-to-boring": "weird-next-to-boring",
     "what-did-we-just-learn": "what-did-we-just-learn",
