@@ -10,9 +10,9 @@ Forth casi no tiene sintaxis: el intérprete lee una palabra delimitada por espa
 
 | Característica | Dónde | Qué enseña |
 | --- | --- | --- |
-| A switch is an array of functions | [`forth/timecards.fs` L34-36](../../src/forth/timecards.fs#L34-L36): `create categories ' meetings , ...` and `: category$ ( n -- c-addr u ) 4 mod cells categories + @ execute ;` | `'` ("tick") gives a word's execution token; tokens are data. |
-| Output redirection as a feature | [L68](../../src/forth/timecards.fs#L68): `: >sqlite ( xt -- ) sqlite outfile-execute ;` | `outfile-execute` redirects all output to a pipe for the duration. `.schema` and `.insert` are ordinary words that print text, and the pipe turns the text into SQL. |
-| One loop word | [L108](../../src/forth/timecards.fs#L108): `: run ( -- ) begin card over-40? until ;` | `until` consumes a flag and repeats until it is true. |
+| Un switch es un arreglo de funciones | [`forth/timecards.fs` L34-36](../../src/forth/timecards.fs#L34-L36): `create categories ' meetings , ...` y `: category$ ( n -- c-addr u ) 4 mod cells categories + @ execute ;` | `'` ("tick") da el token de ejecución de una palabra; los tokens son datos. |
+| La redirección de salida como característica | [L68](../../src/forth/timecards.fs#L68): `: >sqlite ( xt -- ) sqlite outfile-execute ;` | `outfile-execute` redirige toda la salida a una tubería durante ese tiempo. `.schema` y `.insert` son palabras ordinarias que imprimen texto, y la tubería convierte el texto en SQL. |
+| Una palabra de bucle | [L108](../../src/forth/timecards.fs#L108): `: run ( -- ) begin card over-40? until ;` | `until` consume una bandera y repite hasta que sea verdadera. |
 
 ## The parse position as a program counter
 

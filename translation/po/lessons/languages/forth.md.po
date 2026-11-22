@@ -40,17 +40,17 @@ msgstr "⟦SEP_0001⟧ Característica ⟦SEP_0002⟧ Dónde ⟦SEP_0003⟧ Qué
 #: lessons/languages/forth.md:13
 msgctxt "s-458a6d77c79b-0006"
 msgid "⟦SEP_0006⟧ A switch is an array of functions ⟦SEP_0007⟧ [⟦CODE_0001⟧ L34-36](⟦DEST_0002⟧): ⟦CODE_0003⟧ and ⟦CODE_0004⟧ ⟦SEP_0008⟧ ⟦CODE_0005⟧ (\"tick\") gives a word's execution token; tokens are data. ⟦SEP_0009⟧"
-msgstr ""
+msgstr "⟦SEP_0006⟧ Un switch es un arreglo de funciones ⟦SEP_0007⟧ [⟦CODE_0001⟧ L34-36](⟦DEST_0002⟧): ⟦CODE_0003⟧ y ⟦CODE_0004⟧ ⟦SEP_0008⟧ ⟦CODE_0005⟧ (\"tick\") da el token de ejecución de una palabra; los tokens son datos. ⟦SEP_0009⟧"
 
 #: lessons/languages/forth.md:14
 msgctxt "s-b3d79cc811c1-0007"
 msgid "⟦SEP_0006⟧ Output redirection as a feature ⟦SEP_0007⟧ [L68](⟦DEST_0001⟧): ⟦CODE_0002⟧ ⟦SEP_0008⟧ ⟦CODE_0003⟧ redirects all output to a pipe for the duration. ⟦CODE_0004⟧ and ⟦CODE_0005⟧ are ordinary words that print text, and the pipe turns the text into SQL. ⟦SEP_0009⟧"
-msgstr ""
+msgstr "⟦SEP_0006⟧ La redirección de salida como característica ⟦SEP_0007⟧ [L68](⟦DEST_0001⟧): ⟦CODE_0002⟧ ⟦SEP_0008⟧ ⟦CODE_0003⟧ redirige toda la salida a una tubería durante ese tiempo. ⟦CODE_0004⟧ y ⟦CODE_0005⟧ son palabras ordinarias que imprimen texto, y la tubería convierte el texto en SQL. ⟦SEP_0009⟧"
 
 #: lessons/languages/forth.md:15
 msgctxt "s-dd371aa4b458-0008"
 msgid "⟦SEP_0004⟧ One loop word ⟦SEP_0005⟧ [L108](⟦DEST_0001⟧): ⟦CODE_0002⟧ ⟦SEP_0006⟧ ⟦CODE_0003⟧ consumes a flag and repeats until it is true. ⟦SEP_0007⟧"
-msgstr ""
+msgstr "⟦SEP_0004⟧ Una palabra de bucle ⟦SEP_0005⟧ [L108](⟦DEST_0001⟧): ⟦CODE_0002⟧ ⟦SEP_0006⟧ ⟦CODE_0003⟧ consume una bandera y repite hasta que sea verdadera. ⟦SEP_0007⟧"
 
 #: lessons/languages/forth.md:17
 msgctxt "s-0a7455b88da4-0009"
