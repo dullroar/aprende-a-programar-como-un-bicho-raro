@@ -43,7 +43,7 @@ Every weird entry forces you to name the machine hiding inside a language. Once 
 | LINQ | A lazy query that its closing `Single()` demands | A prefix sum recomputed in each `where`, and the database; no accumulator variable | [csharp-linq-xaml](lenguajes/csharp-linq-xaml.md#la-ejecución-diferida-y-el-truco-de-convertir-void-en-valor) |
 | m4 | A text-rescanning machine | The input stream: whatever macro text has not been read yet | [m4](lenguajes/m4.md#un-bucle-hecho-de-reescaneo) |
 | PCRE2 | A backtracking search with hooks | A C struct that never rewinds | [regex](lenguajes/regex.md#pcre2-los-callouts-como-conjunto-de-instrucciones) |
-| pcre2grep | A backtracking search that runs one program per callout | SQLite rows, and the exit code of each callout | [regex](lenguajes/regex.md#pcre2grep-exit-codes-as-control-flow) |
+| pcre2grep | A backtracking search that runs one program per callout | SQLite rows, and the exit code of each callout | [regex](lenguajes/regex.md#pcre2grep-códigos-de-salida-como-flujo-de-control) |
 | Perl | A backtracking search with hooks | `local` variables that unwind (effects do not) | [regex](lenguajes/regex.md#perl-código-dentro-de-la-coincidencia) |
 | POSIX find | A tree walk that grows the tree it is walking | The path from the start directory to the directory being visited | [find](lenguajes/find.md) |
 | Python | A function that `iter` calls until it returns the sentinel `False` | Attributes of one state object passed to the lambda | [csharp-linq-xaml](lenguajes/csharp-linq-xaml.md#las-adaptaciones-de-una-sola-sentencia-mismo-truco-distinta-maquinaria) |

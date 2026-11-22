@@ -121,7 +121,7 @@ Each track stores "what happens next" somewhere that is not a loop counter: in t
 | A prefix sum recomputed in each `where`, and the database; no accumulator variable | [csharp-linq-xaml](lenguajes/csharp-linq-xaml.md#la-ejecución-diferida-y-el-truco-de-convertir-void-en-valor): [`LinqChallenge2`](../src/LinqChallenge2/README.md) |
 | The input stream: whatever macro text has not been read yet | [m4](lenguajes/m4.md#un-bucle-hecho-de-reescaneo): [`m4`](../src/m4/README.md) |
 | A C struct that never rewinds | [regex](lenguajes/regex.md#pcre2-los-callouts-como-conjunto-de-instrucciones): [`regex-pcre2`](../src/regex-pcre2/README.md) |
-| SQLite rows, and the exit code of each callout | [regex](lenguajes/regex.md#pcre2grep-exit-codes-as-control-flow): [`regex-pcre2grep`](../src/regex-pcre2grep/README.md) |
+| SQLite rows, and the exit code of each callout | [regex](lenguajes/regex.md#pcre2grep-códigos-de-salida-como-flujo-de-control): [`regex-pcre2grep`](../src/regex-pcre2grep/README.md) |
 | `local` variables that unwind (effects do not) | [regex](lenguajes/regex.md#perl-código-dentro-de-la-coincidencia): [`regex-perl`](../src/regex-perl/README.md) |
 | The path from the start directory to the directory being visited | [find](lenguajes/find.md): [`find-posix`](../src/find-posix/README.md) |
 | Attributes of one state object passed to the lambda | [csharp-linq-xaml](lenguajes/csharp-linq-xaml.md#las-adaptaciones-de-una-sola-sentencia-mismo-truco-distinta-maquinaria): [`PythonChallenge1`](../src/PythonChallenge1/README.md) |
@@ -171,7 +171,7 @@ LINQ, Haskell and XAML each put an effect inside something that looks like a pur
 | --- | --- |
 | A constraint violation *is* the stop rule: `CHECK(ok=1)` fires and the named error is announced | [Make](../src/make-gnu/README.md), [CMake](../src/cmake/README.md), [pcre2grep](../src/regex-pcre2grep/README.md) |
 | Arithmetic overflow *is* the stop rule: `ON SIZE ERROR` | [COBOL](lenguajes/cobol.md#alter) |
-| A program's exit code steers the match | [pcre2grep](lenguajes/regex.md#pcre2grep-exit-codes-as-control-flow) |
+| A program's exit code steers the match | [pcre2grep](lenguajes/regex.md#pcre2grep-códigos-de-salida-como-flujo-de-control) |
 | A process exits 1 on purpose, and the wrapper maps it back to 0 | [sed](lenguajes/regex.md#gnu-sed) |
 | A runaway program is caught by a timeout, not an error | [`apl-weird`](lenguajes/apl.md#funciones-que-se-modifican-a-sí-mismas-apl-weird), and [m4](lenguajes/m4.md) when a quote is missing |
 | A return value short-circuits a chain of methods (`or`) | [Lisp weird](lenguajes/lisp.md#combinación-de-métodos-como-flujo-de-control) |

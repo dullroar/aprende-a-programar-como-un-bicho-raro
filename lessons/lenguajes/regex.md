@@ -56,13 +56,13 @@ El patrón completo ([`timecards.c` L24-26](../../src/regex-pcre2/timecards.c#L2
 ^(?C"init")(?:(?C"gate")(Meetings|Coding|Debugging|Learning)(?C"book"))*(*COMMIT)(?C"commit")(*FAIL)
 ```
 
-(Plus a pulse tail.) The C host compiles it, registers one dispatcher, calls `pcre2_match` once and prints the file. The callout string is an opcode: `init`, `gate` (returns 1 once the total is over 40 to fail the branch and end the loop), `book`, `commit`. **PCRE2 supplies the iteration, the category walk and the backtracking.**
+(Más una cola de pulso.) El anfitrión en C lo compila, registra un despachador, llama a `pcre2_match` una vez e imprime el archivo. La cadena de texto del callout es un código de operación: `init`, `gate` (devuelve 1 cuando el total pasa de 40 para que falle la rama y termine el bucle), `book`, `commit`. **PCRE2 aporta la iteración, el recorrido de las categorías y el retroceso.**
 
-- **The optimizer caveat is the lesson.** Callouts only mean something if the engine visits them. The program compiles with `PCRE2_NO_AUTO_POSSESS | PCRE2_NO_START_OPTIMIZE | PCRE2_NO_DOTSTAR_ANCHOR` ([L84-86](../../src/regex-pcre2/timecards.c#L84-L86)) and avoids the JIT, which does not support callouts. This is **implementation-permitted**, and the README did not test what the optimizer would elide with the flags removed.
-- **State in a C struct does not rewind on backtracking**, unlike Perl's `local`. That suits this program: nothing is ever undone.
-- **A negative callout return aborts the match** with the callout's code, deliberately not `-1`, which means "no match" and would be mistaken for the expected result.
+- **La salvedad sobre el optimizador es la lección.** Los callouts solo tienen sentido si el motor los visita. El programa se compila con `PCRE2_NO_AUTO_POSSESS | PCRE2_NO_START_OPTIMIZE | PCRE2_NO_DOTSTAR_ANCHOR` ([L84-86](../../src/regex-pcre2/timecards.c#L84-L86)) y evita el JIT, que no admite callouts. Esto es **permitido por la implementación**, y el README no probó qué omitiría el optimizador si se quitaran las banderas.
+- **El estado en una estructura de C no se rebobina durante el retroceso**, a diferencia de `local` de Perl. Eso le conviene a este programa: nunca se deshace nada.
+- **Un retorno negativo de un callout aborta la coincidencia** con el código del callout. A propósito no usa `-1`, que significa "sin coincidencia" y se confundiría con el resultado esperado.
 
-## pcre2grep: exit codes as control flow
+## pcre2grep: códigos de salida como flujo de control
 
 The "host" is a stock `pcre2grep` and one command line. Callout strings name programs; **their exit codes steer the match**. The stop rule is an `INSERT INTO stop_rule SELECT (...)<=40` into a table with `CHECK(ok=1)`, so SQLite's constraint violation is the loop terminator.
 

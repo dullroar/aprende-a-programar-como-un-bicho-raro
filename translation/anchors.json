@@ -5671,8 +5671,8 @@
     {
      "en": "pcre2grep: exit codes as control flow",
      "en_id": "pcre2grep-exit-codes-as-control-flow",
-     "es": "pcre2grep: exit codes as control flow",
-     "es_id": "pcre2grep-exit-codes-as-control-flow",
+     "es": "pcre2grep: códigos de salida como flujo de control",
+     "es_id": "pcre2grep-códigos-de-salida-como-flujo-de-control",
      "level": 2,
      "line": 65
     },
@@ -5782,7 +5782,7 @@
     "learn-and-break": "aprende-y-rompe",
     "net-balancing-groups": "net-balancing-groups",
     "pcre2-callouts-as-an-instruction-set": "pcre2-los-callouts-como-conjunto-de-instrucciones",
-    "pcre2grep-exit-codes-as-control-flow": "pcre2grep-exit-codes-as-control-flow",
+    "pcre2grep-exit-codes-as-control-flow": "pcre2grep-códigos-de-salida-como-flujo-de-control",
     "perl-code-inside-the-match": "perl-código-dentro-de-la-coincidencia",
     "program-flow-of-regex-dotnet": "program-flow-of-regex-dotnet",
     "program-flow-of-regex-pcre2": "program-flow-of-regex-pcre2",
