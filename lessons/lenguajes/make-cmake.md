@@ -1,12 +1,12 @@
-# GNU Make and CMake
+# GNU Make y CMake
 
-Entries: [`src/make-gnu`](../../src/make-gnu/README.md) and [`src/cmake`](../../src/cmake/README.md). Both are build tools asked to behave like programming languages, in different ways.
+Entradas: [`src/make-gnu`](../../src/make-gnu/README.md) y [`src/cmake`](../../src/cmake/README.md). Ambas son herramientas de compilación a las que se les pide comportarse como lenguajes de programación, cada una a su manera.
 
-For an advanced reading path with traces and experiments, see the [Make and CMake study guide](../guias-de-estudio/lenguajes/make-y-cmake.md).
+Para una ruta de lectura avanzada con trazas y experimentos, consulta la [guía de estudio de Make y CMake](../guias-de-estudio/lenguajes/make-y-cmake.md).
 
 ## GNU Make
 
-### Behold the monstrosity
+### Contempla la monstruosidad
 
 ```bash
 sandbox/container/run-image.sh src/make-gnu

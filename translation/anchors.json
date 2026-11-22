@@ -5429,8 +5429,8 @@
     {
      "en": "GNU Make and CMake",
      "en_id": "gnu-make-and-cmake",
-     "es": "GNU Make and CMake",
-     "es_id": "gnu-make-and-cmake",
+     "es": "GNU Make y CMake",
+     "es_id": "gnu-make-y-cmake",
      "level": 1,
      "line": 1
     },
@@ -5445,8 +5445,8 @@
     {
      "en": "Behold the monstrosity",
      "en_id": "behold-the-monstrosity",
-     "es": "Behold the monstrosity",
-     "es_id": "behold-the-monstrosity",
+     "es": "Contempla la monstruosidad",
+     "es_id": "contempla-la-monstruosidad",
      "level": 3,
      "line": 9
     },
@@ -5494,7 +5494,7 @@
      "en": "Behold the monstrosity",
      "en_id": "behold-the-monstrosity-1",
      "es": "Behold the monstrosity",
-     "es_id": "behold-the-monstrosity-1",
+     "es_id": "behold-the-monstrosity",
      "level": 3,
      "line": 57
     },
@@ -5588,14 +5588,14 @@
     }
    ],
    "map": {
-    "behold-the-monstrosity": "behold-the-monstrosity",
-    "behold-the-monstrosity-1": "behold-the-monstrosity-1",
+    "behold-the-monstrosity": "contempla-la-monstruosidad",
+    "behold-the-monstrosity-1": "behold-the-monstrosity",
     "cmake": "cmake",
     "computer-science-behind-this-page": "computer-science-behind-this-page",
     "do-this-in-production-and-youre-fired": "do-this-in-production-and-youre-fired",
     "do-this-in-production-and-youre-fired-1": "do-this-in-production-and-youre-fired-1",
     "gnu-make": "gnu-make",
-    "gnu-make-and-cmake": "gnu-make-and-cmake",
+    "gnu-make-and-cmake": "gnu-make-y-cmake",
     "how-each-program-runs": "how-each-program-runs",
     "how-the-hell-does-that-work": "how-the-hell-does-that-work",
     "how-the-hell-does-that-work-1": "how-the-hell-does-that-work-1",

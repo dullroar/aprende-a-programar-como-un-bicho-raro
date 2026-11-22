@@ -2237,3 +2237,5 @@
 {"segment_id": "s-a6b58da9d4cd-0043", "ts": "2026-11-22T01:33:46Z", "findings": [], "playful_note": "Conserva el contraste afectuoso."}
 {"segment_id": "s-c08a852d0dbe-0045", "ts": "2026-11-22T01:33:46Z", "findings": ["I15: heading differs from the recorded transcreated '¿En qué circunstancias esta idea terrible se volvería razonable?'"], "playful_note": "Conserva la pregunta irónica."}
 {"segment_id": "s-c08a852d0dbe-0045", "ts": "2026-11-22T01:33:53Z", "findings": [], "playful_note": "Conserva la pregunta irónica."}
+{"segment_id": "s-36a23cc3fe8c-0003", "ts": "2026-11-22T01:35:28Z", "findings": ["TRANSLATE: the reply is the English text unchanged"]}
+{"segment_id": "s-cc9cfaabc50d-0004", "ts": "2026-11-22T01:35:28Z", "findings": [], "playful_note": "Anuncio grandilocuente de la extraña obra."}
