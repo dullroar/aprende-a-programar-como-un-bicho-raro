@@ -184,7 +184,7 @@ Fíjate en que **`CHECK(demo_only=1)` aparece en casi todas las entradas**: una 
 
 ## Programas guardados como datos
 
-Cuatro entradas guardan su programa en un lugar que no es un archivo fuente. Cada una es una respuesta distinta a "¿qué está escrito y qué lo lee?" Consulta el [capítulo comparativo](informatica/09-casos-de-estudio-comparativos.md#writing-a-program-down-reading-it-back-running-it) para ver la promesa de ida y vuelta que hace cada una.
+Cuatro entradas guardan su programa en un lugar que no es un archivo fuente. Cada una es una respuesta distinta a "¿qué está escrito y qué lo lee?" Consulta el [capítulo comparativo](informatica/09-casos-de-estudio-comparativos.md#cómo-se-escribe-un-programa-se-vuelve-a-leer-y-se-ejecuta) para ver la promesa de ida y vuelta que hace cada una.
 
 ```mermaid
 flowchart TB

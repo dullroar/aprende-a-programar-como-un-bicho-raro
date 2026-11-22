@@ -14,7 +14,7 @@ Al terminar, deberías poder:
 
 **Límites del alcance.** Necesitas saber leer un Makefile y saber que `$(...)` expande una función o una variable. Necesitas saber que CMake ejecuta scripts con `cmake -P`. Esta guía no enseña la aritmética de calendario de la entrada de Make (que calcula una semana ISO sin intérprete de comandos (*shell*)). Tampoco enseña el resplandor animado ni la compatibilidad con Windows Terminal. Usa GNU Make y CMake 3.19 o posterior.
 
-La página del libro es [Make y CMake](../../lenguajes/make-cmake.md). Para las ideas, consulta [Automatización de la compilación](../../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#build-automation), [Grafos de dependencias](../../informatica/06-estado-mas-alla-de-las-variables.md#dependency-graphs) e [Iteración de punto fijo](../../informatica/03-flujo-de-control-y-continuaciones.md#fixed-point-iteration).
+La página del libro es [Make y CMake](../../lenguajes/make-cmake.md). Para las ideas, consulta [Automatización de la compilación](../../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#automatización-de-la-compilación), [Grafos de dependencias](../../informatica/06-estado-mas-alla-de-las-variables.md#grafos-de-dependencias) e [Iteración de punto fijo](../../informatica/03-flujo-de-control-y-continuaciones.md#iteración-de-punto-fijo).
 
 ## Antes de empezar
 
@@ -208,7 +208,7 @@ La versión "ordinaria" de cada programa es la que los autores descartaron o esc
 - **Reescribir hasta que nada cambie.** [m4](m4.md) reescanea su salida y [sed](motores-de-regex-y-sed.md) puede hacer un bucle con una rama. El reinicio de Make es la misma idea de punto fijo, con archivos en lugar de texto.
 - **Una regex que es el programa.** [Motores de regex y sed](motores-de-regex-y-sed.md) pone el bucle dentro de una sola coincidencia. CMake deja que el bucle vuelva a expandir una regex en cada pasada.
 - **Reproducibilidad.** [Portabilidad, abstracción y costo](../conceptos/portabilidad-abstraccion-y-costo.md) trata las compilaciones deterministas y lo que un reloj fijo demuestra y no demuestra.
-- **En el libro.** [Make y CMake](../../lenguajes/make-cmake.md), [Automatización de la compilación](../../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#build-automation) y [Grafos de dependencias](../../informatica/06-estado-mas-alla-de-las-variables.md#dependency-graphs).
+- **En el libro.** [Make y CMake](../../lenguajes/make-cmake.md), [Automatización de la compilación](../../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#automatización-de-la-compilación) y [Grafos de dependencias](../../informatica/06-estado-mas-alla-de-las-variables.md#grafos-de-dependencias).
 
 ## Autoevaluación
 
@@ -225,4 +225,4 @@ Responde cada pregunta con tus propias palabras antes de leer el texto en cursiv
 - [CMake](https://en.wikipedia.org/wiki/CMake) (Wikipedia): una orientación general. El manual de CMake describe las condiciones `if()` y `while()`. Pero su anfitrión no está en la lista de permitidos de este libro, así que léelo en tu copia instalada con `cmake --help-command while`.
 - [Remaking Makefiles](https://www.gnu.org/software/make/manual/html_node/Remaking-Makefiles.html) (manual de GNU Make): la declaración oficial de que Make se vuelve a ejecutar tras rehacer un makefile incluido. Todo lo de la entrada de Make descansa en ella.
 - [Compilaciones reproducibles](https://en.wikipedia.org/wiki/Reproducible_builds) (Wikipedia): por qué una compilación que lee el reloj necesita una anulación como `SOURCE_DATE_EPOCH`.
-- [Iteración de punto fijo](../../informatica/03-flujo-de-control-y-continuaciones.md#fixed-point-iteration) y [Reproducibilidad y compilaciones deterministas](../../informatica/08-fugas-de-abstraccion-y-dependencia-de-la-implementacion.md#reproducibility-and-deterministic-builds) (este libro): las dos ideas en las que se apoyan estos programas.
+- [Iteración de punto fijo](../../informatica/03-flujo-de-control-y-continuaciones.md#iteración-de-punto-fijo) y [Reproducibilidad y compilaciones deterministas](../../informatica/08-fugas-de-abstraccion-y-dependencia-de-la-implementacion.md#reproducibilidad-y-compilaciones-deterministas) (este libro): las dos ideas en las que se apoyan estos programas.

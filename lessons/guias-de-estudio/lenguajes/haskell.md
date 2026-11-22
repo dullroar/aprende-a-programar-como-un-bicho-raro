@@ -232,4 +232,4 @@ Responde cada pregunta con tus propias palabras antes de leer el texto en cursiv
 - [Evaluación perezosa](https://en.wikipedia.org/wiki/Lazy_evaluation) (Wikipedia): llamada por necesidad, thunks y compartición, con el vocabulario que se usa aquí.
 - [Transparencia referencial](https://en.wikipedia.org/wiki/Referential_transparency) (Wikipedia): la propiedad que `unsafeInterleaveIO` deja de respetar.
 - [Evaluación y demanda](../../informatica/04-evaluacion-y-demanda.md) (este libro): las mismas ideas en Haskell, LINQ, APL y JavaScript, con la tabla de la estrategia de cada entrada.
-- [Mónadas y sistemas de efectos](../../informatica/07-efectos-errores-y-confirmacion.md#monads-and-effect-systems) (este libro): la forma habitual y segura en que Haskell mantiene en orden los efectos, y que `unsafeInterleaveIO` rodea a propósito.
+- [Mónadas y sistemas de efectos](../../informatica/07-efectos-errores-y-confirmacion.md#mónadas-y-sistemas-de-efectos) (este libro): la forma habitual y segura en que Haskell mantiene en orden los efectos, y que `unsafeInterleaveIO` rodea a propósito.

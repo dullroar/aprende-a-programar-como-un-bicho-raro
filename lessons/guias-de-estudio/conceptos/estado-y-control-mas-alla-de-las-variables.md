@@ -148,7 +148,7 @@ Un lenguaje puede ocultarte el estado de control de dos maneras. Puede guardarlo
 - **Demanda y pereza.** [Evaluación, demanda y pereza](evaluacion-demanda-y-pereza.md) pregunta *cuándo* se ejecuta un paso; esta guía pregunta *dónde se guarda*. [Haskell](../lenguajes/haskell.md) lo guarda en una dependencia de datos.
 - **Eventos.** [Eventos, funciones de devolución de llamada y control reactivo](eventos-retrollamadas-y-control-reactivo.md) pregunta quién es dueño del turno siguiente.
 - **Lectura segura.** [Lectura de programas adversariales](lectura-de-programas-adversariales.md) usa "¿dónde está el estado?" como primera pregunta.
-- **En el libro.** [¿Qué cuenta como una máquina?](../../informatica/02-que-cuenta-como-maquina.md), [El contador de programa](../../informatica/03-flujo-de-control-y-continuaciones.md#the-program-counter), [Código automodificable](../../informatica/03-flujo-de-control-y-continuaciones.md#self-modifying-code), [Estado](../../informatica/06-estado-mas-alla-de-las-variables.md#state) y [Grafos de dependencia](../../informatica/06-estado-mas-alla-de-las-variables.md#dependency-graphs).
+- **En el libro.** [¿Qué cuenta como una máquina?](../../informatica/02-que-cuenta-como-maquina.md), [El contador de programa](../../informatica/03-flujo-de-control-y-continuaciones.md#el-contador-de-programa), [Código automodificable](../../informatica/03-flujo-de-control-y-continuaciones.md#código-automodificable), [Estado](../../informatica/06-estado-mas-alla-de-las-variables.md#estado) y [Grafos de dependencia](../../informatica/06-estado-mas-alla-de-las-variables.md#grafos-de-dependencias).
 
 ## Autoevaluación
 

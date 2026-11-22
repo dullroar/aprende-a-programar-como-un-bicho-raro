@@ -337,3 +337,4 @@
 378 none done no eligible task; P5-001 blocked (I13 vs generated blocks); wrote loop/DONE (DONE-WITH-BLOCKERS), HANDOFF.md current.
 380 P5-000 done I13/I16/I2/I4/structure skip generator-owned lines (segment.strip_generated); regenerated tree passes verify --fast, hand-edited generated block still STALE in build.py --check; P5-001 unblocked.
 384 P5-001 done BOOK_LANG=es build.py --generate rewrote 29 Spanish files; second run zero diff; verify --fast OK.
+385 P5-002 done anchors re-aimed (apply.py --relink); anchors.resolve reads cs-source chapter paths from the generated page (+test); anchors.py --check OK; verify --fast OK.

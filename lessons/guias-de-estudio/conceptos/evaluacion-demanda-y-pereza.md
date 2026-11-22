@@ -146,7 +146,7 @@ Las tres estrategias que no son de evaluación inmediata fallan de forma distint
 - **Estado.** [Estado y control más allá de las variables](estado-y-control-mas-alla-de-las-variables.md) pregunta dónde se guarda el paso siguiente. La demanda es una respuesta: una dependencia de datos.
 - **Confirmación.** [Efectos, errores y confirmación](efectos-errores-y-confirmacion.md) pregunta qué efectos sobreviven.
 - **Eventos.** [Eventos, funciones de devolución de llamada y control reactivo](eventos-retrollamadas-y-control-reactivo.md) es la versión *push* de esta pregunta.
-- **En el libro.** [Estrategias de evaluación](../../informatica/04-evaluacion-y-demanda.md#evaluation-strategies), [Evaluación perezosa](../../informatica/04-evaluacion-y-demanda.md#lazy-evaluation), [Ejecución diferida](../../informatica/04-evaluacion-y-demanda.md#deferred-execution), [Evaluación de cortocircuito](../../informatica/04-evaluacion-y-demanda.md#short-circuit-evaluation) y [Transparencia referencial](../../informatica/04-evaluacion-y-demanda.md#referential-transparency).
+- **En el libro.** [Estrategias de evaluación](../../informatica/04-evaluacion-y-demanda.md#estrategias-de-evaluación), [Evaluación perezosa](../../informatica/04-evaluacion-y-demanda.md#evaluación-perezosa), [Ejecución diferida](../../informatica/04-evaluacion-y-demanda.md#ejecución-diferida), [Evaluación de cortocircuito](../../informatica/04-evaluacion-y-demanda.md#evaluación-de-cortocircuito) y [Transparencia referencial](../../informatica/04-evaluacion-y-demanda.md#transparencia-referencial).
 
 ## Autoevaluación
 

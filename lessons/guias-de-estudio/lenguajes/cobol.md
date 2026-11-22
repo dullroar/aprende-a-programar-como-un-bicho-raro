@@ -232,6 +232,6 @@ Responde cada pregunta con tus propias palabras antes de leer el texto en cursiv
 ## Lecturas adicionales
 
 - [COBOL](https://en.wikipedia.org/wiki/COBOL) (Wikipedia): una orientación general, con la historia del lenguaje y los estándares posteriores a 1985.
-- [Goto y la programación estructurada](../../informatica/03-flujo-de-control-y-continuaciones.md#goto-and-structured-programming) (este libro): el argumento del que `ALTER` es el mejor ejemplo.
+- [Goto y la programación estructurada](../../informatica/03-flujo-de-control-y-continuaciones.md#goto-y-programación-estructurada) (este libro): el argumento del que `ALTER` es el mejor ejemplo.
 - [Código automodificable](https://en.wikipedia.org/wiki/Self-modifying_code) (Wikipedia): dónde encaja `ALTER` entre otras formas en que los programas se cambian a sí mismos. `ALTER` cambia un destino de salto, no bytes de instrucciones. La diferencia importa.
-- [Comportamiento indefinido, no especificado y definido por la implementación](../../informatica/08-fugas-de-abstraccion-y-dependencia-de-la-implementacion.md#undefined-unspecified-and-implementation-defined-behavior) (este libro): los tres términos de los estándares detrás de las etiquetas de esta guía.
+- [Comportamiento indefinido, no especificado y definido por la implementación](../../informatica/08-fugas-de-abstraccion-y-dependencia-de-la-implementacion.md#comportamiento-indefinido-no-especificado-y-definido-por-la-implementación) (este libro): los tres términos de los estándares detrás de las etiquetas de esta guía.

@@ -14,7 +14,7 @@ Cuando termines, deberías poder:
 
 **Límites del alcance.** Necesitas leer APL básico: `⍳`, `⍴`, `+\` (escaneo), `+/` (reducción), `/` (compresión) y `↑` (tomar). La guía no enseña el conjunto completo de glifos, las funciones de archivo `⎕FIO` de GNU APL más allá de lo que usan los programas, ni SQL. Si los glifos de APL aparecen como recuadros vacíos, consulta [Cómo ver los glifos](../../../src/apl/README.md#cómo-ver-los-glifos).
 
-La página del libro es [APL](../../lenguajes/apl.md). Las ideas están en [Programación con arreglos](../../informatica/04-evaluacion-y-demanda.md#array-programming), [Homoiconicidad: código como datos](../../informatica/06-estado-mas-alla-de-las-variables.md#homoiconicity-code-as-data) y [Código automodificable](../../informatica/03-flujo-de-control-y-continuaciones.md#self-modifying-code).
+La página del libro es [APL](../../lenguajes/apl.md). Las ideas están en [Programación con arreglos](../../informatica/04-evaluacion-y-demanda.md#programación-con-arreglos), [Homoiconicidad: código como datos](../../informatica/06-estado-mas-alla-de-las-variables.md#homoiconicidad-código-como-datos) y [Código automodificable](../../informatica/03-flujo-de-control-y-continuaciones.md#código-automodificable).
 
 ## Antes de empezar
 
@@ -194,7 +194,7 @@ El resumen honesto: el primer programa desperdicia datos para evitar una decisi�
 - **Evaluación inmediata frente a perezosa.** `apl` calcula cinco valores y descarta dos. [Haskell](haskell.md) lee de una lista infinita solo lo que necesita. Las canalizaciones diferidas de LINQ en [C#, LINQ, XAML y adaptaciones](csharp-linq-xaml-y-adaptaciones.md) esperan a la enumeración. En la versión de C# con `for`, el encabezado enumera con evaluación inmediata mediante `Sum()` cada vez que evalúa la condición. La guía de concepto [Evaluación, demanda y pereza](../conceptos/evaluacion-demanda-y-pereza.md) pone estos tres casos uno junto a otro.
 - **Estado fuera de las variables.** `apl-weird` guarda su estado en líneas de código fuente, como [Make](make-y-cmake.md) lo guarda en archivos y [Forth](forth.md) en una posición de lectura del intérprete. Consulta [Estado y control más allá de las variables](../conceptos/estado-y-control-mas-alla-de-las-variables.md).
 - **Reproducibilidad de "aleatorio".** Las entradas de APL reinician la semilla a partir del reloj. La entrada de sed en [Motores de expresiones regulares y sed](motores-de-regex-y-sed.md) usa un registro de desplazamiento con semilla y da las mismas tarjetas con la misma semilla.
-- **En el libro.** [APL](../../lenguajes/apl.md), [Programación con arreglos](../../informatica/04-evaluacion-y-demanda.md#array-programming), [Evaluación inmediata](../../informatica/04-evaluacion-y-demanda.md#eager-evaluation) y [Homoiconicidad: el código como datos](../../informatica/06-estado-mas-alla-de-las-variables.md#homoiconicity-code-as-data).
+- **En el libro.** [APL](../../lenguajes/apl.md), [Programación con arreglos](../../informatica/04-evaluacion-y-demanda.md#programación-con-arreglos), [Evaluación inmediata](../../informatica/04-evaluacion-y-demanda.md#evaluación-inmediata) y [Homoiconicidad: el código como datos](../../informatica/06-estado-mas-alla-de-las-variables.md#homoiconicidad-código-como-datos).
 
 ## Autoevaluación
 

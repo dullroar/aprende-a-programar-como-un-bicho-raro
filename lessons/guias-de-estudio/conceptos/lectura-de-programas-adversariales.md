@@ -123,9 +123,9 @@ Lee el programa raro junto a su hermano ordinario. La diferencia muestra exactam
 
 **Costos que hay que dejar claros.**
 
-- **Un modelo de amenazas que no se actualiza describe un sistema que ya no existe.** "Es solo marcado" y "es solo una regex" son falsos aquí. Consulta [Modelo de amenazas](../../informatica/01-lectura-de-un-programa-adversarial.md#threat-model).
-- **La revisión de código no escala a lo ilegible.** El programa de `regex-perl` es una sola línea muy larga. El entorno aislado existe porque "leer cada línea primero" no basta ([Entorno aislado](../../informatica/01-lectura-de-un-programa-adversarial.md#sandbox)).
-- **Los caracteres invisibles derrotan a la lectura.** [Trojan Source](../../informatica/01-lectura-de-un-programa-adversarial.md#trojan-source-characters-you-cannot-see) es la razón por la que el repositorio los busca.
+- **Un modelo de amenazas que no se actualiza describe un sistema que ya no existe.** "Es solo marcado" y "es solo una regex" son falsos aquí. Consulta [Modelo de amenazas](../../informatica/01-lectura-de-un-programa-adversarial.md#modelo-de-amenazas).
+- **La revisión de código no escala a lo ilegible.** El programa de `regex-perl` es una sola línea muy larga. El entorno aislado existe porque "leer cada línea primero" no basta ([Entorno aislado](../../informatica/01-lectura-de-un-programa-adversarial.md#entorno-aislado)).
+- **Los caracteres invisibles derrotan a la lectura.** [Trojan Source](../../informatica/01-lectura-de-un-programa-adversarial.md#trojan-source-caracteres-que-no-puedes-ver) es la razón por la que el repositorio los busca.
 - **Un lector hostil también es un riesgo.** Una herramienta que analiza un formato de archivo es un intérprete de ese formato. Trátala como tal.
 - **Dónde este hábito es legítimo en todas partes.** Es el hábito ordinario de revisión aplicado a deserializadores, plantillas, cargadores de complementos y `eval`.
 
@@ -136,7 +136,7 @@ Lee el programa raro junto a su hermano ordinario. La diferencia muestra exactam
 - **Código en una tabla.** [Tcl](../lenguajes/tcl.md) y [APL](../lenguajes/apl.md) guardan ambos el código como texto.
 - **Código en un patrón.** [Motores de regex y sed](../lenguajes/motores-de-regex-y-sed.md) ejecuta Perl y C dentro de una coincidencia, e incluye el riesgo de `/dev/fd/3`.
 - **Estado, control y comparación.** [Estado y control más allá de las variables](estado-y-control-mas-alla-de-las-variables.md), [Efectos, errores y confirmación](efectos-errores-y-confirmacion.md) y [Diseño comparado de máquinas](diseno-comparativo-de-maquinas.md).
-- **En el libro.** [Cómo leer un programa adversarial](../../informatica/01-lectura-de-un-programa-adversarial.md), incluidos [Ejecución arbitraria de código](../../informatica/01-lectura-de-un-programa-adversarial.md#arbitrary-code-execution), [Principio de mínimo privilegio](../../informatica/01-lectura-de-un-programa-adversarial.md#principle-of-least-privilege) y [Capacidad y autoridad](../../informatica/01-lectura-de-un-programa-adversarial.md#capability-and-authority).
+- **En el libro.** [Cómo leer un programa adversarial](../../informatica/01-lectura-de-un-programa-adversarial.md), incluidos [Ejecución arbitraria de código](../../informatica/01-lectura-de-un-programa-adversarial.md#ejecución-de-código-arbitrario), [Principio de mínimo privilegio](../../informatica/01-lectura-de-un-programa-adversarial.md#principio-de-mínimo-privilegio) y [Capacidad y autoridad](../../informatica/01-lectura-de-un-programa-adversarial.md#capacidad-y-autoridad).
 
 ## Autoevaluación
 

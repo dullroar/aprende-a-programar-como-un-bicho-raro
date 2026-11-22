@@ -14,7 +14,7 @@ Cuando termines, deberías poder:
 
 **Límites del alcance.** Esta guía no enseña la sintaxis de Forth desde cero. Necesitas saber que las palabras toman sus argumentos de la pila de datos y apilan sus resultados, y que una definición se escribe `: name ... ;`. Usa Gforth 0.7.3 o posterior. No cubre la tubería de SQLite ni `random.fs` más allá de lo que la traza necesita.
 
-La página del libro es [Forth](../../lenguajes/forth.md). Las ideas están en [¿Qué cuenta como máquina?](../../informatica/02-que-cuenta-como-maquina.md#stack-machines) y [El contador de programa](../../informatica/03-flujo-de-control-y-continuaciones.md#the-program-counter).
+La página del libro es [Forth](../../lenguajes/forth.md). Las ideas están en [¿Qué cuenta como máquina?](../../informatica/02-que-cuenta-como-maquina.md#máquinas-de-pila) y [El contador de programa](../../informatica/03-flujo-de-control-y-continuaciones.md#el-contador-de-programa).
 
 ## Antes de empezar
 
@@ -164,7 +164,7 @@ Ningún comportamiento de las entradas de Forth es solo aprovechado por accident
 - **Memoria sin nombres.** El programa raro de [Haskell](haskell.md) también guarda su total acumulado en un lugar sin nombre: dentro de la lista de tarjetas que construye. Allí cada tarjeta lee la anterior.
 - **Relectura del texto.** [m4](m4.md) vuelve a leer sus propias expansiones (reescaneo). Es el pariente, a nivel de texto, de "leer el mismo texto otra vez". [ed y Ex](ed-y-ex.md) ejecutan líneas desde un búfer, así que su contador de programa también es un dato.
 - **Guías de concepto.** [Cómo leer programas adversariales](../conceptos/lectura-de-programas-adversariales.md) y [Diseño comparado de máquinas](../conceptos/diseno-comparativo-de-maquinas.md).
-- **En el libro.** [Forth](../../lenguajes/forth.md), [Máquinas de pila](../../informatica/02-que-cuenta-como-maquina.md#stack-machines) y [La pila como estructura de datos](../../informatica/06-estado-mas-alla-de-las-variables.md#the-stack-as-a-data-structure).
+- **En el libro.** [Forth](../../lenguajes/forth.md), [Máquinas de pila](../../informatica/02-que-cuenta-como-maquina.md#máquinas-de-pila) y [La pila como estructura de datos](../../informatica/06-estado-mas-alla-de-las-variables.md#la-pila-como-estructura-de-datos).
 
 ## Autoevaluación
 
@@ -179,4 +179,4 @@ Responde cada pregunta con tus propias palabras antes de leer el texto en cursiv
 
 - [Forth (lenguaje de programación)](https://en.wikipedia.org/wiki/Forth_(programming_language)) (Wikipedia): la historia del lenguaje, las dos pilas y el diccionario.
 - [Máquina de pila](https://en.wikipedia.org/wiki/Stack_machine) (Wikipedia): por qué una pila puede ser toda la memoria de un programa.
-- [Máquinas de pila](../../informatica/02-que-cuenta-como-maquina.md#stack-machines) y [El contador de programa](../../informatica/03-flujo-de-control-y-continuaciones.md#the-program-counter) (este libro): las dos ideas que este programa une.
+- [Máquinas de pila](../../informatica/02-que-cuenta-como-maquina.md#máquinas-de-pila) y [El contador de programa](../../informatica/03-flujo-de-control-y-continuaciones.md#el-contador-de-programa) (este libro): las dos ideas que este programa une.

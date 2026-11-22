@@ -13,7 +13,7 @@ Al terminar, deberías poder:
 5. Decir por qué cinco es el máximo de tarjetas que puede repartir el programa raro y qué cambiarías para subirlo.
 6. Etiquetar cada comportamiento como garantizado, permitido por la implementación o aprovechado por accidente.
 
-**Límites del alcance.** Necesitas saber leer la sintaxis de Lisp y saber qué son una clase y un método. La guía no enseña todo CLOS, ni las macros del lector aparte de la lista circular, ni el SQL. Usa SBCL 2.x (`sbcl --script`). La página del libro es [Common Lisp](../../lenguajes/lisp.md). Para las ideas, consulta [Evaluación de cortocircuito](../../informatica/04-evaluacion-y-demanda.md#short-circuit-evaluation) y [Flujo de control](../../informatica/03-flujo-de-control-y-continuaciones.md#control-flow).
+**Límites del alcance.** Necesitas saber leer la sintaxis de Lisp y saber qué son una clase y un método. La guía no enseña todo CLOS, ni las macros del lector aparte de la lista circular, ni el SQL. Usa SBCL 2.x (`sbcl --script`). La página del libro es [Common Lisp](../../lenguajes/lisp.md). Para las ideas, consulta [Evaluación de cortocircuito](../../informatica/04-evaluacion-y-demanda.md#evaluación-de-cortocircuito) y [Flujo de control](../../informatica/03-flujo-de-control-y-continuaciones.md#flujo-de-control).
 
 ## Antes de empezar
 
@@ -184,7 +184,7 @@ Aquí ningún comportamiento es simplemente *aprovechado por accidente*: la entr
 - **El cortocircuito como regla de parada.** `or` se detiene en el primer resultado verdadero, igual que un `span` perezoso deja de leer en [Haskell](haskell.md). Ambos se detienen *sin pedir más*. Lisp lo logra al no llamar al método siguiente.
 - **Repetición en tiempo de compilación.** [m4](m4.md) es un procesador de macros para texto. Las macros de Lisp transforman código. La guía de concepto [Lenguajes formales y máquinas raras](../conceptos/lenguajes-formales-y-maquinas-raras.md) sitúa a ambos.
 - **Una cadena con un límite fijo.** Las entradas de expresiones regulares en [Motores de regex y sed](motores-de-regex-y-sed.md) están limitadas a cuatro tarjetas por la longitud de un sujeto. Lisp-weird está limitado a cinco por la longitud de una cadena de clases.
-- **En el libro.** [Common Lisp](../../lenguajes/lisp.md), [Evaluación de cortocircuito](../../informatica/04-evaluacion-y-demanda.md#short-circuit-evaluation) y [Macros y expansión de texto](../../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#macros-and-text-expansion).
+- **En el libro.** [Common Lisp](../../lenguajes/lisp.md), [Evaluación de cortocircuito](../../informatica/04-evaluacion-y-demanda.md#evaluación-de-cortocircuito) y [Macros y expansión de texto](../../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#macros-y-expansión-de-texto).
 
 ## Autoevaluación
 
@@ -200,4 +200,4 @@ Responde cada pregunta con tus propias palabras antes de leer el texto en cursiv
 - [Common Lisp](https://en.wikipedia.org/wiki/Common_Lisp) (Wikipedia): el lenguaje y su estándar.
 - [Sistema de objetos de Common Lisp](https://en.wikipedia.org/wiki/Common_Lisp_Object_System) (Wikipedia): funciones genéricas, despacho múltiple y combinación de métodos.
 - [Evaluación de cortocircuito](https://en.wikipedia.org/wiki/Short-circuit_evaluation) (Wikipedia): la idea general detrás de la parada de `or`.
-- [Flujo de control](../../informatica/03-flujo-de-control-y-continuaciones.md#control-flow) y [Evaluación de cortocircuito](../../informatica/04-evaluacion-y-demanda.md#short-circuit-evaluation) (este libro): los conceptos que rodean al tema.
+- [Flujo de control](../../informatica/03-flujo-de-control-y-continuaciones.md#flujo-de-control) y [Evaluación de cortocircuito](../../informatica/04-evaluacion-y-demanda.md#evaluación-de-cortocircuito) (este libro): los conceptos que rodean al tema.

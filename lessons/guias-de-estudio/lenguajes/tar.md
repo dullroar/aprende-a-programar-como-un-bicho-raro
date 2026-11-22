@@ -13,7 +13,7 @@ Al terminar, deberías poder:
 5. Explicar por qué una función de devolución de llamada (*callback*) que falla, o un archivo corto, detiene el reloj en vez de fallar con ruido.
 6. Etiquetar cada comportamiento como garantizado, permitido por la implementación o aprovechado por accidente.
 
-**Límites del alcance.** Necesitas saber que tar escribe un flujo de bloques de 512 bytes y que GNU tar tiene opciones para funciones de devolución de llamada. La guía no enseña el formato de cabecera ustar, el SQL ni el simulador en awk que prueba la entrada rara. Usa GNU tar 1.34 o 1.35. BSD tar y macOS tar no tienen `--to-command`. La página del libro es [tar](../../lenguajes/tar.md). Para ver las ideas, consulta [Serialización, deserialización y pickling de objetos](../../informatica/06-estado-mas-alla-de-las-variables.md#serialization-deserialization-and-object-pickling), [Capacidad y autoridad](../../informatica/01-lectura-de-un-programa-adversarial.md#capability-and-authority) y [Relojes lógicos y orden de los eventos](../../informatica/03-flujo-de-control-y-continuaciones.md#logical-clocks-and-event-ordering).
+**Límites del alcance.** Necesitas saber que tar escribe un flujo de bloques de 512 bytes y que GNU tar tiene opciones para funciones de devolución de llamada. La guía no enseña el formato de cabecera ustar, el SQL ni el simulador en awk que prueba la entrada rara. Usa GNU tar 1.34 o 1.35. BSD tar y macOS tar no tienen `--to-command`. La página del libro es [tar](../../lenguajes/tar.md). Para ver las ideas, consulta [Serialización, deserialización y pickling de objetos](../../informatica/06-estado-mas-alla-de-las-variables.md#serialización-deserialización-y-pickling-de-objetos), [Capacidad y autoridad](../../informatica/01-lectura-de-un-programa-adversarial.md#capacidad-y-autoridad) y [Relojes lógicos y orden de los eventos](../../informatica/03-flujo-de-control-y-continuaciones.md#relojes-lógicos-y-orden-de-los-eventos).
 
 ## Antes de empezar
 
@@ -200,7 +200,7 @@ La respuesta de una línea de B16 es la lección. El *inspector* analizó el pro
 
 **Costos que declarar.**
 
-- **La autoridad está en el comando, no en los datos.** Todo lo inseguro aquí sería una *decisión del operador*: elegir `--to-command`, elegir `--execute`. Consulta [Capacidad y autoridad](../../informatica/01-lectura-de-un-programa-adversarial.md#capability-and-authority).
+- **La autoridad está en el comando, no en los datos.** Todo lo inseguro aquí sería una *decisión del operador*: elegir `--to-command`, elegir `--execute`. Consulta [Capacidad y autoridad](../../informatica/01-lectura-de-un-programa-adversarial.md#capacidad-y-autoridad).
 - **El despachador es una frontera de confianza.** Los nombres y los cuerpos se comparan con patrones estrictos antes de que se ejecute cualquier SQL, y ninguna parte de un miembro llega a un intérprete de comandos. Un patrón relajado convertiría el archivo en un vector de inyección.
 - **Un reloj sin parada.** La máquina rara no puede detener a tar. Por eso una disposición demasiado corta atasca la ejecución a media tarjeta, y una demasiado larga queda inactiva. La ejecución necesita de 41 a 59 pulsos, y el valor predeterminado es 64.
 - **Planificar con un indicador de progreso.** Los puntos de control se diseñaron para mostrar el progreso. Esto es un truco que depende de contar registros.
@@ -212,7 +212,7 @@ La respuesta de una línea de B16 es la lección. El *inspector* analizó el pro
 - **Una función de devolución de llamada invertida.** `tar-gnu-weird` es un programa al que llama su entorno, como los callouts de PCRE2 en [Motores de regex y sed](motores-de-regex-y-sed.md) y los escuchadores de eventos de [JavaScript](javascript.md). La guía de concepto [Eventos, funciones de devolución de llamada y control reactivo](../conceptos/eventos-retrollamadas-y-control-reactivo.md) compara quién es dueño del turno siguiente.
 - **Una máquina de estados en una fila.** [Tcl](tcl.md) también guarda su estado en filas de una tabla. La guía de concepto [Estado y control más allá de las variables](../conceptos/estado-y-control-mas-alla-de-las-variables.md) las compara.
 - **La predicción como prueba.** `check.sh` contiene una segunda implementación de la máquina y compara las dos. La guía de concepto [Portabilidad, abstracción y costo](../conceptos/portabilidad-abstraccion-y-costo.md) lo usa para preguntar qué demuestra una observación.
-- **En el libro.** [tar](../../lenguajes/tar.md), [Serialización, deserialización y pickling de objetos](../../informatica/06-estado-mas-alla-de-las-variables.md#serialization-deserialization-and-object-pickling), [Relojes lógicos y orden de los eventos](../../informatica/03-flujo-de-control-y-continuaciones.md#logical-clocks-and-event-ordering) y [Capacidad y autoridad](../../informatica/01-lectura-de-un-programa-adversarial.md#capability-and-authority).
+- **En el libro.** [tar](../../lenguajes/tar.md), [Serialización, deserialización y pickling de objetos](../../informatica/06-estado-mas-alla-de-las-variables.md#serialización-deserialización-y-pickling-de-objetos), [Relojes lógicos y orden de los eventos](../../informatica/03-flujo-de-control-y-continuaciones.md#relojes-lógicos-y-orden-de-los-eventos) y [Capacidad y autoridad](../../informatica/01-lectura-de-un-programa-adversarial.md#capacidad-y-autoridad).
 
 ## Autoevaluación
 
@@ -228,4 +228,4 @@ Responde cada pregunta con tus propias palabras antes de leer el texto en cursiv
 - [Tar (informática)](https://en.wikipedia.org/wiki/Tar_(computing)) (Wikipedia): el formato, sus bloques y su historia.
 - [GNU tar: Puntos de control](https://www.gnu.org/software/tar/manual/html_node/checkpoints.html) (Proyecto GNU): la descripción oficial de `--checkpoint`, `--checkpoint-action` y `TAR_CHECKPOINT`. El comportamiento de los puntos de control en el que se apoya esta guía está documentado aquí, pero cuántos registros escribe un comando se midió y no se promete.
 - [Serialización](https://en.wikipedia.org/wiki/Serialization) (Wikipedia): por qué los datos que se escriben y se vuelven a leer pueden convertirse en un programa.
-- [Capacidad y autoridad](../../informatica/01-lectura-de-un-programa-adversarial.md#capability-and-authority) (este libro): por qué la autoridad viene del comando que ejecuta un programa, no de los datos que lee.
+- [Capacidad y autoridad](../../informatica/01-lectura-de-un-programa-adversarial.md#capacidad-y-autoridad) (este libro): por qué la autoridad viene del comando que ejecuta un programa, no de los datos que lee.

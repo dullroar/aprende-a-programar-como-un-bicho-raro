@@ -212,6 +212,13 @@ class LinkTests(unittest.TestCase):
         self.assertEqual(an.resolve(rel, "#weird-machines"), ("lessons/cs/05-x.md", "weird-machines"))
         self.assertEqual(an.resolve("lessons/cs-source/concepts/a.md", "#w"), ("lessons/cs-source/concepts/a.md", "w"))
 
+    def test_cs_source_chapter_relative_path_is_read_from_the_generated_page(self):
+        rel = "lessons/cs-source/chapters/05-x.md"
+        self.assertEqual(an.resolve(rel, "../intro.md#a", an.ENGLISH), ("lessons/intro.md", "a"))
+        # negative: a concept file is not copied anywhere, so its path stays relative to itself
+        self.assertEqual(an.resolve("lessons/cs-source/concepts/a.md", "../intro.md#a", an.ENGLISH),
+                         ("lessons/cs-source/intro.md", "a"))
+
     def test_remap_same_file_and_cross_file(self):
         out = an.remap_text(EN, "lessons/a.md", doc_for())
         self.assertIn("[a link](#qué-es-un-bug)", out)

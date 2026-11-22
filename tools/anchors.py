@@ -228,7 +228,7 @@ def resolve(rel, dest, layer=None):
     path, _, frag = dest.partition("#")
     if not path:
         return page_of(rel), frag
-    base = layer.work(rel)
+    base = layer.work(page_of(rel))
     full = os.path.normpath(os.path.join(os.path.dirname(base), path.replace("%20", " "))).replace(os.sep, "/")
     if full.startswith(".."):
         return None

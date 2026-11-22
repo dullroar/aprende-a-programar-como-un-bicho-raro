@@ -13,7 +13,7 @@ Al terminar, deberías poder:
 5. Explicar por qué cinco dados siempre bastan, y cómo se reparten el trabajo el lanzador y el editor.
 6. Etiquetar cada comportamiento como garantizado, permitido por la implementación o aprovechado por accidente.
 
-**Límites del alcance.** Necesitas leer comandos básicos de `ed`: `s/re/new/`, `g/re/cmd`, `a`, `d`, `j`, `t`, `p`. La guía no enseña todos los comandos de Ex, ni el SQL ni Vim. Usa `ed` y `ex` de POSIX tal como se entregan en el entorno aislado (*sandbox*). Ese entorno limita el acceso al sistema anfitrión. Para Ex se usa nvi (Vim en modo Ex funciona con otras banderas). La página del libro es [ed y Ex](../../lenguajes/editores.md). Para las ideas, consulta [Cómputo frente a orquestación](../../informatica/02-que-cuenta-como-maquina.md#computation-versus-orchestration), [Capacidad y autoridad](../../informatica/01-lectura-de-un-programa-adversarial.md#capability-and-authority) y [Representar el estado](../../informatica/02-que-cuenta-como-maquina.md#representing-state).
+**Límites del alcance.** Necesitas leer comandos básicos de `ed`: `s/re/new/`, `g/re/cmd`, `a`, `d`, `j`, `t`, `p`. La guía no enseña todos los comandos de Ex, ni el SQL ni Vim. Usa `ed` y `ex` de POSIX tal como se entregan en el entorno aislado (*sandbox*). Ese entorno limita el acceso al sistema anfitrión. Para Ex se usa nvi (Vim en modo Ex funciona con otras banderas). La página del libro es [ed y Ex](../../lenguajes/editores.md). Para las ideas, consulta [Cómputo frente a orquestación](../../informatica/02-que-cuenta-como-maquina.md#cálculo-frente-a-orquestación), [Capacidad y autoridad](../../informatica/01-lectura-de-un-programa-adversarial.md#capacidad-y-autoridad) y [Representar el estado](../../informatica/02-que-cuenta-como-maquina.md#cómo-representar-el-estado).
 
 ## Antes de empezar
 
@@ -46,7 +46,7 @@ Los lanzadores cargan la salida del editor en SQLite. Ambos scripts limitan la e
 
 ## La máquina que hay que identificar
 
-El lanzador sortea cinco dígitos, carga el editor y después guarda las filas en SQLite. Es orquestación, no cómputo: "ed toma cada decisión sobre las tarjetas, el total y la parada" (o Ex). Consulta [Cómputo frente a orquestación](../../informatica/02-que-cuenta-como-maquina.md#computation-versus-orchestration).
+El lanzador sortea cinco dígitos, carga el editor y después guarda las filas en SQLite. Es orquestación, no cómputo: "ed toma cada decisión sobre las tarjetas, el total y la parada" (o Ex). Consulta [Cómputo frente a orquestación](../../informatica/02-que-cuenta-como-maquina.md#cálculo-frente-a-orquestación).
 
 **Qué se repite.** En `ed-weird`, un comando global sobre las líneas de tarjeta, en el orden del búfer: `g/^[A-Za-z]* [0-9][0-9] x*$/` ([L42-46](../../../src/ed-weird/timecards.ed#L42-L46)). El comando global es el bucle propio de ed. En `ex-weird`, `@n`: el registro `n` ejecuta el programa otra vez, así que el programa se ejecuta a sí mismo ([L91](../../../src/ex-weird/timecards.ex#L91)).
 
@@ -205,7 +205,7 @@ La mayor parte de esto son funciones documentadas usadas como se documentan. La 
 
 **Costos que debes poder enunciar.**
 
-- **Un script de editor tiene la autoridad de quien lo llama.** `!` ejecuta un intérprete de comandos. Los scripts lo evitan, y el lanzador es la única parte que habla con SQLite. Consulta [Capacidad y autoridad](../../informatica/01-lectura-de-un-programa-adversarial.md#capability-and-authority).
+- **Un script de editor tiene la autoridad de quien lo llama.** `!` ejecuta un intérprete de comandos. Los scripts lo evitan, y el lanzador es la única parte que habla con SQLite. Consulta [Capacidad y autoridad](../../informatica/01-lectura-de-un-programa-adversarial.md#capacidad-y-autoridad).
 - **Es fácil escribir una operación nula silenciosa.** Una `s` fallida dentro de `g` no hace nada y no da ningún mensaje. Así, un error tipográfico en un patrón parece un programa que funciona y no hace nada.
 - **El estado es difícil de ver en Ex.** Las marcas y los registros no están en el búfer. Hay que imprimirlos.
 - **Un techo duro.** El script de ed admite cinco tarjetas como máximo y la cinta de Ex, 59, que son los límites del reto. Subir el límite necesita una cinta más larga y más dados (consulta la guía de Lisp para la misma forma).
@@ -217,7 +217,7 @@ La mayor parte de esto son funciones documentadas usadas como se documentan. La 
 - **Reescribir como aritmética.** ed suma escribiendo marcas una junto a otra, como hace la entrada de sed en [Motores de regex y sed](motores-de-regex-y-sed.md) con `#`. Ambas son máquinas que reescriben cadenas de texto.
 - **Una coincidencia fallida como `if`.** La `s` fallida dentro de `g` es la misma jugada que el `MATCHES` fallido en CMake y que la pasada fallida en las entradas de regex. Como el comportamiento de CMake, es un comportamiento aprovechado por accidente.
 - **Orquestación frente a cómputo.** El lanzador es el mismo tipo de anfitrión que el de [tar](tar.md): el trabajo real lo hace la herramienta, y el intérprete de comandos la une con SQLite.
-- **En el libro.** [ed y Ex](../../lenguajes/editores.md), [Algoritmos de Markov](../../informatica/02-que-cuenta-como-maquina.md#markov-algorithms) y [Reescritura de términos y de cadenas de texto](../../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#term-and-string-rewriting).
+- **En el libro.** [ed y Ex](../../lenguajes/editores.md), [Algoritmos de Markov](../../informatica/02-que-cuenta-como-maquina.md#algoritmos-de-markov) y [Reescritura de términos y de cadenas de texto](../../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#reescritura-de-términos-y-de-cadenas-de-texto).
 
 ## Autoevaluación
 
@@ -233,4 +233,4 @@ Responde cada pregunta con tus propias palabras antes de leer el texto en cursiv
 - [ed (editor de texto)](https://en.wikipedia.org/wiki/Ed_(text_editor)) (Wikipedia): el editor de líneas, su historia y por qué `g/re/p` pasó a ser `grep`.
 - [Ex (editor de texto)](https://en.wikipedia.org/wiki/Ex_(text_editor)) (Wikipedia): el editor de líneas que hay bajo `vi`.
 - [Algoritmo de Markov](https://en.wikipedia.org/wiki/Markov_algorithm) (Wikipedia): el modelo que hay detrás de reescribir marcas para sumar.
-- [Cómputo frente a orquestación](../../informatica/02-que-cuenta-como-maquina.md#computation-versus-orchestration) (este libro): dónde cae la línea entre el editor y el lanzador.
+- [Cómputo frente a orquestación](../../informatica/02-que-cuenta-como-maquina.md#cálculo-frente-a-orquestación) (este libro): dónde cae la línea entre el editor y el lanzador.

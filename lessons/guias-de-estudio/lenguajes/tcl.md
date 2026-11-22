@@ -13,7 +13,7 @@ Al terminar, deberías poder:
 5. Nombrar la frontera de confianza de este diseño y explicar por qué se sostiene aquí.
 6. Etiquetar cada comportamiento como garantizado, permitido por la implementación o aprovechado por accidente.
 
-**Límites del alcance.** Necesitas saber leer Tcl (las llaves agrupan, los corchetes sustituyen, `$` lee una variable) y SQL básico. La guía no enseña Tk (la ventana opcional también se construye con filas de tabla) ni el planificador de consultas de SQLite. Usa Tcl 8.6 con el paquete `sqlite3`. La página del libro es [Tcl](../../lenguajes/tcl.md). Para ver las ideas, consulta [Disparadores de base de datos](../../informatica/06-estado-mas-alla-de-las-variables.md#database-triggers), [Ejecución de código arbitrario](../../informatica/01-lectura-de-un-programa-adversarial.md#arbitrary-code-execution) y [Homoiconicidad: código como datos](../../informatica/06-estado-mas-alla-de-las-variables.md#homoiconicity-code-as-data).
+**Límites del alcance.** Necesitas saber leer Tcl (las llaves agrupan, los corchetes sustituyen, `$` lee una variable) y SQL básico. La guía no enseña Tk (la ventana opcional también se construye con filas de tabla) ni el planificador de consultas de SQLite. Usa Tcl 8.6 con el paquete `sqlite3`. La página del libro es [Tcl](../../lenguajes/tcl.md). Para ver las ideas, consulta [Disparadores de base de datos](../../informatica/06-estado-mas-alla-de-las-variables.md#disparadores-de-base-de-datos), [Ejecución de código arbitrario](../../informatica/01-lectura-de-un-programa-adversarial.md#ejecución-de-código-arbitrario) y [Homoiconicidad: código como datos](../../informatica/06-estado-mas-alla-de-las-variables.md#homoiconicidad-código-como-datos).
 
 ## Antes de empezar
 
@@ -184,7 +184,7 @@ La diferencia que hay que recordar: `tcl` tiene *un* motor y `tcl-weird` tiene *
 | `INSERT INTO main.demo_timecards` se rechaza dentro de un disparador, así que el cuerpo del disparador usa el nombre simple | **permitido por la implementación** | La regla de SQLite sobre los nombres calificados en los disparadores. El disparador `TEMP` resuelve el nombre simple a la única tabla de `main`. |
 | Tk mantiene vivo `tclsh` después de que termina el script | **permitido por la implementación** | Por qué el script termina con `destroy .`. |
 
-**La frontera de confianza.** `unknown` ejecuta el texto que haya en la tabla. En `tcl-weird` la tabla la construye el propio programa, en memoria, como tabla `TEMP` que se llena con literales del script. Nadie más puede escribir en ella. Esa es toda la defensa. Si la tabla fuera una tabla normal en el archivo en disco, cualquiera que pudiera editar la base de datos podría hacer que el programa ejecute su Tcl. Es la misma lección que los ejemplos de modelo de amenazas del libro: trata como código todo lo que se lee como código. Consulta [Ejecución de código arbitrario](../../informatica/01-lectura-de-un-programa-adversarial.md#arbitrary-code-execution).
+**La frontera de confianza.** `unknown` ejecuta el texto que haya en la tabla. En `tcl-weird` la tabla la construye el propio programa, en memoria, como tabla `TEMP` que se llena con literales del script. Nadie más puede escribir en ella. Esa es toda la defensa. Si la tabla fuera una tabla normal en el archivo en disco, cualquiera que pudiera editar la base de datos podría hacer que el programa ejecute su Tcl. Es la misma lección que los ejemplos de modelo de amenazas del libro: trata como código todo lo que se lee como código. Consulta [Ejecución de código arbitrario](../../informatica/01-lectura-de-un-programa-adversarial.md#ejecución-de-código-arbitrario).
 
 **Costos que declarar.**
 
@@ -199,7 +199,7 @@ La diferencia que hay que recordar: `tcl` tiene *un* motor y `tcl-weird` tiene *
 - **Código como datos, en otros lenguajes.** [APL](apl.md) escribe sus propias funciones como texto con `⎕FX`. Tcl las recupera de una tabla. [XAML en la guía de C#](csharp-linq-xaml-y-adaptaciones.md) ejecuta métodos mientras analiza el marcado.
 - **Una frontera que debes defender.** [Lectura de programas adversariales](../conceptos/lectura-de-programas-adversariales.md) usa esta entrada y las de XAML y tar como sus ejemplos principales de "datos que también son código".
 - **Transacciones y confirmación.** Toda la cadena de disparadores se ejecuta en un solo `db transaction`, como en [Efectos, errores y confirmación](../conceptos/efectos-errores-y-confirmacion.md), mientras que la impresión no se revierte.
-- **En el libro.** [Tcl](../../lenguajes/tcl.md), [Disparadores de base de datos](../../informatica/06-estado-mas-alla-de-las-variables.md#database-triggers) y [Ejecución de código arbitrario](../../informatica/01-lectura-de-un-programa-adversarial.md#arbitrary-code-execution).
+- **En el libro.** [Tcl](../../lenguajes/tcl.md), [Disparadores de base de datos](../../informatica/06-estado-mas-alla-de-las-variables.md#disparadores-de-base-de-datos) y [Ejecución de código arbitrario](../../informatica/01-lectura-de-un-programa-adversarial.md#ejecución-de-código-arbitrario).
 
 ## Autoevaluación
 
@@ -215,4 +215,4 @@ Responde cada pregunta con tus propias palabras antes de leer el texto en cursiv
 - [Tcl](https://en.wikipedia.org/wiki/Tcl) (Wikipedia): el lenguaje y por qué "todo es una cadena de texto" lo define.
 - [Disparador de base de datos](https://en.wikipedia.org/wiki/Database_trigger) (Wikipedia): para qué sirven los disparadores y dónde causan sorpresas.
 - [Inyección de código](https://owasp.org/www-community/attacks/Code_Injection) (OWASP): el riesgo general cuando el texto se convierte en código, que `unknown` vuelve concreto.
-- [Disparadores de base de datos](../../informatica/06-estado-mas-alla-de-las-variables.md#database-triggers) y [Ejecución de código arbitrario](../../informatica/01-lectura-de-un-programa-adversarial.md#arbitrary-code-execution) (este libro): los conceptos detrás de esta entrada.
+- [Disparadores de base de datos](../../informatica/06-estado-mas-alla-de-las-variables.md#disparadores-de-base-de-datos) y [Ejecución de código arbitrario](../../informatica/01-lectura-de-un-programa-adversarial.md#ejecución-de-código-arbitrario) (este libro): los conceptos detrás de esta entrada.

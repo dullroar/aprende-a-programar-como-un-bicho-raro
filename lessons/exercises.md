@@ -536,7 +536,7 @@ Criterios de aceptación:
 
 ### F2. Trojan Source: oculta un carácter y luego encuéntralo (verificado)
 
-**Lección:** [Trojan Source](informatica/01-lectura-de-un-programa-adversarial.md#trojan-source-characters-you-cannot-see). **Entrada:** ninguna. Ninguna entrada de este repositorio puede contener un carácter invisible, así que creas el archivo tú mismo en una carpeta temporal y nunca lo subes con *commit*. La afirmación que debes probar es la de [`CONTRIBUTING.md`](../CONTRIBUTING.md): "no invisible or direction-changing Unicode characters. APL glyphs and other visible Unicode are fine."
+**Lección:** [Trojan Source](informatica/01-lectura-de-un-programa-adversarial.md#trojan-source-caracteres-que-no-puedes-ver). **Entrada:** ninguna. Ninguna entrada de este repositorio puede contener un carácter invisible, así que creas el archivo tú mismo en una carpeta temporal y nunca lo subes con *commit*. La afirmación que debes probar es la de [`CONTRIBUTING.md`](../CONTRIBUTING.md): "no invisible or direction-changing Unicode characters. APL glyphs and other visible Unicode are fine."
 
 1. En una carpeta temporal, crea un programa con un espacio de ancho cero (U+200B) después de `admin` en la primera línea:
 

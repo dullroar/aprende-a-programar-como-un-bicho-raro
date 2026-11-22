@@ -141,7 +141,7 @@ Tres programas pequeños usan el mismo archivo:
 
 ## Es solo un archivo tar: serialización, deserialización y ejecución
 
-Un archivo tar permite escribir archivos en un solo flujo de bytes. No es un formato de programa. Lo que convierte a este archivo en un programa es un *consumidor* que da significado a sus miembros. Esta sección separa los pasos. Consulta [Serialización, deserialización y empaquetado de objetos](../../lessons/informatica/06-estado-mas-alla-de-las-variables.md#serialization-deserialization-and-object-pickling) para ver las ideas generales.
+Un archivo tar permite escribir archivos en un solo flujo de bytes. No es un formato de programa. Lo que convierte a este archivo en un programa es un *consumidor* que da significado a sus miembros. Esta sección separa los pasos. Consulta [Serialización, deserialización y empaquetado de objetos](../../lessons/informatica/06-estado-mas-alla-de-las-variables.md#serialización-deserialización-y-pickling-de-objetos) para ver las ideas generales.
 
 1. **Codificar datos.** Una tarjeta son dos líneas en el cuerpo de un miembro: `category=Coding` y `hours=11`. Los datos están en los bytes del miembro.
 2. **Codificar las instrucciones del programa y el contexto de interpretación.** Cada instrucción está en el *nombre* del miembro (`010.card`). El orden de los miembros es el orden de ejecución. El contexto es una promesa entre el programa que escribe y el lector: el formato `tarprog/1`. tar no sabe nada de ella. Dos programas que respetan la promesa se entienden entre sí y ningún otro programa puede entenderlos.

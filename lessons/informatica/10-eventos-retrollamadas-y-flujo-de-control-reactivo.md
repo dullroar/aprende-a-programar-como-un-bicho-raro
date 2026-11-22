@@ -132,7 +132,7 @@ Una infraestructura de animación, el enlace de datos y el propio bucle de una v
 
 ## Predice y luego ejecuta
 
-El [ejercicio B22](../exercises.md#b22-javascript-event-driven-predict-the-trace-then-remove-the-boundary-verified) te pide que escribas la traza de una ejecución *antes* de verla y que predigas qué imprimen `emit` y `setImmediate`. También te pide que quites la separación entre turnos y veas cómo un millón de tarjetas agotan la pila. Haz primero la predicción en papel. La gracia está en la sorpresa.
+El [ejercicio B22](../exercises.md#b22-javascript-dirigido-por-eventos-predice-la-traza-y-luego-elimina-el-límite-verificado) te pide que escribas la traza de una ejecución *antes* de verla y que predigas qué imprimen `emit` y `setImmediate`. También te pide que quites la separación entre turnos y veas cómo un millón de tarjetas agotan la pila. Haz primero la predicción en papel. La gracia está en la sorpresa.
 
 ## Programación dirigida por eventos
 
