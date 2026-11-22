@@ -160,27 +160,27 @@ msgstr "**Todo es una macro global.** Los nombres no tienen ámbito, así que el
 #: lessons/languages/m4.md:67
 msgctxt "s-2a11a056a45c-0030"
 msgid "**Quoting errors fail silently or runaway.** One missing bracket turns a loop into infinite recursion, or an unexpanded macro name into output. There is no type checker, no stack trace."
-msgstr ""
+msgstr "**Los errores de comillas fallan en silencio o se descontrolan.** Un corchete omitido convierte un bucle en recursión infinita o envía a la salida el nombre de una macro sin expandir. No hay verificador de tipos ni traza de pila."
 
 #: lessons/languages/m4.md:68
 msgctxt "s-0965352f2739-0031"
 msgid "**Special characters in your data collide with m4's own syntax** (quotes, ⟦CODE_0001⟧ comments, parentheses, commas). [L21](⟦DEST_0002⟧) ⟦CODE_0003⟧ turns off ⟦CODE_0004⟧ comments so the output can begin with ⟦CODE_0005⟧."
-msgstr ""
+msgstr "**Los caracteres especiales de tus datos chocan con la sintaxis propia de m4** (comillas, comentarios ⟦CODE_0001⟧, paréntesis, comas). En [L21](⟦DEST_0002⟧), ⟦CODE_0003⟧ desactiva los comentarios ⟦CODE_0004⟧ para que la salida pueda empezar con ⟦CODE_0005⟧."
 
 #: lessons/languages/m4.md:69
 msgctxt "s-956e3d876a48-0032"
 msgid "**No real I/O.** The clock, the entropy and SQLite all come through the shell."
-msgstr ""
+msgstr "**Sin entrada ni salida reales.** El reloj, la entropía y SQLite llegan a través del intérprete de comandos."
 
 #: lessons/languages/m4.md:70
 msgctxt "s-3635cab2b496-0033"
 msgid "**⟦DNT_0001⟧ is ⟦CODE_0002⟧ and patience.**"
-msgstr ""
+msgstr "**⟦DNT_0001⟧ es ⟦CODE_0002⟧ y paciencia.**"
 
 #: lessons/languages/m4.md:72
 msgctxt "s-1b5e8064f4d0-0034"
 msgid "Legitimate uses: m4 is still a good tool for *generating* text: configuration files, boilerplate, ⟦CODE_0001⟧'s ⟦CODE_0002⟧, ⟦CODE_0003⟧. Running a computation in it is the stunt."
-msgstr ""
+msgstr "Usos legítimos: m4 sigue siendo una buena herramienta para *generar* texto: archivos de configuración, código repetitivo, ⟦CODE_0002⟧ de ⟦CODE_0001⟧, ⟦CODE_0003⟧. Ejecutar un cálculo en él es la acrobacia."
 
 #: lessons/languages/m4.md:74
 msgctxt "s-5e3bcdfbf845-0035"
