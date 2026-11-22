@@ -469,3 +469,7 @@
 {"id":"EXC-469","segment":"s-e6640de835ad-0094","invariant":"TRANSLATE","reason":"find is a command name (identifier) and is kept in English.","task":"P4-lessons-4"}
 {"id":"EXC-470","segment":"s-9e6ac7d52c06-0107","invariant":"I7","reason":"Windows Sandbox is a product name, not the generic term sandbox; the glossary rendering does not apply.","task":"P4-lessons-4"}
 {"id":"EXC-471","segment":"s-8f4396f3341b-0111","invariant":"I7","reason":"Windows Sandbox is a product name, not the generic term sandbox; the glossary rendering does not apply.","task":"P4-lessons-4"}
+{"id":"EXC-472","segment":"s-bc0782c4355e-0009","invariant":"I7","reason":"Windows Sandbox is a product name (a Microsoft feature), not the generic term; the generic gloss is already in the first segment.","task":"P4-lessons-5"}
+{"id":"EXC-473","segment":"s-532678fd7e00-0222","invariant":"I7","reason":"Windows Sandbox in a heading is a product name, not the generic term sandbox.","task":"P4-lessons-5"}
+{"id":"EXC-474","segment":"s-acf3dd48b7fe-0069","invariant":"I7","reason":"'builds' is the verb: the program constructs a value at run time, it does not compile; compilación is the noun for the build step.","task":"P4-lessons-5"}
+{"id":"EXC-475","segment":"s-4dd7dae094f1-0216","invariant":"I7","reason":"'State' is an imperative verb (declare which level), not the noun state; 'Indica' is the natural rendering.","task":"P4-lessons-5"}

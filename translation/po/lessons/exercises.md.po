@@ -1,0 +1,1521 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lessons/exercises.md:1
+msgctxt "s-988f06b36354-0000"
+msgid "Exercises"
+msgstr "Ejercicios"
+
+#: lessons/exercises.md:3
+msgctxt "s-e2e429e2344b-0001"
+msgid "Step 5 of every lesson: *now break it yourself*. Each exercise has a goal, a safe way to run it, **acceptance criteria** a student (or their coding agent) can test and, where practical, a command that tests them. Worked solutions are in the [answer key](⟦DEST_0001⟧). **Every exercise marked \"verified\" has been run end to end against the real entries**, in Docker or Windows Sandbox, by [⟦CODE_0002⟧](⟦DEST_0003⟧) and [⟦CODE_0004⟧](⟦DEST_0005⟧); the ones that have not are labeled **open challenge**."
+msgstr "Paso 5 de cada lección: *ahora rómpelo tú*. Cada ejercicio tiene un objetivo, una forma segura de ejecutarlo, **criterios de aceptación** que un estudiante (o su agente de programación) puede comprobar y, cuando es práctico, un comando que los comprueba. Las soluciones desarrolladas están en el [solucionario](⟦DEST_0001⟧). **Todo ejercicio marcado como \"verificado\" se ha ejecutado de principio a fin con las entradas reales**, en Docker o en un entorno aislado (*sandbox*) de Windows (Windows Sandbox), con [⟦CODE_0002⟧](⟦DEST_0003⟧) y [⟦CODE_0004⟧](⟦DEST_0005⟧); los que no se han ejecutado así llevan la etiqueta **reto abierto**."
+
+#: lessons/exercises.md:5
+msgctxt "s-b5582018ea37-0002"
+msgid "The rhythm for every exercise is **predict, run, compare**. Write your prediction down *before* you run anything. The check only tells you whether you got a result; the prediction tells you whether you understood."
+msgstr "El ritmo de cada ejercicio es **predecir, ejecutar, comparar**. Escribe tu predicción *antes* de ejecutar nada. La comprobación solo te dice si obtuviste un resultado; la predicción te dice si entendiste."
+
+#: lessons/exercises.md:7
+msgctxt "s-1bcb992c2de8-0003"
+msgid "Running things safely"
+msgstr "Ejecutar con seguridad"
+
+#: lessons/exercises.md:9
+msgctxt "s-f819e908c14f-0004"
+msgid "These programs write files and start processes. Do not run entries you did not read on your own machine. Use the repo's own lockdown; one-time setup is in [⟦CODE_0001⟧](⟦DEST_0002⟧) (including ⟦CODE_0003⟧, which you must run once, and again with ⟦CODE_0004⟧ if a run says ⟦CODE_0005⟧ or similar: an old toolchain image predates some entries)."
+msgstr "Estos programas escriben archivos e inician procesos. No ejecutes en tu propia máquina entradas que no hayas leído. Usa el modo restringido del propio repositorio; la configuración única está en [⟦CODE_0001⟧](⟦DEST_0002⟧) (incluye ⟦CODE_0003⟧, que debes ejecutar una vez, y de nuevo con ⟦CODE_0004⟧ si una ejecución dice ⟦CODE_0005⟧ o algo similar: una imagen antigua de la cadena de herramientas es anterior a algunas entradas)."
+
+#: lessons/exercises.md:11
+msgctxt "s-a59088432215-0005"
+msgid "⟦SEP_0001⟧ You want to... ⟦SEP_0002⟧ Command (from the repo root) ⟦SEP_0003⟧ Where it runs ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ Quieres... ⟦SEP_0002⟧ Comando (desde la raíz del repositorio) ⟦SEP_0003⟧ Dónde se ejecuta ⟦SEP_0004⟧"
+
+#: lessons/exercises.md:13
+msgctxt "s-ea11dce28ab6-0006"
+msgid "⟦SEP_0003⟧ **See** a Linux entry run ⟦SEP_0004⟧ ⟦CODE_0001⟧ ⟦SEP_0005⟧ Docker: no network, read-only root, user ⟦CODE_0002⟧, limits, timeout ⟦SEP_0006⟧"
+msgstr "⟦SEP_0003⟧ **Mira** cómo se ejecuta una entrada de Linux ⟦SEP_0004⟧ ⟦CODE_0001⟧ ⟦SEP_0005⟧ Docker: sin red, raíz de solo lectura, usuario ⟦CODE_0002⟧, límites, tiempo de espera ⟦SEP_0006⟧"
+
+#: lessons/exercises.md:14
+msgctxt "s-0958c80e9829-0007"
+msgid "⟦SEP_0002⟧ Run an entry's **own check** ⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ Docker toolchain image, folder copied into a tmpfs ⟦SEP_0005⟧"
+msgstr "⟦SEP_0002⟧ Ejecuta la **propia verificación** de una entrada ⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ Imagen Docker con las herramientas, carpeta copiada en un tmpfs ⟦SEP_0005⟧"
+
+#: lessons/exercises.md:15
+msgctxt "s-083627d22322-0008"
+msgid "⟦SEP_0002⟧ Run **any command** in that lockdown, with environment variables ⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ same lockdown, on a private copy of the folder ⟦SEP_0005⟧"
+msgstr "⟦SEP_0002⟧ Ejecuta **cualquier comando** en ese modo restringido, con las variables de entorno ⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ el mismo modo restringido, sobre una copia privada de la carpeta ⟦SEP_0005⟧"
+
+#: lessons/exercises.md:16
+msgctxt "s-bc0782c4355e-0009"
+msgid "⟦SEP_0002⟧ Run a **Windows/WPF** entry ⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ Windows Sandbox: a throwaway VM, networking off ⟦SEP_0005⟧"
+msgstr "⟦SEP_0002⟧ Ejecuta una entrada **Windows/WPF** ⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ Windows Sandbox: una máquina virtual desechable con la red desactivada ⟦SEP_0005⟧"
+
+#: lessons/exercises.md:18
+msgctxt "s-f99aa0de1a4f-0010"
+msgid "⟦CODE_0001⟧ can be any folder, not only one under ⟦CODE_0002⟧. **Work on a copy** so your checkout stays clean:"
+msgstr "⟦CODE_0001⟧ puede ser cualquier carpeta, no solo una dentro de ⟦CODE_0002⟧. **Trabaja sobre una copia** para que tu copia de trabajo se mantenga limpia:"
+
+#: lessons/exercises.md:25
+msgctxt "s-5409b5afc610-0011"
+msgid "(⟦CODE_0001⟧ names its Docker image after the folder, so keep the folder name.)"
+msgstr "(⟦CODE_0001⟧ da a su imagen de Docker el nombre de la carpeta, así que conserva el nombre de la carpeta.)"
+
+#: lessons/exercises.md:27
+msgctxt "s-911819fa6ed9-0012"
+msgid "Ground rules:"
+msgstr "Reglas básicas:"
+
+#: lessons/exercises.md:29
+msgctxt "s-71f49b5cd391-0013"
+msgid ""
+"**⟦DNT_0001⟧ data.** Nothing connects to a real time-reporting system, and your exercise must not either.\n"
+"2. **Break exercises are expected to fail an entry's own ⟦CODE_0002⟧.** That is the point: the check proved the constraint was real.\n"
+"3. **Timeouts are results.** Some breaks run forever. Set ⟦CODE_0003⟧; the run then prints ⟦CODE_0004⟧ and exits ⟦CODE_0005⟧.\n"
+"4. **Output is random.** Row counts and totals differ on every run. The criteria below are written to hold for *every* run, so do not compare your numbers with the answer key; compare the properties."
+msgstr ""
+"**Datos ⟦DNT_0001⟧.** Nada se conecta a un sistema real de control horario, y tu ejercicio tampoco debe hacerlo.\n"
+"2. **Se espera que los ejercicios de ruptura fallen en el propio ⟦CODE_0002⟧ de una entrada.** Ese es el objetivo: la comprobación demostró que la restricción era real.\n"
+"3. **Los tiempos de espera agotados son resultados.** Algunas rupturas se ejecutan para siempre. Define ⟦CODE_0003⟧; la ejecución imprime entonces ⟦CODE_0004⟧ y termina con ⟦CODE_0005⟧.\n"
+"4. **La salida es aleatoria.** El número de filas y los totales cambian en cada ejecución. Los criterios siguientes están escritos para cumplirse en *todas* las ejecuciones, así que no compares tus números con la clave de respuestas; compara las propiedades."
+
+#: lessons/exercises.md:34
+msgctxt "s-70c7c58f7056-0014"
+msgid "The shared checker"
+msgstr "El verificador compartido"
+
+#: lessons/exercises.md:36
+msgctxt "s-40239ddf5928-0015"
+msgid "[⟦CODE_0001⟧](⟦DEST_0002⟧) checks a report that follows the [shared numeric rule](⟦DEST_0003⟧): a ⟦CODE_0004⟧ marker, every row's hours in 10 to 19, every running total equal to the previous total plus the hours, the run stopped on the first card whose total passed the limit (default 40) and the ⟦CODE_0005⟧ (or ⟦CODE_0006⟧) line agrees with the rows. Exit 0 is PASS."
+msgstr "[⟦CODE_0001⟧](⟦DEST_0002⟧) comprueba un informe que cumple la [regla numérica compartida](⟦DEST_0003⟧): un marcador ⟦CODE_0004⟧, las horas de cada fila de 10 a 19, cada total acumulado igual al total anterior más las horas, la ejecución detenida en la primera tarjeta cuyo total pasa de 40 (el límite por defecto) y la línea ⟦CODE_0005⟧ (o ⟦CODE_0006⟧) coincide con las filas. El código de salida 0 significa PASS."
+
+#: lessons/exercises.md:44
+msgctxt "s-4e3e9759def6-0016"
+msgid "A. Warm-up: predict, then run"
+msgstr "A. Calentamiento: predice y luego ejecuta"
+
+#: lessons/exercises.md:46
+msgctxt "s-d22656f9c938-0017"
+msgid "A1. Read the rows (verified)"
+msgstr "A1. Lee las filas (verificado)"
+
+#: lessons/exercises.md:48
+msgctxt "s-920fd628fe3f-0018"
+msgid "**Goal:** tell, from the output alone, which card stopped the run and why that is not off by one."
+msgstr "**Objetivo:** determina, solo a partir de la salida, qué tarjeta detuvo la ejecución y por qué eso no es un error por uno."
+
+#: lessons/exercises.md:50
+msgctxt "s-60735d45529b-0019"
+msgid ""
+"Choose three entries from different [languages](⟦DEST_0001⟧) that implement the crossing-card rule. See the [entry differences](⟦DEST_0002⟧) before picking. Run them and save each output.\n"
+"2. For each, write down how many cards there were, which card crossed 40 and what the card *before* it totaled.\n"
+"3. Run a fourth (try ⟦CODE_0003⟧, whose rows have no running-total column) and predict its card count before looking."
+msgstr ""
+"Elige tres entradas de [lenguajes](⟦DEST_0001⟧) distintos que implementen la regla de la tarjeta que cruza el tope. Consulta las [diferencias entre entradas](⟦DEST_0002⟧) antes de elegir. Ejecútalas y guarda cada salida.\n"
+"2. Para cada una, anota cuántas tarjetas había, qué tarjeta pasó de 40 y qué total llevaba la tarjeta *anterior*.\n"
+"3. Ejecuta una cuarta (prueba ⟦CODE_0003⟧, cuyas filas no tienen columna de total acumulado) y predice su número de tarjetas antes de mirar."
+
+#: lessons/exercises.md:54
+msgctxt "s-b49c49a0c312-0020"
+msgid "Acceptance criteria:"
+msgstr "Criterios de aceptación:"
+
+#: lessons/exercises.md:56
+msgctxt "s-903bf21925e7-0021"
+msgid "⟦CODE_0001⟧ passes for every run."
+msgstr "⟦CODE_0001⟧ pasa en cada ejecución."
+
+#: lessons/exercises.md:57
+msgctxt "s-212fbd9a4fc6-0022"
+msgid "For every run, the total before the last card is **at most 40**, and the final total is **over 40**."
+msgstr "En cada ejecución, el total antes de la última tarjeta es **de 40 como máximo**, y el total final **pasa de 40**."
+
+#: lessons/exercises.md:58
+msgctxt "s-8ce5bd9b993d-0023"
+msgid "In one sentence: why does a total of *exactly* 40 not stop the run? (Hint: look at the ⟦CODE_0001⟧ in the stop rules.)"
+msgstr "En una oración: ¿por qué un total de *exactamente* 40 no detiene la ejecución? (Pista: observa el ⟦CODE_0001⟧ en las reglas de parada.)"
+
+#: lessons/exercises.md:60
+msgctxt "s-1e96f08a7111-0024"
+msgid "B. By language"
+msgstr "B. Por lenguaje"
+
+#: lessons/exercises.md:62
+msgctxt "s-4f2d5cdbff7e-0025"
+msgid "B1. COBOL: predict, then break ⟦CODE_0001⟧ (verified)"
+msgstr "B1. COBOL: predice y luego rompe ⟦CODE_0001⟧ (verificado)"
+
+#: lessons/exercises.md:64
+msgctxt "s-4fa92708e058-0026"
+msgid "**Lesson:** [COBOL / ALTER](⟦DEST_0001⟧). **Entry:** a copy of ⟦CODE_0002⟧."
+msgstr "**Lección:** [COBOL / ALTER](⟦DEST_0001⟧). **Entrada:** una copia de ⟦CODE_0002⟧."
+
+#: lessons/exercises.md:66
+msgctxt "s-6a4e5b3cba26-0027"
+msgid ""
+"**Predict:** the headroom starts at 59 ([⟦CODE_0001⟧ L44](⟦DEST_0002⟧)). If it starts at 49 instead, above what total does the run stop?\n"
+"2. Change ⟦CODE_0003⟧ to ⟦CODE_0004⟧. Run it with ⟦CODE_0005⟧, then run the entry's own check with ⟦CODE_0006⟧.\n"
+"3. **Predict:** what happens if you add ⟦CODE_0007⟧ as a first line inside ⟦CODE_0008⟧?\n"
+"4. Try it on a fresh copy."
+msgstr ""
+"**Predice:** el margen empieza en 59 ([⟦CODE_0001⟧ L44](⟦DEST_0002⟧)). Si empieza en 49, ¿por encima de qué total se detiene la ejecución?\n"
+"2. Cambia ⟦CODE_0003⟧ a ⟦CODE_0004⟧. Ejecútalo con ⟦CODE_0005⟧ y luego ejecuta la verificación propia de la entrada con ⟦CODE_0006⟧.\n"
+"3. **Predice:** ¿qué ocurre si agregas ⟦CODE_0007⟧ como primera línea dentro de ⟦CODE_0008⟧?\n"
+"4. Pruébalo en una copia nueva."
+
+#: lessons/exercises.md:71
+msgctxt "s-b49c49a0c312-0028"
+msgid "Acceptance criteria:"
+msgstr "Criterios de aceptación:"
+
+#: lessons/exercises.md:73
+msgctxt "s-66187c387983-0029"
+msgid "Step 2: ⟦CODE_0001⟧ passes (the new rule is \"total passes 50\"), and ⟦CODE_0002⟧ **fails** (the entry's own check insists on 40)."
+msgstr "Paso 2: ⟦CODE_0001⟧ pasa (la nueva regla es \"el total pasa de 50\") y ⟦CODE_0002⟧ **falla** (la comprobación propia de la entrada exige 40)."
+
+#: lessons/exercises.md:74
+msgctxt "s-bc22a127ca08-0030"
+msgid "Step 4: the build fails. The compiler message names the problem; record it. Your answer says why ⟦CODE_0001⟧ needs a paragraph that is *only* a ⟦CODE_0002⟧."
+msgstr "Paso 4: la compilación falla. El mensaje del compilador nombra el problema; anótalo. Tu respuesta explica por qué ⟦CODE_0001⟧ necesita un párrafo que sea *solo* un ⟦CODE_0002⟧."
+
+#: lessons/exercises.md:76
+msgctxt "s-8832ff455316-0031"
+msgid "B2. Haskell: break the laziness (verified)"
+msgstr "B2. Haskell: rompe la pereza (verificado)"
+
+#: lessons/exercises.md:78
+msgctxt "s-f7962b0785c5-0032"
+msgid "**Lesson:** [Haskell](⟦DEST_0001⟧). **Entry:** a copy of ⟦CODE_0002⟧."
+msgstr "**Lección:** [Haskell](⟦DEST_0001⟧). **Entrada:** una copia de ⟦CODE_0002⟧."
+
+#: lessons/exercises.md:80
+msgctxt "s-3ee9b89c8396-0033"
+msgid ""
+"**Predict:** replace ⟦CODE_0001⟧ ([L144](⟦DEST_0002⟧)) with ⟦CODE_0003⟧. What happens?\n"
+"2. **Predict:** on a fresh copy, remove ⟦CODE_0004⟧ from ⟦CODE_0005⟧ by replacing ⟦CODE_0006⟧ ([L64](⟦DEST_0007⟧)) with ⟦CODE_0008⟧. What happens, and does it hang?\n"
+"3. Run each."
+msgstr ""
+"**Predice:** reemplaza ⟦CODE_0001⟧ ([L144](⟦DEST_0002⟧)) por ⟦CODE_0003⟧. ¿Qué pasa?\n"
+"2. **Predice:** en una copia nueva, quita ⟦CODE_0004⟧ de ⟦CODE_0005⟧ y reemplaza ⟦CODE_0006⟧ ([L64](⟦DEST_0007⟧)) por ⟦CODE_0008⟧. ¿Qué pasa y se cuelga?\n"
+"3. Ejecuta cada una."
+
+#: lessons/exercises.md:84
+msgctxt "s-b49c49a0c312-0034"
+msgid "Acceptance criteria:"
+msgstr "Criterios de aceptación:"
+
+#: lessons/exercises.md:86
+msgctxt "s-ab147a69bd2e-0035"
+msgid "Change 1: the output contains ⟦CODE_0001⟧ and ⟦CODE_0002⟧ fails. Explain what was demanded *after* the pipe closed."
+msgstr "Cambio 1: la salida contiene ⟦CODE_0001⟧ y ⟦CODE_0002⟧ falla. Explica qué se exigió *después* de que se cerró la tubería."
+
+#: lessons/exercises.md:87
+msgctxt "s-4d3b5a4acfb9-0036"
+msgid "Change 2: the program stops with ⟦CODE_0001⟧ rather than hanging. Explain which value needs which: the list of actions is now forced before the list of cards exists."
+msgstr "Cambio 2: el programa se detiene con ⟦CODE_0001⟧ en lugar de quedarse colgado. Explica qué valor necesita a cuál: la lista de acciones se fuerza ahora antes de que exista la lista de tarjetas."
+
+#: lessons/exercises.md:89
+msgctxt "s-d9359b821a93-0037"
+msgid "B3. Forth: move the anchor (verified)"
+msgstr "B3. Forth: mueve el ancla (verificado)"
+
+#: lessons/exercises.md:91
+msgctxt "s-56dfd07db5d5-0038"
+msgid "**Lesson:** [Forth](⟦DEST_0001⟧). **Entry:** a copy of ⟦CODE_0002⟧."
+msgstr "**Lección:** [Forth](⟦DEST_0001⟧). **Entrada:** una copia de ⟦CODE_0002⟧."
+
+#: lessons/exercises.md:93
+msgctxt "s-6e791b02d214-0039"
+msgid "**Predict**, then test each change on a fresh copy:"
+msgstr "**Predice** y luego prueba cada cambio en una copia nueva:"
+
+#: lessons/exercises.md:94
+msgctxt "s-4165e6c8c758-0040"
+msgid "(a) Put ⟦CODE_0001⟧ on its own line before ⟦CODE_0002⟧ ([L101](⟦DEST_0003⟧))."
+msgstr "(a) Pon ⟦CODE_0001⟧ en su propia línea antes de ⟦CODE_0002⟧ ([L101](⟦DEST_0003⟧))."
+
+#: lessons/exercises.md:95
+msgctxt "s-efdbfd6edab8-0041"
+msgid "(b) Write the line as ⟦CODE_0001⟧ (state *after* the anchor)."
+msgstr "(b) Escribe la línea como ⟦CODE_0001⟧ (estado *después* del ancla)."
+
+#: lessons/exercises.md:96
+msgctxt "s-38f7396bc863-0042"
+msgid "(c) In ⟦CODE_0001⟧ ([L92-94](⟦DEST_0002⟧)) change ⟦CODE_0003⟧ to ⟦CODE_0004⟧."
+msgstr "(c) En ⟦CODE_0001⟧ ([L92-94](⟦DEST_0002⟧)) cambia ⟦CODE_0003⟧ por ⟦CODE_0004⟧."
+
+#: lessons/exercises.md:98
+msgctxt "s-b49c49a0c312-0043"
+msgid "Acceptance criteria:"
+msgstr "Criterios de aceptación:"
+
+#: lessons/exercises.md:100
+msgctxt "s-d6de14757629-0044"
+msgid "(a) is harmless: ⟦CODE_0001⟧ passes. Explain why (the anchor is still *after* the ⟦CODE_0002⟧)."
+msgstr "(a) es inofensivo: ⟦CODE_0001⟧ pasa. Explica por qué (el ancla sigue estando *después* de ⟦CODE_0002⟧)."
+
+#: lessons/exercises.md:101
+msgctxt "s-334c8b06814a-0045"
+msgid "(b) runs away: use ⟦CODE_0001⟧. There is no ⟦CODE_0002⟧ line, many rows appear (hundreds) and every row's running total equals its own hours (the state resets each pass)."
+msgstr "(b) se descontrola: usa ⟦CODE_0001⟧. No hay ninguna línea ⟦CODE_0002⟧, aparecen muchas filas (cientos) y el total acumulado de cada fila es igual a sus propias horas (el estado se reinicia en cada pasada)."
+
+#: lessons/exercises.md:102
+msgctxt "s-b4ecf070ac25-0046"
+msgid "(c) ⟦CODE_0001⟧ passes."
+msgstr "(c) ⟦CODE_0001⟧ pasa."
+
+#: lessons/exercises.md:103
+msgctxt "s-ac392a2f2f97-0047"
+msgid "In one sentence: why does only (b) break the loop?"
+msgstr "En una oración: ¿por qué solo (b) rompe el bucle?"
+
+#: lessons/exercises.md:105
+msgctxt "s-1f6d3d062014-0048"
+msgid "B4. Make: remove the no-op, and override the clock (verified)"
+msgstr "B4. Make: quita la operación sin efecto y sobrescribe el reloj (verificado)"
+
+#: lessons/exercises.md:107
+msgctxt "s-f336404d64f0-0049"
+msgid "**Lesson:** [GNU Make](⟦DEST_0001⟧). **Entry:** a copy of ⟦CODE_0002⟧."
+msgstr "**Lección:** [GNU Make](⟦DEST_0001⟧). **Entrada:** una copia de ⟦CODE_0002⟧."
+
+#: lessons/exercises.md:109
+msgctxt "s-145e0e8fd418-0050"
+msgid ""
+"**Predict:** delete the trailing ⟦CODE_0001⟧ from the recipe line ([⟦CODE_0002⟧ L111](⟦DEST_0003⟧)): change ⟦CODE_0004⟧ to ⟦CODE_0005⟧. What happens?\n"
+"2. On the *unmodified* entry, the Makefile already has a ⟦CODE_0006⟧ override. Run ⟦CODE_0007⟧."
+msgstr ""
+"**Predice:** elimina el ⟦CODE_0001⟧ final de la línea de la receta ([⟦CODE_0002⟧ L111](⟦DEST_0003⟧)): cambia ⟦CODE_0004⟧ por ⟦CODE_0005⟧. ¿Qué pasa?\n"
+"2. En la entrada *sin modificar*, el Makefile ya tiene una sobrescritura de ⟦CODE_0006⟧. Ejecuta ⟦CODE_0007⟧."
+
+#: lessons/exercises.md:112
+msgctxt "s-b49c49a0c312-0051"
+msgid "Acceptance criteria:"
+msgstr "Criterios de aceptación:"
+
+#: lessons/exercises.md:114
+msgctxt "s-6dfd8743d15e-0052"
+msgid "Step 1: the output ends ⟦CODE_0001⟧ and ⟦CODE_0002⟧: no card was ever written to be remade, so Make never restarted. Your explanation uses the words \"recipe expands to nothing\" and \"remade\"."
+msgstr "Paso 1: la salida termina en ⟦CODE_0001⟧ y ⟦CODE_0002⟧: nunca se escribió una tarjeta que hubiera que rehacer, así que Make nunca se reinició. Tu explicación usa las palabras \"la receta se expande a nada\" y \"rehacer\"."
+
+#: lessons/exercises.md:115
+msgctxt "s-aba68e5b2dc5-0053"
+msgid "Step 2: the rows show the ISO week ⟦CODE_0001⟧, which agrees with ⟦CODE_0002⟧."
+msgstr "Paso 2: las filas muestran la semana ISO ⟦CODE_0001⟧, que coincide con ⟦CODE_0002⟧."
+
+#: lessons/exercises.md:117
+msgctxt "s-85af0838d3dc-0054"
+msgid "B5. CMake: mutate the literal (verified)"
+msgstr "B5. CMake: muta el literal (verificado)"
+
+#: lessons/exercises.md:119
+msgctxt "s-1788765218d5-0055"
+msgid "**Lesson:** [CMake](⟦DEST_0001⟧). **Entry:** a copy of ⟦CODE_0002⟧."
+msgstr "**Lección:** [CMake](⟦DEST_0001⟧). **Entrada:** una copia de ⟦CODE_0002⟧."
+
+#: lessons/exercises.md:121
+msgctxt "s-77e01ee87a00-0056"
+msgid ""
+"**Predict:** the stop test is a regex literal of 41 ⟦CODE_0001⟧s ([⟦CODE_0002⟧ L41](⟦DEST_0003⟧)). Shorten it to 31. What is the new stop rule?\n"
+"2. Run it, then run the entry's own check."
+msgstr ""
+"**Predice:** la prueba de parada es un literal de regex de 41 ⟦CODE_0001⟧ ([⟦CODE_0002⟧ L41](⟦DEST_0003⟧)). Acórtalo a 31. ¿Cuál es la nueva regla de parada?\n"
+"2. Ejecútalo y luego ejecuta la propia comprobación de la entrada."
+
+#: lessons/exercises.md:124
+msgctxt "s-b49c49a0c312-0057"
+msgid "Acceptance criteria:"
+msgstr "Criterios de aceptación:"
+
+#: lessons/exercises.md:126
+msgctxt "s-5bdf2304bd34-0058"
+msgid "⟦CODE_0001⟧ passes."
+msgstr "⟦CODE_0001⟧ pasa."
+
+#: lessons/exercises.md:127
+msgctxt "s-e15a82da7bac-0059"
+msgid "⟦CODE_0001⟧ on your copy **fails**. (The repo's own ⟦CODE_0002⟧ performs this same mutation to prove the literal controls the loop.)"
+msgstr "⟦CODE_0001⟧ en tu copia **falla**. (El propio ⟦CODE_0002⟧ del repositorio realiza esta misma mutación para demostrar que el literal controla el bucle.)"
+
+#: lessons/exercises.md:128
+msgctxt "s-37efb4f294a0-0060"
+msgid "Explain why the stop test must come *first* in the ⟦CODE_0001⟧ condition."
+msgstr "Explica por qué la prueba de parada debe ir *primero* en la condición ⟦CODE_0001⟧."
+
+#: lessons/exercises.md:130
+msgctxt "s-a312f6ed7ea0-0061"
+msgid "B6. APL: the off-by-one rewrite (verified)"
+msgstr "B6. APL: la reescritura del error por uno (verificada)"
+
+#: lessons/exercises.md:132
+msgctxt "s-49d33c69554e-0062"
+msgid "**Lesson:** [APL, self-modifying functions](⟦DEST_0001⟧). **Entry:** a copy of ⟦CODE_0002⟧."
+msgstr "**Lección:** [APL, funciones que se modifican a sí mismas](⟦DEST_0001⟧). **Entrada:** una copia de ⟦CODE_0002⟧."
+
+#: lessons/exercises.md:134
+msgctxt "s-a52b3721b6cc-0063"
+msgid ""
+"**Predict:** change ⟦CODE_0001⟧ to ⟦CODE_0002⟧ on [L53](⟦DEST_0003⟧). What does each child keep from its parent?\n"
+"2. Run it with ⟦CODE_0004⟧.\n"
+"3. On a fresh copy, change ⟦CODE_0005⟧ ([L17](⟦DEST_0006⟧)) to ⟦CODE_0007⟧ and run it."
+msgstr ""
+"**Predice:** cambia ⟦CODE_0001⟧ por ⟦CODE_0002⟧ en [L53](⟦DEST_0003⟧). ¿Qué conserva cada hija de su madre?\n"
+"2. Ejecútalo con ⟦CODE_0004⟧.\n"
+"3. En una copia nueva, cambia ⟦CODE_0005⟧ ([L17](⟦DEST_0006⟧)) por ⟦CODE_0007⟧ y ejecútalo."
+
+#: lessons/exercises.md:138
+msgctxt "s-b49c49a0c312-0064"
+msgid "Acceptance criteria:"
+msgstr "Criterios de aceptación:"
+
+#: lessons/exercises.md:140
+msgctxt "s-441727aaa13d-0065"
+msgid "Step 2: the run never ends by itself: you get ⟦CODE_0001⟧ (exit ⟦CODE_0002⟧), or on a machine where the recursion eats memory faster than that, the container is killed for exceeding its memory limit (⟦CODE_0003⟧, exit ⟦CODE_0004⟧). No ⟦CODE_0005⟧ line either way. Rows appear whose running total equals their own hours: each child keeps its parent's ⟦CODE_0006⟧ line and restarts the total, so the stop rule never fires. Explain why the entry's own ⟦CODE_0007⟧ runs under ⟦CODE_0008⟧."
+msgstr "Paso 2: la ejecución nunca termina por sí sola: obtienes ⟦CODE_0001⟧ (salida ⟦CODE_0002⟧) o, en una máquina donde la recursión consume memoria más rápido que eso, se termina el contenedor por superar su límite de memoria (⟦CODE_0003⟧, salida ⟦CODE_0004⟧). En ningún caso aparece una línea ⟦CODE_0005⟧. Aparecen filas cuyo total acumulado es igual a sus propias horas: cada hijo conserva la línea ⟦CODE_0006⟧ de su padre y reinicia el total, así que la regla de parada nunca se activa. Explica por qué el ⟦CODE_0007⟧ de la entrada se ejecuta bajo ⟦CODE_0008⟧."
+
+#: lessons/exercises.md:141
+msgctxt "s-c36cf6aec6e3-0066"
+msgid "Step 3: an ⟦CODE_0001⟧ is printed and no rows appear. Explain which indexing in the program assumes origin 0."
+msgstr "Paso 3: se imprime un ⟦CODE_0001⟧ y no aparece ninguna fila. Explica qué indexación del programa supone origen 0."
+
+#: lessons/exercises.md:143
+msgctxt "s-1b2e61ddb4d9-0067"
+msgid "B7. LINQ: enumerate twice (verified)"
+msgstr "B7. LINQ: enumera dos veces (verificado)"
+
+#: lessons/exercises.md:145
+msgctxt "s-d7eedf9ae29e-0068"
+msgid "**Lesson:** [C# and LINQ](⟦DEST_0001⟧)."
+msgstr "**Lección:** [C# y LINQ](⟦DEST_0001⟧)."
+
+#: lessons/exercises.md:147
+msgctxt "s-acf3dd48b7fe-0069"
+msgid ""
+"In a new empty folder, make a console project (⟦CODE_0001⟧, target ⟦CODE_0002⟧) whose ⟦CODE_0003⟧ builds\n"
+"⟦CODE_0004⟧\n"
+"2. **Predict** how many ⟦CODE_0005⟧ lines print after: (a) declaring ⟦CODE_0006⟧; (b) one ⟦CODE_0007⟧; (c) ⟦CODE_0008⟧ *and* ⟦CODE_0009⟧; (d) ⟦CODE_0010⟧ once, then ⟦CODE_0011⟧ on the *list*.\n"
+"3. Run it (Docker: ⟦CODE_0012⟧; or ⟦CODE_0013⟧ on a Windows machine). Print a marker line between the steps so you can count.\n"
+"4. Add ⟦CODE_0014⟧ and print ⟦CODE_0015⟧ five times. The XAML entry seeds exactly this generator ([⟦CODE_0016⟧ L13](⟦DEST_0017⟧))."
+msgstr ""
+"En una carpeta nueva y vacía, crea un proyecto de consola (⟦CODE_0001⟧, destino ⟦CODE_0002⟧) cuyo ⟦CODE_0003⟧ construye\n"
+"⟦CODE_0004⟧\n"
+"2. **Predice** cuántas líneas ⟦CODE_0005⟧ se imprimen después de: (a) declarar ⟦CODE_0006⟧; (b) un ⟦CODE_0007⟧; (c) ⟦CODE_0008⟧ *y* ⟦CODE_0009⟧; (d) ⟦CODE_0010⟧ una vez y luego ⟦CODE_0011⟧ sobre la *lista*.\n"
+"3. Ejecútalo (Docker: ⟦CODE_0012⟧; o ⟦CODE_0013⟧ en una máquina Windows). Imprime una línea marcadora entre los pasos para poder contar.\n"
+"4. Agrega ⟦CODE_0014⟧ e imprime ⟦CODE_0015⟧ cinco veces. La entrada XAML inicializa exactamente este generador ([⟦CODE_0016⟧ L13](⟦DEST_0017⟧))."
+
+#: lessons/exercises.md:153
+msgctxt "s-b49c49a0c312-0070"
+msgid "Acceptance criteria:"
+msgstr "Criterios de aceptación:"
+
+#: lessons/exercises.md:155
+msgctxt "s-cffb476dc9c8-0071"
+msgid "(a) 0, (b) 3, (c) 6, (d) 3 ⟦CODE_0001⟧ lines. Name the property of ⟦CODE_0002⟧ that makes (a) zero and (c) six."
+msgstr "(a) 0, (b) 3, (c) 6, (d) 3 líneas ⟦CODE_0001⟧. Nombra la propiedad de ⟦CODE_0002⟧ que hace que (a) sea cero y (c) sea seis."
+
+#: lessons/exercises.md:156
+msgctxt "s-b4f2520f8af5-0072"
+msgid "The five hours for seed 42 are ⟦CODE_0001⟧. Say why a XAML program seeded with 42 produces the same cards on every run."
+msgstr "Las cinco horas para la semilla 42 son ⟦CODE_0001⟧. Explica por qué un programa XAML con semilla 42 produce las mismas tarjetas en cada ejecución."
+
+#: lessons/exercises.md:157
+msgctxt "s-0772df0f8aec-0073"
+msgid "Name the one operator in [⟦CODE_0001⟧](⟦DEST_0002⟧) that is *eager* and forces the lazy stages. In [⟦CODE_0003⟧](⟦DEST_0004⟧), when does the query produce the sum that controls the loop?"
+msgstr "Nombra el único operador de [⟦CODE_0001⟧](⟦DEST_0002⟧) que es *ansioso* (*eager*) y fuerza las etapas perezosas. En [⟦CODE_0003⟧](⟦DEST_0004⟧), ¿cuándo produce la consulta la suma que controla el bucle?"
+
+#: lessons/exercises.md:159
+msgctxt "s-27ac632e873f-0074"
+msgid "B8. Regex: what survives a failed match (verified)"
+msgstr "B8. Regex: qué sobrevive a una coincidencia fallida (verificado)"
+
+#: lessons/exercises.md:161
+msgctxt "s-d1ebf53f37ee-0075"
+msgid "**Lessons:** [Regex](⟦DEST_0001⟧). **Entries:** copies of ⟦CODE_0002⟧ and ⟦CODE_0003⟧."
+msgstr "**Lecciones:** [Regex](⟦DEST_0001⟧). **Entradas:** copias de ⟦CODE_0002⟧ y ⟦CODE_0003⟧."
+
+#: lessons/exercises.md:163
+msgctxt "s-1a9cb01e133e-0076"
+msgid ""
+"**.NET:** for a fixed witness, replace ⟦CODE_0001⟧ in ⟦CODE_0002⟧ with ⟦CODE_0003⟧. Run once in a fresh scratch data directory. Then change the end of the pattern on [L13](⟦DEST_0004⟧) from ⟦CODE_0005⟧ to ⟦CODE_0006⟧ and run in another fresh directory. Predict what the host can still read. Compare stdout, process exit status and the saved TSV.\n"
+"2. **pcre2grep:** in ⟦CODE_0007⟧, change the first ⟦CODE_0008⟧ to ⟦CODE_0009⟧. Predict what happens."
+msgstr ""
+"**.NET:** para una entrada de prueba fija, reemplaza ⟦CODE_0001⟧ en ⟦CODE_0002⟧ por ⟦CODE_0003⟧. Ejecuta una vez en un directorio de datos temporal nuevo. Después cambia el final del patrón en [L13](⟦DEST_0004⟧) de ⟦CODE_0005⟧ a ⟦CODE_0006⟧ y ejecuta en otro directorio nuevo. Predice qué puede seguir leyendo el anfitrión. Compara stdout, el estado de salida del proceso y el TSV guardado.\n"
+"2. **pcre2grep:** en ⟦CODE_0007⟧, cambia el primer ⟦CODE_0008⟧ por ⟦CODE_0009⟧. Predice qué ocurre."
+
+#: lessons/exercises.md:166
+msgctxt "s-b49c49a0c312-0077"
+msgid "Acceptance criteria:"
+msgstr "Criterios de aceptación:"
+
+#: lessons/exercises.md:168
+msgctxt "s-b406cf6dc2f1-0078"
+msgid ".NET: the unmutated pattern returns true, with five rows, a total of 50 and exit 0. The forced failure returns false, with zero rows, a total of zero and exit 1. The host still appends the header and summary to its TSV."
+msgstr ".NET: el patrón sin mutar devuelve true, con cinco filas, un total de 50 y salida 0. El fallo forzado devuelve false, con cero filas, un total de cero y salida 1. El anfitrión sigue añadiendo el encabezado y el resumen a su TSV."
+
+#: lessons/exercises.md:169
+msgctxt "s-31fc04d1603a-0079"
+msgid "pcre2grep: **no output at all**, exit code 0, no rows; ⟦CODE_0001⟧ fails. A callout that cannot be started is indistinguishable from a vetoed branch."
+msgstr "pcre2grep: **ninguna salida**, código de salida 0, ninguna fila; ⟦CODE_0001⟧ falla. Un callout que no puede iniciarse es indistinguible de una rama vetada."
+
+#: lessons/exercises.md:170
+msgctxt "s-3fbbc294c814-0080"
+msgid "Write three sentences contrasting what survives a failed match in Perl (⟦CODE_0001⟧ unwinds, side effects stay), PCRE2 (the C struct persists) and .NET (zero returned captures, with the host still printing and writing its empty report)."
+msgstr "Escribe tres oraciones que contrasten qué sobrevive a una coincidencia fallida en Perl (⟦CODE_0001⟧ se deshace, los efectos secundarios permanecen), PCRE2 (la estructura de C persiste) y .NET (se devuelven cero capturas, y el anfitrión aun así imprime y escribe su informe vacío)."
+
+#: lessons/exercises.md:172
+msgctxt "s-1ef40a94a9bf-0081"
+msgid "B9. sed: watch a computation (verified)"
+msgstr "B9. sed: observa un cálculo (verificado)"
+
+#: lessons/exercises.md:174
+msgctxt "s-e3183a079ebe-0082"
+msgid "**Lesson:** [GNU sed](⟦DEST_0001⟧). **Entry:** ⟦CODE_0002⟧."
+msgstr "**Lección:** [GNU sed](⟦DEST_0001⟧). **Entrada:** ⟦CODE_0002⟧."
+
+#: lessons/exercises.md:176
+msgctxt "s-2aa456b634a0-0083"
+msgid ""
+"Run ⟦CODE_0001⟧.\n"
+"2. **Predict** roughly how many state lines the program writes per card."
+msgstr ""
+"Ejecuta ⟦CODE_0001⟧.\n"
+"2. **Predice** cuántas líneas de estado escribe el programa por tarjeta, aproximadamente."
+
+#: lessons/exercises.md:179
+msgctxt "s-b49c49a0c312-0084"
+msgid "Acceptance criteria:"
+msgstr "Criterios de aceptación:"
+
+#: lessons/exercises.md:181
+msgctxt "s-c23f04110083-0085"
+msgid "⟦CODE_0001⟧ has many lines containing ⟦CODE_0002⟧; the last has a ⟦CODE_0003⟧ field of **41 or more** ⟦CODE_0004⟧ characters."
+msgstr "⟦CODE_0001⟧ tiene muchas líneas que contienen ⟦CODE_0002⟧; la última tiene un campo ⟦CODE_0003⟧ de **41 o más** caracteres ⟦CODE_0004⟧."
+
+#: lessons/exercises.md:182
+msgctxt "s-53ca0a5303c6-0086"
+msgid "Find, in [⟦CODE_0001⟧](⟦DEST_0002⟧), the rule that rejects a draw of 10-15 for the 4-bit value ([L29](⟦DEST_0003⟧)) and say what the pattern ⟦CODE_0004⟧ matches."
+msgstr "Encuentra, en [⟦CODE_0001⟧](⟦DEST_0002⟧), la regla que rechaza un sorteo de 10 a 15 para el valor de 4 bits ([L29](⟦DEST_0003⟧)) y di qué coincide con el patrón ⟦CODE_0004⟧."
+
+#: lessons/exercises.md:183
+msgctxt "s-5e946c0a18c4-0087"
+msgid "The number of state lines per card is *not* constant: say why (rejected draws repeat a step)."
+msgstr "El número de líneas de estado por tarjeta *no* es constante: explica por qué (los sorteos rechazados repiten un paso)."
+
+#: lessons/exercises.md:185
+msgctxt "s-adf13455d62d-0088"
+msgid "B10. Lisp: swap the method combination (verified)"
+msgstr "B10. Lisp: cambia la combinación de métodos (verificado)"
+
+#: lessons/exercises.md:187
+msgctxt "s-8d37f0500745-0089"
+msgid "**Lesson:** [Common Lisp](⟦DEST_0001⟧). **Entry:** copies of ⟦CODE_0002⟧."
+msgstr "**Lección:** [Common Lisp](⟦DEST_0001⟧). **Entrada:** copias de ⟦CODE_0002⟧."
+
+#: lessons/exercises.md:189
+msgctxt "s-7cc88c18c8fb-0090"
+msgid ""
+"**Predict:** on a copy, replace ⟦CODE_0001⟧ with ⟦CODE_0002⟧ in both places: ⟦CODE_0003⟧ ([L61](⟦DEST_0004⟧)) and ⟦CODE_0005⟧ inside ⟦CODE_0006⟧ ([L39](⟦DEST_0007⟧)). ⟦CODE_0008⟧ runs *every* method. How many cards will every run print?\n"
+"2. **Predict**, on a fresh copy: change *only* the generic function's ⟦CODE_0009⟧ to ⟦CODE_0010⟧ and leave the ⟦CODE_0011⟧ qualifiers alone.\n"
+"3. **Predict**, on a fresh copy: change the stop test ⟦CODE_0012⟧ ([L84](⟦DEST_0013⟧)) to ⟦CODE_0014⟧.\n"
+"4. Run each with ⟦CODE_0015⟧ (or ⟦CODE_0016⟧)."
+msgstr ""
+"**Predice:** en una copia, reemplaza ⟦CODE_0001⟧ por ⟦CODE_0002⟧ en ambos lugares: ⟦CODE_0003⟧ ([L61](⟦DEST_0004⟧)) y ⟦CODE_0005⟧ dentro de ⟦CODE_0006⟧ ([L39](⟦DEST_0007⟧)). ⟦CODE_0008⟧ ejecuta *todos* los métodos. ¿Cuántas tarjetas imprimirá cada ejecución?\n"
+"2. **Predice**, en una copia nueva: cambia *solo* ⟦CODE_0009⟧ de la función genérica a ⟦CODE_0010⟧ y deja intactos los calificadores ⟦CODE_0011⟧.\n"
+"3. **Predice**, en una copia nueva: cambia la prueba de parada ⟦CODE_0012⟧ ([L84](⟦DEST_0013⟧)) por ⟦CODE_0014⟧.\n"
+"4. Ejecuta cada una con ⟦CODE_0015⟧ (o ⟦CODE_0016⟧)."
+
+#: lessons/exercises.md:194
+msgctxt "s-b49c49a0c312-0091"
+msgid "Acceptance criteria:"
+msgstr "Criterios de aceptación:"
+
+#: lessons/exercises.md:196
+msgctxt "s-cdfb0b07f315-0092"
+msgid "Step 1: **exactly five card rows on every run** (run it five times), and the closing note says ⟦CODE_0001⟧. The entry's own ⟦CODE_0002⟧ **fails** on your copy."
+msgstr "Paso 1: **exactamente cinco filas de tarjeta en cada ejecución** (ejecútalo cinco veces) y la nota final dice ⟦CODE_0001⟧. El ⟦CODE_0002⟧ propio de la entrada **falla** en tu copia."
+
+#: lessons/exercises.md:197
+msgctxt "s-285bd7db5695-0093"
+msgid "Step 2: SBCL prints warnings that contain ⟦CODE_0001⟧. Say what the rule is: a method's qualifiers must belong to the combination of its generic function."
+msgstr "Paso 2: SBCL muestra advertencias que contienen ⟦CODE_0001⟧. Explica cuál es la regla: los calificadores de un método deben pertenecer a la combinación de su función genérica."
+
+#: lessons/exercises.md:198
+msgctxt "s-1a7ad19d17cc-0094"
+msgid "Step 3: **exactly five rows on every run**, a final total of at most 95 and ⟦CODE_0001⟧ fails with \"does not pass 100\". Say why five is the most this program can ever deal, and what you would have to change to support a limit of 100."
+msgstr "Paso 3: **exactamente cinco filas en cada ejecución**, un total final de 95 como máximo y ⟦CODE_0001⟧ falla con \"does not pass 100\". Explica por qué cinco es el máximo que este programa puede repartir y qué tendrías que cambiar para admitir un límite de 100."
+
+#: lessons/exercises.md:199
+msgctxt "s-0338d23a0f3d-0095"
+msgid "In one sentence: which single word is the stop rule, and why does removing it not make the program fail with an error?"
+msgstr "En una oración: ¿qué única palabra es la regla de parada y por qué quitarla no hace que el programa falle con un error?"
+
+#: lessons/exercises.md:201
+msgctxt "s-830f0ec9627c-0096"
+msgid "B11. m4: quote the recursion (verified)"
+msgstr "B11. m4: cita la recursión (verificado)"
+
+#: lessons/exercises.md:203
+msgctxt "s-1b22d2e68949-0097"
+msgid "**Lesson:** [m4](⟦DEST_0001⟧). **Entry:** copies of ⟦CODE_0002⟧."
+msgstr "**Lección:** [m4](⟦DEST_0001⟧). **Entrada:** copias de ⟦CODE_0002⟧."
+
+#: lessons/exercises.md:205
+msgctxt "s-3994de3d654a-0098"
+msgid ""
+"**Predict:** run ⟦CODE_0001⟧ twice. What differs between the runs, and what does not?\n"
+"2. **Predict:** on a copy, remove the brackets around the recursive call: change ⟦CODE_0002⟧ at the end of ⟦CODE_0003⟧ ([L82](⟦DEST_0004⟧)) to ⟦CODE_0005⟧. Run it with ⟦CODE_0006⟧, then again as ⟦CODE_0007⟧. (⟦CODE_0008⟧ limits nesting.)\n"
+"3. On a fresh copy change ⟦CODE_0009⟧ to ⟦CODE_0010⟧."
+msgstr ""
+"**Predice:** ejecuta ⟦CODE_0001⟧ dos veces. ¿Qué cambia entre las ejecuciones y qué no?\n"
+"2. **Predice:** en una copia, quita los corchetes alrededor de la llamada recursiva: cambia ⟦CODE_0002⟧ al final de ⟦CODE_0003⟧ ([L82](⟦DEST_0004⟧)) por ⟦CODE_0005⟧. Ejecútalo con ⟦CODE_0006⟧ y luego otra vez como ⟦CODE_0007⟧. (⟦CODE_0008⟧ limita el anidamiento.)\n"
+"3. En una copia nueva, cambia ⟦CODE_0009⟧ por ⟦CODE_0010⟧."
+
+#: lessons/exercises.md:209
+msgctxt "s-b49c49a0c312-0099"
+msgid "Acceptance criteria:"
+msgstr "Criterios de aceptación:"
+
+#: lessons/exercises.md:211
+msgctxt "s-f52c02b218ed-0100"
+msgid "Step 1: the card rows are identical both times (⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧, with totals 19, 32, 48); only the run id (it contains the clock) can differ. Say why a pinned seed gives the same cards: the generator is a formula, and the program holds no other source of randomness."
+msgstr "Paso 1: las filas de tarjetas son idénticas en ambas ejecuciones (⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧, con totales 19, 32 y 48); solo el id de ejecución (contiene el reloj) puede diferir. Explica por qué una semilla fija produce las mismas tarjetas: el generador es una fórmula y el programa no tiene ninguna otra fuente de aleatoriedad."
+
+#: lessons/exercises.md:212
+msgctxt "s-dd986c14257b-0101"
+msgid "Step 2: without ⟦CODE_0001⟧ the run ends in ⟦CODE_0002⟧ (exit 124) and prints nothing; with ⟦CODE_0003⟧ m4 stops with ⟦CODE_0004⟧, exits non-zero and there is no ⟦CODE_0005⟧ line. Explain, in terms of *when m4 expands arguments*, why the brackets are the stop rule."
+msgstr "Paso 2: sin ⟦CODE_0001⟧ la ejecución termina en ⟦CODE_0002⟧ (exit 124) y no imprime nada; con ⟦CODE_0003⟧ m4 se detiene con ⟦CODE_0004⟧, termina con un código distinto de cero y no hay ninguna línea ⟦CODE_0005⟧. Explica, en términos de *cuándo expande m4 los argumentos*, por qué los corchetes son la regla de parada."
+
+#: lessons/exercises.md:213
+msgctxt "s-f86a33b3010a-0102"
+msgid "Step 3: ⟦CODE_0001⟧ passes."
+msgstr "Paso 3: ⟦CODE_0001⟧ pasa."
+
+#: lessons/exercises.md:215
+msgctxt "s-7fcfd9ae518e-0103"
+msgid "B12. Tcl: edit the program in the database (verified)"
+msgstr "B12. Tcl: edita el programa en la base de datos (verificado)"
+
+#: lessons/exercises.md:217
+msgctxt "s-fcef70532f57-0104"
+msgid "**Lesson:** [Tcl](⟦DEST_0001⟧). **Entry:** copies of ⟦CODE_0002⟧."
+msgstr "**Lección:** [Tcl](⟦DEST_0001⟧). **Entrada:** copias de ⟦CODE_0002⟧."
+
+#: lessons/exercises.md:219
+msgctxt "s-ede28ff343e9-0105"
+msgid ""
+"**Predict:** on a copy, change ⟦CODE_0001⟧ ([L55](⟦DEST_0002⟧)) to ⟦CODE_0003⟧. How many card rows will be printed? How many will the summary count?\n"
+"2. **Predict:** on a fresh copy, change the body of the ⟦CODE_0004⟧ row ([L73](⟦DEST_0005⟧)) from ⟦CODE_0006⟧ to ⟦CODE_0007⟧. You are editing *text inside an SQL string*, not a Tcl proc.\n"
+"3. Run each: ⟦CODE_0008⟧."
+msgstr ""
+"**Predice:** en una copia, cambia ⟦CODE_0001⟧ ([L55](⟦DEST_0002⟧)) por ⟦CODE_0003⟧. ¿Cuántas filas de tarjetas se imprimirán? ¿Cuántas contará el resumen?\n"
+"2. **Predice:** en una copia nueva, cambia el cuerpo de la fila ⟦CODE_0004⟧ ([L73](⟦DEST_0005⟧)) de ⟦CODE_0006⟧ a ⟦CODE_0007⟧. Estás editando *texto dentro de una cadena de texto SQL*, no un procedimiento (*proc*) de Tcl.\n"
+"3. Ejecuta cada una: ⟦CODE_0008⟧."
+
+#: lessons/exercises.md:223
+msgctxt "s-b49c49a0c312-0106"
+msgid "Acceptance criteria:"
+msgstr "Criterios de aceptación:"
+
+#: lessons/exercises.md:225
+msgctxt "s-3d2ac06d061a-0107"
+msgid "Step 1: **exactly one card row** is printed and the summary says ⟦CODE_0001⟧: the trigger fired once (so card 2 was inserted and counted) but an insert made by a trigger does not fire the trigger again unless recursion is enabled, so card 2 was never printed. ⟦CODE_0002⟧ fails."
+msgstr "Paso 1: se imprime **exactamente una fila de tarjeta** y el resumen dice ⟦CODE_0001⟧: el disparador se ejecutó una vez (por eso la tarjeta 2 se insertó y se contó), pero una inserción hecha por un disparador no vuelve a activar el disparador a menos que la recursión esté habilitada, así que la tarjeta 2 nunca se imprimió. ⟦CODE_0002⟧ falla."
+
+#: lessons/exercises.md:226
+msgctxt "s-e2ad5bb56bca-0108"
+msgid "Step 2: every run prints **exactly five rows**, hours all 10, totals 10, 20, 30, 40, 50, and ⟦CODE_0001⟧ **passes**. Explain why the run does not stop at 40 (compare the last question of [A1](⟦DEST_0002⟧))."
+msgstr "Paso 2: cada ejecución imprime **exactamente cinco filas**, con horas todas iguales a 10 y totales de 10, 20, 30, 40 y 50. ⟦CODE_0001⟧ **pasa**. Explica por qué la ejecución no se detiene en 40 (compara con la última pregunta de [A1](⟦DEST_0002⟧))."
+
+#: lessons/exercises.md:227
+msgctxt "s-7b58afd55b05-0109"
+msgid "Name the three hooks (an SQL function that calls Tcl, ⟦CODE_0001⟧, a trigger) and say which one you changed in step 2."
+msgstr "Nombra los tres puntos de enganche (una función SQL que llama a Tcl, ⟦CODE_0001⟧, un disparador) e indica cuál cambiaste en el paso 2."
+
+#: lessons/exercises.md:229
+msgctxt "s-c7f2b73030d9-0110"
+msgid "B13. AWK: the missing ⟦CODE_0001⟧ (verified)"
+msgstr "B13. AWK: el ⟦CODE_0001⟧ que falta (verificado)"
+
+#: lessons/exercises.md:231
+msgctxt "s-f49e58c349cd-0111"
+msgid "**Lesson:** [AWK](⟦DEST_0001⟧). **Entry:** copies of ⟦CODE_0002⟧."
+msgstr "**Lección:** [AWK](⟦DEST_0001⟧). **Entrada:** copias de ⟦CODE_0002⟧."
+
+#: lessons/exercises.md:233
+msgctxt "s-eb955b4d5ef9-0112"
+msgid ""
+"**Predict:** on a copy, make a digit file ⟦CODE_0001⟧ in the copy's folder and run ⟦CODE_0002⟧. What are the cards? (Dice: ⟦CODE_0003⟧.)\n"
+"2. **Predict:** on a fresh copy, delete rule 1, the line ⟦CODE_0004⟧ ([L52](⟦DEST_0005⟧)), and run the same command.\n"
+"3. Run the *unmodified* program under mawk **on the finite file only**: ⟦CODE_0006⟧. Do **not** run it under mawk on ⟦CODE_0007⟧: it never stops and eats memory until it dies.\n"
+"4. On a fresh copy change the stop rule ⟦CODE_0008⟧ ([L69](⟦DEST_0009⟧)) to ⟦CODE_0010⟧ and run it on ⟦CODE_0011⟧ (⟦CODE_0012⟧)."
+msgstr ""
+"**Predice:** en una copia, crea un archivo de dígitos ⟦CODE_0001⟧ en la carpeta de la copia y ejecuta ⟦CODE_0002⟧. ¿Cuáles son las tarjetas? (Dados: ⟦CODE_0003⟧.)\n"
+"2. **Predice:** en una copia nueva, ejecuta el mismo comando después de borrar la regla 1, la línea ⟦CODE_0004⟧ ([L52](⟦DEST_0005⟧)).\n"
+"3. Ejecuta el programa *sin modificar* con mawk **solo con el archivo finito**: ⟦CODE_0006⟧. **No** lo ejecutes con mawk sobre ⟦CODE_0007⟧: nunca se detiene y consume memoria hasta que muere.\n"
+"4. En una copia nueva cambia la regla de parada ⟦CODE_0008⟧ ([L69](⟦DEST_0009⟧)) por ⟦CODE_0010⟧ y ejecútalo sobre ⟦CODE_0011⟧ (⟦CODE_0012⟧)."
+
+#: lessons/exercises.md:238
+msgctxt "s-b49c49a0c312-0113"
+msgid "Acceptance criteria:"
+msgstr "Criterios de aceptación:"
+
+#: lessons/exercises.md:240
+msgctxt "s-113f4fecd035-0114"
+msgid "Step 1: two cards, ⟦CODE_0001⟧ and ⟦CODE_0002⟧ and ⟦CODE_0003⟧. The trailing newline of the file leaves an empty last record that rule 1 skips."
+msgstr "Paso 1: dos tarjetas, ⟦CODE_0001⟧, ⟦CODE_0002⟧ y ⟦CODE_0003⟧. El salto de línea final del archivo deja un último registro vacío que la regla 1 omite."
+
+#: lessons/exercises.md:241
+msgctxt "s-a614cbbdd6a4-0115"
+msgid "Step 2: **three** cards; the third is ⟦CODE_0001⟧ and the summary says ⟦CODE_0002⟧. Explain why an empty ⟦CODE_0003⟧ counted as a 10-hour card (⟦CODE_0004⟧)."
+msgstr "Paso 2: **tres** tarjetas; la tercera es ⟦CODE_0001⟧ y el resumen dice ⟦CODE_0002⟧. Explica por qué un ⟦CODE_0003⟧ vacío contó como una tarjeta de 10 horas (⟦CODE_0004⟧)."
+
+#: lessons/exercises.md:242
+msgctxt "s-1ac9257a744f-0116"
+msgid "Step 3: the header and ⟦CODE_0001⟧, no error, exit 0. Explain why: mawk has no ⟦CODE_0002⟧, so ⟦CODE_0003⟧ is true for every record and rule 1 skips them all. Say what this teaches about \"portable-looking\" code, and which [knowledge level](⟦DEST_0004⟧) ⟦CODE_0005⟧ is."
+msgstr "Paso 3: aparecen el encabezado y ⟦CODE_0001⟧, sin error, con código de salida 0. Explica por qué: mawk no tiene ⟦CODE_0002⟧, así que ⟦CODE_0003⟧ es verdadero para todos los registros y la regla 1 los omite todos. Di qué enseña esto sobre el código que \"parece portable\" y de qué [nivel de conocimiento](⟦DEST_0004⟧) es ⟦CODE_0005⟧."
+
+#: lessons/exercises.md:243
+msgctxt "s-028d9342a818-0117"
+msgid "Step 4: ⟦CODE_0001⟧ passes."
+msgstr "Paso 4: ⟦CODE_0001⟧ pasa."
+
+#: lessons/exercises.md:245
+msgctxt "s-eb06a47a3e1e-0118"
+msgid "B14. find: rig the dice (verified)"
+msgstr "B14. find: manipula los dados (verificado)"
+
+#: lessons/exercises.md:247
+msgctxt "s-146ed523590d-0119"
+msgid "**Lesson:** [find](⟦DEST_0001⟧). **Entry:** a copy of ⟦CODE_0002⟧."
+msgstr "**Lección:** [find](⟦DEST_0001⟧). **Entrada:** una copia de ⟦CODE_0002⟧."
+
+#: lessons/exercises.md:249
+msgctxt "s-4b5496c11ce1-0120"
+msgid "In the copy, make a folder ⟦CODE_0001⟧ with an executable script ⟦CODE_0002⟧ that always names the new directory ⟦CODE_0003⟧:"
+msgstr "En la copia, crea un directorio ⟦CODE_0001⟧ con un script ejecutable ⟦CODE_0002⟧ que siempre nombre el nuevo directorio ⟦CODE_0003⟧:"
+
+#: lessons/exercises.md:256
+msgctxt "s-a8200e22d2ca-0121"
+msgid ""
+"Run ⟦CODE_0001⟧. **Predict** the rows first. (The dice use the *last* character; ⟦CODE_0002⟧ is in the group ⟦CODE_0003⟧, which is the tenth group.)\n"
+"2. Change the name in the script to ⟦CODE_0004⟧ and run it again. **Predict:** ⟦CODE_0005⟧ is thrown away.\n"
+"3. Change the name to ⟦CODE_0006⟧ and run it again. **Predict:** both of the last two characters are thrown away."
+msgstr ""
+"Ejecuta ⟦CODE_0001⟧. **Predice** primero las filas. (Los dados usan el *último* carácter; ⟦CODE_0002⟧ está en el grupo ⟦CODE_0003⟧, que es el décimo grupo.)\n"
+"2. Cambia el nombre en el script a ⟦CODE_0004⟧ y ejecútalo de nuevo. **Predice:** se descarta ⟦CODE_0005⟧.\n"
+"3. Cambia el nombre a ⟦CODE_0006⟧ y ejecútalo de nuevo. **Predice:** se descartan los dos últimos caracteres."
+
+#: lessons/exercises.md:260
+msgctxt "s-b49c49a0c312-0122"
+msgid "Acceptance criteria:"
+msgstr "Criterios de aceptación:"
+
+#: lessons/exercises.md:262
+msgctxt "s-d0c65e06bd42-0123"
+msgid "Step 1: three cards, ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧ and ⟦CODE_0004⟧. Every die shows the same group, so every card has 19 hours."
+msgstr "Paso 1: tres tarjetas, ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧ y ⟦CODE_0004⟧. Cada dado muestra el mismo grupo, así que cada tarjeta tiene 19 horas."
+
+#: lessons/exercises.md:263
+msgctxt "s-144c7190d15b-0124"
+msgid "Step 2: the walk reads the character before the ⟦CODE_0001⟧. That is ⟦CODE_0002⟧, in the group ⟦CODE_0003⟧, the fourth group, so every card has 13 hours: ⟦CODE_0004⟧, ⟦CODE_0005⟧, ⟦CODE_0006⟧, ⟦CODE_0007⟧. Four cards, and the 39 *continues*, because 39 is not over 40. Explain why the stop rule needs a fourth card here."
+msgstr "Paso 2: el recorrido lee el carácter anterior a ⟦CODE_0001⟧. Ese carácter es ⟦CODE_0002⟧, del grupo ⟦CODE_0003⟧, el cuarto grupo, así que cada tarjeta tiene 13 horas: ⟦CODE_0004⟧, ⟦CODE_0005⟧, ⟦CODE_0006⟧, ⟦CODE_0007⟧. Son cuatro tarjetas, y el 39 *continúa*, porque 39 no pasa de 40. Explica por qué la regla de parada necesita aquí una cuarta tarjeta."
+
+#: lessons/exercises.md:264
+msgctxt "s-65a2860c6210-0125"
+msgid "Step 3: both characters are thrown away, so the hours are 10. Five cards: totals 10, 20, 30, 40, 50. The 40 continues (exactly 40 is not over 40), and the fifth card is ⟦CODE_0001⟧ again, because there are only four categories."
+msgstr "Paso 3: se descartan los dos caracteres, así que las horas son 10. Cinco tarjetas: totales de 10, 20, 30, 40 y 50. El 40 continúa (un total de exactamente 40 no pasa de 40), y la quinta tarjeta vuelve a ser ⟦CODE_0001⟧, porque solo hay cuatro categorías."
+
+#: lessons/exercises.md:266
+msgctxt "s-1c66ea6c956e-0126"
+msgid "B15. GNU find: move the stop rule, read the profile (verified)"
+msgstr "B15. GNU find: mueve la regla de parada, lee el perfil (verificado)"
+
+#: lessons/exercises.md:268
+msgctxt "s-a4ceb0bead18-0127"
+msgid "**Lesson:** [find](⟦DEST_0001⟧). **Entry:** copies of ⟦CODE_0002⟧."
+msgstr "**Lección:** [find](⟦DEST_0001⟧). **Entrada:** copias de ⟦CODE_0002⟧."
+
+#: lessons/exercises.md:270
+msgctxt "s-08bb6fae8ba8-0128"
+msgid ""
+"**Predict:** in a copy, change the stop test in ⟦CODE_0001⟧, ⟦CODE_0002⟧, to ⟦CODE_0003⟧. What is the new stop rule? Run it with ⟦CODE_0004⟧, then run the entry's own ⟦CODE_0005⟧ (⟦CODE_0006⟧).\n"
+"2. On a *fresh* copy, run ⟦CODE_0007⟧. Look at standard error."
+msgstr ""
+"**Predice:** en una copia, cambia la prueba de parada en ⟦CODE_0001⟧, ⟦CODE_0002⟧, a ⟦CODE_0003⟧. ¿Cuál es la nueva regla de parada? Ejecútala con ⟦CODE_0004⟧ y luego ejecuta el ⟦CODE_0005⟧ de la propia entrada (⟦CODE_0006⟧).\n"
+"2. En una copia *nueva*, ejecuta ⟦CODE_0007⟧. Mira el error estándar."
+
+#: lessons/exercises.md:273
+msgctxt "s-b49c49a0c312-0129"
+msgid "Acceptance criteria:"
+msgstr "Criterios de aceptación:"
+
+#: lessons/exercises.md:275
+msgctxt "s-81e29643b781-0130"
+msgid "Step 1: the new rule is \"stop once the path has 31 or more slashes\", which is \"the total is over 30\". ⟦CODE_0001⟧ passes. The entry's own ⟦CODE_0002⟧ **fails**: its forced-dice scenarios expect cards that no longer get made. Explain why changing one number in a regular expression is enough to change the stop rule."
+msgstr "Paso 1: la nueva regla es \"parar cuando la ruta tenga 31 barras o más\", que equivale a \"el total pasa de 30\". ⟦CODE_0001⟧ pasa. El ⟦CODE_0002⟧ propio de la entrada **falla**: sus escenarios de dados forzados esperan tarjetas que ya no se crean. Explica por qué basta con cambiar un número en una expresión regular para cambiar la regla de parada."
+
+#: lessons/exercises.md:276
+msgctxt "s-b11f894c2e52-0131"
+msgid "Step 2: find prints, for every test in the program, a line like ⟦CODE_0001⟧. You can say how many times the ⟦CODE_0002⟧ test succeeded (once per card), and you can say why find's own guess (⟦CODE_0003⟧) for the ⟦CODE_0004⟧ tests is so far off."
+msgstr "Paso 2: find imprime, para cada prueba del programa, una línea como ⟦CODE_0001⟧. Podrás decir cuántas veces tuvo éxito la prueba ⟦CODE_0002⟧ (una vez por tarjeta) y por qué la estimación propia de find (⟦CODE_0003⟧) para las pruebas ⟦CODE_0004⟧ queda tan lejos de la realidad."
+
+#: lessons/exercises.md:278
+msgctxt "s-57c0a54b0472-0132"
+msgid "B16. tar: read the program, then run it (verified)"
+msgstr "B16. tar: lee el programa y luego ejecútalo (verificado)"
+
+#: lessons/exercises.md:280
+msgctxt "s-6a04d95730aa-0133"
+msgid "**Lesson:** [tar](⟦DEST_0001⟧). **Entry:** a copy of ⟦CODE_0002⟧."
+msgstr "**Lección:** [tar](⟦DEST_0001⟧). **Entrada:** una copia de ⟦CODE_0002⟧."
+
+#: lessons/exercises.md:282
+msgctxt "s-7908cbb425c3-0134"
+msgid ""
+"In the copy, write an archive with fixed hours and read it without running it: ⟦CODE_0001⟧, then ⟦CODE_0002⟧. **Predict** how many cards will run, and which of the five card slots will be read and ignored. Then run it: ⟦CODE_0003⟧.\n"
+"2. Take the program apart with plain tar: ⟦CODE_0004⟧. Open ⟦CODE_0005⟧ and change ⟦CODE_0006⟧ to ⟦CODE_0007⟧. Pack it again **in the same order**: ⟦CODE_0008⟧. **Predict** the rows, then run ⟦CODE_0009⟧. Delete the old database first (⟦CODE_0010⟧), so only this run is in it. Run it with the ⟦CODE_0011⟧ table in view: ⟦CODE_0012⟧.\n"
+"3. Add a member that is not in the instruction set: ⟦CODE_0013⟧, pack ⟦CODE_0014⟧ again with ⟦CODE_0015⟧ after ⟦CODE_0016⟧, and run ⟦CODE_0017⟧, then ⟦CODE_0018⟧. **Predict** both exit statuses, and whether a file called ⟦CODE_0019⟧ appears."
+msgstr ""
+"En la copia, escribe un archivo con horas fijas y léelo sin ejecutarlo: ⟦CODE_0001⟧, luego ⟦CODE_0002⟧. **Predice** cuántas tarjetas se ejecutarán y cuáles de las cinco ranuras de tarjeta se leerán y se ignorarán. Después ejecútalo: ⟦CODE_0003⟧.\n"
+"2. Desarma el programa con tar simple: ⟦CODE_0004⟧. Abre ⟦CODE_0005⟧ y cambia ⟦CODE_0006⟧ por ⟦CODE_0007⟧. Empaquétalo de nuevo **en el mismo orden**: ⟦CODE_0008⟧. **Predice** las filas y ejecuta ⟦CODE_0009⟧. Borra primero la base de datos anterior (⟦CODE_0010⟧), para que solo esté esta ejecución. Ejecútalo con la tabla ⟦CODE_0011⟧ a la vista: ⟦CODE_0012⟧.\n"
+"3. Añade un miembro que no está en el conjunto de instrucciones: ⟦CODE_0013⟧, empaqueta ⟦CODE_0014⟧ de nuevo con ⟦CODE_0015⟧ después de ⟦CODE_0016⟧ y ejecuta ⟦CODE_0017⟧, luego ⟦CODE_0018⟧. **Predice** ambos estados de salida y si aparece un archivo llamado ⟦CODE_0019⟧."
+
+#: lessons/exercises.md:286
+msgctxt "s-b49c49a0c312-0135"
+msgid "Acceptance criteria:"
+msgstr "Criterios de aceptación:"
+
+#: lessons/exercises.md:288
+msgctxt "s-e7f13b1057f5-0136"
+msgid "Step 1: four cards (⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧), and the fifth slot is read and ignored. ⟦CODE_0005⟧ passes."
+msgstr "Paso 1: cuatro tarjetas (⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧); el programa lee la quinta posición y la ignora. ⟦CODE_0005⟧ pasa."
+
+#: lessons/exercises.md:289
+msgctxt "s-50579cc8b1fa-0137"
+msgid "Step 2: two cards (⟦CODE_0001⟧, ⟦CODE_0002⟧). The limit is in the archive, so changing a member changed the stop rule, and ⟦CODE_0003⟧ did not change. The trace shows ⟦CODE_0004⟧ for the first two cards and ⟦CODE_0005⟧ for the rest. ⟦CODE_0006⟧ passes."
+msgstr "Paso 2: dos tarjetas (⟦CODE_0001⟧, ⟦CODE_0002⟧). El límite está en el archivo, así que cambiar un miembro cambió la regla de parada, y ⟦CODE_0003⟧ no cambió. La traza muestra ⟦CODE_0004⟧ para las dos primeras tarjetas y ⟦CODE_0005⟧ para el resto. ⟦CODE_0006⟧ pasa."
+
+#: lessons/exercises.md:290
+msgctxt "s-d7107ed311df-0138"
+msgid "Step 3: the inspector prints the line ⟦CODE_0001⟧ and exits 4. ⟦CODE_0002⟧ exits 4 and says that nothing was run. No ⟦CODE_0003⟧ file exists. Explain why plain ⟦CODE_0004⟧ of the same archive would also not create it."
+msgstr "Paso 3: el inspector imprime la línea ⟦CODE_0001⟧ y termina con código 4. ⟦CODE_0002⟧ termina con código 4 y dice que no se ejecutó nada. No existe ningún archivo ⟦CODE_0003⟧. Explica por qué ⟦CODE_0004⟧ simple del mismo archivo comprimido tampoco lo crearía."
+
+#: lessons/exercises.md:291
+msgctxt "s-1e90f5282e5c-0139"
+msgid "In one sentence each: which step *parsed* the program, which step *ran* it and where was the trust boundary?"
+msgstr "En una frase para cada uno: ¿qué paso *analizó* el programa, qué paso lo *ejecutó* y dónde estaba la frontera de confianza?"
+
+#: lessons/exercises.md:293
+msgctxt "s-a833d766a8e2-0140"
+msgid "B17. tar, weirder: predict the clock (verified)"
+msgstr "B17. tar, más raro: predice el reloj (verificado)"
+
+#: lessons/exercises.md:295
+msgctxt "s-10c694f05c7d-0141"
+msgid "**Lesson:** [tar](⟦DEST_0001⟧). **Entry:** a copy of ⟦CODE_0002⟧."
+msgstr "**Lección:** [tar](⟦DEST_0001⟧). **Entrada:** una copia de ⟦CODE_0002⟧."
+
+#: lessons/exercises.md:297
+msgctxt "s-cdea4041af0a-0142"
+msgid "For seed 42 the cards are ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧, so the total reaches 12, 29 and 46 hours. The run needs 46 ticks."
+msgstr "Con la semilla 42 las tarjetas son ⟦CODE_0001⟧, ⟦CODE_0002⟧ y ⟦CODE_0003⟧, así que el total sube a 12, 29 y 46 horas. La ejecución necesita 46 ticks."
+
+#: lessons/exercises.md:299
+msgctxt "s-566970f44bc6-0143"
+msgid ""
+"**Predict**, then run: ⟦CODE_0001⟧, and then ⟦CODE_0002⟧. Look at the exit status of each (⟦CODE_0003⟧).\n"
+"2. **Predict** how many ticks you get from ⟦CODE_0004⟧, and from ⟦CODE_0005⟧. Then run both.\n"
+"3. **Predict** the output of ⟦CODE_0006⟧. How many records does tar write?\n"
+"4. Open the tape of the last run (⟦CODE_0007⟧ counts the bytes that are not zero). What is in it, and does the content matter?"
+msgstr ""
+"**Predice** y luego ejecuta: ⟦CODE_0001⟧ y después ⟦CODE_0002⟧. Mira el estado de salida de cada una (⟦CODE_0003⟧).\n"
+"2. **Predice** cuántos *ticks* obtienes con ⟦CODE_0004⟧ y con ⟦CODE_0005⟧. Luego ejecuta ambos.\n"
+"3. **Predice** la salida de ⟦CODE_0006⟧. ¿Cuántos registros escribe tar?\n"
+"4. Abre la cinta de la última ejecución (⟦CODE_0007⟧ cuenta los bytes que no son cero). ¿Qué hay en ella y importa el contenido?"
+
+#: lessons/exercises.md:304
+msgctxt "s-b49c49a0c312-0144"
+msgid "Acceptance criteria:"
+msgstr "Criterios de aceptación:"
+
+#: lessons/exercises.md:306
+msgctxt "s-c98d4c84b5f6-0145"
+msgid "Step 1: with 45 ticks the third card is not finished, so you see two cards, the message ⟦CODE_0001⟧ and exit status 3. With 46 ticks the run ends with three cards and exit status 0."
+msgstr "Paso 1: con 45 ticks la tercera tarjeta no termina, así que ves dos tarjetas, el mensaje ⟦CODE_0001⟧ y el estado de salida 3. Con 46 ticks la ejecución termina con tres tarjetas y estado de salida 0."
+
+#: lessons/exercises.md:307
+msgctxt "s-8f84e2c736c6-0146"
+msgid "Step 2: with ⟦CODE_0001⟧ the callback runs once per two records. 92 records give 46 ticks, so the run finishes. 91 records give 45 ticks, so it stalls. The last ⟦CODE_0002⟧ in the finished run is 92, which is the number of records, and the machine counted 46 calls."
+msgstr "Paso 2: con ⟦CODE_0001⟧ la función de devolución de llamada (*callback*) se ejecuta una vez por cada dos registros. Una función de devolución de llamada es una función que el código llama cuando le toca. 92 registros dan 46 ticks, así que la ejecución termina. 91 registros dan 45 ticks, así que se atasca. El último ⟦CODE_0002⟧ en la ejecución terminada es 92, que es el número de registros; la máquina contó 46 llamadas."
+
+#: lessons/exercises.md:308
+msgctxt "s-6a10e08df29c-0147"
+msgid "Step 3: ⟦CODE_0001⟧ makes a record four blocks. 260 blocks make 65 records and 65 ticks. The run finishes with the same three cards, and 19 ticks are idle."
+msgstr "Paso 3: ⟦CODE_0001⟧ hace que un registro ocupe cuatro bloques. 260 bloques forman 65 registros y 65 ticks. La ejecución termina con las mismas tres tarjetas y hay 19 ticks inactivos."
+
+#: lessons/exercises.md:309
+msgctxt "s-5365a93db466-0148"
+msgid "Step 4: Almost all of ⟦CODE_0001⟧ is zeros. The only other bytes are the member's 512-byte header (its name, mode and so on), fewer than 100 of them. The payload does not matter. Its *size* is the clock."
+msgstr "Paso 4: Casi todo ⟦CODE_0001⟧ son ceros. Los únicos otros bytes son el encabezado de 512 bytes del miembro (su nombre, su modo y demás), menos de 100 de ellos. La carga útil no importa. Su *tamaño* es el reloj."
+
+#: lessons/exercises.md:311
+msgctxt "s-42ce6db4f36e-0149"
+msgid "B18. ed: move the stop rule and break the cleanup (verified)"
+msgstr "B18. ed: mueve la regla de parada y rompe la limpieza (verificado)"
+
+#: lessons/exercises.md:313
+msgctxt "s-5858f73c624c-0150"
+msgid "**Lesson:** [ed and Ex](⟦DEST_0001⟧). **Entry:** a copy of ⟦CODE_0002⟧."
+msgstr "**Lección:** [ed and Ex](⟦DEST_0001⟧). **Entrada:** una copia de ⟦CODE_0002⟧."
+
+#: lessons/exercises.md:315
+msgctxt "s-9fe0e2421418-0151"
+msgid "The launcher takes ⟦CODE_0001⟧: five digits. Each card has 10 + its digit hours."
+msgstr "El lanzador recibe ⟦CODE_0001⟧: cinco dígitos. Cada tarjeta tiene 10 horas más el valor de su dígito."
+
+#: lessons/exercises.md:317
+msgctxt "s-ed4d0be72602-0152"
+msgid ""
+"**Predict**, then run: ⟦CODE_0001⟧, and ⟦CODE_0002⟧. How many cards will each print, and why is the fifth card of the first one ⟦CODE_0003⟧ again?\n"
+"2. In the copy, change ⟦CODE_0004⟧ in ⟦CODE_0005⟧ to ⟦CODE_0006⟧. **Predict** the rows for ⟦CODE_0007⟧ before and after the change. Then run both.\n"
+"3. Delete the line ⟦CODE_0008⟧ from ⟦CODE_0009⟧. Run the ed program on its own: ⟦CODE_0010⟧. **Predict** the extra line."
+msgstr ""
+"**Predice** y luego ejecuta: ⟦CODE_0001⟧ y ⟦CODE_0002⟧. ¿Cuántas tarjetas imprimirá cada uno y por qué la quinta tarjeta del primero vuelve a ser ⟦CODE_0003⟧?\n"
+"2. En la copia, cambia ⟦CODE_0004⟧ en ⟦CODE_0005⟧ por ⟦CODE_0006⟧. **Predice** las filas de ⟦CODE_0007⟧ antes y después del cambio. Luego ejecuta ambos.\n"
+"3. Borra la línea ⟦CODE_0008⟧ de ⟦CODE_0009⟧. Ejecuta el programa de ed por separado: ⟦CODE_0010⟧. **Predice** la línea extra."
+
+#: lessons/exercises.md:321
+msgctxt "s-b49c49a0c312-0153"
+msgid "Acceptance criteria:"
+msgstr "Criterios de aceptación:"
+
+#: lessons/exercises.md:323
+msgctxt "s-42cd705f4b05-0154"
+msgid "Step 1: all ten-hour cards give five cards with totals 10, 20, 30, 40, 50 (a total of exactly 40 does not stop the run, and there are only four categories, so the fifth is ⟦CODE_0001⟧ again). All 19-hour cards give three cards: 19, 38, 57."
+msgstr "Paso 1: todas las tarjetas de diez horas dan cinco tarjetas con totales de 10, 20, 30, 40 y 50 (un total de exactamente 40 no detiene la ejecución, y solo hay cuatro categorías, así que la quinta es ⟦CODE_0001⟧ otra vez). Todas las tarjetas de 19 horas dan tres tarjetas: 19, 38 y 57."
+
+#: lessons/exercises.md:324
+msgctxt "s-156b57009f9e-0155"
+msgid "Step 2: before the change, ⟦CODE_0001⟧ give four cards (13, 26, 39, 52). After it, three cards (13, 26, 39): the run now stops after the first total over 30. ⟦CODE_0002⟧ passes. One number in a regular expression moved the stop rule."
+msgstr "Paso 2: antes del cambio, ⟦CODE_0001⟧ dan cuatro tarjetas (13, 26, 39, 52). Después, tres tarjetas (13, 26, 39): la ejecución ahora se detiene después del primer total que pasa de 30. ⟦CODE_0002⟧ pasa. Un número en una expresión regular movió la regla de parada."
+
+#: lessons/exercises.md:325
+msgctxt "s-42f05a4b05f8-0156"
+msgid "Step 3: the output ends with an extra line ⟦CODE_0001⟧. It is the fifth card, which was turned into a dead card because the total had passed 40 at card 4. The ⟦CODE_0002⟧ rule is the one that stops cards from counting; the cleanup only hides them."
+msgstr "Paso 3: la salida termina con una línea extra ⟦CODE_0001⟧. Es la quinta tarjeta, que se convirtió en una tarjeta muerta porque el total pasó de 40 en la tarjeta 4. La regla ⟦CODE_0002⟧ es la que impide que las tarjetas cuenten; la limpieza solo las oculta."
+
+#: lessons/exercises.md:326
+msgctxt "s-d6251858f16f-0157"
+msgid "In one sentence: which ed feature made each of the three changes possible?"
+msgstr "En una frase: ¿qué función de ed hizo posible cada uno de los tres cambios?"
+
+#: lessons/exercises.md:328
+msgctxt "s-70cfb6639d86-0158"
+msgid "B19. Ex: move the limit on the tape and cut the loop (verified)"
+msgstr "B19. Ex: mueve el límite en la cinta y corta el bucle (verificado)"
+
+#: lessons/exercises.md:330
+msgctxt "s-d82797db988c-0159"
+msgid "**Lesson:** [ed and Ex](⟦DEST_0001⟧). **Entry:** a copy of ⟦CODE_0002⟧."
+msgstr "**Lección:** [ed and Ex](⟦DEST_0001⟧). **Entrada:** una copia de ⟦CODE_0002⟧."
+
+#: lessons/exercises.md:332
+msgctxt "s-9fe0e2421418-0160"
+msgid "The launcher takes ⟦CODE_0001⟧: five digits. Each card has 10 + its digit hours."
+msgstr "El lanzador recibe ⟦CODE_0001⟧: cinco dígitos. Cada tarjeta dura 10 horas más las horas de su dígito."
+
+#: lessons/exercises.md:334
+msgctxt "s-ab14ee2f0cd6-0161"
+msgid ""
+"**Predict**, then run: ⟦CODE_0001⟧. How many cards, and what are the totals?\n"
+"2. In the copy, make the tape say \"go on\" up to 45 instead of 40: ⟦CODE_0002⟧. **Predict** the rows for the same dice, then run them.\n"
+"3. Take the loop out: ⟦CODE_0003⟧. **Predict** how many cards run, then run it with ⟦CODE_0004⟧.\n"
+"4. Look at the end of the program line in ⟦CODE_0005⟧. Which command is the loop, and which line of the tape makes it stop?"
+msgstr ""
+"**Predice** y luego ejecuta: ⟦CODE_0001⟧. ¿Cuántas tarjetas hay y cuáles son los totales?\n"
+"2. En la copia, haz que la cinta diga \"go on\" hasta 45 en lugar de 40: ⟦CODE_0002⟧. **Predice** las filas para los mismos dados y luego ejecútalas.\n"
+"3. Quita el bucle: ⟦CODE_0003⟧. **Predice** cuántas tarjetas se ejecutan y luego ejecútalo con ⟦CODE_0004⟧.\n"
+"4. Mira el final de la línea del programa en ⟦CODE_0005⟧. ¿Qué comando es el bucle y qué línea de la cinta lo detiene?"
+
+#: lessons/exercises.md:339
+msgctxt "s-b49c49a0c312-0162"
+msgid "Acceptance criteria:"
+msgstr "Criterios de aceptación:"
+
+#: lessons/exercises.md:341
+msgctxt "s-b564cb8947e9-0163"
+msgid "Step 1: four cards, 11, 22, 33 and 44. The total passes 40 at the fourth card, so the tape row ⟦CODE_0001⟧ is the first \"stop\" instruction that the program reads, and the run ends there. ⟦CODE_0002⟧ passes."
+msgstr "Paso 1: cuatro tarjetas, 11, 22, 33 y 44. El total pasa de 40 en la cuarta tarjeta, así que la fila de la cinta ⟦CODE_0001⟧ es la primera instrucción \"stop\" que lee el programa, y la ejecución termina ahí. ⟦CODE_0002⟧ pasa."
+
+#: lessons/exercises.md:342
+msgctxt "s-c547e94840ca-0164"
+msgid "Step 2: five cards, 11, 22, 33, 44 and 55. Row 44 now says ⟦CODE_0001⟧, so the run goes on, and row 55 still says ⟦CODE_0002⟧. ⟦CODE_0003⟧ passes. The program did not change: only a line of data did."
+msgstr "Paso 2: cinco tarjetas, 11, 22, 33, 44 y 55. La fila 44 ahora dice ⟦CODE_0001⟧, así que la ejecución continúa; la fila 55 sigue diciendo ⟦CODE_0002⟧. ⟦CODE_0003⟧ pasa. El programa no cambió: solo cambió una línea de datos."
+
+#: lessons/exercises.md:343
+msgctxt "s-c71ef6736407-0165"
+msgid "Step 3: one card. The program runs once and never starts itself again, because nothing runs register ⟦CODE_0001⟧ any more. With ⟦CODE_0002⟧ the row is ⟦CODE_0003⟧."
+msgstr "Paso 3: una tarjeta. El programa se ejecuta una vez y no vuelve a iniciarse solo, porque ya nada ejecuta el registro ⟦CODE_0001⟧. Con ⟦CODE_0002⟧ la fila es ⟦CODE_0003⟧."
+
+#: lessons/exercises.md:344
+msgctxt "s-4bd65dbf819b-0166"
+msgid "Step 4: ⟦CODE_0001⟧ is the loop, and register ⟦CODE_0002⟧ holds the instruction from the tape line. The line that stops it is the first one whose instruction is ⟦CODE_0003⟧, which is the one for a total of 41."
+msgstr "Paso 4: ⟦CODE_0001⟧ es el bucle, y el registro ⟦CODE_0002⟧ guarda la instrucción de la línea de la cinta. La línea que lo detiene es la primera cuya instrucción es ⟦CODE_0003⟧, que es la del total de 41."
+
+#: lessons/exercises.md:346
+msgctxt "s-79fefcdeb828-0167"
+msgid "B20. JavaScript: read the clauses, move the limit and fail the structure check (verified)"
+msgstr "B20. JavaScript: lee las cláusulas, mueve el límite y haz fallar la comprobación de estructura (verificado)"
+
+#: lessons/exercises.md:348
+msgctxt "s-f1cfd89672ce-0168"
+msgid "**Lesson:** [JavaScript](⟦DEST_0001⟧). **Entry:** a copy of ⟦CODE_0002⟧."
+msgstr "**Lección:** [JavaScript](⟦DEST_0001⟧). **Entrada:** una copia de ⟦CODE_0002⟧."
+
+#: lessons/exercises.md:350
+msgctxt "s-c51e0387f9a6-0169"
+msgid ""
+"**Predict**, then run: ⟦CODE_0001⟧. Which card crosses 40? (The generator is Park-Miller, and the hours of the first three cards for this seed are 12, 17 and 17.)\n"
+"2. In the copy, change ⟦CODE_0002⟧ in the condition to ⟦CODE_0003⟧. **Predict** the rows for ⟦CODE_0004⟧, then run them.\n"
+"3. Put a statement in the loop body: replace ⟦CODE_0005⟧ with ⟦CODE_0006⟧. Run ⟦CODE_0007⟧, then ⟦CODE_0008⟧.\n"
+"4. Run ⟦CODE_0009⟧ and ⟦CODE_0010⟧. **Predict** the week column."
+msgstr ""
+"**Predice** y luego ejecuta: ⟦CODE_0001⟧. ¿Qué tarjeta pasa de 40? (El generador es Park-Miller y las horas de las tres primeras tarjetas para esta semilla son 12, 17 y 17.)\n"
+"2. En la copia, cambia ⟦CODE_0002⟧ en la condición por ⟦CODE_0003⟧. **Predice** las filas de ⟦CODE_0004⟧ y luego ejecútalas.\n"
+"3. Pon una sentencia en el cuerpo del bucle: reemplaza ⟦CODE_0005⟧ por ⟦CODE_0006⟧. Ejecuta ⟦CODE_0007⟧ y luego ⟦CODE_0008⟧.\n"
+"4. Ejecuta ⟦CODE_0009⟧ y ⟦CODE_0010⟧. **Predice** la columna de la semana."
+
+#: lessons/exercises.md:355
+msgctxt "s-b49c49a0c312-0170"
+msgid "Acceptance criteria:"
+msgstr "Criterios de aceptación:"
+
+#: lessons/exercises.md:357
+msgctxt "s-cdea9dabc781-0171"
+msgid "Step 1: three cards, ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧, and the third card crosses 40. ⟦CODE_0004⟧ passes."
+msgstr "Paso 1: tres tarjetas, ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧, y la tercera tarjeta hace que el total pase de 40. ⟦CODE_0004⟧ pasa."
+
+#: lessons/exercises.md:358
+msgctxt "s-25517d409fdd-0172"
+msgid "Step 2: two cards, 12 and 29. The condition is evaluated after the iterator has added a card, so the card that takes the total from 12 to 29 is saved, and then the test (29 is over 20) ends the loop. ⟦CODE_0001⟧ passes."
+msgstr "Paso 2: dos tarjetas, 12 y 29. La condición se evalúa después de que el iterador añade una tarjeta, así que se guarda la tarjeta que lleva el total de 12 a 29 y luego la prueba (29 es más de 20) termina el bucle. ⟦CODE_0001⟧ pasa."
+
+#: lessons/exercises.md:359
+msgctxt "s-f75149d29841-0173"
+msgid "Step 3: the program still runs and prints the same cards (the extra statement changes a counter that nothing reads), and the structure check **fails** with a message about the body. The constraint was a rule you broke, and the check is the proof that it was real."
+msgstr "Paso 3: el programa sigue ejecutándose e imprime las mismas tarjetas (la sentencia adicional cambia un contador que nadie lee), y la comprobación de estructura **falla** con un mensaje sobre el cuerpo. La restricción era una regla que rompiste, y la comprobación es la prueba de que era real."
+
+#: lessons/exercises.md:360
+msgctxt "s-0b27cdceac10-0174"
+msgid "Step 4: ⟦CODE_0001⟧ and ⟦CODE_0002⟧. The week is the ISO week, and the year printed is the ISO year, which can differ from the calendar year at New Year."
+msgstr "Paso 4: ⟦CODE_0001⟧ y ⟦CODE_0002⟧. La semana es la semana ISO, y el año impreso es el año ISO, que puede diferir del año calendario en Año Nuevo."
+
+#: lessons/exercises.md:362
+msgctxt "s-ec74321c9024-0175"
+msgid "B21. JavaScript, weirder: move the stop rule in a closure and watch the demand (verified)"
+msgstr "B21. JavaScript, más raro: mueve la regla de parada a una clausura (*closure*) y observa la demanda (verificado)"
+
+#: lessons/exercises.md:364
+msgctxt "s-fc87325fed7e-0176"
+msgid "**Lesson:** [JavaScript](⟦DEST_0001⟧). **Entry:** a copy of ⟦CODE_0002⟧."
+msgstr "**Lección:** [JavaScript](⟦DEST_0001⟧). **Entrada:** una copia de ⟦CODE_0002⟧."
+
+#: lessons/exercises.md:366
+msgctxt "s-2437fbedcb44-0177"
+msgid ""
+"Run the closure lab on the untouched copy: ⟦CODE_0001⟧. How many tests pass?\n"
+"2. In ⟦CODE_0002⟧, change the stop rule ⟦CODE_0003⟧ to ⟦CODE_0004⟧. **Predict** the rows for ⟦CODE_0005⟧ (the hours of the first cards are 12, 17 and 17). Then run the lab again. **Predict** whether it passes.\n"
+"3. Run this, and **predict** what it prints, and in what order:"
+msgstr ""
+"Ejecuta el laboratorio de clausuras (*closure*: una función que conserva las variables del lugar donde se creó) en la copia sin modificar: ⟦CODE_0001⟧. ¿Cuántas pruebas pasan?\n"
+"2. En ⟦CODE_0002⟧, cambia la regla de parada ⟦CODE_0003⟧ por ⟦CODE_0004⟧. **Predice** las filas de ⟦CODE_0005⟧ (las horas de las primeras tarjetas son 12, 17 y 17). Luego ejecuta el laboratorio otra vez. **Predice** si pasa.\n"
+"3. Ejecuta esto, **predice** qué imprime y en qué orden:"
+
+#: lessons/exercises.md:378
+msgctxt "s-588352585e43-0178"
+msgid "In the same command, change ⟦CODE_0001⟧ to ⟦CODE_0002⟧. How many ⟦CODE_0003⟧ lines do you get?"
+msgstr "En el mismo comando, cambia ⟦CODE_0001⟧ por ⟦CODE_0002⟧. ¿Cuántas líneas ⟦CODE_0003⟧ obtienes?"
+
+#: lessons/exercises.md:380
+msgctxt "s-b49c49a0c312-0179"
+msgid "Acceptance criteria:"
+msgstr "Criterios de aceptación:"
+
+#: lessons/exercises.md:382
+msgctxt "s-8d5ac9d93c5d-0180"
+msgid "Step 1: all 12 tests pass."
+msgstr "Paso 1: pasan las 12 pruebas."
+
+#: lessons/exercises.md:383
+msgctxt "s-469c19172650-0181"
+msgid "Step 2: two cards (⟦CODE_0001⟧, ⟦CODE_0002⟧): the machine says ⟦CODE_0003⟧ as soon as the total passes 20. The lab does **not** pass: 7 of the 12 tests fail, and they are the ones that pin the stop rule (the crossing card, exactly 40, the draw counts, the replay of seed 42). The 5 that pass are about closures and do not care about the limit. In one sentence: why do the closure tests not care?"
+msgstr "Paso 2: dos tarjetas (⟦CODE_0001⟧, ⟦CODE_0002⟧): la máquina dice ⟦CODE_0003⟧ en cuanto el total pasa de 20. El laboratorio **no** pasa: fallan 7 de las 12 pruebas, y son las que fijan la regla de parada (la tarjeta que cruza el límite, exactamente 40, el número de sorteos, la repetición de la semilla 42). Las 5 que pasan tratan de las clausuras (*closure*: una función que recuerda las variables del lugar donde se creó) y no dependen del límite. En una frase: ¿por qué las pruebas de clausuras no dependen del límite?"
+
+#: lessons/exercises.md:384
+msgctxt "s-19c86b0de45f-0182"
+msgid "Step 3: ⟦CODE_0001⟧, then ⟦CODE_0002⟧, then ⟦CODE_0003⟧. Building the pipeline draws nothing. ⟦CODE_0004⟧ asks for one card, so one hours value is drawn."
+msgstr "Paso 3: ⟦CODE_0001⟧, luego ⟦CODE_0002⟧ y luego ⟦CODE_0003⟧. Construir la canalización no sortea nada. ⟦CODE_0004⟧ pide una tarjeta, así que se sortea un valor de horas."
+
+#: lessons/exercises.md:385
+msgctxt "s-8126af2597bf-0183"
+msgid "Step 4: two ⟦CODE_0001⟧ lines (and ⟦CODE_0002⟧). The consumer decides how many cards exist."
+msgstr "Paso 4: dos líneas ⟦CODE_0001⟧ (y ⟦CODE_0002⟧). El consumidor decide cuántas tarjetas existen."
+
+#: lessons/exercises.md:387
+msgctxt "s-db039090db1b-0184"
+msgid "B22. JavaScript, event-driven: predict the trace, then remove the boundary (verified)"
+msgstr "B22. JavaScript, dirigido por eventos: predice la traza y luego elimina el límite (verificado)"
+
+#: lessons/exercises.md:389
+msgctxt "s-bae4df71bf98-0185"
+msgid "**Lesson:** [JavaScript](⟦DEST_0001⟧). **Chapter:** [Events, callbacks and reactive control flow](⟦DEST_0002⟧). **Entry:** a copy of ⟦CODE_0003⟧."
+msgstr "**Lección:** [JavaScript](⟦DEST_0001⟧). **Capítulo:** [Eventos, funciones de devolución de llamada y flujo de control reactivo](⟦DEST_0002⟧). **Entrada:** una copia de ⟦CODE_0003⟧."
+
+#: lessons/exercises.md:391
+msgctxt "s-c2ec0f8f3e85-0186"
+msgid ""
+"Run the event lab on the untouched copy: ⟦CODE_0001⟧. How many tests pass?\n"
+"2. **Predict** the order of the three lines that this prints, then run it:"
+msgstr ""
+"Ejecuta el laboratorio de eventos en la copia sin modificar: ⟦CODE_0001⟧. ¿Cuántas pruebas pasan?\n"
+"2. **Predice** el orden de las tres líneas que imprime esto y luego ejecútalo:"
+
+#: lessons/exercises.md:403
+msgctxt "s-27a51856edf4-0187"
+msgid "**Predict** the trace of a run in which the three cards have 19 hours each. Write down the lines in order, with ⟦CODE_0001⟧ where an ⟦CODE_0002⟧ starts and ⟦CODE_0003⟧ where it returns. Then run this and compare. Which line shows that ⟦CODE_0004⟧ returned before the first card was made?"
+msgstr "**Predice** la traza de una ejecución en la que las tres tarjetas tienen 19 horas cada una. Escribe las líneas en orden, con ⟦CODE_0001⟧ donde empieza un ⟦CODE_0002⟧ y ⟦CODE_0003⟧ donde regresa. Luego ejecuta esto y compara. ¿Qué línea muestra que ⟦CODE_0004⟧ regresó antes de que se creara la primera tarjeta?"
+
+#: lessons/exercises.md:415
+msgctxt "s-1e4fb07edb92-0188"
+msgid "In the copy, remove the scheduling boundary: in the ⟦CODE_0001⟧ listener, replace ⟦CODE_0002⟧ with ⟦CODE_0003⟧. Run the lab again, and ⟦CODE_0004⟧. Then run a very long run:"
+msgstr "En la copia, quita el límite de planificación: en el escuchador de eventos ⟦CODE_0001⟧, reemplaza ⟦CODE_0002⟧ por ⟦CODE_0003⟧. Ejecuta el laboratorio de nuevo y ⟦CODE_0004⟧. Luego haz una ejecución muy larga:"
+
+#: lessons/exercises.md:423
+msgctxt "s-25a6d88c8d4f-0189"
+msgid "**Predict** what it prints, and what the exit status is. Then put ⟦CODE_0001⟧ back and run the same command with ⟦CODE_0002⟧."
+msgstr "**Predice** qué imprime y cuál es el estado de salida. Luego vuelve a poner ⟦CODE_0001⟧ y ejecuta el mismo comando con ⟦CODE_0002⟧."
+
+#: lessons/exercises.md:425
+msgctxt "s-b49c49a0c312-0190"
+msgid "Acceptance criteria:"
+msgstr "Criterios de aceptación:"
+
+#: lessons/exercises.md:427
+msgctxt "s-d5be0164cb20-0191"
+msgid "Step 1: all 14 tests pass."
+msgstr "Paso 1: pasan las 14 pruebas."
+
+#: lessons/exercises.md:428
+msgctxt "s-d3add27dbd3c-0192"
+msgid "Step 2: ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧. ⟦CODE_0004⟧ calls the listener before it returns. ⟦CODE_0005⟧ only asks, and the function runs after the current code has finished."
+msgstr "Paso 2: ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧. ⟦CODE_0004⟧ llama al escuchador de eventos antes de devolver el control. ⟦CODE_0005⟧ solo pregunta, y la función se ejecuta después de que termine el código actual."
+
+#: lessons/exercises.md:429
+msgctxt "s-d8e92930325f-0193"
+msgid "Step 3: ⟦CODE_0001⟧, then three turns. Each of the first two is ⟦CODE_0002⟧. The third has ⟦CODE_0003⟧ inside the innermost ⟦CODE_0004⟧, because 57 hours is over 40. ⟦CODE_0005⟧ and ⟦CODE_0006⟧ come before the first ⟦CODE_0007⟧: ⟦CODE_0008⟧ returned before any card existed."
+msgstr "Paso 3: ⟦CODE_0001⟧, luego tres turnos. Cada uno de los dos primeros es ⟦CODE_0002⟧. El tercero tiene ⟦CODE_0003⟧ dentro del ⟦CODE_0004⟧ más interno, porque 57 horas pasa de 40. ⟦CODE_0005⟧ y ⟦CODE_0006⟧ vienen antes del primer ⟦CODE_0007⟧: ⟦CODE_0008⟧ retornó antes de que existiera cualquier tarjeta."
+
+#: lessons/exercises.md:430
+msgctxt "s-edb609002792-0194"
+msgid "Step 4: with the boundary removed, a normal run still works (the cards are the same), because 40 hours is only a few cards deep. The lab does **not** pass: 12 tests pass and 2 fail, the one about events nesting inside one turn and the one about a flat stack over 2000 cards. ⟦CODE_0001⟧ fails with a message about ⟦CODE_0002⟧. The very long run prints ⟦CODE_0003⟧ once, and the exit status is 1: every card added a few levels to the stack. With the boundary back and ⟦CODE_0004⟧ it runs about 2000 cards and prints nothing, with status 0."
+msgstr "Paso 4: con el límite eliminado, una ejecución normal sigue funcionando (las tarjetas son las mismas), porque 40 horas solo llegan a unas pocas tarjetas de profundidad. El laboratorio **no** pasa: 12 pruebas pasan y 2 fallan, la de los eventos que se anidan dentro de un turno y la de una pila plana de más de 2000 tarjetas. ⟦CODE_0001⟧ falla con un mensaje sobre ⟦CODE_0002⟧. La ejecución muy larga imprime ⟦CODE_0003⟧ una vez y el estado de salida es 1: cada tarjeta añadió unos cuantos niveles a la pila. Con el límite restablecido y ⟦CODE_0004⟧ se ejecuta con unas 2000 tarjetas y no imprime nada, con estado 0."
+
+#: lessons/exercises.md:432
+msgctxt "s-b9e4ceaba56c-0195"
+msgid "C. By solution pattern"
+msgstr "C. Por patrón de solución"
+
+#: lessons/exercises.md:434
+msgctxt "s-fc7688eca8a5-0196"
+msgid "C1. Weird next to boring (verified)"
+msgstr "C1. Lo raro junto a lo aburrido (verificado)"
+
+#: lessons/exercises.md:436
+msgctxt "s-3d862e80f8b2-0197"
+msgid "**Lesson:** [Weird next to boring](⟦DEST_0001⟧). The repo has many ready-made pairs, among them ⟦CODE_0002⟧/⟦CODE_0003⟧, ⟦CODE_0004⟧/⟦CODE_0005⟧, ⟦CODE_0006⟧/⟦CODE_0007⟧, ⟦CODE_0008⟧/⟦CODE_0009⟧, ⟦CODE_0010⟧/⟦CODE_0011⟧, ⟦CODE_0012⟧/⟦CODE_0013⟧, ⟦CODE_0014⟧/⟦CODE_0015⟧, ⟦CODE_0016⟧/⟦CODE_0017⟧, ⟦CODE_0018⟧/⟦CODE_0019⟧ and ⟦CODE_0020⟧/⟦CODE_0021⟧."
+msgstr "**Lección:** [Lo raro junto a lo aburrido](⟦DEST_0001⟧). El repositorio tiene muchos pares ya preparados, entre ellos ⟦CODE_0002⟧/⟦CODE_0003⟧, ⟦CODE_0004⟧/⟦CODE_0005⟧, ⟦CODE_0006⟧/⟦CODE_0007⟧, ⟦CODE_0008⟧/⟦CODE_0009⟧, ⟦CODE_0010⟧/⟦CODE_0011⟧, ⟦CODE_0012⟧/⟦CODE_0013⟧, ⟦CODE_0014⟧/⟦CODE_0015⟧, ⟦CODE_0016⟧/⟦CODE_0017⟧, ⟦CODE_0018⟧/⟦CODE_0019⟧ y ⟦CODE_0020⟧/⟦CODE_0021⟧."
+
+#: lessons/exercises.md:438
+msgctxt "s-b77b70ec8ca2-0198"
+msgid "Compare one pair. Run both, and count code lines (not comments) in each program."
+msgstr "Compara un par. Ejecuta ambos y cuenta las líneas de código (no los comentarios) de cada programa."
+
+#: lessons/exercises.md:440
+msgctxt "s-b49c49a0c312-0199"
+msgid "Acceptance criteria:"
+msgstr "Criterios de aceptación:"
+
+#: lessons/exercises.md:442
+msgctxt "s-7cf61863d9ad-0200"
+msgid "Both outputs pass ⟦CODE_0001⟧."
+msgstr "Ambas salidas pasan ⟦CODE_0001⟧."
+
+#: lessons/exercises.md:443
+msgctxt "s-39f6e782c5b0-0201"
+msgid "A small table compares line count, what you could unit-test, what a debugger would show and one thing only the weird version can do."
+msgstr "Una tabla pequeña compara el número de líneas, lo que podrías probar con pruebas unitarias, lo que mostraría un depurador y una cosa que solo la versión rara puede hacer."
+
+#: lessons/exercises.md:444
+msgctxt "s-fa97ec1adc6e-0202"
+msgid "You answer the recurring question: *under what circumstances would the weird one be the right choice?*"
+msgstr "Respondes a la pregunta recurrente: *¿en qué circunstancias sería la versión rara la mejor opción?*"
+
+#: lessons/exercises.md:446
+msgctxt "s-6927f7de1b2f-0203"
+msgid "C2. Make the constraint real (verified)"
+msgstr "C2. Haz real la restricción (verificada)"
+
+#: lessons/exercises.md:448
+msgctxt "s-aa71190cc3f5-0204"
+msgid "**Lesson:** [patterns](⟦DEST_0001⟧). Every entry ships a ⟦CODE_0002⟧ that proves its rule (for example [⟦CODE_0003⟧](⟦DEST_0004⟧) greps for banned words and counts ⟦CODE_0005⟧s)."
+msgstr "**Lección:** [patrones](⟦DEST_0001⟧). Cada entrada incluye un ⟦CODE_0002⟧ que prueba su regla (por ejemplo, [⟦CODE_0003⟧](⟦DEST_0004⟧) busca con grep las palabras prohibidas y cuenta los ⟦CODE_0005⟧)."
+
+#: lessons/exercises.md:450
+msgctxt "s-5190377b5f16-0205"
+msgid "Write a check for ⟦CODE_0001⟧'s rule: *no loop or branch words, no variables and ⟦CODE_0002⟧ is read at least twice.*"
+msgstr "Escribe una comprobación para la regla de ⟦CODE_0001⟧: *sin palabras de bucle ni de rama, sin variables y ⟦CODE_0002⟧ se lee al menos dos veces.*"
+
+#: lessons/exercises.md:452
+msgctxt "s-b49c49a0c312-0206"
+msgid "Acceptance criteria:"
+msgstr "Criterios de aceptación:"
+
+#: lessons/exercises.md:454
+msgctxt "s-f0d14bb09caf-0207"
+msgid "Your check passes on the unmodified ⟦CODE_0001⟧."
+msgstr "Tu verificación pasa con el ⟦CODE_0001⟧ sin modificar."
+
+#: lessons/exercises.md:455
+msgctxt "s-16139eb3489b-0208"
+msgid "It fails for each of three mutations (add a ⟦CODE_0001⟧; add a ⟦CODE_0002⟧; remove the ⟦CODE_0003⟧s). Show the three commands."
+msgstr "Falla con cada una de tres mutaciones (agrega un ⟦CODE_0001⟧; agrega un ⟦CODE_0002⟧; elimina los ⟦CODE_0003⟧). Muestra los tres comandos."
+
+#: lessons/exercises.md:456
+msgctxt "s-8a4f841c48e9-0209"
+msgid "A banned word inside a ⟦CODE_0001⟧ comment or a ⟦CODE_0002⟧ does **not** trigger it (so you must strip comments and strings first)."
+msgstr "Una palabra prohibida dentro de un comentario de ⟦CODE_0001⟧ o de una ⟦CODE_0002⟧ **no** lo activa (por eso debes quitar primero los comentarios y las cadenas de texto)."
+
+#: lessons/exercises.md:458
+msgctxt "s-cf84ecf71880-0210"
+msgid "C3. A loop whose state is not a variable (verified)"
+msgstr "C3. Un bucle cuyo estado no es una variable (verificado)"
+
+#: lessons/exercises.md:460
+msgctxt "s-0f728ded37a2-0211"
+msgid "**Lesson:** [Control state outside variables](⟦DEST_0001⟧)."
+msgstr "**Lección:** [Controla el estado fuera de las variables](⟦DEST_0001⟧)."
+
+#: lessons/exercises.md:462
+msgctxt "s-50408a29f8ad-0212"
+msgid "In awk, with **no** ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧, recursion or ⟦CODE_0005⟧, print the numbers 1 to N for N chosen by the *caller*. (Where can the loop's state live if not in your code?)"
+msgstr "En awk, **sin** ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧, recursión ni ⟦CODE_0005⟧, imprime los números de 1 a N, con N elegido por el *llamador*. (¿Dónde puede vivir el estado del bucle si no está en tu código?)"
+
+#: lessons/exercises.md:464
+msgctxt "s-b49c49a0c312-0213"
+msgid "Acceptance criteria:"
+msgstr "Criterios de aceptación:"
+
+#: lessons/exercises.md:466
+msgctxt "s-471e989388f0-0214"
+msgid "Output is ⟦CODE_0001⟧ through ⟦CODE_0002⟧ for N in 1, 3 and 10, run through the sandbox: ⟦CODE_0003⟧."
+msgstr "La salida es de ⟦CODE_0001⟧ a ⟦CODE_0002⟧ para N en 1, 3 y 10, ejecutada dentro del entorno aislado: ⟦CODE_0003⟧."
+
+#: lessons/exercises.md:467
+msgctxt "s-5de2fa6ffab3-0215"
+msgid "A ⟦CODE_0001⟧ of your awk source finds nothing."
+msgstr "Un ⟦CODE_0001⟧ del código fuente de tu awk no encuentra nada."
+
+#: lessons/exercises.md:468
+msgctxt "s-4dd7dae094f1-0216"
+msgid "State which [knowledge level](⟦DEST_0001⟧) your trick leans on."
+msgstr "Indica en qué [nivel de conocimiento](⟦DEST_0001⟧) se apoya tu truco."
+
+#: lessons/exercises.md:470
+msgctxt "s-186fe0d614ee-0217"
+msgid "D. Port the challenge (verified: reference answer in awk)"
+msgstr "D. Adapta el reto (verificado: respuesta de referencia en awk)"
+
+#: lessons/exercises.md:472
+msgctxt "s-2b108ccee7dd-0218"
+msgid "**Goal:** implement the shared demo in a language not yet in the repo (Lua, Ruby, Prolog, a SQL recursive CTE, PowerShell, Scheme, Perl...). The repo has since gained Common Lisp, m4, Tcl and awk entries, so those are no longer open under the rules of [⟦CODE_0001⟧](⟦DEST_0002⟧), and run it only in the sandbox."
+msgstr "**Objetivo:** implementa la demostración compartida en un lenguaje que todavía no esté en el repositorio (Lua, Ruby, Prolog, una CTE recursiva de SQL, PowerShell, Scheme, Perl...). Desde entonces el repositorio incorporó entradas de Common Lisp, m4, Tcl y awk, así que esos ya no están disponibles según las reglas de [⟦CODE_0001⟧](⟦DEST_0002⟧); ejecútala solo en el entorno aislado."
+
+#: lessons/exercises.md:474
+msgctxt "s-b49c49a0c312-0219"
+msgid "Acceptance criteria:"
+msgstr "Criterios de aceptación:"
+
+#: lessons/exercises.md:476
+msgctxt "s-2ec3ea810343-0220"
+msgid ""
+"⟦CODE_0001⟧ passes on **25 consecutive runs**. Over those runs, at least five distinct hour values appear.\n"
+"2. Output has a ⟦CODE_0002⟧ marker and a ⟦CODE_0003⟧ line that matches the rows.\n"
+"3. The stop rule is a property of your trick, not a helper called ⟦CODE_0004⟧.\n"
+"4. The data lives in a local SQLite file whose schema refuses a non-demo row (⟦CODE_0005⟧), and your check proves it by trying to insert one.\n"
+"5. A ⟦CODE_0006⟧ that passes [⟦CODE_0007⟧](⟦DEST_0008⟧) and runs with ⟦CODE_0009⟧.\n"
+"6. A ⟦CODE_0010⟧ that enforces your constraint (see C2), a README with **How the stunt works** and honest **walls**."
+msgstr ""
+"⟦CODE_0001⟧ pasa en **25 ejecuciones consecutivas**. En esas ejecuciones aparecen al menos cinco valores de hora distintos.\n"
+"2. La salida tiene un marcador ⟦CODE_0002⟧ y una línea ⟦CODE_0003⟧ que coincide con las filas.\n"
+"3. La regla de parada es una propiedad de tu truco, no un auxiliar llamado ⟦CODE_0004⟧.\n"
+"4. Los datos viven en un archivo SQLite local cuyo esquema rechaza una fila que no es de demostración (⟦CODE_0005⟧), y tu verificación lo demuestra al intentar insertar una.\n"
+"5. Un ⟦CODE_0006⟧ que pasa [⟦CODE_0007⟧](⟦DEST_0008⟧) y se ejecuta con ⟦CODE_0009⟧.\n"
+"6. Un ⟦CODE_0010⟧ que impone tu restricción (consulta C2), un README con **Cómo funciona el truco** y **límites** honestos."
+
+#: lessons/exercises.md:490
+msgctxt "s-8401427d1373-0221"
+msgid "See [⟦CODE_0001⟧](⟦DEST_0002⟧) if you want to send it in. A reference answer lives in [⟦CODE_0003⟧](⟦DEST_0004⟧) (see the [answer key](⟦DEST_0005⟧)); try yours first. It was written before awk was in the repo and is a short third design (the caller pipes in five records and a pattern is the stop rule), distinct from [⟦CODE_0006⟧](⟦DEST_0007⟧) (a ⟦CODE_0008⟧ loop) and [⟦CODE_0009⟧](⟦DEST_0010⟧) (gawk and ⟦CODE_0011⟧/⟦CODE_0012⟧): compare all three."
+msgstr "Consulta [⟦CODE_0001⟧](⟦DEST_0002⟧) si quieres enviarlo. Una respuesta de referencia está en [⟦CODE_0003⟧](⟦DEST_0004⟧) (consulta la [clave de respuestas](⟦DEST_0005⟧)); intenta primero la tuya. Se escribió antes de que awk estuviera en el repositorio y es un tercer diseño breve (quien llama pasa por la tubería cinco registros y un patrón es la regla de parada), distinto de [⟦CODE_0006⟧](⟦DEST_0007⟧) (un bucle ⟦CODE_0008⟧) y de [⟦CODE_0009⟧](⟦DEST_0010⟧) (gawk y ⟦CODE_0011⟧/⟦CODE_0012⟧): compara los tres."
+
+#: lessons/exercises.md:492
+msgctxt "s-532678fd7e00-0222"
+msgid "E. Windows Sandbox track (verified on Windows 11 Pro)"
+msgstr "E. Pista de Windows Sandbox (verificada en Windows 11 Pro)"
+
+#: lessons/exercises.md:494
+msgctxt "s-49cc908a57be-0223"
+msgid "For the WPF entries. Needs Windows Sandbox and a local .NET 10 SDK ([setup](⟦DEST_0001⟧)); build each entry once on the host first so its NuGet packages are cached. Only one sandbox can run at a time."
+msgstr "Para las entradas de WPF. Necesitas Windows Sandbox y un SDK de .NET 10 local ([configuración](⟦DEST_0001⟧)). Haz una compilación de cada entrada en el anfitrión antes, para que sus paquetes de NuGet queden en caché. Solo puede ejecutarse un entorno aislado a la vez."
+
+#: lessons/exercises.md:496
+msgctxt "s-260ad499d0f6-0224"
+msgid "E1. Run and read the evidence"
+msgstr "E1. Ejecuta y lee la evidencia"
+
+#: lessons/exercises.md:503
+msgctxt "s-b49c49a0c312-0225"
+msgid "Acceptance criteria:"
+msgstr "Criterios de aceptación:"
+
+#: lessons/exercises.md:505
+msgctxt "s-4eb9dc8092c4-0226"
+msgid "Each run ends with a ⟦CODE_0001⟧ line. The log shows ⟦CODE_0002⟧, so the VM really had no network."
+msgstr "Cada ejecución termina con una línea ⟦CODE_0001⟧. El registro muestra ⟦CODE_0002⟧, así que la VM realmente no tenía red."
+
+#: lessons/exercises.md:506
+msgctxt "s-d657bb996e70-0227"
+msgid "⟦CODE_0001⟧ reports ⟦CODE_0002⟧ (its ⟦CODE_0003⟧ expects this), and a ⟦CODE_0004⟧ is written."
+msgstr "⟦CODE_0001⟧ informa ⟦CODE_0002⟧ (su ⟦CODE_0003⟧ espera esto) y se escribe un ⟦CODE_0004⟧."
+
+#: lessons/exercises.md:507
+msgctxt "s-255d5e45b3fd-0228"
+msgid "⟦CODE_0001⟧ reports it wrote ⟦CODE_0002⟧ and that the window was closed by the harness."
+msgstr "⟦CODE_0001⟧ informa que escribió ⟦CODE_0002⟧ y que el arnés cerró la ventana."
+
+#: lessons/exercises.md:508
+msgctxt "s-2a6da280f433-0229"
+msgid "Name one entry whose rows total exactly 40 because the data is fixed, and one whose rows are random."
+msgstr "Nombra una entrada cuyas filas dan un total de exactamente 40 porque los datos son fijos, y otra cuyas filas son aleatorias."
+
+#: lessons/exercises.md:510
+msgctxt "s-d8383a3cc59b-0230"
+msgid "E2. Change the XAML interpreter's seed"
+msgstr "E2. Cambia la semilla del intérprete XAML"
+
+#: lessons/exercises.md:512
+msgctxt "s-4c1536bdefc2-0231"
+msgid "Work on a copy of ⟦CODE_0001⟧. In ⟦CODE_0002⟧, the variable is the ⟦CODE_0003⟧ created on [L13](⟦DEST_0004⟧): ⟦CODE_0005⟧."
+msgstr "Trabaja sobre una copia de ⟦CODE_0001⟧. En ⟦CODE_0002⟧, la variable es el ⟦CODE_0003⟧ creado en [L13](⟦DEST_0004⟧): ⟦CODE_0005⟧."
+
+#: lessons/exercises.md:514
+msgctxt "s-e35429fe8696-0232"
+msgid ""
+"Change ⟦CODE_0001⟧ to ⟦CODE_0002⟧ and run ⟦CODE_0003⟧.\n"
+"2. **Predict:** do the hours change? Using the console project from B7, compute the first five hours for seeds 42 and 7."
+msgstr ""
+"Cambia ⟦CODE_0001⟧ por ⟦CODE_0002⟧ y ejecuta ⟦CODE_0003⟧.\n"
+"2. **Predice:** ¿cambian las horas? Con el proyecto de consola de B7, calcula las primeras cinco horas para las semillas 42 y 7."
+
+#: lessons/exercises.md:517
+msgctxt "s-b49c49a0c312-0233"
+msgid "Acceptance criteria:"
+msgstr "Criterios de aceptación:"
+
+#: lessons/exercises.md:519
+msgctxt "s-ff57f1e6a077-0234"
+msgid "The sandbox run still passes with the new seed."
+msgstr "La ejecución en el entorno aislado sigue pasando con la nueva semilla."
+
+#: lessons/exercises.md:520
+msgctxt "s-aae22d507582-0235"
+msgid "Your B7 program prints different hour sequences for 42 and 7 and the *same* sequence on every run of the same seed."
+msgstr "Tu programa de B7 imprime secuencias de horas distintas para 42 y 7, y la *misma* secuencia en cada ejecución con la misma semilla."
+
+#: lessons/exercises.md:521
+msgctxt "s-c5cbec0750b0-0236"
+msgid "Explain why the loop in these ⟦CODE_0001⟧ files had to be unrolled four times, and which elements play the part of \"the variable\"."
+msgstr "Explica por qué el bucle de estos archivos ⟦CODE_0001⟧ tuvo que desenrollarse cuatro veces y qué elementos hacen el papel de \"la variable\"."
+
+#: lessons/exercises.md:523
+msgctxt "s-6d33e0676251-0237"
+msgid "F. Prove a README claim (verified)"
+msgstr "F. Demuestra una afirmación del README (verificada)"
+
+#: lessons/exercises.md:525
+msgctxt "s-0145450735ad-0238"
+msgid "F1. Test a claim of your choice"
+msgstr "F1. Prueba una afirmación de tu elección"
+
+#: lessons/exercises.md:527
+msgctxt "s-165c81f209d0-0239"
+msgid "Every README has a \"Gotchas\" or \"Walls\" section. Pick **one claim** and write a test that would fail if it were false. A worked example is in the [answer key](⟦DEST_0001⟧): \"⟦CODE_0002⟧ is not enough\" ([⟦CODE_0003⟧](⟦DEST_0004⟧))."
+msgstr "Cada README tiene una sección \"Gotchas\" o \"Walls\". Elige **una afirmación** y escribe una prueba que fallaría si fuera falsa. Encuentras un ejemplo resuelto en la [clave de respuestas](⟦DEST_0001⟧): \"⟦CODE_0002⟧ no basta\" ([⟦CODE_0003⟧](⟦DEST_0004⟧))."
+
+#: lessons/exercises.md:529
+msgctxt "s-97d64f3d7785-0240"
+msgid "Other good claims: \"⟦CODE_0001⟧ returns the raw wait status (exit 3 comes back as 768)\", \"GnuCOBOL warns five times about ⟦CODE_0002⟧\", \"pcre2grep does not search ⟦CODE_0003⟧\"."
+msgstr "Otras afirmaciones válidas: \"⟦CODE_0001⟧ devuelve el estado de espera sin procesar (el código de salida 3 vuelve como 768)\", \"GnuCOBOL emite cinco advertencias sobre ⟦CODE_0002⟧\", \"pcre2grep no busca en ⟦CODE_0003⟧\"."
+
+#: lessons/exercises.md:531
+msgctxt "s-b49c49a0c312-0241"
+msgid "Acceptance criteria:"
+msgstr "Criterios de aceptación:"
+
+#: lessons/exercises.md:533
+msgctxt "s-7c62bbbd1dee-0242"
+msgid "The test runs in the sandbox and **passes** against current behavior."
+msgstr "La prueba se ejecuta en el entorno aislado y **pasa** con el comportamiento actual."
+
+#: lessons/exercises.md:534
+msgctxt "s-a811fda2de3c-0243"
+msgid "You also show it **fails** under a deliberate change (a negative control)."
+msgstr "También demuestras que **falla** ante un cambio deliberado (un control negativo)."
+
+#: lessons/exercises.md:535
+msgctxt "s-c77af6ce9f3d-0244"
+msgid "You say whether the claim is **guaranteed**, **implementation-permitted** or **accidentally exploited**, and cite the evidence."
+msgstr "Indica si la afirmación es **garantizado**, **permitido por la implementación** o **aprovechado por accidente**, y cita la evidencia."
+
+#: lessons/exercises.md:537
+msgctxt "s-1b9fee8ff67b-0245"
+msgid "F2. Trojan Source: hide a character, then find it (verified)"
+msgstr "F2. Trojan Source: oculta un carácter y luego encuéntralo (verificado)"
+
+#: lessons/exercises.md:539
+msgctxt "s-8ab8a1c033d1-0246"
+msgid "**Lesson:** [Trojan Source](⟦DEST_0001⟧). **Entry:** none. No entry in this repository may contain an invisible character, so you make the file yourself, in a scratch folder, and you never commit it. The claim to prove is the one in [⟦CODE_0002⟧](⟦DEST_0003⟧): \"no invisible or direction-changing Unicode characters. APL glyphs and other visible Unicode are fine.\""
+msgstr "**Lección:** [Trojan Source](⟦DEST_0001⟧). **Entrada:** ninguna. Ninguna entrada de este repositorio puede contener un carácter invisible, así que creas el archivo tú mismo en una carpeta temporal y nunca lo subes con *commit*. La afirmación que debes probar es la de [⟦CODE_0002⟧](⟦DEST_0003⟧): \"no invisible or direction-changing Unicode characters. APL glyphs and other visible Unicode are fine.\""
+
+#: lessons/exercises.md:541
+msgctxt "s-189bbcb5c2bb-0247"
+msgid "In a scratch folder, make a program with a zero-width space (U+200B) after ⟦CODE_0001⟧ in the first line:"
+msgstr "En una carpeta temporal, crea un programa con un espacio de ancho cero (U+200B) después de ⟦CODE_0001⟧ en la primera línea:"
+
+#: lessons/exercises.md:547
+msgctxt "s-8eab587cc963-0248"
+msgid ""
+"Look at it with ⟦CODE_0001⟧. **Predict** what ⟦CODE_0002⟧ prints, then run it (for example with ⟦CODE_0003⟧).\n"
+"2. Find the character the way the gate does: ⟦CODE_0004⟧. Then look at the bytes: ⟦CODE_0005⟧.\n"
+"3. **Negative control.** Make the same file without the character (⟦CODE_0006⟧). Run the scan on it, and run it with ⟦CODE_0007⟧.\n"
+"4. **The other half of the claim.** Run the same scan over ⟦CODE_0008⟧ (its source is full of visible APL glyphs): ⟦CODE_0009⟧. **Predict** what it finds."
+msgstr ""
+"Obsérvalo con ⟦CODE_0001⟧. **Predice** qué imprime ⟦CODE_0002⟧ y luego ejecútalo (por ejemplo con ⟦CODE_0003⟧).\n"
+"2. Encuentra el carácter como lo hace la compuerta: ⟦CODE_0004⟧. Después mira los bytes: ⟦CODE_0005⟧.\n"
+"3. **Control negativo.** Crea el mismo archivo sin el carácter (⟦CODE_0006⟧). Ejecuta el escaneo sobre él y ejecútalo también con ⟦CODE_0007⟧.\n"
+"4. **La otra mitad de la afirmación.** Ejecuta el mismo escaneo sobre ⟦CODE_0008⟧ (su código fuente está lleno de glifos APL visibles): ⟦CODE_0009⟧. **Predice** qué encuentra."
+
+#: lessons/exercises.md:552
+msgctxt "s-b49c49a0c312-0249"
+msgid "Acceptance criteria:"
+msgstr "Criterios de aceptación:"
+
+#: lessons/exercises.md:554
+msgctxt "s-2f9af1b048bf-0250"
+msgid "Step 1: the file looks like a program that prints ⟦CODE_0001⟧, and it prints ⟦CODE_0002⟧. The string has five characters that you can see (⟦CODE_0003⟧) and one that you cannot, so it is not equal to ⟦CODE_0004⟧."
+msgstr "Paso 1: el archivo parece un programa que imprime ⟦CODE_0001⟧, y el programa imprime ⟦CODE_0002⟧. La cadena de texto tiene cinco caracteres que puedes ver (⟦CODE_0003⟧) y uno que no puedes ver, así que no es igual a ⟦CODE_0004⟧."
+
+#: lessons/exercises.md:555
+msgctxt "s-da53a80ec7dd-0251"
+msgid "Step 2: the scan prints line 1 of ⟦CODE_0001⟧, and ⟦CODE_0002⟧ shows the three bytes ⟦CODE_0003⟧ after ⟦CODE_0004⟧."
+msgstr "Paso 2: el escaneo imprime la línea 1 de ⟦CODE_0001⟧ y ⟦CODE_0002⟧ muestra los tres bytes ⟦CODE_0003⟧ después de ⟦CODE_0004⟧."
+
+#: lessons/exercises.md:556
+msgctxt "s-efaceaf1b34b-0252"
+msgid "Step 3: the scan finds nothing in ⟦CODE_0001⟧, and the program prints ⟦CODE_0002⟧. This is the negative control: the scan fires on the hidden character, and on nothing else."
+msgstr "Paso 3: el escaneo no encuentra nada en ⟦CODE_0001⟧ y el programa imprime ⟦CODE_0002⟧. Este es el control negativo: el escaneo se activa con el carácter oculto y con nada más."
+
+#: lessons/exercises.md:557
+msgctxt "s-9d655f9d70dd-0253"
+msgid "Step 4: the scan finds **no file** in ⟦CODE_0001⟧. Visible Unicode (⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧) is not in the class, so a reviewer can read it and the gate lets it through. Say in one sentence why banning all non-ASCII text would be the wrong defense."
+msgstr "Paso 4: el escaneo no encuentra **ningún archivo** en ⟦CODE_0001⟧. El Unicode visible (⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧) no está en la clase, así que un revisor puede leerlo y la compuerta lo deja pasar. Explica en una oración por qué prohibir todo el texto que no sea ASCII sería la defensa equivocada."
+
+#: lessons/exercises.md:558
+msgctxt "s-cf699c01a45f-0254"
+msgid "Say whether the claim is **guaranteed**, **implementation-permitted** or **accidentally exploited**, and cite the evidence. (Hint: the gate's rule is written down in ⟦CODE_0001⟧, and ⟦CODE_0002⟧ with a character class is its mechanism. The class lists only the characters we know of.)"
+msgstr "Indica si la afirmación es **garantizado**, **permitido por la implementación** o **aprovechado por accidente**, y cita la evidencia. (Pista: la regla de la puerta está escrita en ⟦CODE_0001⟧, y ⟦CODE_0002⟧ con una clase de caracteres es su mecanismo. La clase solo tiene en su lista los caracteres que conocemos.)"
+
+#: lessons/exercises.md:560
+msgctxt "s-c7a5297ed2a0-0255"
+msgid "G. Open challenges (not verified; may be impossible)"
+msgstr "G. Retos abiertos (sin verificar; pueden ser imposibles)"
+
+#: lessons/exercises.md:562
+msgctxt "s-abd3e909ed1f-0256"
+msgid "These are the gaps from [blocking problems](⟦DEST_0001⟧). **Nobody has shown they can be closed**, and there is no answer key. That is the point: a well-documented wall is a good result ([⟦CODE_0002⟧](⟦DEST_0003⟧)). If you solve one, send it in; if you cannot, write up exactly where it breaks."
+msgstr "Estos son los huecos de [problemas bloqueantes](⟦DEST_0001⟧). **Nadie ha demostrado que se puedan cerrar**, y no hay clave de respuestas. Ese es el objetivo: un muro bien documentado es un buen resultado ([⟦CODE_0002⟧](⟦DEST_0003⟧)). Si resuelves uno, envíalo; si no puedes, documenta exactamente dónde falla."
+
+#: lessons/exercises.md:564
+msgctxt "s-03958636a9a6-0257"
+msgid "⟦SEP_0001⟧ Blocker ⟦SEP_0002⟧ Task ⟦SEP_0003⟧ Success looks like ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ Bloqueo ⟦SEP_0002⟧ Tarea ⟦SEP_0003⟧ Cómo se ve el éxito ⟦SEP_0004⟧"
+
+#: lessons/exercises.md:566
+msgctxt "s-578366761e25-0258"
+msgid "⟦SEP_0002⟧ LINQ draws no random hours ⟦SEP_0003⟧ Replace the fixed work week with random 10 to 19 hour draws, still **one statement** ⟦SEP_0004⟧ ⟦CODE_0001⟧ still passes its one-statement rules; hours vary between runs ⟦SEP_0005⟧"
+msgstr "⟦SEP_0002⟧ LINQ no sortea horas aleatorias ⟦SEP_0003⟧ Reemplaza la semana laboral fija por sorteos aleatorios de 10 a 19 horas, siempre en **una sentencia** ⟦SEP_0004⟧ ⟦CODE_0001⟧ sigue cumpliendo sus reglas de una sentencia; las horas varían entre ejecuciones ⟦SEP_0005⟧"
+
+#: lessons/exercises.md:567
+msgctxt "s-0d715134c614-0259"
+msgid "⟦SEP_0002⟧ ⟦CODE_0001⟧ cannot fail on purpose ⟦SEP_0003⟧ Make the match fail while the host still obtains the rows ⟦SEP_0004⟧ Same rows as the unmodified version; you explain how the captures survived ⟦SEP_0005⟧"
+msgstr "⟦SEP_0002⟧ ⟦CODE_0001⟧ no puede fallar a propósito ⟦SEP_0003⟧ Haz que la coincidencia falle mientras el anfitrión sigue obteniendo las filas ⟦SEP_0004⟧ Las mismas filas que la versión sin modificar; explicas cómo sobrevivieron las capturas ⟦SEP_0005⟧"
+
+#: lessons/exercises.md:568
+msgctxt "s-0398b9d3893d-0260"
+msgid "⟦SEP_0006⟧ ⟦CODE_0001⟧ has no side effects ⟦SEP_0007⟧ Produce a pulse or a write during the match without ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧ or a host loop ⟦SEP_0008⟧ Pulse visible; the entry's ⟦CODE_0005⟧ banned-API list still passes ⟦SEP_0009⟧"
+msgstr "⟦SEP_0006⟧ ⟦CODE_0001⟧ no tiene efectos secundarios ⟦SEP_0007⟧ Produce un pulso o una escritura durante la coincidencia sin ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧ ni un bucle del anfitrión ⟦SEP_0008⟧ Pulso visible; la lista de API prohibidas de ⟦CODE_0005⟧ de la entrada sigue pasando ⟦SEP_0009⟧"
+
+#: lessons/exercises.md:569
+msgctxt "s-f21525e7407a-0261"
+msgid "⟦SEP_0003⟧ ⟦CODE_0001⟧ outputs only after the loop ⟦SEP_0004⟧ Print one row from *inside* the ⟦CODE_0002⟧ condition ⟦SEP_0005⟧ One row per pass before the loop ends, with the no-body rule still passing ⟦SEP_0006⟧"
+msgstr "⟦SEP_0003⟧ ⟦CODE_0001⟧ produce salida solo después del bucle ⟦SEP_0004⟧ Imprime una fila desde *dentro* de la condición ⟦CODE_0002⟧ ⟦SEP_0005⟧ Una fila por pasada antes de que termine el bucle, y la regla de sin cuerpo sigue cumpliéndose ⟦SEP_0006⟧"
+
+#: lessons/exercises.md:570
+msgctxt "s-2ed0da634833-0262"
+msgid "⟦SEP_0005⟧ Make needs a shell ⟦SEP_0006⟧ Replace ⟦CODE_0001⟧, ⟦CODE_0002⟧ or ⟦CODE_0003⟧ with something Make-native for **one** of them ⟦SEP_0007⟧ Output unchanged; the shell-program list in ⟦CODE_0004⟧ shrinks by one ⟦SEP_0008⟧"
+msgstr "⟦SEP_0005⟧ Make necesita un intérprete de comandos (*shell*), el programa que ejecuta comandos de texto ⟦SEP_0006⟧ Reemplaza ⟦CODE_0001⟧, ⟦CODE_0002⟧ o ⟦CODE_0003⟧ por algo nativo de Make en **uno** de ellos ⟦SEP_0007⟧ La salida no cambia; la lista de programas del intérprete de comandos en ⟦CODE_0004⟧ se reduce en uno ⟦SEP_0008⟧"
+
+#: lessons/exercises.md:571
+msgctxt "s-62af9396caa5-0263"
+msgid "⟦SEP_0002⟧ Only some entries use threads ⟦SEP_0003⟧ Add a worker thread to a script entry ⟦SEP_0004⟧ Rows are written from the thread, main only waits; ⟦CODE_0001⟧ passes ⟦SEP_0005⟧"
+msgstr "⟦SEP_0002⟧ Solo algunas entradas usan hilos ⟦SEP_0003⟧ Agrega un hilo de trabajo a una entrada de script ⟦SEP_0004⟧ Las filas se escriben desde el hilo y el hilo principal solo espera; ⟦CODE_0001⟧ pasa ⟦SEP_0005⟧"
+
+#: lessons/exercises.md:572
+msgctxt "s-6ddeae62ff38-0264"
+msgid "⟦SEP_0003⟧ ⟦CODE_0001⟧'s RNG is a toy ⟦SEP_0004⟧ Replace the 16-bit LFSR with a 32-bit one ⟦SEP_0005⟧ Over 25 runs more than 16 distinct first draws appear; ⟦CODE_0002⟧ passes ⟦SEP_0006⟧"
+msgstr "⟦SEP_0003⟧ El RNG de ⟦CODE_0001⟧ es un juguete ⟦SEP_0004⟧ Reemplaza el LFSR de 16 bits por uno de 32 bits ⟦SEP_0005⟧ En 25 ejecuciones aparecen más de 16 primeros sorteos distintos; ⟦CODE_0002⟧ pasa ⟦SEP_0006⟧"
+
+#: lessons/exercises.md:573
+msgctxt "s-95a1562d80a7-0265"
+msgid "⟦SEP_0007⟧ ⟦CODE_0001⟧ needs gawk ⟦SEP_0008⟧ Get a die roll without ⟦CODE_0002⟧ so it also runs under mawk ⟦SEP_0009⟧ Same shape of output under gawk **and** mawk; no ⟦CODE_0003⟧, ⟦CODE_0004⟧, loop or ⟦CODE_0005⟧; ⟦CODE_0006⟧ passes under both ⟦SEP_0010⟧"
+msgstr "⟦SEP_0007⟧ ⟦CODE_0001⟧ necesita gawk ⟦SEP_0008⟧ Obtén una tirada de dado sin ⟦CODE_0002⟧ para que también se ejecute en mawk ⟦SEP_0009⟧ La misma forma de salida en gawk **y** mawk; sin ⟦CODE_0003⟧, ⟦CODE_0004⟧, bucle ni ⟦CODE_0005⟧; ⟦CODE_0006⟧ pasa en ambos ⟦SEP_0010⟧"
+
+#: lessons/exercises.md:574
+msgctxt "s-a55533a85e7b-0266"
+msgid "⟦SEP_0003⟧ ⟦CODE_0001⟧ needs a shell for its seed and week ⟦SEP_0004⟧ Produce the seed and the ISO week without ⟦CODE_0002⟧ ⟦SEP_0005⟧ The seed differs between runs and the week is right, with only m4 built-ins; if you cannot, write down exactly what m4 cannot reach ⟦SEP_0006⟧"
+msgstr "⟦SEP_0003⟧ ⟦CODE_0001⟧ necesita un intérprete de comandos (*shell*, el programa que ejecuta los comandos que escribes) para su semilla y su semana ⟦SEP_0004⟧ Genera la semilla y la semana ISO sin ⟦CODE_0002⟧ ⟦SEP_0005⟧ La semilla cambia de una ejecución a otra y la semana es correcta, con solo las funciones integradas de m4; si no puedes, anota exactamente a qué no puede acceder m4 ⟦SEP_0006⟧"
+
+#: lessons/exercises.md:575
+msgctxt "s-4a33d3333510-0267"
+msgid "⟦SEP_0004⟧ ⟦CODE_0001⟧ is SBCL-only ⟦SEP_0005⟧ Run it on a second Common Lisp (ECL or CCL) changing only the implementation-specific calls ⟦SEP_0006⟧ Same output and the same ⟦CODE_0002⟧/⟦CODE_0003⟧ proof on both; list the lines you changed ⟦SEP_0007⟧"
+msgstr "⟦SEP_0004⟧ ⟦CODE_0001⟧ solo funciona en SBCL ⟦SEP_0005⟧ Ejecútalo en una segunda implementación de Common Lisp (ECL o CCL) y cambia solo las llamadas específicas de cada implementación ⟦SEP_0006⟧ Obtén la misma salida y la misma prueba de ⟦CODE_0002⟧/⟦CODE_0003⟧ en ambas; da la lista de las líneas que cambiaste ⟦SEP_0007⟧"
+
+#: lessons/exercises.md:576
+msgctxt "s-a8801d05c82e-0268"
+msgid "⟦SEP_0006⟧ ⟦CODE_0001⟧ was never run on BSD ⟦SEP_0007⟧ Run ⟦CODE_0002⟧ on a BSD or macOS ⟦CODE_0003⟧ ⟦SEP_0008⟧ Either ⟦CODE_0004⟧ passes, or you list exactly which primary, ⟦CODE_0005⟧ use or utility failed and what each BSD does instead ⟦SEP_0009⟧"
+msgstr "⟦SEP_0006⟧ ⟦CODE_0001⟧ nunca se ejecutó en BSD ⟦SEP_0007⟧ Ejecuta ⟦CODE_0002⟧ en un ⟦CODE_0003⟧ BSD o macOS ⟦SEP_0008⟧ O bien ⟦CODE_0004⟧ pasa, o das la lista exacta de qué primario, qué uso de ⟦CODE_0005⟧ o qué utilidad falló y qué hace cada BSD en su lugar ⟦SEP_0009⟧"
