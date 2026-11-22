@@ -330,3 +330,5 @@
 365 P4-fix-10 done front-matter lesson fragments re-aimed to Spanish slugs (anchors.remap_front_matter) and teaches aligned with Te enseña in 33 POs; build check has 0 PROBLEM; fast verify fails only test_anchors on lessons/cs (P5-001).
 369 P4-fix-11 done breakage-pilot anchor copies re-aimed at current Spanish slugs; test_negative and test_breakage_pilot pass; fast verify OK.
 370 P4-fix-12 done humor tests aligned with translated register (superset of plan; translated rows count Spanish); negative cases kept; fast verify OK.
+372 P4-999 blocked release verify 18/75 fail; remaining links target generated informatica chapters (P5-001); gate scope needs a decision.
+374 P4-999 blocked re-scoped release verify still fails I16 (authored files with PO), inventory, negative fixtures; see blockers.md.

@@ -49,3 +49,12 @@ Iterations 27 to 30 stalled on P2-004 (stall breaker at 30; usage-limit replies 
 - Corrected the task gate to `python3 tools/verify.py --fast --files lessons/languages/regex.md lessons/languages/tar.md lessons/languages/tcl.md`; it passed, as did the working-tree fast verifier. The task remains blocked under the two-failure rule. Unblock by setting it to `todo` and resume regex at position 5.
 
 Both language batches were requeued after iteration 274. Their corrected scoped checks, the working-tree fast check, and the anchor check passed before restart.
+ralph stopped by stall breaker at iteration 368
+
+## P4-999 (iteration 372): blocked, release gate needs generated chapters
+- `python3 -I tools/verify.py --release`: 18 of 75 checks fail. Remaining PROBLEMs are links from docs/plan-de-estudios.md and two concept study guides to English headings in lessons/informatica/08, 09, 10 (generated, P5-001), plus one guide diagram that differs from its cs-source copy. `apply.py --relink` writes 0 files.
+- To unblock: scope the P4 gate to I16, frozen hashes and no generated translation (a gate-definition change; record it in decisions-provisional.md), or run P5-001 first. Not weakened here.
+
+## P4-999 (iteration 374): blocked, I16 still fails
+- verify --release --no-gates: 5 of 57 fail: inventory --check, authored files (212) with PO (I16/I13/I4 on lessons/goals.md, index.md, languages/*.md: file is not the PO applied to English; both lessons/languages and lessons/lenguajes exist), negative fixtures, test_anchors, test_breakage_pilot (last two expected: lessons/cs, P5-001). Full run adds 3 generated-link gates (P5-001).
+- Needs a human or diagnosis task: why the authored-file check maps to English paths / stale POs with a dirty tree (31 uncommitted lesson edits). Not weakened.
