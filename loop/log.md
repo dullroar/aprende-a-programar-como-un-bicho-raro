@@ -334,3 +334,4 @@
 374 P4-999 blocked re-scoped release verify still fails I16 (authored files with PO), inventory, negative fixtures; see blockers.md.
 376 P4-999 done gate passes under re-scoped criteria; only test_anchors on generated lessons/cs fails (P5-001/P5-004).
 377 P5-001 blocked build.py --generate in Spanish (BOOK_LANG=es) is idempotent (2nd run zero diff) but writes Spanish generated blocks that I13 rejects (it compares them to English); reverted, verify --fast OK; forth guide diagram labels synced; see blockers.md.
+378 none done no eligible task; P5-001 blocked (I13 vs generated blocks); wrote loop/DONE (DONE-WITH-BLOCKERS), HANDOFF.md current.
