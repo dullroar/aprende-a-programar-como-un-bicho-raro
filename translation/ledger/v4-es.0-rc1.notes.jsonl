@@ -2251,3 +2251,7 @@
 {"segment_id": "s-f4d65de2a65f-0037", "ts": "2026-11-22T01:48:19Z", "findings": ["I7: banned rendering 'condición' for glossary term state"]}
 {"segment_id": "s-299b7a6f9cbe-0041", "ts": "2026-11-22T01:50:07Z", "findings": [], "playful_note": "Conserva la amenaza cómica hiperbólica."}
 {"segment_id": "s-5e3bcdfbf845-0046", "ts": "2026-11-22T01:51:46Z", "findings": [], "playful_note": "Invitación directa a romperlo y observar el resultado."}
+{"segment_id": "s-a6b58da9d4cd-0057", "ts": "2026-11-22T01:53:27Z", "findings": [], "playful_note": "Conserva el contraste afectuoso entre lo raro y lo aburrido."}
+{"segment_id": "s-c08a852d0dbe-0059", "ts": "2026-11-22T01:53:27Z", "findings": ["I15: heading differs from the recorded transcreated '¿En qué circunstancias esta idea terrible se volvería razonable?'"], "playful_note": "Conserva la ironía de llamar terrible a la idea antes de buscar su caso razonable."}
+{"segment_id": "s-0b6ce738f648-0060", "ts": "2026-11-22T01:53:27Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-c08a852d0dbe-0059", "ts": "2026-11-22T01:53:39Z", "findings": [], "playful_note": "Conserva la ironía de llamar terrible a la idea antes de buscar su caso razonable."}

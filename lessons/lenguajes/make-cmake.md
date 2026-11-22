@@ -103,19 +103,19 @@ Mira los [ejercicios](../exercises.md#b5-cmake-mutate-the-literal-verified): el 
 - **Make expande todas las líneas de una receta antes de ejecutar cualquiera**. Por eso la salida de `$(info)` aparecería antes del encabezado de SQLite.
 - **`#` inicia un comentario incluso dentro de una cadena de texto SQL en una variable**; el `'# DEMO ONLY'` del encabezado se escribe `\#`.
 - **Los códigos de escape de Make necesitan un byte ESC literal** (`define ESC` contiene un `0x1b`).
-- **No pure-Make way to create a directory or a SQLite file**, hence `mkdir -p` and `sqlite3`.
-- **`wt.exe` treats `;` as its own subcommand separator**, so command lines passed to it contain none. In CMake, lists are `;`-separated too, so this needs care.
-- **Four 10-hour cards total exactly 40, which continues**, so the fifth card reuses Meetings (both entries).
-- **Detecting a terminal without a shell**: Make uses `$(realpath /proc/self/fd/1)` matching `/dev/pts/%`.
-- **Make cannot tell time in a portable way**; this entry calculates the date from `/proc` and walks the calendar from 1970.
+- **No hay forma de crear un directorio o un archivo SQLite con Make puro**, de ahí `mkdir -p` y `sqlite3`.
+- **`wt.exe` trata `;` como su propio separador de subcomandos**, así que las líneas de comandos que recibe no contienen ninguno. En CMake, las listas también se separan con `;`, así que esto requiere cuidado.
+- **Cuatro tarjetas de 10 horas suman un total de exactamente 40, que continúa**, así que la quinta tarjeta reutiliza Meetings (ambas entradas).
+- **Detectar una terminal sin intérprete de comandos**: Make usa `$(realpath /proc/self/fd/1)` para buscar coincidencias con `/dev/pts/%`.
+- **Make no puede obtener la hora de forma portable**; esta entrada calcula la fecha a partir de `/proc` y recorre el calendario desde 1970.
 
-## Weird next to boring
+## Lo raro junto a lo aburrido
 
-The "boring" CMake version was the first draft: `while()`, `math(EXPR)`, `list(GET)`. The README records throwing it away because it was `RunEverything()` in CMake's accent. The comparison is instructive: the ordinary script is clearer, and the weird one is the one that taught what `MATCHES` actually does.
+La versión "aburrida" de CMake fue el primer borrador: `while()`, `math(EXPR)`, `list(GET)`. El README cuenta que se descartó porque era `RunEverything()` con acento de CMake. La comparación enseña algo: el script ordinario es más claro. El raro fue el que enseñó lo que realmente hace `MATCHES`.
 
-## Under what circumstances would this terrible idea become reasonable?
+## ¿En qué circunstancias esta idea terrible se volvería razonable?
 
-Never as a loop. But "a build system that regenerates its own inputs and restarts" is exactly what auto-dependency generation relies on, and CMake's regex captures are a legitimate way to parse versions and paths. The stunt is those features used for everything.
+Nunca como bucle. Pero "un sistema de construcción que regenera sus propias entradas de datos y se reinicia" es justo en lo que se basa la generación automática de dependencias de compilación. Las capturas de regex de CMake son una forma legítima de analizar versiones y rutas. La pirueta consiste en usar esas funciones para todo.
 
 <!-- BEGIN GENERATED program-flow:languages/make-cmake.md -->
 ## How each program runs
@@ -165,7 +165,7 @@ flowchart TD
 **Why this mechanism matters:** Make's dependency engine decides what to do next from the state of the file system. There is no loop statement and no `$(shell)`: arithmetic is list surgery on `x` words. The report is a chain of phony targets so that its output stays in order.
 <!-- END GENERATED program-flow:languages/make-cmake.md -->
 
-## Computer science behind this page
+## La informática detrás de esta página
 
 <!-- BEGIN GENERATED concepts:languages/make-cmake.md -->
 The computer-science ideas behind this page: [Register machines and counter machines](../informatica/02-que-cuenta-como-maquina.md#register-machines-and-counter-machines), [Turing completeness](../informatica/02-que-cuenta-como-maquina.md#turing-completeness), [Control flow](../informatica/03-flujo-de-control-y-continuaciones.md#control-flow), [Fixed-point iteration](../informatica/03-flujo-de-control-y-continuaciones.md#fixed-point-iteration), [Regular expressions](../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#regular-expressions), [Declarative programming](../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#declarative-programming), [Domain-specific languages](../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#domain-specific-languages), [Build automation](../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#build-automation), [State](../informatica/06-estado-mas-alla-de-las-variables.md#state), [Dependency graphs](../informatica/06-estado-mas-alla-de-las-variables.md#dependency-graphs), [Hyrum's law](../informatica/08-fugas-de-abstraccion-y-dependencia-de-la-implementacion.md#hyrums-law).

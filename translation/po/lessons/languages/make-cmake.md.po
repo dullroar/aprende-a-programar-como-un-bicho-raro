@@ -270,49 +270,49 @@ msgstr "**Los códigos de escape de Make necesitan un byte ESC literal** (⟦COD
 #: lessons/languages/make-cmake.md:106
 msgctxt "s-3513aa04f55c-0052"
 msgid "**No pure-Make way to create a directory or a SQLite file**, hence ⟦CODE_0001⟧ and ⟦CODE_0002⟧."
-msgstr ""
+msgstr "**No hay forma de crear un directorio o un archivo SQLite con Make puro**, de ahí ⟦CODE_0001⟧ y ⟦CODE_0002⟧."
 
 #: lessons/languages/make-cmake.md:107
 msgctxt "s-f7135a19fbe7-0053"
 msgid "**⟦CODE_0001⟧ treats ⟦CODE_0002⟧ as its own subcommand separator**, so command lines passed to it contain none. In CMake, lists are ⟦CODE_0003⟧-separated too, so this needs care."
-msgstr ""
+msgstr "**⟦CODE_0001⟧ trata ⟦CODE_0002⟧ como su propio separador de subcomandos**, así que las líneas de comandos que recibe no contienen ninguno. En CMake, las listas también se separan con ⟦CODE_0003⟧, así que esto requiere cuidado."
 
 #: lessons/languages/make-cmake.md:108
 msgctxt "s-a64534109b8a-0054"
 msgid "**Four 10-hour cards total exactly 40, which continues**, so the fifth card reuses ⟦DNT_0001⟧ (both entries)."
-msgstr ""
+msgstr "**Cuatro tarjetas de 10 horas suman un total de exactamente 40, que continúa**, así que la quinta tarjeta reutiliza ⟦DNT_0001⟧ (ambas entradas)."
 
 #: lessons/languages/make-cmake.md:109
 msgctxt "s-239e7480dd8a-0055"
 msgid "**Detecting a terminal without a shell**: Make uses ⟦CODE_0001⟧ matching ⟦CODE_0002⟧."
-msgstr ""
+msgstr "**Detectar una terminal sin intérprete de comandos**: Make usa ⟦CODE_0001⟧ para buscar coincidencias con ⟦CODE_0002⟧."
 
 #: lessons/languages/make-cmake.md:110
 msgctxt "s-cef6cead2f8d-0056"
 msgid "**Make cannot tell time in a portable way**; this entry calculates the date from ⟦CODE_0001⟧ and walks the calendar from 1970."
-msgstr ""
+msgstr "**Make no puede obtener la hora de forma portable**; esta entrada calcula la fecha a partir de ⟦CODE_0001⟧ y recorre el calendario desde 1970."
 
 #: lessons/languages/make-cmake.md:112
 msgctxt "s-a6b58da9d4cd-0057"
 msgid "Weird next to boring"
-msgstr ""
+msgstr "Lo raro junto a lo aburrido"
 
 #: lessons/languages/make-cmake.md:114
 msgctxt "s-b7f02a8c0159-0058"
 msgid "The \"boring\" CMake version was the first draft: ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧. The README records throwing it away because it was ⟦CODE_0004⟧ in CMake's accent. The comparison is instructive: the ordinary script is clearer, and the weird one is the one that taught what ⟦CODE_0005⟧ actually does."
-msgstr ""
+msgstr "La versión \"aburrida\" de CMake fue el primer borrador: ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧. El README cuenta que se descartó porque era ⟦CODE_0004⟧ con acento de CMake. La comparación enseña algo: el script ordinario es más claro. El raro fue el que enseñó lo que realmente hace ⟦CODE_0005⟧."
 
 #: lessons/languages/make-cmake.md:116
 msgctxt "s-c08a852d0dbe-0059"
 msgid "Under what circumstances would this terrible idea become reasonable?"
-msgstr ""
+msgstr "¿En qué circunstancias esta idea terrible se volvería razonable?"
 
 #: lessons/languages/make-cmake.md:118
 msgctxt "s-0b6ce738f648-0060"
 msgid "Never as a loop. But \"a build system that regenerates its own inputs and restarts\" is exactly what auto-dependency generation relies on, and CMake's regex captures are a legitimate way to parse versions and paths. The stunt is those features used for everything."
-msgstr ""
+msgstr "Nunca como bucle. Pero \"un sistema de construcción que regenera sus propias entradas de datos y se reinicia\" es justo en lo que se basa la generación automática de dependencias de compilación. Las capturas de regex de CMake son una forma legítima de analizar versiones y rutas. La pirueta consiste en usar esas funciones para todo."
 
 #: lessons/languages/make-cmake.md:168
 msgctxt "s-ac0e260e97bf-0061"
 msgid "Computer science behind this page"
-msgstr ""
+msgstr "La informática detrás de esta página"
