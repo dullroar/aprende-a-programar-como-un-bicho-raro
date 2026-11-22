@@ -135,27 +135,27 @@ msgstr "Ahora rómpelo tú"
 #: lessons/languages/make-cmake.md:53
 msgctxt "s-394810efccb2-0025"
 msgid "See [exercises](⟦DEST_0001⟧)."
-msgstr ""
+msgstr "Consulta los [ejercicios](⟦DEST_0001⟧)."
 
 #: lessons/languages/make-cmake.md:55
 msgctxt "s-e7efda826b6d-0026"
 msgid "CMake"
-msgstr ""
+msgstr "CMake"
 
 #: lessons/languages/make-cmake.md:57
 msgctxt "s-cc9cfaabc50d-0027"
 msgid "Behold the monstrosity"
-msgstr ""
+msgstr "Contempla la monstruosidad"
 
 #: lessons/languages/make-cmake.md:63
 msgctxt "s-9c7ae477e9fa-0028"
 msgid "One ⟦CODE_0001⟧ with an empty body. Everything that decides anything is in its condition."
-msgstr ""
+msgstr "Un ⟦CODE_0001⟧ con el cuerpo vacío. Todo lo que toma decisiones está en su condición."
 
 #: lessons/languages/make-cmake.md:65
 msgctxt "s-415f5fa29cf9-0029"
 msgid "How the hell does that work?"
-msgstr ""
+msgstr "¿Cómo demonios funciona eso?"
 
 #: lessons/languages/make-cmake.md:67
 msgctxt "s-4eed5af3dba3-0030"

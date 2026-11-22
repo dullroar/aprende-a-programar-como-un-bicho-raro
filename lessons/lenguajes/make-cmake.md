@@ -50,19 +50,19 @@ Usos legítimos: generar archivos incluidos (`-include $(DEPS)`) que causan un r
 
 ### Ahora rómpelo tú
 
-See [exercises](../exercises.md#b4-make-remove-the-no-op-and-override-the-clock-verified).
+Consulta los [ejercicios](../exercises.md#b4-make-remove-the-no-op-and-override-the-clock-verified).
 
 ## CMake
 
-### Behold the monstrosity
+### Contempla la monstruosidad
 
 ```bash
 sandbox/container/run-image.sh src/cmake
 ```
 
-One `while()` with an empty body. Everything that decides anything is in its condition.
+Un `while()` con el cuerpo vacío. Todo lo que toma decisiones está en su condición.
 
-### How the hell does that work?
+### ¿Cómo demonios funciona eso?
 
 [`timecards.cmake` L41-54](../../src/cmake/timecards.cmake#L41-L54):
 
