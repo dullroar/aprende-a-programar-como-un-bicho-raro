@@ -100,19 +100,19 @@ Usos legítimos: clausuras para estado privado, fábricas de funciones configura
 
 Mira el [ejercicio B21](../exercises.md#b21-javascript-weirder-move-the-stop-rule-in-a-closure-and-watch-the-demand-verified).
 
-## Listeners all the way down
+## Escuchadores de eventos hasta el fondo
 
-### Behold the monstrosity
+### Contempla la monstruosidad
 
 ```bash
 sandbox/container/run-image.sh src/javascript-events
 ```
 
-No `for`, no `while`, no pipeline, no closure factory. The visible start-up is one line, `program(realWorld()).emit('start')`. Everything else is a listener: a small function that Node calls when an event arrives.
+Sin `for`, sin `while`, sin canalización ni fábrica de clausuras. El inicio visible ocupa una línea, `program(realWorld()).emit('start')`. Todo lo demás es un escuchador de eventos: una función pequeña que Node llama cuando llega un evento.
 
-### How the hell does that work?
+### ¿Cómo demonios funciona eso?
 
-- **A listener does one thing and emits the next event.** `generate` draws a card and emits `card-created`. `card-created` saves it and emits `card-saved`. `card-saved` updates the total and emits `total-updated`. `total-updated` is the stop rule.
+- **Un escuchador de eventos hace una cosa y emite el siguiente evento.** `generate` sortea una tarjeta y emite `card-created`. `card-created` la guarda y emite `card-saved`. `card-saved` actualiza el total y emite `total-updated`. `total-updated` es la regla de parada.
 - **`emit()` is a call.** It runs every listener of the event, in order, before it returns. The listener sits on top of the caller on the call stack.
 - **`setImmediate()` is a request.** `total-updated` does not emit `generate` again. It asks the event loop for it. Node runs it on a later turn, when the stack is empty. Without that, every card would add frames to the stack, and a long run would end with a `RangeError`.
 - **The save comes first.** `node:sqlite` is synchronous, so the row is written when `run()` returns. The running total changes only after that.

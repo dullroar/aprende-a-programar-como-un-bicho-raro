@@ -386,7 +386,7 @@ Acceptance criteria:
 
 ### B22. JavaScript, event-driven: predict the trace, then remove the boundary (verified)
 
-**Lesson:** [JavaScript](lenguajes/javascript.md#listeners-all-the-way-down). **Chapter:** [Events, callbacks and reactive control flow](informatica/10-eventos-retrollamadas-y-flujo-de-control-reactivo.md). **Entry:** a copy of `src/javascript-events`.
+**Lesson:** [JavaScript](lenguajes/javascript.md#escuchadores-de-eventos-hasta-el-fondo). **Chapter:** [Events, callbacks and reactive control flow](informatica/10-eventos-retrollamadas-y-flujo-de-control-reactivo.md). **Entry:** a copy of `src/javascript-events`.
 
 1. Run the event lab on the untouched copy: `node --test check.mjs`. How many tests pass?
 2. **Predict** the order of the three lines that this prints, then run it:

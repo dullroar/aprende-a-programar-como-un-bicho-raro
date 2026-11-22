@@ -310,27 +310,27 @@ msgstr "Mira el [ejercicio B21](⟦DEST_0001⟧)."
 #: lessons/languages/javascript.md:103
 msgctxt "s-75cf1969e29d-0060"
 msgid "Listeners all the way down"
-msgstr ""
+msgstr "Escuchadores de eventos hasta el fondo"
 
 #: lessons/languages/javascript.md:105
 msgctxt "s-cc9cfaabc50d-0061"
 msgid "Behold the monstrosity"
-msgstr ""
+msgstr "Contempla la monstruosidad"
 
 #: lessons/languages/javascript.md:111
 msgctxt "s-99f0c1da50c6-0062"
 msgid "No ⟦CODE_0001⟧, no ⟦CODE_0002⟧, no pipeline, no closure factory. The visible start-up is one line, ⟦CODE_0003⟧. Everything else is a listener: a small function that Node calls when an event arrives."
-msgstr ""
+msgstr "Sin ⟦CODE_0001⟧, sin ⟦CODE_0002⟧, sin canalización ni fábrica de clausuras. El inicio visible ocupa una línea, ⟦CODE_0003⟧. Todo lo demás es un escuchador de eventos: una función pequeña que Node llama cuando llega un evento."
 
 #: lessons/languages/javascript.md:113
 msgctxt "s-415f5fa29cf9-0063"
 msgid "How the hell does that work?"
-msgstr ""
+msgstr "¿Cómo demonios funciona eso?"
 
 #: lessons/languages/javascript.md:115
 msgctxt "s-ccb245f65620-0064"
 msgid "**A listener does one thing and emits the next event.** ⟦CODE_0001⟧ draws a card and emits ⟦CODE_0002⟧. ⟦CODE_0003⟧ saves it and emits ⟦CODE_0004⟧. ⟦CODE_0005⟧ updates the total and emits ⟦CODE_0006⟧. ⟦CODE_0007⟧ is the stop rule."
-msgstr ""
+msgstr "**Un escuchador de eventos hace una cosa y emite el siguiente evento.** ⟦CODE_0001⟧ sortea una tarjeta y emite ⟦CODE_0002⟧. ⟦CODE_0003⟧ la guarda y emite ⟦CODE_0004⟧. ⟦CODE_0005⟧ actualiza el total y emite ⟦CODE_0006⟧. ⟦CODE_0007⟧ es la regla de parada."
 
 #: lessons/languages/javascript.md:116
 msgctxt "s-ef15a3c1a229-0065"

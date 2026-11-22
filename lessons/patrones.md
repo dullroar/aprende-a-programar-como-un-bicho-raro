@@ -114,7 +114,7 @@ Each track stores "what happens next" somewhere that is not a loop counter: in t
 | Thunks: which parts of a list have been demanded | [haskell](lenguajes/haskell.md#la-es-perezosa-como-flujo-de-control): [`haskell-weird`](../src/haskell-weird/README.md) |
 | Fields of one anonymous class | [csharp-linq-xaml](lenguajes/csharp-linq-xaml.md#las-adaptaciones-de-una-sola-sentencia-mismo-truco-distinta-maquinaria): [`JavaChallenge1`](../src/JavaChallenge1/README.md) |
 | Properties of one object literal | [javascript](lenguajes/javascript.md#el-for-sin-cuerpo-en-node): [`javascript`](../src/javascript/README.md) |
-| The running total and the card count, held in one object that only the listeners touch | [javascript](lenguajes/javascript.md#listeners-all-the-way-down): [`javascript-events`](../src/javascript-events/README.md) |
+| The running total and the card count, held in one object that only the listeners touch | [javascript](lenguajes/javascript.md#escuchadores-de-eventos-hasta-el-fondo): [`javascript-events`](../src/javascript-events/README.md) |
 | Variables captured by closures: the generator's number, and the machine's card count, total and stop flag | [javascript](lenguajes/javascript.md#clausuras-hasta-el-fondo): [`javascript-weird`](../src/javascript-weird/README.md) |
 | Properties of one object expression, the seed of the sequence | [csharp-linq-xaml](lenguajes/csharp-linq-xaml.md#las-adaptaciones-de-una-sola-sentencia-mismo-truco-distinta-maquinaria): [`KotlinChallenge1`](../src/KotlinChallenge1/README.md) |
 | Inside the stages' enumerators, and in the database | [csharp-linq-xaml](lenguajes/csharp-linq-xaml.md#la-ejecución-diferida-y-el-truco-de-convertir-void-en-valor): [`LinqChallenge1`](../src/LinqChallenge1/README.md) |

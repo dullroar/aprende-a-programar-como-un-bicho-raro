@@ -5037,24 +5037,24 @@
     {
      "en": "Listeners all the way down",
      "en_id": "listeners-all-the-way-down",
-     "es": "Listeners all the way down",
-     "es_id": "listeners-all-the-way-down",
+     "es": "Escuchadores de eventos hasta el fondo",
+     "es_id": "escuchadores-de-eventos-hasta-el-fondo",
      "level": 2,
      "line": 103
     },
     {
      "en": "Behold the monstrosity",
      "en_id": "behold-the-monstrosity-2",
-     "es": "Behold the monstrosity",
-     "es_id": "behold-the-monstrosity",
+     "es": "Contempla la monstruosidad",
+     "es_id": "contempla-la-monstruosidad-2",
      "level": 3,
      "line": 105
     },
     {
      "en": "How the hell does that work?",
      "en_id": "how-the-hell-does-that-work-2",
-     "es": "How the hell does that work?",
-     "es_id": "how-the-hell-does-that-work",
+     "es": "¿Cómo demonios funciona eso?",
+     "es_id": "cómo-demonios-funciona-eso-2",
      "level": 3,
      "line": 113
     },
@@ -5126,7 +5126,7 @@
    "map": {
     "behold-the-monstrosity": "contempla-la-monstruosidad",
     "behold-the-monstrosity-1": "contempla-la-monstruosidad-1",
-    "behold-the-monstrosity-2": "behold-the-monstrosity",
+    "behold-the-monstrosity-2": "contempla-la-monstruosidad-2",
     "closures-all-the-way-down": "clausuras-hasta-el-fondo",
     "computer-science-behind-this-page": "computer-science-behind-this-page",
     "do-this-in-production-and-youre-fired": "haz-esto-en-producción-y-estás-despedido",
@@ -5135,9 +5135,9 @@
     "how-each-program-runs": "how-each-program-runs",
     "how-the-hell-does-that-work": "cómo-demonios-funciona-eso",
     "how-the-hell-does-that-work-1": "cómo-demonios-funciona-eso-1",
-    "how-the-hell-does-that-work-2": "how-the-hell-does-that-work",
+    "how-the-hell-does-that-work-2": "cómo-demonios-funciona-eso-2",
     "javascript": "javascript",
-    "listeners-all-the-way-down": "listeners-all-the-way-down",
+    "listeners-all-the-way-down": "escuchadores-de-eventos-hasta-el-fondo",
     "now-break-it-yourself": "ahora-rómpelo-tú",
     "now-break-it-yourself-1": "ahora-rómpelo-tú-1",
     "now-break-it-yourself-2": "now-break-it-yourself",
