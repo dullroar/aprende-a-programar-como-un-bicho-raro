@@ -435,9 +435,9 @@ msgstr "Ahora rómpelo tú"
 #: lessons/languages/javascript.md:145
 msgctxt "s-d9944933fdbd-0085"
 msgid "See [exercise B22](⟦DEST_0001⟧), and the chapter [Events, callbacks and reactive control flow](⟦DEST_0002⟧)."
-msgstr ""
+msgstr "Consulta el [ejercicio B22](⟦DEST_0001⟧) y el capítulo [Eventos, funciones de devolución de llamada y flujo de control reactivo](⟦DEST_0002⟧)."
 
 #: lessons/languages/javascript.md:236
 msgctxt "s-ac0e260e97bf-0086"
 msgid "Computer science behind this page"
-msgstr ""
+msgstr "Ciencias de la computación detrás de esta página"
