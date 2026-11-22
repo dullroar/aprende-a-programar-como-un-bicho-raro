@@ -240,3 +240,4 @@
 267 P4-lessons-languages-4 partial accepted and applied make-cmake positions 25 to 29; resume at 30; task, fast and anchor checks passed.
 268 P4-lessons-languages-4 partial accepted and applied make-cmake positions 30 to 34; resume at 35; task, fast and anchor checks passed.
 269 P4-lessons-languages-4 partial accepted and applied make-cmake positions 35 to 39; resume at 40; task, fast and anchor checks passed.
+270 P4-lessons-languages-4 partial accepted and applied make-cmake positions 40 to 45; resume at 46; task, fast and anchor checks passed.

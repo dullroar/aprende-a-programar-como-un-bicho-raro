@@ -210,32 +210,32 @@ msgstr "**Compara**: [Perl y PCRE2](⟦DEST_0001⟧) colocan el bucle dentro de 
 #: lessons/languages/make-cmake.md:88
 msgctxt "s-e673c155dd4a-0040"
 msgid "Tags: Setting ⟦CODE_0001⟧ on a match and expanding the ⟦CODE_0002⟧ condition on each pass are **guaranteed** by the documentation. Clearing all registers on a failed match is **implementation-permitted**, based on observation."
-msgstr ""
+msgstr "Etiquetas: la documentación establece como **garantizado** asignar ⟦CODE_0001⟧ en una coincidencia y expandir la condición ⟦CODE_0002⟧ en cada pasada. Borrar todos los registros ante una coincidencia fallida es **permitido por la implementación**, según lo observado."
 
 #: lessons/languages/make-cmake.md:90
 msgctxt "s-299b7a6f9cbe-0041"
 msgid "Do this in production and you're fired"
-msgstr ""
+msgstr "Haz esto en producción y estás despedido"
 
 #: lessons/languages/make-cmake.md:92
 msgctxt "s-95780a6ef2eb-0042"
 msgid "**CMake's regex has no counted repetition** (⟦CODE_0001⟧ is unsupported, hence the literal 41-character test), **no lookahead and no backreferences**. A tempting ⟦CODE_0002⟧ x 40 for \"at most 40\" would backtrack exponentially on failure."
-msgstr ""
+msgstr "**La expresión regular de CMake no tiene repetición contada** (⟦CODE_0001⟧ no está disponible, de ahí la prueba literal de 41 caracteres), **ni anticipación ni referencias inversas**. Un tentador ⟦CODE_0002⟧ x 40 para \"como máximo 40\" retrocedería exponencialmente ante un fallo."
 
 #: lessons/languages/make-cmake.md:93
 msgctxt "s-f894e798a12d-0043"
 msgid "**The host still reports.** Output cannot happen from inside a condition, so printing, the SQLite writes and the glow are ordinary CMake after the loop."
-msgstr ""
+msgstr "**El anfitrión sigue informando.** La salida no puede ocurrir dentro de una condición. Por eso la impresión, las escrituras en SQLite y el resplandor son CMake ordinario después del bucle."
 
 #: lessons/languages/make-cmake.md:94
 msgctxt "s-e87b3a1bf572-0044"
 msgid "**ISO year by hand.** ⟦CODE_0001⟧ knows ⟦CODE_0002⟧ but not ⟦CODE_0003⟧."
-msgstr ""
+msgstr "**El año ISO a mano.** ⟦CODE_0001⟧ conoce ⟦CODE_0002⟧ pero no ⟦CODE_0003⟧."
 
 #: lessons/languages/make-cmake.md:95
 msgctxt "s-960d7992a417-0045"
 msgid "**⟦CODE_0001⟧ goes to stderr**, hence ⟦CODE_0002⟧ writes."
-msgstr ""
+msgstr "**⟦CODE_0001⟧ va a stderr**, de ahí las escrituras de ⟦CODE_0002⟧."
 
 #: lessons/languages/make-cmake.md:97
 msgctxt "s-5e3bcdfbf845-0046"

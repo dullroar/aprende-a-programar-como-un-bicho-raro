@@ -5517,8 +5517,8 @@
     {
      "en": "Do this in production and you're fired",
      "en_id": "do-this-in-production-and-youre-fired-1",
-     "es": "Do this in production and you're fired",
-     "es_id": "do-this-in-production-and-youre-fired",
+     "es": "Haz esto en producción y estás despedido",
+     "es_id": "haz-esto-en-producción-y-estás-despedido-1",
      "level": 3,
      "line": 90
     },
@@ -5593,7 +5593,7 @@
     "cmake": "cmake",
     "computer-science-behind-this-page": "computer-science-behind-this-page",
     "do-this-in-production-and-youre-fired": "haz-esto-en-producción-y-estás-despedido",
-    "do-this-in-production-and-youre-fired-1": "do-this-in-production-and-youre-fired",
+    "do-this-in-production-and-youre-fired-1": "haz-esto-en-producción-y-estás-despedido-1",
     "gnu-make": "gnu-make",
     "gnu-make-and-cmake": "gnu-make-y-cmake",
     "how-each-program-runs": "how-each-program-runs",

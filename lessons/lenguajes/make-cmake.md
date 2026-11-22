@@ -85,14 +85,14 @@ El `MATCHES` `if()`/`while()` de CMake guarda sus grupos de captura en variables
 - **Una condición puede ser una sentencia.** Aquí evaluar la prueba *es* la instrucción.
 - **Compara**: [Perl y PCRE2](regex.md) colocan el bucle dentro de una coincidencia de expresión regular; CMake usa una expresión regular *por pasada*, pero deja que el bucle la vuelva a expandir. Misma idea, distinto lugar.
 
-Tags: Setting `CMAKE_MATCH_n` on a match and expanding the `while()` condition on each pass are **guaranteed** by the documentation. Clearing all registers on a failed match is **implementation-permitted**, based on observation.
+Etiquetas: la documentación establece como **garantizado** asignar `CMAKE_MATCH_n` en una coincidencia y expandir la condición `while()` en cada pasada. Borrar todos los registros ante una coincidencia fallida es **permitido por la implementación**, según lo observado.
 
-### Do this in production and you're fired
+### Haz esto en producción y estás despedido
 
-- **CMake's regex has no counted repetition** (`x{41}` is unsupported, hence the literal 41-character test), **no lookahead and no backreferences**. A tempting `(x?x?...)` x 40 for "at most 40" would backtrack exponentially on failure.
-- **The host still reports.** Output cannot happen from inside a condition, so printing, the SQLite writes and the glow are ordinary CMake after the loop.
-- **ISO year by hand.** `string(TIMESTAMP)` knows `%V` but not `%G`.
-- **`message()` goes to stderr**, hence `/dev/stdout` writes.
+- **La expresión regular de CMake no tiene repetición contada** (`x{41}` no está disponible, de ahí la prueba literal de 41 caracteres), **ni anticipación ni referencias inversas**. Un tentador `(x?x?...)` x 40 para "como máximo 40" retrocedería exponencialmente ante un fallo.
+- **El anfitrión sigue informando.** La salida no puede ocurrir dentro de una condición. Por eso la impresión, las escrituras en SQLite y el resplandor son CMake ordinario después del bucle.
+- **El año ISO a mano.** `string(TIMESTAMP)` conoce `%V` pero no `%G`.
+- **`message()` va a stderr**, de ahí las escrituras de `/dev/stdout`.
 
 ### Now break it yourself
 
