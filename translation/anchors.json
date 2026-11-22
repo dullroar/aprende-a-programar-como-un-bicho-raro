@@ -5905,8 +5905,8 @@
     {
      "en": "Now break it yourself",
      "en_id": "now-break-it-yourself-1",
-     "es": "Now break it yourself",
-     "es_id": "now-break-it-yourself",
+     "es": "Ahora rómpelo tú",
+     "es_id": "ahora-rómpelo-tú-1",
      "level": 3,
      "line": 99
     },
@@ -5954,7 +5954,7 @@
     "how-the-hell-does-that-work": "cómo-demonios-funciona-eso",
     "how-the-hell-does-that-work-1": "cómo-demonios-funciona-eso-1",
     "now-break-it-yourself": "ahora-rómpelo-tú",
-    "now-break-it-yourself-1": "now-break-it-yourself",
+    "now-break-it-yourself-1": "ahora-rómpelo-tú-1",
     "program-flow-of-tar-gnu": "program-flow-of-tar-gnu",
     "program-flow-of-tar-gnu-weird": "program-flow-of-tar-gnu-weird",
     "tar": "tar",

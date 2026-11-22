@@ -285,27 +285,27 @@ msgstr "**Es un indicador de progreso.** Si alguien cambia el factor de bloqueo,
 #: lessons/languages/tar.md:94
 msgctxt "s-37316ffa49ff-0055"
 msgid "**Every tick starts a process.** Do not use a checkpoint as a scheduler. Use a scheduler."
-msgstr ""
+msgstr "**Cada pulso inicia un proceso.** No uses un punto de control como programador de tareas. Usa un programador de tareas."
 
 #: lessons/languages/tar.md:95
 msgctxt "s-783ed4f01f7c-0056"
 msgid "**A failing callback is silent to tar.** Look for your own errors. The entry sends them to standard error and exits 3."
-msgstr ""
+msgstr "**Si falla una función de devolución de llamada, tar no lo anuncia.** Busca tus propios errores. La entrada los envía a la salida de error estándar y termina con 3."
 
 #: lessons/languages/tar.md:97
 msgctxt "s-bb6bd1a820a4-0057"
 msgid "Legitimate uses: progress bars for long backups, and ⟦CODE_0001⟧ to pause a job for a cooperating process, as the manual shows."
-msgstr ""
+msgstr "Usos legítimos: barras de progreso para copias de seguridad largas y ⟦CODE_0001⟧ para pausar una tarea para un proceso cooperante, como muestra el manual."
 
 #: lessons/languages/tar.md:99
 msgctxt "s-5e3bcdfbf845-0058"
 msgid "Now break it yourself"
-msgstr ""
+msgstr "Ahora rómpelo tú"
 
 #: lessons/languages/tar.md:101
 msgctxt "s-ca314e0ca1eb-0059"
 msgid "See [exercise B17](⟦DEST_0001⟧)."
-msgstr ""
+msgstr "Mira el [ejercicio B17](⟦DEST_0001⟧)."
 
 #: lessons/languages/tar.md:165
 msgctxt "s-ac0e260e97bf-0060"

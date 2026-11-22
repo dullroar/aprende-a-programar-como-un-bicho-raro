@@ -91,14 +91,14 @@ Etiquetas: `--checkpoint`, `--checkpoint-action=exec` y `TAR_CHECKPOINT` son ext
 ### Haz esto en producción y estás despedido
 
 - **Es un indicador de progreso.** Si alguien cambia el factor de bloqueo, tu calendario cambia con él.
-- **Every tick starts a process.** Do not use a checkpoint as a scheduler. Use a scheduler.
-- **A failing callback is silent to tar.** Look for your own errors. The entry sends them to standard error and exits 3.
+- **Cada pulso inicia un proceso.** No uses un punto de control como programador de tareas. Usa un programador de tareas.
+- **Si falla una función de devolución de llamada, tar no lo anuncia.** Busca tus propios errores. La entrada los envía a la salida de error estándar y termina con 3.
 
-Legitimate uses: progress bars for long backups, and `--checkpoint-action=wait` to pause a job for a cooperating process, as the manual shows.
+Usos legítimos: barras de progreso para copias de seguridad largas y `--checkpoint-action=wait` para pausar una tarea para un proceso cooperante, como muestra el manual.
 
-### Now break it yourself
+### Ahora rómpelo tú
 
-See [exercise B17](../exercises.md#b17-tar-weirder-predict-the-clock-verified).
+Mira el [ejercicio B17](../exercises.md#b17-tar-weirder-predict-the-clock-verified).
 
 <!-- BEGIN GENERATED program-flow:languages/tar.md -->
 ## How each program runs
