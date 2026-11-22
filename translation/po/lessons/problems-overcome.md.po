@@ -1,0 +1,548 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lessons/problems-overcome.md:1
+msgctxt "s-58061db36608-0000"
+msgid "Problems overcome"
+msgstr "Problemas superados"
+
+#: lessons/problems-overcome.md:3
+msgctxt "s-08b3f0a797d1-0001"
+msgid "What stood in each approach's way, and how it got around it. Each row came from a wall someone actually hit; most are written up in the entry's \"Gotchas worth knowing\" section."
+msgstr "Qué se interpuso en el camino de cada enfoque y cómo lo sorteó. Cada fila nace de un obstáculo que alguien encontró de verdad; la mayoría están documentadas en la sección \"Gotchas worth knowing\" de la entrada."
+
+#: lessons/problems-overcome.md:5
+msgctxt "s-4d21d349f613-0002"
+msgid "The rows are grouped by the *kind* of obstacle, so you can read one theme across many languages. The order goes from the outside in: first the shape of the program, then where its state lives, then its control flow, then when things run, then the limits of the host and last how failure is made visible. Inside each group, rows follow the order in which they were found."
+msgstr "Las filas están agrupadas por el *tipo* de obstáculo, así que puedes leer un mismo tema en muchos lenguajes. El orden va de afuera hacia adentro: primero la forma del programa, luego dónde vive su estado, luego su flujo de control, luego cuándo se ejecutan las cosas, luego los límites del anfitrión y por último cómo se hace visible el fallo. Dentro de cada grupo, las filas siguen el orden en que se encontraron."
+
+#: lessons/problems-overcome.md:7
+msgctxt "s-535cc28d0af6-0003"
+msgid "Squeezing the program into one statement"
+msgstr "Meter el programa a presión en una sola sentencia"
+
+#: lessons/problems-overcome.md:9
+msgctxt "s-d0c8a45d7067-0004"
+msgid "The challenge allows one statement. These rows are about fitting a whole program into the shape a language allows."
+msgstr "El reto permite una sola sentencia. Estas filas tratan de encajar un programa completo en la forma que permite un lenguaje."
+
+#: lessons/problems-overcome.md:11
+msgctxt "s-a4d27add9ed6-0005"
+msgid "⟦SEP_0001⟧ Approach ⟦SEP_0002⟧ The obstacle ⟦SEP_0003⟧ How it was overcome ⟦SEP_0004⟧ What it teaches ⟦SEP_0005⟧"
+msgstr "⟦SEP_0001⟧ Enfoque ⟦SEP_0002⟧ El obstáculo ⟦SEP_0003⟧ Cómo se superó ⟦SEP_0004⟧ Qué enseña ⟦SEP_0005⟧"
+
+#: lessons/problems-overcome.md:13
+msgctxt "s-7b1135543fb9-0006"
+msgid "⟦SEP_0003⟧ **C#** (⟦CODE_0001⟧) ⟦SEP_0004⟧ A ⟦CODE_0002⟧ initializer allows only one declaration, but the loop needs seven kinds of state ⟦SEP_0005⟧ One anonymous object with a field per piece of state ⟦SEP_0006⟧ Anonymous types are an expression-level record ⟦SEP_0007⟧"
+msgstr "⟦SEP_0003⟧ **C#** (⟦CODE_0001⟧) ⟦SEP_0004⟧ Un inicializador de ⟦CODE_0002⟧ permite solo una declaración, pero el bucle necesita siete clases de estado ⟦SEP_0005⟧ Un solo objeto anónimo con un campo por cada pieza de estado ⟦SEP_0006⟧ Los tipos anónimos son un registro a nivel de expresión ⟦SEP_0007⟧"
+
+#: lessons/problems-overcome.md:14
+msgctxt "s-e2dd0723f995-0007"
+msgid "⟦SEP_0006⟧ **C#** ⟦SEP_0007⟧ ⟦CODE_0001⟧ methods (⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧) do not fit where a value is needed ⟦SEP_0008⟧ ⟦CODE_0005⟧ in place ⟦SEP_0009⟧ Statements can be lifted into expressions ⟦SEP_0010⟧"
+msgstr "⟦SEP_0006⟧ **C#** ⟦SEP_0007⟧ Los métodos ⟦CODE_0001⟧ (⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧) no caben donde se necesita un valor ⟦SEP_0008⟧ ⟦CODE_0005⟧ in situ ⟦SEP_0009⟧ Puedes elevar las sentencias a expresiones ⟦SEP_0010⟧"
+
+#: lessons/problems-overcome.md:15
+msgctxt "s-3f0efea08361-0008"
+msgid "⟦SEP_0003⟧ **LINQ** ⟦SEP_0004⟧ A statement must end in an invocation, so ⟦CODE_0001⟧ cannot bind intermediate results ⟦SEP_0005⟧ Nest ⟦CODE_0002⟧ calls to turn a value back into a one-element sequence ⟦SEP_0006⟧ Know which expression shapes are legal as statements ⟦SEP_0007⟧"
+msgstr "⟦SEP_0003⟧ **LINQ** ⟦SEP_0004⟧ Una sentencia debe terminar en una invocación, así que ⟦CODE_0001⟧ no puede enlazar resultados intermedios ⟦SEP_0005⟧ Anida llamadas a ⟦CODE_0002⟧ para convertir un valor de nuevo en una secuencia de un elemento ⟦SEP_0006⟧ Conoce qué formas de expresión son válidas como sentencias ⟦SEP_0007⟧"
+
+#: lessons/problems-overcome.md:16
+msgctxt "s-1161130f19d5-0009"
+msgid "⟦SEP_0008⟧ **Rust** ⟦SEP_0009⟧ No ⟦CODE_0001⟧, ⟦CODE_0002⟧ or ⟦CODE_0003⟧ in ⟦CODE_0004⟧ ⟦SEP_0010⟧ ⟦CODE_0005⟧; ⟦CODE_0006⟧ as ⟦CODE_0007⟧; tuple projection as the comma operator ⟦SEP_0011⟧ Iterators and closures as control flow ⟦SEP_0012⟧"
+msgstr "⟦SEP_0008⟧ **Rust** ⟦SEP_0009⟧ Sin ⟦CODE_0001⟧, ⟦CODE_0002⟧ ni ⟦CODE_0003⟧ en ⟦CODE_0004⟧ ⟦SEP_0010⟧ ⟦CODE_0005⟧; ⟦CODE_0006⟧ como ⟦CODE_0007⟧; proyección de tuplas como operador coma ⟦SEP_0011⟧ Iteradores y clausuras (*closures*, funciones que capturan variables de su entorno) como flujo de control ⟦SEP_0012⟧"
+
+#: lessons/problems-overcome.md:17
+msgctxt "s-ef614b863731-0010"
+msgid "⟦SEP_0004⟧ **Go** ⟦SEP_0005⟧ A three-clause ⟦CODE_0001⟧ cannot hold statements ⟦SEP_0006⟧ Helper functions (⟦CODE_0002⟧, ⟦CODE_0003⟧) in a separate file ⟦SEP_0007⟧ Cost of the constraint made explicit ⟦SEP_0008⟧"
+msgstr "⟦SEP_0004⟧ **Go** ⟦SEP_0005⟧ Un ⟦CODE_0001⟧ de tres cláusulas no puede contener sentencias ⟦SEP_0006⟧ Funciones auxiliares (⟦CODE_0002⟧, ⟦CODE_0003⟧) en un archivo aparte ⟦SEP_0007⟧ El costo de la restricción, explícito ⟦SEP_0008⟧"
+
+#: lessons/problems-overcome.md:18
+msgctxt "s-cc907e3726ed-0011"
+msgid "⟦SEP_0004⟧ **Python** ⟦SEP_0005⟧ No ⟦CODE_0001⟧ loops and no statement expressions ⟦SEP_0006⟧ ⟦CODE_0002⟧ plus tuple-and-⟦CODE_0003⟧ ⟦SEP_0007⟧ Expressions standing in for statements ⟦SEP_0008⟧"
+msgstr "⟦SEP_0004⟧ **Python** ⟦SEP_0005⟧ Sin bucles ⟦CODE_0001⟧ ni expresiones de sentencia ⟦SEP_0006⟧ ⟦CODE_0002⟧ más tuplas y ⟦CODE_0003⟧ ⟦SEP_0007⟧ Expresiones que hacen el papel de sentencias ⟦SEP_0008⟧"
+
+#: lessons/problems-overcome.md:19
+msgctxt "s-a966065d3906-0012"
+msgid "⟦SEP_0003⟧ **Kotlin** ⟦SEP_0004⟧ No ⟦CODE_0001⟧ ⟦SEP_0005⟧ ⟦CODE_0002⟧, ending on null ⟦SEP_0006⟧ A sequence is a loop ⟦SEP_0007⟧"
+msgstr "⟦SEP_0003⟧ **Kotlin** ⟦SEP_0004⟧ Sin ⟦CODE_0001⟧ ⟦SEP_0005⟧ ⟦CODE_0002⟧, que termina en null ⟦SEP_0006⟧ Una secuencia es un bucle ⟦SEP_0007⟧"
+
+#: lessons/problems-overcome.md:20
+msgctxt "s-ecbb49c3e2fd-0013"
+msgid "⟦SEP_0004⟧ **JavaScript** (⟦CODE_0001⟧) ⟦SEP_0005⟧ After ⟦CODE_0002⟧ in a ⟦CODE_0003⟧ header, a comma starts the next *declarator*; it is not the comma operator, so the initializer cannot also run statements ⟦SEP_0006⟧ The state object goes through an arrow function that finishes it with the comma operator ⟦SEP_0007⟧ Know which comma you have ⟦SEP_0008⟧"
+msgstr "⟦SEP_0004⟧ **JavaScript** (⟦CODE_0001⟧) ⟦SEP_0005⟧ Después de ⟦CODE_0002⟧ en un encabezado ⟦CODE_0003⟧, una coma inicia el siguiente *declarador*; no es el operador coma, así que el inicializador no puede ejecutar además sentencias ⟦SEP_0006⟧ El objeto de estado pasa por una función flecha que lo termina con el operador coma ⟦SEP_0007⟧ Reconoce qué coma tienes ⟦SEP_0008⟧"
+
+#: lessons/problems-overcome.md:21
+msgctxt "s-a0f8bd5982ae-0014"
+msgid "⟦SEP_0006⟧ **JavaScript** (⟦CODE_0001⟧) ⟦SEP_0007⟧ ⟦CODE_0002⟧ runs its listeners before it returns, so a chain of events is a recursion with one more level for every card, and a throw in a listener goes to the caller ⟦SEP_0008⟧ ⟦CODE_0003⟧ between cards, so the stack unwinds, and a ⟦CODE_0004⟧ in every listener that turns a throw into one ⟦CODE_0005⟧ event ⟦SEP_0009⟧ Know which calls return before the next one starts ⟦SEP_0010⟧"
+msgstr "⟦SEP_0006⟧ **JavaScript** (⟦CODE_0001⟧) ⟦SEP_0007⟧ ⟦CODE_0002⟧ ejecuta sus escuchadores de eventos (*listeners*, funciones que reaccionan a un evento) antes de retornar, así que una cadena de eventos es una recursión con un nivel más por cada tarjeta, y un throw en un escuchador de eventos llega a quien hizo la llamada ⟦SEP_0008⟧ ⟦CODE_0003⟧ entre tarjetas, así que la pila se desenrolla, y un ⟦CODE_0004⟧ en cada escuchador de eventos que convierte un throw en un evento ⟦CODE_0005⟧ ⟦SEP_0009⟧ Identifica qué llamadas retornan antes de que empiece la siguiente ⟦SEP_0010⟧"
+
+#: lessons/problems-overcome.md:23
+msgctxt "s-b35ee6e394e3-0015"
+msgid "No variables? Find somewhere else to keep state"
+msgstr "¿Sin variables? Busca otro lugar donde guardar el estado"
+
+#: lessons/problems-overcome.md:25
+msgctxt "s-28c63d5e565e-0016"
+msgid "Some languages have no variables, or have a place for them that does not fit the job. The state went into a stack, a pile of captures, a text line, a list of letters or a database."
+msgstr "Algunos lenguajes no tienen variables, o tienen un lugar para ellas que no sirve para la tarea. El estado fue a parar a una pila, un montón de capturas, una línea de texto, una lista de letras o una base de datos."
+
+#: lessons/problems-overcome.md:27
+msgctxt "s-a4d27add9ed6-0017"
+msgid "⟦SEP_0001⟧ Approach ⟦SEP_0002⟧ The obstacle ⟦SEP_0003⟧ How it was overcome ⟦SEP_0004⟧ What it teaches ⟦SEP_0005⟧"
+msgstr "⟦SEP_0001⟧ Enfoque ⟦SEP_0002⟧ El obstáculo ⟦SEP_0003⟧ Cómo se superó ⟦SEP_0004⟧ Qué enseña ⟦SEP_0005⟧"
+
+#: lessons/problems-overcome.md:29
+msgctxt "s-0072ce2074f6-0018"
+msgid "⟦SEP_0002⟧ **XAML** ⟦SEP_0003⟧ Markup has no variables ⟦SEP_0004⟧ \"Carrier\" arrays filled in place by successive ⟦CODE_0001⟧ calls ⟦SEP_0005⟧ Mutable buffers as variables ⟦SEP_0006⟧"
+msgstr "⟦SEP_0002⟧ **XAML** ⟦SEP_0003⟧ El lenguaje de marcado no tiene variables ⟦SEP_0004⟧ Arreglos \"portadores\" que se rellenan in situ con llamadas sucesivas a ⟦CODE_0001⟧ ⟦SEP_0005⟧ Búferes mutables como variables ⟦SEP_0006⟧"
+
+#: lessons/problems-overcome.md:30
+msgctxt "s-6d8efd971d8f-0019"
+msgid "⟦SEP_0003⟧ **Forth** ⟦SEP_0004⟧ Stack values must be shared between printing and SQL ⟦SEP_0005⟧ ⟦CODE_0001⟧ keeps a copy; ⟦CODE_0002⟧ points output at the pipe ⟦SEP_0006⟧ Output redirection as a language feature ⟦SEP_0007⟧"
+msgstr "⟦SEP_0003⟧ **Forth** ⟦SEP_0004⟧ Los valores de la pila deben compartirse entre la impresión y SQL ⟦SEP_0005⟧ ⟦CODE_0001⟧ conserva una copia; ⟦CODE_0002⟧ dirige la salida a la tubería ⟦SEP_0006⟧ La redirección de la salida como característica del lenguaje ⟦SEP_0007⟧"
+
+#: lessons/problems-overcome.md:31
+msgctxt "s-40a5b2b34873-0020"
+msgid "⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ No variables, no loop words ⟦SEP_0005⟧ State on the stack; ⟦CODE_0002⟧ rewound as a program counter; the flag (-1/0) as a mask ⟦SEP_0006⟧ The interpreter's own state is reachable ⟦SEP_0007⟧"
+msgstr "⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ Sin variables ni palabras de bucle ⟦SEP_0005⟧ Estado en la pila; ⟦CODE_0002⟧ rebobinado como contador de programa; la bandera (-1/0) como máscara ⟦SEP_0006⟧ El estado propio del intérprete es accesible ⟦SEP_0007⟧"
+
+#: lessons/problems-overcome.md:32
+msgctxt "s-e5ac0e53c1ac-0021"
+msgid "⟦SEP_0004⟧ **GNU Make** ⟦SEP_0005⟧ No arithmetic, no loop, no ⟦CODE_0001⟧ ⟦SEP_0006⟧ Numbers as lists of ⟦CODE_0002⟧; re-execution via ⟦CODE_0003⟧ of generated makefiles ⟦SEP_0007⟧ Restart is a loop ⟦SEP_0008⟧"
+msgstr "⟦SEP_0004⟧ **GNU Make** ⟦SEP_0005⟧ Sin aritmética, sin bucle, sin ⟦CODE_0001⟧ ⟦SEP_0006⟧ Números como listas de ⟦CODE_0002⟧; reejecución con ⟦CODE_0003⟧ de makefiles generados ⟦SEP_0007⟧ Reiniciar es un bucle ⟦SEP_0008⟧"
+
+#: lessons/problems-overcome.md:33
+msgctxt "s-44f6958c2571-0022"
+msgid "⟦SEP_0004⟧ **Perl regex** ⟦SEP_0005⟧ Statements cannot live in a pattern ⟦SEP_0006⟧ ⟦CODE_0001⟧ code blocks and ⟦CODE_0002⟧; package variables with ⟦CODE_0003⟧ ⟦SEP_0007⟧ Backtrack-aware state ⟦SEP_0008⟧"
+msgstr "⟦SEP_0004⟧ **Regex de Perl** ⟦SEP_0005⟧ Las sentencias no pueden vivir en un patrón ⟦SEP_0006⟧ Bloques de código ⟦CODE_0001⟧ y ⟦CODE_0002⟧; variables de paquete con ⟦CODE_0003⟧ ⟦SEP_0007⟧ Estado que reconoce el retroceso ⟦SEP_0008⟧"
+
+#: lessons/problems-overcome.md:34
+msgctxt "s-31439a71f61f-0023"
+msgid "⟦SEP_0002⟧ **pcre2grep** ⟦SEP_0003⟧ No variables in the pattern, and callouts do not search ⟦CODE_0001⟧ ⟦SEP_0004⟧ State lives in SQLite; absolute program paths ⟦SEP_0005⟧ Externalize state ⟦SEP_0006⟧"
+msgstr "⟦SEP_0002⟧ **pcre2grep** ⟦SEP_0003⟧ No hay variables en el patrón y los callouts no buscan ⟦CODE_0001⟧ ⟦SEP_0004⟧ El estado vive en SQLite; rutas absolutas a los programas ⟦SEP_0005⟧ Externaliza el estado ⟦SEP_0006⟧"
+
+#: lessons/problems-overcome.md:35
+msgctxt "s-de6737a1821a-0024"
+msgid "⟦SEP_0001⟧ **.NET regex** ⟦SEP_0002⟧ A regex has no counter ⟦SEP_0003⟧ Balancing groups: a stack of captures ⟦SEP_0004⟧ A stack is a counter ⟦SEP_0005⟧"
+msgstr "⟦SEP_0001⟧ **Regex de .NET** ⟦SEP_0002⟧ Una regex no tiene contador ⟦SEP_0003⟧ Grupos de equilibrio: una pila de capturas ⟦SEP_0004⟧ Una pila es un contador ⟦SEP_0005⟧"
+
+#: lessons/problems-overcome.md:36
+msgctxt "s-0a149c84801c-0025"
+msgid "⟦SEP_0001⟧ **sed** ⟦SEP_0002⟧ No arithmetic and no variables ⟦SEP_0003⟧ Tally marks, a text-encoded shift register, substitution rules ⟦SEP_0004⟧ A Markov algorithm computes ⟦SEP_0005⟧"
+msgstr "⟦SEP_0001⟧ **sed** ⟦SEP_0002⟧ Sin aritmética y sin variables ⟦SEP_0003⟧ Marcas de conteo, un registro de desplazamiento codificado como texto, reglas de sustitución ⟦SEP_0004⟧ Un algoritmo de Markov calcula ⟦SEP_0005⟧"
+
+#: lessons/problems-overcome.md:37
+msgctxt "s-540f6a5fb538-0026"
+msgid "⟦SEP_0002⟧ **m4** ⟦SEP_0003⟧ A string that grows, in a language with no variables ⟦SEP_0004⟧ ⟦CODE_0001⟧ returns a macro's text, so a macro redefines itself as itself plus more ⟦SEP_0005⟧ State can be text that rewrites itself ⟦SEP_0006⟧"
+msgstr "⟦SEP_0002⟧ **m4** ⟦SEP_0003⟧ Una cadena de texto que crece, en un lenguaje sin variables ⟦SEP_0004⟧ ⟦CODE_0001⟧ devuelve el texto de una macro, así que una macro se redefine como ella misma más otro fragmento ⟦SEP_0005⟧ El estado puede ser texto que se reescribe a sí mismo ⟦SEP_0006⟧"
+
+#: lessons/problems-overcome.md:38
+msgctxt "s-97966a31fa33-0027"
+msgid "⟦SEP_0003⟧ **find** ⟦SEP_0004⟧ No variables, no arithmetic and no counter ⟦SEP_0005⟧ Names and paths carry the state: a directory is an hour, and its name is the last digit or the hours left. ⟦CODE_0001⟧ patterns count by matching ⟦CODE_0002⟧ as often as needed ⟦SEP_0006⟧ The file system is memory ⟦SEP_0007⟧"
+msgstr "⟦SEP_0003⟧ **find** ⟦SEP_0004⟧ Sin variables, sin aritmética y sin contador ⟦SEP_0005⟧ Los nombres y las rutas guardan el estado: un directorio es una hora, y su nombre es el último dígito o las horas que quedan. Los patrones ⟦CODE_0001⟧ cuentan al coincidir con ⟦CODE_0002⟧ tantas veces como haga falta ⟦SEP_0006⟧ El sistema de archivos es la memoria ⟦SEP_0007⟧"
+
+#: lessons/problems-overcome.md:39
+msgctxt "s-d1f96214db77-0028"
+msgid "⟦SEP_0004⟧ ⟦CODE_0001⟧ ⟦SEP_0005⟧ ⟦CODE_0002⟧ has no arithmetic and no numbers ⟦SEP_0006⟧ Numbers are rows of ⟦CODE_0003⟧ marks: adding is joining two lines, and rewrite rules turn marks into digits ⟦SEP_0007⟧ Choose the representation that your operations can change ⟦SEP_0008⟧"
+msgstr "⟦SEP_0004⟧ ⟦CODE_0001⟧ ⟦SEP_0005⟧ ⟦CODE_0002⟧ no tiene aritmética ni números ⟦SEP_0006⟧ Los números son filas de marcas ⟦CODE_0003⟧: sumar es unir dos líneas, y las reglas de reescritura convierten las marcas en dígitos ⟦SEP_0007⟧ Elige la representación que tus operaciones puedan cambiar ⟦SEP_0008⟧"
+
+#: lessons/problems-overcome.md:40
+msgctxt "s-797ab398fafc-0029"
+msgid "⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ Ex has no arithmetic either ⟦SEP_0005⟧ A mark is a register, and an address (⟦CODE_0002⟧) is the addition. A tape of numbered lines holds the decimal totals ⟦SEP_0006⟧ The editor's own state (marks, the current line) is memory ⟦SEP_0007⟧"
+msgstr "⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ Ex tampoco tiene aritmética ⟦SEP_0005⟧ Una marca es un registro, y una dirección (⟦CODE_0002⟧) es la suma. Una cinta de líneas numeradas guarda los totales decimales ⟦SEP_0006⟧ El propio estado del editor (marcas, línea actual) es memoria ⟦SEP_0007⟧"
+
+#: lessons/problems-overcome.md:41
+msgctxt "s-0a18184074b5-0030"
+msgid "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ A command that tar runs for each checkpoint has no memory between calls ⟦SEP_0004⟧ One SQLite row holds the registers, and one transaction is one transition ⟦SEP_0005⟧ Persist the machine's state outside the callback ⟦SEP_0006⟧"
+msgstr "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ Un comando que tar ejecuta en cada punto de control no tiene memoria entre llamadas ⟦SEP_0004⟧ Una fila de SQLite guarda los registros y una transacción es una transición ⟦SEP_0005⟧ Guarda el estado de la máquina fuera de la función de devolución de llamada (*callback*), que es una función que pasas a otro programa para que la ejecute más tarde ⟦SEP_0006⟧"
+
+#: lessons/problems-overcome.md:42
+msgctxt "s-f35b69b7c487-0031"
+msgid "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ There should be no variable that other code can change ⟦SEP_0004⟧ Three closures: each one keeps its state in captured variables that only it can reach ⟦SEP_0005⟧ A closure is private state with a function attached ⟦SEP_0006⟧"
+msgstr "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ No debería existir ninguna variable que otro código pueda cambiar ⟦SEP_0004⟧ Tres clausuras (*closures*, funciones que recuerdan las variables de su entorno): cada una guarda su estado en variables capturadas a las que solo ella puede acceder ⟦SEP_0005⟧ Una clausura es estado privado con una función asociada ⟦SEP_0006⟧"
+
+#: lessons/problems-overcome.md:44
+msgctxt "s-0da849c93de6-0032"
+msgid "No loop? Build control flow out of something else"
+msgstr "¿No hay bucle? Construye el flujo de control con otra cosa"
+
+#: lessons/problems-overcome.md:46
+msgctxt "s-80e8bd5ecbf2-0033"
+msgid "A loop is only one way to repeat. These rows turn a computed prefix, a rewritten jump, a restarting build or a class hierarchy into the repetition."
+msgstr "Un bucle es solo una forma de repetir. Estas filas convierten un prefijo calculado, un salto reescrito, una compilación que se reinicia o una jerarquía de clases en la repetición."
+
+#: lessons/problems-overcome.md:48
+msgctxt "s-a4d27add9ed6-0034"
+msgid "⟦SEP_0001⟧ Approach ⟦SEP_0002⟧ The obstacle ⟦SEP_0003⟧ How it was overcome ⟦SEP_0004⟧ What it teaches ⟦SEP_0005⟧"
+msgstr "⟦SEP_0001⟧ Enfoque ⟦SEP_0002⟧ El obstáculo ⟦SEP_0003⟧ Cómo se superó ⟦SEP_0004⟧ Qué enseña ⟦SEP_0005⟧"
+
+#: lessons/problems-overcome.md:50
+msgctxt "s-8cd9a2713046-0035"
+msgid "⟦SEP_0003⟧ **XAML** ⟦SEP_0004⟧ Markup has no loop or ⟦CODE_0001⟧ ⟦SEP_0005⟧ Four unrolled passes; SQL or ⟦CODE_0002⟧ expressions do the branching ⟦SEP_0006⟧ Borrow an expression engine ⟦SEP_0007⟧"
+msgstr "⟦SEP_0003⟧ **XAML** ⟦SEP_0004⟧ El marcado no tiene bucle ni ⟦CODE_0001⟧ ⟦SEP_0005⟧ Cuatro pasadas desenrolladas; las expresiones de SQL o de ⟦CODE_0002⟧ resuelven la bifurcación ⟦SEP_0006⟧ Toma prestado un motor de expresiones ⟦SEP_0007⟧"
+
+#: lessons/problems-overcome.md:51
+msgctxt "s-ad58d2e7ec06-0036"
+msgid "⟦SEP_0001⟧ **APL** ⟦SEP_0002⟧ A loop with a data-dependent stop ⟦SEP_0003⟧ Draw five (a bound that can never be too small), then take a computed prefix ⟦SEP_0004⟧ Compute the answer, then trim it ⟦SEP_0005⟧"
+msgstr "⟦SEP_0001⟧ **APL** ⟦SEP_0002⟧ Un bucle con una condición de parada que depende de los datos ⟦SEP_0003⟧ Toma cinco (un límite que nunca puede quedar corto), luego toma un prefijo calculado ⟦SEP_0004⟧ Calcula la respuesta y luego recórtala ⟦SEP_0005⟧"
+
+#: lessons/problems-overcome.md:52
+msgctxt "s-fe3222e303b2-0037"
+msgid "⟦SEP_0004⟧ ⟦CODE_0001⟧ ⟦SEP_0005⟧ A function cannot copy itself... ⟦SEP_0006⟧ ⟦CODE_0002⟧ reads its source, ⟦CODE_0003⟧ defines the rewritten copy ⟦SEP_0007⟧ Code is a character matrix ⟦SEP_0008⟧"
+msgstr "⟦SEP_0004⟧ ⟦CODE_0001⟧ ⟦SEP_0005⟧ Una función no puede copiarse a sí misma... ⟦SEP_0006⟧ ⟦CODE_0002⟧ lee su código fuente y ⟦CODE_0003⟧ define la copia reescrita ⟦SEP_0007⟧ El código es una matriz de caracteres ⟦SEP_0008⟧"
+
+#: lessons/problems-overcome.md:53
+msgctxt "s-b09908db8e74-0038"
+msgid "⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ Dynamic scope clobbers the parent's variables ⟦SEP_0005⟧ Each generated header redeclares locals (⟦CODE_0002⟧) ⟦SEP_0006⟧ Scope rules shape metaprogramming ⟦SEP_0007⟧"
+msgstr "⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ El ámbito dinámico sobrescribe las variables del padre ⟦SEP_0005⟧ Cada encabezado generado vuelve a declarar variables locales (⟦CODE_0002⟧) ⟦SEP_0006⟧ Las reglas de ámbito dan forma a la metaprogramación ⟦SEP_0007⟧"
+
+#: lessons/problems-overcome.md:54
+msgctxt "s-c85b8d405b89-0039"
+msgid "⟦SEP_0002⟧ **COBOL** ⟦SEP_0003⟧ The loop condition must not be a comparison ⟦SEP_0004⟧ ⟦CODE_0001⟧-level condition name on the total ⟦SEP_0005⟧ Rules can be data ⟦SEP_0006⟧"
+msgstr "⟦SEP_0002⟧ **COBOL** ⟦SEP_0003⟧ La condición del bucle no debe ser una comparación ⟦SEP_0004⟧ Un nombre de condición de nivel ⟦CODE_0001⟧ sobre el total ⟦SEP_0005⟧ Las reglas pueden ser datos ⟦SEP_0006⟧"
+
+#: lessons/problems-overcome.md:55
+msgctxt "s-c10cff7614dd-0040"
+msgid "⟦SEP_0007⟧ ⟦CODE_0001⟧ ⟦SEP_0008⟧ No ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧ or modulo ⟦SEP_0009⟧ ⟦CODE_0005⟧ rewires one ⟦CODE_0006⟧; a 2-digit overflow is the stop ⟦SEP_0010⟧ Mutable control flow, overflow as decision ⟦SEP_0011⟧"
+msgstr "⟦SEP_0007⟧ ⟦CODE_0001⟧ ⟦SEP_0008⟧ Sin ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧ ni módulo ⟦SEP_0009⟧ ⟦CODE_0005⟧ reconecta un ⟦CODE_0006⟧; un desbordamiento de 2 dígitos es la parada ⟦SEP_0010⟧ Flujo de control mutable, desbordamiento como decisión ⟦SEP_0011⟧"
+
+#: lessons/problems-overcome.md:56
+msgctxt "s-042df4632163-0041"
+msgid "⟦SEP_0002⟧ **Haskell** ⟦SEP_0003⟧ A stop rule without a loop ⟦SEP_0004⟧ ⟦CODE_0001⟧ over lazy infinite lists ⟦SEP_0005⟧ Laziness as control ⟦SEP_0006⟧"
+msgstr "⟦SEP_0002⟧ **Haskell** ⟦SEP_0003⟧ Una regla de parada sin bucle ⟦SEP_0004⟧ ⟦CODE_0001⟧ sobre listas infinitas perezosas ⟦SEP_0005⟧ La evaluación perezosa como control ⟦SEP_0006⟧"
+
+#: lessons/problems-overcome.md:57
+msgctxt "s-7d56e7e1b221-0042"
+msgid "⟦SEP_0002⟧ **GNU Make** ⟦SEP_0003⟧ A recipe expanding to nothing does not count as remaking a file ⟦SEP_0004⟧ A trailing ⟦CODE_0001⟧ (shell no-op) ⟦SEP_0005⟧ Expansion time vs. execution time ⟦SEP_0006⟧"
+msgstr "⟦SEP_0002⟧ **GNU Make** ⟦SEP_0003⟧ Una receta que se expande a nada no cuenta como rehacer un archivo ⟦SEP_0004⟧ Un ⟦CODE_0001⟧ al final: una orden que no hace nada en el intérprete de comandos (*shell*) ⟦SEP_0005⟧ Tiempo de expansión frente a tiempo de ejecución ⟦SEP_0006⟧"
+
+#: lessons/problems-overcome.md:58
+msgctxt "s-d98a0f2636ad-0043"
+msgid "⟦SEP_0004⟧ ⟦CODE_0001⟧ ⟦SEP_0005⟧ A class must exist before another can inherit from it, and five near-identical classes and methods are tedious ⟦SEP_0006⟧ A ⟦CODE_0002⟧ macro writes each pair, tail first; the name-building code runs at compile time inside ⟦CODE_0003⟧ ⟦SEP_0007⟧ Macros are programs that run before yours ⟦SEP_0008⟧"
+msgstr "⟦SEP_0004⟧ ⟦CODE_0001⟧ ⟦SEP_0005⟧ Una clase debe existir antes de que otra pueda heredar de ella, y cinco clases y métodos casi idénticos resultan tediosos ⟦SEP_0006⟧ Una macro ⟦CODE_0002⟧ escribe cada par, empezando por la cola; el código que construye los nombres se ejecuta en tiempo de compilación dentro de ⟦CODE_0003⟧ ⟦SEP_0007⟧ Las macros son programas que se ejecutan antes que el tuyo ⟦SEP_0008⟧"
+
+#: lessons/problems-overcome.md:59
+msgctxt "s-18670459e7e2-0044"
+msgid "⟦SEP_0004⟧ ⟦CODE_0001⟧ ⟦SEP_0005⟧ SQL cannot call Tcl, and Tcl cannot be given a library of code that is in a table ⟦SEP_0006⟧ ⟦CODE_0002⟧ and an ⟦CODE_0003⟧ override that defines procs from rows ⟦SEP_0007⟧ The library path is yours to redefine ⟦SEP_0008⟧"
+msgstr "⟦SEP_0004⟧ ⟦CODE_0001⟧ ⟦SEP_0005⟧ SQL no puede llamar a Tcl, y a Tcl no se le puede dar una biblioteca de código que está en una tabla ⟦SEP_0006⟧ ⟦CODE_0002⟧ y una anulación de ⟦CODE_0003⟧ que define procedimientos a partir de filas ⟦SEP_0007⟧ La ruta de la biblioteca es tuya para redefinirla ⟦SEP_0008⟧"
+
+#: lessons/problems-overcome.md:60
+msgctxt "s-39ecf40e700e-0045"
+msgid "⟦SEP_0002⟧ **find** ⟦SEP_0003⟧ A search tool has no loop ⟦SEP_0004⟧ The walk descends into the directory that ⟦CODE_0001⟧ just made; each directory makes the next ⟦SEP_0005⟧ A traversal that changes its own tree is a loop ⟦SEP_0006⟧"
+msgstr "⟦SEP_0002⟧ **find** ⟦SEP_0003⟧ Una herramienta de búsqueda no tiene bucle ⟦SEP_0004⟧ El recorrido desciende al directorio que ⟦CODE_0001⟧ acaba de crear; cada directorio crea el siguiente ⟦SEP_0005⟧ Un recorrido que cambia su propio árbol es un bucle ⟦SEP_0006⟧"
+
+#: lessons/problems-overcome.md:61
+msgctxt "s-6e66bf8264e1-0046"
+msgid "⟦SEP_0003⟧ **find GNU** ⟦SEP_0004⟧ The portable line spells out every digit of the total ⟦SEP_0005⟧ ⟦CODE_0001⟧ (depth) is the total and ⟦CODE_0002⟧ is the week, so the tables vanish ⟦SEP_0006⟧ Use the tool's own measurements as values ⟦SEP_0007⟧"
+msgstr "⟦SEP_0003⟧ **find GNU** ⟦SEP_0004⟧ La línea portátil deletrea cada dígito del total ⟦SEP_0005⟧ ⟦CODE_0001⟧ (profundidad) es el total y ⟦CODE_0002⟧ es la semana, así que las tablas desaparecen ⟦SEP_0006⟧ Usa las mediciones propias de la herramienta como valores ⟦SEP_0007⟧"
+
+#: lessons/problems-overcome.md:62
+msgctxt "s-91eeddc65331-0047"
+msgid "⟦SEP_0005⟧ ⟦CODE_0001⟧ ⟦SEP_0006⟧ Widget rows with fragments (⟦CODE_0002⟧) failed without a widget path ⟦SEP_0007⟧ Each ⟦CODE_0003⟧ row is a whole command, run through ⟦CODE_0004⟧ ⟦SEP_0008⟧ A table of strings, evaluated at the right scope ⟦SEP_0009⟧"
+msgstr "⟦SEP_0005⟧ ⟦CODE_0001⟧ ⟦SEP_0006⟧ Las filas de widget con fragmentos (⟦CODE_0002⟧) fallaban sin una ruta de widget ⟦SEP_0007⟧ Cada fila de ⟦CODE_0003⟧ es un comando completo que se ejecuta con ⟦CODE_0004⟧ ⟦SEP_0008⟧ Una tabla de cadenas de texto, evaluada en el ámbito correcto ⟦SEP_0009⟧"
+
+#: lessons/problems-overcome.md:63
+msgctxt "s-1b49d67327f1-0048"
+msgid "⟦SEP_0002⟧ **tar** ⟦SEP_0003⟧ tar must run the program, and the archive cannot ask for that ⟦SEP_0004⟧ The operator's ⟦CODE_0001⟧ attaches the interpreter; tar's walk over the members is the loop ⟦SEP_0005⟧ Authority comes from the command line, and not from the data ⟦SEP_0006⟧"
+msgstr "⟦SEP_0002⟧ **tar** ⟦SEP_0003⟧ tar debe ejecutar el programa, y el archivo no puede pedirlo ⟦SEP_0004⟧ El ⟦CODE_0001⟧ del operador asocia el intérprete; el recorrido de tar sobre los miembros es el bucle ⟦SEP_0005⟧ La autoridad viene de la línea de comandos, no de los datos ⟦SEP_0006⟧"
+
+#: lessons/problems-overcome.md:64
+msgctxt "s-f853e4e2cd10-0049"
+msgid "⟦SEP_0006⟧ ⟦CODE_0001⟧ ⟦SEP_0007⟧ ⟦CODE_0002⟧ has no ⟦CODE_0003⟧ and no loop, and it refuses a global command inside a global command ⟦SEP_0008⟧ One global command is the loop. A substitution that does not match is silently skipped inside it, so every ⟦CODE_0004⟧ is an ⟦CODE_0005⟧ ⟦SEP_0009⟧ Find what the tool does on failure; it may be a conditional ⟦SEP_0010⟧"
+msgstr "⟦SEP_0006⟧ ⟦CODE_0001⟧ ⟦SEP_0007⟧ ⟦CODE_0002⟧ no tiene ⟦CODE_0003⟧ ni bucle, y rechaza un comando global dentro de otro comando global ⟦SEP_0008⟧ Un comando global es el bucle. Una sustitución que no coincide se omite en silencio dentro de él, así que cada ⟦CODE_0004⟧ es ⟦CODE_0005⟧ ⟦SEP_0009⟧ Averigua qué hace la herramienta ante un fallo; puede ser un condicional ⟦SEP_0010⟧"
+
+#: lessons/problems-overcome.md:65
+msgctxt "s-2a1f27e2ede5-0050"
+msgid "⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ A register can run itself, but the loop must also stop, and a failed search would end nvi ⟦SEP_0005⟧ The tape's row for each total holds the next instruction: ⟦CODE_0002⟧ to go on, a comment to stop. The limit is data ⟦SEP_0006⟧ A jump table makes the stop rule data ⟦SEP_0007⟧"
+msgstr "⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ Un registro puede ejecutarse a sí mismo, pero el bucle también debe detenerse, y una búsqueda fallida terminaría nvi ⟦SEP_0005⟧ La fila de la cinta para cada total contiene la siguiente instrucción: ⟦CODE_0002⟧ para continuar, un comentario para detenerse. El límite es un dato ⟦SEP_0006⟧ Una tabla de saltos convierte la regla de parada en un dato ⟦SEP_0007⟧"
+
+#: lessons/problems-overcome.md:66
+msgctxt "s-ae2d79fc2771-0051"
+msgid "⟦SEP_0005⟧ ⟦CODE_0001⟧ ⟦SEP_0006⟧ A fold (⟦CODE_0002⟧) cannot stop early ⟦SEP_0007⟧ The machine says ⟦CODE_0003⟧ after the crossing card, and an iterator consumer stops there. ⟦CODE_0004⟧ runs over the finished list ⟦SEP_0008⟧ Pick the operation that can stop ⟦SEP_0009⟧"
+msgstr "⟦SEP_0005⟧ ⟦CODE_0001⟧ ⟦SEP_0006⟧ Un *fold* (⟦CODE_0002⟧) no puede detenerse antes de tiempo ⟦SEP_0007⟧ La máquina dice ⟦CODE_0003⟧ después de la tarjeta que cruza el límite, y un consumidor de iterador se detiene ahí. ⟦CODE_0004⟧ recorre la lista ya terminada ⟦SEP_0008⟧ Elige la operación que puede detenerse ⟦SEP_0009⟧"
+
+#: lessons/problems-overcome.md:68
+msgctxt "s-2991ee20a3ac-0052"
+msgid "When does it actually run? Order of evaluation"
+msgstr "¿Cuándo se ejecuta realmente? Orden de evaluación"
+
+#: lessons/problems-overcome.md:70
+msgctxt "s-b708053886f4-0053"
+msgid "Lazy values, expanded recipes, quoted text and global separators all change *when* a piece of code runs. Each of these rows was a bug before it was a lesson."
+msgstr "Los valores perezosos, las recetas expandidas, el texto entre comillas y los separadores globales cambian *cuándo* se ejecuta un fragmento de código. Cada una de estas filas fue un bicho antes de ser una lección."
+
+#: lessons/problems-overcome.md:72
+msgctxt "s-a4d27add9ed6-0054"
+msgid "⟦SEP_0001⟧ Approach ⟦SEP_0002⟧ The obstacle ⟦SEP_0003⟧ How it was overcome ⟦SEP_0004⟧ What it teaches ⟦SEP_0005⟧"
+msgstr "⟦SEP_0001⟧ Enfoque ⟦SEP_0002⟧ El obstáculo ⟦SEP_0003⟧ Cómo se superó ⟦SEP_0004⟧ Qué enseña ⟦SEP_0005⟧"
+
+#: lessons/problems-overcome.md:74
+msgctxt "s-ddeebf40652b-0055"
+msgid "⟦SEP_0003⟧ **LINQ** ⟦SEP_0004⟧ Effects must run in order inside lazy stages ⟦SEP_0005⟧ Tuple left-to-right evaluation sequences ⟦CODE_0001⟧; a final eager ⟦CODE_0002⟧ forces the tail ⟦SEP_0006⟧ Eager vs. lazy operators ⟦SEP_0007⟧"
+msgstr "⟦SEP_0003⟧ **LINQ** ⟦SEP_0004⟧ Los efectos deben ejecutarse en orden dentro de etapas diferidas ⟦SEP_0005⟧ La evaluación de tuplas de izquierda a derecha secuencia ⟦CODE_0001⟧; un ⟦CODE_0002⟧ ansioso final fuerza la cola ⟦SEP_0006⟧ Operadores ansiosos frente a diferidos ⟦SEP_0007⟧"
+
+#: lessons/problems-overcome.md:75
+msgctxt "s-e08bb101ff6f-0056"
+msgid "⟦SEP_0004⟧ ⟦CODE_0001⟧ ⟦SEP_0005⟧ Effects must fire per cell, in order, on an infinite list ⟦SEP_0006⟧ ⟦CODE_0002⟧ knot plus ⟦CODE_0003⟧ around each cell ⟦SEP_0007⟧ Evaluation order as program meaning ⟦SEP_0008⟧"
+msgstr "⟦SEP_0004⟧ ⟦CODE_0001⟧ ⟦SEP_0005⟧ Los efectos deben ejecutarse por celda, en orden, sobre una lista infinita ⟦SEP_0006⟧ ⟦CODE_0002⟧ nudo más ⟦CODE_0003⟧ alrededor de cada celda ⟦SEP_0007⟧ El orden de evaluación como significado del programa ⟦SEP_0008⟧"
+
+#: lessons/problems-overcome.md:76
+msgctxt "s-effd73cdd361-0057"
+msgid "⟦SEP_0004⟧ ⟦CODE_0001⟧ ⟦SEP_0005⟧ A lazy ⟦CODE_0002⟧ forced the cards after the pipe closed ⟦SEP_0006⟧ ⟦CODE_0003⟧ before commit ⟦SEP_0007⟧ Laziness bites twice ⟦SEP_0008⟧"
+msgstr "⟦SEP_0004⟧ ⟦CODE_0001⟧ ⟦SEP_0005⟧ Un ⟦CODE_0002⟧ perezoso forzó las tarjetas después de que se cerró la tubería ⟦SEP_0006⟧ ⟦CODE_0003⟧ antes de la confirmación de la transacción ⟦SEP_0007⟧ La pereza muerde dos veces ⟦SEP_0008⟧"
+
+#: lessons/problems-overcome.md:77
+msgctxt "s-40cacf4e0431-0058"
+msgid "⟦SEP_0002⟧ **GNU Make** ⟦SEP_0003⟧ ⟦CODE_0001⟧ output came out before SQLite's header ⟦SEP_0004⟧ The report is a chain of phony targets ⟦SEP_0005⟧ Make expands a recipe before it runs it ⟦SEP_0006⟧"
+msgstr "⟦SEP_0002⟧ **GNU Make** ⟦SEP_0003⟧ La salida de ⟦CODE_0001⟧ apareció antes del encabezado de SQLite ⟦SEP_0004⟧ El informe es una cadena de objetivos *phony* ⟦SEP_0005⟧ Make expande una receta antes de ejecutarla ⟦SEP_0006⟧"
+
+#: lessons/problems-overcome.md:78
+msgctxt "s-93558a3ee51f-0059"
+msgid "⟦SEP_0002⟧ **CMake** ⟦SEP_0003⟧ A failed ⟦CODE_0001⟧ clears every register ⟦SEP_0004⟧ Put the stop test first so the main match's captures survive ⟦SEP_0005⟧ Order of side-effecting conditions ⟦SEP_0006⟧"
+msgstr "⟦SEP_0002⟧ **CMake** ⟦SEP_0003⟧ Un ⟦CODE_0001⟧ fallido borra todos los registros ⟦SEP_0004⟧ Pon la prueba de parada primero para que las capturas de la coincidencia principal sobrevivan ⟦SEP_0005⟧ Orden de las condiciones con efectos secundarios ⟦SEP_0006⟧"
+
+#: lessons/problems-overcome.md:79
+msgctxt "s-92647cf0a4dc-0060"
+msgid "⟦SEP_0003⟧ **m4** ⟦SEP_0004⟧ Quoting: a loop that must not evaluate its own call early ⟦SEP_0005⟧ ⟦CODE_0001⟧ in brackets, so the call is only expanded after ⟦CODE_0002⟧ has chosen it ⟦SEP_0006⟧ Eager arguments, lazy quotes ⟦SEP_0007⟧"
+msgstr "⟦SEP_0003⟧ **m4** ⟦SEP_0004⟧ Entrecomillado: un bucle que no debe evaluar su propia llamada antes de tiempo ⟦SEP_0005⟧ Pon ⟦CODE_0001⟧ entre corchetes, para que la llamada solo se expanda después de que ⟦CODE_0002⟧ la haya elegido ⟦SEP_0006⟧ Argumentos evaluados de inmediato, entrecomillado diferido ⟦SEP_0007⟧"
+
+#: lessons/problems-overcome.md:80
+msgctxt "s-357d154439df-0061"
+msgid "⟦SEP_0008⟧ **find** ⟦SEP_0009⟧ ⟦CODE_0001⟧ in ⟦CODE_0002⟧ crosses ⟦CODE_0003⟧, so ⟦CODE_0004⟧ matched an earlier ⟦CODE_0005⟧ in the same path and the digit stuck at 2 ⟦SEP_0010⟧ End every pattern on a fixed-width name (⟦CODE_0006⟧ to ⟦CODE_0007⟧), so the last segment is exactly where you think ⟦SEP_0011⟧ Anchor the end of a pattern ⟦SEP_0012⟧"
+msgstr "⟦SEP_0008⟧ **find** ⟦SEP_0009⟧ ⟦CODE_0001⟧ en ⟦CODE_0002⟧ cruza ⟦CODE_0003⟧, así que ⟦CODE_0004⟧ coincidió con un ⟦CODE_0005⟧ anterior de la misma ruta y el dígito se quedó en 2 ⟦SEP_0010⟧ Termina cada patrón en un nombre de ancho fijo (de ⟦CODE_0006⟧ a ⟦CODE_0007⟧), para que el último segmento esté exactamente donde crees ⟦SEP_0011⟧ Ancla el final de un patrón ⟦SEP_0012⟧"
+
+#: lessons/problems-overcome.md:81
+msgctxt "s-f40c244471cb-0062"
+msgid "⟦SEP_0007⟧ ⟦CODE_0001⟧ ⟦SEP_0008⟧ ⟦CODE_0002⟧ applies to every read, so ⟦CODE_0003⟧ from ⟦CODE_0004⟧ returned an empty week ⟦SEP_0009⟧ Fetch the week before setting ⟦CODE_0005⟧, then ⟦CODE_0006⟧ the command ⟦SEP_0010⟧ State that is global affects every reader ⟦SEP_0011⟧"
+msgstr "⟦SEP_0007⟧ ⟦CODE_0001⟧ ⟦SEP_0008⟧ ⟦CODE_0002⟧ se aplica a cada lectura, así que ⟦CODE_0003⟧ desde ⟦CODE_0004⟧ devolvió una semana vacía ⟦SEP_0009⟧ Obtén la semana antes de definir ⟦CODE_0005⟧ y luego ⟦CODE_0006⟧ el comando ⟦SEP_0010⟧ El estado global afecta a todos los lectores ⟦SEP_0011⟧"
+
+#: lessons/problems-overcome.md:82
+msgctxt "s-5a71d749a552-0063"
+msgid "⟦SEP_0004⟧ ⟦CODE_0001⟧ ⟦SEP_0005⟧ tar does not stop when the stop rule fires, and keeps calling the command ⟦SEP_0006⟧ A ⟦CODE_0002⟧ flag makes every later tick change only an ⟦CODE_0003⟧ counter ⟦SEP_0007⟧ Make the work after the end harmless, because you cannot make it not happen ⟦SEP_0008⟧"
+msgstr "⟦SEP_0004⟧ ⟦CODE_0001⟧ ⟦SEP_0005⟧ tar no se detiene cuando se activa la regla de parada y sigue llamando al comando ⟦SEP_0006⟧ Una bandera ⟦CODE_0002⟧ hace que cada tick posterior cambie solo un contador ⟦CODE_0003⟧ ⟦SEP_0007⟧ Haz inofensivo el trabajo posterior al final, porque no puedes evitar que ocurra ⟦SEP_0008⟧"
+
+#: lessons/problems-overcome.md:83
+msgctxt "s-1b5872099447-0064"
+msgid "⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ What one checkpoint counts depends on the mode (21 when creating, 10 when listing, 21 when extracting the same archive) ⟦SEP_0005⟧ Only creation is used, and ⟦CODE_0002⟧ predicts the tick count from the layout ⟦SEP_0006⟧ Say what a count counts ⟦SEP_0007⟧"
+msgstr "⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ Lo que cuenta un punto de control depende del modo (21 al crear, 10 al listar, 21 al extraer el mismo archivo) ⟦SEP_0005⟧ Solo se usa la creación, y ⟦CODE_0002⟧ predice el número de ticks a partir de la disposición ⟦SEP_0006⟧ Indica qué cuenta un contador ⟦SEP_0007⟧"
+
+#: lessons/problems-overcome.md:84
+msgctxt "s-e82929395668-0065"
+msgid "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ nvi runs a register of several lines from last to first; Vim runs it first to last ⟦SEP_0004⟧ The program is **one line**, with bars ⟦SEP_0005⟧ When two implementations differ, write what both agree on ⟦SEP_0006⟧"
+msgstr "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ nvi ejecuta un registro de varias líneas de la última a la primera; Vim lo ejecuta de la primera a la última ⟦SEP_0004⟧ El programa es **una sola línea**, con barras ⟦SEP_0005⟧ Cuando dos implementaciones difieren, escribe lo que ambas comparten ⟦SEP_0006⟧"
+
+#: lessons/problems-overcome.md:85
+msgctxt "s-11e55b5d9830-0066"
+msgid "⟦SEP_0001⟧ **JavaScript** ⟦SEP_0002⟧ An animation must not delay or change the computation ⟦SEP_0003⟧ The timer starts in the condition's false branch, after everything is saved, and only on a terminal ⟦SEP_0004⟧ A side effect that comes last cannot disturb the work ⟦SEP_0005⟧"
+msgstr "⟦SEP_0001⟧ **JavaScript** ⟦SEP_0002⟧ Una animación no debe retrasar ni cambiar el cálculo ⟦SEP_0003⟧ El temporizador arranca en la rama falsa de la condición, después de guardar todo y solo en una terminal ⟦SEP_0004⟧ Un efecto secundario que va al final no puede perturbar el trabajo ⟦SEP_0005⟧"
+
+#: lessons/problems-overcome.md:87
+msgctxt "s-1f7538afbfd6-0067"
+msgid "The host has limits: portability and implementation details"
+msgstr "El anfitrión tiene límites: portabilidad y detalles de implementación"
+
+#: lessons/problems-overcome.md:89
+msgctxt "s-5bd1089918cf-0068"
+msgid "Integer width, timestamp precision, optimizer behavior, event loops and differences between implementations. None of this is in the clever part, and all of it can break the clever part."
+msgstr "Ancho de los enteros, precisión de las marcas de tiempo, comportamiento del optimizador, bucles de eventos y diferencias entre implementaciones. Nada de esto forma parte de la parte ingeniosa, y todo puede romperla."
+
+#: lessons/problems-overcome.md:91
+msgctxt "s-a4d27add9ed6-0069"
+msgid "⟦SEP_0001⟧ Approach ⟦SEP_0002⟧ The obstacle ⟦SEP_0003⟧ How it was overcome ⟦SEP_0004⟧ What it teaches ⟦SEP_0005⟧"
+msgstr "⟦SEP_0001⟧ Enfoque ⟦SEP_0002⟧ El obstáculo ⟦SEP_0003⟧ Cómo se superó ⟦SEP_0004⟧ Qué enseña ⟦SEP_0005⟧"
+
+#: lessons/problems-overcome.md:93
+msgctxt "s-4ab3569e9ecf-0070"
+msgid "⟦SEP_0001⟧ **GNU Make** ⟦SEP_0002⟧ WSL's coarse timestamps made a rewritten state file look unchanged ⟦SEP_0003⟧ One new file per pass: \"missing to present\" is unambiguous ⟦SEP_0004⟧ Don't trust mtime for state ⟦SEP_0005⟧"
+msgstr "⟦SEP_0001⟧ **GNU Make** ⟦SEP_0002⟧ Las marcas de tiempo imprecisas de WSL hicieron que un archivo de estado reescrito pareciera no haber cambiado ⟦SEP_0003⟧ Un archivo nuevo por pasada: \"falta\" frente a \"presente\" no deja lugar a dudas ⟦SEP_0004⟧ No confíes en mtime para el estado ⟦SEP_0005⟧"
+
+#: lessons/problems-overcome.md:94
+msgctxt "s-b9ad4e726c5c-0071"
+msgid "⟦SEP_0004⟧ **GNU Make / CMake** ⟦SEP_0005⟧ ⟦CODE_0001⟧ treats ⟦CODE_0002⟧ as its own subcommand separator ⟦SEP_0006⟧ Command lines contain no ⟦CODE_0003⟧ ⟦SEP_0007⟧ Know the host's separator rules ⟦SEP_0008⟧"
+msgstr "⟦SEP_0004⟧ **GNU Make / CMake** ⟦SEP_0005⟧ ⟦CODE_0001⟧ trata ⟦CODE_0002⟧ como su propio separador de subcomandos ⟦SEP_0006⟧ Las líneas de comando no contienen ⟦CODE_0003⟧ ⟦SEP_0007⟧ Conoce las reglas de separadores del anfitrión ⟦SEP_0008⟧"
+
+#: lessons/problems-overcome.md:95
+msgctxt "s-0466bdf6455c-0072"
+msgid "⟦SEP_0003⟧ **CMake** ⟦SEP_0004⟧ No ⟦CODE_0001⟧ quantifier, lookahead or backreference ⟦SEP_0005⟧ Literal 41-⟦CODE_0002⟧ test; subject and pattern rebuilt from the last pass's captures ⟦SEP_0006⟧ Work within the weakest regex ⟦SEP_0007⟧"
+msgstr "⟦SEP_0003⟧ **CMake** ⟦SEP_0004⟧ Sin cuantificador ⟦CODE_0001⟧, *lookahead* ni referencia inversa ⟦SEP_0005⟧ Prueba literal de 41-⟦CODE_0002⟧; el sujeto y el patrón se reconstruyen a partir de las capturas del último paso ⟦SEP_0006⟧ Trabaja dentro de los límites de la regex más débil ⟦SEP_0007⟧"
+
+#: lessons/problems-overcome.md:96
+msgctxt "s-6b8136a68527-0073"
+msgid "⟦SEP_0004⟧ **PCRE2** ⟦SEP_0005⟧ The optimizer might skip callouts; the JIT does not support them ⟦SEP_0006⟧ ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧; no JIT ⟦SEP_0007⟧ Know what the optimizer may elide ⟦SEP_0008⟧"
+msgstr "⟦SEP_0004⟧ **PCRE2** ⟦SEP_0005⟧ El optimizador puede omitir los callouts; el JIT no los admite ⟦SEP_0006⟧ ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧; sin JIT ⟦SEP_0007⟧ Conoce lo que el optimizador puede omitir ⟦SEP_0008⟧"
+
+#: lessons/problems-overcome.md:97
+msgctxt "s-88954dd6247a-0074"
+msgid "⟦SEP_0001⟧ **sed** ⟦SEP_0002⟧ A timer without a clock ⟦SEP_0003⟧ A catastrophic-backtracking regex calibrated to about 50 ms per frame ⟦SEP_0004⟧ Performance cliffs are a resource ⟦SEP_0005⟧"
+msgstr "⟦SEP_0001⟧ **sed** ⟦SEP_0002⟧ Un temporizador sin reloj ⟦SEP_0003⟧ Una expresión regular con retroceso catastrófico, calibrada para unos 50 ms por cuadro ⟦SEP_0004⟧ Los precipicios de rendimiento son un recurso ⟦SEP_0005⟧"
+
+#: lessons/problems-overcome.md:98
+msgctxt "s-2a3d92f86968-0075"
+msgid "⟦SEP_0003⟧ **Lisp** ⟦SEP_0004⟧ SBCL has no ISO-week function, and a hand-written one can be wrong near New Year ⟦SEP_0005⟧ The calendar arithmetic was written by hand and checked against ⟦CODE_0001⟧ on 22 edge dates, then against Python's ⟦CODE_0002⟧ on 1,139 dates ⟦SEP_0006⟧ Verify an algorithm against an independent oracle ⟦SEP_0007⟧"
+msgstr "⟦SEP_0003⟧ **Lisp** ⟦SEP_0004⟧ SBCL no tiene una función de semana ISO, y una escrita a mano puede ser incorrecta cerca del Año Nuevo ⟦SEP_0005⟧ La aritmética del calendario se escribió a mano y se comprobó con ⟦CODE_0001⟧ en 22 fechas límite, y después con ⟦CODE_0002⟧ de Python en 1 139 fechas ⟦SEP_0006⟧ Verifica un algoritmo con un oráculo independiente ⟦SEP_0007⟧"
+
+#: lessons/problems-overcome.md:99
+msgctxt "s-c00341d5dce8-0076"
+msgid "⟦SEP_0005⟧ **m4** ⟦SEP_0006⟧ ⟦CODE_0001⟧ is 32-bit, so a generator's ⟦CODE_0002⟧ overflows silently (⟦CODE_0003⟧ is ⟦CODE_0004⟧) ⟦SEP_0007⟧ Park-Miller with Schrage's trick keeps every intermediate value in 32 bits; checked against Python over 20,000 draws ⟦SEP_0008⟧ Know the width of your integers ⟦SEP_0009⟧"
+msgstr "⟦SEP_0005⟧ **m4** ⟦SEP_0006⟧ ⟦CODE_0001⟧ es de 32 bits, así que el ⟦CODE_0002⟧ de un generador se desborda sin avisar (⟦CODE_0003⟧ es ⟦CODE_0004⟧) ⟦SEP_0007⟧ Park-Miller con el truco de Schrage mantiene cada valor intermedio en 32 bits; verificado contra Python en 20 000 valores generados ⟦SEP_0008⟧ Conoce el ancho de tus enteros ⟦SEP_0009⟧"
+
+#: lessons/problems-overcome.md:100
+msgctxt "s-82ae11f3f7d0-0077"
+msgid "⟦SEP_0003⟧ **m4** ⟦SEP_0004⟧ ⟦CODE_0001⟧ with eight arguments warned \"excess arguments\": after the first group it continues in threes ⟦SEP_0005⟧ ⟦CODE_0002⟧ repeats the value under test in every group ⟦SEP_0006⟧ Read the arity rules, not just the example ⟦SEP_0007⟧"
+msgstr "⟦SEP_0003⟧ **m4** ⟦SEP_0004⟧ ⟦CODE_0001⟧ con ocho argumentos emitió la advertencia \"excess arguments\": después del primer grupo continúa de tres en tres ⟦SEP_0005⟧ ⟦CODE_0002⟧ repite el valor bajo prueba en cada grupo ⟦SEP_0006⟧ Lee las reglas de aridad, no solo el ejemplo ⟦SEP_0007⟧"
+
+#: lessons/problems-overcome.md:101
+msgctxt "s-bdf3006f3f0d-0078"
+msgid "⟦SEP_0003⟧ **Tcl** ⟦SEP_0004⟧ A ⟦CODE_0001⟧ that has loaded Tk never exits at the end of the script ⟦SEP_0005⟧ End with ⟦CODE_0002⟧ ⟦SEP_0006⟧ Event loops outlive scripts ⟦SEP_0007⟧"
+msgstr "⟦SEP_0003⟧ **Tcl** ⟦SEP_0004⟧ Un ⟦CODE_0001⟧ que cargó Tk nunca termina al final del script ⟦SEP_0005⟧ Termina con ⟦CODE_0002⟧ ⟦SEP_0006⟧ Los bucles de eventos sobreviven a los scripts ⟦SEP_0007⟧"
+
+#: lessons/problems-overcome.md:102
+msgctxt "s-89a27257352b-0079"
+msgid "⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ A trigger cannot use a qualified table name in ⟦CODE_0002⟧ ⟦SEP_0005⟧ The unqualified name inside the trigger ⟦SEP_0006⟧ Know what each SQL clause lets you qualify ⟦SEP_0007⟧"
+msgstr "⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ Un trigger no puede usar un nombre de tabla calificado en ⟦CODE_0002⟧ ⟦SEP_0005⟧ El nombre sin calificar dentro del trigger ⟦SEP_0006⟧ Conoce qué permite calificar cada cláusula SQL ⟦SEP_0007⟧"
+
+#: lessons/problems-overcome.md:103
+msgctxt "s-80f2f4a3b15e-0080"
+msgid "⟦SEP_0002⟧ **AWK** ⟦SEP_0003⟧ Function parameters that share a name with a global are flagged by ⟦CODE_0001⟧ ⟦SEP_0004⟧ Rename them; extra parameters are the locals ⟦SEP_0005⟧ Scope in awk is by convention ⟦SEP_0006⟧"
+msgstr "⟦SEP_0002⟧ **AWK** ⟦SEP_0003⟧ ⟦CODE_0001⟧ marca los parámetros de función que tienen el mismo nombre que una variable global ⟦SEP_0004⟧ Cámbiales el nombre; los parámetros adicionales son las variables locales ⟦SEP_0005⟧ En awk el ámbito se maneja por convención ⟦SEP_0006⟧"
+
+#: lessons/problems-overcome.md:104
+msgctxt "s-18f48307707b-0081"
+msgid "⟦SEP_0002⟧ **AWK** ⟦SEP_0003⟧ ⟦CODE_0001⟧ returns different values in each awk (status, status x 256, always 0) ⟦SEP_0004⟧ The entry only tests for non-zero; the READMEs say so, after testing all four awks ⟦SEP_0005⟧ Test every implementation you claim to support ⟦SEP_0006⟧"
+msgstr "⟦SEP_0002⟧ **AWK** ⟦SEP_0003⟧ ⟦CODE_0001⟧ devuelve valores distintos en cada awk (el estado, el estado x 256, siempre 0) ⟦SEP_0004⟧ La entrada solo comprueba que el valor sea distinto de cero; los README lo dicen, después de probar los cuatro awk ⟦SEP_0005⟧ Prueba cada implementación que afirmas admitir ⟦SEP_0006⟧"
+
+#: lessons/problems-overcome.md:105
+msgctxt "s-2c72bd0079b7-0082"
+msgid "⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ mawk has no ⟦CODE_0002⟧, so the program reads forever ⟦SEP_0005⟧ Documented as gawk-only; never run it without a memory limit and a timeout ⟦SEP_0006⟧ A portable-looking failure is the worst kind ⟦SEP_0007⟧"
+msgstr "⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ mawk no tiene ⟦CODE_0002⟧, así que el programa lee sin parar ⟦SEP_0005⟧ Está documentado como exclusivo de gawk; nunca lo ejecutes sin un límite de memoria y un tiempo máximo ⟦SEP_0006⟧ Un fallo que parece portable es el peor de todos ⟦SEP_0007⟧"
+
+#: lessons/problems-overcome.md:106
+msgctxt "s-6f67583442b0-0083"
+msgid "⟦SEP_0003⟧ **find** ⟦SEP_0004⟧ ⟦CODE_0001⟧ prints the path it made, and the path lands in the middle of the SQL ⟦SEP_0005⟧ The line prints ⟦CODE_0002⟧ first, so the path becomes an SQL comment ⟦SEP_0006⟧ Make the noise part of the language ⟦SEP_0007⟧"
+msgstr "⟦SEP_0003⟧ **find** ⟦SEP_0004⟧ ⟦CODE_0001⟧ imprime la ruta que creó, y la ruta cae en medio del SQL ⟦SEP_0005⟧ La línea imprime ⟦CODE_0002⟧ primero, así que la ruta se convierte en un comentario SQL ⟦SEP_0006⟧ Haz que el ruido forme parte del lenguaje ⟦SEP_0007⟧"
+
+#: lessons/problems-overcome.md:107
+msgctxt "s-edf71e51f7ad-0084"
+msgid "⟦SEP_0004⟧ **find** ⟦SEP_0005⟧ Dice made by the first of several candidates to claim a directory print ⟦CODE_0001⟧ errors for the losers ⟦SEP_0006⟧ One die per card; 62 characters do not divide by ten, so ⟦CODE_0002⟧ and ⟦CODE_0003⟧ are re-rolled on the character before ⟦SEP_0007⟧ Prefer a design that cannot fail noisily ⟦SEP_0008⟧"
+msgstr "⟦SEP_0004⟧ **find** ⟦SEP_0005⟧ Los dados que crea el primero de varios candidatos en reclamar un directorio imprimen ⟦CODE_0001⟧ errores para los perdedores ⟦SEP_0006⟧ Un dado por tarjeta; 62 caracteres no se dividen entre diez, así que ⟦CODE_0002⟧ y ⟦CODE_0003⟧ se vuelven a tirar sobre el carácter anterior ⟦SEP_0007⟧ Prefiere un diseño que no pueda fallar con ruido ⟦SEP_0008⟧"
+
+#: lessons/problems-overcome.md:108
+msgctxt "s-315c8d6aa2be-0085"
+msgid "⟦SEP_0004⟧ **find GNU** ⟦SEP_0005⟧ ⟦CODE_0001⟧ stops find before it prints the ⟦CODE_0002⟧ profile ⟦SEP_0006⟧ Drop ⟦CODE_0003⟧; the stop rule digs nothing more and find runs out of tree ⟦SEP_0007⟧ An early exit can skip the end-of-run report ⟦SEP_0008⟧"
+msgstr "⟦SEP_0004⟧ **find GNU** ⟦SEP_0005⟧ ⟦CODE_0001⟧ detiene find antes de que imprima el perfil ⟦CODE_0002⟧ ⟦SEP_0006⟧ Elimina ⟦CODE_0003⟧; la regla de parada ya no explora nada más y find agota el árbol ⟦SEP_0007⟧ Una salida anticipada puede omitir el informe de fin de ejecución ⟦SEP_0008⟧"
+
+#: lessons/problems-overcome.md:109
+msgctxt "s-c8e19ffc917a-0086"
+msgid "⟦SEP_0008⟧ ⟦CODE_0001⟧ ⟦SEP_0009⟧ busybox ⟦CODE_0002⟧ has no ⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧ or ⟦CODE_0006⟧ comments and cannot substitute on ⟦CODE_0007⟧ ⟦SEP_0010⟧ The check asserts that it cannot run the program, and the README says GNU ed only ⟦SEP_0011⟧ A standard does not make two implementations equal ⟦SEP_0012⟧"
+msgstr "⟦SEP_0008⟧ ⟦CODE_0001⟧ ⟦SEP_0009⟧ busybox ⟦CODE_0002⟧ no tiene comentarios ⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧ ni ⟦CODE_0006⟧ y no puede sustituir en ⟦CODE_0007⟧ ⟦SEP_0010⟧ La comprobación afirma que no puede ejecutar el programa, y el README indica solo GNU ed ⟦SEP_0011⟧ Un estándar no hace iguales a dos implementaciones ⟦SEP_0012⟧"
+
+#: lessons/problems-overcome.md:110
+msgctxt "s-82ce4e4b0005-0087"
+msgid "⟦SEP_0004⟧ ⟦CODE_0001⟧ ⟦SEP_0005⟧ nvi will not start if it cannot write ⟦CODE_0002⟧, and the sandbox root is read-only ⟦SEP_0006⟧ The sandbox images link that folder to ⟦CODE_0003⟧ ⟦SEP_0007⟧ A tool's startup needs are part of its interface ⟦SEP_0008⟧"
+msgstr "⟦SEP_0004⟧ ⟦CODE_0001⟧ ⟦SEP_0005⟧ nvi no se inicia si no puede escribir ⟦CODE_0002⟧, y la raíz del entorno aislado (*sandbox*, que limita el acceso al sistema anfitrión) es de solo lectura ⟦SEP_0006⟧ Las imágenes del entorno aislado enlazan esa carpeta a ⟦CODE_0003⟧ ⟦SEP_0007⟧ Lo que una herramienta necesita para iniciarse forma parte de su interfaz ⟦SEP_0008⟧"
+
+#: lessons/problems-overcome.md:111
+msgctxt "s-63147c98aae2-0088"
+msgid "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ nvi writes its messages, and a note about having no terminal, to standard output ⟦SEP_0004⟧ The launcher drops that one known line and fails on any other line that is not a card row ⟦SEP_0005⟧ Check every line a tool prints ⟦SEP_0006⟧"
+msgstr "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ nvi escribe sus mensajes, y una nota sobre la falta de terminal, en la salida estándar ⟦SEP_0004⟧ El lanzador descarta esa única línea conocida y falla con cualquier otra línea que no sea una fila de tarjeta ⟦SEP_0005⟧ Revisa cada línea que imprime una herramienta ⟦SEP_0006⟧"
+
+#: lessons/problems-overcome.md:112
+msgctxt "s-f1d022d5b22f-0089"
+msgid "⟦SEP_0005⟧ **JavaScript** ⟦SEP_0006⟧ ⟦CODE_0001⟧ is exported by ⟦CODE_0002⟧, and the global ⟦CODE_0003⟧ is Web Crypto ⟦SEP_0007⟧ ⟦CODE_0004⟧ for the default seed ⟦SEP_0008⟧ Same name, different object ⟦SEP_0009⟧"
+msgstr "⟦SEP_0005⟧ **JavaScript** ⟦SEP_0006⟧ ⟦CODE_0001⟧ lo exporta ⟦CODE_0002⟧, y el ⟦CODE_0003⟧ global es Web Crypto ⟦SEP_0007⟧ ⟦CODE_0004⟧ para la semilla predeterminada ⟦SEP_0008⟧ Mismo nombre, objeto distinto ⟦SEP_0009⟧"
+
+#: lessons/problems-overcome.md:113
+msgctxt "s-f915da3a4e93-0090"
+msgid "⟦SEP_0003⟧ **JavaScript** ⟦SEP_0004⟧ ⟦CODE_0001⟧ under ⟦CODE_0002⟧ never returned (Node 24.15, Linux) ⟦SEP_0005⟧ The error test uses a plain file as the parent folder ⟦SEP_0006⟧ A negative test must not hang ⟦SEP_0007⟧"
+msgstr "⟦SEP_0003⟧ **JavaScript** ⟦SEP_0004⟧ ⟦CODE_0001⟧ bajo ⟦CODE_0002⟧ nunca regresó (Node 24.15, Linux) ⟦SEP_0005⟧ La prueba de error usa un archivo simple como carpeta padre ⟦SEP_0006⟧ Una prueba negativa no debe colgarse ⟦SEP_0007⟧"
+
+#: lessons/problems-overcome.md:115
+msgctxt "s-1732c39a2647-0091"
+msgid "Making failure visible and the rules enforceable"
+msgstr "Cómo hacer visible el fallo y hacer cumplir las reglas"
+
+#: lessons/problems-overcome.md:117
+msgctxt "s-890f7d142381-0092"
+msgid "A stunt is only a lesson if you can tell when it fails, and if a test can try to break its rules."
+msgstr "Una acrobacia solo es una lección si puedes saber cuándo falla y si una prueba puede intentar romper sus reglas."
+
+#: lessons/problems-overcome.md:119
+msgctxt "s-a4d27add9ed6-0093"
+msgid "⟦SEP_0001⟧ Approach ⟦SEP_0002⟧ The obstacle ⟦SEP_0003⟧ How it was overcome ⟦SEP_0004⟧ What it teaches ⟦SEP_0005⟧"
+msgstr "⟦SEP_0001⟧ Enfoque ⟦SEP_0002⟧ El obstáculo ⟦SEP_0003⟧ Cómo se superó ⟦SEP_0004⟧ Qué enseña ⟦SEP_0005⟧"
+
+#: lessons/problems-overcome.md:121
+msgctxt "s-67af0c3feb15-0094"
+msgid "⟦SEP_0003⟧ **PCRE2** ⟦SEP_0004⟧ A callout error could be mistaken for \"no match\" ⟦SEP_0005⟧ Return ⟦CODE_0001⟧, not ⟦CODE_0002⟧ ⟦SEP_0006⟧ Make failure distinguishable from success-by-failure ⟦SEP_0007⟧"
+msgstr "⟦SEP_0003⟧ **PCRE2** ⟦SEP_0004⟧ Un error de callout podría confundirse con \"sin coincidencia\" ⟦SEP_0005⟧ Devuelve ⟦CODE_0001⟧, no ⟦CODE_0002⟧ ⟦SEP_0006⟧ Haz que un fallo se distinga del éxito por fallo ⟦SEP_0007⟧"
+
+#: lessons/problems-overcome.md:122
+msgctxt "s-e3e911435d3e-0095"
+msgid "⟦SEP_0001⟧ **sed** ⟦SEP_0002⟧ The all-zero seed would stick the register ⟦SEP_0003⟧ Replaced inside the script ⟦SEP_0004⟧ Special-case your fixed points ⟦SEP_0005⟧"
+msgstr "⟦SEP_0001⟧ **sed** ⟦SEP_0002⟧ La semilla de solo ceros dejaría atascado el registro ⟦SEP_0003⟧ Se reemplazó dentro del script ⟦SEP_0004⟧ Trata como casos especiales tus puntos fijos ⟦SEP_0005⟧"
+
+#: lessons/problems-overcome.md:123
+msgctxt "s-9e7eedcbec5d-0096"
+msgid "⟦SEP_0004⟧ ⟦CODE_0001⟧ ⟦SEP_0005⟧ The closing note first said \"6 methods\", counting the ⟦CODE_0002⟧ method ⟦SEP_0006⟧ Count only methods whose qualifiers are ⟦CODE_0003⟧ ⟦SEP_0007⟧ Introspection reports what you ask, not what you meant ⟦SEP_0008⟧"
+msgstr "⟦SEP_0004⟧ ⟦CODE_0001⟧ ⟦SEP_0005⟧ La nota de cierre decía primero \"6 métodos\", al contar el método ⟦CODE_0002⟧ ⟦SEP_0006⟧ Cuenta solo los métodos cuyos calificadores son ⟦CODE_0003⟧ ⟦SEP_0007⟧ La introspección informa de lo que pides, no de lo que querías decir ⟦SEP_0008⟧"
+
+#: lessons/problems-overcome.md:124
+msgctxt "s-4032b3aa5fb6-0097"
+msgid "⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ A finite file leaves an empty last record, which would count as a card ⟦SEP_0005⟧ ⟦CODE_0002⟧ ⟦SEP_0006⟧ Guard the edge of a stream ⟦SEP_0007⟧"
+msgstr "⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ Un archivo finito deja un último registro vacío, que se contaría como una tarjeta ⟦SEP_0005⟧ ⟦CODE_0002⟧ ⟦SEP_0006⟧ Protege el borde de un flujo ⟦SEP_0007⟧"
+
+#: lessons/problems-overcome.md:125
+msgctxt "s-b1a8d409e9b7-0098"
+msgid "⟦SEP_0003⟧ **All the script entries** ⟦SEP_0004⟧ Real data could leak into a demo ⟦SEP_0005⟧ ⟦CODE_0001⟧ makes a non-demo row unrepresentable, and ⟦CODE_0002⟧ tries to violate it ⟦SEP_0006⟧ Enforce invariants in the schema ⟦SEP_0007⟧"
+msgstr "⟦SEP_0003⟧ **Todas las entradas de script** ⟦SEP_0004⟧ Datos reales podrían filtrarse en una demo ⟦SEP_0005⟧ ⟦CODE_0001⟧ hace imposible representar una fila que no sea de demo, y ⟦CODE_0002⟧ intenta violarlo ⟦SEP_0006⟧ Aplica las invariantes en el esquema ⟦SEP_0007⟧"
+
+#: lessons/problems-overcome.md:126
+msgctxt "s-305736d90136-0099"
+msgid "⟦SEP_0003⟧ **All the script entries** ⟦SEP_0004⟧ Proving the constraint is real ⟦SEP_0005⟧ Each ⟦CODE_0001⟧ greps the source for banned constructs and runs 25 times; Rust has a test scanning for ⟦CODE_0002⟧ ⟦SEP_0006⟧ A test is how a stunt becomes a lesson ⟦SEP_0007⟧"
+msgstr "⟦SEP_0003⟧ **Todas las entradas de script** ⟦SEP_0004⟧ Demostrar que la restricción es real ⟦SEP_0005⟧ Cada ⟦CODE_0001⟧ busca con grep construcciones prohibidas en el código fuente y se ejecuta 25 veces; Rust tiene una prueba que busca ⟦CODE_0002⟧ ⟦SEP_0006⟧ Una prueba es lo que convierte una acrobacia en una lección ⟦SEP_0007⟧"
+
+#: lessons/problems-overcome.md:127
+msgctxt "s-30becbe6088e-0100"
+msgid "⟦SEP_0002⟧ **tar** ⟦SEP_0003⟧ tar goes on after a command fails, so a bad record would be followed by good ones ⟦SEP_0004⟧ The dispatcher writes ⟦CODE_0001⟧ to the database and refuses every later member. A passive inspector vets the whole archive first ⟦SEP_0005⟧ Fail closed, and do not rely on the host to stop ⟦SEP_0006⟧"
+msgstr "⟦SEP_0002⟧ **tar** ⟦SEP_0003⟧ tar continúa después de que un comando falla, así que a un registro defectuoso lo seguirían registros buenos ⟦SEP_0004⟧ El despachador de WPF escribe ⟦CODE_0001⟧ en la base de datos y rechaza todos los miembros posteriores. Un inspector pasivo examina primero todo el archivo comprimido ⟦SEP_0005⟧ Falla en modo cerrado y no dependas de que el anfitrión se detenga ⟦SEP_0006⟧"
+
+#: lessons/problems-overcome.md:128
+msgctxt "s-dd057e25c104-0101"
+msgid "⟦SEP_0002⟧ **tar** ⟦SEP_0003⟧ Proving that a hostile archive is inert ⟦SEP_0004⟧ Canary files, shim programs that fail if they are called and an archive with ⟦CODE_0001⟧ as its hours ⟦SEP_0005⟧ Test the absence of an effect with something that would show it ⟦SEP_0006⟧"
+msgstr "⟦SEP_0002⟧ **tar** ⟦SEP_0003⟧ Demostrar que un archivo tar hostil es inerte ⟦SEP_0004⟧ Archivos canario, programas sustitutos que fallan si alguien los llama y un archivo tar con ⟦CODE_0001⟧ como horas ⟦SEP_0005⟧ Prueba la ausencia de un efecto con algo que lo mostraría ⟦SEP_0006⟧"
+
+#: lessons/problems-overcome.md:129
+msgctxt "s-868786983993-0102"
+msgid "⟦SEP_0002⟧ **JavaScript** ⟦SEP_0003⟧ Proving that the loop body is really empty and that nothing hides the program ⟦SEP_0004⟧ A small scanner blanks comments and strings, then insists on one ⟦CODE_0001⟧ with two semicolons and an empty body. Six mutants must be rejected ⟦SEP_0005⟧ A test of a constraint needs mutants that break it ⟦SEP_0006⟧"
+msgstr "⟦SEP_0002⟧ **JavaScript** ⟦SEP_0003⟧ Demostrar que el cuerpo del bucle está realmente vacío y que nada oculta el programa ⟦SEP_0004⟧ Un escáner pequeño deja en blanco los comentarios y las cadenas de texto, y luego exige un solo ⟦CODE_0001⟧ con dos puntos y coma y un cuerpo vacío. Debe rechazar seis mutantes ⟦SEP_0005⟧ Una prueba de una restricción necesita mutantes que la rompan ⟦SEP_0006⟧"
+
+#: lessons/problems-overcome.md:131
+msgctxt "s-955c6bea64b5-0103"
+msgid "Patterns in the overcoming"
+msgstr "Patrones en la superación de obstáculos"
+
+#: lessons/problems-overcome.md:133
+msgctxt "s-a6237fed1068-0104"
+msgid "**The obstacle is usually \"the language has no X\".** The answer is almost always \"find where the language already does X by another name\": a stack, a stack of captures, a file that gets remade."
+msgstr "**El obstáculo suele ser \"el lenguaje no tiene X\".** La respuesta casi siempre es \"busca dónde el lenguaje ya hace X con otro nombre\": una pila, una pila de capturas, un archivo que se vuelve a crear."
+
+#: lessons/problems-overcome.md:134
+msgctxt "s-dbe8882fb776-0105"
+msgid "**The host is allowed to be small, not absent.** Many entries need a little help (seed the random digits, create a directory, print the rows). The honest fine print in each README says exactly how much."
+msgstr "**Se permite que el anfitrión sea pequeño, no que esté ausente.** Muchas entradas necesitan un poco de ayuda (inicializar los dígitos aleatorios, crear un directorio, imprimir las filas). La letra pequeña honesta de cada README dice exactamente cuánta."
+
+#: lessons/problems-overcome.md:135
+msgctxt "s-8facf92d9343-0106"
+msgid "**Bugs in these entries are instructive.** The off-by-one in APL's rewrite, the lazy ⟦CODE_0001⟧ in Haskell, the coarse timestamps in Make and the misleading ⟦CODE_0002⟧ in PCRE2 are the best material in the repo."
+msgstr "**Los bichos en estas entradas son instructivos.** El error de una unidad (*off-by-one*) en la reescritura de APL, el ⟦CODE_0001⟧ perezoso de Haskell, las marcas de tiempo gruesas de Make y el ⟦CODE_0002⟧ engañoso de PCRE2 son el mejor material del repositorio."
+
+#: lessons/problems-overcome.md:137
+msgctxt "s-d82d1e073baf-0107"
+msgid "What is *still* stuck: [blocking problems](⟦DEST_0001⟧)."
+msgstr "Lo que *todavía* sigue atascado: [problemas bloqueantes](⟦DEST_0001⟧)."

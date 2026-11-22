@@ -316,3 +316,4 @@
 348 P4-lessons-5 done exercises.md translated whole (269 segments, covers P4-lessons-6 too); 22 segments set or waived by hand; fast check passed.
 349 P4-lessons-7 done front-matter, goals and intro translated (95 segments; index has none); 7 set or waived by hand, humor H028-H033 recorded; fast check passed.
 350 P4-lessons-8 done patterns.md translated (123 segments); 6 waived (build verb, NEXT-CARD, >IN); fast check passed.
+351 P4-lessons-9 done problems-overcome.md translated (108 segments); 2 set, 8 waived; humor H024-H027 recorded; fast check passed.

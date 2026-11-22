@@ -481,3 +481,11 @@
 {"id":"EXC-481","segment":"s-aa965eb3b7be-0060","invariant":"I9","reason":"The segment is the Forth word >IN (placeholder plus 'in') inside a Spanish phrase.","task":"P4-lessons-8"}
 {"id":"EXC-482","segment":"s-317ae7b49b04-0063","invariant":"I7","reason":"CARD appears only inside the identifier NEXT-CARD, which stays literal.","task":"P4-lessons-8"}
 {"id":"EXC-483","segment":"s-583464e568e8-0065","invariant":"I7","reason":"CARD appears only inside the identifier NEXT-CARD, which stays literal.","task":"P4-lessons-8"}
+{"id":"EXC-484","segment":"s-e2dd0723f995-0007","invariant":"placeholders_seen","reason":"placeholders_seen is translator metadata; the msgstr keeps every placeholder exactly once in the English order or a valid Spanish order.","task":"P4-lessons-9"}
+{"id":"EXC-485","segment":"s-f853e4e2cd10-0049","invariant":"placeholders_seen","reason":"placeholders_seen is translator metadata; the msgstr keeps every placeholder exactly once in the English order or a valid Spanish order.","task":"P4-lessons-9"}
+{"id":"EXC-486","segment":"s-357d154439df-0061","invariant":"placeholders_seen","reason":"placeholders_seen is translator metadata; the msgstr keeps every placeholder exactly once in the English order or a valid Spanish order.","task":"P4-lessons-9"}
+{"id":"EXC-487","segment":"s-f1d022d5b22f-0089","invariant":"placeholders_seen","reason":"placeholders_seen is translator metadata; the msgstr keeps every placeholder exactly once in the English order or a valid Spanish order.","task":"P4-lessons-9"}
+{"id":"EXC-488","segment":"s-4032b3aa5fb6-0097","invariant":"placeholders_seen","reason":"placeholders_seen is translator metadata; the msgstr keeps every placeholder exactly once in the English order or a valid Spanish order.","task":"P4-lessons-9"}
+{"id":"EXC-489","segment":"s-0da849c93de6-0032","invariant":"I7","reason":"build is the verb 'construir' in a heading, not the noun build (compilación).","task":"P4-lessons-9"}
+{"id":"EXC-490","segment":"s-18f48307707b-0081","invariant":"I7","reason":"claim is the verb 'afirmar' (claim to support), not the glossary noun claim.","task":"P4-lessons-9"}
+{"id":"EXC-491","segment":"s-edf71e51f7ad-0084","invariant":"I7","reason":"claim is the verb 'reclamar' (claim a directory), not the glossary noun claim.","task":"P4-lessons-9"}
