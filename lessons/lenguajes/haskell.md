@@ -60,11 +60,11 @@ Consulta los [ejercicios](../exercises.md#b2-haskell-break-the-laziness-verified
 
 - **`takeWhile` no basta**: descarta la tarjeta que cruza el tope. `span` conserva ambas mitades.
 - **Funciones parciales.** `head`, `last` y `!!` fallan con una lista vacía; ninguno de los dos programas las usa.
-- **`Int` vs `Integer` vs `Word64`.** The generator wants exactly 64 unsigned bits, so `Word64`, whose wraparound is the feature.
-- **No random package ships with GHC.** Both entries hand-roll a linear congruential generator (Knuth's MMIX constants), using the high bits.
-- **`hGetContents`-style surprises.** The weird entry turns Haskell's most notorious lazy-IO surprise into the algorithm.
-- **Style tools.** The source is laid out by hand in Ormolu style and compiles clean under `-Wall -Wcompat`, but was *not* run through `ormolu` or `hlint`.
-- **`check.sh` as a constraint.** [`haskell-weird/check.sh`](../../src/haskell-weird/check.sh) bans `scanl iterate foldr foldl unfoldr until go mapM forM forever replicateM foldM zipWithM sequence`, requires `fixIO $ \cards ->` and exactly one `unsafeInterleaveIO`.
+- **`Int` frente a `Integer` frente a `Word64`.** El generador necesita exactamente 64 bits sin signo, así que usa `Word64`, cuyo desbordamiento circular es la característica buscada.
+- **GHC no incluye un paquete de números aleatorios.** Ambas entradas construyen a mano un generador congruencial lineal (con las constantes MMIX de Knuth) y usan los bits altos.
+- **Sorpresas al estilo de `hGetContents`.** La entrada rara convierte en algoritmo la sorpresa más famosa de la entrada y salida perezosa de Haskell.
+- **Herramientas de estilo.** El código fuente está formateado a mano al estilo de Ormolu y compila sin problemas con `-Wall -Wcompat`, pero *no* se ejecutó mediante `ormolu` ni `hlint`.
+- **`check.sh` como restricción.** [`haskell-weird/check.sh`](../../src/haskell-weird/check.sh) prohíbe `scanl iterate foldr foldl unfoldr until go mapM forM forever replicateM foldM zipWithM sequence` y exige `fixIO $ \cards ->` y exactamente un `unsafeInterleaveIO`.
 
 ## Weird next to boring
 

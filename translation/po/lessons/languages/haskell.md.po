@@ -181,27 +181,27 @@ msgstr "**Funciones parciales.** ⟦CODE_0001⟧, ⟦CODE_0002⟧ y ⟦CODE_0003
 #: lessons/languages/haskell.md:63
 msgctxt "s-4186515f58f9-0033"
 msgid "**⟦CODE_0001⟧ vs ⟦CODE_0002⟧ vs ⟦CODE_0003⟧.** The generator wants exactly 64 unsigned bits, so ⟦CODE_0004⟧, whose wraparound is the feature."
-msgstr ""
+msgstr "**⟦CODE_0001⟧ frente a ⟦CODE_0002⟧ frente a ⟦CODE_0003⟧.** El generador necesita exactamente 64 bits sin signo, así que usa ⟦CODE_0004⟧, cuyo desbordamiento circular es la característica buscada."
 
 #: lessons/languages/haskell.md:64
 msgctxt "s-da61e83667dc-0034"
 msgid "**No random package ships with GHC.** Both entries hand-roll a linear congruential generator (Knuth's MMIX constants), using the high bits."
-msgstr ""
+msgstr "**GHC no incluye un paquete de números aleatorios.** Ambas entradas construyen a mano un generador congruencial lineal (con las constantes MMIX de Knuth) y usan los bits altos."
 
 #: lessons/languages/haskell.md:65
 msgctxt "s-59eaa6a7ac25-0035"
 msgid "**⟦CODE_0001⟧-style surprises.** The weird entry turns Haskell's most notorious lazy-IO surprise into the algorithm."
-msgstr ""
+msgstr "**Sorpresas al estilo de ⟦CODE_0001⟧.** La entrada rara convierte en algoritmo la sorpresa más famosa de la entrada y salida perezosa de Haskell."
 
 #: lessons/languages/haskell.md:66
 msgctxt "s-accb92ce13f8-0036"
 msgid "**Style tools.** The source is laid out by hand in Ormolu style and compiles clean under ⟦CODE_0001⟧, but was *not* run through ⟦CODE_0002⟧ or ⟦CODE_0003⟧."
-msgstr ""
+msgstr "**Herramientas de estilo.** El código fuente está formateado a mano al estilo de Ormolu y compila sin problemas con ⟦CODE_0001⟧, pero *no* se ejecutó mediante ⟦CODE_0002⟧ ni ⟦CODE_0003⟧."
 
 #: lessons/languages/haskell.md:67
 msgctxt "s-c5fb6b0468be-0037"
 msgid "**⟦CODE_0001⟧ as a constraint.** [⟦CODE_0002⟧](⟦DEST_0003⟧) bans ⟦CODE_0004⟧, requires ⟦CODE_0005⟧ and exactly one ⟦CODE_0006⟧."
-msgstr ""
+msgstr "**⟦CODE_0001⟧ como restricción.** [⟦CODE_0002⟧](⟦DEST_0003⟧) prohíbe ⟦CODE_0004⟧ y exige ⟦CODE_0005⟧ y exactamente un ⟦CODE_0006⟧."
 
 #: lessons/languages/haskell.md:69
 msgctxt "s-a6b58da9d4cd-0038"
