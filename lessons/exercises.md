@@ -292,7 +292,7 @@ Acceptance criteria:
 
 ### B17. tar, weirder: predict the clock (verified)
 
-**Lesson:** [tar](lenguajes/tar.md#the-archive-is-the-clock). **Entry:** a copy of `src/tar-gnu-weird`.
+**Lesson:** [tar](lenguajes/tar.md#el-archivo-es-el-reloj). **Entry:** a copy of `src/tar-gnu-weird`.
 
 For seed 42 the cards are `Meetings 12`, `Coding 17`, `Debugging 17`, so the total reaches 12, 29 and 46 hours. The run needs 46 ticks.
 

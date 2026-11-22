@@ -185,27 +185,27 @@ msgstr "Ahora rómpelo tú"
 #: lessons/languages/tar.md:59
 msgctxt "s-f60e6a00e0b2-0035"
 msgid "See [exercise B16](⟦DEST_0001⟧)."
-msgstr ""
+msgstr "Consulta el [ejercicio B16](⟦DEST_0001⟧)."
 
 #: lessons/languages/tar.md:61
 msgctxt "s-cf445c47f4b7-0036"
 msgid "The archive is the clock"
-msgstr ""
+msgstr "El archivo es el reloj"
 
 #: lessons/languages/tar.md:63
 msgctxt "s-cc9cfaabc50d-0037"
 msgid "Behold the monstrosity"
-msgstr ""
+msgstr "Contempla la monstruosidad"
 
 #: lessons/languages/tar.md:69
 msgctxt "s-5310fc444a90-0038"
 msgid "A tar archive whose payload is all zeros, and a state machine that moves one step each time tar says \"I wrote a record\". The program has no loop. tar is the loop."
-msgstr ""
+msgstr "Un archivo tar cuya carga útil contiene solo ceros y una máquina de estados que avanza un paso cada vez que tar dice \"escribí un registro\". El programa no tiene bucle. tar es el bucle."
 
 #: lessons/languages/tar.md:71
 msgctxt "s-415f5fa29cf9-0039"
 msgid "How the hell does that work?"
-msgstr ""
+msgstr "¿Cómo demonios funciona eso?"
 
 #: lessons/languages/tar.md:73
 msgctxt "s-5e3f0f91b345-0040"

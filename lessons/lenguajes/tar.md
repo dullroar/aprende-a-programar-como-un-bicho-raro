@@ -56,19 +56,19 @@ Usos legítimos: `--to-command` como filtro, por ejemplo, para calcular la suma 
 
 ### Ahora rómpelo tú
 
-See [exercise B16](../exercises.md#b16-tar-read-the-program-then-run-it-verified).
+Consulta el [ejercicio B16](../exercises.md#b16-tar-read-the-program-then-run-it-verified).
 
-## The archive is the clock
+## El archivo es el reloj
 
-### Behold the monstrosity
+### Contempla la monstruosidad
 
 ```bash
 sandbox/container/run-image.sh src/tar-gnu-weird
 ```
 
-A tar archive whose payload is all zeros, and a state machine that moves one step each time tar says "I wrote a record". The program has no loop. tar is the loop.
+Un archivo tar cuya carga útil contiene solo ceros y una máquina de estados que avanza un paso cada vez que tar dice "escribí un registro". El programa no tiene bucle. tar es el bucle.
 
-### How the hell does that work?
+### ¿Cómo demonios funciona eso?
 
 - **One checkpoint is one hour.** `tar -b 1 --checkpoint=1 --checkpoint-action=exec=...` runs a command for every 512 bytes it writes. The command is a single SQL transaction.
 - **The state is one row.** It holds the hours worked on the open card, the length of the card, the running total, the generator's seed and a `done` flag.

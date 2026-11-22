@@ -2305,3 +2305,6 @@
 {"segment_id": "s-299b7a6f9cbe-0029", "ts": "2026-11-22T15:22:36Z", "findings": [], "playful_note": "Conserva la amenaza cómica exagerada que introduce los riesgos serios."}
 {"segment_id": "s-a4f6a78a8d4a-0031", "ts": "2026-11-22T15:24:15Z", "findings": ["I7: glossary term step must be rendered 'paso'"]}
 {"segment_id": "s-5e3bcdfbf845-0034", "ts": "2026-11-22T15:24:15Z", "findings": [], "playful_note": "Invita al lector a romper el programa por su cuenta."}
+{"segment_id": "s-cf445c47f4b7-0036", "ts": "2026-11-22T15:25:59Z", "findings": ["REGISTER: playful segment H016 has status 'pending' in the humor register"], "playful_note": "Conserva el efecto del título juguetón del original."}
+{"segment_id": "s-cc9cfaabc50d-0037", "ts": "2026-11-22T15:25:59Z", "findings": [], "playful_note": "Conserva el efecto del título juguetón del original."}
+{"segment_id": "s-415f5fa29cf9-0039", "ts": "2026-11-22T15:25:59Z", "findings": [], "playful_note": "Conserva el efecto del título juguetón del original."}
