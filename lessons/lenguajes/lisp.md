@@ -58,14 +58,14 @@ Existen cinco métodos. Se ejecutan tres o cuatro de ellos. Nada en el programa 
 - **El flujo de control puede vivir en una jerarquía de tipos.** El despacho es la iteración, el orden de especificidad es la secuencia y un valor de retorno es el `break`. Compara el [salto mutable de COBOL](cobol.md#alter) y la [posición de análisis de Forth](forth.md). Los tres ponen el "¿dónde estoy?" en un lugar donde normalmente no está un contador de bucle.
 - **Un lenguaje puede proporcionar *políticas* de flujo de control como datos.** `or`, `and` y `progn` no son especiales para `defgeneric`; `define-method-combination` te permite escribir las tuyas.
 - **Las clases se calculan, no solo se declaran.** La lista de precedencia de clases es la salida de un algoritmo (`sb-mop:compute-class-precedence-list`) que puedes consultar.
-- **Compile-time code runs *before* the program.** `defcard` builds names with `intern` and `format` while compiling, inside `eval-when`. None of that is a loop over cards at run time.
+- **El código de compilación se ejecuta *antes* del programa.** `defcard` construye nombres con `intern` y `format` durante la compilación, dentro de `eval-when`. Nada de eso es un bucle sobre tarjetas durante la ejecución.
 
-Tags: `or` method combination, `:around`, `#n=` syntax, `defmacro` and `eval-when` are **guaranteed** by ANSI Common Lisp. `sb-mop:compute-applicable-methods` is the MOP, which is **implementation-permitted** (SBCL, CCL and others provide it; it is not in the ANSI standard). `sb-ext:run-program` is specific to SBCL (**implementation-permitted**).
+Etiquetas: la combinación de métodos `or`, `:around`, la sintaxis `#n=`, `defmacro` y `eval-when` son comportamiento **garantizado** por ANSI Common Lisp. `sb-mop:compute-applicable-methods` es el MOP, **permitido por la implementación** (SBCL, CCL y otros lo ofrecen; no está en el estándar ANSI). `sb-ext:run-program` es específico de SBCL (**permitido por la implementación**).
 
-### Do this in production and you're fired
+### Haz esto en producción y estás despedido
 
-- **The control flow is invisible.** Nothing near `punch` says "this loops". A maintainer has to know that class-definition order decides execution order; splicing a class into the chain changes behavior without touching a method.
-- **The limit is baked into the design.** Five classes handle "10 to 19 hours, stop over 40". Different rules need a longer or shorter chain; the straight version has no such limit. (Try it in [B10](../exercises.md#b10-lisp-swap-the-method-combination-verified).)
+- **El flujo de control es invisible.** Nada cerca de `punch` dice "esto es un bucle". Un mantenedor debe saber que el orden de definición de las clases determina el orden de ejecución. Insertar una clase en la cadena cambia el comportamiento sin tocar un método.
+- **El límite está incorporado en el diseño.** Cinco clases manejan "de 10 a 19 horas, detenerse con más de 40". Otras reglas necesitan una cadena más larga o más corta; la versión ordinaria no tiene ese límite. (Pruébalo en [B10](../exercises.md#b10-lisp-swap-the-method-combination-verified).)
 - **Debuggers and tracers show a stack of generic-function calls**, not a loop, and a profiler attributes the time to methods nobody wrote by hand.
 - **SBCL only** as shipped: the `sb-` functions are SBCL's, while the CLOS parts are standard.
 

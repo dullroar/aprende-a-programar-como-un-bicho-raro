@@ -5204,8 +5204,8 @@
     {
      "en": "Do this in production and you're fired",
      "en_id": "do-this-in-production-and-youre-fired",
-     "es": "Do this in production and you're fired",
-     "es_id": "do-this-in-production-and-youre-fired",
+     "es": "Haz esto en producción y estás despedido",
+     "es_id": "haz-esto-en-producción-y-estás-despedido",
      "level": 3,
      "line": 65
     },
@@ -5278,7 +5278,7 @@
     "behold-the-monstrosity": "contempla-la-monstruosidad",
     "common-lisp": "common-lisp",
     "computer-science-behind-this-page": "computer-science-behind-this-page",
-    "do-this-in-production-and-youre-fired": "do-this-in-production-and-youre-fired",
+    "do-this-in-production-and-youre-fired": "haz-esto-en-producción-y-estás-despedido",
     "how-each-program-runs": "how-each-program-runs",
     "how-the-hell-does-that-work": "cómo-demonios-funciona-eso",
     "method-combination-as-control-flow": "combinación-de-métodos-como-flujo-de-control",

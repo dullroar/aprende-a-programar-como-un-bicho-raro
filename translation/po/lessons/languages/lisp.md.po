@@ -140,27 +140,27 @@ msgstr "**Las clases se calculan, no solo se declaran.** La lista de precedencia
 #: lessons/languages/lisp.md:61
 msgctxt "s-20035aeb504a-0026"
 msgid "**Compile-time code runs *before* the program.** ⟦CODE_0001⟧ builds names with ⟦CODE_0002⟧ and ⟦CODE_0003⟧ while compiling, inside ⟦CODE_0004⟧. None of that is a loop over cards at run time."
-msgstr ""
+msgstr "**El código de compilación se ejecuta *antes* del programa.** ⟦CODE_0001⟧ construye nombres con ⟦CODE_0002⟧ y ⟦CODE_0003⟧ durante la compilación, dentro de ⟦CODE_0004⟧. Nada de eso es un bucle sobre tarjetas durante la ejecución."
 
 #: lessons/languages/lisp.md:63
 msgctxt "s-8569ab9f99fe-0027"
 msgid "Tags: ⟦CODE_0001⟧ method combination, ⟦CODE_0002⟧, ⟦CODE_0003⟧ syntax, ⟦CODE_0004⟧ and ⟦CODE_0005⟧ are **guaranteed** by ANSI Common Lisp. ⟦CODE_0006⟧ is the MOP, which is **implementation-permitted** (SBCL, CCL and others provide it; it is not in the ANSI standard). ⟦CODE_0007⟧ is specific to SBCL (**implementation-permitted**)."
-msgstr ""
+msgstr "Etiquetas: la combinación de métodos ⟦CODE_0001⟧, ⟦CODE_0002⟧, la sintaxis ⟦CODE_0003⟧, ⟦CODE_0004⟧ y ⟦CODE_0005⟧ son comportamiento **garantizado** por ANSI Common Lisp. ⟦CODE_0006⟧ es el MOP, **permitido por la implementación** (SBCL, CCL y otros lo ofrecen; no está en el estándar ANSI). ⟦CODE_0007⟧ es específico de SBCL (**permitido por la implementación**)."
 
 #: lessons/languages/lisp.md:65
 msgctxt "s-299b7a6f9cbe-0028"
 msgid "Do this in production and you're fired"
-msgstr ""
+msgstr "Haz esto en producción y estás despedido"
 
 #: lessons/languages/lisp.md:67
 msgctxt "s-036a62733679-0029"
 msgid "**The control flow is invisible.** Nothing near ⟦CODE_0001⟧ says \"this loops\". A maintainer has to know that class-definition order decides execution order; splicing a class into the chain changes behavior without touching a method."
-msgstr ""
+msgstr "**El flujo de control es invisible.** Nada cerca de ⟦CODE_0001⟧ dice \"esto es un bucle\". Un mantenedor debe saber que el orden de definición de las clases determina el orden de ejecución. Insertar una clase en la cadena cambia el comportamiento sin tocar un método."
 
 #: lessons/languages/lisp.md:68
 msgctxt "s-bc532ea30e61-0030"
 msgid "**The limit is baked into the design.** Five classes handle \"10 to 19 hours, stop over 40\". Different rules need a longer or shorter chain; the straight version has no such limit. (Try it in [B10](⟦DEST_0001⟧).)"
-msgstr ""
+msgstr "**El límite está incorporado en el diseño.** Cinco clases manejan \"de 10 a 19 horas, detenerse con más de 40\". Otras reglas necesitan una cadena más larga o más corta; la versión ordinaria no tiene ese límite. (Pruébalo en [B10](⟦DEST_0001⟧).)"
 
 #: lessons/languages/lisp.md:69
 msgctxt "s-3792aaea4a4e-0031"
