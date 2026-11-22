@@ -5623,8 +5623,8 @@
     {
      "en": "What makes each engine special",
      "en_id": "what-makes-each-engine-special",
-     "es": "What makes each engine special",
-     "es_id": "what-makes-each-engine-special",
+     "es": "Qué hace especial a cada motor",
+     "es_id": "qué-hace-especial-a-cada-motor",
      "level": 2,
      "line": 11
     },
@@ -5793,7 +5793,7 @@
     "regular-expressions-five-engines-five-personalities": "expresiones-regulares-cinco-motores-cinco-personalidades",
     "under-what-circumstances-would-this-terrible-idea-become-reasonable": "under-what-circumstances-would-this-terrible-idea-become-reasonable",
     "what-did-we-just-learn": "what-did-we-just-learn",
-    "what-makes-each-engine-special": "what-makes-each-engine-special"
+    "what-makes-each-engine-special": "qué-hace-especial-a-cada-motor"
    }
   },
   "lessons/languages/tar.md": {

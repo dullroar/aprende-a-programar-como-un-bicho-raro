@@ -8,13 +8,13 @@ Una expresión regular parece un patrón. Estas entradas la tratan como un **pro
 
 Este panorama compara cinco motores. El ejemplo de Perl examina el mecanismo en detalle y combina la explicación con el ejercicio.
 
-## What makes each engine special
+## Qué hace especial a cada motor
 
-| Engine | Program is... | The special thing | Where |
+| Motor | El programa es... | Lo especial | Dónde |
 | --- | --- | --- | --- |
-| **Perl** | one `=~` match | Code blocks `(?{ })` run during the match; `(??{ })` returns a *pattern*, and `local` unwinds on backtracking | [`timecards.pl` L7](../../src/regex-perl/timecards.pl#L7) |
-| **PCRE2** | one `pcre2_match` call | Callout strings `(?C"book")` are opcodes for a bodiless C dispatcher | [`timecards.c` L24-26](../../src/regex-pcre2/timecards.c#L24-L26) |
-| **pcre2grep** | one command line, no custom code | Callout scripts name programs to run, and their **exit codes steer the match** | [`timecards.sh` L14-20](../../src/regex-pcre2grep/timecards.sh#L14-L20) |
+| **Perl** | una coincidencia de `=~` | Los bloques de código `(?{ })` se ejecutan durante la coincidencia; `(??{ })` devuelve un *patrón* y `local` se deshace con el retroceso | [`timecards.pl` L7](../../src/regex-perl/timecards.pl#L7) |
+| **PCRE2** | una llamada a `pcre2_match` | Las cadenas de texto de callout `(?C"book")` son códigos de operación para un despachador sin cuerpo en C | [`timecards.c` L24-26](../../src/regex-pcre2/timecards.c#L24-L26) |
+| **pcre2grep** | una línea de comando, sin código personalizado | Los scripts de callout nombran programas para ejecutar y sus **estados de salida dirigen la coincidencia** | [`timecards.sh` L14-20](../../src/regex-pcre2grep/timecards.sh#L14-L20) |
 | **.NET** | a pattern of balancing groups only | Capture *stacks* make a counter | [`Program.cs` L13](../../src/regex-dotnet/Program.cs#L13) |
 | **GNU sed** | one line of text, rewritten | A [Markov algorithm](../../src/regex-sed/README.md#algoritmos-de-markov-calcular-con-buscar-y-reemplazar): find-and-replace as a computer | [`timecards.sed`](../../src/regex-sed/timecards.sed) |
 

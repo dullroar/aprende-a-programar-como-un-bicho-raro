@@ -274,3 +274,4 @@
 301 P4-lessons-languages-3 partial accepted and applied JavaScript positions 75 to 79; resume at 80; scoped, fast and anchor checks passed.
 302 P4-lessons-languages-3 partial accepted and applied JavaScript positions 80 to 84; resume at 85; scoped, fast and anchor checks passed.
 303 P4-lessons-languages-3 done completed JavaScript positions 85 to 86; all three guides pass scoped, release file, fast and anchor checks.
+304 P4-lessons-languages-5 partial accepted and applied regex positions 5 to 9; resume at 10; scoped, fast and anchor checks passed.

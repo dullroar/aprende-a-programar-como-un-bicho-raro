@@ -35,27 +35,27 @@ msgstr "Este panorama compara cinco motores. El ejemplo de Perl examina el mecan
 #: lessons/languages/regex.md:11
 msgctxt "s-a9a23cf13b8d-0005"
 msgid "What makes each engine special"
-msgstr ""
+msgstr "Qué hace especial a cada motor"
 
 #: lessons/languages/regex.md:13
 msgctxt "s-ffa38bc796cf-0006"
 msgid "⟦SEP_0001⟧ Engine ⟦SEP_0002⟧ Program is... ⟦SEP_0003⟧ The special thing ⟦SEP_0004⟧ Where ⟦SEP_0005⟧"
-msgstr ""
+msgstr "⟦SEP_0001⟧ Motor ⟦SEP_0002⟧ El programa es... ⟦SEP_0003⟧ Lo especial ⟦SEP_0004⟧ Dónde ⟦SEP_0005⟧"
 
 #: lessons/languages/regex.md:15
 msgctxt "s-056c74f92877-0007"
 msgid "⟦SEP_0007⟧ **Perl** ⟦SEP_0008⟧ one ⟦CODE_0001⟧ match ⟦SEP_0009⟧ Code blocks ⟦CODE_0002⟧ run during the match; ⟦CODE_0003⟧ returns a *pattern*, and ⟦CODE_0004⟧ unwinds on backtracking ⟦SEP_0010⟧ [⟦CODE_0005⟧ L7](⟦DEST_0006⟧) ⟦SEP_0011⟧"
-msgstr ""
+msgstr "⟦SEP_0007⟧ **Perl** ⟦SEP_0008⟧ una coincidencia de ⟦CODE_0001⟧ ⟦SEP_0009⟧ Los bloques de código ⟦CODE_0002⟧ se ejecutan durante la coincidencia; ⟦CODE_0003⟧ devuelve un *patrón* y ⟦CODE_0004⟧ se deshace con el retroceso ⟦SEP_0010⟧ [⟦CODE_0005⟧ L7](⟦DEST_0006⟧) ⟦SEP_0011⟧"
 
 #: lessons/languages/regex.md:16
 msgctxt "s-2141f90d8dbb-0008"
 msgid "⟦SEP_0005⟧ **PCRE2** ⟦SEP_0006⟧ one ⟦CODE_0001⟧ call ⟦SEP_0007⟧ Callout strings ⟦CODE_0002⟧ are opcodes for a bodiless C dispatcher ⟦SEP_0008⟧ [⟦CODE_0003⟧ L24-26](⟦DEST_0004⟧) ⟦SEP_0009⟧"
-msgstr ""
+msgstr "⟦SEP_0005⟧ **PCRE2** ⟦SEP_0006⟧ una llamada a ⟦CODE_0001⟧ ⟦SEP_0007⟧ Las cadenas de texto de callout ⟦CODE_0002⟧ son códigos de operación para un despachador sin cuerpo en C ⟦SEP_0008⟧ [⟦CODE_0003⟧ L24-26](⟦DEST_0004⟧) ⟦SEP_0009⟧"
 
 #: lessons/languages/regex.md:17
 msgctxt "s-e7f3b7bfc9ad-0009"
 msgid "⟦SEP_0003⟧ **pcre2grep** ⟦SEP_0004⟧ one command line, no custom code ⟦SEP_0005⟧ Callout scripts name programs to run, and their **exit codes steer the match** ⟦SEP_0006⟧ [⟦CODE_0001⟧ L14-20](⟦DEST_0002⟧) ⟦SEP_0007⟧"
-msgstr ""
+msgstr "⟦SEP_0003⟧ **pcre2grep** ⟦SEP_0004⟧ una línea de comando, sin código personalizado ⟦SEP_0005⟧ Los scripts de callout nombran programas para ejecutar y sus **estados de salida dirigen la coincidencia** ⟦SEP_0006⟧ [⟦CODE_0001⟧ L14-20](⟦DEST_0002⟧) ⟦SEP_0007⟧"
 
 #: lessons/languages/regex.md:18
 msgctxt "s-213612a80ec0-0010"
