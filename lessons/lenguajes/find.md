@@ -48,12 +48,12 @@ El [README](../../src/find-posix/README.md#cómo-funciona-el-truco) tiene la tab
 
 Etiquetas: `-fprintf`, `%d`, `%T`, `-regex` y `-D` son extensiones de GNU (**permitido por la implementación**). POSIX garantiza la precedencia de `-a`/`-o`, `-name`, `-path` y `-exec` (**garantizado**). Entrar en un directorio que `-exec` acaba de crear es **aprovechado por accidente**. `{}` dentro de un argumento más largo es **permitido por la implementación**: POSIX lo deja sin especificar y GNU find, bfs y busybox lo reemplazan. `mktemp` está fuera de POSIX, pero está en todos los sistemas BSD y Linux.
 
-### Do this in production and you're fired
+### Haz esto en producción y estás despedido
 
-- **A finished run leaves a path more than a hundred names deep.** The entry makes it in a scratch folder and removes the folder on exit, even on Ctrl-C.
-- **`*` crossing `/` is a trap.** The first version matched `*/1/b*` against an earlier `1/b...` in the same path, and the digit stuck. Patterns must end on a fixed-width name.
-- **A walk that changes what it walks is hard to reason about.** The result depends on which directory entries are read before and after each visit.
-- **The line is 5.7 KB.** Nobody can review that by eye. That is why [`build-line.py`](../../src/find-posix/build-line.py) exists, and why `check.sh` makes sure the two agree.
+- **Una ejecución terminada deja una ruta con más de cien nombres de profundidad.** La entrada la crea en una carpeta temporal y elimina la carpeta al salir, incluso con Ctrl-C.
+- **Que `*` cruce `/` es una trampa.** La primera versión hizo coincidir `*/1/b*` con un `1/b...` anterior en la misma ruta y el dígito quedó fijado. Los patrones deben terminar en un nombre de ancho fijo.
+- **Es difícil razonar sobre un recorrido que cambia lo que recorre.** El resultado depende de qué entradas del directorio se leen antes y después de cada visita.
+- **La línea tiene 5.7 KB.** Nadie puede revisarla a simple vista. Por eso existe [`build-line.py`](../../src/find-posix/build-line.py) y por eso `check.sh` comprueba que ambos coincidan.
 
 Legitimate uses: `find ... -exec ... {} +` and `-prune` are everyday tools. Changing the tree while find walks it is the thing the manuals warn you about.
 

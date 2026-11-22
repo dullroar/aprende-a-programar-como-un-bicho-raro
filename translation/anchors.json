@@ -4569,16 +4569,16 @@
     {
      "en": "What did we just learn?",
      "en_id": "what-did-we-just-learn",
-     "es": "What did we just learn?",
-     "es_id": "what-did-we-just-learn",
+     "es": "¿Qué acabamos de aprender?",
+     "es_id": "qué-acabamos-de-aprender",
      "level": 3,
      "line": 40
     },
     {
      "en": "Do this in production and you're fired",
      "en_id": "do-this-in-production-and-youre-fired",
-     "es": "Do this in production and you're fired",
-     "es_id": "do-this-in-production-and-youre-fired",
+     "es": "Haz esto en producción y estás despedido",
+     "es_id": "haz-esto-en-producción-y-estás-despedido",
      "level": 3,
      "line": 51
     },
@@ -4627,14 +4627,14 @@
     "a-tree-walk-that-digs-its-own-tree": "un-recorrido-de-árbol-que-cava-su-propio-árbol",
     "behold-the-monstrosity": "contempla-la-monstruosidad",
     "computer-science-behind-this-page": "computer-science-behind-this-page",
-    "do-this-in-production-and-youre-fired": "do-this-in-production-and-youre-fired",
+    "do-this-in-production-and-youre-fired": "haz-esto-en-producción-y-estás-despedido",
     "find": "find",
     "how-each-program-runs": "how-each-program-runs",
     "how-the-hell-does-that-work": "cómo-demonios-funciona-eso",
     "now-break-it-yourself": "now-break-it-yourself",
     "program-flow-of-find-gnu": "program-flow-of-find-gnu",
     "program-flow-of-find-posix": "program-flow-of-find-posix",
-    "what-did-we-just-learn": "what-did-we-just-learn",
+    "what-did-we-just-learn": "qué-acabamos-de-aprender",
     "what-makes-find-special": "qué-hace-especial-a-find"
    }
   },

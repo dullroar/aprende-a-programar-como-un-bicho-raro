@@ -200,3 +200,4 @@
 226 P4-lessons-languages-2 partial accepted and applied find.md positions 14 to 18; continue at position 19; scoped and working-tree fast checks passed.
 227 P4-lessons-languages-2 partial accepted and applied find.md positions 19 to 23; continue at position 24; scoped and working-tree fast checks passed.
 228 P4-lessons-languages-2 partial accepted and applied find.md positions 24 to 28; continue at position 29; scoped and working-tree fast checks passed.
+230 P4-lessons-languages-2 partial accepted and applied find.md positions 29 to 33; continue at position 34; scoped and working-tree fast checks and anchors check passed.

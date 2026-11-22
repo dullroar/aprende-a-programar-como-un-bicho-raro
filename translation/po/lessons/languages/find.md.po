@@ -155,27 +155,27 @@ msgstr "Etiquetas: ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_00
 #: lessons/languages/find.md:51
 msgctxt "s-299b7a6f9cbe-0029"
 msgid "Do this in production and you're fired"
-msgstr ""
+msgstr "Haz esto en producción y estás despedido"
 
 #: lessons/languages/find.md:53
 msgctxt "s-e7877eb380cf-0030"
 msgid "**A finished run leaves a path more than a hundred names deep.** The entry makes it in a scratch folder and removes the folder on exit, even on Ctrl-C."
-msgstr ""
+msgstr "**Una ejecución terminada deja una ruta con más de cien nombres de profundidad.** La entrada la crea en una carpeta temporal y elimina la carpeta al salir, incluso con Ctrl-C."
 
 #: lessons/languages/find.md:54
 msgctxt "s-ce8d9697e284-0031"
 msgid "**⟦CODE_0001⟧ crossing ⟦CODE_0002⟧ is a trap.** The first version matched ⟦CODE_0003⟧ against an earlier ⟦CODE_0004⟧ in the same path, and the digit stuck. Patterns must end on a fixed-width name."
-msgstr ""
+msgstr "**Que ⟦CODE_0001⟧ cruce ⟦CODE_0002⟧ es una trampa.** La primera versión hizo coincidir ⟦CODE_0003⟧ con un ⟦CODE_0004⟧ anterior en la misma ruta y el dígito quedó fijado. Los patrones deben terminar en un nombre de ancho fijo."
 
 #: lessons/languages/find.md:55
 msgctxt "s-039d7185c45e-0032"
 msgid "**A walk that changes what it walks is hard to reason about.** The result depends on which directory entries are read before and after each visit."
-msgstr ""
+msgstr "**Es difícil razonar sobre un recorrido que cambia lo que recorre.** El resultado depende de qué entradas del directorio se leen antes y después de cada visita."
 
 #: lessons/languages/find.md:56
 msgctxt "s-31dae2e4f6b5-0033"
 msgid "**The line is 5.7 KB.** Nobody can review that by eye. That is why [⟦CODE_0001⟧](⟦DEST_0002⟧) exists, and why ⟦CODE_0003⟧ makes sure the two agree."
-msgstr ""
+msgstr "**La línea tiene 5.7 KB.** Nadie puede revisarla a simple vista. Por eso existe [⟦CODE_0001⟧](⟦DEST_0002⟧) y por eso ⟦CODE_0003⟧ comprueba que ambos coincidan."
 
 #: lessons/languages/find.md:58
 msgctxt "s-4924e2bbd51f-0034"
