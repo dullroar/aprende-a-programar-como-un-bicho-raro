@@ -64,12 +64,12 @@ El patrón completo ([`timecards.c` L24-26](../../src/regex-pcre2/timecards.c#L2
 
 ## pcre2grep: códigos de salida como flujo de control
 
-The "host" is a stock `pcre2grep` and one command line. Callout strings name programs; **their exit codes steer the match**. The stop rule is an `INSERT INTO stop_rule SELECT (...)<=40` into a table with `CHECK(ok=1)`, so SQLite's constraint violation is the loop terminator.
+El "anfitrión" es un `pcre2grep` estándar y una línea de comandos. Las cadenas de texto de los callouts nombran programas; **sus códigos de salida dirigen la coincidencia**. La regla de parada es un `INSERT INTO stop_rule SELECT (...)<=40` en una tabla con `CHECK(ok=1)`, por lo que la violación de la restricción de SQLite termina el bucle.
 
-- **Callouts need absolute paths.** `pcre2grep` uses `fork` and `execv`, which do not search `PATH`. A bare `true` or `sleep` is silently a failed callout, indistinguishable from a vetoed branch.
-- **No state in the pattern.** The running total lives in SQLite and each callout rereads it.
-- **Each write commits separately.** The helpers run independent SQLite commands in autocommit mode. The regex's `(*COMMIT)` prunes backtracking paths. The final match failure leaves earlier database writes in place.
-- **Ubuntu's own `pcre2grep` is built without callout scripts.** It needs an upstream build (the sandbox image pins 10.49). A textbook **implementation-permitted** case.
+- **Los callouts necesitan rutas absolutas.** `pcre2grep` usa `fork` y `execv`, que no buscan en `PATH`. Un `true` o `sleep` sin ruta falla en silencio como callout y no se distingue de una rama vetada.
+- **Sin estado en el patrón.** El total acumulado reside en SQLite y cada callout lo vuelve a leer.
+- **Cada escritura se confirma por separado.** Los programas auxiliares ejecutan comandos independientes de SQLite en modo de confirmación automática. El `(*COMMIT)` de la expresión regular poda rutas de retroceso. El fallo final de coincidencia deja intactas las escrituras anteriores en la base de datos.
+- **El `pcre2grep` propio de Ubuntu se compila sin scripts de callout.** Se necesita una compilación del proyecto original (la imagen del entorno aislado fija la versión 10.49). Un caso de manual **permitido por la implementación**.
 - **Security**: callouts that run programs are a command-execution feature. `check.sh` allows only `/usr/bin/sqlite3`, `/usr/bin/test` and `/bin/sleep`.
 
 ## .NET: balancing groups

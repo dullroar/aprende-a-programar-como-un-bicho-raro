@@ -185,27 +185,27 @@ msgstr "pcre2grep: códigos de salida como flujo de control"
 #: lessons/languages/regex.md:67
 msgctxt "s-9eb2a057aa33-0035"
 msgid "The \"host\" is a stock ⟦CODE_0001⟧ and one command line. Callout strings name programs; **their exit codes steer the match**. The stop rule is an ⟦CODE_0002⟧ into a table with ⟦CODE_0003⟧, so SQLite's constraint violation is the loop terminator."
-msgstr ""
+msgstr "El \"anfitrión\" es un ⟦CODE_0001⟧ estándar y una línea de comandos. Las cadenas de texto de los callouts nombran programas; **sus códigos de salida dirigen la coincidencia**. La regla de parada es un ⟦CODE_0002⟧ en una tabla con ⟦CODE_0003⟧, por lo que la violación de la restricción de SQLite termina el bucle."
 
 #: lessons/languages/regex.md:69
 msgctxt "s-39d2985f86b0-0036"
 msgid "**Callouts need absolute paths.** ⟦CODE_0001⟧ uses ⟦CODE_0002⟧ and ⟦CODE_0003⟧, which do not search ⟦CODE_0004⟧. A bare ⟦CODE_0005⟧ or ⟦CODE_0006⟧ is silently a failed callout, indistinguishable from a vetoed branch."
-msgstr ""
+msgstr "**Los callouts necesitan rutas absolutas.** ⟦CODE_0001⟧ usa ⟦CODE_0002⟧ y ⟦CODE_0003⟧, que no buscan en ⟦CODE_0004⟧. Un ⟦CODE_0005⟧ o ⟦CODE_0006⟧ sin ruta falla en silencio como callout y no se distingue de una rama vetada."
 
 #: lessons/languages/regex.md:70
 msgctxt "s-6c108edeb0df-0037"
 msgid "**No state in the pattern.** The running total lives in SQLite and each callout rereads it."
-msgstr ""
+msgstr "**Sin estado en el patrón.** El total acumulado reside en SQLite y cada callout lo vuelve a leer."
 
 #: lessons/languages/regex.md:71
 msgctxt "s-033e1ed54c34-0038"
 msgid "**Each write commits separately.** The helpers run independent SQLite commands in autocommit mode. The regex's ⟦CODE_0001⟧ prunes backtracking paths. The final match failure leaves earlier database writes in place."
-msgstr ""
+msgstr "**Cada escritura se confirma por separado.** Los programas auxiliares ejecutan comandos independientes de SQLite en modo de confirmación automática. El ⟦CODE_0001⟧ de la expresión regular poda rutas de retroceso. El fallo final de coincidencia deja intactas las escrituras anteriores en la base de datos."
 
 #: lessons/languages/regex.md:72
 msgctxt "s-46c2af4bcc55-0039"
 msgid "**Ubuntu's own ⟦CODE_0001⟧ is built without callout scripts.** It needs an upstream build (the sandbox image pins 10.49). A textbook **implementation-permitted** case."
-msgstr ""
+msgstr "**El ⟦CODE_0001⟧ propio de Ubuntu se compila sin scripts de callout.** Se necesita una compilación del proyecto original (la imagen del entorno aislado fija la versión 10.49). Un caso de manual **permitido por la implementación**."
 
 #: lessons/languages/regex.md:73
 msgctxt "s-c2786847dcca-0040"
