@@ -15,18 +15,18 @@ Este panorama compara cinco motores. El ejemplo de Perl examina el mecanismo en 
 | **Perl** | una coincidencia de `=~` | Los bloques de código `(?{ })` se ejecutan durante la coincidencia; `(??{ })` devuelve un *patrón* y `local` se deshace con el retroceso | [`timecards.pl` L7](../../src/regex-perl/timecards.pl#L7) |
 | **PCRE2** | una llamada a `pcre2_match` | Las cadenas de texto de callout `(?C"book")` son códigos de operación para un despachador sin cuerpo en C | [`timecards.c` L24-26](../../src/regex-pcre2/timecards.c#L24-L26) |
 | **pcre2grep** | una línea de comando, sin código personalizado | Los scripts de callout nombran programas para ejecutar y sus **estados de salida dirigen la coincidencia** | [`timecards.sh` L14-20](../../src/regex-pcre2grep/timecards.sh#L14-L20) |
-| **.NET** | a pattern of balancing groups only | Capture *stacks* make a counter | [`Program.cs` L13](../../src/regex-dotnet/Program.cs#L13) |
-| **GNU sed** | one line of text, rewritten | A [Markov algorithm](../../src/regex-sed/README.md#algoritmos-de-markov-calcular-con-buscar-y-reemplazar): find-and-replace as a computer | [`timecards.sed`](../../src/regex-sed/timecards.sed) |
+| **.NET** | solo un patrón de grupos de equilibrio | Las *pilas* de capturas crean un contador | [`Program.cs` L13](../../src/regex-dotnet/Program.cs#L13) |
+| **GNU sed** | una línea de texto, reescrita | Un [algoritmo de Markov](../../src/regex-sed/README.md#algoritmos-de-markov-calcular-con-buscar-y-reemplazar): buscar y reemplazar como computadora | [`timecards.sed`](../../src/regex-sed/timecards.sed) |
 
-## Perl: code inside the match
+## Perl: código dentro de la coincidencia
 
-### Behold the monstrosity
+### Contempla la monstruosidad
 
 ```bash
 sandbox/container/run-image.sh src/regex-perl
 ```
 
-The file's only statement is a single `=~`. Seeding, the random draws, the SQLite transaction, the pulse and all the printing happen *inside the match*, and then the match returns false.
+La única sentencia del archivo es un solo `=~`. La inicialización de la semilla, los sorteos aleatorios, la transacción de SQLite, el pulso y toda la impresión ocurren *dentro de la coincidencia*. Luego la coincidencia devuelve falso.
 
 ### How the hell does that work?
 

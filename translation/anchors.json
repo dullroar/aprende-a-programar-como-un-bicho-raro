@@ -5631,16 +5631,16 @@
     {
      "en": "Perl: code inside the match",
      "en_id": "perl-code-inside-the-match",
-     "es": "Perl: code inside the match",
-     "es_id": "perl-code-inside-the-match",
+     "es": "Perl: código dentro de la coincidencia",
+     "es_id": "perl-código-dentro-de-la-coincidencia",
      "level": 2,
      "line": 21
     },
     {
      "en": "Behold the monstrosity",
      "en_id": "behold-the-monstrosity",
-     "es": "Behold the monstrosity",
-     "es_id": "behold-the-monstrosity",
+     "es": "Contempla la monstruosidad",
+     "es_id": "contempla-la-monstruosidad",
      "level": 3,
      "line": 23
     },
@@ -5774,7 +5774,7 @@
     }
    ],
    "map": {
-    "behold-the-monstrosity": "behold-the-monstrosity",
+    "behold-the-monstrosity": "contempla-la-monstruosidad",
     "computer-science-behind-this-page": "computer-science-behind-this-page",
     "gnu-sed": "gnu-sed",
     "how-each-program-runs": "how-each-program-runs",
@@ -5783,7 +5783,7 @@
     "net-balancing-groups": "net-balancing-groups",
     "pcre2-callouts-as-an-instruction-set": "pcre2-callouts-as-an-instruction-set",
     "pcre2grep-exit-codes-as-control-flow": "pcre2grep-exit-codes-as-control-flow",
-    "perl-code-inside-the-match": "perl-code-inside-the-match",
+    "perl-code-inside-the-match": "perl-código-dentro-de-la-coincidencia",
     "program-flow-of-regex-dotnet": "program-flow-of-regex-dotnet",
     "program-flow-of-regex-pcre2": "program-flow-of-regex-pcre2",
     "program-flow-of-regex-pcre2grep": "program-flow-of-regex-pcre2grep",

@@ -60,27 +60,27 @@ msgstr "⟦SEP_0003⟧ **pcre2grep** ⟦SEP_0004⟧ una línea de comando, sin c
 #: lessons/languages/regex.md:18
 msgctxt "s-213612a80ec0-0010"
 msgid "⟦SEP_0003⟧ **.NET** ⟦SEP_0004⟧ a pattern of balancing groups only ⟦SEP_0005⟧ Capture *stacks* make a counter ⟦SEP_0006⟧ [⟦CODE_0001⟧ L13](⟦DEST_0002⟧) ⟦SEP_0007⟧"
-msgstr ""
+msgstr "⟦SEP_0003⟧ **.NET** ⟦SEP_0004⟧ solo un patrón de grupos de equilibrio ⟦SEP_0005⟧ Las *pilas* de capturas crean un contador ⟦SEP_0006⟧ [⟦CODE_0001⟧ L13](⟦DEST_0002⟧) ⟦SEP_0007⟧"
 
 #: lessons/languages/regex.md:19
 msgctxt "s-ba8d26429279-0011"
 msgid "⟦SEP_0004⟧ **GNU sed** ⟦SEP_0005⟧ one line of text, rewritten ⟦SEP_0006⟧ A [Markov algorithm](⟦DEST_0001⟧): find-and-replace as a computer ⟦SEP_0007⟧ [⟦CODE_0002⟧](⟦DEST_0003⟧) ⟦SEP_0008⟧"
-msgstr ""
+msgstr "⟦SEP_0004⟧ **GNU sed** ⟦SEP_0005⟧ una línea de texto, reescrita ⟦SEP_0006⟧ Un [algoritmo de Markov](⟦DEST_0001⟧): buscar y reemplazar como computadora ⟦SEP_0007⟧ [⟦CODE_0002⟧](⟦DEST_0003⟧) ⟦SEP_0008⟧"
 
 #: lessons/languages/regex.md:21
 msgctxt "s-12f9cc5cc777-0012"
 msgid "Perl: code inside the match"
-msgstr ""
+msgstr "Perl: código dentro de la coincidencia"
 
 #: lessons/languages/regex.md:23
 msgctxt "s-cc9cfaabc50d-0013"
 msgid "Behold the monstrosity"
-msgstr ""
+msgstr "Contempla la monstruosidad"
 
 #: lessons/languages/regex.md:29
 msgctxt "s-3abd03e4c63a-0014"
 msgid "The file's only statement is a single ⟦CODE_0001⟧. Seeding, the random draws, the SQLite transaction, the pulse and all the printing happen *inside the match*, and then the match returns false."
-msgstr ""
+msgstr "La única sentencia del archivo es un solo ⟦CODE_0001⟧. La inicialización de la semilla, los sorteos aleatorios, la transacción de SQLite, el pulso y toda la impresión ocurren *dentro de la coincidencia*. Luego la coincidencia devuelve falso."
 
 #: lessons/languages/regex.md:31
 msgctxt "s-415f5fa29cf9-0015"

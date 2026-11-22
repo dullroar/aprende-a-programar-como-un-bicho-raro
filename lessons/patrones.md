@@ -8,7 +8,7 @@ A formal language is a notation with strict rules that a machine can process. Th
 
 | Formal language | What it was for | What it becomes | Entry |
 | --- | --- | --- | --- |
-| **RegEx** | Matching text | A search machine with state and I/O hooks ([Perl](lenguajes/regex.md#perl-code-inside-the-match), [PCRE2](lenguajes/regex.md#pcre2-callouts-as-an-instruction-set)), a counter ([.NET](lenguajes/regex.md#net-balancing-groups)), a rewriting system ([sed](lenguajes/regex.md#gnu-sed)) | `regex-*` |
+| **RegEx** | Matching text | A search machine with state and I/O hooks ([Perl](lenguajes/regex.md#perl-código-dentro-de-la-coincidencia), [PCRE2](lenguajes/regex.md#pcre2-callouts-as-an-instruction-set)), a counter ([.NET](lenguajes/regex.md#net-balancing-groups)), a rewriting system ([sed](lenguajes/regex.md#gnu-sed)) | `regex-*` |
 | **Make** | Ordering builds | A dependency engine that restarts itself, giving a loop | [`make-gnu`](../src/make-gnu/README.md) |
 | **CMake** | Configuring builds | A register machine in a `while()` condition | [`cmake`](../src/cmake/README.md) |
 | **XAML** | Describing a UI tree | An interpreter that runs methods as it parses | [`xaml`](../src/xaml/README.md) |
@@ -122,7 +122,7 @@ Each track stores "what happens next" somewhere that is not a loop counter: in t
 | The input stream: whatever macro text has not been read yet | [m4](lenguajes/m4.md#un-bucle-hecho-de-reescaneo): [`m4`](../src/m4/README.md) |
 | A C struct that never rewinds | [regex](lenguajes/regex.md#pcre2-callouts-as-an-instruction-set): [`regex-pcre2`](../src/regex-pcre2/README.md) |
 | SQLite rows, and the exit code of each callout | [regex](lenguajes/regex.md#pcre2grep-exit-codes-as-control-flow): [`regex-pcre2grep`](../src/regex-pcre2grep/README.md) |
-| `local` variables that unwind (effects do not) | [regex](lenguajes/regex.md#perl-code-inside-the-match): [`regex-perl`](../src/regex-perl/README.md) |
+| `local` variables that unwind (effects do not) | [regex](lenguajes/regex.md#perl-código-dentro-de-la-coincidencia): [`regex-perl`](../src/regex-perl/README.md) |
 | The path from the start directory to the directory being visited | [find](lenguajes/find.md): [`find-posix`](../src/find-posix/README.md) |
 | Attributes of one state object passed to the lambda | [csharp-linq-xaml](lenguajes/csharp-linq-xaml.md#las-adaptaciones-de-una-sola-sentencia-mismo-truco-distinta-maquinaria): [`PythonChallenge1`](../src/PythonChallenge1/README.md) |
 | A new immutable `DemoBatch` for every step; nothing is mutated | [csharp-linq-xaml](lenguajes/csharp-linq-xaml.md#las-adaptaciones-de-una-sola-sentencia-mismo-truco-distinta-maquinaria): [`RustChallenge1`](../src/RustChallenge1/README.md) |
