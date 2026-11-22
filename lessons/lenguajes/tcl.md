@@ -40,7 +40,7 @@ Tres puntos de conexión crean un programa de la nada.
 # every proc that ran was fetched from SQLite by unknown: born category hours init runid week
 ```
 
-**Hook 3: the loop is a recursive trigger.** The [trigger](../../src/tcl-weird/timecards.tcl#L104-L114):
+**Punto de conexión 3: el bucle es un disparador recursivo.** El [disparador](../../src/tcl-weird/timecards.tcl#L104-L114):
 
 ```sql
 CREATE TEMP TRIGGER next_card AFTER INSERT ON main.demo_timecards
@@ -54,13 +54,13 @@ BEGIN
 END;
 ```
 
-Inserting a card fires the trigger, which prints the card (via `tcl('born', ...)`) and inserts the *next* one. That insert fires the trigger again. The `WHERE NEW.running_total <= 40` is the stop rule: when it is false the `INSERT ... SELECT` inserts nothing, so no further trigger fires. [`PRAGMA recursive_triggers = ON`](../../src/tcl-weird/timecards.tcl#L55) is required: SQLite's default is that a trigger does not fire itself. The one statement that starts everything is the `INSERT` of card 1.
+Insertar una tarjeta activa el disparador, que imprime la tarjeta (mediante `tcl('born', ...)`) e inserta la *siguiente*. Esa inserción vuelve a activar el disparador. La `WHERE NEW.running_total <= 40` es la regla de parada: cuando es falsa, el `INSERT ... SELECT` no inserta nada y no se activa otro disparador. Se requiere [`PRAGMA recursive_triggers = ON`](../../src/tcl-weird/timecards.tcl#L55): por defecto, SQLite no permite que un disparador se active a sí mismo. La sentencia que inicia todo es el `INSERT` de la tarjeta 1.
 
-**The window is data too.** With `--gui`, a TEMP table `ui(id, command)` holds eight Tk commands, run by `SELECT tcl('uplevel', '#0', command) FROM ui ORDER BY id`. `uplevel #0` evaluates each string at global level, where `.cards` and `.note` must live. Each card's `born` then adds a row to the tree view and updates the screen.
+**La ventana también es dato.** Con `--gui`, una tabla TEMP `ui(id, command)` contiene ocho comandos Tk que ejecuta `SELECT tcl('uplevel', '#0', command) FROM ui ORDER BY id`. `uplevel #0` evalúa cada cadena de texto en el nivel global, donde deben estar `.cards` y `.note`. Luego, el `born` de cada tarjeta añade una fila a la vista de árbol y actualiza la pantalla.
 
-### What did we just learn?
+### ¿Qué acabamos de aprender?
 
-- **Code and data are the same thing in Tcl.** A proc is created from two strings; the place the strings came from is up to you. Here it is a database row, so `UPDATE tcl_code SET body = ...` is a hot-patch.
+- **El código y los datos son lo mismo en Tcl.** Un procedimiento se crea a partir de dos cadenas de texto; tú decides de dónde vienen. Aquí es una fila de la base de datos, así que `UPDATE tcl_code SET body = ...` es un parche en caliente.
 - **A database trigger is a control-flow construct.** It is an event handler that can cause the event it handles: that is recursion.
 - **Every hook point is a loop opportunity.** SQLite lets you register functions and triggers; Tcl lets you intercept lookups. Either alone is a feature, together they are a runtime.
 - **Braces versus substitution** decides everything in Tcl. (Compare [Make's expansion time versus run time](make-cmake.md#gnu-make) and [m4's quoting](m4.md).)

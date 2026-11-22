@@ -110,27 +110,27 @@ msgstr "**Punto de conexión 2: ⟦CODE_0001⟧ es la ruta de biblioteca.** Cuan
 #: lessons/languages/tcl.md:43
 msgctxt "s-d9037be5791c-0020"
 msgid "**Hook 3: the loop is a recursive trigger.** The [trigger](⟦DEST_0001⟧):"
-msgstr ""
+msgstr "**Punto de conexión 3: el bucle es un disparador recursivo.** El [disparador](⟦DEST_0001⟧):"
 
 #: lessons/languages/tcl.md:57
 msgctxt "s-91bf3df25824-0021"
 msgid "Inserting a card fires the trigger, which prints the card (via ⟦CODE_0001⟧) and inserts the *next* one. That insert fires the trigger again. The ⟦CODE_0002⟧ is the stop rule: when it is false the ⟦CODE_0003⟧ inserts nothing, so no further trigger fires. [⟦CODE_0004⟧](⟦DEST_0005⟧) is required: SQLite's default is that a trigger does not fire itself. The one statement that starts everything is the ⟦CODE_0006⟧ of card 1."
-msgstr ""
+msgstr "Insertar una tarjeta activa el disparador, que imprime la tarjeta (mediante ⟦CODE_0001⟧) e inserta la *siguiente*. Esa inserción vuelve a activar el disparador. La ⟦CODE_0002⟧ es la regla de parada: cuando es falsa, el ⟦CODE_0003⟧ no inserta nada y no se activa otro disparador. Se requiere [⟦CODE_0004⟧](⟦DEST_0005⟧): por defecto, SQLite no permite que un disparador se active a sí mismo. La sentencia que inicia todo es el ⟦CODE_0006⟧ de la tarjeta 1."
 
 #: lessons/languages/tcl.md:59
 msgctxt "s-c6090793f296-0022"
 msgid "**The window is data too.** With ⟦CODE_0001⟧, a TEMP table ⟦CODE_0002⟧ holds eight Tk commands, run by ⟦CODE_0003⟧. ⟦CODE_0004⟧ evaluates each string at global level, where ⟦CODE_0005⟧ and ⟦CODE_0006⟧ must live. Each card's ⟦CODE_0007⟧ then adds a row to the tree view and updates the screen."
-msgstr ""
+msgstr "**La ventana también es dato.** Con ⟦CODE_0001⟧, una tabla TEMP ⟦CODE_0002⟧ contiene ocho comandos Tk que ejecuta ⟦CODE_0003⟧. ⟦CODE_0004⟧ evalúa cada cadena de texto en el nivel global, donde deben estar ⟦CODE_0005⟧ y ⟦CODE_0006⟧. Luego, el ⟦CODE_0007⟧ de cada tarjeta añade una fila a la vista de árbol y actualiza la pantalla."
 
 #: lessons/languages/tcl.md:61
 msgctxt "s-d2bbf037de84-0023"
 msgid "What did we just learn?"
-msgstr ""
+msgstr "¿Qué acabamos de aprender?"
 
 #: lessons/languages/tcl.md:63
 msgctxt "s-11b0ce857f6b-0024"
 msgid "**Code and data are the same thing in Tcl.** A proc is created from two strings; the place the strings came from is up to you. Here it is a database row, so ⟦CODE_0001⟧ is a hot-patch."
-msgstr ""
+msgstr "**El código y los datos son lo mismo en Tcl.** Un procedimiento se crea a partir de dos cadenas de texto; tú decides de dónde vienen. Aquí es una fila de la base de datos, así que ⟦CODE_0001⟧ es un parche en caliente."
 
 #: lessons/languages/tcl.md:64
 msgctxt "s-504df0913cf7-0025"
