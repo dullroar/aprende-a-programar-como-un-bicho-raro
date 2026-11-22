@@ -79,14 +79,14 @@ El "anfitrión" es un `pcre2grep` estándar y una línea de comandos. Las cadena
 Esta entrada es el mejor **fallo honesto** del repositorio. También es la que muestra con más claridad dónde se detiene la expresión regular por sí sola. Consulta [problemas bloqueantes](../problemas-bloqueantes.md#regex-dotnet):
 
 - Una expresión regular no puede sortear números aleatorios, así que el anfitrión proporciona cinco cadenas de texto unarias.
-- The host reads the successful match's captures and appends a TSV report.
-- **Failure yields zero card rows.** Append `(?!)` to fail the entire match. On the fixed all-10 tape, the normal pattern succeeds with five cards and a total of 50. The forced failure exposes zero captures, leaves an empty TSV report and exits 1. See the [entry check](../../src/regex-dotnet/check.sh).
+- El anfitrión lee las capturas de la coincidencia exitosa y añade un informe TSV.
+- **El fallo produce cero filas de tarjetas.** Añade `(?!)` para que falle toda la coincidencia. En la cinta fija de solo 10, el patrón normal tiene éxito con cinco tarjetas y un total de 50. El fallo forzado expone cero capturas, deja un informe TSV vacío y sale con 1. Consulta la [comprobación de la entrada](../../src/regex-dotnet/check.sh).
 
 ## GNU sed
 
-The entire program state is **one line of text**; every step is a substitution. There are no variables or numbers.
+Todo el estado del programa es **una línea de texto**; cada paso es una sustitución. No hay variables ni números.
 
-- **The loop** is `b`/`t` jumps behind regex addresses: [`/ tot:#{41}/b done`](../../src/regex-sed/timecards.sed#L14) is the stop rule, with the total as tally marks `#`.
+- **El bucle** consiste en saltos `b`/`t` detrás de direcciones de expresiones regulares: [`/ tot:#{41}/b done`](../../src/regex-sed/timecards.sed#L14) es la regla de parada, con el total como marcas de conteo `#`.
 - **Randomness** is a 16-bit shift register of `0`s and `1`s ([L17-29](../../src/regex-sed/timecards.sed#L17-L29)); XOR is done by deleting zeros and testing for odd counts. The taps (16, 14, 13, 11) give a maximal period of 65,535. It is a toy generator, and the same seed gives the same cards.
 - **A draw is rejected** with `/ rng:1(01|1)/b draw` when the nibble is 10-15, and a bits-to-digit table plus tally-mark expansion turns the nibble into hours.
 - **The pulse is timed by a catastrophic-backtracking regex**: the clock is a pattern that takes about 50 ms per frame to fail. (Machine-dependent, which is why pipes and `check.sh` skip it.)

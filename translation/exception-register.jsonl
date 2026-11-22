@@ -449,3 +449,4 @@
 {"id":"EXC-449","segment":"s-f4d65de2a65f-0037","invariant":"I7","reason":"The word condición translates condition, not state; estado correctly translates state in the same segment.","task":"P4-lessons-languages-4"}
 {"id":"EXC-450","segment":"s-2062846e4955-0034","invariant":"I22","reason":"The range describes the numeric result of a Forth random expression; the English gives no unit, and this is not the card-hours rule.","task":"P4-lessons-languages-3"}
 {"id":"EXC-451","segment":"s-5360790f71a3-0016","invariant":"I7","reason":"'builds the state' is the verb 'construye', not the noun 'build' (compilación); see glossary note and EXC-027.","task":"P4-lessons-languages-3"}
+{"id":"EXC-452","segment":"s-54b5664f5c87-0047","invariant":"TRANSLATE","reason":"GNU sed is the unchanged product name and must remain in English.","task":"P4-lessons-languages-5"}

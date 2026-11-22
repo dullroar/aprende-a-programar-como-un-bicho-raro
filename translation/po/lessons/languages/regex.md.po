@@ -235,27 +235,27 @@ msgstr "Una expresión regular no puede sortear números aleatorios, así que el
 #: lessons/languages/regex.md:82
 msgctxt "s-4aa6336034c0-0045"
 msgid "The host reads the successful match's captures and appends a TSV report."
-msgstr ""
+msgstr "El anfitrión lee las capturas de la coincidencia exitosa y añade un informe TSV."
 
 #: lessons/languages/regex.md:83
 msgctxt "s-f899971e7c45-0046"
 msgid "**Failure yields zero card rows.** Append ⟦CODE_0001⟧ to fail the entire match. On the fixed all-10 tape, the normal pattern succeeds with five cards and a total of 50. The forced failure exposes zero captures, leaves an empty TSV report and exits 1. See the [entry check](⟦DEST_0002⟧)."
-msgstr ""
+msgstr "**El fallo produce cero filas de tarjetas.** Añade ⟦CODE_0001⟧ para que falle toda la coincidencia. En la cinta fija de solo 10, el patrón normal tiene éxito con cinco tarjetas y un total de 50. El fallo forzado expone cero capturas, deja un informe TSV vacío y sale con 1. Consulta la [comprobación de la entrada](⟦DEST_0002⟧)."
 
 #: lessons/languages/regex.md:85
 msgctxt "s-54b5664f5c87-0047"
 msgid "GNU sed"
-msgstr ""
+msgstr "GNU sed"
 
 #: lessons/languages/regex.md:87
 msgctxt "s-629137d8cbe1-0048"
 msgid "The entire program state is **one line of text**; every step is a substitution. There are no variables or numbers."
-msgstr ""
+msgstr "Todo el estado del programa es **una línea de texto**; cada paso es una sustitución. No hay variables ni números."
 
 #: lessons/languages/regex.md:89
 msgctxt "s-3640d91ecdd0-0049"
 msgid "**The loop** is ⟦CODE_0001⟧/⟦CODE_0002⟧ jumps behind regex addresses: [⟦CODE_0003⟧](⟦DEST_0004⟧) is the stop rule, with the total as tally marks ⟦CODE_0005⟧."
-msgstr ""
+msgstr "**El bucle** consiste en saltos ⟦CODE_0001⟧/⟦CODE_0002⟧ detrás de direcciones de expresiones regulares: [⟦CODE_0003⟧](⟦DEST_0004⟧) es la regla de parada, con el total como marcas de conteo ⟦CODE_0005⟧."
 
 #: lessons/languages/regex.md:90
 msgctxt "s-b5e8b118d2b4-0050"
