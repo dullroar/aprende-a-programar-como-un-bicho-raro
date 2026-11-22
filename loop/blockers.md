@@ -1,5 +1,7 @@
 # Blockers
 
+Both tasks below were requeued after iteration 231. The draft guides are locally excluded. The unchanged fast verifier, scoped fast checks for both tasks, and the anchor check passed. The curriculum task now uses the supported `--files` acceptance command.
+
 ## P4-lessons-curriculum-1 (iteration 193): working-tree verification blocked
 
 - `python3 -I tools/verify.py --fast` failed twice: `I1 TRANSLATING.md: no English source at the pinned commit (stale PO or wrong path)`. The unrelated untracked file is preserved.
