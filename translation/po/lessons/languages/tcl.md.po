@@ -343,6 +343,9 @@ msgid ""
 "exists only for this connection. The ⟦CODE_0001⟧ file holds two procs and a "
 "string."
 msgstr ""
+"**Tu programa no está en control de versiones.** Está en una tabla TEMP que "
+"existe solo para esta conexión. El archivo ⟦CODE_0001⟧ contiene dos "
+"procedimientos y una cadena de texto."
 
 #: lessons/languages/tcl.md:73
 msgctxt "s-7b0cb15d7f68-0031"
@@ -351,6 +354,9 @@ msgid ""
 "lookup before the error. If the table is writable by someone else, so is "
 "your program."
 msgstr ""
+"**⟦CODE_0001⟧ es global.** Ahora cada comando mal escrito provoca una "
+"consulta a la base de datos antes del error. Si otra persona puede escribir "
+"en la tabla, también puede escribir en tu programa."
 
 #: lessons/languages/tcl.md:74
 msgctxt "s-acdd3c954f6f-0032"
@@ -358,6 +364,9 @@ msgid ""
 "**Triggers are invisible in stack traces**, and SQLite's recursion depth "
 "limit (⟦CODE_0001⟧, 1000 by default) is a hidden constraint."
 msgstr ""
+"**Los disparadores son invisibles en las trazas de pila** y el límite de "
+"profundidad de recursión de SQLite (⟦CODE_0001⟧, 1000 por defecto) es una "
+"restricción oculta."
 
 #: lessons/languages/tcl.md:75
 msgctxt "s-356ed4cd3a5d-0033"
@@ -365,6 +374,8 @@ msgid ""
 "**Quoting is two levels deep:** the Tcl in the SQL in the Tcl. A stray brace"
 " breaks the outer string."
 msgstr ""
+"**El entrecomillado tiene dos niveles de profundidad:** el Tcl dentro del "
+"SQL dentro del Tcl. Una llave suelta rompe la cadena de texto exterior."
 
 #: lessons/languages/tcl.md:76
 msgctxt "s-69deafebd9dc-0034"
@@ -374,6 +385,10 @@ msgid ""
 "table ⟦CODE_0001⟧ and reads them from it, and ⟦CODE_0002⟧ counts the calls "
 "of the ⟦CODE_0003⟧ procedure (one per card)."
 msgstr ""
+"**Un valor usado dos veces debe extraerse una sola vez.** Las horas se usan "
+"como horas y dentro del total acumulado. El disparador las guarda en la "
+"tabla TEMP ⟦CODE_0001⟧ de una fila y las lee de allí. ⟦CODE_0002⟧ cuenta las"
+" llamadas al procedimiento ⟦CODE_0003⟧ (una por tarjeta)."
 
 #: lessons/languages/tcl.md:77
 msgctxt "s-1cd851502a07-0035"

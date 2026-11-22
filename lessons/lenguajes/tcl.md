@@ -69,11 +69,11 @@ Etiquetas: `proc`, `unknown`, `uplevel`, `namespace`, `dict` y `try` tienen la e
 
 ### Haz esto en producción y estás despedido
 
-- **Your program is not in version control.** It is in a TEMP table that exists only for this connection. The `.tcl` file holds two procs and a string.
-- **`unknown` is global.** Every misspelled command now takes a database lookup before the error. If the table is writable by someone else, so is your program.
-- **Triggers are invisible in stack traces**, and SQLite's recursion depth limit (`SQLITE_MAX_TRIGGER_DEPTH`, 1000 by default) is a hidden constraint.
-- **Quoting is two levels deep:** the Tcl in the SQL in the Tcl. A stray brace breaks the outer string.
-- **A value used twice must be drawn once.** The hours are used as the hours and inside the running total. The trigger stores them in the one-row TEMP table `draw` and reads them from it, and `check.sh` counts the calls of the `hours` procedure (one per card).
+- **Tu programa no está en control de versiones.** Está en una tabla TEMP que existe solo para esta conexión. El archivo `.tcl` contiene dos procedimientos y una cadena de texto.
+- **`unknown` es global.** Ahora cada comando mal escrito provoca una consulta a la base de datos antes del error. Si otra persona puede escribir en la tabla, también puede escribir en tu programa.
+- **Los disparadores son invisibles en las trazas de pila** y el límite de profundidad de recursión de SQLite (`SQLITE_MAX_TRIGGER_DEPTH`, 1000 por defecto) es una restricción oculta.
+- **El entrecomillado tiene dos niveles de profundidad:** el Tcl dentro del SQL dentro del Tcl. Una llave suelta rompe la cadena de texto exterior.
+- **Un valor usado dos veces debe extraerse una sola vez.** Las horas se usan como horas y dentro del total acumulado. El disparador las guarda en la tabla TEMP `draw` de una fila y las lee de allí. `check.sh` cuenta las llamadas al procedimiento `hours` (una por tarjeta).
 - **Tk quirk:** a `tclsh` that has loaded Tk does not exit when the script ends. The entry calls `destroy .` (a normal Tk program is waiting for events).
 
 Legitimate uses: **loading code on demand** (Tcl's own `unknown` already calls `auto_load` to find a command's definition on disk), **SQL functions that call back into the host language** (a standard SQLite feature) and **keeping rules in a table** so they can change without a deploy. Tcl Starkits packed a whole application into one virtual-filesystem file for the same reason: code that travels with its data.
