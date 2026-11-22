@@ -318,3 +318,4 @@
 350 P4-lessons-8 done patterns.md translated (123 segments); 6 waived (build verb, NEXT-CARD, >IN); fast check passed.
 351 P4-lessons-9 done problems-overcome.md translated (108 segments); 2 set, 8 waived; humor H024-H027 recorded; fast check passed.
 352 P4-lessons-tools-1 done lessons/tools/README.md translated (7 segments, 0 needs-revision); fast check passed.
+353 P4-audit-8 done 5 segments sampled across lessons and docs files; 0 findings, no review-fix tasks.
