@@ -40,14 +40,14 @@ El [README](../../src/javascript/README.md#cómo-funciona-el-truco) contiene la 
 - **El orden de evaluación es el programa.** Inicialización, prueba, cuerpo, actualización: el orden es el flujo de control y puedes poner efectos secundarios en cualquier cláusula.
 - **Una expresión condicional es un valor.** `?:` y `&&` eligen entre expresiones, así que pueden elegir entre *efectos*.
 - **El estado tiene que vivir en un lugar que sobreviva a una iteración.** Un número `let` se copiaría. Un objeto se comparte.
-- **The event loop is a second loop.** The `for` runs to the end first. The timer runs after. They do not interleave.
-- **The comma has two meanings.** In a declaration it separates declarators. In an expression it is an operator. C# lets you mix the two in an initializer. JavaScript does not.
+- **El bucle de eventos es un segundo bucle.** Primero se ejecuta `for` hasta el final. Después se ejecuta el temporizador. No se intercalan.
+- **La coma tiene dos significados.** En una declaración separa declaradores. En una expresión es un operador. C# permite mezclar los dos en un inicializador. JavaScript no.
 
-Tags: the `for` semantics, `?:`, `&&`, the comma operator and closures are **guaranteed** by the ECMAScript specification. `node:sqlite` is a Node.js API, outside the language standard (**implementation-permitted**).
+Etiquetas: el comportamiento de la semántica de `for`, `?:`, `&&`, el operador coma y las clausuras es **garantizado** por la especificación ECMAScript. `node:sqlite` es una API de Node.js, fuera del estándar del lenguaje (**permitido por la implementación**).
 
-### Do this in production and you're fired
+### Haz esto en producción y estás despedido
 
-- **A `for` with an empty body hides the program in its header.** Nobody can find the loop body, because there is none.
+- **Un `for` con cuerpo vacío esconde el programa en su encabezado.** Nadie puede encontrar el cuerpo del bucle porque no existe.
 - **Side effects in a condition are a bug waiting.** If the test runs twice, the result prints twice.
 - **The state object is a global in disguise.** Anything can reach into it.
 

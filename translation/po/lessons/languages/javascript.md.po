@@ -135,27 +135,27 @@ msgstr "**El estado tiene que vivir en un lugar que sobreviva a una iteración.*
 #: lessons/languages/javascript.md:43
 msgctxt "s-0d5acc2c5a41-0025"
 msgid "**The event loop is a second loop.** The ⟦CODE_0001⟧ runs to the end first. The timer runs after. They do not interleave."
-msgstr ""
+msgstr "**El bucle de eventos es un segundo bucle.** Primero se ejecuta ⟦CODE_0001⟧ hasta el final. Después se ejecuta el temporizador. No se intercalan."
 
 #: lessons/languages/javascript.md:44
 msgctxt "s-c24cc7871f95-0026"
 msgid "**The comma has two meanings.** In a declaration it separates declarators. In an expression it is an operator. C# lets you mix the two in an initializer. JavaScript does not."
-msgstr ""
+msgstr "**La coma tiene dos significados.** En una declaración separa declaradores. En una expresión es un operador. C# permite mezclar los dos en un inicializador. JavaScript no."
 
 #: lessons/languages/javascript.md:46
 msgctxt "s-0a5bc85bc419-0027"
 msgid "Tags: the ⟦CODE_0001⟧ semantics, ⟦CODE_0002⟧, ⟦CODE_0003⟧, the comma operator and closures are **guaranteed** by the ECMAScript specification. ⟦CODE_0004⟧ is a Node.js API, outside the language standard (**implementation-permitted**)."
-msgstr ""
+msgstr "Etiquetas: el comportamiento de la semántica de ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧, el operador coma y las clausuras es **garantizado** por la especificación ECMAScript. ⟦CODE_0004⟧ es una API de Node.js, fuera del estándar del lenguaje (**permitido por la implementación**)."
 
 #: lessons/languages/javascript.md:48
 msgctxt "s-299b7a6f9cbe-0028"
 msgid "Do this in production and you're fired"
-msgstr ""
+msgstr "Haz esto en producción y estás despedido"
 
 #: lessons/languages/javascript.md:50
 msgctxt "s-f12f886dc2a3-0029"
 msgid "**A ⟦CODE_0001⟧ with an empty body hides the program in its header.** Nobody can find the loop body, because there is none."
-msgstr ""
+msgstr "**Un ⟦CODE_0001⟧ con cuerpo vacío esconde el programa en su encabezado.** Nadie puede encontrar el cuerpo del bucle porque no existe."
 
 #: lessons/languages/javascript.md:51
 msgctxt "s-fe50d618d8b7-0030"

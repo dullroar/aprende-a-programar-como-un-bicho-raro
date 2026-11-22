@@ -2272,3 +2272,4 @@
 {"segment_id": "s-cc9cfaabc50d-0013", "ts": "2026-11-22T14:22:45Z", "findings": [], "playful_note": "Conserva el tono del original."}
 {"segment_id": "s-415f5fa29cf9-0015", "ts": "2026-11-22T14:24:43Z", "findings": [], "playful_note": "Conserva la pregunta exasperada."}
 {"segment_id": "s-5360790f71a3-0016", "ts": "2026-11-22T14:24:43Z", "findings": ["I7: glossary term build must be rendered 'compilación'"]}
+{"segment_id": "s-299b7a6f9cbe-0028", "ts": "2026-11-22T14:28:22Z", "findings": [], "playful_note": "Conserva la amenaza cómica como hipérbole."}

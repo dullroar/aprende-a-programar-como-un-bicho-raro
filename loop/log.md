@@ -261,3 +261,4 @@
 288 P4-lessons-languages-3 partial accepted and applied JavaScript positions 10 to 14; resume at 15; scoped, fast and anchor checks passed.
 289 P4-lessons-languages-3 partial accepted and applied JavaScript positions 15 to 19; resume at 20; scoped, fast and anchor checks passed.
 290 P4-lessons-languages-3 partial accepted and applied JavaScript positions 20 to 24; resume at 25; scoped, fast and anchor checks passed.
+291 P4-lessons-languages-3 partial accepted and applied JavaScript positions 25 to 29; resume at 30; scoped, fast and anchor checks passed.
