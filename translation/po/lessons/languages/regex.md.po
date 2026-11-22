@@ -85,27 +85,27 @@ msgstr "La única sentencia del archivo es un solo ⟦CODE_0001⟧. La inicializ
 #: lessons/languages/regex.md:31
 msgctxt "s-415f5fa29cf9-0015"
 msgid "How the hell does that work?"
-msgstr ""
+msgstr "¿Cómo demonios funciona eso?"
 
 #: lessons/languages/regex.md:33
 msgctxt "s-fe4f26a8c819-0016"
 msgid "⟦SEP_0001⟧ Piece ⟦SEP_0002⟧ Job ⟦SEP_0003⟧"
-msgstr ""
+msgstr "⟦SEP_0001⟧ Pieza ⟦SEP_0002⟧ Función ⟦SEP_0003⟧"
 
 #: lessons/languages/regex.md:35
 msgctxt "s-e3520e9d6bf9-0017"
 msgid "⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ initializer: seeds state, starts ⟦CODE_0002⟧ on a pipe, opens a transaction ⟦SEP_0005⟧"
-msgstr ""
+msgstr "⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ inicializador: inicializa el estado, inicia ⟦CODE_0002⟧ en una tubería y abre una transacción ⟦SEP_0005⟧"
 
 #: lessons/languages/regex.md:36
 msgctxt "s-52b969021d05-0018"
 msgid "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ the loop: greedy quantifier is the iteration; the scaffold string gives each pass something to eat ⟦SEP_0004⟧"
-msgstr ""
+msgstr "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ el bucle: el cuantificador voraz es la iteración; la cadena de texto del armazón da algo que comer a cada pasada ⟦SEP_0004⟧"
 
 #: lessons/languages/regex.md:37
 msgctxt "s-96105f9940c3-0019"
 msgid "⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ stop rule **and** category chooser: it returns the next category *as a pattern*, or ⟦CODE_0002⟧ ⟦SEP_0005⟧"
-msgstr ""
+msgstr "⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ regla de parada **y** selector de categoría: devuelve la siguiente categoría *como patrón* o ⟦CODE_0002⟧ ⟦SEP_0005⟧"
 
 #: lessons/languages/regex.md:38
 msgctxt "s-94245fad0fec-0020"

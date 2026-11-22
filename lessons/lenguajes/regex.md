@@ -28,13 +28,13 @@ sandbox/container/run-image.sh src/regex-perl
 
 La única sentencia del archivo es un solo `=~`. La inicialización de la semilla, los sorteos aleatorios, la transacción de SQLite, el pulso y toda la impresión ocurren *dentro de la coincidencia*. Luego la coincidencia devuelve falso.
 
-### How the hell does that work?
+### ¿Cómo demonios funciona eso?
 
-| Piece | Job |
+| Pieza | Función |
 | --- | --- |
-| `^(?{ ... })` | initializer: seeds state, starts `sqlite3` on a pipe, opens a transaction |
-| `(?: ... )*` | the loop: greedy quantifier is the iteration; the scaffold string gives each pass something to eat |
-| `(??{ $::t<=40 ? $::c[$::n] // '(*FAIL)' : '(*FAIL)' })` | stop rule **and** category chooser: it returns the next category *as a pattern*, or `(*FAIL)` |
+| `^(?{ ... })` | inicializador: inicializa el estado, inicia `sqlite3` en una tubería y abre una transacción |
+| `(?: ... )*` | el bucle: el cuantificador voraz es la iteración; la cadena de texto del armazón da algo que comer a cada pasada |
+| `(??{ $::t<=40 ? $::c[$::n] // '(*FAIL)' : '(*FAIL)' })` | regla de parada **y** selector de categoría: devuelve la siguiente categoría *como patrón* o `(*FAIL)` |
 | `(?{ local $::t = ...; print ... })` | one card |
 | `(*COMMIT)` | once the loop ends, stop backtracking from retrying shorter loops |
 | `(*COMMIT)(?{ settle })(*FAIL)` | the signature move: give up after doing all the work |
