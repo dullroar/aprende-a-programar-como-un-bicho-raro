@@ -235,27 +235,27 @@ msgstr "El [README](⟦DEST_0001⟧) tiene el diagrama de la clausura, una tabla
 #: lessons/languages/javascript.md:80
 msgctxt "s-d2bbf037de84-0045"
 msgid "What did we just learn?"
-msgstr ""
+msgstr "¿Qué acabamos de aprender?"
 
 #: lessons/languages/javascript.md:82
 msgctxt "s-3e729e65bbb1-0046"
 msgid "**A closure is a function plus its environment.** Lambda syntax alone is not a closure that matters. A function that changes a variable that lives past the call is."
-msgstr ""
+msgstr "**Una clausura es una función más su entorno.** La sintaxis lambda por sí sola no es una clausura que importe. Sí lo es una función que cambia una variable que perdura después de la llamada."
 
 #: lessons/languages/javascript.md:83
 msgctxt "s-7be21727b552-0047"
 msgid "**Closures capture variables, not values.** Two closures over one variable share it. Every call to a factory makes new variables."
-msgstr ""
+msgstr "**Las clausuras capturan variables, no valores.** Dos clausuras sobre una variable la comparten. Cada llamada a una fábrica crea variables nuevas."
 
 #: lessons/languages/javascript.md:84
 msgctxt "s-b01cc21d469e-0048"
 msgid "**⟦CODE_0001⟧ is not a captured variable.** Detach a method and it loses its ⟦CODE_0002⟧. A closure keeps what it captured."
-msgstr ""
+msgstr "**⟦CODE_0001⟧ no es una variable capturada.** Separa un método y perderá su ⟦CODE_0002⟧. Una clausura conserva lo que capturó."
 
 #: lessons/languages/javascript.md:85
 msgctxt "s-a102f0dfb69f-0049"
 msgid "**A closure is not a continuation.** It can be called again. It cannot resume in the middle of something, or go back."
-msgstr ""
+msgstr "**Una clausura no es una continuación.** Se puede llamar de nuevo. No puede reanudar algo por la mitad ni volver atrás."
 
 #: lessons/languages/javascript.md:86
 msgctxt "s-0c427346bded-0050"

@@ -77,12 +77,12 @@ Sin `for`, sin `while`, sin `this`. El algoritmo consta de tres clausuras de una
 
 El [README](../../src/javascript-weird/README.md#cómo-funciona-el-truco) tiene el diagrama de la clausura, una tabla de cinco formas de detenerse y una comparación del C# original, el `for` sin cuerpo y este.
 
-### What did we just learn?
+### ¿Qué acabamos de aprender?
 
-- **A closure is a function plus its environment.** Lambda syntax alone is not a closure that matters. A function that changes a variable that lives past the call is.
-- **Closures capture variables, not values.** Two closures over one variable share it. Every call to a factory makes new variables.
-- **`this` is not a captured variable.** Detach a method and it loses its `this`. A closure keeps what it captured.
-- **A closure is not a continuation.** It can be called again. It cannot resume in the middle of something, or go back.
+- **Una clausura es una función más su entorno.** La sintaxis lambda por sí sola no es una clausura que importe. Sí lo es una función que cambia una variable que perdura después de la llamada.
+- **Las clausuras capturan variables, no valores.** Dos clausuras sobre una variable la comparten. Cada llamada a una fábrica crea variables nuevas.
+- **`this` no es una variable capturada.** Separa un método y perderá su `this`. Una clausura conserva lo que capturó.
+- **Una clausura no es una continuación.** Se puede llamar de nuevo. No puede reanudar algo por la mitad ni volver atrás.
 - **Lazy and eager give different orders of effects.** `Iterator.from(xs).map(a).map(b)` runs `a1 b1 a2 b2`. `xs.map(a).map(b)` runs `a1 a2 b1 b2`. For pure functions nobody can tell. With effects you can, and that is why the "map preserves composition" law needs pure functions.
 - **Only some operations can stop early.** `some`, `find`, `take` and a source that says `done` can. `reduce` cannot. A `throw` can, and it is the wrong tool.
 
