@@ -27,13 +27,13 @@ Un Makefile **sin `$(shell)`, sin `!=`, sin Guile y sin `load`** (`check.sh` los
   -include $(if $(runs),.tc-$(K).mk)
   ```
 
-  Make treats an included makefile it *can remake* as a target. A pattern rule ([L110-111](../../src/make-gnu/Makefile#L110-L111)) writes the next card file `.tc-N.mk` while the running total is 40 or less. A makefile that was just remade means "restart", so Make re-executes itself, now including one more file. `$(MAKE_RESTARTS)` is the loop counter. When the rule declines to write, nothing is remade and `all` runs.
-- **The trailing `@:` matters.** A recipe that *expands to nothing* does not count as remaking the file. The card file is written while the recipe is *expanded* (`$(file >$@,...)`), but Make only notices a restart if a command actually ran, so each card ends with the shell's no-op `@:`.
-- **The report is a chain of phony targets** (`init`, `rows`, `footer`, frame targets), because Make expands every line of a recipe before running any.
+  Make trata como objetivo un makefile incluido que *puede rehacer*. Una regla de patrón ([L110-111](../../src/make-gnu/Makefile#L110-L111)) escribe el siguiente archivo de tarjeta `.tc-N.mk` mientras el total acumulado es 40 o menos. Un makefile recién rehecho significa "reiniciar". Por eso Make se ejecuta de nuevo e incluye un archivo más. `$(MAKE_RESTARTS)` es el contador del bucle. Cuando la regla no escribe, nada se rehace y se ejecuta `all`.
+- **El `@:` final importa.** Una receta que *se expande a nada* no cuenta como una reconstrucción del archivo. El archivo de tarjeta se escribe mientras la receta *se expande* (`$(file >$@,...)`). Pero Make solo detecta un reinicio si realmente se ejecutó un comando. Por eso cada tarjeta termina con `@:`, la operación vacía del intérprete de comandos.
+- **El informe es una cadena de objetivos ficticios** (`init`, `rows`, `footer` y objetivos de marco). Make expande todas las líneas de una receta antes de ejecutar cualquiera.
 
-### What did we just learn?
+### ¿Qué acabamos de aprender?
 
-- **Make is a dependency engine that can restart itself.** "Remake the thing that describes the build" is a loop in disguise.
+- **Make es un motor de dependencias que puede reiniciarse.** "Rehacer lo que describe la compilación" es un bucle disfrazado.
 - **State can be the existence of files.** Make state here is which `.tc-N.mk` files exist.
 - **Expansion time and execution time are different phases** ([Make's two phases](#quirks)), and the program lives in the gap.
 

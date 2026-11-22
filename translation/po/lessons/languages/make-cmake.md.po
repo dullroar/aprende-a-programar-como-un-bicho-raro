@@ -60,27 +60,27 @@ msgstr "**El bucle consiste en que Make se vuelve a ejecutar.** [⟦CODE_0001⟧
 #: lessons/languages/make-cmake.md:30
 msgctxt "s-6ca6d84e3d92-0010"
 msgid "Make treats an included makefile it *can remake* as a target. A pattern rule ([L110-111](⟦DEST_0001⟧)) writes the next card file ⟦CODE_0002⟧ while the running total is 40 or less. A makefile that was just remade means \"restart\", so Make re-executes itself, now including one more file. ⟦CODE_0003⟧ is the loop counter. When the rule declines to write, nothing is remade and ⟦CODE_0004⟧ runs."
-msgstr ""
+msgstr "Make trata como objetivo un makefile incluido que *puede rehacer*. Una regla de patrón ([L110-111](⟦DEST_0001⟧)) escribe el siguiente archivo de tarjeta ⟦CODE_0002⟧ mientras el total acumulado es 40 o menos. Un makefile recién rehecho significa \"reiniciar\". Por eso Make se ejecuta de nuevo e incluye un archivo más. ⟦CODE_0003⟧ es el contador del bucle. Cuando la regla no escribe, nada se rehace y se ejecuta ⟦CODE_0004⟧."
 
 #: lessons/languages/make-cmake.md:31
 msgctxt "s-88dc9272e57e-0011"
 msgid "**The trailing ⟦CODE_0001⟧ matters.** A recipe that *expands to nothing* does not count as remaking the file. The card file is written while the recipe is *expanded* (⟦CODE_0002⟧), but Make only notices a restart if a command actually ran, so each card ends with the shell's no-op ⟦CODE_0003⟧."
-msgstr ""
+msgstr "**El ⟦CODE_0001⟧ final importa.** Una receta que *se expande a nada* no cuenta como una reconstrucción del archivo. El archivo de tarjeta se escribe mientras la receta *se expande* (⟦CODE_0002⟧). Pero Make solo detecta un reinicio si realmente se ejecutó un comando. Por eso cada tarjeta termina con ⟦CODE_0003⟧, la operación vacía del intérprete de comandos."
 
 #: lessons/languages/make-cmake.md:32
 msgctxt "s-a5fe957f8c48-0012"
 msgid "**The report is a chain of phony targets** (⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧, frame targets), because Make expands every line of a recipe before running any."
-msgstr ""
+msgstr "**El informe es una cadena de objetivos ficticios** (⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧ y objetivos de marco). Make expande todas las líneas de una receta antes de ejecutar cualquiera."
 
 #: lessons/languages/make-cmake.md:34
 msgctxt "s-d2bbf037de84-0013"
 msgid "What did we just learn?"
-msgstr ""
+msgstr "¿Qué acabamos de aprender?"
 
 #: lessons/languages/make-cmake.md:36
 msgctxt "s-2afc75a03a26-0014"
 msgid "**Make is a dependency engine that can restart itself.** \"Remake the thing that describes the build\" is a loop in disguise."
-msgstr ""
+msgstr "**Make es un motor de dependencias que puede reiniciarse.** \"Rehacer lo que describe la compilación\" es un bucle disfrazado."
 
 #: lessons/languages/make-cmake.md:37
 msgctxt "s-385bf3b01ae2-0015"
