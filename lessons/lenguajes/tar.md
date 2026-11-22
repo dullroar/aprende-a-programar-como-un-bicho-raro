@@ -76,13 +76,13 @@ Un archivo tar cuya carga útil contiene solo ceros y una máquina de estados qu
 - **La regla de parada es una bandera, porque tar no se detiene.** Después de la tarjeta que cruza el tope, el archivo se sigue escribiendo y el comando se sigue ejecutando. Solo cuenta.
 - **`check.sh` predice, no solo observa.** Una segunda máquina, escrita en awk, dice qué tarjetas deben existir para cualquier semilla y disposición. La entrada debe coincidir para 65 combinaciones.
 
-The [README](../../src/tar-gnu-weird/README.md#cómo-funciona-el-truco) has the register table and the full list of what we measured.
+El [README](../../src/tar-gnu-weird/README.md#cómo-funciona-el-truco) contiene la tabla de registros y la lista completa de lo que medimos.
 
-### What did we just learn?
+### ¿Qué acabamos de aprender?
 
-- **A progress indicator is an event source.** Once something calls your code at a steady beat, you have a clock. Event-driven programs work like this.
-- **A logical clock counts events, not seconds.** Ticks here are records written. Nothing in the run depends on how long a second takes.
-- **Control flow can be inverted.** The program does not call tar. tar calls the program.
+- **Un indicador de progreso es una fuente de eventos.** Cuando algo llama a tu código a un ritmo constante, tienes un reloj. Así funcionan los programas orientados a eventos.
+- **Un reloj lógico cuenta eventos, no segundos.** Aquí los pulsos son registros escritos. Nada en la ejecución depende de cuánto dura un segundo.
+- **El flujo de control puede invertirse.** El programa no llama a tar. tar llama al programa.
 - **A layout can set the pace as well as the meaning.** The payload of this archive is all zeros, and its size still decides when everything happens.
 - **Say what a count counts.** A checkpoint counts records. A record is a number of blocks. The same archive gives 21 ticks when created, 10 when listed and 21 when extracted.
 

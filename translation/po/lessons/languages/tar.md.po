@@ -235,27 +235,27 @@ msgstr "**⟦CODE_0001⟧ predice, no solo observa.** Una segunda máquina, escr
 #: lessons/languages/tar.md:79
 msgctxt "s-5091d7d80874-0045"
 msgid "The [README](⟦DEST_0001⟧) has the register table and the full list of what we measured."
-msgstr ""
+msgstr "El [README](⟦DEST_0001⟧) contiene la tabla de registros y la lista completa de lo que medimos."
 
 #: lessons/languages/tar.md:81
 msgctxt "s-d2bbf037de84-0046"
 msgid "What did we just learn?"
-msgstr ""
+msgstr "¿Qué acabamos de aprender?"
 
 #: lessons/languages/tar.md:83
 msgctxt "s-52052a7e6fb6-0047"
 msgid "**A progress indicator is an event source.** Once something calls your code at a steady beat, you have a clock. Event-driven programs work like this."
-msgstr ""
+msgstr "**Un indicador de progreso es una fuente de eventos.** Cuando algo llama a tu código a un ritmo constante, tienes un reloj. Así funcionan los programas orientados a eventos."
 
 #: lessons/languages/tar.md:84
 msgctxt "s-ebd7360d684a-0048"
 msgid "**A logical clock counts events, not seconds.** Ticks here are records written. Nothing in the run depends on how long a second takes."
-msgstr ""
+msgstr "**Un reloj lógico cuenta eventos, no segundos.** Aquí los pulsos son registros escritos. Nada en la ejecución depende de cuánto dura un segundo."
 
 #: lessons/languages/tar.md:85
 msgctxt "s-9c1e5eca41ee-0049"
 msgid "**Control flow can be inverted.** The program does not call tar. tar calls the program."
-msgstr ""
+msgstr "**El flujo de control puede invertirse.** El programa no llama a tar. tar llama al programa."
 
 #: lessons/languages/tar.md:86
 msgctxt "s-899244ef7c5f-0050"
