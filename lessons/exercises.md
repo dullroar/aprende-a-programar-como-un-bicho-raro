@@ -200,7 +200,7 @@ Acceptance criteria:
 
 ### B11. m4: quote the recursion (verified)
 
-**Lesson:** [m4](lenguajes/m4.md#a-loop-made-of-rescanning). **Entry:** copies of `src/m4`.
+**Lesson:** [m4](lenguajes/m4.md#un-bucle-hecho-de-reescaneo). **Entry:** copies of `src/m4`.
 
 1. **Predict:** run `lessons/tools/run-in-sandbox.sh src/m4 m4 -Dtc_seed=12345 timecards.m4` twice. What differs between the runs, and what does not?
 2. **Predict:** on a copy, remove the brackets around the recursive call: change `[tc_card()]` at the end of `tc_card` ([L82](../src/m4/timecards.m4#L82)) to `tc_card()`. Run it with `SANDBOX_TIMEOUT=20`, then again as `m4 -L 50 -Dtc_seed=7 timecards.m4`. (`-L` limits nesting.)

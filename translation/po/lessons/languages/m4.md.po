@@ -60,27 +60,27 @@ msgstr "⟦SEP_0005⟧ La única operación aritmética es ⟦CODE_0001⟧ ⟦SE
 #: lessons/languages/m4.md:17
 msgctxt "s-c85b33ca2db2-0010"
 msgid "⟦SEP_0005⟧ ⟦CODE_0001⟧ takes arguments in groups of three ⟦SEP_0006⟧ [L53-54](⟦DEST_0002⟧): ⟦CODE_0003⟧ ⟦SEP_0007⟧ ⟦CODE_0004⟧: after the first group it keeps comparing, so the value under test has to be repeated in every group. ⟦SEP_0008⟧"
-msgstr ""
+msgstr "⟦SEP_0005⟧ ⟦CODE_0001⟧ recibe argumentos en grupos de tres ⟦SEP_0006⟧ [L53-54](⟦DEST_0002⟧): ⟦CODE_0003⟧ ⟦SEP_0007⟧ ⟦CODE_0004⟧: después del primer grupo sigue comparando, así que el valor bajo prueba debe repetirse en cada grupo. ⟦SEP_0008⟧"
 
 #: lessons/languages/m4.md:18
 msgctxt "s-4285ddd9f92c-0011"
 msgid "⟦SEP_0008⟧ The shell is reached through ⟦CODE_0001⟧ and ⟦CODE_0002⟧ ⟦SEP_0009⟧ [L34-37](⟦DEST_0003⟧) seed, week and run id; [L95](⟦DEST_0004⟧) the save ⟦SEP_0010⟧ The only entropy and clock in the program come from ⟦CODE_0005⟧ and ⟦CODE_0006⟧. SQLite is fed by one ⟦CODE_0007⟧ with a here-document. ⟦SEP_0011⟧"
-msgstr ""
+msgstr "⟦SEP_0008⟧ Se accede al intérprete de comandos mediante ⟦CODE_0001⟧ y ⟦CODE_0002⟧ ⟦SEP_0009⟧ [L34-37](⟦DEST_0003⟧) semilla, semana e identificador de ejecución; [L95](⟦DEST_0004⟧) el guardado ⟦SEP_0010⟧ La única entropía y el único reloj del programa provienen de ⟦CODE_0005⟧ y ⟦CODE_0006⟧. SQLite recibe datos de un solo ⟦CODE_0007⟧ con un documento aquí. ⟦SEP_0011⟧"
 
 #: lessons/languages/m4.md:20
 msgctxt "s-633b70115900-0012"
 msgid "A loop made of rescanning"
-msgstr ""
+msgstr "Un bucle hecho de reescaneo"
 
 #: lessons/languages/m4.md:22
 msgctxt "s-cc9cfaabc50d-0013"
 msgid "Behold the monstrosity"
-msgstr ""
+msgstr "Contempla la monstruosidad"
 
 #: lessons/languages/m4.md:28
 msgctxt "s-b2131ba514a7-0014"
 msgid "The whole loop is the last line of one macro ([L75-82](⟦DEST_0001⟧)):"
-msgstr ""
+msgstr "Todo el bucle es la última línea de una macro ([L75-82](⟦DEST_0001⟧)):"
 
 #: lessons/languages/m4.md:41
 msgctxt "s-141d13bda0ef-0015"

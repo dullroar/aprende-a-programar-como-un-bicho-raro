@@ -41,7 +41,7 @@ Every weird entry forces you to name the machine hiding inside a language. Once 
 | Kotlin | A lazy sequence that the empty `for` pulls | Properties of one object expression, the seed of the sequence | [csharp-linq-xaml](lenguajes/csharp-linq-xaml.md#las-adaptaciones-de-una-sola-sentencia-mismo-truco-distinta-maquinaria) |
 | LINQ | A lazy chain of LINQ stages that one final `Aggregate` demands | Inside the stages' enumerators, and in the database | [csharp-linq-xaml](lenguajes/csharp-linq-xaml.md#la-ejecución-diferida-y-el-truco-de-convertir-void-en-valor) |
 | LINQ | A lazy query that its closing `Single()` demands | A prefix sum recomputed in each `where`, and the database; no accumulator variable | [csharp-linq-xaml](lenguajes/csharp-linq-xaml.md#la-ejecución-diferida-y-el-truco-de-convertir-void-en-valor) |
-| m4 | A text-rescanning machine | The input stream: whatever macro text has not been read yet | [m4](lenguajes/m4.md#a-loop-made-of-rescanning) |
+| m4 | A text-rescanning machine | The input stream: whatever macro text has not been read yet | [m4](lenguajes/m4.md#un-bucle-hecho-de-reescaneo) |
 | PCRE2 | A backtracking search with hooks | A C struct that never rewinds | [regex](lenguajes/regex.md#pcre2-callouts-as-an-instruction-set) |
 | pcre2grep | A backtracking search that runs one program per callout | SQLite rows, and the exit code of each callout | [regex](lenguajes/regex.md#pcre2grep-exit-codes-as-control-flow) |
 | Perl | A backtracking search with hooks | `local` variables that unwind (effects do not) | [regex](lenguajes/regex.md#perl-code-inside-the-match) |

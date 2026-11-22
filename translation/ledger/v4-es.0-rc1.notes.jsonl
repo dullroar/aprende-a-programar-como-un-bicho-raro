@@ -2229,3 +2229,5 @@
 {"segment_id": "s-c08a852d0dbe-0043", "ts": "2026-11-22T01:18:24Z", "findings": ["I15: heading differs from the recorded transcreated '¿En qué circunstancias esta idea terrible se volvería razonable?'"], "playful_note": "Conserva la ironía del original."}
 {"segment_id": "s-c08a852d0dbe-0043", "ts": "2026-11-22T01:18:30Z", "findings": [], "playful_note": "Conserva la ironía del original."}
 {"segment_id": "s-2396a1256ac4-0000", "ts": "2026-11-22T01:19:54Z", "findings": ["TRANSLATE: the reply is the English text unchanged"]}
+{"segment_id": "s-633b70115900-0012", "ts": "2026-11-22T01:23:20Z", "findings": ["REGISTER: playful segment H019 has status 'pending' in the humor register"], "playful_note": "Conserva la metáfora sobria del original."}
+{"segment_id": "s-cc9cfaabc50d-0013", "ts": "2026-11-22T01:23:20Z", "findings": [], "playful_note": "Conserva el anuncio teatral del original."}

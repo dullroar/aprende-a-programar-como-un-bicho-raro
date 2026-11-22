@@ -5313,16 +5313,16 @@
     {
      "en": "A loop made of rescanning",
      "en_id": "a-loop-made-of-rescanning",
-     "es": "A loop made of rescanning",
-     "es_id": "a-loop-made-of-rescanning",
+     "es": "Un bucle hecho de reescaneo",
+     "es_id": "un-bucle-hecho-de-reescaneo",
      "level": 2,
      "line": 20
     },
     {
      "en": "Behold the monstrosity",
      "en_id": "behold-the-monstrosity",
-     "es": "Behold the monstrosity",
-     "es_id": "behold-the-monstrosity",
+     "es": "Contempla la monstruosidad",
+     "es_id": "contempla-la-monstruosidad",
      "level": 3,
      "line": 22
     },
@@ -5408,8 +5408,8 @@
     }
    ],
    "map": {
-    "a-loop-made-of-rescanning": "a-loop-made-of-rescanning",
-    "behold-the-monstrosity": "behold-the-monstrosity",
+    "a-loop-made-of-rescanning": "un-bucle-hecho-de-reescaneo",
+    "behold-the-monstrosity": "contempla-la-monstruosidad",
     "computer-science-behind-this-page": "computer-science-behind-this-page",
     "do-this-in-production-and-youre-fired": "do-this-in-production-and-youre-fired",
     "how-each-program-runs": "how-each-program-runs",
