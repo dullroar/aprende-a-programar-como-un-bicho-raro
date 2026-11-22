@@ -53,16 +53,16 @@ En las implementaciones que siguen la regla numérica, *el consumidor quiere tar
 
 ```mermaid
 flowchart TB
-    accTitle: El mismo prefijo pedido puede implicar trabajo distinto
-    accDescr: Tres carriles muestran un consumidor que pide solo los dos primeros elementos de una secuencia de cinco. En el carril de evaluación inmediata se calculan primero los cinco valores de 1 a 5. El consumidor toma 1 y 2, y de 3 a 5 se calcularon pero no se usaron. En el carril perezoso por necesidad se construyen thunks. Se pide 1, se evalúa y se guarda en caché; se pide 2, se evalúa y se guarda en caché. De 3 a 5 nunca se evalúan. En el carril de la canalización diferida, la canalización se define y no ocurre ningún trabajo. Luego, al enumerar, se calculan y se producen 1 y 2. Enumerar otra vez puede repetir el trabajo, porque lo diferido no se memoiza de forma automática.
-    subgraph DEFER["Diferido, como LINQ"]
-        D1["definir: sin trabajo"] --> D2["enumerar: 1, 2"] --> D3["enumerar otra vez: repite"]
+    accTitle: Pedir el mismo prefijo puede implicar distinto trabajo
+    accDescr: Tres filas muestran a un consumidor que pide solo los dos primeros elementos de una secuencia de cinco. En la fila de evaluación inmediata, primero se calculan los cinco valores, del 1 al 5. El consumidor toma 1 y 2. Los valores del 3 al 5 se calcularon y quedaron sin usar. En la fila de evaluación perezosa por necesidad se crean thunks, cálculos suspendidos que se evalúan cuando se fuerzan. El consumidor pide el valor 1, que se evalúa y se guarda. Luego pide el 2, que también se evalúa y se guarda. Los valores del 3 al 5 nunca se evalúan. En la fila de la canalización diferida, al definirla no se hace ningún cálculo. Al enumerarla, se calculan y se entregan los valores 1 y 2. Enumerarla de nuevo puede repetir el trabajo porque la ejecución diferida no memoiza resultados automáticamente.
+    subgraph DEFER["Diferida, como en LINQ"]
+        D1["Definir: aún sin cálculo"] --> D2["Enumerar: 1, 2"] --> D3["Volver a enumerar: puede recalcular"]
     end
-    subgraph LAZY["Perezoso, a pedido"]
-        L1["armar thunks"] --> L2["demanda 1: caché"] --> L3["demanda 2: caché"] --> L4["de 3 a 5: sin ejecutar"]
+    subgraph LAZY["Perezosa, por necesidad"]
+        L1["Crear thunks"] --> L2["Demanda del 1: guardar"] --> L3["Demanda del 2: guardar"] --> L4["Del 3 al 5: sin ejecución"]
     end
-    subgraph EAGER["Inmediato, como arreglo"]
-        E1["construir"] --> E2["calcular de 1 a 5"] --> E3["consumidor toma 1, 2"] --> E4["de 3 a 5: sin usar"]
+    subgraph EAGER["Inmediata, como en un arreglo"]
+        E1["Construir"] --> E2["Calcular del 1 al 5"] --> E3["El consumidor toma 1, 2"] --> E4["Del 3 al 5: sin usar"]
     end
     classDef unused stroke-dasharray: 5 3
     class E4,L4,D3 unused

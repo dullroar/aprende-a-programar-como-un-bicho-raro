@@ -70,13 +70,13 @@ Usa esta hoja de trabajo para cada entrada. Las cinco respuestas de la primera c
 
 ```mermaid
 flowchart TB
-    accTitle: Una máquina es un estado más una regla para el estado siguiente, no necesariamente un procesador
-    accDescr: Un diagrama de sistema de transiciones. El estado s, representado como bits, una pila, texto, rutas u otros valores, pasa por un paso permitido, la regla de transición, al estado s prima. Una entrada de datos o un evento, si lo hay, alimenta el paso. El paso puede producir un efecto observable o un resultado, si lo hay. Un marco alrededor de ambos estados indica que el invariante se cumple para s y para s prima.
-    subgraph INV["El invariante I se cumple para s y para s′"]
-        S["Estado s: bits, pila, texto, rutas, ..."] --> T(["paso permitido: regla de transición"]) --> S2["Estado s′"]
+    accTitle: Una máquina combina un estado y una regla para el siguiente estado. Puede prescindir de un procesador
+    accDescr: Diagrama de un sistema de transición. El estado s se representa con bits, una pila, texto, rutas u otros valores. Pasa al estado s prima mediante un paso permitido: la regla de transición. Si hay una entrada de datos o un evento, alimenta el paso. El paso puede producir un efecto o un resultado observable. Un marco alrededor de ambos estados indica que el invariante se cumple tanto en s como en s prima.
+    subgraph INV["El invariante I se cumple en s y en s′"]
+        S["Estado s: bits, pila, texto, rutas, ..."] --> T(["Paso permitido: regla de transición"]) --> S2["Estado s′"]
     end
-    IN["entrada de datos o evento (si lo hay)"] -.-> T
-    T -.-> OUT["efecto observable o resultado (si lo hay)"]
+    IN["Entrada de datos o evento (si hay)"] -.-> T
+    T -.-> OUT["Efecto o resultado observable (si hay)"]
 ```
 
 La imagen del libro de una máquina: un estado, un paso permitido y un invariante que se cumple a través de él. Cada fila de la tabla anterior es una manera de llenar los recuadros.

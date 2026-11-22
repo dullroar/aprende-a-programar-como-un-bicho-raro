@@ -54,20 +54,20 @@ En el programa de eventos la regla es una línea: `total-updated` emite `finishe
 
 ```mermaid
 sequenceDiagram
-    accTitle: Un turno de eventos programados: emit anida las llamadas y el bucle de eventos separa los turnos
-    accDescr: Un diagrama de secuencia. El bucle de eventos inicia un turno al llamar al escuchador de eventos generate. Ese escuchador emite card-created, así que el emisor llama al escuchador de eventos card-created dentro de él. Ese escuchador emite card-saved, así que el emisor llama al escuchador de eventos card-saved dentro de él. Luego cada escuchador regresa, en orden inverso, así que la pila se desenrolla. El último escuchador le ha pedido al bucle de eventos el turno siguiente con setImmediate. El bucle de eventos inicia el turno siguiente solo cuando la pila está vacía.
+    accTitle: Un turno de eventos programados. emit anida llamadas y el bucle de eventos separa los turnos
+    accDescr: Diagrama de secuencia. El bucle de eventos inicia un turno al llamar al escuchador de eventos de generate. Ese escuchador emite card-created, así que el emisor llama al escuchador de card-created dentro de la llamada en curso. Ese escuchador emite card-saved y el emisor llama al escuchador de card-saved dentro de esa llamada. Los escuchadores retornan en orden inverso y así se vacía la pila. El último escuchador le pidió al bucle de eventos el siguiente turno con setImmediate. El bucle de eventos solo inicia ese turno cuando la pila está vacía.
     participant L as Bucle de eventos
-    participant G as escuchador generate
-    participant C as escuchador card-created
-    participant S as escuchador card-saved
-    L->>G: empieza un turno
+    participant G as Escuchador de eventos de generate
+    participant C as Escuchador de eventos de card-created
+    participant S as Escuchador de eventos de card-saved
+    L->>G: Empieza un turno
     G->>C: emit card-created: llamada anidada
-    C->>S: emit card-saved: anidada otra vez
-    S-->>L: setImmediate pide el turno siguiente
-    S-->>C: regresa
-    C-->>G: regresa
-    G-->>L: regresa: pila vacía
-    Note over L: el turno siguiente empieza ahora
+    C->>S: emit card-saved: otra llamada anidada
+    S-->>L: setImmediate pide el siguiente turno
+    S-->>C: Retorna
+    C-->>G: Retorna
+    G-->>L: Retorna: pila vacía
+    Note over L: Solo ahora empieza el siguiente turno
 ```
 
 La imagen del libro de un turno de eventos programados: `emit` anida y el bucle de eventos separa los turnos. La traza siguiente la sigue con números reales.

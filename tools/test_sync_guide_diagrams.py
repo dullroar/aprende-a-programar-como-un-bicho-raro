@@ -78,6 +78,20 @@ class TestSync(unittest.TestCase):
             raise FileNotFoundError(path)
         self.assertTrue(sync.sync(self.guide_seg, self.guide_po, gone)[2])
 
+    def test_block_n_source_is_found(self):
+        source = "# Chapter\n\nText.\n\n" + DIAGRAM
+        guide = GUIDE.replace("src/demo/README.md#program-flow", "lessons/cs-source/chapters/x.md#block-1")
+        seg = segment.Segmentation(guide, "g.md")
+        changed, pending, problems = sync.sync(seg, self.guide_po, lambda path: (source, self.src_po))
+        self.assertEqual((3, 0, []), (changed, pending, problems))
+
+    def test_block_n_out_of_range_is_a_problem(self):
+        source = "# Chapter\n\nText.\n\n" + DIAGRAM
+        guide = GUIDE.replace("src/demo/README.md#program-flow", "lessons/cs-source/chapters/x.md#block-2")
+        seg = segment.Segmentation(guide, "g.md")
+        problems = sync.sync(seg, self.guide_po, lambda path: (source, self.src_po))[2]
+        self.assertTrue(any("no diagram" in p for p in problems), problems)
+
     def test_unmarked_diagram_is_ignored(self):
         seg = segment.Segmentation("# G\n\n" + DIAGRAM, "g.md")
         self.assertEqual([], sync.diagrams_with_markers(seg))

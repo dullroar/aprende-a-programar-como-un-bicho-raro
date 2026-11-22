@@ -160,12 +160,12 @@ msgstr "**Qué confirma.** ⟦CODE_0001⟧ ejecuta ⟦CODE_0002⟧, ⟦CODE_0003
 #: lessons/study-guides/concepts/events-callbacks-and-reactive-control.md:57
 msgctxt "s-ff88af615858-0026"
 msgid "One turn of scheduled events: emit nests, the event loop separates turns"
-msgstr "Un turno de eventos programados: emit anida las llamadas y el bucle de eventos separa los turnos"
+msgstr "Un turno de eventos programados. emit anida llamadas y el bucle de eventos separa los turnos"
 
 #: lessons/study-guides/concepts/events-callbacks-and-reactive-control.md:58
 msgctxt "s-4c1397e4ee6f-0027"
 msgid "A sequence diagram. The event loop starts a turn by calling the generate listener. That listener emits card-created, so the emitter calls the card-created listener inside it. That listener emits card-saved, so the emitter calls the card-saved listener inside it. Each listener then returns, in the reverse order, so the stack unwinds. The last listener has asked the event loop for the next turn with setImmediate. The event loop starts the next turn only after the stack is empty."
-msgstr "Un diagrama de secuencia. El bucle de eventos inicia un turno al llamar al escuchador de eventos generate. Ese escuchador emite card-created, así que el emisor llama al escuchador de eventos card-created dentro de él. Ese escuchador emite card-saved, así que el emisor llama al escuchador de eventos card-saved dentro de él. Luego cada escuchador regresa, en orden inverso, así que la pila se desenrolla. El último escuchador le ha pedido al bucle de eventos el turno siguiente con setImmediate. El bucle de eventos inicia el turno siguiente solo cuando la pila está vacía."
+msgstr "Diagrama de secuencia. El bucle de eventos inicia un turno al llamar al escuchador de eventos de generate. Ese escuchador emite card-created, así que el emisor llama al escuchador de card-created dentro de la llamada en curso. Ese escuchador emite card-saved y el emisor llama al escuchador de card-saved dentro de esa llamada. Los escuchadores retornan en orden inverso y así se vacía la pila. El último escuchador le pidió al bucle de eventos el siguiente turno con setImmediate. El bucle de eventos solo inicia ese turno cuando la pila está vacía."
 
 #: lessons/study-guides/concepts/events-callbacks-and-reactive-control.md:59
 msgctxt "s-ddb496fea2fc-0028"
@@ -175,22 +175,22 @@ msgstr "Bucle de eventos"
 #: lessons/study-guides/concepts/events-callbacks-and-reactive-control.md:60
 msgctxt "s-e4371dff1745-0029"
 msgid "generate listener"
-msgstr "escuchador generate"
+msgstr "Escuchador de eventos de generate"
 
 #: lessons/study-guides/concepts/events-callbacks-and-reactive-control.md:61
 msgctxt "s-e69868ea2ef7-0030"
 msgid "card-created listener"
-msgstr "escuchador card-created"
+msgstr "Escuchador de eventos de card-created"
 
 #: lessons/study-guides/concepts/events-callbacks-and-reactive-control.md:62
 msgctxt "s-59e6f88635ba-0031"
 msgid "card-saved listener"
-msgstr "escuchador card-saved"
+msgstr "Escuchador de eventos de card-saved"
 
 #: lessons/study-guides/concepts/events-callbacks-and-reactive-control.md:63
 msgctxt "s-d78b0b6960ad-0032"
 msgid "a turn begins"
-msgstr "empieza un turno"
+msgstr "Empieza un turno"
 
 #: lessons/study-guides/concepts/events-callbacks-and-reactive-control.md:64
 msgctxt "s-528800cd5b54-0033"
@@ -200,32 +200,32 @@ msgstr "emit card-created: llamada anidada"
 #: lessons/study-guides/concepts/events-callbacks-and-reactive-control.md:65
 msgctxt "s-75754c602534-0034"
 msgid "emit card-saved: nested again"
-msgstr "emit card-saved: anidada otra vez"
+msgstr "emit card-saved: otra llamada anidada"
 
 #: lessons/study-guides/concepts/events-callbacks-and-reactive-control.md:66
 msgctxt "s-6ff08e036165-0035"
 msgid "setImmediate asks for the next turn"
-msgstr "setImmediate pide el turno siguiente"
+msgstr "setImmediate pide el siguiente turno"
 
 #: lessons/study-guides/concepts/events-callbacks-and-reactive-control.md:67
 msgctxt "s-153b2a38cb4a-0036"
 msgid "returns"
-msgstr "regresa"
+msgstr "Retorna"
 
 #: lessons/study-guides/concepts/events-callbacks-and-reactive-control.md:68
 msgctxt "s-153b2a38cb4a-0037"
 msgid "returns"
-msgstr "regresa"
+msgstr "Retorna"
 
 #: lessons/study-guides/concepts/events-callbacks-and-reactive-control.md:69
 msgctxt "s-ce64d2bcba99-0038"
 msgid "returns: the stack is empty"
-msgstr "regresa: pila vacía"
+msgstr "Retorna: pila vacía"
 
 #: lessons/study-guides/concepts/events-callbacks-and-reactive-control.md:70
 msgctxt "s-9aef781b19aa-0039"
 msgid "the next turn begins only now"
-msgstr "el turno siguiente empieza ahora"
+msgstr "Solo ahora empieza el siguiente turno"
 
 #: lessons/study-guides/concepts/events-callbacks-and-reactive-control.md:73
 msgctxt "s-aeedbd150118-0040"

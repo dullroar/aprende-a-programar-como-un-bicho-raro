@@ -338,3 +338,4 @@
 380 P5-000 done I13/I16/I2/I4/structure skip generator-owned lines (segment.strip_generated); regenerated tree passes verify --fast, hand-edited generated block still STALE in build.py --check; P5-001 unblocked.
 384 P5-001 done BOOK_LANG=es build.py --generate rewrote 29 Spanish files; second run zero diff; verify --fast OK.
 385 P5-002 done anchors re-aimed (apply.py --relink); anchors.resolve reads cs-source chapter paths from the generated page (+test); anchors.py --check OK; verify --fast OK.
+386 P5-003 done six Spanish artifacts built in repo root; sync_guide_diagrams handles #block-N (+tests); 5 guides synced; book PDF lint 41 errors (PDF-004 pp174-176, PDF-010) noted for P5-004.

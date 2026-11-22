@@ -533,3 +533,6 @@
 {"id":"EXC-533","segment":"s-143f6e39cc4d-0000","invariant":"I7","reason":"'Windows Sandbox' es nombre de producto","task":"P4-sandbox-windows-profiles-1"}
 {"id":"EXC-534","segment":"s-f3a2755f4d2b-0001","invariant":"I7","reason":"'compilar' es el verbo build, no el sustantivo 'compilación'; 'Windows Sandbox' no aplica","task":"P4-sandbox-windows-profiles-1"}
 {"id":"EXC-535","segment":"s-1e366edfb1dc-0007","invariant":"I7","reason":"'Compila' es el verbo build, no el sustantivo 'compilación'","task":"P4-sandbox-windows-profiles-1"}
+{"id":"EXC-536","segment":"s-fb3bb820b4e1-0045","invariant":"I7","reason":"diagram label copied verbatim from the README's translated Program Flow; cards, machine and hoursFrom are program identifiers, not the glossary nouns","task":"P5-003"}
+{"id":"EXC-537","segment":"s-afbb30266ebb-0069","invariant":"I7","reason":"diagram label copied verbatim from the README's translated Program Flow; card-saved is an event/identifier name","task":"P5-003"}
+{"id":"EXC-538","segment":"s-c4a25438da1b-0074","invariant":"I9","reason":"diagram label copied verbatim from the README's translated Program Flow; finished, COMMIT and close are identifiers and SQL, so the label is unchanged by design","task":"P5-003"}

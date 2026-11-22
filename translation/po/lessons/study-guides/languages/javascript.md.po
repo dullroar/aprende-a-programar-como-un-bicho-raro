@@ -162,22 +162,22 @@ msgstr "javascript: una sentencia for en Node cuya condición imprime el resulta
 #: lessons/study-guides/languages/javascript.md:67
 msgctxt "s-70d1ed8d0c32-0028"
 msgid "A flowchart. The initializer builds one object literal with the seed generator, the SQLite database and the categories. The condition sums the hours with reduce and is true while the total is 40 or less. Then the empty body runs and the iterator pushes random hours and inserts a card with the comma operator. When the condition is false, a comma expression prints the result, starts a setInterval timer if the output is a terminal, and yields false, so the for ends. Node does not exit yet, because the timer is still registered. The event loop runs the timer callback, which pulses the ⟦DNT_0001⟧ line and then clears the timer, so Node exits."
-msgstr "Un diagrama de flujo. El inicializador crea un literal de objeto con el generador de semillas, la base de datos SQLite y las categorías. La condición suma las horas con reduce y es verdadera mientras el total sea 40 o menos. Entonces se ejecuta el cuerpo vacío y el iterador agrega horas aleatorias e inserta una tarjeta con el operador coma. Cuando la condición es falsa, una expresión con comas imprime el resultado e inicia un temporizador setInterval si la salida es una terminal. La expresión produce false, así que el for termina. Node todavía no sale, porque el temporizador sigue registrado. El bucle de eventos ejecuta la función de devolución de llamada del temporizador. Esa función hace pulsar la línea ⟦DNT_0001⟧ y borra el temporizador, así que Node sale."
+msgstr "Un diagrama de flujo. El inicializador construye un literal de objeto con el generador de semilla, la base de datos SQLite y las categorías. La condición suma las horas con reduce y es verdadera mientras el total no pase de 40. Luego se ejecuta el cuerpo vacío y el iterador agrega horas aleatorias e inserta una tarjeta con el operador coma. Cuando la condición es falsa, una expresión con coma imprime el resultado, inicia un temporizador setInterval si la salida es una terminal y produce false. Así termina el for. Node todavía no termina, porque el temporizador sigue registrado. El bucle de eventos ejecuta la función de devolución de llamada del temporizador, que hace pulsar la línea ⟦DNT_0001⟧ y después borra el temporizador, así que Node termina."
 
 #: lessons/study-guides/languages/javascript.md:68
 msgctxt "s-c98d76b040d1-0029"
 msgid "Initializer: one object literal holds seed, SQLite, categories, state"
-msgstr "Inicializador: un literal de objeto guarda la semilla, SQLite, las categorías y el estado"
+msgstr "Inicializador: un literal de objeto contiene la semilla, SQLite, las categorías y el estado"
 
 #: lessons/study-guides/languages/javascript.md:68
 msgctxt "s-1cecae26aecb-0030"
 msgid "Condition: reduce sum <= 40?"
-msgstr "Condición: ¿suma de reduce <= 40?"
+msgstr "Condición: ¿reduce sum <= 40?"
 
 #: lessons/study-guides/languages/javascript.md:69
 msgctxt "s-b5bea41b6c62-0031"
 msgid "true"
-msgstr "verdadero"
+msgstr "true"
 
 #: lessons/study-guides/languages/javascript.md:69
 msgctxt "s-f4bc948d685c-0032"
@@ -192,17 +192,17 @@ msgstr "Iterador, operador coma: agrega las horas, inserta la tarjeta"
 #: lessons/study-guides/languages/javascript.md:72
 msgctxt "s-fcbcf165908d-0034"
 msgid "false"
-msgstr "falso"
+msgstr "false"
 
 #: lessons/study-guides/languages/javascript.md:72
 msgctxt "s-c7a60aae2cb0-0035"
 msgid "Comma expression: console.log the result, setInterval if a terminal, value false"
-msgstr "Expresión con comas: console.log del resultado, setInterval si es una terminal, valor false"
+msgstr "Expresión con coma: console.log muestra el resultado, setInterval se llama si hay una terminal, valor false"
 
 #: lessons/study-guides/languages/javascript.md:73
 msgctxt "s-198fed83943e-0036"
 msgid "The for ends; the call stack empties"
-msgstr "El for termina; la pila de llamadas queda vacía"
+msgstr "El for termina; la pila de llamadas se vacía"
 
 #: lessons/study-guides/languages/javascript.md:74
 msgctxt "s-663481a6eecc-0037"
@@ -212,7 +212,7 @@ msgstr "El bucle de eventos ejecuta la función de devolución de llamada del te
 #: lessons/study-guides/languages/javascript.md:75
 msgctxt "s-93f4ac973a0d-0038"
 msgid "clearInterval: nothing is left, Node exits"
-msgstr "clearInterval: no queda nada, Node sale"
+msgstr "clearInterval: no queda nada y Node termina"
 
 #: lessons/study-guides/languages/javascript.md:78
 msgctxt "s-612809fa2c45-0039"
@@ -222,12 +222,12 @@ msgstr "El primer diagrama es un bucle cuyo encabezado es el programa. El segund
 #: lessons/study-guides/languages/javascript.md:84
 msgctxt "s-40fffa81e3e1-0040"
 msgid "javascript-weird: demand pulls each card through three closures and two maps"
-msgstr "javascript-weird: la demanda saca cada tarjeta a través de tres clausuras y dos maps"
+msgstr "javascript-weird: la demanda (pull) hace pasar cada tarjeta por tres clausuras y dos map"
 
 #: lessons/study-guides/languages/javascript.md:85
 msgctxt "s-9bf220ebeb02-0041"
 msgid "A sequence diagram of pull. The call toArray demands a value from the second map, which demands one from the first map, which demands one from the cards iterator. The cards iterator calls the machine closure, which calls the hours closure for a number and moves the generator state. The machine adds the hours to its captured total and sets its stop flag if the total is over 40, and returns the card. The card travels back up: the first map stamps it with the user and week, the second map saves it to SQLite, and toArray collects it. Then toArray demands again. After the crossing card, the machine answers undefined, the iterator answers done, and toArray stops."
-msgstr "Un diagrama de secuencia de la demanda (pull). La llamada a toArray demanda un valor al segundo map, que demanda uno al primer map, que demanda uno al iterador cards. El iterador cards llama a la clausura de la máquina (machine), que llama a la clausura hoursFrom para obtener un número y mueve el estado del generador. La clausura de la máquina suma las horas a su total capturado, activa su bandera de parada si el total pasa de 40 y devuelve la tarjeta. La tarjeta vuelve hacia arriba: el primer map la sella con el usuario y la semana, el segundo map la guarda en SQLite y toArray la recoge. Después toArray vuelve a demandar. Tras la tarjeta que cruza el límite, la máquina responde undefined, el iterador responde done y toArray se detiene."
+msgstr "Un diagrama de secuencia de la demanda (pull). La llamada toArray demanda un valor al segundo map, que demanda uno al primer map, que demanda uno al iterador de tarjetas. El iterador de tarjetas llama a la clausura de la máquina, que llama a la clausura de horas para obtener un número y mueve el estado del generador. La máquina suma las horas a su total capturado, activa su bandera de parada si el total pasa de 40 y devuelve la tarjeta. La tarjeta sube de vuelta: el primer map le pone el usuario y la semana, el segundo map la guarda en SQLite y toArray la recopila. Luego toArray vuelve a demandar. Después de la tarjeta que cruza, la máquina responde undefined, el iterador responde done y toArray se detiene."
 
 #: lessons/study-guides/languages/javascript.md:86
 msgctxt "s-2cf28e61ddd6-0042"
@@ -247,12 +247,12 @@ msgstr "map stamp"
 #: lessons/study-guides/languages/javascript.md:89
 msgctxt "s-fb3bb820b4e1-0045"
 msgid "cards, machine and hoursFrom"
-msgstr "cards (tarjetas), machine (máquina) y hoursFrom"
+msgstr "cards, machine y hoursFrom"
 
 #: lessons/study-guides/languages/javascript.md:90
 msgctxt "s-c1ca598c68e9-0046"
 msgid "until the iterator says done"
-msgstr "hasta que el iterador dice done"
+msgstr "hasta que el iterador indique que terminó"
 
 #: lessons/study-guides/languages/javascript.md:91
 msgctxt "s-c6c1c9a9c854-0047"
@@ -262,37 +262,37 @@ msgstr "next"
 #: lessons/study-guides/languages/javascript.md:92
 msgctxt "s-c6c1c9a9c854-0048"
 msgid "next"
-msgstr "next"
+msgstr "siguiente"
 
 #: lessons/study-guides/languages/javascript.md:93
 msgctxt "s-1dd96cbc525e-0049"
 msgid "next: the machine calls hoursFrom"
-msgstr "next: la máquina (machine) llama a hoursFrom"
+msgstr "siguiente: la máquina llama a hoursFrom"
 
 #: lessons/study-guides/languages/javascript.md:94
 msgctxt "s-704cae576659-0050"
 msgid "hours drawn, total and over updated"
-msgstr "horas generadas, total y over actualizados"
+msgstr "horas extraídas, total y exceso actualizados"
 
 #: lessons/study-guides/languages/javascript.md:95
 msgctxt "s-a283b0e8237a-0051"
 msgid "value: card"
-msgstr "value (el valor): la tarjeta"
+msgstr "valor: tarjeta"
 
 #: lessons/study-guides/languages/javascript.md:96
 msgctxt "s-532e20ac0d5d-0052"
 msgid "record stamped with user and week"
-msgstr "registro sellado con el usuario y la semana"
+msgstr "registro marcado con el usuario y la semana"
 
 #: lessons/study-guides/languages/javascript.md:97
 msgctxt "s-fc1b1692307f-0053"
 msgid "record, saved to SQLite"
-msgstr "registro guardado en SQLite"
+msgstr "registro, guardado en SQLite"
 
 #: lessons/study-guides/languages/javascript.md:99
 msgctxt "s-7a8f5fafdcff-0054"
 msgid "after the crossing card the machine answers undefined, cards answers done, and toArray stops"
-msgstr "tras la tarjeta que cruza el límite, la máquina responde undefined, cards responde done y toArray se detiene"
+msgstr "después de la tarjeta de cruce, la máquina responde undefined, cards responde done y toArray se detiene"
 
 #: lessons/study-guides/languages/javascript.md:102
 msgctxt "s-a100385a4ea4-0055"
@@ -307,7 +307,7 @@ msgstr "javascript-events: emit es una llamada, setImmediate es un turno posteri
 #: lessons/study-guides/languages/javascript.md:109
 msgctxt "s-08aefc36032b-0057"
 msgid "A sequence diagram. The main module emits start. The listener for start opens the database, begins a transaction and saves the run, then asks the event loop for the generate event on a later turn with setImmediate. Emit returns and the call stack is empty. On a later turn the event loop emits generate. The generate listener makes a card and emits card-created, whose listener runs at once inside the same call and saves the card to SQLite. That listener emits card-saved, whose listener updates the total and prints the row. That listener emits total-updated. If the total is 40 or less, its listener asks the event loop for the next generate on a later turn, and the stack unwinds. If the total is over 40, it emits finished, whose listener commits, prints and closes. A throw in any listener emits failed, which rolls back and reports once."
-msgstr "Un diagrama de secuencia. El módulo principal emite start. El escuchador de eventos de start abre la base de datos, inicia una transacción y guarda la ejecución. Después pide al bucle de eventos el evento generate en un turno posterior con setImmediate. Emit regresa y la pila de llamadas queda vacía. En un turno posterior, el bucle de eventos emite generate. El escuchador de eventos de generate crea una tarjeta y emite card-created, cuyo escuchador se ejecuta de inmediato dentro de la misma llamada y guarda la tarjeta en SQLite. Ese escuchador emite card-saved, cuyo escuchador actualiza el total e imprime la fila. Ese escuchador emite total-updated. Si el total es 40 o menos, su escuchador pide al bucle de eventos el siguiente generate en un turno posterior, y la pila se desenrolla. Si el total pasa de 40, emite finished, cuyo escuchador confirma la transacción, imprime y cierra. Una excepción lanzada en cualquier escuchador emite failed, que revierte la transacción e informa una sola vez."
+msgstr "Un diagrama de secuencia. El módulo principal emite start. El escuchador de eventos de start abre la base de datos, inicia una transacción y guarda la ejecución. Después pide al bucle de eventos el evento generate para un turno posterior con setImmediate. La llamada a emit termina y la pila de llamadas queda vacía. En un turno posterior, el bucle de eventos emite generate. El escuchador de generate crea una tarjeta y emite card-created. El escuchador de card-created se ejecuta de inmediato dentro de la misma llamada y guarda la tarjeta en SQLite. Ese escuchador emite card-saved, cuyo escuchador actualiza el total e imprime la fila. Ese escuchador emite total-updated. Si el total no pasa de 40, el escuchador de total-updated pide al bucle de eventos el siguiente generate para un turno posterior y la pila se desenrolla. Si el total pasa de 40, emite finished, cuyo escuchador confirma la transacción, imprime y cierra. Un throw en cualquier escuchador emite failed, que revierte la transacción e informa una sola vez."
 
 #: lessons/study-guides/languages/javascript.md:110
 msgctxt "s-3154953dede1-0058"
@@ -332,7 +332,7 @@ msgstr "SQLite"
 #: lessons/study-guides/languages/javascript.md:114
 msgctxt "s-457b37fa316f-0062"
 msgid "emit start"
-msgstr "emit start"
+msgstr "emitir start"
 
 #: lessons/study-guides/languages/javascript.md:115
 msgctxt "s-c7005c3b7666-0063"
@@ -342,12 +342,12 @@ msgstr "escuchador de eventos de start: BEGIN, guarda la ejecución"
 #: lessons/study-guides/languages/javascript.md:116
 msgctxt "s-78399ab58e66-0064"
 msgid "setImmediate: generate, later"
-msgstr "setImmediate: generate, más tarde"
+msgstr "setImmediate: generar, más tarde"
 
 #: lessons/study-guides/languages/javascript.md:117
 msgctxt "s-27e7ed7cf84c-0065"
 msgid "emit returns: the stack is empty"
-msgstr "emit regresa: la pila queda vacía"
+msgstr "emit retorna: la pila está vacía"
 
 #: lessons/study-guides/languages/javascript.md:118
 msgctxt "s-199d9d01beee-0066"
@@ -367,7 +367,7 @@ msgstr "card-created, anidado dentro de generate: INSERT de la tarjeta"
 #: lessons/study-guides/languages/javascript.md:121
 msgctxt "s-afbb30266ebb-0069"
 msgid "card-saved, nested: total changes"
-msgstr "card-saved (tarjeta guardada), anidado: cambia el total"
+msgstr "card-saved, anidado: cambia el total"
 
 #: lessons/study-guides/languages/javascript.md:122
 msgctxt "s-958a64e13982-0070"
@@ -382,7 +382,7 @@ msgstr "el total es 40 o menos"
 #: lessons/study-guides/languages/javascript.md:124
 msgctxt "s-78399ab58e66-0072"
 msgid "setImmediate: generate, later"
-msgstr "setImmediate: generate, más tarde"
+msgstr "setImmediate: generar después"
 
 #: lessons/study-guides/languages/javascript.md:125
 msgctxt "s-e495e7c34ec5-0073"
@@ -392,7 +392,7 @@ msgstr "el total pasa de 40"
 #: lessons/study-guides/languages/javascript.md:126
 msgctxt "s-c4a25438da1b-0074"
 msgid "finished, nested: COMMIT, close"
-msgstr "finished, anidado: COMMIT, cierre"
+msgstr "finished, nested: COMMIT, close"
 
 #: lessons/study-guides/languages/javascript.md:131
 msgctxt "s-00a534687250-0075"

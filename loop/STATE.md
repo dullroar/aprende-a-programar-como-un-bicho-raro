@@ -1,9 +1,9 @@
 # loop/STATE.md (keep to 60 lines; refreshed by every iteration)
 
 - **Edition:** v4-es.0-rc1 (working)    **English SHA:** 48a4429c0a22b2aac628b256a50c07d1816bcb80
-- **Iteration:** 385    **Stage:** 5 started    **Last result:** P5-002 done (anchors re-aimed; anchors.py --check OK).
+- **Iteration:** 386    **Stage:** 5 started    **Last result:** P5-003 done (six Spanish artifacts built; PDF lint errors pending, see seed notes).
 - **Tasks:** todo 53 | doing 0 | done 161 | blocked 1 | skipped 0 (recount with the queue files)
-- **Next task:** P5-003.
+- **Next task:** P5-004.
 - **Budget:** driver-reported $112.6405 of $150 through iteration 274, with Codex session cost unavailable
 - **Translate progress:** at least 7751 / total 8827 segments accepted; at least 196 / 212 files done. P4-lessons-languages-5 complete. Counts based on the previous snapshot plus this task.
 - **Last audit:** P4-audit-9 (iter 361, translation/reviews/p4-audit-9.md)    **Next audit due:** the next P4-audit task in the queue

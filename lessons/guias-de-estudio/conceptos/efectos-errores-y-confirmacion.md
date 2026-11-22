@@ -57,7 +57,7 @@ Aquí las cinco preguntas tratan de los *efectos*.
 ```mermaid
 sequenceDiagram
     accTitle: La base de datos revierte su transacción, no todos los efectos que causó el programa
-    accDescr: Un diagrama de secuencia con el programa, la base de datos SQLite y el mundo exterior. En el caso de éxito, el programa inicia la transacción, escribe la tarjeta 1, escribe la tarjeta 2 y confirma, y ambas tarjetas quedan visibles. En el caso de fallo, el programa inicia la transacción y escribe la tarjeta 1. Envía una notificación al mundo exterior, que no forma parte de la transacción. Luego ocurre un error y el programa revierte, así que ninguna tarjeta queda visible. SQLite no puede deshacer el envío de la notificación.
+    accDescr: Un diagrama de secuencia con el programa, la base de datos SQLite y el mundo exterior. En el caso de éxito, el programa empieza, escribe la tarjeta 1, escribe la tarjeta 2 y confirma la transacción, y las dos tarjetas son visibles. En el caso de fallo, el programa empieza y escribe la tarjeta 1. Envía una notificación al mundo exterior, que no forma parte de la transacción. Luego ocurre un error y el programa revierte, así que ninguna tarjeta es visible. SQLite no puede retirar la notificación.
     participant P as Programa
     participant DB as Base de datos SQLite
     participant X as Mundo exterior
@@ -66,14 +66,14 @@ sequenceDiagram
         P->>DB: escribir tarjeta 1
         P->>DB: escribir tarjeta 2
         P->>DB: COMMIT
-        Note over DB: ambas tarjetas visibles
-    else error antes de confirmar
+        Note over DB: las dos tarjetas son visibles
+    else error antes de la confirmación de la transacción
         P->>DB: BEGIN
         P->>DB: escribir tarjeta 1
         P->>X: enviar notificación / imprimir / escribir archivo externo
         Note over P: error
         P->>DB: ROLLBACK
-        Note over DB: ninguna tarjeta visible
+        Note over DB: ninguna tarjeta es visible
         Note over X: SQLite no puede revertirlo
     end
 ```

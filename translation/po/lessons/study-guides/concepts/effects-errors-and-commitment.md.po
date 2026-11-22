@@ -162,7 +162,7 @@ msgstr "La base de datos revierte su transacción, no todos los efectos que caus
 #: lessons/study-guides/concepts/effects-errors-and-commitment.md:60
 msgctxt "s-0e988691a0ce-0028"
 msgid "A sequence diagram with the program, the SQLite database and the outside world. In the success case the program begins, writes card 1, writes card 2 and commits, and both cards are visible. In the failure case the program begins and writes card 1. It sends a notification to the outside world, which is not part of the transaction. Then an error occurs and the program rolls back, so neither card is visible. SQLite cannot unsend the notification."
-msgstr "Un diagrama de secuencia con el programa, la base de datos SQLite y el mundo exterior. En el caso de éxito, el programa inicia la transacción, escribe la tarjeta 1, escribe la tarjeta 2 y confirma, y ambas tarjetas quedan visibles. En el caso de fallo, el programa inicia la transacción y escribe la tarjeta 1. Envía una notificación al mundo exterior, que no forma parte de la transacción. Luego ocurre un error y el programa revierte, así que ninguna tarjeta queda visible. SQLite no puede deshacer el envío de la notificación."
+msgstr "Un diagrama de secuencia con el programa, la base de datos SQLite y el mundo exterior. En el caso de éxito, el programa empieza, escribe la tarjeta 1, escribe la tarjeta 2 y confirma la transacción, y las dos tarjetas son visibles. En el caso de fallo, el programa empieza y escribe la tarjeta 1. Envía una notificación al mundo exterior, que no forma parte de la transacción. Luego ocurre un error y el programa revierte, así que ninguna tarjeta es visible. SQLite no puede retirar la notificación."
 
 #: lessons/study-guides/concepts/effects-errors-and-commitment.md:61
 msgctxt "s-90920d93e2c7-0029"
@@ -207,12 +207,12 @@ msgstr "COMMIT"
 #: lessons/study-guides/concepts/effects-errors-and-commitment.md:69
 msgctxt "s-f22526e1ed0d-0037"
 msgid "both cards visible"
-msgstr "ambas tarjetas visibles"
+msgstr "las dos tarjetas son visibles"
 
 #: lessons/study-guides/concepts/effects-errors-and-commitment.md:70
 msgctxt "s-6383ed374d37-0038"
 msgid "error before commit"
-msgstr "error antes de confirmar"
+msgstr "error antes de la confirmación de la transacción"
 
 #: lessons/study-guides/concepts/effects-errors-and-commitment.md:71
 msgctxt "s-a8402858d4f1-0039"
@@ -242,7 +242,7 @@ msgstr "ROLLBACK"
 #: lessons/study-guides/concepts/effects-errors-and-commitment.md:76
 msgctxt "s-336c46cfc45f-0044"
 msgid "neither card visible"
-msgstr "ninguna tarjeta visible"
+msgstr "ninguna tarjeta es visible"
 
 #: lessons/study-guides/concepts/effects-errors-and-commitment.md:77
 msgctxt "s-c2848ac1e4f9-0045"

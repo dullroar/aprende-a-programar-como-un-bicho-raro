@@ -48,7 +48,12 @@ def diagrams_with_markers(seg):
 
 
 def section_diagram(seg, anchor):
-    """The first mermaid block under the heading whose slug is `anchor`, or None."""
+    """The first mermaid block under the heading whose slug is `anchor`, or the Nth mermaid block for `block-N`, or None."""
+    m = re.fullmatch(r"block-(\d+)", anchor)
+    if m:
+        fences = [b for b in seg.blocks if b.kind == "mermaid"]
+        n = int(m.group(1))
+        return fences[n - 1] if 1 <= n <= len(fences) else None
     current = None
     for b in seg.blocks:
         if b.kind == "heading":

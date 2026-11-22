@@ -64,15 +64,15 @@ Las tres se detienen en el primer cruce e imprimen un resumen, pero sus límites
 ```mermaid
 flowchart TD
     accTitle: javascript: una sentencia for en Node cuya condición imprime el resultado y el bucle de eventos mantiene vivo el pulso
-    accDescr: Un diagrama de flujo. El inicializador crea un literal de objeto con el generador de semillas, la base de datos SQLite y las categorías. La condición suma las horas con reduce y es verdadera mientras el total sea 40 o menos. Entonces se ejecuta el cuerpo vacío y el iterador agrega horas aleatorias e inserta una tarjeta con el operador coma. Cuando la condición es falsa, una expresión con comas imprime el resultado e inicia un temporizador setInterval si la salida es una terminal. La expresión produce false, así que el for termina. Node todavía no sale, porque el temporizador sigue registrado. El bucle de eventos ejecuta la función de devolución de llamada del temporizador. Esa función hace pulsar la línea DEMO ONLY y borra el temporizador, así que Node sale.
-    A["Inicializador: un literal de objeto guarda la semilla, SQLite, las categorías y el estado"] --> B{{"Condición: ¿suma de reduce <= 40?"}}
-    B -->|verdadero| C["Cuerpo vacío"]
+    accDescr: Un diagrama de flujo. El inicializador construye un literal de objeto con el generador de semilla, la base de datos SQLite y las categorías. La condición suma las horas con reduce y es verdadera mientras el total no pase de 40. Luego se ejecuta el cuerpo vacío y el iterador agrega horas aleatorias e inserta una tarjeta con el operador coma. Cuando la condición es falsa, una expresión con coma imprime el resultado, inicia un temporizador setInterval si la salida es una terminal y produce false. Así termina el for. Node todavía no termina, porque el temporizador sigue registrado. El bucle de eventos ejecuta la función de devolución de llamada del temporizador, que hace pulsar la línea DEMO ONLY y después borra el temporizador, así que Node termina.
+    A["Inicializador: un literal de objeto contiene la semilla, SQLite, las categorías y el estado"] --> B{{"Condición: ¿reduce sum <= 40?"}}
+    B -->|true| C["Cuerpo vacío"]
     C --> D["Iterador, operador coma: agrega las horas, inserta la tarjeta"]
     D --> B
-    B -->|falso| E["Expresión con comas: console.log del resultado, setInterval si es una terminal, valor false"]
-    E --> F["El for termina; la pila de llamadas queda vacía"]
+    B -->|false| E["Expresión con coma: console.log muestra el resultado, setInterval se llama si hay una terminal, valor false"]
+    E --> F["El for termina; la pila de llamadas se vacía"]
     F --> G["El bucle de eventos ejecuta la función de devolución de llamada del temporizador: pulsa la línea DEMO ONLY"]
-    G --> H["clearInterval: no queda nada, Node sale"]
+    G --> H["clearInterval: no queda nada y Node termina"]
 ```
 
 El primer diagrama es un bucle cuyo encabezado es el programa. El segundo muestra quién le pide algo a quién.
@@ -81,22 +81,22 @@ El primer diagrama es un bucle cuyo encabezado es el programa. El segundo muestr
 
 ```mermaid
 sequenceDiagram
-    accTitle: javascript-weird: la demanda saca cada tarjeta a través de tres clausuras y dos maps
-    accDescr: Un diagrama de secuencia de la demanda (pull). La llamada a toArray demanda un valor al segundo map, que demanda uno al primer map, que demanda uno al iterador cards. El iterador cards llama a la clausura de la máquina (machine), que llama a la clausura hoursFrom para obtener un número y mueve el estado del generador. La clausura de la máquina suma las horas a su total capturado, activa su bandera de parada si el total pasa de 40 y devuelve la tarjeta. La tarjeta vuelve hacia arriba: el primer map la sella con el usuario y la semana, el segundo map la guarda en SQLite y toArray la recoge. Después toArray vuelve a demandar. Tras la tarjeta que cruza el límite, la máquina responde undefined, el iterador responde done y toArray se detiene.
+    accTitle: javascript-weird: la demanda (pull) hace pasar cada tarjeta por tres clausuras y dos map
+    accDescr: Un diagrama de secuencia de la demanda (pull). La llamada toArray demanda un valor al segundo map, que demanda uno al primer map, que demanda uno al iterador de tarjetas. El iterador de tarjetas llama a la clausura de la máquina, que llama a la clausura de horas para obtener un número y mueve el estado del generador. La máquina suma las horas a su total capturado, activa su bandera de parada si el total pasa de 40 y devuelve la tarjeta. La tarjeta sube de vuelta: el primer map le pone el usuario y la semana, el segundo map la guarda en SQLite y toArray la recopila. Luego toArray vuelve a demandar. Después de la tarjeta que cruza, la máquina responde undefined, el iterador responde done y toArray se detiene.
     participant T as toArray
     participant S as map save
     participant P as map stamp
-    participant C as cards (tarjetas), machine (máquina) y hoursFrom
-    loop hasta que el iterador dice done
+    participant C as cards, machine y hoursFrom
+    loop hasta que el iterador indique que terminó
         T->>S: next
-        S->>P: next
-        P->>C: next: la máquina (machine) llama a hoursFrom
-        C-->>C: horas generadas, total y over actualizados
-        C-->>P: value (el valor): la tarjeta
-        P-->>S: registro sellado con el usuario y la semana
-        S-->>T: registro guardado en SQLite
+        S->>P: siguiente
+        P->>C: siguiente: la máquina llama a hoursFrom
+        C-->>C: horas extraídas, total y exceso actualizados
+        C-->>P: valor: tarjeta
+        P-->>S: registro marcado con el usuario y la semana
+        S-->>T: registro, guardado en SQLite
     end
-    Note over C,T: tras la tarjeta que cruza el límite, la máquina responde undefined, cards responde done y toArray se detiene
+    Note over C,T: después de la tarjeta de cruce, la máquina responde undefined, cards responde done y toArray se detiene
 ```
 
 En el segundo, la demanda fluye hacia atrás desde `toArray` hasta la máquina. No ocurre nada hasta que pide.
@@ -106,24 +106,24 @@ En el segundo, la demanda fluye hacia atrás desde `toArray` hasta la máquina. 
 ```mermaid
 sequenceDiagram
     accTitle: javascript-events: emit es una llamada, setImmediate es un turno posterior
-    accDescr: Un diagrama de secuencia. El módulo principal emite start. El escuchador de eventos de start abre la base de datos, inicia una transacción y guarda la ejecución. Después pide al bucle de eventos el evento generate en un turno posterior con setImmediate. Emit regresa y la pila de llamadas queda vacía. En un turno posterior, el bucle de eventos emite generate. El escuchador de eventos de generate crea una tarjeta y emite card-created, cuyo escuchador se ejecuta de inmediato dentro de la misma llamada y guarda la tarjeta en SQLite. Ese escuchador emite card-saved, cuyo escuchador actualiza el total e imprime la fila. Ese escuchador emite total-updated. Si el total es 40 o menos, su escuchador pide al bucle de eventos el siguiente generate en un turno posterior, y la pila se desenrolla. Si el total pasa de 40, emite finished, cuyo escuchador confirma la transacción, imprime y cierra. Una excepción lanzada en cualquier escuchador emite failed, que revierte la transacción e informa una sola vez.
+    accDescr: Un diagrama de secuencia. El módulo principal emite start. El escuchador de eventos de start abre la base de datos, inicia una transacción y guarda la ejecución. Después pide al bucle de eventos el evento generate para un turno posterior con setImmediate. La llamada a emit termina y la pila de llamadas queda vacía. En un turno posterior, el bucle de eventos emite generate. El escuchador de generate crea una tarjeta y emite card-created. El escuchador de card-created se ejecuta de inmediato dentro de la misma llamada y guarda la tarjeta en SQLite. Ese escuchador emite card-saved, cuyo escuchador actualiza el total e imprime la fila. Ese escuchador emite total-updated. Si el total no pasa de 40, el escuchador de total-updated pide al bucle de eventos el siguiente generate para un turno posterior y la pila se desenrolla. Si el total pasa de 40, emite finished, cuyo escuchador confirma la transacción, imprime y cierra. Un throw en cualquier escuchador emite failed, que revierte la transacción e informa una sola vez.
     participant M as Módulo principal
     participant E as EventEmitter
     participant Q as Cola del bucle de eventos
     participant D as SQLite
-    M->>E: emit start
+    M->>E: emitir start
     E->>D: escuchador de eventos de start: BEGIN, guarda la ejecución
-    E->>Q: setImmediate: generate, más tarde
-    E-->>M: emit regresa: la pila queda vacía
+    E->>Q: setImmediate: generar, más tarde
+    E-->>M: emit retorna: la pila está vacía
     loop un turno del bucle de eventos por cada tarjeta
         Q->>E: emit generate
         E->>D: card-created, anidado dentro de generate: INSERT de la tarjeta
-        E->>E: card-saved (tarjeta guardada), anidado: cambia el total
+        E->>E: card-saved, anidado: cambia el total
         E->>E: total-updated, anidado: regla de parada
         alt el total es 40 o menos
-            E->>Q: setImmediate: generate, más tarde
+            E->>Q: setImmediate: generar después
         else el total pasa de 40
-            E->>D: finished, anidado: COMMIT, cierre
+            E->>D: finished, nested: COMMIT, close
         end
     end
 ```

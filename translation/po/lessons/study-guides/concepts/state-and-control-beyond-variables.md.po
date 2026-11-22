@@ -217,17 +217,17 @@ msgstr "**Qué confirma.** Busca dónde los efectos se vuelven permanentes. Una 
 #: lessons/study-guides/concepts/state-and-control-beyond-variables.md:73
 msgctxt "s-d265b2a293d4-0039"
 msgid "A machine is state plus a rule for the next state, not necessarily a processor"
-msgstr "Una máquina es un estado más una regla para el estado siguiente, no necesariamente un procesador"
+msgstr "Una máquina combina un estado y una regla para el siguiente estado. Puede prescindir de un procesador"
 
 #: lessons/study-guides/concepts/state-and-control-beyond-variables.md:74
 msgctxt "s-64c95d088c6b-0040"
 msgid "A transition-system diagram. State s, represented as bits, a stack, text, paths or other values, goes through an allowed step, the transition rule, to state s prime. An input or event, if any, feeds the step. The step may produce an observable effect or result, if any. A frame around both states says that the invariant holds for s and for s prime."
-msgstr "Un diagrama de sistema de transiciones. El estado s, representado como bits, una pila, texto, rutas u otros valores, pasa por un paso permitido, la regla de transición, al estado s prima. Una entrada de datos o un evento, si lo hay, alimenta el paso. El paso puede producir un efecto observable o un resultado, si lo hay. Un marco alrededor de ambos estados indica que el invariante se cumple para s y para s prima."
+msgstr "Diagrama de un sistema de transición. El estado s se representa con bits, una pila, texto, rutas u otros valores. Pasa al estado s prima mediante un paso permitido: la regla de transición. Si hay una entrada de datos o un evento, alimenta el paso. El paso puede producir un efecto o un resultado observable. Un marco alrededor de ambos estados indica que el invariante se cumple tanto en s como en s prima."
 
 #: lessons/study-guides/concepts/state-and-control-beyond-variables.md:75
 msgctxt "s-8623c5a11807-0041"
 msgid "Invariant I holds for s and for s′"
-msgstr "El invariante I se cumple para s y para s′"
+msgstr "El invariante I se cumple en s y en s′"
 
 #: lessons/study-guides/concepts/state-and-control-beyond-variables.md:76
 msgctxt "s-d7e20ddabb75-0042"
@@ -237,7 +237,7 @@ msgstr "Estado s: bits, pila, texto, rutas, ..."
 #: lessons/study-guides/concepts/state-and-control-beyond-variables.md:76
 msgctxt "s-fc17a0b9b664-0043"
 msgid "allowed step: transition rule"
-msgstr "paso permitido: regla de transición"
+msgstr "Paso permitido: regla de transición"
 
 #: lessons/study-guides/concepts/state-and-control-beyond-variables.md:76
 msgctxt "s-e719e065a2e7-0044"
@@ -247,12 +247,12 @@ msgstr "Estado s′"
 #: lessons/study-guides/concepts/state-and-control-beyond-variables.md:78
 msgctxt "s-7b0d55f1f44d-0045"
 msgid "input or event (if any)"
-msgstr "entrada de datos o evento (si lo hay)"
+msgstr "Entrada de datos o evento (si hay)"
 
 #: lessons/study-guides/concepts/state-and-control-beyond-variables.md:79
 msgctxt "s-79960f292197-0046"
 msgid "observable effect or result (if any)"
-msgstr "efecto observable o resultado (si lo hay)"
+msgstr "Efecto o resultado observable (si hay)"
 
 #: lessons/study-guides/concepts/state-and-control-beyond-variables.md:82
 msgctxt "s-670cb045f89d-0047"
