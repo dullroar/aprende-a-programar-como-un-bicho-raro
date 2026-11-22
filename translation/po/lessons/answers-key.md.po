@@ -569,52 +569,52 @@ msgstr "Medido con el script de verificación (líneas que no son comentarios):"
 #: lessons/answers-key.md:318
 msgctxt "s-2ca2be69a8bf-0091"
 msgid "⟦SEP_0001⟧ Pair ⟦SEP_0002⟧ Idiomatic ⟦SEP_0003⟧ Weird ⟦SEP_0004⟧"
-msgstr ""
+msgstr "⟦SEP_0001⟧ Par ⟦SEP_0002⟧ Idiomático ⟦SEP_0003⟧ Raro ⟦SEP_0004⟧"
 
 #: lessons/answers-key.md:320
 msgctxt "s-89d60f289603-0092"
 msgid "⟦SEP_0001⟧ COBOL ⟦SEP_0002⟧ 156 ⟦SEP_0003⟧ 170 ⟦SEP_0004⟧"
-msgstr ""
+msgstr "⟦SEP_0001⟧ COBOL ⟦SEP_0002⟧ 156 ⟦SEP_0003⟧ 170 ⟦SEP_0004⟧"
 
 #: lessons/answers-key.md:321
 msgctxt "s-9972ed0e75c9-0093"
 msgid "⟦SEP_0001⟧ Haskell ⟦SEP_0002⟧ 91 ⟦SEP_0003⟧ 108 ⟦SEP_0004⟧"
-msgstr ""
+msgstr "⟦SEP_0001⟧ Haskell ⟦SEP_0002⟧ 91 ⟦SEP_0003⟧ 108 ⟦SEP_0004⟧"
 
 #: lessons/answers-key.md:322
 msgctxt "s-11d8cdee2e76-0094"
 msgid "⟦SEP_0001⟧ Forth ⟦SEP_0002⟧ 97 ⟦SEP_0003⟧ 84 ⟦SEP_0004⟧"
-msgstr ""
+msgstr "⟦SEP_0001⟧ Forth ⟦SEP_0002⟧ 97 ⟦SEP_0003⟧ 84 ⟦SEP_0004⟧"
 
 #: lessons/answers-key.md:323
 msgctxt "s-b48071fc081d-0095"
 msgid "⟦SEP_0001⟧ APL ⟦SEP_0002⟧ 41 ⟦SEP_0003⟧ 47 ⟦SEP_0004⟧"
-msgstr ""
+msgstr "⟦SEP_0001⟧ APL ⟦SEP_0002⟧ 41 ⟦SEP_0003⟧ 47 ⟦SEP_0004⟧"
 
 #: lessons/answers-key.md:324
 msgctxt "s-11d546626b4d-0096"
 msgid "⟦SEP_0001⟧ Lisp ⟦SEP_0002⟧ 150 ⟦SEP_0003⟧ 110 ⟦SEP_0004⟧"
-msgstr ""
+msgstr "⟦SEP_0001⟧ Lisp ⟦SEP_0002⟧ 150 ⟦SEP_0003⟧ 110 ⟦SEP_0004⟧"
 
 #: lessons/answers-key.md:325
 msgctxt "s-2553f79c2b75-0097"
 msgid "⟦SEP_0001⟧ Tcl ⟦SEP_0002⟧ 138 ⟦SEP_0003⟧ 118 ⟦SEP_0004⟧"
-msgstr ""
+msgstr "⟦SEP_0001⟧ Tcl ⟦SEP_0002⟧ 138 ⟦SEP_0003⟧ 118 ⟦SEP_0004⟧"
 
 #: lessons/answers-key.md:326
 msgctxt "s-cdf4bc656727-0098"
 msgid "⟦SEP_0001⟧ AWK ⟦SEP_0002⟧ 85 ⟦SEP_0003⟧ 41 ⟦SEP_0004⟧"
-msgstr ""
+msgstr "⟦SEP_0001⟧ AWK ⟦SEP_0002⟧ 85 ⟦SEP_0003⟧ 41 ⟦SEP_0004⟧"
 
 #: lessons/answers-key.md:328
 msgctxt "s-2618fe2f5c44-0099"
 msgid "Sample comparison for Haskell: the idiomatic ⟦CODE_0001⟧ is one **pure function** (⟦CODE_0002⟧), so a unit test needs no database, and a debugger shows plain lists. The weird version cannot be tested without running its effects and the order of effects depends on the consumer; but it can do something the idiomatic one cannot: *write each row exactly when that card is first demanded*, with no loop or accumulator in the program. It is the right choice for a lazy streaming library or a teaching demo, not for application code."
-msgstr ""
+msgstr "Ejemplo de comparación para Haskell: ⟦CODE_0001⟧ idiomático es una **función pura** (⟦CODE_0002⟧). Por eso, una prueba unitaria no necesita una base de datos y un depurador muestra listas simples. La versión rara no se puede probar sin ejecutar sus efectos y el orden de los efectos depende del consumidor. Pero puede hacer algo que la idiomática no puede: *escribir cada fila justo cuando se solicita esa tarjeta por primera vez*, sin un bucle ni un acumulador en el programa. Es la elección adecuada para una biblioteca de flujo de datos con evaluación diferida o una demostración didáctica, no para código de aplicación."
 
 #: lessons/answers-key.md:330
 msgctxt "s-f31c1544dec8-0100"
 msgid "Forth is the instructive exception: the weird version is *shorter* because it deletes the ⟦CODE_0001⟧s and the word that updates them, trading them for stack discipline."
-msgstr ""
+msgstr "Forth es la excepción instructiva: la versión rara es *más corta* porque elimina las ⟦CODE_0001⟧ y la palabra que las actualiza, a cambio de disciplina de pila."
 
 #: lessons/answers-key.md:332
 msgctxt "s-96c52627a3bf-0101"

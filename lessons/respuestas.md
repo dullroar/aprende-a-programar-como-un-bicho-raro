@@ -315,7 +315,7 @@ El `mktemp` falso produce los dados. El recorrido lee el último carácter de ca
 
 Medido con el script de verificación (líneas que no son comentarios):
 
-| Pair | Idiomatic | Weird |
+| Par | Idiomático | Raro |
 | --- | --- | --- |
 | COBOL | 156 | 170 |
 | Haskell | 91 | 108 |
@@ -325,9 +325,9 @@ Medido con el script de verificación (líneas que no son comentarios):
 | Tcl | 138 | 118 |
 | AWK | 85 | 41 |
 
-Sample comparison for Haskell: the idiomatic `timecards` is one **pure function** (`span`), so a unit test needs no database, and a debugger shows plain lists. The weird version cannot be tested without running its effects and the order of effects depends on the consumer; but it can do something the idiomatic one cannot: *write each row exactly when that card is first demanded*, with no loop or accumulator in the program. It is the right choice for a lazy streaming library or a teaching demo, not for application code.
+Ejemplo de comparación para Haskell: `timecards` idiomático es una **función pura** (`span`). Por eso, una prueba unitaria no necesita una base de datos y un depurador muestra listas simples. La versión rara no se puede probar sin ejecutar sus efectos y el orden de los efectos depende del consumidor. Pero puede hacer algo que la idiomática no puede: *escribir cada fila justo cuando se solicita esa tarjeta por primera vez*, sin un bucle ni un acumulador en el programa. Es la elección adecuada para una biblioteca de flujo de datos con evaluación diferida o una demostración didáctica, no para código de aplicación.
 
-Forth is the instructive exception: the weird version is *shorter* because it deletes the `variable`s and the word that updates them, trading them for stack discipline.
+Forth es la excepción instructiva: la versión rara es *más corta* porque elimina las `variable` y la palabra que las actualiza, a cambio de disciplina de pila.
 
 Lisp, Tcl and AWK also come out shorter in the weird version, but mostly because the weird versions *do less*, not because the stunt is more compact: `lisp` works out the ISO week itself (calendar arithmetic, plus an optional date argument and a `card` struct) where `lisp-weird` just asks `date`; `tcl` has a namespace with separate `draw`, `save`, `row` and window procs where `tcl-weird` has two procs and some SQL; `awk` has six helper functions where `awk-weird` has none. Line count measures what each program carries, not how hard it is to understand (the weird entries put the difficulty into comments and READMEs). Counts include blank lines and exclude comment-only lines.
 

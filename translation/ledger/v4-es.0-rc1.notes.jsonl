@@ -2205,3 +2205,10 @@
 {"segment_id": "s-415f5fa29cf9-0012", "ts": "2026-11-21T21:04:32Z", "findings": [], "playful_note": "Conserva la pregunta exasperada y el encabezado fijo de las páginas de lenguajes."}
 {"segment_id": "s-299b7a6f9cbe-0029", "ts": "2026-11-22T00:37:11Z", "findings": [], "playful_note": "Conserva la amenaza cómica e hiperbólica."}
 {"segment_id": "s-5e3bcdfbf845-0035", "ts": "2026-11-22T00:38:50Z", "findings": [], "playful_note": "Conserva el reto juguetón al lector."}
+{"segment_id": "s-89d60f289603-0092", "ts": "2026-11-22T00:41:27Z", "findings": ["TRANSLATE: the reply is the English text unchanged"]}
+{"segment_id": "s-9972ed0e75c9-0093", "ts": "2026-11-22T00:41:27Z", "findings": ["TRANSLATE: the reply is the English text unchanged"]}
+{"segment_id": "s-11d8cdee2e76-0094", "ts": "2026-11-22T00:41:27Z", "findings": ["TRANSLATE: the reply is the English text unchanged"]}
+{"segment_id": "s-b48071fc081d-0095", "ts": "2026-11-22T00:41:27Z", "findings": ["TRANSLATE: the reply is the English text unchanged"]}
+{"segment_id": "s-11d546626b4d-0096", "ts": "2026-11-22T00:41:27Z", "findings": ["TRANSLATE: the reply is the English text unchanged"]}
+{"segment_id": "s-2553f79c2b75-0097", "ts": "2026-11-22T00:41:27Z", "findings": ["TRANSLATE: the reply is the English text unchanged"]}
+{"segment_id": "s-cdf4bc656727-0098", "ts": "2026-11-22T00:41:27Z", "findings": ["TRANSLATE: the reply is the English text unchanged"]}

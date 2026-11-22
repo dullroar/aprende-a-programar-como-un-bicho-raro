@@ -432,3 +432,10 @@
 {"id":"EXC-432","segment":"s-1967b7982af5-0035","invariant":"I21","reason":"Aggregate is preserved inside the protected code placeholder; the checker cannot see it in the masked target.","task":"P4-lessons-languages-2"}
 {"id":"EXC-433","segment":"s-0d7e13605312-0008","invariant":"I7","reason":"The source uses build as a verb meaning construct data; the glossary term compilación denotes a software build and does not apply.","task":"P4-lessons-languages-2"}
 {"id":"EXC-434","segment":"s-e6640de835ad-0000","invariant":"TRANSLATE","reason":"The heading is the literal executable name find, which must remain unchanged.","task":"P4-lessons-languages-2"}
+{"id":"EXC-435","segment":"s-89d60f289603-0092","invariant":"TRANSLATE","reason":"Table row contains only a language name and numeric counts; all must remain unchanged.","task":"P4-lessons-3"}
+{"id":"EXC-436","segment":"s-9972ed0e75c9-0093","invariant":"TRANSLATE","reason":"Table row contains only a language name and numeric counts; all must remain unchanged.","task":"P4-lessons-3"}
+{"id":"EXC-437","segment":"s-11d8cdee2e76-0094","invariant":"TRANSLATE","reason":"Table row contains only a language name and numeric counts; all must remain unchanged.","task":"P4-lessons-3"}
+{"id":"EXC-438","segment":"s-b48071fc081d-0095","invariant":"TRANSLATE","reason":"Table row contains only a language name and numeric counts; all must remain unchanged.","task":"P4-lessons-3"}
+{"id":"EXC-439","segment":"s-11d546626b4d-0096","invariant":"TRANSLATE","reason":"Table row contains only a language name and numeric counts; all must remain unchanged.","task":"P4-lessons-3"}
+{"id":"EXC-440","segment":"s-2553f79c2b75-0097","invariant":"TRANSLATE","reason":"Table row contains only a language name and numeric counts; all must remain unchanged.","task":"P4-lessons-3"}
+{"id":"EXC-441","segment":"s-cdf4bc656727-0098","invariant":"TRANSLATE","reason":"Table row contains only a language name and numeric counts; all must remain unchanged.","task":"P4-lessons-3"}
