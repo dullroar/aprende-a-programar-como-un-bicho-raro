@@ -8820,68 +8820,68 @@
     {
      "en": "sandbox/: running entries we haven't written",
      "en_id": "sandbox-running-entries-we-havent-written",
-     "es": "sandbox/: running entries we haven't written",
-     "es_id": "sandbox-running-entries-we-havent-written",
+     "es": "sandbox/: ejecutar entradas que no hemos escrito",
+     "es_id": "sandbox-ejecutar-entradas-que-no-hemos-escrito",
      "level": 1,
      "line": 1
     },
     {
      "en": "Running an entry to see what it does",
      "en_id": "running-an-entry-to-see-what-it-does",
-     "es": "Running an entry to see what it does",
-     "es_id": "running-an-entry-to-see-what-it-does",
+     "es": "Ejecuta una entrada para ver qué hace",
+     "es_id": "ejecuta-una-entrada-para-ver-qué-hace",
      "level": 2,
      "line": 19
     },
     {
      "en": "Why an entry's Dockerfile is safe to carry in a pull request",
      "en_id": "why-an-entrys-dockerfile-is-safe-to-carry-in-a-pull-request",
-     "es": "Why an entry's Dockerfile is safe to carry in a pull request",
-     "es_id": "why-an-entrys-dockerfile-is-safe-to-carry-in-a-pull-request",
+     "es": "Por qué el Dockerfile de una entrada es seguro para incluir en una demanda (pull)",
+     "es_id": "por-qué-el-dockerfile-de-una-entrada-es-seguro-para-incluir-en-una-demanda-pull",
      "level": 3,
      "line": 29
     },
     {
      "en": "Reviewing a pull request from someone we don't know",
      "en_id": "reviewing-a-pull-request-from-someone-we-dont-know",
-     "es": "Reviewing a pull request from someone we don't know",
-     "es_id": "reviewing-a-pull-request-from-someone-we-dont-know",
+     "es": "Cómo revisar una demanda (pull) de alguien a quien no conocemos",
+     "es_id": "cómo-revisar-una-demanda-pull-de-alguien-a-quien-no-conocemos",
      "level": 2,
      "line": 39
     },
     {
      "en": "What this does and does not prove",
      "en_id": "what-this-does-and-does-not-prove",
-     "es": "What this does and does not prove",
-     "es_id": "what-this-does-and-does-not-prove",
+     "es": "Qué prueba y qué no prueba esto",
+     "es_id": "qué-prueba-y-qué-no-prueba-esto",
      "level": 2,
      "line": 47
     },
     {
      "en": "Adding a toolchain for a new language",
      "en_id": "adding-a-toolchain-for-a-new-language",
-     "es": "Adding a toolchain for a new language",
-     "es_id": "adding-a-toolchain-for-a-new-language",
+     "es": "Cómo añadir una cadena de herramientas para un lenguaje nuevo",
+     "es_id": "cómo-añadir-una-cadena-de-herramientas-para-un-lenguaje-nuevo",
      "level": 2,
      "line": 57
     },
     {
      "en": "Repository settings that back this up",
      "en_id": "repository-settings-that-back-this-up",
-     "es": "Repository settings that back this up",
-     "es_id": "repository-settings-that-back-this-up",
+     "es": "Configuración del repositorio que respalda esto",
+     "es_id": "configuración-del-repositorio-que-respalda-esto",
      "level": 2,
      "line": 68
     }
    ],
    "map": {
-    "adding-a-toolchain-for-a-new-language": "adding-a-toolchain-for-a-new-language",
-    "repository-settings-that-back-this-up": "repository-settings-that-back-this-up",
-    "reviewing-a-pull-request-from-someone-we-dont-know": "reviewing-a-pull-request-from-someone-we-dont-know",
-    "running-an-entry-to-see-what-it-does": "running-an-entry-to-see-what-it-does",
-    "sandbox-running-entries-we-havent-written": "sandbox-running-entries-we-havent-written",
-    "what-this-does-and-does-not-prove": "what-this-does-and-does-not-prove",
-    "why-an-entrys-dockerfile-is-safe-to-carry-in-a-pull-request": "why-an-entrys-dockerfile-is-safe-to-carry-in-a-pull-request"
+    "adding-a-toolchain-for-a-new-language": "cómo-añadir-una-cadena-de-herramientas-para-un-lenguaje-nuevo",
+    "repository-settings-that-back-this-up": "configuración-del-repositorio-que-respalda-esto",
+    "reviewing-a-pull-request-from-someone-we-dont-know": "cómo-revisar-una-demanda-pull-de-alguien-a-quien-no-conocemos",
+    "running-an-entry-to-see-what-it-does": "ejecuta-una-entrada-para-ver-qué-hace",
+    "sandbox-running-entries-we-havent-written": "sandbox-ejecutar-entradas-que-no-hemos-escrito",
+    "what-this-does-and-does-not-prove": "qué-prueba-y-qué-no-prueba-esto",
+    "why-an-entrys-dockerfile-is-safe-to-carry-in-a-pull-request": "por-qué-el-dockerfile-de-una-entrada-es-seguro-para-incluir-en-una-demanda-pull"
    }
   },
   "sandbox/windows/profiles/README.md": {

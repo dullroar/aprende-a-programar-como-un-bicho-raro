@@ -322,3 +322,4 @@
 355 P4-root-1 done CHALLENGE.md (22 segments) and CONTRIBUTING.md (76) translated; 15 waived (pull request, build verb, Windows Sandbox, statement, plumbing); fast check passed.
 356 P4-root-2 done README.md (69), SANDBOX-SETUP.md (50), house-style.md (28) translated; 16 set/waived (build verb, Windows Sandbox product name, quoted style examples); fast check passed.
 359 P4-sandbox-1 done sandbox/README.md translated (43 segments); 17 set by hand, 10 waived (Windows Sandbox, build verb, sandbox/ folder); fast check passed.
+360 P4-sandbox-windows-profiles-1 done windows/profiles README translated (16 segments); 3 waived (Windows Sandbox, build verb); fast check passed.

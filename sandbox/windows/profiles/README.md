@@ -1,23 +1,23 @@
-# Windows Sandbox language profiles
+# Perfiles de lenguaje de Windows Sandbox
 
-Each file here teaches `run.ps1` and `inside.ps1` how to build and start one kind of entry. Like everything in `sandbox/`, they are maintainer-owned: an entry never ships one, it only ships its code, a README and optionally a `check.ps1`.
+Cada archivo de esta carpeta enseña a `run.ps1` y a `inside.ps1` cómo compilar e iniciar un tipo de entrada. Como todo lo que hay en `sandbox/`, son propiedad de los mantenedores: una entrada nunca incluye uno, solo incluye su código, un README y, si quiere, un `check.ps1`.
 
-A profile defines these functions (the first two run on the host, the rest inside the sandbox):
+Un perfil define estas funciones (las dos primeras se ejecutan en el anfitrión y las demás dentro del entorno aislado (*sandbox*)):
 
-| Function | Does |
+| Función | Qué hace |
 | --- | --- |
-| `Test-Entry $dir` | Host. Is this folder an entry of this kind? Used to pick the profile when `-Profile` isn't given. |
-| `Get-HostMaps` | Host. The host toolchain folders to map in **read-only**, as `@{ Host; Sandbox }`. Throws, pointing at `SANDBOX-SETUP.md`, if the toolchain isn't installed. |
-| `Initialize-Toolchain $work $home2 $onRunner` | Inside. Puts the mapped toolchain on PATH, points caches at writable scratch folders, forces offline operation. |
-| `Build-Entry $entry` | Inside. Builds the entry. Returns `$true` on success. |
-| `Start-Entry $entry $runArgs $out` | Inside. Starts the entry and returns its process. |
-| `Show-Outcome $entry $out` | Inside, optional. After the window has been shown and closed: prints or saves what the entry produced (database rows, the served page). |
+| `Test-Entry $dir` | Anfitrión. ¿Esta carpeta es una entrada de este tipo? Sirve para elegir el perfil cuando no se indica `-Profile`. |
+| `Get-HostMaps` | Anfitrión. Las carpetas de la cadena de herramientas del anfitrión que se asignan en modo de **solo lectura**, como `@{ Host; Sandbox }`. Lanza un error, que remite a `SANDBOX-SETUP.md`, si la cadena de herramientas no está instalada. |
+| `Initialize-Toolchain $work $home2 $onRunner` | Dentro. Pone la cadena de herramientas asignada en PATH, apunta las cachés a carpetas de trabajo con permiso de escritura y fuerza el funcionamiento sin conexión. |
+| `Build-Entry $entry` | Dentro. Compila la entrada. Devuelve `$true` si lo logra. |
+| `Start-Entry $entry $runArgs $out` | Dentro. Inicia la entrada y devuelve su proceso. |
+| `Show-Outcome $entry $out` | Dentro, opcional. Después de mostrar y cerrar la ventana: imprime o guarda lo que produjo la entrada (filas de la base de datos, la página servida). |
 
-| Profile | Picks entries with | Maps in read-only |
+| Perfil | Elige entradas con | Asigna en solo lectura |
 | --- | --- | --- |
-| `dotnet` | a `*.csproj` | the host .NET SDK and NuGet cache |
-| `python` | a `*.py` (Tk) | the host Python install |
-| `go` | a `go.mod` | the host Go toolchain and module cache |
-| `gradle` | a `build.gradle` (Java, Kotlin) | the host JDK and Gradle home |
+| `dotnet` | un `*.csproj` | el SDK de .NET y la caché de NuGet del anfitrión |
+| `python` | un `*.py` (Tk) | la instalación de Python del anfitrión |
+| `go` | un `go.mod` | la cadena de herramientas de Go y la caché de módulos del anfitrión |
+| `gradle` | un `build.gradle` (Java, Kotlin) | el JDK y el directorio de Gradle del anfitrión |
 
-To add a language, add a file here and nothing else. The host needs the matching toolchain installed; see [`SANDBOX-SETUP.md`](../../../SANDBOX-SETUP.md).
+Para añadir un lenguaje, añade un archivo aquí y nada más. El anfitrión necesita tener instalada la cadena de herramientas correspondiente; consulta [`SANDBOX-SETUP.md`](../../../SANDBOX-SETUP.md).

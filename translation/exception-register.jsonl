@@ -530,3 +530,6 @@
 {"id":"EXC-530","segment":"s-cc641b8e0523-0041","invariant":"I7","reason":"'external contributors' es texto literal de la interfaz de GitHub entre comillas","task":"P4-sandbox-1"}
 {"id":"EXC-531","segment":"s-4d74625c00bb-0000","invariant":"I7","reason":"'sandbox/' es el nombre de una carpeta (identificador)","task":"P4-sandbox-1"}
 {"id":"EXC-532","segment":"s-2287344b1a30-0001","invariant":"I7","reason":"'Windows Sandbox' es nombre de producto","task":"P4-sandbox-1"}
+{"id":"EXC-533","segment":"s-143f6e39cc4d-0000","invariant":"I7","reason":"'Windows Sandbox' es nombre de producto","task":"P4-sandbox-windows-profiles-1"}
+{"id":"EXC-534","segment":"s-f3a2755f4d2b-0001","invariant":"I7","reason":"'compilar' es el verbo build, no el sustantivo 'compilación'; 'Windows Sandbox' no aplica","task":"P4-sandbox-windows-profiles-1"}
+{"id":"EXC-535","segment":"s-1e366edfb1dc-0007","invariant":"I7","reason":"'Compila' es el verbo build, no el sustantivo 'compilación'","task":"P4-sandbox-windows-profiles-1"}

@@ -1,0 +1,88 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: sandbox/windows/profiles/README.md:1
+msgctxt "s-143f6e39cc4d-0000"
+msgid "Windows Sandbox language profiles"
+msgstr "Perfiles de lenguaje de Windows Sandbox"
+
+#: sandbox/windows/profiles/README.md:3
+msgctxt "s-f3a2755f4d2b-0001"
+msgid "Each file here teaches ⟦CODE_0001⟧ and ⟦CODE_0002⟧ how to build and start one kind of entry. Like everything in ⟦CODE_0003⟧, they are maintainer-owned: an entry never ships one, it only ships its code, a README and optionally a ⟦CODE_0004⟧."
+msgstr "Cada archivo de esta carpeta enseña a ⟦CODE_0001⟧ y a ⟦CODE_0002⟧ cómo compilar e iniciar un tipo de entrada. Como todo lo que hay en ⟦CODE_0003⟧, son propiedad de los mantenedores: una entrada nunca incluye uno, solo incluye su código, un README y, si quiere, un ⟦CODE_0004⟧."
+
+#: sandbox/windows/profiles/README.md:5
+msgctxt "s-862e8a2ac3f1-0002"
+msgid "A profile defines these functions (the first two run on the host, the rest inside the sandbox):"
+msgstr "Un perfil define estas funciones (las dos primeras se ejecutan en el anfitrión y las demás dentro del entorno aislado (*sandbox*)):"
+
+#: sandbox/windows/profiles/README.md:7
+msgctxt "s-5c92266f6c26-0003"
+msgid "⟦SEP_0001⟧ Function ⟦SEP_0002⟧ Does ⟦SEP_0003⟧"
+msgstr "⟦SEP_0001⟧ Función ⟦SEP_0002⟧ Qué hace ⟦SEP_0003⟧"
+
+#: sandbox/windows/profiles/README.md:9
+msgctxt "s-dcd367501bc5-0004"
+msgid "⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ Host. Is this folder an entry of this kind? Used to pick the profile when ⟦CODE_0002⟧ isn't given. ⟦SEP_0005⟧"
+msgstr "⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ Anfitrión. ¿Esta carpeta es una entrada de este tipo? Sirve para elegir el perfil cuando no se indica ⟦CODE_0002⟧. ⟦SEP_0005⟧"
+
+#: sandbox/windows/profiles/README.md:10
+msgctxt "s-e7beac972942-0005"
+msgid "⟦SEP_0004⟧ ⟦CODE_0001⟧ ⟦SEP_0005⟧ Host. The host toolchain folders to map in **read-only**, as ⟦CODE_0002⟧. Throws, pointing at ⟦CODE_0003⟧, if the toolchain isn't installed. ⟦SEP_0006⟧"
+msgstr "⟦SEP_0004⟧ ⟦CODE_0001⟧ ⟦SEP_0005⟧ Anfitrión. Las carpetas de la cadena de herramientas del anfitrión que se asignan en modo de **solo lectura**, como ⟦CODE_0002⟧. Lanza un error, que remite a ⟦CODE_0003⟧, si la cadena de herramientas no está instalada. ⟦SEP_0006⟧"
+
+#: sandbox/windows/profiles/README.md:11
+msgctxt "s-334225e36ce6-0006"
+msgid "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ Inside. Puts the mapped toolchain on PATH, points caches at writable scratch folders, forces offline operation. ⟦SEP_0004⟧"
+msgstr "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ Dentro. Pone la cadena de herramientas asignada en PATH, apunta las cachés a carpetas de trabajo con permiso de escritura y fuerza el funcionamiento sin conexión. ⟦SEP_0004⟧"
+
+#: sandbox/windows/profiles/README.md:12
+msgctxt "s-1e366edfb1dc-0007"
+msgid "⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ Inside. Builds the entry. Returns ⟦CODE_0002⟧ on success. ⟦SEP_0005⟧"
+msgstr "⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ Dentro. Compila la entrada. Devuelve ⟦CODE_0002⟧ si lo logra. ⟦SEP_0005⟧"
+
+#: sandbox/windows/profiles/README.md:13
+msgctxt "s-f8a3670fb9a4-0008"
+msgid "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ Inside. Starts the entry and returns its process. ⟦SEP_0004⟧"
+msgstr "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ Dentro. Inicia la entrada y devuelve su proceso. ⟦SEP_0004⟧"
+
+#: sandbox/windows/profiles/README.md:14
+msgctxt "s-f527614de1f1-0009"
+msgid "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ Inside, optional. After the window has been shown and closed: prints or saves what the entry produced (database rows, the served page). ⟦SEP_0004⟧"
+msgstr "⟦SEP_0002⟧ ⟦CODE_0001⟧ ⟦SEP_0003⟧ Dentro, opcional. Después de mostrar y cerrar la ventana: imprime o guarda lo que produjo la entrada (filas de la base de datos, la página servida). ⟦SEP_0004⟧"
+
+#: sandbox/windows/profiles/README.md:16
+msgctxt "s-87b7ee2e3eea-0010"
+msgid "⟦SEP_0001⟧ Profile ⟦SEP_0002⟧ Picks entries with ⟦SEP_0003⟧ Maps in read-only ⟦SEP_0004⟧"
+msgstr "⟦SEP_0001⟧ Perfil ⟦SEP_0002⟧ Elige entradas con ⟦SEP_0003⟧ Asigna en solo lectura ⟦SEP_0004⟧"
+
+#: sandbox/windows/profiles/README.md:18
+msgctxt "s-9d2604fa8db8-0011"
+msgid "⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ a ⟦CODE_0002⟧ ⟦SEP_0005⟧ the host .NET SDK and NuGet cache ⟦SEP_0006⟧"
+msgstr "⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ un ⟦CODE_0002⟧ ⟦SEP_0005⟧ el SDK de .NET y la caché de NuGet del anfitrión ⟦SEP_0006⟧"
+
+#: sandbox/windows/profiles/README.md:19
+msgctxt "s-f09300b62695-0012"
+msgid "⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ a ⟦CODE_0002⟧ (Tk) ⟦SEP_0005⟧ the host Python install ⟦SEP_0006⟧"
+msgstr "⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ un ⟦CODE_0002⟧ (Tk) ⟦SEP_0005⟧ la instalación de Python del anfitrión ⟦SEP_0006⟧"
+
+#: sandbox/windows/profiles/README.md:20
+msgctxt "s-1e20801d2fb0-0013"
+msgid "⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ a ⟦CODE_0002⟧ ⟦SEP_0005⟧ the host Go toolchain and module cache ⟦SEP_0006⟧"
+msgstr "⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ un ⟦CODE_0002⟧ ⟦SEP_0005⟧ la cadena de herramientas de Go y la caché de módulos del anfitrión ⟦SEP_0006⟧"
+
+#: sandbox/windows/profiles/README.md:21
+msgctxt "s-4fe39a6fa7ed-0014"
+msgid "⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ a ⟦CODE_0002⟧ (Java, Kotlin) ⟦SEP_0005⟧ the host JDK and Gradle home ⟦SEP_0006⟧"
+msgstr "⟦SEP_0003⟧ ⟦CODE_0001⟧ ⟦SEP_0004⟧ un ⟦CODE_0002⟧ (Java, Kotlin) ⟦SEP_0005⟧ el JDK y el directorio de Gradle del anfitrión ⟦SEP_0006⟧"
+
+#: sandbox/windows/profiles/README.md:23
+msgctxt "s-37e97925ae77-0015"
+msgid "To add a language, add a file here and nothing else. The host needs the matching toolchain installed; see [⟦CODE_0001⟧](⟦DEST_0002⟧)."
+msgstr "Para añadir un lenguaje, añade un archivo aquí y nada más. El anfitrión necesita tener instalada la cadena de herramientas correspondiente; consulta [⟦CODE_0001⟧](⟦DEST_0002⟧)."
