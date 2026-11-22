@@ -185,27 +185,27 @@ msgstr "Usos legítimos: m4 sigue siendo una buena herramienta para *generar* te
 #: lessons/languages/m4.md:74
 msgctxt "s-5e3bcdfbf845-0035"
 msgid "Now break it yourself"
-msgstr ""
+msgstr "Ahora rómpelo tú"
 
 #: lessons/languages/m4.md:76
 msgctxt "s-ae00177eba05-0036"
 msgid "See [exercises](⟦DEST_0001⟧)."
-msgstr ""
+msgstr "Consulta los [ejercicios](⟦DEST_0001⟧)."
 
 #: lessons/languages/m4.md:78
 msgctxt "s-12d0b77aba94-0037"
 msgid "Quirks"
-msgstr ""
+msgstr "Peculiaridades"
 
 #: lessons/languages/m4.md:80
 msgctxt "s-0f7e3849cd29-0038"
 msgid "**⟦CODE_0001⟧ with more than four arguments continues in groups of three.** Eight arguments does not mean \"four conditions\". Warnings said \"excess arguments\" before ⟦CODE_0002⟧ fixed it."
-msgstr ""
+msgstr "**⟦CODE_0001⟧ con más de cuatro argumentos continúa en grupos de tres.** Ocho argumentos no significan \"cuatro condiciones\". Las advertencias decían \"excess arguments\" antes de que ⟦CODE_0002⟧ lo corrigiera."
 
 #: lessons/languages/m4.md:81
 msgctxt "s-4c425ea025ee-0039"
 msgid "**⟦CODE_0001⟧ splits tokens.** ⟦CODE_0002⟧ keeps ⟦CODE_0003⟧ from gluing onto ⟦CODE_0004⟧ into one name."
-msgstr ""
+msgstr "**⟦CODE_0001⟧ separa tokens.** ⟦CODE_0002⟧ impide que ⟦CODE_0003⟧ se pegue a ⟦CODE_0004⟧ y forme un solo nombre."
 
 #: lessons/languages/m4.md:82
 msgctxt "s-42fd899e7264-0040"

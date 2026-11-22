@@ -5353,16 +5353,16 @@
     {
      "en": "Now break it yourself",
      "en_id": "now-break-it-yourself",
-     "es": "Now break it yourself",
-     "es_id": "now-break-it-yourself",
+     "es": "Ahora rómpelo tú",
+     "es_id": "ahora-rómpelo-tú",
      "level": 3,
      "line": 74
     },
     {
      "en": "Quirks",
      "en_id": "quirks",
-     "es": "Quirks",
-     "es_id": "quirks",
+     "es": "Peculiaridades",
+     "es_id": "peculiaridades",
      "level": 2,
      "line": 78
     },
@@ -5415,9 +5415,9 @@
     "how-each-program-runs": "how-each-program-runs",
     "how-the-hell-does-that-work": "cómo-demonios-funciona-eso",
     "m4": "m4",
-    "now-break-it-yourself": "now-break-it-yourself",
+    "now-break-it-yourself": "ahora-rómpelo-tú",
     "program-flow-of-m4": "program-flow-of-m4",
-    "quirks": "quirks",
+    "quirks": "peculiaridades",
     "under-what-circumstances-would-this-terrible-idea-become-reasonable": "under-what-circumstances-would-this-terrible-idea-become-reasonable",
     "weird-next-to-boring": "weird-next-to-boring",
     "what-did-we-just-learn": "qué-acabamos-de-aprender",
