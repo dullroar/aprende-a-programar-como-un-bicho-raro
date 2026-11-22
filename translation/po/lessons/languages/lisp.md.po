@@ -165,27 +165,27 @@ msgstr "**El límite está incorporado en el diseño.** Cinco clases manejan \"d
 #: lessons/languages/lisp.md:69
 msgctxt "s-3792aaea4a4e-0031"
 msgid "**Debuggers and tracers show a stack of generic-function calls**, not a loop, and a profiler attributes the time to methods nobody wrote by hand."
-msgstr ""
+msgstr "**Los depuradores y trazadores muestran una pila de llamadas a funciones genéricas**, no un bucle. Un perfilador atribuye el tiempo a métodos que nadie escribió a mano."
 
 #: lessons/languages/lisp.md:70
 msgctxt "s-a00377d6dcaf-0032"
 msgid "**SBCL only** as shipped: the ⟦CODE_0001⟧ functions are SBCL's, while the CLOS parts are standard."
-msgstr ""
+msgstr "**Solo SBCL** en la versión distribuida: las funciones ⟦CODE_0001⟧ son de SBCL, mientras que las partes de CLOS son estándar."
 
 #: lessons/languages/lisp.md:72
 msgctxt "s-d60bc86e59cb-0033"
 msgid "Legitimate uses: **⟦CODE_0001⟧/⟦CODE_0002⟧ combinations are real tools** for \"first handler that says yes wins\" (validation chains, plug-in hooks, event handling). The stunt is using the *class hierarchy itself* as the sequence."
-msgstr ""
+msgstr "Usos legítimos: **las combinaciones de ⟦CODE_0001⟧/⟦CODE_0002⟧ son herramientas reales** para \"gana el primer manejador que diga que sí\" (cadenas de validación, puntos de extensión y manejo de eventos). La pirueta es usar la *propia jerarquía de clases* como secuencia."
 
 #: lessons/languages/lisp.md:74
 msgctxt "s-5e3bcdfbf845-0034"
 msgid "Now break it yourself"
-msgstr ""
+msgstr "Ahora rómpelo tú"
 
 #: lessons/languages/lisp.md:76
 msgctxt "s-f2ff2d31aab5-0035"
 msgid "See [exercises](⟦DEST_0001⟧)."
-msgstr ""
+msgstr "Consulta los [ejercicios](⟦DEST_0001⟧)."
 
 #: lessons/languages/lisp.md:78
 msgctxt "s-12d0b77aba94-0036"

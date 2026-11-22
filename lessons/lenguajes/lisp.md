@@ -66,14 +66,14 @@ Etiquetas: la combinación de métodos `or`, `:around`, la sintaxis `#n=`, `defm
 
 - **El flujo de control es invisible.** Nada cerca de `punch` dice "esto es un bucle". Un mantenedor debe saber que el orden de definición de las clases determina el orden de ejecución. Insertar una clase en la cadena cambia el comportamiento sin tocar un método.
 - **El límite está incorporado en el diseño.** Cinco clases manejan "de 10 a 19 horas, detenerse con más de 40". Otras reglas necesitan una cadena más larga o más corta; la versión ordinaria no tiene ese límite. (Pruébalo en [B10](../exercises.md#b10-lisp-swap-the-method-combination-verified).)
-- **Debuggers and tracers show a stack of generic-function calls**, not a loop, and a profiler attributes the time to methods nobody wrote by hand.
-- **SBCL only** as shipped: the `sb-` functions are SBCL's, while the CLOS parts are standard.
+- **Los depuradores y trazadores muestran una pila de llamadas a funciones genéricas**, no un bucle. Un perfilador atribuye el tiempo a métodos que nadie escribió a mano.
+- **Solo SBCL** en la versión distribuida: las funciones `sb-` son de SBCL, mientras que las partes de CLOS son estándar.
 
-Legitimate uses: **`or`/`and` combinations are real tools** for "first handler that says yes wins" (validation chains, plug-in hooks, event handling). The stunt is using the *class hierarchy itself* as the sequence.
+Usos legítimos: **las combinaciones de `or`/`and` son herramientas reales** para "gana el primer manejador que diga que sí" (cadenas de validación, puntos de extensión y manejo de eventos). La pirueta es usar la *propia jerarquía de clases* como secuencia.
 
-### Now break it yourself
+### Ahora rómpelo tú
 
-See [exercises](../exercises.md#b10-lisp-swap-the-method-combination-verified).
+Consulta los [ejercicios](../exercises.md#b10-lisp-swap-the-method-combination-verified).
 
 ## Quirks
 
