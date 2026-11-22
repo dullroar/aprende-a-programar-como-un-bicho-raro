@@ -92,14 +92,14 @@ Todo el estado del programa es **una línea de texto**; cada paso es una sustitu
 - **Una regex de retroceso catastrófico mide el pulso**: el reloj es un patrón que tarda unos 50 ms por fotograma en fallar. (Depende de la máquina; por eso las tuberías y `check.sh` lo omiten.)
 - **Salir con 1 a propósito.** sed no tiene un resultado de coincidencia que abarque todo un programa, así que "devuelve falso" es el estado de salida del proceso (el envoltorio convierte 1 en 0).
 - **Solo GNU**: `T`, `Q`, `--debug`, `\x1b`, `\t` y los intervalos `-E` son extensiones de GNU.
-- **sed has a goto** (`b`, `t`), which Perl and PCRE do not, so this entry's loop structure is "a rewriting machine with a program counter, not a single match".
+- **sed tiene un goto** (`b`, `t`), que Perl y PCRE no tienen. Por eso, la estructura del bucle de esta entrada es "una máquina de reescritura con un contador de programa, no una sola coincidencia".
 
-The README has an eleven-step trace of one iteration, and `TRACE=1 ./timecards.sh` dumps the state line at each step. This is the best place in the repo to *watch* a computation happen.
+El README tiene una traza de once pasos de una iteración, y `TRACE=1 ./timecards.sh` muestra la línea de estado en cada paso. Este es el mejor lugar del repositorio para *observar* una computación en marcha.
 
-## What did we just learn?
+## ¿Qué acabamos de aprender?
 
-- **A regex engine is a general search machine** with state (captures), control (alternation, quantifiers, `(*COMMIT)`) and optional I/O hooks.
-- **Failure is information**, and different engines keep or discard it differently (Perl unwinds `local`, PCRE2's C state persists, .NET discards captures, pcre2grep's side effects are real database writes).
+- **Un motor de regex es una máquina de búsqueda general** con estado (capturas), control (alternancia, cuantificadores, `(*COMMIT)`) y puntos opcionales de entrada y salida.
+- **El fallo es información**, y cada motor la conserva o descarta de forma distinta. Perl deshace `local`, el estado en C de PCRE2 persiste, .NET descarta capturas y los efectos secundarios de pcre2grep son escrituras reales en la base de datos.
 - **String-rewriting systems are universal.** sed with no numbers does arithmetic, which is what a Markov algorithm is.
 
 ## Under what circumstances would this terrible idea become reasonable?

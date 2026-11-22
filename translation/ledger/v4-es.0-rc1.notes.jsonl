@@ -2292,3 +2292,4 @@
 {"segment_id": "s-415f5fa29cf9-0015", "ts": "2026-11-22T14:54:22Z", "findings": [], "playful_note": "Pregunta exasperada que anticipa la explicación del mecanismo."}
 {"segment_id": "s-eefc2df18b58-0024", "ts": "2026-11-22T14:56:05Z", "findings": ["REGISTER: playful segment H014 has status 'pending' in the humor register"], "playful_note": "Conserva la invitación a aprender y luego romper."}
 {"segment_id": "s-54b5664f5c87-0047", "ts": "2026-11-22T15:04:22Z", "findings": ["TRANSLATE: the reply is the English text unchanged"]}
+{"segment_id": "s-6e363a527649-0056", "ts": "2026-11-22T15:07:19Z", "findings": ["I3: digit token 11 appears 0 time(s) in the source, 1 in the target"]}

@@ -5695,8 +5695,8 @@
     {
      "en": "What did we just learn?",
      "en_id": "what-did-we-just-learn",
-     "es": "What did we just learn?",
-     "es_id": "what-did-we-just-learn",
+     "es": "¿Qué acabamos de aprender?",
+     "es_id": "qué-acabamos-de-aprender",
      "level": 2,
      "line": 99
     },
@@ -5792,7 +5792,7 @@
     "quirks": "quirks",
     "regular-expressions-five-engines-five-personalities": "expresiones-regulares-cinco-motores-cinco-personalidades",
     "under-what-circumstances-would-this-terrible-idea-become-reasonable": "under-what-circumstances-would-this-terrible-idea-become-reasonable",
-    "what-did-we-just-learn": "what-did-we-just-learn",
+    "what-did-we-just-learn": "qué-acabamos-de-aprender",
     "what-makes-each-engine-special": "qué-hace-especial-a-cada-motor"
    }
   },

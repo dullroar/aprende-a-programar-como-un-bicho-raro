@@ -285,27 +285,27 @@ msgstr "**Solo GNU**: ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE
 #: lessons/languages/regex.md:95
 msgctxt "s-07936c30d706-0055"
 msgid "**sed has a goto** (⟦CODE_0001⟧, ⟦CODE_0002⟧), which Perl and PCRE do not, so this entry's loop structure is \"a rewriting machine with a program counter, not a single match\"."
-msgstr ""
+msgstr "**sed tiene un goto** (⟦CODE_0001⟧, ⟦CODE_0002⟧), que Perl y PCRE no tienen. Por eso, la estructura del bucle de esta entrada es \"una máquina de reescritura con un contador de programa, no una sola coincidencia\"."
 
 #: lessons/languages/regex.md:97
 msgctxt "s-6e363a527649-0056"
 msgid "The README has an eleven-step trace of one iteration, and ⟦CODE_0001⟧ dumps the state line at each step. This is the best place in the repo to *watch* a computation happen."
-msgstr ""
+msgstr "El README tiene una traza de once pasos de una iteración, y ⟦CODE_0001⟧ muestra la línea de estado en cada paso. Este es el mejor lugar del repositorio para *observar* una computación en marcha."
 
 #: lessons/languages/regex.md:99
 msgctxt "s-d2bbf037de84-0057"
 msgid "What did we just learn?"
-msgstr ""
+msgstr "¿Qué acabamos de aprender?"
 
 #: lessons/languages/regex.md:101
 msgctxt "s-e61dc5e95f25-0058"
 msgid "**A regex engine is a general search machine** with state (captures), control (alternation, quantifiers, ⟦CODE_0001⟧) and optional I/O hooks."
-msgstr ""
+msgstr "**Un motor de regex es una máquina de búsqueda general** con estado (capturas), control (alternancia, cuantificadores, ⟦CODE_0001⟧) y puntos opcionales de entrada y salida."
 
 #: lessons/languages/regex.md:102
 msgctxt "s-7a4c636f3827-0059"
 msgid "**Failure is information**, and different engines keep or discard it differently (Perl unwinds ⟦CODE_0001⟧, PCRE2's C state persists, .NET discards captures, pcre2grep's side effects are real database writes)."
-msgstr ""
+msgstr "**El fallo es información**, y cada motor la conserva o descarta de forma distinta. Perl deshace ⟦CODE_0001⟧, el estado en C de PCRE2 persiste, .NET descarta capturas y los efectos secundarios de pcre2grep son escrituras reales en la base de datos."
 
 #: lessons/languages/regex.md:103
 msgctxt "s-4051449fb389-0060"
