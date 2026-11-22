@@ -185,27 +185,27 @@ msgstr "**La regla de parada** es la primera prueba: ⟦CODE_0001⟧ (el total +
 #: lessons/languages/make-cmake.md:80
 msgctxt "s-ec6704382cda-0035"
 msgid "**Order matters**: a failed ⟦CODE_0001⟧ clears every register, a successful one rewrites them, so the stop test goes first so that the *main* match's captures are the ones that survive."
-msgstr ""
+msgstr "**El orden importa**: una ⟦CODE_0001⟧ fallida borra todos los registros; una exitosa los reescribe. La prueba de parada va primero para conservar las capturas de la coincidencia *principal*."
 
 #: lessons/languages/make-cmake.md:82
 msgctxt "s-d2bbf037de84-0036"
 msgid "What did we just learn?"
-msgstr ""
+msgstr "¿Qué acabamos de aprender?"
 
 #: lessons/languages/make-cmake.md:84
 msgctxt "s-f4d65de2a65f-0037"
 msgid "**Scope and evaluation order are program state.** Variables you did not declare (⟦CODE_0001⟧) are written as a side effect of a condition."
-msgstr ""
+msgstr "**El ámbito y el orden de evaluación son estado del programa.** Las variables que no declaraste (⟦CODE_0001⟧) se escriben como efecto secundario de una condición."
 
 #: lessons/languages/make-cmake.md:85
 msgctxt "s-bc789205168f-0038"
 msgid "**A condition can be a statement.** Here evaluating the test *is* the instruction."
-msgstr ""
+msgstr "**Una condición puede ser una sentencia.** Aquí evaluar la prueba *es* la instrucción."
 
 #: lessons/languages/make-cmake.md:86
 msgctxt "s-076b87d1a1c8-0039"
 msgid "**Compare**: [Perl and PCRE2](⟦DEST_0001⟧) put the loop inside one regex match; CMake uses a regex *per pass* but lets the loop re-expand it. Same idea, different place."
-msgstr ""
+msgstr "**Compara**: [Perl y PCRE2](⟦DEST_0001⟧) colocan el bucle dentro de una coincidencia de expresión regular; CMake usa una expresión regular *por pasada*, pero deja que el bucle la vuelva a expandir. Misma idea, distinto lugar."
 
 #: lessons/languages/make-cmake.md:88
 msgctxt "s-e673c155dd4a-0040"

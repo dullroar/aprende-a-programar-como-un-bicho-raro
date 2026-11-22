@@ -77,13 +77,13 @@ El `MATCHES` `if()`/`while()` de CMake guarda sus grupos de captura en variables
 - **Estado** ([L28-32](../../src/cmake/timecards.cmake#L28-L32)): los números son secuencias de `x`; `CMAKE_MATCH_1` es el total, `_2` el dígito inspeccionado en la pasada anterior, `_3` el resto de la cinta de dígitos, `_4` el registro de tarjetas terminadas y `_5` las horas de la última tarjeta.
 - **Las horas de 10 a 19** provienen de una tabla *dentro de la cadena de texto* (`0:xxxxxxxxxx|1:xxxxxxxxxxx|...`) y de un patrón que inserta el dígito de la pasada anterior (`${CMAKE_MATCH_2}:`).
 - **La regla de parada** es la primera prueba: `NOT` (el total + la última tarjeta coincide con un literal de 41 `x`). Un total de exactamente 40 continúa.
-- **Order matters**: a failed `MATCHES` clears every register, a successful one rewrites them, so the stop test goes first so that the *main* match's captures are the ones that survive.
+- **El orden importa**: una `MATCHES` fallida borra todos los registros; una exitosa los reescribe. La prueba de parada va primero para conservar las capturas de la coincidencia *principal*.
 
-### What did we just learn?
+### ¿Qué acabamos de aprender?
 
-- **Scope and evaluation order are program state.** Variables you did not declare (`CMAKE_MATCH_n`) are written as a side effect of a condition.
-- **A condition can be a statement.** Here evaluating the test *is* the instruction.
-- **Compare**: [Perl and PCRE2](regex.md) put the loop inside one regex match; CMake uses a regex *per pass* but lets the loop re-expand it. Same idea, different place.
+- **El ámbito y el orden de evaluación son estado del programa.** Las variables que no declaraste (`CMAKE_MATCH_n`) se escriben como efecto secundario de una condición.
+- **Una condición puede ser una sentencia.** Aquí evaluar la prueba *es* la instrucción.
+- **Compara**: [Perl y PCRE2](regex.md) colocan el bucle dentro de una coincidencia de expresión regular; CMake usa una expresión regular *por pasada*, pero deja que el bucle la vuelva a expandir. Misma idea, distinto lugar.
 
 Tags: Setting `CMAKE_MATCH_n` on a match and expanding the `while()` condition on each pass are **guaranteed** by the documentation. Clearing all registers on a failed match is **implementation-permitted**, based on observation.
 
