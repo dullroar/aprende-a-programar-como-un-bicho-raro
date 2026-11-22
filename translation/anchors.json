@@ -4699,16 +4699,16 @@
     {
      "en": "Now break it yourself",
      "en_id": "now-break-it-yourself",
-     "es": "Now break it yourself",
-     "es_id": "now-break-it-yourself",
+     "es": "Ahora rómpelo tú",
+     "es_id": "ahora-rómpelo-tú",
      "level": 3,
      "line": 58
     },
     {
      "en": "Quirks",
      "en_id": "quirks",
-     "es": "Quirks",
-     "es_id": "quirks",
+     "es": "Peculiaridades",
+     "es_id": "peculiaridades",
      "level": 2,
      "line": 62
     },
@@ -4768,10 +4768,10 @@
     "forth": "forth",
     "how-each-program-runs": "how-each-program-runs",
     "how-the-hell-does-that-work": "cómo-demonios-funciona-eso",
-    "now-break-it-yourself": "now-break-it-yourself",
+    "now-break-it-yourself": "ahora-rómpelo-tú",
     "program-flow-of-forth": "program-flow-of-forth",
     "program-flow-of-forth-weird": "program-flow-of-forth-weird",
-    "quirks": "quirks",
+    "quirks": "peculiaridades",
     "the-parse-position-as-a-program-counter": "la-posición-de-análisis-sintáctico-como-contador-de-programa",
     "under-what-circumstances-would-this-terrible-idea-become-reasonable": "under-what-circumstances-would-this-terrible-idea-become-reasonable",
     "weird-next-to-boring": "weird-next-to-boring",

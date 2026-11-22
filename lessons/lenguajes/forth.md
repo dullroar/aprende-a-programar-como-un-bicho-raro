@@ -55,14 +55,14 @@ Etiquetas: los efectos de pila y las banderas son comportamiento **garantizado**
 
 Usos legítimos: intérpretes, depuradores y palabras de análisis sintáctico, donde la tarea es manipular el flujo de entrada de datos.
 
-### Now break it yourself
+### Ahora rómpelo tú
 
-See [exercises](../exercises.md#b3-forth-move-the-anchor-verified).
+Consulta los [ejercicios](../exercises.md#b3-forth-move-the-anchor-verified).
 
-## Quirks
+## Peculiaridades
 
-- **Control words only work inside definitions** in standard Forth. Typing `begin ... until` at the top level is an error, so `run` is a word. The weird version cheats the other way.
-- **`s"` strings can be temporary**: some interpreters return a buffer overwritten by the next one, so the category words are definitions.
+- **Las palabras de control solo funcionan dentro de definiciones** en Forth estándar. Escribir `begin ... until` en el nivel superior es un error, por eso `run` es una palabra. La versión rara hace trampa en el otro sentido.
+- **Las cadenas de texto `s"` pueden ser temporales**: algunos intérpretes devuelven un búfer que la siguiente sobrescribe, por eso las palabras de categoría son definiciones.
 - **`random` is `0..n-1`**, so `10 random 10 +` gives 10 to 19.
 - **`close-pipe` returns the exit status**; `close-sqlite` turns a non-zero status into an abort so a failed `sqlite3` is not ignored.
 - **Stack comments are the type system.** Nothing enforces `( n total -- n' total' )`; it is convention.

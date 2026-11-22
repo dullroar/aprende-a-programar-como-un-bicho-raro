@@ -155,27 +155,27 @@ msgstr "Usos legítimos: intérpretes, depuradores y palabras de análisis sint�
 #: lessons/languages/forth.md:58
 msgctxt "s-5e3bcdfbf845-0029"
 msgid "Now break it yourself"
-msgstr ""
+msgstr "Ahora rómpelo tú"
 
 #: lessons/languages/forth.md:60
 msgctxt "s-ce657b5f4930-0030"
 msgid "See [exercises](⟦DEST_0001⟧)."
-msgstr ""
+msgstr "Consulta los [ejercicios](⟦DEST_0001⟧)."
 
 #: lessons/languages/forth.md:62
 msgctxt "s-12d0b77aba94-0031"
 msgid "Quirks"
-msgstr ""
+msgstr "Peculiaridades"
 
 #: lessons/languages/forth.md:64
 msgctxt "s-53c595795f39-0032"
 msgid "**Control words only work inside definitions** in standard Forth. Typing ⟦CODE_0001⟧ at the top level is an error, so ⟦CODE_0002⟧ is a word. The weird version cheats the other way."
-msgstr ""
+msgstr "**Las palabras de control solo funcionan dentro de definiciones** en Forth estándar. Escribir ⟦CODE_0001⟧ en el nivel superior es un error, por eso ⟦CODE_0002⟧ es una palabra. La versión rara hace trampa en el otro sentido."
 
 #: lessons/languages/forth.md:65
 msgctxt "s-2f4ff240916b-0033"
 msgid "**⟦CODE_0001⟧ strings can be temporary**: some interpreters return a buffer overwritten by the next one, so the category words are definitions."
-msgstr ""
+msgstr "**Las cadenas de texto ⟦CODE_0001⟧ pueden ser temporales**: algunos intérpretes devuelven un búfer que la siguiente sobrescribe, por eso las palabras de categoría son definiciones."
 
 #: lessons/languages/forth.md:66
 msgctxt "s-2062846e4955-0034"

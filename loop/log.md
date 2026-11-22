@@ -246,3 +246,4 @@
 273 P4-lessons-languages-5 blocked invalid acceptance command failed twice; regex positions 0 to 4 accepted, corrected scoped gate and fast checks passed.
 274 NONE blocked queue has no eligible task; handoff records the two blockers.
 275 P4-lessons-languages-3 partial accepted and applied Forth positions 25 to 28; resume at 29; scoped and fast checks passed.
+276 P4-lessons-languages-3 partial accepted and applied Forth positions 29 to 33; resume at 34; scoped, fast and anchor checks passed.
