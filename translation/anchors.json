@@ -5977,8 +5977,8 @@
     {
      "en": "What makes Tcl special",
      "en_id": "what-makes-tcl-special",
-     "es": "What makes Tcl special",
-     "es_id": "what-makes-tcl-special",
+     "es": "Qué hace especial a Tcl",
+     "es_id": "qué-hace-especial-a-tcl",
      "level": 2,
      "line": 7
     },
@@ -6102,7 +6102,7 @@
     "under-what-circumstances-would-this-terrible-idea-become-reasonable": "under-what-circumstances-would-this-terrible-idea-become-reasonable",
     "weird-next-to-boring": "weird-next-to-boring",
     "what-did-we-just-learn": "what-did-we-just-learn",
-    "what-makes-tcl-special": "what-makes-tcl-special"
+    "what-makes-tcl-special": "qué-hace-especial-a-tcl"
    }
   },
   "lessons/patterns.md": {

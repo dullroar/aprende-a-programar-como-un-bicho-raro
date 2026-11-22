@@ -1,12 +1,12 @@
 # Tcl
 
-Entries: [`src/tcl`](../../src/tcl/README.md) (a `while` loop, dicts, an optional Tk window) and [`src/tcl-weird`](../../src/tcl-weird/README.md) (the program lives in SQLite).
+Entradas: [`src/tcl`](../../src/tcl/README.md) (un bucle `while`, diccionarios y una ventana Tk opcional) y [`src/tcl-weird`](../../src/tcl-weird/README.md) (el programa vive en SQLite).
 
-For an advanced reading path with traces and experiments, see the [Tcl study guide](../guias-de-estudio/lenguajes/tcl.md).
+Para una ruta de lectura avanzada con trazas y experimentos, consulta la [guía de estudio de Tcl](../guias-de-estudio/lenguajes/tcl.md).
 
-## What makes Tcl special
+## Qué hace especial a Tcl
 
-Tcl's rule is "everything is a command, and every command receives its arguments as strings". There is no keyword for `while`, `proc` or `if`: they are commands, and `{...}` is just a way to hand a command an unevaluated string. That makes the language tiny, and makes two features cheap that most languages treat as exotic: **rewriting how unknown commands are resolved** and **running a string as code in another scope**.
+La regla de Tcl es: "todo es un comando y cada comando recibe sus argumentos como cadenas de texto". No hay palabras clave para `while`, `proc` ni `if`: son comandos. `{...}` es solo una forma de entregar a un comando una cadena de texto sin evaluar. Esto hace que el lenguaje sea pequeño y que dos funciones sean baratas, aunque la mayoría de los lenguajes las considere exóticas: **reescribir cómo se resuelven los comandos desconocidos** y **ejecutar una cadena de texto como código en otro ámbito**.
 
 | Feature | Where | What it teaches |
 | --- | --- | --- |

@@ -1,0 +1,253 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: aprende-a-programar-como-un-bicho-raro\n"
+"Language: es-419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lessons/languages/tcl.md:1
+msgctxt "s-c4ca517fd660-0000"
+msgid "Tcl"
+msgstr "Tcl"
+
+#: lessons/languages/tcl.md:3
+msgctxt "s-f6da1322353a-0001"
+msgid "Entries: [⟦CODE_0001⟧](⟦DEST_0002⟧) (a ⟦CODE_0003⟧ loop, dicts, an optional Tk window) and [⟦CODE_0004⟧](⟦DEST_0005⟧) (the program lives in SQLite)."
+msgstr "Entradas: [⟦CODE_0001⟧](⟦DEST_0002⟧) (un bucle ⟦CODE_0003⟧, diccionarios y una ventana Tk opcional) y [⟦CODE_0004⟧](⟦DEST_0005⟧) (el programa vive en SQLite)."
+
+#: lessons/languages/tcl.md:5
+msgctxt "s-4262b844bc5a-0002"
+msgid "For an advanced reading path with traces and experiments, see the [Tcl study guide](⟦DEST_0001⟧)."
+msgstr "Para una ruta de lectura avanzada con trazas y experimentos, consulta la [guía de estudio de Tcl](⟦DEST_0001⟧)."
+
+#: lessons/languages/tcl.md:7
+msgctxt "s-e0b6410dfbf7-0003"
+msgid "What makes Tcl special"
+msgstr "Qué hace especial a Tcl"
+
+#: lessons/languages/tcl.md:9
+msgctxt "s-2e5573d8adb8-0004"
+msgid "Tcl's rule is \"everything is a command, and every command receives its arguments as strings\". There is no keyword for ⟦CODE_0001⟧, ⟦CODE_0002⟧ or ⟦CODE_0003⟧: they are commands, and ⟦CODE_0004⟧ is just a way to hand a command an unevaluated string. That makes the language tiny, and makes two features cheap that most languages treat as exotic: **rewriting how unknown commands are resolved** and **running a string as code in another scope**."
+msgstr "La regla de Tcl es: \"todo es un comando y cada comando recibe sus argumentos como cadenas de texto\". No hay palabras clave para ⟦CODE_0001⟧, ⟦CODE_0002⟧ ni ⟦CODE_0003⟧: son comandos. ⟦CODE_0004⟧ es solo una forma de entregar a un comando una cadena de texto sin evaluar. Esto hace que el lenguaje sea pequeño y que dos funciones sean baratas, aunque la mayoría de los lenguajes las considere exóticas: **reescribir cómo se resuelven los comandos desconocidos** y **ejecutar una cadena de texto como código en otro ámbito**."
+
+#: lessons/languages/tcl.md:11
+msgctxt "s-4edb797a890b-0005"
+msgid "⟦SEP_0001⟧ Feature ⟦SEP_0002⟧ Where ⟦SEP_0003⟧ What it teaches ⟦SEP_0004⟧"
+msgstr ""
+
+#: lessons/languages/tcl.md:13
+msgctxt "s-a52ac2c6db91-0006"
+msgid "⟦SEP_0006⟧ Braces defer evaluation ⟦SEP_0007⟧ [⟦CODE_0001⟧ L40](⟦DEST_0002⟧): ⟦CODE_0003⟧ ⟦SEP_0008⟧ The condition is a braced string, evaluated again every pass. Write ⟦CODE_0004⟧ and it is substituted once, and never changes. The same rule is why ⟦CODE_0005⟧ should always be braced. ⟦SEP_0009⟧"
+msgstr ""
+
+#: lessons/languages/tcl.md:14
+msgctxt "s-c55ed9ef95a5-0007"
+msgid "⟦SEP_0003⟧ Dictionaries are values ⟦SEP_0004⟧ [L44](⟦DEST_0001⟧): ⟦CODE_0002⟧ ⟦SEP_0005⟧ A card is a plain dict; no class is needed. ⟦SEP_0006⟧"
+msgstr ""
+
+#: lessons/languages/tcl.md:15
+msgctxt "s-aff7d30094a4-0008"
+msgid "⟦SEP_0004⟧ ⟦CODE_0001⟧ unpacks into variables ⟦SEP_0005⟧ [L86](⟦DEST_0002⟧): ⟦CODE_0003⟧ ⟦SEP_0006⟧ A dict's keys become local variables for a block. ⟦SEP_0007⟧"
+msgstr ""
+
+#: lessons/languages/tcl.md:16
+msgctxt "s-1e4929230211-0009"
+msgid "⟦SEP_0005⟧ ⟦CODE_0001⟧ binds Tcl variables as SQL parameters ⟦SEP_0006⟧ [L87-91](⟦DEST_0002⟧): ⟦CODE_0003⟧ ⟦SEP_0007⟧ The ⟦CODE_0004⟧ inside the braced SQL is not pasted in as text. SQLite receives it as a bound parameter, so quoting is never a problem. ⟦SEP_0008⟧"
+msgstr ""
+
+#: lessons/languages/tcl.md:17
+msgctxt "s-4d815c49aff8-0010"
+msgid "⟦SEP_0003⟧ ⟦CODE_0001⟧ closes the database ⟦SEP_0004⟧ [L77-95](⟦DEST_0002⟧) ⟦SEP_0005⟧ Cleanup survives an error. ⟦SEP_0006⟧"
+msgstr ""
+
+#: lessons/languages/tcl.md:18
+msgctxt "s-6f447078599a-0011"
+msgid "⟦SEP_0005⟧ Tk is a package, not a program ⟦SEP_0006⟧ [L110](⟦DEST_0001⟧): ⟦CODE_0002⟧, ⟦CODE_0003⟧ and ⟦CODE_0004⟧ ⟦SEP_0007⟧ A GUI is a few commands, and with Xvfb it can be tested headless. ⟦SEP_0008⟧"
+msgstr ""
+
+#: lessons/languages/tcl.md:19
+msgctxt "s-22da2c9b09c9-0012"
+msgid "⟦SEP_0004⟧ An entry-point guard ⟦SEP_0005⟧ [L170](⟦DEST_0001⟧): ⟦CODE_0002⟧ ⟦SEP_0006⟧ The file can be ⟦CODE_0003⟧d for testing without running. ⟦SEP_0007⟧"
+msgstr ""
+
+#: lessons/languages/tcl.md:21
+msgctxt "s-935ac14a127d-0013"
+msgid "SQLite as the program"
+msgstr ""
+
+#: lessons/languages/tcl.md:23
+msgctxt "s-cc9cfaabc50d-0014"
+msgid "Behold the monstrosity"
+msgstr ""
+
+#: lessons/languages/tcl.md:29
+msgctxt "s-f0c2f829e8fa-0015"
+msgid "Open [⟦CODE_0001⟧](⟦DEST_0002⟧). Exactly **two** procs are defined in Tcl, and neither deals a card. The code that does is *text in a database table*, and the loop is an SQL trigger."
+msgstr ""
+
+#: lessons/languages/tcl.md:31
+msgctxt "s-415f5fa29cf9-0016"
+msgid "How the hell does that work?"
+msgstr ""
+
+#: lessons/languages/tcl.md:33
+msgctxt "s-0b12f2d31494-0017"
+msgid "Three hooks make a program out of nothing."
+msgstr ""
+
+#: lessons/languages/tcl.md:35
+msgctxt "s-599e1a06e51a-0018"
+msgid "**Hook 1: SQL can call Tcl.** [⟦CODE_0001⟧](⟦DEST_0002⟧) registers an SQL function ⟦CODE_0003⟧ whose implementation is a Tcl proc that runs a command. From inside any SQL statement, ⟦CODE_0004⟧ runs the Tcl command ⟦CODE_0005⟧ and returns its result."
+msgstr ""
+
+#: lessons/languages/tcl.md:37
+msgctxt "s-236ade4aa777-0019"
+msgid "**Hook 2: ⟦CODE_0001⟧ is the library path.** When Tcl is asked to run a command that does not exist, it calls a command named ⟦CODE_0002⟧. The entry [renames and replaces it](⟦DEST_0003⟧): it looks the name up in a TEMP table ⟦CODE_0004⟧; if there is a row, it defines a proc from it with ⟦CODE_0005⟧ and retries. So ⟦CODE_0006⟧, ⟦CODE_0007⟧, ⟦CODE_0008⟧ and the rest are *never* written as Tcl source. The first call to ⟦CODE_0009⟧ finds no such command, asks ⟦CODE_0010⟧, which finds the row in SQLite, builds the proc and runs it. The program prints which procs came out of the database at the end:"
+msgstr ""
+
+#: lessons/languages/tcl.md:43
+msgctxt "s-d9037be5791c-0020"
+msgid "**Hook 3: the loop is a recursive trigger.** The [trigger](⟦DEST_0001⟧):"
+msgstr ""
+
+#: lessons/languages/tcl.md:57
+msgctxt "s-91bf3df25824-0021"
+msgid "Inserting a card fires the trigger, which prints the card (via ⟦CODE_0001⟧) and inserts the *next* one. That insert fires the trigger again. The ⟦CODE_0002⟧ is the stop rule: when it is false the ⟦CODE_0003⟧ inserts nothing, so no further trigger fires. [⟦CODE_0004⟧](⟦DEST_0005⟧) is required: SQLite's default is that a trigger does not fire itself. The one statement that starts everything is the ⟦CODE_0006⟧ of card 1."
+msgstr ""
+
+#: lessons/languages/tcl.md:59
+msgctxt "s-c6090793f296-0022"
+msgid "**The window is data too.** With ⟦CODE_0001⟧, a TEMP table ⟦CODE_0002⟧ holds eight Tk commands, run by ⟦CODE_0003⟧. ⟦CODE_0004⟧ evaluates each string at global level, where ⟦CODE_0005⟧ and ⟦CODE_0006⟧ must live. Each card's ⟦CODE_0007⟧ then adds a row to the tree view and updates the screen."
+msgstr ""
+
+#: lessons/languages/tcl.md:61
+msgctxt "s-d2bbf037de84-0023"
+msgid "What did we just learn?"
+msgstr ""
+
+#: lessons/languages/tcl.md:63
+msgctxt "s-11b0ce857f6b-0024"
+msgid "**Code and data are the same thing in Tcl.** A proc is created from two strings; the place the strings came from is up to you. Here it is a database row, so ⟦CODE_0001⟧ is a hot-patch."
+msgstr ""
+
+#: lessons/languages/tcl.md:64
+msgctxt "s-504df0913cf7-0025"
+msgid "**A database trigger is a control-flow construct.** It is an event handler that can cause the event it handles: that is recursion."
+msgstr ""
+
+#: lessons/languages/tcl.md:65
+msgctxt "s-0e1071b8618d-0026"
+msgid "**Every hook point is a loop opportunity.** SQLite lets you register functions and triggers; Tcl lets you intercept lookups. Either alone is a feature, together they are a runtime."
+msgstr ""
+
+#: lessons/languages/tcl.md:66
+msgctxt "s-d3bef4c4438c-0027"
+msgid "**Braces versus substitution** decides everything in Tcl. (Compare [Make's expansion time versus run time](⟦DEST_0001⟧) and [m4's quoting](⟦DEST_0002⟧).)"
+msgstr ""
+
+#: lessons/languages/tcl.md:68
+msgctxt "s-0190f10138ab-0028"
+msgid "Tags: ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧ and ⟦CODE_0006⟧ are **guaranteed** by Tcl 8.6. ⟦CODE_0007⟧ and ⟦CODE_0008⟧ variable binding belong to the sqlite3 Tcl package (**implementation-permitted**: the interface is stable but is not part of Tcl). Recursive triggers need ⟦CODE_0009⟧, a **guaranteed** SQLite feature when enabled. That each card's hours are drawn exactly once holds by construction: the hours are written into a one-row TEMP table and read from it twice, so the result does not depend on how often SQLite evaluates a function. (An earlier version used a subquery and relied on SQLite calling the function once per row, which is **accidentally exploited**: SQLite does not promise that for non-deterministic functions.)"
+msgstr ""
+
+#: lessons/languages/tcl.md:70
+msgctxt "s-299b7a6f9cbe-0029"
+msgid "Do this in production and you're fired"
+msgstr ""
+
+#: lessons/languages/tcl.md:72
+msgctxt "s-70f8dbc613ba-0030"
+msgid "**Your program is not in version control.** It is in a TEMP table that exists only for this connection. The ⟦CODE_0001⟧ file holds two procs and a string."
+msgstr ""
+
+#: lessons/languages/tcl.md:73
+msgctxt "s-7b0cb15d7f68-0031"
+msgid "**⟦CODE_0001⟧ is global.** Every misspelled command now takes a database lookup before the error. If the table is writable by someone else, so is your program."
+msgstr ""
+
+#: lessons/languages/tcl.md:74
+msgctxt "s-acdd3c954f6f-0032"
+msgid "**Triggers are invisible in stack traces**, and SQLite's recursion depth limit (⟦CODE_0001⟧, 1000 by default) is a hidden constraint."
+msgstr ""
+
+#: lessons/languages/tcl.md:75
+msgctxt "s-356ed4cd3a5d-0033"
+msgid "**Quoting is two levels deep:** the Tcl in the SQL in the Tcl. A stray brace breaks the outer string."
+msgstr ""
+
+#: lessons/languages/tcl.md:76
+msgctxt "s-69deafebd9dc-0034"
+msgid "**A value used twice must be drawn once.** The hours are used as the hours and inside the running total. The trigger stores them in the one-row TEMP table ⟦CODE_0001⟧ and reads them from it, and ⟦CODE_0002⟧ counts the calls of the ⟦CODE_0003⟧ procedure (one per card)."
+msgstr ""
+
+#: lessons/languages/tcl.md:77
+msgctxt "s-1cd851502a07-0035"
+msgid "**Tk quirk:** a ⟦CODE_0001⟧ that has loaded Tk does not exit when the script ends. The entry calls ⟦CODE_0002⟧ (a normal Tk program is waiting for events)."
+msgstr ""
+
+#: lessons/languages/tcl.md:79
+msgctxt "s-77f765b2a826-0036"
+msgid "Legitimate uses: **loading code on demand** (Tcl's own ⟦CODE_0001⟧ already calls ⟦CODE_0002⟧ to find a command's definition on disk), **SQL functions that call back into the host language** (a standard SQLite feature) and **keeping rules in a table** so they can change without a deploy. Tcl Starkits packed a whole application into one virtual-filesystem file for the same reason: code that travels with its data."
+msgstr ""
+
+#: lessons/languages/tcl.md:81
+msgctxt "s-5e3bcdfbf845-0037"
+msgid "Now break it yourself"
+msgstr ""
+
+#: lessons/languages/tcl.md:83
+msgctxt "s-9e60bd8ede17-0038"
+msgid "See [exercises](⟦DEST_0001⟧)."
+msgstr ""
+
+#: lessons/languages/tcl.md:85
+msgctxt "s-12d0b77aba94-0039"
+msgid "Quirks"
+msgstr ""
+
+#: lessons/languages/tcl.md:87
+msgctxt "s-cef7284ba1ff-0040"
+msgid "**Triggers reject a qualified table name in ⟦CODE_0001⟧.** Inside the trigger, ⟦CODE_0002⟧ is an error; the unqualified name is required, while the ⟦CODE_0003⟧ line does qualify, because a TEMP trigger watches a table in the main database."
+msgstr ""
+
+#: lessons/languages/tcl.md:88
+msgctxt "s-de2fa82519a1-0041"
+msgid "**⟦CODE_0001⟧ without braces is both slower and a code-injection hole.** The idiomatic entry braces every ⟦CODE_0002⟧."
+msgstr ""
+
+#: lessons/languages/tcl.md:89
+msgctxt "s-5fade735c22f-0042"
+msgid "**⟦CODE_0001⟧ writes back**: assignments to the unpacked variables update the dict."
+msgstr ""
+
+#: lessons/languages/tcl.md:90
+msgctxt "s-aa13b5d08bd1-0043"
+msgid "**⟦CODE_0001⟧ under WSL hangs Tk.** Tests use ⟦CODE_0002⟧; see ⟦CODE_0003⟧."
+msgstr ""
+
+#: lessons/languages/tcl.md:92
+msgctxt "s-a6b58da9d4cd-0044"
+msgid "Weird next to boring"
+msgstr ""
+
+#: lessons/languages/tcl.md:94
+msgctxt "s-73bbfd9bd9a8-0045"
+msgid "[⟦CODE_0001⟧](⟦DEST_0002⟧) is a namespaced ⟦CODE_0003⟧ with dicts and bound SQL parameters: tidy, testable, unit-testable (⟦CODE_0004⟧ is called 2,000 times in its check). [⟦CODE_0005⟧](⟦DEST_0006⟧) has the same output and none of those properties. The first is how you write Tcl; the second is what Tcl's \"everything is a string command\" *permits*. Compare [⟦CODE_0007⟧](⟦DEST_0008⟧), where effects hide inside a lazy list, and [CMake](⟦DEST_0009⟧), where a ⟦CODE_0010⟧ condition is the register machine."
+msgstr ""
+
+#: lessons/languages/tcl.md:96
+msgctxt "s-c08a852d0dbe-0046"
+msgid "Under what circumstances would this terrible idea become reasonable?"
+msgstr ""
+
+#: lessons/languages/tcl.md:98
+msgctxt "s-dc9d8002033e-0047"
+msgid "When your code genuinely belongs with your data: a rules engine where rules are rows, a game where scripts live in the save file, a tool that must patch behavior in a running system. Using a recursive trigger as a ⟦CODE_0001⟧ loop is a stunt; storing procs in a table is a design."
+msgstr ""
+
+#: lessons/languages/tcl.md:155
+msgctxt "s-ac0e260e97bf-0048"
+msgid "Computer science behind this page"
+msgstr ""
