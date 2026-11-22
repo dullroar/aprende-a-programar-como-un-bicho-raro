@@ -42,13 +42,13 @@ Etiquetas: el manual de GNU Make declara **garantizado** que se reconstruyan los
 ### Haz esto en producción y estás despedido
 
 - **Una ejecución que falla deja `.tc-*.mk` atrás**; el siguiente `make` se niega a iniciar (los trataría como tarjetas reales) hasta que se ejecute `make clean`.
-- **Timestamp granularity.** The first design rewrote one `.state.mk` and restarted once, then stopped: WSL's file timestamps were coarse enough that the rewrite looked unchanged. "Missing to present" is unambiguous; "modified" is not.
-- **UTC only**, because `/etc/localtime` is binary and Make cannot read it.
-- **Debugging** means reasoning about expansion phases, restarts and file state at once.
+- **Granularidad de las marcas de tiempo.** El primer diseño reescribió un `.state.mk` y se reinició una vez; luego se detuvo. Las marcas de tiempo de los archivos en WSL eran tan poco precisas que la reescritura parecía no cambiar nada. "De ausente a presente" no es ambiguo; "modificado" sí lo es.
+- **Solo UTC**, porque `/etc/localtime` es binario y Make no puede leerlo.
+- **Debugging** significa razonar a la vez sobre las fases de expansión, los reinicios y el estado de los archivos.
 
-Legitimate uses: generating includes (`-include $(DEPS)`) that cause a restart when regenerated is the *intended*, standard idiom for auto-dependencies. The weird version is that idiom run to a conclusion.
+Usos legítimos: generar archivos incluidos (`-include $(DEPS)`) que causan un reinicio cuando se regeneran es la forma estándar *prevista* para las dependencias automáticas. La versión rara lleva esa forma hasta sus últimas consecuencias.
 
-### Now break it yourself
+### Ahora rómpelo tú
 
 See [exercises](../exercises.md#b4-make-remove-the-no-op-and-override-the-clock-verified).
 

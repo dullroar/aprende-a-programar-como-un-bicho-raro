@@ -110,27 +110,27 @@ msgstr "**Una ejecución que falla deja ⟦CODE_0001⟧ atrás**; el siguiente �
 #: lessons/languages/make-cmake.md:45
 msgctxt "s-a2023b39ecf4-0020"
 msgid "**Timestamp granularity.** The first design rewrote one ⟦CODE_0001⟧ and restarted once, then stopped: WSL's file timestamps were coarse enough that the rewrite looked unchanged. \"Missing to present\" is unambiguous; \"modified\" is not."
-msgstr ""
+msgstr "**Granularidad de las marcas de tiempo.** El primer diseño reescribió un ⟦CODE_0001⟧ y se reinició una vez; luego se detuvo. Las marcas de tiempo de los archivos en WSL eran tan poco precisas que la reescritura parecía no cambiar nada. \"De ausente a presente\" no es ambiguo; \"modificado\" sí lo es."
 
 #: lessons/languages/make-cmake.md:46
 msgctxt "s-3609b7f79b6a-0021"
 msgid "**UTC only**, because ⟦CODE_0001⟧ is binary and Make cannot read it."
-msgstr ""
+msgstr "**Solo UTC**, porque ⟦CODE_0001⟧ es binario y Make no puede leerlo."
 
 #: lessons/languages/make-cmake.md:47
 msgctxt "s-50514259c62f-0022"
 msgid "**⟦DNT_0001⟧** means reasoning about expansion phases, restarts and file state at once."
-msgstr ""
+msgstr "**⟦DNT_0001⟧** significa razonar a la vez sobre las fases de expansión, los reinicios y el estado de los archivos."
 
 #: lessons/languages/make-cmake.md:49
 msgctxt "s-bade763c0ade-0023"
 msgid "Legitimate uses: generating includes (⟦CODE_0001⟧) that cause a restart when regenerated is the *intended*, standard idiom for auto-dependencies. The weird version is that idiom run to a conclusion."
-msgstr ""
+msgstr "Usos legítimos: generar archivos incluidos (⟦CODE_0001⟧) que causan un reinicio cuando se regeneran es la forma estándar *prevista* para las dependencias automáticas. La versión rara lleva esa forma hasta sus últimas consecuencias."
 
 #: lessons/languages/make-cmake.md:51
 msgctxt "s-5e3bcdfbf845-0024"
 msgid "Now break it yourself"
-msgstr ""
+msgstr "Ahora rómpelo tú"
 
 #: lessons/languages/make-cmake.md:53
 msgctxt "s-394810efccb2-0025"
