@@ -144,9 +144,9 @@ def catalog():
         lambda po: _english_accdescr(po))
     # d. a Spanish heading anchor is broken
     add("anchor-fragment-translated", "d", "a link into exercises.md gets a Spanish fragment that no heading has",
-        "anchors", FORTH, "I4", text_edit("exercises.md#running-things-safely", "exercises.md#ejecutar-cosas-de-forma-segura"))
+        "anchors", FORTH, "I4", text_edit("exercises.md#ejecutar-con-seguridad", "exercises.md#ejecutar-cosas-de-forma-segura"))
     add("anchor-fragment-dropped", "d", "a link into the English guide loses its fragment", "anchors", APL, "I4",
-        text_edit("introduccion.md#what-the-challenge-does", "introduccion.md#el-reto"))
+        text_edit("introduccion.md#qué-hace-el-reto", "introduccion.md#el-reto"))
     add("anchor-heading-renamed", "d", "a heading is renamed in the finished file only", "hand", FORTH, "I16",
         text_edit("## Traza una ejecución", "## Sigue una ejecución"))
     # e. an English phase letter survives (the step-7 repeat with W)
