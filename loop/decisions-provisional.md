@@ -113,3 +113,9 @@
 - Decision: P4-999 checks what its title says: every authored segment accepted or excepted (I16), frozen hashes match, no independent translation of generated blocks. After the relink and fix tasks P4-fix-9 to 12, those pass. The 18 remaining `verify --release` failures are links and diagrams in generated chapters (lessons/informatica/08 to 10, guide diagrams, book build) that P5-001 regenerates with `build.py --generate`; the full release run is the P5-004 gate.
 - Alternative: keep the whole release run as the P4 gate. That blocks P5-001, which produces the missing content, so the loop could never advance.
 - Cost to reverse: set P4-999 back to its old accept text; no content changes depend on it.
+
+## Iteration 378: generated blocks in Spanish files (approved by the user)
+
+- Decision: generated blocks hold the generator's Spanish output (BOOK_LANG=es). I13 and the checks that compare applied text with English skip them; `build.py --check` is the authority for generated blocks. Work item P5-000, then P5-001.
+- Alternative: keep generated blocks English by making the generator emit English in Spanish files. Rejected: the Spanish book would show English headings in those blocks.
+- Cost to reverse: revert the P5-000 commits; the generated files can be regenerated either way.
