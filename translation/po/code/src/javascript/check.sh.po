@@ -49,3 +49,23 @@ msgstr "# ---- 6. Errores y esquema."
 msgctxt "L113"
 msgid "# (a regular file where the data folder should be: mkdir fails at once. Not /proc: a recursive mkdir there spins in Node 24.)"
 msgstr "# (un archivo normal donde debería estar la carpeta de datos: mkdir falla de inmediato. No /proc: un mkdir recursivo allí se queda girando en Node 24.)"
+
+msgctxt "C13"
+msgid "rows() { grep -E $'^(Meetings|Coding|Debugging|Learning)\\t' <<<\"$1\" || true; }"
+msgstr "rows() { grep -E $'^(Reuniones|Programación|Depuración|Aprendizaje)\\t' <<<\"$1\" || true; }"
+
+msgctxt "C18"
+msgid "        BEGIN { split(\"Meetings Coding Debugging Learning Meetings\", want, \" \") }"
+msgstr "        BEGIN { split(\"Reuniones Programación Depuración Aprendizaje Reuniones\", want, \" \") }"
+
+msgctxt "C66"
+msgid "    awk -v r=\"$1\" 'BEGIN { split(\"Meetings Coding Debugging Learning Meetings\", cat, \" \")"
+msgstr "    awk -v r=\"$1\" 'BEGIN { split(\"Reuniones Programación Depuración Aprendizaje Reuniones\", cat, \" \")"
+
+msgctxt "C117"
+msgid "sqlite3 \"$db\" \"insert into demo_timecards values(1,'Coding',12,12,'u',2026,1,0)\" 2>/dev/null && fail \"db accepted a non-demo row\""
+msgstr "sqlite3 \"$db\" \"insert into demo_timecards values(1,'Programación',12,12,'u',2026,1,0)\" 2>/dev/null && fail \"db accepted a non-demo row\""
+
+msgctxt "C118"
+msgid "sqlite3 \"$db\" \"insert into demo_timecards values(1,'Coding',9,9,'u',2026,1,1)\" 2>/dev/null && fail \"db accepted 9 hours\""
+msgstr "sqlite3 \"$db\" \"insert into demo_timecards values(1,'Programación',9,9,'u',2026,1,1)\" 2>/dev/null && fail \"db accepted 9 hours\""

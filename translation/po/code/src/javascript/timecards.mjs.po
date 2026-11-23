@@ -73,3 +73,11 @@ msgstr "// El iterador saca una cantidad de horas al azar y guarda una tarjeta, 
 msgctxt "L71"
 msgid "// and reflection did the saving through a Mutex; here node:sqlite saves synchronously, so none of that is needed."
 msgstr "// y la reflexión guardaban a través de un Mutex; aquí node:sqlite guarda de forma síncrona, así que nada de eso hace falta."
+
+msgctxt "C24"
+msgid "        category TEXT NOT NULL CHECK (category IN ('Meetings','Coding','Debugging','Learning')),"
+msgstr "        category TEXT NOT NULL CHECK (category IN ('Reuniones','Programación','Depuración','Aprendizaje')),"
+
+msgctxt "C33"
+msgid "      categories: ['Meetings', 'Coding', 'Debugging', 'Learning'],"
+msgstr "      categories: ['Reuniones', 'Programación', 'Depuración', 'Aprendizaje'],"

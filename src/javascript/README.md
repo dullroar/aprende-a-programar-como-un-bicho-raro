@@ -24,9 +24,9 @@ Esta es la versión en Node.js del [reto original en C#](../ModernChallenge1/REA
 ```text
 $ node timecards.mjs
 # DEMO ONLY run 1
-Meetings	14	14	2026-W47	DEMO ONLY
-Coding	17	31	2026-W47	DEMO ONLY
-Debugging	15	46	2026-W47	DEMO ONLY
+Reuniones	14	14	2026-W47	DEMO ONLY
+Programación	17	31	2026-W47	DEMO ONLY
+Depuración	15	46	2026-W47	DEMO ONLY
 # committed total=46 entries=3 DEMO ONLY
 
 Total simulated hours: 46.0
@@ -118,7 +118,7 @@ El cuerpo es `{ /* Intentionally empty. */ }`. **Traza una tarjeta:** el inicial
 | Comportamiento | Original en C# | Esta entrada |
 |---|---|---|
 | Inicio | Abre la base de datos en el inicializador | Igual |
-| Cuándo se detiene el bucle | Cuando la suma pasa de 40, **o cuando se agotan las categorías**. El original de 2008 tenía cuatro nombres de categoría, así que cuatro tarjetas de exactamente 10 horas terminaban la ejecución con un total de 40, sin ninguna tarjeta de más de 40. `ModernChallenge1` y las adaptaciones a Java, Go, Kotlin, Python y Rust ahora tienen cinco nombres (`Meetings` se repite), como esta entrada | Solo cuando la suma pasa de 40. Las categorías se repiten (la quinta tarjeta es `Meetings`). Un total de exactamente 40 continúa. Es un caso de uno entre diez mil, y `check.sh` tiene una prueba para él: busca una semilla con la que cuatro tarjetas suman un total de 40 y comprueba que sigue una quinta tarjeta |
+| Cuándo se detiene el bucle | Cuando la suma pasa de 40, **o cuando se agotan las categorías**. El original de 2008 tenía cuatro nombres de categoría, así que cuatro tarjetas de exactamente 10 horas terminaban la ejecución con un total de 40, sin ninguna tarjeta de más de 40. `ModernChallenge1` y las adaptaciones a Java, Go, Kotlin, Python y Rust ahora tienen cinco nombres (`Reuniones` se repite), como esta entrada | Solo cuando la suma pasa de 40. Las categorías se repiten (la quinta tarjeta es `Reuniones`). Un total de exactamente 40 continúa. Es un caso de uno entre diez mil, y `check.sh` tiene una prueba para él: busca una semilla con la que cuatro tarjetas suman un total de 40 y comprueba que sigue una quinta tarjeta |
 | La tarjeta que cruza | Incluida | Incluida |
 | Campos registrados | `Id`, `Category`, `Hours` (un número de doble precisión), `UserId`, `Year`, `Week`, `IsDemo` | `category`, `hours` (un entero), `user_id`, `year`, `week`, `demo_only`, más `run_id` y `running_total` para las comprobaciones compartidas del libro |
 | Qué ves | Una ventana WPF: **DEMO ONLY - no real time system is involved**, **Total simulated hours: 46.0**, **Saved locally for the modernization exercise.**, que aparecen y desaparecen gradualmente | Los mismos tres textos en la terminal: primero el informe, siempre. En una terminal, el primer texto pulsa (primero en negrita y luego atenuado) |
