@@ -147,4 +147,5 @@
 - Code PO files live under translation/po/code/ (verify route() must not treat them as Markdown PO); COBOL comment lines stay at 72 bytes or fewer, and accents count 2 bytes.
 - Build-tooling families under lessons/ (not src/ entries) have no oracle runner: leave them English with an exception row and a NOT TESTED report instead of editing them.
 - Forth lines with both a `( stack )` comment and a trailing `\ ` comment (e.g. timecards.fs 40-42) give loc_apply two spans on one line and are refused; leave those comments English.
+- After `python3 tools/seedtask.py ID done`, run `git diff --stat` and check the changed queue line is the task's own ID (iter 463 marked S5-fam-regex-perl done instead of javascript-weird).
 - A negative fixture that edits the Spanish source cannot plant a bad code span: the PO restores code from the English, so plant it with `after=` on the finished file.
