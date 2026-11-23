@@ -1,6 +1,6 @@
 # Cómo enviar una entrada
 
-Se aceptan entradas de cualquier persona. Este repositorio es, a propósito, una colección de programas que ejecutan código donde no debería ejecutarse. Son motores de regex, analizadores sintácticos de marcado, herramientas de compilación y el puntero de análisis de un intérprete de texto. Por eso tratamos una entrada de alguien desconocido como no confiable. Sigue así hasta que la hemos leído, la hemos entendido y la hemos ejecutado en un lugar donde no pueda hacer daño a nadie. Nada de esto es personal: es la misma revisión seas quien seas.
+Se aceptan entradas de cualquier persona. Este repositorio es, a propósito, una colección de programas que ejecutan código donde no debería ejecutarse. Son motores de regex, analizadores sintácticos de marcado, herramientas de compilación y el puntero de análisis de un intérprete de texto. Por eso tratamos una entrada de alguien desconocido como no confiable. Sigue así hasta que la hemos leído, la hemos entendido y la hemos ejecutado en un lugar donde no pueda hacer daño a nadie. Nada de esto es personal: es la misma revisión seas quien seas. Si lo que quieres es ayudar con la traducción al español, lee primero [TRADUCTORIO.md](TRADUCTORIO.md).
 
 ## Qué puede contener una solicitud de cambios (*pull request*)
 
