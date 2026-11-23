@@ -361,3 +361,4 @@
 409 S2-004 done tools/oracle.py + 16 tests: semantic record, boundary properties, differential compare; planted mutants (>=40, late stop) rejected; NOT TESTED reported when docker or image absent; no real container run (docker denied); verify --fast OK.
 408 S2-003 done lock_code teaches scope file + localized-code.sha256 (unscoped/unmapped/unrecorded negatives, 10 new tests); I13 uses localized hashes; fixed book.css English-EPUB drift via book.es.css; scratch proof PASS; verify --fast OK.
 410 S2-005 done tools/part2_inv.py: I28 closure + stale-symbol sweep, I29 token diff, I30 unfenced tokens, I31 oracle verdicts, ledger-derived identifiers/dnt rules; 14 new tests each with a failing fixture; verify --fast OK.
+411 S2-006 done tools/part2_negative.py + 8 tests: 16/16 planned A.2 fixtures fail for their stated reason (each with a clean control); rows 10, 12, 14 DEFERRED (no detector yet), not counted; verify --fast OK.
