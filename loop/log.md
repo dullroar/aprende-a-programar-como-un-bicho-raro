@@ -367,4 +367,5 @@
 414 S3-002 done link_audit semantic anchor check + translation/line-anchors.jsonl (144 seeded records, basis seeded) + 9 tests (planted shift caught); wired into verify --release as "line anchors"; unmapped links are unverified; verify --fast OK.
 416 S4-001 done Forth left English: docker denied so oracle cannot run; EXC-539 and NOT TESTED report translation/part2/reports/S4-001-forth.md; no protected file changed.
 417 S4-002 done C#/LINQ/XAML left English: docker denied so oracle cannot run; EXC-540 and NOT TESTED report translation/part2/reports/S4-002-csharp.md; no protected file changed.
+418 S4-003 done COBOL and regex-pcre2 left English: docker denied so oracle cannot run; EXC-541 and NOT TESTED report translation/part2/reports/S4-003-cobol.md; no protected file changed.
 415 S3-003 done S3 gate (translation/part2/s3-gate.md): link-audit.md/.json written, 33 broken listed (29 in cs-source need a repair task), 578 unverified with reasons; test_link_audit 33 passed; verify --fast OK.
