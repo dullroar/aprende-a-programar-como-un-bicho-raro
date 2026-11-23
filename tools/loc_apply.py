@@ -187,9 +187,18 @@ def code_names(text: str, lang: str, spec: dict) -> set[str]:
 PIC_WIDTH = re.compile(r"(?i)(PIC(?:TURE)?\s+X\()\d+(\))")
 
 
+# Decision 11 follow-up (G1-001): the one regex edit a C entry may make. An ASCII letter class
+# `A-Za-z` (inside brackets) may gain exactly the accented letters of the four Spanish category words,
+# directly after `z`, so a check or regex that reads a category still matches "Programación".
+ACCENT_EXT = "ÁÉÍÓÚáéíóúñ"
+ASCII_CLASS = re.compile(r"\[[^\]\[\n]*A-Za-z(?!" + ACCENT_EXT + r")[^\]\[\n]*\]")
+WIDE_SEQ = "A-Za-z" + ACCENT_EXT
+
+
 def _category_norm(line: str) -> str:
-    """Line with every card-category word (either form) and every PIC X(n) width abstracted."""
-    return PIC_WIDTH.sub(r"\1#\2", cat.WORD_RE.sub("<CAT>", line))
+    """Line with every card-category word (either form), every PIC X(n) width and every widened
+    letter class abstracted."""
+    return PIC_WIDTH.sub(r"\1#\2", cat.WORD_RE.sub("<CAT>", line.replace(WIDE_SEQ, "A-Za-z")))
 
 
 def _split_comment(line: str, lang: str):
@@ -234,12 +243,19 @@ def _category_edit(text: str, rel: str, starts: list[int], e: dict, lang: str = 
         check_standalone("comment", nc, ci.SPECS.get(lang, ci.SPECS["data"]))
         old, new = old[:len(old) - len(oc)], new[:len(new) - len(nc)]
     if _category_norm(old) != _category_norm(new):
-        raise Refused("%s line %d: a C entry may change only the category words and PIC X(n) widths" % (rel, ln))
+        raise Refused("%s line %d: a C entry may change only the category words, PIC X(n) widths and A-Za-z letter classes" % (rel, ln))
     olds = [m.group(1) for m in cat.WORD_RE.finditer(old)]
     news = [m.group(1) for m in cat.WORD_RE.finditer(new)]
-    if not olds and not PIC_WIDTH.search(old):
-        raise Refused("%s line %d: a C entry needs a card-category word or a PIC X(n) clause in the English line"
+    widened = new.count(WIDE_SEQ)
+    if WIDE_SEQ in old:
+        raise Refused("%s line %d: the English line already holds a widened letter class; a C entry may only widen"
                       % (rel, ln))
+    if widened and (not ASCII_CLASS.search(old) or old.count("A-Za-z") != widened):
+        raise Refused("%s line %d: every letter class widened must be an ASCII A-Za-z class of the English line"
+                      % (rel, ln))
+    if not olds and not PIC_WIDTH.search(old) and not widened:
+        raise Refused("%s line %d: a C entry needs a card-category word, a PIC X(n) clause or an A-Za-z letter "
+                      "class in the English line" % (rel, ln))
     if [cat.EN_TO_ES.get(w, w) for w in olds] != news:
         raise Refused("%s line %d: category words must map one to one to the approved Spanish forms" % (rel, ln))
     if "\n" in new or "\r" in new:

@@ -270,6 +270,56 @@ class Negative(Base):
             la._category_edit(old + "\n", "f.fs", [0], {"line": 1, "msgid": old, "msgstr": new}, "forth")
         self.assertIn("only the category words", str(cm.exception))
 
+    def test_widen_letter_class_ok_and_idempotent(self):
+        old = "sed -E 's/^([A-Za-z]+) /\\1 /'"
+        new = "sed -E 's/^([A-Za-zÁÉÍÓÚáéíóúñ]+) /\\1 /'"
+        self.put("f.sh", old + "\n")
+        po = [C(1, old, new)]
+        _, out = self.run_apply("f.sh", po=po)
+        self.assertEqual(out, new + "\n")
+        self.put("f.sh", out)
+        o2, n2 = self.run_apply("f.sh", po=po)
+        self.assertEqual(o2, n2)
+
+    def test_widen_together_with_category_word(self):
+        old = "grep -E '^[A-Za-z]*Coding'"
+        new = "grep -E '^[A-Za-zÁÉÍÓÚáéíóúñ]*Programación'"
+        self.put("f.sh", old + "\n")
+        _, out = self.run_apply("f.sh", po=[C(1, old, new)])
+        self.assertEqual(out, new + "\n")
+
+    def test_widen_refuses_other_change_in_line(self):
+        old = "grep -E '^[A-Za-z]+ x'"
+        self.put("f.sh", old + "\n")
+        self.assertIn("only the category words", self.refused(
+            "f.sh", po=[C(1, old, "grep -E '^[A-Za-zÁÉÍÓÚáéíóúñ]* x'")]))
+
+    def test_widen_refuses_partial_or_foreign_letters(self):
+        old = "grep -E '^[A-Za-z]+ x'"
+        self.put("f.sh", old + "\n")
+        self.assertIn("only the category words", self.refused(
+            "f.sh", po=[C(1, old, "grep -E '^[A-Za-zÁÉÍ]+ x'")]))
+        self.assertIn("only the category words", self.refused(
+            "f.sh", po=[C(1, old, "grep -E '^[A-Za-zÁÉÍÓÚáéíóúñü]+ x'")]))
+
+    def test_widen_refuses_digit_class_and_loose_dot(self):
+        old = "grep -E '^[0-9]+ x'"
+        self.put("f.sh", old + "\n")
+        self.assertIn("only the category words", self.refused(
+            "f.sh", po=[C(1, old, "grep -E '^[0-9A-Za-zÁÉÍÓÚáéíóúñ]+ x'")]))
+
+    def test_widen_cannot_be_narrowed_back(self):
+        old = "grep -E '^[A-Za-zÁÉÍÓÚáéíóúñ]+ x'"
+        self.put("f.sh", old + "\n")
+        self.assertIn("already holds a widened", self.refused(
+            "f.sh", po=[C(1, old, "grep -E '^[A-Za-z]+ x'")]))
+
+    def test_widen_all_or_nothing(self):
+        old = "grep -E '[A-Za-z]+|[A-Za-z]*'"
+        self.put("f.sh", old + "\n")
+        self.assertIn("every letter class", self.refused(
+            "f.sh", po=[C(1, old, "grep -E '[A-Za-zÁÉÍÓÚáéíóúñ]+|[A-Za-z]*'")]))
+
     def test_bad_msgctxt(self):
         with self.assertRaises(la.Refused):
             la.parse_po('msgctxt "line 3"\nmsgid "a"\nmsgstr "b"\n')
