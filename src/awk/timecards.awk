@@ -4,7 +4,7 @@
 #
 # Run:  awk -f timecards.awk
 #
-# El desafío: suma tarjetas de 10 a 19 horas (Meetings, Coding, Debugging,
+# El reto: suma tarjetas de 10 a 19 horas (Meetings, Coding, Debugging,
 # Learning, una tras otra) hasta que el total acumulado pase de 40.  awk POSIX
 # portátil: corre sin cambios con gawk, mawk, el one-true-awk y el
 # awk de busybox.  No hay archivo de entrada, así que todo el programa es la
@@ -88,7 +88,7 @@ BEGIN {
 
     print "# DEMO ONLY run " run
 
-    # El desafío.  La prueba se hace antes de cada sorteo, así que la tarjeta que
+    # El reto.  La prueba se hace antes de cada sorteo, así que la tarjeta que
     # cruza la línea es la última que se suma.
     while (total <= LIMIT) {
         hours = random_hours()

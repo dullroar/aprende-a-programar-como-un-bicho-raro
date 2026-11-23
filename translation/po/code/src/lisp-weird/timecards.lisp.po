@@ -12,7 +12,7 @@ msgstr ";;;; XDG_DATA_HOME. Nada de esto toca un sistema real de registro de hor
 
 msgctxt "L6"
 msgid ";;;; The challenge: add cards of 10-19 hours until the running total passes 40."
-msgstr ";;;; El desafío: suma tarjetas de 10 a 19 horas hasta que el total acumulado pase de 40."
+msgstr ";;;; El reto: suma tarjetas de 10 a 19 horas hasta que el total acumulado pase de 40."
 
 msgctxt "L8"
 msgid ";;;; THE STUNT.  There is no loop and no conditional anywhere below the line"

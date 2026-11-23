@@ -432,3 +432,4 @@
 480 S6-003 done all 79 diagrams render (mermaid-cli 12.2.0); 191 Mermaid fences match English skeletons (node IDs untouched); only order differs in lessons/lenguajes/regex.md (generator sorts by localized entry name); comments-only localization, no label changes
 481 S6-004 done S6 gate PASS: verify --release OK (86 checks), part2_inv 0 findings; translation/part2/s6-gate.md
 482 S7-001 done native-voice sample read (root README, introduccion, tcl comments): 7 findings (36x "desafio" in code comments vs glossary "reto", "Program Flow" vs "Flujo del programa", link title "de la forma rara", regionalism "jala"); translation/reviews/part2-native-voice.md; fixes go to S7-002
+483 S7-002 done applied F1-F5, F7 (36 "desafío" to "reto" in 27 src files via PO + loc_apply from English baseline, oracle PASS x18, localized lock rewritten; README link title, Program Flow, jala, recorre en ciclo); F6 deferred (decisions-provisional)

@@ -20,7 +20,7 @@ msgstr "      * Ejecuta:  cobc -xj timecards.cob"
 
 msgctxt "L7"
 msgid "      * The challenge: add 10-19 hour cards (Meetings, Coding,"
-msgstr "      * El desafío: suma tarjetas de 10-19 horas (Meetings, Coding,"
+msgstr "      * El reto: suma tarjetas de 10-19 horas (Meetings, Coding,"
 
 msgctxt "L8"
 msgid "      * Debugging, Learning, round and round) until the running total"
@@ -124,7 +124,7 @@ msgstr "      * ---- archivos e intérprete de comandos ----------------------"
 
 msgctxt "L92"
 msgid "      * ---- the whole challenge --------------------------------------"
-msgstr "      * ---- todo el desafío -----------------------------------------"
+msgstr "      * ---- todo el reto -----------------------------------------"
 
 msgctxt "L103"
 msgid "      * One card: pick the category, draw the hours, keep the totals,"

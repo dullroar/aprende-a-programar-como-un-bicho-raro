@@ -4,7 +4,7 @@ msgstr ""
 
 msgctxt "L2"
 msgid "# Checks the rules of the challenge for the Common Lisp entry. Uses a throwaway data dir."
-msgstr "# Comprueba las reglas del desafío para la entrada de Common Lisp. Usa un directorio de datos desechable."
+msgstr "# Comprueba las reglas del reto para la entrada de Common Lisp. Usa un directorio de datos desechable."
 
 msgctxt "L3"
 msgid "# Set SBCL=/path/to/sbcl if it is not on your PATH."
@@ -12,7 +12,7 @@ msgstr "# Define SBCL=/ruta/a/sbcl si no está en tu PATH."
 
 msgctxt "L11"
 msgid "# 1. Static: the demo disclaimer is there, nothing touches a network, the challenge is the one LOOP in draw-cards,"
-msgstr "# 1. Estático: está el aviso de demostración, nada toca una red, el desafío es el único LOOP de draw-cards,"
+msgstr "# 1. Estático: está el aviso de demostración, nada toca una red, el reto es el único LOOP de draw-cards,"
 
 msgctxt "L12"
 msgid "#    and the file compiles with no warnings or style warnings."

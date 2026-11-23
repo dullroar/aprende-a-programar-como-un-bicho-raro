@@ -4,7 +4,7 @@ msgstr ""
 
 msgctxt "L2"
 msgid "# Checks the rules of the challenge for the GNU find entry. Uses throwaway data, scratch and shim dirs."
-msgstr "# Comprueba las reglas del desafío para la entrada GNU find. Usa datos desechables y directorios temporales y de sustitución."
+msgstr "# Comprueba las reglas del reto para la entrada GNU find. Usa datos desechables y directorios temporales y de sustitución."
 
 msgctxt "L3"
 msgid "# Needs GNU find (the line uses -fprintf, %d, %T, -regex, -D and -O). It runs the entry at every"

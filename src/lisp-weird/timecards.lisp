@@ -3,7 +3,7 @@
 ;;;;
 ;;;; Run:  sbcl --script timecards.lisp
 ;;;;
-;;;; El desafío: suma tarjetas de 10 a 19 horas hasta que el total acumulado pase de 40.
+;;;; El reto: suma tarjetas de 10 a 19 horas hasta que el total acumulado pase de 40.
 ;;;;
 ;;;; LA PROEZA.  No hay ningún bucle ni condicional en ninguna parte por debajo de la línea
 ;;;; marcada RUN TIME.  Cada tarjeta es un MÉTODO de la función genérica PUNCH, y

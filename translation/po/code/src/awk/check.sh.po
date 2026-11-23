@@ -4,7 +4,7 @@ msgstr ""
 
 msgctxt "L2"
 msgid "# Checks the rules of the challenge for the AWK entry. Uses a throwaway data dir."
-msgstr "# Revisa las reglas del desafío para la entrada AWK. Usa una carpeta de datos desechable."
+msgstr "# Revisa las reglas del reto para la entrada AWK. Usa una carpeta de datos desechable."
 
 msgctxt "L3"
 msgid "# The program is portable awk, so with no AWK set this runs the whole check once under every awk it"
@@ -20,7 +20,7 @@ msgstr "#   AWKS='gawk|mawk' ./check.sh        (nombres separados por |)    o   
 
 msgctxt "L30"
 msgid "# 1. Static: the disclaimer is there, nothing touches a network, and the challenge is one while loop on the limit."
-msgstr "# 1. Estático: el aviso está ahí, nada toca una red, y el desafío es un solo bucle while sobre el límite."
+msgstr "# 1. Estático: el aviso está ahí, nada toca una red, y el reto es un solo bucle while sobre el límite."
 
 msgctxt "L34"
 msgid "# gawk's own linter, in POSIX mode: no gawk extensions, no shadowed or uninitialized variables."

@@ -3,7 +3,7 @@ dnl XDG_DATA_HOME. Nada de aquí toca un sistema real de registro de horas.
 dnl
 dnl Ejecuta:  m4 timecards.m4
 dnl
-dnl El desafío: sumar tarjetas de 10 a 19 horas (Meetings, Coding, Debugging,
+dnl El reto: sumar tarjetas de 10 a 19 horas (Meetings, Coding, Debugging,
 dnl Learning, en ronda) hasta que el total acumulado pase de 40.  m4 no tiene
 dnl instrucción de bucle ni variables: tiene macros, y lo que una macro expande
 dnl se vuelve a escanear.  Así que el bucle es una macro que termina llamándose a sí misma,
@@ -68,7 +68,7 @@ CREATE TABLE IF NOT EXISTS demo_timecards(id INTEGER PRIMARY KEY,run_id TEXT,cat
 ])
 define([tc_append], [define([tc_sql], defn([tc_sql])[$1])])
 
-dnl ---- 5. El desafío ------------------------------------------------------
+dnl ---- 5. El reto ------------------------------------------------------
 dnl Una tarjeta: saca, suma, recuerda el INSERT, imprime la fila, y luego para
 dnl o se expande otra vez.  El texto que devuelve una macro se reescanea,
 dnl así que la última palabra de tc_card es lo que la vuelve un bucle.

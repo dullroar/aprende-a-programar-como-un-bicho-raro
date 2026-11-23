@@ -4,7 +4,7 @@ msgstr ""
 
 msgctxt "L2"
 msgid "# Checks the rules of the regex challenge for the Perl track. Uses a throwaway data dir."
-msgstr "# Comprueba las reglas del desafío de regex para la pista de Perl. Usa un directorio de datos desechable."
+msgstr "# Comprueba las reglas del reto de regex para la pista de Perl. Usa un directorio de datos desechable."
 
 msgctxt "L9"
 msgid "# 1. The file is one statement (everything but comments, blank lines and `use` lines is a single line),"

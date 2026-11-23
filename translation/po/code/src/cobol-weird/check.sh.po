@@ -4,7 +4,7 @@ msgstr ""
 
 msgctxt "L2"
 msgid "# Checks the rules of the challenge for the weird COBOL entry. Uses a throwaway data dir."
-msgstr "# Revisa las reglas del desafío para la entrada COBOL rara. Usa una carpeta de datos desechable."
+msgstr "# Revisa las reglas del reto para la entrada COBOL rara. Usa una carpeta de datos desechable."
 
 msgctxt "L10"
 msgid "# 1. Static: the demo disclaimer, nothing network-looking, honest fixed format, and the constraint is real. With"

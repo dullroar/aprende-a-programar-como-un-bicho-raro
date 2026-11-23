@@ -16,7 +16,7 @@ msgstr "\\ Ejecuta:  gforth timecards.fs"
 
 msgctxt "L6"
 msgid "\\ The challenge: add 10-19 hour cards (Meetings, Coding, Debugging, Learning,"
-msgstr "\\ El desafío: suma tarjetas de 10 a 19 horas (Meetings, Coding, Debugging, Learning,"
+msgstr "\\ El reto: suma tarjetas de 10 a 19 horas (Meetings, Coding, Debugging, Learning,"
 
 msgctxt "L7"
 msgid "\\ round and round) until the running total passes 40.  In Forth that is one"
@@ -124,7 +124,7 @@ msgstr "\\ .insert consume las horas que quedan en la pila"
 
 msgctxt "L107"
 msgid "\\ The whole challenge.  BEGIN ... UNTIL repeats until the flag is true."
-msgstr "\\ Todo el desafío.  BEGIN ... UNTIL repite hasta que la bandera sea verdadera."
+msgstr "\\ Todo el reto.  BEGIN ... UNTIL repite hasta que la bandera sea verdadera."
 
 msgctxt "L110"
 msgid "\\ ---------------------------------------------------------------- main"

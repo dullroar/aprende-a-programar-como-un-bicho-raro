@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Comprueba las reglas del desafío para la entrada "rara" de Common Lisp. Usa un directorio de datos desechable.
+# Comprueba las reglas del reto para la entrada "rara" de Common Lisp. Usa un directorio de datos desechable.
 # Define SBCL=/path/to/sbcl si no está en tu PATH.
 set -euo pipefail
 cd "$(dirname "$0")"

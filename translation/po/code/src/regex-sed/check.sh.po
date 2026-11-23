@@ -4,7 +4,7 @@ msgstr ""
 
 msgctxt "L2"
 msgid "# Checks the rules of the regex challenge for the sed track. Uses a throwaway data dir."
-msgstr "# Comprueba las reglas del desafío de expresiones regulares para la pista de sed. Usa un directorio de datos desechable."
+msgstr "# Comprueba las reglas del reto de expresiones regulares para la pista de sed. Usa un directorio de datos desechable."
 
 msgctxt "L10"
 msgid "# 1. The host runs exactly one sed command and has no loops or ifs."

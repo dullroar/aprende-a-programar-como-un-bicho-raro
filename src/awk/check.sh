@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Revisa las reglas del desafío para la entrada AWK. Usa una carpeta de datos desechable.
+# Revisa las reglas del reto para la entrada AWK. Usa una carpeta de datos desechable.
 # El programa es awk portátil, así que sin AWK definido esto corre la revisión completa una vez con cada awk que
 # encuentre (gawk, mawk, original-awk = el one-true-awk, awk de busybox). Elige el tuyo con
 #   AWKS='gawk|mawk' ./check.sh        (nombres separados por |)    o    AWK=gawk ./check.sh
@@ -27,7 +27,7 @@ export XDG_DATA_HOME=$data
 db=$data/Awk/demo-timecards.db
 run() { $AWK -f timecards.awk; }
 
-# 1. Estático: el aviso está ahí, nada toca una red, y el desafío es un solo bucle while sobre el límite.
+# 1. Estático: el aviso está ahí, nada toca una red, y el reto es un solo bucle while sobre el límite.
 grep -q 'DEMO ONLY' timecards.awk || { echo "FAIL: no DEMO ONLY marker in timecards.awk"; exit 1; }
 if grep -Eqi 'http|socket|curl|wget|/inet/' timecards.awk; then echo "FAIL: network-looking text in timecards.awk"; exit 1; fi
 grep -q 'while (total <= LIMIT) {' timecards.awk || { echo "FAIL: no while loop on the limit"; exit 1; }

@@ -4,7 +4,7 @@ msgstr ""
 
 msgctxt "L2"
 msgid "# Checks the rules of the challenge for the Common Lisp \"weird\" entry. Uses a throwaway data dir."
-msgstr "# Comprueba las reglas del desafío para la entrada \"rara\" de Common Lisp. Usa un directorio de datos desechable."
+msgstr "# Comprueba las reglas del reto para la entrada \"rara\" de Common Lisp. Usa un directorio de datos desechable."
 
 msgctxt "L3"
 msgid "# Set SBCL=/path/to/sbcl if it is not on your PATH."

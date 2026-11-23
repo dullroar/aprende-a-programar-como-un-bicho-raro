@@ -16,7 +16,7 @@ msgstr ";;;; Ejecútalo así:  sbcl --script timecards.lisp [YYYY-MM-DD]"
 
 msgctxt "L6"
 msgid ";;;; The challenge: add cards of 10-19 hours (Meetings, Coding, Debugging,"
-msgstr ";;;; El desafío: suma tarjetas de 10 a 19 horas (Meetings, Coding, Debugging,"
+msgstr ";;;; El reto: suma tarjetas de 10 a 19 horas (Meetings, Coding, Debugging,"
 
 msgctxt "L7"
 msgid ";;;; Learning, round and round) until the running total passes 40.  In Common"

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Revisa las reglas del desafío para la entrada m4. Usa una carpeta de datos desechable.
+# Revisa las reglas del reto para la entrada m4. Usa una carpeta de datos desechable.
 # Define M4=/ruta/a/m4 si no está en tu PATH. Necesita GNU m4.
 set -euo pipefail
 cd "$(dirname "$0")"

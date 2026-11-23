@@ -4,7 +4,7 @@ msgstr ""
 
 msgctxt "L2"
 msgid "# Checks the rules of the challenge for the Ex entry. Ex owns the whole computation, the launcher owns none of it,"
-msgstr "# Comprueba las reglas del desafío para la entrada de Ex. Ex se encarga de todo el cálculo, el lanzador de ninguno,"
+msgstr "# Comprueba las reglas del reto para la entrada de Ex. Ex se encarga de todo el cálculo, el lanzador de ninguno,"
 
 msgctxt "L3"
 msgid "# and the program has no global command, no regular-expression test and no error exit: the loop is a register that"

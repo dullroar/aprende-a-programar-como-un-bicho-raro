@@ -4,7 +4,7 @@ msgstr ""
 
 msgctxt "L2"
 msgid "# Checks the rules of the challenge for the Tcl entry. Uses a throwaway data dir."
-msgstr "# Comprueba las reglas del desafío para la entrada de Tcl. Usa una carpeta de datos desechable."
+msgstr "# Comprueba las reglas del reto para la entrada de Tcl. Usa una carpeta de datos desechable."
 
 msgctxt "L3"
 msgid "# Set TCLSH=/path/to/tclsh if it is not on your PATH. Needs Tcl 8.6 and its sqlite3 package."
@@ -16,7 +16,7 @@ msgstr "# La ventana de Tk se prueba solo si hay Xvfb (o una pantalla); si no, e
 
 msgctxt "L13"
 msgid "# 1. Static: the disclaimer is there, nothing touches a network, the challenge is one while loop in"
-msgstr "# 1. Estático: el aviso está ahí, nada toca una red, el desafío es un único bucle while en"
+msgstr "# 1. Estático: el aviso está ahí, nada toca una red, el reto es un único bucle while en"
 
 msgctxt "L14"
 msgid "#    \"draw\", and every expr is braced (an unbraced expr is slower and a classic injection hole)."
@@ -28,7 +28,7 @@ msgstr "# 2. Prueba unitaria de draw en un solo proceso (carga el archivo con so
 
 msgctxt "L26"
 msgid "#    2000 deals, each of which must obey every rule of the challenge."
-msgstr "#    2000 repartos, y cada uno debe cumplir todas las reglas del desafío."
+msgstr "#    2000 repartos, y cada uno debe cumplir todas las reglas del reto."
 
 msgctxt "L49"
 msgid "# 3. The Tk window, headless: it needs Xvfb (preferred, so no real display is touched) or a DISPLAY."

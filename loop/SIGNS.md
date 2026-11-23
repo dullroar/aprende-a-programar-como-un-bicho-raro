@@ -150,4 +150,5 @@
 - When a family's comments are localized, trim the `expect` of its line-anchors.jsonl records to the code part of the lines (translation/work/reanchor.py), and run `verify.py --release --no-gates` at gates: it catches what --fast does not.
 - `seedtask.py ID doing` takes the iteration number (an integer) as its last argument, not free text; brace expansion in Bash (`src/*/*.{a,b}`) is denied, use Grep with a glob instead.
 - After `python3 tools/seedtask.py ID done`, run `git diff --stat` and check the changed queue line is the task's own ID (iter 463 marked S5-fam-regex-perl done instead of javascript-weird).
+- To change an already localized comment, edit its PO msgstr, then copy the file from /home/lehmer/english-source over the Spanish one and run `loc_apply.py PATH --write` (it applies from the English baseline and refuses localized text); afterwards run `lock_code.py --write-localized` and `inventory.py` before verify.
 - A negative fixture that edits the Spanish source cannot plant a bad code span: the PO restores code from the English, so plant it with `after=` on the finished file.

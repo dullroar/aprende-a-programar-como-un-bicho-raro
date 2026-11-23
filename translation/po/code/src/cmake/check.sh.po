@@ -4,7 +4,7 @@ msgstr ""
 
 msgctxt "L2"
 msgid "# Checks the rules of the challenge for the CMake track. Uses a throwaway data dir and a throwaway working dir."
-msgstr "# Revisa las reglas del desafío para la pista de CMake. Usa una carpeta de datos desechable y una carpeta de trabajo desechable."
+msgstr "# Revisa las reglas del reto para la pista de CMake. Usa una carpeta de datos desechable y una carpeta de trabajo desechable."
 
 msgctxt "L3"
 msgid "# Needs cmake (3.19+) on PATH, e.g. `uv tool install cmake`."

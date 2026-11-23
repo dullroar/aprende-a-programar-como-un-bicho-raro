@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Revisa las reglas del desafío para la pista de CMake. Usa una carpeta de datos desechable y una carpeta de trabajo desechable.
+# Revisa las reglas del reto para la pista de CMake. Usa una carpeta de datos desechable y una carpeta de trabajo desechable.
 # Necesita cmake (3.19 o superior) en el PATH, por ejemplo `uv tool install cmake`.
 set -euo pipefail
 cd "$(dirname "$0")"

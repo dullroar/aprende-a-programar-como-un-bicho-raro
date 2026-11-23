@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Comprueba las reglas del desafío para la pista de GNU Make. Usa un directorio de datos desechable y un
+# Comprueba las reglas del reto para la pista de GNU Make. Usa un directorio de datos desechable y un
 # directorio de trabajo desechable que solo contiene el Makefile, como empieza una ejecución real.
 set -euo pipefail
 cd "$(dirname "$0")"

@@ -1,5 +1,6 @@
 # Provisional decisions (reviewed by Jim at the end)
 
+- 2026-11-23 S7-002 (iter 483): F6 of the native-voice review (spaced hyphen as dash in README.md lines 12, 14) left unchanged. It mirrors the English punctuation and a raya sweep is style-wide (212 files) with no house-style rule. Alternative: replace with raya or commas everywhere. Cost to reverse: medium.
 - 2026-11-22 P4-fix-12: test_humor_register.py had stale expectations (planned ids == register; negative mutations on rows now transcreated). Register data was correct. Tests now check planned ⊆ register and mutate status/spanish so each negative case still fails. Alternative: delete rows to match ENTRIES (loses data). Cost to reverse: trivial.
 
 - 2026-11-19 bootstrap: acronym default BICHO (runner-up TORCE); es-419; tu; straight quotes; English LICENSE authoritative. Model: sonnet alias for all roles, no cross-vendor keys (Jury carries independence).

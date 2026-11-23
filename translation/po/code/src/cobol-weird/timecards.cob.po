@@ -20,7 +20,7 @@ msgstr "      * Ejecuta:  cobc -xj timecards.cob"
 
 msgctxt "L7"
 msgid "      * The same challenge as ../cobol, with no IF, no PERFORM, no"
-msgstr "      * El mismo desafío que ../cobol, sin IF, sin PERFORM, sin"
+msgstr "      * El mismo reto que ../cobol, sin IF, sin PERFORM, sin"
 
 msgctxt "L8"
 msgid "      * EVALUATE and no UNTIL anywhere. Control flow is GO TO and the"

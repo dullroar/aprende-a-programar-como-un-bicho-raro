@@ -20,7 +20,7 @@ msgstr "#       tclsh timecards.tcl --gui      (la ventana también se construye
 
 msgctxt "L8"
 msgid "# The challenge: add cards of 10-19 hours until the running total passes 40."
-msgstr "# El desafío: suma tarjetas de 10 a 19 horas hasta que el total acumulado pase de 40."
+msgstr "# El reto: suma tarjetas de 10 a 19 horas hasta que el total acumulado pase de 40."
 
 msgctxt "L10"
 msgid "# THE STUNT.  This file defines no Tcl loop and no Tcl proc that deals or"

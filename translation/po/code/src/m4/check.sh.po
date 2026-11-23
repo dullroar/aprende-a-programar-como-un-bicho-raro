@@ -4,7 +4,7 @@ msgstr ""
 
 msgctxt "L2"
 msgid "# Checks the rules of the challenge for the m4 entry. Uses a throwaway data dir."
-msgstr "# Revisa las reglas del desafío para la entrada m4. Usa una carpeta de datos desechable."
+msgstr "# Revisa las reglas del reto para la entrada m4. Usa una carpeta de datos desechable."
 
 msgctxt "L3"
 msgid "# Set M4=/path/to/m4 if it is not on your PATH. Needs GNU m4."

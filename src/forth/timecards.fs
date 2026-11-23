@@ -3,7 +3,7 @@
 \
 \ Ejecuta:  gforth timecards.fs
 \
-\ El desafío: suma tarjetas de 10 a 19 horas (Meetings, Coding, Debugging, Learning,
+\ El reto: suma tarjetas de 10 a 19 horas (Meetings, Coding, Debugging, Learning,
 \ una tras otra) hasta que el total acumulado pase de 40.  En Forth eso es un
 \ BEGIN ... UNTIL en la palabra RUN.  Todo lo demás son palabras pequeñas que
 \ hacen una sola cosa, construidas de abajo arriba: cada palabra usa las anteriores.
@@ -104,7 +104,7 @@ create categories  ' meetings , ' coding , ' debugging , ' learning ,
 
 : over-40?      ( -- flag )  total @ 40 > ;
 
-\ Todo el desafío.  BEGIN ... UNTIL repite hasta que la bandera sea verdadera.
+\ Todo el reto.  BEGIN ... UNTIL repite hasta que la bandera sea verdadera.
 : run           ( -- )  begin card over-40? until ;
 
 \ ---------------------------------------------------------------- principal

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Comprueba las reglas del desafío para la entrada de Common Lisp. Usa un directorio de datos desechable.
+# Comprueba las reglas del reto para la entrada de Common Lisp. Usa un directorio de datos desechable.
 # Define SBCL=/ruta/a/sbcl si no está en tu PATH.
 set -euo pipefail
 cd "$(dirname "$0")"
@@ -8,7 +8,7 @@ export XDG_DATA_HOME=$data
 db=$data/Lisp/demo-timecards.db
 run() { "${SBCL:-sbcl}" --script timecards.lisp "$@"; }
 
-# 1. Estático: está el aviso de demostración, nada toca una red, el desafío es el único LOOP de draw-cards,
+# 1. Estático: está el aviso de demostración, nada toca una red, el reto es el único LOOP de draw-cards,
 #    y el archivo compila sin avisos ni avisos de estilo.
 grep -q 'DEMO ONLY' timecards.lisp || { echo "FAIL: no DEMO ONLY marker in timecards.lisp"; exit 1; }
 if grep -Eqi 'http|socket|curl|wget' timecards.lisp; then echo "FAIL: network-looking text in timecards.lisp"; exit 1; fi

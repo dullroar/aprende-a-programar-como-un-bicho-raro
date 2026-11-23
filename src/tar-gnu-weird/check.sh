@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Comprueba las reglas del desafío para la entrada del reloj de puntos de control, y prueba que el reloj es real: cambia el
+# Comprueba las reglas del reto para la entrada del reloj de puntos de control, y prueba que el reloj es real: cambia el
 # diseño del archivo o los ajustes de puntos de control de tar y una simulación independiente predice exactamente qué cambia.
 set -euo pipefail
 cd "$(dirname "$0")"

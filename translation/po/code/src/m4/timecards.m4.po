@@ -16,7 +16,7 @@ msgstr "dnl Ejecuta:  m4 timecards.m4"
 
 msgctxt "L6"
 msgid "dnl The challenge: add cards of 10-19 hours (Meetings, Coding, Debugging,"
-msgstr "dnl El desafío: sumar tarjetas de 10 a 19 horas (Meetings, Coding, Debugging,"
+msgstr "dnl El reto: sumar tarjetas de 10 a 19 horas (Meetings, Coding, Debugging,"
 
 msgctxt "L7"
 msgid "dnl Learning, round and round) until the running total passes 40.  m4 has no"
@@ -148,7 +148,7 @@ msgstr "dnl entre comillas, así que añadir es \"redefínete como tú misma má
 
 msgctxt "L71"
 msgid "dnl ---- 5. The challenge ----------------------------------------------------"
-msgstr "dnl ---- 5. El desafío ------------------------------------------------------"
+msgstr "dnl ---- 5. El reto ------------------------------------------------------"
 
 msgctxt "L72"
 msgid "dnl One card: draw, add, remember the INSERT, print the row, then either stop"

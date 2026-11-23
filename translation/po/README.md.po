@@ -80,7 +80,7 @@ msgstr "¿Quieres aprender de él?"
 #: README.md:30
 msgctxt "s-26a1930b6919-0014"
 msgid "**[Learn Programming the Weird Way!](⟦DEST_0001⟧)** *Programs you shouldn't write. Language features you should understand.* Lessons by [goals](⟦DEST_0002⟧), by [computer science concept](⟦DEST_0003⟧), by [language](⟦DEST_0004⟧) (including [COBOL's ⟦CODE_0005⟧](⟦DEST_0006⟧) and [APL on the whiteboard](⟦DEST_0007⟧)) and by [solution pattern](⟦DEST_0008⟧), plus [problems overcome](⟦DEST_0009⟧), [blocking problems](⟦DEST_0010⟧) and [exercises](⟦DEST_0011⟧) you can run in a container."
-msgstr "**[¡Aprende a programar de la forma rara!](⟦DEST_0001⟧)** *Programas que no deberías escribir. Características del lenguaje que sí deberías entender.* Lecciones por [objetivos](⟦DEST_0002⟧), por [concepto de ciencias de la computación](⟦DEST_0003⟧), por [lenguaje](⟦DEST_0004⟧) (incluidos [el ⟦CODE_0005⟧ de COBOL](⟦DEST_0006⟧) y [APL en la pizarra](⟦DEST_0007⟧)) y por [patrón de solución](⟦DEST_0008⟧), además de [problemas superados](⟦DEST_0009⟧), [problemas bloqueantes](⟦DEST_0010⟧) y [ejercicios](⟦DEST_0011⟧) que puedes ejecutar en un contenedor."
+msgstr "**[¡Aprende a programar como un bicho raro!](⟦DEST_0001⟧)** *Programas que no deberías escribir. Características del lenguaje que sí deberías entender.* Lecciones por [objetivos](⟦DEST_0002⟧), por [concepto de ciencias de la computación](⟦DEST_0003⟧), por [lenguaje](⟦DEST_0004⟧) (incluidos [el ⟦CODE_0005⟧ de COBOL](⟦DEST_0006⟧) y [APL en la pizarra](⟦DEST_0007⟧)) y por [patrón de solución](⟦DEST_0008⟧), además de [problemas superados](⟦DEST_0009⟧), [problemas bloqueantes](⟦DEST_0010⟧) y [ejercicios](⟦DEST_0011⟧) que puedes ejecutar en un contenedor."
 
 #: README.md:32
 msgctxt "s-e43f2c6760a6-0015"

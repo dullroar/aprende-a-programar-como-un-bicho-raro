@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Comprueba las reglas del desafío para la entrada GNU find. Usa datos desechables y directorios temporales y de sustitución.
+# Comprueba las reglas del reto para la entrada GNU find. Usa datos desechables y directorios temporales y de sustitución.
 # Necesita GNU find (la línea usa -fprintf, %d, %T, -regex, -D y -O). Ejecuta la entrada en cada
 # nivel del optimizador, de -O0 a -O3, y exige que la respuesta nunca cambie.
 set -euo pipefail

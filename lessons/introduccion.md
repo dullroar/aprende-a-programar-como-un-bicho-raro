@@ -10,12 +10,12 @@ En este libro, BICHO significa **Bicho raro, Interpreta, Camino indirecto, Halla
 
 ## Qué hace el reto
 
-Empieza con un total de cero. Crea tarjetas de tiempo ficticias de 10 a 19 horas enteras y recorre en ciclo Meetings, Coding, Debugging y Learning. Suma las horas y conserva la primera tarjeta que hace que el total pase de 40. Un total de exactamente 40 continúa. Eso da de 3 a 5 tarjetas y un total final de 41 a 59. Guarda las tarjetas en local como registros **DEMO ONLY** y muestra el resultado mediante la interfaz disponible. La imagen muestra la versión habitual de esa tarea en SQLite. Cada programa decide cuándo persistir las filas.
+Empieza con un total de cero. Crea tarjetas de tiempo ficticias de 10 a 19 horas enteras y alterna entre Meetings, Coding, Debugging y Learning. Suma las horas y conserva la primera tarjeta que hace que el total pase de 40. Un total de exactamente 40 continúa. Eso da de 3 a 5 tarjetas y un total final de 41 a 59. Guarda las tarjetas en local como registros **DEMO ONLY** y muestra el resultado mediante la interfaz disponible. La imagen muestra la versión habitual de esa tarea en SQLite. Cada programa decide cuándo persistir las filas.
 
 ```mermaid
 flowchart TD
     accTitle: Qué hace el reto
-    accDescr: Un diagrama de flujo de la tarea compartida. Inicia una ejecución de DEMO ONLY. Genera una tarjeta ficticia de 10 a 19 horas, con una categoría que sigue el ciclo Meetings, Coding, Debugging y Learning. Conserva la tarjeta y suma sus horas al total acumulado. Si el total no pasa de 40, genera otra tarjeta. Si el total pasa de 40, termina de guardar las tarjetas conservadas como registros DEMO ONLY en SQLite local y muestra el resultado.
+    accDescr: Un diagrama de flujo de la tarea compartida. Inicia una ejecución de DEMO ONLY. Genera una tarjeta ficticia de 10 a 19 horas, con una categoría que alterna entre Meetings, Coding, Debugging y Learning. Conserva la tarjeta y suma sus horas al total acumulado. Si el total no pasa de 40, genera otra tarjeta. Si el total pasa de 40, termina de guardar las tarjetas conservadas como registros DEMO ONLY en SQLite local y muestra el resultado.
     A["Inicia una ejecución de DEMO ONLY"] --> B["Genera una tarjeta ficticia: de 10 a 19 horas, siguiente categoría"]
     B --> C["Conserva la tarjeta y suma sus horas al total acumulado"]
     C --> D{{"¿El total pasa de 40?"}}
@@ -23,7 +23,7 @@ flowchart TD
     D -->|Sí| E["Termina de guardar los registros de DEMO ONLY en SQLite local y luego muestra el resultado"]
 ```
 
-Las entradas no coinciden en *cómo* sucede. El README de cada entrada tiene una sección **Program Flow** con su propia imagen, y el libro la muestra en la página de la lección del lenguaje de esa entrada, bajo **Cómo se ejecuta cada programa**. Esas imágenes no son todas diagramas de flujo, porque las máquinas no son todas iguales. Un programa COBOL con un `GO TO` reescrito es un estado que cambia. Un programa Haskell es una demanda que jala. Un programa m4 es texto que se lee de nuevo. Un programa Node construido con escuchadores de eventos es una conversación. Si una imagen pudiera pegarse sin cambios en diez entradas, no enseñaría nada.
+Las entradas no coinciden en *cómo* sucede. El README de cada entrada tiene una sección **Flujo del programa** con su propia imagen, y el libro la muestra en la página de la lección del lenguaje de esa entrada, bajo **Cómo se ejecuta cada programa**. Esas imágenes no son todas diagramas de flujo, porque las máquinas no son todas iguales. Un programa COBOL con un `GO TO` reescrito es un estado que cambia. Un programa Haskell es una demanda que tira del resultado. Un programa m4 es texto que se lee de nuevo. Un programa Node construido con escuchadores de eventos es una conversación. Si una imagen pudiera pegarse sin cambios en diez entradas, no enseñaría nada.
 
 ### Dónde difieren las entradas
 

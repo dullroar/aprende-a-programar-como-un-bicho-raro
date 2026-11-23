@@ -4,7 +4,7 @@
       *
       * Ejecuta:  cobc -xj timecards.cob
       *
-      * El desafío: suma tarjetas de 10-19 horas (Meetings, Coding,
+      * El reto: suma tarjetas de 10-19 horas (Meetings, Coding,
       * Debugging, Learning, sin parar) hasta que el total acumulado
       * pase de 40. Es una sentencia de la PROCEDURE DIVISION:
       * PERFORM DRAW-CARD UNTIL OVER-FORTY, y la regla de parada no es
@@ -89,7 +89,7 @@
            PERFORM OPEN-SCRIPT
            DISPLAY "# DEMO ONLY run " FUNCTION TRIM(WS-RUN-ID)
 
-      * ---- todo el desafío -----------------------------------------
+      * ---- todo el reto -----------------------------------------
            PERFORM DRAW-CARD UNTIL OVER-FORTY
 
            PERFORM COMMIT-SCRIPT

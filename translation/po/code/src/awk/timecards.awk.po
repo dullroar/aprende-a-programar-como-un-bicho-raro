@@ -12,7 +12,7 @@ msgstr "# XDG_DATA_HOME. Nada de esto toca un sistema real de registro de horas.
 
 msgctxt "L7"
 msgid "# The challenge: add cards of 10-19 hours (Meetings, Coding, Debugging,"
-msgstr "# El desafío: suma tarjetas de 10 a 19 horas (Meetings, Coding, Debugging,"
+msgstr "# El reto: suma tarjetas de 10 a 19 horas (Meetings, Coding, Debugging,"
 
 msgctxt "L8"
 msgid "# Learning, round and round) until the running total passes 40.  Portable"
@@ -72,7 +72,7 @@ msgstr "# La regla DEMO ONLY vive en la tabla: CHECK(demo_only=1)."
 
 msgctxt "L91"
 msgid "# The challenge.  The test is made before each draw, so the card that"
-msgstr "# El desafío.  La prueba se hace antes de cada sorteo, así que la tarjeta que"
+msgstr "# El reto.  La prueba se hace antes de cada sorteo, así que la tarjeta que"
 
 msgctxt "L92"
 msgid "# crosses the line is the last one added."

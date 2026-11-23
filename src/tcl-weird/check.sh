@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Comprueba las reglas del desafío para la entrada "rara" de Tcl. Usa un directorio de datos desechable.
+# Comprueba las reglas del reto para la entrada "rara" de Tcl. Usa un directorio de datos desechable.
 # Define TCLSH=/path/to/tclsh si no está en tu PATH. Necesita Tcl 8.6 y su paquete sqlite3.
 # La ventana de Tk se prueba solo si hay Xvfb (o una pantalla); si no, ese paso se omite y lo dice.
 set -euo pipefail

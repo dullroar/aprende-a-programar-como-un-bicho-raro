@@ -55,4 +55,4 @@ Reason: one approved term per concept; the root README and lessons say "reto". F
 
 ## Disposition
 
-Pending. Proposed review-fix groups: (1) F1 + F7 as a comment-only Part II task over 27 files with oracle proof; (2) F2, F3, F4, F5 as a PO edit of `README.md` and `lessons/introduccion.md`, then the usual `apply.py --write` and `verify.py --fast`. F6 waits for a style decision.
+S7-002 (iteration 483): F1 fixed (36 "desafío" to "reto" in 27 files via PO plus loc_apply from the English baseline, oracle PASS on all 18 families, localized lock rewritten). F7 fixed (tcl line 6 realigned). F2, F3, F4, F5 fixed in the PO files (F5 also in the accDescr). F6 deferred, not applied: it is a style-wide choice (raya vs spaced hyphen), logged in decisions-provisional.md. Original proposal: Proposed review-fix groups: (1) F1 + F7 as a comment-only Part II task over 27 files with oracle proof; (2) F2, F3, F4, F5 as a PO edit of `README.md` and `lessons/introduccion.md`, then the usual `apply.py --write` and `verify.py --fast`. F6 waits for a style decision.

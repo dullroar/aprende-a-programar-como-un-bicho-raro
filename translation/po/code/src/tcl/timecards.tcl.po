@@ -16,11 +16,11 @@ msgstr "# Ejecuta:  tclsh timecards.tcl            (texto)"
 
 msgctxt "L6"
 msgid "#       tclsh timecards.tcl --gui      (also a Tk window; add --seconds N to close it by itself)"
-msgstr "#            tclsh timecards.tcl --gui      (además, una ventana de Tk; añade --seconds N para que se cierre sola)"
+msgstr "#           tclsh timecards.tcl --gui     (además, una ventana de Tk; añade --seconds N para que se cierre sola)"
 
 msgctxt "L8"
 msgid "# The challenge: add cards of 10-19 hours (Meetings, Coding, Debugging,"
-msgstr "# El desafío: suma tarjetas de 10 a 19 horas (Meetings, Coding, Debugging,"
+msgstr "# El reto: suma tarjetas de 10 a 19 horas (Meetings, Coding, Debugging,"
 
 msgctxt "L9"
 msgid "# Learning, round and round) until the running total passes 40.  In Tcl that"
@@ -36,7 +36,7 @@ msgstr "# es un diccionario, la base de datos es un comando de Tcl, la ventana e
 
 msgctxt "L23"
 msgid "# ---------------------------------------------------------------- the challenge"
-msgstr "# ---------------------------------------------------------------- el desafío"
+msgstr "# ---------------------------------------------------------------- el reto"
 
 msgctxt "L25"
 msgid "# One random number of hours, minHours..maxHours."

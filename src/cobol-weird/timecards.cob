@@ -4,7 +4,7 @@
       *
       * Ejecuta:  cobc -xj timecards.cob
       *
-      * El mismo desafío que ../cobol, sin IF, sin PERFORM, sin
+      * El mismo reto que ../cobol, sin IF, sin PERFORM, sin
       * EVALUATE y sin UNTIL en ningún sitio. El flujo es GO TO y la
       * sentencia ALTER, que reescribe adónde salta un GO TO mientras
       * el programa corre. ALTER quedó obsoleta en 1985 y se borró

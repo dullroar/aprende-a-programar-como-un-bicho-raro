@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Comprueba las reglas del desafío para la entrada de Ex. Ex se encarga de todo el cálculo, el lanzador de ninguno,
+# Comprueba las reglas del reto para la entrada de Ex. Ex se encarga de todo el cálculo, el lanzador de ninguno,
 # y el programa no tiene comando global, ni prueba de expresión regular, ni salida por error: el bucle es un registro que
 # se ejecuta a sí mismo, y la regla de parada es una línea de datos en una cinta. Se ejecuta con el `ex` que esté instalado:
 # nvi (el entorno aislado) o Vim en modo Ex, y dice cuál.

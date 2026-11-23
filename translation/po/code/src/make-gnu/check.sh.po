@@ -4,7 +4,7 @@ msgstr ""
 
 msgctxt "L2"
 msgid "# Checks the rules of the challenge for the GNU Make track. Uses a throwaway data dir and a throwaway"
-msgstr "# Comprueba las reglas del desafío para la pista de GNU Make. Usa un directorio de datos desechable y un"
+msgstr "# Comprueba las reglas del reto para la pista de GNU Make. Usa un directorio de datos desechable y un"
 
 msgctxt "L3"
 msgid "# working dir that holds nothing but the Makefile, the way a real run starts."

@@ -4,7 +4,7 @@ msgstr ""
 
 msgctxt "L2"
 msgid "# Checks the rules of the challenge for the Forth entry. Uses a throwaway data dir."
-msgstr "# Revisa las reglas del desafío para la entrada Forth. Usa una carpeta de datos desechable."
+msgstr "# Revisa las reglas del reto para la entrada Forth. Usa una carpeta de datos desechable."
 
 msgctxt "L10"
 msgid "# 1. Static: a plain Forth script with the demo disclaimer, and nothing in it touches a network."

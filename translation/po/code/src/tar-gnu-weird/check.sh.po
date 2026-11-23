@@ -7,7 +7,7 @@ msgid ""
 "# Checks the rules of the challenge for the checkpoint-clock entry, and "
 "proves that the clock is real: change the"
 msgstr ""
-"# Comprueba las reglas del desafío para la entrada del reloj de puntos de "
+"# Comprueba las reglas del reto para la entrada del reloj de puntos de "
 "control, y prueba que el reloj es real: cambia el"
 
 msgctxt "L3"

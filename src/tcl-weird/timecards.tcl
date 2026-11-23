@@ -5,7 +5,7 @@
 # Ejecuta:  tclsh timecards.tcl            (texto)
 #       tclsh timecards.tcl --gui      (la ventana también se construye a partir de filas; --seconds N la cierra)
 #
-# El desafío: suma tarjetas de 10 a 19 horas hasta que el total acumulado pase de 40.
+# El reto: suma tarjetas de 10 a 19 horas hasta que el total acumulado pase de 40.
 #
 # LA ACROBACIA.  Este archivo no define ningún bucle de Tcl ni ningún proc de Tcl que reparta o
 # imprima una tarjeta. El programa son filas de una tabla de SQLite, y un INSERT lo arranca:

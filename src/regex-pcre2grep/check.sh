@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Comprueba las reglas del desafío de regex para la pista de pcre2grep. Usa un directorio de datos desechable.
+# Comprueba las reglas del reto de regex para la pista de pcre2grep. Usa un directorio de datos desechable.
 # Necesita un pcre2grep compilado con scripts de llamadas de retorno (consulta README.md); define PCRE2GREP para apuntar a él.
 set -euo pipefail
 cd "$(dirname "$0")"

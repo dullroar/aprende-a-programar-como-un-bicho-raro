@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Comprueba las reglas del desafío de expresiones regulares para la pista de sed. Usa un directorio de datos desechable.
+# Comprueba las reglas del reto de expresiones regulares para la pista de sed. Usa un directorio de datos desechable.
 set -euo pipefail
 cd "$(dirname "$0")"
 data=$(mktemp -d); trap 'rm -rf "$data"' EXIT

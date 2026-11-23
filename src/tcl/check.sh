@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Comprueba las reglas del desafío para la entrada de Tcl. Usa una carpeta de datos desechable.
+# Comprueba las reglas del reto para la entrada de Tcl. Usa una carpeta de datos desechable.
 # Define TCLSH=/ruta/a/tclsh si no está en tu PATH. Necesita Tcl 8.6 y su paquete sqlite3.
 # La ventana de Tk se prueba solo si hay Xvfb (o una pantalla); si no, ese paso se omite y lo avisa.
 set -euo pipefail
@@ -10,7 +10,7 @@ db=$data/Tcl/demo-timecards.db
 tclsh=${TCLSH:-tclsh}
 run() { "$tclsh" timecards.tcl "$@"; }
 
-# 1. Estático: el aviso está ahí, nada toca una red, el desafío es un único bucle while en
+# 1. Estático: el aviso está ahí, nada toca una red, el reto es un único bucle while en
 #    "draw", y todo expr lleva llaves (un expr sin llaves es más lento y un clásico agujero de inyección).
 grep -q 'DEMO ONLY' timecards.tcl || { echo "FAIL: no DEMO ONLY marker in timecards.tcl"; exit 1; }
 if grep -Eqi 'http|socket|curl|wget|exec ' timecards.tcl; then echo "FAIL: network or process text in timecards.tcl"; exit 1; fi
@@ -23,7 +23,7 @@ EOF
 "$tclsh" "$data/complete.tcl" || { echo "FAIL: timecards.tcl is not a complete Tcl script"; exit 1; }
 
 # 2. Prueba unitaria de draw en un solo proceso (carga el archivo con source: main solo corre si es el script):
-#    2000 repartos, y cada uno debe cumplir todas las reglas del desafío.
+#    2000 repartos, y cada uno debe cumplir todas las reglas del reto.
 "$tclsh" <<'EOF' || { echo "FAIL: draw broke a rule"; exit 1; }
 source timecards.tcl
 set cats {Meetings Coding Debugging Learning}

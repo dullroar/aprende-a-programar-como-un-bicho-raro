@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Revisa las reglas del desafío para la entrada Forth. Usa una carpeta de datos desechable.
+# Revisa las reglas del reto para la entrada Forth. Usa una carpeta de datos desechable.
 set -euo pipefail
 cd "$(dirname "$0")"
 data=$(mktemp -d); trap 'rm -rf "$data"' EXIT

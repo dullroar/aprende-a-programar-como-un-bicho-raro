@@ -3,9 +3,9 @@
 # XDG_DATA_HOME. Nada de aquí toca un sistema real de registro de horas.
 #
 # Ejecuta:  tclsh timecards.tcl            (texto)
-#            tclsh timecards.tcl --gui      (además, una ventana de Tk; añade --seconds N para que se cierre sola)
+#           tclsh timecards.tcl --gui     (además, una ventana de Tk; añade --seconds N para que se cierre sola)
 #
-# El desafío: suma tarjetas de 10 a 19 horas (Meetings, Coding, Debugging,
+# El reto: suma tarjetas de 10 a 19 horas (Meetings, Coding, Debugging,
 # Learning, una tras otra) hasta que el total acumulado pase de 40.  En Tcl eso
 # es un bucle while en el procedimiento "draw".  Todo lo demás es cañería: una tarjeta
 # es un diccionario, la base de datos es un comando de Tcl, la ventana es opcional.
@@ -20,7 +20,7 @@ namespace eval timecards {
     variable limit 40
 }
 
-# ---------------------------------------------------------------- el desafío
+# ---------------------------------------------------------------- el reto
 
 # Un número aleatorio de horas, de minHours a maxHours.
 proc timecards::randomHours {} {
