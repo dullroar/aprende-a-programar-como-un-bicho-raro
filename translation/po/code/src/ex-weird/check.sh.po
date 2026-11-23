@@ -1,0 +1,67 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+
+msgctxt "L2"
+msgid "# Checks the rules of the challenge for the Ex entry. Ex owns the whole computation, the launcher owns none of it,"
+msgstr "# Comprueba las reglas del desafío para la entrada de Ex. Ex se encarga de todo el cálculo, el lanzador de ninguno,"
+
+msgctxt "L3"
+msgid "# and the program has no global command, no regular-expression test and no error exit: the loop is a register that"
+msgstr "# y el programa no tiene comando global, ni prueba de expresión regular, ni salida por error: el bucle es un registro que"
+
+msgctxt "L4"
+msgid "# runs itself, and the stop rule is a line of data on a tape. Runs against whichever `ex` is installed:"
+msgstr "# se ejecuta a sí mismo, y la regla de parada es una línea de datos en una cinta. Se ejecuta con el `ex` que esté instalado:"
+
+msgctxt "L5"
+msgid "# nvi (the sandbox) or Vim in Ex mode, and says which."
+msgstr "# nvi (el entorno aislado) o Vim en modo Ex, y dice cuál."
+
+msgctxt "L20"
+msgid "# a message for nvi, a message for Vim"
+msgstr "# un mensaje para nvi, un mensaje para Vim"
+
+msgctxt "L21"
+msgid "# run a small Ex script against a buffer; prints ex's output without nvi's one known terminal note; exit status in $xrc"
+msgstr "# ejecuta un guion pequeño de Ex sobre un búfer; imprime la salida de ex sin el único aviso de terminal conocido de nvi; estado de salida en $xrc"
+
+msgctxt "L26"
+msgid "# ---- 1. The constraint is real: the launcher only seeds, loads and shows; Ex does the rest."
+msgstr "# ---- 1. La restricción es real: el lanzador solo siembra, carga y muestra; Ex hace el resto."
+
+msgctxt "L30"
+msgid "# q! (quit without writing) is the only ! allowed"
+msgstr "# q! (salir sin escribir) es el único ! permitido"
+
+msgctxt "L38"
+msgid "# ---- helpers"
+msgstr "# ---- ayudantes"
+
+msgctxt "L39"
+msgid "# \"d d d d d\" limit -> the rows an independent simulation says must be printed"
+msgstr "# \"d d d d d\" límite -> las filas que una simulación independiente dice que deben imprimirse"
+
+msgctxt "L59"
+msgid "# ---- 2. Random runs through the launcher."
+msgstr "# ---- 2. Ejecuciones al azar a través del lanzador."
+
+msgctxt "L71"
+msgid "# ---- 3. Every dice sequence over {0,4,5,9} and 400 random ones, against the independent simulation."
+msgstr "# ---- 3. Toda secuencia de dados sobre {0,4,5,9} y 400 al azar, contra la simulación independiente."
+
+msgctxt "L83"
+msgid "# ---- 4. Perturbations: change the program and the behavior changes as predicted. The logic is in the Ex program."
+msgstr "# ---- 4. Perturbaciones: cambia el programa y el comportamiento cambia como se predijo. La lógica está en el programa de Ex."
+
+msgctxt "L84"
+msgid "# label, sed expression, dice"
+msgstr "# etiqueta, expresión de sed, dados"
+
+msgctxt "L100"
+msgid "# ---- 5. Dialects. The program avoids every difference below; each is measured here, for the implementation we have."
+msgstr "# ---- 5. Dialectos. El programa evita cada diferencia de abajo; cada una se mide aquí, para la implementación que tenemos."
+
+msgctxt "L117"
+msgid "# ---- 6. The schema."
+msgstr "# ---- 6. El esquema."

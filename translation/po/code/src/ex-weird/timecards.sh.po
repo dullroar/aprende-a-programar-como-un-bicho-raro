@@ -1,0 +1,43 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+
+msgctxt "L2"
+msgid "# The launcher. Four small jobs and no computing; every card, total and stop decision is made by Ex."
+msgstr "# El lanzador. Cuatro trabajos pequeños y ningún cálculo; cada tarjeta, total y decisión de parar la toma Ex."
+
+msgctxt "L3"
+msgid "#   1. dice:  five random digits, one per line, become the editor's starting buffer (DICE=\"7 3 9 0 5\" forces them)"
+msgstr "#   1. dados: cinco dígitos al azar, uno por línea, forman el búfer inicial del editor (DICE=\"7 3 9 0 5\" los fuerza)"
+
+msgctxt "L4"
+msgid "#   2. run:   an Ex implementation reads timecards.ex on stdin and prints the rows (\"Meetings 17 17\")"
+msgstr "#   2. ejecutar: una implementación de Ex lee timecards.ex por la entrada estándar e imprime las filas (\"Meetings 17 17\")"
+
+msgctxt "L5"
+msgid "#   3. load:  sqlite3 stores the rows, with the week, DEMO ONLY and the CHECK constraints"
+msgstr "#   3. cargar: sqlite3 guarda las filas, con la semana, DEMO ONLY y las restricciones CHECK"
+
+msgctxt "L6"
+msgid "#   4. show:  sqlite3 prints them"
+msgstr "#   4. mostrar: sqlite3 las imprime"
+
+msgctxt "L7"
+msgid "# EX picks the editor. By default it is `ex`: nvi (a 4.4BSD POSIX ex, the one in the sandbox) or Vim in Ex mode."
+msgstr "# EX elige el editor. Por defecto es `ex`: nvi (un ex POSIX de 4.4BSD, el del entorno aislado) o Vim en modo Ex."
+
+msgctxt "L17"
+msgid "# Vim in Ex mode: batch (-s), no vimrc, not vi-compatible"
+msgstr "# Vim en modo Ex: por lotes (-s), sin vimrc, no compatible con vi"
+
+msgctxt "L18"
+msgid "# nvi: batch; TERM=dumb stops it from complaining about the terminal"
+msgstr "# nvi: por lotes; TERM=dumb evita que se queje de la terminal"
+
+msgctxt "L20"
+msgid "# nvi writes its messages to standard output, so everything it prints is checked below."
+msgstr "# nvi escribe sus mensajes en la salida estándar, así que todo lo que imprime se revisa más abajo."
+
+msgctxt "L24"
+msgid "# One known nvi note, when it has no terminal. Anything else that is not a row is an error."
+msgstr "# Un aviso conocido de nvi, cuando no tiene terminal. Todo lo demás que no sea una fila es un error."

@@ -1,10 +1,10 @@
 #!/bin/sh
-# The launcher. Four small jobs and no computing; every card, total and stop decision is made by Ex.
-#   1. dice:  five random digits, one per line, become the editor's starting buffer (DICE="7 3 9 0 5" forces them)
-#   2. run:   an Ex implementation reads timecards.ex on stdin and prints the rows ("Meetings 17 17")
-#   3. load:  sqlite3 stores the rows, with the week, DEMO ONLY and the CHECK constraints
-#   4. show:  sqlite3 prints them
-# EX picks the editor. By default it is `ex`: nvi (a 4.4BSD POSIX ex, the one in the sandbox) or Vim in Ex mode.
+# El lanzador. Cuatro trabajos pequeños y ningún cálculo; cada tarjeta, total y decisión de parar la toma Ex.
+#   1. dados: cinco dígitos al azar, uno por línea, forman el búfer inicial del editor (DICE="7 3 9 0 5" los fuerza)
+#   2. ejecutar: una implementación de Ex lee timecards.ex por la entrada estándar e imprime las filas ("Meetings 17 17")
+#   3. cargar: sqlite3 guarda las filas, con la semana, DEMO ONLY y las restricciones CHECK
+#   4. mostrar: sqlite3 las imprime
+# EX elige el editor. Por defecto es `ex`: nvi (un ex POSIX de 4.4BSD, el del entorno aislado) o Vim en modo Ex.
 set -eu
 here=$(cd "$(dirname "$0")" && pwd)
 data=${XDG_DATA_HOME:-$HOME/.local/share}/ExWeird; mkdir -p "$data"
@@ -14,14 +14,14 @@ if [ -n "${DICE:-}" ]; then printf '%s\n' $DICE > "$scratch/dice.txt"; else { tr
 
 ex=${EX:-ex}
 case $("$ex" --version < /dev/null 2>&1 | head -n 1) in
-    *VIM*) flags="-s -u NONE -N" ;;      # Vim in Ex mode: batch (-s), no vimrc, not vi-compatible
-    *) flags="-s"; export TERM=dumb ;;   # nvi: batch; TERM=dumb stops it from complaining about the terminal
+    *VIM*) flags="-s -u NONE -N" ;;      # Vim en modo Ex: por lotes (-s), sin vimrc, no compatible con vi
+    *) flags="-s"; export TERM=dumb ;;   # nvi: por lotes; TERM=dumb evita que se queje de la terminal
 esac
-# nvi writes its messages to standard output, so everything it prints is checked below.
+# nvi escribe sus mensajes en la salida estándar, así que todo lo que imprime se revisa más abajo.
 # shellcheck disable=SC2086
 "$ex" $flags "$scratch/dice.txt" < "${EX_PROGRAM:-$here/timecards.ex}" > "$scratch/out.txt" 2> "$scratch/ex.err" || { cat "$scratch/out.txt" "$scratch/ex.err" >&2; echo "timecards: ex failed" >&2; exit 1; }
 [ ! -s "$scratch/ex.err" ] || { cat "$scratch/ex.err" >&2; exit 1; }
-# One known nvi note, when it has no terminal. Anything else that is not a row is an error.
+# Un aviso conocido de nvi, cuando no tiene terminal. Todo lo demás que no sea una fila es un error.
 grep -vx 'Error: stderr: Inappropriate ioctl for device' "$scratch/out.txt" > "$scratch/rows.txt" || true
 if grep -vqxE '(Meetings|Coding|Debugging|Learning) [0-9]+ [0-9]+' "$scratch/rows.txt"; then cat "$scratch/out.txt" >&2; echo "timecards: ex printed something that is not a row" >&2; exit 1; fi
 

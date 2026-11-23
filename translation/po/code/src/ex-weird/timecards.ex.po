@@ -1,0 +1,79 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+
+msgctxt "L1"
+msgid "\" The whole program, as Ex commands. Ex reads it on standard input; the buffer holds five dice, one digit per line."
+msgstr "\" El programa completo, como comandos de Ex. Ex lo lee por la entrada estándar; el búfer contiene cinco dados, un dígito por línea."
+
+msgctxt "L3"
+msgid "\" There is no global command, no regular-expression test and no loop statement in this file."
+msgstr "\" En este archivo no hay comando global, ni prueba de expresión regular, ni instrucción de bucle."
+
+msgctxt "L5"
+msgid "\" 1. Categories are ADDRESSES, as in the ed entry. Several commands can share a line, separated by a bar."
+msgstr "\" 1. Las categorías son DIRECCIONES, como en la entrada de ed. Varios comandos pueden compartir una línea, separados por una barra."
+
+msgctxt "L8"
+msgid "\" 2. The TAPE: sixty lines under the cards. Each line is  \"total instruction\".  A line's position is a number, and"
+msgstr "\" 2. La CINTA: sesenta líneas bajo las tarjetas. Cada línea es  \"total instrucción\".  La posición de una línea es un número, y"
+
+msgctxt "L9"
+msgid "\"    a MARK is a register: mark t says where we are on the tape. Up to a total of 40 the instruction is \"@a\" (go on)."
+msgstr "\"    una MARCA es un registro: la marca t dice dónde estamos en la cinta. Hasta un total de 40 la instrucción es \"@a\" (seguir)."
+
+msgctxt "L10"
+msgid "\"    Above 40 it is a quote mark, which Ex reads as a comment (do nothing). The limit of 40 is where @a ends."
+msgstr "\"    Por encima de 40 es una comilla, que Ex lee como un comentario (no hacer nada). El límite de 40 es donde termina @a."
+
+msgctxt "L75"
+msgid "\" 3. The PROGRAM is the line after the next \"a\" command. It is text. It is added to the buffer, copied into register a,"
+msgstr "\" 3. El PROGRAMA es la línea que sigue al próximo comando \"a\". Es texto. Se añade al búfer, se copia en el registro a,"
+
+msgctxt "L76"
+msgid "\"    and removed again. Register a is what \"@a\" runs. Read the bars as line breaks; each step is explained here:"
+msgstr "\"    y se quita de nuevo. El registro a es lo que ejecuta \"@a\". Lee las barras como saltos de línea; cada paso se explica aquí:"
+
+msgctxt "L77"
+msgid "\"      1t$                          copy the first card (\"Meetings 7\") to the end of the buffer"
+msgstr "\"      1t$                          copia la primera tarjeta (\"Meetings 7\") al final del búfer"
+
+msgctxt "L78"
+msgid "\"      $s/^.* \\([0-9]\\)$/'t+1\\1k t/   rewrite that copy into a COMMAND:  'tmark plus 17 lines, stored as the mark t"
+msgstr "\"      $s/^.* \\([0-9]\\)$/'t+1\\1k t/   reescribe esa copia como un COMANDO:  'tmarca más 17 líneas, guardado como la marca t"
+
+msgctxt "L79"
+msgid "\"      $ya d  and  $d                copy the command into register d, and remove it from the buffer"
+msgstr "\"      $ya d  y  $d                  copia el comando en el registro d y lo quita del búfer"
+
+msgctxt "L80"
+msgid "\"      1s/ \\([0-9]\\)$/ 1\\1/          turn the card's digit into hours:  \"Meetings 17\""
+msgstr "\"      1s/ \\([0-9]\\)$/ 1\\1/          convierte el dígito de la tarjeta en horas:  \"Meetings 17\""
+
+msgctxt "L81"
+msgid "\"      @d                           run register d: the mark t moves 17 lines down the tape. THAT IS THE ADDITION"
+msgstr "\"      @d                           ejecuta el registro d: la marca t baja 17 líneas por la cinta. ESA ES LA SUMA"
+
+msgctxt "L83"
+msgid "\"                                   copy the card, copy the tape line under mark t, keep only its total,"
+msgstr "\"                                   copia la tarjeta, copia la línea de la cinta bajo la marca t, conserva solo su total,"
+
+msgctxt "L84"
+msgid "\"                                   join them into \"Meetings 17 17\", and print it"
+msgstr "\"                                   júntalos en \"Meetings 17 17\" e imprímelo"
+
+msgctxt "L86"
+msgid "\"                                   copy the tape line again, keep only its instruction, copy it into register n"
+msgstr "\"                                   copia otra vez la línea de la cinta, conserva solo su instrucción, cópiala en el registro n"
+
+msgctxt "L87"
+msgid "\"      1d                           the card is used up"
+msgstr "\"      1d                           la tarjeta queda gastada"
+
+msgctxt "L88"
+msgid "\"      @n                           run register n: \"@a\" runs the program again, a comment ends it. THAT IS THE LOOP"
+msgstr "\"      @n                           ejecuta el registro n: \"@a\" vuelve a ejecutar el programa, un comentario lo termina. ESE ES EL BUCLE"
+
+msgctxt "L96"
+msgid "\" 4. Start it."
+msgstr "\" 4. Ponlo en marcha."

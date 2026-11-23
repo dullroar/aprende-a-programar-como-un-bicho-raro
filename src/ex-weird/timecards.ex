@@ -1,13 +1,13 @@
-" The whole program, as Ex commands. Ex reads it on standard input; the buffer holds five dice, one digit per line.
+" El programa completo, como comandos de Ex. Ex lo lee por la entrada estándar; el búfer contiene cinco dados, un dígito por línea.
 " Run:  printf '7\n3\n9\n0\n5\n' > dice.txt; ex -s dice.txt < timecards.ex      (nvi; for Vim: ex -s -u NONE)
-" There is no global command, no regular-expression test and no loop statement in this file.
+" En este archivo no hay comando global, ni prueba de expresión regular, ni instrucción de bucle.
 "
-" 1. Categories are ADDRESSES, as in the ed entry. Several commands can share a line, separated by a bar.
+" 1. Las categorías son DIRECCIONES, como en la entrada de ed. Varios comandos pueden compartir una línea, separados por una barra.
 1s/^/Meetings /|2s/^/Coding /|3s/^/Debugging /|4s/^/Learning /|5s/^/Meetings /
 "
-" 2. The TAPE: sixty lines under the cards. Each line is  "total instruction".  A line's position is a number, and
-"    a MARK is a register: mark t says where we are on the tape. Up to a total of 40 the instruction is "@a" (go on).
-"    Above 40 it is a quote mark, which Ex reads as a comment (do nothing). The limit of 40 is where @a ends.
+" 2. La CINTA: sesenta líneas bajo las tarjetas. Cada línea es  "total instrucción".  La posición de una línea es un número, y
+"    una MARCA es un registro: la marca t dice dónde estamos en la cinta. Hasta un total de 40 la instrucción es "@a" (seguir).
+"    Por encima de 40 es una comilla, que Ex lee como un comentario (no hacer nada). El límite de 40 es donde termina @a.
 5a
 0 @a
 1 @a
@@ -72,20 +72,20 @@
 .
 /^0 /k t
 "
-" 3. The PROGRAM is the line after the next "a" command. It is text. It is added to the buffer, copied into register a,
-"    and removed again. Register a is what "@a" runs. Read the bars as line breaks; each step is explained here:
-"      1t$                          copy the first card ("Meetings 7") to the end of the buffer
-"      $s/^.* \([0-9]\)$/'t+1\1k t/   rewrite that copy into a COMMAND:  'tmark plus 17 lines, stored as the mark t
-"      $ya d  and  $d                copy the command into register d, and remove it from the buffer
-"      1s/ \([0-9]\)$/ 1\1/          turn the card's digit into hours:  "Meetings 17"
-"      @d                           run register d: the mark t moves 17 lines down the tape. THAT IS THE ADDITION
+" 3. El PROGRAMA es la línea que sigue al próximo comando "a". Es texto. Se añade al búfer, se copia en el registro a,
+"    y se quita de nuevo. El registro a es lo que ejecuta "@a". Lee las barras como saltos de línea; cada paso se explica aquí:
+"      1t$                          copia la primera tarjeta ("Meetings 7") al final del búfer
+"      $s/^.* \([0-9]\)$/'t+1\1k t/   reescribe esa copia como un COMANDO:  'tmarca más 17 líneas, guardado como la marca t
+"      $ya d  y  $d                  copia el comando en el registro d y lo quita del búfer
+"      1s/ \([0-9]\)$/ 1\1/          convierte el dígito de la tarjeta en horas:  "Meetings 17"
+"      @d                           ejecuta el registro d: la marca t baja 17 líneas por la cinta. ESA ES LA SUMA
 "      1t$ , 'tt$ , $s/ .*$// , $-1,$j , $p
-"                                   copy the card, copy the tape line under mark t, keep only its total,
-"                                   join them into "Meetings 17 17", and print it
+"                                   copia la tarjeta, copia la línea de la cinta bajo la marca t, conserva solo su total,
+"                                   júntalos en "Meetings 17 17" e imprímelo
 "      'tt$ , $s/^[0-9]* // , $ya n , $d
-"                                   copy the tape line again, keep only its instruction, copy it into register n
-"      1d                           the card is used up
-"      @n                           run register n: "@a" runs the program again, a comment ends it. THAT IS THE LOOP
+"                                   copia otra vez la línea de la cinta, conserva solo su instrucción, cópiala en el registro n
+"      1d                           la tarjeta queda gastada
+"      @n                           ejecuta el registro n: "@a" vuelve a ejecutar el programa, un comentario lo termina. ESE ES EL BUCLE
 $k s
 $a
 1t$|$s/^.* \([0-9]\)$/'t+1\1k t/|$ya d|$d|1s/ \([0-9]\)$/ 1\1/|@d|1t$|'tt$|$s/ .*$//|$-1,$j|$p|'tt$|$s/^[0-9]* //|$ya n|$d|1d|@n
@@ -93,6 +93,6 @@ $a
 's+1ya a
 's+1d
 "
-" 4. Start it.
+" 4. Ponlo en marcha.
 @a
 q!

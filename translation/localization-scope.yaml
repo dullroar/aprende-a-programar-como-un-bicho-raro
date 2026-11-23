@@ -45,7 +45,7 @@ families:
   "src/cobol": {status: localizing, files: 4}
   "src/cobol-weird": {status: localizing, files: 4}
   "src/ed-weird": {status: localizing, files: 5}
-  "src/ex-weird": {status: frozen, files: 4}
+  "src/ex-weird": {status: localizing, files: 4}
   "src/find-gnu": {status: localizing, files: 4}
   "src/find-posix": {status: localizing, files: 4}
   "src/forth": {status: localizing, files: 3}

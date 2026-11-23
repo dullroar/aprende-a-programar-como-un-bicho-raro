@@ -1,0 +1,15 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+
+msgctxt "L1"
+msgid "# Container image for the Ex entry. Run it with: sandbox/container/run-image.sh src/ex-weird"
+msgstr "# Imagen de contenedor para la entrada de Ex. Ejecútala con: sandbox/container/run-image.sh src/ex-weird"
+
+msgctxt "L2"
+msgid "# The whole computation is nvi (a POSIX ex/vi) reading timecards.ex. The base adds nvi and sqlite3 on a minimal Ubuntu."
+msgstr "# Todo el cálculo es nvi (un ex/vi POSIX) leyendo timecards.ex. La base añade nvi y sqlite3 sobre un Ubuntu mínimo."
+
+msgctxt "L3"
+msgid "# check.sh is for your own machine; the image runs the demo."
+msgstr "# check.sh es para tu propia máquina; la imagen ejecuta la demostración."
