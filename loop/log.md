@@ -427,3 +427,4 @@
 475 S5-fam-tar-gnu-weird done src/tar-gnu-weird localizing: 53 comment lines (8 files) via loc_apply, oracle PASS; categories/strings kept English EXC-586.
 476 S5-audit-6 done audit of 5 S5 families: lock ok, oracle PASS regex-sed/tar-gnu/tar-gnu-weird/ed-weird/ex-weird; no violations; translation/reviews/S5-audit-6.md
 477 S5-999 done S5 gate PASS: 45 families (30 localized, 15 NOT TESTED/English), lock ok, release verify passes after trimming 16 line-anchor expects to code and pointing negative lock fixtures at pinned English bytes; translation/part2/s5-gate.md
+478 S6-001 done build.py --generate (es) run twice, tree unchanged both times; part2_inv --check 0 findings (0 ledger renames, comments-only localization, nothing stale to sweep)
