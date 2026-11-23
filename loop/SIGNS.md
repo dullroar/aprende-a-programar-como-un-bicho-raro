@@ -139,3 +139,4 @@
 - In Part II, `.fs` is Forth under src/forth* and F# elsewhere, and .bat files hash after CRLF->LF; use tools/code_inventory.py's detect_lang and sha handling instead of guessing from the extension.
 - Do not run verify --release right after tools/scratch_proof.py --tests: a stale inventory/work state makes 4 checks fail once; rerun inventory.py then verify, and run lessons/book tests in Spanish through a runpy wrapper that sets BOOK_LANG=es.
 - In dontAsk mode even `rustc --version` and dotnet are denied, and so are heredocs and long compound commands; do not plan registry extraction that runs a toolchain, record not-extracted with that reason, and edit files with the Edit tool.
+- loc_apply refuses format-like strings (class format-or-template); only display-candidate strings can be translated, so test string edits with plain words.
