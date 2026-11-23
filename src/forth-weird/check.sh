@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Checks the rules of the challenge for the weird Forth entry. Uses a throwaway data dir.
+# Revisa las reglas del desafío para la entrada Forth rara. Usa una carpeta de datos desechable.
 set -euo pipefail
 cd "$(dirname "$0")"
 data=$(mktemp -d); trap 'rm -rf "$data"' EXIT
@@ -7,8 +7,8 @@ export XDG_DATA_HOME=$data
 db=$data/ForthWeird/demo-timecards.db
 run() { "${GFORTH:-gforth}" timecards.fs; }
 
-# 1. Static: the constraint is real. With comments and ." strings removed, no Forth control-flow word appears
-#    anywhere, and the loop is the text interpreter's own >in being moved backwards.
+# 1. Estático: la restricción es real. Sin comentarios ni cadenas .", no aparece ninguna palabra de control de flujo de Forth
+#    en ningún sitio, y el bucle es el propio >in del intérprete de texto retrocediendo.
 code=$(grep -Ev '^\s*\\' timecards.fs | sed -E 's/\." [^"]*"//g; s/[[:space:]]\\ .*$//')
 grep -q 'DEMO ONLY' timecards.fs || { echo "FAIL: no DEMO ONLY marker in timecards.fs"; exit 1; }
 if grep -Eiqw 'begin|until|while|repeat|again|if|then|else|do|\?do|loop|\+loop|case|of|endof|endcase|recurse|exit|leave' <<<"$code"; then
@@ -18,7 +18,7 @@ if grep -Eiqw 'variable|2variable|buffer:' <<<"$code"; then echo "FAIL: a variab
 [[ $(grep -c '>in @' <<<"$code") -ge 2 ]] || { echo "FAIL: expected >in to be read by both the loop line and rewind"; exit 1; }
 if grep -Eqi 'http|socket|curl|wget' timecards.fs; then echo "FAIL: network-looking text in timecards.fs"; exit 1; fi
 
-# 2. Run it a bunch of times; every run must print a sane record set, and the SQLite rows must agree with it.
+# 2. Ejecútalo muchas veces; cada ejecución debe imprimir un conjunto de registros sensato, y las filas de SQLite deben coincidir.
 cats=(Meetings Coding Debugging Learning)
 for i in $(seq 1 25); do
     out=$(run)
@@ -49,7 +49,7 @@ done
 [[ $(sqlite3 "$db" 'select count(distinct run_id) from demo_timecards') -eq 25 ]] || { echo "FAIL: expected 25 distinct runs in the db"; exit 1; }
 [[ $(sqlite3 "$db" 'select count(distinct hours) from demo_timecards') -ge 6 ]] || { echo "FAIL: hours do not look random"; exit 1; }
 
-# 3. The demo_only CHECK constraint is real: a non-demo row must be refused.
+# 3. La restricción CHECK de demo_only es real: una fila que no sea de demo debe ser rechazada.
 if sqlite3 "$db" "insert into demo_timecards(run_id,category,hours,running_total,demo_only) values('x','x',1,1,0)" 2>/dev/null; then
     echo "FAIL: db accepted a non-demo row"; exit 1
 fi

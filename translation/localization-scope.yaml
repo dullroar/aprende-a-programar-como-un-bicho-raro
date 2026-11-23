@@ -49,7 +49,7 @@ families:
   "src/find-gnu": {status: localizing, files: 4}
   "src/find-posix": {status: localizing, files: 4}
   "src/forth": {status: localizing, files: 3}
-  "src/forth-weird": {status: frozen, files: 3}
+  "src/forth-weird": {status: localizing, files: 3}
   "src/haskell": {status: localizing, files: 3}
   "src/haskell-weird": {status: frozen, files: 3}
   "src/javascript": {status: localizing, files: 4}

@@ -1,0 +1,15 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+
+msgctxt "L1"
+msgid "# Container image for the weirder Forth entry. Run it with: sandbox/container/run-image.sh src/forth-weird"
+msgstr "# Imagen de contenedor para la entrada Forth más rara. Ejecútala con: sandbox/container/run-image.sh src/forth-weird"
+
+msgctxt "L2"
+msgid "# Gforth interprets the script; the base has gforth and sqlite3 (the entry pipes SQL to sqlite3"
+msgstr "# Gforth interpreta el script; la base tiene gforth y sqlite3 (la entrada envía SQL a sqlite3"
+
+msgctxt "L3"
+msgid "# through sh), and no compiler or package manager."
+msgstr "# a través de sh), y ningún compilador ni gestor de paquetes."

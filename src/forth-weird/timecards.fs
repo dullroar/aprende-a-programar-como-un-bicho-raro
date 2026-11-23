@@ -1,25 +1,25 @@
-\ DEMO ONLY. Fictional timecards, written to a scratch SQLite file under XDG_DATA_HOME.
-\ Nothing here touches a real time-reporting system.
+\ DEMO ONLY. Tarjetas de horas ficticias, escritas en un archivo SQLite desechable bajo XDG_DATA_HOME.
+\ Nada de esto toca un sistema real de registro de horas.
 \
-\ Run:  gforth timecards.fs
+\ Ejecuta:  gforth timecards.fs
 \
-\ THE STUNT: this program is a two-register machine.
-\   * The memory is the data stack.  There is not one VARIABLE in the file.
-\   * The program counter is >IN, the text interpreter's parse position.
-\ There is no BEGIN, UNTIL, WHILE, IF, DO, CASE or recursion anywhere.  The
-\ "loop" is a line of source text that the interpreter reads, and which is
-\ read AGAIN because REWIND? moves >IN backwards.  Between passes the running
-\ total, the card number and the rewind target live on the stack, untouched.
+\ EL TRUCO: este programa es una máquina de dos registros.
+\   * La memoria es la pila de datos.  No hay ni una VARIABLE en el archivo.
+\   * El contador de programa es >IN, la posición de lectura del intérprete de texto.
+\ No hay BEGIN, UNTIL, WHILE, IF, DO, CASE ni recursión en ningún sitio.  El
+\ "bucle" es una línea de texto fuente que el intérprete lee, y que se
+\ lee OTRA VEZ porque REWIND? mueve >IN hacia atrás.  Entre pasadas el total
+\ acumulado, el número de tarjeta y el destino del rebobinado viven en la pila, intactos.
 \
-\ The one line to read is the one marked  <== THE LOOP  near the bottom.
+\ La única línea que debes leer es la marcada  <== THE LOOP  cerca del final.
 
 require random.fs
 
-0 value run-id                      \ identifies this run's rows in the table
-0 value sqlite                      \ file id of the pipe to sqlite3
-create week-buf 16 allot            \ the ISO week text, set once and never changed
+0 value run-id                      \ identifica las filas de esta ejecución en la tabla
+0 value sqlite                      \ id de archivo de la tubería hacia sqlite3
+create week-buf 16 allot            \ el texto de la semana ISO, fijado una vez y nunca cambiado
 
-\ ---------------------------------------------------------------- plumbing
+\ ---------------------------------------------------------------- tuberías
 
 : meetings   ( -- c-addr u )  s" Meetings" ;
 : coding     ( -- c-addr u )  s" Coding" ;
@@ -40,7 +40,7 @@ create categories  ' meetings , ' coding , ' debugging , ' learning ,
   s" date +%G-W%V" r/o open-pipe throw >r
   week-buf 16 r@ read-line throw 2drop
   r> close-pipe throw drop ;
-\ %G-W%V is always eight characters (2026-W46), so no length needs remembering.
+\ %G-W%V siempre mide ocho caracteres (2026-W46), así que no hay que recordar ninguna longitud.
 : week$         ( -- c-addr u )  week-buf 8 ;
 
 : open-sqlite   ( -- )
@@ -57,7 +57,7 @@ create categories  ' meetings , ' coding , ' debugging , ' learning ,
   ." BEGIN;" cr ;
 : .commit       ( -- )  ." COMMIT;" cr ;
 
-\ n is the card's position (it picks the category), h its hours, t the total after it.
+\ n es la posición de la tarjeta (elige la categoría), h sus horas, t el total tras ella.
 : .insert       ( n h t -- )
   ." INSERT INTO demo_timecards"
   ." (run_id,category,hours,running_total,iso_week,created_at) VALUES("
@@ -67,7 +67,7 @@ create categories  ' meetings , ' coding , ' debugging , ' learning ,
   .num comma
   week$ quoted comma
   ." datetime('now'));" cr
-  drop ;                                                  \ the n left underneath
+  drop ;                                                  \ la n que quedó debajo
 : .row          ( n h t -- )
   >r swap category$ type tab
   .num tab
@@ -75,31 +75,31 @@ create categories  ' meetings , ' coding , ' debugging , ' learning ,
   week$ type tab
   ." DEMO ONLY" cr ;
 
-\ ---------------------------------------------------------------- the machine
+\ ---------------------------------------------------------------- la máquina
 
-\ One card.  The state in is ( n total ); the state out is ( n+1 total' ).
+\ Una tarjeta.  El estado de entrada es ( n total ); el de salida es ( n+1 total' ).
 : card          ( n total -- n' total' )
   random-hours tuck +                                     ( n h t )
   3dup .row
   3dup ['] .insert >sqlite
   >r drop 1+ r> ;                                         ( n+1 t )
 
-\ Run a card while the anchor rides underneath it on the return stack.
+\ Ejecuta una tarjeta mientras el ancla viaja debajo de ella en la pila de retorno.
 : step          ( n total anchor -- n' total' anchor )  >r card r> ;
 
-\ The jump.  If the total is still 40 or less, set >IN back to ANCHOR; otherwise
-\ leave it alone.  No branch: the flag (-1 or 0) masks the distance to travel.
+\ El salto.  Si el total sigue en 40 o menos, devuelve >IN a ANCHOR; si no,
+\ déjalo quieto.  Sin ramas: la bandera (-1 o 0) enmascara la distancia a recorrer.
 : rewind?        ( n total anchor -- n total anchor )
   over 41 <                                               ( ... flag )
   over >in @ - and  >in @ + >in ! ;
 
-\ ---------------------------------------------------------------- main
+\ ---------------------------------------------------------------- principal
 
 utime drop dup seed ! to run-id   read-week   open-sqlite
 ." # DEMO ONLY run " run-id .num cr
 ' .schema >sqlite
 0 0 >in @ step rewind?                                     \ <== THE LOOP  ( n total anchor )
-drop                                                      \ the anchor has done its job
+drop                                                      \ el ancla ya cumplió su trabajo
 ' .commit >sqlite   close-sqlite
 swap ." # committed total=" over .num ."  entries=" .num ."  DEMO ONLY" cr
 drop

@@ -1,0 +1,107 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+
+msgctxt "L1"
+msgid "\\ DEMO ONLY. Fictional timecards, written to a scratch SQLite file under XDG_DATA_HOME."
+msgstr "\\ DEMO ONLY. Tarjetas de horas ficticias, escritas en un archivo SQLite desechable bajo XDG_DATA_HOME."
+
+msgctxt "L2"
+msgid "\\ Nothing here touches a real time-reporting system."
+msgstr "\\ Nada de esto toca un sistema real de registro de horas."
+
+msgctxt "L4"
+msgid "\\ Run:  gforth timecards.fs"
+msgstr "\\ Ejecuta:  gforth timecards.fs"
+
+msgctxt "L6"
+msgid "\\ THE STUNT: this program is a two-register machine."
+msgstr "\\ EL TRUCO: este programa es una máquina de dos registros."
+
+msgctxt "L7"
+msgid "\\   * The memory is the data stack.  There is not one VARIABLE in the file."
+msgstr "\\   * La memoria es la pila de datos.  No hay ni una VARIABLE en el archivo."
+
+msgctxt "L8"
+msgid "\\   * The program counter is >IN, the text interpreter's parse position."
+msgstr "\\   * El contador de programa es >IN, la posición de lectura del intérprete de texto."
+
+msgctxt "L9"
+msgid "\\ There is no BEGIN, UNTIL, WHILE, IF, DO, CASE or recursion anywhere.  The"
+msgstr "\\ No hay BEGIN, UNTIL, WHILE, IF, DO, CASE ni recursión en ningún sitio.  El"
+
+msgctxt "L10"
+msgid "\\ \"loop\" is a line of source text that the interpreter reads, and which is"
+msgstr "\\ \"bucle\" es una línea de texto fuente que el intérprete lee, y que se"
+
+msgctxt "L11"
+msgid "\\ read AGAIN because REWIND? moves >IN backwards.  Between passes the running"
+msgstr "\\ lee OTRA VEZ porque REWIND? mueve >IN hacia atrás.  Entre pasadas el total"
+
+msgctxt "L12"
+msgid "\\ total, the card number and the rewind target live on the stack, untouched."
+msgstr "\\ acumulado, el número de tarjeta y el destino del rebobinado viven en la pila, intactos."
+
+msgctxt "L14"
+msgid "\\ The one line to read is the one marked  <== THE LOOP  near the bottom."
+msgstr "\\ La única línea que debes leer es la marcada  <== THE LOOP  cerca del final."
+
+msgctxt "L18"
+msgid "\\ identifies this run's rows in the table"
+msgstr "\\ identifica las filas de esta ejecución en la tabla"
+
+msgctxt "L19"
+msgid "\\ file id of the pipe to sqlite3"
+msgstr "\\ id de archivo de la tubería hacia sqlite3"
+
+msgctxt "L20"
+msgid "\\ the ISO week text, set once and never changed"
+msgstr "\\ el texto de la semana ISO, fijado una vez y nunca cambiado"
+
+msgctxt "L22"
+msgid "\\ ---------------------------------------------------------------- plumbing"
+msgstr "\\ ---------------------------------------------------------------- tuberías"
+
+msgctxt "L43"
+msgid "\\ %G-W%V is always eight characters (2026-W46), so no length needs remembering."
+msgstr "\\ %G-W%V siempre mide ocho caracteres (2026-W46), así que no hay que recordar ninguna longitud."
+
+msgctxt "L60"
+msgid "\\ n is the card's position (it picks the category), h its hours, t the total after it."
+msgstr "\\ n es la posición de la tarjeta (elige la categoría), h sus horas, t el total tras ella."
+
+msgctxt "L70"
+msgid "\\ the n left underneath"
+msgstr "\\ la n que quedó debajo"
+
+msgctxt "L78"
+msgid "\\ ---------------------------------------------------------------- the machine"
+msgstr "\\ ---------------------------------------------------------------- la máquina"
+
+msgctxt "L80"
+msgid "\\ One card.  The state in is ( n total ); the state out is ( n+1 total' )."
+msgstr "\\ Una tarjeta.  El estado de entrada es ( n total ); el de salida es ( n+1 total' )."
+
+msgctxt "L87"
+msgid "\\ Run a card while the anchor rides underneath it on the return stack."
+msgstr "\\ Ejecuta una tarjeta mientras el ancla viaja debajo de ella en la pila de retorno."
+
+msgctxt "L90"
+msgid "\\ The jump.  If the total is still 40 or less, set >IN back to ANCHOR; otherwise"
+msgstr "\\ El salto.  Si el total sigue en 40 o menos, devuelve >IN a ANCHOR; si no,"
+
+msgctxt "L91"
+msgid "\\ leave it alone.  No branch: the flag (-1 or 0) masks the distance to travel."
+msgstr "\\ déjalo quieto.  Sin ramas: la bandera (-1 o 0) enmascara la distancia a recorrer."
+
+msgctxt "L96"
+msgid "\\ ---------------------------------------------------------------- main"
+msgstr "\\ ---------------------------------------------------------------- principal"
+
+msgctxt "L101"
+msgid "\\ <== THE LOOP  ( n total anchor )"
+msgstr "\\ <== THE LOOP  ( n total anchor )"
+
+msgctxt "L102"
+msgid "\\ the anchor has done its job"
+msgstr "\\ el ancla ya cumplió su trabajo"

@@ -404,3 +404,4 @@
 452 S5-fam-apl done src/apl localizing: 52 comment lines (timecards.apl, check.sh, Dockerfile) via loc_apply, oracle PASS; categories/strings kept English EXC-566.
 453 S5-fam-apl-weird done src/apl-weird localizing: 34 comment lines (timecards.apl, check.sh, Dockerfile) via loc_apply, oracle PASS; categories/strings kept English EXC-567.
 454 S5-fam-cobol-weird done src/cobol-weird localizing: 47 comment lines (timecards.cob, check.sh, Dockerfile) via loc_apply, oracle PASS; categories/strings kept English EXC-568.
+455 S5-fam-forth-weird done src/forth-weird localizing: 35 comment lines (timecards.fs, check.sh, Dockerfile) via loc_apply, oracle PASS; categories/strings kept English EXC-569.

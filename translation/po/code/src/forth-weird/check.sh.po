@@ -1,0 +1,23 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+
+msgctxt "L2"
+msgid "# Checks the rules of the challenge for the weird Forth entry. Uses a throwaway data dir."
+msgstr "# Revisa las reglas del desafío para la entrada Forth rara. Usa una carpeta de datos desechable."
+
+msgctxt "L10"
+msgid "# 1. Static: the constraint is real. With comments and .\" strings removed, no Forth control-flow word appears"
+msgstr "# 1. Estático: la restricción es real. Sin comentarios ni cadenas .\", no aparece ninguna palabra de control de flujo de Forth"
+
+msgctxt "L11"
+msgid "#    anywhere, and the loop is the text interpreter's own >in being moved backwards."
+msgstr "#    en ningún sitio, y el bucle es el propio >in del intérprete de texto retrocediendo."
+
+msgctxt "L21"
+msgid "# 2. Run it a bunch of times; every run must print a sane record set, and the SQLite rows must agree with it."
+msgstr "# 2. Ejecútalo muchas veces; cada ejecución debe imprimir un conjunto de registros sensato, y las filas de SQLite deben coincidir."
+
+msgctxt "L52"
+msgid "# 3. The demo_only CHECK constraint is real: a non-demo row must be refused."
+msgstr "# 3. La restricción CHECK de demo_only es real: una fila que no sea de demo debe ser rechazada."
