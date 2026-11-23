@@ -1,5 +1,7 @@
 # Provisional decisions (reviewed by Jim at the end)
 
+- 2026-11-23 F2-004 (iter 501): lessons/guias-de-estudio/lenguajes/forth.md names the categories in inline code spans (lines 44, 103, 105, 108); the PO masks spans and no tool rewrites them, so they stay English. Alternative: extend apply.py and invariant I13 to inline spans. Cost to reverse: low.
+
 - 2026-11-23 S7-002 (iter 483): F6 of the native-voice review (spaced hyphen as dash in README.md lines 12, 14) left unchanged. It mirrors the English punctuation and a raya sweep is style-wide (212 files) with no house-style rule. Alternative: replace with raya or commas everywhere. Cost to reverse: medium.
 - 2026-11-22 P4-fix-12: test_humor_register.py had stale expectations (planned ids == register; negative mutations on rows now transcreated). Register data was correct. Tests now check planned ⊆ register and mutate status/spanish so each negative case still fails. Alternative: delete rows to match ENTRIES (loses data). Cost to reverse: trivial.
 

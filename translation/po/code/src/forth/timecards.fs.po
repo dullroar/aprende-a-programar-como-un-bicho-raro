@@ -16,7 +16,23 @@ msgstr "\\ Ejecuta:  gforth timecards.fs"
 
 msgctxt "L6"
 msgid "\\ The challenge: add 10-19 hour cards (Meetings, Coding, Debugging, Learning,"
-msgstr "\\ El reto: suma tarjetas de 10 a 19 horas (Meetings, Coding, Debugging, Learning,"
+msgstr "\\ El reto: suma tarjetas de 10 a 19 horas (Reuniones, Programación, Depuración, Aprendizaje,"
+
+msgctxt "C29"
+msgid ": meetings   ( -- c-addr u )  s\" Meetings\" ;"
+msgstr ": meetings   ( -- c-addr u )  s\" Reuniones\" ;"
+
+msgctxt "C30"
+msgid ": coding     ( -- c-addr u )  s\" Coding\" ;"
+msgstr ": coding     ( -- c-addr u )  s\" Programación\" ;"
+
+msgctxt "C31"
+msgid ": debugging  ( -- c-addr u )  s\" Debugging\" ;"
+msgstr ": debugging  ( -- c-addr u )  s\" Depuración\" ;"
+
+msgctxt "C32"
+msgid ": learning   ( -- c-addr u )  s\" Learning\" ;"
+msgstr ": learning   ( -- c-addr u )  s\" Aprendizaje\" ;"
 
 msgctxt "L7"
 msgid "\\ round and round) until the running total passes 40.  In Forth that is one"

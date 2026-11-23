@@ -3,7 +3,7 @@
 \
 \ Ejecuta:  gforth timecards.fs
 \
-\ El reto: suma tarjetas de 10 a 19 horas (Meetings, Coding, Debugging, Learning,
+\ El reto: suma tarjetas de 10 a 19 horas (Reuniones, Programación, Depuración, Aprendizaje,
 \ una tras otra) hasta que el total acumulado pase de 40.  En Forth eso es un
 \ BEGIN ... UNTIL en la palabra RUN.  Todo lo demás son palabras pequeñas que
 \ hacen una sola cosa, construidas de abajo arriba: cada palabra usa las anteriores.
@@ -26,10 +26,10 @@ create week-buf 16 allot            \ "2026-W46" y su salto de línea caben de s
 
 \ Una palabra mínima por categoría y una tabla con sus tokens de ejecución.
 \ ' (tick) convierte un nombre en un xt; EXECUTE lo ejecuta y devuelve la cadena.
-: meetings   ( -- c-addr u )  s" Meetings" ;
-: coding     ( -- c-addr u )  s" Coding" ;
-: debugging  ( -- c-addr u )  s" Debugging" ;
-: learning   ( -- c-addr u )  s" Learning" ;
+: meetings   ( -- c-addr u )  s" Reuniones" ;
+: coding     ( -- c-addr u )  s" Programación" ;
+: debugging  ( -- c-addr u )  s" Depuración" ;
+: learning   ( -- c-addr u )  s" Aprendizaje" ;
 
 create categories  ' meetings , ' coding , ' debugging , ' learning ,
 

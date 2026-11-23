@@ -34,9 +34,9 @@ Los registros van a `$XDG_DATA_HOME/Forth/demo-timecards.db` (por defecto, `~/.l
 
 ```text
 # DEMO ONLY run 1794674715672985
-Meetings	19	19	2026-W46	DEMO ONLY
-Coding	15	34	2026-W46	DEMO ONLY
-Debugging	14	48	2026-W46	DEMO ONLY
+Reuniones	19	19	2026-W46	DEMO ONLY
+Programación	15	34	2026-W46	DEMO ONLY
+Depuración	14	48	2026-W46	DEMO ONLY
 # committed total=48 entries=3 DEMO ONLY
 ```
 
