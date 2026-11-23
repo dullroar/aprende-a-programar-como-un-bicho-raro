@@ -481,3 +481,4 @@
 531 F2-007-tar-gnu-weird done src/tar-gnu-weird categories now Reuniones/Programación/Depuración/Aprendizaje in tick.sql, machine.sql, check.sh (grep, awk lists, schema-negative inserts) and README (rows, prose cell); no [A-Za-z] classes in family; oracle PASS; translation/part2/reports/F2-tar-gnu-weird-categories.md
 533 F2-007-tcl-weird done src/tcl-weird categories now Reuniones/Programación/Depuración/Aprendizaje in timecards.tcl, check.sh and README (rows, fenced SQL excerpt); apply.py follows a braced Tcl list in fences (2 tests); oracle PASS; translation/part2/reports/F2-tcl-weird-categories.md
 534 F2-008 done follow-up gate: 3 line-anchor records re-anchored (awk-weird, cobol, lisp-weird), anchors.json regenerated, verify --release --no-gates passes, END-REVIEW follow-up section added
+535 none done queue complete (308 done, 0 blocked); loop/DONE written, a human takes over
