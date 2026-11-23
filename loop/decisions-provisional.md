@@ -155,3 +155,9 @@
 - Decision: translation/line-anchors.jsonl was seeded (basis `seeded`, 144 records) with the text each `#Lnn` link shows at rc1; this guards against shifts, not against a link that was already wrong. A human review upgrades a record to basis `reviewed` and a real meaning. Links with no record are `unverified` (one finding per file), never green.
 - Alternative: hand-write a meaning for all 144 now. Rejected: no judgement available unattended, and it would claim a review that did not happen.
 - Cost to reverse: edit records; keys are the working path of the target file.
+
+## S4-006 (iter 422): Part II family planning and decision 11 split
+- Decision: `plan_tasks.py --part2` plans one `S5-fam-<slug>` task per scope-file family not marked `never` (45 families, 6 audits, one per 8). Risk order is a table in the tool (pilot re-runs first per decision 11, then comment-only, identifier renames, COBOL, APL, m4, Forth, Unicode variants, regex, archive, ed/ex, adversarial). Sizes are static counts (lines plus 5 per comment or string) because the pilot cost figures measured only refusals. A family with no rule fails the planner. Applying decision 11 is split out: the places are listed in `translation/part2/decision11-places.md` and new task S4-007 fixes them; every S5 task depends on S4-007. Proposed Spanish category words: Reuniones, Programación, Depuración, Aprendizaje (they match the seeded faults in recall_test.py and jury_packet.py); Jim may change them before S4-007 runs.
+- Why: the fixes touch about 13 places and cannot share one iteration with building the planner.
+- Alternatives: fix everything inside S4-006 (too large for one iteration); ship S5 tasks without the prerequisite (the rules would contradict the work).
+- Cost to reverse: low; delete s4-007.jsonl and the s5-*.jsonl files and re-run the planner.

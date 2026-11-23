@@ -372,3 +372,4 @@
 415 S3-003 done S3 gate (translation/part2/s3-gate.md): link-audit.md/.json written, 33 broken listed (29 in cs-source need a repair task), 578 unverified with reasons; test_link_audit 33 passed; verify --fast OK.
 420 S4-005 done S4 gate (translation/part2/pilot-measurements.md): oracle PASS clause not met (docker denied, all pilot families NOT TESTED); 0 findings in part2_inv and lock; recall 10/10; costs listed but are classification-only; verify --fast OK.
 421 S4-chk-1 done review/CHECKPOINT-part2-pilot.md written (no protected diffs, oracle NOT TESTED, cost caveat, decision 11 options) and loop/STOP created for Jim; verify --fast not run (Bash denied).
+422 S4-006 done plan_tasks.py --part2 generates 45 S5-fam tasks + 6 audits + S5-999 amendment (idempotent, 10 new tests); decision 11 places listed in translation/part2/decision11-places.md and applied by new task S4-007 (S5 depends on it); next_task --check ok, verify --fast OK.

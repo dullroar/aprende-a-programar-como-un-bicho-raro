@@ -22,6 +22,17 @@ Usage:
   python3 tools/plan_tasks.py            write the generated queue files
   python3 tools/plan_tasks.py --check    exit 1 if the files on disk differ from a fresh plan
   python3 tools/plan_tasks.py --dry-run  print the summary and write nothing
+  python3 tools/plan_tasks.py --part2    plan Part II: one S5-fam-<entry> task per localizable
+                                         entry family (see "Part II planning" below); combine with
+                                         --check or --dry-run
+
+Part II planning (plan section 4.5, task S4-006): families come from translation/localization-scope.yaml
+(rows marked `never: true` are skipped), sizes from translation/part2/code-inventory.jsonl, order from
+RISK_ORDER (pilot re-runs, comment-only, identifier renames, then COBOL, APL, m4, Forth, Unicode,
+regex, archive, ed/ex, adversarial last). A family with no RISK_ORDER rule is an error, so a new family
+can never be planned silently. Audits come after every `audit_every_n_translate_tasks` family tasks;
+the next batch waits for that audit; S5-999 is amended to wait for all of them. Writes
+loop/queue/generated/s5-families.jsonl and s5-amendments.jsonl. Finished tasks are copied verbatim.
 """
 from __future__ import annotations
 
@@ -338,11 +349,218 @@ def run(check=False, dry_run=False, root="."):
     return 0
 
 
+# ---------------------------------------------------------------- Part II planning
+
+S5_TASKS_FILE = "s5-families.jsonl"
+S5_AMEND_FILE = "s5-amendments.jsonl"
+S5_PREREQ = "S4-007"          # applies decision 11 to rules and prose before any family starts
+S5_GATE = "S5-999"
+SCOPE = "translation/localization-scope.yaml"
+CODE_INVENTORY = "translation/part2/code-inventory.jsonl"
+
+# (rank, reason, patterns). First matching rule wins; lower rank runs earlier. A pattern is an
+# exact family name, a prefix ending in "*", or "src/*Suffix" (any src family ending in Suffix).
+RISK_ORDER = (
+    (0, "pilot re-run with the oracle (decision 11)",
+     ("src/forth", "src/LinqChallenge1", "src/LinqChallenge2", "src/xaml", "src/cobol",
+      "src/regex-pcre2", "lessons/solutions/b7-linq")),
+    (1, "comment-only",
+     ("src/awk", "src/make-gnu", "src/cmake", "src/find-gnu", "src/find-posix", "src/tcl",
+      "src/lisp", "src/haskell", "src/javascript", "src/javascript-events",
+      "lessons/solutions", "lessons/solutions/awk-port", "lessons/tools",
+      "lessons/book/diagrams")),
+    (2, "identifier renames", ("src/*Challenge1", "src/*Challenge2")),
+    (3, "COBOL", ("src/cobol-weird",)),
+    (4, "APL", ("src/apl", "src/apl-weird")),
+    (5, "m4", ("src/m4",)),
+    (6, "Forth parser tricks", ("src/forth-weird",)),
+    (7, "Unicode and weird variants",
+     ("src/haskell-weird", "src/lisp-weird", "src/tcl-weird", "src/javascript-weird",
+      "src/awk-weird")),
+    (8, "regex", ("src/regex-*",)),
+    (9, "archive", ("src/tar-gnu", "src/tar-gnu-weird")),
+    (10, "ed/ex hooks", ("src/ed-weird", "src/ex-weird")),
+    (11, "adversarial", ("sandbox*",)),
+)
+SIZE_STEPS = ((400, "S"), (1500, "M"))     # work score thresholds; above the last is "L"
+EMPTY_SIZE = {"files": 0, "lines": 0, "comments": 0, "strings": 0}
+
+
+def risk_of(family):
+    """Return (rank, reason) for a family, or None when no rule covers it."""
+    for rank, reason, pats in RISK_ORDER:
+        for pat in pats:
+            if pat == family:
+                return rank, reason
+            if pat.startswith("src/*"):
+                if family.startswith("src/") and family.endswith(pat[5:]):
+                    return rank, reason
+            elif pat.endswith("*") and family.startswith(pat[:-1]):
+                return rank, reason
+    return None
+
+
+def read_scope(path=SCOPE):
+    """Return {family: {"never": bool, "status": str}} from the scope file (flat rows)."""
+    out = {}
+    with open(path, encoding="utf-8") as f:
+        for line in f:
+            m = re.match(r'\s+"([^"]+)":\s*\{(.*)\}\s*$', line)
+            if not m:
+                continue
+            body = m.group(2)
+            st = re.search(r"status:\s*(\w+)", body)
+            out[m.group(1)] = {"never": bool(re.search(r"never:\s*true", body)),
+                               "status": st.group(1) if st else "frozen"}
+    return out
+
+
+def family_sizes(path=CODE_INVENTORY):
+    sizes = {}
+    for r in load_jsonl(path):
+        s = sizes.setdefault(r["family"], dict(EMPTY_SIZE))
+        s["files"] += 1
+        s["lines"] += r.get("lines", 0)
+        s["comments"] += len(r.get("comments", []))
+        s["strings"] += len(r.get("strings", []))
+    return sizes
+
+
+def family_slug(family):
+    return re.sub(r"[^a-z0-9]+", "-", family.replace("src/", "", 1).lower()).strip("-")
+
+
+def size_of(sz):
+    """Size class from counted work (lines plus five per comment and string). These are static
+    counts: the pilot cost figures measured only refusals (translation/part2/pilot-measurements.md)."""
+    score = sz["lines"] + 5 * (sz["comments"] + sz["strings"])
+    for limit, name in SIZE_STEPS:
+        if score <= limit:
+            return name, score
+    return "L", score
+
+
+def family_task(tid, family, rank, reason, sz, deps):
+    size, score = size_of(sz)
+    return {
+        "id": tid, "stage": 6, "kind": "localize-code",
+        "title": "Part II S5: localize entry family %s (%s; %d files, %d lines, %d comments, %d strings)"
+                 % (family, reason, sz["files"], sz["lines"], sz["comments"], sz["strings"]),
+        "deps": deps, "size": size, "family": family, "risk": rank, "work": score,
+        "accept": "oracle PASS (docker) or an exception in translation/exception-register.jsonl with NOT TESTED; "
+                  "report translation/part2/reports/%s.md; python3 tools/part2_inv.py --check and "
+                  "python3 tools/lock_code.py --check clean; verify --fast ok" % tid,
+        "status": "todo", "attempts": 0,
+    }
+
+
+def plan_part2(scope, sizes, existing, batch, prereq=S5_PREREQ, gate=S5_GATE):
+    """Pure function: return (rows, amendment_rows, stats). Raises ValueError on unplanned families."""
+    fams = sorted((f for f, v in scope.items() if not v["never"]), key=natural)
+    bad = [f for f in fams if risk_of(f) is None]
+    if bad:
+        raise ValueError("no RISK_ORDER rule for: " + ", ".join(bad))
+    slugs = {}
+    for f in fams:
+        slugs.setdefault("S5-fam-" + family_slug(f), []).append(f)
+    clash = {k: v for k, v in slugs.items() if len(v) > 1}
+    if clash:
+        raise ValueError("task id clash: %r" % clash)
+    ex = {t["id"]: t for t in existing}
+    order = sorted(fams, key=lambda f: (risk_of(f)[0], natural(f)))
+    batches = [order[i:i + batch] for i in range(0, len(order), batch)] if batch > 0 else [order]
+    rows, all_ids, prev = [], [], None
+    for k, group in enumerate(batches, 1):
+        ids = []
+        for f in group:
+            tid = "S5-fam-" + family_slug(f)
+            old = ex.get(tid)
+            ids.append(tid)
+            if old is not None and old.get("status") != "todo":
+                rows.append(old)       # started or finished: never touched
+                continue
+            rank, reason = risk_of(f)
+            t = family_task(tid, f, rank, reason, sizes.get(f, EMPTY_SIZE),
+                            [d for d in (prereq, prev) if d])
+            if old is not None:
+                for key in ("attempts", "notes"):
+                    if key in old:
+                        t[key] = old[key]
+            rows.append(t)
+        aid = "S5-audit-%d" % k
+        old = ex.get(aid)
+        if old is not None and old.get("status") != "todo":
+            rows.append(old)
+        else:
+            a = {"id": aid, "stage": 6, "kind": "audit",
+                 "title": "Part II S5 audit %d: fresh-context review of the localized families in %s"
+                          % (k, ", ".join(ids)),
+                 "deps": list(ids), "size": "S", "inputs": list(ids),
+                 "accept": "translation/reviews/%s.md written; findings become review-fix tasks" % aid,
+                 "status": "todo", "attempts": 0}
+            if old is not None:
+                a["attempts"] = old.get("attempts", 0)
+                if "notes" in old:
+                    a["notes"] = old["notes"]
+            rows.append(a)
+        all_ids += ids + [aid]
+        prev = aid
+    amend = [{"amend": gate, "add_deps": sorted(all_ids, key=natural)}] if gate else []
+    return rows, amend, {"families": len(order), "audits": len(batches)}
+
+
+def run_part2(check=False, dry_run=False, root="."):
+    os.chdir(root)
+    cfg = read_config()
+    batch = int(cfg.get("audit_every_n_translate_tasks", 8))
+    t_path = os.path.join(GENERATED_DIR, S5_TASKS_FILE)
+    a_path = os.path.join(GENERATED_DIR, S5_AMEND_FILE)
+    known = {t["id"] for t in load_jsonl(SEED)}
+    if os.path.isdir(GENERATED_DIR):
+        for p in sorted(os.listdir(GENERATED_DIR)):
+            if p.endswith(".jsonl") and p not in (S5_TASKS_FILE, S5_AMEND_FILE):
+                known |= {r.get("id") for r in load_jsonl(os.path.join(GENERATED_DIR, p))}
+    try:
+        rows, amend, st = plan_part2(read_scope(), family_sizes(), load_jsonl(t_path), batch,
+                                     S5_PREREQ if S5_PREREQ in known else None,
+                                     S5_GATE if S5_GATE in known else None)
+    except ValueError as e:
+        print("plan_tasks --part2: " + str(e), file=sys.stderr)
+        return 2
+    print("plan_tasks --part2: %d family tasks, %d audits" % (st["families"], st["audits"]))
+    want = {t_path: dumps(rows), a_path: dumps(amend)}
+    stale = []
+    for p, text in want.items():
+        have = None
+        if os.path.exists(p):
+            with open(p, encoding="utf-8", newline="") as fh:
+                have = fh.read()
+        if have != text:
+            stale.append(p)
+    if check:
+        for p in stale:
+            print("STALE: " + p)
+        return 1 if stale else 0
+    if dry_run:
+        return 0
+    os.makedirs(GENERATED_DIR, exist_ok=True)
+    for p in stale:
+        with open(p, "w", encoding="utf-8", newline="\n") as f:
+            f.write(want[p])
+        print("wrote " + p)
+    if not stale:
+        print("no change")
+    return 0
+
+
 def main(argv=None):
     ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
     ap.add_argument("--check", action="store_true")
     ap.add_argument("--dry-run", action="store_true")
+    ap.add_argument("--part2", action="store_true")
     a = ap.parse_args(argv)
+    if a.part2:
+        return run_part2(a.check, a.dry_run)
     return run(a.check, a.dry_run)
 
 

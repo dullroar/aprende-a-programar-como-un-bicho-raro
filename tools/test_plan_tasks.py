@@ -250,5 +250,86 @@ class FileIoTests(unittest.TestCase):
         self.assertEqual(pt.read_config("loop/CONFIG.yaml")["translate_task_max_source_words"], "4000")
 
 
+SCOPE_SAMPLE = {
+    "(root)": {"never": True, "status": "frozen"},
+    "src/forth": {"never": False, "status": "frozen"},
+    "src/awk": {"never": False, "status": "frozen"},
+    "src/GoChallenge1": {"never": False, "status": "frozen"},
+    "src/cobol-weird": {"never": False, "status": "frozen"},
+    "src/regex-sed": {"never": False, "status": "frozen"},
+    "src/ed-weird": {"never": False, "status": "frozen"},
+}
+
+
+def p2(scope=SCOPE_SAMPLE, existing=(), batch=3, **kw):
+    return pt.plan_part2(scope, {}, list(existing), batch, **kw)
+
+
+class Part2Tests(unittest.TestCase):
+    def test_covers_every_non_never_family_exactly_once(self):
+        rows, _, _ = p2()
+        fams = [r["family"] for r in rows if r["kind"] == "localize-code"]
+        self.assertEqual(sorted(fams), sorted(f for f, v in SCOPE_SAMPLE.items() if not v["never"]))
+        self.assertEqual(len(fams), len(set(fams)))
+
+    def test_risk_order(self):
+        rows, _, _ = p2()
+        fams = [r["family"] for r in rows if r["kind"] == "localize-code"]
+        self.assertEqual(fams, ["src/forth", "src/awk", "src/GoChallenge1", "src/cobol-weird",
+                                "src/regex-sed", "src/ed-weird"])
+
+    def test_audit_every_batch_and_chain(self):
+        rows, amend, _ = p2()
+        by = {r["id"]: r for r in rows}
+        self.assertEqual(by["S5-audit-1"]["deps"], ["S5-fam-forth", "S5-fam-awk", "S5-fam-gochallenge1"])
+        self.assertIn("S5-audit-1", by["S5-fam-cobol-weird"]["deps"])
+        self.assertNotIn("S5-audit-1", by["S5-fam-forth"]["deps"])
+        self.assertEqual(amend[0]["amend"], "S5-999")
+        self.assertEqual(set(amend[0]["add_deps"]), {r["id"] for r in rows})
+
+    def test_unclassified_family_is_an_error(self):
+        scope = dict(SCOPE_SAMPLE)
+        scope["src/brand-new"] = {"never": False, "status": "frozen"}
+        with self.assertRaises(ValueError):
+            p2(scope)
+
+    def test_never_family_is_not_planned(self):
+        rows, _, _ = p2()
+        self.assertFalse([r for r in rows if r.get("family") == "(root)"])
+
+    def test_finished_task_is_never_reset(self):
+        rows, _, _ = p2()
+        done = dict(rows[0], status="done", attempts=2, notes="kept")
+        again, _, _ = p2(existing=[done])
+        self.assertEqual(again[0], done)
+
+    def test_idempotent(self):
+        rows, amend, _ = p2()
+        again = p2(existing=rows)
+        self.assertEqual(pt.dumps(rows), pt.dumps(again[0]))
+        self.assertEqual(amend, again[1])
+
+    def test_todo_notes_survive(self):
+        rows, _, _ = p2()
+        rows[1] = dict(rows[1], notes="resume at file 2", attempts=1)
+        again, _, _ = p2(existing=rows)
+        self.assertEqual(again[1]["notes"], "resume at file 2")
+
+    def test_size_class(self):
+        self.assertEqual(pt.size_of({"lines": 10, "comments": 2, "strings": 1})[0], "S")
+        self.assertEqual(pt.size_of({"lines": 900, "comments": 40, "strings": 10})[0], "M")
+        self.assertEqual(pt.size_of({"lines": 3000, "comments": 0, "strings": 0})[0], "L")
+
+    def test_real_scope_is_fully_classified(self):
+        if not os.path.exists(pt.SCOPE):
+            self.skipTest("no scope file")
+        scope = pt.read_scope()
+        for fam, v in scope.items():
+            if not v["never"]:
+                self.assertIsNotNone(pt.risk_of(fam), fam)
+        rows, _, st = pt.plan_part2(scope, {}, [], 8)
+        self.assertEqual(st["families"], sum(1 for v in scope.values() if not v["never"]))
+
+
 if __name__ == "__main__":
     unittest.main()
