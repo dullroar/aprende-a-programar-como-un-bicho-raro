@@ -4,7 +4,7 @@ import { homedir, userInfo } from 'node:os';
 import { join } from 'node:path';
 import { cards, hoursFrom, machine } from './core.mjs';
 
-// The leaf effects. Each one is a closure that does one thing to the outside world, and nothing else is impure.
+// Los efectos de las hojas. Cada uno es una clausura que hace una cosa en el mundo exterior, y nada más es impuro.
 const seed = Number(process.env.SEED) || crypto.getRandomValues(new Uint32Array(1))[0] % 2147483646 + 1;
 const now = process.env.NOW ? new Date(`${process.env.NOW}T12:00:00Z`) : new Date();
 const isoWeek = d => ((t, y) => [y = (t.setUTCDate(t.getUTCDate() + 4 - (t.getUTCDay() || 7)), t.getUTCFullYear()),
@@ -19,22 +19,22 @@ db.exec(`
     user_id TEXT NOT NULL, year INTEGER NOT NULL, week INTEGER NOT NULL,
     demo_only INTEGER NOT NULL DEFAULT 1 CHECK (demo_only = 1));`);
 const run = Number(db.prepare('INSERT INTO runs(seed) VALUES (?)').run(seed).lastInsertRowid);
-// save: a closure over the prepared statement and the run. It saves one record and hands it back, so it can sit in a pipeline.
+// save: una clausura sobre la sentencia preparada y la ejecución. Guarda un registro y lo devuelve, así cabe en una tubería.
 const save = (insert => r => (insert.run(run, r.category, r.hours, r.total, r.user, r.year, r.week), r))(
   db.prepare('INSERT INTO demo_timecards(run_id, category, hours, running_total, user_id, year, week) VALUES (?, ?, ?, ?, ?, ?, ?)'));
-// stamp: a closure over the user and the date. It makes a card into a record.
+// stamp: una clausura sobre el usuario y la fecha. Convierte una tarjeta en un registro.
 const stamp = (user, [year, week]) => card => ({ ...card, user, year, week });
 
-// THE PROGRAM. Nothing is drawn until `toArray` asks. Each ask pulls one card through the machine, stamps it and saves it,
-// and the machine itself says when there are no more (the card that took the total over 40 was the last).
+// EL PROGRAMA. No se saca nada hasta que `toArray` lo pide. Cada petición pasa una tarjeta por la máquina, la sella y la guarda,
+// y la propia máquina dice cuándo no hay más (la tarjeta que llevó el total por encima de 40 fue la última).
 const records = Iterator.from(cards(machine(hoursFrom(seed)))).map(stamp(userInfo().username, isoWeek(now))).map(save).toArray();
 
-// A fold over the finished list. reduce cannot stop early, and here it does not need to: the list is already complete.
+// Un pliegue sobre la lista terminada. reduce no puede parar antes, y aquí no lo necesita: la lista ya está completa.
 const total = records.reduce((sum, r) => sum + r.hours, 0);
 console.log(`# DEMO ONLY run ${run}\n${records.map(r => `${r.category}\t${r.hours}\t${r.total}\t${r.year}-W${String(r.week).padStart(2, '0')}\tDEMO ONLY`).join('\n')}\n`
   + `# committed total=${total} entries=${records.length} DEMO ONLY\n\nTotal simulated hours: ${total.toFixed(1)}\nSaved locally for the modernization exercise.`);
 
-// The pulse is a separate effect, after everything is saved. Its two variables are closed over by the timer callback.
+// El pulso es un efecto aparte, después de guardarlo todo. Sus dos variables quedan capturadas por la función del temporizador.
 process.stdout.isTTY && process.env.TERM !== 'dumb' && ((plain, cycles) => {
   let frame = 0;
   const id = setInterval(() => {

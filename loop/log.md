@@ -412,3 +412,4 @@
 460 S5-audit-4 done audit of 8 S5 families: lock ok, oracle PASS m4/PythonChallenge1/apl/apl-weird/cobol-weird/forth-weird, 2 left English (EXC-571/573); no violations; translation/reviews/S5-audit-4.md
 461 S5-fam-awk-weird done src/awk-weird localizing: 51 comment lines (timecards.awk, check.sh, Dockerfile) via loc_apply, oracle PASS; categories/strings kept English EXC-574.
 462 S5-fam-haskell-weird done src/haskell-weird localizing: 47 comment lines (timecards.hs, check.sh, Dockerfile) via loc_apply, oracle PASS; categories/strings kept English EXC-575.
+463 S5-fam-javascript-weird done src/javascript-weird localizing: 41 comment lines (core.mjs, timecards.mjs, check.mjs, check-static.mjs, check.sh, Dockerfile) via loc_apply, oracle PASS; categories/strings kept English EXC-576.

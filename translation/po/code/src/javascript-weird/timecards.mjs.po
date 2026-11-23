@@ -1,0 +1,31 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+
+msgctxt "L7"
+msgid "// The leaf effects. Each one is a closure that does one thing to the outside world, and nothing else is impure."
+msgstr "// Los efectos de las hojas. Cada uno es una clausura que hace una cosa en el mundo exterior, y nada más es impuro."
+
+msgctxt "L22"
+msgid "// save: a closure over the prepared statement and the run. It saves one record and hands it back, so it can sit in a pipeline."
+msgstr "// save: una clausura sobre la sentencia preparada y la ejecución. Guarda un registro y lo devuelve, así cabe en una tubería."
+
+msgctxt "L25"
+msgid "// stamp: a closure over the user and the date. It makes a card into a record."
+msgstr "// stamp: una clausura sobre el usuario y la fecha. Convierte una tarjeta en un registro."
+
+msgctxt "L28"
+msgid "// THE PROGRAM. Nothing is drawn until `toArray` asks. Each ask pulls one card through the machine, stamps it and saves it,"
+msgstr "// EL PROGRAMA. No se saca nada hasta que `toArray` lo pide. Cada petición pasa una tarjeta por la máquina, la sella y la guarda,"
+
+msgctxt "L29"
+msgid "// and the machine itself says when there are no more (the card that took the total over 40 was the last)."
+msgstr "// y la propia máquina dice cuándo no hay más (la tarjeta que llevó el total por encima de 40 fue la última)."
+
+msgctxt "L32"
+msgid "// A fold over the finished list. reduce cannot stop early, and here it does not need to: the list is already complete."
+msgstr "// Un pliegue sobre la lista terminada. reduce no puede parar antes, y aquí no lo necesita: la lista ya está completa."
+
+msgctxt "L37"
+msgid "// The pulse is a separate effect, after everything is saved. Its two variables are closed over by the timer callback."
+msgstr "// El pulso es un efecto aparte, después de guardarlo todo. Sus dos variables quedan capturadas por la función del temporizador."

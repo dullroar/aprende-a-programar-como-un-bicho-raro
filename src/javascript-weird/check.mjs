@@ -1,11 +1,11 @@
-// Every claim the README makes about closures, laziness and reduce, as a test. Run:  node --expose-gc --test check.mjs
+// Cada afirmación del README sobre clausuras, pereza y reduce, como una prueba. Ejecuta:  node --expose-gc --test check.mjs
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { cards, hoursFrom, machine } from './core.mjs';
 
-// A closure over a list, for forced dice: forced(10, 12) answers 10, then 12, then undefined.
+// Una clausura sobre una lista, para dados forzados: forced(10, 12) responde 10, luego 12, luego undefined.
 const forced = (...hours) => () => hours.shift();
-// A closure that counts how often it was called. The count is a property on the function, so it is visible from outside.
+// Una clausura que cuenta cuántas veces la llamaron. La cuenta es una propiedad de la función, así que se ve desde fuera.
 const counting = f => { const g = () => (g.calls++, f()); g.calls = 0; return g; };
 const run = (nextHours) => [...cards(machine(nextHours))];
 
@@ -79,12 +79,12 @@ test('reduce cannot stop by itself: its callback runs for every element, whateve
   const out = [19, 19, 19, 19, 19].reduce((acc, h) => (seen.push(h), acc.done ? acc : { total: acc.total + h, done: acc.total + h > 40 }), { total: 0, done: false });
   assert.equal(out.total, 57);                                               // the answer is right (the callback ignored the later values)...
   assert.equal(seen.length, 5);                                              // ...but it was called five times, not three
-  // some() does stop: it asks for a value only while the answer so far is "no"
+  // some() sí para: pide un valor solo mientras la respuesta hasta ahora es "no"
   const source = counting(hoursFrom(42));
   let t = 0;
   assert.equal(Iterator.from(cards(machine(source))).some(c => (t = c.total) > 40), true);
   assert.equal(source.calls, 3);
-  // an exception ends a reduce too. It works, and it is the wrong tool: control flow by error.
+  // una excepción también termina un reduce. Funciona, y es la herramienta equivocada: control de flujo por error.
   const stop = Symbol('stop'), calls = [];
   assert.throws(() => [19, 19, 19, 19, 19].reduce((acc, h) => { calls.push(h); if (acc + h > 40) throw stop; return acc + h; }, 0), e => e === stop);
   assert.equal(calls.length, 3);
@@ -121,6 +121,6 @@ test('a closure is not a continuation: it can be called again, but it cannot res
   const m = machine(hoursFrom(3));
   const first = m();
   assert.notDeepEqual(m(), first);                                           // calling again gives the NEXT card; the first call's moment is gone
-  // there is no way to hand m a "return point": its only input is nextHours, fixed at creation
+  // no hay forma de darle a m un "punto de retorno": su única entrada es nextHours, fijada al crearla
   assert.equal(m.length, 0);
 });

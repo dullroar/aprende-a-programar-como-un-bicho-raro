@@ -1,0 +1,27 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+
+msgctxt "L1"
+msgid "// Every claim the README makes about closures, laziness and reduce, as a test. Run:  node --expose-gc --test check.mjs"
+msgstr "// Cada afirmación del README sobre clausuras, pereza y reduce, como una prueba. Ejecuta:  node --expose-gc --test check.mjs"
+
+msgctxt "L6"
+msgid "// A closure over a list, for forced dice: forced(10, 12) answers 10, then 12, then undefined."
+msgstr "// Una clausura sobre una lista, para dados forzados: forced(10, 12) responde 10, luego 12, luego undefined."
+
+msgctxt "L8"
+msgid "// A closure that counts how often it was called. The count is a property on the function, so it is visible from outside."
+msgstr "// Una clausura que cuenta cuántas veces la llamaron. La cuenta es una propiedad de la función, así que se ve desde fuera."
+
+msgctxt "L82"
+msgid "// some() does stop: it asks for a value only while the answer so far is \"no\""
+msgstr "// some() sí para: pide un valor solo mientras la respuesta hasta ahora es \"no\""
+
+msgctxt "L87"
+msgid "// an exception ends a reduce too. It works, and it is the wrong tool: control flow by error."
+msgstr "// una excepción también termina un reduce. Funciona, y es la herramienta equivocada: control de flujo por error."
+
+msgctxt "L124"
+msgid "// there is no way to hand m a \"return point\": its only input is nextHours, fixed at creation"
+msgstr "// no hay forma de darle a m un \"punto de retorno\": su única entrada es nextHours, fijada al crearla"

@@ -1,0 +1,19 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+
+msgctxt "L1"
+msgid "# Container image for the Node.js closure entry. Run it with: sandbox/container/run-image.sh src/javascript-weird"
+msgstr "# Imagen de contenedor para la entrada de clausuras en Node.js. Ejecútala con: sandbox/container/run-image.sh src/javascript-weird"
+
+msgctxt "L2"
+msgid "# The program is two files: core.mjs (three closures, no I/O) and timecards.mjs (the database, the clock, the screen)."
+msgstr "# El programa son dos archivos: core.mjs (tres clausuras, sin E/S) y timecards.mjs (la base de datos, el reloj, la pantalla)."
+
+msgctxt "L3"
+msgid "# Node 24 has node:sqlite and iterator helpers built in; there is no npm and no package."
+msgstr "# Node 24 trae node:sqlite y los ayudantes de iteradores incorporados; no hay npm ni ningún paquete."
+
+msgctxt "L4"
+msgid "# Add --tty to the run-image.sh command to see the DEMO ONLY line pulse. check.sh and check.mjs are for your own machine."
+msgstr "# Añade --tty al comando run-image.sh para ver pulsar la línea DEMO ONLY. check.sh y check.mjs son para tu propia máquina."

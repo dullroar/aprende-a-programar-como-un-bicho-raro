@@ -1,9 +1,9 @@
-// Proves the constraints of this entry from the source text alone: no loop statement anywhere, no eval, no dynamic code,
-// no process or network module, a core with no I/O at all, and the pieces the README talks about are really there.
-// Usage: node check-static.mjs core.mjs timecards.mjs
+// Prueba las restricciones de esta entrada solo con el texto fuente: ninguna instrucción de bucle, ni eval, ni código dinámico,
+// ni módulo de procesos o de red, un núcleo sin E/S alguna, y que las piezas de las que habla el README existen de verdad.
+// Uso: node check-static.mjs core.mjs timecards.mjs
 import { readFileSync } from 'node:fs';
 
-// Blank comments and string contents; keep code, including the code inside `${ ... }` of template literals.
+// Vacía los comentarios y el contenido de las cadenas; conserva el código, incluido el de `${ ... }` en las plantillas de texto.
 const strip = src => {
   let out = '', i = 0;
   const stack = [];

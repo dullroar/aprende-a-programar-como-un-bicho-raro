@@ -1,7 +1,7 @@
-# Container image for the Node.js closure entry. Run it with: sandbox/container/run-image.sh src/javascript-weird
-# The program is two files: core.mjs (three closures, no I/O) and timecards.mjs (the database, the clock, the screen).
-# Node 24 has node:sqlite and iterator helpers built in; there is no npm and no package.
-# Add --tty to the run-image.sh command to see the DEMO ONLY line pulse. check.sh and check.mjs are for your own machine.
+# Imagen de contenedor para la entrada de clausuras en Node.js. Ejecútala con: sandbox/container/run-image.sh src/javascript-weird
+# El programa son dos archivos: core.mjs (tres clausuras, sin E/S) y timecards.mjs (la base de datos, el reloj, la pantalla).
+# Node 24 trae node:sqlite y los ayudantes de iteradores incorporados; no hay npm ni ningún paquete.
+# Añade --tty al comando run-image.sh para ver pulsar la línea DEMO ONLY. check.sh y check.mjs son para tu propia máquina.
 FROM cc-rt-node:local
 COPY core.mjs timecards.mjs /app/
 ENV CC_RUN="node /app/timecards.mjs"

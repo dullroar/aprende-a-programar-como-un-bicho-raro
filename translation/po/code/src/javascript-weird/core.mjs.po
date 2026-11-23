@@ -1,0 +1,35 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+
+msgctxt "L1"
+msgid "// The whole algorithm, as three closures. No I/O, no loop statement, no `this`."
+msgstr "// Todo el algoritmo, como tres clausuras. Sin E/S, sin instrucciones de bucle, sin `this`."
+
+msgctxt "L2"
+msgid "// A closure is a function together with the variables it was made next to. Here those variables are the program's state,"
+msgstr "// Una clausura es una función junto con las variables entre las que nació. Aquí esas variables son el estado del programa,"
+
+msgctxt "L3"
+msgid "// and the only way to reach them is to call the function."
+msgstr "// y la única forma de llegar a ellas es llamar a la función."
+
+msgctxt "L7"
+msgid "// 1. A source of hours: a closure over one number (Park-Miller). Every call moves `state` and answers 10 to 19."
+msgstr "// 1. Una fuente de horas: una clausura sobre un número (Park-Miller). Cada llamada mueve `state` y responde de 10 a 19."
+
+msgctxt "L10"
+msgid "// 2. The card machine: a closure over three variables. Every call makes the next card and moves them. After the card"
+msgstr "// 2. La máquina de tarjetas: una clausura sobre tres variables. Cada llamada crea la siguiente tarjeta y las mueve. Después de la tarjeta"
+
+msgctxt "L11"
+msgid "//    that takes the total over the limit it answers undefined, for ever. THE STOP RULE IS the assignment to `over`."
+msgstr "//    que lleva el total por encima del límite responde undefined, para siempre. LA REGLA DE PARADA ES la asignación a `over`."
+
+msgctxt "L17"
+msgid "// 3. The iteration protocol, by hand: an iterable is an object whose [Symbol.iterator]() answers an object with next()."
+msgstr "// 3. El protocolo de iteración, a mano: un iterable es un objeto cuyo [Symbol.iterator]() responde con un objeto que tiene next()."
+
+msgctxt "L18"
+msgid "//    next() asks the machine for a card, and says `done` when it has none. A card is made only when something asks for it."
+msgstr "//    next() pide una tarjeta a la máquina, y dice `done` cuando ya no hay. Una tarjeta se crea solo cuando alguien la pide."
