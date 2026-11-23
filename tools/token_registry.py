@@ -56,6 +56,21 @@ NOT_EXTRACTED = {
     "shell": "bash `compgen -k` would be the source; not run by this tool yet",
     "sql": "dialect not fixed; no pinned specification extract in specs/",
     "tcl": "Tcl not installed on this host",
+    # Batch C (S1-005): regex engines, command grammars and build-time syntax. None has a keyword
+    # listing command this tool may run (dontAsk mode) and none has a pinned specification extract.
+    "dockerfile": "build-time syntax; no introspection command and no pinned specification extract in specs/",
+    "dotnet-regex": ".NET regex syntax (System.Text.RegularExpressions); dotnet was refused in this session (dontAsk mode) and no pinned specification extract in specs/",
+    "ed": "command grammar of ed(1); no introspection command and no pinned specification extract in specs/",
+    "ex": "command grammar of ex(1); no introspection command and no pinned specification extract in specs/",
+    "find": "expression grammar of find(1); no introspection command and no pinned specification extract in specs/",
+    "gradle": "build-time syntax (Groovy or Kotlin DSL); no Gradle run in this session and no pinned specification extract in specs/",
+    "html": "build-time syntax (elements and attributes); no pinned specification extract in specs/",
+    "mermaid": "diagram syntax; no Mermaid run in this session and no pinned specification extract in specs/",
+    "pcre2": "PCRE2 pattern syntax; pcre2 syntax manual not pinned in specs/ and no probe was run (dontAsk mode)",
+    "pcre2grep": "pcre2grep options and callout syntax; no probe was run (dontAsk mode) and no pinned specification extract in specs/",
+    "tar": "command-line grammar of tar(1); no introspection command and no pinned specification extract in specs/",
+    "xaml": "build-time syntax (XML elements, markup extensions); no pinned specification extract in specs/",
+    "yaml": "YAML syntax; no pinned specification extract in specs/",
 }
 
 # ---------------------------------------------------------------------------------------------
