@@ -31,3 +31,16 @@ Not captured as separate terms because the glossary maps one English word to one
 **Effect on the 12 translated files.** The new I7 terms and bans flag the 12 files translated so far (for example `statement` needs `sentencia`, `loopback` needs `interfaz local`). `verify --fast` checks only touched files, so this commit passes. Each file is corrected by its own task P3C-004 to P3C-015, and the P3C-017 gate runs `verify --release` over them.
 
 **Path names.** Two student-facing paths contain `retrollamadas` (`eventos-retrollamadas-...`). The word stays valid as a legacy `path_words` entry (it is not an I7 term). Renaming the two files is deferred to Phase 5, because it needs a pure `git mv` plus a reference rewrite as in P3B-005.
+
+## 2026-11-22 Decision 11 at checkpoint S4-chk-1 (Part II pilot): localize the four card categories
+
+Source: `review/CHECKPOINT-part2-pilot.md`. Recorded by Claude from Jim's answers in the session.
+
+**Decision.** The four card categories `Meetings`, `Coding`, `Debugging` and `Learning` are **localized** in code, program output and fixtures, not left English. This reverses the plan's default (§4.1 and §16, "stay English").
+
+**Oracle.** Docker is allowed in the loop's permissions (`Bash(docker:*)` in the project's untracked `.claude/settings.json`). The oracle (`tools/oracle.py`) runs for each family, so a family is localized only with oracle proof. S0-003's sandbox self-test and the four pilot families (Forth, C#/LINQ/XAML, COBOL, regex-pcre2) are re-run first.
+
+**Consequences to handle (not decided here).**
+- The Spanish words for the four categories come from the glossary; S4-006 proposes them in `loop/decisions-provisional.md` and applies them consistently (candidates: reuniones, programación, depuración, aprendizaje).
+- Prose in already translated files that glosses the English categories once per chapter, the card-category checks (I2, I13 and the humor register if affected), and `PROMPT.md` hard rule 8 and §4.1 rule 13 ("never translate card categories") need updating so the rules match this decision. S4-006 lists each place and fixes it before any S5 family task starts.
+- Cost to reverse after the bulk is high: fixtures that embed the names change per family. Each family's change stays in its own commit so it can be reverted alone.
