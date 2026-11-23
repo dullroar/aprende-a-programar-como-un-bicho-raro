@@ -409,3 +409,4 @@
 457 S5-fam-modernchallenge1 done family left English, NOT TESTED (EXC-571): no entry image (no Dockerfile), oracle cannot run; no protected file changed.
 458 S5-fam-pythonchallenge1 done src/PythonChallenge1 localizing: 15 comment lines (program.py, Dockerfile) via loc_apply, oracle PASS; categories/strings kept English EXC-572.
 459 S5-fam-rustchallenge1 done family left English, NOT TESTED (EXC-573): cargo image build needs network, oracle cannot run; no protected file changed.
+460 S5-audit-4 done audit of 8 S5 families: lock ok, oracle PASS m4/PythonChallenge1/apl/apl-weird/cobol-weird/forth-weird, 2 left English (EXC-571/573); no violations; translation/reviews/S5-audit-4.md
