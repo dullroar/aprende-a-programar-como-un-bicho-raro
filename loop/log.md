@@ -440,3 +440,4 @@
 488 S8-004 done jury_packet --code (P-code packets with EN/ES source, idmap, registry, oracle slices), 5 Part II canary mutators with per-group quota, Part II categories in finding schema and ingest (report section, review-fix gates); tools/test_jury_code_packets.py + code cases in both jury tests
 489 S8-005 done wrote translation/releases/v4-es.0-rc2-report.md (RUN/NOT RUN tables, 45-family oracle matrix, link audit 33 broken/578 unverified, hashes, model IDs); quoted earlier gate results, re-ran only sha256
 490 S8-006 done local annotated tag v4-es.0-rc2 on 23e837a (not pushed); git tag -l lists it; verify --fast OK
+491 S8-007 done S8 gate PASS: verify --release OK (88 checks, double build identical), rc2 tag exists; translation/part2/s8-final-gate.md
