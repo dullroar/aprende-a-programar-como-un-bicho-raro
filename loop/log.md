@@ -344,3 +344,4 @@
 391 P6-002 done verify --release OK (75 checks) after fixing inventory (Spanish outputs), H081 anchor, APL/tally wording via PO, test_cs/test_study_guides/test_curriculum Spanish-layer; 34 page images in translation/work/visual/.
 392 P6-003 done release report written (commands, exit codes, hashes, coverage, model IDs, caveats); verify --release re-run OK, 75 checks.
 393 P6-004 done local annotated tag v4-es.0-rc1 at a901b72; nothing pushed; next eligible task S0-001.
+394 S0-001 done Part II baseline in translation/part2/baseline.md: rc1 tag present (tree e037c3b), lock_code --verify ok (230 files), verify --release OK (75 checks); nothing pushed.
