@@ -1,0 +1,15 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+
+msgctxt "L1"
+msgid "# Container image for the AWK \"weird\" entry. Run it with: sandbox/container/run-image.sh src/awk-weird"
+msgstr "# Imagen de contenedor para la entrada de AWK \"rara\". Ejecútala con: sandbox/container/run-image.sh src/awk-weird"
+
+msgctxt "L2"
+msgid "# Nothing to build: gawk interprets the script (it needs GNU awk: RT and a regular-expression RS)."
+msgstr "# No hay nada que compilar: gawk interpreta el script (necesita GNU awk: RT y un RS de expresión regular)."
+
+msgctxt "L3"
+msgid "# The runtime base has gawk and sqlite3, and no compiler or package manager."
+msgstr "# La base de ejecución tiene gawk y sqlite3, y no tiene compilador ni gestor de paquetes."

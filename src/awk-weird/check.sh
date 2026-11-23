@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-# Checks the rules of the challenge for the AWK "weird" entry. Uses a throwaway data dir.
-# GNU awk only (RT, regular-expression RS, systime, PROCINFO). Set GAWK=/path/to/gawk if it is not on your PATH.
+# Comprueba las reglas del reto para la entrada de AWK "rara". Usa un directorio de datos desechable.
+# Solo GNU awk (RT, RS como expresión regular, systime, PROCINFO). Define GAWK=/ruta/a/gawk si no está en tu PATH.
 set -euo pipefail
 cd "$(dirname "$0")"
 data=$(mktemp -d); trap 'rm -rf "$data"' EXIT
@@ -10,8 +10,8 @@ gawk=${GAWK:-gawk}
 run() { "$gawk" -f "${PROGRAM:-timecards.awk}" "$@"; }
 rows() { grep -E '^(Meetings|Coding|Debugging|Learning)	' || true; }
 
-# 1. Static: the stunt is real. With comments removed there is no loop, no if, no function and no
-#    random-number function; the record separator is the digit class; and the stop rule is a pattern.
+# 1. Estático: el truco es real. Sin los comentarios no hay bucle, ni if, ni función, ni
+#    función aleatoria; el separador de registros es la clase de dígitos; y la regla de parada es un patrón.
 grep -q 'DEMO ONLY' timecards.awk || { echo "FAIL: no DEMO ONLY marker in timecards.awk"; exit 1; }
 if grep -Eqi 'http|socket|curl|wget|/inet/' timecards.awk; then echo "FAIL: network-looking text in timecards.awk"; exit 1; fi
 code=$(sed -E -e '/^ *#/d' -e 's/  +#.*//' timecards.awk)
@@ -23,10 +23,10 @@ grep -q 'RS = "\[0-9\]"' <<<"$code" || { echo "FAIL: RS is not the digit class";
 grep -q '^t > 40 { exit }$' <<<"$code" || { echo "FAIL: the stop rule is not a bare pattern with an exit action"; exit 1; }
 grep -q '/dev/urandom' <<<"$code" || { echo "FAIL: the default input is not /dev/urandom"; exit 1; }
 
-# 2. The dice are the digits in the input. Feed digit files in awkward shapes (spaces, newlines, none,
-#    letters between them) and compare with an independent computation in bash, card for card.
+# 2. Los dados son los dígitos de la entrada. Alimenta archivos de dígitos con formas incómodas (espacios, saltos de línea, nada,
+#    letras entre ellos) y compara con un cálculo independiente en bash, tarjeta por tarjeta.
 cats=(Meetings Coding Debugging Learning)
-expected() {   # digits -> the rows as the program should print them, then a summary line
+expected() {   # dígitos -> las filas como debería imprimirlas el programa, luego una línea de resumen
     local digits=$1 total=0 n=0 d hours i
     for (( i = 0; i < ${#digits} && total <= 40; i++ )); do
         d=${digits:i:1}; hours=$(( 10 + d )); total=$(( total + hours ))
@@ -34,29 +34,29 @@ expected() {   # digits -> the rows as the program should print them, then a sum
     done
     printf 'SUMMARY total=%d entries=%d\n' "$total" "$n"
 }
-# What the program printed, in the same shape as expected().
+# Lo que imprimió el programa, con la misma forma que expected().
 shape() { local out=$1; rows <<<"$out" | cut -f1-3; sed -nE 's/^# committed (total=[0-9]+ entries=[0-9]+) DEMO ONLY$/SUMMARY \1/p' <<<"$out"; }
 for trial in $(seq 1 30); do
     digits=""; for _ in $(seq 1 12); do digits+=$(( RANDOM % 10 )); done
     case $(( trial % 4 )) in
-        0) printf '%s' "$digits" > "$data/in.txt" ;;            # no separators at all
-        1) printf '%s\n' "$digits" > "$data/in.txt" ;;          # trailing newline: an empty last record
-        2) sed 's/./& /g' <<<"$digits" > "$data/in.txt" ;;      # spaces between
-        3) sed 's/./x&\n/g' <<<"$digits" > "$data/in.txt" ;;    # letters and lines between
+        0) printf '%s' "$digits" > "$data/in.txt" ;;            # sin ningún separador
+        1) printf '%s\n' "$digits" > "$data/in.txt" ;;          # salto de línea final: un último registro vacío
+        2) sed 's/./& /g' <<<"$digits" > "$data/in.txt" ;;      # espacios entre ellos
+        3) sed 's/./x&\n/g' <<<"$digits" > "$data/in.txt" ;;    # letras y saltos de línea entre ellos
     esac
     want=$(expected "$digits")
     got=$(shape "$(run "$data/in.txt")")
     [[ $got == "$want" ]] || { echo "FAIL: digits $digits (variant $((trial % 4))): output differs from bash"; diff <(echo "$want") <(echo "$got") || true; exit 1; }
 done
 rm -rf "$data/AwkWeird"
-#    A stream that runs out before the total passes 40 just ends (urandom never does). The newline at
-#    its end makes an empty last record, which rule 1 must not count as a card.
+#    Un flujo que se acaba antes de que el total pase de 40 simplemente termina (urandom nunca lo hace). El salto de línea
+#    del final crea un último registro vacío, que la regla 1 no debe contar como tarjeta.
 printf '1 2\n' > "$data/in.txt"
 out=$(run "$data/in.txt")
 grep -q '^# committed total=23 entries=2 DEMO ONLY$' <<<"$out" || { echo "FAIL: a short stream did not end cleanly"; echo "$out"; exit 1; }
 rm -rf "$data/AwkWeird"
 
-# 3. The one-liner in the header comment is the challenge minus the database: run it on a fixed stream.
+# 3. La línea única del comentario de cabecera es el reto sin la base de datos: ejecútala con un flujo fijo.
 oneliner=$(sed -n "/^#   gawk 'BEGIN/,/ \/dev\/urandom\$/p" timecards.awk | sed 's/^# *//' | tr '\n' ' ')
 [[ -n $oneliner ]] || { echo "FAIL: no one-liner in the header"; exit 1; }
 base=$(sed 's# */dev/urandom *$##; s/^gawk /'"$gawk"' /' <<<"$oneliner")
@@ -65,8 +65,8 @@ got=$(eval "$base" '"$data/fixed.txt"')
 want=$(expected 382941 | grep -v '^SUMMARY')
 [[ $got == "$want" ]] || { echo "FAIL: the header one-liner disagrees with bash"; diff <(echo "$want") <(echo "$got") || true; exit 1; }
 
-# 4. The pattern is the stop rule: with 5s as dice every card is 15 hours, so the real program stops at
-#    3 cards (45). Move the threshold to 80 and the same stream must give 6 (90).
+# 4. El patrón es la regla de parada: con 5 como dados cada tarjeta es de 15 horas, así que el programa real se detiene en
+#    3 tarjetas (45). Mueve el umbral a 80 y el mismo flujo debe dar 6 (90).
 printf '5 5 5 5 5 5 5 5 5 5\n' > "$data/fives.txt"
 [[ $(run "$data/fives.txt" | rows | wc -l) -eq 3 ]] || { echo "FAIL: a stream of 5s should stop at 3 cards"; exit 1; }
 rm -rf "$data/AwkWeird"
@@ -74,8 +74,8 @@ sed 's/^t > 40 { exit }$/t > 80 { exit }/' timecards.awk > "$data/eighty.awk"
 [[ $(PROGRAM="$data/eighty.awk" run "$data/fives.txt" | rows | wc -l) -eq 6 ]] || { echo "FAIL: moving the pattern to 80 should give 6 cards"; exit 1; }
 rm -rf "$data/AwkWeird"
 
-# 5. Run it a bunch of times for real, on /dev/urandom; every run must print a sane record set,
-#    and the SQLite rows must agree with it.
+# 5. Ejecútalo muchas veces de verdad, sobre /dev/urandom; cada ejecución debe imprimir un conjunto de registros sensato,
+#    y las filas de SQLite deben coincidir con él.
 for i in $(seq 1 25); do
     out=$(run)
     run_id=$(sed -nE 's/^# DEMO ONLY run (.+)$/\1/p' <<<"$out")
@@ -106,7 +106,7 @@ done
 [[ $(sqlite3 "$db" 'select count(distinct run_id) from demo_timecards') -eq 25 ]] || { echo "FAIL: expected 25 distinct runs in the db"; exit 1; }
 [[ $(sqlite3 "$db" 'select count(distinct hours) from demo_timecards') -ge 6 ]] || { echo "FAIL: hours do not look random"; exit 1; }
 
-# 3. The demo_only CHECK constraint is real: a non-demo row must be refused.
+# 3. La restricción CHECK de demo_only es real: una fila que no sea demo debe ser rechazada.
 if sqlite3 "$db" "insert into demo_timecards(run_id,category,hours,running_total,demo_only) values('x','x',1,1,0)" 2>/dev/null; then
     echo "FAIL: db accepted a non-demo row"; exit 1
 fi

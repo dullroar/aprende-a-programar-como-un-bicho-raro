@@ -1,0 +1,83 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+
+msgctxt "L2"
+msgid "# Checks the rules of the challenge for the AWK \"weird\" entry. Uses a throwaway data dir."
+msgstr "# Comprueba las reglas del reto para la entrada de AWK \"rara\". Usa un directorio de datos desechable."
+
+msgctxt "L3"
+msgid "# GNU awk only (RT, regular-expression RS, systime, PROCINFO). Set GAWK=/path/to/gawk if it is not on your PATH."
+msgstr "# Solo GNU awk (RT, RS como expresión regular, systime, PROCINFO). Define GAWK=/ruta/a/gawk si no está en tu PATH."
+
+msgctxt "L13"
+msgid "# 1. Static: the stunt is real. With comments removed there is no loop, no if, no function and no"
+msgstr "# 1. Estático: el truco es real. Sin los comentarios no hay bucle, ni if, ni función, ni"
+
+msgctxt "L14"
+msgid "#    random-number function; the record separator is the digit class; and the stop rule is a pattern."
+msgstr "#    función aleatoria; el separador de registros es la clase de dígitos; y la regla de parada es un patrón."
+
+msgctxt "L26"
+msgid "# 2. The dice are the digits in the input. Feed digit files in awkward shapes (spaces, newlines, none,"
+msgstr "# 2. Los dados son los dígitos de la entrada. Alimenta archivos de dígitos con formas incómodas (espacios, saltos de línea, nada,"
+
+msgctxt "L27"
+msgid "#    letters between them) and compare with an independent computation in bash, card for card."
+msgstr "#    letras entre ellos) y compara con un cálculo independiente en bash, tarjeta por tarjeta."
+
+msgctxt "L29"
+msgid "# digits -> the rows as the program should print them, then a summary line"
+msgstr "# dígitos -> las filas como debería imprimirlas el programa, luego una línea de resumen"
+
+msgctxt "L37"
+msgid "# What the program printed, in the same shape as expected()."
+msgstr "# Lo que imprimió el programa, con la misma forma que expected()."
+
+msgctxt "L42"
+msgid "# no separators at all"
+msgstr "# sin ningún separador"
+
+msgctxt "L43"
+msgid "# trailing newline: an empty last record"
+msgstr "# salto de línea final: un último registro vacío"
+
+msgctxt "L44"
+msgid "# spaces between"
+msgstr "# espacios entre ellos"
+
+msgctxt "L45"
+msgid "# letters and lines between"
+msgstr "# letras y saltos de línea entre ellos"
+
+msgctxt "L52"
+msgid "#    A stream that runs out before the total passes 40 just ends (urandom never does). The newline at"
+msgstr "#    Un flujo que se acaba antes de que el total pase de 40 simplemente termina (urandom nunca lo hace). El salto de línea"
+
+msgctxt "L53"
+msgid "#    its end makes an empty last record, which rule 1 must not count as a card."
+msgstr "#    del final crea un último registro vacío, que la regla 1 no debe contar como tarjeta."
+
+msgctxt "L59"
+msgid "# 3. The one-liner in the header comment is the challenge minus the database: run it on a fixed stream."
+msgstr "# 3. La línea única del comentario de cabecera es el reto sin la base de datos: ejecútala con un flujo fijo."
+
+msgctxt "L68"
+msgid "# 4. The pattern is the stop rule: with 5s as dice every card is 15 hours, so the real program stops at"
+msgstr "# 4. El patrón es la regla de parada: con 5 como dados cada tarjeta es de 15 horas, así que el programa real se detiene en"
+
+msgctxt "L69"
+msgid "#    3 cards (45). Move the threshold to 80 and the same stream must give 6 (90)."
+msgstr "#    3 tarjetas (45). Mueve el umbral a 80 y el mismo flujo debe dar 6 (90)."
+
+msgctxt "L77"
+msgid "# 5. Run it a bunch of times for real, on /dev/urandom; every run must print a sane record set,"
+msgstr "# 5. Ejecútalo muchas veces de verdad, sobre /dev/urandom; cada ejecución debe imprimir un conjunto de registros sensato,"
+
+msgctxt "L78"
+msgid "#    and the SQLite rows must agree with it."
+msgstr "#    y las filas de SQLite deben coincidir con él."
+
+msgctxt "L109"
+msgid "# 3. The demo_only CHECK constraint is real: a non-demo row must be refused."
+msgstr "# 3. La restricción CHECK de demo_only es real: una fila que no sea demo debe ser rechazada."

@@ -1,0 +1,111 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+
+msgctxt "L2"
+msgid "# DEMO ONLY. Fictional timecards, written to a scratch SQLite file under"
+msgstr "# SOLO DEMO. Tarjetas de horas ficticias, escritas en un archivo SQLite temporal bajo"
+
+msgctxt "L3"
+msgid "# XDG_DATA_HOME. Nothing here touches a real time-reporting system."
+msgstr "# XDG_DATA_HOME. Nada de esto toca un sistema real de registro de horas."
+
+msgctxt "L8"
+msgid "# The challenge: add cards of 10-19 hours until the running total passes 40."
+msgstr "# El reto: suma tarjetas de 10-19 horas hasta que el total acumulado pase de 40."
+
+msgctxt "L10"
+msgid "# THE STUNT.  There is no loop and no `if` below, and no random-number"
+msgstr "# EL TRUCO.  Aquí abajo no hay ningún bucle ni ningún `if`, ni generador de"
+
+msgctxt "L11"
+msgid "# generator.  The input is /dev/urandom, awk's record separator is the regular"
+msgstr "# números aleatorios.  La entrada es /dev/urandom, el separador de registros de awk es la expresión"
+
+msgctxt "L12"
+msgid "# expression [0-9], and so every \"record\" is a stretch of random bytes ending in"
+msgstr "# regular [0-9], así que cada \"registro\" es un tramo de bytes aleatorios que termina en"
+
+msgctxt "L13"
+msgid "# a random digit, which gawk hands us in RT.  A digit is a die roll, a record is"
+msgstr "# un dígito aleatorio, que gawk nos entrega en RT.  Un dígito es una tirada de dado, un registro es"
+
+msgctxt "L14"
+msgid "# a card, and awk's own main loop is the loop.  The stop rule is a pattern with"
+msgstr "# una tarjeta, y el propio bucle principal de awk es el bucle.  La regla de parada es un patrón con"
+
+msgctxt "L15"
+msgid "# an `exit` action.  The whole challenge, minus the database, is one line:"
+msgstr "# una acción `exit`.  El reto entero, sin la base de datos, cabe en una línea:"
+
+msgctxt "L20"
+msgid "# (The one-liner has no database, no week and no DEMO ONLY marker, and no"
+msgstr "# (La línea única no tiene base de datos, ni semana, ni marca DEMO ONLY, ni"
+
+msgctxt "L21"
+msgid "# guard for the empty last record of a finite file. The program below has all three.)"
+msgstr "# protección contra el último registro vacío de un archivo finito. El programa de abajo tiene las tres.)"
+
+msgctxt "L23"
+msgid "# GNU awk only: RT, a regular expression as RS, systime() and PROCINFO."
+msgstr "# Solo GNU awk: RT, una expresión regular como RS, systime() y PROCINFO."
+
+msgctxt "L26"
+msgid "# Ask the clock first. RS applies to EVERY read, including getline from a"
+msgstr "# Pregunta primero la hora. RS se aplica a TODAS las lecturas, incluido getline desde un"
+
+msgctxt "L27"
+msgid "# command: with RS=\"[0-9]\" set, \"date\" would yield an empty record that ends"
+msgstr "# comando: con RS=\"[0-9]\" puesto, \"date\" daría un registro vacío que termina"
+
+msgctxt "L28"
+msgid "# at the first digit of the year."
+msgstr "# en el primer dígito del año."
+
+msgctxt "L32"
+msgid "# running total and card count (awk would default them to 0 anyway)"
+msgstr "# total acumulado y cuenta de tarjetas (awk los iniciaría en 0 de todos modos)"
+
+msgctxt "L34"
+msgid "# a record ends at a digit; RT holds that digit"
+msgstr "# un registro termina en un dígito; RT guarda ese dígito"
+
+msgctxt "L35"
+msgid "# rule 3 builds a comma-separated record; FS splits it back"
+msgstr "# la regla 3 arma un registro separado por comas; FS lo vuelve a dividir"
+
+msgctxt "L38"
+msgid "# No file on the command line: add one. ARGC += (ARGC < 2) is 0 or 1, so no `if`."
+msgstr "# Sin archivo en la línea de comandos: añade uno. ARGC += (ARGC < 2) vale 0 o 1, así que no hay `if`."
+
+msgctxt "L51"
+msgid "# Rule 1: the last record of a finite file has no digit after it (RT is empty). Not a die roll."
+msgstr "# Regla 1: el último registro de un archivo finito no tiene dígito después (RT está vacío). No es una tirada."
+
+msgctxt "L54"
+msgid "# Rule 2: the die. 10 + a digit is 10..19, and t is the running total."
+msgstr "# Regla 2: el dado. 10 + un dígito da 10..19, y t es el total acumulado."
+
+msgctxt "L55"
+msgid "# An assignment is an expression, so the hours and the sum are one statement."
+msgstr "# Una asignación es una expresión, así que las horas y la suma son una sola sentencia."
+
+msgctxt "L58"
+msgid "# Rule 3: the card, as one comma-separated record. Assigning $0 re-splits it into fields."
+msgstr "# Regla 3: la tarjeta, como un registro separado por comas. Asignar $0 lo vuelve a dividir en campos."
+
+msgctxt "L61"
+msgid "# Rule 4: the same fields, as SQL, down a pipe to sqlite3."
+msgstr "# Regla 4: los mismos campos, como SQL, por una tubería hacia sqlite3."
+
+msgctxt "L64"
+msgid "# Rule 5: the same fields again, for people. Setting OFS and then $1 = $1 forces awk"
+msgstr "# Regla 5: los mismos campos otra vez, para las personas. Fijar OFS y luego $1 = $1 obliga a awk"
+
+msgctxt "L65"
+msgid "# to rebuild $0, now joined by tabs instead of commas."
+msgstr "# a reconstruir $0, ahora unido por tabuladores en lugar de comas."
+
+msgctxt "L68"
+msgid "# Rule 6: the stop rule. exit runs END; the card that crossed the line has already been written."
+msgstr "# Regla 6: la regla de parada. exit ejecuta END; la tarjeta que cruzó la línea ya se escribió."
