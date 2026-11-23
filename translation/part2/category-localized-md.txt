@@ -9,3 +9,4 @@ src/awk/README.md
 src/awk-weird/README.md
 lessons/lenguajes/awk.md
 src/cmake/README.md
+src/cobol-weird/README.md

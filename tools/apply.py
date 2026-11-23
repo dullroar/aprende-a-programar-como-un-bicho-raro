@@ -161,13 +161,18 @@ def localize_category_words(text):
     """Outside fenced blocks, a whole English category word (in prose, a table cell or an inline code span) gets the mapped
     Spanish word. A word directly inside parentheses is a gloss of a Spanish term, e.g. 'Depuración (Debugging)', and stays,
     as do link targets."""
-    out, fence = [], None
+    out, fence, mermaid = [], None, False
     for line in text.split("\n"):
         s = line.lstrip()
         if fence is None and (s.startswith("```") or s.startswith("~~~")) and len(line) - len(s) <= 3:
             fence = s[:3]
+            mermaid = s[3:].strip().lower().startswith("mermaid")
         elif fence is not None and s.startswith(fence):
             fence = None
+            mermaid = False
+        elif fence is not None and mermaid and (s.startswith("accDescr:") or s.startswith('state "')):
+            # Mermaid display text only (an accDescr sentence or a state label); node IDs and syntax never match a whole word.
+            line = _WORD_RE.sub(lambda m: categories.EN_TO_ES[m.group(1)], line)
         elif fence is None:
             parts = re.split(r"(\]\([^)]*\)|https?://\S+)", line)
             for i in range(0, len(parts), 2):

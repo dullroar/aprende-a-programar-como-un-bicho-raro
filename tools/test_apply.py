@@ -337,6 +337,16 @@ class CategoryWords(unittest.TestCase):
         text = "**Depuración** (Debugging) [x](a/Coding.md)\n```\nMeetings\n```\nMeetingsX XCoding\n"
         self.assertEqual(ap.localize_category_words(text), text)
 
+    def test_mermaid_labels_and_accdescr(self):
+        text = '```mermaid\nstateDiagram-v2\n    accDescr: Empieza como Meetings y sigue con Coding.\n    state "Meetings" as M\n```\n'
+        want = '```mermaid\nstateDiagram-v2\n    accDescr: Empieza como Reuniones y sigue con Programación.\n    state "Reuniones" as M\n```\n'
+        self.assertEqual(ap.localize_category_words(text), want)
+
+    def test_mermaid_other_lines_and_plain_fences_stay(self):
+        """Negative case: only accDescr and state labels change; edges, comments and non-mermaid fences stay."""
+        text = '```mermaid\nflowchart TD\n    Meetings --> Coding\n    %% Debugging\n```\n```text\naccDescr: Meetings\nstate "Coding"\n```\n'
+        self.assertEqual(ap.localize_category_words(text), text)
+
     def test_idempotent(self):
         once = ap.localize_category_words("`Meetings`")
         self.assertEqual(ap.localize_category_words(once), once)

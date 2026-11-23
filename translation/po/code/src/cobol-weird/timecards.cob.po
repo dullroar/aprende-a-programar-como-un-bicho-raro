@@ -189,3 +189,23 @@ msgstr "      * lugar el intérprete avisa por stderr y su estado pasa a ser el"
 msgctxt "L204"
 msgid "      * program's exit code (SYSTEM returns status * 256)."
 msgstr "      * código de salida del programa (SYSTEM devuelve estado * 256)."
+
+msgctxt "C48"
+msgid "       01  WS-CATEGORY             PIC X(9)."
+msgstr "       01  WS-CATEGORY             PIC X(13)."
+
+msgctxt "C156"
+msgid "           MOVE \"Meetings\" TO WS-CATEGORY"
+msgstr "           MOVE \"Reuniones\" TO WS-CATEGORY"
+
+msgctxt "C161"
+msgid "           MOVE \"Coding\" TO WS-CATEGORY"
+msgstr "           MOVE \"Programación\" TO WS-CATEGORY"
+
+msgctxt "C166"
+msgid "           MOVE \"Debugging\" TO WS-CATEGORY"
+msgstr "           MOVE \"Depuración\" TO WS-CATEGORY"
+
+msgctxt "C171"
+msgid "           MOVE \"Learning\" TO WS-CATEGORY"
+msgstr "           MOVE \"Aprendizaje\" TO WS-CATEGORY"

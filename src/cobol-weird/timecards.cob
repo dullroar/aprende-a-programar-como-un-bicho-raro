@@ -45,7 +45,7 @@
        01  WS-TOTAL                PIC 99 VALUE 0.
        01  WS-HOURS                PIC 99.
        01  WS-ENTRIES              PIC 9 VALUE 0.
-       01  WS-CATEGORY             PIC X(9).
+       01  WS-CATEGORY             PIC X(13).
 
       * ---- id de ejecución y semilla aleatoria ---------------------
        01  WS-NOW                  PIC X(21).
@@ -153,22 +153,22 @@
       * Cada categoría se nombra, recablea NEXT-CARD a la categoría
       * que sigue, y se une a RECORD-CARD. Nada cuenta módulo 4.
        MEETINGS-CARD.
-           MOVE "Meetings" TO WS-CATEGORY
+           MOVE "Reuniones" TO WS-CATEGORY
            ALTER NEXT-CARD TO PROCEED TO CODING-CARD
            GO TO RECORD-CARD.
 
        CODING-CARD.
-           MOVE "Coding" TO WS-CATEGORY
+           MOVE "Programación" TO WS-CATEGORY
            ALTER NEXT-CARD TO PROCEED TO DEBUGGING-CARD
            GO TO RECORD-CARD.
 
        DEBUGGING-CARD.
-           MOVE "Debugging" TO WS-CATEGORY
+           MOVE "Depuración" TO WS-CATEGORY
            ALTER NEXT-CARD TO PROCEED TO LEARNING-CARD
            GO TO RECORD-CARD.
 
        LEARNING-CARD.
-           MOVE "Learning" TO WS-CATEGORY
+           MOVE "Aprendizaje" TO WS-CATEGORY
            ALTER NEXT-CARD TO PROCEED TO MEETINGS-CARD
            GO TO RECORD-CARD.
 

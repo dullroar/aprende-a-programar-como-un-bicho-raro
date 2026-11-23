@@ -25,7 +25,7 @@ grep -q 'ALTER NEXT-CARD TO PROCEED TO FINISH-RUN' <<<"$code" || { echo "FAIL: t
 # 2. Compila una vez (los binarios nunca se suben), luego ejecútalo varias veces. Cada ejecución debe imprimir un
 #    conjunto de registros sensato, y las filas de SQLite deben coincidir.
 "${COBC:-cobc}" -x -o "$bin" timecards.cob
-cats=(Meetings Coding Debugging Learning)
+cats=(Reuniones Programación Depuración Aprendizaje)
 for i in $(seq 1 25); do
     week_before=$(date +%G-W%V)
     out=$("$bin")
@@ -36,7 +36,7 @@ for i in $(seq 1 25); do
     [[ -n $commit ]] || { echo "FAIL run $i: no committed line"; echo "$out"; exit 1; }
     total=$(sed -E 's/.*total=([0-9]+).*/\1/' <<<"$commit")
     entries=$(sed -E 's/.*entries=([0-9]+).*/\1/' <<<"$commit")
-    mapfile -t rows < <(grep -E '^(Meetings|Coding|Debugging|Learning)	' <<<"$out" || true)
+    mapfile -t rows < <(grep -E '^(Reuniones|Programación|Depuración|Aprendizaje)	' <<<"$out" || true)
     [[ ${#rows[@]} -eq $entries ]] || { echo "FAIL run $i: ${#rows[@]} rows but entries=$entries"; exit 1; }
     sum=0; n=0
     for row in "${rows[@]}"; do

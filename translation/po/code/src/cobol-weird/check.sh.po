@@ -33,3 +33,11 @@ msgstr "# La semana ISO se calcula con aritmética de fechas en COBOL; debe coin
 msgctxt "L62"
 msgid "# 3. The demo_only CHECK constraint is real: a non-demo row must be refused."
 msgstr "# 3. La restricción CHECK de demo_only es real: una fila que no sea de demo debe ser rechazada."
+
+msgctxt "C28"
+msgid "cats=(Meetings Coding Debugging Learning)"
+msgstr "cats=(Reuniones Programación Depuración Aprendizaje)"
+
+msgctxt "C39"
+msgid "    mapfile -t rows < <(grep -E '^(Meetings|Coding|Debugging|Learning)	' <<<\"$out\" || true)"
+msgstr "    mapfile -t rows < <(grep -E '^(Reuniones|Programación|Depuración|Aprendizaje)	' <<<\"$out\" || true)"

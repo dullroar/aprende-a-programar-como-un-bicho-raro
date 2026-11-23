@@ -7,3 +7,4 @@ lessons/study-guides/languages/apl.md
 src/awk/README.md
 src/awk-weird/README.md
 src/cmake/README.md
+src/cobol-weird/README.md

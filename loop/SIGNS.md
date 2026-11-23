@@ -155,4 +155,5 @@
 - Code jury units use ids `c-<hash>-NNNN` and canary quotas are per group (code vs prose); a test that needs an uncanaried code unit must give the file two differing 60-line chunks.
 - Check packet sizes on the rendered text (manifest tokens), never on chunk estimates: the chunker ignores facts, glossary and Part II context, so `fit_tier` lowers the cap by the measured overhead.
 - A code line with a category word and a trailing comment is one C entry (code part: category words only, comment translated in the same entry); never also give it an L entry, overlapping edits are refused.
+- A README whose Mermaid labels or accDescr name the categories needs the file in both category-localized lists (apply.py rewrites only accDescr and `state "..."` lines in mermaid fences), then `regen_po.py REL`; I13 fails on a file that mixes English and Spanish category words.
 - Never commit `review/packets/`, `review/repo-bundle.zip`, `review/canaries.key.json` or `review/units.index.jsonl`: they carry canaries or the key; commit only the public MANIFEST.md and EDITION-FACTS.md.

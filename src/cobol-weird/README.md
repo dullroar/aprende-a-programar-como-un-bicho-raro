@@ -37,9 +37,9 @@ Los registros van a `$XDG_DATA_HOME/CobolWeird/demo-timecards.db` (por defecto, 
 
 ```text
 # DEMO ONLY run 2026111414014239-12663
-Meetings	19	19	2026-W46	DEMO ONLY
-Coding	16	35	2026-W46	DEMO ONLY
-Debugging	19	54	2026-W46	DEMO ONLY
+Reuniones	19	19	2026-W46	DEMO ONLY
+Programación	16	35	2026-W46	DEMO ONLY
+Depuración	19	54	2026-W46	DEMO ONLY
 # committed total=54 entries=3 DEMO ONLY
 # no IF, no PERFORM: ALTER kept rewiring one GO TO, and a two-digit field overflowing pulled the plug
 ```
@@ -49,11 +49,11 @@ Debugging	19	54	2026-W46	DEMO ONLY
 ```mermaid
 stateDiagram-v2
     accTitle: cobol-weird: el destino de un solo GO TO es el bucle
-    accDescr: Un diagrama de estados. El estado es el destino actual del único GO TO del párrafo NEXT-CARD. Empieza como Meetings. Cada párrafo de categoría lo reescribe con ALTER para apuntar a la categoría siguiente, así que el ciclo es Meetings, Coding, Debugging, Learning y de nuevo Meetings. Cuando el campo de margen de dos dígitos se desborda, ON SIZE ERROR reescribe el destino a FINISH-RUN, que hace la confirmación de la transacción del script y se detiene.
-    state "Meetings" as M
-    state "Coding" as C
-    state "Debugging" as D
-    state "Learning" as L
+    accDescr: Un diagrama de estados. El estado es el destino actual del único GO TO del párrafo NEXT-CARD. Empieza como Reuniones. Cada párrafo de categoría lo reescribe con ALTER para apuntar a la categoría siguiente, así que el ciclo es Reuniones, Programación, Depuración, Aprendizaje y de nuevo Reuniones. Cuando el campo de margen de dos dígitos se desborda, ON SIZE ERROR reescribe el destino a FINISH-RUN, que hace la confirmación de la transacción del script y se detiene.
+    state "Reuniones" as M
+    state "Programación" as C
+    state "Depuración" as D
+    state "Aprendizaje" as L
     state "FINISH-RUN" as F
     state "El GO TO de NEXT-CARD salta a" as T {
         [*] --> M
@@ -82,7 +82,7 @@ Los párrafos de COBOL se ejecutan en el orden en que están escritos. Pasan de 
    ```
 
    Un párrafo que es exactamente un `GO TO` es lo único que `ALTER` puede cambiar. `ALTER NEXT-CARD TO PROCEED TO CODING-CARD` reescribe el destino de ese `GO TO`, así que la próxima vez que el control llegue a `NEXT-CARD` salta a `CODING-CARD` en su lugar. El código fuente nunca cambia; lo que cambia es el salto del programa en ejecución.
-2. **Las categorías rotan por reconexión.** El párrafo de cada categoría se nombra a sí mismo, usa `ALTER` para apuntar `NEXT-CARD` a la categoría siguiente y salta a `RECORD-CARD`. Meetings lo apunta a Coding, Coding a Debugging, Debugging a Learning y Learning de vuelta a Meetings. Nada cuenta tarjetas módulo 4. La categoría siguiente existe solo como el destino actual de un `GO TO`.
+2. **Las categorías rotan por reconexión.** El párrafo de cada categoría se nombra a sí mismo, usa `ALTER` para apuntar `NEXT-CARD` a la categoría siguiente y salta a `RECORD-CARD`. Reuniones lo apunta a Programación, Programación a Depuración, Depuración a Aprendizaje y Aprendizaje de vuelta a Reuniones. Nada cuenta tarjetas módulo 4. La categoría siguiente existe solo como el destino actual de un `GO TO`.
 3. **`RECORD-CARD` procesa una tarjeta** (sortea las horas, las suma al total, imprime la fila, escribe `INSERT`) y termina con `GO TO NEXT-CARD`. Así que el bucle es este: `NEXT-CARD` salta a la categoría a la que apunta en ese momento, esa categoría lo vuelve a apuntar y ejecuta `RECORD-CARD`, que salta de vuelta a `NEXT-CARD`.
 4. **El cable trampa es la regla de parada.** `WS-HEADROOM` es `PIC 99`, tiene dos dígitos decimales y empieza en 59. Justo antes de `GO TO NEXT-CARD`, el programa le suma las horas de cada tarjeta:
 
