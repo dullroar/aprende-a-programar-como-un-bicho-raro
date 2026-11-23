@@ -58,7 +58,7 @@ families:
   "src/lisp": {status: localizing, files: 3}
   "src/lisp-weird": {status: frozen, files: 3}
   "src/m4": {status: frozen, files: 3}
-  "src/make-gnu": {status: frozen, files: 3}
+  "src/make-gnu": {status: localizing, files: 3}
   "src/regex-dotnet": {status: frozen, files: 5}
   "src/regex-pcre2": {status: frozen, files: 5}
   "src/regex-pcre2grep": {status: frozen, files: 3}

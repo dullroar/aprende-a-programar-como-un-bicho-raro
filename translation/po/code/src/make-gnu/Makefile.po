@@ -1,0 +1,123 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+
+msgctxt "L1"
+msgid "# DEMO ONLY. Fictional timecards, written to a scratch SQLite file under XDG_DATA_HOME. See README.md."
+msgstr "# DEMO ONLY. Tarjetas de horas ficticias, escritas en un archivo SQLite desechable bajo XDG_DATA_HOME. Consulta README.md."
+
+msgctxt "L3"
+msgid "# \"One Statement, Two Semicolons\", but the build tool is the interpreter. Run `make` in a directory that"
+msgstr "# \"Una sentencia, dos puntos y coma\", pero la herramienta de compilación es el intérprete. Ejecuta `make` en un directorio que"
+
+msgctxt "L4"
+msgid "# holds only this file. There is no $(shell) anywhere: Make reads its own entropy, clock and arithmetic"
+msgstr "# contenga solo este archivo. No hay ningún $(shell): Make lee su propia entropía, su reloj y su aritmética"
+
+msgctxt "L5"
+msgid "# out of /proc with $(file </...) and counts in unary with $(words)/$(wordlist). The recipes only"
+msgstr "# de /proc con $(file </...) y cuenta en unario con $(words)/$(wordlist). Las recetas solo"
+
+msgctxt "L6"
+msgid "# exist to (a) make Make notice a file changed, (b) mkdir, (c) talk to sqlite3 and (d) clean up."
+msgstr "# existen para (a) hacer que Make note que un archivo cambió, (b) mkdir, (c) hablar con sqlite3 y (d) limpiar."
+
+msgctxt "L8"
+msgid "#   LOOP    Make re-executes itself once per timecard. Each pass includes every .tc-N.mk written so far"
+msgstr "#   LOOP    Make se vuelve a ejecutar una vez por tarjeta de horas. Cada pasada incluye todos los .tc-N.mk escritos hasta ahora"
+
+msgctxt "L9"
+msgid "#           and, if the running total is still <= 40, a pattern rule writes the next one. A file that"
+msgstr "#           y, si el total acumulado aún es <= 40, una regla de patrón escribe el siguiente. Un archivo que"
+
+msgctxt "L10"
+msgid "#           appears is \"remade\", so Make restarts; $(MAKE_RESTARTS) is the loop counter. When the rule"
+msgstr "#           aparece se \"rehace\", así que Make reinicia; $(MAKE_RESTARTS) es el contador del bucle. Cuando la regla"
+
+msgctxt "L11"
+msgid "#           declines to write a file (total > 40) nothing is remade, Make stops restarting, and `all` runs."
+msgstr "#           se niega a escribir un archivo (total > 40) no se rehace nada, Make deja de reiniciar y se ejecuta `all`."
+
+msgctxt "L12"
+msgid "#   STOP    \"total > 40\" is \"the 41st word of a list of x's exists\"."
+msgstr "#   STOP    \"total > 40\" equivale a \"existe la palabra 41 de una lista de x\"."
+
+msgctxt "L13"
+msgid "#   HOURS   1 followed by one decimal digit of /proc/sys/kernel/random/uuid."
+msgstr "#   HOURS   1 seguido de un dígito decimal de /proc/sys/kernel/random/uuid."
+
+msgctxt "L19"
+msgid "# ---- the ruler: 60000 x's (days since 1970: good to 2134), so numbers are lists and arithmetic is list surgery -----------------------"
+msgstr "# ---- la regla: 60000 x (días desde 1970: sirve hasta 2134), así que los números son listas y la aritmética es cirugía de listas -----------------------"
+
+msgctxt "L34"
+msgid "# ---- arithmetic with no arithmetic ---------------------------------------------------------------------"
+msgstr "# ---- aritmética sin aritmética ---------------------------------------------------------------------"
+
+msgctxt "L47"
+msgid "# decimal addition of two digit strings, least significant digit first, carry along: $1+$2"
+msgstr "# suma decimal de dos cadenas de dígitos, empezando por el dígito menos significativo, con acarreo: $1+$2"
+
+msgctxt "L52"
+msgid "# long division of a decimal string by 864, digit by digit (864 * 100 = 86400 seconds in a day)"
+msgstr "# división larga de una cadena decimal entre 864, dígito por dígito (864 * 100 = 86400 segundos en un día)"
+
+msgctxt "L70"
+msgid "# civil calendar: walk years from 1970, then ISO week from the Thursday of the date's week"
+msgstr "# calendario civil: recorre los años desde 1970 y luego saca la semana ISO a partir del jueves de la semana de la fecha"
+
+msgctxt "L87"
+msgid "# ---- the world, read without a shell ---------------------------------------------------------------------"
+msgstr "# ---- el mundo, leído sin una shell ---------------------------------------------------------------------"
+
+msgctxt "L95"
+msgid "# ---- the loop ------------------------------------------------------------------------------------------------"
+msgstr "# ---- el bucle ------------------------------------------------------------------------------------------------"
+
+msgctxt "L97"
+msgid "# only a real run loops: `make pop`, `make clean` and `make check` never write (or read) cards"
+msgstr "# solo una ejecución real hace el bucle: `make pop`, `make clean` y `make check` nunca escriben (ni leen) tarjetas"
+
+msgctxt "L109"
+msgid "# one new card per Make process, but only while the running total is still <= 40"
+msgstr "# una tarjeta nueva por proceso de Make, pero solo mientras el total acumulado siga siendo <= 40"
+
+msgctxt "L113"
+msgid "# ---- the report ---------------------------------------------------------------------------------------------------"
+msgstr "# ---- el informe ---------------------------------------------------------------------------------------------------"
+
+msgctxt "L124"
+msgid "# the report is a chain of phony targets: Make expands every line of a recipe before running any of them,"
+msgstr "# el informe es una cadena de objetivos falsos: Make expande todas las líneas de una receta antes de ejecutar ninguna,"
+
+msgctxt "L125"
+msgid "# but expands a *target's* recipe only when that target runs, so the chain keeps the SQLite header, the rows,"
+msgstr "# pero expande la receta de un *objetivo* solo cuando ese objetivo se ejecuta, así que la cadena mantiene en orden el encabezado de SQLite, las filas,"
+
+msgctxt "L126"
+msgid "# the footer and the glow in order"
+msgstr "# el pie y el brillo"
+
+msgctxt "L139"
+msgid "# ---- the glow: one phony target per animation frame --------------------------------------------------------------"
+msgstr "# ---- el brillo: un objetivo falso por cada cuadro de la animación --------------------------------------------------------------"
+
+msgctxt "L140"
+msgid "# Only on a real terminal. Make can tell without a shell: realpath of its own stdout is /dev/pts/N for a tty and"
+msgstr "# Solo en una terminal real. Make lo distingue sin shell: el realpath de su propia salida estándar es /dev/pts/N para una tty y"
+
+msgctxt "L141"
+msgid "# nothing for a pipe or a file. A grey ramp up and back down (256-colour background), then the banner is erased."
+msgstr "# nada para una tubería o un archivo. Una rampa de grises que sube y vuelve a bajar (fondo de 256 colores), y luego se borra el letrero."
+
+msgctxt "L152"
+msgid "# ESC[1A: back up onto the banner line; ESC[2K: wipe it; then the new shade (dark text on the bright half)"
+msgstr "# ESC[1A: sube a la línea del letrero; ESC[2K: bórrala; luego el nuevo tono (texto oscuro en la mitad clara)"
+
+msgctxt "L158"
+msgid "# ---- pop a window -----------------------------------------------------------------------------------------------------"
+msgstr "# ---- abrir una ventana -----------------------------------------------------------------------------------------------------"
+
+msgctxt "L159"
+msgid "# `make pop` opens a Windows Terminal window (from WSL), runs the demo in it, and lets the window go when make exits."
+msgstr "# `make pop` abre una ventana de Windows Terminal (desde WSL), ejecuta la demostración en ella y deja que la ventana se cierre cuando make termina."

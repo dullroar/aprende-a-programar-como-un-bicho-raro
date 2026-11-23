@@ -398,3 +398,4 @@
 446 S5-fam-javascript-events done src/javascript-events localizing: 54 comment lines (timecards.mjs, check.sh, check.mjs, check-static.mjs, Dockerfile) via loc_apply, oracle PASS; categories/strings kept English EXC-561.
 447 S5-fam-kotlinchallenge1 done family left English, NOT TESTED (EXC-562): Gradle image build needs network, oracle cannot run; no protected file changed.
 448 S5-fam-lisp done src/lisp localizing: 22 comment lines (timecards.lisp, check.sh, Dockerfile) via loc_apply, oracle PASS; categories/strings kept English EXC-563.
+449 S5-fam-make-gnu done src/make-gnu localizing: 51 comment lines (Makefile, check.sh, Dockerfile) via loc_apply, oracle PASS; categories/strings kept English EXC-564.

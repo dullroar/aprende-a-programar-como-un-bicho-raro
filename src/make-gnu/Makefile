@@ -1,22 +1,22 @@
-# DEMO ONLY. Fictional timecards, written to a scratch SQLite file under XDG_DATA_HOME. See README.md.
+# DEMO ONLY. Tarjetas de horas ficticias, escritas en un archivo SQLite desechable bajo XDG_DATA_HOME. Consulta README.md.
 #
-# "One Statement, Two Semicolons", but the build tool is the interpreter. Run `make` in a directory that
-# holds only this file. There is no $(shell) anywhere: Make reads its own entropy, clock and arithmetic
-# out of /proc with $(file </...) and counts in unary with $(words)/$(wordlist). The recipes only
-# exist to (a) make Make notice a file changed, (b) mkdir, (c) talk to sqlite3 and (d) clean up.
+# "Una sentencia, dos puntos y coma", pero la herramienta de compilación es el intérprete. Ejecuta `make` en un directorio que
+# contenga solo este archivo. No hay ningún $(shell): Make lee su propia entropía, su reloj y su aritmética
+# de /proc con $(file </...) y cuenta en unario con $(words)/$(wordlist). Las recetas solo
+# existen para (a) hacer que Make note que un archivo cambió, (b) mkdir, (c) hablar con sqlite3 y (d) limpiar.
 #
-#   LOOP    Make re-executes itself once per timecard. Each pass includes every .tc-N.mk written so far
-#           and, if the running total is still <= 40, a pattern rule writes the next one. A file that
-#           appears is "remade", so Make restarts; $(MAKE_RESTARTS) is the loop counter. When the rule
-#           declines to write a file (total > 40) nothing is remade, Make stops restarting, and `all` runs.
-#   STOP    "total > 40" is "the 41st word of a list of x's exists".
-#   HOURS   1 followed by one decimal digit of /proc/sys/kernel/random/uuid.
+#   LOOP    Make se vuelve a ejecutar una vez por tarjeta de horas. Cada pasada incluye todos los .tc-N.mk escritos hasta ahora
+#           y, si el total acumulado aún es <= 40, una regla de patrón escribe el siguiente. Un archivo que
+#           aparece se "rehace", así que Make reinicia; $(MAKE_RESTARTS) es el contador del bucle. Cuando la regla
+#           se niega a escribir un archivo (total > 40) no se rehace nada, Make deja de reiniciar y se ejecuta `all`.
+#   STOP    "total > 40" equivale a "existe la palabra 41 de una lista de x".
+#   HOURS   1 seguido de un dígito decimal de /proc/sys/kernel/random/uuid.
 
 .DEFAULT_GOAL := all
 .PHONY: all clean check
 .DELETE_ON_ERROR:
 
-# ---- the ruler: 60000 x's (days since 1970: good to 2134), so numbers are lists and arithmetic is list surgery -----------------------
+# ---- la regla: 60000 x (días desde 1970: sirve hasta 2134), así que los números son listas y la aritmética es cirugía de listas -----------------------
 space := $(subst ,, )
 define TAB
 	
@@ -31,7 +31,7 @@ ths := $(hun) $(hun) $(hun) $(hun) $(hun) $(hun) $(hun) $(hun) $(hun) $(hun)
 tt  := $(ths) $(ths) $(ths) $(ths) $(ths) $(ths) $(ths) $(ths) $(ths) $(ths)
 U   := $(tt) $(tt) $(tt) $(tt) $(tt) $(tt)
 
-# ---- arithmetic with no arithmetic ---------------------------------------------------------------------
+# ---- aritmética sin aritmética ---------------------------------------------------------------------
 z     = $(if $(filter 0%,$1),$(call z,$(patsubst 0%,%,$1)),$1)
 u     = $(if $(call z,$1),$(wordlist 1,$(call z,$1),$(U)))
 add   = $(words $(call u,$1) $(call u,$2))
@@ -44,12 +44,12 @@ chars = $(strip $(subst 0,0 ,$(subst 1,1 ,$(subst 2,2 ,$(subst 3,3 ,$(subst 4,4 
 rev   = $(if $1,$(call rev,$(wordlist 2,$(words $1),$1)) $(firstword $1))
 nodig = $(subst a,,$(subst b,,$(subst c,,$(subst d,,$(subst e,,$(subst f,,$(subst -,,$1)))))))
 
-# decimal addition of two digit strings, least significant digit first, carry along: $1+$2
+# suma decimal de dos cadenas de dígitos, empezando por el dígito menos significativo, con acarreo: $1+$2
 dadd  = $(call da,$(call rev,$(call chars,$1)),$(call rev,$(call chars,$2)),,)
 da    = $(if $1$2$3,$(call da2,$(words $(call u,$(firstword $1)) $(call u,$(firstword $2)) $(call u,$3)),$(wordlist 2,$(words $1),$1),$(wordlist 2,$(words $2),$2),$4),$(or $(call z,$4),0))
 da2   = $(call da,$2,$3,$(if $(word 10,$(call u,$1)),1),$(if $(word 10,$(call u,$1)),$(call sub,$1,10),$1)$4)
 
-# long division of a decimal string by 864, digit by digit (864 * 100 = 86400 seconds in a day)
+# división larga de una cadena decimal entre 864, dígito por dígito (864 * 100 = 86400 segundos en un día)
 M1:=864
 M2:=1728
 M3:=2592
@@ -67,7 +67,7 @@ ldiv   = $(if $1,$(call ldiv2,$(wordlist 2,$(words $1),$1),$(call dstep,$2,$(fir
 ldiv2  = $(call ldiv,$1,$(word 2,$(subst :, ,$2)),$3$(word 1,$(subst :, ,$2)))
 days   = $(call ldiv,$(wordlist 1,$(call sub,$(words $(call chars,$1)),2),$(call chars,$1)),0,)
 
-# civil calendar: walk years from 1970, then ISO week from the Thursday of the date's week
+# calendario civil: recorre los años desde 1970 y luego saca la semana ISO a partir del jueves de la semana de la fecha
 last2   = $(wordlist $(call sub,$(words $(call chars,$1)),1),$(words $(call chars,$1)),$(call chars,$1))
 isleap  = $(call isleap2,$(subst $(space),,$(call last2,$1)),$(subst $(space),,$(wordlist 1,2,$(call chars,$1))))
 isleap2 = $(if $(filter 00,$1),$(if $(filter 0,$(call mod,$2,4)),T),$(if $(filter 0,$(call mod,$1,4)),T))
@@ -84,7 +84,7 @@ isow2   = $(call isow3,$(call sub,$(call add,$1,3),$2))
 isow3   = $(call isow4,$(call yr,1970,$1))
 isow4   = $(word 1,$(subst :, ,$1))-W$(call pad2,$(call inc,$(call div7,$(word 2,$(subst :, ,$1)))))
 
-# ---- the world, read without a shell ---------------------------------------------------------------------
+# ---- el mundo, leído sin una shell ---------------------------------------------------------------------
 proc_stat   := $(subst btime ,btime@,$(file </proc/stat))
 btime       := $(patsubst btime@%,%,$(filter btime@%,$(proc_stat)))
 uptime      := $(firstword $(subst ., ,$(firstword $(file </proc/uptime))))
@@ -92,9 +92,9 @@ NOW         ?= $(call dadd,$(btime),$(uptime))
 cat_names   := Meetings Coding Debugging Learning
 DB          := $(or $(XDG_DATA_HOME),$(HOME)/.local/share)/MakeChallenge/demo-timecards.db
 
-# ---- the loop ------------------------------------------------------------------------------------------------
+# ---- el bucle ------------------------------------------------------------------------------------------------
 K := $(or $(MAKE_RESTARTS),0)
-# only a real run loops: `make pop`, `make clean` and `make check` never write (or read) cards
+# solo una ejecución real hace el bucle: `make pop`, `make clean` y `make check` nunca escriben (ni leen) tarjetas
 runs := $(filter-out pop clean check,$(or $(MAKECMDGOALS),all))
 $(if $(and $(runs),$(filter 0,$(K)),$(wildcard .tc-*.mk)),$(error leftover .tc-*.mk from an interrupted run: `make clean`))
 include $(if $(runs),$(wildcard .tc-*.mk))
@@ -106,11 +106,11 @@ HOURS  := $(foreach k,$(cards),$(H$k))
 TOTAL  := $(call tot,$(HOURS))
 digits := $(call chars,$(call nodig,$(file </proc/sys/kernel/random/uuid)))
 
-# one new card per Make process, but only while the running total is still <= 40
+# una tarjeta nueva por proceso de Make, pero solo mientras el total acumulado siga siendo <= 40
 .tc-%.mk:
 	$(if $(word 41,$(foreach h,$(HOURS),$(call u,$h))),,$(file >$@,C$*:=$(or $(word $(call inc,$*),$(cat_names)),$(firstword $(cat_names)))$(NL)H$*:=1$(or $(firstword $(digits)),0))@:)
 
-# ---- the report ---------------------------------------------------------------------------------------------------
+# ---- el informe ---------------------------------------------------------------------------------------------------
 SCHEMA := CREATE TABLE IF NOT EXISTS runs(id INTEGER PRIMARY KEY,started_at TEXT); \
  CREATE TABLE IF NOT EXISTS demo_timecards(id INTEGER PRIMARY KEY,run_id INTEGER,category TEXT,hours INTEGER CHECK(hours BETWEEN 10 AND 19),running_total INTEGER,iso_week TEXT,created_at TEXT,demo_only INTEGER NOT NULL DEFAULT 1 CHECK(demo_only=1)); \
  CREATE TABLE IF NOT EXISTS stop_rule(ok INTEGER CONSTRAINT "stop rule fired: total exceeds 40" CHECK(ok=1)); \
@@ -121,9 +121,9 @@ row    = $(C$1)$(TAB)$(H$1)$(TAB)$(call tot,$(wordlist 1,$(call inc,$1),$(HOURS)
 insert = INSERT INTO demo_timecards(run_id,category,hours,running_total,iso_week,created_at) VALUES((SELECT max(id) FROM runs),'$(C$1)',$(H$1),$(call tot,$(wordlist 1,$(call inc,$1),$(HOURS))),'$(WEEK)',datetime('now','localtime'));
 STOP   := INSERT INTO stop_rule SELECT coalesce((SELECT max(running_total) FROM demo_timecards WHERE run_id=(SELECT max(id) FROM runs)),0)<=40; DELETE FROM stop_rule;
 
-# the report is a chain of phony targets: Make expands every line of a recipe before running any of them,
-# but expands a *target's* recipe only when that target runs, so the chain keeps the SQLite header, the rows,
-# the footer and the glow in order
+# el informe es una cadena de objetivos falsos: Make expande todas las líneas de una receta antes de ejecutar ninguna,
+# pero expande la receta de un *objetivo* solo cuando ese objetivo se ejecuta, así que la cadena mantiene en orden el encabezado de SQLite, las filas,
+# el pie y el brillo
 .PHONY: init rows footer
 init:
 	@mkdir -p $(dir $(DB))
@@ -136,9 +136,9 @@ rows: init
 footer: rows
 	$(info # committed total=$(TOTAL) entries=$(words $(cards)) DEMO ONLY)$(info # make re-executed itself $(K) times, once per card)@:
 
-# ---- the glow: one phony target per animation frame --------------------------------------------------------------
-# Only on a real terminal. Make can tell without a shell: realpath of its own stdout is /dev/pts/N for a tty and
-# nothing for a pipe or a file. A grey ramp up and back down (256-colour background), then the banner is erased.
+# ---- el brillo: un objetivo falso por cada cuadro de la animación --------------------------------------------------------------
+# Solo en una terminal real. Make lo distingue sin shell: el realpath de su propia salida estándar es /dev/pts/N para una tty y
+# nada para una tubería o un archivo. Una rampa de grises que sube y vuelve a bajar (fondo de 256 colores), y luego se borra el letrero.
 define ESC
 
 endef
@@ -149,14 +149,14 @@ frames := $(if $(istty),$(foreach i,$(wordlist 1,$(words $(ramp)),$(n53)),glow-$
 glow-%: footer
 	$(call frame,$(word 1,$(subst -, ,$*)),$(word 2,$(subst -, ,$*)))@sleep 0.06
 
-# ESC[1A: back up onto the banner line; ESC[2K: wipe it; then the new shade (dark text on the bright half)
+# ESC[1A: sube a la línea del letrero; ESC[2K: bórrala; luego el nuevo tono (texto oscuro en la mitad clara)
 frame = $(info $(if $(filter-out 1,$1),$(ESC)[1A)$(ESC)[2K$(if $(filter 0,$2),,$(ESC)[48;5;$2m$(ESC)[$(if $(filter 244 246 248 250 252 254,$2),30,97)m  DEMO ONLY  $(ESC)[0m))
 
 all: footer $(frames)
 	@rm -f .tc-*.mk .init.sql .rows.sql
 
-# ---- pop a window -----------------------------------------------------------------------------------------------------
-# `make pop` opens a Windows Terminal window (from WSL), runs the demo in it, and lets the window go when make exits.
+# ---- abrir una ventana -----------------------------------------------------------------------------------------------------
+# `make pop` abre una ventana de Windows Terminal (desde WSL), ejecuta la demostración en ella y deja que la ventana se cierre cuando make termina.
 .PHONY: pop
 pop:
 	wt.exe -w new new-tab --title "DEMO ONLY" wsl.exe -d $(WSL_DISTRO_NAME) --cd $(CURDIR) -e make -f $(firstword $(MAKEFILE_LIST))

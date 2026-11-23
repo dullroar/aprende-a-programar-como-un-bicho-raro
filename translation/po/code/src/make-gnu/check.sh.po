@@ -1,0 +1,71 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+
+msgctxt "L2"
+msgid "# Checks the rules of the challenge for the GNU Make track. Uses a throwaway data dir and a throwaway"
+msgstr "# Comprueba las reglas del desafío para la pista de GNU Make. Usa un directorio de datos desechable y un"
+
+msgctxt "L3"
+msgid "# working dir that holds nothing but the Makefile, the way a real run starts."
+msgstr "# directorio de trabajo desechable que solo contiene el Makefile, como empieza una ejecución real."
+
+msgctxt "L13"
+msgid "# 1. The ridiculous constraint is real: no $(shell), no != assignment, no .ONESHELL, no load. Recipes may only"
+msgstr "# 1. La restricción ridícula es real: sin $(shell), sin asignación !=, sin .ONESHELL, sin load. Las recetas solo pueden"
+
+msgctxt "L14"
+msgid "#    run mkdir, sqlite3, rm, sleep (between glow frames), wt.exe (`make pop`), and the no-op ':' that makes Make notice a file appeared (or ./check.sh for `make check`)."
+msgstr "#    ejecutar mkdir, sqlite3, rm, sleep (entre los cuadros del brillo), wt.exe (`make pop`) y el ':' que no hace nada y sirve para que Make note que apareció un archivo (o ./check.sh para `make check`)."
+
+msgctxt "L22"
+msgid "# 2. Run it a bunch of times; every run must print a sane record set, and the SQLite rows must agree with it."
+msgstr "# 2. Ejecútalo varias veces; cada ejecución debe imprimir un conjunto de registros coherente, y las filas de SQLite deben coincidir."
+
+msgctxt "L33"
+msgid "# Make re-executed itself once per card: the loop counter is the card count."
+msgstr "# Make se volvió a ejecutar una vez por tarjeta: el contador del bucle es el número de tarjetas."
+
+msgctxt "L36"
+msgid "# Categories in order, running totals really running, every row ends in DEMO ONLY."
+msgstr "# Categorías en orden, totales acumulados que de verdad se acumulan, y cada fila termina en DEMO ONLY."
+
+msgctxt "L40"
+msgid "# Stop rule: keep adding while the total is <= 40 (exactly 40 continues); stop once it exceeds 40."
+msgstr "# Regla de parada: sigue agregando mientras el total sea <= 40 (con exactamente 40 continúa); para cuando pase de 40."
+
+msgctxt "L43"
+msgid "# The stop rule also announces itself on stderr (a named CHECK constraint), exactly once, and nothing else does."
+msgstr "# La regla de parada también se anuncia en stderr (una restricción CHECK con nombre), exactamente una vez, y nada más lo hace."
+
+msgctxt "L47"
+msgid "# ISO week matches SQLite's date arithmetic (Make computes it from /proc in UTC; SQLite is asked in UTC)."
+msgstr "# La semana ISO coincide con la aritmética de fechas de SQLite (Make la calcula desde /proc en UTC; a SQLite se le pregunta en UTC)."
+
+msgctxt "L50"
+msgid "# The rows are really in SQLite and agree with what was printed."
+msgstr "# Las filas están de verdad en SQLite y coinciden con lo que se imprimió."
+
+msgctxt "L57"
+msgid "# 3. Pure-Make calendar vs the real thing: boundary instants, NOW overrides the /proc clock."
+msgstr "# 3. Calendario en Make puro contra el real: instantes límite; NOW reemplaza el reloj de /proc."
+
+msgctxt "L66"
+msgid "# 4a. The glow: silent on a pipe (every run above was piped), and on a real terminal (a pty from script(1)) a ramp of"
+msgstr "# 4a. El brillo: en silencio en una tubería (todas las ejecuciones anteriores usaron tubería), y en una terminal real (un pty de script(1)) una rampa de"
+
+msgctxt "L67"
+msgid "#     256-colour banner frames, then the banner is erased, all in 1-3 seconds."
+msgstr "#     cuadros del letrero en 256 colores, y luego el letrero se borra, todo en 1 a 3 segundos."
+
+msgctxt "L78"
+msgid "# `make pop` only prints its wt.exe command under -n, and (like clean and check) never writes a card."
+msgstr "# `make pop` solo imprime su comando wt.exe con -n y (como clean y check) nunca escribe una tarjeta."
+
+msgctxt "L82"
+msgid "# 4. A leftover state file from an interrupted run is refused, not silently reused."
+msgstr "# 4. Un archivo de estado sobrante de una ejecución interrumpida se rechaza, no se reutiliza en silencio."
+
+msgctxt "L87"
+msgid "# 5. The demo_only CHECK constraint is real: a non-demo row must be refused."
+msgstr "# 5. La restricción CHECK de demo_only es real: una fila que no sea de demostración debe rechazarse."
