@@ -4,9 +4,9 @@
       *
       * Ejecuta:  cobc -xj timecards.cob
       *
-      * El reto: suma tarjetas de 10-19 horas (Meetings, Coding,
-      * Debugging, Learning, sin parar) hasta que el total acumulado
-      * pase de 40. Es una sentencia de la PROCEDURE DIVISION:
+      * El reto: suma tarjetas de 10-19 horas (Reuniones, Programación,
+      * Depuración, Aprendizaje, sin parar) hasta que el total
+      * acumulado pase de 40. Es una sentencia de la PROCEDURE DIVISION:
       * PERFORM DRAW-CARD UNTIL OVER-FORTY, y la regla de parada no es
       * código: OVER-FORTY es una condición de nivel 88 declarada en
       * el total, en la DATA DIVISION.
@@ -45,14 +45,14 @@
        01  WS-ENTRIES              PIC 9 VALUE 0.
 
       * ---- las categorías: cuatro FILLER, vistos como tabla --------
-      * REDEFINES pone otra descripción sobre los mismos 36 bytes.
+      * REDEFINES pone otra descripción sobre los mismos 52 bytes.
        01  CATEGORY-NAMES.
-           05  FILLER              PIC X(9) VALUE "Meetings".
-           05  FILLER              PIC X(9) VALUE "Coding".
-           05  FILLER              PIC X(9) VALUE "Debugging".
-           05  FILLER              PIC X(9) VALUE "Learning".
+           05  FILLER              PIC X(13) VALUE "Reuniones".
+           05  FILLER              PIC X(13) VALUE "Programación".
+           05  FILLER              PIC X(13) VALUE "Depuración".
+           05  FILLER              PIC X(13) VALUE "Aprendizaje".
        01  CATEGORY-TABLE REDEFINES CATEGORY-NAMES.
-           05  CATEGORY            PIC X(9) OCCURS 4 TIMES.
+           05  CATEGORY            PIC X(13) OCCURS 4 TIMES.
        01  WS-CAT-IX               PIC 9.
 
       * ---- id de ejecución y semilla aleatoria --------------------

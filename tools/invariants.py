@@ -729,6 +729,12 @@ def category_findings(es_text, rel=""):
     return out
 
 
+def _en_cats(line):
+    """A fence line with each card-category word mapped back to English (decision 11): the approved Spanish forms equal the
+    English ones for the fence comparison; a mixed or misspelled file is caught by the category check, not here."""
+    return categories.WORD_RE.sub(lambda m: categories.to_english(m.group(1)), line)
+
+
 def i13_text(en_text, es_text, rel="", dnt=()):
     """Code and output of a Spanish file equal the English file's: fenced blocks in order, inline spans as multisets.
 
@@ -750,7 +756,7 @@ def i13_text(en_text, es_text, rel="", dnt=()):
         if x.kind in SKIP_FENCE_KINDS or x.kind in segment.SEGMENT_KINDS or x.kind in ("blank", "frontmatter_keep"):
             # Generated blocks are owned by the generator (Spanish text under BOOK_LANG=es); build.py --check owns them.
             continue
-        if x.lines != y.lines:
+        if x.lines != y.lines and [_en_cats(l) for l in x.lines] != [_en_cats(l) for l in y.lines]:
             out.append(Finding("I13", rel, "%s block at line %d differs from the English source" % (x.kind, x.start + 1)))
     ca = Counter()
     cb = Counter()

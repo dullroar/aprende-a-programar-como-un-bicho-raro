@@ -39,6 +39,7 @@ ROOT = os.path.dirname(HERE)
 sys.path.insert(0, HERE)
 import code_inventory as ci  # noqa: E402
 import loc_map as lm  # noqa: E402
+import categories as cat  # noqa: E402
 
 PO_DIR = os.path.join("translation", "po", "code")
 ANCHORS = os.path.join("translation", "line-anchors.jsonl")
@@ -97,9 +98,9 @@ def parse_po(text: str) -> list[dict]:
         if e.get("msgid") == "":
             continue  # header
         ctx = e.get("msgctxt", "")
-        m = re.fullmatch(r"([LS])(\d+)", ctx)
+        m = re.fullmatch(r"([LSC])(\d+)", ctx)
         if not m:
-            raise Refused("PO entry needs msgctxt L<line> or S<line>, got %r" % ctx)
+            raise Refused("PO entry needs msgctxt L<line>, S<line> or C<line>, got %r" % ctx)
         out.append({"kind": m.group(1), "line": int(m.group(2)), "msgid": e["msgid"], "msgstr": e["msgstr"]})
     return out
 
@@ -183,12 +184,58 @@ def code_names(text: str, lang: str, spec: dict) -> set[str]:
 # core
 # ---------------------------------------------------------------------------
 
+PIC_WIDTH = re.compile(r"(?i)(PIC(?:TURE)?\s+X\()\d+(\))")
+
+
+def _category_norm(line: str) -> str:
+    """Line with every card-category word (either form) and every PIC X(n) width abstracted."""
+    return PIC_WIDTH.sub(r"\1#\2", cat.WORD_RE.sub("<CAT>", line))
+
+
+def _category_edit(text: str, rel: str, starts: list[int], e: dict):
+    """Whole-line edit for decision 11 (C<line> entries): the only differences allowed between the
+    English line and the Spanish line are the four category words, mapped one to one, and the
+    numeric width inside a PIC X(n) clause. Returns an edit tuple, or None when already applied."""
+    ln = e["line"]
+    if ln < 1 or ln > len(starts):
+        raise Refused("%s line %d: no such line" % (rel, ln))
+    a = starts[ln - 1]
+    b = text.find("\n", a)
+    b = len(text) if b < 0 else b
+    cr = "\r" if text[a:b].endswith("\r") else ""
+    if cr:
+        b -= 1
+    cur = text[a:b]
+    if cur == e["msgstr"] and cur != e["msgid"]:
+        return None
+    if cur != e["msgid"]:
+        raise Refused("%s line %d: msgid does not match the file line %r" % (rel, ln, cur[:60]))
+    old, new = e["msgid"], e["msgstr"]
+    if _category_norm(old) != _category_norm(new):
+        raise Refused("%s line %d: a C entry may change only the category words and PIC X(n) widths" % (rel, ln))
+    olds = [m.group(1) for m in cat.WORD_RE.finditer(old)]
+    news = [m.group(1) for m in cat.WORD_RE.finditer(new)]
+    if not olds and not PIC_WIDTH.search(old):
+        raise Refused("%s line %d: a C entry needs a card-category word or a PIC X(n) clause in the English line"
+                      % (rel, ln))
+    if [cat.EN_TO_ES.get(w, w) for w in olds] != news:
+        raise Refused("%s line %d: category words must map one to one to the approved Spanish forms" % (rel, ln))
+    if "\n" in new or "\r" in new:
+        raise Refused("%s line %d: a C entry is one line" % (rel, ln))
+    return (a, b, new, "cat")
+
+
 def plan_edits(text: str, rel: str, lang: str, po: list[dict], idrecs: list[dict], reg: dict) -> list[tuple]:
     spec = ci.SPECS.get(lang, ci.SPECS["data"])
     spans = [s for s in ci.scan(text, spec) if s[0] != "code_flush"]
     starts = ci.line_starts(text)
     edits: list[tuple[int, int, str, str]] = []
     for e in po:
+        if e["kind"] == "C":
+            edit = _category_edit(text, rel, starts, e)
+            if edit:
+                edits.append(edit)
+            continue
         want = "comment" if e["kind"] == "L" else "string"
         hits = [s for s in spans if s[0] == want and ci.line_of(starts, s[1]) == e["line"]]
         if e["kind"] == "S":

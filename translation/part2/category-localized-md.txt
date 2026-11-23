@@ -1,0 +1,3 @@
+# Markdown files whose family prints the Spanish card categories (decision 11, F2-003).
+# tools/apply.py rewrites output rows (an English category word then a TAB, inside a fence) in these files only.
+src/cobol/README.md

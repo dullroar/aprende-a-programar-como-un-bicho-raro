@@ -32,6 +32,7 @@ Usage:
                                        anchors.layout_text; prints the files that change, writes them with --write
 """
 import os
+import re
 import sys
 
 import polib
@@ -41,6 +42,7 @@ ROOT = os.path.dirname(HERE)
 sys.path.insert(0, HERE)
 sys.path.insert(0, os.path.join(ROOT, "lessons", "book", "locale"))
 import anchors  # noqa: E402
+import categories  # noqa: E402
 import catalog  # noqa: E402
 import enpath  # noqa: E402
 import segment  # noqa: E402
@@ -132,9 +134,41 @@ def apply_text(text, po, rel_path="", cat=None, strict=True):
         raise ApplyError("segmenter refused %s: %s" % (rel_path, e)) from None
     targets, stats = targets_from_po(po, seg, cat, strict)
     try:
-        return seg.reassemble(targets), stats
+        out = seg.reassemble(targets)
     except ValueError as e:
         raise ApplyError("%s: %s" % (rel_path, e)) from None
+    if rel_path in category_files() and any(e.msgstr and e.msgstr != e.msgid and "fuzzy" not in e.flags for e in po):
+        out = localize_category_rows(out)
+    return out, stats
+
+
+CATEGORY_FILES = os.path.join("translation", "part2", "category-localized-md.txt")
+ROW_RE = re.compile(r"^(%s)(?=\t)" % "|".join(categories.EN))
+
+
+def category_files():
+    """Markdown files whose family prints the Spanish card categories (decision 11): one path per line."""
+    try:
+        with open(os.path.join(ROOT, CATEGORY_FILES), encoding="utf-8") as fh:
+            return {ln.strip() for ln in fh if ln.strip() and not ln.startswith("#")}
+    except OSError:
+        return set()
+
+
+def localize_category_rows(text):
+    """Inside fenced blocks only, a line that starts with an English category word and a TAB (a copied output row) gets the
+    mapped Spanish word. Nothing else in a fence changes."""
+    out, fence = [], None
+    for line in text.split("\n"):
+        s = line.lstrip()
+        if fence is None and (s.startswith("```") or s.startswith("~~~")) and len(line) - len(s) <= 3:
+            fence = s[:3]
+        elif fence is not None and s.startswith(fence):
+            fence = None
+        elif fence is not None:
+            line = ROW_RE.sub(lambda m: categories.EN_TO_ES[m.group(1)], line)
+        out.append(line)
+    return "\n".join(out)
 
 
 def identity_check(text, rel_path=""):

@@ -300,5 +300,18 @@ class Cli(unittest.TestCase):
                 self.assertEqual(f.read(), DOC)
 
 
+class CategoryRows(unittest.TestCase):
+    """Decision 11: only an output row inside a fence (category word, then TAB) is rewritten."""
+
+    def test_row_in_fence_only(self):
+        text = "Meetings\tprose row\n```text\nMeetings\t11\nCoding in prose\nDebugging\t12\n```\nLearning\tafter\n"
+        out = ap.localize_category_rows(text)
+        self.assertEqual(out, "Meetings\tprose row\n```text\nReuniones\t11\nCoding in prose\nDepuración\t12\n```\nLearning\tafter\n")
+
+    def test_idempotent_and_no_other_word(self):
+        text = "```\nReuniones\t1\nMeetingsX\t2\nXCoding\t3\n```\n"
+        self.assertEqual(ap.localize_category_rows(text), text)
+
+
 if __name__ == "__main__":
     unittest.main()

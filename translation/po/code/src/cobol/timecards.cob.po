@@ -20,15 +20,15 @@ msgstr "      * Ejecuta:  cobc -xj timecards.cob"
 
 msgctxt "L7"
 msgid "      * The challenge: add 10-19 hour cards (Meetings, Coding,"
-msgstr "      * El reto: suma tarjetas de 10-19 horas (Meetings, Coding,"
+msgstr "      * El reto: suma tarjetas de 10-19 horas (Reuniones, Programación,"
 
 msgctxt "L8"
 msgid "      * Debugging, Learning, round and round) until the running total"
-msgstr "      * Debugging, Learning, sin parar) hasta que el total acumulado"
+msgstr "      * Depuración, Aprendizaje, sin parar) hasta que el total"
 
 msgctxt "L9"
 msgid "      * passes 40. Here that is one statement in the PROCEDURE DIVISION,"
-msgstr "      * pase de 40. Es una sentencia de la PROCEDURE DIVISION:"
+msgstr "      * acumulado pase de 40. Es una sentencia de la PROCEDURE DIVISION:"
 
 msgctxt "L10"
 msgid "      * PERFORM DRAW-CARD UNTIL OVER-FORTY, and the stop rule itself is"
@@ -100,7 +100,27 @@ msgstr "      * ---- las categorías: cuatro FILLER, vistos como tabla --------"
 
 msgctxt "L48"
 msgid "      * REDEFINES lays a second description over the same 36 bytes."
-msgstr "      * REDEFINES pone otra descripción sobre los mismos 36 bytes."
+msgstr "      * REDEFINES pone otra descripción sobre los mismos 52 bytes."
+
+msgctxt "C50"
+msgid "           05  FILLER              PIC X(9) VALUE \"Meetings\"."
+msgstr "           05  FILLER              PIC X(13) VALUE \"Reuniones\"."
+
+msgctxt "C51"
+msgid "           05  FILLER              PIC X(9) VALUE \"Coding\"."
+msgstr "           05  FILLER              PIC X(13) VALUE \"Programación\"."
+
+msgctxt "C52"
+msgid "           05  FILLER              PIC X(9) VALUE \"Debugging\"."
+msgstr "           05  FILLER              PIC X(13) VALUE \"Depuración\"."
+
+msgctxt "C53"
+msgid "           05  FILLER              PIC X(9) VALUE \"Learning\"."
+msgstr "           05  FILLER              PIC X(13) VALUE \"Aprendizaje\"."
+
+msgctxt "C55"
+msgid "           05  CATEGORY            PIC X(9) OCCURS 4 TIMES."
+msgstr "           05  CATEGORY            PIC X(13) OCCURS 4 TIMES."
 
 msgctxt "L58"
 msgid "      * ---- run id and random seed ----------------------------------"

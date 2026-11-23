@@ -60,6 +60,10 @@ def S(line, old, new):
     return {"kind": "S", "line": line, "msgid": old, "msgstr": new}
 
 
+def C(line, old, new):
+    return {"kind": "C", "line": line, "msgid": old, "msgstr": new}
+
+
 class Positive(Base):
     def test_comment_string_identifier(self):
         self.put("a.py", PY)
@@ -202,6 +206,38 @@ class Negative(Base):
         # a comment replaced by a valid comment parses; make it fail by renaming into a keyword-like name
         r = idrec(old="x", new="1x", scope="file")
         self.assertTrue("not an identifier" in self.refused("a.py", records=[r]))
+
+    def test_category_line_ok(self):
+        self.put("f.sh", 'cats=(Meetings Coding Debugging Learning)\nx=1\n')
+        _, new = self.run_apply("f.sh", po=[C(1, "cats=(Meetings Coding Debugging Learning)",
+                                              "cats=(Reuniones Programación Depuración Aprendizaje)")])
+        self.assertEqual(new, 'cats=(Reuniones Programación Depuración Aprendizaje)\nx=1\n')
+
+    def test_category_pic_width_ok_and_idempotent(self):
+        line = '    05  FILLER  PIC X(9) VALUE "Coding".'
+        self.put("f.sh", line + "\n")
+        po = [C(1, line, '    05  FILLER  PIC X(13) VALUE "Programación".')]
+        _, new = self.run_apply("f.sh", po=po)
+        self.put("f.sh", new)
+        old2, new2 = self.run_apply("f.sh", po=po)
+        self.assertEqual(old2, new2)
+        self.assertIn("X(13)", new2)
+
+    def test_category_wrong_mapping(self):
+        self.put("f.sh", "a=Meetings\n")
+        self.assertIn("map one to one", self.refused("f.sh", po=[C(1, "a=Meetings", "a=Programación")]))
+
+    def test_category_unapproved_spelling(self):
+        self.put("f.sh", "a=Meetings\n")
+        self.assertIn("only the category words", self.refused("f.sh", po=[C(1, "a=Meetings", "a=Reunion")]))
+
+    def test_category_smuggled_code(self):
+        self.put("f.sh", "a=Meetings\n")
+        self.assertIn("only the category words", self.refused("f.sh", po=[C(1, "a=Meetings", "a=Reuniones; rm -rf x")]))
+
+    def test_category_needs_a_category_or_pic(self):
+        self.put("f.sh", "a=1\n")
+        self.assertIn("needs a card-category", self.refused("f.sh", po=[C(1, "a=1", "a=1")]))
 
     def test_bad_msgctxt(self):
         with self.assertRaises(la.Refused):

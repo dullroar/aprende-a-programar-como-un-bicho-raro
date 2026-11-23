@@ -446,4 +446,5 @@
 494 P7-003 done loop/END-REVIEW.md and loop/HANDOFF.md written, loop/DONE created; queue complete, nothing published
 496 F2-001 done sandbox/selftest.sh ran and passed ("selftest: all good"); runtime-matrix.md records PASS 2026-11-23
 495 F2-001 partial es.yaml catalog comment corrected (¿Vivo:); sandbox/selftest.sh denied in dontAsk mode, so the self-test is still owed to a Docker-capable session
+500 F2-003 done src/cobol categories now Reuniones/Programación/Depuración/Aprendizaje (PIC X(9)->X(13), 52-byte table) in code, check.sh and README trace; loc_apply C entries, apply fence rows, I13 fence normalization, 8 tests; oracle PASS; translation/part2/reports/F2-cobol-categories.md
 499 F2-002 done 9 spaced hyphens in 6 Spanish entries (README, LinqChallenge1, LinqChallenge2) became rayas via PO and apply (pairs as —x—); 9 skipped (bullets, arithmetic, separators, verbatim title); no code changed; translation/part2/dash-report.md

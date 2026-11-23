@@ -34,10 +34,10 @@ Los registros van a `$XDG_DATA_HOME/Cobol/demo-timecards.db` (por defecto, `~/.l
 
 ```text
 # DEMO ONLY run 2026111413594869-8051
-Meetings	11	11	2026-W46	DEMO ONLY
-Coding	11	22	2026-W46	DEMO ONLY
-Debugging	12	34	2026-W46	DEMO ONLY
-Learning	15	49	2026-W46	DEMO ONLY
+Reuniones	11	11	2026-W46	DEMO ONLY
+Programación	11	22	2026-W46	DEMO ONLY
+Depuración	12	34	2026-W46	DEMO ONLY
+Aprendizaje	15	49	2026-W46	DEMO ONLY
 # committed total=49 entries=4 DEMO ONLY
 # PERFORM UNTIL an 88-level: the stop rule is declared in the DATA DIVISION
 ```
@@ -73,7 +73,7 @@ Un programa COBOL tiene cuatro *divisiones*, siempre en el mismo orden: `IDENTIF
 
    `PIC 99` ("picture") dice que el total tiene exactamente dos dígitos decimales. La línea `88` que va debajo es un *nombre de condición*. No almacena nada. Nombra un rango de valores de `WS-TOTAL`, y usar `OVER-FORTY` en cualquier parte pregunta si el total está ahora en ese rango. Así, el bucle, `PERFORM DRAW-CARD UNTIL OVER-FORTY`, no contiene ninguna comparación. Si cambias la regla, editas la descripción de los datos, no el código.
 2. **La *picture* hace el redondeo.** `COMPUTE WS-HOURS = 10 + FUNCTION RANDOM * 10` produce un valor de 10.0 a 19.99. `WS-HOURS` es `PIC 99`, dos dígitos sin decimales, así que almacenar en él simplemente descarta la fracción. Nada llama a una función de redondeo hacia abajo: la forma del campo da de 10 a 19 horas por tarjeta. La aritmética de COBOL es decimal, no de punto flotante binario, y por eso el dinero aún funciona con ella.
-3. **Una cadena de texto, vista dos veces.** Los cuatro nombres de categoría son cuatro `FILLER` de 9 caracteres en `CATEGORY-NAMES`. `CATEGORY-TABLE REDEFINES CATEGORY-NAMES` superpone una segunda descripción sobre los mismos 36 bytes: `CATEGORY ... OCCURS 4 TIMES`, un arreglo. `DRAW-CARD` elige `CATEGORY(MOD(entries, 4) + 1)`. Los subíndices de COBOL empiezan en 1.
+3. **Una cadena de texto, vista dos veces.** Los cuatro nombres de categoría son cuatro `FILLER` de 13 bytes en `CATEGORY-NAMES`. `CATEGORY-TABLE REDEFINES CATEGORY-NAMES` superpone una segunda descripción sobre los mismos 52 bytes: `CATEGORY ... OCCURS 4 TIMES`, un arreglo. `DRAW-CARD` elige `CATEGORY(MOD(entries, 4) + 1)`. Los subíndices de COBOL empiezan en 1.
 4. **El SQL es un archivo de registros.** `SELECT SQL-SCRIPT ASSIGN TO WS-SQL-PATH ORGANIZATION IS LINE SEQUENTIAL` declara un archivo cuyo nombre está en una variable, y `FD SQL-SCRIPT` describe su registro: una línea de 400 caracteres. El programa escribe en él con `WRITE` un `CREATE TABLE`, un `BEGIN`, un `INSERT` por tarjeta y un `COMMIT`, lo cierra con `CLOSE` y solo entonces entrega todo el script a `sqlite3`. Así, cada ejecución queda en una transacción o no queda en ninguna.
 5. **La semana ISO es aritmética.** COBOL tiene funciones de fecha, pero ninguna de semana ISO. `FUNCTION INTEGER-OF-DATE` cuenta los días desde 1601-01-01, que fue lunes, así que `MOD(day - 1, 7)` es 0 los lunes. Una semana ISO pertenece al año en que cae su jueves, y la semana 1 es la que contiene el primer jueves de ese año. `WORK-OUT-WEEK` expresa esos dos hechos en cuatro `COMPUTE`. Se comprobó contra `date +%G-W%V` para todos los días de 2020 a 2030, incluidos los años de 53 semanas, y `check.sh` lo compara de nuevo en cada ejecución.
 
