@@ -370,3 +370,4 @@
 418 S4-003 done COBOL and regex-pcre2 left English: docker denied so oracle cannot run; EXC-541 and NOT TESTED report translation/part2/reports/S4-003-cobol.md; no protected file changed.
 419 S4-004 done pilot review written (translation/reviews/part2-pilot.md): lock clean, no protected file changed; deterministic recall 10/10 over four Part II fault classes; model recall not re-run (no localized units); no review-fix tasks.
 415 S3-003 done S3 gate (translation/part2/s3-gate.md): link-audit.md/.json written, 33 broken listed (29 in cs-source need a repair task), 578 unverified with reasons; test_link_audit 33 passed; verify --fast OK.
+420 S4-005 done S4 gate (translation/part2/pilot-measurements.md): oracle PASS clause not met (docker denied, all pilot families NOT TESTED); 0 findings in part2_inv and lock; recall 10/10; costs listed but are classification-only; verify --fast OK.
