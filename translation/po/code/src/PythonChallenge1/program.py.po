@@ -45,3 +45,7 @@ msgstr "# Sigue siendo una sola sentencia. Desde aquí solo se guardan las tarje
 msgctxt "L155"
 msgid "# The XML fragment is deliberately gratuitous: it becomes part of the window's XML."
 msgstr "# El fragmento XML es gratuito a propósito: pasa a formar parte del XML de la ventana."
+
+msgctxt "C162"
+msgid "            categories=deque([\"Meetings\", \"Coding\", \"Debugging\", \"Learning\", \"Meetings\"]),"
+msgstr "            categories=deque([\"Reuniones\", \"Programación\", \"Depuración\", \"Aprendizaje\", \"Reuniones\"]),"
