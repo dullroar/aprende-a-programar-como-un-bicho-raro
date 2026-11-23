@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-# Checks the rules of the challenge for the m4 entry. Uses a throwaway data dir.
-# Set M4=/path/to/m4 if it is not on your PATH. Needs GNU m4.
+# Revisa las reglas del desafío para la entrada m4. Usa una carpeta de datos desechable.
+# Define M4=/ruta/a/m4 si no está en tu PATH. Necesita GNU m4.
 set -euo pipefail
 cd "$(dirname "$0")"
 data=$(mktemp -d); trap 'rm -rf "$data"' EXIT
@@ -8,8 +8,8 @@ export XDG_DATA_HOME=$data
 db=$data/M4/demo-timecards.db
 run() { "${M4:-m4}" "$@" timecards.m4; }
 
-# 1. Static: the disclaimer is there, nothing touches a network, and the only things that leave m4 are
-#    one syscmd (the final sqlite3 call) and a few esyscmd lookups (seed, clock, week).
+# 1. Estático: el aviso está, nada toca una red, y lo único que sale de m4 es
+#    un syscmd (la llamada final a sqlite3) y unas pocas consultas esyscmd (semilla, reloj, semana).
 grep -q 'DEMO ONLY' timecards.m4 || { echo "FAIL: no DEMO ONLY marker in timecards.m4"; exit 1; }
 if grep -Eqi 'http|socket|curl|wget' timecards.m4; then echo "FAIL: network-looking text in timecards.m4"; exit 1; fi
 code=$(grep -v '^dnl' timecards.m4)
@@ -18,10 +18,10 @@ code=$(grep -v '^dnl' timecards.m4)
 grep -qE 'tc_card\(\)\]\)\]\)' timecards.m4 || { echo "FAIL: tc_card no longer ends by expanding itself"; exit 1; }
 if grep -Eq '(for|while) ' <<<"$(grep -oE "syscmd\(.*" timecards.m4)"; then echo "FAIL: shell loop in the syscmd line"; exit 1; fi
 
-# 2. The arithmetic is m4's own: with a pinned seed the output must equal an independent Park-Miller
-#    computed here in bash (64-bit), card for card, including the stop rule and the category cycle.
+# 2. La aritmética es la propia de m4: con una semilla fija la salida debe igualar un Park-Miller independiente
+#    calculado aquí en bash (64 bits), tarjeta por tarjeta, incluida la regla de parada y el ciclo de categorías.
 cats=(Meetings Coding Debugging Learning)
-expected() {   # seed week -> the rows, as the program should print them
+expected() {   # semilla semana -> las filas, tal como las debe imprimir el programa
     local seed=$1 week=$2 total=0 n=0 hours
     while (( total <= 40 )); do
         seed=$(( 16807 * seed % 2147483647 ))
@@ -31,29 +31,29 @@ expected() {   # seed week -> the rows, as the program should print them
         n=$(( n + 1 ))
     done
 }
-for seed in 1 2 12345 99999 1000003 2147483646 4020 $(seq 7000 7040); do   # 4020: four 10-hour cards total exactly 40, so a fifth card follows
+for seed in 1 2 12345 99999 1000003 2147483646 4020 $(seq 7000 7040); do   # 4020: cuatro tarjetas de 10 horas suman exactamente 40, así que sigue una quinta tarjeta
     want=$(expected "$seed" 2026-W01)
     got=$(run -Dtc_seed="$seed" -Dtc_week=2026-W01 | grep -E '^(Meetings|Coding|Debugging|Learning)	')
     [[ $got == "$want" ]] || { echo "FAIL: seed $seed: output differs from the bash reference"; diff <(echo "$want") <(echo "$got") || true; exit 1; }
 done
 
-# 2b. Exactly 40 continues: seed 4020 deals 10, 10, 10, 10 (a total of exactly 40) and then a fifth card, Meetings again, ending at 55.
+# 2b. Exactamente 40 continúa: la semilla 4020 reparte 10, 10, 10, 10 (un total de exactamente 40) y luego una quinta tarjeta, otra vez Meetings, que termina en 55.
 got=$(run -Dtc_seed=4020 -Dtc_week=2026-W01 | grep -E '^(Meetings|Coding|Debugging|Learning)	' | cut -f1-3 | tr '\t' ' ' | paste -sd' ')
 [[ $got == "Meetings 10 10 Coding 10 20 Debugging 10 30 Learning 10 40 Meetings 15 55" ]] || { echo "FAIL: seed 4020 should continue past exactly 40 to a fifth card; got: $got"; exit 1; }
 
-# 2c. The loop does not nest. tc_card names itself in text that m4 reads again after the call has returned, so the nesting depth does
-#     not grow with the number of cards: the smallest -L that works is the same for a 3-card run (seed 230) and a 5-card run (seed 4020).
+# 2c. El bucle no se anida. tc_card se nombra a sí misma en texto que m4 vuelve a leer después de que la llamada ha vuelto, así que la profundidad
+#     de anidación no crece con el número de tarjetas: el menor -L que funciona es el mismo para una ejecución de 3 tarjetas (semilla 230) y de 5 (semilla 4020).
 smallest() { local seed=$1 L; for L in 1 2 3 4 5 6 7 8; do if "${M4:-m4}" -L "$L" -Dtc_seed="$seed" -Dtc_week=2026-W01 timecards.m4 >/dev/null 2>&1; then echo "$L"; return; fi; done; echo none; }
 [[ $(smallest 230) == "$(smallest 4020)" && $(smallest 230) != none ]] || { echo "FAIL: nesting depth depends on the number of cards ($(smallest 230) for 3 cards, $(smallest 4020) for 5)"; exit 1; }
 
-# 3. The mechanism: if tc_card stops expanding itself, exactly one card is dealt.
+# 3. El mecanismo: si tc_card deja de expandirse a sí misma, se reparte exactamente una tarjeta.
 sed 's/\[tc_card()\])\])/[])])/' timecards.m4 > "$data/once.m4"
 n=$("${M4:-m4}" -Dtc_seed=12345 "$data/once.m4" | grep -cE '^(Meetings|Coding|Debugging|Learning)	' || true)
 [[ $n -eq 1 ]] || { echo "FAIL: without the self-expansion $n cards were dealt, wanted 1"; exit 1; }
 rm -rf "$data/M4"
 
-# 4. Run it a bunch of times for real (OS seed, real date); every run must print a sane record set,
-#    and the SQLite rows must agree with it.
+# 4. Ejecútalo muchas veces de verdad (semilla del SO, fecha real); cada ejecución debe imprimir un conjunto de filas sensato,
+#    y las filas de SQLite deben coincidir con él.
 
 
 for i in $(seq 1 25); do
@@ -86,7 +86,7 @@ done
 [[ $(sqlite3 "$db" 'select count(distinct run_id) from demo_timecards') -eq 25 ]] || { echo "FAIL: expected 25 distinct runs in the db"; exit 1; }
 [[ $(sqlite3 "$db" 'select count(distinct hours) from demo_timecards') -ge 6 ]] || { echo "FAIL: hours do not look random"; exit 1; }
 
-# 3. The demo_only CHECK constraint is real: a non-demo row must be refused.
+# 3. La restricción CHECK de demo_only es real: una fila que no sea de demo debe ser rechazada.
 if sqlite3 "$db" "insert into demo_timecards(run_id,category,hours,running_total,demo_only) values('x','x',1,1,0)" 2>/dev/null; then
     echo "FAIL: db accepted a non-demo row"; exit 1
 fi

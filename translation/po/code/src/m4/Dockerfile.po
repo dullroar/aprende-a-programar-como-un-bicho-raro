@@ -1,0 +1,15 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+
+msgctxt "L1"
+msgid "# Container image for the m4 entry. Run it with: sandbox/container/run-image.sh src/m4"
+msgstr "# Imagen de contenedor para la entrada m4. Ejecútala con: sandbox/container/run-image.sh src/m4"
+
+msgctxt "L2"
+msgid "# Nothing to build: m4 interprets the file. The runtime base has GNU m4 and sqlite3, and sh for the"
+msgstr "# No hay nada que compilar: m4 interpreta el archivo. La base de ejecución trae GNU m4 y sqlite3, y sh para el"
+
+msgctxt "L3"
+msgid "# entry's one syscmd; no compiler or package manager."
+msgstr "# único syscmd de la entrada; no hay compilador ni gestor de paquetes."

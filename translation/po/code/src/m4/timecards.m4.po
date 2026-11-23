@@ -1,0 +1,179 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+
+msgctxt "L1"
+msgid "dnl DEMO ONLY. Fictional timecards, written to a scratch SQLite file under"
+msgstr "dnl DEMO ONLY. Tarjetas de horas ficticias, escritas en un archivo SQLite desechable bajo"
+
+msgctxt "L2"
+msgid "dnl XDG_DATA_HOME. Nothing here touches a real time-reporting system."
+msgstr "dnl XDG_DATA_HOME. Nada de aquí toca un sistema real de registro de horas."
+
+msgctxt "L4"
+msgid "dnl Run:  m4 timecards.m4"
+msgstr "dnl Ejecuta:  m4 timecards.m4"
+
+msgctxt "L6"
+msgid "dnl The challenge: add cards of 10-19 hours (Meetings, Coding, Debugging,"
+msgstr "dnl El desafío: sumar tarjetas de 10 a 19 horas (Meetings, Coding, Debugging,"
+
+msgctxt "L7"
+msgid "dnl Learning, round and round) until the running total passes 40.  m4 has no"
+msgstr "dnl Learning, en ronda) hasta que el total acumulado pase de 40.  m4 no tiene"
+
+msgctxt "L8"
+msgid "dnl loop statement and no variables: it has macros, and what a macro expands"
+msgstr "dnl instrucción de bucle ni variables: tiene macros, y lo que una macro expande"
+
+msgctxt "L9"
+msgid "dnl to is scanned again.  So the loop is a macro that ends by calling itself,"
+msgstr "dnl se vuelve a escanear.  Así que el bucle es una macro que termina llamándose a sí misma,"
+
+msgctxt "L10"
+msgid "dnl and the stop rule is the ifelse that decides whether it does."
+msgstr "dnl y la regla de parada es el ifelse que decide si lo hace."
+
+msgctxt "L12"
+msgid "dnl This file uses GNU m4 (1.4.x or later).  GNU-only features, each marked"
+msgstr "dnl Este archivo usa GNU m4 (1.4.x o posterior).  Funciones solo de GNU, cada una marcada"
+
+msgctxt "L13"
+msgid "dnl where it is used: esyscmd (capture a command's output), format, and"
+msgstr "dnl donde se usa: esyscmd (captura la salida de un comando), format, y"
+
+msgctxt "L14"
+msgid "dnl eval being 32-bit.  Every macro here starts with tc_ so that none of them"
+msgstr "dnl eval de 32 bits.  Cada macro de aquí empieza con tc_ para que ninguna"
+
+msgctxt "L15"
+msgid "dnl can collide with a word in the SQL text, which m4 would helpfully expand."
+msgstr "dnl choque con una palabra del texto SQL, que m4 expandiría con mucho gusto."
+
+msgctxt "L17"
+msgid "dnl ---- 1. Make m4 safe for our text --------------------------------------"
+msgstr "dnl ---- 1. Haz que m4 sea seguro para nuestro texto -----------------------"
+
+msgctxt "L18"
+msgid "dnl By default # starts a comment, and a comment is copied through without"
+msgstr "dnl Por defecto # inicia un comentario, y un comentario se copia sin"
+
+msgctxt "L19"
+msgid "dnl expanding macros: that would eat our \"# DEMO ONLY\" lines.  And ' is the"
+msgstr "dnl expandir macros: eso se comería nuestras líneas \"# DEMO ONLY\".  Y ' es la"
+
+msgctxt "L20"
+msgid "dnl closing quote, which SQL strings need.  Fix both before anything else."
+msgstr "dnl comilla de cierre, que las cadenas SQL necesitan.  Arregla ambas antes que nada."
+
+msgctxt "L23"
+msgid "dnl Everything until divert(0) below is definitions; send any stray output"
+msgstr "dnl Todo lo que hay hasta el divert(0) de abajo son definiciones; manda cualquier salida"
+
+msgctxt "L24"
+msgid "dnl (such as the newline after each define) to diversion -1, i.e. nowhere."
+msgstr "dnl suelta (como el salto de línea tras cada define) a la desviación -1, o sea, a ninguna parte."
+
+msgctxt "L27"
+msgid "dnl ---- 2. State: macros are the variables ---------------------------------"
+msgstr "dnl ---- 2. Estado: las macros son las variables ---------------------------"
+
+msgctxt "L31"
+msgid "dnl A seed from the OS: 3 random bytes as a decimal number.  [GNU: esyscmd]"
+msgstr "dnl Una semilla del SO: 3 bytes aleatorios como número decimal.  [GNU: esyscmd]"
+
+msgctxt "L32"
+msgid "dnl Scaled so that it fits m4's 32-bit eval, and never 0.  ifdef lets you pin"
+msgstr "dnl Escalada para que quepa en el eval de 32 bits de m4, y nunca 0.  ifdef te deja fijarla"
+
+msgctxt "L33"
+msgid "dnl it (and the week) from the command line: m4 -Dtc_seed=12345 -Dtc_week=2026-W01 timecards.m4"
+msgstr "dnl (y la semana) desde la línea de comandos: m4 -Dtc_seed=12345 -Dtc_week=2026-W01 timecards.m4"
+
+msgctxt "L38"
+msgid "dnl [GNU: format]"
+msgstr "dnl [GNU: format]"
+
+msgctxt "L40"
+msgid "dnl ---- 3. A random number generator, in m4 arithmetic ----------------------"
+msgstr "dnl ---- 3. Un generador de números aleatorios, en aritmética de m4 ----------"
+
+msgctxt "L41"
+msgid "dnl Park-Miller \"minimal standard\": seed = 16807 * seed mod (2^31 - 1)."
+msgstr "dnl Park-Miller \"estándar mínimo\": seed = 16807 * seed mod (2^31 - 1)."
+
+msgctxt "L42"
+msgid "dnl Schrage's trick keeps every intermediate value inside 32 bits, which is"
+msgstr "dnl El truco de Schrage mantiene cada valor intermedio dentro de 32 bits, que es"
+
+msgctxt "L43"
+msgid "dnl all eval has: 16807 * 127773 + 2836 = 2^31 - 1."
+msgstr "dnl todo lo que tiene eval: 16807 * 127773 + 2836 = 2^31 - 1."
+
+msgctxt "L48"
+msgid "dnl ---- 4. Text-building helpers --------------------------------------------"
+msgstr "dnl ---- 4. Ayudantes para armar texto --------------------------------------"
+
+msgctxt "L49"
+msgid "dnl tc_category(N): card N's category.  ifelse is \"if arg1 = arg2 then arg3\","
+msgstr "dnl tc_category(N): la categoría de la tarjeta N.  ifelse es \"si arg1 = arg2 entonces arg3\","
+
+msgctxt "L50"
+msgid "dnl and after that it continues in groups of THREE (arg1 again, arg2, arg3),"
+msgstr "dnl y después continúa en grupos de TRES (arg1 otra vez, arg2, arg3),"
+
+msgctxt "L51"
+msgid "dnl with a lone last argument as the else.  So the thing being tested has to be"
+msgstr "dnl con un último argumento suelto como el else.  Así que lo que se prueba tiene que"
+
+msgctxt "L52"
+msgid "dnl repeated in every group: tc_pick gets the number as $1 and repeats it."
+msgstr "dnl repetirse en cada grupo: tc_pick recibe el número como $1 y lo repite."
+
+msgctxt "L57"
+msgid "dnl The [] in the bodies below are empty quotes: they split a $1 from the"
+msgstr "dnl Los [] en los cuerpos de abajo son comillas vacías: separan un $1 del"
+
+msgctxt "L58"
+msgid "dnl macro name after it, which would otherwise glue into one word."
+msgstr "dnl nombre de macro que sigue, que si no se pegaría en una sola palabra."
+
+msgctxt "L64"
+msgid "dnl The SQL script is a macro that grows: defn gives back a macro's text,"
+msgstr "dnl El script SQL es una macro que crece: defn devuelve el texto de una macro,"
+
+msgctxt "L65"
+msgid "dnl quoted, so appending is \"redefine yourself as yourself plus more\"."
+msgstr "dnl entre comillas, así que añadir es \"redefínete como tú misma más algo\"."
+
+msgctxt "L71"
+msgid "dnl ---- 5. The challenge ----------------------------------------------------"
+msgstr "dnl ---- 5. El desafío ------------------------------------------------------"
+
+msgctxt "L72"
+msgid "dnl One card: draw, add, remember the INSERT, print the row, then either stop"
+msgstr "dnl Una tarjeta: saca, suma, recuerda el INSERT, imprime la fila, y luego para"
+
+msgctxt "L73"
+msgid "dnl or expand ourselves again.  The text a macro returns is rescanned, so the"
+msgstr "dnl o se expande otra vez.  El texto que devuelve una macro se reescanea,"
+
+msgctxt "L74"
+msgid "dnl last word of tc_card is what makes it a loop."
+msgstr "dnl así que la última palabra de tc_card es lo que la vuelve un bucle."
+
+msgctxt "L84"
+msgid "dnl ---- 6. Run it -----------------------------------------------------------"
+msgstr "dnl ---- 6. Ejecútalo -------------------------------------------------------"
+
+msgctxt "L92"
+msgid "dnl Save: hand the finished script to sqlite3 through the shell.  The shell"
+msgstr "dnl Guardar: entrega el script terminado a sqlite3 por medio del intérprete de comandos.  El intérprete"
+
+msgctxt "L93"
+msgid "dnl only picks the folder and runs sqlite3; every byte of SQL was made by m4."
+msgstr "dnl solo elige la carpeta y ejecuta sqlite3; cada byte del SQL lo hizo m4."
+
+msgctxt "L94"
+msgid "dnl The terminator is quoted so the shell leaves the SQL alone.  [syscmd is POSIX]"
+msgstr "dnl El terminador va entre comillas para que el intérprete deje en paz el SQL.  [syscmd es POSIX]"

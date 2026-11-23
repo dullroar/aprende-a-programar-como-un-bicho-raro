@@ -1,0 +1,63 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+
+msgctxt "L2"
+msgid "# Checks the rules of the challenge for the m4 entry. Uses a throwaway data dir."
+msgstr "# Revisa las reglas del desafío para la entrada m4. Usa una carpeta de datos desechable."
+
+msgctxt "L3"
+msgid "# Set M4=/path/to/m4 if it is not on your PATH. Needs GNU m4."
+msgstr "# Define M4=/ruta/a/m4 si no está en tu PATH. Necesita GNU m4."
+
+msgctxt "L11"
+msgid "# 1. Static: the disclaimer is there, nothing touches a network, and the only things that leave m4 are"
+msgstr "# 1. Estático: el aviso está, nada toca una red, y lo único que sale de m4 es"
+
+msgctxt "L12"
+msgid "#    one syscmd (the final sqlite3 call) and a few esyscmd lookups (seed, clock, week)."
+msgstr "#    un syscmd (la llamada final a sqlite3) y unas pocas consultas esyscmd (semilla, reloj, semana)."
+
+msgctxt "L21"
+msgid "# 2. The arithmetic is m4's own: with a pinned seed the output must equal an independent Park-Miller"
+msgstr "# 2. La aritmética es la propia de m4: con una semilla fija la salida debe igualar un Park-Miller independiente"
+
+msgctxt "L22"
+msgid "#    computed here in bash (64-bit), card for card, including the stop rule and the category cycle."
+msgstr "#    calculado aquí en bash (64 bits), tarjeta por tarjeta, incluida la regla de parada y el ciclo de categorías."
+
+msgctxt "L24"
+msgid "# seed week -> the rows, as the program should print them"
+msgstr "# semilla semana -> las filas, tal como las debe imprimir el programa"
+
+msgctxt "L34"
+msgid "# 4020: four 10-hour cards total exactly 40, so a fifth card follows"
+msgstr "# 4020: cuatro tarjetas de 10 horas suman exactamente 40, así que sigue una quinta tarjeta"
+
+msgctxt "L40"
+msgid "# 2b. Exactly 40 continues: seed 4020 deals 10, 10, 10, 10 (a total of exactly 40) and then a fifth card, Meetings again, ending at 55."
+msgstr "# 2b. Exactamente 40 continúa: la semilla 4020 reparte 10, 10, 10, 10 (un total de exactamente 40) y luego una quinta tarjeta, otra vez Meetings, que termina en 55."
+
+msgctxt "L44"
+msgid "# 2c. The loop does not nest. tc_card names itself in text that m4 reads again after the call has returned, so the nesting depth does"
+msgstr "# 2c. El bucle no se anida. tc_card se nombra a sí misma en texto que m4 vuelve a leer después de que la llamada ha vuelto, así que la profundidad"
+
+msgctxt "L45"
+msgid "#     not grow with the number of cards: the smallest -L that works is the same for a 3-card run (seed 230) and a 5-card run (seed 4020)."
+msgstr "#     de anidación no crece con el número de tarjetas: el menor -L que funciona es el mismo para una ejecución de 3 tarjetas (semilla 230) y de 5 (semilla 4020)."
+
+msgctxt "L49"
+msgid "# 3. The mechanism: if tc_card stops expanding itself, exactly one card is dealt."
+msgstr "# 3. El mecanismo: si tc_card deja de expandirse a sí misma, se reparte exactamente una tarjeta."
+
+msgctxt "L55"
+msgid "# 4. Run it a bunch of times for real (OS seed, real date); every run must print a sane record set,"
+msgstr "# 4. Ejecútalo muchas veces de verdad (semilla del SO, fecha real); cada ejecución debe imprimir un conjunto de filas sensato,"
+
+msgctxt "L56"
+msgid "#    and the SQLite rows must agree with it."
+msgstr "#    y las filas de SQLite deben coincidir con él."
+
+msgctxt "L89"
+msgid "# 3. The demo_only CHECK constraint is real: a non-demo row must be refused."
+msgstr "# 3. La restricción CHECK de demo_only es real: una fila que no sea de demo debe ser rechazada."
