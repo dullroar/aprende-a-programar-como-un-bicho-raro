@@ -4,3 +4,4 @@ src/cobol/README.md
 src/forth/README.md
 src/lisp/README.md
 src/apl/README.md
+src/apl-weird/README.md

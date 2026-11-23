@@ -36,9 +36,9 @@ Los registros van a `$XDG_DATA_HOME/AplWeird/demo-timecards.db` (por defecto `~/
 
 ```text
 # DEMO ONLY run 2026-11-14-9-42-57-197
-Meetings	18	18	2026-W46	DEMO ONLY
-Coding	12	30	2026-W46	DEMO ONLY
-Debugging	15	45	2026-W46	DEMO ONLY
+Reuniones	18	18	2026-W46	DEMO ONLY
+Programación	12	30	2026-W46	DEMO ONLY
+Depuración	15	45	2026-W46	DEMO ONLY
 # Card0 ⇐ H←10+?10
 # Card1 ⇐ H←12
 # Card2 ⇐ H←15

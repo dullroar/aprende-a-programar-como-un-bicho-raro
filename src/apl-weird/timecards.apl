@@ -17,7 +17,7 @@
 ⎕IO←0
 ⎕RL←+/⎕TS×1 12 372 8928 535680 32140800 1894248000    ⍝ GNU APL siempre empieza en 16807
 
-Categories←'Meetings' 'Coding' 'Debugging' 'Learning'
+Categories←'Reuniones' 'Programación' 'Depuración' 'Aprendizaje'
 NL←⎕UCS 10
 TAB←⎕UCS 9
 RunId←1↓∊'-',¨⍕¨⎕TS

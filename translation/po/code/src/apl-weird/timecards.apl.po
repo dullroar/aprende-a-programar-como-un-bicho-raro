@@ -93,3 +93,7 @@ msgstr "⍝ escribió en tiempo de ejecución, y la línea 3 de cada una son las
 msgctxt "L65"
 msgid "⍝ the T←41 gene of the final card"
 msgstr "⍝ el gen T←41 de la última tarjeta"
+
+msgctxt "C20"
+msgid "Categories←'Meetings' 'Coding' 'Debugging' 'Learning'"
+msgstr "Categories←'Reuniones' 'Programación' 'Depuración' 'Aprendizaje'"
