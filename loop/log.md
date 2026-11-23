@@ -365,4 +365,5 @@
 412 S2-007 done S2 gate (translation/part2/s2-gate.md): fixed book.es.css double classification (inventory owned, not tooling) that failed 5 release checks; release --no-gates and tests green, full English gates run not awaited.
 413 S3-001 done tools/link_audit.py + 24 tests (markdown, html, pdf, epub; planted broken link of each type caught; external URLs unverified, EPUBCheck not executed when absent); real checkout lists 33 broken, mostly lessons/cs-source English-keyed links, left for S3-003 triage; verify --fast OK.
 414 S3-002 done link_audit semantic anchor check + translation/line-anchors.jsonl (144 seeded records, basis seeded) + 9 tests (planted shift caught); wired into verify --release as "line anchors"; unmapped links are unverified; verify --fast OK.
+416 S4-001 done Forth left English: docker denied so oracle cannot run; EXC-539 and NOT TESTED report translation/part2/reports/S4-001-forth.md; no protected file changed.
 415 S3-003 done S3 gate (translation/part2/s3-gate.md): link-audit.md/.json written, 33 broken listed (29 in cs-source need a repair task), 578 unverified with reasons; test_link_audit 33 passed; verify --fast OK.
