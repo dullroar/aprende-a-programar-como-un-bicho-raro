@@ -145,3 +145,8 @@
 - Decision: only languages with real introspection on this host get tokens: CPython 3.12.3 (`keyword`, `builtins`) and the host Node v24.15.0 (compile probe). The other 21 observed languages get `not-extracted` records (reason, zero tokens, NOT TESTED). Pinned-spec files in `translation/protected-tokens/specs/<language>.txt` are supported by the tool but none exist, because writing one from memory is forbidden. The host Node (24.15.0) differs from the sandbox's pinned 24.22.3; rerun `--write` in the container to pin it.
 - Alternative: hand-write keyword lists. Rejected (plan: never from model memory).
 - Cost to reverse: add spec files or extractors per language, then `--write`; S1-003 onward may extend.
+
+## S2-006 (iter 411): scope of the Part II negative controls
+- Decision: "planned" means the Appendix A.2 rows that have a detector now (16 fixtures over 11 rows). Rows 10 (workflow and scope-check allowlist review), 12 (Part II idempotence gate) and 14 (tools/impact.py) print as DEFERRED and are not counted as passed.
+- Alternative: fail the run until all 14 rows exist. Rejected: it would block the queue on tools owned by later tasks.
+- Cost to reverse: add a fixture per deferred row in tools/part2_negative.py when its detector lands.
