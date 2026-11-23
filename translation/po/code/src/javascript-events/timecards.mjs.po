@@ -1,0 +1,119 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+
+msgctxt "L8"
+msgid "// The same challenge as ../javascript and ../javascript-weird, with no loop statement and no closure pipeline."
+msgstr "// El mismo reto que ../javascript y ../javascript-weird, sin ninguna sentencia de bucle y sin cadena de clausuras."
+
+msgctxt "L9"
+msgid "// The program is the set of LISTENERS registered on one EventEmitter. Each listener does one small thing and then"
+msgstr "// El programa es el conjunto de ESCUCHADORES registrados en un solo EventEmitter. Cada escuchador hace una cosa pequeña y luego"
+
+msgctxt "L10"
+msgid "// emits the event that the next listener is waiting for. The visible start-up is one line, at the bottom of the file:"
+msgstr "// emite el evento que espera el siguiente escuchador. El arranque visible es una sola línea, al final del archivo:"
+
+msgctxt "L14"
+msgid "// DEMO ONLY: fictional time cards, saved to a scratch SQLite file. Nothing here touches real time reporting."
+msgstr "// DEMO ONLY: tarjetas de horas ficticias, guardadas en un archivo SQLite desechable. Nada de aquí toca el registro de horas real."
+
+msgctxt "L21"
+msgid "// Two kinds of arrows. The plain arrows are emit(): Node calls every listener of that event, in the order they were"
+msgstr "// Dos clases de flechas. Las flechas normales son emit(): Node llama a todos los escuchadores de ese evento, en el orden en que se"
+
+msgctxt "L22"
+msgid "// registered, BEFORE emit() returns. The call stack grows by a few frames and unwinds again. The setImmediate arrows"
+msgstr "// registraron, ANTES de que emit() devuelva el control. La pila de llamadas crece unos cuantos marcos y vuelve a deshacerse. Las flechas de setImmediate"
+
+msgctxt "L23"
+msgid "// are different: the next step is put on the event loop's queue and runs only after the stack has unwound. Without"
+msgstr "// son distintas: el paso siguiente se pone en la cola del bucle de eventos y se ejecuta solo después de que la pila se haya deshecho. Sin"
+
+msgctxt "L24"
+msgid "// that boundary, the chain of emits would be a recursion with one more level for every card."
+msgstr "// ese límite, la cadena de emits sería una recursión con un nivel más por cada tarjeta."
+
+msgctxt "L37"
+msgid "// The ISO year and week of a date: the Thursday of the same week decides the year."
+msgstr "// El año y la semana ISO de una fecha: el jueves de esa misma semana decide el año."
+
+msgctxt "L45"
+msgid "// Everything the program needs from the outside world is one object, so a test can hand in its own. `rng` answers"
+msgstr "// Todo lo que el programa necesita del mundo exterior es un solo objeto, así una prueba puede pasar el suyo. `rng` responde"
+
+msgctxt "L46"
+msgid "// a number and the hours are 10 + (that number % 10); `schedule` runs a function on a LATER turn of the event loop;"
+msgstr "// un número y las horas son 10 + (ese número % 10); `schedule` ejecuta una función en un turno POSTERIOR del bucle de eventos;"
+
+msgctxt "L47"
+msgid "// `open` makes the database; `every` starts a repeating timer and answers the function that stops it."
+msgstr "// `open` crea la base de datos; `every` inicia un temporizador repetitivo y responde con la función que lo detiene."
+
+msgctxt "L73"
+msgid "// A throw inside a listener travels UP through emit() to whoever called it. Here that is a scheduled callback"
+msgstr "// Un throw dentro de un escuchador viaja HACIA ARRIBA por emit() hasta quien lo llamó. Aquí eso es una función programada"
+
+msgctxt "L74"
+msgid "// that nobody is waiting for, so the throw would end the process. Each listener catches it and reports it as an event."
+msgstr "// que nadie espera, así que el throw terminaría el proceso. Cada escuchador lo captura y lo informa como un evento."
+
+msgctxt "L81"
+msgid "// 1. start: open the database and begin the transaction, then ask for the first card ON A LATER TURN."
+msgstr "// 1. start: abre la base de datos y empieza la transacción, y luego pide la primera tarjeta EN UN TURNO POSTERIOR."
+
+msgctxt "L92"
+msgid "// 2. generate: make one card. Emitting runs the listeners of card-created RIGHT NOW, inside this call."
+msgstr "// 2. generate: crea una tarjeta. Emitir ejecuta los escuchadores de card-created AHORA MISMO, dentro de esta llamada."
+
+msgctxt "L98"
+msgid "// 3. card-created: save it. node:sqlite is synchronous, so the row is written when run() returns, before the"
+msgstr "// 3. card-created: la guarda. node:sqlite es síncrono, así que la fila queda escrita cuando run() devuelve el control, antes de la"
+
+msgctxt "L99"
+msgid "//    next line, and nothing downstream can see a card that is not saved."
+msgstr "//    línea siguiente, y nada más adelante puede ver una tarjeta que no esté guardada."
+
+msgctxt "L106"
+msgid "// 4. card-saved: only now does the running total change. Print the row."
+msgstr "// 4. card-saved: solo ahora cambia el total acumulado. Imprime la fila."
+
+msgctxt "L113"
+msgid "// 5. total-updated: the stop rule, and the only fork. Over the limit: announce the end now. Otherwise: the next card"
+msgstr "// 5. total-updated: la regla de parada y la única bifurcación. Si pasa del límite: anuncia el final ahora. Si no: la tarjeta siguiente"
+
+msgctxt "L114"
+msgid "//    waits for a new turn, so the stack unwinds first."
+msgstr "//    espera a un turno nuevo, de modo que la pila se deshace primero."
+
+msgctxt "L117"
+msgid "// 6. finished: commit, report, close, and either end or hand over to the pulse timer."
+msgstr "// 6. finished: confirma la transacción, informa, cierra, y o bien termina o bien pasa el control al temporizador del pulso."
+
+msgctxt "L127"
+msgid "// 7. frame: one tick of the pulse, from a timer. The timer is the only thing that keeps the process alive after the"
+msgstr "// 7. frame: un latido del pulso, desde un temporizador. El temporizador es lo único que mantiene vivo el proceso después de la"
+
+msgctxt "L128"
+msgid "//    last card. Each tick is a separate turn of the event loop."
+msgstr "//    última tarjeta. Cada latido es un turno separado del bucle de eventos."
+
+msgctxt "L134"
+msgid "// 8. done: no listener is left behind, so nothing can keep the process alive and nothing can be called again."
+msgstr "// 8. done: no queda ningún escuchador, así que nada puede mantener vivo el proceso y nada puede volver a llamarse."
+
+msgctxt "L137"
+msgid "// 9. failed: runs once. Undo what was not committed, release everything, tell the user. The last step removes every"
+msgstr "// 9. failed: se ejecuta una vez. Deshace lo que no se confirmó, libera todo y avisa al usuario. El último paso quita todos los"
+
+msgctxt "L138"
+msgid "//    listener, this one too, so a second failure finds nobody to tell. That is what makes it exactly once."
+msgstr "//    escuchadores, este también, así que un segundo fallo no encuentra a nadie a quien avisar. Eso es lo que lo hace ocurrir exactamente una vez."
+
+msgctxt "L148"
+msgid "// The name 'error' is special in Node: emit('error', e) with NO listener THROWS e. This listener turns a stray"
+msgstr "// El nombre 'error' es especial en Node: emit('error', e) SIN escuchador LANZA e. Este escuchador convierte un 'error' suelto"
+
+msgctxt "L149"
+msgid "// 'error' into our own 'failed', so the program has one way to fail."
+msgstr "// en nuestro propio 'failed', así que el programa tiene una sola manera de fallar."

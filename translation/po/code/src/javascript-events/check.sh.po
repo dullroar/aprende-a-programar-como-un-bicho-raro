@@ -1,0 +1,51 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+
+msgctxt "L2"
+msgid "# Checks the rules of the challenge for the event-driven entry: no loop statement, one emit to start, the event lab"
+msgstr "# Comprueba las reglas del reto para la entrada dirigida por eventos: ninguna sentencia de bucle, un solo emit para empezar, el laboratorio de eventos"
+
+msgctxt "L3"
+msgid "# (check.mjs: ordering, synchronous emit versus setImmediate, a flat stack, failure, cleanup), the time-card rules, seeds"
+msgstr "# (check.mjs: orden, emit síncrono frente a setImmediate, una pila plana, fallo, limpieza), las reglas de las tarjetas de horas, las semillas"
+
+msgctxt "L4"
+msgid "# against a separate model, the ISO week, and the terminal pulse. Uses throwaway data. Needs Node 24+, sqlite3, GNU date."
+msgstr "# contra un modelo aparte, la semana ISO y el pulso de la terminal. Usa datos desechables. Necesita Node 24+, sqlite3 y GNU date."
+
+msgctxt "L29"
+msgid "# ---- 1. The constraints are real, and a mutated program is caught."
+msgstr "# ---- 1. Las restricciones son reales, y un programa mutado se detecta."
+
+msgctxt "L46"
+msgid "# ---- 1b. The lab (check.mjs) passes, and it fails on mutants of the behavior it is about."
+msgstr "# ---- 1b. El laboratorio (check.mjs) pasa, y falla con mutantes del comportamiento que estudia."
+
+msgctxt "L65"
+msgid "# ---- 2. Random runs: the rules of the challenge, against the file and the database."
+msgstr "# ---- 2. Ejecuciones al azar: las reglas del reto, contra el archivo y la base de datos."
+
+msgctxt "L85"
+msgid "# ---- 3. A seed replays a run, and a separate simulation of the generator agrees (including the edge cases)."
+msgstr "# ---- 3. Una semilla reproduce una ejecución, y una simulación aparte del generador coincide (también en los casos límite)."
+
+msgctxt "L108"
+msgid "# the three Node entries share one generator, so one seed gives one set of cards in all of them"
+msgstr "# las tres entradas de Node comparten un generador, así que una semilla da el mismo conjunto de tarjetas en todas"
+
+msgctxt "L109"
+msgid "# (The sandbox copies one entry at a time, so the siblings are only there in a full checkout; say so when they are not.)"
+msgstr "# (El entorno aislado copia una entrada a la vez, así que las hermanas solo están en una copia completa; avísalo cuando no estén.)"
+
+msgctxt "L120"
+msgid "# ---- 4. The ISO week is computed by hand in the program; it must agree with GNU date, year boundaries included."
+msgstr "# ---- 4. La semana ISO se calcula a mano en el programa; debe coincidir con GNU date, incluidos los límites de año."
+
+msgctxt "L127"
+msgid "# ---- 5. The pulse: only on a terminal, never for CI, and never before the report. It is a timer, so it is the only thing that keeps Node alive."
+msgstr "# ---- 5. El pulso: solo en una terminal, nunca en CI, y nunca antes del informe. Es un temporizador, así que es lo único que mantiene vivo a Node."
+
+msgctxt "L142"
+msgid "# ---- 6. Errors and the schema."
+msgstr "# ---- 6. Errores y el esquema."

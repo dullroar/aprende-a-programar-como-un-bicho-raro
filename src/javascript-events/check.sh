@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
-# Checks the rules of the challenge for the event-driven entry: no loop statement, one emit to start, the event lab
-# (check.mjs: ordering, synchronous emit versus setImmediate, a flat stack, failure, cleanup), the time-card rules, seeds
-# against a separate model, the ISO week, and the terminal pulse. Uses throwaway data. Needs Node 24+, sqlite3, GNU date.
+# Comprueba las reglas del reto para la entrada dirigida por eventos: ninguna sentencia de bucle, un solo emit para empezar, el laboratorio de eventos
+# (check.mjs: orden, emit síncrono frente a setImmediate, una pila plana, fallo, limpieza), las reglas de las tarjetas de horas, las semillas
+# contra un modelo aparte, la semana ISO y el pulso de la terminal. Usa datos desechables. Necesita Node 24+, sqlite3 y GNU date.
 set -euo pipefail
 cd "$(dirname "$0")"
 work=$(mktemp -d); trap 'rm -rf "$work"' EXIT
@@ -26,7 +26,7 @@ validate() {
               if (prev <= 40) { print "stopped early at " prev; exit 1 } }' <<<"$r" || fail "$label (see above)"
 }
 
-# ---- 1. The constraints are real, and a mutated program is caught.
+# ---- 1. Las restricciones son reales, y un programa mutado se detecta.
 node check-static.mjs timecards.mjs || fail "static scan"
 mut() {   # label, JS expression turning the source into a mutant; the static scan must reject it
     node -e 'const s = require("node:fs").readFileSync("timecards.mjs", "utf8"); process.stdout.write(new Function("s", "return " + process.argv[1])(s))' "$2" > "$work/mutant.mjs"
@@ -43,7 +43,7 @@ mut "a second start" 's + "\nprogram(realWorld()).emit(\x27start\x27);\n"'
 mut "process.nextTick" 's + "\nprocess.nextTick(() => 1);\n"'
 echo "ok: the static scan rejects nine mutants (a for, a while, forEach, eval, child_process, async, a direct emit of generate, a second start, nextTick)"
 
-# ---- 1b. The lab (check.mjs) passes, and it fails on mutants of the behavior it is about.
+# ---- 1b. El laboratorio (check.mjs) pasa, y falla con mutantes del comportamiento que estudia.
 node --test check.mjs > "$work/lab.out" 2>&1 || { cat "$work/lab.out"; fail "the event lab (check.mjs) failed"; }
 echo "ok: the event lab: $(grep -c '^✔' "$work/lab.out") tests pass (demo-only rows, exact stop, a later turn for the first card, nested events inside one turn, synchronous emit versus setImmediate, a flat stack over 2000 cards, the overflow without the boundary, failure and rollback reported once, the special error event, no leftovers, the pulse timer, seeds, the ISO week)"
 behave() {   # label, source text to replace, its replacement; the lab must FAIL on the mutant
@@ -62,7 +62,7 @@ behave "no scheduling boundary: the next card is emitted by the same turn" 'sche
 behave "a different seed generator" '* 48271 %' '* 16807 %'
 echo "ok: the lab fails on seven mutants of the behavior (stop at 40, no rollback, listeners left after a failure or at the end, announced before saved, no scheduling boundary, another generator)"
 
-# ---- 2. Random runs: the rules of the challenge, against the file and the database.
+# ---- 2. Ejecuciones al azar: las reglas del reto, contra el archivo y la base de datos.
 for i in $(seq 1 25); do
     out=$(node timecards.mjs 2>"$work/err") || { cat "$work/err"; fail "run $i exited $?"; }
     validate "run $i" "$out"
@@ -82,7 +82,7 @@ bad=$(sqlite3 "$db" "select count(*) from (select run_id, running_total - sum(ho
 [[ $(ls "$XDG_DATA_HOME" | tr '\n' ' ') == "JavaScriptEvents " && $(ls "$XDG_DATA_HOME/JavaScriptEvents") == "demo-timecards.db" ]] || fail "the program left something besides demo-timecards.db"
 echo "ok: 25 random runs: categories in order, hours 10-19, running totals, stop right after the first total over 40, DEMO ONLY, nothing on stderr or in escape codes, the user and the totals in SQLite, no file but the database"
 
-# ---- 3. A seed replays a run, and a separate simulation of the generator agrees (including the edge cases).
+# ---- 3. Una semilla reproduce una ejecución, y una simulación aparte del generador coincide (también en los casos límite).
 sim() {  # seed -> category TAB hours TAB total, until the total passes 40 (Park-Miller, as the program has it)
     awk -v r="$1" 'BEGIN { split("Meetings Coding Debugging Learning Meetings", cat, " ")
         for (n = 1; ; n++) { r = r * 48271 % 2147483647; h = 10 + r % 10; t += h; printf "%s\t%d\t%d\n", cat[n], h, t; if (t > 40) break } }'
@@ -105,8 +105,8 @@ for spec in "41 3" "41 4" "42 4" "50 5" "51 5" "57 3"; do
 done
 s=$(awk 'BEGIN { for (s = 1; s < 4000000; s++) { r = s; t = 0; for (n = 1; n <= 4; n++) { r = r * 48271 % 2147483647; t += 10 + r % 10 } if (t == 40) { print s; exit } } }')
 if [[ -n $s ]]; then check_seed "$s"; [[ $(rows "$(SEED=$s node timecards.mjs)" | wc -l) -eq 5 ]] || fail "a total of exactly 40 after four cards must continue to a fifth"; echo "ok: seed $s makes exactly 40 after four cards, and the program goes on to a fifth"; fi
-# the three Node entries share one generator, so one seed gives one set of cards in all of them
-# (The sandbox copies one entry at a time, so the siblings are only there in a full checkout; say so when they are not.)
+# las tres entradas de Node comparten un generador, así que una semilla da el mismo conjunto de tarjetas en todas
+# (El entorno aislado copia una entrada a la vez, así que las hermanas solo están en una copia completa; avísalo cuando no estén.)
 siblings=""
 for other in javascript javascript-weird; do
     if [[ -f ../$other/timecards.mjs ]]; then
@@ -117,14 +117,14 @@ done
 if [[ -n $siblings ]]; then same="and the same cards as$siblings"; else same="(the comparison with the other Node entries was skipped: they are not beside this one, as in a one-entry sandbox)"; fi
 echo "ok: replay: SEED=42 twice gives the same cards, $same; 12 seeds (totals 41, 42, 50, 51, 57 in 3 to 5 cards) match a separate simulation of the generator"
 
-# ---- 4. The ISO week is computed by hand in the program; it must agree with GNU date, year boundaries included.
+# ---- 4. La semana ISO se calcula a mano en el programa; debe coincidir con GNU date, incluidos los límites de año.
 for d in 2026-12-31 2021-01-03 2024-12-30 2026-01-01 2016-01-03 2020-12-31 2027-01-03 2015-12-28 2012-01-01 2038-12-31; do
     got=$(NOW=$d SEED=1 node timecards.mjs | sed -n 2p | cut -f4); want=$(date -d "$d" +%G-W%V)
     [[ $got == "$want" ]] || fail "NOW=$d: week $got, GNU date says $want"
 done
 echo "ok: ISO year and week agree with GNU date for 10 dates, including 53-week years and the first days of January"
 
-# ---- 5. The pulse: only on a terminal, never for CI, and never before the report. It is a timer, so it is the only thing that keeps Node alive.
+# ---- 5. El pulso: solo en una terminal, nunca en CI, y nunca antes del informe. Es un temporizador, así que es lo único que mantiene vivo a Node.
 if command -v script >/dev/null; then
     pty() { env "$@" timeout 30 script -qec "node timecards.mjs" /dev/null < /dev/null | tr -d '\r'; }
     t=$(pty PULSE_CYCLES=1 SEED=7); [[ $t == *$'\033[1m'*DEMO\ ONLY* && $t == *$'\033[2m'* ]] || fail "on a terminal the DEMO ONLY line should pulse (bold, then dim)"
@@ -139,7 +139,7 @@ fi
 start=$SECONDS; SEED=3 node timecards.mjs >/dev/null; (( SECONDS - start < 3 )) || fail "a redirected run took 3 seconds or more: is a timer still alive?"
 echo "ok: a redirected run ends at once (no timer is left, so the event loop has nothing to wait for)"
 
-# ---- 6. Errors and the schema.
+# ---- 6. Errores y el esquema.
 : > "$work/afile"
 set +e; XDG_DATA_HOME=$work/afile timeout 20 node timecards.mjs >"$work/out" 2>"$work/err"; rc=$?; set -e
 [[ $rc -ne 0 && $(wc -l < "$work/err") -eq 1 && $(<"$work/err") == timecards:* ]] || fail "an unwritable data directory must end with a non-zero status and ONE message (rc=$rc: $(<"$work/err"))"

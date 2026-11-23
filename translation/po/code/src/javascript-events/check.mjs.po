@@ -1,0 +1,23 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+
+msgctxt "L1"
+msgid "// The event lab: every claim in README.md about events, ordering, the event loop and failure, run against the real program."
+msgstr "// El laboratorio de eventos: cada afirmación de README.md sobre eventos, orden, el bucle de eventos y fallos, ejecutada contra el programa real."
+
+msgctxt "L2"
+msgid "// Usage: node --test check.mjs        (PROGRAM=/path/to/mutant.mjs node --test check.mjs runs the same tests on another file)"
+msgstr "// Uso: node --test check.mjs        (PROGRAM=/path/to/mutant.mjs node --test check.mjs ejecuta las mismas pruebas sobre otro archivo)"
+
+msgctxt "L17"
+msgid "// A world with no randomness and no clock: `hours` is the list of hours the cards will have (10 to 19), in order."
+msgstr "// Un mundo sin azar y sin reloj: `hours` es la lista de horas que tendrán las tarjetas (de 10 a 19), en orden."
+
+msgctxt "L18"
+msgid "// The scheduler only queues; `drain()` is \"the event loop\", and runs one queued turn at a time."
+msgstr "// El planificador solo encola; `drain()` es \"el bucle de eventos\" y ejecuta un turno en cola cada vez."
+
+msgctxt "L33"
+msgid "// Log every emit as >name when it starts and <name when it returns, so nesting shows what runs inside what."
+msgstr "// Registra cada emit como >name al empezar y <name al volver, para que el anidamiento muestre qué se ejecuta dentro de qué."

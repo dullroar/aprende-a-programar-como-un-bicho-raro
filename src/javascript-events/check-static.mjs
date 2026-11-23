@@ -1,6 +1,6 @@
-// Proves the constraints of this entry from the source text alone: no loop statement, no eval or dynamic code, no network,
-// process or vm module, the start-up is ONE emit, every event of the contract has a listener, and the only way to the next
-// card is through the scheduler (never an emit that calls itself).
+// Demuestra las restricciones de esta entrada solo con el texto fuente: ninguna sentencia de bucle, ningún eval ni código dinámico, ninguna red,
+// ningún módulo de procesos ni vm, el arranque es UN solo emit, cada evento del contrato tiene un escuchador, y la única vía a la siguiente
+// tarjeta pasa por el planificador (nunca un emit que se llame a sí mismo).
 // Usage: node check-static.mjs timecards.mjs
 import { readFileSync } from 'node:fs';
 
@@ -40,17 +40,17 @@ const imports = [...raw.matchAll(/^import .* from ['"]([^'"]+)['"];$/gm)].map(m 
 const allowed = ['node:events', 'node:fs', 'node:os', 'node:path', 'node:sqlite', 'node:url'];
 if (JSON.stringify(imports) !== JSON.stringify(allowed)) fail(`imports must be exactly ${allowed.join(', ')}; found ${imports.join(', ')}`);
 
-// The start-up is one statement, and it is one emit.
+// El arranque es una sola sentencia, y es un solo emit.
 const starts = raw.split('\n').filter(l => /^if \(.*\) program\(realWorld\(\)\)\.emit\('start'\);$/.test(l));
 if (starts.length !== 1) fail("the file must end with exactly one line: if (<is this the main file>) program(realWorld()).emit('start');");
 if (count(raw.replace(/\/\/.*$/gm, ''), /emit\('start'\)/g) !== 1) fail("emit('start') must appear exactly once");
 
-// Every event of the contract has a listener, and nothing else is listened to.
+// Cada evento del contrato tiene un escuchador, y no se escucha nada más.
 const names = [...raw.replace(/\/\/.*$/gm, '').matchAll(/\bon\('([a-z-]+)'/g)].map(m => m[1]).sort();
 const want = ['card-created', 'card-saved', 'done', 'error', 'failed', 'finished', 'frame', 'generate', 'start', 'total-updated'];
 if (JSON.stringify(names) !== JSON.stringify(want)) fail(`the listeners must be exactly ${want.join(', ')}; found ${names.join(', ')}`);
 
-// The next card is only ever asked for through `later`, which goes through the scheduler. An emit of 'generate' would be a recursion.
+// La tarjeta siguiente solo se pide mediante `later`, que pasa por el planificador. Un emit de 'generate' sería una recursión.
 const body = raw.replace(/\/\/.*$/gm, '');
 if (/emit\('generate'/.test(body)) fail("'generate' must be reached through later('generate'), never emitted directly");
 if (count(body, /later\('generate'\)/g) !== 2) fail("expected exactly two later('generate') calls: one from start and one from total-updated");

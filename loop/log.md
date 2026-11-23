@@ -395,3 +395,4 @@
 442 S5-fam-gochallenge1 done family left English, NOT TESTED (EXC-558): image build needs --online-build (network), oracle cannot run; no protected file changed.
 444 S5-fam-javachallenge1 done family left English, NOT TESTED (EXC-559): Gradle/Maven image build needs network, oracle cannot run; no protected file changed.
 445 S5-fam-javascript done src/javascript localizing: 39 comment lines (timecards.mjs, check.sh, check-structure.mjs, Dockerfile) via loc_apply, oracle PASS; categories/strings kept English EXC-560.
+446 S5-fam-javascript-events done src/javascript-events localizing: 54 comment lines (timecards.mjs, check.sh, check.mjs, check-static.mjs, Dockerfile) via loc_apply, oracle PASS; categories/strings kept English EXC-561.

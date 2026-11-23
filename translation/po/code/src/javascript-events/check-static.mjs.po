@@ -1,0 +1,27 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+
+msgctxt "L1"
+msgid "// Proves the constraints of this entry from the source text alone: no loop statement, no eval or dynamic code, no network,"
+msgstr "// Demuestra las restricciones de esta entrada solo con el texto fuente: ninguna sentencia de bucle, ningún eval ni código dinámico, ninguna red,"
+
+msgctxt "L2"
+msgid "// process or vm module, the start-up is ONE emit, every event of the contract has a listener, and the only way to the next"
+msgstr "// ningún módulo de procesos ni vm, el arranque es UN solo emit, cada evento del contrato tiene un escuchador, y la única vía a la siguiente"
+
+msgctxt "L3"
+msgid "// card is through the scheduler (never an emit that calls itself)."
+msgstr "// tarjeta pasa por el planificador (nunca un emit que se llame a sí mismo)."
+
+msgctxt "L43"
+msgid "// The start-up is one statement, and it is one emit."
+msgstr "// El arranque es una sola sentencia, y es un solo emit."
+
+msgctxt "L48"
+msgid "// Every event of the contract has a listener, and nothing else is listened to."
+msgstr "// Cada evento del contrato tiene un escuchador, y no se escucha nada más."
+
+msgctxt "L53"
+msgid "// The next card is only ever asked for through `later`, which goes through the scheduler. An emit of 'generate' would be a recursion."
+msgstr "// La tarjeta siguiente solo se pide mediante `later`, que pasa por el planificador. Un emit de 'generate' sería una recursión."

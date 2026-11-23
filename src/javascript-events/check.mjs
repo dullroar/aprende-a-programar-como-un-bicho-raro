@@ -1,5 +1,5 @@
-// The event lab: every claim in README.md about events, ordering, the event loop and failure, run against the real program.
-// Usage: node --test check.mjs        (PROGRAM=/path/to/mutant.mjs node --test check.mjs runs the same tests on another file)
+// El laboratorio de eventos: cada afirmación de README.md sobre eventos, orden, el bucle de eventos y fallos, ejecutada contra el programa real.
+// Uso: node --test check.mjs        (PROGRAM=/path/to/mutant.mjs node --test check.mjs ejecuta las mismas pruebas sobre otro archivo)
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { EventEmitter } from 'node:events';
@@ -14,8 +14,8 @@ const scratch = mkdtempSync(join(tmpdir(), 'javascript-events-'));
 process.on('exit', () => rmSync(scratch, { recursive: true, force: true }));
 
 let counter = 0;
-// A world with no randomness and no clock: `hours` is the list of hours the cards will have (10 to 19), in order.
-// The scheduler only queues; `drain()` is "the event loop", and runs one queued turn at a time.
+// Un mundo sin azar y sin reloj: `hours` es la lista de horas que tendrán las tarjetas (de 10 a 19), en orden.
+// El planificador solo encola; `drain()` es "el bucle de eventos" y ejecuta un turno en cola cada vez.
 const lab = (hours, extra = {}) => {
   const path = join(scratch, `db-${++counter}.sqlite`);
   const w = { lines: [], errs: [], exits: [], raws: [], queue: [], path };
@@ -30,7 +30,7 @@ const lab = (hours, extra = {}) => {
   w.events = program(w.world);
   w.drain = () => { let turns = 0; while (w.queue.length) { w.queue.shift()(); turns++; } return turns; };
   w.rows = () => { const db = new DatabaseSync(path); try { return db.prepare('SELECT category, hours, running_total, demo_only, user_id FROM demo_timecards ORDER BY rowid').all(); } finally { db.close(); } };
-  // Log every emit as >name when it starts and <name when it returns, so nesting shows what runs inside what.
+  // Registra cada emit como >name al empezar y <name al volver, para que el anidamiento muestre qué se ejecuta dentro de qué.
   w.trace = [];
   const raw = w.events.emit.bind(w.events);
   w.events.emit = (name, ...a) => { w.trace.push('>' + name); try { return raw(name, ...a); } finally { w.trace.push('<' + name); } };

@@ -1,6 +1,6 @@
-# Container image for the event-driven Node.js entry. Run it with: sandbox/container/run-image.sh src/javascript-events
-# The whole program is one file, timecards.mjs, run by Node 24 (node:sqlite and node:events are built in; there is no npm and no package).
-# Add --tty to the run-image.sh command to see the DEMO ONLY line pulse. check.sh and check.mjs are for your own machine.
+# Imagen de contenedor para la entrada de Node.js dirigida por eventos. Ejecútala con: sandbox/container/run-image.sh src/javascript-events
+# Todo el programa es un solo archivo, timecards.mjs, ejecutado por Node 24 (node:sqlite y node:events vienen incluidos; no hay npm ni paquetes).
+# Añade --tty al comando run-image.sh para ver pulsar la línea DEMO ONLY. check.sh y check.mjs son para tu propia máquina.
 FROM cc-rt-node:local
 COPY timecards.mjs /app/
 ENV CC_RUN="node /app/timecards.mjs"
