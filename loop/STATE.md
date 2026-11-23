@@ -7,8 +7,8 @@
 - **Budget:** driver-reported $112.6405 of $150 through iteration 274, with Codex session cost unavailable
 - **Translate progress:** at least 7751 / total 8827 segments accepted; at least 196 / 212 files done. P4-lessons-languages-5 complete. Counts based on the previous snapshot plus this task.
 - **Last audit:** P4-audit-9 (iter 361, translation/reviews/p4-audit-9.md)    **Next audit due:** the next P4-audit task in the queue
-- **Gates:** P0 passed (iter 17)  P1 passed (iter 23)  P2 passed (iter 47)  P3 passed (iter 58)  P3B passed (iter 85)  P3C passed (iter 105)  P4 passed (iter 376)  P5 passed (iter 387)  P6 -  P7A -
-- **Open provisional decisions:** 7 (includes corrected task acceptance command and the iter 387 "Alive"/"Vivo" question for Jim)    **Blockers:** 0 (P5-001 unblocked)    **Source issues:** 26 (translation/source-issues.md)
+- **Gates:** P0 passed (iter 17)  P1 passed (iter 23)  P2 passed (iter 47)  P3 passed (iter 58)  P3B passed (iter 85)  P3C passed (iter 105)  P4 passed (iter 376)  P5 passed (iter 387)  P6 passed (iter 393, release candidate rc1)  P7A passed (iter 494, packets and canaries)
+- **Open provisional decisions:** 7 (includes corrected task acceptance command ; the iter 387 "Alive"/"Vivo" question was answered by Jim on 2026-11-23 (keep Vivo))    **Blockers:** 0 (P5-001 unblocked)    **Source issues:** 26 (translation/source-issues.md)
 
 ## Traps to remember (details live in SIGNS.md)
 

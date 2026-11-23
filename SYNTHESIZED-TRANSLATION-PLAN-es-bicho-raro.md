@@ -1251,6 +1251,35 @@ Facts in §5.1 and the spike results come from the three input plans and were no
 
 ---
 
+## Part II follow-up (decisions of 2026-11-23)
+
+Jim's answers to the end-of-run review of release candidate `v4-es.0-rc2` change the plan as follows. They are recorded in `translation/decisions.md`. Where they conflict with §0 (row on the four card categories), §4.1 rule 4 and the data-and-category-names row of the table in §6, they win.
+
+### F1. Card categories in program output: staged localization
+
+Decision 11 (§16) stands: the four category names are localized in code, printed output and saved fixtures. The pilot localized comments only, so this follow-up does the categories. It runs in stages:
+
+1. **Pilot (three families).** `src/cobol`, `src/forth` and `src/lisp` change their category names to *Reuniones*, *Programación*, *Depuración* and *Aprendizaje* in code, output and fixtures, together with the prose that describes them, in one commit per family. The oracle must pass for the English and the Spanish version of each family.
+2. **Checkpoint.** The loop writes `review/CHECKPOINT-category-pilot.md` (diffs, oracle results, measured cost per family, the four Spanish words as printed) and creates `loop/STOP`. Jim reviews, changes the four words if wanted, then removes `loop/STOP`.
+3. **Rollout.** One task per remaining family whose oracle passed, using the final words. Families the oracle could not test stay English with their exception row. A file never mixes the English and Spanish forms.
+4. **Gate.** The full release check passes, the frozen-file lock and the localized-file lock are clean, and no file mixes forms.
+
+### F2. Other decisions
+
+- **"Alive" in the weird APL diagram:** the approved label "¿Vivo: total ≤ 40?" stays. The catalog note that says Alive stays English is corrected.
+- **Dashes:** every spaced hyphen used as a dash in Spanish prose and comments becomes a raya (—). Code, inline code, URLs, file names, command-line flags, number ranges and table separators are never touched. The change goes through the translation files and the normal apply step, and a report lists what changed.
+- **Sandbox self-test:** run `sandbox/selftest.sh` and record the result in `translation/part2/runtime-matrix.md`.
+- **Model-reviewer recall test for code comments:** run `tools/recall_test.py` for the localized comments only if an AI jury will review them. It is not queued.
+- **Native-speaker check of the humor register:** skipped for now. A native speaker must spot-check a sample of the 175 playful passages before anything is published. The loop does not need it.
+
+### F3. Tasks
+
+`F2-001` sandbox self-test and catalog note; `F2-002` dash pass; `F2-003` to `F2-005` category pilot; `F2-006` checkpoint; `F2-007` generate the rollout tasks; `F2-008` gate. `F2-007` adds the rollout tasks as dependencies of `F2-008`.
+
+**Exit evidence.** Pilot families pass the oracle in both languages; the checkpoint file exists and Jim has removed the stop; every oracle-proven family is localized or has an exception row; the release check passes; `loop/END-REVIEW.md` is regenerated.
+
+---
+
 ## Phase 3 (Part III) — Translation guide and upstream improvements
 
 This is the third part of the overall effort, after Parts I and II and their existing review, release and retrospective steps. The pilot named Phase 3 in §11.9 keeps its original scope and order. The two guide drafts can live in the Spanish checkout during the current run.

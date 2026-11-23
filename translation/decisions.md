@@ -44,3 +44,16 @@ Source: `review/CHECKPOINT-part2-pilot.md`. Recorded by Claude from Jim's answer
 - The Spanish words for the four categories come from the glossary; S4-006 proposes them in `loop/decisions-provisional.md` and applies them consistently (candidates: reuniones, programación, depuración, aprendizaje).
 - Prose in already translated files that glosses the English categories once per chapter, the card-category checks (I2, I13 and the humor register if affected), and `PROMPT.md` hard rule 8 and §4.1 rule 13 ("never translate card categories") need updating so the rules match this decision. S4-006 lists each place and fixes it before any S5 family task starts.
 - Cost to reverse after the bulk is high: fixtures that embed the names change per family. Each family's change stays in its own commit so it can be reverted alone.
+
+## 2026-11-23 End-of-run review answers from Jim (after release candidate v4-es.0-rc2)
+
+Recorded by Claude from Jim's answers in the session. The follow-up work is described in the plan section "Part II follow-up" and queued as tasks F2-001 to F2-008.
+
+1. **Card categories in program output: staged pass.** Localize the four category names in the code, printed output and saved test data of three oracle-proven families first (src/cobol, src/forth, src/lisp), then stop at a checkpoint for Jim, then roll out to the other oracle-proven families. The families the oracle could not test stay English. This keeps decision 11 (localize) and adds a staged rollout.
+2. **The four Spanish words:** Reuniones, Programación, Depuración, Aprendizaje stand for the pilot; Jim reviews them in the pilot output at the checkpoint, where they are cheap to change.
+3. **"Alive" in the weird APL diagram:** keep the approved Spanish label "¿Vivo: total ≤ 40?". The note in the Spanish catalog that says Alive stays English is wrong for this label and is corrected in F2-001's housekeeping pass.
+4. **Dashes:** use the Spanish long dash (raya, —) wherever the Spanish text uses a spaced hyphen as a dash. Never in code, URLs, file names, command-line flags or number ranges.
+5. **Model-reviewer recall test for code comments:** run it only if an AI jury will review the localized comments. Not queued now.
+6. **Docker self-test:** run it and record the result (F2-001).
+7. **Native-speaker check of the humor register:** skipped for now. It is a prerequisite for any publication, not for the loop. Listed in the plan.
+8. **Phase markers:** the whole-corpus review phase and the review-packet phase are marked passed in loop/STATE.md, with their evidence.
