@@ -399,3 +399,4 @@
 447 S5-fam-kotlinchallenge1 done family left English, NOT TESTED (EXC-562): Gradle image build needs network, oracle cannot run; no protected file changed.
 448 S5-fam-lisp done src/lisp localizing: 22 comment lines (timecards.lisp, check.sh, Dockerfile) via loc_apply, oracle PASS; categories/strings kept English EXC-563.
 449 S5-fam-make-gnu done src/make-gnu localizing: 51 comment lines (Makefile, check.sh, Dockerfile) via loc_apply, oracle PASS; categories/strings kept English EXC-564.
+450 S5-fam-tcl done src/tcl localizing: 42 comment lines (timecards.tcl, check.sh, Dockerfile) via loc_apply, oracle PASS; categories/strings kept English EXC-565.

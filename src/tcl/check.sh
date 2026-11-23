@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
-# Checks the rules of the challenge for the Tcl entry. Uses a throwaway data dir.
-# Set TCLSH=/path/to/tclsh if it is not on your PATH. Needs Tcl 8.6 and its sqlite3 package.
-# The Tk window is tested only when Xvfb (or a display) is available; otherwise that step is skipped, and says so.
+# Comprueba las reglas del desafío para la entrada de Tcl. Usa una carpeta de datos desechable.
+# Define TCLSH=/ruta/a/tclsh si no está en tu PATH. Necesita Tcl 8.6 y su paquete sqlite3.
+# La ventana de Tk se prueba solo si hay Xvfb (o una pantalla); si no, ese paso se omite y lo avisa.
 set -euo pipefail
 cd "$(dirname "$0")"
 data=$(mktemp -d); trap 'rm -rf "$data"' EXIT
@@ -10,8 +10,8 @@ db=$data/Tcl/demo-timecards.db
 tclsh=${TCLSH:-tclsh}
 run() { "$tclsh" timecards.tcl "$@"; }
 
-# 1. Static: the disclaimer is there, nothing touches a network, the challenge is one while loop in
-#    "draw", and every expr is braced (an unbraced expr is slower and a classic injection hole).
+# 1. Estático: el aviso está ahí, nada toca una red, el desafío es un único bucle while en
+#    "draw", y todo expr lleva llaves (un expr sin llaves es más lento y un clásico agujero de inyección).
 grep -q 'DEMO ONLY' timecards.tcl || { echo "FAIL: no DEMO ONLY marker in timecards.tcl"; exit 1; }
 if grep -Eqi 'http|socket|curl|wget|exec ' timecards.tcl; then echo "FAIL: network or process text in timecards.tcl"; exit 1; fi
 sed -n '/^proc timecards::draw/,/^}/p' timecards.tcl | grep -q 'while {\$total <= \$limit}' || { echo "FAIL: draw has no while loop on the limit"; exit 1; }
@@ -22,8 +22,8 @@ if {![info complete $src]} {puts "incomplete script"; exit 1}
 EOF
 "$tclsh" "$data/complete.tcl" || { echo "FAIL: timecards.tcl is not a complete Tcl script"; exit 1; }
 
-# 2. Unit-test draw in one process (source the file: main runs only when it is the script):
-#    2000 deals, each of which must obey every rule of the challenge.
+# 2. Prueba unitaria de draw en un solo proceso (carga el archivo con source: main solo corre si es el script):
+#    2000 repartos, y cada uno debe cumplir todas las reglas del desafío.
 "$tclsh" <<'EOF' || { echo "FAIL: draw broke a rule"; exit 1; }
 source timecards.tcl
 set cats {Meetings Coding Debugging Learning}
@@ -46,7 +46,7 @@ for {set i 0} {$i < 2000} {incr i} {
 }
 EOF
 
-# 3. The Tk window, headless: it needs Xvfb (preferred, so no real display is touched) or a DISPLAY.
+# 3. La ventana de Tk, sin pantalla: necesita Xvfb (preferible, para no tocar una pantalla real) o un DISPLAY.
 if command -v xvfb-run >/dev/null && command -v Xvfb >/dev/null; then
     runner=(xvfb-run -a)
 elif [[ -n ${DISPLAY:-} ]]; then
@@ -63,7 +63,7 @@ else
 fi
 rm -rf "$data/Tcl"
 
-# 4. Run it a bunch of times for real; every run must print a sane record set, and the SQLite rows must agree with it.
+# 4. Ejecútalo muchas veces de verdad; cada ejecución debe imprimir un conjunto de registros coherente, y las filas de SQLite deben coincidir.
 cats=(Meetings Coding Debugging Learning)
 for i in $(seq 1 25); do
     out=$(run)
@@ -95,7 +95,7 @@ done
 [[ $(sqlite3 "$db" 'select count(distinct run_id) from demo_timecards') -eq 25 ]] || { echo "FAIL: expected 25 distinct runs in the db"; exit 1; }
 [[ $(sqlite3 "$db" 'select count(distinct hours) from demo_timecards') -ge 6 ]] || { echo "FAIL: hours do not look random"; exit 1; }
 
-# 3. The demo_only CHECK constraint is real: a non-demo row must be refused.
+# 3. La restricción CHECK de demo_only es real: una fila que no sea de demostración debe ser rechazada.
 if sqlite3 "$db" "insert into demo_timecards(run_id,category,hours,running_total,demo_only) values('x','x',1,1,0)" 2>/dev/null; then
     echo "FAIL: db accepted a non-demo row"; exit 1
 fi

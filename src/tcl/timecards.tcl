@@ -1,14 +1,14 @@
 #!/usr/bin/env tclsh
-# DEMO ONLY. Fictional timecards, written to a scratch SQLite file under
-# XDG_DATA_HOME. Nothing here touches a real time-reporting system.
+# DEMO ONLY. Tarjetas de horas ficticias, escritas en un archivo SQLite temporal bajo
+# XDG_DATA_HOME. Nada de aquí toca un sistema real de registro de horas.
 #
-# Run:  tclsh timecards.tcl            (text)
-#       tclsh timecards.tcl --gui      (also a Tk window; add --seconds N to close it by itself)
+# Ejecuta:  tclsh timecards.tcl            (texto)
+#            tclsh timecards.tcl --gui      (además, una ventana de Tk; añade --seconds N para que se cierre sola)
 #
-# The challenge: add cards of 10-19 hours (Meetings, Coding, Debugging,
-# Learning, round and round) until the running total passes 40.  In Tcl that
-# is one while loop in the proc "draw".  Everything else is plumbing: a card
-# is a dict, the database is a Tcl command, the window is optional.
+# El desafío: suma tarjetas de 10 a 19 horas (Meetings, Coding, Debugging,
+# Learning, una tras otra) hasta que el total acumulado pase de 40.  En Tcl eso
+# es un bucle while en el procedimiento "draw".  Todo lo demás es cañería: una tarjeta
+# es un diccionario, la base de datos es un comando de Tcl, la ventana es opcional.
 
 package require Tcl 8.6
 package require sqlite3
@@ -20,18 +20,18 @@ namespace eval timecards {
     variable limit 40
 }
 
-# ---------------------------------------------------------------- the challenge
+# ---------------------------------------------------------------- el desafío
 
-# One random number of hours, minHours..maxHours.
+# Un número aleatorio de horas, de minHours a maxHours.
 proc timecards::randomHours {} {
     variable minHours
     variable maxHours
     expr {$minHours + int(rand() * ($maxHours - $minHours + 1))}
 }
 
-# Deal cards until the running total is over the limit, and return them as a
-# list of dicts. The card that crosses the line is kept, because the test is
-# made before the next card is drawn, not after.
+# Reparte tarjetas hasta que el total acumulado supere el límite, y devuélvelas como una
+# lista de diccionarios. La tarjeta que cruza la línea se conserva, porque la prueba
+# se hace antes de sacar la siguiente tarjeta, no después.
 proc timecards::draw {} {
     variable categories
     variable limit
@@ -46,9 +46,9 @@ proc timecards::draw {} {
     return $cards
 }
 
-# ---------------------------------------------------------------- the calendar
+# ---------------------------------------------------------------- el calendario
 
-# The ISO-8601 week of right now, e.g. 2026-W46. clock knows %G and %V.
+# La semana ISO-8601 de ahora mismo, p. ej. 2026-W46. clock conoce %G y %V.
 proc timecards::isoWeek {} {
     clock format [clock seconds] -format %G-W%V
 }
@@ -64,12 +64,12 @@ proc timecards::dataDir {} {
     file join $base Tcl
 }
 
-# Save every card in one transaction. The DEMO ONLY rule lives in the table:
-# CHECK(demo_only=1) means a non-demo row cannot be stored.
+# Guarda cada tarjeta en una sola transacción. La regla DEMO ONLY vive en la tabla:
+# CHECK(demo_only=1) significa que no se puede guardar una fila que no sea de demostración.
 #
-# In "db eval {... $runId ...}" Tcl variables are *bound parameters*, not text
-# pasted into the SQL, so quoting is never our problem. "dict with" turns a
-# card's keys (category, hours, total) into local variables to be bound.
+# En "db eval {... $runId ...}" las variables de Tcl son *parámetros enlazados*, no texto
+# pegado en el SQL, así que entrecomillar nunca es problema nuestro. "dict with" convierte
+# las claves de una tarjeta (category, hours, total) en variables locales para enlazarlas.
 proc timecards::save {runId week cards} {
     set dir [dataDir]
     file mkdir $dir
@@ -97,7 +97,7 @@ proc timecards::save {runId week cards} {
     }
 }
 
-# ---------------------------------------------------------------- display
+# ---------------------------------------------------------------- pantalla
 
 proc timecards::row {card week} {
     dict with card {
@@ -105,8 +105,8 @@ proc timecards::row {card week} {
     }
 }
 
-# An optional Tk window: a table of the cards and the total. Tk is only
-# loaded when asked for, so the text version runs on a machine with no display.
+# Una ventana opcional de Tk: una tabla con las tarjetas y el total. Tk solo se
+# carga cuando se pide, así que la versión de texto corre en una máquina sin pantalla.
 proc timecards::showWindow {cards week seconds} {
     package require Tk
     wm title . "Timecards - DEMO ONLY"
@@ -130,12 +130,12 @@ proc timecards::showWindow {cards week seconds} {
     } else {
         tkwait window .
     }
-    # A tclsh that has loaded Tk does not exit at the end of the script while
-    # the main window exists, so close it explicitly.
+    # Un tclsh que ha cargado Tk no termina al final del script mientras
+    # exista la ventana principal, así que ciérrala explícitamente.
     catch {destroy .}
 }
 
-# ---------------------------------------------------------------- main
+# ---------------------------------------------------------------- principal
 
 proc timecards::main {argv} {
     set gui 0
@@ -166,7 +166,7 @@ proc timecards::main {argv} {
     }
 }
 
-# Run main only when this file is the script, not when it is sourced for testing.
+# Ejecuta main solo cuando este archivo es el script, no cuando se carga con source para probar.
 if {[info exists argv0] && [file normalize $argv0] eq [file normalize [info script]]} {
     timecards::main $argv
 }

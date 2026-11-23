@@ -1,0 +1,19 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+
+msgctxt "L1"
+msgid "# Container image for the Tcl entry. Run it with: sandbox/container/run-image.sh src/tcl"
+msgstr "# Imagen de contenedor para la entrada de Tcl. Ejecútala con: sandbox/container/run-image.sh src/tcl"
+
+msgctxt "L2"
+msgid "# Nothing to build: tclsh runs the script. The runtime base has Tcl/Tk, the Tcl sqlite3 package,"
+msgstr "# Nada que compilar: tclsh ejecuta el script. La base de ejecución trae Tcl/Tk, el paquete sqlite3 de Tcl,"
+
+msgctxt "L3"
+msgid "# Xvfb and scrot (the harness starts the virtual display and takes a screenshot of the window),"
+msgstr "# Xvfb y scrot (el arnés inicia la pantalla virtual y toma una captura de la ventana),"
+
+msgctxt "L4"
+msgid "# and no compiler or package manager. The window closes itself when the harness stops it."
+msgstr "# y ningún compilador ni gestor de paquetes. La ventana se cierra sola cuando el arnés la detiene."

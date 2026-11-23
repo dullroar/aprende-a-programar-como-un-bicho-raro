@@ -1,0 +1,43 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+
+msgctxt "L2"
+msgid "# Checks the rules of the challenge for the Tcl entry. Uses a throwaway data dir."
+msgstr "# Comprueba las reglas del desafío para la entrada de Tcl. Usa una carpeta de datos desechable."
+
+msgctxt "L3"
+msgid "# Set TCLSH=/path/to/tclsh if it is not on your PATH. Needs Tcl 8.6 and its sqlite3 package."
+msgstr "# Define TCLSH=/ruta/a/tclsh si no está en tu PATH. Necesita Tcl 8.6 y su paquete sqlite3."
+
+msgctxt "L4"
+msgid "# The Tk window is tested only when Xvfb (or a display) is available; otherwise that step is skipped, and says so."
+msgstr "# La ventana de Tk se prueba solo si hay Xvfb (o una pantalla); si no, ese paso se omite y lo avisa."
+
+msgctxt "L13"
+msgid "# 1. Static: the disclaimer is there, nothing touches a network, the challenge is one while loop in"
+msgstr "# 1. Estático: el aviso está ahí, nada toca una red, el desafío es un único bucle while en"
+
+msgctxt "L14"
+msgid "#    \"draw\", and every expr is braced (an unbraced expr is slower and a classic injection hole)."
+msgstr "#    \"draw\", y todo expr lleva llaves (un expr sin llaves es más lento y un clásico agujero de inyección)."
+
+msgctxt "L25"
+msgid "# 2. Unit-test draw in one process (source the file: main runs only when it is the script):"
+msgstr "# 2. Prueba unitaria de draw en un solo proceso (carga el archivo con source: main solo corre si es el script):"
+
+msgctxt "L26"
+msgid "#    2000 deals, each of which must obey every rule of the challenge."
+msgstr "#    2000 repartos, y cada uno debe cumplir todas las reglas del desafío."
+
+msgctxt "L49"
+msgid "# 3. The Tk window, headless: it needs Xvfb (preferred, so no real display is touched) or a DISPLAY."
+msgstr "# 3. La ventana de Tk, sin pantalla: necesita Xvfb (preferible, para no tocar una pantalla real) o un DISPLAY."
+
+msgctxt "L66"
+msgid "# 4. Run it a bunch of times for real; every run must print a sane record set, and the SQLite rows must agree with it."
+msgstr "# 4. Ejecútalo muchas veces de verdad; cada ejecución debe imprimir un conjunto de registros coherente, y las filas de SQLite deben coincidir."
+
+msgctxt "L98"
+msgid "# 3. The demo_only CHECK constraint is real: a non-demo row must be refused."
+msgstr "# 3. La restricción CHECK de demo_only es real: una fila que no sea de demostración debe ser rechazada."
