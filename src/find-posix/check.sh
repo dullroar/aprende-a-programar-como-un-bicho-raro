@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
-# Checks the rules of the challenge for the portable find entry. Uses throwaway data, scratch and shim
-# dirs. It runs the whole entry once per find implementation it can see (GNU find, bfs, busybox), by
-# putting a directory with a `find` symlink first on PATH. FINDS="name=/path ..." overrides the search.
+# Comprueba las reglas del reto de la entrada portátil de find. Usa datos desechables, y directorios temporales y de apoyo
+# (shim). Ejecuta la entrada completa una vez por cada implementación de find que vea (GNU find, bfs, busybox),
+# poniendo primero en PATH un directorio con un enlace simbólico `find`. FINDS="name=/path ..." reemplaza la búsqueda.
 set -euo pipefail
 cd "$(dirname "$0")"
 here=$PWD
@@ -12,9 +12,9 @@ db=$data/FindPosix/demo-timecards.db
 fail() { echo "FAIL: $*"; exit 1; }
 real_mktemp=$(command -v mktemp)
 
-# 1. The ridiculous constraint is real. timecards.sh runs exactly one find, with no loop or branch
-#    keyword anywhere; find uses four primaries (-path -name -o -exec); -exec runs only four programs;
-#    and the line is exactly what build-line.py generates.
+# 1. La restricción ridícula es real. timecards.sh ejecuta exactamente un find, sin ninguna palabra clave de bucle o de rama
+#    en ningún sitio; find usa cuatro primarias (-path -name -o -exec); -exec ejecuta solo cuatro programas;
+#    y la línea es exactamente lo que genera build-line.py.
 code=$(grep -Ev '^\s*(#|$)' timecards.sh)
 [[ $(grep -c '^find t ' timecards.sh) -eq 1 ]] || fail "expected exactly one 'find t ...' line"
 [[ $(grep -ow find <<<"$code" | wc -l) -eq 1 ]] || fail "the word find appears more than once in the code"
@@ -30,7 +30,7 @@ else
     echo "note: python3 not found; skipped the build-line.py comparison"
 fi
 
-# 2. find implementations to test.
+# 2. Implementaciones de find que probar.
 impls=()
 if [[ -n ${FINDS:-} ]]; then
     read -ra impls <<<"$FINDS"
@@ -47,7 +47,7 @@ else
 fi
 [[ ${#impls[@]} -gt 0 ]] || fail "no find implementation found"
 
-# A fake mktemp for the forced-dice scenarios: -d TEMPLATE takes its next name from $FAKE_NAMES.
+# Un mktemp falso para los escenarios de dados forzados: -d TEMPLATE toma su siguiente nombre de $FAKE_NAMES.
 cat >"$shim/mktemp.fake" <<'EOF'
 #!/bin/sh
 if [ "$#" -ne 2 ] || [ "$1" != -d ]; then exec "$REAL_MKTEMP" "$@"; fi
@@ -59,9 +59,9 @@ EOF
 chmod +x "$shim/mktemp.fake"
 
 cats=(Meetings Coding Debugging Learning Meetings)
-dice_char=(a g m s y 4 A G M S)   # first character of each group of six: hours 10..19
+dice_char=(a g m s y 4 A G M S)   # primer carácter de cada grupo de seis: horas 10..19
 
-# rows <output>: the table rows only
+# rows <output>: solo las filas de la tabla
 rows() { grep -E $'^(Meetings|Coding|Debugging|Learning)\t' <<<"$1" || true; }
 
 for entry in "${impls[@]}"; do
@@ -71,7 +71,7 @@ for entry in "${impls[@]}"; do
     export PATH="$shim/bin:$PATH"
     runs=25
 
-    # 3. Run it a bunch of times; every run must be a sane record set and SQLite must agree.
+    # 3. Ejecútalo muchas veces; cada ejecución debe ser un conjunto de registros coherente y SQLite debe estar de acuerdo.
     hours_seen=""
     for i in $(seq 1 "$runs"); do
         w1=$(date +%G-W%V)
@@ -97,7 +97,7 @@ for entry in "${impls[@]}"; do
                   if (prev <= 40) { print "stopped early at " prev; exit 1 } }' <<<"$r" \
             || fail "[$name] run $i (see above)"
         hours_seen+=$(awk -F'\t' '{ printf "%s ", $2 }' <<<"$r")
-        # The stop rule announces itself on stderr (a named CHECK constraint), exactly once; nothing else does.
+        # La regla de parada se anuncia en stderr (una restricción CHECK con nombre), exactamente una vez; nada más lo hace.
         stops=$(grep -c 'CHECK constraint failed: stop rule fired: total exceeds 40' "$data/err" || true)
         others=$(grep -vc 'CHECK constraint failed: stop rule fired: total exceeds 40' "$data/err" || true)
         [[ $stops -eq 1 && $others -eq 0 ]] || { cat "$data/err"; fail "[$name] run $i: unexpected stderr"; }
@@ -107,10 +107,10 @@ for entry in "${impls[@]}"; do
     distinct=$(tr ' ' '\n' <<<"$hours_seen" | grep . | sort -u | wc -l)
     [[ $distinct -ge 8 ]] || fail "[$name] only $distinct distinct hour values in $runs runs; is it random?"
 
-    # 4. Forced dice: a fake mktemp hands out chosen names, so the tables are exercised on purpose.
-    #    Each scenario is a list of hours; the expected rows are computed here with plain bash arithmetic.
-    #    Names: the last character picks the group (hours 10+group); Y/Z re-rolls on the character before.
-    name_for() {  # hours [mode]: mode "y" = last char Y (re-roll), "yy" = both Y and Z (double re-roll)
+    # 4. Dados forzados: un mktemp falso reparte nombres elegidos, así que las tablas se ejercitan a propósito.
+    #    Cada escenario es una lista de horas; las filas esperadas se calculan aquí con aritmética simple de bash.
+    #    Nombres: el último carácter elige el grupo (horas 10+grupo); Y/Z vuelve a tirar con el carácter anterior.
+    name_for() {  # hours [mode]: mode "y" = último carácter Y (nueva tirada), "yy" = Y y Z a la vez (doble nueva tirada)
         local h=$1 mode=${2:-}
         case $mode in
             y) printf 'xxxx%sY' "${dice_char[h-10]}" ;;
@@ -141,17 +141,17 @@ for entry in "${impls[@]}"; do
         scenarios_note=""
         echo "note [$name]: forced-dice scenarios skipped (busybox runs mktemp in-process, so a PATH shim cannot stand in for it)"
     else
-        forced "10 10 10 10 10"          # exactly 40 continues; the fifth card is Meetings again
-        forced "19 19 19"                # 19, 38, 57: tens digits 1, 3, 5
+        forced "10 10 10 10 10"          # exactamente 40 continúa; la quinta tarjeta es Meetings otra vez
+        forced "19 19 19"                # 19, 38, 57: dígitos de las decenas 1, 3, 5
         forced "11 12 13 14"             # 11 23 36 50
         forced "15 16 17"                # 15 31 48
         forced "18 19 10"                # 18 37 47
-        forced "11:y 10:yy 19:y 10"      # re-rolls: last character Y, then both; lands on 40, so one more card
-        forced "10 10 10 10 11"          # 40 then 51
+        forced "11:y 10:yy 19:y 10"      # nuevas tiradas: último carácter Y, luego ambos; cae en 40, así que hay una tarjeta más
+        forced "10 10 10 10 11"          # 40 y luego 51
 
     fi
 
-    # 5. The demo_only CHECK constraint is real: a non-demo row must be refused.
+    # 5. La restricción CHECK demo_only es real: una fila que no sea de demostración debe rechazarse.
     if sqlite3 "$db" "insert into demo_timecards(run_id,category,hours,running_total,demo_only) values(1,'x',10,10,0)" 2>/dev/null; then
         fail "[$name] db accepted a non-demo row"
     fi

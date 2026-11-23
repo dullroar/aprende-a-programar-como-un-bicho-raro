@@ -1,0 +1,103 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+
+msgctxt "L2"
+msgid "# Checks the rules of the challenge for the portable find entry. Uses throwaway data, scratch and shim"
+msgstr "# Comprueba las reglas del reto de la entrada portátil de find. Usa datos desechables, y directorios temporales y de apoyo"
+
+msgctxt "L3"
+msgid "# dirs. It runs the whole entry once per find implementation it can see (GNU find, bfs, busybox), by"
+msgstr "# (shim). Ejecuta la entrada completa una vez por cada implementación de find que vea (GNU find, bfs, busybox),"
+
+msgctxt "L4"
+msgid "# putting a directory with a `find` symlink first on PATH. FINDS=\"name=/path ...\" overrides the search."
+msgstr "# poniendo primero en PATH un directorio con un enlace simbólico `find`. FINDS=\"name=/path ...\" reemplaza la búsqueda."
+
+msgctxt "L15"
+msgid "# 1. The ridiculous constraint is real. timecards.sh runs exactly one find, with no loop or branch"
+msgstr "# 1. La restricción ridícula es real. timecards.sh ejecuta exactamente un find, sin ninguna palabra clave de bucle o de rama"
+
+msgctxt "L16"
+msgid "#    keyword anywhere; find uses four primaries (-path -name -o -exec); -exec runs only four programs;"
+msgstr "#    en ningún sitio; find usa cuatro primarias (-path -name -o -exec); -exec ejecuta solo cuatro programas;"
+
+msgctxt "L17"
+msgid "#    and the line is exactly what build-line.py generates."
+msgstr "#    y la línea es exactamente lo que genera build-line.py."
+
+msgctxt "L33"
+msgid "# 2. find implementations to test."
+msgstr "# 2. Implementaciones de find que probar."
+
+msgctxt "L50"
+msgid "# A fake mktemp for the forced-dice scenarios: -d TEMPLATE takes its next name from $FAKE_NAMES."
+msgstr "# Un mktemp falso para los escenarios de dados forzados: -d TEMPLATE toma su siguiente nombre de $FAKE_NAMES."
+
+msgctxt "L62"
+msgid "# first character of each group of six: hours 10..19"
+msgstr "# primer carácter de cada grupo de seis: horas 10..19"
+
+msgctxt "L64"
+msgid "# rows <output>: the table rows only"
+msgstr "# rows <output>: solo las filas de la tabla"
+
+msgctxt "L74"
+msgid "# 3. Run it a bunch of times; every run must be a sane record set and SQLite must agree."
+msgstr "# 3. Ejecútalo muchas veces; cada ejecución debe ser un conjunto de registros coherente y SQLite debe estar de acuerdo."
+
+msgctxt "L100"
+msgid "# The stop rule announces itself on stderr (a named CHECK constraint), exactly once; nothing else does."
+msgstr "# La regla de parada se anuncia en stderr (una restricción CHECK con nombre), exactamente una vez; nada más lo hace."
+
+msgctxt "L110"
+msgid "# 4. Forced dice: a fake mktemp hands out chosen names, so the tables are exercised on purpose."
+msgstr "# 4. Dados forzados: un mktemp falso reparte nombres elegidos, así que las tablas se ejercitan a propósito."
+
+msgctxt "L111"
+msgid "#    Each scenario is a list of hours; the expected rows are computed here with plain bash arithmetic."
+msgstr "#    Cada escenario es una lista de horas; las filas esperadas se calculan aquí con aritmética simple de bash."
+
+msgctxt "L112"
+msgid "#    Names: the last character picks the group (hours 10+group); Y/Z re-rolls on the character before."
+msgstr "#    Nombres: el último carácter elige el grupo (horas 10+grupo); Y/Z vuelve a tirar con el carácter anterior."
+
+msgctxt "L113"
+msgid "# hours [mode]: mode \"y\" = last char Y (re-roll), \"yy\" = both Y and Z (double re-roll)"
+msgstr "# hours [mode]: mode \"y\" = último carácter Y (nueva tirada), \"yy\" = Y y Z a la vez (doble nueva tirada)"
+
+msgctxt "L121"
+msgid "# \"hours[:mode] ...\""
+msgstr "# \"hours[:mode] ...\""
+
+msgctxt "L144"
+msgid "# exactly 40 continues; the fifth card is Meetings again"
+msgstr "# exactamente 40 continúa; la quinta tarjeta es Meetings otra vez"
+
+msgctxt "L145"
+msgid "# 19, 38, 57: tens digits 1, 3, 5"
+msgstr "# 19, 38, 57: dígitos de las decenas 1, 3, 5"
+
+msgctxt "L146"
+msgid "# 11 23 36 50"
+msgstr "# 11 23 36 50"
+
+msgctxt "L147"
+msgid "# 15 31 48"
+msgstr "# 15 31 48"
+
+msgctxt "L148"
+msgid "# 18 37 47"
+msgstr "# 18 37 47"
+
+msgctxt "L149"
+msgid "# re-rolls: last character Y, then both; lands on 40, so one more card"
+msgstr "# nuevas tiradas: último carácter Y, luego ambos; cae en 40, así que hay una tarjeta más"
+
+msgctxt "L150"
+msgid "# 40 then 51"
+msgstr "# 40 y luego 51"
+
+msgctxt "L154"
+msgid "# 5. The demo_only CHECK constraint is real: a non-demo row must be refused."
+msgstr "# 5. La restricción CHECK demo_only es real: una fila que no sea de demostración debe rechazarse."

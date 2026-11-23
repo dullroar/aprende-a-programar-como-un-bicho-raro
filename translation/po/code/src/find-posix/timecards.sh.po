@@ -1,0 +1,27 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+
+msgctxt "L2"
+msgid "# DEMO ONLY. Fictional timecards, written to a scratch SQLite file under XDG_DATA_HOME. See README.md."
+msgstr "# DEMO ONLY. Tarjetas de horas ficticias, escritas en un archivo SQLite temporal bajo XDG_DATA_HOME. Mira README.md."
+
+msgctxt "L3"
+msgid "#"
+msgstr "#"
+
+msgctxt "L4"
+msgid "# One `find` is the whole program: it digs the directory tree it is walking, one directory per hour,"
+msgstr "# Un solo `find` es todo el programa: cava el árbol de directorios que recorre, un directorio por hora,"
+
+msgctxt "L5"
+msgid "# and prints SQL as it goes. The three lines around it only seed a scratch folder, feed the SQL to"
+msgstr "# e imprime SQL sobre la marcha. Las tres líneas a su alrededor solo siembran una carpeta temporal, pasan el SQL a"
+
+msgctxt "L6"
+msgid "# sqlite3 and clean up. build-line.py is the readable source of the long expression; check.sh keeps"
+msgstr "# sqlite3 y limpian. build-line.py es la fuente legible de la expresión larga; check.sh mantiene"
+
+msgctxt "L7"
+msgid "# the two in step."
+msgstr "# a las dos sincronizadas."

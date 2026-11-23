@@ -1,0 +1,67 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+
+msgctxt "L19"
+msgid "# exactly six non-slash characters: an R segment"
+msgstr "# exactamente seis caracteres que no son barra: un segmento R"
+
+msgctxt "L20"
+msgid "# 60 of the 62 mktemp characters in ten groups of six; Y and Z are re-rolled (see README)"
+msgstr "# 60 de los 62 caracteres de mktemp en diez grupos de seis; Y y Z se vuelven a tirar (mira el README)"
+
+msgctxt "L30"
+msgid "# shell-quote for the line; SQL text has single quotes, so it gets double quotes"
+msgstr "# entrecomilla para el shell en la línea; el texto SQL tiene comillas simples, así que usa comillas dobles"
+
+msgctxt "L42"
+msgid "# at least n path segments named exactly 0 (each one is a +10)"
+msgstr "# al menos n segmentos de ruta llamados exactamente 0 (cada uno es un +10)"
+
+msgctxt "L46"
+msgid "# at least n six-character segments (each one is a card)"
+msgstr "# al menos n segmentos de seis caracteres (cada uno es una tarjeta)"
+
+msgctxt "L50"
+msgid "# One new random directory per card; its path goes to stdout, so it is printed as an SQL comment."
+msgstr "# Un directorio aleatorio nuevo por tarjeta; su ruta va a stdout, así que se imprime como comentario SQL."
+
+msgctxt "L56"
+msgid "# 1. the start directory: nothing has happened yet, so deal the first card"
+msgstr "# 1. el directorio inicial: aún no ha pasado nada, así que se reparte la primera tarjeta"
+
+msgctxt "L59"
+msgid "# 2. a card's dice (six-character name): open the SQL row, name the category (how many cards are"
+msgstr "# 2. los dados de una tarjeta (nombre de seis caracteres): abre la fila SQL, nombra la categoría (cuántas tarjetas hay"
+
+msgctxt "L60"
+msgid "#    above us), then dig the card's first hour. The hour's digit is the previous card's last digit + 1."
+msgstr "#    por encima de nosotros), y luego cava la primera hora de la tarjeta. El dígito de la hora es el último dígito de la tarjeta anterior + 1."
+
+msgctxt "L74"
+msgid "# 3. an hour (one-character name). The first hour of a card reads the dice: it prints the card's"
+msgstr "# 3. una hora (nombre de un carácter). La primera hora de una tarjeta lee los dados: imprime las horas"
+
+msgctxt "L75"
+msgid "#    hours (10 + group number) and digs the countdown. A later hour digs the countdown one lower."
+msgstr "#    de la tarjeta (10 + número de grupo) y cava la cuenta atrás. Una hora posterior cava la cuenta atrás una unidad menos."
+
+msgctxt "L82"
+msgid "# last character"
+msgstr "# último carácter"
+
+msgctxt "L83"
+msgid "# re-roll on the one before"
+msgstr "# nueva tirada con el anterior"
+
+msgctxt "L84"
+msgid "# re-rolled twice"
+msgstr "# vuelta a tirar dos veces"
+
+msgctxt "L89"
+msgid "# 4. a countdown. b00 ends the card: print the running total (tens, then units, then the ISO week"
+msgstr "# 4. una cuenta atrás. b00 termina la tarjeta: imprime el total acumulado (decenas, luego unidades, luego la semana ISO"
+
+msgctxt "L90"
+msgid "#    from date), stop if it exceeds 40, otherwise deal the next card. Any other bNN digs the next hour."
+msgstr "#    de date), se detiene si pasa de 40; si no, reparte la siguiente tarjeta. Cualquier otro bNN cava la siguiente hora."

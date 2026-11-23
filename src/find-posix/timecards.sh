@@ -1,10 +1,10 @@
 #!/bin/sh
-# DEMO ONLY. Fictional timecards, written to a scratch SQLite file under XDG_DATA_HOME. See README.md.
+# DEMO ONLY. Tarjetas de horas ficticias, escritas en un archivo SQLite temporal bajo XDG_DATA_HOME. Mira README.md.
 #
-# One `find` is the whole program: it digs the directory tree it is walking, one directory per hour,
-# and prints SQL as it goes. The three lines around it only seed a scratch folder, feed the SQL to
-# sqlite3 and clean up. build-line.py is the readable source of the long expression; check.sh keeps
-# the two in step.
+# Un solo `find` es todo el programa: cava el árbol de directorios que recorre, un directorio por hora,
+# e imprime SQL sobre la marcha. Las tres líneas a su alrededor solo siembran una carpeta temporal, pasan el SQL a
+# sqlite3 y limpian. build-line.py es la fuente legible de la expresión larga; check.sh mantiene
+# a las dos sincronizadas.
 set -eu
 dir=${XDG_DATA_HOME:-$HOME/.local/share}/FindPosix
 mkdir -p "$dir"

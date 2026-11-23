@@ -16,8 +16,8 @@ The machine, in one paragraph. The walk digs the tree it is walking. One directo
 A card is R, then pairs u/bNN down to b00; the next card's R hangs under that b00. The total is the
 number of u segments in the path: ten times the count of "0" segments, plus the last u.
 """
-S6 = "[!/]" * 6  # exactly six non-slash characters: an R segment
-# 60 of the 62 mktemp characters in ten groups of six; Y and Z are re-rolled (see README)
+S6 = "[!/]" * 6  # exactamente seis caracteres que no son barra: un segmento R
+# 60 de los 62 caracteres de mktemp en diez grupos de seis; Y y Z se vuelven a tirar (mira el README)
 CLASSES = ["abcdef", "ghijkl", "mnopqr", "stuvwx", "yz0123", "456789", "ABCDEF", "GHIJKL", "MNOPQR", "STUVWX"]
 DIGITS = "0123456789"
 SUCC = {d: DIGITS[(i + 1) % 10] for i, d in enumerate(DIGITS)}
@@ -27,7 +27,7 @@ def ex(*words):
     return "-exec " + " ".join(words) + " \\;"
 
 
-def q(s):  # shell-quote for the line; SQL text has single quotes, so it gets double quotes
+def q(s):  # entrecomilla para el shell en la línea; el texto SQL tiene comillas simples, así que usa comillas dobles
     return '"' + s + '"' if "'" in s else "'" + s + "'"
 
 
@@ -39,25 +39,25 @@ def alt(branches):
     return " -o ".join("\\( " + b + " \\)" for b in branches)
 
 
-def wraps(n):  # at least n path segments named exactly 0 (each one is a +10)
+def wraps(n):  # al menos n segmentos de ruta llamados exactamente 0 (cada uno es un +10)
     return "*" + "/0/*" * n
 
 
-def cards(n):  # at least n six-character segments (each one is a card)
+def cards(n):  # al menos n segmentos de seis caracteres (cada uno es una tarjeta)
     return "*" + ("/" + S6 + "*") * n
 
 
-# One new random directory per card; its path goes to stdout, so it is printed as an SQL comment.
+# Un directorio aleatorio nuevo por tarjeta; su ruta va a stdout, así que se imprime como comentario SQL.
 NEXT_CARD = ex("printf", q(" -- ")) + " " + ex("mktemp", "-d", "{}/XXXXXX")
 
 HEAD = ("INSERT INTO demo_timecards(run_id,category,hours,running_total,iso_week) "
         "VALUES((SELECT max(id) FROM runs),")
 
-# 1. the start directory: nothing has happened yet, so deal the first card
+# 1. el directorio inicial: aún no ha pasado nada, así que se reparte la primera tarjeta
 rule_start = path("t") + " " + NEXT_CARD
 
-# 2. a card's dice (six-character name): open the SQL row, name the category (how many cards are
-#    above us), then dig the card's first hour. The hour's digit is the previous card's last digit + 1.
+# 2. los dados de una tarjeta (nombre de seis caracteres): abre la fila SQL, nombra la categoría (cuántas tarjetas hay
+#    por encima de nosotros), y luego cava la primera hora de la tarjeta. El dígito de la hora es el último dígito de la tarjeta anterior + 1.
 category = alt([
     path(cards(5)) + " " + ex("printf", q("'Meetings',")),
     path(cards(4)) + " " + ex("printf", q("'Learning',")),
@@ -71,23 +71,23 @@ first_hour = alt(
 )
 rule_dice = "-name '??????' " + ex("printf", q(HEAD)) + " \\( " + category + " \\) \\( " + first_hour + " \\)"
 
-# 3. an hour (one-character name). The first hour of a card reads the dice: it prints the card's
-#    hours (10 + group number) and digs the countdown. A later hour digs the countdown one lower.
+# 3. una hora (nombre de un carácter). La primera hora de una tarjeta lee los dados: imprime las horas
+#    de la tarjeta (10 + número de grupo) y cava la cuenta atrás. Una hora posterior cava la cuenta atrás una unidad menos.
 def dice(d, pattern):
     return (path("*/" + pattern + "/?") + " " + ex("printf", q("%d," % (10 + d)))
             + " " + ex("mkdir", "{}/b%02d" % (9 + d)))
 
 
 hour = alt(
-    [dice(d, "[!/]" * 5 + "[" + CLASSES[d] + "]") for d in range(10)]                # last character
-    + [dice(d, "[!/]" * 4 + "[" + CLASSES[d] + "][YZ]") for d in range(10)]          # re-roll on the one before
-    + [path("*/" + S6 + "/?") + " " + ex("printf", q("10,")) + " " + ex("mkdir", "{}/b09")]  # re-rolled twice
+    [dice(d, "[!/]" * 5 + "[" + CLASSES[d] + "]") for d in range(10)]                # último carácter
+    + [dice(d, "[!/]" * 4 + "[" + CLASSES[d] + "][YZ]") for d in range(10)]          # nueva tirada con el anterior
+    + [path("*/" + S6 + "/?") + " " + ex("printf", q("10,")) + " " + ex("mkdir", "{}/b09")]  # vuelta a tirar dos veces
     + [path("*/b%02d/?" % n) + " " + ex("mkdir", "{}/b%02d" % (n - 1)) for n in range(18, 0, -1)]
 )
 rule_hour = "-name '?' \\( " + hour + " \\)"
 
-# 4. a countdown. b00 ends the card: print the running total (tens, then units, then the ISO week
-#    from date), stop if it exceeds 40, otherwise deal the next card. Any other bNN digs the next hour.
+# 4. una cuenta atrás. b00 termina la tarjeta: imprime el total acumulado (decenas, luego unidades, luego la semana ISO
+#    de date), se detiene si pasa de 40; si no, reparte la siguiente tarjeta. Cualquier otro bNN cava la siguiente hora.
 tens = alt([path(wraps(n)) + " " + ex("printf", q(str(n))) for n in range(5, 0, -1)])
 units = alt([path("*/%s/b00" % d) + " " + ex("printf", q("%s," % d)) for d in DIGITS])
 week = ex("date", '"+\'%G-W%V\');"')

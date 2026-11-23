@@ -1,0 +1,19 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+
+msgctxt "L1"
+msgid "# Container image for the portable find entry. Run it with: sandbox/container/run-image.sh src/find-posix"
+msgstr "# Imagen de contenedor para la entrada portátil de find. Ejecútala con: sandbox/container/run-image.sh src/find-posix"
+
+msgctxt "L2"
+msgid "# The whole program is one `find` (GNU findutils, from the Ubuntu base) plus printf, mkdir, mktemp and date"
+msgstr "# Todo el programa es un solo `find` (GNU findutils, de la base Ubuntu) más printf, mkdir, mktemp y date"
+
+msgctxt "L3"
+msgid "# (coreutils); the base adds sqlite3 only. check.sh, build-line.py and the other find implementations"
+msgstr "# (coreutils); la base añade solo sqlite3. check.sh, build-line.py y las otras implementaciones de find"
+
+msgctxt "L4"
+msgid "# (bfs, busybox) are for your own machine; the image runs just the demo."
+msgstr "# (bfs, busybox) son para tu propia máquina; la imagen ejecuta solo la demostración."
