@@ -355,3 +355,4 @@
 402 S1-004 done rows and pages for all 8 batch-B languages; added missing m4 row and updated makefile reason; all not-extracted, NOT TESTED (toolchains absent or denied in dontAsk); token_registry --check and verify --fast OK.
 403 S1-005 done 13 batch-C rows and pages added (pcre2, pcre2grep, dotnet-regex, ed, ex, find, tar, xaml, html, dockerfile, gradle, yaml, mermaid), all NOT TESTED; new tools/embedded_blocks.py + tests record host and embedded language for 316 blocks; verify --fast OK.
 404 S1-006 done tools/token_audit.py + 24 tests incl. false-positive guards; unfenced-tokens.jsonl written (2 findings, report only); verify --fast OK.
+405 S1-007 done S1 gate written (translation/part2/s1-gate.md): 37 registry records and pages cover the runtime matrix; 2 extracted, 35 not-extracted (NOT TESTED); registry and audit tests pass; verify --fast OK.
