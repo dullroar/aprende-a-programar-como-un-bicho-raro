@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-# Checks the rules of the challenge for the Common Lisp entry. Uses a throwaway data dir.
-# Set SBCL=/path/to/sbcl if it is not on your PATH.
+# Comprueba las reglas del desafío para la entrada de Common Lisp. Usa un directorio de datos desechable.
+# Define SBCL=/ruta/a/sbcl si no está en tu PATH.
 set -euo pipefail
 cd "$(dirname "$0")"
 data=$(mktemp -d); trap 'rm -rf "$data"' EXIT
@@ -8,8 +8,8 @@ export XDG_DATA_HOME=$data
 db=$data/Lisp/demo-timecards.db
 run() { "${SBCL:-sbcl}" --script timecards.lisp "$@"; }
 
-# 1. Static: the demo disclaimer is there, nothing touches a network, the challenge is the one LOOP in draw-cards,
-#    and the file compiles with no warnings or style warnings.
+# 1. Estático: está el aviso de demostración, nada toca una red, el desafío es el único LOOP de draw-cards,
+#    y el archivo compila sin avisos ni avisos de estilo.
 grep -q 'DEMO ONLY' timecards.lisp || { echo "FAIL: no DEMO ONLY marker in timecards.lisp"; exit 1; }
 if grep -Eqi 'http|socket|curl|wget' timecards.lisp; then echo "FAIL: network-looking text in timecards.lisp"; exit 1; fi
 sed -n '/^(defun draw-cards/,/^$/p' timecards.lisp | grep -q '(loop for number from 1' || { echo "FAIL: draw-cards is not a LOOP"; exit 1; }
@@ -18,8 +18,8 @@ compile_out=$("${SBCL:-sbcl}" --noinform --non-interactive \
     --eval "(multiple-value-bind (fasl warnings-p failure-p) (compile-file \"timecards.lisp\" :output-file \"$data/tc.fasl\") (declare (ignore fasl)) (sb-ext:exit :code (if (or warnings-p failure-p) 1 0)))" 2>&1) \
     || { echo "FAIL: compile-file reported warnings"; echo "$compile_out"; exit 1; }
 
-# 1b. The calendar arithmetic is hand-written, so compare it with date(1) on awkward dates
-#     (year boundaries, 53-week years, leap days, the 1900 and 2100 century rules).
+# 1b. La aritmética del calendario está escrita a mano, así que la comparamos con date(1) en fechas incómodas
+#     (cambios de año, años de 53 semanas, días bisiestos, las reglas de siglo de 1900 y 2100).
 for d in 1999-12-31 2000-01-01 2000-02-29 2015-12-31 2016-01-01 2018-12-31 2019-12-30 2020-12-31 \
          2021-01-01 2021-01-03 2021-01-04 2024-12-30 2024-12-31 2026-01-01 2026-12-31 2027-01-01 \
          2027-01-03 2027-01-04 2032-12-31 2033-01-01 2100-03-01 2026-11-16; do
@@ -28,7 +28,7 @@ for d in 1999-12-31 2000-01-01 2000-02-29 2015-12-31 2016-01-01 2018-12-31 2019-
     [[ $got == "$want" ]] || { echo "FAIL: ISO week of $d is $got, date(1) says $want"; exit 1; }
 done
 
-# 2. Run it a bunch of times; every run must print a sane record set, and the SQLite rows must agree with it.
+# 2. Ejecútalo muchas veces; cada ejecución debe imprimir un conjunto de registros razonable y las filas de SQLite deben coincidir.
 cats=(Meetings Coding Debugging Learning)
 for i in $(seq 1 25); do
     out=$(run)
@@ -60,7 +60,7 @@ done
 [[ $(sqlite3 "$db" 'select count(distinct run_id) from demo_timecards') -eq 25 ]] || { echo "FAIL: expected 25 distinct runs in the db"; exit 1; }
 [[ $(sqlite3 "$db" 'select count(distinct hours) from demo_timecards') -ge 6 ]] || { echo "FAIL: hours do not look random"; exit 1; }
 
-# 3. The demo_only CHECK constraint is real: a non-demo row must be refused.
+# 3. La restricción CHECK de demo_only es real: debe rechazarse una fila que no sea de demostración.
 if sqlite3 "$db" "insert into demo_timecards(run_id,category,hours,running_total,demo_only) values('x','x',1,1,0)" 2>/dev/null; then
     echo "FAIL: db accepted a non-demo row"; exit 1
 fi

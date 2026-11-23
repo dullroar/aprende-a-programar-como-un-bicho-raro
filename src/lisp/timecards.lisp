@@ -1,13 +1,13 @@
-;;;; DEMO ONLY. Fictional timecards, written to a scratch SQLite file under
-;;;; XDG_DATA_HOME. Nothing here touches a real time-reporting system.
+;;;; DEMO ONLY. Tarjetas de horas ficticias, escritas en un archivo SQLite temporal dentro de
+;;;; XDG_DATA_HOME. Nada de esto toca un sistema real de registro de horas.
 ;;;;
-;;;; Run:  sbcl --script timecards.lisp [YYYY-MM-DD]
+;;;; Ejecútalo así:  sbcl --script timecards.lisp [YYYY-MM-DD]
 ;;;;
-;;;; The challenge: add cards of 10-19 hours (Meetings, Coding, Debugging,
-;;;; Learning, round and round) until the running total passes 40.  In Common
-;;;; Lisp that is one LOOP form, DRAW-CARDS.  Everything else is small
-;;;; functions that each do one thing.  The optional date argument pins the ISO
-;;;; week, which is what lets the calendar arithmetic be tested.
+;;;; El desafío: suma tarjetas de 10 a 19 horas (Meetings, Coding, Debugging,
+;;;; Learning, una tras otra) hasta que el total acumulado pase de 40.  En Common
+;;;; Lisp eso es una sola forma LOOP, DRAW-CARDS.  Todo lo demás son funciones
+;;;; pequeñas que hacen una sola cosa cada una.  El argumento opcional de fecha fija la
+;;;; semana ISO, y eso permite probar la aritmética del calendario.
 
 (defpackage #:timecards
   (:use #:cl)
@@ -15,7 +15,7 @@
 
 (in-package #:timecards)
 
-;;; ------------------------------------------------------------------ rules
+;;; ------------------------------------------------------------------ reglas
 
 (defparameter *categories* #("Meetings" "Coding" "Debugging" "Learning")
   "Card categories, in the order they repeat.")
@@ -45,7 +45,7 @@ The card that crosses the line is kept, which is why UNTIL comes after COLLECT."
         collect (make-card number (category-for number) hours total)
         until (> total +limit+)))
 
-;;; ------------------------------------------------------------------ the calendar
+;;; ------------------------------------------------------------------ el calendario
 
 (defun weeks-in-year (year)
   "52 or 53: a year has 53 ISO weeks when it starts or ends on a Thursday."
@@ -138,7 +138,7 @@ January can belong to the previous year's last week and vice versa."
     (unless (zerop (sb-ext:process-exit-code process))
       (error "sqlite3 failed with exit code ~D" (sb-ext:process-exit-code process)))))
 
-;;; ------------------------------------------------------------------ display
+;;; ------------------------------------------------------------------ pantalla
 
 (defun print-card (card week stream)
   "One tab-separated row: category, hours, running total, ISO week, the marker."
@@ -146,7 +146,7 @@ January can belong to the previous year's last week and vice versa."
           (card-category card) #\Tab (card-hours card) #\Tab
           (card-running-total card) #\Tab week #\Tab))
 
-;;; ------------------------------------------------------------------ main
+;;; ------------------------------------------------------------------ principal
 
 (defun unix-time ()
   (- (get-universal-time) (encode-universal-time 0 0 0 1 1 1970 0)))

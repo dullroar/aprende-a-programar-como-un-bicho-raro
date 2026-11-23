@@ -1,0 +1,51 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+
+msgctxt "L1"
+msgid ";;;; DEMO ONLY. Fictional timecards, written to a scratch SQLite file under"
+msgstr ";;;; DEMO ONLY. Tarjetas de horas ficticias, escritas en un archivo SQLite temporal dentro de"
+
+msgctxt "L2"
+msgid ";;;; XDG_DATA_HOME. Nothing here touches a real time-reporting system."
+msgstr ";;;; XDG_DATA_HOME. Nada de esto toca un sistema real de registro de horas."
+
+msgctxt "L4"
+msgid ";;;; Run:  sbcl --script timecards.lisp [YYYY-MM-DD]"
+msgstr ";;;; Ejecútalo así:  sbcl --script timecards.lisp [YYYY-MM-DD]"
+
+msgctxt "L6"
+msgid ";;;; The challenge: add cards of 10-19 hours (Meetings, Coding, Debugging,"
+msgstr ";;;; El desafío: suma tarjetas de 10 a 19 horas (Meetings, Coding, Debugging,"
+
+msgctxt "L7"
+msgid ";;;; Learning, round and round) until the running total passes 40.  In Common"
+msgstr ";;;; Learning, una tras otra) hasta que el total acumulado pase de 40.  En Common"
+
+msgctxt "L8"
+msgid ";;;; Lisp that is one LOOP form, DRAW-CARDS.  Everything else is small"
+msgstr ";;;; Lisp eso es una sola forma LOOP, DRAW-CARDS.  Todo lo demás son funciones"
+
+msgctxt "L9"
+msgid ";;;; functions that each do one thing.  The optional date argument pins the ISO"
+msgstr ";;;; pequeñas que hacen una sola cosa cada una.  El argumento opcional de fecha fija la"
+
+msgctxt "L10"
+msgid ";;;; week, which is what lets the calendar arithmetic be tested."
+msgstr ";;;; semana ISO, y eso permite probar la aritmética del calendario."
+
+msgctxt "L18"
+msgid ";;; ------------------------------------------------------------------ rules"
+msgstr ";;; ------------------------------------------------------------------ reglas"
+
+msgctxt "L48"
+msgid ";;; ------------------------------------------------------------------ the calendar"
+msgstr ";;; ------------------------------------------------------------------ el calendario"
+
+msgctxt "L141"
+msgid ";;; ------------------------------------------------------------------ display"
+msgstr ";;; ------------------------------------------------------------------ pantalla"
+
+msgctxt "L149"
+msgid ";;; ------------------------------------------------------------------ main"
+msgstr ";;; ------------------------------------------------------------------ principal"

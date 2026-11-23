@@ -1,0 +1,35 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+
+msgctxt "L2"
+msgid "# Checks the rules of the challenge for the Common Lisp entry. Uses a throwaway data dir."
+msgstr "# Comprueba las reglas del desafío para la entrada de Common Lisp. Usa un directorio de datos desechable."
+
+msgctxt "L3"
+msgid "# Set SBCL=/path/to/sbcl if it is not on your PATH."
+msgstr "# Define SBCL=/ruta/a/sbcl si no está en tu PATH."
+
+msgctxt "L11"
+msgid "# 1. Static: the demo disclaimer is there, nothing touches a network, the challenge is the one LOOP in draw-cards,"
+msgstr "# 1. Estático: está el aviso de demostración, nada toca una red, el desafío es el único LOOP de draw-cards,"
+
+msgctxt "L12"
+msgid "#    and the file compiles with no warnings or style warnings."
+msgstr "#    y el archivo compila sin avisos ni avisos de estilo."
+
+msgctxt "L21"
+msgid "# 1b. The calendar arithmetic is hand-written, so compare it with date(1) on awkward dates"
+msgstr "# 1b. La aritmética del calendario está escrita a mano, así que la comparamos con date(1) en fechas incómodas"
+
+msgctxt "L22"
+msgid "#     (year boundaries, 53-week years, leap days, the 1900 and 2100 century rules)."
+msgstr "#     (cambios de año, años de 53 semanas, días bisiestos, las reglas de siglo de 1900 y 2100)."
+
+msgctxt "L31"
+msgid "# 2. Run it a bunch of times; every run must print a sane record set, and the SQLite rows must agree with it."
+msgstr "# 2. Ejecútalo muchas veces; cada ejecución debe imprimir un conjunto de registros razonable y las filas de SQLite deben coincidir."
+
+msgctxt "L63"
+msgid "# 3. The demo_only CHECK constraint is real: a non-demo row must be refused."
+msgstr "# 3. La restricción CHECK de demo_only es real: debe rechazarse una fila que no sea de demostración."

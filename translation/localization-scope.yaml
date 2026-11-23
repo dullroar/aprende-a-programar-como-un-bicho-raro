@@ -55,7 +55,7 @@ families:
   "src/javascript": {status: localizing, files: 4}
   "src/javascript-events": {status: localizing, files: 5}
   "src/javascript-weird": {status: frozen, files: 6}
-  "src/lisp": {status: frozen, files: 3}
+  "src/lisp": {status: localizing, files: 3}
   "src/lisp-weird": {status: frozen, files: 3}
   "src/m4": {status: frozen, files: 3}
   "src/make-gnu": {status: frozen, files: 3}
