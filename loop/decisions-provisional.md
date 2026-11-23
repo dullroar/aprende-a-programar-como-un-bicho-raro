@@ -133,3 +133,9 @@
 - Alternatives: record the lint failure as a blocker (rejected: the fixes are layout and sentinel corrections, and the gate is the Phase 5 exit). Edit the approved translations to match the old sentinels (rejected: they are approved content).
 - Not verified: `lessons/book/test_editorial.py` has 5 failing RealSources tests (English-layout paths that do not exist in this checkout, and a `src/apl/README.md` check). They predate this task: src/ is unchanged and the failing text is absent from it. `lessons/book/test_cs.py` has 8 failing tests (link and linter checks on Spanish sources). cs.py and its fixtures were not touched here, but I did not run it against HEAD to confirm they predate this task.
 - Cost to reverse: low. Revert the four edited code and catalog files and the allowlist row, then rebuild the root artifacts.
+
+## Iteration 391: English-text tests skip in the Spanish checkout (recorded after review)
+
+- Decision: 8 tests in lessons/book/test_cs.py and test_study_guides.py are marked `@english_only`. They edit or read English text under English file names, so they skip in the Spanish checkout and run in the English layer, which `tools/scratch_proof.py --tests` builds. That tool fails if a marked test skips there. Verified after P6-002: `scratch_proof.py --tests` PASS (test_cs, test_study_guides and the other modules OK).
+- Alternative: rewrite each test for the Spanish names and text. Larger change, and the English layer already proves the same behaviour.
+- Cost to reverse: remove the decorator and port the tests.
