@@ -378,4 +378,5 @@
 423 S4-007 done decision 11 applied: tools/categories.py (one form per file, no other spelling, I13), glossary es_values, oracle both forms, row 11 fixtures, recall/jury faults, PROMPT/plan/policy rules; prose stays English until each S5 family; verify --fast OK.
 427 S5-fam-lessons-solutions-b7-linq done family left English, NOT TESTED (EXC-545): 0 comments, output strings quoted in respuestas.md, no oracle runner for lessons/solutions; no protected file changed.
 426 S5-fam-lessons-book-diagrams done family left English, NOT TESTED (EXC-544): build script, tools/oracle.py has no runner for it; no protected file changed; report written; verify --fast OK.
+429 S5-fam-linqchallenge2 done family left English, NOT TESTED (EXC-547): WPF/EF Core entry has no entry image, oracle cannot run it; no protected file changed.
 428 S5-fam-linqchallenge1 done family left English, NOT TESTED (EXC-546): WPF/EF Core entry has no entry image, oracle cannot run it; no protected file changed.
