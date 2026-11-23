@@ -159,4 +159,5 @@
 - Before localizing categories, grep the family's code for `[A-Za-z]` classes around card names (ed-weird, maybe sed/ex/regex families): accented words break them and C entries cannot change regex, so leave the family English with an EXC row.
 - Families that run an editor (ed-weird, ex-weird) fail the oracle once categories gain accents; run the oracle right after the first C-entry pass and revert at once on FAIL (sed-weird next, expect the same).
 - In a code PO msgid a literal backslash-t in the file (e.g. `tr '\t'`) is written `\\t`, while `\t` alone means a real TAB; a "msgid does not match" refusal on a grep-with-TAB line usually means this.
+- ex-weird (nvi) fails the oracle on accented categories even with no letter classes to widen; do not retry it, and expect the same from any family that feeds Spanish words through nvi or vi (sed-weird, ex-like editors): check the editor, not only regexes.
 - Never commit `review/packets/`, `review/repo-bundle.zip`, `review/canaries.key.json` or `review/units.index.jsonl`: they carry canaries or the key; commit only the public MANIFEST.md and EDITION-FACTS.md.
