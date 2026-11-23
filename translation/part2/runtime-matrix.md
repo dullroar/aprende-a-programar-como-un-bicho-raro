@@ -81,4 +81,4 @@ A fixed seed is not a cross-platform guarantee (plan 4.5.4); any trace under a s
 - Linux entries: 32 rows; 28 PASS-capable (unproven), 4 NOT TESTED (cobol, haskell, regex-pcre2, regex-perl).
 - Windows/GUI entries: 9, all NOT TESTED.
 - Solutions: 4; 1 PASS-capable (unproven), 3 NOT TESTED.
-- Sandbox self-test: **NOT RUN** (see top).
+- Sandbox self-test: **NOT RUN** (see top). Retried in iteration 495 (2026-11-23): `sandbox/selftest.sh` was denied again under `claude -p` dontAsk mode. Still owed to a Docker-capable session.

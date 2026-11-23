@@ -231,7 +231,7 @@ editorial:
 
 # lessons/book/pdf_sentinels.py: the selectable words of the diagram labels that the PDF check looks for (code sentinels are not here: they never change).
 # A space after a comparison sign (≤ or ≥) may be lost at an SVG tspan boundary, so the check tolerates it there only.
-# Alive is an APL identifier (it stays); the question mark of a Spanish label is paired (¿...?) and the check looks at the closing one.
+# The approved Spanish label is "¿Vivo: ...?" (Jim's answer, 2026-11-23); the question mark of a Spanish label is paired (¿...?) and the check looks at the closing one.
 sentinels:
   apl_diagram: "¿Vivo: total ≤ 40?"
   ascii_diagram: "-1 mientras el total no pasa de 40; en otro caso, es 0"
