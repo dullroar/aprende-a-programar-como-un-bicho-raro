@@ -406,3 +406,4 @@
 454 S5-fam-cobol-weird done src/cobol-weird localizing: 47 comment lines (timecards.cob, check.sh, Dockerfile) via loc_apply, oracle PASS; categories/strings kept English EXC-568.
 455 S5-fam-forth-weird done src/forth-weird localizing: 35 comment lines (timecards.fs, check.sh, Dockerfile) via loc_apply, oracle PASS; categories/strings kept English EXC-569.
 456 S5-fam-m4 done src/m4 localizing: 62 comment lines (timecards.m4, check.sh, Dockerfile) via loc_apply, oracle PASS; categories/strings kept English EXC-570.
+457 S5-fam-modernchallenge1 done family left English, NOT TESTED (EXC-571): no entry image (no Dockerfile), oracle cannot run; no protected file changed.
