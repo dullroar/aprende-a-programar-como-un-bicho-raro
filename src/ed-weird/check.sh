@@ -9,7 +9,7 @@ export TMPDIR=$work XDG_DATA_HOME=$work/xdg; mkdir -p "$XDG_DATA_HOME"
 fail() { echo "FAIL: $*"; exit 1; }
 ed --version 2>&1 | head -1 | grep -q 'GNU ed' || fail "this entry needs GNU ed; found: $(ed --version 2>&1 | head -1)"
 command -v sqlite3 >/dev/null || fail "sqlite3 is needed"
-rows() { grep -E $'^(Meetings|Coding|Debugging|Learning)\t' <<<"$1" || true; }
+rows() { grep -E $'^(Reuniones|Programación|Depuración|Aprendizaje)\t' <<<"$1" || true; }
 
 # ---- 1. La restricción es real: el lanzador solo siembra, carga y muestra; ed hace el resto.
 code=$(grep -Ev '^\s*(#|$)' timecards.sh)
@@ -18,12 +18,12 @@ if grep -Eq '\$\(\(|\bawk\b|\bexpr\b|(^|[|;&(] *)(bc|dc)( |$)|\bperl\b|\bpython|
 prog=$(grep -Ev '^#' timecards.ed)
 # sin escape al shell, sin comandos de archivo, sin editar otros archivos: ed solo transforma su propio búfer
 if grep -nE '^[^/]*!|^(g|v)/.*/!|(^|[0-9,.$]+)[rwWeEf] ' <<<"$prog" | grep -Ev '\[\|!\]|Dead 0!|\\1!|^[0-9]+:s/' ; then fail "timecards.ed uses a shell escape or a file command"; fi
-[[ $(grep -c '^g/\^\[A-Za-z\]\* \[0-9\]\[0-9\] x\*\$/' timecards.ed) -eq 1 ]] || fail "expected exactly one iterating global command (the run)"
+[[ $(grep -c '^g/\^\[A-Za-zÁÉÍÓÚáéíóúñ\]\* \[0-9\]\[0-9\] x\*\$/' timecards.ed) -eq 1 ]] || fail "expected exactly one iterating global command (the run)"
 echo "ok: timecards.sh has no arithmetic, no awk/sed, no loop; ed runs once; timecards.ed has no shell escape and no file command; one global command is the run"
 
 # ---- ayudantes
 sim() {  # "d d d d d" límite -> filas que una simulación independiente dice que deben imprimirse
-    awk -v limit="${2:-40}" -v digits="$1" 'BEGIN { split("Meetings Coding Debugging Learning Meetings", cat, " "); n = split(digits, d, " ")
+    awk -v limit="${2:-40}" -v digits="$1" 'BEGIN { split("Reuniones Programación Depuración Aprendizaje Reuniones", cat, " "); n = split(digits, d, " ")
         for (i = 1; i <= n; i++) { h = 10 + d[i]; t += h; printf "%s\t%d\t%d\n", cat[i], h, t; if (t > limit) break } }'
 }
 run() { DICE="$1" ED_DB=$work/run.db ED_PROGRAM=${2:-$here/timecards.ed} sh ./timecards.sh 2>"$work/err"; }
@@ -31,7 +31,7 @@ validate() {
     local label=$1 out=$2 r total entries
     r=$(rows "$out"); total=$(sed -nE 's/.*total=([0-9]+).*/\1/p' <<<"$out"); entries=$(sed -nE 's/.*entries=([0-9]+).*/\1/p' <<<"$out")
     awk -F'\t' -v total="$total" -v entries="$entries" '
-        BEGIN { split("Meetings Coding Debugging Learning Meetings", want, " ") }
+        BEGIN { split("Reuniones Programación Depuración Aprendizaje Reuniones", want, " ") }
         { n++; if ($1 != want[n]) { print "category " $1 " at row " n; exit 1 }
           if ($2 < 10 || $2 > 19) { print "hours out of range: " $0; exit 1 }
           if ($3 != prev + $2) { print "bad running total: " $0; exit 1 }
@@ -75,9 +75,9 @@ perturb "stop at 30" 's/x\\{41,\\}/x\\{31,\\}/' "3 3 3 3 3"
 [[ $(rows "$out" | cut -f1-3) == "$(sim "3 3 3 3 3" 30)" ]] || fail "changing x{41,} to x{31,} should move the stop rule to 'over 30'"
 perturb "stop at 50" 's/x\\{41,\\}/x\\{51,\\}/' "0 0 0 0 0 "
 [[ $(rows "$out" | cut -f1-3) == "$(sim "0 0 0 0 0" 50 | head -5)" ]] || fail "changing x{41,} to x{51,} should move the stop rule to 'over 50'"
-perturb "swap two categories" 's/^1s\/\^\/Meetings \//1s\/^\/Coding \//; s/^2s\/\^\/Coding \//2s\/^\/Meetings \//' "5 5 5 5 5"
-[[ $(rows "$out" | cut -f1 | tr '\n' ' ') == "Coding Meetings Debugging " ]] || fail "swapping lines 1 and 2 should swap their categories (got: $(rows "$out" | cut -f1 | tr '\n' ' '))"
-perturb "no dead rule" '/^s\/\^\.\*\[A-Za-z\]/d' "5 5 5 5 5"
+perturb "swap two categories" 's/^1s\/\^\/Reuniones \//1s\/^\/Programación \//; s/^2s\/\^\/Programación \//2s\/^\/Reuniones \//' "5 5 5 5 5"
+[[ $(rows "$out" | cut -f1 | tr '\n' ' ') == "Programación Reuniones Depuración " ]] || fail "swapping lines 1 and 2 should swap their categories (got: $(rows "$out" | cut -f1 | tr '\n' ' '))"
+perturb "no dead rule" '/^s\/\^\.\*\[A-Za-zÁÉÍÓÚáéíóúñ\]/d' "5 5 5 5 5"
 [[ $(rows "$out" | wc -l) -gt 3 ]] || fail "without the Dead rule, cards after the crossing one should survive"
 sed '/^g\/\^Dead \/d$/d' timecards.ed > "$work/p.ed"; cmp -s timecards.ed "$work/p.ed" && fail "no cleanup: the mutation changed nothing"
 printf '5\n5\n5\n5\n5\n' > "$work/d.txt"
@@ -104,7 +104,7 @@ if command -v busybox >/dev/null && busybox --list | grep -qx ed; then
     printf '7\n3\n9\n0\n5\n' > "$work/bb.txt"
     # Captura el diagnóstico finito antes de acortarlo para que head no le dé SIGPIPE a ed.
     bbout=$(busybox ed "$work/bb.txt" < timecards.ed 2>&1 || true)
-    if grep -qx 'Meetings 17 17' <<<"$bbout"; then fail "busybox ed ran the program; update the README"; fi
+    if grep -qx 'Reuniones 17 17' <<<"$bbout"; then fail "busybox ed ran the program; update the README"; fi
     bbout=$(head -3 <<<"$bbout" | tr '\n' '|')
     echo "ok: busybox ed cannot run it (no # comments, t, j, g, Q; no empty match in s). First lines: $bbout"
 else
@@ -113,8 +113,8 @@ fi
 
 # ---- 7. El esquema.
 rm -f "$work/run.db"; run "1 2 3 4 5" >/dev/null
-sqlite3 "$work/run.db" "insert into demo_timecards values(1,'Coding',12,12,'w',0)" 2>/dev/null && fail "db accepted a non-demo row"
-sqlite3 "$work/run.db" "insert into demo_timecards values(1,'Coding',9,9,'w',1)" 2>/dev/null && fail "db accepted 9 hours"
+sqlite3 "$work/run.db" "insert into demo_timecards values(1,'Programación',12,12,'w',0)" 2>/dev/null && fail "db accepted a non-demo row"
+sqlite3 "$work/run.db" "insert into demo_timecards values(1,'Programación',9,9,'w',1)" 2>/dev/null && fail "db accepted 9 hours"
 sqlite3 "$work/run.db" "insert into demo_timecards values(1,'Banking',12,12,'w',1)" 2>/dev/null && fail "db accepted a fifth category"
 DICE="1 2 3 4" sh ./timecards.sh >/dev/null 2>&1 && fail "four dice must be refused"
 DICE="1 2 x 4 5" sh ./timecards.sh >/dev/null 2>&1 && fail "a non-digit die must be refused"

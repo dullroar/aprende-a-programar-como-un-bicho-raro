@@ -57,3 +57,43 @@ msgstr "# Captura el diagnóstico finito antes de acortarlo para que head no le 
 msgctxt "L114"
 msgid "# ---- 7. The schema."
 msgstr "# ---- 7. El esquema."
+
+msgctxt "C12"
+msgid "rows() { grep -E $'^(Meetings|Coding|Debugging|Learning)\\t' <<<\"$1\" || true; }"
+msgstr "rows() { grep -E $'^(Reuniones|Programación|Depuración|Aprendizaje)\\t' <<<\"$1\" || true; }"
+
+msgctxt "C21"
+msgid "[[ $(grep -c '^g/\\^\\[A-Za-z\\]\\* \\[0-9\\]\\[0-9\\] x\\*\\$/' timecards.ed) -eq 1 ]] || fail \"expected exactly one iterating global command (the run)\""
+msgstr "[[ $(grep -c '^g/\\^\\[A-Za-zÁÉÍÓÚáéíóúñ\\]\\* \\[0-9\\]\\[0-9\\] x\\*\\$/' timecards.ed) -eq 1 ]] || fail \"expected exactly one iterating global command (the run)\""
+
+msgctxt "C26"
+msgid "    awk -v limit=\"${2:-40}\" -v digits=\"$1\" 'BEGIN { split(\"Meetings Coding Debugging Learning Meetings\", cat, \" \"); n = split(digits, d, \" \")"
+msgstr "    awk -v limit=\"${2:-40}\" -v digits=\"$1\" 'BEGIN { split(\"Reuniones Programación Depuración Aprendizaje Reuniones\", cat, \" \"); n = split(digits, d, \" \")"
+
+msgctxt "C34"
+msgid "        BEGIN { split(\"Meetings Coding Debugging Learning Meetings\", want, \" \") }"
+msgstr "        BEGIN { split(\"Reuniones Programación Depuración Aprendizaje Reuniones\", want, \" \") }"
+
+msgctxt "C78"
+msgid "perturb \"swap two categories\" 's/^1s\\/\\^\\/Meetings \\//1s\\/^\\/Coding \\//; s/^2s\\/\\^\\/Coding \\//2s\\/^\\/Meetings \\//' \"5 5 5 5 5\""
+msgstr "perturb \"swap two categories\" 's/^1s\\/\\^\\/Reuniones \\//1s\\/^\\/Programación \\//; s/^2s\\/\\^\\/Programación \\//2s\\/^\\/Reuniones \\//' \"5 5 5 5 5\""
+
+msgctxt "C79"
+msgid "[[ $(rows \"$out\" | cut -f1 | tr '\\n' ' ') == \"Coding Meetings Debugging \" ]] || fail \"swapping lines 1 and 2 should swap their categories (got: $(rows \"$out\" | cut -f1 | tr '\\n' ' '))\""
+msgstr "[[ $(rows \"$out\" | cut -f1 | tr '\\n' ' ') == \"Programación Reuniones Depuración \" ]] || fail \"swapping lines 1 and 2 should swap their categories (got: $(rows \"$out\" | cut -f1 | tr '\\n' ' '))\""
+
+msgctxt "C80"
+msgid "perturb \"no dead rule\" '/^s\\/\\^\\.\\*\\[A-Za-z\\]/d' \"5 5 5 5 5\""
+msgstr "perturb \"no dead rule\" '/^s\\/\\^\\.\\*\\[A-Za-zÁÉÍÓÚáéíóúñ\\]/d' \"5 5 5 5 5\""
+
+msgctxt "C107"
+msgid "    if grep -qx 'Meetings 17 17' <<<\"$bbout\"; then fail \"busybox ed ran the program; update the README\"; fi"
+msgstr "    if grep -qx 'Reuniones 17 17' <<<\"$bbout\"; then fail \"busybox ed ran the program; update the README\"; fi"
+
+msgctxt "C116"
+msgid "sqlite3 \"$work/run.db\" \"insert into demo_timecards values(1,'Coding',12,12,'w',0)\" 2>/dev/null && fail \"db accepted a non-demo row\""
+msgstr "sqlite3 \"$work/run.db\" \"insert into demo_timecards values(1,'Programación',12,12,'w',0)\" 2>/dev/null && fail \"db accepted a non-demo row\""
+
+msgctxt "C117"
+msgid "sqlite3 \"$work/run.db\" \"insert into demo_timecards values(1,'Coding',9,9,'w',1)\" 2>/dev/null && fail \"db accepted 9 hours\""
+msgstr "sqlite3 \"$work/run.db\" \"insert into demo_timecards values(1,'Programación',9,9,'w',1)\" 2>/dev/null && fail \"db accepted 9 hours\""

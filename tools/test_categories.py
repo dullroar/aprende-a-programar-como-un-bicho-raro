@@ -17,6 +17,11 @@ class Categories(unittest.TestCase):
         self.assertEqual(c.forms_used("```text\nReuniones\t12\t12\n```"), {"es"})
         self.assertFalse(c.mixed("`Reuniones` y `Programación`"))
 
+    def test_word_after_tally_marks_counts_and_other_glue_does_not(self):
+        self.assertEqual(c.forms_used("`Coding 15 xxxMeetings 12|xx`"), {"en"})
+        self.assertTrue(c.mixed("`Programación 15 xxxMeetings 12|xx`"))
+        self.assertEqual(c.forms_used("`yMeetings`"), set())
+
     def test_mix_is_a_fault(self):
         self.assertTrue(c.mixed("`Meetings` y `Programación`"))
         self.assertTrue(c.mixed("`Meetings` y\n\n```text\nProgramación\t12\t12\n```"))

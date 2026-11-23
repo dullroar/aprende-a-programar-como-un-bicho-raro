@@ -4,11 +4,11 @@ H
 # Nada de lo que sigue es un bucle salvo el comando global del paso 4, y ese es del propio ed.
 #
 # 1. Las categorías son DIRECCIONES: la línea 1 es la primera tarjeta, la línea 2 la segunda, y así sucesivamente.
-1s/^/Meetings /
-2s/^/Coding /
-3s/^/Debugging /
-4s/^/Learning /
-5s/^/Meetings /
+1s/^/Reuniones /
+2s/^/Programación /
+3s/^/Depuración /
+4s/^/Aprendizaje /
+5s/^/Reuniones /
 #
 # 2. Las horas son una TABLA DE REESCRITURA. "7" se convierte en las horas 17 y diez marcas más siete marcas. Una regla por dígito.
 #    "g/re/s/..." aplica una regla a cada línea que coincide, y no hace nada con las demás.
@@ -31,7 +31,7 @@ Start 0|
 #
 # 4. La ejecución. UN solo comando global sobre las líneas de tarjeta, en el orden del búfer. Para cada tarjeta:
 #      -t.   copia la línea de arriba (el libro mayor hasta ahora) debajo de la tarjeta
-#      -,.j  une la tarjeta y esa copia en una sola línea:  "Coding 15 xxxxxxxxxxxxxxxMeetings 12|xxxxxxxxxxxx"
+#      -,.j  une la tarjeta y esa copia en una sola línea:  "Programación 15 xxxxxxxxxxxxxxxReuniones 12|xxxxxxxxxxxx"
 #      s...  conserva el nombre y las horas de la tarjeta, y junta SUS marcas y las del libro mayor después de una barra.
 #            Sumar es escribir las marcas una al lado de otra.
 #    Un "s" fallido dentro de un comando global no es un error: no hace nada. Ese es el "si".
@@ -39,10 +39,10 @@ Start 0|
 #      - el segundo s necesita un libro mayor con "!": el total ya pasó de 40. La tarjeta pasa a ser "Dead", y el "!" y las marcas
 #        se copian hacia delante, así que todas las tarjetas siguientes también mueren.
 #      - el tercer s se activa cuando las marcas después de la barra son 41 o más: la "|" pasa a ser "!". Esa tarjeta se conserva.
-g/^[A-Za-z]* [0-9][0-9] x*$/-t.\
+g/^[A-Za-zÁÉÍÓÚáéíóúñ]* [0-9][0-9] x*$/-t.\
 -,.j\
-s/^\([A-Za-z]* [0-9]*\) \(x*\)[A-Za-z]* [0-9]*|\(x*\)$/\1|\2\3/\
-s/^.*[A-Za-z]* [0-9]*!\(x*\)$/Dead 0!\1/\
+s/^\([A-Za-zÁÉÍÓÚáéíóúñ]* [0-9]*\) \(x*\)[A-Za-zÁÉÍÓÚáéíóúñ]* [0-9]*|\(x*\)$/\1|\2\3/\
+s/^.*[A-Za-zÁÉÍÓÚáéíóúñ]* [0-9]*!\(x*\)$/Dead 0!\1/\
 s/^\([^|]*\)|\(x\{41,\}\)$/\1!\2/
 #
 # 5. Elimina las tarjetas muertas y la línea del libro mayor.

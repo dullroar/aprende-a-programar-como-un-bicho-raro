@@ -11,7 +11,8 @@ EN_TO_ES = dict(zip(EN, ES))
 ES_TO_EN = dict(zip(ES, EN))
 # Near misses that look like the word but are not the approved one.
 WRONG = ("Reunión", "Reunion", "Reunions", "Programacion", "Depuracion", "Debugueo", "Codificación", "Aprendizage")
-WORD_RE = re.compile(r"(?<!\w)(%s)(?!\w)" % "|".join(EN + ES))
+# (?<=xxx): ed-weird joins a card and a ledger copy, so tally marks sit right before the word (`...xxxMeetings 12|xx`)
+WORD_RE = re.compile(r"(?:(?<!\w)|(?<=xxx))(%s)(?!\w)" % "|".join(EN + ES))
 
 
 def to_english(word):

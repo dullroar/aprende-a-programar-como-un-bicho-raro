@@ -36,7 +36,7 @@ msgstr "#      -t.   copia la línea de arriba (el libro mayor hasta ahora) deba
 
 msgctxt "L34"
 msgid "#      -,.j  join the card and that copy into one line:  \"Coding 15 xxxxxxxxxxxxxxxMeetings 12|xxxxxxxxxxxx\""
-msgstr "#      -,.j  une la tarjeta y esa copia en una sola línea:  \"Coding 15 xxxxxxxxxxxxxxxMeetings 12|xxxxxxxxxxxx\""
+msgstr "#      -,.j  une la tarjeta y esa copia en una sola línea:  \"Programación 15 xxxxxxxxxxxxxxxReuniones 12|xxxxxxxxxxxx\""
 
 msgctxt "L35"
 msgid "#      s...  keep the card's name and hours, and put ITS marks and the ledger's marks together after a bar."
@@ -69,6 +69,38 @@ msgstr "#      - el tercer s se activa cuando las marcas después de la barra so
 msgctxt "L48"
 msgid "# 5. Drop the dead cards and the ledger line."
 msgstr "# 5. Elimina las tarjetas muertas y la línea del libro mayor."
+
+msgctxt "C7"
+msgid "1s/^/Meetings /"
+msgstr "1s/^/Reuniones /"
+
+msgctxt "C8"
+msgid "2s/^/Coding /"
+msgstr "2s/^/Programación /"
+
+msgctxt "C9"
+msgid "3s/^/Debugging /"
+msgstr "3s/^/Depuración /"
+
+msgctxt "C10"
+msgid "4s/^/Learning /"
+msgstr "4s/^/Aprendizaje /"
+
+msgctxt "C11"
+msgid "5s/^/Meetings /"
+msgstr "5s/^/Reuniones /"
+
+msgctxt "C42"
+msgid "g/^[A-Za-z]* [0-9][0-9] x*$/-t.\\"
+msgstr "g/^[A-Za-zÁÉÍÓÚáéíóúñ]* [0-9][0-9] x*$/-t.\\"
+
+msgctxt "C44"
+msgid "s/^\\([A-Za-z]* [0-9]*\\) \\(x*\\)[A-Za-z]* [0-9]*|\\(x*\\)$/\\1|\\2\\3/\\"
+msgstr "s/^\\([A-Za-zÁÉÍÓÚáéíóúñ]* [0-9]*\\) \\(x*\\)[A-Za-zÁÉÍÓÚáéíóúñ]* [0-9]*|\\(x*\\)$/\\1|\\2\\3/\\"
+
+msgctxt "C45"
+msgid "s/^.*[A-Za-z]* [0-9]*!\\(x*\\)$/Dead 0!\\1/\\"
+msgstr "s/^.*[A-Za-zÁÉÍÓÚáéíóúñ]* [0-9]*!\\(x*\\)$/Dead 0!\\1/\\"
 
 msgctxt "L52"
 msgid "# 6. Marks to decimal, again by rewrite rules. Tens first: the bar and fifty marks become \" 5\", and so on."

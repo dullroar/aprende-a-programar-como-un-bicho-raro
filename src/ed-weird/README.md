@@ -23,9 +23,9 @@ El programa es un archivo de unos 45 comandos `ed`. `ed` es el editor de líneas
 
 ```text
 $ DICE="7 3 9 0 5" ed -s dice.txt < timecards.ed
-Meetings 17 17
-Coding 13 30
-Debugging 19 49
+Reuniones 17 17
+Programación 13 30
+Depuración 19 49
 ```
 
 Su par, [`ex-weird`](../ex-weird/README.md), usa el lenguaje más rico sobre el que se construye `vi`: registros, marcas y `@`. Aquí cada número se forma escribiendo marcas (`x`) una junto a otra y reescribiendo texto. Un lanzador le da a `ed` sus cinco dígitos y después guarda las filas. No hace ninguna aritmética.
@@ -80,7 +80,7 @@ Lee [`timecards.ed`](timecards.ed) de principio a fin. Tiene seis pasos.
 
 | Paso | Qué hace `ed` | Qué función de ed hace el trabajo |
 |---|---|---|
-| 1. Categorías | `1s/^/Meetings /`, `2s/^/Coding /` y así sucesivamente | **Direcciones.** La línea 1 es la primera tarjeta. El orden de las categorías es el orden de los números de línea |
+| 1. Categorías | `1s/^/Reuniones /`, `2s/^/Programación /` y así sucesivamente | **Direcciones.** La línea 1 es la primera tarjeta. El orden de las categorías es el orden de los números de línea |
 | 2. Horas | `g/x7$/s/7$/xxxxxxx/`: diez reglas, una por dígito | **Una tabla de reescritura.** El dígito 7 se convierte en las horas `17` y diecisiete marcas (diez más siete) |
 | 3. El libro de cuentas | `0a`, luego `Start 0\|` | **Entrada de datos de texto.** Una línea encima de la primera tarjeta que dice "el total hasta ahora es nada" |
 | 4. La ejecución | Un comando `g` sobre las líneas de las tarjetas | **El comando global.** El único bucle del programa es el propio de ed |
@@ -92,8 +92,8 @@ Lee [`timecards.ed`](timecards.ed) de principio a fin. Tiene seis pasos.
 Para cada línea de tarjeta, en el orden del búfer, ed hace cinco cosas (son las líneas de la lista del comando global):
 
 1. `-t.` copia la línea de arriba (el registro acumulado hasta ahora) justo debajo de la tarjeta.
-2. `-,.j` une la tarjeta y la copia en una sola línea: `Coding 15 xxxxxxxxxxxxxxxMeetings 12|xxxxxxxxxxxx`.
-3. Una sustitución conserva el nombre y las horas de la tarjeta y junta los dos conjuntos de marcas después de una barra: `Coding 15|xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx`. **Sumar es escribir marcas una al lado de otra.** Cada tarjeta procesada es el registro para la siguiente.
+2. `-,.j` une la tarjeta y la copia en una sola línea: `Programación 15 xxxxxxxxxxxxxxxReuniones 12|xxxxxxxxxxxx`.
+3. Una sustitución conserva el nombre y las horas de la tarjeta y junta los dos conjuntos de marcas después de una barra: `Programación 15|xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx`. **Sumar es escribir marcas una al lado de otra.** Cada tarjeta procesada es el registro para la siguiente.
 4. Una segunda sustitución trata un registro que tiene `!` en lugar de `|`. El `!` significa que el total ya pasó de 40. La tarjeta se convierte en `Dead 0!` más las mismas marcas, de modo que todas las tarjetas posteriores también mueren.
 5. Una tercera sustitución se activa cuando hay 41 o más marcas después de la barra: `s/^\([^|]*\)|\(x\{41,\}\)$/\1!\2/`. La barra se convierte en `!`. **Esa es la regla de parada.** Se ejecuta *después* de escribir la tarjeta, así que la tarjeta que cruza el límite se conserva.
 

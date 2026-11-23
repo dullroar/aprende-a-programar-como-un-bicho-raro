@@ -370,6 +370,12 @@ class CategoryWords(unittest.TestCase):
         text = "`Meetingstc_tab` y `MeetingsX`\n"
         self.assertEqual(ap.localize_category_words(text), "`Reunionestc_tab` y `MeetingsX`\n")
 
+    def test_word_glued_after_tally_marks_follows_but_other_prefix_stays(self):
+        """ed-weird joins a card and a copy: `...xxxMeetings 12|xx`. Only a run of x marks may precede the word."""
+        text = "`Coding 15 xxxMeetings 12|xx` y `yMeetings` y `Meetings`\n"
+        want = "`Programación 15 xxxReuniones 12|xx` y `yMeetings` y `Reuniones`\n"
+        self.assertEqual(ap.localize_category_words(text), want)
+
     def test_fenced_trace_summary_line_follows_and_loose_prose_in_fence_stays(self):
         """Negative case: only `Word N N / Word N N` lines in a fence change, not a bare Meetings 15 15 in running text."""
         text = "```\nMeetings 15 15 / Coding 19 34\nMeetings 15 and Coding 1 2 3\n```\nMeetings 15 15\n"

@@ -1,7 +1,7 @@
 #!/bin/sh
 # El lanzador. Hace cuatro trabajos pequeños y ningún cálculo; cada tarjeta, total y decisión de parar la toma ed.
 #   1. dados: cinco dígitos al azar, uno por línea, forman el búfer inicial de ed (DICE="7 3 9 0 5" los fuerza)
-#   2. ejecutar: ed lee timecards.ed por la entrada estándar, edita el búfer e imprime las filas ("Meetings 17 17")
+#   2. ejecutar: ed lee timecards.ed por la entrada estándar, edita el búfer e imprime las filas ("Reuniones 17 17")
 #   3. cargar: sqlite3 guarda las filas, con la semana, DEMO ONLY y las restricciones CHECK
 #   4. mostrar: sqlite3 las imprime
 set -eu
@@ -15,7 +15,7 @@ ed -s "$scratch/dice.txt" < "${ED_PROGRAM:-$here/timecards.ed}" > "$scratch/rows
 db=${ED_DB:-$data/demo-timecards.db}
 run=$(sqlite3 "$db" "
   create table if not exists runs(id integer primary key, dice text not null, demo_only integer not null default 1 check (demo_only = 1));
-  create table if not exists demo_timecards(run_id integer not null, category text not null check (category in ('Meetings','Coding','Debugging','Learning')),
+  create table if not exists demo_timecards(run_id integer not null, category text not null check (category in ('Reuniones','Programación','Depuración','Aprendizaje')),
       hours integer not null check (hours between 10 and 19), running_total integer not null, week text not null, demo_only integer not null check (demo_only = 1));
   insert into runs(dice) values ('$(tr -d '\n' < "$scratch/dice.txt")');
   select max(id) from runs;")

@@ -12,7 +12,11 @@ msgstr "#   1. dados: cinco dígitos al azar, uno por línea, forman el búfer i
 
 msgctxt "L4"
 msgid "#   2. run:   ed reads timecards.ed on stdin, edits the buffer, and prints the rows (\"Meetings 17 17\")"
-msgstr "#   2. ejecutar: ed lee timecards.ed por la entrada estándar, edita el búfer e imprime las filas (\"Meetings 17 17\")"
+msgstr "#   2. ejecutar: ed lee timecards.ed por la entrada estándar, edita el búfer e imprime las filas (\"Reuniones 17 17\")"
+
+msgctxt "C18"
+msgid "  create table if not exists demo_timecards(run_id integer not null, category text not null check (category in ('Meetings','Coding','Debugging','Learning')),"
+msgstr "  create table if not exists demo_timecards(run_id integer not null, category text not null check (category in ('Reuniones','Programación','Depuración','Aprendizaje')),"
 
 msgctxt "L5"
 msgid "#   3. load:  sqlite3 stores the rows, with the week, DEMO ONLY and the CHECK constraints"

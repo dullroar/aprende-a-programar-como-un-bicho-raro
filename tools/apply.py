@@ -147,7 +147,7 @@ def apply_text(text, po, rel_path="", cat=None, strict=True):
 CATEGORY_PROSE_FILES = os.path.join("translation", "part2", "category-localized-prose.txt")
 # (?=tc_tab): the m4 entry's glued-word example `Meetingstc_tab` names the word followed by a macro
 # (?<=Debugging Learning)(?=\)): the last word of the four-word list `$(word n,Meetings Coding Debugging Learning)` (make-gnu)
-_WORD_RE = re.compile(r"(?<![\w(])(%s)(?:(?=tc_tab)|(?![\w)])|(?<=Debugging Learning)(?=\)))" % "|".join(categories.EN))
+_WORD_RE = re.compile(r"(?:(?<![\w(])|(?<=xxx))(%s)(?:(?=tc_tab)|(?![\w)])|(?<=Debugging Learning)(?=\)))" % "|".join(categories.EN))
 
 
 def category_prose_files():

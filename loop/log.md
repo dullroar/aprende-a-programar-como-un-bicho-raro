@@ -482,4 +482,5 @@
 533 F2-007-tcl-weird done src/tcl-weird categories now Reuniones/Programación/Depuración/Aprendizaje in timecards.tcl, check.sh and README (rows, fenced SQL excerpt); apply.py follows a braced Tcl list in fences (2 tests); oracle PASS; translation/part2/reports/F2-tcl-weird-categories.md
 534 F2-008 done follow-up gate: 3 line-anchor records re-anchored (awk-weird, cobol, lisp-weird), anchors.json regenerated, verify --release --no-gates passes, END-REVIEW follow-up section added
 535 none done queue complete (308 done, 0 blocked); loop/DONE written, a human takes over
+537 G1-002 done src/ed-weird categories localized and [A-Za-z] classes widened (C entries on timecards.ed, timecards.sh, check.sh, README); apply.py and categories.WORD_RE accept a word glued after xxx; oracle PASS; EXC-588 resolved; translation/part2/reports/G1-ed-weird-categories.md
 536 G1-001 done loc_apply C entries may widen ASCII A-Za-z classes to A-Za-zÁÉÍÓÚáéíóúñ (all-or-nothing, nothing else in the line may change); 7 tests incl. negatives; translation/part2/accent-safe-classes.md
