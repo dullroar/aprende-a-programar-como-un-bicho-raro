@@ -24,12 +24,12 @@ for i in $(seq 1 25); do
     commit=$(grep '^# committed' <<<"$out")
     total=$(sed -E 's/.*total=([0-9]+).*/\1/' <<<"$commit")
     entries=$(sed -E 's/.*entries=([0-9]+).*/\1/' <<<"$commit")
-    rows=$(grep -cE '^(Meetings|Coding|Debugging|Learning)	' <<<"$out" || true)
+    rows=$(grep -cE '^(Reuniones|Programación|Depuración|Aprendizaje)	' <<<"$out" || true)
     [[ $rows -eq $entries ]] || { echo "FAIL run $i: $rows rows but entries=$entries"; exit 1; }
     (( total > 40 )) || { echo "FAIL run $i: stopped early at $total"; exit 1; }
     (( entries >= 3 && entries <= 5 )) || { echo "FAIL run $i: $entries entries; a run has 3 to 5"; exit 1; }
     (( total <= 40 + 19 )) || { echo "FAIL run $i: overshot ($total)"; exit 1; }
-    awk -F'\t' '/^(Meetings|Coding|Debugging|Learning)\t/ && ($2 < 10 || $2 > 19) { bad = 1 } END { exit bad }' <<<"$out" || { echo "FAIL run $i: hours out of 10-19"; exit 1; }
+    awk -F'\t' '/^(Reuniones|Programación|Depuración|Aprendizaje)\t/ && ($2 < 10 || $2 > 19) { bad = 1 } END { exit bad }' <<<"$out" || { echo "FAIL run $i: hours out of 10-19"; exit 1; }
     # La transacción de SQLite se confirmó de verdad y coincide con lo que se imprimió.
     db_row=$(sqlite3 "$db" "select count(*) || ' ' || coalesce(sum(hours),0) || ' ' || coalesce(min(demo_only),0) || coalesce(max(demo_only),0) from demo_timecards where run_id = '$run'")
     [[ $db_row == "$entries $total 11" ]] || { echo "FAIL run $i: db says '$db_row', output says '$entries $total 11'"; exit 1; }
@@ -40,13 +40,13 @@ done
 if sqlite3 "$db" "insert into demo_timecards(run_id,category,hours,running_total,demo_only) values('x','x',1,1,0)" 2>/dev/null; then
     echo "FAIL: db accepted a non-demo row"; exit 1
 fi
-# 4. Exactamente 40 continúa. Cuatro tarjetas de 10 horas suman exactamente 40, así que se debe sacar una quinta tarjeta: Meetings otra vez, total 50.
+# 4. Exactamente 40 continúa. Cuatro tarjetas de 10 horas suman exactamente 40, así que se debe sacar una quinta tarjeta: Reuniones otra vez, total 50.
 #    Una copia del programa en la que cada tarjeta vale 10 horas hace que esa sea la única ejecución posible.
 sed 's/10+int rand 10/10/' timecards.pl > "$data/fixed.pl"
 ! grep -q 'rand 10' "$data/fixed.pl" || { echo "FAIL: the exactly-40 test could not rewrite the draw in timecards.pl"; exit 1; }
 out=$(perl "$data/fixed.pl")
-mapfile -t rows < <(grep -E '^(Meetings|Coding|Debugging|Learning)	' <<<"$out")
+mapfile -t rows < <(grep -E '^(Reuniones|Programación|Depuración|Aprendizaje)	' <<<"$out")
 (( ${#rows[@]} == 5 )) || { echo "FAIL: all-10 cards must give five rows (exactly 40 continues)"; echo "$out"; exit 1; }
-[[ ${rows[3]} == Learning* && ${rows[4]} == Meetings*$'\t'10$'\t'50$'\t'* ]] || { echo "FAIL: the fourth card must be Learning and the fifth Meetings with total 50"; echo "$out"; exit 1; }
+[[ ${rows[3]} == Aprendizaje* && ${rows[4]} == Reuniones*$'\t'10$'\t'50$'\t'* ]] || { echo "FAIL: the fourth card must be Aprendizaje and the fifth Reuniones with total 50"; echo "$out"; exit 1; }
 
 echo "OK: single statement; 25 runs, each stopped when it should, committed to SQLite, and returned false; exactly 40 continued to a fifth card"

@@ -28,8 +28,24 @@ msgstr "# 3. La restricción CHECK de demo_only es real: una fila que no sea de 
 
 msgctxt "L43"
 msgid "# 4. Exactly 40 continues. Four 10-hour cards total exactly 40, so a fifth card must be drawn: Meetings again, total 50."
-msgstr "# 4. Exactamente 40 continúa. Cuatro tarjetas de 10 horas suman exactamente 40, así que se debe sacar una quinta tarjeta: Meetings otra vez, total 50."
+msgstr "# 4. Exactamente 40 continúa. Cuatro tarjetas de 10 horas suman exactamente 40, así que se debe sacar una quinta tarjeta: Reuniones otra vez, total 50."
 
 msgctxt "L44"
 msgid "#    A copy of the program with every card worth 10 hours makes that the only possible run."
 msgstr "#    Una copia del programa en la que cada tarjeta vale 10 horas hace que esa sea la única ejecución posible."
+
+msgctxt "C27"
+msgid "    rows=$(grep -cE '^(Meetings|Coding|Debugging|Learning)	' <<<\"$out\" || true)"
+msgstr "    rows=$(grep -cE '^(Reuniones|Programación|Depuración|Aprendizaje)	' <<<\"$out\" || true)"
+
+msgctxt "C32"
+msgid "    awk -F'\\t' '/^(Meetings|Coding|Debugging|Learning)\\t/ && ($2 < 10 || $2 > 19) { bad = 1 } END { exit bad }' <<<\"$out\" || { echo \"FAIL run $i: hours out of 10-19\"; exit 1; }"
+msgstr "    awk -F'\\t' '/^(Reuniones|Programación|Depuración|Aprendizaje)\\t/ && ($2 < 10 || $2 > 19) { bad = 1 } END { exit bad }' <<<\"$out\" || { echo \"FAIL run $i: hours out of 10-19\"; exit 1; }"
+
+msgctxt "C48"
+msgid "mapfile -t rows < <(grep -E '^(Meetings|Coding|Debugging|Learning)	' <<<\"$out\")"
+msgstr "mapfile -t rows < <(grep -E '^(Reuniones|Programación|Depuración|Aprendizaje)	' <<<\"$out\")"
+
+msgctxt "C50"
+msgid "[[ ${rows[3]} == Learning* && ${rows[4]} == Meetings*$'\\t'10$'\\t'50$'\\t'* ]] || { echo \"FAIL: the fourth card must be Learning and the fifth Meetings with total 50\"; echo \"$out\"; exit 1; }"
+msgstr "[[ ${rows[3]} == Aprendizaje* && ${rows[4]} == Reuniones*$'\\t'10$'\\t'50$'\\t'* ]] || { echo \"FAIL: the fourth card must be Aprendizaje and the fifth Reuniones with total 50\"; echo \"$out\"; exit 1; }"

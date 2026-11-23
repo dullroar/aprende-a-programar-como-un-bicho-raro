@@ -32,9 +32,9 @@ Los registros van a `$XDG_DATA_HOME/RegexPerl/demo-timecards.db` (valor predeter
 
 ```text
 # DEMO ONLY run 1794613174-17683
-Meetings	10	10	2026-W46	DEMO ONLY
-Coding	19	29	2026-W46	DEMO ONLY
-Debugging	16	45	2026-W46	DEMO ONLY
+Reuniones	10	10	2026-W46	DEMO ONLY
+Programación	19	29	2026-W46	DEMO ONLY
+Depuración	16	45	2026-W46	DEMO ONLY
 # committed total=45 entries=3 DEMO ONLY
 # the match now returns false, on purpose
 ```
@@ -82,18 +82,18 @@ Debajo de las líneas `use`, `timecards.pl` es una línea: una cadena de texto d
 | --- | --- |
 | `^(?{ ... })` | Inicializador: fija el estado inicial, crea el directorio temporal, inicia `sqlite3` en una tubería, crea la tabla (con una restricción `CHECK(demo_only=1)`) y abre una transacción |
 | `(?:  ...  )*` | El bucle. El cuantificador voraz de Perl es la iteración; la cadena de texto de andamiaje le da a cada pasada algo que consumir |
-| `(??{ $::t<=40 ? $::c[$::n] // '(*FAIL)' : '(*FAIL)' })` | La regla de parada y el selector de categoría en uno solo: entrega al motor el *nombre de la siguiente categoría como patrón*, o `(*FAIL)` en cuanto el total pasa de 40 o se acaban las categorías (hay cinco nombres: Meetings se repite, así que a cuatro tarjetas de 10 horas, un total de exactamente 40, les sigue una quinta). Una pasada fallida es lo que pone fin al cuantificador |
+| `(??{ $::t<=40 ? $::c[$::n] // '(*FAIL)' : '(*FAIL)' })` | La regla de parada y el selector de categoría en uno solo: entrega al motor el *nombre de la siguiente categoría como patrón*, o `(*FAIL)` en cuanto el total pasa de 40 o se acaban las categorías (hay cinco nombres: Reuniones se repite, así que a cuatro tarjetas de 10 horas, un total de exactamente 40, les sigue una quinta). Una pasada fallida es lo que pone fin al cuantificador |
 | `(?{ local $::t = ...; local $::n = ...; print ... })` | Una tarjeta de horas: sortea de 10 a 19, lo suma al total, avanza la categoría, envía un `INSERT` a SQLite e imprime la fila |
 | `(*COMMIT)` | Cuando el bucle termina, el retroceso no puede reintentar bucles más cortos (o el finalizador se ejecutaría más de una vez) |
 | `(?{ COMMIT; close; print ... })` | Finalizador: confirma la transacción de SQLite, cierra la tubería (lo que espera a que `sqlite3` termine) e imprime el resumen |
-| `[A-Za-z]*(?:(?(?{-t STDOUT})~(?{ frame }) \| (?!)))*` | El pulso: un fotograma por cada `~` al final del andamiaje, pero solo si stdout es una terminal (el condicional es un bloque de código), así que las tuberías y `check.sh` lo omiten |
+| `[A-Za-zÁÉÍÓÚáéíóúñ]*(?:(?(?{-t STDOUT})~(?{ frame }) \| (?!)))*` | El pulso: un fotograma por cada `~` al final del andamiaje, pero solo si stdout es una terminal (el condicional es un bloque de código), así que las tuberías y `check.sh` lo omiten |
 | `(*COMMIT)(?{ settle })(*FAIL)` | Borra el banner y luego hace la jugada característica: la coincidencia se rinde después de hacer todo el trabajo |
 
 `local` es la parte interesante. Perl deshace las asignaciones de `local` cuando el motor retrocede, así que el total acumulado y el contador de categorías se ajustan correctamente al retroceso, pero los `INSERT` y los `print` no se ajustan y no se pueden deshacer. El motor abandona la rama y los efectos secundarios quedan escritos. La transacción de SQLite es real y se confirma; lo que miente es la *coincidencia*.
 
 ## Qué impone `check.sh`
 
-`check.sh` comprueba que el archivo es de verdad una sola sentencia. Todo lo que no sea comentarios, líneas en blanco o líneas `use` debe ser una sola línea. Esa línea tiene exactamente una coincidencia de nivel superior y ninguna palabra clave de bucle fuera de los comentarios. A continuación se ejecuta el programa 25 veces. Cada ejecución debe imprimir la línea "returns false" y tantas filas como entradas tenga. Las horas deben ir de 10 a 19. No puede haber parada anticipada: el total debe terminar en más de 40. Debe haber de tres a cinco entradas y un total de 59 como máximo. También se ejecuta una copia del programa en la que cada tarjeta vale 10 horas. En ella se comprueba que un total de exactamente 40 continúa: cinco filas, la quinta `Meetings`, total 50. SQLite debe concordar con la salida, la base de datos debe contener 25 ejecuciones distintas y debe rechazarse una fila que no sea de demostración.
+`check.sh` comprueba que el archivo es de verdad una sola sentencia. Todo lo que no sea comentarios, líneas en blanco o líneas `use` debe ser una sola línea. Esa línea tiene exactamente una coincidencia de nivel superior y ninguna palabra clave de bucle fuera de los comentarios. A continuación se ejecuta el programa 25 veces. Cada ejecución debe imprimir la línea "returns false" y tantas filas como entradas tenga. Las horas deben ir de 10 a 19. No puede haber parada anticipada: el total debe terminar en más de 40. Debe haber de tres a cinco entradas y un total de 59 como máximo. También se ejecuta una copia del programa en la que cada tarjeta vale 10 horas. En ella se comprueba que un total de exactamente 40 continúa: cinco filas, la quinta `Reuniones`, total 50. SQLite debe concordar con la salida, la base de datos debe contener 25 ejecuciones distintas y debe rechazarse una fila que no sea de demostración.
 
 ## Trampas que conviene conocer
 

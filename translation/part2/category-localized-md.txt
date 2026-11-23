@@ -26,4 +26,5 @@ src/tcl/README.md
 src/tcl-weird/README.md
 src/ed-weird/README.md
 src/regex-pcre2grep/README.md
+src/regex-perl/README.md
 lessons/study-guides/languages/make-and-cmake.md
