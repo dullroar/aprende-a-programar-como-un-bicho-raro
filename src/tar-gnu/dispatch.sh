@@ -1,17 +1,17 @@
 #!/bin/sh
-# The whole interpreter that tar calls: once per regular member, with the member's bytes on stdin.
-# It owns NO loop, NO category order, NO dice and NO "when to stop" arithmetic. Those live in the archive:
-# member order, the cards' contents, and a `stop-over` member that carries the limit.
-# What it owns is the meaning of five words (begin, card, stop-over, show, and "anything else is an error").
-# Everything arrives from the archive, so everything is checked with a strict pattern before it is used.
+# Todo el intérprete que tar llama: una vez por miembro regular, con los bytes del miembro por la entrada estándar.
+# NO posee bucle, NI orden de categorías, NI dados, NI aritmética de "cuándo parar". Todo eso vive en el archivo:
+# el orden de los miembros, el contenido de las tarjetas y un miembro `stop-over` que lleva el límite.
+# Lo que sí posee es el significado de cinco palabras (begin, card, stop-over, show y "cualquier otra cosa es un error").
+# Todo llega del archivo, así que todo se comprueba con un patrón estricto antes de usarse.
 set -u
 db=${TARPROG_DB:?TARPROG_DB must name the demo database}
 name=${TAR_FILENAME-}
 size=${TAR_SIZE:-0}
 
-q() { sqlite3 "$db" "$@"; }   # persistence plumbing: one sqlite3 per member
-# A bad record fails closed. tar does NOT stop when this exits non-zero (it reports the status and goes on
-# with the next member), so the fault is also written to the database and every later member is refused.
+q() { sqlite3 "$db" "$@"; }   # fontanería de persistencia: un sqlite3 por miembro
+# Un registro malo falla en modo cerrado. tar NO se detiene cuando esto sale con un estado distinto de cero (informa del estado y sigue
+# con el siguiente miembro), así que el fallo también se escribe en la base de datos y todo miembro posterior se rechaza.
 refuse() {
     echo "tarprog: refused '$name': $1" >&2
     [ -f "$db" ] && q "insert into trace(name, outcome) values ('$(printf %s "$name" | tr -cd 'A-Za-z0-9._-')', 'refused: $1');
@@ -20,7 +20,7 @@ refuse() {
 }
 
 [ "$size" -le 256 ] 2>/dev/null || refuse "member bigger than 256 bytes"
-body=$(cat)   # tiny, by the check above
+body=$(cat)   # diminuto, por la comprobación anterior
 
 case $name in
     [0-9][0-9][0-9].begin|[0-9][0-9][0-9].card|[0-9][0-9][0-9].stop-over|[0-9][0-9][0-9].show) op=${name#???.} ;;
@@ -62,7 +62,7 @@ card)    # category=Name / hours=NN
         outcome=ok
     fi
     ;;
-stop-over)   # limit=N : halt the machine if the running total is above N
+stop-over)   # limit=N : detén la máquina si el total acumulado supera N
     lim=$(line 1); case $lim in limit=[0-9]|limit=[0-9][0-9]*) lim=${lim#limit=} ;; *) refuse "bad limit" ;; esac
     case $lim in *[!0-9]*) refuse "bad limit" ;; esac
     q "update runs set halted = 1 where id = (select max(id) from runs)

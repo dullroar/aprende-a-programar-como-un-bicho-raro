@@ -1,15 +1,15 @@
 #!/bin/sh
-# The serializer: writes program.tar, an ordinary tar archive whose members are the program.
+# El serializador: escribe program.tar, un archivo tar corriente cuyos miembros son el programa.
 #
 #   sh build-archive.sh [--seed N] [--hours "h1 h2 h3 h4 h5"] OUT.tar
 #
-# The archive says, in member order, what the interpreter must do:
+# El archivo dice, en el orden de los miembros, lo que debe hacer el intérprete:
 #   000.begin  010.card 011.stop-over  020.card 021.stop-over  ...  050.card 051.stop-over  990.show
-# The dice are rolled HERE, once, when the program is written down, from a seeded generator (Park-Miller).
-# The seed is recorded inside 000.begin, so the same seed always makes the same bytes.
-# --hours forces the five hour values (for tests). The archive has five card slots; at most five cards can
-# ever be needed (10+10+10+10 is 40, which does not exceed 40, so a fifth card always finishes the job).
-# Nothing here knows when to stop: that is the interpreter's job, driven by the stop-over members.
+# Los dados se tiran AQUÍ, una sola vez, al escribir el programa, con un generador con semilla (Park-Miller).
+# La semilla queda registrada dentro de 000.begin, así que la misma semilla produce siempre los mismos bytes.
+# --hours fuerza los cinco valores de horas (para pruebas). El archivo tiene cinco ranuras de tarjeta; como mucho se
+# necesitan cinco tarjetas (10+10+10+10 es 40, que no supera 40, así que una quinta tarjeta siempre termina el trabajo).
+# Aquí nada sabe cuándo parar: eso es trabajo del intérprete, guiado por los miembros stop-over.
 set -eu
 seed= hours=
 while [ $# -gt 1 ]; do
@@ -42,6 +42,6 @@ for c in $cats; do
 done
 : > "$stage/990.show"
 names="$names 990.show"
-# A fixed format, order, time and owner make the same program the same bytes.
+# Un formato, un orden, una hora y un propietario fijos hacen que el mismo programa dé los mismos bytes.
 # shellcheck disable=SC2086
 tar --format=ustar --mtime=@0 --owner=0 --group=0 --numeric-owner --mode=0644 -cf "$out" -C "$stage" $names

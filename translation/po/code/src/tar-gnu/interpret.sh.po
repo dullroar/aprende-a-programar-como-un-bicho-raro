@@ -1,0 +1,19 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+
+msgctxt "L2"
+msgid "# The executing interpreter: the one place where tar's --to-command is switched on."
+msgstr "# El intérprete que ejecuta: el único lugar donde se activa --to-command de tar."
+
+msgctxt "L6"
+msgid "# It must be asked twice (the flag AND the archive): reading an archive and running it are different acts."
+msgstr "# Hay que pedirlo dos veces (la opción Y el archivo): leer un archivo y ejecutarlo son actos distintos."
+
+msgctxt "L7"
+msgid "# First the passive inspector vets the whole archive. Only a clean verdict reaches tar. Then tar traverses"
+msgstr "# Primero el inspector pasivo examina todo el archivo. Solo un veredicto limpio llega a tar. Luego tar recorre"
+
+msgctxt "L8"
+msgid "# the members in order and hands each regular member to dispatch.sh. Nothing is extracted to disk."
+msgstr "# los miembros en orden y entrega cada miembro regular a dispatch.sh. No se extrae nada a disco."

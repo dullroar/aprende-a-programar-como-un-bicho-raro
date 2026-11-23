@@ -1,0 +1,11 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+
+msgctxt "L2"
+msgid "# The demo: write the program as a tar archive, show it three ways, then run it."
+msgstr "# La demo: escribe el programa como un archivo tar, lo muestra de tres maneras y luego lo ejecuta."
+
+msgctxt "L3"
+msgid "#   SEED=123 sh timecards.sh     replay one exact program"
+msgstr "#   SEED=123 sh timecards.sh     repite un programa exacto"

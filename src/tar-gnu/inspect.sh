@@ -1,12 +1,12 @@
 #!/bin/sh
-# The passive inspector. It reads the archive with `tar -t` and `tar -xO` (extract to standard output)
-# and prints what each member says. It never uses --to-command, never extracts to disk, never runs
-# anything it reads, and never opens the database. It has its own, separate check of the record
-# grammar (grep -E, not the case patterns in dispatch.sh); check.sh makes the two agree.
+# El inspector pasivo. Lee el archivo con `tar -t` y `tar -xO` (extraer a la salida estándar)
+# e imprime lo que dice cada miembro. Nunca usa --to-command, nunca extrae a disco, nunca ejecuta
+# nada de lo que lee y nunca abre la base de datos. Tiene su propia comprobación, separada, de la gramática
+# de los registros (grep -E, no los patrones case de dispatch.sh); check.sh hace que las dos coincidan.
 #
-#   sh inspect.sh ARCHIVE         exit 0: every member is one the interpreter accepts
-#                                 exit 4: some member would be refused (still shown, never run)
-set -uf   # -f: a member name with a * in it must never be expanded as a file pattern
+#   sh inspect.sh ARCHIVE         exit 0: todos los miembros son de los que el intérprete acepta
+#                                 exit 4: algún miembro sería rechazado (se muestra igual, nunca se ejecuta)
+set -uf   # -f: un nombre de miembro con un * nunca debe expandirse como patrón de archivos
 ar=${1:?usage: inspect.sh ARCHIVE}
 [ -f "$ar" ] || { echo "inspect: no such archive: $ar" >&2; exit 2; }
 echo "# inspector (passive: reads $ar, runs nothing from it)"
@@ -18,12 +18,12 @@ seq=0 bad=0
 while IFS= read -r name <&3 && IFS= read -r long <&4; do
     seq=$((seq + 1))
     type=file; case $long in -*) ;; d*) type=dir ;; l*) type=link ;; h*) type=hard ;; *) type=other ;; esac
-    # Nth occurrence of this name, so a duplicate name shows both members, in order.
+    # N-ésima aparición de este nombre, para que un nombre duplicado muestre ambos miembros, en orden.
     occ=$(head -n "$seq" "${TMPDIR:-/tmp}/inspect.$$.names" | grep -cxF -- "$name")
     body=
     if [ $type = file ]; then body=$(tar -xOf "$ar" --occurrence="$occ" -- "$name" | head -c 300); fi
     flat=$(printf '%s' "$body" | tr '\n' ' ' | tr -cd '[:print:]')
-    set -- $long; bytes=${3:-0}   # the size tar itself reports, not the length of the text
+    set -- $long; bytes=${3:-0}   # el tamaño que informa el propio tar, no la longitud del texto
     ln() { printf '%s\n' "$body" | sed -n "$1p"; }
     nl=$(printf '%s\n' "$body" | wc -l)
     verdict=ok

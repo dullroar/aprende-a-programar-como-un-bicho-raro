@@ -1,11 +1,11 @@
 #!/bin/sh
-# The executing interpreter: the one place where tar's --to-command is switched on.
+# El intérprete que ejecuta: el único lugar donde se activa --to-command de tar.
 #
 #   sh interpret.sh --execute ARCHIVE
 #
-# It must be asked twice (the flag AND the archive): reading an archive and running it are different acts.
-# First the passive inspector vets the whole archive. Only a clean verdict reaches tar. Then tar traverses
-# the members in order and hands each regular member to dispatch.sh. Nothing is extracted to disk.
+# Hay que pedirlo dos veces (la opción Y el archivo): leer un archivo y ejecutarlo son actos distintos.
+# Primero el inspector pasivo examina todo el archivo. Solo un veredicto limpio llega a tar. Luego tar recorre
+# los miembros en orden y entrega cada miembro regular a dispatch.sh. No se extrae nada a disco.
 set -u
 here=$(cd "$(dirname "$0")" && pwd)
 [ "${1:-}" = --execute ] && [ $# -eq 2 ] || { echo "usage: interpret.sh --execute ARCHIVE   (this RUNS the archive; use inspect.sh to just read it)" >&2; exit 2; }

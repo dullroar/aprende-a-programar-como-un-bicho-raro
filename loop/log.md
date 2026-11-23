@@ -423,3 +423,4 @@
 471 S5-fam-ed-weird done src/ed-weird localizing: 40 comment lines (timecards.ed, timecards.sh, check.sh, Dockerfile) via loc_apply, oracle PASS; categories/strings kept English EXC-582.
 472 S5-fam-ex-weird done src/ex-weird localizing: 47 comment lines (timecards.ex, timecards.sh, check.sh, Dockerfile) via loc_apply, oracle PASS; categories/strings kept English EXC-583.
 473 S5-fam-regex-sed done src/regex-sed localizing: 25 comment lines (timecards.sed, timecards.sh, check.sh, Dockerfile) via loc_apply, oracle PASS; categories/strings kept English EXC-584.
+474 S5-fam-tar-gnu done src/tar-gnu localizing: 57 comment lines (7 files) via loc_apply, oracle PASS; categories/strings kept English EXC-585.

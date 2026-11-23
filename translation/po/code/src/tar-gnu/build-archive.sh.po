@@ -1,0 +1,35 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+
+msgctxt "L2"
+msgid "# The serializer: writes program.tar, an ordinary tar archive whose members are the program."
+msgstr "# El serializador: escribe program.tar, un archivo tar corriente cuyos miembros son el programa."
+
+msgctxt "L6"
+msgid "# The archive says, in member order, what the interpreter must do:"
+msgstr "# El archivo dice, en el orden de los miembros, lo que debe hacer el intérprete:"
+
+msgctxt "L8"
+msgid "# The dice are rolled HERE, once, when the program is written down, from a seeded generator (Park-Miller)."
+msgstr "# Los dados se tiran AQUÍ, una sola vez, al escribir el programa, con un generador con semilla (Park-Miller)."
+
+msgctxt "L9"
+msgid "# The seed is recorded inside 000.begin, so the same seed always makes the same bytes."
+msgstr "# La semilla queda registrada dentro de 000.begin, así que la misma semilla produce siempre los mismos bytes."
+
+msgctxt "L10"
+msgid "# --hours forces the five hour values (for tests). The archive has five card slots; at most five cards can"
+msgstr "# --hours fuerza los cinco valores de horas (para pruebas). El archivo tiene cinco ranuras de tarjeta; como mucho se"
+
+msgctxt "L11"
+msgid "# ever be needed (10+10+10+10 is 40, which does not exceed 40, so a fifth card always finishes the job)."
+msgstr "# necesitan cinco tarjetas (10+10+10+10 es 40, que no supera 40, así que una quinta tarjeta siempre termina el trabajo)."
+
+msgctxt "L12"
+msgid "# Nothing here knows when to stop: that is the interpreter's job, driven by the stop-over members."
+msgstr "# Aquí nada sabe cuándo parar: eso es trabajo del intérprete, guiado por los miembros stop-over."
+
+msgctxt "L45"
+msgid "# A fixed format, order, time and owner make the same program the same bytes."
+msgstr "# Un formato, un orden, una hora y un propietario fijos hacen que el mismo programa dé los mismos bytes."

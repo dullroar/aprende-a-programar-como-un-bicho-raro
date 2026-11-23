@@ -1,0 +1,43 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+
+msgctxt "L2"
+msgid "# The whole interpreter that tar calls: once per regular member, with the member's bytes on stdin."
+msgstr "# Todo el intérprete que tar llama: una vez por miembro regular, con los bytes del miembro por la entrada estándar."
+
+msgctxt "L3"
+msgid "# It owns NO loop, NO category order, NO dice and NO \"when to stop\" arithmetic. Those live in the archive:"
+msgstr "# NO posee bucle, NI orden de categorías, NI dados, NI aritmética de \"cuándo parar\". Todo eso vive en el archivo:"
+
+msgctxt "L4"
+msgid "# member order, the cards' contents, and a `stop-over` member that carries the limit."
+msgstr "# el orden de los miembros, el contenido de las tarjetas y un miembro `stop-over` que lleva el límite."
+
+msgctxt "L5"
+msgid "# What it owns is the meaning of five words (begin, card, stop-over, show, and \"anything else is an error\")."
+msgstr "# Lo que sí posee es el significado de cinco palabras (begin, card, stop-over, show y \"cualquier otra cosa es un error\")."
+
+msgctxt "L6"
+msgid "# Everything arrives from the archive, so everything is checked with a strict pattern before it is used."
+msgstr "# Todo llega del archivo, así que todo se comprueba con un patrón estricto antes de usarse."
+
+msgctxt "L12"
+msgid "# persistence plumbing: one sqlite3 per member"
+msgstr "# fontanería de persistencia: un sqlite3 por miembro"
+
+msgctxt "L13"
+msgid "# A bad record fails closed. tar does NOT stop when this exits non-zero (it reports the status and goes on"
+msgstr "# Un registro malo falla en modo cerrado. tar NO se detiene cuando esto sale con un estado distinto de cero (informa del estado y sigue"
+
+msgctxt "L14"
+msgid "# with the next member), so the fault is also written to the database and every later member is refused."
+msgstr "# con el siguiente miembro), así que el fallo también se escribe en la base de datos y todo miembro posterior se rechaza."
+
+msgctxt "L23"
+msgid "# tiny, by the check above"
+msgstr "# diminuto, por la comprobación anterior"
+
+msgctxt "L65"
+msgid "# limit=N : halt the machine if the running total is above N"
+msgstr "# limit=N : detén la máquina si el total acumulado supera N"

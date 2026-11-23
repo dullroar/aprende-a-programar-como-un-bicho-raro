@@ -1,6 +1,6 @@
 #!/bin/sh
-# The demo: write the program as a tar archive, show it three ways, then run it.
-#   SEED=123 sh timecards.sh     replay one exact program
+# La demo: escribe el programa como un archivo tar, lo muestra de tres maneras y luego lo ejecuta.
+#   SEED=123 sh timecards.sh     repite un programa exacto
 set -eu
 here=$(cd "$(dirname "$0")" && pwd)
 data=${XDG_DATA_HOME:-$HOME/.local/share}/TarGnu

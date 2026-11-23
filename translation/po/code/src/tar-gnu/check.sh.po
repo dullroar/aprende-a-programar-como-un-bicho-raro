@@ -1,0 +1,87 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+
+msgctxt "L2"
+msgid "# Checks the rules of the challenge for the GNU tar entry: the program really is the archive, the inspector"
+msgstr "# Comprueba las reglas del reto para la entrada de GNU tar: el programa de verdad es el archivo, el inspector"
+
+msgctxt "L3"
+msgid "# is passive, the interpreter fails closed, and the four kinds of \"same\" are kept apart. Uses throwaway dirs."
+msgstr "# es pasivo, el intérprete falla en modo cerrado y los cuatro tipos de \"lo mismo\" se mantienen separados. Usa directorios desechables."
+
+msgctxt "L13"
+msgid "# ---- 1. The ridiculous constraint is real: tar owns the loop; the dispatcher owns none of the algorithm."
+msgstr "# ---- 1. La restricción ridícula es real: tar posee el bucle; el despachador no posee nada del algoritmo."
+
+msgctxt "L24"
+msgid "# ---- helpers"
+msgstr "# ---- auxiliares"
+
+msgctxt "L27"
+msgid "# hours... -> the rows an independent simulation says the program must print (category, hours, total)"
+msgstr "# horas... -> las filas que una simulación independiente dice que el programa debe imprimir (categoría, horas, total)"
+
+msgctxt "L32"
+msgid "# label output"
+msgstr "# etiqueta salida"
+
+msgctxt "L47"
+msgid "# OUT member:content ... : a hand-made archive, members in the order given (\"\\n\" in content = newline)"
+msgstr "# OUT miembro:contenido ... : un archivo hecho a mano, con los miembros en el orden dado (\"\\n\" en el contenido = salto de línea)"
+
+msgctxt "L53"
+msgid "# ---- 2. Random runs through the whole demo; every rule of the challenge."
+msgstr "# ---- 2. Ejecuciones aleatorias de toda la demo; cada regla del reto."
+
+msgctxt "L68"
+msgid "# ---- 3. Forced dice: exact scenarios, predicted by an independent simulation."
+msgstr "# ---- 3. Dados forzados: escenarios exactos, predichos por una simulación independiente."
+
+msgctxt "L75"
+msgid "# the cards after the stop were read from the archive and ignored"
+msgstr "# las tarjetas posteriores a la parada se leyeron del archivo y se ignoraron"
+
+msgctxt "L82"
+msgid "# ---- 4. Four different kinds of \"the same\"."
+msgstr "# ---- 4. Cuatro tipos distintos de \"lo mismo\"."
+
+msgctxt "L90"
+msgid "# state: what the inspector decodes is what the database holds"
+msgstr "# estado: lo que decodifica el inspector es lo que guarda la base de datos"
+
+msgctxt "L96"
+msgid "# not idempotent: a second run into the same database is a second run, with the same cards"
+msgstr "# no es idempotente: una segunda ejecución sobre la misma base de datos es una segunda ejecución, con las mismas tarjetas"
+
+msgctxt "L102"
+msgid "# ---- 5. The inspector and the interpreter agree on structure, and the dispatcher saw exactly what was listed."
+msgstr "# ---- 5. El inspector y el intérprete coinciden en la estructura, y el despachador vio exactamente lo que se listó."
+
+msgctxt "L110"
+msgid "# ---- 6. Passive consumers: listing, plain extraction and inspection run nothing."
+msgstr "# ---- 6. Consumidores pasivos: listar, extraer sin más e inspeccionar no ejecutan nada."
+
+msgctxt "L124"
+msgid "# ---- 7. The interpreter fails closed."
+msgstr "# ---- 7. El intérprete falla en modo cerrado."
+
+msgctxt "L129"
+msgid "# Defense in depth: skip the preflight and hand tar the hostile archive directly. tar keeps going after a failing"
+msgstr "# Defensa en profundidad: saltarse la verificación previa y pasarle a tar el archivo hostil directamente. tar sigue tras un"
+
+msgctxt "L130"
+msgid "# child, so the dispatcher itself must refuse everything after the first bad record."
+msgstr "# hijo que falla, así que el propio despachador debe rechazar todo lo que venga después del primer registro malo."
+
+msgctxt "L140"
+msgid "# Each kind of bad member, run alone behind a good begin: the dispatcher must refuse it."
+msgstr "# Cada tipo de miembro malo, ejecutado solo detrás de un begin bueno: el despachador debe rechazarlo."
+
+msgctxt "L157"
+msgid "# a member that is not a regular file never reaches the dispatcher, and the inspector flags it"
+msgstr "# un miembro que no es un archivo regular nunca llega al despachador, y el inspector lo marca"
+
+msgctxt "L163"
+msgid "# ---- 8. The database refuses what the schema forbids, whoever asks."
+msgstr "# ---- 8. La base de datos rechaza lo que el esquema prohíbe, sea quien sea quien lo pida."

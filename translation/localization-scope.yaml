@@ -64,7 +64,7 @@ families:
   "src/regex-pcre2grep": {status: localizing, files: 3}
   "src/regex-perl": {status: localizing, files: 3}
   "src/regex-sed": {status: localizing, files: 5}
-  "src/tar-gnu": {status: frozen, files: 7}
+  "src/tar-gnu": {status: localizing, files: 7}
   "src/tar-gnu-weird": {status: frozen, files: 8}
   "src/tcl": {status: localizing, files: 3}
   "src/tcl-weird": {status: localizing, files: 3}

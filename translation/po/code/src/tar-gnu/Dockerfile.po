@@ -1,0 +1,15 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+
+msgctxt "L1"
+msgid "# Container image for the GNU tar entry. Run it with: sandbox/container/run-image.sh src/tar-gnu"
+msgstr "# Imagen de contenedor para la entrada de GNU tar. Ejecútala con: sandbox/container/run-image.sh src/tar-gnu"
+
+msgctxt "L2"
+msgid "# The program is a tar archive; GNU tar (from the Ubuntu base) walks it and calls dispatch.sh once per member."
+msgstr "# El programa es un archivo tar; GNU tar (de la base de Ubuntu) lo recorre y llama a dispatch.sh una vez por miembro."
+
+msgctxt "L3"
+msgid "# The base adds sqlite3 only. check.sh is for your own machine; the image runs the demo."
+msgstr "# La base solo añade sqlite3. check.sh es para tu propia máquina; la imagen ejecuta la demo."

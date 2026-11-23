@@ -1,0 +1,39 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+
+msgctxt "L2"
+msgid "# The passive inspector. It reads the archive with `tar -t` and `tar -xO` (extract to standard output)"
+msgstr "# El inspector pasivo. Lee el archivo con `tar -t` y `tar -xO` (extraer a la salida estándar)"
+
+msgctxt "L3"
+msgid "# and prints what each member says. It never uses --to-command, never extracts to disk, never runs"
+msgstr "# e imprime lo que dice cada miembro. Nunca usa --to-command, nunca extrae a disco, nunca ejecuta"
+
+msgctxt "L4"
+msgid "# anything it reads, and never opens the database. It has its own, separate check of the record"
+msgstr "# nada de lo que lee y nunca abre la base de datos. Tiene su propia comprobación, separada, de la gramática"
+
+msgctxt "L5"
+msgid "# grammar (grep -E, not the case patterns in dispatch.sh); check.sh makes the two agree."
+msgstr "# de los registros (grep -E, no los patrones case de dispatch.sh); check.sh hace que las dos coincidan."
+
+msgctxt "L7"
+msgid "#   sh inspect.sh ARCHIVE         exit 0: every member is one the interpreter accepts"
+msgstr "#   sh inspect.sh ARCHIVE         exit 0: todos los miembros son de los que el intérprete acepta"
+
+msgctxt "L8"
+msgid "#                                 exit 4: some member would be refused (still shown, never run)"
+msgstr "#                                 exit 4: algún miembro sería rechazado (se muestra igual, nunca se ejecuta)"
+
+msgctxt "L9"
+msgid "# -f: a member name with a * in it must never be expanded as a file pattern"
+msgstr "# -f: un nombre de miembro con un * nunca debe expandirse como patrón de archivos"
+
+msgctxt "L21"
+msgid "# Nth occurrence of this name, so a duplicate name shows both members, in order."
+msgstr "# N-ésima aparición de este nombre, para que un nombre duplicado muestre ambos miembros, en orden."
+
+msgctxt "L26"
+msgid "# the size tar itself reports, not the length of the text"
+msgstr "# el tamaño que informa el propio tar, no la longitud del texto"
