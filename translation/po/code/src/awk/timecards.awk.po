@@ -12,11 +12,11 @@ msgstr "# XDG_DATA_HOME. Nada de esto toca un sistema real de registro de horas.
 
 msgctxt "L7"
 msgid "# The challenge: add cards of 10-19 hours (Meetings, Coding, Debugging,"
-msgstr "# El reto: suma tarjetas de 10 a 19 horas (Meetings, Coding, Debugging,"
+msgstr "# El reto: suma tarjetas de 10 a 19 horas (Reuniones, Programación, Depuración,"
 
 msgctxt "L8"
 msgid "# Learning, round and round) until the running total passes 40.  Portable"
-msgstr "# Learning, una tras otra) hasta que el total acumulado pase de 40.  awk POSIX"
+msgstr "# Aprendizaje, una tras otra) hasta que el total acumulado pase de 40.  awk POSIX"
 
 msgctxt "L9"
 msgid "# POSIX awk: it runs unchanged under gawk, mawk, the one-true-awk and"
@@ -77,3 +77,7 @@ msgstr "# El reto.  La prueba se hace antes de cada sorteo, así que la tarjeta 
 msgctxt "L92"
 msgid "# crosses the line is the last one added."
 msgstr "# cruza la línea es la última que se suma."
+
+msgctxt "C67"
+msgid "    split(\"Meetings Coding Debugging Learning\", CATEGORY, \" \")"
+msgstr "    split(\"Reuniones Programación Depuración Aprendizaje\", CATEGORY, \" \")"

@@ -34,16 +34,16 @@ Los registros van a `$XDG_DATA_HOME/Awk/demo-timecards.db` (por defecto `~/.loca
 
 ```text
 # DEMO ONLY run 1794861273-1655779341
-Meetings	19	19	2026-W47	DEMO ONLY
-Coding	17	36	2026-W47	DEMO ONLY
-Debugging	10	46	2026-W47	DEMO ONLY
+Reuniones	19	19	2026-W47	DEMO ONLY
+Programación	17	36	2026-W47	DEMO ONLY
+Depuración	10	46	2026-W47	DEMO ONLY
 # committed total=46 entries=3 DEMO ONLY
 # a BEGIN-only awk program: arrays, a pipe to sqlite3, and fields rebuilding each row
 ```
 
 ## Qué hace
 
-Saca tarjetas de 10 a 19 horas y recorre en ciclo Meetings, Coding, Debugging y Learning hasta que el total acumulado pasa de 40 (se conserva la tarjeta que cruza la línea); imprime cada fila y guarda todas en SQLite en una sola transacción.
+Saca tarjetas de 10 a 19 horas y recorre en ciclo Reuniones, Programación, Depuración y Aprendizaje hasta que el total acumulado pasa de 40 (se conserva la tarjeta que cruza la línea); imprime cada fila y guarda todas en SQLite en una sola transacción.
 
 ## Flujo del programa
 
@@ -70,7 +70,7 @@ Un programa AWK es una lista de reglas `pattern { action }` que se ejecutan una 
 1. **Funciones con variables locales en la lista de parámetros.** AWK no tiene sintaxis para variables locales: los parámetros extra *son* las locales, y por convención se escriben después de un espacio (`function command_line(command,    line)`). Toda variable que no está en la lista es global; por eso los parámetros de una función no deben reutilizar los nombres que usa el bloque `BEGIN`. `gawk --lint` avisa de ese problema y `check.sh` ejecuta esa revisión.
 2. **`command_line`: un comando como fuente de datos.** `command | getline line` ejecuta un comando del intérprete de comandos (*shell*), el programa que recibe y ejecuta comandos escritos como texto, y lee la primera línea de su salida; necesitas `close(command)` antes de poder ejecutarlo otra vez.
 3. **`random_hours`.** `rand()` está en `[0, 1)`, así que `int(rand() * 10)` va de 0 a 9 y `HOURS_MIN + ...` lo deja de 10 a 19. La semilla viene de `/dev/urandom` mediante `od` y va a `srand`: sin eso, `rand()` se repite en la mayoría de las implementaciones de AWK.
-4. **Arreglos.** `split("Meetings Coding Debugging Learning", CATEGORY, " ")` llena un arreglo indexado desde **1**. `CATEGORY[cards++ % 4 + 1]` elige la siguiente tarjeta y la cuenta en la misma expresión.
+4. **Arreglos.** `split("Reuniones Programación Depuración Aprendizaje", CATEGORY, " ")` llena un arreglo indexado desde **1**. `CATEGORY[cards++ % 4 + 1]` elige la siguiente tarjeta y la cuenta en la misma expresión.
 5. **El reto.**
    ```awk
    while (total <= LIMIT) {
