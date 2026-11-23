@@ -221,5 +221,72 @@ class Reports(unittest.TestCase):
         self.assertIn('"broken": 1', la.report_json(fs))
 
 
+SRC_OLD = "line one\nline two\n  total > 40 then stop\nline four\n"
+SRC_SHIFTED = "line one\nline two\nan inserted line\n  total > 40 then stop\nline four\n"
+LINK = {"README.md": "See [the test](src/x.hs#L3).\n"}
+REC = {"path": "src/x.hs", "start": 3, "end": 3, "expect": "total > 40", "meaning": "the stop test", "basis": "reviewed"}
+
+
+class SemanticAnchors(unittest.TestCase):
+    def run_md(self, src, records, link=None):
+        files = dict(link or LINK)
+        return la.audit_markdown(files, {**files, "src/x.hs": src}, REPO, WRONG, records)
+
+    def test_control_line_shows_the_mapped_statement(self):
+        fs = self.run_md(SRC_OLD, [REC])
+        self.assertEqual(kinds(fs), [])
+        self.assertEqual(kinds(fs, la.UNVERIFIED), [])
+
+    def test_planted_shift_is_caught_though_the_line_exists(self):
+        fs = self.run_md(SRC_SHIFTED, [REC])
+        self.assertEqual(kinds(fs), ["line-anchor-meaning"])
+        self.assertIn("an inserted line", fs[0]["reason"])
+
+    def test_whitespace_change_is_not_a_shift(self):
+        self.assertEqual(kinds(self.run_md("a\nb\n total   >  40 then stop\n", [REC])), [])
+
+    def test_range_anchor_needs_its_own_record(self):
+        link = {"README.md": "[r](src/x.hs#L2-L3)\n"}
+        fs = self.run_md(SRC_OLD, [REC], link)
+        self.assertEqual(kinds(fs), [])
+        self.assertEqual(kinds(fs, la.UNVERIFIED), ["line-anchor-unmapped"])
+        rec = dict(REC, start=2, end=3, expect="line two total > 40")
+        self.assertEqual(kinds(self.run_md(SRC_OLD, [rec], link)), [])
+        self.assertEqual(kinds(self.run_md(SRC_SHIFTED, [rec], link)), ["line-anchor-meaning"])
+
+    def test_unmapped_is_unverified_once_per_file_never_green(self):
+        link = {"README.md": "[a](src/x.hs#L1) [b](src/x.hs#L2)\n"}
+        fs = self.run_md(SRC_OLD, [], link)
+        self.assertEqual(kinds(fs), [])
+        self.assertEqual(kinds(fs, la.UNVERIFIED), ["line-anchor-unmapped"])
+        self.assertIn("2 line-anchor", fs[0]["reason"])
+
+    def test_map_off_skips_the_semantic_check(self):
+        files = dict(LINK)
+        fs = la.audit_markdown(files, {**files, "src/x.hs": SRC_SHIFTED}, REPO, WRONG)
+        self.assertEqual(fs, [])
+
+    def test_past_the_end_still_fails_first(self):
+        self.assertEqual(kinds(self.run_md("a\n", [REC])), ["line-anchor"])
+
+    def test_seed_records_what_the_lines_show_and_keeps_old_records(self):
+        files = dict(LINK)
+        tree = {**files, "src/x.hs": SRC_OLD}
+        recs = la.seed_anchor_records(files, tree)
+        self.assertEqual([(r["path"], r["start"], r["expect"], r["basis"]) for r in recs],
+                         [("src/x.hs", 3, "total > 40 then stop", "seeded")])
+        kept = la.seed_anchor_records(files, tree, [REC])
+        self.assertEqual(kept, [REC])
+        self.assertEqual(kinds(self.run_md(SRC_OLD, recs)), [])
+        self.assertEqual(kinds(self.run_md(SRC_SHIFTED, recs)), ["line-anchor-meaning"])
+
+    def test_loc_apply_count_records_are_not_anchor_records(self):
+        with tempfile.TemporaryDirectory() as d:
+            p = os.path.join(d, "a.jsonl")
+            with open(p, "w", encoding="utf-8") as f:
+                f.write('{"path": "a", "old_lines": 3, "new_lines": 4}\n')
+            self.assertEqual(la.load_anchor_map(p), [])
+
+
 if __name__ == "__main__":
     unittest.main()

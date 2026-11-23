@@ -150,3 +150,8 @@
 - Decision: "planned" means the Appendix A.2 rows that have a detector now (16 fixtures over 11 rows). Rows 10 (workflow and scope-check allowlist review), 12 (Part II idempotence gate) and 14 (tools/impact.py) print as DEFERRED and are not counted as passed.
 - Alternative: fail the run until all 14 rows exist. Rejected: it would block the queue on tools owned by later tasks.
 - Cost to reverse: add a fixture per deferred row in tools/part2_negative.py when its detector lands.
+
+## S3-002 line-anchor map seeded from current text
+- Decision: translation/line-anchors.jsonl was seeded (basis `seeded`, 144 records) with the text each `#Lnn` link shows at rc1; this guards against shifts, not against a link that was already wrong. A human review upgrades a record to basis `reviewed` and a real meaning. Links with no record are `unverified` (one finding per file), never green.
+- Alternative: hand-write a meaning for all 144 now. Rejected: no judgement available unattended, and it would claim a review that did not happen.
+- Cost to reverse: edit records; keys are the working path of the target file.

@@ -467,6 +467,8 @@ def run_release(root=ROOT, gates=True):
                 if rel is not None and rel not in set(files):
                     bad.append("I16 %s: PO file for a file that is not an authored Markdown file (orphan PO)" % rel)
     results.append(Result("authored files (%d) with PO" % len(files), bad, time.time() - t0))
+    import link_audit
+    results.append(timed("line anchors (file and meaning)", link_audit.anchor_problems, root))
     results.append(timed("negative fixtures (plan 10.2)", negative_problems))
     for p in ("translation/exception-register.jsonl", "translation/humor-register.jsonl"):
         if os.path.isfile(os.path.join(root, p)):
