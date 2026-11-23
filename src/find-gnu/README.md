@@ -23,9 +23,9 @@ Este es el mismo truco que [`find-posix`](../find-posix/README.md): un `find`, y
 
 ```
 # DEMO ONLY run 1
-Meetings	13	13	2026-W47	DEMO ONLY
-Coding	19	32	2026-W47	DEMO ONLY
-Debugging	12	44	2026-W47	DEMO ONLY
+Reuniones	13	13	2026-W47	DEMO ONLY
+Programación	19	32	2026-W47	DEMO ONLY
+Depuración	12	44	2026-W47	DEMO ONLY
 # committed total=44 entries=3 DEMO ONLY
 Runtime error near line 12: CHECK constraint failed: stop rule fired: total exceeds 40 (19)
 ```

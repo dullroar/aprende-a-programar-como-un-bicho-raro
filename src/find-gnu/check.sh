@@ -45,9 +45,9 @@ dir=${2%XXXXXX}$name
 mkdir "$dir" && printf '%s\n' "$dir"
 EOF
 chmod +x "$shim/mktemp.fake"
-cats=(Meetings Coding Debugging Learning Meetings)
+cats=(Reuniones Programación Depuración Aprendizaje Reuniones)
 dice_char=(a g m s y 4 A G M S)   # primer carácter de cada grupo de seis: horas 10..19
-rows() { grep -E $'^(Meetings|Coding|Debugging|Learning)\t' <<<"$1" || true; }
+rows() { grep -E $'^(Reuniones|Programación|Depuración|Aprendizaje)\t' <<<"$1" || true; }
 
 # validate LABEL OUTPUT: filas sensatas, parada exacta, semana ISO correcta, SQLite de acuerdo.
 validate() {
@@ -58,7 +58,7 @@ validate() {
     total=$(sed -E 's/.*total=([0-9]+).*/\1/' <<<"$commit"); entries=$(sed -E 's/.*entries=([0-9]+).*/\1/' <<<"$commit")
     r=$(rows "$out")
     awk -F'\t' -v total="$total" -v entries="$entries" -v w1="$w1" -v w2="$w2" '
-        BEGIN { split("Meetings Coding Debugging Learning Meetings", want, " ") }
+        BEGIN { split("Reuniones Programación Depuración Aprendizaje Reuniones", want, " ") }
         { n++; if ($1 != want[n]) { print "category " $1 " at row " n; exit 1 }
           if ($2 < 10 || $2 > 19) { print "hours out of range: " $0; exit 1 }
           if ($3 != prev + $2) { print "bad running total: " $0; exit 1 }

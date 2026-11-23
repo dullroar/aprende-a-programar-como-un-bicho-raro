@@ -45,11 +45,11 @@ rule_start = "-path t " + MK
 # 2. los dados de una tarjeta: abre la fila, nombra la categoría, imprime las horas, cava la cuenta atrás.
 #    El directorio de los dados es la hora 1, así que una tarjeta de H horas cava b(H-2) ... b00.
 category = alt([
-    "-regex " + cards(5) + " " + out("'Meetings',"),
-    "-regex " + cards(4) + " " + out("'Learning',"),
-    "-regex " + cards(3) + " " + out("'Debugging',"),
-    "-regex " + cards(2) + " " + out("'Coding',"),
-    out("'Meetings',"),
+    "-regex " + cards(5) + " " + out("'Reuniones',"),
+    "-regex " + cards(4) + " " + out("'Aprendizaje',"),
+    "-regex " + cards(3) + " " + out("'Depuración',"),
+    "-regex " + cards(2) + " " + out("'Programación',"),
+    out("'Reuniones',"),
 ])
 
 

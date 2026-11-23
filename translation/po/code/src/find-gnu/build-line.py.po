@@ -53,3 +53,23 @@ msgstr "#    -quit terminaría find antes, pero entonces find omite su perfil -D
 msgctxt "L73"
 msgid "# 4. a countdown: b17 digs b16, and so on"
 msgstr "# 4. una cuenta atrás: b17 cava b16, y así sucesivamente"
+
+msgctxt "C48"
+msgid "    \"-regex \" + cards(5) + \" \" + out(\"'Meetings',\"),"
+msgstr "    \"-regex \" + cards(5) + \" \" + out(\"'Reuniones',\"),"
+
+msgctxt "C49"
+msgid "    \"-regex \" + cards(4) + \" \" + out(\"'Learning',\"),"
+msgstr "    \"-regex \" + cards(4) + \" \" + out(\"'Aprendizaje',\"),"
+
+msgctxt "C50"
+msgid "    \"-regex \" + cards(3) + \" \" + out(\"'Debugging',\"),"
+msgstr "    \"-regex \" + cards(3) + \" \" + out(\"'Depuración',\"),"
+
+msgctxt "C51"
+msgid "    \"-regex \" + cards(2) + \" \" + out(\"'Coding',\"),"
+msgstr "    \"-regex \" + cards(2) + \" \" + out(\"'Programación',\"),"
+
+msgctxt "C52"
+msgid "    out(\"'Meetings',\"),"
+msgstr "    out(\"'Reuniones',\"),"

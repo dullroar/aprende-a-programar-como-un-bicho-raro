@@ -53,3 +53,15 @@ msgstr "# 4. find se perfila a sí mismo: FIND_D=rates imprime la tasa real de �
 msgctxt "L124"
 msgid "# 5. The demo_only CHECK constraint is real: a non-demo row must be refused."
 msgstr "# 5. La restricción CHECK demo_only es real: una fila que no sea de demostración debe rechazarse."
+
+msgctxt "C48"
+msgid "cats=(Meetings Coding Debugging Learning Meetings)"
+msgstr "cats=(Reuniones Programación Depuración Aprendizaje Reuniones)"
+
+msgctxt "C50"
+msgid "rows() { grep -E $'^(Meetings|Coding|Debugging|Learning)\\t' <<<\"$1\" || true; }"
+msgstr "rows() { grep -E $'^(Reuniones|Programación|Depuración|Aprendizaje)\\t' <<<\"$1\" || true; }"
+
+msgctxt "C61"
+msgid "        BEGIN { split(\"Meetings Coding Debugging Learning Meetings\", want, \" \") }"
+msgstr "        BEGIN { split(\"Reuniones Programación Depuración Aprendizaje Reuniones\", want, \" \") }"
