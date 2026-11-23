@@ -139,3 +139,9 @@
 - Decision: 8 tests in lessons/book/test_cs.py and test_study_guides.py are marked `@english_only`. They edit or read English text under English file names, so they skip in the Spanish checkout and run in the English layer, which `tools/scratch_proof.py --tests` builds. That tool fails if a marked test skips there. Verified after P6-002: `scratch_proof.py --tests` PASS (test_cs, test_study_guides and the other modules OK).
 - Alternative: rewrite each test for the Spanish names and text. Larger change, and the English layer already proves the same behaviour.
 - Cost to reverse: remove the decorator and port the tests.
+
+## Iteration 400: token registry extracts only Python and JavaScript (S1-002)
+
+- Decision: only languages with real introspection on this host get tokens: CPython 3.12.3 (`keyword`, `builtins`) and the host Node v24.15.0 (compile probe). The other 21 observed languages get `not-extracted` records (reason, zero tokens, NOT TESTED). Pinned-spec files in `translation/protected-tokens/specs/<language>.txt` are supported by the tool but none exist, because writing one from memory is forbidden. The host Node (24.15.0) differs from the sandbox's pinned 24.22.3; rerun `--write` in the container to pin it.
+- Alternative: hand-write keyword lists. Rejected (plan: never from model memory).
+- Cost to reverse: add spec files or extractors per language, then `--write`; S1-003 onward may extend.
