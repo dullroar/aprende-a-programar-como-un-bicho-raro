@@ -63,3 +63,7 @@ New in Part II: `tools/loc_map.py`, `loc_apply.py`, `oracle.py`, `part2_inv.py`,
 - 26 source issues in `translation/source-issues.md`, including SI-027 (two unfenced tokens kept as in English).
 - Part II comments in the 30 localized families (sentence length, register).
 - The Spanish editorial feedback already in `review/inbox/chatgpt-editorial-2026-11-20.md`.
+
+## Follow-up (F2, category localization, iteration 534)
+
+After the rc2 gate, decision 11 was applied per family (F2-003 to F2-007). Most families now use `Reuniones`, `Programación`, `Depuración`, `Aprendizaje` (oracle PASS, one form per file). Six were left English, NOT TESTED, because accents break `[A-Za-z]` regexes: ed-weird (EXC-588), ex-weird (EXC-589), regex-pcre2grep (EXC-590), regex-perl (EXC-591), regex-sed (EXC-592), tar-gnu (EXC-593). The earlier statement that category words stayed English everywhere is superseded. F2-008 re-anchored three line-anchor records (awk-weird 17-18, cobol 48-55, lisp-weird 44-46) and regenerated `anchors.json`; `verify --release --no-gates` passes. Reports: `translation/part2/reports/F2-*-categories.md`. The English gates were not run.
