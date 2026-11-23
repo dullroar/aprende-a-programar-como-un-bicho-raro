@@ -1,0 +1,51 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+
+msgctxt "L2"
+msgid "# Checks the rules of the challenge for the Node.js port: the loop body is really empty, the program is nothing but"
+msgstr "# Comprueba las reglas del reto para la versión de Node.js: el cuerpo del bucle está de verdad vacío, el programa no es más que"
+
+msgctxt "L3"
+msgid "# that one for statement, the time cards obey the rules, a seed replays a run, the ISO week is right, and the terminal"
+msgstr "# esa única sentencia for, las tarjetas de horas cumplen las reglas, una semilla reproduce una ejecución, la semana ISO es correcta y el pulso de la terminal"
+
+msgctxt "L4"
+msgid "# pulse stays out of the way (and out of CI). Uses throwaway data. Needs Node 24+ (node:sqlite), sqlite3, GNU date."
+msgstr "# no estorba (ni aparece en CI). Usa datos desechables. Necesita Node 24+ (node:sqlite), sqlite3 y GNU date."
+
+msgctxt "L29"
+msgid "# ---- 1. The ridiculous constraint is real, and a mutated program is caught."
+msgstr "# ---- 1. La restricción ridícula es real, y un programa mutado se detecta."
+
+msgctxt "L44"
+msgid "# ---- 2. Random runs: the rules of the challenge, against the file and the database."
+msgstr "# ---- 2. Ejecuciones al azar: las reglas del reto, contra el archivo y la base de datos."
+
+msgctxt "L58"
+msgid "# every run: running_total is the sum of hours so far, and only the last card is over 40"
+msgstr "# en cada ejecución: running_total es la suma de horas hasta ahora, y solo la última tarjeta pasa de 40"
+
+msgctxt "L64"
+msgid "# ---- 3. A seed replays a run, and a separate simulation of the generator agrees (including the edge cases)."
+msgstr "# ---- 3. Una semilla reproduce una ejecución, y una simulación aparte del generador coincide (incluidos los casos límite)."
+
+msgctxt "L85"
+msgid "# a run of exactly 40 after four cards must go on to a fifth: four tens is rare, so search for four cards that make 40 and confirm the program takes a fifth"
+msgstr "# una ejecución de exactamente 40 tras cuatro tarjetas debe seguir hasta una quinta: cuatro dieces es raro, así que se buscan cuatro tarjetas que sumen 40 y se confirma que el programa toma una quinta"
+
+msgctxt "L90"
+msgid "# ---- 4. The ISO week is computed by hand in the program; it must agree with GNU date, year boundaries included."
+msgstr "# ---- 4. La semana ISO se calcula a mano en el programa; debe coincidir con GNU date, incluidos los límites de año."
+
+msgctxt "L97"
+msgid "# ---- 5. The pulse: only on a terminal, never for CI, and never before the computation is complete."
+msgstr "# ---- 5. El pulso: solo en una terminal, nunca en CI y nunca antes de que termine el cálculo."
+
+msgctxt "L112"
+msgid "# ---- 6. Errors and the schema."
+msgstr "# ---- 6. Errores y esquema."
+
+msgctxt "L113"
+msgid "# (a regular file where the data folder should be: mkdir fails at once. Not /proc: a recursive mkdir there spins in Node 24.)"
+msgstr "# (un archivo normal donde debería estar la carpeta de datos: mkdir falla de inmediato. No /proc: un mkdir recursivo allí se queda girando en Node 24.)"

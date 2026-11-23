@@ -1,6 +1,6 @@
-# Container image for the Node.js entry. Run it with: sandbox/container/run-image.sh src/javascript
-# The whole program is one file, timecards.mjs, run by Node 24 (node:sqlite is built in; there is no npm and no package).
-# Add --tty to the run-image.sh command to see the DEMO ONLY line pulse. check.sh is for your own machine.
+# Imagen de contenedor para la entrada de Node.js. Ejecútala con: sandbox/container/run-image.sh src/javascript
+# Todo el programa es un solo archivo, timecards.mjs, ejecutado por Node 24 (node:sqlite viene incluido; no hay npm ni paquetes).
+# Añade --tty al comando run-image.sh para ver pulsar la línea DEMO ONLY. check.sh es para tu propia máquina.
 FROM cc-rt-node:local
 COPY timecards.mjs /app/
 ENV CC_RUN="node /app/timecards.mjs"

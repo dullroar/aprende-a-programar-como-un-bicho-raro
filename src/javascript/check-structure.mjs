@@ -1,9 +1,9 @@
-// Proves the constraint: after its imports, the file is ONE `for` statement with two semicolons in its header and an
-// empty body. No function, no second statement, no other loop, no eval. Usage: node check-structure.mjs timecards.mjs
+// Demuestra la restricción: después de sus importaciones, el archivo es UNA sola sentencia `for` con dos puntos y coma en su encabezado y un
+// cuerpo vacío. Sin funciones, sin segunda sentencia, sin otro bucle, sin eval. Uso: node check-structure.mjs timecards.mjs
 import { readFileSync } from 'node:fs';
 
-// Blank out comments and string contents, keep the code. Template literals are scanned properly, so code inside a
-// `${ ... }` (even one that holds another template) still counts as code.
+// Borra los comentarios y el contenido de las cadenas, conserva el código. Las plantillas de texto se recorren bien, así que el código dentro de un
+// `${ ... }` (incluso uno que contenga otra plantilla) sigue contando como código.
 const strip = src => {
   let out = '', i = 0;
   const stack = [];                                   // 'tpl', or a number: the brace depth inside a ${ ... }

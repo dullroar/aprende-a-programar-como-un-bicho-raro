@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
-# Checks the rules of the challenge for the Node.js port: the loop body is really empty, the program is nothing but
-# that one for statement, the time cards obey the rules, a seed replays a run, the ISO week is right, and the terminal
-# pulse stays out of the way (and out of CI). Uses throwaway data. Needs Node 24+ (node:sqlite), sqlite3, GNU date.
+# Comprueba las reglas del reto para la versión de Node.js: el cuerpo del bucle está de verdad vacío, el programa no es más que
+# esa única sentencia for, las tarjetas de horas cumplen las reglas, una semilla reproduce una ejecución, la semana ISO es correcta y el pulso de la terminal
+# no estorba (ni aparece en CI). Usa datos desechables. Necesita Node 24+ (node:sqlite), sqlite3 y GNU date.
 set -euo pipefail
 cd "$(dirname "$0")"
 work=$(mktemp -d); trap 'rm -rf "$work"' EXIT
@@ -26,7 +26,7 @@ validate() {
               if (prev <= 40) { print "stopped early at " prev; exit 1 } }' <<<"$r" || fail "$label (see above)"
 }
 
-# ---- 1. The ridiculous constraint is real, and a mutated program is caught.
+# ---- 1. La restricción ridícula es real, y un programa mutado se detecta.
 node check-structure.mjs timecards.mjs || fail "structure"
 mut() {   # label, python expression turning the source into a mutant
     node -e 'const s = require("node:fs").readFileSync(process.argv[1], "utf8"); process.stdout.write(new Function("s", "return " + process.argv[2])(s))' timecards.mjs "$2" > "$work/mutant.mjs"
@@ -41,7 +41,7 @@ mut "eval" 's.replace("i.hours.push(10", "eval(1), i.hours.push(10")'
 if grep -Eq "node:(net|http|https|http2|dns|tls|dgram|child_process|worker_threads)" timecards.mjs; then fail "the program imports a network, process or thread module"; fi
 echo "ok: after its imports the file is one for statement with an empty body; six mutants (a statement after it, a body, a runEverything wrapper, a hidden while, a second for, eval) are rejected; no network or process module"
 
-# ---- 2. Random runs: the rules of the challenge, against the file and the database.
+# ---- 2. Ejecuciones al azar: las reglas del reto, contra el archivo y la base de datos.
 for i in $(seq 1 25); do
     out=$(node timecards.mjs 2>"$work/err") || { cat "$work/err"; fail "run $i exited $?"; }
     validate "run $i" "$out"
@@ -55,13 +55,13 @@ done
 [[ $(sqlite3 "$db" "select count(*) from runs") -eq 25 ]] || fail "expected 25 runs in the database"
 [[ $(sqlite3 "$db" "select count(*) from demo_timecards where demo_only <> 1") -eq 0 ]] || fail "a non-demo row"
 [[ $(sqlite3 "$db" "select count(distinct user_id) from demo_timecards") -eq 1 && $(sqlite3 "$db" "select user_id from demo_timecards limit 1") == "$(id -un)" ]] || fail "user_id is not the current user"
-# every run: running_total is the sum of hours so far, and only the last card is over 40
+# en cada ejecución: running_total es la suma de horas hasta ahora, y solo la última tarjeta pasa de 40
 bad=$(sqlite3 "$db" "select count(*) from (select run_id, running_total - sum(hours) over (partition by run_id order by rowid) as d from demo_timecards) where d <> 0")
 [[ $bad -eq 0 ]] || fail "$bad rows whose running_total is not the sum of the hours so far"
 [[ $(sqlite3 "$db" "select count(*) from (select run_id, max(running_total) m, min(running_total) n from demo_timecards group by run_id) where m <= 40") -eq 0 ]] || fail "a run that stopped at 40 or under"
 echo "ok: 25 random runs: categories in order, hours 10-19, running totals, stop right after the first total over 40, DEMO ONLY, nothing on stderr or in escape codes, the user and the totals in SQLite"
 
-# ---- 3. A seed replays a run, and a separate simulation of the generator agrees (including the edge cases).
+# ---- 3. Una semilla reproduce una ejecución, y una simulación aparte del generador coincide (incluidos los casos límite).
 sim() {  # seed -> category TAB hours TAB total, until the total passes 40 (Park-Miller, as the program has it)
     awk -v r="$1" 'BEGIN { split("Meetings Coding Debugging Learning Meetings", cat, " ")
         for (n = 1; ; n++) { r = r * 48271 % 2147483647; h = 10 + r % 10; t += h; printf "%s\t%d\t%d\n", cat[n], h, t; if (t > 40) break } }'
@@ -82,19 +82,19 @@ for spec in "41 3" "41 4" "42 4" "50 5" "51 5" "57 3"; do
     set -- $spec; s=$(find_seed "$1" "$2"); [[ -n $s ]] || fail "no seed found for total $1 in $2 cards"
     check_seed "$s"
 done
-# a run of exactly 40 after four cards must go on to a fifth: four tens is rare, so search for four cards that make 40 and confirm the program takes a fifth
+# una ejecución de exactamente 40 tras cuatro tarjetas debe seguir hasta una quinta: cuatro dieces es raro, así que se buscan cuatro tarjetas que sumen 40 y se confirma que el programa toma una quinta
 s=$(awk 'BEGIN { for (s = 1; s < 4000000; s++) { r = s; t = 0; for (n = 1; n <= 4; n++) { r = r * 48271 % 2147483647; t += 10 + r % 10 } if (t == 40) { print s; exit } } }')
 if [[ -n $s ]]; then check_seed "$s"; [[ $(rows "$(SEED=$s node timecards.mjs)" | wc -l) -eq 5 ]] || fail "a total of exactly 40 after four cards must continue to a fifth"; echo "ok: seed $s makes exactly 40 after four cards, and the program goes on to a fifth"; fi
 echo "ok: replay: SEED=42 twice gives the same cards; 12 seeds (totals 41, 42, 50, 51, 57 in 3 to 5 cards) match a separate simulation of the generator"
 
-# ---- 4. The ISO week is computed by hand in the program; it must agree with GNU date, year boundaries included.
+# ---- 4. La semana ISO se calcula a mano en el programa; debe coincidir con GNU date, incluidos los límites de año.
 for d in 2026-12-31 2021-01-03 2024-12-30 2026-01-01 2016-01-03 2020-12-31 2027-01-03 2015-12-28 2012-01-01 2038-12-31; do
     got=$(NOW=$d SEED=1 node timecards.mjs | sed -n 2p | cut -f4); want=$(date -d "$d" +%G-W%V)
     [[ $got == "$want" ]] || fail "NOW=$d: week $got, GNU date says $want"
 done
 echo "ok: ISO year and week agree with GNU date for 10 dates, including 53-week years and the first days of January"
 
-# ---- 5. The pulse: only on a terminal, never for CI, and never before the computation is complete.
+# ---- 5. El pulso: solo en una terminal, nunca en CI y nunca antes de que termine el cálculo.
 if command -v script >/dev/null; then
     pty() { env "$@" timeout 30 script -qec "node timecards.mjs" /dev/null < /dev/null | tr -d '\r'; }
     t=$(pty PULSE_CYCLES=1 SEED=7); [[ $t == *$'\033[1m'*DEMO\ ONLY* && $t == *$'\033[2m'* ]] || fail "on a terminal the DEMO ONLY line should pulse (bold, then dim)"
@@ -109,8 +109,8 @@ fi
 start=$SECONDS; SEED=3 node timecards.mjs >/dev/null; (( SECONDS - start < 3 )) || fail "a redirected run took 3 seconds or more: is the pulse running?"
 echo "ok: a redirected run ends at once (no timer, no sleep)"
 
-# ---- 6. Errors and the schema.
-# (a regular file where the data folder should be: mkdir fails at once. Not /proc: a recursive mkdir there spins in Node 24.)
+# ---- 6. Errores y esquema.
+# (un archivo normal donde debería estar la carpeta de datos: mkdir falla de inmediato. No /proc: un mkdir recursivo allí se queda girando en Node 24.)
 : > "$work/afile"
 set +e; XDG_DATA_HOME=$work/afile timeout 20 node timecards.mjs >/dev/null 2>"$work/err"; rc=$?; set -e
 [[ $rc -ne 0 && -s $work/err ]] || fail "an unwritable data directory must end with a non-zero status and a message (rc=$rc)"

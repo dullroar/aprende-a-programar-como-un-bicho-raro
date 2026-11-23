@@ -1,0 +1,75 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+
+msgctxt "L6"
+msgid "// A Node.js port of Jim Lehmer's 2008 C# challenge: one `for` statement whose body is empty."
+msgstr "// Una versión para Node.js del reto de C# de 2008 de Jim Lehmer: una sola sentencia `for` cuyo cuerpo está vacío."
+
+msgctxt "L7"
+msgid "// Everything the program does happens in the three clauses between the parentheses: the initializer builds the state,"
+msgstr "// Todo lo que hace el programa ocurre en las tres cláusulas entre los paréntesis: el inicializador construye el estado,"
+
+msgctxt "L8"
+msgid "// the condition decides whether to go on (and, when it must stop, shows the result), the iterator adds one card."
+msgstr "// la condición decide si se continúa (y, cuando debe parar, muestra el resultado) y el iterador añade una tarjeta."
+
+msgctxt "L9"
+msgid "// The cards are DEMO ONLY: fictional, local, and never sent anywhere."
+msgstr "// Las tarjetas son DEMO ONLY: ficticias, locales y nunca se envían a ninguna parte."
+
+msgctxt "L12"
+msgid "// The object literal is still the iterator-state holder. A `for` initializer takes one declaration, and this is"
+msgstr "// El literal de objeto sigue siendo el contenedor del estado del iterador. Un inicializador de `for` admite una declaración, y esta es"
+
+msgctxt "L13"
+msgid "// the one declaration that can hold a dozen kinds of state. It plays the part of C#'s anonymous object."
+msgstr "// la única declaración que puede guardar una docena de clases de estado. Hace el papel del objeto anónimo de C#."
+
+msgctxt "L14"
+msgid "// C# also lets the initializer be a list of expressions. JavaScript does not mix the two: after `let i = ...` a"
+msgstr "// C# también permite que el inicializador sea una lista de expresiones. JavaScript no mezcla las dos cosas: después de `let i = ...` una"
+
+msgctxt "L15"
+msgid "// comma starts the next *declarator*, it is not the comma operator. So the literal goes through an arrow that"
+msgstr "// coma empieza el siguiente *declarador*, no es el operador coma. Por eso el literal pasa por una flecha que"
+
+msgctxt "L16"
+msgid "// finishes it, and the arrow's body can use the comma operator."
+msgstr "// lo completa, y el cuerpo de la flecha sí puede usar el operador coma."
+
+msgctxt "L18"
+msgid "// A closure over the seed: Park-Miller. SEED=42 replays a run (Math.random cannot be seeded)."
+msgstr "// Una clausura sobre la semilla: Park-Miller. SEED=42 reproduce una ejecución (Math.random no admite semilla)."
+
+msgctxt "L20"
+msgid "// Local SQLite file, as in the original (there: EF Core under LocalApplicationData). node:sqlite is built in."
+msgstr "// Archivo SQLite local, como en el original (allí: EF Core bajo LocalApplicationData). node:sqlite viene incluido."
+
+msgctxt "L36"
+msgid "// The ISO week of a date, as [ISO year, week]: the Thursday of the same week decides the year."
+msgstr "// La semana ISO de una fecha, como [año ISO, semana]: el jueves de la misma semana decide el año."
+
+msgctxt "L50"
+msgid "// The original sums the hours with LINQ's Sum(); a fold is its closest relative here. While the total is 40 or"
+msgstr "// El original suma las horas con el Sum() de LINQ; aquí su pariente más cercano es un pliegue. Mientras el total sea 40 o"
+
+msgctxt "L51"
+msgid "// under, the answer is `true` and the loop goes round again. Otherwise the condition shows the result, inline,"
+msgstr "// menos, la respuesta es `true` y el bucle da otra vuelta. En caso contrario la condición muestra el resultado, en línea,"
+
+msgctxt "L52"
+msgid "// and its value is `false`: the loop ends. Where C# opened a WPF window, this prints, and, on a terminal, pulses"
+msgstr "// y su valor es `false`: el bucle termina. Donde C# abría una ventana WPF, esto imprime y, en una terminal, hace pulsar"
+
+msgctxt "L53"
+msgid "// the DEMO ONLY line with a timer, as the original's storyboard faded its window in and out."
+msgstr "// la línea DEMO ONLY con un temporizador, como el guion gráfico del original hacía aparecer y desvanecerse su ventana."
+
+msgctxt "L70"
+msgid "// The iterator draws one random hour count and saves one card, as the original did. There, a background thread"
+msgstr "// El iterador saca una cantidad de horas al azar y guarda una tarjeta, como hacía el original. Allí, un hilo en segundo plano"
+
+msgctxt "L71"
+msgid "// and reflection did the saving through a Mutex; here node:sqlite saves synchronously, so none of that is needed."
+msgstr "// y la reflexión guardaban a través de un Mutex; aquí node:sqlite guarda de forma síncrona, así que nada de eso hace falta."

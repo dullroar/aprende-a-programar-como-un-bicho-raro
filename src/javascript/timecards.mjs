@@ -3,21 +3,21 @@ import { mkdirSync } from 'node:fs';
 import { homedir, userInfo } from 'node:os';
 import { join } from 'node:path';
 
-// A Node.js port of Jim Lehmer's 2008 C# challenge: one `for` statement whose body is empty.
-// Everything the program does happens in the three clauses between the parentheses: the initializer builds the state,
-// the condition decides whether to go on (and, when it must stop, shows the result), the iterator adds one card.
-// The cards are DEMO ONLY: fictional, local, and never sent anywhere.
+// Una versión para Node.js del reto de C# de 2008 de Jim Lehmer: una sola sentencia `for` cuyo cuerpo está vacío.
+// Todo lo que hace el programa ocurre en las tres cláusulas entre los paréntesis: el inicializador construye el estado,
+// la condición decide si se continúa (y, cuando debe parar, muestra el resultado) y el iterador añade una tarjeta.
+// Las tarjetas son DEMO ONLY: ficticias, locales y nunca se envían a ninguna parte.
 for // Still the only statement.
 (
-  // The object literal is still the iterator-state holder. A `for` initializer takes one declaration, and this is
-  // the one declaration that can hold a dozen kinds of state. It plays the part of C#'s anonymous object.
-  // C# also lets the initializer be a list of expressions. JavaScript does not mix the two: after `let i = ...` a
-  // comma starts the next *declarator*, it is not the comma operator. So the literal goes through an arrow that
-  // finishes it, and the arrow's body can use the comma operator.
+  // El literal de objeto sigue siendo el contenedor del estado del iterador. Un inicializador de `for` admite una declaración, y esta es
+  // la única declaración que puede guardar una docena de clases de estado. Hace el papel del objeto anónimo de C#.
+  // C# también permite que el inicializador sea una lista de expresiones. JavaScript no mezcla las dos cosas: después de `let i = ...` una
+  // coma empieza el siguiente *declarador*, no es el operador coma. Por eso el literal pasa por una flecha que
+  // lo completa, y el cuerpo de la flecha sí puede usar el operador coma.
   let i = (s => (
-    // A closure over the seed: Park-Miller. SEED=42 replays a run (Math.random cannot be seeded).
+    // Una clausura sobre la semilla: Park-Miller. SEED=42 reproduce una ejecución (Math.random no admite semilla).
     s.rnd = (r => () => (r = r * 48271 % 2147483647))(s.seed),
-    // Local SQLite file, as in the original (there: EF Core under LocalApplicationData). node:sqlite is built in.
+    // Archivo SQLite local, como en el original (allí: EF Core bajo LocalApplicationData). node:sqlite viene incluido.
     s.db.exec(`
       CREATE TABLE IF NOT EXISTS runs(id INTEGER PRIMARY KEY, seed INTEGER NOT NULL, demo_only INTEGER NOT NULL DEFAULT 1 CHECK (demo_only = 1));
       CREATE TABLE IF NOT EXISTS demo_timecards(run_id INTEGER NOT NULL,
@@ -33,7 +33,7 @@ for // Still the only statement.
       categories: ['Meetings', 'Coding', 'Debugging', 'Learning'],
       seed: Number(process.env.SEED) || crypto.getRandomValues(new Uint32Array(1))[0] % 2147483646 + 1,
       now: process.env.NOW ? new Date(`${process.env.NOW}T12:00:00Z`) : new Date(),
-      // The ISO week of a date, as [ISO year, week]: the Thursday of the same week decides the year.
+      // La semana ISO de una fecha, como [año ISO, semana]: el jueves de la misma semana decide el año.
       iso: d => ((t, y) => [y = (t.setUTCDate(t.getUTCDate() + 4 - (t.getUTCDay() || 7)), t.getUTCFullYear()),
                            Math.ceil(((t - Date.UTC(y, 0, 1)) / 864e5 + 1) / 7)])(new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()))),
       db: (dir => (mkdirSync(dir, { recursive: true }), new DatabaseSync(join(dir, 'demo-timecards.db'))))(
@@ -47,10 +47,10 @@ for // Still the only statement.
   ;   // **************** FIRST SEMICOLON ****************
   //  *
   //   *
-  // The original sums the hours with LINQ's Sum(); a fold is its closest relative here. While the total is 40 or
-  // under, the answer is `true` and the loop goes round again. Otherwise the condition shows the result, inline,
-  // and its value is `false`: the loop ends. Where C# opened a WPF window, this prints, and, on a terminal, pulses
-  // the DEMO ONLY line with a timer, as the original's storyboard faded its window in and out.
+  // El original suma las horas con el Sum() de LINQ; aquí su pariente más cercano es un pliegue. Mientras el total sea 40 o
+  // menos, la respuesta es `true` y el bucle da otra vuelta. En caso contrario la condición muestra el resultado, en línea,
+  // y su valor es `false`: el bucle termina. Donde C# abría una ventana WPF, esto imprime y, en una terminal, hace pulsar
+  // la línea DEMO ONLY con un temporizador, como el guion gráfico del original hacía aparecer y desvanecerse su ventana.
   i.hours.reduce((sum, h) => sum + h, 0) <= 40
     ? true
     : (console.log(`# DEMO ONLY run ${i.run}\n${i.db.prepare('SELECT category, hours, running_total, year, week FROM demo_timecards WHERE run_id = ? ORDER BY rowid').all(i.run)
@@ -67,8 +67,8 @@ for // Still the only statement.
   ;  // **************** LAST SEMICOLON ****************
   //  *
   //   *
-  // The iterator draws one random hour count and saves one card, as the original did. There, a background thread
-  // and reflection did the saving through a Mutex; here node:sqlite saves synchronously, so none of that is needed.
+  // El iterador saca una cantidad de horas al azar y guarda una tarjeta, como hacía el original. Allí, un hilo en segundo plano
+  // y la reflexión guardaban a través de un Mutex; aquí node:sqlite guarda de forma síncrona, así que nada de eso hace falta.
   i.hours.push(10 + i.rnd() % 10),
   i.insert.run(i.run, i.categories[(i.hours.length - 1) % 4], i.hours.at(-1), i.hours.reduce((sum, h) => sum + h, 0),
                i.user, ...i.iso(i.now))

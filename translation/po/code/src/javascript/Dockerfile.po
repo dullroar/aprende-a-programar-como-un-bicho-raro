@@ -1,0 +1,15 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+
+msgctxt "L1"
+msgid "# Container image for the Node.js entry. Run it with: sandbox/container/run-image.sh src/javascript"
+msgstr "# Imagen de contenedor para la entrada de Node.js. Ejecútala con: sandbox/container/run-image.sh src/javascript"
+
+msgctxt "L2"
+msgid "# The whole program is one file, timecards.mjs, run by Node 24 (node:sqlite is built in; there is no npm and no package)."
+msgstr "# Todo el programa es un solo archivo, timecards.mjs, ejecutado por Node 24 (node:sqlite viene incluido; no hay npm ni paquetes)."
+
+msgctxt "L3"
+msgid "# Add --tty to the run-image.sh command to see the DEMO ONLY line pulse. check.sh is for your own machine."
+msgstr "# Añade --tty al comando run-image.sh para ver pulsar la línea DEMO ONLY. check.sh es para tu propia máquina."
