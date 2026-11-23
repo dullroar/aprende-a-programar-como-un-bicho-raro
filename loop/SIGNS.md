@@ -136,4 +136,5 @@
 - Re-aim links with `apply.py --relink --write`, then `build.py --generate` and `anchors.py --generate`; `anchors.py --remap` expects English fragments and rejects already-Spanish ones.
 - Build artifacts with a runpy wrapper script in the scratchpad (BOOK_LANG=es, sys.argv with --artifacts-dir) and plain commands; shell variables and for-loops are denied in don't-ask mode.
 - When a PDF-010 sentinel fails, extract the page text with PyMuPDF (fitz) and copy the approved PO msgstr into lessons/book/locale/es.yaml; run lint_pdf.py with BOOK_LANG=es (a runpy wrapper), since without it the English sentinels run against the Spanish PDF.
+- In Part II, `.fs` is Forth under src/forth* and F# elsewhere, and .bat files hash after CRLF->LF; use tools/code_inventory.py's detect_lang and sha handling instead of guessing from the extension.
 - Do not run verify --release right after tools/scratch_proof.py --tests: a stale inventory/work state makes 4 checks fail once; rerun inventory.py then verify, and run lessons/book tests in Spanish through a runpy wrapper that sets BOOK_LANG=es.
