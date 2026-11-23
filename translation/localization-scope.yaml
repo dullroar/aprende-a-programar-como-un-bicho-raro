@@ -41,7 +41,7 @@ families:
   "src/apl-weird": {status: frozen, files: 3}
   "src/awk": {status: localizing, files: 3}
   "src/awk-weird": {status: frozen, files: 3}
-  "src/cmake": {status: frozen, files: 3}
+  "src/cmake": {status: localizing, files: 3}
   "src/cobol": {status: localizing, files: 4}
   "src/cobol-weird": {status: frozen, files: 4}
   "src/ed-weird": {status: frozen, files: 5}

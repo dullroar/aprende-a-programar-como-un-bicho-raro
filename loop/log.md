@@ -384,3 +384,4 @@
 431 S5-fam-xaml done family left English, NOT TESTED (EXC-549): WPF/XAML entry has no entry image, oracle cannot run it; no protected file changed.
 428 S5-fam-linqchallenge1 done family left English, NOT TESTED (EXC-546): WPF/EF Core entry has no entry image, oracle cannot run it; no protected file changed.
 433 S5-fam-awk done src/awk localizing: 30 comment lines (awk, check.sh, Dockerfile) via loc_apply, oracle PASS; categories/strings kept English EXC-550.
+434 S5-fam-cmake done src/cmake localizing: comment lines in timecards.cmake, check.sh, Dockerfile via loc_apply, oracle PASS; categories/strings kept English EXC-551.

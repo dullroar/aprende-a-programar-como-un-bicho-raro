@@ -1,0 +1,11 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+
+msgctxt "L1"
+msgid "# Container image for the CMake entry. Run it with: sandbox/container/run-image.sh src/cmake"
+msgstr "# Imagen de contenedor para la entrada CMake. Ejecútala con: sandbox/container/run-image.sh src/cmake"
+
+msgctxt "L2"
+msgid "# CMake is the program's interpreter, so it stays; the base has cmake and sqlite3 only (no compiler, no make)."
+msgstr "# CMake es el intérprete del programa, así que se queda; la base solo tiene cmake y sqlite3 (sin compilador ni make)."

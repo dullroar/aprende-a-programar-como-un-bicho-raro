@@ -1,0 +1,127 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+
+msgctxt "L1"
+msgid "# DEMO ONLY. Fictional timecards, written to a scratch SQLite file under XDG_DATA_HOME. See README.md."
+msgstr "# DEMO ONLY. Tarjetas de horas ficticias, escritas en un archivo SQLite temporal bajo XDG_DATA_HOME. Mira README.md."
+
+msgctxt "L3"
+msgid "# Run with:  cmake -P timecards.cmake        (add -DPOP=1 to do it in a new Windows Terminal window)"
+msgstr "# Ejecútalo con:  cmake -P timecards.cmake        (agrega -DPOP=1 para hacerlo en una ventana nueva de Windows Terminal)"
+
+msgctxt "L7"
+msgid "# The whole program is ONE bodiless while(). Its condition is a regex match (MATCHES), and a successful match"
+msgstr "# Todo el programa es UN while() sin cuerpo. Su condición es una coincidencia de regex (MATCHES), y una coincidencia exitosa"
+
+msgctxt "L8"
+msgid "# leaves its captures in CMAKE_MATCH_1..5. Those are ordinary variables, and while() re-expands its condition on"
+msgstr "# deja sus capturas en CMAKE_MATCH_1..5. Esas son variables comunes, y while() vuelve a expandir su condición en"
+
+msgctxt "L9"
+msgid "# every pass, so each pass builds its subject string and its pattern out of the previous pass's captures. That is"
+msgstr "# cada vuelta, así que cada vuelta arma su cadena de texto y su patrón con las capturas de la vuelta anterior. Esa es"
+
+msgctxt "L10"
+msgid "# the machine: the registers are the state, the lookup table for the hours is in the subject, the stop rule is a"
+msgstr "# la máquina: los registros son el estado, la tabla de consulta de las horas está en la cadena de texto, la regla de parada es un"
+
+msgctxt "L11"
+msgid "# 41-character literal, and the loop ends when the match says no. There is no function(), macro(), math(),"
+msgstr "# literal de 41 caracteres, y el bucle termina cuando la coincidencia dice que no. No hay function(), macro(), math(),"
+
+msgctxt "L12"
+msgid "# list(GET) or cmake_language() in the loop, and nothing in its body, because it has none."
+msgstr "# list(GET) ni cmake_language() en el bucle, y nada en su cuerpo, porque no tiene."
+
+msgctxt "L14"
+msgid "# The host only seeds the registers (a tape of random digits) before it and reports after it."
+msgstr "# El anfitrión solo siembra los registros (una cinta de dígitos al azar) antes del bucle y reporta después."
+
+msgctxt "L18"
+msgid "# No semicolons anywhere in this command line: wt.exe treats them as its own subcommand separator."
+msgstr "# Sin puntos y coma en ningún lugar de esta línea de comandos: wt.exe los trata como su propio separador de subcomandos."
+
+msgctxt "L25"
+msgid "# ---- seed: the registers, and a tape of random digits (one digit = one card's hours-minus-ten) ---------------"
+msgstr "# ---- semilla: los registros, y una cinta de dígitos al azar (un dígito = las horas de una tarjeta menos diez) ---"
+
+msgctxt "L28"
+msgid "# total so far, in unary (a run of x's)"
+msgstr "# total hasta ahora, en unario (una tira de x)"
+
+msgctxt "L29"
+msgid "# the digit peeked last pass: this pass's card"
+msgstr "# el dígito espiado en la vuelta anterior: la tarjeta de esta vuelta"
+
+msgctxt "L30"
+msgid "# the rest of the tape"
+msgstr "# el resto de la cinta"
+
+msgctxt "L31"
+msgid "# finished cards, in unary, dash-separated"
+msgstr "# tarjetas terminadas, en unario, separadas por guiones"
+
+msgctxt "L32"
+msgid "# hours of the card added last pass, in unary"
+msgstr "# horas de la tarjeta agregada en la vuelta anterior, en unario"
+
+msgctxt "L34"
+msgid "# ---- the one statement ------------------------------------------------------------------------------------------------"
+msgstr "# ---- la única sentencia -----------------------------------------------------------------------------------------------"
+
+msgctxt "L35"
+msgid "# 1st test: NOT (total so far + last card is 41 or more x's): the stop rule, \"exactly 40 continues\". It is first because a match"
+msgstr "# 1.ª prueba: NOT (el total hasta ahora + la última tarjeta son 41 x o más): la regla de parada, \"exactamente 40 continúa\". Va primero porque una coincidencia"
+
+msgctxt "L36"
+msgid "#           that fails clears the registers and one that succeeds rewrites them, so the main match must run last. NOTE: AND does not"
+msgstr "#           que falla borra los registros y una que tiene éxito los reescribe, así que la coincidencia principal debe correr al final. OJO: AND no"
+
+msgctxt "L37"
+msgid "#           stop at the first false test: on the final pass the 2nd test still runs, and that is how the last card reaches the log (4)."
+msgstr "#           se detiene en la primera prueba falsa: en la última vuelta la 2.ª prueba aún corre, y así la última tarjeta llega al registro (4)."
+
+msgctxt "L38"
+msgid "# 2nd test: build \"<total>|<tape>|<log>||0:<10 x's>|1:<11 x's>|...|9:<19 x's>|\" from the last pass's registers, then"
+msgstr "# 2.ª prueba: arma \"<total>|<tape>|<log>||0:<10 x's>|1:<11 x's>|...|9:<19 x's>|\" con los registros de la vuelta anterior, y luego"
+
+msgctxt "L39"
+msgid "#           match it with a pattern that peeks the next digit off the tape (groups 2,3), keeps the log (4), and"
+msgstr "#           la compara con un patrón que espía el siguiente dígito de la cinta (grupos 2,3), conserva el registro (4) y"
+
+msgctxt "L40"
+msgid "#           looks up this card's hours in the table by the digit the pattern splices in from last pass (5)."
+msgstr "#           busca las horas de esta tarjeta en la tabla con el dígito que el patrón empalma de la vuelta anterior (5)."
+
+msgctxt "L56"
+msgid "# ---- report: the cards are in the log, in unary; lengths are hours -----------------------------------------------"
+msgstr "# ---- reporte: las tarjetas están en el registro, en unario; las longitudes son horas ------------------------------"
+
+msgctxt "L59"
+msgid "# a fifth card (four 10s = exactly 40) wraps to Meetings"
+msgstr "# una quinta tarjeta (cuatro 10 = exactamente 40) da la vuelta a Meetings"
+
+msgctxt "L60"
+msgid "# ZIP_LISTS runs to the longer list"
+msgstr "# ZIP_LISTS llega hasta la lista más larga"
+
+msgctxt "L71"
+msgid "# ---- ISO week. string(TIMESTAMP) knows %V but not %G, so the ISO *year* is fixed up by hand ----------------"
+msgstr "# ---- semana ISO. string(TIMESTAMP) conoce %V pero no %G, así que el *año* ISO se corrige a mano -------------"
+
+msgctxt "L84"
+msgid "# ---- SQLite (same schema as the other entries) ------------------------------------------------------------------"
+msgstr "# ---- SQLite (mismo esquema que las otras entradas) --------------------------------------------------------------"
+
+msgctxt "L112"
+msgid "# The stop rule, witnessed by SQLite: inserting \"total <= 40\" into a CHECK(ok=1) column fails when it should stop."
+msgstr "# La regla de parada, atestiguada por SQLite: insertar \"total <= 40\" en una columna CHECK(ok=1) falla cuando debe parar."
+
+msgctxt "L115"
+msgid "# its CHECK error goes to stderr, on purpose"
+msgstr "# su error de CHECK va a stderr, a propósito"
+
+msgctxt "L121"
+msgid "# ---- the glow, only on a real terminal (CMake's own realpath of its stdout is /dev/pts/N, not a pipe) -----"
+msgstr "# ---- el resplandor, solo en una terminal real (el realpath de CMake sobre su stdout es /dev/pts/N, no una tubería) ---"

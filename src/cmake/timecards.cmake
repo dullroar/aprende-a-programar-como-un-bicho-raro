@@ -1,43 +1,43 @@
-# DEMO ONLY. Fictional timecards, written to a scratch SQLite file under XDG_DATA_HOME. See README.md.
+# DEMO ONLY. Tarjetas de horas ficticias, escritas en un archivo SQLite temporal bajo XDG_DATA_HOME. Mira README.md.
 #
-# Run with:  cmake -P timecards.cmake        (add -DPOP=1 to do it in a new Windows Terminal window)
+# Ejecútalo con:  cmake -P timecards.cmake        (agrega -DPOP=1 para hacerlo en una ventana nueva de Windows Terminal)
 #
 #     for ( seed ; test ; iterate ) ;
 #
-# The whole program is ONE bodiless while(). Its condition is a regex match (MATCHES), and a successful match
-# leaves its captures in CMAKE_MATCH_1..5. Those are ordinary variables, and while() re-expands its condition on
-# every pass, so each pass builds its subject string and its pattern out of the previous pass's captures. That is
-# the machine: the registers are the state, the lookup table for the hours is in the subject, the stop rule is a
-# 41-character literal, and the loop ends when the match says no. There is no function(), macro(), math(),
-# list(GET) or cmake_language() in the loop, and nothing in its body, because it has none.
+# Todo el programa es UN while() sin cuerpo. Su condición es una coincidencia de regex (MATCHES), y una coincidencia exitosa
+# deja sus capturas en CMAKE_MATCH_1..5. Esas son variables comunes, y while() vuelve a expandir su condición en
+# cada vuelta, así que cada vuelta arma su cadena de texto y su patrón con las capturas de la vuelta anterior. Esa es
+# la máquina: los registros son el estado, la tabla de consulta de las horas está en la cadena de texto, la regla de parada es un
+# literal de 41 caracteres, y el bucle termina cuando la coincidencia dice que no. No hay function(), macro(), math(),
+# list(GET) ni cmake_language() en el bucle, y nada en su cuerpo, porque no tiene.
 #
-# The host only seeds the registers (a tape of random digits) before it and reports after it.
+# El anfitrión solo siembra los registros (una cinta de dígitos al azar) antes del bucle y reporta después.
 cmake_minimum_required(VERSION 3.19)
 
 if(POP)
-  # No semicolons anywhere in this command line: wt.exe treats them as its own subcommand separator.
+  # Sin puntos y coma en ningún lugar de esta línea de comandos: wt.exe los trata como su propio separador de subcomandos.
   execute_process(COMMAND wt.exe -w new new-tab --title "DEMO ONLY"
                           wsl.exe -d $ENV{WSL_DISTRO_NAME} --cd ${CMAKE_CURRENT_LIST_DIR}
                           -e ${CMAKE_COMMAND} -P ${CMAKE_CURRENT_LIST_FILE})
   return()
 endif()
 
-# ---- seed: the registers, and a tape of random digits (one digit = one card's hours-minus-ten) ---------------
+# ---- semilla: los registros, y una cinta de dígitos al azar (un dígito = las horas de una tarjeta menos diez) ---
 string(RANDOM LENGTH 1 ALPHABET 0123456789 first_digit)
 string(RANDOM LENGTH 8 ALPHABET 0123456789 more_digits)
-set(CMAKE_MATCH_1 "")                  # total so far, in unary (a run of x's)
-set(CMAKE_MATCH_2 "${first_digit}")    # the digit peeked last pass: this pass's card
-set(CMAKE_MATCH_3 "${more_digits}")    # the rest of the tape
-set(CMAKE_MATCH_4 "")                  # finished cards, in unary, dash-separated
-set(CMAKE_MATCH_5 "")                  # hours of the card added last pass, in unary
+set(CMAKE_MATCH_1 "")                  # total hasta ahora, en unario (una tira de x)
+set(CMAKE_MATCH_2 "${first_digit}")    # el dígito espiado en la vuelta anterior: la tarjeta de esta vuelta
+set(CMAKE_MATCH_3 "${more_digits}")    # el resto de la cinta
+set(CMAKE_MATCH_4 "")                  # tarjetas terminadas, en unario, separadas por guiones
+set(CMAKE_MATCH_5 "")                  # horas de la tarjeta agregada en la vuelta anterior, en unario
 
-# ---- the one statement ------------------------------------------------------------------------------------------------
-# 1st test: NOT (total so far + last card is 41 or more x's): the stop rule, "exactly 40 continues". It is first because a match
-#           that fails clears the registers and one that succeeds rewrites them, so the main match must run last. NOTE: AND does not
-#           stop at the first false test: on the final pass the 2nd test still runs, and that is how the last card reaches the log (4).
-# 2nd test: build "<total>|<tape>|<log>||0:<10 x's>|1:<11 x's>|...|9:<19 x's>|" from the last pass's registers, then
-#           match it with a pattern that peeks the next digit off the tape (groups 2,3), keeps the log (4), and
-#           looks up this card's hours in the table by the digit the pattern splices in from last pass (5).
+# ---- la única sentencia -----------------------------------------------------------------------------------------------
+# 1.ª prueba: NOT (el total hasta ahora + la última tarjeta son 41 x o más): la regla de parada, "exactamente 40 continúa". Va primero porque una coincidencia
+#           que falla borra los registros y una que tiene éxito los reescribe, así que la coincidencia principal debe correr al final. OJO: AND no
+#           se detiene en la primera prueba falsa: en la última vuelta la 2.ª prueba aún corre, y así la última tarjeta llega al registro (4).
+# 2.ª prueba: arma "<total>|<tape>|<log>||0:<10 x's>|1:<11 x's>|...|9:<19 x's>|" con los registros de la vuelta anterior, y luego
+#           la compara con un patrón que espía el siguiente dígito de la cinta (grupos 2,3), conserva el registro (4) y
+#           busca las horas de esta tarjeta en la tabla con el dígito que el patrón empalma de la vuelta anterior (5).
 while(NOT "${CMAKE_MATCH_1}${CMAKE_MATCH_5}" MATCHES "^xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
       AND "${CMAKE_MATCH_1}${CMAKE_MATCH_5}|${CMAKE_MATCH_3}|${CMAKE_MATCH_4}${CMAKE_MATCH_5}-||\
 0:xxxxxxxxxx|\
@@ -53,11 +53,11 @@ while(NOT "${CMAKE_MATCH_1}${CMAKE_MATCH_5}" MATCHES "^xxxxxxxxxxxxxxxxxxxxxxxxx
           MATCHES "^(x*)\\|([0-9])([0-9]*)\\|([^|]*)\\|.*\\|${CMAKE_MATCH_2}:(x*)\\|")
 endwhile()
 
-# ---- report: the cards are in the log, in unary; lengths are hours -----------------------------------------------
+# ---- reporte: las tarjetas están en el registro, en unario; las longitudes son horas ------------------------------
 string(REGEX MATCHALL "x+" cards "${CMAKE_MATCH_4}")
 list(LENGTH cards n)
-set(categories Meetings Coding Debugging Learning Meetings)   # a fifth card (four 10s = exactly 40) wraps to Meetings
-list(SUBLIST categories 0 ${n} categories)                  # ZIP_LISTS runs to the longer list
+set(categories Meetings Coding Debugging Learning Meetings)   # una quinta tarjeta (cuatro 10 = exactamente 40) da la vuelta a Meetings
+list(SUBLIST categories 0 ${n} categories)                  # ZIP_LISTS llega hasta la lista más larga
 set(acc "")
 set(rows "")
 foreach(unary category IN ZIP_LISTS cards categories)
@@ -68,7 +68,7 @@ foreach(unary category IN ZIP_LISTS cards categories)
 endforeach()
 string(LENGTH "${acc}" total)
 
-# ---- ISO week. string(TIMESTAMP) knows %V but not %G, so the ISO *year* is fixed up by hand ----------------
+# ---- semana ISO. string(TIMESTAMP) conoce %V pero no %G, así que el *año* ISO se corrige a mano -------------
 string(TIMESTAMP stamp "%Y %m %V")
 string(REPLACE " " ";" stamp "${stamp}")
 list(GET stamp 0 year)
@@ -81,7 +81,7 @@ elseif(month STREQUAL "01" AND week GREATER 51)
 endif()
 set(iso_week "${year}-W${week}")
 
-# ---- SQLite (same schema as the other entries) ------------------------------------------------------------------
+# ---- SQLite (mismo esquema que las otras entradas) --------------------------------------------------------------
 if(DEFINED ENV{XDG_DATA_HOME} AND NOT "$ENV{XDG_DATA_HOME}" STREQUAL "")
   set(data "$ENV{XDG_DATA_HOME}")
 else()
@@ -109,16 +109,16 @@ foreach(card IN LISTS rows)
   file(APPEND /dev/stdout "${card}\t${iso_week}\tDEMO ONLY\n")
   string(APPEND sql "INSERT INTO demo_timecards(run_id,category,hours,running_total,iso_week,created_at) VALUES((SELECT max(id) FROM runs),'${category}',${hours},${running},'${iso_week}',datetime('now','localtime'));\n")
 endforeach()
-# The stop rule, witnessed by SQLite: inserting "total <= 40" into a CHECK(ok=1) column fails when it should stop.
+# La regla de parada, atestiguada por SQLite: insertar "total <= 40" en una columna CHECK(ok=1) falla cuando debe parar.
 string(APPEND sql "INSERT INTO stop_rule SELECT coalesce((SELECT max(running_total) FROM demo_timecards WHERE run_id=(SELECT max(id) FROM runs)),0)<=40;\nDELETE FROM stop_rule;\n")
 file(WRITE "${dir}/.rows.sql" "${sql}")
-execute_process(COMMAND sqlite3 "${db}" INPUT_FILE "${dir}/.rows.sql")   # its CHECK error goes to stderr, on purpose
+execute_process(COMMAND sqlite3 "${db}" INPUT_FILE "${dir}/.rows.sql")   # su error de CHECK va a stderr, a propósito
 file(REMOVE "${dir}/.init.sql" "${dir}/.rows.sql")
 
 file(APPEND /dev/stdout "# committed total=${total} entries=${n} DEMO ONLY\n")
 file(APPEND /dev/stdout "# an empty while() went round ${n} times, once per card\n")
 
-# ---- the glow, only on a real terminal (CMake's own realpath of its stdout is /dev/pts/N, not a pipe) -----
+# ---- el resplandor, solo en una terminal real (el realpath de CMake sobre su stdout es /dev/pts/N, no una tubería) ---
 file(REAL_PATH /proc/self/fd/1 stdout_path)
 if(stdout_path MATCHES "^/dev/(pts|tty)")
   string(ASCII 27 ESC)
