@@ -1,7 +1,7 @@
-# Container image for the Tcl entry. Run it with: sandbox/container/run-image.sh src/tcl-weird
-# Nothing to build: tclsh runs the script. The runtime base has Tcl/Tk, the Tcl sqlite3 package,
-# Xvfb and scrot (the harness starts the virtual display and takes a screenshot of the window),
-# and no compiler or package manager. The window closes itself when the harness stops it.
+# Imagen de contenedor para la entrada de Tcl. Ejecútala con: sandbox/container/run-image.sh src/tcl-weird
+# Nada que compilar: tclsh ejecuta el script. La base de ejecución trae Tcl/Tk, el paquete sqlite3 de Tcl,
+# Xvfb y scrot (el arnés inicia la pantalla virtual y toma una captura de la ventana),
+# y ningún compilador ni gestor de paquetes. La ventana se cierra sola cuando el arnés la detiene.
 FROM cc-rt-tcl:local
 COPY timecards.tcl /app/timecards.tcl
 ENV CC_XVFB=1

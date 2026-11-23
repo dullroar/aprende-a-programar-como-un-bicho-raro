@@ -1,0 +1,107 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+
+msgctxt "L2"
+msgid "# DEMO ONLY. Fictional timecards, written to a scratch SQLite file under"
+msgstr "# DEMO ONLY. Tarjetas de horas ficticias, escritas en un archivo SQLite desechable bajo"
+
+msgctxt "L3"
+msgid "# XDG_DATA_HOME. Nothing here touches a real time-reporting system."
+msgstr "# XDG_DATA_HOME. Nada de aquí toca un sistema real de registro de horas."
+
+msgctxt "L5"
+msgid "# Run:  tclsh timecards.tcl            (text)"
+msgstr "# Ejecuta:  tclsh timecards.tcl            (texto)"
+
+msgctxt "L6"
+msgid "#       tclsh timecards.tcl --gui      (the window is built from rows too; --seconds N closes it)"
+msgstr "#       tclsh timecards.tcl --gui      (la ventana también se construye a partir de filas; --seconds N la cierra)"
+
+msgctxt "L8"
+msgid "# The challenge: add cards of 10-19 hours until the running total passes 40."
+msgstr "# El desafío: suma tarjetas de 10 a 19 horas hasta que el total acumulado pase de 40."
+
+msgctxt "L10"
+msgid "# THE STUNT.  This file defines no Tcl loop and no Tcl proc that deals or"
+msgstr "# LA ACROBACIA.  Este archivo no define ningún bucle de Tcl ni ningún proc de Tcl que reparta o"
+
+msgctxt "L11"
+msgid "# prints a card. The program is rows in a SQLite table, and one INSERT starts it:"
+msgstr "# imprima una tarjeta. El programa son filas de una tabla de SQLite, y un INSERT lo arranca:"
+
+msgctxt "L13"
+msgid "#   * the loop is a recursive SQLite trigger: inserting a card fires the"
+msgstr "#   * el bucle es un disparador recursivo de SQLite: insertar una tarjeta activa el"
+
+msgctxt "L14"
+msgid "#     trigger, which inserts the next card, until the total is over 40;"
+msgstr "#     disparador, que inserta la siguiente tarjeta, hasta que el total pasa de 40;"
+
+msgctxt "L15"
+msgid "#   * every number, name and printed line comes from Tcl procs that live as"
+msgstr "#   * cada número, nombre y línea impresa sale de procs de Tcl que viven como"
+
+msgctxt "L16"
+msgid "#     TEXT in a table, fetched on demand by an `unknown` handler;"
+msgstr "#     TEXT en una tabla, traídos bajo demanda por un manejador `unknown`;"
+
+msgctxt "L17"
+msgid "#   * SQL calls those procs through a Tcl command registered as an SQL function;"
+msgstr "#   * SQL llama a esos procs mediante un comando de Tcl registrado como función de SQL;"
+
+msgctxt "L18"
+msgid "#   * with --gui, even the window's widgets are rows."
+msgstr "#   * con --gui, hasta los widgets de la ventana son filas."
+
+msgctxt "L20"
+msgid "# The Tcl below only installs those three hooks, hands SQLite the program,"
+msgstr "# El Tcl de abajo solo instala esos tres enganches, le entrega el programa a SQLite"
+
+msgctxt "L21"
+msgid "# and runs the INSERT."
+msgstr "# y ejecuta el INSERT."
+
+msgctxt "L30"
+msgid "# Hook 1: an SQL function, tcl(command, args...), that runs a Tcl command."
+msgstr "# Enganche 1: una función de SQL, tcl(command, args...), que ejecuta un comando de Tcl."
+
+msgctxt "L36"
+msgid "# Hook 2: Tcl calls `unknown` for any command that does not exist. Ours looks"
+msgstr "# Enganche 2: Tcl llama a `unknown` para cualquier comando que no exista. El nuestro busca"
+
+msgctxt "L37"
+msgid "# the name up in the tcl_code table, defines it as a proc from the row, and"
+msgstr "# el nombre en la tabla tcl_code, lo define como un proc a partir de la fila y"
+
+msgctxt "L38"
+msgid "# retries the call. The database is the library path."
+msgstr "# reintenta la llamada. La base de datos es la ruta de la biblioteca."
+
+msgctxt "L51"
+msgid "# Hook 3: the program, as SQL. TEMP tables and triggers live only as long as"
+msgstr "# Enganche 3: el programa, como SQL. Las tablas y los disparadores TEMP viven solo mientras dura"
+
+msgctxt "L52"
+msgid "# this connection, so the file on disk keeps nothing but the timecards."
+msgstr "# esta conexión, así que el archivo en disco no guarda nada salvo las tarjetas de horas."
+
+msgctxt "L53"
+msgid "# (Tcl inside SQL inside Tcl: braces nest, and nothing here is substituted.)"
+msgstr "# (Tcl dentro de SQL dentro de Tcl: las llaves se anidan y aquí no se sustituye nada.)"
+
+msgctxt "L117"
+msgid "# --gui: the widgets are rows too. One SELECT builds the window, by handing each"
+msgstr "# --gui: los widgets también son filas. Un SELECT construye la ventana entregando el"
+
+msgctxt "L118"
+msgid "# row's text to uplevel #0, which runs it as Tcl at the global level."
+msgstr "# texto de cada fila a uplevel #0, que lo ejecuta como Tcl en el nivel global."
+
+msgctxt "L128"
+msgid "# The one statement that brings it to life: insert card 1 and the trigger does the rest."
+msgstr "# La única sentencia que lo pone en marcha: inserta la tarjeta 1 y el disparador hace el resto."
+
+msgctxt "L157"
+msgid "# tclsh stays alive after the script ends while Tk's main window exists"
+msgstr "# tclsh sigue vivo cuando termina el script mientras exista la ventana principal de Tk"

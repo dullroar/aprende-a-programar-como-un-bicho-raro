@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
-# Checks the rules of the challenge for the Tcl "weird" entry. Uses a throwaway data dir.
-# Set TCLSH=/path/to/tclsh if it is not on your PATH. Needs Tcl 8.6 and its sqlite3 package.
-# The Tk window is tested only when Xvfb (or a display) is available; otherwise that step is skipped, and says so.
+# Comprueba las reglas del desafío para la entrada "rara" de Tcl. Usa un directorio de datos desechable.
+# Define TCLSH=/path/to/tclsh si no está en tu PATH. Necesita Tcl 8.6 y su paquete sqlite3.
+# La ventana de Tk se prueba solo si hay Xvfb (o una pantalla); si no, ese paso se omite y lo dice.
 set -euo pipefail
 cd "$(dirname "$0")"
 data=$(mktemp -d); trap 'rm -rf "$data"' EXIT
@@ -11,8 +11,8 @@ tclsh=${TCLSH:-tclsh}
 run() { "$tclsh" "${1:-timecards.tcl}"; }
 cards() { grep -cE '^(Meetings|Coding|Debugging|Learning)	' || true; }
 
-# 1. Static: the stunt is real. With comments removed the Tcl has no loop command, only the two
-#    hook procs (call, unknown) are defined in Tcl, and the recursive trigger is switched on.
+# 1. Estático: la acrobacia es real. Sin comentarios, el Tcl no tiene ningún comando de bucle, solo los dos
+#    procs de enganche (call, unknown) están definidos en Tcl, y el disparador recursivo está activado.
 grep -q 'DEMO ONLY' timecards.tcl || { echo "FAIL: no DEMO ONLY marker in timecards.tcl"; exit 1; }
 if grep -Eqi 'http|socket|curl|wget|exec ' timecards.tcl; then echo "FAIL: network or process text in timecards.tcl"; exit 1; fi
 code=$(sed -e 's/^ *#.*//' -e 's/ -- .*//' -e 's/^ *-- .*//' timecards.tcl)
@@ -22,23 +22,23 @@ grep -q '^db function tcl call' <<<"$code" || { echo "FAIL: no tcl() SQL functio
 grep -q 'PRAGMA recursive_triggers = ON' <<<"$code" || { echo "FAIL: recursive triggers are not switched on"; exit 1; }
 grep -q 'CREATE TEMP TRIGGER next_card AFTER INSERT' <<<"$code" || { echo "FAIL: no trigger"; exit 1; }
 
-# 2. The mechanisms are what do the work.
-#    a) Without recursive triggers the trigger fires only for the first INSERT, so only card 1 is
-#       ever announced by it (born): exactly one card is printed.
+# 2. Los mecanismos son los que hacen el trabajo.
+#    a) Sin disparadores recursivos, el disparador salta solo con el primer INSERT, así que solo la tarjeta 1 es
+#       anunciada por él (born): se imprime exactamente una tarjeta.
 sed 's/PRAGMA recursive_triggers = ON/PRAGMA recursive_triggers = OFF/' timecards.tcl > "$data/norecurse.tcl"
 for i in 1 2 3 4 5; do
     n=$(run "$data/norecurse.tcl" | cards)
     [[ $n -eq 1 ]] || { echo "FAIL: without recursion run $i printed $n cards, wanted 1 (the trigger never fires for the card it inserts)"; exit 1; }
 done
 rm -rf "$data/TclWeird"
-#    b) The hours really come from the row in the table: change the row's text and the data changes.
+#    b) Las horas salen de verdad de la fila de la tabla: cambia el texto de la fila y cambian los datos.
 sed "s/'expr {10 + int(rand() \* 10)}'/'expr {19}'/" timecards.tcl > "$data/nineteen.tcl"
 out=$(run "$data/nineteen.tcl")
 [[ $(grep -cE '^(Meetings|Coding|Debugging|Learning)	19	' <<<"$out") -eq 3 ]] || { echo "FAIL: editing the hours row did not change the program"; echo "$out"; exit 1; }
 grep -q 'fetched from SQLite by unknown: born category hours init runid week' <<<"$out" || { echo "FAIL: procs were not loaded from SQLite"; echo "$out"; exit 1; }
 rm -rf "$data/TclWeird"
-#    b2) Each card draws its hours exactly once. The hours are read twice (as the hours and in the running total), so the random
-#       function must not be called twice per card; SQLite does not promise how often it calls a function. Count the calls.
+#    b2) Cada tarjeta sortea sus horas exactamente una vez. Las horas se leen dos veces (como horas y en el total acumulado), así que la función
+#       aleatoria no debe llamarse dos veces por tarjeta; SQLite no promete cuántas veces llama a una función. Cuenta las llamadas.
 sed -e "s/'expr {10 + int(rand() \* 10)}'/'incr ::calls; expr {10 + int(rand() * 10)}'/" \
     -e 's/^puts "# the loop was a recursive trigger, and one INSERT started it"/puts "# hours calls: $::calls"\n&/' timecards.tcl > "$data/counted.tcl"
 for i in 1 2 3 4 5; do
@@ -47,12 +47,12 @@ for i in 1 2 3 4 5; do
     [[ -n $calls && $calls -eq $entries ]] || { echo "FAIL: run $i drew hours $calls times for $entries cards"; echo "$out"; exit 1; }
     rm -rf "$data/TclWeird"
 done
-#    c) The temp tables and trigger are gone afterwards: the file on disk holds only the timecards.
+#    c) Las tablas temporales y el disparador desaparecen después: el archivo en disco guarda solo las tarjetas de horas.
 run >/dev/null
 [[ $(sqlite3 "$db" "select group_concat(name) from sqlite_master") == "demo_timecards" ]] || { echo "FAIL: the file holds more than the timecard table"; exit 1; }
 rm -rf "$data/TclWeird"
 
-# 3. The Tk window, whose widgets are rows too, headless: needs Xvfb (preferred) or a DISPLAY.
+# 3. La ventana de Tk, cuyos widgets también son filas, sin pantalla real: necesita Xvfb (preferible) o un DISPLAY.
 if command -v xvfb-run >/dev/null && command -v Xvfb >/dev/null; then
     runner=(xvfb-run -a)
 elif [[ -n ${DISPLAY:-} ]]; then
@@ -69,7 +69,7 @@ else
 fi
 rm -rf "$data/TclWeird"
 
-# 4. Run it a bunch of times for real; every run must print a sane record set, and the SQLite rows must agree with it.
+# 4. Ejecútalo muchas veces de verdad; cada ejecución debe imprimir un conjunto de registros sensato, y las filas de SQLite deben coincidir con él.
 cats=(Meetings Coding Debugging Learning)
 for i in $(seq 1 25); do
     out=$(run)
@@ -101,7 +101,7 @@ done
 [[ $(sqlite3 "$db" 'select count(distinct run_id) from demo_timecards') -eq 25 ]] || { echo "FAIL: expected 25 distinct runs in the db"; exit 1; }
 [[ $(sqlite3 "$db" 'select count(distinct hours) from demo_timecards') -ge 6 ]] || { echo "FAIL: hours do not look random"; exit 1; }
 
-# 3. The demo_only CHECK constraint is real: a non-demo row must be refused.
+# 3. La restricción CHECK de demo_only es real: una fila que no sea de demostración debe rechazarse.
 if sqlite3 "$db" "insert into demo_timecards(run_id,category,hours,running_total,demo_only) values('x','x',1,1,0)" 2>/dev/null; then
     echo "FAIL: db accepted a non-demo row"; exit 1
 fi

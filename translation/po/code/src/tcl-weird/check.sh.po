@@ -1,0 +1,63 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+
+msgctxt "L2"
+msgid "# Checks the rules of the challenge for the Tcl \"weird\" entry. Uses a throwaway data dir."
+msgstr "# Comprueba las reglas del desafío para la entrada \"rara\" de Tcl. Usa un directorio de datos desechable."
+
+msgctxt "L3"
+msgid "# Set TCLSH=/path/to/tclsh if it is not on your PATH. Needs Tcl 8.6 and its sqlite3 package."
+msgstr "# Define TCLSH=/path/to/tclsh si no está en tu PATH. Necesita Tcl 8.6 y su paquete sqlite3."
+
+msgctxt "L4"
+msgid "# The Tk window is tested only when Xvfb (or a display) is available; otherwise that step is skipped, and says so."
+msgstr "# La ventana de Tk se prueba solo si hay Xvfb (o una pantalla); si no, ese paso se omite y lo dice."
+
+msgctxt "L14"
+msgid "# 1. Static: the stunt is real. With comments removed the Tcl has no loop command, only the two"
+msgstr "# 1. Estático: la acrobacia es real. Sin comentarios, el Tcl no tiene ningún comando de bucle, solo los dos"
+
+msgctxt "L15"
+msgid "#    hook procs (call, unknown) are defined in Tcl, and the recursive trigger is switched on."
+msgstr "#    procs de enganche (call, unknown) están definidos en Tcl, y el disparador recursivo está activado."
+
+msgctxt "L25"
+msgid "# 2. The mechanisms are what do the work."
+msgstr "# 2. Los mecanismos son los que hacen el trabajo."
+
+msgctxt "L26"
+msgid "#    a) Without recursive triggers the trigger fires only for the first INSERT, so only card 1 is"
+msgstr "#    a) Sin disparadores recursivos, el disparador salta solo con el primer INSERT, así que solo la tarjeta 1 es"
+
+msgctxt "L27"
+msgid "#       ever announced by it (born): exactly one card is printed."
+msgstr "#       anunciada por él (born): se imprime exactamente una tarjeta."
+
+msgctxt "L34"
+msgid "#    b) The hours really come from the row in the table: change the row's text and the data changes."
+msgstr "#    b) Las horas salen de verdad de la fila de la tabla: cambia el texto de la fila y cambian los datos."
+
+msgctxt "L40"
+msgid "#    b2) Each card draws its hours exactly once. The hours are read twice (as the hours and in the running total), so the random"
+msgstr "#    b2) Cada tarjeta sortea sus horas exactamente una vez. Las horas se leen dos veces (como horas y en el total acumulado), así que la función"
+
+msgctxt "L41"
+msgid "#       function must not be called twice per card; SQLite does not promise how often it calls a function. Count the calls."
+msgstr "#       aleatoria no debe llamarse dos veces por tarjeta; SQLite no promete cuántas veces llama a una función. Cuenta las llamadas."
+
+msgctxt "L50"
+msgid "#    c) The temp tables and trigger are gone afterwards: the file on disk holds only the timecards."
+msgstr "#    c) Las tablas temporales y el disparador desaparecen después: el archivo en disco guarda solo las tarjetas de horas."
+
+msgctxt "L55"
+msgid "# 3. The Tk window, whose widgets are rows too, headless: needs Xvfb (preferred) or a DISPLAY."
+msgstr "# 3. La ventana de Tk, cuyos widgets también son filas, sin pantalla real: necesita Xvfb (preferible) o un DISPLAY."
+
+msgctxt "L72"
+msgid "# 4. Run it a bunch of times for real; every run must print a sane record set, and the SQLite rows must agree with it."
+msgstr "# 4. Ejecútalo muchas veces de verdad; cada ejecución debe imprimir un conjunto de registros sensato, y las filas de SQLite deben coincidir con él."
+
+msgctxt "L104"
+msgid "# 3. The demo_only CHECK constraint is real: a non-demo row must be refused."
+msgstr "# 3. La restricción CHECK de demo_only es real: una fila que no sea de demostración debe rechazarse."

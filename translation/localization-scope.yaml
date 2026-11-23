@@ -67,5 +67,5 @@ families:
   "src/tar-gnu": {status: frozen, files: 7}
   "src/tar-gnu-weird": {status: frozen, files: 8}
   "src/tcl": {status: localizing, files: 3}
-  "src/tcl-weird": {status: frozen, files: 3}
+  "src/tcl-weird": {status: localizing, files: 3}
   "src/xaml": {status: frozen, files: 7}

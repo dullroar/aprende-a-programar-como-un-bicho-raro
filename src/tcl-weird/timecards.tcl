@@ -1,24 +1,24 @@
 #!/usr/bin/env tclsh
-# DEMO ONLY. Fictional timecards, written to a scratch SQLite file under
-# XDG_DATA_HOME. Nothing here touches a real time-reporting system.
+# DEMO ONLY. Tarjetas de horas ficticias, escritas en un archivo SQLite desechable bajo
+# XDG_DATA_HOME. Nada de aquí toca un sistema real de registro de horas.
 #
-# Run:  tclsh timecards.tcl            (text)
-#       tclsh timecards.tcl --gui      (the window is built from rows too; --seconds N closes it)
+# Ejecuta:  tclsh timecards.tcl            (texto)
+#       tclsh timecards.tcl --gui      (la ventana también se construye a partir de filas; --seconds N la cierra)
 #
-# The challenge: add cards of 10-19 hours until the running total passes 40.
+# El desafío: suma tarjetas de 10 a 19 horas hasta que el total acumulado pase de 40.
 #
-# THE STUNT.  This file defines no Tcl loop and no Tcl proc that deals or
-# prints a card. The program is rows in a SQLite table, and one INSERT starts it:
+# LA ACROBACIA.  Este archivo no define ningún bucle de Tcl ni ningún proc de Tcl que reparta o
+# imprima una tarjeta. El programa son filas de una tabla de SQLite, y un INSERT lo arranca:
 #
-#   * the loop is a recursive SQLite trigger: inserting a card fires the
-#     trigger, which inserts the next card, until the total is over 40;
-#   * every number, name and printed line comes from Tcl procs that live as
-#     TEXT in a table, fetched on demand by an `unknown` handler;
-#   * SQL calls those procs through a Tcl command registered as an SQL function;
-#   * with --gui, even the window's widgets are rows.
+#   * el bucle es un disparador recursivo de SQLite: insertar una tarjeta activa el
+#     disparador, que inserta la siguiente tarjeta, hasta que el total pasa de 40;
+#   * cada número, nombre y línea impresa sale de procs de Tcl que viven como
+#     TEXT en una tabla, traídos bajo demanda por un manejador `unknown`;
+#   * SQL llama a esos procs mediante un comando de Tcl registrado como función de SQL;
+#   * con --gui, hasta los widgets de la ventana son filas.
 #
-# The Tcl below only installs those three hooks, hands SQLite the program,
-# and runs the INSERT.
+# El Tcl de abajo solo instala esos tres enganches, le entrega el programa a SQLite
+# y ejecuta el INSERT.
 
 package require sqlite3
 
@@ -27,15 +27,15 @@ set dir [expr {[info exists ::env(XDG_DATA_HOME)] && $::env(XDG_DATA_HOME) ne ""
 file mkdir [file join $dir TclWeird]
 sqlite3 db [file join $dir TclWeird demo-timecards.db]
 
-# Hook 1: an SQL function, tcl(command, args...), that runs a Tcl command.
+# Enganche 1: una función de SQL, tcl(command, args...), que ejecuta un comando de Tcl.
 proc call {command args} {
     $command {*}$args
 }
 db function tcl call
 
-# Hook 2: Tcl calls `unknown` for any command that does not exist. Ours looks
-# the name up in the tcl_code table, defines it as a proc from the row, and
-# retries the call. The database is the library path.
+# Enganche 2: Tcl llama a `unknown` para cualquier comando que no exista. El nuestro busca
+# el nombre en la tabla tcl_code, lo define como un proc a partir de la fila y
+# reintenta la llamada. La base de datos es la ruta de la biblioteca.
 set loaded {}
 rename unknown _unknown
 proc unknown {name args} {
@@ -48,9 +48,9 @@ proc unknown {name args} {
     tailcall _unknown $name {*}$args
 }
 
-# Hook 3: the program, as SQL. TEMP tables and triggers live only as long as
-# this connection, so the file on disk keeps nothing but the timecards.
-# (Tcl inside SQL inside Tcl: braces nest, and nothing here is substituted.)
+# Enganche 3: el programa, como SQL. Las tablas y los disparadores TEMP viven solo mientras dura
+# esta conexión, así que el archivo en disco no guarda nada salvo las tarjetas de horas.
+# (Tcl dentro de SQL dentro de Tcl: las llaves se anidan y aquí no se sustituye nada.)
 db eval {
     PRAGMA recursive_triggers = ON;          -- without this the trigger below fires once
 
@@ -114,8 +114,8 @@ db eval {
     END;
 }
 
-# --gui: the widgets are rows too. One SELECT builds the window, by handing each
-# row's text to uplevel #0, which runs it as Tcl at the global level.
+# --gui: los widgets también son filas. Un SELECT construye la ventana entregando el
+# texto de cada fila a uplevel #0, que lo ejecuta como Tcl en el nivel global.
 set gui [expr {"--gui" in $argv}]
 set seconds [expr {[set at [lsearch $argv --seconds]] >= 0 ? [lindex $argv $at+1] : 0}]
 if {$gui} {
@@ -125,7 +125,7 @@ if {$gui} {
         SELECT tcl('uplevel', '#0', command) FROM ui ORDER BY id
     }
 }
-# The one statement that brings it to life: insert card 1 and the trigger does the rest.
+# La única sentencia que lo pone en marcha: inserta la tarjeta 1 y el disparador hace el resto.
 db eval {SELECT tcl('init')}
 db transaction {
     db eval {
@@ -154,7 +154,7 @@ if {$gui} {
     } else {
         tkwait window .
     }
-    # tclsh stays alive after the script ends while Tk's main window exists
+    # tclsh sigue vivo cuando termina el script mientras exista la ventana principal de Tk
     catch {destroy .}
 }
 db close
