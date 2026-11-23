@@ -36,9 +36,9 @@ Los registros van a `$XDG_DATA_HOME/LispWeird/demo-timecards.db` (por defecto, `
 
 ```text
 # DEMO ONLY run 1794860078-QM6YV6
-Meetings	18	18	2026-W47	DEMO ONLY
-Coding	18	36	2026-W47	DEMO ONLY
-Debugging	15	51	2026-W47	DEMO ONLY
+Reuniones	18	18	2026-W47	DEMO ONLY
+Programación	18	36	2026-W47	DEMO ONLY
+Depuración	15	51	2026-W47	DEMO ONLY
 # committed total=51 entries=3 DEMO ONLY
 # PUNCH had 5 OR methods and 3 ran: the class precedence list is the loop, and OR is the stop rule
 ```
@@ -107,10 +107,10 @@ Un método `:around` sobre `ledger` envuelve todo el encadenamiento. El método 
 ### 5. Una lista circular desde el lector
 
 ```lisp
-(defparameter *week* '#1=("Meetings" "Coding" "Debugging" "Learning" . #1#))
+(defparameter *week* '#1=("Reuniones" "Programación" "Depuración" "Aprendizaje" . #1#))
 ```
 
-`#1=` etiqueta la lista y `#1#` apunta de vuelta a ella, así que el lector forma un anillo. `(nth 4 *week*)` es de nuevo `"Meetings"`: las categorías se repiten sin `mod`. (Nunca la imprimas con `*print-circle*` desactivado.)
+`#1=` etiqueta la lista y `#1#` apunta de vuelta a ella, así que el lector forma un anillo. `(nth 4 *week*)` es de nuevo `"Reuniones"`: las categorías se repiten sin `mod`. (Nunca la imprimas con `*print-circle*` desactivado.)
 
 ### 6. Lugares generalizados
 

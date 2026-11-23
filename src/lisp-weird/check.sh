@@ -26,20 +26,20 @@ grep -q '(:method-combination or)' timecards.lisp || { echo "FAIL: PUNCH does no
 sed -e 's/(:method-combination or)/(:method-combination progn)/' -e 's/defmethod punch or/defmethod punch progn/' \
     timecards.lisp > "$data/progn.lisp"
 for i in 1 2 3 4 5; do
-    n=$(run "$data/progn.lisp" | grep -cE '^(Meetings|Coding|Debugging|Learning)	' || true)
+    n=$(run "$data/progn.lisp" | grep -cE '^(Reuniones|Programación|Depuración|Aprendizaje)	' || true)
     [[ $n -eq 5 ]] || { echo "FAIL: with PROGN instead of OR run $i dealt $n cards, wanted 5"; exit 1; }
 done
 rm -rf "$data/LispWeird"
 short=0
 for i in $(seq 1 12); do
-    n=$(run | grep -cE '^(Meetings|Coding|Debugging|Learning)	' || true)
+    n=$(run | grep -cE '^(Reuniones|Programación|Depuración|Aprendizaje)	' || true)
     (( n < 5 )) && short=$((short + 1))
 done
 (( short >= 1 )) || { echo "FAIL: with OR no run stopped before card 5 in 12 tries"; exit 1; }
 rm -rf "$data/LispWeird"
 
 # 2. Ejecútalo muchas veces; cada ejecución debe imprimir un conjunto de registros coherente, y las filas de SQLite deben coincidir con él.
-cats=(Meetings Coding Debugging Learning)
+cats=(Reuniones Programación Depuración Aprendizaje)
 for i in $(seq 1 25); do
     out=$(run)
     run_id=$(sed -nE 's/^# DEMO ONLY run (.+)$/\1/p' <<<"$out")
@@ -48,7 +48,7 @@ for i in $(seq 1 25); do
     [[ -n $commit ]] || { echo "FAIL run $i: no committed line"; echo "$out"; exit 1; }
     total=$(sed -E 's/.*total=([0-9]+).*/\1/' <<<"$commit")
     entries=$(sed -E 's/.*entries=([0-9]+).*/\1/' <<<"$commit")
-    mapfile -t rows < <(grep -E '^(Meetings|Coding|Debugging|Learning)	' <<<"$out" || true)
+    mapfile -t rows < <(grep -E '^(Reuniones|Programación|Depuración|Aprendizaje)	' <<<"$out" || true)
     [[ ${#rows[@]} -eq $entries ]] || { echo "FAIL run $i: ${#rows[@]} rows but entries=$entries"; exit 1; }
     sum=0; n=0
     for row in "${rows[@]}"; do

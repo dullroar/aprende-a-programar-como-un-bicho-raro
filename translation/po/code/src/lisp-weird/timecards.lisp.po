@@ -73,3 +73,11 @@ msgstr "; un accesor es un lugar SETF"
 msgctxt "L86"
 msgid ";;; Tail first: a class must exist before another can inherit from it."
 msgstr ";;; Primero la cola: una clase debe existir antes de que otra pueda heredar de ella."
+
+msgctxt "C45"
+msgid "  '#1=(\"Meetings\" \"Coding\" \"Debugging\" \"Learning\" . #1#)"
+msgstr "  '#1=(\"Reuniones\" \"Programación\" \"Depuración\" \"Aprendizaje\" . #1#)"
+
+msgctxt "C47"
+msgid "(NTH 4 *WEEK*) is \\\"Meetings\\\" again, so no MOD is needed to make them repeat.\")"
+msgstr "(NTH 4 *WEEK*) is \\\"Reuniones\\\" again, so no MOD is needed to make them repeat.\")"

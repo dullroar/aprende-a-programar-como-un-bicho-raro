@@ -42,9 +42,9 @@ a PUNCH method, qualified with OR, specialized on that class."
 ;;; ------------------------------------------------------------------ el estado
 
 (defparameter *week*
-  '#1=("Meetings" "Coding" "Debugging" "Learning" . #1#)
+  '#1=("Reuniones" "Programación" "Depuración" "Aprendizaje" . #1#)
   "The categories as a circular list, written with the reader's #1= / #1# syntax.
-(NTH 4 *WEEK*) is \"Meetings\" again, so no MOD is needed to make them repeat.")
+(NTH 4 *WEEK*) is \"Reuniones\" again, so no MOD is needed to make them repeat.")
 
 (defvar *sql* nil
   "While PUNCH runs, the stream that collects the SQL script (a dynamic binding).")

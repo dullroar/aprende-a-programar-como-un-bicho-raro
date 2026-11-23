@@ -188,6 +188,10 @@ ROW_RE = re.compile(r"^(%s)(?=\t)" % "|".join(categories.EN))
 LIST_RE = re.compile(r'(?<=")%s(?=")' % " ".join(categories.EN))
 
 
+# the four words in order, each double-quoted, space-separated (a copied Lisp list literal)
+QUOTED_LIST_RE = re.compile(" ".join('"%s"' % w for w in categories.EN))
+
+
 def category_files():
     """Markdown files whose family prints the Spanish card categories (decision 11): one path per line."""
     try:
@@ -210,6 +214,7 @@ def localize_category_rows(text):
         elif fence is not None:
             line = ROW_RE.sub(lambda m: categories.EN_TO_ES[m.group(1)], line)
             line = LIST_RE.sub(lambda m: " ".join(categories.ES), line)
+            line = QUOTED_LIST_RE.sub(lambda m: " ".join('"%s"' % w for w in categories.ES), line)
         out.append(line)
     return "\n".join(out)
 

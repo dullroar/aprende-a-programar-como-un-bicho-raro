@@ -326,6 +326,19 @@ class CategoryList(unittest.TestCase):
         self.assertEqual(ap.localize_category_rows(text), text)
 
 
+class CategoryQuotedList(unittest.TestCase):
+    """F2-007-lisp-weird: a copied Lisp list literal of the four quoted words follows the code; other text stays."""
+
+    def test_quoted_words_in_fence(self):
+        text = "```lisp\n'#1=(\"Meetings\" \"Coding\" \"Debugging\" \"Learning\" . #1#)\n```\n"
+        self.assertEqual(ap.localize_category_rows(text),
+                         "```lisp\n'#1=(\"Reuniones\" \"Programación\" \"Depuración\" \"Aprendizaje\" . #1#)\n```\n")
+
+    def test_other_order_and_prose_stay(self):
+        text = "\"Meetings\" \"Coding\" \"Debugging\" \"Learning\"\n```lisp\n(\"Coding\" \"Meetings\" \"Debugging\" \"Learning\")\n```\n"
+        self.assertEqual(ap.localize_category_rows(text), text)
+
+
 class CategoryWords(unittest.TestCase):
     """F2-006b: prose and inline spans of a localized family follow the code; fences, glosses and links stay."""
 
