@@ -73,3 +73,7 @@ msgstr "-- | Un literal de cadena SQL. Duplicar las comillas internas es toda la
 msgctxt "L75"
 msgid "-- here the inputs are fixed, but a helper that is safe anyway costs nothing."
 msgstr "-- aquí las entradas son fijas, pero una función auxiliar segura igualmente no cuesta nada."
+
+msgctxt "C25"
+msgid "data Category = Meetings | Coding | Debugging | Learning"
+msgstr "data Category = Reuniones | Programación | Depuración | Aprendizaje"

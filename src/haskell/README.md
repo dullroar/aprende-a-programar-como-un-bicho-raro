@@ -35,10 +35,10 @@ Los registros van a `$XDG_DATA_HOME/Haskell/demo-timecards.db` (por defecto `~/.
 
 ```text
 # DEMO ONLY run 1794674911-35631
-Meetings	15	15	2026-W46	DEMO ONLY
-Coding	12	27	2026-W46	DEMO ONLY
-Debugging	10	37	2026-W46	DEMO ONLY
-Learning	12	49	2026-W46	DEMO ONLY
+Reuniones	15	15	2026-W46	DEMO ONLY
+Programación	12	27	2026-W46	DEMO ONLY
+Depuración	10	37	2026-W46	DEMO ONLY
+Aprendizaje	12	49	2026-W46	DEMO ONLY
 # committed total=49 entries=4 DEMO ONLY
 # the whole challenge is one pure function, timecards; main is just plumbing
 ```
@@ -67,7 +67,7 @@ flowchart TD
 El archivo se lee de arriba abajo como cuatro pasos, cada uno una función pequeña con una firma de tipo.
 
 1. **`rolls :: Word64 -> [Int]`** es una lista *infinita* de horas de 10 a 19. GHC no incluye ningún paquete de números aleatorios, así que esto es un generador congruencial lineal de 64 bits. `iterate next seed` produce `seed, next seed, next (next seed), …`; `tail` descarta la semilla misma; los bits altos (`shiftR 33`) son los buenos. Como la aritmética de `Word64` da la vuelta al desbordarse, el "mod 2^64" que necesita el algoritmo sale gratis.
-2. **`allCards :: Word64 -> [Card]`** son todas las tarjetas que podrían existir, también infinitas. `cycle [minBound ..]` repite `Meetings, Coding, Debugging, Learning` para siempre (el tipo `Category` deriva `Enum` y `Bounded`, así que puede listarse a sí mismo). `scanl1 (+) hs` es una *suma acumulada*: `[10, 11, 12]` se convierte en `[10, 21, 33]`. `zipWith3 Card` une las tres listas infinitas en tarjetas.
+2. **`allCards :: Word64 -> [Card]`** son todas las tarjetas que podrían existir, también infinitas. `cycle [minBound ..]` repite `Reuniones, Programación, Depuración, Aprendizaje` para siempre (el tipo `Category` deriva `Enum` y `Bounded`, así que puede listarse a sí mismo). `scanl1 (+) hs` es una *suma acumulada*: `[10, 11, 12]` se convierte en `[10, 21, 33]`. `zipWith3 Card` une las tres listas infinitas en tarjetas.
 3. **`timecards :: Word64 -> [Card]`** es el reto: `span ((<= 40) . runningTotal) (allCards seed)` divide la lista en la primera tarjeta cuyo total pasa de 40, y `under ++ take 1 over` conserva todo lo que va antes de ella más esa tarjeta.
 4. **Salida.** `insert` y `row` convierten una tarjeta en una sentencia SQL y en una línea de terminal; `main` pasa el SQL por una tubería a `sqlite3` e imprime las filas.
 

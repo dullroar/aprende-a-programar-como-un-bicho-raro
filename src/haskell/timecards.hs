@@ -22,7 +22,7 @@ import System.Process (readProcess)
 -- The challenge
 -- ---------------------------------------------------------------------------
 
-data Category = Meetings | Coding | Debugging | Learning
+data Category = Reuniones | Programación | Depuración | Aprendizaje
   deriving (Show, Enum, Bounded)
 
 data Card = Card
