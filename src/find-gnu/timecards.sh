@@ -1,11 +1,11 @@
 #!/bin/sh
-# DEMO ONLY. Fictional timecards, written to a scratch SQLite file under XDG_DATA_HOME. See README.md.
+# DEMO ONLY. Tarjetas de horas ficticias, escritas en un archivo SQLite temporal bajo XDG_DATA_HOME. Mira README.md.
 #
-# One GNU `find` is the whole program: it digs the directory tree it is walking, one directory per hour,
-# and writes SQL to file descriptor 3 as it goes (the directory depth is the running total, and the
-# directory's own mtime is the ISO week). The lines around it only seed a scratch folder, feed the SQL to
-# sqlite3 and clean up. build-line.py is the readable source of the long expression; check.sh keeps the two
-# in step. FIND_O=0..3 picks the optimizer level (default 3); FIND_D=rates prints find's own profile.
+# Un solo `find` de GNU es todo el programa: cava el árbol de directorios que recorre, un directorio por hora,
+# y escribe SQL en el descriptor de archivo 3 mientras avanza (la profundidad del directorio es el total acumulado, y la
+# mtime del propio directorio es la semana ISO). Las líneas de alrededor solo siembran una carpeta temporal, pasan el SQL a
+# sqlite3 y limpian. build-line.py es la fuente legible de la expresión larga; check.sh mantiene las dos
+# sincronizadas. FIND_O=0..3 elige el nivel del optimizador (por defecto 3); FIND_D=rates imprime el perfil propio de find.
 set -eu
 dir=${XDG_DATA_HOME:-$HOME/.local/share}/FindGnu
 mkdir -p "$dir"

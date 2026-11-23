@@ -14,7 +14,7 @@ The machine. One directory per hour, so the depth of a directory is the hours so
 The next card's <R> hangs under the previous card's b00.
 """
 DIGITS = "0123456789"
-# 60 of the 62 mktemp characters in ten groups of six; Y and Z are re-rolled (see the portable README)
+# 60 de los 62 caracteres de mktemp en diez grupos de seis; Y y Z se vuelven a tirar (mira el README de la versión portable)
 CLASSES = ["abcdef", "ghijkl", "mnopqr", "stuvwx", "yz0123", "456789", "ABCDEF", "GHIJKL", "MNOPQR", "STUVWX"]
 SQL = "/dev/fd/3"
 
@@ -23,7 +23,7 @@ def ex(*words):
     return "-exec " + " ".join(words) + " \\;"
 
 
-def out(fmt):  # one piece of SQL, to fd 3
+def out(fmt):  # un trozo de SQL, hacia el descriptor 3
     return "-fprintf " + SQL + ' "' + fmt + '"'
 
 
@@ -31,7 +31,7 @@ def alt(branches):
     return " -o ".join("\\( " + b + " \\)" for b in branches)
 
 
-def cards(n):  # at least n six-character names in the path: the card count
+def cards(n):  # al menos n nombres de seis caracteres en la ruta: el número de tarjetas
     return "'(.*/[^/]{6}){%d}.*'" % n
 
 
@@ -39,11 +39,11 @@ MK = ex("mktemp", "-d", "{}/XXXXXX")
 HEAD = ("INSERT INTO demo_timecards(run_id,category,hours,running_total,iso_week) "
         "VALUES((SELECT max(id) FROM runs),")
 
-# 1. the start directory: deal the first card
+# 1. el directorio de inicio: reparte la primera tarjeta
 rule_start = "-path t " + MK
 
-# 2. a card's dice: open the row, name the category, print the hours, dig the countdown.
-#    The dice directory is hour 1, so a card of H hours digs b(H-2) ... b00.
+# 2. los dados de una tarjeta: abre la fila, nombra la categoría, imprime las horas, cava la cuenta atrás.
+#    El directorio de los dados es la hora 1, así que una tarjeta de H horas cava b(H-2) ... b00.
 category = alt([
     "-regex " + cards(5) + " " + out("'Meetings',"),
     "-regex " + cards(4) + " " + out("'Learning',"),
@@ -58,19 +58,19 @@ def dice(d, glob):
 
 
 hours = alt(
-    [dice(d, "?" * 5 + "[" + CLASSES[d] + "]") for d in range(10)]              # last character
-    + [dice(d, "?" * 4 + "[" + CLASSES[d] + "][YZ]") for d in range(10)]        # re-roll on the one before
-    + [out("10,") + " " + ex("mkdir", "{}/b08")]                                 # re-rolled twice
+    [dice(d, "?" * 5 + "[" + CLASSES[d] + "]") for d in range(10)]              # último carácter
+    + [dice(d, "?" * 4 + "[" + CLASSES[d] + "][YZ]") for d in range(10)]        # vuelve a tirar con el carácter anterior
+    + [out("10,") + " " + ex("mkdir", "{}/b08")]                                 # vuelve a tirar dos veces
 )
 rule_dice = "-name '??????' " + out(HEAD) + " \\( " + category + " \\) \\( " + hours + " \\)"
 
-# 3. the end of a card: the depth is the total and the directory's mtime is the week. Stop once the depth
-#    is 41 or more (nothing more is dug, so find runs out of tree); otherwise deal the next card.
-#    -quit would end find sooner, but find then skips its -D rates profile, so it is not used.
+# 3. el final de una tarjeta: la profundidad es el total y la mtime del directorio es la semana. Para cuando la profundidad
+#    sea 41 o más (ya no se cava nada, así que a find se le acaba el árbol); si no, reparte la siguiente tarjeta.
+#    -quit terminaría find antes, pero entonces find omite su perfil -D rates, así que no se usa.
 over_40 = "-regex '([^/]*/){41}.*'"
 rule_end = ("-name b00 " + out("%d,'%TG-W%TV');\\n") + " \\( " + over_40 + " -o \\( " + MK + " \\) \\)")
 
-# 4. a countdown: b17 digs b16, and so on
+# 4. una cuenta atrás: b17 cava b16, y así sucesivamente
 rule_count = "-name 'b??' \\( " + alt(["-name b%02d " % n + ex("mkdir", "{}/b%02d" % (n - 1)) for n in range(17, 0, -1)]) + " \\)"
 
 print("find -O${FIND_O:-3} ${FIND_D:+-D $FIND_D} t -regextype posix-extended \\( " + rule_start + " \\) -o \\( " + rule_dice

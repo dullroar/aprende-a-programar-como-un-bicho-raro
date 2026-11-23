@@ -1,0 +1,55 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+
+msgctxt "L17"
+msgid "# 60 of the 62 mktemp characters in ten groups of six; Y and Z are re-rolled (see the portable README)"
+msgstr "# 60 de los 62 caracteres de mktemp en diez grupos de seis; Y y Z se vuelven a tirar (mira el README de la versión portable)"
+
+msgctxt "L26"
+msgid "# one piece of SQL, to fd 3"
+msgstr "# un trozo de SQL, hacia el descriptor 3"
+
+msgctxt "L34"
+msgid "# at least n six-character names in the path: the card count"
+msgstr "# al menos n nombres de seis caracteres en la ruta: el número de tarjetas"
+
+msgctxt "L42"
+msgid "# 1. the start directory: deal the first card"
+msgstr "# 1. el directorio de inicio: reparte la primera tarjeta"
+
+msgctxt "L45"
+msgid "# 2. a card's dice: open the row, name the category, print the hours, dig the countdown."
+msgstr "# 2. los dados de una tarjeta: abre la fila, nombra la categoría, imprime las horas, cava la cuenta atrás."
+
+msgctxt "L46"
+msgid "#    The dice directory is hour 1, so a card of H hours digs b(H-2) ... b00."
+msgstr "#    El directorio de los dados es la hora 1, así que una tarjeta de H horas cava b(H-2) ... b00."
+
+msgctxt "L61"
+msgid "# last character"
+msgstr "# último carácter"
+
+msgctxt "L62"
+msgid "# re-roll on the one before"
+msgstr "# vuelve a tirar con el carácter anterior"
+
+msgctxt "L63"
+msgid "# re-rolled twice"
+msgstr "# vuelve a tirar dos veces"
+
+msgctxt "L67"
+msgid "# 3. the end of a card: the depth is the total and the directory's mtime is the week. Stop once the depth"
+msgstr "# 3. el final de una tarjeta: la profundidad es el total y la mtime del directorio es la semana. Para cuando la profundidad"
+
+msgctxt "L68"
+msgid "#    is 41 or more (nothing more is dug, so find runs out of tree); otherwise deal the next card."
+msgstr "#    sea 41 o más (ya no se cava nada, así que a find se le acaba el árbol); si no, reparte la siguiente tarjeta."
+
+msgctxt "L69"
+msgid "#    -quit would end find sooner, but find then skips its -D rates profile, so it is not used."
+msgstr "#    -quit terminaría find antes, pero entonces find omite su perfil -D rates, así que no se usa."
+
+msgctxt "L73"
+msgid "# 4. a countdown: b17 digs b16, and so on"
+msgstr "# 4. una cuenta atrás: b17 cava b16, y así sucesivamente"

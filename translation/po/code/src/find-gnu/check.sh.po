@@ -1,0 +1,55 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+
+msgctxt "L2"
+msgid "# Checks the rules of the challenge for the GNU find entry. Uses throwaway data, scratch and shim dirs."
+msgstr "# Comprueba las reglas del desafío para la entrada GNU find. Usa datos desechables y directorios temporales y de sustitución."
+
+msgctxt "L3"
+msgid "# Needs GNU find (the line uses -fprintf, %d, %T, -regex, -D and -O). It runs the entry at every"
+msgstr "# Necesita GNU find (la línea usa -fprintf, %d, %T, -regex, -D y -O). Ejecuta la entrada en cada"
+
+msgctxt "L4"
+msgid "# optimizer level, -O0 to -O3, and insists the answer never changes."
+msgstr "# nivel del optimizador, de -O0 a -O3, y exige que la respuesta nunca cambie."
+
+msgctxt "L14"
+msgid "# GNU find, whatever else is installed"
+msgstr "# GNU find, sea lo que sea que haya instalado además"
+
+msgctxt "L20"
+msgid "# 1. The ridiculous constraint is real: exactly one find, no loop or branch keyword, only the GNU"
+msgstr "# 1. La restricción ridícula es real: exactamente un find, ninguna palabra clave de bucle o de rama, solo los"
+
+msgctxt "L21"
+msgid "#    primaries listed here, -exec runs only mkdir and mktemp, and the line is what build-line.py prints."
+msgstr "#    primarios de GNU listados aquí, -exec ejecuta solo mkdir y mktemp, y la línea es lo que imprime build-line.py."
+
+msgctxt "L38"
+msgid "# A fake mktemp for the forced-dice scenarios: -d TEMPLATE takes its next name from $FAKE_NAMES."
+msgstr "# Un mktemp falso para los escenarios de dados forzados: -d TEMPLATE toma su siguiente nombre de $FAKE_NAMES."
+
+msgctxt "L49"
+msgid "# first character of each group of six: hours 10..19"
+msgstr "# primer carácter de cada grupo de seis: horas 10..19"
+
+msgctxt "L52"
+msgid "# validate LABEL OUTPUT: rows sane, stop exact, ISO week right, SQLite agrees."
+msgstr "# validate LABEL OUTPUT: filas sensatas, parada exacta, semana ISO correcta, SQLite de acuerdo."
+
+msgctxt "L80"
+msgid "# 2. Random runs at this optimizer level."
+msgstr "# 2. Ejecuciones al azar en este nivel del optimizador."
+
+msgctxt "L92"
+msgid "# 3. Forced dice (same scenarios as the portable entry): the answer must not depend on the -O level."
+msgstr "# 3. Dados forzados (los mismos escenarios que la entrada portable): la respuesta no debe depender del nivel -O."
+
+msgctxt "L115"
+msgid "# 4. find profiles itself: FIND_D=rates prints each test's real success rate, and the answer is unchanged."
+msgstr "# 4. find se perfila a sí mismo: FIND_D=rates imprime la tasa real de éxito de cada prueba, y la respuesta no cambia."
+
+msgctxt "L124"
+msgid "# 5. The demo_only CHECK constraint is real: a non-demo row must be refused."
+msgstr "# 5. La restricción CHECK demo_only es real: una fila que no sea de demostración debe rechazarse."
