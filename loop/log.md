@@ -425,3 +425,4 @@
 473 S5-fam-regex-sed done src/regex-sed localizing: 25 comment lines (timecards.sed, timecards.sh, check.sh, Dockerfile) via loc_apply, oracle PASS; categories/strings kept English EXC-584.
 474 S5-fam-tar-gnu done src/tar-gnu localizing: 57 comment lines (7 files) via loc_apply, oracle PASS; categories/strings kept English EXC-585.
 475 S5-fam-tar-gnu-weird done src/tar-gnu-weird localizing: 53 comment lines (8 files) via loc_apply, oracle PASS; categories/strings kept English EXC-586.
+476 S5-audit-6 done audit of 5 S5 families: lock ok, oracle PASS regex-sed/tar-gnu/tar-gnu-weird/ed-weird/ex-weird; no violations; translation/reviews/S5-audit-6.md
