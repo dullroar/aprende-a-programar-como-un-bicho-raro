@@ -363,3 +363,4 @@
 410 S2-005 done tools/part2_inv.py: I28 closure + stale-symbol sweep, I29 token diff, I30 unfenced tokens, I31 oracle verdicts, ledger-derived identifiers/dnt rules; 14 new tests each with a failing fixture; verify --fast OK.
 411 S2-006 done tools/part2_negative.py + 8 tests: 16/16 planned A.2 fixtures fail for their stated reason (each with a clean control); rows 10, 12, 14 DEFERRED (no detector yet), not counted; verify --fast OK.
 412 S2-007 done S2 gate (translation/part2/s2-gate.md): fixed book.es.css double classification (inventory owned, not tooling) that failed 5 release checks; release --no-gates and tests green, full English gates run not awaited.
+413 S3-001 done tools/link_audit.py + 24 tests (markdown, html, pdf, epub; planted broken link of each type caught; external URLs unverified, EPUBCheck not executed when absent); real checkout lists 33 broken, mostly lessons/cs-source English-keyed links, left for S3-003 triage; verify --fast OK.
