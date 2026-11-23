@@ -12,3 +12,4 @@ src/cmake/README.md
 src/cobol-weird/README.md
 src/find-gnu/README.md
 src/find-posix/README.md
+src/forth-weird/README.md

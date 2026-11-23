@@ -21,10 +21,10 @@ create week-buf 16 allot            \ el texto de la semana ISO, fijado una vez 
 
 \ ---------------------------------------------------------------- tuberías
 
-: meetings   ( -- c-addr u )  s" Meetings" ;
-: coding     ( -- c-addr u )  s" Coding" ;
-: debugging  ( -- c-addr u )  s" Debugging" ;
-: learning   ( -- c-addr u )  s" Learning" ;
+: meetings   ( -- c-addr u )  s" Reuniones" ;
+: coding     ( -- c-addr u )  s" Programación" ;
+: debugging  ( -- c-addr u )  s" Depuración" ;
+: learning   ( -- c-addr u )  s" Aprendizaje" ;
 create categories  ' meetings , ' coding , ' debugging , ' learning ,
 : category$  ( n -- c-addr u )  4 mod cells categories + @ execute ;
 

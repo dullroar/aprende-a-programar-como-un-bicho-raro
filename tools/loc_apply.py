@@ -221,6 +221,12 @@ def _category_edit(text: str, rel: str, starts: list[int], e: dict, lang: str = 
         raise Refused("%s line %d: msgid does not match the file line %r" % (rel, ln, cur[:60]))
     old, new = e["msgid"], e["msgstr"]
     oc, nc = _split_comment(old, lang)[1], _split_comment(new, lang)[1]
+    # only a comment that ends the line is a trailing comment; a mid-line one (Forth "( -- c-addr u )"
+    # followed by code) stays part of the compared line and may not change
+    if oc is not None and not old.endswith(oc):
+        oc = None
+    if nc is not None and not new.endswith(nc):
+        nc = None
     if oc is not None or nc is not None:
         # a trailing comment may be translated in the same entry (it must still be one comment)
         if oc is None or nc is None:

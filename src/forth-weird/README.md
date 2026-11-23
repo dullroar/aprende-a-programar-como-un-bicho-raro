@@ -42,9 +42,9 @@ Los registros se guardan en `$XDG_DATA_HOME/ForthWeird/demo-timecards.db` (por d
 
 ```text
 # DEMO ONLY run 1794674811797273
-Meetings	19	19	2026-W46	DEMO ONLY
-Coding	11	30	2026-W46	DEMO ONLY
-Debugging	19	49	2026-W46	DEMO ONLY
+Reuniones	19	19	2026-W46	DEMO ONLY
+Programación	11	30	2026-W46	DEMO ONLY
+Depuración	19	49	2026-W46	DEMO ONLY
 # committed total=49 entries=3 DEMO ONLY
 # no loop word anywhere: the text interpreter was rewound until the total passed 40
 ```

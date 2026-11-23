@@ -105,3 +105,19 @@ msgstr "\\ <== THE LOOP  ( n total anchor )"
 msgctxt "L102"
 msgid "\\ the anchor has done its job"
 msgstr "\\ el ancla ya cumplió su trabajo"
+
+msgctxt "C24"
+msgid ": meetings   ( -- c-addr u )  s\" Meetings\" ;"
+msgstr ": meetings   ( -- c-addr u )  s\" Reuniones\" ;"
+
+msgctxt "C25"
+msgid ": coding     ( -- c-addr u )  s\" Coding\" ;"
+msgstr ": coding     ( -- c-addr u )  s\" Programación\" ;"
+
+msgctxt "C26"
+msgid ": debugging  ( -- c-addr u )  s\" Debugging\" ;"
+msgstr ": debugging  ( -- c-addr u )  s\" Depuración\" ;"
+
+msgctxt "C27"
+msgid ": learning   ( -- c-addr u )  s\" Learning\" ;"
+msgstr ": learning   ( -- c-addr u )  s\" Aprendizaje\" ;"

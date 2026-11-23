@@ -257,6 +257,19 @@ class Negative(Base):
         self.put("f.sh", old + "\n")
         self.assertIn("trailing comment", self.refused("f.sh", po=[C(1, old, "c=(Reuniones)")]))
 
+    def test_category_mid_line_comment_is_not_trailing(self):
+        old = ': meetings   ( -- c-addr u )  s" Meetings" ;'
+        new = ': meetings   ( -- c-addr u )  s" Reuniones" ;'
+        e = la._category_edit(old + "\n", "f.fs", [0], {"line": 1, "msgid": old, "msgstr": new}, "forth")
+        self.assertEqual(e[2], new)
+
+    def test_category_mid_line_comment_cannot_change(self):
+        old = ': meetings   ( -- c-addr u )  s" Meetings" ;'
+        new = ': meetings   ( -- c-addr )  s" Reuniones" ;'
+        with self.assertRaises(la.Refused) as cm:
+            la._category_edit(old + "\n", "f.fs", [0], {"line": 1, "msgid": old, "msgstr": new}, "forth")
+        self.assertIn("only the category words", str(cm.exception))
+
     def test_bad_msgctxt(self):
         with self.assertRaises(la.Refused):
             la.parse_po('msgctxt "line 3"\nmsgid "a"\nmsgstr "b"\n')
