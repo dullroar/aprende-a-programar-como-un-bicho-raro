@@ -29,7 +29,7 @@ for d in 1999-12-31 2000-01-01 2000-02-29 2015-12-31 2016-01-01 2018-12-31 2019-
 done
 
 # 2. Ejecútalo muchas veces; cada ejecución debe imprimir un conjunto de registros razonable y las filas de SQLite deben coincidir.
-cats=(Meetings Coding Debugging Learning)
+cats=(Reuniones Programación Depuración Aprendizaje)
 for i in $(seq 1 25); do
     out=$(run)
     run_id=$(sed -nE 's/^# DEMO ONLY run (.+)$/\1/p' <<<"$out")
@@ -38,7 +38,7 @@ for i in $(seq 1 25); do
     [[ -n $commit ]] || { echo "FAIL run $i: no committed line"; echo "$out"; exit 1; }
     total=$(sed -E 's/.*total=([0-9]+).*/\1/' <<<"$commit")
     entries=$(sed -E 's/.*entries=([0-9]+).*/\1/' <<<"$commit")
-    mapfile -t rows < <(grep -E '^(Meetings|Coding|Debugging|Learning)	' <<<"$out" || true)
+    mapfile -t rows < <(grep -E '^(Reuniones|Programación|Depuración|Aprendizaje)	' <<<"$out" || true)
     [[ ${#rows[@]} -eq $entries ]] || { echo "FAIL run $i: ${#rows[@]} rows but entries=$entries"; exit 1; }
     sum=0; n=0
     for row in "${rows[@]}"; do

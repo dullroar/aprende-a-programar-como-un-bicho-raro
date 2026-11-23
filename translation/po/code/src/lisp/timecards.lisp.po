@@ -16,11 +16,11 @@ msgstr ";;;; Ejecútalo así:  sbcl --script timecards.lisp [YYYY-MM-DD]"
 
 msgctxt "L6"
 msgid ";;;; The challenge: add cards of 10-19 hours (Meetings, Coding, Debugging,"
-msgstr ";;;; El reto: suma tarjetas de 10 a 19 horas (Meetings, Coding, Debugging,"
+msgstr ";;;; El reto: suma tarjetas de 10 a 19 horas (Reuniones, Programación, Depuración,"
 
 msgctxt "L7"
 msgid ";;;; Learning, round and round) until the running total passes 40.  In Common"
-msgstr ";;;; Learning, una tras otra) hasta que el total acumulado pase de 40.  En Common"
+msgstr ";;;; Aprendizaje, una tras otra) hasta que el total acumulado pase de 40.  En Common"
 
 msgctxt "L8"
 msgid ";;;; Lisp that is one LOOP form, DRAW-CARDS.  Everything else is small"
@@ -49,3 +49,7 @@ msgstr ";;; ------------------------------------------------------------------ p
 msgctxt "L149"
 msgid ";;; ------------------------------------------------------------------ main"
 msgstr ";;; ------------------------------------------------------------------ principal"
+
+msgctxt "C20"
+msgid "(defparameter *categories* #(\"Meetings\" \"Coding\" \"Debugging\" \"Learning\")"
+msgstr "(defparameter *categories* #(\"Reuniones\" \"Programación\" \"Depuración\" \"Aprendizaje\")"

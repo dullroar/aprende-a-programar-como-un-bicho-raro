@@ -36,9 +36,9 @@ Los registros van a `$XDG_DATA_HOME/Lisp/demo-timecards.db` (por defecto `~/.loc
 
 ```text
 # DEMO ONLY run 1794860153-ONSTYU
-Meetings	13	13	2026-W47	DEMO ONLY
-Coding	18	31	2026-W47	DEMO ONLY
-Debugging	12	43	2026-W47	DEMO ONLY
+Reuniones	13	13	2026-W47	DEMO ONLY
+Programación	18	31	2026-W47	DEMO ONLY
+Depuración	12	43	2026-W47	DEMO ONLY
 # committed total=43 entries=3 DEMO ONLY
 # one LOOP form with SUM, COLLECT and UNTIL is the whole challenge
 ```

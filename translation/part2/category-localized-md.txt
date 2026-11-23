@@ -2,3 +2,4 @@
 # tools/apply.py rewrites output rows (an English category word then a TAB, inside a fence) in these files only.
 src/cobol/README.md
 src/forth/README.md
+src/lisp/README.md

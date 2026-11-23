@@ -3,8 +3,8 @@
 ;;;;
 ;;;; Ejecútalo así:  sbcl --script timecards.lisp [YYYY-MM-DD]
 ;;;;
-;;;; El reto: suma tarjetas de 10 a 19 horas (Meetings, Coding, Debugging,
-;;;; Learning, una tras otra) hasta que el total acumulado pase de 40.  En Common
+;;;; El reto: suma tarjetas de 10 a 19 horas (Reuniones, Programación, Depuración,
+;;;; Aprendizaje, una tras otra) hasta que el total acumulado pase de 40.  En Common
 ;;;; Lisp eso es una sola forma LOOP, DRAW-CARDS.  Todo lo demás son funciones
 ;;;; pequeñas que hacen una sola cosa cada una.  El argumento opcional de fecha fija la
 ;;;; semana ISO, y eso permite probar la aritmética del calendario.
@@ -17,7 +17,7 @@
 
 ;;; ------------------------------------------------------------------ reglas
 
-(defparameter *categories* #("Meetings" "Coding" "Debugging" "Learning")
+(defparameter *categories* #("Reuniones" "Programación" "Depuración" "Aprendizaje")
   "Card categories, in the order they repeat.")
 
 (defconstant +min-hours+ 10)
