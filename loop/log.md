@@ -446,3 +446,4 @@
 494 P7-003 done loop/END-REVIEW.md and loop/HANDOFF.md written, loop/DONE created; queue complete, nothing published
 496 F2-001 done sandbox/selftest.sh ran and passed ("selftest: all good"); runtime-matrix.md records PASS 2026-11-23
 495 F2-001 partial es.yaml catalog comment corrected (¿Vivo:); sandbox/selftest.sh denied in dontAsk mode, so the self-test is still owed to a Docker-capable session
+499 F2-002 done 9 spaced hyphens in 6 Spanish entries (README, LinqChallenge1, LinqChallenge2) became rayas via PO and apply (pairs as —x—); 9 skipped (bullets, arithmetic, separators, verbatim title); no code changed; translation/part2/dash-report.md

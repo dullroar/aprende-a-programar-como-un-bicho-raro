@@ -20,7 +20,7 @@ counterexamples: [event-driven-programming]
 
 > **No es el reto compartido.** Esta entrada no genera horas al azar: su semana laboral tiene cinco días fijos de 8 horas, con un tope para que el total sea exactamente 40.0 horas y ninguna tarjeta cruce la línea. Enseña la ejecución diferida y las cadenas de métodos de LINQ, no la regla de parada "conserva la primera tarjeta que pasa de 40".
 
-Una sola sentencia de expresión terminada en `;`, construida por completo con llamadas a métodos LINQ. Genera una tarjeta de horas fija de 40 horas, la rastrea y la guarda con EF Core y SQLite, cruza la frontera `IQueryable<T>` → `IEnumerable<T>`, y construye, muestra, hace palpitar y cierra una ventana de terminal WPF **DEMO ONLY** - todo dentro de esa sola sentencia. Ninguna función auxiliar al estilo de `RunEverything` hace el trabajo real; `Main` solo prepara el hilo STA, el `DbContext` y el `Application` antes de llamarla.
+Una sola sentencia de expresión terminada en `;`, construida por completo con llamadas a métodos LINQ. Genera una tarjeta de horas fija de 40 horas, la rastrea y la guarda con EF Core y SQLite, cruza la frontera `IQueryable<T>` → `IEnumerable<T>`, y construye, muestra, hace palpitar y cierra una ventana de terminal WPF **DEMO ONLY** — todo dentro de esa sola sentencia. Ninguna función auxiliar al estilo de `RunEverything` hace el trabajo real; `Main` solo prepara el hilo STA, el `DbContext` y el `Application` antes de llamarla.
 
 ## Ejecútalo
 
