@@ -38,12 +38,12 @@ CLASSES = ("frozen", "authored", "generated", "tooling", "archival", "owned")
 
 OWNED_PREFIXES = ("loop/", "translation/", "tools/", "ralph-kit-es/", ".claude/",
                   "tests/fixtures/", "lessons/book/locale/", "review/")
-OWNED_FILES = {".gitignore", "requirements-es.txt"}
+OWNED_FILES = {".gitignore", "requirements-es.txt", "lessons/book/book.es.css"}
 OWNED_GLOBS = (re.compile(r"^SYNTHESIZED-TRANSLATION-PLAN-.*\.md$"),)
 
 # Tooling: adapted through the locale layer. Everything else non-Markdown is frozen.
 TOOLING_PATTERNS = (
-    re.compile(r"^lessons/book/[^/]+\.(py|yaml|yml|css|lua|txt|json)$"),
+    re.compile(r"^lessons/book/(?!book\.es\.css$)[^/]+\.(py|yaml|yml|css|lua|txt|json)$"),
     re.compile(r"^lessons/curriculum/[^/]+\.(py|yaml|yml|txt)$"),
     re.compile(r"^lessons/study-guides/[^/]+\.(py|yaml|yml|txt)$"),
     re.compile(r"^\.github/workflows/[^/]+\.ya?ml$"),
