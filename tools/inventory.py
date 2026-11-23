@@ -48,6 +48,11 @@ TOOLING_PATTERNS = (
     re.compile(r"^lessons/study-guides/[^/]+\.(py|yaml|yml|txt)$"),
     re.compile(r"^\.github/workflows/[^/]+\.ya?ml$"),
 )
+# Spanish publications built in the repo root (P5-003): archival, not in the English tree.
+SPANISH_OUTPUTS = {"aprende-a-programar-como-un-bicho-raro.pdf", "aprende-a-programar-como-un-bicho-raro.epub",
+                   "aprende-a-programar-como-un-bicho-raro-guias-de-estudio.pdf",
+                   "aprende-a-programar-como-un-bicho-raro-guias-de-estudio.epub",
+                   "plan-de-estudios.pdf", "plan-de-estudios.epub"}
 ARCHIVAL_EXT = {".pdf", ".epub", ".png", ".jpg", ".jpeg", ".gif", ".svg"}
 
 PROSE_FM_KEYS = {"title", "name", "teaches", "machine", "state", "applies-because",
@@ -402,7 +407,7 @@ def main(argv: list[str] | None = None) -> int:
         actual = {r["path"] for r in inv["files"]}
         for f in sorted(expected - actual):
             failures.append(f"missing from Spanish repo but in English tree: {f}")
-        for f in sorted(actual - expected):
+        for f in sorted(actual - expected - SPANISH_OUTPUTS):
             failures.append(f"not in English tree and not owned: {f}")
 
     if not a.check:

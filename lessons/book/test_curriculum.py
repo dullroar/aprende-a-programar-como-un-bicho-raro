@@ -50,6 +50,14 @@ def real():
         return f.read()
 
 
+# The F1 heading slug follows the language of the exercises page (Spanish headings are translated).
+F1_ANCHOR = {"en": "#f1-test-a-claim-of-your-choice", "es": "#f1-prueba-una-afirmación-de-tu-elección"}
+
+
+def cls_lang(test):
+    return test.lang
+
+
 class RealCurriculum(InLanguage):
     lang = BOOK_LANG
 
@@ -64,7 +72,7 @@ class RealCurriculum(InLanguage):
         text = real()
         for target in (cb.CAT.lessons_path("study-guides/concepts/reading-adversarial-programs.md"),
                        cb.CAT.lessons_path("cs/10-events-callbacks-and-reactive-control-flow.md"),
-                       cb.CAT.lessons_path("exercises.md") + "#f1-test-a-claim-of-your-choice"):
+                       cb.CAT.lessons_path("exercises.md") + F1_ANCHOR[cls_lang(self)]):
             self.assertIn(target, text)
 
 

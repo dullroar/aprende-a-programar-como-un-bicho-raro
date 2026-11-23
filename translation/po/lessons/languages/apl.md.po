@@ -90,7 +90,7 @@ msgstr "Contempla la monstruosidad"
 #: lessons/languages/apl.md:33
 msgctxt "s-4a051feb86ec-0016"
 msgid "Four named array assignments decide which cards to keep. ⟦CODE_0001⟧ holds five rolls, and ⟦CODE_0002⟧, ⟦CODE_0003⟧ and ⟦CODE_0004⟧ derive the kept rows. No loop and no ⟦CODE_0005⟧."
-msgstr "Cuatro asignaciones a arreglos con nombre deciden qué tarjetas se conservan. ⟦CODE_0001⟧ guarda cinco tiradas; ⟦CODE_0002⟧, ⟦CODE_0003⟧ y ⟦CODE_0004⟧ derivan las filas que se conservan. Sin bucle y sin ⟦CODE_0005⟧."
+msgstr "Cuatro asignaciones de arreglos con nombre deciden qué tarjetas se conservan. ⟦CODE_0001⟧ guarda cinco tiradas; ⟦CODE_0002⟧, ⟦CODE_0003⟧ y ⟦CODE_0004⟧ derivan las filas que se conservan. Sin bucle y sin ⟦CODE_0005⟧."
 
 #: lessons/languages/apl.md:35
 msgctxt "s-415f5fa29cf9-0017"

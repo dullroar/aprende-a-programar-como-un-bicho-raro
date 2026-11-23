@@ -30,7 +30,7 @@ El resumen honesto: APL es una notación para *pensar* asombrosamente buena y un
 sandbox/container/run-image.sh src/apl
 ```
 
-Cuatro asignaciones a arreglos con nombre deciden qué tarjetas se conservan. `Drawn` guarda cinco tiradas; `Hours`, `Totals` y `Kinds` derivan las filas que se conservan. Sin bucle y sin `if`.
+Cuatro asignaciones de arreglos con nombre deciden qué tarjetas se conservan. `Drawn` guarda cinco tiradas; `Hours`, `Totals` y `Kinds` derivan las filas que se conservan. Sin bucle y sin `if`.
 
 ### ¿Cómo demonios funciona eso?
 

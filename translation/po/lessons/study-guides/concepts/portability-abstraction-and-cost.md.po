@@ -277,17 +277,17 @@ msgstr "⟦SEP_0001⟧ Recuento de garantías ⟦SEP_0002⟧ Entradas ⟦SEP_000
 #: lessons/study-guides/concepts/portability-abstraction-and-cost.md:92
 msgctxt "s-3ffea705f5d3-0051"
 msgid "⟦SEP_0002⟧ **17** entries are guaranteed ⟦SEP_0003⟧ The ports, the LINQ entries, plain COBOL, Haskell, Forth, Lisp and awk, the JavaScript entries and ⟦CODE_0001⟧. ⟦SEP_0004⟧"
-msgstr "⟦SEP_0002⟧ **17** entradas tienen el grado garantizado ⟦SEP_0003⟧ Las versiones portadas, las entradas de LINQ, COBOL simple, Haskell, Forth, Lisp y awk, las entradas de JavaScript y ⟦CODE_0001⟧. ⟦SEP_0004⟧"
+msgstr "⟦SEP_0002⟧ **17** entradas tienen la garantía \"garantizado\" ⟦SEP_0003⟧ Las versiones portadas, las entradas de LINQ, COBOL simple, Haskell, Forth, Lisp y awk, las entradas de JavaScript y ⟦CODE_0001⟧. ⟦SEP_0004⟧"
 
 #: lessons/study-guides/concepts/portability-abstraction-and-cost.md:93
 msgctxt "s-478d6c838ba3-0052"
 msgid "⟦SEP_0012⟧ **16** are implementation-permitted ⟦SEP_0013⟧ APL, ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧, ⟦CODE_0006⟧, ⟦CODE_0007⟧, ⟦CODE_0008⟧, ⟦CODE_0009⟧, both tar entries, Tcl, ⟦CODE_0010⟧ and ⟦CODE_0011⟧. ⟦SEP_0014⟧"
-msgstr "⟦SEP_0012⟧ **16** tienen el grado permitido por la implementación ⟦SEP_0013⟧ APL, ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧, ⟦CODE_0006⟧, ⟦CODE_0007⟧, ⟦CODE_0008⟧, ⟦CODE_0009⟧, las dos entradas de tar, Tcl, ⟦CODE_0010⟧ y ⟦CODE_0011⟧. ⟦SEP_0014⟧"
+msgstr "⟦SEP_0012⟧ **16** tienen la garantía \"permitido por la implementación\" ⟦SEP_0013⟧ APL, ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧, ⟦CODE_0006⟧, ⟦CODE_0007⟧, ⟦CODE_0008⟧, ⟦CODE_0009⟧, las dos entradas de tar, Tcl, ⟦CODE_0010⟧ y ⟦CODE_0011⟧. ⟦SEP_0014⟧"
 
 #: lessons/study-guides/concepts/portability-abstraction-and-cost.md:94
 msgctxt "s-7eb7b5823cb0-0053"
 msgid "⟦SEP_0008⟧ **7** are accidentally exploited ⟦SEP_0009⟧ ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧, ⟦CODE_0006⟧ and ⟦CODE_0007⟧. ⟦SEP_0010⟧"
-msgstr "⟦SEP_0008⟧ **7** tienen el grado aprovechado por accidente ⟦SEP_0009⟧ ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧, ⟦CODE_0006⟧ y ⟦CODE_0007⟧. ⟦SEP_0010⟧"
+msgstr "⟦SEP_0008⟧ **7** tienen la garantía \"aprovechado por accidente\" ⟦SEP_0009⟧ ⟦CODE_0001⟧, ⟦CODE_0002⟧, ⟦CODE_0003⟧, ⟦CODE_0004⟧, ⟦CODE_0005⟧, ⟦CODE_0006⟧ y ⟦CODE_0007⟧. ⟦SEP_0010⟧"
 
 #: lessons/study-guides/concepts/portability-abstraction-and-cost.md:96
 msgctxt "s-d9caa4549191-0054"

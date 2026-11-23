@@ -341,3 +341,4 @@
 386 P5-003 done six Spanish artifacts built in repo root; sync_guide_diagrams handles #block-N (+tests); 5 guides synced; book PDF lint 41 errors (PDF-004 pp174-176, PDF-010) noted for P5-004.
 390 P6-001 done 40-rule scan of all Markdown clean; 14-segment sample, 0 findings; report translation/reviews/p6-001.md.
 387 P5-004 done double build of the six Spanish publications: identical sha256 in two rounds (BOOK_LANG=es), 0 lint errors; fixed book.css print selector, PDF sentinels (es.yaml, pdf_sentinels.py, test_editorial.py), allowlist row and path map; verify --fast OK; open question on "Alive"/"Vivo" in decisions-provisional.md.
+391 P6-002 done verify --release OK (75 checks) after fixing inventory (Spanish outputs), H081 anchor, APL/tally wording via PO, test_cs/test_study_guides/test_curriculum Spanish-layer; 34 page images in translation/work/visual/.

@@ -20,7 +20,7 @@ msgstr "Para qué sirve esta guía"
 #: lessons/study-guides/languages/apl.md:5
 msgctxt "s-9567bb25188f-0002"
 msgid "This guide reads two GNU APL programs: [⟦CODE_0001⟧](⟦DEST_0002⟧), whose card calculation uses four named array assignments, and [⟦CODE_0003⟧](⟦DEST_0004⟧), where each card is a function *written as text by the previous card* and then run. The question is: **when the program works on whole arrays, or on its own source text, what replaces the loop and what holds the state?**"
-msgstr "En esta guía analizarás dos programas de GNU APL. El primero es [⟦CODE_0001⟧](⟦DEST_0002⟧), cuyo cálculo de la tarjeta usa cuatro asignaciones a arreglos con nombre. El segundo es [⟦CODE_0003⟧](⟦DEST_0004⟧), donde cada tarjeta es una función *escrita como texto por la tarjeta anterior* y luego ejecutada. La pregunta es: **cuando el programa trabaja con arreglos completos, o con su propio texto fuente, ¿qué reemplaza al bucle y qué mantiene el estado?**"
+msgstr "En esta guía analizarás dos programas de GNU APL. El primero es [⟦CODE_0001⟧](⟦DEST_0002⟧), cuyo cálculo de la tarjeta usa cuatro asignaciones de arreglos con nombre. El segundo es [⟦CODE_0003⟧](⟦DEST_0004⟧), donde cada tarjeta es una función *escrita como texto por la tarjeta anterior* y luego ejecutada. La pregunta es: **cuando el programa trabaja con arreglos completos, o con su propio texto fuente, ¿qué reemplaza al bucle y qué mantiene el estado?**"
 
 #: lessons/study-guides/languages/apl.md:7
 msgctxt "s-d84bcb27c154-0003"
@@ -130,7 +130,7 @@ msgstr "La máquina que hay que identificar"
 #: lessons/study-guides/languages/apl.md:50
 msgctxt "s-27fc60c30f78-0022"
 msgid "**What repeats.** In ⟦CODE_0001⟧, nothing repeats in the code: the array primitives apply to every element. [Four named assignments](⟦DEST_0002⟧) hold the calculation: five draws in ⟦CODE_0003⟧, then three results derived from it in ⟦CODE_0004⟧, ⟦CODE_0005⟧ and ⟦CODE_0006⟧. In ⟦CODE_0007⟧, a *chain of calls*: ⟦CODE_0008⟧ calls ⟦CODE_0009⟧, which ⟦CODE_0010⟧ wrote, which calls ⟦CODE_0011⟧ and so on ([L43-55](⟦DEST_0012⟧)). The chain is recursion-shaped, but each link is a *different function*."
-msgstr "**Qué se repite.** En ⟦CODE_0001⟧, en el código no se repite nada: las primitivas de arreglos se aplican a todos los elementos. [Cuatro asignaciones con nombre](⟦DEST_0002⟧) contienen el cálculo: cinco extracciones en ⟦CODE_0003⟧, y luego tres resultados derivados de ella en ⟦CODE_0004⟧, ⟦CODE_0005⟧ y ⟦CODE_0006⟧. En ⟦CODE_0007⟧ hay una *cadena de llamadas*: ⟦CODE_0008⟧ llama a ⟦CODE_0009⟧, que fue escrita por ⟦CODE_0010⟧. Esa función llama a su vez a ⟦CODE_0011⟧, y así sucesivamente ([L43-55](⟦DEST_0012⟧)). La cadena tiene forma de recursión, pero cada eslabón es una *función distinta*."
+msgstr "**Qué se repite.** En ⟦CODE_0001⟧, en el código no se repite nada: las primitivas de arreglos se aplican a todos los elementos. [Cuatro asignaciones con nombre](⟦DEST_0002⟧) contienen el cálculo: cinco tiradas en ⟦CODE_0003⟧, y luego tres resultados derivados de ella en ⟦CODE_0004⟧, ⟦CODE_0005⟧ y ⟦CODE_0006⟧. En ⟦CODE_0007⟧ hay una *cadena de llamadas*: ⟦CODE_0008⟧ llama a ⟦CODE_0009⟧, que fue escrita por ⟦CODE_0010⟧. Esa función llama a su vez a ⟦CODE_0011⟧, y así sucesivamente ([L43-55](⟦DEST_0012⟧)). La cadena tiene forma de recursión, pero cada eslabón es una *función distinta*."
 
 #: lessons/study-guides/languages/apl.md:52
 msgctxt "s-a3b232129922-0023"

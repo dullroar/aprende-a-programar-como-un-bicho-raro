@@ -485,6 +485,7 @@ class SpanishContract(unittest.TestCase):
     def test_generated_markers_are_refused(self):
         self.broken("## Lecturas adicionales\n", "## Lecturas adicionales\n\n<!-- BEGIN GENERATED x -->\n", "BEGIN/END GENERATED")
 
+    @english_only      # the Spanish checkout's guide is already translated; only the English layer holds an English guide to refuse
     def test_the_english_guides_are_refused_in_spanish(self):
         text = sg.read(os.path.join(REPO, LAY.path("lessons/study-guides/languages/cobol.md")))      # still the English guide until it is translated (P4)
         ps = sg.check_guide("languages/cobol.md", text)  # en-key

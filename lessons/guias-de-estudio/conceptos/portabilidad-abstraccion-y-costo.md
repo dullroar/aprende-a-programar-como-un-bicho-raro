@@ -89,9 +89,9 @@ La clave `assurance` del README de cada entrada registra la dependencia más dé
 
 | Recuento de garantías | Entradas |
 | --- | --- |
-| **17** entradas tienen el grado garantizado | Las versiones portadas, las entradas de LINQ, COBOL simple, Haskell, Forth, Lisp y awk, las entradas de JavaScript y `regex-dotnet`. |
-| **16** tienen el grado permitido por la implementación | APL, `awk-weird`, `cobol-weird`, `forth-weird`, `haskell-weird`, `lisp-weird`, `m4`, `regex-perl`, `regex-pcre2`, `regex-pcre2grep`, las dos entradas de tar, Tcl, `tcl-weird` y `ex-weird`. |
-| **7** tienen el grado aprovechado por accidente | `cmake`, `ed-weird`, `find-gnu`, `find-posix`, `make-gnu`, `regex-sed` y `xaml`. |
+| **17** entradas tienen la garantía "garantizado" | Las versiones portadas, las entradas de LINQ, COBOL simple, Haskell, Forth, Lisp y awk, las entradas de JavaScript y `regex-dotnet`. |
+| **16** tienen la garantía "permitido por la implementación" | APL, `awk-weird`, `cobol-weird`, `forth-weird`, `haskell-weird`, `lisp-weird`, `m4`, `regex-perl`, `regex-pcre2`, `regex-pcre2grep`, las dos entradas de tar, Tcl, `tcl-weird` y `ex-weird`. |
+| **7** tienen la garantía "aprovechado por accidente" | `cmake`, `ed-weird`, `find-gnu`, `find-posix`, `make-gnu`, `regex-sed` y `xaml`. |
 
 Una versión anterior de `tcl-weird` dependía del orden de evaluación de SQLite. La entrada actual sortea las horas en una tabla.
 

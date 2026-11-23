@@ -13,6 +13,8 @@ import cs
 REPO = cs.REPO
 LAY = cs.catalog.checkout()         # the names the real files have in this checkout (identity in the English repository)
 LANGUAGE = os.environ.get("BOOK_LANG", "en")
+ENGLISH_LAYER = LAY.path("lessons/intro.md") == "lessons/intro.md"      # path-ok: probe for the English layout
+english_only = unittest.skipUnless(ENGLISH_LAYER, "edits and reads English text under the English names: it runs in the English layer (tools/scratch_proof.py --tests)")
 ES_LAY = cs.catalog.load("es", layout="spanish")      # the Spanish edition's names, whatever this checkout is
 
 def snapshot(dest):
@@ -98,6 +100,7 @@ class TestRepositoryAsItIs(Base):
             if hit:
                 self.assertEqual(hit.group(1).strip(), e["teaches"], d)
 
+    @english_only
     def test_the_two_cross_cutting_claims_are_true(self):
         """applies-to: all is a statement about every entry, so check it. (sandbox: a Dockerfile or a Windows Sandbox section;
         code-review: a How the stunt works section.)"""
@@ -123,6 +126,7 @@ class TestTheLintersRefuse(Base):
         self.edit("lessons/cs-source/concepts/sandbox.md", lambda s: s.replace("applies-to: all", "applies-to: some"))
         self.assertTrue(any("applies-to must be one of" in p for p in self.problems()), self.problems())
 
+    @english_only
     def test_an_exercise_link_that_does_not_exist(self):
         self.edit("lessons/cs-source/concepts/trojan-source.md", lambda s: s.replace("#f2-trojan-source-hide-a-character-then-find-it-verified", "#no-such-exercise"))
         self.assertTrue(any("trojan-source" in p and "no heading with that anchor" in p for p in self.problems()), self.problems())
@@ -152,10 +156,12 @@ class TestTheLintersRefuse(Base):
         self.assertTrue(any("not-a-concept" in p for p in self.problems()), self.problems())
 
     # English words over the real files (this class reads in English); the Spanish contract is TestSpanishTeachesContract.
+    @english_only
     def test_teaches_needs_a_that_clause(self):
         self.edit("src/tar-gnu/README.md", lambda s: s.replace('teaches: "that a', 'teaches: "A', 1))
         self.assertTrue(any("'teaches' must start" in p for p in self.problems()), self.problems())
 
+    @english_only
     def test_a_missing_teaches_match(self):
         self.edit("src/tar-gnu/README.md", lambda s: s.replace("**Teaches you:** that a tar archive", "**Teaches you:** that a TAR archive", 1))
         self.assertTrue(any("'teaches' differs" in p for p in self.problems()), self.problems())
@@ -275,6 +281,7 @@ class TestSpanishWords(Base):
             self.assertEqual(len(a), len(b), rel)
             self.assertEqual([l.count(" | ") for l in a if l.startswith("|")], [l.count(" | ") for l in b if l.startswith("|")], rel)
 
+    @english_only
     def test_links_are_the_same_apart_from_the_two_translated_anchors(self):
         link = re.compile(r"\]\(([^)\s]+)\)")
         # The English hand-written prose still links to the English anchors, so both spellings count as the same placeholder.
@@ -289,6 +296,7 @@ class TestSpanishWords(Base):
         for rel in self.en:
             self.assertEqual(norm(self.en[rel], self.en_anchor, self.en_flow), norm(self.es[rel], cs.CHALLENGE_ANCHOR, self.en_flow, self.en_anchor), rel)
 
+    @english_only
     def test_program_flow_anchor_follows_the_diagram_language(self):
         """With the Spanish diagram words, a README whose section is '## Flujo del programa' gets a Spanish block and a Spanish anchor."""
         self.edit("src/tar-gnu/README.md", lambda s: s.replace("## Program Flow", "## Flujo del programa"))

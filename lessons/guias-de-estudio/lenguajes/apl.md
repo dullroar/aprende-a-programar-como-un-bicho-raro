@@ -2,7 +2,7 @@
 
 ## Para qué sirve esta guía
 
-En esta guía analizarás dos programas de GNU APL. El primero es [`src/apl`](../../../src/apl/README.md), cuyo cálculo de la tarjeta usa cuatro asignaciones a arreglos con nombre. El segundo es [`src/apl-weird`](../../../src/apl-weird/README.md), donde cada tarjeta es una función *escrita como texto por la tarjeta anterior* y luego ejecutada. La pregunta es: **cuando el programa trabaja con arreglos completos, o con su propio texto fuente, ¿qué reemplaza al bucle y qué mantiene el estado?**
+En esta guía analizarás dos programas de GNU APL. El primero es [`src/apl`](../../../src/apl/README.md), cuyo cálculo de la tarjeta usa cuatro asignaciones de arreglos con nombre. El segundo es [`src/apl-weird`](../../../src/apl-weird/README.md), donde cada tarjeta es una función *escrita como texto por la tarjeta anterior* y luego ejecutada. La pregunta es: **cuando el programa trabaja con arreglos completos, o con su propio texto fuente, ¿qué reemplaza al bucle y qué mantiene el estado?**
 
 Cuando termines, deberías poder:
 
@@ -47,7 +47,7 @@ APL expresa el límite en una sola comparación, `40≥`, "¿el total es como m�
 
 ## La máquina que hay que identificar
 
-**Qué se repite.** En `apl`, en el código no se repite nada: las primitivas de arreglos se aplican a todos los elementos. [Cuatro asignaciones con nombre](../../../src/apl/timecards.apl#L30-L39) contienen el cálculo: cinco extracciones en `Drawn`, y luego tres resultados derivados de ella en `Hours`, `Totals` y `Kinds`. En `apl-weird` hay una *cadena de llamadas*: `Card0` llama a `Card1`, que fue escrita por `Card0`. Esa función llama a su vez a `Card2`, y así sucesivamente ([L43-55](../../../src/apl-weird/timecards.apl#L43-L55)). La cadena tiene forma de recursión, pero cada eslabón es una *función distinta*.
+**Qué se repite.** En `apl`, en el código no se repite nada: las primitivas de arreglos se aplican a todos los elementos. [Cuatro asignaciones con nombre](../../../src/apl/timecards.apl#L30-L39) contienen el cálculo: cinco tiradas en `Drawn`, y luego tres resultados derivados de ella en `Hours`, `Totals` y `Kinds`. En `apl-weird` hay una *cadena de llamadas*: `Card0` llama a `Card1`, que fue escrita por `Card0`. Esa función llama a su vez a `Card2`, y así sucesivamente ([L43-55](../../../src/apl-weird/timecards.apl#L43-L55)). La cadena tiene forma de recursión, pero cada eslabón es una *función distinta*.
 
 **Dónde vive el estado.** En `apl`, en arreglos: `Drawn`, `Hours`, `Totals`, `Kinds`. Los cinco valores se extraen a la vez, así que el estado es *el vector completo*. En `apl-weird`, en el **texto fuente** de cada función. Las líneas 1 a 4 de cada tarjeta son cuatro líneas de "genes": `N←` (número de tarjeta), `C←` (categoría), `H←` (horas) y `T←` (total acumulado). Cada hijo recibe líneas de genes nuevas.
 
