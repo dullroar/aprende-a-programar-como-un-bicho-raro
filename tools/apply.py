@@ -146,7 +146,8 @@ def apply_text(text, po, rel_path="", cat=None, strict=True):
 
 CATEGORY_PROSE_FILES = os.path.join("translation", "part2", "category-localized-prose.txt")
 # (?=tc_tab): the m4 entry's glued-word example `Meetingstc_tab` names the word followed by a macro
-_WORD_RE = re.compile(r"(?<![\w(])(%s)(?:(?=tc_tab)|(?![\w)]))" % "|".join(categories.EN))
+# (?<=Debugging Learning)(?=\)): the last word of the four-word list `$(word n,Meetings Coding Debugging Learning)` (make-gnu)
+_WORD_RE = re.compile(r"(?<![\w(])(%s)(?:(?=tc_tab)|(?![\w)])|(?<=Debugging Learning)(?=\)))" % "|".join(categories.EN))
 
 
 def category_prose_files():
@@ -190,6 +191,9 @@ ROW_RE = re.compile(r"^(%s)(?=\t)" % "|".join(categories.EN))
 LIST_RE = re.compile(r'(?<=")%s(?=")' % " ".join(categories.EN))
 
 
+# a hand-trace summary line in a fence: `Meetings 15 15 / Coding 19 34 / ...` (word, hours, total; slash-separated)
+TRACE_RE = re.compile(r"(?:(?<=^)|(?<= / ))(%s)(?= \d+ \d+(?: / |$))" % "|".join(categories.EN))
+
 # the four words in order, each double-quoted, space-separated (a copied Lisp list literal)
 QUOTED_LIST_RE = re.compile(" ".join('"%s"' % w for w in categories.EN))
 
@@ -217,6 +221,7 @@ def localize_category_rows(text):
             line = ROW_RE.sub(lambda m: categories.EN_TO_ES[m.group(1)], line)
             line = LIST_RE.sub(lambda m: " ".join(categories.ES), line)
             line = QUOTED_LIST_RE.sub(lambda m: " ".join('"%s"' % w for w in categories.ES), line)
+            line = TRACE_RE.sub(lambda m: categories.EN_TO_ES[m.group(1)], line)
         out.append(line)
     return "\n".join(out)
 

@@ -14,3 +14,6 @@ src/javascript/README.md
 src/lisp-weird/README.md
 src/m4/README.md
 lessons/study-guides/languages/m4.md
+src/make-gnu/README.md
+lessons/study-guides/languages/make-and-cmake.md
+lessons/languages/make-cmake.md

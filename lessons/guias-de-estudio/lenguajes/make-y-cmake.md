@@ -41,7 +41,7 @@ Edita solo copias ([Ejecutar cosas de forma segura](../../exercises.md#ejecutar-
 
 ## El reto compartido
 
-La [especificación del reto](../../introduccion.md#qué-hace-el-reto) pide tarjetas con una categoría y de 10 a 19 horas enteras. Las categorías se repiten en ciclo: `Meetings`, `Coding`, `Debugging` y `Learning`. Suma las horas de cada tarjeta al total acumulado. Detente cuando el total pasa de 40. Conserva la **primera tarjeta con la que el total pasa de 40**. Un total de exactamente 40 continúa. Cuatro tarjetas de 10 horas necesitan una quinta tarjeta, de la categoría `Meetings`. Las ejecuciones conformes tienen de 3 a 5 tarjetas y un total de 41 a 59 horas.
+La [especificación del reto](../../introduccion.md#qué-hace-el-reto) pide tarjetas con una categoría y de 10 a 19 horas enteras. Las categorías se repiten en ciclo: `Reuniones`, `Programación`, `Depuración` y `Aprendizaje`. Suma las horas de cada tarjeta al total acumulado. Detente cuando el total pasa de 40. Conserva la **primera tarjeta con la que el total pasa de 40**. Un total de exactamente 40 continúa. Cuatro tarjetas de 10 horas necesitan una quinta tarjeta, de la categoría `Reuniones`. Las ejecuciones conformes tienen de 3 a 5 tarjetas y un total de 41 a 59 horas.
 
 Ambos programas informan de un resultado de SQLite después del sorteo. La sonda de la regla de parada es una sentencia aparte: su fallo esperado deja las filas de las tarjetas in situ. Los dos programas escriben los números en unario. Así la regla de parada se vuelve una pregunta sobre la longitud, y es fácil equivocarse por uno en el límite. En Make la prueba es *"¿existe una palabra 41?"* (`$(word 41, ...)`, [L111](../../../src/make-gnu/Makefile#L111)). En CMake es *"¿el total coincide con 41 caracteres `x`?"* ([L41](../../../src/cmake/timecards.cmake#L41)). Un total de 40 no tiene palabra 41 y no coincide con 41 caracteres, así que ambos continúan.
 
@@ -49,7 +49,7 @@ Ambos programas informan de un resultado de SQLite después del sorteo. La sonda
 
 **Qué se repite.** En `make-gnu`, el *proceso completo de Make*: Make lee el makefile, incluye todos los archivos `.tc-N.mk` escritos hasta ahora y puede escribir uno más. En `cmake`, un `while()` con cuerpo vacío: solo su condición hace trabajo ([L41-54](../../../src/cmake/timecards.cmake#L41-L54)).
 
-**Dónde vive el estado.** En `make-gnu`, el estado está en el conjunto de archivos que existen (`.tc-0.mk`, `.tc-1.mk` y así sucesivamente) y en `MAKE_RESTARTS`. Cada archivo guarda una tarjeta en dos asignaciones de variable, como `C0:=Meetings` y `H0:=15`.
+**Dónde vive el estado.** En `make-gnu`, el estado está en el conjunto de archivos que existen (`.tc-0.mk`, `.tc-1.mk` y así sucesivamente) y en `MAKE_RESTARTS`. Cada archivo guarda una tarjeta en dos asignaciones de variable, como `C0:=Reuniones` y `H0:=15`.
 
 En `cmake`, cinco variables guardan el estado ([L28-32](../../../src/cmake/timecards.cmake#L28-L32)). El programa no declara esas variables. Todos los números son series de `x`.
 
@@ -118,9 +118,9 @@ pass K=3: files=[.tc-0.mk .tc-1.mk .tc-2.mk] HOURS=[15 19 12] total=46 41st-word
 
 | Pasada (`MAKE_RESTARTS`) | Archivos al empezar | Total | ¿Se activa la regla? | Qué pasa |
 | --- | --- | ---: | --- | --- |
-| 0 | ninguno | 0 | sí | Escribe `.tc-0.mk` con Meetings y 15 horas. Se rehízo un archivo, así que Make se reinicia. |
-| 1 | `.tc-0.mk` | 15 | sí | Escribe `.tc-1.mk`, Coding, 19 horas. Reinicio. |
-| 2 | `.tc-0.mk`, `.tc-1.mk` | 34 | sí | Escribe `.tc-2.mk`, Debugging, 12 horas. Reinicio. |
+| 0 | ninguno | 0 | sí | Escribe `.tc-0.mk` con Reuniones y 15 horas. Se rehízo un archivo, así que Make se reinicia. |
+| 1 | `.tc-0.mk` | 15 | sí | Escribe `.tc-1.mk`, Programación, 19 horas. Reinicio. |
+| 2 | `.tc-0.mk`, `.tc-1.mk` | 34 | sí | Escribe `.tc-2.mk`, Depuración, 12 horas. Reinicio. |
 | 3 | los tres | 46 | **no**: existe la palabra 41 | No se escribe nada. No hay reinicio. La meta `all` se ejecuta e imprime el informe. |
 
 La pasada 3 es la parada. La tarjeta que cruza el tope (12 horas, de `.tc-2.mk`) se escribió al final de la pasada 2, cuando el total era 34. La regla comprueba el total *antes* de escribir, así que no puede negarse a escribir la tarjeta que cruza el tope. Solo puede negarse a escribir la tarjeta *siguiente*. Es la misma forma que "conserva la primera tarjeta que pasa de 40", vista desde el otro lado.
@@ -135,7 +135,7 @@ after pass 1: total(M1)=0  peeked(M2)=9  tape(M3)=2000000   log-length(M4)=1   l
 after pass 2: total(M1)=15 peeked(M2)=2  tape(M3)=000000    log-length(M4)=17  last-card(M5)=19
 after pass 3: total(M1)=34 peeked(M2)=0  tape(M3)=00000     log-length(M4)=37  last-card(M5)=12
 loop ended  : total(M1)=46 peeked(M2)=0  tape(M3)=0000      log-length(M4)=50  last-card(M5)=10
-Meetings 15 15 / Coding 19 34 / Debugging 12 46
+Reuniones 15 15 / Programación 19 34 / Depuración 12 46
 # an empty while() went round 3 times, once per card
 ```
 

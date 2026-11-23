@@ -121,3 +121,7 @@ msgstr "# ---- abrir una ventana -----------------------------------------------
 msgctxt "L159"
 msgid "# `make pop` opens a Windows Terminal window (from WSL), runs the demo in it, and lets the window go when make exits."
 msgstr "# `make pop` abre una ventana de Windows Terminal (desde WSL), ejecuta la demostración en ella y deja que la ventana se cierre cuando make termina."
+
+msgctxt "C92"
+msgid "cat_names   := Meetings Coding Debugging Learning"
+msgstr "cat_names   := Reuniones Programación Depuración Aprendizaje"

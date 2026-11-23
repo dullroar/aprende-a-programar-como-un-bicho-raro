@@ -105,7 +105,7 @@ Mira los [ejercicios](../exercises.md#b5-cmake-muta-el-literal-verificado): el p
 - **Los códigos de escape de Make necesitan un byte ESC literal** (`define ESC` contiene un `0x1b`).
 - **No hay forma de crear un directorio o un archivo SQLite con Make puro**, de ahí `mkdir -p` y `sqlite3`.
 - **`wt.exe` trata `;` como su propio separador de subcomandos**, así que las líneas de comandos que recibe no contienen ninguno. En CMake, las listas también se separan con `;`, así que esto requiere cuidado.
-- **Cuatro tarjetas de 10 horas suman un total de exactamente 40, que continúa**, así que la quinta tarjeta reutiliza Meetings (ambas entradas).
+- **Cuatro tarjetas de 10 horas suman un total de exactamente 40, que continúa**, así que la quinta tarjeta reutiliza Reuniones (ambas entradas).
 - **Detectar una terminal sin intérprete de comandos**: Make usa `$(realpath /proc/self/fd/1)` para buscar coincidencias con `/dev/pts/%`.
 - **Make no puede obtener la hora de forma portable**; esta entrada calcula la fecha a partir de `/proc` y recorre el calendario desde 1970.
 

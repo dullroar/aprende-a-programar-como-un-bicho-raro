@@ -28,17 +28,17 @@ for i in $(seq 1 25); do
     commit=$(grep '^# committed' <<<"$out")
     total=$(sed -E 's/.*total=([0-9]+).*/\1/' <<<"$commit")
     entries=$(sed -E 's/.*entries=([0-9]+).*/\1/' <<<"$commit")
-    rows=$(grep -cE '^(Meetings|Coding|Debugging|Learning)	' <<<"$out" || true)
+    rows=$(grep -cE '^(Reuniones|Programación|Depuración|Aprendizaje)	' <<<"$out" || true)
     [[ $rows -eq $entries ]] || { echo "FAIL run $i: $rows rows but entries=$entries"; exit 1; }
     # Make se volvió a ejecutar una vez por tarjeta: el contador del bucle es el número de tarjetas.
     grep -q "^# make re-executed itself $entries times" <<<"$out" || { echo "FAIL run $i: restarts != entries ($entries)"; echo "$out"; exit 1; }
-    awk -F'\t' '/^(Meetings|Coding|Debugging|Learning)\t/ && ($2 < 10 || $2 > 19) { bad = 1 } END { exit bad }' <<<"$out" || { echo "FAIL run $i: hours out of 10-19"; exit 1; }
+    awk -F'\t' '/^(Reuniones|Programación|Depuración|Aprendizaje)\t/ && ($2 < 10 || $2 > 19) { bad = 1 } END { exit bad }' <<<"$out" || { echo "FAIL run $i: hours out of 10-19"; exit 1; }
     # Categorías en orden, totales acumulados que de verdad se acumulan, y cada fila termina en DEMO ONLY.
-    cats=$(awk -F'\t' '/^(Meetings|Coding|Debugging|Learning)\t/ { printf "%s ", $1 }' <<<"$out")
-    [[ "Meetings Coding Debugging Learning " == "$cats"* ]] || { echo "FAIL run $i: categories out of order: $cats"; exit 1; }
-    awk -F'\t' '/^(Meetings|Coding|Debugging|Learning)\t/ { s += $2; if ($3 != s || $5 != "DEMO ONLY") bad = 1 } END { exit bad }' <<<"$out" || { echo "FAIL run $i: running total or DEMO ONLY column wrong"; exit 1; }
+    cats=$(awk -F'\t' '/^(Reuniones|Programación|Depuración|Aprendizaje)\t/ { printf "%s ", $1 }' <<<"$out")
+    [[ "Reuniones Programación Depuración Aprendizaje " == "$cats"* ]] || { echo "FAIL run $i: categories out of order: $cats"; exit 1; }
+    awk -F'\t' '/^(Reuniones|Programación|Depuración|Aprendizaje)\t/ { s += $2; if ($3 != s || $5 != "DEMO ONLY") bad = 1 } END { exit bad }' <<<"$out" || { echo "FAIL run $i: running total or DEMO ONLY column wrong"; exit 1; }
     # Regla de parada: sigue agregando mientras el total sea <= 40 (con exactamente 40 continúa); para cuando pase de 40.
-    awk -F'\t' '/^(Meetings|Coding|Debugging|Learning)\t/ { n++; if (n < NR_ROWS && $3 > 40) bad = 1; if (n == NR_ROWS && $3 <= 40) bad = 1 } END { exit bad }' NR_ROWS="$rows" <<<"$out" \
+    awk -F'\t' '/^(Reuniones|Programación|Depuración|Aprendizaje)\t/ { n++; if (n < NR_ROWS && $3 > 40) bad = 1; if (n == NR_ROWS && $3 <= 40) bad = 1 } END { exit bad }' NR_ROWS="$rows" <<<"$out" \
         || { echo "FAIL run $i: stop rule wrong"; echo "$out"; exit 1; }
     # La regla de parada también se anuncia en stderr (una restricción CHECK con nombre), exactamente una vez, y nada más lo hace.
     stops=$(grep -c 'CHECK constraint failed: stop rule fired: total exceeds 40' "$data/err" || true)
@@ -46,7 +46,7 @@ for i in $(seq 1 25); do
     [[ $stops -eq 1 && $others -eq 0 ]] || { echo "FAIL run $i: unexpected stderr:"; cat "$data/err"; exit 1; }
     # La semana ISO coincide con la aritmética de fechas de SQLite (Make la calcula desde /proc en UTC; a SQLite se le pregunta en UTC).
     want=$(sqlite3 :memory: "select printf('%s-W%02d',strftime('%Y',date('now','-3 days','weekday 4')),(strftime('%j',date('now','-3 days','weekday 4'))-1)/7+1)")
-    awk -F'\t' -v want="$want" '/^(Meetings|Coding|Debugging|Learning)\t/ && $4 != want { bad = 1 } END { exit bad }' <<<"$out" || { echo "FAIL run $i: ISO week differs from SQLite's $want"; echo "$out"; exit 1; }
+    awk -F'\t' -v want="$want" '/^(Reuniones|Programación|Depuración|Aprendizaje)\t/ && $4 != want { bad = 1 } END { exit bad }' <<<"$out" || { echo "FAIL run $i: ISO week differs from SQLite's $want"; echo "$out"; exit 1; }
     # Las filas están de verdad en SQLite y coinciden con lo que se imprimió.
     db_row=$(sqlite3 "$db" "select count(*) || ' ' || coalesce(sum(hours),0) || ' ' || coalesce(max(running_total),0) || ' ' || coalesce(min(demo_only),0) || coalesce(max(demo_only),0) from demo_timecards where run_id = $run")
     [[ $db_row == "$entries $total $total 11" ]] || { echo "FAIL run $i: db says '$db_row', output says '$entries $total $total 11'"; exit 1; }
@@ -59,7 +59,7 @@ for t in 0 951782400 1078012800 1230768000 1609459199 1609459200 1704067199 1704
          1767225599 1767225600 1798675199 1798675200 1798761600 1893455999 1893456000 2000000000 4000000000; do
     want="$(date -u -d "@$t" +%G-W%V)"
     out=$(make NOW=$t 2>/dev/null)
-    got=$(awk -F'\t' '/^(Meetings|Coding|Debugging|Learning)\t/ { print $4; exit }' <<<"$out")
+    got=$(awk -F'\t' '/^(Reuniones|Programación|Depuración|Aprendizaje)\t/ { print $4; exit }' <<<"$out")
     [[ $got == "$want" ]] || { echo "FAIL: NOW=$t: make says '$got', date says '$want'"; exit 1; }
 done
 

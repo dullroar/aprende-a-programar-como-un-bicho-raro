@@ -360,6 +360,17 @@ class CategoryWords(unittest.TestCase):
         text = "`Meetingstc_tab` y `MeetingsX`\n"
         self.assertEqual(ap.localize_category_words(text), "`Reunionestc_tab` y `MeetingsX`\n")
 
+    def test_fenced_trace_summary_line_follows_and_loose_prose_in_fence_stays(self):
+        """Negative case: only `Word N N / Word N N` lines in a fence change, not a bare Meetings 15 15 in running text."""
+        text = "```\nMeetings 15 15 / Coding 19 34\nMeetings 15 and Coding 1 2 3\n```\nMeetings 15 15\n"
+        want = "```\nReuniones 15 15 / Programación 19 34\nMeetings 15 and Coding 1 2 3\n```\nMeetings 15 15\n"
+        self.assertEqual(ap.localize_category_rows(text), want)
+
+    def test_four_word_list_closed_by_paren_follows_and_lone_learning_paren_stays(self):
+        text = "`$(word n,Meetings Coding Debugging Learning)` y (Coding, Learning)\n"
+        want = "`$(word n,Reuniones Programación Depuración Aprendizaje)` y (Coding, Learning)\n"
+        self.assertEqual(ap.localize_category_words(text), want)
+
     def test_mermaid_labels_and_accdescr(self):
         text = '```mermaid\nstateDiagram-v2\n    accDescr: Empieza como Meetings y sigue con Coding.\n    state "Meetings" as M\n```\n'
         want = '```mermaid\nstateDiagram-v2\n    accDescr: Empieza como Reuniones y sigue con Programación.\n    state "Reuniones" as M\n```\n'

@@ -89,7 +89,7 @@ proc_stat   := $(subst btime ,btime@,$(file </proc/stat))
 btime       := $(patsubst btime@%,%,$(filter btime@%,$(proc_stat)))
 uptime      := $(firstword $(subst ., ,$(firstword $(file </proc/uptime))))
 NOW         ?= $(call dadd,$(btime),$(uptime))
-cat_names   := Meetings Coding Debugging Learning
+cat_names   := Reuniones Programación Depuración Aprendizaje
 DB          := $(or $(XDG_DATA_HOME),$(HOME)/.local/share)/MakeChallenge/demo-timecards.db
 
 # ---- el bucle ------------------------------------------------------------------------------------------------

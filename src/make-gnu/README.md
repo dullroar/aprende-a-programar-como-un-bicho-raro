@@ -24,9 +24,9 @@ Coloca `Makefile` en un directorio que no tenga nada más y ejecuta `make`. La s
 
 ```
 # DEMO ONLY run 2
-Meetings	10	10	2026-W46	DEMO ONLY
-Coding	13	23	2026-W46	DEMO ONLY
-Debugging	19	42	2026-W46	DEMO ONLY
+Reuniones	10	10	2026-W46	DEMO ONLY
+Programación	13	23	2026-W46	DEMO ONLY
+Depuración	19	42	2026-W46	DEMO ONLY
 Runtime error near line 1: CHECK constraint failed: stop rule fired: total exceeds 40 (19)
 # committed total=42 entries=3 DEMO ONLY
 # make re-executed itself 3 times, once per card
@@ -70,7 +70,7 @@ flowchart TD
 |---|---|---|
 | Entropía | `$(file </proc/sys/kernel/random/uuid)`, letras eliminadas con `$(subst)` anidado; queda el primer dígito decimal | no |
 | Horas de 10 a 19 | la cadena de texto `1` pegada a ese dígito. "Mod 10" es elegir un carácter | no |
-| Orden de las categorías | `$(word n,Meetings Coding Debugging Learning)` | no |
+| Orden de las categorías | `$(word n,Reuniones Programación Depuración Aprendizaje)` | no |
 | Aritmética | los números son listas de `x`; `$(words $(wordlist 1,a,$(U)) $(wordlist 1,b,$(U)))` suma, `$(wordlist b+1,a,…)` resta | no |
 | Regla de parada (`total > 40`) | existe la palabra 41 de la lista acumulada: `$(word 41,…)` | no |
 | **El bucle** | Make **se vuelve a ejecutar** una vez por tarjeta. Cada pasada incluye los archivos `.tc-N.mk` escritos hasta ahora; una regla de patrón escribe el siguiente mientras el total no pase de 40. Un archivo nuevo significa "makefile rehecho", así que Make se reinicia. `$(MAKE_RESTARTS)` es el contador del bucle. Cuando la regla decide no escribir, no se rehace nada y se ejecuta `all` | no |
@@ -115,7 +115,7 @@ Siguen más pruebas. El calendario hecho solo con Make se compara con `date -u` 
 - **Una ejecución que falla deja `.tc-*.mk` atrás.** La siguiente `make` se niega a iniciar (de lo contrario las trataría como
   tarjetas reales); `make clean` las elimina.
 - **Caso límite:** cuatro tarjetas de exactamente 10 horas suman un total de exactamente 40, que continúa. Solo hay cuatro categorías,
-  así que la quinta tarjeta reutiliza `Meetings`.
+  así que la quinta tarjeta reutiliza `Reuniones`.
 - `check.sh` ejecuta `make` 25 veces en un directorio que contiene únicamente `Makefile`, compara la semana ISO con la aritmética de fechas
   de SQLite, compara las filas de SQLite con las filas impresas, contrasta 20 instantes límite (fines de año, años de 53 semanas,
   1970, 2096) con `date -u` y comprueba (mediante un pty) que el resplandor consta de 24 fotogramas en un lapso de 1 a 3 s y no aparece en una tubería.
