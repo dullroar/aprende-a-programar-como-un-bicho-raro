@@ -436,3 +436,4 @@
 484 S7-003 done S7 gate PASS: verify --release --no-gates ok, part2_inv 0 findings, lock ok; 0 critical/major unresolved (F6 minor deferred); translation/part2/s7-gate.md
 485 S8-001 done verify --release OK (86 checks, double build identical), scratch_proof PASS; link audit 33 broken (29 cs-source) triaged for S8-002; HTML/PDF/EPUB audit not executed; translation/part2/s8-gate.md
 486 S8-002 done review of Part II surfaces: lock ok, part2_inv 0 findings, 33 broken links triaged (29 cs-source resolve after generation, same layout as English); 0 critical/major, no review-fix tasks; translation/reviews/S8-002.md
+487 S8-003 done tools/impact.py + 22 tests (generated-only traced to source, renamed symbol, moved heading, file rename, negatives); translation/source-map.jsonl 1811 rows, manifest.json 497 files
