@@ -433,3 +433,4 @@
 481 S6-004 done S6 gate PASS: verify --release OK (86 checks), part2_inv 0 findings; translation/part2/s6-gate.md
 482 S7-001 done native-voice sample read (root README, introduccion, tcl comments): 7 findings (36x "desafio" in code comments vs glossary "reto", "Program Flow" vs "Flujo del programa", link title "de la forma rara", regionalism "jala"); translation/reviews/part2-native-voice.md; fixes go to S7-002
 483 S7-002 done applied F1-F5, F7 (36 "desafío" to "reto" in 27 src files via PO + loc_apply from English baseline, oracle PASS x18, localized lock rewritten; README link title, Program Flow, jala, recorre en ciclo); F6 deferred (decisions-provisional)
+484 S7-003 done S7 gate PASS: verify --release --no-gates ok, part2_inv 0 findings, lock ok; 0 critical/major unresolved (F6 minor deferred); translation/part2/s7-gate.md
