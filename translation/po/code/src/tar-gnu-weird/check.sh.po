@@ -141,3 +141,23 @@ msgstr "# un número de punto de control hostil nunca llega a SQL"
 msgctxt "L143"
 msgid "# ---- 7. The schema refuses what it must."
 msgstr "# ---- 7. El esquema rechaza lo que debe."
+
+msgctxt "C13"
+msgid "rows() { grep -E $'^(Meetings|Coding|Debugging|Learning)\\t' <<<\"$1\" || true; }"
+msgstr "rows() { grep -E $'^(Reuniones|Programación|Depuración|Aprendizaje)\\t' <<<\"$1\" || true; }"
+
+msgctxt "C31"
+msgid "        split(\"Meetings Coding Debugging Learning Meetings\", cat, \" \")"
+msgstr "        split(\"Reuniones Programación Depuración Aprendizaje Reuniones\", cat, \" \")"
+
+msgctxt "C45"
+msgid "        BEGIN { split(\"Meetings Coding Debugging Learning Meetings\", want, \" \") }"
+msgstr "        BEGIN { split(\"Reuniones Programación Depuración Aprendizaje Reuniones\", want, \" \") }"
+
+msgctxt "C145"
+msgid "sqlite3 \"$db\" \"insert into demo_timecards values(1,'Coding',12,12,'w',1,0)\" 2>/dev/null && fail \"db accepted a non-demo row\""
+msgstr "sqlite3 \"$db\" \"insert into demo_timecards values(1,'Programación',12,12,'w',1,0)\" 2>/dev/null && fail \"db accepted a non-demo row\""
+
+msgctxt "C146"
+msgid "sqlite3 \"$db\" \"insert into demo_timecards values(1,'Coding',9,9,'w',1,1)\" 2>/dev/null && fail \"db accepted 9 hours\""
+msgstr "sqlite3 \"$db\" \"insert into demo_timecards values(1,'Programación',9,9,'w',1,1)\" 2>/dev/null && fail \"db accepted 9 hours\""

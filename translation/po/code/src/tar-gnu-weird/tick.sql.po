@@ -21,3 +21,7 @@ msgstr ""
 msgctxt "L3"
 msgid "-- fired (done = 1) a tick changes only the `idle` counter."
 msgstr "-- haya saltado (done = 1) un tick solo cambia el contador `idle`."
+
+msgctxt "C11"
+msgid "           CASE card WHEN 0 THEN 'Meetings' WHEN 1 THEN 'Coding' WHEN 2 THEN 'Debugging' WHEN 3 THEN 'Learning' ELSE 'Meetings' END,"
+msgstr "           CASE card WHEN 0 THEN 'Reuniones' WHEN 1 THEN 'Programación' WHEN 2 THEN 'Depuración' WHEN 3 THEN 'Aprendizaje' ELSE 'Reuniones' END,"

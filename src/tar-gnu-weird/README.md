@@ -25,9 +25,9 @@ GNU tar puede ejecutar un comando cada N registros mientras trabaja (`--checkpoi
 ```text
 $ sh run-clock.sh --seed 42
 # DEMO ONLY run 1: seed 42; layout 64 records in 1 member(s); tar -b 1 --checkpoint=1
-Meetings	12	12	2026-W47	DEMO ONLY
-Coding	17	29	2026-W47	DEMO ONLY
-Debugging	17	46	2026-W47	DEMO ONLY
+Reuniones	12	12	2026-W47	DEMO ONLY
+Programación	17	29	2026-W47	DEMO ONLY
+Depuración	17	46	2026-W47	DEMO ONLY
 # committed total=46 entries=3 DEMO ONLY
 # clock: last tick 64, idle ticks after the stop 18, tape 32768 bytes
 ```
@@ -103,7 +103,7 @@ Con `-b 1`, un *registro* es un bloque de 512 bytes. `--checkpoint=1` significa 
 | Registro | Significado |
 |---|---|
 | `seed` | Estado del generador (Park-Miller, 48271 y 2147483647) |
-| `card` | Tarjetas cerradas hasta ahora. El número selecciona la categoría: Meetings, Coding, Debugging, Learning, Meetings |
+| `card` | Tarjetas cerradas hasta ahora. El número selecciona la categoría: Reuniones, Programación, Depuración, Aprendizaje, Reuniones |
 | `worked`, `target` | Horas trabajadas en la tarjeta abierta y cuánto durará (de 10 a 19 horas) |
 | `total` | El total acumulado |
 | `done` | Se activa cuando el total pasa de 40 al cerrar una tarjeta |

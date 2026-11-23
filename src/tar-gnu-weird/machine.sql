@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS fsm(
     week    TEXT NOT NULL);
 CREATE TABLE IF NOT EXISTS demo_timecards(
     run_id INTEGER NOT NULL,
-    category TEXT NOT NULL CHECK (category IN ('Meetings','Coding','Debugging','Learning')),
+    category TEXT NOT NULL CHECK (category IN ('Reuniones','Programación','Depuración','Aprendizaje')),
     hours INTEGER NOT NULL CHECK (hours BETWEEN 10 AND 19),
     running_total INTEGER NOT NULL,
     week TEXT NOT NULL,

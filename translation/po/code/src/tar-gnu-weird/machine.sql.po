@@ -61,3 +61,7 @@ msgid ""
 msgstr ""
 "-- La duración de la primera tarjeta se sortea aquí, con la misma fórmula "
 "que usa tick.sql para cada tarjeta posterior."
+
+msgctxt "C16"
+msgid "    category TEXT NOT NULL CHECK (category IN ('Meetings','Coding','Debugging','Learning')),"
+msgstr "    category TEXT NOT NULL CHECK (category IN ('Reuniones','Programación','Depuración','Aprendizaje')),"

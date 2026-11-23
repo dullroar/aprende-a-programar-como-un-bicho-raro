@@ -21,4 +21,5 @@ src/javascript-events/README.md
 src/javascript-weird/README.md
 src/lisp-weird/README.md
 src/make-gnu/README.md
+src/tar-gnu-weird/README.md
 lessons/study-guides/languages/make-and-cmake.md

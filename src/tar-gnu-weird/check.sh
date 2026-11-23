@@ -10,7 +10,7 @@ fail() { echo "FAIL: $*"; exit 1; }
 tar --version | head -1 | grep -q 'GNU tar' || fail "this entry needs GNU tar (--checkpoint-action); found: $(tar --version | head -1)"
 command -v sqlite3 >/dev/null || fail "sqlite3 is needed"
 newdb() { export XDG_DATA_HOME=$work/xdg.$1; rm -rf "$XDG_DATA_HOME"; mkdir -p "$XDG_DATA_HOME"; db=$XDG_DATA_HOME/TarGnuWeird/demo-timecards.db; unset TICK_DB; }
-rows() { grep -E $'^(Meetings|Coding|Debugging|Learning)\t' <<<"$1" || true; }
+rows() { grep -E $'^(Reuniones|Programación|Depuración|Aprendizaje)\t' <<<"$1" || true; }
 
 # ---- 1. La restricción ridícula es real: ningún bucle llama al tick; lo llama el punto de control de tar.
 code=$(grep -Ev '^\s*(#|$)' run-clock.sh tick.sh | cut -d: -f2-)
@@ -28,7 +28,7 @@ echo "ok: no loop anywhere between the checkpoint and the SQL; one tar, one chec
 # ---- auxiliares: una simulación independiente de la máquina (Park-Miller en awk) y un validador de las reglas.
 sim() {  # semilla ticks -> filas "Cat\thoras\ttotal" por cada tarjeta que cierra dentro de `ticks` horas, luego "#done" o "#stalled"
     awk -v seed="$1" -v T="$2" 'BEGIN {
-        split("Meetings Coding Debugging Learning Meetings", cat, " ")
+        split("Reuniones Programación Depuración Aprendizaje Reuniones", cat, " ")
         s = seed * 48271 % 2147483647; target = 10 + s % 10; worked = 0; total = 0; card = 0; done = 0
         for (t = 1; t <= T && !done; t++) {
             worked++; total++
@@ -42,7 +42,7 @@ validate() {  # etiqueta salida
     local label=$1 out=$2 r total entries
     r=$(rows "$out"); total=$(sed -nE 's/.*total=([0-9]+).*/\1/p' <<<"$out"); entries=$(sed -nE 's/.*entries=([0-9]+).*/\1/p' <<<"$out")
     awk -F'\t' -v total="$total" -v entries="$entries" '
-        BEGIN { split("Meetings Coding Debugging Learning Meetings", want, " ") }
+        BEGIN { split("Reuniones Programación Depuración Aprendizaje Reuniones", want, " ") }
         { n++; if ($1 != want[n]) { print "category " $1 " at row " n; exit 1 }
           if ($2 < 10 || $2 > 19) { print "hours out of range: " $0; exit 1 }
           if ($3 != prev + $2) { print "bad running total: " $0; exit 1 }
@@ -142,8 +142,8 @@ echo "ok: tick.sh refuses a TAR_CHECKPOINT that is not a number, before it opens
 
 # ---- 7. El esquema rechaza lo que debe.
 newdb sch; sh run-clock.sh --seed 3 >/dev/null
-sqlite3 "$db" "insert into demo_timecards values(1,'Coding',12,12,'w',1,0)" 2>/dev/null && fail "db accepted a non-demo row"
-sqlite3 "$db" "insert into demo_timecards values(1,'Coding',9,9,'w',1,1)" 2>/dev/null && fail "db accepted 9 hours"
+sqlite3 "$db" "insert into demo_timecards values(1,'Programación',12,12,'w',1,0)" 2>/dev/null && fail "db accepted a non-demo row"
+sqlite3 "$db" "insert into demo_timecards values(1,'Programación',9,9,'w',1,1)" 2>/dev/null && fail "db accepted 9 hours"
 sqlite3 "$db" "insert into demo_timecards values(1,'Banking',12,12,'w',1,1)" 2>/dev/null && fail "db accepted a fifth category"
 echo "ok: SQLite refuses a non-demo row, 9 hours and a fifth category"
 echo "OK: tar-gnu-weird ($(tar --version | head -1))"
