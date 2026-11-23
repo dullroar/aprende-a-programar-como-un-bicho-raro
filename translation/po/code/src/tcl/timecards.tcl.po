@@ -19,12 +19,12 @@ msgid "#       tclsh timecards.tcl --gui      (also a Tk window; add --seconds N
 msgstr "#           tclsh timecards.tcl --gui     (además, una ventana de Tk; añade --seconds N para que se cierre sola)"
 
 msgctxt "L8"
-msgid "# The challenge: add cards of 10-19 hours (Meetings, Coding, Debugging,"
-msgstr "# El reto: suma tarjetas de 10 a 19 horas (Meetings, Coding, Debugging,"
+msgid "# El reto: suma tarjetas de 10 a 19 horas (Meetings, Coding, Debugging,"
+msgstr "# El reto: suma tarjetas de 10 a 19 horas (Reuniones, Programación, Depuración,"
 
 msgctxt "L9"
-msgid "# Learning, round and round) until the running total passes 40.  In Tcl that"
-msgstr "# Learning, una tras otra) hasta que el total acumulado pase de 40.  En Tcl eso"
+msgid "# Learning, una tras otra) hasta que el total acumulado pase de 40.  En Tcl eso"
+msgstr "# Aprendizaje, una tras otra) hasta que el total acumulado pase de 40.  En Tcl eso"
 
 msgctxt "L10"
 msgid "# is one while loop in the proc \"draw\".  Everything else is plumbing: a card"
@@ -113,3 +113,7 @@ msgstr "# ---------------------------------------------------------------- princ
 msgctxt "L169"
 msgid "# Run main only when this file is the script, not when it is sourced for testing."
 msgstr "# Ejecuta main solo cuando este archivo es el script, no cuando se carga con source para probar."
+
+msgctxt "C17"
+msgid "    variable categories {Meetings Coding Debugging Learning}"
+msgstr "    variable categories {Reuniones Programación Depuración Aprendizaje}"

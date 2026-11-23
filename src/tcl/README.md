@@ -36,10 +36,10 @@ Los registros se guardan en `$XDG_DATA_HOME/Tcl/demo-timecards.db` (`~/.local/sh
 
 ```text
 # DEMO ONLY run 1794860932-15
-Meetings	14	14	2026-W47	DEMO ONLY
-Coding	10	24	2026-W47	DEMO ONLY
-Debugging	14	38	2026-W47	DEMO ONLY
-Learning	16	54	2026-W47	DEMO ONLY
+Reuniones	14	14	2026-W47	DEMO ONLY
+Programación	10	24	2026-W47	DEMO ONLY
+Depuración	14	38	2026-W47	DEMO ONLY
+Aprendizaje	16	54	2026-W47	DEMO ONLY
 # committed total=54 entries=4 DEMO ONLY
 # one while loop, cards as dicts, and db eval binding Tcl variables as SQL parameters
 ```
@@ -48,7 +48,7 @@ Con `--gui` aparece una ventana pequeña con una tabla y debajo la línea "DEMO 
 
 ## Qué hace
 
-El programa sortea de 10 a 19 horas por tarjeta. Las categorías se repiten en ciclo: `Meetings` (reuniones), `Coding` (programación), `Debugging` (depuración) y `Learning` (aprendizaje). Se detiene cuando el total acumulado pasa de 40 y conserva la primera tarjeta con la que el total pasa del tope. Imprime cada tarjeta y las guarda en SQLite en una sola transacción.
+El programa sortea de 10 a 19 horas por tarjeta. Las categorías se repiten en ciclo: `Reuniones` (reuniones), `Programación` (programación), `Depuración` (depuración) y `Aprendizaje` (aprendizaje). Se detiene cuando el total acumulado pasa de 40 y conserva la primera tarjeta con la que el total pasa del tope. Imprime cada tarjeta y las guarda en SQLite en una sola transacción.
 
 ## Flujo del programa
 

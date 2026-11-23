@@ -5,8 +5,8 @@
 # Ejecuta:  tclsh timecards.tcl            (texto)
 #           tclsh timecards.tcl --gui     (además, una ventana de Tk; añade --seconds N para que se cierre sola)
 #
-# El reto: suma tarjetas de 10 a 19 horas (Meetings, Coding, Debugging,
-# Learning, una tras otra) hasta que el total acumulado pase de 40.  En Tcl eso
+# El reto: suma tarjetas de 10 a 19 horas (Reuniones, Programación, Depuración,
+# Aprendizaje, una tras otra) hasta que el total acumulado pase de 40.  En Tcl eso
 # es un bucle while en el procedimiento "draw".  Todo lo demás es cañería: una tarjeta
 # es un diccionario, la base de datos es un comando de Tcl, la ventana es opcional.
 
@@ -14,7 +14,7 @@ package require Tcl 8.6
 package require sqlite3
 
 namespace eval timecards {
-    variable categories {Meetings Coding Debugging Learning}
+    variable categories {Reuniones Programación Depuración Aprendizaje}
     variable minHours 10
     variable maxHours 19
     variable limit 40
