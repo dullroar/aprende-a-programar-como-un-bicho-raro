@@ -350,6 +350,16 @@ class CategoryWords(unittest.TestCase):
         text = "**Depuración** (Debugging) [x](a/Coding.md)\n```\nMeetings\n```\nMeetingsX XCoding\n"
         self.assertEqual(ap.localize_category_words(text), text)
 
+    def test_bold_only_concept_row_label_stays(self):
+        """Negative case: a '| **Debugging** |' concept-table label is not a card category."""
+        text = "| **Debugging** | Un fallo. | Otra fila con Debugging y `Coding`. |\n"
+        want = "| **Debugging** | Un fallo. | Otra fila con Depuración y `Programación`. |\n"
+        self.assertEqual(ap.localize_category_words(text), want)
+
+    def test_glued_macro_example_follows_and_other_glue_stays(self):
+        text = "`Meetingstc_tab` y `MeetingsX`\n"
+        self.assertEqual(ap.localize_category_words(text), "`Reunionestc_tab` y `MeetingsX`\n")
+
     def test_mermaid_labels_and_accdescr(self):
         text = '```mermaid\nstateDiagram-v2\n    accDescr: Empieza como Meetings y sigue con Coding.\n    state "Meetings" as M\n```\n'
         want = '```mermaid\nstateDiagram-v2\n    accDescr: Empieza como Reuniones y sigue con Programación.\n    state "Reuniones" as M\n```\n'

@@ -715,7 +715,9 @@ def drop_dnt_spans(spans, dnt):
 
     The frozen Spanish wording writes the card categories as code where the English prose writes them bare; the phrase itself is
     still required by I8, and every other code span is compared as before."""
-    return Counter({k: n for k, n in spans.items() if not (k[0] == "`" and (k[1] in dnt or k[1] in categories.ES))})
+    glued = {w + "tc_tab" for w in categories.EN + categories.ES}     # src/m4 README: the word glued to a macro name
+    return Counter({k: n for k, n in spans.items()
+                    if not (k[0] == "`" and (k[1] in dnt or k[1] in categories.ES or k[1] in glued))})
 
 
 def category_findings(es_text, rel=""):
@@ -803,8 +805,11 @@ def values(seg_blocks, dnt=()):
         for v in b.mapping.values():
             m = re.fullmatch(r"`([^`]+)`", v)
             key = categories.to_english(m.group(1)) if m and (m.group(1) in dnt or m.group(1) in categories.ES) else _en_cats(v)
+            g = re.fullmatch(r"`(%s)tc_tab`" % "|".join(categories.EN + categories.ES), v)
+            if g:    # src/m4 README: a category word glued to a macro name follows the mapped word
+                key = "`%stc_tab`" % categories.to_english(g.group(1))
             if key in categories.EN:
-                continue   # a card-category word, bare or in a span: the localized file may print the mapped word as plain text (decision 11)
+                continue  # a card-category word, bare or in a span: the localized file may print the mapped word as plain text (decision 11)
             c[key] += 1
     return c
 

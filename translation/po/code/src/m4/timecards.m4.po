@@ -16,11 +16,11 @@ msgstr "dnl Ejecuta:  m4 timecards.m4"
 
 msgctxt "L6"
 msgid "dnl The challenge: add cards of 10-19 hours (Meetings, Coding, Debugging,"
-msgstr "dnl El reto: sumar tarjetas de 10 a 19 horas (Meetings, Coding, Debugging,"
+msgstr "dnl El reto: sumar tarjetas de 10 a 19 horas (Reuniones, Programación, Depuración,"
 
 msgctxt "L7"
 msgid "dnl Learning, round and round) until the running total passes 40.  m4 has no"
-msgstr "dnl Learning, en ronda) hasta que el total acumulado pase de 40.  m4 no tiene"
+msgstr "dnl Aprendizaje, en ronda) hasta que el total acumulado pase de 40.  m4 no tiene"
 
 msgctxt "L8"
 msgid "dnl loop statement and no variables: it has macros, and what a macro expands"
@@ -129,6 +129,10 @@ msgstr "dnl con un último argumento suelto como el else.  Así que lo que se pr
 msgctxt "L52"
 msgid "dnl repeated in every group: tc_pick gets the number as $1 and repeats it."
 msgstr "dnl repetirse en cada grupo: tc_pick recibe el número como $1 y lo repite."
+
+msgctxt "C54"
+msgid "  [ifelse($1, 0, [Meetings], $1, 1, [Coding], $1, 2, [Debugging], [Learning])])"
+msgstr "  [ifelse($1, 0, [Reuniones], $1, 1, [Programación], $1, 2, [Depuración], [Aprendizaje])])"
 
 msgctxt "L57"
 msgid "dnl The [] in the bodies below are empty quotes: they split a $1 from the"

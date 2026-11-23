@@ -145,7 +145,8 @@ def apply_text(text, po, rel_path="", cat=None, strict=True):
 
 
 CATEGORY_PROSE_FILES = os.path.join("translation", "part2", "category-localized-prose.txt")
-_WORD_RE = re.compile(r"(?<![\w(])(%s)(?![\w)])" % "|".join(categories.EN))
+# (?=tc_tab): the m4 entry's glued-word example `Meetingstc_tab` names the word followed by a macro
+_WORD_RE = re.compile(r"(?<![\w(])(%s)(?:(?=tc_tab)|(?![\w)]))" % "|".join(categories.EN))
 
 
 def category_prose_files():
@@ -174,7 +175,8 @@ def localize_category_words(text):
             # Mermaid display text only (an accDescr sentence or a state label); node IDs and syntax never match a whole word.
             line = _WORD_RE.sub(lambda m: categories.EN_TO_ES[m.group(1)], line)
         elif fence is None:
-            parts = re.split(r"(\]\([^)]*\)|https?://\S+)", line)
+            # a bold-only word (| **Debugging** | ...) is a concept-table row label, not a card category: it stays
+            parts = re.split(r"(\]\([^)]*\)|https?://\S+|\*\*(?:%s)\*\*)" % "|".join(categories.EN), line)
             for i in range(0, len(parts), 2):
                 parts[i] = _WORD_RE.sub(lambda m: categories.EN_TO_ES[m.group(1)], parts[i])
             line = "".join(parts)

@@ -36,7 +36,7 @@ msgstr "# 4020: cuatro tarjetas de 10 horas suman exactamente 40, así que sigue
 
 msgctxt "L40"
 msgid "# 2b. Exactly 40 continues: seed 4020 deals 10, 10, 10, 10 (a total of exactly 40) and then a fifth card, Meetings again, ending at 55."
-msgstr "# 2b. Exactamente 40 continúa: la semilla 4020 reparte 10, 10, 10, 10 (un total de exactamente 40) y luego una quinta tarjeta, otra vez Meetings, que termina en 55."
+msgstr "# 2b. Exactamente 40 continúa: la semilla 4020 reparte 10, 10, 10, 10 (un total de exactamente 40) y luego una quinta tarjeta, otra vez Reuniones, que termina en 55."
 
 msgctxt "L44"
 msgid "# 2c. The loop does not nest. tc_card names itself in text that m4 reads again after the call has returned, so the nesting depth does"
@@ -57,6 +57,30 @@ msgstr "# 4. Ejecútalo muchas veces de verdad (semilla del SO, fecha real); cad
 msgctxt "L56"
 msgid "#    and the SQLite rows must agree with it."
 msgstr "#    y las filas de SQLite deben coincidir con él."
+
+msgctxt "C23"
+msgid "cats=(Meetings Coding Debugging Learning)"
+msgstr "cats=(Reuniones Programación Depuración Aprendizaje)"
+
+msgctxt "C36"
+msgid "    got=$(run -Dtc_seed=\"$seed\" -Dtc_week=2026-W01 | grep -E '^(Meetings|Coding|Debugging|Learning)\t')"
+msgstr "    got=$(run -Dtc_seed=\"$seed\" -Dtc_week=2026-W01 | grep -E '^(Reuniones|Programación|Depuración|Aprendizaje)\t')"
+
+msgctxt "C41"
+msgid "got=$(run -Dtc_seed=4020 -Dtc_week=2026-W01 | grep -E '^(Meetings|Coding|Debugging|Learning)\t' | cut -f1-3 | tr '\\t' ' ' | paste -sd' ')"
+msgstr "got=$(run -Dtc_seed=4020 -Dtc_week=2026-W01 | grep -E '^(Reuniones|Programación|Depuración|Aprendizaje)\t' | cut -f1-3 | tr '\\t' ' ' | paste -sd' ')"
+
+msgctxt "C42"
+msgid "[[ $got == \"Meetings 10 10 Coding 10 20 Debugging 10 30 Learning 10 40 Meetings 15 55\" ]] || { echo \"FAIL: seed 4020 should continue past exactly 40 to a fifth card; got: $got\"; exit 1; }"
+msgstr "[[ $got == \"Reuniones 10 10 Programación 10 20 Depuración 10 30 Aprendizaje 10 40 Reuniones 15 55\" ]] || { echo \"FAIL: seed 4020 should continue past exactly 40 to a fifth card; got: $got\"; exit 1; }"
+
+msgctxt "C51"
+msgid "n=$(\"${M4:-m4}\" -Dtc_seed=12345 \"$data/once.m4\" | grep -cE '^(Meetings|Coding|Debugging|Learning)\t' || true)"
+msgstr "n=$(\"${M4:-m4}\" -Dtc_seed=12345 \"$data/once.m4\" | grep -cE '^(Reuniones|Programación|Depuración|Aprendizaje)\t' || true)"
+
+msgctxt "C67"
+msgid "    mapfile -t rows < <(grep -E '^(Meetings|Coding|Debugging|Learning)\t' <<<\"$out\" || true)"
+msgstr "    mapfile -t rows < <(grep -E '^(Reuniones|Programación|Depuración|Aprendizaje)\t' <<<\"$out\" || true)"
 
 msgctxt "L89"
 msgid "# 3. The demo_only CHECK constraint is real: a non-demo row must be refused."

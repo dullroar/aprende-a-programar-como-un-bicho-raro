@@ -3,8 +3,8 @@ dnl XDG_DATA_HOME. Nada de aquí toca un sistema real de registro de horas.
 dnl
 dnl Ejecuta:  m4 timecards.m4
 dnl
-dnl El reto: sumar tarjetas de 10 a 19 horas (Meetings, Coding, Debugging,
-dnl Learning, en ronda) hasta que el total acumulado pase de 40.  m4 no tiene
+dnl El reto: sumar tarjetas de 10 a 19 horas (Reuniones, Programación, Depuración,
+dnl Aprendizaje, en ronda) hasta que el total acumulado pase de 40.  m4 no tiene
 dnl instrucción de bucle ni variables: tiene macros, y lo que una macro expande
 dnl se vuelve a escanear.  Así que el bucle es una macro que termina llamándose a sí misma,
 dnl y la regla de parada es el ifelse que decide si lo hace.
@@ -51,7 +51,7 @@ dnl y después continúa en grupos de TRES (arg1 otra vez, arg2, arg3),
 dnl con un último argumento suelto como el else.  Así que lo que se prueba tiene que
 dnl repetirse en cada grupo: tc_pick recibe el número como $1 y lo repite.
 define([tc_pick],
-  [ifelse($1, 0, [Meetings], $1, 1, [Coding], $1, 2, [Debugging], [Learning])])
+  [ifelse($1, 0, [Reuniones], $1, 1, [Programación], $1, 2, [Depuración], [Aprendizaje])])
 define([tc_category], [tc_pick(eval(($1 - 1) % 4))])
 
 dnl Los [] en los cuerpos de abajo son comillas vacías: separan un $1 del

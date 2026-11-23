@@ -158,4 +158,5 @@
 - A README whose Mermaid labels or accDescr name the categories needs the file in both category-localized lists (apply.py rewrites only accDescr and `state "..."` lines in mermaid fences), then `regen_po.py REL`; I13 fails on a file that mixes English and Spanish category words.
 - Before localizing categories, grep the family's code for `[A-Za-z]` classes around card names (ed-weird, maybe sed/ex/regex families): accented words break them and C entries cannot change regex, so leave the family English with an EXC row.
 - Families that run an editor (ed-weird, ex-weird) fail the oracle once categories gain accents; run the oracle right after the first C-entry pass and revert at once on FAIL (sed-weird next, expect the same).
+- In a code PO msgid a literal backslash-t in the file (e.g. `tr '\t'`) is written `\\t`, while `\t` alone means a real TAB; a "msgid does not match" refusal on a grep-with-TAB line usually means this.
 - Never commit `review/packets/`, `review/repo-bundle.zip`, `review/canaries.key.json` or `review/units.index.jsonl`: they carry canaries or the key; commit only the public MANIFEST.md and EDITION-FACTS.md.

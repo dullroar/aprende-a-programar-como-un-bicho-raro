@@ -550,6 +550,16 @@ class TestI13(Base):
     def test_fail_mixed_english_and_spanish_category_words(self):
         self.assertFires(self.file_findings("# T\n\nLas categorías son `Meetings` y `Programación`, luego `make all`.\n"), "I13")
 
+    def test_glued_category_macro_span_follows_the_mapped_word(self):
+        en = "# T\n\nUse `Meetingstc_tab` here.\n"
+        self.assertEqual([], [f for f in inv.check_files(en, "# T\n\nUsa `Reunionestc_tab` aquí.\n", "t.md", make_ctx(dnt=[]))
+                              if f.inv in ("I2", "I13")])
+
+    def test_fail_glued_span_with_the_wrong_macro(self):
+        en = "# T\n\nUse `Meetingstc_tab` here.\n"
+        self.assertFires([f for f in inv.check_files(en, "# T\n\nUsa `Reunionestc_row` aquí.\n", "t.md", make_ctx(dnt=[]))
+                          if f.inv in ("I2", "I13")], "I13")
+
     def test_fail_unapproved_category_spelling(self):
         self.assertFires(self.file_findings("# T\n\nLas categorías son `Reunión` y `Coding`, luego `make all`.\n"), "I13")
 

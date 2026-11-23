@@ -35,16 +35,16 @@ Los registros van a `$XDG_DATA_HOME/M4/demo-timecards.db` (por defecto `~/.local
 
 ```text
 # DEMO ONLY run 1794860448-1900361580
-Meetings	15	15	2026-W47	DEMO ONLY
-Coding	11	26	2026-W47	DEMO ONLY
-Debugging	15	41	2026-W47	DEMO ONLY
+Reuniones	15	15	2026-W47	DEMO ONLY
+Programación	11	26	2026-W47	DEMO ONLY
+Depuración	15	41	2026-W47	DEMO ONLY
 # committed total=41 entries=3 DEMO ONLY
 # no loop statement: tc_card expands itself again until ifelse says stop, and m4 is the whole program
 ```
 
 ## Qué hace
 
-El programa saca tarjetas de 10 a 19 horas y recorre en ciclo Meetings, Coding, Debugging y Learning hasta que el total acumulado pasa de 40 (se conserva la tarjeta que cruza la línea). El programa imprime las filas y las guarda en SQLite en una sola transacción.
+El programa saca tarjetas de 10 a 19 horas y recorre en ciclo Reuniones, Programación, Depuración y Aprendizaje hasta que el total acumulado pasa de 40 (se conserva la tarjeta que cruza la línea). El programa imprime las filas y las guarda en SQLite en una sola transacción.
 
 ## Flujo del programa
 
@@ -106,7 +106,7 @@ Expandir `tc_card()` produce: una fila de texto (la salida), algunas definicione
 
 ### 5. `ifelse` y el problema que me mordió al escribir esto
 
-`ifelse(a, b, then, else)` compara `a` con `b`. Con más argumentos continúa **en grupos de tres**: `ifelse(a, b, then, c, d, then2, ..., else)`. Un primer intento natural de un switch de cuatro ramas, `ifelse(n, 0, [Meetings], 1, [Coding], ...)`, es incorrecto: después del primer grupo compara `1` con `[Coding]`, y GNU m4 imprime "excess arguments to builtin `ifelse` ignored". La solución es repetir lo que se prueba en cada grupo (`tc_pick`). Es un bicho muy propio de m4 y una advertencia muy propia de m4.
+`ifelse(a, b, then, else)` compara `a` con `b`. Con más argumentos continúa **en grupos de tres**: `ifelse(a, b, then, c, d, then2, ..., else)`. Un primer intento natural de un switch de cuatro ramas, `ifelse(n, 0, [Reuniones], 1, [Programación], ...)`, es incorrecto: después del primer grupo compara `1` con `[Programación]`, y GNU m4 imprime "excess arguments to builtin `ifelse` ignored". La solución es repetir lo que se prueba en cada grupo (`tc_pick`). Es un bicho muy propio de m4 y una advertencia muy propia de m4.
 
 ### 6. Una cadena de texto que crece: `defn`
 
@@ -118,7 +118,7 @@ define([tc_append], [define([tc_sql], defn([tc_sql])[$1])])
 
 ### 7. Las comillas vacías `[]`
 
-En `tc_row`, `$1[]tc_tab` tiene una cadena de texto vacía entre comillas en medio. Sin ella, `Meetings` seguido de `tc_tab` se leería como una sola palabra, `Meetingstc_tab`, que no es una macro. `[]` se expande a nada, pero separa la palabra. Usarás esto cada vez que pegues macros.
+En `tc_row`, `$1[]tc_tab` tiene una cadena de texto vacía entre comillas en medio. Sin ella, `Reuniones` seguido de `tc_tab` se leería como una sola palabra, `Reunionestc_tab`, que no es una macro. `[]` se expande a nada, pero separa la palabra. Usarás esto cada vez que pegues macros.
 
 ### 8. Guardar
 

@@ -15,6 +15,7 @@ src/find-posix/README.md
 src/forth-weird/README.md
 src/haskell/README.md
 src/haskell-weird/README.md
+src/m4/README.md
 src/javascript/README.md
 src/javascript-events/README.md
 src/javascript-weird/README.md

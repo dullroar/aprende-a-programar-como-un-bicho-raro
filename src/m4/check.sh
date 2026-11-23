@@ -20,7 +20,7 @@ if grep -Eq '(for|while) ' <<<"$(grep -oE "syscmd\(.*" timecards.m4)"; then echo
 
 # 2. La aritmética es la propia de m4: con una semilla fija la salida debe igualar un Park-Miller independiente
 #    calculado aquí en bash (64 bits), tarjeta por tarjeta, incluida la regla de parada y el ciclo de categorías.
-cats=(Meetings Coding Debugging Learning)
+cats=(Reuniones Programación Depuración Aprendizaje)
 expected() {   # semilla semana -> las filas, tal como las debe imprimir el programa
     local seed=$1 week=$2 total=0 n=0 hours
     while (( total <= 40 )); do
@@ -33,13 +33,13 @@ expected() {   # semilla semana -> las filas, tal como las debe imprimir el prog
 }
 for seed in 1 2 12345 99999 1000003 2147483646 4020 $(seq 7000 7040); do   # 4020: cuatro tarjetas de 10 horas suman exactamente 40, así que sigue una quinta tarjeta
     want=$(expected "$seed" 2026-W01)
-    got=$(run -Dtc_seed="$seed" -Dtc_week=2026-W01 | grep -E '^(Meetings|Coding|Debugging|Learning)	')
+    got=$(run -Dtc_seed="$seed" -Dtc_week=2026-W01 | grep -E '^(Reuniones|Programación|Depuración|Aprendizaje)	')
     [[ $got == "$want" ]] || { echo "FAIL: seed $seed: output differs from the bash reference"; diff <(echo "$want") <(echo "$got") || true; exit 1; }
 done
 
-# 2b. Exactamente 40 continúa: la semilla 4020 reparte 10, 10, 10, 10 (un total de exactamente 40) y luego una quinta tarjeta, otra vez Meetings, que termina en 55.
-got=$(run -Dtc_seed=4020 -Dtc_week=2026-W01 | grep -E '^(Meetings|Coding|Debugging|Learning)	' | cut -f1-3 | tr '\t' ' ' | paste -sd' ')
-[[ $got == "Meetings 10 10 Coding 10 20 Debugging 10 30 Learning 10 40 Meetings 15 55" ]] || { echo "FAIL: seed 4020 should continue past exactly 40 to a fifth card; got: $got"; exit 1; }
+# 2b. Exactamente 40 continúa: la semilla 4020 reparte 10, 10, 10, 10 (un total de exactamente 40) y luego una quinta tarjeta, otra vez Reuniones, que termina en 55.
+got=$(run -Dtc_seed=4020 -Dtc_week=2026-W01 | grep -E '^(Reuniones|Programación|Depuración|Aprendizaje)	' | cut -f1-3 | tr '\t' ' ' | paste -sd' ')
+[[ $got == "Reuniones 10 10 Programación 10 20 Depuración 10 30 Aprendizaje 10 40 Reuniones 15 55" ]] || { echo "FAIL: seed 4020 should continue past exactly 40 to a fifth card; got: $got"; exit 1; }
 
 # 2c. El bucle no se anida. tc_card se nombra a sí misma en texto que m4 vuelve a leer después de que la llamada ha vuelto, así que la profundidad
 #     de anidación no crece con el número de tarjetas: el menor -L que funciona es el mismo para una ejecución de 3 tarjetas (semilla 230) y de 5 (semilla 4020).
@@ -48,7 +48,7 @@ smallest() { local seed=$1 L; for L in 1 2 3 4 5 6 7 8; do if "${M4:-m4}" -L "$L
 
 # 3. El mecanismo: si tc_card deja de expandirse a sí misma, se reparte exactamente una tarjeta.
 sed 's/\[tc_card()\])\])/[])])/' timecards.m4 > "$data/once.m4"
-n=$("${M4:-m4}" -Dtc_seed=12345 "$data/once.m4" | grep -cE '^(Meetings|Coding|Debugging|Learning)	' || true)
+n=$("${M4:-m4}" -Dtc_seed=12345 "$data/once.m4" | grep -cE '^(Reuniones|Programación|Depuración|Aprendizaje)	' || true)
 [[ $n -eq 1 ]] || { echo "FAIL: without the self-expansion $n cards were dealt, wanted 1"; exit 1; }
 rm -rf "$data/M4"
 
@@ -64,7 +64,7 @@ for i in $(seq 1 25); do
     [[ -n $commit ]] || { echo "FAIL run $i: no committed line"; echo "$out"; exit 1; }
     total=$(sed -E 's/.*total=([0-9]+).*/\1/' <<<"$commit")
     entries=$(sed -E 's/.*entries=([0-9]+).*/\1/' <<<"$commit")
-    mapfile -t rows < <(grep -E '^(Meetings|Coding|Debugging|Learning)	' <<<"$out" || true)
+    mapfile -t rows < <(grep -E '^(Reuniones|Programación|Depuración|Aprendizaje)	' <<<"$out" || true)
     [[ ${#rows[@]} -eq $entries ]] || { echo "FAIL run $i: ${#rows[@]} rows but entries=$entries"; exit 1; }
     sum=0; n=0
     for row in "${rows[@]}"; do

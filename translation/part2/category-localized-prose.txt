@@ -12,3 +12,5 @@ src/haskell/README.md
 src/haskell-weird/README.md
 src/javascript/README.md
 src/lisp-weird/README.md
+src/m4/README.md
+lessons/study-guides/languages/m4.md
