@@ -351,3 +351,4 @@
 399 S1-001 done policy.md (plan 4.5.1 to 4.5.3 as rules, stop and bubble-up) and localization-scope.yaml (53 families, all frozen, counts match inventory); verify --fast OK.
 400 S1-002 done tools/token_registry.py + 19 tests (5 drift negatives); tokens.jsonl and pages for python and javascript, 21 languages not-extracted (no runtime or pinned spec); verify --fast OK.
 398 S0-004 done S0 gate written (s0-gate.md): 230/230 files classified once, matrix complete, language list measured (35 hosts); second-pass plan file absent so no cell-by-cell compare; self-test NOT RUN.
+401 S1-003 done rows and pages exist for all 9 batch-A languages; only python and javascript extracted, 7 NOT TESTED (rustc and dotnet denied in dontAsk, no other toolchains); csharp and rust reasons updated.

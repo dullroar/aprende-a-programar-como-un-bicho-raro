@@ -138,3 +138,4 @@
 - When a PDF-010 sentinel fails, extract the page text with PyMuPDF (fitz) and copy the approved PO msgstr into lessons/book/locale/es.yaml; run lint_pdf.py with BOOK_LANG=es (a runpy wrapper), since without it the English sentinels run against the Spanish PDF.
 - In Part II, `.fs` is Forth under src/forth* and F# elsewhere, and .bat files hash after CRLF->LF; use tools/code_inventory.py's detect_lang and sha handling instead of guessing from the extension.
 - Do not run verify --release right after tools/scratch_proof.py --tests: a stale inventory/work state makes 4 checks fail once; rerun inventory.py then verify, and run lessons/book tests in Spanish through a runpy wrapper that sets BOOK_LANG=es.
+- In dontAsk mode even `rustc --version` and dotnet are denied, and so are heredocs and long compound commands; do not plan registry extraction that runs a toolchain, record not-extracted with that reason, and edit files with the Edit tool.
