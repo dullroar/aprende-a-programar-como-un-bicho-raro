@@ -1,0 +1,4286 @@
+{
+ "summary": {
+  "broken": 33,
+  "unverified": 578,
+  "not-executed": 0
+ },
+ "findings": [
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "CONTRIBUTING.md:126",
+   "target": "https://pandoc.org",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "SANDBOX-SETUP.md:19",
+   "target": "https://docs.docker.com/desktop/setup/install/windows-install/",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "SANDBOX-SETUP.md:19",
+   "target": "https://git-scm.com/download/win",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "broken",
+   "kind": "path",
+   "where": "SYNTHESIZED-TRANSLATION-PLAN-es-bicho-raro.md:1262",
+   "target": "TRANSLATING.md",
+   "reason": "no such file in this checkout"
+  },
+  {
+   "status": "broken",
+   "kind": "path",
+   "where": "SYNTHESIZED-TRANSLATION-PLAN-es-bicho-raro.md:1262",
+   "target": "TRADUCTORIO.md",
+   "reason": "no such file in this checkout"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "docs/graficos-de-barras-apiladas.md:5",
+   "target": "https://learn.microsoft.com/en-us/dotnet/api/system.web.ui.datavisualization.charting.chart?view=netframework-4.8.1",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "docs/graficos-de-barras-apiladas.md:5",
+   "target": "https://learn.microsoft.com/en-us/dotnet/api/system.web.ui.webcontrols.sqldatasource?view=netframework-4.8.1",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "docs/graficos-de-barras-apiladas.md:14",
+   "target": "https://learn.microsoft.com/en-us/sql/t-sql/queries/from-using-pivot-and-unpivot",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "docs/graficos-de-barras-apiladas.md:14",
+   "target": "https://learn.microsoft.com/en-us/dotnet/api/system.web.ui.datavisualization.charting.seriescharttype?view=netframework-4.8.1",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "docs/graficos-de-barras-apiladas.md:14",
+   "target": "https://learn.microsoft.com/en-us/dotnet/api/system.web.ui.datavisualization.charting.series?view=netframework-4.8.1",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "docs/plan-de-estudios.md:112",
+   "target": "https://en.wikipedia.org/wiki/Lisp_(programming_language)",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "docs/plan-de-estudios.md:113",
+   "target": "https://en.wikipedia.org/wiki/COBOL",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "docs/plan-de-estudios.md:114",
+   "target": "https://en.wikipedia.org/wiki/APL_(programming_language)",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "docs/plan-de-estudios.md:115",
+   "target": "https://en.wikipedia.org/wiki/Ed_(software)",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "docs/plan-de-estudios.md:116",
+   "target": "https://en.wikipedia.org/wiki/Forth_(programming_language)",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "docs/plan-de-estudios.md:117",
+   "target": "https://en.wikipedia.org/wiki/Sed",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "docs/plan-de-estudios.md:117",
+   "target": "https://en.wikipedia.org/wiki/AWK",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "docs/plan-de-estudios.md:118",
+   "target": "https://en.wikipedia.org/wiki/M4_(computer_language)",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "docs/plan-de-estudios.md:119",
+   "target": "https://en.wikipedia.org/wiki/Make_(software)",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "docs/plan-de-estudios.md:120",
+   "target": "https://en.wikipedia.org/wiki/Tar_(computing)",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "docs/plan-de-estudios.md:121",
+   "target": "https://en.wikipedia.org/wiki/Tcl",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "docs/plan-de-estudios.md:122",
+   "target": "https://en.wikipedia.org/wiki/Haskell",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "docs/plan-de-estudios.md:123",
+   "target": "https://en.wikipedia.org/wiki/JavaScript",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/book/README.md:3",
+   "target": "https://pandoc.org",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/book/README.md:16",
+   "target": "https://weasyprint.org",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/book/README.md:65",
+   "target": "https://pymupdf.io/licensing",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/book/editorial-audit.md:26",
+   "target": "https://www.sqlite.org/limits.html",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/book/editorial-audit.md:28",
+   "target": "https://nodejs.org/api/crypto.html#cryptorandomintmin-max-callback",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/book/editorial-audit.md:33",
+   "target": "https://learn.microsoft.com/en-us/dotnet/standard/base-types/grouping-constructs-in-regular-expressions#balancing-group-definitions",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "broken",
+   "kind": "path",
+   "where": "lessons/cs-source/chapters/01-reading-an-adversarial-program.md:4",
+   "target": "../guias-de-estudio/conceptos/lectura-de-programas-adversariales.md",
+   "reason": "no such file in this checkout"
+  },
+  {
+   "status": "broken",
+   "kind": "path",
+   "where": "lessons/cs-source/chapters/01-reading-an-adversarial-program.md:6",
+   "target": "../../SANDBOX-SETUP.md",
+   "reason": "no such file in this checkout"
+  },
+  {
+   "status": "broken",
+   "kind": "path",
+   "where": "lessons/cs-source/chapters/01-reading-an-adversarial-program.md:8",
+   "target": "../../src/cobol/README.md",
+   "reason": "no such file in this checkout"
+  },
+  {
+   "status": "broken",
+   "kind": "path",
+   "where": "lessons/cs-source/chapters/01-reading-an-adversarial-program.md:8",
+   "target": "../../src/cobol-weird/README.md",
+   "reason": "no such file in this checkout"
+  },
+  {
+   "status": "broken",
+   "kind": "path",
+   "where": "lessons/cs-source/chapters/01-reading-an-adversarial-program.md:8",
+   "target": "../../src/haskell/README.md",
+   "reason": "no such file in this checkout"
+  },
+  {
+   "status": "broken",
+   "kind": "path",
+   "where": "lessons/cs-source/chapters/01-reading-an-adversarial-program.md:8",
+   "target": "../../src/haskell-weird/README.md",
+   "reason": "no such file in this checkout"
+  },
+  {
+   "status": "broken",
+   "kind": "path",
+   "where": "lessons/cs-source/chapters/01-reading-an-adversarial-program.md:8",
+   "target": "../introduccion.md#tres-tipos-de-conocimiento",
+   "reason": "no such file in this checkout"
+  },
+  {
+   "status": "broken",
+   "kind": "path",
+   "where": "lessons/cs-source/chapters/02-what-counts-as-a-machine.md:4",
+   "target": "../guias-de-estudio/conceptos/estado-y-control-mas-alla-de-las-variables.md",
+   "reason": "no such file in this checkout"
+  },
+  {
+   "status": "broken",
+   "kind": "path",
+   "where": "lessons/cs-source/chapters/03-control-flow-and-continuations.md:4",
+   "target": "../guias-de-estudio/conceptos/estado-y-control-mas-alla-de-las-variables.md",
+   "reason": "no such file in this checkout"
+  },
+  {
+   "status": "broken",
+   "kind": "path",
+   "where": "lessons/cs-source/chapters/04-evaluation-and-demand.md:4",
+   "target": "../guias-de-estudio/conceptos/evaluacion-demanda-y-pereza.md",
+   "reason": "no such file in this checkout"
+  },
+  {
+   "status": "broken",
+   "kind": "path",
+   "where": "lessons/cs-source/chapters/05-formal-languages-as-computational-substrates.md:4",
+   "target": "../guias-de-estudio/conceptos/lenguajes-formales-y-maquinas-raras.md",
+   "reason": "no such file in this checkout"
+  },
+  {
+   "status": "broken",
+   "kind": "fragment",
+   "where": "lessons/cs-source/chapters/05-formal-languages-as-computational-substrates.md:8",
+   "target": "#seguridad-basada-en-teor%C3%ADa-de-lenguajes",
+   "reason": "no heading or id 'seguridad-basada-en-teoría-de-lenguajes' in lessons/cs-source/chapters/05-formal-languages-as-computational-substrates.md"
+  },
+  {
+   "status": "broken",
+   "kind": "fragment",
+   "where": "lessons/cs-source/chapters/05-formal-languages-as-computational-substrates.md:8",
+   "target": "#m%C3%A1quinas-raras",
+   "reason": "no heading or id 'máquinas-raras' in lessons/cs-source/chapters/05-formal-languages-as-computational-substrates.md"
+  },
+  {
+   "status": "broken",
+   "kind": "path",
+   "where": "lessons/cs-source/chapters/06-state-beyond-variables.md:4",
+   "target": "../guias-de-estudio/conceptos/estado-y-control-mas-alla-de-las-variables.md",
+   "reason": "no such file in this checkout"
+  },
+  {
+   "status": "broken",
+   "kind": "path",
+   "where": "lessons/cs-source/chapters/06-state-beyond-variables.md:8",
+   "target": "../objetivos.md",
+   "reason": "no such file in this checkout"
+  },
+  {
+   "status": "broken",
+   "kind": "path",
+   "where": "lessons/cs-source/chapters/07-effects-errors-and-commitment.md:4",
+   "target": "../guias-de-estudio/conceptos/efectos-errores-y-confirmacion.md",
+   "reason": "no such file in this checkout"
+  },
+  {
+   "status": "broken",
+   "kind": "path",
+   "where": "lessons/cs-source/chapters/08-abstraction-leaks-and-implementation-dependence.md:4",
+   "target": "../guias-de-estudio/conceptos/portabilidad-abstraccion-y-costo.md",
+   "reason": "no such file in this checkout"
+  },
+  {
+   "status": "broken",
+   "kind": "path",
+   "where": "lessons/cs-source/chapters/09-comparative-case-studies.md:4",
+   "target": "../guias-de-estudio/conceptos/diseno-comparativo-de-maquinas.md",
+   "reason": "no such file in this checkout"
+  },
+  {
+   "status": "broken",
+   "kind": "path",
+   "where": "lessons/cs-source/chapters/09-comparative-case-studies.md:6",
+   "target": "../introduccion.md#qu%C3%A9-hace-el-reto",
+   "reason": "no such file in this checkout"
+  },
+  {
+   "status": "broken",
+   "kind": "path",
+   "where": "lessons/cs-source/chapters/09-comparative-case-studies.md:6",
+   "target": "../introduccion.md#d%C3%B3nde-difieren-las-entradas",
+   "reason": "no such file in this checkout"
+  },
+  {
+   "status": "broken",
+   "kind": "path",
+   "where": "lessons/cs-source/chapters/10-events-callbacks-and-reactive-control-flow.md:4",
+   "target": "../guias-de-estudio/conceptos/eventos-retrollamadas-y-control-reactivo.md",
+   "reason": "no such file in this checkout"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/chapters/10-events-callbacks-and-reactive-control-flow.md:69",
+   "target": "https://nodejs.org/api/events.html",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/chapters/10-events-callbacks-and-reactive-control-flow.md:69",
+   "target": "https://nodejs.org/en/learn/asynchronous-work/event-loop-timers-and-nexttick",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "broken",
+   "kind": "path",
+   "where": "lessons/cs-source/chapters/10-events-callbacks-and-reactive-control-flow.md:134",
+   "target": "../exercises.md#b22-javascript-dirigido-por-eventos-predice-la-traza-y-luego-elimina-el-l%C3%ADmite-verificado",
+   "reason": "no such file in this checkout"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/arbitrary-code-execution.md:13",
+   "target": "https://en.wikipedia.org/wiki/Arbitrary_code_execution",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/arbitrary-code-execution.md:14",
+   "target": "https://en.wikipedia.org/wiki/Code_injection",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/arbitrary-code-execution.md:15",
+   "target": "https://owasp.org/www-community/attacks/Code_Injection",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/arbitrary-code-execution.md:16",
+   "target": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/eval",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/array-programming.md:25",
+   "target": "https://en.wikipedia.org/wiki/Array_programming",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/array-programming.md:26",
+   "target": "https://en.wikipedia.org/wiki/APL_(programming_language)",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/array-programming.md:27",
+   "target": "https://en.wikipedia.org/wiki/Kenneth_E._Iverson",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/array-programming.md:28",
+   "target": "https://en.wikipedia.org/wiki/Single_instruction,_multiple_data",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/backpressure.md:15",
+   "target": "https://en.wikipedia.org/wiki/Back_pressure",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/backtracking.md:26",
+   "target": "https://en.wikipedia.org/wiki/Backtracking",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/backtracking.md:27",
+   "target": "https://en.wikipedia.org/wiki/Regular_expression",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/build-automation.md:27",
+   "target": "https://en.wikipedia.org/wiki/Build_automation",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/build-automation.md:28",
+   "target": "https://en.wikipedia.org/wiki/Make_(software)",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/build-automation.md:29",
+   "target": "https://en.wikipedia.org/wiki/Reproducible_builds",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/call-stack.md:30",
+   "target": "https://en.wikipedia.org/wiki/Call_stack",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/call-stack.md:31",
+   "target": "https://en.wikipedia.org/wiki/Stack_buffer_overflow",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/call-stack.md:32",
+   "target": "https://en.wikipedia.org/wiki/Tail_call",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/callback.md:15",
+   "target": "https://en.wikipedia.org/wiki/Callback_(computer_programming)",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/callback.md:16",
+   "target": "https://nodejs.org/api/events.html",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/capability-security.md:15",
+   "target": "https://en.wikipedia.org/wiki/Capability-based_security",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/capability-security.md:16",
+   "target": "https://en.wikipedia.org/wiki/Principle_of_least_privilege",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/capability-security.md:17",
+   "target": "https://en.wikipedia.org/wiki/Confused_deputy_problem",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/category-theory.md:38",
+   "target": "https://en.wikipedia.org/wiki/Category_theory",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/category-theory.md:39",
+   "target": "https://en.wikipedia.org/wiki/Category_(mathematics)",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/category-theory.md:40",
+   "target": "https://en.wikipedia.org/wiki/Function_composition",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/category-theory.md:41",
+   "target": "https://en.wikipedia.org/wiki/Isomorphism",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/chomsky-hierarchy.md:13",
+   "target": "https://en.wikipedia.org/wiki/Chomsky_hierarchy",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/chomsky-hierarchy.md:14",
+   "target": "https://en.wikipedia.org/wiki/Formal_language",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/chomsky-hierarchy.md:15",
+   "target": "https://en.wikipedia.org/wiki/Pushdown_automaton",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/closure.md:39",
+   "target": "https://en.wikipedia.org/wiki/Closure_(computer_programming)",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/closure.md:40",
+   "target": "https://en.wikipedia.org/wiki/Scope_(computer_science)",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/closure.md:41",
+   "target": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Closures",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/code-review.md:15",
+   "target": "https://en.wikipedia.org/wiki/Code_review",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/compiler-optimization.md:13",
+   "target": "https://en.wikipedia.org/wiki/Optimizing_compiler",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/compiler-optimization.md:14",
+   "target": "https://en.wikipedia.org/wiki/As-if_rule",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/compiler-optimization.md:15",
+   "target": "https://en.wikipedia.org/wiki/Dead-code_elimination",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/computation-versus-orchestration.md:42",
+   "target": "https://en.wikipedia.org/wiki/Separation_of_concerns",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/computation-versus-orchestration.md:43",
+   "target": "https://en.wikipedia.org/wiki/Orchestration_(computing)",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/continuation.md:27",
+   "target": "https://en.wikipedia.org/wiki/Continuation",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/continuation.md:28",
+   "target": "https://en.wikipedia.org/wiki/Continuation-passing_style",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/continuation.md:29",
+   "target": "https://en.wikipedia.org/wiki/Call-with-current-continuation",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/control-flow.md:13",
+   "target": "https://en.wikipedia.org/wiki/Control_flow",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/control-flow.md:14",
+   "target": "https://en.wikipedia.org/wiki/Control-flow_graph",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/coroutine.md:35",
+   "target": "https://en.wikipedia.org/wiki/Coroutine",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/cut.md:28",
+   "target": "https://en.wikipedia.org/wiki/Cut_(logic_programming)",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/cut.md:29",
+   "target": "https://en.wikipedia.org/wiki/Prolog",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/database-trigger.md:25",
+   "target": "https://en.wikipedia.org/wiki/Database_trigger",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/database-trigger.md:26",
+   "target": "https://en.wikipedia.org/wiki/SQLite",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/dataflow-programming.md:29",
+   "target": "https://en.wikipedia.org/wiki/Dataflow_programming",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/dataflow-programming.md:30",
+   "target": "https://en.wikipedia.org/wiki/Pipeline_(software)",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/declarative-programming.md:13",
+   "target": "https://en.wikipedia.org/wiki/Declarative_programming",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/declarative-programming.md:14",
+   "target": "https://en.wikipedia.org/wiki/Rule_of_least_power",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/deferred-execution.md:13",
+   "target": "https://en.wikipedia.org/wiki/Language_Integrated_Query",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/deferred-execution.md:14",
+   "target": "https://en.wikipedia.org/wiki/Lazy_evaluation",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/deferred-execution.md:15",
+   "target": "https://en.wikipedia.org/wiki/Iterator",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/dependency-graph.md:27",
+   "target": "https://en.wikipedia.org/wiki/Dependency_graph",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/dependency-graph.md:28",
+   "target": "https://en.wikipedia.org/wiki/Directed_acyclic_graph",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/dependency-graph.md:29",
+   "target": "https://en.wikipedia.org/wiki/Topological_sorting",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/domain-specific-language.md:13",
+   "target": "https://en.wikipedia.org/wiki/Domain-specific_language",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/domain-specific-language.md:14",
+   "target": "https://en.wikipedia.org/wiki/Inner-platform_effect",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/eager-evaluation.md:13",
+   "target": "https://en.wikipedia.org/wiki/Eager_evaluation",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/evaluation-strategy.md:13",
+   "target": "https://en.wikipedia.org/wiki/Evaluation_strategy",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/evaluation-strategy.md:14",
+   "target": "https://en.wikipedia.org/wiki/Call-by-need",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/evaluation-strategy.md:15",
+   "target": "https://en.wikipedia.org/wiki/Call-by-name",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/event-driven-programming.md:17",
+   "target": "https://en.wikipedia.org/wiki/Event-driven_programming",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/event-driven-programming.md:18",
+   "target": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Event_loop",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/event-driven-programming.md:19",
+   "target": "https://nodejs.org/api/events.html",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/event-loop.md:17",
+   "target": "https://en.wikipedia.org/wiki/Event_loop",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/event-loop.md:18",
+   "target": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Event_loop",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/event-loop.md:19",
+   "target": "https://nodejs.org/en/learn/asynchronous-work/event-loop-timers-and-nexttick",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/exception-handling.md:32",
+   "target": "https://en.wikipedia.org/wiki/Exception_handling",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/exception-handling.md:33",
+   "target": "https://en.wikipedia.org/wiki/Fail-fast_system",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/exit-status.md:24",
+   "target": "https://en.wikipedia.org/wiki/Exit_status",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/first-class-and-higher-order-functions.md:17",
+   "target": "https://en.wikipedia.org/wiki/First-class_function",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/first-class-and-higher-order-functions.md:18",
+   "target": "https://en.wikipedia.org/wiki/Higher-order_function",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/first-class-and-higher-order-functions.md:19",
+   "target": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/fixed-point-iteration.md:24",
+   "target": "https://en.wikipedia.org/wiki/Fixed-point_iteration",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/fixed-point-iteration.md:25",
+   "target": "https://en.wikipedia.org/wiki/Fixed_point_(mathematics)",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/functor.md:20",
+   "target": "https://en.wikipedia.org/wiki/Functor",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/functor.md:21",
+   "target": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/generators.md:33",
+   "target": "https://en.wikipedia.org/wiki/Iterator",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/generators.md:34",
+   "target": "https://en.wikipedia.org/wiki/Generator_(computer_programming)",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/generators.md:35",
+   "target": "https://en.wikipedia.org/wiki/Stream_(computing)",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/generators.md:36",
+   "target": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_generators",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/goto-and-structured-programming.md:13",
+   "target": "https://en.wikipedia.org/wiki/Goto",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/goto-and-structured-programming.md:14",
+   "target": "https://en.wikipedia.org/wiki/Structured_program_theorem",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/goto-and-structured-programming.md:15",
+   "target": "https://en.wikipedia.org/wiki/Considered_harmful",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/homoiconicity.md:13",
+   "target": "https://en.wikipedia.org/wiki/Homoiconicity",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/homoiconicity.md:14",
+   "target": "https://en.wikipedia.org/wiki/Lisp_(programming_language)",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/homoiconicity.md:15",
+   "target": "https://en.wikipedia.org/wiki/Metaprogramming",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/hyrums-law.md:13",
+   "target": "https://en.wikipedia.org/wiki/Hyrum%27s_law",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/hyrums-law.md:14",
+   "target": "https://en.wikipedia.org/wiki/Backward_compatibility",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/idempotence.md:27",
+   "target": "https://en.wikipedia.org/wiki/Idempotence",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/idempotence.md:28",
+   "target": "https://developer.mozilla.org/en-US/docs/Glossary/Idempotent",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/idempotence.md:29",
+   "target": "https://www.rfc-editor.org/rfc/rfc9110",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/integrity-constraint.md:13",
+   "target": "https://en.wikipedia.org/wiki/Integrity_constraint",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/integrity-constraint.md:14",
+   "target": "https://en.wikipedia.org/wiki/Check_constraint",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/interpreter-and-virtual-machine.md:15",
+   "target": "https://en.wikipedia.org/wiki/Interpreter_(computing)",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/interpreter-and-virtual-machine.md:16",
+   "target": "https://en.wikipedia.org/wiki/Virtual_machine",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/invariant.md:13",
+   "target": "https://en.wikipedia.org/wiki/Invariant_(computer_science)",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/invariant.md:14",
+   "target": "https://en.wikipedia.org/wiki/Loop_invariant",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/langsec.md:13",
+   "target": "https://en.wikipedia.org/wiki/Language-theoretic_security",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/langsec.md:14",
+   "target": "https://en.wikipedia.org/wiki/Robustness_principle",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/langsec.md:15",
+   "target": "https://www.rfc-editor.org/rfc/rfc9413",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/language-specification.md:13",
+   "target": "https://en.wikipedia.org/wiki/Programming_language_specification",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/language-specification.md:14",
+   "target": "https://www.rfc-editor.org/rfc/rfc2119",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/lazy-evaluation.md:33",
+   "target": "https://en.wikipedia.org/wiki/Lazy_evaluation",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/lazy-evaluation.md:34",
+   "target": "https://en.wikipedia.org/wiki/Thunk",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/lazy-evaluation.md:35",
+   "target": "https://en.wikipedia.org/wiki/Graph_reduction",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/leaky-abstraction.md:13",
+   "target": "https://en.wikipedia.org/wiki/Leaky_abstraction",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/leaky-abstraction.md:14",
+   "target": "https://en.wikipedia.org/wiki/Abstraction_(computer_science)",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/least-privilege.md:13",
+   "target": "https://en.wikipedia.org/wiki/Principle_of_least_privilege",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/least-privilege.md:14",
+   "target": "https://www.rfc-editor.org/rfc/rfc4949",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/logical-clock.md:15",
+   "target": "https://en.wikipedia.org/wiki/Logical_clock",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/logical-clock.md:16",
+   "target": "https://en.wikipedia.org/wiki/Lamport_timestamp",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/macro-processing.md:26",
+   "target": "https://en.wikipedia.org/wiki/Macro_(computer_science)",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/macro-processing.md:27",
+   "target": "https://en.wikipedia.org/wiki/M4_(computer_language)",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/macro-processing.md:28",
+   "target": "https://en.wikipedia.org/wiki/Hygienic_macro",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/markov-algorithm.md:29",
+   "target": "https://en.wikipedia.org/wiki/Markov_algorithm",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/markup-language.md:13",
+   "target": "https://en.wikipedia.org/wiki/Markup_language",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/markup-language.md:14",
+   "target": "https://en.wikipedia.org/wiki/XAML",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/markup-language.md:15",
+   "target": "https://en.wikipedia.org/wiki/XML_external_entity_attack",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/markup-language.md:16",
+   "target": "https://cheatsheetseries.owasp.org/cheatsheets/Deserialization_Cheat_Sheet.html",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/model-of-computation.md:15",
+   "target": "https://en.wikipedia.org/wiki/Model_of_computation",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/model-of-computation.md:16",
+   "target": "https://en.wikipedia.org/wiki/Abstract_machine",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/model-of-computation.md:17",
+   "target": "https://en.wikipedia.org/wiki/Church%E2%80%93Turing_thesis",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/monad-and-effect-systems.md:13",
+   "target": "https://en.wikipedia.org/wiki/Monad_(functional_programming)",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/monad-and-effect-systems.md:14",
+   "target": "https://en.wikipedia.org/wiki/Effect_system",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/monad-and-effect-systems.md:15",
+   "target": "https://en.wikipedia.org/wiki/Haskell",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/monoid-and-fold.md:19",
+   "target": "https://en.wikipedia.org/wiki/Monoid",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/monoid-and-fold.md:20",
+   "target": "https://en.wikipedia.org/wiki/Fold_(higher-order_function)",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/monoid-and-fold.md:21",
+   "target": "https://en.wikipedia.org/wiki/Prefix_sum",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/monoid-and-fold.md:22",
+   "target": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/observability.md:13",
+   "target": "https://en.wikipedia.org/wiki/Observability_(software)",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/observability.md:14",
+   "target": "https://en.wikipedia.org/wiki/Heisenbug",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/operational-semantics.md:15",
+   "target": "https://en.wikipedia.org/wiki/Operational_semantics",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/operational-semantics.md:16",
+   "target": "https://en.wikipedia.org/wiki/Transition_system",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/parsing.md:13",
+   "target": "https://en.wikipedia.org/wiki/Parsing",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/parsing.md:14",
+   "target": "https://en.wikipedia.org/wiki/Recursive_descent_parser",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/parsing.md:15",
+   "target": "https://www.rfc-editor.org/rfc/rfc8259",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/portability.md:13",
+   "target": "https://en.wikipedia.org/wiki/Software_portability",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/portability.md:14",
+   "target": "https://en.wikipedia.org/wiki/POSIX",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/program-counter.md:13",
+   "target": "https://en.wikipedia.org/wiki/Program_counter",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/program-counter.md:14",
+   "target": "https://en.wikipedia.org/wiki/Interpreter_(computing)",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/publish-subscribe.md:15",
+   "target": "https://en.wikipedia.org/wiki/Publish%E2%80%93subscribe_pattern",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/publish-subscribe.md:16",
+   "target": "https://nodejs.org/api/events.html",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/recursion.md:30",
+   "target": "https://en.wikipedia.org/wiki/Recursion_(computer_science)",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/recursion.md:31",
+   "target": "https://en.wikipedia.org/wiki/Tail_call",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/recursion.md:32",
+   "target": "https://developer.mozilla.org/en-US/docs/Glossary/Recursion",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/redos.md:13",
+   "target": "https://en.wikipedia.org/wiki/Regular_expression_denial_of_service",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/redos.md:14",
+   "target": "https://en.wikipedia.org/wiki/Algorithmic_complexity_attack",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/redos.md:15",
+   "target": "https://owasp.org/www-community/attacks/Regular_expression_Denial_of_Service_-_ReDoS",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/referential-transparency.md:35",
+   "target": "https://en.wikipedia.org/wiki/Referential_transparency",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/referential-transparency.md:36",
+   "target": "https://en.wikipedia.org/wiki/Pure_function",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/referential-transparency.md:37",
+   "target": "https://en.wikipedia.org/wiki/Functional_programming",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/reflection-and-metaprogramming.md:13",
+   "target": "https://en.wikipedia.org/wiki/Reflective_programming",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/reflection-and-metaprogramming.md:14",
+   "target": "https://en.wikipedia.org/wiki/Metaprogramming",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/reflection-and-metaprogramming.md:15",
+   "target": "https://en.wikipedia.org/wiki/Metaobject",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/register-machine.md:32",
+   "target": "https://en.wikipedia.org/wiki/Register_machine",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/register-machine.md:33",
+   "target": "https://en.wikipedia.org/wiki/Counter_machine",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "broken",
+   "kind": "path",
+   "where": "lessons/cs-source/concepts/regular-expression.md:6",
+   "target": "../lenguajes/regex.md",
+   "reason": "no such file in this checkout"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/regular-expression.md:13",
+   "target": "https://en.wikipedia.org/wiki/Regular_expression",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/regular-expression.md:14",
+   "target": "https://en.wikipedia.org/wiki/Thompson%27s_construction",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/regular-expression.md:15",
+   "target": "https://en.wikipedia.org/wiki/Kleene_star",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/regular-expression.md:16",
+   "target": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_expressions",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/reproducibility.md:15",
+   "target": "https://en.wikipedia.org/wiki/Reproducible_builds",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/reproducibility.md:16",
+   "target": "https://en.wikipedia.org/wiki/Deterministic_algorithm",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "broken",
+   "kind": "path",
+   "where": "lessons/cs-source/concepts/sandbox.md:8",
+   "target": "../../SANDBOX-SETUP.md",
+   "reason": "no such file in this checkout"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/sandbox.md:15",
+   "target": "https://en.wikipedia.org/wiki/Sandbox_(computer_security)",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/sandbox.md:16",
+   "target": "https://en.wikipedia.org/wiki/Operating-system-level_virtualization",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/scope-and-binding.md:31",
+   "target": "https://en.wikipedia.org/wiki/Scope_(computer_programming)",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/scope-and-binding.md:32",
+   "target": "https://en.wikipedia.org/wiki/Name_binding",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/scope-and-binding.md:33",
+   "target": "https://en.wikipedia.org/wiki/Closure_(computer_programming)",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/scope-and-binding.md:34",
+   "target": "https://developer.mozilla.org/en-US/docs/Glossary/Scope",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/self-modifying-code.md:13",
+   "target": "https://en.wikipedia.org/wiki/Self-modifying_code",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/self-modifying-code.md:14",
+   "target": "https://en.wikipedia.org/wiki/Just-in-time_compilation",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/serialization-deserialization-pickling.md:50",
+   "target": "https://en.wikipedia.org/wiki/Serialization",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/serialization-deserialization-pickling.md:51",
+   "target": "https://en.wikipedia.org/wiki/Pickle_(Python)",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/serialization-deserialization-pickling.md:52",
+   "target": "https://en.wikipedia.org/wiki/Tar_(computing)",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/serialization-deserialization-pickling.md:53",
+   "target": "https://owasp.org/www-community/vulnerabilities/Deserialization_of_untrusted_data",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/serialization-deserialization-pickling.md:54",
+   "target": "https://cheatsheetseries.owasp.org/cheatsheets/Deserialization_Cheat_Sheet.html",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/serialization-deserialization-pickling.md:55",
+   "target": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/short-circuit-evaluation.md:36",
+   "target": "https://en.wikipedia.org/wiki/Short-circuit_evaluation",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/short-circuit-evaluation.md:37",
+   "target": "https://en.wikipedia.org/wiki/Common_Lisp_Object_System",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/short-circuit-evaluation.md:38",
+   "target": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_AND",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/side-effect.md:30",
+   "target": "https://en.wikipedia.org/wiki/Side_effect_(computer_science)",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/stack-data-structure.md:35",
+   "target": "https://en.wikipedia.org/wiki/Stack_(abstract_data_type)",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/stack-data-structure.md:36",
+   "target": "https://en.wikipedia.org/wiki/Pushdown_automaton",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/stack-machine.md:35",
+   "target": "https://en.wikipedia.org/wiki/Stack_machine",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/stack-machine.md:36",
+   "target": "https://en.wikipedia.org/wiki/Reverse_Polish_notation",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/stack-machine.md:37",
+   "target": "https://en.wikipedia.org/wiki/Forth_(programming_language)",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/state-encoding.md:13",
+   "target": "https://en.wikipedia.org/wiki/Unary_numeral_system",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/state-encoding.md:14",
+   "target": "https://en.wikipedia.org/wiki/G%C3%B6del_numbering",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "broken",
+   "kind": "path",
+   "where": "lessons/cs-source/concepts/state.md:6",
+   "target": "../objetivos.md",
+   "reason": "no such file in this checkout"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/state.md:13",
+   "target": "https://en.wikipedia.org/wiki/State_(computer_science)",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/state.md:14",
+   "target": "https://en.wikipedia.org/wiki/File_system",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/state.md:15",
+   "target": "https://en.wikipedia.org/wiki/Global_variable",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/term-rewriting.md:13",
+   "target": "https://en.wikipedia.org/wiki/Rewriting",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/term-rewriting.md:14",
+   "target": "https://en.wikipedia.org/wiki/Confluence_(abstract_rewriting)",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/thread-safety.md:13",
+   "target": "https://en.wikipedia.org/wiki/Thread_safety",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/thread-safety.md:14",
+   "target": "https://en.wikipedia.org/wiki/Race_condition",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "broken",
+   "kind": "path",
+   "where": "lessons/cs-source/concepts/threat-model.md:6",
+   "target": "../../CONTRIBUTING.md",
+   "reason": "no such file in this checkout"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/threat-model.md:13",
+   "target": "https://github.com/dullroar/xaml-write-and-run",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/threat-model.md:18",
+   "target": "https://en.wikipedia.org/wiki/Threat_model",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/threat-model.md:19",
+   "target": "https://www.rfc-editor.org/rfc/rfc3552",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/threat-model.md:20",
+   "target": "https://owasp.org/www-community/Threat_Modeling",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/time-complexity.md:13",
+   "target": "https://en.wikipedia.org/wiki/Time_complexity",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/time-complexity.md:14",
+   "target": "https://en.wikipedia.org/wiki/Big_O_notation",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/time-complexity.md:15",
+   "target": "https://en.wikipedia.org/wiki/Computational_complexity_theory",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/transaction.md:39",
+   "target": "https://en.wikipedia.org/wiki/Database_transaction",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/transaction.md:40",
+   "target": "https://en.wikipedia.org/wiki/ACID",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/transaction.md:41",
+   "target": "https://en.wikipedia.org/wiki/Commit_(data_management)",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/transition-system.md:13",
+   "target": "https://en.wikipedia.org/wiki/Transition_system",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/transition-system.md:14",
+   "target": "https://en.wikipedia.org/wiki/Finite-state_machine",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/trojan-source.md:14",
+   "target": "https://en.wikipedia.org/wiki/Trojan_Source",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/trojan-source.md:15",
+   "target": "https://en.wikipedia.org/wiki/Bidirectional_text",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/trojan-source.md:16",
+   "target": "https://www.rfc-editor.org/rfc/rfc3629",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/turing-completeness.md:13",
+   "target": "https://en.wikipedia.org/wiki/Turing_completeness",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/turing-completeness.md:14",
+   "target": "https://en.wikipedia.org/wiki/Rice%27s_theorem",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/turing-completeness.md:15",
+   "target": "https://en.wikipedia.org/wiki/Rule_of_least_power",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/turing-machine.md:13",
+   "target": "https://en.wikipedia.org/wiki/Turing_machine",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/turing-machine.md:14",
+   "target": "https://en.wikipedia.org/wiki/Halting_problem",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/turing-machine.md:15",
+   "target": "https://en.wikipedia.org/wiki/Church%E2%80%93Turing_thesis",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/undefined-behavior.md:13",
+   "target": "https://en.wikipedia.org/wiki/Undefined_behavior",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/undefined-behavior.md:14",
+   "target": "https://en.wikipedia.org/wiki/Unspecified_behavior",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/undefined-behavior.md:15",
+   "target": "https://en.wikipedia.org/wiki/AddressSanitizer",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/weird-machine.md:13",
+   "target": "https://en.wikipedia.org/wiki/Weird_machine",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/cs-source/concepts/weird-machine.md:14",
+   "target": "https://en.wikipedia.org/wiki/Return-oriented_programming",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/guias-de-estudio/conceptos/diseno-comparativo-de-maquinas.md:229",
+   "target": "https://en.wikipedia.org/wiki/Turing_completeness",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/guias-de-estudio/conceptos/diseno-comparativo-de-maquinas.md:230",
+   "target": "https://en.wikipedia.org/wiki/Transition_system",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/guias-de-estudio/conceptos/efectos-errores-y-confirmacion.md:171",
+   "target": "https://en.wikipedia.org/wiki/Database_transaction",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/guias-de-estudio/conceptos/efectos-errores-y-confirmacion.md:172",
+   "target": "https://en.wikipedia.org/wiki/ACID",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/guias-de-estudio/conceptos/efectos-errores-y-confirmacion.md:173",
+   "target": "https://en.wikipedia.org/wiki/Exit_status",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/guias-de-estudio/conceptos/efectos-errores-y-confirmacion.md:174",
+   "target": "https://en.wikipedia.org/wiki/Integrity_constraint",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/guias-de-estudio/conceptos/efectos-errores-y-confirmacion.md:175",
+   "target": "https://en.wikipedia.org/wiki/Idempotence",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/guias-de-estudio/conceptos/estado-y-control-mas-alla-de-las-variables.md:164",
+   "target": "https://en.wikipedia.org/wiki/State_(computer_science)",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/guias-de-estudio/conceptos/estado-y-control-mas-alla-de-las-variables.md:165",
+   "target": "https://en.wikipedia.org/wiki/Finite-state_machine",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/guias-de-estudio/conceptos/estado-y-control-mas-alla-de-las-variables.md:166",
+   "target": "https://en.wikipedia.org/wiki/Program_counter",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/guias-de-estudio/conceptos/estado-y-control-mas-alla-de-las-variables.md:167",
+   "target": "https://en.wikipedia.org/wiki/Continuation",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/guias-de-estudio/conceptos/evaluacion-demanda-y-pereza.md:162",
+   "target": "https://en.wikipedia.org/wiki/Evaluation_strategy",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/guias-de-estudio/conceptos/evaluacion-demanda-y-pereza.md:163",
+   "target": "https://en.wikipedia.org/wiki/Lazy_evaluation",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/guias-de-estudio/conceptos/evaluacion-demanda-y-pereza.md:164",
+   "target": "https://en.wikipedia.org/wiki/Short-circuit_evaluation",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/guias-de-estudio/conceptos/evaluacion-demanda-y-pereza.md:165",
+   "target": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_generators",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/guias-de-estudio/conceptos/eventos-retrollamadas-y-control-reactivo.md:178",
+   "target": "https://en.wikipedia.org/wiki/Event_loop",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/guias-de-estudio/conceptos/eventos-retrollamadas-y-control-reactivo.md:179",
+   "target": "https://nodejs.org/en/learn/asynchronous-work/event-loop-timers-and-nexttick",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/guias-de-estudio/conceptos/eventos-retrollamadas-y-control-reactivo.md:180",
+   "target": "https://nodejs.org/api/events.html",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/guias-de-estudio/conceptos/eventos-retrollamadas-y-control-reactivo.md:181",
+   "target": "https://en.wikipedia.org/wiki/Callback_(computer_programming)",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/guias-de-estudio/conceptos/eventos-retrollamadas-y-control-reactivo.md:182",
+   "target": "https://en.wikipedia.org/wiki/Back_pressure",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/guias-de-estudio/conceptos/lectura-de-programas-adversariales.md:152",
+   "target": "https://en.wikipedia.org/wiki/Arbitrary_code_execution",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/guias-de-estudio/conceptos/lectura-de-programas-adversariales.md:153",
+   "target": "https://owasp.org/www-community/attacks/Code_Injection",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/guias-de-estudio/conceptos/lectura-de-programas-adversariales.md:154",
+   "target": "https://en.wikipedia.org/wiki/Threat_model",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/guias-de-estudio/conceptos/lectura-de-programas-adversariales.md:155",
+   "target": "https://www.rfc-editor.org/rfc/rfc3552",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/guias-de-estudio/conceptos/lenguajes-formales-y-maquinas-raras.md:136",
+   "target": "https://en.wikipedia.org/wiki/Chomsky_hierarchy",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/guias-de-estudio/conceptos/lenguajes-formales-y-maquinas-raras.md:137",
+   "target": "https://en.wikipedia.org/wiki/Pushdown_automaton",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/guias-de-estudio/conceptos/lenguajes-formales-y-maquinas-raras.md:138",
+   "target": "https://en.wikipedia.org/wiki/Weird_machine",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/guias-de-estudio/conceptos/lenguajes-formales-y-maquinas-raras.md:139",
+   "target": "https://en.wikipedia.org/wiki/Rule_of_least_power",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/guias-de-estudio/conceptos/lenguajes-formales-y-maquinas-raras.md:140",
+   "target": "https://en.wikipedia.org/wiki/Markov_algorithm",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/guias-de-estudio/conceptos/portabilidad-abstraccion-y-costo.md:153",
+   "target": "https://en.wikipedia.org/wiki/Software_portability",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/guias-de-estudio/conceptos/portabilidad-abstraccion-y-costo.md:154",
+   "target": "https://en.wikipedia.org/wiki/Undefined_behavior",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/guias-de-estudio/conceptos/portabilidad-abstraccion-y-costo.md:155",
+   "target": "https://en.wikipedia.org/wiki/Hyrum%27s_law",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/guias-de-estudio/conceptos/portabilidad-abstraccion-y-costo.md:156",
+   "target": "https://en.wikipedia.org/wiki/Reproducible_builds",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/guias-de-estudio/conceptos/portabilidad-abstraccion-y-costo.md:157",
+   "target": "https://owasp.org/www-community/attacks/Regular_expression_Denial_of_Service_-_ReDoS",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/guias-de-estudio/lenguajes/apl.md:210",
+   "target": "https://en.wikipedia.org/wiki/APL_(programming_language)",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/guias-de-estudio/lenguajes/apl.md:211",
+   "target": "https://en.wikipedia.org/wiki/Array_programming",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/guias-de-estudio/lenguajes/apl.md:212",
+   "target": "https://en.wikipedia.org/wiki/Homoiconicity",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/guias-de-estudio/lenguajes/apl.md:213",
+   "target": "https://www.gnu.org/software/apl/",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/guias-de-estudio/lenguajes/cobol.md:234",
+   "target": "https://en.wikipedia.org/wiki/COBOL",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/guias-de-estudio/lenguajes/cobol.md:236",
+   "target": "https://en.wikipedia.org/wiki/Self-modifying_code",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/guias-de-estudio/lenguajes/common-lisp.md:200",
+   "target": "https://en.wikipedia.org/wiki/Common_Lisp",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/guias-de-estudio/lenguajes/common-lisp.md:201",
+   "target": "https://en.wikipedia.org/wiki/Common_Lisp_Object_System",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/guias-de-estudio/lenguajes/common-lisp.md:202",
+   "target": "https://en.wikipedia.org/wiki/Short-circuit_evaluation",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/guias-de-estudio/lenguajes/csharp-linq-xaml-y-adaptaciones.md:22",
+   "target": "https://github.com/dullroar/xaml-write-and-run",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/guias-de-estudio/lenguajes/csharp-linq-xaml-y-adaptaciones.md:251",
+   "target": "https://en.wikipedia.org/wiki/Language_Integrated_Query",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/guias-de-estudio/lenguajes/csharp-linq-xaml-y-adaptaciones.md:252",
+   "target": "https://en.wikipedia.org/wiki/Lazy_evaluation",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/guias-de-estudio/lenguajes/csharp-linq-xaml-y-adaptaciones.md:253",
+   "target": "https://en.wikipedia.org/wiki/Extensible_Application_Markup_Language",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/guias-de-estudio/lenguajes/ed-y-ex.md:233",
+   "target": "https://en.wikipedia.org/wiki/Ed_(text_editor)",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/guias-de-estudio/lenguajes/ed-y-ex.md:234",
+   "target": "https://en.wikipedia.org/wiki/Ex_(text_editor)",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/guias-de-estudio/lenguajes/ed-y-ex.md:235",
+   "target": "https://en.wikipedia.org/wiki/Markov_algorithm",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/guias-de-estudio/lenguajes/forth.md:180",
+   "target": "https://en.wikipedia.org/wiki/Forth_(programming_language)",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/guias-de-estudio/lenguajes/forth.md:181",
+   "target": "https://en.wikipedia.org/wiki/Stack_machine",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/guias-de-estudio/lenguajes/haskell.md:232",
+   "target": "https://en.wikipedia.org/wiki/Lazy_evaluation",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/guias-de-estudio/lenguajes/haskell.md:233",
+   "target": "https://en.wikipedia.org/wiki/Referential_transparency",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/guias-de-estudio/lenguajes/javascript.md:228",
+   "target": "https://nodejs.org/api/events.html",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/guias-de-estudio/lenguajes/javascript.md:264",
+   "target": "https://en.wikipedia.org/wiki/Closure_(computer_programming)",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/guias-de-estudio/lenguajes/javascript.md:265",
+   "target": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_generators",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/guias-de-estudio/lenguajes/javascript.md:266",
+   "target": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Iterator",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/guias-de-estudio/lenguajes/javascript.md:267",
+   "target": "https://nodejs.org/en/learn/asynchronous-work/event-loop-timers-and-nexttick",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/guias-de-estudio/lenguajes/javascript.md:268",
+   "target": "https://en.wikipedia.org/wiki/Event_loop",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/guias-de-estudio/lenguajes/m4.md:162",
+   "target": "https://en.wikipedia.org/wiki/M4_(computer_language)",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/guias-de-estudio/lenguajes/m4.md:163",
+   "target": "https://en.wikipedia.org/wiki/Macro_(computer_science)",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/guias-de-estudio/lenguajes/m4.md:164",
+   "target": "https://www.gnu.org/software/m4/manual/m4.html",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/guias-de-estudio/lenguajes/make-y-cmake.md:224",
+   "target": "https://en.wikipedia.org/wiki/Make_(software)",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/guias-de-estudio/lenguajes/make-y-cmake.md:225",
+   "target": "https://en.wikipedia.org/wiki/CMake",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/guias-de-estudio/lenguajes/make-y-cmake.md:226",
+   "target": "https://www.gnu.org/software/make/manual/html_node/Remaking-Makefiles.html",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/guias-de-estudio/lenguajes/make-y-cmake.md:227",
+   "target": "https://en.wikipedia.org/wiki/Reproducible_builds",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/guias-de-estudio/lenguajes/motores-de-regex-y-sed.md:271",
+   "target": "https://en.wikipedia.org/wiki/Regular_expression",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/guias-de-estudio/lenguajes/motores-de-regex-y-sed.md:272",
+   "target": "https://en.wikipedia.org/wiki/ReDoS",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/guias-de-estudio/lenguajes/motores-de-regex-y-sed.md:273",
+   "target": "https://owasp.org/www-community/attacks/Regular_expression_Denial_of_Service_-_ReDoS",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/guias-de-estudio/lenguajes/motores-de-regex-y-sed.md:274",
+   "target": "https://en.wikipedia.org/wiki/Markov_algorithm",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/guias-de-estudio/lenguajes/motores-de-regex-y-sed.md:275",
+   "target": "https://www.gnu.org/software/sed/manual/sed.html",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/guias-de-estudio/lenguajes/tar.md:228",
+   "target": "https://en.wikipedia.org/wiki/Tar_(computing)",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/guias-de-estudio/lenguajes/tar.md:229",
+   "target": "https://www.gnu.org/software/tar/manual/html_node/checkpoints.html",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/guias-de-estudio/lenguajes/tar.md:230",
+   "target": "https://en.wikipedia.org/wiki/Serialization",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/guias-de-estudio/lenguajes/tcl.md:215",
+   "target": "https://en.wikipedia.org/wiki/Tcl",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/guias-de-estudio/lenguajes/tcl.md:216",
+   "target": "https://en.wikipedia.org/wiki/Database_trigger",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/guias-de-estudio/lenguajes/tcl.md:217",
+   "target": "https://owasp.org/www-community/attacks/Code_Injection",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/01-lectura-de-un-programa-adversarial.md:20",
+   "target": "https://github.com/dullroar/xaml-write-and-run",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/01-lectura-de-un-programa-adversarial.md:25",
+   "target": "https://en.wikipedia.org/wiki/Threat_model",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/01-lectura-de-un-programa-adversarial.md:26",
+   "target": "https://www.rfc-editor.org/rfc/rfc3552",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/01-lectura-de-un-programa-adversarial.md:27",
+   "target": "https://owasp.org/www-community/Threat_Modeling",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/01-lectura-de-un-programa-adversarial.md:46",
+   "target": "https://en.wikipedia.org/wiki/Arbitrary_code_execution",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/01-lectura-de-un-programa-adversarial.md:47",
+   "target": "https://en.wikipedia.org/wiki/Code_injection",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/01-lectura-de-un-programa-adversarial.md:48",
+   "target": "https://owasp.org/www-community/attacks/Code_Injection",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/01-lectura-de-un-programa-adversarial.md:49",
+   "target": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/eval",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/01-lectura-de-un-programa-adversarial.md:69",
+   "target": "https://en.wikipedia.org/wiki/Sandbox_(computer_security)",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/01-lectura-de-un-programa-adversarial.md:70",
+   "target": "https://en.wikipedia.org/wiki/Operating-system-level_virtualization",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/01-lectura-de-un-programa-adversarial.md:85",
+   "target": "https://en.wikipedia.org/wiki/Principle_of_least_privilege",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/01-lectura-de-un-programa-adversarial.md:86",
+   "target": "https://www.rfc-editor.org/rfc/rfc4949",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/01-lectura-de-un-programa-adversarial.md:103",
+   "target": "https://en.wikipedia.org/wiki/Code_review",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/01-lectura-de-un-programa-adversarial.md:118",
+   "target": "https://en.wikipedia.org/wiki/Trojan_Source",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/01-lectura-de-un-programa-adversarial.md:119",
+   "target": "https://en.wikipedia.org/wiki/Bidirectional_text",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/01-lectura-de-un-programa-adversarial.md:120",
+   "target": "https://www.rfc-editor.org/rfc/rfc3629",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/01-lectura-de-un-programa-adversarial.md:135",
+   "target": "https://en.wikipedia.org/wiki/Programming_language_specification",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/01-lectura-de-un-programa-adversarial.md:136",
+   "target": "https://www.rfc-editor.org/rfc/rfc2119",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/01-lectura-de-un-programa-adversarial.md:157",
+   "target": "https://en.wikipedia.org/wiki/Capability-based_security",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/01-lectura-de-un-programa-adversarial.md:158",
+   "target": "https://en.wikipedia.org/wiki/Principle_of_least_privilege",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/01-lectura-de-un-programa-adversarial.md:159",
+   "target": "https://en.wikipedia.org/wiki/Confused_deputy_problem",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/02-que-cuenta-como-maquina.md:33",
+   "target": "https://en.wikipedia.org/wiki/Model_of_computation",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/02-que-cuenta-como-maquina.md:34",
+   "target": "https://en.wikipedia.org/wiki/Abstract_machine",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/02-que-cuenta-como-maquina.md:35",
+   "target": "https://en.wikipedia.org/wiki/Church%E2%80%93Turing_thesis",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/02-que-cuenta-como-maquina.md:50",
+   "target": "https://en.wikipedia.org/wiki/Transition_system",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/02-que-cuenta-como-maquina.md:51",
+   "target": "https://en.wikipedia.org/wiki/Finite-state_machine",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/02-que-cuenta-como-maquina.md:73",
+   "target": "https://en.wikipedia.org/wiki/Unary_numeral_system",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/02-que-cuenta-como-maquina.md:74",
+   "target": "https://en.wikipedia.org/wiki/G%C3%B6del_numbering",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/02-que-cuenta-como-maquina.md:98",
+   "target": "https://en.wikipedia.org/wiki/Invariant_(computer_science)",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/02-que-cuenta-como-maquina.md:99",
+   "target": "https://en.wikipedia.org/wiki/Loop_invariant",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/02-que-cuenta-como-maquina.md:119",
+   "target": "https://en.wikipedia.org/wiki/Observability_(software)",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/02-que-cuenta-como-maquina.md:120",
+   "target": "https://en.wikipedia.org/wiki/Heisenbug",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/02-que-cuenta-como-maquina.md:162",
+   "target": "https://en.wikipedia.org/wiki/Stack_machine",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/02-que-cuenta-como-maquina.md:163",
+   "target": "https://en.wikipedia.org/wiki/Reverse_Polish_notation",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/02-que-cuenta-como-maquina.md:164",
+   "target": "https://en.wikipedia.org/wiki/Forth_(programming_language)",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/02-que-cuenta-como-maquina.md:201",
+   "target": "https://en.wikipedia.org/wiki/Register_machine",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/02-que-cuenta-como-maquina.md:202",
+   "target": "https://en.wikipedia.org/wiki/Counter_machine",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/02-que-cuenta-como-maquina.md:222",
+   "target": "https://en.wikipedia.org/wiki/Turing_machine",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/02-que-cuenta-como-maquina.md:223",
+   "target": "https://en.wikipedia.org/wiki/Halting_problem",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/02-que-cuenta-como-maquina.md:224",
+   "target": "https://en.wikipedia.org/wiki/Church%E2%80%93Turing_thesis",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/02-que-cuenta-como-maquina.md:258",
+   "target": "https://en.wikipedia.org/wiki/Markov_algorithm",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/02-que-cuenta-como-maquina.md:277",
+   "target": "https://en.wikipedia.org/wiki/Turing_completeness",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/02-que-cuenta-como-maquina.md:278",
+   "target": "https://en.wikipedia.org/wiki/Rice%27s_theorem",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/02-que-cuenta-como-maquina.md:279",
+   "target": "https://en.wikipedia.org/wiki/Rule_of_least_power",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/02-que-cuenta-como-maquina.md:300",
+   "target": "https://en.wikipedia.org/wiki/Operational_semantics",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/02-que-cuenta-como-maquina.md:301",
+   "target": "https://en.wikipedia.org/wiki/Transition_system",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/02-que-cuenta-como-maquina.md:349",
+   "target": "https://en.wikipedia.org/wiki/Separation_of_concerns",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/02-que-cuenta-como-maquina.md:350",
+   "target": "https://en.wikipedia.org/wiki/Orchestration_(computing)",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/03-flujo-de-control-y-continuaciones.md:20",
+   "target": "https://en.wikipedia.org/wiki/Control_flow",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/03-flujo-de-control-y-continuaciones.md:21",
+   "target": "https://en.wikipedia.org/wiki/Control-flow_graph",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/03-flujo-de-control-y-continuaciones.md:58",
+   "target": "https://en.wikipedia.org/wiki/Goto",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/03-flujo-de-control-y-continuaciones.md:59",
+   "target": "https://en.wikipedia.org/wiki/Structured_program_theorem",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/03-flujo-de-control-y-continuaciones.md:60",
+   "target": "https://en.wikipedia.org/wiki/Considered_harmful",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/03-flujo-de-control-y-continuaciones.md:77",
+   "target": "https://en.wikipedia.org/wiki/Program_counter",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/03-flujo-de-control-y-continuaciones.md:78",
+   "target": "https://en.wikipedia.org/wiki/Interpreter_(computing)",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/03-flujo-de-control-y-continuaciones.md:114",
+   "target": "https://en.wikipedia.org/wiki/Recursion_(computer_science)",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/03-flujo-de-control-y-continuaciones.md:115",
+   "target": "https://en.wikipedia.org/wiki/Tail_call",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/03-flujo-de-control-y-continuaciones.md:116",
+   "target": "https://developer.mozilla.org/en-US/docs/Glossary/Recursion",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/03-flujo-de-control-y-continuaciones.md:147",
+   "target": "https://en.wikipedia.org/wiki/Fixed-point_iteration",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/03-flujo-de-control-y-continuaciones.md:148",
+   "target": "https://en.wikipedia.org/wiki/Fixed_point_(mathematics)",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/03-flujo-de-control-y-continuaciones.md:189",
+   "target": "https://en.wikipedia.org/wiki/Coroutine",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/03-flujo-de-control-y-continuaciones.md:225",
+   "target": "https://en.wikipedia.org/wiki/Continuation",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/03-flujo-de-control-y-continuaciones.md:226",
+   "target": "https://en.wikipedia.org/wiki/Continuation-passing_style",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/03-flujo-de-control-y-continuaciones.md:227",
+   "target": "https://en.wikipedia.org/wiki/Call-with-current-continuation",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/03-flujo-de-control-y-continuaciones.md:248",
+   "target": "https://en.wikipedia.org/wiki/Self-modifying_code",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/03-flujo-de-control-y-continuaciones.md:249",
+   "target": "https://en.wikipedia.org/wiki/Just-in-time_compilation",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/03-flujo-de-control-y-continuaciones.md:270",
+   "target": "https://en.wikipedia.org/wiki/Logical_clock",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/03-flujo-de-control-y-continuaciones.md:271",
+   "target": "https://en.wikipedia.org/wiki/Lamport_timestamp",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/04-evaluacion-y-demanda.md:82",
+   "target": "https://en.wikipedia.org/wiki/Evaluation_strategy",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/04-evaluacion-y-demanda.md:83",
+   "target": "https://en.wikipedia.org/wiki/Call-by-need",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/04-evaluacion-y-demanda.md:84",
+   "target": "https://en.wikipedia.org/wiki/Call-by-name",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/04-evaluacion-y-demanda.md:103",
+   "target": "https://en.wikipedia.org/wiki/Eager_evaluation",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/04-evaluacion-y-demanda.md:145",
+   "target": "https://en.wikipedia.org/wiki/Lazy_evaluation",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/04-evaluacion-y-demanda.md:146",
+   "target": "https://en.wikipedia.org/wiki/Thunk",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/04-evaluacion-y-demanda.md:147",
+   "target": "https://en.wikipedia.org/wiki/Graph_reduction",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/04-evaluacion-y-demanda.md:194",
+   "target": "https://en.wikipedia.org/wiki/Short-circuit_evaluation",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/04-evaluacion-y-demanda.md:195",
+   "target": "https://en.wikipedia.org/wiki/Common_Lisp_Object_System",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/04-evaluacion-y-demanda.md:196",
+   "target": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_AND",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/04-evaluacion-y-demanda.md:217",
+   "target": "https://en.wikipedia.org/wiki/Language_Integrated_Query",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/04-evaluacion-y-demanda.md:218",
+   "target": "https://en.wikipedia.org/wiki/Lazy_evaluation",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/04-evaluacion-y-demanda.md:219",
+   "target": "https://en.wikipedia.org/wiki/Iterator",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/04-evaluacion-y-demanda.md:260",
+   "target": "https://en.wikipedia.org/wiki/Iterator",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/04-evaluacion-y-demanda.md:261",
+   "target": "https://en.wikipedia.org/wiki/Generator_(computer_programming)",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/04-evaluacion-y-demanda.md:262",
+   "target": "https://en.wikipedia.org/wiki/Stream_(computing)",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/04-evaluacion-y-demanda.md:263",
+   "target": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_generators",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/04-evaluacion-y-demanda.md:306",
+   "target": "https://en.wikipedia.org/wiki/Referential_transparency",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/04-evaluacion-y-demanda.md:307",
+   "target": "https://en.wikipedia.org/wiki/Pure_function",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/04-evaluacion-y-demanda.md:308",
+   "target": "https://en.wikipedia.org/wiki/Functional_programming",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/04-evaluacion-y-demanda.md:340",
+   "target": "https://en.wikipedia.org/wiki/Array_programming",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/04-evaluacion-y-demanda.md:341",
+   "target": "https://en.wikipedia.org/wiki/APL_(programming_language)",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/04-evaluacion-y-demanda.md:342",
+   "target": "https://en.wikipedia.org/wiki/Kenneth_E._Iverson",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/04-evaluacion-y-demanda.md:343",
+   "target": "https://en.wikipedia.org/wiki/Single_instruction,_multiple_data",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/04-evaluacion-y-demanda.md:365",
+   "target": "https://en.wikipedia.org/wiki/First-class_function",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/04-evaluacion-y-demanda.md:366",
+   "target": "https://en.wikipedia.org/wiki/Higher-order_function",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/04-evaluacion-y-demanda.md:367",
+   "target": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/04-evaluacion-y-demanda.md:395",
+   "target": "https://en.wikipedia.org/wiki/Functor",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/04-evaluacion-y-demanda.md:396",
+   "target": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/04-evaluacion-y-demanda.md:420",
+   "target": "https://en.wikipedia.org/wiki/Monoid",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/04-evaluacion-y-demanda.md:421",
+   "target": "https://en.wikipedia.org/wiki/Fold_(higher-order_function)",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/04-evaluacion-y-demanda.md:422",
+   "target": "https://en.wikipedia.org/wiki/Prefix_sum",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/04-evaluacion-y-demanda.md:423",
+   "target": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/04-evaluacion-y-demanda.md:460",
+   "target": "https://en.wikipedia.org/wiki/Dataflow_programming",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/04-evaluacion-y-demanda.md:461",
+   "target": "https://en.wikipedia.org/wiki/Pipeline_(software)",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/05-lenguajes-formales-como-sustratos-de-computacion.md:20",
+   "target": "https://en.wikipedia.org/wiki/Chomsky_hierarchy",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/05-lenguajes-formales-como-sustratos-de-computacion.md:21",
+   "target": "https://en.wikipedia.org/wiki/Formal_language",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/05-lenguajes-formales-como-sustratos-de-computacion.md:22",
+   "target": "https://en.wikipedia.org/wiki/Pushdown_automaton",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/05-lenguajes-formales-como-sustratos-de-computacion.md:39",
+   "target": "https://en.wikipedia.org/wiki/Regular_expression",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/05-lenguajes-formales-como-sustratos-de-computacion.md:40",
+   "target": "https://en.wikipedia.org/wiki/Thompson%27s_construction",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/05-lenguajes-formales-como-sustratos-de-computacion.md:41",
+   "target": "https://en.wikipedia.org/wiki/Kleene_star",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/05-lenguajes-formales-como-sustratos-de-computacion.md:42",
+   "target": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_expressions",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/05-lenguajes-formales-como-sustratos-de-computacion.md:68",
+   "target": "https://en.wikipedia.org/wiki/Parsing",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/05-lenguajes-formales-como-sustratos-de-computacion.md:69",
+   "target": "https://en.wikipedia.org/wiki/Recursive_descent_parser",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/05-lenguajes-formales-como-sustratos-de-computacion.md:70",
+   "target": "https://www.rfc-editor.org/rfc/rfc8259",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/05-lenguajes-formales-como-sustratos-de-computacion.md:90",
+   "target": "https://en.wikipedia.org/wiki/Rewriting",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/05-lenguajes-formales-como-sustratos-de-computacion.md:91",
+   "target": "https://en.wikipedia.org/wiki/Confluence_(abstract_rewriting)",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/05-lenguajes-formales-como-sustratos-de-computacion.md:124",
+   "target": "https://en.wikipedia.org/wiki/Macro_(computer_science)",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/05-lenguajes-formales-como-sustratos-de-computacion.md:125",
+   "target": "https://en.wikipedia.org/wiki/M4_(computer_language)",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/05-lenguajes-formales-como-sustratos-de-computacion.md:126",
+   "target": "https://en.wikipedia.org/wiki/Hygienic_macro",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/05-lenguajes-formales-como-sustratos-de-computacion.md:145",
+   "target": "https://en.wikipedia.org/wiki/Declarative_programming",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/05-lenguajes-formales-como-sustratos-de-computacion.md:146",
+   "target": "https://en.wikipedia.org/wiki/Rule_of_least_power",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/05-lenguajes-formales-como-sustratos-de-computacion.md:168",
+   "target": "https://en.wikipedia.org/wiki/Domain-specific_language",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/05-lenguajes-formales-como-sustratos-de-computacion.md:169",
+   "target": "https://en.wikipedia.org/wiki/Inner-platform_effect",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/05-lenguajes-formales-como-sustratos-de-computacion.md:193",
+   "target": "https://en.wikipedia.org/wiki/Markup_language",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/05-lenguajes-formales-como-sustratos-de-computacion.md:194",
+   "target": "https://en.wikipedia.org/wiki/XAML",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/05-lenguajes-formales-como-sustratos-de-computacion.md:195",
+   "target": "https://en.wikipedia.org/wiki/XML_external_entity_attack",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/05-lenguajes-formales-como-sustratos-de-computacion.md:196",
+   "target": "https://cheatsheetseries.owasp.org/cheatsheets/Deserialization_Cheat_Sheet.html",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/05-lenguajes-formales-como-sustratos-de-computacion.md:228",
+   "target": "https://en.wikipedia.org/wiki/Build_automation",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/05-lenguajes-formales-como-sustratos-de-computacion.md:229",
+   "target": "https://en.wikipedia.org/wiki/Make_(software)",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/05-lenguajes-formales-como-sustratos-de-computacion.md:230",
+   "target": "https://en.wikipedia.org/wiki/Reproducible_builds",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/05-lenguajes-formales-como-sustratos-de-computacion.md:248",
+   "target": "https://en.wikipedia.org/wiki/Language-theoretic_security",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/05-lenguajes-formales-como-sustratos-de-computacion.md:249",
+   "target": "https://en.wikipedia.org/wiki/Robustness_principle",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/05-lenguajes-formales-como-sustratos-de-computacion.md:250",
+   "target": "https://www.rfc-editor.org/rfc/rfc9413",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/05-lenguajes-formales-como-sustratos-de-computacion.md:268",
+   "target": "https://en.wikipedia.org/wiki/Weird_machine",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/05-lenguajes-formales-como-sustratos-de-computacion.md:269",
+   "target": "https://en.wikipedia.org/wiki/Return-oriented_programming",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/05-lenguajes-formales-como-sustratos-de-computacion.md:316",
+   "target": "https://en.wikipedia.org/wiki/Category_theory",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/05-lenguajes-formales-como-sustratos-de-computacion.md:317",
+   "target": "https://en.wikipedia.org/wiki/Category_(mathematics)",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/05-lenguajes-formales-como-sustratos-de-computacion.md:318",
+   "target": "https://en.wikipedia.org/wiki/Function_composition",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/05-lenguajes-formales-como-sustratos-de-computacion.md:319",
+   "target": "https://en.wikipedia.org/wiki/Isomorphism",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/05-lenguajes-formales-como-sustratos-de-computacion.md:340",
+   "target": "https://en.wikipedia.org/wiki/Interpreter_(computing)",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/05-lenguajes-formales-como-sustratos-de-computacion.md:341",
+   "target": "https://en.wikipedia.org/wiki/Virtual_machine",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/06-estado-mas-alla-de-las-variables.md:20",
+   "target": "https://en.wikipedia.org/wiki/State_(computer_science)",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/06-estado-mas-alla-de-las-variables.md:21",
+   "target": "https://en.wikipedia.org/wiki/File_system",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/06-estado-mas-alla-de-las-variables.md:22",
+   "target": "https://en.wikipedia.org/wiki/Global_variable",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/06-estado-mas-alla-de-las-variables.md:76",
+   "target": "https://en.wikipedia.org/wiki/Call_stack",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/06-estado-mas-alla-de-las-variables.md:77",
+   "target": "https://en.wikipedia.org/wiki/Stack_buffer_overflow",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/06-estado-mas-alla-de-las-variables.md:78",
+   "target": "https://en.wikipedia.org/wiki/Tail_call",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/06-estado-mas-alla-de-las-variables.md:119",
+   "target": "https://en.wikipedia.org/wiki/Stack_(abstract_data_type)",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/06-estado-mas-alla-de-las-variables.md:120",
+   "target": "https://en.wikipedia.org/wiki/Pushdown_automaton",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/06-estado-mas-alla-de-las-variables.md:157",
+   "target": "https://en.wikipedia.org/wiki/Scope_(computer_programming)",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/06-estado-mas-alla-de-las-variables.md:158",
+   "target": "https://en.wikipedia.org/wiki/Name_binding",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/06-estado-mas-alla-de-las-variables.md:159",
+   "target": "https://en.wikipedia.org/wiki/Closure_(computer_programming)",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/06-estado-mas-alla-de-las-variables.md:160",
+   "target": "https://developer.mozilla.org/en-US/docs/Glossary/Scope",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/06-estado-mas-alla-de-las-variables.md:209",
+   "target": "https://en.wikipedia.org/wiki/Closure_(computer_programming)",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/06-estado-mas-alla-de-las-variables.md:210",
+   "target": "https://en.wikipedia.org/wiki/Scope_(computer_science)",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/06-estado-mas-alla-de-las-variables.md:211",
+   "target": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Closures",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/06-estado-mas-alla-de-las-variables.md:232",
+   "target": "https://en.wikipedia.org/wiki/Homoiconicity",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/06-estado-mas-alla-de-las-variables.md:233",
+   "target": "https://en.wikipedia.org/wiki/Lisp_(programming_language)",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/06-estado-mas-alla-de-las-variables.md:234",
+   "target": "https://en.wikipedia.org/wiki/Metaprogramming",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/06-estado-mas-alla-de-las-variables.md:255",
+   "target": "https://en.wikipedia.org/wiki/Reflective_programming",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/06-estado-mas-alla-de-las-variables.md:256",
+   "target": "https://en.wikipedia.org/wiki/Metaprogramming",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/06-estado-mas-alla-de-las-variables.md:257",
+   "target": "https://en.wikipedia.org/wiki/Metaobject",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/06-estado-mas-alla-de-las-variables.md:294",
+   "target": "https://en.wikipedia.org/wiki/Dependency_graph",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/06-estado-mas-alla-de-las-variables.md:295",
+   "target": "https://en.wikipedia.org/wiki/Directed_acyclic_graph",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/06-estado-mas-alla-de-las-variables.md:296",
+   "target": "https://en.wikipedia.org/wiki/Topological_sorting",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/06-estado-mas-alla-de-las-variables.md:325",
+   "target": "https://en.wikipedia.org/wiki/Database_trigger",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/06-estado-mas-alla-de-las-variables.md:326",
+   "target": "https://en.wikipedia.org/wiki/SQLite",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/06-estado-mas-alla-de-las-variables.md:380",
+   "target": "https://en.wikipedia.org/wiki/Serialization",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/06-estado-mas-alla-de-las-variables.md:381",
+   "target": "https://en.wikipedia.org/wiki/Pickle_(Python)",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/06-estado-mas-alla-de-las-variables.md:382",
+   "target": "https://en.wikipedia.org/wiki/Tar_(computing)",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/06-estado-mas-alla-de-las-variables.md:383",
+   "target": "https://owasp.org/www-community/vulnerabilities/Deserialization_of_untrusted_data",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/06-estado-mas-alla-de-las-variables.md:384",
+   "target": "https://cheatsheetseries.owasp.org/cheatsheets/Deserialization_Cheat_Sheet.html",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/06-estado-mas-alla-de-las-variables.md:385",
+   "target": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/07-efectos-errores-y-confirmacion.md:37",
+   "target": "https://en.wikipedia.org/wiki/Side_effect_(computer_science)",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/07-efectos-errores-y-confirmacion.md:73",
+   "target": "https://en.wikipedia.org/wiki/Monad_(functional_programming)",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/07-efectos-errores-y-confirmacion.md:74",
+   "target": "https://en.wikipedia.org/wiki/Effect_system",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/07-efectos-errores-y-confirmacion.md:75",
+   "target": "https://en.wikipedia.org/wiki/Haskell",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/07-efectos-errores-y-confirmacion.md:111",
+   "target": "https://en.wikipedia.org/wiki/Exception_handling",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/07-efectos-errores-y-confirmacion.md:112",
+   "target": "https://en.wikipedia.org/wiki/Fail-fast_system",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/07-efectos-errores-y-confirmacion.md:141",
+   "target": "https://en.wikipedia.org/wiki/Exit_status",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/07-efectos-errores-y-confirmacion.md:161",
+   "target": "https://en.wikipedia.org/wiki/Integrity_constraint",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/07-efectos-errores-y-confirmacion.md:162",
+   "target": "https://en.wikipedia.org/wiki/Check_constraint",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/07-efectos-errores-y-confirmacion.md:199",
+   "target": "https://en.wikipedia.org/wiki/Backtracking",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/07-efectos-errores-y-confirmacion.md:200",
+   "target": "https://en.wikipedia.org/wiki/Regular_expression",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/07-efectos-errores-y-confirmacion.md:235",
+   "target": "https://en.wikipedia.org/wiki/Cut_(logic_programming)",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/07-efectos-errores-y-confirmacion.md:236",
+   "target": "https://en.wikipedia.org/wiki/Prolog",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/07-efectos-errores-y-confirmacion.md:281",
+   "target": "https://en.wikipedia.org/wiki/Database_transaction",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/07-efectos-errores-y-confirmacion.md:282",
+   "target": "https://en.wikipedia.org/wiki/ACID",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/07-efectos-errores-y-confirmacion.md:283",
+   "target": "https://en.wikipedia.org/wiki/Commit_(data_management)",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/07-efectos-errores-y-confirmacion.md:316",
+   "target": "https://en.wikipedia.org/wiki/Idempotence",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/07-efectos-errores-y-confirmacion.md:317",
+   "target": "https://developer.mozilla.org/en-US/docs/Glossary/Idempotent",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/07-efectos-errores-y-confirmacion.md:318",
+   "target": "https://www.rfc-editor.org/rfc/rfc9110",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/07-efectos-errores-y-confirmacion.md:335",
+   "target": "https://en.wikipedia.org/wiki/Thread_safety",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/07-efectos-errores-y-confirmacion.md:336",
+   "target": "https://en.wikipedia.org/wiki/Race_condition",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/08-fugas-de-abstraccion-y-dependencia-de-la-implementacion.md:20",
+   "target": "https://en.wikipedia.org/wiki/Leaky_abstraction",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/08-fugas-de-abstraccion-y-dependencia-de-la-implementacion.md:21",
+   "target": "https://en.wikipedia.org/wiki/Abstraction_(computer_science)",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/08-fugas-de-abstraccion-y-dependencia-de-la-implementacion.md:38",
+   "target": "https://en.wikipedia.org/wiki/Undefined_behavior",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/08-fugas-de-abstraccion-y-dependencia-de-la-implementacion.md:39",
+   "target": "https://en.wikipedia.org/wiki/Unspecified_behavior",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/08-fugas-de-abstraccion-y-dependencia-de-la-implementacion.md:40",
+   "target": "https://en.wikipedia.org/wiki/AddressSanitizer",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/08-fugas-de-abstraccion-y-dependencia-de-la-implementacion.md:59",
+   "target": "https://en.wikipedia.org/wiki/Software_portability",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/08-fugas-de-abstraccion-y-dependencia-de-la-implementacion.md:60",
+   "target": "https://en.wikipedia.org/wiki/POSIX",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/08-fugas-de-abstraccion-y-dependencia-de-la-implementacion.md:82",
+   "target": "https://en.wikipedia.org/wiki/Optimizing_compiler",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/08-fugas-de-abstraccion-y-dependencia-de-la-implementacion.md:83",
+   "target": "https://en.wikipedia.org/wiki/As-if_rule",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/08-fugas-de-abstraccion-y-dependencia-de-la-implementacion.md:84",
+   "target": "https://en.wikipedia.org/wiki/Dead-code_elimination",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/08-fugas-de-abstraccion-y-dependencia-de-la-implementacion.md:102",
+   "target": "https://en.wikipedia.org/wiki/Hyrum%27s_law",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/08-fugas-de-abstraccion-y-dependencia-de-la-implementacion.md:103",
+   "target": "https://en.wikipedia.org/wiki/Backward_compatibility",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/08-fugas-de-abstraccion-y-dependencia-de-la-implementacion.md:125",
+   "target": "https://en.wikipedia.org/wiki/Time_complexity",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/08-fugas-de-abstraccion-y-dependencia-de-la-implementacion.md:126",
+   "target": "https://en.wikipedia.org/wiki/Big_O_notation",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/08-fugas-de-abstraccion-y-dependencia-de-la-implementacion.md:127",
+   "target": "https://en.wikipedia.org/wiki/Computational_complexity_theory",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/08-fugas-de-abstraccion-y-dependencia-de-la-implementacion.md:144",
+   "target": "https://en.wikipedia.org/wiki/Regular_expression_denial_of_service",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/08-fugas-de-abstraccion-y-dependencia-de-la-implementacion.md:145",
+   "target": "https://en.wikipedia.org/wiki/Algorithmic_complexity_attack",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/08-fugas-de-abstraccion-y-dependencia-de-la-implementacion.md:146",
+   "target": "https://owasp.org/www-community/attacks/Regular_expression_Denial_of_Service_-_ReDoS",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/08-fugas-de-abstraccion-y-dependencia-de-la-implementacion.md:165",
+   "target": "https://en.wikipedia.org/wiki/Reproducible_builds",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/08-fugas-de-abstraccion-y-dependencia-de-la-implementacion.md:166",
+   "target": "https://en.wikipedia.org/wiki/Deterministic_algorithm",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/10-eventos-retrollamadas-y-flujo-de-control-reactivo.md:70",
+   "target": "https://nodejs.org/api/events.html",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/10-eventos-retrollamadas-y-flujo-de-control-reactivo.md:70",
+   "target": "https://nodejs.org/en/learn/asynchronous-work/event-loop-timers-and-nexttick",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/10-eventos-retrollamadas-y-flujo-de-control-reactivo.md:150",
+   "target": "https://en.wikipedia.org/wiki/Event-driven_programming",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/10-eventos-retrollamadas-y-flujo-de-control-reactivo.md:151",
+   "target": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Event_loop",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/10-eventos-retrollamadas-y-flujo-de-control-reactivo.md:152",
+   "target": "https://nodejs.org/api/events.html",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/10-eventos-retrollamadas-y-flujo-de-control-reactivo.md:179",
+   "target": "https://en.wikipedia.org/wiki/Callback_(computer_programming)",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/10-eventos-retrollamadas-y-flujo-de-control-reactivo.md:180",
+   "target": "https://nodejs.org/api/events.html",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/10-eventos-retrollamadas-y-flujo-de-control-reactivo.md:205",
+   "target": "https://en.wikipedia.org/wiki/Publish%E2%80%93subscribe_pattern",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/10-eventos-retrollamadas-y-flujo-de-control-reactivo.md:206",
+   "target": "https://nodejs.org/api/events.html",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/10-eventos-retrollamadas-y-flujo-de-control-reactivo.md:229",
+   "target": "https://en.wikipedia.org/wiki/Event_loop",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/10-eventos-retrollamadas-y-flujo-de-control-reactivo.md:230",
+   "target": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Event_loop",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/10-eventos-retrollamadas-y-flujo-de-control-reactivo.md:231",
+   "target": "https://nodejs.org/en/learn/asynchronous-work/event-loop-timers-and-nexttick",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/informatica/10-eventos-retrollamadas-y-flujo-de-control-reactivo.md:256",
+   "target": "https://en.wikipedia.org/wiki/Back_pressure",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "lessons/lenguajes/javascript.md:132",
+   "target": "https://nodejs.org/api/events.html",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "broken",
+   "kind": "path",
+   "where": "loop/SIGNS.md:119",
+   "target": "DEST",
+   "reason": "no such file in this checkout"
+  },
+  {
+   "status": "broken",
+   "kind": "wrong-repository",
+   "where": "review/inbox/chatgpt-editorial-2026-11-20.md:7",
+   "target": "https://github.com/dullroar/learn-programming-the-weird-way/tree/48a4429c0a22b2aac628b256a50c07d1816bcb80",
+   "reason": "links to repository dullroar/learn-programming-the-weird-way, not dullroar/aprende-a-programar-como-un-bicho-raro"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "review/inbox/chatgpt-editorial-2026-11-20.md:73",
+   "target": "https://go.dev/ref/spec#Order_of_evaluation",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "review/inbox/chatgpt-editorial-2026-11-20.md:74",
+   "target": "https://go.dev/ref/spec#For_statements",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "review/inbox/chatgpt-editorial-2026-11-20.md:84",
+   "target": "https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/Double.html#isNaN(double)",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "review/inbox/chatgpt-editorial-2026-11-20.md:104",
+   "target": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/statements#expression-statements",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "review/inbox/chatgpt-editorial-2026-11-20.md:112",
+   "target": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/expressions#12233-query-expression-translation",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "review/inbox/chatgpt-editorial-2026-11-20.md:123",
+   "target": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/statements#the-for-statement",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "src/RustChallenge1/README.md:35",
+   "target": "https://learn.microsoft.com/en-us/windows/wsl/tutorials/gui-apps",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "src/apl-weird/README.md:27",
+   "target": "https://www.gnu.org/software/apl/",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "src/apl/README.md:25",
+   "target": "https://www.gnu.org/software/apl/",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "src/apl/README.md:93",
+   "target": "https://dejavu-fonts.github.io/",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "src/apl/README.md:93",
+   "target": "https://www.dyalog.com/apl-font-keyboard.htm",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "src/haskell-weird/README.md:120",
+   "target": "https://github.com/tweag/ormolu",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "src/haskell/README.md:93",
+   "target": "https://github.com/tweag/ormolu",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "src/javascript-events/README.md:120",
+   "target": "https://nodejs.org/api/events.html",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "src/javascript-events/README.md:120",
+   "target": "https://nodejs.org/en/learn/asynchronous-work/event-loop-timers-and-nexttick",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "src/lisp-weird/README.md:27",
+   "target": "https://www.sbcl.org/",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "src/lisp/README.md:26",
+   "target": "https://www.sbcl.org/",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "src/regex-dotnet/README.md:97",
+   "target": "https://learn.microsoft.com/en-us/dotnet/standard/base-types/grouping-constructs-in-regular-expressions#balancing-group-definitions",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "broken",
+   "kind": "path",
+   "where": "tests/fixtures/mixed.md:14",
+   "target": "../../lessons/solutions/forth/timecards.fs",
+   "reason": "no such file in this checkout"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "tests/fixtures/mixed.md:14",
+   "target": "https://example.com/a?b=1&c=2",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "broken",
+   "kind": "path",
+   "where": "tests/fixtures/mixed.md:51",
+   "target": "images/figure-1.png",
+   "reason": "no such file in this checkout"
+  },
+  {
+   "status": "unverified",
+   "kind": "external",
+   "where": "tests/fixtures/mixed.md:64",
+   "target": "https://example.com/x#y",
+   "reason": "external URL: no network calls are made"
+  },
+  {
+   "status": "broken",
+   "kind": "wrong-repository",
+   "where": "translation/house-style.es.md:3",
+   "target": "https://github.com/dullroar/learn-programming-the-weird-way/blob/48a4429c0a22b2aac628b256a50c07d1816bcb80/house-style.md",
+   "reason": "links to repository dullroar/learn-programming-the-weird-way, not dullroar/aprende-a-programar-como-un-bicho-raro"
+  }
+ ]
+}
