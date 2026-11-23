@@ -41,7 +41,7 @@ Edita solo copias ([Ejecutar cosas de forma segura](../../exercises.md#ejecutar-
 
 ## El reto compartido
 
-La [especificación del reto](../../introduccion.md#qué-hace-el-reto) pide tarjetas con una categoría y de 10 a 19 horas enteras. Las categorías se repiten en ciclo: `Meetings`, `Coding`, `Debugging` y `Learning`. Suma las horas de cada tarjeta al total acumulado. Detente cuando el total pasa de 40. Conserva la **primera tarjeta con la que el total pasa de 40**. Un total de exactamente 40 continúa. Cuatro tarjetas de 10 horas necesitan una quinta tarjeta, de la categoría `Meetings`. Las ejecuciones conformes tienen de 3 a 5 tarjetas y un total de 41 a 59 horas.
+La [especificación del reto](../../introduccion.md#qué-hace-el-reto) pide tarjetas con una categoría y de 10 a 19 horas enteras. Las categorías se repiten en ciclo: `Reuniones`, `Programación`, `Depuración` y `Aprendizaje`. Suma las horas de cada tarjeta al total acumulado. Detente cuando el total pasa de 40. Conserva la **primera tarjeta con la que el total pasa de 40**. Un total de exactamente 40 continúa. Cuatro tarjetas de 10 horas necesitan una quinta tarjeta, de la categoría `Reuniones`. Las ejecuciones conformes tienen de 3 a 5 tarjetas y un total de 41 a 59 horas.
 
 APL expresa el límite en una sola comparación, `40≥`, "¿el total es como máximo 40?". Es verdadera para 40. El programa cuenta las tarjetas para las que es verdadera y después suma una, para incluir la tarjeta con la que el total pasa del límite.
 
@@ -113,7 +113,7 @@ Drawn         15 19 12 10 10
 | 5 | `1+` | `3` | Suma la única tarjeta con la que el total pasa del límite. |
 | 6 | `Drawn↑⍨3` | `15 19 12` | Toma ese número de elementos. |
 
-La salida fue `Meetings 15 15`, `Coding 19 34`, `Debugging 12 46` y `# committed total=46 entries=3 DEMO ONLY`. `Totals` contiene `15 34 46`. `Kinds` ajusta los cuatro nombres de categoría a la longitud de `Hours`. Llena tres posiciones en esta ejecución y hasta cinco en cualquier ejecución conforme. Se examinaron y descartaron las extracciones 4 y 5 (aquí, 10 y 10). Ese desperdicio es el precio de la evaluación inmediata.
+La salida fue `Reuniones 15 15`, `Programación 19 34`, `Depuración 12 46` y `# committed total=46 entries=3 DEMO ONLY`. `Totals` contiene `15 34 46`. `Kinds` ajusta los cuatro nombres de categoría a la longitud de `Hours`. Llena tres posiciones en esta ejecución y hasta cinco en cualquier ejecución conforme. Se examinaron y descartaron las extracciones 4 y 5 (aquí, 10 y 10). Ese desperdicio es el precio de la evaluación inmediata.
 
 **`apl-weird`: la cadena de funciones.** En la copia de prueba, `Card0` recibió 15 horas y cada tarjeta tomó las horas de la tarjeta siguiente de la lista 19, 12, 10, ... El código fuente generado de `Card2`, impreso con `⎕CR`, fue:
 
@@ -136,9 +136,9 @@ Kid←⎕FX Alive/(⊂'Card',(⍕N+1),Locals),Genes,5↓⊂[1]⎕CR 'Card',⍕N
 
 | Función | Genes (N, C, H, T) | Imprime | `Alive←40≥T` | Qué hace después |
 | --- | --- | --- | --- | --- |
-| `Card0` (escrito por el anfitrión) | 0, 0, 15, 15 | Meetings 15 15 | `40≥15` = 1 | Escribe `Card1` con los genes 1, 1, 19, 34. La llama. |
-| `Card1` | 1, 1, 19, 34 | Coding 19 34 | `40≥34` = 1 | Escribe `Card2` con los genes 2, 2, 12, 46. La llama. |
-| `Card2` | 2, 2, 12, 46 | Debugging 12 46 | `40≥46` = **0** | Comprime el texto de la función hija y lo descarta. `⎕FX` no define nada. `⍎` ejecuta una cadena de texto vacía. Las llamadas regresan. |
+| `Card0` (escrito por el anfitrión) | 0, 0, 15, 15 | Reuniones 15 15 | `40≥15` = 1 | Escribe `Card1` con los genes 1, 1, 19, 34. La llama. |
+| `Card1` | 1, 1, 19, 34 | Programación 19 34 | `40≥34` = 1 | Escribe `Card2` con los genes 2, 2, 12, 46. La llama. |
+| `Card2` | 2, 2, 12, 46 | Depuración 12 46 | `40≥46` = **0** | Comprime el texto de la función hija y lo descarta. `⎕FX` no define nada. `⍎` ejecuta una cadena de texto vacía. Las llamadas regresan. |
 
 Luego el informe obtiene la lista de funciones del espacio de trabajo con `⎕NL 3` y lee las horas codificadas en cada función: `Card0 ⇐ H←15`, `Card1 ⇐ H←19`, `Card2 ⇐ H←12`. El programa escribió dos de esas tres funciones. La tarjeta con la que el total pasa del límite, `Card2`, se *conserva*, porque sus genes se escribieron cuando su padre aún estaba vivo. La regla de parada suprime la tarjeta *siguiente*.
 

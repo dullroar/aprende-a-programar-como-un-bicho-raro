@@ -92,7 +92,11 @@ msgstr "⍝ total acumulado después de cada tarjeta"
 
 msgctxt "L39"
 msgid "⍝ ⍴ recycles: Meetings Coding Debugging Learning Meetings …"
-msgstr "⍝ ⍴ recicla: Meetings Coding Debugging Learning Meetings …"
+msgstr "⍝ ⍴ recicla: Reuniones Programación Depuración Aprendizaje Reuniones …"
+
+msgctxt "C21"
+msgid "Categories←'Meetings' 'Coding' 'Debugging' 'Learning'"
+msgstr "Categories←'Reuniones' 'Programación' 'Depuración' 'Aprendizaje'"
 
 msgctxt "L41"
 msgid "⍝ ── Plumbing ──────────────────────────────────────────────────────────────"

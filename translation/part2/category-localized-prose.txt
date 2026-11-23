@@ -2,3 +2,5 @@
 # tools/apply.py rewrites whole English category words outside fences in these files only; "(Word)" glosses and link targets stay.
 src/lisp/README.md
 lessons/study-guides/languages/forth.md
+src/apl/README.md
+lessons/study-guides/languages/apl.md

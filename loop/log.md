@@ -453,3 +453,4 @@
 501 F2-004 done src/forth categories now Reuniones/Programación/Depuración/Aprendizaje in timecards.fs, check.sh and README rows; oracle PASS; study-guide inline code spans left English (no tool for spans); translation/part2/reports/F2-forth-categories.md
 504 F2-006b done apply.py localize_category_words (localized-family prose and spans only; fences, glosses, links stay; list in category-localized-prose.txt); I13 values() ignores category words symmetrically; 4 tests incl. negative; forth.md and lisp README fixed; verify --fast OK
 506 F2-007 done generated 27 F2-007-<family> category tasks (oracle-PASS families still printing English; NOT TESTED families excluded) as F2-008 deps; next_task --check ok
+507 F2-007-apl done src/apl categories now Reuniones/Programación/Depuración/Aprendizaje in timecards.apl, check.sh, README and study guide; oracle PASS; translation/part2/reports/F2-apl-categories.md

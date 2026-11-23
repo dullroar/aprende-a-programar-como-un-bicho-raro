@@ -18,7 +18,7 @@
 ⍝ imprimiría las mismas tarjetas "aleatorias".  Mejor mezclamos el reloj en una semilla.
 ⎕RL←+/⎕TS×1 12 372 8928 535680 32140800 1894248000
 
-Categories←'Meetings' 'Coding' 'Debugging' 'Learning'
+Categories←'Reuniones' 'Programación' 'Depuración' 'Aprendizaje'
 NL←⎕UCS 10
 TAB←⎕UCS 9
 
@@ -36,7 +36,7 @@ Hours←Drawn↑⍨1++/40≥+\Drawn
 
 ⍝ 3. Todo lo demás se deriva de Hours sin más decisiones.
 Totals←+\Hours                    ⍝ total acumulado después de cada tarjeta
-Kinds←(≢Hours)⍴Categories         ⍝ ⍴ recicla: Meetings Coding Debugging Learning Meetings …
+Kinds←(≢Hours)⍴Categories         ⍝ ⍴ recicla: Reuniones Programación Depuración Aprendizaje Reuniones …
 
 ⍝ ── Tubería ──────────────────────────────────────────────────────────────
 RunId←1↓∊'-',¨⍕¨⎕TS              ⍝ 2026-11-14-9-37-13-583

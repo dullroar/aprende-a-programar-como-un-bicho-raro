@@ -34,9 +34,9 @@ Los registros van a `$XDG_DATA_HOME/Apl/demo-timecards.db` (por defecto `~/.loca
 
 ```text
 # DEMO ONLY run 2026-11-14-9-38-27-440
-Meetings	19	19	2026-W46	DEMO ONLY
-Coding	17	36	2026-W46	DEMO ONLY
-Debugging	16	52	2026-W46	DEMO ONLY
+Reuniones	19	19	2026-W46	DEMO ONLY
+Programación	17	36	2026-W46	DEMO ONLY
+Depuración	16	52	2026-W46	DEMO ONLY
 # committed total=52 entries=3 DEMO ONLY
 ```
 
@@ -68,7 +68,7 @@ Lee las cuatro asignaciones bajo "The challenge" en el código fuente con este r
    - `40≥` convierte eso en 1 y 0: `1 1 0 0 …`. Los totales solo crecen, así que los 1 siempre forman un prefijo;
    - `+/` cuenta los 1, que es la cantidad de tarjetas que caben bajo la línea;
    - `1+` suma la única tarjeta que la cruza, y `↑⍨` ("take, con los argumentos intercambiados") conserva esa cantidad.
-3. **Deduce el resto.** `Totals←+\Hours` es de nuevo el total acumulado. `Kinds←(≢Hours)⍴Categories` usa una propiedad discreta de *reshape*: `⍴` *recicla* su argumento derecho cuando este es más corto que el destino. Así, cuatro nombres de categoría llenan tantas posiciones como tarjetas se conserven, hasta cinco. Si se conserva una quinta tarjeta, su nombre es `Meetings` otra vez. No hace falta usar módulo.
+3. **Deduce el resto.** `Totals←+\Hours` es de nuevo el total acumulado. `Kinds←(≢Hours)⍴Categories` usa una propiedad discreta de *reshape*: `⍴` *recicla* su argumento derecho cuando este es más corto que el destino. Así, cuatro nombres de categoría llenan tantas posiciones como tarjetas se conserven, hasta cinco. Si se conserva una quinta tarjeta, su nombre es `Reuniones` otra vez. No hace falta usar módulo.
 
 Después, `SaveRow¨⍳≢Hours` y `ShowRow¨⍳≢Hours` aplican una función pequeña (una *dfn*, `{ … }`) a cada número de fila (`¨` significa "cada uno"). Eso es `for` de APL y no es la regla de parada: solo visita las filas que ya están decididas.
 
