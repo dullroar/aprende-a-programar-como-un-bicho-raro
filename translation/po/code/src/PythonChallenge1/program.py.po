@@ -1,0 +1,47 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+
+msgctxt "L83"
+msgid "# The initializer: one object holds the loop's state. It is handed to the lambda that"
+msgstr "# El inicializador: un objeto guarda el estado del bucle. Se pasa a la lambda que"
+
+msgctxt "L84"
+msgid "# builds `step`, as the for-initializer hands its variable to the condition and update."
+msgstr "# construye `step`, igual que el inicializador del for pasa su variable a la condición y a la actualización."
+
+msgctxt "L86"
+msgid "# The condition: while the hours total 40 or less and a category remains, continue."
+msgstr "# La condición: mientras las horas sumen 40 o menos y quede una categoría, continúa."
+
+msgctxt "L88"
+msgid "# The update: lock, add 10-19 hours, stage a card, unlock, then save in a"
+msgstr "# La actualización: bloquea, suma de 10 a 19 horas, prepara una tarjeta, desbloquea y guarda en un"
+
+msgctxt "L89"
+msgid "# background thread, via getattr as a stand-in for reflection."
+msgstr "# hilo en segundo plano, con getattr como sustituto de la reflexión."
+
+msgctxt "L109"
+msgid "# Otherwise: build the window from a runtime XML string, show it, wait for it to"
+msgstr "# Si no: construye la ventana a partir de una cadena XML en tiempo de ejecución, muéstrala, espera a que se"
+
+msgctxt "L110"
+msgid "# close (mainloop blocks, as a modal dialog does) and report False to end the loop."
+msgstr "# cierre (mainloop bloquea, como un diálogo modal) y devuelve False para terminar el bucle."
+
+msgctxt "L113"
+msgid "# The pulse: every label fades to 45% of its color and back, 1.2 s each way."
+msgstr "# El pulso: cada etiqueta se atenúa al 45% de su color y vuelve, 1,2 s en cada sentido."
+
+msgctxt "L129"
+msgid "# One widget per XML element, in document order; each may name its parent."
+msgstr "# Un widget por elemento XML, en el orden del documento; cada uno puede nombrar a su padre."
+
+msgctxt "L153"
+msgid "# Still one statement. Only the time cards are saved beyond this point."
+msgstr "# Sigue siendo una sola sentencia. Desde aquí solo se guardan las tarjetas de horas."
+
+msgctxt "L155"
+msgid "# The XML fragment is deliberately gratuitous: it becomes part of the window's XML."
+msgstr "# El fragmento XML es gratuito a propósito: pasa a formar parte del XML de la ventana."

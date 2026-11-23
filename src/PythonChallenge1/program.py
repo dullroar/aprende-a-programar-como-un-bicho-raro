@@ -80,13 +80,13 @@ class DemoTimeCardRepository:
 
 def main() -> None:
     for _ in iter(
-        # The initializer: one object holds the loop's state. It is handed to the lambda that
-        # builds `step`, as the for-initializer hands its variable to the condition and update.
+        # El inicializador: un objeto guarda el estado del bucle. Se pasa a la lambda que
+        # construye `step`, igual que el inicializador del for pasa su variable a la condición y a la actualización.
         (lambda i: lambda:
-            # The condition: while the hours total 40 or less and a category remains, continue.
+            # La condición: mientras las horas sumen 40 o menos y quede una categoría, continúa.
             (
-                # The update: lock, add 10-19 hours, stage a card, unlock, then save in a
-                # background thread, via getattr as a stand-in for reflection.
+                # La actualización: bloquea, suma de 10 a 19 horas, prepara una tarjeta, desbloquea y guarda en un
+                # hilo en segundo plano, con getattr como sustituto de la reflexión.
                 i.mutex.acquire(),
                 i.total_hours.append(float(i.rnd.randint(10, 19))),
                 i.pending.append(
@@ -106,11 +106,11 @@ def main() -> None:
                 True,
             )[-1]
             if sum(i.total_hours) <= 40 and i.categories
-            # Otherwise: build the window from a runtime XML string, show it, wait for it to
-            # close (mainloop blocks, as a modal dialog does) and report False to end the loop.
+            # Si no: construye la ventana a partir de una cadena XML en tiempo de ejecución, muéstrala, espera a que se
+            # cierre (mainloop bloquea, como un diálogo modal) y devuelve False para terminar el bucle.
             else (lambda elements: (lambda widgets: (lambda win, labels, interval: (
                 setattr(i, "tick", lambda: (
-                    # The pulse: every label fades to 45% of its color and back, 1.2 s each way.
+                    # El pulso: cada etiqueta se atenúa al 45% de su color y vuelve, 1,2 s en cada sentido.
                     [label.configure(fg=(lambda amount, fore, back: "#%02x%02x%02x" % tuple(
                         int(b + (f - b) * amount) for f, b in zip(fore, back)))(
                             0.45 + 0.55 * abs(time.monotonic() % 2.4 / 1.2 - 1),
@@ -126,7 +126,7 @@ def main() -> None:
                 widgets["window"],
                 [(widgets[e.get("id")], e.get("fg")) for e in elements if e.tag == "Label"],
                 int(ET.fromstring(i.xml_anim).get("interval"))))(
-                    # One widget per XML element, in document order; each may name its parent.
+                    # Un widget por elemento XML, en el orden del documento; cada uno puede nombrar a su padre.
                     functools.reduce(
                         lambda made, e: {**made, e.get("id"): (lambda w: (
                             w.configure(**{k: v for k, v in e.attrib.items()
@@ -150,9 +150,9 @@ def main() -> None:
                     'fg="#FFFFFF" bg="#172033" font="Helvetica 18 bold" pack="fill=x,padx=28,pady=24"/>'
                     + i.xml_anim +
                     "</ui>").iter() if hasattr(tk, e.tag)])
-            # Still one statement. Only the time cards are saved beyond this point.
+            # Sigue siendo una sola sentencia. Desde aquí solo se guardan las tarjetas de horas.
         )(SimpleNamespace(
-            # The XML fragment is deliberately gratuitous: it becomes part of the window's XML.
+            # El fragmento XML es gratuito a propósito: pasa a formar parte del XML de la ventana.
             xml_anim='<timer interval="40"/>',
             total_hours=[],
             user=getpass.getuser(),

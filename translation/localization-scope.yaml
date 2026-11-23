@@ -35,7 +35,7 @@ families:
   "src/LinqChallenge1": {status: frozen, files: 5}
   "src/LinqChallenge2": {status: frozen, files: 5}
   "src/ModernChallenge1": {status: frozen, files: 4}
-  "src/PythonChallenge1": {status: frozen, files: 3}
+  "src/PythonChallenge1": {status: localizing, files: 3}
   "src/RustChallenge1": {status: frozen, files: 6}
   "src/apl": {status: localizing, files: 3}
   "src/apl-weird": {status: localizing, files: 3}
