@@ -1,0 +1,15 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+
+msgctxt "L1"
+msgid "# Container image for the Haskell entry. Run it with: sandbox/container/run-image.sh src/haskell"
+msgstr "# Imagen de contenedor para la entrada de Haskell. Ejecútala con: sandbox/container/run-image.sh src/haskell"
+
+msgctxt "L2"
+msgid "# Build stage: GHC compiles the script to one binary. Runtime stage: that binary on a base with"
+msgstr "# Etapa de compilación: GHC compila el script en un solo binario. Etapa de ejecución: ese binario sobre una base con"
+
+msgctxt "L3"
+msgid "# sqlite3 and the two shared libraries it needs, with no GHC in it."
+msgstr "# sqlite3 y las dos bibliotecas compartidas que necesita, sin GHC dentro."

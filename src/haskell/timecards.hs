@@ -1,11 +1,11 @@
--- DEMO ONLY. Fictional timecards, written to a scratch SQLite file under
--- XDG_DATA_HOME. Nothing here touches a real time-reporting system.
+-- DEMO ONLY. Tarjetas de horas ficticias, escritas en un archivo SQLite temporal bajo
+-- XDG_DATA_HOME. Nada de esto toca un sistema real de registro de horas.
 --
--- Run: runghc timecards.hs
+-- Ejecuta: runghc timecards.hs
 --
--- The challenge ("add 10-19 hour cards until the running total passes 40") is
--- the pure function 'timecards'. Everything in 'main' is plumbing: ask the
--- clock for a seed, run the function, and hand the answer to sqlite3.
+-- El reto ("suma tarjetas de 10 a 19 horas hasta que el total acumulado pase de 40") es
+-- la función pura 'timecards'. Todo lo de 'main' es fontanería: pedir al
+-- reloj una semilla, ejecutar la función y pasarle la respuesta a sqlite3.
 module Main (main) where
 
 import Data.Bits (shiftR)
@@ -31,28 +31,28 @@ data Card = Card
     runningTotal :: Int
   }
 
--- | An endless, repeatable stream of hours in 10..19.
+-- | Un flujo infinito y repetible de horas entre 10 y 19.
 --
--- GHC ships no random-number package, so this is a 64-bit linear congruential
--- generator (Knuth's MMIX constants). 'Word64' arithmetic wraps around on
--- overflow, which is exactly the "mod 2^64" the algorithm calls for. The low
--- bits of an LCG are weak, so we use the high ones.
+-- GHC no trae ningún paquete de números aleatorios, así que esto es un generador
+-- congruencial lineal de 64 bits (constantes MMIX de Knuth). La aritmética de 'Word64' da la vuelta al
+-- desbordarse, que es justo el "mod 2^64" que pide el algoritmo. Los bits
+-- bajos de un LCG son débiles, así que usamos los altos.
 rolls :: Word64 -> [Int]
 rolls = map toHours . tail . iterate next
   where
     next s = s * 6364136223846793005 + 1442695040888963407
     toHours s = 10 + fromIntegral ((s `shiftR` 33) `mod` 10)
 
--- | Every card there could ever be: the categories repeat, and each card
--- carries the total so far. 'scanl1' is a running sum.
+-- | Todas las tarjetas que podrían existir: las categorías se repiten y cada tarjeta
+-- lleva el total hasta ese momento. 'scanl1' es una suma acumulada.
 allCards :: Word64 -> [Card]
 allCards seed = zipWith3 Card (cycle [minBound ..]) hs (scanl1 (+) hs)
   where
     hs = rolls seed
 
--- | Keep adding cards until the total passes 40, and keep the one that
--- crosses the line. Laziness is why this terminates: 'span' stops reading the
--- infinite list at the first card over the limit.
+-- | Sigue sumando tarjetas hasta que el total pase de 40, y conserva la que
+-- cruza la línea. La pereza es la razón de que termine: 'span' deja de leer la
+-- lista infinita en la primera tarjeta que supera el límite.
 timecards :: Word64 -> [Card]
 timecards seed = under ++ take 1 over
   where
@@ -71,8 +71,8 @@ schema =
       "demo_only INTEGER NOT NULL DEFAULT 1 CHECK(demo_only=1));"
     ]
 
--- | A SQL string literal. Doubling embedded quotes is the whole escaping rule;
--- here the inputs are fixed, but a helper that is safe anyway costs nothing.
+-- | Un literal de cadena SQL. Duplicar las comillas internas es toda la regla de escape;
+-- aquí las entradas son fijas, pero una función auxiliar segura igualmente no cuesta nada.
 quote :: String -> String
 quote s = "'" ++ concatMap (\c -> if c == '\'' then "''" else [c]) s ++ "'"
 

@@ -1,0 +1,75 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+
+msgctxt "L1"
+msgid "-- DEMO ONLY. Fictional timecards, written to a scratch SQLite file under"
+msgstr "-- DEMO ONLY. Tarjetas de horas ficticias, escritas en un archivo SQLite temporal bajo"
+
+msgctxt "L2"
+msgid "-- XDG_DATA_HOME. Nothing here touches a real time-reporting system."
+msgstr "-- XDG_DATA_HOME. Nada de esto toca un sistema real de registro de horas."
+
+msgctxt "L4"
+msgid "-- Run: runghc timecards.hs"
+msgstr "-- Ejecuta: runghc timecards.hs"
+
+msgctxt "L6"
+msgid "-- The challenge (\"add 10-19 hour cards until the running total passes 40\") is"
+msgstr "-- El reto (\"suma tarjetas de 10 a 19 horas hasta que el total acumulado pase de 40\") es"
+
+msgctxt "L7"
+msgid "-- the pure function 'timecards'. Everything in 'main' is plumbing: ask the"
+msgstr "-- la función pura 'timecards'. Todo lo de 'main' es fontanería: pedir al"
+
+msgctxt "L8"
+msgid "-- clock for a seed, run the function, and hand the answer to sqlite3."
+msgstr "-- reloj una semilla, ejecutar la función y pasarle la respuesta a sqlite3."
+
+msgctxt "L34"
+msgid "-- | An endless, repeatable stream of hours in 10..19."
+msgstr "-- | Un flujo infinito y repetible de horas entre 10 y 19."
+
+msgctxt "L36"
+msgid "-- GHC ships no random-number package, so this is a 64-bit linear congruential"
+msgstr "-- GHC no trae ningún paquete de números aleatorios, así que esto es un generador"
+
+msgctxt "L37"
+msgid "-- generator (Knuth's MMIX constants). 'Word64' arithmetic wraps around on"
+msgstr "-- congruencial lineal de 64 bits (constantes MMIX de Knuth). La aritmética de 'Word64' da la vuelta al"
+
+msgctxt "L38"
+msgid "-- overflow, which is exactly the \"mod 2^64\" the algorithm calls for. The low"
+msgstr "-- desbordarse, que es justo el \"mod 2^64\" que pide el algoritmo. Los bits"
+
+msgctxt "L39"
+msgid "-- bits of an LCG are weak, so we use the high ones."
+msgstr "-- bajos de un LCG son débiles, así que usamos los altos."
+
+msgctxt "L46"
+msgid "-- | Every card there could ever be: the categories repeat, and each card"
+msgstr "-- | Todas las tarjetas que podrían existir: las categorías se repiten y cada tarjeta"
+
+msgctxt "L47"
+msgid "-- carries the total so far. 'scanl1' is a running sum."
+msgstr "-- lleva el total hasta ese momento. 'scanl1' es una suma acumulada."
+
+msgctxt "L53"
+msgid "-- | Keep adding cards until the total passes 40, and keep the one that"
+msgstr "-- | Sigue sumando tarjetas hasta que el total pase de 40, y conserva la que"
+
+msgctxt "L54"
+msgid "-- crosses the line. Laziness is why this terminates: 'span' stops reading the"
+msgstr "-- cruza la línea. La pereza es la razón de que termine: 'span' deja de leer la"
+
+msgctxt "L55"
+msgid "-- infinite list at the first card over the limit."
+msgstr "-- lista infinita en la primera tarjeta que supera el límite."
+
+msgctxt "L74"
+msgid "-- | A SQL string literal. Doubling embedded quotes is the whole escaping rule;"
+msgstr "-- | Un literal de cadena SQL. Duplicar las comillas internas es toda la regla de escape;"
+
+msgctxt "L75"
+msgid "-- here the inputs are fixed, but a helper that is safe anyway costs nothing."
+msgstr "-- aquí las entradas son fijas, pero una función auxiliar segura igualmente no cuesta nada."

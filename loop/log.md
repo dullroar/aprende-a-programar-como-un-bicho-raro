@@ -387,3 +387,4 @@
 434 S5-fam-cmake done src/cmake localizing: comment lines in timecards.cmake, check.sh, Dockerfile via loc_apply, oracle PASS; categories/strings kept English EXC-551.
 435 S5-fam-find-gnu done src/find-gnu localizing: 37 comment lines (timecards.sh, check.sh, build-line.py, Dockerfile) via loc_apply, oracle PASS; categories/strings kept English EXC-552.
 436 S5-fam-find-posix done src/find-posix localizing: 51 comment lines (timecards.sh, check.sh, build-line.py, Dockerfile) via loc_apply, oracle PASS; categories/strings kept English EXC-553.
+437 S5-fam-haskell done src/haskell localizing: 29 comment lines (timecards.hs, check.sh, Dockerfile) via loc_apply, oracle PASS; categories/strings kept English EXC-554.

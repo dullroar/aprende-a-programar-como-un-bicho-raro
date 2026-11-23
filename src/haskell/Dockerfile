@@ -1,6 +1,6 @@
-# Container image for the Haskell entry. Run it with: sandbox/container/run-image.sh src/haskell
-# Build stage: GHC compiles the script to one binary. Runtime stage: that binary on a base with
-# sqlite3 and the two shared libraries it needs, with no GHC in it.
+# Imagen de contenedor para la entrada de Haskell. Ejecútala con: sandbox/container/run-image.sh src/haskell
+# Etapa de compilación: GHC compila el script en un solo binario. Etapa de ejecución: ese binario sobre una base con
+# sqlite3 y las dos bibliotecas compartidas que necesita, sin GHC dentro.
 FROM code-challenge-sandbox:local AS build
 USER root
 WORKDIR /build
