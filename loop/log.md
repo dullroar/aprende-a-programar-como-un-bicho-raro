@@ -493,3 +493,4 @@
 544 G1-009 done follow-up gate: verify --release --no-gates OK after re-anchoring 2 records (ed-weird 42-46, regex-perl 7); lock and part2_inv clean; END-REVIEW.md regenerated; local tag v4-es.0-rc3
 546 H3-002 done guides tracked via git add -f (.git/info/exclude edit denied in dontAsk, exclusion lines remain, harmless once tracked); CONTRIBUTING.md intro points to TRADUCTORIO.md through the PO msgstr; verify --release --no-gates OK
 545 H3-001 done guides TRANSLATING.md and TRADUCTORIO.md checked against ralph.sh, CONFIG.yaml, model_report.py and the ledger; 3 fixes per language (light-tier kinds, recall result, mismatch note); translation/part3/guide-review.md
+547 H3-003 done English upstream package prepared in a scratch clone at base 48a4429 (TRANSLATING.md + CONTRIBUTING pointer); build.py --check and link tests pass; 27 source issues listed as unapproved candidates; nothing pushed; translation/part3/upstream-package.md
