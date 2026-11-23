@@ -98,9 +98,9 @@ msgctxt "L56"
 msgid "# ---- report: the cards are in the log, in unary; lengths are hours -----------------------------------------------"
 msgstr "# ---- reporte: las tarjetas están en el registro, en unario; las longitudes son horas ------------------------------"
 
-msgctxt "L59"
-msgid "# a fifth card (four 10s = exactly 40) wraps to Meetings"
-msgstr "# una quinta tarjeta (cuatro 10 = exactamente 40) da la vuelta a Meetings"
+msgctxt "C59"
+msgid "set(categories Meetings Coding Debugging Learning Meetings)   # a fifth card (four 10s = exactly 40) wraps to Meetings"
+msgstr "set(categories Reuniones Programación Depuración Aprendizaje Reuniones)   # una quinta tarjeta (cuatro 10 = exactamente 40) da la vuelta a Reuniones"
 
 msgctxt "L60"
 msgid "# ZIP_LISTS runs to the longer list"

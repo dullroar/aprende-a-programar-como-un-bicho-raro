@@ -457,3 +457,4 @@
 509 F2-007-awk done src/awk categories now Reuniones/Programación/Depuración/Aprendizaje in timecards.awk, check.sh and README; oracle PASS; translation/part2/reports/F2-awk-categories.md
 510 F2-007-awk-weird done src/awk-weird categories now Reuniones/Programación/Depuración/Aprendizaje in timecards.awk, check.sh, README and lessons/lenguajes/awk.md one-liner; apply.py localizes the quoted four-word list in fences (2 tests); oracle PASS; translation/part2/reports/F2-awk-weird-categories.md
 507 F2-007-apl done src/apl categories now Reuniones/Programación/Depuración/Aprendizaje in timecards.apl, check.sh, README and study guide; oracle PASS; translation/part2/reports/F2-apl-categories.md
+511 F2-007-cmake done src/cmake categories now Reuniones/Programación/Depuración/Aprendizaje in timecards.cmake, check.sh and README; loc_apply C entries may also carry a trailing-comment translation (3 tests); oracle PASS; translation/part2/reports/F2-cmake-categories.md

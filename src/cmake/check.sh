@@ -34,21 +34,21 @@ for i in $(seq 1 25); do
     commit=$(grep '^# committed' <<<"$out")
     total=$(sed -E 's/.*total=([0-9]+).*/\1/' <<<"$commit")
     entries=$(sed -E 's/.*entries=([0-9]+).*/\1/' <<<"$commit")
-    rows=$(grep -cE '^(Meetings|Coding|Debugging|Learning)	' <<<"$out" || true)
+    rows=$(grep -cE '^(Reuniones|Programación|Depuración|Aprendizaje)	' <<<"$out" || true)
     [[ $rows -eq $entries ]] || { echo "FAIL run $i: $rows rows but entries=$entries"; exit 1; }
     grep -q "^# an empty while() went round $entries times" <<<"$out" || { echo "FAIL run $i: loop count != entries ($entries)"; echo "$out"; exit 1; }
-    awk -F'\t' '/^(Meetings|Coding|Debugging|Learning)\t/ && ($2 < 10 || $2 > 19) { bad = 1 } END { exit bad }' <<<"$out" || { echo "FAIL run $i: hours out of 10-19"; exit 1; }
-    cats=$(awk -F'\t' '/^(Meetings|Coding|Debugging|Learning)\t/ { printf "%s ", $1 }' <<<"$out")
-    [[ "Meetings Coding Debugging Learning " == "$cats"* ]] || { echo "FAIL run $i: categories out of order: $cats"; exit 1; }
-    awk -F'\t' '/^(Meetings|Coding|Debugging|Learning)\t/ { s += $2; if ($3 != s || $5 != "DEMO ONLY") bad = 1 } END { exit bad }' <<<"$out" || { echo "FAIL run $i: running total or DEMO ONLY column wrong"; exit 1; }
-    awk -F'\t' -v n="$rows" '/^(Meetings|Coding|Debugging|Learning)\t/ { k++; if (k < n && $3 > 40) bad = 1; if (k == n && $3 <= 40) bad = 1 } END { exit bad }' <<<"$out" \
+    awk -F'\t' '/^(Reuniones|Programación|Depuración|Aprendizaje)\t/ && ($2 < 10 || $2 > 19) { bad = 1 } END { exit bad }' <<<"$out" || { echo "FAIL run $i: hours out of 10-19"; exit 1; }
+    cats=$(awk -F'\t' '/^(Reuniones|Programación|Depuración|Aprendizaje)\t/ { printf "%s ", $1 }' <<<"$out")
+    [[ "Reuniones Programación Depuración Aprendizaje " == "$cats"* ]] || { echo "FAIL run $i: categories out of order: $cats"; exit 1; }
+    awk -F'\t' '/^(Reuniones|Programación|Depuración|Aprendizaje)\t/ { s += $2; if ($3 != s || $5 != "DEMO ONLY") bad = 1 } END { exit bad }' <<<"$out" || { echo "FAIL run $i: running total or DEMO ONLY column wrong"; exit 1; }
+    awk -F'\t' -v n="$rows" '/^(Reuniones|Programación|Depuración|Aprendizaje)\t/ { k++; if (k < n && $3 > 40) bad = 1; if (k == n && $3 <= 40) bad = 1 } END { exit bad }' <<<"$out" \
         || { echo "FAIL run $i: stop rule wrong"; echo "$out"; exit 1; }
     stops=$(grep -c 'CHECK constraint failed: stop rule fired: total exceeds 40' "$data/err" || true)
     others=$(grep -vc 'CHECK constraint failed: stop rule fired: total exceeds 40' "$data/err" || true)
     [[ $stops -eq 1 && $others -eq 0 ]] || { echo "FAIL run $i: unexpected stderr:"; cat "$data/err"; exit 1; }
     # La semana ISO coincide con la aritmética de fechas de SQLite, en hora local como las otras entradas.
     want=$(sqlite3 :memory: "select printf('%s-W%02d',strftime('%Y',date('now','localtime','-3 days','weekday 4')),(strftime('%j',date('now','localtime','-3 days','weekday 4'))-1)/7+1)")
-    awk -F'\t' -v want="$want" '/^(Meetings|Coding|Debugging|Learning)\t/ && $4 != want { bad = 1 } END { exit bad }' <<<"$out" || { echo "FAIL run $i: ISO week differs from SQLite's $want"; exit 1; }
+    awk -F'\t' -v want="$want" '/^(Reuniones|Programación|Depuración|Aprendizaje)\t/ && $4 != want { bad = 1 } END { exit bad }' <<<"$out" || { echo "FAIL run $i: ISO week differs from SQLite's $want"; exit 1; }
     db_row=$(sqlite3 "$db" "select count(*) || ' ' || coalesce(sum(hours),0) || ' ' || coalesce(max(running_total),0) || ' ' || coalesce(min(demo_only),0) || coalesce(max(demo_only),0) from demo_timecards where run_id = $run_id")
     [[ $db_row == "$entries $total $total 11" ]] || { echo "FAIL run $i: db says '$db_row', output says '$entries $total $total 11'"; exit 1; }
 done
@@ -60,7 +60,7 @@ done
 for t in 0 951782400 1078012800 1230768000 1609459199 1609459200 1704067199 1704067200 1735603199 1735689599 1735689600 \
          1767225599 1767225600 1798675199 1798675200 1798761600 1893455999 1893456000 2000000000 4000000000; do
     want="$(date -u -d "@$t" +%G-W%V)"
-    got=$(SOURCE_DATE_EPOCH=$t TZ=UTC run 2>/dev/null | awk -F'\t' '/^(Meetings|Coding|Debugging|Learning)\t/ { print $4; exit }' || true)
+    got=$(SOURCE_DATE_EPOCH=$t TZ=UTC run 2>/dev/null | awk -F'\t' '/^(Reuniones|Programación|Depuración|Aprendizaje)\t/ { print $4; exit }' || true)
     [[ $got == "$want" ]] || { echo "FAIL: SOURCE_DATE_EPOCH=$t: cmake says '$got', date says '$want'"; exit 1; }
 done
 

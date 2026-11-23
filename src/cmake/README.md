@@ -29,9 +29,9 @@ cmake -DPOP=1 -P timecards.cmake    # same, in a new Windows Terminal window tha
 
 ```
 # DEMO ONLY run 1
-Meetings	16	16	2026-W46	DEMO ONLY
-Coding	18	34	2026-W46	DEMO ONLY
-Debugging	13	47	2026-W46	DEMO ONLY
+Reuniones	16	16	2026-W46	DEMO ONLY
+Programación	18	34	2026-W46	DEMO ONLY
+Depuración	13	47	2026-W46	DEMO ONLY
 Runtime error near line 4: CHECK constraint failed: stop rule fired: total exceeds 40 (19)
 # committed total=47 entries=3 DEMO ONLY
 # an empty while() went round 3 times, once per card
@@ -107,7 +107,7 @@ Siguen tres pruebas más. Un barrido de límites de año (con `SOURCE_DATE_EPOCH
 - **Las horas se consultan con un paso de retraso.** El paso *j* observa el dígito de la tarjeta *j+1* y consulta las horas de la tarjeta
   *j* (observado en el paso *j-1*). Por eso el primer dígito forma parte de la semilla.
 - **La cinta tiene 9 dígitos**, así que nunca puede agotarse (como máximo 5 tarjetas y 6 dígitos usados). Cuatro tarjetas de 10 horas suman exactamente
-  40, un total que continúa, así que la categoría de la quinta tarjeta da la vuelta y vuelve a Meetings.
+  40, un total que continúa, así que la categoría de la quinta tarjeta da la vuelta y vuelve a Reuniones.
 - **El anfitrión sigue informando.** La impresión de las filas, las escrituras en SQLite, la semana ISO y el resplandor son CMake ordinario
   después del bucle (`string(TIMESTAMP)` conoce `%V` pero no `%G`, así que el año ISO se corrige a mano a partir del mes y
   la semana). La salida no puede ocurrir dentro de una condición. Esta es la concesión del "anfitrión diminuto que informa un resultado".

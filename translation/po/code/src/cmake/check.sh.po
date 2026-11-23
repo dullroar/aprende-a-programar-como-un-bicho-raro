@@ -53,3 +53,35 @@ msgstr "#     así que algún total debe superar el máximo legal de 59."
 msgctxt "L88"
 msgid "# 5. The demo_only CHECK constraint is real."
 msgstr "# 5. La restricción CHECK de demo_only es real."
+
+msgctxt "C37"
+msgid "    rows=$(grep -cE '^(Meetings|Coding|Debugging|Learning)\t' <<<\"$out\" || true)"
+msgstr "    rows=$(grep -cE '^(Reuniones|Programación|Depuración|Aprendizaje)\t' <<<\"$out\" || true)"
+
+msgctxt "C40"
+msgid "    awk -F'\\t' '/^(Meetings|Coding|Debugging|Learning)\\t/ && ($2 < 10 || $2 > 19) { bad = 1 } END { exit bad }' <<<\"$out\" || { echo \"FAIL run $i: hours out of 10-19\"; exit 1; }"
+msgstr "    awk -F'\\t' '/^(Reuniones|Programación|Depuración|Aprendizaje)\\t/ && ($2 < 10 || $2 > 19) { bad = 1 } END { exit bad }' <<<\"$out\" || { echo \"FAIL run $i: hours out of 10-19\"; exit 1; }"
+
+msgctxt "C41"
+msgid "    cats=$(awk -F'\\t' '/^(Meetings|Coding|Debugging|Learning)\\t/ { printf \"%s \", $1 }' <<<\"$out\")"
+msgstr "    cats=$(awk -F'\\t' '/^(Reuniones|Programación|Depuración|Aprendizaje)\\t/ { printf \"%s \", $1 }' <<<\"$out\")"
+
+msgctxt "C42"
+msgid "    [[ \"Meetings Coding Debugging Learning \" == \"$cats\"* ]] || { echo \"FAIL run $i: categories out of order: $cats\"; exit 1; }"
+msgstr "    [[ \"Reuniones Programación Depuración Aprendizaje \" == \"$cats\"* ]] || { echo \"FAIL run $i: categories out of order: $cats\"; exit 1; }"
+
+msgctxt "C43"
+msgid "    awk -F'\\t' '/^(Meetings|Coding|Debugging|Learning)\\t/ { s += $2; if ($3 != s || $5 != \"DEMO ONLY\") bad = 1 } END { exit bad }' <<<\"$out\" || { echo \"FAIL run $i: running total or DEMO ONLY column wrong\"; exit 1; }"
+msgstr "    awk -F'\\t' '/^(Reuniones|Programación|Depuración|Aprendizaje)\\t/ { s += $2; if ($3 != s || $5 != \"DEMO ONLY\") bad = 1 } END { exit bad }' <<<\"$out\" || { echo \"FAIL run $i: running total or DEMO ONLY column wrong\"; exit 1; }"
+
+msgctxt "C44"
+msgid "    awk -F'\\t' -v n=\"$rows\" '/^(Meetings|Coding|Debugging|Learning)\\t/ { k++; if (k < n && $3 > 40) bad = 1; if (k == n && $3 <= 40) bad = 1 } END { exit bad }' <<<\"$out\" \\"
+msgstr "    awk -F'\\t' -v n=\"$rows\" '/^(Reuniones|Programación|Depuración|Aprendizaje)\\t/ { k++; if (k < n && $3 > 40) bad = 1; if (k == n && $3 <= 40) bad = 1 } END { exit bad }' <<<\"$out\" \\"
+
+msgctxt "C51"
+msgid "    awk -F'\\t' -v want=\"$want\" '/^(Meetings|Coding|Debugging|Learning)\\t/ && $4 != want { bad = 1 } END { exit bad }' <<<\"$out\" || { echo \"FAIL run $i: ISO week differs from SQLite's $want\"; exit 1; }"
+msgstr "    awk -F'\\t' -v want=\"$want\" '/^(Reuniones|Programación|Depuración|Aprendizaje)\\t/ && $4 != want { bad = 1 } END { exit bad }' <<<\"$out\" || { echo \"FAIL run $i: ISO week differs from SQLite's $want\"; exit 1; }"
+
+msgctxt "C63"
+msgid "    got=$(SOURCE_DATE_EPOCH=$t TZ=UTC run 2>/dev/null | awk -F'\\t' '/^(Meetings|Coding|Debugging|Learning)\\t/ { print $4; exit }' || true)"
+msgstr "    got=$(SOURCE_DATE_EPOCH=$t TZ=UTC run 2>/dev/null | awk -F'\\t' '/^(Reuniones|Programación|Depuración|Aprendizaje)\\t/ { print $4; exit }' || true)"

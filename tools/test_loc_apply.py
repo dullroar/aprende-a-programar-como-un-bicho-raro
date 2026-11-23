@@ -239,6 +239,24 @@ class Negative(Base):
         self.put("f.sh", "a=1\n")
         self.assertIn("needs a card-category", self.refused("f.sh", po=[C(1, "a=1", "a=1")]))
 
+    def test_category_line_with_trailing_comment_ok(self):
+        old = "c=(Meetings Coding Debugging Learning)  # wraps to Meetings"
+        new = "c=(Reuniones Programación Depuración Aprendizaje)  # da la vuelta a Reuniones"
+        self.put("f.sh", old + "\n")
+        _, out = self.run_apply("f.sh", po=[C(1, old, new)])
+        self.assertEqual(out, new + "\n")
+
+    def test_category_trailing_comment_cannot_hide_code(self):
+        old = "c=(Meetings)  # wraps"
+        self.put("f.sh", old + "\n")
+        self.assertIn("only the category words", self.refused(
+            "f.sh", po=[C(1, old, "c=(Reuniones evil)  # da la vuelta")]))
+
+    def test_category_cannot_drop_trailing_comment(self):
+        old = "c=(Meetings)  # wraps"
+        self.put("f.sh", old + "\n")
+        self.assertIn("trailing comment", self.refused("f.sh", po=[C(1, old, "c=(Reuniones)")]))
+
     def test_bad_msgctxt(self):
         with self.assertRaises(la.Refused):
             la.parse_po('msgctxt "line 3"\nmsgid "a"\nmsgstr "b"\n')

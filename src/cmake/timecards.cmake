@@ -56,7 +56,7 @@ endwhile()
 # ---- reporte: las tarjetas están en el registro, en unario; las longitudes son horas ------------------------------
 string(REGEX MATCHALL "x+" cards "${CMAKE_MATCH_4}")
 list(LENGTH cards n)
-set(categories Meetings Coding Debugging Learning Meetings)   # una quinta tarjeta (cuatro 10 = exactamente 40) da la vuelta a Meetings
+set(categories Reuniones Programación Depuración Aprendizaje Reuniones)   # una quinta tarjeta (cuatro 10 = exactamente 40) da la vuelta a Reuniones
 list(SUBLIST categories 0 ${n} categories)                  # ZIP_LISTS llega hasta la lista más larga
 set(acc "")
 set(rows "")

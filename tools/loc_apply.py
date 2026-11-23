@@ -192,7 +192,16 @@ def _category_norm(line: str) -> str:
     return PIC_WIDTH.sub(r"\1#\2", cat.WORD_RE.sub("<CAT>", line))
 
 
-def _category_edit(text: str, rel: str, starts: list[int], e: dict):
+def _split_comment(line: str, lang: str):
+    """(code part, trailing comment or None) of one line, cut at the first comment span."""
+    spec = ci.SPECS.get(lang, ci.SPECS["data"])
+    for s in ci.scan(line, spec):
+        if s[0] == "comment":
+            return line[:s[1]], line[s[1]:s[2]]
+    return line, None
+
+
+def _category_edit(text: str, rel: str, starts: list[int], e: dict, lang: str = "data"):
     """Whole-line edit for decision 11 (C<line> entries): the only differences allowed between the
     English line and the Spanish line are the four category words, mapped one to one, and the
     numeric width inside a PIC X(n) clause. Returns an edit tuple, or None when already applied."""
@@ -211,6 +220,13 @@ def _category_edit(text: str, rel: str, starts: list[int], e: dict):
     if cur != e["msgid"]:
         raise Refused("%s line %d: msgid does not match the file line %r" % (rel, ln, cur[:60]))
     old, new = e["msgid"], e["msgstr"]
+    oc, nc = _split_comment(old, lang)[1], _split_comment(new, lang)[1]
+    if oc is not None or nc is not None:
+        # a trailing comment may be translated in the same entry (it must still be one comment)
+        if oc is None or nc is None:
+            raise Refused("%s line %d: a C entry may not add or drop a trailing comment" % (rel, ln))
+        check_standalone("comment", nc, ci.SPECS.get(lang, ci.SPECS["data"]))
+        old, new = old[:len(old) - len(oc)], new[:len(new) - len(nc)]
     if _category_norm(old) != _category_norm(new):
         raise Refused("%s line %d: a C entry may change only the category words and PIC X(n) widths" % (rel, ln))
     olds = [m.group(1) for m in cat.WORD_RE.finditer(old)]
@@ -222,7 +238,7 @@ def _category_edit(text: str, rel: str, starts: list[int], e: dict):
         raise Refused("%s line %d: category words must map one to one to the approved Spanish forms" % (rel, ln))
     if "\n" in new or "\r" in new:
         raise Refused("%s line %d: a C entry is one line" % (rel, ln))
-    return (a, b, new, "cat")
+    return (a, b, e["msgstr"], "cat")
 
 
 def plan_edits(text: str, rel: str, lang: str, po: list[dict], idrecs: list[dict], reg: dict) -> list[tuple]:
@@ -232,7 +248,7 @@ def plan_edits(text: str, rel: str, lang: str, po: list[dict], idrecs: list[dict
     edits: list[tuple[int, int, str, str]] = []
     for e in po:
         if e["kind"] == "C":
-            edit = _category_edit(text, rel, starts, e)
+            edit = _category_edit(text, rel, starts, e, lang)
             if edit:
                 edits.append(edit)
             continue
