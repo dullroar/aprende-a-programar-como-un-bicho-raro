@@ -431,3 +431,4 @@
 479 S6-002 done token_audit over 212 files: 2 findings (eval() in a quoted MDN warning, process.nextTick() in a link title), both identical to English formatting so not auto-fixed (I2); logged as SI-027
 480 S6-003 done all 79 diagrams render (mermaid-cli 12.2.0); 191 Mermaid fences match English skeletons (node IDs untouched); only order differs in lessons/lenguajes/regex.md (generator sorts by localized entry name); comments-only localization, no label changes
 481 S6-004 done S6 gate PASS: verify --release OK (86 checks), part2_inv 0 findings; translation/part2/s6-gate.md
+482 S7-001 done native-voice sample read (root README, introduccion, tcl comments): 7 findings (36x "desafio" in code comments vs glossary "reto", "Program Flow" vs "Flujo del programa", link title "de la forma rara", regionalism "jala"); translation/reviews/part2-native-voice.md; fixes go to S7-002
