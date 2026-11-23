@@ -1,0 +1,139 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+
+msgctxt "L1"
+msgid "-- DEMO ONLY. Fictional timecards, written to a scratch SQLite file under"
+msgstr "-- DEMO ONLY. Tarjetas de horas ficticias, escritas en un archivo SQLite desechable bajo"
+
+msgctxt "L2"
+msgid "-- XDG_DATA_HOME. Nothing here touches a real time-reporting system."
+msgstr "-- XDG_DATA_HOME. Nada de esto toca un sistema real de registro de horas."
+
+msgctxt "L6"
+msgid "-- THE STUNT: an infinite list of cards whose *elements have side effects*."
+msgstr "-- EL TRUCO: una lista infinita de tarjetas cuyos *elementos tienen efectos secundarios*."
+
+msgctxt "L8"
+msgid "-- Forcing the n-th cell of the list prints card n and sends its INSERT to"
+msgstr "-- Forzar la celda n de la lista imprime la tarjeta n y envía su INSERT a"
+
+msgctxt "L9"
+msgid "-- sqlite3. Nothing else in the program writes a row. So the stop rule is not"
+msgstr "-- sqlite3. Nada más en el programa escribe una fila. Así que la regla de parada no es"
+
+msgctxt "L10"
+msgid "-- \"a loop that decides when to quit\": it is a consumer (@span@) that simply"
+msgstr "-- \"un bucle que decide cuándo salir\": es un consumidor (@span@) que simplemente"
+
+msgctxt "L11"
+msgid "-- stops asking for the next cell, and the INSERTs stop with it."
+msgstr "-- deja de pedir la celda siguiente, y los INSERT se detienen con él."
+
+msgctxt "L13"
+msgid "-- There is no loop, no accumulator, no recursion and no counter. Two knots are"
+msgstr "-- No hay bucle, ni acumulador, ni recursión, ni contador. Se atan dos nudos"
+
+msgctxt "L14"
+msgid "-- tied with 'fix'/'fixIO':"
+msgstr "-- con 'fix'/'fixIO':"
+
+msgctxt "L16"
+msgid "--   * the random stream is a list defined in terms of itself;"
+msgstr "--   * el flujo aleatorio es una lista definida en términos de sí misma;"
+
+msgctxt "L17"
+msgid "--   * each card's running total is read off the previous card, which is"
+msgstr "--   * el total acumulado de cada tarjeta se lee de la tarjeta anterior, que es"
+
+msgctxt "L18"
+msgid "--     an element of the very list being built."
+msgstr "--     un elemento de la misma lista que se está construyendo."
+
+msgctxt "L20"
+msgid "-- 'unsafeInterleaveIO' is what makes an IO action wait until its cell is"
+msgstr "-- 'unsafeInterleaveIO' hace que una acción de IO espere hasta que se pida su celda."
+
+msgctxt "L21"
+msgid "-- demanded. It is named \"unsafe\" because the order of effects is then decided"
+msgstr "-- Se llama \"unsafe\" (insegura) porque entonces el orden de los efectos lo decide"
+
+msgctxt "L22"
+msgid "-- by the evaluator, not by the program text. Here that is the point."
+msgstr "-- el evaluador, no el texto del programa. Aquí eso es justo lo que se busca."
+
+msgctxt "L49"
+msgid "-- | Hours in 10..19, as a list defined in terms of itself: each element is"
+msgstr "-- | Horas de 10 a 19, como una lista definida en términos de sí misma: cada elemento es"
+
+msgctxt "L50"
+msgid "-- the generator step applied to the one before it. (A 64-bit LCG with Knuth's"
+msgstr "-- el paso del generador aplicado al anterior. (Un LCG de 64 bits con las"
+
+msgctxt "L51"
+msgid "-- constants; 'Word64' wraps on overflow, which is the \"mod 2^64\".)"
+msgstr "-- constantes de Knuth; 'Word64' da la vuelta al desbordarse, que es el \"mod 2^64\".)"
+
+msgctxt "L58"
+msgid "-- | Turn a list of IO actions into an IO action of a list, but *lazily*: the"
+msgstr "-- | Convierte una lista de acciones de IO en una acción de IO de una lista, pero *de forma perezosa*: el"
+
+msgctxt "L59"
+msgid "-- effect for each element runs only when that cell of the result is forced."
+msgstr "-- efecto de cada elemento se ejecuta solo cuando se fuerza esa celda del resultado."
+
+msgctxt "L60"
+msgid "-- (Ordinary 'sequence' would run every action, and on an infinite list never"
+msgstr "-- ('sequence' normal ejecutaría todas las acciones y, con una lista infinita, nunca"
+
+msgctxt "L61"
+msgid "-- return.)"
+msgstr "-- terminaría.)"
+
+msgctxt "L68"
+msgid "-- | The endless sheet of cards. @onBirth@ is what happens to a card the moment it"
+msgstr "-- | La hoja interminable de tarjetas. @onBirth@ es lo que le pasa a una tarjeta en el momento en que"
+
+msgctxt "L69"
+msgid "-- is born; it is the only place any output occurs."
+msgstr "-- nace; es el único lugar donde hay salida."
+
+msgctxt "L71"
+msgid "-- The knot: @cards@ is the result, and @before@ is \"0, then the total of each"
+msgstr "-- El nudo: @cards@ es el resultado, y @before@ es \"0, y luego el total de cada"
+
+msgctxt "L72"
+msgid "-- card\" -- so card n's total is read from card n-1, an element of the list"
+msgstr "-- tarjeta\" -- así que el total de la tarjeta n se lee de la tarjeta n-1, un elemento de la lista"
+
+msgctxt "L73"
+msgid "-- under construction. 'fixIO' hands us that list before it exists."
+msgstr "-- en construcción. 'fixIO' nos entrega esa lista antes de que exista."
+
+msgctxt "L80"
+msgid "-- | The stop rule. It is nothing but how much of the list we choose to read:"
+msgstr "-- | La regla de parada. No es más que cuánto de la lista elegimos leer:"
+
+msgctxt "L81"
+msgid "-- everything up to the first total over 40, plus that card."
+msgstr "-- todo hasta el primer total de más de 40, más esa tarjeta."
+
+msgctxt "L119"
+msgid "-- | What happens to a card when it is born: show it, and save it."
+msgstr "-- | Lo que le pasa a una tarjeta al nacer: mostrarla y guardarla."
+
+msgctxt "L139"
+msgid "-- Nothing has been written yet except the schema: the list is just a promise."
+msgstr "-- Todavía no se ha escrito nada salvo el esquema: la lista es solo una promesa."
+
+msgctxt "L141"
+msgid "-- Counting the kept cards is what demands them, and so what runs the effects."
+msgstr "-- Contar las tarjetas conservadas es lo que las pide y, por tanto, lo que ejecuta los efectos."
+
+msgctxt "L142"
+msgid "-- (Try a lazy `let entries = length cards` here: the count is not demanded until"
+msgstr "-- (Prueba aquí un `let entries = length cards` perezoso: el conteo no se pide hasta"
+
+msgctxt "L143"
+msgid "-- the summary is printed, after COMMIT, and the pipe is already closed.)"
+msgstr "-- que se imprime el resumen, después de COMMIT, y la tubería ya está cerrada.)"

@@ -1,6 +1,6 @@
-# Container image for the weirder Haskell entry. Run it with: sandbox/container/run-image.sh src/haskell-weird
-# Build stage: GHC compiles the script to one binary. Runtime stage: that binary on a base with
-# sqlite3 and two shared libraries, with no GHC in it.
+# Imagen de contenedor para la entrada más rara de Haskell. Ejecútala con: sandbox/container/run-image.sh src/haskell-weird
+# Etapa de compilación: GHC compila el script en un solo binario. Etapa de ejecución: ese binario sobre una base con
+# sqlite3 y dos bibliotecas compartidas, sin GHC.
 FROM code-challenge-sandbox:local AS build
 USER root
 WORKDIR /build

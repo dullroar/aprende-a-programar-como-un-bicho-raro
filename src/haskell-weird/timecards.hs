@@ -1,25 +1,25 @@
--- DEMO ONLY. Fictional timecards, written to a scratch SQLite file under
--- XDG_DATA_HOME. Nothing here touches a real time-reporting system.
+-- DEMO ONLY. Tarjetas de horas ficticias, escritas en un archivo SQLite desechable bajo
+-- XDG_DATA_HOME. Nada de esto toca un sistema real de registro de horas.
 --
 -- Run: runghc timecards.hs
 --
--- THE STUNT: an infinite list of cards whose *elements have side effects*.
+-- EL TRUCO: una lista infinita de tarjetas cuyos *elementos tienen efectos secundarios*.
 --
--- Forcing the n-th cell of the list prints card n and sends its INSERT to
--- sqlite3. Nothing else in the program writes a row. So the stop rule is not
--- "a loop that decides when to quit": it is a consumer (@span@) that simply
--- stops asking for the next cell, and the INSERTs stop with it.
+-- Forzar la celda n de la lista imprime la tarjeta n y envía su INSERT a
+-- sqlite3. Nada más en el programa escribe una fila. Así que la regla de parada no es
+-- "un bucle que decide cuándo salir": es un consumidor (@span@) que simplemente
+-- deja de pedir la celda siguiente, y los INSERT se detienen con él.
 --
--- There is no loop, no accumulator, no recursion and no counter. Two knots are
--- tied with 'fix'/'fixIO':
+-- No hay bucle, ni acumulador, ni recursión, ni contador. Se atan dos nudos
+-- con 'fix'/'fixIO':
 --
---   * the random stream is a list defined in terms of itself;
---   * each card's running total is read off the previous card, which is
---     an element of the very list being built.
+--   * el flujo aleatorio es una lista definida en términos de sí misma;
+--   * el total acumulado de cada tarjeta se lee de la tarjeta anterior, que es
+--     un elemento de la misma lista que se está construyendo.
 --
--- 'unsafeInterleaveIO' is what makes an IO action wait until its cell is
--- demanded. It is named "unsafe" because the order of effects is then decided
--- by the evaluator, not by the program text. Here that is the point.
+-- 'unsafeInterleaveIO' hace que una acción de IO espere hasta que se pida su celda.
+-- Se llama "unsafe" (insegura) porque entonces el orden de los efectos lo decide
+-- el evaluador, no el texto del programa. Aquí eso es justo lo que se busca.
 module Main (main) where
 
 import Control.Exception (evaluate)
@@ -46,39 +46,39 @@ data Card = Card
     runningTotal :: Int
   }
 
--- | Hours in 10..19, as a list defined in terms of itself: each element is
--- the generator step applied to the one before it. (A 64-bit LCG with Knuth's
--- constants; 'Word64' wraps on overflow, which is the "mod 2^64".)
+-- | Horas de 10 a 19, como una lista definida en términos de sí misma: cada elemento es
+-- el paso del generador aplicado al anterior. (Un LCG de 64 bits con las
+-- constantes de Knuth; 'Word64' da la vuelta al desbordarse, que es el "mod 2^64".)
 rolls :: Word64 -> [Int]
 rolls seed = map toHours (tail (fix (\xs -> seed : map next xs)))
   where
     next s = s * 6364136223846793005 + 1442695040888963407
     toHours s = 10 + fromIntegral ((s `shiftR` 33) `mod` 10)
 
--- | Turn a list of IO actions into an IO action of a list, but *lazily*: the
--- effect for each element runs only when that cell of the result is forced.
--- (Ordinary 'sequence' would run every action, and on an infinite list never
--- return.)
+-- | Convierte una lista de acciones de IO en una acción de IO de una lista, pero *de forma perezosa*: el
+-- efecto de cada elemento se ejecuta solo cuando se fuerza esa celda del resultado.
+-- ('sequence' normal ejecutaría todas las acciones y, con una lista infinita, nunca
+-- terminaría.)
 lazily :: [IO a] -> IO [a]
 lazily = fix $ \self actions ->
   unsafeInterleaveIO $ case actions of
     [] -> pure []
     act : rest -> (:) <$> act <*> self rest
 
--- | The endless sheet of cards. @onBirth@ is what happens to a card the moment it
--- is born; it is the only place any output occurs.
+-- | La hoja interminable de tarjetas. @onBirth@ es lo que le pasa a una tarjeta en el momento en que
+-- nace; es el único lugar donde hay salida.
 --
--- The knot: @cards@ is the result, and @before@ is "0, then the total of each
--- card" -- so card n's total is read from card n-1, an element of the list
--- under construction. 'fixIO' hands us that list before it exists.
+-- El nudo: @cards@ es el resultado, y @before@ es "0, y luego el total de cada
+-- tarjeta" -- así que el total de la tarjeta n se lee de la tarjeta n-1, un elemento de la lista
+-- en construcción. 'fixIO' nos entrega esa lista antes de que exista.
 sheet :: (Card -> IO ()) -> Word64 -> IO [Card]
 sheet onBirth seed = fixIO $ \cards ->
   let before = 0 : map runningTotal cards
       born (c, h, t) = let card = Card c h (t + h) in card <$ onBirth card
    in lazily (map born (zip3 (cycle [minBound ..]) (rolls seed) before))
 
--- | The stop rule. It is nothing but how much of the list we choose to read:
--- everything up to the first total over 40, plus that card.
+-- | La regla de parada. No es más que cuánto de la lista elegimos leer:
+-- todo hasta el primer total de más de 40, más esa tarjeta.
 untilOver40 :: [Card] -> [Card]
 untilOver40 cards = under ++ take 1 over
   where
@@ -116,7 +116,7 @@ row week card =
     "\t"
     [show (category card), show (hours card), show (runningTotal card), week, "DEMO ONLY"]
 
--- | What happens to a card when it is born: show it, and save it.
+-- | Lo que le pasa a una tarjeta al nacer: mostrarla y guardarla.
 emit :: Handle -> String -> String -> Card -> IO ()
 emit sqlite run week card = do
   putStrLn (row week card)
@@ -136,11 +136,11 @@ main = do
   putStrLn ("# DEMO ONLY run " ++ run)
   hPutStrLn sqlite "BEGIN;"
   hPutStrLn sqlite schema
-  -- Nothing has been written yet except the schema: the list is just a promise.
+  -- Todavía no se ha escrito nada salvo el esquema: la lista es solo una promesa.
   cards <- untilOver40 <$> sheet (emit sqlite run week) (micros * 7919 + fromIntegral pid)
-  -- Counting the kept cards is what demands them, and so what runs the effects.
-  -- (Try a lazy `let entries = length cards` here: the count is not demanded until
-  -- the summary is printed, after COMMIT, and the pipe is already closed.)
+  -- Contar las tarjetas conservadas es lo que las pide y, por tanto, lo que ejecuta los efectos.
+  -- (Prueba aquí un `let entries = length cards` perezoso: el conteo no se pide hasta
+  -- que se imprime el resumen, después de COMMIT, y la tubería ya está cerrada.)
   entries <- evaluate (length cards)
   hPutStrLn sqlite "COMMIT;"
   hClose sqlite

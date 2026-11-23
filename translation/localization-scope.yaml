@@ -51,7 +51,7 @@ families:
   "src/forth": {status: localizing, files: 3}
   "src/forth-weird": {status: localizing, files: 3}
   "src/haskell": {status: localizing, files: 3}
-  "src/haskell-weird": {status: frozen, files: 3}
+  "src/haskell-weird": {status: localizing, files: 3}
   "src/javascript": {status: localizing, files: 4}
   "src/javascript-events": {status: localizing, files: 5}
   "src/javascript-weird": {status: frozen, files: 6}

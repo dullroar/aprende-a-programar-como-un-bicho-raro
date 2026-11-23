@@ -411,3 +411,4 @@
 459 S5-fam-rustchallenge1 done family left English, NOT TESTED (EXC-573): cargo image build needs network, oracle cannot run; no protected file changed.
 460 S5-audit-4 done audit of 8 S5 families: lock ok, oracle PASS m4/PythonChallenge1/apl/apl-weird/cobol-weird/forth-weird, 2 left English (EXC-571/573); no violations; translation/reviews/S5-audit-4.md
 461 S5-fam-awk-weird done src/awk-weird localizing: 51 comment lines (timecards.awk, check.sh, Dockerfile) via loc_apply, oracle PASS; categories/strings kept English EXC-574.
+462 S5-fam-haskell-weird done src/haskell-weird localizing: 47 comment lines (timecards.hs, check.sh, Dockerfile) via loc_apply, oracle PASS; categories/strings kept English EXC-575.
