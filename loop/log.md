@@ -348,4 +348,5 @@
 395 S0-002 done tools/code_inventory.py + 19 tests (4 negative); code-inventory.jsonl covers all 230 locked paths once (python ast, lexical scanner elsewhere); verify --fast OK; nothing pushed.
 396 S0-003 partial runtime-matrix.md written from static reading; docker runs and sandbox selftest refused in dontAsk mode, so versions unread and self-test NOT RUN; needs a Docker-capable session.
 397 S0-003 done accept met by runtime-matrix.md (PASS-capable or NOT TESTED with reasons); docker still denied, so self-test and tool versions stay NOT TESTED; nothing pushed.
+399 S1-001 done policy.md (plan 4.5.1 to 4.5.3 as rules, stop and bubble-up) and localization-scope.yaml (53 families, all frozen, counts match inventory); verify --fast OK.
 398 S0-004 done S0 gate written (s0-gate.md): 230/230 files classified once, matrix complete, language list measured (35 hosts); second-pass plan file absent so no cell-by-cell compare; self-test NOT RUN.

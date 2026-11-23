@@ -1,0 +1,70 @@
+# translation/localization-scope.yaml (Part II, plan 4.5.3 rule 1)
+#
+# One row per entry family of the 230 protected files (family names are the
+# `family` field of translation/part2/code-inventory.jsonl, written in this
+# repo's layout). Status values:
+#   frozen     - byte-identical to the pinned English source (default for all)
+#   localizing - may change, only through tools/loc_apply.py, with a map entry
+#                and oracle proof (tools/oracle.py), per translation/part2/policy.md
+# Every family is `frozen` at S1. A family changes to `localizing` only in its own
+# Phase S5 task, in the same commit that localizes it. `never: true` marks
+# families that policy.md forbids localizing at all (status must stay frozen).
+# S2-003 teaches tools/lock_code.py to read this file; until then no S task may
+# change a protected file.
+
+version: 1
+default_status: frozen
+families:
+  "(root)": {status: frozen, files: 6, never: true}
+  ".github": {status: frozen, files: 1, never: true}
+  "gradle": {status: frozen, files: 2, never: true}
+  "lessons": {status: frozen, files: 1, never: true}
+  "lessons/book": {status: frozen, files: 1, never: true}
+  "lessons/book/__pycache__": {status: frozen, files: 1, never: true}
+  "lessons/book/diagrams": {status: frozen, files: 4}
+  "lessons/cs-source": {status: frozen, files: 1, never: true}
+  "lessons/solutions": {status: frozen, files: 2}
+  "lessons/solutions/awk-port": {status: frozen, files: 3}
+  "lessons/solutions/b7-linq": {status: frozen, files: 2}
+  "lessons/tools": {status: frozen, files: 4}
+  "sandbox": {status: frozen, files: 21, never: true}
+  "src/GoChallenge1": {status: frozen, files: 6}
+  "src/JavaChallenge1": {status: frozen, files: 12}
+  "src/KotlinChallenge1": {status: frozen, files: 12}
+  "src/LinqChallenge1": {status: frozen, files: 5}
+  "src/LinqChallenge2": {status: frozen, files: 5}
+  "src/ModernChallenge1": {status: frozen, files: 4}
+  "src/PythonChallenge1": {status: frozen, files: 3}
+  "src/RustChallenge1": {status: frozen, files: 6}
+  "src/apl": {status: frozen, files: 3}
+  "src/apl-weird": {status: frozen, files: 3}
+  "src/awk": {status: frozen, files: 3}
+  "src/awk-weird": {status: frozen, files: 3}
+  "src/cmake": {status: frozen, files: 3}
+  "src/cobol": {status: frozen, files: 4}
+  "src/cobol-weird": {status: frozen, files: 4}
+  "src/ed-weird": {status: frozen, files: 5}
+  "src/ex-weird": {status: frozen, files: 4}
+  "src/find-gnu": {status: frozen, files: 4}
+  "src/find-posix": {status: frozen, files: 4}
+  "src/forth": {status: frozen, files: 3}
+  "src/forth-weird": {status: frozen, files: 3}
+  "src/haskell": {status: frozen, files: 3}
+  "src/haskell-weird": {status: frozen, files: 3}
+  "src/javascript": {status: frozen, files: 4}
+  "src/javascript-events": {status: frozen, files: 5}
+  "src/javascript-weird": {status: frozen, files: 6}
+  "src/lisp": {status: frozen, files: 3}
+  "src/lisp-weird": {status: frozen, files: 3}
+  "src/m4": {status: frozen, files: 3}
+  "src/make-gnu": {status: frozen, files: 3}
+  "src/regex-dotnet": {status: frozen, files: 5}
+  "src/regex-pcre2": {status: frozen, files: 5}
+  "src/regex-pcre2grep": {status: frozen, files: 3}
+  "src/regex-perl": {status: frozen, files: 3}
+  "src/regex-sed": {status: frozen, files: 5}
+  "src/tar-gnu": {status: frozen, files: 7}
+  "src/tar-gnu-weird": {status: frozen, files: 8}
+  "src/tcl": {status: frozen, files: 3}
+  "src/tcl-weird": {status: frozen, files: 3}
+  "src/xaml": {status: frozen, files: 7}
