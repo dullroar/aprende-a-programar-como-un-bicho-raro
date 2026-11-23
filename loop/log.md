@@ -444,4 +444,5 @@
 492 P7-001 done packets built (69, largest 23793 tokens); fit_tier now shrinks chunks by render overhead (2 new tests); bundle and MANIFEST OK, 0 leaks; packets and key kept local
 493 P7-002 done canaries 540 of 8998 units (6.0%); key local, no key or canary markers in bundle or packets; ADVERSARIAL-REVIEW-PROMPT.md copied to review/ (untracked)
 494 P7-003 done loop/END-REVIEW.md and loop/HANDOFF.md written, loop/DONE created; queue complete, nothing published
+496 F2-001 done sandbox/selftest.sh ran and passed ("selftest: all good"); runtime-matrix.md records PASS 2026-11-23
 495 F2-001 partial es.yaml catalog comment corrected (¿Vivo:); sandbox/selftest.sh denied in dontAsk mode, so the self-test is still owed to a Docker-capable session

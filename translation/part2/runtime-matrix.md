@@ -81,4 +81,4 @@ A fixed seed is not a cross-platform guarantee (plan 4.5.4); any trace under a s
 - Linux entries: 32 rows; 28 PASS-capable (unproven), 4 NOT TESTED (cobol, haskell, regex-pcre2, regex-perl).
 - Windows/GUI entries: 9, all NOT TESTED.
 - Solutions: 4; 1 PASS-capable (unproven), 3 NOT TESTED.
-- Sandbox self-test: **NOT RUN** (see top). Retried in iteration 495 (2026-11-23): `sandbox/selftest.sh` was denied again under `claude -p` dontAsk mode. Still owed to a Docker-capable session.
+- Sandbox self-test: **PASS** on 2026-11-23 (iteration 496). `bash sandbox/selftest.sh` ran and ended with `selftest: all good`: the hostile entry blocked every network, filesystem, privilege, secrets and resource probe, and the scope-check negative cases were rejected. Iterations 396 and 495 had it denied under dontAsk mode; the top-of-file "NOT RUN" note is historical. Tool versions are still unread, and no entry has been run through the oracle by this task, so the labels above stay "unproven".
