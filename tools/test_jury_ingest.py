@@ -284,6 +284,24 @@ class QueueTests(unittest.TestCase):
                         "severity": "major", "category": "meaning", "problem": "p%d" % n, "status": st})
         return out
 
+    def test_a_code_packet_finding_is_kept_and_a_part2_category_is_valid(self):
+        chk = "# Check.\nif [ \"$t\" -gt 40 ]; then echo stop; fi\n"
+        en = chk + "# pad\n" * 70 + chk
+        es = en.replace("# Check.", "# Revisa.")
+        units = tp.make_units(40) + jp.code_units_for_file("src/x/check.sh", en, es, None, None)
+        self.assertEqual(len([x for x in units if x["kind"] == "code"]), 2)
+        with tempfile.TemporaryDirectory() as tmp:
+            jp.build(units, tp.CAT, tp.GL, tmp, rate=0.05, seed=9, target=800, minimum=500, maximum=1200)
+            index, canaries = ji.load_units(tmp), ji.load_canaries(tmp)
+            u = next(x for x in index if x["segment"].startswith("c-") and not x["canary"])
+            f = finding(u, category="build-ci", english_excerpt="-gt 40", spanish_excerpt="-gt 40")
+            r = ji.ingest_reply(reply([f]), index, canaries, ENUMS, "r.md")
+            self.assertEqual(r["discarded"], [])
+            self.assertEqual(len(r["kept"]), 1)
+            bad = finding(u, category="build-ci", spanish_excerpt="# Check.")   # the original, never shown
+            r2 = ji.ingest_reply(reply([bad]), index, canaries, ENUMS, "r.md")
+            self.assertEqual(len(r2["discarded"]), 1)
+
     def test_only_accepted_findings_become_tasks_and_done_is_removed(self):
         with tempfile.TemporaryDirectory() as tmp:
             findings = os.path.join(tmp, "findings-2026-02-02.jsonl")

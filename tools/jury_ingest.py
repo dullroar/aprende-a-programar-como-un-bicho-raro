@@ -36,6 +36,7 @@ sys.path.insert(0, HERE)
 SCHEMA = os.path.join(ROOT, "translation", "schemas", "finding.schema.json")
 SEVERITY_ORDER = {"critical": 0, "major": 1, "minor": 2, "suggestion": 3}
 EXCERPT_MAX = 300
+PART2_CATEGORIES = ("code-semantics", "protected-token", "identifier-stale", "build-ci", "link-semantic")
 RELIABLE_RECALL, PARTIAL_RECALL = 0.75, 0.40      # juror weight 1.0 / 0.5 / 0.25 by canary recall
 JUROR_REQUIRED = ("severity", "category", "problem", "evidence", "proposed_fix", "confidence", "type")
 HEADER_REQUIRED = ("juror_model", "lens")
@@ -333,6 +334,15 @@ def report_md(results, merged, date):
         lines.append("| %s | %s | %s | %d | %d | %d | %d | %s | %d/%d | %d/%d | %.2f %s |" % (
             r["name"], h.get("juror_model", ""), h.get("lens", ""), len(r["kept"]), len(r["discarded"]),
             s["seeded"], s["caught"], pct(s["recall"]), crit[0], crit[1], maj[0], maj[1], s["weight"], s["label"]))
+    p2 = [m for m in merged if m["category"] in PART2_CATEGORIES or m["unit"]["segment"].startswith("c-")]
+    lines += ["", "## Part II findings (code, %d)" % len(p2), ""]
+    if p2:
+        counts = {}
+        for m in p2:
+            counts[m["category"]] = counts.get(m["category"], 0) + 1
+        lines += ["- %s: %d" % (k, counts[k]) for k in sorted(counts)]
+    else:
+        lines.append("None.")
     lines += ["", "## Findings for the adjudicator (%d)" % len(merged), ""]
     for n, m in enumerate(merged, 1):
         w = sum(r["weight"] for r in m["reporters"])
@@ -406,10 +416,16 @@ def enqueue_review_fixes(findings_path, queue_dir, done_path=None, stage=7):
             if ref in have:
                 continue
             n += 1
+            part2 = r.get("category") in PART2_CATEGORIES or r["segment_id"].startswith("c-")
             task = {"id": "RF-%03d" % n, "stage": stage, "kind": "review-fix",
                     "title": "Fix %s finding %s in %s: %s" % (r["severity"], r["id"], r["file"], r["problem"][:80]),
                     "deps": [], "inputs": [r["file"]], "size": "S", "finding": ref, "segment_id": r["segment_id"],
-                    "accept": "python3 tools/verify.py --fast", "status": "todo", "attempts": 0}
+                    "accept": ("python3 tools/lock_code.py --verify && python3 tools/part2_inv.py --check "
+                               "&& python3 tools/verify.py --fast") if part2 else "python3 tools/verify.py --fast",
+                    "status": "todo", "attempts": 0}
+            if part2:
+                task["notes"] = ("Part II: change a protected file only through tools/loc_apply.py with oracle proof; "
+                                 "if equivalence cannot be proved leave the family English (plan 4.5).")
             w.write(json.dumps(task, ensure_ascii=False, separators=(",", ":")) + "\n")
             new.append(task["id"])
     if new and done_path and os.path.exists(done_path):

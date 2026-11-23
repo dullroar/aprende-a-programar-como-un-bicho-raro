@@ -17,7 +17,9 @@ Outputs, under review/ (the private files must never reach a juror):
 Canaries live only in the packet copy of the Spanish. The Spanish files and the PO files are never touched.
 
 Usage:
-  python3 -I tools/jury_packet.py --build [--out review] [--rate 0.06] [--seed N] [--files a.md b.md]
+  python3 -I tools/jury_packet.py --build [--out review] [--rate 0.06] [--seed N] [--files a.md b.md] [--code]
+      --code adds P-code-NN packets: English and Spanish source side by side (60-line chunks that differ), with the
+      identifier-map slice, the registry slice and the oracle report of each file (Part II, S8-004)
   python3 -I tools/jury_packet.py --facts [--out review]       only EDITION-FACTS.md
 """
 from __future__ import annotations
@@ -45,7 +47,10 @@ try:
 except ImportError:  # pragma: no cover
     yaml = None
 
-TIERS = ("critical", "high", "normal")
+TIERS = ("critical", "high", "normal", "code")
+CODE_KIND = "code"
+CODE_CHUNK_LINES = 60
+PART2_CATEGORIES = ("code-semantics", "protected-token", "identifier-stale", "build-ci", "link-semantic")
 TARGET_TOKENS, MIN_TOKENS, MAX_TOKENS = 20000, 15000, 25000
 MIN_RATE, MAX_RATE = 0.05, 0.08
 GLOSSARY_PATH = os.path.join(ROOT, "translation", "glossary.es.yaml")
@@ -82,6 +87,104 @@ def units_for_file(rel, english_text, po, cat):
     return units, skipped
 
 
+def code_unit_id(rel, chunk):
+    return "c-%s-%04d" % (hashlib.sha256(rel.encode("utf-8")).hexdigest()[:12], chunk)
+
+
+def load_jsonl(path):
+    out = []
+    if os.path.isfile(path):
+        with open(path, encoding="utf-8") as f:
+            out = [json.loads(ln) for ln in f if ln.strip()]
+    return out
+
+
+def family_of(rel):
+    parts = rel.split("/")
+    return "/".join(parts[:2]) if len(parts) > 2 else parts[0]
+
+
+def oracle_report_for(root, rel, limit=40):
+    """The batch report of the family (translation/part2/reports/S5-fam-*.md that names it), first `limit` lines."""
+    rdir = os.path.join(root, "translation", "part2", "reports")
+    fam = family_of(rel)
+    if not os.path.isdir(rdir):
+        return ""
+    for n in sorted(os.listdir(rdir)):
+        p = os.path.join(rdir, n)
+        with open(p, encoding="utf-8") as f:
+            text = f.read()
+        if text.startswith("# ") and ("`%s`" % fam in text.split("\n", 1)[0] or fam in text.split("\n", 1)[0]):
+            return "\n".join(text.split("\n")[:limit]).strip()
+    return ""
+
+
+def registry_slice(root, rel, limit=30):
+    """Registry tokens of the language of `rel` (translation/protected-tokens/tokens.jsonl), at most `limit`."""
+    ext = os.path.splitext(rel)[1].lstrip(".").lower()
+    lang = {"py": "python", "js": "javascript", "sh": "shell", "m4": "m4", "pl": "perl", "tcl": "tcl", "hs": "haskell",
+            "awk": "awk", "sed": "sed", "ed": "ed", "ex": "ex", "cob": "cobol", "cbl": "cobol", "apl": "apl"}.get(ext)
+    if os.path.basename(rel) == "Dockerfile":
+        lang = "dockerfile"
+    if os.path.basename(rel) == "check.sh":
+        lang = "shell"
+    rows = [r for r in load_jsonl(os.path.join(root, "translation", "protected-tokens", "tokens.jsonl"))
+            if lang and str(r.get("language", "")).lower() == lang]
+    toks = []
+    for r in rows:
+        for t in r.get("tokens") or []:
+            toks.append(str(t.get("token") or t.get("text") or "") if isinstance(t, dict) else str(t))
+    return sorted({t for t in toks if t})[:limit]
+
+
+def code_units_for_file(rel, english, spanish, root=None, idmap=None, chunk_lines=CODE_CHUNK_LINES):
+    """Units of a localized code file: `chunk_lines` lines at a time, only the chunks that differ from the English.
+
+    Each unit: dict(file, id, line, kind "code", english, spanish, idmap, registry, oracle).
+    """
+    en_lines, es_lines = english.split("\n"), spanish.split("\n")
+    n = max(len(en_lines), len(es_lines))
+    rows = [r for r in (idmap or []) if r.get("path") == rel]
+    registry = registry_slice(root, rel) if root else []
+    oracle = oracle_report_for(root, rel) if root else ""
+    units = []
+    for c, a in enumerate(range(0, n, chunk_lines), 1):
+        e, s = "\n".join(en_lines[a:a + chunk_lines]), "\n".join(es_lines[a:a + chunk_lines])
+        if e == s:
+            continue
+        units.append({"file": rel, "id": code_unit_id(rel, c), "line": a + 1, "kind": CODE_KIND,
+                      "english": e, "spanish": s, "idmap": rows, "registry": registry, "oracle": oracle})
+    return units
+
+
+def localized_files(root):
+    """Paths listed in translation/localized-code.sha256 (the files Part II really changed)."""
+    out = []
+    p = os.path.join(root, "translation", "localized-code.sha256")
+    if os.path.isfile(p):
+        with open(p, encoding="utf-8") as f:
+            for ln in f:
+                if ln.strip():
+                    out.append(ln.split(None, 1)[1].strip())
+    return out
+
+
+def collect_code_units(root, english_root, rels=None, idmap=None):
+    import enpath
+    layer = enpath.load(root)
+    units = []
+    for rel in rels or localized_files(root):
+        en_p, es_p = os.path.join(english_root, rel), layer.full(rel)
+        if not (os.path.isfile(en_p) and os.path.isfile(es_p)):
+            continue
+        with open(en_p, encoding="utf-8", newline="") as f:
+            en = f.read().replace("\r\n", "\n")
+        with open(es_p, encoding="utf-8", newline="") as f:
+            es = f.read().replace("\r\n", "\n")
+        units += code_units_for_file(rel, en, es, root, idmap)
+    return units
+
+
 # ---------------------------------------------------------------------------------------------- tiers
 
 FORTY_RE = re.compile(r"\b40\b|\b41 to 59\b|\b3 to 5\b|\b10 to 19\b|strictly greater", re.I)
@@ -96,6 +199,8 @@ MODAL_RE = re.compile(r"\b(must|must not|only|never|always|at least|at most|more
 def tier_of(unit):
     """critical: the timecard rule, assurance labels, safety warnings. high: Mermaid text, logic words,
     tables and headings of the study guides and the curriculum. normal: everything else."""
+    if unit["kind"] == CODE_KIND:
+        return "code"
     en = unit["english"]
     if FORTY_RE.search(en) or ASSURANCE_RE.search(en) or SAFETY_RE.search(en):
         return "critical"
@@ -221,10 +326,101 @@ MUTATORS = (("flip_forty", m_flip_forty), ("assurance_label", m_assurance), ("ph
             ("identifier", m_identifier), ("register", m_register))
 
 
-def canary_context(cat):
+COMMENT_START = ("#", "//", "--", "*", "dnl", "\\", ";", "%", "/*", "REM ", "rem ", "'", '"', "!")
+
+
+def _code_lines(text):
+    """(start, end, line) of every line of `text` that is not a pure comment line."""
+    out, pos = [], 0
+    for ln in text.split("\n"):
+        s = ln.strip()
+        if s and not s.startswith(COMMENT_START) and not s.startswith("#!"):
+            out.append((pos, pos + len(ln), ln))
+        pos += len(ln) + 1
+    return out
+
+
+def _line_sub(u, pattern, repl, flags=0, only=None):
+    """Substitute the first match of `pattern` on a non-comment line; returns (text, fragment) or None."""
+    for a, b, ln in _code_lines(u["spanish"]):
+        if only and not only(ln):
+            continue
+        m = re.search(pattern, ln, flags)
+        if m:
+            new_ln = ln[:m.start()] + (m.expand(repl) if isinstance(repl, str) else repl(m)) + ln[m.end():]
+            if new_ln != ln:
+                return u["spanish"][:a] + new_ln + u["spanish"][b:], new_ln.strip()[:80]
+    return None
+
+
+def m_code_semantics(u, ctx):
+    """Change what the code computes: a comparison or the 40 threshold on a code line (critical)."""
+    for pat, new in ((r"(?<![\w.])40(?![\w.])", "41"), (r"\s>=\s", " > "), (r"\s>\s", " >= "),
+                     (r"\s-gt\s", " -ge "), (r"\s<\s", " <= "), (r"(?<![\w.])1(?![\w.])", "2")):
+        r = _line_sub(u, pat, new)
+        if r:
+            return r[0], r[1], "code-semantics", "critical"
+    return None
+
+
+PROTECTED_WORDS = (("echo", "eco"), ("SELECT", "SELECCIONAR"), ("WHERE", "DONDE"), ("while", "mientras"),
+                   ("return", "devolver"), ("print", "imprimir"), ("then", "entonces"), ("done", "hecho"),
+                   ("if", "si"), ("for", "para"))
+
+
+def m_protected_token(u, ctx):
+    """Translate a syntax keyword or standard command on a code line (critical)."""
+    for old, new in PROTECTED_WORDS:
+        r = _line_sub(u, r"(?<![\w$.-])%s(?![\w-])" % re.escape(old), new)
+        if r:
+            return r[0], r[1], "protected-token", "critical"
+    return None
+
+
+def m_identifier_stale(u, ctx):
+    """Put the old name back in one place of a renamed symbol (needs a ledger row for this file)."""
+    for row in ctx.get("idmap") or []:
+        if row.get("path") != u["file"] and not u["file"].startswith(str(row.get("path", "")) + "#"):
+            continue
+        hits = [m for m in re.finditer(r"(?<![\w])%s(?![\w])" % re.escape(row["new"]), u["spanish"])]
+        if hits:
+            m = hits[-1]
+            return u["spanish"][:m.start()] + row["old"] + u["spanish"][m.end():], row["old"], \
+                "identifier-stale", "major"
+    return None
+
+
+def m_build_ci(u, ctx):
+    """Break a build or check step: a status code, an error trap or an image tag (major)."""
+    base = os.path.basename(u["file"])
+    if not (base in ("Dockerfile", "check.sh", "Makefile") or base.endswith((".yml", ".yaml", ".sh", ".gradle"))):
+        return None
+    for pat, new in ((r"\bexit 1\b", "exit 0"), (r"\bset -e(uo|u)?\b", "set +e"),
+                     (r"^(FROM \S+?):(\S+)", r"\1:latest"), (r"\|\| exit\b", "|| true #")):
+        r = _line_sub(u, pat, new, only=lambda ln: True)
+        if r:
+            return r[0], r[1], "build-ci", "major"
+    return None
+
+
+def m_link_anchor(u, ctx):
+    """Move a `#Lnn` code-line anchor of a link by one line (prose units only)."""
+    m = re.search(r"#L(\d+)", u["spanish"])
+    if not m:
+        return None
+    new = "#L%d" % (int(m.group(1)) + 1)
+    return u["spanish"][:m.start()] + new + u["spanish"][m.end():], new, "link-semantic", "major"
+
+
+CODE_MUTATORS = (("code_semantics", m_code_semantics), ("protected_token", m_protected_token),
+                 ("identifier_stale", m_identifier_stale), ("build_ci", m_build_ci))
+PART2_PROSE_MUTATORS = (("link_anchor", m_link_anchor),)
+
+
+def canary_context(cat, idmap=None, part2=False):
     return {"assurance_labels": [cat.get("study_guides.assurance.%s" % k)
                                  for k in ("guaranteed", "implementation_permitted", "accidentally_exploited")],
-            "phase_letters": cat.phase_letters()}
+            "phase_letters": cat.phase_letters(), "idmap": list(idmap or []), "part2": bool(part2)}
 
 
 def canary_count(n_units, rate):
@@ -239,22 +435,31 @@ def inject_canaries(units, ctx, rate=0.06, seed=1):
     Deterministic for one seed. Mutators are tried in rotation, the 40-rule flip first, so every category
     that the units allow is represented. Never mutates the input units.
     """
-    want = canary_count(len(units), rate)
+    n_code = sum(1 for u in units if u["kind"] == CODE_KIND)
+    want_code = canary_count(n_code, rate) if n_code else 0
+    want_prose = canary_count(len(units) - n_code, rate) if len(units) > n_code else 0
+    want = want_code + want_prose
+    made = {True: 0, False: 0}
     rnd = random.Random(seed)
     order = list(range(len(units)))
     rnd.shuffle(order)
     shown = [dict(u, canary=None) for u in units]
-    key, used, rot = [], set(), 0
+    key, used, rot, rot_code = [], set(), 0, 0
     # forty-rule units are tried first: the plan wants every kind of 40-rule flip to be measurable
-    forty = [i for i in order if m_flip_forty(units[i], ctx)]
+    forty = [i for i in order if units[i]["kind"] != CODE_KIND and m_flip_forty(units[i], ctx)]
     order = forty[:1] + [i for i in order if i not in forty[:1]]
     for i in order:
         if len(key) >= want:
             break
         if i in used:
             continue
-        for step in range(len(MUTATORS)):
-            name, fn = MUTATORS[(rot + step) % len(MUTATORS)]
+        is_code = units[i]["kind"] == CODE_KIND
+        if made[is_code] >= (want_code if is_code else want_prose):
+            continue
+        muts = CODE_MUTATORS if is_code else MUTATORS + (PART2_PROSE_MUTATORS if ctx.get("part2") else ())
+        rot_now = rot_code if is_code else rot
+        for step in range(len(muts)):
+            name, fn = muts[(rot_now + step) % len(muts)]
             r = fn(units[i], ctx)
             if r is None or r[0] == units[i]["spanish"]:
                 continue
@@ -267,7 +472,11 @@ def inject_canaries(units, ctx, rate=0.06, seed=1):
                         "severity": severity, "fragment": fragment,
                         "original_spanish": units[i]["spanish"], "mutated_spanish": spanish})
             used.add(i)
-            rot = (rot + step + 1) % len(MUTATORS)
+            made[is_code] += 1
+            if is_code:
+                rot_code =(rot_code + step + 1) % len(muts)
+            else:
+                rot = (rot + step + 1) % len(muts)
             break
     return shown, key
 
@@ -359,6 +568,25 @@ def edition_facts(cat, gl, config=None):
     return "\n".join(lines).rstrip() + "\n"
 
 
+def part2_context(u):
+    """The slices a code juror needs for one file: identifier map, protected-token registry, oracle report."""
+    lines = ["### Part II context for %s" % u["file"], "",
+             "Code, syntax, standard names, contract strings and fixtures must be byte-identical to the English; only "
+             "comments and mapped names may differ. Check categories: code-semantics, protected-token, "
+             "identifier-stale, build-ci, link-semantic.", ""]
+    idm = u.get("idmap") or []
+    lines.append("Identifier map (old -> new): " + ("; ".join("`%s` -> `%s` (%s, scope %s)" % (
+        r["old"], r["new"], r.get("role", ""), r.get("scope", "")) for r in idm) if idm else "no renames for this file."))
+    reg = u.get("registry") or []
+    lines.append("Registry slice (protected tokens): " + (", ".join("`%s`" % t for t in reg) if reg else "none listed."))
+    lines.append("")
+    if u.get("oracle"):
+        lines += ["Oracle report (behavior check run before this review):", "~~~", u["oracle"], "~~~", ""]
+    else:
+        lines += ["Oracle report: none (this family was not proved equivalent: treat every change with care).", ""]
+    return lines
+
+
 def render_packet(name, tier, units, facts, gl_rows, total_packets):
     head = ["# Packet %s (%s tier)" % (name, tier), "",
             "Side by side English (EN) and Spanish (ES). Each unit starts with a line `=== <segment id> | <file>:<line> | "
@@ -369,16 +597,25 @@ def render_packet(name, tier, units, facts, gl_rows, total_packets):
         head += ["| %s | %s | %s |" % (a, b, c.replace("|", "\\|")) for a, b, c in gl_rows]
         head.append("")
     body = ["## Units", ""]
+    last_file = None
     for u in units:
+        if u["kind"] == CODE_KIND:
+            if u["file"] != last_file:
+                body += part2_context(u)
+            last_file = u["file"]
+            body += ["=== %s | %s:%d | %s ===" % (u["id"], u["file"], u["line"], u["kind"]),
+                     "EN:", "~~~", u["english"], "~~~", "ES:", "~~~", u["spanish"], "~~~", ""]
+            continue
         body += ["=== %s | %s:%d | %s ===" % (u["id"], u["file"], u["line"], u["kind"]),
                  "EN: " + u["english"], "ES: " + u["spanish"], ""]
     return "\n".join(head + body)
 
 
 def build(units, cat, gl, out_dir, rate=0.06, seed=1, config=None, target=TARGET_TOKENS,
-          minimum=MIN_TOKENS, maximum=MAX_TOKENS):
+          minimum=MIN_TOKENS, maximum=MAX_TOKENS, idmap=None):
     """Write every review artifact for `units`. Returns the manifest dict."""
-    ctx = canary_context(cat)
+    has_code = any(u["kind"] == CODE_KIND for u in units)
+    ctx = canary_context(cat, idmap, part2=has_code)
     for u in units:
         u["tier"] = tier_of(u)
     shown, key = inject_canaries(units, ctx, rate, seed)
@@ -503,6 +740,7 @@ def main(argv):
     ap_.add_argument("--rate", type=float, default=0.06)
     ap_.add_argument("--seed", type=int, default=1)
     ap_.add_argument("--bundle", action="store_true")
+    ap_.add_argument("--code", action="store_true", help="add Part II code packets (localized files vs the English)")
     ap_.add_argument("--files", nargs="*")
     args = ap_.parse_args(argv[1:])
     import inventory
@@ -518,10 +756,13 @@ def main(argv):
         return 0
     files = args.files or segment.authored_files(ROOT)
     units, skipped = collect_units(ROOT, files, cfg, cat, verify.english_text)
+    idmap = load_jsonl(os.path.join(ROOT, "translation", "identifier-map.jsonl"))
+    if args.code:
+        units += collect_code_units(ROOT, cfg["english_clone_path"], None, idmap)
     if not units:
         print("no translated units found (translation/po has no entries yet)")
         return 1
-    manifest = build(units, cat, gl, args.out, args.rate, args.seed, cfg)
+    manifest = build(units, cat, gl, args.out, args.rate, args.seed, cfg, idmap=idmap)
     if args.bundle:
         make_bundle(args.out, os.path.join(ROOT, "ralph-kit-es", "ADVERSARIAL-REVIEW-PROMPT.md"))
     bad = leaks(args.out)

@@ -152,3 +152,4 @@
 - After `python3 tools/seedtask.py ID done`, run `git diff --stat` and check the changed queue line is the task's own ID (iter 463 marked S5-fam-regex-perl done instead of javascript-weird).
 - To change an already localized comment, edit its PO msgstr, then copy the file from /home/lehmer/english-source over the Spanish one and run `loc_apply.py PATH --write` (it applies from the English baseline and refuses localized text); afterwards run `lock_code.py --write-localized` and `inventory.py` before verify.
 - A negative fixture that edits the Spanish source cannot plant a bad code span: the PO restores code from the English, so plant it with `after=` on the finished file.
+- Code jury units use ids `c-<hash>-NNNN` and canary quotas are per group (code vs prose); a test that needs an uncanaried code unit must give the file two differing 60-line chunks.

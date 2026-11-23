@@ -8,7 +8,7 @@
   "required": ["id", "segment_id", "severity", "category", "english_excerpt", "spanish_excerpt", "problem", "evidence", "proposed_fix", "reviewer_model", "confidence", "type", "status"],
   "properties": {
     "id": { "type": "string", "pattern": "^F[0-9]{3,}$" },
-    "segment_id": { "type": "string", "pattern": "^s-[0-9a-f]{12}-[0-9]{4}$" },
+    "segment_id": { "type": "string", "pattern": "^[sc]-[0-9a-f]{12}-[0-9]{4}$" },
     "file": { "type": "string" },
     "severity": { "enum": ["critical", "major", "minor", "suggestion"] },
     "category": {
@@ -17,7 +17,7 @@
         "glossary-violation", "code-touched", "dnt-violation", "mermaid", "link-anchor",
         "phase-acronym", "playfulness", "clarity", "style-profile", "grammar-agreement",
         "register", "dialect", "cross-file", "safety-warning", "structure",
-        "untranslated-english", "other"
+        "untranslated-english", "code-semantics", "protected-token", "identifier-stale", "build-ci", "link-semantic", "other"
       ]
     },
     "english_excerpt": { "type": ["string", "null"], "maxLength": 300 },

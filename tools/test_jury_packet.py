@@ -363,6 +363,22 @@ class BuildTests(unittest.TestCase):
                 z.writestr("canaries.key.json", "{}")
             self.assertTrue(any("bundle contains" in b for b in jp.leaks(tmp)))
 
+    def test_a_code_packet_holds_both_sources_and_the_part2_slices(self):
+        en = "#!/bin/bash\n# Check.\nif [ \"$t\" -gt 40 ]; then echo stop; fi\n"
+        units = make_units(40) + jp.code_units_for_file("src/x/check.sh", en, en.replace("# Check.", "# Revisa."),
+                                                        None, [{"path": "src/x/check.sh", "old": "t", "new": "suma",
+                                                                "role": "variable", "scope": "file"}])
+        with tempfile.TemporaryDirectory() as tmp:
+            manifest = jp.build(units, CAT, GL, tmp, rate=0.08, seed=3, target=800, minimum=500, maximum=1200)
+            code = [p for p in manifest["packets"] if p["tier"] == "code"]
+            self.assertEqual(len(code), 1)
+            with open(os.path.join(tmp, "packets", code[0]["name"] + ".md"), encoding="utf-8") as f:
+                text = f.read()
+            self.assertIn("# Check.", text)
+            self.assertIn("# Revisa.", text)
+            self.assertIn("Identifier map (old -> new): `t` -> `suma`", text)
+            self.assertEqual(jp.leaks(tmp), [])
+
     def test_the_book_may_use_the_word_canary(self):
         with tempfile.TemporaryDirectory() as tmp:
             units = make_units(60)
