@@ -1,0 +1,27 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+
+msgctxt "L2"
+msgid "# Checks the rules of the challenge for the weird APL entry. Uses a throwaway data dir."
+msgstr "# Comprueba las reglas del reto para la entrada de APL rara. Usa un directorio de datos desechable."
+
+msgctxt "L8"
+msgid "# timeout: a broken stop rule recurses forever"
+msgstr "# timeout: una regla de parada rota recurre para siempre"
+
+msgctxt "L10"
+msgid "# 1. Static: the constraint is real. No power operator, no branch arrow, no loop-ish primitives outside comments;"
+msgstr "# 1. Estático: la restricción es real. Sin operador de potencia, sin flecha de salto, sin primitivas de tipo bucle fuera de los comentarios;"
+
+msgctxt "L11"
+msgid "#    the host defines only Card0 (one ∇ ... ∇ block), and the rest of the chain is written at runtime by ⎕FX."
+msgstr "#    el anfitrión define solo Card0 (un bloque ∇ ... ∇), y el resto de la cadena lo escribe ⎕FX en tiempo de ejecución."
+
+msgctxt "L19"
+msgid "# 2. Run it a bunch of times; every run must print a sane record set, and the SQLite rows must agree with it."
+msgstr "# 2. Ejecútalo muchas veces; cada ejecución debe imprimir un conjunto de registros sensato, y las filas de SQLite deben coincidir."
+
+msgctxt "L51"
+msgid "# 3. The demo_only CHECK constraint is real: a non-demo row must be refused."
+msgstr "# 3. La restricción CHECK de demo_only es real: una fila que no sea demo debe ser rechazada."

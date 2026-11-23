@@ -1,0 +1,15 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+
+msgctxt "L1"
+msgid "# Container image for the weirder APL entry. Run it with: sandbox/container/run-image.sh src/apl-weird"
+msgstr "# Imagen de contenedor para la entrada de APL más rara. Ejecútala con: sandbox/container/run-image.sh src/apl-weird"
+
+msgctxt "L2"
+msgid "# GNU APL is not packaged by Ubuntu: the toolchain image builds it from a SHA-256-pinned gnu.org"
+msgstr "# Ubuntu no empaqueta GNU APL: la imagen de herramientas lo compila desde un tarball de gnu.org fijado por SHA-256"
+
+msgctxt "L3"
+msgid "# tarball (see sandbox/linux/Dockerfile), and this image takes only the finished /opt/apl from it."
+msgstr "# (mira sandbox/linux/Dockerfile), y esta imagen toma de ella solo el /opt/apl terminado."

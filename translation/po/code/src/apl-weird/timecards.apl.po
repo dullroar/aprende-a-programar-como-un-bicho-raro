@@ -1,0 +1,95 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+
+msgctxt "L2"
+msgid "⍝ DEMO ONLY. Fictional timecards, written to a scratch SQLite file under"
+msgstr "⍝ DEMO ONLY. Tarjetas de horas ficticias, escritas en un archivo SQLite temporal bajo"
+
+msgctxt "L3"
+msgid "⍝ XDG_DATA_HOME. Nothing here touches a real time-reporting system."
+msgstr "⍝ XDG_DATA_HOME. Nada de aquí toca un sistema real de reporte de horas."
+
+msgctxt "L5"
+msgid "⍝ Run:  apl --script -f timecards.apl"
+msgstr "⍝ Ejecuta:  apl --script -f timecards.apl"
+
+msgctxt "L7"
+msgid "⍝ THE STUNT: the host defines exactly one function, Card0.  Every other card"
+msgstr "⍝ LA PROEZA: el anfitrión define exactamente una función, Card0.  Cada otra tarjeta"
+
+msgctxt "L8"
+msgid "⍝ is a function that the previous card *wrote*: it reads its own source with"
+msgstr "⍝ es una función que la tarjeta anterior *escribió*: lee su propio código con"
+
+msgctxt "L9"
+msgid "⍝ ⎕CR, swaps in a header and four \"gene\" lines (card number, category, hours,"
+msgstr "⍝ ⎕CR, cambia un encabezado y cuatro líneas de \"gen\" (número de tarjeta, categoría, horas,"
+
+msgctxt "L10"
+msgid "⍝ running total), hands the copy to ⎕FX, and calls it.  The rule \"keep going"
+msgstr "⍝ total acumulado), entrega la copia a ⎕FX y la llama.  La regla \"sigue mientras"
+
+msgctxt "L11"
+msgid "⍝ while the total is 40 or less\" is a compress (/) over the child's source"
+msgstr "⍝ el total sea 40 o menos\" es una compresión (/) sobre el texto de código del hijo:"
+
+msgctxt "L12"
+msgid "⍝ text: once the total passes 40 the child is zero lines long, ⎕FX defines"
+msgstr "⍝ cuando el total pasa de 40 el hijo tiene cero líneas, ⎕FX no define"
+
+msgctxt "L13"
+msgid "⍝ nothing, and there is nothing to call.  No ⍣, no →, no loop, no `if`."
+msgstr "⍝ nada, y no hay nada que llamar.  Sin ⍣, sin →, sin bucle, sin `if`."
+
+msgctxt "L14"
+msgid "⍝ The state is not in variables, it is in the program text."
+msgstr "⍝ El estado no está en variables, está en el texto del programa."
+
+msgctxt "L18"
+msgid "⍝ GNU APL always starts at 16807"
+msgstr "⍝ GNU APL siempre empieza en 16807"
+
+msgctxt "L34"
+msgid "⍝ Local names every copy declares in its header, so a child's N, C, H, T cannot"
+msgstr "⍝ Nombres locales que cada copia declara en su encabezado, para que las N, C, H, T de un hijo no"
+
+msgctxt "L35"
+msgid "⍝ trample its parent's."
+msgstr "⍝ pisen las de su padre."
+
+msgctxt "L40"
+msgid "⍝ ── The only function the host ever writes ───────────────────────────────"
+msgstr "⍝ ── La única función que el anfitrión escribe ────────────────────────────"
+
+msgctxt "L41"
+msgid "⍝ Lines 1-4 are the genes (they are replaced in every copy); line 5 onwards is"
+msgstr "⍝ Las líneas 1-4 son los genes (se reemplazan en cada copia); de la línea 5 en adelante está"
+
+msgctxt "L42"
+msgid "⍝ the body, which every copy inherits verbatim."
+msgstr "⍝ el cuerpo, que cada copia hereda sin cambios."
+
+msgctxt "L50"
+msgid "⍝ next card's hours, drawn now"
+msgstr "⍝ horas de la siguiente tarjeta, sorteadas ahora"
+
+msgctxt "L52"
+msgid "⍝ 1 until the total passes 40"
+msgstr "⍝ 1 hasta que el total pasa de 40"
+
+msgctxt "L59"
+msgid "⍝ ── What the program wrote ────────────────────────────────────────────────"
+msgstr "⍝ ── Lo que escribió el programa ──────────────────────────────────────────"
+
+msgctxt "L60"
+msgid "⍝ ⎕NL 3 lists every function in the workspace.  Card0 is ours; the rest were"
+msgstr "⍝ ⎕NL 3 lista cada función del espacio de trabajo.  Card0 es nuestra; el resto se"
+
+msgctxt "L61"
+msgid "⍝ written at run time, and line 3 of each is the hours it was born with."
+msgstr "⍝ escribió en tiempo de ejecución, y la línea 3 de cada una son las horas con que nació."
+
+msgctxt "L65"
+msgid "⍝ the T←41 gene of the final card"
+msgstr "⍝ el gen T←41 de la última tarjeta"

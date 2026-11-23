@@ -1,21 +1,21 @@
 ⍝ ──────────────────────────────────────────────────────────────────────────
-⍝ DEMO ONLY. Fictional timecards, written to a scratch SQLite file under
-⍝ XDG_DATA_HOME. Nothing here touches a real time-reporting system.
+⍝ DEMO ONLY. Tarjetas de horas ficticias, escritas en un archivo SQLite temporal bajo
+⍝ XDG_DATA_HOME. Nada de aquí toca un sistema real de reporte de horas.
 ⍝
-⍝ Run:  apl --script -f timecards.apl
+⍝ Ejecuta:  apl --script -f timecards.apl
 ⍝
-⍝ THE STUNT: the host defines exactly one function, Card0.  Every other card
-⍝ is a function that the previous card *wrote*: it reads its own source with
-⍝ ⎕CR, swaps in a header and four "gene" lines (card number, category, hours,
-⍝ running total), hands the copy to ⎕FX, and calls it.  The rule "keep going
-⍝ while the total is 40 or less" is a compress (/) over the child's source
-⍝ text: once the total passes 40 the child is zero lines long, ⎕FX defines
-⍝ nothing, and there is nothing to call.  No ⍣, no →, no loop, no `if`.
-⍝ The state is not in variables, it is in the program text.
+⍝ LA PROEZA: el anfitrión define exactamente una función, Card0.  Cada otra tarjeta
+⍝ es una función que la tarjeta anterior *escribió*: lee su propio código con
+⍝ ⎕CR, cambia un encabezado y cuatro líneas de "gen" (número de tarjeta, categoría, horas,
+⍝ total acumulado), entrega la copia a ⎕FX y la llama.  La regla "sigue mientras
+⍝ el total sea 40 o menos" es una compresión (/) sobre el texto de código del hijo:
+⍝ cuando el total pasa de 40 el hijo tiene cero líneas, ⎕FX no define
+⍝ nada, y no hay nada que llamar.  Sin ⍣, sin →, sin bucle, sin `if`.
+⍝ El estado no está en variables, está en el texto del programa.
 ⍝ ──────────────────────────────────────────────────────────────────────────
 
 ⎕IO←0
-⎕RL←+/⎕TS×1 12 372 8928 535680 32140800 1894248000    ⍝ GNU APL always starts at 16807
+⎕RL←+/⎕TS×1 12 372 8928 535680 32140800 1894248000    ⍝ GNU APL siempre empieza en 16807
 
 Categories←'Meetings' 'Coding' 'Debugging' 'Learning'
 NL←⎕UCS 10
@@ -31,15 +31,15 @@ _←('CREATE TABLE IF NOT EXISTS demo_timecards(id INTEGER PRIMARY KEY,run_id TE
 Insert←'INSERT INTO demo_timecards(run_id,category,hours,running_total,iso_week,created_at) VALUES(''%s'',''%s'',%d,%d,''%s'',datetime(''now''));',NL
 Show←'%s',TAB,'%d',TAB,'%d',TAB,'%s',TAB,'DEMO ONLY',NL
 
-⍝ Local names every copy declares in its header, so a child's N, C, H, T cannot
-⍝ trample its parent's.
+⍝ Nombres locales que cada copia declara en su encabezado, para que las N, C, H, T de un hijo no
+⍝ pisen las de su padre.
 Locals←';N;C;H;T;D;Alive;Kid;Genes'
 
 _←('# DEMO ONLY run %s',NL) RunId ⎕FIO[22] 1
 
-⍝ ── The only function the host ever writes ───────────────────────────────
-⍝ Lines 1-4 are the genes (they are replaced in every copy); line 5 onwards is
-⍝ the body, which every copy inherits verbatim.
+⍝ ── La única función que el anfitrión escribe ────────────────────────────
+⍝ Las líneas 1-4 son los genes (se reemplazan en cada copia); de la línea 5 en adelante está
+⍝ el cuerpo, que cada copia hereda sin cambios.
 ∇Card0;N;C;H;T;D;Alive;Kid;Genes
 N←0
 C←0
@@ -47,22 +47,22 @@ H←10+?10
 T←H
 _←(Show (⊃Categories[C]) H T Week) ⎕FIO[22] 1
 _←(Insert RunId (⊃Categories[C]) H T Week) ⎕FIO[22] Sqlite
-D←10+?10                                         ⍝ next card's hours, drawn now
+D←10+?10                                         ⍝ horas de la siguiente tarjeta, sorteadas ahora
 Genes←('N←',⍕N+1) ('C←',⍕4|C+1) ('H←',⍕D) ('T←',⍕T+D)
-Alive←40≥T                                       ⍝ 1 until the total passes 40
+Alive←40≥T                                       ⍝ 1 hasta que el total pasa de 40
 Kid←⎕FX Alive/(⊂'Card',(⍕N+1),Locals),Genes,5↓⊂[1]⎕CR 'Card',⍕N
 ⍎Alive/'Card',⍕N+1
 ∇
 
 Card0
 
-⍝ ── What the program wrote ────────────────────────────────────────────────
-⍝ ⎕NL 3 lists every function in the workspace.  Card0 is ours; the rest were
-⍝ written at run time, and line 3 of each is the hours it was born with.
+⍝ ── Lo que escribió el programa ──────────────────────────────────────────
+⍝ ⎕NL 3 lista cada función del espacio de trabajo.  Card0 es nuestra; el resto se
+⍝ escribió en tiempo de ejecución, y la línea 3 de cada una son las horas con que nació.
 Names←⊂[1]⎕NL 3
 Mine←{'Card'≡4↑⍵}¨Names
 Last←↑⌽Mine/Names
-Total←⍎2↓(⎕CR Last~' ')[4;]~' '                  ⍝ the T←41 gene of the final card
+Total←⍎2↓(⎕CR Last~' ')[4;]~' '                  ⍝ el gen T←41 de la última tarjeta
 _←{(('# %s ⇐ %s',NL) (⍵~' ') ((⎕CR ⍵~' ')[3;]~' ')) ⎕FIO[22] 1}¨Mine/Names
 _←('COMMIT;',NL) ⎕FIO[23] Sqlite
 _←⎕FIO[25] Sqlite
