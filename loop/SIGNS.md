@@ -1,5 +1,7 @@
 # SIGNS.md: lessons learned (one imperative line each)
 
+- If tools/oracle.py FAILS on the English baseline too (src/regex-pcre2: card-sum mismatch), revert the edits and record NOT TESTED; do not weaken the oracle inside an S5 family task.
+
 - waive_po takes the PO path with the .md.po suffix; write a non-breaking space in a rules JSON as   (typed spaces stay plain), and when translate.py pads a segment with a sandbox gloss or an invented clause, use waive_po `set` to remove it.
 
 - Never run compound shell commands that touch paths outside the repo except via the English clone path in CONFIG.yaml; keep Bash calls simple (one command each).
