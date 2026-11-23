@@ -346,3 +346,4 @@
 393 P6-004 done local annotated tag v4-es.0-rc1 at a901b72; nothing pushed; next eligible task S0-001.
 394 S0-001 done Part II baseline in translation/part2/baseline.md: rc1 tag present (tree e037c3b), lock_code --verify ok (230 files), verify --release OK (75 checks); nothing pushed.
 395 S0-002 done tools/code_inventory.py + 19 tests (4 negative); code-inventory.jsonl covers all 230 locked paths once (python ast, lexical scanner elsewhere); verify --fast OK; nothing pushed.
+396 S0-003 partial runtime-matrix.md written from static reading; docker runs and sandbox selftest refused in dontAsk mode, so versions unread and self-test NOT RUN; needs a Docker-capable session.
