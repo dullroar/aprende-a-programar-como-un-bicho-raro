@@ -206,6 +206,13 @@ TRACE_RE = re.compile(r"(?:(?<=^)|(?<= / ))(%s)(?= \d+ \d+(?: / |$))" % "|".join
 QUOTED_LIST_RE = re.compile(" ".join('"%s"' % w for w in categories.EN))
 
 
+# sed tape in a fence (regex-sed): `cats:Coding,Debugging,` list items, ` c:Coding `, `ret:row Coding<TAB>`, `'Coding',14` in SQL
+_EN_ALT = "|".join(categories.EN)
+SED_TAPE_RE = re.compile(r"(?:(?<=cats:)|(?<=,)|(?<= c:)|(?<=ret:row )|(?<=,'))(%s)(?=,|\s|\t|',\d|$)" % _EN_ALT)
+# a fenced line that is a sed s/// command (the accent-safe class goes into its regex, as in the code)
+SED_CMD_RE = re.compile(r"^s/")
+
+
 def category_files():
     """Markdown files whose family prints the Spanish card categories (decision 11): one path per line."""
     try:
@@ -230,6 +237,9 @@ def localize_category_rows(text):
             line = LIST_RE.sub(lambda m: " ".join(categories.ES), line)
             line = QUOTED_LIST_RE.sub(lambda m: " ".join('"%s"' % w for w in categories.ES), line)
             line = TRACE_RE.sub(lambda m: categories.EN_TO_ES[m.group(1)], line)
+            line = SED_TAPE_RE.sub(lambda m: categories.EN_TO_ES[m.group(1)], line)
+            if SED_CMD_RE.match(line):
+                line = line.replace("[A-Za-z]", _WIDE)
         out.append(line)
     return "\n".join(out)
 

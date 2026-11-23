@@ -327,6 +327,14 @@ class CategoryList(unittest.TestCase):
         self.assertEqual(ap.localize_category_rows(text),
                          "```sql\n('c', 'n', 'lindex {Reuniones Programación Depuración Aprendizaje} [expr 1]'),\n```\n")
 
+    def test_sed_tape_and_class_in_fence(self):
+        """G1-006: the sed tape (cats:, c:, ret:row, SQL value) and a s/// class follow the code; prose outside stays."""
+        text = ("Coding outside\n```\n… cats:Coding,Debugging, tot:# c:Learning d:4\nret:row Meetings\t1\n"
+                "VALUES('x','Coding',14)\ns/ c:([A-Za-z]+)//\nx=[A-Za-z]\n```\n")
+        self.assertEqual(ap.localize_category_rows(text),
+                         "Coding outside\n```\n… cats:Programación,Depuración, tot:# c:Aprendizaje d:4\nret:row Reuniones\t1\n"
+                         "VALUES('x','Programación',14)\ns/ c:([A-Za-zÁÉÍÓÚáéíóúñ]+)//\nx=[A-Za-z]\n```\n")
+
     def test_braced_other_order_stays(self):
         text = "```sql\nlindex {Coding Meetings Debugging Learning}\n```\n"
         self.assertEqual(ap.localize_category_rows(text), text)

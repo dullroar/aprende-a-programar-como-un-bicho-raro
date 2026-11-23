@@ -31,9 +31,9 @@ Los registros se guardan en `$XDG_DATA_HOME/RegexSed/demo-timecards.db` (valor p
 
 ```text
 # DEMO ONLY run 1794625386-3788
-Meetings	15	15	2026-W46	DEMO ONLY
-Coding	14	29	2026-W46	DEMO ONLY
-Debugging	14	43	2026-W46	DEMO ONLY
+Reuniones	15	15	2026-W46	DEMO ONLY
+Programación	14	29	2026-W46	DEMO ONLY
+Depuración	14	43	2026-W46	DEMO ONLY
 # committed total=43 entries=3 DEMO ONLY
 # sed now exits with status 1 (failure), on purpose
 ```
@@ -134,7 +134,7 @@ run:1794625386-3788 wk:2026-W46 rng:1011001110100101 tty:1 trace:0
 La primera sustitución valida la línea y agrega el resto del estado. A partir de ahí, el espacio de patrones se ve así y constituye toda la computadora:
 
 ```text
-run:1794625386-3788 wk:2026-W46 tty:1 trace:0 rng:0101101100111010 cats:Coding,Debugging,Learning,Meetings, tot:############### n:%
+run:1794625386-3788 wk:2026-W46 tty:1 trace:0 rng:0101101100111010 cats:Programación,Depuración,Aprendizaje,Reuniones, tot:############### n:%
 ```
 
 | Campo | Contenido | Representación |
@@ -160,12 +160,12 @@ Esa semilla fija siempre produce la ejecución que aparece al principio de este 
 
 ### Traza una iteración paso a paso
 
-Esta es la **segunda** iteración de esa ejecución: registra *Coding, 14 horas* y el total pasa de 15 a 29. Conviene seguirla porque el programa **rechaza** la primera extracción aleatoria y hace otra. Usa 137 comandos de sed, de los cuales 58 son sustituciones que sí tuvieron una coincidencia. En las instantáneas de abajo, `…` representa el prefijo `run:1794625386-3788 wk:2026-W46 tty:1 trace:0`, que no cambia.
+Esta es la **segunda** iteración de esa ejecución: registra *Programación, 14 horas* y el total pasa de 15 a 29. Conviene seguirla porque el programa **rechaza** la primera extracción aleatoria y hace otra. Usa 137 comandos de sed, de los cuales 58 son sustituciones que sí tuvieron una coincidencia. En las instantáneas de abajo, `…` representa el prefijo `run:1794625386-3788 wk:2026-W46 tty:1 trace:0`, que no cambia.
 
 #### Paso 1: inicio del bucle y regla de parada
 
 ```text
-… rng:0101101100111010 cats:Coding,Debugging,Learning,Meetings, tot:############### n:%
+… rng:0101101100111010 cats:Programación,Depuración,Aprendizaje,Reuniones, tot:############### n:%
 ```
 
 ```sed
@@ -180,13 +180,13 @@ La segunda línea imprime el estado si la traza está activada. La tercera es la
 #### Paso 2: toma la categoría siguiente
 
 ```sed
-s/ cats:([A-Za-z]+),(.*)$/ cats:\2 c:\1/
+s/ cats:([A-Za-zÁÉÍÓÚáéíóúñ]+),(.*)$/ cats:\2 c:\1/
 ```
 
 La primera categoría sale de la lista y pasa a un campo auxiliar `c:` al final:
 
 ```text
-… rng:0101101100111010 cats:Debugging,Learning,Meetings, tot:############### n:% c:Coding
+… rng:0101101100111010 cats:Depuración,Aprendizaje,Reuniones, tot:############### n:% c:Programación
 ```
 
 #### Paso 3: extrae un grupo aleatorio de cuatro bits (cuatro pasos del registro de desplazamiento)
@@ -271,7 +271,7 @@ s/ d:1001$/ d:9/
 El programa copia el grupo de cuatro bits al final como `d:0100` y una tabla de consulta de diez reglas lo reescribe. Las reglas de `0000` a `0011` no tienen coincidencias. Luego `d:0100` se convierte en `d:4` y las reglas restantes tampoco tienen coincidencias:
 
 ```text
-… rng:0100101001011011 cats:Debugging,Learning,Meetings, tot:############### n:% c:Coding d:4
+… rng:0100101001011011 cats:Depuración,Aprendizaje,Reuniones, tot:############### n:% c:Programación d:4
 ```
 
 Ahora las horas son *el texto* `1` seguido de `4`. El programa nunca suma 10 a 4.
@@ -289,7 +289,7 @@ s/ D:(#*)4$/ D:\1####/
 Un campo auxiliar `D:` empieza con diez marcas más el dígito (`D:##########4`). La tabla sustituye el `4` final por cuatro marcas más:
 
 ```text
-… tot:############### n:% c:Coding d:4 D:##############
+… tot:############### n:% c:Programación d:4 D:##############
 ```
 
 #### Paso 7: la suma es concatenación
@@ -302,21 +302,21 @@ s/ n:(%*) / n:\1% /
 Las 14 marcas de `D:` pasan al final de las 15 de `tot:`. Eso es todo lo que hace la suma. El contador de entradas recibe un `%` más:
 
 ```text
-… tot:############################# n:%% c:Coding d:4
+… tot:############################# n:%% c:Programación d:4
 ```
 
 #### Paso 8: guarda el estado y arma la fila de salida
 
 ```sed
 h
-s/^run:([^ ]+) wk:([^ ]+) .* tot:(#+) .* c:([A-Za-z]+) d:([0-9])$/ret:row \4\t1\5\t\3\t\2\tDEMO ONLY\n\1/
+s/^run:([^ ]+) wk:([^ ]+) .* tot:(#+) .* c:([A-Za-zÁÉÍÓÚáéíóúñ]+) d:([0-9])$/ret:row \4\t1\5\t\3\t\2\tDEMO ONLY\n\1/
 b dec
 ```
 
 sed tiene un búfer auxiliar, el **espacio de retención**. `h` copia allí todo el estado porque la siguiente sustitución destruye el espacio de patrones al convertirlo en la fila de salida. La fila conserva el total en marcas de conteo. El id de ejecución queda después de un salto de línea para usarlo más adelante:
 
 ```text
-ret:row Coding	14	#############################	2026-W46	DEMO ONLY
+ret:row Programación	14	#############################	2026-W46	DEMO ONLY
 1794625386-3788
 ```
 
@@ -341,7 +341,7 @@ s/@/1/
 Cada diez marcas se convierten en un `@` (`@@#########`). La segunda regla añade un `0` cuando hay decenas y no quedan unidades, algo que aquí no ocurre. Una tabla de unidades convierte las nueve marcas que sobran en `9` y una tabla de decenas convierte `@@` en `2`:
 
 ```text
-ret:row Coding	14	29	2026-W46	DEMO ONLY
+ret:row Programación	14	29	2026-W46	DEMO ONLY
 1794625386-3788
 ```
 
@@ -353,36 +353,36 @@ Luego la subrutina "retorna": busca una coincidencia de `^ret:row ` en el texto 
 :row
 s/^ret:row //
 P
-s/^([A-Za-z]+)\t([0-9]+)\t([0-9]+)\t([^\t]+)\tDEMO ONLY\n(.*)$/INSERT INTO demo_timecards(…) VALUES('\5','\1',\2,\3,'\4',datetime('now','localtime'));/w /dev/fd/3
+s/^([A-Za-zÁÉÍÓÚáéíóúñ]+)\t([0-9]+)\t([0-9]+)\t([^\t]+)\tDEMO ONLY\n(.*)$/INSERT INTO demo_timecards(…) VALUES('\5','\1',\2,\3,'\4',datetime('now','localtime'));/w /dev/fd/3
 ```
 
 `P` imprime el espacio de patrones solo hasta el primer salto de línea. La pantalla recibe únicamente la fila:
 
 ```text
-Coding	14	29	2026-W46	DEMO ONLY
+Programación	14	29	2026-W46	DEMO ONLY
 ```
 
 Después, el mismo texto se convierte en un `INSERT` con el id de ejecución que sigue al salto de línea. La bandera `w` de la sustitución lo escribe en el descriptor de archivo 3, que el anfitrión conectó por una tubería a `sqlite3`:
 
 ```sql
-INSERT INTO demo_timecards(run_id,category,hours,running_total,iso_week,created_at) VALUES('1794625386-3788','Coding',14,29,'2026-W46',datetime('now','localtime'));
+INSERT INTO demo_timecards(run_id,category,hours,running_total,iso_week,created_at) VALUES('1794625386-3788','Programación',14,29,'2026-W46',datetime('now','localtime'));
 ```
 
 #### Paso 11: restaura el estado y vuelve al inicio del bucle
 
 ```sed
 g
-s/ c:[A-Za-z]+ d:[0-9]$//
+s/ c:[A-Za-zÁÉÍÓÚáéíóúñ]+ d:[0-9]$//
 b entry
 ```
 
 `g` recupera el estado guardado del espacio de retención. Se borran los campos auxiliares de cada entrada y la ejecución vuelve al inicio. La siguiente iteración empieza con:
 
 ```text
-… rng:0100101001011011 cats:Debugging,Learning,Meetings, tot:############################# n:%%
+… rng:0100101001011011 cats:Depuración,Aprendizaje,Reuniones, tot:############################# n:%%
 ```
 
-La tercera iteración registra Debugging 14, para un total de 43. Luego la regla de parada del paso 1 encuentra 41 marcas seguidas y `b done` termina el bucle.
+La tercera iteración registra Depuración 14, para un total de 43. Luego la regla de parada del paso 1 encuentra 41 marcas seguidas y `b done` termina el bucle.
 
 ### El cierre: el resumen, el pulso y la salida con estado 1
 
@@ -404,7 +404,7 @@ Por último, `Q1` termina con estado de salida 1. Para el intérprete de comando
 
 `check.sh` comprueba primero el anfitrión: exactamente un comando `sed` y ningún `for`, `while`, `until`, `select`, `if` ni `case`. Luego comprueba el script de sed. El script no puede usar ningún comando `e`, `r`, `R` u `W` ni la bandera `s///e`. Solo puede escribir en el descriptor de archivo 3 (el SQL) y en stderr (la traza). El script debe terminar con estado 1 (la maniobra de "devuelve falso") y con estado 2 si la cinta está mal formada. Una misma semilla siempre debe dar las mismas tarjetas de horas.
 
-Luego demuestra que un total de exactamente 40 continúa: una copia del script cuya extracción siempre da 10 horas debe repartir cinco tarjetas. La quinta es `Meetings` y el total termina en 50. Después ejecuta el script real 25 veces. En cada ejecución, cada total acumulado debe ser igual al anterior más las horas y estas deben ir de 10 a 19 horas. El programa debe detenerse en cuanto el total pasa de 40 y el resumen debe coincidir con las filas. SQLite debe coincidir con la salida y la base de datos debe guardar 25 ejecuciones distintas. Debe haber al menos seis valores distintos de horas, de modo que el registro de desplazamiento no esté atascado. Por último, se debe rechazar una fila ajena a la demostración.
+Luego demuestra que un total de exactamente 40 continúa: una copia del script cuya extracción siempre da 10 horas debe repartir cinco tarjetas. La quinta es `Reuniones` y el total termina en 50. Después ejecuta el script real 25 veces. En cada ejecución, cada total acumulado debe ser igual al anterior más las horas y estas deben ir de 10 a 19 horas. El programa debe detenerse en cuanto el total pasa de 40 y el resumen debe coincidir con las filas. SQLite debe coincidir con la salida y la base de datos debe guardar 25 ejecuciones distintas. Debe haber al menos seis valores distintos de horas, de modo que el registro de desplazamiento no esté atascado. Por último, se debe rechazar una fila ajena a la demostración.
 
 ## Trampas que conviene conocer
 

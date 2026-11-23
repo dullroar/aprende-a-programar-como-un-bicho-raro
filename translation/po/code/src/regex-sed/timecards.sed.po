@@ -17,3 +17,23 @@ msgstr "# de conteo, los sorteos son un registro de desplazamiento de 16 bits he
 msgctxt "L4"
 msgid "# regex match?\", the SQL goes out on fd 3 for sqlite3 to run, and the script ends by exiting 1 (failure)."
 msgstr "# regex?\", el SQL sale por el fd 3 para que lo ejecute sqlite3, y el script termina saliendo con 1 (fallo)."
+
+msgctxt "C5"
+msgid "s/^run:([^ ]+) wk:([^ ]+) rng:([01]{16}) tty:([0-9]+) trace:([01])$/run:\\1 wk:\\2 tty:\\4 trace:\\5 rng:\\3 cats:Meetings,Coding,Debugging,Learning,Meetings, tot: n:/"
+msgstr "s/^run:([^ ]+) wk:([^ ]+) rng:([01]{16}) tty:([0-9]+) trace:([01])$/run:\\1 wk:\\2 tty:\\4 trace:\\5 rng:\\3 cats:Reuniones,Programación,Depuración,Aprendizaje,Reuniones, tot: n:/"
+
+msgctxt "C16"
+msgid "s/ cats:([A-Za-z]+),(.*)$/ cats:\\2 c:\\1/"
+msgstr "s/ cats:([A-Za-zÁÉÍÓÚáéíóúñ]+),(.*)$/ cats:\\2 c:\\1/"
+
+msgctxt "C55"
+msgid "s/^run:([^ ]+) wk:([^ ]+) .* tot:(#+) .* c:([A-Za-z]+) d:([0-9])$/ret:row \\4\\t1\\5\\t\\3\\t\\2\\tDEMO ONLY\\n\\1/"
+msgstr "s/^run:([^ ]+) wk:([^ ]+) .* tot:(#+) .* c:([A-Za-zÁÉÍÓÚáéíóúñ]+) d:([0-9])$/ret:row \\4\\t1\\5\\t\\3\\t\\2\\tDEMO ONLY\\n\\1/"
+
+msgctxt "C60"
+msgid "s/^([A-Za-z]+)\\t([0-9]+)\\t([0-9]+)\\t([^\\t]+)\\tDEMO ONLY\\n(.*)$/INSERT INTO demo_timecards(run_id,category,hours,running_total,iso_week,created_at) VALUES('\\5','\\1',\\2,\\3,'\\4',datetime('now','localtime'));/w /dev/fd/3"
+msgstr "s/^([A-Za-zÁÉÍÓÚáéíóúñ]+)\\t([0-9]+)\\t([0-9]+)\\t([^\\t]+)\\tDEMO ONLY\\n(.*)$/INSERT INTO demo_timecards(run_id,category,hours,running_total,iso_week,created_at) VALUES('\\5','\\1',\\2,\\3,'\\4',datetime('now','localtime'));/w /dev/fd/3"
+
+msgctxt "C62"
+msgid "s/ c:[A-Za-z]+ d:[0-9]$//"
+msgstr "s/ c:[A-Za-zÁÉÍÓÚáéíóúñ]+ d:[0-9]$//"

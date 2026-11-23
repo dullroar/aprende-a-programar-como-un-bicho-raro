@@ -32,12 +32,12 @@ a=$(echo 'run:t wk:w rng:0110100110010110 tty:1 trace:0' | sed -nE -f timecards.
 b=$(echo 'run:t wk:w rng:0110100110010110 tty:1 trace:0' | sed -nE -f timecards.sed 3>/dev/null || true)
 [[ -n $a && $a == "$b" ]] || fail "same seed, different output"
 
-# 4b. Exactamente 40 continúa. Cuatro tarjetas de 10 horas suman exactamente 40, así que debe seguir una quinta: Meetings otra vez, total 50. Una copia del script
+# 4b. Exactamente 40 continúa. Cuatro tarjetas de 10 horas suman exactamente 40, así que debe seguir una quinta: Reuniones otra vez, total 50. Una copia del script
 #     cuyo sorteo siempre da el dígito 0 (10 horas) hace que esa sea la única ejecución posible.
 sed 's/rng:\\1\\2 d:\\1\//rng:\\1\\2 d:0000\//' timecards.sed > "$data/tens.sed"
 cmp -s timecards.sed "$data/tens.sed" && fail "the exactly-40 test could not rewrite the draw in timecards.sed"
-tens=$(echo 'run:t wk:w rng:0110100110010110 tty:1 trace:0' | sed -nE -f "$data/tens.sed" 3>/dev/null | grep -E '^(Meetings|Coding|Debugging|Learning)	' | cut -f1-3 | tr '\t' ' ' | paste -sd, || true)
-[[ $tens == "Meetings 10 10,Coding 10 20,Debugging 10 30,Learning 10 40,Meetings 10 50" ]] || fail "all-10 cards must give five rows ending at 50 (exactly 40 continues); got: $tens"
+tens=$(echo 'run:t wk:w rng:0110100110010110 tty:1 trace:0' | sed -nE -f "$data/tens.sed" 3>/dev/null | grep -E '^(Reuniones|Programación|Depuración|Aprendizaje)	' | cut -f1-3 | tr '\t' ' ' | paste -sd, || true)
+[[ $tens == "Reuniones 10 10,Programación 10 20,Depuración 10 30,Aprendizaje 10 40,Reuniones 10 50" ]] || fail "all-10 cards must give five rows ending at 50 (exactly 40 continues); got: $tens"
 
 # 5. Ejecuta lo real varias veces. Cada ejecución debe parar justo cuando toca, y cada total acumulado
 #    debe igualar al anterior más las horas (la aritmética de marcas de sed), y SQLite debe coincidir con la salida estándar.
@@ -51,7 +51,7 @@ for i in $(seq 1 25); do
     total=$(sed -E 's/.*total=([0-9]+).*/\1/' <<<"$commit")
     entries=$(sed -E 's/.*entries=([0-9]+).*/\1/' <<<"$commit")
     awk -F'\t' -v total="$total" -v entries="$entries" '
-        /^(Meetings|Coding|Debugging|Learning)\t/ {
+        /^(Reuniones|Programación|Depuración|Aprendizaje)\t/ {
             n++; if ($2 < 10 || $2 > 19) { print "hours out of range: " $0; exit 1 }
             if ($3 != prev + $2) { print "bad running total: " $0; exit 1 }
             if (prev > 40) { print "kept going after 40: " $0; exit 1 }

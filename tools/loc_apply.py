@@ -234,6 +234,9 @@ def _category_edit(text: str, rel: str, starts: list[int], e: dict, lang: str = 
     # followed by code) stays part of the compared line and may not change
     if oc is not None and not old.endswith(oc):
         oc = None
+    # sed: a `#` inside an s/// command (a tally class such as `(#+)`) is regex text, not a comment; compare the whole line
+    if lang == "sed" and re.match(r"\s*s[^#\s\w\\]", old):
+        oc = nc = None
     if nc is not None and not new.endswith(nc):
         nc = None
     if oc is not None or nc is not None:

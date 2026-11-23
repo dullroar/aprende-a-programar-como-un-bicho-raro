@@ -281,6 +281,15 @@ class Negative(Base):
         o2, n2 = self.run_apply("f.sh", po=po)
         self.assertEqual(o2, n2)
 
+    def test_widen_sed_hash_inside_s_command_is_not_a_comment(self):
+        old = "s/^run:(#+) c:([A-Za-z]+) d:([0-9])$/\\2/"
+        new = "s/^run:(#+) c:([A-Za-zÁÉÍÓÚáéíóúñ]+) d:([0-9])$/\\2/"
+        e = la._category_edit(old + "\n", "f.sed", [0], {"line": 1, "msgid": old, "msgstr": new}, "sed")
+        self.assertEqual(e[2], new)
+        bad = "s/^run:(#+) c:([A-Za-zÁÉÍÓÚáéíóúñ]+) d:([0-9])$/\\2 evil/"
+        with self.assertRaises(la.Refused):
+            la._category_edit(old + "\n", "f.sed", [0], {"line": 1, "msgid": old, "msgstr": bad}, "sed")
+
     def test_widen_together_with_category_word(self):
         old = "grep -E '^[A-Za-z]*Coding'"
         new = "grep -E '^[A-Za-zÁÉÍÓÚáéíóúñ]*Programación'"

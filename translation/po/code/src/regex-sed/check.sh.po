@@ -28,7 +28,7 @@ msgstr "# 4. El registro de desplazamiento es determinista: la misma semilla da 
 
 msgctxt "L35"
 msgid "# 4b. Exactly 40 continues. Four 10-hour cards total exactly 40, so a fifth card must follow: Meetings again, total 50. A copy of the script"
-msgstr "# 4b. Exactamente 40 continúa. Cuatro tarjetas de 10 horas suman exactamente 40, así que debe seguir una quinta: Meetings otra vez, total 50. Una copia del script"
+msgstr "# 4b. Exactamente 40 continúa. Cuatro tarjetas de 10 horas suman exactamente 40, así que debe seguir una quinta: Reuniones otra vez, total 50. Una copia del script"
 
 msgctxt "L36"
 msgid "#     whose draw always yields the digit 0 (hours 10) makes that the only possible run."
@@ -45,3 +45,15 @@ msgstr "#    debe igualar al anterior más las horas (la aritmética de marcas d
 msgctxt "L70"
 msgid "# 6. The demo_only CHECK constraint is real."
 msgstr "# 6. La restricción CHECK de demo_only es real."
+
+msgctxt "C39"
+msgid "tens=$(echo 'run:t wk:w rng:0110100110010110 tty:1 trace:0' | sed -nE -f \"$data/tens.sed\" 3>/dev/null | grep -E '^(Meetings|Coding|Debugging|Learning)	' | cut -f1-3 | tr '\\t' ' ' | paste -sd, || true)"
+msgstr "tens=$(echo 'run:t wk:w rng:0110100110010110 tty:1 trace:0' | sed -nE -f \"$data/tens.sed\" 3>/dev/null | grep -E '^(Reuniones|Programación|Depuración|Aprendizaje)	' | cut -f1-3 | tr '\\t' ' ' | paste -sd, || true)"
+
+msgctxt "C40"
+msgid "[[ $tens == \"Meetings 10 10,Coding 10 20,Debugging 10 30,Learning 10 40,Meetings 10 50\" ]] || fail \"all-10 cards must give five rows ending at 50 (exactly 40 continues); got: $tens\""
+msgstr "[[ $tens == \"Reuniones 10 10,Programación 10 20,Depuración 10 30,Aprendizaje 10 40,Reuniones 10 50\" ]] || fail \"all-10 cards must give five rows ending at 50 (exactly 40 continues); got: $tens\""
+
+msgctxt "C54"
+msgid "        /^(Meetings|Coding|Debugging|Learning)\\t/ {"
+msgstr "        /^(Reuniones|Programación|Depuración|Aprendizaje)\\t/ {"

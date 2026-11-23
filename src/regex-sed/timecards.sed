@@ -2,7 +2,7 @@
 # Todo el estado del programa es UNA línea de texto. Sin variables, sin números, sin aritmética: las horas son marcas
 # de conteo, los sorteos son un registro de desplazamiento de 16 bits hecho de 0 y 1, cada decisión es "¿coincidió esta
 # regex?", el SQL sale por el fd 3 para que lo ejecute sqlite3, y el script termina saliendo con 1 (fallo).
-s/^run:([^ ]+) wk:([^ ]+) rng:([01]{16}) tty:([0-9]+) trace:([01])$/run:\1 wk:\2 tty:\4 trace:\5 rng:\3 cats:Meetings,Coding,Debugging,Learning,Meetings, tot: n:/
+s/^run:([^ ]+) wk:([^ ]+) rng:([01]{16}) tty:([0-9]+) trace:([01])$/run:\1 wk:\2 tty:\4 trace:\5 rng:\3 cats:Reuniones,Programación,Depuración,Aprendizaje,Reuniones, tot: n:/
 T bad
 s/ rng:0{16} / rng:0000000000000001 /
 h
@@ -13,7 +13,7 @@ g
 / trace:1 /w /dev/stderr
 / tot:#{41}/b done
 / cats: /b done
-s/ cats:([A-Za-z]+),(.*)$/ cats:\2 c:\1/
+s/ cats:([A-Za-zÁÉÍÓÚáéíóúñ]+),(.*)$/ cats:\2 c:\1/
 :draw
 s/ rng:/ k:#### rng:/
 :step
@@ -52,14 +52,14 @@ s/ D:(#*)0$/ D:\1/
 s/ tot:(#*) (.*) D:(#*)$/ tot:\1\3 \2/
 s/ n:(%*) / n:\1% /
 h
-s/^run:([^ ]+) wk:([^ ]+) .* tot:(#+) .* c:([A-Za-z]+) d:([0-9])$/ret:row \4\t1\5\t\3\t\2\tDEMO ONLY\n\1/
+s/^run:([^ ]+) wk:([^ ]+) .* tot:(#+) .* c:([A-Za-zÁÉÍÓÚáéíóúñ]+) d:([0-9])$/ret:row \4\t1\5\t\3\t\2\tDEMO ONLY\n\1/
 b dec
 :row
 s/^ret:row //
 P
-s/^([A-Za-z]+)\t([0-9]+)\t([0-9]+)\t([^\t]+)\tDEMO ONLY\n(.*)$/INSERT INTO demo_timecards(run_id,category,hours,running_total,iso_week,created_at) VALUES('\5','\1',\2,\3,'\4',datetime('now','localtime'));/w /dev/fd/3
+s/^([A-Za-zÁÉÍÓÚáéíóúñ]+)\t([0-9]+)\t([0-9]+)\t([^\t]+)\tDEMO ONLY\n(.*)$/INSERT INTO demo_timecards(run_id,category,hours,running_total,iso_week,created_at) VALUES('\5','\1',\2,\3,'\4',datetime('now','localtime'));/w /dev/fd/3
 g
-s/ c:[A-Za-z]+ d:[0-9]$//
+s/ c:[A-Za-zÁÉÍÓÚáéíóúñ]+ d:[0-9]$//
 b entry
 :dec
 s/#{10}/@/g
