@@ -1,0 +1,47 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+
+msgctxt "L2"
+msgid "# Checks the rules of the regex challenge for the sed track. Uses a throwaway data dir."
+msgstr "# Comprueba las reglas del desafío de expresiones regulares para la pista de sed. Usa un directorio de datos desechable."
+
+msgctxt "L10"
+msgid "# 1. The host runs exactly one sed command and has no loops or ifs."
+msgstr "# 1. El anfitrión ejecuta exactamente un comando sed y no tiene bucles ni condicionales."
+
+msgctxt "L15"
+msgid "# 2. The sed script never shells out or reads files: no e/r/R/W commands, no s///e flag,"
+msgstr "# 2. El script de sed nunca invoca el intérprete ni lee archivos: sin comandos e/r/R/W y sin la bandera s///e,"
+
+msgctxt "L16"
+msgid "#    and the only files it writes are fd 3 (the SQL) and stderr (the trace)."
+msgstr "#    y los únicos archivos que escribe son fd 3 (el SQL) y stderr (el rastro)."
+
+msgctxt "L24"
+msgid "# 3. sed itself exits 1 (the \"returns false\" move), and 2 on a malformed tape."
+msgstr "# 3. sed mismo termina con 1 (la jugada de \"devolver falso\") y con 2 si la cinta está mal formada."
+
+msgctxt "L30"
+msgid "# 4. The shift register is deterministic: the same seed gives the same timecards."
+msgstr "# 4. El registro de desplazamiento es determinista: la misma semilla da las mismas tarjetas de horas."
+
+msgctxt "L35"
+msgid "# 4b. Exactly 40 continues. Four 10-hour cards total exactly 40, so a fifth card must follow: Meetings again, total 50. A copy of the script"
+msgstr "# 4b. Exactamente 40 continúa. Cuatro tarjetas de 10 horas suman exactamente 40, así que debe seguir una quinta: Meetings otra vez, total 50. Una copia del script"
+
+msgctxt "L36"
+msgid "#     whose draw always yields the digit 0 (hours 10) makes that the only possible run."
+msgstr "#     cuyo sorteo siempre da el dígito 0 (10 horas) hace que esa sea la única ejecución posible."
+
+msgctxt "L42"
+msgid "# 5. Run the real thing a bunch of times. Every run must stop exactly when it should, every running total"
+msgstr "# 5. Ejecuta lo real varias veces. Cada ejecución debe parar justo cuando toca, y cada total acumulado"
+
+msgctxt "L43"
+msgid "#    must equal the previous one plus the hours (sed's tally arithmetic), and SQLite must agree with stdout."
+msgstr "#    debe igualar al anterior más las horas (la aritmética de marcas de sed), y SQLite debe coincidir con la salida estándar."
+
+msgctxt "L70"
+msgid "# 6. The demo_only CHECK constraint is real."
+msgstr "# 6. La restricción CHECK de demo_only es real."

@@ -1,0 +1,19 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+
+msgctxt "L1"
+msgid "# DEMO ONLY. Fictional timecards. GNU sed, run as: sed -nEu -f timecards.sed 3>(sql sink). Never without that 3> redirect (see README.md, Gotchas): `w /dev/fd/3` would open whatever else holds fd 3, even this file."
+msgstr "# DEMO ONLY. Tarjetas de horas ficticias. GNU sed, se ejecuta así: sed -nEu -f timecards.sed 3>(sql sink). Nunca sin esa redirección 3> (consulta README.md, Gotchas): `w /dev/fd/3` abriría lo que sea que ocupe el fd 3, incluso este archivo."
+
+msgctxt "L2"
+msgid "# The whole program state is ONE line of text. No variables, no numbers, no arithmetic: hours are tally"
+msgstr "# Todo el estado del programa es UNA línea de texto. Sin variables, sin números, sin aritmética: las horas son marcas"
+
+msgctxt "L3"
+msgid "# marks, the random draws are a 16-bit shift register made of 0s and 1s, every decision is \"did this"
+msgstr "# de conteo, los sorteos son un registro de desplazamiento de 16 bits hecho de 0 y 1, cada decisión es \"¿coincidió esta"
+
+msgctxt "L4"
+msgid "# regex match?\", the SQL goes out on fd 3 for sqlite3 to run, and the script ends by exiting 1 (failure)."
+msgstr "# regex?\", el SQL sale por el fd 3 para que lo ejecute sqlite3, y el script termina saliendo con 1 (fallo)."

@@ -1,0 +1,11 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+
+msgctxt "L1"
+msgid "# Container image for the sed regex entry. Run it with: sandbox/container/run-image.sh src/regex-sed"
+msgstr "# Imagen de contenedor para la entrada de regex con sed. Ejecútala con: sandbox/container/run-image.sh src/regex-sed"
+
+msgctxt "L2"
+msgid "# GNU sed, bash and coreutils ship in the Ubuntu base; the base adds sqlite3 only."
+msgstr "# GNU sed, bash y coreutils vienen en la base de Ubuntu; la base solo añade sqlite3."

@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
-# DEMO ONLY. Fictional timecards, written to a scratch SQLite file under XDG_DATA_HOME. See README.md.
+# DEMO ONLY. Tarjetas de horas ficticias, escritas en un archivo SQLite temporal bajo XDG_DATA_HOME. Consulta README.md.
 #
-# The program is timecards.sed. This script only writes a one-line "tape" (run id, ISO week, a 16-bit
-# random seed, whether stdout is a terminal, and the TRACE flag) and runs ONE sed command against it.
-# sed's stdout is the screen; sed's fd 3 is the SQL it generates, piped into sqlite3. No loop, no
-# arithmetic, no decisions here: those are all regex matches inside timecards.sed.
+# El programa es timecards.sed. Este script solo escribe una "cinta" de una línea (id de ejecución, semana ISO, una semilla
+# aleatoria de 16 bits, si la salida estándar es una terminal y la bandera TRACE) y ejecuta UN comando sed sobre ella.
+# La salida estándar de sed es la pantalla; su fd 3 es el SQL que genera, canalizado a sqlite3. Ni bucle,
+# ni aritmética, ni decisiones aquí: todo eso son coincidencias de regex dentro de timecards.sed.
 set -euo pipefail
 
 here=$(cd "$(dirname "$0")" && pwd)
@@ -19,5 +19,5 @@ printf 'run:%s wk:%s rng:%s tty:%s trace:%s\n' "$(date +%s)-$$" "$(date +%G-W%V)
     sed -nEu -f "$here/timecards.sed" 3>&1 1>&4 | sqlite3 "$db"
 st=("${PIPESTATUS[@]}")
 
-# sed exiting 1 is the point (the program "fails" after doing all the work); sqlite3 must succeed.
+# Que sed termine con 1 es el objetivo (el programa "falla" después de hacer todo el trabajo); sqlite3 debe tener éxito.
 exit $(( st[1] == 1 && st[2] == 0 ? 0 : 3 ))

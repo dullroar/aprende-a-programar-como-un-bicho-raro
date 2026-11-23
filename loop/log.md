@@ -422,3 +422,4 @@
 470 S5-audit-5 done audit of 8 S5 families: lock ok, oracle PASS awk-weird/haskell-weird/javascript-weird/lisp-weird/tcl-weird/regex-pcre2grep/regex-perl, regex-dotnet left English (EXC-578); no violations; translation/reviews/S5-audit-5.md
 471 S5-fam-ed-weird done src/ed-weird localizing: 40 comment lines (timecards.ed, timecards.sh, check.sh, Dockerfile) via loc_apply, oracle PASS; categories/strings kept English EXC-582.
 472 S5-fam-ex-weird done src/ex-weird localizing: 47 comment lines (timecards.ex, timecards.sh, check.sh, Dockerfile) via loc_apply, oracle PASS; categories/strings kept English EXC-583.
+473 S5-fam-regex-sed done src/regex-sed localizing: 25 comment lines (timecards.sed, timecards.sh, check.sh, Dockerfile) via loc_apply, oracle PASS; categories/strings kept English EXC-584.

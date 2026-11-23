@@ -1,0 +1,27 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+
+msgctxt "L2"
+msgid "# DEMO ONLY. Fictional timecards, written to a scratch SQLite file under XDG_DATA_HOME. See README.md."
+msgstr "# DEMO ONLY. Tarjetas de horas ficticias, escritas en un archivo SQLite temporal bajo XDG_DATA_HOME. Consulta README.md."
+
+msgctxt "L4"
+msgid "# The program is timecards.sed. This script only writes a one-line \"tape\" (run id, ISO week, a 16-bit"
+msgstr "# El programa es timecards.sed. Este script solo escribe una \"cinta\" de una línea (id de ejecución, semana ISO, una semilla"
+
+msgctxt "L5"
+msgid "# random seed, whether stdout is a terminal, and the TRACE flag) and runs ONE sed command against it."
+msgstr "# aleatoria de 16 bits, si la salida estándar es una terminal y la bandera TRACE) y ejecuta UN comando sed sobre ella."
+
+msgctxt "L6"
+msgid "# sed's stdout is the screen; sed's fd 3 is the SQL it generates, piped into sqlite3. No loop, no"
+msgstr "# La salida estándar de sed es la pantalla; su fd 3 es el SQL que genera, canalizado a sqlite3. Ni bucle,"
+
+msgctxt "L7"
+msgid "# arithmetic, no decisions here: those are all regex matches inside timecards.sed."
+msgstr "# ni aritmética, ni decisiones aquí: todo eso son coincidencias de regex dentro de timecards.sed."
+
+msgctxt "L22"
+msgid "# sed exiting 1 is the point (the program \"fails\" after doing all the work); sqlite3 must succeed."
+msgstr "# Que sed termine con 1 es el objetivo (el programa \"falla\" después de hacer todo el trabajo); sqlite3 debe tener éxito."
