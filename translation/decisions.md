@@ -57,3 +57,7 @@ Recorded by Claude from Jim's answers in the session. The follow-up work is desc
 6. **Docker self-test:** run it and record the result (F2-001).
 7. **Native-speaker check of the humor register:** skipped for now. It is a prerequisite for any publication, not for the loop. Listed in the plan.
 8. **Phase markers:** the whole-corpus review phase and the review-packet phase are marked passed in loop/STATE.md, with their evidence.
+
+## 2026-11-23 Pilot review of the category localization (checkpoint F2-006)
+
+Recorded by Claude from Jim's answers in the session. Jim approved the four words as printed (Reuniones, Programación, Depuración, Aprendizaje) and the rollout to the other families whose oracle passed. The inline-text gap found by the pilot (English category words left in inline code and prose next to Spanish sample output) is fixed by a tool task, F2-006b, before the rollout. Families the oracle could not test stay English. `loop/STOP` removed.
