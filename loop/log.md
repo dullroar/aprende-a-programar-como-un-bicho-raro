@@ -419,3 +419,4 @@
 467 S5-fam-regex-pcre2grep done src/regex-pcre2grep localizing: 18 comment lines (timecards.sh, check.sh, Dockerfile) via loc_apply, oracle PASS; categories/strings kept English EXC-579.
 468 S5-fam-regex-perl done src/regex-perl localizing: 13 comment lines (timecards.pl, check.sh, Dockerfile) via loc_apply, oracle PASS; categories/strings kept English EXC-580.
 469 S5-fam-tcl-weird done src/tcl-weird localizing: 45 comment lines (timecards.tcl, check.sh, Dockerfile) via loc_apply, oracle PASS; categories/strings kept English EXC-581.
+470 S5-audit-5 done audit of 8 S5 families: lock ok, oracle PASS awk-weird/haskell-weird/javascript-weird/lisp-weird/tcl-weird/regex-pcre2grep/regex-perl, regex-dotnet left English (EXC-578); no violations; translation/reviews/S5-audit-5.md
