@@ -391,3 +391,4 @@
 438 S5-fam-lessons-solutions done family left English, NOT TESTED (EXC-555): no oracle runner for lessons/solutions; no protected file changed.
 439 S5-fam-lessons-solutions-awk-port done family left English, NOT TESTED (EXC-556): no oracle runner for lessons/solutions; no protected file changed.
 440 S5-fam-lessons-tools done family left English, NOT TESTED (EXC-557): sandbox/verify scripts under lessons/tools, no oracle runner; no protected file changed.
+441 S5-audit-2 done audit of 8 S5 families: lock ok, oracle PASS awk/cmake/find-gnu/find-posix/haskell, 3 left English (EXC-555..557); no violations; translation/reviews/S5-audit-2.md
