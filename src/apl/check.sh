@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Checks the rules of the challenge for the APL entry. Uses a throwaway data dir.
+# Comprueba las reglas del reto para la entrada de APL. Usa un directorio de datos desechable.
 set -euo pipefail
 cd "$(dirname "$0")"
 data=$(mktemp -d); trap 'rm -rf "$data"' EXIT
@@ -7,11 +7,11 @@ export XDG_DATA_HOME=$data
 db=$data/Apl/demo-timecards.db
 run() { "${APL:-apl}" --script -f timecards.apl; }
 
-# 1. Static: the program is a plain .apl script with the demo disclaimer, and nothing in it touches a network.
+# 1. Estático: el programa es un script .apl simple con el aviso de demo, y nada en él toca la red.
 grep -q 'DEMO ONLY' timecards.apl || { echo "FAIL: no DEMO ONLY marker in timecards.apl"; exit 1; }
 if grep -Eqi 'http|socket|curl|wget' timecards.apl; then echo "FAIL: network-looking text in timecards.apl"; exit 1; fi
 
-# 2. Run it a bunch of times; every run must print a sane record set, and the SQLite rows must agree with it.
+# 2. Ejecútalo muchas veces; cada ejecución debe imprimir un conjunto de registros sensato, y las filas de SQLite deben coincidir.
 cats=(Meetings Coding Debugging Learning)
 for i in $(seq 1 25); do
     out=$(run)
@@ -41,7 +41,7 @@ done
 [[ $(sqlite3 "$db" 'select count(distinct run_id) from demo_timecards') -eq 25 ]] || { echo "FAIL: expected 25 distinct runs in the db"; exit 1; }
 [[ $(sqlite3 "$db" 'select count(distinct hours) from demo_timecards') -ge 6 ]] || { echo "FAIL: hours do not look random"; exit 1; }
 
-# 3. The demo_only CHECK constraint is real: a non-demo row must be refused.
+# 3. La restricción CHECK de demo_only es real: una fila que no sea demo debe ser rechazada.
 if sqlite3 "$db" "insert into demo_timecards(run_id,category,hours,running_total,demo_only) values('x','x',1,1,0)" 2>/dev/null; then
     echo "FAIL: db accepted a non-demo row"; exit 1
 fi

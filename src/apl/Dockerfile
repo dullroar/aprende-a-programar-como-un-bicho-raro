@@ -1,6 +1,6 @@
-# Container image for the APL entry. Run it with: sandbox/container/run-image.sh src/apl
-# GNU APL is not packaged by Ubuntu: the toolchain image builds it from a SHA-256-pinned gnu.org
-# tarball (see sandbox/linux/Dockerfile), and this image takes only the finished /opt/apl from it.
+# Imagen de contenedor para la entrada de APL. Ejecútala con: sandbox/container/run-image.sh src/apl
+# Ubuntu no empaqueta GNU APL: la imagen de herramientas lo compila desde un tarball de gnu.org fijado por SHA-256
+# (mira sandbox/linux/Dockerfile), y esta imagen toma de ella solo el /opt/apl terminado.
 FROM code-challenge-sandbox:local AS build
 
 FROM cc-rt-apl:local

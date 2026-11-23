@@ -401,3 +401,4 @@
 449 S5-fam-make-gnu done src/make-gnu localizing: 51 comment lines (Makefile, check.sh, Dockerfile) via loc_apply, oracle PASS; categories/strings kept English EXC-564.
 450 S5-fam-tcl done src/tcl localizing: 42 comment lines (timecards.tcl, check.sh, Dockerfile) via loc_apply, oracle PASS; categories/strings kept English EXC-565.
 451 S5-audit-3 done audit of 8 S5 families: lock ok, oracle PASS javascript/javascript-events/lisp/make-gnu/tcl, 3 left English (EXC-558/559/562); no violations; translation/reviews/S5-audit-3.md
+452 S5-fam-apl done src/apl localizing: 52 comment lines (timecards.apl, check.sh, Dockerfile) via loc_apply, oracle PASS; categories/strings kept English EXC-566.

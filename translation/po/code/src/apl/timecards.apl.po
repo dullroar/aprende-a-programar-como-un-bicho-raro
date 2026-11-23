@@ -1,0 +1,159 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+
+msgctxt "L2"
+msgid "⍝ DEMO ONLY. Fictional timecards, written to a scratch SQLite file under"
+msgstr "⍝ DEMO ONLY. Tarjetas de horas ficticias, escritas en un archivo SQLite temporal bajo"
+
+msgctxt "L3"
+msgid "⍝ XDG_DATA_HOME. Nothing here touches a real time-reporting system."
+msgstr "⍝ XDG_DATA_HOME. Nada de aquí toca un sistema real de reporte de horas."
+
+msgctxt "L5"
+msgid "⍝ Run:  apl --script -f timecards.apl"
+msgstr "⍝ Ejecuta:  apl --script -f timecards.apl"
+
+msgctxt "L7"
+msgid "⍝ The whole challenge (\"add 10-19 hour cards until the total passes 40\") is"
+msgstr "⍝ El reto completo (\"suma tarjetas de 10 a 19 horas hasta que el total supere 40\") son"
+
+msgctxt "L8"
+msgid "⍝ three array expressions.  There is no loop and no `if`; the rest of the"
+msgstr "⍝ tres expresiones de arreglos.  No hay bucle ni `if`; el resto del"
+
+msgctxt "L9"
+msgid "⍝ file is plumbing: seeding, a pipe to sqlite3, and printing."
+msgstr "⍝ archivo es tubería: la semilla, una tubería a sqlite3 y la impresión."
+
+msgctxt "L12"
+msgid "⍝ Style notes: one statement per line (⋄ is for the REPL), CamelCase names"
+msgstr "⍝ Notas de estilo: una instrucción por línea (⋄ es para el REPL), nombres en CamelCase"
+
+msgctxt "L13"
+msgid "⍝ for things we define, and no assumption about ⎕IO (the index origin)."
+msgstr "⍝ para lo que definimos, y ninguna suposición sobre ⎕IO (el origen del índice)."
+
+msgctxt "L14"
+msgid "⍝ The only origin-sensitive primitive used is ?, which rolls ⎕IO..⎕IO+9 for"
+msgstr "⍝ La única primitiva sensible al origen que se usa es ?, que sortea ⎕IO..⎕IO+9 para"
+
+msgctxt "L15"
+msgid "⍝ ?10, so the draw below subtracts the origin back out."
+msgstr "⍝ ?10, así que el sorteo de abajo vuelve a restar el origen."
+
+msgctxt "L17"
+msgid "⍝ GNU APL starts every session at ⎕RL=16807, so without this every run"
+msgstr "⍝ GNU APL inicia cada sesión con ⎕RL=16807, así que sin esto cada ejecución"
+
+msgctxt "L18"
+msgid "⍝ would print the same \"random\" cards.  Fold the clock into a seed instead."
+msgstr "⍝ imprimiría las mismas tarjetas \"aleatorias\".  Mejor mezclamos el reloj en una semilla."
+
+msgctxt "L25"
+msgid "⍝ ── The challenge ─────────────────────────────────────────────────────────"
+msgstr "⍝ ── El reto ───────────────────────────────────────────────────────────────"
+
+msgctxt "L26"
+msgid "⍝ 1. Draw hours.  Every card is at least 10 hours, so five of them always"
+msgstr "⍝ 1. Sortea horas.  Cada tarjeta tiene al menos 10 horas, así que cinco siempre"
+
+msgctxt "L27"
+msgid "⍝    pass 40 (5×10=50).  Drawing five up front is a *bound*, not a loop count."
+msgstr "⍝    superan 40 (5×10=50).  Sortear cinco de antemano es una *cota*, no un conteo de bucle."
+
+msgctxt "L28"
+msgid "⍝    (?5⍴10) gives five rolls from the first ten integers; the origin shift"
+msgstr "⍝    (?5⍴10) da cinco sorteos entre los primeros diez enteros; el ajuste del origen"
+
+msgctxt "L29"
+msgid "⍝    and the +10 turn them into 10..19."
+msgstr "⍝    y el +10 los convierten en 10..19."
+
+msgctxt "L32"
+msgid "⍝ 2. Stop rule.  Running totals only ever grow, so \"total is still ≤ 40\""
+msgstr "⍝ 2. Regla de parada.  Los totales acumulados solo crecen, así que \"el total sigue ≤ 40\""
+
+msgctxt "L33"
+msgid "⍝    is true for a prefix of the cards and then false forever.  Count that"
+msgstr "⍝    es verdadero para un prefijo de las tarjetas y luego falso para siempre.  Cuenta ese"
+
+msgctxt "L34"
+msgid "⍝    prefix (+/40≥+\\), add the one card that crosses the line, and take."
+msgstr "⍝    prefijo (+/40≥+\\), suma la única tarjeta que cruza la línea, y toma."
+
+msgctxt "L37"
+msgid "⍝ 3. Everything else is derived from Hours with no further decisions."
+msgstr "⍝ 3. Todo lo demás se deriva de Hours sin más decisiones."
+
+msgctxt "L38"
+msgid "⍝ running total after each card"
+msgstr "⍝ total acumulado después de cada tarjeta"
+
+msgctxt "L39"
+msgid "⍝ ⍴ recycles: Meetings Coding Debugging Learning Meetings …"
+msgstr "⍝ ⍴ recicla: Meetings Coding Debugging Learning Meetings …"
+
+msgctxt "L41"
+msgid "⍝ ── Plumbing ──────────────────────────────────────────────────────────────"
+msgstr "⍝ ── Tubería ──────────────────────────────────────────────────────────────"
+
+msgctxt "L44"
+msgid "⍝ ISO week comes from date(1) so APL need not re-derive ISO-8601 calendars."
+msgstr "⍝ La semana ISO viene de date(1) para que APL no tenga que rederivar calendarios ISO-8601."
+
+msgctxt "L45"
+msgid "⍝ ⎕FIO[24] runs a command and returns a file handle, ⎕FIO[8] reads a line"
+msgstr "⍝ ⎕FIO[24] ejecuta un comando y devuelve un manejador de archivo, ⎕FIO[8] lee una línea"
+
+msgctxt "L46"
+msgid "⍝ from it, ⎕FIO[25] closes it.  ¯1↓ drops the trailing newline."
+msgstr "⍝ de él, ⎕FIO[25] lo cierra.  ¯1↓ quita el salto de línea final."
+
+msgctxt "L51"
+msgid "⍝ Open a write-pipe to sqlite3.  ⎕FIO[24] with a left argument 'w' is popen."
+msgstr "⍝ Abre una tubería de escritura a sqlite3.  ⎕FIO[24] con argumento izquierdo 'w' es popen."
+
+msgctxt "L52"
+msgid "⍝ The shell snippet only picks (and creates) the scratch directory."
+msgstr "⍝ El fragmento de shell solo elige (y crea) el directorio temporal."
+
+msgctxt "L55"
+msgid "⍝ The CHECK constraint makes \"not demo\" unrepresentable in this table."
+msgstr "⍝ La restricción CHECK hace imposible representar \"no demo\" en esta tabla."
+
+msgctxt "L57"
+msgid "⍝ ⎕FIO[23] fwrites a string"
+msgstr "⍝ ⎕FIO[23] escribe una cadena con fwrite"
+
+msgctxt "L59"
+msgid "⍝ ⎕FIO[22] is fprintf: a format string on the left, its arguments on the"
+msgstr "⍝ ⎕FIO[22] es fprintf: una cadena de formato a la izquierda, sus argumentos a la"
+
+msgctxt "L60"
+msgid "⍝ right.  Values here are numbers or our own fixed words, never user input,"
+msgstr "⍝ derecha.  Los valores aquí son números o nuestras propias palabras fijas, nunca entrada del usuario,"
+
+msgctxt "L61"
+msgid "⍝ so formatting SQL with %s is safe in this one place; do not copy the habit."
+msgstr "⍝ así que dar formato al SQL con %s es seguro solo en este lugar; no copies el hábito."
+
+msgctxt "L65"
+msgid "⍝ One dfn per destination; ⍵ is a row number.  ⍳≢Hours produces row numbers"
+msgstr "⍝ Una dfn por destino; ⍵ es un número de fila.  ⍳≢Hours produce números de fila"
+
+msgctxt "L66"
+msgid "⍝ in the current origin and Kinds[⍵] indexes in that same origin, so the"
+msgstr "⍝ en el origen actual y Kinds[⍵] indexa en ese mismo origen, así que el"
+
+msgctxt "L67"
+msgid "⍝ pair is origin-proof."
+msgstr "⍝ par es a prueba de origen."
+
+msgctxt "L73"
+msgid "⍝ closing the pipe waits for sqlite3 to finish"
+msgstr "⍝ cerrar la tubería espera a que sqlite3 termine"
+
+msgctxt "L75"
+msgid "⍝ ── Report ────────────────────────────────────────────────────────────────"
+msgstr "⍝ ── Reporte ───────────────────────────────────────────────────────────────"
