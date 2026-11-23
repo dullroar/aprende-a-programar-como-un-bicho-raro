@@ -380,4 +380,5 @@
 426 S5-fam-lessons-book-diagrams done family left English, NOT TESTED (EXC-544): build script, tools/oracle.py has no runner for it; no protected file changed; report written; verify --fast OK.
 429 S5-fam-linqchallenge2 done family left English, NOT TESTED (EXC-547): WPF/EF Core entry has no entry image, oracle cannot run it; no protected file changed.
 430 S5-fam-regex-pcre2 done family left English, NOT TESTED (EXC-548): oracle FAILS on the English baseline too (card-sum mismatch), so the translated comments were reverted; no protected file changed.
+431 S5-fam-xaml done family left English, NOT TESTED (EXC-549): WPF/XAML entry has no entry image, oracle cannot run it; no protected file changed.
 428 S5-fam-linqchallenge1 done family left English, NOT TESTED (EXC-546): WPF/EF Core entry has no entry image, oracle cannot run it; no protected file changed.
