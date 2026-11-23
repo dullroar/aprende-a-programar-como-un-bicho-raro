@@ -33,11 +33,11 @@ for i in $(seq 1 25); do
     commit=$(grep '^# committed' <<<"$out")
     total=$(sed -E 's/.*total=([0-9]+).*/\1/' <<<"$commit")
     entries=$(sed -E 's/.*entries=([0-9]+).*/\1/' <<<"$commit")
-    rows=$(grep -cE '^(Meetings|Coding|Debugging|Learning)	' <<<"$out" || true)
+    rows=$(grep -cE '^(Reuniones|Programación|Depuración|Aprendizaje)	' <<<"$out" || true)
     [[ $rows -eq $entries ]] || { echo "FAIL run $i: $rows rows but entries=$entries"; exit 1; }
-    awk -F'\t' '/^(Meetings|Coding|Debugging|Learning)\t/ && ($2 < 10 || $2 > 19) { bad = 1 } END { exit bad }' <<<"$out" || { echo "FAIL run $i: hours out of 10-19"; exit 1; }
+    awk -F'\t' '/^(Reuniones|Programación|Depuración|Aprendizaje)\t/ && ($2 < 10 || $2 > 19) { bad = 1 } END { exit bad }' <<<"$out" || { echo "FAIL run $i: hours out of 10-19"; exit 1; }
     # Regla de parada: el total antes de la última tarjeta es 40 o menos (exactamente 40 continúa), y la última tarjeta lo llevó a más de 40. Una ejecución tiene de 3 a 5 tarjetas.
-    before_last=$(awk -F'\t' '/^(Meetings|Coding|Debugging|Learning)\t/ { prev = s; s += $2 } END { print prev + 0 }' <<<"$out")
+    before_last=$(awk -F'\t' '/^(Reuniones|Programación|Depuración|Aprendizaje)\t/ { prev = s; s += $2 } END { print prev + 0 }' <<<"$out")
     (( before_last <= 40 && total > 40 && entries >= 3 && entries <= 5 )) || { echo "FAIL run $i: stop rule wrong (total before the last card = $before_last, total = $total, entries = $entries)"; exit 1; }
     # La regla de parada se anuncia en stderr (una restricción CHECK con nombre) exactamente cuando el total terminó en más de 40, y nada más lo hace.
     stops=$(grep -c 'CHECK constraint failed: stop rule fired: total exceeds 40' "$data/err" || true)
@@ -51,14 +51,14 @@ done
 [[ $(sqlite3 "$db" 'select count(*) from runs') -eq 25 ]] || { echo "FAIL: expected 25 runs in the db"; exit 1; }
 [[ $(sqlite3 "$db" 'select count(*) from stop_rule') -eq 0 ]] || { echo "FAIL: stop_rule probe rows were left behind"; exit 1; }
 
-# 4. Exactamente 40 continúa. Cuatro tarjetas de 10 horas suman exactamente 40, así que se debe sacar una quinta tarjeta: Meetings otra vez, total 50.
+# 4. Exactamente 40 continúa. Cuatro tarjetas de 10 horas suman exactamente 40, así que se debe sacar una quinta tarjeta: Reuniones otra vez, total 50.
 #    Una copia del script con todas las tarjetas de 10 horas hace que esa sea la única ejecución posible (directorio de datos aparte, para no alterar las comprobaciones anteriores).
 sed 's/10+abs(random())%10 AS h/10 AS h/' timecards.sh > "$data/fixed.sh"
 ! grep -q 'abs(random())' "$data/fixed.sh" || { echo "FAIL: the exactly-40 test could not rewrite the draw in timecards.sh"; exit 1; }
 out=$(XDG_DATA_HOME=$data/fixed bash "$data/fixed.sh" 2>/dev/null)
-mapfile -t rows < <(grep -E '^(Meetings|Coding|Debugging|Learning)	' <<<"$out")
+mapfile -t rows < <(grep -E '^(Reuniones|Programación|Depuración|Aprendizaje)	' <<<"$out")
 (( ${#rows[@]} == 5 )) || { echo "FAIL: all-10 cards must give five rows (exactly 40 continues)"; echo "$out"; exit 1; }
-[[ ${rows[3]} == Learning* && ${rows[4]} == Meetings*$'\t'10$'\t'50$'\t'* ]] || { echo "FAIL: the fourth card must be Learning and the fifth Meetings with total 50"; echo "$out"; exit 1; }
+[[ ${rows[3]} == Aprendizaje* && ${rows[4]} == Reuniones*$'\t'10$'\t'50$'\t'* ]] || { echo "FAIL: the fourth card must be Aprendizaje and the fifth Reuniones with total 50"; echo "$out"; exit 1; }
 
 # 5. La restricción CHECK de demo_only es real: una fila que no sea de demostración debe rechazarse.
 if sqlite3 "$db" "insert into demo_timecards(run_id,category,hours,running_total,demo_only) values(1,'x',10,10,0)" 2>/dev/null; then

@@ -46,10 +46,10 @@ PCRE2GREP=~/.local/bin/pcre2grep ./check.sh        # 25 runs, asserts the rules 
 
 ```text
 # DEMO ONLY run 1
-Meetings	16	16	2026-W46	DEMO ONLY
-Coding	13	29	2026-W46	DEMO ONLY
-Debugging	10	39	2026-W46	DEMO ONLY
-Learning	18	57	2026-W46	DEMO ONLY
+Reuniones	16	16	2026-W46	DEMO ONLY
+Programación	13	29	2026-W46	DEMO ONLY
+Depuración	10	39	2026-W46	DEMO ONLY
+Aprendizaje	18	57	2026-W46	DEMO ONLY
 Error: stepping, CHECK constraint failed: stop rule fired: total exceeds 40 (19)
 # committed total=57 entries=4 DEMO ONLY
 # the match now returns false, on purpose
@@ -91,24 +91,24 @@ flowchart TD
 
 ## Cómo funciona el truco
 
-`pcre2grep` admite dos tipos de cadena de texto de callout. `(?C{|text$n})` repite texto. `(?C{/abs/path/prog|arg|arg})` ejecuta un programa: **el código de salida 0 deja que la coincidencia continúe; cualquier otro código de salida, o un programa que no se puede ejecutar, hace fallar esa rama y el motor retrocede.** El sujeto es una "cinta" de una sola línea: `MeetingsCodingDebuggingLearning` seguido de 60 tonos de gris de tres dígitos.
+`pcre2grep` admite dos tipos de cadena de texto de callout. `(?C{|text$n})` repite texto. `(?C{/abs/path/prog|arg|arg})` ejecuta un programa: **el código de salida 0 deja que la coincidencia continúe; cualquier otro código de salida, o un programa que no se puede ejecutar, hace fallar esa rama y el motor retrocede.** El sujeto es una "cinta" de una sola línea: `ReunionesProgramaciónDepuraciónAprendizaje` seguido de 60 tonos de gris de tres dígitos.
 
 | Pieza | Rol |
 | --- | --- |
 | `^(?C{sqlite3 ...})` | Inicializador: crea las tablas (con `CHECK(demo_only=1)` y `CHECK(hours BETWEEN 10 AND 19)`), inicia una fila de ejecución e imprime el encabezado |
 | `(?: ... )*` | El bucle. El cuantificador voraz de PCRE2 es la iteración; los nombres de categoría de la cinta son lo que recorre |
 | `(?C{sqlite3 ... INSERT INTO stop_rule ...})` | La **compuerta** (la regla de parada). Inserta `(running total <= 40)` en una tabla cuya única columna es `CHECK(ok=1)`, con el nombre "stop rule fired: total exceeds 40". Cuando el total pasa de 40, la inserción falla, `sqlite3` termina con un código distinto de cero y la rama queda vetada, con lo que el bucle termina. El mensaje de error en stderr es el nombre de esa restricción |
-| `(Meetings\|Coding\|Debugging\|Learning)` | La categoría: la cinta aporta el orden (`MeetingsCodingDebuggingLearningMeetings`, cinco nombres para que un total de exactamente 40 pueda continuar con una quinta tarjeta) y la alternancia coincide con ella |
+| `(Reuniones\|Programación\|Depuración\|Aprendizaje)` | La categoría: la cinta aporta el orden (`ReunionesProgramaciónDepuraciónAprendizajeReuniones`, cinco nombres para que un total de exactamente 40 pueda continuar con una quinta tarjeta) y la alternancia coincide con ella |
 | `(?C{sqlite3 ... INSERT INTO demo_timecards ...})` | **Anota** una entrada. SQLite sortea las horas con `random()`, calcula el total acumulado y la semana ISO, inserta la fila y la imprime. `$1` en el SQL es la categoría con la que el patrón acaba de coincidir |
 | `(*COMMIT)(?C{sqlite3 ... SELECT printf(...)})` | Una vez que termina el bucle, el retroceso puede no reintentar bucles más cortos; después el programa imprime el resumen |
-| `[A-Za-z]*(?:(?C{/usr/bin/test\|-t\|1})(\d{3})(?C{\|$r$e[48;5;$2m ...})(?C{/bin/sleep\|0.05}))*` | El pulso. `test -t 1` es el predicado "¿stdout es una terminal?" (distinto de cero en una tubería, así que el bucle nunca arranca y las tuberías y `check.sh` lo omiten). El programa vuelve a leer el tono de cada fotograma desde la cinta mediante `$2` |
+| `[A-Za-zÁÉÍÓÚáéíóúñ]*(?:(?C{/usr/bin/test\|-t\|1})(\d{3})(?C{\|$r$e[48;5;$2m ...})(?C{/bin/sleep\|0.05}))*` | El pulso. `test -t 1` es el predicado "¿stdout es una terminal?" (distinto de cero en una tubería, así que el bucle nunca arranca y las tuberías y `check.sh` lo omiten). El programa vuelve a leer el tono de cada fotograma desde la cinta mediante `$2` |
 | `(*COMMIT)(?:test -t 1, clear)?+(?C{\|# the match now returns false...})(*FAIL)` | Borra el banner (si había uno); luego, la jugada característica. El `?+` es posesivo a propósito: sin él, `(*FAIL)` retrocede hasta omitir el grupo opcional e imprime el mensaje final dos veces |
 
 El código de salida es todo el truco. El `random()` de SQLite y la aritmética viven en el programa auxiliar. Pero las *decisiones* (dar otra vuelta, parar, emitir un pulso o no) son el patrón que consume los códigos de salida.
 
 ## Qué hace cumplir `check.sh`
 
-`check.sh` comprueba que `timecards.sh` no tiene ninguna palabra clave de bucle y ejecuta exactamente un `pcre2grep`. Los callouts solo pueden ejecutar `/bin/sleep`, `/usr/bin/sqlite3` y `/usr/bin/test`, nunca un intérprete de comandos (*shell*, el programa que recibe y ejecuta comandos escritos) ni un intérprete. Si se instala un `pcre2grep` sin soporte de callouts, el script debe rechazarlo con el código de salida 2. Después ejecuta el programa 25 veces. Una copia del script en la que cada tarjeta vale 10 horas debe repartir cinco filas (la quinta `Meetings`, total de 50), lo que demuestra que un total de exactamente 40 continúa. Cada ejecución debe imprimir la línea "returns false", tantas filas como entradas tenga, de 10 a 19 horas y la regla de parada correcta (el total antes de la última tarjeta es como máximo 40, así que un total de exactamente 40 continúa, y el total después de ella pasa de 40; de tres a cinco entradas). El error de la regla de parada debe aparecer en stderr exactamente una vez cuando el total pasa de 40 y nunca en otro caso, y no debe escribirse nada más en stderr. SQLite debe coincidir con la salida, la base de datos debe contener 25 ejecuciones y ninguna fila de prueba, y se debe rechazar una fila que no sea de demostración.
+`check.sh` comprueba que `timecards.sh` no tiene ninguna palabra clave de bucle y ejecuta exactamente un `pcre2grep`. Los callouts solo pueden ejecutar `/bin/sleep`, `/usr/bin/sqlite3` y `/usr/bin/test`, nunca un intérprete de comandos (*shell*, el programa que recibe y ejecuta comandos escritos) ni un intérprete. Si se instala un `pcre2grep` sin soporte de callouts, el script debe rechazarlo con el código de salida 2. Después ejecuta el programa 25 veces. Una copia del script en la que cada tarjeta vale 10 horas debe repartir cinco filas (la quinta `Reuniones`, total de 50), lo que demuestra que un total de exactamente 40 continúa. Cada ejecución debe imprimir la línea "returns false", tantas filas como entradas tenga, de 10 a 19 horas y la regla de parada correcta (el total antes de la última tarjeta es como máximo 40, así que un total de exactamente 40 continúa, y el total después de ella pasa de 40; de tres a cinco entradas). El error de la regla de parada debe aparecer en stderr exactamente una vez cuando el total pasa de 40 y nunca en otro caso, y no debe escribirse nada más en stderr. SQLite debe coincidir con la salida, la base de datos debe contener 25 ejecuciones y ninguna fila de prueba, y se debe rechazar una fila que no sea de demostración.
 
 ## Trampas que conviene conocer
 

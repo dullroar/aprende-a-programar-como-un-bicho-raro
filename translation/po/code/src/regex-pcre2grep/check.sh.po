@@ -40,7 +40,7 @@ msgstr "# Las filas están realmente en SQLite y coinciden con lo que se imprimi
 
 msgctxt "L54"
 msgid "# 4. Exactly 40 continues. Four 10-hour cards total exactly 40, so a fifth card must be drawn: Meetings again, total 50."
-msgstr "# 4. Exactamente 40 continúa. Cuatro tarjetas de 10 horas suman exactamente 40, así que se debe sacar una quinta tarjeta: Meetings otra vez, total 50."
+msgstr "# 4. Exactamente 40 continúa. Cuatro tarjetas de 10 horas suman exactamente 40, así que se debe sacar una quinta tarjeta: Reuniones otra vez, total 50."
 
 msgctxt "L55"
 msgid "#    A copy of the script with every card worth 10 hours makes that the only possible run (separate data dir, so the checks above are undisturbed)."
@@ -49,3 +49,23 @@ msgstr "#    Una copia del script con todas las tarjetas de 10 horas hace que es
 msgctxt "L63"
 msgid "# 5. The demo_only CHECK constraint is real: a non-demo row must be refused."
 msgstr "# 5. La restricción CHECK de demo_only es real: una fila que no sea de demostración debe rechazarse."
+
+msgctxt "C36"
+msgid "    rows=$(grep -cE '^(Meetings|Coding|Debugging|Learning)	' <<<\"$out\" || true)"
+msgstr "    rows=$(grep -cE '^(Reuniones|Programación|Depuración|Aprendizaje)	' <<<\"$out\" || true)"
+
+msgctxt "C38"
+msgid "    awk -F'\\t' '/^(Meetings|Coding|Debugging|Learning)\\t/ && ($2 < 10 || $2 > 19) { bad = 1 } END { exit bad }' <<<\"$out\" || { echo \"FAIL run $i: hours out of 10-19\"; exit 1; }"
+msgstr "    awk -F'\\t' '/^(Reuniones|Programación|Depuración|Aprendizaje)\\t/ && ($2 < 10 || $2 > 19) { bad = 1 } END { exit bad }' <<<\"$out\" || { echo \"FAIL run $i: hours out of 10-19\"; exit 1; }"
+
+msgctxt "C40"
+msgid "    before_last=$(awk -F'\\t' '/^(Meetings|Coding|Debugging|Learning)\\t/ { prev = s; s += $2 } END { print prev + 0 }' <<<\"$out\")"
+msgstr "    before_last=$(awk -F'\\t' '/^(Reuniones|Programación|Depuración|Aprendizaje)\\t/ { prev = s; s += $2 } END { print prev + 0 }' <<<\"$out\")"
+
+msgctxt "C59"
+msgid "mapfile -t rows < <(grep -E '^(Meetings|Coding|Debugging|Learning)	' <<<\"$out\")"
+msgstr "mapfile -t rows < <(grep -E '^(Reuniones|Programación|Depuración|Aprendizaje)	' <<<\"$out\")"
+
+msgctxt "C61"
+msgid "[[ ${rows[3]} == Learning* && ${rows[4]} == Meetings*$'\\t'10$'\\t'50$'\\t'* ]] || { echo \"FAIL: the fourth card must be Learning and the fifth Meetings with total 50\"; echo \"$out\"; exit 1; }"
+msgstr "[[ ${rows[3]} == Aprendizaje* && ${rows[4]} == Reuniones*$'\\t'10$'\\t'50$'\\t'* ]] || { echo \"FAIL: the fourth card must be Aprendizaje and the fifth Reuniones with total 50\"; echo \"$out\"; exit 1; }"

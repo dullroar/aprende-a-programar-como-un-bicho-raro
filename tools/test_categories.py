@@ -22,6 +22,12 @@ class Categories(unittest.TestCase):
         self.assertTrue(c.mixed("`Programación 15 xxxMeetings 12|xx`"))
         self.assertEqual(c.forms_used("`yMeetings`"), set())
 
+    def test_glued_tape_counts_each_word_and_a_stray_digit_does_not(self):
+        self.assertEqual(c.forms_used("`MeetingsCodingDebuggingLearningMeetings247250`"), {"en"})
+        self.assertTrue(c.mixed("`MeetingsProgramaciónDebuggingLearning247`"))
+        self.assertEqual(c.forms_used("`Meetings2`"), set())
+        self.assertEqual(c.forms_used("`xMeetings247`"), set())
+
     def test_mix_is_a_fault(self):
         self.assertTrue(c.mixed("`Meetings` y `Programación`"))
         self.assertTrue(c.mixed("`Meetings` y\n\n```text\nProgramación\t12\t12\n```"))

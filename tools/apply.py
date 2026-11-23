@@ -147,7 +147,14 @@ def apply_text(text, po, rel_path="", cat=None, strict=True):
 CATEGORY_PROSE_FILES = os.path.join("translation", "part2", "category-localized-prose.txt")
 # (?=tc_tab): the m4 entry's glued-word example `Meetingstc_tab` names the word followed by a macro
 # (?<=Debugging Learning)(?=\)): the last word of the four-word list `$(word n,Meetings Coding Debugging Learning)` (make-gnu)
-_WORD_RE = re.compile(r"(?:(?<![\w(])|(?<=xxx))(%s)(?:(?=tc_tab)|(?![\w)])|(?<=Debugging Learning)(?=\)))" % "|".join(categories.EN))
+# (?<=Meetings) ... (?=Meetings): the tape `MeetingsCodingDebuggingLearningMeetings` of regex-pcre2grep glues the words
+_AFTER_EN = "".join("|(?<=%s)" % w for w in categories.EN)
+_WORD_RE = re.compile(r"(?:(?<![\w(])|(?<=xxx)%s)(%s)(?:(?=tc_tab)|(?![\w)])|(?<=Debugging Learning)(?=\))|(?=%s))"
+                      % (_AFTER_EN, "|".join(categories.EN), "|".join(categories.EN)))
+# a regex alternation of the four words, `(Meetings|Coding|Debugging|Learning)`, bare or with the Markdown-escaped pipe `\|`
+_ALT_RE = re.compile(r"\((%s)\)" % r"\\?\|".join(categories.EN))
+# the README excerpt of a regex that reads a category with [A-Za-z] shows the accent-safe class the code now holds
+_WIDE = "[A-Za-zÁÉÍÓÚáéíóúñ]"
 
 
 def category_prose_files():
@@ -179,7 +186,8 @@ def localize_category_words(text):
             # a bold-only word (| **Debugging** | ...) is a concept-table row label, not a card category: it stays
             parts = re.split(r"(\]\([^)]*\)|https?://\S+|\*\*(?:%s)\*\*)" % "|".join(categories.EN), line)
             for i in range(0, len(parts), 2):
-                parts[i] = _WORD_RE.sub(lambda m: categories.EN_TO_ES[m.group(1)], parts[i])
+                parts[i] = _ALT_RE.sub(lambda m: re.sub("|".join(categories.EN), lambda w: categories.EN_TO_ES[w.group(0)], m.group(0)), parts[i])
+                parts[i] = _WORD_RE.sub(lambda m: categories.EN_TO_ES[m.group(1)], parts[i]).replace("[A-Za-z]", _WIDE)
             line = "".join(parts)
         out.append(line)
     return "\n".join(out)

@@ -376,6 +376,13 @@ class CategoryWords(unittest.TestCase):
         want = "`Programación 15 xxxReuniones 12|xx` y `yMeetings` y `Reuniones`\n"
         self.assertEqual(ap.localize_category_words(text), want)
 
+    def test_tape_alternation_and_letter_class_follow_in_code_spans(self):
+        """regex-pcre2grep: a glued tape, the four-word alternation and the [A-Za-z] class; near misses stay."""
+        text = "`MeetingsCodingDebuggingLearningMeetings` `(Meetings\\|Coding\\|Debugging\\|Learning)` `[A-Za-z]*` `(Meetings)`\n"
+        want = ("`ReunionesProgramaciónDepuraciónAprendizajeReuniones` `(Reuniones\\|Programación\\|Depuración\\|Aprendizaje)` "
+                "`[A-Za-zÁÉÍÓÚáéíóúñ]*` `(Meetings)`\n")
+        self.assertEqual(ap.localize_category_words(text), want)
+
     def test_fenced_trace_summary_line_follows_and_loose_prose_in_fence_stays(self):
         """Negative case: only `Word N N / Word N N` lines in a fence change, not a bare Meetings 15 15 in running text."""
         text = "```\nMeetings 15 15 / Coding 19 34\nMeetings 15 and Coding 1 2 3\n```\nMeetings 15 15\n"

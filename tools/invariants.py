@@ -734,7 +734,7 @@ def category_findings(es_text, rel=""):
 def _en_cats(line):
     """A fence line with each card-category word mapped back to English (decision 11): the approved Spanish forms equal the
     English ones for the fence comparison; a mixed or misspelled file is caught by the category check, not here."""
-    return categories.WORD_RE.sub(lambda m: categories.to_english(m.group(1)), line)
+    return categories.WORD_RE.sub(lambda m: categories.to_english(m.group(1)), line).replace("[A-Za-zÁÉÍÓÚáéíóúñ]", "[A-Za-z]")
 
 
 def i13_text(en_text, es_text, rel="", dnt=()):

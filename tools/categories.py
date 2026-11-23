@@ -12,7 +12,11 @@ ES_TO_EN = dict(zip(ES, EN))
 # Near misses that look like the word but are not the approved one.
 WRONG = ("Reunión", "Reunion", "Reunions", "Programacion", "Depuracion", "Debugueo", "Codificación", "Aprendizage")
 # (?<=xxx): ed-weird joins a card and a ledger copy, so tally marks sit right before the word (`...xxxMeetings 12|xx`)
-WORD_RE = re.compile(r"(?:(?<!\w)|(?<=xxx))(%s)(?!\w)" % "|".join(EN + ES))
+# Tape (regex-pcre2grep): `MeetingsCodingDebuggingLearningMeetings247250...` glues the words and ends in digits, so a word may
+# follow another category word, and may be followed by another category word or three digits.
+_ALL = "|".join(EN + ES)
+_AFTER_WORD = "|".join("(?<=%s)" % w for w in EN + ES)
+WORD_RE = re.compile(r"(?:(?<!\w)|(?<=xxx)|%s)(%s)(?:(?!\w)|(?=\d{3})|(?=%s))" % (_AFTER_WORD, _ALL, _ALL))
 
 
 def to_english(word):
