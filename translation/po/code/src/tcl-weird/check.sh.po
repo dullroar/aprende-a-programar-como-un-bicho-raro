@@ -61,3 +61,19 @@ msgstr "# 4. Ejecútalo muchas veces de verdad; cada ejecución debe imprimir un
 msgctxt "L104"
 msgid "# 3. The demo_only CHECK constraint is real: a non-demo row must be refused."
 msgstr "# 3. La restricción CHECK de demo_only es real: una fila que no sea de demostración debe rechazarse."
+
+msgctxt "C12"
+msgid "cards() { grep -cE '^(Meetings|Coding|Debugging|Learning)\t' || true; }"
+msgstr "cards() { grep -cE '^(Reuniones|Programación|Depuración|Aprendizaje)\t' || true; }"
+
+msgctxt "C37"
+msgid "[[ $(grep -cE '^(Meetings|Coding|Debugging|Learning)\t19\t' <<<\"$out\") -eq 3 ]] || { echo \"FAIL: editing the hours row did not change the program\"; echo \"$out\"; exit 1; }"
+msgstr "[[ $(grep -cE '^(Reuniones|Programación|Depuración|Aprendizaje)\t19\t' <<<\"$out\") -eq 3 ]] || { echo \"FAIL: editing the hours row did not change the program\"; echo \"$out\"; exit 1; }"
+
+msgctxt "C73"
+msgid "cats=(Meetings Coding Debugging Learning)"
+msgstr "cats=(Reuniones Programación Depuración Aprendizaje)"
+
+msgctxt "C82"
+msgid "    mapfile -t rows < <(grep -E '^(Meetings|Coding|Debugging|Learning)\t' <<<\"$out\" || true)"
+msgstr "    mapfile -t rows < <(grep -E '^(Reuniones|Programación|Depuración|Aprendizaje)\t' <<<\"$out\" || true)"

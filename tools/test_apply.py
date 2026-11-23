@@ -321,6 +321,16 @@ class CategoryList(unittest.TestCase):
         self.assertEqual(ap.localize_category_rows(text),
                          '```sh\nsplit("Reuniones Programación Depuración Aprendizaje",C)\n```\n')
 
+    def test_braced_list_in_fence(self):
+        """F2-007-tcl-weird: a Tcl list `{Meetings Coding Debugging Learning}` in a fence follows the code."""
+        text = "```sql\n('c', 'n', 'lindex {Meetings Coding Debugging Learning} [expr 1]'),\n```\n"
+        self.assertEqual(ap.localize_category_rows(text),
+                         "```sql\n('c', 'n', 'lindex {Reuniones Programación Depuración Aprendizaje} [expr 1]'),\n```\n")
+
+    def test_braced_other_order_stays(self):
+        text = "```sql\nlindex {Coding Meetings Debugging Learning}\n```\n"
+        self.assertEqual(ap.localize_category_rows(text), text)
+
     def test_other_orders_and_prose_stay(self):
         text = '"Coding Meetings Debugging Learning"\n```\nsplit("Coding Meetings Debugging Learning")\nMeetings Coding Debugging Learning\n```\n'
         self.assertEqual(ap.localize_category_rows(text), text)

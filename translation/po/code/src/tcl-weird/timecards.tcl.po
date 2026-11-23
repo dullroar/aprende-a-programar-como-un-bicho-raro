@@ -105,3 +105,7 @@ msgstr "# La única sentencia que lo pone en marcha: inserta la tarjeta 1 y el d
 msgctxt "L157"
 msgid "# tclsh stays alive after the script ends while Tk's main window exists"
 msgstr "# tclsh sigue vivo cuando termina el script mientras exista la ventana principal de Tk"
+
+msgctxt "C75"
+msgid "         'lindex {Meetings Coding Debugging Learning} [expr {($n - 1) % 4}]'),"
+msgstr "         'lindex {Reuniones Programación Depuración Aprendizaje} [expr {($n - 1) % 4}]'),"

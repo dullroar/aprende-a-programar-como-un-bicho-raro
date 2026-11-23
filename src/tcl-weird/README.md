@@ -38,9 +38,9 @@ Los registros se guardan en `$XDG_DATA_HOME/TclWeird/demo-timecards.db` (`~/.loc
 
 ```text
 # DEMO ONLY run 1794860980-15
-Meetings	15	15	2026-W47	DEMO ONLY
-Coding	13	28	2026-W47	DEMO ONLY
-Debugging	17	45	2026-W47	DEMO ONLY
+Reuniones	15	15	2026-W47	DEMO ONLY
+Programación	13	28	2026-W47	DEMO ONLY
+Depuración	17	45	2026-W47	DEMO ONLY
 # committed total=45 entries=3 DEMO ONLY
 # every proc that ran was fetched from SQLite by unknown: born category hours init runid week
 # the loop was a recursive trigger, and one INSERT started it
@@ -113,7 +113,7 @@ Si le pides a Tcl que ejecute un comando que no existe, llama a un comando llama
 CREATE TEMP TABLE tcl_code(name TEXT PRIMARY KEY, params TEXT, body TEXT);
 INSERT INTO tcl_code VALUES
     ('hours', '', 'expr {10 + int(rand() * 10)}'),
-    ('category', 'n', 'lindex {Meetings Coding Debugging Learning} [expr {($n - 1) % 4}]'),
+    ('category', 'n', 'lindex {Reuniones Programación Depuración Aprendizaje} [expr {($n - 1) % 4}]'),
     ('born', 'category hours total week', 'puts [join [list $category ...] \t] ...'), ...
 ```
 

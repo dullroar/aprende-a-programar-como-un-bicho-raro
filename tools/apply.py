@@ -188,7 +188,7 @@ def localize_category_words(text):
 CATEGORY_FILES = os.path.join("translation", "part2", "category-localized-md.txt")
 ROW_RE = re.compile(r"^(%s)(?=\t)" % "|".join(categories.EN))
 # the four words in order, space-separated, inside a quoted string (a copied split("Meetings Coding Debugging Learning", ...))
-LIST_RE = re.compile(r'(?<=")%s(?=")' % " ".join(categories.EN))
+LIST_RE = re.compile(r'(?<=")%s(?=")|(?<=\{)%s(?=\})' % (" ".join(categories.EN), " ".join(categories.EN)))
 
 
 # a hand-trace summary line in a fence: `Meetings 15 15 / Coding 19 34 / ...` (word, hours, total; slash-separated)

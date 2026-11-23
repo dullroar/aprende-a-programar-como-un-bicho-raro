@@ -9,7 +9,7 @@ export XDG_DATA_HOME=$data
 db=$data/TclWeird/demo-timecards.db
 tclsh=${TCLSH:-tclsh}
 run() { "$tclsh" "${1:-timecards.tcl}"; }
-cards() { grep -cE '^(Meetings|Coding|Debugging|Learning)	' || true; }
+cards() { grep -cE '^(Reuniones|Programación|Depuración|Aprendizaje)	' || true; }
 
 # 1. Estático: la acrobacia es real. Sin comentarios, el Tcl no tiene ningún comando de bucle, solo los dos
 #    procs de enganche (call, unknown) están definidos en Tcl, y el disparador recursivo está activado.
@@ -34,7 +34,7 @@ rm -rf "$data/TclWeird"
 #    b) Las horas salen de verdad de la fila de la tabla: cambia el texto de la fila y cambian los datos.
 sed "s/'expr {10 + int(rand() \* 10)}'/'expr {19}'/" timecards.tcl > "$data/nineteen.tcl"
 out=$(run "$data/nineteen.tcl")
-[[ $(grep -cE '^(Meetings|Coding|Debugging|Learning)	19	' <<<"$out") -eq 3 ]] || { echo "FAIL: editing the hours row did not change the program"; echo "$out"; exit 1; }
+[[ $(grep -cE '^(Reuniones|Programación|Depuración|Aprendizaje)	19	' <<<"$out") -eq 3 ]] || { echo "FAIL: editing the hours row did not change the program"; echo "$out"; exit 1; }
 grep -q 'fetched from SQLite by unknown: born category hours init runid week' <<<"$out" || { echo "FAIL: procs were not loaded from SQLite"; echo "$out"; exit 1; }
 rm -rf "$data/TclWeird"
 #    b2) Cada tarjeta sortea sus horas exactamente una vez. Las horas se leen dos veces (como horas y en el total acumulado), así que la función
@@ -70,7 +70,7 @@ fi
 rm -rf "$data/TclWeird"
 
 # 4. Ejecútalo muchas veces de verdad; cada ejecución debe imprimir un conjunto de registros sensato, y las filas de SQLite deben coincidir con él.
-cats=(Meetings Coding Debugging Learning)
+cats=(Reuniones Programación Depuración Aprendizaje)
 for i in $(seq 1 25); do
     out=$(run)
     run_id=$(sed -nE 's/^# DEMO ONLY run (.+)$/\1/p' <<<"$out")
@@ -79,7 +79,7 @@ for i in $(seq 1 25); do
     [[ -n $commit ]] || { echo "FAIL run $i: no committed line"; echo "$out"; exit 1; }
     total=$(sed -E 's/.*total=([0-9]+).*/\1/' <<<"$commit")
     entries=$(sed -E 's/.*entries=([0-9]+).*/\1/' <<<"$commit")
-    mapfile -t rows < <(grep -E '^(Meetings|Coding|Debugging|Learning)	' <<<"$out" || true)
+    mapfile -t rows < <(grep -E '^(Reuniones|Programación|Depuración|Aprendizaje)	' <<<"$out" || true)
     [[ ${#rows[@]} -eq $entries ]] || { echo "FAIL run $i: ${#rows[@]} rows but entries=$entries"; exit 1; }
     sum=0; n=0
     for row in "${rows[@]}"; do

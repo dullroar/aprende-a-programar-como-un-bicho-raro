@@ -17,5 +17,6 @@ lessons/study-guides/languages/m4.md
 src/make-gnu/README.md
 src/tar-gnu-weird/README.md
 src/tcl/README.md
+src/tcl-weird/README.md
 lessons/study-guides/languages/make-and-cmake.md
 lessons/languages/make-cmake.md

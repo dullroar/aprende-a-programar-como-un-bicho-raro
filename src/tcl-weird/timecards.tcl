@@ -72,7 +72,7 @@ db eval {
         ('hours',    '',
          'expr {10 + int(rand() * 10)}'),
         ('category', 'n',
-         'lindex {Meetings Coding Debugging Learning} [expr {($n - 1) % 4}]'),
+         'lindex {Reuniones Programación Depuración Aprendizaje} [expr {($n - 1) % 4}]'),
         ('born',     'category hours total week',
          'puts [join [list $category $hours $total $week {DEMO ONLY}] \t]
           set ::summary "DEMO ONLY: running total $total"
