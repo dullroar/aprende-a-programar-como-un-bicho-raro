@@ -18,7 +18,7 @@ edition_label: v4-es.0-rc1
 
 # ---- budgets (ralph.sh reads these; environment variables override) ----
 max_iterations: 700
-max_usd: 200
+max_usd: 1000000
 iteration_timeout_minutes: 45
 max_stalled_iterations: 3
 sleep_seconds_between_iterations: 5
