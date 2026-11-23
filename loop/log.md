@@ -403,3 +403,4 @@
 451 S5-audit-3 done audit of 8 S5 families: lock ok, oracle PASS javascript/javascript-events/lisp/make-gnu/tcl, 3 left English (EXC-558/559/562); no violations; translation/reviews/S5-audit-3.md
 452 S5-fam-apl done src/apl localizing: 52 comment lines (timecards.apl, check.sh, Dockerfile) via loc_apply, oracle PASS; categories/strings kept English EXC-566.
 453 S5-fam-apl-weird done src/apl-weird localizing: 34 comment lines (timecards.apl, check.sh, Dockerfile) via loc_apply, oracle PASS; categories/strings kept English EXC-567.
+454 S5-fam-cobol-weird done src/cobol-weird localizing: 47 comment lines (timecards.cob, check.sh, Dockerfile) via loc_apply, oracle PASS; categories/strings kept English EXC-568.

@@ -1,0 +1,191 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+
+msgctxt "L1"
+msgid "      * DEMO ONLY. Fictional timecards, written to a scratch SQLite file"
+msgstr "      * SOLO DEMO (DEMO ONLY). Tarjetas de horas ficticias, escritas en"
+
+msgctxt "L2"
+msgid "      * under XDG_DATA_HOME. Nothing here touches a real time-reporting"
+msgstr "      * un archivo SQLite temporal bajo XDG_DATA_HOME. Nada aquí toca"
+
+msgctxt "L3"
+msgid "      * system."
+msgstr "      * un sistema real de registro de horas."
+
+msgctxt "L5"
+msgid "      * Run:  cobc -xj timecards.cob"
+msgstr "      * Ejecuta:  cobc -xj timecards.cob"
+
+msgctxt "L7"
+msgid "      * The same challenge as ../cobol, with no IF, no PERFORM, no"
+msgstr "      * El mismo desafío que ../cobol, sin IF, sin PERFORM, sin"
+
+msgctxt "L8"
+msgid "      * EVALUATE and no UNTIL anywhere. Control flow is GO TO and the"
+msgstr "      * EVALUATE y sin UNTIL en ningún sitio. El flujo es GO TO y la"
+
+msgctxt "L9"
+msgid "      * ALTER statement, which rewrites where a GO TO jumps while the"
+msgstr "      * sentencia ALTER, que reescribe adónde salta un GO TO mientras"
+
+msgctxt "L10"
+msgid "      * program runs. ALTER was declared obsolete in 1985 and deleted"
+msgstr "      * el programa corre. ALTER quedó obsoleta en 1985 y se borró"
+
+msgctxt "L11"
+msgid "      * from the standard in 2002; GnuCOBOL still runs it, and warns."
+msgstr "      * del estándar en 2002; GnuCOBOL aún la ejecuta, y avisa."
+
+msgctxt "L13"
+msgid "      * - The loop is one paragraph, NEXT-CARD, holding one GO TO."
+msgstr "      * - El bucle es un párrafo, NEXT-CARD, con un solo GO TO."
+
+msgctxt "L14"
+msgid "      * - Each category's paragraph ALTERs that GO TO to point at the"
+msgstr "      * - El párrafo de cada categoría hace ALTER de ese GO TO para"
+
+msgctxt "L15"
+msgid "      *   next category. That is the round-and-round."
+msgstr "      *   apuntar a la categoría siguiente. Ese es el ciclo."
+
+msgctxt "L16"
+msgid "      * - The stop rule is a two-digit field, WS-HEADROOM, that starts"
+msgstr "      * - La regla de parada es un campo de dos dígitos, WS-HEADROOM,"
+
+msgctxt "L17"
+msgid "      *   at 59. Each card's hours are added to it, and it overflows"
+msgstr "      *   que empieza en 59. Se le suman las horas de cada tarjeta y"
+
+msgctxt "L18"
+msgid "      *   (ON SIZE ERROR) exactly when the total passes 40, because"
+msgstr "      *   se desborda (ON SIZE ERROR) justo cuando el total pasa de 40,"
+
+msgctxt "L19"
+msgid "      *   59 + 41 = 100 does not fit in PIC 99. The size-error handler"
+msgstr "      *   porque 59 + 41 = 100 no cabe en PIC 99. El manejador del"
+
+msgctxt "L20"
+msgid "      *   ALTERs NEXT-CARD one last time, to FINISH-RUN."
+msgstr "      *   error de tamaño hace ALTER de NEXT-CARD a FINISH-RUN."
+
+msgctxt "L22"
+msgid "      * Fixed format: a * in column 7 is a comment, code is in columns"
+msgstr "      * Formato fijo: un * en la columna 7 es un comentario; el código"
+
+msgctxt "L23"
+msgid "      * 8-72. Paragraphs run in the order they are written unless a"
+msgstr "      * va en las columnas 8-72. Los párrafos corren en orden salvo que"
+
+msgctxt "L24"
+msgid "      * GO TO says otherwise, so this file reads top to bottom."
+msgstr "      * un GO TO diga otra cosa, así que se lee de arriba abajo."
+
+msgctxt "L40"
+msgid "      * ---- the tripwire --------------------------------------------"
+msgstr "      * ---- el cable trampa -----------------------------------------"
+
+msgctxt "L41"
+msgid "      * 59 + total fits in two digits while the total is 40 or less."
+msgstr "      * 59 + total cabe en dos dígitos si el total es 40 o menos."
+
+msgctxt "L42"
+msgid "      * The add that would make it 100 or more is a size error, and a"
+msgstr "      * La suma que daría 100 o más es un error de tamaño, y un"
+
+msgctxt "L43"
+msgid "      * size error leaves the field as it was."
+msgstr "      * error de tamaño deja el campo como estaba."
+
+msgctxt "L50"
+msgid "      * ---- run id and random seed ----------------------------------"
+msgstr "      * ---- id de ejecución y semilla aleatoria ---------------------"
+
+msgctxt "L58"
+msgid "      * ---- the ISO-8601 week, by date arithmetic --------------------"
+msgstr "      * ---- la semana ISO-8601, con aritmética de fechas -------------"
+
+msgctxt "L66"
+msgid "      * ---- where the data goes, chosen without IF -------------------"
+msgstr "      * ---- adónde van los datos, elegido sin IF ---------------------"
+
+msgctxt "L67"
+msgid "      * Choice 1 is $HOME/.local/share, choice 2 is $XDG_DATA_HOME."
+msgstr "      * La opción 1 es $HOME/.local/share, la 2 es $XDG_DATA_HOME."
+
+msgctxt "L68"
+msgid "      * The subscript is 1 + MIN(length of XDG_DATA_HOME, 1): 1 when"
+msgstr "      * El subíndice es 1 + MIN(largo de XDG_DATA_HOME, 1): 1 si no"
+
+msgctxt "L69"
+msgid "      * it is unset, 2 when it is set."
+msgstr "      * está definida, 2 si lo está."
+
+msgctxt "L96"
+msgid "      * Same arithmetic as ../cobol: day 1 (1601-01-01) was a Monday,"
+msgstr "      * Misma aritmética que ../cobol: el día 1 (1601-01-01) fue lunes"
+
+msgctxt "L97"
+msgid "      * and an ISO week belongs to the year its Thursday is in."
+msgstr "      * y una semana ISO pertenece al año en que cae su jueves."
+
+msgctxt "L128"
+msgid "      * The shell creates the folder here and runs sqlite3 at the end."
+msgstr "      * El intérprete crea aquí la carpeta y corre sqlite3 al final."
+
+msgctxt "L129"
+msgid "      * CHECK(demo_only=1) means a non-demo row cannot be stored."
+msgstr "      * CHECK(demo_only=1): no se guarda una fila que no sea demo."
+
+msgctxt "L147"
+msgid "      * ---- the switchboard ------------------------------------------"
+msgstr "      * ---- el conmutador --------------------------------------------"
+
+msgctxt "L148"
+msgid "      * NEXT-CARD is the only thing ALTER may change: a paragraph that"
+msgstr "      * NEXT-CARD es lo único que ALTER puede cambiar: un párrafo que"
+
+msgctxt "L149"
+msgid "      * is exactly one GO TO. It starts out pointing at MEETINGS-CARD."
+msgstr "      * es exactamente un GO TO. Empieza apuntando a MEETINGS-CARD."
+
+msgctxt "L153"
+msgid "      * Each category names itself, rewires NEXT-CARD to the category"
+msgstr "      * Cada categoría se nombra, recablea NEXT-CARD a la categoría"
+
+msgctxt "L154"
+msgid "      * after it, and joins RECORD-CARD. Nothing counts modulo 4."
+msgstr "      * que sigue, y se une a RECORD-CARD. Nada cuenta módulo 4."
+
+msgctxt "L175"
+msgid "      * One card. The last statement before GO TO NEXT-CARD is the"
+msgstr "      * Una tarjeta. La última sentencia antes de GO TO NEXT-CARD es el"
+
+msgctxt "L176"
+msgid "      * tripwire: if the headroom overflows, NEXT-CARD is rewired to"
+msgstr "      * cable trampa: si el margen se desborda, NEXT-CARD se recablea a"
+
+msgctxt "L177"
+msgid "      * FINISH-RUN, so the very same GO TO now ends the run."
+msgstr "      * FINISH-RUN, y así el mismo GO TO ahora termina la ejecución."
+
+msgctxt "L185"
+msgid "      * Safe only because every value is a number computed here or"
+msgstr "      * Es seguro solo porque cada valor es un número calculado aquí o"
+
+msgctxt "L186"
+msgid "      * one of four fixed words. Do not copy this pattern."
+msgstr "      * una de cuatro palabras fijas. No copies este patrón."
+
+msgctxt "L202"
+msgid "      * Without IF, a failed sqlite3 cannot skip the summary; instead"
+msgstr "      * Sin IF, un sqlite3 fallido no puede saltarse el resumen; en su"
+
+msgctxt "L203"
+msgid "      * the shell reports it on stderr and its status becomes the"
+msgstr "      * lugar el intérprete avisa por stderr y su estado pasa a ser el"
+
+msgctxt "L204"
+msgid "      * program's exit code (SYSTEM returns status * 256)."
+msgstr "      * código de salida del programa (SYSTEM devuelve estado * 256)."

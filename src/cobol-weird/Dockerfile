@@ -1,6 +1,6 @@
-# Container image for the weird COBOL entry. Run it with: sandbox/container/run-image.sh src/cobol-weird
-# Build stage: GnuCOBOL's cobc compiles the program (through C) to one binary. Runtime stage: that
-# binary on a base with sqlite3 and GnuCOBOL's runtime library (libcob), with no compiler in it.
+# Imagen de contenedor para la entrada COBOL rara. Ejecútala con: sandbox/container/run-image.sh src/cobol-weird
+# Etapa de compilación: cobc de GnuCOBOL compila el programa (a través de C) en un binario. Etapa de ejecución: ese
+# binario sobre una base con sqlite3 y la biblioteca de ejecución de GnuCOBOL (libcob), sin compilador.
 FROM code-challenge-sandbox:local AS build
 USER root
 WORKDIR /build

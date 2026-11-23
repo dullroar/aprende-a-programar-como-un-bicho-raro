@@ -1,27 +1,27 @@
-      * DEMO ONLY. Fictional timecards, written to a scratch SQLite file
-      * under XDG_DATA_HOME. Nothing here touches a real time-reporting
-      * system.
+      * SOLO DEMO (DEMO ONLY). Tarjetas de horas ficticias, escritas en
+      * un archivo SQLite temporal bajo XDG_DATA_HOME. Nada aquí toca
+      * un sistema real de registro de horas.
       *
-      * Run:  cobc -xj timecards.cob
+      * Ejecuta:  cobc -xj timecards.cob
       *
-      * The same challenge as ../cobol, with no IF, no PERFORM, no
-      * EVALUATE and no UNTIL anywhere. Control flow is GO TO and the
-      * ALTER statement, which rewrites where a GO TO jumps while the
-      * program runs. ALTER was declared obsolete in 1985 and deleted
-      * from the standard in 2002; GnuCOBOL still runs it, and warns.
+      * El mismo desafío que ../cobol, sin IF, sin PERFORM, sin
+      * EVALUATE y sin UNTIL en ningún sitio. El flujo es GO TO y la
+      * sentencia ALTER, que reescribe adónde salta un GO TO mientras
+      * el programa corre. ALTER quedó obsoleta en 1985 y se borró
+      * del estándar en 2002; GnuCOBOL aún la ejecuta, y avisa.
       *
-      * - The loop is one paragraph, NEXT-CARD, holding one GO TO.
-      * - Each category's paragraph ALTERs that GO TO to point at the
-      *   next category. That is the round-and-round.
-      * - The stop rule is a two-digit field, WS-HEADROOM, that starts
-      *   at 59. Each card's hours are added to it, and it overflows
-      *   (ON SIZE ERROR) exactly when the total passes 40, because
-      *   59 + 41 = 100 does not fit in PIC 99. The size-error handler
-      *   ALTERs NEXT-CARD one last time, to FINISH-RUN.
+      * - El bucle es un párrafo, NEXT-CARD, con un solo GO TO.
+      * - El párrafo de cada categoría hace ALTER de ese GO TO para
+      *   apuntar a la categoría siguiente. Ese es el ciclo.
+      * - La regla de parada es un campo de dos dígitos, WS-HEADROOM,
+      *   que empieza en 59. Se le suman las horas de cada tarjeta y
+      *   se desborda (ON SIZE ERROR) justo cuando el total pasa de 40,
+      *   porque 59 + 41 = 100 no cabe en PIC 99. El manejador del
+      *   error de tamaño hace ALTER de NEXT-CARD a FINISH-RUN.
       *
-      * Fixed format: a * in column 7 is a comment, code is in columns
-      * 8-72. Paragraphs run in the order they are written unless a
-      * GO TO says otherwise, so this file reads top to bottom.
+      * Formato fijo: un * en la columna 7 es un comentario; el código
+      * va en las columnas 8-72. Los párrafos corren en orden salvo que
+      * un GO TO diga otra cosa, así que se lee de arriba abajo.
        IDENTIFICATION DIVISION.
        PROGRAM-ID. TIMECARDS-WEIRD.
 
@@ -37,17 +37,17 @@
        01  SQL-LINE                PIC X(400).
 
        WORKING-STORAGE SECTION.
-      * ---- the tripwire --------------------------------------------
-      * 59 + total fits in two digits while the total is 40 or less.
-      * The add that would make it 100 or more is a size error, and a
-      * size error leaves the field as it was.
+      * ---- el cable trampa -----------------------------------------
+      * 59 + total cabe en dos dígitos si el total es 40 o menos.
+      * La suma que daría 100 o más es un error de tamaño, y un
+      * error de tamaño deja el campo como estaba.
        01  WS-HEADROOM             PIC 99 VALUE 59.
        01  WS-TOTAL                PIC 99 VALUE 0.
        01  WS-HOURS                PIC 99.
        01  WS-ENTRIES              PIC 9 VALUE 0.
        01  WS-CATEGORY             PIC X(9).
 
-      * ---- run id and random seed ----------------------------------
+      * ---- id de ejecución y semilla aleatoria ---------------------
        01  WS-NOW                  PIC X(21).
        01  WS-PID                  PIC 9(9).
        01  WS-PID-TEXT             PIC Z(8)9.
@@ -55,7 +55,7 @@
        01  WS-SEED                 PIC 9(9).
        01  WS-IGNORED              USAGE COMP-2.
 
-      * ---- the ISO-8601 week, by date arithmetic --------------------
+      * ---- la semana ISO-8601, con aritmética de fechas -------------
        01  WS-TODAY                PIC 9(8).
        01  WS-DAY                  PIC 9(7).
        01  WS-THURSDAY             PIC 9(7).
@@ -63,10 +63,10 @@
        01  WS-ISO-WEEK             PIC 99.
        01  WS-WEEK                 PIC X(8).
 
-      * ---- where the data goes, chosen without IF -------------------
-      * Choice 1 is $HOME/.local/share, choice 2 is $XDG_DATA_HOME.
-      * The subscript is 1 + MIN(length of XDG_DATA_HOME, 1): 1 when
-      * it is unset, 2 when it is set.
+      * ---- adónde van los datos, elegido sin IF ---------------------
+      * La opción 1 es $HOME/.local/share, la 2 es $XDG_DATA_HOME.
+      * El subíndice es 1 + MIN(largo de XDG_DATA_HOME, 1): 1 si no
+      * está definida, 2 si lo está.
        01  WS-HOME                 PIC X(300).
        01  WS-XDG                  PIC X(300).
        01  WS-XDG-LENGTH           PIC 9(4) VALUE 0.
@@ -93,8 +93,8 @@
                999999937)
            COMPUTE WS-IGNORED = FUNCTION RANDOM(WS-SEED).
 
-      * Same arithmetic as ../cobol: day 1 (1601-01-01) was a Monday,
-      * and an ISO week belongs to the year its Thursday is in.
+      * Misma aritmética que ../cobol: el día 1 (1601-01-01) fue lunes
+      * y una semana ISO pertenece al año en que cae su jueves.
        WORK-OUT-WEEK.
            MOVE WS-NOW(1:8) TO WS-TODAY
            COMPUTE WS-DAY = FUNCTION INTEGER-OF-DATE(WS-TODAY)
@@ -125,8 +125,8 @@
                FUNCTION TRIM(WS-RUN-ID) ".sql"
                DELIMITED BY SIZE INTO WS-SQL-PATH.
 
-      * The shell creates the folder here and runs sqlite3 at the end.
-      * CHECK(demo_only=1) means a non-demo row cannot be stored.
+      * El intérprete crea aquí la carpeta y corre sqlite3 al final.
+      * CHECK(demo_only=1): no se guarda una fila que no sea demo.
        OPEN-SCRIPT.
            MOVE SPACES TO WS-CMD
            STRING "mkdir -p '" FUNCTION TRIM(WS-DIR) "'"
@@ -144,14 +144,14 @@
            WRITE SQL-LINE FROM "BEGIN;"
            DISPLAY "# DEMO ONLY run " FUNCTION TRIM(WS-RUN-ID).
 
-      * ---- the switchboard ------------------------------------------
-      * NEXT-CARD is the only thing ALTER may change: a paragraph that
-      * is exactly one GO TO. It starts out pointing at MEETINGS-CARD.
+      * ---- el conmutador --------------------------------------------
+      * NEXT-CARD es lo único que ALTER puede cambiar: un párrafo que
+      * es exactamente un GO TO. Empieza apuntando a MEETINGS-CARD.
        NEXT-CARD.
            GO TO MEETINGS-CARD.
 
-      * Each category names itself, rewires NEXT-CARD to the category
-      * after it, and joins RECORD-CARD. Nothing counts modulo 4.
+      * Cada categoría se nombra, recablea NEXT-CARD a la categoría
+      * que sigue, y se une a RECORD-CARD. Nada cuenta módulo 4.
        MEETINGS-CARD.
            MOVE "Meetings" TO WS-CATEGORY
            ALTER NEXT-CARD TO PROCEED TO CODING-CARD
@@ -172,9 +172,9 @@
            ALTER NEXT-CARD TO PROCEED TO MEETINGS-CARD
            GO TO RECORD-CARD.
 
-      * One card. The last statement before GO TO NEXT-CARD is the
-      * tripwire: if the headroom overflows, NEXT-CARD is rewired to
-      * FINISH-RUN, so the very same GO TO now ends the run.
+      * Una tarjeta. La última sentencia antes de GO TO NEXT-CARD es el
+      * cable trampa: si el margen se desborda, NEXT-CARD se recablea a
+      * FINISH-RUN, y así el mismo GO TO ahora termina la ejecución.
        RECORD-CARD.
            COMPUTE WS-HOURS = 10 + FUNCTION RANDOM * 10
            ADD WS-HOURS TO WS-TOTAL
@@ -182,8 +182,8 @@
            DISPLAY FUNCTION TRIM(WS-CATEGORY) WS-TAB
                WS-HOURS WS-TAB WS-TOTAL WS-TAB WS-WEEK WS-TAB
                "DEMO ONLY"
-      * Safe only because every value is a number computed here or
-      * one of four fixed words. Do not copy this pattern.
+      * Es seguro solo porque cada valor es un número calculado aquí o
+      * una de cuatro palabras fijas. No copies este patrón.
            MOVE SPACES TO WS-LINE
            STRING "INSERT INTO demo_timecards(run_id,category,hours,"
                "running_total,iso_week,created_at) VALUES('"
@@ -199,9 +199,9 @@
            END-ADD
            GO TO NEXT-CARD.
 
-      * Without IF, a failed sqlite3 cannot skip the summary; instead
-      * the shell reports it on stderr and its status becomes the
-      * program's exit code (SYSTEM returns status * 256).
+      * Sin IF, un sqlite3 fallido no puede saltarse el resumen; en su
+      * lugar el intérprete avisa por stderr y su estado pasa a ser el
+      * código de salida del programa (SYSTEM devuelve estado * 256).
        FINISH-RUN.
            WRITE SQL-LINE FROM "COMMIT;"
            CLOSE SQL-SCRIPT

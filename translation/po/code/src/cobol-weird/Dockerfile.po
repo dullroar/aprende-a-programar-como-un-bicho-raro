@@ -1,0 +1,15 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+
+msgctxt "L1"
+msgid "# Container image for the weird COBOL entry. Run it with: sandbox/container/run-image.sh src/cobol-weird"
+msgstr "# Imagen de contenedor para la entrada COBOL rara. Ejecútala con: sandbox/container/run-image.sh src/cobol-weird"
+
+msgctxt "L2"
+msgid "# Build stage: GnuCOBOL's cobc compiles the program (through C) to one binary. Runtime stage: that"
+msgstr "# Etapa de compilación: cobc de GnuCOBOL compila el programa (a través de C) en un binario. Etapa de ejecución: ese"
+
+msgctxt "L3"
+msgid "# binary on a base with sqlite3 and GnuCOBOL's runtime library (libcob), with no compiler in it."
+msgstr "# binario sobre una base con sqlite3 y la biblioteca de ejecución de GnuCOBOL (libcob), sin compilador."

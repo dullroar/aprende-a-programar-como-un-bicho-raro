@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Checks the rules of the challenge for the weird COBOL entry. Uses a throwaway data dir.
+# Revisa las reglas del desafío para la entrada COBOL rara. Usa una carpeta de datos desechable.
 set -euo pipefail
 cd "$(dirname "$0")"
 data=$(mktemp -d); trap 'rm -rf "$data"' EXIT
@@ -7,9 +7,9 @@ export XDG_DATA_HOME=$data
 db=$data/CobolWeird/demo-timecards.db
 bin=$data/timecards
 
-# 1. Static: the demo disclaimer, nothing network-looking, honest fixed format, and the constraint is real. With
-#    comment lines and string literals removed, no structured control flow appears: only GO TO and ALTER, plus the
-#    one ON SIZE ERROR tripwire.
+# 1. Estático: el aviso de demo, nada que parezca de red, formato fijo honesto, y la restricción es real. Sin
+#    líneas de comentario ni literales de texto, no aparece flujo de control estructurado: solo GO TO y ALTER, más el
+#    único cable trampa ON SIZE ERROR.
 grep -q 'DEMO ONLY' timecards.cob || { echo "FAIL: no DEMO ONLY marker in timecards.cob"; exit 1; }
 if grep -Eqi 'http|socket|curl|wget' timecards.cob; then echo "FAIL: network-looking text in timecards.cob"; exit 1; fi
 long=$(awk 'length > 72 { print FNR }' timecards.cob)
@@ -22,8 +22,8 @@ fi
 [[ $(grep -c 'ON SIZE ERROR' <<<"$code") -eq 1 ]] || { echo "FAIL: expected exactly one ON SIZE ERROR (the stop rule)"; exit 1; }
 grep -q 'ALTER NEXT-CARD TO PROCEED TO FINISH-RUN' <<<"$code" || { echo "FAIL: the stop is not an ALTER of NEXT-CARD"; exit 1; }
 
-# 2. Build once (binaries are never committed), then run it a bunch of times. Every run must print a sane record
-#    set, and the SQLite rows must agree with it.
+# 2. Compila una vez (los binarios nunca se suben), luego ejecútalo varias veces. Cada ejecución debe imprimir un
+#    conjunto de registros sensato, y las filas de SQLite deben coincidir.
 "${COBC:-cobc}" -x -o "$bin" timecards.cob
 cats=(Meetings Coding Debugging Learning)
 for i in $(seq 1 25); do
@@ -46,7 +46,7 @@ for i in $(seq 1 25); do
         (( sum <= 40 )) || { echo "FAIL run $i: kept going after the total passed 40"; exit 1; }
         sum=$(( sum + 10#$hours )); n=$(( n + 1 ))
         (( 10#$running == sum )) || { echo "FAIL run $i: running total $running, wanted $sum"; exit 1; }
-        # The ISO week is computed by date arithmetic in COBOL; it must agree with date(1).
+        # La semana ISO se calcula con aritmética de fechas en COBOL; debe coincidir con date(1).
         [[ $week == "$week_before" || $week == "$week_after" ]] || { echo "FAIL run $i: ISO week '$week', date(1) says '$week_before'"; exit 1; }
         [[ $mark == "DEMO ONLY" ]] || { echo "FAIL run $i: row not marked DEMO ONLY"; exit 1; }
     done
@@ -59,7 +59,7 @@ done
 leftover=$(find "$data/CobolWeird" -name 'run-*.sql')
 [[ -z $leftover ]] || { echo "FAIL: SQL scripts left behind after successful runs: $leftover"; exit 1; }
 
-# 3. The demo_only CHECK constraint is real: a non-demo row must be refused.
+# 3. La restricción CHECK de demo_only es real: una fila que no sea de demo debe ser rechazada.
 if sqlite3 "$db" "insert into demo_timecards(run_id,category,hours,running_total,demo_only) values('x','x',1,1,0)" 2>/dev/null; then
     echo "FAIL: db accepted a non-demo row"; exit 1
 fi

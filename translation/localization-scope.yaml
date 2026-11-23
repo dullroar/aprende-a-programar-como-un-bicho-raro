@@ -43,7 +43,7 @@ families:
   "src/awk-weird": {status: frozen, files: 3}
   "src/cmake": {status: localizing, files: 3}
   "src/cobol": {status: localizing, files: 4}
-  "src/cobol-weird": {status: frozen, files: 4}
+  "src/cobol-weird": {status: localizing, files: 4}
   "src/ed-weird": {status: frozen, files: 5}
   "src/ex-weird": {status: frozen, files: 4}
   "src/find-gnu": {status: localizing, files: 4}
