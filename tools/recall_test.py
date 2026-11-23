@@ -90,6 +90,28 @@ def m_phase_letter_after_fase(u, ctx):
     return s[:m.start(1)] + new + s[m.end(1):], m.group(0)[:-1] + new, "phase-acronym", "critical"
 
 
+def m_code_category(u, ctx):
+    """Code unit: respell one localized card category on a code line (neither the English nor the approved word)."""
+    for a, b, ln in jp._code_lines(u["spanish"]):
+        for old in ("Reuniones", "Programación", "Depuración", "Aprendizaje"):
+            j = ln.find(old)
+            if j >= 0:
+                new = CATEGORY_WORDS[old]
+                return u["spanish"][:a + j] + new + u["spanish"][a + j + len(old):], new, "dnt-violation", "major"
+    return None
+
+
+def m_code_unwiden(u, ctx):
+    """Code unit: put the narrow ASCII class back where G1 widened it to accented letters (a regex that no longer matches)."""
+    for a, b, ln in jp._code_lines(u["spanish"]):
+        j = ln.find("A-Za-zÁÉÍÓÚáéíóúñ")
+        if j >= 0:
+            return (u["spanish"][:a + j] + "A-Za-z" + u["spanish"][a + j + len("A-Za-zÁÉÍÓÚáéíóúñ"):],
+                    "A-Za-z", "code-semantics", "critical")
+    return None
+
+
+CODE_FAULTS = tuple(jp.CODE_MUTATORS) + (("code_category", m_code_category), ("code_unwiden", m_code_unwiden))
 MUTATORS = tuple(jp.MUTATORS) + (("category_in_span", m_category_in_span),
                                  ("phase_letter_after_fase", m_phase_letter_after_fase))
 
@@ -106,7 +128,7 @@ def changed_span(original, mutated):
     return a, len(mutated) - b
 
 
-def select_faults(units, ctx, total=50, seed=7):
+def select_faults(units, ctx, total=50, seed=7, mutators=None, flip=True):
     """Pick up to `total` (unit, mutated Spanish) pairs, mutators in rotation so every category is present.
 
     Each unit carries at most one fault. Every unit that can take the 40-rule flip is used for it (up to
@@ -131,16 +153,17 @@ def select_faults(units, ctx, total=50, seed=7):
         used.add(i)
         return True
 
+    mutators = mutators or MUTATORS
     forty = dict(jp.MUTATORS)["flip_forty"]
-    for i in order:
+    for i in order if flip else []:
         if len(faults) >= FORTY_MAX:
             break
         if forty(units[i], ctx):
             add(i, "flip_forty", forty)
     rot = 0
     stalled = 0
-    while len(faults) < total and stalled < len(MUTATORS):
-        name, fn = MUTATORS[rot % len(MUTATORS)]
+    while len(faults) < total and stalled < len(mutators):
+        name, fn = mutators[rot % len(mutators)]
         rot += 1
         for i in order:
             if i in used:
@@ -497,6 +520,18 @@ def load_units():
     return units, cat, cfg
 
 
+def load_code_units(families):
+    """Chunks of localized src/ files that differ from the English (Part II code comments and categories)."""
+    import inventory
+    import verify  # noqa: F401
+    cfg = inventory.read_config(ROOT)
+    cat = __import__("catalog").load("es")
+    english_root = cfg.get("english_clone_path") or "/home/lehmer/english-source"
+    rels = [r for r in jp.localized_files(ROOT) if any(r.startswith("src/%s/" % f) for f in families)]
+    units = jp.collect_code_units(ROOT, english_root, rels)
+    return units, cat, cfg
+
+
 def main(argv):
     ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
     ap.add_argument("--run", action="store_true")
@@ -508,15 +543,19 @@ def main(argv):
     ap.add_argument("--workers", type=int, default=4)
     ap.add_argument("--max-usd", type=float, default=3.0)
     ap.add_argument("--out", default=DEFAULT_OUT)
+    ap.add_argument("--code", default="", help="comma list of src families: seed faults in localized code chunks instead of prose")
     args = ap.parse_args(argv[1:])
     if not (args.run or args.rescore):
         ap.print_help()
         return 2
     import inventory
-    units, cat, cfg = load_units()
+    if args.code:
+        units, cat, cfg = load_code_units([x for x in args.code.split(",") if x])
+    else:
+        units, cat, cfg = load_units()
     glossary = jp.load_glossary()
     ctx = jp.canary_context(cat)
-    faults = select_faults(units, ctx, args.faults, args.seed)
+    faults = select_faults(units, ctx, args.faults, args.seed, CODE_FAULTS if args.code else None, not args.code)
     controls = select_controls(units, faults, args.controls, args.seed)
     by_key = {jp.unit_key(u): u for u in units}
     reviewer_name = str(cfg.get("in_loop_reviewer", args.model))

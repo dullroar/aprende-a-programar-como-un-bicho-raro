@@ -164,3 +164,4 @@
 - A tape of glued category words (`MeetingsCodingDebuggingLearningMeetings247...`) is matched by categories.WORD_RE and apply._WORD_RE only as a run; a README code span with `[A-Za-z]` is widened by apply.py, so do not hand-edit it.
 - For a family whose README fences copy archive records (`category=Coding`), apply.py's KEYVAL_RE localizes them; after editing apply.py rerun `translation/work/regen_po.py REL` and grep the README for leftover English words.
 - Never commit `review/packets/`, `review/repo-bundle.zip`, `review/canaries.key.json` or `review/units.index.jsonl`: they carry canaries or the key; commit only the public MANIFEST.md and EDITION-FACTS.md.
+- The model reviewer misses a regex class narrowed from A-Za-zÁÉÍÓÚáéíóúñ back to A-Za-z (1/4 caught), so rely on the oracle in Spanish for it; rerun `recall_test.py --code FAMILIES` with a higher --max-usd because old replies in translation/work/recall count against the budget.
