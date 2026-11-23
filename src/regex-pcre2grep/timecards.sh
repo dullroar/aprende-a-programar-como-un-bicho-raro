@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
-# DEMO ONLY. Fictional timecards, written to a scratch SQLite file under XDG_DATA_HOME. See README.md.
+# DEMO ONLY. Tarjetas de horas ficticias, escritas en un archivo SQLite desechable bajo XDG_DATA_HOME. Consulta README.md.
 #
-# The program is the pattern below. This script only finds a pcre2grep whose callouts are enabled, moves
-# to the scratch directory, and runs ONE pcre2grep command against a one-line "tape". It has no loop,
-# does no arithmetic and makes no decisions; the callouts, helper exit codes and backtracking do.
+# El programa es el patrón de abajo. Este script solo busca un pcre2grep con las llamadas de retorno (callouts) activadas, se mueve
+# al directorio desechable y ejecuta UN solo comando pcre2grep sobre una "cinta" de una línea. No tiene bucle,
+# no hace aritmética ni toma decisiones; eso lo hacen las llamadas de retorno, los códigos de salida de los ayudantes y el retroceso.
 set -euo pipefail
 
 PCRE2GREP=${PCRE2GREP:-pcre2grep}

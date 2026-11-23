@@ -1,0 +1,15 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+
+msgctxt "L1"
+msgid "# Container image for the pcre2grep entry. Run it with: sandbox/container/run-image.sh src/regex-pcre2grep"
+msgstr "# Imagen de contenedor para la entrada de pcre2grep. Ejecútala con: sandbox/container/run-image.sh src/regex-pcre2grep"
+
+msgctxt "L2"
+msgid "# Ubuntu's pcre2grep is built without callout scripts, so the toolchain image builds one from a"
+msgstr "# El pcre2grep de Ubuntu se compila sin scripts de llamadas de retorno, así que la imagen de herramientas compila uno a partir de una"
+
+msgctxt "L3"
+msgid "# SHA-256-pinned PCRE2 release (see sandbox/linux/Dockerfile); this image takes only that static binary."
+msgstr "# versión de PCRE2 fijada por SHA-256 (consulta sandbox/linux/Dockerfile); esta imagen solo toma ese binario estático."

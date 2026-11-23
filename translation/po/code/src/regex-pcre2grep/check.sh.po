@@ -1,0 +1,51 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+
+msgctxt "L2"
+msgid "# Checks the rules of the regex challenge for the pcre2grep track. Uses a throwaway data dir."
+msgstr "# Comprueba las reglas del desafío de regex para la pista de pcre2grep. Usa un directorio de datos desechable."
+
+msgctxt "L3"
+msgid "# Needs a pcre2grep built with callout scripts (see README.md); set PCRE2GREP to point at it."
+msgstr "# Necesita un pcre2grep compilado con scripts de llamadas de retorno (consulta README.md); define PCRE2GREP para apuntar a él."
+
+msgctxt "L11"
+msgid "# 1. The host has no loop keywords, runs exactly one pcre2grep, and the callouts may only run an"
+msgstr "# 1. El anfitrión no tiene palabras clave de bucle, ejecuta exactamente un pcre2grep, y las llamadas de retorno solo pueden ejecutar una"
+
+msgctxt "L12"
+msgid "#    allow-list of programs (never a shell or an interpreter)."
+msgstr "#    lista permitida de programas (nunca un intérprete de comandos ni un intérprete de lenguaje)."
+
+msgctxt "L21"
+msgid "# 2. A pcre2grep without callout support must be refused loudly (only testable if one is installed)."
+msgstr "# 2. Un pcre2grep sin soporte de llamadas de retorno debe rechazarse con un error claro (solo se puede probar si hay uno instalado)."
+
+msgctxt "L27"
+msgid "# 3. Run it a bunch of times; every run must print a sane record set, and the SQLite rows must agree with it."
+msgstr "# 3. Ejecútalo muchas veces; cada ejecución debe imprimir un conjunto de registros sensato, y las filas de SQLite deben coincidir con él."
+
+msgctxt "L39"
+msgid "# Stop rule: the total before the last card is 40 or less (exactly 40 continues), and the last card took it over 40. A run has 3 to 5 cards."
+msgstr "# Regla de parada: el total antes de la última tarjeta es 40 o menos (exactamente 40 continúa), y la última tarjeta lo llevó a más de 40. Una ejecución tiene de 3 a 5 tarjetas."
+
+msgctxt "L42"
+msgid "# The stop rule announces itself on stderr (a named CHECK constraint) exactly when the total ended over 40, and nothing else does."
+msgstr "# La regla de parada se anuncia en stderr (una restricción CHECK con nombre) exactamente cuando el total terminó en más de 40, y nada más lo hace."
+
+msgctxt "L47"
+msgid "# The rows are really in SQLite and agree with what was printed."
+msgstr "# Las filas están realmente en SQLite y coinciden con lo que se imprimió."
+
+msgctxt "L54"
+msgid "# 4. Exactly 40 continues. Four 10-hour cards total exactly 40, so a fifth card must be drawn: Meetings again, total 50."
+msgstr "# 4. Exactamente 40 continúa. Cuatro tarjetas de 10 horas suman exactamente 40, así que se debe sacar una quinta tarjeta: Meetings otra vez, total 50."
+
+msgctxt "L55"
+msgid "#    A copy of the script with every card worth 10 hours makes that the only possible run (separate data dir, so the checks above are undisturbed)."
+msgstr "#    Una copia del script con todas las tarjetas de 10 horas hace que esa sea la única ejecución posible (directorio de datos aparte, para no alterar las comprobaciones anteriores)."
+
+msgctxt "L63"
+msgid "# 5. The demo_only CHECK constraint is real: a non-demo row must be refused."
+msgstr "# 5. La restricción CHECK de demo_only es real: una fila que no sea de demostración debe rechazarse."

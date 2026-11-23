@@ -1,6 +1,6 @@
-# Container image for the pcre2grep entry. Run it with: sandbox/container/run-image.sh src/regex-pcre2grep
-# Ubuntu's pcre2grep is built without callout scripts, so the toolchain image builds one from a
-# SHA-256-pinned PCRE2 release (see sandbox/linux/Dockerfile); this image takes only that static binary.
+# Imagen de contenedor para la entrada de pcre2grep. Ejecútala con: sandbox/container/run-image.sh src/regex-pcre2grep
+# El pcre2grep de Ubuntu se compila sin scripts de llamadas de retorno, así que la imagen de herramientas compila uno a partir de una
+# versión de PCRE2 fijada por SHA-256 (consulta sandbox/linux/Dockerfile); esta imagen solo toma ese binario estático.
 FROM code-challenge-sandbox:local AS build
 
 FROM cc-rt-sqlite:local
