@@ -49,3 +49,23 @@ msgstr "# ---- 5. El pulso: solo en una terminal, nunca en CI, y nunca antes del
 msgctxt "L142"
 msgid "# ---- 6. Errors and the schema."
 msgstr "# ---- 6. Errores y el esquema."
+
+msgctxt "C13"
+msgid "rows() { grep -E $'^(Meetings|Coding|Debugging|Learning)\\t' <<<\"$1\" || true; }"
+msgstr "rows() { grep -E $'^(Reuniones|Programación|Depuración|Aprendizaje)\\t' <<<\"$1\" || true; }"
+
+msgctxt "C18"
+msgid "        BEGIN { split(\"Meetings Coding Debugging Learning Meetings\", want, \" \") }"
+msgstr "        BEGIN { split(\"Reuniones Programación Depuración Aprendizaje Reuniones\", want, \" \") }"
+
+msgctxt "C87"
+msgid "    awk -v r=\"$1\" 'BEGIN { split(\"Meetings Coding Debugging Learning Meetings\", cat, \" \")"
+msgstr "    awk -v r=\"$1\" 'BEGIN { split(\"Reuniones Programación Depuración Aprendizaje Reuniones\", cat, \" \")"
+
+msgctxt "C147"
+msgid "sqlite3 \"$db\" \"insert into demo_timecards values(1,'Coding',12,12,'u',2026,1,0)\" 2>/dev/null && fail \"db accepted a non-demo row\""
+msgstr "sqlite3 \"$db\" \"insert into demo_timecards values(1,'Programación',12,12,'u',2026,1,0)\" 2>/dev/null && fail \"db accepted a non-demo row\""
+
+msgctxt "C148"
+msgid "sqlite3 \"$db\" \"insert into demo_timecards values(1,'Coding',9,9,'u',2026,1,1)\" 2>/dev/null && fail \"db accepted 9 hours\""
+msgstr "sqlite3 \"$db\" \"insert into demo_timecards values(1,'Programación',9,9,'u',2026,1,1)\" 2>/dev/null && fail \"db accepted 9 hours\""

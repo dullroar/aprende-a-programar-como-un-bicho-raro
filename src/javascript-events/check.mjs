@@ -41,11 +41,11 @@ test('one run saves only demo records, and what it reports is what it saved', ()
   const w = lab([14, 17, 15]);
   w.events.emit('start'); w.drain();
   const rows = w.rows();
-  assert.deepEqual(rows.map(r => [r.category, r.hours, r.running_total]), [['Meetings', 14, 14], ['Coding', 17, 31], ['Debugging', 15, 46]]);
+  assert.deepEqual(rows.map(r => [r.category, r.hours, r.running_total]), [['Reuniones', 14, 14], ['Programación', 17, 31], ['Depuración', 15, 46]]);
   assert.ok(rows.every(r => r.demo_only === 1 && r.user_id === 'tester'));
   assert.ok(w.lines.some(l => l.startsWith('# committed total=46 entries=3 DEMO ONLY\n')));
   assert.equal(w.lines[0].startsWith('# DEMO ONLY run '), true);
-  assert.deepEqual(w.lines.filter(l => l.endsWith('\tDEMO ONLY')), ['Meetings\t14\t14\t2026-W07\tDEMO ONLY', 'Coding\t17\t31\t2026-W07\tDEMO ONLY', 'Debugging\t15\t46\t2026-W07\tDEMO ONLY']);
+  assert.deepEqual(w.lines.filter(l => l.endsWith('\tDEMO ONLY')), ['Reuniones\t14\t14\t2026-W07\tDEMO ONLY', 'Programación\t17\t31\t2026-W07\tDEMO ONLY', 'Depuración\t15\t46\t2026-W07\tDEMO ONLY']);
   assert.deepEqual(w.exits, [0]);
 });
 
@@ -184,5 +184,5 @@ test('the same seed replays the same cards, the same as the other two Node entri
 test('the ISO week agrees on the awkward days around New Year', () => {
   for (const [date, want] of [['2021-01-03', [2020, 53]], ['2024-12-30', [2025, 1]], ['2026-01-01', [2026, 1]], ['2016-01-03', [2015, 53]], ['2020-12-31', [2020, 53]]])
     assert.deepEqual(isoWeek(new Date(`${date}T12:00:00`)), want, date);
-  assert.deepEqual(CATEGORIES, ['Meetings', 'Coding', 'Debugging', 'Learning']);
+  assert.deepEqual(CATEGORIES, ['Reuniones', 'Programación', 'Depuración', 'Aprendizaje']);
 });

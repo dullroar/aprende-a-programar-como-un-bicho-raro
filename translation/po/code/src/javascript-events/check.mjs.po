@@ -21,3 +21,15 @@ msgstr "// El planificador solo encola; `drain()` es \"el bucle de eventos\" y e
 msgctxt "L33"
 msgid "// Log every emit as >name when it starts and <name when it returns, so nesting shows what runs inside what."
 msgstr "// Registra cada emit como >name al empezar y <name al volver, para que el anidamiento muestre qué se ejecuta dentro de qué."
+
+msgctxt "C44"
+msgid "  assert.deepEqual(rows.map(r => [r.category, r.hours, r.running_total]), [['Meetings', 14, 14], ['Coding', 17, 31], ['Debugging', 15, 46]]);"
+msgstr "  assert.deepEqual(rows.map(r => [r.category, r.hours, r.running_total]), [['Reuniones', 14, 14], ['Programación', 17, 31], ['Depuración', 15, 46]]);"
+
+msgctxt "C48"
+msgid "  assert.deepEqual(w.lines.filter(l => l.endsWith('\\tDEMO ONLY')), ['Meetings\\t14\\t14\\t2026-W07\\tDEMO ONLY', 'Coding\\t17\\t31\\t2026-W07\\tDEMO ONLY', 'Debugging\\t15\\t46\\t2026-W07\\tDEMO ONLY']);"
+msgstr "  assert.deepEqual(w.lines.filter(l => l.endsWith('\\tDEMO ONLY')), ['Reuniones\\t14\\t14\\t2026-W07\\tDEMO ONLY', 'Programación\\t17\\t31\\t2026-W07\\tDEMO ONLY', 'Depuración\\t15\\t46\\t2026-W07\\tDEMO ONLY']);"
+
+msgctxt "C187"
+msgid "  assert.deepEqual(CATEGORIES, ['Meetings', 'Coding', 'Debugging', 'Learning']);"
+msgstr "  assert.deepEqual(CATEGORIES, ['Reuniones', 'Programación', 'Depuración', 'Aprendizaje']);"

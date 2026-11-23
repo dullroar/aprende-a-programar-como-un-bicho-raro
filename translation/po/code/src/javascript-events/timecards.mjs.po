@@ -117,3 +117,11 @@ msgstr "// El nombre 'error' es especial en Node: emit('error', e) SIN escuchado
 msgctxt "L149"
 msgid "// 'error' into our own 'failed', so the program has one way to fail."
 msgstr "// en nuestro propio 'failed', así que el programa tiene una sola manera de fallar."
+
+msgctxt "C27"
+msgid "export const CATEGORIES = ['Meetings', 'Coding', 'Debugging', 'Learning'];"
+msgstr "export const CATEGORIES = ['Reuniones', 'Programación', 'Depuración', 'Aprendizaje'];"
+
+msgctxt "C32"
+msgid "    category TEXT NOT NULL CHECK (category IN ('Meetings','Coding','Debugging','Learning')),"
+msgstr "    category TEXT NOT NULL CHECK (category IN ('Reuniones','Programación','Depuración','Aprendizaje')),"
