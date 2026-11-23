@@ -768,6 +768,8 @@ def i13_text(en_text, es_text, rel="", dnt=()):
             cb.update(inline_code(b.text or ""))
     dnt = set(dnt)
     ca, cb = drop_dnt_spans(ca, dnt), drop_dnt_spans(cb, dnt)
+    ca = Counter({(k[0], _en_cats(k[1])): n for k, n in ca.items()})
+    cb = Counter({(k[0], _en_cats(k[1])): n for k, n in cb.items()})
     if ca != cb:
         miss = sorted((ca - cb).elements())[:3]
         extra = sorted((cb - ca).elements())[:3]
@@ -800,7 +802,10 @@ def values(seg_blocks, dnt=()):
     for b in seg_blocks:
         for v in b.mapping.values():
             m = re.fullmatch(r"`([^`]+)`", v)
-            c[categories.to_english(m.group(1)) if m and (m.group(1) in dnt or m.group(1) in categories.ES) else v] += 1
+            key = categories.to_english(m.group(1)) if m and (m.group(1) in dnt or m.group(1) in categories.ES) else _en_cats(v)
+            if key in categories.EN:
+                continue   # a card-category word, bare or in a span: the localized file may print the mapped word as plain text (decision 11)
+            c[key] += 1
     return c
 
 

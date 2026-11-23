@@ -313,5 +313,31 @@ class CategoryRows(unittest.TestCase):
         self.assertEqual(ap.localize_category_rows(text), text)
 
 
+class CategoryWords(unittest.TestCase):
+    """F2-006b: prose and inline spans of a localized family follow the code; fences, glosses and links stay."""
+
+    def test_spans_and_prose(self):
+        text = "Ciclo: `Meetings`, `Coding` y Learning. | Debugging, 12 horas |\n"
+        self.assertEqual(ap.localize_category_words(text), "Ciclo: `Reuniones`, `Programación` y Aprendizaje. | Depuración, 12 horas |\n")
+
+    def test_gloss_link_fence_and_partial_words_stay(self):
+        text = "**Depuración** (Debugging) [x](a/Coding.md)\n```\nMeetings\n```\nMeetingsX XCoding\n"
+        self.assertEqual(ap.localize_category_words(text), text)
+
+    def test_idempotent(self):
+        once = ap.localize_category_words("`Meetings`")
+        self.assertEqual(ap.localize_category_words(once), once)
+
+    def test_non_listed_file_stays_english(self):
+        """Negative case: a span in a family that is not localized is not touched by apply_text."""
+        import polib
+        text = "Usa `Meetings` aqui.\n"
+        po = polib.POFile()
+        out, _ = ap.apply_text(text, po, "src/python/README.md")
+        self.assertEqual(out, text)
+        self.assertNotIn("src/python/README.md", ap.category_prose_files())
+        self.assertIn("src/lisp/README.md", ap.category_prose_files())
+
+
 if __name__ == "__main__":
     unittest.main()

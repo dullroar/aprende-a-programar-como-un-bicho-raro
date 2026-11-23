@@ -1,0 +1,4 @@
+# English keys of Markdown files whose family prints the Spanish card categories and whose prose or inline spans name them (decision 11, F2-006b).
+# tools/apply.py rewrites whole English category words outside fences in these files only; "(Word)" glosses and link targets stay.
+src/lisp/README.md
+lessons/study-guides/languages/forth.md

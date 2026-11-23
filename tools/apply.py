@@ -139,7 +139,42 @@ def apply_text(text, po, rel_path="", cat=None, strict=True):
         raise ApplyError("%s: %s" % (rel_path, e)) from None
     if rel_path in category_files() and any(e.msgstr and e.msgstr != e.msgid and "fuzzy" not in e.flags for e in po):
         out = localize_category_rows(out)
+    if rel_path in category_prose_files() and any(e.msgstr and e.msgstr != e.msgid and "fuzzy" not in e.flags for e in po):
+        out = localize_category_words(out)
     return out, stats
+
+
+CATEGORY_PROSE_FILES = os.path.join("translation", "part2", "category-localized-prose.txt")
+_WORD_RE = re.compile(r"(?<![\w(])(%s)(?![\w)])" % "|".join(categories.EN))
+
+
+def category_prose_files():
+    """English keys of Markdown files whose family was localized and whose prose or inline spans name the categories."""
+    try:
+        with open(os.path.join(ROOT, CATEGORY_PROSE_FILES), encoding="utf-8") as fh:
+            return {ln.strip() for ln in fh if ln.strip() and not ln.startswith("#")}
+    except OSError:
+        return set()
+
+
+def localize_category_words(text):
+    """Outside fenced blocks, a whole English category word (in prose, a table cell or an inline code span) gets the mapped
+    Spanish word. A word directly inside parentheses is a gloss of a Spanish term, e.g. 'Depuración (Debugging)', and stays,
+    as do link targets."""
+    out, fence = [], None
+    for line in text.split("\n"):
+        s = line.lstrip()
+        if fence is None and (s.startswith("```") or s.startswith("~~~")) and len(line) - len(s) <= 3:
+            fence = s[:3]
+        elif fence is not None and s.startswith(fence):
+            fence = None
+        elif fence is None:
+            parts = re.split(r"(\]\([^)]*\)|https?://\S+)", line)
+            for i in range(0, len(parts), 2):
+                parts[i] = _WORD_RE.sub(lambda m: categories.EN_TO_ES[m.group(1)], parts[i])
+            line = "".join(parts)
+        out.append(line)
+    return "\n".join(out)
 
 
 CATEGORY_FILES = os.path.join("translation", "part2", "category-localized-md.txt")

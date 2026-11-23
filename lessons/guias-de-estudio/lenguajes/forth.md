@@ -41,7 +41,7 @@ Edita solo copias ([Cómo ejecutar los ejemplos de forma segura](../../exercises
 
 ## El reto compartido
 
-La [especificación del reto](../../introduccion.md#qué-hace-el-reto) pide tarjetas con una categoría y de 10 a 19 horas enteras. Las categorías se repiten en ciclo: `Meetings`, `Coding`, `Debugging` y `Learning`. Suma las horas de cada tarjeta al total acumulado. Detente cuando el total pasa de 40. Conserva la **primera tarjeta con la que el total pasa de 40**. Un total de exactamente 40 continúa. Cuatro tarjetas de 10 horas necesitan una quinta tarjeta, de la categoría `Meetings`. Las ejecuciones conformes tienen de 3 a 5 tarjetas y un total de 41 a 59 horas.
+La [especificación del reto](../../introduccion.md#qué-hace-el-reto) pide tarjetas con una categoría y de 10 a 19 horas enteras. Las categorías se repiten en ciclo: `Reuniones`, `Programación`, `Depuración` y `Aprendizaje`. Suma las horas de cada tarjeta al total acumulado. Detente cuando el total pasa de 40. Conserva la **primera tarjeta con la que el total pasa de 40**. Un total de exactamente 40 continúa. Cuatro tarjetas de 10 horas necesitan una quinta tarjeta, de la categoría `Reuniones`. Las ejecuciones conformes tienen de 3 a 5 tarjetas y un total de 41 a 59 horas.
 
 Las dos entradas de Forth guardan las tarjetas en una sola transacción de SQLite e imprimen un resumen. Forth escribe el límite de dos maneras distintas, y vale la pena ver la diferencia. El programa simple dice `total @ 40 >` ([L105](../../../src/forth/timecards.fs#L105)): se detiene cuando el total *pasa de* 40. El programa raro dice `over 41 <` ([L93](../../../src/forth-weird/timecards.fs#L93)): *continúa* mientras el total sea *menor que 41*. Las dos son la misma regla. Un total de exactamente 40 es menor que 41, así que el bucle continúa.
 
@@ -100,12 +100,12 @@ La línea que se interpreta es la línea 101: `0 0 >in @ step rewind?`. Los desp
 | Después de `0 0 >in @` | `0 0 10` | 10 | `>in @` puso en la pila el desplazamiento justo después de `@`, que es donde empieza la palabra `step`. Ese valor, 10, es el **ancla**. |
 | Después de `step`, pasada 1 | `1 15 10` | 15 | `card` tomó 15 horas, dejó el total en 15, imprimió la fila y escribió el `INSERT`. El ancla viajó en la pila de retorno, así que `card` no pudo tocarla. |
 | `rewind?`, pasada 1 | la bandera es `-1` (15 < 41) | 23, luego **10** | La distancia 10 − 23 = −13 se conservó (bandera verdadera) y se sumó a `>in`. El intérprete de texto está de vuelta antes de `step`. |
-| Después de `step`, pasada 2 | `2 34 10` | 15 | Coding, 19 horas, total 34. Los `0 0` *no* se leyeron de nuevo: el ancla está después de ellos. |
+| Después de `step`, pasada 2 | `2 34 10` | 15 | Programación, 19 horas, total 34. Los `0 0` *no* se leyeron de nuevo: el ancla está después de ellos. |
 | `rewind?`, pasada 2 | la bandera es `-1` (34 < 41) | 23, luego **10** | Se rebobina otra vez. |
-| Después de `step`, pasada 3 | `3 46 10` | 15 | Debugging, 12 horas, total 46. |
+| Después de `step`, pasada 3 | `3 46 10` | 15 | Depuración, 12 horas, total 46. |
 | `rewind?`, pasada 3 | la bandera es `0` (46 no es menor que 41) | 23, luego **23** | La máscara deja la distancia en 0. `>in` no se mueve. El intérprete sigue leyendo y ejecuta `drop` en la línea siguiente. |
 
-La ejecución de prueba imprimió estas tarjetas: `Meetings 15 15`, `Coding 19 34`, `Debugging 12 46` y después `# committed total=46 entries=3 DEMO ONLY`.
+La ejecución de prueba imprimió estas tarjetas: `Reuniones 15 15`, `Programación 19 34`, `Depuración 12 46` y después `# committed total=46 entries=3 DEMO ONLY`.
 
 Fíjate en dos cosas. Primero, `>in` vale 15 después de cada `step` y 23 en cada `rewind?`. El intérprete de texto no "sabe" que está en un bucle: lee los mismos caracteres en los mismos lugares cada vez. Segundo, los números 10, 15 y 23 son desplazamientos dentro de una línea concreta. Edita los espacios de la línea 101 y los desplazamientos cambian, pero el ancla se calcula de nuevo en tiempo de ejecución a partir de la posición real. Por eso el programa sobrevive al reformateo y por eso falla si lees el ancla *después* del estado (consulta el ejercicio de abajo).
 

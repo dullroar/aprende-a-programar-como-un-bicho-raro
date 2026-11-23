@@ -451,3 +451,4 @@
 502 F2-005 done src/lisp categories now Reuniones/Programación/Depuración/Aprendizaje in timecards.lisp, check.sh and README rows; oracle PASS; README line 48 prose left English (masked tokens); translation/part2/reports/F2-lisp-categories.md
 503 F2-006 done review/CHECKPOINT-category-pilot.md written (words, oracle PASS x3, cost per family, gaps); loop/STOP created for Jim
 501 F2-004 done src/forth categories now Reuniones/Programación/Depuración/Aprendizaje in timecards.fs, check.sh and README rows; oracle PASS; study-guide inline code spans left English (no tool for spans); translation/part2/reports/F2-forth-categories.md
+504 F2-006b done apply.py localize_category_words (localized-family prose and spans only; fences, glosses, links stay; list in category-localized-prose.txt); I13 values() ignores category words symmetrically; 4 tests incl. negative; forth.md and lisp README fixed; verify --fast OK

@@ -45,7 +45,7 @@ Depuración	12	43	2026-W47	DEMO ONLY
 
 ## Qué hace
 
-El programa saca tarjetas de 10 a 19 horas y recorre en ciclo Meetings, Coding, Debugging y Learning hasta que el total acumulado pasa de 40 (se conserva la tarjeta que cruza el límite). Imprime cada tarjeta y después escribe todas en SQLite en una sola transacción.
+El programa saca tarjetas de 10 a 19 horas y recorre en ciclo Reuniones, Programación, Depuración y Aprendizaje hasta que el total acumulado pasa de 40 (se conserva la tarjeta que cruza el límite). Imprime cada tarjeta y después escribe todas en SQLite en una sola transacción.
 
 ## Flujo del programa
 
