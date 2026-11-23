@@ -438,3 +438,4 @@
 486 S8-002 done review of Part II surfaces: lock ok, part2_inv 0 findings, 33 broken links triaged (29 cs-source resolve after generation, same layout as English); 0 critical/major, no review-fix tasks; translation/reviews/S8-002.md
 487 S8-003 done tools/impact.py + 22 tests (generated-only traced to source, renamed symbol, moved heading, file rename, negatives); translation/source-map.jsonl 1811 rows, manifest.json 497 files
 488 S8-004 done jury_packet --code (P-code packets with EN/ES source, idmap, registry, oracle slices), 5 Part II canary mutators with per-group quota, Part II categories in finding schema and ingest (report section, review-fix gates); tools/test_jury_code_packets.py + code cases in both jury tests
+489 S8-005 done wrote translation/releases/v4-es.0-rc2-report.md (RUN/NOT RUN tables, 45-family oracle matrix, link audit 33 broken/578 unverified, hashes, model IDs); quoted earlier gate results, re-ran only sha256
