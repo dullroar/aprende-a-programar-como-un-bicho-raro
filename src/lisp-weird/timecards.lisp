@@ -1,30 +1,30 @@
-;;;; DEMO ONLY. Fictional timecards, written to a scratch SQLite file under
-;;;; XDG_DATA_HOME. Nothing here touches a real time-reporting system.
+;;;; DEMO ONLY. Tarjetas de horas ficticias, escritas en un archivo SQLite temporal dentro de
+;;;; XDG_DATA_HOME. Nada de esto toca un sistema real de registro de horas.
 ;;;;
 ;;;; Run:  sbcl --script timecards.lisp
 ;;;;
-;;;; The challenge: add cards of 10-19 hours until the running total passes 40.
+;;;; El desafío: suma tarjetas de 10 a 19 horas hasta que el total acumulado pase de 40.
 ;;;;
-;;;; THE STUNT.  There is no loop and no conditional anywhere below the line
-;;;; marked RUN TIME.  Each card is a METHOD of the generic function PUNCH, and
-;;;; the cards are chained through the class precedence list:
+;;;; LA PROEZA.  No hay ningún bucle ni condicional en ninguna parte por debajo de la línea
+;;;; marcada RUN TIME.  Cada tarjeta es un MÉTODO de la función genérica PUNCH, y
+;;;; las tarjetas se encadenan por la lista de precedencia de clases:
 ;;;;
 ;;;;     card-1 -> card-2 -> card-3 -> card-4 -> card-5 -> ledger
 ;;;;
-;;;; PUNCH uses the built-in OR method combination.  Calling it on a CARD-1
-;;;; instance runs the applicable methods most-specific-first, which is card 1,
-;;;; then card 2, and so on, and stops at the first method that returns true.
-;;;; Each method deals one card and answers "is the total over 40 now?".  The
-;;;; class hierarchy is the loop counter, and OR's short-circuit is the stop rule.
+;;;; PUNCH usa la combinación de métodos OR incorporada.  Llamarla con una instancia de CARD-1
+;;;; ejecuta los métodos aplicables del más específico al menos, es decir, la tarjeta 1,
+;;;; luego la tarjeta 2, y así sucesivamente, y se detiene en el primer método que devuelve verdadero.
+;;;; Cada método reparte una tarjeta y responde "¿el total pasa de 40 ya?".  La
+;;;; jerarquía de clases es el contador del bucle, y el cortocircuito de OR es la regla de parada.
 
 (defpackage #:timecards-weird
   (:use #:cl))
 
 (in-package #:timecards-weird)
 
-;;; ------------------------------------------------------------------ compile time
-;;; Macros run while the file is being compiled, so the loops in them never
-;;; touch a timecard.  Everything they produce is straight-line code.
+;;; ------------------------------------------------------------------ tiempo de compilación
+;;; Las macros se ejecutan mientras se compila el archivo, así que los bucles que contienen nunca
+;;; tocan una tarjeta de horas.  Todo lo que producen es código lineal.
 
 (eval-when (:compile-toplevel :load-toplevel :execute)
   (defun card-class (number)
@@ -39,7 +39,7 @@ a PUNCH method, qualified with OR, specialized on that class."
      (defmethod punch or ((ledger ,(card-class number)))
        (deal ledger ,number))))
 
-;;; ------------------------------------------------------------------ the state
+;;; ------------------------------------------------------------------ el estado
 
 (defparameter *week*
   '#1=("Meetings" "Coding" "Debugging" "Learning" . #1#)
@@ -62,7 +62,7 @@ a PUNCH method, qualified with OR, specialized on that class."
   (:documentation "Deal cards until one pushes the total over 40."))
 
 ;;; ------------------------------------------------------------------ RUN TIME
-;;; From here on nothing iterates and nothing branches.
+;;; Desde aquí no se itera ni se ramifica nada.
 
 (defun sql-quote (text)
   "A string literal. No escaping: every value is a number or a fixed word we chose."
@@ -73,7 +73,7 @@ a PUNCH method, qualified with OR, specialized on that class."
   (let ((hours (+ 10 (random 10 (state ledger))))
         (category (nth (1- number) *week*)))
     (incf (entries ledger))
-    (incf (total ledger) hours)                     ; an accessor is a SETF place
+    (incf (total ledger) hours)                     ; un accesor es un lugar SETF
     (format *sql* "INSERT INTO demo_timecards~
                    (run_id,category,hours,running_total,iso_week,created_at) ~
                    VALUES(~A,~A,~D,~D,~A,datetime('now'));~%"
@@ -83,7 +83,7 @@ a PUNCH method, qualified with OR, specialized on that class."
             category #\Tab hours #\Tab (total ledger) #\Tab (week ledger) #\Tab)
     (> (total ledger) 40)))
 
-;;; Tail first: a class must exist before another can inherit from it.
+;;; Primero la cola: una clase debe existir antes de que otra pueda heredar de ella.
 (defcard 5 ledger)
 (defcard 4 card-5)
 (defcard 3 card-4)

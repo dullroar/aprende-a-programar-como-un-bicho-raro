@@ -414,3 +414,4 @@
 462 S5-fam-haskell-weird done src/haskell-weird localizing: 47 comment lines (timecards.hs, check.sh, Dockerfile) via loc_apply, oracle PASS; categories/strings kept English EXC-575.
 463 S5-fam-javascript-weird done src/javascript-weird localizing: 41 comment lines (core.mjs, timecards.mjs, check.mjs, check-static.mjs, check.sh, Dockerfile) via loc_apply, oracle PASS; categories/strings kept English EXC-576.
 464 S5-fam-javascript-weird done queue repair only: iter 463 had marked S5-fam-regex-perl done by mistake; set regex-perl back to todo and javascript-weird to done. No code touched.
+465 S5-fam-lisp-weird done src/lisp-weird localizing: 29 comment lines (timecards.lisp, check.sh, Dockerfile) via loc_apply, oracle PASS; categories/strings kept English EXC-577.

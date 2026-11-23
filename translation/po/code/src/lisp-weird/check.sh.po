@@ -1,0 +1,35 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+
+msgctxt "L2"
+msgid "# Checks the rules of the challenge for the Common Lisp \"weird\" entry. Uses a throwaway data dir."
+msgstr "# Comprueba las reglas del desafío para la entrada \"rara\" de Common Lisp. Usa un directorio de datos desechable."
+
+msgctxt "L3"
+msgid "# Set SBCL=/path/to/sbcl if it is not on your PATH."
+msgstr "# Define SBCL=/path/to/sbcl si no está en tu PATH."
+
+msgctxt "L11"
+msgid "# 1. Static: the stunt is real. Below the RUN TIME marker (comments removed) there is no loop, no"
+msgstr "# 1. Estático: la proeza es real. Por debajo de la marca RUN TIME (sin comentarios) no hay bucle, ni"
+
+msgctxt "L12"
+msgid "#    conditional and no mapping function; the stop rule is the OR method combination and nothing else."
+msgstr "#    condicional ni función de mapeo; la regla de parada es la combinación de métodos OR y nada más."
+
+msgctxt "L24"
+msgid "# 2. The mechanism is what stops it: swap OR for PROGN (run every method) and every run must deal all"
+msgstr "# 2. El mecanismo es lo que detiene la ejecución: cambia OR por PROGN (ejecuta todos los métodos) y cada ejecución debe repartir las"
+
+msgctxt "L25"
+msgid "#    five cards, however large the total. With OR, the same file stops early on most runs."
+msgstr "#    cinco tarjetas, sea cual sea el total. Con OR, el mismo archivo se detiene antes en la mayoría de las ejecuciones."
+
+msgctxt "L41"
+msgid "# 2. Run it a bunch of times; every run must print a sane record set, and the SQLite rows must agree with it."
+msgstr "# 2. Ejecútalo muchas veces; cada ejecución debe imprimir un conjunto de registros coherente, y las filas de SQLite deben coincidir con él."
+
+msgctxt "L73"
+msgid "# 3. The demo_only CHECK constraint is real: a non-demo row must be refused."
+msgstr "# 3. La restricción CHECK de demo_only es real: una fila que no sea de demostración debe ser rechazada."

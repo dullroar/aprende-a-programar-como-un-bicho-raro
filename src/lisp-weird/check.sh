@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-# Checks the rules of the challenge for the Common Lisp "weird" entry. Uses a throwaway data dir.
-# Set SBCL=/path/to/sbcl if it is not on your PATH.
+# Comprueba las reglas del desafío para la entrada "rara" de Common Lisp. Usa un directorio de datos desechable.
+# Define SBCL=/path/to/sbcl si no está en tu PATH.
 set -euo pipefail
 cd "$(dirname "$0")"
 data=$(mktemp -d); trap 'rm -rf "$data"' EXIT
@@ -8,8 +8,8 @@ export XDG_DATA_HOME=$data
 db=$data/LispWeird/demo-timecards.db
 run() { "${SBCL:-sbcl}" --script "${1:-timecards.lisp}"; }
 
-# 1. Static: the stunt is real. Below the RUN TIME marker (comments removed) there is no loop, no
-#    conditional and no mapping function; the stop rule is the OR method combination and nothing else.
+# 1. Estático: la proeza es real. Por debajo de la marca RUN TIME (sin comentarios) no hay bucle, ni
+#    condicional ni función de mapeo; la regla de parada es la combinación de métodos OR y nada más.
 grep -q 'DEMO ONLY' timecards.lisp || { echo "FAIL: no DEMO ONLY marker in timecards.lisp"; exit 1; }
 if grep -Eqi 'http|socket|curl|wget' timecards.lisp; then echo "FAIL: network-looking text in timecards.lisp"; exit 1; fi
 code=$(awk '/^;;; -+ RUN TIME/{p=1} p' timecards.lisp | sed 's/;.*//')
@@ -21,8 +21,8 @@ grep -q '(:method-combination or)' timecards.lisp || { echo "FAIL: PUNCH does no
 [[ $(grep -c '^(defcard [0-9]' timecards.lisp) -eq 5 ]] || { echo "FAIL: expected five DEFCARD forms"; exit 1; }
 [[ $(sed 's/;.*//' timecards.lisp | grep -c '(> (total ledger) 40)') -eq 1 ]] || { echo "FAIL: the over-40 test should appear exactly once"; exit 1; }
 
-# 2. The mechanism is what stops it: swap OR for PROGN (run every method) and every run must deal all
-#    five cards, however large the total. With OR, the same file stops early on most runs.
+# 2. El mecanismo es lo que detiene la ejecución: cambia OR por PROGN (ejecuta todos los métodos) y cada ejecución debe repartir las
+#    cinco tarjetas, sea cual sea el total. Con OR, el mismo archivo se detiene antes en la mayoría de las ejecuciones.
 sed -e 's/(:method-combination or)/(:method-combination progn)/' -e 's/defmethod punch or/defmethod punch progn/' \
     timecards.lisp > "$data/progn.lisp"
 for i in 1 2 3 4 5; do
@@ -38,7 +38,7 @@ done
 (( short >= 1 )) || { echo "FAIL: with OR no run stopped before card 5 in 12 tries"; exit 1; }
 rm -rf "$data/LispWeird"
 
-# 2. Run it a bunch of times; every run must print a sane record set, and the SQLite rows must agree with it.
+# 2. Ejecútalo muchas veces; cada ejecución debe imprimir un conjunto de registros coherente, y las filas de SQLite deben coincidir con él.
 cats=(Meetings Coding Debugging Learning)
 for i in $(seq 1 25); do
     out=$(run)
@@ -70,7 +70,7 @@ done
 [[ $(sqlite3 "$db" 'select count(distinct run_id) from demo_timecards') -eq 25 ]] || { echo "FAIL: expected 25 distinct runs in the db"; exit 1; }
 [[ $(sqlite3 "$db" 'select count(distinct hours) from demo_timecards') -ge 6 ]] || { echo "FAIL: hours do not look random"; exit 1; }
 
-# 3. The demo_only CHECK constraint is real: a non-demo row must be refused.
+# 3. La restricción CHECK de demo_only es real: una fila que no sea de demostración debe ser rechazada.
 if sqlite3 "$db" "insert into demo_timecards(run_id,category,hours,running_total,demo_only) values('x','x',1,1,0)" 2>/dev/null; then
     echo "FAIL: db accepted a non-demo row"; exit 1
 fi

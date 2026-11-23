@@ -1,0 +1,15 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+
+msgctxt "L1"
+msgid "# Container image for the Common Lisp entry. Run it with: sandbox/container/run-image.sh src/lisp-weird"
+msgstr "# Imagen de contenedor para la entrada de Common Lisp. Ejecútala con: sandbox/container/run-image.sh src/lisp-weird"
+
+msgctxt "L2"
+msgid "# Nothing to build: SBCL runs the script. The runtime base has sbcl and sqlite3 (the entry pipes SQL"
+msgstr "# Nada que compilar: SBCL ejecuta el script. La base de ejecución tiene sbcl y sqlite3 (la entrada envía SQL"
+
+msgctxt "L3"
+msgid "# to sqlite3), and no compiler or package manager."
+msgstr "# a sqlite3), y no tiene compilador ni gestor de paquetes."

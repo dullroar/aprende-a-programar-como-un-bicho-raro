@@ -1,0 +1,75 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+
+msgctxt "L1"
+msgid ";;;; DEMO ONLY. Fictional timecards, written to a scratch SQLite file under"
+msgstr ";;;; DEMO ONLY. Tarjetas de horas ficticias, escritas en un archivo SQLite temporal dentro de"
+
+msgctxt "L2"
+msgid ";;;; XDG_DATA_HOME. Nothing here touches a real time-reporting system."
+msgstr ";;;; XDG_DATA_HOME. Nada de esto toca un sistema real de registro de horas."
+
+msgctxt "L6"
+msgid ";;;; The challenge: add cards of 10-19 hours until the running total passes 40."
+msgstr ";;;; El desafío: suma tarjetas de 10 a 19 horas hasta que el total acumulado pase de 40."
+
+msgctxt "L8"
+msgid ";;;; THE STUNT.  There is no loop and no conditional anywhere below the line"
+msgstr ";;;; LA PROEZA.  No hay ningún bucle ni condicional en ninguna parte por debajo de la línea"
+
+msgctxt "L9"
+msgid ";;;; marked RUN TIME.  Each card is a METHOD of the generic function PUNCH, and"
+msgstr ";;;; marcada RUN TIME.  Cada tarjeta es un MÉTODO de la función genérica PUNCH, y"
+
+msgctxt "L10"
+msgid ";;;; the cards are chained through the class precedence list:"
+msgstr ";;;; las tarjetas se encadenan por la lista de precedencia de clases:"
+
+msgctxt "L14"
+msgid ";;;; PUNCH uses the built-in OR method combination.  Calling it on a CARD-1"
+msgstr ";;;; PUNCH usa la combinación de métodos OR incorporada.  Llamarla con una instancia de CARD-1"
+
+msgctxt "L15"
+msgid ";;;; instance runs the applicable methods most-specific-first, which is card 1,"
+msgstr ";;;; ejecuta los métodos aplicables del más específico al menos, es decir, la tarjeta 1,"
+
+msgctxt "L16"
+msgid ";;;; then card 2, and so on, and stops at the first method that returns true."
+msgstr ";;;; luego la tarjeta 2, y así sucesivamente, y se detiene en el primer método que devuelve verdadero."
+
+msgctxt "L17"
+msgid ";;;; Each method deals one card and answers \"is the total over 40 now?\".  The"
+msgstr ";;;; Cada método reparte una tarjeta y responde \"¿el total pasa de 40 ya?\".  La"
+
+msgctxt "L18"
+msgid ";;;; class hierarchy is the loop counter, and OR's short-circuit is the stop rule."
+msgstr ";;;; jerarquía de clases es el contador del bucle, y el cortocircuito de OR es la regla de parada."
+
+msgctxt "L25"
+msgid ";;; ------------------------------------------------------------------ compile time"
+msgstr ";;; ------------------------------------------------------------------ tiempo de compilación"
+
+msgctxt "L26"
+msgid ";;; Macros run while the file is being compiled, so the loops in them never"
+msgstr ";;; Las macros se ejecutan mientras se compila el archivo, así que los bucles que contienen nunca"
+
+msgctxt "L27"
+msgid ";;; touch a timecard.  Everything they produce is straight-line code."
+msgstr ";;; tocan una tarjeta de horas.  Todo lo que producen es código lineal."
+
+msgctxt "L42"
+msgid ";;; ------------------------------------------------------------------ the state"
+msgstr ";;; ------------------------------------------------------------------ el estado"
+
+msgctxt "L65"
+msgid ";;; From here on nothing iterates and nothing branches."
+msgstr ";;; Desde aquí no se itera ni se ramifica nada."
+
+msgctxt "L76"
+msgid "; an accessor is a SETF place"
+msgstr "; un accesor es un lugar SETF"
+
+msgctxt "L86"
+msgid ";;; Tail first: a class must exist before another can inherit from it."
+msgstr ";;; Primero la cola: una clase debe existir antes de que otra pueda heredar de ella."
