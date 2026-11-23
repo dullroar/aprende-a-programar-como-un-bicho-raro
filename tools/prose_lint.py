@@ -88,7 +88,8 @@ def load_config(root=ROOT, render=False):
         with open(path, encoding="utf-8") as f:
             return yaml.safe_load(f) or {}
     ids, style = load("identifiers.yaml"), load("style-lint.yaml")
-    return Config(ids.get("identifiers") or [], style.get("absolute_claims") or [],
+    derived = load("identifiers.ledger.yaml")            # derived from the identifier ledger (Part II, tools/part2_inv.py)
+    return Config((ids.get("identifiers") or []) + (derived.get("identifiers") or []), style.get("absolute_claims") or [],
                   style.get("gloss_pattern") or r"\(\*[^*\n]{2,40}\*\)", render)
 
 

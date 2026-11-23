@@ -51,6 +51,7 @@ import catalog  # noqa: E402
 import enpath  # noqa: E402
 import mask  # noqa: E402
 import mermaid  # noqa: E402
+import part2_inv  # noqa: E402
 import phase_lint  # noqa: E402
 import prose_lint  # noqa: E402
 import segment  # noqa: E402
@@ -75,6 +76,7 @@ TABLE = {
     "I16": "Segment coverage",
 }
 TABLE.update(prose_lint.TABLE)      # I21 to I26: the editorial lints of tools/prose_lint.py (I17 to I20 are tools/pathcheck.py)
+TABLE.update(part2_inv.TABLE)      # I28 to I31: Part II, tools/part2_inv.py (I27 and I32 are the localized-source lock)
 
 Finding = namedtuple("Finding", "inv where msg")
 
@@ -170,7 +172,7 @@ def load_context(lang="es", root=ROOT):
     cfg = inventory.read_config(root)
     en_cat = catalog.load("en")
     names = [en_cat.get("phases.%d.name" % n) for n in range(1, 6)]
-    return Context(dnt=mask.load_dnt(os.path.join(tr, "dnt.txt")), glossary=glossary, cat=catalog.load(lang),
+    return Context(dnt=mask.load_dnt(os.path.join(tr, "dnt.txt")) + part2_inv.load_ledger_dnt(os.path.join(tr, "dnt.ledger.txt")), glossary=glossary, cat=catalog.load(lang),
                    lang_cat=en_cat, humor=humor, exceptions=exceptions,
                    sentence_limit=int(cfg.get("sentence_word_limit_N", 28)), tier_of=tier_of_path,
                    phase_names=[n for n in names if isinstance(n, str)],

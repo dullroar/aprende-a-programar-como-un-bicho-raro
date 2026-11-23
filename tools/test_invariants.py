@@ -91,7 +91,7 @@ class Base(unittest.TestCase):
 class TestTable(unittest.TestCase):
     def test_all_documented(self):
         # I1 to I16 here, I17 to I20 are tools/pathcheck.py, I21 to I26 are tools/prose_lint.py
-        self.assertEqual(["I%d" % n for n in list(range(1, 17)) + list(range(21, 27))], list(inv.TABLE))
+        self.assertEqual(["I%d" % n for n in list(range(1, 17)) + list(range(21, 27)) + list(range(28, 32))], list(inv.TABLE))
 
     def test_list_cli(self):
         buf = io.StringIO()
@@ -781,6 +781,92 @@ class TestRealContext(unittest.TestCase):
         with redirect_stdout(buf):
             rc = inv.main(["x", "--t0", os.path.join(ROOT, "tests", "fixtures", "mixed.md")])
         self.assertEqual(0, rc, buf.getvalue())
+
+
+class TestPart2(unittest.TestCase):
+    """I28 to I31 (tools/part2_inv.py); every invariant has a passing case and a failing fixture."""
+    import part2_inv as p2
+
+    REC = [{"language": "python", "entry": "e", "path": "src/e/a.py", "old": "total", "new": "suma", "role": "variable",
+            "scope": "file", "evidence": ["translation/part2/reports/x.md"], "approver": "t"}]
+    EN = "total = 0\nfor h in hours:  # add up\n    total += h\nprint('total', total)\n"
+    ES = "suma = 0\nfor h in hours:  # suma las horas\n    suma += h\nprint('texto', suma)\n"
+
+    def kinds(self, found):
+        return sorted({f.inv for f in found})
+
+    def test_i28_i29_clean(self):
+        self.assertEqual([], self.p2.i28_i29_code("src/e/a.py", self.EN, self.ES, self.REC))
+
+    def test_i28_unmapped_rename_fails(self):
+        es = self.ES.replace("hours", "horas")
+        self.assertEqual(["I28"], self.kinds(self.p2.i28_i29_code("src/e/a.py", self.EN, es, self.REC)))
+
+    def test_i28_half_applied_rename_fails(self):
+        found = self.p2.i28_i29_code("src/e/a.py", self.EN, self.EN, self.REC)
+        self.assertEqual(["I28"], self.kinds(found))
+
+    def test_i28_stale_symbol_in_prose_diagram_and_excerpt(self):
+        texts = {"a.md": "La variable suma guarda el total acumulado.\n", "d.md": "```mermaid\nflowchart LR\n  A[total]\n```\n",
+                 "g.md": "<!-- GENERADO -->\n```python\n    total += h\n```\n"}
+        found = self.p2.i28_stale(self.REC, texts)
+        self.assertEqual(["d.md:3", "g.md:3"], [f.where for f in found])
+        self.assertEqual({"I28"}, set(self.kinds(found)))
+        self.assertEqual([], self.p2.i28_stale(self.REC, {"a.md": "suma += totales\n"}))
+        self.assertEqual(["a.md:1"], [f.where for f in self.p2.i28_stale(self.REC, {"a.md": "Usa `total` aquí.\n"})])   # whole tokens only
+
+    def test_i29_changed_keyword_operator_or_structure_fails(self):
+        for es in (self.ES.replace("for ", "para "), self.ES.replace("+=", "-="), self.ES + "x = 1\n", self.ES.replace("= 0", "= 1")):
+            self.assertEqual(["I29"], self.kinds(self.p2.i28_i29_code("src/e/a.py", self.EN, es, self.REC, reserved={"for", "print"})), es)
+
+    def test_i29_comment_and_string_text_are_opaque_slots(self):
+        es = self.ES.replace("suma las horas", "otra cosa").replace("'texto'", "'otro'")
+        self.assertEqual([], self.p2.i28_i29_code("src/e/a.py", self.EN, es, self.REC))
+
+    def test_i29_new_name_that_is_a_protected_token_fails(self):
+        rec = [dict(self.REC[0], new="print")]
+        es = self.EN.replace("total", "print")
+        self.assertIn("I29", self.kinds(self.p2.i28_i29_code("src/e/a.py", self.EN, es, rec, reserved={"print"})))
+
+    def test_i30_flags_code_shaped_tokens_and_spares_words(self):
+        toks = {"List": ["csharp"], "print": ["python"], "lista": ["x"], "for": ["python"]}
+        bad = self.p2.i30_unfenced("a.md", "Usa List<String> y print(x) para ver.\n", toks)
+        self.assertEqual({"I30"}, set(self.kinds(bad)))
+        self.assertEqual(2, len(bad))
+        self.assertEqual([], self.p2.i30_unfenced("a.md", "Una lista para cada tarjeta, `print(x)` va en código.\n", toks))
+        self.assertEqual([], self.p2.i30_unfenced("a.md", "Un bucle for sirve aquí.\n", toks))
+
+    def test_i31_needs_pass_for_every_family(self):
+        fams = {"src/e/a.py": "fam-a"}
+        self.assertEqual([], self.p2.i31_oracle(self.REC, fams, {"fam-a": "PASS"}))
+        self.assertEqual(["I31"], self.kinds(self.p2.i31_oracle(self.REC, fams, {"fam-a": "FAIL"})))
+        self.assertEqual(["I31"], self.kinds(self.p2.i31_oracle(self.REC, fams, {"fam-a": "NOT TESTED"})))
+        self.assertEqual(["I31"], self.kinds(self.p2.i31_oracle(self.REC, fams, {})))
+        self.assertEqual([], self.p2.i31_oracle([], fams, {}))
+
+    def test_load_verdicts_reads_report_lines(self):
+        with tempfile.TemporaryDirectory() as d:
+            with open(os.path.join(d, "r.md"), "w", encoding="utf-8") as f:
+                f.write("# r\n- family: fam-a\n- verdict: NOT TESTED\n")
+            self.assertEqual({"fam-a": "NOT TESTED"}, self.p2.load_verdicts(d))
+
+    def test_derive_rules_from_the_ledger(self):
+        ids, dnt = self.p2.derive_rules(self.REC)
+        import yaml
+        rows = yaml.safe_load(ids)["identifiers"]
+        self.assertEqual("suma", rows[0]["literal"])
+        self.assertIn(r"\btotal\b", rows[0]["en"])
+        self.assertEqual("suma\n", dnt)
+        self.assertEqual([], yaml.safe_load(self.p2.derive_rules([])[0])["identifiers"])
+
+    def test_real_tree_check_is_clean(self):
+        buf = io.StringIO()
+        with redirect_stdout(buf):
+            self.assertEqual(0, self.p2.main(["--check"]), buf.getvalue())
+
+    def test_table_lists_the_new_ids(self):
+        for k in ("I28", "I29", "I30", "I31"):
+            self.assertIn(k, inv.TABLE)
 
 
 if __name__ == "__main__":

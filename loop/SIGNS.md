@@ -140,4 +140,5 @@
 - Do not run verify --release right after tools/scratch_proof.py --tests: a stale inventory/work state makes 4 checks fail once; rerun inventory.py then verify, and run lessons/book tests in Spanish through a runpy wrapper that sets BOOK_LANG=es.
 - In dontAsk mode even `rustc --version` and dotnet are denied, and so are heredocs and long compound commands; do not plan registry extraction that runs a toolchain, record not-extracted with that reason, and edit files with the Edit tool.
 - Put Spanish-only CSS or tooling in a separate file that build.py adds when the language is not en; any change to a layer file shared with English shows up as an EPUB hash diff in tools/scratch_proof.py.
+- Part II checks I28 to I31 live in tools/part2_inv.py (invariants.py only lists them); a stale-symbol sweep over Markdown looks at code spans and fences only, because an old name like "total" is an ordinary word in prose.
 - loc_apply refuses format-like strings (class format-or-template); only display-candidate strings can be translated, so test string edits with plain words.
