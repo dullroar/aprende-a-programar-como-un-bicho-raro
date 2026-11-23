@@ -1,0 +1,23 @@
+#
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\n"
+
+msgctxt "L2"
+msgid ""
+"# What tar runs at every checkpoint. It applies one transition (tick.sql) "
+"and does nothing else."
+msgstr ""
+"# Lo que tar ejecuta en cada punto de control. Aplica una transición "
+"(tick.sql) y nada más."
+
+msgctxt "L3"
+msgid ""
+"# tar sets TAR_CHECKPOINT (1, 2, 3, ...) and ignores our exit status, so a "
+"failure here cannot stop the archive:"
+msgstr ""
+"# tar fija TAR_CHECKPOINT (1, 2, 3, ...) e ignora nuestro estado de salida, "
+"así que un fallo aquí no puede detener el archivo:"
+
+msgctxt "L4"
+msgid "# it can only leave the machine where it was."
+msgstr "# solo puede dejar la máquina donde estaba."

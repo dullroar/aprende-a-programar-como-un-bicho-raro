@@ -1,6 +1,6 @@
--- One checkpoint = one hour = one bounded transition of the machine. Run by tick.sh, with @t = TAR_CHECKPOINT.
--- Nothing in here loops, and nothing decides when tar stops: tar does not stop. After the stop rule has
--- fired (done = 1) a tick changes only the `idle` counter.
+-- Un punto de control = una hora = una transición acotada de la máquina. Lo ejecuta tick.sh, con @t = TAR_CHECKPOINT.
+-- Aquí dentro nada hace bucle, y nada decide cuándo se detiene tar: tar no se detiene. Después de que la regla de parada
+-- haya saltado (done = 1) un tick solo cambia el contador `idle`.
 BEGIN;
 UPDATE fsm SET idle = idle + 1, tick = @t
     WHERE run_id = (SELECT max(run_id) FROM fsm) AND done;

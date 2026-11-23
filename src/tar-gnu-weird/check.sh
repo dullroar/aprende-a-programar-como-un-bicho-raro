@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-# Checks the rules of the challenge for the checkpoint-clock entry, and proves that the clock is real: change the
-# archive's layout or tar's checkpoint settings and an independent simulation predicts exactly what changes.
+# Comprueba las reglas del desafío para la entrada del reloj de puntos de control, y prueba que el reloj es real: cambia el
+# diseño del archivo o los ajustes de puntos de control de tar y una simulación independiente predice exactamente qué cambia.
 set -euo pipefail
 cd "$(dirname "$0")"
 here=$PWD
@@ -12,9 +12,9 @@ command -v sqlite3 >/dev/null || fail "sqlite3 is needed"
 newdb() { export XDG_DATA_HOME=$work/xdg.$1; rm -rf "$XDG_DATA_HOME"; mkdir -p "$XDG_DATA_HOME"; db=$XDG_DATA_HOME/TarGnuWeird/demo-timecards.db; unset TICK_DB; }
 rows() { grep -E $'^(Meetings|Coding|Debugging|Learning)\t' <<<"$1" || true; }
 
-# ---- 1. The ridiculous constraint is real: no loop calls the tick; tar's checkpoint does.
+# ---- 1. La restricción ridícula es real: ningún bucle llama al tick; lo llama el punto de control de tar.
 code=$(grep -Ev '^\s*(#|$)' run-clock.sh tick.sh | cut -d: -f2-)
-# the only loop in the launcher is the argument parser; nothing loops around tar or the tick
+# el único bucle del lanzador es el analizador de argumentos; nada hace bucle alrededor de tar ni del tick
 loops=$(grep -Ew 'for|while|until|seq' <<<"$code" | grep -vxF 'while [ $# -gt 0 ]; do' || true)
 [[ -z $loops ]] || fail "run-clock.sh or tick.sh has a loop besides the argument parser: $loops"
 [[ $(grep -c 'tick.sh' run-clock.sh) -eq 1 ]] || fail "run-clock.sh must mention tick.sh exactly once (inside the tar option)"
@@ -25,8 +25,8 @@ tick=$(grep -Ev '^\s*--' tick.sql)
 if grep -Eqi 'recursive|random\(|\bwith\b|create trigger' <<<"$tick"; then fail "tick.sql has recursion, randomness or a trigger"; fi
 echo "ok: no loop anywhere between the checkpoint and the SQL; one tar, one checkpoint action, no recursion, no triggers"
 
-# ---- helpers: an independent simulation of the machine (Park-Miller in awk), and a validator of the rules.
-sim() {  # seed ticks -> rows "Cat\thours\ttotal" for every card that closes within `ticks` hours, then "#done" or "#stalled"
+# ---- auxiliares: una simulación independiente de la máquina (Park-Miller en awk) y un validador de las reglas.
+sim() {  # semilla ticks -> filas "Cat\thoras\ttotal" por cada tarjeta que cierra dentro de `ticks` horas, luego "#done" o "#stalled"
     awk -v seed="$1" -v T="$2" 'BEGIN {
         split("Meetings Coding Debugging Learning Meetings", cat, " ")
         s = seed * 48271 % 2147483647; target = 10 + s % 10; worked = 0; total = 0; card = 0; done = 0
@@ -37,8 +37,8 @@ sim() {  # seed ticks -> rows "Cat\thours\ttotal" for every card that closes wit
                 s = s * 48271 % 2147483647; target = 10 + s % 10; worked = 0 } }
         print done ? "#done" : "#stalled" }'
 }
-predicted_ticks() { echo $(( ($1 + $2 - 1) / $2 / $3 )); }   # N blocks, -b B, --checkpoint=K  -> ticks
-validate() {  # label output
+predicted_ticks() { echo $(( ($1 + $2 - 1) / $2 / $3 )); }   # N bloques, -b B, --checkpoint=K  -> ticks
+validate() {  # etiqueta salida
     local label=$1 out=$2 r total entries
     r=$(rows "$out"); total=$(sed -nE 's/.*total=([0-9]+).*/\1/p' <<<"$out"); entries=$(sed -nE 's/.*entries=([0-9]+).*/\1/p' <<<"$out")
     awk -F'\t' -v total="$total" -v entries="$entries" '
@@ -53,7 +53,7 @@ validate() {  # label output
               if (prev <= 40) { print "stopped early at " prev; exit 1 } }' <<<"$r" || fail "$label (see above)"
 }
 
-# ---- 2. Random runs: the rules, and the clock invariants (a card closes at the tick equal to its running total).
+# ---- 2. Ejecuciones aleatorias: las reglas, y los invariantes del reloj (una tarjeta cierra en el tick igual a su total acumulado).
 for i in $(seq 1 20); do
     newdb r$i
     out=$(sh ./timecards.sh 2>"$work/err") || { cat "$work/err"; fail "run $i exited $?"; }
@@ -69,7 +69,7 @@ done
 [[ -z $(ls -A "$work" | grep -v -e '^xdg' -e '^err$') ]] || fail "scratch left behind: $(ls -A "$work")"
 echo "ok: 20 random runs: the rules hold; every card closes at tick = running total; 64 ticks, the rest idle; the scratch is removed"
 
-# ---- 3. Without checkpoint events there is no progress.
+# ---- 3. Sin eventos de punto de control no hay progreso.
 newdb none
 set +e; out=$(sh run-clock.sh --seed 5 --interval 1000 2>"$work/err"); rc=$?; set -e
 [[ $rc -eq 3 && -z $(rows "$out") ]] || fail "with no checkpoint events the machine must stall with no cards (rc=$rc)"
@@ -77,8 +77,8 @@ grep -q 'clock ran out' "$work/err" || fail "the stall must be reported"
 [[ $(sqlite3 "$db" "select tick||' '||idle||' '||worked||' '||total from fsm") == "0 0 0 0" ]] || fail "state moved without a tick"
 echo "ok: --checkpoint=1000 on a 64-record archive: no tick, no card, exit 3, the state untouched"
 
-# ---- 4. Predictions: layout and checkpoint settings, against the simulation.
-check_run() {  # seed N(blocks) B K M label
+# ---- 4. Predicciones: diseño y ajustes de puntos de control, contra la simulación.
+check_run() {  # semilla N(bloques) B K M etiqueta
     local seed=$1 n=$2 b=$3 k=$4 m=$5 t want got rc
     t=$(predicted_ticks "$n" "$b" "$k"); want=$(sim "$seed" "$t")
     newdb p
@@ -90,7 +90,7 @@ check_run() {  # seed N(blocks) B K M label
     else [[ $rc -eq 3 ]] || fail "seed $seed N=$n: expected a stalled run (rc 3), rc=$rc"; fi
     local size; size=$(stat -c %s "$XDG_DATA_HOME/TarGnuWeird/tape.tar")
     [[ $size -eq $(( ($n + $b - 1) / $b * $b * 512 )) ]] || fail "tape size $size is not the whole records predicted for $n blocks, -b $b"
-    # TAR_CHECKPOINT counts RECORDS (K, 2K, 3K, ...), while the machine counts callbacks: so the last value is ticks x K
+    # TAR_CHECKPOINT cuenta REGISTROS (K, 2K, 3K, ...), mientras que la máquina cuenta llamadas: así que el último valor es ticks x K
     [[ $(sqlite3 "$db" "select tick from fsm") -eq $((t * k)) ]] || fail "expected the last TAR_CHECKPOINT to be $((t * k)), got $(sqlite3 "$db" "select tick from fsm")"
 }
 n=0
@@ -100,18 +100,18 @@ for seed in 1 42 999 123456789 2147483646; do
     done
 done
 echo "ok: $n runs (5 seeds x 13 layouts, 20 to 260 blocks, -b 1..8, checkpoint intervals 1..5, 1..7 members): the cards, the stall, the tape size and the last TAR_CHECKPOINT match the prediction"
-# a longer tape changes nothing: the extra ticks arrive after the stop and are idle
+# una cinta más larga no cambia nada: los ticks extra llegan después de la parada y quedan inactivos
 newdb long; a=$(rows "$(sh run-clock.sh --seed 42 --ticks 64 2>/dev/null)"); newdb long2; b=$(rows "$(sh run-clock.sh --seed 42 --ticks 600 2>/dev/null)")
 [[ $a == "$b" ]] || fail "a longer archive changed the cards"
 [[ $(sqlite3 "$db" "select idle from fsm") -eq $((600 - $(sqlite3 "$db" "select total from fsm"))) ]] || fail "600 ticks: the idle count is wrong"
 echo "ok: a 600-record archive gives the same cards as a 64-record one; every tick after the stop only counts as idle"
 
-# ---- 5. What one checkpoint counts: records written. Measured directly, with ragged sizes too.
-count_ticks() {  # tar options... -> number of checkpoint callbacks (the mode comes from the options)
+# ---- 5. Qué cuenta un punto de control: registros escritos. Medido directamente, también con tamaños irregulares.
+count_ticks() {  # opciones de tar... -> número de llamadas de punto de control (el modo viene de las opciones)
     : > "$work/ticks"; tar --format=ustar --checkpoint-action="exec=echo x >> $work/ticks" "$@" >/dev/null 2>&1 || true; wc -l < "$work/ticks"
 }
 mkdir -p "$work/rag"; head -c 1 /dev/zero > "$work/rag/a"; head -c 512 /dev/zero > "$work/rag/b"; head -c 513 /dev/zero > "$work/rag/c"; head -c 5000 /dev/zero > "$work/rag/d"; : > "$work/rag/e"
-blocks=$(( (1+1) + (1+1) + (1+2) + (1+10) + (1+0) + 2 ))   # a,b,c,d,e headers+data, 2 end blocks
+blocks=$(( (1+1) + (1+1) + (1+2) + (1+10) + (1+0) + 2 ))   # a,b,c,d,e cabeceras+datos, 2 bloques finales
 for bk in "1 1" "1 3" "2 1" "5 2" "20 1"; do
     set -- $bk
     got=$(count_ticks -b "$1" --checkpoint="$2" -cf "$work/rag.tar" -C "$work/rag" a b c d e)
@@ -124,8 +124,8 @@ echo "note: the same $blocks-block archive gives $blocks ticks when created, $l 
 set +e; tar -b1 --checkpoint=1 --checkpoint-action='exec=exit 7' -cf /dev/null -C "$work/rag" d; rc=$?; set -e
 echo "note: a checkpoint command that exits 7 does not change tar's own exit status here ($rc); the entry does not depend on that, because ticks after the stop only count as idle"
 
-# ---- 6. A failing callback cannot stop tar, and leaves the machine where it was.
-# Make a private copy of the entry whose transition always fails (it updates a table that does not exist).
+# ---- 6. Una llamada que falla no puede detener a tar, y deja la máquina donde estaba.
+# Haz una copia privada de la entrada cuya transición siempre falla (actualiza una tabla que no existe).
 mkdir -p "$work/clone"; cp run-clock.sh layout.sh tick.sh machine.sql "$work/clone/"
 sed 's/UPDATE fsm SET worked/UPDATE nosuchtable SET worked/' tick.sql > "$work/clone/tick.sql"
 grep -q nosuchtable "$work/clone/tick.sql" || fail "could not break the copy of tick.sql"
@@ -135,12 +135,12 @@ set +e; out=$(sh "$work/clone/run-clock.sh" --seed 7 2>"$work/err"); rc=$?; set 
 [[ $(sqlite3 "$db" "select count(*) from demo_timecards") -eq 0 ]] || fail "a failing callback wrote a card"
 grep -q 'no such table' "$work/err" || fail "the callback's error must reach stderr, not be hidden"
 echo "ok: a callback that fails on every tick: tar still finishes the archive, no card is written, the error is shown, the run exits 3"
-# a hostile checkpoint number never reaches SQL
+# un número de punto de control hostil nunca llega a SQL
 TAR_CHECKPOINT='1; drop table fsm' TICK_DB=$work/x.db TICK_SQL=$here/tick.sql sh tick.sh 2>/dev/null && fail "tick.sh accepted a non-numeric checkpoint"
 [[ ! -e $work/x.db ]] || fail "tick.sh touched the database for a bad checkpoint"
 echo "ok: tick.sh refuses a TAR_CHECKPOINT that is not a number, before it opens the database"
 
-# ---- 7. The schema refuses what it must.
+# ---- 7. El esquema rechaza lo que debe.
 newdb sch; sh run-clock.sh --seed 3 >/dev/null
 sqlite3 "$db" "insert into demo_timecards values(1,'Coding',12,12,'w',1,0)" 2>/dev/null && fail "db accepted a non-demo row"
 sqlite3 "$db" "insert into demo_timecards values(1,'Coding',9,9,'w',1,1)" 2>/dev/null && fail "db accepted 9 hours"

@@ -1,8 +1,8 @@
 #!/bin/sh
-# Lays out the payload whose archive is the clock. At the default settings (-b 1 --checkpoint=1) tar writes
-# one 512-byte record per checkpoint, so the number of ticks is the number of 512-byte blocks in the archive:
-#     blocks = sum over members of (1 header + ceil(size / 512) data) + 2 end-of-archive blocks.
-#   sh layout.sh [--ticks N] [--members M] DIR      writes DIR/m01 ... and DIR/list (the member names, in order)
+# Dispone la carga cuyo archivo es el reloj. Con los ajustes por defecto (-b 1 --checkpoint=1) tar escribe
+# un registro de 512 bytes por punto de control, así que el número de ticks es el número de bloques de 512 bytes del archivo:
+#     bloques = suma sobre los miembros de (1 cabecera + ceil(tamaño / 512) de datos) + 2 bloques de fin de archivo.
+#   sh layout.sh [--ticks N] [--members M] DIR      escribe DIR/m01 ... y DIR/list (los nombres de los miembros, en orden)
 set -eu
 ticks=64 members=1
 while [ $# -gt 1 ]; do

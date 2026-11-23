@@ -65,7 +65,7 @@ families:
   "src/regex-perl": {status: localizing, files: 3}
   "src/regex-sed": {status: localizing, files: 5}
   "src/tar-gnu": {status: localizing, files: 7}
-  "src/tar-gnu-weird": {status: frozen, files: 8}
+  "src/tar-gnu-weird": {status: localizing, files: 8}
   "src/tcl": {status: localizing, files: 3}
   "src/tcl-weird": {status: localizing, files: 3}
   "src/xaml": {status: frozen, files: 7}

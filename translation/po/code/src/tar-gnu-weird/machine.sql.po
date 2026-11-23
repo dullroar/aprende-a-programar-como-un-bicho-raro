@@ -1,0 +1,63 @@
+#
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\n"
+
+msgctxt "L1"
+msgid ""
+"-- The machine's memory, created once per database. .parameter @seed and "
+"@week are set by run-clock.sh."
+msgstr ""
+"-- La memoria de la máquina, creada una vez por base de datos. .parameter "
+"@seed y @week los fija run-clock.sh."
+
+msgctxt "L2"
+msgid ""
+"-- fsm is the whole state of one run: one row. Only a tick changes it (see "
+"tick.sql)."
+msgstr ""
+"-- fsm es todo el estado de una ejecución: una fila. Solo un tick la cambia "
+"(ver tick.sql)."
+
+msgctxt "L5"
+msgid "-- Park-Miller generator state"
+msgstr "-- estado del generador Park-Miller"
+
+msgctxt "L6"
+msgid "-- cards closed so far; picks the category"
+msgstr "-- tarjetas cerradas hasta ahora; elige la categoría"
+
+msgctxt "L7"
+msgid "-- hours worked on the open card"
+msgstr "-- horas trabajadas en la tarjeta abierta"
+
+msgctxt "L8"
+msgid "-- hours this card will take"
+msgstr "-- horas que tardará esta tarjeta"
+
+msgctxt "L9"
+msgid "-- running total, in hours"
+msgstr "-- total acumulado, en horas"
+
+msgctxt "L10"
+msgid "-- 1 once a card has pushed the total over 40"
+msgstr "-- 1 una vez que una tarjeta ha hecho pasar el total de 40"
+
+msgctxt "L11"
+msgid "-- the last TAR_CHECKPOINT seen"
+msgstr "-- el último TAR_CHECKPOINT visto"
+
+msgctxt "L12"
+msgid "-- ticks that arrived after done, and changed nothing"
+msgstr "-- ticks que llegaron después de done y no cambiaron nada"
+
+msgctxt "L20"
+msgid "-- the checkpoint at which this card closed"
+msgstr "-- el punto de control en el que cerró esta tarjeta"
+
+msgctxt "L22"
+msgid ""
+"-- The first card's length is drawn here, by the same formula tick.sql uses "
+"for every later card."
+msgstr ""
+"-- La duración de la primera tarjeta se sortea aquí, con la misma fórmula "
+"que usa tick.sql para cada tarjeta posterior."

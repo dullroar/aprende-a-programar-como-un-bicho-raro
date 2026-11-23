@@ -1,9 +1,9 @@
 #!/bin/sh
-# Starts the machine and lets tar's checkpoints drive it.
+# Arranca la máquina y deja que los puntos de control de tar la impulsen.
 #   sh run-clock.sh [--seed N] [--ticks N] [--members M] [--interval K] [--blocking B]
-# --ticks and --members describe the LAYOUT of the archive. --interval and --blocking are tar's CHECKPOINT
-# settings (tar --checkpoint=K -b B). Defaults: a 64-record archive, one checkpoint per record, which gives 64 ticks.
-# 64 is more than the longest possible run needs: a run ends by tick 59 at the latest.
+# --ticks y --members describen el DISEÑO del archivo. --interval y --blocking son los ajustes de PUNTO DE CONTROL
+# de tar (tar --checkpoint=K -b B). Por defecto: un archivo de 64 registros, un punto de control por registro, lo que da 64 ticks.
+# 64 es más de lo que necesita la ejecución más larga posible: una ejecución termina como tarde en el tick 59.
 set -eu
 here=$(cd "$(dirname "$0")" && pwd)
 seed= ticks=64 members=1 interval=1 blocking=1
@@ -22,7 +22,7 @@ sh "$here/layout.sh" --ticks "$ticks" --members "$members" "$scratch/payload"
 
 run=$(sqlite3 -cmd ".parameter init" -cmd ".parameter set @seed $seed" -cmd ".parameter set @week '$(date +%G-W%V)'" "$TICK_DB" < "$here/machine.sql" | tail -1)
 echo "# DEMO ONLY run $run: seed $seed; layout $ticks records in $members member(s); tar -b $blocking --checkpoint=$interval"
-# The clock. tar reads nothing it was not told to read, runs one fixed command per checkpoint, and writes the tape under $data.
+# El reloj. tar no lee nada que no se le haya dicho que lea, ejecuta un comando fijo por punto de control y escribe la cinta bajo $data.
 tar --format=ustar -b "$blocking" --checkpoint="$interval" --checkpoint-action="exec=sh $here/tick.sh" \
     -cf "$data/tape.tar" -C "$scratch/payload" -T "$scratch/payload/list"
 

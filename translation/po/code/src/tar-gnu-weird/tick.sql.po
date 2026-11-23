@@ -1,0 +1,23 @@
+#
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\n"
+
+msgctxt "L1"
+msgid ""
+"-- One checkpoint = one hour = one bounded transition of the machine. Run by"
+" tick.sh, with @t = TAR_CHECKPOINT."
+msgstr ""
+"-- Un punto de control = una hora = una transición acotada de la máquina. Lo"
+" ejecuta tick.sh, con @t = TAR_CHECKPOINT."
+
+msgctxt "L2"
+msgid ""
+"-- Nothing in here loops, and nothing decides when tar stops: tar does not "
+"stop. After the stop rule has"
+msgstr ""
+"-- Aquí dentro nada hace bucle, y nada decide cuándo se detiene tar: tar no "
+"se detiene. Después de que la regla de parada"
+
+msgctxt "L3"
+msgid "-- fired (done = 1) a tick changes only the `idle` counter."
+msgstr "-- haya saltado (done = 1) un tick solo cambia el contador `idle`."
