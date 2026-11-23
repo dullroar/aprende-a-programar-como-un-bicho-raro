@@ -277,7 +277,14 @@ def lock_problems(mutate, rel="src/forth/timecards.fs"):
     for r in (rel, lock_code.MANIFEST):
         os.makedirs(os.path.dirname(os.path.join(root, r)), exist_ok=True)
     import enpath
-    shutil.copyfile(enpath.load(ROOT).full(rel), os.path.join(root, rel))    # the mini repo keeps English names
+    # The mini repo keeps English names and the pinned English bytes: a family may be localized in the working tree
+    # (Part II), and the manifest row names the English hash.
+    data = verify.english_bytes(env().cfg, rel)
+    if data is None:
+        shutil.copyfile(enpath.load(ROOT).full(rel), os.path.join(root, rel))
+    else:
+        with open(os.path.join(root, rel), "wb") as f:
+            f.write(data)
     with open(os.path.join(ROOT, lock_code.MANIFEST), encoding="utf-8") as f:
         row = next(ln for ln in f if ln.rstrip().endswith("  " + rel))
     with open(os.path.join(root, lock_code.MANIFEST), "w", encoding="utf-8", newline="") as f:
