@@ -1,0 +1,15 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+
+msgctxt "L2"
+msgid "# DEMO ONLY. Fictional timecards, written to a scratch SQLite file under XDG_DATA_HOME. See README.md."
+msgstr "# DEMO ONLY. Tarjetas de horas ficticias, escritas en un archivo SQLite desechable bajo XDG_DATA_HOME. Consulta README.md."
+
+msgctxt "L3"
+msgid "# Everything below the `use` lines is ONE statement: a single match. It does the seeding, the random"
+msgstr "# Todo lo que hay debajo de las líneas `use` es UNA sola sentencia: una única coincidencia. Hace la siembra, los sorteos"
+
+msgctxt "L4"
+msgid "# draws, the SQLite transaction, the pulse, and the printing, and then it returns false."
+msgstr "# aleatorios, la transacción de SQLite, el pulso y la impresión, y después devuelve falso."

@@ -62,7 +62,7 @@ families:
   "src/regex-dotnet": {status: frozen, files: 5}
   "src/regex-pcre2": {status: frozen, files: 5}
   "src/regex-pcre2grep": {status: localizing, files: 3}
-  "src/regex-perl": {status: frozen, files: 3}
+  "src/regex-perl": {status: localizing, files: 3}
   "src/regex-sed": {status: frozen, files: 5}
   "src/tar-gnu": {status: frozen, files: 7}
   "src/tar-gnu-weird": {status: frozen, files: 8}

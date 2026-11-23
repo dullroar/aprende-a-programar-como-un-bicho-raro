@@ -1,5 +1,5 @@
-# Container image for the Perl regex entry. Run it with: sandbox/container/run-image.sh src/regex-perl
-# Perl and its standard modules ship in the Ubuntu base; the base adds sqlite3 only.
+# Imagen de contenedor para la entrada de regex en Perl. Ejecútala con: sandbox/container/run-image.sh src/regex-perl
+# Perl y sus módulos estándar vienen en la base de Ubuntu; la base solo añade sqlite3.
 FROM cc-rt-sqlite:local
 COPY timecards.pl /app/timecards.pl
 ENV CC_RUN="perl /app/timecards.pl"

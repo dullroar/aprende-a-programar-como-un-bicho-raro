@@ -1,0 +1,35 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+
+msgctxt "L2"
+msgid "# Checks the rules of the regex challenge for the Perl track. Uses a throwaway data dir."
+msgstr "# Comprueba las reglas del desafío de regex para la pista de Perl. Usa un directorio de datos desechable."
+
+msgctxt "L9"
+msgid "# 1. The file is one statement (everything but comments, blank lines and `use` lines is a single line),"
+msgstr "# 1. El archivo es una sola sentencia (todo salvo comentarios, líneas en blanco y líneas `use` es una única línea),"
+
+msgctxt "L10"
+msgid "#    with exactly one top-level match and no loop keywords anywhere outside comments."
+msgstr "#    con exactamente una coincidencia de nivel superior y sin palabras clave de bucle fuera de los comentarios."
+
+msgctxt "L18"
+msgid "# 2. Run it a bunch of times; every run must print a sane record set, and the SQLite rows must agree with it."
+msgstr "# 2. Ejecútalo muchas veces; cada ejecución debe imprimir un conjunto de registros sensato, y las filas de SQLite deben coincidir con él."
+
+msgctxt "L33"
+msgid "# The SQLite transaction really committed, and agrees with what was printed."
+msgstr "# La transacción de SQLite se confirmó de verdad y coincide con lo que se imprimió."
+
+msgctxt "L39"
+msgid "# 3. The demo_only CHECK constraint is real: a non-demo row must be refused."
+msgstr "# 3. La restricción CHECK de demo_only es real: una fila que no sea de demostración debe rechazarse."
+
+msgctxt "L43"
+msgid "# 4. Exactly 40 continues. Four 10-hour cards total exactly 40, so a fifth card must be drawn: Meetings again, total 50."
+msgstr "# 4. Exactamente 40 continúa. Cuatro tarjetas de 10 horas suman exactamente 40, así que se debe sacar una quinta tarjeta: Meetings otra vez, total 50."
+
+msgctxt "L44"
+msgid "#    A copy of the program with every card worth 10 hours makes that the only possible run."
+msgstr "#    Una copia del programa en la que cada tarjeta vale 10 horas hace que esa sea la única ejecución posible."

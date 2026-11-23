@@ -417,3 +417,4 @@
 465 S5-fam-lisp-weird done src/lisp-weird localizing: 29 comment lines (timecards.lisp, check.sh, Dockerfile) via loc_apply, oracle PASS; categories/strings kept English EXC-577.
 466 S5-fam-regex-dotnet done family left English, NOT TESTED (EXC-578): oracle FAILs on the unmodified English baseline (reads year 2026 as running total); no protected file changed.
 467 S5-fam-regex-pcre2grep done src/regex-pcre2grep localizing: 18 comment lines (timecards.sh, check.sh, Dockerfile) via loc_apply, oracle PASS; categories/strings kept English EXC-579.
+468 S5-fam-regex-perl done src/regex-perl localizing: 13 comment lines (timecards.pl, check.sh, Dockerfile) via loc_apply, oracle PASS; categories/strings kept English EXC-580.
