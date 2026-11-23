@@ -376,4 +376,5 @@
 424 S5-fam-cobol done src/cobol localizing: 60 comment lines (cob, check.sh, Dockerfile) via loc_apply, oracle PASS (docker worked this session); categories/strings kept English EXC-542; verify.py ignores the code PO tree.
 425 S5-fam-forth done src/forth localizing: 38 comment lines in timecards.fs plus check.sh, Dockerfile via loc_apply, oracle PASS; categories/strings and trailing comments on lines 40-42 kept English (EXC-543).
 423 S4-007 done decision 11 applied: tools/categories.py (one form per file, no other spelling, I13), glossary es_values, oracle both forms, row 11 fixtures, recall/jury faults, PROMPT/plan/policy rules; prose stays English until each S5 family; verify --fast OK.
+427 S5-fam-lessons-solutions-b7-linq done family left English, NOT TESTED (EXC-545): 0 comments, output strings quoted in respuestas.md, no oracle runner for lessons/solutions; no protected file changed.
 426 S5-fam-lessons-book-diagrams done family left English, NOT TESTED (EXC-544): build script, tools/oracle.py has no runner for it; no protected file changed; report written; verify --fast OK.
