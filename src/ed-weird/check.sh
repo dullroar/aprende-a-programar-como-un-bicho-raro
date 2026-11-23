@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-# Checks the rules of the challenge for the ed entry: ed owns the whole computation, the launcher owns none of it,
-# and changing the ed program changes the program's behavior in the way the README says. Uses throwaway dirs.
+# Comprueba las reglas del reto para la entrada de ed: ed se encarga de todo el cálculo y el lanzador de nada,
+# y cambiar el programa de ed cambia el comportamiento del programa como dice el README. Usa directorios desechables.
 set -euo pipefail
 cd "$(dirname "$0")"
 here=$PWD
@@ -11,18 +11,18 @@ ed --version 2>&1 | head -1 | grep -q 'GNU ed' || fail "this entry needs GNU ed;
 command -v sqlite3 >/dev/null || fail "sqlite3 is needed"
 rows() { grep -E $'^(Meetings|Coding|Debugging|Learning)\t' <<<"$1" || true; }
 
-# ---- 1. The constraint is real: the launcher only seeds, loads and shows; ed does the rest.
+# ---- 1. La restricción es real: el lanzador solo siembra, carga y muestra; ed hace el resto.
 code=$(grep -Ev '^\s*(#|$)' timecards.sh)
 if grep -Eq '\$\(\(|\bawk\b|\bexpr\b|(^|[|;&(] *)(bc|dc)( |$)|\bperl\b|\bpython|\bsed\b|\bwhile\b|\bfor\b|\buntil\b' <<<"$code"; then fail "timecards.sh does arithmetic, text processing or looping"; fi
 [[ $(grep -c '^ed ' timecards.sh) -eq 1 ]] || fail "timecards.sh must start ed exactly once"
 prog=$(grep -Ev '^#' timecards.ed)
-# no shell escape, no file command, no editing of other files: ed only transforms its own buffer
+# sin escape al shell, sin comandos de archivo, sin editar otros archivos: ed solo transforma su propio búfer
 if grep -nE '^[^/]*!|^(g|v)/.*/!|(^|[0-9,.$]+)[rwWeEf] ' <<<"$prog" | grep -Ev '\[\|!\]|Dead 0!|\\1!|^[0-9]+:s/' ; then fail "timecards.ed uses a shell escape or a file command"; fi
 [[ $(grep -c '^g/\^\[A-Za-z\]\* \[0-9\]\[0-9\] x\*\$/' timecards.ed) -eq 1 ]] || fail "expected exactly one iterating global command (the run)"
 echo "ok: timecards.sh has no arithmetic, no awk/sed, no loop; ed runs once; timecards.ed has no shell escape and no file command; one global command is the run"
 
-# ---- helpers
-sim() {  # "d d d d d" limit -> rows an independent simulation says must be printed
+# ---- ayudantes
+sim() {  # "d d d d d" límite -> filas que una simulación independiente dice que deben imprimirse
     awk -v limit="${2:-40}" -v digits="$1" 'BEGIN { split("Meetings Coding Debugging Learning Meetings", cat, " "); n = split(digits, d, " ")
         for (i = 1; i <= n; i++) { h = 10 + d[i]; t += h; printf "%s\t%d\t%d\n", cat[i], h, t; if (t > limit) break } }'
 }
@@ -42,7 +42,7 @@ validate() {
               if (prev <= 40) { print "stopped early at " prev; exit 1 } }' <<<"$r" || fail "$label (see above)"
 }
 
-# ---- 2. Random runs through the launcher.
+# ---- 2. Ejecuciones aleatorias a través del lanzador.
 for i in $(seq 1 25); do
     rm -f "$work/run.db"
     out=$(ED_DB=$work/run.db sh ./timecards.sh 2>"$work/err") || { cat "$work/err"; fail "run $i exited $?"; }
@@ -54,7 +54,7 @@ done
 [[ -z $(ls -A "$work" | grep -v -e '^xdg$' -e '^run.db$' -e '^err$') ]] || fail "scratch left behind"
 echo "ok: 25 random runs: categories in order, hours 10-19, totals right, stop right after the first total over 40, DEMO ONLY, a quiet ed"
 
-# ---- 3. Every dice sequence over {0,4,5,9} (1024 of them) and 400 random ones, against the independent simulation.
+# ---- 3. Cada secuencia de dados sobre {0,4,5,9} (1024 en total) y 400 aleatorias, contra la simulación independiente.
 n=0
 mapfile -t seqs < <( { for a in 0 4 5 9; do for b in 0 4 5 9; do for c in 0 4 5 9; do for d in 0 4 5 9; do for e in 0 4 5 9; do echo "$a $b $c $d $e"; done; done; done; done; done
                       for i in $(seq 1 400); do { tr -dc 0-9 < /dev/urandom | head -c 5 | fold -w1 | tr '\n' ' '; } || true; echo; done; } )
@@ -66,8 +66,8 @@ for s in "${seqs[@]}"; do
 done
 echo "ok: $n dice sequences, including totals of exactly 40 and 41 and all-10s and all-19s, agree with the simulation"
 
-# ---- 4. Perturbations: change the ed program, and the behavior changes as predicted. The logic is in the ed program.
-perturb() {   # label, sed expression, dice, limit
+# ---- 4. Perturbaciones: cambia el programa de ed y el comportamiento cambia como se predijo. La lógica está en el programa de ed.
+perturb() {   # etiqueta, expresión de sed, dados, límite
     sed "$2" timecards.ed > "$work/p.ed"; cmp -s timecards.ed "$work/p.ed" && fail "$1: the mutation changed nothing"
     rm -f "$work/run.db"; out=$(run "$3" "$work/p.ed") || fail "$1: the mutated program failed"
 }
@@ -84,7 +84,7 @@ printf '5\n5\n5\n5\n5\n' > "$work/d.txt"
 ed -s "$work/d.txt" < "$work/p.ed" | grep -q '^Dead' || fail "without the cleanup, Dead cards should appear in ed's output"
 echo "ok: perturbations: x{41,} to x{31,} moves the stop rule, x{51,} moves it the other way, swapping two address lines swaps their categories, deleting the Dead rule or its cleanup changes the output"
 
-# ---- 5. Walls: what POSIX forbids stays forbidden. (A negative test is kept for each.)
+# ---- 5. Barreras: lo que POSIX prohíbe sigue prohibido. (Se conserva una prueba negativa para cada una.)
 ed_err() { printf 'H\n%s\nQ\n' "$1" | ed -s "$work/wall.txt" 2>&1 | head -2 | tr "\n" " "; }
 printf 'a\nb\n' > "$work/wall.txt"
 [[ -n $(ed_err 'g/a/g/b/s/b/c/') ]] || fail "a global command inside a global command should be an error"
@@ -99,10 +99,10 @@ printf 'a\nb\n' > "$work/wall.txt"
 [[ $(printf '/nomatch/\nQ\n' | ed -s "$work/wall.txt" 2>&1; echo rc=$?) == *"rc=1" ]] || fail "a failed address should make ed exit 1"
 echo "ok: a failed address is an error, unlike a failed s: exit status 1"
 
-# ---- 6. Another ed: busybox ed cannot run the program. Measured, and asserted when busybox is there.
+# ---- 6. Otro ed: busybox ed no puede ejecutar el programa. Medido, y comprobado cuando busybox está presente.
 if command -v busybox >/dev/null && busybox --list | grep -qx ed; then
     printf '7\n3\n9\n0\n5\n' > "$work/bb.txt"
-    # Capture the finite diagnostic before shortening it so head cannot give ed SIGPIPE.
+    # Captura el diagnóstico finito antes de acortarlo para que head no le dé SIGPIPE a ed.
     bbout=$(busybox ed "$work/bb.txt" < timecards.ed 2>&1 || true)
     if grep -qx 'Meetings 17 17' <<<"$bbout"; then fail "busybox ed ran the program; update the README"; fi
     bbout=$(head -3 <<<"$bbout" | tr '\n' '|')
@@ -111,7 +111,7 @@ else
     echo "note: busybox ed not installed; skipped the dialect check"
 fi
 
-# ---- 7. The schema.
+# ---- 7. El esquema.
 rm -f "$work/run.db"; run "1 2 3 4 5" >/dev/null
 sqlite3 "$work/run.db" "insert into demo_timecards values(1,'Coding',12,12,'w',0)" 2>/dev/null && fail "db accepted a non-demo row"
 sqlite3 "$work/run.db" "insert into demo_timecards values(1,'Coding',9,9,'w',1)" 2>/dev/null && fail "db accepted 9 hours"

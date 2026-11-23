@@ -1,17 +1,17 @@
 H
-# The whole program, as ed commands. ed reads it on standard input; the buffer holds five dice, one digit per line.
+# El programa completo, como comandos de ed. ed lo lee por la entrada estándar; el búfer contiene cinco dados, un dígito por línea.
 # Run:  printf '7\n3\n9\n0\n5\n' > dice.txt; ed -s dice.txt < timecards.ed
-# Nothing below is a loop except the global command in step 4, and that one is ed's own.
+# Nada de lo que sigue es un bucle salvo el comando global del paso 4, y ese es del propio ed.
 #
-# 1. Categories are ADDRESSES: line 1 is the first card, line 2 the second, and so on.
+# 1. Las categorías son DIRECCIONES: la línea 1 es la primera tarjeta, la línea 2 la segunda, y así sucesivamente.
 1s/^/Meetings /
 2s/^/Coding /
 3s/^/Debugging /
 4s/^/Learning /
 5s/^/Meetings /
 #
-# 2. Hours are a REWRITE TABLE. "7" becomes hours 17 and ten marks plus seven marks. One rule per digit.
-#    "g/re/s/..." applies a rule to every line that matches, and does nothing to the others.
+# 2. Las horas son una TABLA DE REESCRITURA. "7" se convierte en las horas 17 y diez marcas más siete marcas. Una regla por dígito.
+#    "g/re/s/..." aplica una regla a cada línea que coincide, y no hace nada con las demás.
 g/^/s/ \([0-9]\)$/ 1\1 xxxxxxxxxx\1/
 g/x0$/s/0$//
 g/x1$/s/1$/x/
@@ -24,32 +24,32 @@ g/x7$/s/7$/xxxxxxx/
 g/x8$/s/8$/xxxxxxxx/
 g/x9$/s/9$/xxxxxxxxx/
 #
-# 3. A ledger line above the first card: a total of nothing. A ledger line looks like  "Name hours|marks".
+# 3. Una línea de libro mayor sobre la primera tarjeta: un total de nada. Una línea de libro mayor tiene la forma  "Nombre horas|marcas".
 0a
 Start 0|
 .
 #
-# 4. The run. ONE global command over the card lines, in buffer order. For each card:
-#      -t.   copy the line above (the ledger so far) under the card
-#      -,.j  join the card and that copy into one line:  "Coding 15 xxxxxxxxxxxxxxxMeetings 12|xxxxxxxxxxxx"
-#      s...  keep the card's name and hours, and put ITS marks and the ledger's marks together after a bar.
-#            Adding is writing the marks side by side.
-#    A failed "s" inside a global command is not an error: it does nothing. That is the "if".
-#      - the first s needs a "|" ledger: the total so far is 40 or less.
-#      - the second s needs a "!" ledger: the total already passed 40. The card becomes "Dead", and the "!" and marks
-#        are copied on, so every later card dies too.
-#      - the third s fires when the marks after the bar are 41 or more: the "|" becomes "!". That card is kept.
+# 4. La ejecución. UN solo comando global sobre las líneas de tarjeta, en el orden del búfer. Para cada tarjeta:
+#      -t.   copia la línea de arriba (el libro mayor hasta ahora) debajo de la tarjeta
+#      -,.j  une la tarjeta y esa copia en una sola línea:  "Coding 15 xxxxxxxxxxxxxxxMeetings 12|xxxxxxxxxxxx"
+#      s...  conserva el nombre y las horas de la tarjeta, y junta SUS marcas y las del libro mayor después de una barra.
+#            Sumar es escribir las marcas una al lado de otra.
+#    Un "s" fallido dentro de un comando global no es un error: no hace nada. Ese es el "si".
+#      - el primer s necesita un libro mayor con "|": el total hasta ahora es 40 o menos.
+#      - el segundo s necesita un libro mayor con "!": el total ya pasó de 40. La tarjeta pasa a ser "Dead", y el "!" y las marcas
+#        se copian hacia delante, así que todas las tarjetas siguientes también mueren.
+#      - el tercer s se activa cuando las marcas después de la barra son 41 o más: la "|" pasa a ser "!". Esa tarjeta se conserva.
 g/^[A-Za-z]* [0-9][0-9] x*$/-t.\
 -,.j\
 s/^\([A-Za-z]* [0-9]*\) \(x*\)[A-Za-z]* [0-9]*|\(x*\)$/\1|\2\3/\
 s/^.*[A-Za-z]* [0-9]*!\(x*\)$/Dead 0!\1/\
 s/^\([^|]*\)|\(x\{41,\}\)$/\1!\2/
 #
-# 5. Drop the dead cards and the ledger line.
+# 5. Elimina las tarjetas muertas y la línea del libro mayor.
 g/^Dead /d
 g/^Start /d
 #
-# 6. Marks to decimal, again by rewrite rules. Tens first: the bar and fifty marks become " 5", and so on.
+# 6. De marcas a decimal, de nuevo con reglas de reescritura. Primero las decenas: la barra y cincuenta marcas pasan a ser " 5", y así sucesivamente.
 g/[|!]x\{50\}/s/[|!]x\{50\}/ 5/
 g/[|!]x\{40\}/s/[|!]x\{40\}/ 4/
 g/[|!]x\{30\}/s/[|!]x\{30\}/ 3/

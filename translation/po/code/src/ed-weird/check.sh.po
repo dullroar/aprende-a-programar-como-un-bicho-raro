@@ -1,0 +1,59 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+
+msgctxt "L2"
+msgid "# Checks the rules of the challenge for the ed entry: ed owns the whole computation, the launcher owns none of it,"
+msgstr "# Comprueba las reglas del reto para la entrada de ed: ed se encarga de todo el cálculo y el lanzador de nada,"
+
+msgctxt "L3"
+msgid "# and changing the ed program changes the program's behavior in the way the README says. Uses throwaway dirs."
+msgstr "# y cambiar el programa de ed cambia el comportamiento del programa como dice el README. Usa directorios desechables."
+
+msgctxt "L14"
+msgid "# ---- 1. The constraint is real: the launcher only seeds, loads and shows; ed does the rest."
+msgstr "# ---- 1. La restricción es real: el lanzador solo siembra, carga y muestra; ed hace el resto."
+
+msgctxt "L19"
+msgid "# no shell escape, no file command, no editing of other files: ed only transforms its own buffer"
+msgstr "# sin escape al shell, sin comandos de archivo, sin editar otros archivos: ed solo transforma su propio búfer"
+
+msgctxt "L24"
+msgid "# ---- helpers"
+msgstr "# ---- ayudantes"
+
+msgctxt "L25"
+msgid "# \"d d d d d\" limit -> rows an independent simulation says must be printed"
+msgstr "# \"d d d d d\" límite -> filas que una simulación independiente dice que deben imprimirse"
+
+msgctxt "L45"
+msgid "# ---- 2. Random runs through the launcher."
+msgstr "# ---- 2. Ejecuciones aleatorias a través del lanzador."
+
+msgctxt "L57"
+msgid "# ---- 3. Every dice sequence over {0,4,5,9} (1024 of them) and 400 random ones, against the independent simulation."
+msgstr "# ---- 3. Cada secuencia de dados sobre {0,4,5,9} (1024 en total) y 400 aleatorias, contra la simulación independiente."
+
+msgctxt "L69"
+msgid "# ---- 4. Perturbations: change the ed program, and the behavior changes as predicted. The logic is in the ed program."
+msgstr "# ---- 4. Perturbaciones: cambia el programa de ed y el comportamiento cambia como se predijo. La lógica está en el programa de ed."
+
+msgctxt "L70"
+msgid "# label, sed expression, dice, limit"
+msgstr "# etiqueta, expresión de sed, dados, límite"
+
+msgctxt "L87"
+msgid "# ---- 5. Walls: what POSIX forbids stays forbidden. (A negative test is kept for each.)"
+msgstr "# ---- 5. Barreras: lo que POSIX prohíbe sigue prohibido. (Se conserva una prueba negativa para cada una.)"
+
+msgctxt "L102"
+msgid "# ---- 6. Another ed: busybox ed cannot run the program. Measured, and asserted when busybox is there."
+msgstr "# ---- 6. Otro ed: busybox ed no puede ejecutar el programa. Medido, y comprobado cuando busybox está presente."
+
+msgctxt "L105"
+msgid "# Capture the finite diagnostic before shortening it so head cannot give ed SIGPIPE."
+msgstr "# Captura el diagnóstico finito antes de acortarlo para que head no le dé SIGPIPE a ed."
+
+msgctxt "L114"
+msgid "# ---- 7. The schema."
+msgstr "# ---- 7. El esquema."

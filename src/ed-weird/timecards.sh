@@ -1,9 +1,9 @@
 #!/bin/sh
-# The launcher. It does four small jobs and no computing; every card, total and stop decision is made by ed.
-#   1. dice:  five random digits, one per line, become ed's starting buffer (DICE="7 3 9 0 5" forces them)
-#   2. run:   ed reads timecards.ed on stdin, edits the buffer, and prints the rows ("Meetings 17 17")
-#   3. load:  sqlite3 stores the rows, with the week, DEMO ONLY and the CHECK constraints
-#   4. show:  sqlite3 prints them
+# El lanzador. Hace cuatro trabajos pequeños y ningún cálculo; cada tarjeta, total y decisión de parar la toma ed.
+#   1. dados: cinco dígitos al azar, uno por línea, forman el búfer inicial de ed (DICE="7 3 9 0 5" los fuerza)
+#   2. ejecutar: ed lee timecards.ed por la entrada estándar, edita el búfer e imprime las filas ("Meetings 17 17")
+#   3. cargar: sqlite3 guarda las filas, con la semana, DEMO ONLY y las restricciones CHECK
+#   4. mostrar: sqlite3 las imprime
 set -eu
 here=$(cd "$(dirname "$0")" && pwd)
 data=${XDG_DATA_HOME:-$HOME/.local/share}/EdWeird; mkdir -p "$data"

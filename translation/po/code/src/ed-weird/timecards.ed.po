@@ -1,0 +1,75 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+
+msgctxt "L2"
+msgid "# The whole program, as ed commands. ed reads it on standard input; the buffer holds five dice, one digit per line."
+msgstr "# El programa completo, como comandos de ed. ed lo lee por la entrada estándar; el búfer contiene cinco dados, un dígito por línea."
+
+msgctxt "L4"
+msgid "# Nothing below is a loop except the global command in step 4, and that one is ed's own."
+msgstr "# Nada de lo que sigue es un bucle salvo el comando global del paso 4, y ese es del propio ed."
+
+msgctxt "L6"
+msgid "# 1. Categories are ADDRESSES: line 1 is the first card, line 2 the second, and so on."
+msgstr "# 1. Las categorías son DIRECCIONES: la línea 1 es la primera tarjeta, la línea 2 la segunda, y así sucesivamente."
+
+msgctxt "L13"
+msgid "# 2. Hours are a REWRITE TABLE. \"7\" becomes hours 17 and ten marks plus seven marks. One rule per digit."
+msgstr "# 2. Las horas son una TABLA DE REESCRITURA. \"7\" se convierte en las horas 17 y diez marcas más siete marcas. Una regla por dígito."
+
+msgctxt "L14"
+msgid "#    \"g/re/s/...\" applies a rule to every line that matches, and does nothing to the others."
+msgstr "#    \"g/re/s/...\" aplica una regla a cada línea que coincide, y no hace nada con las demás."
+
+msgctxt "L27"
+msgid "# 3. A ledger line above the first card: a total of nothing. A ledger line looks like  \"Name hours|marks\"."
+msgstr "# 3. Una línea de libro mayor sobre la primera tarjeta: un total de nada. Una línea de libro mayor tiene la forma  \"Nombre horas|marcas\"."
+
+msgctxt "L32"
+msgid "# 4. The run. ONE global command over the card lines, in buffer order. For each card:"
+msgstr "# 4. La ejecución. UN solo comando global sobre las líneas de tarjeta, en el orden del búfer. Para cada tarjeta:"
+
+msgctxt "L33"
+msgid "#      -t.   copy the line above (the ledger so far) under the card"
+msgstr "#      -t.   copia la línea de arriba (el libro mayor hasta ahora) debajo de la tarjeta"
+
+msgctxt "L34"
+msgid "#      -,.j  join the card and that copy into one line:  \"Coding 15 xxxxxxxxxxxxxxxMeetings 12|xxxxxxxxxxxx\""
+msgstr "#      -,.j  une la tarjeta y esa copia en una sola línea:  \"Coding 15 xxxxxxxxxxxxxxxMeetings 12|xxxxxxxxxxxx\""
+
+msgctxt "L35"
+msgid "#      s...  keep the card's name and hours, and put ITS marks and the ledger's marks together after a bar."
+msgstr "#      s...  conserva el nombre y las horas de la tarjeta, y junta SUS marcas y las del libro mayor después de una barra."
+
+msgctxt "L36"
+msgid "#            Adding is writing the marks side by side."
+msgstr "#            Sumar es escribir las marcas una al lado de otra."
+
+msgctxt "L37"
+msgid "#    A failed \"s\" inside a global command is not an error: it does nothing. That is the \"if\"."
+msgstr "#    Un \"s\" fallido dentro de un comando global no es un error: no hace nada. Ese es el \"si\"."
+
+msgctxt "L38"
+msgid "#      - the first s needs a \"|\" ledger: the total so far is 40 or less."
+msgstr "#      - el primer s necesita un libro mayor con \"|\": el total hasta ahora es 40 o menos."
+
+msgctxt "L39"
+msgid "#      - the second s needs a \"!\" ledger: the total already passed 40. The card becomes \"Dead\", and the \"!\" and marks"
+msgstr "#      - el segundo s necesita un libro mayor con \"!\": el total ya pasó de 40. La tarjeta pasa a ser \"Dead\", y el \"!\" y las marcas"
+
+msgctxt "L40"
+msgid "#        are copied on, so every later card dies too."
+msgstr "#        se copian hacia delante, así que todas las tarjetas siguientes también mueren."
+
+msgctxt "L41"
+msgid "#      - the third s fires when the marks after the bar are 41 or more: the \"|\" becomes \"!\". That card is kept."
+msgstr "#      - el tercer s se activa cuando las marcas después de la barra son 41 o más: la \"|\" pasa a ser \"!\". Esa tarjeta se conserva."
+
+msgctxt "L48"
+msgid "# 5. Drop the dead cards and the ledger line."
+msgstr "# 5. Elimina las tarjetas muertas y la línea del libro mayor."
+
+msgctxt "L52"
+msgid "# 6. Marks to decimal, again by rewrite rules. Tens first: the bar and fifty marks become \" 5\", and so on."
+msgstr "# 6. De marcas a decimal, de nuevo con reglas de reescritura. Primero las decenas: la barra y cincuenta marcas pasan a ser \" 5\", y así sucesivamente."
