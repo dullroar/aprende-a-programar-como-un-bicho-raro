@@ -59,11 +59,11 @@ rule_start = path("t") + " " + NEXT_CARD
 # 2. los dados de una tarjeta (nombre de seis caracteres): abre la fila SQL, nombra la categoría (cuántas tarjetas hay
 #    por encima de nosotros), y luego cava la primera hora de la tarjeta. El dígito de la hora es el último dígito de la tarjeta anterior + 1.
 category = alt([
-    path(cards(5)) + " " + ex("printf", q("'Meetings',")),
-    path(cards(4)) + " " + ex("printf", q("'Learning',")),
-    path(cards(3)) + " " + ex("printf", q("'Debugging',")),
-    path(cards(2)) + " " + ex("printf", q("'Coding',")),
-    ex("printf", q("'Meetings',")),
+    path(cards(5)) + " " + ex("printf", q("'Reuniones',")),
+    path(cards(4)) + " " + ex("printf", q("'Aprendizaje',")),
+    path(cards(3)) + " " + ex("printf", q("'Depuración',")),
+    path(cards(2)) + " " + ex("printf", q("'Programación',")),
+    ex("printf", q("'Reuniones',")),
 ])
 first_hour = alt(
     [path("*/%s/b00/%s" % (d, S6)) + " " + ex("mkdir", "{}/" + SUCC[d]) for d in DIGITS]

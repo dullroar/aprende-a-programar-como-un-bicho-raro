@@ -25,9 +25,9 @@ La misma salida que las otras entradas:
 
 ```
 # DEMO ONLY run 1
-Meetings	19	19	2026-W47	DEMO ONLY
-Coding	10	29	2026-W47	DEMO ONLY
-Debugging	19	48	2026-W47	DEMO ONLY
+Reuniones	19	19	2026-W47	DEMO ONLY
+Programación	10	29	2026-W47	DEMO ONLY
+Depuración	19	48	2026-W47	DEMO ONLY
 # committed total=48 entries=3 DEMO ONLY
 Runtime error near line 15: CHECK constraint failed: stop rule fired: total exceeds 40 (19)
 ```

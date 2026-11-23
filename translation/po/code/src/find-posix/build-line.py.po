@@ -65,3 +65,23 @@ msgstr "# 4. una cuenta atrás. b00 termina la tarjeta: imprime el total acumula
 msgctxt "L90"
 msgid "#    from date), stop if it exceeds 40, otherwise deal the next card. Any other bNN digs the next hour."
 msgstr "#    de date), se detiene si pasa de 40; si no, reparte la siguiente tarjeta. Cualquier otro bNN cava la siguiente hora."
+
+msgctxt "C62"
+msgid "    path(cards(5)) + \" \" + ex(\"printf\", q(\"'Meetings',\")),"
+msgstr "    path(cards(5)) + \" \" + ex(\"printf\", q(\"'Reuniones',\")),"
+
+msgctxt "C63"
+msgid "    path(cards(4)) + \" \" + ex(\"printf\", q(\"'Learning',\")),"
+msgstr "    path(cards(4)) + \" \" + ex(\"printf\", q(\"'Aprendizaje',\")),"
+
+msgctxt "C64"
+msgid "    path(cards(3)) + \" \" + ex(\"printf\", q(\"'Debugging',\")),"
+msgstr "    path(cards(3)) + \" \" + ex(\"printf\", q(\"'Depuración',\")),"
+
+msgctxt "C65"
+msgid "    path(cards(2)) + \" \" + ex(\"printf\", q(\"'Coding',\")),"
+msgstr "    path(cards(2)) + \" \" + ex(\"printf\", q(\"'Programación',\")),"
+
+msgctxt "C66"
+msgid "    ex(\"printf\", q(\"'Meetings',\")),"
+msgstr "    ex(\"printf\", q(\"'Reuniones',\")),"

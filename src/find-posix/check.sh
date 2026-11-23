@@ -58,11 +58,11 @@ mkdir "$dir" && printf '%s\n' "$dir"
 EOF
 chmod +x "$shim/mktemp.fake"
 
-cats=(Meetings Coding Debugging Learning Meetings)
+cats=(Reuniones Programación Depuración Aprendizaje Reuniones)
 dice_char=(a g m s y 4 A G M S)   # primer carácter de cada grupo de seis: horas 10..19
 
 # rows <output>: solo las filas de la tabla
-rows() { grep -E $'^(Meetings|Coding|Debugging|Learning)\t' <<<"$1" || true; }
+rows() { grep -E $'^(Reuniones|Programación|Depuración|Aprendizaje)\t' <<<"$1" || true; }
 
 for entry in "${impls[@]}"; do
     name=${entry%%=*}; path=${entry#*=}
@@ -85,7 +85,7 @@ for entry in "${impls[@]}"; do
         entries=$(sed -E 's/.*entries=([0-9]+).*/\1/' <<<"$commit")
         r=$(rows "$out")
         awk -F'\t' -v total="$total" -v entries="$entries" -v w1="$w1" -v w2="$w2" '
-            BEGIN { split("Meetings Coding Debugging Learning Meetings", want, " ") }
+            BEGIN { split("Reuniones Programación Depuración Aprendizaje Reuniones", want, " ") }
             { n++; if ($1 != want[n]) { print "category " $1 " at row " n; exit 1 }
               if ($2 < 10 || $2 > 19) { print "hours out of range: " $0; exit 1 }
               if ($3 != prev + $2) { print "bad running total: " $0; exit 1 }
@@ -141,7 +141,7 @@ for entry in "${impls[@]}"; do
         scenarios_note=""
         echo "note [$name]: forced-dice scenarios skipped (busybox runs mktemp in-process, so a PATH shim cannot stand in for it)"
     else
-        forced "10 10 10 10 10"          # exactamente 40 continúa; la quinta tarjeta es Meetings otra vez
+        forced "10 10 10 10 10"          # exactamente 40 continúa; la quinta tarjeta es Reuniones otra vez
         forced "19 19 19"                # 19, 38, 57: dígitos de las decenas 1, 3, 5
         forced "11 12 13 14"             # 11 23 36 50
         forced "15 16 17"                # 15 31 48
