@@ -495,3 +495,4 @@
 545 H3-001 done guides TRANSLATING.md and TRADUCTORIO.md checked against ralph.sh, CONFIG.yaml, model_report.py and the ledger; 3 fixes per language (light-tier kinds, recall result, mismatch note); translation/part3/guide-review.md
 547 H3-003 done English upstream package prepared in a scratch clone at base 48a4429 (TRANSLATING.md + CONTRIBUTING pointer); build.py --check and link tests pass; 27 source issues listed as unapproved candidates; nothing pushed; translation/part3/upstream-package.md
 548 H3-004 done draft Spanish adoption plan pinned to 48a4429 plus the local upstream patch; inventory (2 files, no code/diagram/generated change), scoped tasks A1-A7 with verification and review; translation/part3/spanish-adoption-plan-draft.md
+549 H3-005 done Part III checkpoint review/CHECKPOINT-part3.md written; loop/STOP created for Jim
