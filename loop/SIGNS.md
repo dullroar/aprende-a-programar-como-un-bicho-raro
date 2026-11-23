@@ -153,3 +153,5 @@
 - To change an already localized comment, edit its PO msgstr, then copy the file from /home/lehmer/english-source over the Spanish one and run `loc_apply.py PATH --write` (it applies from the English baseline and refuses localized text); afterwards run `lock_code.py --write-localized` and `inventory.py` before verify.
 - A negative fixture that edits the Spanish source cannot plant a bad code span: the PO restores code from the English, so plant it with `after=` on the finished file.
 - Code jury units use ids `c-<hash>-NNNN` and canary quotas are per group (code vs prose); a test that needs an uncanaried code unit must give the file two differing 60-line chunks.
+- Check packet sizes on the rendered text (manifest tokens), never on chunk estimates: the chunker ignores facts, glossary and Part II context, so `fit_tier` lowers the cap by the measured overhead.
+- Never commit `review/packets/`, `review/repo-bundle.zip`, `review/canaries.key.json` or `review/units.index.jsonl`: they carry canaries or the key; commit only the public MANIFEST.md and EDITION-FACTS.md.

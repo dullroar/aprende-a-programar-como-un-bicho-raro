@@ -441,3 +441,4 @@
 489 S8-005 done wrote translation/releases/v4-es.0-rc2-report.md (RUN/NOT RUN tables, 45-family oracle matrix, link audit 33 broken/578 unverified, hashes, model IDs); quoted earlier gate results, re-ran only sha256
 490 S8-006 done local annotated tag v4-es.0-rc2 on 23e837a (not pushed); git tag -l lists it; verify --fast OK
 491 S8-007 done S8 gate PASS: verify --release OK (88 checks, double build identical), rc2 tag exists; translation/part2/s8-final-gate.md
+492 P7-001 done packets built (69, largest 23793 tokens); fit_tier now shrinks chunks by render overhead (2 new tests); bundle and MANIFEST OK, 0 leaks; packets and key kept local

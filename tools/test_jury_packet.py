@@ -242,6 +242,23 @@ class ChunkTests(unittest.TestCase):
         self.assertEqual([len(c) for c, _ in chunks], [1, 1, 1])
         self.assertEqual(jp.chunk_units([]), [])
 
+    def test_rendered_packets_respect_the_maximum_even_with_heavy_overhead(self):
+        # The chunker counts unit text only; a packet also carries facts and context, so a tier must shrink.
+        units = [u(i, "a" * 400, "b" * 400) for i in range(60)]              # about 240 tokens each
+        heavy_facts = "x" * 8000                                              # about 2000 tokens of overhead
+        chunks, texts = jp.fit_tier("critical", units, heavy_facts, GL, CAT, 2000, 1500, 2500)
+        self.assertEqual(sum(len(c) for c, _ in chunks), 60)
+        self.assertEqual(len(texts), len(chunks))
+        for (chunk, _), text in zip(chunks, texts):
+            if len(chunk) > 1:
+                self.assertLessEqual(jp.estimate_tokens(text), 2500)
+
+    def test_a_single_unit_over_the_maximum_is_kept_and_reported_not_split(self):
+        units = [u(1, "a" * 40000, "b" * 40000)]
+        chunks, texts = jp.fit_tier("critical", units, "", GL, CAT, 2000, 1500, 2500)
+        self.assertEqual([len(c) for c, _ in chunks], [1])
+        self.assertGreater(jp.estimate_tokens(texts[0]), 2500)
+
 
 class FactsTests(unittest.TestCase):
     def test_facts_come_from_the_catalog_and_the_glossary(self):

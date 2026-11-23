@@ -167,3 +167,9 @@
 - Decision: the Spanish category words are `Reuniones`, `Programación`, `Depuración`, `Aprendizaje` (the S4-006 candidates). `tools/categories.py` holds the pair; a file may use the English words (its family's code still prints them) or the Spanish words (family localized), never both, and no other spelling (I13, code font only, so the heading "Depuración" is not checked). Existing Spanish prose and `dnt.txt` stay English until the family's own S5 task changes code and prose together; changing prose now would contradict the frozen code it describes.
 - Alternatives: switch all prose to the Spanish words now (rejected: prose would not match what frozen programs print); add the Spanish words to dnt.txt (rejected: derived from frozen sources).
 - Cost to reverse: low (tools/categories.py, glossary es_values, the row 11 fixtures).
+
+## P7-001 (iter 492): packet build (7A)
+- Decision: built with `jury_packet.py --build --bundle --code` (Part II code packets included, as S8-004 intended). Packets exceeded the 25000-token cap because the chunker counted unit text only; `fit_tier` in tools/jury_packet.py now measures the render overhead (facts, glossary slice, Part II context) and lowers the chunk cap by it. Result: 69 packets, largest 23793 tokens, 0 leaks. Canaries and `canaries.key.json` were produced by the same build; P7-002 still owns the canary count and the key check.
+- Not committed: `review/packets/`, `review/repo-bundle.zip`, `review/canaries.key.json`, `review/units.index.jsonl`. The packets carry planted canaries and the repo may later be made public, so they stay local and are rebuilt deterministically by the tool (seed 1). `review/MANIFEST.md` and `review/EDITION-FACTS.md` are committed as public indexes.
+- Alternatives: commit the packets (exposes canary text in history); add `review/` to `.gitignore` (a repo-wide change the plan does not ask for).
+- Cost to reverse: low (delete and rebuild; the tool output is deterministic).

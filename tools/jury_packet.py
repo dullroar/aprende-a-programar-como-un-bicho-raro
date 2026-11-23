@@ -611,6 +611,24 @@ def render_packet(name, tier, units, facts, gl_rows, total_packets):
     return "\n".join(head + body)
 
 
+def fit_tier(tier, group, facts, gl, cat, target, minimum, maximum, passes=8):
+    """Chunk one tier and render every packet. The chunker counts unit text only, but a rendered packet also
+    carries the edition facts, the glossary slice and the Part II context. Measure that overhead on the packets
+    of two or more units, lower the chunker's cap by it, and chunk again until every such packet fits `maximum`.
+    A single unit larger than `maximum` keeps its packet of its own."""
+    cap = maximum
+    for _ in range(passes):
+        chunks = chunk_units(group, target, minimum, cap)
+        texts = [render_packet("P-%s-%02d" % (tier, n), tier, chunk, facts, glossary_slice(chunk, gl, cat),
+                               len(chunks))
+                 for n, (chunk, _) in enumerate(chunks, 1)]
+        extra = [estimate_tokens(t) - size for (chunk, size), t in zip(chunks, texts) if len(chunk) > 1]
+        if not extra or max(estimate_tokens(t) for (chunk, _), t in zip(chunks, texts) if len(chunk) > 1) <= maximum:
+            return chunks, texts
+        cap = maximum - max(extra)
+    return chunks, texts
+
+
 def build(units, cat, gl, out_dir, rate=0.06, seed=1, config=None, target=TARGET_TOKENS,
           minimum=MIN_TOKENS, maximum=MAX_TOKENS, idmap=None):
     """Write every review artifact for `units`. Returns the manifest dict."""
@@ -628,10 +646,9 @@ def build(units, cat, gl, out_dir, rate=0.06, seed=1, config=None, target=TARGET
     packets, index = [], []
     for tier in TIERS:
         group = [u for u in shown if u["tier"] == tier]
-        chunks = chunk_units(group, target, minimum, maximum)
-        for n, (chunk, size) in enumerate(chunks, 1):
+        chunks, texts = fit_tier(tier, group, facts, gl, cat, target, minimum, maximum)
+        for n, ((chunk, size), text) in enumerate(zip(chunks, texts), 1):
             name = "P-%s-%02d" % (tier, n)
-            text = render_packet(name, tier, chunk, facts, glossary_slice(chunk, gl, cat), len(chunks))
             with open(os.path.join(pdir, name + ".md"), "w", encoding="utf-8", newline="\n") as f:
                 f.write(text)
             files = sorted({u["file"] for u in chunk})
