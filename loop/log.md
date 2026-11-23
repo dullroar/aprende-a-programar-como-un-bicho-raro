@@ -429,3 +429,4 @@
 477 S5-999 done S5 gate PASS: 45 families (30 localized, 15 NOT TESTED/English), lock ok, release verify passes after trimming 16 line-anchor expects to code and pointing negative lock fixtures at pinned English bytes; translation/part2/s5-gate.md
 478 S6-001 done build.py --generate (es) run twice, tree unchanged both times; part2_inv --check 0 findings (0 ledger renames, comments-only localization, nothing stale to sweep)
 479 S6-002 done token_audit over 212 files: 2 findings (eval() in a quoted MDN warning, process.nextTick() in a link title), both identical to English formatting so not auto-fixed (I2); logged as SI-027
+480 S6-003 done all 79 diagrams render (mermaid-cli 12.2.0); 191 Mermaid fences match English skeletons (node IDs untouched); only order differs in lessons/lenguajes/regex.md (generator sorts by localized entry name); comments-only localization, no label changes
