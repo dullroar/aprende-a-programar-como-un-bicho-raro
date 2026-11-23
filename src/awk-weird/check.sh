@@ -8,7 +8,7 @@ export XDG_DATA_HOME=$data
 db=$data/AwkWeird/demo-timecards.db
 gawk=${GAWK:-gawk}
 run() { "$gawk" -f "${PROGRAM:-timecards.awk}" "$@"; }
-rows() { grep -E '^(Meetings|Coding|Debugging|Learning)	' || true; }
+rows() { grep -E '^(Reuniones|Programación|Depuración|Aprendizaje)	' || true; }
 
 # 1. Estático: el truco es real. Sin los comentarios no hay bucle, ni if, ni función, ni
 #    función aleatoria; el separador de registros es la clase de dígitos; y la regla de parada es un patrón.
@@ -25,7 +25,7 @@ grep -q '/dev/urandom' <<<"$code" || { echo "FAIL: the default input is not /dev
 
 # 2. Los dados son los dígitos de la entrada. Alimenta archivos de dígitos con formas incómodas (espacios, saltos de línea, nada,
 #    letras entre ellos) y compara con un cálculo independiente en bash, tarjeta por tarjeta.
-cats=(Meetings Coding Debugging Learning)
+cats=(Reuniones Programación Depuración Aprendizaje)
 expected() {   # dígitos -> las filas como debería imprimirlas el programa, luego una línea de resumen
     local digits=$1 total=0 n=0 d hours i
     for (( i = 0; i < ${#digits} && total <= 40; i++ )); do
@@ -84,7 +84,7 @@ for i in $(seq 1 25); do
     [[ -n $commit ]] || { echo "FAIL run $i: no committed line"; echo "$out"; exit 1; }
     total=$(sed -E 's/.*total=([0-9]+).*/\1/' <<<"$commit")
     entries=$(sed -E 's/.*entries=([0-9]+).*/\1/' <<<"$commit")
-    mapfile -t rows < <(grep -E '^(Meetings|Coding|Debugging|Learning)	' <<<"$out" || true)
+    mapfile -t rows < <(grep -E '^(Reuniones|Programación|Depuración|Aprendizaje)	' <<<"$out" || true)
     [[ ${#rows[@]} -eq $entries ]] || { echo "FAIL run $i: ${#rows[@]} rows but entries=$entries"; exit 1; }
     sum=0; n=0
     for row in "${rows[@]}"; do

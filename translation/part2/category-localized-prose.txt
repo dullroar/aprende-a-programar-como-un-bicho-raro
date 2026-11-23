@@ -5,3 +5,4 @@ lessons/study-guides/languages/forth.md
 src/apl/README.md
 lessons/study-guides/languages/apl.md
 src/awk/README.md
+src/awk-weird/README.md

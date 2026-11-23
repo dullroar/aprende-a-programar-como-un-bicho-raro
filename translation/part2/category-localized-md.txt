@@ -6,3 +6,5 @@ src/lisp/README.md
 src/apl/README.md
 src/apl-weird/README.md
 src/awk/README.md
+src/awk-weird/README.md
+lessons/lenguajes/awk.md

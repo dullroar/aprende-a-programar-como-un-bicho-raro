@@ -23,7 +23,7 @@ tags: [control-flow, declarative-programming, portability, regular-expression, s
 Sin la base de datos, todo el reto es una sola línea:
 
 ```sh
-gawk 'BEGIN{RS="[0-9]"; split("Meetings Coding Debugging Learning",C)}
+gawk 'BEGIN{RS="[0-9]"; split("Reuniones Programación Depuración Aprendizaje",C)}
       {printf "%s\t%d\t%d\n", C[(NR-1)%4+1], h=10+RT, t+=h} t>40{exit}' /dev/urandom
 ```
 
@@ -44,14 +44,14 @@ Los registros van a `$XDG_DATA_HOME/AwkWeird/demo-timecards.db` (por defecto `~/
 
 ```text
 # DEMO ONLY run 1794861177-31101
-Meetings	17	17	2026-W47	DEMO ONLY
-Coding	14	31	2026-W47	DEMO ONLY
-Debugging	16	47	2026-W47	DEMO ONLY
+Reuniones	17	17	2026-W47	DEMO ONLY
+Programación	14	31	2026-W47	DEMO ONLY
+Depuración	16	47	2026-W47	DEMO ONLY
 # committed total=47 entries=3 DEMO ONLY
 # the loop was awk's main loop over /dev/urandom, RS=[0-9] made each digit a die roll, and t > 40 { exit } stopped it
 ```
 
-Como la entrada de datos es un operando de archivo, el programa es **reproducible**: `printf '5 5 5\n' > d.txt; gawk -f timecards.awk d.txt` siempre da Meetings 15/15, Coding 15/30, Debugging 15/45. Los dígitos `3 8 2 9 4 1` dan 13, 18 y 12 horas; el programa se detiene en 43. `check.sh` hace lo mismo con cientos de dígitos.
+Como la entrada de datos es un operando de archivo, el programa es **reproducible**: `printf '5 5 5\n' > d.txt; gawk -f timecards.awk d.txt` siempre da Reuniones 15/15, Programación 15/30, Depuración 15/45. Los dígitos `3 8 2 9 4 1` dan 13, 18 y 12 horas; el programa se detiene en 43. `check.sh` hace lo mismo con cientos de dígitos.
 
 ## Flujo del programa
 

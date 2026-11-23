@@ -14,7 +14,7 @@
 # una tarjeta, y el propio bucle principal de awk es el bucle.  La regla de parada es un patrón con
 # una acción `exit`.  El reto entero, sin la base de datos, cabe en una línea:
 #
-#   gawk 'BEGIN{RS="[0-9]"; split("Meetings Coding Debugging Learning",C)}
+#   gawk 'BEGIN{RS="[0-9]"; split("Reuniones Programación Depuración Aprendizaje",C)}
 #         {printf "%s\t%d\t%d\n", C[(NR-1)%4+1], h=10+RT, t+=h} t>40{exit}' /dev/urandom
 #
 # (La línea única no tiene base de datos, ni semana, ni marca DEMO ONLY, ni
@@ -33,7 +33,7 @@ BEGIN {
 
     RS = "[0-9]"                    # un registro termina en un dígito; RT guarda ese dígito
     FS = ","                        # la regla 3 arma un registro separado por comas; FS lo vuelve a dividir
-    split("Meetings Coding Debugging Learning", C, " ")
+    split("Reuniones Programación Depuración Aprendizaje", C, " ")
 
     # Sin archivo en la línea de comandos: añade uno. ARGC += (ARGC < 2) vale 0 o 1, así que no hay `if`.
     ARGV[ARGC] = "/dev/urandom"

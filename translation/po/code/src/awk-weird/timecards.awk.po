@@ -109,3 +109,11 @@ msgstr "# a reconstruir $0, ahora unido por tabuladores en lugar de comas."
 msgctxt "L68"
 msgid "# Rule 6: the stop rule. exit runs END; the card that crossed the line has already been written."
 msgstr "# Regla 6: la regla de parada. exit ejecuta END; la tarjeta que cruzó la línea ya se escribió."
+
+msgctxt "L17"
+msgid "#   gawk 'BEGIN{RS=\"[0-9]\"; split(\"Meetings Coding Debugging Learning\",C)}"
+msgstr "#   gawk 'BEGIN{RS=\"[0-9]\"; split(\"Reuniones Programación Depuración Aprendizaje\",C)}"
+
+msgctxt "C36"
+msgid "    split(\"Meetings Coding Debugging Learning\", C, \" \")"
+msgstr "    split(\"Reuniones Programación Depuración Aprendizaje\", C, \" \")"

@@ -101,53 +101,53 @@ Consulta los [ejercicios](../exercises.md#b13-awk-el-rt-que-falta-verificado). T
 Cuando la entrada *es* el bucle. Un separador de registros con regex es la forma idiomática de leer párrafos, bloques de un archivo de configuración o entradas de un log. Cortar `/dev/urandom` para sacar dados es una acrobacia. Pero el mismo mecanismo le da a awk su fama de hacer en una línea lo que en otros lugares ocupa una página. Ese mecanismo es que un patrón decide dónde termina un registro y otro decide si importa.
 
 <!-- BEGIN GENERATED program-flow:languages/awk.md -->
-## Cómo corre cada programa
+## How each program runs
 
-Cada imagen de abajo es la sección `## Flujo del programa` del README de una entrada, copiada aquí por la compilación. Muestra cómo ese programa hace el trabajo: lo que el lenguaje, el entorno de ejecución o la herramienta hacen en realidad. [La introducción](../introduccion.md#qué-hace-el-reto) muestra qué pide el reto y en qué se distinguen las entradas.
+Each picture below is the `## Program Flow` section of an entry's README, copied here by the build. It shows how that program makes the work happen: what the language, runtime or tool really does. [The introduction](../introduccion.md#qué-hace-el-reto) shows what the challenge asks for and where entries differ.
 
-### Flujo del programa de `awk`
+### Program flow of `awk`
 
-Desde [`awk`](../../src/awk/README.md) ([sección original](../../src/awk/README.md#flujo-del-programa)).
+From [`awk`](../../src/awk/README.md) ([source section](../../src/awk/README.md#flujo-del-programa)).
 
 ```mermaid
 flowchart TD
-    accTitle: awk: un generador en BEGIN, con un bucle while y una tubería hacia sqlite3
-    accDescr: Un diagrama de flujo. awk no tiene entrada de datos, así que todo se ejecuta en la regla BEGIN. BEGIN pide la semana ISO al intérprete de comandos. BEGIN inicializa el generador aleatorio, divide los nombres de las categorías en un arreglo y abre una tubería hacia sqlite3. Un bucle while comprueba si el total es menor o igual que el límite. Si es así, sortea las horas, las suma al total, elige la siguiente categoría, imprime la fila e imprime un INSERT en la tubería. Cuando el total pasa del límite, awk cierra la tubería (lo que confirma la transacción) e imprime el resumen.
-    A["BEGIN: semana desde date, srand desde /dev/urandom, dividir categorías, abrir la tubería a sqlite3"] --> B{{"while: ¿total <= LIMIT?"}}
-    B -->|sí| C["random_hours, total += hours, elige la siguiente categoría"]
-    C --> D["imprime la fila asignando los campos; imprime el INSERT en la tubería"]
+    accTitle: awk: a generator in BEGIN, with a while loop and a pipe to sqlite3
+    accDescr: A flowchart. awk has no input, so everything runs in the BEGIN rule. BEGIN asks the shell for the ISO week, seeds the random generator, splits the category names into an array and opens a pipe to sqlite3. A while loop tests whether the total is at or under the limit. If so, it draws hours, adds them to the total, picks the next category, prints the row, and prints an INSERT to the pipe. When the total is over the limit, awk closes the pipe, which commits the transaction, and prints the summary.
+    A["BEGIN: week from date, srand from /dev/urandom, split categories, open the pipe to sqlite3"] --> B{{"while: total <= LIMIT?"}}
+    B -->|yes| C["random_hours, total += hours, pick the next category"]
+    C --> D["print the row by assigning fields; print the INSERT to the pipe"]
     D --> B
-    B -->|no| E["cierra la tubería: sqlite3 confirma la transacción"]
-    E --> F["Imprime el resumen"]
+    B -->|no| E["close the pipe: sqlite3 commits"]
+    E --> F["Print the summary"]
 ```
 
-**Qué muestra:** la forma idiomática de un generador en AWK. No hay entrada de datos, así que `BEGIN` hace todo el trabajo y un `while` ordinario es el bucle. La prueba va antes de cada extracción, así que la tarjeta que pasa de 40 es la última que se suma.
+**What this shows:** the idiomatic shape of an AWK generator. There is no input, so `BEGIN` does everything, and an ordinary `while` is the loop. The test comes before each draw, so the card that crosses 40 is the last one added.
 
-**Por qué importa este mecanismo:** la tubería es un flujo de salida con nombre. `print ... | sqlite` inicia `sqlite3` una sola vez y le envía SQL de forma continua, y `close` es lo que la vacía y devuelve su estado de salida. El programa no usa el bucle real de AWK, el que recorre los registros de entrada. El hermano raro [`awk-weird`](../../src/awk-weird/README.md) sí lo usa.
+**Why this mechanism matters:** the pipe is an output stream with a name. `print ... | sqlite` starts `sqlite3` once and streams SQL to it, and `close` is what flushes it and returns its exit status. AWK's real loop, the one over input records, is not used here. The weird sibling [`awk-weird`](../../src/awk-weird/README.md) uses it.
 
-### Flujo del programa de `awk-weird`
+### Program flow of `awk-weird`
 
-Desde [`awk-weird`](../../src/awk-weird/README.md) ([sección original](../../src/awk-weird/README.md#flujo-del-programa)).
+From [`awk-weird`](../../src/awk-weird/README.md) ([source section](../../src/awk-weird/README.md#flujo-del-programa)).
 
 ```mermaid
 flowchart TD
-    accTitle: awk-weird: el propio bucle de registros de awk sobre /dev/urandom, con una expresión regular como separador de registros
-    accDescr: Un diagrama de flujo. BEGIN establece el separador de registros como la expresión regular de un dígito, añade /dev/urandom como archivo de entrada predeterminado y abre una tubería hacia sqlite3. Luego awk lee un registro, que son los bytes hasta el siguiente dígito, y RT contiene ese dígito. La regla 1 omite un registro con RT vacío. La regla 2 fija las horas en 10 más el dígito y las suma al total. La regla 3 asigna la tarjeta al registro, lo que lo divide de nuevo en campos. Las reglas 4 y 5 imprimen un INSERT en la tubería e imprimen la fila. La última regla sale cuando el total pasa de 40; si no, awk pasa a leer el siguiente registro. Al salir se ejecuta END, que confirma la transacción e imprime el resumen.
-    A["BEGIN: RS es [0-9], se añade /dev/urandom a ARGV, se abre una tubería a sqlite3"] --> B["awk lee un registro: los bytes hasta el siguiente dígito, y RT es ese dígito"]
-    B --> C["Reglas de 1 a 3: omite RT vacío; hours = 10 + RT, suma al total; construye la tarjeta en los campos"]
-    C --> D["Reglas 4 y 5: imprime el INSERT en la tubería; imprime la fila"]
-    D --> E{{"Última regla: ¿t ≥ 41?"}}
+    accTitle: awk-weird: awk's own record loop over /dev/urandom, with a regex as the record separator
+    accDescr: A flowchart. BEGIN sets the record separator to the regular expression for a digit, adds /dev/urandom as the default input file, and opens a pipe to sqlite3. awk then reads a record, which is the bytes up to the next digit, and RT holds that digit. Rule 1 skips a record with an empty RT. Rule 2 sets the hours to 10 plus the digit and adds them to the total. Rule 3 assigns the card to the record, which re-splits it into fields. Rules 4 and 5 print an INSERT to the pipe and print the row. The last rule exits when the total is over 40, and awk goes on to read the next record when it is not. The exit runs END, which commits and prints the summary.
+    A["BEGIN: RS is [0-9], /dev/urandom added to ARGV, sqlite3 pipe opened"] --> B["awk reads a record: the bytes up to the next digit, and RT is that digit"]
+    B --> C["Rules 1 to 3: skip empty RT; hours = 10 + RT, add to total; build the card in the fields"]
+    C --> D["Rules 4 and 5: print the INSERT to the pipe, print the row"]
+    D --> E{{"Last rule: t ≥ 41?"}}
     E -->|no| B
-    E -->|sí| F["exit: END confirma la transacción, cierra la tubería e imprime el resumen"]
+    E -->|yes| F["exit: END commits, closes the pipe, prints the summary"]
 ```
 
-**Qué muestra:** el bucle es el que tiene todo programa AWK: lee un registro, ejecuta todas las reglas en orden y lee el siguiente. El programa no tiene `while` ni `if`. Un separador de registros que es una expresión regular convierte los bytes aleatorios en dados, y el dígito que terminó el registro (`RT`) es el dado.
+**What this shows:** the loop is the loop that every AWK program has: read a record, run every rule in order, read the next. The program has no `while` and no `if`. A record separator that is a regular expression turns the random bytes into dice, and the digit that ended the record (`RT`) is the die.
 
-**Por qué importa este mecanismo:** la regla de parada es un patrón sin acción, `t > 40 { exit }`, que además es la última regla, así que la tarjeta que cruza el límite ya pasó por todas las reglas anteriores. La entrada de datos es `/dev/urandom`, que nunca termina, así que solo `exit` puede detener el bucle. Compara [`awk`](../../src/awk/README.md), que usa un bucle en `BEGIN`.
+**Why this mechanism matters:** the stop rule is a bare pattern, `t > 40 { exit }`, and it is the last rule, so the crossing card has already passed through every earlier rule. The input is `/dev/urandom`, which never ends, so only `exit` can stop the loop. Compare [`awk`](../../src/awk/README.md), which loops in `BEGIN`.
 <!-- END GENERATED program-flow:languages/awk.md -->
 
 ## Las ciencias de la computación detrás de esta página
 
 <!-- BEGIN GENERATED concepts:languages/awk.md -->
-Las ideas de ciencias de la computación detrás de esta página: [Flujo de control](../informatica/03-flujo-de-control-y-continuaciones.md#flujo-de-control), [Expresiones regulares](../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#expresiones-regulares), [Programación declarativa](../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#programación-declarativa), [Lenguajes específicos de dominio](../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#lenguajes-específicos-de-dominio), [Estado](../informatica/06-estado-mas-alla-de-las-variables.md#estado), [Portabilidad](../informatica/08-fugas-de-abstraccion-y-dependencia-de-la-implementacion.md#portabilidad).
+The computer-science ideas behind this page: [Control flow](../informatica/03-flujo-de-control-y-continuaciones.md#flujo-de-control), [Regular expressions](../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#expresiones-regulares), [Declarative programming](../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#programación-declarativa), [Domain-specific languages](../informatica/05-lenguajes-formales-como-sustratos-de-computacion.md#lenguajes-específicos-de-dominio), [State](../informatica/06-estado-mas-alla-de-las-variables.md#estado), [Portability](../informatica/08-fugas-de-abstraccion-y-dependencia-de-la-implementacion.md#portabilidad).
 <!-- END GENERATED concepts:languages/awk.md -->

@@ -179,6 +179,8 @@ def localize_category_words(text):
 
 CATEGORY_FILES = os.path.join("translation", "part2", "category-localized-md.txt")
 ROW_RE = re.compile(r"^(%s)(?=\t)" % "|".join(categories.EN))
+# the four words in order, space-separated, inside a quoted string (a copied split("Meetings Coding Debugging Learning", ...))
+LIST_RE = re.compile(r'(?<=")%s(?=")' % " ".join(categories.EN))
 
 
 def category_files():
@@ -202,6 +204,7 @@ def localize_category_rows(text):
             fence = None
         elif fence is not None:
             line = ROW_RE.sub(lambda m: categories.EN_TO_ES[m.group(1)], line)
+            line = LIST_RE.sub(lambda m: " ".join(categories.ES), line)
         out.append(line)
     return "\n".join(out)
 

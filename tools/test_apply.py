@@ -313,6 +313,19 @@ class CategoryRows(unittest.TestCase):
         self.assertEqual(ap.localize_category_rows(text), text)
 
 
+class CategoryList(unittest.TestCase):
+    """F2-007-awk-weird: the quoted four-word list in a fenced one-liner follows the code; other text stays."""
+
+    def test_quoted_list_in_fence(self):
+        text = '```sh\nsplit("Meetings Coding Debugging Learning",C)\n```\n'
+        self.assertEqual(ap.localize_category_rows(text),
+                         '```sh\nsplit("Reuniones Programación Depuración Aprendizaje",C)\n```\n')
+
+    def test_other_orders_and_prose_stay(self):
+        text = '"Coding Meetings Debugging Learning"\n```\nsplit("Coding Meetings Debugging Learning")\nMeetings Coding Debugging Learning\n```\n'
+        self.assertEqual(ap.localize_category_rows(text), text)
+
+
 class CategoryWords(unittest.TestCase):
     """F2-006b: prose and inline spans of a localized family follow the code; fences, glosses and links stay."""
 
