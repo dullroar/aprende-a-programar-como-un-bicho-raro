@@ -1,6 +1,6 @@
-# Container image for the Forth entry. Run it with: sandbox/container/run-image.sh src/forth
-# Nothing to build: Gforth interprets the script. The runtime base has gforth and sqlite3 (the
-# entry pipes its SQL to sqlite3 through sh), and no compiler or package manager.
+# Imagen de contenedor para la entrada Forth. Ejecútala con: sandbox/container/run-image.sh src/forth
+# Nada que compilar: Gforth interpreta el script. La base de ejecución tiene gforth y sqlite3 (la
+# entrada envía su SQL a sqlite3 por sh), y ningún compilador ni gestor de paquetes.
 FROM cc-rt-gforth:local
 COPY timecards.fs /app/timecards.fs
 ENV CC_RUN="gforth /app/timecards.fs"

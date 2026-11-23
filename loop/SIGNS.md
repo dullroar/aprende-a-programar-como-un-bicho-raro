@@ -143,4 +143,5 @@
 - Part II checks I28 to I31 live in tools/part2_inv.py (invariants.py only lists them); a stale-symbol sweep over Markdown looks at code spans and fences only, because an old name like "total" is an ordinary word in prose.
 - loc_apply refuses format-like strings (class format-or-template); only display-candidate strings can be translated, so test string edits with plain words.
 - Code PO files live under translation/po/code/ (verify route() must not treat them as Markdown PO); COBOL comment lines stay at 72 bytes or fewer, and accents count 2 bytes.
+- Forth lines with both a `( stack )` comment and a trailing `\ ` comment (e.g. timecards.fs 40-42) give loc_apply two spans on one line and are refused; leave those comments English.
 - A negative fixture that edits the Spanish source cannot plant a bad code span: the PO restores code from the English, so plant it with `after=` on the finished file.

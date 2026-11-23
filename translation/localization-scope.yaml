@@ -48,7 +48,7 @@ families:
   "src/ex-weird": {status: frozen, files: 4}
   "src/find-gnu": {status: frozen, files: 4}
   "src/find-posix": {status: frozen, files: 4}
-  "src/forth": {status: frozen, files: 3}
+  "src/forth": {status: localizing, files: 3}
   "src/forth-weird": {status: frozen, files: 3}
   "src/haskell": {status: frozen, files: 3}
   "src/haskell-weird": {status: frozen, files: 3}

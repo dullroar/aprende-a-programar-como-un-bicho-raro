@@ -1,0 +1,131 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+
+msgctxt "L1"
+msgid "\\ DEMO ONLY. Fictional timecards, written to a scratch SQLite file under XDG_DATA_HOME."
+msgstr "\\ DEMO ONLY. Tarjetas de horas ficticias, escritas en un archivo SQLite desechable bajo XDG_DATA_HOME."
+
+msgctxt "L2"
+msgid "\\ Nothing here touches a real time-reporting system."
+msgstr "\\ Nada de esto toca un sistema real de registro de horas."
+
+msgctxt "L4"
+msgid "\\ Run:  gforth timecards.fs"
+msgstr "\\ Ejecuta:  gforth timecards.fs"
+
+msgctxt "L6"
+msgid "\\ The challenge: add 10-19 hour cards (Meetings, Coding, Debugging, Learning,"
+msgstr "\\ El desafío: suma tarjetas de 10 a 19 horas (Meetings, Coding, Debugging, Learning,"
+
+msgctxt "L7"
+msgid "\\ round and round) until the running total passes 40.  In Forth that is one"
+msgstr "\\ una tras otra) hasta que el total acumulado pase de 40.  En Forth eso es un"
+
+msgctxt "L8"
+msgid "\\ BEGIN ... UNTIL in the word RUN.  Everything else is small words that each"
+msgstr "\\ BEGIN ... UNTIL en la palabra RUN.  Todo lo demás son palabras pequeñas que"
+
+msgctxt "L9"
+msgid "\\ do one thing, built bottom-up so every word is made of the ones above it."
+msgstr "\\ hacen una sola cosa, construidas de abajo arriba: cada palabra usa las anteriores."
+
+msgctxt "L11"
+msgid "\\ Conventions: every word has a stack comment ( before -- after ); a trailing $"
+msgstr "\\ Convenciones: toda palabra lleva un comentario de pila ( antes -- después ); un $ final"
+
+msgctxt "L12"
+msgid "\\ means \"a string on the stack as c-addr u\"; words that print start with a dot."
+msgstr "\\ significa \"una cadena en la pila como c-addr u\"; las palabras que imprimen empiezan con un punto."
+
+msgctxt "L16"
+msgid "\\ ---------------------------------------------------------------- state"
+msgstr "\\ ---------------------------------------------------------------- estado"
+
+msgctxt "L18"
+msgid "\\ running total of hours"
+msgstr "\\ total acumulado de horas"
+
+msgctxt "L19"
+msgid "\\ cards written so far"
+msgstr "\\ tarjetas escritas hasta ahora"
+
+msgctxt "L20"
+msgid "\\ makes this run's rows findable in the table"
+msgstr "\\ permite encontrar en la tabla las filas de esta ejecución"
+
+msgctxt "L21"
+msgid "\\ length of the ISO week text in WEEK-BUF"
+msgstr "\\ longitud del texto de la semana ISO en WEEK-BUF"
+
+msgctxt "L22"
+msgid "\\ \"2026-W46\" and its newline fit easily"
+msgstr "\\ \"2026-W46\" y su salto de línea caben de sobra"
+
+msgctxt "L23"
+msgid "\\ file id of the pipe to sqlite3"
+msgstr "\\ id de archivo de la tubería hacia sqlite3"
+
+msgctxt "L25"
+msgid "\\ ---------------------------------------------------------------- categories"
+msgstr "\\ ---------------------------------------------------------------- categorías"
+
+msgctxt "L27"
+msgid "\\ One tiny word per category, and a table of their execution tokens."
+msgstr "\\ Una palabra mínima por categoría y una tabla con sus tokens de ejecución."
+
+msgctxt "L28"
+msgid "\\ ' (tick) turns a name into an xt; EXECUTE runs it and yields the string."
+msgstr "\\ ' (tick) convierte un nombre en un xt; EXECUTE lo ejecuta y devuelve la cadena."
+
+msgctxt "L38"
+msgid "\\ ---------------------------------------------------------------- numbers and text"
+msgstr "\\ ---------------------------------------------------------------- números y texto"
+
+msgctxt "L49"
+msgid "\\ Ask date(1) for the ISO-8601 week rather than reimplementing the calendar."
+msgstr "\\ Pide a date(1) la semana ISO-8601 en vez de reimplementar el calendario."
+
+msgctxt "L55"
+msgid "\\ ---------------------------------------------------------------- SQLite"
+msgstr "\\ ---------------------------------------------------------------- SQLite"
+
+msgctxt "L57"
+msgid "\\ Start sqlite3 with a pipe on its stdin.  The shell is used only to pick (and"
+msgstr "\\ Inicia sqlite3 con una tubería en su stdin.  El shell se usa solo para elegir (y"
+
+msgctxt "L58"
+msgid "\\ create) the scratch directory.  The DEMO ONLY rule lives in the table itself:"
+msgstr "\\ crear) la carpeta desechable.  La regla DEMO ONLY vive en la propia tabla:"
+
+msgctxt "L59"
+msgid "\\ CHECK(demo_only=1) means a non-demo row cannot be stored."
+msgstr "\\ CHECK(demo_only=1) significa que una fila que no sea de demo no se puede guardar."
+
+msgctxt "L66"
+msgid "\\ OUTFILE-EXECUTE runs an xt with all output redirected to a file id.  That one"
+msgstr "\\ OUTFILE-EXECUTE ejecuta un xt con toda la salida redirigida a un id de archivo.  Esa"
+
+msgctxt "L67"
+msgid "\\ word is how ordinary printing words (.\" CR TYPE) become SQL."
+msgstr "\\ palabra es cómo las palabras de impresión comunes (.\" CR TYPE) se vuelven SQL."
+
+msgctxt "L79"
+msgid "\\ Safe only because every value is a number we computed or one of four fixed words."
+msgstr "\\ Es seguro solo porque cada valor es un número que calculamos o una de cuatro palabras fijas."
+
+msgctxt "L90"
+msgid "\\ ---------------------------------------------------------------- one card"
+msgstr "\\ ---------------------------------------------------------------- una tarjeta"
+
+msgctxt "L103"
+msgid "\\ .insert eats the hours left on the stack"
+msgstr "\\ .insert consume las horas que quedan en la pila"
+
+msgctxt "L107"
+msgid "\\ The whole challenge.  BEGIN ... UNTIL repeats until the flag is true."
+msgstr "\\ Todo el desafío.  BEGIN ... UNTIL repite hasta que la bandera sea verdadera."
+
+msgctxt "L110"
+msgid "\\ ---------------------------------------------------------------- main"
+msgstr "\\ ---------------------------------------------------------------- principal"
