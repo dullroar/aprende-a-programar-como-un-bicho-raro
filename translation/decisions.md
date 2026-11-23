@@ -61,3 +61,13 @@ Recorded by Claude from Jim's answers in the session. The follow-up work is desc
 ## 2026-11-23 Pilot review of the category localization (checkpoint F2-006)
 
 Recorded by Claude from Jim's answers in the session. Jim approved the four words as printed (Reuniones, Programación, Depuración, Aprendizaje) and the rollout to the other families whose oracle passed. The inline-text gap found by the pilot (English category words left in inline code and prose next to Spanish sample output) is fixed by a tool task, F2-006b, before the rollout. Families the oracle could not test stay English. `loop/STOP` removed.
+
+## 2026-11-23 Answers after the category follow-up (release candidate rc2 plus follow-up)
+
+Recorded by Claude from Jim's answers in the session.
+
+1. **Six families left English:** make their regular expressions accent-safe, then localize their category words (ed-weird, ex-weird, regex-pcre2grep, regex-perl, regex-sed, tar-gnu). Each change is proven by the oracle in English and Spanish.
+2. **Native-speaker check of the humor register:** deferred, and handled as part of the final review before any publication.
+3. **Model-reviewer recall test for the localized code comments:** run it. An AI jury will be used on the comments.
+4. **Part III (translation guide and upstream package):** start it. Note: the plan's entry gate names the outside adversarial review (the Jury) as evidence. That review has not happened yet; Jim waives that part of the gate for starting the drafting work. Nothing is published, pushed or sent to the upstream maintainers by the loop. The approval of both guides stays a separate checkpoint.
+5. **Tag a third release candidate** (`v4-es.0-rc3`, local, not pushed) when the six families and the recall test are done and the release check passes.

@@ -1278,6 +1278,14 @@ Decision 11 (§16) stands: the four category names are localized in code, printe
 
 **Exit evidence.** Pilot families pass the oracle in both languages; the checkpoint file exists and Jim has removed the stop; every oracle-proven family is localized or has an exception row; the release check passes; `loop/END-REVIEW.md` is regenerated.
 
+### F4. Second follow-up (decisions of 2026-11-23, later the same day)
+
+- **Six families left English become accent-safe, then localized.** `ed-weird`, `ex-weird`, `regex-pcre2grep`, `regex-perl`, `regex-sed` and `tar-gnu` stayed English because their regular expressions use `[A-Za-z]`, which does not match the accented letters in *Programación* and *Depuración*. A new, strictly limited edit class in the localization tool allows widening those character classes (and nothing else), with negative tests. Each family then passes the oracle in English and Spanish, or keeps its exception.
+- **Recall test for code comments.** An AI jury will review the localized comments, so `tools/recall_test.py` runs once over seeded faults in comments and the result is recorded in `translation/reviews/`.
+- **Third release candidate.** When the above is done and `verify --release --no-gates` passes, the loop tags `v4-es.0-rc3` locally. It does not push.
+- **Part III starts.** Jim waives the Jury part of the entry gate for the drafting work only; the outside review and the approval of both guides remain his to run. The loop finalizes the two guide drafts, adds the Spanish pointer in the contributor guide, prepares the English upstream package locally without publishing or opening anything, and writes the Spanish adoption plan as a draft pinned to the local package. It then stops at a checkpoint for Jim.
+- **Tasks:** `G1-001` to `G1-009` and `H3-001` to `H3-005`.
+
 ---
 
 ## Phase 3 (Part III) — Translation guide and upstream improvements
