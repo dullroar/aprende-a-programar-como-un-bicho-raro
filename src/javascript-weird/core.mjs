@@ -2,7 +2,7 @@
 // Una clausura es una función junto con las variables entre las que nació. Aquí esas variables son el estado del programa,
 // y la única forma de llegar a ellas es llamar a la función.
 
-export const CATEGORIES = ['Meetings', 'Coding', 'Debugging', 'Learning'];
+export const CATEGORIES = ['Reuniones', 'Programación', 'Depuración', 'Aprendizaje'];
 
 // 1. Una fuente de horas: una clausura sobre un número (Park-Miller). Cada llamada mueve `state` y responde de 10 a 19.
 export const hoursFrom = seed => (state => () => 10 + (state = state * 48271 % 2147483647) % 10)(seed);

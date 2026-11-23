@@ -29,3 +29,7 @@ msgstr "// Un pliegue sobre la lista terminada. reduce no puede parar antes, y a
 msgctxt "L37"
 msgid "// The pulse is a separate effect, after everything is saved. Its two variables are closed over by the timer callback."
 msgstr "// El pulso es un efecto aparte, después de guardarlo todo. Sus dos variables quedan capturadas por la función del temporizador."
+
+msgctxt "C17"
+msgid "    category TEXT NOT NULL CHECK (category IN ('Meetings','Coding','Debugging','Learning')),"
+msgstr "    category TEXT NOT NULL CHECK (category IN ('Reuniones','Programación','Depuración','Aprendizaje')),"

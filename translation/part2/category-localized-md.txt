@@ -17,3 +17,4 @@ src/haskell/README.md
 src/haskell-weird/README.md
 src/javascript/README.md
 src/javascript-events/README.md
+src/javascript-weird/README.md

@@ -33,9 +33,9 @@ const records = Iterator.from(cards(machine(hoursFrom(seed))))   // three closur
 ```text
 $ node timecards.mjs
 # DEMO ONLY run 1
-Meetings	12	12	2026-W47	DEMO ONLY
-Coding	17	29	2026-W47	DEMO ONLY
-Debugging	17	46	2026-W47	DEMO ONLY
+Reuniones	12	12	2026-W47	DEMO ONLY
+Programación	17	29	2026-W47	DEMO ONLY
+Depuración	17	46	2026-W47	DEMO ONLY
 # committed total=46 entries=3 DEMO ONLY
 
 Total simulated hours: 46.0

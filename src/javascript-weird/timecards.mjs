@@ -14,7 +14,7 @@ const db = (dir => (mkdirSync(dir, { recursive: true }), new DatabaseSync(join(d
 db.exec(`
   CREATE TABLE IF NOT EXISTS runs(id INTEGER PRIMARY KEY, seed INTEGER NOT NULL, demo_only INTEGER NOT NULL DEFAULT 1 CHECK (demo_only = 1));
   CREATE TABLE IF NOT EXISTS demo_timecards(run_id INTEGER NOT NULL,
-    category TEXT NOT NULL CHECK (category IN ('Meetings','Coding','Debugging','Learning')),
+    category TEXT NOT NULL CHECK (category IN ('Reuniones','Programación','Depuración','Aprendizaje')),
     hours INTEGER NOT NULL CHECK (hours BETWEEN 10 AND 19), running_total INTEGER NOT NULL,
     user_id TEXT NOT NULL, year INTEGER NOT NULL, week INTEGER NOT NULL,
     demo_only INTEGER NOT NULL DEFAULT 1 CHECK (demo_only = 1));`);

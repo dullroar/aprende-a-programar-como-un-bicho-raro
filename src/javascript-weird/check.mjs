@@ -35,7 +35,7 @@ test('the same seed replays the same cards, another seed does not, and a machine
 test('the crossing card is kept, a total of exactly 40 goes on, and nothing comes after the stop', () => {
   const tens = run(forced(10, 10, 10, 10, 10));
   assert.deepEqual(tens.map(c => c.total), [10, 20, 30, 40, 50]);           // 40 is not over 40
-  assert.deepEqual(tens.map(c => c.category), ['Meetings', 'Coding', 'Debugging', 'Learning', 'Meetings']);
+  assert.deepEqual(tens.map(c => c.category), ['Reuniones', 'Programación', 'Depuración', 'Aprendizaje', 'Reuniones']);
   assert.deepEqual(run(forced(10, 10, 10, 11)).map(c => c.total), [10, 20, 30, 41]);   // 41 is over: stop, and keep the card
   assert.deepEqual(run(forced(19, 19, 19, 19)).map(c => c.total), [19, 38, 57]);
   const source = counting(forced(19, 19, 19, 19, 19)), m = machine(source);

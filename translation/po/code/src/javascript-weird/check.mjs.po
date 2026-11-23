@@ -25,3 +25,7 @@ msgstr "// una excepción también termina un reduce. Funciona, y es la herramie
 msgctxt "L124"
 msgid "// there is no way to hand m a \"return point\": its only input is nextHours, fixed at creation"
 msgstr "// no hay forma de darle a m un \"punto de retorno\": su única entrada es nextHours, fijada al crearla"
+
+msgctxt "C38"
+msgid "  assert.deepEqual(tens.map(c => c.category), ['Meetings', 'Coding', 'Debugging', 'Learning', 'Meetings']);"
+msgstr "  assert.deepEqual(tens.map(c => c.category), ['Reuniones', 'Programación', 'Depuración', 'Aprendizaje', 'Reuniones']);"

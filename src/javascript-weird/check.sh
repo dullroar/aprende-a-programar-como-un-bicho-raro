@@ -10,12 +10,12 @@ fail() { echo "FAIL: $*"; exit 1; }
 node -e 'if (+process.versions.node.split(".")[0] < 24) process.exit(1)' || fail "needs Node 24 or newer (node:sqlite); found $(node --version)"
 command -v sqlite3 >/dev/null || fail "sqlite3 is needed"
 db=$XDG_DATA_HOME/JavaScriptWeird/demo-timecards.db
-rows() { grep -E $'^(Meetings|Coding|Debugging|Learning)\t' <<<"$1" || true; }
+rows() { grep -E $'^(Reuniones|Programación|Depuración|Aprendizaje)\t' <<<"$1" || true; }
 validate() {
     local label=$1 out=$2 r total entries
     r=$(rows "$out"); total=$(sed -nE 's/.*total=([0-9]+).*/\1/p' <<<"$out"); entries=$(sed -nE 's/.*entries=([0-9]+).*/\1/p' <<<"$out")
     awk -F'\t' -v total="$total" -v entries="$entries" '
-        BEGIN { split("Meetings Coding Debugging Learning Meetings", want, " ") }
+        BEGIN { split("Reuniones Programación Depuración Aprendizaje Reuniones", want, " ") }
         { n++; if ($1 != want[n]) { print "category " $1 " at row " n; exit 1 }
           if ($2 < 10 || $2 > 19) { print "hours out of range: " $0; exit 1 }
           if ($3 != prev + $2) { print "bad running total: " $0; exit 1 }
@@ -67,7 +67,7 @@ echo "ok: 25 random runs: categories in order, hours 10-19, running totals, stop
 
 # ---- 3. Una semilla repite una ejecución, y una simulación aparte del generador coincide (incluidos los casos límite).
 sim() {  # seed -> category TAB hours TAB total, until the total passes 40 (Park-Miller, as the program has it)
-    awk -v r="$1" 'BEGIN { split("Meetings Coding Debugging Learning Meetings", cat, " ")
+    awk -v r="$1" 'BEGIN { split("Reuniones Programación Depuración Aprendizaje Reuniones", cat, " ")
         for (n = 1; ; n++) { r = r * 48271 % 2147483647; h = 10 + r % 10; t += h; printf "%s\t%d\t%d\n", cat[n], h, t; if (t > 40) break } }'
 }
 find_seed() {  # find a seed whose run has the given total and card count (awk searches, the program then has to agree)
@@ -118,8 +118,8 @@ echo "ok: a redirected run ends at once (no timer, no sleep)"
 : > "$work/afile"
 set +e; XDG_DATA_HOME=$work/afile timeout 20 node timecards.mjs >/dev/null 2>"$work/err"; rc=$?; set -e
 [[ $rc -ne 0 && -s $work/err ]] || fail "an unwritable data directory must end with a non-zero status and a message (rc=$rc)"
-sqlite3 "$db" "insert into demo_timecards values(1,'Coding',12,12,'u',2026,1,0)" 2>/dev/null && fail "db accepted a non-demo row"
-sqlite3 "$db" "insert into demo_timecards values(1,'Coding',9,9,'u',2026,1,1)" 2>/dev/null && fail "db accepted 9 hours"
+sqlite3 "$db" "insert into demo_timecards values(1,'Programación',12,12,'u',2026,1,0)" 2>/dev/null && fail "db accepted a non-demo row"
+sqlite3 "$db" "insert into demo_timecards values(1,'Programación',9,9,'u',2026,1,1)" 2>/dev/null && fail "db accepted 9 hours"
 sqlite3 "$db" "insert into demo_timecards values(1,'Banking',12,12,'u',2026,1,1)" 2>/dev/null && fail "db accepted a fifth category"
 sqlite3 "$db" "insert into runs(seed, demo_only) values (1, 0)" 2>/dev/null && fail "db accepted a non-demo run"
 echo "ok: an unwritable data folder ends with a non-zero status and a message; SQLite refuses a non-demo row or run, 9 hours and a fifth category"
