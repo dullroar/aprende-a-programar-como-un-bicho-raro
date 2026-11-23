@@ -390,3 +390,4 @@
 437 S5-fam-haskell done src/haskell localizing: 29 comment lines (timecards.hs, check.sh, Dockerfile) via loc_apply, oracle PASS; categories/strings kept English EXC-554.
 438 S5-fam-lessons-solutions done family left English, NOT TESTED (EXC-555): no oracle runner for lessons/solutions; no protected file changed.
 439 S5-fam-lessons-solutions-awk-port done family left English, NOT TESTED (EXC-556): no oracle runner for lessons/solutions; no protected file changed.
+440 S5-fam-lessons-tools done family left English, NOT TESTED (EXC-557): sandbox/verify scripts under lessons/tools, no oracle runner; no protected file changed.
