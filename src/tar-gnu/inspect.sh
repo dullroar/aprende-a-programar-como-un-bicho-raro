@@ -34,7 +34,7 @@ while IFS= read -r name <&3 && IFS= read -r long <&4; do
         case $op in
             '') verdict="unknown record type" ;;
             begin) { [ "$nl" -eq 3 ] && ln 1 | grep -qx 'format=tarprog/1' && ln 2 | grep -Eqx 'seed=[0-9]+' && ln 3 | grep -qx 'label=DEMO ONLY'; } || verdict="bad begin record" ;;
-            card) { [ "$nl" -eq 2 ] && ln 1 | grep -Eqx 'category=(Meetings|Coding|Debugging|Learning)' && ln 2 | grep -Eqx 'hours=1[0-9]'; } || verdict="bad card record" ;;
+            card) { [ "$nl" -eq 2 ] && ln 1 | grep -Eqx 'category=(Reuniones|Programación|Depuración|Aprendizaje)' && ln 2 | grep -Eqx 'hours=1[0-9]'; } || verdict="bad card record" ;;
             stop-over) { [ "$nl" -eq 1 ] && ln 1 | grep -Eqx 'limit=[0-9]+'; } || verdict="bad stop-over record" ;;
             show) [ "$bytes" -eq 0 ] || verdict="bad show record" ;;
         esac

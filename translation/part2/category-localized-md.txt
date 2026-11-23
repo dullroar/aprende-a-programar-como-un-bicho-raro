@@ -28,4 +28,5 @@ src/ed-weird/README.md
 src/regex-pcre2grep/README.md
 src/regex-perl/README.md
 src/regex-sed/README.md
+src/tar-gnu/README.md
 lessons/study-guides/languages/make-and-cmake.md

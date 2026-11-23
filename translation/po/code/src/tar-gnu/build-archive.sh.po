@@ -33,3 +33,7 @@ msgstr "# Aquí nada sabe cuándo parar: eso es trabajo del intérprete, guiado 
 msgctxt "L45"
 msgid "# A fixed format, order, time and owner make the same program the same bytes."
 msgstr "# Un formato, un orden, una hora y un propietario fijos hacen que el mismo programa dé los mismos bytes."
+
+msgctxt "C30"
+msgid "cats=\"Meetings Coding Debugging Learning Meetings\""
+msgstr "cats=\"Reuniones Programación Depuración Aprendizaje Reuniones\""

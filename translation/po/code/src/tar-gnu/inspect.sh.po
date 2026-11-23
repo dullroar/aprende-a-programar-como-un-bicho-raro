@@ -37,3 +37,7 @@ msgstr "# N-ésima aparición de este nombre, para que un nombre duplicado muest
 msgctxt "L26"
 msgid "# the size tar itself reports, not the length of the text"
 msgstr "# el tamaño que informa el propio tar, no la longitud del texto"
+
+msgctxt "C37"
+msgid "            card) { [ \"$nl\" -eq 2 ] && ln 1 | grep -Eqx 'category=(Meetings|Coding|Debugging|Learning)' && ln 2 | grep -Eqx 'hours=1[0-9]'; } || verdict=\"bad card record\" ;;"
+msgstr "            card) { [ \"$nl\" -eq 2 ] && ln 1 | grep -Eqx 'category=(Reuniones|Programación|Depuración|Aprendizaje)' && ln 2 | grep -Eqx 'hours=1[0-9]'; } || verdict=\"bad card record\" ;;"

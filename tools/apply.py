@@ -211,6 +211,8 @@ _EN_ALT = "|".join(categories.EN)
 SED_TAPE_RE = re.compile(r"(?:(?<=cats:)|(?<=,)|(?<= c:)|(?<=ret:row )|(?<=,'))(%s)(?=,|\s|\t|',\d|$)" % _EN_ALT)
 # a fenced line that is a sed s/// command (the accent-safe class goes into its regex, as in the code)
 SED_CMD_RE = re.compile(r"^s/")
+# a copied archive record in a fence (tar-gnu): `category=Meetings, hours=13`; the word after `category=` follows the code
+KEYVAL_RE = re.compile(r"(?<=category=)(%s)(?=,|\s|$)" % _EN_ALT)
 
 
 def category_files():
@@ -238,6 +240,7 @@ def localize_category_rows(text):
             line = QUOTED_LIST_RE.sub(lambda m: " ".join('"%s"' % w for w in categories.ES), line)
             line = TRACE_RE.sub(lambda m: categories.EN_TO_ES[m.group(1)], line)
             line = SED_TAPE_RE.sub(lambda m: categories.EN_TO_ES[m.group(1)], line)
+            line = KEYVAL_RE.sub(lambda m: categories.EN_TO_ES[m.group(1)], line)
             if SED_CMD_RE.match(line):
                 line = line.replace("[A-Za-z]", _WIDE)
         out.append(line)

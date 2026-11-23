@@ -41,3 +41,11 @@ msgstr "# diminuto, por la comprobación anterior"
 msgctxt "L65"
 msgid "# limit=N : halt the machine if the running total is above N"
 msgstr "# limit=N : detén la máquina si el total acumulado supera N"
+
+msgctxt "C44"
+msgid "         check (category in ('Meetings','Coding','Debugging','Learning')),"
+msgstr "         check (category in ('Reuniones','Programación','Depuración','Aprendizaje')),"
+
+msgctxt "C53"
+msgid "    case $cat_ in category=Meetings|category=Coding|category=Debugging|category=Learning) cat_=${cat_#category=} ;; *) refuse \"bad category\" ;; esac"
+msgstr "    case $cat_ in category=Reuniones|category=Programación|category=Depuración|category=Aprendizaje) cat_=${cat_#category=} ;; *) refuse \"bad category\" ;; esac"

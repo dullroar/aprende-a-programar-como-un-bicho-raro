@@ -85,3 +85,71 @@ msgstr "# un miembro que no es un archivo regular nunca llega al despachador, y 
 msgctxt "L163"
 msgid "# ---- 8. The database refuses what the schema forbids, whoever asks."
 msgstr "# ---- 8. La base de datos rechaza lo que el esquema prohíbe, sea quien sea quien lo pida."
+
+msgctxt "C25"
+msgid "rows() { grep -E $'^(Meetings|Coding|Debugging|Learning)\\t' <<<\"$1\" || true; }"
+msgstr "rows() { grep -E $'^(Reuniones|Programación|Depuración|Aprendizaje)\\t' <<<\"$1\" || true; }"
+
+msgctxt "C26"
+msgid "cats=(Meetings Coding Debugging Learning Meetings)"
+msgstr "cats=(Reuniones Programación Depuración Aprendizaje Reuniones)"
+
+msgctxt "C36"
+msgid "        BEGIN { split(\"Meetings Coding Debugging Learning Meetings\", want, \" \") }"
+msgstr "        BEGIN { split(\"Reuniones Programación Depuración Aprendizaje Reuniones\", want, \" \") }"
+
+msgctxt "C92"
+msgid "decoded=$(sh inspect.sh \"$work/a1.tar\" | sed -nE 's/^[0-9]+ +[0-9]+\\.card +file +[0-9]+ +category=([A-Za-z]+) hours=([0-9]+)$/\\1 \\2/p')"
+msgstr "decoded=$(sh inspect.sh \"$work/a1.tar\" | sed -nE 's/^[0-9]+ +[0-9]+\\.card +file +[0-9]+ +category=([A-Za-zÁÉÍÓÚáéíóúñ]+) hours=([0-9]+)$/\\1 \\2/p')"
+
+msgctxt "C112"
+msgid "mkar \"$work/evil.tar\" \"000.begin:format=tarprog/1\\nseed=1\\nlabel=DEMO ONLY\\n\" \"010.card:category=Coding\\nhours=\\$(touch $work/CANARY)\\n\" \\"
+msgstr "mkar \"$work/evil.tar\" \"000.begin:format=tarprog/1\\nseed=1\\nlabel=DEMO ONLY\\n\" \"010.card:category=Programación\\nhours=\\$(touch $work/CANARY)\\n\" \\"
+
+msgctxt "C113"
+msgid "    \"020.card:category=Coding\\nhours=10; touch $work/CANARY2\\n\" \"030.exec:touch $work/CANARY\\n\" \"990.show:\""
+msgstr "    \"020.card:category=Programación\\nhours=10; touch $work/CANARY2\\n\" \"030.exec:touch $work/CANARY\\n\" \"990.show:\""
+
+msgctxt "C131"
+msgid "mkar \"$work/mid.tar\" \"000.begin:format=tarprog/1\\nseed=1\\nlabel=DEMO ONLY\\n\" \"010.card:category=Meetings\\nhours=12\\n\" \"030.exec:touch $work/CANARY\\n\" \\"
+msgstr "mkar \"$work/mid.tar\" \"000.begin:format=tarprog/1\\nseed=1\\nlabel=DEMO ONLY\\n\" \"010.card:category=Reuniones\\nhours=12\\n\" \"030.exec:touch $work/CANARY\\n\" \\"
+
+msgctxt "C132"
+msgid "    \"040.card:category=Coding\\nhours=15\\n\" \"041.stop-over:limit=40\\n\" \"990.show:\""
+msgstr "    \"040.card:category=Programación\\nhours=15\\n\" \"041.stop-over:limit=40\\n\" \"990.show:\""
+
+msgctxt "C147"
+msgid "bad \"hours=9\" \"010.card:category=Coding\\nhours=09\\n\""
+msgstr "bad \"hours=9\" \"010.card:category=Programación\\nhours=09\\n\""
+
+msgctxt "C148"
+msgid "bad \"hours=20\" \"010.card:category=Coding\\nhours=20\\n\""
+msgstr "bad \"hours=20\" \"010.card:category=Programación\\nhours=20\\n\""
+
+msgctxt "C149"
+msgid "bad \"hours with a command\" \"010.card:category=Coding\\nhours=1\\$(touch $work/CANARY)\\n\""
+msgstr "bad \"hours with a command\" \"010.card:category=Programación\\nhours=1\\$(touch $work/CANARY)\\n\""
+
+msgctxt "C151"
+msgid "bad \"extra line\" \"010.card:category=Coding\\nhours=12\\nnote=x\\n\""
+msgstr "bad \"extra line\" \"010.card:category=Programación\\nhours=12\\nnote=x\\n\""
+
+msgctxt "C152"
+msgid "bad \"bad name\" \"10.card:category=Coding\\nhours=12\\n\""
+msgstr "bad \"bad name\" \"10.card:category=Programación\\nhours=12\\n\""
+
+msgctxt "C153"
+msgid "bad \"name with a path\" \"x/010.card:category=Coding\\nhours=12\\n\""
+msgstr "bad \"name with a path\" \"x/010.card:category=Programación\\nhours=12\\n\""
+
+msgctxt "C155"
+msgid "bad \"unknown op\" \"010.run:category=Coding\\nhours=12\\n\""
+msgstr "bad \"unknown op\" \"010.run:category=Programación\\nhours=12\\n\""
+
+msgctxt "C165"
+msgid "sqlite3 \"$TARPROG_DB\" \"insert into demo_timecards values(1,'Coding',12,12,'2026-W01',0)\" 2>/dev/null && fail \"db accepted a non-demo row\""
+msgstr "sqlite3 \"$TARPROG_DB\" \"insert into demo_timecards values(1,'Programación',12,12,'2026-W01',0)\" 2>/dev/null && fail \"db accepted a non-demo row\""
+
+msgctxt "C166"
+msgid "sqlite3 \"$TARPROG_DB\" \"insert into demo_timecards values(1,'Coding',9,9,'2026-W01',1)\" 2>/dev/null && fail \"db accepted 9 hours\""
+msgstr "sqlite3 \"$TARPROG_DB\" \"insert into demo_timecards values(1,'Programación',9,9,'2026-W01',1)\" 2>/dev/null && fail \"db accepted 9 hours\""

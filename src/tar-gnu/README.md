@@ -32,10 +32,10 @@ $ tar -tvf program.tar
 
 $ sh interpret.sh --execute program.tar
 # DEMO ONLY run 1
-Meetings	13	13	2026-W47	DEMO ONLY
-Coding	11	24	2026-W47	DEMO ONLY
-Debugging	13	37	2026-W47	DEMO ONLY
-Learning	15	52	2026-W47	DEMO ONLY
+Reuniones	13	13	2026-W47	DEMO ONLY
+Programación	11	24	2026-W47	DEMO ONLY
+Depuración	13	37	2026-W47	DEMO ONLY
+Aprendizaje	15	52	2026-W47	DEMO ONLY
 # committed total=52 entries=4 DEMO ONLY
 ```
 
@@ -100,9 +100,9 @@ El archivo es el programa, tar es el bucle y el despachador es la máquina que d
 
 ```text
 000.begin      format=tarprog/1, seed=N, label=DEMO ONLY     start a run
-010.card       category=Meetings, hours=13                  add a card
+010.card       category=Reuniones, hours=13                  add a card
 011.stop-over  limit=40                                     halt if the total is over 40
-020.card       category=Coding, hours=11
+020.card       category=Programación, hours=11
 021.stop-over  limit=40
  ...           (five card slots in all)
 990.show       (empty)                                      print the rows
@@ -111,7 +111,7 @@ El archivo es el programa, tar es el bucle y el despachador es la máquina que d
 | Tarea | Quién la hace |
 |---|---|
 | Bucle | **tar**, que recorre los miembros en el orden del archivo |
-| Orden de las categorías | **El archivo**: posiciones de las tarjetas en el orden Meetings, Coding, Debugging, Learning, Meetings |
+| Orden de las categorías | **El archivo**: posiciones de las tarjetas en el orden Reuniones, Programación, Depuración, Aprendizaje, Reuniones |
 | Horas aleatorias | **El generador**, una sola vez, cuando escribe el programa. Usa un generador Park-Miller con semilla, que se guarda en `000.begin` |
 | Total acumulado | El significado de `card`: suma las horas al último total (una sentencia SQL) |
 | Regla de parada | **El archivo** contiene el límite (`limit=40` en cada miembro `stop-over`). El significado de `stop-over` es "detén la ejecución si el total pasa del límite". La ejecución detenida ignora el resto |
@@ -143,7 +143,7 @@ Tres programas pequeños usan el mismo archivo:
 
 Un archivo tar permite escribir archivos en un solo flujo de bytes. No es un formato de programa. Lo que convierte a este archivo en un programa es un *consumidor* que da significado a sus miembros. Esta sección separa los pasos. Consulta [Serialización, deserialización y empaquetado de objetos](../../lessons/informatica/06-estado-mas-alla-de-las-variables.md#serialización-deserialización-y-pickling-de-objetos) para ver las ideas generales.
 
-1. **Codificar datos.** Una tarjeta son dos líneas en el cuerpo de un miembro: `category=Coding` y `hours=11`. Los datos están en los bytes del miembro.
+1. **Codificar datos.** Una tarjeta son dos líneas en el cuerpo de un miembro: `category=Programación` y `hours=11`. Los datos están en los bytes del miembro.
 2. **Codificar las instrucciones del programa y el contexto de interpretación.** Cada instrucción está en el *nombre* del miembro (`010.card`). El orden de los miembros es el orden de ejecución. El contexto es una promesa entre el programa que escribe y el lector: el formato `tarprog/1`. tar no sabe nada de ella. Dos programas que respetan la promesa se entienden entre sí y ningún otro programa puede entenderlos.
 3. **Codificar el estado del programa.** El archivo contiene el estado *inicial*: la semilla y los dados ya tirados. El estado *en ejecución* está en SQLite: el total acumulado y si se detuvo la ejecución. Ese estado no está en el archivo y tar nunca modifica el archivo mientras lee.
 4. **Capturar el estado de una ejecución en curso o sus continuaciones.** Esta entrada **no** lo hace. Si terminas el intérprete después de la segunda tarjeta, nada puede reanudarlo desde la tercera. Puedes arrancar todo el programa de nuevo. Eso produce las mismas tarjetas (repetición de la ejecución) y es distinto de continuar el proceso interrumpido.

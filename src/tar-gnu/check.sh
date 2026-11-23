@@ -22,8 +22,8 @@ if grep -Eq -- '--to-command|--checkpoint|sqlite3|dispatch|eval|\bsh -c\b' <(gre
 echo "ok: tar is the loop; dispatch.sh has no loop, no dice, no 40, no category order; inspect.sh cannot execute"
 
 # ---- auxiliares
-rows() { grep -E $'^(Meetings|Coding|Debugging|Learning)\t' <<<"$1" || true; }
-cats=(Meetings Coding Debugging Learning Meetings)
+rows() { grep -E $'^(Reuniones|Programación|Depuración|Aprendizaje)\t' <<<"$1" || true; }
+cats=(Reuniones Programación Depuración Aprendizaje Reuniones)
 expect_rows() {   # horas... -> las filas que una simulación independiente dice que el programa debe imprimir (categoría, horas, total)
     local t=0 k=0 h
     for h in "$@"; do t=$((t + h)); printf '%s\t%s\t%s\n' "${cats[k]}" "$h" "$t"; k=$((k + 1)); (( t > 40 )) && break; done
@@ -33,7 +33,7 @@ validate() {   # etiqueta salida
     local label=$1 out=$2 r total entries
     r=$(rows "$out"); total=$(sed -nE 's/.*total=([0-9]+).*/\1/p' <<<"$out"); entries=$(sed -nE 's/.*entries=([0-9]+).*/\1/p' <<<"$out")
     awk -F'\t' -v total="$total" -v entries="$entries" '
-        BEGIN { split("Meetings Coding Debugging Learning Meetings", want, " ") }
+        BEGIN { split("Reuniones Programación Depuración Aprendizaje Reuniones", want, " ") }
         { n++; if ($1 != want[n]) { print "category " $1 " at row " n; exit 1 }
           if ($2 < 10 || $2 > 19) { print "hours out of range: " $0; exit 1 }
           if ($3 != prev + $2) { print "bad running total: " $0; exit 1 }
@@ -89,7 +89,7 @@ newdb s1; o1=$(sh interpret.sh --execute "$work/a1.tar"); newdb s2; o2=$(sh inte
 echo "ok: behavioral: one archive run in two fresh databases gives the same cards (the weeks agree too, unless midnight passed)"
 # estado: lo que decodifica el inspector es lo que guarda la base de datos
 newdb s3; sh interpret.sh --execute "$work/a1.tar" >/dev/null
-decoded=$(sh inspect.sh "$work/a1.tar" | sed -nE 's/^[0-9]+ +[0-9]+\.card +file +[0-9]+ +category=([A-Za-z]+) hours=([0-9]+)$/\1 \2/p')
+decoded=$(sh inspect.sh "$work/a1.tar" | sed -nE 's/^[0-9]+ +[0-9]+\.card +file +[0-9]+ +category=([A-Za-zÁÉÍÓÚáéíóúñ]+) hours=([0-9]+)$/\1 \2/p')
 dbcards=$(sqlite3 -separator ' ' "$TARPROG_DB" "select category, hours from demo_timecards order by rowid")
 [[ $(head -n "$(wc -l <<<"$dbcards")" <<<"$decoded") == "$dbcards" ]] || fail "the cards the inspector decodes are not the cards the database holds"
 echo "ok: state: the cards the inspector decodes are the cards the database holds (the unread ones were never run)"
@@ -109,8 +109,8 @@ echo "ok: the inspector, tar -t and the dispatcher's own trace list the same 12 
 
 # ---- 6. Consumidores pasivos: listar, extraer sin más e inspeccionar no ejecutan nada.
 mkdir "$work/shim"; for p in sqlite3 date; do printf '#!/bin/sh\necho "%s $*" >> "%s/shim.log"\nexit 1\n' "$p" "$work" > "$work/shim/$p"; chmod +x "$work/shim/$p"; done
-mkar "$work/evil.tar" "000.begin:format=tarprog/1\nseed=1\nlabel=DEMO ONLY\n" "010.card:category=Coding\nhours=\$(touch $work/CANARY)\n" \
-    "020.card:category=Coding\nhours=10; touch $work/CANARY2\n" "030.exec:touch $work/CANARY\n" "990.show:"
+mkar "$work/evil.tar" "000.begin:format=tarprog/1\nseed=1\nlabel=DEMO ONLY\n" "010.card:category=Programación\nhours=\$(touch $work/CANARY)\n" \
+    "020.card:category=Programación\nhours=10; touch $work/CANARY2\n" "030.exec:touch $work/CANARY\n" "990.show:"
 : > "$work/shim.log"
 ( cd "$work" && PATH=$work/shim:$PATH sh "$here/inspect.sh" evil.tar > evil.report; echo $? > evil.rc ) || true
 [[ $(cat "$work/evil.rc") -eq 4 ]] || fail "inspector exit status on the hostile archive should be 4, got $(cat "$work/evil.rc")"
@@ -128,8 +128,8 @@ canary "interpreter preflight"; [[ ! -e $TARPROG_DB ]] || fail "the preflight le
 echo "ok: no --execute, no run; a hostile archive is refused by the preflight before anything runs"
 # Defensa en profundidad: saltarse la verificación previa y pasarle a tar el archivo hostil directamente. tar sigue tras un
 # hijo que falla, así que el propio despachador debe rechazar todo lo que venga después del primer registro malo.
-mkar "$work/mid.tar" "000.begin:format=tarprog/1\nseed=1\nlabel=DEMO ONLY\n" "010.card:category=Meetings\nhours=12\n" "030.exec:touch $work/CANARY\n" \
-    "040.card:category=Coding\nhours=15\n" "041.stop-over:limit=40\n" "990.show:"
+mkar "$work/mid.tar" "000.begin:format=tarprog/1\nseed=1\nlabel=DEMO ONLY\n" "010.card:category=Reuniones\nhours=12\n" "030.exec:touch $work/CANARY\n" \
+    "040.card:category=Programación\nhours=15\n" "041.stop-over:limit=40\n" "990.show:"
 newdb dd; mkdir -p "$work/stage"
 set +e; tar -C "$work/stage" --to-command="sh $here/dispatch.sh" -xf "$work/mid.tar" >/dev/null 2>"$work/tar.err"; rc=$?; set -e
 [[ $rc -ne 0 ]] || fail "tar exited 0 although a child refused a record"
@@ -144,15 +144,15 @@ bad() {
     [[ $(sqlite3 "$TARPROG_DB" "select count(*) from demo_timecards") -eq 0 ]] || fail "$label: a card was accepted"
     [[ $(sqlite3 "$TARPROG_DB" "select count(*) from trace where outcome like 'refused%'") -ge 1 ]] || fail "$label: nothing was refused"
 }
-bad "hours=9" "010.card:category=Coding\nhours=09\n"
-bad "hours=20" "010.card:category=Coding\nhours=20\n"
-bad "hours with a command" "010.card:category=Coding\nhours=1\$(touch $work/CANARY)\n"
+bad "hours=9" "010.card:category=Programación\nhours=09\n"
+bad "hours=20" "010.card:category=Programación\nhours=20\n"
+bad "hours with a command" "010.card:category=Programación\nhours=1\$(touch $work/CANARY)\n"
 bad "unknown category" "010.card:category=Banking\nhours=12\n"
-bad "extra line" "010.card:category=Coding\nhours=12\nnote=x\n"
-bad "bad name" "10.card:category=Coding\nhours=12\n"
-bad "name with a path" "x/010.card:category=Coding\nhours=12\n"
+bad "extra line" "010.card:category=Programación\nhours=12\nnote=x\n"
+bad "bad name" "10.card:category=Programación\nhours=12\n"
+bad "name with a path" "x/010.card:category=Programación\nhours=12\n"
 bad "oversize" "010.card:$(head -c 400 /dev/zero | tr '\0' 'a')"
-bad "unknown op" "010.run:category=Coding\nhours=12\n"
+bad "unknown op" "010.run:category=Programación\nhours=12\n"
 canary "bad members"
 # un miembro que no es un archivo regular nunca llega al despachador, y el inspector lo marca
 mkdir "$work/ty"; mkdir "$work/ty/050.dir"; ln -s /etc/passwd "$work/ty/060.link"; printf 'format=tarprog/1\nseed=1\nlabel=DEMO ONLY\n' > "$work/ty/000.begin"
@@ -162,8 +162,8 @@ echo "ok: bad hours, command-looking hours, unknown category, extra line, bad na
 
 # ---- 8. La base de datos rechaza lo que el esquema prohíbe, sea quien sea quien lo pida.
 newdb db; sh interpret.sh --execute "$work/a1.tar" >/dev/null
-sqlite3 "$TARPROG_DB" "insert into demo_timecards values(1,'Coding',12,12,'2026-W01',0)" 2>/dev/null && fail "db accepted a non-demo row"
-sqlite3 "$TARPROG_DB" "insert into demo_timecards values(1,'Coding',9,9,'2026-W01',1)" 2>/dev/null && fail "db accepted 9 hours"
+sqlite3 "$TARPROG_DB" "insert into demo_timecards values(1,'Programación',12,12,'2026-W01',0)" 2>/dev/null && fail "db accepted a non-demo row"
+sqlite3 "$TARPROG_DB" "insert into demo_timecards values(1,'Programación',9,9,'2026-W01',1)" 2>/dev/null && fail "db accepted 9 hours"
 sqlite3 "$TARPROG_DB" "insert into demo_timecards values(1,'Banking',12,12,'2026-W01',1)" 2>/dev/null && fail "db accepted a fifth category"
 echo "ok: SQLite refuses a non-demo row, 9 hours and a fifth category"
 echo "OK: tar-gnu ($(tar --version | head -1))"

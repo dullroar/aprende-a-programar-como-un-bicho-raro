@@ -335,6 +335,14 @@ class CategoryList(unittest.TestCase):
                          "Coding outside\n```\n… cats:Programación,Depuración, tot:# c:Aprendizaje d:4\nret:row Reuniones\t1\n"
                          "VALUES('x','Programación',14)\ns/ c:([A-Za-zÁÉÍÓÚáéíóúñ]+)//\nx=[A-Za-z]\n```\n")
 
+    def test_archive_record_category_in_fence(self):
+        """G1-007: `category=Word` in a fence follows the code; a longer word and prose outside stay."""
+        text = ("category=Coding outside\n```\n010.card  category=Meetings, hours=13\n020.card  category=Coding\n"
+                "x category=CodingX\n```\n")
+        self.assertEqual(ap.localize_category_rows(text),
+                         "category=Coding outside\n```\n010.card  category=Reuniones, hours=13\n020.card  category=Programación\n"
+                         "x category=CodingX\n```\n")
+
     def test_braced_other_order_stays(self):
         text = "```sql\nlindex {Coding Meetings Debugging Learning}\n```\n"
         self.assertEqual(ap.localize_category_rows(text), text)

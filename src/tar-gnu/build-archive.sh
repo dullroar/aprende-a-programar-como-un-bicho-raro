@@ -27,7 +27,7 @@ case $seed in ''|*[!0-9]*) echo "seed must be a whole number" >&2; exit 2 ;; esa
 stage=$(mktemp -d); trap 'rm -rf "$stage"' EXIT
 names=000.begin
 printf 'format=tarprog/1\nseed=%s\nlabel=DEMO ONLY\n' "$seed" > "$stage/000.begin"
-cats="Meetings Coding Debugging Learning Meetings"
+cats="Reuniones Programación Depuración Aprendizaje Reuniones"
 state=$(( seed % 2147483646 + 1 ))
 n=0
 for c in $cats; do

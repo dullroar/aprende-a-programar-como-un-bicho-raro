@@ -41,7 +41,7 @@ begin)   # format=tarprog/1 / seed=N / label=DEMO ONLY
     q "create table if not exists runs(id integer primary key, seed integer not null, halted integer not null default 0,
          faulted integer not null default 0, demo_only integer not null default 1 check (demo_only = 1));
        create table if not exists demo_timecards(run_id integer not null, category text not null
-         check (category in ('Meetings','Coding','Debugging','Learning')),
+         check (category in ('Reuniones','Programación','Depuración','Aprendizaje')),
          hours integer not null check (hours between 10 and 19), running_total integer not null,
          week text not null, demo_only integer not null check (demo_only = 1));
        create table if not exists trace(n integer primary key, name text, outcome text);
@@ -50,7 +50,7 @@ begin)   # format=tarprog/1 / seed=N / label=DEMO ONLY
     ;;
 card)    # category=Name / hours=NN
     cat_=$(line 1); hrs=$(line 2)
-    case $cat_ in category=Meetings|category=Coding|category=Debugging|category=Learning) cat_=${cat_#category=} ;; *) refuse "bad category" ;; esac
+    case $cat_ in category=Reuniones|category=Programación|category=Depuración|category=Aprendizaje) cat_=${cat_#category=} ;; *) refuse "bad category" ;; esac
     case $hrs in hours=1[0-9]) hrs=${hrs#hours=} ;; *) refuse "bad hours" ;; esac
     [ -z "$(line 3)" ] || refuse "extra lines in card"
     week=$(date +%G-W%V)
