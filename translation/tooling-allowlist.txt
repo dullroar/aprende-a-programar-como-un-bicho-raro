@@ -27,4 +27,4 @@ lessons/book/test_pdf_lint.py  # P3B-006b: the real front matter is found throug
 lessons/book/chapters.txt  # P3B-005: entries in the Spanish layout (data: never in the scratch-proof layer)
 lessons/study-guides/chapters.txt  # P3B-005: entries in the Spanish layout (data: never in the scratch-proof layer)
 lessons/book/guide-dependencies.json  # P3B-005: source-path keys in the Spanish layout (data: never in the scratch-proof layer)
-lessons/book/book.css  # P5-004: the print rule for the seven-column summary also matches the Spanish heading id (todas-las-entradas-de-un-vistazo)
+lessons/book/book.es.css  # P5-004: Spanish-only print rule for the seven-column summary, added by build.py when the language is not English (book.css stays English-identical)

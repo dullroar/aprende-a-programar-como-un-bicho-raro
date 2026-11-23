@@ -358,3 +358,4 @@
 406 S2-001 done tools/loc_map.py + 24 tests (collision, unscoped, frozen-family, not-extracted negatives); empty identifier-map.jsonl; verify --fast OK.
 405 S1-007 done S1 gate written (translation/part2/s1-gate.md): 37 registry records and pages cover the runtime matrix; 2 extracted, 35 not-extracted (NOT TESTED); registry and audit tests pass; verify --fast OK.
 407 S2-002 done tools/loc_apply.py + 31 tests: comments/strings via PO, identifiers via map, span re-scan, line-anchor and protected-token refusals; verify --fast OK.
+408 S2-003 done lock_code teaches scope file + localized-code.sha256 (unscoped/unmapped/unrecorded negatives, 10 new tests); I13 uses localized hashes; fixed book.css English-EPUB drift via book.es.css; scratch proof PASS; verify --fast OK.

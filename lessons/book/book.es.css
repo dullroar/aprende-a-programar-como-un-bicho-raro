@@ -1,0 +1,6 @@
+/* Spanish edition only (added after book.css by build.py when BOOK_LANG is not en); keeps book.css byte-identical to English. */
+@media print {
+  /* The seven-column entry summary otherwise exceeds the page at its minimum auto width; Spanish heading id. */
+  #todas-las-entradas-de-un-vistazo + table { table-layout: fixed; }
+  #todas-las-entradas-de-un-vistazo + table :is(th, td) { overflow-wrap: anywhere; }
+}

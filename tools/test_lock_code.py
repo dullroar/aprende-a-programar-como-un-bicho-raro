@@ -256,6 +256,118 @@ class HookTests(unittest.TestCase):
         self.assertEqual(rc, 0)
 
 
+SCOPE_TEXT = (
+    'version: 1\nfamilies:\n'
+    '  "src/forth": {status: %s, files: 1}\n'
+    '  "lessons/solutions": {status: frozen, files: 1}\n'
+)
+INVENTORY_TEXT = (
+    '{"path": "src/forth/timecards.fs", "family": "src/forth"}\n'
+    '{"path": "lessons/solutions/s1.txt", "family": "lessons/solutions"}\n'
+)
+LOCALIZED_FS = ": total 40 > ; \\ comentario\n"
+
+
+class LocalizedTests(unittest.TestCase):
+    """Second lock (S2-003): scope file, map entry, localized-code.sha256."""
+
+    def setUp(self):
+        self.e = Env()
+        self.addCleanup(self.e.close)
+        shutil.copytree(HERE, os.path.join(self.e.es, "tools"),
+                        ignore=shutil.ignore_patterns("__pycache__", "test_*"))
+        write(self.e.es, lc.INVENTORY, INVENTORY_TEXT)
+        self.scope("frozen")
+        run("--write", "--root", self.e.es)
+        run("--install-hook", "--root", self.e.es)
+        git(self.e.es, "add", "-A")
+        git(self.e.es, "commit", "-q", "-m", "tooling")
+
+    def scope(self, status):
+        write(self.e.es, lc.SCOPE, SCOPE_TEXT % status)
+
+    def entry(self):
+        write(self.e.es, lc.IDMAP, '{"path": "src/forth/timecards.fs", "old": "a", "new": "b"}\n')
+
+    def edit(self, record=True):
+        write(self.e.es, "src/forth/timecards.fs", LOCALIZED_FS)
+        if record:
+            rc, out, _ = run("--write-localized", "--root", self.e.es)
+            self.assertEqual(rc, 0, out)
+        git(self.e.es, "add", "-A")
+        return git(self.e.es, "commit", "-q", "-m", "loc", check=False)
+
+    def test_unscoped_edit_is_rejected(self):          # negative: family still frozen
+        self.entry()
+        r = self.edit(record=False)
+        self.assertNotEqual(r.returncode, 0)
+        self.assertIn("CHANGED  src/forth/timecards.fs", r.stderr)
+
+    def test_unmapped_edit_is_rejected(self):          # negative: localizing but no map or PO entry
+        self.scope("localizing")
+        r = self.edit()
+        self.assertNotEqual(r.returncode, 0)
+        self.assertIn("UNMAPPED", r.stderr)
+
+    def test_unrecorded_hash_is_rejected(self):        # negative: edit not in localized-code.sha256
+        self.scope("localizing")
+        self.entry()
+        r = self.edit(record=False)
+        self.assertNotEqual(r.returncode, 0)
+        self.assertIn("UNRECORDED", r.stderr)
+
+    def test_different_edit_than_recorded_is_rejected(self):
+        self.scope("localizing")
+        self.entry()
+        write(self.e.es, "src/forth/timecards.fs", LOCALIZED_FS)
+        run("--write-localized", "--root", self.e.es)
+        write(self.e.es, "src/forth/timecards.fs", ": total 40 >= ;\n")
+        git(self.e.es, "add", "-A")
+        r = git(self.e.es, "commit", "-q", "-m", "x", check=False)
+        self.assertNotEqual(r.returncode, 0)
+        self.assertIn("UNRECORDED", r.stderr)
+
+    def test_scoped_mapped_recorded_edit_commits_and_verifies(self):
+        self.scope("localizing")
+        self.entry()
+        r = self.edit()
+        self.assertEqual(r.returncode, 0, r.stderr)
+        rc, out, _ = run("--verify", "--root", self.e.es)
+        self.assertEqual(rc, 0, out)
+
+    def test_code_po_entry_counts_as_mapped(self):
+        self.scope("localizing")
+        write(self.e.es, lc.PO_CODE + "/src/forth/timecards.fs.po",
+              'msgctxt "L1"\nmsgid "a"\nmsgstr "b"\n')
+        r = self.edit()
+        self.assertEqual(r.returncode, 0, r.stderr)
+
+    def test_verify_fails_if_localized_file_drifts_after_record(self):
+        self.scope("localizing")
+        self.entry()
+        self.edit()
+        write(self.e.es, "src/forth/timecards.fs", "drift\n")
+        rc, out, _ = run("--verify", "--root", self.e.es)
+        self.assertEqual(rc, 1)
+        self.assertIn("CHANGED  src/forth/timecards.fs", out)
+
+    def test_localized_manifest_entry_for_frozen_family_fails(self):
+        self.entry()
+        write(self.e.es, lc.LOCALIZED, "%s  lessons/solutions/s1.txt\n" % ("0" * 64))
+        rc, out, _ = run("--verify", "--root", self.e.es)
+        self.assertEqual(rc, 1)
+        self.assertIn("LOCALIZED-UNSCOPED", out)
+
+    def test_never_family_cannot_localize(self):
+        write(self.e.es, lc.SCOPE,
+              'families:\n  "src/forth": {status: localizing, files: 1, never: true}\n')
+        self.assertEqual(lc.localizing_paths(self.e.es), set())
+
+    def test_missing_scope_file_means_nothing_localizing(self):
+        os.remove(os.path.join(self.e.es, lc.SCOPE))
+        self.assertEqual(lc.localizing_paths(self.e.es), set())
+
+
 class RealRepoTests(unittest.TestCase):
     def test_real_manifest_is_wellformed_and_covers_key_files(self):
         with open(os.path.join(REAL_ROOT, lc.MANIFEST), encoding="utf-8") as fh:

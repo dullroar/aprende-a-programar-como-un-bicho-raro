@@ -248,6 +248,8 @@ def front_path():
     return os.path.join(LESSONS, cs.P("front-matter.md"))
 
 CSS = os.path.join(HERE, "book.css")
+CSS_ES = os.path.join(HERE, "book.es.css")
+CSS_ARGS = ["--css", CSS] + (["--css", CSS_ES] if repo_links.LANG != "en" else [])   # Spanish-only rules stay out of the English bytes
 
 def artifacts_dir():
     if "--artifacts-dir" in sys.argv:
@@ -450,13 +452,13 @@ def build_documents(texts, stem, metadata, front, html_name, md_stem, checking, 
             "--number-sections"]
     front = write_front(front, md_stem)
     front_option = ["--include-before-body", front]
-    outs = [("html", document, front_option + ["-s", "--embed-resources", "--css", CSS, "-o", os.path.join(OUT, html_name)])]
+    outs = [("html", document, front_option + ["-s", "--embed-resources", *CSS_ARGS, "-o", os.path.join(OUT, html_name)])]
     if not checking:
         # The EPUB gets PNGs (every e-reader draws them); the PDF and HTML get SVG, which is sharper and scales to the page.
         epub_document = prepare_document(texts, figs, "png", md_stem + "-epub", front=front)
-        outs.append(("epub", epub_document, ["--epub-title-page=false", "--css", CSS, "-o", os.path.join(artifacts_dir(), stem + ".epub")]))
+        outs.append(("epub", epub_document, ["--epub-title-page=false", *CSS_ARGS, "-o", os.path.join(artifacts_dir(), stem + ".epub")]))
         if engine:
-            outs.append(("pdf", document, front_option + ["--pdf-engine=" + engine, "--css", CSS, "--lua-filter", os.path.join(HERE, "wrap-code.lua"),
+            outs.append(("pdf", document, front_option + ["--pdf-engine=" + engine, *CSS_ARGS, "--lua-filter", os.path.join(HERE, "wrap-code.lua"),
                                      "--metadata", f"toc-title={TOC_TITLE}", "-o", os.path.join(artifacts_dir(), stem + ".pdf")]))
         else:
             print("note: weasyprint not found (uv tool install weasyprint); skipping PDF")

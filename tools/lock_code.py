@@ -11,8 +11,13 @@ Usage:
   python3 tools/lock_code.py --write           (re)write the manifest from the English clone
   python3 tools/lock_code.py --verify          working tree vs manifest, and manifest vs the
                                                English clone (when reachable); exit 1 on drift
+  python3 tools/lock_code.py --write-localized rewrite translation/localized-code.sha256 (the second
+                                               lock) from the working tree, for localizing families only
   python3 tools/lock_code.py --check-staged    pre-commit check: reject staged changes that
-                                               alter, delete or rename a frozen file
+                                               alter, delete or rename a frozen file; a file of a family
+                                               marked `localizing` in translation/localization-scope.yaml
+                                               may change only with an identifier-map or code PO entry
+                                               and only to the hash recorded in localized-code.sha256
   python3 tools/lock_code.py --install-hook    install .git/hooks/pre-commit that runs
                                                --check-staged (refuses to overwrite a foreign hook)
 
@@ -22,7 +27,9 @@ from __future__ import annotations
 
 import argparse
 import hashlib
+import json
 import os
+import re
 import subprocess
 import sys
 
@@ -31,6 +38,11 @@ import enpath  # noqa: E402
 import inventory as inv  # noqa: E402
 
 MANIFEST = "translation/locked-code.sha256"
+LOCALIZED = "translation/localized-code.sha256"
+SCOPE = "translation/localization-scope.yaml"
+INVENTORY = "translation/part2/code-inventory.jsonl"
+IDMAP = "translation/identifier-map.jsonl"
+PO_CODE = "translation/po/code"
 HOOK_MARKER = "# managed-by: tools/lock_code.py"
 HOOK_BODY = f"""#!/bin/sh
 {HOOK_MARKER}
@@ -81,6 +93,79 @@ def load_manifest(root: str) -> dict[str, str]:
     if not entries:
         raise LockError(f"{MANIFEST} is empty")
     return entries
+
+
+# ---------------------------------------------------------------- scope and localized lock
+
+def _read(root: str, rel: str) -> str | None:
+    full = os.path.join(root, rel)
+    if not os.path.isfile(full):
+        return None
+    with open(full, encoding="utf-8") as fh:
+        return fh.read()
+
+
+def localizing_paths(root: str) -> set[str]:
+    """English keys of protected files whose family is `localizing` (and not `never`) in the scope file.
+    Missing scope file or inventory means nothing is localizing (fail closed)."""
+    scope_text, inv_text = _read(root, SCOPE), _read(root, INVENTORY)
+    if scope_text is None or inv_text is None:
+        return set()
+    fams = set()
+    row = re.compile(r'^\s+"([^"]+)":\s*\{(.*)\}\s*$')
+    for line in scope_text.splitlines():
+        m = row.match(line)
+        if m and re.search(r"status:\s*localizing\b", m.group(2)) and "never: true" not in m.group(2):
+            fams.add(m.group(1))
+    out = set()
+    for line in inv_text.splitlines():
+        if line.strip():
+            rec = json.loads(line)
+            if rec.get("family") in fams and "path" in rec:
+                out.add(rec["path"])
+    return out
+
+
+def load_localized(root: str, text: str | None = None) -> dict[str, str]:
+    """The second lock: localized-code.sha256 (empty when absent or empty)."""
+    if text is None:
+        text = _read(root, LOCALIZED)
+    return parse_manifest(text) if text else {}
+
+
+def localized_problems(root: str, entries: dict[str, str], localized: dict[str, str]) -> list[str]:
+    ok = localizing_paths(root)
+    out = []
+    for path in sorted(localized):
+        if path not in entries:
+            out.append(f"LOCALIZED-UNKNOWN  {path} (not a locked file)")
+        elif path not in ok:
+            out.append(f"LOCALIZED-UNSCOPED  {path} (family is not localizing)")
+    return out
+
+
+def effective_entries(root: str, entries: dict[str, str]) -> dict[str, str]:
+    """English hashes, overridden by the localized source of record for localizing families (I13, I27, I32)."""
+    ok = localizing_paths(root)
+    eff = dict(entries)
+    for path, h in load_localized(root).items():
+        if path in ok and path in eff:
+            eff[path] = h
+    return eff
+
+
+def has_loc_entry(root: str, path: str) -> bool:
+    """A map record for the path, or a non-empty code-comment PO file for it."""
+    text = _read(root, IDMAP) or ""
+    for line in text.splitlines():
+        if line.strip():
+            try:
+                if json.loads(line).get("path") == path:
+                    return True
+            except ValueError:
+                pass
+    po = _read(root, os.path.join(PO_CODE, path + ".po"))
+    return bool(po and "msgid" in po)
 
 
 # ---------------------------------------------------------------- English clone
@@ -165,6 +250,7 @@ def tree_problems(root: str, entries: dict[str, str]) -> list[str]:
     """Working tree against the manifest. Manifest keys are ENGLISH paths; the content is read where the file lives
     (its Spanish name once the rename is applied)."""
     problems, suspects = [], {}
+    entries = effective_entries(root, entries)
     layer = enpath.load(root)
     for path, want in sorted(entries.items()):
         full = layer.full(path)
@@ -200,6 +286,7 @@ def cmd_verify(root: str) -> int:
     cfg = inv.read_config(root)
     entries = load_manifest(root)
     problems = tree_problems(root, entries)
+    problems += localized_problems(root, entries, load_localized(root))
     try:
         problems += clone_problems(cfg, entries)
         clone_note = "and English clone agree"
@@ -222,8 +309,38 @@ def git_bytes(root: str, *args: str) -> bytes:
     return r.stdout
 
 
+def cmd_write_localized(root: str) -> int:
+    entries = load_manifest(root)
+    layer = enpath.load(root)
+    out = {}
+    for path in sorted(localizing_paths(root) & set(entries)):
+        full = layer.full(path)
+        if not os.path.isfile(full):
+            raise LockError(f"localizing file is missing: {path}")
+        with open(full, "rb") as fh:
+            h = sha256_bytes(fh.read())
+        if h != entries[path]:
+            out[path] = h
+    with open(os.path.join(root, LOCALIZED), "w", encoding="utf-8", newline="\n") as fh:
+        fh.write(format_manifest(out))
+    print(f"wrote {LOCALIZED}: {len(out)} localized files")
+    return 0
+
+
 def staged_violations(root: str, entries: dict[str, str]) -> list[str]:
-    """Frozen paths that the index would commit in a changed or deleted state."""
+    """Frozen paths that the index would commit in a changed or deleted state.
+
+    A changed file is tolerated only if its family is localizing, it has a map or code-PO entry,
+    and its new hash is the one recorded in the (staged) localized-code.sha256."""
+    try:
+        staged_loc = git_bytes(root, "show", f":{LOCALIZED}").decode("utf-8")
+    except LockError:
+        staged_loc = _read(root, LOCALIZED)
+    try:
+        localized = load_localized(root, staged_loc)
+    except LockError:
+        localized = {}
+    ok = localizing_paths(root)
     raw = git_bytes(root, "diff", "--cached", "--name-status", "-z", "--no-renames")
     parts = [p for p in raw.decode("utf-8").split("\0") if p]
     bad = []
@@ -238,8 +355,15 @@ def staged_violations(root: str, entries: dict[str, str]) -> list[str]:
             bad.append(f"DELETED  {key}")
             continue
         got = sha256_bytes(git_bytes(root, "show", f":{path}"))
-        if got != entries[key]:
-            bad.append(f"CHANGED  {key}")
+        if got == entries[key]:
+            continue
+        if key not in ok:
+            bad.append(f"CHANGED  {key}")        # family not localizing: plain frozen violation
+        elif not has_loc_entry(root, key):
+            bad.append(f"CHANGED  {key} (UNMAPPED: no identifier-map or code PO entry)")
+        elif localized.get(key) != got:
+            bad.append(f"CHANGED  {key} (UNRECORDED: hash is not the one in {LOCALIZED})")
+    bad += localized_problems(root, entries, localized)
     return bad
 
 
@@ -277,6 +401,7 @@ def main(argv: list[str] | None = None) -> int:
     g.add_argument("--write", action="store_true")
     g.add_argument("--verify", action="store_true")
     g.add_argument("--check-staged", action="store_true")
+    g.add_argument("--write-localized", action="store_true")
     g.add_argument("--install-hook", action="store_true")
     ap.add_argument("--root", default=None, help="repo root (default: parent of tools/)")
     a = ap.parse_args(argv)
@@ -286,6 +411,8 @@ def main(argv: list[str] | None = None) -> int:
             return cmd_write(root)
         if a.verify:
             return cmd_verify(root)
+        if a.write_localized:
+            return cmd_write_localized(root)
         if a.check_staged:
             return cmd_check_staged(root)
         return cmd_install_hook(root)
