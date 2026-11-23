@@ -25,3 +25,11 @@ msgstr "# 2. Ejecútalo muchas veces; cada ejecución debe imprimir un conjunto 
 msgctxt "L52"
 msgid "# 3. The demo_only CHECK constraint is real: a non-demo row must be refused."
 msgstr "# 3. La restricción CHECK de demo_only es real: una fila que no sea de demostración debe ser rechazada."
+
+msgctxt "C22"
+msgid "cats=(Meetings Coding Debugging Learning)"
+msgstr "cats=(Reuniones Programación Depuración Aprendizaje)"
+
+msgctxt "C32"
+msgid "    mapfile -t rows < <(grep -E '^(Meetings|Coding|Debugging|Learning)\t' <<<\"$out\" || true)"
+msgstr "    mapfile -t rows < <(grep -E '^(Reuniones|Programación|Depuración|Aprendizaje)\t' <<<\"$out\" || true)"

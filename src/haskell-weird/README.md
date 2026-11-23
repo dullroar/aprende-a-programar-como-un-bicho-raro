@@ -36,10 +36,10 @@ Los registros se escriben en `$XDG_DATA_HOME/HaskellWeird/demo-timecards.db` (va
 
 ```text
 # DEMO ONLY run 1794674995-36735
-Meetings	10	10	2026-W46	DEMO ONLY
-Coding	11	21	2026-W46	DEMO ONLY
-Debugging	13	34	2026-W46	DEMO ONLY
-Learning	10	44	2026-W46	DEMO ONLY
+Reuniones	10	10	2026-W46	DEMO ONLY
+Programación	11	21	2026-W46	DEMO ONLY
+Depuración	13	34	2026-W46	DEMO ONLY
+Aprendizaje	10	44	2026-W46	DEMO ONLY
 # committed total=44 entries=4 DEMO ONLY
 # the list of cards is a fixed point of itself, and reading it is what wrote the rows
 ```
@@ -105,7 +105,7 @@ lazily = fix $ \self actions -> unsafeInterleaveIO $ case actions of ...
 
 ## Trampas que conviene conocer
 
-- **La evaluación perezosa muerde dos veces.** El primer borrador contaba las tarjetas con `let entries = length cards` y el programa imprimió `# committed total=Meetings 12 12 …` y luego falló con "handle is closed". Un enlace `let` es perezoso en sí mismo. Por eso nada exigió las tarjetas hasta que se imprimió la línea de resumen. Eso ocurrió después de `COMMIT` y después de que se cerró la tubería. Los efectos de las tarjetas se dispararon *durante* la salida de `show`. La solución es `entries <- evaluate (length cards)`, que fuerza el conteo *antes* de confirmar. Con E/S perezosa, "¿cuándo se exige?" forma parte del significado de tu programa.
+- **La evaluación perezosa muerde dos veces.** El primer borrador contaba las tarjetas con `let entries = length cards` y el programa imprimió `# committed total=Reuniones 12 12 …` y luego falló con "handle is closed". Un enlace `let` es perezoso en sí mismo. Por eso nada exigió las tarjetas hasta que se imprimió la línea de resumen. Eso ocurrió después de `COMMIT` y después de que se cerró la tubería. Los efectos de las tarjetas se dispararon *durante* la salida de `show`. La solución es `entries <- evaluate (length cards)`, que fuerza el conteo *antes* de confirmar. Con E/S perezosa, "¿cuándo se exige?" forma parte del significado de tu programa.
 - **Por qué es `unsafe`.** El evaluador decide el orden de los efectos, no el texto del programa. Aquí el orden es seguro porque no se puede forzar la tarjeta n antes que la tarjeta n-1 (su total depende de ella).
 - **`lazily` debe posponer su propia coincidencia de patrones.** `case` está *dentro de* `unsafeInterleaveIO`. Si la coincidencia de patrones sobre la lista de acciones se hiciera cuando se llamara a `lazily`, forzar esa lista necesitaría `before`, que necesita `cards`, que todavía no existe: `<<loop>>`.
 - **`take 1 over` dispara un efecto más.** El programa tiene que leer la tarjeta que cruza para ver que cruza, así que escribe su fila. Por eso el programa conserva la tarjeta en lugar de descartarla.

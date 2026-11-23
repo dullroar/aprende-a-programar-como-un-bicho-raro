@@ -37,7 +37,7 @@ import System.IO.Unsafe (unsafeInterleaveIO)
 import System.Posix.Process (getProcessID)
 import System.Process (CreateProcess (std_in), StdStream (CreatePipe), createProcess, proc, waitForProcess)
 
-data Category = Meetings | Coding | Debugging | Learning
+data Category = Reuniones | Programación | Depuración | Aprendizaje
   deriving (Show, Enum, Bounded)
 
 data Card = Card

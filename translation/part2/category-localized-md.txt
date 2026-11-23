@@ -14,3 +14,4 @@ src/find-gnu/README.md
 src/find-posix/README.md
 src/forth-weird/README.md
 src/haskell/README.md
+src/haskell-weird/README.md

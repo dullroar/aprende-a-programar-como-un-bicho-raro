@@ -9,3 +9,4 @@ src/awk-weird/README.md
 src/cmake/README.md
 src/cobol-weird/README.md
 src/haskell/README.md
+src/haskell-weird/README.md

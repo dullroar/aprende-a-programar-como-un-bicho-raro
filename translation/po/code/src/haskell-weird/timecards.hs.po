@@ -137,3 +137,7 @@ msgstr "-- (Prueba aquí un `let entries = length cards` perezoso: el conteo no 
 msgctxt "L143"
 msgid "-- the summary is printed, after COMMIT, and the pipe is already closed.)"
 msgstr "-- que se imprime el resumen, después de COMMIT, y la tubería ya está cerrada.)"
+
+msgctxt "C40"
+msgid "data Category = Meetings | Coding | Debugging | Learning"
+msgstr "data Category = Reuniones | Programación | Depuración | Aprendizaje"
