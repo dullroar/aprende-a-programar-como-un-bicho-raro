@@ -1,9 +1,9 @@
 # loop/STATE.md (keep to 60 lines; refreshed by every iteration)
 
 - **Edition:** v4-es.0-rc1 (working)    **English SHA:** 48a4429c0a22b2aac628b256a50c07d1816bcb80
-- **Iteration:** 392    **Stage:** 6    **Last result:** P6-003 done (release report written; verify --release exit 0).
-- **Tasks:** todo 50 | doing 0 | done 164 | blocked 1 | skipped 0 (recount with the queue files)
-- **Next task:** P6-004 (tag local rc).
+- **Iteration:** 393    **Stage:** 6    **Last result:** P6-004 done (local tag v4-es.0-rc1 at a901b72; not pushed).
+- **Tasks:** todo 49 | doing 0 | done 165 | blocked 1 | skipped 0 (recount with the queue files)
+- **Next task:** S0-001 (Part II baseline; deps met).
 - **Budget:** driver-reported $112.6405 of $150 through iteration 274, with Codex session cost unavailable
 - **Translate progress:** at least 7751 / total 8827 segments accepted; at least 196 / 212 files done. P4-lessons-languages-5 complete. Counts based on the previous snapshot plus this task.
 - **Last audit:** P4-audit-9 (iter 361, translation/reviews/p4-audit-9.md)    **Next audit due:** the next P4-audit task in the queue
