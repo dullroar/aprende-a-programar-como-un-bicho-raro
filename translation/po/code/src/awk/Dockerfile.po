@@ -1,0 +1,15 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+
+msgctxt "L1"
+msgid "# Container image for the AWK entry. Run it with: sandbox/container/run-image.sh src/awk"
+msgstr "# Imagen de contenedor para la entrada AWK. Ejecútala con: sandbox/container/run-image.sh src/awk"
+
+msgctxt "L2"
+msgid "# Nothing to build: awk interprets the script. The runtime base has gawk, the system mawk and sqlite3;"
+msgstr "# Nada que compilar: awk interpreta el script. La base de ejecución tiene gawk, el mawk del sistema y sqlite3;"
+
+msgctxt "L3"
+msgid "# the entry is portable, so it runs here under mawk (the weird one needs gawk). No compiler or package manager."
+msgstr "# la entrada es portátil, así que aquí corre con mawk (la rara necesita gawk). Sin compilador ni gestor de paquetes."

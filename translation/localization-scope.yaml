@@ -39,7 +39,7 @@ families:
   "src/RustChallenge1": {status: frozen, files: 6}
   "src/apl": {status: frozen, files: 3}
   "src/apl-weird": {status: frozen, files: 3}
-  "src/awk": {status: frozen, files: 3}
+  "src/awk": {status: localizing, files: 3}
   "src/awk-weird": {status: frozen, files: 3}
   "src/cmake": {status: frozen, files: 3}
   "src/cobol": {status: localizing, files: 4}

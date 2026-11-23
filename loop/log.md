@@ -383,3 +383,4 @@
 432 S5-audit-1 done audit of 8 S5 families: lock ok, oracle PASS cobol/forth, 6 left English with EXC-544..549; no violations; translation/reviews/S5-audit-1.md
 431 S5-fam-xaml done family left English, NOT TESTED (EXC-549): WPF/XAML entry has no entry image, oracle cannot run it; no protected file changed.
 428 S5-fam-linqchallenge1 done family left English, NOT TESTED (EXC-546): WPF/EF Core entry has no entry image, oracle cannot run it; no protected file changed.
+433 S5-fam-awk done src/awk localizing: 30 comment lines (awk, check.sh, Dockerfile) via loc_apply, oracle PASS; categories/strings kept English EXC-550.

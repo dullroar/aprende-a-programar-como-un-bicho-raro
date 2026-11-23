@@ -1,0 +1,79 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+
+msgctxt "L2"
+msgid "# DEMO ONLY. Fictional timecards, written to a scratch SQLite file under"
+msgstr "# DEMO ONLY. Tarjetas de horas ficticias, escritas en un archivo SQLite temporal bajo"
+
+msgctxt "L3"
+msgid "# XDG_DATA_HOME. Nothing here touches a real time-reporting system."
+msgstr "# XDG_DATA_HOME. Nada de esto toca un sistema real de registro de horas."
+
+msgctxt "L7"
+msgid "# The challenge: add cards of 10-19 hours (Meetings, Coding, Debugging,"
+msgstr "# El desafío: suma tarjetas de 10 a 19 horas (Meetings, Coding, Debugging,"
+
+msgctxt "L8"
+msgid "# Learning, round and round) until the running total passes 40.  Portable"
+msgstr "# Learning, una tras otra) hasta que el total acumulado pase de 40.  awk POSIX"
+
+msgctxt "L9"
+msgid "# POSIX awk: it runs unchanged under gawk, mawk, the one-true-awk and"
+msgstr "# portátil: corre sin cambios con gawk, mawk, el one-true-awk y el"
+
+msgctxt "L10"
+msgid "# busybox awk.  There is no input file, so the whole program is the BEGIN"
+msgstr "# awk de busybox.  No hay archivo de entrada, así que todo el programa es la"
+
+msgctxt "L11"
+msgid "# rule; the weird version (../awk-weird) lets awk's main loop do the work."
+msgstr "# regla BEGIN; la versión rara (../awk-weird) deja que el bucle principal de awk haga el trabajo."
+
+msgctxt "L13"
+msgid "# The text of a command's first output line."
+msgstr "# El texto de la primera línea de salida de un comando."
+
+msgctxt "L21"
+msgid "# TEXT as one shell word.  split() on the quote avoids awk's replacement-string"
+msgstr "# TEXT como una sola palabra de shell.  split() sobre la comilla evita las reglas de"
+
+msgctxt "L22"
+msgid "# escape rules, which differ between implementations."
+msgstr "# escape de la cadena de reemplazo de awk, que difieren entre implementaciones."
+
+msgctxt "L31"
+msgid "# TEXT as an SQL string literal: doubling the quotes is the whole rule."
+msgstr "# TEXT como literal de cadena SQL: duplicar las comillas es toda la regla."
+
+msgctxt "L37"
+msgid "# 10..19.  rand() is in [0,1), so int() of it times 10 is 0..9."
+msgstr "# 10..19.  rand() está en [0,1), así que int() de eso por 10 da 0..9."
+
+msgctxt "L42"
+msgid "# One tab-separated row.  Assigning to a field rebuilds $0 joined with OFS,"
+msgstr "# Una fila separada por tabuladores.  Asignar a un campo reconstruye $0 unido con OFS,"
+
+msgctxt "L43"
+msgid "# so print with no arguments prints the finished record."
+msgstr "# así que print sin argumentos imprime el registro terminado."
+
+msgctxt "L69"
+msgid "# A seed from the OS, and a run id made from the clock and the seed."
+msgstr "# Una semilla del sistema operativo, y un id de ejecución hecho con el reloj y la semilla."
+
+msgctxt "L75"
+msgid "# Where the scratch database lives."
+msgstr "# Dónde vive la base de datos temporal."
+
+msgctxt "L83"
+msgid "# The DEMO ONLY rule lives in the table: CHECK(demo_only=1)."
+msgstr "# La regla DEMO ONLY vive en la tabla: CHECK(demo_only=1)."
+
+msgctxt "L91"
+msgid "# The challenge.  The test is made before each draw, so the card that"
+msgstr "# El desafío.  La prueba se hace antes de cada sorteo, así que la tarjeta que"
+
+msgctxt "L92"
+msgid "# crosses the line is the last one added."
+msgstr "# cruza la línea es la última que se suma."

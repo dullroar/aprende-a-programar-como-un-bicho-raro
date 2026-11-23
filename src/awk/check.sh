@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
-# Checks the rules of the challenge for the AWK entry. Uses a throwaway data dir.
-# The program is portable awk, so with no AWK set this runs the whole check once under every awk it
-# can find (gawk, mawk, original-awk = the one-true-awk, busybox awk). Choose your own with
-#   AWKS='gawk|mawk' ./check.sh        (names separated by |)    or    AWK=gawk ./check.sh
+# Revisa las reglas del desafío para la entrada AWK. Usa una carpeta de datos desechable.
+# El programa es awk portátil, así que sin AWK definido esto corre la revisión completa una vez con cada awk que
+# encuentre (gawk, mawk, original-awk = el one-true-awk, awk de busybox). Elige el tuyo con
+#   AWKS='gawk|mawk' ./check.sh        (nombres separados por |)    o    AWK=gawk ./check.sh
 set -euo pipefail
 self=$(cd "$(dirname "$0")" && pwd)/$(basename "$0")
 cd "$(dirname "$0")"
@@ -27,18 +27,18 @@ export XDG_DATA_HOME=$data
 db=$data/Awk/demo-timecards.db
 run() { $AWK -f timecards.awk; }
 
-# 1. Static: the disclaimer is there, nothing touches a network, and the challenge is one while loop on the limit.
+# 1. Estático: el aviso está ahí, nada toca una red, y el desafío es un solo bucle while sobre el límite.
 grep -q 'DEMO ONLY' timecards.awk || { echo "FAIL: no DEMO ONLY marker in timecards.awk"; exit 1; }
 if grep -Eqi 'http|socket|curl|wget|/inet/' timecards.awk; then echo "FAIL: network-looking text in timecards.awk"; exit 1; fi
 grep -q 'while (total <= LIMIT) {' timecards.awk || { echo "FAIL: no while loop on the limit"; exit 1; }
-# gawk's own linter, in POSIX mode: no gawk extensions, no shadowed or uninitialized variables.
+# El linter propio de gawk, en modo POSIX: sin extensiones de gawk, sin variables ocultas ni sin inicializar.
 if command -v gawk >/dev/null; then
     lint=$(gawk --lint --posix -f timecards.awk 2>&1 >/dev/null || true)
     [[ -z $lint ]] || { echo "FAIL: gawk --lint --posix has complaints:"; echo "$lint"; exit 1; }
     rm -rf "$data/Awk"
 fi
 
-# 2. Run it a bunch of times; every run must print a sane record set, and the SQLite rows must agree with it.
+# 2. Córrelo varias veces; cada ejecución debe imprimir un conjunto de registros sensato, y las filas de SQLite deben coincidir.
 cats=(Meetings Coding Debugging Learning)
 for i in $(seq 1 25); do
     out=$(run)
@@ -70,7 +70,7 @@ done
 [[ $(sqlite3 "$db" 'select count(distinct run_id) from demo_timecards') -eq 25 ]] || { echo "FAIL: expected 25 distinct runs in the db"; exit 1; }
 [[ $(sqlite3 "$db" 'select count(distinct hours) from demo_timecards') -ge 6 ]] || { echo "FAIL: hours do not look random"; exit 1; }
 
-# 3. The demo_only CHECK constraint is real: a non-demo row must be refused.
+# 3. La restricción CHECK de demo_only es real: una fila que no sea de demo debe ser rechazada.
 if sqlite3 "$db" "insert into demo_timecards(run_id,category,hours,running_total,demo_only) values('x','x',1,1,0)" 2>/dev/null; then
     echo "FAIL: db accepted a non-demo row"; exit 1
 fi
