@@ -26,6 +26,7 @@ REQUIRED_LABELS = {
     "accidentally-exploited": "aprovechado por accidente",
 }
 REQUIRED_CATEGORIES = ["Meetings", "Coding", "Debugging", "Learning"]
+REQUIRED_CATEGORIES_ES = ["Reuniones", "Programación", "Depuración", "Aprendizaje"]   # decision 11
 FROZEN_STOP = "pasa de 40"
 FROZEN_EXACT = "un total de exactamente 40 continúa"
 
@@ -93,8 +94,8 @@ def check(data):
     for banned in rule.get("banned", []):
         if banned in es_text:
             problems.append(f"frozen.timecard_rule.es contains banned phrase '{banned}'")
-    for cat in REQUIRED_CATEGORIES:
-        if f"`{cat}`" not in es_text:
+    for cat, cat_es in zip(REQUIRED_CATEGORIES, REQUIRED_CATEGORIES_ES):
+        if f"`{cat}`" not in es_text and f"`{cat_es}`" not in es_text:
             problems.append(f"frozen.timecard_rule.es: category `{cat}` must appear in code font")
 
     labels = {l.get("enum"): l for l in frozen.get("assurance_labels", {}).get("labels", []) if isinstance(l, dict)}
@@ -106,6 +107,9 @@ def check(data):
     cats = frozen.get("card_categories", {}).get("values")
     if cats != REQUIRED_CATEGORIES:
         problems.append(f"frozen.card_categories.values must be {REQUIRED_CATEGORIES}")
+    es_cats = frozen.get("card_categories", {}).get("es_values")
+    if es_cats != REQUIRED_CATEGORIES_ES:
+        problems.append(f"frozen.card_categories.es_values must be {REQUIRED_CATEGORIES_ES} (decision 11)")
 
     phases = data.get("phases")
     if not isinstance(phases, list) or [p.get("n") for p in phases if isinstance(p, dict)] != [1, 2, 3, 4, 5]:

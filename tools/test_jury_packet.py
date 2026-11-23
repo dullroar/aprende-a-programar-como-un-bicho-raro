@@ -165,7 +165,8 @@ class MutatorTests(unittest.TestCase):
 
     def test_identifier_and_register(self):
         out = self.apply(jp.m_identifier, "Usa `Meetings` aquí.")
-        self.assertIn("`Reuniones`", out[0])
+        self.assertIn("`Reunión`", out[0])                                        # decision 11: an unapproved spelling is the fault
+        self.assertNotIn("`Reuniones`", out[0])
         self.assertIsNone(self.apply(jp.m_identifier, "Usa Meetings aquí."))        # not code: nothing to break
         out = self.apply(jp.m_register, "Ejecuta el programa.")
         self.assertEqual(out[0], "Ejecute el programa.")

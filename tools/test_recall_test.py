@@ -67,7 +67,7 @@ class Span(unittest.TestCase):
 class Mutators(unittest.TestCase):
     def test_category_in_span(self):
         r = rt.m_category_in_span(CAT_U, CTX)
-        self.assertIn("`Reuniones 15 15`", r[0])
+        self.assertIn("`Reunión 15 15`", r[0])      # decision 11: the fault is an unapproved word
         self.assertEqual(r[2:], ("dnt-violation", "major"))
 
     def test_category_declines_outside_code(self):

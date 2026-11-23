@@ -65,9 +65,13 @@ frozen:
       - {enum: accidentally-exploited, es: aprovechado por accidente,      banned: ["explotado accidentalmente", "aprovechado sin garantía", "explotado por accidente"]}
   card_categories:
     note: >-
-      Data, not words. Always in code font on every use. Gloss once per chapter on first use:
-      `Meetings` (reuniones), `Coding` (programación), `Debugging` (depuración), `Learning` (aprendizaje).
+      Decision 11: localized per family. Always in code font on every use, one form per file. While a family's code
+      still prints the English words the prose keeps `Meetings`, `Coding`, `Debugging`, `Learning`; once the family is
+      localized (Part II, through tools/loc_apply.py with oracle proof) code and prose use the Spanish words below.
+      Gloss once per chapter on first use of the English word: `Meetings` (reuniones), `Coding` (programación),
+      `Debugging` (depuración), `Learning` (aprendizaje).
     values: [Meetings, Coding, Debugging, Learning]
+    es_values: [Reuniones, Programación, Depuración, Aprendizaje]
     glosses: {Meetings: reuniones, Coding: programación, Debugging: depuración, Learning: aprendizaje}
   weird_idiomatic_enums:
     note: "Enum values `weird` and `idiomatic` stay in English; prose uses the terms below."
@@ -914,7 +918,7 @@ terms:
     en: debugging
     es: depuración
     banned: [debugueo]
-    note: "Decision C: 'Depuración' as a table dimension or heading. The four card category strings stay `Debugging`, `Meetings`, `Coding`, `Learning` wherever they designate values."
+    note: "Decision C: 'Depuración' as a table dimension or heading. The four card category values are `Debugging`, `Meetings`, `Coding`, `Learning` in a frozen family and `Depuración`, `Reuniones`, `Programación`, `Aprendizaje` in a localized one (decision 11)."
   - id: statement
     en: statement
     es: sentencia

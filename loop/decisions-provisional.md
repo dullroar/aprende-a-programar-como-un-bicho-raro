@@ -161,3 +161,8 @@
 - Why: the fixes touch about 13 places and cannot share one iteration with building the planner.
 - Alternatives: fix everything inside S4-006 (too large for one iteration); ship S5 tasks without the prerequisite (the rules would contradict the work).
 - Cost to reverse: low; delete s4-007.jsonl and the s5-*.jsonl files and re-run the planner.
+
+## S4-007 (iter 423): applying decision 11 to rules, tools and prose
+- Decision: the Spanish category words are `Reuniones`, `Programación`, `Depuración`, `Aprendizaje` (the S4-006 candidates). `tools/categories.py` holds the pair; a file may use the English words (its family's code still prints them) or the Spanish words (family localized), never both, and no other spelling (I13, code font only, so the heading "Depuración" is not checked). Existing Spanish prose and `dnt.txt` stay English until the family's own S5 task changes code and prose together; changing prose now would contradict the frozen code it describes.
+- Alternatives: switch all prose to the Spanish words now (rejected: prose would not match what frozen programs print); add the Spanish words to dnt.txt (rejected: derived from frozen sources).
+- Cost to reverse: low (tools/categories.py, glossary es_values, the row 11 fixtures).

@@ -205,8 +205,9 @@ def m_phase_letter(u, ctx):
 
 
 def m_identifier(u, ctx):
-    """Translate a protected card category inside its code span."""
-    words = {"Meetings": "Reuniones", "Coding": "Programación", "Debugging": "Depuración", "Learning": "Aprendizaje"}
+    """Decision 11: the card categories are localized, so the seeded fault is an unapproved word (a singular, a missing accent)."""
+    words = {"Meetings": "Reunión", "Coding": "Programacion", "Debugging": "Depuracion", "Learning": "Aprendizage",
+             "Reuniones": "Reunión", "Programación": "Programacion", "Depuración": "Depuracion", "Aprendizaje": "Aprendizage"}
     for old, new in words.items():
         tok = "`%s`" % old
         i = u["spanish"].find(tok)
@@ -350,7 +351,7 @@ def edition_facts(cat, gl, config=None):
         lines.append("- *%s* = %s" % (c.get("study_guides.assurance.%s" % k), en))
     lines += ["", "## Left in English on purpose (not defects)", "",
               "- All code, terminal output, SQL, identifiers, paths, URLs, `#Lnn` anchors, YAML keys and enum values.",
-              "- The four card categories, always as code: " + ", ".join("`%s`" % x for x in cards) + ".",
+              "- The four card categories, always as code, in one form per file: the English words " + ", ".join("`%s`" % x for x in cards) + " where the code still prints them, or the glossary words `Reuniones`, `Programación`, `Depuración`, `Aprendizaje` where the code was localized (decision 11). A mix or any other spelling is a defect.",
               "- Mermaid syntax and node IDs; only the labels and `accTitle` / `accDescr` are Spanish.",
               "- The English MIT `LICENSE`.", ""]
     if config and config.get("edition_label"):

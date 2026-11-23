@@ -78,7 +78,7 @@ REQUIRED = {
         ("autolink", matches(r"<https?://[^>]+>")),
         ("entry macro", contains("[[entry:m4]]", "[[call-stack]]")),
         ("phase macro", contains("{{phase.1.letter}}", "{{phase.1.name}}")),
-        ("card categories", contains("Meetings", "Coding", "Debugging", "Learning")),
+        ("card categories", contains("Meetings", "Coding", "Debugging", "Learning")),   # the English fixture; the Spanish side may use categories.ES
         ("timecard rule", contains("strictly greater than 40", "exactly 40 continues")),
         ("output fence", has_fence("text")),
         ("code fence", has_fence("python")),

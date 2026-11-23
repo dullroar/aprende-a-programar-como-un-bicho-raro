@@ -543,6 +543,19 @@ class TestI13(Base):
         """The frozen Spanish wording writes the card categories as code; the English writes them bare."""
         self.assertEqual([], self.file_findings("# T\n\nLas categorías son `Meetings` y `Coding`, luego `make all`.\n"))
 
+    def test_the_mapped_spanish_category_words_are_allowed_when_used_alone(self):
+        """Decision 11: a localized family writes `Reuniones` and `Programación`; the spans are not extra code."""
+        self.assertEqual([], self.file_findings("# T\n\nLas categorías son `Reuniones` y `Programación`, luego `make all`.\n"))
+
+    def test_fail_mixed_english_and_spanish_category_words(self):
+        self.assertFires(self.file_findings("# T\n\nLas categorías son `Meetings` y `Programación`, luego `make all`.\n"), "I13")
+
+    def test_fail_unapproved_category_spelling(self):
+        self.assertFires(self.file_findings("# T\n\nLas categorías son `Reunión` y `Coding`, luego `make all`.\n"), "I13")
+
+    def test_spanish_words_as_ordinary_prose_are_not_category_data(self):
+        self.assertEqual([], self.file_findings("# Depuración\n\nLas categorías son `Meetings` y `Coding`; el aprendizaje y la Depuración importan, luego `make all`.\n"))
+
     def test_fail_backticks_around_a_word_that_is_not_dnt(self):
         self.assertFires(self.file_findings("# T\n\nLas categorías son Meetings y Coding, luego `make all` y `bucle`.\n"), "I13")
 

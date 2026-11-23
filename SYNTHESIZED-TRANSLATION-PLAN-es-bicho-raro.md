@@ -64,7 +64,7 @@ Labels used throughout: **[fact]** measured in the repo or by a spike, as report
 | Adversarial AIs | In-loop review is deterministic checks, audits and optional cross-vendor review. **Independence is carried by the manual Jury** with a polished master prompt (kit file) | Your plan: heavy lifting first, then your hand-off to uninvolved AIs, then incorporation |
 | Updates | Manual, pinned-SHA, delta cookbook; no auto-sync | Your requirement; ChatGPT's and Claude's cookbooks merged |
 | Code localization (Part II) | A second, separate pass after the rc1 baseline. Comments, project-owned identifiers and non-contract display strings only. **No proof, no change:** a family whose programs cannot be run here stays English and is listed as `NOT TESTED` | Jim's request (2026-11-21). A rename that compiles is not a rename that behaves; the oracle (§4.5.4) is the proof |
-| The four card categories in program output | **Stay English by default** (they are data and appear about 705 times in prose, output and fixtures). Part II's pilot measures the cost; Jim decides at checkpoint `S4-chk-1` (§16, decision 11) | Reversing after 40 entries are localized is expensive; deciding after a three-family pilot is cheap |
+| The four card categories in program output | **Stay English by default** (they are data and appear about 705 times in prose, output and fixtures). Part II's pilot measured the cost; **Jim decided at `S4-chk-1` (decision 11): localize them per family, with oracle proof** | Reversing after 40 entries are localized is expensive; deciding after a three-family pilot is cheap |
 | Part II reviewers | In-loop: deterministic gates plus fresh-context review under the exact-span rule. Independence: Jury lenses L11 to L13 (§9.6) | Same economics as Part I (§9.1) |
 | Part II registries | Extend `glossary.es.yaml`, `identifiers.yaml`, `dnt.txt` and the PO files; add only `identifier-map.jsonl`, `protected-tokens/`, `localization-scope.yaml`, code-comment PO files and a second hash lock | Two stores for one decision drift apart |
 
@@ -200,7 +200,7 @@ Title alternatives if native speakers dislike the lead: *Aprende a programar a l
 1. Every non-Markdown file under `src/**` is byte-identical to the pinned English SHA: identifiers, string literals, comments, filenames, line endings, seed values. Treat any unfamiliar extension as executable.
 2. `lessons/solutions/**` and fixtures are also frozen. A file that is both prose and executable stays frozen unless a maintainer-reviewed allowlist says otherwise.
 3. **No fenced code, terminal transcript, output sample, SQL text, `DEMO ONLY` marker or `#Lnn` anchor is translated.** Prose around them is Spanish.
-4. **The four card categories (`Meetings`, `Coding`, `Debugging`, `Learning`) are data, not words.** They occur about 705 times. Keep them as code on every use: `` `Meetings` ``, with the Spanish gloss (*reuniones*) on first use per chapter. The reader must be able to match prose to what the program prints. **[Claude's D8, adopted]**
+4. **The four card categories (`Meetings`, `Coding`, `Debugging`, `Learning`) are data, not words (revised by decision 11: localized per family once the code prints the Spanish words; English until then).** They occur about 705 times. Keep them as code on every use: `` `Meetings` ``, with the Spanish gloss (*reuniones*) on first use per chapter. The reader must be able to match prose to what the program prints. **[Claude's D8, adopted]**
 5. A sentence that seems to need a program change gets a better sentence or an extra Spanish explanation, never a code edit.
 6. Source defects discovered during translation go to a **source-issue log** and are reported upstream. Never "fix" the English claim or code from the Spanish side.
 
@@ -259,7 +259,7 @@ Part II exists because the first pass deliberately left every program in English
 | Project-owned identifier | a local variable, function or type that the challenge itself defines (`total`, `cards`, `hours`) | **Candidate** for a Spanish rename, by scope, with a map entry |
 | Comment | explanatory text in code | **Translate** (line-preserving; §4.5.3). Code samples inside comments stay valid and protected |
 | Display string | a status line, a label, an explanatory message the program prints | Translate **only if** no format, parser, fixture, column width or lesson depends on the English bytes. Otherwise keep and record the reason |
-| Data and category names | `Meetings`, `Coding`, `Debugging`, `Learning` and any fixture value | **Stay English by default** (decision 11, §16) |
+| Data and category names | `Meetings`, `Coding`, `Debugging`, `Learning` and any fixture value | **Revised by decision 11:** localized per family with oracle proof; English until then (§16) |
 | Opaque fixture or adversarial payload | regex targets, encodings, Unicode tricks, golden data, hostile-looking examples | **Never changed** unless an analysis proves the bytes are not the lesson, and then only with a replacement that exercises the same failure mode, tested under the right engine |
 | Anything else, or no safe proof | | Stays English; record why in the exception register |
 
@@ -504,7 +504,7 @@ ETS is a **project house profile**. It borrows the discipline of ASD-STE100 (sho
 10. **Typography:** `¿?` and `¡!` paired; NFC normalization in prose only (never in code); straight quotes; sentence-case headings; exercise IDs and `#Lnn` unchanged.
 11. **Tone:** keep the original's mischief. Translate jokes **by effect, not by words**, and never at the cost of precision. Idioms are *welcome* where they carry the playful voice (reject Gemini's "no idioms" rule). Keep locale neutral: avoid slang that only one country understands.
 12. **No drift:** no added APIs, examples, exercises or sections; no lost warnings.
-13. Never translate inside code, output strings, SQL, or card categories (§4.1).
+13. Never translate inside code, output strings or SQL (§4.1). **Revision (decision 11, S4-007):** the four card categories are localized per family (`Reuniones`, `Programación`, `Depuración`, `Aprendizaje`) only with oracle proof; a file uses one form, English or Spanish, and no other spelling (tools/categories.py, I13).
 
 ### 6.3 Glossary seeds (editorial draft; the adjudicator and the Spanish editor may change them)
 
@@ -697,7 +697,7 @@ In throwaway copies, each of the following **must fail** the release check:
 8. A link fragment broken only on GitHub while the PDF link still works.
 9. A PDF/EPUB link pointing at the English repo.
 10. APL glyphs missing, a clipped diagram caption, code beyond margins.
-11. A translated card category in prose where the program prints English.
+11. **(Revised by decision 11.)** A card category mixed with the other form in one file, or written with an unapproved spelling (`Reunión`, `Programacion`).
 
 A suite whose English assertions were disabled is not localized; it is **disarmed**. No deleting, skipping or `xfail`-ing semantic tests to get green.
 
@@ -1110,7 +1110,7 @@ Because the loop never stops to ask (§11.1), every decision below has a **defau
 | 8 | Which models do what | Per `CONFIG.yaml`. If only one vendor's key exists, the in-loop reviewer is a fresh-context instance of a different model tier, and the Jury carries the independence burden | Low |
 | 9 | Native-speaker reviewer | None assumed. The release is labelled machine-translated and independently machine-reviewed until one signs off | Low |
 | 10 | Spanish file and folder names | Yes, for student-facing docs and doc-only folders; `lessons/` and everything a frozen file mentions stay English (§5.6) | Medium: one more rename pass if a name is disliked; renaming `lessons/` itself needs edits to frozen scripts, which we do not do |
-| 11 | **Scope of Part II code localization, and the four card categories** | Localize comments, project-owned identifiers and non-contract display strings, where the oracle proves equivalence. **Keep `Meetings`, `Coding`, `Debugging`, `Learning` English** in code, output and fixtures. Jim decides at checkpoint `S4-chk-1` with the pilot's evidence whether to localize the categories too | **High** if the categories are localized across 40 entries and reversed later; low before the bulk (S5) |
+| 11 | **Scope of Part II code localization, and the four card categories** | Localize comments, project-owned identifiers and non-contract display strings, where the oracle proves equivalence. **Decided at `S4-chk-1`: also localize `Meetings`, `Coding`, `Debugging`, `Learning`** (to `Reuniones`, `Programación`, `Depuración`, `Aprendizaje`) in code, output and fixtures, family by family | **High** if the categories are localized across 40 entries and reversed later; low before the bulk (S5) |
 | 12 | Families that cannot be run here | Stay English, listed `NOT TESTED` | Low |
 | 13 | Independence for Part II | In-loop deterministic gates and fresh-context review; Jury lenses L11 to L13 carry independence | Low |
 | 14 | Upstream English defects found in Part II | Logged in `translation/source-issues.md`; nothing is sent to the English repo without Jim's approval | Low |

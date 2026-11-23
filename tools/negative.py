@@ -638,12 +638,15 @@ def catalog():
     add(10, "pdf-code-beyond-margin", "text runs past the content margin", "tool", "PDF-004",
         lambda: pdf_problems(text_ending_at(content_right() + 10)))
 
-    # 11. A translated card category in prose where the program prints English.
-    add(11, "card-category-translated", "`Meetings` is written 'Reuniones' where the program prints Meetings", "file", "I13",
+    # 11. Decision 11: the card categories are English or the glossary Spanish word, one form per file, no other spelling.
+    add(11, "card-category-mixed", "one category is written 'Reuniones' while the others stay English", "file", "I13",
         file_fixture(after=swap("`Meetings`", "`Reuniones`")))
-    add(11, "card-category-in-prose", "a prose mention of the category Coding is translated", "file", "I2",
-        file_fixture(en_edit=swap("Ask what", "The Coding cards come first. Ask what"),
-                     es_edit=swap("Pregunta qué", "Las tarjetas de Programación van primero. Pregunta qué")))
+    add(11, "card-category-wrong-spelling", "a category is written 'Reunión' instead of the glossary word", "file", "I13",
+        file_fixture(after=swap("`Meetings`", "`Reunión`")))
+    add(11, "card-category-in-prose", "a prose mention of the category Coding uses a misspelled word in code font", "file", "I13",
+        file_fixture(en_edit=swap("Ask what", "The `Coding` cards come first. Ask what"),
+                     es_edit=swap("Pregunta qué", "Las tarjetas `Coding` van primero. Pregunta qué"),
+                     after=swap("Las tarjetas `Coding` van", "Las tarjetas `Programacion` van")))
 
     # 12. Plan 5.6: the Spanish file names (invariants I17 to I20).
     def stale_link(t):

@@ -12,7 +12,7 @@ Source: plan section 4.5. Each rule has an id, a check, and who enforces it. "Ta
 | P-04 | A project-owned identifier is a candidate for a Spanish rename. | Needs an `identifier-map.jsonl` record with scope and test evidence. |
 | P-05 | Comments are translated, line for line. | Same line count; code samples inside comments stay valid. |
 | P-06 | A display string is translated only if no format, parser, fixture, column width or lesson depends on its bytes. | Classification recorded per string; otherwise keep and record why. |
-| P-07 | `Meetings`, `Coding`, `Debugging`, `Learning` and any fixture value stay English by default. | A change needs an explicit decision in `loop/decisions-provisional.md`. |
+| P-07 | Decision 11: `Meetings`, `Coding`, `Debugging`, `Learning` are localized per family to `Reuniones`, `Programación`, `Depuración`, `Aprendizaje`, only with oracle proof; one form per file (tools/categories.py). Other fixture values stay English by default. | A change to another fixture value needs an explicit decision in `loop/decisions-provisional.md`. |
 | P-08 | Opaque fixtures and adversarial payloads never change. | Exception only with proof the bytes are not the lesson, a same-failure-mode replacement, and a test under the right engine. |
 | P-09 | Anything else, or no safe proof, stays English. | A row in `translation/exception-register.jsonl` gives the reason. |
 | P-10 | Spelling alone never decides a class. | The class is recorded with the role (type, element, string, noun). |

@@ -6,6 +6,7 @@
 #   frozen     - byte-identical to the pinned English source (default for all)
 #   localizing - may change, only through tools/loc_apply.py, with a map entry
 #                and oracle proof (tools/oracle.py), per translation/part2/policy.md
+# Decision 11: the four card categories are localized per family, through loc_apply and the oracle, like any mapped string.
 # Every family is `frozen` at S1. A family changes to `localizing` only in its own
 # Phase S5 task, in the same commit that localizes it. `never: true` marks
 # families that policy.md forbids localizing at all (status must stay frozen).

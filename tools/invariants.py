@@ -48,6 +48,7 @@ sys.path.insert(0, HERE)
 sys.path.insert(0, os.path.join(ROOT, "lessons", "book", "locale"))
 import apply as apply_mod  # noqa: E402
 import catalog  # noqa: E402
+import categories  # noqa: E402
 import enpath  # noqa: E402
 import mask  # noqa: E402
 import mermaid  # noqa: E402
@@ -714,7 +715,18 @@ def drop_dnt_spans(spans, dnt):
 
     The frozen Spanish wording writes the card categories as code where the English prose writes them bare; the phrase itself is
     still required by I8, and every other code span is compared as before."""
-    return Counter({k: n for k, n in spans.items() if not (k[0] == "`" and k[1] in dnt)})
+    return Counter({k: n for k, n in spans.items() if not (k[0] == "`" and (k[1] in dnt or k[1] in categories.ES))})
+
+
+def category_findings(es_text, rel=""):
+    """Decision 11: the card categories are English or the glossary Spanish word, one form per file, no other spelling."""
+    out = []
+    if categories.mixed(es_text):
+        out.append(Finding("I13", rel, "card categories mix the English and the Spanish words in one file"))
+    bad = categories.wrong_spellings(es_text)
+    if bad:
+        out.append(Finding("I13", rel, "card category written with an unapproved spelling: %s" % ", ".join(bad)))
+    return out
 
 
 def i13_text(en_text, es_text, rel="", dnt=()):
@@ -782,7 +794,7 @@ def values(seg_blocks, dnt=()):
     for b in seg_blocks:
         for v in b.mapping.values():
             m = re.fullmatch(r"`([^`]+)`", v)
-            c[m.group(1) if m and m.group(1) in dnt else v] += 1
+            c[categories.to_english(m.group(1)) if m and (m.group(1) in dnt or m.group(1) in categories.ES) else v] += 1
     return c
 
 
@@ -794,6 +806,7 @@ def check_files(en_text, es_text, rel="", ctx=None):
     out += [f._replace(where=f.where or rel) for f in i6(en_text, es_text)]
     out += i5(en_text, es_text, rel)
     out += i13_text(en_text, es_text, rel, ctx.dnt)
+    out += category_findings(es_text, rel)
     a = [d for d in link_destinations(en_text)]
     b = link_destinations(es_text)
     a = [map_anchor(d, ctx.anchor_map) for d in a]

@@ -83,8 +83,13 @@ class OracleTests(unittest.TestCase):
             return run(o.BOUNDARY_HOURS, o.MUTANT_GE if d == "es" else o.CORRECT)
         self.assertEqual(o.run_family("en", "es", runner=r, seed=7)["verdict"], "FAIL")
 
-    def test_card_category_is_never_translated(self):
-        r = o.RunResult("Reuniones\t12\t12\nMeetings\t12\t12\n")
+    def test_card_category_english_or_mapped_spanish_word_counts_as_the_same_category(self):
+        r = o.RunResult("Reuniones\t12\t12\nCoding\t12\t24\n")
+        self.assertEqual([c["category"] for c in o.reduce_record(r)["cards"]], [0, 1])
+        self.assertEqual(o.reduce_record(o.RunResult("Meetings\t12\t12\n")), o.reduce_record(o.RunResult("Reuniones\t12\t12\n")))
+
+    def test_an_unapproved_category_word_is_not_a_card(self):
+        r = o.RunResult("Reunión\t12\t12\nMeetings\t12\t12\n")
         self.assertEqual(len(o.reduce_record(r)["cards"]), 1)
 
 

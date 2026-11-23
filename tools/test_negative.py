@@ -41,7 +41,7 @@ class Catalog(unittest.TestCase):
                        "curriculum-week-missing", "curriculum-exercise-id-wrong", "curriculum-week-under-wrong-phase",
                        "curriculum-phase-letter-duplicated", "curriculum-es-english-letter-survives",
                        "paragraph-deleted-after-po", "fragment-not-remapped", "link-to-english-repo",
-                       "pdf-apl-glyph-missing", "pdf-caption-beyond-page-edge", "pdf-code-beyond-margin", "card-category-translated"):
+                       "pdf-apl-glyph-missing", "pdf-caption-beyond-page-edge", "pdf-code-beyond-margin", "card-category-mixed"):
             self.assertIn(wanted, ids)
 
 

@@ -3,7 +3,7 @@
 
 Takes the translated units of the pilot files (units from English + PO, as tools/jury_packet.py builds them),
 plants about 50 known faults in the Spanish of different units (the mutators of jury_packet: the 40-rule flip,
-negation, swapped number, dropped clause, translated card category, wrong assurance label, wrong phase letter,
+negation, swapped number, dropped clause, unapproved or mixed card category word (decision 11), wrong assurance label, wrong phase letter,
 usted slip), adds clean controls, and asks the reviewer (translation/prompts/review.md, one unit per call) to
 review each one. A fault is *caught* only when a schema-valid finding with exact-substring excerpts points at
 the changed place of the Spanish (or, for a pure omission, says so). A finding elsewhere is not credit.
@@ -52,19 +52,21 @@ HOUSE_RULES = [
     "logic words are exact: si y solo si, más de, al menos, puede, debe",
     "the total must be strictly greater than 40 to stop (más de 40); exactly 40 continues",
     "assurance labels: garantizado, permitido por la implementación, aprovechado por accidente",
-    "code, identifiers, paths, URLs, card categories (Meetings, Coding, Debugging, Learning) never translated",
+    "code, identifiers, paths, URLs never translated; card categories are localized (Meetings/Reuniones, Coding/Programación, Debugging/Depuración, Learning/Aprendizaje): one form per file, no other spelling",
     "do not add, drop or reorder content; keep every warning",
 ]
 
 
 # ---------------------------------------------------------------------------------------------- faults
 
-CATEGORY_WORDS = {"Meetings": "Reuniones", "Coding": "Programación", "Debugging": "Depuración", "Learning": "Aprendizaje"}
+# Decision 11: both the English and the approved Spanish word are valid; the seeded fault is a word that is neither.
+CATEGORY_WORDS = {"Meetings": "Reunión", "Coding": "Programacion", "Debugging": "Depuracion", "Learning": "Aprendizage",
+                  "Reuniones": "Reunión", "Programación": "Programacion", "Depuración": "Depuracion", "Aprendizaje": "Aprendizage"}
 
 
 def m_category_in_span(u, ctx):
-    """Translate a card category that sits inside a longer code span (`Meetings 15 15`): the pilot files print
-    categories inside terminal output, where jury_packet.m_identifier (whole-span match) finds nothing."""
+    """Replace a card category inside a longer code span (`Meetings 15 15`) by an unapproved spelling: the pilot files
+    print categories inside terminal output, where jury_packet.m_identifier (whole-span match) finds nothing."""
     s = u["spanish"]
     for m in re.finditer(r"`[^`\n]*`", s):
         for old, new in CATEGORY_WORDS.items():

@@ -35,10 +35,11 @@ from dataclasses import dataclass, field
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
-CATEGORIES = ("Meetings", "Coding", "Debugging", "Learning")  # never translated (rule 8)
+CATEGORIES = ("Meetings", "Coding", "Debugging", "Learning")  # English words; the mapped Spanish word of a localized family is accepted (decision 11)
+CATEGORIES_ES = ("Reuniones", "Programación", "Depuración", "Aprendizaje")
 LIMIT = 40
 
-CARD_RE = re.compile(r"^(Meetings|Coding|Debugging|Learning)[\t ]+(\d+)[\t ]+(\d+)\b")
+CARD_RE = re.compile(r"^(Meetings|Coding|Debugging|Learning|Reuniones|Programación|Depuración|Aprendizaje)[\t ]+(\d+)[\t ]+(\d+)\b")
 TOTAL_RE = re.compile(r"\btotal=(\d+)")
 ENTRIES_RE = re.compile(r"\bentries=(\d+)")
 COMMIT_RE = re.compile(r"committed|confirmad[oa]", re.I)
@@ -62,7 +63,7 @@ def reduce_record(res: RunResult) -> dict:
     for line in res.stdout.splitlines():
         m = CARD_RE.match(line)
         if m:
-            cards.append({"category": CATEGORIES.index(m.group(1)),
+            cards.append({"category": (CATEGORIES + CATEGORIES_ES).index(m.group(1)) % 4,
                           "hours": int(m.group(2)), "running": int(m.group(3))})
     total = None
     entries = None
