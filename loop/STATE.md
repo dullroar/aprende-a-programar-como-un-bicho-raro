@@ -1,9 +1,9 @@
 # loop/STATE.md (keep to 60 lines; refreshed by every iteration)
 
 - **Edition:** v4-es.0-rc1 (working)    **English SHA:** 48a4429c0a22b2aac628b256a50c07d1816bcb80
-- **Iteration:** 397    **Stage:** 6    **Last result:** S0-003 done (runtime-matrix.md static; self-test and versions NOT TESTED, docker denied in dontAsk). Before: S0-002 done (tools/code_inventory.py, translation/part2/code-inventory.jsonl for all 230 locked paths; not pushed).
+- **Iteration:** 398    **Stage:** 6    **Last result:** S0-004 done (translation/part2/s0-gate.md; 230/230 classified once; self-test still NOT RUN). Before: S0-003 done (runtime-matrix.md static; self-test and versions NOT TESTED, docker denied in dontAsk). Before: S0-002 done (tools/code_inventory.py, translation/part2/code-inventory.jsonl for all 230 locked paths; not pushed).
 - **Tasks:** todo 47 | doing 0 | done 167 | blocked 1 | skipped 0 (recount with the queue files)
-- **Next task:** S0-004 (docker self-test still owed to a Docker-capable session).
+- **Next task:** S1-001 (docker self-test still owed to a Docker-capable session).
 - **Budget:** driver-reported $112.6405 of $150 through iteration 274, with Codex session cost unavailable
 - **Translate progress:** at least 7751 / total 8827 segments accepted; at least 196 / 212 files done. P4-lessons-languages-5 complete. Counts based on the previous snapshot plus this task.
 - **Last audit:** P4-audit-9 (iter 361, translation/reviews/p4-audit-9.md)    **Next audit due:** the next P4-audit task in the queue
