@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Checks the rules of the challenge for the COBOL entry. Uses a throwaway data dir.
+# Revisa las reglas del desafío para la entrada COBOL. Usa una carpeta de datos desechable.
 set -euo pipefail
 cd "$(dirname "$0")"
 data=$(mktemp -d); trap 'rm -rf "$data"' EXIT
@@ -7,18 +7,18 @@ export XDG_DATA_HOME=$data
 db=$data/Cobol/demo-timecards.db
 bin=$data/timecards
 
-# 1. Static: the demo disclaimer, nothing network-looking, honest fixed format, and the stop rule really is an
-#    88-level condition that the one PERFORM ... UNTIL tests.
+# 1. Estático: el aviso de demo, nada que parezca de red, formato fijo honesto, y que la regla de parada sea de verdad
+#    una condición de nivel 88 que prueba el único PERFORM ... UNTIL.
 grep -q 'DEMO ONLY' timecards.cob || { echo "FAIL: no DEMO ONLY marker in timecards.cob"; exit 1; }
 if grep -Eqi 'http|socket|curl|wget' timecards.cob; then echo "FAIL: network-looking text in timecards.cob"; exit 1; fi
 long=$(awk 'length > 72 { print FNR }' timecards.cob)
 [[ -z $long ]] || { echo "FAIL: lines past column 72 (fixed format): $long"; exit 1; }
 grep -Eq '^ {11}88  OVER-FORTY +VALUE 41 THRU 99\.' timecards.cob || { echo "FAIL: no 88-level OVER-FORTY on the total"; exit 1; }
-code=$(grep -Ev '^.{6}\*' timecards.cob)    # fixed format: a * in column 7 is a comment line
+code=$(grep -Ev '^.{6}\*' timecards.cob)    # formato fijo: un * en la columna 7 es una línea de comentario
 [[ $(grep -c 'PERFORM DRAW-CARD UNTIL OVER-FORTY' <<<"$code") -eq 1 ]] || { echo "FAIL: expected exactly one PERFORM DRAW-CARD UNTIL OVER-FORTY"; exit 1; }
 
-# 2. Build once (binaries are never committed), then run it a bunch of times. Every run must print a sane record
-#    set, and the SQLite rows must agree with it.
+# 2. Compila una vez (los binarios nunca se suben), luego ejecútalo varias veces. Cada ejecución debe imprimir un
+#    conjunto de registros sensato, y las filas de SQLite deben coincidir.
 "${COBC:-cobc}" -x -o "$bin" timecards.cob
 cats=(Meetings Coding Debugging Learning)
 for i in $(seq 1 25); do
@@ -41,7 +41,7 @@ for i in $(seq 1 25); do
         (( sum <= 40 )) || { echo "FAIL run $i: kept going after the total passed 40"; exit 1; }
         sum=$(( sum + 10#$hours )); n=$(( n + 1 ))
         (( 10#$running == sum )) || { echo "FAIL run $i: running total $running, wanted $sum"; exit 1; }
-        # The ISO week is computed by date arithmetic in COBOL; it must agree with date(1).
+        # La semana ISO se calcula con aritmética de fechas en COBOL; debe coincidir con date(1).
         [[ $week == "$week_before" || $week == "$week_after" ]] || { echo "FAIL run $i: ISO week '$week', date(1) says '$week_before'"; exit 1; }
         [[ $mark == "DEMO ONLY" ]] || { echo "FAIL run $i: row not marked DEMO ONLY"; exit 1; }
     done
@@ -54,7 +54,7 @@ done
 leftover=$(find "$data/Cobol" -name 'run-*.sql')
 [[ -z $leftover ]] || { echo "FAIL: SQL scripts left behind after successful runs: $leftover"; exit 1; }
 
-# 3. The demo_only CHECK constraint is real: a non-demo row must be refused.
+# 3. La restricción CHECK de demo_only es real: una fila que no sea demo debe ser rechazada.
 if sqlite3 "$db" "insert into demo_timecards(run_id,category,hours,running_total,demo_only) values('x','x',1,1,0)" 2>/dev/null; then
     echo "FAIL: db accepted a non-demo row"; exit 1
 fi

@@ -65,6 +65,8 @@ class RoutingTests(unittest.TestCase):
     def test_po_routes_to_its_markdown_file(self):
         self.assertEqual(verify.md_rel_of_po("translation/po/src/forth/README.md.po"), "src/forth/README.md")
         self.assertIsNone(verify.md_rel_of_po("translation/po/notes.txt"))
+        self.assertIsNone(verify.md_rel_of_po("translation/po/code/src/cobol/check.sh.po"))   # Part II code PO
+        self.assertNotIn(("file", "src/cobol/check.sh"), verify.route("translation/po/code/src/cobol/check.sh.po", []))
         self.assertIn(("file", "src/forth/README.md"), verify.route("translation/po/src/forth/README.md.po", ["owned"]))
 
     def test_authored_markdown_tooling_and_tools(self):

@@ -1,0 +1,199 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+
+msgctxt "L1"
+msgid "      * DEMO ONLY. Fictional timecards, written to a scratch SQLite file"
+msgstr "      * SOLO DEMO (DEMO ONLY). Tarjetas de horas ficticias, escritas en"
+
+msgctxt "L2"
+msgid "      * under XDG_DATA_HOME. Nothing here touches a real time-reporting"
+msgstr "      * un archivo SQLite temporal bajo XDG_DATA_HOME. Nada aquí toca"
+
+msgctxt "L3"
+msgid "      * system."
+msgstr "      * un sistema real de registro de horas."
+
+msgctxt "L5"
+msgid "      * Run:  cobc -xj timecards.cob"
+msgstr "      * Ejecuta:  cobc -xj timecards.cob"
+
+msgctxt "L7"
+msgid "      * The challenge: add 10-19 hour cards (Meetings, Coding,"
+msgstr "      * El desafío: suma tarjetas de 10-19 horas (Meetings, Coding,"
+
+msgctxt "L8"
+msgid "      * Debugging, Learning, round and round) until the running total"
+msgstr "      * Debugging, Learning, sin parar) hasta que el total acumulado"
+
+msgctxt "L9"
+msgid "      * passes 40. Here that is one statement in the PROCEDURE DIVISION,"
+msgstr "      * pase de 40. Es una sentencia de la PROCEDURE DIVISION:"
+
+msgctxt "L10"
+msgid "      * PERFORM DRAW-CARD UNTIL OVER-FORTY, and the stop rule itself is"
+msgstr "      * PERFORM DRAW-CARD UNTIL OVER-FORTY, y la regla de parada no es"
+
+msgctxt "L11"
+msgid "      * not code at all: OVER-FORTY is an 88-level condition declared"
+msgstr "      * código: OVER-FORTY es una condición de nivel 88 declarada en"
+
+msgctxt "L12"
+msgid "      * on the total in the DATA DIVISION."
+msgstr "      * el total, en la DATA DIVISION."
+
+msgctxt "L14"
+msgid "      * Layout is traditional fixed format, inherited from punched"
+msgstr "      * El formato es el fijo tradicional, heredado de las tarjetas"
+
+msgctxt "L15"
+msgid "      * cards: columns 1-6 were a sequence number (left blank here), a"
+msgstr "      * perforadas: las columnas 1-6 eran un número de secuencia (en"
+
+msgctxt "L16"
+msgid "      * * in column 7 makes a comment, and code lives in columns 8-72."
+msgstr "      * blanco aquí), un * en la columna 7 marca un comentario y el"
+
+msgctxt "L17"
+msgid "      * Division, section and paragraph names start in column 8"
+msgstr "      * código va en las columnas 8-72. División, sección y párrafo"
+
+msgctxt "L18"
+msgid "      * (\"area A\"); statements start in column 12 (\"area B\")."
+msgstr "      * empiezan en la 8 (\"área A\"); sentencias en la 12 (\"área B\")."
+
+msgctxt "L25"
+msgid "      * The SQL script is an ordinary COBOL sequential file, one record"
+msgstr "      * El script SQL es un archivo secuencial COBOL normal, un registro"
+
+msgctxt "L26"
+msgid "      * per line. ASSIGN TO a data item means its name is decided at"
+msgstr "      * por línea. ASSIGN TO un ítem de datos hace que su nombre se"
+
+msgctxt "L27"
+msgid "      * run time, from the contents of WS-SQL-PATH when it is OPENed."
+msgstr "      * decida al ejecutar, según WS-SQL-PATH al hacer OPEN."
+
+msgctxt "L37"
+msgid "      * ---- the stop rule, as data ----------------------------------"
+msgstr "      * ---- la regla de parada, como dato ---------------------------"
+
+msgctxt "L38"
+msgid "      * PIC 99 is exactly two decimal digits. The 88-level gives a"
+msgstr "      * PIC 99 son exactamente dos dígitos decimales. El nivel 88 le da"
+
+msgctxt "L39"
+msgid "      * name to a range of WS-TOTAL's values; UNTIL OVER-FORTY just"
+msgstr "      * nombre a un rango de valores de WS-TOTAL; UNTIL OVER-FORTY solo"
+
+msgctxt "L40"
+msgid "      * asks whether the total is currently in that range."
+msgstr "      * pregunta si el total está ahora dentro de ese rango."
+
+msgctxt "L43"
+msgid "      * Storing 10.0-19.99 into PIC 99 drops the fraction: 10..19."
+msgstr "      * Guardar 10.0-19.99 en PIC 99 descarta la fracción: da 10..19."
+
+msgctxt "L47"
+msgid "      * ---- the categories: four FILLERs, seen again as a table ------"
+msgstr "      * ---- las categorías: cuatro FILLER, vistos como tabla --------"
+
+msgctxt "L48"
+msgid "      * REDEFINES lays a second description over the same 36 bytes."
+msgstr "      * REDEFINES pone otra descripción sobre los mismos 36 bytes."
+
+msgctxt "L58"
+msgid "      * ---- run id and random seed ----------------------------------"
+msgstr "      * ---- id de ejecución y semilla aleatoria --------------------"
+
+msgctxt "L59"
+msgid "      * CURRENT-DATE is 21 characters: YYYYMMDDhhmmssff then the UTC"
+msgstr "      * CURRENT-DATE tiene 21 caracteres: YYYYMMDDhhmmssff y luego el"
+
+msgctxt "L60"
+msgid "      * offset. ff is hundredths of a second."
+msgstr "      * desfase UTC. ff son centésimas de segundo."
+
+msgctxt "L68"
+msgid "      * ---- the ISO-8601 week, by date arithmetic --------------------"
+msgstr "      * ---- la semana ISO-8601, con aritmética de fechas ----------"
+
+msgctxt "L76"
+msgid "      * ---- files and the shell -------------------------------------"
+msgstr "      * ---- archivos e intérprete de comandos ----------------------"
+
+msgctxt "L92"
+msgid "      * ---- the whole challenge --------------------------------------"
+msgstr "      * ---- todo el desafío -----------------------------------------"
+
+msgctxt "L103"
+msgid "      * One card: pick the category, draw the hours, keep the totals,"
+msgstr "      * Una tarjeta: elige la categoría, saca las horas, lleva los"
+
+msgctxt "L104"
+msgid "      * show the row and add its INSERT to the script."
+msgstr "      * totales, muestra la fila y agrega su INSERT al script."
+
+msgctxt "L113"
+msgid "      * Safe only because every value is a number computed here or"
+msgstr "      * Es seguro solo porque cada valor es un número calculado aquí o"
+
+msgctxt "L114"
+msgid "      * one of four fixed words. Do not copy this pattern."
+msgstr "      * una de cuatro palabras fijas. No copies este patrón."
+
+msgctxt "L129"
+msgid "      * The run id is the timestamp plus the process id, so runs in"
+msgstr "      * El id es la marca de tiempo más el id del proceso, así que"
+
+msgctxt "L130"
+msgid "      * the same hundredth of a second still get different ids."
+msgstr "      * dos ejecuciones en la misma centésima tienen ids distintos."
+
+msgctxt "L134"
+msgid "      * RANDOM with an argument seeds the generator; later calls"
+msgstr "      * RANDOM con argumento siembra el generador; las llamadas"
+
+msgctxt "L135"
+msgid "      * without one continue the sequence."
+msgstr "      * siguientes sin argumento continúan la secuencia."
+
+msgctxt "L155"
+msgid "      * INTEGER-OF-DATE counts days from 1601-01-01 (day 1), which was"
+msgstr "      * INTEGER-OF-DATE cuenta días desde 1601-01-01 (día 1), que fue"
+
+msgctxt "L156"
+msgid "      * a Monday, so MOD(day - 1, 7) is 0 on Mondays. An ISO week"
+msgstr "      * lunes, así que MOD(día - 1, 7) es 0 en lunes. Una semana ISO"
+
+msgctxt "L157"
+msgid "      * belongs to the year its Thursday falls in, and week 1 is the"
+msgstr "      * pertenece al año en que cae su jueves, y la semana 1 es la"
+
+msgctxt "L158"
+msgid "      * week holding that year's first Thursday."
+msgstr "      * semana que contiene el primer jueves del año."
+
+msgctxt "L172"
+msgid "      * The shell is used twice: to create the data folder here, and"
+msgstr "      * El intérprete de comandos se usa dos veces: para crear aquí la"
+
+msgctxt "L173"
+msgid "      * to hand the finished script to sqlite3 in COMMIT-SCRIPT. The"
+msgstr "      * carpeta de datos y para pasarle a sqlite3 el script terminado en"
+
+msgctxt "L174"
+msgid "      * DEMO ONLY rule lives in the table: CHECK(demo_only=1) means a"
+msgstr "      * COMMIT-SCRIPT. La regla DEMO ONLY vive en la tabla:"
+
+msgctxt "L175"
+msgid "      * non-demo row cannot be stored."
+msgstr "      * CHECK(demo_only=1) impide guardar una fila que no sea demo."
+
+msgctxt "L192"
+msgid "      * The script is deleted only if sqlite3 succeeded, so a failed"
+msgstr "      * El script se borra solo si sqlite3 tuvo éxito, así que una"
+
+msgctxt "L193"
+msgid "      * run leaves it behind to look at."
+msgstr "      * ejecución fallida lo deja para que lo mires."

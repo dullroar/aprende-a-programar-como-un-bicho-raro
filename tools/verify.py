@@ -121,6 +121,8 @@ def load_allowlist(root):
 def md_rel_of_po(path):
     """translation/po/<rel>.po -> <rel>, else None."""
     pre = "translation/po/"
+    if path.startswith(pre + "code/"):
+        return None          # Part II code PO (loc_apply.py); guarded by the lock, not a Markdown PO
     if path.startswith(pre) and path.endswith(".po"):
         return path[len(pre):-3]
     return None
