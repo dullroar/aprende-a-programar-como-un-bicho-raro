@@ -1,15 +1,15 @@
 ---
 id: t01-baseline
-status: pending
+status: done
 depends_on: [t00-secret-guard]
 touches:
   - plans/adopt-ralph/steps/t01-baseline.md
 lane: none
 tier: light
 gate: grep -Eq '^verify-fast: exit [0-9]+' plans/adopt-ralph/steps/t01-baseline.md && grep -Eq '^verify-release-no-gates: exit [0-9]+' plans/adopt-ralph/steps/t01-baseline.md && grep -Eq '^tool-tests: [0-9]+ tests' plans/adopt-ralph/steps/t01-baseline.md && grep -Eq '^queue-counts: .+' plans/adopt-ralph/steps/t01-baseline.md && grep -Eq '^tracked-files: [0-9]+' plans/adopt-ralph/steps/t01-baseline.md && grep -Eq '^git-status: clean' plans/adopt-ralph/steps/t01-baseline.md && git diff --check
-claimed_by: ""
-claimed_at: ""
-evidence: ""
+claimed_by: claude cli-default
+claimed_at: "2026-11-24T02:15:27Z"
+evidence: gate passed 2026-11-24 (driver-verified)
 ---
 
 # Record the current verification results
@@ -43,7 +43,14 @@ If a command needs the English clone and it is missing, write that under "Resume
 
 ## Baseline
 
-(write the six lines here)
+verify-fast: exit 0 (verify --fast: OK (1 checks, 0.0s))
+verify-release-no-gates: exit 1 (crash: ModuleNotFoundError: No module named 'polib' in tools/apply.py; not the expected exit 3)
+tool-tests: 1441 tests, FAILED (failures=10, errors=5, skipped=1)
+queue-counts: todo 0 | doing 0 | done 322 | blocked 0 | skipped 0
+tracked-files: 1236 (t00 added: .github/workflows/context.yml, scripts/install_hooks.sh, scripts/secret_guard.py, tools/test_registry.py, tools/test_secret_guard.py; t00 modified: tools/inventory.py, tools/lock_code.py, tools/test_lock_code.py, translation/tooling-allowlist.txt)
+git-status: clean
+
+Notes. These numbers come from the worktree environment, where `polib` and the Mermaid CLI are not installed. Causes seen in the test failures: `polib` missing, Mermaid CLI missing, and `.git` (a file in a linked worktree) listed by the path-map tests. Step t08 must run in the same kind of environment to get the same numbers.
 
 ## Record
 
