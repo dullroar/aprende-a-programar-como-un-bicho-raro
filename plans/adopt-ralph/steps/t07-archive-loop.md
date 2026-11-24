@@ -1,6 +1,6 @@
 ---
 id: t07-archive-loop
-status: pending
+status: blocked
 depends_on: [t03-memory, t04-controls]
 touches:
   - loop/STATE.md
