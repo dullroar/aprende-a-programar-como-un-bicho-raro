@@ -1,6 +1,6 @@
 ---
 id: t06-batch-tool
-status: in_progress
+status: done
 depends_on: [t02-layout]
 touches:
   - tools/batch.py
@@ -10,9 +10,9 @@ touches:
   - plans/adopt-ralph/steps/t06-batch-tool.md
 lane: none
 gate: python3 -m unittest tools/test_batch.py && python3 scripts/build_indexes.py --check && python3 -I tools/verify.py --fast && git diff --check
-claimed_by: ""
-claimed_at: ""
-evidence: ""
+claimed_by: claude cli-default
+claimed_at: "2026-11-24T02:32:58Z"
+evidence: gate passed 2026-11-24 (driver-verified)
 ---
 
 # Write `tools/batch.py` for the Message Batches API
