@@ -1,6 +1,6 @@
 ---
 id: t07-archive-loop
-status: pending
+status: done
 depends_on: [t03-memory, t04-controls]
 touches:
   - loop/STATE.md
@@ -11,7 +11,7 @@ tier: light
 gate: python3 -m unittest discover -s tools -p 'test_*.py' 2>&1 | python3 plans/adopt-ralph/no_new_failures.py plans/adopt-ralph/tools-test-baseline.txt && python3 scripts/build_indexes.py --check && python3 scripts/check_context.py && python3 -I tools/verify.py --fast && grep -qi 'archived' loop/STATE.md && grep -qi 'archived' loop/RUN.md && grep -q 'plans/' loop/STATE.md && test -f "$(git rev-parse --path-format=absolute --git-common-dir)/../loop/STOP" && ! git ls-files --error-unmatch loop/STOP >/dev/null 2>&1 && git diff --check
 claimed_by: ""
 claimed_at: ""
-evidence: ""
+evidence: "Gate command run in parts on 2026-11-23: tool tests piped to no_new_failures.py (OK, 14 known failures, no new ones), build_indexes --check, check_context.py, verify.py --fast and git diff --check all pass. The grep checks for 'archived' and 'plans/' pass. loop/STOP exists. Queue counts written in the notice: todo 0, doing 0, done 322, blocked 0, skipped 0."
 ---
 
 # Mark the old loop as archived
