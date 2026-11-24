@@ -7,9 +7,9 @@ touches:
 lane: none
 tier: light
 gate: grep -Eq '^verify-fast: exit [0-9]+' plans/adopt-ralph/steps/t01-baseline.md && grep -Eq '^verify-release-no-gates: exit [0-9]+' plans/adopt-ralph/steps/t01-baseline.md && grep -Eq '^tool-tests: [0-9]+ tests' plans/adopt-ralph/steps/t01-baseline.md && grep -Eq '^queue-counts: .+' plans/adopt-ralph/steps/t01-baseline.md && grep -Eq '^tracked-files: [0-9]+' plans/adopt-ralph/steps/t01-baseline.md && grep -Eq '^git-status: clean' plans/adopt-ralph/steps/t01-baseline.md && git diff --check
-claimed_by: ""
-claimed_at: ""
-evidence: "gate (grep checks + git diff --check) passed 2026-11-23; baseline recorded in section Baseline"
+claimed_by: claude cli-default
+claimed_at: "2026-11-24T02:15:27Z"
+evidence: gate passed 2026-11-24 (driver-verified)
 ---
 
 # Record the current verification results
