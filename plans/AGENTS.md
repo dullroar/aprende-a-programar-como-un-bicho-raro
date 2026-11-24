@@ -23,5 +23,7 @@ Read the list. Open only the plans whose "Read me when" line matches your task.
   Read me when: you move the Spanish edition from its private loop onto the repo-template layout, pinned CI controls, a routing map and a Batch API tool.
 * [for-each-plan/plan.md](./for-each-plan/plan.md)
   Read me when: you want to see the format of a plan. (Template only. Copy this folder to start a plan.)
+* [v4-es-1/plan.md](./v4-es-1/plan.md)
+  Read me when: you run or change the plan that finishes the Spanish edition v4-es.1: the Jury, the humor review, the upstream package, the cookbook rehearsal, the translation pack and the release.
 
 <!-- END GENERATED INDEX -->
