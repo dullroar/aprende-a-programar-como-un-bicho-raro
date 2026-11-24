@@ -1,0 +1,19 @@
+# Known tool-test failures at the plan tip on 2026-11-23 (after t00 and t01), in a linked worktree with the repo .venv on PYTHONPATH.
+# Causes: Mermaid CLI not installed, .git is a file in a linked worktree, whole-tree checks that predate the adoption.
+# A gate fails if a test outside this list fails, or if fewer tests run. Remove a line when its test is fixed.
+ran: 1441
+test_a_disarmed_lock_gate_is_reported (test_breakage_pilot.TheCatalogCanFail.test_a_disarmed_lock_gate_is_reported)
+test_a_gate_that_does_not_fail_is_reported_as_disarmed (test_breakage_pilot.TheCatalogCanFail.test_a_gate_that_does_not_fail_is_reported_as_disarmed)
+test_check_passes_on_the_working_tree (test_anchors.WholeTreeTests.test_check_passes_on_the_working_tree)
+test_checkout_is_clean (test_pathcheck.RealCheckout.test_checkout_is_clean)
+test_cli_remap_rewrites_in_place_and_fails_on_unknown (test_anchors.WholeTreeTests.test_cli_remap_rewrites_in_place_and_fails_on_unknown)
+test_committed_files_are_current (test_pathmap.RealRepoTests.test_committed_files_are_current)
+test_default_run_is_ok (test_negative.Cli.test_default_run_is_ok)
+test_every_copy_fails_with_the_expected_check (test_breakage_pilot.RealCopies.test_every_copy_fails_with_the_expected_check) (copy='anchor-fragment-dropped')
+test_every_copy_fails_with_the_expected_check (test_breakage_pilot.RealCopies.test_every_copy_fails_with_the_expected_check) (copy='anchor-fragment-translated')
+test_no_problems (test_pathmap.RealRepoTests.test_no_problems)
+test_run_all_is_clean (test_breakage_pilot.RealCopies.test_run_all_is_clean)
+test_run_all_is_clean (test_negative.RealFixtures.test_run_all_is_clean)
+test_stored_document_is_current (test_anchors.WholeTreeTests.test_stored_document_is_current)
+test_the_control_is_clean (test_breakage_pilot.RealCopies.test_the_control_is_clean)
+test_the_control_is_clean (test_negative.RealFixtures.test_the_control_is_clean)
