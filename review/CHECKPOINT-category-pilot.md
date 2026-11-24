@@ -23,7 +23,7 @@ Written by iteration 503 (task F2-006). `loop/STOP` exists. Jim: read this, edit
 
 The COBOL commit includes the shared tool work (`loc_apply.py` entry kind `C<line>`, `apply.py` fence-row rewrite, `invariants.py` I13 category-aware comparison, 11 new tests), so it costs more. Forth and Lisp reused it: about $0.49 each. Remaining cost estimate for the other families is therefore near $0.5 per family, plus any family with its own quirks.
 
-Oracle was `python3 -I tools/oracle.py --entry <family> --english /home/lehmer/english-source`. All three report `deterministic: false`, the same as the English baseline. `lock_code --verify`, `part2_inv --check` (0 findings) and `verify --fast` were OK at each commit. No example program or `check.sh` ran on the host.
+Oracle was `python3 -I tools/oracle.py --entry <family> --english ~/english-source`. All three report `deterministic: false`, the same as the English baseline. `lock_code --verify`, `part2_inv --check` (0 findings) and `verify --fast` were OK at each commit. No example program or `check.sh` ran on the host.
 
 ## What changed in each family
 

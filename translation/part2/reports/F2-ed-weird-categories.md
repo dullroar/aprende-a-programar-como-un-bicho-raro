@@ -8,7 +8,7 @@ C entries for the category words in `timecards.ed` (lines 7-11), `timecards.sh` 
 
 ## Why it fails
 
-- `python3 -I tools/oracle.py --entry src/ed-weird --english /home/lehmer/english-source`: **FAIL** in Spanish ("stopped at 19, which is not strictly greater than 40"; "the first card over 40 was not kept as the last card").
+- `python3 -I tools/oracle.py --entry src/ed-weird --english ~/english-source`: **FAIL** in Spanish ("stopped at 19, which is not strictly greater than 40"; "the first card over 40 was not kept as the last card").
 - Cause: the ed program recognizes card lines with `^[A-Za-z]* [0-9][0-9] x*$` and `^\([A-Za-z]* [0-9]*\)...`. `Programación` and `Depuración` contain `ó`, which those classes do not match, so those cards are never added and the total stops early.
 - A C entry may change only category words and PIC widths. Rewriting the regex classes is a syntax change, which the rules forbid. So no safe edit exists.
 

@@ -6,7 +6,7 @@ Scope: S5-fam-lessons-solutions, S5-fam-lessons-solutions-awk-port, S5-fam-lesso
 
 - `python3 tools/lock_code.py --verify`: ok, 230 frozen files match the manifest.
 - `python3 -I tools/part2_inv.py --check`: 0 records, 0 findings (identifier ledger still empty).
-- `python3 -I tools/oracle.py --entry <family> --english /home/lehmer/english-source` for src/awk, src/cmake, src/find-gnu, src/find-posix, src/haskell: PASS, no findings, each.
+- `python3 -I tools/oracle.py --entry <family> --english ~/english-source` for src/awk, src/cmake, src/find-gnu, src/find-posix, src/haskell: PASS, no findings, each.
 - `diff -rq` of `src/` against the English clone, ignoring Markdown: only cobol, forth (audit 1) and the five families above differ (Dockerfile, check.sh, program file; build-line.py for the two find families). Nothing else under `src/` differs.
 - `diff -rq` of `lessons/solutions` (non-Markdown) and `lessons/tools` against English: no code difference. The only difference is `lessons/tools/README.md`, which is translated prose.
 - No Spanish card category (`Reuniones`, `Programación`, `Depuración`, `Aprendizaje`) appears in the five localized families, so no mixed forms.

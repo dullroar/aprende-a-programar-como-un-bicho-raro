@@ -14,7 +14,7 @@ Iteration 517. Verdict: **oracle PASS in Spanish; categories localized in code, 
 
 ## Proof
 
-- `python3 -I tools/oracle.py --entry src/forth-weird --english /home/lehmer/english-source`: PASS, no findings (`deterministic: false`, as in the baseline).
+- `python3 -I tools/oracle.py --entry src/forth-weird --english ~/english-source`: PASS, no findings (`deterministic: false`, as in the baseline).
 - Nothing was run on the host (hard rule 1).
 
 ## Left English, on purpose

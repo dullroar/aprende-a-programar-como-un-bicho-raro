@@ -12,7 +12,7 @@ C entries for the category words in `timecards.ex` (C6), `timecards.sh` (C26, C3
 
 ## Why it fails
 
-- `python3 -I tools/oracle.py --entry src/ex-weird --english /home/lehmer/english-source --seed 3`: **FAIL**. English keeps 3 cards (13, 23, 42); Spanish keeps 1 (18) and stops. The default seed shows the same shape.
+- `python3 -I tools/oracle.py --entry src/ex-weird --english ~/english-source --seed 3`: **FAIL**. English keeps 3 cards (13, 23, 42); Spanish keeps 1 (18) and stops. The default seed shows the same shape.
 - The first card is `Reuniones` (ASCII) and works. The run dies on the next card, which starts with an accented word. The program text has no category-dependent pattern (`.*`, `[0-9]` and mark arithmetic only), so the cause is `nvi` in the image rejecting or garbling non-ASCII input under its locale.
 - Fixing that needs a locale setting in the frozen `Dockerfile` or `timecards.sh`, which a C entry (category words only) may not do. `run-image.sh` is denied in dontAsk mode, so the editor output could not be inspected.
 

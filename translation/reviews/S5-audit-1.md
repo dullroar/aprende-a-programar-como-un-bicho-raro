@@ -6,7 +6,7 @@ Scope: S5-fam-cobol, S5-fam-forth, S5-fam-regex-pcre2, S5-fam-xaml, S5-fam-linqc
 
 - `python3 tools/lock_code.py --verify`: ok, 230 frozen files match the manifest.
 - `python3 -I tools/part2_inv.py --check`: 0 records, 0 findings (the identifier ledger is still empty, so I28 to I31 had nothing to check).
-- `python3 -I tools/oracle.py --entry src/cobol` and `--entry src/forth` against `/home/lehmer/english-source`: PASS, no findings.
+- `python3 -I tools/oracle.py --entry src/cobol` and `--entry src/forth` against `~/english-source`: PASS, no findings.
 - `diff -rq` of `src/` against the English clone, ignoring Markdown: only `src/cobol` and `src/forth` differ (Dockerfile, check.sh and the program file in each). The other six families are byte-identical to English, as their reports say.
 - No Spanish card category appears in `src/cobol` or `src/forth` (grep), so no mixed forms.
 - Exception register has EXC-544 to EXC-549 for the six families left English, each with a stated reason.

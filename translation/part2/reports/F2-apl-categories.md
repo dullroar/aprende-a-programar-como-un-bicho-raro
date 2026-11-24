@@ -12,7 +12,7 @@ Iteration 507. Verdict: **oracle PASS in English and in Spanish; categories loca
 
 ## Proof
 
-- `python3 -I tools/oracle.py --entry src/apl --english /home/lehmer/english-source`: PASS, no findings (`deterministic: false`, as in the baseline).
+- `python3 -I tools/oracle.py --entry src/apl --english ~/english-source`: PASS, no findings (`deterministic: false`, as in the baseline).
 - `check.sh` and the program were not run on the host (hard rule 1).
 - `lock_code --verify` ok, `part2_inv --check` 0 findings, `verify --fast` OK.
 

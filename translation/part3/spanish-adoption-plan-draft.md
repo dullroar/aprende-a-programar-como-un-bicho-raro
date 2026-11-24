@@ -50,5 +50,5 @@ Order: A1, then A2 to A4 in any order, then A5 (needs publication), then A6. A7 
 ## Checks that already hold today (draft time)
 
 - `CONTRIBUTING.md` (Spanish) links to `TRADUCTORIO.md`; `TRANSLATING.md` links to `TRADUCTORIO.md`; both files exist in the Spanish repo root.
-- The English checkout at `/home/lehmer/english-source` has no `TRANSLATING.md`, as expected before the package is accepted.
+- The English checkout at `~/english-source` has no `TRANSLATING.md`, as expected before the package is accepted.
 - Not verified: the upstream-side links to the Spanish edition (the repository is not yet public) and the end-to-end adoption (no accepted revision exists).

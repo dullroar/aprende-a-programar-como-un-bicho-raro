@@ -8,7 +8,7 @@ C entries for the category words in `timecards.ex` (line 6), `timecards.sh` (gre
 
 ## Why it fails
 
-- `python3 -I tools/oracle.py --entry src/ex-weird --english /home/lehmer/english-source`: **FAIL** in Spanish ("stopped at 16, which is not strictly greater than 40"; "the first card over 40 was not kept as the last card"). Only one card was kept.
+- `python3 -I tools/oracle.py --entry src/ex-weird --english ~/english-source`: **FAIL** in Spanish ("stopped at 16, which is not strictly greater than 40"; "the first card over 40 was not kept as the last card"). Only one card was kept.
 - No regex class around the card names exists in this family (unlike ed-weird), so the cause is not established. Likely cause (not verified; `run-image.sh` was denied in dontAsk mode, so the editor's output could not be inspected): the first card, `Reuniones`, is ASCII and the run dies on the second card, `Programación`, which suggests nvi in the image rejects the multibyte text under its locale.
 - A C entry may change only category words; changing the image locale or the editor invocation is a code change outside the rules.
 

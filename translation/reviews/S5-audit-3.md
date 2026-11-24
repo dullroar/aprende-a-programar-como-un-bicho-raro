@@ -6,7 +6,7 @@ Scope: S5-fam-javascript, S5-fam-javascript-events, S5-fam-lisp, S5-fam-make-gnu
 
 - `python3 tools/lock_code.py --verify`: ok, 230 frozen files match the manifest.
 - `python3 -I tools/part2_inv.py --check`: 0 records, 0 findings (identifier ledger still empty).
-- `python3 -I tools/oracle.py --entry <family> --english /home/lehmer/english-source` for src/javascript, src/javascript-events, src/lisp, src/make-gnu, src/tcl: PASS, no findings, each.
+- `python3 -I tools/oracle.py --entry <family> --english ~/english-source` for src/javascript, src/javascript-events, src/lisp, src/make-gnu, src/tcl: PASS, no findings, each.
 - `diff -rq` of `src/` against the English clone, ignoring Markdown: the only differing files belong to families marked localizing (awk, cmake, cobol, find-gnu, find-posix, forth, haskell, javascript, javascript-events, lisp, make-gnu, tcl). gochallenge1, javachallenge1 and kotlinchallenge1 are byte-identical to English.
 - No Spanish card category (`Reuniones`, `Programación`, `Depuración`, `Aprendizaje`) appears in the five localized families, so no mixed forms.
 - Exception register has 8 rows for EXC-558 to EXC-565, each with a stated reason.

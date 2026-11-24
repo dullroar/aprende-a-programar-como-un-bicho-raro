@@ -13,5 +13,5 @@ Iteration 541. Verdict: **oracle PASS in Spanish; categories localized and the f
 
 ## Proof
 
-- `python3 -I tools/oracle.py --entry src/regex-sed --english /home/lehmer/english-source`: PASS, no findings (`deterministic: false`, as in the baseline).
+- `python3 -I tools/oracle.py --entry src/regex-sed --english ~/english-source`: PASS, no findings (`deterministic: false`, as in the baseline).
 - Nothing was run on the host (hard rule 1).

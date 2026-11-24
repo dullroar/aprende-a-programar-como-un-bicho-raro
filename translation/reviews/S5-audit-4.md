@@ -6,7 +6,7 @@ Scope: S5-fam-modernchallenge1, S5-fam-pythonchallenge1, S5-fam-rustchallenge1, 
 
 - `python3 tools/lock_code.py --verify`: ok, 230 frozen files match the manifest.
 - `python3 -I tools/part2_inv.py --check`: 0 records, 0 findings (identifier ledger still empty).
-- `python3 -I tools/oracle.py --entry <family> --english /home/lehmer/english-source` for src/m4, src/PythonChallenge1, src/apl, src/apl-weird, src/cobol-weird, src/forth-weird: PASS, no findings, each.
+- `python3 -I tools/oracle.py --entry <family> --english ~/english-source` for src/m4, src/PythonChallenge1, src/apl, src/apl-weird, src/cobol-weird, src/forth-weird: PASS, no findings, each.
 - `diff -rq` of `src/` against the English clone, ignoring Markdown: every differing file belongs to a family marked localizing. ModernChallenge1 and RustChallenge1 are byte-identical to English.
 - No Spanish card category (`Reuniones`, `Programación`, `Depuración`, `Aprendizaje`) appears in the six localized families, so no mixed forms.
 - Exception register has rows EXC-566 to EXC-573, each with a stated reason.

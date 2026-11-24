@@ -6,7 +6,7 @@ Scope: S5-fam-awk-weird, S5-fam-haskell-weird, S5-fam-javascript-weird, S5-fam-l
 
 - `python3 tools/lock_code.py --verify`: ok, 230 frozen files match the manifest.
 - `python3 -I tools/part2_inv.py --check`: 0 records, 0 findings (identifier ledger still empty).
-- `python3 -I tools/oracle.py --entry <family> --english /home/lehmer/english-source` for src/awk-weird, haskell-weird, javascript-weird, lisp-weird, tcl-weird, regex-pcre2grep, regex-perl: PASS, no findings, each.
+- `python3 -I tools/oracle.py --entry <family> --english ~/english-source` for src/awk-weird, haskell-weird, javascript-weird, lisp-weird, tcl-weird, regex-pcre2grep, regex-perl: PASS, no findings, each.
 - `diff -rq` of `src/` against the English clone, ignoring Markdown: no differing file outside a family marked localizing in this audit's scope or in earlier audits. regex-dotnet shows no non-Markdown difference.
 - No Spanish card category (`Reuniones`, `Programación`, `Depuración`, `Aprendizaje`) appears in the seven localized families, so no mixed forms.
 - Exception register has rows EXC-574 to EXC-581, each with a stated reason.

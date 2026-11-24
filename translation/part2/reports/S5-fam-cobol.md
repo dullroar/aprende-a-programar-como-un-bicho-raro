@@ -11,7 +11,7 @@ Iteration 424. Verdict: **oracle PASS (docker available this session). Comments 
 ## Proof
 
 - `python3 -I tools/oracle.py --selftest`: PASS (planted `total >= 40` mutant rejected).
-- `python3 -I tools/oracle.py --entry src/cobol --english /home/lehmer/english-source`: PASS, no findings. `deterministic: false` is reported by the oracle as it was for the baseline.
+- `python3 -I tools/oracle.py --entry src/cobol --english ~/english-source`: PASS, no findings. `deterministic: false` is reported by the oracle as it was for the baseline.
 - `check.sh` was not run on the host (hard rule 1); its code lines are unchanged.
 
 ## Kept English, on purpose (EXC-542)
