@@ -1,6 +1,6 @@
 ---
 id: t07-archive-loop
-status: pending
+status: done
 depends_on: [t03-memory, t04-controls]
 touches:
   - loop/STATE.md
@@ -9,9 +9,9 @@ touches:
 lane: none
 tier: light
 gate: python3 -m unittest discover -s tools -p 'test_*.py' 2>&1 | python3 plans/adopt-ralph/no_new_failures.py plans/adopt-ralph/tools-test-baseline.txt && python3 scripts/build_indexes.py --check && python3 scripts/check_context.py && python3 -I tools/verify.py --fast && grep -qi 'archived' loop/STATE.md && grep -qi 'archived' loop/RUN.md && grep -q 'plans/' loop/STATE.md && test -f "$(git rev-parse --path-format=absolute --git-common-dir)/../loop/STOP" && ! git ls-files --error-unmatch loop/STOP >/dev/null 2>&1 && git diff --check
-claimed_by: ""
-claimed_at: ""
-evidence: ""
+claimed_by: claude cli-default
+claimed_at: "2026-11-24T02:43:47Z"
+evidence: gate passed 2026-11-24 (driver-verified)
 ---
 
 # Mark the old loop as archived
@@ -47,4 +47,10 @@ If you cannot finish, write "Resume notes" below. Keep the status `in_progress`.
 
 ## Resume notes
 
-(none)
+Resolved on 2026-11-23: the operator changed the gate to check `loop/STOP` in the main checkout. All gate parts now pass. The notes below are history.
+
+The notices in `loop/STATE.md` and `loop/RUN.md` are done and committed. All gate parts pass except `test -f loop/STOP`.
+
+`loop/STOP` is in `.gitignore`. It is not tracked. A new worktree does not have it, so the check fails here (checked on 2026-11-23). The file is not in `touches`, and it is the owner's checkpoint. Do not create it in the worktree.
+
+Needed from the owner: run the gate in the main checkout (where `loop/STOP` exists), or approve a gate that does not depend on an untracked file. Do not change the gate without the owner.
