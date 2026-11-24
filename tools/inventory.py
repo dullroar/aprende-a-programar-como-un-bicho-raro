@@ -37,8 +37,11 @@ if _HERE not in sys.path:
 CLASSES = ("frozen", "authored", "generated", "tooling", "archival", "owned")
 
 OWNED_PREFIXES = ("loop/", "translation/", "tools/", "ralph-kit-es/", ".claude/",
-                  "tests/fixtures/", "lessons/book/locale/", "review/")
-OWNED_FILES = {".gitignore", "requirements-es.txt", "lessons/book/book.es.css"}
+                  "tests/fixtures/", "lessons/book/locale/", "review/",
+                  "memory/", "plans/", "scripts/")
+OWNED_FILES = {".gitignore", "requirements-es.txt", "lessons/book/book.es.css",
+               "AGENTS.md", "CLAUDE.md", "controls.toml", "GUIA-DEL-REPO.md",
+               ".secret-guard-allow"}
 OWNED_GLOBS = (re.compile(r"^SYNTHESIZED-TRANSLATION-PLAN-.*\.md$"),)
 
 # Tooling: adapted through the locale layer. Everything else non-Markdown is frozen.

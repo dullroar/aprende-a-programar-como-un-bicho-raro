@@ -233,7 +233,7 @@ def crlf_checkout_paths(root: str, paths: list[str]) -> set[str]:
     CRLF -> LF. Any other difference still fails. `paths` are English keys; git is asked
     about their working names.
     """
-    if not paths or not os.path.isdir(os.path.join(root, ".git")):
+    if not paths or not os.path.exists(os.path.join(root, ".git")):
         return set()
     layer = enpath.load(root)
     work = {layer.work(p): p for p in paths}

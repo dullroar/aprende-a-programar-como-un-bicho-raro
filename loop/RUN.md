@@ -1,5 +1,10 @@
 # Run and hand off the translation loop
 
+> **Notice: this loop is archived.** The queue state at the time of archive: todo 0 | doing 0 | done 322 | blocked 0 | skipped 0.
+> New work lives in `plans/`. See `GUIA-DEL-REPO.md` and `AGENTS.md`.
+> `loop/STOP` stays. It is the Part III checkpoint of the owner.
+> Do not run or resume `loop/ralph.sh`. The commands below are kept only as history.
+
 Start from the Spanish repository. All runners use the same checkout, queue,
 PO files, review registers, and Git history.
 

@@ -1,0 +1,4 @@
+{"segment_id": "s-111111111111-0001", "file": "docs/a.md", "tier": "T1", "english_masked": "Hello, reader.", "placeholders": [], "glossary_slice": [], "playful": false}
+{"segment_id": "s-222222222222-0002", "file": "docs/a.md", "tier": "T1", "english_masked": "Run ⟦CODE_0001⟧ now.", "placeholders": ["⟦CODE_0001⟧"], "glossary_slice": [], "playful": false}
+{"segment_id": "s-333333333333-0003", "file": "docs/a.md", "tier": "T1", "english_masked": "Save the file.", "placeholders": [], "glossary_slice": [], "playful": false}
+{"segment_id": "s-444444444444-0004", "file": "docs/a.md", "tier": "T1", "english_masked": "A short note.", "placeholders": [], "glossary_slice": [], "playful": false}
