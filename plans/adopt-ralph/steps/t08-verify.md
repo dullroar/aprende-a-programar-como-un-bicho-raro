@@ -1,12 +1,12 @@
 ---
 id: t08-verify
-status: blocked
+status: pending
 depends_on: [t05-routing-map, t06-batch-tool, t07-archive-loop]
 touches:
   - plans/adopt-ralph/steps/t08-verify.md
 lane: none
 tier: light
-gate: python3 -m unittest discover -s tools -p 'test_*.py' 2>&1 | python3 plans/adopt-ralph/no_new_failures.py plans/adopt-ralph/tools-test-baseline.txt && python3 scripts/build_indexes.py --check && python3 scripts/check_context.py && python3 tools/check_routing_map.py && python3 scripts/secret_guard.py --tracked && python3 -I tools/verify.py --fast && grep -Eq '^verify-fast-same: (yes|no)' plans/adopt-ralph/steps/t08-verify.md && grep -Eq '^tool-tests-same: (yes|no)' plans/adopt-ralph/steps/t08-verify.md && grep -Eq '^queue-counts-same: (yes|no)' plans/adopt-ralph/steps/t08-verify.md && grep -Eq '^secret-history-count: [0-9]+' plans/adopt-ralph/steps/t08-verify.md && grep -Eq '^runner-status: ok' plans/adopt-ralph/steps/t08-verify.md && git diff --check
+gate: python3 -m unittest discover -s tools -p 'test_*.py' 2>&1 | python3 plans/adopt-ralph/no_new_failures.py plans/adopt-ralph/tools-test-baseline.txt && python3 scripts/build_indexes.py --check && python3 scripts/check_context.py && python3 tools/check_routing_map.py && python3 scripts/secret_guard.py --tracked && python3 -I tools/verify.py --fast && grep -Eq '^verify-fast-same: (yes|no)' plans/adopt-ralph/steps/t08-verify.md && grep -Eq '^tool-tests-same: (yes|no)' plans/adopt-ralph/steps/t08-verify.md && grep -Eq '^queue-counts-same: (yes|no)' plans/adopt-ralph/steps/t08-verify.md && grep -Eq '^secret-history-count: [0-9]+' plans/adopt-ralph/steps/t08-verify.md && git diff --check
 claimed_by: ""
 claimed_at: ""
 evidence: ""
@@ -50,6 +50,10 @@ If you cannot finish, write "Resume notes" below. Keep the status `in_progress`.
 ## Operator change (2026-11-23)
 
 Agent sessions cannot write outside the worktree or run `mktemp`. Make the scratch clone inside the worktree instead: `git clone -q . .probe/copy`. The operator excluded `/.probe/` in this clone's `.git/info/exclude`, so it is never tracked and the scope check ignores it. Run the runner view in that copy. Delete it with `rm -rf .probe` before you run the gate.
+
+## Operator change (2026-11-23, runner view)
+
+The runner view is dropped. The agent session cannot reach the runner checkout, and `ralph-looper --status` can create branches and worktrees (see the runner's `docs/fanout.md`). Its purpose was to show that `plans/` is valid for Ralph. The gate already runs `python3 scripts/check_context.py`, whose library checks `plans.schema` and `plans.graph` apply the same rules as the runner's picker. The parent plan's `fanout.py verify` checks the finished steps with Git plumbing. Do not write `runner-status`.
 
 ## Resume notes
 
