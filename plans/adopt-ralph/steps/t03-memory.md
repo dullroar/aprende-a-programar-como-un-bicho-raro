@@ -1,6 +1,6 @@
 ---
 id: t03-memory
-status: pending
+status: done
 depends_on: [t02-layout]
 touches:
   - memory/*.md
@@ -9,9 +9,9 @@ touches:
 lane: none
 tier: light
 gate: python3 scripts/build_indexes.py --check && python3 -I tools/verify.py --fast && test "$(ls memory/*.md | wc -l)" -ge 3 && ! grep -rEq '/home/|/Users/|C:\\' memory/ && for f in memory/*.md; do [ "$f" = memory/AGENTS.md ] || head -5 "$f" | grep -q '^gist: "Read me when:' || exit 1; done && git diff --check
-claimed_by: ""
-claimed_at: ""
-evidence: ""
+claimed_by: claude cli-default
+claimed_at: "2026-11-24T02:29:38Z"
+evidence: gate passed 2026-11-24 (driver-verified)
 ---
 
 # Write one memory file for each trap
@@ -41,6 +41,8 @@ evidence: ""
 
 Set `status: done`. Fill `evidence` with the gate command, the result and the date.
 If you cannot finish, write "Resume notes" below. Keep the status `in_progress`.
+
+Count: `loop/SIGNS.md` has about 165 one-line signs and `loop/STATE.md` has 3 traps. They fall into 15 topics. The step wrote one memory file for each topic, so 15 files (the gate needs at least 3). Each file keeps every fact of its topic. Local paths became placeholders.
 
 ## Resume notes
 
