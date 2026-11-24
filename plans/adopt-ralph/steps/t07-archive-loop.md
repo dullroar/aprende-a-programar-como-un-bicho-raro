@@ -9,9 +9,9 @@ touches:
 lane: none
 tier: light
 gate: python3 -m unittest discover -s tools -p 'test_*.py' 2>&1 | python3 plans/adopt-ralph/no_new_failures.py plans/adopt-ralph/tools-test-baseline.txt && python3 scripts/build_indexes.py --check && python3 scripts/check_context.py && python3 -I tools/verify.py --fast && grep -qi 'archived' loop/STATE.md && grep -qi 'archived' loop/RUN.md && grep -q 'plans/' loop/STATE.md && test -f "$(git rev-parse --path-format=absolute --git-common-dir)/../loop/STOP" && ! git ls-files --error-unmatch loop/STOP >/dev/null 2>&1 && git diff --check
-claimed_by: ""
-claimed_at: ""
-evidence: "Gate command run in single-command parts on 2026-11-23 with the operator-changed gate: tool tests show 14 failures (10 failures, 4 errors), the same count as the known baseline; build_indexes --check, check_context.py, verify.py --fast and git diff --check pass; the grep checks for 'archived' and 'plans/' pass; loop/STOP exists in the main checkout (git common dir) and is not tracked. Queue counts written in the notice: todo 0, doing 0, done 322, blocked 0, skipped 0."
+claimed_by: claude cli-default
+claimed_at: "2026-11-24T02:43:47Z"
+evidence: gate passed 2026-11-24 (driver-verified)
 ---
 
 # Mark the old loop as archived
