@@ -9,9 +9,9 @@ touches:
   - plans/adopt-ralph/steps/t05-routing-map.md
 lane: none
 gate: python3 tools/check_routing_map.py && python3 -m unittest tools/test_check_routing_map.py && python3 scripts/build_indexes.py --check && python3 -I tools/verify.py --fast && git diff --check
-claimed_by: ""
-claimed_at: ""
-evidence: "gate (check_routing_map, unittest, build_indexes --check, verify --fast, git diff --check) passed on 2026-11-23"
+claimed_by: claude cli-default
+claimed_at: "2026-11-24T02:28:31Z"
+evidence: gate passed 2026-11-24 (driver-verified)
 ---
 
 # Write the measured routing map and its checker
