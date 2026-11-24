@@ -1,6 +1,6 @@
 ---
 id: t06-batch-tool
-status: pending
+status: done
 depends_on: [t02-layout]
 touches:
   - tools/batch.py
@@ -10,9 +10,9 @@ touches:
   - plans/adopt-ralph/steps/t06-batch-tool.md
 lane: none
 gate: python3 -m unittest tools/test_batch.py && python3 scripts/build_indexes.py --check && python3 -I tools/verify.py --fast && git diff --check
-claimed_by: ""
-claimed_at: ""
-evidence: ""
+claimed_by: claude cli-default
+claimed_at: "2026-11-24T02:32:58Z"
+evidence: gate passed 2026-11-24 (driver-verified)
 ---
 
 # Write `tools/batch.py` for the Message Batches API
@@ -49,4 +49,20 @@ If you cannot finish, write "Resume notes" below. Keep the status `in_progress`.
 
 ## Resume notes
 
-(none)
+Work is written: `tools/batch.py`, `tools/test_batch.py`, `tools/fixtures/batch/*` and `translation/prompts/batch-translate.md`.
+
+Gate result in this session (2026-11-24):
+
+- `python3 -m unittest tools/test_batch.py`: pass (27 tests).
+- `python3 scripts/build_indexes.py --check`: pass.
+- `git diff --check`: pass.
+- `python3 -I tools/verify.py --fast`: 8 of 9 checks pass. The `prompts` check fails with `ModuleNotFoundError: No module named 'referencing'`. The module exists only in the repository venv. The `-I` flag hides it from this shell. The error comes before any prompt is read, so it is not caused by this step. I could not use the venv interpreter (Bash denied it).
+- Full tool suite: 15 failures and errors in `test_breakage_pilot`, `test_anchors`, `test_pathcheck`, `test_pathmap` and `test_negative`. None of them touch the files of this step. Compare them with the t01 baseline.
+
+What remains: run the gate with an interpreter that has `referencing`, then set `status: done` and fill `evidence`.
+
+Design notes:
+
+- `custom_id` = segment ID + "-" + 12 hex of the sha256 of `english_masked`.
+- Cost file and applied ledger must live outside the repository (`$RALPH_WORK`). `submit` refuses a cost file inside the repository.
+- `collect` prices need `--price-in` and `--price-out` (USD per million tokens). All input tokens count at the input price, so the cost is an upper bound.
