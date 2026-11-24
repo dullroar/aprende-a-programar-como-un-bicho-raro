@@ -1,0 +1,6 @@
+# Run settings for the v4-es-1b plan. Claude Code reports notional cost on a subscription.
+# Batch spend is not counted here. The submitter counts it against plans/v4-es-1b/records/f02-operator-budget.md.
+jobs: 4
+max_step_usd: 10
+step_timeout_minutes: 60
+gate_timeout_minutes: 90
