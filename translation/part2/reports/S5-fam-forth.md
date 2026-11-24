@@ -10,7 +10,7 @@ Iteration 425. Verdict: **oracle PASS (docker available). Comments localized; st
 
 ## Proof
 
-- `python3 -I tools/oracle.py --entry src/forth --english /home/lehmer/english-source`: PASS, no findings (`deterministic: false`, as for the baseline).
+- `python3 -I tools/oracle.py --entry src/forth --english ~/english-source`: PASS, no findings (`deterministic: false`, as for the baseline).
 - `check.sh` was not run on the host (hard rule 1); code lines unchanged.
 
 ## Kept English, on purpose (EXC-543)

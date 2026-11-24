@@ -10,7 +10,7 @@ Iteration 474. Verdict: **oracle PASS. Comments localized; strings, categories a
 
 ## Proof
 
-- `python3 -I tools/oracle.py --entry src/tar-gnu --english /home/lehmer/english-source`: PASS, no findings.
+- `python3 -I tools/oracle.py --entry src/tar-gnu --english ~/english-source`: PASS, no findings.
 - `python3 -I tools/lock_code.py --verify`: ok.
 - No script was run on the host (hard rule 1).
 

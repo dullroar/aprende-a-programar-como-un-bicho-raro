@@ -11,7 +11,7 @@ Written by iteration 549 (task H3-005). `loop/STOP` exists. Jim: read this, then
 
 ### Upstream package for the English repo (H3-003)
 - Two files: new `TRANSLATING.md` and one sentence in `CONTRIBUTING.md`. Base `48a4429c0a22b2aac628b256a50c07d1816bcb80`. Patch: `translation/part3/upstream-package.patch`; notes: `translation/part3/upstream-package.md`.
-- Prepared in a scratch clone. `/home/lehmer/english-source` was not touched.
+- Prepared in a scratch clone. `~/english-source` was not touched.
 - Evidence: `build.py --check` passes; 20 link/identity tests pass.
 - The 27 source issues (SI-001 to SI-027) are all `open`; none is approved, so none is in the package.
 

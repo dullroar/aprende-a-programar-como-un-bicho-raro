@@ -63,7 +63,7 @@ counts for the root README: 40 challenges in 29 languages
 metadata ok; generated files are up to date
 diagrams: 79 rendered with mermaid-cli 12.2.0, Google Chrome for Testing 147.0.7727.15 (79 from cache, 0 drawn now)
 diagrams: removed 8 stale cached file(s)
-wrote /home/lehmer/repos/aprende-a-programar-como-un-bicho-raro/lessons/book/out/weird-way.html
+wrote ~/repos/aprende-a-programar-como-un-bicho-raro/lessons/book/out/weird-way.html
 internal links ok
 517 headings checked; every repeated title has its own id
 ```
@@ -73,7 +73,7 @@ internal links ok
 ```text
 study guides: template, diagrams, links and index ok
 diagrams: 36 rendered with mermaid-cli 12.2.0, Google Chrome for Testing 147.0.7727.15 (33 from cache, 3 drawn now)
-wrote /home/lehmer/repos/aprende-a-programar-como-un-bicho-raro/lessons/book/out/study-guides.html
+wrote ~/repos/aprende-a-programar-como-un-bicho-raro/lessons/book/out/study-guides.html
 internal links ok
 265 headings checked; every repeated title has its own id
 ```
@@ -83,7 +83,7 @@ internal links ok
 ```text
 curriculum: plan, diagram, links and house style ok
 diagrams: 1 rendered with mermaid-cli 12.2.0, Google Chrome for Testing 147.0.7727.15 (0 from cache, 1 drawn now)
-wrote /home/lehmer/repos/aprende-a-programar-como-un-bicho-raro/lessons/book/out/curriculum.html
+wrote ~/repos/aprende-a-programar-como-un-bicho-raro/lessons/book/out/curriculum.html
 internal links ok
 14 headings checked; every repeated title has its own id
 ```
@@ -201,9 +201,9 @@ WARNING: Ignored `user-select: none` at 42:32, unknown property.
 ```text
 study guides: template, diagrams, links and index ok
 diagrams: 36 rendered with mermaid-cli 12.2.0, Google Chrome for Testing 147.0.7727.15 (33 from cache, 3 drawn now)
-wrote /home/lehmer/repos/aprende-a-programar-como-un-bicho-raro/lessons/book/out/study-guides.html
-wrote /home/lehmer/repos/aprende-a-programar-como-un-bicho-raro/translation/work/baseline/release/learn-programming-the-weird-way-study-guides.epub
-wrote /home/lehmer/repos/aprende-a-programar-como-un-bicho-raro/translation/work/baseline/release/learn-programming-the-weird-way-study-guides.pdf
+wrote ~/repos/aprende-a-programar-como-un-bicho-raro/lessons/book/out/study-guides.html
+wrote ~/repos/aprende-a-programar-como-un-bicho-raro/translation/work/baseline/release/learn-programming-the-weird-way-study-guides.epub
+wrote ~/repos/aprende-a-programar-como-un-bicho-raro/translation/work/baseline/release/learn-programming-the-weird-way-study-guides.pdf
 learn-programming-the-weird-way-study-guides.pdf: scanned 222/222 pages
   Selectable content sentinels: 6/6 passed
 0 errors, 0 warnings; exit 0
@@ -216,9 +216,9 @@ WARNING: Ignored `user-select: none` at 42:32, unknown property.
 ```text
 curriculum: plan, diagram, links and house style ok
 diagrams: 1 rendered with mermaid-cli 12.2.0, Google Chrome for Testing 147.0.7727.15 (0 from cache, 1 drawn now)
-wrote /home/lehmer/repos/aprende-a-programar-como-un-bicho-raro/lessons/book/out/curriculum.html
-wrote /home/lehmer/repos/aprende-a-programar-como-un-bicho-raro/translation/work/baseline/release/curriculum.epub
-wrote /home/lehmer/repos/aprende-a-programar-como-un-bicho-raro/translation/work/baseline/release/curriculum.pdf
+wrote ~/repos/aprende-a-programar-como-un-bicho-raro/lessons/book/out/curriculum.html
+wrote ~/repos/aprende-a-programar-como-un-bicho-raro/translation/work/baseline/release/curriculum.epub
+wrote ~/repos/aprende-a-programar-como-un-bicho-raro/translation/work/baseline/release/curriculum.pdf
 curriculum.pdf: scanned 10/10 pages
 0 errors, 0 warnings; exit 0
 curriculum.pdf: 10 pages (title page and contents included; the plan is about 8 in all and at most 12)

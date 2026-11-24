@@ -6,7 +6,7 @@ Scope: S5-fam-regex-sed, S5-fam-tar-gnu, S5-fam-tar-gnu-weird, S5-fam-ed-weird, 
 
 - `python3 tools/lock_code.py --verify`: ok, 230 frozen files match the manifest and the English clone agree.
 - `python3 -I tools/part2_inv.py --check`: 0 records, 0 findings (identifier ledger still empty).
-- `python3 -I tools/oracle.py --entry src/<family> --english /home/lehmer/english-source` for src/regex-sed, tar-gnu, tar-gnu-weird, ed-weird, ex-weird: PASS, no findings, each.
+- `python3 -I tools/oracle.py --entry src/<family> --english ~/english-source` for src/regex-sed, tar-gnu, tar-gnu-weird, ed-weird, ex-weird: PASS, no findings, each.
 - `diff -rq` of `src/` against the English clone, ignoring Markdown: the five families differ only in files of families marked localizing; no other unexpected difference.
 - No Spanish card category (`Reuniones`, `Programación`, `Depuración`, `Aprendizaje`) appears in any non-Markdown file of the five families, so no mixed forms.
 - Exception register has rows EXC-582 to EXC-586.

@@ -9,5 +9,5 @@ Iteration 526. Verdict: **oracle PASS in Spanish; categories localized in progra
 
 ## Proof
 
-- `python3 -I tools/oracle.py --entry src/PythonChallenge1 --english /home/lehmer/english-source`: PASS, no findings (`deterministic: false`, as in the baseline).
+- `python3 -I tools/oracle.py --entry src/PythonChallenge1 --english ~/english-source`: PASS, no findings (`deterministic: false`, as in the baseline).
 - Nothing was run on the host (hard rule 1).

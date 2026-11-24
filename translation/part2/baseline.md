@@ -12,7 +12,7 @@ Recorded by iteration 394 before any Part II change. This is the state that Part
 ## English source
 
 - Pinned English commit: `48a4429c0a22b2aac628b256a50c07d1816bcb80`.
-- The English clone at `/home/lehmer/english-source` is at that commit.
+- The English clone at `~/english-source` is at that commit.
 
 ## Frozen-file lock
 

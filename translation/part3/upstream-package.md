@@ -1,6 +1,6 @@
 # Upstream package for the English repository (H3-003)
 
-Prepared locally. Nothing was pushed, no pull request was opened, nobody was contacted. The English checkout at `/home/lehmer/english-source` was not touched (`git status` clean); the work was done in a scratch clone.
+Prepared locally. Nothing was pushed, no pull request was opened, nobody was contacted. The English checkout at `~/english-source` was not touched (`git status` clean); the work was done in a scratch clone.
 
 ## Base revision
 

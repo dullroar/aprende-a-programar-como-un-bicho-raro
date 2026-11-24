@@ -22,7 +22,7 @@ is absent, it raises NotTested and the verdict is NOT TESTED.
 
 Usage:
   python3 -I tools/oracle.py --selftest
-  python3 -I tools/oracle.py --entry src/forth --english /home/lehmer/english-source [--seed N]
+  python3 -I tools/oracle.py --entry src/forth --english ~/english-source [--seed N]
 """
 import hashlib
 import json

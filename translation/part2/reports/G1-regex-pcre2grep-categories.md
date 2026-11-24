@@ -12,7 +12,7 @@ Iteration 539. Verdict: **oracle PASS in Spanish; categories localized and the t
 
 ## Proof
 
-- `python3 -I tools/oracle.py --entry src/regex-pcre2grep --english /home/lehmer/english-source`: PASS, no findings (`deterministic: false`, as in the baseline).
+- `python3 -I tools/oracle.py --entry src/regex-pcre2grep --english ~/english-source`: PASS, no findings (`deterministic: false`, as in the baseline).
 - Nothing was run on the host (hard rule 1).
 - `lock_code --write-localized`, `part2_inv --check` 0 findings, `verify --fast` OK, `test_apply` and `test_categories` OK.
 - Why it works: pcre2grep runs without `-u`, so the widened class matches the UTF-8 bytes of the accented letters one at a time, which is enough for the `*` skip.

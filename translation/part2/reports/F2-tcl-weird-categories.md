@@ -13,6 +13,6 @@ Iteration 533. Verdict: **oracle PASS in Spanish; categories localized in code, 
 ## Proof
 
 - No `[A-Za-z]` class touches category names in this family, so nothing blocks accents (unlike EXC-590 to EXC-593).
-- `python3 -I tools/oracle.py --entry src/tcl-weird --english /home/lehmer/english-source`: PASS, no findings (`deterministic: false`, as in the baseline).
+- `python3 -I tools/oracle.py --entry src/tcl-weird --english ~/english-source`: PASS, no findings (`deterministic: false`, as in the baseline).
 - Nothing was run on the host (hard rule 1).
 - `lock_code --verify` ok, `part2_inv --check` 0 findings, `verify --fast` OK.

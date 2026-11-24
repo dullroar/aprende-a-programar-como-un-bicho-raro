@@ -10,7 +10,7 @@ Iteration 455. Verdict: **oracle PASS. Comments localized; strings, categories a
 
 ## Proof
 
-- `python3 -I tools/oracle.py --entry src/forth-weird --english /home/lehmer/english-source`: PASS, no findings (`deterministic: false`, as for the baseline).
+- `python3 -I tools/oracle.py --entry src/forth-weird --english ~/english-source`: PASS, no findings (`deterministic: false`, as for the baseline).
 - `python3 tools/lock_code.py --verify`: ok. `python3 tools/part2_inv.py --check`: clean.
 
 ## Kept English, on purpose (EXC-569)

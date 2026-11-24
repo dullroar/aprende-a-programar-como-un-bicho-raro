@@ -12,6 +12,6 @@ Iteration 522. Verdict: **oracle PASS in Spanish; categories localized in code, 
 
 ## Proof
 
-- `python3 -I tools/oracle.py --entry src/javascript-weird --english /home/lehmer/english-source`: PASS, no findings (`deterministic: false`, as in the baseline).
+- `python3 -I tools/oracle.py --entry src/javascript-weird --english ~/english-source`: PASS, no findings (`deterministic: false`, as in the baseline).
 - Nothing was run on the host (hard rule 1).
 - `verify --fast` OK; `part2_inv --check` clean; `lock_code --verify` OK; localized-code hashes rewritten.
