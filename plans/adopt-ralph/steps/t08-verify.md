@@ -1,6 +1,6 @@
 ---
 id: t08-verify
-status: pending
+status: blocked
 depends_on: [t05-routing-map, t06-batch-tool, t07-archive-loop]
 touches:
   - plans/adopt-ralph/steps/t08-verify.md
