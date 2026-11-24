@@ -1,8 +1,10 @@
 ---
 id: t00-secret-guard
-status: blocked
+status: pending
 depends_on: []
 touches:
+  - tools/lock_code.py
+  - tools/test_lock_code.py
   - scripts/secret_guard.py
   - scripts/install_hooks.sh
   - tools/test_secret_guard.py
@@ -53,6 +55,12 @@ This repository has no secret guard. Secrets must never be committed. The guard 
 
 Set `status: done`. Fill `evidence` with the gate command, the result and the date.
 If you cannot finish, write "Resume notes" below. Keep the status `in_progress`.
+
+## Operator change (2026-11-23)
+
+The lock failure (`I13 CHANGED` for three `.bat` files) is a real defect in `tools/lock_code.py`, not in the checkout. Line 236 tests `os.path.isdir(os.path.join(root, ".git"))`. In a linked Git worktree `.git` is a file, so the CRLF allowance for `text eol=crlf` paths is skipped. The main checkout passes only because its `.git` is a directory. `tools/lock_code.py` and `tools/test_lock_code.py` are now in `touches`. Fix the check so it also works in a linked worktree (for example, test that `.git` exists, or ask Git with `git rev-parse --git-dir`). Add a test that runs the CRLF case in a linked worktree. Do not change the lock digests or any `.bat` file.
+
+The `polib` import errors came from a missing environment. The operator now puts the repository's `.venv` site-packages on `PYTHONPATH` for this run.
 
 ## Resume notes
 
