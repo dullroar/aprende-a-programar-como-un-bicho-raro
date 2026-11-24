@@ -9,9 +9,9 @@ touches:
 lane: none
 tier: light
 gate: python3 scripts/build_indexes.py --check && python3 -I tools/verify.py --fast && test "$(ls memory/*.md | wc -l)" -ge 3 && ! grep -rEq '/home/|/Users/|C:\\' memory/ && for f in memory/*.md; do [ "$f" = memory/AGENTS.md ] || head -5 "$f" | grep -q '^gist: "Read me when:' || exit 1; done && git diff --check
-claimed_by: ""
-claimed_at: ""
-evidence: "gate command passed on 2026-11-23: build_indexes --check, verify --fast OK, 15 memory files, no path match, gist check, git diff --check"
+claimed_by: claude cli-default
+claimed_at: "2026-11-24T02:29:38Z"
+evidence: gate passed 2026-11-24 (driver-verified)
 ---
 
 # Write one memory file for each trap
