@@ -1,6 +1,6 @@
 ---
 id: t04-controls
-status: pending
+status: done
 depends_on: [t02-layout]
 touches:
   - controls.toml
@@ -15,7 +15,7 @@ lane: none
 gate: python3 -m unittest discover -s tools -p 'test_*.py' 2>&1 | python3 plans/adopt-ralph/no_new_failures.py plans/adopt-ralph/tools-test-baseline.txt && python3 scripts/build_indexes.py --check && python3 scripts/check_context.py && python3 scripts/secret_guard.py --tracked && python3 -I tools/verify.py --fast && grep -q '0323de273a158608f7280867e12994141bccd1e6' scripts/controls-requirements.txt && grep -q 'verify.py --fast' .github/workflows/context.yml && grep -q 'secret_guard.py --tracked' .github/workflows/context.yml && grep -q 'permissions' .github/workflows/context.yml && ! grep -q 'continue-on-error' .github/workflows/context.yml && ! grep 'uses:' .github/workflows/context.yml | grep -Evq '@[0-9a-f]{40}' && grep -q 'canaries.key.json' controls.toml && git diff --check
 claimed_by: ""
 claimed_at: ""
-evidence: ""
+evidence: "Gate command of this step passed on 2026-11-23 (tool tests equal baseline, indexes, check_context.py, secret_guard --tracked, verify --fast, workflow greps). Probe test tools/test_controls.py: bad copy fails with repo.forbidden-artifacts, good copy passes. History scan: 0 findings."
 ---
 
 # Adopt the pinned controls in advisory CI
