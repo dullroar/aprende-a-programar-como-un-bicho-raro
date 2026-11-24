@@ -47,6 +47,10 @@ evidence: ""
 Set `status: done`. Fill `evidence` with the gate command, the result and the date.
 If you cannot finish, write "Resume notes" below. Keep the status `in_progress`.
 
+## Operator change (2026-11-23)
+
+Agent sessions cannot write outside the worktree or run `mktemp`. Make the scratch clone inside the worktree instead: `git clone -q . .probe/copy`. The operator excluded `/.probe/` in this clone's `.git/info/exclude`, so it is never tracked and the scope check ignores it. Run the runner view in that copy. Delete it with `rm -rf .probe` before you run the gate.
+
 ## Resume notes
 
 (none)
