@@ -1,0 +1,14 @@
+schema_version = 1
+profile = "ci"
+# Scope decisions are in translation/controls-adoption.md.
+# markdown.local-links and security.personal-data are not enabled: see that file.
+enabled = ["context.index-freshness", "plans.graph", "plans.schema", "repo.forbidden-artifacts", "security.secrets"]
+
+[parameters."repo.forbidden-artifacts"]
+extra_patterns = [
+  "review/canaries.key.json",
+  "review/packets/**",
+  "review/repo-bundle.zip",
+  "review/units.index.jsonl",
+  "loop/driver.out*",
+]
