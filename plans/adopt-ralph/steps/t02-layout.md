@@ -1,6 +1,6 @@
 ---
 id: t02-layout
-status: in_progress
+status: done
 depends_on: [t01-baseline]
 touches:
   - AGENTS.md
@@ -16,9 +16,9 @@ touches:
   - plans/adopt-ralph/steps/t02-layout.md
 lane: none
 gate: python3 -m unittest discover -s tools -p 'test_*.py' 2>&1 | python3 plans/adopt-ralph/no_new_failures.py plans/adopt-ralph/tools-test-baseline.txt && python3 scripts/build_indexes.py --check && python3 -I tools/verify.py --fast && grep -q 'repo-template' AGENTS.md && grep -q 'ralph-looper' AGENTS.md && grep -q 'Before changing this repository' AGENTS.md && grep -q 'Run me when:' scripts/verify_fast.sh && grep -q '^@AGENTS.md' CLAUDE.md && test -f plans/for-each-plan/steps/00-step-template.md && git diff --check
-claimed_by: ""
-claimed_at: ""
-evidence: ""
+claimed_by: claude cli-default
+claimed_at: "2026-11-24T02:27:23Z"
+evidence: gate passed 2026-11-24 (driver-verified)
 ---
 
 # Add the template layout and the agent contract
