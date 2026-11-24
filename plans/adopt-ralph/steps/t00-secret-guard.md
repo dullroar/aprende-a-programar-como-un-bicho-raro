@@ -18,9 +18,9 @@ touches:
   - plans/adopt-ralph/steps/t00-secret-guard.md
 lane: none
 gate: python3 -m unittest tools/test_secret_guard.py tools/test_registry.py tools/test_inventory.py && bash scripts/install_hooks.sh --self-test && python3 scripts/secret_guard.py --tracked && grep -q 'secret_guard.py --tracked' .github/workflows/context.yml && grep -q 'secret_guard.py --range' .github/workflows/context.yml && grep -q '^.github/workflows/context.yml' translation/tooling-allowlist.txt && python3 -I tools/verify.py --fast && git diff --check
-claimed_by: ""
-claimed_at: ""
-evidence: "gate command in this file: all parts passed (42 guard/registry/inventory tests, hook self-test, tracked scan 0 findings, verify --fast OK, diff --check clean), 2026-11-23"
+claimed_by: claude cli-default
+claimed_at: "2026-11-24T02:13:48Z"
+evidence: gate passed 2026-11-24 (driver-verified)
 ---
 
 # Install the secret guard first, and register every path of this plan
