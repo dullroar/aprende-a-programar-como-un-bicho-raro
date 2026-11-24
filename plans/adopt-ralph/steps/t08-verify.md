@@ -1,6 +1,6 @@
 ---
 id: t08-verify
-status: in_progress
+status: done
 depends_on: [t05-routing-map, t06-batch-tool, t07-archive-loop]
 touches:
   - plans/adopt-ralph/steps/t08-verify.md
@@ -9,7 +9,7 @@ tier: light
 gate: python3 -m unittest discover -s tools -p 'test_*.py' 2>&1 | python3 plans/adopt-ralph/no_new_failures.py plans/adopt-ralph/tools-test-baseline.txt && python3 scripts/build_indexes.py --check && python3 scripts/check_context.py && python3 tools/check_routing_map.py && python3 scripts/secret_guard.py --tracked && python3 -I tools/verify.py --fast && grep -Eq '^verify-fast-same: (yes|no)' plans/adopt-ralph/steps/t08-verify.md && grep -Eq '^tool-tests-same: (yes|no)' plans/adopt-ralph/steps/t08-verify.md && grep -Eq '^queue-counts-same: (yes|no)' plans/adopt-ralph/steps/t08-verify.md && grep -Eq '^secret-history-count: [0-9]+' plans/adopt-ralph/steps/t08-verify.md && git diff --check
 claimed_by: ""
 claimed_at: ""
-evidence: ""
+evidence: "2026-11-23: the gate command passed (tool tests: no new failures, 14 known; build_indexes, check_context, check_routing_map, secret_guard --tracked, verify --fast and git diff --check all exit 0). The runner view was dropped by the operator."
 ---
 
 # Prove that the new layout and the old results agree
@@ -62,7 +62,7 @@ The runner view is dropped. The agent session cannot reach the runner checkout, 
 
 ## Resume notes
 
-Status: partial. The comparison above is complete. The runner view is NOT done.
+Status: done. The operator dropped the runner view (see "Operator change (2026-11-23, runner view)"). The notes below are history.
 
 - The scratch clone worked (`git clone -q . .probe/copy`). I removed `.probe` afterwards.
 - Bash denied every call to `/home/lehmer/repos/ralph-looper/ralph-looper` (`--help` and `--repo .probe/copy --plan adopt-ralph --status`). So I could not write `runner-status: ok`. I did not guess it.
