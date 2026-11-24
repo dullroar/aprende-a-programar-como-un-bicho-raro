@@ -1,6 +1,6 @@
 ---
 id: t05-routing-map
-status: pending
+status: done
 depends_on: [t02-layout]
 touches:
   - translation/routing.md
@@ -11,7 +11,7 @@ lane: none
 gate: python3 tools/check_routing_map.py && python3 -m unittest tools/test_check_routing_map.py && python3 scripts/build_indexes.py --check && python3 -I tools/verify.py --fast && git diff --check
 claimed_by: ""
 claimed_at: ""
-evidence: ""
+evidence: "gate (check_routing_map, unittest, build_indexes --check, verify --fast, git diff --check) passed on 2026-11-23"
 ---
 
 # Write the measured routing map and its checker
@@ -50,4 +50,5 @@ If you cannot finish, write "Resume notes" below. Keep the status `in_progress`.
 
 ## Resume notes
 
-(none)
+The ledger `loop/ledger/usage.jsonl` was not present in the worktree (it is untracked). The measurement column says `no history`. The operator can run `python3 tools/model_report.py` and fill in real figures later.
+The queue has one kind that the plan did not list: `packet`. The map covers it.
