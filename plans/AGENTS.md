@@ -25,5 +25,7 @@ Read the list. Open only the plans whose "Read me when" line matches your task.
   Read me when: you want to see the format of a plan. (Template only. Copy this folder to start a plan.)
 * [v4-es-1/plan.md](./v4-es-1/plan.md)
   Read me when: you run or change the plan that finishes the Spanish edition v4-es.1: the Jury, the humor review, the upstream package, the cookbook rehearsal, the translation pack and the release.
+* [v4-es-1b/plan.md](./v4-es-1b/plan.md)
+  Read me when: you run or change the batch-first plan that finishes the review of the Spanish edition: anomaly fixes, model calibration, the batch Jury, adjudication, fixes, the Fable PDF review and the hand-off to human editors. It supersedes v4-es-1.
 
 <!-- END GENERATED INDEX -->
