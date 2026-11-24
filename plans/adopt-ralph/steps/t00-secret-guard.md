@@ -1,6 +1,6 @@
 ---
 id: t00-secret-guard
-status: pending
+status: blocked
 depends_on: []
 touches:
   - scripts/secret_guard.py
