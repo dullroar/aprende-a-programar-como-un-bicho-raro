@@ -1,6 +1,6 @@
 ---
 id: t08-verify
-status: pending
+status: in_progress
 depends_on: [t05-routing-map, t06-batch-tool, t07-archive-loop]
 touches:
   - plans/adopt-ralph/steps/t08-verify.md
@@ -36,7 +36,12 @@ evidence: ""
 
 ## Comparison
 
-(write the lines here)
+verify-fast-same: yes (exit 0, "verify --fast: OK (1 checks)", as in the baseline)
+verify-release-no-gates: exit 1, same crash as the baseline (`polib` missing in `tools/apply.py`)
+tool-tests-same: yes (1477 tests, failures=10, errors=5, skipped=1. The baseline had 1441 tests with the same failures, errors and skips. The 36 extra tests come from `tools/test_batch.py`, `tools/test_check_routing_map.py` and `tools/test_controls.py`, added by this plan)
+queue-counts-same: yes (todo 0 | doing 0 | done 322 | blocked 0 | skipped 0)
+file-count-delta: 47 (1283 tracked now, 1236 in the baseline. Added: AGENTS.md, CLAUDE.md, GUIA-DEL-REPO.md, controls.toml, 15 files in memory/, memory/AGENTS.md, plans/AGENTS.md, plans/adopt-ralph/no_new_failures.py, plans/adopt-ralph/tools-test-baseline.txt, 3 files in plans/for-each-plan/, scripts/AGENTS.md, scripts/build_indexes.py, scripts/check_context.py, scripts/controls-requirements.txt, scripts/ctx_common.py, scripts/verify_fast.sh, tools/batch.py, tools/check_routing_map.py, 6 fixtures in tools/fixtures/batch/, tools/test_batch.py, tools/test_check_routing_map.py, tools/test_controls.py, translation/controls-adoption.md, translation/prompts/batch-translate.md, translation/routing.md)
+secret-history-count: 0 (108 binary blobs unscanned; this is only a note)
 
 ## Exceptions
 
@@ -57,4 +62,9 @@ The runner view is dropped. The agent session cannot reach the runner checkout, 
 
 ## Resume notes
 
-(none)
+Status: partial. The comparison above is complete. The runner view is NOT done.
+
+- The scratch clone worked (`git clone -q . .probe/copy`). I removed `.probe` afterwards.
+- Bash denied every call to `/home/lehmer/repos/ralph-looper/ralph-looper` (`--help` and `--repo .probe/copy --plan adopt-ralph --status`). So I could not write `runner-status: ok`. I did not guess it.
+- To finish: run `ralph-looper --repo <scratch clone in .probe/copy> --plan adopt-ralph --status` (allow that command for the agent, or run it as the operator). If it prints the step table without an error, add the line `runner-status: ok (<first output line>)`. The line must start with `runner-status: ok`. Then remove `.probe`, run the gate, set `status: done` and fill `evidence`.
+- No exceptions were added to `.secret-guard-allow` by this plan (not changed in the diff since the baseline).
