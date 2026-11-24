@@ -178,6 +178,28 @@ class LockTests(unittest.TestCase):
         self.assertEqual(rc, 1)
         self.assertIn("CHANGED  gradlew.bat", out)
 
+    def test_crlf_checkout_is_accepted_in_a_linked_worktree(self):
+        run("--write", "--root", self.e.es)
+        git(self.e.es, "add", "-A")
+        git(self.e.es, "commit", "-q", "-m", "lock")
+        wt = os.path.join(self._tmp_dir(), "linked")
+        git(self.e.es, "worktree", "add", "-q", "-b", "linked-test", wt)
+        # in a linked worktree `.git` is a file, not a directory
+        self.assertTrue(os.path.isfile(os.path.join(wt, ".git")))
+        with open(os.path.join(wt, "gradlew.bat"), "rb") as fh:
+            self.assertIn(b"\r\n", fh.read())
+        rc, out, _ = run("--verify", "--root", wt)
+        self.assertEqual(rc, 0, out)
+        write(wt, "gradlew.bat", "@echo off\r\nexit /b 1\r\n")
+        rc, out, _ = run("--verify", "--root", wt)
+        self.assertEqual(rc, 1)
+        self.assertIn("CHANGED  gradlew.bat", out)
+
+    def _tmp_dir(self):
+        tmp = tempfile.TemporaryDirectory()
+        self.addCleanup(tmp.cleanup)
+        return tmp.name
+
     def test_crlf_in_a_file_without_crlf_attribute_fails(self):
         run("--write", "--root", self.e.es)
         write(self.e.es, "src/forth/timecards.fs", ": total 40 > ;\r\n")
