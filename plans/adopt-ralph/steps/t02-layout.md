@@ -1,6 +1,6 @@
 ---
 id: t02-layout
-status: pending
+status: blocked
 depends_on: [t01-baseline]
 touches:
   - AGENTS.md
