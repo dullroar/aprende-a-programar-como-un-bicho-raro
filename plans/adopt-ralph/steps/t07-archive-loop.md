@@ -1,6 +1,6 @@
 ---
 id: t07-archive-loop
-status: done
+status: in_progress
 depends_on: [t03-memory, t04-controls]
 touches:
   - loop/STATE.md
@@ -47,4 +47,8 @@ If you cannot finish, write "Resume notes" below. Keep the status `in_progress`.
 
 ## Resume notes
 
-(none)
+The notices in `loop/STATE.md` and `loop/RUN.md` are done and committed. All gate parts pass except `test -f loop/STOP`.
+
+`loop/STOP` is in `.gitignore`. It is not tracked. A new worktree does not have it, so the check fails here (checked on 2026-11-23). The file is not in `touches`, and it is the owner's checkpoint. Do not create it in the worktree.
+
+Needed from the owner: run the gate in the main checkout (where `loop/STOP` exists), or approve a gate that does not depend on an untracked file. Do not change the gate without the owner.
