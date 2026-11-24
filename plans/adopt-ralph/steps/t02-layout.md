@@ -1,6 +1,6 @@
 ---
 id: t02-layout
-status: pending
+status: in_progress
 depends_on: [t01-baseline]
 touches:
   - AGENTS.md
@@ -55,4 +55,5 @@ If you cannot finish, write "Resume notes" below. Keep the status `in_progress`.
 
 ## Resume notes
 
-(none)
+All "Change" items are done. The gate parts pass, except the tool test suite. In this environment (no `polib`, no Mermaid CLI, linked worktree) it gives failures=10, errors=4, skipped=1. The t01 baseline is failures=10, errors=5. The failing tests are the same kind as in the baseline. The driver must run the gate in an environment that has `polib`.
+Template source: `/home/lehmer/repos/repo-template` (branch `main`, has `secret_guard.py`).
