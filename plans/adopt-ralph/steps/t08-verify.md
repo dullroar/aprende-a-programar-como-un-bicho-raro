@@ -7,9 +7,9 @@ touches:
 lane: none
 tier: light
 gate: python3 -m unittest discover -s tools -p 'test_*.py' 2>&1 | python3 plans/adopt-ralph/no_new_failures.py plans/adopt-ralph/tools-test-baseline.txt && python3 scripts/build_indexes.py --check && python3 scripts/check_context.py && python3 tools/check_routing_map.py && python3 scripts/secret_guard.py --tracked && python3 -I tools/verify.py --fast && grep -Eq '^verify-fast-same: (yes|no)' plans/adopt-ralph/steps/t08-verify.md && grep -Eq '^tool-tests-same: (yes|no)' plans/adopt-ralph/steps/t08-verify.md && grep -Eq '^queue-counts-same: (yes|no)' plans/adopt-ralph/steps/t08-verify.md && grep -Eq '^secret-history-count: [0-9]+' plans/adopt-ralph/steps/t08-verify.md && git diff --check
-claimed_by: ""
-claimed_at: ""
-evidence: "2026-11-23: the gate command passed (tool tests: no new failures, 14 known; build_indexes, check_context, check_routing_map, secret_guard --tracked, verify --fast and git diff --check all exit 0). The runner view was dropped by the operator."
+claimed_by: claude cli-default
+claimed_at: "2026-11-24T02:53:27Z"
+evidence: gate passed 2026-11-24 (driver-verified)
 ---
 
 # Prove that the new layout and the old results agree
