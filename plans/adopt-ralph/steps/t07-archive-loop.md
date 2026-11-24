@@ -1,6 +1,6 @@
 ---
 id: t07-archive-loop
-status: blocked
+status: pending
 depends_on: [t03-memory, t04-controls]
 touches:
   - loop/STATE.md
@@ -8,7 +8,7 @@ touches:
   - plans/adopt-ralph/steps/t07-archive-loop.md
 lane: none
 tier: light
-gate: python3 -m unittest discover -s tools -p 'test_*.py' 2>&1 | python3 plans/adopt-ralph/no_new_failures.py plans/adopt-ralph/tools-test-baseline.txt && python3 scripts/build_indexes.py --check && python3 scripts/check_context.py && python3 -I tools/verify.py --fast && grep -qi 'archived' loop/STATE.md && grep -qi 'archived' loop/RUN.md && grep -q 'plans/' loop/STATE.md && test -f loop/STOP && git diff --check
+gate: python3 -m unittest discover -s tools -p 'test_*.py' 2>&1 | python3 plans/adopt-ralph/no_new_failures.py plans/adopt-ralph/tools-test-baseline.txt && python3 scripts/build_indexes.py --check && python3 scripts/check_context.py && python3 -I tools/verify.py --fast && grep -qi 'archived' loop/STATE.md && grep -qi 'archived' loop/RUN.md && grep -q 'plans/' loop/STATE.md && test -f "$(git rev-parse --path-format=absolute --git-common-dir)/../loop/STOP" && ! git ls-files --error-unmatch loop/STOP >/dev/null 2>&1 && git diff --check
 claimed_by: ""
 claimed_at: ""
 evidence: ""
@@ -40,6 +40,10 @@ The private loop is replaced by `plans/` and the Ralph runner. Keep every old fi
 
 Set `status: done`. Fill `evidence` with the gate command, the result and the date.
 If you cannot finish, write "Resume notes" below. Keep the status `in_progress`.
+
+## Operator change (2026-11-23)
+
+`loop/STOP` is untracked (it is in `.gitignore`), so it never exists in a linked worktree, and `test -f loop/STOP` could not pass. The gate now checks the intent: the owner's `loop/STOP` still exists in the main checkout (found through Git's common directory), and this step does not track it. Do not create, move or delete `loop/STOP`.
 
 ## Resume notes
 
