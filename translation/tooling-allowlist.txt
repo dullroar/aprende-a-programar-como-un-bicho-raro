@@ -23,6 +23,7 @@ lessons/study-guides/metadata.yaml  # P2-013: Spanish title, companion-to, es-41
 lessons/book/guide_impact.py  # P3B-003: guide folder and source patterns from the catalog paths block
 lessons/book/test_document_links.py  # P3B-003: front-matter and guide front matter paths from the catalog
 lessons/book/test_pdf_lint.py  # P3B-006b: the real front matter is found through catalog.checkout()
+.github/workflows/context.yml  # t00: secret guard job (new workflow, not in English)
 .github/workflows/pdf-release-gate.yml  # P3B-005: build commands at the Spanish folder names (data: never in the scratch-proof layer)
 lessons/book/chapters.txt  # P3B-005: entries in the Spanish layout (data: never in the scratch-proof layer)
 lessons/study-guides/chapters.txt  # P3B-005: entries in the Spanish layout (data: never in the scratch-proof layer)

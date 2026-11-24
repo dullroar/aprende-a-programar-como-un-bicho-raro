@@ -1,6 +1,6 @@
 ---
 id: t00-secret-guard
-status: pending
+status: done
 depends_on: []
 touches:
   - tools/lock_code.py
@@ -18,9 +18,9 @@ touches:
   - plans/adopt-ralph/steps/t00-secret-guard.md
 lane: none
 gate: python3 -m unittest tools/test_secret_guard.py tools/test_registry.py tools/test_inventory.py && bash scripts/install_hooks.sh --self-test && python3 scripts/secret_guard.py --tracked && grep -q 'secret_guard.py --tracked' .github/workflows/context.yml && grep -q 'secret_guard.py --range' .github/workflows/context.yml && grep -q '^.github/workflows/context.yml' translation/tooling-allowlist.txt && python3 -I tools/verify.py --fast && git diff --check
-claimed_by: ""
-claimed_at: ""
-evidence: ""
+claimed_by: claude cli-default
+claimed_at: "2026-11-24T02:13:48Z"
+evidence: gate passed 2026-11-24 (driver-verified)
 ---
 
 # Install the secret guard first, and register every path of this plan
@@ -64,4 +64,6 @@ The `polib` import errors came from a missing environment. The operator now puts
 
 ## Resume notes
 
-(none)
+- `--history`: 0 findings, 0 allowed, 108 unscanned (binary files). No secret found.
+- Fixed `tools/lock_code.py` `crlf_checkout_paths`: `.git` check now uses `os.path.exists`, so it works in a linked worktree. Added a linked-worktree CRLF test in `tools/test_lock_code.py`.
+- Gate passed on 2026-11-23.
